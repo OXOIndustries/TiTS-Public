@@ -59,9 +59,8 @@ public function reahaMoosAboutNewTexas():Boolean
 
 		clearOutput();
 
-		showName("\nREAHA");
+		showReaha();
 		author("Savin");
-		showBust("REAHA");
 
 		output("As you’re fiddling with the boarding ramp controls, you hear Reaha’s bare feet padding up behind you. You turn to face her, and find yourself staring down the strawberry-haired cow, her big blue eyes locked with yours.");
 		
@@ -91,8 +90,7 @@ public function talkWithFollowerReaha():void
 public function reahaFirstTalk():void
 {
 	clearOutput();
-	showName("\nREAHA");
-	showBust("REAHA");
+	showReaha();
 	author("Savin");
 
 	flags["REAHA_DONE_NEWTEXAS_FOLLOWUP"] = 1;
@@ -450,7 +448,7 @@ public function reahaTalkNewTexasII():void
 
 		output("<i>“So, how come you never told me you had sisters before?”</i>");
 		
-		output("\n\nReaha shrugs. <i>“Up ‘til recently, I thought you bought me to");
+		output("\n\nReaha shrugs. <i>“Up till recently, I thought you bought me to");
 		if (reahaFree()) output(" suck dick");
 		else output(" be your personal milk maid");
 		output(", not talk.");
@@ -1021,6 +1019,7 @@ public function reahaAddictionTherapyDickwielder():void
 	if (pc.biggestCockVolume() <= reaha.vaginalCapacity()) output(" to the hilt");
 	else output(" to the very end of her passage, as deep as she can possibly take your massive cock");
 	output(" in one long, slow thrust.");
+	
 	reaha.cuntChange(0, pc.biggestCockVolume(), false, false, false);
 	pc.cockChange();
 	
@@ -1166,7 +1165,7 @@ public function reahaBreastMilkIceCream():void
 	
 	output("\n\n" + icedTeatsAlienName() + "’s eyes go wide at the suggestion. <i>“That’s... uh, well, I mean...”</i> ");
 	
-	output("\n\n<i>“What’s the harm? You’ve got a couple free stalls, and I’m willing to pay,”</i> you say, placing a credit chit on the counter. ");
+	output("\n\n<i>“What’s the harm? You’ve got a couple free stalls, and I’m willing to pay,”</i> you say, placing a " + (isAprilFools() ? "dogecoin" : "credit chit") + " on the counter. ");
 	
 	output("\n\n<i>“Well,”</i> " + icedTeatsAlienName() + " says, pursing her lips, <i>“I guess that’ll be alright.”</i> ");
 	
@@ -1342,7 +1341,10 @@ public function reahaDommyFuxTimeWait():void
 	else output(" are");
 	if (!pc.isNude()) output(" straining against your armor, painfully in need of room to breathe");
 	else output(" flopping wildly beneath Reaha’s prodigious bottom");
-	output(". With the hand not currently buried deep in cow-pussy, you fish out [pc.oneCock] and give it a much-needed rub-down, slathering it up with the bountiful supply of cow-juice and [reaha.milkNoun] on tap, using Reaha’s own fluids as an impromptu lube. That done, all you need to do is angle your tool upwards into the bouncing mass of cow-butt riding your arm, and it’s soon swallowed up into the expansive mounds of Reaha’s buttcrack, squeezed together as tight as a virgin’s pussy in the throes of her ecstasy. ");
+	output(". With the hand not currently buried deep in cow-pussy, you fish out [pc.oneCock] and give it a much-needed rub-down, slathering it up with the bountiful supply of cow-juice and [reaha.milkNoun] on tap, using Reaha’s own fluids as an impromptu lube. That done, all you need to do is angle your tool upwards into the bouncing mass of cow-butt riding your arm, and it’s soon swallowed up into the expansive mounds of Reaha’s buttcrack, squeezed together as tight as a virgin’s pussy in the throes of her ecstasy.");
+	
+	reaha.cuntChange(0, pc.biggestCockVolume(), false, false, false);
+	pc.cockChange();
 	
 	output("\n\nReaha gives a gasp of surprise as she feels your warm, wet schlong slip into her crack, grinding up against her ass; that gasp turns into a lascivious grin as she starts to move her hips faster, fist-fucking herself deeper onto your arm until you can feel your knuckles brushing up against the lips of her cervix. That first touch sets her off again, and with an uncontainable scream, Reaha cums again, flooding you a second time with [reaha.milkNoun] and fem-cum. You nearly drown in the sudden rush of her sweet cream, even as your arm is soaked and your [pc.cock] is caught in the vice-like grip of her quaking, bouncing ass as she rides you through her orgasm. ");
 	
@@ -1432,7 +1434,7 @@ public function reahaMilkTalkHoneydew():void
 
 	pc.destroyItemByClass(Honeydew);
 
-	output("You take a golden yellow vial of Honeydew out of your pack and show it to the busty cow. She takes it, looking over the label. <i>“Honey? Isn’t that a little thick for boobs? Well... it’s XenoGen, so I guess it must be safe. I guess you’ll be wanting something sweet for your tea, huh? Alright, let’s see...”</i>");
+	output("You take a golden yellow vial of Honeydew out of your pack and show it to the busty cow. She takes it, looking over the label. <i>“Honey? Isn’t that a little thick for boobs? Well... it’s Xenogen, so I guess it must be safe. I guess you’ll be wanting something sweet for your tea, huh? Alright, let’s see...”</i>");
 	
 	output("\n\nWith practiced skill, Reaha twists the top of the jar off and dumps the viscous yellow goop out right onto the top of one of her tips. She shudders at the sudden chill, but quickly starts to spread the thick gel across her breasts, rubbing it into the soft skin with slow, circular motions until both her tits are colored yellow, completely coated. ");
 	

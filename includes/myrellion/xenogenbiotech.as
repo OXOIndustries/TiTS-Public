@@ -209,8 +209,8 @@ public function myrellionNevrieShop(isDiscount:Boolean = false):void
 	}
 	else
 	{
-		nevrie.destroyItemByClass(RedPill);
-		nevrie.destroyItemByClass(GoldPill);
+		nevrie.destroyItemByClass(RedPill, -1);
+		nevrie.destroyItemByClass(GoldPill, -1);
 	}
 	if(flags["MCALLISTER_MYR_HYBRIDITY"] == 3 || flags["MCALLISTER_MYR_HYBRIDITY"] == 4)
 	{
@@ -218,7 +218,7 @@ public function myrellionNevrieShop(isDiscount:Boolean = false):void
 	}
 	else
 	{
-		nevrie.destroyItemByClass(OrangePill);
+		nevrie.destroyItemByClass(OrangePill, -1);
 	}
 	processTime(8 + rand(2));
 
@@ -444,6 +444,7 @@ public function myrellionNevrieBloodVial():void
 	myrellionNevrieMenu();
 }
 
+/*
 public function nevriMailGet():void
 {
 	AddLogEvent("<b>New Email From Nevri Redarra (N_Redarra@Xenogen.net)!</b>", "passive");
@@ -462,6 +463,7 @@ public function nevriBJMailGet():void
 
 	MailManager.unlockEntry("bjreminder", GetGameTimestamp());
 }
+*/
 
 public function mcallisterMeeting():void
 {
@@ -561,26 +563,35 @@ public function mcallisterMenu(cFunc:Function = null):void
 			addDisabledButton(0, "Research", "Researching...", "Progress: " + formatFloat(nPercent, 1) + "%"); // use button tooltip as a progress display
 		}
 	}
+	
+	addButton(1, "Talk", mcallisterTalkMenu);
 
-	if (cFunc != mcallisterMyrQueens)
-	{
-		if (flags["MCALLISTER_GOLD_MYR_TALK"] != undefined) addButton(1, "Myr Queens", mcallisterMyrQueens, undefined, "Myr Queens", "Ask Dr. McAllister about his treatment by the Queens of the Gilden Republic. They seem quite infatuated by him...");
-		else addDisabledButton(1, "Myr Queens", "Myr Queens", "You should probably have a chat with Dr. McAllister about the Gold Myr in general first...");
-	}
-	else addDisabledButton(1, "Myr Queens");
-
-	if (cFunc != mcallisterGoldMyr) addButton(2, "Gold Myr", mcallisterGoldMyr, undefined, "Gold Myr", "Ask Dr. McAllister what he thinks about the gold myr.");
-	else addDisabledButton(2, "Gold Myr");
-
-	if (cFunc != mcallisterRedMyr) addButton(3, "Red Myr", mcallisterRedMyr, undefined, "Red Myr", "Ask Dr. McAllister what he thinks about the red myr.");
-	else addDisabledButton(3, "Red Myr");
-
-	if (cFunc != mcallisterXenogen) addButton(4, "Xenogen", mcallisterXenogen, undefined, "Xenogen Biotech", "Ask Dr. McAllister about the mega-corporation he works for.");
-	else addDisabledButton(4, "Xenogen");
-
-	if(pexigaQuestDocChatsAvailable()) addButton(5,"Pexiga Help",drByronMcallisterProfessionalPexigaAnus,undefined,"Pexiga Help","Ask for help with the Pexiga’s unique situation.");
+	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drByronMcallisterProfessionalPexigaAnus,undefined,"Pexiga Help","Ask for help with the Pexiga’s unique situation.");
+	
+	if(bothriocQuestActive()) bothriocQuestDoctorButton(4, "McAllister");
 
 	addButton(14, "Back", mainGameMenu);
+}
+public function mcallisterTalkMenu(cFunc:Function = null):void
+{
+	clearMenu();
+	if (cFunc != mcallisterMyrQueens)
+	{
+		if (flags["MCALLISTER_GOLD_MYR_TALK"] != undefined) addButton(0, "Myr Queens", mcallisterMyrQueens, undefined, "Myr Queens", "Ask Dr. McAllister about his treatment by the Queens of the Gilden Republic. They seem quite infatuated by him...");
+		else addDisabledButton(0, "Myr Queens", "Myr Queens", "You should probably have a chat with Dr. McAllister about the Gold Myr in general first...");
+	}
+	else addDisabledButton(0, "Myr Queens");
+
+	if (cFunc != mcallisterGoldMyr) addButton(1, "Gold Myr", mcallisterGoldMyr, undefined, "Gold Myr", "Ask Dr. McAllister what he thinks about the gold myr.");
+	else addDisabledButton(1, "Gold Myr");
+
+	if (cFunc != mcallisterRedMyr) addButton(2, "Red Myr", mcallisterRedMyr, undefined, "Red Myr", "Ask Dr. McAllister what he thinks about the red myr.");
+	else addDisabledButton(2, "Red Myr");
+
+	if (cFunc != mcallisterXenogen) addButton(3, "Xenogen", mcallisterXenogen, undefined, "Xenogen Biotech", "Ask Dr. McAllister about the mega-corporation he works for.");
+	else addDisabledButton(3, "Xenogen");
+	
+	addButton(14, "Back", mcallisterMenu);
 }
 
 public function mcallisterXenogen():void
@@ -605,7 +616,7 @@ public function mcallisterXenogen():void
 	output("\n\nYou suppose that’s true.");
 
 	processTime(10 + rand(5));
-	mcallisterMenu(mcallisterXenogen);
+	mcallisterTalkMenu(mcallisterXenogen);
 }
 
 public function mcallisterRedMyr():void
@@ -630,7 +641,7 @@ public function mcallisterRedMyr():void
 	output("\n\nMcAllister grunts and runs a hand through his curly red beard. <i>“As I said, they’re strong, and their venom will be a popular cosmetic treatment... maybe have some medical uses. But of the people themselves? They’re hard workers, make no mistake, and loyal to a fault. I’ve never heard one speak ill of her kin or country. First I thought they’d all been, I suppose brainwashed, but... I don’t believe that’s the case. Be it culture or nature, they are remarkably loyal and steadfast creatures. Admirable, I suppose, in their way.”</i>");
 
 	processTime(5 + rand(5));
-	mcallisterMenu(mcallisterRedMyr);
+	mcallisterTalkMenu(mcallisterRedMyr);
 }
 
 public function mcallisterGoldMyr():void
@@ -657,7 +668,7 @@ public function mcallisterGoldMyr():void
 	output("\n\nOf that, you have no doubt.");
 
 	processTime(5 + rand(5));
-	mcallisterMenu(mcallisterGoldMyr);
+	mcallisterTalkMenu(mcallisterGoldMyr);
 }
 
 public function mcallisterMyrQueens():void
@@ -682,7 +693,7 @@ public function mcallisterMyrQueens():void
 	output("\n\nMcAllister sighs and shakes his head. <i>“But yes, in the end, it’s all about rebuilding their populations. I should think I’m offering a better way than what Ambassador Juro wants, turning Myrellion into a kui-tan colony where the furry bastards can put a race full of cocks to use on a race almost completely lacking them. As much as I’d like to see the kui-tan spread, the myr should be protected as they are, not used as breeding stock for other species.”</i>");
 
 	processTime(5 + rand(5));
-	mcallisterMenu(mcallisterMyrQueens);
+	mcallisterTalkMenu(mcallisterMyrQueens);
 }
 
 public function mcallisterMyrTFs():void

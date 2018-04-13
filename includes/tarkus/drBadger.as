@@ -63,6 +63,7 @@ public function drBadgerBuyMenu():void
 	chars["DRBADGER"].inventory.push(new Gush());
 	chars["DRBADGER"].inventory.push(new SlutRay());
 	chars["DRBADGER"].inventory.push(new Tentacool());
+	chars["DRBADGER"].inventory.push(new BimboleumDefenseSystem());
 
 	// Shop unlocks
 	if(flags["BADGER_QUEST"] >= 3)
@@ -274,6 +275,7 @@ public function heyDocImAHero():void
 	{
 		output("\n\nYou feel yourself solidify at the same time, your body turning to normal flesh. <b>You have lost your goo form</b>.");
 		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		pc.clearSkinFlags();
 	}
 	//IF PC DOES NOT HAVE BREASTS
 	if(pc.biggestTitSize() < 1)
@@ -764,6 +766,7 @@ public function removeDatCuntTail():void
 	{
 		output("\n\nYou feel yourself solidify at the same time, your body turning to normal flesh. <b>You have lost your goo form</b>.");
 		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		pc.clearSkinFlags();
 		changes++;
 	}
 	//IF PC DOES NOT HAVE BREASTS

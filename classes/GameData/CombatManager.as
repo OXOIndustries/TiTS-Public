@@ -111,6 +111,7 @@ package classes.GameData
 		public static const ENTIRE_PARTY_DEFEATED:String = "all_defeated";
 		public static const SURVIVE_WAVES:String = "survival";
 		public static const ESCAPE:String = "escape";
+		public static const ANY_TARGET_DEFEATED:String = "single_target_defeat";
 		
 		public static function victoryCondition(condition:String, arg:* = undefined):void
 		{
@@ -139,14 +140,14 @@ package classes.GameData
 			combatContainer.beginCombat();
 		}
 			
-		public static function genericVictory():void
+		public static function genericVictory(func:Function = null):void
 		{
-			combatContainer.genericVictory();
+			combatContainer.genericVictory(func);
 			postCombat();
 		}
-		public static function genericLoss():void
+		public static function genericLoss(func:Function = null):void
 		{
-			combatContainer.genericLoss();
+			combatContainer.genericLoss(func);
 			postCombat();
 		}
 		public static function postCombat():void

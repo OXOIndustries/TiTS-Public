@@ -12,6 +12,7 @@ package classes.Items.Melee
 	 */
 	public class TaivrasSpear extends ItemSlotClass
 	{	
+		//Level 8 (Very Rare). Balance 2.0
 		public function TaivrasSpear() 
 		{
 			this._latestVersion = 1;
@@ -33,10 +34,11 @@ package classes.Items.Melee
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
-			this.basePrice = 750;
-			this.attack = 3;
-			this.critBonus = 7;
-			baseDamage.kinetic.damageValue = 15.0;
+			this.basePrice = 19000;
+			this.attack = 5;
+			this.critBonus = 9;
+			this.evasion = 6;
+			baseDamage.kinetic.damageValue = 20.0;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			this.version = _latestVersion;

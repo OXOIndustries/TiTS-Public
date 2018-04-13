@@ -145,7 +145,16 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "GRYVAINAGENT", GryvainAgent);
 	prepChar(justUpdate, "LUCA", Luca);
 	prepChar(justUpdate, "KRYM", Krym);
-	
+	prepChar(justUpdate, "PAIGE", Paige);
+	prepChar(justUpdate, "CIARAN", Ciaran);
+	prepChar(justUpdate, "KATTON", KattomOsgood);
+	prepChar(justUpdate, "TAMTAM", TamTam);
+	prepChar(justUpdate, "ERIKA", Erika);
+	prepChar(justUpdate, "LIEVE", Lieve);
+	prepChar(justUpdate, "STORMGUARD_MALE", StormguardMale);
+	prepChar(justUpdate, "HEIDRUN", Heidrun);
+	prepChar(justUpdate, "NENNE", Nenne);
+	prepChar(justUpdate, "TUUVA", Tuuva);
 	
 	
 	// Check all characters have version information set

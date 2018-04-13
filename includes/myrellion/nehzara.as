@@ -374,7 +374,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	output("\n\n<i>“Excellent,”</i> she murmurs. You see her fidget a little and draw back from the desk in her rolling chair. Once you’ve come around the desk to stand beside her, you can see that she’s hiked down her uniform pants to expose a pair of glistening, inviting lips positioned between two sinfully smooth, slender-yet-strong thighs. Oh, you’re pretty sure you’re going to enjoy this.");
 	output("\n\nYour eyes meet Nehzara’s, and her mouth quirks into a little smile that you can’t help but find devilishly attractive. Rough and commanding she may be, but there’s an oddly charming woman beneath all the abrasive bluntness.");
 
-	//output("\n\n{Taur/Naga/Drider/Caterpillar/Yawgmoth}");
+	// Taur/Naga/Drider/Caterpillar/Yawgmoth
 	if(pc.isTaur() || pc.isDrider() || pc.legCount > 3)
 	{
 		output("\n\nThe Red Myr officer beckons for you to get down behind the desk, and you ");
@@ -412,7 +412,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	output(".");
 
 	output("\n\nYou couldn’t be happier. Down here between the Red Myr officer’s legs, [pc.face] buried in her warm cunt so firmly you’re practically making out with it. You’re overwhelmed by a tingly, electric excitement that you can’t fully describe. Though you started out trying to make the cool, dismissive woman lose her cool and descend into moaning ecstasy, you are quickly realizing that the tables have turned. You reach down ");
-	if(pc.lowerUndergarment.shortName != "") output("into your [pc.underGarments] ");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed()) output("into your [pc.lowerGarment] ");
 	output("to ");
 	if(!pc.hasCock()) output("push a couple fingers into your [pc.vagOrAss]");
 	else output("grasp at your [pc.cockBiggest]");

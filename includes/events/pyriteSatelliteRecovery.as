@@ -37,7 +37,7 @@ public function showGryvainShit(nude:Boolean = false):void
 public function showKaithritBoyslut():void
 {
 	showName("KAITHRIT\nBUSINESSGUY");
-	showBust("KAITHRIT_SATELLITE_GUY");
+	showBust("KASE");
 }
 
 public function kaithritSatelliteShit():void
@@ -118,13 +118,10 @@ public function pubbieDriveShit():void
 
 public function repeatRepresentativeSatelliteShit(button:Number = 0):void
 {
-	if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1)
-	{
-		output("\n\nThe Pyrite representative is pacing around outside the entrance to the Esbeth port, talking quietly into a commlink pressed into his shoulder. He’s having a hard time managing all his tech with an arm in a sling, and he seems to be quite manic about his lost toys.");
-		//PC can’t talk to him again until they’ve gotten the Hard Drive.
-		if(pcHasDrive()) addButton(button,"Pyrite Rep",turnInTheKaithritDiskuDrivo,undefined,"Pyrite Rep","Turn in the hard drive you recovered from the fallen satellite.");
-		else addDisabledButton(button,"Pyrite Rep","Pyrite Rep","You should find his missing satellite before talking to him again.");
-	}
+	output("\n\nThe Pyrite representative is pacing around outside the entrance to the Esbeth port, talking quietly into a commlink pressed into his shoulder. He’s having a hard time managing all his tech with an arm in a sling, and he seems to be quite manic about his lost toys.");
+	//PC can’t talk to him again until they’ve gotten the Hard Drive.
+	if(pcHasDrive()) addButton(button,"Pyrite Rep",turnInTheKaithritDiskuDrivo,undefined,"Pyrite Rep","Turn in the hard drive you recovered from the fallen satellite.");
+	else addDisabledButton(button,"Pyrite Rep","Pyrite Rep","You should find his missing satellite before talking to him again.");
 }
 
 //Finishing the Quest
@@ -217,7 +214,7 @@ public function investigateSatelliteShit():void
 	clearMenu();
 	//[Fight] {if Kind or No Quest: [Leave]}
 	addButton(0,"Fight",fightDataMiniBaws);
-	if(pc.isNice() || flags["SATELLITE_QUEST"] == 1)
+	if(pc.isNice() || flags["SATELLITE_QUEST"] != 1)
 	{
 		addButton(14,"Leave",letTheGryvainTakeTheShit,undefined,"Leave","Let her take the goods. You’re not here for a fight.");
 	}
@@ -233,6 +230,10 @@ public function letTheGryvainTakeTheShit():void
 	output("\n\n<i>“Made a good choice, kid. Now scram,”</i> she says, a smug smile spreading across her dark lips. <i>“Go on, get lost.”</i>");
 	output("\n\nYou take her advice and beat feet out of the crater.");
 	processTime(5);
+	
+	flags["SATELLITE_GRYVAIN_DEFEAT"] = 0;
+	flags["SATELLITE_QUEST"] = -2;
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -267,7 +268,7 @@ public function lostFightToGryvainAgentDotDotDotShit():void
 	else output("your snake-ass");
 	output(" and see if you can handle a dick.”</i>");
 
-	output("\n\nShe gives you a push, and without much fight left in you, you slump down on your [pc.knees] as she demanded, putting you more or less eye-level with her crotch. Now that you’re here, and not locked in battle, you can see a very distinct bulge between her legs, straining the front of her pants.The agent plants a hand on your head, keeping you right where she wants you, while the other hooks through her gunbelt, leveraging her breeches into dropping. As promised, a thick, tapered shaft of cyan cockflesh throbs into view with them gone, half-erect so close to your [pc.face] that, with a little tensing from its owner, its slender crown rises up to rest against your [pc.lips].");
+	output("\n\nShe gives you a push, and without much fight left in you, you slump down on your [pc.knees] as she demanded, putting you more or less eye-level with her crotch. Now that you’re here, and not locked in battle, you can see a very distinct bulge between her legs, straining the front of her pants. The agent plants a hand on your head, keeping you right where she wants you, while the other hooks through her gunbelt, leveraging her breeches into dropping. As promised, a thick, tapered shaft of cyan cockflesh throbs into view with them gone, half-erect so close to your [pc.face] that, with a little tensing from its owner, its slender crown rises up to rest against your [pc.lips].");
 
 	output("\n\n<i>“Go on then,”</i> she purrs, brushing her claws against your scalp. <i>“I’m waiting...”</i>");
 
@@ -276,6 +277,10 @@ public function lostFightToGryvainAgentDotDotDotShit():void
 	output("\n\n<i>“Fuck!”</i> the gryvain woman sighs, taking a step back. Her dick drags out of your mouth, coming free with a wet popping sound and leaking a smear of pearly spunk across your lips and chin. <i>“Well, guess your mouth is good for something, at least. Shame you’re wasted on the adventuring thing. Probably do better working at the next cathouse you bumble into than trying to jack a girl’s payday with a gun. Better luck next time, kid.”</i>");
 	output("\n\nShe gives you a sultry wink and saunters off, swaying her hips and stuffing the hard drive into her jacket.");
 	output("\n\nIt takes several minutes for you to catch your breath - and stop coughing up her cum - before you’re able to gather up your discarded belongings and stagger up out of the crater.\n\n");
+	
+	flags["SATELLITE_GRYVAIN_DEFEAT"] = -1;
+	flags["SATELLITE_QUEST"] = -2;
+	
 	CombatManager.genericLoss();
 }
 
@@ -295,7 +300,7 @@ public function pcBeatsUpAGryvainCauseTheyreAShit():void
 	clearMenu();
 	if(pc.lust() >= 33)
 	{
-		if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckDatGryvainShit,undefined,"Fuck Her","You see a bulge in her pants. Take this naughty dragon for a ride...");
+		if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckDatGryvainShit,undefined,"Fuck Her","This dragon-babe tried to fuck you out of your treasure. Give her a little something to remember you by...");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis that will fit inside her or a hardlight strap-on in order to this.");
 		addButton(1,"Ride Cock",rideDatCockAndShit,undefined,"Ride Cock","You see a bulge in her pants. Take this naughty dragon for a ride...");
 	}
@@ -339,7 +344,7 @@ public function getOutOfHereSkank():void
 public function rideDatCockAndShit():void
 {
 	clearOutput();
-	showGryvainShit();
+	showGryvainShit(true);
 	author("Savin");
 	output("With the defenseless dragon-girl now at your mercy, you decide to have some fun with her. You take a step forward that closes the distance, pushing her onto her back and spreading her legs. Her four wings splay out on the ground behind her, little talons clawing into the dirt, but the moment you have her on her ass, you see the straining bulge in her pants throb greedily, begging for release. You lean down and hook your hands through her belt, yanking her pants down and off with one rough pull. The gryvain woman gasps, and sure enough you’re treated to the sight of a dark blue dick peeking out from a pair of black panties, surrounded by the scales of her lower body.");
 	output("\n\nThe half-turgid member bobs up, wiggling in the warm jungle air when you tear her panties away, exposing the thick base of her tapered shaft and the parted slit of a pussy below it. You lick your lips and twirl a finger, telling the would-be gunslinger to pull her armor off and show you those big ol’ tits of hers.");
@@ -395,6 +400,7 @@ public function rideDatCockAndShit():void
 	output("\n\n");
 
 	processTime(30);
+	pc.orgasm();
 	clearMenu();
 	CombatManager.genericVictory();
 }
@@ -405,7 +411,7 @@ public function rideDatCockAndShit():void
 public function fuckDatGryvainShit():void
 {
 	clearOutput();
-	showGryvainShit();
+	showGryvainShit(true);
 	author("Savin");
 	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if((x < 0 || !pc.hasCock()) && pc.hasHardLightEquipped()) x = -1;
@@ -424,7 +430,7 @@ public function fuckDatGryvainShit():void
 
 	output("\n\nThat’s more like it! You let your thrusting [pc.hips] overbear the dragon-slut, shoving her down on her back so that her wings splay out in the dirt and her scaly legs spread beneath you. Your dick only leaves her mouth long enough for you to rip her armor off, exposing the big mounds of her E-cup tits, barely held back by a lacy black bra. The gryvain voluntarily takes that off this time, pushing her tits together with her shoulders for you to slide down and thrust into. Good girl - she knows what you want!");
 
-	output("\n\nHer nipples are coral-blue, jutting up from her pale, heaving tits such that you can’t help but grab onto them, pinching her nipples and pulling them towards one another, making sure her cleavage wraps around your [pc.cockOrStrapon " + x + "] nice and tight. All the spittle her blowjob left you covered in is more than enough lube to let your glide across her flawless flesh.");
+	output("\n\nHer nipples are coral-blue, jutting up from her pale, heaving tits such that you can’t help but grab onto them, pinching her nipples and pulling them towards one another, making sure her cleavage wraps around your [pc.cockOrStrapon " + x + "] nice and tight. All the spittle her blowjob left you covered in is more than enough lube to let you glide across her flawless flesh.");
 	if(pc.hasCuntTail()) 
 	{
 		output("\n\nYour feel your parasitic tail slithering behind you, drawn towards something. You cast a glance over your shoulder, and see a damn impressive bulge forming in the gryvain’s pants. Guess your tail’s hungry! You reach back and yank her pants down, just enough for her cock to spill out, and your tail goes to work without a second thought. A rush of spearing pleasure runs through you as the slit in your tail swallows up the gryvain’s tapered cock-head and slurps it up right to the knot-like bulge at the base.");
@@ -440,16 +446,16 @@ public function fuckDatGryvainShit():void
 		if(pc.race() != "gryvain" && pc.race() != "half-gryvain") output("you’ve heard all sorts of wonderful things about a gryvain’s pussy, after all, filled with a hundred clits that make her twat ribbed for your pleasure");
 		else output("you know full well how awesome it is - for both of you - to fuck a gryvain’s pussy");
 		output(". Before you can lose yourself completely in her cleavage, you reach back and yank the wanna-be hacker’s pants down. A thick, cobalt-blue shaft springs up, tearing its way out of her black panties and bobbing in the breeze like a flagpole.");
-		output("\n\nToo bad you’re not interested in that as much as what’s below it. You slides yourself back down her body, batting her dick out of the way and checking out the sex-slicked slit glistening underneath it.");
+		output("\n\nToo bad you’re not interested in that as much as what’s below it. You slide yourself back down her body, batting her dick out of the way and checking out the sex-slicked slit glistening underneath it.");
 	}
 	//combine:
-	output("\n\nNow that’s what you’ve been looking forward to. You grab the gryvain’s legs and push them up knees-to-shoulder, spreading her pussy. She doesn’t have a clit on the outside, making her cunt look almost like a featureless slit in her ivory flesh... but you know better. You align your [pc.cockOrStrapon " + x + "]’s crown with her pussy and, locking eyes with the buxom bitch before ramming your [pc.hips] forward.");
+	output("\n\nNow that’s what you’ve been looking forward to. You grab the gryvain’s legs and push them up knees-to-shoulder, spreading her pussy. She doesn’t have a clit on the outside, making her cunt look almost like a featureless slit in her ivory flesh... but you know better. You align your [pc.cockOrStrapon " + x + "]’s crown with her pussy and lock eyes with the buxom bitch before ramming your [pc.hips] forward.");
 	pc.cockChange();
 	output("\n\nThe effect is immediate. Your prick slides into the sodden slit, engulfed in a tight sheath of rounded nubs, all of which rub against your length with spasmic grasps. Their owner shrieks, throwing her head back and beating her wings against the ground hard enough to lift herself half a foot off the dirt. A jet of white seed squirts out of her dick, splattering the undersides of her tits and leaving smears all up her toned belly. And her cock doesn’t stop after that, but just keeps spurting and leaking with every quick thrust you give her, bobbing up and down with the beat of her hammering heart.");
 	output("\n\nThe gryvain finally manages to shout a haggard <i>“Fuck!”</i> between cumming her brains out and squirming on the ground. Every one of those little bulges you feel in her pussy is a little clit, all rubbing against your [pc.cockOrStrapon " + x + "] with every little move you make. And all of them grinding against you... it feels <i>good</i>. Too good. After all that titfucking you just did, you’re already on edge, and seeing the dragon-bitch creaming herself like a virgin on his first time... it’s too much! With a grunt, you hilt yourself in her, hard enough to make her shoot a streak of cream right into her own face. You’re barely a second behind her, ");
 	if(x < 0) output("feeling the feedback sensation from your hardlight shaft building up to a climactic peak that has you roaring with pleasure.");
 	else output("fucking the first wad of [pc.cumNoun] deep into her before pulling back, smearing the bumpy interior of her alien twat with your seed.");
-	output("\n\nWhen your orgasm finally passes, leaving you sweat-slicked and covered in more than a little sexual effluvium. Your chest heaves against the gryvain’s bosoms, letting her soft, wet tits cushion you until you catch your breath enough to stand and search out your discarded gear.");
+	output("\n\nWhen your orgasm finally passes, you are left sweat-slicked and covered in more than a little sexual effluvium. Your chest heaves against the gryvain’s bosoms, letting her soft, wet tits cushion you until you catch your breath enough to stand and search out your discarded gear.");
 	output("\n\n<i>“Fuck!”</i> the gryvain gasps when you stand, wiping the cum off her breasts. <i>“Why did that feel so good... losing’s supposed to suck!”</i>");
 	output("\n\nYou give her a look");
 	if(x >= 0) output(", watching your seed still leaking out of her,");
@@ -470,6 +476,7 @@ public function fuckDatGryvainShit():void
 	output("\n\n");
 	enemy.loadInCunt(pc,0);
 	processTime(30);
+	pc.orgasm();
 	clearMenu();
 	CombatManager.genericVictory();
 }

@@ -23,13 +23,13 @@ public function fauxCowFarmerBonus():Boolean
 	// 1st Time Room Add
 	if(flags["MET_CAMERON"] == undefined)
 	{
-		output("\n\nSitting by the gate to the field is a New Texan dressed in overalls and a wide-brimmed straw hat. For a moment, you think you've found the mythic flat-chested cow-girl by the figure's extremely feminine face, nub-like horns, tiny cloven hooves, and slight figure - until your eyes wander down and see the very blatant bulge in his pants, holding what must be a pretty sizable member at bay. He seems to be in something of a huff, kicking at a fence post and thumbing the handle of a slug gun on his belt.");
+		output("\n\nSitting by the gate to the field is a New Texan dressed in overalls and a wide-brimmed straw hat. For a moment, you think you’ve found the mythic flat-chested cow-girl by the figure’s extremely feminine face, nub-like horns, tiny cloven hooves, and slight figure - until your eyes wander down and see the very blatant bulge in his pants, holding what must be a pretty sizable member at bay. He seems to be in something of a huff, kicking at a fence post and thumbing the handle of a slug gun on his belt.");
 		addButton(0,"Farmer",approachFarmer);
 	}
 	// Repeat Room Add
 	else 
 	{
-		output("\n\nCameron is leaning up against the fence, mumbling to himself about the \"darned varmints\" running rampant in the fields still.");
+		output("\n\nCameron is leaning up against the fence, mumbling to himself about the “darned varmints” running rampant in the fields still.");
 		addButton(0,"Cameron",approachFarmer);
 	}
 	return false;
@@ -49,20 +49,20 @@ public function approachFarmer():void
 		output("\n\nHe jerks back when you speak, startled. Looking ");
 		if(pc.tallness > 70) output("up ");
 		else if(pc.tallness < 60) output("down ");
-		output("at you and wiping the sweat from his brow, he says, <i>\"Darned varmints in the fields. It's a downright epidemic, I tell ya'. There's gotta be hundreds of the big, ugly bastards out there.\"</i>");
+		output("at you and wiping the sweat from his brow, he says, <i>“Darned varmints in the fields. It’s a downright epidemic, I tell ya’. There’s gotta be hundreds of the big, ugly bastards out there.”</i>");
 		//Kind: 
-		if(pc.isNice()) output("\n\n<i>\"That's not good,\"</i>");
+		if(pc.isNice()) output("\n\n<i>“That’s not good,”</i>");
 		//Misch: 
-		else if(pc.isMischievous()) output("\n\n<i>\"That's gotta pester you, huh?\"</i>");
+		else if(pc.isMischievous()) output("\n\n<i>“That’s gotta pester you, huh?”</i>");
 		//Hard:
-		else output("\n\n<i>\"Sucks for you,\"</i>");
+		else output("\n\n<i>“Sucks for you,”</i>");
 		output(" you say.");
 
-		output("\n\n<i>\"Yeah, that's puttin' it mildly,\"</i> he says, sighing. <i>\"They're eating the crop, and now apparently they've got their dirty noses into one of Gianna's silicone shipments. Ran off with loads of the stuff. Supposedly they eat it. Yuck!\"</i>");
-		output("\n\nYou cast a glance to the magnum slung on his hip and ask if he's going to be clearing the infestation out.");
+		output("\n\n<i>“Yeah, that’s puttin’ it mildly,”</i> he says, sighing. <i>“They’re eating the crop, and now apparently they’ve got their dirty noses into one of Gianna’s silicone shipments. Ran off with loads of the stuff. Supposedly they eat it. Yuck!”</i>");
+		output("\n\nYou cast a glance to the magnum slung on his hip and ask if he’s going to be clearing the infestation out.");
 
-		output("\n\nHe huffs at the question. <i>\"I wish! This here used to be my daddy's job, and he tasked me to clear the little bastards out, but... agh, look at me! Damn Treatment backfired on me! Was supposed to turn me into a big, buff hunk who could wrestle these varmints like that Steph Irson chick tackled that naleen on the TV! But noooo, I can't even use the damn gun my dad gave me. Kicks so hard I damn near broke my nose, and you know what the little blue critter did? Just made this hissy little laughing noise and shat right on my boot while I bled everywhere.\"</i>");
-		output("\n\nThat's unfortunate. Maybe you could help the little feller out?");
+		output("\n\nHe huffs at the question. <i>“I wish! This here used to be my daddy’s job, and he tasked me to clear the little bastards out, but... agh, look at me! Damn Treatment backfired on me! Was supposed to turn me into a big, buff hunk who could wrestle these varmints like that Steph Irson chick tackled that naleen on the TV! But noooo, I can’t even use the damn gun my dad gave me. Kicks so hard I damn near broke my nose, and you know what the little blue critter did? Just made this hissy little laughing noise and shat right on my boot while I bled everywhere.”</i>");
+		output("\n\nThat’s unfortunate. Maybe you could help the little feller out?");
 		if(!CodexManager.entryUnlocked("Varmints")) 
 		{
 			output(" <b>New Codex entry unlocked: Varmints.</b>");
@@ -81,10 +81,10 @@ public function approachFarmer():void
 		showBust("CAMERON");
 		output("<i>“Hey!”</i> Cameron says as you approach. <i>“Got any varmints tied up for me? Or you got something else on your mind?”</i>");
 		// Options!
-		if(pc.hasItemByClass(VarmintItem,1)) addButton(0,"Varmint",turnInAVarmint,undefined,"Hand Over a Varmint","Turn in a varmint you've bagged for some cash.");
-		else addDisabledButton(0,"Varmint","Varmint","You haven't caught any varmints to turn in yet.");
+		if(pc.hasItemByClass(VarmintItem,1)) addButton(0,"Varmint",turnInAVarmint,undefined,"Hand Over a Varmint","Turn in a varmint you’ve bagged for some cash.");
+		else addDisabledButton(0,"Varmint","Varmint","You haven’t caught any varmints to turn in yet.");
 		if(pc.lust() >= 33) addButton(1,"Flirt",flirtWithCameron,undefined,"Flirt","Flirt with Cameron.");
-		else addDisabledButton(1,"Flirt","Flirt","You don't really feel like flirting at the moment.");
+		else addDisabledButton(1,"Flirt","Flirt","You don’t really feel like flirting at the moment.");
 		addButton(14,"Back",mainGameMenu);
 	}
 }
@@ -116,7 +116,7 @@ public function helpCameronBeAGiantSlut():void
 	if(!pc.isTreated()) output("get Treated and ");
 	output("become a citizen, I can’t give you Bertha here. Sorry. Gotta net the little bastards with this,”</i> he adds, handing you a... a lasso, of all things. Welp. At least it’s glowing, made out of some kind of modern high-durability, high-visibility material.");
 	output("\n\nHe grins at you as you take the lasso. <i>“Thanks a million, " + pc.mf("brother","sister") + "! Oh, name’s Cameron by the way. I’ll be here dawn till dusk, if you’ve got any wrangled varmints for me to pop. Might could throw you some credits for ‘em even.”</i>");
-	output("\n\nYou've gained a <b>Lasso</b>! It's been added to Key Items!");
+	output("\n\nYou’ve gained a <b>Lasso</b>! It’s been added to Key Items!");
 	pc.createKeyItem("Lasso",0,0,0,0);
 	clearMenu();
 	processTime(4);
@@ -137,7 +137,7 @@ public function turnInAVarmint():void
 	//If first Varmint: 
 	if(flags["VARMINTS_CAUGHT"] == undefined)
 	{
-		output("\n\n<i>“Well don't that beat all! You're a lifesaver!”</i>");
+		output("\n\n<i>“Well don’t that beat all! You’re a lifesaver!”</i>");
 		flags["VARMINTS_CAUGHT"] = 1;
 	}
 	else 
@@ -146,7 +146,7 @@ public function turnInAVarmint():void
 		flags["VARMINTS_CAUGHT"]++;
 	}
 	output(" he cheers, taking the defeated beast from you.");
-	output("\n\n<i>“Don’t worry, I’ll take care of these little bastards when you bring ‘em. Here, for your trouble,”</i> he adds, handing you a five credit chit. For a creature that tried to rip your throat out, a fiver seems a little cheap. Still, it’s a beer or a sandwich somewhere, right?");
+	output("\n\n<i>“Don’t worry, I’ll take care of these little bastards when you bring ‘em. Here, for your trouble,”</i> he adds, handing you a five " + (isAprilFools() ? "dogecoin" : "credit") + " chit. For a creature that tried to rip your throat out, a fiver seems a little cheap. Still, it’s a beer or a sandwich somewhere, right?");
 	pc.credits += 5;
 	output("\n\nYou take the payment, and Cameron takes the varmint. Which promptly goes flying into the back of his hover-pickup sitting nearby. You don’t ask what happens next to the critter.");
 	processTime(3);
@@ -165,10 +165,10 @@ public function flirtWithCameron():void
 	// if PC hasn't gotten 5+ varmints
 	if(flags["VARMINTS_CAUGHT"] == undefined || flags["VARMINTS_CAUGHT"] < 5)
 	{
-		output("<i>\"Hey, Cameron... what do you say we put the critter hunt away for a while and go some place a little more comfortable?\"</i>");
-		output("\n\nHe blinks. <i>\"Are you... uh, I mean, I can't get out of here yet. My daddy would tan my hide raw! Why don't you try bagging five or so, and we'll talk about... other stuff, okay?");
-		if(flags["VARMINTS_CAUGHT"] != undefined) output(" You've already caught " + num2Text(flags["VARMINTS_CAUGHT"]) + "!");
-		output("\"</i>");
+		output("<i>“Hey, Cameron... what do you say we put the critter hunt away for a while and go some place a little more comfortable?”</i>");
+		output("\n\nHe blinks. <i>“Are you... uh, I mean, I can’t get out of here yet. My daddy would tan my hide raw! Why don’t you try bagging five or so, and we’ll talk about... other stuff, okay?");
+		if(flags["VARMINTS_CAUGHT"] != undefined) output(" You’ve already caught " + num2Text(flags["VARMINTS_CAUGHT"]) + "!");
+		output("”</i>");
 	}
 	// if PC has bagged 5+ varmints, PC doesn't have a cock
 	else if(!pc.hasCock())
@@ -188,7 +188,7 @@ public function flirtWithCameron():void
 		clearMenu();
 		if(pc.lust() >= 33)
 		{
-			if(pc.cockThatFits(700) < 0) addDisabledButton(0,"Fuck Him","Fuck Him","You're too big to fuck his ass.");
+			if(pc.cockThatFits(700) < 0) addDisabledButton(0,"Fuck Him","Fuck Him","You’re too big to fuck his ass.");
 			else addButton(0,"Fuck Him",fuckCameronsButt,undefined,"Fuck Him","Fuck the cow-boy in the ass.");
 		}
 		else addDisabledButton(0,"Fuck Him","Fuck Him","You are not aroused enough for sex.");
@@ -209,15 +209,15 @@ public function fuckCameronsButt():void
 	var panties:Boolean = (rand(2) == 0);
 	var x:int = pc.cockThatFits(700);
 	if(x < 0) x = pc.smallestCockIndex();
-	output("Oh, you've got something in mind alright... you give Cam a little push onto the bed, smiling to yourself as he makes a panicked little yelp, landing with his legs nice and spread for you. You quickly dispose of his overalls and slink down to your [pc.knees], picking up one of your boy-toy's boots and slowly pulling it off and freeing the dainty little hoof inside. You give it a little lick, tracing your [pc.tongue] up Cam's leg to the inside of his thigh, all the way to the ");
+	output("Oh, you’ve got something in mind alright... you give Cam a little push onto the bed, smiling to yourself as he makes a panicked little yelp, landing with his legs nice and spread for you. You quickly dispose of his overalls and slink down to your [pc.knees], picking up one of your boy-toy’s boots and slowly pulling it off and freeing the dainty little hoof inside. You give it a little lick, tracing your [pc.tongue] up Cam’s leg to the inside of his thigh, all the way to the ");
 	if(!panties) output("leg of his boxers");
 	else output("rim of his lacey, girly panties");
-	output(". He gives a little whimper as you near his bulging crotch, and you're rewarded with a sharp smell of the musky little equine dong poking out of his underwear. But first, you make your way back down the other leg, freeing it of its boot and massaging the hoof inside.");
+	output(". He gives a little whimper as you near his bulging crotch, and you’re rewarded with a sharp smell of the musky little equine dong poking out of his underwear. But first, you make your way back down the other leg, freeing it of its boot and massaging the hoof inside.");
 
-	output("\n\nYou take your time working back up to Cam's ");
+	output("\n\nYou take your time working back up to Cam’s ");
 	if(!panties) output("boxers");
 	else output("panties");
-	output(", using your teeth to grab them and peel them down. With an almost audible pop, Cam's flared little horsecock and balls flop free, the two heavy black orbs settling over his crotch and obscuring your view of the real prize. You lock eyes with him, and see that he's chewing on his lower lip, nervously watching you, completely tame in your grasp. Perfect. You slip up from between his legs and strip your [pc.gear] off, letting your own [pc.cock " + x + "] flip onto his lap, resting against the faux-cow's own half-hard member. His eyes go wide when he sees you -- feels you against him, but you can see the look of hunger in his eyes. The wanton, cock-craving glaze of a whore comes over the boy as one of his little hands reaches up and caresses your prick, giving it an experimental stroke.");
+	output(", using your teeth to grab them and peel them down. With an almost audible pop, Cam’s flared little horsecock and balls flop free, the two heavy black orbs settling over his crotch and obscuring your view of the real prize. You lock eyes with him, and see that he’s chewing on his lower lip, nervously watching you, completely tame in your grasp. Perfect. You slip up from between his legs and strip your [pc.gear] off, letting your own [pc.cock " + x + "] flip onto his lap, resting against the faux-cow’s own half-hard member. His eyes go wide when he sees you -- feels you against him, but you can see the look of hunger in his eyes. The wanton, cock-craving glaze of a whore comes over the boy as one of his little hands reaches up and caresses your prick, giving it an experimental stroke.");
 
 	if(pc.cockVolume(x) >= 500) 
 	{
@@ -229,7 +229,7 @@ public function fuckCameronsButt():void
 		output("\n\n<i>“It looks amazing,”</i> he moans, stroking you to full mast, taking in the full sight of your erection. <i>“I... I think I’m drooling a little...”</i>");
 		output("\n\nYou wink at him and lean in to kiss him, brushing away any fear of that as your attention wanders to the bottle of lube on his nightstand.");
 	}
-	output("\n\nYou take hold of the bottle and squirt a nice, thick coating into your palm. Cam just watches eagerly as you rub a bit between your fingers, then turn your attention to your lover's tentpole. He gasps when you take his member in hand, stroking it from stem to flare with your cold, lube-slick hand. He shivers and moans, hips bucking up to meet your hand as your motions become a soft, gentle stroking, pumping his girthy cock until a little trickle of pre shines on his crown, trickling down to join the coating of lube you're giving him. You don't doubt that a slut like Cam could probably cum just from his ass, but it doesn't hurt to give the little faux-cow a head start, does it?");
+	output("\n\nYou take hold of the bottle and squirt a nice, thick coating into your palm. Cam just watches eagerly as you rub a bit between your fingers, then turn your attention to your lover’s tentpole. He gasps when you take his member in hand, stroking it from stem to flare with your cold, lube-slick hand. He shivers and moans, hips bucking up to meet your hand as your motions become a soft, gentle stroking, pumping his girthy cock until a little trickle of pre shines on his crown, trickling down to join the coating of lube you’re giving him. You don’t doubt that a slut like Cam could probably cum just from his ass, but it doesn’t hurt to give the little faux-cow a head start, does it?");
 
 	output("\n\n<i>“Think you can return the favor?”</i> you ask, handing Cameron the lube bottle.");
 
@@ -255,7 +255,7 @@ public function rimHimFirst():void
 	showBust("CAMERON_NUDE");
 	var x:int = pc.cockThatFits(700);
 	if(x < 0) x = pc.smallestCockIndex();
-	output("You don't doubt it. But a lubed cock is only half of the equation, isn't it? You flash the faux-cow a wink and plant your hands on his raised thighs, getting a good look at the tight little black ring between his big butt cheeks. It winks nervously at you, trickles of lube staining it from the thorough cock-basting you've given its owner already. You lean in and give it a lick, dragging your tongue through the crack and up the the underside of Cameron's hefty Treated sack, feeling the cum-filled orbs tremble at your touch. He gives a little whine when you turn your attention back to his hole, putting just enough pressure on it to force it open. Your [pc.tongue] slips in easily, probing into the tight little passage of Cam's ass.");
+	output("You don’t doubt it. But a lubed cock is only half of the equation, isn’t it? You flash the faux-cow a wink and plant your hands on his raised thighs, getting a good look at the tight little black ring between his big butt cheeks. It winks nervously at you, trickles of lube staining it from the thorough cock-basting you’ve given its owner already. You lean in and give it a lick, dragging your tongue through the crack and up to the underside of Cameron’s hefty Treated sack, feeling the cum-filled orbs tremble at your touch. He gives a little whine when you turn your attention back to his hole, putting just enough pressure on it to force it open. Your [pc.tongue] slips in easily, probing into the tight little passage of Cam’s ass.");
 	output("\n\nHis whole body reacts to your slow insertion, legs and cock trembling, chest heaving as he tries to breathe over the intense pleasure. Clearly the Treatment re-routed some nerves around here....");
 	output("\n\n<i>“Tight </i>and<i> sensitive,”</i> you laugh. <i>“I bet all the bulls just love filling this hole, huh?”</i>");
 	output("\n\nCam looks pointedly away from you, biting his lip and blushing hard. Well, that wasn’t a <i>“no,”</i> was it? You grin to yourself and get back to it, probing back into Cam’s dark star and slathering the quivering walls inside with thick coats of spittle, lubing them up just like your cocks. You spend minutes suckling on that tight pucker of his, using your tongue to lick and caress the faux-cow’s over-sensitive hole until you can see his hefty horsecock twitching -- you can feel his muscles squirming as you bring him to the edge. You let one of your hands snake up, wrapping around Cam’s slick schlong and giving it a few pumps, just enough to help the little bull tear down the last of his defenses. Cameron lets out a high, girlish cry and suddenly his chest is covered in cum, his cock spewing thick ropes of seed across his svelte little body. You keep pumping his cock and lapping at the ring of his ass all through his orgasm.");
@@ -344,7 +344,7 @@ public function lassoAVarmint(attacker:Creature, target:Creature):void
 	//clearOutput();
 	//Set drone target
 	//attacker.droneTarget = target;
-	output("You twirl your light lasso, trying to get a bead on " + target.getCombatName() + ". When you've got enough spin, you let the lasso go, hurling it toward " + target.getCombatName() + "!");
+	output("You twirl your light lasso, trying to get a bead on " + target.getCombatName() + ". When you’ve got enough spin, you let the lasso go, hurling it toward " + target.getCombatName() + "!");
 	//Miss
 	if(rangedCombatMiss(attacker, target)) output(" The glowing rope goes wide, scattering into the ground. You quickly reel it back in.");
 	else
@@ -383,18 +383,18 @@ public function pcVictoryVsVarmints(clearText:Boolean = false):void
 	{
 		if(!pc.hasItemByClass(VarmintItem,1))
 		{
-			output("You get the varmint on the ground with your lasso and yank it over to you. The blue creature gives a yelp of pain and frustration as you drag it in and tie it up. You give the defeated creature a swift punch, knocking it cold so you can transport it. Once done, it's easy enough to sling the creature over your shoulder and move on.");
+			output("You get the varmint on the ground with your lasso and yank it over to you. The blue creature gives a yelp of pain and frustration as you drag it in and tie it up. You give the defeated creature a swift punch, knocking it cold so you can transport it. Once done, it’s easy enough to sling the creature over your shoulder and move on.");
 			output("\n\n<b>Varmint bagged!</b>");
 			if(pc.isTreated()) output(" <i>“Yee-haw!”</i> you cheer.");
 		 	enemy.inventory.push(new VarmintItem());
+			//output("\n\nWhile you’re bagging the varmint, you see (a cannister of silicone / a stolen, unmarked credit chit / a mostly intact to-go meal from the ranch house restaurant). You take possession of the varmint’s lonely possession.} ");
 		}
 		else
 		{
-			output("Despite getting the varmint to the ground, you don't have a way to carry it while you're already dragging another one around. Maybe you should go hand it off to Cameron before you try to wrangle anymore. Grumbling, you cut loose the fallen creature and watch it take off into the brush. Maybe it'll learn its lesson.");
+			output("Despite getting the varmint to the ground, you don’t have a way to carry it while you’re already dragging another one around. Maybe you should go hand it off to Cameron before you try to wrangle anymore. Grumbling, you cut loose the fallen creature and watch it take off into the brush. Maybe it’ll learn its lesson.");
 		}
 		enemy.removeStatusEffect("Lassoed");
 	}
-	//output("\n\nWhile you’re bagging the varmint, you see (a cannister of silicone / a stolen, unmarked credit chit / a mostly intact to-go meal from the ranch house restaurant). You take possession of the varmint’s lonely possession.} ");
 	else
 	{
 		output("The varmint hauls ass into the weeds before you can bring it down. Maybe you should look into using some kind of lasso on it.");
@@ -410,9 +410,10 @@ public function pcLosesToVarmint(clearText:Boolean = false):void
 	author("Savin");
 	showName("LOST VS:\nVARMINT");
 	showBust("VARMINT");
-	pc.HP(-(pc.HPMax()-1));
-	pc.lust(-50);
 	output("Suddenly, the varmint lunges up and takes you right in the chest with its horned head, knocking you onto the ground. The creature barrels you over and gives you another brutal WHACK with its horns, and everything goes black....");
+	var damage:Number = (pc.HPRaw - 1);
+	if (damage > 0) applyDamage(new TypeCollection( { unresistablehp: damage }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
+	pc.lust(-50);
 	clearMenu();
 	addButton(0,"Next",pcLosesToVarmint2);
 }
@@ -424,12 +425,12 @@ public function pcLosesToVarmint2():void
 	output("You wake up some time later.");
 	if(pc.credits > 1)
 	{
-		output(" You're missing some of your credit chits! What the hell eats CREDITS!?");
+		output(" You’re missing some of your credit chits! What the hell eats CREDITS!?");
 		var eatenCreds:int = (5+rand(6)) * pc.level * pc.level;
 		if(eatenCreds > pc.credits) eatenCreds = pc.credits;
 		pc.credits -= eatenCreds;
 	}
-	else output(" You're missing your dignity, but not much else.");
+	else output(" You’re missing your dignity, but not much else.");
 	output(" You dust yourself off and move on, a little sore from the beating.\n\n");
 	processTime(120+rand(30));
 	clearMenu();
@@ -460,7 +461,13 @@ public function varmintRoomsBonus():Boolean
 // Varmint Pack Enounter!
 public function varmintPackBonus():Boolean
 {
-	if(flags["MET_VARMINT"] >= 5 && pc.level >= 6 && rand(3) == 0)
+	if(flags["MET_VARMINT"] == undefined || flags["MET_VARMINT"] < 5 || pc.level < 6) return false;
+	
+	var levelChance:int = 5;
+	if(pc.level >= 9) levelChance = 4;
+	if(pc.level >= 12) levelChance = 3;
+	
+	if(rand(levelChance) == 0)
 	{
 		showName("FIGHT:\nVARMINT PACK");
 		author("Jacques00");
@@ -756,7 +763,7 @@ public function getAPetVarmintResponse(response:String = "none"):void
 			// Too poor!
 			else
 			{
-				output(", you bounce over to your personal terminal and browse the extranet for a cheap plus-sized animal collar and leash... Unfortunately, you don’t even have enough funds to purchase a <b>50-credit</b> leash. Aw, fooey--looks like you have to pick up whoring and shake your money-maker if you know what’s good for you!");
+				output(", you bounce over to your personal terminal and browse the extranet for a cheap plus-sized animal collar and leash... Unfortunately, you don’t even have enough funds to purchase a <b>50-" + (isAprilFools() ? "dogecoin" : "credit") + "</b> leash. Aw, fooey--looks like you have to pick up whoring and shake your money-maker if you know what’s good for you!");
 				output("\n\nTo get over your disappointment, you decide to play with your adorable baby some more. You giggle and pull the person-sized puppy into a huge hug, right up until it actually licks your cheek... and burns your [pc.skinFurScales]. You yelp and wipe at your cheek, stumbling away as the varmint’s saliva burns you. Ouchie! Your new friend whimpers and retreats into the corner, letting you run to the head and wash yourself off. OwowowowOW!");
 				output("\n\nYou huff and rub at your cheek as your nano-docs heal the burn on your skin. Better not let your naughty puppy do that again! Or maybe make sure it does that to anybody who wants to hurt you! <b>Maybe it’d make a cool battle buddy if you could afford to keep it on a leash!</b>");
 				processTime(40);

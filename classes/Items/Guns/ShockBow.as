@@ -12,6 +12,7 @@
 		// Shock Bow (Level 6)
 		// by HugsAlright
 		// Vendor: Somewhere on Myrellion, maybe on Mhen’ga from Crazy Carl at an appropriate level.
+		//Level 6 (Common). Balance 2.0
 		public function ShockBow()
 		{
 			_latestVersion = 1;
@@ -34,7 +35,7 @@
 			attackVerb = "shoot";
 			attackNoun = "shocking arrow";
 			
-			basePrice = 10000;
+			basePrice = 3500;
 			
 			baseDamage = new TypeCollection();
 			baseDamage.kinetic.damageValue = 7;
@@ -43,13 +44,13 @@
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_STUN);
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			
-			attack = 2;
+			attack = 1;
 			critBonus = 0;
 			defense = 0;
 			shieldDefense = 0;
 			shields = 0;
 			sexiness = 0;
-			evasion = 0;
+			evasion = 4;
 			fortification = 0;
 			
 			addFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);

@@ -51,8 +51,7 @@ public function passDetector():Boolean
 		clearOutput();
 		showName("NONE\nSHALL PASS");
 		output("A strong arm bars your progress. <i>“Whoah! Sorry, but ya got ta have a pass to use the facilities.”</i>");
-		currentLocation = "569";
-		generateMap();
+		moveTo("569");
 		showName("TEN\nTON GYM");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
@@ -136,7 +135,7 @@ public function hardWorkout():void
 	output("\n\nOne of the bulls starts lifting at the bar next to you, and an impromptu contest begins, both of you lifting heavier and heavier weights as the other does. You grit your teeth and push through it, determined to show the locals you’ve got what it takes.");
 	output("\n\nThe contest comes to an abrupt end when a cowgirl walks by and tickles the bull’s crotch, nearly making him drop the bar. He struggles to right his weight, and you do the same. It’s a strain to even sit up after that, but you nod to your worthy opponent, then head off to stretch out the soreness.");
 	output("\n\nYour muscles have become considerably more toned.");
-	// +3 muscle tone, +2 toward [Sore] debuff, +2 [Sweaty], -50 energy}{Time: 30 minutes}"
+	// +3 muscle tone, +2 toward [Sore] debuff, +2 [Sweaty], -50 energy, Time: 30 minutes
 	processTime(30);
 	pc.energy(-50);
 	soreDebuff(2);
@@ -566,8 +565,7 @@ public function quentonPersonalTraining():void
 		
 		rooms["569"].removeFlag(GLOBAL.NPC);
 		rooms["TEN TON OFFICE"].addFlag(GLOBAL.NPC);
-		currentLocation = "TEN TON OFFICE";
-		generateMap();
+		moveTo("TEN TON OFFICE");
 		
 		output("\n\nDamn right you are. Quenton props a sign that says ‘Be Back Soon’ on the desk, then opens up the door to his office and invites you in, closing the door behind you both.");
 		output("\n\nQuenton’s office is small but simple, with a desk and cabinet taking up about half of it. Lights shine down from the ceiling, and two of the walls are nothing but enormous mirrors.");
@@ -682,9 +680,12 @@ public function quentonTrainingPitch():void
 	// PC uses strapon:
 	else
 	{
-		x = rand(pc.vaginas.length);
+		x = -1;
+		if(pc.hasVagina()) x = rand(pc.vaginas.length);
 		
-		output("\n\nOnce you’ve got the hardlight dildo all the way in, you thrust just a little. The friction from your [pc.lowerUndergarment] rubs against [pc.oneVagina], a pleasing sensation that builds with every thrust. Quenton starts to push back against you, a low growl coming from his throat with every motion as he too eases into it. The muscles of his back and legs tighten and loosen, every movement pushing him into an easy rhythm. After a moment, you start thrusting a little harder, and Quenton drops one hand to his foot-long dong and starts stroking himself.");
+		output("\n\nOnce you’ve got the hardlight dildo all the way in, you thrust just a little.");
+		if(x >= 0) output(" The friction from your [pc.lowerUndergarment] rubs against [pc.oneVagina], a pleasing sensation that builds with every thrust.");
+		output(" Quenton starts to push back against you, a low growl coming from his throat with every motion as he too eases into it. The muscles of his back and legs tighten and loosen, every movement pushing him into an easy rhythm. After a moment, you start thrusting a little harder, and Quenton drops one hand to his foot-long dong and starts stroking himself.");
 		output("\n\n<i>“You got it, Steele,”</i> Quenton says, his voice low and husky, and lets out a long moan. <i>“Just keep on goin’.”</i>");
 		output("\n\nYou plan to. Your grip tightens on his narrow hips, and as you pick up the pace, your hands slowly trace up his sides. Quenton straightens up and presses his muscled ass back against you, making your thrusts go deeper. You feel the heat coming off of him as he presses his back against your [pc.chest], and the scent of his musk is intoxicating.");
 		output("\n\nQuenton’s hips are thrusting faster now, and you increase your pace again, and wrap your arms around his chest, getting a grip on his hard pecs. He growls, and slaps his free hand down on your [pc.thigh], squeezing it.");
@@ -693,12 +694,21 @@ public function quentonTrainingPitch():void
 		if(pc.balls > 0) output(", matched by your own [pc.balls] in the same rhythm slapping against his ass");
 		output(". His head tilts back, and he squeezes your thigh, urging you on.");
 		output("\n\n<i>“Harder,”</i> Quenton groans, his voice catching at the end.");
-		output("\n\nYou drop your hands to his hips again, your fingers wrapping around them from the front, all for a better grip. His rear tunnel squeezes your strapon, and you push harder, increasing the pressure against your [pc.vagina " + x + "] as you thrust again, the sound of your flesh slapping together filling the small office. The heat coming off of him is enough to make you start sweating, and you wonder if the mirrors will fog up before you two are done.");
+		output("\n\nYou drop your hands to his hips again, your fingers wrapping around them from the front, all for a better grip. His rear tunnel squeezes your strapon, and you push harder");
+		if(x >= 0) output(", increasing the pressure against your [pc.vagina " + x + "]");
+		output(" as you thrust again, the sound of your flesh slapping together filling the small office. The heat coming off of him is enough to make you start sweating, and you wonder if the mirrors will fog up before you two are done.");
 		output("\n\nThe pleasure in your [pc.crotch] builds, bringing you closer to orgasm, but you force it down. No way you’re going to finish before him; you’ll show Quenton you’re stronger. Just to drive that home, you drop one hand to his swinging balls and give them a soft squeeze, then start stroking his swollen sack.");
 		output("\n\nAnother long, low groan tears its way out of Quenton’s throat, and he arches his back, pressing his shoulders against your [pc.chest]. <i>“Gonna,”</i> he gasps out, <i>“gonna–”</i>");
 		output("\n\nAnything else Quenton was going to say is lost in a throaty groan as his cock twitches and spurts out a long stream of pearly white cum, splattering against the mirror halfway across the office. You don’t let up, and give his balls a good squeeze as he shoots off again, his breathing rough and ragged. He gives his horsedong a few more tugs, squeezing out another quick shot, before leaning forward and resting his hands on his knees again.");
-		output("\n\nWith the buff bull finished and drained, it’s time for you to get yours. You clench your hands on Quenton’s hips again and pound away, focusing on the sound of his low grunts and friction from every thrust as your [pc.lowerUndergarment] massages your [pc.vaginaNoun " + x + "]. It’s not long before the sensation becomes too much. You look to the cum-spattered mirror, and see Quenton watching you both there, and give him a grin as you pound home one last time.");
-		output("\n\nYour [pc.vaginaNoun " + x + "] spasms as the orgasm rips through you, your whole body clenching at once, and you let out a long groan of your own as your [pc.girlCum] turns your [pc.lowerUndergarment] slick and swampy. Your hips thrust a few more times on their own, then your whole body sags.");
+		output("\n\nWith the buff bull finished and drained, it’s time for you to get yours. You clench your hands on Quenton’s hips again and pound away, focusing on the sound of his low grunts and friction from every thrust");
+		if(x >= 0) output(" as your [pc.lowerUndergarment] massages your [pc.vaginaNoun " + x + "]");
+		output(". It’s not long before the sensation becomes too much. You look to the cum-spattered mirror, and see Quenton watching you both there, and give him a grin as you pound home one last time.");
+		output("\n\n");
+		if(x >= 0) output("Your [pc.vaginaNoun " + x + "] spasms as t");
+		else output("T");
+		output("he orgasm rips through you, your whole body clenching at once, and you let out a long groan of your own");
+		if(x >= 0) output(" as your [pc.girlCum] turns your [pc.lowerUndergarment] slick and swampy");
+		output(". Your hips thrust a few more times on their own, then your whole body sags.");
 		output("\n\nA few deep breaths later, you slowly pull your strapon out of Quenton’s asshole, and let it dangle free as you catch your breath. Quenton straightens himself with a grunt, and grabs some pre-moistened towels from a bin in the corner. His familiar grin is back in place as he cleans himself off, and he gives you an appreciative look as you do the same.");
 		output("\n\n<i>“Damn fine work, hardbody,”</i> Quenton says, then pulls out a fresh pair of underwear from one of his desk drawers. Looks like he does this kind of thing all the time, if he’s that well-prepared. <i>“We’ve got to do this again sometime.”</i> He looks to the mess he made on the mirror, and chuckles. <i>“Be right back with you after I get this cleaned up.”</i>");
 		output("\n\nYou chuckle, and finish cleaning yourself up, then don your discarded");
@@ -1243,7 +1253,7 @@ public function simoneWorkoutResults(response:String = ""):void
 			pc.loadInMouth(pp);
 			pc.exhibitionism(2);
 			pc.lust(30+rand(10));
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
 			
 			if(!pc.hasGenitals() && flags["SIMONE_TEASED"] == undefined) flags["SIMONE_TEASED"] = true;
 			
@@ -2049,7 +2059,7 @@ public function liftVoyeurism():void
 		output("\n\nYou take a moment to look around and as you’ve expected, you can see most if not all spectators are profusely pleasuring themselves to the lewd acts on display before them. Not one to ignore your own impulses, you");
 		if(!pc.isCrotchExposed()) output(" quickly take off your gear and");
 		output(" start to play with your ");
-		if(pc.hasCock()) output("[pc.cockLargest]");
+		if(pc.hasCock()) output("[pc.cockBiggest]");
 		else if(pc.hasVagina()) output("[pc.pussy]");
 		else output("[pc.nipples]");
 		output(" satisfied that you can take a load off, watch some hot cow on bull action, and ");

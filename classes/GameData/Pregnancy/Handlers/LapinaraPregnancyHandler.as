@@ -66,7 +66,7 @@ package classes.GameData.Pregnancy.Handlers
 					if(pData.pregnancyQuantity == 2) buffer += "twins";
 					else if(pData.pregnancyQuantity == 4) buffer += "quadruplets";
 					else buffer += "sextuplets";
-					buffer += ". It answers your lingering question about whether or not you were compatible with that lapinara from before, but also prompts a new one. Why doesn’t the number babies growing inside you match up with the number of eggs you remember?";
+					buffer += ". It answers your lingering question about whether or not you were compatible with that lapinara from before, but also prompts a new one. Why doesn’t the number of babies growing inside you match up with the number of eggs you remember?";
 				}
 				else
 				{
@@ -333,7 +333,7 @@ package classes.GameData.Pregnancy.Handlers
 					if(pData.pregnancyQuantity > 1) buffer += num2Text(Math.floor(pData.pregnancyQuantity/2)) + " eggs";
 					else buffer += "one egg has";
 					buffer += " been this this much fun, how much more fun would it be if you had a few more?";
-					kGAMECLASS.pc.elasticity++;
+					kGAMECLASS.pc.elasticity += (kGAMECLASS.pc.hasPerk("Elasticity") ? 1.5 : 1);
 				}
 				else
 				{
@@ -428,7 +428,7 @@ package classes.GameData.Pregnancy.Handlers
 				AddLogEvent(buffer);
 			}, true);
 			_onSuccessfulImpregnation = lapinaraOnSuccessfulImpregnation;
-			_onSuccessfulImpregnationOutput = BasePregnancyHandler.defaultOnSuccessfulImpregnationOutput;
+			_onSuccessfulImpregnationOutput = lapinaraOnSuccessfulImpregnationOutput;
 			_onDurationEnd = lapinaraOnDurationEnd;
 		}
 		public function lapiPregModMax(part:String = "hip"):Number 
@@ -453,7 +453,7 @@ package classes.GameData.Pregnancy.Handlers
 			pData.pregnancyQuantity = 2;
 			mother.addPregnancyBellyMod(pregSlot, 5, true);
 		}
-						
+		
 		public static function lapinaraOnSuccessfulImpregnationOutput(father:Creature, mother:Creature, thisPtr:BasePregnancyHandler):void
 		{
 			AddLogEvent("<b>Your belly is swollen with lapinara eggs, distending your gut as if you were truly pregnant.</b>", "passive");
@@ -516,8 +516,9 @@ package classes.GameData.Pregnancy.Handlers
 		}		
 		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBirthTimestamp:uint):Child
 		{
-			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			kGAMECLASS.lapiPregEndCheck(mother, pregSlot, (useBirthTimestamp - kGAMECLASS.GetGameTimestamp()), true);
 			
+			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			kGAMECLASS.lapinaraTrainingUpdate(pData.pregnancyQuantity);
 
 			var c:Child = Child.NewChildWeights(

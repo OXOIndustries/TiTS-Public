@@ -143,10 +143,12 @@ package classes.GameData.Pregnancy
 		private var _ageBuckets:Array;
 		
 		// Determine if the age bucket cache potentially needs an update
+		// Might be called with negative quantities if the amount of time is unknown.
 		public function updateTime(numMinutes:int):void
 		{
 			// We don't really care about the specific passage of time right now, but it's being 
 			// handed down in case it potentially becomes useful in the future.
+			// if(numMinutes > 0) {}
 			if (!ageInvalidated && kGAMECLASS.days != _dayLastUpdated)
 			{
 				ageInvalidated = true;
@@ -161,7 +163,8 @@ package classes.GameData.Pregnancy
 				// This is probably the least intensive method to do this, as near-perfect order
 				// should incur less performance cost than forcibly recreating an array and ensuring
 				// its order.
-				ChildManager.CHILDREN = ChildManager.CHILDREN.sortOn("Days", Array.DESCENDING | Array.NUMERIC);
+				//ChildManager.CHILDREN = ChildManager.CHILDREN.sortOn("Days", Array.DESCENDING | Array.NUMERIC);
+				ChildManager.CHILDREN.sortOn("Days", Array.DESCENDING | Array.NUMERIC);
 				
 				_ageBuckets = [];
 				
@@ -911,7 +914,7 @@ package classes.GameData.Pregnancy
 		{
 			if (_uniqueTypesInvalid)
 			{
-				_uniqueTypes = [];
+				_uniqueTypes = { };
 				
 				var c:Array = ChildManager.CHILDREN;
 				
@@ -972,6 +975,59 @@ package classes.GameData.Pregnancy
 			}
 			
 			return num;
+		}
+		
+		public function numOfUniqueTypeInRange(childClassT:Class, minAge:int, maxAge:int):int
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			var num:int = 0;
+			
+			if (maxAge != -1 && maxAge < minAge) maxAge = -1;
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				var typeArray:Array = _uniqueTypes[cFQN] as Array;
+				for (var i:int = 0; i < typeArray.length; i++)
+				{
+					var c:UniqueChild = typeArray[i] as UniqueChild;
+					var m:int = c.Months;
+					
+					if ((maxAge == -1 || m <= maxAge) && m >= minAge)
+					{
+						num += c.Quantity;
+					}
+				}
+			}
+			
+			return num;
+		}
+		
+		public function ofUniqueTypeAndGenderInRange(childClassT:Class, genderTypes:uint, minAge:int, maxAge:int):Boolean
+		{
+			updateUniqueTypes();
+			
+			var cFQN:String = getQualifiedClassName(childClassT);
+			
+			if (maxAge != -1 && maxAge < minAge) maxAge = -1;
+			
+			if (_uniqueTypes.hasOwnProperty(cFQN))
+			{
+				var typeArray:Array = _uniqueTypes[cFQN] as Array;
+				for (var i:int = 0; i < typeArray.length; i++)
+				{
+					var c:UniqueChild = typeArray[i] as UniqueChild;
+					var m:int = c.Months;
+					
+					if ((maxAge == -1 || m <= maxAge) && m >= minAge)
+					{
+						return HasRequiredGender(c, genderTypes);
+					}
+				}
+			}
+			
+			return false;
 		}
 		
 		public function gendersOfUniqueTypeInRange(childClassT:Class, minAge:int, maxAge:int = -1):Genders

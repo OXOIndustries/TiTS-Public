@@ -10,6 +10,7 @@
 	
 	public class PlasmaHawk extends ItemSlotClass
 	{
+		//Level 8 (Common). Balance 2.0
 		//constructor
 		public function PlasmaHawk()
 		{
@@ -39,12 +40,12 @@
 			attackNoun = "burning hack";
 			
 			//Information
-			this.basePrice = 18000;
-			this.attack = 0;
+			this.basePrice = 13000;
+			this.attack = 1;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 4;
-			baseDamage.burning.damageValue = 22;
+			baseDamage.kinetic.damageValue = 12;
+			baseDamage.burning.damageValue = 15;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.CHANCE_APPLY_BURN);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
@@ -53,8 +54,8 @@
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 5;
-			this.evasion = 3;
+			this.critBonus = 1;
+			this.evasion = 0;
 			this.fortification = 0;
 			
 			this.version = _latestVersion;

@@ -246,7 +246,7 @@ package classes.Items.Transformatives
 						/*
 						if(flatNips <= 0 && target.nippleLengthRatio < 1 && rand(2) == 0)
 						{
-							output("\n\nA strange sensation hits your your nipples. Quickly");
+							output("\n\nA strange sensation hits your nipples. Quickly");
 							if(isTopClothed && !target.isChestExposed())
 							{
 								output(" undressing and");

@@ -16,11 +16,17 @@ public function drLessauBonus():Boolean
 	return false;
 }
 
-public function drLessauIPresume():void
+public function showLessau(nude:Boolean = false):void
 {
-	showBust("DR_LESSAU");
+	if(!nude) showBust("DR_LESSAU");
+	else showBust("DR_LESSAU_NUDE");
 	showName("DOCTOR\nLESSAU");
 	author("Couch");
+}
+
+public function drLessauIPresume():void
+{
+	showLessau();
 	
 	if (flags["MET_DR_LESSAU"] == undefined)
 	{
@@ -66,6 +72,9 @@ public function drLessauMainMenu():void
 	addButton(1, "Talk", drLessauTalk);
 	addButton(2, "Appearance", drLessauAppearance);
 	addButton(3, "Sex", drLessauSex);
+	
+	if(bothriocQuestComplete()) bothriocQuestGenealogyButton(4, "Lessau");
+	else if(bothriocQuestActive()) bothriocQuestDoctorButton(4, "Lessau");
 	
 	addButton(14, "Leave", mainGameMenu);
 }
@@ -117,9 +126,7 @@ public function drLessauTalkMenu():void
 public function drLessauWhyHere():void
 {
 	clearOutput();
-	showBust("DR_LESSAU");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau();
 	
 	output("<i>“So what’s the head of Steele Tech’s biomedical division doing in a backwater like this?”</i> you ask.");
 	output("\n\n<i>“Ah, yes, that. This planet, as I’m sure you’re aware, is lush with psionically gifted lifeforms owing to the abundant savicite. Other such planets exist, but Uveto is one of the few with such diversity and genetic closeness to the coreworld races. It presents a treasure trove of potential advancements in adapting those gifts to humans or ausar. Such a breakthrough would far surpass any progress that Xenogen has made on that front.”</i>");
@@ -133,12 +140,10 @@ public function drLessauWhyHere():void
 public function drLessauKnewDad():void
 {
 	clearOutput();
-	showBust("DR_LESSAU");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau();
 	
 	output("You ask Lessau if he knew your father, a query that prompts the chimera’s ears to flatten and his gaze to shift briefly downward.");
-	output("\n\n<i>“I knew him quite well, yes, though chiefly in the final decades. I first met him some two centuries ago, when I was a student. He came to see my professor, who like myself studied nanomedicine, to acquire his own microsurgeons. They were experimental, far less refined and far less safe than yours, but he made a convincing argument for testing them on the frontier. I remember feeling a sense of power about him that I’ve not seen since...”</i> Lessau trails off, looking you over. <i>“... Though perhaps I see it now.”</i>");
+	output("\n\n<i>“I knew him quite well, yes, though chiefly in the final decades. I first met him some two centuries ago, when I was a student. He came to see my professor, who like myself studied nanomedicine, to acquire his own microsurgeons. They were experimental, far less refined and far less safe than yours, but he made a convincing argument for testing them on the frontier. I remember feeling a sense of power about him that I’ve not seen since...”</i> Lessau trails off, looking you over. <i>“...Though perhaps I see it now.”</i>");
 	output("\n\n" + (pc.isAss() ? "You stand with arms folded, tapping your foot impatiently at his assessment." : "You fidget a bit, not quite sure exactly what he’s looking for.") + " Soon enough he finishes gazing and resumes his story.");
 	output("\n\n<i>“I didn’t interact with him much at that time, of course, only incidentally. Still, he reached out to me twenty years ago, when it became clear his health was in decline. He wanted a new head of the biotechnology division of Steele Tech, and wanted me to head it.”</i>");
 	output("\n\nYou ask why dad reached out to Lessau instead of his mentor, prompting a deep frown from the chimera. <i>“Yes, well, he would have, but she was already acquired by Xenogen. They would not be willing to let her go at any price.”</i>");
@@ -175,9 +180,7 @@ public function drLessauKnewDad():void
 public function drLessauDadIck():void
 {
 	clearOutput();
-	showBust("DR_LESSAU");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau();
 	
 	output("It’s kind of a squicky question, but you can’t help but ask. You know he did it with damn near everyone else.");
 	output("\n\n<i>“So, did you and dad ever...?”</i>");
@@ -197,14 +200,12 @@ public function drLessauDadIck():void
 public function drLessauWTFRU():void
 {
 	clearOutput();
-	showBust("DR_LESSAU");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau();
 	
 	output("<i>“So, what " + (pc.isAss() ? "the hell are you supposed to be anyway" : "are you, exactly") + "”</i> you ask, looking over the massive blend of traits that go into Lessau’s chimeric form. <i>“You look like " + (pc.isAss() ? "a snake fucked an ox and then that fucked a spider or something" : "one of those old Terran legends") + ".”</i>");
 	output("\n\n<i>“Oh? Oh, yes, all this.”</i> Lessau gestures to himself with one of his hands. <i>“I enjoy switching forms every few months, this has become one of my new favorites. It’s based off the Terran myths of the chimera, though with a few tweaks. The discovery of Mhen’ga and its naleen helped enormously with refining the synthesis, enough so to make this blend reproductively viable. But if you’re asking what I originally am, I was born as a human.”</i>");
 	output("\n\n<i>“And the four arms?”</i> you ask, folding your own. In response Lessau lifts his two left arms, letting you see how the paired shoulders function and move independently.");
-	output("\n\n<i>“These are a new addition. I’m testing if the Brundle Limitation can be overcome by forgoing legs. Results so far are promising...”</i> Lessau looks over at his raised arms, which have begun mimicking each other’s actions to his visible annoyance. <i>“... for the most part.”</i>");
+	output("\n\n<i>“These are a new addition. I’m testing if the Brundle Limitation can be overcome by forgoing legs. Results so far are promising...”</i> Lessau looks over at his raised arms, which have begun mimicking each other’s actions to his visible annoyance. <i>“...for the most part.”</i>");
 	
 	processTime(1);
 	
@@ -217,9 +218,7 @@ public function drLessauWTFRU():void
 public function drLessauDangers():void
 {
 	clearOutput();
-	showBust("DR_LESSAU");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau();
 	
 	output("You point out that if he’s changing his form every few months, Lessau ought to be the same sort of genetic mess that Victor was.")
 	output("\n\n<i>“And I would be indeed, were I unprotected. Fortunately, any piece of technology as complex as yours requires a prototype. My microsurgeons are slightly less refined than yours, but they share the same general set of functions. At present I’m using them as a testbed for developing new features that I hope to be able to pass on to yours someday.”</i>");
@@ -233,9 +232,7 @@ public function drLessauDangers():void
 public function drLessauAppearance():void
 {
 	clearOutput();
-	showBust("DR_LESSAU");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau();
 	
 	output("You can only assume that Dr. Lessau was human at one point, but it’s impossible to tell under the mountain of gene mods he’s undergone, which have turned him into a creature similar to the mythic chimera. From the waist down his lower body is a massive serpent’s tail, normally spiraled into a coil underneath him to keep him at a few inches over six feet. The bulk of the tail’s scales are pitch black, save for a strip of white that runs down the front. His upper body is thickly muscled and covered in a thin layer of white fur that sports a thicker layer of orange around his shoulders and collar. Matching thick orange bands of fur are wrapped around each of his four wrists. Despite the thickness of his muscles, his hands are lean and nimble, the fingers tipped in sharp feline claws. His head is that of a lion, including an orange mane that cascades down his back as hair, but a pair of massive black horns stretch out from underneath the hair, more like a bull’s horns than a goat’s in how they angle up and forward. Adorning his back are a set of white feathered wings.");
 	output("\n\nThe doctor stands nude save for a lab coat worn open. He shows no obvious sexual endowments at first glance");
@@ -246,18 +243,17 @@ public function drLessauAppearance():void
 public function drLessauSex():void
 {
 	clearOutput();
-	showBust("DR_LESSAU");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau();
 	
 	output("You reach over the desk and run a finger across the fluff along Lessau’s chest.");
 	output("\n\n<i>“Think you can step away from your work for a bit to enjoy the results, doctor?”</i>");
 	output("\n\nThe chimera gives a broad smile at this, switching off the holoterminals to leave his desk bare. <i>“I think I can take a break, certainly. What did you have in mind? I must warn you, though, I can be rather rough.”</i>");
 	
 	clearMenu();
-	if (pc.hasVagina() || pc.hasCock()) addButton(0, "Get Oral", drLessauOral, undefined, "Get Oral", "He looks like he’s got a pretty impressive tongue. Put it to work.")
+	if (pc.blockedVaginas() < pc.totalVaginas() || pc.hasCock()) addButton(0, "Get Oral", drLessauOral, undefined, "Get Oral", "He looks like he’s got a pretty impressive tongue. Put it to work.")
 	else addDisabledButton(0, "Get Oral", "Get Oral", "You need a cock or vagina for this.");
-	if (pc.hasVagina() && pc.biggestVaginalCapacity() > chars["DRLESSAU"].cockVolume(0)) addButton(1, "Take Vaginal", drLessauVag, undefined, "Take Vaginal", "Have him fuck you. You get the feeling he might get a little riled up, though...");
+	if (pc.hasVagina() && pc.biggestVaginalCapacity() > chars["DRLESSAU"].cockVolume(0) && pc.blockedVaginas() == 0) addButton(1, "Take Vaginal", drLessauVag, undefined, "Take Vaginal", "Have him fuck you. You get the feeling he might get a little riled up, though...");
+	else if(pc.blockedVaginas() > 0) addDisabledButton(1,"Take Vaginal","Take Vaginal","Sex while you've got a blocked-up vagina might be a bad idea.");
 	else addDisabledButton(1, "Take Vaginal", "Take Vaginal", "You need a vagina of sufficient size for this.");
 	addButton(14, "Back", drLessauMainMenu);
 }
@@ -265,9 +261,7 @@ public function drLessauSex():void
 public function drLessauOral():void
 {
 	clearOutput();
-	showBust("DR_LESSAU");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau();
 	
 	output("You ask Lessau if he wouldn’t mind putting that long, flexible tongue of his to work, in response to which the chimera pats his desk invitingly. You take the offer, hauling yourself up ");
 	if (pc.legCount > 1) output("and swinging your legs around to sit in front of him.");
@@ -276,7 +270,7 @@ public function drLessauOral():void
 	
 	var i:int = -1;
 	
-	if (pc.hasCock() && (!pc.hasVagina() || rand(2) == 0))
+	if (pc.hasCock() && (pc.blockedVaginas() >= pc.totalVaginas() || rand(2) == 0))
 	{
 		i = pc.biggestCockIndex();
 		
@@ -306,7 +300,7 @@ public function drLessauOral():void
 	}
 	else
 	{
-		i = rand(pc.vaginas.length);
+		i = pc.pickUnblocked();
 		
 		output("\n\nLessau’s tongue starts at your delta, teasing the more sensitive [pc.skinFurScalesNoun] that sits just above [pc.oneVagina]. It’s just enough to tickle, leaving you off-guard for when he opens his mouth and blows a hot breath over your nether lips. Your " + (pc.totalClits() > 1 ? "clits pop" : "clit pops") + " out immediately, stiffening at the sudden warmth. That moment of vulnerability is all Lessau needs, and his tongue seizes [pc.oneClit] with a display of the oral dexterity that only a prehensile tongue can offer. His mouth envelops your clit, his fangs gently grazing your sensitive nub with an expertise that suggests more than a few of the female lab assistants outside have gotten to experience this before you.");
 		output("\n\nLost in the pleasure, you hardly notice what Lessau’s tongue is doing until it slips into your pussy, drawing forth a gasp as that long, thin tongue snakes its way deep into those [pc.vaginaColor " + i + "] depths. His lips stay right where they are, sucking away at your clit while his tongue coaxes your [pc.girlCum] to the surface.");
@@ -339,9 +333,7 @@ public function drLessauVag():void
 	if(x < 0) x = rand(pc.totalVaginas());
 	
 	clearOutput();
-	showBust("DR_LESSAU_NUDE");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau(true);
 	
 	output("You tell Lessau that you’re feeling a little itchy, letting a hand fall indicatively to your rapidly moistening nethers. You ");
 	if (pc.hasCock()) output("can feel [pc.eachCock] stiffening, but right now you want to indulge your feminine lusts, and you "); 
@@ -410,9 +402,7 @@ public function drLessauVag():void
 public function drLessauAfter():void
 {
 	clearOutput();
-	showBust("DR_LESSAU");
-	showName("DOCTOR\nLESSAU");
-	author("Couch");
+	showLessau();
 	
 	if (flags["DRLESSAU_SEXED"] == undefined)
 	{
@@ -470,6 +460,7 @@ public function steeleBiomedBonus():Boolean
 		if(flags["MET_DR_LESSAU"] != undefined)
 		{
 			if(pc.hasStatusEffect("BioMed Gangbang Cooldown")) addDisabledButton(0, "Gangbang", undefined, "Maybe you should give your employees some time to cool off before trying this again.");
+			else if (pc.blockedVaginas() > 0) addDisabledButton(0,"Gangbang","Gangbang","A gangbang while you have part of your anatomy blocked is a bad idea.");
 			else if (pc.hasVagina() || pc.hasCock()) addButton(0, "Gangbang", steeleBiomedGangbang, undefined, undefined, "Get to know your employees more intimately. You will end up with at least one cock inside you.");
 			else addDisabledButton(0, "Gangbang", undefined, "You need a cock or vagina for this.");
 		}
@@ -491,7 +482,7 @@ public function steeleBiomedGangbang():void
 	clearMenu();
 	
 	output("You glance around the room, licking your lips at all the exotic beauties on display. Why not let them get to know their");
-	if(9999 == 9999) output(" future");
+	output(" future");
 	output(" boss? Besides, you’re feeling ");
 	if (pc.hasVagina() && pc.hasCock()) output("hard and wet");
 	else if (pc.hasVagina()) output("wet and eager to fuck");

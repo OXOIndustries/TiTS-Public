@@ -17,8 +17,6 @@ public function theEmbassyBonusFunc():Boolean
 	}
 	else
 	{
-		
-		
 		addButton(0, "Juro", talkToAmbassadorJuro, undefined, "Juro", "Speak with Juro, the kui-tan diplomat who greeted you when you first arrived.");
 	}
 	
@@ -30,7 +28,8 @@ public function theEmbassyBonusFunc():Boolean
 	}
 	else
 	{
-		output(" To the south are the offices in which the Bothrioc Embassy has installed itself.");
+		if(bothriocQuestComplete()) bothriocQuestEmbassyBlurbs();
+		else output(" To the south are the offices in which the Bothrioc Embassy has installed itself.");
 	}
 	
 	//=========================

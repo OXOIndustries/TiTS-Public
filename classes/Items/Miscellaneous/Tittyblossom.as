@@ -8,6 +8,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Engine.Interfaces.author;
+	import classes.Engine.Utility.num2Text;
 	
 	public class Tittyblossom extends ItemSlotClass
 	{
@@ -63,11 +64,17 @@
 			if(target is PlayerCharacter) {
 				//First use
 				author("Various");
+				
+				target.createStatusEffect("Estrobloom Doses", 0, 0, 0, 0, true, "", "", false, 720);
+				target.addStatusValue("Estrobloom Doses", 1, 1);
+				target.setStatusMinutes("Estrobloom Doses", 720);
+				var doses:int = target.statusEffectv1("Estrobloom Doses");
+				
 				//Consume:
 				if(kGAMECLASS.flags["TAKEN_TITTYBLOSSOM"] == undefined) 
 				{
 					kGAMECLASS.flags["TAKEN_TITTYBLOSSOM"] = 1;
-					kGAMECLASS.output("You carefully strip the wrapper, revealing an alluring, shimmering purple popsicle that makes its lesser cousin look slim by comparison. As you insert it between your [pc.lips], you are overcome by an intense flavour of blueberry - except it’s not. There’s something you can’t quite place your finger on.");
+					kGAMECLASS.output("You carefully strip the wrapper, revealing an alluring, shimmering purple popsicle that makes its lesser cousin look slim by comparison. As you insert it between your [pc.lips], you are overcome by an intense flavor of blueberry - except it’s not. There’s something you can’t quite place your finger on.");
 					target.createStatusEffect("TittiesUsed",1,0,0,0, true, "", "", false, 720);
 				}
 				//Repeat use
@@ -77,13 +84,13 @@
 					else target.addStatusValue("TittiesUsed",1,1);
 					if(target.statusEffectv1("TittiesUsed") < 2)
 					{
-						kGAMECLASS.output("You carefully strip the wrapper, revealing a purple popsicle. As you insert it between your [pc.lips] you are overcome by an intense flavour of blueberry - except it’s not. There’s something you can’t quite place your finger on.");
+						kGAMECLASS.output("You carefully strip the wrapper, revealing a purple popsicle. As you insert it between your [pc.lips] you are overcome by an intense flavor of blueberry - except it’s not. There’s something you can’t quite place your finger on.");
 						//→ Just Estrobloom effects. If none proc, append the following
 					}
 					//Second use - within 12 hours?
 					else if(target.statusEffectv1("TittiesUsed") < 3)
 					{
-						kGAMECLASS.output("You open the wrapper with more haste than the last, savouring the electric tingle it sends as you insert the large frozen stick into your maw.");
+						kGAMECLASS.output("You open the wrapper with more haste than the last, savoring the electric tingle it sends as you insert the large frozen stick into your maw.");
 						
 					}
 					//Third use - within 6 hours? of second. Includes previous effects if proc.
@@ -95,7 +102,7 @@
 					//Fourth use - within 3 hours? of third.
 					else
 					{
-						kGAMECLASS.output("You impatiently rip the popsicle from its confines and stuff it between your [pc.lips], eager to experience the flood of flavour and then sensation that comes after it.");
+						kGAMECLASS.output("You impatiently rip the popsicle from its confines and stuff it between your [pc.lips], eager to experience the flood of flavor and then sensation that comes after it.");
 						target.addStatusValue("TittiesUsed",1,1);
 					}
 				}
@@ -249,6 +256,19 @@
 					if (target.femininity >= 75) choices[choices.length] = 12;
 					if (target.femininity >= 90) choices[choices.length] = 12;
 				}
+				if(doses >= 5 && target.hasPerk("Perma-cute"))
+				{
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+					choices[choices.length] = 13;
+				}
 				//Default to no changes, then roll on the array for a change if some are available.
 				var select:int = 9;
 				if(choices.length > 0) select = choices[rand(choices.length)];
@@ -308,7 +328,7 @@
 					else
 					{
 						x = 2 + rand(4);
-						kGAMECLASS.output("\n\nYour [pc.hair] tickles your scalp as it grows longer. You grab a strand and hold it taut, feeling each additional inch of new length. After you’ve gained " + kGAMECLASS.num2Text(x) + " inches, your expanded locks stop their frenzied expansion.");
+						kGAMECLASS.output("\n\nYour [pc.hair] tickles your scalp as it grows longer. You grab a strand and hold it taut, feeling each additional inch of new length. After you’ve gained " + num2Text(x) + " inches, your expanded locks stop their frenzied expansion.");
 						target.hairLength += x;
 					}
 				}
@@ -324,7 +344,7 @@
 						target.cocks[x].cLengthRaw *= .75;
 						if(target.hasPerk("Mini")) target.cocks[x].cLengthRaw *= .75;
 						if(target.cocks[x].cLengthRaw < 1) target.cocks[x].cLengthRaw = 1;
-						kGAMECLASS.output(kGAMECLASS.num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you’re going to have a lot less dick to play with.");
+						kGAMECLASS.output(num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you’re going to have a lot less dick to play with.");
 					}
 					//Otherwise lose 2-3", minimum 4.5/8"
 					else
@@ -472,6 +492,17 @@
 					}
 					//Prevent "nothing happens" message.
 					select = 10;
+				}
+				// Remove "Perma-cute" perk
+				else if(select == 13)
+				{
+					kGAMECLASS.output("\n\nYour face... <i>tingles</i>. Weird, because you thought that was supposed to stop. Unless... Oh, right. <b>You have lost the “Perma-cute” perk, removing your protection from masculinity-altering transformatives.</b> You’re also noticing a slight pain... Wow, you didn’t miss the feeling of face bones and cartilage contorting like this. Looking at your face (this time with your codex’s camera to make sure you get a better look than at a black screen), you see that it has also become <b>significantly more feminine</b>, so it would appear that you won’t have boyish looks forever, anymore.");
+					
+					kGAMECLASS.output("\n\n(<b>Perk Lost: Perma-cute</b>)");
+					target.removePerk("Perma-cute");
+					target.modFem(10);
+					
+					kGAMECLASS.output("\n\n<i>It’s over!</i>");
 				}
 				//Cunt TF (requires no cunt)
 				// If PC uses 5+ times in 24 hours, and doesn't already have a vagina. Procs last in scene

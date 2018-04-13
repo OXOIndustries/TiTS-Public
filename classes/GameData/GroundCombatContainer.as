@@ -4,6 +4,11 @@ package classes.GameData
 	import classes.Creature;
 	import classes.Engine.Combat.DamageTypes.DamageResult;
 	import classes.Items.Accessories.SiegwulfeItem; 
+	import classes.Items.Accessories.BimboleumDefenseSystem;
+	import classes.Items.Accessories.SalamanderDefenseSystem;
+	import classes.Items.Accessories.KordiiakLeash;
+	import classes.Items.Accessories.ShoulderGrunchLeash;
+	import classes.Items.Accessories.GrunchLeash;
 	import classes.Items.Apparel.Harness;
 	import classes.Items.Armor.GooArmor;
 	import classes.ItemSlotClass;
@@ -20,6 +25,7 @@ package classes.GameData
 	import flash.utils.Dictionary;
 	import classes.Engine.Combat.damageRand;
 	import classes.Engine.Combat.outputDamage;
+	import classes.Engine.Combat.applyTeaseDamage;
 	import classes.StringUtil;
 	import classes.Items.Miscellaneous.*;
 	import classes.Engine.Utility.num2Text;
@@ -187,9 +193,41 @@ package classes.GameData
 					}
 				}
 			}
+			//Shield pop here:
+			//v1 or 1 means queued, v2 means procced already this combat.
+			if(pc.statusEffectv1("Def Proc") == 1)
+			{
+				var shieldTarget:Creature = _hostiles[0];
+				//Default damage:
+				var damage:TypeCollection = new TypeCollection( { kinetic: Math.round(pc.shieldsMax() * 0.6) });
+				if(pc.accessory is SalamanderDefenseSystem)
+				{
+					output("\n\n<b>Your self-defense system releases a wave of extreme heat as your shields buckle!</b>");
+					damage = new TypeCollection( { burning: Math.round(pc.shieldsMax() * 0.7) });
+				}
+				else if(pc.accessory is BimboleumDefenseSystem)
+				{
+					output("\n\n<b>Your self-defense system releases a wave of concentrated, psychic slut-energy as your shields buckle!</b>");
+					damage = new TypeCollection( { psionic: Math.round(pc.shieldsMax() * 0.5) });
+				}
+				if(_hostiles.length == 1) applyDamage(damage, pc, shieldTarget);
+				else
+				{
+					for(var i:int = 0; i < _hostiles.length; i++)
+					{
+						shieldTarget = _hostiles[i];
+						if(!shieldTarget.isDefeated())
+						{
+							output("\n" + StringUtil.capitalize(shieldTarget.getCombatName(), false) + " " + (!shieldTarget.isPlural ? "is" : "are") + " hit!");
+							applyDamage(damage, pc, shieldTarget);
+						}
+					}
+				}
+				pc.addStatusValue("Def Proc",1,1);
+			}
 			//Shield regen stuff here!
 			if(pc.hasStatusEffect("Shields Damaged")) pc.removeStatusEffect("Shields Damaged");
-			else if(pc.hasPerk("Rapid Recharge"))
+			else if(pc.hasShields() && pc.hasPerk("Rapid Recharge"))
 			{
 				pc.shields(pc.bimboIntelligence()/3+3);
 			}
@@ -216,6 +254,12 @@ package classes.GameData
 			if (hasEnemyOfClass(CaptainKhorganMech))
 			{
 				kGAMECLASS.khorganMechBonusMenu();
+				return;
+			}
+			
+			if(hasEnemyOfClass(EstalliaTank))
+			{
+				kGAMECLASS.fedQuestQueenBonusMenu();
 				return;
 			}
 			
@@ -254,6 +298,18 @@ package classes.GameData
 				}
 			}
 			
+			if (pc.hasStatusEffect("Web") && hasEnemyOfClass(BothriocQuadomme))
+			{
+				var quadomme:BothriocQuadomme = _hostiles[0];
+				addButton(2, "Attack Web", quadomme.attackWeb, pc, "Attack Web", "Try and hack back the bothrioc’s webs so they don’t stick to you.");
+			}
+			
+			if (hasEnemyOfClass(StormguardMale))
+			{
+				var stormy:StormguardMale = _hostiles[0];
+				if(stormy.hasStatusEffect("Flying")) addButton(2,"ShootJetpack",stormy.jetpackShot,pc,"Shoot Jetpack","It’s possible you could shoot his jetpack from here. It’s a small target, he’s weaving around and the conditions are wretched, though...");
+			}
+			
 			if (hasEnemyOfClass(CommanderHenderson))
 			{
 				var h:CommanderHenderson = _hostiles[0];
@@ -281,6 +337,13 @@ package classes.GameData
 				{
 					addButton(11, "Fire Alarm", h.triggerAlarm, false, "Trigger Fire Alarm", "Hit the alarm to release the cure!");
 				}
+			}
+			
+			if (hasEnemyOfClass(Estallia))
+			{
+				var e:Estallia = _hostiles[0];
+				
+				if(!e.hasStatusEffect("Tranq'd") && pc.hasKeyItem("Myr Heavy Tranquilizer Dart")) addButton(10, "UseTranq", e.attemptTranq, undefined, "Use Tranquilizer", "See if the tranquilizer Lieve gave you will have any effect on the War Queen.");
 			}
 		}
 		
@@ -377,8 +440,8 @@ package classes.GameData
 				{
 					output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shield powers back up at one quarter power!</b>");
 				}
-				pc.shields(Math.round(pc.shieldsMax()/4));
-				pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
+				target.shields(Math.round(target.shieldsMax()/4));
+				target.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 			}
 
 			if (target.hasStatusEffect("Riposting")) target.removeStatusEffect("Riposting");
@@ -394,8 +457,8 @@ package classes.GameData
 				}
 				if (target.hasStatusEffect("Stunned") && rand(4) == 0)
 				{
-					if (target is PlayerCharacter) output("\n\n<b>You shake off your stun! You’re unstoppable!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " shakes off their stun!</b>");
+					if (target is PlayerCharacter) output("\n\n<b>You shake off the stun! You’re unstoppable!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " shakes off the stun!</b>");
 					target.removeStatusEffect("Stunned");
 				}
 				if (target.hasStatusEffect("Paralyzed") && rand(4) == 0)
@@ -432,14 +495,14 @@ package classes.GameData
 				if (target.statusEffectv1("Burning") <= 0)
 				{
 					target.removeStatusEffect("Burning");
-					if (target is PlayerCharacter) output("\n\n<b>At last you manage to stifle the life out of the fire on your " + target.armor.longName + ". The smell of pork hangs in your nose. You try not to think about it.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " manages to stifle the life out of the flames on their " + target.armor.longName + "!</b>");
+					if (target is PlayerCharacter) output("\n\n<b>At last you manage to stifle the life out of the fire on your " + (target.hasArmor() ? target.armor.longName : "body") + ". The smell of pork hangs in your nose. You try not to think about it.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " manages to stifle the life out of the flames on " + target.getCombatPronoun("hisher") + " " + (target.hasArmor() ? target.armor.longName : "body") + "!</b>");
 				}
 				//Keep status!
 				else
 				{
-					if (target is PlayerCharacter) output("\n\n<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + target.armor.longName + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
-					else output("\n\n<b>" + target.getCombatName() + " desperately slaps at their body, trying to extingquish the flames licking at their " + target.armor.longName + " to no avail!</b>");
+					if (target is PlayerCharacter) output("\n\n<b>You desperately slap at your body, trying to extinguish the flames that have taken to your " + (target.hasArmor() ? target.armor.longName : "person") + " but it stubbornly clings to you, blackening and bubbling everything it touches. It burns!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName()) + " desperately slaps at " + target.getCombatPronoun("hisher") + " body, trying to extinguish the flames licking at " + target.getCombatPronoun("hisher") + " " + (target.hasArmor() ? target.armor.longName : "person") + " but to no avail!</b>");
 					applyDamage(new TypeCollection( { burning: target.statusEffectv2("Burning") } ), null, target);
 				}
 			}
@@ -499,7 +562,7 @@ package classes.GameData
 				//Effect gooo!
 				else
 				{
-					output("\n\n<b>You're still feeling warm and lethargic from her poison...</b>");
+					output("\n\n<b>You’re still feeling warm and lethargic from her poison...</b>");
 					applyDamage(new TypeCollection( { drug: 2+rand(3) } ), null, target);
 				}
 			}
@@ -585,10 +648,25 @@ package classes.GameData
 					target.removeStatusEffect("Evasion Boost");
 				}
 			}
+			if (target.hasStatusEffect("Poison"))
+			{
+				if (target is PlayerCharacter) output("\n\n<b>The poison continues to exhaust you" + (target.statusEffectv2("Poison") >= 1 ? ". You’re ready for this fight to be over!" : ", though you feel a bit better after. It must be <i>wearing off</i>.") + "</b>");
+				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " movements become more sluggish" + (target.statusEffectv2("Poison") ? "; poison flows through " + target.getCombatPronoun("hisher") + " wounds, weakening them further." : ", though the poison is fading, its damage done.") + "</b>");
+				if (target.statusEffectv2("Poison") >= 1)
+				{
+					target.addStatusValue("Poison", 2, -1);
+				}
+				else
+				{
+					target.removeStatusEffect("Poison");
+				}
+				applyDamage(damageRand(new TypeCollection( { poison: target.statusEffectv1("Poison") * target.statusEffectv3("Poison") } ), 15), null, target);
+				target.energy(-5);
+			}
 			if (target.hasStatusEffect("Bleeding"))
 			{
 				if (target is PlayerCharacter) output("\n\n<b>Your wounds continue to take their toll on your body; " + (target.statusEffectv2("Bleeding") >= 1 ? "your microsugeons working overtime to stem the ongoing damage" : "your microsurgeons have triaged the worst of it, but you’ll need proper rest to heal") + ".</b>");
-				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " wounds continue to take a toll on their body; " + (target.statusEffectv2("Bleeding") ? "blood liberally flows from their wounds as they frantically attempt to stem the bleeding." : "the bleeding has finally stopped, but it’d take anybody some rest to properly recover from those kinds of wounds!") + "</b>");
+				else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " wounds continue to take a toll on " + target.getCombatPronoun("hisher") + " body; " + (target.statusEffectv2("Bleeding") ? "blood liberally flows from " + target.getCombatPronoun("hisher") + " wounds as " + target.getCombatPronoun("himher") + " frantically attempt to stem the bleeding." : "the bleeding has finally stopped, but it’d take anybody some rest to properly recover from those kinds of wounds!") + "</b>");
 				if (target.statusEffectv2("Bleeding") >= 1)
 				{
 					target.addStatusValue("Bleeding", 2, -1);
@@ -606,13 +684,25 @@ package classes.GameData
 				{
 					target.addStatusValue("Staggered", 1, -1);
 					if (target is PlayerCharacter) output("\n\n<b>You’re still reeling from the force of the blows to which you’ve been subjected.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which they’ve been subject!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is still reeling from the force of the blows to which " + (!target.isPlural ? (target.getCombatPronoun("heshe") + "’s") : "they’ve") + " been subjected!</b>");
 				}
 				else
 				{
 					target.removeStatusEffect("Staggered");
-					if (target is PlayerCharacter) output("\n\n<b>You finally shake away the stars from your vision, your [pc.feet] planted on the floor firmly once again.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " finally shakes away the cobwebs, their " + target.feet() + " planted firmly on the floor once again.</b>");
+					if (target is PlayerCharacter)
+					{
+						output("\n\n<b>You finally shake away the stars from your vision");
+						if(target.hasFlightEffects()) output(" and reorient yourself in the air");
+						else output(", your [pc.feet] firmly planted on the floor once again");
+						output(".</b>");
+					}
+					else
+					{
+						output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " finally shake" + (!target.isPlural ? "s" : "") + " away the cobwebs");
+						if(target.hasFlightEffects()) output(" and return" + (!target.isPlural ? "s" : "") + " to the air");
+						else output(", " + target.getCombatPronoun("hisher") + " " + target.feet() + " planted firmly on the floor once again");
+						output(".</b>");
+					}
 				}
 			}
 	
@@ -634,7 +724,7 @@ package classes.GameData
 				if(target.hasPerk("Leap Up"))
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You roll up onto your [pc.feet] immediately thanks to your quick reflexes.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " jumps back onto their " + target.feet() + " almost immediately!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " jumps back onto " + target.getCombatPronoun("hisher") + " " + target.feet() + " almost immediately!</b>");
 					target.removeStatusEffect("Tripped");
 				}
 			}
@@ -676,7 +766,7 @@ package classes.GameData
 				{
 					target.removeStatusEffect("Smoke Grenade");
 					if (target is PlayerCharacter) output("\n\n<b>You can see again!</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " looks a little more confident in their aim!</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " looks a little more confident in " + target.getCombatPronoun("hisher") + " aim!</b>");
 				}
 			}
 	
@@ -708,7 +798,7 @@ package classes.GameData
 				else 
 				{
 					if (target is PlayerCharacter) output("\n\n<b>You are practically invisible thanks to your stealth field generator.</b>");
-					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is practically invisible thanks to their stealth field generator.</b>");
+					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is practically invisible thanks to " + target.getCombatPronoun("hisher") + " stealth field generator.</b>");
 				}
 			}
 	
@@ -724,7 +814,7 @@ package classes.GameData
 				else 
 				{
 					if (target is PlayerCharacter) output("\n\n<b>Your enemies will have a hard time hitting you behind your cover!</b>");
-					else output("\n\n<b>You’ll have a hard time hitting " + target.getCombatName() + " with them hiding behind cover!</b>");
+					else output("\n\n<b>You’ll have a hard time hitting " + target.getCombatName() + " with " + target.getCombatPronoun("himher") + " hiding behind cover!</b>");
 				}
 			}
 	
@@ -771,7 +861,7 @@ package classes.GameData
 					{
 						//Combat blurb:
 						if (target is PlayerCharacter) output("\n\n<b>Your hacked drone continues to fly into your line of sight and near your ear no matter how many times you slap it away, inundating your senses with garish, shifting and teasing smut.</b>");
-						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " hacked drone continues to fly around them, projecting a series of ever lewder smutty visuals directly at " + target.getCombatPronoun("himher") + "!</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " hacked drone continues to fly around " + target.getCombatPronoun("himher") + ", projecting a series of ever lewder smutty visuals directly at " + target.getCombatPronoun("himher") + "!</b>");
 						target.lust(4);
 					}
 				}
@@ -790,7 +880,7 @@ package classes.GameData
 					else
 					{
 						target.lust(5 + rand(10));
-						if (target is PlayerCharacter) output("\n\n<b>The parasite’s venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
+						output("\n\n<b>The parasite’s venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
 					}
 				}
 				else
@@ -799,7 +889,7 @@ package classes.GameData
 				}
 			}
 			
-			if (target.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] == undefined)
+			if (target.hasStatusEffect("Disarmed") && (!(target is PlayerCharacter) || flags["CHECKED_GEAR_AT_OGGY"] == undefined))
 			{
 				target.addStatusValue("Disarmed",1,-1);
 				if(target.statusEffectv1("Disarmed") <= 0)
@@ -828,6 +918,8 @@ package classes.GameData
 						if (target is PlayerCharacter)
 						{
 							if(target.hasStatusEffect("Varmint Buddy")) output("\n\n<b>A loud howl alerts you that your pet varmint has fully recovered. It quickly shakes itself awake and leaps back to your side, gnashing its razor-sharp teeth at the enemy.</b>");
+							else if(target.accessory is KordiiakLeash) output("\n\n<b>A deep roar alerts you that your kor’diiak has recovered. It lumbers up onto its legs, growling.</b>");
+							else if(target.accessory is ShoulderGrunchLeash) output("\n\n<b>Quiet chitters alert you that your grunch has recovered.</b>");
 							else output("\n\n<b>There’s a familiar and welcome sound of whirring servos above you. Your righted drone moves back down to your side to aid you.</b>");
 						}
 						else output("\n\n<b>A telling hum returns to the battlefield. " + StringUtil.capitalize(possessive(target.getCombatName()), false) + " combat drone returns to the fold!</b>");
@@ -1109,6 +1201,7 @@ package classes.GameData
 			{
 				// do anything that only happens once per round here.
 				if (hasEnemyOfClass(CaptainKhorganMech)) kGAMECLASS.updateKhorganMechCover();
+				if (hasEnemyOfClass(EstalliaTank)) kGAMECLASS.fedQuestQueenUpdateCover();
 				if (hasEnemyOfClass(GardeBot))
 				{
 					kGAMECLASS.setEnemy(_hostiles[0]);
@@ -1152,7 +1245,7 @@ package classes.GameData
 		/**
 		 * Generate the actual button elements for the combat menu
 		 */
-		private function generateCombatMenu():void
+		private function generateCombatMenu(fromMenu:Boolean = false):void
 		{
 			clearMenu();
 			if (hasEnemyOfClass(Celise))
@@ -1214,16 +1307,30 @@ package classes.GameData
 				{
 					addButton(10, "Nip-Pinch", kGAMECLASS.pinchKaskaNipple, undefined, "Nip-Pinch", "Maybe pinching Kaska’s nipple will get her to release you.");
 				}
+				if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
+				{
+					addDisabledButton(10, "Retreat", "Retreat", "You’ll need to shake off this blasted net before trying this!");
+				}
 				
 				addButton(4, "Do Nothing", waitRound);
 				return;
+			}
+			
+			if (hasEnemyOfClass(MyrGoldOfficer) && flags["FEDERATION_QUEST_WINDOW"] == 1)
+			{
+				output("\n\n<b>Your vision is obstructed by smoke, making you effectively blind!</b>");
+				addButton(10, "BreakWindow", kGAMECLASS.fedQuestOfficerBreakWindow, undefined, "Break Window", "Maybe this’ll get rid of the smoke?");
+			}
+			if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
+			{
+				addButton(10, "Retreat", kGAMECLASS.bothriocQuestBetaNyreaRetreat, undefined, "Retreat", "Retreat slowly in the direction of the Quadomme Bothrioc.");
 			}
 			
 			//Combat Notes :
 			//PC has status Strangely Warm or Blood Fevered :
 			if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
 			{
-				if(pc.lust() < pc.lustMax())
+				if(!fromMenu && pc.lust() < pc.lustMax())
 				{
 					output("\n\nOh, something");
 					if(pc.hasAirtightSuit()) output(" looks <i>divine</i>... like pure sex in physical form");
@@ -1250,6 +1357,7 @@ package classes.GameData
 			// shoot
 			var sf:Function = pc.rangedWeapon.attackImplementor == null ? CombatAttacks.RangedAttack : pc.rangedWeapon.attackImplementor;
 			if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "Your ranged weapon is too heavy to lift and use!");
+			else if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_HIGH_PHYSIQUE) && !pc.canUsePowerArmorWeapon() && pc.PQ() < 66) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "You lack the physique necessary to use such a weapon! You need at least " + Math.ceil(pc.physiqueMax() * 66/100) + " physique to use it.");
 			else addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, { func: sf, isRanged: true }, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
 			
 			//
@@ -1313,8 +1421,7 @@ package classes.GameData
 					kGAMECLASS.setEnemy(null);
 				}
 				else output("You choose not to act.");
-				kGAMECLASS.sneezingTitsCombatWaitBonus(_hostiles);
-				processCombat();
+				waitRoundEffects();
 			}
 			else
 			{
@@ -1327,9 +1434,18 @@ package classes.GameData
 				{
 					(_hostiles[0] as CrystalGooT2).SpecialAction( { isWait: true } );
 				}
-				kGAMECLASS.sneezingTitsCombatWaitBonus(_hostiles);
-				processCombat();
+				//Flag PC as having waited like a good boy and or girl.
+				else if (_hostiles.length == 1 && _hostiles[0] is KorgonneMale)
+				{
+					(_hostiles[0] as KorgonneMale).setStatusValue("SURPRISE_MUTHA_TRUCKAH",1,1);
+				}
+				waitRoundEffects();
 			}
+		}
+		public function waitRoundEffects():void
+		{
+			kGAMECLASS.sneezingTitsCombatWaitBonus(_hostiles);
+			processCombat();
 		}
 		
 		private function fantasizeRound():void
@@ -1543,7 +1659,7 @@ package classes.GameData
 				//Lower difficulty for flight if enemy cant!
 				if(pc.canFly() && (!_hostiles[0].canFly() || _hostiles[0].isImmobilized())) difficulty--;
 				//Lower difficulty for immobilized foe
-				if(_hostiles[0].isImmobilized()) difficulty--;
+				if(_hostiles[0].isImmobilized()) difficulty-=2;
 				//Easy mode is magic!
 				if(kGAMECLASS.easy)
 				{
@@ -1556,6 +1672,9 @@ package classes.GameData
 				if(pc.level >= _hostiles[0].level + 3) difficulty--;
 				if(pc.level >= _hostiles[0].level + 4) difficulty--;
 				if(pc.level >= _hostiles[0].level + 5) difficulty--;
+
+				//Grunch makes easier!
+				if(pc.accessory is GrunchLeash) difficulty -= 2;
 
 				//Set threshold value and check!
 				if(difficulty < 0) difficulty = 100;
@@ -1576,6 +1695,12 @@ package classes.GameData
 						CombatManager.abortCombat();
 						return;
 					}
+					if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
+					{
+						kGAMECLASS.bothriocQuestBetaNyreaMiniquestRun();
+						CombatManager.abortCombat();
+						return;
+					}
 					if (pc.canFly()) 
 					{
 						if (pc.legCount == 1) output("Your [pc.foot] leaves");
@@ -1584,6 +1709,7 @@ package classes.GameData
 					}
 					else output("You manage to leave the fight behind you.")
 					kGAMECLASS.processTime(8);
+					
 					CombatManager.abortCombat();
 				}
 				else {
@@ -1723,35 +1849,57 @@ package classes.GameData
 				(target as Anno).grappleStruggle();
 			}
 			
-			if (hasEnemyOfClass(Cockvine))
+			if (hasEnemyOfClass(Cockvine) && target is PlayerCharacter)
 			{
 				// TODO pull this in!
 				kGAMECLASS.adultCockvineStruggleOverride();
 				return;
 			}
+			// Bothrioc Quadomme - PC struggles
+			else if (hasEnemyOfClass(BothriocQuadomme) && target is PlayerCharacter)
+			{
+				var quadomme:BothriocQuadomme = _hostiles[0];
+				quadomme.webStruggle(target);
+				return;
+			}
 			// Naleen coil grapple text
-			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall))
+			else if (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenMatingBall) || hasEnemyOfClass(NaleenBrotherA) || hasEnemyOfClass(NaleenBrotherB))
 			{
 				if(target.hasPerk("Escape Artist"))
 				{
 					if(target.reflexes() + rand(20) + 6 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus > 24) {
-						output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
+						if(target is PlayerCharacter) output("You display a remarkable amount of flexibility as you twist and writhe through the coils to freedom.");
+						else output(target.getCombatName() + " display" + (!target.isPlural ? "s" : "") + " a remarkable amount of flexibility as " + target.getCombatPronoun("s") + " twist" + (!target.isPlural ? "s" : "") + " and writhe" + (!target.isPlural ? "s" : "") + " through the coils to freedom.");
 						if(panicJack)
 						{
-							output(" The [pc.cumNoun] you squirt helps a little too.");
-							pc.lust(-10);
+							if(target is PlayerCharacter) output(" The [pc.cumNoun] you squirt helps a little too.");
+							else output("... with some extra lewd lube, too.");
+							target.lust(-10);
 						}
 						target.removeStatusEffect("Naleen Coiled");
 					}
 				}
-				else 
+				//Limber confers a 20% escape chance.
+				else if(target.hasPerk("Limber") && rand(10) <= 1)
+				{
+					output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
+					if(panicJack)
+					{
+						output(" The [pc.cumNoun] you squirt helps a little too.");
+						pc.lust(-10);
+					}
+					target.removeStatusEffect("Naleen Coiled");
+				}
+				else
 				{
 					if(target.physique() + rand(20) + 1 + latexBonus + panicBonus + target.statusEffectv1("Naleen Coiled") * 5 + slipperyBonus > 24) {
-						output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
+						if(target is PlayerCharacter) output("With a mighty heave, you tear your way out of the coils and onto your [pc.feet].");
+						else output("With a heave, " + target.getCombatName() + " tear" + (!target.isPlural ? "s" : "") + " " + target.getCombatPronoun("s") + " way out of the coils and adopt" + (!target.isPlural ? "s" : "") + " a fighting stance.");
 						if(panicJack)
 						{
-							output(" The [pc.cumNoun] you squirt helps a little too.");
-							pc.lust(-10);
+							if(target is PlayerCharacter) output(" The [pc.cumNoun] you squirt helps a little too.");
+							else output("... with some extra lewd lube, too.");
+							target.lust(-10);
 						}
 						target.removeStatusEffect("Naleen Coiled");
 					}
@@ -1759,14 +1907,19 @@ package classes.GameData
 				//Fail to escape: 
 				if(target.hasStatusEffect("Naleen Coiled"))
 				{
-					if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
-					else if(CombatManager.hasEnemyOfClass(NaleenMatingBall)) output("You struggle madly to escape from the coils but ultimately fail. The pin does feel a little looser as a result, however.");
-					else output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
+					if(target is PlayerCharacter)
+					{
+						if(CombatManager.hasEnemyOfClass(Naleen)) output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. She grins down at you with a feral look in her eyes....");
+						else if(CombatManager.hasEnemyOfClass(NaleenMatingBall)) output("You struggle madly to escape from the coils but ultimately fail. The pin does feel a little looser as a result, however.");
+						else output("You groan in pain, struggling madly to escape the brutal confines of the naleen’s coils. He grins down at you with a predatory glint in his eye, baring his fangs....");
+					}
+					else output(target.getCombatName() + " groan" + (!target.isPlural ? "s" : "") + " in pain, struggling madly to escape the brutal confines of the naleen’s coils, but to no avail...");
 					target.addStatusValue("Naleen Coiled",1,1);
 					if(panicJack)
 					{
-						output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
-						pc.lust(-10);
+						if(target is PlayerCharacter) output(" Not even your miniature, [pc.cumNoun]-squirting orgasms can help.")
+						else output(" Not even the extra lewd lube squirted can help the matter...");
+						target.lust(-10);
 					}
 				}
 			}
@@ -1829,7 +1982,7 @@ package classes.GameData
 					{
 						if (hasEnemyOfClass(SexBot)) output("You almost dislocate an arm doing it, but, ferret-like, you manage to wriggle out of the sexbot’s coils. Once your hands are free, the droid does not seem to know how to respond, and you are able to grapple the rest of your way out easily, ripping away from its molesting grip. The sexbot clicks and stutters a few times before going back to staring at you blankly, swinging its fibrous limbs over its head.");
 						else if (hasEnemyOfClass(MaidenVanae) || hasEnemyOfClass(HuntressVanae)) kGAMECLASS.vanaeEscapeGrapple("Escape Artist");
-						else if (hasEnemyOfClass(BothriocPidemme))
+						else if (hasEnemyOfClass(BothriocPidemme) || hasEnemyOfClass(BothriocQuadomme))
 						{
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. Shooting the bothrioc atop you a winning smile, you wriggle your way out from under them back between their legs, squirming out of your bindings as you take to your feet.");
 						}
@@ -1841,6 +1994,17 @@ package classes.GameData
 						}
 						target.removeStatusEffect("Grappled");
 					}
+				}
+				//Limber confers a 20% escape chance.
+				else if(target.hasPerk("Limber") && rand(10) <= 1)
+				{
+					output("You contort your body wildly to escape! All that time spent practicing yoga with Paige has paid off!");
+					if(panicJack)
+					{
+						output(" The [pc.cumNoun] you squirt helps a little too.");
+						pc.lust(-10);
+					}
+					target.removeStatusEffect("Grappled");
 				}
 				else
 				{
@@ -1866,6 +2030,10 @@ package classes.GameData
 						{
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the bolo.");
 						}
+						else if (hasEnemyOfClass(BothriocQuadomme))
+						{
+							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the tight web.");
+						}
 						else if (hasEnemyOfClass(RKLah)) output("You pull him to one side, before delivering a sucker punch hard and low from the other. Lah gasps in pain, and you manage to rip out of his grasp.");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
@@ -1888,6 +2056,10 @@ package classes.GameData
 					else if (hasEnemyOfClass(BothriocPidemme))
 					{
 						output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. The bindings loosen a little, but your freedom is still out of reach... for now.");
+					}
+					else if (hasEnemyOfClass(BothriocQuadomme))
+					{
+						output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. The webs loosen a little, but your freedom is still out of reach... for now.");
 					}
 					else if (hasEnemyOfClass(RKLah)) output("You claw blindly at his face and try and buck furiously, to no avail.\n\n<i>“Stuck pig,”</i> grits the ausar, tightening his hold. <i>“Give in already.”</i>");
 					//else if (enemy is GoblinGadgeteer) output("You manage to untangle your body from the net, and prepare to fight the goblin again.");
@@ -1946,9 +2118,13 @@ package classes.GameData
 						if(pc.hasTamWolf()) addDisabledButton(bOff, "TamWolf", "Tam-wolf, Go!", "You are disarmed and can’t communicate with Tam-wolf right now!");
 						else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You are disarmed and can’t communicate with [wulfe.name] right now!");
 						else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addDisabledButton(bOff, pc.accessory.shortName, "Accessory Target", ("You are disarmed and can’t access your " + pc.accessory.longName + " right now!"));
+						else if(pc.accessory is KordiiakLeash) addDisabledButton(bOff, "Kor’diiak", "Kor’diiak, Go!", "You are disarmed and had to leave your pet bear behind!");
+						else if(pc.accessory is ShoulderGrunchLeash) addDisabledButton(bOff, "Kor’diiak", "Kor’diiak, Go!", "You are disarmed and had to leave your pet behind!");
 						else addDisabledButton(bOff, "Drone Target", "Drone Target", "You are disarmed and can’t access your combat drone right now!");
 					}
 					else if(pc.hasTamWolf()) addButton(bOff, "TamWolf", selectDroneTarget, undefined, "Tam-wolf, Go!", ("Have Tam-wolf target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
+					else if(pc.accessory is KordiiakLeash) addButton(bOff, "Kor’diiak", selectDroneTarget, undefined, "Kor’diiak, Go!", ("Have your ice bear target " + (_hostiles.length > 1 ? "an" : "the") + " enemy. Hopefully."));
+					else if(pc.accessory is ShoulderGrunchLeash) addButton(bOff, "Grunch", selectDroneTarget, undefined, "Grunch, Go!", ("Have your grunch target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory is SiegwulfeItem) addButton(bOff, "Siegwulfe", selectDroneTarget, undefined, "Siegwulfe, Go!", ("Have [wulfe.name] target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addButton(bOff, pc.accessory.shortName, selectDroneTarget, undefined, "Accessory Target", ("Have your " + pc.accessory.longName + " target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
 					else addButton(bOff, "Drone Target", selectDroneTarget, undefined, "Drone Target", ("Have your drone target " + (_hostiles.length > 1 ? "an" : "the") + " enemy."));
@@ -1956,6 +2132,8 @@ package classes.GameData
 				else
 				{
 					if(pc.hasStatusEffect("Varmint Buddy")) addDisabledButton(bOff, "Varmint", "Varmint, Go!", "You can’t communicate with your varmint right now!");
+					if(pc.accessory is KordiiakLeash) addDisabledButton(bOff, "Kor’diiak", "Kor’diiak, Go!", "You can’t communicate with your kor’diiak right now!");
+					if(pc.accessory is ShoulderGrunchLeash) addDisabledButton(bOff, "Grunch", "Grunch, Go!", "You can’t communicate with your pet right now!");
 					else if(pc.hasTamWolf()) addDisabledButton(bOff, "TamWolf", "Tam-wolf, Go!", "You can’t communicate with Tam-wolf right now!");
 					else if(pc.accessory is SiegwulfeItem) addDisabledButton(bOff, "Siegwulfe", "Siegwulfe, Go!", "You can’t communicate with [wulfe.name] right now!");
 					else if(pc.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && pc.accessory.shortName != "") addDisabledButton(bOff, pc.accessory.shortName, "Accessory Target", ("You can’t access your " + pc.accessory.longName + " right now!"));
@@ -1965,7 +2143,7 @@ package classes.GameData
 			}
 			
 			// TODO sort pages and shit
-			addButton(14, "Back", generateCombatMenu);
+			addButton(14, "Back", generateCombatMenu, true);
 		}
 		
 		private function selectDroneTarget():void
@@ -1975,7 +2153,12 @@ package classes.GameData
 			if(pc.droneTarget == null && !pc.hasStatusEffect("Drone Targeting"))
 			{
 				pc.droneTarget = CombatAttacks.GetBestPotentialTarget(_hostiles);
-				if(pc.droneTarget == null) pc.createStatusEffect("Drone Targeting", -1, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
+				if(pc.droneTarget == null) 
+				{
+					if(pc.accessory is KordiiakLeash) pc.createStatusEffect("Drone Targeting", -1, 0, 0, 0, true, "Radio", ("Your kor’diiak is targeting..."), true, 0, 0xFFFFFF);
+					else if(pc.accessory is ShoulderGrunchLeash) pc.createStatusEffect("Drone Targeting", -1, 0, 0, 0, true, "Radio", ("Your pet is targeting..."), true, 0, 0xFFFFFF);
+					else pc.createStatusEffect("Drone Targeting", -1, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
+				}
 			}
 			
 			var bOff:int = 0;
@@ -2012,7 +2195,13 @@ package classes.GameData
 		}
 		private function selectDroneTargetSpecial(target:Creature = null):void
 		{
-			if(!pc.hasStatusEffect("Drone Targeting")) pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
+			if(!pc.hasStatusEffect("Drone Targeting")) 
+			{
+				//pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
+				if(pc.accessory is KordiiakLeash) pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your kor’diiak is targeting..."), true, 0, 0xFFFFFF);
+				else if(pc.accessory is ShoulderGrunchLeash) pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your pet is targeting..."), true, 0, 0xFFFFFF);
+				else pc.createStatusEffect("Drone Targeting", 0, 0, 0, 0, true, "Radio", ("Your " + (pc.hasStatusEffect("Varmint Buddy") ? "varmint" : "drone") + " is targeting..."), true, 0, 0xFFFFFF);
+			}
 			else
 			{
 				if(target == null) pc.setStatusValue("Drone Targeting", 1, -1);
@@ -2084,7 +2273,7 @@ package classes.GameData
 				}
 			}
 			
-			addButton(14, "Back", generateCombatMenu);
+			addButton(14, "Back", generateCombatMenu, true);
 		}
 		
 		private function executeAttack(opts:Object):void
@@ -2159,7 +2348,7 @@ package classes.GameData
 				}
 			}
 			
-			addButton(14, "Back", generateCombatMenu);
+			addButton(14, "Back", generateCombatMenu, true);
 		}
 		
 		private function executeSimpleAttack(opts:Object):void
@@ -2207,7 +2396,7 @@ package classes.GameData
 				output("\n<b>Unfortunately, you can’t see the enemy clearly enough to do that!</b>");
 				
 				clearMenu();
-				addButton(14, "Back", generateCombatMenu);
+				addButton(14, "Back", showCombatMenu);
 				return;
 			}
 	
@@ -2268,7 +2457,7 @@ package classes.GameData
 			{
 				if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
 				{
-					addButton(btnSlot, "Back", generateCombatMenu, undefined, "Back", backTooltip);
+					addButton(btnSlot, "Back", showCombatMenu, undefined, "Back", backTooltip);
 					btnSlot++;
 				}
 				
@@ -2279,10 +2468,10 @@ package classes.GameData
 				if(teaseList.length > 14 && (i + 1) == teaseList.length)
 				{
 					while((btnSlot + 1) % 15 != 0) { btnSlot++; }
-					addButton(btnSlot, "Back", generateCombatMenu, undefined, "Back", backTooltip);
+					addButton(btnSlot, "Back", showCombatMenu, undefined, "Back", backTooltip);
 				}
 			}
-			addButton(14, "Back", generateCombatMenu, undefined, "Back", backTooltip);
+			addButton(14, "Back", showCombatMenu, undefined, "Back", backTooltip);
 		}
 		
 		private function teaseButt(target:Creature):void
@@ -2371,7 +2560,7 @@ package classes.GameData
 			{
 				output("You quickly");
 				if(pc.hasArmor() && !pc.isCrotchExposed()) output(" strip out of your [pc.armor] and");
-				output(" turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole]. With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus. You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give them a good show. You withdraw your hand and give your ass another sexy spank before readying for combat again.");
+				output(" turn around, giving your [pc.butt] a hard slap and showing your enemy the real prize: your [pc.asshole]. With a smirk, you easily plunge your hand inside, burying yourself up to the wrist inside your anus. You give yourself a quick fisting, watching the enemy over your shoulder while you moan lustily, being sure to give " + target.getCombatName() + " a good show. You withdraw your hand and give your ass another sexy spank before readying for combat again.");
 			}
 			//Reqs: PC has at least one tail with the Fluffy tag
 			else if(select == 4)
@@ -2659,7 +2848,7 @@ package classes.GameData
 			//Reqs: PC has a naga tail
 			if(pc.isNaga()) choices.push(3);
 			//Reqs: PC is in combat with a naleen, PC has a naga tail
-			if(target is Naleen && pc.isNaga()) choices.push(4);
+			if(target.originalRace == "naleen" && pc.isNaga()) choices.push(4);
 			//Reqs: Hips skill 75+
 			if(flags["TIMES_HIPS_TEASED"] >= 75) choices.push(5);
 
@@ -2685,16 +2874,17 @@ package classes.GameData
 			//Reqs: PC is in combat with a naleen, PC has a naga tail
 			else if(select == 4)
 			{
+				var isNaleen:Boolean = (pc.raceShort() == "naleen");
 				msg = "You slither towards the ";
-				if(pc.race() == "naleen") msg += "other ";
+				if(isNaleen) msg += "other ";
 				msg += "naleen, idly swaying your [pc.hips] to show off your tail.";
 				//PC’s original race is not some sort of naga that may be introduced in the future:
 				msg += " <i>“I used to have spindly little legs, you know.”</i>";
 				//PC’s original race is some sort of naga: msg += " <i>“Plenty of other races out there have spindly little legs they have to move around on.”</i>";
 				msg += " You offer a smirk of superiority as you slither in a circle around your foe, your tail leaving a trail in the brush where it passes. <i>“This is </i>much<i> better, don’t you agree?";
-				if(pc.race() != "naleen") msg += " I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.";
-				else output(" Becoming a naleen’s given me an appreciation for big, long tails like this one... or like yours.");
-				msg += "”</i> You let your tailtip brush over some of your foe’s length before you pull away, allowing them a brief view of your backside and your tail curling up to support you as you resume the fight.";
+				if(!isNaleen) msg += " I may not be a naleen, but I can still appreciate a strong, </i>thick<i> snake tail like mine... or yours.";
+				else msg += " Becoming a naleen’s given me an appreciation for big, long tails like this one... or like yours.";
+				msg += "”</i> You let your tailtip brush over some of your foe’s length before you pull away, allowing " + target.getCombatPronoun("himher") + " a brief view of your backside and your tail curling up to support you as you resume the fight.";
 				output(msg);
 			}
 			//Reqs: Hips skill 75+
@@ -2880,7 +3070,7 @@ package classes.GameData
 			//2 - covered dick!
 			else if(select == 2) {
 				output("You lean back and pump your hips at your target in an incredibly vulgar display. The bulging, barely-contained outline of your package presses hard into your [pc.lowerUndergarment]. This feels so crude, but at the same time, you know it’ll likely be effective.");
-				output(" You go on like that, humping the air for your target’s benefit, trying to entice them with your nearly-exposed meat.");
+				output(" You go on like that, humping the air for your target’s benefit, trying to entice " + target.getCombatPronoun("himher") + " with your nearly-exposed meat.");
 			}	
 			//3 - cunt!
 			else if(select == 3) {
@@ -2906,11 +3096,11 @@ package classes.GameData
 			}
 			//4 Horsecock centaur tease
 			else if(select == 4) {
-				output("You let out a bestial whinny and stomp your [pc.feet] at your enemy. They prepare for an attack, but instead you kick your front [pc.feet] off the ground, revealing the hefty horsecock hanging beneath your belly. You let it flop around, quickly getting rigid and to its full erect length. You buck your hips as if you were fucking a mare in heat, letting your opponent know just what’s in store for them if they surrender to pleasure...");
+				output("You let out a bestial whinny and stomp your [pc.feet] at your enemy. They prepare for an attack, but instead you kick your front [pc.feet] off the ground, revealing the hefty horsecock hanging beneath your belly. You let it flop around, quickly getting rigid and to its full erect length. You buck your hips as if you were fucking a mare in heat, letting your opponent know just what’s in store for " + target.getCombatPronoun("himher") + " if " + target.getCombatPronoun("heshe") + " surrender" + (!target.isPlural ? "s" : "") + " to pleasure...");
 			}
 			//5 Cunt grind tease
 			else if(select == 5) {
-				output("You gallop toward your unsuspecting enemy, dodging their defenses and knocking them to the ground. Before they can recover, you slam your massive centaur ass down upon them, stopping just short of using crushing force to pin them underneath you. In this position, your opponent’s face is buried right in your girthy horsecunt. You grind your cunt into your target’s face for a moment before standing. When you do, you’re gratified to see your enemy covered in your lubricant and smelling powerfully of horsecunt.");
+				output("You gallop toward your unsuspecting enemy, dodging " + target.getCombatPronoun("hisher") + " defenses and knocking " + target.getCombatPronoun("himher") + " to the ground. Before " + target.getCombatPronoun("heshe") + " can recover, you slam your massive centaur ass down upon " + target.getCombatPronoun("himher") + ", stopping just short of using crushing force to pin " + target.getCombatPronoun("himher") + " underneath you. In this position, your opponent’s face is buried right in your girthy horsecunt. You grind your cunt into your target’s face for a moment before standing. When you do, you’re gratified to see your enemy covered in your lubricant and smelling powerfully of horsecunt.");
 			}
 			//Reqs: PC has at least 3 vaginal wetness
 			else if(select == 14)
@@ -3249,294 +3439,6 @@ package classes.GameData
 			pc.milked(25);
 		}
 		
-		private function applyTeaseDamage(attacker:Creature, target:Creature, teaseCount:Number, teaseType:String, likeAdjustments:Array = null):void
-		{
-			if (target is Celise)
-			{
-				output("\n");
-				processCombat();
-				return;
-			}
-			
-			var factor:Number = 1;
-			var factorMax:Number = 2;
-			var bonus:int = 0;
-			var msg:String = "";
-			
-			if (likeAdjustments && likeAdjustments.length > 0)
-			{
-				for (var i:int = 0; i < likeAdjustments.length; i++) factor *= likeAdjustments[i];
-			}
-			
-			if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
-			if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
-			if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
-			if (attacker.hasFur())
-			{
-				if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) factor *= 1.25;
-			}
-			
-			if (factor > factorMax) factor = factorMax;
-		
-			if (attacker.hasPheromones()) bonus += 1;
-			if (teaseType == "SQUIRT") bonus += 2;
-			if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
-			
-			var sweatyBonus:int = 0;
-			if(attacker.hasStatusEffect("Sweaty") && target.hasPerk("Likes_Sweaty")) 
-			{
-				//-5 per level normally, so add twice that since we flippin it'
-				sweatyBonus = attacker.statusEffectv1("Sweaty") * 10;
-				//Furries dont benefit quite as much.
-				if(attacker.hasFur()) sweatyBonus = attacker.statusEffectv1("Sweaty") * 5;
-			}
-			
-			if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus + sweatyBonus))
-			{
-				if(target is HandSoBot)
-				{
-					output("\n\n<i>“An attempt to confuse and overwhelm an enemy with an overt display of sexual dominance,”</i> says So. She sounds genuinely interested. <i>“An unorthodox but effective strategy in many known organic cultures’ approach to war. I was unaware sentients of a human upbringing had any experience of such a thing, however. Perhaps that explains why you are attempting it against a foe that cannot in any way feel desire.”</i>");
-				}
-				else if(target.isLustImmune == true) 
-				{
-					msg = "\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false);
-					if(target.isPlural) msg += " don’t";
-					else msg += " doesn’t";
-					msg += " seem to care for your erotically-charged display.</b>";
-					output(msg);
-				}
-				else if(teaseType == "SQUIRT") 
-				{
-					output("\n\nYour milk goes wide.");
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else if(teaseType == "DICK SLAP")
-				{
-					output("\n\nYour foe looks more annoyed than aroused at your antics as they wipe your girl lube off.");
-					if(kGAMECLASS.silly) output(" You pity them somewhat. Your [pc.cumNoun] has a lot of nutrients in it...");
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else if (target is HuntressVanae || target is MaidenVanae)
-				{
-					output("\n\n");
-					output(teaseReactions(0, target));
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else if (target is WetraHound)
-				{
-					output("\n\n");
-					kGAMECLASS.wetraHoundAnimalIntellect();
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				//Enemies with special fail messages
-				else if(target is MaidenVanae || target is HuntressVanae)
-				{
-					output("\n\n" + teaseReactions(0, target) + " (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else if(target is KorgonneFemale)
-				{
-					output("\n\nThe barbarian girl flashes a savage grin, apparently unfazed." + ((kGAMECLASS.silly) ? " <i>“No. So no. Wow. Very no.”</i>" : ""));
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-				else
-				{
-					output("\n\n" + StringUtil.capitalize(target.getCombatName()), false);
-					if(target.isPlural) output(" resist");
-					else output(" resists");
-					output(" your erotically charged display... this time.");
-					output(" (<b>0</b>)");
-					teaseSkillUp(teaseType);
-				}
-			}
-			else
-			{
-				var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
-				if (teaseType == "SQUIRT") damage += 5;
-				if (attacker.hasPheromones()) damage += 1 + rand(4);
-				damage *= (rand(31) + 85) / 100;
-				
-				var cap:Number = 15 + attacker.level * 2 + attacker.statusEffectv3("Painted Penis");
-				if (damage > cap) damage = cap;
-				damage *= factor;
-				
-				//Tease % resistance.
-				if (teaseType == "SQUIRT") damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
-				else damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
-				//Level % reduction
-				var levelDiff:Number = target.level - attacker.level;
-				//Reduce tease damage by 50% for every level down the PC is.
-				if(levelDiff > 0)
-				{
-					for(var z:int = levelDiff; z > 0; z--)
-					{
-						damage *= 0.70;
-					}
-				}
-
-				//Tease armor - only used vs weapon-type attacks at present.
-				//damage -= target.lustDef();
-
-				cap = 30 + attacker.statusEffectv3("Painted Penis");
-				//Damage cap
-				if (damage > cap) damage = cap;
-				//Damage min
-				if (damage < 0) damage = 0;
-				
-				if(target.lust() + damage > target.lustMax()) damage = target.lustMax() - target.lust();
-				damage = Math.ceil(damage);
-			
-				output("\n\n");
-				switch(teaseType)
-				{
-					case "SQUIRT":
-						if(target.isPlural)
-						{
-							output(StringUtil.capitalize(target.getCombatName(), false) + " are splattered with your [pc.milk], unable to get it off.");
-							if(damage > 0) output(" All of a sudden, their faces begin to flush, and they look quite aroused.");
-							else output(" They seem unimpressed.");
-						}
-						else
-						{
-							output(StringUtil.capitalize(target.getCombatName(), false) + " is splattered with your [pc.milk], unable to get it off.");
-							if(damage > 0) output(" All of a sudden, " + target.mfn("his","her","its") + " " + target.face() + " begins to flush, and " + target.mfn("he","she","it") + " looks quite aroused.");
-							else output(" " + target.mfn("He","She","It") + " seems unimpressed.");
-						}
-						break;
-					case "DICK SLAP":
-						if(target.isPlural)
-						{
-							output(StringUtil.capitalize(possessive(target.getCombatName()), false));
-							if(damage > 0) output(" faces look rather flush as they");
-							output(" quickly wipe your [pc.cum] off.");
-						}
-						else
-						{
-							output(StringUtil.capitalize(possessive(target.getCombatName()), false));
-							if(damage > 0) output(" face looks rather flush as " + target.mfn("he","she","it"));
-							output(" quickly wipes your [pc.cum] off.");
-						}
-						if(kGAMECLASS.silly) output(" Ha! GOT ‘EM!");
-						break;
-					default:
-						output(teaseReactions(damage,target));
-						break;
-				}
-				target.lust(damage);
-				
-				var damageResult:DamageResult = new DamageResult();
-				if (damage > 0)
-				{
-					damageResult.lustDamage = damage;
-					damageResult.typedLustDamage.tease.damageValue = damage;
-				}
-				else
-				{
-					damageResult.lustResisted = true;
-				}
-				
-				outputDamage(damageResult);
-				
-				teaseSkillUp(teaseType);
-				
-				if(target is MyrInfectedFemale && damage >= 10)
-				{
-					//output("\n\n<b>Your teasing has the poor girl in a shuddering mess as she tries to regain control of her lust addled nerves.</b>");
-					var stunDur:int = 1 + rand(2);
-					CombatAttacks.applyStun(target, stunDur);
-					CombatAttacks.applyLustStun(target, stunDur);
-				}
-			}
-			
-			// kGAMECLASS.setEnemy(target);
-			if (attacker is PlayerCharacter) kGAMECLASS.playerMimbraneSpitAttack();
-		}
-		
-		public static function teaseReactions(damage:Number, target:Creature):String 
-		{
-			var pc:Creature = kGAMECLASS.pc;
-			
-			var buffer:String = "";
-			var textRands:Array = [];
-			if (target is PlayerCharacter)
-			{
-				if (damage == 0) buffer = "You seem unimpressed.";
-				else if (damage < 4) buffer = "You look a little intrigued by what you see.";
-		 		else if (damage < 10) buffer = "You definitely seem to be enjoying the show.";
-		 		else if (damage < 15) buffer = "You openly touch yourself as you watch lustfully.";
-		 		else if (damage < 20) buffer = "You flush hotly with desire, your eyes filled with longing.";
-		 		else buffer = "You lick your lips in anticipation, your hands idly stroking your own body.";
-			}
-			else if (target is HuntressVanae)
-			{
-				if (damage == 0)
-				{
-					textRands = [
-						"The blind huntress snorts at your display and makes a quick jab at you with her spear. You leap out of the way just in time. <i>“All you’re doing is leaving yourself open, " + ((pc.zilScore() >= 4 || pc.naleenScore() >= 5) ? "[pc.race]" : "outsider") + "!”</i> she exclaims.",
-						"You utterly fail to entice the huntress. You barely dodge an attack that causes you to cease your efforts. You’re going to have to do better, or try something else...",
-						"The alien huntress seems to be getting into it, moving towards you... only to swipe her spear at your head. You barely duck in time. Seems she didn’t go for it at all!"
-					];
-					
-					buffer = textRands[rand(textRands.length)];
-				}
-				else if (damage < 4) buffer = "The busty huntress moans and begins cupping one of her " + target.breastDescript(0) + ", clearly titillated by your performance.";
-				else if (damage < 10) buffer = "Your stacked opponent huskily moans and slips a webbed hand between her thighs, lewdly stroking her slit. She snaps out of it a few seconds later, biting her lip.";
-				else if (damage < 20) buffer = "The alien huntress clenches her thighs together as she watches you, rubbing them together as she desperately tries to hide her arousal. Clearly you’re having an effect on her!"
-				else buffer = "The busty amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed hand back, flushing wildly.";
-			}
-			else if (target is KorgonneFemale)
-			{
-				//Teased
-				buffer = "Clearly delighted, the raider’s mouth hangs open in a dopey grin; her tongue lolls from the side of her mouth as she holds one arm tightly across her prodigious chest. She becomes aware of her licentious weakness and swallows her tongue again with a gulp." + ((kGAMECLASS.silly) ? " <i>“So seduce. Such flirt. Much babies. Wow.”</i>" : "");
-			}
-			else if (target is MaidenVanae)
-			{
-				if (damage == 0)
-				{
-					textRands = [
-						"The young alien huntress jabs at you with her spear, forcing you to leap out of the way. <i>“Hey, this may be my first time, but I’m not </i>that<i> easy!”</i> she exclaims.",
-						"The virgin huntress quirks her head, clearly baffled by your actions. It seems you utterly failed to entice her....",
-						"The alien huntress fans her face with a webbed hand and moves closer to you. <i>“Oooh, I think I’m getting the vapors... </i>psyche<i>!”</i>",
-					];
-					
-					buffer = textRands[rand(textRands.length)];
-				}
-				else if (damage < 4) buffer = "The virgin huntress blushes and begins eagerly touching one of her [vanaeMaiden.nipples]. She’s clearly aroused by your performance.";
-				else if (damage < 10) buffer = "The virgin huntress lets out a little moan and slips one of her webbed hands between her thighs. She awkwardly teases her glistening slit, getting all worked up.";
-				else if (damage < 20) buffer = "The young alien huntress places a hand over her loins and rubs her thighs together. She’s desperately trying to hide her rather obvious arousal. The sweet scent of her arousal fills the air.";
-				else buffer = "The wispy amazon parts her thighs and begins to stroke her twin clits to your lewd display, unable to stop herself. A few seconds later she jerks her webbed back, flushing wildly.";
-			}
-			else if (target.isPlural) {
-				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName(), false) + " seem unimpressed.";
-				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName(), false) + " look intrigued by what they see.";
-				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName(), false) + " definitely seem to be enjoying the show.";
-				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName(), false) + " openly stroke themselves as they watch you.";
-				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName(), false) + " flush hotly with desire, their eyes filled with longing.";
-				else buffer = StringUtil.capitalize(target.getCombatName(), false) + " lick their lips in anticipation, their hands idly stroking their bodies.";
-			}
-			else {
-				if (damage == 0) buffer = StringUtil.capitalize(target.getCombatName(), false) + " seems unimpressed.";
-				else if (damage < 4) buffer = StringUtil.capitalize(target.getCombatName(), false) + " looks a little intrigued by what " + target.getCombatPronoun("heshe") + " sees.";
-				else if (damage < 10) buffer = StringUtil.capitalize(target.getCombatName(), false) + " definitely seems to be enjoying the show.";
-				else if (damage < 15) buffer = StringUtil.capitalize(target.getCombatName(), false) + " openly touches " + target.getCombatPronoun("himher") + "self as " + target.getCombatPronoun("heshe") + " watches you.";
-				else if (damage < 20) buffer = StringUtil.capitalize(target.getCombatName(), false) + " flushes hotly with desire, " + target.getCombatPronoun("hisher") + " eyes filled with longing.";
-				else buffer = StringUtil.capitalize(target.getCombatName(), false) + " licks " + target.getCombatPronoun("hisher") + " lips in anticipation, " + target.getCombatPronoun("hisher") + " hands idly stroking " + target.getCombatPronoun("hisher") + " own body.";
-			}
-			return buffer;
-		}
-		
-		private function teaseSkillUp(teaseType:String):void
-		{
-			if (teaseType == "SQUIRT") teaseType = "CHEST";
-			else if(teaseType == "DICK SLAP") teaseType = "CROTCH";
-			flags["TIMES_" + teaseType + "_TEASED"]++; // the menu display handles wrapping this so w/e
-		}
-		
 		private function generateSenseMenu(attacker:Creature, target:Creature):void
 		{
 			clearOutput();
@@ -3644,7 +3546,7 @@ package classes.GameData
 			// Naleen special loss handling
 			if (!bLossCond)
 			{
-				bLossCond = (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale)) && (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0));
+				bLossCond = (hasEnemyOfClass(Naleen) || hasEnemyOfClass(NaleenMale) || hasEnemyOfClass(NaleenBrotherA)) && (pc.hasStatusEffect("Naleen Venom") && (pc.physique() == 0 || pc.willpower() == 0));
 			}
 			
 			if (bLossCond && lossCondition == CombatManager.ESCAPE && atEndOfRound)
@@ -3743,8 +3645,9 @@ package classes.GameData
 				addButton(0, "Victory", function(t_enemy:Creature, t_victoryFunctor:Function):Function {
 					return function():void {
 						clearOutput();
-						
-						if (t_enemy.HP() <= 0) output("<b>You’ve knocked the resistance out of " + t_enemy.getCombatName() + ".</b>\n\n");
+						//Special texts for this :3
+						if (t_enemy.hasStatusEffect("PEACEFUL_WIN")) {}
+						else if (t_enemy.HP() <= 0) output("<b>You’ve knocked the resistance out of " + t_enemy.getCombatName() + ".</b>\n\n");
 						else if (t_enemy.lust() >= 100) 
 						{
 							var msg:String = "";
@@ -3769,13 +3672,15 @@ package classes.GameData
 		{ 
 			_roundCounter = 1;
 			
-			genericVictory = function():void {
+			genericVictory = function(func:Function):void {
+				_continue = func;
 				StatTracking.track("combat/wins");
 				getCombatPrizes();
 				doCombatCleanup();
 			}
 			
-			genericLoss = function():void {
+			genericLoss = function(func:Function):void {
+				_continue = func;
 				StatTracking.track("combat/losses");
 				clearMenu();
 				if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 3)
@@ -4081,6 +3986,16 @@ package classes.GameData
 			}
 			
 			// TODO: I guess this would be the place to point out blindness or whatever.
+			if(kGAMECLASS.uvetoBlizzardCombat()) {
+				for (i = 0; i < _hostiles.length; i++)
+				{
+					if(!_hostiles[i].hasBlindImmunity()) CombatAttacks.applyBlind(_hostiles[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+				}
+				for (i = 0; i < _friendlies.length; i++)
+				{
+					if(!_friendlies[i].hasBlindImmunity()) CombatAttacks.applyBlind(_friendlies[i], 3, true, "The blizzard running through the environment makes it difficult to see!\n\nAccuracy is reduced, and ranged attacks are far more likely to miss.");
+				}
+			}
 			var totalBlinded:int = 0;
 			for (i = 0; i < _friendlies.length; i++)
 			{
@@ -4187,7 +4102,7 @@ package classes.GameData
 					}
 					else
 					{
-						output("\n\n<b>" + StringUtil.toTitleCase(target.getCombatName()) + ":</b>");
+						output("\n\n<b>" + StringUtil.toTitleCase((target.uniqueName && target.uniqueName.length > 0) ? target.uniqueName : target.short) + ":</b>");
 						if(target.isInvisible()) output("\n<i>The enemy is practically invisible to you!</i>");
 						else if (target.long.length > 0) output("\n" + target.long);
 						else if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
@@ -4203,7 +4118,7 @@ package classes.GameData
 					if (target.lust() >= 50) output("\nYou can see her breath quickening, her massive chest heaving with nipples as hard as diamonds. She looks almost ready to cum just from your confrontation...");
 				}
 				
-				if (encounterText != null && !(target is QueenOfTheDeep) && !(target is Cockvine))
+				if (encounterText != null && !(target is QueenOfTheDeep) && !(target is Cockvine) && !(target is MyrGoldRemnant) && !(target is MyrGoldBrute))
 				{
 					if (_hostiles.length == 1)
 					{
@@ -4215,7 +4130,7 @@ package classes.GameData
 					else
 					{
 						target.getCombatDescriptionExtension();
-						output("\n\n<b>" + StringUtil.toTitleCase(target.getCombatName()) + ":</b>");
+						output("\n\n<b>" + StringUtil.toTitleCase((target.uniqueName && target.uniqueName.length > 0) ? target.uniqueName : target.short) + ":</b>");
 						if(target.isInvisible()) output("\n<i>The enemy is practically invisible to you!</i>");
 						else if(target.lust() < 50 || target.isLustImmune == true) output("\n<i>Nothing in particular to take note of.</i>");
 						else showMonsterArousalFlavor(target);
@@ -4387,6 +4302,16 @@ package classes.GameData
 			else if(_hostiles.indexOf(droneUser) != -1) droneUser.droneTarget = CombatAttacks.GetBestPotentialTarget(_friendlies);
 			else droneUser.droneTarget = null;
 			
+			/*Kor'diiak Leash!
+			if(droneUser == pc && droneUser.accessory is KordiiakLeash)
+			{
+				if(!droneUser.droneTarget.isDefeated())
+				{
+					output("\n\n");
+					droneUser.accessory.droneAttack(droneUser, droneUser.droneTarget);
+				}
+			}*/
+
 			if (droneUser.hasActiveCombatDrone() && droneUser.droneTarget != null)
 			{
 				var target:Creature = droneUser.droneTarget;
@@ -4424,6 +4349,8 @@ package classes.GameData
 					// Legacy mode kinda- if we're in a single-enemy fight, don't output anything.
 					if (_hostiles.length > 1)
 					{
+						if(_hostiles[i].hasFlightEffects()) _hostiles[i].clearFlightEffects();
+						
 						output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " falls to the ground,");
 						if (_hostiles[i].HP() <= 0) output(" defeated.");
 						else output(" stricken with lust.");
@@ -4431,7 +4358,14 @@ package classes.GameData
 				}
 				else if (_hostiles[i].isDefeated() && _hostiles[i].alreadyDefeated == true)
 				{
-					output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false) + " lies on the ground, defeated.");
+					output("\n\n" + StringUtil.capitalize(_hostiles[i].getCombatName(), false));
+					if(_hostiles[i].hasFlightEffects())
+					{
+						_hostiles[i].clearFlightEffects();
+						output(" falls to");
+					}
+					else output(" lies on");
+					output(" the ground, defeated.");
 				}
 			}
 			
@@ -4515,6 +4449,7 @@ package classes.GameData
 			{
 				if ((_friendlies[i] as Creature).isDefeated() && _friendlies[i].alreadyDefeated == false)
 				{
+					if(_friendlies[i].hasFlightEffects()) _friendlies[i].clearFlightEffects();
 					_friendlies[i].alreadyDefeated = true;
 					if (_friendlies[i] is PlayerCharacter) output("\n\nYou fall to the ground,");
 					else output("\n\n" + StringUtil.capitalize(_friendlies[i].getCombatName(), false) + " falls to the ground,");
@@ -4645,7 +4580,14 @@ package classes.GameData
 				if (victoryArgument.isDefeated()) return true;
 				return false;
 			}
-			
+			else if (victoryCondition == CombatManager.ANY_TARGET_DEFEATED)
+			{
+				for (var ii:int = 0; ii < _hostiles.length; ii++)
+				{
+					if (_hostiles[ii].isDefeated()) return true;
+				}
+				return false;
+			}
 			return false;
 		}
 		
@@ -4669,6 +4611,14 @@ package classes.GameData
 			{
 				if (lossArgument == null || _friendlies.indexOf(lossArgument) == -1) throw new Error("Unique target for loss as a win condition, with no target defined.");
 				if (lossArgument.isDefeated()) return true;
+				return false;
+			}
+			else if (lossCondition == CombatManager.ANY_TARGET_DEFEATED)
+			{
+				for (var ii:int = 0; ii < _friendlies.length; ii++)
+				{
+					if (_friendlies[ii].isDefeated()) return true;
+				}
 				return false;
 			}
 			else if (lossCondition == CombatManager.ESCAPE && atEndOfRound)
@@ -4749,7 +4699,8 @@ package classes.GameData
 			userInterface().mainButtonsReset();
 			userInterface().hideNPCStats();
 			userInterface().leftBarDefaults();
-			kGAMECLASS.mainGameMenu();
+			if (_continue != null) _continue();
+			else kGAMECLASS.mainGameMenu();
 		}
 		
 		override public function getCombatPrizes():void

@@ -230,7 +230,7 @@ public function semithTalksAboutVulkrimi():void
 	output("<i>“Tell me about the vulkrimi,”</i> you say, as you ponder that part of the board which can be seen in three dimensions. <i>“Are you guys pretty active in the rush?”</i>");
 	output("\n\n<i>“In a manner of speaking,”</i> Semith replies. The compact, red-skinned devil watches you think with measured interest, as if even the wrinkles of your frown are telling him something about you. <i>“We have a reputation of being a pack of ne’er-do-wells, only travelling to the frontier in order to engage in piracy. Which is difficult for me to say isn’t true, seeing as I used to be a pirate myself. Got out of that game a while ago of course, moved my fortune into a more sanitary profession. A slightly more sanitary profession,”</i> he amends with a quiet grin.");
 	output("\n\n<i>“What’s with the tail?”</i> you ask, biding for time. Maybe if you sacrifice your knight you can draw out his queen, wherever it is...");
-	output("\n\n<i>“The secret to our continued existence, that’s what!”</i> Semith exclaims, his tail flexing inwards in surprise at the question. <i>“We are an all male race, [pc.name]; our women died out many centuries ago. In order to reproduce we use our stings to, ah, imbue wombs in others...”</i> The blunt tip of his scorpion-like appendage jerks inwards and outwards suggestively. <i>“... before doing the deed as you might normally expect. I had my sting removed when I moved into business, though. I got the distinct impression it made other people uncomfortable - not really the kind of thing someone wants to see bobbing over the head of your stockbroker. I had it gene-modded to something more... traditionally enjoyable.”</i> Your eyes are unavoidably drawn to the wide, horizontal slit on the club-like end to his tail. It doesn’t look like a vagina; more like a housing for something...");
+	output("\n\n<i>“The secret to our continued existence, that’s what!”</i> Semith exclaims, his tail flexing inwards in surprise at the question. <i>“We are an all male race, [pc.name]; our women died out many centuries ago. In order to reproduce we use our stings to, ah, imbue wombs in others...”</i> The blunt tip of his scorpion-like appendage jerks inwards and outwards suggestively. <i>“...before doing the deed as you might normally expect. I had my sting removed when I moved into business, though. I got the distinct impression it made other people uncomfortable - not really the kind of thing someone wants to see bobbing over the head of your stockbroker. I had it gene-modded to something more... traditionally enjoyable.”</i> Your eyes are unavoidably drawn to the wide, horizontal slit on the club-like end to his tail. It doesn’t look like a vagina; more like a housing for something...");
 	output("\n\n<i>“And your people weren’t tempted to gene mod some of themselves back into females?”</i> you query. You decide to shift your knight into a paradoxical state instead.");
 	output("\n\n<i>“We can no longer produce pure strain vulkrimi that way,”</i> he sighs, sliding a bishop six spaces forward on the other side of the board. <i>“And our culture has changed to accommodate how we are now. Being both male and bearing children is expected amongst us, [pc.name], however difficult that might be for you to contemplate; please don’t imagine we are there to be improved. As far as gene-modding is concerned,”</i> he goes on in a lighter tone, <i>“that’s one of the reasons why the U.G.C. were still eager to uplift us, despite us being such a disreputable bunch of scoundrels. The likes of Xenogen were </i>desperate<i> to study our degradable womb-instilling properties. Thank goodness for corporate greed!”</i>");
 	
@@ -389,9 +389,8 @@ public function playSemithsApartmentScene():Boolean
 			lockSemithsDoor(false);
 		}
 		//in either case throw them out
-		currentLocation = "RESIDENTIAL DECK 10";
-		showName("EAST\nWALKWAY");
-		generateMapForLocation(currentLocation);
+		moveTo("RESIDENTIAL DECK 10");
+		showLocationName();
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 		return true;
@@ -670,7 +669,7 @@ public function semithSexDoggieStyle():void {
 	else if(pc.vaginas.length > 1 && hasSecondVaginaWhichCanFitSemithCock)
 	{
 		output("\n\nHe slows down a few moments later, just as the pleasure thrumming through your body was really beginning to take hold. You gasp as you feel his spear-like head stretch your entrance as he pulls out, murmuring a disappointed query.");
-		output("\n\n<i>“I have to try something,”</i> Semith breathes. You gaze over your shoulder at him and, seeing what he intends, you eagerly arch your [pc.butt], splaying [pc.eachVagina] for him. <i>“I’ve never been with someone who had more than one before, and... there...”</i> His words dissolve into a gratified groan as he pierces your [pc.vagina" + y + "] with his six inch frictionless dick, sliding himself into your other needy, wet hole. At the same time, with his craning scorpion tail bent all the way over his shoulder, he probes at your already-opened [pc.vagina " + x + "] with his thicker, veined appendage-dick. You gasp and then squeal with delight, clutching at the couch leather as he finally rams it home with a decisive thrust, filling your first pussy up with a far larger helping of hard cock at the same time as beginning to pump into your second with the six incher. They bend into each other through your slick, sensitive walls, ramping up the ecstasy of being double penetrated to inhuman heights.");
+		output("\n\n<i>“I have to try something,”</i> Semith breathes. You gaze over your shoulder at him and, seeing what he intends, you eagerly arch your [pc.butt], splaying [pc.eachVagina] for him. <i>“I’ve never been with someone who had more than one before, and... there...”</i> His words dissolve into a gratified groan as he pierces your [pc.vagina " + y + "] with his six inch frictionless dick, sliding himself into your other needy, wet hole. At the same time, with his craning scorpion tail bent all the way over his shoulder, he probes at your already-opened [pc.vagina " + x + "] with his thicker, veined appendage-dick. You gasp and then squeal with delight, clutching at the couch leather as he finally rams it home with a decisive thrust, filling your first pussy up with a far larger helping of hard cock at the same time as beginning to pump into your second with the six incher. They bend into each other through your slick, sensitive walls, ramping up the ecstasy of being double penetrated to inhuman heights.");
 		
 		pc.cuntChange(y, chars["SEMITH"].cockVolume(0), true, true, false);
 		tailSexed = true;
@@ -693,7 +692,7 @@ public function semithSexDoggieStyle():void {
 	output(" steadily, shifting his narrow hips around in the down-spells until he finds an angle which makes you clench up with delight, before fucking you right there, quickly driving you up to a pulsing orgasm. You buck your [pc.butt] into him eagerly as electric contractions seize up [pc.eachVagina] and");
 	
 	output(" your whole body");
-	if(pc.hasCuntTail()) output(" alongside your your [pc.cuntTail]");
+	if(pc.hasCuntTail()) output(", alongside your [pc.cuntTail],");
 	
 	if(pc.girlCumQ() > 25) output(" dribbles");
 	else output(" gushes");

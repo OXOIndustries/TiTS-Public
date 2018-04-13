@@ -94,7 +94,7 @@ public function approachAinaOnTheWalkway():void
 	if(pc.isBimbo()) output("\n\n<i>“Oh, sure! What’s the favor?”</i> you ask, eyes glimmering. Will it involve sex, you wonder? You really hope it involves sex! All your favorite things do.");
 	else if(pc.isBro()) output("\n\n<i>“Eh, sure. I’ll hear you out babe,”</i> you huff, crossing your arms. She looks like a fine ride, and you’re always keen to listen to a fair piece of filly.");
 	else {
-		output("\n\n<i>“... What’s the favor?”</i> you");
+		output("\n\n<i>“...What’s the favor?”</i> you");
 		
 		if(pc.isNice()) output(" warmly ask.");
 		else if(pc.isMischievous()) output(" ask, quirking a brow.");
@@ -163,7 +163,7 @@ public function helpAina():void
 	if(pc.isTaur()) output(" As a taur yourself, you always appreciate tailored furniture.");
 	
 	output(" She gallops over to a coffee table and gestures to it. Her cheeks are visibly flushed.");
-	output("\n\n<i>“... Um, I dropped something under here. Well, more to the point, it fell and rolled under. I can’t reach it, it’s too low...”</i> Aina explains, squirming on the spot. Whatever it is, it seems important.");
+	output("\n\n<i>“...Um, I dropped something under here. Well, more to the point, it fell and rolled under. I can’t reach it, it’s too low...”</i> Aina explains, squirming on the spot. Whatever it is, it seems important.");
 	
 	if(pc.isTaur())
 	{
@@ -174,8 +174,8 @@ public function helpAina():void
 		else if(pc.isMischievous()) output("We’re two peas in a pod, hon.");
 		else output("So you ask another taur? Smart.");
 		
-		output(" I’m kind of in the same predicament you are...”</i> You look around and spot a broom cupboard. <i>“... Got any long objects in there? We might be able to use one to fish it out.”</i>");
-		output("\n\n<i>“Oh, of course!”</i> Aina facepalms, looking genuinely embarrassed. <i>“... Why didn’t I think of that?”</i>");
+		output(" I’m kind of in the same predicament you are...”</i> You look around and spot a broom cupboard. <i>“...Got any long objects in there? We might be able to use one to fish it out.”</i>");
+		output("\n\n<i>“Oh, of course!”</i> Aina facepalms, looking genuinely embarrassed. <i>“...Why didn’t I think of that?”</i>");
 		output("\n\nYou go and get a broom from the cupboard, particularly long and taur-friendly. Hooking it under the table, you fish out the object. As it rolls into view, you pointedly blink. From its dome-like head and the words ‘Levi-wand’ on the side, it’s safe to assume it’s a sex toy.");
 		output("\n\nThe blonde-haired centauress leans over and picks it up, her face turning several shades redder than before. ");
 	}
@@ -188,7 +188,7 @@ public function helpAina():void
 	
 	output(" <i>“S-sorry, it’s that time of the month; I’m in estrus, so I REALLY need this. That’s why I wanted to ask a stranger, not someone I knew...”</i> She flicks the ‘On’ switch a few times, but nothing happens. <i>“Oooohh no... don’t tell me this is happening. Come ooonnn!”</i>");
 	output("\n\n<i>“What’s the matter?”</i>");
-	output("\n\n<i>“I KNEW I should have gone down to the merchant deck, but I was too embarrassed; I bought this on the extranet, and it’s a dud!”</i> Aina whimpers, clutching the defective toy to her cardigan-clad chest. <i>“... It only ran for five minutes, then cut out!”</i>");
+	output("\n\n<i>“I KNEW I should have gone down to the merchant deck, but I was too embarrassed; I bought this on the extranet, and it’s a dud!”</i> Aina whimpers, clutching the defective toy to her cardigan-clad chest. <i>“...It only ran for five minutes, then cut out!”</i>");
 	output("\n\nThe centauress looks like she’s about to cry. Her equine tail flicks and once more you’re hit with a whumping wave of her musky mare-scent. As you breathe deeply, your mind is subsumed with arousal, drawing you into a scent-induced haze. Suddenly her equine rump is looking <i>really</i> attractive");
 	
 	if(pc.isTaur()) output(" and thoroughly mountable...");
@@ -522,7 +522,7 @@ public function ainaTalksAboutBotany():void
 	
 	output("You ask Aina about her interest in botany. She grins and trots over to a sealed off room, pressing her pale hand against a palm-pad. With a whoosh, the door opens, revealing a separate indoor greenhouse. Rows and rows of vibrant plant life line the shelves. As you approach, a symphony of floral scents hit your senses. You reel in olfactory bliss!");
 	output("\n\n<i>“This is my growing area. Half are my class projects, while the rest are for pleasure, selling, or food. I’ve got cuttings from all sorts of planets, even Earth! I’ve got some lovely lavender and coriander, not to mention quite a few teas.”</i>");
-	output("\n\nShe picks some herbal leaves and hands them to you. Crisp, strong, and nostalgic; it reminds you of your home on Terra. <i>“... It smells so fresh. Nothing like the replicated stuff.”</i>");
+	output("\n\nShe picks some herbal leaves and hands them to you. Crisp, strong, and nostalgic; it reminds you of your home on Terra. <i>“...It smells so fresh. Nothing like the replicated stuff.”</i>");
 	output("\n\nAina screws up her nose. <i>“Oh, eugh, no! Replicator food is the </i>worst<i>. I mean, if I had to live on it, I would, but nothing beats authentic, grown food. Even synthetic soil alters the taste. I try to source real soil for growing and use water with natural bacteria from the plant’s home planet. Every little thing makes a difference, you know?”</i>");
 	output("\n\n<i>“Sounds intricate,”</i> you admit, looking at the aromatic herbs. Such a small thing takes so much work to replicate in space. Food with these must taste amazing. <i>“So, is the smell and taste why you love botany?”</i>");
 	output("\n\n<i>“That’s part of it. I grew up on Vaernes. It’s a core world, deep in the Rosette Nebula,”</i> Aina stroked a leafy plant, <i>“Most of the planet is covered in continental cities. Half the food supply is imported from a sister planet. We went on a class trip when I was in primary school. I’d never seen so much open space; so far and so wide, just filled with beautiful, growing plants! They were just Ma’ora beans, but it moved me.”</i>");
@@ -549,7 +549,7 @@ public function ainaTalksAboutCentaurs():void
 	output("\n\nSo why bother becoming a taur, you ask?");
 	output("\n\n<i>“It might sound a little silly, but I like to think I’ve always been a centaur, deep down. I’ve always loved natural things; plants, running, open spaces. A real problem when you live on a planet covered in giga-cities.”</i>");
 	output("\n\n<i>“I first found out about centaurs when I was playing a fantasy game a friend leant me in high school. It had this beautiful centaur mare in it, and even though she was a bit character, I just found myself identifying so much with her and her species. I read up on the myths and fiction... I ended up visiting centaur extranet sites a lot.”</i>");
-	output("\n\n<i>“It got so bad that my parents caught me, um, masturbating to stallion porn...”</i> Aina blushes, squirming on the spot. <i>“... I-I was mortified. There I was, legs spread and fingers deep, touching myself to a life-size horseman holo. I was </i>so<i> grounded it wasn’t funny. It didn’t stop me. I ended up on virtual boards, talking to others who’d gone centaur and never looked back. They gave me the confidence to make the change.”</i>");
+	output("\n\n<i>“It got so bad that my parents caught me, um, masturbating to stallion porn...”</i> Aina blushes, squirming on the spot. <i>“...I-I was mortified. There I was, legs spread and fingers deep, touching myself to a life-size horseman holo. I was </i>so<i> grounded it wasn’t funny. It didn’t stop me. I ended up on virtual boards, talking to others who’d gone centaur and never looked back. They gave me the confidence to make the change.”</i>");
 	output("\n\n<i>“I walked in, told my parents it was happening one way or another, and that was that. There was shouting, but I stood my ground. They said they weren’t paying for it, so I got a part-time job at McChow Hut. It took me three years to save up the money. Sometimes I thought about just taking out a loan, but I was too scared of defaulting.”</i>");
 	output("\n\n<i>“Anyway, that’s how I became a centaur - selling fast terrible cheeseburgers and watered down soft drinks. It gave me a new appreciation for home grown food, at least.”</i>");
 	
@@ -720,7 +720,7 @@ public function ainaSexedFromBehind():void
 		
 		if(ainaIsVirgin()) 
 		{
-			output("\n\n<i>“Ruh-really? But I’ve never been with anyone but a toy!”</i> Aina exclaims. As much as she’s blushing, she’s also squirming on the spot. Eventually, she can’t handle it anymore, giving into her lust, <i>“... Okay, you can mount me, but be gentle, okay?”</i>");
+			output("\n\n<i>“Ruh-really? But I’ve never been with anyone but a toy!”</i> Aina exclaims. As much as she’s blushing, she’s also squirming on the spot. Eventually, she can’t handle it anymore, giving into her lust, <i>“...Okay, you can mount me, but be gentle, okay?”</i>");
 		
 			if(pc.isNude()) output("\n\nWith you already naked and ready, ");
 			else output("\n\nAs you strip off,");
@@ -901,7 +901,7 @@ public function ainaSexedWithAnalWand():void
 	else output("I’d love to fool around again. You’re way better with my toys than I am");
 	output(",”</i> Aina exclaims, a little breathy with excitement.");
 	
-	output("\n\nYou both head to the bedroom, where she slips off her champagne-colored sweater. Her creamy breasts spring out and bounce a little; seems she’s not wearing a bra today! Her nipples are already stiff and puckered with excitement and her cute pink areolae are lightly crinkled. She clasps her hands down at her horse half. She inadvertently presses her slender arms against the sides of her breasts, pressing her well-rounded swells up and together in the process. You could throw a credit down that cleavage!");
+	output("\n\nYou both head to the bedroom, where she slips off her champagne-colored sweater. Her creamy breasts spring out and bounce a little; seems she’s not wearing a bra today! Her nipples are already stiff and puckered with excitement and her cute pink areolae are lightly crinkled. She clasps her hands down at her horse half. She inadvertently presses her slender arms against the sides of her breasts, pressing her well-rounded swells up and together in the process. You could throw a " + (isAprilFools() ? "dogecoin" : "credit") + " down that cleavage!");
 	output("\n\nYou don’t get to enjoy the sight for nearly long enough, as Aina trots over to her special drawer and pulls out a number of toys. She places them one by one on the bed, then steps back, tucking back a blonde bang with a shy look.");
 	output("\n\n<i>“So these are the toys you want to use?”</i> You ask, picking up the biggest object there; a translucent, eighteen inch horse-cock. It jiggles in your hand, but squeezing it you realize it’s actually got a lot of girth. Aina blushes and nods, squirming visibly on the spot.");
 	output("\n\n<i>“Yes. Those are the ones I really want.”</i> She’s breathing a little heavily and her back-hoofs are trying not to stomp. You gesture for her to turn around and she obediently does so, backing back her chestnut colored rump. Her black-lipped horse sex is already dripping wet and gushing down her thighs. With her slick sex so close, you’re hit with a fresh wave of her musky scent. It’s a dizzying scent, one that you’re quickly intoxicated by!");

@@ -331,24 +331,21 @@ public function sentientAcquisitionsBuyOutSeraYesNext():void
 public function seraIsRepoed():void
 {
 	// Update Sera!
-	if(chars["SERA"].hasStatusEffect("Dedicked"))
+	if(chars["SERA"].removeStatusEffect("Dedicked"))
 	{
 		chars["SERA"].makeBallsInternal();
 		chars["SERA"].removeCocks();
 	}
-	if(chars["SERA"].hasStatusEffect("Hymenified"))
+	if(chars["SERA"].removeStatusEffect("Hymenified"))
 	{
 		//chars["SERA"].vaginalVirgin = true;
 		chars["SERA"].vaginas[0].hymen = true;
 	}
-	if(chars["SERA"].hasStatusEffect("Tickled Pink"))
+	if(chars["SERA"].removeStatusEffect("Tickled Pink"))
 	{
 		chars["SERA"].skinTone = "bright pink";
 		chars["SERA"].nippleColor = "maroon";
 	}
-	chars["SERA"].removeStatusEffect("Dedicked");
-	chars["SERA"].removeStatusEffect("Hymenified");
-	chars["SERA"].removeStatusEffect("Tickled Pink");
 	// Update Sera inventory!
 	chars["SERA"].inventory.length = 0;
 	// Reset Sera conditions!
@@ -400,8 +397,7 @@ public function seraIsRepoed():void
 }
 public function seraIsRepoedPtII():void
 {
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	showLocationName();
 	
 	clearOutput();
@@ -526,7 +522,7 @@ public function mods4UChrysalisBuy():void
 		{
 			if(!chars["CHRYSALISDRONE"].hasItemByClass(GaloMax)) chars["CHRYSALISDRONE"].inventory.push(new GaloMax());
 		}
-		else chars["CHRYSALISDRONE"].destroyItemByClass(GaloMax);
+		else chars["CHRYSALISDRONE"].destroyItemByClass(GaloMax, -1);
 	}
 	
 	buyItem();
@@ -581,10 +577,20 @@ public function seraOnShipBonus(btnSlot:int = 0):String
 {
 	var bonusText:String = "";
 	
-	//bonusText += "\n\nSera, your [sera.skinColor] servant, is in her room. You can approach her if you choose.";
-	bonusText += "\n\nThe whiff of cigarette smoke and the occasional muffled, sardonic laugh tells you that Sera is in her room - although Void knows what she’s gotten up to on your ship in your absence.";
-	// [Sera]
-	addButton(btnSlot, "Sera", approachServantSera, true, "Sera", "Visit the demoness.");
+	if(pc.hasStatusEffect("Sera Morning Sickness") || (flags["SERA_PREGNANCY_TIMER"] >= 30 && flags["SERA_PREGNANCY_TIMER"] < 90 && hours >= 6 && hours < 10 && rand(3) == 0))
+	{
+		bonusText += "\n\nYou hear the distinct sound of someone throwing up, followed by a moaned <i>“Fuck thiiiiiiis”</i> in the direction of Sera’s room. Probably best to leave her alone for a while.";
+		pc.createStatusEffect("Sera Morning Sickness", 0, 0, 0, 0, true, "", "", false, 120);
+		addDisabledButton(btnSlot, "Sera", "Sera", "She seems to be sick or something...");
+	}
+	else
+	{
+		bonusText += "\n\nThe";
+		if(flags["SERA_QUIT_SMOKING"] == undefined) bonusText += " whiff of cigarette smoke and the";
+		bonusText += " occasional muffled, sardonic laugh tells you that Sera is in her room - although Void knows what she’s gotten up to on your ship in your absence.";
+		// [Sera]
+		addButton(btnSlot, "Sera", approachServantSera, true, "Sera", "Visit the demoness.");
+	}
 	
 	return bonusText;
 }
@@ -766,6 +772,11 @@ public function approachServantSera(introText:Boolean = false):void
 		approachServantSeraOnTavros(introText);
 		return;
 	}
+	if(!disableExploreEvents() && flags["SERA_PREGNANCY_TIMER"] >= 195)
+	{
+		seraPregMoveToTavros();
+		return;
+	}
 	
 	var obedience:Number = seraObedience();
 	
@@ -892,6 +903,7 @@ public function approachServantSera(introText:Boolean = false):void
 		
 		addButton(13, "Boot", evictServantSera, undefined, "Evict Sera", "Boot her off the ship, put her up at your Nursery. This will probably adversely affect her training.");
 	}
+	// Trained Sera
 	else
 	{
 		if(introText)
@@ -901,7 +913,7 @@ public function approachServantSera(introText:Boolean = false):void
 			{
 				output("<i>“Hey, [pc.master].”</i> Sera is considering her make-up in a pocket mirror. She traces the line of an arching eyebrow. <i>“Pockets feeling heavier?”</i>");
 				output("\n\n<i>“You paid me back,”</i> you say. <i>“With interest, even.”</i>");
-				output("\n\n<i>“You didn’t think I would, did you?”</i> the succubus sneers, snapping the compact closed. <i>“It’s alright, you can admit it. It was just sugar liberally applied to one of your hos to you, wasn’t it? Another chain around my ankle, maybe. But not to me.”</i> Teeth and various forms of luminescence flash at you fiercely. <i>“I paid it off so I could tell myself I did. That I could make a business work, if I put my ass into it. And now my indenture-hood is just this thing. Not the be all and end all. It’ll be over soon enough. And then...”</i> there’s a lot going on in that tight, toothy expression hiked across her face. Anger. Pride. A lot of lust. <i>“... perhaps <b>I</b> will be the one who gives <b>you</b> the loan? Or two. Or three. Who knows where that might lead us... [pc.Master].”</i>");
+				output("\n\n<i>“You didn’t think I would, did you?”</i> the succubus sneers, snapping the compact closed. <i>“It’s alright, you can admit it. It was just sugar liberally applied to one of your hos to you, wasn’t it? Another chain around my ankle, maybe. But not to me.”</i> Teeth and various forms of luminescence flash at you fiercely. <i>“I paid it off so I could tell myself I did. That I could make a business work, if I put my ass into it. And now my indenture-hood is just this thing. Not the be all and end all. It’ll be over soon enough. And then...”</i> there’s a lot going on in that tight, toothy expression hiked across her face. Anger. Pride. A lot of lust. <i>“...perhaps <b>I</b> will be the one who gives <b>you</b> the loan? Or two. Or three. Who knows where that might lead us... [pc.Master].”</i>");
 				output("\n\nHearing your pussy cat growl like this is giving you a sincere desire to fuck her silly. In a big pile of credits, possibly.");
 				
 				// + Lust
@@ -955,7 +967,10 @@ public function approachServantSera(introText:Boolean = false):void
 			}
 			else
 			{
-				output("<i>“Oh, hello [pc.master],”</i> purrs Sera, laying her holo-device to one side. She stretches herself out on her bed, giving you an unadulterated view of your property, claws slowly sliding up a [sera.skinColor] thigh. Her expression is one of simmering, provocative mischief. <i>“How are you intending on blighting my existence today?”</i>");
+				output("<i>“Oh, hello [pc.master],”</i> purrs Sera, laying her holo-device to one side. She stretches herself out on her bed, giving you an unadulterated view of your property");
+				if(flags["SERA_PREGNANCY_TIMER"] >= 110) output(" - and her swelling, pregnant belly");
+				else output(", claws slowly sliding up a [sera.skinColor] thigh");
+				output(". Her expression is one of simmering, provocative mischief. <i>“How are you intending on blighting my existence today?”</i>");
 			}
 			processTime(1);
 		}
@@ -986,6 +1001,22 @@ public function approachServantSera(introText:Boolean = false):void
 		addButton(5, "Sex", seraBitcheningSexMenu, undefined, "Sex", "Approach your slave for some sex.");
 		
 		addButton(13, "Boot", evictServantSera, undefined, "Evict Sera", "Boot her off the ship, put her up at the Nursery.");
+	}
+	
+	if(flags["SERA_TALKS_IMPREGNATE"] >= 2) addDisabledButton(6, "Impregnate", "Impregnate", "You and Sera have already agreed to make this possible.");
+	else if(!pc.hasGenitals()) addDisabledButton(6, "Impregnate", "Impregnate", "You will probably need genitals for this...");
+	else if(!pc.isHerm() && (!chars["SERA"].hasGenitals() || (pc.hasCock() && !chars["SERA"].hasVagina()) || (pc.hasVagina() && !chars["SERA"].hasCock()))) addDisabledButton(6, "Impregnate", "Impregnate", "Maybe if your genitals were compatible for breeding with hers, this would be possible...");
+	else if(flags["SERA_DISABLE_IMPREGNATE"] != undefined && (flags["SERA_DISABLE_IMPREGNATE"] + 7) > days) addDisabledButton(6, "Impregnate", "Impregnate", "Better to wait a bit before bringing it up again.");
+	else if(!canImpregnateSera()) addDisabledButton(6, "Impregnate", "Impregnate", "Better to get a little further down the road with her before bringing it up.");
+	else addButton(6, "Impregnate", seraBitcheningImpregnate, undefined, "Impregnate", "Is that allowed by the terms of her contract?");
+	
+	if(flags["SERA_PREGNANCY_TIMER"] >= 110) addButton(7, "Belly Rubs", seraPregBellyRubs, undefined, "Belly Rubs", "Rub her belly...");
+	
+	// Option turns up in her main menu after she has been barred for >3 days
+	if(flags["SERA_NO_SLEEP"] != undefined)
+	{
+		if((days - flags["SERA_NO_SLEEP"]) <= 3) addDisabledButton(9, "Debar", "Debar", "Sera is probably still upset. You can’t do this yet.");
+		else addButton(9, "Debar", seraBitchImpregnateBedResponse, "debar", "Debar", "Having her sleep with you would be nice, actually. Is it possible to entice her back?");
 	}
 	
 	addButton(14, "Leave", crew);
@@ -1547,6 +1578,7 @@ public function seraBitchTrainingTeaseFinale():void
 	
 	processTime(32);
 	
+	knockUpSeraChance();
 	chars["SERA"].orgasm();
 	pc.orgasm();
 	
@@ -1887,15 +1919,16 @@ public function seraBitchTrainingTeaseFemCum(vIdx:int = 0):void
 // Ride
 public function seraBitchTrainingRide():void
 {
-	clearOutput();
-	showSera(true);
-	author("Nonesuch");
-	clearMenu();
-	
 	var obedience:Number = seraObedience();
 	var vIdx:int = pc.cuntThatFits(chars["SERA"].cockVolume(0));
 	if(vIdx < 0) vIdx = pc.biggestVaginaIndex();
 	var tinyVag:Boolean = (pc.vaginalCapacity(vIdx) < chars["SERA"].cockVolume(0) || pc.vaginas[vIdx].looseness() < 4);
+	
+	if(flags["SERA_TALKS_IMPREGNATE"] >= 2)
+	{
+		seraBitchImpregnateRide(vIdx, tinyVag);
+		return;
+	}
 	
 	// Final
 	// Requires: 80 obedience, medium/high lust
@@ -1904,6 +1937,11 @@ public function seraBitchTrainingRide():void
 		seraBitchTrainingRideFinale(vIdx);
 		return;
 	}
+	
+	clearOutput();
+	showSera(true);
+	author("Nonesuch");
+	clearMenu();
 	
 	// First
 	if(flags["SERA_BITCHENING_RIDE"] == undefined)
@@ -2905,6 +2943,7 @@ public function seranigansRainbowtoxColors():Array
 }
 public function seranigansTrigger(sEvent:String = "none"):Boolean
 {
+	if(!seraRecruited()) return false;
 	if(!pc.hasStatusEffect("Seranigans Event") || pc.hasStatusEffect("Seranigans")) return false;
 	
 	var eventList:Array = [];
@@ -3000,7 +3039,8 @@ public function seranigansEvent(sEvent:String = "none"):void
 		// Tripped when PC returns to ship square on any planet
 		case "hijacked":
 			rooms[shipLocation].removeFlag(GLOBAL.SHIPHANGAR);
-			generateMap();
+			moveTo(shipLocation, true);
+			showLocationName();
 			
 			output("Mind on the alien sights and sounds you’ve recently experienced, you meander back to your... you stare. Where is your ship? You wave your hands in a juddering panic at the gaping hole where it once stood, as if that will magic it back into existence. You race around the docking area, futilely attempting to locate it, speaking to every official you can collar. Nobody noted anything unusual - it seems <b>someone</b> on your crew got departure clearance and then cleared off with it.");
 			output("\n\nThere’s nothing you can do but to wait and desperately hope they come back...");
@@ -3296,7 +3336,7 @@ public function seraBitcheningTalkAmbition(response:String = "intro"):void
 			addButton(0, "Next", approachServantSera);
 			break;
 		case "encourage sure":
-			output("<i>“Oh...”</i> you keep her in suspense for a moment, enjoying the look of intense anticipation on her face. <i>“... why not. But!”</i> you continue sharply, her plush boobs pressing into your [pc.chest] as she immediately bear hugs you, <i>“you are going to pay it back. And you aren’t going to waste it all on mods that YOU happen to like. Alright?”</i>");
+			output("<i>“Oh...”</i> you keep her in suspense for a moment, enjoying the look of intense anticipation on her face. <i>“...why not. But!”</i> you continue sharply, her plush boobs pressing into your [pc.chest] as she immediately bear hugs you, <i>“you are going to pay it back. And you aren’t going to waste it all on mods that YOU happen to like. Alright?”</i>");
 			output("\n\n<i>“Thank you so much, [pc.master]! And yes, yes, of course.”</i> A firm look has appeared on Sera’s face by the time she’s disentangled herself from you. <i>“I’m gonna make it work this time. I don’t have rent to pay, I just need to work out how to connect with my suppliers, and then - yeah. I’m gonna work my butt off to get this off the ground, I promise you that!”</i>");
 			output("\n\nYou get out your device, sort out a new business account for her and then divert 15,000 credits into it from your own account. It turns out to be remarkably straightforward, as legally she’s basically a subsidiary of you. By the time you’re done, Sera’s delighted smile has taken on a more familiar, sly and mischievous bend.");
 			output("\n\n<i>“Sure you don’t want me to throw in a few sex toys when I’m making my first orders? I know how you like to experiment... alright, alright,”</i> she says, catching your own expression. She pulls her own holo pad over in a business-like manner. <i>“If you’ll excuse me - I’ve got a few messages to send.”</i>");
@@ -3368,72 +3408,20 @@ public function seraBitcheningStoreInventory(totalDays:int):void
 public function seraBitcheningStoreRandomize():void
 {
 	chars["SERA"].inventory.length = 0;
-	
-	// Group A
-	// ManUp, Estrobloom, Junk in the Trunk, Tittyblossom, Condensol, Virection
-	var groupA:Array = [];
-	groupA.push(new ManUp());
-	groupA.push(new Estrobloom());
-	groupA.push(new Tittyblossom());
-	groupA.push(new JunkTrunk());
-	groupA.push(new Condensol());
-	groupA.push(new Virection());
-	// Group B
-	// DendroGro, Bumpy Road, Knot A Problem, Circumscriber, Equilibricum, Semen’s Friend
-	var groupB:Array = [];
-	groupB.push(new DendroGro());
-	groupB.push(new BumpyRoad());
-	groupB.push(new KnotAProblem());
-	groupB.push(new Circumscriber());
-	groupB.push(new Equilicum());
-	groupB.push(new SemensFriend());
-	groupB.push(new SweetTreat());
-	// Group C
-	// Clippex, Lactaid, Mighty Tight, Anusoft, Magic Milker, Pussyblossom
-	var groupC:Array = [];
-	groupC.push(new Clippex());
-	groupC.push(new Lactaid());
-	groupC.push(new Chocolac());
-	groupC.push(new MightyTight());
-	groupC.push(new Anusoft());
-	groupC.push(new MagicMilker());
-	groupC.push(new Pussybloom());
-	groupC.push(new Pussyblossom());
-	groupC.push(new Muffstick());
-	// Group D
-	// Throbb, Gush, Rubber Made, ClearYu, DumbFuck, Rainbotox
-	var groupD:Array = [];
-	groupD.push(new Throbb());
-	groupD.push(new Gush());
-	groupD.push(new RubberMade());
-	groupD.push(new ClearYu());
-	groupD.push(new Dumbfuck());
-	groupD.push(new Rainbotox());
-	// Group E
-	// Terran Treat, Ausar Treat, Nepeta, DracoGuard, Ovir Ace, Nuki Cookies
-	var groupE:Array = [];
-	groupE.push(new TerranTreats());
-	groupE.push(new AusarTreats());
-	groupE.push(new Nepeta());
-	groupE.push(new DracoGuard());
-	groupE.push(new OvirAce());
-	groupE.push(new NukiCookies());
-	// Group F
-	// Mino Charge, Lucifier, Sylvanol, Dovebalm, Bovinium, Hornitol
-	var groupF:Array = [];
-	groupF.push(new MinoCharge());
-	groupF.push(new Bovinium());
-	groupF.push(new Lucifier());
-	groupF.push(new Sylvanol());
-	groupF.push(new DoveBalm());
-	groupF.push(new Hornitol());
-	
-	chars["SERA"].inventory.push(groupA[rand(groupA.length)]);
-	chars["SERA"].inventory.push(groupB[rand(groupB.length)]);
-	chars["SERA"].inventory.push(groupC[rand(groupC.length)]);
-	chars["SERA"].inventory.push(groupD[rand(groupD.length)]);
-	chars["SERA"].inventory.push(groupE[rand(groupE.length)]);
-	chars["SERA"].inventory.push(groupF[rand(groupF.length)]);
+	chars["SERA"].inventory.push(
+		// Group A
+		new (RandomInCollection(Estrobloom, Tittyblossom, JunkTrunk, ManUp, ManDown, Condensol, Virection)),
+		// Group B
+		new (RandomInCollection(DendroGro, BumpyRoad, KnotAProblem, Circumscriber, Equilicum, SemensFriend, SweetTreat)),
+		// Group C
+		new (RandomInCollection(Clippex, Lactaid, Chocolac, MightyTight, Anusoft, MagicMilker, Pussybloom, Pussyblossom, Muffstick)),
+		// Group D
+		new (RandomInCollection(Throbb, Gush, RubberMade, ClearYu, Dumbfuck, Rainbotox)),
+		// Group E
+		new (RandomInCollection(TerranTreats, AusarTreats, Nepeta, DracoGuard, OvirAce, NukiCookies)),
+		// Group F
+		new (RandomInCollection(MinoCharge, Bovinium, Lucifier, Sylvanol, DoveBalm, Hornitol))
+	);
 }
 public function seraBitcheningStore(response:String = "buy"):void
 {
@@ -3462,7 +3450,7 @@ public function seraBitcheningStore(response:String = "buy"):void
 		{
 			if(!chars["SERA"].hasItemByClass(GaloMax)) chars["SERA"].inventory.push(new GaloMax());
 		}
-		else chars["SERA"].destroyItemByClass(GaloMax);
+		else chars["SERA"].destroyItemByClass(GaloMax, -1);
 	}
 	
 	shopkeep = chars["SERA"];
@@ -3847,7 +3835,7 @@ public function seraBitcheningSexDoublePenetration():void
 	output(" warm proof of her intense, mind-blowing orgasm.");
 	output("\n\nYou pull out of her, and she simply collapses, too drained by the extreme pleasure and rough fucking to do much else. Her holes gape a little, [pc.cumColor] seed dripping out and forming a large puddle on the bed. You " + (!pc.isBimbo() ? "chuckle" : "giggle") + " as you admire your handiwork, your demon slave panting on the bed while your cum drips out of her ass and pussy.");
 	if(pc.hasTailCock()) output(" She coughs up some of the seed deposited in her mouth by your tail cock, then swallows it instead.");
-	output("\n\nYou unlock the cuffs, toss them back into the case, and pick up the insensate succubus before setting her down on a relatively clean part of the bed and joining her. <i>“Damn... I’m gonna be sore for days, [pc.master],”</i> she groans, then smiles. <i>“We should do this more often...”</i> She whispers into your [pc.ear] You grin back lazily. She lays her head on your [pc.chest] and smiles up at you. She looks so... normal. No sneering, dominatrix bitch. Just a woman who’s radiating unconditional love from her glowing yellow eyes. You stroke her head softly and snuggle closer for a quick nap.");
+	output("\n\nYou unlock the cuffs, toss them back into the case, and pick up the insensate succubus before setting her down on a relatively clean part of the bed and joining her. <i>“Damn... I’m gonna be sore for days, [pc.master],”</i> she groans, then smiles. <i>“We should do this more often...”</i> she whispers into your [pc.ear]. You grin back lazily. She lays her head on your [pc.chest] and smiles up at you. She looks so... normal. No sneering, dominatrix bitch. Just a woman who’s radiating unconditional love from her glowing yellow eyes. You stroke her head softly and snuggle closer for a quick nap.");
 	output("\n\nBuying Sera out? Best idea EVER. But of course, all good things must come to an end...");
 	output("\n\nYou wake after about an hour to find Sera leering at you like a halloween pumpkin. <i>“Hello [pc.master],”</i> she grins, flashing her sharp teeth. <i>“You gonna go for round two or you gonna get outta here and leave me in peace?”</i>");
 	output("\n\n<i>“As much as I’d love to stay and fuck your brains out again, I’ve got things to see and people to do,”</i> you reply, before getting off the bed, putting your [pc.gear] back on, and walking to the door. <i>“Try not to blow up the ship while I’m gone, hmm?”</i>");
@@ -3855,6 +3843,7 @@ public function seraBitcheningSexDoublePenetration():void
 	
 	processTime(30 + rand(11));
 	
+	knockUpSeraChance();
 	chars["SERA"].orgasm();
 	pc.orgasm();
 	
@@ -4370,8 +4359,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "LIFT: RESIDENTIAL DECK";
-	generateMap();
+	moveTo("LIFT: RESIDENTIAL DECK");
 	showLocationName();
 	
 	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
@@ -4393,6 +4381,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 	var passerA:Function = null;
 	var passerB:Function = null;
 	
+	if(rivalIsActive()) witness.push(seraBitcheningPunishWalkiesWitnessRival);
 	if(flags["AINA_DAY_MET"] != undefined) witness.push(seraBitcheningPunishWalkiesWitnessAina);
 	if(flags["SEEN_FYN"] == true) witness.push(seraBitcheningPunishWalkiesWitnessFyn);
 	if(flags["MET_SEMITH"] == true) witness.push(seraBitcheningPunishWalkiesWitnessSemith);
@@ -4423,8 +4412,7 @@ public function seraBitcheningPunishWalkiesGoPtII():void
 // Aina met
 public function seraBitcheningPunishWalkiesWitnessAina():void
 {
-	currentLocation = "RESIDENTIAL DECK 8";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 8");
 	showLocationName();
 	
 	clearOutput();
@@ -4456,8 +4444,7 @@ public function seraBitcheningPunishWalkiesWitnessFyn():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 6";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 6");
 	showLocationName();
 	
 	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
@@ -4491,8 +4478,7 @@ public function seraBitcheningPunishWalkiesWitnessSemith():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 4";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 4");
 	showLocationName();
 	
 	output("You run into Semith the vulkrim along the Eastern Plaza, engrossed in his holo-pad. The besuited little devil gives you a distracted grin at first glance, a more interested gaze at the second.");
@@ -4515,8 +4501,7 @@ public function seraBitcheningPunishWalkiesWitnessJardi():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 2";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 2");
 	showLocationName();
 	
 	var hasWhip:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anyWhip) != 0;
@@ -4528,11 +4513,46 @@ public function seraBitcheningPunishWalkiesWitnessJardi():void
 	output("...”</i> Jardi pauses once she’s hurried over, almond eyes flicking between the two of you, unsure of what to say. <i>“I don’t understand. Why aren’t you still in hiding? Did- did [pc.name] capture you?”</i> You have to laugh.");
 	output("\n\n<i>“What have you been telling Jardi over the extranet?!”</i> Sternly, you " + (hasWhip ? "crack the whip" : "draw the leash in closer") + ". <i>“Tell her the truth, bitch. Now.”</i>");
 	output("\n\n<i>“The- the truth is...”</i> Sera’s brilliant eyes roll, but there’s no escape here. Nothing but the cleansing burn of humiliation. <i>“The truth is that I’m not on the run,”</i> she mutters at last. Gently you put your finger underneath her chin and raise it, so she’s looking the rahn in the eye. <i>“There’s no pirates or... any of the other stuff I said. What happened was, I ran up a whole bunch of debt that [pc.name] cleared. So I - I belong to [pc.him] now.”</i>");
-	output("\n\n<i>“And...”</i> Jardi, hands clutched together, still looks very confused. She turns to you. <i>“... you’re happy with this?”</i>");
+	output("\n\n<i>“And...”</i> Jardi, hands clutched together, still looks very confused. She turns to you. <i>“...you’re happy with this?”</i>");
 	output("\n\n<i>“Very much so!”</i> you reply with all the brightness you can muster. <i>“It was tough work, breaking her into her new arrangement - and she still needs plenty of discipline, as you can see - but it’s ultimately been a satisfying and pleasurable experience for us both. Isn’t that right, bitch?”</i>");
 	output("\n\n<i>“Yes, [pc.master],”</i> whispers Sera. You could cook toast with her cheeks right now.");
 	output("\n\n<i>“Lovely seeing you,”</i> you tell the petite, white rahn. She looks down, embarrassed and demure, and the memory of a flood of fluid hitting sheets fills your ears. <i>“And perhaps if you’re interested in a similar arrangement... we can talk more.”</i> You breeze on, tugging the leash briskly.");
 	output("\n\n<i>“Human relationships are so WEIRD,”</i> reaches your ears before you get completely out of earshot.");
+	
+	processTime(5);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+	
+	return;
+}
+// Rival met
+public function seraBitcheningPunishWalkiesWitnessRival():void
+{
+	clearOutput();
+	showSera();
+	author("Nonesuch");
+	
+	moveTo("RESIDENTIAL DECK 3");
+	showLocationName();
+	
+	output("<i>“You! - what are you doing?”</i>");
+	output("\n\nYour cousin, slim and sharply dressed, is standing in the middle of the Residential thoroughfare, staring at you - or more specifically slightly beyond you, at the individual on the end of your leash. It’s a slight shock to see [rival.himHer] in a setting where you don’t want to kill [rival.himHer], but you immediately decide to style it out.");
+	if(!pc.isBimbo())
+	{
+		output("\n\n<i>“Taking one of my bitches for a walk. Say hello to my cousin, Sera.”</i>");
+		output("\n\n<i>“Hi,”</i> mutters Sera, staring at the ground.");
+		output("\n\n<i>“I’ve been collecting them,”</i> you tell [rival.name]. You crook your eyebrow at [rival.himHer]. <i>“Why, you interested?”</i>");
+	}
+	else
+	{
+		output("\n\n<i>“Taking one of my pets for a walk!”</i> you say brightly. <i>“Say woof woof to my lovely cousin, Sera!”</i>");
+		output("\n\n<i>“Hi,”</i> mutters Sera, staring at the ground.");
+		output("\n\n<i>“I love my good little pets and I’ve been collecting them!”</i> you enthuse to [rival.name]. <i>“Do you want to be one? I’ll take good care of you!”</i>");
+	}
+	output("\n\n<i>“No! God no.”</i> [rival.name] is still staring at Sera, expression frozen, foot tapping impulsively; [rival.hisHer] usual snap and sting are completely absent. <i>“Well! I suppose I should get back out to the frontier. Seems you’ve basically thrown in the towel, if this is how you’re wasting your time.”</i>");
+	output("\n\n<i>“What are <i>you</i> doing here?”</i> you inquire.");
+	output("\n\n<i>“Nothing! None of your business!”</i> [rival.heShe] strides away without another word. [rival.HeShe] can’t stop [rival.himHer]self from shooting a couple of glances back over [rival.hisHer] shoulder at the pair of you, though.");
 	
 	processTime(5);
 	
@@ -4548,8 +4568,7 @@ public function seraBitcheningPunishWalkiesNext():void
 	showSera();
 	author("Nonesuch");
 	
-	currentLocation = "RESIDENTIAL DECK 2";
-	generateMap();
+	moveTo("RESIDENTIAL DECK 2");
 	showLocationName();
 	
 	var hasSchoolgirl:Boolean = (seraWalkItemsSel.select & seraWalkItemsSel.anySchoolgirl) != 0;
@@ -4760,8 +4779,6 @@ public function seraOnTavrosObedience(totalDays:int):void
 // Put her room on second floor of Nursery
 public function seraOnTavrosBonus(btnSlot:int = 0):String
 {
-	if(flags["SERA_CREWMEMBER"] != 0) return "";
-	
 	var bonusText:String = "";
 	
 	bonusText += "\n\nA door with a digital sign is marked ‘Sera’s Apartment’.";
@@ -4772,14 +4789,42 @@ public function seraOnTavrosBonus(btnSlot:int = 0):String
 	}
 	else
 	{
-		if(flags["SERA_OBEDIENCE_MIN"] <= 0) bonusText += " Maybe you are in the mood to retrieve and train the demoness some more?";
+		pc.removeStatusEffect("Sera at Nursery");
+		
+		if(flags["SERA_PREGNANCY_CHECK"] != undefined)
+		{
+			bonusText += " The door is closed. You recall that Sera is in the natal unit, so it is probably best to";
+			if((flags["SERA_PREGNANCY_CHECK"] + 1) >= days)
+			{
+				bonusText += " wait a day";
+				if(flags["SERA_PREGNANCY_CHECK"] == days) bonusText += " or two";
+			}
+			else bonusText += " check with Briget";
+			bonusText += " before visiting her again.";
+			addDisabledButton(btnSlot, "Sera", "Sera", "Sera is currently away giving birth.");
+		}
+		else if(pc.hasStatusEffect("Sera Mommy Time"))
+		{
+			bonusText += " The door is closed, leaving Sera some private time to recover and bond with her newborn.";
+			addDisabledButton(btnSlot, "Sera", "Sera", "Sera is still recovering from giving birth. Best to meet with her a bit later.");
+		}
+		else if(pc.hasStatusEffect("Sera Morning Sickness") || (flags["SERA_PREGNANCY_TIMER"] >= 30 && flags["SERA_PREGNANCY_TIMER"] < 90 && hours >= 6 && hours < 10 && rand(3) == 0))
+		{
+			bonusText += " You hear the distinct sound of someone throwing up, followed by a moaned <i>“Fuck thiiiiiiis...”</i> from Sera’s room. Probably best to leave her alone for a while.";
+			pc.createStatusEffect("Sera Morning Sickness", 0, 0, 0, 0, true, "", "", false, 120);
+			addDisabledButton(btnSlot, "Sera", "Sera", "She seems to be sick or something...");
+		}
 		else
 		{
-			bonusText += " Perhaps you should pay your recruit a little visit";
-			if(flags["SERA_MERCHANT"] != undefined) bonusText += " and maybe take a peek at her inventory";
-			bonusText += "?";
+			if(flags["SERA_OBEDIENCE_MIN"] <= 0) bonusText += " Maybe you are in the mood to retrieve and train the demoness some more?";
+			else
+			{
+				bonusText += " Perhaps you should pay your recruit a little visit";
+				if(flags["SERA_MERCHANT"] != undefined) bonusText += " and maybe take a peek at her inventory";
+				bonusText += "?";
+			}
+			addButton(btnSlot, "Sera", approachServantSeraOnTavros, true, "Sera", "Pay Sera a visit.");
 		}
-		addButton(btnSlot, "Sera", approachServantSeraOnTavros, true, "Sera", "Pay Sera a visit.");
 	}
 	
 	return bonusText;
@@ -4790,46 +4835,84 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 	// Sera Salary hotfix check
 	if(seraSalaryCheck()) return;
 	
-	generateMapForLocation("NURSERYSERA");
-	
 	clearOutput();
-	showSera();
 	author("Nonesuch");
 	clearMenu();
 	
-	// Untrained
-	if(flags["SERA_OBEDIENCE_MIN"] <= 0)
+	if(seraPregnancyIsDue())
 	{
-		output("Sera rolls her eyes at you as you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
-		output("\n\n<i>“Welcome, great and honorable [pc.master] that enslaved me only to then abandon me in this pastel-shaded booze-less hellhole,”</i> she yawns. <i>“You here to fuck me? I almost welcome it, it’s that boring around here.”</i>");
-		
-		processTime(1);
-	}
-	// Trained
-	else
-	{
-		// !Merchant Sera:
-		if(flags["SERA_MERCHANT"] == undefined)
-		{
-			output("<i>“You’ve come to pick me up, haven’t you?”</i> says Sera the second you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ". <i>“C’mon. Let’s blow this popsicle stand. Please? [pc.master]?”</i>");
-			
-			// [Recruit] [Leave]
-		}
-		// Merchant Sera:
-		else
-		{
-			output("<i>“I told you not to - oh. Hey, [pc.master].”</i>");
-			output("\n\nSera blinks up from her holopad at you as you enter her room. It’s horrifically untidy, stacks and slews of packaged gene-mods and promotional material everywhere you look. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
-			
-			// [Recruit] [Buy] [Leave]
-			addButton(1, "Buy", seraBitcheningStore, "buy");
-			addButton(2, "Sell", seraBitcheningStore, "sell");
-		}
-		
-		processTime(1);
+		output("Sera’s room is empty. It looks slightly more dishevelled than usual, although that’s a difficult thing to judge.");
+		output("\n\n...How long has she been pregnant for, again?");
+		if(flags["SERA_PREGNANCY_CHECK"] == undefined) output("\n\n<b>Perhaps you should check in with " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + " about that.</b>");
+		// [Sera] option added to Briget’s menu
+		addButton(14, "Leave", mainGameMenu);
+		return;
 	}
 	
-	addButton(0, "Recruit", seraOnTavrosRecruit, undefined, "Recruit", "Put her back on board your ship.");
+	generateMapForLocation("NURSERYSERA");
+	
+	showSera();
+	
+	if(introText)
+	{
+		// Untrained
+		if(flags["SERA_OBEDIENCE_MIN"] <= 0)
+		{
+			output("Sera rolls her eyes at you as you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
+			output("\n\n<i>“Welcome, great and honorable [pc.master] that enslaved me only to then abandon me in this pastel-shaded booze-less hellhole,”</i> she yawns. <i>“You here to fuck me? I almost welcome it, it’s that boring around here.”</i>");
+			
+			processTime(1);
+			if(flags["MET_SERA_IN_NURSERY"] == undefined) flags["MET_SERA_IN_NURSERY"] = 1;
+		}
+		// Trained
+		else
+		{
+			// !Merchant Sera:
+			if(flags["SERA_MERCHANT"] == undefined)
+			{
+				if(flags["SERA_PREGNANCY_TIMER"] >= 195)
+				{
+					output("<i>“Hey [pc.master]! I knew you’d come and visit.”</i>");
+					output("\n\nSera puts down her holopad and grins up at you when you enter her room. Though she’s clad in her modest jeans and blouse outfit she still stretches herself out for you, letting you take in her heavy, rounded belly and milk-swollen tits. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
+					output("\n\n<i>“Cuz I knew you can’t get enough of drinking in your handiwork,”</i> she husks, feline and serene.");
+				}
+				else
+				{
+					output("<i>“You’ve come to pick me up, haven’t you?”</i> says Sera the second you enter her room. It’s horrifically untidy, an achievement given she only owns what the Nursery staff have loaned her. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ". <i>“C’mon. Let’s blow this popsicle stand. Please? [pc.master]?”</i>");
+				}
+				// [Recruit] [Leave]
+			}
+			// Merchant Sera:
+			else
+			{
+				if(flags["SERA_PREGNANCY_TIMER"] >= 195)
+				{
+					output("<i>“Hey [pc.master]! How’s it going?”</i>");
+					output("Sera puts down her holopad and grins up at you when you enter her room. She’s sat on her side in bed, resting her large, round belly, surrounded by slews of packaged gene mods and promotional material. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
+				}
+				else
+				{
+					output("<i>“I told you not to - oh. Hey, [pc.master].”</i>");
+					output("\n\nSera blinks up from her holopad at you as you enter her room. It’s horrifically untidy, stacks and slews of packaged gene-mods and promotional material everywhere you look. She’s wearing a staid outfit of jeans and t-shirt, presumably forced upon her for the sake of the children by " + (flags["BRIGET_MET"] == undefined ? "the head nurse" : "Briget") + ".");
+				}
+				// [Recruit] [Buy] [Leave]
+			}
+			
+			processTime(1);
+			if(flags["MET_SERA_IN_NURSERY"] == undefined) flags["MET_SERA_IN_NURSERY"] = 1;
+		}
+	}
+	
+	addButton(0, "Appearance", seraAppearance);
+	if(flags["SERA_MERCHANT"] != undefined)
+	{
+		addButton(1, "Buy", seraBitcheningStore, "buy");
+		addButton(2, "Sell", seraBitcheningStore, "sell");
+	}
+	if(flags["SERA_PREGNANCY_TIMER"] >= 195) addButton(3, "Talk", seraPregTalk);
+	if(flags["SERA_PREGNANCY_TIMER"] >= 195) addDisabledButton(4, "Recruit", "Recruit", "She is currently being taken care of at the nursery and is far too pregnant to board your ship.");
+	else addButton(4, "Recruit", seraOnTavrosRecruit, undefined, "Recruit", "Put her back on board your ship.");
+	if(flags["SERA_PREGNANCY_TIMER"] >= 110) addButton(7, "Belly Rubs", seraPregBellyRubs, undefined, "Belly Rubs", "Rub her belly...");
 	addButton(14, "Leave", mainGameMenu);
 	
 	return;

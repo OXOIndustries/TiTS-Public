@@ -1,3 +1,5 @@
+import classes.Items.Upgrades.ExpandedBackpackII;
+
 public function uvetoApproachNerrasaFirstTime():void
 {
 	clearOutput();
@@ -67,25 +69,31 @@ public function uvetoNerrasaBuy():void
 	{
 		if(!chars["NERRASA"].hasItemByClass(Frostfire)) chars["NERRASA"].inventory.push(new Frostfire());
 	}
-	else chars["NERRASA"].destroyItemByClass(Frostfire);
+	else chars["NERRASA"].destroyItemByClass(Frostfire, -1);
 	
 	if(pc.level >= 7)
 	{
 		if(!chars["NERRASA"].hasItemByClass(HardlightDagger)) chars["NERRASA"].inventory.push(new HardlightDagger());
 	}
-	else chars["NERRASA"].destroyItemByClass(HardlightDagger);
+	else chars["NERRASA"].destroyItemByClass(HardlightDagger, -1);
 	if(pc.level >= 8)
 	{
 		if(!chars["NERRASA"].hasItemByClass(HardlightBow)) chars["NERRASA"].inventory.push(new HardlightBow());
 	}
-	else chars["NERRASA"].destroyItemByClass(HardlightBow);
+	else chars["NERRASA"].destroyItemByClass(HardlightBow, -1);
 	
 	if(canBuySiegwulfe())
 	{
 		if(!chars["NERRASA"].hasItemByClass(SiegwulfeItem)) chars["NERRASA"].inventory.push(new SiegwulfeItem());
 	}
-	else chars["NERRASA"].destroyItemByClass(SiegwulfeItem);
+	else chars["NERRASA"].destroyItemByClass(SiegwulfeItem, -1);
 	
+	if(pc.statusEffectv1("Backpack Upgrade") < 10)
+	{
+		if(!chars["NERRASA"].hasItemByClass(ExpandedBackpackII)) chars["NERRASA"].inventory.push(new ExpandedBackpackII());
+	}
+	else chars["NERRASA"].destroyItemByClass(ExpandedBackpackII, -1);
+
 	shopkeep = nerrasa;
 	buyItem();
 }

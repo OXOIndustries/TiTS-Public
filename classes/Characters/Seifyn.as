@@ -10,6 +10,7 @@
 	import classes.Items.Armor.NyreanChain;
 	import classes.Items.Accessories.MuskRepel;
 	import classes.Items.Transformatives.NyreanCandy;
+	import classes.Items.Upgrades.ExpandedBackpackIPtV;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -29,6 +30,7 @@
 			this.inventory.push(new ChitinArmor());
 			this.inventory.push(new MilitaryPick());
 			this.inventory.push(new NyreanChain());
+			this.inventory.push(new ExpandedBackpackIPtV());
 			this.inventory.push(new CrystalShard());
 			this.inventory.push(new FungalExtract());
 			this.inventory.push(new MuskRepel());

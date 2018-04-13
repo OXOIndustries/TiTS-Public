@@ -530,9 +530,9 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				pc.tailCount = 1;
 				pc.tailType = GLOBAL.TYPE_CANINE;
 				pc.clearTailFlags();
+				pc.addTailFlag(GLOBAL.FLAG_LONG);
 				pc.addTailFlag(GLOBAL.FLAG_FURRED);
 				pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
-				pc.addTailFlag(GLOBAL.FLAG_LONG);
 			}
 			//Cat
 			else if(targetType == GLOBAL.TYPE_FELINE)
@@ -541,7 +541,11 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 				textBuff += ParseText(". You give it a little flex, and find that it curls about your [pc.leg] with prehensile grace. Yep, <b>you’ve definitely got a cat’s tail now.</b>");
 				pc.tailCount = 1;
 				pc.tailType = GLOBAL.TYPE_FELINE;
-				pc.tailFlags = [GLOBAL.FLAG_LONG, GLOBAL.FLAG_FURRED];
+				pc.clearTailFlags();
+				pc.addTailFlag(GLOBAL.FLAG_LONG);
+				pc.addTailFlag(GLOBAL.FLAG_FURRED);
+				if(pc.hasSkinFlag(GLOBAL.FLAG_FLUFFY)) pc.addTailFlag(GLOBAL.FLAG_FLUFFY);
+				pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			}
 		}
 	}

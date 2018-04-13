@@ -20,7 +20,7 @@ import classes.Items.Junk.DamagedVIChip;
 
 public function showDrBadgerAndPexiga(nude:Boolean = false):void
 {
-	var nameDisplay:String = "DR.BADGER &\n";
+	var nameDisplay:String = "DR. BADGER &\n";
 	nameDisplay += pexiga.short.toUpperCase();
 	showName(nameDisplay);
 
@@ -136,7 +136,7 @@ public function drHaswellPexigaTalk():void
 	output("\n\n");
 	if(!pc.isBimbo()) output("But what about helping the creatures, you push. Uplifting them?");
 	else output("You blink and giggle nervously. You point out that he’s a doctor. Doctors are supposed to help people.");
-	output("\n\nThe doctor’s intensity flutters into boredom almost immediately. <i>“While I certainly don’t care to speak for Xenogen as a whole, it is my professional opinion that science is most certainly NOT a field oriented towards improving lives.”</i> He lets out an airy puff that almost sounds like a single, withered laugh. <i>“Science serves but two masters: curiosity and the almighty credit. Your cannibalistic pexiga friends are neither interesting nor profitable,”</i> he explains dismissively. <i>“I’m sure you can show yourself out.”</i>");
+	output("\n\nThe doctor’s intensity flutters into boredom almost immediately. <i>“While I certainly don’t care to speak for Xenogen as a whole, it is my professional opinion that science is most certainly NOT a field oriented towards improving lives.”</i> He lets out an airy puff that almost sounds like a single, withered laugh. <i>“Science serves but two masters: curiosity and the almighty " + (isAprilFools() ? "dogecoin" : "credit") + ". Your cannibalistic pexiga friends are neither interesting nor profitable,”</i> he explains dismissively. <i>“I’m sure you can show yourself out.”</i>");
 	if(!pc.isBimbo()) output("\n\nYou’re tempted to mention the marketability of their sugary drool, but realize that, frankly, you’re a little angry at the aloof man’s greed. You’re not about to offer any help to this ass. If he’s so clever, he can figure it out on his own.");
 	else output("\n\nWhat a nerd! This guy is, like, so totally uncool. If you pushed him out of an airlock, all of space would get a lot warmer - he’s THAT uncool! You hold up your nose as you leave his stinky old office. There’s probably a thousand smarter people anyway. Dozens of them!");
 	processTime(4);
@@ -548,13 +548,13 @@ public function pexigaNamingSetup():void
 	author("Adjatha");
 	output("As you approach your ship, it occurs to you that she doesn’t have a name yet. You ask if she’s got any preferences, but she smiles and shrugs. <i>“Iunno! Can you give one?”</i> she inquires, squeezing your arm. <i>“Something pretty!”</i>");
 	
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	
 	//Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	this.displayInput();
+	output("\n\n\n");
 	clearMenu();
 	addButton(0, "Next", pexigaNamingConventions, pexigaNamingSetup);
 }
@@ -563,7 +563,7 @@ public function pexigaNamingConventions(retFunc:Function = null):void
 {
 	if(userInterface.textInput.text == "") {
 		retFunc();
-		output("\n\n\n<b>You must input a name.</b>");
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	
@@ -576,12 +576,12 @@ public function pexigaNamingConventions(retFunc:Function = null):void
 	// Illegal characters check. Just in case...
 	if(hasIllegalInput(userInterface.textInput.text)) {
 		retFunc();
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if(userInterface.textInput.text.toLowerCase() != "lil bobby tables" && userInterface.textInput.length > 12) {
 		retFunc();
-		output("\n\n\n<b>Please select a name no more than twelve characters long.</b>");
+		output("<b>Please select a name no more than twelve characters long.</b>");
 		return;
 	}
 	pexiga.short = userInterface.textInput.text;
@@ -810,7 +810,7 @@ public function bimboBadgerPostDollmakuhFoight():void
 	output("\n\n<i>“Uh? This? No, silly! This is a gift! From me.”</i> She holds it out but then gives it an envious glance and pulls it back. <i>“Uh, to me, I mean. Yeah.”</i> Her expression changes to shock and delight. <i>“Wha? A Bitch-Breaker 9000? Just what I always wanted! Thanks, me!”</i> She hugs the arm-thick tool, gives the tip a little lick, then sets it down.");
 	if(pc.isBimbo()) output(" You can’t help but grump a little bit. You could’ve been the broken bitch!");
 	output("\n\n<i>“Is that your sister?”</i> the greedy slut asks, pointing to the blue girl crawling on all fours next to you. <i>“You two don’t look like each other at all!”</i>");
-	output("\n\nYou remind her about the pexiga who needs to get smarter and the doctor smiles with recognition. <i>“Oh, right right right. Yeah, that’ll be fun! Let’s do...”</i> she pauses for dramatic effect, <i>“... the THING!”</i> She launches into what you assume was supposed to be a sinister laugh, but actually just comes out as snorting giggles. ");
+	output("\n\nYou remind her about the pexiga who needs to get smarter and the doctor smiles with recognition. <i>“Oh, right right right. Yeah, that’ll be fun! Let’s do...”</i> she pauses for dramatic effect, <i>“...the THING!”</i> She launches into what you assume was supposed to be a sinister laugh, but actually just comes out as snorting giggles. ");
 	if(!pc.isBimbo()) output("You glance at the pexiga as further doubts in the good doctor’s capabilities pile on.");
 	else output("You help out by joining her in the sinister giggling laughter, but your heart really isn’t in it. You can’t stop thinking about that vibrator!");
 	processTime(4);
@@ -865,8 +865,9 @@ public function stepOutDuringBimboBadgerwerk():void
 	output("\n\nJust how many of these old, automated systems are still online? You brace your hands against the door and give it a jiggle, just like Badger recommended. There’s a faint clanking from inside the steel, so you give it another, harder shove. The small screen flips to a violent red but you don’t have time to read the new message. A tremendous crack of thunder fills your ears followed by ringing silence as the door electrifies itself, blinding pain cascading through your body like boiling water being poured inside your skin.");
 	output("\n\nSmouldering, your muscles clenched and your vision flooding with pops of brilliant white light, you slowly fall backwards. You’re out before you hit the ground.");
 	processTime(4);
-	//Go to <i>“Next”</i>
-	pc.HP(-1000);
+	//Go to “Next”
+	pc.shieldsRaw = 0;
+	applyDamage(new TypeCollection( { electric: 1000 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 	clearMenu();
 	addButton(0,"Next",postBimboBadgerWerkwerkwerk);
 }
@@ -1011,7 +1012,7 @@ public function stayForBimboBadgersWork():void
 		output("\n\nYou try to fight through the bliss, but the doctor grabs your other hand and slaps it onto the glass sphere with an effortless giggle. The redoubled bioelectricity very nearly robs you of all motor control and it’s only through the enraptured stiffness of your body that you remain standing at all. Doctor Badger places both of her palms on the orb but receives only the faintest echo of your paralytic pleasure. <i>“Oh pooh. You’re taking all the good stuff,”</i> she huffs. Her eyes go wide with revelation. <i>“Oh! What if I, like, share yours? That’ll prolly work!”</i> She moves behind you once more and without a second’s hesitation, plunges her massive, breeder shaft directly into your [pc.asshole].");
 		pc.buttChange(chars["DRBADGER"].cockVolume(0));
 		output("\n\nYour mouth falls open, wordless sensation suffocating you as the thick meat pushes past your sphincter and into your inner depths with all the romantic subtlety of a huge rubber fist. The orb’s rewiring current, however, converts what by rights ought to be extreme pain into toe-curling bliss. It is as if your ass were the very nexus of your nerves and the hyper-endowed badger just fed twelve inches of gut-stuffing rapture right into the pleasure center of your soul. Your frame trembles and clenches with something far beyond a simple orgasm as your [pc.tongue] lolls out of your mouth. You lean forward, letting the side of your face rest against the prickling screen as you burble with thoughtless ecstasy. She pumps in and out, each ball-slapping impact sending a fresh climax thrilling through you, one after another.");
-		output("\n\nThis isn’t mere sex and it certainly isn’t love-making. She’s ravishing you in every sense of the word - your mind feels like it’s being carried off by the spurting girth of the bimbo doctor’s shaft. Your eyes roll back and your [pc.tongue] lolls out of your mouth, but all you can think about is the voluptuous bimbo slamming semi-spongy inches of heaven into you. [pc.GirlCumVisc] streams of [pc.girlCumNoun] drench your [pc.thighs] and pools at your [pc.feet] so quickly, it is as if your your body is melting into a puddle of fuck.");
+		output("\n\nThis isn’t mere sex and it certainly isn’t love-making. She’s ravishing you in every sense of the word - your mind feels like it’s being carried off by the spurting girth of the bimbo doctor’s shaft. Your eyes roll back and your [pc.tongue] lolls out of your mouth, but all you can think about is the voluptuous bimbo slamming semi-spongy inches of heaven into you. [pc.GirlCumVisc] streams of [pc.girlCumNoun] drench your [pc.thighs] and pools at your [pc.feet] so quickly, it is as if your body is melting into a puddle of fuck.");
 		if(pc.biggestTitSize() >= 1) output(" Your expanding [pc.breasts] thud with added weight against the bimbo ball, the shockwaves of your impacts adding a mesmeric swirl to the vanishing color halos cascading across its surface.");
 		output("\n\nThe blossoming void of your gurgling bliss is filled in short order by the boiling heat of the doctor’s gut-swelling geyser. Your body clenches to hold in every milliliter of the sacred seed, even as you shudder with your own rolling climax.");
 		if(pc.ass.looseness() <= 2) output(" You squeeze and wiggle as your [pc.asshole] drinks in a gallon or more of Badger’s thick jizz, her bounty leaving your belly bloated and sloshing.");
@@ -1067,13 +1068,13 @@ public function pexigaNamingSetup4BimboBadgerwerk():void
 	author("Adjatha");
 	output("You pat the affectionate girl on the long spines of her hair and ask what you should call her. <i>“A name? Ummm...”</i> She trails off, staring emptily into the air for a moment. Maybe you could help her out and suggest a name?");
 	
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 	
 	//Player inputs a name for their bimbo pexiga. Alternately: her default name could be Beasti, Ditzi, or something along those lines
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	this.displayInput();
+	output("\n\n\n");
 	clearMenu();
 	addButton(0, "Next", pexigaNamingConventions, pexigaNamingSetup4BimboBadgerwerk);
 }
@@ -1271,7 +1272,7 @@ public function afterDollmakerFightForAbsentBadger():void
 		output("\n\nTo be honest, you don’t have a lot of experience dealing with this kind of technology. It’s always been above your pay grade. The last thing a mercenary needs is to get distracted when shots are flying.");
 		output("\n\nOne thing you did pick up, however, was an insight into people. You don’t last very long as a merc if you can’t figure out how people tick and how they’re going to react to pressure. Badger’s a classic megalomaniac. There’s a lot more of them out there than people guess but at the end of the day, they’re all the same.");
 		output("\n\nEgotistical people like the Doctor are so sure they’re the smartest person in the room, they just assume everyone else can’t appreciate their genius. More importantly, they place too much value on their works. Somebody as self-obsessed as her would never break all of her devices, no matter how likely they were to fall into the wrong hands. For her, it’d be like destroying a work of art.");
-		output("\n\nSure, she may have smashed a lot of stuff, but when it comes down the the ones she’s most proud of, she almost certainly left it mostly intact. Something’s here, some last monument to the great and powerful Doctor Badger so that her legacy can live on. Just a matter of finding out what it is and how to use it.");
+		output("\n\nSure, she may have smashed a lot of stuff, but when it comes down to the ones she’s most proud of, she almost certainly left it mostly intact. Something’s here, some last monument to the great and powerful Doctor Badger so that her legacy can live on. Just a matter of finding out what it is and how to use it.");
 		processTime(5);
 		//[Next]
 	}
@@ -1327,7 +1328,7 @@ public function absenteePexigaPart2():void
 	output(" Hoisting up your wrench with both hands, you wind up and swing around with full force. The orb clongs, the wrench flies out of your hands, and the glass cracks into an intricate spider web of fractal fractures. The colors slow and gradually the machine fizzles out with a hissing sigh.");
 	output("\n\nYour silvered girl blinks, shaking her head. She pants and sighs, noticing perhaps for the first time that she has a ring gag in her mouth and a massive steel stud in her tongue. She cocks her head, curiously, wiggling her muscular organ to acclimate to the feel of it. Running a two-fingered hand down the mane of hair-like spines on her head, she raises her big, blue eyes to you. From behind the gag, she smiles bashfully and gurgles something.");
 	if(pc.isBimbo()) output("\n\nWell that’s no good! She can’t talk with that thing in her mouth. As least, you guess she can’t. <i>“Does her race communicates in gurgles?”</i> you wonder aloud. <i>“Did Badger put a language lesson in her bimbo ball? Shoot, I should’ve looked for the instruction manual.”</i>");
-	else output("\n\nWell, the gag and the stud aren’t going to make communication easy, that’s for sure. You could take them out, but it’s probably safer to keep them in till you know she hasn’t regressed to her feral state.");
+	else output("\n\nWell, the gag and the stud aren’t going to make communication easy, that’s for sure. You could take them out, but it’s probably safer to keep them in until you know she hasn’t regressed to her feral state.");
 	output(" Maybe the good doctor has something to help with communication around here. You hold up a finger in ask the pexiga to wait as you start searching around the chaotic mess of a former lab. The ivory girl seems happy to wait as she begins playing with her hefty F-cups.");
 
 	output("\n\nYou toss through the piles of junk and broken inventions before coming across what appears to be a pair of plum-sized golden balls connected by a stout shaft. It seems to be roughly the size of the pexiga’s piercing. You pick it up and feel a strange current dancing across your skin.");
@@ -1358,6 +1359,7 @@ public function pexigaNamingSetup4AbsentBadgers():void
 	if(stage.contains(this.userInterface.textInput)) 
 		this.removeInput();
 	this.displayInput();
+	output("\n\n\n");
 	clearMenu();
 	addButton(0, "Next", pexigaNamingConventions, pexigaNamingSetup4AbsentBadgers);
 }
@@ -1666,7 +1668,7 @@ public function loseToNymFoeViaHPBimboStep5():void
 		output(" Your [pc.vaginas] clench");
 		if(pc.totalVaginas() == 1) output("es and trembles");
 		else output(" and tremble");
-		output(" with bimbo-bloated bliss, [pc.girCumNoun] gushing from your body in hot waves.");
+		output(" with bimbo-bloated bliss, [pc.girlCumNoun] gushing from your body in hot waves.");
 	}
 	if(pc.hasCock())
 	{
@@ -1849,7 +1851,7 @@ public function fuckNymFoe2():void
 		if(pc.hasToes()) output("toe-curling");
 		else if(pc.isNaga()) output("tail-curling");
 		else if(pc.hasLegFlag(GLOBAL.FLAG_HOOVES)) output("hoof-stomping");
-		else output("[pc.footNoun]-clenching");
+		else output("foot-clenching");
 		output(" pleasure. Panting like a bitch in heat, you clench your eyes shut and bite down on your lower lip as the droid works your posterior like a skin-tight pocket pussy.");
 
 		output("\n\nWhen she pushes her tongue back into your lust-slick cunt and suckles her lips against your well-edged joy buzzer, you’re putty in her hands. Your first orgasm is so intense, your body actually aches with how tightly your muscles clench. If it were anybody else, you’d be afraid of hurting them as your ");
@@ -2266,7 +2268,7 @@ public function turnInIQBGoneToPenpen():void
 //24 hours after turning it in: 
 public function IQBeGoneCashOut():void
 {
-	AddLogEvent("A beep on your Codex indicates that the the UGC received your IQ B-Gone sample. A form letter thanks you for doing your civic duty and has a little S.C.A.R.E. anti-drug seal of approval at the bottom. Another beep indicates that 2,500 credits have been deposited to your account. Not as much as you’d have thought, but it is the government afterall.");
+	AddLogEvent("A beep on your Codex indicates that the UGC received your IQ B-Gone sample. A form letter thanks you for doing your civic duty and has a little S.C.A.R.E. anti-drug seal of approval at the bottom. Another beep indicates that 2,500 credits have been deposited to your account. Not as much as you’d have thought, but it is the government afterall.");
 	pc.credits += 2500;
 	flags["IQBGONE_POLICED"] = 2;
 }
@@ -2350,8 +2352,7 @@ public function gushBadEndWithNymFoe():void
 
 public function gushBadEndWithNymFoe2():void
 {
-	currentLocation = "301";
-	generateMap();
+	moveTo("301");
 	
 	pc.armor = new MaidOutfit();
 	pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
@@ -2378,7 +2379,7 @@ public function gushBadEndWithNymFoe2():void
 	output("\n\nHe leans forward as his friends accelerate, your whole body quivering under the wobbling impacts of their slight frames. <i>“What do ya say, Melon Momma? You gonna moo for us?”</i> [pc.MilkNoun] gushes out of you with each thrust, your face coloring as much from the indignity as from the unbidden and unwelcome orgasm building in your [pc.groin].");
 	output("\n\nYou shudder, quivering in place as the wet squelching of the raskvel holds for a moment. Then, with a sighing groan, both of the men release, the hot spunk of their climaxes pouring into your sorely abused breasts in thick, sticky spree. Gouts of [pc.milk] spray everywhere, soaking the little slimeballs in your creamy discharge. Your mouth opens slightly, but you swallow the moaning moo of bliss before anyone can hear it. You stare defiantly as the leader as his friends pull out, their spoo dripping down from your engorged nipples.");
 	output("\n\nThe mouthy raskvel shrugs. <i>“Look at all that wasted [pc.milkNoun],”</i> he tuts. <i>“Well guys, better fill her back up!”</i> Two more of the group whip out their pointy penises and mount the chairs for very sloppy seconds. <i>“Once isn’t enough for a classy gal like this. You really gotta romance her!”</i> The crew cheer and set about slapping your throbbing breasts like a drum circle. <i>“Come on, guys! Let’s make her moo!”</i>");
-	output("\n\nJust twelve more months till you’re all paid up, you assure yourself. Just forty-eight weeks. Gritting your teeth, you ball a fist until your knuckles crack. Well... what’s one more week, you reason. With tremendous satisfaction, you haul off and hit the raskvel hard enough to send him flying across the bar.");
+	output("\n\nJust twelve more months until you’re all paid up, you assure yourself. Just forty-eight weeks. Gritting your teeth, you ball a fist until your knuckles crack. Well... what’s one more week, you reason. With tremendous satisfaction, you haul off and hit the raskvel hard enough to send him flying across the bar.");
 
 	processTime(129600);
 	pc.orgasm();
@@ -2451,7 +2452,7 @@ public function dolledBadEnd():void
 	{
 		if(pc.breastRows[i].breastRatingRaw < 45) pc.breastRows[i].breastRatingRaw = 45;
 		else pc.breastRows[i].breastRatingRaw += 5;
-		//if(!pc.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) pc.breastRows[i].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL;
+		//if(pc.breastRows[i].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL) pc.breastRows[i].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 	}
 	if(pc.hipRatingRaw < 12) pc.hipRatingRaw = 12;
 	else pc.hipRatingRaw += 3;
@@ -2506,7 +2507,7 @@ public function dolledBadEnd2():void
 	output("\n\nOne by one, the sprayguns fire, warm blobs of scarlet splattering across your body like gooey, melted wax, clumping together and dripping in thin trickles all over your exposed [pc.skinFurScales]. The pressure of your tantalizingly close orgasm overflows and your body jerks in its padded restraints, climaxing with every glistening squirt. You pant and gasp at first, but before long, you’re screaming your orgasms for all your lungs are worth as, inch by inch, your lower body is coated in the shiny, crimson shell.");
 	if(pc.hasLegs() && !pc.hasLegFlag(GLOBAL.FLAG_HEELS)) output(" A pair of 8-inch high heels are fitted onto your [pc.feet] as the goo cools across you, sealing you in fuck-me pumps that hobble you even further.");
 
-	output("\n\nAs your body is covered in latex, a pair of heat lamps descend to help out. Somewhere, lost in the daze of your endlessly repeating orgasm, you notice these lamps have been marked <i>“Brain Melt,”</i> but you can’t think about that very closely. All that matters is the encasing fluid, the glorious euphoria, and the weird heat building in your chest. A limb pops a cork in your mouth so the latex doesn’t flow into your drooling gob and the next moment, your vision is cut off by the dripping, hardening slime.");
+	output("\n\nAs your body is covered in latex, a pair of heat lamps descend to help out. Somewhere, lost in the daze of your endlessly repeating orgasm, you notice these lamps have been marked “Brain Melt,” but you can’t think about that very closely. All that matters is the encasing fluid, the glorious euphoria, and the weird heat building in your chest. A limb pops a cork in your mouth so the latex doesn’t flow into your drooling gob and the next moment, your vision is cut off by the dripping, hardening slime.");
 
 	processTime(70);
 	pc.lust(10000);
@@ -2520,6 +2521,8 @@ public function dolledBadEnd2():void
 		pc.addLegFlag(GLOBAL.FLAG_HEELS);
 	}
 	pc.skinType = GLOBAL.SKIN_TYPE_LATEX;
+	pc.clearSkinFlags();
+	pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 	pc.skinTone = "red";
 	
 	clearMenu();
@@ -2528,8 +2531,7 @@ public function dolledBadEnd2():void
 
 public function dolledBadEnd3():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	
 	if(pc.intelligence() > 0) pc.intelligence(0, true);
 	

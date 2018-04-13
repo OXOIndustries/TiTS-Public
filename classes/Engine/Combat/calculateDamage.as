@@ -66,26 +66,26 @@ package classes.Engine.Combat
 			if (special == "melee")
 			{
 				// Melee crit
-				if(attacker.critBonus(true) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
+				if(!attacker.isBlind() && attacker.critBonus(true) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")) && !baseHPDamage.hasFlag(DamageFlag.NO_CRIT))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
 				}
 				//Alpha strike forcing them criiiiiits!
-				else if (attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked"))
+				else if (!attacker.isBlind() && attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked") && !baseHPDamage.hasFlag(DamageFlag.NO_CRIT))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
 				}
 				
 				// Sneak attack
-				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blinded")) && attacker.hasPerk("Sneak Attack")) 
+				if (!attacker.isBlind() && (target.hasStatusEffect("Stunned") || target.isBlind()) && attacker.hasPerk("Sneak Attack")) 
 				{
 					damageResult.wasSneak = true;
 					
 					baseHPDamage.add(attacker.level * 3 + attacker.bimboIntelligence()/2);
 					if (attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
-					if	(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
+					if	(target.hasStatusEffect("Stunned") && target.isBlind()) baseHPDamage.add(attacker.level);
 				}
 				
 				//Burninate the countryside
@@ -111,31 +111,31 @@ package classes.Engine.Combat
 			}
 			if (special == "ranged")
 			{
-				if (attacker.hasStatusEffect("Concentrated Fire"))
+				if (!attacker.isBlind() && attacker.hasStatusEffect("Concentrated Fire"))
 				{
 					baseHPDamage.add(attacker.statusEffectv1("Concentrated Fire"));
 				}
 				
 				// Ranged crit 
-				if(attacker.critBonus(false) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")))
+				if(!attacker.isBlind() && attacker.critBonus(false) + crittyBonus >= rand(100) + 1 && (attacker is PlayerCharacter || attacker.hasPerk("Can Crit")) && !baseHPDamage.hasFlag(DamageFlag.NO_CRIT))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
 				}
 				//Alpha strike forcing them criiiiiits!
-				else if (attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked"))
+				else if (!attacker.isBlind() && attacker.hasPerk("Alpha Strike") && !attacker.hasStatusEffect("AlphaedStroked") && !baseHPDamage.hasFlag(DamageFlag.NO_CRIT))
 				{
 					damageResult.wasCrit = true;
 					baseHPDamage.multiply(2);
 				}
 				
 				// Sneak Attack (AKA Aimed Shot)
-				if ((target.hasStatusEffect("Stunned") || target.hasStatusEffect("Blinded")) && attacker.hasPerk("Aimed Shot")) 
+				if (!attacker.isBlind() && (target.hasStatusEffect("Stunned") || target.isBlind()) && attacker.hasPerk("Aimed Shot")) 
 				{
 					output("\n<b>Aimed shot!</b>");
 					baseHPDamage.add(attacker.level * 3 + attacker.bimboIntelligence()/2);
 					if(attacker.hasStatusEffect("Take Advantage")) baseHPDamage.add(attacker.level * 2);
-					if(target.hasStatusEffect("Stunned") && target.hasStatusEffect("Blinded")) baseHPDamage.add(attacker.level);
+					if(target.hasStatusEffect("Stunned") && target.isBlind()) baseHPDamage.add(attacker.level);
 				}
 				
 				//Burninate the countryside
@@ -158,6 +158,10 @@ package classes.Engine.Combat
 				baseHPDamage.kinetic.damageValue *= 0.5;
 			}
 		}
+		
+		//10% damage boost vs Treated
+		//Fen note: No this is bad and it should feel bad.
+		//if(attacker.hasPerk("Chupacabro Slayer") && target.isTreated()) baseHPDamage.multiply(1.1);
 		
 
 		/****************************

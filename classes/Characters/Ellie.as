@@ -207,5 +207,12 @@
 		{
 			kGAMECLASS.ellieMenu();
 		}
+		
+		//I'm a bad boy and this never actually gets reset since it's a 1-time pregnancy so it'll be true if she ever gets
+		//pregnant, even after the kids are born, and code relies on this functioning this way
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			return (kGAMECLASS.flags["ELLIE_PREG_TIMER"] != undefined);
+		}
 	}
 }

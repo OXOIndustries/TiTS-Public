@@ -352,8 +352,7 @@ public function celiseKiroFunSekritShit():void
 	author("Gardeford");
 	//(Only accessible if Kiro is medium balls or more and high trust. Giga celise in ship. find her in bar.(will do alternate intro if follower is implemented))
 	
-	currentLocation = shipLocation;
-	generateMap();
+	moveTo(shipLocation);
 
 	//first time
 	if(flags["KIRO_CELISE_3SOME"] == undefined)
@@ -417,8 +416,7 @@ public function celiseXKiroFirstTimeIntroEpilogue():void
 //merge
 public function properKiroSceneTimeLetsGo():void
 {
-	currentLocation = "SHIP INTERIOR";
-	generateMap();
+	moveTo("SHIP INTERIOR");
 	
 	showName("KIRO\nAND CELISE");
 	showBust("KIRO","CELISE");

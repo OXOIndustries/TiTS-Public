@@ -34,7 +34,7 @@ package classes.GameData.Pregnancy.Handlers
 			_canFertilizeEggs = false;
 			_pregnancyQuantityMinimum = 1;
 			_pregnancyQuantityMaximum = 3;
-			_definedAverageLoadSize = 480;
+			_definedAverageLoadSize = 640;
 			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
 			_pregnancyChildRace = GLOBAL.TYPE_HUMAN;
 			_childMaturationMultiplier = 1.0;
@@ -128,30 +128,7 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function sydianSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
-			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
-			
-			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
-			
-			// Always start with the minimum amount of children.
-			var quantity:int = thisPtr.pregnancyQuantityMinimum;
-			
-			// Unnaturally fertile mothers may get multiple children.
-			for(var i:Number = mother.fertility(); i >= 1.5; i -= 0.5)
-			{
-				quantity += rand(thisPtr.pregnancyQuantityMaximum + 1);
-			}
-			if (quantity > thisPtr.pregnancyQuantityMaximum) quantity = thisPtr.pregnancyQuantityMaximum;
-			
-			// Add extra bonuses.
-			var fatherBonus:int = Math.round((father.cumQ() * 2) / thisPtr.definedAverageLoadSize);
-			var motherBonus:int = Math.round((quantity * mother.pregnancyMultiplier()) - quantity);
-			quantity += fatherBonus + motherBonus;
-			
-			// Cap at 3x the maximum!
-			var quantityMax:int = Math.round(thisPtr.pregnancyQuantityMaximum * 3.0);
-			if (quantity > quantityMax) quantity = quantityMax;
-			
-			pData.pregnancyQuantity = quantity;
+			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr, [3.0, 1.5, 0.5]);
 		}
 		
 		public static function sydianOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void

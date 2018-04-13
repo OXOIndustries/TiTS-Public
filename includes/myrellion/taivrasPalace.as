@@ -842,7 +842,7 @@ public function loseToRoyalIncuGoo():void
 
 	output("\n\n<i>“Ahh! Yay, I win!”</i> she cheers, bouncing around excitedly. <i>“That means you belong to me now, right? That’s what Queen Taivra said, like, forever ago when she made me her personal egg bitch. Hehe, I used to be big and tough, too, but look at me now!”</i>");
 	output("\n\nShe beams at you, rubbing her hands all around the crystal sphere suspended in her gooey gut. <i>“I’m the best egg bitch in the whole wide world, Taivra said. She’ll be so proud of me for catching you... I bet she’ll give me a hundred more eggs - a thousand!”</i>");
-	output("\n\nThe idea of being stuffed with even more eggs seems to make the victorious goo absolutely giddy. She bounces with excitement, making her egg-laden belly tumble weightlessly inside her goo until she suddenly turns her attentions to you, a huge grin plastered on her face. <i>“Do you like eggs? I hope so, cuz Queen Taivra likes to stuff all of her pets with her eggs. She makes soooo many! But now </i>I<i> have a pet... and I can stuff you with eggs, just like Taivra! No wait, that I wouldn’t have as many.... uh, I know!”</i> she grins, bouncing your way and looming over you. <i>“I’ll use you to help keep all of my eggs warm! You can make me nice and thick and perfect for all my eggs to get big and strong in.”</i>");
+	output("\n\nThe idea of being stuffed with even more eggs seems to make the victorious goo absolutely giddy. She bounces with excitement, making her egg-laden belly tumble weightlessly inside her goo until she suddenly turns her attentions to you, a huge grin plastered on her face. <i>“Do you like eggs? I hope so, cuz Queen Taivra likes to stuff all of her pets with her eggs. She makes soooo many! But now </i>I<i> have a pet... and I can stuff you with eggs, just like Taivra! No wait, that I wouldn’t have as many... uh, I know!”</i> she grins, bouncing your way and looming over you. <i>“I’ll use you to help keep all of my eggs warm! You can make me nice and thick and perfect for all my eggs to get big and strong in.”</i>");
 
 	output("\n\nYou gulp nervously as the goo-girl leans in close, her cute little nose almost brushing up against you. She just stares at you for a long moment, long enough to make you wonder if she’s really looking at you... until you see the gooey tendrils starting to grow out of her back, reaching towards you. You’re powerless to resist as the tentacles wrap around your limbs, pulling you up towards the goo-girl’s slimy embrace with startling strength. Emerald goo surges around you, spreading out across your body in a slow tidal wave of hot, wet alien sludge. She envelopes more and more of you, grasping at all of your exposed flesh until your face is pressing against hers, and her crystal-clad belly is grinding against your ");
 	if(!(pc.armor is EmptySlot)) output("[pc.armor].");
@@ -1089,6 +1089,7 @@ public function getEggedByCrystalGoo():void
 	if(bEmptyVagina) output("womb");
 	else output("gut");
 	output(". Maybe you’ll have some royal daughters before long...");
+	output("\n\n");
 	//set up some pregger shit
 	
 	if (flags["CRYSTAL_GOO_GLORYHOLED"] == 1)
@@ -1148,8 +1149,9 @@ public function armorGooVictoryShits():void
 	output("\n\n<i>“Like my new look?”</i> [goo.name] grins, twirling around to show off a growing number of spikey gray crystal plates forming on her chest and back, forming pauldrons and a solid breastplate. You’re sure that, when it comes time to have a little fun, the plates could easily be absorbed back into her. But here in a place rife with danger, well, she almost looks like a sexified version of a proper knight now!");
 	output("\n\nShe giggles at the praise and bounds back to you. <i>“Ready to go, [pc.name]!”</i>\n\n");
 
-	if(pc.armor is GooArmor)
+	if(pc.armor is GooArmor && flags["GOO_ARMOR_CRYSTAL_UPGRADE"] == undefined)
 	{
+		flags["GOO_ARMOR_CRYSTAL_UPGRADE"] = 1;
 		pc.armor.hasRandomProperties = true;
 		pc.armor.defense += 2;
 		pc.armor.resistances.addFlag(DamageFlag.MIRRORED);
@@ -1159,9 +1161,9 @@ public function armorGooVictoryShits():void
 	for(var x:int = 0; x < pc.inventory.length; x++)
 	{
 		trace("LOOKING FOR GOO ARMOR. @: " + pc.inventory[x].longName);
-		if(pc.inventory[x].shortName == "Goo Armor")
+		if(pc.inventory[x].shortName == "Goo Armor" && flags["GOO_ARMOR_CRYSTAL_UPGRADE"] == undefined)
 		{
-			trace("UPGRADING GOOSHIT!");
+			flags["GOO_ARMOR_CRYSTAL_UPGRADE"] = 1;
 			pc.inventory[x].hasRandomProperties = true;
 			pc.inventory[x].defense += 2;
 			pc.inventory[x].resistances.addFlag(DamageFlag.MIRRORED);
@@ -2119,7 +2121,7 @@ public function cousinGetsExecuted():void
 	author("Savin");
 	output("<i>“Kill [rival.himHer],”</i> you say, sneering at your helpless cousin.");
 	output("\n\nTaivra chuckles and nods at a couple of her soldiers, who latch their arms on [rival.name]’s shoulder and start to pull [rival.himHer] away. <i>“Good choice, my new mate... better to have your rivals killed than risk their coming back to harm you later. I’ll have gallows erected in the village, and we’ll dispose of this worm.”</i>");
-	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away her [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
+	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away to [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
 	flags["COUSIN_EXECUTED"] = 1;
 	clearMenu();
 	addButton(0,"Next",badEndWithTaivraShit);
@@ -2137,7 +2139,7 @@ public function cousinTurnsEggSlut():void
 	if(pc.hasCock()) output("Many sired by you, I’m sure.");
 	else output("Perhaps you’d rather your cousin bear your burden of eggs? A fitting fate, I suppose.");
 	output(" Very well, I will order [rival.himHer] bathed and set aside with the rest of my favored incubators. A better life that that worm deserves, but one that is at least productive. You are both wise and magnanimous, my mate.”</i>");
-	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away her [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
+	output("\n\n[rival.name] screams a host of profanities, but is helpless to resist as [rival.heShe]’s dragged away to [rival.hisHer] doom. Taivra’s hand tightens around your waist as your rival is dragged off, until it’s almost painful. <i>“Now then, I believe it’s time you paid your fealty to me...”</i>");
 	flags["COUSIN_EGGSLUT"] = 1;
 	clearMenu();
 	addButton(0,"Next",badEndWithTaivraShit);
@@ -2181,7 +2183,7 @@ public function badEndWithTaivraShit():void
 
 	output("\n\nHer plated hands guide you towards the bed and roughly pushes you onto your back, sending you tumbling onto the feather-soft silks. She’s on you in a moment, pinning you down with her knees - and her lips, as well. Amethyst lips press firmly to yours, and your lover moans throatily as you submit to her sensual domination. You should enjoy your reward, you decide: the queen has offered to give you a place of honor, but a place you will be for the rest of your life. You’ll never see your gear again");
 	if(pc.hasEquippedWeapon()) output(", or your weapons");
-	output(". No way to contact home, no way to fight your way out that wouldn’t have you a doomed as Dane and your cousin were.");
+	output(". No way to contact home, no way to fight your way out that wouldn’t have you as doomed as Dane and your cousin were.");
 
 	output("\n\nThis is the end of your quest. Might as well make the most of it.");
 
@@ -2352,7 +2354,7 @@ public function probeReclamationShit():void
 	
 	clearMenu();
 	// if Shade is still on-planet and not pissed/your enemy, continue. Else, [Next] to map
-	if(shadeAtTheBar() && !(flags["KQ2_SHADE_ENCOUNTERED"] == 1 && shadeIsLover())) addButton(0,"Next",shadeHalfSisterShit);
+	if(shadeAtTheBar()) addButton(0,"Next",shadeHalfSisterShit);
 	else addButton(0,"Next",myrellionProbeEnd);
 }
 public function myrellionProbeEnd():void
@@ -2714,7 +2716,7 @@ public function taivraRepeatScenes():void
 	output("You approach Taivra, stepping up onto the dias of her throne and between the tangle of limbs surrounding her. The dozen betas writhing around her moan softly, some reaching out to brush your [pc.legOrLegs] or thrusting their bare chests out at you, trying to entice you to join them. Taivra tsks her tongue at the rowdy bunch, and the mass of tentacle cocks thrusting into their ovipositors move a little bit faster, surrounding you in the wet, sultry sounds of sex.");
 
 	output("\n\nTurning your attention back to the queen, you find her relaxed on her throne, smiling amicably at you with those dark purple lips of hers. <i>“Ah, [pc.name]. Anything I can do for you, my mate?”</i>");
-	//Respect 41-70: [pc.name]! Come here,”</i> she says warmly, setting her spear aside and beckoning you closer. When you approach, she reaches up from her throne to brush a hand across your cheek. <i>“Is there something you desire, my mate?”</i> //Respect 71+: <i>“Welcome back, my love,”</i> she purrs, beckoning you closer. When you slip up beside her, Taivra reaches up from her throne to cup your cheek and pull you down into a passionate kiss. <i>“Care to sit with me a while, or was there something you desired?”</i>}");
+	//Respect 41-70: [pc.name]! Come here,”</i> she says warmly, setting her spear aside and beckoning you closer. When you approach, she reaches up from her throne to brush a hand across your cheek. <i>“Is there something you desire, my mate?”</i> //Respect 71+: <i>“Welcome back, my love,”</i> she purrs, beckoning you closer. When you slip up beside her, Taivra reaches up from her throne to cup your cheek and pull you down into a passionate kiss. <i>“Care to sit with me a while, or was there something you desired?”</i>
 	
 	if(rand(10) == 0) taivraMidConvoEvents();
 	processTime(2);
@@ -2876,18 +2878,26 @@ public function goToTaivrasChambersForSex():void
 
 	output("\n\n<i>“Tell me, what appeals to you offworlders?”</i> she purrs, grinding her hips against your crotch. Her words are a subtle affirmation that she’ll defer to you, letting you choose just how you’ll make love to your queenly lover...");
 	processTime(7);
+	
+	queenTaivraSexMenu();
+}
+public function queenTaivraSexMenu(canLeave:Boolean = false):void
+{
 	clearMenu();
 	//[Cowgirl] [Glory Fuck] [Tentacock Orgy] [Breed Her]
-	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.")
+	addButton(0,"RideCowgirl",cowgirlWivTaivra,undefined,"Ride: Cowgirl","Roll Taivra over and mount her, riding her thick, throbbing ovipositor until she’s bloating you with eggs... or at least, with her sticky fem-cum.");
+	
 	if(pc.hasCock() && pc.cockThatFits(taivra.analCapacity()) >= 0) addButton(1,"Glory Fuck",gloryFuckTaivra,undefined,"Glory Fuck","Get Taivra to ram her cock into the gloryhole in her wall and fuck the jiggling goo inside while you slide your cock up the queen’s tight little behind.");
 	else addDisabledButton(1,"Glory Fuck","Glory Fuck","You need a penis to access this scene.");
+	
 	if(pc.hasCock() && pc.cockThatFits(200) >= 0) addButton(2,"Breed Her",dockingBonerIntensifies,undefined,"Breed Her","Slide your cock into the queen’s ovipositor and flood her womb with your seed. The position might be a little awkward, but it’s worth it to make sure you have some royal offspring.");
 	else addDisabledButton(2,"Breed Her","Breed Her","You need a dick that will fit inside her dick for this to work.");
-
+	
 	if(pc.hasHardLightEquipped()) addButton(3,"HL Anal",taivraHardlightFunzies,undefined,"Hardlight Anal","Use your hardlight-enabled underwear to pound Taivra’s asshole. Her cockvine ‘tails’ will be in striking range of <i>your</i> [pc.vagOrAss]!");
 	else addDisabledButton(3,"HL Anal","Hardlight Anal","You need hardlight-enabled underwear for this.");
-
-	addDisabledButton(14,"Back","Back","There’s no way you’re getting out of here without satisfying your domineering partner at least once!");
+	
+	if(canLeave) addButton(14,"Leave",taivraMorningEventLeave,undefined,"Leave","Ignore Taivra and take your leave.");
+	else addDisabledButton(14,"Back","Back","There’s no way you’re getting out of here without satisfying your domineering partner at least once!");
 }
 
 //Cowgirl
@@ -3318,7 +3328,7 @@ public function taivraHardlightFunzies():void
 			if(!pc.isAss()) output("\n\n<i>“Be quiet,”</i>");
 			else output("\n\n<i>“Shut your mouth,”</i>");
 			output(" you demand.");
-			if(!pc.isBro()) output(" Taivra looks annoyed. You add, <i>“... unless you want to swallow dirt.”</i>");
+			if(!pc.isBro()) output(" Taivra looks annoyed. You add, <i>“...unless you want to swallow dirt.”</i>");
 
 			output("\n\nChoking up on her ponytail, you force the queen of the nyrea to the floor, face turned to the side and pristine neck rolling in the chamber filth. Her gorgeous breasts press against the ground, pushed outwards by her struggles and becoming visible around the sides of her hourglass frame.");
 			output("\n\n<i>“Ungh, yes!”</i> Taivra groans. <i>“That’s it!”</i> Her ass presses into you; she’s on tiptoe, putting the most elevation between her soot-smeared face and her round, white booty. The neglected egg-cock between her legs lashes and wobbles with each pounding you give her, flecking your lower half with nyrean fem-cum.");
@@ -3343,7 +3353,7 @@ public function taivraHardlightFunzies():void
 		output("\n\n<i>“Technique?”</i> you grunt back.");
 		output("\n\n<i>“Yeah,”</i> she replies. <i>“Something exotic. Remind me why I keep you around. Or are you satisfied to let your machine do the work?”</i>");
 		output("\n\nYour cheek tingles with shame - not least because she’s treating you like one of her harem boytoys. ‘Keep you around’, indeed! You pump your hips and strain against the brace of vines, irritated by the imperviousness of this woman and intent on showing her who’s in charge.");
-		output("\n\nTaivra laughs. <i>“That’s not technique. You’re just pushing harder. If that’s all you can do...”</i> She presses her queenly ass into you infuriatingly. <i>“... you could at least put some effort into it!”</i>");
+		output("\n\nTaivra laughs. <i>“That’s not technique. You’re just pushing harder. If that’s all you can do...”</i> She presses her queenly ass into you infuriatingly. <i>“...you could at least put some effort into it!”</i>");
 		output("\n\nThe nyrea’s big, white butt jostles you as she shoves, using the chamber wall for leverage, smugly teasing herself with your toy while she pushes you around to show off her own strength. You endure it, annoyed, while she slaps against your crotch, but can’t hold steady for long. Taivra’s jostling gets worse and worse until, fuming, you stop resisting and let her force your crotch all the way back, almost out of her hole - and then you jam it home!");
 		output("\n\nTaivra shudders as your dildo spears her. <i>“Ah, so you are a proper female after all, and not a pretty harem boy!”</i> she taunts. She pushes you back again, harder; you answer her with another forceful penetration. Soon, the two of you are in a rhythm of push-counterpush, with Taivra thrusting so hard she nearly forces you out of her hot hole and you pumping right back in with enough power to reset her ass for another push. Her parasitic prick waits in position, penetrating you in turn whenever Taivra shoves you back. For your part, you intensify on every thrust, eager to show the randy queen you’re her superior in sex as well as combat.");
 	}
@@ -3595,6 +3605,53 @@ public function taivrasEggStuffedBeta(response:String = "intro"):void
 			addButton(0, "Next", move, rooms[currentLocation].eastExit);
 			break;
 	}
+}
+
+// Appears if you sleep in the queens bed after marrying her
+public function taivraMorningEvent():void
+{
+	clearOutput();
+	showTaivra(true);
+	author("Stygs");
+	output("As you slowly open your eyes, you realize that the room has become a lot darker than you remember. The only light now seems to stem from some fungi patches on the wall, filling the chamber with an eerie gloom. While trying to figure out what happened, you suddenly become aware of someone else moving next to you.");
+	output("\n\n<i>“Ah, [pc.name]. Finally awake?”</i> says a familiar voice in the gloom right next to you. Shifting around, you see the silhouette of Queen Taivra lying in the silken blankets besides you, an old book in her hands and a smile on her face.");
+	output("\n\n<i>“I have to admit, you star walkers have a surprisingly deep sleep.”</i> she says, putting the book away and slowly turning to face you. ”</i>I feared I would have had to leave again before you woke up.”</i>");
+	if (flags["TAIVRA_OLD_BOOK"] == undefined)
+	{
+		output("\n\nYou tell her you are surprised to see her read a book. <i>“Oh, that?”</i> the nyrean queen suddenly breaks into laughter. <i>“Don’t tell me you’re surprised I can read? Did you think we were illiterate savages just because we live underground?”</i> ");
+		output("\n\nShe pauses for a moment before she continues, now a somber tone in her voice. <i>“To be truthful, most of my private library stems from the myr, traded or raided from the surface. As far as I can tell, our people never cared much about writing or the arts.”</i>");
+		output("\n\nYou quickly apologize and explain that you didn’t intend to insult her; you just didn’t expect her to be able to read in the darkness.");
+		flags["TAIVRA_OLD_BOOK"] = 1;
+	}
+	else output("\n\nIt takes her a moment to note the confused look on your face.");
+	output(" <i>“Ah, of course”</i> your lover answers, <i>“I tend to forget that offworlders are not as adapted to the twilight of the caves as we are.”</i>");
+	output("\n\nWithout a further word, Taivra gets up and steps over to a lantern in the center of the room, opening its blinds. In a moment’s notice, the chamber is flooded with a pleasant blue light. <i>“Better now, my dear? Can’t have you stumbling around in the dark.”</i>");
+	output("\n\nWith the light illuminating her now, you can’t fail to notice that she isn’t wearing any of her usual attire – nor can you fail to notice the quivering tentacles behind her, giving away her excitement despite the otherwise calm demeanor.");
+	output("\n\nA moment later she’s back to lying beside you with a lecherous smile on her face. <i>“So, [pc.name], I hope you’re not planning on leaving anytime soon.”</i> she coos, slowly cupping one of her breasts to accentuate her statement while one of her tentacles starts wrapping around your [pc.legOrLegs]. It’s pretty obvious what she expects from you are this point.");
+	output("\n\nSo, how do you want to make love to your royal ");
+	if (flags["BEAT_TAIVRA_TIMESTAMP"] == undefined) output("spouse?");
+	else output("partner?");
+	processTime(5);
+	pc.createStatusEffect("Taivra Bed Event Cooldown", 0, 0, 0, 0, true, "", "", false, 1440);
+	
+	// Remeber to update goToTaivrasChambersForSex too if you change anything here
+	queenTaivraSexMenu(true);
+}
+
+public function taivraMorningEventLeave():void
+{
+	clearOutput();
+	showTaivra(true);
+	author("Stygs");
+	output("As much as you want to spend more time with your alien wife, you have an important race to win. After all, who knows what your rival is doing right now...");
+ 	output("\n\nQueen Taivra is obviously very displeased with your decision, but having met [rival.name] herself, it doesn’t take much to convince her. You are quick to assure her that you will come back as soon as your quest allows it.");
+	output("\n\nAs the queen leaves the room, you can’t help but feel ")
+	if(pc.isNice()) output("a pang of guilt for the poor betas");
+	else if(pc.isMischievous()) output("a bit of pity for those in her harem");
+	else output("malicious glee thinking about the slaves");
+	output(" that are now going to serve as your substitutes.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 /*

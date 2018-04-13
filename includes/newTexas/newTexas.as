@@ -11,6 +11,8 @@ public function newTexasEmail():void
 //Landing on New Texas (First Time)
 public function landOnNewTexas():void
 {
+	showBust("NEW_TEXAS");
+	showName("NEW\nTEXAS");
 	if(flags["LANDED_ON_TEXAS"] == undefined)
 	{
 		flags["LANDED_ON_TEXAS"] = 1;
@@ -190,8 +192,7 @@ public function visitorDeskApproach():void
 //output("\n\nTrying to Go Through Customs while Armed");
 public function customsFucksYourShitUp():void
 {
-	currentLocation = "TEXAS CUSTOMS";
-	generateMapForLocation(currentLocation);
+	moveTo("TEXAS CUSTOMS");
 	clearOutput();
 	author("Savin");
 	showName("\nOGRAM");
@@ -319,7 +320,7 @@ public function talkToOggyAbootTreatManz():void
 	output("\n\nOgram shrugs, <i>“Hey, if you want the tourist pitch, talk to Amma. I just live here.”</i>");
 	output("\n\n<i>“But you got the Treatment,”</i> you suggest, indicating his bulging muscles and bull-horns.");
 	output("\n\n<i>“Heh. Yeah. Kind of a snap decision, but... well, it’s actually pretty cool, you know. I was pretty ripped before -- kind of a requirement when you’re a bodyguard -- but </i>damn<i> that stuff jacked my muscles out. Could bend bars, these guns,”</i> he says, flexing. <i>“Plus I put on another foot of height and got these love-handles.”</i> He jerks a thumb towards his enormous horns.");
-	output("\n\n<i>“Pretty weird how different it works on guys and gals, though. When I got it, I figured I was gonna get huge tits and turn into a bimbo. Never actually occurred to me to talk to a bull around here, I guess. Didn’t see one ‘til after I ran into the gift shop and Treated up.”</i>");
+	output("\n\n<i>“Pretty weird how different it works on guys and gals, though. When I got it, I figured I was gonna get huge tits and turn into a bimbo. Never actually occurred to me to talk to a bull around here, I guess. Didn’t see one till after I ran into the gift shop and Treated up.”</i>");
 	output("\n\nOg leans back in his chair, locking his fingers behind his head. <i>“Can’t complain, really. After I got it, they let me have the run of the place. Any girl I wanted spread her legs for nothing. Especially if you catch ‘em in the milk barns... they practically beg for it, all hooked up to their milkers. Should hear Amma when she’s getting milked... any cock in a storm, that girl.”</i>");
 	output("\n\n<i>“Especially if it’s yours!”</i> she calls over with a wink.");
 	output("\n\nOgram grins, his pants visibly straining.");
@@ -369,7 +370,7 @@ public function oggysOldJob():void
 	output("\n\n<i>“I didn’t say anything!”</i>");
 	output("\n\n<i>“Bodyguarding. I was a bodyguard, basically. Got to wear the black suit and sunglasses, carry a machine pistol in my briefcase. It was pretty great. People I worked for were mostly scum, big corp. executives with enough creds to build their mansions out of their tax return slips. Kiha, JoyCo, Steele, you name it. But I got to go all over the galaxy, see cool aliens. Blow some up. Fucked others. Sometimes even fuck the people I was escorting.”</i>");
 	output("\n\n<i>“So you </i>were<i> a...”</i> Amma starts to laugh, cut off when Og pushes a button on his console. She shudders. ");
-	output("\n\n<i>“Hey, don’t judge a guy for working hard to get his bonuses.”</i> He sighs, leaning back in his chair and propping his legs up. <i>“Could have had a worse gig. But I like what I do here. New Texas’s been good to me.... wouldn’t go back to that for the world.”</i>");
+	output("\n\n<i>“Hey, don’t judge a guy for working hard to get his bonuses.”</i> He sighs, leaning back in his chair and propping his legs up. <i>“Could have had a worse gig. But I like what I do here. New Texas’s been good to me... wouldn’t go back to that for the world.”</i>");
 	processTime(5);
 	talkToOggy(false);
 	removeButton(2);
@@ -491,7 +492,7 @@ public function askAmmaAbootZeTreatManz():void
 	output("\n\n<i>“Is it reversible?”</i>");
 	output("\n\nAmma blinks, completely taken by surprise. <i>“Why would you want to stop being Treated? It’s the best!”</i>");
 	output("\n\n<i>“That’s not an answer,”</i> you say.");
-	output("\n\nShe fidgets. <i>“Uh, well, I don’t think it is. Probably not. I dunno, nobody’s ever really wanted to! It’s so nice... I couldn’t imagine living without my Treatment. Life,”</i> she pauses, leaning in to whisper <i>“and sex.... would be sooooo boring. It makes the pleasure-feelers in your brain go wild, and your endor... uh, endarfins...”</i>");
+	output("\n\nShe fidgets. <i>“Uh, well, I don’t think it is. Probably not. I dunno, nobody’s ever really wanted to! It’s so nice... I couldn’t imagine living without my Treatment. Life,”</i> she pauses, leaning in to whisper <i>“and sex... would be sooooo boring. It makes the pleasure-feelers in your brain go wild, and your endor... uh, endarfins...”</i>");
 	output("\n\n<i>“Endorphins,”</i> Ograms says, not looking up from his terminal.");
 	output("\n\n<i>“Endorphins! You get lots more of them, too. Did I mention that it made sex feel soooo good? And lactation! Oh, wow, giving milk is just the best... I feel bad for my poor bulls, who never get to do it!”</i>");
 	processTime(7);
@@ -623,7 +624,7 @@ public function spitRoastAmmoOnYerDicks():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("AMMA","OGRAM");
+	showBust("AMMA_NUDE","OGRAM_NUDE");
 	author("Savin");
 	showName("AMMA &\nOGGY");
 	var x:int = pc.cockThatFits(chars["AMMA"].vaginalCapacity(0));
@@ -680,7 +681,7 @@ public function spitRoastAmmoOnYerDicks():void
 public function worshipZeBullCawk():void
 {
 	clearOutput();
-	showBust("OGRAM","AMMA");
+	showBust("AMMA_NUDE","OGRAM_NUDE");
 	author("Savin");
 	showName("OGGY &\nAMMA");
 	output("<i>“What do you two " + pc.mf("","girls ") + "say about giving this bad boy a little love, huh?”</i> Ogram says, his fingers eagerly working his belt off. He pulls it, and Amma almost instantly has her hands around his pants, tugging them down with aplomb to reveal the huge swell of her lover’s growing bovine erection, the long, slender pole of cow-meat rapidly rising to its full, intimidating height. Amma takes a long, full whiff of him, her overburdened chest swelling as she drinks in the potent, masculine scent of her lover’s animalistic erection.");
@@ -1048,9 +1049,8 @@ public function savinAbusesYerButtBecauseThatsHowHeLikesIt():void
 	var iPriceThreshold:int = 150;
 
 	// If threshold is surpassed before the cumming is done. 50% Chance:
-	var cumEstimate:Number = 0;
-	if(pc.cumQ() * 3 >= pc.currentCum()) cumEstimate = pc.cumQ() * 3;
-	else cumEstimate = pc.currentCum();
+	var cumEstimate:Number = cumMilkerCumEstimate();
+	
 	if (cumCreditValue(cumTotal + cumEstimate) > iPriceThreshold)
 	{
 		output("\n\nAll you can do is tightly grip the vaulting horse supporting you, groaning and crying in pleasure as the machine milks your prostate minute after minute.");
@@ -1105,6 +1105,8 @@ public function sureSellMyCumBabiesFarAndWide(amount:Number = 0):void
 	
 	// Insert modular function for cum value:
 	var x:int = cumCreditValue(amount);
+	// Cap the value to prevent odd output
+	if(x > 250000000) x = 250000000;
 	
 	clearOutput();
 	author("Savin");
@@ -1344,7 +1346,7 @@ public function stephIrsonEp3Pt2():void
 	stephHeader(3);
 	
 	output("Steph sets her big bucket down, cracks her knuckles, and wipes the milk from her lips. <i>“Right, then. That’s a Tehan sheila for you. Now, we’re going to have to be a little more careful up ahead: we’re on a quest to find a Tehan male. Now, these bovine ladies we’ve met so far are typical of their sex here: quiet, content, eager to please. But the studs here on Grand Teh are a bit more aggressive. They’re slightly outnumbered by the females, with each bull able to sate his base urges on a whim, spreading their wild oats freely among all the girls. But the Treatment’s made ‘em big, burly, and eager to go toe-to-toe on a hairpin.”</i>");
-	output("\n\nAs she’s talking, Steph’s walks out of the stall and back into the barn proper. Her <i>“quest”</i> takes her all the way to the other end of the barn, where in the background of her narration, you can see a huge, muscular man pounding away at one of the harnessed-up cowgirls, plunging his cock into her spread pussy as the automated milkers work their magic on her. Seeing the proceedings out of the corner of her gray eye, Steph freezes mid-step, hunching down and whispering to the camera drone, <i>“Alright, here we go. I’m going to have to be very, very careful not to earn this bull’s ire. Small words, a non-threatening tone.... I absolutely do not want to be seen as a threat, especially during what must be mating season here on Teh.”</i>");
+	output("\n\nAs she’s talking, Steph’s walks out of the stall and back into the barn proper. Her “quest” takes her all the way to the other end of the barn, where in the background of her narration, you can see a huge, muscular man pounding away at one of the harnessed-up cowgirls, plunging his cock into her spread pussy as the automated milkers work their magic on her. Seeing the proceedings out of the corner of her gray eye, Steph freezes mid-step, hunching down and whispering to the camera drone, <i>“Alright, here we go. I’m going to have to be very, very careful not to earn this bull’s ire. Small words, a non-threatening tone.... I absolutely do not want to be seen as a threat, especially during what must be mating season here on Teh.”</i>");
 	output("\n\nIn proper <i>Galactic Huntress</i> fashion, Steph starts to creep up toward the bull, stealthily making her way up behind his pistoning hips. The camera drone floats around to get a better picture of him: mostly human, but freakishly tall, with massive bull horns growing from his brow. The man’s muscular to the point of a bodybuilder, with a thick layer of body hair that clings tightly to his darkly tanned skin. His jaw is locked in a frown of effort, and he’s grunting deeply, almost like a real bull. Every powerful hip-thrust sends the cow-girl rocking in her harness, her assflesh rippling with the impacts.");
 	output("\n\n<i>“G’day, mate!”</i> Steph says suddenly from the stud’s side, leaning against the stall wall.");
 	output("\n\n<i>“‘Sup,”</i> he answers, not breaking pace nor looking up.");
@@ -1514,9 +1516,8 @@ public function yesGoMilkarGo(amount:Number = 0):void
 	if(flags["MILK_BARN_COCKMILKER_SCANNED"] != undefined) flags["MILK_BARN_COCKMILKER_SCANNED"] = undefined;
 
 	clearMenu();
-	var cumEstimate:Number = 0;
-	if(pc.cumQ() * 3 >= pc.currentCum()) cumEstimate = pc.cumQ() * 3;
-	else cumEstimate = pc.currentCum();
+	var cumEstimate:Number = cumMilkerCumEstimate();
+	
 	// Uh-oh, silly mode
 	if(amount + cumEstimate > 4000000)
 	{
@@ -1531,6 +1532,11 @@ public function yesGoMilkarGo(amount:Number = 0):void
 		addButton(0,"Yes",yesFixDaMilkar);
 		addButton(1,"No",noFixDaMilkar);
 	}
+}
+public function cumMilkerCumEstimate():Number
+{
+	if(pc.cumQ() * 3 >= pc.currentCum()) return (pc.cumQ() * 3);
+	return pc.currentCum();
 }
 
 // Better safe than sorry--end it nao!
@@ -1737,6 +1743,11 @@ public function ohNoSillyCumFloods():void
 	output("\n\nYou close your eyes and your vision hazes...");
 	
 	processTime(5);
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
 	
 	clearMenu();
 	addButton(0,"Next",ohNoSillyCumFloodsPtII);
@@ -1885,7 +1896,7 @@ public function carrieBlowjobsGo():void
 		else if(cumQ < 1500) 
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. You go on and on, riding your intense pulses, intent on pumping every last drop of your thick, generous seed into her; the next moment she pulls out, and carefully directs your throbbing dick at the large glass jar between her knees. You shudder and huff, blowing the last half of your load into it, coaxed on by her wringing, rubbing hand. You exhale with pure contentment when she tugs out the last of it, oozing into the almost-full container.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A lil’ something for the bank... and a lil’ something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
 			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
 			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
@@ -1904,7 +1915,7 @@ public function carrieBlowjobsGo():void
 		output("\n\n<i>“Oh, no!”</i> giggles Carrie, sounding honestly surprised by your question. <i>“Sucking dick is its own reward, silly. Well, maybe not for you,”</i> she goes on, brow crinkling " + (hours >= 6 && hours < 20 ? "as a gray cloud vaguely intrudes on an eternally sunlit mind" : "as crickets chirp in the night") + ". <i>“But for cows it’s... the taste, and... when it touches the back of your throat, and... how happy and sweet and relaxed it makes you bulls...”</i> her eyes have gone a bit vague.");
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
-		else if(pc.tallness < 60) output("li’l ");
+		else if(pc.tallness < 60) output("lil’ ");
 		output(pc.mf("guy","girl") + ", least when I’m not on shift,”</i> she says at last with a grin, picking herself ");
 		if(cumQ >= 500) output("and her full, gloopy jar ");
 		output("up.");
@@ -2120,7 +2131,7 @@ public function carrieBlowjobsGo():void
 		else if(cumQ < 1500)
 		{
 			output("\n\nYour [pc.cock " + x + "] swells and you exhale hoarsely as you orgasm, hot [pc.cumNoun] surging into the cow girl’s suck in heavy, juicy bursts. She swallows wetly, eyes closed as she aids your cascading high on with drags of her lips and close slides of her tongue. You go on and on, riding your intense pulses, intent on pumping every last drop of your thick, generous seed into her; the next moment she pulls out, and carefully directs your throbbing dick at the large glass jar between her knees. You shudder and huff, blowing the last half of your load into it, coaxed on by her wringing, rubbing hand. You exhale with pure contentment when she tugs out the last of it, oozing into the almost-full container.");
-			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A li’l something for the bank... and a li’l something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
+			output("\n\n<i>“Mmm,”</i> she says happily, licking her lips as she slaps a lid down on your “donation”. <i>“A lil’ something for the bank... and a lil’ something for me. Deserve a reward for all the hard work I do with the milking machine, don’cha think?”</i>");
 			if(pc.isTreatedBull()) output(" You grin down at her absurdly, feeling nothing but shining fondness and warmth for the auburn cock-polisher.");
 			else output(" You grin down at the auburn cock-polisher, contentment throbbing through you.");
 		}
@@ -2135,7 +2146,7 @@ public function carrieBlowjobsGo():void
 		//merge
 		output("\n\n<i>“Swing back around anytime ");
 		if(pc.tallness >= 72) output("big ");
-		else if(pc.tallness < 60) output("li’l ");
+		else if(pc.tallness < 60) output("lil’ ");
 		output("guy, least when I’m not on shift,”</i> she says at last with a grin, picking herself ");
 		if(cumQ >= 500) output("and her full, gloopy jar ");
 		output("up.");
@@ -2230,8 +2241,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// First / Threesome
 		case "shower intro":
 			rooms["516"].removeFlag(GLOBAL.NPC);
-			currentLocation = "NT SHOWER HOUSE";
-			generateMap();
+			moveTo("NT SHOWER HOUSE");
 			
 			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
@@ -2271,7 +2281,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			
 			processTime(2 + rand(4));
 			pc.girlCumInMouth(getCarriePregContainer());
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
 			// [pb]
 			clearMenu();
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome p2");
@@ -2335,8 +2345,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower threesome end");
 			break;
 		case "shower threesome end":
-			currentLocation = "516";
-			generateMap();
+			moveTo("516");
 			
 			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
@@ -2356,8 +2365,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 		// Repeat
 		case "shower repeat":
 			rooms["516"].removeFlag(GLOBAL.NPC);
-			currentLocation = "NT SHOWER HOUSE";
-			generateMap();
+			moveTo("NT SHOWER HOUSE");
 			
 			showLocationName();
 			showBust("HORISHA_AND_PECK");
@@ -2459,8 +2467,8 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			// Maybe Twins?
 			var ppCora:PregnancyPlaceholder = getCarriePregContainer();
 			pc.girlCumInMouth(ppCora);
-			applyPussyDrenched(pc);
-			applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
+			pc.applyPussyDrenched();
 			// Lust decreased by 50%
 			pc.lust(-50);
 			// [pb]
@@ -2486,8 +2494,7 @@ public function carrieSoothingShowerGo(response:String = "intro"):void
 			addButton(0, "Next", carrieSoothingShowerGo, "shower fivesome p4");
 			break;
 		case "shower fivesome p4":
-			currentLocation = "516";
-			generateMap();
+			moveTo("516");
 			
 			showLocationName();
 			showBust("CARRIE_NUDE", "CORA_NUDE");
@@ -2608,8 +2615,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			useDaMilkarMenu();
 			break;
 		case "sure":
-			currentLocation = "NT BOTTLE TRAIL";
-			generateMap();
+			moveTo("NT BOTTLE TRAIL");
 			
 			showLocationName();
 			showBust("CARRIE");
@@ -2617,7 +2623,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			output("You slip your hand into Carrie’s own small, warm mitt and stroll with her beyond the barn and up a little trail leading eastwards.");
 			output("\n\nIt really is extremely pleasant on New Texas. There’s a timeless quality to the prairies and vast sky stretching out in all directions, as if nothing could possibly trouble you so long as you empty your mind and let your thoughts drift into the dusty green and powdery blue. Every huge, widely spaced building you can see looks well used, cared for... well, except <i>that</i> one.");
 			output("\n\n<i>“What’s that?”</i> you ask, pointing at the derelict skeleton of concrete and leaning wood.");
-			output("\n\n<i>“It was gonna be the semen bottling facility for Big T’s ranch,”</i> sighs Carrie, kicking at a pebble. <i>“We export the stuff you know, it’s almost as prized as our milk in the Beyond. But the bulls who were constructing it got transferred to Berylhead and nobody’s picked it up since, cuz there aren’t really enough bulls ‘round here to justify it. So now it’s just me and my dinky lil milker.”</i>");
+			output("\n\n<i>“It was gonna be the semen bottling facility for Big T’s ranch,”</i> sighs Carrie, kicking at a pebble. <i>“We export the stuff you know, it’s almost as prized as our milk in the Beyond. But the bulls who were constructing it got transferred to Berylhead and nobody’s picked it up since, cuz there aren’t really enough bulls ‘round here to justify it. So now it’s just me and my dinky lil’ milker.”</i>");
 			// Male Treated:
 			if(pc.isTreatedBull()) output("\n\nIt hurts you on some deep, profound level to see a heavy lifting job like that left unfinished...");
 			
@@ -2629,8 +2635,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(1, "Shame", carrieMilkerBadEnd, "shame", "Shame", "Damn shame.");
 			break;
 		case "shame":
-			currentLocation = "516";
-			generateMap();
+			moveTo("516");
 			
 			showLocationName();
 			showBust("CARRIE", "CORA");
@@ -2663,8 +2668,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "build it":
-			currentLocation = "NT BOTTLE PLANT";
-			generateMap();
+			moveTo("NT BOTTLE PLANT");
 			
 			showLocationName();
 			showBust("CARRIE");
@@ -2710,7 +2714,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			}
 			output(" with a loaded hamper basket after... how long has it been? Sweat is pouring down your back, but when you stand back from the building site you see you’ve barely even begun. You just want to keep going.");
 			output("\n\n<i>“Steady now, big " + pc.mf("guy","girl") + ",”</i> Carrie laughs, sitting herself down on the grass. <i>“Have a bite to eat.”</i> As it transpires, almost all of the cold picnic lunch she’s brought is for you. <i>“Course! I’ll be getting my vitamins a different way.”</i>");
-			output("\n\nYou lean back upon a half-constructed wall a little bit later, gazing beatifically up at the giant sky as Carrie hollows her cheeks around your [pc.cockBiggest], pulling and kneading at it in her warm, saliva-coated embrace with ardent bobs of her auburn head. Her slurps and lusty hums meld with you approving groans the further she manages to get her lips down your throbbing length, and you scritch her behind a flat ear every time her rough, wet tongue slides over a particularly good spot, a tactic that makes her flop at the grass with her tail happily. You glove your [pc.cockHeadBiggest] in her unresisting throat with firm, gentle pushes time and again, glorying in the tightness there");
+			output("\n\nYou lean back upon a half-constructed wall a little bit later, gazing beatifically up at the giant sky as Carrie hollows her cheeks around your [pc.cockBiggest], pulling and kneading at it in her warm, saliva-coated embrace with ardent bobs of her auburn head. Her slurps and lusty hums meld with your approving groans the further she manages to get her lips down your throbbing length, and you scritch her behind a flat ear every time her rough, wet tongue slides over a particularly good spot, a tactic that makes her flop at the grass with her tail happily. You glove your [pc.cockHeadBiggest] in her unresisting throat with firm, gentle pushes time and again, glorying in the tightness there");
 			if(pc.balls > 0) output(" whilst her tongue flicks over your [pc.balls]");
 			output(" until it eventually becomes too much, and you unload gloriously, fluming [pc.cum] directly into her gut with heavy, juicy pulses.");
 			output("\n\nYou plump the cowgirl’s belly out, withdraw to fill her mouth with [pc.cumVisc] approval, and when she can’t swallow anymore she milks the rest out with firm kneads of her smooth hands.");
@@ -2727,8 +2731,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", carrieMilkerBadEnd, "build it p3");
 			break;
 		case "build it p3":
-			currentLocation = "NT SHOWER HOUSE";
-			generateMap();
+			moveTo("NT SHOWER HOUSE");
 			
 			showLocationName();
 			showBust("CARRIE");
@@ -2761,8 +2764,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "go back":
-			currentLocation = "NT BOTTLE PLANT";
-			generateMap();
+			moveTo("NT BOTTLE PLANT");
 			
 			showLocationName();
 			showBust("CORA");
@@ -2824,8 +2826,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "build it repeat":
-			currentLocation = "NT BOTTLE PLANT";
-			generateMap();
+			moveTo("NT BOTTLE PLANT");
 			
 			showLocationName();
 			clearBust();
@@ -2852,8 +2853,7 @@ public function carrieMilkerBadEnd(response:String = "intro"):void
 			addButton(0, "Next", carrieMilkerBadEnd, "build it p2");
 			break;
 		case "bad end":
-			currentLocation = "NT BUNKHOUSE";
-			generateMap();
+			moveTo("NT BUNKHOUSE");
 			
 			showName("A NEW\nSTUD");
 			showBust("CORA");
@@ -3080,7 +3080,7 @@ public function fantasyOutput(fantasies:Array,x:int):void
 		else output("woman");
 		output(" would insist on keeping her infestation secret, of course, embarrassed but unwilling to give up the pleasure.");
 
-		output("\n\nOf course, a secret is no fun unless shared... Penny wouldn’t be able to endure it if she couldn’t use her new cock with Flahne, fucking whenever she can get time off, dumping load after load into the the slutty rahn. And most of the seed would be digested harmlessly, yes, but... you imagine a few hardy mutations among the billions and billions of Penny’s spores managing to take root after months of lovemaking, growing like bacteria in agar, combining with the gooey woman. You picture her translucent body discolored by verdant growth deep inside that slowly forces out the orange, blossoming and spreading until her goopy locks turn leafy and green. And then, one day, a cute female rusher blunders into the office while cockvine-Flahne is playing with herself, and the shameless rahn coaxes the blithe girl into a one-night stand. As the two climax together, Flahne’s ovipositor unloads the first of a new generation of hybrids into her lover....");
+		output("\n\nOf course, a secret is no fun unless shared... Penny wouldn’t be able to endure it if she couldn’t use her new cock with Flahne, fucking whenever she can get time off, dumping load after load into the slutty rahn. And most of the seed would be digested harmlessly, yes, but... you imagine a few hardy mutations among the billions and billions of Penny’s spores managing to take root after months of lovemaking, growing like bacteria in agar, combining with the gooey woman. You picture her translucent body discolored by verdant growth deep inside that slowly forces out the orange, blossoming and spreading until her goopy locks turn leafy and green. And then, one day, a cute female rusher blunders into the office while cockvine-Flahne is playing with herself, and the shameless rahn coaxes the blithe girl into a one-night stand. As the two climax together, Flahne’s ovipositor unloads the first of a new generation of hybrids into her lover....");
 	}
 	//Myrelli fantasy requires PC has toured the Gildenmere thollum
 	else if(fantasies[x] == 1)
@@ -3103,11 +3103,90 @@ public function fantasyOutput(fantasies:Array,x:int):void
 	//Tavros Station fallback if PC does not qualify for other scenes
 	else if(fantasies[x] == 3)
 	{
-		output("\n\nYour mind wanders to your last time on Tavros station... to all the well-to-do women, artificially young and beautiful, vacationing in the high-class residential sections for a taste of the spacer’s life and studiously avoiding the opportunity to mingle with actual explorers. One spoiled young Venus walks from your vault of memory, with gorgeous blue eyes and straight brown hair, slim and elegant in her million-credit sundress. You’re sure you must’ve caught a brief glimpse of her on the streets; a woman like that sniffs at bars and would never look twice at a lowly rusher. A child of high finance; a trust fund baby, killing time by breaking hearts and playing at adventure until daddy dies and leaves her a company to run.");
+		output("\n\nYour mind wanders to your last time on Tavros station... to all the well-to-do women, artificially young and beautiful, vacationing in the high-class residential sections for a taste of the spacer’s life and studiously avoiding the opportunity to mingle with actual explorers. One spoiled young Venus walks from your vault of memory, with gorgeous blue eyes and straight brown hair, slim and elegant in her million-" + (isAprilFools() ? "dogecoin" : "credit") + " sundress. You’re sure you must’ve caught a brief glimpse of her on the streets; a woman like that sniffs at bars and would never look twice at a lowly rusher. A child of high finance; a trust fund baby, killing time by breaking hearts and playing at adventure until daddy dies and leaves her a company to run.");
 		output("\n\nYou imagine your spoiled princess ordering an insemination kit from New Texas, fooling herself that she’s doing it to continue the family name but really just wanting a baby to entertain her. When your parasite spawn pops out several months earlier than a child, it takes her by surprise in her nice bed. Before she can do anything, it attaches. Pull and pull as she might, her new tail won’t come off - and when the nerve connection establishes, her pulling takes on a different urgency. Her first cumshot is truly world-changing; daddy’s girl spends a week inside, blowing off dates and phone calls and just masturbating until her hands chafe, flooding her brain with the parasite’s hormones and fantasies.");
 		output("\n\nIn your daydream, jerking off can only satisfy for so long; soon your convert goes on the prowl. Where she used to avoid the low dives full of spacers, now she seeks them out. In a cute, slutty halter top and hip-hugger pants, green vine curling excitably over her ass, she chats up planet rushers at the bar, charming them with her boughten beauty and selecting only those women and herms headed off-station before the parasitic pregnancies will show. ");
 		if(pc.hasVagina()) output("You imagine catching her eye in one such bar. She gives you the flirty smile of a shyster spotting a mark and saunters over to your table, making small talk and ensuring you see the string of her skimpy thong rising above her pant waist. When you tell her that you’ll be blasting soon, she leans in and breathlessly offers a night of pleasure before you go. She takes you to a room rented under a fake name and there shows you her gorgeous body. Your tainted princess expects surprise when her tail blooms to reveal the throbbing phallus attached to her lovely female form, and you play along, letting her romance you and convince you to lie back and allow her to do all the work. As she idly strokes your neglected [pc.cockNounSimple] and it spurts over her teardrop breasts, her first load of many hits your cervix....");
 		else output("Giving out a fake name, she brings her mark to a rented room. She becomes a very talented liar, passing off the throbbing cock in her tail as an exotic body mod. As the poor rusher girl reclines and shudders in orgasm, your tainted princess deposits a load of your parasitic grandchildren in the girl’s pussy... the first load of many.");
 	}
 	//end of fantasy list
+}
+
+public function cameronCockMilker():void
+{
+	clearOutput();
+	clearMenu();
+	author("Savin");
+	showName("CARRIE\n& CAMERON");
+	showBust("CAMERON_NUDE", "CARRIE");
+	
+	output("As you open the door to head into the milker's stall, you hear voices inside: Carrie's, of course, and another feminine voice. At first, you think it might be ");
+	if (flags["CORA_SUCKED"] != undefined) output("her sister");
+	else if (flags["MET_ZEPHYR"] != undefined) output("Zephyr");
+	else output("a futa cow-girl");
+	output(", but when you throw open the door and saunter in, you find the familiar figure of an effete cow-boi bending over with his overalls half-off, his thick, spankable booty pushed out in your direction.");
+	output("\n\n<i>“O-oh! Hey, uh, howdy [pc.name],”</i> Cameron half-chuckles, winking at you between his legs. His slender bovine tail swishes, rising submissively as you draw near.");
+	output("\n\n<i>“Oh shucks, I guess I forgot to lock the door. Hi, [pc.name],”</i> Carrie says, bouncing on her heels. <i>“Gonna have to wait for a bit if you wanna use the milker. Cam here's just about to strap in.”</i>");
+	output("\n\nCam blushes a little, though you can see the slab of meat between his legs twitching as he pulls his overalls down, showing his dark donut to you and Carrie. The milker attendant dutifully grabs a bottle of lube and snaps on a glove, telling Cameron to climb onto the machine. She gives you a saucy look while the little faux-cow gets ready, and uses her thumbs to pry apart his soft ass-cheeks, almost invitingly...");
+	
+	pc.lust(10);
+	pc.createStatusEffect("Cameron Milker Cooldown", 0, 0, 0, 0, true, "", "", false, 24*60);
+	
+	addButton(0, "Participate", megaMilkCameron, undefined, "Participate", "You're sure Cam wouldn't mind you spending a little quality time together, just the three of you.");
+	addButton(1, "Leave", imLactoseIntolerant, undefined, "Leave", "You'll come back later...");
+}
+
+public function imLactoseIntolerant():void
+{
+	clearOutput();
+	clearMenu();
+	author("Savin");
+	showName("CARRIE\n& CAMERON");
+	showBust("CAMERON_NUDE", "CARRIE");
+	
+	output("You shake your head and turn to leave. You've got better things to do than watch Cameron get reamed.");
+	output("\n\n<i>“Oh well,”</i> Carrie sighs, before delivering a sharp slap to the faux-cow's ass. <i>“Don't even think about getting soft, mister!”</i>");
+	
+	//Disable entering male milker while he's getting his bum beaten up
+	processTime(5);
+	pc.createStatusEffect("Cameron Getting Milked", 0, 0, 0, 0, true, "", "", false, 60);
+	currentLocation = "511";
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
+}
+
+public function megaMilkCameron():void
+{
+	clearOutput();
+	clearMenu();
+	author("Savin");
+	showName("CARRIE\n& CAMERON");
+	showBust("CAMERON_NUDE", "CARRIE_NUDE");
+	
+	output("You take her up on the invitation, locking the stall door behind you and sauntering on over to the milker station. Cameron looks at you over his shoulder, eyes wide in surprise, until Carrie reaches down and grabs his cock, wrapping her slender, gloved fingers around his thick equine shaft. ");
+	output("\n\n<i>“Stop squirmin', Cam,”</i> she chides, her voice taking on a much more authoritative, matronly tone than you're familiar with. <i>“Or that trappy little pony cock of yours is gonna end up shootin' all over.”</i>");
+	output("\n\nCameron whines, but eventually Carrie's able to guide his semi-hard shaft into the proper receptacle. Once she's fastened the suction cup to his flared crown, Carrie squirts a healthy glob of lube onto the palm of her glove and starts spreading it around Cam's ass, swirling two fingers around his tailhole to make sure it's nice and coated. When it is, Carrie handily slides her digits right into Cameron's pucker, making the cow-boi squeal and buck his hips against the harness. ");
+	output("\n\n<i>“Good boy,”</i> Carrie whispers, starting to move her hand. <i>“Just relax that little cock-hole for me, 'kay?”</i>");
+	output("\n\nTurning to you with a little smirk, she adds, <i>“Cam here's one of my most regular donors,”</i> she tells you, still thrusting her fingers into Cameron's ass. <i>“His ass is more sensitive than my pussy, and I'm pretty sure his Treatment got rid of his refractory. These balls of his are my succulent little cum-pumps until they're drained so dry, you'd think he's got a pair of raisins down there.”</i>");
+	output("\n\nAs she's speaking, Carrie's other hand reaches down and cups Cam's balls, caressing the plump black orbs as tenderly as her other hand is rough. As if on cue, Cameron's body tenses, he sucks in a sharp breath, and lets it out with a long, lurid moan. You look under the rig and see his dick throbbing in the sheath, spilling a thick wad straight down the collection tube. You her a wet sound from his butt, and look back to see his donut clinging to Carrie's fingers like he's trying to pull her whole fist in there. ");
+	output("\n\n<i>“I think he's ready for something more... masculine,”</i> Carrie purrs, reaching over and running her other hand over your crotch. <i>“Think you can help him out with that?”</i>");
+	output("\n\nYou're already " + (pc.isCrotchExposed() ? "slapping Carrie's bare thigh with your rock-hard erection," : "fishing out your cock out, throbbing with need and") + " raring to go. Grinning devilishly, the milker-maid guides you by the dick over to the whimpering cow-trap, lining your [pc.cockHead] up with his lube-slathered hole. You swing a [pc.leg] over the machine and grab Cameron's girly hips, rolling your [pc.hips] forward spreading that slutty cock-hole of his open around your crown. Cam whimpers and leaks more of his juicy dickmilk into the sucker attached to his shaft, pushing his ass back against you until you feel a wet, silky grip start sliding up your own length, and your cock starts sinking into Cam's boypussy.");
+	if (pc.cocks[0].cLength() >= 18) output("\n\n<i>“You're way thicker than the stimulator,”</i> Carrie giggles, patting your dick as you pump it into Cameron. <i>“I bet you'll get his biggest load ever, [pc.name]!”</i> ");
+	else output("\n\n<i>“A real dick's always better than a milker,”</i> Carrie giggles, patting your [pc.butt] as you pump Cameron's ass. <i>“He's been teasing me about getting a dick of my own so I could treat him like this, but like, why when I've got big studs like you to come in here and ream this little cow for me?”</i>");
+	output("\n\nWordlessly, you grab Carrie by the waist and pull her against your [pc.chest], thrusting your [pc.tongue] into her mouth. She moans and unlaces her cow-pattern corset, letting those big, milky hugs of hers spill out. One of her hands slips down around your [pc.butt] in turn, finding its way to your ass. She's still got some slick lube clinging to her fingers, and you feel the rush of cold around your own hole before a finger slips in.");
+	output("\n\n<i>“It's still my job,”</i> Carrie titters, moving her digits to find your anal g-spot. <i>“Besides, Cam's not the only one here who likes a little attention back here, is he?”</i>");
+	output("\n\nYou grin and bear it, feeling her fingers worm their way in to the third knuckle. She happily teases your prostate with little rubs and caresses until you feel that familiar, churning pressure in your [pc.balls], and your dick throbs inside the faux-cow's lurid hole. ");
+	output("\n\n<i>“I-I can feel it coming!”</i> Cam whines, pushing his plush booty back against your crotch. <i>“It's leakin' out already!”</i>");
+	output("\n\nYou're not sure if Cameron's talking about his orgasm or yours, but you guess it doesn't really matter -- either way, you're soon pouring your [pc.cumNoun] into his gaping backside, and he's squealing and leaking his own second -- or is it third now? -- orgasm into the milker. Carrie coos delightedly and pats his butt, telling him what a good little cum-dump he is, and how much nice, juicy spunk he's making for her. The cow's practically drooling, watching both of you orgasming together, blowing so much musky boy-goo into Cam and the milker machine that any good New Texan girl would probably cream herself on the spot just from smelling it.");
+	output("\n\n" + (pc.isTreated() ? "Knowing you're right" : "Just to see if you're right") + ", you shift your hand down from her hip and into her little thong, sliding two fingers straight into her quim. Your digits sink into depths that are the perfect mix of  hot, juicy, and tight, and you can feel the bovine-morphed beauty squeeze for you, massaging your fingers with the same insistent tenderness that she's working your ass with. You eventually pick the lusty bovine up and plant her on Cam's back, pushing the poor trap deeper into the milker's clutches while you spread his attendant's legs over his ass, making it easy to pull from one clenching kiester into another" + (pc.totalCocks() > 1 ? ", plugging Cam's hole with your second dick" : "") + ". Carrie gasps, yelps, and then moans as your dick slides into her butt" + (pc.cocks[0].cLength() >= 18 ? ", making her belly swell with the girth of cockflesh barreling into her body" : "") + ".");
+	output("\n\n<i>“Little treat for a hard-workin' girl,”</i> you tell her, easing yourself in to the hilt. Carrie can only moan breathlessly, unable to form words as pleasure rocks her plush, curvy body. ");
+	output("\n\nUnderneath her, the faux-cow leaks your seed back onto the milker's harness" + (pc.totalCocks() > 1 ? " from around your second schlong" : "") + ", prompting you to " + (pc.totalCocks() > 1 ? "start moving your hips, fucking his spunk-lubed ass and Carrie’s at the same time" : "thrust a few fingers into his winking donut, pleasuring it while you start thrusting into Carrie") + ". Before long, the two cows are moaning in unison, undulating atop one another and cumming their collective Treated brains out. The milker machine whirs and pumps loudly, sucking away the bull-boi's many loads into its processing tanks. You can see the veins pulsing in Cameron's taut black ballsack; the two cum-swollen orbs twitch and contract with every messy orgasm, pumping what seems like gallons of bull-cream down the funnel. And his ass... oh, that sweet hole's clenching like mad, squeezing down on you like his life depends on it. The faux-cow's got a prostate that feels as big as a pea, pressing against your " + (pc.totalCocks() > 1 ? "dick" : "fingers") + ", and letting you rub on it with every little motion. And every caress on that anal clit of his works out a thicker wad of cum, shooting from Cam's turgid pony shaft to the beat of your thrusts. You're not even sure if he's having separate orgasms anymore, the way he's unloading those nuts: it seems more like one continuous climax that's slowly draining him dry.");
+	output("\n\nAnd Carrie's about to drain <i>you</i> dry! The cow-girl plush rump has perfectly molded itself to your [pc.cock], and her pussy's squirting arcs of fem-cum, splattering your dick with more and more lube at the nadir of every thrust. Of course, every New Texan girl's a pro at taking dick -- thanks to the Treatment, if not from thousands of hours of practice -- and Carrie's obviously no exception. Even if she's not able to get at your [pc.asshole] anymore, she's still able to milk you to orgasm with her own. ");
+	output("\n\nWith a feral growl, you slam yourself into the hilt in the cow " + (pc.totalCocks() > 1 ? "and the faux-cow " : "") + "before another parting orgasm hits, flooding " + (pc.totalCocks() > 1 ? "their assholes" : "Carrie's ass") + " with [pc.cum]. A jet of milk erupts from the cow-girl's swollen breasts, followed by an undulating moo of pleasure as she cums in your wake.");
+	output("\n\n<i>“Whew, you two really... cum... words... mmm,”</i> Carrie moans as you pull out, reaching down and scooping up a handful of cum leaking out of her gaping hole. She licks it up with a blissful, contented smile on her full lips, eyes drooping heavily with cum-fueled contentment. You step back, admiring your spunk-soaked work: two cows sprawling atop one another, leaking your seed and quivering with lingering orgasms. You deliver a parting slap to Cam's ass, causing the mewling trap to bust yet another nut into the milker as you turn and head out.");
+	
+	IncrementFlag("CAMERON_MILKED");
+	processTime(30 + rand(10));
+	pc.orgasm();
+	currentLocation = "511";
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }

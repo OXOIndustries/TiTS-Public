@@ -1,5 +1,9 @@
 ﻿package classes.Items.Miscellaneous
 {
+	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.formatFloat;
+	import classes.Engine.Utility.num2Text;
+	import classes.Engine.Utility.num2Ordinal;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Creature;
@@ -73,12 +77,26 @@
 				//Multiple wangs: 
 				if(target.cockTotal() > 1) 
 				{
-					kGAMECLASS.output("You have more than one penis. Which one will you inject with Throbb?");
+					kGAMECLASS.output("You have more than one penis. Which one will you inject with Throbb?\n");
 					kGAMECLASS.clearMenu();
-					for(var x:int = 0; x < target.cockTotal(); x++)
+					var btnSlot:int = 0;
+					for(var i:int = 0; i < target.cocks.length; i++)
 					{
-						kGAMECLASS.output("\n" + (x+1) + ": [pc.cock " + x + "]");
-						kGAMECLASS.addButton(x,kGAMECLASS.num2Text(x+1),throbbPCEffects,x);
+						output("\n<b>" + StringUtil.capitalize(num2Ordinal(i + 1)) + " Cock:</b>");
+						if(target.cocks[i].cockFlags.length > 0)
+						{
+							for(var x:int = 0; x < target.cocks[i].cockFlags.length; x++)
+							{
+								output(" " + GLOBAL.FLAG_NAMES[target.cocks[i].cockFlags[x]] + ",");
+							}
+						}
+						if(target.cocks[i].cockColor != "") output(" " + StringUtil.toDisplayCase(target.cocks[i].cockColor) + ",");
+						output(" " + GLOBAL.TYPE_NAMES[target.cocks[i].cType]);
+						if(target.cocks[i].cLength() > 0) output(", " + formatFloat(target.cocks[i].cLength(), 3) + " in long");
+						if(target.cocks[i].thickness() > 0) output(", " + formatFloat(target.cocks[i].thickness(), 3) + " in thick");
+						
+						addButton(btnSlot, "Cock " + (i + 1), throbbPCEffects, i, StringUtil.capitalize(num2Ordinal(i + 1)) + " Cock", "Use this on your [pc.cock " + i + "].");
+						btnSlot++;
 					}
 					return true;
 				}
@@ -157,7 +175,7 @@
 					temp = Math.round(23 + rand(30))/10;
 					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
-					kGAMECLASS.output("\n\nThis is way more pleasurable than any normal masturbation! You don’t really recall being able to take such long strokes along your length or having it fill your hand so powerfully, throbbing just like the drug’s namesake. Looking down, you gasp. Your [pc.cock " + arg + "] is at least two inches longer and still growing! You tug it to help it on its way, moaning as it slops big ropes of pre onto your knuckles. <b>You’ve gained " + kGAMECLASS.num2Text(temp) + " inches of length!</b>");
+					kGAMECLASS.output("\n\nThis is way more pleasurable than any normal masturbation! You don’t really recall being able to take such long strokes along your length or having it fill your hand so powerfully, throbbing just like the drug’s namesake. Looking down, you gasp. Your [pc.cock " + arg + "] is at least two inches longer and still growing! You tug it to help it on its way, moaning as it slops big ropes of pre onto your knuckles. <b>You’ve gained " + num2Text(temp) + " inches of length!</b>");
 					changes++;
 				}
 				//Make a kinda big dick bigger!
@@ -167,7 +185,7 @@
 					temp = Math.round(15 + rand(30))/10;
 					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
-					kGAMECLASS.output("<b>It doesn’t stop until you’ve gained " + kGAMECLASS.num2Text(temp) + " inches of length.</b>");
+					kGAMECLASS.output("<b>It doesn’t stop until you’ve gained " + num2Text(temp) + " inches of length.</b>");
 					changes++;
 				}
 				//Make a hyper dick bigger!
@@ -261,7 +279,7 @@
 				pc.createCock();
 				pc.setNewCockValues(arg);
 				
-				kGAMECLASS.output("<b>your hand is wrapped around a " + kGAMECLASS.num2Text(Math.round(pc.cocks[arg].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
+				kGAMECLASS.output("<b>your hand is wrapped around a " + num2Text(Math.round(pc.cocks[arg].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
 				changes++;
 			}
 			else if (!pc.createCockUnlocked())
@@ -318,7 +336,7 @@
 				pc.orgasm();
 				if(rand(6) == 0) pc.orgasm();
 				
-				kGAMECLASS.applyCumSoaked(pc);
+				pc.applyCumSoaked();
 			}
 			
 			kGAMECLASS.clearMenu();

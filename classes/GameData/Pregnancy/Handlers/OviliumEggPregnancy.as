@@ -71,7 +71,7 @@ package classes.GameData.Pregnancy.Handlers
 					}, true);
 				}
 				// (2 hour warning)
-				if (x == 2)
+				else if (x == 2)
 				{
 					this.addStageProgression((x * 60), function(pregSlot:int):void
 					{
@@ -102,7 +102,8 @@ package classes.GameData.Pregnancy.Handlers
 			// (random before laying, +lust if repeat)
 			this.addStageProgression(((2.5 * 60) + (rand(_basePregnancyIncubationTime - (3 * 60)))), function(pregSlot:int):void
 			{
-				var msg:String = ParseText("You find yourself idly tapping your belly, running a hand over the smooth [pc.skinFurScalesNoun]. The relatively quick pregnancy induced by the drug means you’ll be laying within the day.");
+				var msg:String = ParseText("You find yourself idly tapping your belly, running a hand over the smooth [pc.skinFurScalesNoun].");
+				msg += " The relatively quick pregnancy induced by " + (kGAMECLASS.pc.statusEffectv4("Ovilium") == 0 ? "the Ovilium" : "your egg-generating body") + " means you’ll be laying within the day.";
 				if (StatTracking.getStat("pregnancy/ovilium eggs laid") > 0)
 				{
 					msg += " You can’t wait.";
@@ -129,13 +130,14 @@ package classes.GameData.Pregnancy.Handlers
 				// v1 = number of successive doses (in case needed)
 				// v2 = cream pie counts (fertilized for big egg)
 				// v3 = Temporary egg count (in case needed)
-				// v4 = N/A
-				mother.createStatusEffect("Ovilium", 1, 0, pEggs, 0, true, "Icon_DrugPill", "You are under the effects of Ovilium.", false, 0);
+				// v4 = source: 0 from drug, 1 from perk
+				mother.createStatusEffect("Ovilium", 1, 0, pEggs, 0, true, "Icon_DrugPill", "Currently under the effects of Ovilium.", false, 0);
 			}
 			else
 			{
 				mother.addStatusValue("Ovilium", 1, 1);
 				mother.addStatusValue("Ovilium", 3, pEggs);
+				mother.setStatusValue("Ovilium", 4, 0);
 			}
 		}
 		

@@ -312,10 +312,7 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 		pc.buttChange(enemy.cockVolume(0), true, true, false);
 		output(" You are well trained now in handling ovipositors, and though you coo with delight at being penetrated, it doesn’t knock the breath out of you like it once did. Well, almost. By the third or fourth ring that stretches your ass wide, the rhythmic hammering of inch after inch of eggtube being fed into your ass is still threatening to knock the breath completely out of you. The only thing keeping your breathing relatively steady is plenty of practice.");
 		
-		output("\n\nYou can already taste the euphoria. Your mind feels almost as though it has been short-circuited. The only thing that matters right now is enjoying this breeding as much as possible, and that in part means spurring your temporary lover onward. You");
-		if (pc.catDog("nyan", "bork") == "nyan") output(" purr");
-		else output(" moan");
-		output(" loudly and put on a show for the victorious warrior and their long, thick, um... spear. You can immediately feel the heightened arousal in your ass, as the first spurts of slime shoot deep into your guts. The bothrioc is now actively running their many hands over you, delighting in exploring your body as much as thrusting into your hot clench.");
+		output("\n\nYou can already taste the euphoria. Your mind feels almost as though it has been short-circuited. The only thing that matters right now is enjoying this breeding as much as possible, and that in part means spurring your temporary lover onward. You " + pc.catDog("purr", "moan") + " loudly and put on a show for the victorious warrior and their long, thick, um... spear. You can immediately feel the heightened arousal in your ass, as the first spurts of slime shoot deep into your guts. The bothrioc is now actively running their many hands over you, delighting in exploring your body as much as thrusting into your hot clench.");
 		
 		output("\n\nA lustful groan and a sudden stoppage indicate all you need to know: The ovipositor has docked in your [pc.ass]. The bothrioc almost helplessly rests atop you, transfixed with bliss, as you feel the first egg pop through your sphincter almost effortlessly");
 		if (pc.hasCock()) output(", squeezing your prostate thoroughly as it passes");
@@ -346,8 +343,8 @@ public function bothriocPidemmeButtEggs(fromCombat:Boolean):void
 			output(" load, as it’s squeezed out by the relentless pressure of eggs on your prostate.");
 			if (pc.cumQ() <= 10) output(" Only the meager drops that your body has produced and held back during this experience dribble out.");
 			else if (pc.cumQ() <= 100) output(" A respectable, virile load is spent upon the ground in a long stream.");
-			else if (pc.cumQ() <= 500) output(" By the time your stream of [pc.jizz] fully gushes out onto the ground, you’ll have a respectable puddle.");
-			else if (pc.cumQ() <= 1000) output(" The thick puddle that has already formed on the ground from your precum is just the beginning. The [pc.jizz] pouring from you now would be likened by poets to a lake or sea.");
+			else if (pc.cumQ() <= 500) output(" By the time your stream of [pc.cum] fully gushes out onto the ground, you’ll have a respectable puddle.");
+			else if (pc.cumQ() <= 1000) output(" The thick puddle that has already formed on the ground from your precum is just the beginning. The [pc.cum] pouring from you now would be likened by poets to a lake or sea.");
 		}
 		if (pc.hasCock() && pc.hasVagina()) output(" Meanwhile, y");
 		// This looks dumb but trust me

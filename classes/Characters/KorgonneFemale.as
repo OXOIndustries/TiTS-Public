@@ -10,6 +10,7 @@
 	import classes.Items.Melee.YappiStrap;
 	import classes.Items.Armor.InsulatedCoat;
 	import classes.Items.Upgrades.HardLightUpgrade;
+	import classes.Items.Transformatives.KorgonneSnacks;
 
 
 	import classes.kGAMECLASS;
@@ -241,6 +242,7 @@
 			if(rand(20) == 0) inventory.push(new InsulatedCoat());
 			//Temporarily put on these snowbitches till I find a real home for it.
 			if(!kGAMECLASS.pc.hasHardLightUpgraded() && rand(10) == 0) inventory.push(new HardLightUpgrade());
+			if(rand(4) == 0 && inventory.length == 0) inventory.push(new KorgonneSnacks());
 			/*
 			if (rand(10) == 0)
 			{
@@ -321,7 +323,7 @@
 			else
 			{
 				output("The savage launches herself at you, attempting to drag you to the ground once more!");
-				if(kGAMECLASS.korgiTranslate())
+				if(kGAMECLASS.korgiSillyTranslate())
 				{
 					if(kGAMECLASS.silly) output(" <i>“Very brr! Such frolic!”</i>");
 				}
@@ -339,7 +341,7 @@
 				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 35)
 				{
 					CombatAttacks.applyTrip(target);
-					output(" Worst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
+					output("\nWorst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
 				}
 			}
 		}
@@ -348,7 +350,7 @@
 		{
 			//(three uses) - statusEffectv1("Heavy Gun") < 3
 			output("Fishing one of the guns from her pocket, the barbarian struggles with the device for a minute before gripping it properly, pointing the armament in your direction. She jerks the trigger and to her shock, loses control of the gun as it discharges its magazine in rapid succession. Before she can adjust her aim, she’s emptied it entirely.");
-			if(kGAMECLASS.korgiTranslate())
+			if(kGAMECLASS.korgiSillyTranslate())
 			{
 				if(!kGAMECLASS.silly) output(" <i>“Dumb, tiny darts! You too fast!”</i>");
 				else output(" <i>“So zip! Very recoil. Wow! Much junk!”</i>");
@@ -364,7 +366,7 @@
 					if (!target.hasStatusEffect("Stunned") && target.physique() + rand(20) + 1 < physique() + 4)
 					{
 						CombatAttacks.applyStun(target, 1);
-						output(" <b>The blow leaves you stunned and reeling.</b>");
+						output("\n<b>The blow leaves you stunned and reeling.</b>");
 					}
 				}
 			}
@@ -411,7 +413,7 @@
 					applyDamage(damage, this, target);
 					if(target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2)
 					{
-						output(" <b>You are sent realing by the blow, staggered.</b>");
+						output("\n<b>You are sent reeling by the blow, staggered.</b>");
 						CombatAttacks.applyStagger(target, 5, true);
 					}
 				}

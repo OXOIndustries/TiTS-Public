@@ -1,6 +1,16 @@
 import classes.RoomClass;
 public function initTavrosRooms():void
 {
+	//Room for holding PC with no exits for oddball locations that are not mapped
+	rooms["TAVROS_TEMPO"] = new RoomClass(this);
+	rooms["TAVROS_TEMPO"].roomName = "\nROOM";
+	rooms["TAVROS_TEMPO"].description = "";
+	rooms["TAVROS_TEMPO"].planet = "TAVROS STATION";
+	rooms["TAVROS_TEMPO"].system = "SYSTEM: KALAS";
+	rooms["TAVROS_TEMPO"].moveMinutes = 1;
+	rooms["TAVROS_TEMPO"].addFlag(GLOBAL.INDOOR);
+	rooms["TAVROS_TEMPO"].addFlag(GLOBAL.PRIVATE);
+
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";
 	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon’s Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father’s fortune. Luckily, the galaxy is vast. Your cousin won’t be claiming anything for at least a few months if the scale of your father’s challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";
@@ -13,9 +23,9 @@ public function initTavrosRooms():void
 	
 	// SX1 Rooms
 	rooms["SX1 FAKE ELEVATOR"] = new RoomClass(this);
+	rooms["SX1 FAKE ELEVATOR"].eastExit = "SX1 FAKE FIGHT ROOM";
 	rooms["SX1 FAKE ELEVATOR"].addFlag(GLOBAL.INDOOR);
 	rooms["SX1 FAKE ELEVATOR"].addFlag(GLOBAL.LIFTDOWN);
-	rooms["SX1 FAKE ELEVATOR"].eastExit = "SX1 FAKE FIGHT ROOM";
 	
 	rooms["SX1 FAKE FIGHT ROOM"] = new RoomClass(this);
 	rooms["SX1 FAKE FIGHT ROOM"].westExit = "SX1 FAKE ELEVATOR";
@@ -30,25 +40,28 @@ public function initTavrosRooms():void
 	rooms["HOTEL CORRIDOR"].moveMinutes = 1;
 	rooms["HOTEL CORRIDOR"].westExit = "ANON'S BOARD HALL";
 	rooms["HOTEL CORRIDOR"].southExit = "CALLGIRL ROOM";
-	rooms["HOTEL CORRIDOR"].northExit = "SX1 RESCUE ROOM";
+	rooms["HOTEL CORRIDOR"].eastExit = "SX1 RESCUE ROOM";
 	rooms["HOTEL CORRIDOR"].addFlag(GLOBAL.INDOOR);
 	rooms["HOTEL CORRIDOR"].addFlag(GLOBAL.PRIVATE);
 	
 	// Basically decoration room, player (should) never actually be able to enter it properly.
 	rooms["CALLGIRL ROOM"] = new RoomClass(this);
+	rooms["CALLGIRL ROOM"].roomName = "CALLGIRL’S\nROOM";
+	rooms["CALLGIRL ROOM"].planet = "TAVROS STATION";
+	rooms["CALLGIRL ROOM"].system = "SYSTEM: KALAS";
 	rooms["CALLGIRL ROOM"].northExit = "HOTEL CORRIDOR";
 	rooms["CALLGIRL ROOM"].addFlag(GLOBAL.INDOOR);
 	rooms["CALLGIRL ROOM"].addFlag(GLOBAL.PRIVATE);
 	rooms["CALLGIRL ROOM"].addFlag(GLOBAL.NPC);
 	
 	rooms["SX1 RESCUE ROOM"] = new RoomClass(this);
-	rooms["SX1 RESCUE ROOM"].southExit = "HOTEL CORRIDOR";
+	rooms["SX1 RESCUE ROOM"].roomName = "\nROOM";
 	rooms["SX1 RESCUE ROOM"].planet = "TAVROS STATION";
 	rooms["SX1 RESCUE ROOM"].system = "SYSTEM: KALAS";
+	rooms["SX1 RESCUE ROOM"].westExit = "HOTEL CORRIDOR";
 	rooms["SX1 RESCUE ROOM"].moveMinutes = 1;
 	rooms["SX1 RESCUE ROOM"].addFlag(GLOBAL.INDOOR);
 	rooms["SX1 RESCUE ROOM"].addFlag(GLOBAL.PRIVATE);
-	rooms["SX1 RESCUE ROOM"].southExit = "HOTEL CORRIDOR";
 
 	//101. Anon's Board Hall
 	rooms["ANON'S BOARD HALL"] = new RoomClass(this);
@@ -689,11 +702,12 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 13"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 13"].southExit = "RESIDENTIAL DECK 12";
 	rooms["RESIDENTIAL DECK 13"].westExit = "RESIDENTIAL DECK FISIS APARTMENT";
+	rooms["RESIDENTIAL DECK 13"].eastExit = "RESIDENTIAL DECK KASES APARTMENT";
 	rooms["RESIDENTIAL DECK 13"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 13"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["RESIDENTIAL DECK 13"].runOnEnter = fisiannaApartmentHandler;
+	rooms["RESIDENTIAL DECK 13"].runOnEnter = northWalkwayBonus;
 	
 	//Fisianna's Apartment - Doesn't do much for now.
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"] = new RoomClass(this);
@@ -706,6 +720,17 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK FISIS APARTMENT"].addFlag(GLOBAL.PRIVATE);
 	
+	//Kase's Apartment if he's been evicted.
+	rooms["RESIDENTIAL DECK KASES APARTMENT"] = new RoomClass(this);
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].roomName = "KASE’S\nAPARTMENT";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].description = "";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].planet = "TAVROS STATION";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].system = "SYSTEM: KALAS";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].westExit = "RESIDENTIAL DECK 13";
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].moveMinutes = 1;
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.INDOOR);
+	rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.PRIVATE);
+	
 	//1014 West Walkway 1
 	rooms["RESIDENTIAL DECK 14"] = new RoomClass(this);
 	rooms["RESIDENTIAL DECK 14"].roomName = "WEST\nWALKWAY";
@@ -714,6 +739,7 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 14"].system = "SYSTEM: KALAS";
 	rooms["RESIDENTIAL DECK 14"].westExit = "RESIDENTIAL DECK 15";
 	rooms["RESIDENTIAL DECK 14"].eastExit = "RESIDENTIAL DECK 8";
+	rooms["RESIDENTIAL DECK 14"].northExit = "PAIGE_HOUSE";
 	rooms["RESIDENTIAL DECK 14"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 14"].addFlag(GLOBAL.PUBLIC);
@@ -727,12 +753,41 @@ public function initTavrosRooms():void
 	rooms["RESIDENTIAL DECK 15"].system = "SYSTEM: KALAS";
 	//rooms["RESIDENTIAL DECK 15"].southExit = "RESIDENTIAL DECK 18"; -> added to game.as
 	rooms["RESIDENTIAL DECK 15"].eastExit = "RESIDENTIAL DECK 14";
+	rooms["RESIDENTIAL DECK 15"].northExit = "YOGA_HOUSE";
 	rooms["RESIDENTIAL DECK 15"].moveMinutes = 1;
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.INDOOR);
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.PUBLIC);
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.NPC);
 	rooms["RESIDENTIAL DECK 15"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["RESIDENTIAL DECK 15"].runOnEnter = checkIfAinaIsAround;
+
+	//Yoga palace!
+	rooms["YOGA_HOUSE"] = new RoomClass(this);
+	rooms["YOGA_HOUSE"].roomName = "PAIGE’S\nYOGA";
+	rooms["YOGA_HOUSE"].description = "";
+	rooms["YOGA_HOUSE"].planet = "TAVROS STATION";
+	rooms["YOGA_HOUSE"].system = "SYSTEM: KALAS";
+	rooms["YOGA_HOUSE"].southExit = "RESIDENTIAL DECK 15";
+	rooms["YOGA_HOUSE"].moveMinutes = 1;
+	rooms["YOGA_HOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["YOGA_HOUSE"].addFlag(GLOBAL.PUBLIC);
+	rooms["YOGA_HOUSE"].addFlag(GLOBAL.COMMERCE);
+	rooms["YOGA_HOUSE"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["YOGA_HOUSE"].runOnEnter = yogaIntro;
+
+	//Paige's Place
+	rooms["PAIGE_HOUSE"] = new RoomClass(this);
+	rooms["PAIGE_HOUSE"].roomName = "PAIGE’S\nPLACE";
+	rooms["PAIGE_HOUSE"].description = "";
+	rooms["PAIGE_HOUSE"].planet = "TAVROS STATION";
+	rooms["PAIGE_HOUSE"].system = "SYSTEM: KALAS";
+	rooms["PAIGE_HOUSE"].southExit = "RESIDENTIAL DECK 14";
+	rooms["PAIGE_HOUSE"].moveMinutes = 1;
+	rooms["PAIGE_HOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["PAIGE_HOUSE"].addFlag(GLOBAL.PUBLIC);
+	rooms["PAIGE_HOUSE"].addFlag(GLOBAL.NPC);
+	rooms["PAIGE_HOUSE"].addFlag(GLOBAL.NUDITY_ILLEGAL);
+	rooms["PAIGE_HOUSE"].runOnEnter = paigesUnitDurhurrrrrrrrrrFenWroteUNIT;
 	
 	//1016 South Walkway 1
 	rooms["RESIDENTIAL DECK 16"] = new RoomClass(this);

@@ -314,7 +314,7 @@ public function bodyShotsWithDel():void
 	else output("girly little prick");
 	output(" throbs under her skirt, squirting all over her thighs.");
 
-	output("\n\n<i>“W-why am I getting off on this so much?”</i> she giggles, crossing her ankles behind your back, pulling your [pc.face] into her liquored-up belly. <i>“Whatever! Just don’t stop ‘till this bottle’s empty.”</i>");
+	output("\n\n<i>“W-why am I getting off on this so much?”</i> she giggles, crossing her ankles behind your back, pulling your [pc.face] into her liquored-up belly. <i>“Whatever! Just don’t stop till this bottle’s empty.”</i>");
 	output("\n\nYou grin up at her, drawing your [pc.tongue] along the underside of a breast, then around a rock-hard nipple. You loop your tongue through her ring piercing, giving it a tug until Delilah redirects the flow of liquor down her tits. You don’t really bother drinking it anymore; the booze is a bonus on top of tongue-bathing the dusky slut, teasing her over-tender flesh until she’s gasping and her dick is squirting again.");
 	output("\n\nDel lets the bottle clatter on the table, grabbing her mouth to keep herself from squealing in pleasure. Her cock’s a leaking faucet now, pouring out the content of her ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("hefty black horseballs");
@@ -416,7 +416,7 @@ public function askDelAboutTheDel():void
 	clearOutput();
 	showDel();
 	output("<i>“So, now that you have a decent mistress, are you starting to get some plans for the future?”</i>");
-	output("\n\n<i>“I don’t know,”</i> she says, shrugging lightly. <i>“Kind of? I still have a lot of debt to pay off, and when I do... I don’t exactly have a lot going for me, you know. Guess I’d have to move back in with my parents for a little bit, find a job somewhere, or go work for them. Just ‘till I get back on my feet.”</i>");
+	output("\n\n<i>“I don’t know,”</i> she says, shrugging lightly. <i>“Kind of? I still have a lot of debt to pay off, and when I do... I don’t exactly have a lot going for me, you know. Guess I’d have to move back in with my parents for a little bit, find a job somewhere, or go work for them. Just till I get back on my feet.”</i>");
 	output("\n\nYou nod. <i>“And after that?”</i>");
 	output("\n\n<i>“Well, I’d like to get back to painting,”</i> she laughs. <i>“Maybe take up cum as my new medium: ");
 	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) output("I’ve got pretty much an infinite supply now!");
@@ -453,8 +453,8 @@ public function sexWithKallysDel():void
 	//If the PC has a SynthSheath in their inventory, add [Horsecock?] to Del’s talk menu
 	else
 	{
-		if(pc.hasItemByClass(HorseCock)) addButton(2,"Horse-Cock?",giveDelilahAHorsedick,undefined,"Horse-Cock?","Poor Delilah’s dick is barely more than a bitch-clit now, and you’ve got this equine dick-sheathe in your pack. Maybe you could give Del an upgrade?");
-		else addDisabledButton(2,"Horsecock?","Horsecock?","You need to have an item that can give her a horse-dick for this.");
+		if(pc.hasItemByClass(HorseCock)) addButton(2,"HorseCock?",giveDelilahAHorsedick,undefined,"Horse-Cock?","Poor Delilah’s dick is barely more than a bitch-clit now, and you’ve got this equine dick-sheathe in your pack. Maybe you could give Del an upgrade?");
+		else addDisabledButton(2,"HorseCock?","Horse-Cock?","You need to have an item that can give her a horse-dick for this.");
 	}
 	if(pc.mf("him","her") == "her" && !pc.analVirgin && pc.hasCock()) addButton(5,"Public Use",delSlutTraining,undefined,"Public Use","Kallly’s customers look a little pent up! You and Del could take care of them all with your asses, just like old times.");
 	else if(pc.mf("him","her") != "her" || pc.analVirgin || !pc.hasCock()) addDisabledButton(5,"Public Use","Public Use","Slut training requires you to be feminine, dick-equipped, non-anal virgin so that you can show Delilah how it’s done.");
@@ -468,8 +468,7 @@ public function fuckDelsAss():void
 {
 	clearOutput();
 	showDel(true);
-	currentLocation = "CANADA7";
-	generateMap();
+	moveTo("CANADA7");
 	var x:int = pc.cockThatFits(chars["DELILAH"].analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	output("<i>“How about you let me play with this new ass of yours?”</i> you say, grinning lustfully at the curvy bimbo-body pressed up against you. <i>“For old time’s sake.”</i>");
@@ -535,11 +534,14 @@ public function delGetsButtplowedAtKallysPart2(x:int):void
 	else if(pc.balls > 1) output("your [pc.balls] slap against her cheeks, your shaft fully buried");
 	else output("your hips press into hers, your shaft fully buried");
 	output(". She cries out, fingers digging into the edge of the bench as you settle inside her, giving her a few seconds to adjust to your girth before you start to move.");
-
-	stretchDelilahsButt();
+	
 	pc.cockChange();
-
+	
 	output("\n\nBut that’s the last kindness you’re going to show this wanton whore’s little pucker. You draw yourself only half-way out before slamming back home, thrusting back with all the force your [pc.hips] can muster, sending shockwaves through the flesh of the lusty slut’s bubble butt. Her prick jumps in response to your next thrust, hopping straight up and twitching visibly as a bead of creamy white beads at its tip. You consider giving her a little tug to help her along, but then... that’d defeat the purpose! This slut’s supposed to be a little anal whore, so by God that’s what she’ll be. You reaffirm your grip on her broad hips and start pounding with a vengeance, faster and harder until Del’s whining and moaning with every push, crying her pleasure aloud with utter abandon. You can barely reconcile the bashful little trap you met back on Tarkus with this moaning, giggling whore, spilling cum all over her own belly as you pound her ass.");
+	
+	if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined && chars["DELILAH"].analVirgin) output("\n\n<b>You have taken Del’s anal virginity!</b>");
+	stretchDelilahsButt(true);
+	
 	output("\n\nBetween the sloppy blowjob she gave you and now the tight, wringing grip of the shemale’s cock-draining boypussy, you don’t know how long you’re going to hold out. Her ass feels like a vice, so tight around your [pc.cock " + x + "] that it’s nearly painful, yet with every thrust you can feel the twitch and spasm of her muscles as her little sphincter tries to push you out or draw you in, you’re never sure. Either way, it’s making a tight, wet, squirming hole for you to fuck, ushering you inexorably towards your now-inevitable orgasm.");
 	output("\n\nYou feel your cock swelling inside her, cum rushing through your [pc.cock " + x + "] towards the waiting receptacle of the trap-whore’s wanton hole. She seems to sense the oncoming climax, and responds with a shrill yelp of pleasure, her own cock twitching madly, so close yet so far from orgasm. She reaches up and grabs your shoulders, clutching tightly at you as you flood her bowels with cum. Shockwaves of pleasure tear through your body as [pc.cumColor] ropes let loose from your [pc.cock], smearing the trap’s rectal walls with your sticky seed. Your [pc.hips] piston away, thrusting you as deep into her ass as you can go before you’ve finished, making sure to bust your nut straight into her spasming colon, giving it a taste of cum before you’re finally finished.");
 	output("\n\nYou shudder with an absolute contentment, panting heavily as your cock starts to deflate in Delilah’s well-fucked ass. Before you can get comfortable, though, the sultry slut gives you a gentle push back, popping your prick free of her gaping asshole amidst a backwash of spent seed. Grinning hungrily, Del slips down off the bench and onto her knees, wrapping both her hands around your half-soft cock.");
@@ -561,8 +563,7 @@ public function sitYoBootyOnDelsFacebooty():void
 	clearOutput();
 	showDel(true);
 	author("Savin");
-	currentLocation = "CANADA7";
-	generateMap();
+	moveTo("CANADA7");
 	output("You grin lustily at the feminized beauty pressed up against you, letting your hands wander down her back and over her jiggly behind. As nice as her ass is, your eyes fix on another prize: her full, pink-hued lips, glistening in the sultry light of the rustic lodge.");
 	output("\n\n<i>“Why don’t you get up on the bar for me, cutey?”</i>");
 	output("\n\nThe bartender babe blushes, practically melting into your arms, all but begging to be shown her proper place underneath you once again. <i>“Miss Kally said I had to stop doing that in the common area, but the baths are okay... This way.”</i>");
@@ -672,8 +673,7 @@ public function giddyupDel():void
 	output("\n\n<i>“I know the perfect place,”</i> she whispers, taking your hand and leading you into the Lodge’s restroom.");
 
 	//set location to be gloryhole room.
-	currentLocation = "CANADA6";
-	generateMap();
+	moveTo("CANADA6");
 
 	output(" It’s a unisex affair, with several stalls across from sanitation stations. She hurriedly leads you into a very deliberately chosen stall, and you soon see why: cushions are scattered all over the floor, drawing your attention to several industrial drains and a distinct lack of actual toilet. And, a moment later, to the holes drilled in the sides of the stall, just about cock-sized...");
 	output("\n\nDel flashes you a grin and flops down on the pile of cushions, sighing as she settles into her pillowy nest. <i>“I come here sometimes when I get a, um, a ‘craving’ for some nice cum and Kally’s too busy to have some fun,”</i> she admits. <i>“The regulars’ve gotten used to following me in here when I go on break, I think. Hope you don’t mind if I tend to any extra dicks that pop in?”</i>");
@@ -848,7 +848,6 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	clearOutput();
 	showDel(true);
 	author("Savin");
-	pc.destroyItemByClass(HorseCock);
 
 	output("<i>“I think we can work with that,”</i> you say, patting Del’s thigh. <i>“Let’s get you attached to your new horsey friend here.”</i>");
 	output("\n\nDel hops out of your lap and takes your hand. <i>“’Kay! Let’s go to the baths and try it on. Um, miss Kally! I’m gonna go on break for a minute!”</i>");
@@ -859,7 +858,7 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	output("\n\nOooh, somebody’s getting lippy, are they? You can’t have this one break in your routine undoing all the work you put into Delilah so far; she’s too perfect just the way she is. So, you ");
 	if(silly) output("grab her by the boypussy");
 	else output("thrust a pair of dry fingers into her well-used cock-holster");
-	output(", making her shriek. Her little dick goes rock hard and, a few seconds of finger-fucking later, you with with unrepentant glee as a little trickle of white pours out of her foreskin-wrapped crown onto the floor.");
+	output(", making her shriek. Her little dick goes rock hard and, a few seconds of finger-fucking later, you grin with unrepentant glee as a little trickle of white pours out of her foreskin-wrapped crown onto the floor.");
 	output("\n\n<i>“Fuckfuckfuckohfuck!”</i> Del cries, instinctively bouncing her big ol’ butt on your fingers. <i>“Okay! Okay! I’m still your little buttslut. I am!”</i>");
 	output("\n\n<i>“Promise?”</i> you whisper into her ear, pushing a third finger in and rubbing against her prostate. Cum just keeps pouring out of her cock, drooling down her thighs as her dick bobs and wiggles.");
 	output("\n\nShe nods emphatically, reaching back and wrapping her hands around your [pc.butt] - she knows better than to touch her dick when it’s her ass getting pleasured. You whisper that maybe she’s still a good girl after all, and slowly slide your fingers out of her ass. She shudders the moment your digits pop free, knees quaking at the sudden vacancy. Poor girl looks like what she really needs right now is a nice, hard dicking... but you relent, for now.");
@@ -889,9 +888,17 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	timesDelilahSexed(1);
 	pc.loadInMouth(del);
 	//move PC to Onsen.
-	currentLocation = "CANADA7";
-	generateMap();
-
+	moveTo("CANADA7");
+	
+	if(!CodexManager.entryUnlocked("SynthSheath"))
+	{
+		output("\n\nYour Codex beeps with a warning about how this device may irreversibly alter ones biology. You grimace ruefully at the device before regarding Del’s enhanced genitalia.");
+		CodexManager.unlockEntry("SynthSheath");
+	}
+	
+	output("\n\n");
+	pc.destroyItemByClass(HorseCock);
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -925,8 +932,7 @@ public function delSlutTraining():void
 	output(" and stretch out over the bench, ass in the air and wiggling at her. <i>“C’mere and get me ready, sweetheart.”</i>");
 
 	//move to onsen.
-	currentLocation = "CANADA7";
-	generateMap();
+	moveTo("CANADA7");
 
 	processTime(14);
 	clearMenu();
@@ -1029,7 +1035,8 @@ public function delSlootybuttTrainingSrTheDoombringer():void
 	{
 		showName("DEL, KALLY,\n& KAEDE");
 		showBust(showDelString(true),"KAEDE_NUDE","KALLY_NUDE");
-
+		kaedeIncreaseExhibitionism(10);
+		
 		if(flags["KAEDE_DEL_TRAINING"] == undefined) output("\n\n<i>“Oh my god!”</i>");
 		else output("\n\n<i>“Again!?”</i>");
 		output("\n\nYou cast a glance to the door, and see Kaede standing just inside wrapped in nothing by a towel that leaves her alabaster cleavage and long, slender legs bare. Her ginger tail thumps wetly on the slicked floor, unintentionally dipping into the puddles of spunk spreading out from you and Del.");
@@ -1058,7 +1065,7 @@ public function delSlootybuttTrainingSrTheDoombringer():void
 			output("\n\nYou flash her a wink over your shoulder and squeeze down, plying all your experienced muscles to pleasure Kaede’s cock. No amount of prior pounding is gonna keep you from making sure your half-ausar lover gets off! You let her thrust in, then trap her deep inside, massaging her length from crown to knot with steady clenches. You hear her gasp with pleasure, and her hips start moving faster.");
 			output("\n\nNobody’s ever accused Kaede of keeping a lady waiting. It isn’t long before she’s moaning and digging her fingers into your [pc.hips], pounding away at your gripping asshole until her knot’s swollen and cum is leaking from her pointy cockhead.");
 			output("\n\nSuddenly, Kaede screams, and you feel her emptying her balls into your [pc.asshole]. You glance back in time to see a pair of Del’s fingers pistoning into Kaede’s ass, milking her prostate right over the edge of climax. Her knot spreads your rim, plugging your ass so none of her creamy orgasm can escape. When she’s finished, the ginger pup flops over on your back, moaning and twitching as Del’s fingers work her hole, and <i>your</i> ass drains her dry.");
-			output("\n\nWhen she’s finally done, Kaede staggers off you, breathing hard. Your eyes go wide and your breath catches in your throat when her knot, still mostly turgid, pops out of your abused behind. Blushing furiously, the ginger ausar rushes off to get cleaned up.}");
+			output("\n\nWhen she’s finally done, Kaede staggers off you, breathing hard. Your eyes go wide and your breath catches in your throat when her knot, still mostly turgid, pops out of your abused behind. Blushing furiously, the ginger ausar rushes off to get cleaned up.");
 			pc.loadInAss();
 			pc.buttChange(20);
 		}
@@ -1078,7 +1085,7 @@ public function slootyDelBootyBangingTrainingTrapPCEpilogue():void
 	showDel(true);
 	author("Savin");
 	if(silly) author("Slavin");
-	output("You lick up a few drops of cum off your cheeks during your short reprieve before a large, moose-bodied tauric woman steps up and unleashes a mammoth member in front of you: two feet of solid tapered shaft that nearly knocks you cold with the sheer <i>smell</i> of it, so rich and manly and.... and when did you start sucking it? Your eyes just about roll up as your lips slurp up as much of this massive moose-member as you can get, doing everything in your power to kill off your gag reflex as your jaw stretches out to accommodate it. You look up to the hermaphroditic woman, unable to see her face under the bulk of her bestial body. Her chest heaves, breathing heavily, and you can hear faint moans echoing from high above you. Her small hooves click and stomp on the bench, giving voice to the small relays of pleasure coursing through her undercarriage.");
+	output("You lick up a few drops of cum off your cheeks during your short reprieve before a large, moose-bodied tauric woman steps up and unleashes a mammoth member in front of you: two feet of solid tapered shaft that nearly knocks you cold with the sheer <i>smell</i> of it, so rich and manly and... and when did you start sucking it? Your eyes just about roll up as your lips slurp up as much of this massive moose-member as you can get, doing everything in your power to kill off your gag reflex as your jaw stretches out to accommodate it. You look up to the hermaphroditic woman, unable to see her face under the bulk of her bestial body. Her chest heaves, breathing heavily, and you can hear faint moans echoing from high above you. Her small hooves click and stomp on the bench, giving voice to the small relays of pleasure coursing through her undercarriage.");
 	output("\n\nThe four-legged babe puts a hand on your [pc.butt], cooing softly as you manhandle the majority of her mammoth member into your mouth. You reach down and cup her heavy balls, practically able to feel them churning with pent-up seed, straining against their furry sack. It takes a moment for you to realize you’re trembling with excitement at the thought of her emptying those thick, meaty nads down your throat, bloating your belly with cum until you look ");
 	if(!pc.isPregnant() && pc.bellyRating() < 20) output("positively pregnant");
 	else output("even more pregnant than you are");
@@ -1119,7 +1126,7 @@ public function delSlutTrainingEpilogue2():void
 
 	processTime(45);
 
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	for(var x:int = 0; x < 10; x++)
 	{
 		pc.orgasm();

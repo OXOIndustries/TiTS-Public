@@ -1,6 +1,6 @@
 package classes.UIComponents.ContentModuleComponents 
 {
-	import classes.Creature;
+	import classes.Characters.PlayerCharacter;
 	import fl.containers.ScrollPane;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
@@ -20,7 +20,7 @@ package classes.UIComponents.ContentModuleComponents
 		private var _perkButtonHandler:Function;
 		
 		private var _content:MovieClip;
-		private var _tarCreature:Creature;
+		private var _tarCreature:PlayerCharacter;
 		
 		private var _perkGroups:Vector.<PerkButtonGroup>;
 		private var _perkData:Vector.<PerkData>;
@@ -92,7 +92,7 @@ package classes.UIComponents.ContentModuleComponents
 			this.update();
 		}
 		
-		public function setInitialState(creature:Creature):void
+		public function setInitialState(creature:PlayerCharacter):void
 		{
 			if (_configured == false || _configuredForClass != creature.characterClass)
 			{

@@ -27,6 +27,13 @@ public function altTooltip(itemName:String = "none"):String
 			if(pc.characterClass == GLOBAL.CLASS_ENGINEER) tooltip += " It’s the perfect weapon for a tech specialist to start with.";
 			break;
 		
+		// Treasures
+		case "Savicite":
+			if(getPlanetName().toLowerCase().indexOf("uveto") != -1) tooltip += "Savicite, an item that seems too useful and too ubiquitous to be real, yet here it is. It has uses in everything from starship fuel to medical treatments and more. You could sell this for a pretty penny.";
+			else tooltip += "Savicite is a moderately rare mineral used as both a fuel source and a psionic focus by several Confederate-space factions. The chunks found in the wilderlands of Uveto are usually fist-sized green rocks with a strangely fuzzy texture.";
+			tooltip += "\n\nJust holding it makes your skin feel oddly warm, flushed with unbidden desire.";
+			break;
+		
 		// Consumables
 		case "AmazonaClassic":
 			tooltip += "A 23 oz tin can labeled: “Amazona Classic.” The can is decorated with a stylized drawing of a large, muscular woman showing off her ripped figure. Small text reveals that this is " + (silly ? "Clit Kiwi" : "Grapefruit") + " flavored.";
@@ -55,6 +62,11 @@ public function altTooltip(itemName:String = "none"):String
 			if(!silly) tooltip += " Equally colorful lettering informs you that this is an after-sex drug which tightens vaginas and asses that have gotten stretched out by too much attention or excessively hung playmates.";
 			else tooltip += "\n\n<i>“Hi, Milly Bayes here with Mighty Tight! Gotten knotted one too many times? Stopped by New Texas and ran with the bulls? Do you feel like you’re just worn out down there? J’ejune Pharmaceutical has your back with Mighty Tight! Mighty Tight is guaranteed to tighten your cooch, leaving you fresh and ready to party some more! Not only that, Mighty Tight works on asses too! Put the squeeze on your playmates with Mighty Tight!”</i>";
 			tooltip += "\n\nBelow this, in much smaller text, is a warning informing you <b>not to take Mighty Tight more than twice every four hours</b>. It also lists off a long string of minor potential side effects. Within the colorful packaging is a dull pink pill.";
+			break;
+		case "SirensBounty":
+			tooltip += "This Xenogen product is some kind of liquid contained in a stylish glass flask. ‘Siren’s Bounty’ is spelled out on the base in a combination of fancy cursive and musical notes which wrap around the entire container.";
+			tooltip += "\n\nYou idly note the little warning preamble on the back, but pay it no mind.";
+			if(silly) tooltip += " It’s not like you <i>read</i> warning labels anyway.";
 			break;
 		case "Sterilex":
 			tooltip += "This is a colorfully-packaged box featuring some holovid sales girl.";

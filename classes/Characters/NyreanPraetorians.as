@@ -291,13 +291,15 @@
 			if(combatMiss(this, target)) output("\nYou dodge out of the way, narrowly avoiding a crushing blow.");
 			else 
 			{
+				var bStun:Boolean = false;
 				output("\nYou don’t manage to dodge in time, and get a thunderous wallop on the head for your trouble! You stagger back, clutching your aching head.");
 				if(physique()/2 + rand(20) + 1 > target.physique()/2 + 10 && !target.hasStatusEffect("Stunned"))
 				{
 					output(" <b>You are stunned!</b>");
-					CombatAttacks.applyStun(target, 2);
+					bStun = true;
 				}
 				applyDamage(meleeDamage(), this, target, "melee");
+				if(bStun) CombatAttacks.applyStun(target, 2);
 			}
 			energy(-5);
 		}

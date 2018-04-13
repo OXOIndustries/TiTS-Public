@@ -183,20 +183,21 @@ public function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	// merge
 	output("\n\nSoft, spongy flesh hits your back as you come to rest in the bottom of the hole. It’s uneven and bundled together in what feels like huge ropes, dozens of them squirming and sliding along your back following the impact. You roll aside instinctively, trying to escape whatever you landed on, but that just earns you a face full of tentacles, slippery, wiggling tentacles. They flex and arch away from the bottom of this tiny cave, flopping you back onto another bed of moist vines where you can see the light from above slowly dimming, blocked by a busty silhouette that eventually plugs the gap entirely, shrouding you in darkness.");
 	output("\n\nThe air is thick with whatever was making you sneeze – the spores, you think – but at this point, they’re just making the tip of your nose itch. That’s a far lesser concern than the fact that you’re in a pitch black hole surrounded by tentacles strong enough to toss you around like a child’s toy. One rubs your cheek, smearing your [pc.skinFurScales] with something warm and wet that’s leaking from a semi-rigid, flared tip. Another ");
-	if(!pc.isNude()) {
-		if(pc.lowerUndergarment.shortName != "") output("slithers up inside your [pc.lowerUndergarment.longName]");
-		else if(pc.armor.shortName != "") output("slithers up inside your [pc.armor.longName]");
-		else output("slithers up inside your [pc.upperUndergarments.longName]");
+	if(!pc.isNude())
+	{
+		if(pc.hasLowerGarment()) output("slithers up inside your [pc.lowerUndergarment]");
+		else if(pc.hasArmor()) output("slithers up inside your [pc.armor]");
+		else output("slithers up inside your [pc.upperUndergarments]");
 	}
 	else output("slithers across your nude body");
 	output(", the friction peeling back an outer covering to expose something even softer and wetter, tipped with a sucking, hungry hole that plants dripping-wet kisses all over your abdomen and [pc.fullChest].");
 	if(!pc.isNude()) output(" Your gear is soon a soaking hot mess.");
 	
 	output("\n\nYou try to resist, but your mind is a little more sluggish and relaxed than it was a few moments ago. Vines as thick and strong as small trees gradually encircle each of your limbs, snaring them in slippery tight caresses.");
-	if(pc.lowerUndergarment.shortName != "")
+	if(pc.hasLowerGarment())
 	{ 
 		output(" Smaller, quicker tentacles see to your ");
-		if(pc.armor.shortName != "") output("[pc.armor] and ");
+		if(pc.hasArmor()) output("[pc.armor] and ");
 		output("sticky underwear, removing the obstructing material in a matter of moments.");
 	}
 	output(" The slithering restraints pull tight, spreading your nude form for what you can only assume is coming violation, languidly dragging their fluid-leaking lengths over your [pc.skinFurScales]. The worst part of it is the omnipresent darkness. The shroud of sable murk makes every touch seem a surprise, and sightlessness enhances the touches’ effects on your vulnerable psyche.");
@@ -989,7 +990,7 @@ public function elderVenusPitcherDickNipplePlay():void {
 	
 	output("\n\n<i>“Quite an unusual set of pointers you have there. Let’s see whether I get milk or honey for playing with them,”</i> the seductive plant-girl wonders aloud. <i>“You just relax and hang out while I milk these puppies-”</i> she tugs on your [pc.dickNipples] eagerly, <i>“-so well that they pop out whenever you think about me.”</i>");
 	
-	output("\n\Letting go of your chest phalluses, the verdant seductress rocks back, swaying pendulously for a moment before her momentum carries her forward, smushing her big green jugs to either side of you [pc.face], smothering you in those big, soft boobs. You groan in pleasure at having yourself put so close to the objects of your affection, still watching them bounce and spin in your mind’s eye as you lie there, waiting to experience more of the pleasure she’s promised. Your [pc.nippleDicks] are so hard and now that they’re exposed, the feeling of imaginary tongues sliding over them has grown even more potent.");
+	output("\n\Letting go of your chest phalluses, the verdant seductress rocks back, swaying pendulously for a moment before her momentum carries her forward, smushing her big green jugs to either side of you [pc.face], smothering you in those big, soft boobs. You groan in pleasure at having yourself put so close to the objects of your affection, still watching them bounce and spin in your mind’s eye as you lie there, waiting to experience more of the pleasure she’s promised. Your [pc.nipples] are so hard and now that they’re exposed, the feeling of imaginary tongues sliding over them has grown even more potent.");
 	
 	output("\n\nThat sensation becomes far more palpable a moment later, only it’s happening on every single surface of your dicknipples, surrounding them in a warm, wet surface that tugs and squeezes them relentlessly. Those warm sheaths engulf the entirety of your pricks, and blinded by breasts as you are, your sense of touch is magnified, making the pleasure so exquisite that you begin to leak pre already. Hundreds of cilia stroke and caress you like a swarm of tiny tongues. The nubs at the ends press against your [pc.chest] and close up, sealing up just in time for them to begin sucking slightly, pulsing slow vacuum-powered tugs on your shafts. Circles of pressure constrict around your lengths at various points and begin to drag inward, new ones forming at the bottom of your [pc.dickNipples] whenever they slide past the tips, milking you unendingly.");
 	
@@ -1015,7 +1016,7 @@ public function elderVenusPitcherDickNipplePlay():void {
 	
 	output("\n\n<i>“Two...”</i>");
 	
-	output("\n\nYou feel like your [pc.nippleDicks] are about to explode, twitching wildly and arching inside their velvety soft prisons.");
+	output("\n\nYou feel like your [pc.nipples] are about to explode, twitching wildly and arching inside their velvety soft prisons.");
 	
 	output("\n\n<i>“One...”</i>");
 	
@@ -1267,8 +1268,8 @@ public function venusSubmission(arg:Number = 0):Number {
 
 public function venusPitcherLayUnfertilizedEgg():void {
 	clearOutput();
-	showBust("VENUSPITCHER");
-	showName("VENUS\nPITCHER");
+	showBust("");
+	showName("VENUS\nPOD!");
 	author("Fenoxo");
 	
 	var pData:PregnancyData = pc.getPregnancyOfType("VenusPitcherSeedCarrier");
@@ -1321,23 +1322,67 @@ public function venusPitcherLayUnfertilizedEgg():void {
 	if (pData && pData.pregnancyQuantity > 1) output("\n\nThe size of your [pc.belly] indicates that you’re going to be going through this at least once more. You can’t stop your [pc.vaginas] from tingling hotly at the thought.");
 	
 	//Increase elasticity .1 towards a cap of 1.6
-	if (pc.elasticity < 1.6)
+	if (pc.elasticity < (pc.hasPerk("Elasticity") ? 3.2 : 1.6))
 	{
-		pc.elasticity += 0.1;
+		pc.elasticity += (pc.hasPerk("Elasticity") ? 0.2 : 0.1);
 		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.\n\n");
 	}
 	
 	//Gain Venus Pod (TF item go!)
+	venusPitcherPodReward(1);
+}
+public function venusPitcherSeedNurseryEnds(nEggs:int = 0):void
+{
+	clearOutput();
+	showBust("");
+	showName("VENUS\nPOD!");
+	
+	if(nEggs <= 0)
+	{
+		output("It looks like you didn’t give birth to any venus pitcher seeds!");
+	}
+	else
+	{
+		output("You have given birth to " + num2Text(nEggs) + " venus pitcher seed" + (nEggs == 1 ? "" : "s") + "!");
+		
+		StatTracking.track("pregnancy/unfertilized venus pitcher seeds", nEggs);
+		StatTracking.track("pregnancy/venus pitcher seeds", nEggs);
+		StatTracking.track("pregnancy/total births", nEggs);
+	}
+	output("\n\n");
+	
+	venusPitcherPodReward(nEggs);
+}
+public function venusPitcherPodReward(nEggs:int = 0):void
+{
 	var podLoot:Array = [];
-	podLoot.push(new VenusPod());
+	var idx:int = 0;
+	
+	while(nEggs > 0)
+	{
+		// Create item
+		podLoot.push(new VenusPod());
+		// Determine item quantity relative to stack
+		var nQuantity:int = Math.min(nEggs, podLoot[idx].stackSize);
+		// Change item quantity
+		podLoot[idx].quantity = nQuantity;
+		// Update counters
+		nEggs -= nQuantity;
+		idx++;
+	}
+	
+	if(podLoot.length <= 0)
+	{	
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
 	useItemFunction = mainGameMenu;
 	
 	itemCollect(podLoot);
-
-	//clearMenu();
-	//addButton(0, "Next", mainGameMenu);
 }
 
 public function rumblyInYourTummy():void 
@@ -1348,9 +1393,8 @@ public function rumblyInYourTummy():void
 	AddLogEvent(ParseText("The [pc.skin] across your [pc.belly] stretches as your alien young incubate inside your womb. It’s actually quite a satisfying sensation, though it does leave your face a little flushed. More slime bathes your netherlips as your body gets into its role as a receptacle for venus pitcher seeds. There’s so much of the slick stuff that your crotch appears practically oiled with it."), "passive");
 
 	//Increase bellymod to 14 * amount
-	var pData:PregnancyData = (pc as PlayerCharacter).getPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
-	pc.bellyRatingMod = 14 * pData.pregnancyQuantity;
-	pData.pregnancyBellyRatingContribution += 2 * pData.pregnancyQuantity;
+	var pregSlot:int = pc.findPregnancyOfType("VenusPitcherFertilizedSeedCarrier");
+	pc.addPregnancyBellyMod(pregSlot, 14, true);
 }
 
 public function poppingSoonAlert1():void
@@ -1440,10 +1484,10 @@ public function layFertilizedVenusPitcherEgg():void
 		flags["LAID VENUS PITCHER SEEDS"]++;
 	}
 	//Increase elasticity .1 towards a cap of 2
-	if (pc.elasticity < 2.0)
+	if (pc.elasticity < (pc.hasPerk("Elasticity") ? 4.0 : 2.0))
 	{
-		pc.elasticity += 0.1;
-		if (pc.elasticity > 2.0) pc.elasticity = 2.0;
+		pc.elasticity += (pc.hasPerk("Elasticity") ? 0.2 : 0.1);
+		if (pc.elasticity > (pc.hasPerk("Elasticity") ? 4.0 : 2.0)) pc.elasticity = 4.0;
 
 		output("\n\nAt least you feel a little stretchier now, like the act has left you better-prepared to both take and pass large insertions without issue.");
 	}
@@ -1533,8 +1577,7 @@ public function venusPitcherBadEnd2():void
 	author("Fenoxo");
 	
 	pc.removeAll();
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	
 	output("Merely being in contact with a venus pitcher is enough to make the world spin in the background. Wait... No, she’s flipping you upside down, carrying you down into her subterranean bulb. The sensation is familiar enough to you that you can recognize it even when your world is centered wholly on the perfect breasts upon which you now nurse. Even when her pollen comes thicker and muggier than a sauna’s steam, crowding aside more complex thoughts with bubbling passion and waves of flaxen acceptance.");
 	output("\n\n<i>“It’s so silly that you ever thought you were meant for something else.”</i> Her words are as sweet as the nectar leaking into your mouth. <i>“You were meant for me... and my sisters. We needed you, and you need us, don’t you.”</i>");

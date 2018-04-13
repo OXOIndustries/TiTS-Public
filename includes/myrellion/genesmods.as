@@ -264,18 +264,18 @@ public function genesModsBuyStuff():void
 		{
 			if(!chars["GENE"].hasItemByClass(GaloMax)) chars["GENE"].inventory.push(new GaloMax());
 		}
-		else chars["GENE"].destroyItemByClass(GaloMax);
+		else chars["GENE"].destroyItemByClass(GaloMax, -1);
 	}
 	if(flags["GENE_UNLOCK_CERESPIRIN"] != undefined)
 	{
 		if(!chars["GENE"].hasItemByClass(Cerespirin)) chars["GENE"].inventory.push(new Cerespirin());
 	}
-	else chars["GENE"].destroyItemByClass(Cerespirin);
+	else chars["GENE"].destroyItemByClass(Cerespirin, -1);
 	if(CodexManager.entryUnlocked("Muffstick"))
 	{
 		if(!chars["GENE"].hasItemByClass(Muffstick)) chars["GENE"].inventory.push(new Muffstick());
 	}
-	else chars["GENE"].destroyItemByClass(Muffstick);
+	else chars["GENE"].destroyItemByClass(Muffstick, -1);
 	shopkeep = chars["GENE"];
 	itemScreen = mainGameMenu;
 	lootScreen = mainGameMenu;
@@ -1169,7 +1169,7 @@ public function genesModsBellyrubRelease():void
 	
 	output("\n\n<i>“That’s enough for today, I think,”</i> you say breezily. <i>“If you’re a really good boy, though... maybe we’ll do it again.”</i>");
 	
-	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [player.race], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
+	output("\n\n<i>“You,”</i> replies Gene, gathering back all his deep, declamatory delivery, <i>“are a terrible [pc.raceShort], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words; whatever the case, you give him a big unashamed grin in response.");
 	processTime(3);
 	pc.lust(10+rand(5));
 	geneSubmissionLevel(-3);
@@ -1191,7 +1191,7 @@ public function genesModsBellyrubDeny():void
 	
 	output("\n\n<i>“That’s enough for today, I think,”</i> you say breezily. <i>“If you’re really good... and are extra polite... I’ll empty those big, frustrated balls of yours next time.?”</i> Gene stares at you, breast still heaving, his modest human cock hotly erect, palpably barely able to believe you.");
 	
-	output("\n\n<i>“You,”</i> he says eventually gathering back all his deep, declamatory delivery, <i>“are a terrible [player.type], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words, maybe even a thrill of submission; whatever the case, you give him a big unashamed grin in response.");
+	output("\n\n<i>“You,”</i> he says eventually gathering back all his deep, declamatory delivery, <i>“are a terrible [pc.raceShort], and I rue the day you ever darkened my threshold.”</i> You think you detect a chord of complete fascination runs through his words, maybe even a thrill of submission; whatever the case, you give him a big unashamed grin in response.");
 
 	geneSubmissionLevel(-3);
 	processTime(2);

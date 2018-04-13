@@ -1068,7 +1068,7 @@ public function initializeMyrellionRooms():void
 	//Kressia Gates
 	rooms["803"] = new RoomClass(this);
 	rooms["803"].roomName = "KRESSIA\nGATES";
-	rooms["803"].description = "The gates that separate Kressia from the trenchlines outside are newly erected, sliding gates supporting rolls of concertina wire. A couple of soldiers are standing to either side, each with a full trench coat and gas mask set. The rest of the city looms large to the north. To the south, through the gates, you see a heavy concrete bunker facing the trenches.\n\nSeeing you about, the guards offer to open the gates and let you by.\n\nA huge concrete bunker stands between the gates and the trenches, bristling with weapons bolted into the firing ports. A door stands open near you,";
+	rooms["803"].description = "The gates that separate Kressia from the trenchlines outside are newly erected, sliding gates supporting rolls of concertina wire. A couple of soldiers are standing to either side, each with a full trench coat and gas mask set. The rest of the city looms large to the north. To the south, through the gates, you see a heavy concrete bunker facing the trenches.\n\nSeeing you about, the guards offer to open the gates and let you by.\n\nA huge concrete bunker stands between the gates and the trenches, bristling with weapons bolted into the firing ports. ";
 	rooms["803"].planet = "PLANET: MYRELLION";
 	rooms["803"].system = "SYSTEM: SINDATHU";
 	//rooms["803"].westExit = "9999";
@@ -2895,7 +2895,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K7"].southExit = "";
 	rooms["2K7"].westExit = "2I7";
 	rooms["2K7"].moveMinutes = 5;
-	rooms["2K7"].runOnEnter = DeepCavesBonus;
+	rooms["2K7"].runOnEnter = myrellionDerelictApproachBonus;
 	rooms["2K7"].addFlag(GLOBAL.CAVE);
 	rooms["2K7"].addFlag(GLOBAL.INDOOR);
 	rooms["2K7"].addFlag(GLOBAL.HAZARD);

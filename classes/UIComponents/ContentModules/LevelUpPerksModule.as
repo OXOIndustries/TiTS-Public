@@ -1,7 +1,6 @@
 package classes.UIComponents.ContentModules 
 {
 	import classes.Characters.PlayerCharacter;
-	import classes.Creature;
 	import classes.UIComponents.ContentModule;
 	import classes.UIComponents.ContentModuleComponents.PerkButton;
 	import classes.UIComponents.ContentModuleComponents.PerkButtonGroup;
@@ -31,7 +30,7 @@ package classes.UIComponents.ContentModules
 		private var _perkList:PerkClassTree;
 		private var _selectedPerkDetails:PerkDetailsPane;
 		
-		private var _targetCreature:Creature;
+		private var _targetCreature:PlayerCharacter;
 		private var _selectedPerkButton:PerkButton;
 		
 		public function LevelUpPerksModule() 
@@ -87,13 +86,15 @@ package classes.UIComponents.ContentModules
 			this.addChild(_perkList);
 		}
 		
-		public function setCreatureData(creature:Creature, gavePoints:Boolean = false):void
+		public function setCreatureData(creature:PlayerCharacter, gavePoints:Boolean = false):void
 		{
 			_targetCreature = creature;
 			
 			_moduleHeader.text = (GLOBAL.CLASS_NAMES[creature.characterClass] as String).toUpperCase() + " ABILITIES";
 			
 			_perkList.setInitialState(creature);
+			
+			perkButtonReset();
 			
 			// Give ourselves a disabled button
 			kGAMECLASS.userInterface.addGhostButton(0, "Confirm", confirmSelection, gavePoints, "Confirm Selection", "Confirm the current perk selection, if any.");
@@ -111,15 +112,22 @@ package classes.UIComponents.ContentModules
 				else buttonGroup.buttonOne.removeSelected();
 				
 				if (_selectedPerkButton != null && (_selectedPerkButton.isUnavailable || _selectedPerkButton.isTaken)) _selectedPerkButton.removeSelected();
+				
+				_selectedPerkButton = tarButton;
+				_selectedPerkDetails.selectedPerkName = _selectedPerkButton.perkReference.perkName;
+				_selectedPerkDetails.selectedPerkText = ParseText(_selectedPerkButton.perkReference.perkDescription);
 			}
 			else
 			{
 				tarButton.removeSelected();
+				perkButtonReset();
 			}
-			
-			_selectedPerkButton = tarButton;
-			_selectedPerkDetails.selectedPerkName = _selectedPerkButton.perkReference.perkName;
-			_selectedPerkDetails.selectedPerkText = ParseText(_selectedPerkButton.perkReference.perkDescription);
+		}
+		private function perkButtonReset():void
+		{
+			_selectedPerkButton = null;
+			_selectedPerkDetails.selectedPerkName = "";
+			_selectedPerkDetails.selectedPerkText = "";
 		}
 		
 		public function confirmSelection(gavePoints:Boolean = false):void

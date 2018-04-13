@@ -1,5 +1,6 @@
 ﻿package classes
 {
+	import classes.Engine.SharedData;
 	import classes.GameData.CombatManager;
 	import classes.GameData.Perks;
 	import classes.GameData.ShipManager;
@@ -26,10 +27,10 @@
 	import flash.net.SharedObject;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.system.Capabilities;
 	import flash.text.Font;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
-	import flash.display.MovieClip;
 	import flash.text.Font;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
@@ -121,18 +122,35 @@
 		include "../includes/StubbedFunctions.as";
 
 		//Holiday shit
-		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/holidayEvents/candyRahn.as";
+		include "../includes/holidayEvents/chupacabro.as";
 		include "../includes/holidayEvents/freedomBeef.as";
+		include "../includes/holidayEvents/furryTreatsAndTricks.as";
+		include "../includes/holidayEvents/ghostSexDream.as";
+		include "../includes/holidayEvents/halloweenCostumes.as";
+		include "../includes/holidayEvents/merryShademas.as";
+		include "../includes/holidayEvents/milodanBreedingSolstice.as";
+		include "../includes/holidayEvents/myrnaTheGenerousKorgonne.as";
+		include "../includes/holidayEvents/pumpkinCarving.as";
 		include "../includes/holidayEvents/puppyslutmas.as";
+		include "../includes/holidayEvents/randyClaws.as";
+		include "../includes/holidayEvents/succucow.as";
 
 		//Followers
 		include "../includes/follower/anno.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
+		include "../includes/follower/azraPlantSamples.as";
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
+		include "../includes/follower/kase.as";
 		include "../includes/follower/multi_interactions.as";
+		include "../includes/follower/paige.as";
+		include "../includes/follower/paigeHalloweener.as";
+		include "../includes/follower/paigeSex.as";
+		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/pippa.as";
+		include "../includes/follower/shekka.as";
 		include "../includes/follower/siegwulfe.as";
 		include "../includes/follower/yammi.as";
 		
@@ -150,20 +168,26 @@
 		include "../includes/masturbation/exhibitionismPerk.as";
 		include "../includes/masturbation/hardlightAGThong.as";
 		include "../includes/masturbation/magicMilker.as";
+		include "../includes/masturbation/sleepFapnea.as";
 		include "../includes/masturbation/sukMastr.as";
 		include "../includes/rivalEncounters.as";
 		include "../includes/vendingMachine.as";
 		
 		// Misc Events
+		include "../includes/events/araDiplomacyMission.as";
 		include "../includes/events/atha_lets_fapper.as";
 		include "../includes/events/bimboPennyAndBadgerQuest/badgerGifts.as";
 		include "../includes/events/erra.as";
+		include "../includes/events/kattomOsgood.as";
 		include "../includes/events/kiroCrewQuest/buttslutinator.as";
 		include "../includes/events/kiroCrewQuest/omnisuitExtras.as";
 		include "../includes/events/kiroCrewQuest/orgasmender.as";
 		include "../includes/events/pyriteSatelliteRecovery.as";
 		include "../includes/events/steph_on_demand.as";
 		include "../includes/events/tentacle_psychic_hatchling.as";
+		include "../includes/events/federationQuest/federationQuest.as";
+		include "../includes/events/federationQuest/rooms.as";
+		include "../includes/events/federationQuest/roomFunctions.as";
 		
 		// Travel Events
 		include "../includes/travelEvents.as";
@@ -195,7 +219,8 @@
 		include "../includes/tavros/sera.as";
 		include "../includes/tavros/seraXPack1.as";
 		include "../includes/tavros/seraXPack2.as";
-		include "../includes/tavros/seraXPreg.as";
+		include "../includes/tavros/seraXPreg1.as";
+		include "../includes/tavros/seraXPreg2.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
 		include "../includes/tavros/tamaniCorpShop.as";
@@ -225,15 +250,18 @@
 		include "../includes/mhenga/crazyCarl.as";
 		include "../includes/mhenga/cuntSnakes.as";
 		include "../includes/mhenga/dryad.as";
+		include "../includes/mhenga/erika.as";
 		include "../includes/mhenga/flahne.as";
 		include "../includes/mhenga/frogGirls.as";
 		include "../includes/mhenga/julianSHaswell.as";
+		include "../includes/mhenga/kase.as";
 		include "../includes/mhenga/kelly.as";
 		include "../includes/mhenga/mimbranes.as";
 		include "../includes/mhenga/naleen.as";
 		include "../includes/mhenga/naleenMale.as";
 		include "../includes/mhenga/penny.as";
 		include "../includes/mhenga/penny_bimbo.as";
+		include "../includes/mhenga/prai.as";
 		include "../includes/mhenga/rooms.as";
 		include "../includes/mhenga/roomFunctions.as";
 		include "../includes/mhenga/scrapyard.as";
@@ -269,10 +297,11 @@
 		include "../includes/tarkus/sexbots.as";
 		include "../includes/tarkus/shekka.as";
 		include "../includes/tarkus/stellarTether.as";
+		include "../includes/tarkus/sydianFemale.as";
 		include "../includes/tarkus/sydianMale.as";
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
-		include "../includes/tarkus/sydianFemale.as";
+		include "../includes/tarkus/verusha.as";
 
 		//Third planet
 		include "../includes/newTexas/newTexas.as";
@@ -281,6 +310,7 @@
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
+		include "../includes/newTexas/ciaran.as";
 		include "../includes/newTexas/ellie.as";
 		include "../includes/newTexas/haley.as";
 		include "../includes/newTexas/gianna.as";
@@ -304,6 +334,7 @@
 		include "../includes/myrellion/bothriocAmbassador.as";
 		include "../includes/myrellion/bothriocSharedFunctions.as";
 		include "../includes/myrellion/bothriocCombatMobs.as";
+		include "../includes/myrellion/bothriocQuadomme.as";
 		include "../includes/myrellion/cockvines.as";
 		include "../includes/myrellion/cockvineseedling.as";
 		include "../includes/myrellion/crystalGoo.as";
@@ -347,9 +378,15 @@
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
 		
+		// Breedwell
+		include "../includes/breedwell/breedwell.as";
+		include "../includes/breedwell/rooms.as";
+		
 		// GASTIGOTH!
 		include "../includes/gastigoth/gastigoth.as";
 		include "../includes/gastigoth/rooms.as";
+		include "../includes/gastigoth/sam.as";
+		include "../includes/gastigoth/pregStuff.as";
 		
 		// Karaquest 2- Karaharder.
 		include "../includes/events/karaquest2/content.as";
@@ -370,15 +407,21 @@
 		include "../includes/uveto/drlessau.as";
 		include "../includes/uveto/freezer.as";
 		include "../includes/uveto/frostwyrm.as";
+		include "../includes/uveto/heidrun.as";
 		include "../includes/uveto/jerome.as";
 		include "../includes/uveto/jerynn.as";
 		include "../includes/uveto/kaede.as";
 		include "../includes/uveto/kirila.as";
 		include "../includes/uveto/korgonneFemaleHostile.as";
+		include "../includes/uveto/korgonneMaleHostile.as";
 		include "../includes/uveto/krym.as";
+		include "../includes/uveto/lund.as";
+		include "../includes/uveto/majaTamedTamelings.as";
+		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
 		include "../includes/uveto/natalie.as";
 		include "../includes/uveto/nayna.as";
+		include "../includes/uveto/nenne.as";
 		include "../includes/uveto/nerrasa.as";
 		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
@@ -386,8 +429,11 @@
 		include "../includes/uveto/rooms.as";
 		include "../includes/uveto/roomFunctions.as";
 		include "../includes/uveto/shade.as";
+		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
+		include "../includes/uveto/tuuvaBlacksmith.as";
+		include "../includes/uveto/ula.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		
@@ -427,7 +473,8 @@
 		public var items:Object;
 		
 		//Toggles
-		public var gameOptions:GameOptions;
+		public var gameOptions:GameOptions; // Options is tied to a single save file
+		public var sharedData:SharedData; // SharedData is used across ALL save files
 		
 		public function get silly():Boolean { return gameOptions.sillyMode; }
 		public function get easy():Boolean { return gameOptions.easyMode; }
@@ -483,7 +530,7 @@
 		}
 		
 		private function init(e:Event):void
-		{				
+		{
 			loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
 			
 			stage.quality = StageQuality.BEST;
@@ -491,6 +538,7 @@
 			kGAMECLASS = this;
 			dataManager = new DataManager();
 			gameOptions = new GameOptions();
+			sharedData = SharedData.Load();
 			
 			hours = 0;
 			minutes = 0;
@@ -498,7 +546,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.78";
+			version = "0.7.151";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -519,7 +567,7 @@
 			itemUser = undefined;
 			itemTarget = undefined;
 
-			this.inSceneBlockSaving = false;
+			inSceneBlockSaving = false;
 			gameOverEvent = false;
 			
 			eventQueue = [];
@@ -550,6 +598,8 @@
 			initGastigothRooms();
 			kiInitRooms();
 			initVesperiaRoom();
+			initBreedwellRooms();
+			fqInitRooms();
 			
 			mapper = new Mapper(this.rooms)
 
@@ -572,17 +622,99 @@
 			addEventListener(Event.FRAME_CONSTRUCTED, finishInit);
 		}
 		
+		/* Try to safely report errors to the user
+		 * Usage:
+		 *
+			try
+			{
+				<code>
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
+		 *
+		 * <code> can be a little thing or something big as displaying the complete appearance/stat/log output
+		 * but to work as intended interrupting the code block at any point should never leave the game state broken
+		 *
+		 * returns true if error reporting failed - just rethrow the exception
+		*/
+		public function reportError(arg:*):Boolean
+		{
+			var text:String;
+			
+			// Step 1: generate an error message based on the argument type passed in
+			if (arg is Error)
+			{
+				var ee:Error = arg as Error;
+				text = ("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
+				//output("Version: " + version + "\n\n");
+				text += ("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				text += ("Flash Version: " + Capabilities.version + "\n");
+				text += ("Game Version: " + version + "\n\n");
+				text += ("Error Name: " + ee.name + "\n");
+				text += ("Error Mesg: " + ee.message + "\n");
+				text += (ee.getStackTrace());
+			}
+			
+			// Step 2: Try to display the error text without disrupting the control flow
+			// Goal is that -apart from the failed action- the game continues as smooth as possible
+			if ( text )
+			{
+				var module:ContentModule = userInterface.activeModule;
+				
+				// during startup - little we can do but try to resume default error handling
+				if (!module) return true;
+				
+				switch ( module.moduleName )
+				{
+					case "PrimaryOutput":
+						output( text, false, false );
+						return false;
+						break;
+					case "SecondaryOutput":
+						output2( text.replace( /\[/g, '\\[' ), false ); // work around missing parse arg
+						return false;
+						break;
+					case "CodexDisplay":
+						outputCodex( text.replace( /\[/g, '\\[' ), false ); // work around missing parse arg
+						userInterface.outputCodex();
+						return false;
+						break;
+					// email needs a public method to print text so errors during mail display aren't fatal anymore
+				}
+			}
+			// We either could not handle the argument type or display the message
+			// let the calling method handle it if it can
+			return true;
+		}
 		private function uncaughtErrorHandler(e:UncaughtErrorEvent):void
 		{
+			if(stage.contains(userInterface.textInput)) removeInput();
+			
+			output("<b>[Uncaught " + getQualifiedClassName(e.error) + "]</b>", false, false);
+			
 			if (e.error is Error)
 			{
 				var ee:Error = e.error as Error;
+				var bGameOver:Boolean = true;
 				
 				output("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
-				output("Version: " + version + "\n\n");
+				//output("Version: " + version + "\n\n");
+				output("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				output("Flash Version: " + Capabilities.version + "\n");
+				output("Game Version: " + version + "\n\n");
+				output("Error Name: " + ee.name + "\n", false, false);
+				output("Error Mesg: " + ee.message + "\n", false, false);
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
-				addButton(14, "Next", mainGameMenu);
+				if(bGameOver)
+				{
+					gameOverEvent = true;
+					backToPrimaryOutput();
+					output("\n\n(Access the main menu to start a new game or use the data menu to load a previously saved game. The buttons are located in the lower left of the game screen.)");
+				}
+				else addButton(14, "Next", mainGameMenu);
 			}
 		}
 		
@@ -712,6 +844,11 @@
 			userInterface.addButton(slot, cap, func, arg, ttHeader, ttBody);
 		}
 		
+		public function hasButton(slot:int):Boolean
+		{
+			return (userInterface.buttonTray.getButtonNameForIndex(slot) != "");
+		}
+		
 		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			userInterface.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
@@ -727,6 +864,11 @@
 			userInterface.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
 		}
 		
+		public function setButtonDisabled(slot:int):void
+		{
+			userInterface.setButtonDisabled(slot);
+		}
+
 		public function addItemButton(slot:int, item:ItemSlotClass, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
 		{
 			var comparisonString:String = null;
@@ -1412,6 +1554,50 @@
 		public function get krymhilde():Krym
 		{
 			return chars["KRYM"];
+		}
+
+		public function get paige():Paige 
+		{
+			return chars["PAIGE"];
+		}
+		
+		public function get ciaran():Ciaran
+		{
+			return chars["CIARAN"];
+		}
+		
+		public function get ellie():Ellie
+		{
+			return chars["ELLIE"];
+		}
+		
+		public function get sam():SX1Techguard
+		{
+			return chars["SX1TECHGUARD"];
+		}
+		
+		public function get khorgan():CaptainKhorgan
+		{
+			return chars["CAPTAINKHORGAN"];
+		}
+		
+		public function get tamtam():TamTam
+		{
+			return chars["TAMTAM"];
+		}
+
+		public function get erika():Erika
+		{
+			return chars["ERIKA"];
+		}
+		
+		public function get lieve():Lieve
+		{
+			return chars["LIEVE"];
+		}
+		public function get tuuva():Tuuva
+		{
+			return chars["TUUVA"];
 		}
 
 		public function testShipCombat():void

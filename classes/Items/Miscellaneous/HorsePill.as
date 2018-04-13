@@ -989,6 +989,7 @@
 					if (target.skinTypeUnlocked(GLOBAL.SKIN_TYPE_FUR))
 					{
 						target.skinType = GLOBAL.SKIN_TYPE_FUR;
+						target.clearSkinFlags();
 						if(rand(4) == 0) target.furColor = "chocolate";
 						else if(rand(3) == 0) target.furColor = "ivory";
 						else if(rand(2) == 0) target.furColor = "brown-dappled";

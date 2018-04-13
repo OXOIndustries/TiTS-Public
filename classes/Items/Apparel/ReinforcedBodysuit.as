@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class ReinforcedBodysuit extends ItemSlotClass
 	{
-		
+		//Level 6 (Common). Balance 2.0
 		public function ReinforcedBodysuit() 
 		{
 			this._latestVersion = 1;
@@ -34,13 +34,13 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 4000;
+			this.basePrice = 3700;
 			this.attack = 0;
 			this.defense = 5;
 			this.shieldDefense = 0;
 			this.sexiness = 2;
 			this.critBonus = 0;
-			this.evasion = 3;
+			this.evasion = 6;
 			this.fortification = 0;
 			
 			this.version = this._latestVersion;

@@ -347,7 +347,7 @@ public function exhibitionismStrip(voluntary:Boolean = true):void
 	
 	var pcLocation:String = getPlanetName();
 	
-	if(voluntary) output("An urge to strip off and give the citizens of " + pcLocation + " a show grips you... and it doesn’t leave. You <i>have</i> to scratch this itch!");
+	if(voluntary) output("An urge to strip off and give the good people of " + pcLocation + " a show grips you... and it doesn’t leave. You <i>have</i> to scratch this itch!");
 	else output("A thought crosses your mind... maybe you should give the good people of " + pcLocation + " a show? Yes... that would be <i>just</i> right.");
 	output("\n\nYou find a spot at the center of a busy place and take a deep breath. Loudly, you announce to the good citizens of " + pcLocation + " to gather around for a free and exciting show. A few heads turn around,");
 	if(!pc.isNude()) output(" snickering when they see you, assuming you are the victim of some sort of prank. A few of them are struck by curiosity and hang around to see what you’re up to.");

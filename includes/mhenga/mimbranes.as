@@ -3419,7 +3419,7 @@ public function mimbraneCombatInterference():Boolean
 				if (eligibleMimbranes[i] == "Mimbrane Cock")
 				{
 					output("Some unrelenting pressure in your");
-					if(pc.isCrotchGarbed()) output(" [pc.underGarments]");
+					if(pc.isCrotchGarbed()) output(" [pc.lowerGarments]");
 					else output(" crotch");
 					output(" is getting unbearable, forcing you to find out what’s going on. The moment you peek inside, your [pc.cock] overwhelms you with a potent blast of sexual fog. Your Mimbrane-controlled dick works furiously to smother you in its sexual cloud before you can entomb it back under your garments, only its furious chirps able to escape.");
 				}
@@ -3708,7 +3708,7 @@ Lip Tease (large): You form your luscious, buxom lips into a nice, tight “o,�
 */
 
 //Mimbranes can only be removed by doctor facilities and must be removed entirely rather than piecemeal. Mimbranes will block any attempts to remove their organ and in the case of feet, they will block transformation attempts away from human feet (as of this writing anyway). These scenes play to highlight that block. Scenes are included for body parts that presumably cannot be removed anyway.
-//Ass Mimbrane: Your [asshole] gapes beyond your wildest imagination, cheeks flaring wide. Seems any attempt to seal your [ass] or otherwise rid your lower disposal hole is met with resistance by your butt-hugging Mimbrane.
+//Ass Mimbrane: Your [pc.asshole] gapes beyond your wildest imagination, cheeks flaring wide. Seems any attempt to seal your [ass] or otherwise rid your lower disposal hole is met with resistance by your butt-hugging Mimbrane.
 
 // HOLY SHIT SCENES
 

@@ -10,8 +10,6 @@ package classes.Items.Transformatives
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Util.InCollection;
-	import classes.Util.RandomInCollection;
-	import classes.Engine.Utility.indefiniteArticle;
 	import classes.Engine.Utility.getPlanetName;
 	import classes.Engine.Utility.IncrementFlag;
 	import classes.Engine.Utility.rand;
@@ -87,7 +85,7 @@ package classes.Items.Transformatives
 					else output("You don’t even have a pair of bunny ears.");
 					output(" Lucky for you, the Laquine Ears fit nicely atop your head, giving you the appearance of some laquine heritage before they even start to work. You can already feel the muted tingle of microsurgeons painlessly being absorbed by your scalp. In no time at all, you’ll be a sexy horse-bunny. Or in 24 hours, maybe. If not, you can always buy more.");
 				}
-				pc.createStatusEffect("Laquine Ears",0,0,0,0,false,"LustUp","You are wearing Laquine Ears and will slowly transform into a Laquine over time, so long as the ears’ supply of microsurgeons holds out.",false,1440);
+				pc.createStatusEffect("Laquine Ears",0,0,0,0,false,"Pill","You are wearing Laquine Ears and will slowly transform into a Laquine over time, so long as the ears’ supply of microsurgeons holds out.",false,1440);
 				IncrementFlag("LAQUINE_EAR_USES");
 				return false;
 			}
@@ -107,13 +105,321 @@ package classes.Items.Transformatives
 
 			//Rejiggering so big part TFs happen more at first, then fantasies more later :3
 			if(rand(10) < 2 + pc.laquineScore()) laquineEarsMinorTFsGO(pc,deltaShift);
-			else laquineEarsModerateTFsGo(pc,deltaShift);
+			else if(rand(10) != 0) laquineEarsModerateTFsGo(pc,deltaShift);
+			else laquineEarsMajorTFsGo(pc,deltaShift);
+		}
+		private static function laquineEarsMajorTFsGo(pc:Creature,deltaShift:uint):void
+		{
+			var x:int = 0;
+			var i:int = 0;
+			var textBuff:String = "";
+			var choices:Array = [];
+			if(pc.hasCock() && !pc.hasStatusEffect("Priapism"))
+			{
+				for(i = 0; i < pc.cockTotal(); i++)
+				{
+					if(pc.cocks[i].cLength() >= 12) choices.push(1);
+				}
+			}
+			var cMax:Number = 28;
+			if(pc.hasPerk("Mini")) cMax = 20;
+			else if(pc.hasPerk("Hung")) cMax = 36;
 			/*
-			if(!pc.hasGenitals()) laquineEarsEmergencyGenitalAssignment(pc,deltaShift);
-			if(rand(10) < 7) laquineEarsMinorTFsGO(pc,deltaShift);
-			else if(rand(4) < 3) laquineEarsModerateTFsGo(pc,deltaShift);
-			//Placeholder for major procs once I write them!
-			else laquineEarsModerateTFsGo(pc,deltaShift);*/
+			if(pc.hasCock())
+			{
+				for(i = 0; i < pc.cockTotal(); i++)
+				{
+					if(pc.cocks[i].cLength() < cMax && pc.cocks[i].cType == GLOBAL.TYPE_EQUINE) choices.push(2);
+				}
+			}
+			if(pc.hasCock() && pc.balls <= 0)
+			{
+				for(i = 0; i < pc.cockTotal(); i++)
+				{
+					choices.push(3);
+				}
+			}
+			if(pc.hasCock() && pc.balls == 2)
+			{
+				for(i = 0; i < pc.cockTotal(); i++)
+				{
+					choices.push(4);
+				}
+			}
+			if(pc.hasCock() && !pc.hasPerk("Musky Pheromones"))
+			{
+				for(i = 0; i < pc.cockTotal(); i++)
+				{
+					if(pc.cocks[i].cLength() >= 25) choices.push(5);
+				}
+			}
+			*/
+			if(pc.hasVagina())
+			{
+				for(i = 0; i < pc.totalVaginas(); i++)
+				{
+					if(pc.vaginas[i].type != GLOBAL.TYPE_EQUINE) choices.push(6);
+				}
+			}
+			/*
+			if(pc.hasVagina())
+			{
+				for(i = 0; i < pc.totalVaginas(); i++)
+				{
+					if(pc.vaginas[i].type == GLOBAL.TYPE_EQUINE && (!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800)) choices.push(7);
+				}
+			}
+			if(pc.hasVagina() && pc.bRows() == 1)
+			{
+				for(i = 0; i < pc.totalVaginas(); i++)
+				{
+					if(pc.vaginas[i].type == GLOBAL.TYPE_EQUINE) choices.push(8);
+				}
+			}
+			if(pc.legType != GLOBAL.TYPE_LAPINE) 
+			{
+				choices.push(9);
+				choices.push(9);
+				choices.push(9);
+			}
+			*/
+			
+			var select:int = 0;
+			if (choices.length > 0) select = choices[rand(choices.length)];
+			
+			var hasGlossy:Boolean = false;
+			var goBlack:Boolean = false;
+			
+			if(select == 0)
+			{
+				laquineEarsModerateTFsGo(pc, deltaShift);
+				return;
+			}
+			// (Penor 12"+) Priapism - Yank crotch coverings out of the way. PC cannot wear anything that covers crotch!
+			if(select == 1)
+			{
+				textBuff += "A";
+				if(pc.isBimbo()) textBuff += " yummy-feeling";
+				else if(pc.isBro()) textBuff += " righteous";
+				else if(pc.exhibitionism() < 66) textBuff += "n unwelcome";
+				else textBuff += "n unexpected";
+				textBuff += ParseText(" tingle rushes through your body, warm and a little dizzying as it slides down into your crotch, pooling in [pc.cocks]. With no blood left over for your brain, you struggle not to stumble. More of that cock-firming arousal spills into your");
+				if(pc.cockTotal(GLOBAL.TYPE_EQUINE) == pc.cockTotal())
+				{
+					if(pc.laquineScore() >= 5) textBuff += " lovely laquine tool" + (pc.cocks.length == 1 ? "" : "s");
+					else textBuff += " bestial tool" + (pc.cocks.length == 1 ? "" : "s");
+				}
+				else textBuff += " increasingly sensitive tool" + (pc.cocks.length == 1 ? "" : "s");
+				textBuff += " while seconds tick by, phallic flesh spilling out and up to the beat of your heart.";
+				// Covered
+				if(!pc.isCrotchExposed(true))
+				{
+					textBuff += ParseText("\n\nYou groan as the [pc.cockHeads] press" + (pc.cocks.length == 1 ? "es" : "") + " against your [pc.crotchCover], thrusting into the unforgiving obstruction with feral determination. <i>It hurts!</i> Never before has your tumescence been so resolute in the quest to be erect, nor so sensitive. It feels like you’ve been edging for hours, every nerve bright red and raw from overstimulation to the point where even simple contact with your equipment is like the grittiest sandpaper.");
+					textBuff += ParseText("\n\nYou yank down your [pc.crotchCovers] and sigh with relief. Hot maleness surges out, inches upon inches swelling with the kind of immediacy you’d associate with a pneumatic piston. <b>You are hard.</b> It’s almost ludicrous how hard you are, considering the complete lack of anything to arouse you. You’re just standing there, rock-hard prick" + (pc.cocks.length == 1 ? "" : "s") + " bouncing in the breeze, unflappably erect with no signs of fading.");
+					textBuff += ParseText("\n\nOnce, you try to cram your rebellious genitalia into your [pc.crotchCover], but there’s no way to get it inside without hurting yourself. Usually your boners would have a little give, would allow themselves to be compacted and stored if the situation required it. Now though? You’re going to have to get used to walking around without any pants. <b>The laquine ears have given you a bad case of priapism.</b> According to the Codex, it’s a common laquine affliction and mostly harmless for their species. A significant amount of orgasms or the passage of time should assuage your inflamed nethers.");
+					//Queue event to remove bits
+					if(!pc.isCrotchExposedByArmor(true) || (pc.hasArmor() && !pc.isCrotchExposedByLowerUndergarment(true)))
+						kGAMECLASS.eventQueue.push( function():void { kGAMECLASS.unequip(pc.armor, true); } );
+					if(!pc.isCrotchExposedByLowerUndergarment(true))
+						kGAMECLASS.eventQueue.push( function():void { kGAMECLASS.unequip(pc.lowerUndergarment, true); } );
+				}
+				// Exposed - no new PG
+				else
+				{
+					textBuff += " You groan out loud and pump your hips to the tempo of your swelling prong" + (pc.cocks.length == 1 ? "" : "s") + ", unable to control yourself as you become undeniably, completely erect. You are passionately, exquisitely hard.";
+					textBuff += "\n\nWere you foolish enough to wear any clothing that attempted to cover your rampaging length" + (pc.cocks.length == 1 ? "" : "s") + ", you’d have to remove it. The flesh is too firm and too sensitive. Crushing yourself into pants would be agony. You bite your palm, expecting that pain will help you battle the troublesome boner" + (pc.cocks.length == 1 ? "" : "s") + ", but not even physical agony can chase away the pernicious tumescence. <b>The laquine ears have left you temporarily engorged and sensitive! Wearing any crotch-covering clothing item would be agony like this, but at least you’ll be ready for sex at the drop of a hat.</b>";
+				}
+				
+				pc.applyPriapism();
+			}
+			// (Penor) Grow five to ten inches, dependant on perks. Low chance cock becomes glossy black if not. Immensely pleasurable but no cum. (Mini: 3/4-7/Hung:7-11} inches. (20"mini/28" norm/36" hung)
+			else if(select == 2)
+			{
+				choices = [];
+				for(i = 0; i < pc.cockTotal(); i++)
+				{
+					if(pc.cocks[i].cType == GLOBAL.TYPE_EQUINE && pc.cocks[i].cLength() < cMax)
+					{
+						choices.push(i);
+					}
+					if(!hasGlossy) hasGlossy = (pc.cocks[i].cockColor == "glossy black");
+				}
+				if(choices.length > 0) x = choices[rand(choices.length)];
+				var growth:Number = 5 + rand(6);
+				if(pc.hasPerk("Mini")) growth = 3 + rand(5);
+				else if(pc.hasPerk("Hung")) growth = 7 + rand(5);
+				
+				if(pc.cockLengthUnlocked(x,pc.cocks[x].cLength() + growth))
+				{
+					goBlack = (pc.cocks[x].cockColor != "glossy black" && (hasGlossy || rand(3) == 0));
+					
+					// 9999
+					
+					pc.cocks[x].cLength(growth);
+					if(goBlack) pc.cocks[x].cockColor = "glossy black";
+				}
+				else textBuff += ParseText(pc.cockLengthLockedMessage());
+			}
+			// (Penor + Noballs) Growballs
+			else if(select == 3)
+			{
+				if(pc.ballsUnlocked(2))
+				{
+					// 9999
+					
+					pc.balls = 2;
+				}
+				else textBuff += ParseText(pc.ballsLockedMessage());
+			}
+			// (Balls + 2 + Penor) Get quadballs?
+			else if(select == 4)
+			{
+				if(pc.ballsUnlocked(4))
+				{
+					// 9999
+					
+					pc.balls = 4;
+				}
+				else textBuff += ParseText(pc.ballsLockedMessage());
+			}
+			// (25"+ dicks) Musky Pheromones!
+			else if(select == 5)
+			{
+				// 9999
+				
+				textBuff += "\n\n(<b>Perk Gained: Musky Pheromones</b> - Pheromones boost tease attack and arousal.)";
+				pc.createPerk("Musky Pheromones", 0, 0, 0, 0, "Boosts tease attack and arousal.");
+			}
+			// (Vag) Horsepussywhynot?
+			else if(select == 6)
+			{
+				choices = [];
+				for(i = 0; i < pc.totalVaginas(); i++)
+				{
+					if(pc.vaginas[i].type != GLOBAL.TYPE_EQUINE) choices.push(i);
+				}
+				if(choices.length == 0) textBuff += "<b>Boy howdy did an error ever happen. Tried to TF vagina to equine, but no adequate pussies found.</b>";
+				else
+				{
+					x = choices[rand(choices.length)];
+					if(pc.vaginaTypeUnlocked(x,GLOBAL.TYPE_EQUINE))
+					{
+						textBuff += "A twinge ";
+						if(pc.legCount > 1) textBuff += ParseText("between your [pc.legs]");
+						else textBuff += "below the waist";
+						textBuff += ParseText(" swiftly yanks your attention to your [pc.vagina " + x + "]. Prickly tingles tickle their way across it, then inside, swiftly giving way to a insistent heat and unforgiving pressure. You feel like the exterior of your feminine genitalia is being massaged. Every inch of surface area experiences the same undulating kneading. At the same time, your increasingly engorged cunt is pushing back, taking up more and more space. With a whimper of aroused agony, ");
+						if(!pc.isCrotchExposed()) textBuff += ParseText("you tear open your [pc.crotchCover]");
+						else textBuff += "stare down";
+						textBuff += ParseText(" and discover that your [pc.vaginaNoun " + x + "] has changed shape!");
+						textBuff += "\n\nIn its place, <b>you’ve developed an equine vagina, complete with lips so large and plush that they look to have been recently pumped.</b>";
+						pc.lust(10);
+						pc.slowStatGain("libido",5);
+						pc.shiftVagina(x,GLOBAL.TYPE_EQUINE);
+						pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
+					}
+					else textBuff += ParseText(pc.vaginaTypeLockedMessage());
+				}
+			}
+			// (Vag) Extra puffy cuntlips + BonusCapacity aimed at raising capacity to 800.
+			else if(select == 7)
+			{
+				choices = [];
+				for(i = 0; i < pc.totalVaginas(); i++)
+				{
+					if(pc.vaginas[i].type == GLOBAL.TYPE_EQUINE && (!pc.vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) || pc.vaginas[i].bonusCapacity < 800))
+					{
+						choices.push(i);
+					}
+					if(!hasGlossy) hasGlossy = (pc.vaginas[i].vaginaColor == "glossy black");
+				}
+				if(choices.length > 0) x = choices[rand(choices.length)];
+				
+				goBlack = (pc.vaginas[x].vaginaColor != "glossy black" && (hasGlossy || rand(3) == 0));
+				
+				if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED))
+				{
+					if(!pc.vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+					{
+						// 9999
+						
+						// To slightly pumped
+						pc.inflateVagina(x);
+						// To pumped
+						pc.inflateVagina(x);
+					}
+					else if(pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) && !pc.vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED))
+					{
+						// 9999
+						
+						// To pumped
+						pc.inflateVagina(x);
+					}
+				}
+				if(pc.vaginas[x].bonusCapacity < 800)
+				{
+					// 9999
+					
+					pc.vaginas[x].bonusCapacity = 800;
+				}
+				
+				if(goBlack) pc.vaginas[x].vaginaColor = "glossy black";
+			}
+			// (Vag + 1 rowboobs) Extra row of boobage
+			else if(select == 8)
+			{
+				if(pc.createBreastRowUnlocked(2))
+				{
+					// 9999
+					
+					pc.createBreastRow();
+					pc.breastRows[1].nippleType = pc.breastRows[0].nippleType;
+					pc.breastRows[1].breasts = pc.breastRows[0].breasts;
+					pc.breastRows[1].breastRatingRaw = pc.breastRows[0].breastRatingRaw;
+				}
+				else textBuff += ParseText(pc.createBreastRowsLockedMessage());
+			}
+			// (Naga) Shed tail, reveal cute bunlegs!
+			// (Taur) Become bunbuntaur!
+			// (Drider) Become Bunnytaurtrain
+			// (Other legs) BECOME BUNLEGS!
+			else if(select == 9)
+			{
+				if(pc.isNaga())
+				{
+					// 9999
+					
+					pc.legCount = 2;
+					pc.genitalSpot = 0;
+				}
+				else if(pc.isTaur())
+				{
+					// 9999
+					
+					
+				}
+				else if(pc.isDrider())
+				{
+					// 9999
+					
+					
+				}
+				else
+				{
+					// 9999
+					
+					pc.legCount = 2;
+					pc.genitalSpot = 0;
+				}
+				
+				pc.legType = GLOBAL.TYPE_LAPINE;
+				pc.clearLegFlags();
+				pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+				pc.addLegFlag(GLOBAL.FLAG_FURRED);
+				pc.addLegFlag(GLOBAL.FLAG_PAWS);
+			}
+			if(textBuff == "") textBuff += "ERROR. <b>Fenoxo fucked up.</b> Major Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
+			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
+			return;
 		}
 		private static function laquineEarsModerateTFsGo(pc:Creature,deltaShift:uint):void
 		{
@@ -140,7 +446,7 @@ package classes.Items.Transformatives
 			}
 			if(!pc.hasVagina() && pc.hasCock() && pc.balls == 0) choices.push(3);
 			//(Balls and Penor) BallRating gain of 1. Max 5" diameter. (Higher if bulgy?)
-			if(pc.hasCock() && pc.balls > 1 && (pc.ballDiameter() < 5 || (pc.ballDiameter() < 7 && pc.hasPerk("Bulgy")))) choices.push(4);
+			if(pc.hasCock() && pc.balls > 1 && ((pc.ballDiameter() < 7 && pc.hasPerk("Bulgy")) || pc.ballDiameter() < 5)) choices.push(4);
 			//Refractory to 4x human
 			if(pc.refractoryRate < 4 && pc.hasCock() && !pc.hasStatusEffect("Blue Balls")) choices.push(5);
 			if(pc.hasCock() && pc.balls > 1 && pc.ballDiameter() >= 5 && pc.maxCum() < 30000) choices.push(6);
@@ -212,17 +518,15 @@ package classes.Items.Transformatives
 				choices.push(21);
 				choices.push(21);
 			}
-			if(pc.hasVagina())
-			{
-				for(i = 0; i < pc.totalVaginas(); i++)
-				{
-					if(pc.vaginas[i].type != GLOBAL.TYPE_EQUINE) choices.push(22);
-				}
-			}
 	
 			var select:int = 0;
 			if (choices.length > 0) select = choices[rand(choices.length)];
 
+			if(select == 0)
+			{
+				laquineEarsMinorTFsGO(pc, deltaShift);
+				return;
+			}
 			//(Penis) Random cock becomes horsecock.
 			if(select == 1)
 			{
@@ -363,12 +667,12 @@ package classes.Items.Transformatives
 				if(pc.ballSizeUnlocked(16))
 				{
 					//1-2 diameter (to “large” size.)
-					if(pc.ballDiameter() < 2)
+					if(pc.ballDiameter() < 1)
 					{
 						textBuff += "You gasp as your movements cause your [pc.sack] to squeeze tightly against your body - surprisingly tightly. Reaching down to handle it, <b>you discover that your testes have enlarged to the size of eggs.</b>";
 					}
 					//2-3 diameter (to “baseball”)
-					else if(pc.ballDiameter() < 3)
+					else if(pc.ballDiameter() < 2)
 					{
 						textBuff += "You take a quick break from your activities when your [pc.sack] grows warm and tight, then hotter and even more constricting.";
 						if(!pc.isCrotchExposed()) textBuff += " Peeling your [pc.crotchCover] out of the way";
@@ -379,7 +683,7 @@ package classes.Items.Transformatives
 						textBuff += ". Then the pattern repeats, jostling your nuts about as they swell. They finally settle down a minute later, an inch bigger - roughly the size of baseballs.";
 					}
 					//3-4 diameter (to “apple”)
-					else if(pc.ballDiameter() < 4)
+					else if(pc.ballDiameter() < 3)
 					{
 						textBuff += "You’re quite certain [pc.balls] are expanding. They feel heavier, for one, slapping against the side of your [pc.leg] as you move. For another, you find yourself suddenly and unexpectedly aroused, but your [pc.cocks] ";
 						if(pc.cockTotal() == 1) textBuff += "is";
@@ -388,7 +692,7 @@ package classes.Items.Transformatives
 						pc.lust(15);
 					}
 					//4-5 diameter (to grapefruit)
-					else if(pc.ballDiameter() < 5)
+					else if(pc.ballDiameter() < 4)
 					{
 						textBuff += "Gentle, lapping warmth enfolds your [pc.sack]. It’s like sitting in the universe’s gentlest, most perfectly temperature-calibrated hot-tub. A sigh slips out of you as you luxuriate in the sensation. It’s too pleasant too ignore. ";
 						if(pc.isCrotchExposed()) textBuff += "Before your eyes";
@@ -927,36 +1231,7 @@ package classes.Items.Transformatives
 				}
 				else textBuff += ParseText(pc.faceTypeLockedMessage());
 			}
-			else if(select == 22)
-			{
-				choices = [];
-				for(i = 0; i < pc.totalVaginas(); i++)
-				{
-					choices.push(i);
-				}
-				if(choices.length == 0) textBuff += "<b>Boy howdy did an error ever happen. Tried to TF vagina to equine, but no adequate pussies found.</b>";
-				else
-				{
-					x = choices[rand(choices.length)];
-					if(pc.vaginaTypeUnlocked(x,GLOBAL.TYPE_EQUINE))
-					{
-						textBuff += "A twinge ";
-						if(pc.legCount > 1) textBuff += ParseText("between your [pc.legs]");
-						else textBuff += "below the waist";
-						textBuff += ParseText(" swiftly yanks your attention to your [pc.vagina " + x + "]. Prickly tingles tickle their way across it, then inside, swiftly giving way to a insistent heat and unforgiving pressure. You feel like the exterior of your feminine genitalia is being massaged. Every inch of surface area experiences the same undulating kneading. At the same time, your increasingly engorged cunt is pushing back, taking up more and more space. With a whimper of aroused agony, ");
-						if(!pc.isCrotchExposed()) textBuff += ParseText("you tear open your [pc.crotchCover]");
-						else textBuff += "stare down";
-						textBuff += ParseText(" and discover that your [pc.vaginaNoun " + x + "] has changed shape!");
-						textBuff += "\n\nIn its place, <b>you’ve developed an equine vagina, complete with lips so large and plush that they look to have been recently pumped.</b>";
-						pc.lust(10);
-						pc.slowStatGain("libido",5);
-						pc.shiftVagina(x,GLOBAL.TYPE_EQUINE);
-						pc.vaginas[x].addFlag(GLOBAL.FLAG_PUMPED);
-					}
-					else textBuff += ParseText(pc.vaginaTypeLockedMessage());
-				}
-			}
-			if(textBuff == "")  textBuff += "<b>Fenoxo fucked up.</b> Select state: " + select + " and Choices state: " + choices.length;
+			if(textBuff == "") textBuff += "ERROR. <b>Fenoxo fucked up.</b> Moderate Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}
@@ -987,7 +1262,7 @@ package classes.Items.Transformatives
 				choices.push(2);
 			}
 			//Ball growth
-			if(pc.balls > 0 && pc.ballDiameter() < 4 && pc.hasCock()) 
+			if(pc.hasCock() && pc.balls > 0 && pc.ballDiameter() < 4)
 			{
 				choices.push(3);
 				choices.push(3);
@@ -1036,15 +1311,16 @@ package classes.Items.Transformatives
 
 			var select:Number = 0;
 			if(choices.length > 0) select = choices[rand(choices.length)];
-			else 
+			else if(pc.earType != GLOBAL.TYPE_LAPINE && pc.earType != GLOBAL.TYPE_QUAD_LAPINE) select = 12;
 
-			if(kGAMECLASS.debug) textBuff += "SELECT: " + select + "\n";
-			//(Penis) Awkward, persistent boner. Large exhibitionism gains.
-			//Hypercommon if criteria met to account for otherwise low chance.
+			//if(kGAMECLASS.debug) textBuff += "SELECT: " + select + "\n";
 			if(select == 0)
 			{
-				textBuff += "Totes an error. No event successfully procced.";
+				//textBuff += "Totes an error. No event successfully procced.";
+				textBuff += "A tingling sets atop your head and you feel a minor change incoming from the Laquine Ears... however, the feeling quickly fades away as soon as it arrives. Perhaps you are as laquine as you are going to get?";
 			}
+			//(Penis) Awkward, persistent boner. Large exhibitionism gains.
+			//Hypercommon if criteria met to account for otherwise low chance.
 			if(select == 1)
 			{
 				x = pc.biggestCockIndex();
@@ -1373,7 +1649,7 @@ package classes.Items.Transformatives
 				pc.exhibitionism(1);
 				pc.slowStatGain("libido",1);
 				pc.lust(33);
-				kGAMECLASS.applyPussyDrenched(pc);
+				pc.applyPussyDrenched();
 			}
 			//(Vag && noheat && !preggos) Heat status for 1 week or till preggers. Temporary fertileboost.
 			if(select == 7)
@@ -1447,7 +1723,7 @@ package classes.Items.Transformatives
 			{
 				textBuff += "The Laquine Ears don’t seem to be doing a damned thing. Damnit!";
 			}
-			if(textBuff == "") textBuff += "ERROR. Fenoxo fucked up. Minor Laquine Proc, select: " + select + " and choices state: " + choices.length;
+			if(textBuff == "") textBuff += "ERROR. Fenoxo fucked up. Minor Laquine Proc, Select state: " + select + " and Choices state: " + choices.length;
 			AddLogEvent(ParseText(textBuff),"passive",deltaShift);
 			return;
 		}
@@ -1487,9 +1763,9 @@ package classes.Items.Transformatives
 				pc.ballSizeRaw += 1;
 			}
 		}
-		public static function lassLaquineAcceptable(pc:Creature,x:int):Boolean
+		public static function lassLaquineAcceptable(pc:Creature,cIdx:int):Boolean
 		{
-			return ((pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.cocks[x].cType == GLOBAL.TYPE_EQUINE && pc.cocks[x].cLength() >= 16 && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
+			return (cIdx >= 0 && (pc.earType == GLOBAL.TYPE_LAPINE || pc.earType == GLOBAL.TYPE_QUAD_LAPINE) && pc.cocks[cIdx].cType == GLOBAL.TYPE_EQUINE && pc.cocks[cIdx].cLength() >= 16 && pc.tailCount >= 1 && pc.tailType == GLOBAL.TYPE_LAPINE && pc.armType == GLOBAL.TYPE_LAPINE);
 		}
 		public static function bunnyGirlFapScene(pc:Creature,masturbate:Boolean = false,deltaShift:Number = 0):void
 		{
@@ -1660,7 +1936,7 @@ package classes.Items.Transformatives
 				if(!masturbate) AddLogEvent(textBuff,"passive",deltaShift);
 				else output(textBuff);
 				pc.orgasm();
-				kGAMECLASS.applyCumSoaked(pc);
+				pc.applyCumSoaked();
 			}
 			if(masturbate)
 			{

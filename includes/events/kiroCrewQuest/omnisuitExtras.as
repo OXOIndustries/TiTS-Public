@@ -19,22 +19,25 @@ public function statOutOmniCollar():void
 	if(pc.armor is Omnisuit)
 	{
 		pc.armor.hasRandomProperties = true;
-		pc.armor.itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_FULL];
+		pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL);
 		pc.armor.evasion = 5;
 		if(pc.libido() < 33)
 		{
 			pc.armor.defense = 3;
 			pc.armor.sexiness = 7;
+			pc.armor.evasion = 2;
 		}
 		else if(pc.libido() < 66)
 		{
 			pc.armor.defense = 2;
 			pc.armor.sexiness = 10;
+			pc.armor.evasion = 4;
 		}
 		else
 		{
 			pc.armor.defense = 1;
 			pc.armor.sexiness = 15;
+			pc.armor.evasion = 6;
 		}
 	}
 }
@@ -347,7 +350,7 @@ public function putOnDaOmniSuitFirstTime2():void
 			output(". Most wonderfully of all, your erotic exterior coating still permits your feminine moisture through - and you expect it will allow cum through just as easily.");
 		}
 		//Butthole
-		output("\n\nThough it remains steadfastly hidden from your view, you can feel the changes in your [pc.asshole] as well. The shiny black goo has very obviously thickened around the edge of your rim, making it feel bloated and swollen - all while transmitting sensation more effectively than your own skin. You touch it once, just to feel and gasp. It’s like a fat little doughnut with a crinkly hole in the middle, ready to stretch around anything you dare to put inside. What’s more, the way contact is sending lewd little shivers up your spine is decidedly distracting");
+		output("\n\nThough it remains steadfastly hidden from your view, you can feel the changes in your [pc.asshole] as well. The shiny black goo has very obviously thickened around the edge of your rim, making it feel bloated and swollen - all while transmitting sensation more effectively than your own skin. You touch it once, just to feel and gasp. It’s like a fat little donut with a crinkly hole in the middle, ready to stretch around anything you dare to put inside. What’s more, the way contact is sending lewd little shivers up your spine is decidedly distracting");
 		if(pc.hasVagina()) output(", almost vaginal in nature.");
 		else output(". You imagine that it isn’t far off from a pussy... only in your butt.");
 
@@ -419,7 +422,7 @@ public function omnisuitChangeUpdate():void
 		AddLogEvent("You feel the pleasant tingle of your Omnisuit tightening down, tugging more tightly against your [pc.nipples], your hips, and even your butt. The strange, latex-like material shifts on your ", "passive");
 		if(pc.hasCock()) ExtendLogEvent(ParseText("[pc.cocks], fattening around the veins, highlighting every feature in stark, black perfection."));
 		else if(pc.hasVagina()) ExtendLogEvent(ParseText("[pc.vaginas], fattening around the lips, highlighting your femininity in stark, black perfection."));
-		else ExtendLogEvent(ParseText("[pc.asshole], fatting around the ring, thickening your pucker into a shining, fuckable doughnut."));
+		else ExtendLogEvent(ParseText("[pc.asshole], fatting around the ring, thickening your pucker into a shining, fuckable donut."));
 		ExtendLogEvent(" And that isn’t the only place that changes. All over, the suit becomes subtly more lewd, shifting to better display your body. You’ve become a walking advertisement for sex, perhaps as a response to your ever-heightening libido.");
 		statOutOmniCollar();
 	}

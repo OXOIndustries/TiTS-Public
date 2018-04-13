@@ -23,6 +23,8 @@
 		if(sRace.indexOf("-morph") != -1) sRace = sRace.replace("-morph", "");
 		if(sRace.indexOf(" morph") != -1) sRace = sRace.replace(" morph", "");
 		if(sRace.indexOf("-taur") != -1) sRace = sRace.replace("-taur", "");
+		if(sRace.indexOf(" taur") != -1) sRace = sRace.replace(" taur", "");
+		if(sRace.indexOf(" centaur") != -1) sRace = sRace.replace(" centaur", "");
 		if(sRace.indexOf("-hybrid") != -1) sRace = sRace.replace("-hybrid", "");
 		if(sRace.indexOf(" hybrid") != -1) sRace = sRace.replace(" hybrid", "");
 		if(sRace.indexOf(" halfbreed") != -1) sRace = sRace.replace(" halfbreed", "");
@@ -32,6 +34,7 @@
 		if(sRace.indexOf("-man") != -1) sRace = sRace.replace("-man", "");
 		
 		// Names
+		if(InCollection(sRace, ["amazoness", "amazonian", "amazon"])) sRace = "human";
 		if(sRace.indexOf("robot") != -1 || sRace.indexOf("machine") != -1 || sRace.indexOf("droid") != -1 || sRace.indexOf("automaton") != -1 || sRace.indexOf("conglomerate") != -1 || sRace.indexOf("junker") != -1) sRace = "robot";
 		if(sRace.indexOf("anthro") != -1) sRace = "anthro";
 		if(InCollection(sRace, ["cow", "bull", "futaurus", "minotaur", "holstaurus", "minitaur"])) sRace = "bovine";
@@ -43,7 +46,7 @@
 		if(InCollection(sRace, ["satyr"])) sRace = "goat";
 		if(InCollection(sRace, ["sheep", "ram", "lamb"])) sRace = "ovine";
 		//if(InCollection(sRace, ["griffin", "hippogriff", "quetzalcoatl", "phoenix", "vulpogryph", "sirin", "harpy"])) sRace = "avian";
-		if(sRace.indexOf("shark") != -1 || InCollection(sRace, ["megalodon"])) sRace = "shark";
+		if(sRace.indexOf("shark") != -1 || InCollection(sRace, ["megalodon", "leviathan naga"])) sRace = "shark";
 		if(InCollection(sRace, ["treant", "dryad"])) sRace = "plant";
 		if(InCollection(sRace, ["red panda"])) sRace = "lesser panda";
 		if(sRace.indexOf("'rahn") != -1) sRace = "rahn";

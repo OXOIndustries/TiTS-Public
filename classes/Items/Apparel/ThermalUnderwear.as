@@ -40,13 +40,13 @@
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
-			this.sexiness = -1;
-			this.critBonus = 0;
+			this.sexiness = -5;
+			this.critBonus = -5;
 			this.evasion = 0;
 			this.fortification = 0;
 			
-			resistances.burning.resistanceValue = 25.0;
-			resistances.freezing.resistanceValue = 25.0;
+			resistances.burning.resistanceValue = 10.0;
+			resistances.freezing.resistanceValue = 10.0;
 			
 			this.version = _latestVersion;
 		}

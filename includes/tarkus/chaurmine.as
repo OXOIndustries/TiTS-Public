@@ -205,7 +205,7 @@ public function gentleChaurmineHJFinisher():void
 	output("\n\nYou let him ride out the last of his lengthy orgasm by his own movements; given that he hasn’t gotten too sensitive. After a few last thrusts, he seems to start to calm down, almost immediately going soft in your grip. Seems you nearly exhausted the titan. Certain that that’s the best you can do for him right now, you clear your face of what remains of his thick seed.");
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.addNice(1);
 
 	//[Next] // Go to Handjob End
@@ -225,7 +225,7 @@ public function chaurmineHJRoughEnd():void
 	output("\n\nAs his amber sack tenses intensely and seems to shrink, his ribbed shaft bulges even more. The metal behemoth’s hands claw at the air, and feet dig and tear into the ground in both incredible pain and sublime pleasure, forcing a hoarse growl from his maw as his bloated shaft fires rapid loads of thick seed onto his face and chest repeatedly, drenching him from horn to cock. As his release peaks in ferocity, you find yourself just as covered as he is, your chagrin almost causing you to miss his clenching spout of a shaft slow to a trickle.");
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.addHard(1);
 	//[Next] // Go to Handjob End
 	clearMenu();
@@ -246,7 +246,7 @@ public function playfulChaurmineHJend():void
 	output("\n\nSatisfied, you straighten yourself as you release the brute’s cock, and caress his prostate one last time as your fingers exit his clenching depths. As the big lizard’s black dick thumps onto his torso, he groans tiredly and lets loose one last massive blast of his seed, coating himself in the musky glaze.");
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.addMischievous(1);
 	//[Next] // Go to Handjob End
 	clearMenu();
@@ -324,7 +324,7 @@ public function titfuckChaurmineToiletPaper():void
 	author("Aullama");
 	output("Seeing how he eyed your [pc.fullChest] gives you an idea. Sensually cupping your [pc.chest] with both hands, you compress your tits together to amplify the cleavage. Seeing him struggle not to even peek at your chest mounds causes you to giggle, the ensuing boobquake making it all the harder on him.");
 	output("\n\n<i>“Something the matter? I’d </i>love<i> to help, but you gotta speak up first!”</i> you offer with a devilish grin, casually swaying your ensnaring cleavage from side to side.");
-	output("\n\nWith an irritated growl, he snaps his eyes back to yours and sweeps an arm in a dismissive gesture, <i>“You can start by putting those...”</i> he starts to rumble, but pauses as his hand unintentionally bats a luscious boob, <i>“... those meat sacks away. As soft as they are...”</i> His apprehension all but crumbles with clashing desires.");
+	output("\n\nWith an irritated growl, he snaps his eyes back to yours and sweeps an arm in a dismissive gesture, <i>“You can start by putting those...”</i> he starts to rumble, but pauses as his hand unintentionally bats a luscious boob, <i>“...those meat sacks away. As soft as they are...”</i> His apprehension all but crumbles with clashing desires.");
 	output("\n\nYou roll your eyes with an agitated sigh, <i>“I was trying to be coy, dumbass. You can either play with my tits, or yourself,”</i> you huff.");
 	output("\n\nEyeing your chest pillows with reluctant desire, he seems to come to a rather quick decision, <i>“Alright, fine, let’s use your body bags,”</i> he growls with a frown, his plated visage all the more bestial. With terms laid out, and agreements made, he proceeds to grab your shoulders and, to your delighted surprise, thrust his metal snout directly into your cleavage.");
 	output("\n\nHappy to let the creature lead in his amateur chest worship, you sigh as you feel an incredibly soft and wet tongue wash a breast before homing in on a ");
@@ -343,7 +343,7 @@ public function titfuckChaurmineToiletPaper():void
 	output("\n\nNot daring to touch him and not quite able to slide from under his titanic form, you can only watch as he sits up flaccidly, his head weakly tilting back as his jaws almost screech open from his heated scales grinding together. With a great sigh of relief, you feel the dangerous incandescence virtually vanish as, with a sound somewhere between a growl and a sigh, you both see and <i>feel</i> the heat violently vent, almost burst, from between his jaws.");
 	output("\n\nShortly the shimmering heat all but disappears, seeming to mean he’s recovered, as he stands with a much less audible creak from his scales. Snorting a hot breath of what you think is gratitude down onto you, he proceeds to lumber northward. Talking over his shoulder as well as his thick scales let him, he rumbles, <i>“What happened here never leaves this place. No one knows what we did because it never happened. But uh... I suppose I could help you improve your... technique, if we meet again.”</i> He grunts dismissively, leaving you to continue gratefully breathe in cool and fresh air.");
 	processTime(35);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.lust(10);
 	if(pc.isLactating()) pc.milked(10);
 	clearMenu();
@@ -896,7 +896,19 @@ public function intimateCatchChaurmine():void
 	author("Aullama");
 	//Vaginas should have priority over asses if the PC has both
 	var x:int = -1;
-	if(pc.hasVagina()) x = rand(pc.totalVaginas());
+
+	var choices:Array = [-1];
+	for(var i:int = 0; i < pc.totalVaginas(); i++)
+	{
+		if(!pc.isBlocked(i)) 
+		{
+			choices.push(i);
+			choices.push(i);
+			choices.push(i);
+		}
+	}
+	//3-1 odds for pussy is good enough for me!
+	if(choices.length > 1) x = choices[rand(choices.length)];
 
 	//pcDitz:
 	if(pc.isBimbo())
@@ -964,7 +976,7 @@ public function intimateCatchChaurmine():void
 		output(" against the edges of his hard, heavy scales. With a pleased huff, his hot breath billowing down against you, he runs a hand");
 		if(pc.hasHair()) output(" through your [pc.hair]; his scale-claws feeling like a warm comb as they caress your scalp");
 		else output("along your scalp; his scale-claws massaging their warmth into you");
-		if(pc.earType == GLOBAL.TYPE_EQUINE || pc.earType == GLOBAL.TYPE_CANINE || pc.earType == GLOBAL.TYPE_FELINE) output(", and a moan slips through your [pc.lips] when the titan lightly grazes your [pc.ears]");
+		if(pc.hasEmoteEars()) output(", and a moan slips through your [pc.lips] when the titan lightly grazes your [pc.ears]");
 		output(".");
 
 		output("\n\nReveling in the heat and continuing affections, you reach up to Chaurmine’s bestial visage, tenderly rubbing his armored jaw");
@@ -1034,7 +1046,7 @@ public function intimateCatchChaurmine():void
 	if(pc.hasVagina())
 	{
 		output("\n\nHe quickly zeroes in on your [pc.clits], the lizard’s fingers teasing [pc.eachClit] as he runs them along your mons. Moans slip from you at his touch, your lower lips wedged between his [pc.girlCum]-slicked digits. You suddenly jolt, half in alarm and half in pleasure, when two of his sharp scale-claws curve and dip into [pc.oneVagina]; the grip he has on its outer folds is delightfully smooth. Writhing and whining in his arms, you’re thankful that his claws are apparently too wet and lubed up by your [pc.girlCumNoun] juices to cause harm or discomfort; instead, his claws and scales have <i>just</i> enough of an edge to stimulate your inner walls with the most lascivious friction. On the verge of a toe-curling high, you cry out in distress when he slides out of your [pc.vagina], the mind blowing friction gone as he brings his ");
-		if(pc.vaginas[x].wetness() >= 3) output("[pc.girlCum] drenched hand");
+		if(pc.isSquirter() || pc.girlCumQ() >= 500) output("[pc.girlCum] drenched hand");
 		else output("[pc.girlCum] sheened fingers");
 		output(" to his rapacious tongue, rumbling happily as he licks himself clean");
 		output(".");
@@ -1151,7 +1163,7 @@ public function intimateCatchChaurmine():void
 		}
 
 		output("\n\nYou gasp, the fat cock spreading you wide, grinding against your tight walls, hits <i>that</i> spot. Swooning as the renewed inner heat boils over, you all but cream yourself silly on that juicy shaft, ");
-		if(pc.vaginas[x].wetness() >= 3) output("[pc.girlCum] gushing from your [pc.vaginas], drenching both of your lower bodies in your love lube");
+		if(pc.isSquirter()) output("[pc.girlCum] gushing from your [pc.vaginas], drenching both of your lower bodies in your love lube");
 		else output("streams of [pc.girlCum] running down into the lizard’s studded sheath");
 		output(". You can’t help but shudder with each luxurious contraction.");
 
@@ -1315,7 +1327,7 @@ public function chaurmineTaurOral():void
 	output(".");
 
 	//pcHasCockNoCunt:
-	if(pc.hasCock() && !pc.hasVagina())
+	if(pc.hasCock() && (!pc.hasVagina() || pc.isBlocked(0)))
 	{
 		output("\n\nReaffirming his grip, the brute’s dark canine-like tongue slaps just below your [pc.asshole], dragging down to tease your perineum.");
 		output("\n\n<i>“A shame you don’t have a cunt back here,”</i> he murmurs against your taint, drawing his snout down to your ");
@@ -1521,7 +1533,7 @@ public function gentleChaurmineHJFinisherOnShip():void
 	pc.addNice(1);
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
 }
@@ -1539,7 +1551,7 @@ public function roughChaurmineHJFinisherOnShip():void
 	pc.addHard(1);
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
 }
@@ -1559,7 +1571,7 @@ public function playfulChaurmineHJEndingOnShip():void
 	pc.addMischievous(1);
 	processTime(5);
 	pc.lust(5);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",chaurmineHJShipRecovery);
 }
@@ -1650,7 +1662,7 @@ public function chaurmineShippyShipTitfuckyDuckyHucky():void
 	output("\n\nShortly the he removes his claws, seeming to mean he’s recovered, as he stands with a slightly audible creak from his scales. Snorting a hot breath of what you think is gratitude down onto you, he proceeds to lumber to what can only be the ship’s showers. Talking over his shoulder as well as his thick scales let him, he rumbles, <i>“What happened here never leaves this place. No one knows what we did because it never happened. But uh... I suppose I could help you improve your... technique, if you want.”</i> He grunts dismissively, leaving you to continue gratefully breathe in the thick, musky air before promptly following him, the scandalously messy and sloppy sounds preceding you reverberating in the ship’s halls.");
 
 	processTime(25);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	chaurmineRelationship(4);
 	IncrementFlag("SEXED_CHAURMINE");
 	pc.lust(10);

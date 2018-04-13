@@ -10,6 +10,7 @@
 	
 	public class SalamanderRifle extends ItemSlotClass
 	{
+		//Level 7 (Common). Balance 2.0
 		//constructor
 		public function SalamanderRifle()
 		{
@@ -39,12 +40,12 @@
 			attackNoun = "laser beam";
 			
 			//Information
-			this.basePrice = 14000;
-			this.attack = 5;
+			this.basePrice = 7500;
+			this.attack = 12;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.electric.damageValue = 1;
-			baseDamage.burning.damageValue = 19;
+			//baseDamage.electric.damageValue = 1;
+			baseDamage.burning.damageValue = 20;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.LASER);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);

@@ -177,7 +177,7 @@ public function kaedeMyrellionTalkJob():void
 	
 	output("\n\n<i>“You bought a ship? That’s not cheap,”</i> you say, remembering what Kaede mentioned about noodles and crackers just a few minutes ago.");
 	
-	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every credit. Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
+	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every " + (isAprilFools() ? "dogecoin" : "credit") + ". Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
 	
 	output("\n\n<i>“Being out here, in space, seeing these strange planets... this is everything I ever wanted. I wouldn’t trade it for the world.”</i>");
 	
@@ -201,7 +201,7 @@ public function kaedeMyrellionTalkRenWorld():void
 
 	output("<i>“So, this RhenWorld contract...”</i>");
 	
-	output("\n\nKaede blushes, cheeks reddening like rosepetals as you start to ask your question. <i>“I, uh, got lucky is all,”</i> she says, running a hand through her crimson hair. <i>“I bumped into a V.P. of the company in an elevator on Tavros. We, uh.... we hit it off, I guess, and she invited me to come do a few jobs for the company.”</i>");
+	output("\n\nKaede blushes, cheeks reddening like rosepetals as you start to ask your question. <i>“I, uh, got lucky is all,”</i> she says, running a hand through her crimson hair. <i>“I bumped into a V.P. of the company in an elevator on Tavros. We, uh... we hit it off, I guess, and she invited me to come do a few jobs for the company.”</i>");
 	
 	output("\n\n<i>“You hit it off, huh?”</i>");
 	
@@ -217,7 +217,7 @@ public function kaedeMyrellionTalkRenWorld():void
 	flags["HEARD_ASHINARI"] = 1;
 	output("\n\n<i>“Must be worth it. They’ve made a pretty big deal with the, uh, something or other Federation here. The ones that control pretty much the whole planet, anyway. From what Ashinari told me, the ant-folk here are working hard to get off-worlders invested here. They’re giving away mining rights away like candy. They’ve got no use for Oxonium, Thorolium, a bunch of other rare elements. Not to mention there’s gold and silver and all that to be had. It’s a rich planet, and a lot of the hard work’s already done. After all, the myr live underground to begin with. Plenty of caverns and tunnels to get RhenWorld and the other mega-corps started.”</i>");
 	
-	output("\n\nInteresting. <i>“I knew XenoGen was interested in the golds,”</i> you say, thinking back to your initial meeting with Juro, and the hordes of XenoGen employees you’ve seen wandering around. <i>“So the Federation’s courting mining companies, now?”</i>");
+	output("\n\nInteresting. <i>“I knew Xenogen was interested in the golds,”</i> you say, thinking back to your initial meeting with Juro, and the hordes of Xenogen employees you’ve seen wandering around. <i>“So the Federation’s courting mining companies, now?”</i>");
 	
 	output("\n\nKaede nods, taking a big swig of whiskey to mask the lingering traces of her bashful blush. <i>“I guess so? Sorry, I’m not really up to date on xeno-politics. I know things are pretty tense around here, though, especially with the Confederate fleet up in orbit. Everyone looks like they’re sweating bullets here.”</i>");
 	
@@ -649,10 +649,7 @@ public function kaedeMyrellionSucknRide():void
 	clearOutput();
 	kaedeHeader(true);
 
-	output("Your eyes wander inexorably towards the turgid red shaft resting on your belly.");
-	if (pc.catDog("nyan", "bork", false) == "bork") output(" Now that’s one doggy bone you can’t wait to lick!");
-	else output(" You can’t help but lick your lips at the sight of it.");
-	output(" Your hand slips down and wraps around her cock, and you suck in a sharp breath as you feel the hotness of it, more than a human’s ought to be, and diamond hard between your fingers. Kaede moans, leaning back on her knees and cupping one of her breasts as you start to tentatively stroke her length.");
+	output("Your eyes wander inexorably towards the turgid red shaft resting on your belly. " + pc.catDog("You can’t help but lick your lips at the sight of it.", "Now that’s one doggy bone you can’t wait to lick!", false) + " Your hand slips down and wraps around her cock, and you suck in a sharp breath as you feel the hotness of it, more than a human’s ought to be, and diamond hard between your fingers. Kaede moans, leaning back on her knees and cupping one of her breasts as you start to tentatively stroke her length.");
 	
 	output("\n\n<i>“Oooh,”</i> she purrs, starting to move her hips. <i>“That’s nice...”</i>");
 	
@@ -1136,7 +1133,7 @@ public function cumInKaedesAssDuringCassThreesome():void
 	output("\n\n<i>“D-do it!”</i> she manages to cry, pulling herself off of Cass’s tit long enough to try and speak. <i>“I-I wanna feel what Cass does! Give it to me!”</i>");
 	output("\n\nHer last word trails off into a mindless scream of pleasure as you pound her ass and blow your load, hammering all the [pc.cumNoun] you have to offer deep into her tight little pucker.");
 	pc.cockChange();
-	output("\n\n<i>“ You can feel her respond with another, final orgasm of her own - just a little shudder and a weak clench of her backside around your cock, but Cass is more than happy to moan about how <i>“how fucking </i>stuffed<i>”</i> she is with Kaede’s cum.");
+	output("\n\n<i>“You can feel her respond with another, final orgasm of her own - just a little shudder and a weak clench of her backside around your cock, but Cass is more than happy to moan about how <i>“how fucking </i>stuffed<i>”</i> she is with Kaede’s cum.");
 	output("\n\n<i>“Oh... Oh God,”</i> Kaede mumbles, face-planting between Cass’s tits. <i>“Everything is sore... and it feels <b>amazing</b>.”</i>");
 	output("\n\n<i>“I know, sweetheart,”</i> Cass sighs, stroking her lover’s hair. As she does, you rock your hips back until your cockhead pops out of Kaede’s gaping behind, ");
 	if(pc.cumQ() >= 250) output("filled with so much cum you could practically spoon it out.");

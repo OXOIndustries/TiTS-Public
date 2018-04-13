@@ -9,6 +9,7 @@
 	
 	public class HammerPistol extends ItemSlotClass
 	{
+		//Level 2 (Common). Balance 2.0
 		//constructor
 		public function HammerPistol()
 		{
@@ -37,7 +38,7 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 2000;
+			this.basePrice = 420;
 			this.attack = 0;
 			
 			baseDamage = new TypeCollection();

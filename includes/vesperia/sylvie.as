@@ -1,3 +1,4 @@
+import classes.Characters.PregnancyPlaceholder;
 //Sylvie Bartheon (Hortonne, lul, but I like the more serious shit)
 //ORIGINAL DESIGN:
 //“Mount-Me” - Off Duty security officer there from 4pm till 3am
@@ -39,9 +40,14 @@
 public function showSylvie(nude:Boolean = false):void
 {
 	showName("\nSYLVIE");
-	if(nude) showBust("SYLVIE_NUDE");
-	else if(sylvieDrunkLevel() >= 2) showBust("SYLVIE_BRA");
-	else showBust("SYLVIE");
+	showBust(sylvieBustString(nude));
+}
+
+public function sylvieBustString(nude:Boolean = false):String
+{
+	if(nude) return "SYLVIE_NUDE";
+	else if(sylvieDrunkLevel() >= 2) return "SYLVIE_BRA";
+	else return "SYLVIE";
 }
 public function showSylvieInBra():void
 {
@@ -57,6 +63,34 @@ public function sexedSylvie(arg:Number = 0):Number
 		flags["SEXED_SYLVIE"] += arg;
 	}
 	return flags["SEXED_SYLVIE"];
+}
+public function sylvieHasCock():Boolean
+{
+	return (flags["SYLVIE_SYNTHSHEATHED"] != undefined);
+}
+public function sylvieCockVolume():Number
+{
+	return (sylvieHasCock() ? 621 : 0);
+}
+public function sylviePP():PregnancyPlaceholder
+{
+	var ppSylvie:PregnancyPlaceholder = new PregnancyPlaceholder();
+	ppSylvie.removeCocks();
+	if(sylvieHasCock())
+	{
+		ppSylvie.createCock(30, 1);
+		ppSylvie.shiftCock(0,GLOBAL.TYPE_EQUINE);
+		ppSylvie.cocks[0].cockColor = "brown";
+		ppSylvie.balls = 2;
+		ppSylvie.ballSizeRaw = 19;
+		ppSylvie.createPerk("Fixed CumQ",158000,0,0,0);
+	}
+	ppSylvie.removeVaginas();
+	ppSylvie.createVagina();
+	ppSylvie.vaginas[0].loosenessRaw = 3;
+	ppSylvie.vaginas[0].wetnessRaw = 4;
+	ppSylvie.vaginas[0].bonusCapacity = 300;
+	return ppSylvie;
 }
 
 public static const CONST_SYLVIE_BOOZE_MULT:Number = 2;
@@ -206,23 +240,23 @@ public function approachSylvie():void
 			else output(" but mostly at your bulging, barely contained crotch");
 		}
 		else output(" and your crotch, but the latter only holds her attention for a moment");
-		output(". <i>“Cocky, eh? I like that.”</i> She mock stretches, pushing her breasts forward teasingly. <i>“");
+		output(". <i>“Cocky, eh? I like that.”</i> She mock stretches, pushing her breasts forward teasingly.");
 		//Sober
 		if(sylvieDrunkLevel() == 0) 
 		{
-			output("But be sure and keep your hands to yourself. Consent is key, and I’d hate to have to haul off a new friend in handcuffs.”</i>");
+			output(" <i>“But be sure and keep your hands to yourself. Consent is key, and I’d hate to have to haul off a new friend in handcuffs.”</i>");
 			output("\n\nYou briefly envision her in handcuffs, chained to the table and presenting whatever passes for her animalistic puss to you, absolutely weeping with need. She’ll consent eventually. You’ll just have to give her time to realize what a perfect partner you’d be.");
 		}
 		//Buzzed
 		else if(sylvieDrunkLevel() == 1)
 		{
-			output("You’re adorable. Get me another drink or two and I’ll give you even more to look at. Just gotta get out of this stuffy thing. The stupid handcuffs always pinch into my side when I’m trying to give someone a proper squeeze.”</i>");
+			output(" <i>“You’re adorable. Get me another drink or two and I’ll give you even more to look at. Just gotta get out of this stuffy thing. The stupid handcuffs always pinch into my side when I’m trying to give someone a proper squeeze.”</i>");
 			output("\n\nYou briefly envision her in said handcuffs - and nothing else, chained to the table and presenting whatever passes for her animalistic puss to you, absolutely weeping with need.");
 		}
 		//Drunk
 		else
 		{
-			output("Mmm... I like that a lot.”</i> She nuzzles into your shoulder, nostrils flaring. <i>“A whole lot.”</i> After a second like that, she wraps her arms around you and whispers, <i>“You ");
+			output(" <i>“Mmm... I like that a lot.”</i> She nuzzles into your shoulder, nostrils flaring. <i>“A whole lot.”</i> After a second like that, she wraps her arms around you and whispers, <i>“You ");
 			if(!pc.hasStatusEffect("Sweaty")) output("smell so good, like stars ought to smell.");
 			else output("smell so sweaty, like you’ve been working all day, and came here to find someone to take care of all your troubles.");
 			output("”</i> She breaks away, kisses you on the cheek, and drunkenly bats her eyelashes at you.");
@@ -293,6 +327,7 @@ public function repeatSylvieApproaches():void
 		else if(pc.tallness >= 66) output(", pressing the side of a breast against your cheek");
 		else output(", pressing the side of her muscular taur-body to your cheek");
 		output(". <i>“How do you feel about a hug?”</i> She smiles coyly. <i>“Or you could buy me a drink.”</i> Leaning closer, she adds, <i>“I have some stories so spicy they’d curl your hair.”</i>");
+		if(sylvieHasCock()) output("\n\nYou note that the new addition to her undercarriage is quite firm.");
 	}
 	//Drunko stunko
 	else
@@ -311,6 +346,7 @@ public function repeatSylvieApproaches():void
 			else output("wet and wanton against her fingertips.");
 		}
 		output(" The moose-woman’s half-lidded eyes glitter with unrestrained passion, for life and your body in equal parts.");
+		if(sylvieHasCock()) output(" Something heavy and wet-sounding slaps into her belly.");
 	}
 	processTime(5);
 	sylvieMenu();
@@ -342,7 +378,9 @@ public function sylvieRoomBonuses(slot:int):void
 			//Unmet
 			if(flags["MET_SYLVIE"] == undefined) output("\n\nAn obviously drunk centaur (or is that moosetaur?) girl is giggling to herself and handing out kisses like candy. Her top sits next to her on the table, no doubt discarded when she messily spilled something on herself. A few drops of foaming brew on her collarbone lend credence to this theory.");
 			//Met
-			else output("\n\nSylvie the moosetaur is still at her table but just barely. At some point, she shed her top, leaving the symbols of her office rumpled and discarded, and now she’s offering hugs and kisses to any and all. Over a dozen empty mugs are stacked in a haphazard pyramid on her table. Just how much has she had to drink?");
+			else output("\n\nSylvie the moosetaur is still at her table but just barely. At some point, she shed her top, leaving the symbols of her office rumpled and discarded, and now she’s offering hugs and kisses to any and all. Over a dozen empty mugs are stacked in a haphazard pyramid on her table. ");
+			if(sylvieHasCock()) output("One sits underneath, half full of drizzling pre. ");
+			output("Just how much has she had to drink?");
 		}
 		var bName:String = "Sylvie";
 		if(flags["MET_SYLVIE"] == undefined) bName = "Moose-girl";
@@ -387,9 +425,19 @@ public function sylvieMenu():void
 		//[Get Sexy]
 		if(pc.lust() >= 33) addButton(0,"Get Sexy",sylvieSexyTimeIntro,undefined,"Get Sexy","Now that she’s finally loosened up for a bit of fun, party with Sylvie!");
 		else addDisabledButton(0,"Get Sexy","Get Sexy","You aren’t turned on enough for that.");
+		
+		var bSynthSheath:Boolean = (CodexManager.entryUnlocked("SynthSheath"));
+		if(sylvieHasCock()) addDisabledButton(1,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"Sylvie already has a cock!");
+		else if(pc.hasItemByClass(HorseCock)) addButton(1,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),giveTheMooseABone,undefined,(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"See how Sylvie feels about turning herself into the total package via an artificial package.");
+		else if(!sylvieHasCock()) addDisabledButton(1,(!bSynthSheath ? "HorseCock?" : "SynthSheath"),(!bSynthSheath ? "Horse-Cock?" : "SynthSheath"),"You’d need to have a " + (!bSynthSheath ? "special dildo" : "SynthSheath") + " in order to do that.");
+		
 		//[Hug]
 		//Semi-random hug with heavy petting. Guarantees forcy funtimes on next drunk approach that day.
 		addButton(2,"Hug",hugSylvie,undefined,"Hug","Being drunk is no obstacle when it comes to snuggling.");
+		//Bonus talking about her dick stuff. Twice-only.
+		if(sylvieHasCock() && (flags["SYLVIE_DONG_TALK"] == undefined || (flags["SYLVIE_DONG_TALK"] != undefined && flags["SYLVIE_DONG_TALK"] + 72*60 < GetGameTimestamp() && flags["SYLVIE_SYNTHSHEATHED"] == 1))) addButton(5,"Ask: Penis?",sylviePenisTalk,undefined,"Ask: Penis?","Ask Sylvie how life with a penis is treating her.");
+		//Gloryhole suck
+		else if(sylvieHasCock() && flags["SYLVIE_DONG_TALK"] != undefined) addButton(5,"GloryholeSuck",sylvieGloryholeSuck,undefined,"Gloryhole Suck","Ask her if she’s taken her new addition to the gloryholes yet. You’ll probably wind up working one yourself, but that’s fiiine.");
 	}
 	//If bartender is away!
 	if(kallyIsAway() && sylvieDrunkLevel() <= 1)
@@ -458,7 +506,7 @@ public function buyBeersForMooseSloot():void
 		output("\n\nScooping it right up, Sylvie mock-salutes ");
 		if(flags["MET_KALLY"] != undefined) output("Kally");
 		else output("the chubby bartender");
-		output(" and begins to chug. She’s quite adept at pounding down the drink if the falling fluid level is any indication. Half the drink is gone before she comes up for air, smiling and licking the amber foam from her greenish blue-painted lips. <i>“Since you’ve been such a " + pc.mf("gentleman","classy lady") + ", it seems only fair I give you a little entertainment for your effort. Good thing a girl with a job like mine has enough stories to keep you entertained ‘til closing time.”</i> She wraps an arm around your shoulders and pulls you close. <i>“Things around here can get pretty wild at times...”</i> She pauses for dramatic effect.");
+		output(" and begins to chug. She’s quite adept at pounding down the drink if the falling fluid level is any indication. Half the drink is gone before she comes up for air, smiling and licking the amber foam from her greenish blue-painted lips. <i>“Since you’ve been such a " + pc.mf("gentleman","classy lady") + ", it seems only fair I give you a little entertainment for your effort. Good thing a girl with a job like mine has enough stories to keep you entertained till closing time.”</i> She wraps an arm around your shoulders and pulls you close. <i>“Things around here can get pretty wild at times...”</i> She pauses for dramatic effect.");
 		//Merge to sober stories
 		moosyStoriesGo(2,false);
 	}
@@ -477,6 +525,7 @@ public function buyBeersForMooseSloot():void
 		else if(hours == 2) output("23");
 		else output("24");
 		output("... or something tonight. It’ll take at least... two times that many to get me really hammered.”</i> She leans heavily against you and whispers. <i>“You’re not trying to get me hammered so you can get in my little horsey-panties, are you?”</i> Snorting, the buzzed taur-girl giggles again. <i>“Cause it won’t work. I’m not wearing any!”</i> She laughs harder.");
+		if(sylvieHasCock()) output(" <i>“My cock wouldn’t fit in them anyway!”</i>");
 		output("\n\nThe order arrives while Sylvie is too busy laughing to respond.");
 		if(flags["MET_KALLY"] != undefined) output(" Kally winks at you when she drops off the drink and swats her tail against your [pc.butt] on the way out.");
 		else output(" The bartender smiles warmly at Sylvie as she drops off the drink, even going so far as to pet the titanic ‘taur’s bottom half before going.");
@@ -663,7 +712,7 @@ public function chillWithSylvie():void
 	//3 - Tech
 	else if(select == 3)
 	{	
-		if(flags["UNLOCKED_JUNKYARD_PLANET"] != undefined) options.push(1);
+		if(flags["UNLOCKED_JUNKYARD_PLANET"] >= 2) options.push(1);
 		if(flags["SEXBOT_QUEST_STATUS"] == 3) options.push(2);
 		if(pexigaRecruited()) options.push(3);
 		if(CodexManager.entryUnlocked("Gold Myr")) options.push(4);
@@ -674,7 +723,7 @@ public function chillWithSylvie():void
 		{
 			output("Tarkus itself fits the bill - two half planetoids bound together by a sophisticated gravity tether.");
 			if(completedStellarTetherGood()) output(" Those pirates could’ve wiped all the inhabitants if you hadn’t stopped them!");
-			else output("It’s a shame the pirate’s bomb wiped it off the map. There’s nothing more than a metal rich asteroid field to mark where it used to be.");
+			else output(" It’s a shame the pirate’s bomb wiped it off the map. There’s nothing more than a metal rich asteroid field to mark where it used to be.");
 		}
 		else if(subSelect == 2) output("A rogue AI-D on Tarkus was going to overrun the planet, maybe even the galaxy, with deranged sex-bots. You’d read about similar things in the history books in school but never expected to encounter such a thing in real life.");
 		else if(subSelect == 3) output("How a mad scientist set up a shop on Tarkus as a front for all kinds of perverted technology. The bizarre and depraved machinery you saw on your quest to <i>“fix”</i> the Pexiga was unlike anything else out there.");
@@ -746,7 +795,9 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		if(!pc.isAss()) output("barely manage to keep from rolling your eyes");
 		else output("roll your eyes");
 		output(". It’s quite clear just how her and the bartender held themselves back: vigorous application of genital stimulation, or in baser terms: Repeated, feverish fucking. <i>“So did the place just break out into an orgy, or what?”</i>");
-		output("\n\nSylvie actually looks offended at that. <i>“What? No, of course not. We very politely informed the minotau-err... gentlemen and their friends that we had a lovely bathing area where nudity and adult activities are allowed.”</i> She gestures at the room to the south. <i>“I might have spent a few minutes cuddling one first... and let him feel me up - it was the only honorable thing to do after giving him such a stiffy! But we didn’t break any obscenity laws.”</i> Her bluish-green lips curl with mirth. <i>“Then it turned into an orgy. Kally and I are above such things, naturally. We watched from one of the more distant tubs.”</i> A sigh so low it almost sounds like a moan bubbles out of her throat. <i>“I’ve never seen so many girls get so vigorously pounded. They’re like fuck-machines, [pc.name]. One girl after another - BAM! Fucked silly. POW! Drooling in the dirt, leaking cum from both ends. Once they finally finished up, Kally had to shut down the bar for three hours just to vent the pheromones and mop up all the jizz.”</i>");
+		output("\n\nSylvie actually looks offended at that. <i>“What? No, of course not. We very politely informed the minotau-err... gentlemen and their friends that we had a lovely bathing area where nudity and adult activities are allowed.”</i> She gestures at the room to the south. <i>“I might have spent a few minutes cuddling one first... and let him feel me up - it was the only honorable thing to do after giving him such a stiffy! But we didn’t break any obscenity laws.”</i> Her bluish-green lips curl with mirth. <i>“Then it turned into an orgy. Kally and I are above such things, naturally. We watched from one of the more distant tubs.”</i> A sigh so low it almost sounds like a moan bubbles out of her throat. <i>“I’ve never seen so many girls get so vigorously pounded. They’re like fuck-machines, [pc.name]. One girl after another - BAM! Fucked silly. POW! Drooling in the dirt, leaking cum from both ends. Once they finally finished up, Kally had to shut down the bar for three hours just to vent the pheromones and mop up all the jizz");
+		if(sylvieHasCock()) output(", and thanks to you, that mop is getting a whole lot more use. To be honest, I’m kind of liking getting treated like those bull-boys. One look at my swinging dick, and half the girls in here start getting doe-eyed.");
+		output(".”</i>");
 		output("\n\n<i>“Wow.”</i>");
 		output("\n\n<i>“And you thought your stories were wild, eh?”</i> Sylvie smiles and finishes her drink. <i>“");
 		processTime(15);
@@ -763,9 +814,17 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 	{
 		output("<i>“So, I’ve actually sort of done Throbb. Once. Not on purpose or anything. Some hoser I busted for indecency thought he could get revenge by sticking me with a double-dose of it while I was on duty. Lost five or six teeth for the trouble. Word of advice, [pc.name] - don’t be standing behind any kind of centaur unless she wants you there.”</i>");
 		output("\n\n");
-		if(!CodexManager.entryUnlocked("Throbb")) output("You look her up and down, unsure exactly what the drug is supposed to do. <i>“What’d it do to you?”</i>");
-		else if(pc.isBimbo()) output("You lick your lips and peer around her flank to look for the dick. Sadly, none appears. <i>“Where’s the dick?”</i>");
-		else output("You look around her flank, trying to spot the male organ you undoubtedly missed. <i>“I don’t see any dick. You get it removed?”</i>");
+		if(!sylvieHasCock())
+		{
+			if(!CodexManager.entryUnlocked("Throbb")) output("You look her up and down, unsure exactly what the drug is supposed to do. <i>“What’d it do to you?”</i>");
+			else if(pc.isBimbo()) output("You lick your lips and peer around her flank to look for the dick. Sadly, none appears. <i>“Where’s the dick?”</i>");
+			else output("You look around her flank, trying to spot the male organ you undoubtedly missed. <i>“I don’t see any dick. You get it removed?”</i>");
+		}
+		else
+		{
+			if(!CodexManager.entryUnlocked("Throbb")) output("You look her up and down, unsure exactly what the drug is supposed to do. <i>“What’d it do to you?”</i>");
+			else output("You look squarely at her cock, secure in the knowledge that you’re solely responsible for it. <i>“I guess it didn’t work, huh? Last I checked, I’m responsible for that monster.”</i>");
+		}
 		output("\n\nSylvie’s fluffy little moosetail flutters as she giggles. <i>“One of the perks of being in the Vesperian police forces is a top of the line GeneGuard immune system. It doesn’t just protect us from poisons and pathogens - it repairs genetic damage on the fly, counters most transformations too. It’s a double-edged sword, but it keeps me safe.”</i> She pats her flat tummy affectionately. <i>“But sometimes the really strong stuff temporarily overloads it.”</i>");
 		output("\n\n<i>“What happened?”</i> You lean in, genuinely interested in her reaction to the illicit drug.");
 		output("\n\n<i>“What happened?”</i> Sylvie smiles roguishly. <i>“I grew a four foot dick, that’s what happened! There I am, cuffing the poor, misguided moron when the whole room spins on its axis. Apparently I dropped like a sack of rocks, just flopped over on my flank and lay there laughing like a hyena. I don’t really remember the laughing part, but I do remember feeling that dick boil up out of my loins, all hot and tight and throbbing. I guess that’s where the drug gets its name from, because after a second or two, that’s about all I could really feel - incredible, blissful throbbing.”</i>");
@@ -775,7 +834,9 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		output("\n\nYou look at the giddy taur in shock.");
 		output("\n\n<i>“It’s true. I got a copy of the security holo back at my bunk. They still call me ‘Six-Gallon Sylvie’ at HQ, sometimes.”</i> The moose-woman proudly preens. <i>“It’s always nice to know that if I ever wanted to hang up the law woman routine and throw my life away, I’d have the biggest dick on the station.”</i>");
 		output("\n\nYou lean back to digest what she’s had to say. <i>“How long did it take to wear off?”</i>");
-		output("\n\nSylvie replies, <i>“Do you mean ‘how long were you a big-dicked sex-fiend?’”</i> She winks. <i>“About an hour. I got hauled off before too long and put in confinement with a breeding relief stand - for races that get hit by rutting season really, really hard. I’m pretty sure I was still grinding up on it long after the dick went away. I guess my body might have recovered, but part of my mind wanted to keep going. I got two days paid leave to recover, got blitzed off my ass in here, and went back on duty afterward.”</i>");
+		output("\n\nSylvie replies, <i>“Do you mean ‘how long were you a big-dicked sex-fiend?’”</i> She winks. <i>“About an hour. I got hauled off before too long and put in confinement with a breeding relief stand - for races that get hit by rutting season really, really hard. I’m pretty sure I was still grinding up on it long after the dick went away. I guess my body might have recovered, but part of my mind wanted to keep going. I got two days paid leave to recover, got blitzed off my ass in here, and went back on duty afterward.");
+		if(sylvieHasCock()) output(" Of course, we all know a certain someone indulged my appreciation for the male orgasm. Thanks for that by the way. That nick-name I mentioned? It’s all anybody calls me now.");
+		output("”</i>");
 		output("\n\n<i>“And the guy who drugged you?”</i>");
 		output("\n\nShe smirks. <i>“Spending another two years in jail. Assaulting an officer is a stupid idea, I don’t care what planet you’re on.”</i>");
 		output("\n\n");
@@ -849,7 +910,10 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		if(flags["MET_DR_BADGER"] != undefined) output("Does she mean Doctor Badger?");
 		else output("You’ve definitely heard bits on the news about someone like that, though she’s probably got the name wrong.");
 		output(" <i>“Yeah.”</i>");
-		output("\n\nSylvie licks the beer from her gleaming teal lips and explains, <i>“She was on this very station a few months back. We didn’t catch her at first. She somehow faked her geneprint and records in ways our scientists are still trying to figure out. Apparently she looked like a pudgy tiger - with a dick of course. Every pervert in the galaxy seems to feel the need to get one, whether or not they were born with it.”</i> Patting her hindquarters, she proudly declares, <i>“I can proudly say that I’m 100% female... and lucky Doctor Bimbomancer didn’t set her sights on me.”</i>");
+		output("\n\nSylvie licks the beer from her gleaming teal lips and explains, <i>“She was on this very station a few months back. We didn’t catch her at first. She somehow faked her geneprint and records in ways our scientists are still trying to figure out. Apparently she looked like a pudgy tiger - with a dick of course. Every pervert in the galaxy seems to feel the need to get one, whether or not they were born with it.”</i> Patting her hindquarters, ");
+		if(sylvieHasCock()) output("she says, <i>“I guess that makes me one of those perverts doesn’t it? Fuck! Well, better you than Doctor Bimbomancer! I’m just lucky she didn’t set her sights on me.");
+		else output("she proudly declares, <i>“I can proudly say that I’m 100% female... and lucky Doctor Bimbomancer didn’t set her sights on me.");
+		output("”</i>");
 		output("\n\nScratching your neck nervously, you ask, <i>“Why’s that?”</i>");
 		output("\n\n<i>“Because in the three days she was here, she managed to turn two cute deer-girls on vacation into silicone-inflated nymphomaniacs.”</i> She shakes her head, then brushes a loose lock of hair out of the way. <i>“They went from petite beauties to artificial ultra-porn goddesses. And on top of that, the bitch managed to give my ex-partner the slip - and a few other additions that rendered him unable to continue his duties.”</i> Those last few words come out strangely wistfully...");
 		output("\n\n<i>“What kind of additions? You sound like you liked them...”</i> you pry, curiosity piqued.");
@@ -1166,7 +1230,7 @@ public function syvlieBuzzedStories(drunklevelChange:Number = 1,newPage:Boolean 
 		showSylvieInBra();
 		output("<i>“This might come as some surprise to you, but despite the prim and proper air I maintain in such a public establishment, I do have a whole lot of animal in me... and with that comes proportionally stronger </i>urges<i>.”</i> Sylvie’s hooves click noisily as she shifts position, drinking a little bit more to steady herself. <i>“Much stronger </i>urges<i>,”</i> she repeats, <i>“and by that I mean, my body all but begs me to start fucking people at the slightest provocation. If I didn’t go out of my way to maintain myself, I’d be pounding you through the floor. Seriously.”</i> She all but eyefucks you. <i>“So that’s why I bought a TamaniCorp ‘Taur-Tamer. One of the good ones, with the realistic lube-jizz action and everything. It’s all part and parcel of the animal-girl package. You want the muscle and speed, you gotta be willing to work the hell out of your pussy three or four times a day.”</i>");
 		output("\n\nWhen you look back over your shoulder to try and catch sight of the aforementioned moose-pussy, Sylvie playfully shimmies away.");
-		output("\n\n<i>“Don’t go getting any ideas,”</i> she giggles, sipping on a beer. <i>“The story isn’t over yet, and if I have to hold it together and tell you all about the time I broke through the wall humping a fuck-machine, then you can keep it in your gitch ‘til I’m done.”</i> Grabbing you by the butt, Sylvie pulls you close. <i>“But don’t let that fool you into thinking I’m not flattered.”</i> Her hand rubs you fondly. <i>“I am. Here, why don’t you settle for some other eye-candy while I talk? I know how hard it is to make eye-contact when you’re hot and bothered.”</i> She pulls her skin-tight shirt");
+		output("\n\n<i>“Don’t go getting any ideas,”</i> she giggles, sipping on a beer. <i>“The story isn’t over yet, and if I have to hold it together and tell you all about the time I broke through the wall humping a fuck-machine, then you can keep it in your gitch till I’m done.”</i> Grabbing you by the butt, Sylvie pulls you close. <i>“But don’t let that fool you into thinking I’m not flattered.”</i> Her hand rubs you fondly. <i>“I am. Here, why don’t you settle for some other eye-candy while I talk? I know how hard it is to make eye-contact when you’re hot and bothered.”</i> She pulls her skin-tight shirt");
 		//output(" up and over her head");
 		output(" off her person");
 		output(", leaving her in nothing but a bra.");
@@ -1323,6 +1387,12 @@ public function hugSylvie():void
 	{
 		output("\n\n<i>“God, I love giving out hugs!”</i> Sylvie declares while rubbing her whole body against you. If you had genitals, this would probably feel very, very erotic. Instead, it just feels kind of nice. The incredible police woman must feel similarly as she presses her bare belly against you, her genitals safely ensconced in the rear half of her moose-body. After what feels like minutes of pressing yourselves against one another, she sighs contentedly. <i>“Mmm, you’re fucking amazing. I can hug you all day, and you don’t get all stupid horny or anything. I wish I could hug you all forever.”</i>");
 	}
+	//Interrupt for loooods!
+	if(sylvieHasCock() && flags["KIRO_MET_KALLY"] != undefined && (pc.hasVagina() || pc.hasPerk("Buttslut")) && flags["SEXED_SYLVIE"] != undefined && sylvieDrunkLevel() >= 2 && !isKallySisterSchlicking() && !kallyIsAway() && roamingKiroAvailable()) 
+	{
+		horsecockFuckpuppetProc();
+		return;
+	}
 	//Merge	
 	output("\n\nYour whole body is sweating by the time you separate. Sylvie is flushed and smiling, and you imagine you must be in a similar state. Regardless, the giantess of a ‘taur decides to cool herself off by chugging an entire beer before your eyes. A belch bursts heedlessly from her mouth the second you separate. Her eyes are a little glassier, a bit drunker, perhaps, but her smile is bright enough to dazzle the grumpiest curmudgeon. <i>“");
 	processTime(15);
@@ -1350,12 +1420,15 @@ public function hugSylvie():void
 public function sylvieSexyTimeIntro():void
 {
 	clearOutput();
+	//Even futa sylvie still wants you to have genitals:
 	if(!pc.hasGenitals() && !pc.hasPerk("Myr Venom"))
 	{
 		if(flags["SYLVIE_THROBB_GIFT"] == undefined)
 		{
 			output("The moment you speak, Sylvie is drunkenly shaking her head.");
-			output(" <i>“Nope! You don’t have any genitals silly. Not yet anyway.”</i> She leans close, close enough to accidentally whack you with one of her antlers. <i>“Oopsie!”</i> Sylvie kisses the spot where she bumped you, then drifts down to your ear, whispering, <i>“I have a little Throbb from a recent bust, if you’d like to get suited up for a little fun.”</i>\n\n");
+			output(" <i>“Nope! You don’t have any genitals silly. Not yet anyway.”</i> She leans close, close enough to accidentally whack you with one of her antlers. <i>“Oopsie!”</i> Sylvie kisses the spot where she bumped you, then drifts down to your ear, whispering, <i>“I have a little Throbb from a recent bust, if you’d like to get suited up for a little fun.");
+			if(sylvieHasCock()) output(" ‘Course you could always just slap a SynthSheath on yourself, like you did me.");
+			output("”</i>\n\n");
 			quickLoot(new Throbb());
 			CodexManager.unlockEntry("Throbb");
 			flags["SYLVIE_THROBB_GIFT"] = 1;
@@ -1371,24 +1444,29 @@ public function sylvieSexyTimeIntro():void
 		}
 		return;
 	}
-	if(pc.biggestCockVolume() < 50 && !pc.hasVagina() && !pc.hasPerk("Myr Venom"))
+	//Sylvie doesn't care if the PC has a decent-sized cock if she's got her own dick. buttfuxk ahoy.
+	if(!sylvieHasCock())
 	{
-		output("The moment you speak, Sylvie is drunkenly shaking her head.");
-		output(" <i>“Nope! You’re, not packing quite enough just yet. You know, that mouse girl might over there might have some Throbb.”</i> Sylvie titters, leaning so close her antler nearly bumps your head. Her voice comes out in a hushed, slurred whisper. <i>“Because she’s my shecret informant! So long as she feeds me intel, I let her minor transguh... transgressions slide, and when I meet a cutie like you who needs a little extra...”</i> She grabs you by the crotch and squeezes, kissing you full on the mouth. Sylvie’s pops off with a giddy grin, still rubbing you. <i>“...I can send you over there to top up. Just be safe, okay?”</i>");
-		output("\n\nSylvie nods as if that was the easiest task in the world.");
-		flags["SYLVIE_MABBSED"] = 1;
-		CodexManager.unlockEntry("Throbb");
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
-		return;
+		if(pc.biggestCockVolume() < 50 && !pc.hasVagina() && !pc.hasPerk("Myr Venom"))
+		{
+			output("The moment you speak, Sylvie is drunkenly shaking her head.");
+			output(" <i>“Nope! You’re, not packing quite enough just yet. You know, that mouse girl might over there might have some Throbb.”</i> Sylvie titters, leaning so close her antler nearly bumps your head. Her voice comes out in a hushed, slurred whisper. <i>“Because she’s my shecret informant! So long as she feeds me intel, I let her minor transguh... transgressions slide, and when I meet a cutie like you who needs a little extra...”</i> She grabs you by the crotch and squeezes, kissing you full on the mouth. Sylvie’s pops off with a giddy grin, still rubbing you. <i>“...I can send you over there to top up. Just be safe, okay?”</i>");
+			output("\n\nSylvie nods as if that was the easiest task in the world.");
+			flags["SYLVIE_MABBSED"] = 1;
+			CodexManager.unlockEntry("Throbb");
+			clearMenu();
+			addButton(0,"Next",mainGameMenu);
+			return;
+		}
 	}
 	showSylvie(true);
 	output("The moment you speak, Sylvie is in motion, displaying remarkable reflexes for one so wildly inebriated. She grabs you by the hand and ");
 	if(pc.isTaur() || pc.isGoo() || pc.isNaga() || pc.isDrider()) output("drags you toward the baths");
 	else output("tosses you on her back, clopping over to the baths");
-	output(" without an ounce of subtlety, seemingly blind to the libidinous catcalls and crude cheers coming from the regulars. Her bra disappears the moment you’re through the door, and along with it, any sense of composure. She drunkenly leans back over her hindquarters, giving a sensuously inviting look. <i>“Since you’ve been so great, you can pick... this time. Just don’t leave me waiting.”</i> The nine-foot tall amazon tugs on her nipples and pivots, presenting you with a pussy so puffy and engorged that the purple-flushed skin shines on its own.");
-	currentLocation = "CANADA7";
-	generateMap();
+	output(" without an ounce of subtlety, seemingly blind to the libidinous catcalls and crude cheers coming from the regulars. Her bra disappears the moment you’re through the door, and along with it, any sense of composure. She drunkenly leans back over her hindquarters, giving a sensuously inviting look. <i>“Since you’ve been so great, you can pick... this time. Just don’t leave me waiting.”</i> The nine-foot tall amazon tugs on her nipples and pivots, presenting you with a pussy so puffy and engorged that the purple-flushed skin shines on its own");
+	if(sylvieHasCock()) output(", dribbling moisture down the taut skin of her ball-swollen sack. Just ahead is the semi-rigid length of her enormous mare-breaker, pulsating beneath your heady gaze");
+	output(".");
+	moveTo("CANADA7");
 	processTime(1);
 	clearMenu();
 	sylvieSexMenu();
@@ -1397,37 +1475,73 @@ public function sylvieSexyTimeIntro():void
 public function sylvieSexMenu():void
 {
 	clearMenu();
-	if(pc.hasCock())
+	if(sylvieHasCock())
 	{
+		//No reqs
+		addButton(0,"AnalFistHer",fistSylvie,undefined,"Anally Fist Her","Introduce her to the pleasures of prostate milking.");
+		//HasGenitals: TakeAnal
+		if(pc.hasGenitals()) addButton(1,"Take Anal",takeItUpYourButtYouDirtySlutbag,undefined,"Take Anal","Let her get some relief in your ass.");
+		else addDisabledButton(1,"Take Anal","Take Anal","You need genitalia for this scene.");
+		//Requires Nonpreg && hasVagina: TakeVaginal
+		if(!pc.isPregnant() && pc.hasVagina()) addButton(2,"TakeVaginal",catchFutaSylviaVaginally,undefined,"TakeVaginal","Take Sylvie vaginally.");
+		else if(pc.isPregnant()) addDisabledButton(2,"TakeVaginal","Take Vaginal","It would probably be unsafe to take that much dick while pregnant.");
+		else addDisabledButton(2,"TakeVaginal","Take Vaginal","You need a vagina for this.");
+		//Requires 10" of dick: FuckHerPuss
 		var x:int = pc.cockThatFits(sylvieCuntSize());
-		if(pc.isTaur())
+		if(pc.hasCock() && pc.cockVolume(x) >= 50) addButton(3,"FuckHerPuss",penisRouter,[fuckDickedSylviesPussah,sylvieCuntSize(),false,50],"FuckHerPuss","Just because she has a dick doesn’t mean she can’t take one...");
+		else if(pc.hasCock()) addDisabledButton(3,"FuckHerPuss","FuckHerPuss","Your penis isn’t appropriately sized for her.");
+		else addDisabledButton(3,"FuckHerPuss","FuckHerPuss","You need a penis for this.");
+		if(pc.hasCock())
 		{
-			if(x >= 0 && pc.cockVolume(x) >= 50) addButton(0,"Mount Pussy",taurPussyMountWsanIsMyHero,undefined,"Mount Pussy","Mount her the way that ‘taurs were meant to be mounted - by another ‘taur.");
-			else if(x >= 0 && pc.biggestCockVolume() < 1500) addDisabledButton(0,"Mount Pussy","Mount Pussy","You’re a little too small for her to interested in a proper mounting.");
+			if(pc.biggestCockLength() >= 12) addButton(4,"TittyBlow",tittyBlow,undefined,"Titty Blow","Get your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
+			else addDisabledButton(4,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
 		}
-		else addDisabledButton(0,"Mount Pussy","Mount Pussy","You need to be some kind of centaur-like creature for this.");
-
-		if(pc.biggestCockLength() >= 12) addButton(1,"TittyBlow",tittyBlow,undefined,"Titty Blow","Your your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
-		else addDisabledButton(1,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
+		else addDisabledButton(4,"TittyBlow","Titty Blow","You need a penis 12 inches or longer to titfuck her massive mammaries.");
+		if(pc.hasVagina())
+		{
+			addButton(5,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
+			addButton(6,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
+		}
+		else 
+		{
+			addDisabledButton(5,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
+			addDisabledButton(6,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
+		}
 	}
 	else
 	{
-		addDisabledButton(0,"Mount Pussy","Mount Pussy","Only penis-wielding, tauric creatures can do this.");
-		addDisabledButton(1,"TittyBlow","Titty Blow","You need a penis 12 inches or longer to titfuck her massive mammaries.");
+		if(pc.hasCock())
+		{
+			var xx:int = pc.cockThatFits(sylvieCuntSize());
+			if(pc.isTaur())
+			{
+				if(xx >= 0 && pc.cockVolume(xx) >= 50) addButton(0,"Mount Pussy",taurPussyMountWsanIsMyHero,undefined,"Mount Pussy","Mount her the way that ‘taurs were meant to be mounted - by another ‘taur.");
+				else if(x >= 0 && pc.biggestCockVolume() < 1500) addDisabledButton(0,"Mount Pussy","Mount Pussy","You’re a little too small for her to interested in a proper mounting.");
+			}
+			else addDisabledButton(0,"Mount Pussy","Mount Pussy","You need to be some kind of centaur-like creature for this.");
+
+			if(pc.biggestCockLength() >= 12) addButton(1,"TittyBlow",tittyBlow,undefined,"Titty Blow","Get your dick wet in Sylvie’s drizzling pussy, then stuff it between her tits until you’re blowing a load down her throat.");
+			else addDisabledButton(1,"TittyBlow","TittyBlow","Your penis is too short to truly enjoy the expanse of cleavage that Sylvie offers. Come back when your largest member is 12 inches or longer.");
+		}
+		else
+		{
+			addDisabledButton(0,"Mount Pussy","Mount Pussy","Only penis-wielding, tauric creatures can do this.");
+			addDisabledButton(1,"TittyBlow","Titty Blow","You need a penis 12 inches or longer to titfuck her massive mammaries.");
+		}
+		if(pc.hasVagina())
+		{
+			addButton(2,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
+			addButton(3,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
+		}
+		else 
+		{
+			addDisabledButton(2,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
+			addDisabledButton(3,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
+		}
+		//[COMPLETE] [VenomKiss] Red Myr PCs only, kiss and lick her for an hour or two, making her cum like crazy.
+		if(pc.hasPerk("Myr Venom")) addButton(4,"Venom Kiss",redMyrSylvieFunz,undefined,"Venom Kiss","Teach Sylvie just how fun red Myr venom can be!");
+		else addDisabledButton(4,"Venom Kiss","Venom Kiss","You need to secrete red Myr venom in order to do this.");
 	}
-	if(pc.hasVagina())
-	{
-		addButton(2,"SpankNGrind",spankyGrindyWimyFunSchlicks,false,"Spank ‘N Grind","Spank her and grind on her slit and clit until you mutually orgasm.");
-		addButton(3,"Cuffs&Tongue",cuffsAndTongueFromNonesuchyDuchy,false,"Cuffs & Tongue","Get cuffed up and force-fed dripping deer cunt.");
-	}
-	else 
-	{
-		addDisabledButton(2,"SpankNGrind","Spank ‘N Grind","You need a vagina in order to do all this.");
-		addDisabledButton(3,"Cuffs&Tongue","Cuffs & Tongue","You need a vagina in order to experience this forceful scene!");
-	}
-	//[COMPLETE] [VenomKiss] Red Myr PCs only, kiss and lick her for an hour or two, making her cum like crazy.
-	if(pc.hasPerk("Myr Venom")) addButton(4,"Venom Kiss",redMyrSylvieFunz,undefined,"Venom Kiss","Teach Sylvie just how fun red Myr venom can be!");
-	else addDisabledButton(4,"Venom Kiss","Venom Kiss","You need to secrete red Myr venom in order to do this.");
 	addButton(14,"Leave",leaveSylvieHighAndLessThanDryYaCunt);
 }
 public function sylvieForcyRouter():void
@@ -1467,6 +1581,7 @@ public function leaveSylvieHighAndLessThanDryYaCunt():void
 
 //[COMPLETE] [Wsan] [Mount Pussy] - Big Dikked Taur Mount It
 //for taurs with dik >10"
+//Now supports futa sylvie
 public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 {
 	clearOutput();
@@ -1476,7 +1591,9 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	//Forcy Fen Intro
 	if(forcy)
 	{
-		output("Sylvie, never breaking eye-contact, backs up, forcing you to step back further and further. Soon, you’re against a door, but she just keeps coming. She kicks off the ground, launching her massive rump high in the air, and hops back, slamming her hooves against the wall to either side of your head. Her pussy, big, round and smelling strongly of horny taur fills your vision and tickles your nose. You push back, but the touch just makes her lubricate. Musky moose-goo trickles out of her pussy, doubling the intensity of her wanton scent.");
+		output("Sylvie, never breaking eye-contact, backs up, forcing you to step back further and further. Soon, you’re against a door, but she just keeps coming. She kicks off the ground, launching her massive rump high in the air, and hops back, slamming her hooves against the wall to either side of your head. Her pussy, big, round and smelling strongly of horny taur fills your vision and tickles your nose. ");
+		if(sylvieHasCock()) output("Her dick and balls are there too, lower, dangling useless. It’s clear which part of her she favors at the moment. ");
+		output("You push back, but the touch just makes her lubricate. Musky moose-goo trickles out of her pussy, doubling the intensity of her wanton scent.");
 		output("\n\nFrom somewhere deep inside you, a growl worms out of your throat, and you push back twice as hard. Sylvie doesn’t fall away. Instead, the door behind you gives out, and you stumble in, Sylvie clopping in after. Her pussy is lush and dribbling, shimmering like a puffy purple target for your [pc.cocks]. You rear up and throw yourself at her, launching yourself halfway up her massive rump, clawing at her furred midriff for purchase.");
 		output("\n\n<i>“Oh! That’s it, big [pc.boyGirl], now you’re getting in the spi-”</i> she slurs, tensing up when she feels your [pc.cock " + x + "] slap against her dribbling pussy. <i>“Oh, fuck it!”</i> she groans, holding still while you align the rigid pole. <i>“Fuck me so hard!”</i>");
 	}
@@ -1498,7 +1615,9 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	else output("as deep as possible,");
 	output(" sheathing your entire length inside her impossibly tight, sodden fuckhole. It’s a struggle to endure the wildly erotic way her walls grip at you, desperately enticing you to blow a fat load right into her depths.");
 	output("\n\n<i>“Uhhh! M-my clit!”</i> she gasps, rocking back into you. <i>“Your cumveinnngh! Is rubbing my clit!”</i>");
-	output("\n\nSylvie throws her head back and cries out in ecstasy, her back arching to the point she’s leaning back into you and looking up into your eyes with an expression of agonizing lust. Her mouth hangs open, emitting fluttering gasps of shocked pleasure, each one signalling a simultaneous squeeze of her pussy walls around your bloated prick. You roughly take her head in your hands and kiss her, sealing her groans with your [pc.lips].");
+	output("\n\nSylvie throws her head back and cries out in ecstasy, her back arching to the point she’s leaning back into you and looking up into your eyes with an expression of agonizing lust. Her mouth hangs open, emitting fluttering gasps of shocked pleasure, each one signalling a simultaneous squeeze of her pussy walls around your bloated prick. ");
+	if(sylvieHasCock()) output("Contractions ripple through her sack as her balls brew up a massive, ready-to-go load. ");
+	output("You roughly take her head in your hands and kiss her, sealing her groans with your [pc.lips].");
 	output("\n\nSylvie’s powerful hind legs continue to needily fuck back into you as you strain to keep her immobile, clamping your forelegs around her midriff to hold her still. The gesture calms the moosetaur somewhat, acting as a primal reminder that a mare should be submissive and docile when she’s being pumped full of cock. Given the opportunity to explore her body, you reach down and free her massive, shaking tits from the constraints of her mountie top. She moans as you squeeze a rock-hard nipple before letting go, watching them bounce atop her chest every time you thrust into her quivering snatch.");
 	output("\n\n<i>“Oh my </i>god<i>, you’re good,”</i> Sylvie pants between each thudding impact against her ample ass, stroking your ego every bit as much as your dick. Her pretty little face has taken on an expression of fervent admiration, your passionate tryst evidently earning you the respect of the busty bombshell. You can’t help but want to drive her on even further, her words only encouraging you to pummel her harder.");
 	output("\n\nShe drops onto the bed and screams in maddened pleasure, unable to keep her voice down as you slam her into submission. Her massive breasts shake beneath her as you work yourself towards orgasm, leaning down and placing your hands on her sweaty shoulders for grip. When you finally find yourself reaching a crescendo, you pull her up and into you as you sink your cock ");
@@ -1506,7 +1625,9 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	else output("to the hilt");
 	output(" in her spasming, squirting cunt.");
 
-	output("\n\nSylvie gives a little scream every time you deposit a warm load in her, your bulging cumvein compressing her clit against her swollen pussy. She suffers a back-arching orgasm with each jet of spunk you pack into her warm, wet pussy, her legs shaking and her stomach flexing with the effort of keeping up. Her squeezed-close eyes slowly open, her body still tautly wrapped around your cock, and she looks up at you worshipfully, lifting an arm behind her to gently caress your face.");
+	output("\n\nSylvie gives a little scream every time you deposit a warm load in her, your bulging cumvein compressing her clit against her swollen pussy. She suffers a back-arching orgasm with each jet of spunk you pack into her warm, wet pussy, her legs shaking and her stomach flexing with the effort of keeping up. ");
+	if(sylvieHasCock()) output("Heavy splatters impact of a nearby wall as her enormous cock goes off like a cannon, for all its size, essentially useless compared to your quim-stuffing tool.");
+	output("Her squeezed-close eyes slowly open, her body still tautly wrapped around your cock, and she looks up at you worshipfully, lifting an arm behind her to gently caress your face.");
 	output("\n\n<i>“You... you’re amashing,”</i> she whispers in a drunken slur, little shocks running across her expression every time she feels your cock pump more semen down her fuckhole. <i>“Mmmm...”</i>");
 	output("\n\nYou bend down to kiss her again, enjoying the softness of her lips before you pull away. <i>“I think half the station must’ve heard you there,”</i> you murmur to her.");
 	output("\n\n<i>“Who cares,”</i> she moans, still bathing in the afterglow. <i>“Anyone would sound like me after </i>that<i>. I’ve never been mounted like that in my life.”</i>");
@@ -1519,7 +1640,11 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 	output("\n\n<i>“Give it to me, you beast,”</i> Sylvie moans, shallowly thrusting her hips back at you. <i>“Fill me up.”</i>");
 	output("\n\n<i>“You asked for it,”</i> you grunt, rearing back.");
 	output("\n\nYou spear her all the way to the hilt, pushing through the wetness of her unresisting walls. She cries out in passion, her humanoid front half collapsing onto the bed. You fuck her slower than before, but with even more intensity. Each thrust results in a loud slap of flesh on flesh, the shaking moosetaur’s muscular butt providing a cushy surface for you to bounce against.");
-	output("\n\nYou reduce her to a mewling mess on the bed with each flex of your hips, Sylvie’s squirting pussy desperately working your rod inside her, squeezing you with all her might. She groans into the sheets, teeth grit during the rough violation of her nethers. Each movement sets her ass shaking and her body shuffling forward, the busty ‘taur grabbing at the sheets with white knuckles as she’s dragged across them again and again.");
+	output("\n\nYou reduce her to a mewling mess on the bed with each flex of your hips, Sylvie’s squirting pussy desperately working your rod inside her, squeezing you with all her might. She groans into the ");
+	if(sylvieHasCock()) output("cum-soaked ");
+	output("sheets, teeth grit during the rough violation of her nethers. Each movement sets her ass shaking and her body shuffling forward, the busty ‘taur grabbing at the sheets with white knuckles as she’s dragged across them again and again");
+	if(sylvieHasCock()) output(", sending ripples through flooding pools of wasted jism she’s created.");
+	output(".");
 	output("\n\nFinally, you feel yourself about to cum again. You pull back and, with a bestial roar of dominance, slam into Sylvie at full force before you tighten your grip around her midriff and begin pumping her full of your seed. Between the load you already dumped in her and the gouts of sticky cum spurting into her now, it’s not long before she’s messily overflowing. Warm seed slowly rolls down her shaking, spread-apart hind legs as it leaks from her abused pussy, spattering to the floor.");
 	output("\n\nWhen you’re finally done, you give a deep, satisfied sigh and pull your cock from Sylvie’s still-gushing cunt, dismounting her. She stays on the bed for a second before pushing herself up with her arms, orange eyes half-lidded and clearly still in an orgasmic haze.");
 	output("\n\n<i>“Oh my god,”</i> she mumbles, dizzily seeking out your face and meeting your gaze in reverence. <i>“My world is still spinning, and that’s </i>not<i> the alcohol.”</i>");
@@ -1579,6 +1704,7 @@ public function taurPussyMountWsanIsMyHero(forcy:Boolean = false):void
 }
 
 //[COMPLETE] [Fenoxo] [Reverse Moose-girl] AKA: Get Your Pelvis Shattered
+//Now Futa-Sylvie compatible!
 public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 {
 	clearOutput();
@@ -1592,6 +1718,7 @@ public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 	output(" before the moose-girl’s enormous ass thrusts ");
 	if(pc.tallness >= 80) output("into your chest");
 	else output("against your face");
+	if(sylvieHasCock()) output(", her churning balls slapping heavily into your [pc.chest]");
 	output(". The walls tilt crazily as you fall, but at least the water’s edge cushions the impact of ass-on-plasticized aluminum. Assessing your new position, you determine that you could lie back comfortably here, if you chose. The enormous back-half of the drunken police-girl decides for you as it settles into place above, its heavy hooves splattering noisily as it gets into position.");
 
 	//Crotch covered
@@ -1600,6 +1727,7 @@ public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 		output("\n\n<i>“[pc.name]~!”</i> Sylvie calls, leaning back across four-legged lower body, <i>“Pull it out already! Don’t make me beg!”</i> She hurriedly drums on her quivering haunches, rapidly transitioning to shuddering slaps that cut through the air like a sharp knife. Her engorged pussy juices itself in response, puffy and gleaming, looking more like a target for taur-dick than traditional female genitalia. In a small, soaked crease, you can see the swelling mass of her clitoris gleaming like a fresh grape, begging to be rubbed and squeezed. Droplets of musky lady-lube drizzle over your [pc.lowerGarmentOuter], filling the air around you with insidious pheromones so strong ");
 		if(pc.hasCock(GLOBAL.TYPE_EQUINE)) output("that your flaring horse-cock threatens to burst free under the strength of its own engorgement.");
 		else output("that your head swims.");
+		if(sylvieHasCock()) output(" The length of her own equine tool, a full 30 inches, hangs there erect and forgotten, sliming pre into the water.");
 		output("\n\n");
 		if(pc.lust() >= 75) output("You hastily remove the obstructing garment before your steel-hard tumescence thrusts straight through, unable to restrain a sigh of sensuous relief.");
 		else
@@ -1620,7 +1748,7 @@ public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 	else
 	{
 		output("\n\n<i>“[pc.name]~!”</i> Sylvie calls, leaning back across her four-legged body, ");
-		if(pc.lust() >= 40) output("smiling mischievously down at you. <i>“You’re so nice, getting all hard for me! Wanna see me get ready for you?”</i> She winks. <i>“Of course you do. Watch this!”</i>");
+		if(pc.lust() >= 40 || pc.isErect()) output("smiling mischievously down at you. <i>“You’re so nice, getting all hard for me! Wanna see me get ready for you?”</i> She winks. <i>“Of course you do. Watch this!”</i>");
 		else 
 		{
 			output("pouting down at you. <i>“Aww, having trouble getting hard? Don’t worry, I have a great cure for whiskey dick!”</i> ");
@@ -1643,7 +1771,7 @@ public function pelvisShatteringFuntimesWithSylvie(force:Boolean = false):void
 	//Uncovered, not hard
 	if(pc.isCrotchExposed())
 	{
-		if(pc.lust() < 40) output("\n\n<i>“I told you I’d make you hard,”</i> Sylvie titters, cupping her pendulous tits. She bites her lip and whimpers. Her sopping wet cunt clenches excitedly. <i>“I hope you’re as tough as you look, because I am going to fuck you so hard your dick falls in love with me forever.”</i>");
+		if(pc.lust() < 40 && !pc.isErect()) output("\n\n<i>“I told you I’d make you hard,”</i> Sylvie titters, cupping her pendulous tits. She bites her lip and whimpers. Her sopping wet cunt clenches excitedly. <i>“I hope you’re as tough as you look, because I am going to fuck you so hard your dick falls in love with me forever.”</i>");
 		//Uncovered, hard
 		else output("\n\n<i>“I told you that you’d want to see,”</i> Sylvie titters, gesturing toward your twitching boner. She bites her lip and sighs wistfully, her sopping wet cunt clenching. <i>“I hope you’re as tough as you look, because I am going to fuck you so hard your dick falls in love with me forever.”</i>");
 	}
@@ -1674,6 +1802,7 @@ public function crotchBustingSnuSnuPartTwo():void
 	else if(pc.hasKnot(x)) output(", pushing your knot inside her before it can dare inflate.");
 	else output(", squishing her padded pussy’s entrance down in order to take every single millimeter of available dick.");
 	pc.cockChange();
+	if(sylvieHasCock()) output(" Her monstrous member is sandwiched between your bodies, belching what feels like a gallon of slippery pre over your [pc.skinFurScales].");
 
 	output("\n\n<i>“");
 	if(cVolume < 300)
@@ -1690,7 +1819,9 @@ public function crotchBustingSnuSnuPartTwo():void
 	output(" Her clit rubs against your [pc.sheathOrKnot " + x + "] on the way down, a little rubbery nub that makes her squeal when it passes over the ridge of a vein");
 	if(pc.balls > 0) output(" and moan as it rests against your [pc.sack]");
 	output(".");
-	output("\n\n<i>“Oof!”</i> you grunt involuntarily. The longer this goes on, the more forcefully she rides your dick, and the more crushing the blows from her bestial heiny.");
+	output("\n\n<i>“Oof!”</i> you grunt involuntarily. The longer this goes on, the more forcefully she rides your dick, ");
+	if(sylvieHasCock()) output("the more mess her bolted-on dick makes, ");
+	output("and the more crushing the blows rain down from her bestial heiny.");
 	//Bro - no new PG
 	if(pc.isBro()) output(" You grunt in irritation and grab her tail in your fist, yanking on it until she’s compelled to take a little of her weight off your middle. She cries out like a slut in heat, getting off on it, so you slap her ass with your other hand for her temerity, dragging her up and down your dick. What was once a forceful copulation has yields to a submissive, lazy fuck, Sylvie’s slutty body obeying your every whim.");
 	//Nonbro no new pg
@@ -1726,6 +1857,10 @@ public function crotchBustingSnuSnuPartTwo():void
 	var cumBathed:Boolean = (cumQ >= 10000);
 	//merge
 	output("\n\nIn the moment of climax, you thrust up into her for all the good it does: exactly none. You’re still pinned to the ground, still smothered in hundreds of pounds of juicing, eager ‘taur. But that’s part of what makes it so hot - what makes it so easy to cum, and cum, and cum some more inside her. The knowledge that Sylvie’s body has all but enveloped your own, wreathing your [pc.cock " + x + "] in silky softness and your [pc.legOrLegs] in shaggy fur.");
+	if(sylvieHasCock())
+	{
+		output("\n\nYou can hear more than see the effect is has on her own maleness, the lurid splatters gleefully impacting on walls, churning up waves of water turned cum-lubed. As you climax, hers drags on, seemingly without end. The water level rises apace with your pleasure, heedless of anything but your paired, mounting release.");
+	}
 	//sub 1k cums
 	if(cumQ < 1000) output("\n\nSylvie looks on, eyelids drooping blissfully, her cunt drinking down every drop of [pc.cum] you have to offer. A dazed smile spreads across her features in what you can only assume is satisfaction, like all it took was the sight of your orgasm to give her one of her own.");
 	//1k-10k cum
@@ -1772,6 +1907,7 @@ public function hipBustingSnuSnu3(cumBathed:Boolean):void
 	sweatyDebuff(2);
 	processTime(10);
 	sexedSylvie(1);
+	IncrementFlag("SYLVIE_HIPBUSTERED");
 	pc.createStatusEffect("SYLVIE WORKING");
 	pc.setStatusMinutes("SYLVIE WORKING",(9*60));
 	clearMenu();
@@ -1815,12 +1951,12 @@ public function tittyBlow():void
 		output("\n\nYou answer by throwing yourself back against her. Your [pc.hips] impact her ass with an audible splattering sound, and when you draw back, your whole crotch is painted with Sylvie’s lusty liquid. The moose-taur herself gasps at her empty snatch, then moans when you return. Her pussy gushes like a geyser. Sylvie herself leans back across her body, playing with her breasts once more. She coos, <i>“Like that. Fuck me like that!”</i> until the pleasure overwhelms her.");
 		output("\n\nSylvie’s body leaves no room to doubt the earnestness of her climax. You can’t fake squirting enough girlcum to drown a galotian, and there’s no way she’s a good enough actor to fake her eyes rolling back or her mouth hanging slack in wordless ecstasy. Her pussy hugs you tight, tight enough to stop you from thrusting any longer, wringing you with near-painful contractions. Slapping Sylvie’s ass encouragingly, you spur her to cum that much harder. She trembles in overwhelming pleasure, then her forelegs give out, dropping her to her knees, canting her ass up that much higher. The new angle rubs your [pc.cock " + x + "] against whole new bundles of nerves and gives the drooling drunkard something new to scream about.");
 		output("\n\nLetting out a groan of your own, revel in the feeling of your [pc.sheathOrKnot " + x + "] nestling snugly into her drenched mons, delighting in the wet squishes emanating from her twat as she cums. There’s no doubt that you’re lubed up enough for two-dozen titfucks, let alone one from a sexually satisfied ‘taur.");
-		applyPussyDrenched(pc);
+		pc.applyPussyDrenched();
 	}
 	//Dick 5" thick or more.
 	else
 	{
-		output("\n\n<i>“You asked for it.”</i> Hefting your enormous slab of cock, you awkwardly position the the tip of your gigantic boner against a cunt that suddenly seems far too small for it.");
+		output("\n\n<i>“You asked for it.”</i> Hefting your enormous slab of cock, you awkwardly position the tip of your gigantic boner against a cunt that suddenly seems far too small for it.");
 		output("\n\nSylvie shivers from the tip of her fluffy tail all the way to her luscious locks. <i>“I can take it.”</i>");
 		output("\n\nPutting her words to the test, you thrust ahead. There’s almost no give at first. Her pussy might as well be a brick wall. Then, Sylvie moans and, with a shudder, gives way to your [pc.cock " + x + "]. Her sodden entrance dilates once, not enough, but close. You shove again, grunting with the effort, and Sylvie’s purple pussy opens up for you like a blooming flower. It does so reluctantly, perhaps even if with a bit of pain, but it does so all the same. She’s wet enough that as soon as it does, you slip a whole foot inside in a single stroke, spearing her, stretching her bestial channel wider than it has ever been before.");
 		output("\n\n<i>“Fu-fuck, no I can’t!”</i> the moose-woman cries, tossing her hair. It catches on her jutting, pink nipples. <i>“Too much!”</i>");
@@ -1834,7 +1970,7 @@ public function tittyBlow():void
 		else output("against");
 		output(" her bestial mons and utterly drenched in her squirting girlcum.");
 		output(" You’re pretty sure you’re wet enough for your tit-job now. There’s no way Sylvie can complain that you didn’t give her anything for her trouble.");
-		applyPussyDrenched(pc);
+		pc.applyPussyDrenched();
 	}
 	//Merge
 	output("\n\n<i>“Nice and wet,”</i> you observe, pulling out. Thick webs of moose-mare cum dangle between you, snapping one strand at a time. Your cock is shiny and throbbing, angry and hard, tortured with pleasure to the point where all you want to do is thrust it back inside and hump away until you get to cum as hard as Sylvie did. But you wanted a titfuck, and you’re going to get a titfuck. <i>“My turn.”</i> You pat the moose’s quivering ass. <i>“Turn around.”</i>");
@@ -1917,7 +2053,7 @@ public function fuckyTittyBlowblow2():void
 	if(cumQ > 70000)
 	{
 		output("\n\nEven nine foot tall animal-girls have their limits, and you can tell that you’ve reached it the moment her middle pushes down against the ground. [pc.Cum] sprays out of her snatch and back over you.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//More than 100k. No new pg
 	if(cumQ > 100000) 
@@ -1925,19 +2061,19 @@ public function fuckyTittyBlowblow2():void
 		output(" But it’s not enough. You thread your still-spurting shaft");
 		if(pc.cockTotal() > 1) output("s");
 		output(" between her taut tummy and quivering thigh, washing underside in a thick coating of spermy goodness.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//More than 110k - no new PG
 	if(cumQ > 110000)
 	{
 		output(" There’s enough to leave her stranded in the midst of a musky puddle, though you suppose it might make it easier to drag her to a pool for cleaning.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//More than 150k.
 	if(cumQ > 150000)
 	{
 		output("\n\nYou stalk back around Sylvie, still ejaculating, spraying her with enough to cake her hair down into a cum-impregnated sheet. She wisely grabs hold of your [pc.cock " + x + "] as soon as you get within arm’s reach and threads it through her armpit. The tight, warm embrace milks more out of you, but it takes you a dozen ecstatic spurts before you identify why she did it: she’s aimed you into one of the pools. She milks the rest of your [pc.cum] like that, simultaneously squeezing out every drop while protecting her favorite bar from a deluge of spunk-induced property damage.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	processTime(25);
 	pc.orgasm();
@@ -1967,6 +2103,7 @@ public function sylvieFuckyTitBlow3(cumQ:Number):void
 
 //[COMPLETE] [Meredith Caerwyn] [Spank ‘N Grind] Spank Her Grind on her slit & clit till mutual ‘gasms. [4Ladies]
 //Since pressure on her backside triggers lubrication, spanking makes her super wet. Gonna need a mop.
+//FutaSylvie compatible!
 public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 {
 	clearOutput();
@@ -1979,7 +2116,9 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 		if(pc.isBimbo()) output("giggle");
 		else if((pc.isNice() || pc.isMischievous()) && !pc.isBro()) output("grin");
 		else output("smirk");
-		output(" and give that well-filled booty a good, solid slap it deserves. Sylvie lets out a delighted little moan and sways her ample ass provocatively. <i>“Oh, yes,”</i> she breathlessly teases, <i>“Surely you can do it harder.”</i>");
+		output(" and give that well-filled booty a good, solid slap it deserves. Sylvie lets out a delighted little moan and sways her ample ass provocatively");
+		if(sylvieHasCock()) output(", semi-hard cock slapping between her hind-thighs");
+		output(". <i>“Oh, yes,”</i> she breathlessly teases, <i>“Surely you can do it harder.”</i>");
 
 		output("\n\nYou ");
 		if(pc.isBimbo() || pc.isMischievous()) output("release a fake scandalized gasp and ask cheekily whether");
@@ -1999,8 +2138,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	//FORCEFUL START
 	else
 	{
-		currentLocation = "CANADA7";
-		generateMap();
+		moveTo("CANADA7");
 		output("Before you can ");
 		if(!pc.isNaga()) output("break");
 		else output("wriggle out of");
@@ -2013,12 +2151,25 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 
 		output("\n\nBatting away her wandering hands, you");
 		//(Tallness <5’)
-		if(pc.tallness < 5*12) output(" swiftly crouch and pass under her, small as you are, faster than");
+		if(pc.tallness < 5*12) 
+		{
+			output(" swiftly crouch and pass under her");
+			if(sylvieHasCock()) output(", banging off her cock in the process,");
+			else output(", small as you are,");
+			output(" faster than");
+		}
 		else if(!pc.isNaga()) output(" pinch her side hard enough to distract her and push her arm as you pass at her other side, before");
-		else output(" decide to use her closeness against her, swiftly coiling your body with hers and slithering under her arms until you are snugly wrapped around her backside, trapping her in your coils beneath you, before");
+		else 
+		{
+			output(" decide to use her closeness against her, swiftly coiling your body with hers");
+			if(sylvieHasCock()) output(", ignoring the way your snake-like tail slithers against her rigid dick,");
+			output(" and slithering under her arms until you are snugly wrapped around her backside, trapping her in your coils beneath you, before");
+		}		
 		output(" she can react with more than a surprised gasp. You give her a few good, hard slaps on her hind quarters to keep her from trying to turn around, resulting in her moaning breathlessly. Now that you have her trapped ");
 		if(!pc.isNaga()) output("in the corner with no space to turn around");
-		output(", you decide you have changed your mind. After all, bad girls need to be taught some manners, no? <i>Perhaps a </i>hands-on<i> lesson will be needed</i>, you think, growing hot as her wet, inflamed nether lips rub against your ");
+		output(", you decide you have changed your mind. After all, bad girls need to be taught some manners, no? <i>Perhaps a </i>hands-on<i> lesson will be needed</i>, you think, growing hot as her ");
+		if(sylvieHasCock()) output("heavy sack and ");
+		output("wet, inflamed nether lips rub against your ");
 		if(pc.tallness < 5 * 12) output("front");
 		else output("crotch");
 		output(".");
@@ -2048,7 +2199,12 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	{
 		output("\n\nWhich, you realize, isn’t much of one. A minor adjustment of the angle and you are pretty sure you can manage to grind directly on her cute clit and puffy, shimmering purple pussy. <i>It’s good having a tail instead of legs,</i> you think, smiling in satisfaction. You squeeze her body with your tail teasingly when you give her another strike on her ample backside, rubbing it in satisfaction at her excited pants. Her lubrication makes your tail more slippery and wet, only further making it easier for you to be able to slide and grind against her.");
 	}
-	output("\n\nYou start eagerly grinding against her deliciously soaked, swollen lips, making sure to give her hard slaps on both sides of her ample ass at the same time. Sylvie lets out a loud moaning gasp, followed by breathless whines and pants to the rhythm of your gyrating movements, scattered with whimpering groans and gasps whenever you reward her with a smack on her broad rear.");
+	output("\n\nYou start eagerly grinding against her deliciously soaked, swollen lips, ");
+	if(sylvieHasCock()) output("careful not to press too hard against her swelling balls as you make ");
+	else output("making ");
+	output("sure to give her hard slaps on both sides of her enormous ass");
+	if(!sylvieHasCock()) output(" at the same time");
+	output(". Sylvie lets out a loud moaning gasp, followed by breathless whines and pants to the rhythm of your gyrating movements, scattered with whimpering groans and gasps whenever you reward her with a smack on her broad rear.");
 	output("\n\nBy now, there is enough lubrication gushing from her eager cunt that your bodies slide against each other with practically no friction and, more importantly, no chafing. The sheer sensation is extremely satisfying, making your grinding much more enjoyable than usual.");
 	if(pc.isNaga()) output(" You eagerly take advantage of her copious lubrication to rhythmically constrict and relax your body around hers in addition to your grinding. Whenever you do that, Sylvie lets out a hitched, breathless moan, her legs trembling stronger from excitement and arousal.");
 	output("\n\nMoreover, her puffy, fat lips make a perfect surface for rubbing [pc.eachVagina] against, making you wish every snatch you encountered was this deliciously modded. ");
@@ -2060,7 +2216,7 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	if(pc.clitLength >= 3) output("Of course, the size of [pc.eachClit] helps immensely, making your [pc.clits] impossible to miss. ");
 	output("You know the moment you find her clit both by the flash of pleasure from that brief hard resistance against your own throbbing [pc.clits] and by her louder, hitching moans.");
 
-	output("\n\n<i>“Yes! Ah, right there,”</i> Sylvie breathlessly pants out. ”</i><i>Harder, ah, faster!”</i> she begs, squeezing you between her wide thighs, her plush, muscular flesh rippling around you in ecstasy. Her enthusiastic movements leave you breathless with pleasure");
+	output("\n\n<i>“Yes! Ah, right there,”</i> Sylvie breathlessly pants out. <i>“Harder, ah, faster!”</i> she begs, squeezing you between her wide thighs, her plush, muscular flesh rippling around you in ecstasy. Her enthusiastic movements leave you breathless with pleasure");
 	//(if tallness<5' or strength<80%)
 	if(pc.tallness < 5*12 || pc.PQ() < 80)
 	{
@@ -2083,7 +2239,9 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	if(pc.isSquirter()) output(" a veritable flood of [pc.girlCum] flow down to mix with Sylvie’s feminine juices, together all but making a small lake on the floor beneath you.");
 	else if(pc.wettestVaginalWetness() < 4) output(" a river of [pc.girlCum] flow down to mix with Sylvie’s feminine juices, making the puddle from her copious lubrication a little bigger.");
 	else output(" a stream of [pc.girlCum] flow down your body to mix with Sylvie’s feminine juices, though it doesn’t make the puddle from her copious lubrication any bigger.");
+
 	output("\n\nYou pant breathlessly after your orgasm and rub Sylvie’s quivering backside as she reaches her own orgasm, set off by the feeling of your entrance clenching and fluttering against her own.");
+	if(sylvieHasCock()) output(" Gallon after gallon bursts forth from her flaring cock in the peak of her passion. You didn’t have to directly touch it to set her off. The feelings coursing through her animalistic cunt and stinging hindquarters are more than enough to empty every drop from her diminishing balls.");
 
 	//(If not naga)
 	if(!pc.isNaga()) output("\n\nOnce you catch your breath, you help her turn around and lay on the floor with her legs under her, both of you letting out chuckles from all the slipping and sliding you do on the wet floor. When she is settled, you lean against her flank and relax, the post-orgasm buzz still pleasantly running through your body.");
@@ -2093,7 +2251,10 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 	else if((pc.isNice() || pc.isMischievous()) && !pc.isBro()) output("a teasing smile.");
 	else output("a smug smirk.");
 
-	output("\n\nLooking around the room, Sylvie sighs and starts getting up. <i>“Should probably start cleaning,”</i> she say, mumbling under her breath, <i>“since it’ll take us a while I suspect.”</i> She look exasperatedly at the miniature lake under you. You look at her");
+	output("\n\nLooking around the room, Sylvie sighs and starts getting up. <i>“Should probably start cleaning,”</i> she say, mumbling under her breath, <i>“since it’ll take us a while I suspect.”</i> She look exasperatedly at the ");
+	if(sylvieHasCock()) output("sperm-infused");
+	output("miniature");
+	output(" lake under you. You look at her");
 
 	//(No Treatment and Libido<75)
 	if(!pc.isTreated() && pc.libido() < 75)
@@ -2130,7 +2291,9 @@ public function spankyGrindyWimyFunSchlicks(forcy:Boolean = false):void
 //By Nonesuch
 //Requires: Pussy
 
+
 //Tooltip: Get cuffed up and force-fed dripping deer cunt.
+//Futasylvie compatible nau!
 public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 {
 	clearOutput();
@@ -2139,7 +2302,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 	//Roughhouse first time/repeat
 	if(forcy)
 	{
-		output("<i>“Yes, I know.”</i> She rummages around in her bag, and from the booby muffler currently occupying your face you hear the slithering clink of a small chain. <i>“Since you’re being a lil teaser who thinks you can get away from me...”</i> The next moment you find yourself being roughly turned around and your wrists professionally cuffed together behind you. With one hot hand on your shoulder and the other embedded in your ass-cheek, you are frogmarched towards the visitor rooms.");
+		output("<i>“Yes, I know.”</i> She rummages around in her bag, and from the booby muffler currently occupying your face you hear the slithering clink of a small chain. <i>“Since you’re being a lil’ teaser who thinks you can get away from me...”</i> The next moment you find yourself being roughly turned around and your wrists professionally cuffed together behind you. With one hot hand on your shoulder and the other embedded in your ass-cheek, you are frogmarched towards the visitor rooms.");
 		output("\n\n<i>“You got a date with the law,”</i> a voice awash in beer husks in your ear. Vast amounts of boob swells around your shoulders. <i>“And the law is feelin’ frisky.”</i>");
 	}
 	//Regular first time
@@ -2165,7 +2328,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 	output("\n\n<i>“I know where you been looking,”</i> slurs Sylvie. You can just about make out her flushed, jolly face peering over her shoulder at you, beyond the vast furred behind dominating your vision. She lifts her short tail, and the tang of heavy female arousal hits you, emanating from that big, puffy, purple fuck-hole of hers, slick with arousal. [pc.EachVagina] swims with lusty heat; partially in reflex and partially for provocative effect, you lick your [pc.lips] so that they shine with the saliva filling your mouth. That draws a pleased, lusty groan from the moosetaur hovering above you.");
 	output("\n\n<i>“Yeah. Can’t help yourself, can you? ");
 	//First:
-	if(flags["SYLVIE_CUFFNFUCK"] == undefined) output("No offence, but I had you down as a subby lil pussy munch from the start. Just a question of, could you go the distance with me...”</i> She sighs as she slowly lowers her hindquarters, down far enough to reach out and eagerly lick her plump labia, oiling your [pc.tongue] with her scent. <i>“ ...lemme tell ya, I’m glad you did.”</i>");
+	if(flags["SYLVIE_CUFFNFUCK"] == undefined) output("No offence, but I had you down as a subby lil’ pussy munch from the start. Just a question of, could you go the distance with me...”</i> She sighs as she slowly lowers her hindquarters, down far enough to reach out and eagerly lick her plump labia, oiling your [pc.tongue] with her scent. <i>“...lemme tell ya, I’m glad you did.”</i>");
 	else output("Dunno how I managed before I found me a drinkin’ buddy that changes into a pussy slave at the end of the night.”</i> She giggles as she slowly lowers her hindquarters, down far enough to reach out and eagerly lick her plump labia, oiling your [pc.tongue] with her scent. <i>“Every workin’ gal needs one of you!”</i>");
 	output("\n\nShe sighs with pleasure, hovering over you, hooves clacking on the floorboards as you circumscribe her outer lips with the tip of your tongue, building her pleasure with slow rotations; then, with an impatient whuff and a squelch, she sits most of the weight of her rear down on your face. Your world becomes a swaddle of supple, fur-covered bulk, her wet pussy pressed heavily onto your mouth.");
 	output("\n\n<i>“Lick, [pc.boy],”</i> she grunts, from somewhere far away. <i>“You aren’t going nowhere until I’ve had my fill. Maybe... if you’re really good... I’ll return the favor.”</i>");
@@ -2175,7 +2338,7 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 	output(" almost painfully the longer the muffled face-fuck goes on.");
 
 	output("\n\nWith each loving stroke of your [pc.tongue] over its smooth walls, Sylvie’s cunt swells up more and more, until it’s like a giant, purple donut your mouth is mashed into. An escalating series of breathy sighs and groans emanates from above, hooves rapping sharply against the floorboards as you tongue your moosetaur top to ever greater heights of pleasure.");
-	output("\n\n<i>“‘S right, right there, you dirty lil [pc.boy],”</i> she huffs. You can’t see, but you take it by the sound of shifting tunic fabric she’s toying with her massive breasts as you eat her out. ");
+	output("\n\n<i>“‘S right, right there, you dirty lil’ [pc.boy],”</i> she huffs. You can’t see, but you take it by the sound of shifting tunic fabric she’s toying with her massive breasts as you eat her out. ");
 	if(pc.biggestTitSize() >= 1) output("Well, that’s what <i>you</i> would be doing in her position. ");
 	output("She pulls her soft, puffy sex back from your questing tongue a bit - trails of saliva and intoxicating pussy juice follow it - and rears herself up so that her distended clit is practically butting you in the nose. <i>“Now there - yes!”</i> she cries out as you obey, sucking at the protuberant little nub and then flicking at it insistently with the tip of your tongue.");
 	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) 
@@ -2190,7 +2353,8 @@ public function cuffsAndTongueFromNonesuchyDuchy(forcy:Boolean = false):void
 		output("\n\n<i>“Yes! Like that!”</i> she groans, slamming her hooves into the floor as you hollow your cheeks determinedly. <i>“Fuuuuuck are you good at that!”</i>");
 		output("\n\nHer clit throbs in your mouth, and a huge gout of pussy juice spatters over your chin as it contracts out. You are dizzied by doughty hills of moose flesh excitedly battering into your upturned face, but all the way through the moosetaur’s loud, gratuitous orgasm you keep a firm hold on that tender little nub, audibly intensifying her pleasure.");
 	}
-	applyPussyDrenched(pc);
+	if(sylvieHasCock()) output("\n\nThrough it all is the lurid gushing of her cock’s voluminous ejaculations. Splat after splat of augmented seed hits hard into the floor, Sylvie’s balls visibly quaking with the effort of disgorging so much. The sweat-slicked equine organ lurches time after time, long after you expected it to stop, hosing out a tidal wave of white, salty goo in response to your tongue’s loving licks.");
+	pc.applyPussyDrenched();
 	processTime(15);
 	pc.lust(80);
 	clearMenu();
@@ -2202,9 +2366,9 @@ public function cuffnFuckSylviePartDues():void
 	clearOutput();
 	showSylvie(true);
 	author("Nonesuch");
-	output("<i>“Mmm,”</i> Sylvie sighs, lifting her thick hindquarters off your face at last. Silvery trails of femcum and saliva follow it as she turns like a ponderous, furry space cruiser to regard you with deep, rosy contentment. <i>“That was delicious. I definitely think rug munching like that deserves a lil reward.”</i>");
+	output("<i>“Mmm,”</i> Sylvie sighs, lifting her thick hindquarters off your face at last. Silvery trails of femcum and saliva follow it as she turns like a ponderous, furry space cruiser to regard you with deep, rosy contentment. <i>“That was delicious. I definitely think rug munching like that deserves a lil’ reward.”</i>");
 	output("\n\n<i>“If you say so, ma’am,”</i> you reply, with all the chipperness you can muster. It remains an awe-inspiring, slightly frightening experience to be bound and knelt in front of this towering beast-woman, utterly subservient to her drunken impulses.");
-	output("\n\n<i>“You’re so One-damned precious!”</i> she laughs. <i>“A cute lil pet, all of my own. I just wanna eat you up... in fact, yeah. That’s exactly what I’m gonna do.”</i>");
+	output("\n\n<i>“You’re so One-damned precious!”</i> she laughs. <i>“A cute lil’ pet, all of my own. I just wanna eat you up... in fact, yeah. That’s exactly what I’m gonna do.”</i>");
 	output("\n\nYour heart flutters as she clops forward, reaches down and grabs you around the waist, grunting and giggling slightly as she lifts you up, vast amounts of soft, warm boob plushing into your [pc.chest]. ");
 	if(pc.tallness >= 12*6+6) output("You aren’t exactly tiny yourself, but Sylvie has the leg strength of, well, a moose, and is three sheets to the wind besides. The wooden floor creaks alarmingly as she digs her hind-quarters in, hauling you up bodily with an exultant grunt.");
 	else output("She may as well have picked up her own bag, it’s that easy for her. Her upper body may not look strong, but underlying it is the horny, drunken might of a creature that has no problem doing whatever it likes with a pixie like you.");
@@ -2222,7 +2386,7 @@ public function cuffnFuckSylviePartDues():void
 		output("\n\nYou reflexively tense up as she lays her wet, smooth tongue on your [pc.vagina 1], flicking and lavishing it teasingly until it is flush with [pc.girlCum] and you are gasping in pleasure, before moving up, laying a lascivious, full-blooded kiss on your [pc.vagina 0].");
 	}
 	else if(pc.hasVagina(GLOBAL.TYPE_FLOWER)) output("\n\n<i>“Ooh hey,”</i> she coos, confusion coloring her tones as she gazes at your dewy orchid twat in full flourish. <i>“You got some sort of plant growing down here, didja know? You should prob’ly get that checked out.”</i> You exhale slowly as she wonderingly traces the sensitive innards of one of your [pc.vaginaColor] fronds with her warm, wet tongue. <i>“Real pretty, though.”</i>");
-	else output("\n\n<i>“Cute vajazzle for a cute lil sub,”</i> she proclaims, looking up at you with thirsty vixenish lust writ large on her face. <i>“Certainly looks tasty.”</i>");
+	else output("\n\n<i>“Cute vajazzle for a cute lil’ sub,”</i> she proclaims, looking up at you with thirsty vixenish lust writ large on her face. <i>“Certainly looks tasty.”</i>");
 	output("\n\nSylvie lurches forward, roughly thrusting her tongue deep into the wet, sensitive suck of your hole, eagerly stroking your innards to send spasms of sensation whiplashing up your body. Hands cuffed and thrust up against the wall by the moosetaur’s cruiser-like mass, you are helpless to do anything but let her ravish you with her long, wriggling appendage; obscene smacking and slurping fills the room, joined shortly by your own groans and wails as it begins to feel like [pc.eachVagina] is melting with pleasure. She never stops looking upwards, laughingly drinking in your helpless reactions to her questing tongue like a crisp pint of lager.");
 	output("\n\nYou clench your [pc.thighs] up tight around her neck as you blow like a rocket, ");
 	if(!pc.isSquirter()) output("a generous dribble of [pc.girlCum] forced out of your flexing cunt");
@@ -2234,7 +2398,7 @@ public function cuffnFuckSylviePartDues():void
 
 	if(InCollection(pc.girlCumType,[GLOBAL.FLUID_TYPE_CHOCOLATE_MILK,GLOBAL.FLUID_TYPE_HONEY,GLOBAL.FLUID_TYPE_STRAWBERRY_MILK,,GLOBAL.FLUID_TYPE_NECTAR,GLOBAL.FLUID_TYPE_VANILLA,GLOBAL.FLUID_TYPE_CHOCOLATE_CUM,GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT,GLOBAL.FLUID_TYPE_FRUIT_CUM,GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM,GLOBAL.FLUID_TYPE_EGGNOG])) 
 	{
-		output("\n\n<i>“You’re so sweet!”</i> she exclaims with giddy excitement, when she finally pulls her [pc.girlcumColor]-smeared mouth away from your tenderized sex. <i>“Like a ");
+		output("\n\n<i>“You’re so sweet!”</i> she exclaims with giddy excitement, when she finally pulls her [pc.girlCumColor]-smeared mouth away from your tenderized sex. <i>“Like a ");
 		if(pc.girlCumType == GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM || pc.girlCumType == GLOBAL.FLUID_TYPE_FRUIT_CUM) output("glass of fruit juice");
 		else if(pc.girlCumType == GLOBAL.FLUID_TYPE_HONEY) output("pot of honey");
 		else if(pc.girlCumType == GLOBAL.FLUID_TYPE_CHOCOLATE_CUM || pc.girlCumType == GLOBAL.FLUID_TYPE_CHOCOLATE_MILK) output("hot chocolate");
@@ -2243,7 +2407,7 @@ public function cuffnFuckSylviePartDues():void
 	}
 	else
 	{
-		output("\n\n<i>“Mmm,”</i> she grins, [pc.girlcumColor] fluid smeared across her chin. <i>“Nothing like some refreshing girl juice after tying one on, am I right?");
+		output("\n\n<i>“Mmm,”</i> she grins, [pc.girlCumColor] fluid smeared across her chin. <i>“Nothing like some refreshing girl juice after tying one on, am I right?");
 		if(pc.wettestVaginalWetness() >= 4) output(" And you are soooo juicy, wow! You’re pretty much everything I want in a cunt toy, you know that?");
 		output("”</i> Without pausing for an answer she greedily shoves her head back between your thighs, nose buried in your mons as she attacks your [pc.clits] with insistent flicks of her tongue and smooches of her lips.");
 	}
@@ -2254,7 +2418,7 @@ public function cuffnFuckSylviePartDues():void
 	if(pc.totalVaginas() > 1) output("s");
 	output(" and down her gullet.");
 
-	output("\n\n<i>“Ahhh,”</i> she sighs with a smack of her lips, finally releasing her grip around your waist and lowering you down. Your " + (pc.legCount == 1 ? "[pc.leg] is" : "[pc.legs] are") + " utterly nerveless, and you find yourself simply pooling onto the floor in front of her, [pc.eachVagina] throbbing mightily. It’s a pitiable state of affairs that earns you another tipsy honk of laughter from above. <i>“‘S what happens if you bounce that butt around after I’ve had a few, I’m afraid,”</i> the moosetaur says. You are smothered in boob again as she reaches down and unlocks your cuffs with a practiced click. Your shoulders and wrists sigh with relief. <i>“I get thirsty! And this - ”</i> she pats her broad, furry side - <i>“needs a whole lot of foof juice to be properly satisfied. ");
+	output("\n\n<i>“Ahhh,”</i> she sighs with a smack of her lips, finally releasing her grip around your waist and lowering you down. Your " + (pc.legCount == 1 ? "[pc.leg] is" : "[pc.legs] are") + " utterly nerveless, and you find yourself simply pooling onto the floor in front of her, [pc.eachVagina] throbbing mightily. It’s a pitiable state of affairs that earns you another tipsy honk of laughter from above. <i>“‘S what happens if you bounce that butt around after I’ve had a few, I’m afraid,”</i> the moosetaur says. You are smothered in boob again as she reaches down and unlocks your cuffs with a practiced click. Your shoulders and wrists sigh with relief. <i>“I get thirsty! And this --”</i> she pats her broad, furry side - <i>“needs a whole lot of foof juice to be properly satisfied. ");
 	if(flags["SYLVIE_CUFFNFUCK"] != undefined && pc.isSquirter()) output("And you’re the juiciest, subbiest little slut I know. If you’re around, I just gotta have you!");
 	else output("And you’re fantastic at both ends. You be sure to be around regularly, alright?");
 	output("”</i>");
@@ -2289,7 +2453,7 @@ public function redMyrSylvieFunz():void
 	else output("putting an arm under yours");
 	output(" and bringing you close to her as she begins to cover the short distance.");
 
-	output("\n\n<i>“I almost forgot! I don’t want you bursting from the pressure before we get to the bath. The venom’s effects can be...”</i> you pause to lick her from the base of her neck all the way up to her ear, <i>“... quite </i>potent<i>.”</i> You trace a ring around her engorged pussy, just roughly enough to start her juices flowing.");
+	output("\n\n<i>“I almost forgot! I don’t want you bursting from the pressure before we get to the bath. The venom’s effects can be...”</i> you pause to lick her from the base of her neck all the way up to her ear, <i>“...quite </i>potent<i>.”</i> You trace a ring around her engorged pussy, just roughly enough to start her juices flowing.");
 	output("\n\nTo her credit, the sturdy moose-taur stays on her feet. Her legs buckle, almost bringing her crashing into a table of partying bar-goers. She mumbles something that might have been an attempted apology, but her tongue lolls out of her mouth in the process, preventing the words from escaping. Embarrassment and excitement raise the already immense heat of her body as your saliva’s hold strengthens.");
 	output("\n\nYou spend the last few steps across the bathing area gathering spit in your mouth, building up a veritable salvo of liquid lust. The dazed centaur gets a silly, hopeful grin on her face when she sees the first available jacuzzi, wobbling as she steps toward it a little too quickly. You let her make it maybe halfway there before leaning in and releasing the waterfall of fluid fervor along her collarbone. Thick globules collect and trickle down along her chest, mixing with her sweat to grow even more rapidly.");
 	output("\n\nThe massive moose drops like a rock, clutching at her breasts to free them from the carpet of flaming passion. She manages to rub the slick substance further in, growing ever more feverish in her attempts. With a little effort you manage to remove her bra, granting her spasming hands extra space. Twitching fingers find her nipples, squeezing them tightly enough for a guttural moan to break through her venom induced silence.");
@@ -2306,7 +2470,7 @@ public function redMyrSylvieFunz():void
 	{
 		output("\n\nYou turn your eyes to the plump catgirl, and her twin tails begin swishing in earnest. She gulps down a breath of air as you advance, pressing close to her body and taking her chin in one hand.");
 		output("\n\n<i>“");
-		if(silly) output("So, how do you feel about doughnuts");
+		if(silly) output("So, how do you feel about donuts");
 		else output("What an adorable kitty. How would you like to join us");
 		output("?”</i> you ask, groping one of her E-cup breasts with your free hand. The plus-sized cutie quivers at your touch, nodding shyly in response.");
 
@@ -2319,7 +2483,7 @@ public function redMyrSylvieFunz():void
 	{
 		output("\n\nYou turn your eyes to the taller gryvain, and are pleased to see her draconic dick twitch responsively as you approach. She straightens as you close in, pressing tight enough to compress her cock between your stomachs.");
 		output("\n\n<i>“");
-		if(silly) output("So, how do you feel about doughnuts");
+		if(silly) output("So, how do you feel about donuts");
 		else output("You should do as a dildo for my lover. How would you like to join us");
 		output("?”</i> you ask, running a hand over her chiseled stomach. She gulps, struggling internally for a moment before she responds.");
 		output("\n\n<i>“I-");
@@ -2455,7 +2619,7 @@ public function sylvieRutFunPart2():void
 	//Merge
 	output("\n\nFinally, something clicks in your head. It’s enough. You’ve followed your instincts to the letter, ensuring your mate is more than sufficiently lubricated for what’s to come. You pull back, [pc.face] connected by a web of creamy cunt-love for a brief few seconds, gasping. Sylvie is leaning back across her own lower body, rubbing her ass, making her pussy wink at you as it dribbles fresh streams of girlish goo into the pool, strengthening the already dizzying saturation of taur-scent in the air into a mist thick enough to cut with a knife.");
 	processTime(20);
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	pc.createStatusEffect("Mare Musk",0,0,0,0,false,"Icon_Smelly","You smell like a horny mare! The potent female scent is sure to drive others wild - though it gets you a little worked up as well.",false,0);
 	clearMenu();
 	addButton(0,"Next",sylvieRutFunPart3);
@@ -2504,30 +2668,34 @@ public function sylvieRutFunPart3():void
 		output("\n\nYour [pc.balls] sympathetically swelter, warm and heavy. They clench tight against your body then relax, repeating the motion again and again as they slowly release freshly brewed seed into your body, mixing it with what feels like a tide of pent-up seminal fluid that’s just waiting to escape. How then do they feel so heavy, and heavier by the second? They smack heavily into Sylvie’s clit when you hump, making her moan and you groan, not in true pain but in a sort of erotic discomfort that just makes it that much easier to push toward orgasm.");
 	}
 	//Merge
-	output("\n\n<i>“Ahhh~!”</i> Sylvie cries. Her pussy gushes and grabs hold of you squeezing. It’s too much for you to endure, and the release you’ve been chasing since you smelled her so long ago finally claws its way out of your belly with wild spasms of pleasure. Your whole body shakes, every muscle taut, every nerf afire with bliss");
+	output("\n\n<i>“Ahhh~!”</i> Sylvie cries. Her pussy gushes and grabs hold of you squeezing. It’s too much for you to endure, and the release you’ve been chasing since you smelled her so long ago finally claws its way out of your belly with wild spasms of pleasure. Your whole body shakes, every muscle taut, every nerve afire with bliss");
 	if(pc.balls > 1) output(", your [pc.balls] audibly sloshing as they disgorge their virile payload");
 	output(". Your [pc.cock " + x + "] feels like an erupting volcano, so soaked in red-hot liquid that you can scarcely tell your own ejaculate from the sea of Sylvie’s slutty secretions.");
+	
+	processTime(44);
+	var cumQ:Number = pc.cumQ();
+	
 	output("\n\nThe titanic moose-taur grabs your hands off her ass and squeezes your palms in hers, looking you in the eye as you orgasm. She’s smiling wide, watching your face with rapt attention as you release jet after jet inside her");
-	if((pc.cumQ() >= 500 && !pc.hasKnot(x)) || (pc.cumQ() >= 5000 && pc.hasKnot(x))) output(", more than enough to backflow into the pool");
+	if((cumQ >= 500 && !pc.hasKnot(x)) || (cumQ >= 5000 && pc.hasKnot(x))) output(", more than enough to backflow into the pool");
 	output(". <i>“Keep at it, stud,”</i> she whispers encouragingly. <i>“A little more cum and you’ll get me soooo pregnant.”</i> Her cunt rhythmically contracts and relaxes, milking you for more. <i>“Oooh, you’re doing it, you’re knocking me up!”</i> Sylvie squeezes your hands even tighter, and somehow you feel it echoed deep inside you, squeezing out the last few dregs of seed that your body can offer.");
 	output("\n\nYou sigh heavily, then slump weakly over Sylvie’s ass. Cum trickles down your legs, and for once since going into rut, you feel completely sated.");
-	processTime(44);
+	
 	pc.orgasm();
 	pc.ballFullness = 0;
 	clearMenu();
-	addButton(0,"Next",sylvieRutFunPart4);
+	addButton(0,"Next",sylvieRutFunPart4, cumQ);
 }
 
-public function sylvieRutFunPart4():void
+public function sylvieRutFunPart4(cumQ:Number = 0):void
 {
 	clearOutput();
 	showSylvie();
 	output("Sylvie pushes you off her into the pool");
-	applyPussyDrenched(pc);
-	if(pc.cumQ() >= 3000) 
+	pc.applyPussyDrenched();
+	if(cumQ >= 3000) 
 	{
 		output(", and a tide of [pc.cumGem] sex-juice pours out over you, soaking you further");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	output(". You swim your way back up the surface, sputtering and gasping, glaring daggers at the grinning moose-girl.");
 	output("\n\n<i>“Better?”</i>");
@@ -2577,3 +2745,1433 @@ public function dontCleanUpPostRutSylvie():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+/*=====================================
+			SYLVIE FUTA EXPACK!
+			By Wsan
+  ===================================*/
+//Fit into this menu: [Get Sexy] [SynthSheath] [Hug] [Leave]
+//[SynthSheath] //requires a SynthSheath in your inventory
+
+public function giveTheMooseABone():void
+{
+	clearOutput();
+	showSylvie();
+	author("Wsan");
+	
+	if(!CodexManager.entryUnlocked("SynthSheath"))
+	{
+		output("While checking your inventory, you run a hand over the strange horse dildo you found. Your Codex beeps with a warning about how the dildo-like device, a “Xenogen Biotech SynthSheath Mk1”, may irreversibly alter ones biology. You grimace ruefully at the thought of enhancing Sylvie’s genitalia.");
+		CodexManager.unlockEntry("SynthSheath");
+		output("\n\n");
+	}
+	
+	output("An idea pops into your head right as Sylvie is directing the most intense fuck-me eyes your way.");
+	output("\n\n<i>“Hey, Sylvie?”</i> you ask, looking through your belongings.");
+	output("\n\n<i>“Yeees?”</i> she practically purrs, leaning forward and unintentionally wafting her lusty pheromones into your nostrils.");
+	output("\n\n<i>“I’ve been lugging this thing,”</i> you say, brandishing the SynthSheath, <i>“around ever since picking it up on another planet. Whatcha think?”</i>");
+	output("\n\nShe eyes it suspiciously, peering drunkenly at the base of it until you press the button that extends the cock from its sheath. Her eyes widen in surprise, then she smiles.");
+	output("\n\n<i>“Oooh, horsecock. How’d you know that was my favorite? Nothing quite as filling...”</i> Sylvie trails off, her hindquarters bobbing a little. <i>“So what’re you gonna do with it?”</i>");
+	output("\n\n<i>“It’s what </i>you’re<i> gonna do with it,”</i> you reply, pointing at it with your free hand. <i>“This thing attaches to you and becomes yours permanently. No hardlight dildo stuff, actually yours. It’ll match your skin and everything. Just happened to think you could make use of it because, well...”</i> you eye the grinning moosegirl. <i>“I get the feeling you’re the type of girl who’d be happy with your own cock to play with. Plus you’d probably make a lot of other people happy too,”</i> you add.");
+	output("\n\n<i>“You got </i>that<i> right, that sounds like a lotta fun... as long as you help me test it out. Deal?”</i> she says, batting her eyelashes with a wide smile. She knows she’s getting off hard one way or another tonight.");
+	//[Okay] [Naw]
+	processTime(5);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Okay",sylvieOkayWithDongeridoodles);
+	addButton(1,"Naw",nawSylvieImADumbshit);
+}
+
+//[Naw]
+public function nawSylvieImADumbshit():void
+{
+	clearOutput();
+	showSylvie();
+	author("Wsan");
+	output("Actually, taking care to help this amazonian would-be herm get off might be more trouble than you initially thought.");
+	output("\n\n<i>“Maybe some other time,”</i> you reply evasively, putting the SynthSheath back.");
+	output("\n\n<i>“Awww, I wanted to see if I could put it up your butt...”</i> Sylvie pouts, showing off those plush teal lips.");
+	processTime(2);
+	//Back to previous menu
+	sylvieMenu();
+}
+
+//[Okay]
+public function sylvieOkayWithDongeridoodles():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	pc.destroyItemByClass(HorseCock);
+	flags["SYLVIE_SYNTHSHEATHED"] = 1;
+	output("<i>“Least I could do for a girl in need,”</i> you say, grinning up at her as you kneel down beside her. <i>“Just as a reminder, the SynthSheath is permanent - it won’t just go away when you get off or whatever.”</i>");
+	output("\n\n<i>“Thass’ okay. Government people get removals pretty much free here on Canadia! If I don’t want it, it won’t be there!”</i> Sylvie says, giggling. <i>“Anyway, I’m not in the detective division but I gotta hunch I’m gonna be keeping it...”</i>");
+	output("\n\n<i>“What makes you say that?”</i> you ask, keeping the libidinous taurgirl busy while you position the sheath between her legs. The tantalizing perfume of her velvetine sex is overwhelming down here, and the only thing keeping you from just grabbing her legs and burying your tongue into her dripping cunt is the prospect of something better.");
+	output("\n\n<i>“Did I ever tell ya about how I got the nickname Six Gallon Sylvie?”</i> she starts, recalling the tale. <i>“There was a prisoner- a pri- ooh, is that the sheath? That feels pretty- pretty good! Nngh.. ooh!”</i>");
+	output("\n\nThe moment it settles into place, the SynthSheath begins changing color to match Sylvie’s lustrous brown fur. Sylvie can obviously feel it happening if the lusty moans emanating from above are any indication, the tone of her newly-acquired genitalia dulling until it’s close to black. A moment, and then the SynthSheath is gone - all that’s left is a regular sheathed horsecock and two very impressive balls hanging between Sylvie’s trembling legs.");
+	output("\n\n<i>“Ooooh, wow,”</i> Sylvie moans, sounding a little out of breath. <i>“I think I came a little just having it put on!”</i>");
+	output("\n\n<i>“The show’s not over yet,”</i> you tell her, shifting underneath her.");
+	output("\n\nReaching up between her spread hindlegs, you surreptitiously slide your hand up to her pussy and find what you were looking for - Sylvie’s massive, swollen clit. You give it a gentle nudge and enjoy her quiet gasp, the muscles in her powerful thighs momentarily tightening in pleasure. Wetness trickles past your finger, sluicing down either side.");
+	output("\n\nWith your other hand, you cup one of her giant balls, eliciting a surprised intake of breath from the moosetaur. Then, what you’re waiting for finally happens. Sylvie’s hips lower a little, angling downwards instinctively, and her sheath begins to swell. The giant, mottled black and pink head of her swelling cock makes its first appearance, pushing outwards and drooping under its own weight before her length begins to stiffen.");
+	output("\n\nTrying her best to keep her moans at a minimum, the effect is somewhat dulled by the way Sylvie paws at the wooden floor with one of her forelegs as her monstrous erection works its way to fullness. It happens in twitches and jerks, unfamiliar vessels being used for the first time to supply her mammoth horsecock with enough blood for it to stand proud. She bucks once, twice, then shudders again when you touch her clit.");
+	output("\n\nAt full length, her delectable cock must be somewhere close to two feet. It looks <i>painfully</i> stiff, hugging her underside so tightly you imagine it feels like an iron rod between her legs. Her balls, too, are beginning to swell - you can feel with your hand the warmth of seed weighing them down, sagging in your grip.");
+	output("\n\n<i>“What are you two doing over there?”</i> Kally huffs, arms crossed and staring. <i>“Stop scuffing my floors!”</i>");
+	output("\n\n<i>“Baths,”</i> Sylvie pants urgently, taking your arm with surprising strength, <i>“now.”</i>");
+	processTime(10);
+	pc.lust(15);
+	clearMenu();
+	addButton(0,"Next",sylvieTriesHerDongerOn1);
+}
+
+public function sylvieTriesHerDongerOn1():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	//move to baths!
+	moveTo("CANADA7");
+	generateMap();
+	output("Sylvie hurriedly guides you to one of the rooms near the bathing section and slams the door behind herself, then leans forward to grab your shoulders and groan deeply right in your face. Her eyes are unfocused, and you can see she’s roughly biting her puffy lower lip.");
+	output("\n\n<i>“Suh- something’s weird,”</i> she pants, squeezing your arms. <i>“Feels like I’m s-stretching!”</i>");
+	output("\n\nRemoving her hands and ducking down to look, you almost get whapped in the face. She’s right - it <i>does</i> look like she’s stretching! You don’t know what’s going on, but her newest endowment is growing even larger than it initially was. You can see its bulging mass swell from base to tip, her hefty balls drooping with their weight, her cock adding inches to itself seemingly spontaneously.");
+	output("\n\nYou’ve never seen this happen before, but Sylvie is evidently in quite a bit of discomfort. You can only really think of one way to ease her pain right now, and reach out to stroke the affected area. She makes a confused noise when you touch her, her cock jerking at the contact, then moves closer to you.");
+	output("\n\n<i>“Keep touching it,”</i> she gasps, her hips beginning to buck involuntarily. <i>“Oh, god! Please keep touching it!”</i>");
+	output("\n\nYou’re definitely going to need two hands for this. You stroke her from base to middle with one hand and from middle to tip with the other, lightly squeezing the tip of her dick, and some clear pre-cum begins to leak out. Her mounting cries of mixed distress and pleasure spur you further onwards, softly rubbing and kneading her newfound cock until finally, the pre-cum gives way to much thicker, creamier alabaster liquid.");
+	output("\n\nSylvie makes blessed moans of relief as spunk drips, dribbles, then begins to roughly jerk and spurt from her flaring tip as you rub her, massive hips slowly rolling in your embrace. You milk her thoroughly as she begins to calm down, the reaction - whatever it was - apparently dissipating now that she’s able to cum. She croons sweetly with every heavy squirt of jizz onto the floor, her delighted moans like music to your ears.");
+	output("\n\n<i>“Uuuhhhh, god!”</i> Sylvie huffs, squeezing her hips together so tightly she spunks an extra few feet. <i>“If it’s like this every time I’m never gonna stop.”</i>");
+	output("\n\n<i>“Those animal instincts you were talking about, huh?”</i> you say, squeezing down hard to help her get all the rest out.");
+	output("\n\n<i>“Nnnnthankyou!”</i> she pants, dollops of thick jizz splattering the floor. <i>“Animal instincts is right. All I wanna do right now is fuck something with this cock!”</i>");
+	output("\n\n<i>“I think I can help with that,”</i> you say, eyeing her still-hard prick. It bounces against her stomach a little every time she flexes it and sends some more sticky spunk on its way to the floor, the cumshots appreciably smaller now but no less impressive. The real mindboggler, though, is the new size of her cock. It’s grown about half a foot longer and much, much thicker - you give her an affectionate squeeze and rub just for fun, and raise your head to ask about it.");
+	output("\n\n<i>“Do you have any allergies or anything, Sylvie?”</i> you say, the moosetaur turning to look downwards at you. <i>“Something that might cause, well... this?”</i>");
+	output("\n\nYou pull her cock to the side a little so she can see it, and the quizzical girl’s eyebrows raise in surprise.");
+	output("\n\n<i>“No wonder it feels so swollen!”</i> she giggles, putting a hand to her cheek. <i>“No ideas, though. Police get tested for everything and I’m as clean as can be!”</i>");
+	output("\n\nWell, you can figure out the mystery later. For now, you have a very eager-looking moosegirl and her animalistic urges to take care of. Not to mention the fat, dripping horsecock between her thighs.");
+	output("\n\n<i>“Can I fuck your butt?”</i> Sylvie asks suddenly, hands clasped beneath her chin and eyes glittering. <i>“I wanna see how it feels!”</i>");
+	output("\n\nHer generous bosom jiggles as she bounces in excitement at the prospect of burying her cock in your ass. Well, how can you say no to that?");
+	processTime(25);
+	pc.lust(25);
+	clearMenu();
+	addButton(0,"Next",sylvieTriesHerDongerOn2);
+}
+
+public function sylvieTriesHerDongerOn2():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("<i>“Fuck, you look sexy like that!”</i> Sylvie thrills, clapping her hands. She’s looking down at your naked form lying just on the edge of the bed with legs spread, her monster cock and your ass slathered in lubricant. You can’t help but feel slight apprehension as she rears up to place her thick, powerful forelegs on either side of your body, her rock hard dick spurting a bit of pre-cum over your [pc.tummy].");
+	if(pc.hasCock()) output("\n\nYour own cock twitches involuntarily, perhaps an outward sign of nervousness, but it’s a little too late for regret now.");
+	else output("\n\nYour asshole twitches a little, perhaps an outward sign of nervousness, but it’s a little too late for regret now.");
+	output("\n\nYou completely skipped the foreplay, reasoning that nothing was going to help you take Sylvie in: it’ll either work or it won’t, and you’re pretty sure she’s got her sights set on making it work if her flushed face is a reliable indicator. She’s all but giddy with drunken glee at the prospect of getting to fit her newfound bitchmaker inside you.");
+	output("\n\n<i>“Remember to take it a little easy, Sylvie,”</i> you tell her, but your words fall on all but deaf ears as she excitedly aligns herself with your [pc.asshole] and begins to push.");
+	output("\n\nThe sheer heft of her moose-morph form forces you upwards slightly when she shoves upwards into you, the swollen head of her cock spreading your asscheeks wide and spearing the first couple of inches inside you.");
+	output("\n\n<i>“Oh, god, that’s amazing,”</i> she groans in ecstasy, your asshole instinctively clamping down on her spongy, sensitive cockhead while you try not to shriek open-mouthed. <i>“Oh, I could let you do this </i>all<i> day.”</i>");
+	output("\n\nThankfully, she seems content to do just that for now, enjoying your body’s desperate attempts to force the conqueror to acquiesce. No such luck for you, though - Sylvie is almost lying on top of you at this point, and you’re clearly going nowhere but further down her lubed-up cockshaft.");
+	output("\n\nYou groan as you feel her slip a couple of inches deeper with alarming ease, copious lubrication and pre-cum making short work of the slightest opening. You can feel a massive protrusion between your slickening thighs, her giant equine length parting your insides and stretching apart your asshole like you’re nothing more than a synthetic fucktoy made for the well-endowed.");
+	output("\n\n<i>“Aww, I can feel how much you want me inside!”</i> Sylvie giggles, drawing back for a deeper thrust. <i>“Mmmm, the way you keep squeezing down on me... you really like my dick, huh [pc.name]?”</i>");
+	output("\n\nHonestly, you’re too focused on the feeling of internal displacement to be paying much attention to how she feels inside you. When Sylvie shoves herself back inside you gasp involuntarily, a response forced from your body on instinct.");
+	if(pc.bellyRating() < 30) output(" Looking downwards shakily, you can see a giant bulge protruding from beneath the [pc.skinFurScales] of your [pc.stomach]. Oh fuck, maybe you really <i>are</i> just a fucktoy.");
+	pc.buttChange(sylvieCockVolume());
+	output("\n\nOn the next thrust, though, something changes. Sylvie’s thick, round medial ring pushes and pops inside your asshole and you groan loudly enough Kally might have been able to hear it. Sylvie’s ears prick up and she stops for a moment, looking down at you and grinning.");
+	output("\n\n<i>“Ooooh, I think [pc.heShe] likes iiit,”</i> she singsongs, still drunk and having the time of her life. <i>“Why don’t you have some more?”</i>");
+	output("\n\nPulling herself out with a slowness that makes you quiver, she slides her iron-hard cock back inside right up to the ring in one go and giggles when you gasp in pleasure.");
+	output("\n\n<i>“Oh, having a dick is so much fun!”</i> Sylvie exclaims in glee, watching your every flustered reaction. <i>“Just listen to you, you sexy thing! Mmf!”</i>");
+	output("\n\nIt’s like your body doesn’t know what to do or how to respond. You find yourself grabbing the thick, lustrous fur of her sides with your sweaty hands while she teases what feels like an unending amount of pleasure out of your ass with that thick midsection of her cock. Before long you’ve got your legs hooked around her hips, groaning and crying out so loudly the creaking of the bed is drowned out.");
+	output("\n\n<i>“Sylvie! Sylvie!”</i> you gasp with every thrust, the pleasure inside you mounting and mounting until you can do nothing but tremble underneath her, poised right on the precipice of orgasm.");
+	output("\n\n<i>“Go ahead and cum, babe,”</i> she whispers to you, rolling her massive hips slowly. <i>“Cum aaaaall over that big, fat cock in your ass.”</i>");
+	output("\n\nFeeling her thrust deeper than ever before, you whimper and do as you’re told. Throwing your head back and pulling roughly at her fur, your back arches off the bed so harshly you thrust your chest into Sylvie’s soft underside with a helpless groan. She helps you ride through the full-body sensation, whispering encouragement and lusty moans when she feels you squeeze down hard on her veiny shaft.");
+	output("\n\nIt feels like your entire body is contracting with every pulse of pleasure, leaving you breathless and shaking until the next. Your abdominal muscles are aching, but it’s impossible to resist the urge.");
+	if(pc.hasCock()) output("\n\nYour cock dribbles an endless supply of pre-cum, a thick dollop of real cum mixed in every time you tighten up in orgasm. For some reason it just won’t stop, streaks of [pc.cumColor] running down the thick length of Sylvie’s swollen horsecock to drip from her balls.");
+	if(pc.hasVagina()) output("\n\nYour [pc.pussy] sympathetically contracts and squeezes too, a scant trickle of femcum rolling down your trembling thighs.");
+	output("\n\nYour desperate bucks and hip-thrusts gradually die down in intensity until all you’re doing is slowly sliding up and down a couple of inches of Sylvie’s dick, and you collapse back onto the bed with limbs spread. Your muscles ache <i>everywhere</i>");
+	if(pc.hasPerk("Amazonian Endurance")) output(", your only saving grace your amazonian endurance");
+	output(".");
+
+	output("\n\n<i>“You’re a fucking star with how you dance on my pole, Steele,”</i> Sylvie purrs, slowly pulling out of your stretched-out asshole. <i>“I was this close to cumming right into your belly with the way you were squeezing me.”</i>");
+	output("\n\nAfter some light struggling with getting her flare back out of your ass, she pulls free and beams down at you.");
+	output("\n\n<i>“Do you want to take a little break, [pc.name]? You look a little tired, and I still haven’t cum, so it’ll be even rougher next time! Remember, we do have baths.”</i>");
+	output("\n\nYou look up at the shining beacon of sexuality standing above you and smiling and consider your options.");
+	if(pc.isTreated()) 
+	{
+		output("\n\n<i>“I’m fine, just give me a second,”</i> you huff, catapulting yourself into an upright sitting position to Sylvie’s surprise.");
+		output("\n\n<i>“Wow, you’re really something!”</i> she says in admiration, looking over your body. <i>“The only person I know who could do that after a cock like mine is, well... me!”</i>");
+	}
+	//Non-Amazon:
+	else
+	{
+		output("\n\n<i>“Actually, a bath would be pretty great if you want to help me into the water,”</i> you admit.");
+		output("\n\n<i>“Of course I will, silly!”</i> Sylvie thrills, clapping her hands. <i>“Baths are fun!”</i>");
+		output("\n\nA few minutes later and you’re taking a nice, warm bath with Sylvie humming in your ear and soaping up your back, those giant, soft tits of hers floating in the water on either side of your head. You have to say, this is a kind of tranquility you don’t get to experience often.");
+		output("\n\n<i>“I could get used to this,”</i> you moan, leaning back into her caring embrace.");
+		output("\n\n<i>“I’ll bet you could,”</i> Sylvie murmurs in your ear. <i>“Maybe we should make this a regular thing. I make you cum your brains out with my giant cock,”</i> she continues, sliding her soapy hands down your front and rubbing your [pc.nipples], <i>“then we take a nice, long bath before I rut you so hard you see stars. Seems like a good deal to me.”</i>");
+		output("\n\nYou shiver at her words, knowing they’re a promise she’s good to deliver on. The bath continues with a teasing, sexual undertone of whispered words and murmured intimations until neither of you can take it any more. Hopping out, you dry each other off. Getting Sylvie completely dry is an arduous task, but fun; you can hardly help but notice her dripping wet erection either, the still-warm water running down her plump, low-slung balls. You gently rub her dry, eliciting approving moans with every soft, massaging touch.");
+		output("\n\n<i>“Mmm, god,”</i> she sighs dreamily, pulling you up and into her voluptuous breasts. <i>“Let’s get back to the room before I take you right here against the wall.”</i>");
+		output("\n\nYou’re half-hugged, half-marched back into the room by the enormous moosegirl, deposited on the bed, and hustled up to the headrest before you know it.");
+		output("\n\n<i>“You’re gonna want to hang onto that,”</i> Sylvie advises, indicating the headrest. <i>“Trust me on that one.”</i>");
+		//next page
+	}
+	processTime(25);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",sylvieTriesHerDongerOn3);
+}
+
+public function sylvieTriesHerDongerOn3():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("<i>“Mmmmm... could you put some of this on my cock, please?”</i> Sylvie asks, tossing you a bottle labelled ‘elasticizing oil’. <i>“Just in case. I figure we both know the best method of application to your asshole. Just rub it right in there and I’ll get right to it,”</i> she says with a grin.");
+	output("\n\nYou do so methodically, albeit with perhaps a little more attention to detail than you really need. It’s just kind of fascinating to feel every single bump, vein, and crease in Sylvie’s equine penis with your hands, knowing it’s about to be buried in your ass. You give special treatment to her medial ring, much to her approval, ensuring it’s slathered in a nice coating of lube before continuing onto the base. Just for good measure, you grope those heavy balls of hers and give them a slight, encouraging squeeze before retreating back to your position at the head of the bed.");
+	output("\n\n<i>“You really know how to treat a girl, [pc.name],”</i> Sylvie says, biting her lip while she checks out your [pc.ass] pointed at her. <i>“Just looking at this... grr!”</i>");
+	output("\n\nBending down, she seizes an asscheek and pulls, aggressively shoving two of her fingers right into your [pc.asshole]. The surprise penetration makes you moan a little, and Sylvie begins to rub her fingers along your sensitive insides.");
+	output("\n\n<i>“That’s right, moan for me like a little slut,”</i> she croons, squeezing your ass. <i>“You’ll be screaming my name in a moment anyway.”</i>");
+	output("\n\nAfter a few seconds she withdraws, standing on the bed on all fours, its intact state a testament to how well it supports weight. She smiles down at you cheerfully.");
+	output("\n\n<i>“They test these beds specifically by getting ‘taurs to jump on them. You know, so they - we - can fuck like animals and not worry about them breaking. Welcome to Canadia!”</i>");
+	output("\n\nWith that, she’s on top of you and pushing at your asshole with her oversized horsecock with a grunt of effort. You groan as you feel the inexorable stretching, your body giving way to her overwhelming dominance and size, her flare working its way inside until there’s a wet slurp and she’s inside you.");
+	//stretch to fuck
+	output("\n\n<i>“Uh!”</i> She grunts, leaning against the wall above you and already breathing heavily with lust. Pheromones wash over you and cloud your mind, wrapping around your brain and enthralling you with the idea of getting that impressive rod deeper inside. <i>“Okay, let’s go slowly at first...”</i> she whispers, half to herself.");
+	output("\n\nYou’re treated to the feeling of her gradually sinking deeper inside you, both of you moaning in dizzy pleasure. Gripping the headrest so hard your knuckles turn white, you feel her ring slip inside you with a sensation that makes your legs quake, the much thicker part of her shaft soon following.");
+	output("\n\n<i>“Oooooh fuck, you’re so gooood,”</i> Sylvie pants frustratedly, laughing a little. <i>“I’m </i>this<i> fucking close to just pounding the fuck out of you, [pc.name]...”</i>");
+	output("\n\nFor your part, you’re thankful she isn’t - for now. Looking down hesitantly, you can see the imprint of her generous flare against your stomach and pushing deeper, the elasticizing lube doing its work to get her all inside. You gingerly put a hand to it and you can <i>feel</i> her inside you, her cock flexing and straining against your fingers as it seeks your recesses.");
+	output("\n\n<i>“Hold on baby, we’re almost there,”</i> she grunts, swaying above you as she readjusts. <i>“Just... one more push... fuck!”</i>");
+	output("\n\nWith a low, drawn-out groan she finally delivers on her promise, slipping her entire length between your cheeks. You can feel her loaded balls gently slapping against you");
+	if(pc.balls > 0) 
+	{
+		output("r own, the gigantic testes resting against your");
+		if(pc.ballDiameter() < 6) output(" smaller set, radiating intense warmth as if to remind you just how much of her spunk is going to be pumping inside you.");
+		else output("s--her smaller but no less impressive set reminding you just how much spunk is going to be pumped inside you.");
+	}
+	else output(", their swollen weight resting between your inner thighs and reminding you of just how much spunk you’re going to have pumped inside you.");
+	pc.buttChange(sylvieCockVolume());
+	output("\n\n<i>“Holy </i>shit<i>,”</i> Sylvie groans loudly, and you’re treated to the sensation of her cock flexing and pulsating deep inside your body. <i>“Okay,”</i> she says, taking a deep breath, <i>“nice and slow on the outstroke...”</i>");
+	output("\n\nTo her credit, she <i>does</i> take it slow on the outstroke and it <i>is</i> really nice feeling her mammoth length stroking you from the inside out, and the way her ring spreads you open when it pops out. But as much as you love her for the way she’s doing her absolute best to take care of you, it’s clearly taking a toll on her psyche trying to rein in her bestial instincts - and really, it’s not what you signed up for. You reach out and stroke one of her thick-furred legs, drawing the attention of the needy, panting moosetaur downwards.");
+	output("\n\n<i>“Just pound me like a fucking animal,”</i> you moan.");
+	output("\n\nSylvie is about to say something, but stops herself then nods. Her next thrust is much less charitable but no less amazing, her sheer size leaving you feeling like you’re wrapped around her cock as much as you are around her little finger. ");
+	//dick: 
+	if(pc.hasCock()) output("A thick strand of pre-cum is forced from your dick with the impact, the sensation making you groan in submissive lust.");
+	else output("Some femcum squirts from your tightening pussy, teased out with a sensation that makes you groan in submissive lust.");
+
+	output("\n\nVoid, this is exactly what you wanted. You’ve never felt so full as when she’s inside you or so empty when she’s pulling out. Once she’s assured she really isn’t hurting you and that you can handle it, you can feel her adjust her footing and begin <i>really</i> fucking your little asshole the way she should be. Aggressive grunts and groans begin to fill the room as Sylvie’s instincts take over, accompanying your higher-pitched moans and the noisy creaking of the bed below you.");
+	output("\n\n<i>“Gonna cum hard,”</i> Sylvie pants urgently. <i>“Nngh! Nnn! Nnnnngh!!”</i>");
+	output("\n\nHer long, deep strokes become frenetic, jerky motions of her hips, getting as much stimulation out of your insides squeezing down on her as she can. The forceful way she’s taking you is driving you steadily closer to your own orgasm too, Sylvie’s cock tying a knot of pleasure in your stomach even as it drives into it. Her scream of pleasure is all the warning you get before you’re suddenly lifted off the bed into the air, impaled on the end of her cock.");
+	output("\n\n<i>“Oh god, oh god- nnnngggrh! Uuuuuuh! Uuuunnnnnh!”</i>");
+	output("\n\nYou find yourself pressed against the wall with Sylvie’s forelegs on either side of your head, her hindlegs still frantically thrusting upwards without restraint and ensuring you can’t possibly get away. Buried so deeply in your body, you can feel every little part of yourself being spread wide by Sylvie’s rapidly flaring cockhead, and know it’s only a matter of scant seconds before those massive cumtanks hanging between her thighs tighten up and empty themselves into your guts. The foreknowledge, though, doesn’t in any way prepare you for the magnitude of what happens.");
+	output("\n\nWith a primal, bestial scream of triumph, Sylvie finally nuts inside you so hard you can feel her entire body shaking behind you. The results are immediate. You feel a massive blossom of warmth spreading throughout your insides, and suddenly your stomach is sagging with liquid weight, swelling against the wall with the payload of Sylvie’s ejaculate. She doesn’t even notice what she’s doing to you, too enthralled with the novel ecstasy of her male orgasm.");
+	if(pc.cockTotal() == 1) output("\n\nYour own [pc.cock] flexes and strains while you cum impossibly hard, your muscles tensing so tightly that you hear Sylvie mixing in some appreciative moans with her insensate, animalistic grunting, but nothing comes out of the tip. Teeth grit, prick fully erect and throbbing, you’re fucked to a dry orgasm by the relentless pounding from below.");
+	else if(pc.hasCock()) output("\n\nYour own [pc.cocks] flex and strain while you cum impossibly hard, your muscles tensing so tightly that you hear Sylvie mixing in some appreciative moans with her insensate, animalistic grunting, but nothing comes out of the tips. Teeth grit, prick fully erect and throbbing, you’re fucked to a dry orgasm by the relentless pounding from below.");
+	else if(pc.hasVagina())
+	{
+		output("\n\nYour [pc.vaginas] clench");
+		if(pc.totalVaginas() == 1) output("es");
+		output(" over and over, femcum spraying onto Sylvie’s sweaty, pumping balls and dripping down your [pc.thighs]. Your orgasmic moans go unheard, Sylvie’s animalistic grunting filling your ears the same way her cock is filling your stomach. She pounds you relentlessly throughout, riding you through your orgasm without even noticing.");
+	}
+	output("\n\nWith rising horror, you realize she’s going to pump you to the brim and then some. It starts as an overwhelming feeling of fullness, then you cough, and suddenly a river of spunk gouts forth from your open mouth like a waterfall. You automatically open wider just from the shock, but all you accomplish is advance the flow of Sylvie’s semen erupting from your throat. It comes in massive, cheek-swelling loads, unceremoniously spilling down your [pc.chest] to the bed below.");
+	output("\n\nThe flow doesn’t stop, her jizz beginning to spurt from your nostrils too, but it eventually lessens to the point where you can take a gasping, shuddering breath before you “ejaculate” another massive load of moose spunk from between your [pc.lips]. You dimly realize you get a few seconds in between each payload being delivered from those fat, sweaty balls knocking against your [pc.ass], trying to make the most of it.");
+	output("\n\nBy the time Sylvie groans and begins to relax, you’re pretty sure you have more of her splattered on your chest than resting in your stomach. You weakly swallow back down a warm, sticky load as she slowly pulls out, sated at last.");
+	output("\n\n<i>“That was </i>amazi-<i> ooh, jeez, that’s why they called me Six Gallon Sylvie! I guess it might be more like 55 Gallon Sylvie now, or something! Lemme clean you up.”</i>");
+	output("\n\nTo her credit, she does a very good job of cleaning off and massaging your mostly insensate body until you come back to your senses. Nattering away happily about how much fun this was while rubbing your shoulders, she fills your head with gleeful promises pertaining to what she’ll do with her cock next time. None of your holes escape mention, but she seems open to being on the receiving end too. She leaves you relaxing in the baths alone, citing a need to see the doctor and see exactly what’s going on.");
+	processTime(30);
+	pc.orgasm();
+	pc.loadInAss(sylviePP());
+	//next page
+	clearMenu();
+	addButton(0,"Next",sylvieTriesHerDongerOn4);
+}
+
+public function sylvieTriesHerDongerOn4():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("That <i>was</i> pretty fun, you think, even if you feel a little hollowed out right now. It doesn’t look like Sylvie will be getting rid of her horsecock any time soon, and you can’t say you’re surprised. She got <i>really</i> into that...");
+	output("\n\nRaising your head, you realize you’ve actually spent quite some time in the baths just thinking of Sylvie’s brand new penis. You get out and find she’s left some towels behind just for you, retreating to a room to dry yourself off. Taken care of and dried off, you inspect yourself in the mirror. You don’t look like you were just violently fucked by a horny moosegirl, so that’s a plus. Checking yourself over, you make to leave.");
+	processTime(3);
+	pc.shower();
+	//back to Baths menu
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Penis?]
+public function sylviePenisTalk():void
+{
+	clearOutput();
+	showSylvie();
+	author("Wsan");
+	//first time
+	if(flags["SYLVIE_DONG_TALK"] == undefined)
+	{
+		flags["SYLVIE_DONG_TALK"] = GetGameTimestamp();
+		output("<i>“So Sylvie,”</i> you start, the moosetaur looking at you over the rim of her glass, <i>“have you heard from the doctor about your new equipment? Do they know what caused the uh, reaction?”</i>");
+		output("\n\nSylvie sets down the empty glass and looks at you, puzzled. <i>“My equipment? What do y- ooooh,”</i> a look of comprehension dawning on her face, then breaking into a grin as she leans across the table. <i>“You mean the big, fat horsecock hanging between my legs? The one that gets hard and drips every time I think about fucking you so hard you were spitting up gallons of my cum? That one?”</i>");
+		output("\n\nShe settles back into her chair and shoots you a smug look. <i>“It’s fine. The doctor said it was due to the interaction between my government-issued nanites trying to shut down the ‘foreign body’. Apparently it caused an allergic reaction, like you said. She didn’t know why it had stopped and I didn’t bother telling her you were touching it at the time, but I’d guess the two things were related.”</i> She cocks an eyebrow at you. <i>“Guess your nanos don’t mess around, huh?”</i>");
+		output("\n\n<i>“Right... so everything’s okay? You decided to keep it?”</i>");
+		output("\n\n<i>“Yup!”</i> She affirms, nodding her head in a way that jiggles her around very flatteringly. <i>“The doc did mention the size increase was permanent. She was pretty clear on that point. She didn’t really say much else after that what with the foot or so of my cock in her throat.”</i>");
+		output("\n\nYou can’t say you’re surprised.");
+		output("\n\n<i>“Besides,”</i> she adds, <i>“if I really want it off I can get that done for pretty much free. Perks of working for the government! I don’t see it happening, though. I’m having too much fun giving people pony rides.”</i>");
+		output("\n\nShe gives you a knowing wink.");
+	}
+	//Repeat
+	else
+	{
+		flags["SYLVIE_SYNTHSHEATHED"] = 2;
+		//grayed out until 72 hours have passed from initial dialogue
+		output("<i>“So how’s life with a dick?”</i> you ask Sylvie, displaying the kind of familiarity only good friends or lovers could have. <i>“No regrets or anything?”</i>");
+		output("\n\n<i>“Ha, nope!”</i> she replies with a happy grin, jerking a thumb back at the bar at Kally. <i>“Kally might be even more happy about it than I am, though. Having both sets sure provides more opportunities for fun... especially when there’s more than two of you taking part.”</i>");
+		output("\n\nSeems like the friendly moosegirl’s wasted no time at all acquainting herself with the pleasures of having a dick.");
+		output("\n\n<i>“Always a special place in my heart for the lover that took my virginity, though,”</i> she giggles, looking at you all doe-eyed and smiling. <i>“You never forget your first, right?”</i>");
+		output("\n\n<i>“Pretty interesting first time,”</i> you note as she takes a drink. <i>“Do you treat all your partners like that?”</i>");
+		output("\n\n<i>“Aww, just the ones I really love!”</i> Sylvie says, smiling again. <i>“And don’t even pretend you didn’t like it, [pc.name]. I’m not even sure </i>I’ve<i> ever squeezed down on someone as hard as you did on me. </i>Someone<i> likes having me up in their stomach pumping them full, hmmm?”</i>");
+		output("\n\nSo she <i>did</i> notice that. ");
+		//had vaginal with her before: 
+		if(flags["SYLVIE_TAURMOUNT"] != undefined || flags["SYLVIE_HIPBUSTERED"] != undefined) output("<i>“I dunno about that...”</i> you muse, thinking back on your past trysts.");
+		else output("<i>“Bet I can make you cum </i>twice<i> that hard,”</i> you promise her.");
+		output("\n\n<i>“Oh?”</i> she answers, smirking. <i>“I am so fucking up for you proving that decisively. Your prize can be watching me cum my brains out all over a wall.”</i>");
+		output("\n\nThat sounds like a pretty good deal, really. Getting back to your original question, though, Sylvie suddenly recalls something.");
+		output("\n\n<i>“Oh. Speaking of cumming my brains out, there is actually one downside to having a horsecock. It gets fucking </i>everywhere<i>. And I mean that! I had to get an upgrade kit for my ‘taur milker just to handle the overflow. I had to stop mid-session the first time after I came once and clean my entire room,”</i> she sighs, recalling the sticky disaster. <i>“Well, that’s only a downside if you let it be! I do have to make sure I have some condoms on me all the time, though.”</i>");
+	}
+	output("\n\nIs there anything else you’d like to do with Sylvie?");
+	processTime(10);
+	sylvieMenu();
+}
+
+//Gloryhole suck
+//HAS TO BE PUT PRIOR TO THE EMBEDDED SEX MENU
+public function sylvieGloryholeSuck():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	//moveTo Gloryhole!
+	moveTo("CANADA6");
+	if(pc.isBimbo()) output("<i>“So, you taken that hulking cock of yours to the gloryholes yet?”</i> you ask, fluttering your eyelashes seductively at Sylvie.");
+	else output("<i>“Have you tried out the gloryholes recently?”</i> you venture.");
+	output("\n\n<i>“I go in there for fun sometimes, - ooh, you mean- oooooh! I can be on the other side now! That’s fucking awesome!”</i> Sylvie gasps, clapping her hands to her face.");
+	if(pc.isBimbo()) output("\n\n<i>“Uh huh! Let’s go try, I wanna suck your fucking c-”</i>");
+	else output("\n\n<i>“Let’s go try it out, then,”</i> you say, offering your hand. <i>“Should be f-”</i>");
+	output("\n\nSylvie seizes your hand and ");
+	if(pc.tallness < 6*12) output("throws you up on her back with a loud thud and a surprised <i>“oof”</i> issuing from your mouth");
+	else output("tugs you out from behind the table before you even get to finish your sentence");
+	output(".");
+	output("\n\n<i>“Let’s go!”</i> she cheers, leading you past a bunch of clapping and catcalling patrons on your way to the bathrooms.");
+	output("\n\n<i>“She’s a feisty one, y’might wanna be careful, kiddo,”</i> an old-timer warns you as you’re dragged on by.");
+	if(pc.isBimbo()) output(" You giggle and blow him a kiss, already thinking of Sylvie’s massive rod");
+	else output(" <i>Now</i> you feel like a proper spectacle");
+	output(".");
+
+	if(pc.isBimbo()) output("\n\n<i>“Do you have sex with like, </i>everyone<i> in the bar?”</i> you ask Sylvie, impressed.");
+	else output("<i>“Do you bang everyone who frequents this place?”</i> you joke to Sylvie as she shuts the door behind you.");
+
+	output("\n\n<i>“Just the beautiful ones,”</i> she breathes in your ear before catching you in a deep, passionate kiss with those plush, pliable lips. She’s a charmer, alright. You run a hand through that luxurious straight brown hair of hers, inhaling the heady scent of her perfume and rising pheromones. When you part, she’s flushed and beginning to pant.");
+
+	output("\n\n<i>“Okay, I </i>really<i> need to fuck or get fucked right now,”</i> she sighs forcefully.");
+
+	if(pc.isBimbo()) output("\n\n<i>“Oh! I think the best way to take care of that is with my mouth,”</i> you exclaim, pointing at the glory hole.");
+	else output("\n\n<i>“Work the hole then,”</i> you point, walking over and sitting down in front of it.");
+
+	output("\n\nYou hear shuffling on the other side of the wall, then Sylvie’s cockhead pops through with about a foot of meat following behind it. A moment later, her actual head pops over the stall wall along with her hooved forelegs.");
+
+	output("\n\n<i>“It fits!”</i> she exclaims in glee. <i>“I didn’t know if it would!”</i>");
+
+	if(pc.isBimbo()) output("\n\n<i>“Yay!”</i> you cheer, clapping your hands. Wait! You should be using these for putting that juicy penis in your mouth.");
+	else output("\n\n<i>“You’re not meant to... oh, whatever,”</i> you sigh, shaking your head at the excited moosegirl. She’s missed the point of a gloryhole, but both of you are still going to have fun and that’s what matters.");
+	output(" Directing your attention back to her swollen, bestial cock, you swear under your breath. Was it always this big?");
+
+	output("\n\nThe head is so engorged you’re not even sure it will fit in your mouth. Maybe if you squeeze it down you can compress the spongy flesh enough to get it inside without letting your teeth touch it. Sylvie groans at the gentle contact of your hand, and you decide to get it over with sooner rather than later - lest she get any more erect and the task becomes <i>truly</i> impossible.");
+
+	output("\n\nShe’s so <i>warm</i>. There are probably animals that have less blood flowing in their body than Sylvie does just in her massive cock. You can faintly feel her heartbeat through it with your hands if you wrap your palms around the bottom of the shaft, not to mention hear her happy sighs. She’s very easy to please, really. But you’d rather see her the way she was last time; grunting and groaning in ecstasy as a torrent of cum flows from her prick.");
+
+	output("\n\nTaking a firm hold of the head, you ignore Sylvie’s gasps as you stretch your jaw wide enough for your [pc.lips] to sting and begin attempting to forcefeed yourself her cock. Mouth cruelly distended by the foreign object, you press your tongue hard into the underside of her and pull it further in with some help from your hands.");
+	if(pc.isTreated()) output(" You shiver in pleasure when she slips a couple of inches inside, your Treated body rewarding you for doing such a good job for your master. Your eyes roll back in your head when her thick flare pops past your back teeth, conforming to the opening of your throat. This’ll be fun!");
+	else output("This is fucking hard! You almost gag when she’s a couple of inches inside, risking losing your precious progress, but manage to fight off the urge. With immense relief, you feel her thick flare pop past your back teeth and conform to the opening of your throat.");
+
+	output("\n\n<i>“Oooooh, that’s a nice combo of tight, warm, and wet,”</i> Sylvie moans, her length shivering in your grip. <i>“You can keep doing that!”</i>");
+
+	if(pc.isBimbo()) output("\n\nYou gurgle happily around her cock, thrilled that she’s enjoying it");
+	else output("\n\nGiven how difficult this is, you’re happy she’s appreciating the effort");
+	output(". With her already filling your neck out and being squeezed tight, it’s not too difficult to slide a little further down her veiny cock, saliva dribbling down the underside even as pre-cum drizzles down your throat, lubricating her passage.");
+
+	output("\n\nYou take Sylvie down a couple inches at a time, sometimes with your own initiative and sometimes when she groans and reflexively thrusts herself into your face. ");
+	if(!pc.isBimbo()) output("Part of you wants to just let her work herself in at her own pace, even though you’re fairly certain it’ll end up just like it did last time you let her do that.");
+	else output("Gosh, she should do that more often! You’re giving her all the loving encouragement you can, just waiting for her to take you up on the offer.");
+
+	output("\n\nThe fun comes to an abrupt halt when Sylvie’s medial ring bumps up against your lips. You’re struck by two sudden realizations. One is that you’re not sure that any amount of work is going to get that in your mouth. The other is that you must not even be halfway down her cock yet. Holy shit! You’re suddenly dizzy at the prospect of having to take even more... well, if she can even get it in.");
+
+	output("\n\n<i>“Straighten yourself out,”</i> Sylvie huffs from above you, waving a hoof. <i>“Your neck and back! Ninety degree angle to your hips!”</i>");
+
+	if(pc.isBimbo()) output("\n\nWow, she can really take charge when she wants to. You guess that comes with being an officer of the law and all, but you surprise even yourself with how studiously you follow her instructions, shifting positions and letting her pull you forward on her cock until your lips are pressed right up against the gloryhole in the sloppiest kiss ever.");
+	else output("\n\nYou gladly follow her instructions, full of appreciation for the dominant officer taking charge of you. You’re not so great with angles with so much delicious meat in your mouth, but you get what she means. She can’t get her cock balls-deep in your face unless you’re all lined up! She pulls you forward gently until your lips are pressed right up against the gloryhole in the sloppiest kiss ever.");
+
+	output("\n\n<i>“Spread your legs and put your hands out on the wall in front of you outstretched, [pc.name]. Routine procedure, this’ll only take a second,”</i> Sylvie says, and you can <i>hear</i> the grin in her voice.");
+
+	if(!pc.isBimbo()) output("\n\nYou feel a little silly following her every instruction to the letter, but you have to admit it’s pretty fun to play along with her. So caught up in the roleplay are you that you don’t even notice her slowly sliding herself out of your mouth until her fat flare makes its reappearance at the entrance to your throat. Wait, what’s that doing there?");
+	else output("\n\nEagerly following her instruction to the letter, you desperately hope this is followed up by a nice reward. Like more of her cock! It’s <i>soooo</i> good, you’d swear you can still taste that mouth-watering pre-cum of hers on your tongue... wait, you can! For some reason, her flare is in your mouth again instead of being in its rightful place: down your throat. That’s confusing.");
+	output("\n\n<i>“Hrrnnng-nnnh!”</i> Sylvie grunts in effort, followed by a loud bang against the stall wall that reverberates in your skull and leaves you seeing stars.");
+
+	//Bimbo:
+	if(pc.isBimbo())
+	{
+		if(pc.hasCock() && !pc.hasVagina()) output(" You mindlessly jerk your hips up and down, your [pc.cocks] jetting cum all over the stall wall as your oxygen-starved brain dumps dopamine into your system.");
+		else if(pc.isHerm()) output(" You mindlessly jerk your hips up and down, your [pc.cocks] jetting cum all over the stall wall even as your [pc.pussy] tightens up and squirts femjizz all down your [pc.thighs]. Your oxygen-starved brain dumps dopamine into your system as a reward for being such a good cocksleeve.");
+		else if(pc.hasVagina()) output(" Your knees bang together even as your [pc.pussy] tightens up and squirts femjizz all down your [pc.thighs], your oxygen-starved brain dumping dopamine into your system.");
+		output("\n\nYou’d be all giggly now were it not for the fact your lips are spread around the very impressive base of Sylvie’s lengthy penis, cumvein and all. In fact, you can feel it pulsing and flexing against your lower lip. You’re not one hundred percent on what just happened, but that’s no big deal. The end result is that you have a horsecock buried in your throat and the owner is groaning happily, and you couldn’t ask for anything more.");
+	}
+	else
+	{
+		output("\n\nIt takes you a second to register what just happened, but when you do your eyes bulge in helpless alarm. In one thrust, Sylvie drilled herself from tip to base through your lips, leaving her bulging flare somewhere south of your throat. You can dimly hear her groaning in delight, your oxygen-starved brain responding in kind by dumping dopamine into your system. You gurgle around the base of her shaft as if taking pleasure from such treatment is perfectly normal.");
+	}
+	output("\n\n<i>“Uhhhhnnn, your throat is every bit as good as your asshole...”</i> Sylvie murmurs, drawing back and trapping your face against the wall with the suction. <i>“Wanna fuck it hard.”</i>");
+	output("\n\nShe thrusts again and this time you’re sure of it; her rapidly flaring cockhead is actually <i>in</i> your stomach, spurting warm pre-cum against its walls. The thought of it would bring you to your knees were you not already on them, the rhythm of Sylvie’s thrusting angling deeper and deeper until you’re being pressed into the floor with your face upturned to accept her massive cock.");
+	output("\n\n<i>“Hooohh, fuck, I’m gonna cum,”</i> Sylvie pants, gritting her teeth. <i>“Nnnnngggghhh-”</i>");
+	output("\n\nAcquainted as you are with her cumvein, you get to experience the delight of <i>feeling</i> her orgasm begin, a gigantic load spreading your lips apart as it begins its descent down her throbbing shaft. It squirts into your stomach with such strength you can feel it splattering against your insides, filling you with warmth from within.");
+	output("\n\n<i>“Oh, god, yes!”</i> Sylvie wails, throwing her head back and losing herself to her instincts. <i>“Rrrgh! Fuuuck! Nnnnngh!”</i>");
+	output("\n\nEach ragged scream of release is accompanied by a cumload of truly giant proportions, every one thicker than the last until you can feel the sheer liquid weight beginning to weigh you down, your stomach expanding slightly. Mercifully, Sylvie begins to slowly pull out, her cock promptly filling the vacated space with more virile semen.");
+	output("\n\n<i>“Aaaawww, shit,”</i> she sighs at length, shaking her head in amazement. <i>“That was fucking awesome, [pc.name]. Oops.”</i>");
+	output("\n\nHer cock trapped behind your teeth, her sperm is spilling down your front after filling your cheeks to bulging. Tugging it free, a tidal wave of spunk splashes onto your [pc.chest] while you struggle to keep the rest inside. It’s hard to swallow more when you’re already full to the brim, though, and eventually you give up and just let it trickle from your lips and drip down your chin.");
+	output("\n\n<i>“You are a fucking angel,”</i> Sylvie says with a smile, having watched the entire situation unfold. <i>“Mind cleaning me up a little?”</i>");
+	output("\n\nYou don’t mind at all. In fact, you’re more than happy to do so. You give her entire length little laps and kisses, suckling her cock from every angle until her penis is literally shining with your saliva. With a satisfied moan, she withdraws from the gloryhole and sinks back down to her regular height of nine feet tall. For your part, you hastily clean yourself off with some water and tissues before checking a mirror. Yeah, no, you’re probably going to need a shower or a bath.");
+	output("\n\n<i>“You look positively radiant,”</i> Sylvie murmurs from behind you, ");
+	if(pc.tallness < 100) output("bending down");
+	else if(pc.tallness > 108) output("stretching upwards");
+	else output("leaning forwards");
+	output(" to nibble your ear a little. <i>“You sexy thing.”</i>");
+
+	output("\n\nYou turn to give her a kiss and she calmly takes your face in her hands, pressing against you and sucking your [pc.tongue] while her lips twitch upwards in a smile. When you part from her embrace, she deliberately licks her lips and winks at you.");
+	output("\n\n<i>“We should do this again sometime,”</i> she suggests, jiggling a little in excitement. <i>“I had sooo much fun.”</i>");
+	
+	var ppSylvie:PregnancyPlaceholder = sylviePP();
+	clearMenu();
+	
+	if(!pc.isBimbo()) 
+	{
+		output("\n\n<i>“Me too,”</i> you say, sliding a hand over your tummy. <i>“Definitely going to have to sleep this off, though.”</i>");
+		output("\n\n<i>“Yeah, no kidding!”</i> Sylvie giggles, unable to help herself. <i>“Sorry about that! I get carried away, I know.”</i>");
+		output("\n\n<i>“It’s okay, I knew what I was doing,”</i> you tell her.");
+		output("\n\n<i>“Hell yes you know what you’re doing,”</i> she interrupts, suddenly enthusiastic. <i>“You’re a fucking champion of cocksucking, [pc.name]. You should be proud! I don’t think I’ve ever cum that hard in my </i>life<i>.”</i>");
+		output("\n\nYou share a laugh, then head back into the bar. Most of the regulars are still there, and you can’t help but flush red when they break into laughter and cheers at the sight of your cum-swollen tummy. Sylvie, on the other hand, stands proud and tall, her virility on display for all to see. You mention you’re going to go sleep off the weight and she gives you another long, deep kiss in front of the crowd before patting your butt and waving you off.");
+		output("\n\n<i>“Bye [pc.name]!”</i> she calls from behind you, already settling down for a drink at a table. <i>“Come back soon, lover!”</i>");
+		output("\n\nBack at your ship, you collapse onto your bed with shaky legs and stretch out for a moment before relaxing. That <i>was</i> pretty fun... maybe when you wake up you can go back and see if Sylvie’s up for round two.");
+		
+		addButton(0,"Next",mainGameMenu);
+	}
+	else
+	{
+		output("\n\n<i>“Me too!”</i> you say, sliding a hand over your tummy in admiration of her virility. <i>“You filled me with sooo much cum, I love it. Buuuuut...”</i>");
+		output("\n\n<i>“But?”</i> Sylvie echoes, looking at you.");
+		output("\n\n<i>“Why can’t we just do it again right now?”</i> you ask, putting a finger on your lips in confusion. <i>“Can you not go again at the moment?”</i>");
+		output("\n\nSylvie’s eyebrows raise, then she slowly breaks into a smirk.");
+		
+		addButton(0,"Next",sylvieGloryholeSuckBimboEnd,ppSylvie);
+	}
+	processTime(70);
+	pc.loadInMouth(ppSylvie);
+	pc.applyCumSoaked();
+	pc.lust(20);
+	//moveTo("SHIP INTERIOR");
+	currentLocation = "SHIP INTERIOR";
+}
+public function sylvieGloryholeSuckBimboEnd(ppSylvie:PregnancyPlaceholder):void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	
+	output("<i>“Nnnnrrrgh, fuck!”</i> she pants, pummeling your face with heavy, deliberate thrusts that send sweat droplets flying from her balls to land on your cum-soaked chest. <i>“Here’s number six, drink up!”</i>");
+	output("\n\nHaving foregone the gloryhole idea entirely, you’re pressed up against the back of a toilet gurgling around Sylvie’s fat cock cumming so hard you’re not even really sure where you are right now or what day it is. Nothing is relevant except for the rush of warm seed and endorphins inside you, the moosetaur emptying her quaking testes into your stomach with groans of fulfillment.");
+	output("\n\n<i>“Hooo, that hit the spot,”</i> Sylvie huffs, wiping her sweaty brow with the back of a hand as she dismounts. <i>“You sure know how to take care of a girl, [pc.name].”</i>");
+	output("\n\nYou nod vaguely, the dizzy euphoria of multiple orgasms still washing through your body. Sylvie peers closer, and you manage to focus your eyes on her flawless face.");
+	output("\n\n<i>“How’s that for going again?”</i> Sylvie pants in happiness, flashing you a brilliant smile. <i>“You a bit less thirsty now, babe?”</i>");
+	output("\n\n<i>“Uh huuuh,”</i> you croon, giving the woman a dopey smile. <i>“You rock.”</i>");
+	output("\n\n<i>“Aww, you’re the best!”</i> she giggles, rubbing your head. <i>“C’mere and I’ll clean you up a bit and you can go rest in your ship, okay?”</i>");
+	output("\n\nShe’s so nice! You obediently follow her instructions and let her clean you up with some tissues and water, though there’s nothing she can do about your massive, cum-swollen tummy. She did tell you to rest, though, so you guess you’ll go do that next to be a good [pc.girlBoy].");
+	output("\n\nWhen she leads you back into the bar, enough of the patrons that were there when you entered the bathrooms are around that the crowd breaks into laughter and cheering at the sight of you and your obscenely gravid tummy. You’re not really sure what all the fuss is about, but you giggle and blow kisses to the people in the bar as Sylvie ushers you towards your ship.");
+	output("\n\nWhen you’re on the boarding ramp, she tugs your arm hard enough to spin you around and send you straight into her cleavage. Giving you a tight hug, she kisses you deeply and passionately, sucking your [pc.tongue] while you play with her nipples through her clothes. When you part, she licks her lips and winks at you.");
+	output("\n\n<i>“Now go get some sleep, [pc.name]. Come see me again in the bar soon!”</i> she tells you. <i>“You’re the best off-duty distraction I’ve ever met.”</i>");
+	output("\n\nTurning around and blowing you a kiss over her shoulder, she trots back to the bar while you step inside and collapse onto your bed. You <i>should</i> go see her again soon... maybe when you wake up.");
+	pc.orgasm();
+	pc.orgasm();
+	processTime(45);
+	pc.loadInMouth(ppSylvie);
+	pc.loadInMouth(ppSylvie);
+	pc.loadInMouth(ppSylvie);
+	pc.loadInMouth(ppSylvie);
+	pc.loadInMouth(ppSylvie);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Sex] -> [FuckPussy]
+//requires 10" dik
+//Use with dick-picker function!
+public function fuckDickedSylviesPussah(x:int):void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("<i>“How about I show you and that pretty pussy of yours a good time, eh?”</i> you say to Sylvie, leaning in and smiling.");
+	output("\n\n<i>“Now you’re sounding local,”</i> she giggles, face flushing a little more than it already was. <i>“Fuck yeah, you can show me and my pussy a good time. If you can handle this much meat, </i>" + pc.mf("stallion","stud") + "<i>.”</i>");
+	output("\n\nShe turns and walks towards the bath, massive hips swaying with every step as if your eyes weren’t already glued to the generous curves of her ass. You follow her in a trance, your [pc.cocks] hardening when you step into the pheromones left in her wake. Between her bushy little tail flitting from side to side and her incredible scent, you’re left half-hypnotized as she leads you to the baths. You regain “consciousness” when Sylvie gently closes the door behind you, turning and pausing in front of you.");
+	moveTo("CANADA7");
+	output("\n\n<i>“You ready to make good on that promise, [pc.name]?”</i> she asks, smiling.");
+	output("\n\n<i>“Hell yes,”</i> you reply automatically, moving on instinct. You run your fingers through her soft fur down her back, stopping at her shapely butt to give it a nice spank. <i>“Get yourself pressed up against that wall and spread your legs for me, Sylvie.”</i>");
+	output("\n\n<i>“Ooh, yes </i>" + pc.mf("sir","ma’am") + "<i>,”</i> she murmurs hotly, trotting to the wall and immediately following your instructions, turning her torso half-back to gaze at you. <i>“When do I get my reward?”</i>");
+	output("\n\n<i>“All things in good time,”</i> you tell her, stepping up behind her. <i>“Gotta inspect the goods first.”</i>");
+	output("\n\nWith Sylvie’s equipment on full display, you take a second to admire her plush, poundable pussy. It’s all puffed up in anticipation of taking your dick, flushed purple and looking softer than velvet. You’re seized with the sudden urge to just bury your face in it, but that’s not what she’s looking for right now. Standing behind her, all you can see of her maleness is the two heavy, swaying balls between her legs - her giant cock is evidently so erect it’s tucked tightly under her stomach out of view. The instant you put your hands on her tight haunches in preparation, Sylvie has a moment.");
+	output("\n\n<i>“Uunnh,”</i> she moans softly, juice spurting from her quivering pussy onto the floor followed by a steady flow down her thighs and underbelly.");
+	output("\n\n<i>“Whoa, girl,”</i> you murmur, impressed. <i>“Better not keep you waiting, eh?”</i>");
+	output("\n\n<i>“Pleeeaase,”</i> she begs.");
+
+	if(pc.isTaur()) 
+	{
+		output("\n\nBetween the room rapidly filling with sex pheromones and your animal instincts screaming at you, you’re <i>beyond</i> ready to fuck Sylvie. You’ve got to treat a girl like her right, though, and that means one thing: fucking her needy cunt as hard as possible right from the word ‘go’.");
+		output("\n\nRearing up and landing on Sylvie’s back, you’re hardly acquainted with Sylvie’s lush fur before you’re scrabbling to get yourself aligned. The moment you feel your [pc.cock " + x + "] catch on her lips, you shove forward so violently the moosegirl’s upper half squishes against the wall.");
+		output("\n\n<i>“Oh, fuck yes!”</i> she cries out, shivering in pleasure underneath you. <i>“Take me, you fucking beast!”</i>");
+		output("\n\nAlready buried balls-deep in the warmth of her tight, wet cunt, you brace yourself and rock backwards before thrusting into her again, earning a high-pitched scream of ecstasy. You pound her squirting pussy like your life depends on it, each penetration bringing Sylvie to what must be one of the fastest orgasms you’ve ever given someone.");
+		pc.cockChange();
+		output("\n\n<i>“Cumming- I’m cuhhh! Nnnnhhh!”</i> Sylvie pants breathlessly, her entire body tensing up like a coil.");
+		output("\n\nYou grunt in pleasure when you feel her pussy walls squeeze down on you so hard they threaten to bring your humping to a grinding halt, but power through it to keep fucking. You ride Sylvie like a champion through her entire orgasm, her voice rising octaves until you think glass would shatter if there was any nearby. Finally, it breaks, and she’s left with her torso turned half-sideways smushed against the wall with her lips spread wide in a silent scream of ecstasy.");
+		output("\n\nYou allow yourself a momentary lapse just to smugly soak in the view; the proud, beautiful moosegirl subdued and gasping for air all because she’s getting her cunt hammered by a real stud. To her credit, she manages to stay standing instead of wilting underneath your powerful thrusts, getting the full experience for her efforts.");
+		output("\n\n<i>“You like it rough, huh Sylvie?”</i> you pant, sweat flying from your body while you rock her world.");
+		output("\n\nYou think her gaze flicks to you for a moment, registering the sound of her name being spoken, but honestly it’s hard to tell. With her hair flying everywhere and body shaking like a leaf in a hurricane, she’s so caught up in the experience you’re not sure she can hear anything right now.");
+		output("\n\nA single, breathless whimper of surprise is all the signal you get before she cums from her second sex, her hips instinctively bucking and jerking beneath you as her cock spurts thick, creamy jizz all over the wall. Determined to force her to completely empty herself, you time your pumping with her own, getting as deep in her slick passage as possible.");
+		output("\n\nSylvie finally gets her voice back midway through her male orgasm, but all that comes out of her mouth is horny, bestial grunting as you drive her towards the limits of pleasure. It’s honestly a miracle she hasn’t passed out - this is easily the hardest you’ve ever fucked someone, and you find yourself in disbelief anyone could even withstand it. But you suppose if there were somebody who could, it would be Sylvie.");
+		output("\n\nWhile Sylvie’s busy moaning and groaning in subdued joy, you finally find yourself reaching your limits, fatigue taking ahold of your limbs. Maybe you should slow down.");
+		//[Go slow] [NO!]
+		processTime(20);
+		clearMenu();
+		addButton(0,"Go Slow",taurFuckDickSylvieSlow);
+		addButton(1,"NO!",noSlowTaurFuckingDickSylvie);
+	}
+	//Nontaur
+	else
+	{
+		output("\n\nBetween the room rapidly filling with sex pheromones and your swollen dick");
+		if(pc.cockTotal() > 1) output("s");
+		output(", you’re <i>beyond</i> ready to fuck Sylvie. You’ve got to treat a girl like her right, though, and that means one thing: fucking her needy cunt as hard as possible right from the word ‘go’.");
+		output("\n\nStanding behind Sylvie, you’re barely even acquainted with the short fur of her rear before you’re shuffling desperately to get yourself aligned. The moment you feel your [pc.cock " + x + "] catch on her lips, you shove forward so violently the moosegirl’s upper half squishes against the wall.");
+		output("\n\n<i>“Oh, fuck yes!”</i> she cries out, shivering in pleasure. <i>“Take me, you fucking animal!”</i>");
+		output("\n\nAlready buried balls-deep in the warmth of her tight, wet cunt, you brace yourself and rock backwards before thrusting into her again, earning a high-pitched scream of ecstasy. You pound her squirting pussy like your life depends on it, each penetration bringing Sylvie to what must be one of the fastest orgasms you’ve ever given someone.");
+		pc.cockChange();
+		output("\n\n<i>“Cumming- I’m cuhhh! Nnnnhhh!”</i> Sylvie pants breathlessly, her entire body tensing up like a coil.");
+		output("\n\nYou grunt in pleasure when you feel her pussy walls squeeze down on you so hard they threaten to bring your humping to a grinding halt, but power through it to keep fucking. You ride Sylvie like a champion through her entire orgasm, her voice rising octaves until you think glass would shatter if there was any nearby. Finally, it breaks, and she’s left with her torso turned half-sideways smushed against the wall with her lips spread wide in a silent scream of ecstasy.");
+		output("\n\nYou allow yourself a momentary lapse just to smugly soak in the view; the proud, beautiful moosegirl subdued and gasping for air all because she’s getting her cunt hammered by a real stud. To her credit, she manages to stay standing instead of wilting underneath your powerful thrusts, getting the full experience for her efforts.");
+		output("\n\n<i>“You like it rough, huh Sylvie?”</i> you pant, sweat flying from your body while you rock her world.");
+		output("\n\nYou think her gaze flicks to you for a moment, registering the sound of her name being spoken, but honestly it’s hard to tell. With her hair flying everywhere and body shaking like a leaf in a hurricane, she’s so caught up in the experience you’re not sure she can hear anything right now.");
+		output("\n\nA single, breathless whimper of surprise is all the signal you get before she cums from her second sex, her hips instinctively bucking and jerking beneath you as her cock spurts thick, creamy jizz all over the wall. Determined to force her to completely empty herself, you time your pumping with her own, getting as deep in her slick passage as possible.");
+		output("\n\nSylvie finally gets her voice back midway through her male orgasm, but all that comes out of her mouth is horny, bestial grunting as you drive her towards the limits of pleasure. Keeping up the pace, you’re suddenly surprised when her front half buckles, her hindlegs skidding around until you’re being borne to the floor with her.");
+		output("\n\n<i>“You- you okay?”</i> you pant, still rock-hard and hovering at her sopping entrance.");
+		output("\n\n<i>“Fine, just- slipped is all,”</i> Sylvie gasps, catching her breath. <i>“I’m oka- nnnnnfffh! Nnngh!”</i>");
+		output("\n\nYou don’t wait for further information, thrusting yourself straight to the hilt in the middle of her sentence. Her pussy reflexively squeezes down on you, trying to halt your progress, but to no avail. All she accomplishes is a wet, tight massage around the grooves of your cock, perfectly conformed to its shape.");
+		output("\n\n<i>“Oh ffff</i>uck<i> you’re so hard!”</i> she cries, hands splayed on the wall in front of her. <i>“God </i>damn<i>!”</i>");
+		output("\n\nIn an impressive display of flexibility, Sylvie’s back arches to the point where her humanoid torso is stretched out over her cervine half, her massive breasts almost concealing her face as she bounces in ecstasy, screaming for more. Determined to give her the full experience she asked for, you slam your hips into her butt so hard her expansive hindquarters lift an inch every time you pound her.");
+		output("\n\nShe doesn’t even announce her next orgasm, too busy panting and moaning in delirious lust, but you definitely feel it. The way sbe’s wrapped around you, your own isn’t far off; as far as her pussy is concerned, she’s been begging for your cum inside her the moment you started fucking.");
+		output("\n\n<i>“S-Sylvie,”</i> you pant in exertion, <i>“gonna cum real soon!”</i>");
+		output("\n\n<i>“Yesyesyesyesyes!”</i> she screams, pushing back against you as best she can. <i>“Inside! Cum inside!”</i>");
+		output("\n\nWith a strained grunt, you bury yourself as deep as you can inside her spasming cunt and blow a massive load into her depths. You give her everything and then some and she takes it like a champion, squirting down your cock and groaning all the while. Droplets of sweat and femjizz drip from your ");
+		if(pc.balls == 0) output("dick");
+		else output("[pc.balls]");
+		output(" and Sylvie’s alike while you pump her full, enjoying the way she backs her big butt right up against your thighs.");
+		if(pc.cumQ() < 5000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. Of your cum, there’s no sight; you came in her too deep for it to spill out. She wiggles her hips a little and gives you a tempting wink from both ends.");
+		else if(pc.cumQ() < 15000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A dribble of cum follows, rolling down her sizeable balls and dripping down. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends.");
+		else if(pc.cumQ() < 25000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A river of cum follows, flowing down her rear end and balls to drip from her flagging cock as if it were her own. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends, squirting some of your cum onto the floor.");
+		else 
+		{
+			output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A torrent of spunk follows, gushing from her stuffed-full pussy until the flow finally recedes to a river, rolling down her rear to her balls and dripping from her flagging cock as if it were her own. The rest is stuffed deep inside, swelling her tummy a little bit and making the moosegirl look like she might be expecting.");
+			output("\n\n<i>“Awww, what a waste,”</i> she laments, looking at all the cum pooling on the ground. <i>“After you did </i>such<i> a good job of putting it so deep inside me, too.”</i>");
+		}
+		output("\n\n<i>“That’s a good look on you,”</i> you tell her, nodding at her ");
+		if(pc.cumQ() >= 15000) output("cum-covered ");
+		output("ass and tummy. <i>“Enhances your natural beauty ‘n all.”</i>");
+		output("\n\n<i>“Aww, thank you!”</i> Sylvie says, smiling wide and giving you a flourish of her extraordinary hips. <i>“So nice of you to say. Care to rinse off together and join me in the baths to get all cleaned up?”</i>");
+		output("\n\nSounds good.");
+		//[Next] -> postBathsVaginal}
+		processTime(35);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",postBathsSylvie);
+	}
+}
+
+//[Go slow]
+public function taurFuckDickSylvieSlow():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("You gradually slow down, letting Sylvie ride out the last few intense shakes of her orgasm while your legs and hips thank you for your decision.");
+	output("\n\n<i>“Oohhhh,”</i> Sylvie moans like a whore. <i>“Oohhh, </i>gawd<i>. [pc.name]...”</i>");
+	output("\n\n<i>“Having a good time yet?”</i> you puff, fucking her nice and slowly with long, deep thrusts.");
+	output("\n\n<i>“For a while- unh! I thought I was going to fly away,”</i> she gasps, finally meeting your eyes before closing her own in pleasure. <i>“Ooh! But this isn’t so bad either...”</i>");
+	output("\n\nWith a couple of minutes of well-timed and well-placed thrusts, you have a breathless Sylvie right on the verge of another orgasm, and you’re almost there yourself. You can feel her sensitive clit pulsing against your cumvein, as if encouraging you to empty yourself inside her. Taking advantage of your positions, you press yourself down into her and rub your cock against her clit until she can’t hold it any longer.");
+	output("\n\n<i>“Ooh, I’m gonna cum!”</i> she wails, shuddering violently. <i>“Buh- both-”</i>");
+	output("\n\nIt only takes you a second to figure out what she’s talking about when her pussy clamps down on you once more even as you hear the gush of cum splurting explosively from her dick. She flexes her expansive hindquarters on instinct, and that’s all you needed. With a strained grunt, you bury yourself as deep as you can inside her spasming cunt and blow a massive load into her depths.");
+	output("\n\n<i>“Oh, yessss,”</i> she croons, still shaking in orgasm herself. <i>“Give me aaaalll that cum you’ve been saving up, baby. I’ve been so good.”</i>");
+	output("\n\nYou give her everything and then some and she takes it like a champion, squirting down your cock and groaning all the while. Droplets of sweat and femjizz drip from your ");
+	if(pc.balls == 0) output("dick");
+	else output("[pc.balls]");
+	output(" and Sylvie’s alike while you pump her full, enjoying the way she nuzzles her big butt right up against your legs.");
+	if(pc.cumQ() < 5000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. Of your cum, there’s no sight; you came in her too deep for it to spill out. She wiggles her hips a little and gives you a tempting wink from both ends.");
+	else if(pc.cumQ() < 15000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A dribble of cum follows, rolling down her sizeable balls and dripping down. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends.");
+	else if(pc.cumQ() < 25000) output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A river of cum follows, flowing down her rear end and balls to drip from her flagging cock as if it were her own. The rest is stuffed deep in her nethers, keeping her warm from the inside. She wiggles her hips a little and gives you a sultry wink from both ends, squirting some of your cum onto the floor.");
+	else 
+	{
+		output("\n\nShe gives you a sweet smile with half-lidded eyes when you try to pull out, struggling a little to extricate yourself while she squeezes down as hard as she possibly can. You both moan a little when you finally pop free, Sylvie’s juices splashing to the floor. A torrent of spunk follows, gushing from her stuffed-full pussy until the flow finally recedes to a river, rolling down her rear to her balls and dripping from her flagging cock as if it were her own. The rest is stuffed deep inside, swelling her tummy a little bit and making the moosegirl look like she might be expecting.");
+		output("\n\n<i>“Awww, what a waste,”</i> she laments, looking at all the cum pooling on the ground. <i>“After you did </i>such<i> a good job of putting it so deep inside me, too.”</i>");
+	}
+	output("\n\n<i>“That’s a good look on you,”</i> you tell her, nodding at her");
+	if(pc.cumQ() >= 15000) output(" cum-covered");
+	output(" ass and tummy. <i>“Enhances your natural beauty ‘n all.”</i>");
+
+	output("\n\n<i>“Aww, thank you!”</i> Sylvie says, smiling wide and giving you a flourish of her extraordinary hips. <i>“So nice of you to say. Care to rinse off together and join me in the baths to get all cleaned up?”</i>");
+	output("\n\nYou would.");
+	processTime(20);
+	pc.orgasm();
+	clearMenu();
+	//[Next] -> postBaths
+	addButton(0,"Next",postBathsSylvie);
+}
+
+//[NO!]
+public function noSlowTaurFuckingDickSylvie():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("Fuck slowing down, you’re going to ride this bitch until she’s unconscious. Grabbing ahold of her hair, you pull it hard enough to make her bend over backwards to face you and pump her so hard her juices begin to spray from her pussy around your cock, coating your underside. Ignoring the pain emanating from your muscles, you watch Sylvie’s face as she watches yours, her eyes wide in shocked pleasure until a particularly well-angled thrust makes them roll back in her head a little.");
+	output("\n\n<i>“Unh,”</i> she groans, a tiny telltale indication before she cums from her pussy again, her back legs standing rigid as she reflexively tenses her body from tip to tail, helpless before the waves of pleasure rolling through her. You lean down and whisper naughty things in her ear and she listens wide-eyed and panting, the spasming of her cunt only getting more intense as you fill her pretty head with fantasies.");
+	output("\n\nBefore she’s even finished with her orgasm, you make her cum from her cock again. The overlap of sensations makes shudder so hard you have to cling tightly so you’re not bucked off, fucking her to the hilt all the while. Her breath comes in halting, strained gasps, her exhales more like an animal’s grunt of pain, every bit of her tensing and relaxing over and over while she tries to control herself. Finally, though, she loses her battle.");
+	output("\n\nYou feel her pussy slacken then convulse, heralding yet another orgasm just a few scant seconds after finishing with the last. Femcum squirts down your length while the woman in front of you appears to be on the verge of unconsciousness, your sexual stamina reaching its limit. With a grunt, you bury yourself balls-deep inside the quivering moosegirl’s cunt and blow your load.");
+	output("\n\n<i>“Oh, yesssss, inside,”</i> she moans lightly. <i>“Yeeesssss...”</i>");
+	output("\n\nA dopey smile crosses her face while she backs up into you, nuzzling your hindlegs with her big soft butt to ensure you’re as deep as you can get inside her. With that, you realize she’s passed out while still standing, cumming while unconscious. Looks like you’ve won your little “competition”.");
+	if(!pc.isTreated())
+	{
+		output(" You’re still wearing a smug smirk when you pass out on top of her not even five seconds later, faceplanting between her human hips.");
+		output("\n\nYou’re woken by a gentle lick on your cheek, opening your eyes to find a smiling Sylvie still underneath you, turned to face you.");
+		output("\n\n<i>“Hello, lover. Think you can manage to pull out on your own? Not that I mind having you on top of me - in fact I rather like it - but I think we should bathe sooner, rather than later.”</i>");
+		output("\n\n<i>“Oog,”</i> you grunt, shaking your head to clear it. <i>“Right, good idea.”</i>");
+	}
+	else 
+	{
+		output("\n\nThe only reason you’re not passed out on top of her is your Treated stamina, endowing you with the endurance of a demigod. You patiently wait out both of your orgasms - figuring it’d be rude to end her fun - before dismounting and gently pulling the snoozing ‘taur upright to wake her.");
+		output("\n\nWhen she’s properly reoriented with the world, she asks if you’d like to join her for rinsing off and then a bath. Given your state, you think you would.");
+	}
+	processTime(15);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",postBathsSylvie);
+	//[Next] -> postBaths
+}
+
+//[postBathsVaginal]
+public function postBathsSylvie():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("<i>“Hoooo, this is nice,”</i> Sylvie sighs, the two of you unwinding in the baths after your frenzied fuckathon. She leans back and relaxes, turning her head and gazing at you with hooded eyes. <i>“I haven’t been fucked like </i>that<i> since those New Texas boys rolled through.”</i>");
+	if(pc.isBro() && pc.isTreated()) 
+	{
+		output("\n\n<i>“Got a little bit of New Texas in me myself,”</i> you say, tapping your chest.");
+		output("\n\n<i>“Ooh, I thought so!”</i> Sylvie says excitedly. <i>“There’s just something about the way you Treated boys smell... makes me wanna just spread my legs and get my fucking pussy pounded.”</i>");
+	}
+	else
+	{
+		output("\n\n<i>“Glad to be of service,”</i> you say modestly.");
+		output("\n\nShe snorts in mirth. <i>“I got fucking serviced alright. We’re definitely going to do </i>this<i> again.”</i>");
+	}
+	output("\n\n<i>“Could always go again now,”</i> you offer, and Sylvie laughs.");
+	output("\n\n<i>“If only, babe,”</i> she says, smiling. <i>“I’ve got a job to do out there, though. Otherwise we’d still be in the room.”</i>");
+	output("\n\nShe hums thoughtfully. <i>“Maybe I should take a couple days vacation...”</i>");
+	output("\n\nYou spend the rest of the time in the baths chatting companionably, flirting and occasional touching each other just for fun. After the two of you get dressed together, Sylvie gives you a big kiss before you see her off back to her job as a policewoman. Come to think of it, you feel sorry for any criminal that gets on her bad side. You can only imagine how she’ll “punish” them now...");
+	//Back to menu, in baths
+	processTime(20);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Sex] -> [TakeVaginal]
+//Can’t be pregnant.
+public function catchFutaSylviaVaginally():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	var x:int = rand(pc.totalVaginas());
+	output("<i>“So, now that you’ve got a big, fat, juicy horsecock swinging between those legs of yours, Sylvie,”</i> you say, slowly running a finger over your [pc.lipsChaste] and letting it hang on your lower lip, <i>“do you wanna see if you can fit all of it in my pussy?”</i>");
+	output("\n\n<i>“Well, this rock-hard erection you just gave me talking like that isn’t gonna go away unless I do, so...”</i> Sylvie says.");
+	output("\n\n<i>“Oh, good,”</i> you sigh in apparent satisfaction. <i>“I was worried I might not get to feel that beautiful rod stretching me taut, or that soft, plump flare of yours pressing up against my womb. Maybe, if I’m </i>really<i> lucky,”</i> you continue, leaning over the table and looking into Sylvie’s eyes, <i>“I might even get to feel those bulging balls of yours pressed against my ass while they pump me full.”</i>");
+	if(!pc.isTaur()) output("\n\n<i>“Woowww, [pc.name],”</i> Sylvie murmurs, smirking devilishly. <i>“If you want it like </i>that<i>, you’re gonna fucking get it, missy. Get that sexy butt of yours up off that chair and down on a bed with your legs behind your head </i>pronto<i>. I’m gonna fuck your little pussy into next week.”</i>");
+	else output("\n\n<i>“Woowww, [pc.name],”</i> Sylvie murmurs, smirking devilishly. <i>“If you want it like </i>that<i>, you’re gonna fucking get it, missy. Get that sexy butt of yours up off the ground, we’re going to a room </i>pronto<i>. I’m going to fucking pound your naughty cunt until you can’t walk without winking.”</i>");
+	output("\n\nIn the room, Sylvie takes charge.");
+	moveTo("CANADA9");
+	//nontaur:
+	if(!pc.isTaur())
+	{
+		output("\n\n<i>“Spread those legs, Steele, I wanna see that tight little pussy of yours before I fucking destroy it,”</i> she purrs, pushing you down on the bed.");
+		if(!pc.isCrotchExposed()) output("\n\nYou hastily throw everything you’re wearing below your waist to the ground, and barely have time to strip off your top before she’s pulling you down the bed and onto her face");
+		else output("\n\nYou don’t even have time to look up at her before she’s pulling you down the bed and onto her face");
+		output(". She sucks [pc.oneClit] hard enough to make you groan out loud in pleasure, running your hands through her luscious brown hair before you alight upon the wonderful idea of holding her impressive antlers like they’re handlebars.");
+		output("\n\nTaking your cue, she all but buries her tongue into your wet, needy muff while you rub your clit on her little button nose, moaning in delight. You get off almost immediately, femcum dribbling down Sylvie’s chin while she laps all of you up, tongue-teasing your clitty while you hump her face in the throes of orgasm. You fall back on the bed with limbs splayed, already panting.");
+		output("\n\n<i>“Now that’s the look of a satisfied customer,”</i> Sylvie says, licking her lips clean. <i>“You just lie there and let me get lined up.”</i>");
+		output("\n\nRearing up on her forelegs and planting herself on either side of your head, you suddenly feel very enclosed. The only things in your vision are Sylvie’s lush, furry underside and the huge, angry-looking horsecock resting between your [pc.breasts]. Seized by lust, you lean down to give it a quick kiss of blessing before she drags it down your body to align her fat, ridged flare with your [pc.pussy " + x + "].");
+		output("\n\n<i>“Oooh fuck I’m gonna blow your little biped form up like a blimp,”</i> Sylvie pants, halting at your dripping entrance. <i>“You won’t be able to go </i>anywhere<i> without thinking of me, dripping spunk down those thighs of yours!”</i>");
+		output("\n\nWith an aggressive grunt, Sylvie violently bucks her powerful hips and sinks her massive cock right to the hilt. You instinctively recoil, your back arching so sharply your stomach presses against Sylvie’s underside as the pleasure rushes through your body. <i>Fuck, she’s so big!</i> You find yourself desperately clutching onto her fur, trying to retain some sense of control.");
+		pc.cuntChange(sylvieCockVolume(),x);
+		output("\n\n<i>“Wow, you weren’t ready for that one, were you?”</i> Sylvie purrs, slowly drawing herself back and taking the time to luxuriate in the uncontrollable spasming of your folds as you desperately squeeze down on her. <i>“No time to rest, though.”</i>");
+		output("\n\n<i>“Ooooohhhhh, god! Sylvie!”</i> you cry, juices squirting from around Sylvie’s turgid rod when she thrusts it back in. <i>“Oh my god!”</i>");
+		output("\n\n<i>“Goddess,”</i> she smugly corrects you, leaning downwards on her forelegs. <i>“Now fucking lie there and take my blessing.”</i>");
+		output("\n\nWithout waiting for a response, she bears down and begins slowly pounding you, the weight of her entire bulk behind each loud, squelching thrust. Your cries get louder and deeper with every slap of Sylvie’s gigantic balls off your [pc.ass], her soft flare pressing right up against your womb and giving it a sloppy wet kiss. You can already feel her squirting pre-cum inside you, her cocknozzle comfortably wedged right against your cervix for easy passage. Your eyes rolling back in your head, you can hardly comprehend the sensations Sylvie is subjecting you to.");
+		output("\n\nShe doesn’t give you time to dwell on them, grunting with effort as she begins to fuck you faster, sending you scrambling to grasp the bed with one tightly clutched hand so she doesn’t accidentally pick you up and suspend you on her prodigious prick. You can scarcely weather the rough pounding of your sopping cunt, being stretched to its absolute limit by the sheer size of Sylvie’s swollen dick. You hardly even get the chance to catch your breath, and when you do it comes out in wordless groans of bliss or shuddering, gasping pants.");
+		output("\n\n<i>“Guuuuh! Sylvie!”</i> you cry, eyes squeezed shut. <i>“Sylvie, Sylvie, Sylvie!”</i>");
+		output("\n\n<i>“That’s right, scream my fucking name!”</i> Sylvie tells you, rearing back for a particularly violent thrust that sends you a few inches up the bed. <i>“Beg me to cum inside that little womb of yours!”</i>");
+		output("\n\n<i>“C-cum,”</i> you gasp, already doing so yourself. <i>“Nnnn-hhnngh!”</i>");
+		output("\n\nWith a triumphant scream of conquest, Sylvie lunges forward so far her throbbing cock pins you against the headboard of the bed and holds you there. You feel a <i>massive</i> blossom of warmth inside you, Sylvie’s cock rippling from base to tip as she begins to dump the truckloads of sticky jizz held in her pulsing balls.");
+		output("\n\n<i>“Oohhhhhhhhh, god daaamn,”</i> Sylvie groans, bucking you against the bed with each thrust of her hips. <i>“Oh, you feel fucking amazing. Keep squeezing, baby, that’s the way.”</i>");
+		output("\n\nYou couldn’t stop if you tried. With her equine cocknozzle plugging up your cervix, all you can feel is the orgasmic sensation of your womb being filled, over and over. By the time she slowly - very slowly - pulls herself out of you, Sylvie’s followed through on her promise. You’re going to be walking around with a “baby bump” for quite some time. For her part, she looks ecstatically smug.");
+		output("\n\n<i>“Ho hooo, look at yooouuu,”</i> Sylvie croons, seating herself in front of your panting, sweaty form.");
+		if(pc.biggestTitSize() > 5) output(" <i>“Good thing you got those giant, suckable titties to make yourself look like a believable mommy, huh?”</i>");
+		output("\n\nShe brings her face closer to yours, gazing into your eyes and smiling deeply as she runs her fingers over your taut, swollen stomach.");
+		output("\n\n<i>“You look as sexy now as you sounded during the act,”</i> Sylvie murmurs in your ear, moving close enough to rest her gigantic breasts on your tummy. <i>“I really like you like this, sweaty and full of my cum. And that expression,”</i> she sighs, softly rubbing her thumb across your lower lip. <i>“To die for. Just makes me want to stick it in another hole of yours and start humping...”</i>");
+		output("\n\n<i>“I think you’ve humped my holes enough for one day,”</i> you moan quietly, leaning back against the headrest with your eyes closed and just enjoying her attention. <i>“God damn...”</i>");
+		output("\n\n<i>“Everything you wanted and more, huh?”</i> Sylvie says, and even without opening your eyes you can see the smug smile on her face. <i>“I don’t think you’ll be fucking any fellow bipeds any time soon, [pc.name]. They won’t even touch your fucking walls after the way I ruined your pretty little cunt...”</i>");
+		output("\n\nYou feel her other hand surreptitiously slip down to your overtaxed pussy, still weakly clenching and letting huge, sticky load after load spill from between your thighs. Unable to resist, you moan when you feel her gently stretch your folds apart, exposing your sex and forcing you to helplessly squeeze out a huge load of Sylvie’s jizz all over her prying fingers.");
+		output("\n\n<i>“Open up,”</i> she whispers, and you suddenly find two spunk-soaked fingers pushing into your mouth.");
+		output("\n\nFor some reason, you don’t mind at all. You softly suck her fingers clean, Sylvie’s breath hot on your flushed face while you tongue her hand off. Her dainty digits are pulled from your mouth only to be immediately replaced by her warm, wet tongue wrapping around your own, pulling you into a deep, slow, kiss.");
+		output("\n\n<i>“Mmmmf,”</i> Sylvie moans into your mouth, running a hand ");
+		if(pc.hasHair()) output("through your [pc.hairNoun]");
+		else output("along your cheek");
+		output(" and whispering between every kiss.");
+		output("\n\n<i>“We should - mm - do this - mmn - more often,”</i> she whispers. <i>“I want to keep you pumped full all the time, until it takes...”</i>");
+
+		if(StatTracking.getStat("pregnancy/total births") < 40) 
+		{
+			output("\n\n<i>“If you’re that good </i>every<i> time...”</i> you murmur back, letting the sentence hang in the air as a tantalizing treat for Sylvie.");
+			output("\n\n<i>“You teeeaaase,”</i> she admonishes you gently, pinching your nose softly before kissing you again. <i>“Let’s go get you washed up, [pc.name].”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“Please tell me that’s a promise,”</i> you murmur back, hooding your [pc.eyes]. <i>“I’ll come back here as often as I can so you can fuck me full of your hot spunk until I have your beautiful kids. And then,”</i> you continue, watching Sylvie’s reaction, <i>“I’ll spread my legs and you can start all over again.”</i>");
+			output("\n\n<i>“Oho, you </i>like<i> that idea, don’t you? I know a few studs that would love a woman like you as a breeder...”</i> she leans in, pressing her nose lightly against yours. <i>“Present company included.”</i>");
+			output("\n\n<i>“You are </i>quite<i> the stud,”</i> you agree, smiling. <i>“With your new equipment, you might need someone around to take the load off. Ease your burden.”</i>");
+			output("\n\n<i>“You can take my load any time you like, girl,”</i> Sylvie says with a grin, pecking you on the lips. <i>“For now though, let’s get you washed up, [pc.name].”</i>");
+		}
+	}
+	//taur:
+	else
+	{
+		output("\n\n<i>“Up against the wall and spread those thick hindlegs of yours, Steele, I wanna see that sexy little pussy of yours before I fucking destroy it,”</i> she purrs, hands on your flank.");
+		if(!pc.isCrotchExposed()) output("\n\nShe’s tugged your undergarments off before you even have time to follow her instructions, and the moment you do she’s got her face buried underneath your tail and in your muff");
+		else output("\n\nYou’ve barely even followed the instructions before she’s got her face buried underneath your tail and in your muff");
+		output(". She hones in on [pc.oneClit] immediately, rolling it across her tongue before sucking on it hard enough to make you groan out loud in pleasure, instinctively lifting one leg to allow her easier access.");
+		output("\n\nTaking your cue, she all but buries her tongue into your wet, needy cunt while you rub your clit on her little button nose, moaning in delight. You get off almost immediately, femcum dribbling down Sylvie’s chin while she laps all of you up, tongue-teasing your clitty while you hump her face in the throes of orgasm. You groan and hang your head against the wall, the aftershocks still running up and down your body.");
+		output("\n\n<i>“Mmm, that’s the taste of a mare in heat if I’ve ever known it,”</i> Sylvie says, licking her lips clean as she rises. <i>“Hold still, [pc.name]. I’ll have you satisfied in no time.”</i>");
+		output("\n\nRearing up on her forelegs and landing on your back with a heavy impact, you suddenly feel very enclosed. You twist your torso back a little to look, only to be seized by Sylvie from behind. Upturning your face, she kisses you upside down while wiggling her hindquarters to get her fat, ridged flare aligned with your [pc.pussy " + x + "].");
+		output("\n\n<i>“Ooooh fuck I’m gonna leave you looking like a goddamn broodmare,”</i> Sylvie pants, pulling away and halting at your dripping entrance. <i>“You won’t be able to go </i>anywhere<i> without thinking of me, dripping spunk down that sexy ass of yours!”</i>");
+		output("\n\nWith an aggressive grunt, Sylvie violently bucks her powerful hips and sinks her massive cock right to the hilt.");
+		pc.cuntChange(sylvieCockVolume(),x);
+		output("\n\nYou instinctively recoil, your back arching so sharply you push Sylvie’s torso backwards with you before she catches you, holding you in her very generous bosom. <i>Fuck, she’s so big!</i> You find yourself desperately reaching backwards to clutch her forelegs, trying to retain some sense of sanity, but there’s no escape from the way she’s irresistibly spreading you open.");
+		output("\n\n<i>“Wow, you weren’t ready for that one, were you?”</i> Sylvie purrs, slowly drawing herself back and taking the time to luxuriate in the uncontrollable spasming of your folds as you desperately squeeze down on her. <i>“No time to rest, though.”</i>");
+		output("\n\n<i>“Ooooohhhhh, god! Sylvie!”</i> you cry, juices squirting from around Sylvie’s turgid rod when she thrusts it back in. <i>“Oh my god!”</i>");
+		output("\n\n<i>“Goddess,”</i> she smugly corrects you, repositioning herself at your cunt’s sloppy entrance. <i>“Now fucking stand there like a good broodmare and take my blessing.”</i>");
+		output("\n\nWithout waiting for a response, she begins slowly pounding you, the weight of her entire bulk behind each loud, squelching thrust. Your cries get louder and deeper with every slap of Sylvie’s gigantic balls off your [pc.ass], her soft flare pressing right up against your womb and giving it a sloppy wet kiss. You can already feel her squirting pre-cum inside you, her cocknozzle comfortably wedged right against your cervix for easy passage. Your eyes rolling back in your head, you can hardly comprehend the sensations Sylvie is subjecting you to.");
+		output("\n\nShe doesn’t give you time to dwell on them, grunting with effort as she begins to fuck you faster, forcing you to brace yourself against the wall with white-knuckled effort so she doesn’t wind up slamming you into it. You can scarcely weather the rough pounding of your sopping cunt, being stretched to its absolute limit by the sheer size of Sylvie’s swollen dick. You hardly even get the chance to catch your breath, and when you do it comes out in wordless groans of bliss or shuddering, gasping pants.");
+		output("\n\n<i>“Guuuuh! Sylvie!”</i> you cry, eyes squeezed shut. <i>“Sylvie, Sylvie, Sylvie!”</i>");
+		output("\n\n<i>“That’s right, scream my fucking name!”</i> Sylvie tells you, rearing back for a particularly violent thrust that sends your face mere inches. <i>“Beg me to cum inside that spunkdump of yours!”</i>");
+		output("\n\n<i>“C-cum,”</i> you gasp, already doing so yourself. <i>“Nnnn-hhnngh!”</i>");
+		output("\n\nWith a triumphant scream of conquest, Sylvie lunges forward so far her throbbing cock pins you against the wall and holds you there. You feel a <i>massive</i> blossom of warmth inside you, Sylvie’s cock rippling from base to tip as she begins to dump the truckloads of sticky jizz held in her pulsing balls.");
+		output("\n\n<i>“Oohhhhhhhhh, god daaamn,”</i> Sylvie groans, bucking the side of your face up against the wall with each thrust of her hips. <i>“Oh, you feel fucking amazing. Keep squeezing, baby, that’s the way.”</i>");
+		output("\n\nYou couldn’t stop if you tried. With her equine cocknozzle plugging up your cervix, all you can feel is the orgasmic sensation of your womb being filled, over and over. By the time she slowly - very slowly - pulls herself out of you and dismounts, Sylvie’s followed through on her promise. You’re going to be walking around with a sagging “baby bump” for quite some time. For her part, she looks ecstatically smug.");
+		output("\n\n<i>“Ho hooo, look at yooouuu,”</i> Sylvie croons, trotting around behind you to inspect your thoroughly-bred form from multiple angles.");
+		if(pc.biggestTitSize() > 5) output(" <i>“Good thing you got those giant, suckable titties to make yourself look like a believable mommy, huh?”</i>");
+		output("\n\nShe walks alongside you and brings her face close to yours, gazing into your eyes and smiling deeply as she runs her fingers along your flushed cheek.");
+		output("\n\n<i>“You look as sexy now as you sounded during the act,”</i> Sylvie murmurs in your ear, moving close enough to rest her gigantic breasts against your chest. <i>“I really like you like this, sweaty and full of my cum. And that expression,”</i> she sighs, softly rubbing her thumb across your lower lip. <i>“To die for. Just makes me want to stick it in another hole of yours and start humping...”</i>");
+		output("\n\n<i>“I think you’ve humped my holes enough for one day,”</i> you moan quietly, leaning against her shoulder. <i>“God damn...”</i>");
+		output("\n\n<i>“Everything you wanted and more, huh?”</i> Sylvie says, and even without opening your eyes you can see the smug smile on her face. <i>“Heh... I feel a little sorry for less-endowed partners, if you’ve got any. They won’t even touch your fucking walls after the way I ruined your pretty little cunt...”</i>");
+		//little extra section
+		//check for others fucked
+		if(flags["EDAN_FUCKED"] != undefined) 
+		{
+			output("\n\n<i>“There is actually this huge leithan guy on Tarkus...”</i> you admit sheepishly, wondering if Sylvie will get jealous in her post-sex ardor, but her response is one of eyebrow-arched surprise.");
+			output("\n\n<i>“Seriously? Get him over here sometime and we can have a threesome! Fill you up from both ends until you can’t walk.”</i>");
+			//wow, bet you didn’t think i’d dig up that old flag, did you? Who was edan, again?
+			//Fen note: nobody cares about males, Wsan.
+			output("\n\n<i>“I’m actually a little flattered that in all the galaxy you’ve travelled, you’ve only managed to find a handful of people with cocks big and juicy enough to compare to mine,”</i> Sylvie says, grinning.");
+			//notfuckedKiro:
+			if(!kiroSexed()) output(" <i>“Pity we probably won’t be able to team up on you.”</i>");
+			else output(" <i>“Maybe we should get Kally and her sister in on the action too, huh? Bet you’d like that,”</i> she teases, squeezing one of your nipples. <i>“I can tell you’re a size queen with the way you react to this dick.”</i>");
+		}
+		output("\n\n<i>“Hmmm,”</i> Sylvie hums nonchalantly, eyeing you before ducking in to give you a kiss on the cheek. <i>“Stay right there.”</i>");
+		output("\n\nShe turns and slowly makes her way back to your rear, running her hand slowly down the [pc.skinFurScales] of your back before arriving back at your flank. Her cum still very visibly dripping from your abused cunt, she reaches between your legs and gently stretches your overtaxed folds apart, exposing your sex and forcing you to helplessly squeeze out a huge load of Sylvie’s jizz all over her fingers.");
+		output("\n\n<i>“Mmmnf, look at that,”</i> Sylvie says, walking back alongside you after she’s satisfied with your performance. <i>“Open up,”</i> she whispers, and you suddenly find two spunk-soaked fingers pushing into your mouth.");
+		output("\n\nFor some reason, you don’t mind at all. You softly suck her fingers clean, Sylvie’s breath hot on your flushed face while you tongue her hand off. Her dainty digits are pulled from your mouth only to be immediately replaced by her warm, wet tongue wrapping around your own, pulling you into a deep, slow, kiss.");
+		output("\n\n<i>“Mmmmf,”</i> Sylvie moans into your mouth, running a hand ");
+		if(pc.hasHair()) output("through your [pc.hairNoun]");
+		else output("along your cheek");
+		output(" and whispering between every kiss.");
+		output("\n\n<i>“We should - mm - do this - mmn - more often,”</i> she whispers. <i>“I want to keep you pumped full all the time, until it takes...”</i>");
+		if(StatTracking.getStat("pregnancy/total births") < 40) 
+		{
+			output("\n\n<i>“If you’re that good </i>every<i> time...”</i> you murmur back, letting the sentence hang in the air as a tantalizing treat for Sylvie.");
+			output("\n\n<i>“You teeeaaase,”</i> she admonishes you gently, pinching your nose softly before kissing you again. <i>“Let’s go get you washed up, [pc.name].”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“Please tell me that’s a promise,”</i> you murmur back, hooding your [pc.eyes]. <i>“I’ll come back here as often as I can so you can fuck me full of your hot spunk until I have your beautiful kids. And then,”</i> you continue, watching Sylvie’s reaction, <i>“I’ll spread my legs and you can start all over again.”</i>");
+			output("\n\n<i>“Oho, you </i>like<i> that idea, don’t you? I know a few studs that would love a woman like you as a breeder...”</i> she leans in, pressing her nose lightly against yours. <i>“Present company included.”</i>");
+			output("\n\n<i>“You are </i>quite<i> the stud,”</i> you agree, smiling. <i>“With your new equipment, you might need someone around to take the load off. Ease your burden.”</i>");
+			output("\n\n<i>“You can take my load any time you like, girl,”</i> Sylvie says with a grin, pecking you on the lips. <i>“For now though, let’s get you washed up, [pc.name].”</i>");
+		}
+	}
+	processTime(20);
+	pc.loadInCunt(sylviePP(),x);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",catchFutaSylviaVaginallyEnd);
+}
+public function catchFutaSylviaVaginallyEnd():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("Washing up is mostly uneventful, though Sylvie seems very taken with the idea of kissing you and fondling your pregnant-looking tummy. You get the feeling that she’s very into the whole thing, and you have to say that for your part it’s very nice having your partner fussing over you so much.");
+	output("\n\nOne intimate and enjoyable bath later, you’re both clean and Sylvie needs to go to work. The little kiss and smile she gives you as you wave off her uniformed departure makes you feel a little like you’re a wife in one of those old shows you once saw in a documentary back on Earth, and you can’t help but snicker at the thought.");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Sex] -> [TakeAnal]
+public function takeItUpYourButtYouDirtySlutbag():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("<i>“Hey, remember what we did when you first got your dick?”</i> you ask Sylvie, who nods and smiles. <i>“Think you can handle a repeat?”</i>");
+	output("\n\n<i>“Think I can handle a repeat?”</i> she echoes, smirking. <i>“Think </i>you<i> can handle a repeat? Come on " + pc.mf("big boy","pretty girl") + ", let’s go find out. You’ve got me all hard thinking of your tight fuckin’ butt.”</i>");
+	output("\n\n<i>“Nice to know I have such a dramatic effect on you,”</i> you say, completely earnest. It’s true. Walking to the rooms with Sylvie close behind, you can feel her eyes drinking in the sight of you from behind. The attention is more than a little flattering, and you can’t help but sway your hips a little just to tempt her.");
+	output("\n\n<i>“You are gonna fuckin’ get it,”</i> she whispers from behind you as you pass some people in a corridor.");
+	output("\n\n<i>“Is that a promise?”</i> you murmur back.");
+	output("\n\nThe moment the door shuts behind you,");
+	moveTo("CANADA7");
+	if(pc.isTaur())
+	{
+		output("\n\nSylvie is all over you, pressing up against your [pc.chest] with her magnificent rack and kissing you deeply, hands running up and down your back ");
+		if(!pc.isChestExposed()) output("tugging at your top");
+		else output("touching your shoulders and gently stroking your spine");
+		output(". She captures you in a deep, heated kiss, almost forcing herself on you, so desperate is she in her need. When she pulls back, she’s panting and the only thing in her eyes is the fire of lust.");
+		output("\n\n<i>“Now turn around and flex those big, strong hindlegs of yours, [pc.name],”</i> she purrs, eyeing you with a predator’s leer. <i>“You don’t want to fall down when I’m on top now, do you?”</i>");
+		output("\n\n<i>“No ma’am,”</i> you respond, turning and getting comfortable against the wall. The last thing you do is spread your legs just a little, to absorb the coming impact, and turn at the hips to face her. <i>“Like this?”</i>");
+		output("\n\n<i>“Perfect,”</i> Sylvie murmurs, eyeing your [pc.ass].");
+		if(pc.mf("m","f") == "m") output("\n\n<i>“Ever since getting a cock, I’ve started thinking about guys a little different. I still love taking it rough, but fuck if there isn’t something special about hearing boys moan like sluts while they squeeze down on you...”</i>");
+		output("\n\nRearing up, she steps forward and lands on your back with a heavy thump.");
+		if(pc.tallness >= 9) output("\n\nIt’s a good thing you’re so large yourself, because Sylvie is massive in more ways than one");
+		else output("\n\nSylvie’s massive frame dwarfs your own, practically enveloping your body with her limbs");
+		output(". She feels like an entire gym’s worth of equipment on your back, albeit a lot softer and fluffier. Not to mention that you can feel her big, fat cock rubbing your underside affectionately.");
+		output("\n\n<i>“You like feeling that?”</i> Sylvie whispers in your ear, ");
+		if(pc.hasCock()) output("stroking your prick using her own with slow hip movements");
+		else output("stroking the [pc.skinFurScales] of your tummy with slow hip movements");
+		output(". <i>“I’m gonna have soooo much fun putting this in your little asshole and rutting you, [pc.name]. I wonder how many times you’ll cum for me?”</i>");
+		output("\n\nBefore you even have a chance to reply, she’s pulled back and has herself expertly angled, poised to shove her dick balls-deep into your [pc.asshole]. Which is why you’re surprised when she presses forward with gentleness unbecoming of such a large creature, forcing a soft moan from your lips. Her flare slowly spreads you apart to make you hers, the feeling making your legs shake a little while you grunt.");
+		pc.buttChange(sylvieCockVolume());
+
+		output("\n\n" + pc.mf("<i>“Awww, there are those sounds I love,”</i> Sylvie coos, an arm snaking around you to rub your [pc.chest]. <i>“So tough! Now give it aaaalll up for me, baby. I wanna hear you moaning like a girl.”</i>","<i>“Awww, you sound so cute like that,”</i> Sylvie coos, an arm reaching around to cup one of your breasts. <i>“Being so tough for me! Now get ready to take it all in, okay?”</i>"));
+		output("\n\nYou have to admit this is a <i>lot</i> more gentle than your first time trying anal with Sylvie. Despite her incredible size, you’re quickly discovering that having the giant moosegirl slowly slide herself in is even better than you expected. You shiver, moan and shudder while Sylvie giggles in lustful glee, enjoying every little bit of your reactions. She’s having way too much fun with this, and she knows it. She whispers sweet nothings in your ear constantly while stretching you out, getting you used to the prospect of being wrapped around her.");
+		if(pc.hasCock()) output("\n\n<i>“I think I’ll ride you niiice and slow into a long, drawn-out prostate orgasm,”</i> she murmurs in your ear, nibbling on it between strokes. <i>“How would you like that, [pc.name]? Does that sound good?”</i>");
+		else if(pc.hasVagina()) output("\n\n<i>“I think I’ll ride you nice and slow until you can’t help but cum all down your legs,”</i> she murmurs in your ear, nibbling on it between strokes. <i>“Would you like that, [pc.name]? Having your ass ridden until your quivering little pussy squirts everywhere?”</i>");
+		if(pc.hasGenitals()) output("\n\nYou’re helpless to do anything other than nod in assent. <i>“Mmmn, I thought so,”</i> Sylvie croons, rubbing you up and down. ");
+		else output("\n\n");
+		output("<i>“Come on, then. Don’t be afraid of getting too loud, nobody can hear you in here.”</i>");
+		output("\n\n<i>Fuck</i>, you both think and groan out loud. She is really, <i>really</i> good at doing exactly what she says she will. There’s something about the way she’s handling you - the loving care contrasted with the giant cock splitting you apart - that makes you <i>want</i> to cum for her, to be forcefully herded over the peak of ecstasy. With every long, measured thrust you cry out in a wordless moan for more, listening to the deep, controlled breathing of Sylvie in your ear.");
+		output("\n\nThat’s the difference, you realize dimly. Sylvie’s in control right now, of both her animal instincts <i>and</i> you. You’re dancing in the palm of her soft, loving hand, and fuck if it isn’t one of the best things you’ve ever felt. Your voice gets higher and louder with every penetration, the pleasure mounting and mounting but never quite getting there, not on your own, not without Sylvie.");
+		output("\n\n<i>“Do you want to cum?”</i> she whispers so quietly you’d swear you heard it with your mind instead of your ears.");
+		output("\n\n<i>“Yes!”</i> you cry, desperately squeezing down and stroking her cock with your insides for some measure of her approval. <i>“Please let me cum!”</i>");
+		output("\n\n<i>“Good " + pc.mf("boy","girl") + ",”</i> she mutters, and that small compliment feels like being handed water in a desert.");
+		output("\n\nShe adjusts the angle of her thrusts and begins rolling those huge, powerful hips behind you until it feels like you’re a tiny vessel amidst a stormy sea. More than anything, though, you can feel yourself on the verge of climax. With a joyous, almost tearful cry of delight, you feel the dam break free and your body instinctively tense.");
+		if(pc.hasCock()) output("\n\nWhat follows is almost five full minutes of Sylvie expertly milking you for cum, each massive load of [pc.cumColor] liquid spurting unbidden from the end of your cock, some of it dripping to the floor and the rest of it running down the underside of your throbbing penis. She keeps you at it like she’s being paid by the litre, never too forceful and never too light, always just stroking your prostate with her flare exactly how it feels best for you. Some part of you is overcome with emotion, the passion she’s sharing with you, keeping you orgasming for so long; she <i>really</i> cares about you getting off, and getting off <i>hard</i>.");
+		else if(pc.hasVagina()) 
+		{
+			output("\n\nYou get the scantest of seconds to take a deep breath before loosing it in a deep, satisfied groan of pure orgasmic pleasure. ");
+			if(pc.isSquirter()) output("You bite your lip and squirt <i>everywhere</i>, little muffled shrieks of ecstasy escaping your lips with each clench of your pussy. Sylvie gently slides herself in while you’re cumming until you can feel the warmth of her giant, overloaded balls pressed up against your quivering pussy lips. Unable to help yourself, you give them a nice, heavy coating of femjizz with a violent shudder of pleasure.");
+			else output("You bite your lip while the unconscious clenching of your pussy sends trickles of femcum down your shaking legs, little muffled shrieks of ecstasy escaping your lips with each one. Sylvie gently slides herself in while you’re cumming until you can feel the warmth of her giant, overloaded balls pressed up against your quivering pussy lips. There’s something insanely sexy about the gesture, and you can scarcely help yourself from cumming even harder at their touch.");
+		}
+		output("\n\nSylvie stays silent throughout the entire ordeal, choosing instead to massage and rub you while you sing her praises. By the time you finish, you’re almost ready to collapse when you feel Sylvie’s fingers drumming lightly on your shoulders. She leans down to whisper in your ear.");
+		output("\n\n<i>“That was beautiful, [pc.name],”</i> she breathes, and you can feel the lust in her voice. <i>“But I still haven’t cum yet.”</i>");
+		output("\n\nWithout waiting for an answer, she pulls back and rocks against you, ramming herself back in. In your post-orgasm sensitivity, you can’t resist crying out her name in a long, whorish moan, and you’d swear she gets harder inside you when you do. Whether she’s being considerate of your state or all your horny theatrics got her worked up beforehand, it doesn’t take long for Sylvie to cum. A groan of contentment and her balls resting against your rear is all the warning you get before a great rush of seed fills your backside, flowing inside your guts.");
+		output("\n\n<i>“Mmmmmmnnn, that’s niiiice,”</i> Sylvie sighs in your ear, relaxing atop you while she pumps you full of jizz. <i>“Going slow is fun too.”</i>");
+		output("\n\nWith the way she made you cum so hard... you’re inclined to agree. You’ll gladly stand here and be her little cum-dump if every session is like <i>that</i>. You feel utterly drained despite being filled with more of Sylvie’s seed with every passing second. By the time she dismounts and pulls herself free with a wet pop and a grunt of satisfaction, you’ve definitely packed on a few pounds. Your stomach is hanging a lot lower to the ground now, that’s for sure.");
+		output("\n\n<i>“Oh, you look so pretty like that,”</i> Sylvie says, smiling. <i>“C’mere, you!”</i>");
+		output("\n\nHer cock spurting jizz between your forelegs even now, she catches you in a loving kiss, hands stroking your face even as her tongue twists around your own. Eyes closed, you engage in her gentle passion and enjoy a moment of aftercare. When she pulls back, Sylvie’s beaming.");
+		output("\n\n<i>“You are just what the doctor ordered,”</i> Sylvie giggles happily, heading for the door before turning back and proffering her hand. <i>“Let’s go get cleaned up in the baths, okay?”</i>");
+		output("\n\n<i>“I could go for a relaxing bath after having a ton of moose on my back,”</i> you reply, taking her hand and smiling.");
+		output("\n\n<i>“Are you calling me fat?!”</i> Sylvie gasps in mock horror, raising a hand to her mouth. <i>“Well, I never.”</i> After a couple of seconds, she snickers. <i>“Not to mention I think we’ve traded a bit of weight, Steele.”</i>");
+	}
+	//next (go to Post-Take Anal below the nontaur scene)
+	else
+	{
+		output("\n\nSylvie is all over you, lifting you with a surprising amount of strength and pressing you against a wall with her giant rack. Holding you in midair, Sylvie captures you in a deep, heated kiss, almost forcing herself on you, so desperate is she in her need. When she pulls back, she’s panting and the only thing in her eyes is the fire of lust. To your surprise, though, she manages to hold back and take control of herself. Soon, only the embers of calculated desire smolder in her gaze.");
+		output("\n\n<i>“I am gonna make you cum so fucking hard,”</i> she whispers to you, running a hand down your cheek.");
+		output("\n\nBefore you even have a chance to reply, she’s pulled back and has herself expertly angled, poised to shove her dick balls-deep into your [pc.asshole]. Which is why you’re surprised when she presses forward with gentleness unbecoming of such a large creature, forcing a soft moan from your lips. Her flare slowly spreads you apart to make you hers, the feeling making your legs shake a little while you grunt.");
+		pc.buttChange(sylvieCockVolume());
+		output("\n\n" + pc.mf("<i>“Mmmm, that’s riiight, it’s good, isn’t it?”</i> Sylvie coos, staring deeply into your eyes. <i>“Now give it aaaalll up for me, baby. I wanna hear you moaning like a girl.”</i>"," <i>“Awww, you sound so cute like that,”</i> Sylvie coos, reaching forward to cup one of your breasts. <i>“Being so tough for me! Now get ready to take it all in, okay?”</i>"));
+		output("\n\nYou have to admit this is a <i>lot</i> more gentle than your first time trying anal with Sylvie. Despite her incredible size, you’re quickly discovering that having the giant moosegirl slowly slide herself in is even better than you expected. You shiver, moan and shudder while Sylvie giggles in lustful glee, enjoying every little bit of your reactions. She’s having way too much fun with this, and she knows it. She whispers sweet nothings in your ear constantly while stretching you out, getting you used to the prospect of being wrapped around her.");
+		if(pc.hasCock()) output("\n\n<i>“I think I’ll fuck you niiice and slow into a long, drawn-out prostate orgasm,”</i> she murmurs in your ear, nibbling on it between strokes. <i>“How would you like that, [pc.name]? Does that sound good?”</i>");
+		else if(pc.hasVagina()) output("\n\n<i>“I think I’ll fuck you nice and slow until you can’t help but cum all down your legs,”</i> she murmurs in your ear, nibbling on it between strokes. <i>“Would you like that, [pc.name]? Having your ass fucked until your quivering little pussy squirts everywhere?”</i>");
+		if(pc.hasGenitals()) output("\n\nYou’re helpless to do anything other than nod in assent. <i>“Mmmn, I thought so,”</i> Sylvie croons, rubbing you up and down. ");
+		else output("\n\n");
+		output("<i>“Come on, then. Don’t be afraid of getting too loud, nobody can hear you in here.”</i>");
+		output("\n\n<i>Fuck</i>, you both think and groan out loud. She is really, <i>really</i> good at doing exactly what she says she will. There’s something about the way she’s handling you - the loving care contrasted with the giant cock splitting you apart - that makes you <i>want</i> to cum for her, to be forcefully herded over the peak of ecstasy. With every long, measured thrust you cry out in a wordless moan for more, listening to the deep, controlled breathing of Sylvie in your ear.");
+		output("\n\nThat’s the difference, you realize dimly. Sylvie’s in control right now, of both her animal instincts <i>and</i> you. You’re dancing in the palm of her soft, loving hand, and fuck if it isn’t one of the best things you’ve ever felt. Your voice gets higher and louder with every penetration, the pleasure mounting and mounting but never quite getting there, not on your own, not without Sylvie.");
+		output("\n\n<i>“Do you want to cum?”</i> she whispers so quietly you’d swear you heard it with your mind instead of your ears.");
+		output("\n\n<i>“Yes!”</i> you cry, desperately squeezing down and stroking her cock with your insides for some measure of her approval. <i>“Please let me cum!”</i>");
+		output("\n\n<i>“Good " + pc.mf("boy","girl") + ",”</i> she mutters, and that small compliment feels like being handed water in a desert.");
+		output("\n\nShe adjusts the angle of her thrusts and begins rolling those huge, powerful hips below you until it feels like you’re a tiny vessel amidst a stormy sea. More than anything, though, you can feel yourself on the verge of climax. With a joyous, almost tearful cry of delight, you feel the dam break free and your body instinctively tense.");
+		if(pc.hasCock()) output("\n\nWhat follows is almost five full minutes of Sylvie expertly milking you for cum, each massive load of [pc.cumColor] liquid spurting unbidden from the end of your cock, some of it dripping to the floor and the rest of it running down the underside of your throbbing penis. She keeps you at it like she’s being paid by the litre, never too forceful and never too light, always just stroking your prostate with her flare exactly how it feels best for you. Some part of you is overcome with emotion, the passion she’s sharing with you, keeping you orgasming for so long; she <i>really</i> cares about you getting off, and getting off <i>hard</i>.");
+		else if(pc.hasVagina()) 
+		{
+			output("\n\nYou get the scantest of seconds to take a deep breath before loosing it in a deep, satisfied groan of pure orgasmic pleasure. ");
+			if(pc.isSquirter()) output("You bite your lip and squirt <i>everywhere</i>, little muffled shrieks of ecstasy escaping your lips with each clench of your pussy. Sylvie gently slides herself in while you’re cumming until you can feel the warmth of her giant, overloaded balls pressed up against your quivering pussy lips. Unable to help yourself, you give them a nice, heavy coating of femjizz with a violent shudder of pleasure.");
+			else output("You bite your lip while the unconscious clenching of your pussy sends trickles of femcum down your shaking legs, little muffled shrieks of ecstasy escaping your lips with each one. Sylvie gently slides herself in while you’re cumming until you can feel the warmth of her giant, overloaded balls pressed up against your ass. There’s something insanely sexy about the gesture, and you can scarcely help yourself from cumming even harder at their touch.");
+		}
+		output("\n\nSylvie stays silent throughout the entire ordeal, choosing instead to massage and rub you while you sing her praises. By the time you finish, you’re almost ready to collapse when you feel Sylvie’s fingers drumming lightly on your shoulders. She leans down to whisper in your ear.");
+		output("\n\n<i>“That was beautiful, [pc.name],”</i> she breathes, and you can feel the lust in her voice. <i>“But I still haven’t cum yet.”</i>");
+		output("\n\nWithout waiting for an answer, she pulls back and rocks against you, ramming herself back in. In your post-orgasm sensitivity, you can’t resist crying out her name in a long, whorish moan, and you’d swear she gets harder inside you when you do. Whether she’s being considerate of your state or all your horny theatrics got her worked up beforehand, it doesn’t take long for Sylvie to cum. A groan of contentment and her balls resting against your rear is all the warning you get before a great rush of seed fills your backside, flowing inside your guts.");
+		output("\n\n<i>“Mmmmmmnnn, that’s niiiice,”</i> Sylvie sighs in your ear, relaxing against you while she pumps you full of jizz. <i>“Going slow is fun too.”</i>");
+		output("\n\nWith the way she made you cum so hard... you’re inclined to agree. You’ll gladly hang here and be her little cum-dump if every session is like <i>that</i>. You feel utterly drained despite being filled with more of Sylvie’s seed with every passing second. By the time she pulls herself free with a wet pop and a grunt of satisfaction, you’ve definitely packed on a few pounds. Your stomach is hanging a lot lower, that’s for sure.");
+		output("\n\n<i>“Oh, you look so pretty like that,”</i> Sylvie says, smiling. <i>“C’mere, you!”</i>");
+		output("\n\nHer cock spurting jizz between your legs even now, she catches you in a loving kiss, hands stroking your face even as her tongue twists around your own. Eyes closed, you engage in her gentle passion and enjoy a moment of aftercare. When she pulls back, Sylvie’s beaming.");
+		output("\n\n<i>“You are just what the doctor ordered,”</i> Sylvie giggles happily, heading for the door before turning back and proffering her hand. <i>“Let’s go get cleaned up in the baths, okay?”</i>");
+		output("\n\n<i>“I could go for a relaxing bath after having a ton of moose pressed against me,”</i> you reply, taking her hand and smiling.");
+		output("\n\n<i>“Are you calling me fat?!”</i> Sylvie gasps in mock horror, raising a hand to her mouth. <i>“Well, I never.”</i> After a couple of seconds, she snickers. <i>“Not to mention I think we’ve traded a bit of weight, Steele.”</i>");
+		//next (post-Take Anal, below)
+	}
+	processTime(45);
+	pc.orgasm();
+	pc.loadInAss(sylviePP());
+	clearMenu();
+	addButton(0,"Next",postTakeAnalWithDickSylvie);
+}
+
+//[post-Take Anal]
+public function postTakeAnalWithDickSylvie():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("<i>“Oh my god,”</i> you groan, relaxing in the bath, spreading your aching limbs in the warm water.");
+	output("\n\n<i>“Goddess, I believe,”</i> Sylvie corrects you with a smile as she wades in to join you. <i>“Nice, isn’t it?”</i>");
+	output("\n\nAll you offer in reply is a contented sigh, leaning your head against Sylvie’s shoulder when she’s close enough. ");
+	if(pc.hasHair()) output("She begins slowly scooping water from the bath and pouring it over your [pc.hairNoun], shielding your face from droplets while she washes you. It feels very nostalgic for a reason you can’t place, and since you can’t find a reason to stop her, you let Sylvie continue to wash and brush your hair, humming quietly all the while. ");
+	output("After what could either be thirty seconds or an eternity, you hear Sylvie ask you a question.");
+	output("\n\n<i>“Sorry?”</i> you ask, lifting your head a little. <i>“I was dozing off there.”</i>");
+	output("\n\n<i>“Can’t say I’m too surprised,”</i> Sylvie says, smiling. <i>“I just asked if you’d like me to wash your back.");
+	if(pc.isTaur()) output(" I know it can be annoying to reach as a ‘taur.");
+	output("”</i>");
+	output("\n\n<i>“Oh, sure,”</i> you nod, allowing her to take hold of your shoulders. A mere moment later and you’re like putty in her hands, sighing deeply in satisfaction.");
+	output("\n\n<i>“Do you like the massage option?”</i> Sylvie jokes. <i>“Free of charge, just for you.”</i>");
+	output("\n\n<i>“So generous,”</i> you murmur, feeling the tension in your muscles fade away as Sylvie swaps between massaging and washing your back.");
+	output("\n\n<i>“I think this might be the first time I’ve come away from sex more clean and energized than I was when we started,”</i> you mention to Sylvie, setting her off in giggles.");
+	output("\n\nThe two of you enjoy the rest of your time together in the bath before Sylvie has to get dressed and leave for work.");
+	output("\n\n<i>“You’d better come see me again soon! I like having you around, [pc.name],”</i> Sylvie tells you, pointing. She ducks in to give you a little kiss on the lips with a big smile and waves before leaving, swaying her hips confidently. You definitely watch her go, eyes glued to that sexy butt. Shaking your head, you gather your thoughts.");
+
+	processTime(25);
+	pc.shower();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Sex] -> [FistHer]
+public function fistSylvie():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("<i>“How about I give you a nice surprise?”</i> you suggest, winking at Sylvie across the table.");
+	if(flags["SYLVIE_PROSTATE_MILKED"] != undefined) output("\n\n<i>“Well, I’ve liked every surprise you’ve given me so far...”</i> Sylvie jokes, grinning. <i>“Let’s get a room, shall we?”</i>");
+	else 
+	{
+		output("\n\n<i>“Ooh, I do so love surprises,”</i> Sylvie says, leaning in and smiling. <i>“‘Specially when I get to cum at the end of them.”</i>");
+		output("\n\n<i>“Oh, there’ll be a lot of cumming alright,”</i> you say knowingly, rising from your seat with a mysterious smile playing on your lips.");
+	}
+	clearMenu();
+	addButton(0,"Next",fistSylvieNext);
+}
+public function fistSylvieNext():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	moveTo("CANADA7");
+	output("Once you’re in the room and the door is locked securely behind you, Sylvie turns and gazes at you with one arm on her cocked hips.");
+	output("\n\n<i>“So, which way do I face for my surprise, cutie?”</i> she asks, beaming confidently.");
+	output("\n\n<i>“Away,”</i> you tell her");
+	if(!pc.isChestExposed()) output(", taking off your [pc.upperGarments]");
+	output(". <i>“Works best when you don’t see it coming.”</i>");
+
+	output("\n\n<i>“Ooh, taking charge, I like it,”</i> Sylvie murmurs, turning away and facing a wall. <i>“Like this, " + pc.mf("sir","ma’am") + "?”</i>");
+	output("\n\n<i>“Perfect,”</i> you say, eyeing that huge booty of hers. She’s built like a fucking bombshell, that’s for sure. You give that monumental ass of hers a nice smack, enjoying the way Sylvie moans like a whore as the flesh jiggles under your hand. Time to unpack her surprise! Slowly shifting your hand from gently stroking the region you just slapped, you slip a finger, then two, then three into Sylvie’s asshole. The surprised - but not displeased - moan from up front along with the ease with which her velvet-soft hole accepts you is a sure sign; she’s no stranger to anal fun.");
+	output("\n\nStill, though, this is meant to be a surprise, and that means doing something unexpected. Spreading your fingers around to expose her hole, you pull them back out and ball your hand into a fist.");
+	output("\n\n<i>“Gohhhh!”</i> Sylvie half-cries, half-moans in surprise. <i>“Is that your whole hand?!”</i>");
+	output("\n\n<i>“Yup,”</i> you reply drily, flexing it just inside her asshole and watching her ring swell around the entrance. <i>“Time to teach you about one of the lesser-known upsides of your cock, Sylvie.”</i>");
+	output("\n\n<i>“Unh!”</i> she groans, looking back at you. <i>“You gonna teach me from the inside out, then? Mmngh!”</i>");
+	output("\n\n<i>“Yeah, in a manner of speaking,”</i> you say idly, relaxing your hand and sliding a little deeper. <i>“You just relax, okay?”</i>");
+	output("\n\n<i>“Ooh! You try relaxing with someone trying to turn you into a puppet, Steele,”</i> Sylvie grouses, but she does as you say. Besides, you have a perfectly clear view of that padded pussy of hers - swollen up, drooling, and practically begging to have a fat cock inside it, you don’t think she hates it too much.");
+	output("\n\nYou spend a couple of minutes just getting her acquainted with having your fist inside her ass; you suspect she’s probably taken horsecocks this big inside before, but having a hand inside is a little different from a flare. For one thing, a hand doesn’t compress when you squeeze down on it like a needy slut.");
+	output("\n\n<i>“Having fun?”</i> you murmur.");
+	output("\n\n<i>“It’s not so bad,”</i> she admits, tossing her hair. <i>“Gonna take some work to- to- hnnn... mmm. What </i>is<i> th- oh!”</i>");
+	output("\n\n<i>“The surprise,”</i> you tell her, gently stroking her prostate. Holy <i>fuck</i>, it’s huge. In retrospect you shouldn’t be surprised given how well-endowed the massive moose is, but this is something else. You can feel it protruding through her walls, her asshole rapidly contracting whenever you brush your fingertips against it.");
+	output("\n\n<i>“Feels- nnf!”</i> Sylvie gasps, beginning to breathe a little faster. <i>“Feels weird...”</i>");
+	output("\n\n<i>“Just relax and focus on the feeling, Sylvie,”</i> you tell her, slowly massaging the oversized organ with radial movements. <i>“It takes a while.”</i>");
+	output("\n\nYou gently guide the moosegirl on her ascent to pleasure, her head down and her breath long and deep. It doesn’t take long for the stimulation to stir her big, fat balls into action, a gradual everflowing strand of pre-cum hanging from her cock’s crown. Slowly but surely, you incite Sylvie to produce a small pool of perfectly clear pre-cum beneath her, sweat breaking out on the woman’s well-built body as she makes tiny moans of exertion. Her asshole lightly clenches with every touch to her prostate even as she tries to fight it, keeping her instincts at bay so you can keep stroking and brushing her snug insides.");
+	output("\n\nIt doesn’t take too long for Sylvie to get completely used to having you inside her. Her breathing is slow and measured, and even though her head is still down with her hair hanging across her face, she’s perfectly relaxed. Her half-sheathed cock alternates between stiffening and softening every few seconds, no doubt a confusing sensation for the overly horny girl, but it never stops drooling that transparent cum from the tip.");
+	output("\n\nShe moans at length when you start rubbing against her a little faster, quietly at first and with growing fervor as your pace increases. Soon her relaxation is done for, but her concentration isn’t; she’s still focused entirely on the sensation of <i>you</i>, on what you’re doing to her, and what’s happening to her body. You keep up the persistent stroking in one spot until, finally, she can take no more and speaks.");
+	output("\n\n<i>“Oh god, I feel like I’m gonna cum but it never happens,”</i> she gasps, breathing unsteadily and flexing her hindquarters erratically. <i>“I feel so close..!”</i>");
+	output("\n\n<i>“Just relax and let it happen,”</i> you tell her, stroking her flank with your free hand. <i>“Just think only about cumming.”</i>");
+	output("\n\nTo her credit, Sylvie doesn’t complain and instead bows her head once more, her breath coming faster and faster until you can feel her beginning to clench down on you once more - and then, she’s rewarded for her patience.");
+	output("\n\nThe clear, sparkling pre-cum that’s been free-flowing from the end of her cock like a faucet since you began suddenly stops, the strand dangling from her dick dropping to the ground. For a moment, nothing happens - then with a deep, animalistic groan of whorish ecstasy, Sylvie cums all over the floor - one throbbing, pumped-out load at a time. Cream-white spunk begins to spurt from her cockhead, her body forcing it out after being subject to such tantalizing overstimulation.");
+	output("\n\nHer hips jerk and buck with your arm inside her, only succeeding in spurring herself further onwards into orgasm. You can feel her flex around you when she leans forward, as if trying to instinctively bury herself as deep in a mare as possible, but the satisfaction of completion never comes. Instead she tightens around you again and again, dropping load after load of pearly jizz while her balls quiver with no end in sight.");
+	output("\n\n<i>“Hhhnnnggh-! Nnnngh! Nnnnn!”</i> Sylvie grunts forcefully, flexing so hard with each release you can see her muscles rippling across her tauric body. <i>“Ohhhhhh, </i>GOD<i>. Steele, Steele, Steele,”</i> she pants happily, all but putty in your hands. <i>“Ooohhhh fuck yessss...”</i>");
+	output("\n\nYou could let her ride this out, or get some good-natured bullying in if you wanted...");
+	IncrementFlag("SYLVIE_PROSTATE_MILKED");
+
+	processTime(30);
+	pc.lust(10);
+	clearMenu();
+	//[SqueezeBalls] [Relax]
+	addButton(0,"SqueezeBalls",squeezeballsSylvie);
+	addButton(1,"Relax",relaxAndJizzFromProstateShitSylvie);
+}
+
+public function squeezeballsSylvie():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("You’re gonna make her cum <i>everything</i> she’s got in that low-hanging sack of hers. There must be gallons of warm jizz in those giant fucking balls, weighing the obscene orbs down. She’ll need juuuust a little help getting it out...");
+	output("\n\n<i>“Uuuhhhh! Uuuunnnnhhh! Oooohhh!”</i> Sylvie cries, pressing herself against the wall so hard you’re worried for a moment it might break, sending a ton of slow-orgasming moose rolling through the rooms. <i>“Oooohhhh, GOD!”</i>");
+	output("\n\nYou’ve hardly even given <i>one</i> of her quaking cumtanks a loving squeeze and she’s already giving you such a delicious reaction. If you get a better grip and squeeze these plump balls just a <i>little</i> harder...");
+	output("\n\nSylvie lets loose a crude, strained grunt through grit teeth that sounds more like the aggressive snort of a wild animal than anything else, followed by a massive spray of spunk that spatters against the ground so hard it splashes her legs. With a manipulative stroke of your fingers and another possessive squeeze, Sylvie makes a violent, wordless exclamation and loudly stamps a back hoof before letting loose her biggest load yet.");
+	output("\n\nHer fingers practically digging into the walls, you keep the massive moosegirl cumming like a fucking hose, squirting out huge, cock-straining blasts of cum that all but paint the floor below her and some of the wall in front of her too. Sylvie’s shaking legs slowly draw tighter and tighter together as she’s repeatedly pushed over the brink of ecstasy, giving herself over to her animalistic instincts.");
+	output("\n\n<i>“Wow, you are just a big ol’ stud that loves to cum, huh Sylvie?”</i> you murmur to the moosegirl cumming her overtaxed brains out. <i>“Look at how much of a mess you’re making.”</i>");
+	output("\n\nSylvie doesn’t hear you, too busy repainting the floor with massive ejaculations while grunting loudly. You start taking it a bit easier - best to leave room for the girl in her own head before this gets out of hand...");
+	output("\n\n<i>“Hnnnh-rrrrrgh! Nnnnngh! Oh, god,”</i> Sylvie pants, shaking her head from side to side. <i>“I think I’m- cuh-cumming-”</i>");
+	//go to merge
+	processTime(20);
+	clearMenu();
+	addButton(0,"Next",sylvieProstateStimEnd);
+}
+
+//[Relax]
+public function relaxAndJizzFromProstateShitSylvie():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("<i>“Just go with it,”</i> you murmur to her comfortingly, stroking her back. <i>“Let it roll over you.”</i>");
+	output("\n\n<i>“I- I- nnnfgh...”</i> Sylvie stutters, losing her way trying to get a sentence out. <i>“Oooooh...”</i>");
+	output("\n\nSomehow grasping your meaning, Sylvie’s bestial, almost tortured grunts of lust over her body’s utter betrayal slowly give way to softer, high-pitched moans of the joy of being taken for a ride. Helpless to do anything with the sensations but experience them, she takes a back seat and lets you milk her for all she’s worth. Each small stroke of your fingers across her prostate is accompanied by an almost melodic sigh of arousal, closely followed by a massive squirt of thick, creamy seed from her throbbing cock.");
+	output("\n\n<i>“Aaawwww god,”</i> Sylvie moans, leaning back and squeezing her nipples between thumb and forefinger. <i>“I can’t stooop...”</i>");
+	output("\n\nPure white seed fountains from her hanging cock, each ejaculation bringing her gradually closer to having busted a nut for minutes on end. You can’t help but feel a little jealous of the moaning moosegirl; it’s hard to imagine how long this must feel for her, orgasming with every passing second.");
+	output("\n\n<i>“Is that good, Sylvie?”</i> you ask lightly, giving her a nice rub across her bulging prostate. <i>“Squeezing out a day’s worth of jizz in a few minutes?”</i>");
+	output("\n\n<i>“Oh my god, it’s </i>so<i> good,”</i> she groans, nodding vigorously and beginning to clench down on you again. <i>“I think- I think I’m gonna cum for reallll-”</i>");
+	processTime(20);
+	clearMenu();
+	addButton(0,"Next",sylvieProstateStimEnd);
+}
+
+//merge relax/squeeze
+public function sylvieProstateStimEnd():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("With a cry of joyous release, Sylvie bucks once, twice, then flexes her hindquarters so hard your hand is immobilized. Her long, equine shaft suddenly hardens and inflates, swelling to its full size within moments, and the seed spouting from her tip begins to thicken as it surges outwards.");
+	output("\n\n<i>“Oh, god,”</i> Sylvie pants breathlessly, <i>“cumming, cumming, cumming-! [pc.name]!”</i>");
+	output("\n\nCrying your name, Sylvie pumps the rest of her huge stores of jizz right out onto the floor in a few gigantic loads, a veritable tsunami of warm, virile spunk flowing from her massive flare.");
+	output("\n\nBy the time Sylvie finishes cumming, you’ve slowly withdrawn your hand from her ass to give her the release of a real, unhindered orgasm just to cap things off. All you have now is a huge, moaning moosegirl still suffering the aftershocks of her incredible release, looking all but like she wants to keel over and fall asleep right there.");
+	output("\n\n<i>“Steeeeele,”</i> she moans, tipping to one side before turning to face you. <i>“Oh my g- mmmnnf-”</i>");
+	output("\n\nShe grabs you and kisses you so forcefully you think she might swallow your tongue. She doesn’t let you shrink back, either, suddenly fiercely possessive of you and your ability to make her cum for minutes on end. In retrospect, you guess that makes a lot of sense.");
+	output("\n\n<i>“You’re like an artist,”</i> Sylvie pants when she finally pulls back, drooling down her chin and onto her tits. <i>“And I’m just the canvas... that was amazing.”</i>");
+	output("\n\n<i>“It looked like you were having a lot of fun,”</i> you say, smiling. <i>“Do you want to go have a bath?”</i>");
+	output("\n\n<i>“What I want to do is carry you to bed and go to sleep wrapped around you,”</i> she admits, looking you up and down, <i>“but a nice, warm bath could be nice too...”</i>");
+	output("\n\n<i>“No reason we can’t do both,”</i> you say, leaning forward and kissing her before taking her hand.");
+	output("\n\nYou lead the drained ‘taur-girl to the water and watch her happily sink into its depths, sighing in satisfaction. Joining her in the bath, you soap her up and wash her down, getting all the hard-to-reach places for the tired girl. By the time you finish, she’s practically swaying on her feet with sleepiness, and you find yourself having to gently guide her back to the room so she can take a nap.");
+	output("\n\nNaked and sparkling clean, Sylvie collapses onto the bed and is out like a light. After sharing in her incredible little experience, you’d like to be there for her when she wakes up; you clamber around the gently snoring moosegirl’s entanglement of limbs and wrap your arm around her back to take a quick break.");
+	processTime(15);
+	clearMenu();
+	addButton(0,"Next",sylvieProstateStimEndEnd);
+}
+public function sylvieProstateStimEndEnd():void
+{
+	clearOutput();
+	showSylvie(true);
+	author("Wsan");
+	output("She’s only asleep for maybe half an hour when her eyelids flutter, her eyes opening to gaze at your face for a few seconds before recognition dawns on her.");
+	output("\n\n<i>“Oh my gooosh,”</i> she fawns, catching you in a hug against her bountiful bosom. <i>“You just skyrocketed to the top of my list. Wow. I’m gonna have to teach </i>everyone<i> I know about this.”</i>");
+	output("\n\nYou can already envision a not-so-distant future of Kally and Sylvie taking turns milking each other for gallons and gallons. Rubbing up against you with affection, Sylvie gets herself dressed - making sure to give you a nice show as she works her clothes on, smiling the whole time - and gets ready to go back to work. Right before she leaves, she gives you a kiss.");
+	output("\n\n<i>“Make sure you come back soon, got it?”</i> she tells you, looking at you meaningfully. <i>“I want to see a </i>lot<i> more of you around.”</i>");
+	output("\n\n<i>“Sure thing,”</i> you say with a grin. <i>“Couldn’t leave my favorite moosegirl all alone out here.”</i>");
+	output("\n\n<i>“You better not!”</i> she huffs, then grins. <i>“Okay. I’d better get back to work, there’re probably petty criminals out there who need a good dicking to set them right.”</i>");
+	output("\n\n<i>“I didn’t know you were a petty criminal,”</i> you reply innocently.");
+	output("\n\nShe sticks out her tongue and blows a raspberry as she leaves. Not even a second goes by before she pops her head back in the door and points at you. <i>“Soon!”</i>");
+	output("\n\nThen she’s gone. You pity the next fool she comes across in the line of duty.");
+	processTime(30);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Steele is a Horsecock Fuckpuppet
+//By QuestyRobo
+//Requires Sylvie to have a horse dingus, and at least the initial meeting between Kiro and Kally done.
+//Requires you to have a pussy or be a Buttslut (with the perk).
+//scene triggers when you Hug Sylvie while she's drunk and DtF, if you meet the requirements.
+//Adds to the end of Hug, if requirements are met
+public function horsecockFuckpuppetProc():void
+{
+	showSylvieAndKally();
+	author("QuestyRobo");
+	output("\n\nYou hear a loud rumbling, like glasses tumbling around wildly. Indeed you look behind you and see Kally struggling to not drop a plate of empty beer mugs, her horse dick brazenly erect, unable to be contained by her mere skirt. Sylvie chuckles drunkedly as Kally barely gets herself together, no doubt blushing under her dusky fur as her eyes, and cock turn toward you.");
+	output("\n\n<i>“She was shooting us a real nice look, before she started tumbling. Oh, let’s invite her over for some fun! Pretty pleeeeease?”</i>");
+	clearMenu();
+	addButton(0,"Invite",inviteKallyOverForTripleHorsemeat,undefined,"Invite","Call Kally over for some fun. Who knows where it might lead!");
+	addButton(1,"Nah",noFunsiesSylvie);
+}
+
+public function noFunsiesSylvie():void
+{
+	clearOutput();
+	showSylvie();
+	author("QuestyRobo");
+	output("Sylvie pouts, momentarily put out.");
+	sylvieMenu();
+}
+
+public function inviteKallyOverForTripleHorsemeat():void
+{
+	clearOutput();
+	showSylvieAndKallyAndKiro();
+	author("QuestyRobo");
+	output("Being ");
+	if(pc.isDrunk() || pc.isSmashed()) output("more composed about your inebriated state");
+	else output("sober");
+	output(", you try and keep it subtle, raising your hand like you’re ordering another round of drinks. Sylvie, being off her fucking rocker drunk, yells out at the top of her lungs. <i>“Kallllly! Bring that sweet dick over here so we can have a taste!”</i>");
+	output("\n\nKally’s probably a fur-coated tomato by this point, but she shuffles over anyway. She glares at Sylvie with a look somewhere between “I’m going to strangle you” and “I’m going to make you choke on my dick”.");
+	output("\n\n<i>“Syviiiiiiiiiiiiiiiiiie!”</i> Kally quietly screams out between gritted teeth.");
+	output("\n\n<i>“Sorry Kally, I’ve just got this thing about big ol’ horsey dicks ever since I got one of my own, and you had yours just hanging there.”</i>");
+	output("\n\n<i>“Only since you got one of your own?”</i> you chide.");
+	output("\n\n<i>“Well, more of a one than before.”</i> She trails off dreamily as her massive mare meat throbs against her underside. Kally’s stallion is equally straining, as if the two are having a competition to see which one can drain more blood from their owners.");
+	output("\n\nThe two have almost entirely lost focus as they ogle eachother’s equipment. It’s a regular horse-cock house party here, and if the person coming towards you is who you think it is, it’s about to get even bigger.");
+
+	//Kiro and Kally sitting in a tree F U C K I N G:
+	if(kiroKallyThreesomes() > 0) 
+	{
+		output("\n\nSuddenly Kiro comes up and grabs Kally from behind, fondling her sister’s rock-hard cock while threading her own erection under her quaking sack. <i>“Guess who?”</i>");
+		output("\n\nKally starts to moan out, only to be silenced as Kiro locks lips with her. Sylvie almost drools while she looks over the incestuous pair, cursing under her breath that she can’t reach her own cock to relieve the pent-up pressure.");
+		output("\n\nThe ‘nukis part lips, Kally stammering out between moans of pleasure. <i>“K-Kiro please! I-I-I’m gonna cuuuuuum!”</i> Indeed, Kally’s cock is ");
+		if(kally.cumQ() < 8000) output("dribbling pre-cum liberally, slicking her feet and the floor in a thin puddle of nuki-horse cum.");
+		else if(kally.cumQ() < 16000) output("shooting huge gobs of pre onto the floor in front of her.");
+		else output("lancing huge sprays of intoxicating seed, several feet in front of her. <i>“C-cum sooooooo much...”</i>");
+
+		output("\n\nShe looks like she’s about to blow, right before Kiro pulls away from her with a flourish. Kally drops to her knees, trying desperately to resist touching herself while Kiro saunters over to Sylvie.");
+	}
+	else
+	{
+		output("\n\nIndeed, Kiro barges her way in between the two ready-to-rut girls. Her own bestial meat is shamelessly snaked up her dress, the head flaring between her tits, and her balls are swollen enough to be clearly visible beneath it.");
+		output("\n\n<i>“Looks like you’re having some fun over here. Mind if I join in?”</i>");
+		output("\n\nKally struggles to speak out in protest at having her sister expose herself in front of the whole bar, but Sylvie seems to feel the exact opposite. <i>“Go right ahead, cutie. The more the merrier!”</i>");
+		output("\n\nKally shakes her head rapidly, still too shocked to speak properly. Kiro doesn’t care, though. <i>“Great!”</i> She lifts up her dress and lets her own flared meat fall into view.");
+		output("\n\nSylvie coos while Kally recoils in embarrassment, actually falling back onto her cushy butt.");
+		output("\n\n<i>“Come on sis, I see your dick every time I come in here. I’m just returning the favor.”</i> She’s joking around, though, there’s some kind of tension between the two that you could cut with a knife. Before it gets more awkward, Kiro turns to Sylvie and focuses on her.");
+	}
+
+	//first:
+	if(flags["CANADIA_TRIPLE_HORSED"] == undefined)
+	{
+		output("\n\nSylvie snaps out of her stupor as Kiro approaches. <i>“Mhmmm, you’re just as bad as she said you were.”</i>");
+		output("\n\n<i>“You’ve heard of me?”</i>");
+		output("\n\n<i>“Bits and pieces from Kally. She might have let slip that you’ve been... naughty before.”</i> Kiro gulps as Sylvie steps toward her. <i>“Mhmmm, don’t worry, I won’t say anything. But if you do anything bad, I might have to break out the cuffs, and ‘discipline’ you.”</i> The moose-taur looms over Kiro, making sure to emphasize her own colossal cock. Kiro’s look is somewhere between excitement and terror; the usual reaction to a hung taur talking about plowing you. Before that can go any further, Kally gets up and interrupts.");
+	}
+	//Repeat
+	else
+	{
+		output("\n\nSylvie smiles as the familiar felon approaches her. <i>“I knew you couldn’t resist coming back.”</i>");
+		output("\n\n<i>“What can I say officer, your... authority is just hard to resist.”</i> Kiro says, staring directly at Sylvie’s rock-hard member. Sylvie is equally entranced with Kiro’s horse boner. You feel like one of them’s about to get on their knees and start sucking, before Kally gets up from the floor and interrupts.");
+	}
+	output("\n\n<i>“Guys, can we take this somewhere else?”</i> She points you in the onlooking crowd, embarrassed, and far more aroused than she’d like to be.");
+	output("\n\nKiro finally takes notice of you. She comes up and wraps herself around you, lavishing your body in sesual attention while her hermhood throbs hotly agaist your leg. <i>“What do you say angel? There’s three, fat, throbbing, drooling horse cocks looking for holes to fill. Think you can take all of them?”</i>");
+	output("\n\nIt’s a daunting proposal to say the least. <i>Are</i> you up to it?");
+	processTime(20);
+	pc.lust(20);
+
+	clearMenu();
+	if(pc.isPregnant()) addDisabledButton(0,"Gangbang","Gangbang","This would be unsafe given your current, pregnant state.");
+	else if(!pc.hasVagina()) addDisabledButton(0,"Gangbang","Gangbang","You don’t even have a pussy!");
+	else addButton(0,"Gangbang",tripleHorseingIntro,false,"Gangbang","You’ve always wondered what it’d be like to be a horse’s onahole.");
+	if(pc.hasPerk("Buttslut")) addButton(1,"UpTheAss",tripleHorseingIntro,true,"UpTheAss","Let’s take this in a different direction.");
+	else addDisabledButton(1,"UpTheAss","Up The Ass","You’d need to be a <i>special</i> kind of butt slut to even consider this.");
+	addButton(3,"Nope",turnDownATripleHorsing,undefined,"Nevermind","You enjoy your organs far too much to do this.")
+}
+
+//Nope
+public function turnDownATripleHorsing():void
+{
+	clearOutput();
+	showSylvieAndKallyAndKiro();
+	author("QuestyRobo");
+	output("You politely decline, causing a collective sigh of disappointment to ring out from the three girls. ");
+	//Kiro and Kally fucking:
+	if(kiroKallyThreesomes() > 0) 
+	{
+		output("Kiro shrugs and walks back over to Kally and Sylvie, putting her arms around each of their shoulders. <i>“Looks like we’re making our own fun, girls. Don’t worry sis, I’ll drain <b>those</b> personally.”</i> She says, pointing at Kally’s massively swollen nuts. The two coo as Kiro leads them off, blatantly displaying them like a pair of first-place trophies.");
+		output("\n\n<i>“Catch you later, Angel.”</i>");
+	}
+	else
+	{
+		output("\n\nBefore anyone else can say anything, Sylvie hoists Kally up and starts carrying her off. <i>“Don’t worry, I’ll get you taken care of.”</i> Kally struggles slightly, but eventually goes limp in the moose-taurs arms, getting carried away to sexy times unknown.");
+		output("\n\n<i>“Welp, I got things to do, myself. Catch you later, Angel.”</i> Kiro dismounts herself from you, her cock still fully erect. Strangely, she seems to be following Sylvie. You wonder why.");
+	}
+	output("\n\nWith that, you’re left to your own devices, as well as the snickering, whispering crowd that still seems attentive to you, at least for a few minutes. When everything dies down, you go back to your business.");
+	//Disable all 3 for an hour!
+	pc.createStatusEffect("SYLVIE WORKING");
+	pc.setStatusMinutes("SYLVIE WORKING",60);
+	pc.createStatusEffect("KIRO_TEMP_DISABLED");
+	pc.setStatusMinutes("KIRO_TEMP_DISABLED",60);
+	pc.createStatusEffect("Kally Cummed Out");
+	pc.setStatusMinutes("Kally Cummed Out",60);
+
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function showSylvieAndKally(nude:Boolean = false):void
+{
+	showBust(sylvieBustString(nude),kallyBustString(nude));
+	showName("SYLVIE\n& KALLY");
+}
+public function showSylvieAndKallyAndKiro(nude:Boolean = false):void
+{
+	showBust(sylvieBustString(nude),kallyBustString(nude),kiroBustDisplay(nude));
+	showName("SYLVIE\n& KALLY & KIRO");
+}
+
+//Either Option
+public function tripleHorseingIntro(upAss:Boolean = false):void
+{
+	clearOutput();
+	showSylvieAndKallyAndKiro(true);
+	author("QuestyRobo");
+	var x:int = 0;
+	if(pc.totalVaginas() > 1) x = pc.smallestVaginaIndex();
+	if(!upAss) output("You feel [pc.oneVagina] squeeze in on itself. Whether it’s in anticipation or fear is beyond you at this point. All you need to know is that there’s a trio of horse-cocks in front of you, and you’ve got enough ready holes for each of them!");
+	else output("The idea of taking one massive horse cock in your ass would give any normal person pause. The idea of taking two would make them quake in their boots. You’re not normal people though, not anymore. Your [pc.ass] was made to take cocks! Little cocks, big cocks, multiple cocks, all the cocks!");
+	output(" You grab Kiro’s hefty meat and give it a quick jerk, signaling your approval without a single word.");
+
+	output("\n\n<i>“Oooh, feeling feisty today, angel? Good.”</i> She returns the favor by grabbing your [pc.ass]. <i>“Because you’re gonna need a <b>lot</b> of energy for what’s coming up. Come on, girls!”</i> she yells out as she tightens her grip and uses it to lead you into the baths, the other two following closely behind.");
+	//currentLocation = Baths
+	currentLocation = "CANADA7";
+	generateMap();
+	output("\n\nWhen you get there, Kiro finds the closest, sturdiest looking bench and tosses you onto it, ass up. ");
+	if(!pc.isCrotchExposed() && !pc.isAssExposed()) output("You take the opportunity to strip yourself of all those pesky clothes you were wearing, tossing them off to the side, where they won’t get dirty. ");
+	output("The horse-equipped trio surround you, puzzling out exactly what to do with you.");
+	if(upAss && !pc.hasVagina()) 
+	{
+		output("\n\nKally pauses as she realizes something. <i>“Hey, there’s three of us, but [pc.name] only has two holes.”</i>");
+		output("\n\n<i>“Don’t worry sis, [pc.name] is a top class slut. I’m sure [pc.heShe] knows what [pc.heShe]’s doing.”</i> Indeed you do. You spread your [pc.asshole] with one hand, and point toward Kiro and Sylvie with the other, crooking your finger to lead them into your ass.");
+		output("\n\n<i>“See?”</i>");
+		if(flags["CANADIA_TRIPLE_HORSED_ANAL"] == undefined)
+		{
+			output("\n\n<i>“T-that’s crazy!”</i>");
+			output("\n\n<i>“Just trust [pc.himHer], sis. [pc.HeShe]’ll be fine.”</i> Kally still looks worried, but seems to be going along with it, now. Sylvie, on the other hand, seems excited at the prospect of really stretching you out.");
+		}
+		else output("\n\n<i>“Again? Jeez, you’re really addicted to doing this, aren’t you? You nod excitedly, eagerly waiting for them to start.");
+	}
+	else if(upAss)
+	{
+		output("\n\nKiro moans out as she grabs her cock. <i>“Aw yeah. I don’t get into good double penetration sessions often enough. Let’s start getting you ready he-”</i> she starts reaching for your [pc.pussy] and you wag your finger at her before she finishes. Your girly bits are going to wait, this time. You spread your [pc.asshole] with one hand, and point toward Kiro and Sylvie with the other, crooking your finger to lead them into your ass.");
+		if(flags["CANADIA_TRIPLE_HORSED_ANAL"] == undefined) 
+		{
+			output("\n\nKiro coos in pleased surprise, but Kally is worried. <i>“Wait, two up your ass? T-that’s crazy!”</i>");
+			output("\n\n<i>“Just trust [pc.himHer], sis. [pc.HeShe]’ll be fine.”</i> Kally still looks worried, but seems to be going along with it, now. Sylvie, on the other hand, seems excited at the prospect of really stretching you out.");
+		}
+		else output("\n\n<i>“Ever the buttslut, aren’t you, angel?”</i> You nod eagerly in agreement, causing the three to cheer eagerly.");
+	}
+	else
+	{
+		output("\n\nKiro walks up to you and sticks one of her fingers into your [pc.pussy], really digging it in, in order to get a good grasp of your capacity. <i>“");
+		if(pc.wetness() < 3) output("Mmmm, gonna need extra lube for you.");
+		else if(pc.wetness() < 5) output("Good wetness down here, angel. I love to see that from my sluts.");
+		else output("Woah, now that’s a gusher. You want me to grab a few guys from the bar to help out down there? Who am I kidding; I want this all to myself.");
+		output("”</i> She pulls out, satisfied with her findings.");
+		output("\n\n<i>“I call pussy!”</i> she yells out.");
+	}
+	output("\n\n<i>“Alright sluts, gather around for some lube.”</i> Kiro pulls out a huge bottle of her favorite elasticizing lube. From where, you have no idea. ");
+	if(kiroKallyThreesomes() > 0) 
+	{
+		output("She personally administers the lubricant, squirting out huge flows into her hands and vigorously jerking off both Sylvie and Kally.");
+		output("\n\nSylvie groans out. <i>“Ooooh, you’re such a dear! Mhnf, I wish I could reach down theeeeere.”</i>");
+		output("\n\nKally almost seems to be competing with Sylvie in how much she can get off from Kiro’s ministrations. <i>“Kiroooooooo, why are your hands so gooooood?”</i>");
+		output("\n\n <i>“Lots of practice, sis. Maybe you should help me out one of these days?”</i>");
+		output("\n\n<i>“Yesyesyesyesyeeeeeeeeeeeeeeeees!”</i> Kally’s eyes starts to cross as her cock ");
+		if(kally.cumQ() < 8000) output("dribbles");
+		else if(kally.cumQ() < 16000) output("drools");
+		else output("spews");
+		output(" pre-cum. Kiro seems to think that’s enough lube for both of them, and starts to get herself ready. Instead of just using the lube, she plants her dick against her sister’s soaking up the pre that she’s leaking. ");
+		if(kally.cumQ() < 8000) output("Of course it’s not enough to get her fully ready, and she squirts another volley onto her’s and Kally’s members.");
+		else if(kally.cumQ() < 16000) output("Kally’s enhanced production provides ample lube, but not quite enough for Kiro’s mammoth member. She squirts another round onto their twined meat.");
+		else 
+		{
+			output("Kally’s production is utterly obscene at this point. In a only a few seconds, she manages to squirt out enough pre to fully cover Kiro’s cock, <i>and</i> give her own a second coating.");
+			output("\n\n<i>“Proud of you,”</i> Kiro declares as her sisters pre overflows their stacked sticks.");
+		}
+		output(" She pulls away, leaving the chubbier ‘nuki panting like the pent-up whore she is. <i>“Don’t blow your top yet, Kally. [pc.name] needs [pc.hisHer] treat.”</i> Kally nods and settles down before turning to you.");
+	}
+	else
+	{
+		output("\n\nShe gets to work immediately on Sylvie, squirting out a huge gout of lube onto her tauric member, and jerking her vigorously.");
+		output("\n\n<i>“Ooooooh, you’re such a dear. Mhnf! I wish I could reach down theeeeeere!”</i>");
+		output("\n\nKally looks embarrassed, and aroused at watching her sister jerk off a massively hung taur. She starts to mindlessly jerk herself off, but quickly returns to some kind of sense as she remembers the point to all of this.");
+		output("\n\n<i>“H-hey, toss me some of that lube.”</i> Kiro does so with one hand, not even losing a stroke on Sylvie as she tosses the bottle of lube at her sister. Kally barely manages to get her hands off her cock in time to catch it. She squeezes a streak out on her member, and moans out as she renews her strokes.");
+		output("\n\nSylvie’s beast member starts drooling pre-cum, drawing a big grin out of Kiro. She takes her other hand and scoops up the musky mixture of pre and lube. She brings it up to her nose for a quick sniff that causes the degenerate delinquent to shudder. After licking her lips, she rams her hand down her shaft to her base, vigorously working herself, and Sylvie over.");
+		output("\n\nThe three seem to be reaching a fever-pitch before Kiro manages to yank herself off herself and Sylvie, and then calms Kally down.");
+		output("\n\n<i>“C-come on sis’, save it for [pc.name]!”</i>");
+		output("\n\nKally gasp and nods as she drags herself off her cock and turns to you.");
+	}
+	output("\n\n<i>“I guess I better rear up first.”</i> Sylvie walks up and plants herself above you, her fat moose cock planted right up against your [pc.anus]. Kiro steps up behind her, while Kally works around to your front.");
+
+	output("\n\n<i>“Mhmm, nice view back here.”</i> Kiro plants a kiss on Sylvie’s sweltering taur-pussy, drawing a moan out from her.");
+
+	output("\n\n<i>“Same over here.”</i> Kally grabs the moose-taur’s massive tits and starts manhandling them.");
+	output("\n\nSylvie cries out. <i>“A-ahh, appreciate the compliments, but shouldn’t we be focusing on [pc.name]?”</i>");
+	output("\n\n<i>“Why not both?”</i> Kiro lines up her cock ");
+	if(!upAss) output("with your [pc.pussy " + x + "]");
+	else output("alongside Sylvie’s");
+	output(", while at the same time diving deeper into Sylvie’s cunt. Kally follows suit and brings her beast cock in line with your face.");
+
+	output("\n\n<i>“Hope you’re ready, sugar, cause I don’t think I can hold my hips back after all of this.”</i> You’re as ready as you’ll ever be, not like saying otherwise would mean anything at this point. The trio line up, pull back, and thrust in.");
+	output("\n\nIt’s an almost transcendental experience, having three giant futa cocks spear you at the same time. Your body feels like a machine made for pleasure; the way their cocks throb in joy, the way they cry out in sheer bliss as they stretch you beyond reason, it all jolts something deep inside you that says <i>“this is right.”</i>");
+	if(!upAss) 
+	{
+		pc.buttChange(sylvieCockVolume())
+		pc.cuntChange(x,kiro.cockVolume(0));
+	}
+	else pc.buttChange(sylvieCockVolume() + kiro.cockVolume(0));
+	output("\n\n<i>“Uuuugh! So fucking tight! Stars, I feel you down there, Kiro. [pc.name] is so nice letting us both in, isn’t [pc.heShe]?”</i>");
+	output("\n\nKiro responds, but with her face buried in moose-muff, all that any of you hear is gibberish, undercut with pleasure. You feel her cock throbbing even harder inside you, spurred to even greater hardness and size by the avalanche of pheromones she’s buried herself in.");
+	output("\n\nKally moans out in front of you as she slides inch after inch down your throat. ");
+	if(pc.canDeepthroat()) output("You take each one like a champ, even flexing your throat in such a way that it draws the horny bartender in faster.");
+	else output("Each one is a struggle, but it’s a struggle that you’re willing to make.");
+	output(" She bottoms out, pushing your face into her fuzzy crotch, and letting you feel her throbbing sack on your chin.");
+	output("\n\n<i>“Ooooooh, your throat is so goood, [pc.name]! D-don’t want to cum yet. Just give me a minute.”</i>");
+	output("\n\nSylvie doesn’t seem to be listening, as she pulls Kally into a deep kiss, pressing their fat tits against each other.");
+
+	output("\n\nThe action on your lower half has been pretty slow so far. They’ve mostly been sitting there, throbbing and spurting pre inside you, while they wait for you to adjust. Kiro breaks that calm in feral fashion. The pheromone-soaked kui-tan drags her head out of Sylvie’s drooling cunt just enough to yell out like a mad woman. As she does that, she yanks her beasthood out of you, to the tip, and rams it back in with all her might.");
+
+	if(upAss) 
+	{
+		output("\n\nBeing in the same hole, Sylvie’s cock gets dragged along with Kiro’s, the moosey mountie spurred to movement whether she likes it or not. She pops off of Kally’s lips when she feels the disturbance.");
+		output("\n\n<i>“H-hey, remember who you’re in there with! I guess we’re off to the races now. Hope you’re ready!”</i>");
+	}
+	else
+	{
+		output("\n\nSylvie dislodges from Kally and groans out when Kiro moves, feeling their cocks rub together through your thin inner walls. Hell, it’s making you go almost crazy.");
+		output("\n\n<i>“Unf, getting started now? Alright. Hope you’re ready, [pc.name]!”</i>");
+	}
+	output("\n\nSylvie follows Kiro’s lead, thrusting <i>deep</i> inside of you, causing your gut to bow out to near bursting. She has some trouble syncing up with Kiro’s ravenous pace, but she works it out. You groan around Kally’s fat, throat-stuffing dick, your eyes crossing in pleasure as your body feels like it’s overheating.");
+	output("\n\nYou cum immediately,");
+	if(pc.hasCock()) 
+	{
+		output(" your [pc.cocks] limply soaking the bench under you, and");
+	}
+	output(" your ass ");
+	if(pc.hasVagina()) output("and [pc.vaginas] ");
+	output("squeezing down on the invading horse members as hard as your muscles will allow. This doesn’t seem to even slow the two down. Between Kiro’s pheromone-induced rut and Sylvie’s tauric strength, they batter down your resistance before it can even begin.");
+
+	output("\n\nYou feel another orgasm trailing right on the heels of the first one. ");
+	if(upAss) 
+	{
+		output("You welcome it with open arms, embracing the mindless anal pounding. This is <i>exactly</i> what you’ve wanted ever since ");
+		if(pc.hasPerk("Buttslut")) output("that wonderful trip into the buttslutinator");
+		else output("you learned the <i>truth</i> about what your ass is for");
+		output(". Your body and mind were molded just for this, and you gleefully sink into your destined role as a mindless cumdump.");
+	}
+	else output("You try and hold it back, to retain some ounce of sanity and not just be reduced to a horse-cock fuckpuppet, but nothing can close the floodgates now that they’ve been so thoroughly ripped open.");
+	output(" You cum again, and again, and again, every muscle in your body going slack, and every neuron in your brain frying with pleasure.");
+
+	output("\n\nKally, spurred on by the sheer energy of the other two, as well as your dopey, cross-eyed stare as you choke on her cock, gets moving again. She groans heavily in effort as she rears back and slams herself into your throat. Her weighty balls slam against your chin as she bottoms out again. With how fucked-out your body is, there’s no resistance for her to break through. Her strokes are interrupted, though, when Sylvie grabs the chubby ‘nuki, and presses her into a tight hug.");
+	output("\n\nThe rutting taur is barely holding it together at this point. Kiro’s frantic feasting on her animalistic womanhood is loud enough to echo throughout the baths, and her thrusts have grown nearly as desperate as Kiro’s. Even with her speed, you can feel her throbbing <i>hard</i>. She’s almost there, and both of you know it.");
+	output("\n\n<i>“Uuugh. Sorry girls, looks like I’m going f-fiiiiiiRRRST!”</i> Her thrusts stop and her cock bloats. She yanks Kally even further in, pulling her into a deep kiss. Kiro doesn’t stop though, not even when massive gouts of moose-taur cum come rushing through Sylvie’s urethra. The tightness of the two titanic pieces of meat means that Kiro’s thrusts actually compresses Slyvie’s cumvein enough to keep her orgasm from fully blooming.");
+	output("\n\nShe pulls away from Kally again, leaving the overwhelmed nuki hanging limply, aside from her thrusting hips. <i>“Kiro pleeeeeeeeease! I need to cum!”</i> Despite the blockage on her male half, from the sounds of it, her female half is cumming along nicely. Kiro almost chokes as a rush of girl cum shoots down Sylvie’s passage, soaking the desperate ‘nuki, and causing her to finally take her head out of the mountie’s ass.");
+	output("\n\n<i>“Oooooooooh fuck, Sylvie! I could drown in this stuff back here.”</i>");
+	output("\n\n<i>“Glad you l-li-UUUUGHH!”</i> Her sentence is interrupted when the pressure on her urethra finally overwhelms the tightness of your insides. Moose cum blasts into your bowels");
+	output(", stretching your [pc.belly] into a gravid dome.");
+
+	output("\n\n<i>“Blowing already, big girl?”</i>");
+	output("\n\n<i>“...Sorry. I think I can keep going.”</i>");
+	output("\n\n<i>“Maybe you can...”</i> Kiro mutters. You soon find out why, when the two start thrusting again. Kiro’s balls feel like two beach balls slapping against your [pc.ass]. They quake and throb hotly, so delightfully overstuffed with her musky cum that the skin has gone completely taut.");
+	output("\n\nYou quickly realize that Kally is in the same position. Her balls are the size of pumpkins, and slowly growing by the second. Her thrusts have grown even more frantic, barely even bothering to bottom out anymore. When she’s not smooching Sylvie, she huffing and moaning and groaning like a complete slut. Her copious pre is starting to tinge with her signature alcoholic flavor, causing your already light head to swim even more.");
+	output("\n\nThe three finally seem to be at their limit. The small, sexual enclave that your orgy has created is sweltering and sweaty, everyone inside well worn and ready to blow. Sylvie’s already cum once, so she’s far too sensitive to keep going for too long on round two. Kiro’s balls are so big that she has to fan her legs all the way out, and she likely won’t be able to walk, or thrust if she goes on too much longer. Kally is just at the end of her rope, barely even conscious at this point.");
+	output("\n\n<i>“F-f-fuuuuuck! I can’t take it anymore, angel.”</i> Kiro bottoms out as quickly as she can. <i>“Cuuuuuming!”</i> As soon as she says that, everyone cries out in unison, joining her.");
+	output("\n\nYou fill out like a balloon attached to a fire hose, reaching limits of fullness that you never thought were possible. The three over-productive skanks make sure that every single inch of space inside of you is filled with their essence, before pulling out. It should hurt, or at least feel strange, but you’re stuffed with so much of Kally’s intoxicating brew, that you can’t feel anything but absolute pleasure.");
+
+	output("\n\nThe three absolutely baste you in their fluids, the excess running off into a pool beneath the bench. ");
+	if(kally.cumQ() >= 16000) output("Kally absolutely steals the show, though. The virility drugs she’s been taking have turned her into a one-nuki tsunami. Kiro and Sylvie look on in awe as she outpaces both of them put together. Kally herself is far too engrossed in it to really notice. Her eyes are completely screwed up into her head, and her mouth hangs open in silent bliss. ");
+	output("They all eventually run dry, limply falling to the ground in various states of exhaustion. You yourself are completely immobilized on the bench, looking like a galotian that just got done being the center of a kui-tan gangbang. Which isn’t really far from the truth.");
+	output("\n\n<i>“That... was... amazing!”</i> Kiro exhaustedly cries out, to weary, but enthusiastic cheers from the rest of you.");
+	output("\n\nKally rouses from her stupor. <i>“I-I’m gonna g-get this cleaned up. Sylvie, could you be a de");
+	if(!silly) output("a");
+	else output("e");
+	output("r and get [pc.name] cleaned up? You can pop [pc.himHer] in my room when you’re done.”</i>");
+	output("\n\nSylvie complies, picking up your well-used form and taking you off. Unfortunately, the feeling of gallons of hot fluid sloshing around inside of you as you’re moved is enough to finally take you down, and you pass out on Sylvie’s back.");
+	processTime(35);
+	var cummies:Number = 13+rand(5);
+	for (var y:int = 0; y < cummies; y++) { pc.orgasm(); }
+	var sylviesLoad:PregnancyPlaceholder = sylviePP();
+	pc.loadInAss(sylviesLoad);
+	pc.loadInAss(sylviesLoad);
+	if(upAss) pc.loadInAss(kiro);
+	pc.loadInMouth(kally);
+	pc.applyCumSoaked();
+	if(upAss) IncrementFlag("CANADIA_TRIPLE_HORSED_ANAL")
+	else IncrementFlag("CANADIA_TRIPLE_HORSED");
+	clearMenu();
+	addButton(0,"Next",tripleHorseingOutro);
+}
+
+//[Next] //Three hours pass.
+public function tripleHorseingOutro():void
+{
+	clearOutput();
+	author("QuestyRobo");
+	showName("KALLY’S\nBEDROOM");
+	currentLocation = "CANADA8";
+	generateMap();
+	output("You wake up in Kally’s bedroom, cleaned up, but still stuffed full of nuki and taur cum. You’re also still tipsy from Kally’s copious cum, and the smell of it still wafts off of your skin. Still, you manage to get up and head down to the bar");
+	if(!pc.isNude()) output(" re-dressing yourself before leaving the room, of course");
+	output(". When you get down there, Kally, ");
+	
+	if(!sylvieInBar()) output("and Kiro");
+	else output("Kiro, and Sylvie");
+	//force Kiro to be new bar-girl:
+	flags["BAR_NPC"] = kiroSetup;
+	flags["BAR_NPC_TIMER"] = GetGameTimestamp();
+	output(" are still there, and each give you a sly look, as well as several of the bar patrons.");
+	output("\n\nIt might have gotten a little out of hand, but it doesn’t seem like anyone minded, least of all you.");
+	processTime(60*2+30);
+	//Kiro and Sylvie have shit to do :3
+	if(!pc.hasStatusEffect("SYLVIE WORKING")) 
+	{
+		pc.createStatusEffect("SYLVIE WORKING");
+		pc.setStatusMinutes("SYLVIE WORKING",260);
+	}
+	if(!pc.hasStatusEffect("KIRO_TEMP_DISABLED"))
+	{
+		pc.createStatusEffect("KIRO_TEMP_DISABLED");
+		pc.setStatusMinutes("KIRO_TEMP_DISABLED",240);
+	}
+	IncrementFlag("SEXED_SYLVIE");
+	//Count as a threesome IF they're already bangin'
+	if(kiroKallyThreesomes() > 0) kiroKallyThreesomes(1);
+	clearMenu();
+	addButton(0,"Next",move,"CANADA5");
+}
+

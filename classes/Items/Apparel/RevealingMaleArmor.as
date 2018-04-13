@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class RevealingMaleArmor extends ItemSlotClass
 	{
-		
+		//Level 6 (Common). Balance 2.0
 		public function RevealingMaleArmor() 
 		{
 			this._latestVersion = 1;
@@ -34,13 +34,13 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 3000;
+			this.basePrice = 3600;
 			this.attack = 0;
 			this.defense = 2;
 			this.shieldDefense = 0;
-			this.sexiness = 4;
+			this.sexiness = 6;
 			this.critBonus = 0;
-			this.evasion = 2;
+			this.evasion = 7;
 			this.fortification = 0;
 			
 			this.version = this._latestVersion;

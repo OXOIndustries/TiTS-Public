@@ -1,6 +1,8 @@
 ﻿//Potential Names:
 //A TamaniCorp Hora Series Dong Designer
 
+import classes.Items.Transformatives.DongDesigner;
+
 //Discovery
 public function cockBoxDiscoveryBlurb():Boolean
 {
@@ -22,7 +24,7 @@ public function investigateTheCockBox():void
 	clearOutput();
 	author("Fenoxo");
 	showName("STRANGE\nBOX");
-	showBust("");
+	showBust("DONG_DESIGNER");
 	output("You climb through the wasted machines and rust-scaled heaps to get a closer look, even going so far as to brush away the grit and grime that covers it. Lettering in luminescent paint declares it to be a TamaniCorp Dong Designer. What a find! These things are incredibly expensive, even in the core. You’ve seen them in less savory holos - they get installed in elite nightclubs or exclusive spas, particularly along the human/ausar border worlds where the two races mix.");
 	output("\n\nBedding an ausar lady? Punch a few buttons on a Dong Designer, stick your dick inside, and you’ll be knotting her in no time. Need something to properly scratch a kaithrit’s itch? Satisfaction is a button press away. About the only thing they can’t do is make you bigger - or smaller. And once you’ve had your fun, a return to normalcy is just a touch away.");
 	output("\n\nBut how the hell did one of these wind up out here, thrown away in a galactic trash heap? The caustic atmosphere hasn’t had time to corrode the metal, and the safety cover on the phallus input port should have kept the planet’s grime from mucking it up. It <i>looks</i> in good condition. The gauges all read good, save for power. All you’ve got to do is lug it back to the ship and plug it in.");
@@ -56,13 +58,74 @@ public function takeDatCockBawksCheck():void
 	addButton(0,"Next",mainGameMenu);
 }
 
+public function cockBoxInstallation():void
+{
+	clearOutput();
+	showBust("DONG_DESIGNER");
+	//Not in ship.
+	if(!InShipInterior())
+	{
+		showName("DONG\nDESIGNER");
+		output("You can’t make use of it without any power. Maybe take it back to your ship?");
+	}
+	//In ship
+	else
+	{
+		//No room - pending ship upgrade system
+		if(9999 == 0)
+		{
+			showName("DONG\nDESIGNER");
+			output("There’s not any room to install this in your ship. You’ll have to clear out some space if you want to try and put this baby to use.");
+		}
+		//Else
+		else
+		{
+			showName("\nUNINSTALLING...");
+			output("Now that you’ve got it on your ship, it’s time to plug in this Dong Designer thing and make sure it’s still in working order. Finding a clear spot with good access to a suitable power port takes a few minutes. You can’t just have it propped up anywhere, particularly if ");
+			if(pc.hasCock()) output("you’re gonna be sticking your dick in it.");
+			else output("someone is going to wind up sticking their dick in it.");
+			output(" Finally, you settle on a quiet corner. It’ll be a good home for it if it works and give you plenty of room to work on it if it doesn’t.");
+			output("\n\nThe original cable is long gone, but machines like this have used standardized power cabling for years. Moment of truth time. You plug it in.");
+			output("\n\n...And nothing happens.");
+			output("\n\nGrunting in irritation, you notice a button on the back and depress it. It gives way with a satisfyingly meaty click, and you hear the soft whine of long-dormant machinery coming to life. Flickering at first, a purple-tinted holoscreen projects above it at about chest height");
+			if(pc.tallness < 60 || pc.tallness >= 84) output(" for most galactic races");
+			output(", displaying a three-dimensional view of an astounding array of potential erections. It looks like it works!");
+			if(pc.characterClass != GLOBAL.CLASS_ENGINEER) output(" A good thing too. You didn’t exactly spend a lot of time learning about tech repair growing up.");
+			output("\n\nJust to be sure, you tap through the settings screen and summon up a self-diagnostic routine. A mechanical whirring rises from deep inside the box, the mechanical parts humming busily as they verify their integrity. It clicks a few times, and then displays a notification of full functionality.");
+			output("\n\n<b>You’ve installed a TamaniCorp Hora Series Dong Designer in your ship! You can access it from the storage menu.</b>");
+			
+			processTime(8);
+			flags["DONG_DESIGNER_INSTALLED"] = 1;
+			
+			pc.destroyItemByClass(DongDesigner);
+		}
+	}
+}
+public function cockBoxUninstallation():void
+{
+	clearOutput();
+	showBust("DONG_DESIGNER");
+	showName("\nUNINSTALLING...");
+	
+	output("You take some time to uninstall the dedicated dick-transforming device.");
+	output("\n\n<b>You no longer have the Dong Designer installed!</b>");
+	
+	processTime(12);
+	flags["DONG_DESIGNER_INSTALLED"] = undefined;
+	
+	//clearMenu();
+	//addButton(0, "Next", mainGameMenu);
+	output("\n\n");
+	quickLoot(new DongDesigner());
+}
+
 //Use the Cock Box!
 public function useInstalledDickBox():void
 {
 	clearOutput();
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
-	showBust("");
+	showBust("DONG_DESIGNER");
 	output("The Dong Designer is still plugged in and working where you left it. The holographic display is as obscene as ever, offering you a bevy of different reproductive organs. The scrolling lettering indicates that you need to insert your penis into the pink-rimmed opening to begin. A nearby lever allows you to adjust the height for comfort.");
 
 	//1 dick
@@ -104,7 +167,7 @@ public function useInstalledDickBox():void
 	//Build dis menu
 	for(var y:int = 0; y < pc.totalCocks(); y++)
 	{
-		output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[y].cockColor + " [pc.accurateCockName " + y + "]\n")
+		output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[y].cockColor + " [pc.accurateCockName " + y + "]\n");
 		if(pc.cocks[y].thickness() <= 4 && pc.cocks[y].cLength() <= 20) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}
@@ -114,6 +177,9 @@ public function useInstalledDickBox():void
 		if(pc.cocks[0].thickness() > 4 || pc.cocks[0].cLength() > 20) addDisabledButton(0,"Use","Use Dong Designer","Your [pc.cockNoun] is too big to fit in the hole.");
 		else addButton(0,"Yes",cockBoxUse,0,"Use Dong Designer","Yes, you will stick your dick in that box.");
 	}
+	
+	addButton(13, "Uninstall", cockBoxUninstallation, undefined, "Uninstall Device", "Unplug the machine and put it in your inventory.");
+	
 	if(InShipInterior()) addButton(14,"Back",shipStorageMenuRoot);
 	else addButton(14,"Leave",mainGameMenu);
 }
@@ -167,6 +233,7 @@ public function cockBoxMenu(x:int):void
 	if(flags["COCKBOX_UPGRADE"] != undefined)
 	{
 		cockList.push([GLOBAL.TYPE_VULPINE, "Vulpine", "Vulpine", "Get a tapered and knotted vulpine penis."]);
+		cockList.push([GLOBAL.TYPE_SWINE, "Swine", "Swine", "Get a corkscrew-shaped pig dick."]);
 		cockList.push([GLOBAL.TYPE_DEMONIC, "Demonic", "Demonic", "Get a knotted, nubby and sinister-looking penis."]);
 		cockList.push([GLOBAL.TYPE_TENTACLE, "Tentacle", "Tentacle", "Get a prehensile tentacle penis."]);
 		cockList.push([GLOBAL.TYPE_DRACONIC, "Draconic", "Draconic", "Get a tapered and knotted dragon penis."]);
@@ -389,7 +456,7 @@ public function dickBoxTF(args:Array):void
 		output("\n\nOnce your body finishes attempting to impregnate the device, you slip your [pc.cumNoun]-soaked prick free. It looks exactly as promised minus the licentious paint job you’ve accidentally given it. Nothing a quick shower and a little time with a mop and bucket won’t fix...");
 		if(flags["DONG_DESIGNER_FLOODED"] != undefined) output("\n\nYou’re both disappointed and relieved that you didn’t wind up flooding the room this time - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility.");
 		//Shower!
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 		pc.shower();
 		IncrementFlag("DONG_DESIGNER_BACKWASHED");
 	}
@@ -401,8 +468,8 @@ public function dickBoxTF(args:Array):void
 		output("\n\nWhen you come down, you note the machine has a red hologram of a big-breasted kui-tan above it along with a warning not to use the device until it has been cleaned by a custodian. Fuck the machine - you’re going to need a shower.");
 		if(celiseIsCrew()) output(" Celise can handle this mess.");
 		else output(" You can take care of this mess after.");
-		applyCumSoaked(pc);
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
+		pc.applyCumSoaked();
 		pc.loadInMouth(pc);
 		pc.shower();
 		IncrementFlag("DONG_DESIGNER_FLOODED");
@@ -471,10 +538,10 @@ public function cockBoxDickDoublingHijinxII(args:Array):void
 		if(pc.cumQ() >= 5000)
 		{
 			output(" Although, puddle is hardly a fitting word for the lake you’ve created.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		if(celiseIsCrew()) output(" Celise will certainly be pleased.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	output("\n\n<i>“Thanks again for using Tamani-brand products in your INVALID FACILITY TYPE!”</i> The purple-haired harlot winks and blows a kiss down at you from above. <i>“Cum back soon!”</i> She flickers out of existence with a saucy, satisfied smile.");
 	output("\n\nIt’s hard to be mad at her after getting off like that, even when you pull out and find that <b>the dick you put into the machine has divided its mass into two smaller penises.</b> You could probably find someone on Novahome to help you get rid of the extra if you wanted.");

@@ -149,6 +149,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/sperm_multi.svg", mimeType = "image/svg")]
 		public static var Icon_Sperm_Multi:Class;
 		
+		[Embed(source = "../../assets/icons/statuseffects/spiderweb.svg", mimeType = "image/svg")]
+		public static var Icon_SpiderWeb:Class;
+		
 		[Embed(source = "../../assets/icons/statuseffects/unknown.svg", mimeType = "image/svg")]
 		public static var Icon_Unknown:Class;
 

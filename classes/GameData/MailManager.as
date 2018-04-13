@@ -114,6 +114,30 @@ package classes.GameData
 			}
 		}
 		
+		public static function deleteMailEntry(entryName:String):void
+		{
+			if (MailManager.ENTRIES[entryName] === undefined)
+			{
+				throw new Error("Mail entry '" + entryName + "' was not found in the datastore.");
+				return;
+			}
+			
+			//IDK IF ALL THIS IS REQUIRED BUT BETTER SAFE THAN SORRY
+			var bo:Object = MailManager.ENTRIES[entryName];
+			
+			bo.UnlockedTimestamp = undefined;
+			bo.ViewedTimestamp = undefined;
+			
+			if (bo.Content != null) bo.ContentCache = null;
+			if (bo.Subject != null) bo.SubjectCache = null;
+			if (bo.From != null) bo.FromCache = null;
+			if (bo.FromAddress != null) bo.FromAddressCache = null;
+			if (bo.To != null) bo.ToCache = null;
+			if (bo.ToAddress != null) bo.ToAddressCache = null;
+			
+			MailManager.ENTRIES[entryName] = undefined;
+		}
+		
 		public static function resetMails():void
 		{
 			// Reset entries back to a locked/unviewed state
@@ -153,8 +177,9 @@ package classes.GameData
 					d[k].UnlockedTimestamp = bo.UnlockedTimestamp;
 					
 					// If we have a function for a property, ensure we persist cached data.
-					if (bo.Content != null) d[k].ContentCache = bo.ContentCache;
-					if (bo.Subject != null) d[k].SubjectCache = bo.SubjectCache;
+					//if (bo.Content != null) 
+					d[k].ContentCache = bo.ContentCache;
+					d[k].SubjectCache = bo.SubjectCache;
 					if (bo.From != null) d[k].FromCache = bo.FromCache;
 					if (bo.FromAddress != null) d[k].FromAddressCache = bo.FromAddressCache;
 					if (bo.To != null) d[k].ToCache = bo.ToCache;

@@ -382,7 +382,7 @@ package classes.Items.Transformatives
 				}
 			}
 			
-			if (target.bRows() < 4 && target.hasFur() && (target.biggestTitSize(true) > 0 || target.hasVagina()) && target.createBreastRowUnlocked(1))
+			if (target.bRows() < 4 && target.hasFur() && (target.biggestTitSize(true) > 0 || target.hasVagina()) && target.createBreastRowUnlocked(target.bRows() + 1))
 			{ // if female or shemale, grow another row of nipples up to 4 total
 				options.push(function():*{
 					if (minSizeBreasts == 0)
@@ -590,6 +590,7 @@ package classes.Items.Transformatives
 					AddLogEvent("Your " + target.skin() + " starts to itch intensely, as a feeling of warmth quickly spreads across your inhuman skin. You barely have time to realize what is happening as <b>your " + target.skinFurScales() + " morphs to be replaced by regular human-like skin</b>.", "passive", target.statusEffectv4("Foxfire") - kGAMECLASS.GetGameTimestamp());
 				}
 				target.skinType = GLOBAL.SKIN_TYPE_SKIN;
+				target.clearSkinFlags();
 				
 				return false;
 			}

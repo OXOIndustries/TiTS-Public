@@ -18,6 +18,8 @@ package classes.Engine.Map
 			tLoc = kGAMECLASS.currentLocation;
 		}
 		
+		if(tLoc == "") return false;
+		
 		var tRoom:RoomClass = kGAMECLASS.rooms[tLoc];
 		return tRoom.hasFlag(GLOBAL.PUBLIC);
 	}

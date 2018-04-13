@@ -21,19 +21,26 @@ public function hasIllegalInput(sText:String = ""):Boolean
 	// Cheat codes check
 	if(chars["PC"].short.length >= 1)
 	{
+		var cheatFunc:Function = null;
 		switch(sText)
 		{
 			// Gameplay/Debug
-			case "furfag": eventQueue.push(Cheats.infiniteItemUse); break;
-			case "idclev": eventQueue.push(Cheats.RoomTeleport); break;
-			case "marcopolo": eventQueue.push(Cheats.exploreUnlock); break;
-			case "motherlode": eventQueue.push(Cheats.XPToLevel); break;
+			case "furfag": cheatFunc = Cheats.infiniteItemUse; break;
+			case "idclev": cheatFunc = Cheats.RoomTeleport; break;
+			case "marcopolo": cheatFunc = Cheats.exploreUnlock; break;
+			case "motherlode": cheatFunc = Cheats.XPToLevel; break;
+			case "88mph": cheatFunc = Cheats.TimeSkip; break;
+			case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
 			
 			// Treatment
-			case "bimbo": eventQueue.push(Cheats.TryTreatmentHaxCowGirl); break;
-			case "bull": eventQueue.push(Cheats.TryTreatmentHaxBull); break;
-			case "cumcow": eventQueue.push(Cheats.TryTreatmentHaxCumCow); break;
-			case "amazon": eventQueue.push(Cheats.TryTreatmentHaxAmazon); break;
+			case "bimbo": cheatFunc = Cheats.TryTreatmentHaxCowGirl; break;
+			case "bull": cheatFunc = Cheats.TryTreatmentHaxBull; break;
+			case "cumcow": cheatFunc = Cheats.TryTreatmentHaxCumCow; break;
+			case "amazon": cheatFunc = Cheats.TryTreatmentHaxAmazon; break;
+		}
+		if(cheatFunc != null && eventQueue.indexOf(cheatFunc) == -1)
+		{
+			eventQueue.push(cheatFunc);
 		}
 	}
 	
@@ -54,8 +61,7 @@ public function creationRouter(e:Event = null):void {
 
 public function showPCBust():void
 {
-	if(pc.isNude()) showBust("PC_NUDE");
-	else showBust("PC");
+	showBust(chars["PC"].bustDisplay);
 }
 public function creationHeader(sName:String = ""):void
 {
@@ -201,8 +207,10 @@ public function chooseStartingRace(race:String = "human"):void {
 	
 	//NEW
 	author("Fenoxo & JimThermic");
+	showBust("CREATION_DOCTOR");
+	showName("CHOOSE\nNAME/SEX");
 	// Removed the part where Victor is thinking about death and gloriously happy at the same time, it was a mixed focus. I've just neatened things up and spaced things out.
-	output("Victor approaches the lady in question. Without hesitation, she agrees, quite flattered to be chosen to sire his child and heir. The sex is amazing, and with the use of special Tamani-brand fertility agents, pregnancy is assured.");
+	output("Victor approaches the paramour in question. Without hesitation, she agrees, quite flattered to deepen her relationship him and be the mother of his child and heir. The sex is amazing, and with the use of special TamaniCorp-brand fertility agents, pregnancy is assured.");
 	output("\n\nOnly wanting the best for their future child, the two lovebirds head to Victor’s private clinic, eager to make sure only the best genes take hold in his future heir. On route, the mining magnate holds hands with the mother of his child, a knowing grin on both their faces.");
 	output("\n\nWhen they arrive, Victor’s doctor sits him down, while his chosen wife is taken to the medbay. He tucks his holo-glasses into his coat pocket, looking at the expectant father with a warm smile.");
 	output("\n\n<i>“So, Victor, what sex did you want the child to be?”</i> the doctor asks, <i>“Given that grin, I bet you and the lucky girl even have a name picked out.”</i>");
@@ -237,6 +245,7 @@ public function chooseStartingRace(race:String = "human"):void {
 			pc.tailCount = 2;
 			pc.addTailFlag(GLOBAL.FLAG_LONG);
 			pc.addTailFlag(GLOBAL.FLAG_FURRED);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			addButton(0,"Male",setStartingSex,1);
 			addButton(1,"Female",setStartingSex,3);
@@ -308,6 +317,7 @@ public function chooseStartingRace(race:String = "human"):void {
 	displayInput();
 	userInterface.textInput.text = "";
 	userInterface.textInput.maxChars = 33;
+	output("\n\n\n");
 }
 
 public function setStartingSex(sex:int = 1):void {
@@ -315,7 +325,7 @@ public function setStartingSex(sex:int = 1):void {
 	if(pc.originalRace != "human") race = pc.originalRace.substring(5);
 	if(userInterface.textInput.text == "") {
 		chooseStartingRace(race);
-		output("\n\n\n<b>You must input a name.</b>");
+		output("<b>You must input a name.</b>");
 		return;
 	}
 	
@@ -327,14 +337,15 @@ public function setStartingSex(sex:int = 1):void {
 	// Illegal characters check. Just in case...
 	if(hasIllegalInput(userInterface.textInput.text)) {
 		chooseStartingRace(race);
-		output("\n\n\n<b>To prevent complications, please avoid using code in the name.</b>");
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
 		return;
 	}
 	if(userInterface.textInput.length > 16) {
 		chooseStartingRace(race);
-		output("\n\n\n<b>Please select a name no more than sixteen characters long.</b>");
+		output("<b>Please select a name no more than sixteen characters long.</b>");
 		return;
 	}
+	
 	//Male or herm? Dick stuff.
 	if (sex == 1 || sex == 2) {
 		pc.createCock();
@@ -469,6 +480,8 @@ public function chooseHeight():void {
 	
 	//NEW
 	author("Fenoxo & JimThermic");
+	showBust("CREATION_DOCTOR");
+	showName("SELECT\nHEIGHT");
 	// This is just neatened up and spaced better.
 	output("The doctor asks <i>“So, you’re going to have a </i>");
 	if(pc.hasCock())
@@ -483,10 +496,26 @@ public function chooseHeight():void {
 	output("\n\n<b>Please give your character’s height in inches. For reference, six feet tall is 72 inches.</b>");
 	
 	displayInput();
+	userInterface.textInput.text = String(averageHeight());
+	output("\n\n\n");
 	//[Height Box]
 	clearMenu();
 	addButton(0,"Next",applyHeight);
 	addButton(14,"Back",startCharacterCreation);
+}
+
+public function averageHeight():Number
+{
+	var heightResult:Number = 68;
+	if(pc.originalRace == "half-leithan") heightResult += 14;
+	if(pc.originalRace == "half-kaithrit") heightResult -= 6;
+	if(pc.originalRace == "half kui-tan") heightResult -= 2;
+	if(pc.originalRace == "half-gryvain") heightResult += 4;
+	if(pc.hasCock()) heightResult += 5;
+	//Add a little randomness:
+	heightResult -= rand(3);
+	heightResult += rand(3);
+	return Math.round(heightResult);
 }
 
 public function applyHeight():void {
@@ -514,6 +543,7 @@ public function applyHeight():void {
 	if(fail) {
 		userInterface.textInput.text = "";
 		displayInput();
+		output("\n\n\n");
 		clearMenu();
 		addButton(0,"Next",applyHeight);
 		addButton(14,"Back",startCharacterCreation);
@@ -527,6 +557,7 @@ public function applyHeight():void {
 
 public function chooseThickness():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("CHOOSING\nTHICKNESS");
 	
 	//OLD
@@ -570,6 +601,7 @@ public function applyThickness(arg:Number):void {
 //Hair Color:
 public function chooseHairColor():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SELECTING HAIR\nPIGMENT");
 	
 	//OLD
@@ -625,6 +657,7 @@ public function chooseGryvainColor():void
 {
 	clearOutput();
 	creationHeader("SELECTING\nPIGMENT");
+	showBust("CREATION_DOCTOR");
 	author("Savin");
 
 	output("<i>“Next up is coloration,”</i> the doctor says, tapping on a holographic screen. <i>“Gryvain share a single coloration across much of their bodies: the scales on their limbs, their hair color... more intimate areas. What color were you thinking of?”</i>");
@@ -660,6 +693,7 @@ public function applyGryvainColor(col:String = "black"):void
 //Eye Color:
 public function chooseEyeColor():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SELECTING EYE\nPIGMENT");
 	
 	//OLD
@@ -712,6 +746,7 @@ public function applyeEyeColor(eyeColor:String = "brown"):void {
 public function chooseSkinTone():void
 {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SELECTING\nSKIN PIGMENT");
 	
 	output("<i>“Great. How about skin pigmentation?”</i>");
@@ -766,6 +801,7 @@ public function applySkinTone(skinTone:String = "pale"):void {
 //Boob Size:
 public function chooseBreastSize():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SELECTING\nBREAST SIZE");
 	
 	//OLD
@@ -847,6 +883,7 @@ public function applyBreastSize(size:int = 0):void {
 //Junk Size (Males/Futas)
 public function chooseYourJunkSize():void {
 	clearOutput();
+	showBust("CREATION_DOCTOR");
 	creationHeader("SETTING PENIS\nLENGTH");
 	
 	//OLD
@@ -948,6 +985,7 @@ public function chooseGryvainBalls():void
 	
 	clearOutput();
 	creationHeader("SELECT\nTESTES");
+	showBust("CREATION_DOCTOR");
 	author("Savin");
 
 	output("<i>“Speaking of sex characteristics, half-gryvain hermaphrodites have some variance in where they produce their seed. I’ve seen both internal and external testes, so the choice is up to you.”</i>");
@@ -983,6 +1021,7 @@ public function applyGryvainBalls(externalBalls:Boolean):void
 public function chooseYourVagina():void {
 	clearOutput();
 	creationHeader("SELECT VAGINAL\nTRAITS");
+	showBust("CREATION_DOCTOR");
 	
 	//OLD
 	/*
@@ -1034,6 +1073,7 @@ public function fullyUpgradeCunt():void {
 public function chooseSexualGift():void {
 	clearOutput();
 	creationHeader("CHOOSING A\nSEXUAL GIFT");
+	showBust("CREATION_DOCTOR");
 	
 	//OLD
 	/*
@@ -1047,8 +1087,8 @@ public function chooseSexualGift():void {
 	//NEW
 	author("Fenoxo & JimThermic");
 	// Almost completely rewritten to accommodate for tooltips, future-proof against new traits, and reduce the utter yawn factor from throwing a million descriptions of traits at the PC. Also some lore mentioning of why the PC might get more cool traits later on but for some reason can only get one at birth. Tooltips added.
-	output("<i>“Great!”</i> Your personal physician notes the choice, then hands Victor the datapad. <i>“... We’re almost done, but I’ve left the trickiest for last.”</i>");
-	output("\n\n<i>“What’s this?”</i> The mining magnate asks, looking downward. <i>“... A list of specialized treatments?”</i>");
+	output("<i>“Great!”</i> Your personal physician notes the choice, then hands Victor the datapad. <i>“...We’re almost done, but I’ve left the trickiest for last.”</i>");
+	output("\n\n<i>“What’s this?”</i> The mining magnate asks, looking downward. <i>“...A list of specialized treatments?”</i>");
 	output("\n\n<i>“Sort of,”</i> the doctor explains, <i>“One of the things we can do is work a special tweak into your successor’s genome; something that will give them a special gift, even beyond the choices you’ve made thus far.”</i>");
 	output("\n\n<i>“Are they safe?”</i>");
 	output("\n\n<i>“Perfectly - so long as only one is inserted into your child’s genome. Any more than that risks instability. Perhaps by the time your child is an adult, we’ll have made more advances in that area. For now, though, one’s the limit.”</i>");
@@ -1201,6 +1241,7 @@ public function applySexualGift(arg:String = "none"):void {
 public function chooseAPhysicalAffinity():void {
 	clearOutput();
 	creationHeader("CHOOSING AN\nAFFINITY");
+	showBust("CREATION_DOCTOR");
 	
 	//OLD
 	/*
@@ -1472,27 +1513,33 @@ public function setClass(arg:int = 0):void {
 	switch(arg)
 	{
 		case GLOBAL.CLASS_SMUGGLER:
-			pc.rangedWeapon = new classes.Items.Guns.HoldOutPistol();
+			pc.rangedWeapon = new HoldOutPistol();
 			break;
 		case GLOBAL.CLASS_MERCENARY:
-			pc.rangedWeapon = new classes.Items.Guns.EagleHandgun();
+			pc.rangedWeapon = new EagleHandgun();
 			break;
 		case GLOBAL.CLASS_ENGINEER:
-			pc.rangedWeapon = new classes.Items.Guns.ScopedPistol();
+			pc.rangedWeapon = new ScopedPistol();
+			pc.rangedWeapon.shortName = "S.Pistol*";
+			pc.rangedWeapon.tooltip = "This compact laser pistol is equipped with a rather impressive scope and energy cell of your own manufacture. It is quite accurate but relatively low-powered.";
+			TooltipManager.addFullName(pc.rangedWeapon.shortName, StringUtil.toTitleCase(pc.rangedWeapon.longName));
+			TooltipManager.addTooltip(pc.rangedWeapon.shortName, pc.rangedWeapon.tooltip);
+			pc.rangedWeapon.hasUniqueName = true;
+			pc.rangedWeapon.hasRandomProperties = true;
 			pc.shield = new classes.Items.Protection.DecentShield();
 			break;
 	}
-	pc.meleeWeapon = new classes.Items.Melee.Knife();
-	pc.armor = new classes.Items.Apparel.DressClothes();
+	pc.meleeWeapon = new Knife();
+	pc.armor = new DressClothes();
 	pc.shieldsRaw = pc.shieldsMax();
 	if(!pc.hasVagina()) 
-		pc.lowerUndergarment = new classes.Items.Apparel.PlainBriefs() // (items["9"]);
+		pc.lowerUndergarment = new PlainBriefs() // (items["9"]);
 	else 
-		pc.lowerUndergarment = new classes.Items.Apparel.PlainPanties() // (items["8"]);
+		pc.lowerUndergarment = new PlainPanties() // (items["8"]);
 	if(pc.biggestTitSize() < 1) 
-		pc.upperUndergarment = new classes.Items.Apparel.PlainUndershirt() // (items["11"]);
+		pc.upperUndergarment = new PlainUndershirt() // (items["11"]);
 	else 
-		pc.upperUndergarment = new classes.Items.Apparel.PlainBra() // (items["10"]);
+		pc.upperUndergarment = new PlainBra() // (items["10"]);
 	if(customPCCheck(false)) 
 	{
 		nameOfDestinyChoice();
@@ -1613,7 +1660,7 @@ public function tutorialIntro4():void {
 	output("\n\nSure, whatever.");
 	output("\n\n<i>“I’ve arranged to have a few dozen probes sent through the gates once they open. Each one is military grade hardened and keyed to only open for one of our family, so don’t lose too much of yourself. They all have clues pointing towards other probes secreted inside them, except for one. One has my personal, encrypted key. With that, you can open my deposit box in the bank I own on this station and take control of my company,”</i> Even projected through the soulless holoprojector, your dad’s spirit shines through his tear-misted eyes. <i>“I’m sure you’ll make me proud out there.”</i>");
 	output("\n\nThe projection of your father tilts its head, gesturing towards another door behind it. <i>“Through the door behind, you’ll find a hangar with the ship I started my journey on, repaired to usable condition and outfitted with standard, modernized technology. It’s a good starting point, but you should see if you can jump up to something better, particularly if you pick up the number of crewmates I did. That little junker can only hold a few people.”</i>");
-	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing.... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
+	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
 	//[Open Door]
 	clearMenu();
 	addButton(0,"Open Door",openDoorToTutorialCombat);
@@ -1811,7 +1858,7 @@ public function checkOutYourShip():void {
 	
 	output("A sprawling, brightly lit hangar greets your eyes, empty save for a single ship near the back. Your gaze is pulled away from the distant craft by the sheer size of the enclosure. A hangar like this must have cost your father a veritable fortune to buy out - not much considering how wealthy he was, but no insignificant chunk of change. Magnetically-bounded plasma shields hold in the atmosphere while remaining transparent enough for you to view the nearby warp gate and inky blackness beyond. Perhaps the only thing this place couldn’t hold would be a capital ship, but a number of moorings with connective umbilicals stand by to tether one outside in that extreme scenario.");
 	output("\n\nYou chuckle and wonder if you’ll ever need anything that grandiose while you turn your attention back to the light craft in the corner, currently surrounded by techs. Breezing up to them, you get your first good look at your inheritance; in short, it’s a bit of a junker. The hull plating is ancient and rusted in a dozen places where the paint has long since rotted off. Whole pieces of it are still on the floor, being cut into with plasma torches to replace dead tech, and the design of it is a century out of date. You bite back your sigh before it leaves your mouth, noting the newly installed engines and computer systems. Still, new engines don’t make it look any less like a elderly rim-jockey’s heap.");
-	output("\n\n<i>“Hello there! You must be the young Captain Steele! A pleasure to meet you,”</i> one of the technicians says once he spots you. <i>“Sorry the ship is in such rough shape. Towing it all the way out here took a little longer than anticipated, so we got a late start. We’re pulling a double shift to get it all done by tonight. Just give us a little more time, maybe get a bite to eat and a place to stay ‘til morning. She’ll look a hundred times better once we finish up, I promise.”</i>");
+	output("\n\n<i>“Hello there! You must be the young Captain Steele! A pleasure to meet you,”</i> one of the technicians says once he spots you. <i>“Sorry the ship is in such rough shape. Towing it all the way out here took a little longer than anticipated, so we got a late start. We’re pulling a double shift to get it all done by tonight. Just give us a little more time, maybe get a bite to eat and a place to stay till morning. She’ll look a hundred times better once we finish up, I promise.”</i>");
 	output("\n\nYou shake the hangar tech’s hand and nod to him, understanding the enormity of the project before them. The nametag on his jumper lists him as ‘Zeke’. He nods and jovially quips, <i>“Yah, my name’s Zeke, or Z if you really wanna get short with it. Whatever you bring in here, I’ll keep maintained or fix up. Cleaning up other folks’ messes is kinda my business.”</i> Zeke waves you off. <i>“Go on, get something to eat. I’m sure you had a shitty day and don’t wanna spend the rest of it hanging around us while we put this back together.”</i>");
 	output("\n\nA clearly marked exit portal dilates as you approach, and you step out into the station’s main thoroughfare. It’s surprisingly quiet and devoid of the shops you’d expect to see. The only place with any grub looks to be an “Anon’s Bar”</i>, though it boasts mention of rooms for rent as well.");
 	output("\n\nYou head on in...");

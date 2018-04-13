@@ -13,7 +13,7 @@ package classes.Items.Guns
 	 */
 	public class KhansArcCaster extends ItemSlotClass
 	{
-		
+		//Level 8 (Very Rare). Balance 2.0
 		public function KhansArcCaster() 
 		{
 			this._latestVersion = 1;
@@ -41,8 +41,8 @@ package classes.Items.Guns
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 8200;
-			this.attack = 4;
+			this.basePrice = 40000;
+			this.attack = 5;
 			
 			baseDamage.electric.damageValue = 25;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
@@ -52,7 +52,7 @@ package classes.Items.Guns
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 4;
+			this.critBonus = 8;
 			this.evasion = 0;
 			this.fortification = 0;
 

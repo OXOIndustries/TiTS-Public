@@ -32,7 +32,7 @@ public function goAheadAndDumbfuck():void
 		}
 		else if(pc.hasCockTail()) output("Maybe you should check your [pc.cockTails] - just to make sure you aren’t suddenly super horny.");
 		else if(pc.hasTailCunt()) output("Maybe you should check your [pc.tailCunts] - just to make sure you aren’t suddenly super horny.");
-		else output("Maybe you should touch your [asshole] - just to make sure it’s not super-sensitive all of a sudden.");
+		else output("Maybe you should touch your [pc.asshole] - just to make sure it’s not super-sensitive all of a sudden.");
 		output(" Nope, normal. You sigh and have a seat.");
 		output("\n\nJust how long does this stuff take to have an effect, really? You took it to supercharge your sex-drive and maybe take a little bit of the edge off, not to sit around wondering. Hopefully the effects will be good, like getting that good, warm feeling that you get when you’re really turned on all the time. It’ll be hard not to masturbate or fuck everyone you meet if that’s the case, and if you wind up doing that, you’ll just wind up fucking yourself into sluthood.");
 		output("\n\nA blush warms your cheek at the thought. That wouldn’t be THAT bad, would it? Your heart beats a bit faster as you realize you’re getting aroused. Maybe you could get off quickly before it takes effect, perhaps blow off a little steam before you have to spend a day simmering in lust. That might be nice.");

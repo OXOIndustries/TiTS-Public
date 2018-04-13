@@ -12,7 +12,6 @@
     <movie minorVersion="9" />
     <movie platform="Flash Player" />
     <movie background="#3D5174" />
-    <movie preferredSDK="Flex 4.6.0, AIR 16.0;4.6.0, 16.0;" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
@@ -43,7 +42,7 @@
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="" />
+    <option additional="-keep-as3-metadata+=Serialize" />
     <option compilerConstants="CONFIG::IMAGEPACK,false&#xA;CONFIG::useFlexClasses,false&#xA;CONFIG::AIR,false&#xA;CONFIG::FLASH,true&#xA;CONFIG::CHARGEN,false" />
     <option minorVersion="" />
   </build>

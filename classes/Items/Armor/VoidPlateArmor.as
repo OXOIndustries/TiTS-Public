@@ -11,7 +11,7 @@ package classes.Items.Armor
 	 */
 	public class VoidPlateArmor extends ItemSlotClass
 	{
-		
+		//Level 7 (Rare). Balance 2.0
 		public function VoidPlateArmor() 
 		{
 			this._latestVersion = 1;
@@ -22,11 +22,11 @@ package classes.Items.Armor
 			
 			this.shortName = "Void Plates";
 			
-			this.longName = "Black Void modified TS-T armor plating mark IV";
+			this.longName = "Black Void armor plate";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a heavily modified set of hardened, energy absorbent armor plates";
+			this.description = "a suit of Black Void plate";
 			
 			this.tooltip = "TS-T armor features an engineered hybrid of materials, utilizing a mesh of complex fullerene molecules to suspend a trade-secret mixture of secondary elements in isolation. The result is a tunable sacrificial material; a highly energy resistant, light weight armor, that can be reconfigured to dissipate a variety of energy emissions.\n\nThe mark IV variation of the armoring system integrated a series of material refinements designed to better combat laser and other energy-based weapons.\n\nThis set of armor has been further modified by Black Void engineers; it looks slightly bulkier than standard sets of TS-T plating, and is adorned in the ‘official’ black-red shades of the organization.";
 			
@@ -34,20 +34,21 @@ package classes.Items.Armor
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 4000;
+			this.basePrice = 11100;
 			this.attack = 0;
 			this.defense = 5;
 			this.shieldDefense = 0;
 			this.sexiness = 0;
 			this.critBonus = 0;
 			this.evasion = 0;
-			this.fortification = 2;
+			this.fortification = 3;
 			
-			this.resistances.kinetic.resistanceValue = 15;
-			this.resistances.electric.resistanceValue = 30;
-			this.resistances.burning.resistanceValue = 30;
-			this.resistances.corrosive.resistanceValue = 15;
-			this.resistances.poison.resistanceValue = 15;
+			//this.resistances.kinetic.resistanceValue = 15;
+			this.resistances.electric.resistanceValue = 10;
+			this.resistances.burning.resistanceValue = 10;
+			this.resistances.freezing.resistanceValue = 10;
+			this.resistances.corrosive.resistanceValue = 10;
+			this.resistances.poison.resistanceValue = 3;
 			
 			this.resistances.addFlag(DamageFlag.MIRRORED);
 			//this.resistances.addFlag(DamageFlag.GROUNDED);

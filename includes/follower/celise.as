@@ -19,6 +19,12 @@ public function showCelise():void
 }
 
 
+//Celise In Tavros
+public function celiseTavrosBonus(btnSlot:int = 1):void 
+{
+	output("\n\nCelise is lounging here, just as green as ever and chatting amicably with one of the station’s mechanics.");
+	addButton(btnSlot, "Celise", approachNonCrewCelise);
+}
 //Crewmember Celise’s Screen
 public function celiseFollowerInteractions():void {
 	//Giga Celise has her own thing!
@@ -115,18 +121,18 @@ public function sendCeliseAway():void
 		output("\n\nWith a glittering green grin and a wink, the ");
 		if(flags["GIGACELISE"] == undefined) output("buxom");
 		else output("tentacled");
-		output(" galotian gives you a super-sized thumbs up. <i>“Sure thing, boss! I wonder if I’ll run into that ");
-		if(rand(10) == 0) output("cute kui-tan");
-		else if(rand(9) == 0) output("adorable blue rahn");
-		else if(rand(8) == 0) output("red-haired half-ausar");
-		else if(rand(7) == 0) output("moo-cow girl and her dick-girl friend");
-		else if(rand(6) == 0) output("weird merc with the crazy eyes");
-		else if(rand(5) == 0) output("weird man-herm guy");
-		else if(rand(4) == 0) output("egg-laying girl");
-		else if(rand(3) == 0) output("mean purple dick-girl");
-		else if(rand(2) == 0) output("fluffy panda");
-		else output("cat-dog girl");
-		output(" again.”</i> She pauses and flashes saucer-sized eyes at you imploringly.");
+		output(" galotian gives you a super-sized thumbs up. <i>“Sure thing, boss! I wonder if I’ll run into that " + RandomInCollection([
+			"cute kui-tan",
+			"adorable blue rahn",
+			"red-haired half-ausar",
+			"moo-cow girl and her dick-girl friend",
+			"weird merc with the crazy eyes",
+			"weird man-herm guy",
+			"egg-laying girl",
+			"mean purple dick-girl",
+			"fluffy panda",
+			"cat-dog girl",
+		]) + " again.”</i> She pauses and flashes saucer-sized eyes at you imploringly.");
 		if(shipLocation != "TAVROS HANGAR") 
 		{
 			output(" <i>“You should come to Tavros sometime - there’s so many cool people on station!”</i>");
@@ -223,7 +229,7 @@ public function dudesFeedCelise():void {
 	if(pc.isGoo()) output(", your own goo mixing with hers until you can barely tell which of you is which, only that it feels wonderful");
 	output(". Celise lustily wonders, <i>“Like, how do I feed this time, [pc.name]? Should I pull out all that yummy [pc.cumNoun] with suction alone?");
 	if(pc.cumQ() <= 1000) output(" I bet if I did that enough, you’d start making enough to properly feed me in no time!");
-	output("”</i> A rhythmic tugging starts on [pc.oneCock]. <i>“I could squeeze it out from behind....”</i> A tongue of liquid warmth circles your asshole, causing your hips to lurch forward hard enough to make [pc.eachCockHead] crest her surface, dripping with emerald slime. <i>“Hehehe... maybe I should just climb inside the the tip and drink it straight from your [pc.balls]");
+	output("”</i> A rhythmic tugging starts on [pc.oneCock]. <i>“I could squeeze it out from behind....”</i> A tongue of liquid warmth circles your asshole, causing your hips to lurch forward hard enough to make [pc.eachCockHead] crest her surface, dripping with emerald slime. <i>“Hehehe... maybe I should just climb inside the tip and drink it straight from your [pc.balls]");
 	if(pc.cumQ() >= 5000) output(". I bet I could drink so much that way that your poor [pc.balls] wouldn’t be able to make as much afterward. That’s not a big deal, right? You’re too messy anyway. I get tired of mopping it up");
 	output("....”</i>");
 	
@@ -1493,9 +1499,9 @@ public function zeiksCeliseSubmersionTechnique():void
 			//(non-taur)
 			else
 			{
-				output("Celise gasps and forces your arm forward, holding your free hand over the head of your penis while the other rubs out your orgasm. Warm, [pc.cumVisc] semen covers your palm, over and over, falling back to ooze down your spasming [pc.cockNoun] and into the gel below each time. She moans happily as your crotch turns into a ");
+				output(" Celise gasps and forces your arm forward, holding your free hand over the head of your penis while the other rubs out your orgasm. Warm, [pc.cumVisc] semen covers your palm, over and over, falling back to ooze down your spasming [pc.cockNoun] and into the gel below each time. She moans happily as your crotch turns into a ");
 				if(pc.cumColor() == "green") output("deep green");
-				else output("sickly, greenish-[pc.cumColor]] swamp.");
+				else output("sickly, greenish-[pc.cumColor] swamp.");
 			}
 		}
 	}

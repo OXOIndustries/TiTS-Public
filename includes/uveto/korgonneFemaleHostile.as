@@ -1,9 +1,10 @@
 import classes.Characters.KorgonneFemale;
 
-public function korgiTranslate():Boolean
+public function korgiSillyTranslate():Boolean
 {
 	return true;
 }
+
 public function showKorgiFemaleHostile(nude:Boolean = false):void
 {
 	showName("FEMALE\nKORGONNE");
@@ -39,7 +40,7 @@ public function encounterAKorgonneFemaleHostile():void
 		if(pc.isAss()) output("and ice ");
 		output("and ball it up, then whip the snowball right in the middle of the suspect dimple and are rewarded by a surprised yelp. The would-be ambusher rises from the snow, shaking off the boreal camouflage. As you suspected, it’s a roly-poly korgonne, her expression flushed with chagrin.");
 		//if translated: 
-		if(korgiTranslate()) output("\n\n<i>“Think is funny, yes?”</i> she yells, glowering. <i>“My laughs now!”</i>");
+		if(korgiSillyTranslate()) output("\n\n<i>“Think is funny, yes?”</i> she yells, glowering. <i>“My laughs now!”</i>");
 		else output("\n\n<i>“Wow! Such embarrass. Many rudes.”</i>");
 		output(" She reaches for her weapons and lunges toward you with bounding strides!");
 	}
@@ -84,7 +85,10 @@ public function loseToKorgonneFemaleAsScentTaurus():void
 	showKorgiFemaleHostile();
 	author("Adjatha");
 	output("When you sink to the ground, the barbarian nods with satisfaction. The tan korgonne offers a slight smirk before swinging her spear around and cracking it against the back of your skull. Your sight blossoms into a brilliant sea of white, as if the permafrost had swallowed you whole. Numbness. Darkness. A sensation of tugging and pushing. When you come to, your situation seems more or less unchanged. Judging by the snow, it looks like the little native tried dragging you somewhere, but the bulk of your tauric body proved too heavy for her. What a lucky break!");
-	pc.HP(-pc.HPMax());
+	var damage:Number = (pc.HPMax() - 1);
+	var maxDamage:Number = (pc.HPRaw - 1);
+	if (damage > maxDamage) damage = maxDamage;
+	if (damage > 0) applyDamage(new TypeCollection( { unresistablehp: damage }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 	output("\n\n");
 	CombatManager.genericLoss();
 	//(maybe the player loses a consumable in their inventory? Doesn’t make a ton of sense for a barbarian to steal credits, but I guess she could do that too.)
@@ -99,7 +103,7 @@ public function loseToKorgonneFemaleIfHasCock():void
 	else 
 	{
 		output("When you sink to the ground, the barbarian nods with satisfaction. The tan korgonne offers a slight smirk before swinging her spear around and cracking it against the back of your skull. Your sight blossoms into a brilliant sea of white, as if the permafrost had swallowed you whole. Numbness. Darkness. A sensation of movement. When you come to, the snow is gone but the snow’s daughter remains.");
-		pc.HP(-10);
+		applyDamage(new TypeCollection( { unresistablehp: 10 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 	}
 	processTime(30);
 	clearMenu();
@@ -115,16 +119,16 @@ public function korgiLadyDickLossPart2():void
 	if(x < 0) x = pc.smallestCockIndex();
 	author("Adjatha");
 	output("Staring at you with flat, alien pupils, the korgonne raider ");
-	if(!korgiTranslate()) output("mutters words you don’t understand, more a moaning, wind-like song than speech as you know it");
+	if(!korgiSillyTranslate()) output("mutters words you don’t understand, more a moaning, wind-like song than speech as you know it");
 	else output("offers a frank assessment. <i>“Fight is fun, but now for prize,”</i> she murmurs");
 	output(". The savage has stripped off her thick leathers now that she’s out of the cruel wind’s reign. Your Codex has been tossed aside, but its screen still provides enough illumination to see. In the close, hot darkness, the woman squatting beside you seems almost tame. Her thick fur and stocky frame give the barbarian a softness that seems out of place in this harsh, frozen world. Thin straps of black leather hold her hefty breasts high on her chest, while small pieces of jewelry serve as her only decoration apart from her braids.");
-	if(!korgiTranslate()) output("\n\nShe asks you a question in her strange, whispering language and curls up her lip at your empty expression. <i>“Alien,”</i> she mutters, stretching the word out into an accusation.");
+	if(!korgiSillyTranslate()) output("\n\nShe asks you a question in her strange, whispering language and curls up her lip at your empty expression. <i>“Alien,”</i> she mutters, stretching the word out into an accusation.");
 	else output("\n\n<i>“You good fuel for Great Forge. But maybe little forge good too,”</i> she chuckles, glancing between her legs. You don’t react to her joke, apparently offending the girl. Her eyes narrow.");
 	output(" She leans forward, one paw on your chest, the other seizing your [pc.cock " + x + "].");
 	output(" Startled, you become aware that you’ve been stripped to your bare [pc.skinFurScales]. You’d hardly noticed, your captor’s fervid body heating the cave as well as any thermal coat. She must’ve taken you into one of the tunnels pocking the surface of the icy plains.");
 
 	output("\n\nHer grip on your shaft tightens, bringing you back to the present in an instant. Swallowing hard, you opt for silence while the savage lowers her furred face inches from your own. Her large ears twitch and lay flat, while her sapphire nose breathes hot air against your cheek. Dragging soft finger-pads up your [pc.chest] and across your shoulders, she grasps your jaw, pulling your head upwards to expose your throat. With a sub-vocal growl, she leans in and places her short teeth against your neck, pressing in ever so slightly - just hard enough to let you know she could tear you open if she chose.");
-	if(korgiTranslate()) output(" <i>“You lose, so I take heat,”</i> she purrs.");
+	if(korgiSillyTranslate()) output(" <i>“You lose, so I take heat,”</i> she purrs.");
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",korgiLadyDickLossPart3,x);
@@ -152,22 +156,22 @@ public function korgiLadyDickLossPart3(x:int):void
 	output("\n\nSeemingly satisfied with the responsive member throbbing between her asscheeks, the korgonne girl stands up. Pawed hands guide your cockhead to her dripping, aquamarine folds. Lowering herself onto your [pc.cockShape " + x + "] shaft, the barbarian flashes a primal grin, her wide eyes glistening in your Codex’s faint light. She pulls back slightly, and you slip from her pussy with a wet, audible slurp before she drops down, swallowing your inches greedily. The girl’s depths are surprisingly pliant, her inner walls tightening and relaxing with every rocking motion of her plump rear. You can’t help but thrust upwards, the stout girl taking your swollen bulk with ease.");
 	pc.cockChange();
 	output("\n\nUntamed and untamable, the savage leans forward to lock her padded digits around your ribs, forcing you deeper into her taut tunnel. ");
-	if(!korgiTranslate()) output("<i>“Ffffffuck...”</i> she moans, revealing a second, far more favorable word in her lexicon.");
+	if(!korgiSillyTranslate()) output("<i>“Ffffffuck...”</i> she moans, revealing a second, far more favorable word in her lexicon.");
 	else output("<i>“Ffffffuck...”</i> she moans, lost in the breaching bulk of your shaft.");
 	output(" Your ass muscles tense as the barbarian clenches, ");
 	if(pc.hasKnot(x) && pc.knotThickness(x) >= 3) 
 	{
 		output("the muscles at her labia kissing and suckling at the thickened flesh of your [pc.knot " + x + "], practically milking the top of your breeding bulb. Her ass sways with your shallow pumps and she groans in need.");
-		if(korgiTranslate()) output(" <i>“Fill body with water-heat,”</i> she moans.");
+		if(korgiSillyTranslate()) output(" <i>“Fill body with water-heat,”</i> she moans.");
 		output("\n\nWith a growl, she pushes down, stuffing the full diameter of your bloated swell past her fat pussy lips, a surge of intense bliss leaving your tongue mute and your jaw clenched.");
 	}
 	else
 	{
 		output("the muscles at her labia kissing and suckling at your [pc.knot " + x + "], practically milking you from bottom to top. Her eyes unfocused, biting her teal lower lip, the barbarian grabs one of your hands and pulls it to your shaft.");
-		if(korgiTranslate()) output(" <i>“Need more,”</i> she pants. <i>“Need thicker!”</i>");
+		if(korgiSillyTranslate()) output(" <i>“Need more,”</i> she pants. <i>“Need thicker!”</i>");
 
 		output("\n\nPressing your palm against your throbbing meat, she curls your fingers, one by one, until you’re clenching the [pc.base " + x + "]. With a satisfied smirk, she lowers herself slowly, achingly, her yielding lips kissing the top of your fist with slick honey. She quivers atop your knuckles, her undulating hips building momentum before she drops her entire weight wholly on your clutched root, hand and all. The korgonne lets out a weak moan as your fist slips inside her twat with a wet schlick.");
-		if(korgiTranslate()) output(" <i>“Now is right size,”</i> she murmurs, closing her eyes and biting her lower lip with satisfaction.");
+		if(korgiSillyTranslate()) output(" <i>“Now is right size,”</i> she murmurs, closing her eyes and biting her lower lip with satisfaction.");
 		output(" Her body trembles, inner recesses clenching at your suffocating girth. The engorged flesh of your swollen shaft bloated even thicker by the pressure her stuffed cunt is putting on your snugly sealed fist.");
 	}
 
@@ -188,7 +192,7 @@ public function korgiLadyDickLossPart4(x:int):void
 	clearOutput();
 	showKorgiFemaleHostile(true);
 	author("Adjatha");
-	if(!korgiTranslate()) output("<i>“Alien, fuck,”</i> she murmurs, the wave of her orgasm slowly fading.");
+	if(!korgiSillyTranslate()) output("<i>“Alien, fuck,”</i> she murmurs, the wave of her orgasm slowly fading.");
 	else output("<i>“Alien a good fuck,”</i> she sighs, milking her first orgasm.");
 	output(" With both paws now, she begins to rub and stroke your bulge through her abdomen. Every second brings a new tightness down on your body as her pace grows frantic; her womb is kissing your cockhead even as her slit clenches tighter than an S&M holovid cockring.");
 	if(pc.hasVagina())
@@ -202,7 +206,7 @@ public function korgiLadyDickLossPart4(x:int):void
 	else output(" that shoots cold numbness down your [pc.legOrLegs], sapping your strength.");
 	output(" The need builds to painful levels and you can’t restrain yourself any longer. As the barbarian shudders from her latest orgasm, you seize a padded foot and use the leverage to spin her around. The bliss-drunk girl hardly understands what’s happening as she swivels on your swollen knob. With her plump posterior sliding back and forth atop your waist, you rise to a sitting position. She glances back as she practically vibrates in your lap, half-lidded eyes unfocused and uncomprehending.");
 	output("\n\nSummoning a surge of strength, you grab the curly tail now facing you and lunge forward, taking the raider by surprise and pinning her under you. ");
-	if(korgiTranslate()) output("<i>“Wha-? Fight over!”</i> she protests weakly.");
+	if(korgiSillyTranslate()) output("<i>“Wha-? Fight over!”</i> she protests weakly.");
 	output(" Her leather bra snaps as massive, cushiony tits spill onto the cave floor, burying her face between them. The girl’s ass is helplessly lifted in the air, yoked to your turgid girth. She struggles beneath you, but her orgasms have left her muscles trembling and useless. Finally in a proper breeder’s position, you go into overdrive, pumping away with all the force you can muster, making the most of that bare inch between your [pc.knot " + x + "] and ");
 	if(pc.balls > 0) output("the liquid weight of your [pc.sack].");
 	else output("the [enemy.girlCumNoun]-slick surface of your nearly numb pelvis.");
@@ -224,7 +228,7 @@ public function korgiLadyDickLossPart4(x:int):void
 		if(!pc.isAss()) output(" In deference");
 		else output(" To further humiliate");
 		output(" to the bound savage, you lift your [pc.leg] over her and climb off, turning around so that your [pc.ass] rests against hers.");
-		if(korgiTranslate()) output(" <i>“Such knot,”</i> she moans, twitching with well bred delight.");
+		if(korgiSillyTranslate()) output(" <i>“Such knot,”</i> she moans, twitching with well bred delight.");
 		output(" Joined at the root, you settle down to wait out the tender bloat of your [pc.knot " + x + "].");
 	}
 	processTime(25);
@@ -252,24 +256,24 @@ public function loseToFemKorgonneNoDick():void
 	if(pc.isGoo()) output("When you sink to the ground, the barbarian nods with satisfaction. The tan korgonne offers a slight smirk before swinging her spear around and cracking it against the back of your skull. The strike has little effect on your gooey frame, but you act dazed to avoid letting your captor know too much. With a self-satisfied nod, she grabs hold and begins to drag you toward a snow bank that conceals a small cave. She strips you of your equipment quickly and efficiently, before you can recover enough to stop her.");
 	else output("When you sink to the ground, the barbarian nods with satisfaction. The tan korgonne offers a slight smirk before swinging her spear around and cracking it against the back of your skull. Your sight blossoms into a brilliant sea of white, as if the permafrost had swallowed you whole. Numbness. Darkness. A sensation of movement. When you come to, the snow is gone but the snow’s daughter remains.");
 	output("\n\nStaring at you with flat, alien pupils, the korgonne raider ");
-	if(!korgiTranslate()) output("mutters words you don’t understand, more a moaning, wind-like song than speech as you know it");
+	if(!korgiSillyTranslate()) output("mutters words you don’t understand, more a moaning, wind-like song than speech as you know it");
 	else output("offers a frank assessment. <i>“Fight is fun, but now for prize,”</i> she murmurs");
 	output(". The savage has stripped off her thick leathers now that she’s out of the cruel wind’s reign. Your Codex has been tossed aside, but its screen still provides enough illumination to see. In the close, hot darkness, the woman squatting beside you seems almost tame. Her thick fur and stocky frame give the barbarian a softness that seems out of place in this harsh, frozen world. Thin straps of black leather hold her hefty breasts high on her chest, while small pieces of jewelry serve as her only decoration apart from her braids.");
-	if(!korgiTranslate()) output("\n\nShe asks you a question in her strange, whispering language and curls up her lip at your empty expression. <i>“Alien,”</i> she mutters, stretching the word out into an accusation.");
+	if(!korgiSillyTranslate()) output("\n\nShe asks you a question in her strange, whispering language and curls up her lip at your empty expression. <i>“Alien,”</i> she mutters, stretching the word out into an accusation.");
 	else output("\n\n<i>“You good fuel for Great Forge. But maybe little forge good too,”</i> she chuckles, glancing between her legs. You don’t react to her joke, apparently offending the girl. Her eyes narrow.");
 	output(" She leans forward, her paws seizing your [pc.chest].");
 	output(" Startled, you become aware that you’ve been stripped to your bare [pc.skinFurScales]. You’d hardly noticed, your captor’s fervid body heating the cave as well as any thermal coat. She must’ve taken you into one of the tunnels pocking the surface of the icy plains.");
 
-	if(pc.hasVagina())
+	if(!pc.isBlocked(0))
 	{
 		output("\n\nThe padded paw on your slit begins to slide up and down, stroking your folds with an uncertain, almost experimental curiosity. You gulp as heat floods into your hips, squirming under the savage’s inexpert motions. One of her soft, leathery fingertips grazes [pc.oneClit], and you roll your shoulders with a slight moan as the girl’s soft leather strokes your sensitive nub. Her wide eyes open a bit wider at your reaction, and her thumb bears down with an intensity that leaves you shuddering and gasping for air.");
-		if(korgiTranslate()) output(" <i>“Alien wears joy on outside of body?”</i> she discovers with a shock. <i>“So weak! Anyone breed you with touch,”</i> she sneers, adding a tweak to prove her point.");
+		if(korgiSillyTranslate()) output(" <i>“Alien wears joy on outside of body?”</i> she discovers with a shock. <i>“So weak! Anyone breed you with touch,”</i> she sneers, adding a tweak to prove her point.");
 		output(" Currents of bliss crackle up and down your abdomen as the korgonne’s other fingers roll, pinch, and massage the yielding folds of your labia. Reaching one hand up to grasp your [pc.nipple] and the other to your mouth, you jam the second knuckle of your forefinger between your teeth to mute your cries of pleasure.");
 		output("\n\nJust as your hips begin bucking under the girl’s assault, she stops, leaving you squirming and panting with unfinished need. ");
 	}
 	else output("\n\n");
 	output("The barbarian flashes a superior smile, her plump teal lips curling wickedly. ");
-	if(korgiTranslate()) output("<i>“You explore planet first. Now you explore korgonne.”</i> ");
+	if(korgiSillyTranslate()) output("<i>“You explore planet first. Now you explore korgonne.”</i> ");
 	output("She turns about, straddling your shoulders between her stout thighs and wagging her curled tail. You can feel warm droplets of her excitement dripping down onto the [pc.skinFurScales] of your neck as her hands move to tweak your [pc.nipples]. The heat of her sex pours down on you with a damp moistness that drives all thoughts of cold and ice from your mind. Sliding her hips back and forth, her puffy vulva hugs the curve of your neck, you find your upper body coated in her fragrant, semi-sweet musk.");
 
 	processTime(36);
@@ -284,7 +288,7 @@ public function korgiNoDickPart2Loss():void
 	author("Adjatha");
 	output("A subtle, perfumed scent pours from the fluffy girl’s drooling pussy, leaving you feeling weak, with a powerful need to bury yourself in her. Gradually she leans back, settling her thick thighs around your head, the savage’s honeypot directly over your nose. A vise of soft fur claps around your vision, the girl’s weighty posterior settles onto your face, her swollen turquoise labia atop your lips. As her paws knead your [pc.chest], you pant against the bulging folds kissing you with wet warmth. Her [enemy.girlCumNoun] drips into your mouth, the taste both sweet and exhilarating, with almost the brisk coolness of mint.");
 	output("\n\nPutting your [pc.tongue] to work, you trace the barbarian’s slit, slowly at first, using just the tip to apply thin lines of pressure to the silken folds before circling her nub of a clit. Surprisingly, her firm little sapphire elicits almost no response. ");
-	if(korgiTranslate()) output("<i>“Inside,”</i> she instructs, impatiently. <i>“Korgonne joy inside body!”</i> ");
+	if(korgiSillyTranslate()) output("<i>“Inside,”</i> she instructs, impatiently. <i>“Korgonne joy inside body!”</i> ");
 	output("Pulling back, you flatten out your [pc.tongue], spreading its broad surface to encompass the whole of the girl’s drooling puss, starting at the back of your length and curling the sides just enough to cup the whole of her pliant plumpness with your [pc.tongue]. Wide thighs tighten around your head, a ripple of vulnerable weakness trembling through the porcine posterior straddling you. She grips your [pc.chest] harder and sinks down with a high-pitched moan of <i>“Fuuuuuck...”</i>");
 	output("\n\nThe korgonne’s aggressive downward motion presses your [pc.face] to her cunt; lips and folds part around you as you plunge into her quivering tunnel. Your heart races, your [pc.skinFurScales] prickle");
 	if(!pc.hasFur() && !pc.hasScales() && !pc.hasFeathers()) output("s");
@@ -309,7 +313,7 @@ public function defeatDaKorgiShit():void
 	showKorgiFemaleHostile();
 	author("Adjatha");
 	output("The barbarian crouches low in the snow and ice, breathing clouds that billow around her sapphire snout. It’s hard to think about what to do with the girl while the cold creeps in at every corner, so you grasp her wrists and lead her a short distance away, to an embankment where the snow has formed a natural shield against the biting wind. When the two of you step into the meager shelter, the korgonne sinks to all fours, casting aside her wintry gear, leaving only an odd assortment of jewelry and thin straps of black leather to restrain her massive, E-cup chest. Head downcast, she leans forward to rub the backs of her ears against your crotch in deference.");
-	if(!korgiTranslate()) output(" She mumbles in a soft, sing-songy language rather like the hiss of the wind over your haven. The only words you catch are a common ones: <i>“Alien”</i> and <i>“fuck.”</i>");
+	if(!korgiSillyTranslate()) output(" She mumbles in a soft, sing-songy language rather like the hiss of the wind over your haven. The only words you catch are a common ones: <i>“Alien”</i> and <i>“fuck.”</i>");
 	else output(" <i>“Alien is good for fight,”</i> she coos. <i>“Strong body fire. Is good for fuck, yes?”</i>");
 
 	if(flags["KORGI_VICTORY_COUNT"] == undefined) 
@@ -341,7 +345,8 @@ public function defeatDaKorgiShit():void
 	else addDisabledButton(2,"DickWorship","Dick Worship","You need a dick at least 42 inches long for her to please you with her whole body.");
 
 	//[Ride Her Tongue]
-	if(pc.hasVagina()) addButton(3,"Ride Tongue",rideTheKorgiTongue,undefined,"Ride Tongue","That long tongue of hers would probably feel great if you had a pussy!");
+	if(pc.hasVagina() && !pc.isBlocked(0)) addButton(3,"Ride Tongue",rideTheKorgiTongue,undefined,"Ride Tongue","That long tongue of hers would probably feel great if you had a pussy!");
+	else if(pc.isBlocked(0)) addDisabledButton(3,"Ride Tongue","Ride Tongue","You ought to get rid of that plug in your puss first.");
 	else addDisabledButton(3,"Ride Tongue","Ride Tongue","You need a vagina in order to ride her tongue.");
 
 	//[Let Her Lead]
@@ -350,7 +355,7 @@ public function defeatDaKorgiShit():void
 	else addDisabledButton(4,"Let Her Lead","Let Her Lead","You need a dick that will fit in her ass for this.");
 
 	//Requires taur + dick/balls or vagina.
-	if(pc.isTaur() && (pc.hasVagina() || (pc.hasCock() && pc.balls > 0))) addButton(5,"Sit On Her",sitOnKorgiForTaurs,undefined,"Sit On Her","Only centaurs are going to be able to do this.");
+	if(pc.isTaur() && ((pc.hasVagina() && !pc.isBlocked(0)) || (pc.hasCock() && pc.balls > 0))) addButton(5,"Sit On Her",sitOnKorgiForTaurs,undefined,"Sit On Her","Only centaurs are going to be able to do this.");
 	else addDisabledButton(5,"Sit On Her","Sit On Her","You need to be a centaur with a vagina or a centaur with balls and a penis for this.");
 	
 	if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades") && (!pc.hasCock() || eligibleForKorgiHumiliation())) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,undefined,"HardlightFuck","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
@@ -382,7 +387,7 @@ public function sitOnKorgiForTaurs():void
 	else output("a perverse");
 	output(" idea strikes you. You guide her to lay on her back, arms at her sides. The girl is not sure what to make of your prompting, and mutters her confusion.");
 	if(silly) output(" <i>“Many sleeps? Much ground. Few sexes?”</i> she whines.");
-	else if(korgiTranslate()) output(" <i>“Is no time for rest,”</i> she whines.");
+	else if(korgiSillyTranslate()) output(" <i>“Is no time for rest,”</i> she whines.");
 	output(" Rising, you trot over the recumbent barbarian until your [pc.legs] surround her. You ");
 	if(!pc.isCrotchExposed()) output("strip off your [pc.lowerGarments] and, with a smile, you ");
 	output("lower yourself on top of her.");
@@ -406,7 +411,7 @@ public function sitOnKorgiForTaurs():void
 		if(pc.hasCock()) output(" The length and hunger of her fondling tongue is so satisfying that you can feel your [pc.cocks] stiffening and swelling between the two of you. The girl under you moans at the burgeoning stiffness, unable to tend to your swelling lust with anything but her mouth.");
 		output(" As tempting as it is to let her suckle at your balls all day, you wiggle forward just a bit, to move the girl on to her next task.");
 	}
-	if(pc.hasVagina())
+	if(pc.hasVagina() && !pc.isBlocked(0))
 	{
 		output("\n\nThe restrained girl draws her seven inch tongue up to the summit of [pc.oneVagina]. Boldly pushing against the plump surface of your labia with brash vigor, she hones in on your [pc.vagina], thrusting her organ inside without delay. You shudder from the intrusion, your muscles clamping down on the barbarian’s tongue with a vulnerable tightness. Despite her immobilized body, the korgonne pushes her thick inches into your quivering slit with osculating sweeps. Though she pays little attention to [pc.eachClit], the questing touches of her slurping tongue is enough to send a ripple of bliss through your body. She laps up the [pc.girlCum] dripping from [pc.eachPussy] with loud, wet delight, polishing the plumpness of your lower lips to gather up every drop of your [pc.girlCumFlavor] moisture. Panting and eager for the final course, you scoot up just a bit more, leaving no room for doubt where the girl must send her tongue next.");
 	}
@@ -439,7 +444,7 @@ public function taurSitOnKorgi2():void
 		if(pc.cockTotal() == 1) output("s");
 		output(" orgasmic release, cum flooding the slim space between your underbelly and her pliant pudge. [pc.CumVisc] [pc.cumNoun] washes over her dense fur and your [pc.skinFurScales] with a heat that bridges your bodies in a way no words possibly could.");
 	}
-	if(pc.hasVagina())
+	if(pc.hasVagina() && !pc.isBlocked(0))
 	{
 		cums++;
 		output("\n\nAnother wave of ecstasy prickles within your [pc.pussy], your backside quivering with delight at the savage’s eagerness to please. As she grinds her short muzzle against your [pc.ass], the bulge of her jutting lower lip begins to stroke against your [pc.clit]. The sweet, tickling brush of her heated lips renews the tender tingles that leave your pussy pulsing with inner contractions that rob your muscles of their strength. Gasping moans rise from your [pc.chest] at each stroke and in no time, fresh blobs of [pc.girlCum] dribble down across your captive’s face.");
@@ -466,14 +471,14 @@ public function letDatKorgiLeadWinsex():void
 	output("You ");
 	if(!pc.isCrotchExposed()) output("strip off your gear and ");
 	output("sit down at her side, spreading your arms in an open gesture of yielding consent. A grin overtakes her teal lips and the submissive girl regains a measure of her savagery.");
-	if(korgiTranslate()) output(" <i>“Strong alien is smart. Make weak please strong. Is best.”</i>");
+	if(korgiSillyTranslate()) output(" <i>“Strong alien is smart. Make weak please strong. Is best.”</i>");
 	output(" Leaning forward, she presses her supple E-cups against your chest, while rising to press plump pussy lips against your [pc.cock " + x + "]. The girl’s curled tail wags energetically, a mischievous look of predatory glee on her face as the warm nectar of her slit drips down your shaft. A thrill of cold heat runs through you, your [pc.cocks] stiffening as her faintly minty scent fills your nostrils. Squeezing her thighs around you, the primal girl drags her melons over your [pc.skinFurScales] while her fingers trace the interiors of your arms. Her palms apply pressure to keep your hands against the ground, while she wiggles her small blue nose in your face before lightly nibbling at your [pc.nipples].");
 	output("\n\nBubbles of your precum add froth to the girl’s dripping lubrication, leaving your cock faintly glistening in the embankment’s shadowed shelter. Reaching between her legs, she curls her padded fingers around your girth, stroking slowly as her pussy lips engulf your cockhead.");
 	if(pc.balls > 0) output(" Her precum-slick palm slides across your swollen sack, offering a surprisingly tender massage. She caresses your [pc.sack] possessively, a small trickle of drool building at the corner of her mouth.");
 	output(" The korgonne woman pushes forward on her knees, her hand moving upward in short, swift strokes, spurring your stiffness to almost painful nearness. As she reaches your [pc.cockHead " + x + "], she pulls back and settles her ass against your lubricated tip. You rise just a fraction and she thrusts you flat against the ground once more. With agonizing slowness, she pushes herself down onto your length, sighing with satisfaction as each inch parts her suckling pucker a little bit more.");
 	pc.cockChange();
 	output("\n\nArching your back, the velvet tightness of her asshole seems to draw you deeper with each milking contraction. The gooey lubrication oozing down your cock leaves her ass so slick, your gradual rocking becomes a deep, brutal thrusting in mere moments. The slapping impacts of her fat cheeks against your [pc.thighs] leave the savage’s weighty bottom slick, each jiggling impact louder and harder than the one before. The girl’s voice gains an octave as she cries out in her melodic language, ");
-	if(!korgiTranslate()) output("making fervid oaths whose meanings are all too clear, despite the fruitlessness of the individual words.");
+	if(!korgiSillyTranslate()) output("making fervid oaths whose meanings are all too clear, despite the fruitlessness of the individual words.");
 	//translated: 
 	else output("<i>“Cock like spire! Heat like Great Forge! Weak serves strong and strong pleases weak!”</i>");
 	output(" She bottoms out on your [pc.cock " + x + "], wiggling in a rapid rotation to bring every muscle of her clenching sphincter to bear. Rising once more, she holds only the crest of your cockhead within her ass, kissing your peak with teasingly taut caresses.");
@@ -489,7 +494,7 @@ public function letDatKorgiLeadWinsex():void
 	}
 	output("\n\nPanting, the two of you hold each other close as the ardor of your union slowly cools. ");
 	if(pc.cumQ() >= 100) output("When you finally pull out, your cum dribbles between her legs in long, thick rivulets. ");
-	if(!korgiTranslate()) output("<i>“Fuck alien,”</i> she says, with a frisky, approving growl.");
+	if(!korgiSillyTranslate()) output("<i>“Fuck alien,”</i> she says, with a frisky, approving growl.");
 	else output("<i>“Alien come back in time of plenty,”</i> she suggests. <i>“Breed with korgonne for strong pups.”</i>");
 	output(" She squeezes her husky frame back into her gear and sets off into the snow with a single glance back that is as much encouragement to return as any heartfelt plea you’ve heard.");
 	output("\n\n");
@@ -509,7 +514,7 @@ public function rideTheKorgiTongue():void
 	output("You lower yourself, hands loosely draped across the girl’s shoulders. Dancing your fingers up her collar and across her stout jaw, you push her onto her back, leaning forward to rub the side of your nose against her cheek. Moving up, you press the supple swell of your [pc.lipsChaste] against her teal pillows, mouths trespassing on one another with light whispers and airy kisses. Pressing down, you nibble at the pliant threshold of her lower lip, applying enough force to draw a slight wince before sweetly sucking the flesh into your mouth and licking the dimples left by your teeth.");
 	output("\n\nYou open a touch wider and lock your [pc.lips] around hers, sighing in equal measure, smiling and kissing while you pull down the leather bands holding back her ample bosom. Your hand finds hers and you pull both up to one of her wobbling breasts. Your fingers interlock around the turquoise peak of her petite nipple, squeezing in time with the swaying pace of your lips. The korgonne’s tongue darts out to encircle and suckle your own and the sheer length is marvelous. Its surface is semi-coarse with the subtle bumps of swollen taste buds that seem to savor and explore you.");
 	output("\n\nBreaking the kiss, you cup the barbarian’s ponderous E-cups, lifting the tender mounds and squeezing them together until the sapphire nubs at their tips rub against one another, inches below her face. With a slow lunge, you spread your [pc.tongue] out as wide as it will go and lick the other girl’s peaks, starting at the yielding base of her quaking cleavage and rising until the very tip teases both nipples at once. The husky girl in your arms trembles and, as you pull away with a suggestive eyebrow raised, she nods with uncharacteristic meekness. ");
-	if(korgiTranslate()) output("<i>“Strong mouth,”</i> she praises, one expert to another. ");
+	if(korgiSillyTranslate()) output("<i>“Strong mouth,”</i> she praises, one expert to another. ");
 	output("She lowers her head, feeding the long inches of her own tongue out of her short muzzle, the massive organ starting at the top of her breasts and slowly licking downwards. When she reaches the bottom of her breasts, the full length of her seven inch tongue glistening, you reach out and seize the organ between your forefinger and thumb, then tug. Her face is held smushed between her almost bovine tits, and the korgonne rolls her eyes upward to meet your gaze.");
 
 	output("\n\nReleasing the girl for a moment, you");
@@ -581,7 +586,7 @@ public function titfuckKorgonneWin():void
 	output("\n\nThe savage’s shy exploration of your biology deserves a little reward, you decide, and you push your thumb a fraction of an inch into her eager slit. The korgonne takes the hint and nervously cranes her neck forward, kissing your [pc.cockHead " + x + "] before her vibrant, azure tongue spirals out of her maw around your thickening meat. It proves longer than you would’ve thought and in another moment, a full seven inches of drooling flesh are coiled around your girth with a serpent’s taut grip. Warm, wet, and squeezing, she uses her slavering tongue to haul you past the lips and into her impatient mouth. Her squat muzzle hugs your inches, stuffing her chubby cheeks with [pc.cockHead " + x + "]. While the lengthy tongue wriggles and writhes across your sensitive surface, you begin to pump at her pucker. Her head bobs with wet, gleeful gulps when your fingers begin to weave and stroke the entrance to her pussy, drawing out runners of her clear lube.");
 
 	output("\n\nSteadying your breathing, you slowly pull out of the barbarian’s mouth, her tongue desperately trying to hold you in, but unable to find purchase amid the dripping goo that coats you from her overeager blowjob. ");
-	if(korgiTranslate()) output("<i>“But- but alien taste good!”</i> she whines. ");
+	if(korgiSillyTranslate()) output("<i>“But- but alien taste good!”</i> she whines. ");
 	output("Pulling your hand up from the girl’s quivering snatch, you admire the sticky web of femme cum that sags between your fingers. With a few strokes, you mix it with the slobber already dribbling from your girth to create a glaze of sloppy, viscous knob-polish. Scooting back an inch, you lower the full, turgid length of your [pc.cock " + x + "] to the tight fuckhole her leather bra has made of her E-cup cleavage.");
 
 	output("\n\n");
@@ -626,7 +631,7 @@ public function pumpKorgiPuss():void
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
 	output("The korgonne’s jiggling curves and dense, fluffy coat look oh-so-inviting in Uveto’s unrelenting cold. Pulling her close, you squeeze the girl’s plump ass and slide your fingers through the loose braids of her hair. The barbarian’s strange, rectangular pupils meet your gaze with a look of mild defiance, but her mouth curls at the edges, spoiling her bravado. ");
-	if(korgiTranslate()) output("<i>“Alien bold. You claim prize?”</i> she asks. ");
+	if(korgiSillyTranslate()) output("<i>“Alien bold. You claim prize?”</i> she asks. ");
 	output("You lean in close, inches from the canid’s sapphire nose, and smile as her nostrils widen to take in your scent. A slight tremble flutters down her spine, radiating outward into a full body shudder, her slight motions magnified by the pudgy heft of her stout frame. Breathing deeply, she crosses the final inch between your lips with a fierce sigh, all reluctance melted by the heat blossoming between your bodies.");
 	output("\n\nHer kiss is aggressive, pressing tightly against you, exploring your [pc.lipsChaste]. Tightening your grip on her hair, you pull her firmly against your [pc.chest], unable to sate the enkindled yearning by the caressing embrace of her cobalt lips alone but unwilling to abandon her strong, skillful tongue. Her hands slide between the two of you, resting on your [pc.hips] before moving to your [pc.thighs]. ");
 	if(!pc.isCrotchExposed()) output("You unhook and slide out of your [pc.gear]; t");
@@ -635,7 +640,7 @@ public function pumpKorgiPuss():void
 	output("\n\nFueled by the girl’s flourishing vigor, the bulk of your [pc.cocks] stiffen");
 	if(pc.cocks.length == 1) output("s");
 	output(" between you. She closes her eyes and coos with delighted impatience as you swell against her soft stomach. ");
-	if(!korgiTranslate()) output("She rocks her hips against yours with a need that transcends language.");
+	if(!korgiSillyTranslate()) output("She rocks her hips against yours with a need that transcends language.");
 	else output("<i>“Share water-heat,”</i> she begs softly. <i>“Fill korgonne with seed.”</i>");
 	output(" You break the embrace slowly, lips tingling from the final lick of her blue tongue. A strand of saliva bridges the gap between the two of you as she opens her eyes, her heart fluttering against your chest. Sliding your hips back, you brace your [pc.cockHead " + x + "] against the husky mounds of her torrid labia, kissing the folds of her dripping tunnel.");
 	output("\n\nHer nose blushes a dark indigo and she nods ever so slightly and you push into the savage with a slow-but-unrelenting stroke. She tenses, clutching your shoulders as her tongue lolls from her mouth, panting steamy clouds that flicker and writhe around your eyes. Her tightness slows your stroke to a crawl, but you push on, driving your swollen inches as deeply as ");
@@ -795,7 +800,7 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish1():void
 		if(pc.lust() < pc.lustMax()) 
 		{
 			output("swinging her spear around and cracking it against the back of your skull. The strike has little effect on your gooey frame, but you act dazed to avoid letting your captor know too much.");
-			pc.HP(-5);
+			applyDamage(new TypeCollection( { unresistablehp: 5 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 		}
 		else output("hefting her spear and giving you a warning look. It’s a wasted gesture; you’re too turned on and eager for whatever she has planned to resist in the slightest.");
 		output(" With a self-satisfied nod, she grabs hold and begins to drag you toward a snow bank that conceals a small cave.");
@@ -806,7 +811,7 @@ public function loseToKorgonneWithABigDickAfterGivingHerBigDickFetish1():void
 		if(pc.lust() < pc.lustMax()) 
 		{
 			output("swinging her spear around and cracking it against the back of your skull. Your sight blossoms into a brilliant sea of white, as if the permafrost had swallowed you whole. Numbness. Darkness. A sensation of movement. When you come to, the snow is gone but the snow’s daughter remains.");
-			pc.HP(-10);
+			applyDamage(new TypeCollection( { unresistablehp: 10 }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 		}
 		else output("hefting her spear and giving you a warning look. It’s a wasted gesture; you’re too turned on and eager for whatever she has planned to resist in the slightest. With a self-satisfied nod, she grabs hold and begins to drag you toward a snow bank that conceals a small cave.");
 	}

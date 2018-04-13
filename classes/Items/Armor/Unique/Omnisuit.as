@@ -28,25 +28,24 @@ package classes.Items.Armor.Unique
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
-			attackVerb = "";
-			
-			basePrice = 500;
+			basePrice = 700;
 			attack = 0;
-			defense = 1;
-			shields = 5;
-			sexiness = 0;
+			defense = 3;
+			shields = 0;
+			sexiness = 7;
 			critBonus = 0;
-			evasion = 5;
+			evasion = 2;
 			fortification = 0;
 			
-			resistances.burning.resistanceValue = 15.0;
-			resistances.electric.resistanceValue = 15.0;
+			resistances.burning.resistanceValue = 34.0;
+			resistances.electric.resistanceValue = 40.0;
 			resistances.corrosive.resistanceValue = 15.0;
 			resistances.tease.resistanceValue = -25.0;
 			
 			// Note: Since the suit creates a stable environment any gaseous based damage wouldn't work against it.
 			//itemFlags = [GLOBAL.ITEM_FLAG_EXPOSE_FULL];
 			//itemFlags.push(GLOBAL.ITEM_FLAG_AIRTIGHT);
+			itemFlags.push(GLOBAL.ITEM_FLAG_SKIN_TIGHT);
 			
 			version = _latestVersion;
 		}

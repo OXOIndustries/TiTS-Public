@@ -133,8 +133,7 @@ public function acceptYammiBunsInShip():void
 	flags["YAMMI_RECRUITED"] = 1;
 	flags["YAMMI_IS_CREW"] = 1;
 	processTime(8);
-	currentLocation = "507";
-	generateMap();
+	moveTo("507");
 	pc.createStatusEffect("Iced Teats Closed", 0, 0, 0, 0, true, "", "", false, 1440);
 	clearMenu();
 	addButton(0,"Next",move,"SHIP INTERIOR");
@@ -151,8 +150,7 @@ public function declineYammiBunsInShip():void
 	output("\n\nYou wish her all the best and point her to the spaceport just down the way. She gives you a parting peck on the cheek before spinning on a heel and marching off, to new adventures.");
 	flags["YAMMI_RECRUITED"] = -1;
 	processTime(2);
-	currentLocation = "507";
-	generateMap();
+	moveTo("507");
 	pc.createStatusEffect("Iced Teats Closed", 0, 0, 0, 0, true, "", "", false, 1440);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -268,7 +266,7 @@ public function askYammiToLeave():void
 	output("<i>“Hey Yammi, do you have somewhere to stay if I need to free up your bunk on the ship for a while?”</i>");
 	output("\n\nYammi cocks her head to the side, looking at you sidelong. <i>“What’s the matter Boss? You don’t like my cooking?”</i>");
 	output("\n\n<i>“It’s not that,”</i> you explain, <i>“I’m just thinking of doing some reorganizing on the ship.”</i>");
-	output("\n\n<i>“Oh.”</i> Yammi taps her chin. <i>“I think I could hang around on New Texas, if you want. Between Iced Teats and the the grill in Big T’s place, there’s bound to be some place that’ll let me pick up some extra scratch doing food prep. Those big bulls have huge appetites, especially after they spend all afternoon plowing some ditzy cow.”</i> She looks around. <i>“You need me to make tracks now, Boss?”</i>");
+	output("\n\n<i>“Oh.”</i> Yammi taps her chin. <i>“I think I could hang around on New Texas, if you want. Between Iced Teats and the grill in Big T’s place, there’s bound to be some place that’ll let me pick up some extra scratch doing food prep. Those big bulls have huge appetites, especially after they spend all afternoon plowing some ditzy cow.”</i> She looks around. <i>“You need me to make tracks now, Boss?”</i>");
 	output("\n\nAre you sure you want to get rid of Yammi?");
 	processTime(1);
 	clearMenu();

@@ -228,6 +228,10 @@ public function disableSiegwulfe():void
 }
 
 // Crew Menu Text
+public function siegwulfeInteractBonus(btnSlot:int = 0):String
+{
+	return siegwulfeOnShipBonus(btnSlot, true);
+}
 public function siegwulfeOnShipBonus(btnSlot:int = 0, fromInv:Boolean = false):String
 {
 	// Bought, but not activated.
@@ -534,8 +538,7 @@ public function doSiegwulfeSex(response:String = "none"):void
 				if(chars["WULFE"].isBimbo()) output("\n\nBefore she starts moving, though, the giddy bimbo-bot hefts up those gloriously huge tits she’s packing and drops them on either side of your [pc.cockNoun " + i + "]. Her hands lock around her nipples, pinching the two black mounds together and enveloping your member in jiggling boobflesh. The drone-girl works her shoulders back and forth, rubbing you down with her tits while her lips handle your crown, letting a steady rainfall of saliva drool down your length like lube.");
 				output("\n\nWith a slow, steady gulp, [wulfe.name] eases herself down your shaft, suckling and licking all the while until her lips are pressed into your crotch, and her throat is bulging with cockmeat.");
 				if(flags["WULFE_SEXED_ORAL"] == undefined) output(" She was built for pleasure, of course, so it’s no surprise to feel bumps and ridges all along her throat, rubbing wonderfully against your throbbing cockmeat -- she’s ribbed like an onahole!");
-				else output(" You moan openly as your cock slides through her ribbed and textured throat, sliding into what feels like a designer onahole filled to bursting with lube");
-				output(".");
+				else output(" You moan openly as your cock slides through her ribbed and textured throat, sliding into what feels like a designer onahole filled to bursting with lube.");
 				output("\n\nYou just lean back, stroke her hair, and let the robotic wolf-babe do her thing.");
 				output("\n\nHer programming makes her an immaculate expert at sucking cock. [wulfe.name] moans and flutters her eyes at you around her mouthful of [pc.cock " + i + "], pinching her nipples and waggling her tail in quiet confirmation of just how much she’s enjoying this. That’s the good thing about synths: she’s probably programmed to get as much pleasure from getting you off as if you were hammering her pussy. Maybe even more, since now her mind can entirely focus on nothing but ensuring you enjoy every second of her attention; that every synthetic muscle is dedicated to your dick.");
 				output("\n\nShe works with loving affection and absolute devotion, bobbing her head on your shaft " + (chars["WULFE"].isBimbo() ? "and thrusting her tits in the wake of her full lips, smearing lube and pre along your length until you’re gasping for more" : "with military precision, never wasting a modicum of effort that could better be expended on your tool") + ". For your part, your [pc.cockNoun " + i + "] throbs needily the longer she sucks you off, building up a familiar pressure in your [pc.balls]. Your crown leaks more and more pre onto [wulfe.name]’s ebony pillows, cluing her in to your impending climax.");

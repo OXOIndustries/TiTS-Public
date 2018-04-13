@@ -117,6 +117,7 @@ package classes.GameData.Pregnancy.Handlers
 			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
 			
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
+			pData.pregnancyQuantity = thisPtr.pregnancyQuantityMinimum;
 			pData.pregnancyBellyRatingContribution += 45;
 			mother.bellyRatingMod += 45;
 		}

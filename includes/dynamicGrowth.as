@@ -10,40 +10,43 @@ public function removeImmobilized(deltaT:uint = 0):void
 // [0] Egregious, [1] Ludicrous, [2] Overwhelming, [3] Immobilized!
 // Length/Size Ratios: (for immobilization comparisons, average 5 ft person) Ex. - 5' person with M-cup for level 1 is [40/60] at position 0.
 private var lvlRatioBalls:Array = [(9/60), (15/60), (25/60), (40/60)];
-private var lvlRatioPenis:Array = [(9999/60), (9999/60), (9999/60), (9999/60)];
-private var lvlRatioClits:Array = [(9999/60), (9999/60), (9999/60), (9999/60)];
-private var lvlRatioBoobs:Array = [(9999/60), (9999/60), (9999/60), (9999/60)];
-private var lvlRatioBelly:Array = [(9999/60), (9999/60), (9999/60), (9999/60)];
-private var lvlRatioButts:Array = [(9999/60), (9999/60), (9999/60), (9999/60)];
+private var lvlRatioPenis:Array = [(9999/60), (9999/60), (9999/60), (9999/60)]; //[(16/60), (32/60), (64/60), (128/60)];
+private var lvlRatioClits:Array = [(9999/60), (9999/60), (9999/60), (9999/60)]; //[(16/60), (32/60), (64/60), (128/60)];
+private var lvlRatioBoobs:Array = [(9999/60), (9999/60), (9999/60), (9999/60)]; //[(25/60), (50/60), (100/60), (200/60)];
+private var lvlRatioBelly:Array = [(50/20), (70/20), (90/20), (120/20)];
+private var lvlRatioButts:Array = [(20/20), (30/20), (50/20), (80/20)];
 // Threshold percentages for each level:
 private var percentBalls:Array = [10, 25, 50, 100];
 private var percentPenis:Array = [25, 50, 75, 100];
 private var percentClits:Array = [25, 50, 75, 100];
 private var percentBoobs:Array = [25, 50, 75, 100];
-private var percentBelly:Array = [25, 50, 75, 100];
-private var percentButts:Array = [25, 50, 75, 100];
+private var percentBelly:Array = [5, 5, 5, 5];
+private var percentButts:Array = [5, 5, 5, 5];
 
 
 /* General framework stuff */
 
+private function lvlBodyParts(lvl:int = 0):Array
+{
+	var bodyPart:Array = [];
+	
+	if(pc.balls > 0 && pc.weightQ("testicle") >= percentBalls[lvl] && pc.heightRatio("testicle") >= lvlRatioBalls[lvl]) bodyPart.push("balls");
+	if(pc.hasCock() && pc.weightQ("penis") >= percentPenis[lvl] && pc.heightRatio("penis") >= lvlRatioPenis[lvl]) bodyPart.push("cock");
+	if(pc.hasVagina() && pc.weightQ("clitoris") >= percentClits[lvl] && pc.heightRatio("clitoris") >= lvlRatioClits[lvl]) bodyPart.push("clit");
+	if(pc.hasBreasts() && pc.weightQ("breast") >= percentBoobs[lvl] && pc.heightRatio("breast") >= lvlRatioBoobs[lvl]) bodyPart.push("boobs");
+	//if(pc.weightQ("belly") >= percentBelly[lvl] && pc.heightRatio("belly") >= lvlRatioBelly[lvl]) bodyPart.push("belly");
+	//if(pc.weightQ("butt") >= percentButts[lvl] && pc.heightRatio("butt") >= lvlRatioButts[lvl]) bodyPart.push("butt");
+	
+	return bodyPart;
+}
 public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 {
 	if(!pc.hasStatusEffect("Endowment Immobilized")) return 0;
 	
-	var bodyPart:Array = [];
-	
-	if(pc.balls > 0 && pc.weightQ("testicle") >= percentBalls[3] && pc.heightRatio("testicle") >= lvlRatioBalls[3]) bodyPart.push("balls");
-	else if(pc.hasCock() && pc.weightQ("penis") >= percentPenis[3] && pc.heightRatio("penis") >= lvlRatioPenis[3]) bodyPart.push("cock");
-	else if(pc.hasVagina() && pc.weightQ("clitoris") >= percentClits[3] && pc.heightRatio("clitoris") >= lvlRatioClits[3]) bodyPart.push("clit");
-	else if(pc.hasBreasts() && pc.weightQ("breast") >= percentBoobs[3] && pc.heightRatio("breast") >= lvlRatioBoobs[3]) bodyPart.push("boobs");
-	else if(pc.weightQ("belly") >= percentBelly[3] && pc.heightRatio("belly") >= lvlRatioBelly[3]) bodyPart.push("belly");
-	else if(pc.weightQ("butt") >= percentButts[3] && pc.heightRatio("butt") >= lvlRatioButts[3]) bodyPart.push("butt");
+	var bodyPart:Array = lvlBodyParts(3);
 	
 	if(!count)
 	{
-		var msg:String = "";
-		var bodyText: String = "";
-		var partList:Array = [];
 		var immobileParts:int = (bodyPart.length);
 		
 		// Hoverboard exception!
@@ -63,7 +66,11 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 		// Support exceptions!
 		if(immobileParts <= 0)
 		{
-			AddLogEvent("Your", "passive", deltaT);
+			var msg:String = "";
+			var bodyText: String = "";
+			var partList:Array = [];
+			
+			msg += "Your";
 			if(bodyPart.length > 0)
 			{
 				if(InCollection("balls", bodyPart))
@@ -131,11 +138,11 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 			}
 			else if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))
 			{
-				msg += " Activating the anti-gravity switches on your" + (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) ? " outfit" : " undergarments") + ", you quickly feel the immobilizing weight being lifted off the ground!";
+				msg += " Activating the anti-gravity switches on your " + (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) ? "outfit" : "undergarments") + ", you quickly feel the immobilizing weight being lifted off the ground!";
 			}
 			msg += " Now you can travel with ease... more or less.";
 			
-			if(msg.length > 0) ExtendLogEvent(msg);
+			AddLogEvent(msg, "passive", deltaT);
 			
 			removeImmobilized(deltaT);
 			pc.lust(5 * bodyPart.length);
@@ -145,36 +152,39 @@ public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 	return bodyPart.length;
 }
 
-public function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
+private function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 {
-	var weightQ:Number = pc.weightQ(partName);
-	var heightQ:Number = pc.heightRatio(partName);
-	
 	// Exceptions
 	if(pc.isGoo()) { /* Goos are immune to immobilization? */ }
-	else if(InCollection(partName, ["testicle", "penis", "clitoris"]) && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))) { /* Anti-grav underwear lifts crotch stuff. */ }
-	else if(InCollection(partName, ["breast"]) && (pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV))) { /* Anti-grav tops lifts chest stuff. */ }
+	else if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV)) { /* Anti-grav outfit lifts all body parts. */ }
+	else if(InCollection(partName, ["testicle", "penis", "clitoris"]) && pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV)) { /* Anti-grav underwear lifts crotch stuff. */ }
+	else if(InCollection(partName, ["breast"]) && pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV)) { /* Anti-grav top lifts chest stuff. */ }
 	// Weigh parts and add effects where necessary
 	else
 	{
+		var weightQ:Number = pc.weightQ(partName);
+		var heightQ:Number = pc.heightRatio(partName);
+		var msg:String = "";
+		
 		if(partName == "testicle" && pc.balls > 0)
 		{
 			//Hit basketball size >= 9
 			if(weightQ >= percentBalls[0] && heightQ >= lvlRatioBalls[0] && !pc.hasStatusEffect("Egregiously Endowed"))
 			{
-				AddLogEvent(ParseText("Ugh, you could really use a chance to offload some [pc.cumNoun]. You"), "passive", deltaT);
+				msg = ParseText("Ugh, you could really use a chance to offload some [pc.cumNoun]. You");
 				if(pc.ballDiameter() >= 9 && pc.ballDiameter() < 12)
 				{
-					if(pc.balls == 1) ExtendLogEvent("r testicle has reached the size of a basketball and shows");
-					else ExtendLogEvent("r balls have reached the size of basketballs and show");
+					if(pc.balls == 1) msg += "r testicle has reached the size of a basketball and shows";
+					else msg += "r balls have reached the size of basketballs and show";
 				}
 				else
 				{
-					if(pc.balls == 1) ExtendLogEvent(" have " + pc.ballsDescript(true, true) + " and it shows");
-					else ExtendLogEvent(" have " + pc.ballsDescript(false, true) + " and they show");
+					if(pc.balls == 1) msg += " have " + pc.ballsDescript(true, true) + " and it shows";
+					else msg += " have " + pc.ballsDescript(false, true) + " and they show";
 				}
-				ExtendLogEvent(" no signs of stopping. The squishy, sensitive mass will definitely slow your movements.");
+				msg += " no signs of stopping. The squishy, sensitive mass will definitely slow your movements.";
 				
+				AddLogEvent(msg, "passive", deltaT);
 				//Status - Egregiously Endowed - Movement between rooms takes twice as long, and fleeing from combat is more difficult.
 				pc.createStatusEffect("Egregiously Endowed", 0,0,0,0,false,"Icon_Poison", "Movement between rooms takes twice as long, and fleeing from combat is more difficult.", false, 0);
 				pc.lust(5);
@@ -182,45 +192,48 @@ public function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 			//Hit beachball size >= 15
 			if(weightQ >= percentBalls[1] && heightQ >= lvlRatioBalls[1] && !pc.hasStatusEffect("Ludicrously Endowed"))
 			{
-				AddLogEvent(ParseText("Every movement is accompanied by a symphony of sensation from your swollen nutsack, so engorged with [pc.cumNoun] that it wobbles from its own internal weight. You have to stop from time to time just to keep from being overwhelmed by your own liquid arousal."), "passive", deltaT);
+				msg = ParseText("Every movement is accompanied by a symphony of sensation from your swollen nutsack, so engorged with [pc.cumNoun] that it wobbles from its own internal weight. You have to stop from time to time just to keep from being overwhelmed by your own liquid arousal.");
 				
+				AddLogEvent(msg, "passive", deltaT);
 				pc.createStatusEffect("Ludicrously Endowed", 0,0,0,0,false,"Icon_Poison", "The shifting masses of your over-sized endowments cause you to gain fifty percent more lust over time.", false, 0);
 				pc.lust(5);
 			}
 			//Hit barrel size
 			if(weightQ >= percentBalls[2] && heightQ >= lvlRatioBalls[2] && !pc.hasStatusEffect("Overwhelmingly Endowed"))
 			{
-				AddLogEvent("Whoah, this is awkward. Your", "passive", deltaT);
-				if(pc.balls == 1) ExtendLogEvent(" testicle is");
-				else ExtendLogEvent(" nuts are");
-				if(pc.ballDiameter() >= 25 && pc.ballDiameter() < 40) ExtendLogEvent(" practically barrel-sized");
-				else ExtendLogEvent(" utterly massive");
-				ExtendLogEvent("! If you aren’t careful,");
-				if(pc.balls == 1) ExtendLogEvent(" it");
-				else ExtendLogEvent(" they");
-				ExtendLogEvent(" drag softly on the ground. Grass is no longer scenery - it’s hundreds of slender tongues tickling your nut");
-				if(pc.balls != 1) ExtendLogEvent("s");
-				ExtendLogEvent(". Mud is an erotic massage. Even sand feels kind of good against your thickened sack, like a vigorous massage.");
+				msg = "Whoah, this is awkward. Your";
+				if(pc.balls == 1) msg += " testicle is";
+				else msg += " nuts are";
+				if(pc.ballDiameter() >= 25 && pc.ballDiameter() < 40) msg += " practically barrel-sized";
+				else msg += " utterly massive";
+				msg += "! If you aren’t careful,";
+				if(pc.balls == 1) msg += " it";
+				else msg += " they";
+				msg += " drag softly on the ground. Grass is no longer scenery - it’s hundreds of slender tongues tickling your nut";
+				if(pc.balls != 1) msg += "s";
+				msg += ". Mud is an erotic massage. Even sand feels kind of good against your thickened sack, like a vigorous massage.";
 				
+				AddLogEvent(msg, "passive", deltaT);
 				pc.createStatusEffect("Overwhelmingly Endowed", 0,0,0,0,false,"Icon_Poison", "The shifting masses of your over-sized endowments cause you to gain twice as much lust over time.", false, 0);
 				pc.lust(5);
 			}
 			//hit person size
 			if(weightQ >= percentBalls[3] && heightQ >= lvlRatioBalls[3] && !pc.hasStatusEffect("Endowment Immobilized") && !pc.hasItemByClass(Hoverboard))
 			{
-				AddLogEvent("You strain as hard as you can, but there’s just no helping it. You’re immobilized. Your", "passive", deltaT);
-				if(pc.balls == 1) ExtendLogEvent(" testicle is");
-				else ExtendLogEvent(" balls are");
-				ExtendLogEvent(" just too swollen to allow you to move anywhere. The bulk of your body weight is right there in your");
-				if(pc.balls == 1) ExtendLogEvent(" sack");
-				else ExtendLogEvent(" testes");
-				ExtendLogEvent(", and there’s nothing you can do about it.");
-				if(canShrinkNuts()) ExtendLogEvent(".. well, almost nothing. A nice, long orgasm ought to fix this!");
+				msg = "You strain as hard as you can, but there’s just no helping it. You’re immobilized. Your";
+				if(pc.balls == 1) msg += " testicle is";
+				else msg += " balls are";
+				msg += " just too swollen to allow you to move anywhere. The bulk of your body weight is right there in your";
+				if(pc.balls == 1) msg += " sack";
+				else msg += " testes";
+				msg += ", and there’s nothing you can do about it.";
+				if(canShrinkNuts()) msg += ".. well, almost nothing. A nice, long orgasm ought to fix this!";
 				else 
 				{
 					if(eventQueue.indexOf(bigBallBadEnd) == -1) eventQueue.push(bigBallBadEnd);
-					if(pc.hasPerk("'Nuki Nuts")) ExtendLogEvent(" If a quick fap wasn’t illegal here, this would be far simpler. Too bad.");
+					if(pc.hasPerk("'Nuki Nuts")) msg += " If a quick fap wasn’t illegal here, this would be far simpler. Too bad.";
 				}
+				AddLogEvent(msg, "passive", deltaT);
 				pc.createStatusEffect("Endowment Immobilized", 0,0,0,0,false,"Icon_Poison", "Your endowments prevent you from moving.", false, 0);
 				pc.lust(5);
 			}
@@ -237,9 +250,44 @@ public function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 		{
 			/* 9999 */
 		}
-		else if(partName == "belly")
+		else if(partName == "belly" && heightQ >= lvlRatioBelly[0])
 		{
-			/* 9999 */
+			// "Bulky Belly" debuff
+			// v1: Multiplier that affects max reflexes, reflexes and evasion.
+			pc.createStatusEffect("Bulky Belly", 1.0, 0, 0, 0, false, "Icon_Belly_Pregnant", "", false, 0);
+			var nCurBellyDebuff:Number = pc.statusEffectv1("Bulky Belly");
+			var nNewBellyDebuff:Number = 1.0;
+			
+			if(heightQ >= lvlRatioBelly[0])
+			{
+				if(nCurBellyDebuff > 0.9) msg = "You shift your weight and notice you are getting a little bit slower than usual... it looks like your mid-section’s size is affecting your mobility a little.";
+				if(nCurBellyDebuff < 0.9) msg = "A bit easier to move, your belly seems a little less burdensome now.";
+				nNewBellyDebuff = 0.9;
+			}
+			if(heightQ >= lvlRatioBelly[1])
+			{
+				if(nCurBellyDebuff > 0.7) msg = "You notice a little more lag in your movements as of late. The size of your belly has been a bit more burdensome, affecting your reaction time.";
+				if(nCurBellyDebuff < 0.7) msg = "Feeling some of your reflexes return to you, you see that your belly is a bit less bulky now.";
+				nNewBellyDebuff = 0.7;
+			}
+			if(heightQ >= lvlRatioBelly[2])
+			{
+				if(nCurBellyDebuff > 0.5) msg = "It’s really getting harder to move around as easily now. It looks like your reflexes have been greatly reduced due to your burgeoning belly.";
+				if(nCurBellyDebuff < 0.5) msg = "Though still in the way, your belly seems a little less cumbersome than before.";
+				nNewBellyDebuff = 0.5;
+			}
+			if(heightQ >= lvlRatioBelly[3])
+			{
+				if(nCurBellyDebuff > 0.3) msg = "You try to move around but your reactions are extremely slow. Your belly is just too massive and cumbersome for you to move yourself normally anymore! Everything must be done slowly and painstakingly.";
+				if(nCurBellyDebuff < 0.3) msg = "Though still greatly in the way, your belly seems a little less massive than before.";
+				nNewBellyDebuff = 0.3;
+			}
+			
+			if(nCurBellyDebuff != nNewBellyDebuff) {
+				if(msg != "") AddLogEvent(msg, "passive", deltaT);
+				pc.setStatusValue("Bulky Belly", 1, nNewBellyDebuff);
+				pc.setStatusTooltip("Bulky Belly", "The size of your belly weighs you down, dropping your reflexes and evasion chances by " + (Math.round((1.0 - nNewBellyDebuff) * 1000) / 10) + "%.");
+			}
 		}
 		else if(partName == "butt")
 		{
@@ -250,7 +298,7 @@ public function bodyPartUpdates(partName:String = "none", deltaT:uint = 0):void
 	bodyPartCleanup(partName, deltaT);
 }
 
-public function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
+private function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 {
 	if(immobilizedUpdate(true) >= 1) return;
 	
@@ -263,22 +311,22 @@ public function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 	switch (partName)
 	{
 		case "testicle":
-			altCheck = (pc.balls <= 0 || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
+			altCheck = (pc.balls <= 0 || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioBalls;
 			perRatio = percentBalls;
 			break;
 		case "penis":
-			altCheck = (!pc.hasCock() || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
+			altCheck = (!pc.hasCock() || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioPenis;
 			perRatio = percentPenis;
 			break;
 		case "clitoris":
-			altCheck = (!pc.hasVagina() || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
+			altCheck = (!pc.hasVagina() || pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioClits;
 			perRatio = percentClits;
 			break;
 		case "breast":
-			altCheck = (!pc.hasBreasts() || pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV) || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
+			altCheck = (!pc.hasBreasts() || pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV));
 			lvlRatio = lvlRatioBoobs;
 			perRatio = percentBoobs;
 			break;
@@ -295,23 +343,58 @@ public function bodyPartCleanup(partName:String = "none", deltaT:uint = 0):void
 	}
 	
 	if(pc.isGoo()) altCheck = true;
+	if(pc.armor.hasFlag(GLOBAL.ITEM_FLAG_ANTIGRAV)) altCheck = true;
 	
-	if ((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
+	// Endowments
+	if(InCollection(partName, ["testicle", "penis", "clitoris", "breast"]))
 	{
-		removeImmobilized(deltaT);
+		if ((altCheck || weightQ < perRatio[3] || heightQ < lvlRatio[3]) && pc.hasStatusEffect("Endowment Immobilized")) 
+		{
+			if(lvlBodyParts(3).length <= 0) removeImmobilized(deltaT);
+		}
+		if ((altCheck || weightQ < perRatio[2] || heightQ < lvlRatio[2]) && pc.hasStatusEffect("Overwhelmingly Endowed"))
+		{
+			if(lvlBodyParts(2).length <= 0) pc.removeStatusEffect("Overwhelmingly Endowed");
+		}
+		if ((altCheck || weightQ < perRatio[1] || heightQ < lvlRatio[1]) && pc.hasStatusEffect("Ludicrously Endowed"))
+		{
+			if(lvlBodyParts(1).length <= 0) pc.removeStatusEffect("Ludicrously Endowed");
+		}
+		if ((altCheck || weightQ < perRatio[0] || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Egregiously Endowed"))
+		{
+			if(lvlBodyParts(0).length <= 0) pc.removeStatusEffect("Egregiously Endowed");
+		}
 	}
-	if ((altCheck || weightQ < perRatio[2] || heightQ < lvlRatio[2]) && pc.hasStatusEffect("Overwhelmingly Endowed"))
+	// Belly Size
+	if (partName == "belly" && (altCheck || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Bulky Belly"))
 	{
-		pc.removeStatusEffect("Overwhelmingly Endowed");
+		AddLogEvent("Shifting your weight around seems a lot easier now. <b>Your [pc.belly] is no longer slowing you down!</b>", "good", deltaT);
+		pc.removeStatusEffect("Bulky Belly");
 	}
-	if ((altCheck || weightQ < perRatio[1] || heightQ < lvlRatio[1]) && pc.hasStatusEffect("Ludicrously Endowed"))
+}
+
+
+public function immobilizationList():Array
+{
+	var funcList:Array = [];
+	
+	if(pc.hasStatusEffect("Endowment Immobilized"))
 	{
-		pc.removeStatusEffect("Ludicrously Endowed");
+		if(pc.balls > 0 && pc.weightQ("testicle") >= percentBalls[3] && pc.heightRatio("testicle") >= lvlRatioBalls[3]) funcList.push(bigBallNoBadEnd);
 	}
-	if ((altCheck || weightQ < perRatio[0] || heightQ < lvlRatio[0]) && pc.hasStatusEffect("Egregiously Endowed"))
-	{
-		pc.removeStatusEffect("Egregiously Endowed");
-	}
+	return funcList;
+}
+public function immobilizationHelp():void
+{
+	clearOutput();
+	
+	output("Due to your immobilized state, you take out your codex and call for help...");
+	
+	var funcList:Array = immobilizationList();
+	
+	clearMenu();
+	if(funcList.length > 0) addButton(0, "Next", funcList[rand(funcList.length)]);
+	else addButton(0, "Next", mainGameMenu);
 }
 
 
@@ -358,12 +441,13 @@ public function canShrinkNuts():Boolean
 	return false;
 }
 
-public function bigBallBadEnd():void
+public function bigBallNoBadEnd():void { bigBallBadEnd(false); }
+public function bigBallBadEnd(bBadEnd:Boolean = true):void
 {
 	clearOutput();
 	author("Fenoxo");
 	//Dangerous area, can’t unswell:
-	if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
+	if(bBadEnd && rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
 	{
 		output("It isn’t long before the natives of this place take you as an amusement - a live-in toy whose virility is the show-piece of an alien exhibit. You never do manage to get your dad’s fortune, but hey, at least you get to live in relative comfort and have all the orgasms your body can handle.");
 		
@@ -404,10 +488,26 @@ public function bigBallBadEnd():void
 				pc.balls = 3;
 			}
 		}
-		pc.ballSizeRaw = 30;
-		currentLocation = "SHIP INTERIOR";
-		generateMap();
+		
+		pc.createStatusEffect("Milk Paused");
+		pc.createStatusEffect("Cum Paused");
 		processTime(1382);
+		pc.removeStatusEffect("Milk Paused");
+		pc.removeStatusEffect("Cum Paused");
+		
+		if(pc.hasStatusEffect("Blue Balls")) pc.removeStatusEffect("Blue Balls");
+		if(pc.perkv1("'Nuki Nuts") > 0)
+		{
+			pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");
+			pc.setPerkValue("'Nuki Nuts", 1, 0);
+		}
+		if(pc.ballSizeRaw > 30) pc.ballSizeRaw = 30;
+		
+		pc.ballFullness = 0;
+		nutStatusCleanup();
+		
+		moveTo("SHIP INTERIOR");
+		
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
@@ -417,13 +517,14 @@ public function bigBallBadEnd():void
 
 public function honeyPotBump(cumShot:Boolean = false, totalDays:int = 0):void
 {
-	var msg:String = "";
 	var baseDShift:uint = (totalDays == 0 ? 0 : GetGameTimestamp() % 1440);
 	
 	totalDays = 1;
 	
 	for (var i:int = 0; i < totalDays; i++)
-	{			
+	{
+		var msg:String = "";
+		
 		if(pc.thickness >= 30)
 		{
 			pc.thickness -= 10;
@@ -435,47 +536,55 @@ public function honeyPotBump(cumShot:Boolean = false, totalDays:int = 0):void
 			}
 			boobDiff /= 10;
 			
-			AddLogEvent(ParseText("Your body tightens as the honeypot gene goes to work, diverting your excess bodymass into your [pc.chest], building you bigger and fuller of [pc.milkNoun]."), "passive", baseDShift + (i * 4320));
+			msg += ParseText("Your body tightens as the honeypot gene goes to work, diverting your excess bodymass into your [pc.chest], building you bigger and fuller of [pc.milkNoun].");
 			
 			for(var bb:int = 0; bb < pc.bRows(); bb++)
 			{
 				pc.breastRows[bb].breastRatingHoneypotMod += boobDiff;
 			}
 			if(pc.milkFullness < 100) pc.milkFullness = 100;
+			AddLogEvent(msg, "passive", baseDShift + (i * 4320));
 		}
 		else if(pc.breastRows[0].breastRatingHoneypotMod == 0)
 		{
-			AddLogEvent(ParseText("Your [pc.chest] feel"), "passive", baseDShift + (i * 4320));
-			if(!pc.hasBreasts()) ExtendLogEvent("s");
-			ExtendLogEvent(" bigger than normal, swollen ");
-			if(cumShot) ExtendLogEvent("from all the oral calories you’ve taken in.");
-			else ExtendLogEvent("with the spare calories your honeypot gene has siphoned off of your meals.");
+			msg += ParseText("Your [pc.chest] feel");
+			if(!pc.hasBreasts()) msg += "s";
+			msg += " bigger than normal, swollen";
+			if(cumShot) msg += " from all the oral calories you’ve taken in.";
+			else msg += " with the spare calories your honeypot gene has siphoned off of your meals.";
+			AddLogEvent(msg, "passive", baseDShift + (i * 4320));
 		}
 		else if(pc.breastRows[0].breastRatingHoneypotMod < 10 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 10)
 		{
-			AddLogEvent(ParseText(" Your [pc.chest] practically glow"), "passive", baseDShift + (i * 4320));
-			if(!pc.hasBreasts()) ExtendLogEvent("s");
-			ExtendLogEvent(" with the ever-expanding fruit of your honeypot gene. You wonder just how big you’ll get.");
+			msg += ParseText(" Your [pc.chest] practically glow");
+			if(!pc.hasBreasts()) msg += "s";
+			msg += " with the ever-expanding fruit of your honeypot gene. You wonder just how big you’ll get.";
+			AddLogEvent(msg, "passive", baseDShift + (i * 4320));
 		}
 		else if(pc.breastRows[0].breastRatingHoneypotMod < 20 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 20)
 		{
-			AddLogEvent(ParseText("Sometimes when you move, your [pc.arm] sends your liquid-filled [pc.chest] bouncing. You can feel as much as hear the fluid churning inside, ready to be released into your hands, the ground, or a passersby’s open mouth."), "passive", baseDShift + (i * 4320));
+			msg += ParseText("Sometimes when you move, your [pc.arm] sends your liquid-filled [pc.chest] bouncing. You can feel as much as hear the fluid churning inside, ready to be released into your hands, the ground, or a passersby’s open mouth.");
+			AddLogEvent(msg, "passive", baseDShift + (i * 4320));
 		}
 		else if(pc.breastRows[0].breastRatingHoneypotMod < 30 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 30)
 		{
-			AddLogEvent(ParseText(" Every movement is accompanied by a weighty, sloshing jiggle from your [pc.chest]. The more you take in, the more like a gold myr honeypot you seem, growing until you seem more boob than ") + pc.mfn("man", "woman", "person") + ".", "passive", baseDShift + (i * 4320));
+			msg += ParseText(" Every movement is accompanied by a weighty, sloshing jiggle from your [pc.chest]. The more you take in, the more like a gold myr honeypot you seem, growing until you seem more boob than ") + pc.mfn("man", "woman", "person") + ".";
+			AddLogEvent(msg, "passive", baseDShift + (i * 4320));
 		}
 		else if(pc.breastRows[0].breastRatingHoneypotMod < 40 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 40)
 		{
-			AddLogEvent(ParseText(" Wherever you go, the eyes of every single passing sapient zero in on your [pc.chest]."), "passive", baseDShift + (i * 4320));
-			if(!pc.hasBreasts()) ExtendLogEvent(" It juts");
-			else ExtendLogEvent(" They jut");
-			ExtendLogEvent(ParseText(" from your body like the proud prow of a deep space freighter, filled with a glorious [pc.milkFlavor] bounty. If only they knew - if only they could sense just how great it would be to take your [pc.nipple] in your mouth and suck. An all too pleasurable shudder wracks your spine at the thought."));
+			msg += ParseText(" Wherever you go, the eyes of every single passing sapient zero in on your [pc.chest].");
+			if(!pc.hasBreasts()) msg += " It juts";
+			else msg += " They jut";
+			msg += ParseText(" from your body like the proud prow of a deep space freighter, filled with a glorious [pc.milkFlavor] bounty. If only they knew - if only they could sense just how great it would be to take your [pc.nipple] in your mouth and suck. An all too pleasurable shudder wracks your spine at the thought.");
+			AddLogEvent(msg, "passive", baseDShift + (i * 4320));
 		}
 		else if(pc.breastRows[0].breastRatingHoneypotMod < 50 && pc.breastRows[0].breastRatingHoneypotMod+1 >= 50)
 		{
-			AddLogEvent(ParseText(" It’s tough not to toddle forward off your [pc.feet] and onto your [pc.milkNoun]-engorged chest. The pressure would probably release a tide of [pc.milkFlavor] juice and still barely put a dent in your super-sized knockers. The honeypot gene is so amazing, the way it makes your body so fruitful... You’ve got to share this beautiful bosom with the galaxy!"), "passive", baseDShift + (i * 4320));
+			msg += ParseText(" It’s tough not to toddle forward off your [pc.feet] and onto your [pc.milkNoun]-engorged chest. The pressure would probably release a tide of [pc.milkFlavor] juice and still barely put a dent in your super-sized knockers. The honeypot gene is so amazing, the way it makes your body so fruitful... You’ve got to share this beautiful bosom with the galaxy!");
+			AddLogEvent(msg, "passive", baseDShift + (i * 4320));
 		}
+		
 		//Bump up boob size for 3 days of eating or a cumshot!
 		for(var cc:int = 0; cc < pc.bRows(); cc++)
 		{
@@ -503,12 +612,13 @@ public function milkGainNotes(deltaT:uint = 0):void
 			else pc.breastRows[x].breastRatingLactationMod = 1;
 		}
 
-		AddLogEvent(ParseText("There’s no way you could miss how your [pc.fullChest] have swollen up with [pc.milk]. You figure it won’t be long before they’re completely full. It might be a good idea to milk them soon. <b>With all that extra weight, "), "passive", deltaT);
-		if(pc.bRows() > 1) ExtendLogEvent("the top row is ");
-		else ExtendLogEvent("they’re ");
-		ExtendLogEvent(ParseText("currently [pc.breastCupSize]s"));
-		if(pc.bRows() > 1) ExtendLogEvent(", and the others are similarly swollen");
-		ExtendLogEvent(".</b>");
+		msg = ParseText("There’s no way you could miss how your [pc.fullChest] have swollen up with [pc.milk]. You figure it won’t be long before they’re completely full. It might be a good idea to milk them soon. <b>With all that extra weight, ");
+		if(pc.bRows() > 1) msg += "the top row is ";
+		else msg += "they’re ";
+		msg += ParseText("currently [pc.breastCupSize]s");
+		if(pc.bRows() > 1) msg += ", and the others are similarly swollen";
+		msg += ".</b>";
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain Milk Note: 75");
 	}
 	//Cross 100% milk fullness + 1.5 cups
@@ -521,7 +631,8 @@ public function milkGainNotes(deltaT:uint = 0):void
 			if(pc.breastRows[x].breastRatingRaw >= 5) pc.breastRows[x].breastRatingLactationMod = 2.5;
 			else pc.breastRows[x].breastRatingLactationMod = 1.5;
 		}
-		AddLogEvent(ParseText("Your [pc.fullChest] feel more than a little sore. They’re totally and unapologetically swollen with [pc.milk]. You heft the [pc.breastCupSize]s and sigh, swearing you can almost hear them slosh. <b>They’re totally full.</b>"), "passive", deltaT);
+		msg = ParseText("Your [pc.fullChest] feel more than a little sore. They’re totally and unapologetically swollen with [pc.milk]. You heft the [pc.breastCupSize]s and sigh, swearing you can almost hear them slosh. <b>They’re totally full.</b>");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain Milk Note: 100");
 	}
 	//Cross 150% milk fullness + 2 cups
@@ -535,13 +646,14 @@ public function milkGainNotes(deltaT:uint = 0):void
 			else pc.breastRows[x].breastRatingLactationMod = 2;
 		}
 		
-		AddLogEvent(ParseText("Your [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It’s actually getting kind of painful to hold in all that liquid weight, and if "), "passive", deltaT);
-		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk") || pc.hasPerk("Hypermilky")) ExtendLogEvent("it wasn’t for your genetically engineered super-tits, your body would be slowing down production");
-		else if(pc.hasPerk("Honeypot")) ExtendLogEvent("it wasn’t for your honeypot gene, your body would be slowing down production");
-		else if(pc.isPregnant()) ExtendLogEvent("you weren’t pregnant, you’d probably be slowing production.");
-		else if(pc.upperUndergarment is BountyBra) ExtendLogEvent("you weren’t wearing a <b>Bounty Bra</b>, your body would be slowing down production");
-		else ExtendLogEvent("you don’t take care of it soon, a loss of production is likely");
-		ExtendLogEvent(ParseText(". Right now, they’re swollen up to [pc.breastCupSize]s."));
+		msg = ParseText("Your [pc.nipples] are extraordinarily puffy at the moment, practically suffused with your neglected [pc.milk]. It’s actually getting kind of painful to hold in all that liquid weight, and if ");
+		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk") || pc.hasPerk("Hypermilky")) msg += "it wasn’t for your genetically engineered super-tits, your body would be slowing down production";
+		else if(pc.hasPerk("Honeypot")) msg += "it wasn’t for your honeypot gene, your body would be slowing down production";
+		else if(pc.isPregnant()) msg += "you weren’t pregnant, you’d probably be slowing production.";
+		else if(pc.upperUndergarment is BountyBra) msg += "you weren’t wearing a <b>Bounty Bra</b>, your body would be slowing down production";
+		else msg += "you don’t take care of it soon, a loss of production is likely";
+		msg += ParseText(". Right now, they’re swollen up to [pc.breastCupSize]s.");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain Milk Note: 150");
 	}
 	//Hit 200% milk fullness cap + 3 cups
@@ -555,12 +667,13 @@ public function milkGainNotes(deltaT:uint = 0):void
 			else pc.breastRows[x].breastRatingLactationMod = 3;
 		}
 		
-		AddLogEvent(ParseText("The tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can’t help but wish for relief or a cessation of your lactation, whichever comes first. "), "passive", deltaT);
-		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk") || pc.hasPerk("Hypermilky")) ExtendLogEvent("<b>However, with your excessively active udders, you are afraid the production will never stop.</b>");
-		else if(pc.hasPerk("Honeypot")) ExtendLogEvent("<b>However, with your honeypot gene, they’ll likely never stop.</b>");
-		else if(pc.isPregnant()) ExtendLogEvent("<b>With a pregnancy on the way, there’s no way your body will stop producing.</b>");
-		else if(pc.upperUndergarment is BountyBra) ExtendLogEvent(ParseText("<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>"));
-		else ExtendLogEvent(ParseText("<b>If you don’t tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>"));
+		msg = ParseText("The tightness in your [pc.fullChest] is almost overwhelming. You feel so full – so achingly stuffed – that every movement is a torture of breast-swelling delirium. You can’t help but wish for relief or a cessation of your lactation, whichever comes first. ");
+		if(pc.hasPerk("Milky") || pc.hasPerk("Treated Milk") || pc.hasPerk("Hypermilky")) msg += "<b>However, with your excessively active udders, you are afraid the production will never stop.</b>";
+		else if(pc.hasPerk("Honeypot")) msg += "<b>However, with your honeypot gene, they’ll likely never stop.</b>";
+		else if(pc.isPregnant()) msg += "<b>With a pregnancy on the way, there’s no way your body will stop producing.</b>";
+		else if(pc.upperUndergarment is BountyBra) msg += ParseText("<b>Your Bounty Bra will keep your [pc.fullChest] producing despite the uncomfortable fullness.</b>");
+		else msg += ParseText("<b>If you don’t tend to them, your [pc.breastCupSize]s will stop producing [pc.milk].</b>");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain Milk Note: 200");
 	}
 	
@@ -569,14 +682,16 @@ public function milkGainNotes(deltaT:uint = 0):void
 	{
 		if(pc.isLactating() && !pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
 		{
-			AddLogEvent(ParseText("The [pc.milk] leaking from your [pc.nipples] stains your " + pc.upperUndergarment.longName + ", making it slick and wet. As a result, the material becomes more and more see-through, allowing possible passerbys to see the private areas of your [pc.chest]. <b>Your top is now transparent!</b>"), "passive", deltaT);
+			msg = ParseText("The [pc.milk] leaking from your [pc.nipples] stains your " + pc.upperUndergarment.longName + ", making it slick and wet. As a result, the material becomes more and more see-through, allowing possible passerbys to see the private areas of your [pc.chest]. <b>Your top is now transparent!</b>");
+			AddLogEvent(msg, "passive", deltaT);
 			pc.createStatusEffect("Bra Transparency");
 			pc.upperUndergarment.onEquip(pc);
 			pc.removeStatusEffect("Bra Transparency");
 		}
 		else if(!pc.isLactating() && pc.upperUndergarment.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT))
 		{
-			AddLogEvent(ParseText("The dryness of your " + possessive(pc.upperUndergarment.longName) + " material is relieving. No longer sticking to your [pc.fullChest], the opaque garment now gives you a more modest appearance. <b>Your top is no longer transparent!</b>"), "passive", deltaT);
+			msg = ParseText("The dryness of your " + possessive(pc.upperUndergarment.longName) + " material is relieving. No longer sticking to your [pc.fullChest], the opaque garment now gives you a more modest appearance. <b>Your top is no longer transparent!</b>");
+			AddLogEvent(msg, "passive", deltaT);
 			pc.upperUndergarment.onEquip(pc);
 		}
 	}
@@ -679,25 +794,29 @@ public function lactationUpdateHourTick(totalHours:int):void
 	
 	if (pc.milkMultiplier < 90 && originalMultiplier >= 90)
 	{
-		AddLogEvent("You’re pretty sure that your lactation is starting to slow down a little bit. If you don’t start milking yourself, you’ll eventually stop producing.", "passive", 60 * numChanges);
+		msg = "You’re pretty sure that your lactation is starting to slow down a little bit. If you don’t start milking yourself, you’ll eventually stop producing.", "passive";
+		AddLogEvent(msg, "passive", 60 * numChanges);
 		numChanges++;
 	}
 	
 	if (pc.milkMultiplier < 80 && originalMultiplier >= 80)
 	{
-		AddLogEvent(ParseText(" Low level tingles in your [pc.chest] remind you that producing [pc.milk] is something your body does, but if you keep ignoring yourself, you won’t for too much longer."), "passive", 60 * numChanges);
+		msg = ParseText(" Low level tingles in your [pc.chest] remind you that producing [pc.milk] is something your body does, but if you keep ignoring yourself, you won’t for too much longer.");
+		AddLogEvent(msg, "passive", 60 * numChanges);
 		numChanges++;
 	}
 	
 	if (pc.milkMultiplier < 70 && originalMultiplier >= 70)
 	{
-		AddLogEvent(ParseText("You’re feeling pretty sore in your [pc.chest], but it’s not getting that much worse. <b>You’re pretty sure that you’re lactating less as a result of the inattention to your chest.</b>"), "passive", 60 * numChanges);
+		msg = ParseText("You’re feeling pretty sore in your [pc.chest], but it’s not getting that much worse. <b>You’re pretty sure that you’re lactating less as a result of the inattention to your chest.</b>");
+		AddLogEvent(msg, "passive", 60 * numChanges);
 		numChanges++;
 	}
 	
 	if (pc.milkMultiplier < 60 && originalMultiplier >= 60)
 	{
-		AddLogEvent(ParseText("Your body’s ability to produce [pc.milk] is diminishing to the point where your [pc.fullChest] are barely making any more. It won’t take long before you stop production entirely."), "passive", 60 * numChanges);
+		msg = ParseText("Your body’s ability to produce [pc.milk] is diminishing to the point where your [pc.fullChest] are barely making any more. It won’t take long before you stop production entirely.");
+		AddLogEvent(msg, "passive", 60 * numChanges);
 		numChanges++;
 	}
 	
@@ -707,12 +826,13 @@ public function lactationUpdateHourTick(totalHours:int):void
 		{
 			pc.breastRows[x].breastRatingLactationMod = 0;
 		}
-		AddLogEvent(ParseText("Like a switch has been flipped inside you, you feel your body’s [pc.milk]-factories power down. <b>You’ve stopped lactating entirely.</b>"), "passive", 60 * numChanges);
+		msg = ParseText("Like a switch has been flipped inside you, you feel your body’s [pc.milk]-factories power down. <b>You’ve stopped lactating entirely.</b>");
 		if(pc.milkFullness >= 75) 
 		{
-			ExtendLogEvent(ParseText(" The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCupSize]s."));
+			msg += ParseText(" The swelling from your over-filled [pc.fullChest] goes down as well, leaving you with [pc.breastCupSize]s.");
 			pc.milkFullness = 75;
 		}
+		AddLogEvent(msg, "passive", 60 * numChanges);
 	}
 	
 	//Clean up boob size stuff
@@ -727,56 +847,533 @@ public function milkMultiplierGainNotificationCheck(deltaT:uint = 0):void
 	//kGAMECLASS cheat to cheat these messages into the event buffer? Or pass event buffer as an argument? Regardless, seems the cleanest way to keep it from interrupting the scene it gets called in.
 	//30
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 30")) {
-		AddLogEvent(ParseText("The soreness in your [pc.nipples] is both persistent and pleasant in its own unique way. There’s no disguising how it makes your [pc.chest] practically glow with warmth."), "passive", deltaT);
+		msg = ParseText("The soreness in your [pc.nipples] is both persistent and pleasant in its own unique way. There’s no disguising how it makes your [pc.chest] practically glow with warmth.");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 30");
 	}
 	//40
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 40")) {
-		AddLogEvent(ParseText("Tingles run through your [pc.fullChest] every now and again. Your [pc.nipples] even feel moist. Perhaps you’ll start lactating soon?"), "passive", deltaT);
+		msg = ParseText("Tingles run through your [pc.fullChest] every now and again. Your [pc.nipples] even feel moist. Perhaps you’ll start lactating soon?");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 40");
 	}
 	//50
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 50")) {
-		AddLogEvent(ParseText("A single droplet of [pc.milk] escapes from one of your [pc.nipples]"), "passive", deltaT);
-		if(pc.isChestGarbed()) ExtendLogEvent(ParseText(", staining your [pc.upperGarments] [pc.milkColor]"));
-		ExtendLogEvent(". <b>You’re lactating</b>, albeit slowly.");
+		msg = ParseText("A single droplet of [pc.milk] escapes from one of your [pc.nipples]");
+		if(pc.isChestGarbed()) msg += ParseText(", staining your [pc.upperGarments] [pc.milkColor]");
+		msg += ". <b>You’re lactating</b>, albeit slowly.";
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 50");
 	}
 	//60
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 60")) {
-		AddLogEvent(ParseText("Judging by the feelings in your [pc.fullChest], you can safely say that you’re making [pc.milk] faster than before. Is that what "), "passive", deltaT);
-		if(pc.hasPregnancy()) ExtendLogEvent("it feels like to be an expectant mother?");
-		else ExtendLogEvent("expectant mothers feel like?");
+		msg = ParseText("Judging by the feelings in your [pc.fullChest], you can safely say that you’re making [pc.milk] faster than before. Is that what");
+		if(pc.hasPregnancy()) msg += " it feels like to be an expectant mother?";
+		else msg += " expectant mothers feel like?";
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 60");
 	}
 	//70
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 70")) {
-		AddLogEvent("You’re pretty sure you’re lactating even more now. As a matter of fact, a scan by your codex confirms it. Your body is producing a decent amount of milk, perhaps a little under half its maximum capability.", "passive", deltaT);
+		msg = "You’re pretty sure you’re lactating even more now. As a matter of fact, a scan by your codex confirms it. Your body is producing a decent amount of milk, perhaps a little under half its maximum capability.";
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 70");
 	}
 	//80
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 80")) {
-		AddLogEvent(ParseText("Heat suffuses your chest, just another indication that your [pc.fullChest] have passed a new threshold of productivity. You’re definitely lactating harder."), "passive", deltaT);
+		msg = ParseText("Heat suffuses your chest, just another indication that your [pc.fullChest] have passed a new threshold of productivity. You’re definitely lactating harder.");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 80");
 	}
 	//90
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 90")) {
-		AddLogEvent(ParseText("There’s no doubt about how bountiful your [pc.fullChest] are feeling, swollen with potential just waiting to be milked out so that they can produce more. <b>You’re getting close to having your body as trained for lactation as possible.</b>"), "passive", deltaT);
+		msg = ParseText("There’s no doubt about how bountiful your [pc.fullChest] are feeling, swollen with potential just waiting to be milked out so that they can produce more. <b>You’re getting close to having your body as trained for lactation as possible.</b>");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 90");
 	}
 	//100
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 100")) {
-		AddLogEvent(ParseText("A wonderful, productive feeling swells in your [pc.fullChest], tingling hotly. A quick scan with your codex reports that your body is making [pc.milk] at its full capacity."), "passive", deltaT);
+		msg = ParseText("A wonderful, productive feeling swells in your [pc.fullChest], tingling hotly. A quick scan with your codex reports that your body is making [pc.milk] at its full capacity.");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 100");
 	}
 	//110
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 110")) {
-		AddLogEvent(ParseText("Somehow, your body is adapting to all the milking its been put through, and your [pc.fullChest] feel more powerful and fecund than ever before. Your chest is a well-trained milking machine."), "passive", deltaT);
+		msg = ParseText("Somehow, your body is adapting to all the milking its been put through, and your [pc.fullChest] feel more powerful and fecund than ever before. Your chest is a well-trained milking machine.");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 110");
 	}
 	//125
 	if(pc.hasStatusEffect("Pending Gain MilkMultiplier Note: 125")) {
-		AddLogEvent(ParseText("Your chest is practically singing in delight, and the only thing it sings about is [pc.milk] - rivers of never ending, liquid flows that will spill from you unceasingly. You have trained them to lactate as well as anything can be trained. If you want to make any more [pc.milk], you’ll have to grow your [pc.fullChest] bigger or turn to science."), "passive", deltaT);
+		msg = ParseText("Your chest is practically singing in delight, and the only thing it sings about is [pc.milk] - rivers of never ending, liquid flows that will spill from you unceasingly. You have trained them to lactate as well as anything can be trained. If you want to make any more [pc.milk], you’ll have to grow your [pc.fullChest] bigger or turn to science.");
+		AddLogEvent(msg, "passive", deltaT);
 		pc.removeStatusEffect("Pending Gain MilkMultiplier Note: 125");
 	}
 }
+
+/* Belly stuff! */
+
+public function bellySizeUpdates(deltaT:uint = 0):void
+{
+	bodyPartUpdates("belly", deltaT);
+}
+
+/* Wiener stuff! */
+
+// Append randomly to move events if possible (with small exhib gains):
+public function priapismBlurbs():void
+{
+	if(!pc.hasStatusEffect("Priapism")) return;
+	if(!pc.hasCock()) { pc.removeStatusEffect("Priapism"); return; }
+	
+	// Covers check
+	if(!pc.isCrotchExposed(true))
+	{
+		AddLogEvent(ParseText("Your [pc.cockHeads] painfully push" + (pc.cocks.length == 1 ? "es" : "") + " against your [pc.crotchCover], with feral determination. <i>Ouch, that hurts!</i> You quickly yank off your [pc.crotchCovers] and sigh with relief as your hot maleness" + (pc.cocks.length == 1 ? " surges" : "es surge") + " outward, hard and bouncing in the breeze, unflappably erect with no signs of fading. <b>It looks like your case of priapism will prevent you from wearing almost anything there for the moment...</b>"), "passive");
+		//Queue event to remove bits
+		if(!pc.isCrotchExposedByArmor(true) || (pc.hasArmor() && !pc.isCrotchExposedByLowerUndergarment(true)))
+			eventQueue.push( function():void { unequip(pc.armor, true); } );
+		if(!pc.isCrotchExposedByLowerUndergarment(true))
+			eventQueue.push( function():void { unequip(pc.lowerUndergarment, true); } );
+		
+		return;
+	}
+	
+	if(rand(10) != 0) return;
+	
+	var msgList:Array = [];
+	var msg:String = "";
+	var pcLocation:String = getPlanetName();
+	var cLength:Number = pc.biggestCockLength();
+	var cumQ:Number = pc.cumQ();
+	
+	if(InShipInterior(pc))
+	{
+		// Ship - lowish exhib
+		if(pc.exhibitionism() < 33)
+		{
+			msg += "Whew. At least your ship affords your priapic state some privacy";
+			if(annoIsCrew()) msg += ", for the most part. You doubt Anno will mind";
+			msg += ".";
+			msgList.push(msg);
+			msg = "";
+		}
+		// Ship high exhib
+		if(pc.exhibitionism() >= 66)
+		{
+			msg += "Part of you is saddened that nobody can check out your priapic cock" + (pc.cocks.length == 1 ? "" : "s") + ", so proudly displayed.";
+			if(crew(true) > 0) msg += " Then you remember you’re not the only one on your ship, and a wicked smile graces your features.";
+			msgList.push(msg);
+			msg = "";
+		}
+	}
+	// Public:
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
+	{
+		// Low exhib & libido
+		if(pc.exhibitionism() < 33 && pc.libido() < 33) msgList.push("You try to keep out of the way, your hips turned away from prying eyes. It doesn’t work very well.");
+		// Any room/exhib
+		msgList.push("You feel tremendously exposed.");
+		// public
+		msg += "Everyone you pass can see your [pc.crotch] on full display.";
+		if(pc.isBimbo() || pc.isBro()) msg += " Hot.";
+		msgList.push(msg);
+		msg = "";
+		// public
+		msg += "A passerby strokes [pc.oneCock] on the way by, leaving you ";
+		if(pc.isBimbo() || pc.isBro()) msg += "horny and disappointed. They never stick around!";
+		else if(pc.exhibitionism() < 33) msg += "panting and confused.";
+		else if(pc.exhibitionism() < 66) msg += "even more turned on and ready to go.";
+		else msg += "disappointed that you won’t get to put on a show.";
+		msgList.push(msg);
+		msg = "";
+		// Public, low exhibs
+		if(pc.exhibitionism() < 33) msgList.push("You’re not sure if you can get used to the leering eyes and blushing faces.");
+		// Public
+		msgList.push("A passerby openly ogles you, winking when you catch them staring.");
+		msgList.push("");
+		// Public
+		msgList.push("The synthetic ‘click’ of an unmuted Codex snapping a holo rouses your attention, but the pervert wisely hides before you can pinpoint their location. Sighing, you adjust your still-hard cock" + (pc.cocks.length == 1 ? "" : "s") + ".");
+		// Mhenga
+		if(pcLocation == "Mhen'ga")
+		{
+			msgList.push("Settlers give you odd looks in passing, eyes flicking over your exposed groin in curiosity and occasional delight.");
+			msgList.push("The faint scent of honey thickens in the air when a zil passes by, eyeing you.");
+			// Mhenga - sexed Flahne - not in her office
+			if(flags["FLAHNE_SEXED"] != undefined)
+			{
+				if(flags["SEEN_BIMBO_PENNY"] == undefined || (hours >= 8 && hours < 17)) { /* In office */ }
+				else msgList.push("Flahne whistles at you and waves on her way by. <i>“Looking good, sugar!”</i>");
+			}
+			// Mhenga Penny Cumslut Public
+			if(flags["PENNY_IS_A_CUMSLUT"] != undefined && flags["PENNY_HIDING_CUMSLUTTERY"] == undefined) msgList.push("Less people spend time checking out your ever-present than you would expect. Then again, ever since you taught Penny how to be a cum-slut, the settlement has gotten used to seeing a lot more dick.");
+		}
+		// Tarkus
+		if(pcLocation == "Tarkus")
+		{
+			msg += "Raskvel girls (and even a few males) keep “accidentally” bumping into you and grabbing onto [pc.oneCock] for support before moving on.";
+			if(pc.isBimbo() || pc.isBro()) msg += " How anyone comes to this planet and doesn’t waste a week banging slutty shortstacks into oblivion, you’ll never know.";
+			msgList.push(msg);
+			msg = "";
+			msg += "A grinning raskvel maiden sneakily plants a smooch on the underside of [pc.oneCock] on her way by, fading into the crowd before you can identify her.";
+			if(cumQ < 500) msg += "With how easily your pre drools, she likely got a taste as well.";
+			else if(cumQ < 3000) msg += "With the heavy flows of pre you leak, she likely got a new coat of lipgloss for her effort.";
+			else msg += "With the gobs of pre that keep spilling from you, she likely got a mouthful of liquid excitement for her trouble.";
+			msgList.push(msg);
+			msg = "";
+			// Public - tarkus, 2+ legs
+			if(pc.hasLegs()) msgList.push("A raskvel skims right between your [pc.legs], ears flapping along the delicate underside" + (pc.cocks.length == 1 ? "" : "s") + " of your [pc.cocks].");
+		}
+		// Myrellion
+		if(pcLocation == "Myrellion")
+		{
+			msgList.push("The natives of Myrellion act like they’ve never seen " + (pc.cocks.length == 1 ? "a " : "") + "[pc.cocks] before. Inky onyx eyes follow you wherever you go.");
+			msgList.push("Giggling myr women sneak peaks at your crotch whenever they think you aren’t looking.");
+			msgList.push("Another visitor flashes you a thumbs up in response to your brazenly displayed package.");
+			msg += "Myr cluster around wherever you go, murmuring among themselves. Pushing through the throng without getting groped is a challenge";
+			if(pc.isBimbo() || pc.isBro() || pc.exhibitionism() >= 66) msg += " you’re happy to fail";
+			msg += ".";
+			msgList.push(msg);
+			msg = "";
+		}
+		// New Canadia
+		if(pcLocation == "Canadia Station")
+		{
+			msgList.push("Whispering voices follow you wherever you go: <i>“Look at that one, eh?”</i> <i>“Pervert...”</i> <i>“I bet it’s fake.”</i>");
+			msgList.push("A deertaur canters by you, then stops to look back over her shoulder. Her tail flutters playfully. After a second, she winks at you and trots off, haunches upraised to display a moistening slit. Tease.");
+			// New Canadia - lil dicks
+			if(cLength <= 12) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force smirks casually as he checks out your [pc.cockBiggest]. <i>“Poor lil [pc.guyGirl].”</i>");
+			// New Canadia - in the middle
+			else if(cLength <= 24) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force chuckles as he stomps by. <i>“Foreigners...”</i>");
+			// New Canadia - big dicks only
+			else if(cLength <= 48) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeepers nods approvingly as he gazes at your [pc.cockBiggest]. <i>“Not bad.”</i>");
+			//New Canadia - hyper
+			else msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force recoils at the sight of your [pc.cockBiggest]. <i>“Pretty sure you need a permit for artillery like that.”</i> The quiet slap of his own dick smacking into his belly chases him as he trots off. More than once, he looks back longing.");
+		}
+		// NT
+		if(pcLocation == "New Texas")
+		{
+			msgList.push("The poor cow-girls keep trailing off mid-conversation when they see you and your priapic shaft" + (pc.cocks.length == 1 ? "" : "s") + " passing by.");
+			msgList.push("Leaky nipples stiffen in the wake of your crotch-exposing priapism. To those cow-girls, you must be quite the tease.");
+		}
+		// Public high exhib
+		if(pc.exhibitionism() >= 66) msgList.push("You spot someone looking at your crotch and thrust it suggestively at them, all the harder for every set of eyes that fixes on your permanently engorged erection.");
+		// bimbo
+		if(pc.isBimbo()) msgList.push("It kind of looks like your awesomely erect cock" + (pc.cocks.length == 1 ? " is" : "s are") + " leading you around wherever you go, which is kind of how you like it, honestly.");
+	}
+	// Hazard
+	if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
+	{
+		// Hazard
+		msgList.push("Was it really a good idea to go exploring with your [pc.cocks] hanging out, advertising your need for all to see?");
+		// Hazard
+		msgList.push("You’ll have to be on guard with how exposed you are.");
+		// Hazard bro
+		if(pc.isBro()) msgList.push("You know, maybe walking around with a rager is a great idea. Nothing to intimidate the locals like knowing some Grade A beef is on patrol and ready to claim the first ass to get in its way.");
+		// Hazard bimbo
+		msgList.push("Someone should like, make a pill you can take to have a boner all the time. And then dose the universe with it. Interspecies diplomacy is just a fancy phrase for finding your way into cute aliens’ pants anyhow. It’s wayyyy easier without the pants.");
+		// Hazard
+		msgList.push("You really hope an alien doesn’t take a cheap shot at your exposed genitalia.");
+		// Mhenga
+		if(pcLocation == "Mhen'ga")
+		{
+			msgList.push("You sweat so much from the humid jungle that your exposed, priapic member" + (pc.cocks.length == 1 ? "" : "s") + " gleam" + (pc.cocks.length == 1 ? "s" : "") + ".");
+			msgList.push("You tread carefully, lest you slip on a vine and fall dick-first into a pit.");
+		}
+		// Tarkus
+		if(pcLocation == "Tarkus")
+		{
+			msgList.push("You make damned sure to watch how you move around in this twisted landscape. The last thing you need is to scrape your rigid dick" + (pc.cocks.length == 1 ? "" : "s") + " against a rusty chunk of metal.");
+			msgList.push("Your [pc.skin] feels almost greasy from traveling such a polluted area, visibly reflected in the oily shine of your [pc.cocks].");
+		}
+		// NT
+		if(pcLocation == "New Texas")
+		{
+			msgList.push("Those varmints had best not view your still-hard cock as bait.");
+			msgList.push("Maybe you should do this when you can wear something more substantial.");
+		}
+	}
+	
+	// Cuntsnake
+	if(pc.hasTailCunt()) msgList.push("You bat your [pc.cuntTails] away from your exposed dick" + (pc.cocks.length == 1 ? "" : "s") + ".");
+	// Cocktial
+	if(pc.hasTailCock()) msgList.push((pc.tailCount == 1 ? "Your [pc.cockTail]" : "One of your [pc.cockTails]") + " arches up in sympathetic engorgement. Fortunately it isn’t as afflicted as the rest of you.");
+	
+	// Special
+	var spList:Array = [];
+	var select:int = -1;
+	
+	// public, high lust, high libido or bimbo, and high fullness
+	if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC) && ((pc.lust() >= 66 && pc.libido() >= 66) || pc.isBimbo()) && pc.ballFullness >= 66) spList.push(1);
+	// Bimbo
+	if(pc.isBimbo()) spList.push(2);
+	// Bro
+	if(pc.isBro()) spList.push(3);
+	
+	if(spList.length > 0 && rand(10) == 0)
+	{
+		select = spList[rand(spList.length)];
+		eventQueue.push( function():void {
+		
+		clearOutput();
+		clearMenu();
+		author("Fenoxo");
+		
+		msg = "";
+		switch(select)
+		{
+			case 1:
+				showBust("GALOTIAN");
+				showName("SURPRISE\nBLOWJOB!");
+				msg += ParseText("A giggling galotian grabs [pc.oneCock] before you can react, enshrouding it in slippery tightness. You’re too turned on and too backed up to do anything but groan and thrust into her velvety-soft goo, pleasure mounting into an explosive blast of backed-up [pc.cumNoun]. Again and again, you cum for the mystery slut, creating a ");
+				for(var i:int = 0; i < 5; i++) { pc.orgasm(); cumQ += pc.cumQ(); }
+				if(cumQ < 200) msg += "small";
+				else if(cumQ < 500) msg += "big";
+				else if(cumQ < 800) msg += "huge";
+				else if(cumQ < 1000) msg += "baseball-sized";
+				else if(cumQ < 3000) msg += "melon-sized";
+				else msg += "mammoth";
+				msg += ParseText(" [pc.cumColor] bubble inside her arm.");
+				msg += "\n\nShe pops off and giggles, revealing the condom she slipped over your dick. <i>“Thanks! I needed a snack for the road.”</i> She winks and expertly extracts the stuffed prophylactic from your still-hard member, tying it off into a sealed balloon before pushing it into her belly.";
+				if(cumQ >= 1000) msg += " She looks instantly, terrifically pregnant.";
+				msg += " <i>“Here’s a " + (isAprilFools() ? "dogecoin" : "credit") + " for the trouble!”</i>";
+				msg += "\n\nYou’re left staring at a single credit chit, still hard and a little leaky from the sudden sexual encounter.";
+				if(flags["RECRUITED_CELISE"] != undefined) msg += " Celise would be so jealous.";
+				processTime(5);
+				pc.exhibitionism(1);
+				pc.credits += 1;
+				pc.lust(5);
+				addButton(0, "Next", mainGameMenu);
+				break;
+			case 2:
+				clearBust();
+				showName("COCK\nSELFIE!");
+				msg += "You snap a quick selfie of just you and your dick to save for later. It’s fucking hot, looking so turned on and <i>ready</i> all the time. Maybe you can jack off to it later.";
+				processTime(1);
+				pc.lust(5);
+				addButton(0, "Next", mainGameMenu);
+				addButton(1, "Look", pcAppearance);
+				break;
+			case 3:
+				clearBust();
+				showName("DICK\nPIC!");
+				msg += "You snap a quick picture of your dick. Might as well while it’s nice and hard.";
+				var dickpics:Array = [];
+				if(flags["KIRO_BAR_MET"] != undefined) dickpics.push("Kiro");
+				if(flags["MET_SHEKKA"] != undefined) dickpics.push("Shekka");
+				if(flags["MET_PENNY"] != undefined) dickpics.push("Penny");
+				if(flags["MET_EMMY"] != undefined) dickpics.push("Emmy");
+				if(flags["MET_ANNO"] != undefined) dickpics.push("Anno");
+				if(flags["MET_SYRI"] != undefined) dickpics.push("Syri");
+				if(flags["SAEN MET AT THE BAR"] != undefined && flags["SAENDRA_DISABLED"] != 1) dickpics.push("Saendra");
+				if(flags["RECRUITED_CELISE"] > 0) dickpics.push("Celise");
+				if(dickpics.length > 0) msg += " As an afterthought, you send it to " + dickpics[rand(dickpics.length)] + ".";
+				processTime(1);
+				pc.lust(5);
+				// CHECK APPEARANCE SCREEEN?
+				addButton(0, "Next", mainGameMenu);
+				addButton(1, "Look", pcAppearance);
+				break;
+		}
+		output(msg);
+		
+		} );
+	}
+	// Generic
+	else if(msgList.length > 0)
+	{
+		output("\n\n" + msgList[rand(msgList.length)]);
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) pc.exhibitionism(1);
+	}
+}
+
+// Priapism stuff
+public function applyPriapism(target:Creature = null):void
+{
+	if(target == null) target = pc;
+	target.applyPriapism();
+}
+public function getCaughtWithPriapism():Boolean
+{
+	if(disableExploreEvents()) return false;
+	if(!pc.hasCock()) { pc.removeStatusEffect("Priapism"); return false; }
+	if(pc.isCrotchExposed(true) && !pc.isCrotchExposed()) return false;
+	if(currentLocation == "SHIP INTERIOR") return false;
+	if(InCollection(shipLocation, [currentLocation, rooms[currentLocation].northExit, rooms[currentLocation].eastExit, rooms[currentLocation].southExit, rooms[currentLocation].westExit])) return false;
+	
+	var cLength:Number = pc.biggestCockLength();
+	var chances:int = 1;
+	if(cLength <= 12) chances = 10;
+	else if(cLength <= 18) chances = 8;
+	else if(cLength <= 24) chances = 6;
+	else if(cLength <= 36) chances = 4;
+	else chances = 2;
+	
+	if(rand(chances) != 0) return false;
+	
+	clearOutput();
+	clearBust();
+	showName("PRIAPISM\nPROBLEMS...");
+	author("Jacques00");
+	
+	var bMale:Boolean = (rand(2) == 0);
+	
+	output("Traversing around with your fully erect dick" + (pc.cocks.length == 1 ? "" : "s") + " out is quite daring for you, especially in a place where nudity is prohibited. Unexpectedly, from of the corner of your eye, you see a patrolling U.G.C. officer crossing your path... and just as you have your back turned to hide your exposed manhood" + (pc.cocks.length == 1 ? "" : "s") + ", " + (bMale ? "he" : "she") + " spots you!");
+	output("\n\n<i>“You! Halt!”</i>");
+	if(pc.isBimbo()) output("\n\nYou blush, a bit flustered and giggly inside while trying to skip your way in the opposite direction.");
+	else if(pc.isBro()) output("\n\nYou act casual and straighten out your back to stride away in the opposite direction.");
+	else if(pc.isNice()) output("\n\nYou sigh that your luck was so bad but try to nervously walk away in the opposite direction.");
+	else if(pc.isMischievous()) output("\n\nYou curse under your breath. Despite your bad luck, you try to inconspicuously stride away in the opposite direction.");
+	else if(pc.isAss()) output("\n\nYou audibly let out a curse and rapidly stomp your way in the opposite direction, hoping that the cop didn’t catch you.");
+	else output("\n\nYou pretend not to see the police officer and proceed on your way in the opposite direction.");
+	
+	clearMenu();
+	addButton(0, "Next", getFinedForPriapism, bMale);
+	
+	return true;
+}
+public function getFinedForPriapism(bMale:Boolean = false):void
+{
+	clearOutput();
+	author("Jacques00");
+	
+	var isBimbro:Boolean = (rand(3) == 0);
+	var cIdx:int = pc.biggestCockIndex();
+	var cLength:Number = pc.cLength(cIdx);
+	var cumQ:Number = pc.cumQ();
+	
+	showBust("UCG_" + (bMale ? "MALE" : "FEMALE") + "_" + (!isBimbro ? "1" : "2"));
+	showName("PAY THE\nFINE...");
+	
+	output("<i>“I said, Stop right there!”</i>");
+	if(hasGooArmorOnSelf()) output("\n\n<i>“Uh, oh... busted!”</i> [goo.name] cries.");
+	output("\n\nNot wanting to cause a disturbance in public, or potentially get arrested, you stop in place.");
+	output("\n\n<i>“Good. " + (!bMale && isBimbro ? "Like" : "Now") + ", hands up and turn around slowly...”</i>");
+	output("\n\nYou do as the officer says by lifting your [pc.hands] and turning to face " + (bMale ? "him" : "her") + "... Your [pc.cocks] front and center.");
+	
+	if(!isBimbro)
+	{
+		output("\n\nThe officer has " + (bMale ? "his" : "her") + " palm on the hilt of " + (bMale ? "his" : "her") + " belt, ready to draw a weapon, but stops seeing as you are no immediate threat--despite the heat you are packing in your groin area...");
+		output("\n\n<i>“Is there a problem, officer?”</i> you ask.");
+		output("\n\n" + (bMale ? "He" : "She") + " pulls out a data slate. <i>“Indecent exposure in a public area. That’s a fineable offense, kid.”</i> The police" + (bMale ? "man" : "woman") + " replies, tapping a few buttons and signing a statement.");
+		output("\n\n<i>“How--”</i>");
+		output("\n\n<i>“Five thousand creds,”</i> " + (bMale ? "he" : "she") + " interrupts before you can even start. <i>“You can pay the fine or I can fill out an arrest form, understand?”</i>");
+		if(pc.credits > 10000)
+		{
+			output("\n\nSeeing as you can foot the cost, you decide to pay the fine. Here’s to a dent in your funds...");
+			output("\n\nThe officer smiles and waves " + (bMale ? "his" : "her") + " scanning device over your codex, taking the required funds. <i>“Thank you very much for your cooperation, uh, [pc.Mister] Steele. Just for that, I’ll keep this out of your permanent record.”</i>");
+			
+			pc.credits -= 5000;
+		}
+		else if(pc.credits > 5200)
+		{
+			output("\n\nYou can afford the cost, but it would set you back quite a lot. You decide to pay it anyway.");
+			output("\n\nThe officer smiles and waves " + (bMale ? "his" : "her") + " scanning device over your codex, taking the required funds. <i>“Thank you for your cooperation, [pc.Mr] Steele. You seem like a responsible " + pc.mf("fellow", "lady") + " so I’ll keep this out of your permanent record, how’s that?”</i>");
+			
+			pc.credits -= 5000;
+		}
+		else if(pc.credits > 200)
+		{
+			output("\n\nYou tell the officer that you don’t have enough to pay the fine, hoping to get out of it cost-free.");
+			output("\n\nThe officer furrows " + (bMale ? "his" : "her") + " brows, then continues, <i>“Ah, that’s too bad. Well, I’ll take what you have but leave you 200 creds behind and a very stern warning, how’s that?”</i>");
+			output("\n\nSurprised by the sudden kindness, you agree to the deal. Even though the cost is high, you won’t be completely broke at least.");
+			output("\n\n<i>“Alright, then it’s a deal.”</i> The officer waves " + (bMale ? "his" : "her") + " scanning device over your codex, taking all but 200 credits from your funds. <i>“Thank you for your cooperation, um, [pc.Mr] Steele. I’ve kept this off your permanent record but I highly advise that you do not repeat this offense in the future or the law may not be as forgiving.”</i>");
+			
+			pc.credits = 200;
+		}
+		else
+		{
+			output("\n\nWith a slanted frown, you tell the officer that you have " + (pc.credits > 0 ? "barely any" : "no") + " money left in your account to pay.");
+			output("\n\nThe officer furrows " + (bMale ? "his" : "her") + " brows, then continues, <i>“A rusher without money, how does that work out? Listen, I’m not in the mood to play tough cop today, so I’m just going to let you off with a warning.”</i> Then after a few taps to cancel " + (bMale ? "his" : "her") + " report, " + (bMale ? "he" : "she") + " adds, <i>“No bookkeeping necessary, but I do require a scan for transport.”</i>");
+			output("\n\nSurprised by the sudden act of kindness, you thank the officer for letting the offense slide and allow " + (bMale ? "him" : "her") + " to scan your codex for extra information.");
+			output("\n\n<i>“It’s alright, [pc.Mister] Steele, U.G.C. doesn’t pay low-ranking cops like me much, so I know what it’s like to penny pinch for my family.”</i> " + (bMale ? "he" : "she") + " says. <i>“Just be sure to get a job or something out there. The Rush should be full of opportunities.”</i>");
+		}
+		output("\n\nAfter finishing the transaction, a hovering transport drone pulls up alongside the police officer. " + (bMale ? "He" : "She") + " pairs the scanned data to the drone and instructs you to step aboard. You do so, as exposed as you are, and your limbs are immediately fastened in place with restraints--as a matter of protocol, of course. The officer sits " + (bMale ? "him" : "her") + "self in front of you, pulls down the top and starts the engines. Soon, the both of you are traveling towards your parked ship.");
+		output("\n\nThe drone slows and grounds itself once it reaches your ship. The top opens up and the officer slides out of the vehicle. The restraints are undone and you are escorted to your ship’s airlock while wrapped in a modesty blanket.");
+		output("\n\nNow that you are in a more isolated location, the officer gives you a final parting. <i>“You’re lucky I was in a good mood--just don’t let it happen again, you hear?”</i> " + (bMale ? "He" : "She") + " then turns to leave as the airlock opens and you enter your ship. " + (bMale ? "He" : "She") + " sure handled your situtation with great professionalism.");
+		output("\n\nOnce inside, your [pc.cock " + cIdx + "] pulses with mix of rebellion and embarrassment");
+		if(cumQ > 500) output(" as it drools a line of pre-cum down your shaft");
+		output(". How troublesome!");
+	}
+	else
+	{
+		if(bMale)
+		{
+			output("\n\nThe officer has his thick, burly arms crossed around his muscular, barrel chest. His casual expression shows that he obviously doesn’t perceive you as a threat at all. When he sees your [pc.cock " + cIdx + "], he gives an approving <i>“Hmph.”</i>");
+			output("\n\n<i>“Is there a problem, officer?”</i> you ask.");
+			output("\n\n<i>“Obviously,”</i> he answers. Pointing at your erection" + (pc.cocks.length == 1 ? "" : "s") + ", he continues, <i>“That--Some kinda S.T.D., or are you always in raging-boner mode?”</i>");
+			output("\n\n<i>“Uh...”</i>");
+			output("\n\n<i>“Hey, don’t play dumb with me,”</i> he says aloud as he closes in on you, your face meeting him eye-to-eye. After a moment, he glances side to side, then tilts his head in to whisper to you <i>“Now argue back.”</i> His brows raise. <i>“Don’t sweat it, just play along.”</i>");
+			output("\n\nYou are struck with confusion but decide to go with it if it’ll get you out of trouble.");
+			if(pc.isNice()) output(" <i>“Uh, oh... Oh no, a cop. What will you do--arrest me...?”</i> His face signals for you to be more offensive. <i>“Um, dumb pigs, am I right?”</i>");
+			else if(pc.isMischievous()) output(" <i>“H-hey, a copper. What, you think you’re someone tough?”</i> He grins, urging you to keep it up. <i>“Pigs don’t scare me--go ahead, arrest me!”</i>");
+			else output(" <i>“Get the fuck off me, damn pig!”</i> He grins in approval. You’re right on target. <i>“I’m not afraid to fight a cop, so keep it up, asshole!”</i>");
+			output(" you shout audibly to no one you are aware of listening.");
+			output("\n\n<i>“Damn right! Indecent exposure is a fineable offense, but for your smack-talk, I’m gonna have to send you off! How about that, huh?”</i>");
+			output("\n\nThe two of you continue faux-arguing while he cuffs your hands behind your back and a hovering transport drone pulls up alongside the brutish police officer. He forecfully, yet carefully, shoves you into the vehicle with one hand, jumps in and slams the top down with the other. While inside, he continues shouting profanities and loudly revs the engine. The drone then sends the both of you towards the direction of your parked ship.");
+			output("\n\nYou shake your head and look at him wide-eyed. <i>“What was that about?”</i>");
+			output("\n\n<i>“Like I said, kid, don’t sweat it. You did great. Probably gonna impress the captain too.”</i> He seems very proud of himself. <i>“In my rank, I have to be extra tough to climb higher. Small tickets don’t matter--it’s all about the raw attitude in this business.”</i>");
+			output("\n\n<i>“So you’re not going to fine me?”</i> you ask, starting to get the picture.");
+			output("\n\n<i>“If you actually threw a punch, I would’ve had to, heh,”</i> he chuckles. <i>“I’ll let it slide... for now.”</i>");
+			output("\n\nYour [pc.cock " + cIdx + "] throbs while your restrained limbs are helpless to do anything about it. Precum leaks from your [pc.cockhead " + cIdx + "], running down to the [pc.base " + cIdx + "].");
+			output("\n\nThe officer turns to you and nods in understanding. <i>“Ah, been there. Just gotta keep fucking and jacking. It’ll pass,”</i> he advises. <i>“And " + (pc.cocks.length == 1 ? "put a cocksock on it" : "wear cocksocks") + " or something if you don’t want to get caught again--I might not be around to let you off the hook next time.”</i>");
+			output("\n\nThe drone finally arrives near your ship and lands. The top opens and the officer athletically leaps out. He releases your locks, messily wraps you in a modesty blanket, and escorts you to your ship’s airlock.");
+			output("\n\nAs you enter your ship, the officer turns to leave, giving you a thumbs up and shouting <i>“Good luck with the boner!”</i> then jumping back into the transport and speeding off. Though he manhandled you into a false play of power, he at least let you off free of charge.");
+			if(pc.lust() < pc.lustMax()) output("\n\nWell, speaking of, all that physical contact must have done some work on your arousal since you do feel a little more turned on now...");
+		}
+		else
+		{
+			var bFits:Boolean = (pc.cThickness(cIdx) <= 24);
+			
+			output("\n\nThe officer has her hands placed on her very wide hips, tilting her body to one side, making her big bubble butt protrude outwards. Her overly inflated breasts cover her entire chest and strain the parted top of her uniform, creating a tight line of boob cleavage for all to see. Framing her head and draping over her shoulders is a mane of long, wavy hair, neatly tied into a pair of pig tails. On her rouge-blushed face, she is wearing a pair of tinted shades that cover her eyes, her glossy lips are equally as bloated as her tits, and her smooth jaw moves rhythmically to undeniably masticate some chewing gum.");
+			output("\n\n<i>“Is there a problem, officer?”</i> you ask.");
+			output("\n\nYou can’t tell where her eyes are directed, but she seemingly looks you up and down. Pursing her lips, she inflates her gum outwards and bites down on it, popping the bubble in her mouth. Her lips reverberate from the sudden burst of air and she resumes chewing. Removing her hands from her hips, she begins twirling her locks with one hand. Long-nailed fingers reach up and pull her shades off, revealing gem-colored eyes with extremely long, fluttering lashes. She blinks a couple times, then continues to examine you, eyes visibly fixated on your [pc.cock " + cIdx + "]. <i>“You got a license to carry that?”</i> She finally blurts, pointing at your obvious, raging erection" + (pc.cocks.length == 1 ? "" : "s") + ".");
+			output("\n\nYour cock" + (pc.cocks.length == 1 ? " produces" : "s produce") + " a dollop of precum in response, throbbing just a little more in desire. <i>“Uh... no?”</i>");
+			output("\n\nThe officer grins under her plump lips, pulls out her data slate, and proceeds to tap a few buttons on the display. <i>“That’s, like, totally a fine.”</i> She concludes, then waves her fingers toward your codex. <i>“Now gimme.”</i>");
+			output("\n\nBefore you can ask how much you are being fined for, she quickly scans your device and yet no money is withdrawn from your account. Odd. Did she even charge you?");
+			output("\n\n<i>“Now come with me to take your punishment, okay? You’ve been a bad, bad [pc.boy]!”</i> As she announces this, a hovering transport drone pulls up alongside the bimboish police officer. You follow her to the vehicle and she proceeds to restrain you to it in such a way, straddling herself this way and that in an erotic display, until you’re positioned with your back leaning against the seat, limbs fastened, and cock" + (pc.cocks.length == 1 ? "" : "s") + " jutting forwards. This does not seem like the standard restraining protocol...");
+			output("\n\nThe officer hops on board in front of you, her round ass in your face as she seductively closes the top. Once the hatch is latched, she taps a few buttons on the console to get the engines revving and the drone lifts and hovers off towards your ship, cruising in auto-pilot mode.");
+			output("\n\nResuming her flirtations with you, the officer lifts her legs to turn in your direction and they swiftly straddle your [pc.hips] like some kind of hungry hug monster. <i>“Like, where were we?”</i> She purses her lips. <i>“Oh yea, you’ve been naughty, haven’t you? Or at least...”</i> she gently runs her finger across the shaft of your [pc.cock " + cIdx + "], <i>“this one has...”</i> She licks her lips, adding more shine to her puckers and affectionately kisses your [pc.cockhead " + cIdx + "].");
+			
+			pc.lust(200);
+			
+			output("\n\nA tingle shoots through your shaft like lightning and your arousal spikes--what was that?! Your mind is clouded in a lusty haze as the law enforcer removes her top and cushions your shaft between her pillowy light yet rubbery tight breasts. Several points of contact are alight when she continues to");
+			if(bFits) output(" swallow your dick in her mouth");
+			else output(" make out with your extremely thick dick");
+			if(pc.cocks.length > 1) output(", " + (pc.cocks.length == 2 ? "the other" : "your others") + " missing out on the fun");
+			if(bFits) output(", slurping your length up and down with a perfect frequency");
+			else output(", applying kiss marks all along your shaft");
+			output(". She is such a cock slut!");
+			output("\n\nYour arousal can only go so far and you are on the edge of tipping. You quickly reach climax but before you can cum, the cop clamps down on your [pc.base " + cIdx + "] and expertly swipes her tongue over your cumslit, wrapping your [pc.cockhead " + cIdx + "] in her chewing gum! When she finally releases her grip and gives you a final wet kiss on your shaft, you explode. [pc.CumColor] [pc.cumNoun] shoots into the makeshift condom, filling it");
+			if(cumQ <= 200) output(" only slightly.");
+			else if(cumQ <= 500) output(" up quite a bit.");
+			else if(cumQ <= 1000) output(" up to almost full capacity.");
+			else if(cumQ <= 3000) output(" to maximum capacity with seed.");
+			else output(" up and inflating it well beyond its normal proportions...");
+			if(pc.cocks.length == 2) output(" The same can’t be said about your other cock however, as it sprays its load all over the slut’s chest.");
+			else if(pc.cocks.length > 1) output(" The same can’t be said about your other cocks however, as they spray their load all over the slut’s chest and thighs.");
+			output("\n\nShe pops the condom off your shaft and the sensation triggers another mini orgasm, making you spurt a line of [pc.cumVisc] [pc.cumNoun] across her face. She licks off what she can with a lusty smile while holding the bubble over her head like an ornament. <i>“I think you’ve learned your lesson.”</i> She mashes a button on the console and the vehicle’s top flips open, showing that you’ve finally reached your destination after completing the blowjob session. She unlocks your restraints and your are free to exit. She forgets to hand you a modesty blanket, but you’re too flushed to consider asking.");
+			output("\n\nAs you open your airlock, the policewoman wiggles her curvy bottom in her seat and blows you a fat kiss.");
+			output("\n\n<i>“Catch you again sometime, babe?”</i> Her long-lashed eye winks at you.");
+			output("\n\nYou " + (pc.isBimbo() ? "giggle" : "chuckle") + " to yourself, stepping inside your ship and wave back to her.");
+			output("\n\nShe smiles and her drone’s top closes until she finally hovers off.");
+			output("\n\nWhat a strange encounter");
+			if(pc.exhibitionism() >= 66) output("... maybe you should go around with an exposed hard-on more often");
+			output("!");
+		}
+	}
+	output("\n\n");
+	
+	processTime((30 + rand(15)));
+	if(isBimbro)
+	{
+		if(bMale) pc.lust(15);
+		else pc.orgasm();
+	}
+	currentLocation = "SHIP INTERIOR";
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+

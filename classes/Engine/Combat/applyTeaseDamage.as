@@ -5,11 +5,14 @@ package classes.Engine.Combat
 	import classes.Characters.*;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.rand;
 	import classes.StringUtil;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.teaseReactions;
 	import classes.Engine.Utility.possessive;
+	import classes.Util.InCollection;
 	/**
 	 * ...
 	 * @author Gedan
@@ -24,6 +27,7 @@ package classes.Engine.Combat
 		}
 		
 		var factor:Number = 1;
+		var factorMax:Number = 2;
 		var bonus:int = 0;
 		var msg:String = "";
 		
@@ -33,11 +37,16 @@ package classes.Engine.Combat
 		}
 		
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
-		if (target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) factor *= 1.1;
+		if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
+		if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
+		if (attacker.hasFur())
+		{
+			if (target.statusEffectv2("Furpies Simplex H") == 1 || target.statusEffectv2("Furpies Simplex C") == 1 || target.statusEffectv2("Furpies Simplex D") == 1) factor *= 1.25;
+		}
 		
-		if (factor > 2) factor = 2;
+		if (factor > factorMax) factor = factorMax;
 	
-		if (attacker.hasPheromones()) bonus += 1;
+		if (attacker.hasPheromones()) bonus += attacker.pheromoneLevel();
 		if (teaseType == "SQUIRT") bonus += 2;
 		if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
 		
@@ -120,10 +129,14 @@ package classes.Engine.Combat
 			if (attacker.hasPheromones()) damage += 1 + rand(4);
 			damage *= (rand(31) + 85) / 100;
 			
-			damage = (Math.min(damage, 15 + attacker.level * 2 +  attacker.statusEffectv3("Painted Penis")) * factor);
+			var bonusCap:Number = 0;
+			bonusCap += attacker.statusEffectv3("Painted Penis");
+			
+			var cap:Number = 15 + attacker.level * 2 + bonusCap;
+			damage = (Math.min(damage, cap) * factor);
 			
 			//Tease % resistance.
-			if (teaseType == "SQUIRT") damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
+			if (InCollection(teaseType, ["SQUIRT", "DICK SLAP", "MYR VENOM"])) damage = (1 - (target.getLustResistances().drug.damageValue / 100)) * damage;
 			else damage = (1 - (target.getLustResistances().tease.damageValue / 100)) * damage;
 			//Level % reduction
 			var levelDiff:Number = target.level - attacker.level;
@@ -139,9 +152,8 @@ package classes.Engine.Combat
 			//Tease armor - only used vs weapon-type attacks at present.
 			//damage -= target.lustDef();
 
+			cap = 30 + bonusCap;
 			//Damage cap
-			var cap:Number = 30 + attacker.statusEffectv3("Painted Penis");
-			
 			if (damage > cap) damage = cap;
 			//Damage min
 			if (damage < 0) damage = 0;
@@ -214,7 +226,6 @@ package classes.Engine.Combat
 		// kGAMECLASS.setEnemy(target);
 		if (attacker is PlayerCharacter) kGAMECLASS.playerMimbraneSpitAttack();
 	}
-
 }
 
 function teaseSkillUp(teaseType:String):void

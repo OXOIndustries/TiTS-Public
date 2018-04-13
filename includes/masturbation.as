@@ -29,16 +29,26 @@ public function nonLustFaps():Array
 		{
 			faps.push(["Magic Milker", joyCoMagicMilker7Sucks, "", ""]);
 		}
-		
 		faps.push(["Hand Milk", milkturbation, "", ""]);
 	}
-	if(hasSmutOptions() && InShipInterior())
+	if(pc.hasStatusEffect("Boobswell Pads")) 
+	{
+		faps.push(["Remove B.Swell", removeBoobswellPads, "Remove Boobswell Pads", "Remove the attached boobswell pads."]);
+	}
+	if(hasSmutOptions())
 	{
 		faps.push(["Smut", smutFapMenu, "Smut", "You could go check out some smutty videos on the extranet."]);
 	}
 	return faps;
 }
-public function arousalMenu():void {
+public function arousalMenu():void
+{
+	if(InRoomWithFlag(GLOBAL.WATERFALL))
+	{
+		fapOnWaterfall();
+		return;
+	}
+	
 	clearOutput();
 	showName("\nAROUSAL");
 	showBust("");
@@ -274,6 +284,8 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Remove B.Swell";
+		fap.ttHeader = "Remove Boobswell Pads";
+		fap.ttBody = "Remove the attached boobswell pads.";
 		fap.func = removeBoobswellPads;
 		fap.ignoreRandomSelection = true;
 		faps.push(fap);
@@ -300,7 +312,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 			faps.push(fap);
 		}
 	}
-	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && LaquineEars.lassLaquineAcceptable(pc,pc.biggestCockIndex()))
+	if (flags["LAQUINE_LASS_TRYSTS"] != undefined && pc.hasCock() && LaquineEars.lassLaquineAcceptable(pc,pc.biggestCockIndex()))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "F.Laquine";
@@ -406,7 +418,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.func = cuffSelfRouter;
 		faps.push(fap);
 	}
-	if(hasSmutOptions() && InShipInterior())
+	if(hasSmutOptions())
 	{
 		fap = new FapCommandContainer();
 		fap.text = "Smut";
@@ -540,8 +552,13 @@ public function selectRandomFap(faps:Array):void
 	filtFaps[rand(filtFaps .length)].execute();
 }
 
-public function masturbateMenu(roundTwo:Boolean = false):void {
-	
+public function masturbateMenu(roundTwo:Boolean = false):void
+{
+	if(InRoomWithFlag(GLOBAL.WATERFALL))
+	{
+		fapOnWaterfall();
+		return;
+	}
 	if (flags["KASHIMA_STATE"] == 1 && flags["CHIEF_NEYKKAR_WITH_PC"] == 1 && (pc.hasCock() || pc.hasVagina()))
 	{
 		lustyBugpony();
@@ -566,6 +583,12 @@ public function masturbateMenu(roundTwo:Boolean = false):void {
 	{
 		output("Public masturbation is illegal here. Trying to masturbate would almost certainly land you in jail.");
 		aborted = true;
+	}
+	//Subtuner hypnoproc.
+	else if(pc.hasStatusEffect("Belle Hypno") && pc.hasGenitals()) 
+	{
+		belleMasturbationProc();
+		return;
 	}
 	//Exhibitionism masturbation
 	else if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC))
@@ -872,16 +895,16 @@ public function vaginalFap():void {
 			else if(InShipInterior()) output("deck");
 			else output("ground");
 			output(".");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		else {
 			output(" It never really seems to end, not until you’ve splattered huge [pc.cumColor] gobs across your [pc.face] a half-dozen times and thoroughly painted the whole of your body with the seed-filled fluid.");
 			if(cum >= 10000) output(" Warm wetness rises up around you as you finish out, blissed out and semi-conscious.");
-			applyCumSoaked(pc);
-			if(cum > 5000) applyCumSoaked(pc);
-			if(cum > 10000) applyCumSoaked(pc);
-			if(cum > 30000) applyCumSoaked(pc);
-			if(cum > 50000) applyCumSoaked(pc);
+			pc.applyCumSoaked();
+			if(cum > 5000) pc.applyCumSoaked();
+			if(cum > 10000) pc.applyCumSoaked();
+			if(cum > 30000) pc.applyCumSoaked();
+			if(cum > 50000) pc.applyCumSoaked();
 		}
 	}
 	output("\n\nYou come to a little later, reeking of sex, your fingers stained with girlish goo, and smile, sated... for now.");
@@ -968,7 +991,7 @@ public function singleDickFap():void {
 	}
 	//Prehensile
 	else if(temp == GLOBAL.FLAG_PREHENSILE) {
-		output("\n\nSoon, you’re panting with excitement and handling the [pc.cockTip], twitching excitedly as it squirms against your hand, wrapping around your wrist and tugging it to make it move faster. Your own cock is encouraging you to jack off, driving your arm with pistol-like speed, forcing you to drive your need even hire, until it becomes a palpable, almost tangible thing. You cry out and jack harder, faster, and your cock straightens out under the assault, letting you pleasure its entire length unimpeded.");
+		output("\n\nSoon, you’re panting with excitement and handling the [pc.cockHead], twitching excitedly as it squirms against your hand, wrapping around your wrist and tugging it to make it move faster. Your own cock is encouraging you to jack off, driving your arm with pistol-like speed, forcing you to drive your need even hire, until it becomes a palpable, almost tangible thing. You cry out and jack harder, faster, and your cock straightens out under the assault, letting you pleasure its entire length unimpeded.");
 	}
 	//Nothing special
 	else output("\n\nSoon, you are panting with excitement, your hips giving little upward lurches when you fondle your [pc.cockHead], letting your fingers play over it while you imagine it’s actually some cute alien doing the touching.");
@@ -1011,6 +1034,7 @@ public function singleDickFap():void {
 	}
 	else if(cum <= 500) {
 		output(" Big squirts of [pc.cum] fire out one after another, each easily thicker and larger than an average human’s by far. They splatter across nearly every inch of your body, so thick that runnels of your spent goo drip down the sides of your [pc.chest] and [pc.face].");
+		pc.applyCumSoaked();
 	}
 	else {
 		output(" Large torrents of [pc.cum] spray out of your cumslit with such vigor that you’re able to watch them arc through the air before they rain down around you, each many times the size of a normal orgasm in its own right. The [pc.cumColor] rain slicks you from [pc.feet] to [pc.face], staining you the proof of your incredible virility");
@@ -1026,11 +1050,11 @@ public function singleDickFap():void {
 		}
 		else output(", never mind the physics-defying amount in the lake below");
 		output(".");
-		applyCumSoaked(pc);
-		if(cum > 5000) applyCumSoaked(pc);
-		if(cum > 10000) applyCumSoaked(pc);
-		if(cum > 30000) applyCumSoaked(pc);
-		if(cum > 50000) applyCumSoaked(pc);
+		pc.applyCumSoaked();
+		if(cum > 5000) pc.applyCumSoaked();
+		if(cum > 10000) pc.applyCumSoaked();
+		if(cum > 30000) pc.applyCumSoaked();
+		if(cum > 50000) pc.applyCumSoaked();
 	}
 	if(pc.libido() <= 33) output("\n\nYou exhale a few long, slow pants as you come down from that glorious, orgasmic high");
 	else if(pc.libido() <= 66) output("\n\nYou let out a dazed, happy smile now that you’re sexually sated");
@@ -1298,11 +1322,11 @@ public function multiCockFap():void {
 	if(sucked) pc.loadInMouth(pc);
 	if(nippleFucked) pc.loadInNipples(pc);
 	pc.orgasm();
-	applyCumSoaked(pc);
-	if(cum > 5000) applyCumSoaked(pc);
-	if(cum > 10000) applyCumSoaked(pc);
-	if(cum > 30000) applyCumSoaked(pc);
-	if(cum > 50000) applyCumSoaked(pc);
+	pc.applyCumSoaked();
+	if(cum > 5000) pc.applyCumSoaked();
+	if(cum > 10000) pc.applyCumSoaked();
+	if(cum > 30000) pc.applyCumSoaked();
+	if(cum > 50000) pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1397,9 +1421,11 @@ public function cuntTailFapScene():void {
 	var cum:Number = pc.cumQ();
 	
 	if(cum >= 500) output(" Your prehensile protuberance bloats from your large deposits, eventually giving up on milking you and pulling off to lamely drool [pc.cum] from its gaped orifice on the ground.");
-	if(cum >= 1000) output(" You keep squirting even after all that, painting your [pc.belly] and [pc.fullChest] with the leftovers");
-	if(cum >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
-	if(cum >= 1000) output(".");
+	if(cum >= 1000) {
+		output(" You keep squirting even after all that, painting your [pc.belly] and [pc.fullChest] with the leftovers");
+		if(cum >= 2000) output(", even though there’s so much that it puddles and runs off of you, collecting into a small lake around your [pc.butt]");
+		output(".");
+	}
 	output("\n\nSatisfaction radiates from your entire body in response, but the amount coming from your tail is disproportionately large, enough that you lie there panting while your [pc.tail] digests its load, dreamily toying with [pc.eachCock] until you settle down.");
 	processTime(20+rand(10));
 	pc.loadInCuntTail(pc);
@@ -1934,11 +1960,11 @@ public function wutwutindabuttbuttFap():void
 		else
 		{
 			output(" covering you in the flood of [pc.cumNoun] that sprays from [pc.eachCockHead] as you laugh in delight at your astounding, inhuman volume");
-			applyCumSoaked(pc);
-			if(cum > 5000) applyCumSoaked(pc);
-			if(cum > 10000) applyCumSoaked(pc);
-			if(cum > 30000) applyCumSoaked(pc);
-			if(cum > 50000) applyCumSoaked(pc);
+			pc.applyCumSoaked();
+			if(cum > 5000) pc.applyCumSoaked();
+			if(cum > 10000) pc.applyCumSoaked();
+			if(cum > 30000) pc.applyCumSoaked();
+			if(cum > 50000) pc.applyCumSoaked();
 		}
 		output(".");
 	}
@@ -2204,6 +2230,9 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) jackOffWithLadyPantiesYouSicko("Lys");
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]);
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) jackOffWithLadyPantiesYouSicko("Erra");
+		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) jackOffWithLadyPantiesYouSicko("Myrna");
+		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs.")) jackOffWithLadyPantiesYouSicko("Anno");
+		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) jackOffWithLadyPantiesYouSicko("Fisianna");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2215,6 +2244,11 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
 			addButton(button,"Aina’s",jackOffWithLadyPantiesYouSicko,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
+		{
+			addButton(button,"Anno’s",jackOffWithLadyPantiesYouSicko,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
@@ -2239,7 +2273,12 @@ public function futaBabePantyfapsRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch."))
 		{
-			addButton(button,"Erra's",jackOffWithLadyPantiesYouSicko,"Erra","Erra","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
+			addButton(button,"Erra’s",jackOffWithLadyPantiesYouSicko,"Erra","Erra’s Panties","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) 
+		{
+			addButton(button,"Fisianna’s",jackOffWithLadyPantiesYouSicko,"Fisianna","Fisianna’s Panties","Use Fisianna’s lacy, white panties for a quick wank.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
@@ -2250,6 +2289,11 @@ public function futaBabePantyfapsRouter():void
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
 		{
 			addButton(button,"Lys’s",jackOffWithLadyPantiesYouSicko,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
+		{
+			addButton(button,"Myrna’s",jackOffWithLadyPantiesYouSicko,"Myrna","Myrna’s Panties","Use Myrna’s fur-lined, silky green panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
@@ -2293,6 +2337,9 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) pureLadyWaifuPussyRubFap("Lys");
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) pureLadyWaifuPussyRubFap(flags["BEA_TITLE"]);
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) pureLadyWaifuPussyRubFap("Erra");
+		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) pureLadyWaifuPussyRubFap("Myrna");
+		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs.")) pureLadyWaifuPussyRubFap("Anno");
+		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) pureLadyWaifuPussyRubFap("Fisianna");
 	}
 	//More than one pair? Build a menu.
 	else
@@ -2304,6 +2351,11 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Aina's - Extra-large, striped green centaur panties.")) 
 		{
 			addButton(button,"Aina’s",pureLadyWaifuPussyRubFap,"Aina","Aina’s Panties","Use Aina’s large, striped centaur panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Anno's - Blue boxer briefs."))
+		{
+			addButton(button,"Anno’s",pureLadyWaifuPussyRubFap,"Anno","Anno’s Panties","Use Anno’s blue boxer-briefs for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace."))
@@ -2328,7 +2380,12 @@ public function futaBabePantySchlicksRouter():void
 		}
 		if(pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) 
 		{
-			addButton(button,"Erra's",pureLadyWaifuPussyRubFap,"Erra","Erra's Panties","Use Erra's purple, paw-printed panties for a little self-pleasure.");
+			addButton(button,"Erra’s",pureLadyWaifuPussyRubFap,"Erra","Erra’s Panties","Use Erra’s purple, paw-printed panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) 
+		{
+			addButton(button,"Fisianna’s",pureLadyWaifuPussyRubFap,"Fisianna","Fisianna’s Panties","Use Fisianna’s lacy, white panties for a quick jill-off session.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) 
@@ -2339,6 +2396,11 @@ public function futaBabePantySchlicksRouter():void
 		if(pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) 
 		{
 			addButton(button,"Lys’s",pureLadyWaifuPussyRubFap,"Lys","Lys’s Panties","Use Lys’s sheer black panties for a little self-pleasure.");
+			button++;
+		}
+		if(pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent."))
+		{
+			addButton(button,"Myrna’s",pureLadyWaifuPussyRubFap,"Myrna","Myrna’s Panties","Use Myrna’s fur-lined, silky green panties for a little self-pleasure.");
 			button++;
 		}
 		if(pc.hasKeyItem("Panties - Penny's - Plain, blue, and crotchless.")) 
@@ -2380,8 +2442,12 @@ public function pantyCollectionList(total:Boolean = false):Array
 	if(total || pc.hasKeyItem("Panties - Lys's - Sheer black panties.")) panties.push("Lys");
 	if(total || pc.hasKeyItem("Panties - Beatrice's - Silky, black panties with floral-patterned lace.")) panties.push(flags["BEA_TITLE"]);
 	if(total || pc.hasKeyItem("Panties - Erra's - Purple with a black paw-print on the crotch.")) panties.push("Erra");
+	if(total || pc.hasKeyItem("Panties - Myrna's - Green with fur lining and a pepperminty scent.")) panties.push("Myrna");
+	if(total || pc.hasKeyItem("Panties - Anno's - Blue boxer briefs.")) panties.push("Anno");
+	if(total || pc.hasKeyItem("Panties - Fisianna's - Lacy, white panties with a cute cat pattern.")) panties.push("Fisianna");
 	return panties;
 }
+
 public function pantyFapCount(total:Boolean = false):Number
 {
 	return pantyCollectionList(total).length;
@@ -2427,6 +2493,7 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 	{
 		switch(waifu)
 		{
+			case "Anno": jackOffWithLadyPantiesYouSicko("Anno"); break;
 			case "Kiro": futaBabePantyfaps("Kiro"); break;
 			case "Penny": futaBabePantyfaps("Penny"); break;
 			case "Syri": futaBabePantyfaps("Syri"); break;
@@ -2440,12 +2507,15 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 			case "Mrs. Reasner":
 			case "Beatrice": jackOffWithLadyPantiesYouSicko(flags["BEA_TITLE"]); break;
 			case "Erra": jackOffWithLadyPantiesYouSicko("Erra"); break;
+			case "Myrna": jackOffWithLadyPantiesYouSicko("Myrna"); break;
+			case "Fisianna": jackOffWithLadyPantiesYouSicko("Fisianna"); break;
 		}
 	}
 	else
 	{
 		switch(waifu)
 		{
+			case "Anno": pureLadyWaifuPussyRubFap("Anno"); break;
 			case "Kiro": futaPantiesFapInPussy("Kiro"); break;
 			case "Penny": futaPantiesFapInPussy("Penny"); break;
 			case "Syri": futaPantiesFapInPussy("Syri"); break;
@@ -2459,6 +2529,8 @@ public function pantyFapRandom(genitalSelect:int = -1, waifu:String = ""):void
 			case "Mrs. Reasner":
 			case "Beatrice": pureLadyWaifuPussyRubFap(flags["BEA_TITLE"]); break;
 			case "Erra": pureLadyWaifuPussyRubFap("Erra"); break;
+			case "Myrna": pureLadyWaifuPussyRubFap("Myrna"); break;
+			case "Fisianna": pureLadyWaifuPussyRubFap("Fisianna"); break;
 		}
 	}
 }
@@ -2468,6 +2540,7 @@ public function getPantyColor(waifu:String = ""):String
 	var pantyColor:String = "CODERS DUN GOOFED";
 	switch(waifu)
 	{
+		case "Anno": pantyColor = "dark blue"; break;
 		case "Kiro": pantyColor = "black"; break;
 		case "Penny": pantyColor = "blue"; break;
 		case "Syri": pantyColor = "blue"; break;
@@ -2481,6 +2554,8 @@ public function getPantyColor(waifu:String = ""):String
 		case "Mrs. Reasner":
 		case "Beatrice": pantyColor = "black"; break;
 		case "Erra": pantyColor = "purple"; break;
+		case "Myrna": pantyColor = "green"; break;
+		case "Fisianna": pantyColor = "white"; break;
 	}
 	return pantyColor;
 }
@@ -2491,6 +2566,7 @@ public function getPantyTexture(waifu:String = ""):String
 	var pantyTexture:String = "CODERS DUN GOOFED";
 	switch(waifu)
 	{
+		case "Anno": pantyTexture = "cotton"; break;
 		case "Kiro": pantyTexture = "lace"; break;
 		case "Penny": pantyTexture = "cotton"; break;
 		case "Syri": 
@@ -2504,6 +2580,8 @@ public function getPantyTexture(waifu:String = ""):String
 		case "Lys": pantyTexture = "sheer"; break;
 		case "Mrs. Reasner":
 		case "Beatrice": pantyTexture = "silky lace"; break;
+		case "Myrna": pantyTexture = "silky"; break;
+		case "Fisianna": pantyTexture = "lace"; break;
 	}
 	return pantyTexture;
 }
@@ -2619,11 +2697,11 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 			output(". There’s so much even the sodden panties can’t plug your gushing quim");
 			if(pc.totalVaginas() > 1) output("s");
 			output(", and torrents of passionate fluid flood down your [pc.thighs]");
-			applyPussyDrenched(pc);
-			if(girlCum > 5000) applyPussyDrenched(pc);
-			if(girlCum > 10000) applyPussyDrenched(pc);
-			if(girlCum > 30000) applyPussyDrenched(pc);
-			if(girlCum > 50000) applyPussyDrenched(pc);
+			pc.applyPussyDrenched();
+			if(girlCum > 5000) pc.applyPussyDrenched();
+			if(girlCum > 10000) pc.applyPussyDrenched();
+			if(girlCum > 30000) pc.applyPussyDrenched();
+			if(girlCum > 50000) pc.applyPussyDrenched();
 		}
 	}
 	else output(" your muscles clamping down around them as the " + pantyColor + " underwear darkens with absorbed [pc.girlCum]");
@@ -2643,16 +2721,16 @@ public function futaPantiesFapInPussy(waifu:String = ""):void
 			if(pc.biggestTitSize() < 1) output("is");
 			else output("are");
 			output(" soaked.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		else if(cum >= 500)
 		{
 			output(" You’re absolutely soaked.");
-			applyCumSoaked(pc);
-			if(cum > 5000) applyCumSoaked(pc);
-			if(cum > 10000) applyCumSoaked(pc);
-			if(cum > 30000) applyCumSoaked(pc);
-			if(cum > 50000) applyCumSoaked(pc);
+			pc.applyCumSoaked();
+			if(cum > 5000) pc.applyCumSoaked();
+			if(cum > 10000) pc.applyCumSoaked();
+			if(cum > 30000) pc.applyCumSoaked();
+			if(cum > 50000) pc.applyCumSoaked();
 		}
 	}
 	output("\n\nYour eyes cross a little when you pull the sodden underwear from your [pc.vagina]");
@@ -2710,11 +2788,11 @@ public function jackOffWithLadyPantiesYouSicko(waifu:String):void
 	else 
 	{
 		output("\n\nWith a joyous cry, you spasm and go over the edge, blasting your spunk into the insides of " + waifu + "’s well-used panties. Your lewd jism utterly coats her unmentionables in no time at all, utterly drenching every inch with your tainting spunk and coating your entire waist at the same time. You wring your dick for every last gushing burst, riding the high all the way to the end. When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention being covered with your own cum. Wow!");
-		applyCumSoaked(pc);
-		if(cum > 5000) applyCumSoaked(pc);
-		if(cum > 10000) applyCumSoaked(pc);
-		if(cum > 30000) applyCumSoaked(pc);
-		if(cum > 50000) applyCumSoaked(pc);
+		pc.applyCumSoaked();
+		if(cum > 5000) pc.applyCumSoaked();
+		if(cum > 10000) pc.applyCumSoaked();
+		if(cum > 30000) pc.applyCumSoaked();
+		if(cum > 50000) pc.applyCumSoaked();
 	}
 	output("\n\nOnce you’re finally able to move, you pick up " + waifu + "’s sticky panties and do what you can to clean them of your spunk for future use. It takes you a while, but you’re pretty sure you’ve got them mostly cleaned of your [pc.cumNoun]. <i>Mostly!</i>");
 	processTime(17+rand(4));
@@ -2746,7 +2824,7 @@ public function pureLadyWaifuPussyRubFap(waifu:String):void
 	output(" and making your [pc.vaginas] sing.");
 
 	output("\n\nBucking wildly against her " + getPantyColor(waifu) + " underwear, it’s not long before you’re defiling her crotch-fabric with your slick wetness, forming dark stains in the fabric. With burning cheeks, you moan and buck harder, totally turned on by the idea of staining her sweet underthings with your naughty girl juices. You’re breathing hard and wildly humping the fabric, knowing her muskiness is touching yours, the panty fabric stroking your [pc.clits] like her own sex meshing up against yours.");
-	output("\n\nWith a deliriously happy cry, you spasm and go over the edge, coating the insides of her " + waifu + "’s well-used panties with your girl juices. You’re practically stuffing her underwear into your spasming pussy as you cum, your fingers dipping the fabric deep into your netherlips as you cum <i>hard</i> on them When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention a thin sheen of sweat. Wow!");
+	output("\n\nWith a deliriously happy cry, you spasm and go over the edge, coating the insides of her " + waifu + "’s well-used panties with your girl juices. You’re practically stuffing her underwear into your spasming pussy as you cum, your fingers dipping the fabric deep into your netherlips as you cum <i>hard</i> on them. When you finally finish, you’re left panting for breath and thrumming with a glorious afterglow, not to mention a thin sheen of sweat. Wow!");
 	output("\n\nOnce you’re finally able to move, you pick up " + waifu + "’s sticky panties and do what you can to clean them off for future use.");
 
 	processTime(17+rand(4));
@@ -2963,11 +3041,11 @@ public function moderateExhibitionOmniFap():void
 		else
 		{
 			output("utterly dousing it, your [pc.chest] and [pc.face] in gallons of glistening, glorious [pc.cumColor].");
-			applyCumSoaked(pc);
-			if(cum > 5000) applyCumSoaked(pc);
-			if(cum > 10000) applyCumSoaked(pc);
-			if(cum > 30000) applyCumSoaked(pc);
-			if(cum > 50000) applyCumSoaked(pc);
+			pc.applyCumSoaked();
+			if(cum > 5000) pc.applyCumSoaked();
+			if(cum > 10000) pc.applyCumSoaked();
+			if(cum > 30000) pc.applyCumSoaked();
+			if(cum > 50000) pc.applyCumSoaked();
 		}
 		//pc.lactating:
 		if(pc.canMilkSquirt() && pc.isLactating()) output(" At the same time, [pc.milkVisc], [pc.milkColor] [pc.milkNoun] lewdly shoots from your [pc.nipples] and up in the air as you boob-gasm in front of everyone!");
@@ -3467,8 +3545,8 @@ public function shipShowerFappening(scene:String = ""):void
 		n = rand(pc.cockTotal());
 		
 		output("You grab the bottle of body wash again, squeezing out a second dose into your palms. Rather than letting your hands roam over your body, though, this time you have a much more targeted place to apply it. You reach down and start to work the slippery lotion over [pc.oneCock], letting your hands slowly slide up and down");
-		if(pc.cocks[n].cLength() == 1) output(" the full inch");
-		else output(" all " + num2Text(pc.cocks[n].cLength()) + " inches");
+		if(Math.floor(pc.cocks[n].cLength()) == 1) output(" the full inch");
+		else output(" all " + num2Text(Math.floor(pc.cocks[n].cLength())) + " inches");
 		output(" of [pc.cockColor " + n + "] meat. Each pass makes you more and more slippery, making your [pc.hand] feel better and better each time it brushes your [pc.sheath " + n + "]. Your other hand tends to your [pc.cockHead " + n + "], working it up with an extra dose of lather for the extra-sensitive flesh.");
 		output("\n\nSoon you’re lathered up and stroking away, [pc.chest] rising and falling in a steady rhythm as you bask in the lotion-slicked sensation of [pc.skinFurScalesNoun]-on-skin. Your free hand ");
 		if (!pc.hasBreasts()) output(" rests comfortably on your hip, letting all the focus stay on your eager, throbbing dick.");
@@ -3663,7 +3741,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	if(cum >= 40000) 
 	{
 		output("\n\nSadly, you’re too virile even for yourself. The [pc.cumNoun] is still shooting out like water from a firehose, and there isn’t room in your bloated gut for another drop. Catching enough to fill your mouth to the brim, you let the rest spray over your face, painting you [pc.cumColor] in the process. Streaks of it run down your neck, shoulders, and [pc.chest], but you have a hard time caring. If anyone notices, they’ll just get to see what a devoted cock-sucker you’ve become.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//merge
 	output("\n\nYou roll the treat around as long as you dare, bulging your cheeks so that you can contain both it and your incessant salivation. You’d hold it in there forever if you could, but even the best things must have an end. You swallow the [pc.cum] in one enormous gulp, then let loose a rather unlady-like burp, forgetting to cover your mouth until you taste the flavor of your own warm jizz on your tired tongue.");
@@ -3689,7 +3767,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 		output(" all over you");
 		if(pc.canMilkSquirt()) output(" - Not to mention all the [pc.milk] that sprayed out of your [pc.chest] the moment you came");
 		output(". You could definitely use a shower... or someone else’s tongue.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//No new PG - milkSquirt but no extra dicks
 	else if(pc.canMilkSquirt())
@@ -3812,7 +3890,7 @@ public function autofellatioForNormies():void
 		{
 			output("There’s so much that it rolls down the corners of your mouth, but you try and swallow all the same. It tastes so good that you can’t imagine anything else. Cum like, totally belongs in your tummy, after all! But there’s simply too much for you to keep up. You drink until your belly is full and bulging, then pull off to take the rest on your face.");
 			if(cum >= 6000) output(" Yet it won’t stop coming, not even after you’re wearing a gooey mask and every inch of your body from your head to your [pc.feet] is drenched. You sit there, still pumping, luxuriating in a puddle of your own creation, promising yourself that you’ll do this in a tub sometime so that you can take a jizz-bath.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		output("\n\nThe sated dick wobbles back and forth in front of you, slowly going soft");
 		if(cum >= 3001) output(" beneath its [pc.cumColor] veneer");
@@ -3837,7 +3915,7 @@ public function autofellatioForNormies():void
 				output("No mortal mouth could keep up with the immense waves of ejaculate you’re generating. Trails of [pc.cumColor] squirt from the corners of your mouth before you manage to pull back, but by then it’s too late - you’re coughing up [pc.cumNoun] while your [pc.cock " + x + "] rains more on you, drenching you from head to toe in the [pc.cumFlavor] stuff. It’s an absolute mess");
 				if(cum > 9000) output(", one that only grows worse the longer you orgasm, half-burying you in a lake of your own creation");
 				output(".");
-				applyCumSoaked(pc);
+				pc.applyCumSoaked();
 			}
 		}
 		output("\n\nYour sated dick wobbles back and forth in front of you, slowly going soft");
@@ -4176,7 +4254,7 @@ public function cumCowCockvineSuck():void
 	showName("SNACK\nTIME");
 	author("Nonesuch");
 	output("Lust radiates through you, making you feel... hungry, more than anything. Hungry for hard, hot thickness filling your wet holes, swelling up and releasing delicious, syrupy cum deep within you, making your synapses light up like a festive market. You lick your [pc.lips]. One DAMN what you’d do for a good, hard dicking right now!");
-	output("\n\nYou blink, realising that whilst you were lost in your needy reverie, your [pc.cockTail] has writhed its way upwards, and is now bobbing and weaving in front of your face, a cobra to your face’s charm. Although who’s really being hypnotized here? A long, woozy groan escapes you, mouth slightly ajar, transfixed by the thing’s movements. Its lust is your own, and you can feel the red hot urge course up it in ever greater surges, desperate to shove itself into the nearest wet hole. And it’s so wonderfully thick and juicy-looking, moistness forming at its engorging tip...");
+	output("\n\nYou blink, realizing that whilst you were lost in your needy reverie, your [pc.cockTail] has writhed its way upwards, and is now bobbing and weaving in front of your face, a cobra to your face’s charm. Although who’s really being hypnotized here? A long, woozy groan escapes you, mouth slightly ajar, transfixed by the thing’s movements. Its lust is your own, and you can feel the red hot urge course up it in ever greater surges, desperate to shove itself into the nearest wet hole. And it’s so wonderfully thick and juicy-looking, moistness forming at its engorging tip...");
 	output("\n\nThe appendage suddenly springs forward, driven utterly by its own desires, planting itself straight into your mouth. You’re startled for a single moment... and then the sheer <i>rightness</i> of it takes over, and you take a grip of the warm, writhing stem, stroking it as you welcome its verdant, horny meat between your lips, dragging at the shaft with your [pc.tongue].");
 	output("\n\nYour [pc.tailCock] writhes of its own accord within your mouth: short, little thrusts that make you whimper, pleasure radiating through your tail");
 	if(pc.hasCock()) output(", [pc.eachCock] quickly stiffening");
@@ -4357,7 +4435,7 @@ public function cockwingOrgySluts():void
 	if(pc.totalVaginas() > 1) pc.loadInCunt(pp,1);
 	if(pc.totalVaginas() > 2) pc.loadInCunt(pp,2);
 	pc.loadInAss(pp);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -4480,7 +4558,7 @@ public function involuntarilyCockwangYourself():void
 	if(pc.totalVaginas() > 1) pc.loadInCunt(pp,1);
 	if(pc.totalVaginas() > 2) pc.loadInCunt(pp,2);
 	pc.loadInAss(pp);
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

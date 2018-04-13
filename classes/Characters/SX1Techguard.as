@@ -34,7 +34,7 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			// this.long = "You’re fighting a pirate techie, an ausar woman in a flight suit with a machine pistol at her hip. She’s got a shock of blonde hair, perky breasts under her suit, and a shield generator that’s thrumming with overcharged energy."
-			this.long = "An ausar woman in a flight suit with a machine pistol at her hip. She’s got a shock of blonde hair, perky breasts under her suit, and a shield generator that’s thrumming with overcharged energy.";
+			this.long = "";
 			this.customBlock = "The pirates armor deflects your attack with an alarming ease.";
 			this.isPlural = false;
 			isLustImmune = false;
@@ -158,7 +158,7 @@ package classes.Characters
 			//Goo is hyper friendly!
 			this.elasticity = 1;
 			//Fertility is a % out of 100. 
-			this.fertilityRaw = 1.05;
+			this.fertilityRaw = 10;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
@@ -189,6 +189,8 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			
+			long = "An ausar woman in a flight suit with a machine pistol at her hip. She’s got a shock of blonde hair, perky breasts under her suit, and a " + (shields() > 0 ? "shield generator that’s thrumming with overcharged energy" : "currently disabled shield generator") + ".";
 			
 			// 1x per encounter, don't call it "Cooldown" to avoid auto-handling
 			if (shields() <= 0 && !hasStatusEffect("Shield Boost CD"))
@@ -304,6 +306,11 @@ package classes.Characters
 		override public function getCombatDescriptionExtension():void
 		{
 			output("\n\nA small ball-shaped hover drone floats around her, spraying laser fire everywhere."); 
+		}
+		
+		override public function isPregnant(vIdx:int = 0):Boolean
+		{
+			return (kGAMECLASS.flags["SAM_GAST_PREG_TIMER"] != undefined);
 		}
 	}
 }

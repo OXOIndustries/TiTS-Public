@@ -59,6 +59,23 @@
 		//METHOD ACTING!
 		override public function useFunction(target:Creature, usingCreature:Creature = null):Boolean
 		{
+			if (target.hasStatusEffect("Healed"))
+			{
+				if(!kGAMECLASS.infiniteItems()) quantity++;
+				if (target == kGAMECLASS.pc)
+				{
+					kGAMECLASS.clearOutput();
+					kGAMECLASS.output("Using supplements to heal yourself will only work once per fight. No body can handle the metabolic strain of downing multiple regenerative items in such quick succession.");
+				}
+				else
+				{
+					if(inCombat()) kGAMECLASS.output("\n\n");
+					else kGAMECLASS.clearOutput();
+					kGAMECLASS.output(target.capitalA + target.short + " has already healed during this fight! Doing so again would be more than ill-advised!");
+				}
+				return false;
+			}
+
 			var healing:int = 25;
 			var nThick:Number = target.thickness;
 			if(target is PlayerCharacter)
@@ -89,6 +106,7 @@
 				else kGAMECLASS.output(" full stomach in the process.");
 				target.energy(healing);
 			}
+			if (inCombat()) target.createStatusEffect("Healed", 0, 0, 0, 0, true, "", "", true, 0);
 			return false;
 		}
 	}

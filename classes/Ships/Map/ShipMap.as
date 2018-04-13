@@ -119,8 +119,9 @@ package classes.Ships.Map
 			var tRoom:ShipRoom = RoomDefinitions[nextRoom];
 			src[dir + "Room"] = tRoom;
 			
-			tRoom.MapPosition = new Vector3D();
-			tRoom.MapPosition.copyFrom(src.MapPosition);
+			//tRoom.MapPosition = new Vector3D();
+			//tRoom.MapPosition.copyFrom(src.MapPosition);
+			tRoom.MapPosition = src.MapPosition.clone();
 			tRoom.MapPosition[prop] = tRoom.MapPosition[prop] + val;
 			updateBound(tRoom);
 			

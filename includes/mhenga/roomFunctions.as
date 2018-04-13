@@ -14,6 +14,8 @@ public function flyToMhenga():void
 {
 	output("You fly to Mhen’ga");
 	if(leaveShipOK()) output(" and step out of your ship.");
+	showBust("MHENGA");
+	showName("\nMHENGA");
 }
 
 public function mhengaShipHangarFunc():Boolean
@@ -67,7 +69,7 @@ public function bountyBoardExtra():Boolean
 	if(mhengaActiveBounty()) output(" <b>There are new notices there.</b>");
 	var btnSlot:int = 0;
 	addButton(btnSlot++,"Bulletins",checkOutBountyBoard);
-	repeatRepresentativeSatelliteShit(btnSlot++);
+	if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) repeatRepresentativeSatelliteShit(btnSlot++);
 	return false;
 }
 public function checkOutBountyBoard():void
@@ -118,7 +120,7 @@ public function checkOutBountyBoard():void
 		if(flags["SATELLITE_QUEST"] == 2) output("<b>Completed:</b>");
 		else output("<b>Seen Before:</b>");
 	}
-	output(" Pyrite Industries requires assistance locating a crashed satellite in the jungle. They are offering a 2,500 credit bounty for the return of its stolen hard drive.");
+	output(" Pyrite Industries requires assistance locating a crashed satellite in the jungle. They are offering a 2,500 " + (isAprilFools() ? "dogecoin" : "credit") + " bounty for the return of its stolen hard drive.");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -216,6 +218,13 @@ public function jungleEncounterChances():Boolean {
 	
 	// APPARANTLY I AM NOT ALLOWED DEBUG FUNCTIONS. FML
 	
+	//Pregnant Zil Birth check
+	if(flags["FZIL_PREG_TIMER"] >= 235 && flags["FZIL_THIS_PREG_MET"] != undefined)
+	{
+		fZilBirthHook();
+		return true;
+	}
+	
 	var choices:Array = new Array();
 	//If walked far enough w/o an encounter
 	if((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(4) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(4) == 0)) {
@@ -225,7 +234,15 @@ public function jungleEncounterChances():Boolean {
 		//Build possible encounters
 		choices.push(femzilEncounter);
 		choices.push(femzilEncounter);
-		choices.push(maleZilEncounter);
+		if(pc.hasStatusEffect("Zil Pheromones"))
+		{
+			choices.push(maleZilPreggomonesEncounter);
+			choices.push(maleZilPreggomonesEncounter);
+			choices.push(maleZilPreggomonesEncounter);
+			if(pc.statusEffectv1("Zil Pheromones") >= 2) choices.push(maleZilPreggomonesEncounter);
+			if(pc.statusEffectv1("Zil Pheromones") >= 3) choices.push(maleZilPreggomonesEncounter);
+		}
+		else choices.push(maleZilEncounter);
 		choices.push(maleZilEncounter);
 		choices.push(encounterCuntSnakeOnJungleLand);
 		choices.push(encounterCuntSnakeOnJungleLand);
@@ -238,6 +255,17 @@ public function jungleEncounterChances():Boolean {
 			{
 				choices.push(dryadMeeting);
 				choices.push(dryadMeeting);
+			}
+		}
+		if(!pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
+		if(flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
+		{
+			choices.push(fZilPregEncounter);
+			choices.push(fZilPregEncounter);
+			if(pc.hasPerk("Virile") || pc.hasPerk("Breed Hungry"))
+			{
+				choices.push(fZilPregEncounter);
+				choices.push(fZilPregEncounter);
 			}
 		}
 		//Run the event
@@ -290,13 +318,19 @@ public function jungleMiddleEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
+		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
+		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
+			&& flags["PRAI_FIRST"] != undefined
+			&& !pc.hasStatusEffect("Prai Cooldown") 
+			&& rand(2) == 0) 
+				choices.push(praiSecondEncounter);
 		//Run the event
 		choices[rand(choices.length)]();
 		return true;
 	}
 	
 	if (tryEncounterMango()) return true;
-	
+
 	return false;
 }
 
@@ -378,6 +412,12 @@ public function jungleDeepEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
+		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
+		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
+			&& flags["PRAI_FIRST"] != undefined
+			&& !pc.hasStatusEffect("Prai Cooldown") 
+			&& rand(2) == 0) 
+				choices.push(praiSecondEncounter);
 		//choices[choices.length] = encounterRegularTentaclePitcherYouGay;
 		if(flags["ZODEE_GALOQUEST"] == undefined) choices.push(zodeeGivesFirstGalomax);
 		
@@ -388,7 +428,7 @@ public function jungleDeepEncounters():Boolean {
 	if(pc.level < 2) output("\n\n<b>You can’t help but feel that this part of the jungle would chew you up and spit you out. Maybe you should come back after leveling up a little bit.</b>");
 	
 	if (tryEncounterMango()) return true;
-	
+
 	return false;
 }
 
@@ -410,7 +450,7 @@ public function findOxoniumOnMhenga():Boolean {
 
 public function claimMhengaOxonium():void {
 	clearOutput();
-	output("Utilizing your codex’s sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. The amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you’ve had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 credit deposit.</b> Either you’re not a great geologist, or Dad’s company has orders to give you top dollar. Regardless, the profit is yours.");
+	output("Utilizing your codex’s sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. The amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you’ve had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 " + (isAprilFools() ? "dogecoin" : "credit") + " deposit.</b> Either you’re not a great geologist, or Dad’s company has orders to give you top dollar. Regardless, the profit is yours.");
 	
 	flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] = 1;
 	if(flags["OXONIUM_FOUND"] == undefined) flags["OXONIUM_FOUND"] = 0;
@@ -553,8 +593,8 @@ public function mhengaVanaeFernDamage():Boolean
 	{
 		var damage:int = rand(8);
 		if (noArmor && naturalArmor == 0) damage = 8;
-		damage -= pc.armor.defense;
 		damage -= naturalArmor;
+		
 		if (damage <= 0)
 		{
 			output("\n\nThe spiked ferns look pretty damn painful, but your " + (noArmor ? "natural" : "thick") + " armor is doing a fantastic job of keeping the jagged spikes from doing any damage.");
@@ -562,28 +602,26 @@ public function mhengaVanaeFernDamage():Boolean
 		else if (pc.canFly())
 		{
 			output("\n\nThe spiked ferns look pretty damn painful, so you’ve decided to keep clear and fly over them.");
+			damage = 0;
 		}
 		else if (damage < 2)
 		{
-			output("\n\nThe spiked ferns look pretty damn painful, but thankfully your" + (noArmor ? " natural" : "") + " armor is managing to deflect the worst of it and only allows the odd prick or slash to your [pc.legOrLegs] as you hike through the area. <b>(" + damage + ")</b>");
-			pc.HP( -damage);
+			output("\n\nThe spiked ferns look pretty damn painful, but thankfully your" + (noArmor ? " natural" : "") + " armor is managing to deflect the worst of it and only allows the odd prick or slash to your [pc.legOrLegs] as you hike through the area.");
 		}
 		else if (damage < 4)
 		{
-			output("\n\nThe spiked ferns look pretty damn painful, your" + (noArmor ? " natural" : "") + " armor not exactly achieving much when it comes to providing protection to your lower extremeties. The sharp points of the ferns are doing a real number on your [pc.legOrLegs]. <b>(" + damage + ")</b>");
-			pc.HP( -damage);
+			output("\n\nThe spiked ferns look pretty damn painful, your" + (noArmor ? " natural" : "") + " armor not exactly achieving much when it comes to providing protection to your lower extremeties. The sharp points of the ferns are doing a real number on your [pc.legOrLegs].");
 		}
 		else if (damage < 8)
 		{
-			output("\n\nThe spiked ferns look pretty damn painful, and your" + (noArmor ? " natural" : "") + " armor is nigh-useless when it comes to providing any semblance of protection from the spiked menace infesting the undergrowth in these parts of the lowlands. <b>(" + damage + ")</b>");
-			pc.HP( -damage);
+			output("\n\nThe spiked ferns look pretty damn painful, and your" + (noArmor ? " natural" : "") + " armor is nigh-useless when it comes to providing any semblance of protection from the spiked menace infesting the undergrowth in these parts of the lowlands.");
 		}
 		else
 		{
-			output("\n\nYou’re starting to wish you were wearing armor - hell, even some flimsy dress pants would go a long way to providing some measure of protection against the spiked menance infesting the undergrowth in these parts of the lowlands. With nothing to protect your [pc.legOrLegs] from repeated jabs and slashes, moving through the area is quickly taking a toll on your stamina, and your health. <b>(" + damage + ")</b>");
-			pc.HP( -damage);
+			output("\n\nYou’re starting to wish you were wearing armor - hell, even some flimsy dress pants would go a long way to providing some measure of protection against the spiked menance infesting the undergrowth in these parts of the lowlands. With nothing to protect your [pc.legOrLegs] from repeated jabs and slashes, moving through the area is quickly taking a toll on your stamina, and your health.");
 			pc.energy( -damage);
 		}
+		if(damage > 0) applyDamage(new TypeCollection( { unresistablehp: damage }, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 	}
 	return mhengaVanaeCombatZone();
 }
@@ -607,7 +645,7 @@ public function mhengaVanaeAbandonedCamp():Boolean
 public function fastTravelToEsbeth():void
 {
 	clearOutput();
-	output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick credit transfer later, and you’ve got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down into the clearing in the middle of camp with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
+	output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick " + (isAprilFools() ? "dogecoin" : "credit") + " transfer later, and you’ve got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down into the clearing in the middle of camp with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
 	pc.credits -= 40;
 	currentLocation = "ESBETH TRAVEL AUTHORITY";
 	generateMapForLocation(currentLocation);
@@ -624,8 +662,10 @@ public function sleepInRuinedCamp():void
 		flags["CLEARED_XENOGEN_CAMP_BODIES"] = 1;
 		output("The bodies lying around make the prospect of sleeping here... unpleasant, but then again, you’re far enough from town that you’d rather sleep here than trudge all the way back. You spend several minutes dragging the mutilated bodies out of the camp and dump them into a ditch not far away. Best you can do under the circumstances.");
 		output("\n\nYou clear out one of the tents and bunker down to sleep");
-
-		//Standard sleep messages, etc. 
+		
+		rooms["ABANDONED CAMP"].addFlag(GLOBAL.BED);
+		generateMap();
+		//Standard sleep messages, etc.
 	}
 	//Repeat [Sleep]
 	else

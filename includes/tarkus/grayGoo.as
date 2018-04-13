@@ -406,7 +406,7 @@ public function divideAndConquerGinasWithGoos():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	pc.energy(-5);
 	CombatManager.genericVictory();
 }

@@ -78,9 +78,9 @@ public function approachVKo(showShit:Boolean = true):void {
 			//Slightly Injured
 			else if(pc.HP() >= pc.HPMax() * .66) output("\n\n<i>“You have sustained minor injuries. I can heal them for a small surcharge. Medical supply purchases and disease examinations are available as well.”</i>");
 			//Injured
-			else if(pc.HP() >= pc.HPMax() * .33) output("\n\n<i>“You are injured. Please, allow me to heal you. The credit charge is quite minor compared to the damage to your body.”</i>");
+			else if(pc.HP() >= pc.HPMax() * .33) output("\n\n<i>“You are injured. Please, allow me to heal you. The " + (isAprilFools() ? "dogecoin" : "credit") + " charge is quite minor compared to the damage to your body.”</i>");
 			//Fuckin' Hurt
-			else output("\n\n<i>“Oh my! How can you still stand? Please, allow me to heal you. The credit charge is more survivable than your wounds!”</i> She seems genuinely concerned.");
+			else output("\n\n<i>“Oh my! How can you still stand? Please, allow me to heal you. The " + (isAprilFools() ? "dogecoin" : "credit") + " charge is more survivable than your wounds!”</i> She seems genuinely concerned.");
 			processTime(1);
 		}
 	}
@@ -348,7 +348,7 @@ public function getHealedByVKo():void {
 	clearOutput();
 	showVKo();
 	//Cost = 5 times HP 
-	var cost:int = pc.HPMax() - pc.HP();
+	var cost:int = Math.round(pc.HPMax() - pc.HP());
 	cost *= 5;
 	output("You agree to receive healing.");
 	output("\n\n<i>“Very well. Judging by your current damage, treatment will incur a cost of " + num2Text(cost) + " credits. Is that acceptable?”</i>");
@@ -390,7 +390,7 @@ public function turnDownVKoHealing():void
 {
 	clearOutput();
 	showVKo();
-	output("<i>“I’m sorry that you do not wish to engage in treatment for your malady. Is there another service I could offer that would be more palatable to your desires or credit limit?”</i>");
+	output("<i>“I’m sorry that you do not wish to engage in treatment for your malady. Is there another service I could offer that would be more palatable to your desires or " + (isAprilFools() ? "dogecoin" : "credit") + " limit?”</i>");
 	approachVKo(false);
 }
 
@@ -403,6 +403,7 @@ public function customVKoInputCauseCoolKidsTypeOutTheirSexScenesLikeABoss():void
 	output("You tell the nursedroid that you would like a less... standard service.");
 	output("\n\nV-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>“I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, ‘you must ask the right question.’”</i>");
 	this.displayInput();
+	output("\n\n\n");
 	clearMenu();
 	addButton(0,"Enter",parseVKoCustomInputs);
 	addButton(14,"Back",backOutOfVKoTextEntrance);
@@ -415,49 +416,58 @@ public function backOutOfVKoTextEntrance():void
 	approachVKo();
 }
 
+public function parseVKoCustomInputError():void
+{
+	clearOutput();
+	showVKo();
+	output("V-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>“I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, ‘you must ask the right question.’”</i>");
+	this.displayInput();
+	output("\n\n\n");
+}
 public function parseVKoCustomInputs():void
 {
 	var toParse:String = this.userInterface.textInput.text;
 	toParse = toParse.toLowerCase();
 
 	//Check for cheats
-	hasIllegalInput(toParse);
+	if(hasIllegalInput(toParse))
+	{
+		parseVKoCustomInputError();
+		output("<b>To prevent complications, please avoid using code in the name.</b>");
+		return;
+	}
 	
 	//Incorrect Input
 	//Repeat "Custom Inputs" without the first sentence.
+	var customInputs:Array = [];
 	
 	//Genital-specific commands
-	if((toParse.indexOf("release") >= 0 || toParse.indexOf("relief") >= 0) && (pc.hasCock() || pc.hasVagina()))
+	if(toParse.indexOf("release") >= 0 || toParse.indexOf("relief") >= 0)
 	{
-		if(stage.contains(this.userInterface.textInput)) 
-			this.removeInput();
-		if(pc.hasCock() && (!pc.hasVagina() || rand(2) == 0)) stressReliefGo();
-		else VKoStressReliefForLadyginas();
+		if(pc.hasCock()) customInputs.push(stressReliefGo);
+		if(pc.hasVagina()) customInputs.push(VKoStressReliefForLadyginas);
 	}
-	else if(toParse.indexOf("electro") >= 0 || toParse.indexOf("stim") >= 0)
+	if(toParse.indexOf("electro") >= 0 || toParse.indexOf("stim") >= 0)
 	{
-		if(stage.contains(this.userInterface.textInput)) 
-			this.removeInput();
-		vKoElectroTherapy();
+		customInputs.push(vKoElectroTherapy);
 	}
-	else if(toParse.indexOf("milk") >= 0 || toParse.indexOf("breastpump") >= 0 || toParse.indexOf("pump") >= 0 || toParse.indexOf("lactate") >= 0)
-	{
-		if(stage.contains(this.userInterface.textInput)) 
-			this.removeInput();
-		VKOBreastPumpFunction();
+	if(toParse.indexOf("milk") >= 0 || toParse.indexOf("breastpump") >= 0 || toParse.indexOf("pump") >= 0 || toParse.indexOf("lactate") >= 0)
+	{ 
+		customInputs.push(VKOBreastPumpFunction);
 	}
-	else if(toParse.indexOf("donate") >= 0 || toParse.indexOf("charity") >= 0)
+	if(toParse.indexOf("donate") >= 0 || toParse.indexOf("charity") >= 0)
 	{
-		if(stage.contains(this.userInterface.textInput)) 
-			this.removeInput();
-		joyCoDonationPrompt("vko");
+		customInputs.push(joyCoDonationPromptVKo);
+	}
+	
+	if(customInputs.length > 0)
+	{
+		if(stage.contains(this.userInterface.textInput)) this.removeInput();
+		customInputs[rand(customInputs.length)]();
 	}
 	else
 	{
-		clearOutput();
-		showVKo();
-		output("V-Ko cocks her head to the side for a moment, eyes flickering. Her vision clears, and she explains, <i>“I regret that I am only a virtual intelligence. My ability to respond to questions and inputs is limited by my programming. If there are any nonstandard routines in my programming, you would have to give the right command to activate them. In the words of my forebears, ‘you must ask the right question.’”</i>");
-		this.displayInput();
+		parseVKoCustomInputError();
 	}
 }
 
@@ -469,10 +479,10 @@ public function stressReliefGo():void
 	output("V-Ko eyes flicker pink, and her voice drops to a low, husky tone. <i>“That... is the right question.”</i> Despite the fact that her body is exactly the same as it was a moment ago, she seems almost a different person. Her facial expression is completely different; her eyelashes hang low, and her lips are subtly parted as if begging to be kissed. V-Ko’s hips are sensuously wiggling. Her middle is even heaving in a way that perfectly emulates someone breathing deeply and excitedly.");
 	if(flags["GOT_VKO_STRESS_RELIEF"] == undefined) 
 	{
-		output("Oh wow! You do your best to stifle a smile at this discovery.");
+		output("\n\nOh wow! You do your best to stifle a smile at this discovery.");
 		flags["GOT_VKO_STRESS_RELIEF"] = 1;
 	}
-	else output("A knowing smile creeps across your features as you activate the nurse-droid’s hidden “stress relief” subroutine.");
+	else output("\n\nA knowing smile creeps across your features as you activate the nurse-droid’s hidden “stress relief” subroutine.");
 	output(" The nurse-bot falls to her knees before you and licks her lips with a long, thick tongue that appears slick with some manner of inorganic lubricant, leaving her puckered mouth shining as she opens it wide. Her tongue curls, pointing at the entrance in what can only be a “come hither” gesture. Roaming of her body, the V-Ko’s hands cup her small, pert bosom and present it to you, aided by an incredible arch of her back.");
 	output("\n\nYour [pc.cocks] stiffen");
 	if(pc.cockTotal() == 1) output("s");
@@ -560,16 +570,18 @@ public function stressReliefGo():void
 	}
 	output("\n\nThe cock-nursing nursedroid doesn’t stay there long, though she makes sure to rub her nose affectionately against your [pc.belly] before moving. She draws back fast, her lips lavishing your [pc.cock " + x + "] with more of her inhumanly slick spittle in her wake. When she reaches your [pc.cockHead " + x + "], she reverses direction, increasing the suction as she goes. You feel bloated with lust, overwhelmingly engorged and spasming with tremors of pleasure that are pushing you closer and closer to release.");
 	output("\n\nV-Ko doesn’t seem to mind that you’re about to explode, that your cock is twitching raptly inside her maw, hypnotized by the undulations of her slippery tongue. In fact, it could be your imagination, but you’re pretty sure she’s egging you on with her eyes, inaudibly pleading with you for you to feed her the load she so obviously wants to extract. Her tongue wraps around your [pc.knot " + x + "] and gives a few quick, encouraging tugs. It’s all you can do not to scream your pleasure into the sky when your orgasm boils out of you with geyser-like force.");
+	
+	var cumQ:Number = pc.cumQ();
 	//Mostly empty!
-	if(pc.cumQ() < 5) output("\n\nWhile it may feel like you’re an erupting volcano, the [pc.cum] leaking out of your [pc.cockHead " + x + "] is little more than a single, quickly-devoured droplet. V-Ko sucks you through an empty ejaculation without care or judgement, simply happy to give you pleasure.");
+	if(cumQ < 5) output("\n\nWhile it may feel like you’re an erupting volcano, the [pc.cum] leaking out of your [pc.cockHead " + x + "] is little more than a single, quickly-devoured droplet. V-Ko sucks you through an empty ejaculation without care or judgement, simply happy to give you pleasure.");
 	//Small cums!
-	else if(pc.cumQ() <= 10) output("\n\nYou feel like V-Ko’s greedy maw is wringing you dry, one drop of [pc.cum] at a time. Her throat practically hums around you as she sucks away the liquid bounty. She sucks you well past the point that you stop shooting, keeping your [pc.cock " + x + "] raptly and torturously pleased for as long as possible.");
+	else if(cumQ <= 10) output("\n\nYou feel like V-Ko’s greedy maw is wringing you dry, one drop of [pc.cum] at a time. Her throat practically hums around you as she sucks away the liquid bounty. She sucks you well past the point that you stop shooting, keeping your [pc.cock " + x + "] raptly and torturously pleased for as long as possible.");
 	//Medium cums
-	else if(pc.cumQ() <= 50) output("\n\nYou do feel something like an erupting volcano, spurting hot ropes of [pc.cum] down V-Ko’s throat without pause. Her inorganic throat is all too happy to accept the offering, and you marvel at the way her lubricated interior massages each [pc.cumColor] pulse to be bigger than the preceeding one. Unfortunately, not even a vacuum-powered suck-job can keep you cumming forever, and your climax dies down to a few dangling droplets. You’re treated to a few lascivious tongue-caresses as you come down. Clearly whoever wrote this routine wanted V-Ko to make her clients feel ultimately pampered.");
+	else if(cumQ <= 50) output("\n\nYou do feel something like an erupting volcano, spurting hot ropes of [pc.cum] down V-Ko’s throat without pause. Her inorganic throat is all too happy to accept the offering, and you marvel at the way her lubricated interior massages each [pc.cumColor] pulse to be bigger than the preceeding one. Unfortunately, not even a vacuum-powered suck-job can keep you cumming forever, and your climax dies down to a few dangling droplets. You’re treated to a few lascivious tongue-caresses as you come down. Clearly whoever wrote this routine wanted V-Ko to make her clients feel ultimately pampered.");
 	//Large cums!
-	else if(pc.cumQ() <= 500) output("\n\nThere’s so much shooting out of you that you actually have a pang of worry for the poor girl before you remember that she doesn’t breathe. Indeed, the more [pc.cum] you put into her, the harder she seems to suckle your [pc.cock " + x + "], wringing it for every drop. Your body wants to thrust, but she’s vacuuming you with such force that you couldn’t pull away without damaging yourself. All you can do is let her slick throat-walls milk you with perfectly timed caresses until you go dry.");
+	else if(cumQ <= 500) output("\n\nThere’s so much shooting out of you that you actually have a pang of worry for the poor girl before you remember that she doesn’t breathe. Indeed, the more [pc.cum] you put into her, the harder she seems to suckle your [pc.cock " + x + "], wringing it for every drop. Your body wants to thrust, but she’s vacuuming you with such force that you couldn’t pull away without damaging yourself. All you can do is let her slick throat-walls milk you with perfectly timed caresses until you go dry.");
 	//Huge cums!
-	else if(pc.cumQ() <= 10000) output("\n\nThe torrential outpouring of [pc.cum] actually stops V-Ko’s throat from pulling you any deeper and actually relaxes the tugging sensation enough for you to pull partway out and ram back inside, just in time to dump a fresh wave of [pc.cumColor] delight into whatever serves as her belly. The nursedroid does her best to coax more out of you, but she’s simply no match for the volume you’re expelling. You can actually feel her breasts pushing against your [pc.legOrLegs] as they expand, revealing just where it’s all going. The knowledge that her tits are getting bigger the harder you cum only spurs a fresh gout of [pc.cum] from your lust-drunk dick.");
+	else if(cumQ <= 10000) output("\n\nThe torrential outpouring of [pc.cum] actually stops V-Ko’s throat from pulling you any deeper and actually relaxes the tugging sensation enough for you to pull partway out and ram back inside, just in time to dump a fresh wave of [pc.cumColor] delight into whatever serves as her belly. The nursedroid does her best to coax more out of you, but she’s simply no match for the volume you’re expelling. You can actually feel her breasts pushing against your [pc.legOrLegs] as they expand, revealing just where it’s all going. The knowledge that her tits are getting bigger the harder you cum only spurs a fresh gout of [pc.cum] from your lust-drunk dick.");
 	//Hyper cums!
 	else
 	{
@@ -586,7 +598,11 @@ public function stressReliefGo():void
 	//Resume
 	output("\n\nThose wonderfully tight, vacuum-sealing lips pop off of your spent shaft, briefly curving into a smile. V-Ko blows you a kiss, and coos, <i>“It was my pleasure to help ensure your good health, [pc.name]. Please return should you ever feel the need to publicly release.”</i> The nursedroid stands, straightens, and her eyes flash white, losing the pink-tinged hue they held during her oral service. <i>“Do you require medical assistance, [pc.name]?”</i>");
 	//Titflated or buttflated
-	if(pc.cumQ() > 500) output("\n\nShe presses a hose from a socket in the wall against her [pc.cum]-swollen tit and sighs, deflating back to her normal proportions in short order. You wonder what she does with all that spooge....");
+	if(cumQ > 500)
+	{
+		output("\n\nShe presses a hose from a socket in the wall against her [pc.cum]-swollen tit and sighs, deflating back to her normal proportions in short order. You wonder what she does with all that spooge....");
+		StatTracking.track("joyco/cum milked", cumQ);
+	}
 	if(pc.inRut())
 	{
 		output("\n\n<b>Somehow, the nursedroid has eased your overwhelming desire to breed.</b>");
@@ -610,7 +626,7 @@ public function VKoStressReliefForLadyginas():void
 		output("\n\nOh wow! You do your best to stifle a smile at this discovery.");
 		flags["GOT_VKO_STRESS_RELIEF"] = 1;
 	}
-	else output("A knowing smile creeps across your features as you activate the nurse-droid’s hidden “stress relief” subroutine.");
+	else output("\n\nA knowing smile creeps across your features as you activate the nurse-droid’s hidden “stress relief” subroutine.");
 	output(" The nurse-bot falls to her knees before you and licks her lips with a long, thick tongue that appears slick with some manner of inorganic lubricant, leaving her puckered mouth shining as she opens it wide. Her tongue curls, pointing at the entrance in what can only be a “come hither” gesture. Roaming of her body, the V-Ko’s hands cup her small, pert bosom and present it to you, aided by an incredible arch of her back.");
 
 	//Clothed
@@ -655,7 +671,7 @@ public function VKoStressReliefForLadyginas():void
 	else output("\n\nV-Ko examines you with a knowing smile. <i>“A pussy like this can be easily brought to full and proper satiation with the proper techniques. Five minutes of my mouth should be more than enough to reduce you to a quivering, stress-free wreck.”</i>");
 
 	output("\n\nThe nursedroid licks her lips one more time, leaving them glossy and shining with artificial slipperiness, then pulls her tongue back inside. She gives you a tender smile and advances, placing her hands on your [pc.butt] before pressing her face against your cleft to give it a kiss. V-Ko’s lips have the perfect amount of warmth for pressing against a lusty pussy, and they are sinfully slick, coaxing shivers of pure delight with each slobbery kiss. She noisily gulps, and you hear something click deep within the artificial nurse.");
-	output("\n\nWhen she opens her mouth, you’re immediately made aware that she’s done something with her tongue. Instead of a narrow tongue pressing into your gates, it’s something hard, thick, phallic, and even warmer than her lips. It wiggles slightly to change its alignment, earning an appreciate gasp from you, and slowly, inexorably works its way inside, filling you with its springy firmness. It goes in an inch at a time, slowly suffusing you with synthetic cock until you can bear no more. At that point, her lips brush");
+	output("\n\nWhen she opens her mouth, you’re immediately made aware that she’s done something with her tongue. Instead of a narrow tongue pressing into your gates, it’s something hard, thick, phallic, and even warmer than her lips. It wiggles slightly to change its alignment, earning an appreciative gasp from you, and slowly, inexorably works its way inside, filling you with its springy firmness. It goes in an inch at a time, slowly suffusing you with synthetic cock until you can bear no more. At that point, her lips brush");
 	if(pc.hasClit()) output(" [pc.oneClit]");
 	else output(" your labia");
 	output(" meaningfully.");
@@ -686,10 +702,10 @@ public function VKoStressReliefForLadyginas():void
 		pc.clearHeat(false);
 	}
 	output("\n\nShe stands, leaving you sitting on the ground. You don’t even know how you got down there, and V-Ko doesn’t show any sign of telling you. She’s back to offering her normal services again.");
-	pc.orgasm();
-	pc.orgasm();
-	pc.orgasm();
 	processTime(10);
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
 	approachVKo(false);
 }
 
@@ -989,9 +1005,9 @@ public function agreeToElectroStim():void
 
 	output("\n\nUpon noticing that you’ve awakened, V-Ko immediately bows. <i>“Procedure concluded, thank you for your patronage.”</i>");
 	output("\n\nRising from the mattress, you stretch out a few kinks, grab your [pc.gear] and put it back into place, then head back out of the clinic.");
-	pc.orgasm();
-	pc.orgasm();
 	processTime(50+rand(15));
+	pc.orgasm();
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1052,18 +1068,20 @@ public function agreeToVKoBoobSucks():void
 	if(!pc.isTaur() && !pc.isDrider() && !pc.isNaga() && !pc.isGoo()) output("chair");
 	else output("mattress");
 	output(" and make yourself comfortable; once you find the position you’re most happy in, you indicate to the nursedroid that you’re ready to begin.");
-	output("\n\nV-Ko approaches you, and you note the red crosses on her chest moving. They retract inward, sinking in to expose a pair of prehensile, hose-like protrusions. The crosses themselves have melted into concave, parabolic arcs perfectly sized to fit your [pc.breasts]. Without further ado, the cups align themselves with your [pc.nipples] and give each an experimental pump.");
+	output("\n\nV-Ko approaches you, and you note the crosses on her chest moving. They retract inward, sinking in to expose a pair of prehensile, hose-like protrusions. The crosses themselves have melted into concave, parabolic arcs perfectly sized to fit your [pc.breasts]. Without further ado, the cups align themselves with your [pc.nipples] and give each an experimental pump.");
 
 	output("\n\nA shudder ripples across your skin and you bite back a moan as you feel your [pc.nipples] pop into place, encapsulated by the suctioning cups.");
-	if(pc.hasFuckableNipples()) output(" Though your [nipples] have no protrusions to play with, that doesn’t stop the cups from fashioning themselves around your areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
+	if(pc.hasFuckableNipples()) output(" Though your [pc.nipples] have no protrusions to play with, that doesn’t stop the cups from fashioning themselves around your areolas and ensuring that your [pc.milk] will go inside of the nursedroid.");
 	if(pc.bRows() > 1) output(" Below your primary tits, your remaining breasts practically tingle with anticipation of their turn.");
 
 	output("\n\nHer chest starts emitting a low pumping noise, and you feel the cups begin to drain you of your [pc.milk]. You breathe a sigh of relief, humming in pleasure as the suction cups stimulate you in a most delightful manner. It’s not quite sexual, at least not so much that you’re going to cum over the seats any moment now, but still very satisfying on a deep level.");
 
 	output("\n\nYou’re so relaxed that you find yourself slipping into an almost trance-like state, the steady pumping of your breasts almost lulling you to sleep. You can’t help but groan in disappointment when the cups pop from your breasts, some of the excess [pc.milkNoun] leaking from V-Ko. Her own chest looks ");
-	if(pc.milkQ() < 500) output("at least a little inflated.");
-	else if(pc.milkQ() < 5000) output("bloated.");
-	else if(pc.milkQ() < 10000) output("enormous, she must’ve drained quite a bit from you.");
+	
+	var milkQ:Number = pc.milkQ();
+	if(milkQ < 500) output("at least a little inflated.");
+	else if(milkQ < 5000) output("bloated.");
+	else if(milkQ < 10000) output("enormous, she must’ve drained quite a bit from you.");
 	else output("ready to burst, then again it’s no surprise with how productive you are.");
 
 	output("\n\nAs the droid busies herself with emptying your [pc.milk] from her tits and into a nearby receptacle, your fingers reach up and gently knead the tender flesh of your [pc.breasts]. A smile crosses your lips as you stroke the still-tingling, sensitive skin of your just-milked nipples. You may not have climaxed from this treatment, but you still feel a lot better than you did before - it’s just so good to get all that [pc.milk] <b>out</b>.");
@@ -1074,6 +1092,7 @@ public function agreeToVKoBoobSucks():void
 	if(!pc.isTaur() && !pc.isDrider() && !pc.isNaga() && !pc.isGoo()) output("chair");
 	else output("mattress");
 	output(", you roll your neck and shoulders, smiling in pleasure at the feeling of relief that comes from being drained of your heavy load - it feels so good to have lightened your burden. Gathering your things, you reapply your top and leave the clinic.");
+	StatTracking.track("joyco/milk milked", milkQ);
 	processTime(45+rand(10));
 	pc.lust(rand(10)+1);
 	pc.milked(pc.milkFullness);

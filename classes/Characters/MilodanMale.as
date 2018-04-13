@@ -212,7 +212,7 @@
 			}
 			return str;
 		}
-		override public function physiqueMax(): Number {
+		override public function physiqueMax(raw:Boolean = false): Number {
 			return 75;
 		}
 		private function randomise():void 

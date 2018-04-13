@@ -277,19 +277,19 @@ package classes.GameData
 			lucky.perkDescription = "Grants you an additional 10% evasion chance.";
 			insertPerkData(lucky);
 			
-			var shootFirst:PerkData = new PerkData();
-			shootFirst.classLimit = GLOBAL.CLASS_SMUGGLER;
-			shootFirst.levelLimit = 2;
-			shootFirst.perkName = "Shoot First";
-			shootFirst.perkDescription = "When using a ranged attack during the first round of combat, gain an additional attack.";
-			insertPerkData(shootFirst);
-			
 			var lowBlow:PerkData = new PerkData();
 			lowBlow.classLimit = GLOBAL.CLASS_SMUGGLER;
 			lowBlow.levelLimit = 2;
 			lowBlow.perkName = "Low Blow";
 			lowBlow.perkDescription = "Grants the ability to perform a melee strike with a high chance of stunning the target.";
 			insertPerkData(lowBlow);
+
+			var shootFirst:PerkData = new PerkData();
+			shootFirst.classLimit = GLOBAL.CLASS_SMUGGLER;
+			shootFirst.levelLimit = 2;
+			shootFirst.perkName = "Shoot First";
+			shootFirst.perkDescription = "When using a ranged attack during the first round of combat, gain an additional attack.";
+			insertPerkData(shootFirst);
 			
 			// Level 3
 			var escapeArtist:PerkData = new PerkData();

@@ -30,7 +30,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 9;
+			this._latestVersion = 11;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -55,7 +55,7 @@
 			this.a = "";
 			this.capitalA = "";
 			this.long = "Anno’s crouched just over an arm’s length away, her compact holdout held close at a low-ready as she waits for an opportunity to fire. Her bushy tail is tucked in tight, ears lowered against her head as she moves from cover to cover, ducking around incoming attacks.";
-			this.customDodge = "Anno Don't Dodge Foo";
+			this.customDodge = "Anno Don’t Dodge Foo";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.isPlural = false;
 			
@@ -65,6 +65,9 @@
 			this.meleeWeapon.hasRandomProperties = true;
 			
 			this.rangedWeapon = new HammerCarbine();
+			this.rangedWeapon.longName = "holdout pistol";
+			this.rangedWeapon.description = "Anno’s holdout pistol";
+			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor.longName = "coat";
 			this.armor.defense = 1;
@@ -90,7 +93,7 @@
 			this.eyeColor = "blue";
 			this.tallness = 70;
 			this.thickness = 40;
-			this.tone = 0;
+			this.tone = 30;
 			this.hairColor = "white";
 			this.scaleColor = "ebony";
 			this.furColor = "white";
@@ -199,7 +202,6 @@
 			
 			isUniqueInFight = true;
 			
-			
 			shield = new DecentShield();
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
@@ -209,6 +211,7 @@
 		
 		override public function get bustDisplay():String
 		{
+			if(kGAMECLASS.annoIsHuskar()) return "ANNO_HUSKAR";
 			return "ANNO";
 		}
 		
@@ -262,6 +265,16 @@
 		{
 			dataObject.vaginas[0].hymen = false;
 		}
+		public function UpgradeVersion9(dataObject:Object):void
+		{
+			dataObject.tone = 30;
+		}
+		public function UpgradeVersion10(dataObject:Object):void
+		{
+			dataObject.rangedWeapon.longName = "holdout pistol";
+			dataObject.rangedWeapon.description = "Anno’s holdout pistol";
+			dataObject.rangedWeapon.hasRandomProperties = true;
+		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
@@ -298,17 +311,18 @@
 			{
 				hpBooster(pc);
 			}
-			else if (bSneak)
+			else if (bSneak && !hasStatusEffect("Disarmed"))
 			{
 				var bonusDamage:int = level * 2;
 				if (target.hasStatusEffect("Blinded") && target.hasStatusEffect("Stunned")) bonusDamage += level;
 				
 				regularAttack(bonusDamage, target);
 			}
-			else
+			else if(!hasStatusEffect("Disarmed"))
 			{
 				regularAttack(0, target);
 			}
+			else annoNoAction();
 		}
 		
 		public function grappleStruggle():void
@@ -317,7 +331,7 @@
 			{
 				var chance:int = statusEffectv1("Grappled");
 				
-				output("Anno struggles against the gray goo's assault, trying to escape her death-grasp.");
+				output("Anno struggles against the gray goo’s assault, trying to escape her death-grasp.");
 					
 				if (rand(3) <= chance)
 				{
@@ -379,6 +393,11 @@
 				damage.add(bonusDamage);
 				applyDamage(damage, this, target, "minimal");
 			}
+		}
+		
+		private function annoNoAction():void
+		{
+			output("Anno attempts to get a hold of her holdout pistol as the battle ensues but is unsuccessful.");
 		}
 		
 		override public function onLeaveBuyMenu():void

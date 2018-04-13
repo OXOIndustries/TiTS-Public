@@ -62,8 +62,7 @@ public function uvetoKaedeRainCheck():void
 
 public function uvetoKaedeSure():void
 {
-	currentLocation = "UVS B7";
-	generateMap();
+	moveTo("UVS B7");
 	
 	clearOutput();
 	kaedeHeader();
@@ -217,7 +216,7 @@ public function uvetoKaedeAnno():void
 		output("\n\n<i>“We’re doing alright, thanks,”</i> Kaede answers with a bright smile. <i>“I wish I was leading the kind of lifestyle where we could be together on a more permanent basis, but we make do. I’m always keeping an eye out for");
 		if (annoNotRecruited()) output(" Tarkus");
 		else output(" Tavros");
-		output(" contracts so I have an excuse to visit as often as I can. Just about every spare credit I can put together goes into taking her out to nice places, buying little presents...”</i>");
+		output(" contracts so I have an excuse to visit as often as I can. Just about every spare " + (isAprilFools() ? "dogecoin" : "credit") + " I can put together goes into taking her out to nice places, buying little presents...”</i>");
 		
 		output("\n\nHang on a minute, isn’t Anno kind of rich? Why’s Kaede all but putting herself in the poor house like that; surely Anno should be doing the expensive wooing.");
 		
@@ -252,13 +251,28 @@ public function uvetoKaedeCass():void
 
 	output("\n\nGlancing up at you, Kaede asks, <i>“Do you have any kids, [pc.name]?”</i>");
 
-	var numChildren:Number = StatTracking.getStat("pregnancy/total births");
+	var numChildren:Number = (StatTracking.getStat("pregnancy/total births") + StatTracking.getStat("pregnancy/total sired"));
+	// preggos
+	if(pc.isPregnant() && pc.bellyRatingMod > 10)
+	{
+		for (var i:int = 0; i < pc.pregnancyData.length; i++)
+		{
+			var pData:PregnancyData = pc.pregnancyData[i];
+			if(pData.pregnancyType != "" && pData.pregnancyQuantity > 0)
+			{
+				var pChildType:int = PregnancyManager.getPregnancyChildType(pc, i);
+				if(pChildType == GLOBAL.CHILD_TYPE_LIVE) numChildren += pData.pregnancyQuantity;
+				//else if(pChildType == GLOBAL.CHILD_TYPE_SEED) numChildren += pData.pregnancyQuantity;
+				//else if(pChildType == GLOBAL.CHILD_TYPE_EGGS) numChildren += pData.pregnancyQuantity;
+			}
+		}
+	}
 	if (numChildren > 0)
 	{
 		output("\n\n<i>“I do,”</i> you answer.");
 		if (numChildren >= 10) output(" <i>“Lots.”</i>");
 	}
-	else output(" <i>“Not yet,”</i> you answer. Given your ancestry, who knows how long that’ll stay true.");
+	else output("\n\n<i>“Not yet,”</i> you answer. Given your ancestry, who knows how long that’ll stay true.");
 
 	output("\n\nKaede smiles. <i>“That’s good. You");
 	if (numChildren == 0) output("’ll have some eventually, I’m sure. It’s... it’s a trip.");
@@ -355,8 +369,9 @@ public function uvetoKaedeTease():void
 	kaedeHeader();
 
 	//+Exhibitionism. If you track NPC stats like that, give +KaedeExhibitionism, too! She probably starts off really low.
+	kaedeIncreaseExhibitionism(10);
+	
 	//+Mischievous
-
 	pc.addMischievous(3);
 	pc.exhibitionism(5);
 
@@ -389,7 +404,7 @@ public function uvetoKaedeDone():void
 	clearOutput();
 	kaedeHeader();
 
-	output("You lean back in your chair as the little server droid zooms back to your table, balancing a steaming tray of food on its cylindrical head. Kaede slides the tray over from it and deposits a credit chit before sending it on its way. The droid beeps a polite <i>“Thank you!”</i> as it wheels off to tend to another table.");
+	output("You lean back in your chair as the little server droid zooms back to your table, balancing a steaming tray of food on its cylindrical head. Kaede slides the tray over from it and deposits a " + (isAprilFools() ? "dogecoin" : "credit chit") + " before sending it on its way. The droid beeps a polite <i>“Thank you!”</i> as it wheels off to tend to another table.");
 	
 	output("\n\nYour companion digs in with ferocity");
 	if (flags["KAEDE_UVETO_TEASED"] != undefined) output(", taking out the frustrations of your previous teasing on");
@@ -443,8 +458,7 @@ public function uvetoKaedeNotToday():void
 
 public function uvetoKaedeSEXYTIMESENSUE():void
 {
-	currentLocation = "UVS F15";
-	generateMap();
+	moveTo("UVS F15");
 	
 	clearOutput();
 	kaedeHeader();
@@ -577,7 +591,7 @@ public function uvetoKaedeDildoPlay(fuckedHer:Boolean = false):void
 	
 	output("\n\n<i>“I thought you didn’t want to use your cock,”</i> you tease back, sliding down until the knot presses against your clenching hole. You give Kaede the same treatment, pushing the smaller shaft so deep that the knot sinks half way in, stretching her even wider than before. Your lover just keeps moaning, grabbing at her breasts and hiking her tail in the air, a silent plea to keep pounding her.");
 	
-	output("\n\nYou’re taken by a wicked idea, though - one leagues better than just teasing the poor butt-slut till she creams herself! Grabbing Kaede’s waist to steady her, you lean forward and whisper relaxing nothings in her ear, telling her to just stay nice and open for you. She whines, but her ass is utterly unresistant as you sink the rest of the latex shaft’s knot into her, tying her to the toy. Her cock throbs, drooling thicker streaks of white onto the floor as your ministrations milk her prostate but never let her really cum.");
+	output("\n\nYou’re taken by a wicked idea, though - one leagues better than just teasing the poor butt-slut until she creams herself! Grabbing Kaede’s waist to steady her, you lean forward and whisper relaxing nothings in her ear, telling her to just stay nice and open for you. She whines, but her ass is utterly unresistant as you sink the rest of the latex shaft’s knot into her, tying her to the toy. Her cock throbs, drooling thicker streaks of white onto the floor as your ministrations milk her prostate but never let her really cum.");
 	
 	output("\n\nNow that the toy’s firmly knotted in Kaede’s ass, you grab her hips in both hands and yank her back, planting the half-ausar’s firm behind right in your crotch");
 	if (pc.hasCock()) output(" and sliding your semi-hard schlong through the crack of her ass and into the base of her fluffy tail");

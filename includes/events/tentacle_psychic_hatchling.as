@@ -239,9 +239,9 @@ public function PsychicTentacleBirthing(pregSlot:int):void
 	if(x == -1) pc.buttChange(2000);
 	else pc.cuntChange(x,2000);
 	output("\n\nFor now, you can doze on the floor and recover. <i>Your master fades from your awareness. Now that you’ve served your function, you don’t need to be aware of him anymore. Surely he’s close by, but when you open your eyes, he’s gone. He didn’t even make a sound. Maybe he’ll leave you an egg somewhere.</i>");
-	if(pc.elasticity < 5)
+	if(pc.elasticity < (pc.hasPerk("Elasticity") ? 7 : 5))
 	{
-		pc.elasticity++;
+		pc.elasticity += (pc.hasPerk("Elasticity") ? 1.5 : 1);
 		output(" <b>You’re pretty sure the master’s slime changed your body, making it far stretchier than ever before.</b>");
 	}
 	pc.orgasm();

@@ -1,7 +1,3 @@
-public function isNearlyJulyFourth():Boolean
-{
-	return checkDate(4, 7, 7);
-}
 
 public function tryEncounterFreedomBeef():Boolean
 {
@@ -456,7 +452,7 @@ public function freedomBeefLikedIt(beefType:uint):void
 	}
 	else
 	{
-		output(" pacing around to face you. <i>“Just, um, I’ve only ever been with ‘taurs like me before, so.... wanna teach a big ol’ girl a new trick or two?”</i>");
+		output(" pacing around to face you. <i>“Just, um, I’ve only ever been with ‘taurs like me before, so... wanna teach a big ol’ girl a new trick or two?”</i>");
 	}
 	
 	output("\n\nRiley gives you a wink and cups her hands under her titanic rack, already starting to work the holopin clasp holding it back.");
@@ -570,7 +566,7 @@ public function freedomBeefTauricMounting(beefType:uint):void
 	IncrementFlag(flags["FUCKED_FREEDOM_BEEF_TAURIC"]);
 
 	clearMenu();
-	addButton(0, "Next", freedomBeefSexOutro, [beefType, (pc.hasCock() ? true : false)]);
+	addButton(0, "Next", freedomBeefSexOutro, [beefType, (pc.hasCock())]);
 }
 
 public function freedomBeefSnuSnu(beefType:uint):void

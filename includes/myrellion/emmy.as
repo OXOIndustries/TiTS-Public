@@ -37,35 +37,18 @@ public function emmyIsCrew():Boolean
 {
 	return false;
 }
+/*Moved these into the Creature block.*/
+/*
 public function applyCumSoaked(arg:Creature):void
 {
-	var desc:String = "";
-	
-	if(!arg.hasStatusEffect("Cum Soaked"))
-	{
-		if(arg == chars["PC"]) desc = "You’re drenched in cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-		else desc = arg.capitalA + arg.short + " is completely covered in cum!";
-		arg.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
-	}
-	else arg.addStatusValue("Cum Soaked",1,1);
-	
-	if(arg == chars["PC"]) mimbraneFeed("all");
+	arg.applyCumSoaked();
 }
 
 public function applyPussyDrenched(arg:Creature):void
 {
-	var desc:String = "";
-	
-	if(!arg.hasStatusEffect("Pussy Drenched"))
-	{
-		if(arg == chars["PC"]) desc = "You’re drenched in girl-cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-		else desc = arg.capitalA + arg.short + " is completely covered in girl-cum!";
-		arg.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
-	}
-	else arg.addStatusValue("Pussy Drenched",1,1);
-	
-	if(arg == chars["PC"]) mimbraneFeed("all");
+	arg.applyPussyDrenched();
 }
+*/
 
 //Push it out?
 public function pushOutTheCumDummy():void
@@ -517,7 +500,7 @@ public function tradeWivEmmy():void
 		shopkeep.keeperSell += "\n\nSilken fingertips lay themselves across your busily working hands. <i>“Don’t be so hasty, ";
 		if(flags["MET_EMMY"] != undefined) shopkeep.keeperSell += "[pc.name]";
 		else shopkeep.keeperSell += "[pc.race]";
-		shopkeep.keeperSell += ". I’ll still deal with you. It just has to be under the table...”</i> She glances around, noting the distinct lack of tables. <i>“... so to speak.”</i>";
+		shopkeep.keeperSell += ". I’ll still deal with you. It just has to be under the table...”</i> She glances around, noting the distinct lack of tables. <i>“...so to speak.”</i>";
 		flags["EMMY_TRADE_OFFERED"] = 1;
 	}
 	//Repeat
@@ -733,7 +716,7 @@ public function askAboutTheOwnerOfKihaCorp():void
 	output("\n\n<i>“You really think so?”</i> You give her a probing look.");
 	if(flags["MET_EMMY"] != undefined) output(" Emmy");
 	else output(" The fuzzy rep");
-	output(" shrugs noncommittally, her breasts jostling each other inside her jumpsuit like overfilled waterballoons in a cargo hold. <i>“Nah. How the fuck would I know anything about something like that? I’m about as low on the the totem pole as you can get without having a mouthful of dirt. Nobody tells me anything, so all I’ve got to go on are my hunches and storylines from daytime holo-dramas.”</i> Hopping back up onto the edge of the counter, she resumes idly swinging her feet. <i>“Got any more questions?”</i>");
+	output(" shrugs noncommittally, her breasts jostling each other inside her jumpsuit like overfilled waterballoons in a cargo hold. <i>“Nah. How the fuck would I know anything about something like that? I’m about as low on the totem pole as you can get without having a mouthful of dirt. Nobody tells me anything, so all I’ve got to go on are my hunches and storylines from daytime holo-dramas.”</i> Hopping back up onto the edge of the counter, she resumes idly swinging her feet. <i>“Got any more questions?”</i>");
 	processTime(3);
 	emmyTalkMenu(talkToEmmyAboutKihaCorp);
 }
@@ -811,11 +794,7 @@ public function askEmmyBoutMeleeShit():void
 	output("\n\n");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("The spotted shopkeep");
-	output(" pushes a jumpsuit-enclosed clawtip against the center of your chest hard enough to push you back a half step. Fortunately, the potentially dangerous digit was rounded off to a nub - probably to keep from tearing her shining, full-body uniform. <i>“Don’t doubt it, ");
-	if(pc.mf("b","") == "b") output("buster");
-	else if(pc.catDog("nyan", "bork", false) == "bork") output("bitch");
-	else output("lady");
-	output(".");
+	output(" pushes a jumpsuit-enclosed clawtip against the center of your chest hard enough to push you back a half step. Fortunately, the potentially dangerous digit was rounded off to a nub - probably to keep from tearing her shining, full-body uniform. <i>“Don’t doubt it, " + pc.mf("buster", pc.catDog("lady", "bitch", false)) + ".");
 	if(pc.tone < 30 && pc.tallness < 72) output(" Say, why are you even asking about this stuff? You don’t really have the build to be mixing it up in melee, ya know?”</i>");
 	else if(pc.tone >= 75) output(" Say, you are pretty muscly, aren’t you? I bet you don’t even have to swing a weapon to scare off a few ruffians, do you?”</i> She purrs - a louder, deeper sound than you’d hear from a kaithrit and strokes your arm.");
 	else output(" Say, are you really planning to fight up close? It seems risky.”</i>");
@@ -828,7 +807,7 @@ public function askEmmyBoutMeleeShit():void
 		else if(pc.isBro()) 
 		{
 			output("You grunt in displeasure at her evaluation of your strength. ");
-			if(pc.isTreated()) output("Just because you don’t have show muscles doesn’t mean you couldn’t single-handedly till a field.");
+			if(pc.isTreated()) output("Just because you don’t have show muscles doesn’t mean you couldn’t single-handedly until a field.");
 			else output("Just because you’ve focused on other disciplines for now doesn’t mean you won’t hit the gym later.");
 		}
 		else if(pc.isNice()) output("<i>“It pays to be prepared.”</i>");
@@ -846,7 +825,7 @@ public function askEmmyBoutMeleeShit():void
 		if(flags["MET_EMMY"] == undefined) output("Emmy’s");
 		else output("The appreciative herm’s");
 		output(" cock is straining against her jumpsuit by the time you finish, at least two or three inches longer than before. A little drool has even collected on her top-shelf tits, making the gleaming white of her outfit shine even brighter in the artificial light. The bitch is actually panting, but when she sees you staring, she wipes the drool off her muzzle and awkwardly minces her way back behind the counter.");
-		output("\n\n<i>“... Ooookay, so uh... did you have any other questions or did you...”</i> she trails off into nothing and violently shakes her head. <i>“Sorry, was there something else I could answer for you?”</i> She seems a little more in control of herself for the moment, but her hungry eyes tell a different tale.");
+		output("\n\n<i>“...Ooookay, so uh... did you have any other questions or did you...”</i> she trails off into nothing and violently shakes her head. <i>“Sorry, was there something else I could answer for you?”</i> She seems a little more in control of herself for the moment, but her hungry eyes tell a different tale.");
 	}
 	processTime(4);
 	emmyTalkMenu(askEmmyBoutMeleeShit);
@@ -1008,7 +987,7 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 	output("\n\nGrinning, you nod back.");
 	output("\n\n<i>“Oooh, you are just the cutest!”</i> the jackaless cries, throwing her arms around your neck and pulling you into the squishy embrace of her pillowy bosom.");
 	if(pc.biggestTitSize() >= 1) output(" Your own [pc.chest] declare war on their opposite number, pressing your [pc.nipples] against her hardened tips until you very nearly moan in delight.");
-	output(" She slathers your cheek with with an unashamedly enthusiastic lick and roughly gropes at your [pc.butt]");
+	output(" She slathers your cheek with an unashamedly enthusiastic lick and roughly gropes at your [pc.butt]");
 	if(pc.tailCount > 0) output(", gently stroking the base of your tail with a rogue index finger");
 	else if(pc.buttRating() >= 6) output(", digging her fingers into your cheeks with such gusto that you momentarily worry she’ll slip a finger in between");
 	else output(", squeezing the pert flesh on offer");
@@ -1040,12 +1019,14 @@ public function tellEmmyShesTheBelleOfTheBalls():void
 	emmyMainMenu();
 }
 
+/*
 public function emmyMailGet():void
 {
 	AddLogEvent("<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>", "passive");
 
 	MailManager.unlockEntry("emmy_apology", GetGameTimestamp());
 }
+*/
 
 //Sex Quest - Sex Attempt Start
 //PC comes on, she actually gets a little offended - skipped with the <i>“You - You”</i> option.
@@ -1314,6 +1295,7 @@ public function emmyPleased():void
 //Post-Oral Email Request
 //Requires GF status - three days since first blowjob
 //Email
+/*
 public function emmyMailGet2():void
 {
 	AddLogEvent("<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>", "passive");
@@ -1329,6 +1311,7 @@ public function emmyMailGet4():void
 	AddLogEvent("<b>New Email From Emmy Astarte (emmy_astarte@cmail.com)!</b>", "passive");
 	MailManager.unlockEntry("emmy_harness_here", GetGameTimestamp());
 }
+*/
 
 //More Serious Talk - added to main menu
 public function moreSeriousEmmyTalkAboutEmail():void
@@ -1342,7 +1325,7 @@ public function moreSeriousEmmyTalkAboutEmail():void
 	if(!(pc.armor is EmptySlot)) output("through your [pc.armor].");
 	else output("against your [pc.skin].");
 
-	output("\n\nYour head is spinning, and you’d like nothing better than to bed Emmy right here and now. Still, it sounds like she wants you to tend to her for a change. <i>“... what?”</i> you pant, confused.");
+	output("\n\nYour head is spinning, and you’d like nothing better than to bed Emmy right here and now. Still, it sounds like she wants you to tend to her for a change. <i>“...what?”</i> you pant, confused.");
 
 	output("\n\nThe seemingly ravenous jackaless gradually masters her ardor, separating herself from you a finger at a time. <i>“Sorry, I just get so... so sex-crazy around you. You have no idea how badly I want you here. At all hours of the day, I’m just lounging around the shop and wishing you’d suck me off, tongue my pussy until your face is all shiny and I’m painting my tits white. Or that you’d just fondle me through the suit and make me work the rest of the day, soaking in my own cum, ya know?”</i>");
 
@@ -1387,7 +1370,7 @@ public function giveEmmyAnItemMenu():void
 	if(pc.hasItemByClass(Kirkite)) addButton(0,"Kirkite",giveEmmyAnItem,"Kirkite","Kirkite","Give Emmy a piece of Kirkite.");
 	else addDisabledButton(0,"Kirkite","Kirkite","You don’t have any Kirkite.");
 	if(pc.hasItemByClass(Satyrite)) addButton(1,"Satyrite",giveEmmyAnItem,"Satyrite","Satyrite","Give Emmy a piece of Satyrite.");
-	else addDisabledButton(1,"Satyrite","Satyrite","You don’t have any Kirkite.");
+	else addDisabledButton(1,"Satyrite","Satyrite","You don’t have any Satyrite.");
 	if(pc.hasItemByClass(Picardine)) addButton(2,"Picardine",giveEmmyAnItem,"Picardine","Picardine","Give Emmy a piece of Picardine.");
 	else addDisabledButton(2,"Picardine","Picardine","You don’t have any Picardine.");
 	if(pc.hasItemByClass(CrystalShard))
@@ -1552,7 +1535,7 @@ public function giveEmmyAnItem(item:String):void
 	//Kirkite, no new PG
 	if(item == "Kirkite")
 	{
-		output("\n\n<i>“Kirkite, huh?”</i> Emmy rolls sparkling gemstone between two claw-tipped fingers. <i>“This stuff is actually pretty rare around Ausaril and Terra, but with every new rush, it gets a little more common. Weird how the farther we get from the core, the more deposits we find.”</i> She smiles mischievously spins around, tail wagging beneath your nose. <i>“You’re lucky I’m not a thraggen or I probably wouldn’t have accepted it. I hear their planet is so rich in the stuff that they used to throw it away, back before they realized they could export it for a quick credit.”</i>");
+		output("\n\n<i>“Kirkite, huh?”</i> Emmy rolls sparkling gemstone between two claw-tipped fingers. <i>“This stuff is actually pretty rare around Ausaril and Terra, but with every new rush, it gets a little more common. Weird how the farther we get from the core, the more deposits we find.”</i> She smiles mischievously spins around, tail wagging beneath your nose. <i>“You’re lucky I’m not a thraggen or I probably wouldn’t have accepted it. I hear their planet is so rich in the stuff that they used to throw it away, back before they realized they could export it for a quick " + (isAprilFools() ? "coin" : "credit") + ".”</i>");
 		output("\n\n<i>“Really?”</i>");
 		output("\n\nEmmy’s bends over to a storage compartment, her hips wiggling. <i>“Nuts isn’t it? We don’t even know how lucky we are until we can get to know someone else and gain a little perspective. Life’s funny like that. Ah! Here it is!”</i> She slams the drawer closed with a heavy ‘thunk’ and straightens, balancing an expensive-looking weapon in front of the bullets of her nipples. <i>“");
 		if(getRanged) 
@@ -1725,7 +1708,7 @@ public function inviteEmmyToJoinCrew():void
 	output("<i>“Why not just");
 	if(pc.isBimbo()) output(" like,");
 	output(" join my crew?”</i> you counter, enfolding her in your arms and none-too-subtly squeezing her ass.");
-	output("\n\nEmmy’s expression lightens, then drops. <i>“It’d break my contract here, and there’s no way I can afford the 40,000 credit penalty it would hit me with.”</i> She rocks her hips against you, grinding her thickening tube of cock on your [pc.belly]. <i>“Trust me, I’ve thought about just leaving, going on the run with you, but not yet. I mean, we haven’t even properly fucked yet. What if we’re really bad at the whole tab A into slot B thing?”</i>");
+	output("\n\nEmmy’s expression lightens, then drops. <i>“It’d break my contract here, and there’s no way I can afford the 40,000 " + (isAprilFools() ? "dogecoin" : "credit") + " penalty it would hit me with.”</i> She rocks her hips against you, grinding her thickening tube of cock on your [pc.belly]. <i>“Trust me, I’ve thought about just leaving, going on the run with you, but not yet. I mean, we haven’t even properly fucked yet. What if we’re really bad at the whole tab A into slot B thing?”</i>");
 	output("\n\nStroking your fingertips up her spine, you make the furry woman gasp in pleasure before answering. <i>“We won’t be.”</i>");
 	output("\n\n<i>“Y-you’re probably right, but one step at a time, [pc.name]. Let’s get this toy and fuck for real, and if you’re still determined to have the galaxy’s best sales-herm </i>staffing<i> your crew quarters, we can talk contract buyouts and pay scale.”</i> Emmy licks her chops and openly moans. If she thrusts her quivering bazooka any harder against you, it’s going to go off mid-hug.");
 	output("\n\nYou briefly wonder whether she’ll rupture her suit, inflate part of it like a condom’s tip, or merely slosh around in her own spunk for the rest of the day, then remember that she’s still waiting for your verdict on the toy.");
@@ -1759,7 +1742,7 @@ public function giveEmmyTheDoshForHerHermHarnessssss():void
 	output(".");
 
 	output("\n\nThe jackal-herm’s eyes widen. <i>“R-really? I...”</i> She pulls you into a crushing hug. <i>“Thank you! I don’t know what I would have done if you hadn’t found me. Probably wound up slumming it in Gildenmere, getting drunk on honey and packing wombs full of cum for a few gems or handful of credits.”</i> She shivers in disgust, but her prick throbs powerfully against you.");
-	output("\n\nBreaking away from the hug before she starts dry-humping you, Emmy pants, <i>“Here, let me just send you the credit transfer request... done. Just approve it, and I’ll place the order.”</i>");
+	output("\n\nBreaking away from the hug before she starts dry-humping you, Emmy pants, <i>“Here, let me just send you the " + (isAprilFools() ? "dogecoin" : "credit") + " transfer request... done. Just approve it, and I’ll place the order.”</i>");
 	output("\n\nYou pull out your Codex, glance up at the jackal, noting her dilated pupils and lewdly jutting nipples, then swipe the approval button. <b>You’re out 15,000 credits, but now Emmy’s going to get that toy.</b>");
 	output("\n\nEmmy is on you the moment you put the Codex away, bowling you over in a tumble of tits, fur, and fully-loaded package. You let her pin you to the floor, grinning up at jackal-slut while her hands grope and her cock throbs, reveling in her raw animal passion. Emmy alternately growls and whines, lost somewhere between wanting to violate your every hole and raise her ass submissively into the air. Eventually, she manages to gasp, <i>“S-so... how do you want to do this?”</i>");
 	pc.credits -= 15000;
@@ -2130,7 +2113,7 @@ public function emmyCunnilingusFinale():void
 	output("”</i> Emmy purrs between attempts to clean your [pc.girlCum] from her mouth. So much of her face is stained with the evidence of your love that she’ll be grooming for a good while yet.");
 	output("\n\nThe best answer you can manage are a few breathy pants and a nod as you climb back up onto your elbows.");
 	output("\n\nEmmy giggles and helps you up, though not without a few slips. The suit shrouding her fingertips is slick with your spent passion. Pussy-scent clings to her like perfume, twice as strong and far more enjoyable. It summons up pangs of remembered pleasure to flutter across your belly.");
-	output("\n\n<i>“Damn,”</i> you exhale, <i>“... that was good.”</i>");
+	output("\n\n<i>“Damn,”</i> you exhale, <i>“...that was good.”</i>");
 	output("\n\nEmmy smiles, though her tongue still slips out in a feeble attempt to groom her cunt-soiled face. <i>“Great. Now while you cool down, I’ve got to freshen up.");
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(".. on the outside. I’m going to be daydreaming about your cunt the rest of my shift.");
 	else output(" Some of us still have a store to run.");
@@ -2529,13 +2512,13 @@ public function emmy69OrgasmTime(args:Array):void
 	if(youSuck == 2)
 	{
 		output("\n\nA spray of girlcum fills your mouth, drawing you back to the real world with the tangy taste of Emmy’s cunt. You swallow noisily, letting her paint your nose and cheeks with more of her gushing goo. Her balls pull tight below your chin, and you hear the sound of her masculine spunk splattering off the bottom of her tits. Flecks of it hit your [pc.belly], warm and wet, a salty compliment to the feminine love you’re currently struggling to swallow.");
-		applyPussyDrenched(pc);
+		pc.applyPussyDrenched();
 	}
 	//Emmy boycum
 	else 
 	{
 		output("\n\nThick, salty-tasting spunk fills your mouth, drawing you back to the real world before you choke on it. You swallow noisily, but it’s not fast enough for Emmy’s super-sized ejaculations. Spunk rolls over your bottom lip in a wave while small streams dribble from the corners of your mouth. Still, you persevere, gulping down as much of as you can. Her poor balls are being blasted from behind by girlcum too, making her whole sack gleam brighter than a brand new starfighter.");
-		applyCumSoaked(pc);
+		pc.applyCumSoaked();
 	}
 	//Merge
 	output("\n\nPure pleasure backs your ceaseless swallowing. Both you and Emmy are lost to it, ingesting as much of the other’s love as possible before your twinned orgasms completely wind down. How long you spend bound to Emmy’s crotch, you don’t know, but when you stagger up and burp, tasting her on your tongue and breath, you feel completely and totally winded.");
@@ -2603,9 +2586,9 @@ public function emmyCockSlobber():void
 	else output("Just shut up and let me do this,");
 	output("”</i> you say with a knowing smile.");
 
-	output("\n\nEmmy pants and staggers back, dick already throbbing, creating a spherical distention in the poor herm’s suit at the top of her lewdly-jutting member. <i>“");
-	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output("\n\nR-really? O-okay, I didn’t expect you to be so much like... like, well, me.”</i> She sounds almost concerned about you. <i>“I mean, you don’t have an implant in your head making sure that you’re always ready for a surprise blowjob.”</i> With each word, she sounds less worried and more excited. <i>“Oh god, just suck my cock already, [pc.name]!”</i>");
-	else output("O-okay, but i-it’s not sex. Just a little fun.”</i> She sounds more like she’s trying to assuage her own guilty conscience than talk to you. Either way, her dick is clearly ready for some loving.");
+	output("\n\nEmmy pants and staggers back, dick already throbbing, creating a spherical distention in the poor herm’s suit at the top of her lewdly-jutting member.");
+	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(" <i>“R-really? O-okay, I didn’t expect you to be so much like... like, well, me.”</i> She sounds almost concerned about you. <i>“I mean, you don’t have an implant in your head making sure that you’re always ready for a surprise blowjob.”</i> With each word, she sounds less worried and more excited. <i>“Oh god, just suck my cock already, [pc.name]!”</i>");
+	else output(" <i>“O-okay, but i-it’s not sex. Just a little fun.”</i> She sounds more like she’s trying to assuage her own guilty conscience than talk to you. Either way, her dick is clearly ready for some loving.");
 	output("\n\nYou sink to your knees, already shivering in anticipation, and lean forward slightly, running your hands along the straining fabric, marvelling at how effectively the mystery material contains what feels like enough pre to fill a coffee cup. Emmy rewards you with her hands on your head");
 	if(pc.hasHair()) output(", running through you hair");
 	else output(", stroking your [pc.skinFurScales]");
@@ -2613,9 +2596,9 @@ public function emmyCockSlobber():void
 
 	output("\n\nEmmy’s gaze is almost a physical force, full of desire and an almost astounding amount of need half-concealed behind her pride. Her smile sends a thrill of delight down your spine, and you run your palms up her thighs, feeling her heat against your hands, the subtle buck of hips against you. The catch of her form-fitting suit practically releases itself, but you keep it from sliding down too quickly once it reaches crotch level, freeing the soaked slab of girlmeat with deliberate slowness.");
 
-	output("\n\nThe jackaless’s thickness throbs under your fingertips, its veins pulsing and flexing in appreciation. ");
+	output("\n\nThe jackaless’s thickness throbs under your fingertips, its veins pulsing and flexing in appreciation.");
 	if(flags["EMMY_QUEST"] >= 6 && flags["EMMY_QUEST"] != undefined) output(" Having to remove the Herm Harness spoils a bit of the fun, but then it’s gone, and you have her cock right there, in your hands.");
-	output("Her sable shaft is slick and musky from bathing in its own pre-cum for so long, the latest addition a heady frosting on an already perverse feast. Just a whiff of it leaves you briefly dizzy and aroused.");
+	output(" Her sable shaft is slick and musky from bathing in its own pre-cum for so long, the latest addition a heady frosting on an already perverse feast. Just a whiff of it leaves you briefly dizzy and aroused.");
 	if(pc.hasCock() && pc.hasVagina())
 	{
 		output(" Your own [pc.cocks] and [pc.vaginas] respond by getting every bit as hard and wet as your horndog friend, but you can tend to them later.");
@@ -3268,8 +3251,8 @@ public function noShowerWithEmemsPostFux():void
 	processTime(2);
 	IncrementFlag("EMMY_FUCKED");
 	//cum splattered
-	applyCumSoaked(pc);
-	applyPussyDrenched(pc);
+	pc.applyCumSoaked();
+	pc.applyPussyDrenched();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3382,7 +3365,7 @@ public function getFuckedByEmmyEmmyEms():void
 		output("\n\nYou ");
 		if(pc.isBimbo() || pc.IQ() < 50) output("cluelessly shake your head, but press backwards needfully into her hand.");
 		else output("shake your head, figuring she doesn’t expect you to answer.");
-		output("\n\nPulling her hand back, Emmy slaps your ass and squeezes roughly. <i>“Jackals fuck bitches.”</i> Her claw-tips don’t feel nearly blunt enough. They dig deep into your [pc.skinFurScales] and refuse to let go, holding your haunches more possessively than a beggar clutching his last credit. <i>“And here you are in front of me, ass in the air and puss");
+		output("\n\nPulling her hand back, Emmy slaps your ass and squeezes roughly. <i>“Jackals fuck bitches.”</i> Her claw-tips don’t feel nearly blunt enough. They dig deep into your [pc.skinFurScales] and refuse to let go, holding your haunches more possessively than a beggar clutching his last " + (isAprilFools() ? "dogecoin" : "credit") + ". <i>“And here you are in front of me, ass in the air and puss");
 		if(pc.totalVaginas() == 1) output("y");
 		else output("ies");
 		output(" on display.”</i> Her thumb grazes [pc.oneVagina]");
@@ -3633,7 +3616,7 @@ public function hyperFootjorbsForEms():void
 	else if(pc.hasKnot(x)) output("knot");
 	else output("root");
 	output(", making you twist and shudder in the throes of ecstasy.");
-	output("\n\nPulling off with a noisy slurp, the lust-drunk jackaless coos, <i>“Somebody’s dick is getting biggeerrrrr! Mmm...”</i> She pumps faster and harder, all while continuing to milk a stream of her own pre-cum in the tawny fur between her boobs. <i>“Do my paws feel good on your cock, [pc.name]?”</i> A jet of liquid excitement squirts onto her chin. <i>“Are y-you gonna cum soon?”</i> A high pitched whine tears out of her throat. <i>“....I’m close. Just cum... cum, and I’ll cum, and...”</i> She sucks in a huge breath and groans, doubling the pace of her velvety paws’ frenzied caressing, smearing pussy juice and sweat along your gleaming, twitching length until it feels less like a dick and more like a million nerves crying out as one, demanding release.");
+	output("\n\nPulling off with a noisy slurp, the lust-drunk jackaless coos, <i>“Somebody’s dick is getting biggeerrrrr! Mmm...”</i> She pumps faster and harder, all while continuing to milk a stream of her own pre-cum in the tawny fur between her boobs. <i>“Do my paws feel good on your cock, [pc.name]?”</i> A jet of liquid excitement squirts onto her chin. <i>“Are y-you gonna cum soon?”</i> A high pitched whine tears out of her throat. <i>“...I’m close. Just cum... cum, and I’ll cum, and...”</i> She sucks in a huge breath and groans, doubling the pace of her velvety paws’ frenzied caressing, smearing pussy juice and sweat along your gleaming, twitching length until it feels less like a dick and more like a million nerves crying out as one, demanding release.");
 	//Flared cock
 	if(pc.hasCockFlag(GLOBAL.TYPE_EQUINE,x)) 
 	{
@@ -3805,7 +3788,7 @@ public function emmyHyperProstateChampionIIHyperEdition():void
 		else output("You cast a sharp glance over your shoulder, but Emmy rocks her hips confidently, pressing on your prostate just hard enough to make you dribble. Fuck it - you want to cum. You bend low, and after staring at your leaky dick for a few seconds, you open wide and slurp it up. Your jaw aches with the effort of it.");
 		output(" It’s warm on your tongue, vaguely [pc.cumFlavor], and throbbing happily. You can’t help but give it a little suck and thrill at how great it feels.");
 		output("\n\n<i>“Atta [pc.boyGirl], suck it,”</i> Emmy growls, putting pressure back on your prostate. [pc.Cum] jets into your mouth, forcing you to gulp it down lest it flood your mouth and shoot out your nose. Resuming humping, Emmy angles herself even further forward, pounding your prostate even harder than before. You can’t help but puff your cheeks out with the sheer volume of seed you squirt. In the few moments your mouth isn’t full of jism, you’re moaning around your dick like a wanton whore, amazed at how good the vibrations feel and simultaneously unable to stop yourself. Who cares if you look like some kind of cock-addicted fuck-slut. It feels <i>amazing.</i>");
-		output("\n\nEmmy grunts with each ass-filling thrust. Her knot trembles inside you, on the the verge of surging to full size, but the sensation of it pales next to the white-hot bliss that goes off every time she squeezes against your p-spot. Your belly is starting to feel full, but you keep swallowing, delirious with lust and unwilling to take the risk that Emmy might stop fucking you.");
+		output("\n\nEmmy grunts with each ass-filling thrust. Her knot trembles inside you, on the verge of surging to full size, but the sensation of it pales next to the white-hot bliss that goes off every time she squeezes against your p-spot. Your belly is starting to feel full, but you keep swallowing, delirious with lust and unwilling to take the risk that Emmy might stop fucking you.");
 		output("\n\nThe shop is filled with the wet sounds of fucking and sucking. The lurid slap of Emmy’s balls against ");
 		if(pc.balls > 0) output("your own");
 		else if(pc.hasVagina()) output("your [pc.vaginas]");
@@ -3916,7 +3899,7 @@ public function emmyHardLightProstateFillerUp():void
 	{
 		output("<i>“You want to do what?”</i> Emmy asks, coyly.");
 		if(pc.isBimbo()) output("\n\n<i>“Stick a toy up your butt and, like, tickle your prostate,”</i> you answer cheerfully. Even the hyper-sexual herm seems just a bit stunned by your brazenness. <i>“It’s super fun, I hear!”</i> you add.");
-		else if(pc.isBro()) output("\n\n<i>“Work your prostate ‘til you cum,”</i> you grunt.");
+		else if(pc.isBro()) output("\n\n<i>“Work your prostate till you cum,”</i> you grunt.");
 		else output("\n\nYou look innocent. <i>“Stimulate your prostate. You’ll enjoy it, I promise.”</i>");
 		output("\n\nEmmy quickly gets into the spirit, however. She leans on the counter, squishing her cleavage to maximum display - possibly unintentionally, but probably not - and traces some idle doodles on the countertop with her finger. <i>“Show me how.”</i>");
 		output("\n\nBaring your intent");

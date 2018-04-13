@@ -13,13 +13,10 @@ package classes.Characters
 	import classes.kGAMECLASS;
 	import classes.GLOBAL;
 	import classes.ItemSlotClass;
-	import classes.Engine.Interfaces.ParseText;
-	import classes.Engine.Interfaces.ParseQuotes;
 	import classes.Engine.Utility.num2Text;
 	import classes.Util.InCollection;
 	import classes.Util.RandomInCollection;
-	import classes.Engine.Interfaces.AddLogEvent;
-	import classes.Engine.Interfaces.ExtendLogEvent;
+	import classes.Engine.Interfaces.*
 	
 	/**
 	 * Yeah this is kinda bullshit, but it also means we can version the PC data structure like NPCs.
@@ -71,10 +68,14 @@ package classes.Characters
 		{
 			kGAMECLASS.mimbraneFeed("vagina");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
+			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
 			}
 			if (cumFrom != null)
 			{
@@ -82,8 +83,17 @@ package classes.Characters
 				{
 					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
 				}
-				if(cumflationEnabled()) cumflationHappens(cumFrom,vagIndex);
+				if(cumflationEnabled() && cumFrom.cumType != GLOBAL.FLUID_TYPE_CUNDARIAN_SEED) cumflationHappens(cumFrom,vagIndex);
 				sstdChecks(cumFrom,"vagina");
+				//PLUGGING TIME!
+				if(cumFrom.cumType == GLOBAL.FLUID_TYPE_CUNDARIAN_SEED)
+				{
+					if(vagIndex >= 0 && vagIndex < totalVaginas())
+					{
+						if(!vaginas[vagIndex].hasFlag(GLOBAL.FLAG_PLUGGED)) vaginas[vagIndex].addFlag(GLOBAL.FLAG_PLUGGED);
+						if(!hasStatusEffect("Pussy Plugged")) createStatusEffect("Pussy Plugged",vagIndex,0,0,0,false,"Icon_Blocked","A plug is currently obstructing your pussy, the constant pressure on your tender areas constantly arousing your libido.\n\n<b>+100% Libido.</b>",false,0,0xB793C4);
+					}
+				}
 				return this.tryKnockUp(cumFrom, vagIndex);
 			}
 			return false;
@@ -92,7 +102,7 @@ package classes.Characters
 		{
 			kGAMECLASS.mimbraneFeed("ass");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -108,14 +118,23 @@ package classes.Characters
 			{
 				OmegaOil.reduceOmegaEffect(this);
 			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			// Cumflation
 			if (cumFrom != null)
 			{
+				if(cumFrom is Kally) imbibeAlcohol(100);
 				sstdChecks(cumFrom,"ass");
-				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
+				if(cumflationEnabled() && cumFrom.cumType != GLOBAL.FLUID_TYPE_CUNDARIAN_SEED) cumflationHappens(cumFrom,3);
+				//PLUGGING TIME!
+				if(cumFrom.cumType == GLOBAL.FLUID_TYPE_CUNDARIAN_SEED)
+				{
+					if(!ass.hasFlag(GLOBAL.FLAG_PLUGGED)) ass.addFlag(GLOBAL.FLAG_PLUGGED);
+				}
 				return this.tryKnockUp(cumFrom, 3);
 			}
-			
 			return false;
 		}
 		
@@ -173,7 +192,7 @@ package classes.Characters
 			
 			kGAMECLASS.mimbraneFeed("face");
 			//Goo TFed? GATHER BIOMASS
-			if(hairType == GLOBAL.HAIR_TYPE_GOO)
+			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
@@ -187,6 +206,10 @@ package classes.Characters
 					if(cumFrom.cumQ() >= 1000) kGAMECLASS.honeyPotBump(true);
 					if(cumFrom.cumQ() >= 2000) kGAMECLASS.honeyPotBump(true);
 				}
+			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
 			}
 			if(hasPerk("Dumb4Cum"))
 			{
@@ -205,6 +228,10 @@ package classes.Characters
 				if(cumFrom != null) addBiomass(cumFrom.cumQ());
 				else addBiomass(10);
 			}
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			kGAMECLASS.mimbraneFeed("boobs");
 			if(cumFrom != null) sstdChecks(cumFrom,"nipple");
 			return false;
@@ -213,6 +240,10 @@ package classes.Characters
 		override public function loadInCuntTail(cumFrom:Creature = null):Boolean
 		{
 			if (this.hasTailCunt()) kGAMECLASS.feedCuntSnake(cumFrom);
+			if(hasPerk("Cum Highs"))
+			{
+				kGAMECLASS.cumHighUpdate();
+			}
 			if (cumFrom != null)
 			{
 				sstdChecks(cumFrom,"tail cunt");
@@ -242,7 +273,7 @@ package classes.Characters
 					}
 					break;
 				case "cum":
-					if(fluidFrom is Kally) imbibeAlcohol(20);
+					if(fluidFrom is Kally) imbibeAlcohol(100);
 					if(hasPerk("Autofellatio Queen") && fluidFrom is PlayerCharacter) energy(35 * fxMult);
 					break;
 				case "girl-cum":
@@ -289,6 +320,7 @@ package classes.Characters
 		}
 		
 		public var ShipStorageInventory:Array = [];
+		/*
 		public function hasItemInStorage(arg:ItemSlotClass,amount:int = 1):Boolean
 		{
 			if(ShipStorageInventory.length == 0) return false;
@@ -320,36 +352,61 @@ package classes.Characters
 			}
 			return;
 		}
+		*/
 		public function hasItemInStorageByClass(ref:Class, amount:int = 1):Boolean
 		{
-			if(ShipStorageInventory.length == 0) return false;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < ShipStorageInventory.length; x++)
+			if (ref == null || ShipStorageInventory.length == 0) return false;
+			
+			var amt:int = 0;
+			
+			for (var i:uint = 0; i < ShipStorageInventory.length; i++)
 			{
-				if(ShipStorageInventory[x] is ref) foundAmount += ShipStorageInventory[x].quantity;
+				if (ShipStorageInventory[i] is ref) amt += ShipStorageInventory[i].quantity;
 			}
-			if(foundAmount >= amount) return true;
+			
+			if (amt >= amount) return true;
 			return false;
 		}
 		public function destroyItemInStorageByClass(ref:Class, amount:int = 1):void
 		{
-			if(ShipStorageInventory.length == 0) return;
-			var foundAmount:int = 0;
-			for(var x:int = 0; x < ShipStorageInventory.length; x++)
+			if (ref == null || ShipStorageInventory.length == 0 || amount == 0) return;
+			
+			var i:int = 0;
+			
+			// Remove all!
+			if (amount < 0)
 			{
-				//Item in the slot?
-				if(ShipStorageInventory[x] is ref) 
+				while (i < ShipStorageInventory.length)
 				{
-					//If we still need to eat some, eat em up!
-					while(amount > 0 && ShipStorageInventory[x].quantity > 0) 
+					if (ShipStorageInventory[i] is ref)
 					{
-						ShipStorageInventory[x].quantity--;
-						amount--;
-						if(ShipStorageInventory[x].quantity <= 0) ShipStorageInventory.splice(x,1);
+						ShipStorageInventory[i].quantity = 0;
+						ShipStorageInventory.splice(i, 1);
 					}
+					else i++;
 				}
 			}
-			return;
+			// Normal
+			else
+			{
+				while (amount > 0 && i < ShipStorageInventory.length)
+				{
+					//Item in the slot?
+					if (ShipStorageInventory[i] is ref)
+					{
+						var nFromSlot:int = Math.min(amount, ShipStorageInventory[i].quantity);
+						amount -= nFromSlot;
+						ShipStorageInventory[i].quantity -= nFromSlot;
+						if (ShipStorageInventory[i].quantity == 0)
+						{
+							ShipStorageInventory.splice(i, 1);
+						}
+						else i++;
+					}
+					else i++;
+				}
+				if(amount > 0) output("<b>ERROR - Ship inventory item quantity needed: " + amount + "!</b>");
+			}
 		}
 		
 		override public function HPMax():Number
@@ -448,6 +505,15 @@ package classes.Characters
 			}
 		}
 		
+		override public function get bustDisplay():String
+		{
+			var sBust:String = "PC";
+			
+			if(isNude()) sBust += "_NUDE";
+			
+			return sBust;
+		}
+		
 		override public function getCombatName():String
 		{
 			return "you";
@@ -455,6 +521,7 @@ package classes.Characters
 		
 		override public function processTime(deltaT:uint, doOut:Boolean):void
 		{	
+			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var totalDays:int = ((GetGameTimestamp() + deltaT) / 1440) - kGAMECLASS.days;
 			
 			if (!hasCock() && balls == 0 && hasStatusEffect("Blue Balls"))
@@ -462,6 +529,7 @@ package classes.Characters
 				removeStatusEffect("Blue Balls");
 			}
 			
+			// Daily changes
 			if (totalDays >= 1)
 			{
 				if (hasCuntTail())
@@ -503,7 +571,7 @@ package classes.Characters
 					fecundFigure(totalDays);
 				}
 				
-				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0)
+				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor())
 				{
 					nyreaEggStuff(totalDays);
 				}
@@ -514,10 +582,15 @@ package classes.Characters
 				//updateHeatPerk(totalDays);
 				//updateRutPerk(totalDays);
 			}
-			
+			// Hourly changes
+			if(totalHours >= 1)
+			{
+				updateFemininity(deltaT, doOut);
+				updateGooState(deltaT, doOut);
+			}
+			// Minutely changes
 			updateVaginaStretch(deltaT, doOut);
 			updateButtStretch(deltaT, doOut);
-			updateGooState(deltaT, doOut);
 			
 			super.processTime(deltaT, doOut);
 			
@@ -574,10 +647,7 @@ package classes.Characters
 		{
 			if (!hasStatusEffect("Goo Crotch")) return;
 			
-			var totalHours:int = ((kGAMECLASS.minutes + deltaT) / 60);
 			var m:String = "";
-			
-			if (totalHours < 1) return;
 			
 			var unflaggedGenital:Array = [];
 			for (var i:int = 0; i < cocks.length; i++)
@@ -643,6 +713,15 @@ package classes.Characters
 				{
 					AddLogEvent("Unsurprisingly, the slime that surrounds your multiple mounds trickles in, remaking the more solid flesh into an even wetter, slicker parody of itself. <b>All of your vaginas are made of goo.</b>", "passive", deltaT);
 				}
+			}
+		}
+		
+		private function updateFemininity(deltaT:uint, doOut:Boolean):void
+		{
+			if(canFixFemininity())
+			{
+				var msg:String = fixFemininity();
+				if(msg != "") AddLogEvent(msg, "passive", deltaT);
 			}
 		}
 		
@@ -977,7 +1056,7 @@ package classes.Characters
 			}
 			if(hasStatusEffect("Nyrea Eggs"))
 			{
-				if(nyreaScore() < 3)
+				if(statusEffectv4("Nyrea Eggs") != 1 && nyreaScore() < 3)
 				{
 					AddLogEvent("You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.", "passive", deltaT);
 					if(statusEffectv1("Nyrea Eggs") > 0)
@@ -990,11 +1069,17 @@ package classes.Characters
 						else ExtendLogEvent(" like a huge weight has been lifted from you.");
 					}
 					ExtendLogEvent(" Double-checking your codex, you find that");
-					if(statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absobed into your body"));
+					if(statusEffectv1("Nyrea Eggs") > 0) ExtendLogEvent(ParseText(" the nyrean eggs you’ve been carrying in your [pc.cumNoun] have dissolved and absorbed into your body"));
 					else ExtendLogEvent(ParseText(" your [pc.cumNoun] is no longer capable of producing eggs anymore"));
 					ExtendLogEvent(". It must be due to the lack of nyrean genes in your system....");
 					removeStatusEffect("Nyrea Eggs");
 				}
+			}
+			else if(hasPerk("Nyrea Eggs") && hasOvipositor())
+			{
+				// Regain permanent effect if has perk.
+				AddLogEvent(ParseText("You feel a familiar bloating in your body and discover that your [pc.cumNoun] has started producing nyrean eggs again!"), "passive", deltaT);
+				createStatusEffect("Nyrea Eggs", 80 + rand(21), 1, 0, 1, true, "", "", false, 0);
 			}
 			if(hasPerk("Slut Stamp"))
 			{

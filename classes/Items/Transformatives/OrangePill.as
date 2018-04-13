@@ -211,7 +211,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
 							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - <b>you’re now sporting a head of brilliant orange hair!</b>");
-							else output("\n\nacross your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to a rich, dark orange - your hair color’s different!</b>");
+							else output("across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to a rich, dark orange - your hair color’s different!</b>");
 							pc.hairColor = "orange";
 							changes++;
 						}
@@ -223,7 +223,7 @@ package classes.Items.Transformatives
 						{
 							output("\n\nYou feel a tingling in your scalp. Running a hand ");
 							if(pc.hasHair()) output("through your [pc.hair], you realize it’s changed color - <b>you’re now sporting a head of hair that’s black as night!</b>");
-							else output("across your bald head across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to pitch black - your hair color’s different!</b>");
+							else output("across your head, you don’t feel any differences. A quick look in your Codex’s reflective backplate, though, shows that <b>your eyebrows and lashes have changed to pitch black - your hair color’s different!</b>");
 							pc.hairColor = "black";
 							changes++;
 						}
@@ -511,7 +511,7 @@ package classes.Items.Transformatives
 							else
 							{
 								output("\n\nSomething feels... strange in your [pc.tails], like ");
-								if(pc.tailCount == 1) output("its trying to curl up into itself.");
+								if(pc.tailCount == 1) output("it’s trying to curl up into itself.");
 								else output("they’re trying to curl into one another.");
 								output(" Pain hits you, making you stagger down onto the ground as ");
 								if(pc.tailCount == 1) output("your [pc.tail] becomes something else");

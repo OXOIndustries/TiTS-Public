@@ -409,7 +409,7 @@ public function enterTheSilkenSerenityWhyDidWashHaveToDie():Boolean
 			else if(rand(2) == 0)
 			{
 				output("\n\nYou can’t see your Mistress anywhere, and you furrow your brow. You look behind the counter, only to feel a pair of arms wrap around you from behind and a pair of lips press preciously against the back of your neck.");
-				output("\n\n<i>“....Hello, my pet. Were you looking for me, perhaps?”</i> You relax back into her arms, and she lavishes your nape with sweet little kisses.");
+				output("\n\n<i>“...Hello, my pet. Were you looking for me, perhaps?”</i> You relax back into her arms, and she lavishes your nape with sweet little kisses.");
 				output("\n\nYou melt into a [pc.name]-shaped puddle from her kisses. She then cheekily lets go and slips behind the counter, suddenly acting professional. <i>“So - what can I do for you today?”</i>");
 			}
 			//Random Paragraph 4
@@ -477,7 +477,7 @@ public function stareDontStareEpilogue():void
 		output("\n\nAll of her...? You suddenly realize there’s more of her body hidden behind the clothes rack, and peer warily past her curvaceous hips. As promised, the Siel pulls it out... and out... and out. Void, how much of her IS there?");
 		output("\n\nWhen you finally get a good look at her, you realize she has six more sets of legs - eight in total - all clad in lacy black stockings. They’re attached to a long bulbous body that resembles that of a giant blue caterpillar. She wears a second set of underwear on her hindquarters. A segmented tail with a slit on the end is jutting out from her rump.");
 		output("\n\nNoticing your puzzlement, realization dawns on the alien woman. <i>“Oh! It’s your first time meeting a siel. And here I was thinking you were just that interested... what a shame.</i>”");
-		output("\n\nThe siel woman then moves past you, making sure to brush against your side. There, right near your ear, she stops for a brief moment and leans in to whisper. <i>“... If you </i>are<i>, though, I’ll just have to do something about that. I really do excel at ‘customer service’.”</i>");
+		output("\n\nThe siel woman then moves past you, making sure to brush against your side. There, right near your ear, she stops for a brief moment and leans in to whisper. <i>“...If you </i>are<i>, though, I’ll just have to do something about that. I really do excel at ‘customer service’.”</i>");
 		CodexManager.unlockEntry("Siel");
 		output("\n\n<b>(‘Siel’ Codex entry unlocked!)</b>");
 	}
@@ -506,7 +506,7 @@ public function tryToGoToHallway():void
 	if(!xantheIsDommingPC()) //Xanthe intersects you as you attempt to enter the door behind the counter. Clearly that area is off limits.
 	{
 		showXanthe();
-		output("<i>“... While I admire curiosity, that’s my home back there. I’d rather not have you walking about and looking through my things.”</i>");
+		output("<i>“...While I admire curiosity, that’s my home back there. I’d rather not have you walking about and looking through my things.”</i>");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -550,7 +550,7 @@ public function xantheTalkUsloot():void
 	{
 		flags["XANTHE_TALK_HAPPENED"] = 1;
 		output("Xanthe seems to be peering at you rather intently, as if she’s trying to figure something out. Those electric blues of hers are even more intense than usual.");
-		output("\n\n<i>“... Now where have I seen you before...?”</i> she muses aloud. Suddenly, realization sets in, and her eyebrows shoot up. <i>“Oh, by Zyi! You’re [pc.fullName], aren’t you...?”</i>");
+		output("\n\n<i>“...Now where have I seen you before...?”</i> she muses aloud. Suddenly, realization sets in, and her eyebrows shoot up. <i>“Oh, by Zyi! You’re [pc.fullName], aren’t you...?”</i>");
 		//normal:
 		if(!pc.isBimbo()) output("\n\nYou swiftly look over your shoulder, to make sure nobody heard that. You then ask her <i>how</i> she knows who you are.");
 		//ditz:
@@ -631,15 +631,15 @@ public function talkAbootSiel():void
 	//Ditz:
 	else
 	{
-		output("<i>“So hey, you’re an alien, right? I like aliens. They’re always so much fun to sleep with!”</i> You giggle, then poke her chest. <i>“.... Come oooonnn, tell me about your race!”</i>");
+		output("<i>“So hey, you’re an alien, right? I like aliens. They’re always so much fun to sleep with!”</i> You giggle, then poke her chest. <i>“...Come oooonnn, tell me about your race!”</i>");
 	}
-	output("\n\nXanthe gives a sensuous little laugh at your declaration of interest. <i>“... I suppose I have a free moment to chat with you. And I do so like rewarding curiosity. Please, have a seat.”</i>");
+	output("\n\nXanthe gives a sensuous little laugh at your declaration of interest. <i>“...I suppose I have a free moment to chat with you. And I do so like rewarding curiosity. Please, have a seat.”</i>");
 	output("\n\nThe midnight haired mistress of the Silken Serenity gestures to a nearby ");
 	if(!pc.isTaur() && !pc.isNaga()) output("seat");
 	else output("spot");
 	output(", ushering you to sit down. You do so, since it seems she’s gearing you up for quite the lengthy chat. It seems she’s concerned that your [pc.legOrLegs] might buckle from standing up.");
 	output("\n\nOnce you are properly seated, she sits back herself. It looks more like lying down and resting back against her own caterpillar-like body. Apparently, that’s how siel seat themselves.");
-	output("\n\n<i>“... My race, the siel, come from a world called Xhixia, located in the Liliaran Nebulae. It’s our birth world and the capital planet of our Empire. It’s also my home planet, which means I’m rather fond of it,”</i> Xanthe explains.");
+	output("\n\n<i>“...My race, the siel, come from a world called Xhixia, located in the Liliaran Nebulae. It’s our birth world and the capital planet of our Empire. It’s also my home planet, which means I’m rather fond of it,”</i> Xanthe explains.");
 	output("\n\n<i>“From space, it kind of looks like a red prickly ball with purple seas. There are colorful patches - that’s where the cities are - but the rest are covered in jagged stone spikes that break the cloud layer.”</i>");
 
 	//Normal:
@@ -796,14 +796,14 @@ public function xantheTalksAbootXanthe():void
 	if(!pc.isBimbo()) output("\n\nYou realize things have gotten a little off topic, and you say as much. She coughs and nods, fully agreeing with you.");
 	output("\n\n<i>“Ah yes, enough about gratuitous concealment! Where to start, really? My full name is Xanthe O’Anyalicia, and I was born in the planet capital of Rhian.”</i>");
 	output("\n\n<i>“I’m the sixteenth daughter of a family of twenty four. I’ve got a <i>lot</i> of sisters. My mother is a Xhixian senior senate advisor, and my father is a senate clerk. Needless to say, that’s how they first met.”</i>");
-	output("\n\nXanthe seems to take a moment to think about what to add, pressing a fingetip against her chin. <i>“... I’m 82 years old - still pretty young for a siel. Never had a clutch of my own. Graduated from Rhian University with one Masters degree in cloth weaving and another in being a Mistress.”</i>");
+	output("\n\nXanthe seems to take a moment to think about what to add, pressing a fingetip against her chin. <i>“...I’m 82 years old - still pretty young for a siel. Never had a clutch of my own. Graduated from Rhian University with one Masters degree in cloth weaving and another in being a Mistress.”</i>");
 	output("\n\nA Mistress? You ask if she means like ‘being the other woman’ in a marriage, or something else?");
 	output("\n\nThat question seems to leave the seamstress in stitches, laughing so hard she grabs her side. <i>“No, no, not THAT kind of Mistress! The kind that ties you up and calls you names. I know, I know, my folks are traditional. I really </i>am<i> a model siel girl.”</i> ");
 	output("\n\nShe lets out a sigh and twists a lock of hair around a finger. <i>“No rebellious youth of wearing baggy overalls and un-bound sex for me. Guess I missed that particular teen phase, so to speak. I’m even a Zyist, which makes me even </i>more<i> of a straight arrow.”</i>");
 	output("\n\n<i>“I don’t regret being perfectly average, though. I’ve always wanted to sew things, tie people up in my silk, make people lick my toes and call me ‘Mistress’. I left Xhixia to stand out a bit more, hence me being here on Myrellion.”</i>");
 	output("\n\n<i>“Of course it’s totally my style to pick somewhere where people dress traditionally, not somewhere completely outrageous. Even when I try to rebel and switch things up, I’m still completely tame.”</i>");
 	output("\n\n<i>“I mean, I’ve still yet to try sex where I don’t tie someone up and ream them from behind, or something </i>really<i> kinky like missionary style.”</i> She gives a thrilled little shiver. <i>“The good girl in me totally gets off on the idea of being THAT bad, even though I love doing it old school.”</i>");
-	output("\n\nXanthe gives a light little shrug, <i>“... I’d say I’m pretty easy going, a bit playful, and I LOVE teasing people. Other than that, I’m just your everyday panty making Domme.”</i>");
+	output("\n\nXanthe gives a light little shrug, <i>“...I’d say I’m pretty easy going, a bit playful, and I LOVE teasing people. Other than that, I’m just your everyday panty making Domme.”</i>");
 	// Unlocks ‘Zyi’ Topic
 	processTime(7);
 	flags["XANTHE_TALKED_ABOUT_HERSELF"] = 1;
@@ -831,21 +831,21 @@ public function askXantheWhyFoxCancelledFirefly():void
 
 	output("\n\n<i>“I’ll have you know I’ve woven several sets of undergarments for a few myr queens. My reputation is quite impeccable.”</i>");
 
-	output("\n\n<i>“... Right now, the rulers of Gildenmere - some say Goddesses - are creaming themselves in panties literally woven from my body. Pretty neat, hmm?”</i>");
+	output("\n\n<i>“...Right now, the rulers of Gildenmere - some say Goddesses - are creaming themselves in panties literally woven from my body. Pretty neat, hmm?”</i>");
 
 	if(!pc.isBimbo()) output("\n\nThat’s another bold claim! Sure, there’s no price tags on anything, but everything you’ve asked about has been very affordable. Surely her clothes can’t be <i>that</i> exclusive.");
-	else output("\n\nThe thought of a bunch of myr queens creaming themselves in their panties gets you hot and bothered, and you let out a little moan. A second later, you realize something doesn’t add up. <i>“.... But, like, your clothes don’t seem that expensive to me. I mean, I can afford them.”</i>");
+	else output("\n\nThe thought of a bunch of myr queens creaming themselves in their panties gets you hot and bothered, and you let out a little moan. A second later, you realize something doesn’t add up. <i>“...But, like, your clothes don’t seem that expensive to me. I mean, I can afford them.”</i>");
 	output("\n\nWith a conspiratorial gleam in her electric blue colored eyes, Xanthe grins at you. <i>“Oh, but my dear, they ARE expensive. I always give a special ninety per cent discount to the especially cute ones...”</i>");
 	output("\n\nShe’s definitely not joking. It seems you’ve been getting a hefty discount on everything in the store on account of how " + pc.mfn("handsome","beautiful","cute") + " she finds you. She must really find you attractive!");
 
 	if(!pc.isBimbo()) output("\n\nYou ask her how she can afford to give stuff away on a whim like that.");
 	else output("\n\nThat makes you all happy inside, and you flush. You feel all special! <i>“Oh, thanks! I like looking hot, and looking at hot people. You can look at me all you like, if it makes you happy...”</i>");
 
-	output("\n\nXanthe raises an eyebrow and gestures lightly to the store. <i>“... That’s what I set up the store for, my dear. It’s not a place where you come to buy my clothes. It’s a place where you come to parade around in outfits I’d like to see you in. Getting money from you is just an added perk.”</i>");
+	output("\n\nXanthe raises an eyebrow and gestures lightly to the store. <i>“...That’s what I set up the store for, my dear. It’s not a place where you come to buy my clothes. It’s a place where you come to parade around in outfits I’d like to see you in. Getting money from you is just an added perk.”</i>");
 
 	output("\n\n... So in short, the Silken Serenity is her personal perving paradise. You ask her if that means there’s cameras in the changing rooms?");
 
-	output("\n\n<i>“Oh of course not, I’m not like </i>that<i>. I just like seeing pretty people in pretty clothes all day. If I wanted to see you naked, I wouldn’t need to do it on the sly - I’d just upright tell you to strip.”</i> Xanthe confidently states, all the while looking at you through her lashes. <i>“... So, fancy buying anything? I know some things that would look GREAT on you.”</i>");
+	output("\n\n<i>“Oh of course not, I’m not like </i>that<i>. I just like seeing pretty people in pretty clothes all day. If I wanted to see you naked, I wouldn’t need to do it on the sly - I’d just upright tell you to strip.”</i> Xanthe confidently states, all the while looking at you through her lashes. <i>“...So, fancy buying anything? I know some things that would look GREAT on you.”</i>");
 	processTime(7);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -864,7 +864,7 @@ public function talkToXantheAboutSpaceJesus():void
 
 	output("\n\n<i>“Just someone who believes in Zyi, and Zyi’s just the creator of the universe. It’s nothing overly important.”</i>Her sultry tone is dead serious, yet the statement hardly makes any sense. Does that mean she’s religious...?");
 
-	output("\n\nYou ask her if Zyi is some sort of god, and Xanthe quirks an eyebrow. <i>“... Well, yes and no. You worship gods, and I don’t worship Zyi. None of the siel do. Zyi just sort of </i>is<i>. I suppose that’s no real explanation, though, so I’ll elaborate.”</i>");
+	output("\n\nYou ask her if Zyi is some sort of god, and Xanthe quirks an eyebrow. <i>“...Well, yes and no. You worship gods, and I don’t worship Zyi. None of the siel do. Zyi just sort of </i>is<i>. I suppose that’s no real explanation, though, so I’ll elaborate.”</i>");
 
 	output("\n\n<i>“Zyi, though you may know them by another name, is the one who created the universe and everything in it.”</i> Xanthe explains, all the while playing with one of her midnight blue locks. <i>“Neither male nor female, Zyi tugs at the strings of all things, making things happen simply because Zyi is Zyi.”</i>");
 	output("\n\n<i>“I remember one myr girl asked me why we follow a god who doesn’t care about us. It’s more ‘recognition’ than ‘following’, really. We simply acknowledge the fact there is someone pulling the strings of random occurrence. There doesn’t need to be a rhyme or reason to it.”</i>");
@@ -889,7 +889,7 @@ public function theWarTalkXanthe():void
 	else output("Xanthe");
 	output(" what she thinks about the situation between the red and gold myr, and the potential of outright war.");
 
-	output("\n\nShe lets out a long sigh and looks around the store, then shrugs. <i>“... Honestly? I think the whole thing is stupid on both sides. They could be spending all that energy screwing each other, and it would be a hell of a lot more enjoyable for both sides.”</i>");
+	output("\n\nShe lets out a long sigh and looks around the store, then shrugs. <i>“...Honestly? I think the whole thing is stupid on both sides. They could be spending all that energy screwing each other, and it would be a hell of a lot more enjoyable for both sides.”</i>");
 	output("\n\n<i>“If anything, I’m actually rather sad. I have customers on both sides of the line. Some of my favorite cuties have died or got seriously injured. I am VERY unhappy with that. I’m glad the UGC have stepped in, though I’m not sure if it will make enough of a difference.”</i>");
 	output("\n\n<i>“I’m not as bad off as some people since I weave my own stock. Even so, the impact on dye trade has been hurting business a little. That, and nobody wants to buy niche goods like mine when conflict is flaring up.”</i>");
 	output("\n\n<i>“I’m just hoping the red myr don’t decide to lay siege to Gildenmere, or else I’m going to have to hightail it off Myrellion.”</i> Xanthe states with a noticeable frown.");
@@ -1305,7 +1305,7 @@ public function yesYouCanDomMeXanthe():void
 	else output("s you");
 	output(" to quake and your heart to swell. It feels as if she is a mother lion, threatening to tear apart those who would so much as scratch your [pc.skinFurScalesNoun].");
 	output("\n\nIt’s not even a question of being claimed, as you know in your heart that you already belong to her. You’ve <i>always</i> belonged to her. All that’s left is to say the words that confirm it.");
-	output("\n\n<i>“... Yes.”</i> You breathily whisper, letting yourself be swept up in the sweeping force that is Xanthe.");
+	output("\n\n<i>“...Yes.”</i> You breathily whisper, letting yourself be swept up in the sweeping force that is Xanthe.");
 	processTime(4);
 	pc.lust(10);
 	// Play ‘Tie and Tease’ sex scene
@@ -1677,7 +1677,7 @@ public function shePaysAttentionToYouSlut():void
 		//else if (pc.hasCock = true && pc.hasBreasts = false)
 		else if(pc.biggestTitSize() < 1 && pc.hasCock())
 		{
-			output("\n\n<i>“... It’s for binding your [pc.cocksNounSimple] ");
+			output("\n\n<i>“...It’s for binding your [pc.cocksNounSimple] ");
 			if(pc.balls > 0) output(" and [pc.ballsNoun]");
 			output(", and making ");
 			if(pc.balls == 0 && pc.cockTotal() == 1) output("it");
@@ -1736,7 +1736,7 @@ public function shePaysAttentionToYouSlut():void
 	if(pc.biggestTitSize() >= 1 || pc.hasCock())
 	{
 		output(" - tugging at your tied up ");
-		if(pc.biggestTitSize() >= 1 && !pc.hasCock()) output("[pc.breastsLight]");
+		if(pc.biggestTitSize() >= 1 && !pc.hasCock()) output("[pc.breasts]");
 		else if(pc.biggestTitSize() < 1 && pc.hasCock()) output("[pc.cocksLight]");
 		else if(pc.biggestTitSize() >= 1 && pc.hasCock()) output("[pc.breastsNoun] and [pc.cocksNounSimple]");
 	}
@@ -1762,7 +1762,7 @@ public function notASlutXanthe():void
 	showXanthe();
 	output("You object to her calling you a slut! Making cute grumpy noises through your ball gag, you wiggle about and try to show your displeasure.");
 	output("\n\nA loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!");
-	output("\n\n<i>“... You’re </i>not<i> a slut? I guess it must be some </i>other<i> [pc.raceBoyGirlShort] that asked me to strip [pc.himHer] naked, tie [pc.himHer] up, and have my way with [pc.himHer], then.”</i> Xanthe teases you, all the while lavishing another stinging spank on your [pc.butt].");
+	output("\n\n<i>“...You’re </i>not<i> a slut? I guess it must be some </i>other<i> [pc.raceBoyGirlShort] that asked me to strip [pc.himHer] naked, tie [pc.himHer] up, and have my way with [pc.himHer], then.”</i> Xanthe teases you, all the while lavishing another stinging spank on your [pc.butt].");
 	output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back");
 	if(pc.biggestTitSize() >= 1 && pc.hasCock()) 
 	{
@@ -1793,7 +1793,7 @@ public function yesXantheImTotesMyGoatsASlut():void
 	output("slut, aching to be tied up and teased by your beloved Mistress. This is your true calling!");
 	output("\n\nYou rapturously moan into your ball gag, aching to be demeaned even more. You stick your [pc.ass] out lewdly, showing her just how much you love her words.");
 	output("\n\nA loud <i>cracking</i> noise fills the air and soon you feel a delicious stinging sensation spreading through one of your [pc.skinColor] asscheeks. Your Mistress just spanked you!");
-	output("\n\n<i>“... Oh, you </i>like<i> being called a slut? Make sure you remember that you’re</i> my<i> property. Even as you’re sucking down some spacer’s spunk or burying your face in some bitch’s pussy, don’t forget who you </i>really<i> belong to.”</i> Xanthe reminds you, all the while lavishing another stinging spank on your [pc.butt].");
+	output("\n\n<i>“...Oh, you </i>like<i> being called a slut? Make sure you remember that you’re</i> my<i> property. Even as you’re sucking down some spacer’s spunk or burying your face in some bitch’s pussy, don’t forget who you </i>really<i> belong to.”</i> Xanthe reminds you, all the while lavishing another stinging spank on your [pc.butt].");
 	output("\n\nEach crack causes your whole body to arch and your head to instinctively loll back");
 	if(pc.biggestTitSize() >= 1 && pc.hasCock()) output(", in turn pulling at your [pc.cocks] and [pc.chestNoun]");
 	else if (pc.legCount > 1 && pc.hasClit()) output(", in turn deliciously rubbing your [pc.clits]");
@@ -1839,7 +1839,7 @@ public function slutNotASlutEpilogue():void
 	}
 	output(" Every now and then she stops to tease your back with her fingers or a feather, catching you completely off guard.");
 
-	output("\n\n<i>“I think that’s enough marking, my beautiful pet. Perhaps ONE more to make sure they know you’re mine.”</i> As you brace yourself for one more lash, your neck is deliciously seized in her luscious lips and suckled upon - and she leaves a large hickey just below your [pc.ear]! <i>“... There! How about I finish you off?”</i>");
+	output("\n\n<i>“I think that’s enough marking, my beautiful pet. Perhaps ONE more to make sure they know you’re mine.”</i> As you brace yourself for one more lash, your neck is deliciously seized in her luscious lips and suckled upon - and she leaves a large hickey just below your [pc.ear]! <i>“...There! How about I finish you off?”</i>");
 
 	output("\n\nIt’s a rhetorical question, though you still feverishly nod, eager to take whatever she has to give you! Meanwhile, your [pc.legOrLegs]");
 	if(pc.legCount == 1) output(" is");

@@ -11,6 +11,7 @@
 
 public function burtsBarFunc():Boolean {
 	//Add to Jungle Planet Bar Descriptor, Afternoon -> Closing
+	if(myrOnMhenga()) output("\n\nYou notice several gold myr now count themselves amongst the mead hall’s patrons, and the smell of honey is thick and rich in the air.");
 	if(flags["MET_BURT"] == undefined) addButton(0,"Bar",burtapproach);
 	else addButton(0,"Burt",burtapproach);
 	if(syriAtBurts())
@@ -25,7 +26,11 @@ public function burtsBarFunc():Boolean {
 	roamingBarEncounter(3);
 	if(debug) addButton(4,"Oil Cheat",oilyButt);
 	else vendingMachineButton(4, "XXX");
+
 	addButton(1,"Watch Screen",stephIrsonBountHunterEpisodeOne,undefined,"Watch Screen","Watch an episode of Steph Irson: Galactic Hunter.");
+	if (kaseAtBurts()) kaseAtBurtsAddendum(5);
+	if(hours >= 8 && hours < 16) erikaBarAddendum(7);
+
 	return false;
 }
 
@@ -51,7 +56,7 @@ public function approachBurtFirstTime():void {
 	userInterface.showBust("BURT");
 	output("You approach the bar and get your first good look at the owner and namesake of Burt’s Badass Mead Hall, Burt himself. At first glance one can easily see that the term ‘Badass’ doesn’t just refer to his mead hall, but himself as well. He is every bit the stereotype of a rough and tough spacer on the edge of civilization.");
 	output("\n\nHe stands just shy of seven feet tall, and has a frame that speaks of big bones and muscles earned through hard work and not vanity. His head is shaved bald, but his chiseled jaw bears a healthy five-o’clock shadow no matter what time of day it is. He has a healthy tan and a scar over his left ear. His dark brown eyes watch the room, flicking from patron to patron alert for any problems.");
-	output("\n\nHe is dressed in a yellow and black checkered flannel, left open over a white tank-top that clings to the muscles of his chest. The pocket of the flannel has an old model Codex in it, as well as a grease pencil, with the Codex having more than a few black greasy marks on it, hinting that the bartender goes for the pencil more often than the technology. He has a bar apron wrapped around his waist, the black cloth having more pockets, one stuffed with an A.B.Curse credit tabulator, and the other holding a variety of bottle openers. Below the apron he wears a pair of combat pants, marked with the gray and tan square patches of various hues that implies that it was intended for urban use. You can’t see his shoes while he stands behind the bar, but the occasional thumps you hear as he moves about imply biker or combat boots.");
+	output("\n\nHe is dressed in a yellow and black checkered flannel, left open over a white tank-top that clings to the muscles of his chest. The pocket of the flannel has an old model Codex in it, as well as a grease pencil, with the Codex having more than a few black greasy marks on it, hinting that the bartender goes for the pencil more often than the technology. He has a bar apron wrapped around his waist, the black cloth having more pockets, one stuffed with an A.B.Curse " + (isAprilFools() ? "dogecoin" : "credit") + " tabulator, and the other holding a variety of bottle openers. Below the apron he wears a pair of combat pants, marked with the gray and tan square patches of various hues that implies that it was intended for urban use. You can’t see his shoes while he stands behind the bar, but the occasional thumps you hear as he moves about imply biker or combat boots.");
 	output("\n\nHe glances up at you as he washes a tumbler out with one of the tails of his flannel shirt, raising a brow at you, <i>“Welcome to Burt’s Badass Mead Hall, stranger. I’m Burt, the owner and bartender. Ya need anything to wet your whistle, just let me know.”</i> He sets down the glass and grins at you, half leaning against the bar as he adds, <i>“I’ve got drinks on tap, gossip to share, and a keen interest in certain... collectables.”</i>");
 	burtBarMenu();
 }
@@ -561,7 +566,7 @@ public function talkToBurtAboutDeseZilGueys():void {
 		output("\n\n<i>“Yeah! This gaggle of ‘em came in from the jungle, wouldn’t leave until they got to talk to Penny and the wobbly U.G.C. gal,”</i> Burt explains, leaning on the bar. <i>“This tribe of ‘em decided they want to trade with us, all of a sudden, and I for one am not saying no to ‘em. What they want is really simple stuff - basic medicine, fabrics, building material - and what they’re selling, well, you can’t get it anywhere else in the galaxy.”</i> He kisses his fingers effusively. <i>“These are golden days, [pc.name]. Golden. Now I’ve got a surplus to work with, I can really start to think about all the things that might be done with that honey, cuz you know it’s amazing stuff. Not just mead, but perfume... therapeutic massages... aphrodisiac... once I send it off to a lab and know all of its properties...”</i>");
 		output("\n\n<i>“But they want more than clothes, don’t they?”</i> you interrupt.");
 		output("\n\n<i>“Oh yeah,”</i> Burt says, sobering. <i>“They reckon those Snugglé folks took their land when they built their big ass farm, way out there. They want them gone, they’ve made that pretty damn clear.”</i> He sighs, knitting his fingers. <i>“Not gonna lie, that’s a tough ask. Snugglé aren’t some two bit operation you can send a few letters to your system delegate about and expect they’ll pack up tomorrow. And plenty of people are going to </i>want<i> ‘em here, because they mean jobs and security. It’s a tough ask [pc.name], no question about that.”</i>");
-		output("\n\n<i>“But...”</i> he gestures expansively. <i>“They haven’t really got started on Mhen’ga yet. The U.G.C. rep seems to think there’s a chance we can persuade ‘em to go elsewhere. And if there’s a chance we can make Esbeth a prosperous lil place by itself, rather than as some agri-corp’s soulless space-port, then I’m all for it. I’ll fight for the cute lil bee girls ‘n boys, if there’s a chance!”</i>");
+		output("\n\n<i>“But...”</i> he gestures expansively. <i>“They haven’t really got started on Mhen’ga yet. The U.G.C. rep seems to think there’s a chance we can persuade ‘em to go elsewhere. And if there’s a chance we can make Esbeth a prosperous lil’ place by itself, rather than as some agri-corp’s soulless space-port, then I’m all for it. I’ll fight for the cute lil’ bee girls ‘n boys, if there’s a chance!”</i>");
 	}
 	//Scene1
 	else if(flags["BURT_ZIL_TALK"] == undefined || flags["BURT_ZIL_TALK"] == 3)
@@ -1132,7 +1137,7 @@ public function titFuckBurtBecauseYoureAFilthyFatChestedHo():void {
 	if(pc.hasLipples()) 
 	{
 		output("\n\nHe looks down at your [pc.nipples] and smirks as an idea comes to his mind, his hands leaving your head to begin fingering your juicy teat holes in time with the thrusting of his cock between your fleshy orbs. He traces the kissable bow lips, tracing the sensitive mouths decorating your breasts between deep thrusts of his fingers into your supple titflesh.");
-		output("\n\nHe doesn’t seem interested in fucking your [pc.nipples] however, keeping his eyes on your [face] as he continues to hunch and thrust against your [pc.chest], that swollen cybernetic flare bumping your chin with every forward thrust, eager for your kisses and licks. He fucks your breasts with a singular focus, his hips driving at a steady pace focused on his pleasure and not yours. Between thrusts, he grunts out, <i>“You deserve a gift, [pc.name]... how about a pearl necklace?”</i>");
+		output("\n\nHe doesn’t seem interested in fucking your [pc.nipples] however, keeping his eyes on your [pc.face] as he continues to hunch and thrust against your [pc.chest], that swollen cybernetic flare bumping your chin with every forward thrust, eager for your kisses and licks. He fucks your breasts with a singular focus, his hips driving at a steady pace focused on his pleasure and not yours. Between thrusts, he grunts out, <i>“You deserve a gift, [pc.name]... how about a pearl necklace?”</i>");
 	}
 	//[if (nipplecunts = true)]
 	else if(pc.hasFuckableNipples()) {
@@ -1316,7 +1321,7 @@ public function stephIrsonBountHunterEpisodeOne():void {
 	
 	output("\n\n<i>“Uh-oh, she’s noticed me! If I try to run, she’ll hunt me down in an instant! All I can do is lie perfectly still and hope she backs off! As a predator, the naleen shouldn’t bother me if I’m dead still.”</i>");
 	
-	output("\n\n<i>“... I can hear you,”</i> the busty monster sighs, cocking an eyebrow at Steph as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
+	output("\n\n<i>“...I can hear you,”</i> the busty monster sighs, cocking an eyebrow at Steph as she lies face-down in the dirt, heart-shaped ass swaying just inches in front of the camera.");
 	
 	output("\n\n<i>“Crikey! Looks like she’s coming in for the kill! All I can do now is try to overpower her!”</i> Steph shouts, leaping to her feet and tackling the naleen, throwing the two of them over the boulder and into the brush. The camera drone speedily follows the brawl as Steph and the naleen tumble around in the dirt, eventually rolling into a wet mud-pit at the edge of the clearing.");
 	

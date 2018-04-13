@@ -9,6 +9,7 @@
 	
 	public class TanisBow extends ItemSlotClass
 	{
+		//Level 2 (Rare). Balance 2.0
 		//constructor
 		public function TanisBow()
 		{
@@ -19,7 +20,7 @@
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "Tanis's Bow";
+			this.shortName = "Tanis’s Bow";
 			
 			//Regular name
 			this.longName = "leithan compound bow";
@@ -37,19 +38,19 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 6500;
+			this.basePrice = 300;
 			
-			baseDamage.kinetic.damageValue = 2;
-			baseDamage.corrosive.damageValue = 10;
+			baseDamage.kinetic.damageValue = 1;
+			baseDamage.corrosive.damageValue = 5;
 			
 			
-			this.attack = 2;
-			this.critBonus = 2;
+			this.attack = 4;
+			this.critBonus = 1;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.evasion = 0;
+			this.evasion = 2;
 			this.fortification = 0;
 			
 			this.addFlag(GLOBAL.ITEM_FLAG_BOW_WEAPON);

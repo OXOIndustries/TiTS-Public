@@ -11,7 +11,7 @@ package classes.Items.Apparel
 	 */
 	public class ComfortableClothes extends ItemSlotClass
 	{
-		
+		//Level 1 (Ech). Balance 2.0
 		public function ComfortableClothes() 
 		{
 			this._latestVersion = 1;

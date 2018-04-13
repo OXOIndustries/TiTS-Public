@@ -7,9 +7,6 @@ public function showKellyName():void
 }
 public function kellyBustDisplay(nude:Boolean = false):String
 {
-	// 9999 - Special artist exceptions!
-	if(!InCollection(kGAMECLASS.gameOptions.configuredBustPreferences["KELLY"], ["ADJATHA", "GATS"])) return "KELLY";
-	
 	return "KELLY" + (nude ? "_NUDE" : "");
 }
 public function showKelly(nude:Boolean = false):void {
@@ -402,8 +399,8 @@ public function kellySkySapCollect():void
 	{
 		output("Kelly looks up at you as you enter, shooting you her warm, trademark smile, <i>“Oh, [pc.name]! Guess what? We’ve got a new product for sale, all thanks to those sap samples you keep bringing us.”</i>");
 		output("\n\n<i>“It’s called ‘Synth Sap’ - not a terribly original name, if you ask me.”</i>");
-		output("\n\nYou ask Kelly what it does. She brings up a long looking holodoc and reads from it. <i>“... Well, it’s a transformative. Apparently Doctor Haswell tried to create a substance that would recreate the extinct vanae male and bring the species back to life. That’s Xenogen for you - shaking up one world at a time.”</i>");
-		output("\n\nDid he succeed? The secretary flips down the page. She shakes her head. <i>“... Almost, but not quite. If you consume it, it’ll give you the external appearance of what a vanae male was like.”</i>");
+		output("\n\nYou ask Kelly what it does. She brings up a long looking holodoc and reads from it. <i>“...Well, it’s a transformative. Apparently Doctor Haswell tried to create a substance that would recreate the extinct vanae male and bring the species back to life. That’s Xenogen for you - shaking up one world at a time.”</i>");
+		output("\n\nDid he succeed? The secretary flips down the page. She shakes her head. <i>“...Almost, but not quite. If you consume it, it’ll give you the external appearance of what a vanae male was like.”</i>");
 		output("\n\n<i>“Your genitals will transform and apparently you’ll get glow-in-the-dark semen,”</i> Kelly raises an eyebrow, <i>“That sounds... pretty nifty. However, except for a sharp virility spike, your sperm will remain untouched.”</i>");
 		output("\n\n<i>“If you want to buy some, just ask. We’ve got a fair bit in stock. You’ll need to sign a disclaimer before you try it, though -- cutting edge products and all that.”</i>");
 		
@@ -2006,7 +2003,7 @@ public function helpKellyFindHerHoneyThisWasntAPloyForCumPlayAtAll():void
 		output("\n\nYou accept her and move your other hand to her breast. You cup both orbs, hefting and massaging them; every now and then you give her nipples a little tug, earning an excited squeak out of your laquine lover.");
 
 		output("\n\nWith a pleased hum she shifts on the couch, falling over onto her back and dragging you down with her, her long, powerful legs wrapping themselves around your waist to hug you closer to her. ");
-		if(!pc.isNude()) output("Her twin shafts brush against your [pc.crotchGarments], warm enough that you can feel a sense of heat against your [pc.belly] even through them.");
+		if(!pc.isNude()) output("Her twin shafts brush against your [pc.lowerGarments], warm enough that you can feel a sense of heat against your [pc.belly] even through them.");
 		else output("Naked as you are, there is nothing to keep her shafts pushing against your [pc.belly], hot and hard against your [pc.skin].");
 		output(" She keeps kissing you, tongue squirming as it wraps affectionately around your own [pc.tongue], then slurps lewdly out between your lips as she breaks the kiss, eyes half-closed and chest heaving as she pants for breath. Her arms move and pull you down against her, burying your face squarely in her cleavage. <i>“Oh, I do love it when you want to play,”</i> she giggles, smooshing your face a little deeper into her tits, then smirking down at you.");
 
@@ -3335,6 +3332,7 @@ public function splatterYourselfWithHoneyBunnysCumAfterGivingHerABJ(onCouch:Bool
 			output("\n\nAt that, she pouts and sticks out her tongue, clearly unable to think of a verbal retort to that.");
 		}
 		//Hard:
+		else
 		{
 			output("\n\nA fine job, but you already expected as much from your bitch-bunny.");
 			output("\n\n<i>“But of course,”</i> she grins smugly. <i>“Only the finest for my rose,”</i> she declares in a triumphant tone, closing the distance between you so that she is sitting on your lap, more or less, arms going around your neck, clearly a moment’s whim away from closing the distance and kissing you.");
@@ -3942,7 +3940,7 @@ public function kellyDPForTaursThatWannaGetDPed():void
 	{
 		output("\n\nKelly grabs ahold of your tail, ready to use it as an anchor, when she sees the slightest dribble of your [pc.girlCumColor] juice drip down from it onto your haunches. <i>“<i>Well, Someone likes this cute parasite, doesn’t [pc.heShe]? Or do you think of it more like a symbiote? Either way, I’m going to make all of your holes feel good.</i>”</i> She starts licking at it, and you can feel the nerves in your tail shooting pleasure into your brain. You have a strange conflict in your mind between wanting a dick in your rear, or in your tail.");
 		
-		if(pc.willpower()/2 + rand(20) + 1 > 15) output(" You manage to resist the [pc.tailGina]’s urges though, and let Kelly continue to pleasure it the way you want her to. It may have thought it was the predator, but now, it was the prey of your powerful mind.");
+		if(pc.willpower()/2 + rand(20) + 1 > 15) output(" You manage to resist the [pc.tailgina]’s urges though, and let Kelly continue to pleasure it the way you want her to. It may have thought it was the predator, but now, it was the prey of your powerful mind.");
 		else
 		{
 			tailginad = true;
@@ -4007,7 +4005,7 @@ public function taurKellyDPCumInside(x:int):void
 	output("You can almost feel your belly swelling up underneath you. She may make others swell like balloons, but not you. ");
 	if(tailginad && !pc.hasCock()) output("Your tail begins to swell, too much honey filling it. It quickly surrenders, and simply lets her cum drip out, like a perverted waterfall onto the bed. ");
 	//if tailingulus: 
-	if(pc.hasCuntTail() && !tailginad) output("You can feel your tail scrunch and almost flail in Kelly’s grip as she eats it, pressing down on its mons and pressing into your [pc.tailGina] insides. ");
+	if(pc.hasCuntTail() && !tailginad) output("You can feel your tail scrunch and almost flail in Kelly’s grip as she eats it, pressing down on its mons and pressing into your [pc.tailgina] insides. ");
 	output("Rope after thick, impregnating rope of her jism fills you, making you cum in an almost motherly bliss.");
 	if(pc.isPregnant(x) || (pc.isPregnant(y) && (!tailginad || pc.hasCock()))) output(" Maybe you’ll let her knock you up one day.");
 	else output(" You want her to make you pregnant, you don’t care about anything else right now. Pure instinct has you need to make life.");
@@ -4683,7 +4681,7 @@ public function getLickedOutByKellllaaaahhhh(noIntro:Boolean = false):void
 	{
 		output("\n\nYou ask if she wants to hear a little secret.");
 		output("\n\n<i>“Uh... sure?”</i> she replies, blinking in confusion.");
-		output("\n\nNobody likes a blabber-mouth, particularly when there’s something far more important she could be doing with those plump lips of hers. Having said that you waste no time in burying her short muzzle into your [pc.vagina " + x + "], gasping when you feel her nose make contact with ");
+		output("\n\nNobody likes a blabber-mouth, particularly when there’s something far more important she could be doing with those plump lips of hers. Having said that you waste no time in burying her short muzzle into your [pc.vagina], gasping when you feel her nose make contact with ");
 		if(pc.clitLength > 3) output("the base of ");
 		output("your [pc.clit].");
 	}

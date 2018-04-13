@@ -2,6 +2,7 @@
 {
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Utility.num2Ordinal;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -453,7 +454,7 @@
 							lengthGain = 3;
 							if(target.cocks[selCock].cLengthRaw + lengthGain > 14) lengthGain = 14 - target.cocks[selCock].cLengthRaw;
 							
-							output("\n\nA pleasant feeling comes to your [pc.cock " + selCock + "]. You look down to discover it has grown " + kGAMECLASS.num2Text(lengthGain) + " inches!");
+							output("\n\nA pleasant feeling comes to your [pc.cock " + selCock + "]. You look down to discover it has grown " + num2Text(lengthGain) + " inches!");
 							
 							target.cocks[selCock].cLengthRaw += lengthGain;
 							changes++;
@@ -464,7 +465,7 @@
 							lengthGain = 3;
 							if(target.cocks[selCock].cLengthRaw - lengthGain < 14) lengthGain = 14 - (target.cocks[selCock].cLengthRaw - lengthGain);
 							
-							output("\n\nA pleasant feeling comes to your [pc.cock " + selCock + "]. You look down to discover it has shrunk " + kGAMECLASS.num2Text(lengthGain) + " inches!");
+							output("\n\nA pleasant feeling comes to your [pc.cock " + selCock + "]. You look down to discover it has shrunk " + num2Text(lengthGain) + " inches!");
 							
 							target.cocks[selCock].cLengthRaw -= lengthGain;
 							changes++;
@@ -491,6 +492,38 @@
 				}
 				// Nyrea Cum
 				//Notes: In order to sort of simulate the eggs that nyrea produce, I have created a new kind of cum type. This cum type is kinda of filled with eggs, but are infertile. This cum is has a bubbly consistency, sort of like this, but with eggs instead of... Tapioca: http://i00.i.aliimg.com/img/pb/346/113/529/529113346_633.jpg
+				if(changes < changeLimit && target.fertility() > 0 && target.hasStatusEffect("Nyrea Eggs") && (target.statusEffectv2("Nyrea Eggs") < 10 || !target.hasPerk("Nyrea Eggs")) && rand(3) == 0)
+				{
+					var nyreaEggs:Number = 0;
+					
+					output("\n\nA pressure hits your");
+					if(target.balls > 0) output(" [pc.balls]");
+					else output(" gut");
+					output(" as " + (target.balls <= 0 ? "it fills" : "they fill") + " with more and more nyrea eggs...");
+					
+					// Increase multiplier
+					if(target.statusEffectv2("Nyrea Eggs") < 10 && (target.hasPerk("Nyrea Eggs") || rand(5) != 0))
+					{
+						output(" Odd. You pat yourself, feeling a little bloated and much more productive. <b>Your nyrean egg production has increased.</b>");
+						
+						nyreaEggs = (80 + rand(21));
+						target.addStatusValue("Nyrea Eggs", 2, 0.5);
+					}
+					// Get perk
+					else
+					{
+						output(" way much more than normal. Your egg factories are working in overtime until you are incredibly bloated with eggs! While you don’t feel more active than previous, something tells you that this sudden boost was a sign that your body has accepted the fate of being a nyrean egg factory...");
+						
+						nyreaEggs = (10 * (80 + rand(21)));
+						target.setStatusValue("Nyrea Eggs", 4, 1);
+						
+						output("\n\n(<b>Perk Gained: Nyrea Eggs</b> - Your body permanently produces nyrea eggs regardless of your genes.)");
+						target.createPerk("Nyrea Eggs", 0, 0, 0, 0, "Your body naturally produces nyrea eggs.");
+					}
+					
+					target.addStatusValue("Nyrea Eggs", 1, nyreaEggs);
+					changes++;
+				}
 				if(changes < changeLimit && target.fertility() > 0 && target.hasACockFlag(GLOBAL.FLAG_OVIPOSITOR) && target.cumType == GLOBAL.FLUID_TYPE_NYREA_CUM && !target.hasStatusEffect("Nyrea Eggs") && rand(4) == 0)
 				{
 					//Actual Transformation:
@@ -508,7 +541,7 @@
 					// v1: For amount of eggs? Recharge over time?
 					// v2: Multiplier?
 					// v3: ???
-					// v4: ???
+					// v4: Permanent (ignores racial score)
 					target.createStatusEffect("Nyrea Eggs", 80 + rand(21), 1, 0, 0, true, "", "", false, 0);
 					changes++;
 				}

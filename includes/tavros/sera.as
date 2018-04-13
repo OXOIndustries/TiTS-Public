@@ -22,7 +22,12 @@ public function darkChrysalisStorefront():void
 	}
 	else
 	{
-		output("\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east.");
+		if(isHalloweenish() && pc.breastRows[0].breastRating() >= 1 && seraIsMistress() && flags["SERA_HALLOWEEN_LOCKED"] == undefined)
+		{
+			output("\n\n<i>As fitting for the time of the year many shops have outfitted their storefronts with spooky decorations. From rather-cute-than-spooky to cases where you can’t be sure whether a person actually died there or not, all kinds of decorations can be found. Similarly, most store clerks and passersby present themselves in costumes fitting for the occasion.</i>");
+			output("\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east. <i>You notice a small group of costumed people quickly hurrying away from the shop for whatever reason.</i>");
+		}
+		else output("\n\nThe Dark Chrysalis, a shop that specializes in targeted, cosmetic transformatives is doing business to the east.");
 		flags["NAV_DISABLED"] = undefined;
 	}
 	
@@ -114,6 +119,18 @@ public function seraBonusFunction():Boolean
 		else if(seraSpawnPregnancyBlurbs(pcSeraPregDays()))
 		{
 			showBust("SERA");
+			return true;
+		}
+		//Halloween sub fun!
+		else if(isHalloweenish() && pc.breastRows[0].breastRating() >= 1 && seraIsMistress() && flags["SERA_HALLOWEEN_HELPED"] == undefined && flags["SERA_HALLOWEEN_LOCKED"] == undefined)
+		{
+			seraTrickOrTreatEventIntro();
+			return true;
+		}
+		//Repeat the halloween fun afterward :3
+		else if(pc.breastRows[0].breastRating() >= 1 && seraIsMistress() && flags["SERA_HALLOWEEN_HELPED"] != undefined && rand(20) == 0)
+		{
+			seraTrickOrTreatEventIntro();
 			return true;
 		}
 		else if(flags["SERA_TRIPLE_X_RATED"] != undefined && flags["SERA_TRIPLE_X_RATED"] > 0)
@@ -227,7 +244,8 @@ public function seraMenu(toLeave:Boolean = false):void
 		if(flags["SERA_TRIPLE_X_RATED"] > 0)
 		{
 			addButton(3,"Talk",talkToSera);
-			if(pc.hasStatusEffect("Sera Breed No Sex")) addDisabledButton(5, "Sex", "Sex", (pcSeraPregDays() > 220 ? "You are too pregnant for this!" : "You’ve convinced your mistress that she’d breed with you, so casual sex is probably out of the question..."));
+			if(pc.statusEffectv1("Sera Breed No Sex") == 1) addDisabledButton(5, "Sex", "Sex", "You’ve convinced your mistress that she’d breed with you, so casual sex is probably out of the question...");
+			else if(pc.isFullyWombPregnant() && pc.hasStatusEffect("Sera Breed No Sex")) addDisabledButton(5, "Sex", "Sex", "You are too pregnant for this!");
 			else addButton(5,"Sex?",seraSexMenu,true,"Sex?","Ask your mistress if you are allowed to have sex with her.");
 		}
 		else addButton(5,"Sex?",seraSexMenu,true);
@@ -265,6 +283,7 @@ public function chrysalisInventory():Array
 	inventory.push(new Pussybloom());
 	inventory.push(new Pussyblossom());
 	inventory.push(new ManUp());
+	inventory.push(new ManDown());
 	inventory.push(new Condensol());
 	inventory.push(new DendroGro());
 	inventory.push(new Rainbotox());
@@ -340,7 +359,7 @@ public function seraDebtCheck():Boolean
 		else if(timeLeft >= (2 * 24 * 60)) output(" a couple more days");
 		else if(timeLeft >= (12 * 60)) output(" until tomorrow");
 		else output(" some more hours until my account clears");
-		output(" and then ask again, okay?”</i> After recomposing herself, she continues with a forced grin, <i>“In the meantime, if you have some expendable credit chits, feel free to browse my </i>lovely<i> inventory....”</i>");
+		output(" and then ask again, okay?”</i> After recomposing herself, she continues with a forced grin, <i>“In the meantime, if you have some expendable " + (isAprilFools() ? "dogecoins" : "credit chits") + ", feel free to browse my </i>lovely<i> inventory....”</i>");
 		
 		processTime(2);
 		clearMenu();
@@ -379,13 +398,25 @@ public function seraAppearance():void
 	if(seraRecruited()) output(" open");
 	else output(" air-conditioned station");
 	output(" air. They’re the kind of boobs that just beg to be fondled");
-	if(!seraRecruited()) output(", and Sera’s open display of them shows just how much she knows it");
+	if(flags["SERA_PREGNANCY_TIMER"] >= 200) output(", an impression heightened by the fact they are now heavy and swollen with milk, her " + (chars["SERA"].skinTone != "bright pink" ? "navy" : "magenta") + " areola spreading.");
+	else if(!seraRecruited()) output(", and Sera’s open display of them shows just how much she knows it");
 	output(".");
 	output("\n\n");
 	if(chars["SERA"].hasCock()) output("A foot-long cock, maybe a bit longer, dangles down between her toned thighs, backed up by a pair of balls that sit on the upper end of the terran norm when it comes to size. ");
 	output("Sera’s ass is nothing to sneeze at either; it’s large, nicely rounded, and crowned with a prehensile, spaded tail.");
 	if(seraRecruited()) output(" The spade at the end seems a little big and bulgy, reminiscent of a cock head.");
 	else output(" She spanks a cheek with it when she catches you looking, sending a kinetic ripple across her crack. At the same time, the spade at the end seems a little bigger and bulgier, perhaps engorged by the contact.");
+	
+	if(flags["SERA_PREGNANCY_TIMER"] >= 30)
+	{
+		output("\n\n");
+		if(flags["SERA_PREGNANCY_TIMER"] <= 90) output("Her taut belly seems very smooth yet a little curved.");
+		else if(flags["SERA_PREGNANCY_TIMER"] <= 160) output("Her usually-taut belly has taken on a slight curve. On her exquisitely crafted body, it stands out more than it ordinarily would.");
+		else if(flags["SERA_PREGNANCY_TIMER"] <= 210) output("She’s touting a fair-sized baby bump, her belly swollen with growing pregnancy. It looks odd upon a sex demon, and the fact she keeps touching it suggests she’s very aware of that.");
+		else if(flags["SERA_PREGNANCY_TIMER"] <= 251) output("Sera has grown into her pregnancy, her hips and boobs widening to accommodate her beachball of a belly, and she doesn’t look quite as strange as she did. Perhaps as a result there’s a calmer, more accepting air to her; she waddles around with an almost proud, aloof air.");
+		else output("She looks just about ready to pop, the curve of her belly protruding way out in front of her, milk-swollen boobs resting on top. The demon-morph is flushed and rather moody looking, evidently unhappy about having to sit down every two dozen steps or so.");
+	}
+	
 	if(seraRecruited())
 	{
 		output("\n\nSilk fishnets and garters join her technological-looking frilly corset to her shapely legs. Her feet are perched upon toe-covering, six-inch stilettos, but when she walks in them it’s as if it’s the most natural thing in the world, perhaps counterbalanced by her tail.");
@@ -522,7 +553,7 @@ public function seraTalkTopics(response:String = ""):void
 			else
 			{
 				output("\n\nHer eyes swim slightly.");
-				output("\n\n<i>“... I don’t care,”</i> she repeats, once she’s taken a deep breath, <i>“that this is pretty much exactly what dad said would happen. It might have been a colossal fuck up, but it was </i>my<i> colossal fuck up. I would rather be here");
+				output("\n\n<i>“...I don’t care,”</i> she repeats, once she’s taken a deep breath, <i>“that this is pretty much exactly what dad said would happen. It might have been a colossal fuck up, but it was </i>my<i> colossal fuck up. I would rather be here");
 				if(pc.hasCock()) output(" sucking dick");
 				else if(pc.hasVagina()) output(" being force-fed pussy");
 				else output(" kneeling for sex");
@@ -798,6 +829,7 @@ public function timesFuckedSera():Number
 	if(flags["SERA_BITCHENING_RIDE"] != undefined) totalSex += flags["SERA_BITCHENING_RIDE"];
 	if(flags["SERA_BITCHENING_BUTTFUCK"] != undefined) totalSex += flags["SERA_BITCHENING_BUTTFUCK"];
 	if(flags["SERA_BITCHENING_SEXED"] != undefined) totalSex += flags["SERA_BITCHENING_SEXED"];
+	if(flags["SERA_WAKEUP_SEX"] != undefined) totalSex += flags["SERA_WAKEUP_SEX"];
 	
 	return totalSex;
 }
@@ -910,7 +942,7 @@ public function getTailUsedBySera():void
 	pc.loadInCuntTail(chars["SERA"]);
 	processTime(45+rand(15));
 	pc.orgasm();
-	applyPussyDrenched(pc);
+	pc.applyPussyDrenched();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1130,10 +1162,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	// Default
 	else
 	{
-		output(" <i>“Then prove it. Bark, little ");
-		if(pc.catDog("nyan", "bork", false) == "bork") output("bitch");
-		else output("doggy");
-		output(".”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said BARK, slut.”</i>");
+		output(" <i>“Then prove it. Bark, little " + pc.catDog("doggy", "bitch", false) + ".”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said BARK, slut.”</i>");
 		
 		//if first-time:
 		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
@@ -1289,7 +1318,7 @@ public function seraCockvineScene():void
 	output("\n\nYou shiver as you feel the flat of a purple talon run up the length of your [pc.tail]. It reacts eagerly, swelling with lust and rearing up towards your mistress’s face.");
 	output("\n\n<i>“Oh wow,”</i> she laughs, standing her curvy form over you and gazing into the thing’s moist slit. <i>“My cute little pet has got themselves infested with one of these new parasites I’ve been hearing about.”</i> She reaches out and grips the " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + " firmly, a few inches below the head.");
 	output("\n\n<i>“You... know about these things, mistress?”</i> you manage. Pleasure flares along your tail as Sera shifts her grip up and down the lust-swollen appendage.");
-	output("\n\n<i>“Uh, yeah?”</i> she snorts, whipping her own tail around, curling it around your neck with a practiced flick. <i>“One of them attached itself to some bimbo celebrity recently, and now everybody wants one.”</i> She undoes her tail suddenly, the pulpy spade slapping you sharply on the cheek as it departs. All the while her hand coils your [pc.cockTail], forcing more and more tight, floral lust down its shaft... <i>“Fucks me off to be honest. I pay top credit to get my own tail done, and then it turns out you can get one by bending over for some shrub? Typical. And typical cock-addicted </i>you<i>, letting one of these disgusting, creepy things slither themselves onto you. Ugh!”</i>");
+	output("\n\n<i>“Uh, yeah?”</i> she snorts, whipping her own tail around, curling it around your neck with a practiced flick. <i>“One of them attached itself to some bimbo celebrity recently, and now everybody wants one.”</i> She undoes her tail suddenly, the pulpy spade slapping you sharply on the cheek as it departs. All the while her hand coils your [pc.cockTail], forcing more and more tight, floral lust down its shaft... <i>“Fucks me off to be honest. I pay top " + (isAprilFools() ? "dogecoin" : "credit") + " to get my own tail done, and then it turns out you can get one by bending over for some shrub? Typical. And typical cock-addicted </i>you<i>, letting one of these disgusting, creepy things slither themselves onto you. Ugh!”</i>");
 	output("\n\nShe neither looks nor sounds disgusted. The tone of malicious delight that you’ve come to know so well is clear to hear, and her teal lips are split with a big, toothy sneer as she strokes and fondles your parasitic tail, make it coil and ripple with greedy lust. You groan as it darts, out of your control, batting Sera in the boob as it wriggles its way downwards. <i>Oh Void, please don’t do that...</i>");
 	output("\n\n<i>“Ooh,”</i> coos the demon morph, grin widening. <i>“Does somebody smell something interesting?”</i> She parts her full, smooth thighs slightly; it takes all of your willpower to stop the [pc.cockTail] from burrowing eagerly past her thick, semi-erect dick towards the bare, damp hole it can sense back there.");
 	output("\n\n<i>“I see how it is,”</i> murmurs Sera, reaching down to again take a firm grip of the throbbing tentacle, stroking its head like an unruly pet. <i>“You aren’t really in control of this thing, are you slut? And you </i>like<i> that. You like being weak and a slave to an alien creature’s lusts, having a dripping snake-dick attached to you that does whatever it pleases, when it pleases.”</i>");
@@ -1340,7 +1369,7 @@ public function holdBackForSera():void
 	output("\n\n<i>“Hmm,”</i> she smirks contentedly, toying with her hair. <i>“A lustful tail-dick attached to you that </i>I<i> control. Very nice indeed. I think we’ll do this again. Regularly.”</i>");
 	processTime(10);
 	pc.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1377,8 +1406,8 @@ public function releaseCuntTailOnSeraCleanup():void
 	processTime(50 + rand(11));
 	pc.loadInMouth(chars["COCKVINE"]);
 	//Reduce PC health by 5% and energy by 30%, move them to square outside Dark Chrysalis
-	pc.HP(-1 * pc.HPMax() * 0.05);
-	pc.energy(-1 * pc.energyMax() * 0.05);
+	pc.HP(-5);
+	pc.energy(-30);
 
 	output("You lean against the wall outside the Dark Chrysalis a while later, gathering yourself. Your mouth is absolutely caked with the musky, slightly herbal tang of plant cum, and your [pc.ass] and back sting mightily from the whip welts that have been enthusiastically applied there. You can’t help but look venomously down at your [pc.cockTail], which is still throbbing with post-coital bliss. Next time, you swear to yourself. Next time, you’ll control it.");
 	

@@ -76,12 +76,15 @@ public function orderFoodFromTheMess():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function stretchDelilahsButt():void
+public function stretchDelilahsButt(fromPC:Boolean = false):void
 {
 	if(chars["DELILAH"].analCapacity() < 1000) chars["DELILAH"].ass.bonusCapacity += 10;
 	if(chars["DELILAH"].ass.loosenessRaw < 4) chars["DELILAH"].ass.loosenessRaw++;
-	if(chars["DELILAH"].analVirgin) chars["DELILAH"].analVirgin = false;
-	if(flags["TOOK_DELILAHS_BUTTGINITY"] != undefined) flags["TOOK_DELILAHS_BUTTGINITY"] = 1;
+	if(chars["DELILAH"].analVirgin)
+	{
+		chars["DELILAH"].analVirgin = false;
+		if(fromPC && flags["TOOK_DELILAHS_BUTTGINITY"] == undefined) flags["TOOK_DELILAHS_BUTTGINITY"] = 1;
+	}
 }
 //[Bartender; First Time]
 public function approachDCLTrap():void
@@ -172,8 +175,8 @@ public function approachDCLMenu():void
 	if(peacekeeperTalkAvailable()) addButton(5,"Peacekeepers",dclPeacekeeperTalk);
 
 	if(flags["MET_CARVER"] == undefined && delilahSubmissiveness() >= 1) addButton(6,"Carver",delCarverTalkForWorstDel,undefined,"Carver","Have Del let you behind the bar so you can have a chat with her owner.");
-	else if(flags["MET_CARVER"] == undefined) addDisabledButton(6,"Carver","Carver","Del doesn't quite know you well enough to let you meet her boss yet.");
-	else addDisabledButton(6,"Carver","Carver","You've already been behind the bar. You can go straight to her if you want, just step away from Del and walk in.");
+	else if(flags["MET_CARVER"] == undefined) addDisabledButton(6,"Carver","Carver","Del doesn’t quite know you well enough to let you meet her boss yet.");
+	else addDisabledButton(6,"Carver","Carver","You’ve already been behind the bar. You can go straight to her if you want, just step away from Del and walk in.");
 	
 	addButton(14,"Leave",mainGameMenu);
 }
@@ -326,7 +329,12 @@ public function buttStretchDelsAnus():void
 	else output("She obediently drops to her knees, one hand slipping back to spread her cheeks wide, already oh so eager for a taste of your cock back there as she opens wide, ready to receive your package");
 	output(". You step forward, tossing your [pc.gear] onto the bar and grabbing your [pc.cock " + x + "]. A few fast strokes have you at the ready, the turgid shaft of your prick looming over the trappy whore’s face, your crown practically pushing against her lips. She only manages to hold herself back for a few seconds before her tongue stretches out, caressing the crown of your cock. ");
 	if(delilahSubmissiveness() < 5) output("<i>“Ugh... you... you really want me to... to...”</i> she sputters indignantly, trying to hide the little tentpole between her slender legs.");
-	else output("<i>“I love the taste of your cock...”</i> she purrs, nuzzling the length of your [pc.cock " + x + "] affectionately as her tongue lavishes it with affection. <i>“The first... and the best...”</i> she adds happily, planting a kiss on the tip.");
+	else
+	{
+		output("<i>“I love the taste of your cock...”</i> she purrs, nuzzling the length of your [pc.cock " + x + "] affectionately as her tongue lavishes it with affection. <i>“The");
+		if(chars["DELILAH"].analVirgin) output(" first... and the");
+		output(" best...”</i> she adds happily, planting a kiss on the tip.");
+	}
 	output(" You shudder as the sensation of her tongue on your most sensitive flesh snakes through your body, and you’re forced to grip the bar to support yourself, [pc.legOrLegs] shaky under the startlingly skilled ministrations of the trappy slut.");
 	output("\n\n<i>“Juuust like that,”</i> you moan through clenched teeth, trying to control yourself. Your fingers snake through Deliliah’s blonde-dyed hair, coaxing her on as she licks and kisses at the underside of your member, slowly but surely working herself up to taking it wholesale.");
 	if(pc.balls > 0 && delilahSubmissiveness() >= 5) 
@@ -365,13 +373,13 @@ public function buttStretchDelsAnus():void
 	else output("The trappy whore eagerly plants a tongue-filled parting kiss on the crown of your cock, wrapping her lips around the head one last time and making sure to slather it with her tongue. By the time she’s through, a thick sheen of spit’s glazed across your tender flesh, bridges of it still connecting you to the dusky whore.");
 	output("\n\nWith your cock nice and lubed up thanks to the trap-whore’s succulent little mouth, you grab the slender girly-boy by the shoulder and heft her up onto the bar, letting her ample ass press hotly onto the glass. She gives you a questioning look... until your hands slip up her slender legs, hooking through the hem of her skirt and gently pulling it off, leaving her bare to the world. Or at least, the growing circle of interested spectators, many of whom are pitching tents by the time the bartender’s tiny little cock pops free, left to hang flag-pole like as you push her down and spread her legs to give yourself a clear shot to the real prize on offer. You hoist her legs over your shoulders and step up to the plate, your [pc.cock " + x + "] dropping into the crevasse between her thigh and groin before dragging down to the gently-parted crack of her tight little ass.");
 	//If 1-4th time:
-	if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined || delilahSubmissiveness() < 5) output("\n\n<i>“P-please...”</i> the trap-slut whines as your crown presses into her dark star, biting her lip and wriggling back in your firm grasp. <i>“Be... be gentle...”</i>");
+	if(chars["DELILAH"].analVirgin || delilahSubmissiveness() < 5) output("\n\n<i>“P-please...”</i> the trap-slut whines as your crown presses into her dark star, biting her lip and wriggling back in your firm grasp. <i>“Be... be gentle...”</i>");
 	//5th+:
 	else output("\n\n<i>“Go on,”</i> she coos, wiggling her hips enticingly as your crown presses into her dark star, practically being drawn in by her well-used hole, <i>“ram it on in!”</i>");
 
 	output("\n\nYou figure the little whore can have it her way this once. You wrap your hands around her quaking hips and push in, one slow, long stroke that tears a shriek of ");
 	//1st time: 
-	if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined) output("pain");
+	if(chars["DELILAH"].analVirgin) output("pain");
 	else if(delilahSubmissiveness() < 5) output("pleasure and pain");
 	else output("wild pleasure");
 	output(" from her as you spear her on your [pc.cock " + x + "], thrusting deep into her writhing ass. Her back arches, voice breaking as you fuck yourself deep into her little asshole, until ");
@@ -380,17 +388,19 @@ public function buttStretchDelsAnus():void
 	else if(pc.cocks[x].cLength() <= 12) output("your hips press into hers, your shaft fully buried");
 	else output("her stomach is bulging from the massive, throbbing prick buried in her, stretching her asshole until she’s apt to break in half");
 	output(". She cries out, fingers digging into the edge of the bar as you settle inside her, giving her a few seconds to adjust to your girth before you start to move.");
+	
 	pc.cockChange(true,false);
 
 	output("\n\nBut that’s the last kindness you’re going to show this wanton whore’s little pucker. You draw yourself only half-way out before slamming back home, thrusting back with all the force your [pc.hips] can muster, sending shockwaves through the flesh of the trap-slut’s bubble butt. Her prick jumps in response to your next thrust, hopping straight up and twitching visibly as a bead of creamy white wells up at its tip. You consider giving her a little tug to help her along, but then... that’d defeat the purpose! This slut’s supposed to be a little anal whore, so by God that’s what she’ll be. You reaffirm your grab on her girly hips and start pounding with a vengeance, faster and harder until the little slut’s whining and moaning with every push, crying her pleasure aloud with utter abandon, any trace of her once-bashful reserve melting away as you pound her ass.");
 	output("\n\nBetween the sloppy blowjob she gave you and now the tight, wringing grip of the trap’s ");
-	if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined) output("virgin");
+	if(chars["DELILAH"].analVirgin) output("virgin");
 	else output("skilled");
 	output(" boypussy, you don’t know how long you’re going to hold out. Her ass feels like a vice, so tight around your [pc.cock " + x + "] its nearly painful, yet with every thrust you can feel the twitch and spasm of her muscles as her little sphincter tries to push you out or draw you in, you’re never sure. Either way, it’s making a tight, wet, squirming hole for you to fuck, ushering you inexorably towards your now-inevitable orgasm.");
 	output("\n\nYou feel your cock swelling inside her, cum rushing through your [pc.cock " + x + "] towards the waiting receptacle of the trap-whore’s wanton hole. She seems to sense the oncoming climax, and responds with a shrill yelp of pleasure, her own cock twitching madly, so close yet so far from orgasm. She reaches up and grabs your shoulders, clutching tightly at you as you flood her bowels with cum. Shockwaves of pleasure tear through your body as [pc.cumColor] ropes let loose from your [pc.cock " + x + "], smearing the trap’s rectal walls with your sticky seed. Your [pc.hips] piston away, thrusting you as deep into her ass as you can go before you’ve finished, making sure to bust your nut straight into her spasming colon, giving it a taste of cum before you’re finally finished.");
 	output("\n\nYou shudder with an absolute contentment, panting heavily as your cock starts to deflate in the trap’s well-fucked ass. Slowly, you withdraw yourself from her hole, giving the act of her use a note of finality as you wipe your prick off on her thigh, smearing it with the last trickles of your seed. For her part, the trap-slut’s all but insensate, leaning back on the bar with her cock rock-hard and swaying, begging for relief you’re not going to give her. Instead, you collect your gear and step back, leaving the little whore’s legs spread and ass agape as the crowd that’d collected around you during your lewd, public act gets ready to get intimate with the whore. Looks like she’ll be busy for a good long while!");
 	
-	stretchDelilahsButt();
+	if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined && chars["DELILAH"].analVirgin) output("\n\n<b>You have taken Del’s anal virginity!</b>");
+	stretchDelilahsButt(true);
 	
 	pc.orgasm();
 	timesDelilahSexed(1);
@@ -575,6 +585,7 @@ public function stephIrsonEpisodeTwoDashTwo():void
 		if(pc.hasCock()) output("The girly-boy gives a muted little gasp as she feels your cock swelling inside her hole, and her fingers lace through yours as you grunt and spurt, hips slapping up into her butt as your [pc.cock " + x + "] unleashes its creamy load right up her tailhole.");
 		else output("<i>“C-cumming,”</i> the trap moans, burying her face in your [pc.chest] as her hip-thrusts reach a new height of speed, slamming into your [pc.vagina " + x + "] with wild abandon. Grinning, you tell her to let it go, wrapping your [pc.legOrLegs] around her hips to draw her deep inside as she cums, flooding your sex with hot, creamy seed.");
 		pc.orgasm();
+		timesDelilahSexed(1);
 	}
 	else pc.lust(33);
 	output("\n\nWith a giddy cry of pleasure, the goo-girl lets out a powerful squirt of girl-cum right into the camera drone’s eye, sending it tumbling back as its owner and her gooey captor cum and cum, screaming and bucking their hips on the ground. A few moments later, the screen goes black, followed by an <i>“Experiencing Technical Difficulties”</i> warning superimposed over the <i>Galactic Huntress</i> logo. In the background, though, you can still hear Steph moaning as the goo finishes with her.");
@@ -622,7 +633,9 @@ public function delilahSlutTraining():void
 	output("\n\nThe ausar’s quick to take you up on your now-explicit offer, his black-furred hands grabbing your [pc.hips] and unceremoniously flopping his thick, red, canine cock onto your backside, the pointed crown pressing into your spit-slick hole.");
 	output("\n\n<i>“Not the knot, please,”</i> you whisper, <i>“Gonna have a long line for me.”</i>");
 	output("\n\n<i>“Yeah, yeah,”</i> the ausar says, already sliding his hips forwards into you. You bite your lip, stifling a groan as that hollowness in you, that need, is suddenly and wonderfully filled. Your back arches as the ausar stretches you wide on thick canid cock, thrusting deep in until you can feel the bulb of his knot against your hole. For a moment, you’re afraid he’ll ruin your fun; but he’s a good sport and pulls right back out until there’s just his tapered tip inside you.");
+	
 	pc.buttChange(130,true,false);
+	
 	output("\n\nYou squeeze down on the intruding member, giving the ausar a nice, tight, wet hole to thrust into - and he does so with gusto. A few slow, even strokes to start you off, and then he’s pounding away at you, hammering his crotch into your ass, forcing you into the bar with every smack of flesh-on-flesh. You moan, crying out as his meaty prick stretches you wide, putting just enough pressure on that wonderful bud inside your clenching hole to make your [pc.cock] jump back to attention, bobbing as your hips are rocked by the impact of his cock slamming home.");
 	output("\n\nIt doesn’t take long before the man’s grunting with effort, thrusts becoming quick and erratic as your well-trained hole milks him. With a roar, the ausar buries himself deep, grabbing your ass until his nails score your flesh; you clamp your muscles down as hard as you can to give him as pleasurable a release as possible. You both heave a sigh as you feel the familiar flood of spooge into your ass, and it takes everything you have not to give in and start masturbating just at the wonderfully full, wet, hot sensation of seed spilling into your");
 	if (!pc.hasVagina()) output(" boypussy.");
@@ -645,8 +658,15 @@ public function delilahSlutTraining():void
 	output(", she clambers up beside you, mirroring your position of submission, sticking her ass up in the air and shimmying out of her panties, leaving her own little hole open to the crowd.");
 
 	output("\n\nAs Del is getting ready, you feel another one blow his load inside your own [pc.asshole], filling you with such an abundance of creamy spunk that as soon as he fumbles his cock out of your ass, you’re instantly leaking gooey whiteness down your thighs and onto the floor. You give a dreamy sigh and lean onto your arms, meekly accepting another cock in both your holes at once. This is the life... and it’s time to induct your dusky, trappy friend into the affair. You give a subtle nod to another man in line, and he steps out from behind you and grabs Del by the hips. She gives a startled cry, but her scream turns soundless, breath caught in her straining throat as the john takes her without ceremony, plunging his prick into the waiting hole of her ass.");
+	
+	if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined && chars["DELILAH"].analVirgin)
+	{
+		chars["DELILAH"].analVirgin = false;
+		output(" <b>Del has lost her anal virginity to a stranger!</b>");
+	}
+	
 	output("\n\nYou reach out and take Del’s hand, lacing your fingers through the dusky whore’s as she’s filled with almost as much cock as you are. Her muscles are going crazy, chest heaving and back arching as she’s fucked hard and fast, pounding her into the hardwood with you. That a girl. You turn your attention back to your own lucky customers, slipping a few fingers into the dark star of the man plunging into your open mouth, giving him a thrill and a quick cumshot that leaves your face fully plastered with spunk.");
-	output("\n\nYou lick up a few drops during your short reprieve before a large, vaguely equine woman steps up and unleashes a mammoth member in front of you: two feet of solid horsecock that nearly knocks you cold with the sheer <i>smell</i> of it, so rich and manly and.... and when did you start sucking it? Your eyes just about roll up as your lips slurp up as much of this massive equine member as you can get, doing everything in your power to kill off your gag reflex as your jaw stretches out to accommodate it. You look up to the hermaphroditic woman, unable to see her face under the huge swells of her hefty breasts, which heave and strain against the sheer fabric constraining them as you suck her off.");
+	output("\n\nYou lick up a few drops during your short reprieve before a large, vaguely equine woman steps up and unleashes a mammoth member in front of you: two feet of solid horsecock that nearly knocks you cold with the sheer <i>smell</i> of it, so rich and manly and... and when did you start sucking it? Your eyes just about roll up as your lips slurp up as much of this massive equine member as you can get, doing everything in your power to kill off your gag reflex as your jaw stretches out to accommodate it. You look up to the hermaphroditic woman, unable to see her face under the huge swells of her hefty breasts, which heave and strain against the sheer fabric constraining them as you suck her off.");
 	output("\n\nThe horsey babe puts a hand on your [pc.hair], cooing softly as you manhandle the majority of her mammoth member into your mouth. You reach down and cup her heavy balls, practically able to feel them churning with pent-up seed, straining against their thick sack. It takes a moment for you to realize you’re trembling with excitement at the thought of her emptying those thick, meaty nads down your throat, bloating your belly with cum until you look");
 	if(!pc.hasPregnancy()) output(" positively pregnant");
 	else output(" even more pregnant than you are");
@@ -933,7 +953,7 @@ public function disarmDelsTrap():void
 		output("\n\nThe trap-boy’s pleasurable grunts stop abruptly when the door to the employee area swings open. His eyes widen and Beth Carver walks through the entrance like a bitch cheerleader in a teen movie, brushing her hair off of one shoulder and flashing a smug half-smile when she sees Del being pounded in the ass. She stops in front of him and leans on the counter with both hands palm-down, in a domineering posture that causes her big, unrestrained breasts to swing right in his face.");
 		output("\n\n<i>“So, Delilah, working hard?”</i> she asks. ");
 		//(sexed<5)
-		if(delSexed < 5) output("<i>“You haven’t been a very good employee ‘til now... it’s nice to see you getting accustomed to your place.”</i>");
+		if(delSexed < 5) output("<i>“You haven’t been a very good employee till now... it’s nice to see you getting accustomed to your place.”</i>");
 		else output("<i>“You’ve become quite the model employee since accepting your place.”</i>");
 		output(" Del blushes, but doesn’t answer; he’s too busy staring at Bethany’s swaying breasts. You can feel his deeply-suppressed manhood begin to stir in his strokes, which get harder and longer and drag his glans against the bottom of your [pc.tailCunt], dredging it for pleasure.");
 
@@ -986,7 +1006,7 @@ public function disarmDelsTrap():void
 		output("\n\nDel’s ");
 		//(sexed >=5)
 		if(delSexed >= 5) output("crowdsourced ");
-		output("asshole spasms and sucks as he comes, rippling and rubbing your [pc.cockHeadSimple " + x + "] against his slick walls. The image of the girlie under you, straining and humping at the counter, matches up with the splatters of cum in your alien tailcunt for a perfect visual, tipping you over the edge of your own orgasm.");
+		output("asshole spasms and sucks as he comes, rippling and rubbing your [pc.cockHead " + x + "] against his slick walls. The image of the girlie under you, straining and humping at the counter, matches up with the splatters of cum in your alien tailcunt for a perfect visual, tipping you over the edge of your own orgasm.");
 		//(small or med cum)
 		if(pc.cumQ() < 400)
 		{

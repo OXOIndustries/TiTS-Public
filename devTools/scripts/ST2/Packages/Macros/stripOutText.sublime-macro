@@ -1,0 +1,29 @@
+[
+	{
+		"args":
+		{
+			"extend": false,
+			"to": "hardbol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"extend": true,
+			"to": "hardeol"
+		},
+		"command": "move_to"
+	},
+	{
+		"args":
+		{
+			"replacements":
+			[
+				"strip_leading_out",
+				"strip_trailing_out"
+			]
+		},
+		"command": "reg_replace"
+	}
+]

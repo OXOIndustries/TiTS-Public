@@ -135,9 +135,13 @@ public function buyFromCeria():void
 		{
 			chars["CERIA"].keeperBuy += " Off to the side, there is a clear jar that contains a number of white gumball-like pills.";
 			if(!chars["CERIA"].hasItemByClass(Hornitol)) chars["CERIA"].inventory.push(new Hornitol());
+			if(!chars["CERIA"].hasItemByClass(Hornucopia)) chars["CERIA"].inventory.push(new Hornucopia());
 		}
-		else chars["CERIA"].destroyItemByClass(Hornitol);
-		
+		else
+		{
+			chars["CERIA"].destroyItemByClass(Hornitol, -1);
+			chars["CERIA"].destroyItemByClass(Hornucopia, -1);
+		}
 		if(flags["PLANET_3_UNLOCKED"] != undefined || CodexManager.entryViewed("Rubber-Made"))
 		{
 			chars["CERIA"].keeperBuy += " Another rack holds what seem to be various tubes of skin";
@@ -146,20 +150,20 @@ public function buyFromCeria():void
 				if(!chars["CERIA"].hasItemByClass(DoveBalm)) chars["CERIA"].inventory.push(new DoveBalm());
 				chars["CERIA"].keeperBuy += " balms";
 			}
-			else chars["CERIA"].destroyItemByClass(DoveBalm);
+			else chars["CERIA"].destroyItemByClass(DoveBalm, -1);
 			if(flags["PLANET_3_UNLOCKED"] != undefined && CodexManager.entryViewed("Rubber-Made")) chars["CERIA"].keeperBuy += " and";
 			if(CodexManager.entryViewed("Rubber-Made"))
 			{
 				if(!chars["CERIA"].hasItemByClass(SkinClear)) chars["CERIA"].inventory.push(new SkinClear());
 				chars["CERIA"].keeperBuy += " lotions";
 			}
-			else chars["CERIA"].destroyItemByClass(SkinClear);
+			else chars["CERIA"].destroyItemByClass(SkinClear, -1);
 			chars["CERIA"].keeperBuy += ".";
 		}
 		else
 		{
-			chars["CERIA"].destroyItemByClass(DoveBalm);
-			chars["CERIA"].destroyItemByClass(SkinClear);
+			chars["CERIA"].destroyItemByClass(DoveBalm, -1);
+			chars["CERIA"].destroyItemByClass(SkinClear, -1);
 		}
 		
 		// 9999 - Temporary placement until Aislinn is implemented!
@@ -168,7 +172,7 @@ public function buyFromCeria():void
 			chars["CERIA"].keeperBuy += " Next to a small holo-mirror is a display holding an array of lip balms.";
 			if(!chars["CERIA"].hasItemByClass(LipTease)) chars["CERIA"].inventory.push(new LipTease());
 		}
-		else chars["CERIA"].destroyItemByClass(LipTease);
+		else chars["CERIA"].destroyItemByClass(LipTease, -1);
 	}
 	chars["CERIA"].keeperBuy += "\n";
 	//List prices and whatnot. Back should go back to CERIA's main menu.
@@ -209,7 +213,7 @@ public function hairworkFromCeria():void
 	if(pc.hairLength > 0) addButton(2,"Color",hairColorMainMenu,undefined,"Color Hair","Try out a new color!");
 	else addDisabledButton(2,"Color","Color Hair","You need something on your head to dye!");
 	if(pc.hairLength <= 0) addDisabledButton(3,"Style","Style Hair","You need some hair in order to style it!");
-	if(InCollection(pc.hairType, GLOBAL.HAIR_TYPE_REGULAR, GLOBAL.HAIR_TYPE_QUILLS)) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style Hair","Get your hair styled into something fashionable.");
+	else if(InCollection(pc.hairType, GLOBAL.HAIR_TYPE_REGULAR, GLOBAL.HAIR_TYPE_QUILLS)) addButton(3,"Style",ceriaHairStyleChoices,undefined,"Style Hair","Get your hair styled into something fashionable.");
 	else addDisabledButton(3,"Style","Style Hair","You can only get traditional hair styled here.");
 	if(pc.hasFur() && pc.perkv1("Wooly") >= 1) addButton(6,"Fur Shear",furShearMenu,undefined,"Shear Fur","Get your wooly fur sheared!");
 	else addDisabledButton(6,"Fur Shear","Shear Fur","You don’t have any wooly fur to shear!");
@@ -580,8 +584,8 @@ public function ceriaHairColorMenu(colorType:String = "none"):void
 			btnSlot++;
 		}
 		
-		if(pc.hairColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], hairColorizing, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), String((colorList[i].length > 2 ? colorList[i][2] : "Dye your hair " + colorList[i][0] + ".")));
-		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), String("Your hair is already " + colorList[i][0] + "."));
+		if(pc.hairColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], hairColorizing, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), (colorList[i].length > 2 ? colorList[i][2] : "Dye your hair " + colorList[i][0] + "."));
+		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), ("Your hair is already " + colorList[i][0] + "."));
 		btnSlot++;
 		
 		if(colorList.length > 14 && (i + 1) == colorList.length)
@@ -638,32 +642,65 @@ public function ceriaHairStyleChoices():void
 	output("<i>“Okay, let me show you some of our styles.”</i> Ceria pulls out a small tablet and shows you several different pictures modeling various hairstyles. <i>“Just let me know what you’re interested in.”</i>");
 	//[All options go to Style Confirmation]
 	clearMenu();
-	//[Straight] Sets [pc.hairstyle] to null.
-	if(pc.hairStyle != "null" && pc.hairStyle != "straight") addButton(0,"Straight",styleConfirmation,"straight","Straight","Get your hair styled into a plain, straight do.");
-	else addDisabledButton(0,"Straight","Straight","Your hair is already straight.");
-	//[Ponytail]
-	if(pc.hairStyle != "ponytail" && pc.hairLength >= 5) addButton(1,"Ponytail",styleConfirmation,"ponytail","Ponytail","Get your hair styled into a ponytail.");
-	else if(pc.hairStyle != "ponytail") addDisabledButton(1,"Ponytail","Ponytail","Your hair isn’t long enough to get put into a ponytail.");
-	else addDisabledButton(1,"Ponytail","Ponytail","You already have a ponytail.");
-	//[Pigtails]
-	if(pc.hairStyle != "pigtails" && pc.hairLength >= 5) addButton(2,"Pigtails",styleConfirmation,"pigtails","Pigtails","Get your hair styled into pigtails.");
-	else if(pc.hairStyle != "pigtails") addDisabledButton(2,"Pigtails","Pigtails","Your hair isn’t long enough to get put into pigtails.");
-	else addDisabledButton(2,"Pigtails","Pigtails","You already have a pigtails.");
-	//[Curls]
-	if(pc.hairStyle != "curls") addButton(3,"Curls",styleConfirmation,"curls","Curls","Get your hair styled into curls.");
-	else addDisabledButton(3,"Curls","Curls","You already have your hair curled.");
-	//[Braided]
-	if(pc.hairStyle != "braided" && pc.hairLength >= 5) addButton(4,"Braided",styleConfirmation,"braided","Braided","Get your hair styled into a braid.");
-	else if(pc.hairStyle != "braided") addDisabledButton(4,"Braided","Braided","Your hair isn’t long enough to be braided.");
-	else addDisabledButton(4,"Braided","Braided","You already have your hair braided!");
-	//[Afro]
-	if(pc.hairStyle != "afro" && pc.hairLength <= 12) addButton(5,"Afro",styleConfirmation,"afro","Afro","Get your hair styled into an afro.");
-	else if(pc.hairStyle != "afro") addDisabledButton(5,"Afro","Afro","Your hair is too long to be styled into an afro.");
-	else addDisabledButton(5,"Afro","Afro","You already have an afro.");
-	//[Mohawk]
-	if(pc.hairStyle != "mohawk" && pc.hairLength <= 12) addButton(6,"Mohawk",styleConfirmation,"mohawk","Mohawk","Get your hair styled into a mohawk.");
-	else if(pc.hairStyle != "mohawk") addDisabledButton(6,"Mohawk","Mohawk","Your hair is too long to be styled into a mohawk.");
-	else addDisabledButton(6,"Mohawk","Mohawk","You already have a mohawk.");
+	var options:Array = [];
+	
+	options.push(["Straight", "straight", "a plain, straight do", "straight hair", 1, 0]);
+	options.push(["Ponytail", "ponytail", "a ponytail", "a ponytail", 5, 0]);
+	options.push(["Pigtails", "pigtails", "pigtails", "pigtails", 5, 0]);
+	options.push(["Curls", "curls", "curls", "your hair curled", 0, 0]);
+	options.push(["Braided", "braided", "a braid", "your hair braided", 5, 0]);
+	options.push(["Afro", "afro", "an afro", "an afro", 0, 12]);
+	options.push(["Mohawk", "mohawk", "a mohawk", "a mohawk", 0, 12]);
+	
+	options.push(["Spikes", "spikes", "spikes", "spikes", 0, 12]);
+	options.push(["Messy Curls", "mess of curls", "messy curls", "messy curls", 0, 0]);
+	options.push(["Front Wave", "front wave", "a front wave", "a front wave", 0, 0]);
+	options.push(["Back Slick", "backwards slick", "a backwards slick", "a backwards slick", 0, 0]);
+	options.push(["Ruff.Layers", "ruffled layers", "ruffled layers", "your hair in ruffled layers", 0, 0]);
+	options.push(["Simple Part", "simple part", "a simple part", "simple parted hair", 5, 0]);
+	options.push(["Side Part", "side part", "a side part", "side parted hair", 5, 0]);
+	options.push(["Bob", "bob cut", "a bob cut", "a bob cut", 5, 12]);
+	options.push(["Hime", "hime cut", "a hime cut", "a hime cut", 5, 0]);
+	options.push(["M.Chignon", "messy chignon", "a messy chignon", "a messy chignon", 5, 24]);
+	options.push(["T.Chignon", "tight chignon", "a tight chignon", "a tight chignon", 5, 24]);
+	options.push(["Side Plait", "side plait", "a side plait", "a side plait", 5, 0]);
+	options.push(["Single Braid", "single braid", "a single braid", "a single braid", 5, 0]);
+	options.push(["Crown Braid", "crown braid", "a crown braid", "a crown braid", 5, 0]);
+	options.push(["Pigtail Buns", "pigtail buns", "pigtail buns", "pigtail buns", 5, 24]);
+	options.push(["Twintails", "twintails", "a set of twintails", "a set of twintails", 5, 0]);
+	
+	var btnSlot:int = 0;
+	for(var i:int = 0; i < options.length; i++)
+	{
+		var hairBtn:String = options[i][0];
+		var hairStyle:String = options[i][1];
+		var hairTitle:String = StringUtil.toDisplayCase(options[i][1]);
+		var hairDescA:String = options[i][2];
+		var hairDescB:String = options[i][3];
+		var lengthMin:Number = options[i][4];
+		var lengthMax:Number = options[i][5];
+		
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", hairworkFromCeria);
+			btnSlot++;
+		}
+		
+		if(pc.hairStyle != hairStyle) {
+			if(lengthMax != 0 && pc.hairLength > lengthMax) addDisabledButton(btnSlot, hairBtn, hairTitle, "Your hair is too long to be styled into " + hairDescA + ".");
+			else if(lengthMin != 0 && pc.hairLength < lengthMin) addDisabledButton(btnSlot, hairBtn, hairTitle, "Your hair isn’t long enough to get put into " + hairDescA + ".");
+			else addButton(btnSlot, hairBtn, styleConfirmation, hairStyle, hairTitle, "Get your hair styled into " + hairDescA + ".");
+		}
+		else addDisabledButton(btnSlot, hairBtn, hairTitle, "You already have " + hairDescB + ".");
+		btnSlot++;
+		
+		if(options.length > 14 && (i + 1) == options.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", hairworkFromCeria);
+		}
+	}
+	
 	//[Back] Go To Hairwork
 	processTime(1);
 	addButton(14,"Back",hairworkFromCeria);
@@ -824,8 +861,8 @@ public function ceriaFurColorMenu(colorType:String = "none"):void
 			btnSlot++;
 		}
 		
-		if(pc.furColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], furColorApplication, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), String((colorList[i].length > 2 ? colorList[i][2] : "Dye your fur " + colorList[i][0] + ".")));
-		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), String("Your fur is already " + colorList[i][0] + "."));
+		if(pc.furColor != colorList[i][0]) addButton(btnSlot, colorList[i][1], furColorApplication, colorList[i][0], StringUtil.toDisplayCase(colorList[i][0]), ((colorList[i].length > 2 ? colorList[i][2] : "Dye your fur " + colorList[i][0] + ".")));
+		else addDisabledButton(btnSlot, colorList[i][1], StringUtil.toDisplayCase(colorList[i][0]), ("Your fur is already " + colorList[i][0] + "."));
 		btnSlot++;
 		
 		if(colorList.length > 14 && (i + 1) == colorList.length)
@@ -845,12 +882,67 @@ public function ceriaFurColorMenu(colorType:String = "none"):void
 //Fur Treatment
 public function furColorApplication(newColor:String):void
 {
-	if(pc.balls > 0 && InCollection(pc.statusEffectv1("Special Scrotum"), [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FEATHERED]))
+	if(pc.hasWings() && InCollection(pc.statusEffectv1("Wing Style"), [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FEATHERED]) && !pc.hasStatusEffect("Ceria Dye Wings"))
+	{
+		ceriaFurColorWings(["choose", newColor]);
+		return;
+	}
+	if(pc.balls > 0 && InCollection(pc.statusEffectv1("Special Scrotum"), [GLOBAL.FLAG_FURRED, GLOBAL.FLAG_FEATHERED]) && !pc.hasStatusEffect("Ceria Dye Balls"))
 	{
 		ceriaFurColorBallZ(["choose", newColor]);
 		return;
 	}
 	furColorApplicationGo(newColor);
+}
+public function ceriaFurColorWings(arg:Array):void
+{
+	clearOutput();
+	clearBust();
+	showName("DYE\nWINGS")
+	clearMenu();
+	
+	var option:String = arg[0];
+	var newColor:String = arg[1];
+	var special:String = (arg.length > 2 ? arg[2] : "");
+	
+	if(option == "choose")
+	{
+		output("It looks like you have furry wings you can dye... do you wish for Ceria to color them too? If so, would you like to retain the fur color regardless of your body’s fur color changes in the future, or would you like them to match with the rest of your body’s fur color naturally?");
+		output("\n\nCurrently, your wings are " + (pc.getStatusTooltip("Wing Style") != "" ? (pc.getStatusTooltip("Wing Style") + " and retains their own color, separate from your body fur color") : (pc.furColor + " and matches your body’s fur color")) + ".");
+		output("\n\nBe warned, however, <b>if your wings are the only thing you have to dye, you might be wasting your credits if you choose not to dye it!</i>");
+		
+		addButton(0, "Match", ceriaFurColorWings, ["done", newColor, "match"], "Match Fur", "Dye them to always match the fur color.");
+		addButton(1, "Unique", ceriaFurColorWings, ["done", newColor, "unique"], "Unique Color", "Dye them, but retain its own fur color seperately.");
+		addButton(2, "No Dye", ceriaFurColorWings, ["done", newColor, "none"], "Don’t Dye", "Dye everything else, if applicable, and don’t apply dye to wing fur. (This will still cost credits!)");
+		addButton(3, "Current", ceriaFurColorWings, ["done", newColor, "current"], "Current Preference", "Dye them and keep the preferences how they already are.");
+		addButton(14, "Nevermind", furColorMenu);
+		return;
+	}
+	
+	switch(special)
+	{
+		case "match":
+			output("You decide to dye your wings " + newColor + " and let them naturally match your body’s fur color whenever it changes.");
+			pc.setStatusTooltip("Wing Style", "");
+			break;
+		case "unique":
+			output("You decide to dye your wings " + newColor + " and let them stay that way, especially if your body’s fur color ever changes.");
+			pc.setStatusTooltip("Wing Style", newColor);
+			break;
+		case "none":
+			var oldColor:String = (pc.getStatusTooltip("Wing Style") != "" ? pc.getStatusTooltip("Wing Style") : pc.furColor);
+			output("You decide to let your wings retain their " + oldColor + " fur while the rest of your fur (if any) gets dyed " + newColor + ".");
+			pc.setStatusTooltip("Wing Style", oldColor);
+			break;
+		default:
+			output("You decide to dye your wings " + newColor + " and let them do whatever they do when the rest of your body’s fur color changes.");
+			if(pc.getStatusTooltip("Wing Style") != "") pc.setStatusTooltip("Wing Style", newColor);
+			break;
+	}
+	
+	pc.createStatusEffect("Ceria Dye Wings", 0, 0, 0, 0, true, "", "", false, 0);
+	
+	addButton(0, "Next", furColorApplication, newColor);
 }
 public function ceriaFurColorBallZ(arg:Array):void
 {
@@ -898,7 +990,9 @@ public function ceriaFurColorBallZ(arg:Array):void
 			break;
 	}
 	
-	addButton(0, "Next", furColorApplicationGo, newColor);
+	pc.createStatusEffect("Ceria Dye Balls", 0, 0, 0, 0, true, "", "", false, 0);
+	
+	addButton(0, "Next", furColorApplication, newColor);
 }
 public function furColorApplicationGo(newColor:String):void
 {
@@ -944,6 +1038,10 @@ public function furColorApplicationGo(newColor:String):void
 	pc.credits -= ceriaServicePrice(1500);
 	if(newColor.indexOf("glowing") != -1 || newColor.indexOf("luminous") != -1 || newColor == "iridescent") pc.credits -= ceriaServicePrice(300);
 	pc.furColor = newColor;
+	
+	pc.removeStatusEffect("Ceria Dye Wings");
+	pc.removeStatusEffect("Ceria Dye Balls");
+	
 	//[Next] Go to Ceria Main
 	processTime(22);
 	clearMenu();
@@ -1152,7 +1250,7 @@ public function getOralFromCeria():void
 		output("\n\n<i>“Ooh, you’re giving me some options here. Let’s see here, I think I’ll try...”</i> Her finger hovers back and forth over your groin before settling on ");
 		if(dick) output("[pc.oneCock]");
 		else output("[pc.oneVagina]");
-		output(". <i>“... This one.”</i>");
+		output(". <i>“...This one.”</i>");
 	}
 	
 	var x:int = -1;

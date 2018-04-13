@@ -407,8 +407,7 @@ public function sureIWantSomeShadePussayTailFuckYes():void
 	output("\n\n<i>“Now then... what to do with you...?”</i>");
 	pc.lust(30);
 	processTime(15);
-	currentLocation = "602";
-	generateMap();
+	moveTo("602");
 	//Shade’s Scenes go Here
 	shadeSexMenu(true);
 }
@@ -428,7 +427,7 @@ public function shadeSexMenu(intro:Boolean = false):void
 	
 	//[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
 	//PC must have taken Shade’s hardlight strapon at least once. Must be effeminate enough to use female pronouns and possess a cock. Is a [vagOrAss] scene.
-	if (pc.hasCock() && pc.mf("he","She") == "She" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
+	if (pc.hasCock() && pc.mf("he","she", true) == "she" && flags["TAKEN_SHADES_HARDLIGHT"] != undefined)
 	{
 		if (pc.hasVagina()) addButton(2,"Lick & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Lick & Wank","Get licked and wanked.");
 		else addButton(2,"Rim & Wank",rimAndWankOrLickAndWankWhoKnowsSloot,undefined,"Rim & Wank","Get rimmed and wanked off.");
@@ -515,8 +514,7 @@ public function fuckThisShiiitImNotGettingInACatNDogFight():void
 
 	processTime(10);
 
-	currentLocation = "606";
-	generateMap();
+	moveTo("606");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -552,8 +550,7 @@ public function lastChanceForHelpingKara():void
 	output("\n\n<i>“Please,”</i> Kara shouts, taking a step back. <i>“I can match what she’s paying. Easy.”</i>");
 	output("\n\nShe scoffs. <i>“Take it or leave it, friend. You can just walk away.”</i>");
 	
-	currentLocation = "609";
-	generateMap();
+	moveTo("609");
 	clearMenu();
 	addButton(14,"Leave",fuckDisBarShit,undefined,"Leave","Fuck this. You hop into the crowd of people fleeing, ducking out of the bar to sounds of gunfire behind you.");
 	addButton(0,"Help Shade",helpShadeOutLastChance,undefined,"Help Shade","Help out Shade, the bounty hunter.");
@@ -672,8 +669,7 @@ public function pcAndKaraBeatShade():void
 	//relocate to alley
 	//Add Arc Caster to inventory
 	flags["SHADE_DEFEATED_WITH_KARA"] = 1;
-	currentLocation = "606";
-	generateMap();
+	moveTo("606");
 	CombatManager.genericVictory();
 }
 
@@ -689,8 +685,7 @@ public function pcAndShadeBeatKara():void
 	output("\n\nShe gives you a friendly clap on the shoulder and hauls Kara up over her shoulder, carrying the stunned kaithrit out of the bar. You make your way outside, too, before the myr soldiers can arrive and arrest you for shooting the place up.\n\n");
 	flags["KARA_DEFEATED_WITH_SHADE"] = 1;
 	processTime(2);
-	currentLocation = "606";
-	generateMap();
+	moveTo("606");
 	CombatManager.genericVictory();
 }
 
@@ -795,7 +790,7 @@ public function cuntTailShadeFux():void
 
 //[Take Hardlight]
 //vagOrAss. PC gives tailcunt oral. 
-public function takeShadesHardlightPenisInYerBoot():void
+public function takeShadesHardlightPenisInYerBoot(xmasVers:Boolean = false):void
 {
 	clearOutput();
 	showShade(true);
@@ -814,10 +809,7 @@ public function takeShadesHardlightPenisInYerBoot():void
 	output(" hiked over Shade’s shoulders, leaving your ");
 	if(x >= 0) output("pussy");
 	else output("ass");
-	output(" tantalizingly close to the glowing cock sprouting from her panties. She leans in, pushing your backside up off the bed and curling your spine in as she goes, ");
-	if(pc.catDog("nyan", "bork") == "nyan") output("making full use of your feline flexibility");
-	else output("putting your flexibility to the limit");
-	output(" as she crawls up your prone body, trailing kisses up your belly, [pc.chest], and neck. Finally, she reaches your [pc.lips], pressing hers to yours and slowly urging your mouth open, just wide enough to let her tongue slip in.");
+	output(" tantalizingly close to the glowing cock sprouting from her panties. She leans in, pushing your backside up off the bed and curling your spine in as she goes, " + pc.catDog("making full use of your feline flexibility", "putting your flexibility to the limit") + " as she crawls up your prone body, trailing kisses up your belly, [pc.chest], and neck. Finally, she reaches your [pc.lips], pressing hers to yours and slowly urging your mouth open, just wide enough to let her tongue slip in.");
 
 	output("\n\nYou moan into her mouth as Shade’s hands slip down your [pc.legOrLegs], finding the cheeks of your [pc.butt] and digging in, squeezing your butt until you squeal. She breaks the kiss at that, a hungry look in her eyes as you give voice to your pleasure. You feel a hand release your cheek, traveling up your thigh toward the haft of her energy-cock, grasping it and guiding it back down toward your eagerly waiting hole. Your breath catches as the tingling crown caresses your [pc.skinFurScales], brushing against your [pc.vagOrAss " + x + "]. You shiver with anticipation, sucking in a breath as Shade’s holographic cock aligns with your eager hole. From this position, there’s nothing you can do but let it happen, no force you can exert to drive her onward but to wiggle your hips invitingly, trying to relax as best you can as Shade enters you.");
 
@@ -832,8 +824,8 @@ public function takeShadesHardlightPenisInYerBoot():void
 	output("\n\nOnce the floodgate is down, your voice becomes a symphony of moans and cries, playing to the beat of Shade’s increasing pace. Your sultry sounds only seem to urge the huntress on, driving her to thrust faster into you. <i>“Scream for me, slut,”</i> she murmurs into your [pc.ear], drawing close against your [pc.chest] and running her tongue across one of your [pc.nipples]. With Shade tucked against you, you can see her pussy-tipped tail curling up behind her, its rosy lips spreading eagerly as it coils around Shade’s back. She glares at it over her shoulder, but the parasitic organ’s instincts drive it on against its owner’s desire, making it seek out the source of her pleasure. Flashing Shade a grin, you reach up and grab the tail’s head in both hands, pulling it up over her back and planting a big, wet kiss on its drooling lips. Your lover sucks in a sharp breath, trying not to voice her reaction as your tongue slithers into her tail’s channel.");
 	output("\n\n<i>“From both ends, huh?”</i> Shade purrs, her back arching as you tease her tailcunt’s clit. She chuckles and plants a hand over yours, guiding you to hold her tail where both of you can reach it. Giving you a sultry little wink, the cat-girl rolls her long tongue out and caresses her own pussylip, joining you in sating her parasitic tail’s insatiable need. Your [pc.tongue] soon starts to play with Shade’s, teasing and probing each other’s mouths as much as her pussylips, turning it into a messy, fem-cum slathered makeout session. The taste of your lover’s lips mix with the sweet juice of her pussy, tinged by waves of pleasure wracking your body, spreading from your [pc.vagOrAss " + x + "] up through the rest of you as Shade pounds you harder, driven faster by your squirming hole and skillful tongue.");
 	output("\n\nUnder Shade’s constant assault, you can’t last long - then again, neither can she, if the way she’s breathing hard is any indication. You cup her cheek, distracting her from her tailcunt and drawing the kaithrit into a long, tongue-filled kiss, pushing back against her jackhammering hips as best you can until you feel the swelling pressure inside you reach its crescendo.");
-	if(pc.hasCock()) output("Trapped between your belly and Shade’s, [pc.eachCock] strains against its confines, growing turgid with cum and ready to burst. Pre drools out of your [pc.cockHeads], turning the space between your bellies into a swamp of sticky [pc.cumNoun].");
-	output("You let out a quiet mewl to announce your orgasm, a soft squeal of pleasure pumped out of you by Shade’s relentless fucking.");
+	if(pc.hasCock()) output(" Trapped between your belly and Shade’s, [pc.eachCock] strains against its confines, growing turgid with cum and ready to burst. Pre drools out of your [pc.cockHeads], turning the space between your bellies into a swamp of sticky [pc.cumNoun].");
+	output(" You let out a quiet mewl to announce your orgasm, a soft squeal of pleasure pumped out of you by Shade’s relentless fucking.");
 	output("\n\nYour [pc.vagOrAss " + x + "] contracts hard around the hardlight cock buried in it, trying to squeeze out a load of cum that will never come. Under pressure, her hardlight prick tingles and buzzes, sending electric waves of pleasure through your spasming hole. You clutch at your lover with arm and [pc.leg], drawing her deeper into the kiss as you ride out your climax.");
 	if(pc.hasCock()) output(" [pc.Cum] bursts out of your [pc.cocks], plastering your [pc.belly] with [pc.cumNoun]. Shade gasps as the hot, sticky spurt of seed splatters onto her, but makes no complaint.");
 
@@ -845,7 +837,12 @@ public function takeShadesHardlightPenisInYerBoot():void
 	IncrementFlag("SEXED_SHADE");
 	IncrementFlag("TAKEN_SHADES_HARDLIGHT");
 	clearMenu();
-	addButton(0,"Next",shadePostCoitusHangouts);
+	if(xmasVers)
+	{
+		processTime(8*60);
+		addButton(0,"Next",shadeCleanupEpilogue);
+	}
+	else addButton(0,"Next",shadePostCoitusHangouts);
 }
 
 //[Rim & Wank] (if PC has no cunt; else) [Lick & Wank]
@@ -883,10 +880,8 @@ public function rimAndWankOrLickAndWankWhoKnowsSloot():void
 	if(pc.legCount > 1) output(" between");
 	else output(" against");
 	output(" your [pc.legOrLegs]. Her fingers brush across your length, a simple touch that has you from half mast to diamond hard by the time she’s reached your [pc.cockHead " + x + "].");
-
-
-
-	output("\n\n<i>“I love a woman with a nice, hard cock between her legs.");
+	
+	output("\n\n<i>“I love a [pc.manWoman] with a nice, hard cock between [pc.hisHer] legs.");
 	if(pc.isGoo() || pc.isNaga()) output(" Or [pc.legOrLegs], in your case.");
 	output("”</i> Shade says, leaning in and planting a kiss ");
 	if(pc.balls > 0) output("on your [pc.balls], sending an electric wave of pleasure tingling through your body");
@@ -1107,8 +1102,7 @@ public function shadePostCoitusHangouts():void
 		{
 			output(" gear in order and let yourself out. Shade’s ships seals tight behind you.");
 			//PC is left in the far north of the airfield.
-			currentLocation = "602";
-			generateMap();
+			moveTo("602");
 		}
 		else
 		{
@@ -1146,8 +1140,7 @@ public function shouldIShadeOrShouldIGo():void
 	if(flags["SHADE_ON_UVETO"] == undefined)
 	{
 		output(" ship, and head out into the airfield.");
-		currentLocation = "602";
-		generateMap();
+		moveTo("602");
 	}
 	else
 	{
@@ -1196,8 +1189,7 @@ public function recoverWithShade():void
 	if(flags["SHADE_ON_UVETO"] == undefined)
 	{
 		output("\n\nYou chuckle and let yourself be led off the ship, following Shade back out to the airfield. Her ship seals tight behind you, and your lover gives you a final smack on your [pc.butt] before trotting off towards the tavern.");
-		currentLocation = "602";
-		generateMap();
+		moveTo("602");
 	}
 	else
 	{
@@ -1358,8 +1350,7 @@ public function askShade4Sex():void
 	output("\n\n<i>“Now then,”</i> Shade purrs, <i>“what to do with you...?”</i>");
 	
 	processTime(15);
-	currentLocation = "602";
-	generateMap();
+	moveTo("602");
 	
 	//Shade’s Scenes go Here
 	shadeSexMenu();
@@ -1470,7 +1461,7 @@ public function talkToShadeAboutTailCunt():void
 	output("\n\n<i>“Few too many of ‘em, though, and this clever girl managed to get in behind me. Jumped up and bit me right in the ass, started burning into my skin. I got my backup gun out and put a bullet through her head while she was melding - took out a hunk from my back, too, just about paralyzed myself; I’ll admit I was panicking pretty hard. Eating a six-millimeter right in the middle of it must have fouled up whatever fuses a cunt-snake to your nervous system, because this new tail of mine’s got a mind of her own still. Don’t you, girl?”</i>");
 	output("\n\nHer tail wriggles around her arm,");
 	if(flags["SHADE_ON_UVETO"] == undefined) output(" drooling lube onto her leg");
-	else output(" staining itd sock with lube");
+	else output(" staining its sock with lube");
 	output(". Shade chuckles and rubs it under what passes for a chin, just under its lips. <i>“Anyway, I managed to stop bleeding all over myself long enough to bust into the lab proper and pistol whip the doctor about five steps from his hover car door. Narrow catch, but the bounty set me up nice and cozy for the rest of the year.”</i>");
 	output("\n\n<i>“So you decided to keep the tail?”</i>");
 	output("\n\n<i>“Heh, ‘decided’ might be a little strong of a word. When she bit into me, my cat-tail burned off to make room. Hurt like a bitch. Didn’t feel right walking around without a tail, and while I had the doc tied down, my new one decided to feed on him. For a couple of hours. Good thing kui-tan are </i>productive<i>, because she has an insatiable appetite. After that, I figured I’d keep her around. She’s a pain sometimes, but I feel everything she does... and it’s pretty amazing.");
@@ -1509,7 +1500,7 @@ public function talkAboutShadesShip():void
 	output("\n\n<i>“One of his goons picked the wrong girl, though: a pretty twenty-something that happened to be the daughter of Pyrite’s last president who’d lied about who she was on her profile. You can imagine the size of the reward that went out for her safe return... and the bounty for the fella who took her. Had to beat some answers out of her crooked date, and do a little hacking on the side, but I figured out what was going on before long.”</i>");
 	output("\n\nYou cock an eyebrow. <i>“Hacking?”</i>");
 	output("\n\n<i>“What?”</i> Shade says, scowling, <i>“Just because I’m not a cutesy nerd with a comp-sci degree doesn’t mean I don’t know my way around a computer. Hell, half my job is tracking people down on the ‘net. Saves a lot of time versus beating the streets, especially between planets. I’m no master hacker like my mother was, but I can do a little computer wizardry.");
-	output("\n\n<i>“So I hacked my way into the site, figured out what was going down and who owned the thing. Turns out he had a gala going on that night, a charity thing to ‘raise awareness for the victims of cybercrime.’ What a crock. So naturally I invited myself, found the host, and batted my eyelashes at him until I was tumbling onto his yacht with my skirts falling off faster than I could blink. Lucky me, he didn’t find the stun gun slung on my thigh ‘till after he locked us in his cabin.”</i>");
+	output("\n\n<i>“So I hacked my way into the site, figured out what was going down and who owned the thing. Turns out he had a gala going on that night, a charity thing to ‘raise awareness for the victims of cybercrime.’ What a crock. So naturally I invited myself, found the host, and batted my eyelashes at him until I was tumbling onto his yacht with my skirts falling off faster than I could blink. Lucky me, he didn’t find the stun gun slung on my thigh till after he locked us in his cabin.”</i>");
 	output("\n\nYou laugh as Shade makes an exaggerated <i>“ZAP”</i> sound. <i>“After that, well, let’s say I have my ways of making a naked, horny, and very confused kaithrit boy talk. Once I had a confession, I steered his ship right to his holding pens and saved the girl, all chivalrous like. I left the creep buck naked in his own slave pens for the cops to pick up. Not that there was much left of him by the time they got there.”</i>");
 	output("\n\n<i>“");
 	if(pc.isNice()) output("Sounds like a happy ending");

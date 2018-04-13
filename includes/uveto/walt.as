@@ -195,6 +195,7 @@ public function waltSex(arg:Array = null):void
 			if(!pc.hasCock()) addDisabledButton(1, "Table Suck", "Under Table Suck", "You need a penis for this.");
 			else addButton(1, "Table Suck", waltSex, ["table suck"], "Under Table Suck", "Make Walt get under the table and service your dick orally.");
 			if(!pc.hasVagina()) addDisabledButton(2, "Table Lick", "Under Table Lick", "You need a vagina for this.");
+			else if(pc.blockedVaginas() > 0) addDisabledButton(2,"Table Lick","Table Lick","You should get rid of any vaginal blockages before pursuing this.");
 			else addButton(2, "Table Lick", waltSex, ["table lick"], "Under Table Lick", "Make Walt get under the table and service your cunt orally.");
 			break;
 		// Anal Ride

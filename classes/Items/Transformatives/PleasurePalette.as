@@ -178,7 +178,7 @@
 					btnSlot++;
 				}
 				
-				addButton(btnSlot, colorList[i][1], partMenu, [target, colorType, colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), String("Select " + colorList[i][0] + "."));
+				addButton(btnSlot, colorList[i][1], partMenu, [target, colorType, colorList[i][0]], StringUtil.toDisplayCase(colorList[i][0]), ("Select " + colorList[i][0] + "."));
 				btnSlot++;
 				
 				if(colorList.length > 14 && (i + 1) == colorList.length)
@@ -489,7 +489,7 @@
 				
 				// Orally Filled and Cum Splattered
 				target.loadInMouth(target);
-				//if(lottaCum) kGAMECLASS.applyCumSoaked(target);
+				//if(lottaCum) target.applyCumSoaked();
 			}
 			else
 			{

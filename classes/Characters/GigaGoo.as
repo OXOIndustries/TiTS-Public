@@ -87,13 +87,13 @@ package classes.Characters
 			
 			this.femininity = 50;
 			this.eyeType = GLOBAL.TYPE_HUMAN;
-			this.eyeColor = "black";
-			this.tallness = 24;
+			this.eyeColor = "silver";
+			this.tallness = 180;
 			this.thickness = 70;
 			this.tone = 80;
-			this.hairColor = "none";
-			this.scaleColor = "none";
-			this.furColor = "none";
+			this.hairColor = "steel gray";
+			this.scaleColor = "steel gray";
+			this.furColor = "steel gray";
 			this.hairLength = 0;
 			this.hairType = GLOBAL.TYPE_HUMAN;
 			this.beardLength = 0;
@@ -159,6 +159,7 @@ package classes.Characters
 			//16 - huge
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 2;
+			this.nippleColor = "silver";
 			//No dicks here!
 			this.cocks = new Array();
 			
@@ -244,6 +245,7 @@ package classes.Characters
 		{
 			var pc:Creature;
 			var anno:Creature;
+			var bStun:Boolean = false;
 			
 			for (var i:int = 0; i < hostiles.length; i++)
 			{
@@ -255,12 +257,13 @@ package classes.Characters
 	
 			if (rand(4) == 0)
 			{
-				CombatAttacks.applyStun(pc, 3);
+				bStun = true;
 				output(" <b>You’re stunned by the overwhelming force of the blow!</b>");
 			}
 			
 			applyDamage(damageRand(meleeDamage(), 15), this, pc);
 			applyDamage(damageRand(meleeDamage(), 15), this, anno);
+			if(bStun) CombatAttacks.applyStun(pc, 3);
 		}
 		
 		private function swordThrust(hostiles:Array):void

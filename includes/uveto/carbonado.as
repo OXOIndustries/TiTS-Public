@@ -124,9 +124,20 @@ public function uvetoCarbonadoMenu():void
 
 	if (flags["HUNGOUT_CFS"] != undefined && (hours >= 20 || hours <= 4))
 	{
+		//Intercept to go shopping
+		if(isChristmas())
+		{
+			if(flags["CFS_HOLIDAY_SHOPPING"] == undefined && (!pc.isTaur() || pc.hasItemByClass(HeatBelt)) && (pc.totalVaginas() > pc.blockedVaginas() || pc.hasCock()))
+			{
+				cfsHolidayShopping();
+				return;
+			}
+		}
+		else flags["CFS_HOLIDAY_SHOPPING"] = undefined;
+		
 		if (hours >= 20 && hours < 21 && flags["CFS_HANGOUT_EVENT_PENDING"] == 1) addButton(2, "Hangout", cfsGoHangoutTime);
 
-		if (pc.hasCock() || pc.hasVagina())
+		if (pc.hasCock() || pc.totalVaginas() > pc.blockedVaginas())
 		{
 			addButton(4, "Sleepover", cfsGoSleepover);
 			addButton(6, "Lewd Massage", cfsGoLewdMassage);
@@ -625,7 +636,7 @@ public function showCfsHangouts():void
 }
 
 public function cfsGoHangoutTime():void
-{
+{	
 	clearOutput();
 	showCfsHangouts();
 
@@ -848,6 +859,7 @@ public function cfsGoSleepover():void
 	}
 	else
 	{
+		var p:int = pc.pickUnblocked();
 		output("\n\nInquiring fingers quickly reach your [pc.clit], rubbing around before");
 		if (pc.vaginas.length > 1)
 		{
@@ -870,10 +882,8 @@ public function cfsGoSleepover():void
 
 		output("\n\nAs your moans increase in volume you notice something strange. Each time your voice reaches its peak the chubby puazi’s legs clench together, toes spreading as her thighs rub fruitlessly together. The sight brings a cruel thought to your mind, one you can’t help but entertain. You lean forward, wrenching the amorous alien’s legs apart and holding them open. Your interference does nothing to stop her torrent of licks, but you hear a questioning grunt the next time she grabs a breath.");
 
-		output("\n\nYou focus the pleasure running in your veins, controlling the volume of your moaning. Gwen’s thighs begin to clench as you grow louder, and you hear a pained groan as her phosphorescent pussy twitches needfully. Her legs strain to close as your voices intensity rises, but you arent about to let her off the hook so easily. A long tongue dives into your [pc.pussy], Finding just the right spot to break your regulated vocalizations into a carnal concert. Expressions of symphonic delight burst from your mouth, and your whole body quivers wonderfully with each note.");
-		if (pc.hasCock()) output(" [pc.eachCock] spurts [pc.cumColor] jizz to mix with the hot femcum already splattered onto the multicolored maiden’s chest, smeared in by an impromptu");
-		if (!silly) output(" boobjob.");
-		else output(" Puazuri.");
+		output("\n\nYou focus the pleasure running in your veins, controlling the volume of your moaning. Gwen’s thighs begin to clench as you grow louder, and you hear a pained groan as her phosphorescent pussy twitches needfully. Her legs strain to close as your voices intensity rises, but you arent about to let her off the hook so easily. A long tongue dives into your [pc.pussy " + p + "], Finding just the right spot to break your regulated vocalizations into a carnal concert. Expressions of symphonic delight burst from your mouth, and your whole body quivers wonderfully with each note.");
+		if (pc.hasCock()) output(" [pc.eachCock] spurts [pc.cumColor] jizz to mix with the hot femcum already splattered onto the multicolored maiden’s chest, smeared in by an impromptu " + (!silly ? "boobjob" : "Puazuri") + ".");
 
 		output("\n\nBeneath you, the punished puazi tenses, love juices squirting like a leaky faucet. Coming off of your own high, you jump on this opportunity, quickly plugging her hole with two fingers. Her legs slap shut around your hand, but it’s too late to block your driving digits. The slippery sex syrup dripping from her cunt makes any pressure her thighs apply near to meaningless. You simply glide through the improvised blockade to continue your relentless fingering.");
 
@@ -909,7 +919,7 @@ public function cfsGoVidja():void
 
 	output("\n\n<i>“Hey Gwen, we’re going to play games. The interns can lock up tonight. [pc.name] wants to come over,”</i> she explains. The heart-emblazoned puazi all but tosses her tablet onto the counter, rushing into the back room and emerging moments later with a hastily donned jacket. One of the neck tassels is caught on her horns, and she quickly bats it off.");
 
-	output("\n\n<i>“Well then? Let’s hurry down!”</i> she exclaims, hooking an arm under yours and pulling you out the door. Eimear walks just ahead of you, hitting the button to start the elevator and opening the door when you arrive at the couple’s apartment. She immediately heads for the entertainment center, setting a small tablet onto a Girderbeam Inc. Gaming Panel. A 3d screen pops up, showcasing the intro video to what looks like a fighting game. A bounty of fighters clash while shouting catchphrases and abilities that all but drown each other out.");
+	output("\n\n<i>“Well then? Let’s hurry down!”</i> she exclaims, hooking an arm under yours and pulling you out the door. Eimear walks just ahead of you, hitting the button to start the elevator and opening the door when you arrive at the couple’s apartment. She immediately heads for the entertainment center, setting a small tablet onto a Girderbeam Inc. Gaming Panel. A 3D screen pops up, showcasing the intro video to what looks like a fighting game. A bounty of fighters clash while shouting catchphrases and abilities that all but drown each other out.");
 
 	output("\n\n<i>“We can use my account, I have all the characters unlocked and everything. I spent a probably unhealthy amount of time and money on this game a couple years ago, and then a bunch more during the Flare collaboration to get him unlocked for Gwen. He’s the only character she’s good at,”</i> she whispers the last bit as she shoves a controller into your hands. It lacks buttons, instead having two simple touchpads for your thumbs and two more for your index fingers where triggers and bumpers would be placed.");
 	
@@ -1107,7 +1117,8 @@ public function cfsGoLewdMassage():void
 		output("\n\n<i>“Let’s have a little fun, shall we?”</i> she asks teasingly.");
 	}
 
-	var doMale:Boolean = !pc.hasVagina() || (pc.hasCock() && rand(2) == 0);
+	//var doMale:Boolean = !pc.hasVagina() || (pc.hasCock() && rand(2) == 0);
+	var doMale:Boolean = pc.hasCock() && (pc.totalVaginas() <= pc.blockedVaginas());
 
 	if (doMale)
 	{
@@ -1131,15 +1142,16 @@ public function cfsGoLewdMassage():void
 	}
 	else
 	{
+		var p:int = pc.pickUnblocked();
 		output("\n\n");
 		if (pc.hasCock()) output("<i>“You didn’t think I’d forget about this, did you?”</i> she teases");
 		else if (pc.vaginas.length == 1) output("<i>“There’s always stress to be worked out down here,”</i> she jokes");
 		else output("<i>“I’m always surprised by the variety of body types we get here,”</i> she marvels");
 		output(", methodically squeezing your inner thighs. She lets two fingers slip between your folds, slowly circling the hole. You gasp as she slips inside, the penetration made all too easy by her natural lubricant.");
 
-		output("\n\nShe wastes no time, plugging your [pc.cunt] with");
-		if (pc.gapestVaginaLooseness() <= 1) output(" a single digit");
-		else if (pc.gapestVaginaLooseness() <= 3) output(" a pair of digits");
+		output("\n\nShe wastes no time, plugging your [pc.cunt " + p + "] with");
+		if (pc.vaginas[p].looseness() <= 1) output(" a single digit");
+		else if (pc.vaginas[p].looseness() <= 3) output(" a pair of digits");
 		else output(" her whole hand");
 		output(". Her skin is slick and warm, caressing your insides with delicate devoir. At first her movements are broad, searching for <i>“stress points”</i> along your inner walls and focusing in when her touch brings a moan to your lips. Her free hand massages your [pc.chest] as she works, splaying as she draws it down your midsection to repeat the movements.");
 
@@ -1173,4 +1185,187 @@ public function cfsGoLewdMassage():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function cfsHolidayShopping():void
+{
+	flags["CFS_HOLIDAY_SHOPPING"] = 1;
+	
+	clearOutput();
+	clearMenu();
+	author("Gardeford");
+	showName("\nGWEN");
+	showBust("CFS_GWEN");
+	
+	output("As you near carbonado, you notice that only Gwen is standing there to meet you. She's completely bundled up in a snug parka, looking warm enough to brave the planets chill. She waves as she sees you, shouting a greeting across the nearly empty thoroughfare.");
+	output("\n\n<i>“Hey [pc.name]! Emi was in a rush to set up for holiday videos, and I got stuck with a last second customer, so she went home early,”</i> You brace yourself as she jumps into an enthusiastic hug and kiss, wrapping around one of your arms.");
+	output("\n\n<i>“Since I have you alone for a bit, I figured I would poach you to help me pick out a Christmas gift,”</i> she tugs you toward the massive elevator tunnel.");
+	output("\n\n<i>“");
+	if(pc.isNice()) output("Why don't you just design an outfit for her?");
+	else if(pc.isMischievous()) output("Why not just cook up some sexy lingerie?");
+	else output("Can't you just make her an outfit or something?");
+	output("”</i> you ask on the way planetside.");
+	output("\n\n<i>“That's dumb. I can think up clothes for her any time during the year. Giving them as gifts would be cheap, plus,”</i> she looks around for a moment, surveying the totally empty elevator platform, <i>“I think I'd prefer her out of her clothes for Christmas.”</i>");
+	output("\n\nIt's hard to argue with the knowing look she gives you, so you reply with a chuckle. The platform comes to halt with a hydraulic hiss, rocking the two of you toward the door as you think about gifts. Come to think of it, you don't even know where you'll be shopping.");
+	output("\n\n<i>“I called a taxi when I got done closing up shop, it should be around here somewhere. There, I think!”</i> she points to a frost covered hover car, parked near the elevator base.");
+	
+	processTime(10+rand(6));
+	
+	addButton(0, "Next", cfsHolidayShoppingII, undefined, "", "");
+}
+
+public function cfsHolidayShoppingII():void
+{
+	clearOutput();
+	clearMenu();
+	author("Gardeford");
+	showName("\nGWEN");
+	showBust("CFS_GWEN");
+	
+	if(pc.isTaur())
+	{
+		output("<i>“Pff! We don't need a car, I can get us wherever you want to go, just point me in the right direction,”</i> you say, patting your rump invitingly. The coat wrapped puazi doesn't respond immediately, but turns away from the taxi with a blush in her cheeks.");
+		output("\n\n<i>“O-oh. That's not offensive or anything? I was afraid it would be like asking a Veletan if they were pregnant,”</i> she asks, stepping hesitantly in your direction.");
+		output("\n\n<i>“I wouldn't have offered if it was. Just hop on! It saves money, too,”</i> you insist. Relenting, Gwen lets you help her up onto your back, and you begin trotting off. She guides you down Uvetos main thoroughfare, passing a few people walking in the mostly deserted night streets. Some toss jealous looks in her direction, but by now she's fully invested in the experience, and the aura from your heat belt probably doesn't hurt.");
+		output("\n\nEventually, you wind up at a small mall complex. ");
+	}
+	else
+	{
+		output("The two of you climb in the back, and Gwen inputs the location and a credit chit into the machine. The car takes off immediately, moving through the icy streets at a brisk pace. The windows are so frosted over that you can't see anything beyond the blurred shapes of the occasional bundled-up passerby.");
+		output("\n\nThe taxi takes you to a mall complex, similar to the one on the skydeck. ");
+	}
+	output("This one lacks the flair and extravagance for appealing to alien tourists, however, containing simple shops and average mall attractions. With all the people you get to know it's relaxing to have a moment to shop around for nothing in particular. After an hour of aimless wandering, Gwen claps on your arm and rushes into a small crafts store.");
+	output("\n\n<i>“Oh! She'd love this!”</i> she exclaims, showing you a small box of cream colored cloth. Modest text on the boxes cover declares it to be super absorbent memory cloth. Gwen turns the box over to show you a neat little descriptive section. The cloth strips help liquid secreting races handle water sensitive objects.");
+	output("\n\n<i>“Isn't most of the stuff at your house waterproofed?”</i> you ask, raising an eyebrow. The bright eyed puazi harrumphs, dismissing your doubts.");
+	output("\n\n<i>“Of course it is, but Emi still gets annoyed when she leaves wet spots on the touchpads. Based on the little chart they have there I think these should last around a year for someone like her,”</i> The excited alien chatters on her way to the checkout counter. At the checkout Gwen also acquires a small box to place her gift in, wrapping it up in a single purple ribbon.");
+	output("\n\nThe two of you wander around the mall for a little more time, stopping for ice cream at a small parlor. The clerk gives you both extra since the night has been quiet, heaping a third scoop into your glasses. Your shopping partner beams as she eats, practically glowing bright as the exotic fruit dotting her sundae. When you're both finished she stands with a sudden urgency.");
+	if(!pc.isTaur())
+	{
+		output("\n\n<i>“Come on, Emi's probably wondering where we are,”</i> with her shopping done, Gwen pulls you back out to the taxi with single minded haste. She types her address into the auto-driven vehicles control panel, and it kicks into gear with a whirr of energy. You watch the blurry figures through the frost on the windows as the hover car pulls back onto Uveto's main streetways.");
+		output("\n\nSuddenly, the taxi slows and pulls to the side, leaving you parked at the roadside. There are no warning lights going off, so you look to your side and immediately find your answer. Your puazi shopping partner is paused in the act of hitting the taxi's emergency stop button, her shaking finger still jamming it down. Her breath is coming in deep, steamy blankets, and her eyes are already half glazed with uncomprehending lust as she turns in your direction.");
+	}
+	else
+	{
+		output("\n\n<i>“Come on! Emi's probably wondering where we are,”</i> With her shopping done, Gwen pulls you out of the mall, raring to go. You help her up onto your back, trotting back toward her apartment. Given that most of the walk was along the main street, you have a pretty good idea of where you're going. ");
+		output("\n\nSuddenly, you feel your riders hands loosen from their grip around your waist. They travel up over your [pc.belly] and squeeze your [pc.chest]. Her breathing grows ragged, and you can feel her body heat rising over the temperature from your heat belt. It seems you might have made a terrible miscalculation.");
+	}
+	
+	processTime(90+rand(30));
+	
+	addButton(0, "Next", cfsHolidayShoppingIII, undefined, "", "");
+}
+
+public function cfsHolidayShoppingIII():void
+{
+	clearOutput();
+	clearMenu();
+	author("Gardeford");
+	showName("\nGWEN");
+	showBust("CFS_GWEN_NUDE");
+	
+	if(!pc.isTaur())
+	{
+		output("<i>“Shorry [pc.name]... I jush need to shtop a bit. Would you mlem alngh mngh,”</i> she continues trying to talk as her tongue drives a wet path up your exposed neck, dotting it at random with sloppy kisses. She fervently nuzzles against you, savoring the touch of your " + (pc.skinType == GLOBAL.SKIN_TYPE_SKIN ? "flesh against her own" : "[pc.skinfurscales] against her skin") + ". As her tongue explores you her hands reach out to join them, feeling and squeezing your [pc.chest] and [pc.belly].");
+		output("\n\nWith some effort, you pull her from your neck and into a kiss. The instant your tongue passes her lips you feel a quaking shudder run through her whole body. Without even a moan, she melts into you, her muscles slackening save a few subtle tremors. Feverish heat pours from the neck of her jacket it, and you pull at the zipper like the ribbon on a freshly wrapped gift.");
+		output("\n\nUnderneath the coat she's wearing nothing but a sheer tank top, soaked with sweat. You can see her nipples poking against the fabric, looking painfully erect in the dim light. The sense stricken slut tries desperately to get her pants off, but her fists just clench around the belt when you move to help.");
+		if(pc.hasVagina())
+		{
+			output("\n\nYou forgo actually removing her pants for the moment, slipping your hand past hers with a fluid motion. The bristly hair on her crotch is utterly soaked with juices already, a hot, sticky flood that seeps through her panties as well. Wasting no time, you press forward over her cushiony mound, attacking her clit with two fingers. Great splashing schlicks emanate up as you work, pinching her engorged bud with your thumb.");
+			output("\n\nNow a half-noise escapes her. Not quite a moan, but a silent orgasm escaping in sound. She leans close, whispering the melodic gasp in your ear. With it something snaps to attention within her. She tugs at your [pc.gear] with manic comprehension, baring your crotch to the open air, and dives into it. Heated breathes wash over your mons, but with her awkward angle, knelt beside you on the car's cushion, she cant get at your [pc.vagina].");
+			output("\n\nContent to let her squirm for the moment, you re-assert your control over the situation. With one hand, you swiftly hike the prurient puazi's pants down over her bountiful bottom. You take an avaricious grope of one of her pillowy buttocks before giving the black-orange flesh a resounding smack. Shivers entirely independent of the quivering flesh run up her back, delivering the first real moan of the night to Gwen's lips.");
+			output("\n\n<i>“Ohhhhguh, more toushing, pleash,”</i> she cries. You oblige her desperation, kneading her supple ass-flesh in your hand. Her hungry cunt sucks at your fingers as you move them over the edge of her entrance, begging for you to fill her. Soft, wet pressure dabs at your [pc.clit] as the needful slut stretches her long tongue, lapping at you as she presses her face into your " + (pc.isNaga() ? "coiled tail" : "closed legs") + ". Each strained lick brings an increasing pleasure to your budding clit, and you feel your hips aching to buck closer to its source.");
+			output("\n\n<i>“You've been such a good girl, buying a gift for your girlfriend. A good girl like you deserves a reward,”</i> you purr, " + (pc.isNaga() ? "unfurling your coils" : "opening your legs") + " as you speak. Every time the words <i>good girl</i> leave your lips, you feel her ring tighten on the tips of your fingers. Even in the throes of her lust filled frenzy, her body responds to the praise.");
+			output("\n\nGwen dives into your [pc.vagina] like it's the only thing she needs in the world, making love to your crotch with zealous fervor. The gentle licks from before now send pulses of bliss through your body as her long, grooved tongue rubs over your [pc.clit]. Her hands grip your [pc.thighs] to pull herself more vigorously into her task. You lean back against the door, making it easier for the prurient puazi to get at her prize.");
+			output("\n\nFrom this angle you can see the unfocused yearning in the alien merchant's eyes. Now that she has what she wants, her frantic movements settle into a more measured pace. Her hands wander over your body, exploring your [pc.butt], your [pc.chest], and anywhere else she can reach without breaking contact with you for more than a second. Frequent orgasmic tremors travel up her spine, causing a mesmerizing jiggle in her bubble butt. Tasting you seems to be more than she needs to get off.");
+			output("\n\nFeeling your own impending orgasm, you grasp gwen by the hair, mashing her face into your [pc.vagina] and " + (pc.isNaga() ? "curling your tail around her head and neck" : "wrapping your legs around her head") + ". The ardor afflicted alien doesn't even struggle to breathe, quivering and moaning softly in your grasp. You hear intermittent spatters on the taxi's seat as she shudders, squirting hot femcum onto her feet.");
+			output("\n\nYou ride out your orgasm in silent euphoria, muscles clenching almost painfully taut. The puazi's tongue is like a superheated dildo inside you, its grooved surface setting off aftershocks long after you would've settled down normally. As the pleasure slowly fades, your strength joins it, and you droop into utter relaxation. Gwen lays with her head on your hip, still lost to the world. She breathes heavily, grinning absentmindedly and licking her lips.");
+		}
+		else
+		{
+			output("\n\nYou jerk her pants down with a few forceful tugs, and once you've conquered her mountainous thighs they slip off rather easily. Bountiful assflesh slaps onto the leather seat, splashing in feminine juices that had soaked through her clothes. The whole while your puazi partner licks at your neck and cheek, whispering beckoning moans in your ear. Wandering hands slip down to your crotch, meeting [pc.eachCock] along the way.");
+			output("\n\nAn excited gasp escapes her lips as her hands close around your [pc.cockBiggest], so full of longing that it sends a throbbing twinge of pleasure through your body. She's pulled away from her kisses, staring at your [pc.cockBiggest] with her tongue lolling from her mouth and a needful fire in her eyes. Before she can do anything drastic, you take her chin in your hand and force her eyes back to you.");
+			output("\n\n<i>“Ah ah, not so fast. You have another mouth for that. I'm not done with this one,”</i> you command. The fight leaves her in a heartbeat, though her hands still keep her anchored to your crotch. You pull her into a kiss that she reciprocates as best she can, her long tongue rubbing against your teeth and the roof of your mouth. One of her hands works your length, while she rubs the palm of the other over your [pc.cockHeadBiggest].");
+			output("\n\nA soft moan escapes your lips, goaded by her ministrations, and you feel her pause for a moment. Shudders run through her body as she cums, urged on by the simple sound of your pleasure. She manages to lift herself to face you, sitting on your lap. The heavy heat of her body seeps into you, only growing in intensity as you shrug out of your [pc.gear].");
+			output("\n\n[pc.EachCock] throb" + (pc.totalCocks() > 1 ? "s" : "") + " needfully as the bristly hair around her cunt brushes against your length. You line up your [pc.cockHeadBiggest] to her cunt and massage her butt and thighs in an attempt to coax her to relax. She doesn't need much convincing. An enormous sigh escapes her lips as she sinks down onto your [pc.cockBiggest], eyes rolling back and cheeks flush with pure, natural lust.");
+			output("\n\nIt takes you only a few seconds to realize that this isn't going to work. While perfectly willing and eager, your rider is in no condition to move with any effort. Perhaps if you were a puazi, and she a human, simply sitting like this would be enough to have you filling her womb to the brim. For now, though, you'll need to take the lead.");
+			output("\n\nThe ardorous alien offers no resistance as you swing her to the side, letting her down onto the seat and repositioning to be on top. Your task is made slightly awkward by the fact that her legs clamp around your waist, not letting your [pc.cockBiggest] leave her bliss blazed cunt for a second. Before you get to work, you pull up the sheer, sweat soaked top that “covers” her breasts, letting the DD-cups flop free in the open air. Stiff, copper colored nipples pop up, released from their fabric prisons.");
+			output("\n\nYou begin to slowly thrust into the prurient puazi, but with her frenzied biological urges casting their spell her reaction is astounding. Her body tenses, and she hugs tightly to you, only to push away, gritting her teeth as a moan attempts to escape her lips. It comes in loud grunts, bursting through anything that was left of her tattered inhibitions. You glance up as she pushes you, noticing that the frosty coating on the glass is beginning to melt.");
+			output("\n\n<i>“Careful, If you're any louder the people outside might... might stop to look...”</i> you begin, trailing off as you return your attention to Gwen. Her eyes are fully glazed over, taking heavy breaths that set her stomach and breasts to jiggling. She smiles, loving and uncomprehending. Any stranger off the streets of Uveto could look in the car now, and this overstimulated slut would let you breed her in front of every single one.");
+			output("\n\nAnd if you don't find a way to quiet her down they just might. You gather up spit in your mouth, leaning over the lust-drunk lady and letting it drip right down. Her moans still, and her eyes lock on your mouth, still unfocused but somehow uncomfortably aware of what's happening. She opens her mouth wide, tongue lolling out to reach for your saliva like it's the only sustenance she needs in the world.");
+			output("\n\nHer insides clench tightly around your [pc.cockBiggest] as the first drops hit her tongue, and her eyes roll back into her head. You break off the trail, letting the whole mass of spit drop into her mouth. She gives a half choked cry, her back arching as her legs shoot out, kicking the door behind you. Tremors run through her thighs as she tries and fails to re-secure herself around your waist. She doesn't need to.");
+			output("\n\nYou take as firm a grip as you can gather on her sweat-slicked hips and begin bucking into her, pressing close and kissing her in the same series of motions. Slick splashes sound from between your legs as superheated femcum spurts out onto [pc.eachCock], creating a resounding slap as your " + (pc.balls > 0 ? "[pc.balls]" : "[pc.hips]") + " slap against her expansive buttocks. Pulling away from the kiss, you steady one of her quaking breasts, lavishing the stiff nipple with attention. The rigid bud is a stark contrast to the pillowy flesh that surrounds it, offering a token resistance as you press your face into the bright orange titmeat.");
+			output("\n\nGwen's instincts seem divided, with one hand pushing and the other pulling you into a tighter embrace. She seems to sense your impending orgasm before you do, grasping your [pc.buttcheeks] with both hands, and pulling you further inside her than her legs can pull alone. Her chest heaves, almost on the verge of hyperventilating as she stares through you. Her blurry gaze settles on your throbbing member.");
+			output("\n\nOnce she has you locked in you realize that it's too late to prevent what's coming. You struggle to buck your hips, to move in any meaningful fashion, but the impulse bound puazi clutches tight, sealing you in the perfect position to pour your seed into her womb. Aching bolts of pleasure send shivers through your body as you consign yourself to your fate. The pressure built up inside you refuses to be fully contained.");
+			output("\n\nYour partner lets out an elated gasp as a spurt of [pc.cum] gushes from [pc.cockBiggest], the herald of what's to come. You grit your teeth as the full flood follows, ");
+			if(pc.cumQ() < 100) output("spurting a few extra shots directly into her womb");
+			else if (pc.cumQ() < 1000) output("filling her womb to the brim");
+			else if(pc.cumQ() < 5000) output("packing her womb and sending a few pressurized spurts back onto the seat");
+			else output("feeling the surges of [pc.cum] fill her instantly before gushing back out and spreading over the seats beneath you");
+			output(". With the last of your strength you pull away, leaving a last jet of [pc.cum] on her hair covered pubic mound.");
+			output("\n\nWith that you collapse backward. Gwen wets her fingers in her cum-soaked fuck-hole, bringing a handful of [pc.cum] up to her mouth. She tries to suck the sticky mess from her fingers, but not before her twitching muscles paint [pc.cumColor] streaks on her cheeks.");
+		}
+		output("\n\nYou recover first, hitting a button to restart the taxi's previous path. You clean up as best as you can on the way, but you doubt there's any way to disguise the smell. This taxi will need a thorough cleaning. Gwen flops around drunkenly as you redress, and doesn't fight when you help her slip loosely back into her clothes. She still hasn't recovered by the time you make it back to her apartment, so you half support half carry her to the door.");
+	}
+	else
+	{
+		output("<i>“Shorry [pc.name]. Can we pull over for a shecond. I jusht wanna hagl mngm mllmm,”</i> she continues talking even as her tongue trails a wet line up your neck, punctuated by sloppy kisses. You feel your own body heat rise in response to hers, and struggle to maintain your composure as you walk.");
+		output("\n\n<i>“Don't worry Gwen, we've just got a minute or two more till we reach your apartment. We can take care of it when we get there. Besides, it's too cold to get naked, right?”</i> You do your best to sound confident, and mistakenly take a look over your shoulder. Your alien passenger is halfway through shrugging out of her coat, with nothing underneath it except a sheer, sweat-soaked tank top that clings to every curve of her chubby figure. Her coppery nipples stand in stark relief against the fabric, straining it with every breath. She stares at you with a dwindling comprehension of your words.");
+		output("\n\n<i>“No naked, don wanna freeze,”</i> she mumbles, slipping her arms back into the coat. She makes no move to zip it, instead turning and lying flat on your back. Her warmth seeps into your [pc.skinFurScales], and you feel ");
+		if(pc.isHerm()) output("your twin sexes twitch");
+		else if (pc.hasCock()) output("[pc.eachCock] twitch" + (pc.totalCocks() == 1 ? "es" : "") + "");
+		else output("[pc.eachVagina] twitch" + (pc.totalVaginas() == 1 ? "es" : "") + "");
+		output(" in response.");
+		output("\n\n<i>“But yooouuuu're naked here,”</i> she whines. A pleasurable chill runs up your spine as she spreads your [pc.asscheeks]" + (pc.hasTail() ? ", and moves your [pc.tail] out of the way with her chin" : "") + ". Before you can do anything to answer her, you feel a wet, slippery heat on your [pc.ass]. You stumble, catching yourself at the last moment and casting a sinfully short glance over your shoulder. You can't see much of the puazi beyond the back of her head bobbing in time with the kisses on your backside, but you also get a perfect view of her delicious derriere as she grinds against you. The motion leaves wet splotches of femcum through her pants, and you can see tight, orgasmic shudders run through her at odd intervals.");
+		output("\n\n<i>“Gwen, There are other people on the street. We've got to make it home first,”</i> you argue halfheartedly. If she hears you at all through her lust addled fervor, she chooses to ignore your warning. Instead, she dives face first between your [pc.asscheeks], greedily lapping at your [pc.asshole] with her grooved tongue. Each brush of her lips sends a stronger signal to your brain. Stop walking and <b>Let. Her. Lick.</b>");
+		output("\n\nYou muscle through the command, teetering forward even as your body commands you to stop. With each step you feel her weight more intensely, feel her jutting nipples grinding against your back. You begin to fantasize about what she could do without your movement making it more difficult. Where she could stick that long tongue. Without realizing it, you've come to a complete stop in the middle of the sidewalk, a handful of onlookers staring in disbelief.");
+		output("\n\n<i>“We'll be fine, She had a little too much to drink and I need to get her back ho-Oh-mmmm,”</i> you begin to make an excuse, your words transforming into a gasping moan as Gwen presses harder into you, her tongue working its way deep into your [pc.asshole]. ");
+		if(pc.hasCock())
+		{
+			output("\n\nThe striated organ rubs relentlessly against your prostate, and you feel [pc.eachCock] instantly throb into full hardness, slapping your undercarriage. The feverish puazi's hands leap into action, caressing your [pc.cockBiggest] from tip to hilt. " + (pc.balls > 1 ? "One hand hefts your [pc.balls] till they rub against her face, and you feel every crest of molten air as she inhales your essence, breathing your musk like it could replace oxygen." : "") + "");
+			output("\n\nYou struggle to form thoughts. 'No. don't! There are people watching', But these rational reactions are swiftly beaten away by the baser impulses. 'Feel good. More, <b>Cum!</b>' Your eyes roll back, and you grit your teeth as the last command reaches your sex. Spurts of [pc.cum] shoot from [pc.eachCock], ");
+			if(pc.cumQ() < 100) output("spattering the street with [pc.cumColor] dots");
+			else if(pc.cumQ() < 10000) output("painting [pc.cumColor] streaks on the sidewalk");
+			else output("painting the sidewalk [pc.cumColor]");
+			output(". Your legs buckle, and you collapse into your own fluids.");
+		}
+		else
+		{
+			output("\n\nThe striated organ writhes like a living thing inside you, and Gwen's hot breath on your [pc.vagina] only serves to expedite your pleasure. Her hands jump into action as you gasp in bliss, one masturbating your [pc.clit] with mindless furor. The other holds your lips open long enough for her to lower her head a little more. Lightning lances of lust dart through your rump as her tongue retracts from your [pc.asshole], only to dive into your [pc.vagina] with greater energy. She doesn't even attempt to breath as she makes love to your sex.");
+			output("\n\nYou struggle to form thoughts. 'Wait. This isn't the time. So many people watching', But all these rational thoughts swiftly lose out to the baser impulses. 'So good. Maybe if I just <b>Cum</b> a little bit!' Your eyes cross, and you grit your teeth as the last command hits [pc.eachVagina]. ");
+			if(pc.girlCumQ() < 100) output("Droplets");
+			else if(pc.girlCumQ() < 1000) output("Squirts");
+			else output("A flood");
+			output("\n\n of [pc.femCum] run down your legs and onto the street below. Your legs buckle, and you collapse into a puddle of your own juices.");
+		}
+		output("\n\nTime seems to pass in slow motion for a while, as Gwen continues to lick and prod at you, prolonging the flood of pleasure to your brain. People pass by you on the street, and you catch a couple words of encouragement.");
+		output("\n\n<i>“Stay strong " + pc.mf("dude", "gal") + ", having a puazi girlfriend is tough,”</i> one man says as he passes.");
+		output("\n\nMiraculously, no one takes a pass at either you or Gwen, and you recover enough to move in what seems like an hour, but your codex informs you to be only about five minutes. Gwen is all but passed out on your back, mumbling about dessert. You struggle to your feet and walk shakily for the last minute it takes you to reach the apartment, gently helping gwen down off your back so she doesnt hurt herself.");
+	}
+	
+	processTime(60+rand(30));
+	pc.orgasm();
+	
+	addButton(0, "Next", cfsHolidayShoppingIIII, undefined, "", "");
+}
+
+public function cfsHolidayShoppingIIII():void
+{
+	clearOutput();
+	clearMenu();
+	showCfsHangouts();
+	
+	output("<i>“Hey, what took you guys so lo- oh! Ooh,”</i> Eimear says as she opens the door for you. Gwen giggles and teeters over into her arms.");
+	output("\n\n<i>“Emi, heehee. Emi Emi,”</i> she mumbles, nestling into the taller woman's cleavage.");
+	output("\n\n<i>“Yes, did you have a tough time shopping? Did you even make it to the shopping?”</i> she mocks, rubbing the chubby puazi's back.");
+	output("\n\n<i>“Don't worry, we made it that far. This was all on the ride back,”</i> You assure her. She tosses a sympathetic smile your way.");
+	output("\n\n<i>“Well, I'm glad it was you and not some stranger. That'd be the last thing I want for Christmas. Thank you,”</i> She says, stepping forward and planting a kiss on your cheek.");
+	output("\n\n<i>“Any time, she's more than enough gift for me,”</i> you laugh.");
+	output("\n\n<i>“Emi </i>Emi<i>,”</i> adds Gwen, muffled by tit.");
+	output("\n\n<i>“Right, let's get you inside and get you something to drink. Feel free to stop by when we're a little less occupied, [pc.name],”</i> Eimear smiles, leading her lust addled lover back into the house.");
+	output("\n\nYou turn, contemplating where to go next. Thoughts of other Christmas activities fill your head, and you start back out onto the chilly Uvetan streets.");
+	
+	processTime(20+rand(10));
+	
+	currentLocation = "UVI H34";
+	addButton(0, "Next", mainGameMenu, undefined, "", "");
 }

@@ -9,10 +9,6 @@ public function kiroIsCrew():Boolean
 {
 	return false;
 }
-public function shekkaIsCrew():Boolean
-{
-	return false;
-}
 public function syriAtTheFreezer():Boolean
 {
 	return false;
@@ -31,4 +27,9 @@ public function PCShipModel():String
 {
 	// 9999 return ActivePlayerShip.Model;
 	return "Z14";
+}
+
+public function hasCapitalShip():Boolean
+{
+	return false;
 }

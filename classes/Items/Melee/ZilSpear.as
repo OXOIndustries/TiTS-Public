@@ -12,6 +12,7 @@ package classes.Items.Melee
 	 */
 	public class ZilSpear extends ItemSlotClass
 	{	
+		//Level 6 (Rare). Balance 2.0
 		public function ZilSpear() 
 		{
 			this._latestVersion = 1;
@@ -27,15 +28,15 @@ package classes.Items.Melee
 			
 			this.description = "a zil champion’s assegai";
 			
-			this.tooltip = "A short stabbing spear, with a broad, leaf-shaped tip made of flint. A favored weapon in zil hunting parties, the blade usually envenomed.";
+			this.tooltip = "A short stabbing spear, with a broad, leaf-shaped tip made of some unclassified, ultra-hard material. A favored weapon in zil hunting parties, the blade usually envenomed.";
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "stab";
 			attackNoun = "thrust";
 			
-			this.basePrice = 1000;
-			this.attack = 0;
-			baseDamage.kinetic.damageValue = 6.0;
+			this.basePrice = 4700;
+			this.attack = 16;
+			baseDamage.kinetic.damageValue = 20.0;
 			baseDamage.addFlag(DamageFlag.PENETRATING);
 			
 			this.version = _latestVersion;

@@ -1,4 +1,6 @@
-﻿public function saenHeader(nude:Boolean = false):void
+﻿// milking scene: https://docs.google.com/document/d/1w3zwGo1yy_OxUtgkmmsRRUdPBrZE48G3G-c4FEIyq7s/edit#
+
+public function saenHeader(nude:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
@@ -143,7 +145,9 @@ public function saenAtTheBarFirstTimeEvent():void
 {
 	flags["SAEN MET AT THE BAR"] = 1;
 
-	saenHeader();
+	clearOutput();
+	author("Savin");
+	showName("\nSAENDRA");
 	showBust(saendraBustDisplay(),"VALERIA");
 
 	output("As you step into Anon’s, you hear a sharp whistle over the low din of conversation, followed by a voice calling <i>“Hey, hero!”</i> Searching the dark bar room, you eventually spot a familiar figure among the patrons: the red-headed freighter captain you rescued from the Black Void not all that long ago. Surprised to see the fiery captain again, you make your way over to her table. She makes a gesture to the bartender, and as you take a seat across from her, a pair of steins are dropped off: yours full of top-shelf booze, hers full of some salty-smelling white cream. ");
@@ -258,6 +262,11 @@ public function saendrasBarMenu():void
 		addDisabledButton(3, "Kiss Her", "Kiss Her", "Maybe if she liked you more and stuff you could totally make out and kiss her on the lips and stuff and things.")
 	}
 
+	if (flags["SAENDRA_FEED_MILK"] == undefined) addButton(4, "Her Drink", askSaendraAboutDrink, undefined);
+	else if (pc.isLactating() && pc.biggestTitSize() >= 2 && saendraAffection() >= 50) addButton(4, "Feed Her", feedSaendraYourMilk, undefined, "Feed Her", "Give Saendra some of your own sweet cream.");
+	else if (saendraAffection() >= 50) addDisabledButton(4, "Feed Her", "Feed Her", "You need to have at least B-cup breasts and be lactating for this.");
+	else addDisabledButton(4, "Feed Her", "Feed Her", "Maybe you should get to know her better before trying this.");
+
 	if (flags["SAENDRA_XPACK1_STATUS"] == 5)
 	{
 		// talk about rescue
@@ -272,6 +281,11 @@ public function saendrasBarMenu():void
 	{
 		// followup about rescue
 		addButton(5, "Pirates", sx1TalkPirates, undefined, "The Pirates", "Follow up with Saendra about the pirates. You deserve answers after all of this.");
+	}
+	// Techie Hotfix
+	if ((flags["SAENDRA_XPACK1_STATUS"] == 9 || flags["SAENDRA_XPACK1_STATUS"] == 10) && flags["SAENDRA_XPACK1_RESCUE_SHOTGUARD_STATE"] != undefined && flags["SAENDRA_XPACK1_RESCUE_TECHGUARD_STATE"] == undefined)
+	{
+		addButton(6, "Tech Guard?", sx1TalkTechGuardFix, undefined, "Ausar Engineer?", "Ask Saendra about what happened to the techie guard during your run with her on Deck 92.");
 	}
 
 	addButton(14, "Leave", leaveSaendraAtTheBar, undefined);
@@ -390,26 +404,27 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 	addButton(1, "Hobbies", saendraHobbies);
 	addButton(2, "Valeria Work", saendraValeriaWork);
 	addButton(3, "Her Race", saendraHerRace);
+	addButton(4, "Her Arm", saendraHerArm);
 	
-	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(4, "Phoenix Status", saendraPhoenixStatus);
-	else addDisabledButton(4, "Phoenix Status", "Phoenix Status", "You’ve already talked to Saendra about the status of her ship today.");
+	if (days != flags["SAENDRA TALK PHOENIX STATUS"]) addButton(5, "PhoenixStatus", saendraPhoenixStatus, undefined, "Phoenix Status", "Check on the status of Saendra’s ship.");
+	else addDisabledButton(5, "PhoenixStatus", "Phoenix Status", "You’ve already talked to Saendra about the status of her ship today.");
 
 	if (flags["SAENDRA_XPACK1_CREDITOFFER"] == 1)
 	{
-		if (pc.credits >= 20000) addButton(5, "OfferCreds", sx1OfferCredits, undefined, "Offer Credits", "Offer to pay for Saendra’s ship to be repaired. You may end up in the hole for twenty grand or so, but you’ll make her very, very happy.")
-		else addDisabledButton(5, "OfferCreds", "Offer Credits", "You figure you’ll need about twenty grand to get Saendra back into space....")
+		if (pc.credits >= 20000) addButton(6, "OfferCreds", sx1OfferCredits, undefined, "Offer Credits", "Offer to pay for Saendra’s ship to be repaired. You may end up in the hole for twenty grand or so, but you’ll make her very, very happy.")
+		else addDisabledButton(6, "OfferCreds", "Offer Credits", "You figure you’ll need about twenty grand to get Saendra back into space....")
 	}
 	else
 	{
-		if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(5, "OfferCreds", saendraOfferCredits, undefined, "OfferCreds", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
-		else if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] != undefined) addDisabledButton(5, "Offer Credits", "Offer Credits", "You’ve already offered her credits, but she politely declined.");
-		else addDisabledButton(5, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she’s been having in a little more detail, you could offer to help her out with some credits.");
+		if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] == undefined) addButton(6, "OfferCreds", saendraOfferCredits, undefined, "OfferCreds", "A loader of a few thousand credits would go a long way towards helping Saendra get back on her feet...");
+		else if (flags["SAENDRA CREDITS TALK AVAILABLE"] != undefined && flags["SAENDRA OFFERED CREDITS"] != undefined) addDisabledButton(6, "Offer Credits", "Offer Credits", "You’ve already offered her credits, but she politely declined.");
+		else addDisabledButton(6, "OfferCreds", "Offer Credits", "Maybe if you can find out about the problems she’s been having in a little more detail, you could offer to help her out with some credits.");
 	}
 	
 	if (!saendra.hasCock())
 	{
-		if (flags["SAENDRA TIMES SEXED"] != undefined) addButton(6, "Futafication", saendraFutification, undefined, "Futafication", "Ask Saendra if she’s ever thought about growing a dick.");
-		else addDisabledButton(6, "Futafication", "Futafication", "Get a little more intimate with Saendra and then you might be in a position to ask about her lack of a wang-doodle.");
+		if (flags["SAENDRA TIMES SEXED"] != undefined) addButton(7, "Futafication", saendraFutification, undefined, "Futafication", "Ask Saendra if she’s ever thought about growing a dick.");
+		else addDisabledButton(7, "Futafication", "Futafication", "Get a little more intimate with Saendra and then you might be in a position to ask about her lack of a wang-doodle.");
 	}
 	
 	addButton(14, "Back", saendrasBarMenu);
@@ -417,7 +432,9 @@ public function talkToSaendraAboutStuffAndThings(doOutput:Boolean = true):void
 
 public function saendraHowsWork():void
 {
-	saenHeader();
+	clearOutput();
+	author("Savin");
+	showName("\nSAENDRA");
 	showBust(saendraBustDisplay(),"VALERIA");
 	output("<i>“So, how’s work,”</i> you ask, remembering the strained conversation between her and Valeria when you first met her here.");
 	
@@ -468,7 +485,9 @@ public function saendraHobbies():void
 
 public function saendraValeriaWork():void
 {
-	saenHeader();
+	clearOutput();
+	author("Savin");
+	showName("\nSAENDRA");
 	showBust(saendraBustDisplay(),"VALERIA");
 	output("As you chat a bit with Saen, you notice that Valeria’s holo-avatar is sitting out on her wrist, legs dangling over the edge as she flips through what looks like a virtual book. You ask her what she’s got there, which startles the A.I. girl enough that she nearly falls over. ");
 	
@@ -543,7 +562,9 @@ public function saendraParents():void
 
 public function saendraHerArm():void
 {
-	saenHeader();
+	clearOutput();
+	author("Savin");
+	showName("\nSAENDRA");
 	showBust(saendraBustDisplay(),"VALERIA");
 	output("<i>“So, mind telling me a little about that chrome?”</i> you ask, nodding to her cybernetic arm. ");
 	
@@ -553,7 +574,7 @@ public function saendraHerArm():void
 	
 	output("\n\nValeria shimmers to life on her wrist, waving at you.");
 	
-	output("\n\n<i>“... built a telescoping probe out of some old mil-spec hardware. Good for fuckin’ and fixin’. Oh, and a flamethrower. Just some old fuel cells and a lighter, but good enough to burn the next pirate that wants a piece of me! I’d show you, but, uh, I don’t want to burn the place down. But it totally works!”</i>");
+	output("\n\n<i>“...built a telescoping probe out of some old mil-spec hardware. Good for fuckin’ and fixin’. Oh, and a flamethrower. Just some old fuel cells and a lighter, but good enough to burn the next pirate that wants a piece of me! I’d show you, but, uh, I don’t want to burn the place down. But it totally works!”</i>");
 	
 	output("\n\n<i>“Right. So about that probe...?”</i>");
 	
@@ -567,8 +588,7 @@ public function saendraHerArm():void
 	processTime(5);
 	saendraAffection(5);
 
-	clearMenu();
-	addButton(0, "Next", talkToSaendraAboutStuffAndThings, false);
+	removeButton(4);
 }
 
 public function saendraPhoenixStatus():void
@@ -622,7 +642,7 @@ public function saendraPhoenixStatus():void
 	processTime(3);
 	saendraAffection(5);
 
-	removeButton(4);
+	removeButton(5);
 }
 
 public function saendraOfferCredits():void
@@ -648,7 +668,7 @@ public function saendraOfferCredits():void
 	processTime(2);
 	saendraAffection(5);
 
-	removeButton(5);
+	removeButton(6);
 }
 
 public function saendraFutification():void
@@ -759,11 +779,11 @@ public function saendraDoCockuMenu(triedThrobb:Boolean = false):void
 	clearMenu();
 	if (pc.credits >= 2000)
 	{
-		addButton(0, "Okay", saendraOkayLetsDoItCredits, undefined, "Okay", "Agree to pay the fees required to get Saendra set up with a cock.");
+		addButton(0, "Okay", saendraOkayLetsDoItCredits, undefined, "Okay", "Agree to pay the fees required to get Saendra set up with a cock.\n\nCost: 2,000 credits");
 	}
 	else
 	{
-		addButton(0, "Okay", saendraBuhuImPoor, undefined, "Okay", "Agree to pay the fees required to get Saendra set up with a cock.");
+		addButton(0, "Okay", saendraBuhuImPoor, undefined, "Okay", "Agree to pay the fees required to get Saendra set up with a cock.\n\nCost: 2,000 credits");
 	}
 
 	if (!triedThrobb)
@@ -789,24 +809,19 @@ public function saendraOkayLetsDoItCredits():void
 
 	if (flags["SAENDRA OH GOD IM POOR"] == undefined)
 	{
-		pc.credits -= 2000;
-
 		output("<i>“Sounds good. Let’s do it.”</i>");
-
 		output("\n\nSaen flashes you a grin, her prior nervousness evaporating behind her usual bravado. <i>“Alright. I’ll meet you over there, hero. Don’t keep me waiting!”</i> With that, she slips out of the booth, grabs her jacket from over her seat, and pops out of the bar. ");
 	}
 	else
 	{
 		output("<i>“Hey, I finally got the money!”</i> you announce.");
-		
 		output("\n\nSaen blinks. <i>“Huh? Didya win a bet or something, hero?”</i>");
-		
 		output("\n\n<i>“No, for getting you, you know... what we talked about.”</i> ");
-		
 		output("\n\n<i>“...Oh. I guess I did agree to that, huh? Alright, if you got the money, I’m still willing to give it a shot, [pc.name]. Meet ya at Dark Chrysalis?”</i>");
-		
 		output("\n\nYou nod as Saen packs up and pops on out of the bar, reaching back and brushing your cheek with one of her fluffy tails as she goes. ");
 	}
+	
+	pc.credits -= 2000;
 
 	processTime(1);
 	flags["SAENDRA GONNA GO GET A COCK"] = 1;
@@ -979,7 +994,7 @@ public function saenAndSeraWatch():void
 	
 	output("\n\nSera huffs. <i>“Fine. But only a quarter off for one cock-sucker.”</i>");
 	
-	output("\n\nSaendra gives you a reproachful look... just before Sera grabs her head and face-plants her on the counter. <i>“Hope you’re ready for a five hundred credit peepshow, meat,”</i> Sera says, walking around the counter and planting her legs behind Saendra’s upturned ass. The smooth, purple-hued hand not holding the fluffy privateer down reaches around and slaps her ass, fingers sinking into the halfbreed’s squeezable booty. ");
+	output("\n\nSaendra gives you a reproachful look... just before Sera grabs her head and face-plants her on the counter. <i>“Hope you’re ready for a five hundred " + (isAprilFools() ? "dogecoin" : "credit") + " peepshow, meat,”</i> Sera says, walking around the counter and planting her legs behind Saendra’s upturned ass. The smooth, purple-hued hand not holding the fluffy privateer down reaches around and slaps her ass, fingers sinking into the halfbreed’s squeezable booty. ");
 	
 	output("\n\n<i>“So where do you want it, slut?”</i> Sera sneers, her lengthy, blue-purple prick flopping into the crack of Saen’s ass.");
 	
@@ -1276,7 +1291,9 @@ public function saendraSexTalk():void
 
 public function takeAGoodLookAtSaendra():void
 {
-	saenHeader();
+	clearOutput();
+	author("Savin");
+	showName("\nSAENDRA");
 	showBust(saendraBustDisplay(),"VALERIA");
 	output("Captain Saendra en Illya is a six-foot-three halfbreed, a clear mix of ausar and kaithrit physiology. She’s humanoid, tall and lanky, with just enough visible muscle to give her a chiseled appearance, harder than your average gal. Her face is human enough, though she sports a pair of green slitted eyes, distinctly feline, and a pair of overly tall, perky gray cat ears that adorn the top of her head. Both ears are pierced with rows of small silver studs from base to tip. Her right arm is coated up to the elbow in a thin layer of soft gray fur, and her fingers are tipped with tiny curved claws. Her legs are long and powerful, furred from the knee down, and ending in a pair of soft, padded soles. A pair of long, bushy tails swish gaily behind her, coiling around her with a kaithrit’s prehensile dexterity. Saen’s facial features are feminine, with a smattering of pale freckles accentuating her cute little nose, though a trio of faint scars on her right cheek and brow belie a history of violence. A long, fiery-red ponytail hangs all the way down her back to her waist, bound by a pretty blue bow. She has flared hips and a soft, squishy butt; above it, you can just see the outline of a holster, loaded with her archaic Hammer pistol. She’s wearing a low-cut white blouse under a black vest, and a pair of dark blue pants held up by a belt sporting all manner of gadgets, as well as a pair of suspenders that hug her breasts nicely. She’s wearing a leather choker around her neck, from which dangles a pair of long silk strips that hang to her waist, each tipped with a golden bell. Saen’s left arm is visibly mechanical from the elbow down, now sporting a wrist-mounted display screen and holo-projector on which flutters her Artificial Intelligence companion. Valeria’s holo-avatar smiles warmly at you.");
 	
@@ -1313,7 +1330,7 @@ public function saendraProbesYourCuntWithHerMechaArm():void
 		output("\n\nAs you suck Saen’s metal tentacle, she kindly returns the favor. Your entire body convulses as her hot breath sears across your bare cockflesh, making you tremble with anticipation as she nuzzles up against your shaft. Her bestial tongue flickers across the base of your shaft, coiling around it with slow, languid ease. The halfbreed grins up at you as she massages your prick with her rough alien tongue, slathering it just as you’re doing to her probe before releasing you. <i>“Don’t worry");
 		if (pc.tallness < (saendra.tallness - 6)) output(" little");
 		else output(" big");
-		output(" fella,”</i> Saen coos, kissing the tip, <i>“we’ll convince [pc.name] to ram you up my ass and fuck me silly next time. ‘Til then, here’s something to remember me by....”</i>");
+		output(" fella,”</i> Saen coos, kissing the tip, <i>“we’ll convince [pc.name] to ram you up my ass and fuck me silly next time. till then, here’s something to remember me by....”</i>");
 		output("\n\nSaen cups her hefty breasts and presses them around your cock. Your eyes roll back into your head as she starts to titfuck you, moving her entire body up and down your shaft with practiced speed, enveloping every inch of your [pc.cock] in warm, soft titflesh with each and every motion. You groan in her grasp, reveling in the sensation of her magnificent rack worshipping your cock as it smears thick stains of pre through the wide valley of her cleavage.");
 	}
 	else
@@ -1360,10 +1377,8 @@ public function takeSaensStrappedyDappedyCock():void
 {
 	//Strapon buttsecks. Not available after FutaSaen rises.
 	saenHeader(true);
-	var selCunt:int;
-	
-	if (pc.cuntThatFits(33.5) >= 0) selCunt = pc.cuntThatFits(33.5);
-	else selCunt = 0;
+	var selCunt:int = pc.cuntThatFits(33.5);
+	if (selCunt < 0) selCunt = 0;
 
 	output("Dangling on the side of Saen’s nightstand is a very tempting toy indeed, a thick, footlong vibrator hooked onto a set of sheer black leather straps. Following your gaze, Saen gets a big grin on her face as she reaches over and grabs the oversized strapon.");
 	if (pc.hasCock()) output(" <i>“Wanna see if you can take as good as you can get?”</i> Saen teases, grabbing your [pc.cock] and giving it a few playful tugs.");
@@ -1584,7 +1599,7 @@ public function saendraTakesItUpDaButte():void
 
 	pc.orgasm();
 
-	output("\n\nYou carry on, panting and groaning as you hump away, fucking like mad until every last drop of your orgasmic seed has coated Saendra’s thighs, leaving her groin a sticky [pc.cumColor] mess. She grins, rubbing your thick spooge in before licking it off her fingertips, moaning in satisfaction. <i>“Oh yeah, that’s good... god, I don’t just get </i>covered<i> in cum nearly enough. What do you say, hero? Wanna let me jerk your [pc.cock "+ selCock +"] off again and again ‘til I’m just dripping [pc.cumColor]?”</i>");
+	output("\n\nYou carry on, panting and groaning as you hump away, fucking like mad until every last drop of your orgasmic seed has coated Saendra’s thighs, leaving her groin a sticky [pc.cumColor] mess. She grins, rubbing your thick spooge in before licking it off her fingertips, moaning in satisfaction. <i>“Oh yeah, that’s good... god, I don’t just get </i>covered<i> in cum nearly enough. What do you say, hero? Wanna let me jerk your [pc.cock "+ selCock +"] off again and again till I’m just dripping [pc.cumColor]?”</i>");
 
 	// [Anal] [Tail Wank]
 	clearMenu();
@@ -1777,7 +1792,7 @@ public function saendraTailcockFuck():void
 	output("\n\nYou shudder as you feel the wet fur and soft titflesh slide around your [pc.tailCock]. It gets even better when she finally begins to use her tails in earnest, the furry appendages making your [pc.tailCock] feel like it’s in a very long, very soft onahole!");
 
 	output("\n\nDetermined to get her off too, you spit on the fingers of one hand, then reach down and roughly shove them into her ass and pussy without warning.")
-	if (saendra.hasCock()) output(" With your other hand, your grab her kitty dick, already hard, and spit into it before pumping up and down.");
+	if (saendra.hasCock()) output(" You spit into your other hand, using it to grab her already hard kitty dick and pump the turgid mass up and down.");
 
 	output("\n\nSaendra gasps, her mouth falling open in a perfect ‘O’ of pleasure and surprise. <i>“Oh you little-”</i> is all she manages to get out before you start thrusting your fingers in and out of her sodden box and tight ass")
 	if (saendra.hasCock()) output(" and jerking her spiny cock off")
@@ -1800,7 +1815,7 @@ public function saendraTailcockFuck():void
 
 	pc.orgasm();
 	saendra.orgasm();
-	applyCumSoaked(pc);
+	pc.applyCumSoaked();
 	processTime(30+rand(15));
 	clearMenu();
 	addButton(0, "Next", saendraPostFuckscene);
@@ -1861,7 +1876,7 @@ public function newFutaSaendraScenes():void
 	output(" as she rubs the lube in, fingering your [pc.vagOrAss " + x + "] and spreading the shockingly cold stuff around.");
 
 	output("\n\n<i>“Oooh, that’s good,”</i> Saen purrs. <i>“");
-	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass ‘til you scream");
+	if(pc.buttRating() <= 5) output("I love tight little butts. Gonna smack this ass till you scream");
 	else if(pc.buttRating() <= 10) output("You’ve got a great little bubble butt back here, Hero. I’m gonna enjoy making it bounce.");
 	else output("Oh man, you have such a huge fuckin’ ass. Gonna make it bounce like jelly in a second.");
 	output("”</i>");
@@ -1900,9 +1915,7 @@ public function newFutaSaendraScenes():void
 	else output("pounding your pussy");
 	output(", Saen reaches down, grabs the bright pink panties she was wearing off the floor, and stuffs them straight in your mouth! Your eyes go wide, you gag, and then the smell and taste of sweat, perfume, and alien cockmusk hits you. It’s the latter one that overpowers you; the scent of pent-up sexual desire and dried hints of hermaphroditic semen on the crotch. You can taste every boner Saen’s had all day, and your heart flutters knowing your [pc.vagOrAss " + x + "] is going to be getting a full helping of this wonderful stuff.");
 
-	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it");
-	if(pc.catDog("nyan", "bork", false) == "bork") output(", my favorite little bottom bitch");
-	output("!”</i>");
+	output("\n\n<i>“That’s more like it!”</i> Saendra cheers, slapping your ass and earning a muted yelp as her panties absorb the sounds of your screams. <i>“Unf! Yeah, now you’re gonna get it" + pc.catDog("", ", my favorite little bottom bitch", false) + "!”</i>");
 
 	output("\n\nNow that you’re not going to be waking the neighbors - or at least, not the ones three doors down - Saen starts to move faster and harder, hammering your ");
 	if(pc.hasVagina()) output("pussy");
@@ -1954,4 +1967,82 @@ public function newFutaSaendraScenes():void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function askSaendraAboutDrink():void
+{
+	clearOutput();
+	showName("\nSAENDRA");
+	showBust(saendraBustDisplay(),"VALERIA");
+	author("Savin");
+
+	output("<i>“Actually, I wanted to know what's in the glass,”</i> you tell her, peering into the mug of thick, frothy white. <i>“I see you drinkin' it every time I'm here. ");
+	if (pc.isBimbo() || pc.isBro() || pc.isMischievous()) {
+		output("I didn't know cum was on the menu!”</i>");
+		output("\n\nSaendra rolls her eyes. <i>“It's not, hormones-for-brains.");
+	}
+	else {
+		output("Kinda looks like jizz, y'know.”</i>");
+		output("\n\nSaendra snickers. <i>“Yeah, I've noticed. Val likes to point it out every chance she gets.");
+	}
+	output(" It's not cum.");
+	if (saendra.hasCock()) output(".. not that I'm above guzzling spunk or anything. I've had some fun suckin' my own cock now, thanks to your upgrades. Kaithrit flexibility and all. Anyway.");
+	output(" What I'm drinkin' is cream. Good ol' ausari steamed, fermented cream. It's like milk, but full of fat and booze that goes right to my ass.”</i>");
+	output("\n\nValeria sighs from Saen's wrist. <i>“That jizz soda is super bad for you, Saendra! Do you know how many calories are in a glass.”</i>");
+	output("\n\n<i>“Yes, mother, I do. It's not like I can afford to eat actual food anyway, and this stuff's cheaper than water. It's great.”</i>");
+	output("\n\nVal makes an even more exaggerated sigh until Saen swipes her hand through her companion's avatar. <i>“Let's talk about how many blow-bang holos you downloaded this year, huh?”</i>");
+	output("\n\nThe digital fairy huffs and quiets down, earning a laugh from Saendra. <i>“She's just jealous of my excellent taste in cheap booze-milk. So is your idle curiosity satisfied, [pc.name]?”</i>");
+
+	if (flags["SAENDRA_FEED_MILK"] == undefined) flags["SAENDRA_FEED_MILK"] = 0;
+	processTime(10);
+
+	clearMenu();
+	addButton(0, "Next", saendrasBarMenu);
+}
+
+public function feedSaendraYourMilk():void
+{
+	clearOutput();
+	saenHeader();
+
+	output("<i>“How about I get you something better to drink than that junk?”</i> you tease, flicking a finger across Saendra's mug."); 
+	if (flags["SAENDRA_FEED_MILK"] >= 1) output("\n\n<i>“You don't have to ask twice!”</i> Saendra grins, slipping out of the booth and extending a hand to you. <i>“C'mon.”</i>");
+	else {
+		output("\n\nSaendra flashes you a pretty smile. <i>“Well, if you wanna buy me a drink, I won't stop you. Don't have to ply me with alcohol if you're looking to get in my pants, though, hero...”</i>");
+		output("\n\n<i>“Who said anything about buying?”</i>");
+		output("\n\n<i>“No stealing!”</i> Saendra says with a grin. <i>“I basically live here. I don't-”</i>");
+		output("\n\nYou interrupt her by grabbing one of your own boobs and giving it a squeeze. <i>“I meant straight from the tap.”</i>");
+		output("\n\nSaendra blinks. <i>“O-oh! Well, that's... new. I mean, I'm not gonna say no...”</i>");
+		output("\n\n<i>“Then let's go,”</i> you say, standing and offering her a hand. You haul Saen up and out of the booth, pulling the red-haired kitty close. You whisper into her grey ear, <i>“I hope you're hungry.”</i>");
+	}
+	output("\n\nYou and Saendra walk up to her room above the bar hand-in-hand, her tails wrapping around your waist and her eyes rarely leaving your [pc.chest]. You can see the hunger growing in her eyes, taking on an almost feral, primitive desire as you ascend the steps.");
+	output("\n\nYou've barely made it into the room before Saendra is tearing off your ");
+	if (pc.hasArmor()) output("[pc.armor]");
+	else output("gear");
+	output(", grabbing your [pc.boobs] in her fluffy hands and squeezing them hard enough to make your breath catch in your throat. [pc.Milk] erupts from your [pc.nipples], wetting Saen's fur and running between her fingers.");
+	output("\n\n<i>“Ohhh, that's the good stuff right there!”</i> Saendra giggles, tugging a nipple up to her mouth and licking it clean. Her tongue's silk-soft and moves with inhuman deftness, circling and caressing your areola while her lips close around your [pc.nipple], kissing it with just enough suction to draw out another squirt of [pc.milk].");
+	output("\n\n<i>“Yeah,”</i> she purrs, licking her lips. <i>“This is way better than the trash at the bar. And the server's a real cutie, too. ");
+	if (saendra.hasCock()) output("I'll be sure to give [pc.himHer] a big, fat tip later...”</i>");
+	else if (pc.hasCock()) output("Maybe I'll work [pc.hisHer] tip later...”</i>");
+	else output(" Maybe I'll get my strapon later and give [pc.himHer] a nice, big tip...”</i>");
+	output("\n\nSounds tempting, but for right now, you have a lactic load that needs to be delivered into the bitchkitten's belly. Not that you need to do much to encourage her: the moment she's done talking again, Saen is wrapping her arms around your waist and shoving her face into your tits. You squirm, pressed between your lover's hot breath and the cold, unyielding wall. Her hands grope and knead your [pc.butt], holding you steady while her lips latch around your teat again. ");
+	output("\n\nThis time she drinks her fill, nuzzling into your soft breast and sucking down all you have to offer. You moan softly into her feline ear, letting Saen know just how much you enjoy feeling all that [pc.milk] leak out from your rock-hard nips.");
+	if (pc.hasCock()) {
+		output(" Your [pc.cock] stiffens against Saendra's thigh, momentarily breaking the kitten's concentration. She slips a hand around your waist and wraps her fingers around your [pc.cock], stroking it slowly.");
+		output("\n\n<i>“A little milk from down here, too?”</i> she murmurs. <i>“I'll take all you can give me, Hero.”</i>");
+	}
+	output("\n\nYour lover gives you a little wink and tightens her grip on you. There's a moment of sudden weightlessness, and then your back is slamming into the soft cushion of the bed. Saen's legs straddle your [pc.hips], pinning you to the sheets while her tongue runs all over your [pc.belly] and chest, working its way back up to your quivering cups. Her plush pink lips find their way to the breast that so far has gone unmolested, kissing her way into another long, sensuous drink from your ");
+	if (pc.lactationQ() >= 5000) output("boundless");
+	else if (pc.lactationQ() >= 1500) output("deep");
+	else output("fading");
+	output(" reserves.");
+	output("\n\nWhile she drinks, Saen's hands grope your thighs and other breast{s}, making sure your free meal is well-rewarded with pleasure. You squirm under her, feeling your heart hammer in your chest and your skin tingles in the wake of Saendra's kisses and caresses. Your [pc.legs] wrap around her hips, holding her tight to your body until the pretty kitty's had her fill of your [pc.milk].");
+	output("\n\nEven when she's finally drank you dry, Saendra doesn't try to seperate from you: she's content to turn her cheek to the side and rest her head in your cleavage. <i>“Delicious,”</i> she murmurs, hugging you. <i>“Careful you don't just become my favorite snack.”</i>");
+	
+	if (flags["SAENDRA_FEED_MILK"] == undefined) flags["SAENDRA_FEED_MILK"] = 0;
+	pc.milked();
+	processTime(20+rand(5));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

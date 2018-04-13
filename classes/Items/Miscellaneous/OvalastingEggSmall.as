@@ -8,7 +8,6 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
-	import classes.Engine.Utility.indefiniteArticle;
 	
 	public class OvalastingEggSmall extends ItemSlotClass
 	{

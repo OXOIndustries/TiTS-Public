@@ -1,3 +1,8 @@
+import classes.Items.Apparel.AnalPrincessPanties;
+import classes.Items.Apparel.AssManBoxers;
+import classes.Items.Apparel.BackdoorBoiSlutwear;
+import classes.Items.Apparel.CumflationControlBoyshorts;
+import classes.Items.Apparel.SlutSealThong;
 /*
 	LERRIS_TALKED_BACKROOM
 		0/undefined -- not even attempted the talk scene
@@ -112,12 +117,20 @@ public function lerrisProducts():void
 	// No point in it being sold again if it's already installed!
 	if(flags["EGG_TRAINER_INSTALLED"] != 1) chars["LERRIS"].inventory.push(new EggTrainer());
 	chars["LERRIS"].inventory.push(new FertitePlus());
-	if(flags["PLANET_3_UNLOCKED"] != undefined) chars["LERRIS"].inventory.push(new FrontRackCream());
+	chars["LERRIS"].inventory.push(new FrontRackCream());
 	chars["LERRIS"].inventory.push(new Lactaid());
 	chars["LERRIS"].inventory.push(new LactaidMilkTank());
 	chars["LERRIS"].inventory.push(new LactaidOverdrive());
 	// Unlocks
 	if(pc.level >= 2) chars["LERRIS"].inventory.push(new NukiNutbutter());
+	if(pc.level >= 3) 
+	{
+		chars["LERRIS"].inventory.push(new SlutSealThong());
+		chars["LERRIS"].inventory.push(new AnalPrincessPanties());
+		chars["LERRIS"].inventory.push(new AssManBoxers());
+		chars["LERRIS"].inventory.push(new BackdoorBoiSlutwear());
+		chars["LERRIS"].inventory.push(new CumflationControlBoyshorts());
+	}
 	// Sera babies
 	if(flags["MET_SERA"] != undefined) chars["LERRIS"].inventory.push(new Priapin());
 	//chars["LERRIS"].inventory.push(new Sterilex());
@@ -325,7 +338,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		
 		output("\n\nYou grin up at her, saying that you remembered her having said she never got the mods to complete her transformation into a full-fledged dickgirl. So you thought you’d help her out with that... if she wants.");
 		
-		output("\n\nLerris glances between you and the pussy-growth drug. Her ears are tucked down against her scalp, and her twinned tails brush slowly against your [pc.leg]. <i>“Uhhh.... wow,”</i> she breathes, chewing on her lip ring. <i>“[pc.name], that’s... that’s <b>so generous</b> of you. I don’t know what to say.”</i>");
+		output("\n\nLerris glances between you and the pussy-growth drug. Her ears are tucked down against her scalp, and her twinned tails brush slowly against your [pc.leg]. <i>“Uhhh... wow,”</i> she breathes, chewing on her lip ring. <i>“[pc.name], that’s... that’s <b>so generous</b> of you. I don’t know what to say.”</i>");
 		
 		output("\n\nA yes or no to accepting it would be a start.");
 		
@@ -381,7 +394,7 @@ public function lerrisConsumeItem(itemInstance:ItemSlotClass):void
 		output("\n\n<i>“Wait!”</i> you start to say, <i>“You’re only supposed to take one!”</i>");
 		if (silly) output(" Why doesn’t anybody ever read directions!?!!?");
 
-		output("\n\nHer eyes go wide. <i>“Uh.... uh-oh.”</i>");
+		output("\n\nHer eyes go wide. <i>“Uh... uh-oh.”</i>");
 
 		if (lerris.breastRows[0].breastRatingRaw < 23.5)
 		{
@@ -893,7 +906,7 @@ public function lerrisTalkMods():void
 
 	output("<i>“You said you’ve got some experience with the products?”</i> you ask, glancing around at everything from biotic sex-toys to ultra-strong fertility pills. Wonder what a cute cat like her has been getting into.");
 	
-	output("\n\n<i>“More than some, sweetie,”</i> she giggles playfully, flipping a locke of green hair behind a purple-hued cat-ear. As she does so, you can’t help but notice the way her bouncy C-cups push against the front of her jumpsuit. They’re as soft and shapely as a pair of tits can be, perfectly sculpted beneath the fabric. They look like they belong on a statue more than a girl working at a shop. Lerris sees you looking and smiles, shifting her shoulders a little. <i>“Yeah, I used to be kind of a mod fiend. I’ve had one of almost everything TamaniCorp sells here. At <b>least</b>!”</i>");
+	output("\n\n<i>“More than some, sweetie,”</i> she giggles playfully, flipping a lock of green hair behind a purple-hued cat-ear. As she does so, you can’t help but notice the way her bouncy C-cups push against the front of her jumpsuit. They’re as soft and shapely as a pair of tits can be, perfectly sculpted beneath the fabric. They look like they belong on a statue more than a girl working at a shop. Lerris sees you looking and smiles, shifting her shoulders a little. <i>“Yeah, I used to be kind of a mod fiend. I’ve had one of almost everything TamaniCorp sells here. At <b>least</b>!”</i>");
 	
 	output("\n\nLerris laughs gaily, her violet tails swishing behind her. Taking that as an invitation, you ask if she’s got any particular favorites. Maybe something she’s taken more than once...");
 	

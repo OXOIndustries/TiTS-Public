@@ -41,6 +41,8 @@ package classes.Engine.Combat.DamageTypes
 		public static const CRYSTALGOOARMOR:uint = 23;
 		public static const SYDIANARMOR:uint = 24;
 		public static const CHANCE_APPLY_STUN:uint = 25;
+		public static const NO_CRIT:uint		= 26;
+		public static const BOTHRIOCARMOR:uint = 27;
 		
 		public static const FlagNames:Array = [];
 		
@@ -72,6 +74,7 @@ package classes.Engine.Combat.DamageTypes
 			FlagNames[CRYSTALGOOARMOR]		= "Crystal Goo Armor";
 			FlagNames[SYDIANARMOR]			= "Sydian Armor";
 			FlagNames[CHANCE_APPLY_STUN]	= "Stun Chance";
+			FlagNames[NO_CRIT]				= "Cannot Crit";
 		}
 		
 		private var _thisFlag:uint;
@@ -114,11 +117,12 @@ package classes.Engine.Combat.DamageTypes
 						
 					case MIRRORED:
 						createTrigger(LASER, 0.1);
+						createTrigger(BULLET, 1.3);
 						break;
 					
 					case CRYSTAL:
 						createTrigger(LASER, 0.6);
-						createTrigger(EXPLOSIVE, 1.4);
+						createTrigger(EXPLOSIVE, 1.25);
 						break;
 						
 					case NULLIFYING:

@@ -233,32 +233,33 @@ public function getFuckedByChaurmine():void
 		if(pc.hasVagina()) output("vulva, your lower lips straining to wrap around his blunt glans");
 		else output("[pc.asshole], your pucker straining to accommodate his blunt glans");
 		output(", but manages to remain just on the edge of penetration.");
-		if(pc.hasVagina()) pc.cuntChange(0,chars["CHAURMINE"].cockVolume(0));
+		if(pc.hasVagina() && !pc.isBlocked(0)) pc.cuntChange(0,chars["CHAURMINE"].cockVolume(0));
 		else pc.buttChange(chars["CHAURMINE"].cockVolume(0));
 
 		output("\n\n[pc.FullChest] feeling rather numb, you grunt as you struggle to push away from the ice wall, moaning at the increased pressure from the brute’s monstrous penis. Chaurmine chuckles, and just as you’re about to ask him what he finds so funny, the titan <i>pulls</i> you back into him as he thrusts, impaling your bestial half on over a foot of fat, xeno-saur cock.");
 		output("\n\nYour entire body clenches taut, arching your back as your mouth gapes in a silent scream. He allows you but a moment to adjust for his obscene girth, before withdrawing from your [pc.vagOrAss] until that fist-sized tip is out with a wet <i>pop</i>, leaving you gaping. Even through his thick scales you feel his muscles tense, and with a rumbling growl his armored hips lurch forward, [pc.vagOrAss] stretching taut as he buries himself to the hilt once more with a wet shlick; the momentum pushing your [pc.fullChest] into the ice again, forcing intense sensations through your tingling [pc.nipples]");
 		if(pc.hasCock()) output(" as you feel your [pc.cocks] throbbing and thumping into your tauric belly, flinging increasing amounts of pre");
 		output(".");
-		output("\n\nHe withdraws slowly, savoring your clenching, writhing walls milking his shaft - every fold and wrinkle bumping and grinding against the fat ribs in a way that has your abdomen] coiling with a tense heat - until he pops out again");
-		if(pc.hasVagina()) output(" with a gush of [pc.girlCum]");
+		output("\n\nHe withdraws slowly, savoring your clenching, writhing walls milking his shaft - every fold and wrinkle bumping and grinding against the fat ribs in a way that has your [pc.abdomen] coiling with a tense heat - until he pops out again");
+		if(pc.hasVagina() && !pc.isPlugged(0)) output(" with a gush of [pc.girlCum]");
 		output(". Panting and sweating, you lean your humanoid half back and start rubbing and caressing your numb [pc.nipples]; you find the tingling sensations as you work to warm them up strangely stimulating, breath growing ragged from both the alien feeling and having your [pc.vagOrAss] stuffed with monster cock once more");
 		if(pc.hasCock()) output(", your [pc.cocks] lurching and jerking with every motion, thick strands of pre-cum drooling and whipping from [pc.eachCock]");
 		if(!pc.hasVagina()) output(" that are increasingly [pc.cumColor] everytime he bashes your prostate");
 		output(".");
 
 		output("\n\nPausing, the titan pants heavily across your shoulders, hot breath tracing along your [pc.skinFurScales]. He starts drawing his onyx cock out again, but falters as your ");
-		if(pc.hasVagina()) output("[pc.vagina]");
+		if(pc.hasVagina() && !pc.isBlocked(0)) output("[pc.vagina]");
 		else output("[pc.asshole]");
 		output(" clings to the thick shaft stretching it wide, tender inner walls writhing and squeezing every fat rib. The delicious friction adds to the intense fullness, sending your [pc.fullChest] heaving against the ice.");
 
 		output("\n\nYou hear him let out a feral snarl - or maybe it was ‘Fuck it’, you’re not sure - and suddenly he’s clinging to your tauric body with both arms, forcing your legs to lock in order to bear the sudden weight. He tenses, gripping you tightly, and his hard hips immediately begin pistoning in and out your [pc.vagOrAss] with bruising force. The building tension in your abdomen snaps, and you’re sent over the edge.");
 
 		output("\n\nYour [pc.vagOrAss] clenches down on the intruding shaft like a vice, ");
+
 		//pcHasGabilaniVag
-		if(pc.hasVagina() && pc.vaginas[0].type == GLOBAL.TYPE_GABILANI) output("your powerful muscles squeezing a yelp out of Chaurmine as he virtually comes to a standstill - though he manages to grind an inch or so in and out as his hips continue their rapid thrusts -");
+		if(pc.hasVagina() && pc.vaginas[0].type == GLOBAL.TYPE_GABILANI && !pc.isBlocked(0)) output("your powerful muscles squeezing a yelp out of Chaurmine as he virtually comes to a standstill - though he manages to grind an inch or so in and out as his hips continue their rapid thrusts -");
 		output("but Chaurmine just powers through, hips rapidly colliding into with head-to-hilt thrusts again and again");
-		if(pc.hasVagina()) output(" as [pc.girlCum] gushes out from around his fat, ribbed penis");
+		if(pc.hasVagina() && !pc.isBlocked(0)) output(" as [pc.girlCum] gushes out from around his fat, ribbed penis");
 		if(pc.hasCock()) output(". [pc.EachCock] bloats as your seed rushes from your [pc.balls], and you give what token thrusts and jerks you can while [pc.cumNoun] coats your underbelly and the ice below");
 		output(".");
 
@@ -293,12 +294,12 @@ public function getFuckedByChaurmine():void
 
 		output("\n\nYou gasp as you feel his pre slick shaft slap wetly against your crotch, both shocked at how scorching hot his fat alien-saur cock is, and ecstatic for the copious natural lube. Though you’re not sure when he took off his crotch guard, you have a hard time caring when your chest is pressed against ice while the rest of you is virtually wrapped in his musky, steamy heat.");
 		output("\n\nHis chest rumbling, the titan grips your neck with a scaled hand as his other hand grabs his ribbed shaft, dragging the throbbing length along your ");
-		if(pc.hasVagina()) output("[pc.vaginas] and ");
+		if(pc.hasVagina() && !pc.isBlocked(0)) output("[pc.vaginas] and ");
 		output("[pc.ass] until he’s thoroughly soaked you in his sizzling pre-cum. You can only grit your teeth and groan as the conflicting heat and cold make your heart race, and the metal lizard drags his fat, blunt head along your flesh once more before aligning with your [pc.vagOrAss]. He grinds the tip - feeling more like a fist - hard against your ");
-		if(pc.hasVagina()) output("vulva, your lower lips straining to wrap around his blunt glans");
+		if(pc.hasVagina() && !pc.isBlocked(0)) output("vulva, your lower lips straining to wrap around his blunt glans");
 		else output("[pc.asshole], your pucker straining to accommodate his blunt glans");
 		output(", but manages to remain just on the edge of penetration.");
-		if(pc.hasVagina()) pc.cuntChange(0,chars["CHAURMINE"].cockVolume(0));
+		if(pc.hasVagina() && !pc.isBlocked(0)) pc.cuntChange(0,chars["CHAURMINE"].cockVolume(0));
 		else pc.buttChange(chars["CHAURMINE"].cockVolume(0));
 
 		output("\n\n[pc.FullChest] feeling rather numb, you grunt as you struggle to push away from the ice wall, moaning at the increased pressure from the brute’s monstrous penis. Chaurmine chuckles as his now shaft-free hand shifts to your [pc.hips], and just as you’re about to ask him what he finds so funny, the titan <i>pulls</i> you back into him as he thrusts, impaling you on over a foot of fat, xeno-saur cock.");
@@ -309,7 +310,7 @@ public function getFuckedByChaurmine():void
 		output(".");
 
 		output("\n\nHe withdraws slowly, savoring your clenching, writhing walls milking his shaft - every fold and wrinkle bumping and grinding against the fat ribs in a way that has your insides coiling with a tense heat - until he pops out again");
-		if(pc.hasVagina()) output(" with a gush of [pc.girlCum]");
+		if(pc.hasVagina() && !pc.isBlocked(0)) output(" with a gush of [pc.girlCum]");
 		output(". Panting and sweating, you carefully arch your back away from the ice and start rubbing and caressing your numb [pc.nipples]; you find the tingling sensations as you work to warm them up strangely stimulating, breath growing ragged from both the alien feeling and having your [pc.vagOrAss] stuffed with monster cock once more");
 		if(pc.hasCock()) 
 		{
@@ -319,16 +320,16 @@ public function getFuckedByChaurmine():void
 		output(".");
 
 		output("\n\nPausing, the titan pants heavily across your shoulders, hot breath tracing along your [pc.skinFurScales]. He starts drawing his onyx cock out again, but falters as your ");
-		if(pc.hasVagina()) output("[pc.vagina]");
+		if(pc.hasVagina() && !pc.isBlocked(0)) output("[pc.vagina]");
 		else output("[pc.asshole]");
 		output(" clings to the thick shaft stretching it wide, tender inner walls writhing and squeezing every fat rib. The delicious friction adds to the intense fullness, sending your [pc.fullChest] heaving against the ice.");
 
 		output("\n\nYou hear him let out a feral snarl - or maybe it was ‘Fuck it’, you’re not sure - and suddenly he’s clinging to your [pc.hips] with both hands, your legs limp as he raises your [pc.ass] to be more level with his monstrously thick penis, curving your spine. He tenses, gripping you tightly, and his hard hips immediately begin pistoning in and out your [pc.vagOrAss] with bruising force. The building tension in your crotch snaps, and you’re sent over the edge.");
 		output("\n\nYour [pc.vagOrAss] clenches down on the intruding shaft like a vice, ");
 		//pcHasGabilaniVag
-		if(pc.hasVagina() && pc.vaginas[0].type == GLOBAL.TYPE_GABILANI) output("your powerful muscles squeezing a yelp out of Chaurmine as he virtually comes to a standstill - though he manages to grind an inch or so in and out as his hips continue their rapid thrusts - ");
+		if(pc.hasVagina() && pc.vaginas[0].type == GLOBAL.TYPE_GABILANI && !pc.isBlocked(0)) output("your powerful muscles squeezing a yelp out of Chaurmine as he virtually comes to a standstill - though he manages to grind an inch or so in and out as his hips continue their rapid thrusts - ");
 		output("but Chaurmine just powers through, hips rapidly colliding into with head-to-hilt thrusts again and again");
-		if(pc.hasVagina()) output(" as [pc.girlCum] gushes out from around his fat, ribbed penis");
+		if(pc.hasVagina() && !pc.isBlocked(0)) output(" as [pc.girlCum] gushes out from around his fat, ribbed penis");
 		if(pc.hasCock()) output(". [pc.EachCock] bloats as your seed rushes from your [pc.balls], and you give what token thrusts and jerks you can while [pc.cumNoun] coats your [pc.belly] and the icy wall");
 		output(".");
 
@@ -350,7 +351,7 @@ public function getFuckedByChaurmine():void
 	output("\n\nSufficiently fucked, then recovered, the two of you make for the exit of the crevasse, commenting on the ice around you and the tundra beyond. Once you’re about to part, Chaurmine suggests finding him near his ship on the station’s hangar whenever you want to chat.\n\n");
 
 	processTime(30);
-	if(pc.hasVagina()) pc.loadInCunt(chars["CHAURMINE"],0);
+	if(pc.hasVagina() && !pc.isBlocked(0)) pc.loadInCunt(chars["CHAURMINE"],0);
 	else pc.loadInAss(chars["CHAURMINE"]);
 	IncrementFlag("SEXED_CHAURMINE");
 	pc.orgasm();
@@ -661,7 +662,8 @@ public function chaurmineUvetoSexMenuAdditions():void
 	{
 		if(pc.isTaur()) addDisabledButton(5,"Myr Venom","Myr Venom","This scene is not compatible with your body shape.");
 		else if(!pc.hasVagina()) addDisabledButton(5,"Myr Venom","Myr Venom","You need a vagina in order to this.");
-		else if(pc.isPregnant()) addDisabledButton(5,"Myr Venom","Myr Venom","This would not be safe to try pregnant.")
+		else if(pc.isPregnant()) addDisabledButton(5,"Myr Venom","Myr Venom","This would not be safe to try pregnant.");
+		else if(pc.blockedVaginas() > 0) addDisabledButton(5,"Myr Venom","Myr Venom","You have something blocking access to your feminine anatomy. Perhaps handle that, first?");
 		else addButton(5,"Myr Venom",myrVenomChaurmineFun,undefined,"Myr Venom","You wonder; what would happen if...");
 	}
 	else addDisabledButton(5,"Locked","Locked","You need the “Myr Venom” perk for this scene.");
@@ -891,8 +893,9 @@ public function battleWithChaurmineVoluntarily():void
 
 	processTime(30);
 	//move to riiift
-	currentLocation = "UVIP Z22";
-	generateMap();
+	moveTo("UVIP Z22");
+	// Add cold!
+	addUvetoCold();
 	
 	var chaur:Creature = new Chaurmine();
 	chaur.credits = 300 + rand(201);

@@ -16,10 +16,11 @@ Hangs out at the tables near the stage, completely on display for customers. She
 "Fair warning: this suit amplifies physical sensation by five. So if you fuck me, I'm going to orgasm pretty much instantly. The good news is, my gryvain half means I don't have a refractory period. I'm ready to go again while I'm still squirting the first load out. Treat me right, and I'll empty my balls for you by the time you finish."
 */
 
-public function showTerensha():void
+public function showTerensha(cumflatedHer:Boolean = false):void
 {
 	showName("\nTERENSHA");
-	showBust("TERENSHA");
+	if(!cumflatedHer) showBust("TERENSHA");
+	else showBust("TERENSHA_FILLED");
 	if(silly) author("Savinbuns");
 	else author("Savin");
 }
@@ -460,7 +461,7 @@ public function missionaryWithRensa():void
 		if(x < 0) x = pc.smallestCockIndex();
 	}
 	output("\n\n<i>“All yours,”</i> she offers, using both hands to cup her fat ballsack, hefting the weighty orbs out of the way and showing off her pretty puss. You’re sure it must be her kaithrit side coming out, making the broad gulf of her twat seem so appealing, so easy to slide right into. There’s no evidence of a clit, just smooth, thick lips sitting in a puffy mound. Ren’s grip on you draws you in, even if your own mounting lusts didn’t demand you follow her; your hands grab the sheets on either side of her head, looming over her and letting the whore’s tail guide your [pc.cockOrStrapon " + x + "] towards her sex. The way her suit bends and stretches as your crown presses against it gives you just enough resistance to force you to use your [pc.legs], thrusting in hard.");
-	output("\n\nRen’s breath catches, stifling a gasp of pleasure as your [pc.cockOrStrapon " + x + "] pushes in. The latex of her suit gives more easily after a moment, conforming like a condom both to your shape and that of Terensha’s pussy. And what a pussy it is: she makes up for lacking a clit on the outside with what feels like hundreds of small bumps ringing around every inch of her twat’s walls, grinding through the latex against your dick. Every one of them must be as sensitive as any clitoris could be, because you’ve barely sunk two inches of cockmeat into Ren’s quim before she cries out, arching her back and thrusting her sheathed prick into the air like a flagpole. The trip throbs, then bloats with a liquid bubble. You grin, watching her balls clench and contract, emptying into the crown of her suit. All that, and you’ve barely gotten started.");
+	output("\n\nRen’s breath catches, stifling a gasp of pleasure as your [pc.cockOrStrapon " + x + "] pushes in. The latex of her suit gives more easily after a moment, conforming like a condom both to your shape and that of Terensha’s pussy. And what a pussy it is: she makes up for lacking a clit on the outside with what feels like hundreds of small bumps ringing around every inch of her twat’s walls, grinding through the latex against your dick. Every one of them must be as sensitive as any clitoris could be, because you’ve barely sunk two inches of cockmeat into Ren’s quim before she cries out, arching her back and thrusting her sheathed prick into the air like a flagpole. The tip throbs, then bloats with a liquid bubble. You grin, watching her balls clench and contract, emptying into the crown of her suit. All that, and you’ve barely gotten started.");
 	if(x >= 0) pc.cockChange();
 	output("\n\n<i>“S-sorry,”</i> Ren laughs, rolling her head back and running her hands across her horns. <i>“Stupid suit. As if having a hundred clitties wasn’t enough on its own... what? Don’t stop on my account; I couldn’t get soft with you in me like this even if... even if I wanted to!”</i>");
 	output("\n\nThe breathy gasps of pleasure that punctuate her words are enough of an invitation for you to keep thrusting, pushing nice and slow into the cavernous embrace of Ren’s sex. You’re almost sure she cums again before you’ve got ");
@@ -489,7 +490,7 @@ public function missionaryWithRensa():void
 	//if low-med cum:
 	else if(pc.cumQ() < 1500) output("\n\nYour cock throbs powerfully, clenching from [pc.cockHead] to base before a rush of heat glides through you. Completely on instinct, your grip on Ren’s breasts tightens, and your [pc.hips] slam themselves against her up-raised ass, driving your cock deep into her latex quim before unloading a wad of steaming hot seed into her womb.");
 	//if hugecum:
-	else output("\n\nYou’re already leaking some much pre into the slick latex channel that it feels more like a floodgate slowly opening than a normal mortal’s orgasm. You grip Ren as fiercely as you can, thrusting deep into her whorish depths before the full force of the geyser hits. The sheer force of your ejaculate is enough to distend her bodysuit, pushing it deeper into her womb and bloating it out even worse than her own balloon-tipped prick, filling her belly with hot seed. She grows the more you pump into her, her belly distending around your godly orgasm until she looks positively pregnant.");
+	else output("\n\nYou’re already leaking so much pre into the slick latex channel that it feels more like a floodgate slowly opening than a normal mortal’s orgasm. You grip Ren as fiercely as you can, thrusting deep into her whorish depths before the full force of the geyser hits. The sheer force of your ejaculate is enough to distend her bodysuit, pushing it deeper into her womb and bloating it out even worse than her own balloon-tipped prick, filling her belly with hot seed. She grows the more you pump into her, her belly distending around your godly orgasm until she looks positively pregnant.");
 
 	if(x >= 0)
 	{
@@ -801,7 +802,7 @@ public function tailPegStuffTimes():void
 	else output("\n\nYou’re glad she had as much fun as you did.");
 	output(" Ren giggles softly, nipping at your [pc.ear] while her tail slowly slithers out of you, leaving your [pc.vagOrAss " + x + "] gaping open in its absence. You breath a sigh of relief, nuzzling your cheek in the pillows as the empty sensation spreads through you, softly yearning for something to fill you right back up again.");
 
-	output("\n\nRen’s arms fold over your shoulders, propping up her chin. <i>“Something tells me you’re not walking out of here for a while, cow-[pc.boyGirl]. Luck you, you’re not paying by the hour. I’d say get comfortable, but I can’t think of anywhere cozier than cuddled up under my tits. Hm?”</i>");
+	output("\n\nRen’s arms fold over your shoulders, propping up her chin. <i>“Something tells me you’re not walking out of here for a while, cow-[pc.boyGirl]. Lucky for you, you’re not paying by the hour. I’d say get comfortable, but I can’t think of anywhere cozier than cuddled up under my tits. Hm?”</i>");
 
 	output("\n\nYou answer with a smile, letting your focus drift, just enjoying the tender closeness.");
 	processTime(25);
@@ -913,7 +914,7 @@ public function renBallJobPart2():void
 public function roomServiceOutroCrap(cumflatedHer:Boolean = false):void
 {
 	clearOutput();
-	showTerensha();
+	showTerensha(cumflatedHer);
 	output("You wake with a yawn, rolling onto your back and stretching languidly. A glance around the private brothel room doesn’t show Terensha anywhere, though your attention is quickly grabbed by the sound of a shower running. Part of the bulkhead across from the bed has slide aside, revealing a small stall just barely large enough for the big alien beauty to stand in. She’s still in her purple suit, using the nozzle to wash away the excess mess of lube and cum left on the latex - and giving it that extra little bit of sweet-smelling shine before she returns to selling herself on the floor.");
 	output("\n\n<i>“Hey,”</i> Ren smiles, seeing you sit up. She turns in the stall to face you, having little choice but to press her breasts against the steam-stained glass");
 	if(cumflatedHer) output(", and her cum-bloated belly jiggles incessantly, still sloshing with your pent-up seed");

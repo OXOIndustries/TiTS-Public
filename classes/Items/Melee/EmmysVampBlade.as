@@ -10,6 +10,7 @@
 	
 	public class EmmysVampBlade extends ItemSlotClass
 	{
+		//Level 7 (Rare). Balance 2.0
 		//constructor
 		public function EmmysVampBlade()
 		{
@@ -39,16 +40,16 @@
 			attackNoun = "crackling slice";
 			
 			//Information
-			this.basePrice = 15499;
-			this.attack = 6;
+			this.basePrice = 11000;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 5;
-			baseDamage.electric.damageValue = 10;
+			baseDamage.kinetic.damageValue = 7;
+			baseDamage.electric.damageValue = 14;
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			baseDamage.addFlag(DamageFlag.GREATER_DRAINING);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
+			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;

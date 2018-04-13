@@ -177,7 +177,7 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 
 					output("\n\nJust then, your thoughts are drawn to Lane. You recall the lizard-person’s hut");
 					//output(" in the caves of Venar");
-					output("in the forest near Novahome");
+					output(" in the forest near Novahome");
 					output(", and the business [lane.heShe] runs in hypnotism, and – wait. Hypnotism?");
 
 					switch (effectToRemove)
@@ -487,7 +487,7 @@ public function laneHandleCredits(totalDays:uint):void
 	if (flags["LANE_PAYS_PC_ERRY_DAY"] == 1)
 	{
 		pc.credits += (200 * totalDays);
-		AddLogEvent("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it's a credit transfer message; Lane has paid you a total of " + String(200 * totalDays) + " credits, right on time.", "good", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		AddLogEvent("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it's a " + (isAprilFools() ? "dogecoin" : "credit") + " transfer message; Lane has paid you a total of " + String(200 * totalDays) + " credits, right on time.", "good", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 	}
 	if (flags["PC_PAYS_LANE_ERRY_DAY"] == 1)
 	{
@@ -585,7 +585,7 @@ public function visitLaneAfterDetoxing():void
 
 			output("\n\n[lane.HeShe] winces painfully as [lane.heShe] grips onto [lane.hisHer] side, where you had punched [lane.himHer]. Remorseless, you reach forward and wrap your right arm around [lane.hisHer] neck and pin [lane.hisHer] arm behind [lane.himHer] with your other, locking [lane.himHer] into the sleeper hold. [lane.HeShe] begins to choke, [lane.hisHer] words sputtering before they leave [lane.hisHer] lips – you grip onto [lane.himHer] tighter so [lane.heShe] can’t even do that.");
 
-			output("\n\n<i>“This is how it’s going to work,”</i> you say to [lane.himHer]. [lane.HisHer] free hand claws at your shins and your arms, and though [lane.hisHer] claws manage to draw your blood, you’re not going to give up that easily. <i>“I want you to pick up your codex, and I want you to transfer every last goddamn credit you have to me.”</i>");
+			output("\n\n<i>“This is how it’s going to work,”</i> you say to [lane.himHer]. [lane.HisHer] free hand claws at your shins and your arms, and though [lane.hisHer] claws manage to draw your blood, you’re not going to give up that easily. <i>“I want you to pick up your codex, and I want you to transfer every last goddamn " + (isAprilFools() ? "dogecoin" : "credit") + " you have to me.”</i>");
 
 			output("\n\n[lane.HeShe] redoubles what little effort [lane.heShe] can muster, trying to break your iron grip on [lane.himHer], but all it does is irritate you. <i>“Or, I can snap your neck right now, Lane, and you</i> will <i>pay me back in blood. It wouldn’t be difficult to find a black market for Daynarian blood these days.”</i>");
 
@@ -782,7 +782,7 @@ public function laneTakesOverTheSteeleFortuneII():void
 
 	output("\n\n<i>“Everything is perfect,”</i> [lane.Master] Lane answers, and [lane.hisHer] words flow like honey to your ears, making you sigh through your nose. <i>“It’s just been a long, exciting morning so far.”</i>");
 
-	output("\n\nThe other male chuckles. <i>“I can sympathize. A ten-billion-credit contract between businesses is nothing to take lightly. I’ve been counting the minutes until today, myself.”</i> You hear something slide across the marble top of [lane.Master] Lane’s business desk. <i>“This is the final contract we’ve agreed on last week. All we need is your signature, " + lane.mf("Mister", "Miss") + " Lane, and the universe can enjoy a long, rewarding relationship between Steele Tech and Reaper Armaments. Take your time looking it over, of course.”</i>");
+	output("\n\nThe other male chuckles. <i>“I can sympathize. A ten-billion-" + (isAprilFools() ? "dogecoin" : "credit") + " contract between businesses is nothing to take lightly. I’ve been counting the minutes until today, myself.”</i> You hear something slide across the marble top of [lane.Master] Lane’s business desk. <i>“This is the final contract we’ve agreed on last week. All we need is your signature, " + lane.mf("Mister", "Miss") + " Lane, and the universe can enjoy a long, rewarding relationship between Steele Tech and Reaper Armaments. Take your time looking it over, of course.”</i>");
 
 	output("\n\nThen, for another few minutes, the only sounds you hear are the gentle sucking of your mouth on Lane’s genitals. Despite Lane’s calm demeanor, " + lane.mf("his cock is harder than you’ve ever seen it, and from the way he’s gently rocking back and forth, he’s moments away from cumming", "her box is wetter than you’ve ever felt it before, and from the way her legs squeeze around your head, she’s moments away from cumming") + ". You hear the distinct sound of pen on paper as Lane signs the contract, and in that instant, [lane.heShe]’s delivering an explosive orgasm straight down your throat. Experienced as you are, you easily handle [lane.hisHer] entire, copious output, swallowing every drop and wanting more.");
 
@@ -2181,7 +2181,7 @@ public function fuckedByFemLane():void
 		output(".");
 		if (pc.cumQ() <= 349) output(" You sigh as your [pc.cum] finally spills from your aching dick and into Lane’s impatient honeypot. She coos out every time she feels a fresh spurt and gently slides her hips over yours, sucking out all your cum and letting her vagina drink it all, deep inside her. By the time you’re done, there isn’t a drop left from you, and all of it has tucked neatly inside Lane’s body.");
 		else if (pc.cumQ() >= 600) output(" Lane moans in approval as your cum sinks into her body. The teasing had left you pent up! You cum and you cum inside her, and you hear every splurge of juice shooting into her as well as you can feel it. Lane whispers encouragement as you deposit as many loads as you can, and her thirsty honeypot takes it all in. Her muscles work overtime to make sure nothing escapes, and they succeed, barely.");
-		else if (pc.cumQ() >= 2500) output("Your first two wads of spunk pack into her easily enough, but you’re shooting so much that she’s totally stuffed by the fourth. You’re not halfway done, though, and you keep blasting your [pc.cum] into her rounded, swollen belly. No matter what her cunt tries to do to contain it, it shoots out around your girth and sprays uselessly onto the quilt beneath you. The juice leaks backward, pooling underneath your body and sticking your [pc.skinfurScales] to the fabric. Even then, it doesn’t stop until you’re resting in sizeable puddle of your own cum.");
+		else if (pc.cumQ() >= 2500) output("Your first two wads of spunk pack into her easily enough, but you’re shooting so much that she’s totally stuffed by the fourth. You’re not halfway done, though, and you keep blasting your [pc.cum] into her rounded, swollen belly. No matter what her cunt tries to do to contain it, it shoots out around your girth and sprays uselessly onto the quilt beneath you. The juice leaks backward, pooling underneath your body and sticking your [pc.skinFurScales] to the fabric. Even then, it doesn’t stop until you’re resting in sizeable puddle of your own cum.");
 		if (pc.balls > 0)
 		{
 			output(" The aching in your [pc.balls] drains with every jet you unleash into your willing and wanting mistress, until the discomfort in them is nothing but a distant memory.");
@@ -2682,7 +2682,7 @@ public function firstTimeLaneMPCFH():void
 	}
 	else if (pc.breastRows.length >= 2)
 	{
-		output("\n\nHis hands busily grope and feel along your [fullChest], and wherever his mouth doesn’t reach, his webbed hands are more than ready to pick up the slack. You coo, loving the way he doesn’t neglect any part of you. His excitement begins to escalate further as his face travels to your other breasts, judging from the way his humping becomes more insistent – he must be a real fan of boobs, big or small.");
+		output("\n\nHis hands busily grope and feel along your [pc.fullChest], and wherever his mouth doesn’t reach, his webbed hands are more than ready to pick up the slack. You coo, loving the way he doesn’t neglect any part of you. His excitement begins to escalate further as his face travels to your other breasts, judging from the way his humping becomes more insistent – he must be a real fan of boobs, big or small.");
 	}
 	if (pc.hasCock())
 	{
@@ -3095,7 +3095,7 @@ public function firstTimeLaneFPCFGenderless():void
 
 		output("\n\n<i>“But I am not an unfair mistress,”</i> she declares to you, and you feel her shift her weight forward, so that she’s lying atop you properly without removing her quim from your patient mouth. <i>“Keep pleasuring your mistress, [pc.name],”</i> she instructs, and without warning, you feel her press her own mouth to your crotch,");
 		if (pc.hasVagina()) output(" digging herself daintily into your [pc.vagina], not nearly as enthusiastic as you – acting as though it’s more of a service than a pleasure");
-		else output(" licking along the [pc.skinfurScales] of your void pelvis, not really with any goal or purpose");
+		else output(" licking along the [pc.skinFurScales] of your void pelvis, not really with any goal or purpose");
 		output(" while her hands wrap around your [pc.hips] and roughly grip onto your [pc.ass] for support.");
 
 		output("\n\nYou redouble your efforts, stimulated by the pleasure and attention your mistress is giving you. Your tongue is so long that you don’t need to crane your head at all to slather it all over her gash and taste her every inch, but you do so anyway, pressing your lips against her genital slit, putting them back where they belong.");
@@ -3320,21 +3320,31 @@ public function tryFollowerLaneIntervention():Boolean
 	if(flags["LANE_FULLY_HYPNOTISED_DAY"] <= days - 7 && flags["FOLLOWER_LANE_INTERVENTION"] == undefined)
 	{
 		// Figure out which follower is actually gonna take lead on this.
-		var availFollowers:Array = [];
+		var availFollowers:Array = getCrewOnShipNames(false, false);
 		
-		if (annoIsCrew()) availFollowers.push("Anno");
-		if (celiseIsCrew()) availFollowers.push("Celise");
-		if (daneIsCrew()) availFollowers.push("Dane");
-		if (reahaIsCrew() && reahaIsCured()) availFollowers.push("Reaha");
-		if (bessIsCrew() && flags["BESS_JUST_A_SEXBOT"] != 1 && (flags["BESS_LOVER"] != undefined || flags["BESS_IS_FRIEND"] != undefined || bessAffection() >= 30)) availFollowers.push(chars["BESS"].mf("Ben-14","Bess-13"));
-		if (syriIsCrew()) availFollowers.push("Syri");
-		if (azraIsCrew()) availFollowers.push("Azra");
-		if (kiroIsCrew()) availFollowers.push("Kiro");
-		if (shekkaIsCrew()) availFollowers.push("Shekka");
+		// Prune those that don't apply.
+		var i:int = 0;
+		while(i < availFollowers.length)
+		{
+			if (
+				(InCollection(availFollowers[i], ["Ben-14","Bess-13"]) && !(flags["BESS_JUST_A_SEXBOT"] != 1 && (flags["BESS_LOVER"] != undefined || flags["BESS_IS_FRIEND"] != undefined || bessAffection() >= 30)))
+			||	(availFollowers[i] == "Reaha" && !reahaIsCured())
+			||	(availFollowers[i] == "Sera")
+			||	(availFollowers[i] == "Goo Armor")
+			) {
+				availFollowers.splice(i, 1);
+			}
+			else i++;
+		}
 		
 		if (availFollowers.length > 0)
 		{
-			followerLaneIntervention(availFollowers[rand(availFollowers.length)]);
+			var followerName:String = availFollowers[rand(availFollowers.length)];
+			
+			eventQueue.push(function():void {
+				followerLaneIntervention(followerName);
+			});
+			
 			return true;
 		}
 	}
@@ -3352,7 +3362,7 @@ public function lFollowerName(customName:Boolean = true):String
 
 public function lFollowerMF(m:String, f:String):String
 {
-	if (InCollection(flags["FOLLOWER_LANE_INTERVENTION"], ["Dane", "Ben-14"])) return m;
+	if (InCollection(flags["FOLLOWER_LANE_INTERVENTION"], ["Ben-14", "Dane", "Kase"])) return m;
 	return f;
 }
 

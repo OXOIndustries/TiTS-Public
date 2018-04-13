@@ -31,7 +31,7 @@
 			this.description = "an amber idol";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This amber idol was looted from some sort of zil shrine on the Mhen'ga's cliffs. It would likely fetch a large price at market.";
+			this.tooltip = "This amber idol was looted from some sort of zil shrine on the Mhen’ga’s cliffs. It would likely fetch a large price at market.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

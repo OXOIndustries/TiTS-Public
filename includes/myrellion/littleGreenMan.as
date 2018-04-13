@@ -511,7 +511,7 @@ public function lirielButtSex(myrWomen:Boolean = false):void
 			if (pc.cockTotal() == 1) output("ing");
 			output(". With a hoarse cry [pc.eachCock] explodes, sending shotgun blasts of [pc.cum] splattering violently against the mushroom head. Your orgasm rages on until the entire cap is covered in spunk. Once your climax has subsided, she forces you down into your own [pc.cumColor] mess.");
 			output("\n\nThe entire time Liriel hammers your still spasming hole at top speed, taking full advantage of your orgasm to increase her own pleasure.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 		// if (cumExtreme)
 		else
@@ -521,7 +521,7 @@ public function lirielButtSex(myrWomen:Boolean = false):void
 			output(". You yell to the heavens as your violent climax sends blasts of [pc.cum] crashing onto the mushroom like mini-tsunamis of your own creation. She continues to fuck the cum out of you as your ejaculate covers the mushroom. Even then your orgasm rages on until you feel the mess flooding your [pc.feet]. You roar and scream in a way that only seems to make Liriel even happier.");
 			if (myrWomen) output(" Somewhere in the distance you hear a loud, <i>“DAMN!”</i> then a gaggle of laughter with some affirmations sprinkled in.");
 			output("\n\nThe entire time Liriel hammers away at your still spasming hole at top speed, taking full advantage of your orgasm to increase her own pleasure.");
-			applyCumSoaked(pc);
+			pc.applyCumSoaked();
 		}
 	}
 	else if (pc.hasVagina())
@@ -664,7 +664,7 @@ public function lirielTitFuck(myrWomen:Boolean = false):void
 	}
 	else
 	{
-		output("\n\n<i>“Sorry hun,”</i> Liriel says as you take a step closer, <i>“... but that’s way too thick for some nipple action.”</i> And with that, she leans forward and turns over, showing off her impressive green rack in all its glory. Apparently you’ve been upgraded to full titty fuck.");
+		output("\n\n<i>“Sorry hun,”</i> Liriel says as you take a step closer, <i>“...but that’s way too thick for some nipple action.”</i> And with that, she leans forward and turns over, showing off her impressive green rack in all its glory. Apparently you’ve been upgraded to full titty fuck.");
 		output("\n\nSo you climb onto the buxom broad, sitting your bare ass on her slim tummy, and place your [pc.cock " + x + "] between her warm emerald tits. As you do, she takes her tits in hand and smashes them together before saying, ");
 		if (myrWomen) output("<i>“Ladies, make sure you try this at home,”</i> to the crowd of myr women who respond with much swooning and fawning.");
 		else output("<i>“Go ahead tiger, show me how much you like these big ol’ knockers.”</i>");

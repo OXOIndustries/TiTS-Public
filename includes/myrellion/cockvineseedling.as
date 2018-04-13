@@ -68,7 +68,7 @@ public function cockvineSeedlingChase():void
 		output(" and then turn back to the path, rubbing your sore spot and cursing.");
 
 		// -5% HP
-		pc.HP(0.05 * pc.HPMax());
+		applyDamage(new TypeCollection( { kinetic: 5 }, DamageFlag.BYPASS_SHIELD, DamageFlag.CRUSHING ), null, pc, "minimal");
 
 		clearMenu()
 		addButton(0, "Next", mainGameMenu);
@@ -151,7 +151,7 @@ public function cockvineSeedlingJoin(sCockType:int = 0):void
 
 	if (pc.isBro() || pc.isTreatedMale())
 	{
-		output("\n\n<i>“C’mon lil bro,”</i> you say, grinning winningly and giving it a double finger shoot. <i>“This planet is chick city and I need a wingman. Time to join up with a winner!”</i>");
+		output("\n\n<i>“C’mon lil’ bro,”</i> you say, grinning winningly and giving it a double finger shoot. <i>“This planet is chick city and I need a wingman. Time to join up with a winner!”</i>");
 	}
 	else if (pc.isNice())
 	{

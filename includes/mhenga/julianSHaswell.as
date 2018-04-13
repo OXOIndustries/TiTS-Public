@@ -4,7 +4,7 @@
 public function showDrHaswell(nude:Boolean = false):void {
 	if(!nude) showBust("DR_HASWELL");
 	else showBust("DR_HASWELL_NUDE");
-	if(flags["MET_DR_HASWELL"] != undefined) showName("\nSCIENTIST");
+	if(flags["MET_DR_HASWELL"] == undefined) showName("\nSCIENTIST");
 	else showName("DR. JULIAN\nS. HASWELL");
 }
 
@@ -20,7 +20,6 @@ public function juliansOffice():void {
 	{
 		output("\n\nDr. Julian S. Haswell is busy behind his desk as always. His piercing blue eyes flick up, taking notice of you, but he doesn’t bother to greet you just yet, figuring that you’ll speak up if it’s important.");
 		addButton(0,"Dr. Haswell",approachJulianRouter);
-		if(pexigaQuestDocChatsAvailable()) addButton(1,"Pexiga Help",drHaswellPexigaTalk,undefined,"Pexiga Help","Ask for help with the Pexiga’s unique situation.");
 	}
 }
 
@@ -56,8 +55,8 @@ public function approachJulianRouter():void {
 		clearOutput();
 		showDrHaswell();
 		output("Dr Haswell mutters, <i>“The zil aren’t going to capture themselves. I have no business with you until you do.”</i>");
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		
+		julianHaswellMenu();
 	}
 	//Generic "BLUH"
 	else
@@ -65,9 +64,20 @@ public function approachJulianRouter():void {
 		clearOutput();
 		showDrHaswell();
 		output("Dr. Haswell doesn’t even look up at you. <i>“I have no business with you at present, [pc.name].”</i>\n\nIt looks like there’s nothing to be done with him right now.");
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		
+		julianHaswellMenu();
 	}
+}
+public function julianHaswellMenu():void
+{
+	clearMenu();
+	
+	if(pexigaQuestDocChatsAvailable()) addButton(1,"Pexiga Help",drHaswellPexigaTalk,undefined,"Pexiga Help","Ask for help with the Pexiga’s unique situation.");
+	
+	if(bothriocQuestComplete()) bothriocQuestGenealogyButton(4, "Haswell");
+	else if(bothriocQuestActive()) bothriocQuestDoctorButton(4, "Haswell");
+	
+	addButton(14, "Back", mainGameMenu);
 }
 
 
@@ -105,7 +115,7 @@ public function introductionToJulian():void {
 		output("\n\nJulian cocks an eyebrow. <i>“You must be new to Mhen’ga. The zil are bug-like humanoids native to this world. Not overly dangerous, though they do seem rather aggressive in their sexual copulations. They’re only rated as a class one threat. Any well-equipped explorer should be able to hold their own against them.”</i> He spins the blocky capture harness around and looks back to you.");
 	}
 	//If not an asshole:
-	if(!pc.isAss()) output("\n\nSeeing the worry in your eyes, Julian shakes his hands apologetically. <i>“It won’t be painful, I promise. If anything, quite the opposite. I simply need a few small tissue samples and large volumes of their sexual secretions for study, and then we’ll release them into the jungle. Surely a thousand credit reward will ease your conscience.”</i>");
+	if(!pc.isAss()) output("\n\nSeeing the worry in your eyes, Julian shakes his hands apologetically. <i>“It won’t be painful, I promise. If anything, quite the opposite. I simply need a few small tissue samples and large volumes of their sexual secretions for study, and then we’ll release them into the jungle. Surely a thousand " + (isAprilFools() ? "dogecoin" : "credit") + " reward will ease your conscience.”</i>");
 	//If an asshole
 	else output("\n\nJulian smiles at you. <i>“Surely you can appreciate what we can learn, regardless of the gray areas upon which we now tread, correct? There is only profit to be made here, friend, for both of us. One thousand credits worth, to be precise.”</i>");
 	//No new line:

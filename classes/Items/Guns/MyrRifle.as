@@ -9,6 +9,7 @@
 	
 	public class MyrRifle extends ItemSlotClass
 	{
+		//Level 7 (Common). Balance 2.0
 		//constructor
 		public function MyrRifle()
 		{
@@ -30,25 +31,25 @@
 			this.description = "a myr’s leg rifle";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This beat up old gun looks something like an old-earth lever action rifle, chambered in a magnum pistol cartridge meant for close range blasting through the armored chitin of the myr races. The stock and barrel have been cut down significantly compared to the similar rifles you’ve seen in the hands of myr soldiers, but it still packs a punch and is dead accurate in close quarters.";
+			this.tooltip = "This beat up old gun looks something like an old-earth lever action rifle, chambered in a magnum pistol cartridge meant for close range blasting through the armored chitin of the myr races. The stock and barrel have been cut down significantly compared to the similar rifles you’ve seen in the hands of myr soldiers, but its high power and sawn-off nature make it damn unwieldy.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			//Information
-			this.basePrice = 1000;
-			this.attack = 2;
+			this.basePrice = 6500;
+			this.attack = -4;
 			
 			baseDamage = new TypeCollection();
-			baseDamage.kinetic.damageValue = 14;
+			baseDamage.kinetic.damageValue = 23;
 			baseDamage.addFlag(DamageFlag.BULLET);
 			
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			this.critBonus = 4;
+			this.critBonus = 8;
 			this.evasion = 0;
 			this.fortification = 0;
 

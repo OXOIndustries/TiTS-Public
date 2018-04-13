@@ -108,7 +108,7 @@ public function askAUGCTroopAboutStellarTetherMission():void {
 	output("<i>“Good to have you onboard, kid,”</i> the old man says, walking you into the heart of the encampment. <i>“The name’s Horace, by the way. Sergeant Horace Decker.”</i>");
 	output("\n\nSgt. Decker gives you a firm handshake, his grip just about crushing your hand. Strong in his old age! Several of the troops standing around give you respectful nods as you step into one of the APCs. At a touch from the sergeant, a holo-map of the facility and the Chasm appear between you.");
 	output("\n\n<i>“Here’s the situation: a group of pirates, a splinter group from the Black Void near as we can tell, have taken up residence inside the Tether station here. I don’t know what their game is -- they haven’t made any demands, except that we keep clear. What they DO have is a bomb, and a big one: Command’s got radiological alarms going off like you wouldn’t believe. Worse, they’ve locked down the cargo lift that goes down to the station at the planetary core, and are threatening to blow the place if we try and go down. I’ve got twenty good SWAT troopers out here sitting on their asses, and there’s not a lot we can do about it. We’ve got orders to sit tight, straight from the top.”</i>");
-	output("\n\n<i>“A lone operator, though.... well, I don’t think me or my troops here would say anything if Steele Jr. here wandered up to the lift control station, here on the rift edge,”</i> he says, pointing toward the building ahead. <i>“There’s a pirate in there keeping watch. Bunch of gun turrets and drones set up inside, like she repurposed the station’s auto-defenses against us. Fight or sneak your way to the control center, override the lift controls, and you’ve got a straight shot into the core. Pirates’ll never know what hit ‘em.”</i>");
+	output("\n\n<i>“A lone operator, though... well, I don’t think me or my troops here would say anything if Steele Jr. here wandered up to the lift control station, here on the rift edge,”</i> he says, pointing toward the building ahead. <i>“There’s a pirate in there keeping watch. Bunch of gun turrets and drones set up inside, like she repurposed the station’s auto-defenses against us. Fight or sneak your way to the control center, override the lift controls, and you’ve got a straight shot into the core. Pirates’ll never know what hit ‘em.”</i>");
 	output("\n\nYou take a moment to familiarize yourself with the blueprints and other details for the twin stations before nodding to the sergeant and stepping out. You know what you have to do.");
 	processTime(4);
 	//Move PC forward. Set up rooms so next room is a one-way back.
@@ -484,7 +484,7 @@ public function tamtamBadEndPetPooch():void
 
 	output("\n\nYou stare up at the crazy pair, looking for any opportunity to get up... get away. To make your escape. But every time you move a muscle, Tam-wolf follows you, teeth bared. Finally, after a long moment of silence, his mistress asks, <i>“What do you think we should do with " + pc.mf("him","her") + ", Tam-wolf?”</i>");
 	output("\n\n<i>“I am a canine attack drone, Mistress Tam. I am not programmed for independent thought.”</i>");
-	output("\n\n<i>“Ooooh,”</i> Tam-cat murmurs, leering dangerously at you. <i>“That sounds like a perfect plan, my faithful friend.... what do you say, " + pc.mf("mister","miss") + ", do you want to live?”</i>");
+	output("\n\n<i>“Ooooh,”</i> Tam-cat murmurs, leering dangerously at you. <i>“That sounds like a perfect plan, my faithful friend... what do you say, " + pc.mf("mister","miss") + ", do you want to live?”</i>");
 	output("\n\nYou nod instinctively. Any thought of rebellion, of stoicism, washed away by the dangerous teeth at your throat.");
 	output("\n\n<i>“Good puppy,”</i> Tam coos, reaching down and looking you in the eye. <i>“You are going to be a good puppy, right?”</i>");
 	output("\n\nYou nod.");
@@ -512,8 +512,7 @@ public function tamtamBadEndPetPooch():void
 
 public function badEndToTamWulfAndTamAndMaybeAlsoTamPartII():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	days += 94;
@@ -685,8 +684,7 @@ public function bombAlertBonusFunction():Boolean
 		flags["TARKUS_BOMB_TIMER"] = 240;
 		clearMenu();
 		//Reset position as you haven't really moved.
-		currentLocation = "352";
-		generateMapForLocation(currentLocation);
+		moveTo("352");
 		addButton(0,"Next",mainGameMenu);
 		return true;
 	}
@@ -726,8 +724,7 @@ public function liftDownEvent():void
 	}
 	processTime(23);
 	//Move the PC
-	currentLocation = "354";
-	generateMapForLocation(currentLocation);
+	moveTo("354");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -794,8 +791,7 @@ public function goUpTarkusLift():void
 	output("Stepping into the lift, you press the activation key. The elevator hums softly and accelerates upward, replacing gravity with acceleration until you’re far enough from the core for the former to return. Stowing your equipment, you try to relax for the thirty minute ride.");
 	processTime(25);
 	//Move the PC
-	currentLocation = "353";
-	generateMapForLocation(currentLocation);
+	moveTo("353");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1025,7 +1021,7 @@ public function victoriousVsCaptainOrcButt():void
 	output("The reinforced mining suit shudders, smoke billowing off of it as the captain struggles to keep it standing. With one final roar of outrage, she levels the mining laser at you, intending to go down with a fight... but it doesn’t fire. Indeed, it <i>catches</i> fire as she spins it up, quickly bursting into flames from excess heat. You bat a billow of smoke away from your face as the suit collapses to one knee, its guns melting to slag.");
 	output("\n\nBut she’s not done yet! The intact hand of the suit reaches out, grabbing you before you have time to react. You gasp, fighting for breath as the suit’s powerful grip threatens to crush you... before hurling you into the platform behind it. You go tumbling, back slamming into a sheer rock face -- though it’s strangely smooth, cold to the touch. Rubbing your head, you look up to see a thick vein of platinum running up through the crust.");
 	output("\n\nWith a pneumatic hiss, the mech suit’s cockpit flings open, and the captain rolls out. You momentarily think she means to surrender, until you see the hilt of a sword in her hand. With a flick of her wrist, the hilt erupts in a blade of sheer force, glowing a brilliant blue in the dim light of the sundered core.");
-	output("\n\n<i>“You stupid " + pc.mf("bastard","bitch") + ",”</i> the captain sneers, standing to her full height -- an impressive seven feet, at the least. Her corset strains to keep her heaving chest in check as she takes a step forward, raising her force cutlass in a classic duelist’s pose. <i>“All you and the damn Peacekeepers had to do was was stay back a few hours... nobody had to get hurt. But you... now you’ve ruined everything. Probably killed half my crew, haven’t you? And now my suit! My beautiful suit!”</i>");
+	output("\n\n<i>“You stupid " + pc.mf("bastard","bitch") + ",”</i> the captain sneers, standing to her full height -- an impressive seven feet, at the least. Her corset strains to keep her heaving chest in check as she takes a step forward, raising her force cutlass in a classic duelist’s pose. <i>“All you and the damn Peacekeepers had to do was stay back a few hours... nobody had to get hurt. But you... now you’ve ruined everything. Probably killed half my crew, haven’t you? And now my suit! My beautiful suit!”</i>");
 	output("\n\nYou have just enough time to ready your [pc.meleeWeapon] when she lunges at you, only barely parrying the thrust.");
 	output("\n\nShe circles, breathing hard. <i>“You’re strong, I’ll give you that. That suit should have been able to mow through a whole squad of soldiers, but you...”</i>");
 	output("\n\nKhorgan sighs, a slight grin crossing her lips. She charges, swinging low. You parry, leaping back as you see the feint for what it is, only just dodging a left hook that would have had you on your ass. She follows up with a few swings which you alternatively dodge or parry before countering with your own attack, pushing her back -- and giving you some room to breathe.");
@@ -1072,7 +1068,7 @@ public function demandSurrenderFromPirate():void
 	showName("CAPTAIN\nKHORGAN");
 	output("<i>“You’ve got no chance, captain. How about YOU put your weapon down,”</i> you say, holding your ground.");
 	output("\n\n<i>“Ballsy,”</i> she laughs, still clutching her force cutlass tight. <i>“I like that in a " + pc.mf("","wo") + "man. Tell you what: force me to. Fight me, Steele, and if you win, the detonator is yours... and me with it. If you lose, though, I’ll still take you as my personal fuck-slave.”</i>");
-	output("\n\n<i>“Or would you rather we sit here flapping our gums ‘til the timer runs out? That’ll be a hell of a way to go, out with a blast, huh!?”</i>");
+	output("\n\n<i>“Or would you rather we sit here flapping our gums till the timer runs out? That’ll be a hell of a way to go, out with a blast, huh!?”</i>");
 	output("\n\nIf you want to get out of this, it doesn’t look like you’re going to have much of a choice after all.");
 	processTime(1);
 	//[Fight!]
@@ -1593,7 +1589,7 @@ public function defeatedByKaska():void
 			output("You sink to the ground, panting and too injured to move, and Kaska... that horny pirate, Kaska.... She’s just smirking at you and pulling a vial out of her belt.");
 			output("\n\n<i>“Don’t you die on me, damnit! You did this to me, so you’re gonna deal with it. Believe me, the captain isn’t the only one doing some drilling today!”</i> Kaska snarls, spitting the cork out into the void. It spins aimlessly through zero G, drifting amongst the floating platforms and rocks that are so common here. <i>“Now drink up. This’ll pep you right up.”</i>");
 			output("\n\nGiven the choice between drinking a strange concoction or bleeding to death, you choose not to bleed to death. The silvery draught goes down smooth, leaving an overwhelming orange flavor in your mouth along with a tingling, caustic aftertaste. You cough, <i>“Just what was that?”</i>");
-			output("\n\nKaska smiles down at you and tosses the vial into the void. Her other hand lazily strokes her cock, bunching the skin up just below the crown then turning it shiny and taut when she pulls back down to her balls. <i>“Just some military grade microsurgeons mixed with [planet-name] love-toxin.”</i> She strokes her appetizing-looking length again, slower. <i>“I like my partners to enjoy what I’m doing to them.”</i>");
+			output("\n\nKaska smiles down at you and tosses the vial into the void. Her other hand lazily strokes her cock, bunching the skin up just below the crown then turning it shiny and taut when she pulls back down to her balls. <i>“Just some military grade microsurgeons mixed with " + getPlanetName() + " love-toxin.”</i> She strokes her appetizing-looking length again, slower. <i>“I like my partners to enjoy what I’m doing to them.”</i>");
 			output("\n\nYour scowl of defiance turns into dazed bewilderment as your wounds painlessly close. They should hurt, or at least itch or something. Running your fingers over your [pc.skinFurScales], you feel nothing but good. Licking your lips, you let your palms flatten out and continue to rub yourself");
 			if(pc.armor.shortName != "") output(" under your [pc.armor]");
 			output(", marvelling at the electric charge of skin on skin, the way your heartbeats speed up with every caress. Just because you feel... fucking awesome... doesn’t mean you’re going to let her fuck you. No drugs can make you lust after her gorgeous tits... or that hard, leaking prick. Your tongue licks your lips again; it’s almost as good as giving a French kiss.");
@@ -1886,8 +1882,7 @@ public function kaskaBadEndPartDues():void
 //Next page -> "Some time later..." Describe PC's living conditions and state, focusing on lusting after the next time Mistress will use him/her. End with Kaska coming home with a bimbo cow-girl and the two of you sucking her off together.
 public function kaskaBadEndPartIII():void
 {
-	currentLocation = "GAME OVER";
-	generateMap();
+	moveTo("GAME OVER");
 	showLocationName();
 	
 	clearOutput();
@@ -2048,14 +2043,14 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 	else if(pc.isMischievous()) output("Well, we are going to fuck. You got that part right.");
 	else output("Nope. I’m gonna fuck you, sugar tits.");
 	output("”</i>");
-	if(!jail) 	output("\n\n<i>“No... I’m... an alpha...”</i> Kaska weakly protests as you bend her over a crate. ");
-	else output("\n\n<i>“Oh... Okay... Just be... be gentle...”</i> Kaska weakly replies as you bend her over a the examination table. ");
+	if(!jail) output("\n\n<i>“No... I’m... an alpha...”</i> Kaska weakly protests as you bend her over a crate. ");
+	else output("\n\n<i>“Oh... Okay... Just be... be gentle...”</i> Kaska weakly replies as you bend her over the examination table. ");
 	output("Her dick, still leaking, is pointed straight down, pinned between her balls and the cool metal, and you get a good, long look at her pussy, for once not obscured by her troublesome maleness. It’s clear she’s a stranger to the feminine pleasures her body could enjoy, but that doesn’t stop her from being dripping wet, her lips slightly parted invitingly. The pirate’s pussy is just asking for a hard fucking.");
 	output("\n\nYou don’t keep it waiting. Pushing your [pc.cockHead " + x + "] against her sodden entrance, you marvel at the silky texture of her spreading labia, slowing your push to give you time to drag yourself all over the exterior of her sex. The alien hermaphrodite may have styled herself as something of a masculine breeder, but when it comes down to it, her cunt is desperate to be fucked and used.");
 	if(!jail) output("\n\nKaska gasps, <i>“W-why does it feel this good?”</i> Her legs wobble dangerously. <i>“No... I’m... I’m not supposed to like this...”</i> She whimpers and goes slack, legs spreading, finally giving in to the sensation of you plumbing the first few inches of her passage. <i>“Yesssss....”</i>");
 	else output("\n\nKaska gasps, <i>“W-why does it feel this good?”</i> Her legs wobble dangerously. <i>“These fucking drugs... Turning me into a fucking onahole!”</i> She whimpers and goes slack, legs spreading, finally giving in to the sensation of you plumbing the first few inches of her passage. <i>“Yesssss....”</i>");
 	if(!jail) output("\n\nYou almost don’t hear the quiet admission of pleasure, but it’s there all the same. You’d never guess her so vaginally inexperienced after slipping inside of her oozing slut-tunnel. ");
-	else output("\n\nYou can’t miss the hissed admission of pleasure, but even if you did, the following gasps of delight her opinion on a hard dicking quite well known to you. Her sodden slut-tunnel grips you like a pro. ");
+	else output("\n\nYou can’t miss the hissed admission of pleasure, but even if you did, the following gasps of delight make her opinion on a hard dicking quite well known to you. Her sodden slut-tunnel grips you like a pro. ");
 	output("The muscles inside squeeze and stroke at you with greater levels of excitement after each new inch you feed it. Your [pc.cock " + x + "] trembles under the caresses. They are at the same time both foreign and familiar; Kaska’s race’s anatomy is just different enough that the muscles squeezing at you from inside her pussy do so in unexpected ways, feeling distinctly alien yet all too pleasurable. When your ");
 	if(pc.balls > 0) output("[pc.balls] slap against her own");
 	else output("[pc.base " + x + "] presses against her");
@@ -2201,7 +2196,7 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 		output(" Becoming aware of ");
 		if(pc.totalVaginas() == 2) output("another nearby pussy");
 		else output("other nearby pussies");
-		output(", she shifts over to take the next in her mouth. You’re stunned by the sensation of her tongue pressing on unprepared nerves and nearly cum on the spot, offering up even more of your [pc.girlCumFlavor] for the pirate to taste.");
+		output(", she shifts over to take the next in her mouth. You’re stunned by the sensation of her tongue pressing on unprepared nerves and nearly cum on the spot, offering up even more of your [pc.girlCumFlavor] [pc.girlCumNoun] for the pirate to taste.");
 		if(pc.totalVaginas() > 2) output(" She moves to your third twat after licking the second clean, then back to the first. You could get used to this kind of attention.");
 	}
 	output("\n\nFaint, wet sounds of flesh slapping flesh come from below you. Glancing around Kaska’s noisily slurping head, you spot the source of the sound. She’s got ");
@@ -2433,15 +2428,13 @@ public function bombExplodes():void
 
 public function planetAsplodeWhileInGhostDeck():void
 {
-	currentLocation = "210";
-	generateMapForLocation(currentLocation);
+	moveTo("210");
 	bombExplodes();
 }
 
 public function planetAsplodeWhileInNova():void
 {
-	currentLocation = "201";
-	generateMapForLocation(currentLocation);
+	moveTo("201");
 	clearOutput();
 	author("Fenoxo");
 	output("The hangar’s blast doors are sealed. You didn’t even know the hangar HAD blast doors, but they’ve closed all the same. Your ship and a half dozen others are piled together on the far side of the chamber, damaged but unbroken. You’re lucky no one brought any larger ships here before the planets came apart. Your ride could’ve gotten smashed.");
@@ -2610,6 +2603,8 @@ public function tooPoorToBuyTheProbe():void
 	output("\n\n<i>“No! No! Not while [pc.he]’s around!”</i> Your cousin panics, slapping ineffectually at the gleaming metal. A seam appears next to [rival.name]’s hand and retracts, revealing a blinking, electronic screen with a set of flashing coordinates. <i>“Damn,”</i> [rival.he] mutters. To [rival.his] credit, your cousin recovers quickly. [rival.He] flashes you a smarmy grin. <i>“I still beat you to two of them. I’ll be sure to send you a message when I get the keys to Uncle Vic’s fortune.”</i> Snapping [rival.his] fingers, [rival.name] calls, <i>“Dane, lug this hunk of metal back to the ship. We’re out of here.”</i>");
 	output("\n\nYou make sure to copy the coordinates down into your codex. It looks like <b>Myrellion</b> is the next stop on your journey.");
 	flags["PLANET_3_UNLOCKED"] = 1;
+	pc.createStatusEffect("Shekka_Follower_Email_CD");
+	pc.setStatusMinutes("Shekka_Follower_Email_CD",24*60);
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -22,6 +22,12 @@ package classes.Resources.Busts
 		public var Bust_FISIANNA_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/liliruru/fisianna_bra.png", mimeType = "image/png")]
 		public var Bust_FISIANNA_BRA:Class;
+
+		/* Disabled for now since it doesn't match either of her current ingame appearances. Save this for follower xpack, IMO.
+		[Embed(source = "../../../assets/images/npcs/liliruru/sam.png", mimeType = "image/png")]
+		public var Bust_SAM:Class;
+		[Embed(source = "../../../assets/images/npcs/liliruru/sam_nude.png", mimeType = "image/png")]
+		public var Bust_SAM_NUDE:Class;*/
 		
 		CONFIG::IMAGEPACK
 		{
@@ -38,6 +44,12 @@ package classes.Resources.Busts
 			public var Full_FISIANNA_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/liliruru/hr/fisianna_bra.png", mimeType = "image/png")]
 			public var Full_FISIANNA_BRA:Class;
+
+			/* Disabled for now since it doesn't match either of her current ingame appearances. Save this for follower xpack, IMO.
+			[Embed(source = "../../../assets/images/npcs/liliruru/hr/sam.png", mimeType = "image/png")]
+			public var Full_SAM:Class;
+			[Embed(source = "../../../assets/images/npcs/liliruru/hr/sam_nude.png", mimeType = "image/png")]
+			public var Full_SAM_NUDE:Class;*/
 		}
 	}
 

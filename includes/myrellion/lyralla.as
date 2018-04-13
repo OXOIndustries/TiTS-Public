@@ -118,7 +118,7 @@ public function lyrallaTalks():void
 	//Nice
 	else if(pc.isNice()) output("<i>“Well, I have a few questions,”</i> you say with a friendly grin.");
 	//Mischievous
-	else if(pc.isMischievous()) output("<i>“I have a few things I’d like to figure out,”</i> you smirk, <i>“... besides your contact information.”</i>");
+	else if(pc.isMischievous()) output("<i>“I have a few things I’d like to figure out,”</i> you smirk, <i>“...besides your contact information.”</i>");
 	//Hard
 	else output("<i>“I have a few things I need to discuss with you,”</i> you explain.");
 	output("\n\nLyralla");

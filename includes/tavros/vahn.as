@@ -37,6 +37,18 @@ public function getVahnPregContainer():PregnancyPlaceholder
 	return ppVahn;
 }
 
+public function vahnTavrosBonus(btnSlot:int = 0):void 
+{
+	if(flags["MET_VAHN"] == undefined) {
+		output("\n\nYou spot a blonde, half-ausar technician standing next to your ship, looking down at a datapad.");
+		addButton(btnSlot, "Tech", VahnTheMechanic);
+	}
+	else
+	{
+		output("\n\nVahn’s around here somewhere, if you want to look for him.");
+		addButton(btnSlot, "Vahn", VahnTheMechanic);
+	}
+}
 public function VahnTheMechanic():void 
 {
 	clearOutput();
@@ -104,8 +116,8 @@ public function talkToVahnAboutVahn():void
 	clearOutput();
 	showVahn();
 	output("You’re interested to hear more about Vahn, so you ask him about himself.");
-	output("\n\nThe blonde half ausar crosses his arms, his fluffy tail swishing about. <i>“...  Me? I’m not that interesting. I mean, young, strapping half-ausar tech heads like me are a credit a dozen. My story doesn’t even hold a candle to yours, " + pc.mf("Mr.","Ms.") + " heir-to-a-galactic-business-empire.”</i>");
-	output("\n\nNot one to let up, you pester Vahn until he caves. <i>“... Oh, all right. Where to start? Uh... I guess with my name - Vahn Arcon Desai. Only fair I give you mine, since everyone knows yours. I work for Steele Tech as a senior ship technician, so I spend a lot of my days fixing up mining vessels that dock at Tavros.”</i>");
+	output("\n\nThe blonde half ausar crosses his arms, his fluffy tail swishing about. <i>“... Me? I’m not that interesting. I mean, young, strapping half-ausar tech heads like me are a " + (isAprilFools() ? "dogecoin" : "credit") + " a dozen. My story doesn’t even hold a candle to yours, " + pc.mf("Mr.","Ms.") + " heir-to-a-galactic-business-empire.”</i>");
+	output("\n\nNot one to let up, you pester Vahn until he caves. <i>“...Oh, all right. Where to start? Uh... I guess with my name - Vahn Arcon Desai. Only fair I give you mine, since everyone knows yours. I work for Steele Tech as a senior ship technician, so I spend a lot of my days fixing up mining vessels that dock at Tavros.”</i>");
 	output("\n\nStill, working for Steele Tech as a senior technician is fairly impressive, especially since Vahn looks fairly young. You state as much and he bashfully scratches one of his canine ears.");
 	output("\n\n<i>“Well, yeah, I got pretty lucky - scored myself a scholarship to Ausaril Tech funded by your dad’s company. I heard he had an honorary doctorate there? Anyway, I studied Applied Mechanics, since I love tinkering with my hands,”</i> Vahn brushes back his hair, <i>“...When I graduated, I was scooped up immediately by Steele Tech, since, you know, they’re </i>always<i> looking for folks who are good with gadgets.”</i>");
 	output("\n\n<i>“That’s pretty much how I wound up here. I’m not sure if that answered your question, though, since I </i>do<i> have a life outside of work!”</i>");
@@ -120,9 +132,9 @@ public function talkToVahnAboutStarships():void
 	clearOutput();
 	showVahn();
 	output("You ask Vahn how he ended up working on starships, specifically yours.");
-	output("\n\n<i>“Only the best technicians for [pc.fullName], I guess?”</i> He playfully grins and slides his hands in his jump suit pockets. <i>“... I love working on ships and Steele Tech has a lot of them. I like yours the most, though, because it’s an exploratory vessel.”</i>");
+	output("\n\n<i>“Only the best technicians for [pc.fullName], I guess?”</i> He playfully grins and slides his hands in his jump suit pockets. <i>“...I love working on ships and Steele Tech has a lot of them. I like yours the most, though, because it’s an exploratory vessel.”</i>");
 	output("\n\nWhen you ask why that’s important, Vahn’s eyes come alive with excitement. <i>“Oh, what isn’t to love? I’m working on a ship that’s going where nobody’s ever gone before! You’re going to be roughing it through alien skies, landing on alien worlds - all in the ship I’ve worked on!”</i>");
-	output("\n\n<i>“Without a top notch vessel, even the greatest galactic rusher is stuck twiddling their thumbs in a docking bay. Not too different from what you’re doing now, right?”</i> He teasingly winks, bushy tail swishing. <i>“... All my sweat and effort goes into your engines, shields, guns, life support... pretty cool, right?”</i>");
+	output("\n\n<i>“Without a top notch vessel, even the greatest galactic rusher is stuck twiddling their thumbs in a docking bay. Not too different from what you’re doing now, right?”</i> He teasingly winks, bushy tail swishing. <i>“...All my sweat and effort goes into your engines, shields, guns, life support... pretty cool, right?”</i>");
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",talkToVahn);
@@ -181,7 +193,7 @@ public function vahnSexMenu():void
 		addDisabledButton(3,"Pussy Rub","Pussy Rub","You need a pussy to get Vahn to rub on it. Duh.")
 	}
 	addButton(4,"Catch Anal",vahnFucksYourButt,undefined,"Catch Anal","See if you can get the ausar mechanic to get to work on your backdoor...");
-	addButton(5,"Give Handjob",giveVahnAHandy,undefined,"Give Handjob","Bend Vahn over and play with his tasty red rocket... and maybe something dirtier...");
+	addButton(5,"Give Handjob",giveVahnAHandy,undefined,"Give Handjob","Bend Vahn over and play with his tasty rocket... and maybe something dirtier...");
 	addButton(6,"Dommy Anal",vahnDomsYourButt,undefined,"Dommy Anal","Get Vahn to take the lead and claim your ass for his own!")
 
 	addButton(14,"Back",VahnTheMechanic);
@@ -291,7 +303,7 @@ public function giveVahnABJ():void
 	output("\n\nIn your orgasmic haze, you don’t recognize Vahn’s swelling knot until it’s straining your mouth wide open. Wave after wave of his delectable cream shoots down your gullet... and it just doesn’t stop. It’s forceful, but you don’t care - your oral efforts are rewarded with countless gooey ropes of his baby batter washing down your throat and down into your belly. Your mouth is literally mated with his waist, his balls pressed hard against your [pc.face].");
 	output("\n\nWhen he finally deswells and pulls his dripping dick out of your equally wet mouth, you’re both utterly spent. Your belly feels warm and full, and your mouth couldn’t be more filled with his slick, succulent taste. Reaching up, you rub your [pc.lips] and let out a dreamy sigh.");
 	output("\n\nVahn helps you up, though you’re a bit wobbly and he’s hardly better. He wraps his arms around you and gives you a long, passionate kiss, pressing you up against the cargo container in the process. You run your hands through his thick sandy hair, your tongue dancing with his, sharing both his taste and yours.");
-	output("\n\n<i>“... That was stellar. Any time you want to do that again, I’m free. I’ll make time if I have to,”</i> Vahn breathily tells you, stroking your cheek. You both pull away and put on your things. When you come around the corner, more than a few of the ground crew are raising an eyebrow at you both. It’s not that hard to guess what you two were doing!");
+	output("\n\n<i>“...That was stellar. Any time you want to do that again, I’m free. I’ll make time if I have to,”</i> Vahn breathily tells you, stroking your cheek. You both pull away and put on your things. When you come around the corner, more than a few of the ground crew are raising an eyebrow at you both. It’s not that hard to guess what you two were doing!");
 	
 	processTime(13+rand(4));
 	flags["SEXED_VAHN"] = 1;
@@ -326,7 +338,7 @@ public function giveVahnAnal():void
 		output("\n\nWith a " + pc.mf("cheeky","sultry") + " smile, you decide to give him a little strip tease.");
 		if(!(pc.armor is EmptySlot)) output(" Slowly and sensuously, you strip off your [pc.armor] before letting it fall to the floor.");
 		if(!(pc.upperUndergarment is EmptySlot)) output(" Reaching up, your [pc.upperGarment] comes off – tossed aside and liberating your [pc.chest].");
-		if(!(pc.lowerUndergarment is EmptySlot)) output(" Your [pc.lowerGarment] is slid off inch by inch, exposing your [pc.groin]. Vahn lets out a <i>very</i> appreciative groan at the sight. His bushy blonde tail is wagging madly!");
+		if(!(pc.lowerUndergarment is EmptySlot)) output(" Your [pc.lowerGarment] are slid off inch by inch, exposing your [pc.groin]. Vahn lets out a <i>very</i> appreciative groan at the sight. His bushy blonde tail is wagging madly!");
 	}
 
 	output("\n\nYou " + pc.mf("stride up","saunter up") + " and, grabbing his slim hips, turn him around on the spot. Leading him up to one of the cargo crates, you bite his ear and whisper for him to bend over. Obeying your command, the handsome half ausar delightedly gulps and bends forward, lifting his fluffy tail in the air – just like a bitch in heat. As he braces himself against the crate, you grind your [pc.cockNounSimple " + x + "] between his firm butt-cheeks and he excitedly flushes.");
@@ -358,7 +370,7 @@ public function giveVahnAnal():void
 	{
 		output("\n\n<i>“W-what-?”</i> He breathily asks. You pull back until only your [pc.cockHead " + x + "] remains inside of him, awaiting his answer. His parted pucker longingly wrings your glans. He’s clearly missing your [pc.cockNounSimple " + x + "] inside of him! <i>“W-why’d you pull out-? Come onnn...”</i>");
 		output("\n\n<i>“Not until you tell me who your ass belongs to,”</i> you insist, rubbing your [pc.cockHead " + x + "] teasingly against his prostate.  His taut thighs and bushy tail quiver with pent-up pleasure and he lets out a low, howling whine.");
-		output("\n\n<i>“... Y-you... my ass... it’s definitely yours. Please, fuck my naughty ass!”</i> The dirty talk is <i>really</i> turning him on, his half-doggie dick straining and slapping against his belly. His own pre-cum is dribbling down his shaft and balls. When you re-sheathe yourself inside of his ass, the river of spunk flows faster, puddling between his spread legs.");
+		output("\n\n<i>“...Y-you... my ass... it’s definitely yours. Please, fuck my naughty ass!”</i> The dirty talk is <i>really</i> turning him on, his half-doggie dick straining and slapping against his belly. His own pre-cum is dribbling down his shaft and balls. When you re-sheathe yourself inside of his ass, the river of spunk flows faster, puddling between his spread legs.");
 	}
 	//Else notFirstTimeAnal:
 	else
@@ -392,7 +404,7 @@ public function giveVahnAnal():void
 		output("\n\nHe moans and trembles as you tease his tender dick, coaxing out each slick spurt. It lewdly batters the cargo bay wall, smearing it in his canine seed. It takes a while for the virile tech to get it all out - he’s got quite a lot to give!");
 	}
 	output("\n\nTurning Vahn around in your arms, you pull him close and give him a dreamy, post-orgasmic kiss. He moans and slides his arms around your waist. Teasing him a little, you slide one of your fingers into his sloppy butt and he trembles with delight.");
-	output("\n\n<i>“... Ahh-! I-If you tease me like t-that, I-I’ll want to go again...”</i> the male tech lightly whines, his blonde doggy ears flattened back. He sucks on your lower lip, nibbling it playfully - he doesn’t seem <i>entirely</i> against the idea...");
+	output("\n\n<i>“...Ahh-! I-If you tease me like t-that, I-I’ll want to go again...”</i> the male tech lightly whines, his blonde doggy ears flattened back. He sucks on your lower lip, nibbling it playfully - he doesn’t seem <i>entirely</i> against the idea...");
 	output("\n\nThere’s a shout from outside the ship. One of the ground crew is looking for him! You both hastily get redressed, barely finishing in time as a tech jogs up the ramp.");
 	output("\n\nVahn winks to you and walks down the ramp with his co-worker, getting back to work. There’s a slight wobble to his step and his tail is wagging happily.");
 	output("\n\nWith a little grin, you wonder how long it will be before the half-ausar notices the dripping trail of cum he’s leaving on the deck floor...?");

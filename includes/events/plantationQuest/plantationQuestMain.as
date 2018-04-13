@@ -78,7 +78,6 @@ public function showLah(nude:Boolean = false):void
 	showBust("LAH" + nudeSuffix);
 	showName("\nRK LAH");
 }
-
 public function showLahAndQuinn():void
 {
 	showName("RK LAH\n& QUINN");
@@ -88,6 +87,12 @@ public function showQuinnAndLah():void
 {
 	showName("RK LAH\n& QUINN");
 	showBust("LAH","QUINN");
+}
+
+public function quinnVaginalCapacity():Number
+{
+	//return (new ZilFemale().vaginalCapacity(0));
+	return 200;
 }
 public function fuckedQuinn():Boolean
 {
@@ -393,7 +398,7 @@ public function askWhereLahIs():void
 	output("<i>“Do you have any idea where Lah is holed up?”</i> you ask. Darnock silently brings up the map of the nearby jungle again. A large area to the north is circled.");
 	output("\n\n<i>“The zil have attempted to disguise their paths of approach, but satellite surveillance shows that they have almost certainly made camp on the highlands to the north. There seems to be a zil settlement there, at the head of a large waterfall. You will find our ausar friend there, I am sure of it.”</i>");
 	output("\n\n<i>“If you know where they are...”</i> you say slowly.");
-	output("\n\n<i>“... why haven’t I directed an orbital laser strike on their position? Hired a team of SagiTom mercs to go up there and, ah, take care of business?”</i> The professor smiles at you humorlessly. <i>“Firstly: I want Remi alive. He is not some psychopathic pirate with his empathy burnt out, beyond redemption. His and the zils’ eternal souls can be saved. They WILL be saved. Secondly: He is playing a clever game, Steele. Such brute tactics would be noticed, recorded and would </i>prove<i> that Mhen’ga is too dangerous to be civilized. I shall not make a martyr of him. That is why I turn to a single trustworthy hunter, well experienced with the Mhen’gan jungle, to bring him back.”</i>");
+	output("\n\n<i>“...why haven’t I directed an orbital laser strike on their position? Hired a team of SagiTom mercs to go up there and, ah, take care of business?”</i> The professor smiles at you humorlessly. <i>“Firstly: I want Remi alive. He is not some psychopathic pirate with his empathy burnt out, beyond redemption. His and the zils’ eternal souls can be saved. They WILL be saved. Secondly: He is playing a clever game, Steele. Such brute tactics would be noticed, recorded and would </i>prove<i> that Mhen’ga is too dangerous to be civilized. I shall not make a martyr of him. That is why I turn to a single trustworthy hunter, well experienced with the Mhen’gan jungle, to bring him back.”</i>");
 	processTime(3);
 	pquestIntroChatMenu();
 }
@@ -488,7 +493,7 @@ public function talkToAbleAboutValue():void
 	showAble();
 	author("Nonesuch");
 	output("<i>“And what do the zil value?”</i> you persist.");
-	output("\n\n<i>“... sex?”</i> mumbles Able after a pause, shrugging. <i>“Um. We don’t like it when people take our belongings without winning them fairly. That’s the whole reason why the clan are attacking the plantation. We like being able to roam the forests free of danger. And... there’s something else the ausar is giving them. I don’t know what, but they are really committed to protecting him, it’s as if- as if he were an endless supply of food, or something. If you can work out what it is he’s offering them...”</i>");
+	output("\n\n<i>“...sex?”</i> mumbles Able after a pause, shrugging. <i>“Um. We don’t like it when people take our belongings without winning them fairly. That’s the whole reason why the clan are attacking the plantation. We like being able to roam the forests free of danger. And... there’s something else the ausar is giving them. I don’t know what, but they are really committed to protecting him, it’s as if- as if he were an endless supply of food, or something. If you can work out what it is he’s offering them...”</i>");
 	processTime(1);
 	flags["PQUEST_ABLE_VALUE_TALK"] = 1;
 	//[Customs] [Leave]
@@ -1067,8 +1072,7 @@ public function pcDunFallsOffDatHill():Boolean
 		pc.createStatusEffect("Sweaty", 0, 0, 0, 0, false, "Icon_Smelly", "You are covered with sweat from a hard climb, reducing your potential sexiness to many foes. Some, however, may like it.", false, 0);
 		//Place PC in WP square, +1 hour
 		processTime(60);
-		currentLocation = "2. WATERFALL POOL";
-		generateMap();
+		moveTo("2. WATERFALL POOL");
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 		return true;
@@ -1081,12 +1085,12 @@ public function pcDunFallsOffDatHill():Boolean
 		if(InCollection(currentLocation, ["5. RED ROCK LEDGE", "6. WATERFALL STAIRWAY", "7. DRIFTWOOD SHOULDER", "8. RED ROCK SCREE", "10. TOP OF THE CLIFF"])) 
 		{
 			output("\n\nSMACK. You thump hip-first into another sandstone outcrop, narrowly avoiding cracking your chin on it as you recoil. Chest heaving, you fearfully grab onto it, managing to stop yourself from falling any further. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legOrLegs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
-			pc.HP(-1000);
+			applyDamage(new TypeCollection( { kinetic: 1000 }, DamageFlag.CRUSHING, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 		}
 		else
 		{
 			output("\n\nSPLAT. You thump into the moist turf at the bottom of the cliff, narrowly avoiding the deadly rocky outcrop nearby. Chest heaving, you curl into a foetal position and groan. You’re alive. Just about. As you get your breath back and more of the world comes back into focus, horrible pain flares in your [pc.legOrLegs] and the wounds on your chest and face begin to sink their teeth into you. You stare hollow-eyed up to where you were only a moment ago, where a smirking zil is just disappearing from view. The only comfort, your imagination lets you know in graphic detail, is that taking a fall like that could have ended a lot worse.");
-			pc.HP(-10);
+			applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.CRUSHING, DamageFlag.BYPASS_SHIELD ), null, pc, "minimal");
 		}
 		//Take 75% HP damage. If 2 < squares move down 2 squares, If less move to WP square
 		//Gotta make individual shit for individual rooms. Thanks 'suchy.
@@ -1216,7 +1220,7 @@ public function pcLoses2Hornet():void
 		if(pc.hasVagina()) 
 		{
 			output("[pc.EachVagina] responds immediately to her venom, juicing ");
-			if(!pc.isCrotchExposed()) output("your [pc.underGarments] ");
+			if(!pc.isCrotchExposed()) output("your [pc.lowerGarment] ");
 			output("so badly it’s like somebody just turned a warm tap on down there. ");
 		}
 		else if(pc.hasCock())
@@ -1231,7 +1235,7 @@ public function pcLoses2Hornet():void
 		{
 			output(" She raises a woad-daubed eyebrow as her gaze travels further down - presumably taking in the fact you aren’t tent-poling like mad ");
 			if(pc.isCrotchExposed()) output("downstairs");
-			else output("in your [pc.underGarments]");
+			else output("in your [pc.lowerGarmentOuter]");
 			output(" - before athletically swinging her armored yellow legs around your neck.");
 		}
 		if(pc.hasCock()) 
@@ -1275,8 +1279,7 @@ public function zilHornetCuntLoss2():void
 {
 	clearOutput();
 	author("Nonesuch");
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legOrLegs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
 	output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but these are all reasons to be grateful.\n\n");
 	processTime(50);
@@ -1288,8 +1291,7 @@ public function zilHornetDickloss2():void
 {
 	clearOutput();
 	author("Nonesuch");
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	output("You come to your senses in slow, woozy stages, each fresh awakening seeming to trigger a new set of aches somewhere on your frame. The booming crash of water informs you that you are at the bottom of the waterfall again - you vaguely remember the creak of a rope, a rough, careless descent... your [pc.thighs] and much of your [pc.legOrLegs] are utterly slathered in a filthy slurry of honey and your own seed, and your front is covered in angry red stings that are already beginning to itch.");
 	output("\n\nStill: She didn’t kill you. Your possessions are scattered around you. She left you right next to an ice-cold bath. You doubt you’ll be able to attempt the climb again anytime soon, but there are reasons to be grateful.");
 	output("\n\n");
@@ -1377,8 +1379,7 @@ public function loseToHoverfly():void
 	output("\n\n<i>“We aren’t your personal honey trove, land-stealer,”</i> he growls, laying your unresisting body down next to the waterfall pool. <i>“Tell your masters that - and stay in the jungle if you want more.”</i> He buzzes off with a high whine.\n\n");
 	pc.loadInMouth(enemy);
 	processTime(25);
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	CombatManager.genericLoss();
 }
 
@@ -1413,8 +1414,7 @@ public function beatUpNaleenRapeBall():void
 		output("\n\nYou crawl for a little while on your hands and [pc.knees], trying to put as much distance between you and the naleen whilst recovering your breath and senses in the dark. After a short amount of time, things start to turn a little grayer, and the omnipresent roar of the waterfall overhead starts to sound a little clearer. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 		output("\n\nYou will have to start the climb again - but that seems a fairly small price to pay, weighed against not dying and not getting gang-raped by serpents.\n\n");
 	}
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	CombatManager.genericVictory();
 }
 
@@ -1535,8 +1535,7 @@ public function naleenBallLossFinisher():void
 	output("\n\nOver the course of the next half hour, you find your [pc.gear] scattered around you and put it all back on. You then crawl slowly in the direction you think you detect a slight breeze coming from. As you progress the light starts to become a bit grayer, the sound of the waterfall a bit clearer, and you have enough about you to get up and start gingerly waddling instead. At last you come to a cave entrance, in front of which a white curtain of water tumbles down. Working your way around that leaves you blinking in the open air of the Mheng’an jungle, knee deep in the pool at the bottom of the waterfall.");
 	output("\n\nYou will have to start the climb again - but at least you’re still alive. And you do now know where the most rapacious pitfall on this planet lies.\n\n");
 	processTime(120);
-	currentLocation = "2. WATERFALL POOL";
-	generateMap();
+	moveTo("2. WATERFALL POOL");
 	CombatManager.genericLoss();
 }
 
@@ -1767,23 +1766,6 @@ public function agreeWithDemBiyaaaatches():void
 		//[Talk] [Appearance] [Leave]
 		peacefulQuinnMenu();
 	}
-}
-
-//Leave
-public function leaveQuinn():void
-{
-	clearOutput();
-	showQuinn();
-	author("Nonesuch");
-	output("<i>“I should, uh...”</i>");
-	output("\n\n<i>“As you wish.”</i> Quinn gestures in the direction of the waterfall. <i>“");
-	if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
-	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, since you have vanquished the cliffs.");
-	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising pits of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
-
-	processTime(1);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
 }
 
 //Challenge
@@ -2105,7 +2087,7 @@ public function pcBeatsUpAWholeTribeNewsAt11():void
 	pc.createKeyItem("RK Lah - Captured");
 
 	//[Fuck Her] [Let Her Go]
-	if(pc.hasCock() && pc.cockThatFits(new ZilFemale().vaginalCapacity(0)) >= 0) addButton(0,"Use Dick",putItInQuinnYaCunt,undefined,"Use Dick","To the victor go the spoils...");
+	if(pc.hasCock() && pc.cockThatFits(quinnVaginalCapacity())) addButton(0,"Use Dick",putItInQuinnYaCunt,undefined,"Use Dick","To the victor go the spoils...");
 	else addDisabledButton(0,"Use Dick","Use Dick","You need a dick that will fit inside Quinn for this.");
 	if(pc.hasVagina()) addButton(1,"Use Vagina",takeQuinnInTheLadyWay,undefined,"Use Vagina","To the victor go the spoils...");
 	else addDisabledButton(1,"Use Vagina","Use Vagina","You need a vagina for this.");
@@ -2181,7 +2163,7 @@ public function thirdWayQuinnSolution():void
 	output("<i>“Alright, look,”</i> you say, as levelly as you can. <i>“I get that what Snugglé is doing is bad. But Lah’s plan is only going to result in more misery for you. Either they’ll send mercs after you, </i>real<i> ones this time, or your whole species is going to be declared savage and dangerous. You’ll get killed in droves. Nobody will protect you from slavers...”</i>");
 	output("\n\n<i>“What are you proposing?”</i> returns Quinn, the tone of strained patience echoed back at you.");
 	output("\n\n<i>“You have honey,”</i> you go on quickly. <i>“Star people really like that honey. Trade it with those in Esbeth for food, medicine, material. They aren’t with the land-stealers - if you show you aren’t violent, that you can be friends, they’ll help you. They can protect you against Snugglé, block them from expanding. You can be uplifted - and that is when you really can take the fight to them.”</i>");
-	output("\n\n<i>“Corporatist, credit-eyed logic!”</i> snaps Lah. <i>“Join the scramble at the bottom kids, maybe some of your betters’ crumbs will fall your way - and be sure to say thank you whilst they’re literally milking you dry!”</i>");
+	output("\n\n<i>“Corporatist, " + (isAprilFools() ? "dogecoin" : "credit") + "-eyed logic!”</i> snaps Lah. <i>“Join the scramble at the bottom kids, maybe some of your betters’ crumbs will fall your way - and be sure to say thank you whilst they’re literally milking you dry!”</i>");
 	output("\n\n<i>“Hmm,”</i> drones Quinn, gazing at you. <i>“You’ve gone through a lot in order to put this to me, but you must understand - putting down our weapons to chase after this plan of peace of yours, it sounds very dubious. The people of the place you call Esbeth have never shown anything but fear and mistrust of us. What are you really offering over the word-wolf’s truths?”</i>");
 	output("\n\n<b>You get the impression you’re only going to get a limited number of shots at this.</b>");
 	processTime(3);
@@ -2282,7 +2264,7 @@ public function doSomePeaceStuff():void
 	author("Nonesuch");
 	output("<i>“You need to come to some sort of compromise with star-people,”</i> you say. <i>“Show that you are peaceful. If not with Snugglé, then someone. If you just keep attacking whoever, eventually you’ll get soldiers landing here, and things will get ugly.”</i>");
 	output("\n\n<i>“Are you saying that we cannot drive off whoever we choose?”</i> Quinn raises a gleaming black eyebrow at you.");
-	output("\n\n<i>“... Yes?”</i> you have to reply. <i>“You already know star-people have vastly better tech--”</i>");
+	output("\n\n<i>“...Yes?”</i> you have to reply. <i>“You already know star-people have vastly better tech--”</i>");
 	output("\n\n<i>“What I know,”</i> the female zil interrupts with an irritated slap on her throne, <i>“is that the land-stealers hide and quiver in their palace from our attacks. That these Esbeth people of yours barely dare set foot outside their homes for fear of us. We are zil! We fight fearlessly and relentlessly, guided now by the star knowledge of the word-wolf! You seek to threaten us, alien, as if we weren’t warriors. Do not do so again.”</i>");
 	output("\n\nThere’s a clash of weapons and a loud, buzzing cheer behind you. Lah hasn’t said a word this time, but a glance over your shoulder tells you he’s looking unbearably smug.");
 	processTime(5);
@@ -2463,10 +2445,12 @@ public function leaveZeLovelyQuinnBeeeeeehind():void
 	showQuinn();
 	author("Nonesuch");
 	output("<i>“I should, uh...”</i>");
-	output("\n\n<i>“As you wish.”</i> Quinn sighs. She gestures in the direction of the waterfall. <i>“You have easily done enough to be treated as an honored guest in our village. ");
+	output("\n\n<i>“As you wish.”</i> Quinn");
+	if(rand(2) == 0) output(" sighs. She");
+	output(" gestures in the direction of the waterfall. <i>“You have easily done enough to be treated as an honored guest in our village. ");
 	if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
 	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
-	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising rings of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
+	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising " + (rand(2) == 0 ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
 	processTime(2);
 	
 	quinnFinishExit();
@@ -2494,7 +2478,7 @@ public function peacefulQuinnMenu():void
 	addButton(1,"Appearance",quinnAppearance);
 	if(flags["MET_QUINN"] != undefined) 
 	{
-		if(pc.hasVagina() || pc.cockThatFits(new ZilFemale().vaginalCapacity(0)) >= 0) 
+		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) 
 		{
 			if(pc.lust() >= 33) addButton(2,"Sex",sexWithQuinnOmnigenderWHYYYY);
 			else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
@@ -2562,7 +2546,7 @@ public function putItInQuinnYaCunt():void
 	clearOutput();
 	showQuinn(true);
 	author("Nonesuch");
-	var x:int = pc.cockThatFits(new ZilFemale().vaginalCapacity(0));
+	var x:int = pc.cockThatFits(quinnVaginalCapacity());
 	output("Damn right. Endorphins pumping through your veins, honeyed pheromones sinking hard heat into your [pc.groin], all you feel looking down at the defeated zil chieftain is prickly, angry lust. Staring her right in the eye, the image of her ordering your death redolent across your mind’s eye");
 	if(!pc.isCrotchExposed()) output(", you begin to briskly tear off your [pc.lowerGarments].");
 	output("\n\n<i>“Let’s see the goods,”</i> you demand. Quinn looks down at last, color peeking out of her pale cheeks as she slowly withdraws the plates across her chest and groin. Her breasts are the supple, beautifully formed handfuls the curve of her breastplate suggested they were, and as for her bare, yellow delta... you inhale deeply, closing your eyes as the smell of sexual honey engulfs you, gathering at the back of your nostrils and throat, blood rising eagerly to your [pc.skin] and surging down the shaft of your [pc.cock " + x + "], becoming almost unbearably erect.");
@@ -2775,8 +2759,9 @@ public function manerLahTurnInProc():void
 	showBust("LAH","DARNOCK");
 	showName("DARNOCK\n& RK LAH");
 	output("Able buzzes out of the air and opens the gate for you. His tar black eyes flick from you to the fugitive ausar, his slender face full of questions - but he doesn’t ask them.");
-	currentLocation = "THARE MANOR";
-	generateMap();
+	
+	moveTo("THARE MANOR");
+	
 	output("\n\n<i>“Sir is waiting for you.”</i>");
 	output("\n\nThat he is. Darnock stands on the steps of the manor, a proud beam splitting his face, and opens his arms wide as you come up the driveway, Lah in front of you.");
 	output("\n\n<i>“My dear [pc.boyGirl],”</i> the old human exults. <i>“I knew I had placed my faith wisely when I put you in charge of this little matter. Well done, ah, well done indeed!”</i>");
@@ -2878,8 +2863,9 @@ public function returnToPlantationWithoutLah():void
 	output("\n\n<i>“Sir is waiting for you.”</i>");
 	output("\n\nThat he is. Darnock stands on the manor steps, watching you approach up the gravel drive with a quizzical, searching expression.");
 	output("\n\n<i>“Steele! You return. In one piece - which is excellent to see - but also, I note, empty-handed. May I ask what has happened to our erstwhile escapee?”</i>");
-	currentLocation = "THARE MANOR";
-	generateMap();
+	
+	moveTo("THARE MANOR");
+	
 	output("\n\nYou go inside to his dining room and wait for him to settle in his chair before giving a debriefing. The old human plays with a pen, humorless smile frozen on his lips as you explain that you settled matters with the zil, and they agreed to stop attacking the plantation - but that Lah himself escaped into the jungle before you could nab him.");
 	output("\n\n<i>“A fine tale, one which I’m sure will garner you much acclaim once the celebrity sites get ahold of it,”</i> he says at last, tapping the pen on his desk. <i>“" + pc.mf("Dashing Sir","Delightful Miss") + " Steele melts the heart of the sultry alien princess and solves the stand-off through wit and chivalry - alas, the fiery rabble rouser slips through [pc.hisHer] grasp. To appear dramatically in a later installment, perhaps! However. Allow me to apply a less rosy gloss to this.”</i>");
 	output("\n\nDarnock gets up and walks slowly over to the veranda, arms behind his back.");
@@ -2961,7 +2947,7 @@ public function approachQuinn():void
 		if(hours >= 5 && hours < 19) output("day");
 		else output("night");
 		output(" has been long and tense, and I want sex. You will come with me to my home, [pc.name] Steele. Or you will fetch one of my men, as you wish.”</i>");
-		flags["MET_QUINN"];
+		
 		//Lust to 30 if <30
 		if(pc.lust() < 33) pc.lustRaw = 33;
 		while(pc.lust() < 33) { pc.lustRaw += 5; }
@@ -2969,7 +2955,7 @@ public function approachQuinn():void
 		flags["MET_QUINN"] = 1;
 		//[Sex] [No] [Appearance]
 		clearMenu();
-		if(pc.hasVagina() || pc.cockThatFits(new ZilFemale().vaginalCapacity(0)) >= 0) addButton(0,"Sex",sexWithQuinnOmnigenderWHYYYY);
+		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(0,"Sex",sexWithQuinnOmnigenderWHYYYY);
 		else addDisabledButton(0,"Sex","Sex","You are not suitably endowed for sex with Quinn.");
 		addButton(1,"Appearance",quinnAppearance);
 		addButton(2,"No",noGiveMeMens);
@@ -3032,7 +3018,7 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 	pc.lust(5);
 	//[Zil on top] [Every hole] [Scizzor]
 	clearMenu();
-	var dickFits:Boolean = (pc.cockThatFits(new ZilFemale().vaginalCapacity(0)) >= 0);
+	var dickFits:Boolean = (pc.cockThatFits(quinnVaginalCapacity()) >= 0);
 	if(dickFits && pc.hasCock()) addButton(0,"Zil on Top",zilOnTopOfPC);
 	else addDisabledButton(0,"Zil on Top","Zil on Top","You need a penis that fits inside her for this.");
 	if(pc.libido() >= 70 || pc.hasStatusEffect("Blue Balls")) 
@@ -3075,7 +3061,7 @@ public function putItInAllThreeOfQuinnHoles():void
 	else output("slither");
 	output(" towards the bed reactively.");
 
-	var x:int = pc.cockThatFits(new ZilFemale().vaginalCapacity(0));
+	var x:int = pc.cockThatFits(quinnVaginalCapacity());
 	if(x < 0) output("ERROR: FEN DUN FUCKED UP COCK SELECTION. ");
 	output("\n\n<i>“All </i>three<i> of my holes, you say?”</i> she wonders. <i>“But I only have... oh. Like the males sometimes do with each other, you mean?”</i> She touches her petite rump; the yellow flesh trembles ever so slightly underneath thin, gleaming fingertips. <i>“Well, I don’t know...”</i> She props herself up and drinks you");
 	if(!pc.isCrotchExposed()) output(" in as you impatiently tear off your [pc.gear]");
@@ -3111,7 +3097,7 @@ public function queenieDickingsAllHolesBonanzoBoBanzaWhyAmIStillWriting2(x:int):
 	if(x >= 3000) output("her swollen belly");
 	else output("her unfurled, cum-drooling snatch");
 	output(". <i>“What </i>energetic<i> creatures you star-people are.”</i> She folds her legs to one side and gazes at you coquettishly; you move forward on the bed, and exhale slowly as she wraps her hand around the base of your throbbing, honey-slathered dick.");
-	x = pc.cockThatFits(new ZilFemale().vaginalCapacity(0));
+	x = pc.cockThatFits(quinnVaginalCapacity());
 	if(x < 0) output("ERROR: FEN DUN FUCKED UP COCK SELECTION.");
 
 	output("\n\n<i>“Yes,”</i> she breathes, slowly moving her hand up and down your thick meat, smooth pressure all the way along your frenum, <i>“We must reach out, encourage many more of yours to come to our lands. I could stand to have many warriors like you at my side...”</i> Her slick, yellow tongue lolls out of her mouth, craning out like a hummingbird’s beak to dab at your [pc.cockHead " + x + "]; you move forward again, reactively presenting your musky, honeyed cock to her face. She gazes up at you winsomely as she rolls more of her insectile mouth-tube out, wrapping it around your length before drawing that brilliant, tight, wet coil back into her maw, touching its sucking, open end to your cum-slit to sample you.");
@@ -3264,8 +3250,8 @@ public function zilOnTopOfPC():void
 	showQuinn(true);
 	author("Nonesuch");
 
-	var x:int = pc.cockThatFits(new ZilFemale().vaginalCapacity(0));
-	var y:int = pc.cockThatFits2(new ZilFemale().vaginalCapacity(0));
+	var x:int = pc.cockThatFits(quinnVaginalCapacity());
+	var y:int = pc.cockThatFits2(quinnVaginalCapacity());
 	output("In this warm, confined, dusky space, filled with the suffocating, horny smell of female zil in heat, it’s difficult to think clearly. In a slight daze you just stare at the black-and-yellow vision sprawled across the furs in front of you - the gleaming, austere armor of her lean, plated limbs framing the soft, perfectly formed, gently leaking treats within - until [pc.eachCock] feels like it’s ");
 	if(!pc.isCrotchExposed()) output("going to tear through your [pc.lowerGarmentOuter]");
 	else output("shoot through the wax of the wall behind her");
@@ -3324,7 +3310,7 @@ public function zilOnTopOfPC():void
 	output(" - before beginning to wring and clench you within herself vigorously again, snarling and clutching at your flesh like a wolverine attached to its prey.");
 	output("\n\n<i>“Cum now then, my warrior,”</i> she growls throatily, the sweet smell of her billowing over you in waves as she rocks on top of you. Instantly your long-denied heat begins to rise to a brilliant, inexorable point, and you " + pc.mf("groan","moan") + " mightily, thrashing up into her reactively. <i>“Cum with me! Let me take your strength!”</i>");
 	output("\n\nFor a moment you think your [pc.cock " + x + "] might actually explode with the pressure... and then you are spouting [pc.cum] into her warm, tight depths deliriously, one glorious full-body clench after another. You clutch the ivory like your life depends upon it and thrust it into her, determined to give her every last drop.");
-	if(pc.cumQ() < 10) output(" You are still pumping up into her, [pc.butt] clenching up, long after you have, your dick still pulsing dryly and [pc.cumVisc] trailers working their way down your [pc.thighs].");
+	if(pc.cumQ() < 10) output(" You are still pumping up into her, [pc.butt] clenching up, long after you have, your dick still pulsing dryly and [pc.cumVisc] trails working their way down your [pc.thighs].");
 	else output(" There’s no way you actually can, of course - the zil is fairly petite, and you are fecund as fuck. Quinn gasps and then laughs with filthy delight as you completely fill her with several fervent bucks of the hips before carrying on regardless, [pc.cumVisc] goodness spurting out all over your [pc.hips] and the sweat-and-honey soaked furs. She continues to ride you with brisk pumps of her body, visibly enjoying every fresh wave of seed you bloat her womb with.");
 
 	output("\n\n<i>“Very good,”</i> she husks at last, still sat proudly on top of you. Her chitin-gloved hands slide over your sweaty [pc.chest], exploring alien flesh and feeling your muscles with sweeping, languorous massages. ");

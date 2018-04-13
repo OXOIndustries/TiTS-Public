@@ -210,7 +210,7 @@
 				a = "";
 				capitalA = "";
 			}
-			kGAMECLASS.myrellionSSTDChance(this);
+			//kGAMECLASS.myrellionSSTDChance(this);
 			this._isLoading = false;
 		}
 		

@@ -77,9 +77,8 @@
 					{
 						kGAMECLASS.output("\n\nYour face contorts, feeling slack like you’ve lost all control of your facial muscles. Thankfully this also seems to protect you from the pain of your skull reshaping, and doesn’t stop <b>until you’ve got a human-like face</b>.");
 						changes++;
-						pc.faceType = GLOBAL.TYPE_HUMAN
+						pc.faceType = GLOBAL.TYPE_HUMAN;
 						pc.clearFaceFlags();
-
 					}
 					else kGAMECLASS.output("\n\n" + target.faceTypeLockedMessage());
 				}
@@ -102,6 +101,7 @@
 					else kGAMECLASS.output("scales");
 					kGAMECLASS.output(" falling in clumps until the new, smooth [pc.skinTone] skin underneath is exposed.");
 					pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+					pc.clearSkinFlags();
 					changes++;
 				}
 				//Remove latex skin (if not locked by perk):
@@ -132,7 +132,7 @@
 					else if(rand(5) == 0) newSkin = "pale";
 					else if(rand(4) == 0) newSkin = "olive";
 					else if(rand(3) == 0) newSkin = "dark";
-					else if(rand(2) == 0) newSkin = "ebony"
+					else if(rand(2) == 0) newSkin = "ebony";
 					kGAMECLASS.output("\n\nThe tingling of the microsurgeons spreads all throughout your skin, and you watch as the [pc.skinColor] begins to be gain " + newSkin + " patches, spreading across your flesh until the last of your old coloration vanishes. <b>You’ve got " + newSkin + " skin now!</b>");
 					pc.skinTone = newSkin;
 					changes++;
@@ -284,7 +284,7 @@
 							//Dicknips become normal
 							else if(pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 							//Non normal, non inverted become normal (catch all)
-							else if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_NORMAL) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+							else if(pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_INVERTED && pc.breastRows[x].nippleType != GLOBAL.NIPPLE_TYPE_NORMAL) pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 						}
 						changes++;
 					}
@@ -375,8 +375,8 @@
 					{
 						kGAMECLASS.output("\n\nYour tongue feels thick in your mouth, morphing into a rounded, slightly tapered shape. <b>You have a human tongue</b>.");
 						changes++;
-						pc.clearTongueFlags();
 						pc.tongueType = GLOBAL.TYPE_HUMAN;
+						pc.clearTongueFlags();
 					}
 					else kGAMECLASS.output("\n\n" + pc.tongueTypeLockedMessage());
 				}
@@ -523,6 +523,15 @@
 						changes++;
 						pc.removeStatusEffect("Special Scrotum");
 					}
+				}
+				
+				//Lose Gills
+				if (pc.gills && changes < changeLimit && rand(2) == 0)
+				{
+					kGAMECLASS.output("\n\nYou feel a tingle above your [pc.chest]. The [pc.gills] below your neck begin to close and shrink until they completly fade away. You rub the area to make certain you weren’t just imagining things and sure enough, <b>you have lost your gills.</b>");
+					
+					pc.gills = false;
+					changes++;
 				}
 				
 				if(changes == 0)

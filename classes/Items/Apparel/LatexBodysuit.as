@@ -10,7 +10,7 @@ package classes.Items.Apparel
 	 */
 	public class LatexBodysuit extends ItemSlotClass
 	{
-		
+		//Level 3 (Common). Balance 2.0
 		public function LatexBodysuit() 
 		{
 			this._latestVersion = 1;
@@ -33,15 +33,17 @@ package classes.Items.Apparel
 			
 			this.attackVerb = "";
 			
-			this.basePrice = 1000;
+			this.basePrice = 440;
 			this.attack = 0;
 			this.defense = 0;
 			this.shieldDefense = 0;
 			this.sexiness = 5;
 			this.critBonus = 0;
-			this.evasion = 0;
+			this.evasion = 2;
 			this.fortification = 0;
 			
+			resistances.electric.resistanceValue = 15.0;
+
 			this.version = this._latestVersion;
 		}
 	}

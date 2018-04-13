@@ -31,7 +31,7 @@ public function encounterHostileRaskvelFemale():void
 		output("\n\nBeeping, your codex alerts you that this is a hostile female of the raskvel race just like the ones you met when you landed. It issues a quick summary: <i>The Raskvel are a race obsessed with fixing technology and breeding in equal measure. They are generally a very friendly race, but some are more than happy to turn to violence to secure a mate.</i> Looking back up at the approaching creature, you ready yourself.");
 		output("\n\nThe raskvel mechanic leans on her wrench as she considers you, her long, floppy ears dangling to her waist. <i>“An off-worlder, huh?”</i>");
 		output("\n\nYou nod.");
-		output("\n\n<i>“That’s too bad. Since you’re trespassing, you’re going to have to pay the hundred credit fee,”</i> the scaly little thing offers before smiling. <i>“If you don’t pay, I’ll find another way to take it out of you.”</i> She looks at " + pc.rawmfn(" your crotch before reaching down to pull her alien twat wide open, winking.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay.") + ". <i>“I’d rather just play with you, but we need the money.”</i> She shrugs her little shoulders apologetically and awaits your response.");
+		output("\n\n<i>“That’s too bad. Since you’re trespassing, you’re going to have to pay the hundred " + (isAprilFools() ? "dogecoin" : "credit") + " fee,”</i> the scaly little thing offers before smiling. <i>“If you don’t pay, I’ll find another way to take it out of you.”</i> She looks at " + pc.rawmfn(" your crotch before reaching down to pull her alien twat wide open, winking.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay her.","your face before rubbing her palm across her exposed pussy, flicking her tongue out to indicate just how you could pay.") + ". <i>“I’d rather just play with you, but we need the money.”</i> She shrugs her little shoulders apologetically and awaits your response.");
 		output("\n\nDo you pay the fiesty little alien, fight her, or try and get a little something for your credits?");
 	}
 	else if(flags["RASKVEL_PREG_TIMER"] != undefined && flags["RASKVEL_PREG_TIMER"] <= 0)
@@ -1057,7 +1057,7 @@ public function takeOneEggSloot():void
 	addChildRaskvel();
 	StatTracking.track("pregnancy/raskvel sired/day care");
 	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
-	StatTracking.track("pregnancy/total births");
+	StatTracking.track("pregnancy/total sired",flags["RASKVEL_EGG_COUNT"]);
 	StatTracking.track("pregnancy/total day care");
 	
 	flags["RASKVEL_EGG_COUNT"] = undefined;
@@ -1089,7 +1089,7 @@ public function dontTakeARaskEgg():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
-	StatTracking.track("pregnancy/total births");
+	StatTracking.track("pregnancy/total sired",flags["RASKVEL_EGG_COUNT"]);
 	flags["RASKVEL_EGG_COUNT"] = undefined;
 	flags["RASKVEL_PREG_TIMER"] = undefined;
 }
@@ -1140,7 +1140,7 @@ public function watchDatRaskvelEggLayyyy():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	StatTracking.track("pregnancy/raskvel sired/total",flags["RASKVEL_EGG_COUNT"]);
-	StatTracking.track("pregnancy/total births");
+	StatTracking.track("pregnancy/total sired",flags["RASKVEL_EGG_COUNT"]);
 	flags["RASKVEL_EGG_COUNT"] = undefined;
 	flags["RASKVEL_PREG_TIMER"] = undefined;
 }

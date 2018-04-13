@@ -491,7 +491,7 @@ public function chatUpDatPexigaYooooo():void
 		else output("<i>“I mean, I don’t know if ausar gene mods would even work on you, but if you wanted a fluffy tail, we could-”</i>");
 		output("\n\nShe vigorously shakes her head in rejection. <i>“No no! Not just any floofer! Miss Anno’s! It’s the best an’ softest.”</i>");
 		output("\n\n<i>“Well, tails aren’t really the kind of thing you can just plug and play,”</i> you explain. <i>“I mean, you can’t pull off your tail, can you?”</i>");
-		output("\n\n[pexiga.name] immediately tries tugging at her own tail, but her thumbless hands can’t get much in the way of a grip. After going at it for a minute, it begins to look as if she’s trying to stroke the the thing to climax. Eventually she gives up. <i>“Nope,”</i> she reports back, <i>“can’t.”</i>");
+		output("\n\n[pexiga.name] immediately tries tugging at her own tail, but her thumbless hands can’t get much in the way of a grip. After going at it for a minute, it begins to look as if she’s trying to stroke the thing to climax. Eventually she gives up. <i>“Nope,”</i> she reports back, <i>“can’t.”</i>");
 		output("\n\n<i>“Well, there you go, then. She can’t take her tail off either. But if you ask nicely, she might let you play with it a bit.”</i>");
 		output("\n\nYour pexiga nods enthusiastically and you can’t help but wonder if Anno’s gonna have the girl pulling at her tail for days.");
 		processTime(5);
@@ -783,7 +783,7 @@ public function faceFuckDatPexigaFaceRingGagThingMaybe(x:int):void
 		if(pc.cockTotal() > 2) output("s");
 	}
 	else output("[pc.thighs]");
-	output(" slap her chin. Slowly at first, your pace builds and builds until the moist slurp and meaty thwack of your rapid face fuck fills the the kitchen.");
+	output(" slap her chin. Slowly at first, your pace builds and builds until the moist slurp and meaty thwack of your rapid face fuck fills the kitchen.");
 
 	output("\n\nHead bobbing between your hands, your pexiga smears her sloppy tongue across your ");
 	if(pc.balls > 0) output("[pc.balls]");
@@ -1000,7 +1000,7 @@ public function eatOutPexigoo4():void
 	clearOutput();
 	showYammiAndPexiga(true);
 	author("Adjatha");
-	output("Pulling back from the pexiga’s pussy, you move to Yammi’s side to make sure she’s alright. Her breathing is shallow but steady and while her scarlet eyes don’t seem to respond to light, a faint mumble of wordless bliss gurgles up from her emerald lips. Still on the table, [pexiga.name] looks at you with a glance of panting helplessness. She tries to tug her tongue free, but the hefty piercing inside the orange cook is far too large for the clenching girl’s overwrought pussy to release. In all likelihood, she’ll be stuck there till Yammi comes to.");
+	output("Pulling back from the pexiga’s pussy, you move to Yammi’s side to make sure she’s alright. Her breathing is shallow but steady and while her scarlet eyes don’t seem to respond to light, a faint mumble of wordless bliss gurgles up from her emerald lips. Still on the table, [pexiga.name] looks at you with a glance of panting helplessness. She tries to tug her tongue free, but the hefty piercing inside the orange cook is far too large for the clenching girl’s overwrought pussy to release. In all likelihood, she’ll be stuck there until Yammi comes to.");
 	output("\n\nSeems a shame to leave them like this, but there’s nothing you can do for your crewmates right now. Maybe they’ll learn a lesson on limits, you muse, licking the pexiga’s heady flavor from your lips.");
 	processTime(3);
 	pc.energy(33);
@@ -1182,7 +1182,7 @@ public function tooBigPexigaFacefuck2(x:int):void
 	//cock is under 3’ long
 	if(pc.cocks[x].cLength() < 36)
 	{
-		if(flags["PEX_2BIG_BJ"] == undefined) output("Your pale bimbo pet practically gurgles with pleasure at the rough handling, but manages to pull her gaze back from your [pc.cock " + x + "] long enough to look over the fullness of the task before her. <i>“Woah,”</i> her piercing sighs. <i>“Big cock. But... small mouth?”</i> She touches her gag-outfitted lips gingerly. <i>“But... big titties?”</i> She moves her hands down the the wobbling bulk of her F-cups. You can practically see the gear turning as she puts one and two together.\n\n");
+		if(flags["PEX_2BIG_BJ"] == undefined) output("Your pale bimbo pet practically gurgles with pleasure at the rough handling, but manages to pull her gaze back from your [pc.cock " + x + "] long enough to look over the fullness of the task before her. <i>“Woah,”</i> her piercing sighs. <i>“Big cock. But... small mouth?”</i> She touches her gag-outfitted lips gingerly. <i>“But... big titties?”</i> She moves her hands down the wobbling bulk of her F-cups. You can practically see the gear turning as she puts one and two together.\n\n");
 		output("<i>“Titties!”</i> she announces with a sparkle in her eyes as she bounces up and down on her knees. She leans into you, hands on the sides of her inflated chest and enwraps your drool-slick length in her pillowy embrace. The jiggling weight of her bimbo-bloated bust sucks in your hard inches while her tongue migrates up to the very top of your [pc.cockHead " + x + "]. Strands of gossamer pre-cum have begun bubbling out of your mast and [pexiga.name] seems all too happy to claim her appetizers with a big, messy, slobbering kiss right on your cum-slit.");
 		output("\n\nHer heaving tits squished around your manhood, you rest a hand on her shoulder and begin rocking into the girl’s wobbling mammaries. The soft, pliant expanse of her ivory udders jiggles with the ripple-like waves of your impact at every thrust. Her seemingly endless saliva pours down your crest and into her cleavage like a slimy, glistening lacquer, leaving both your throbbing pole and her wobbling breasts glinting with a fresh coat of lusty polish.");
 		output("\n\n<i>“So hungry,”</i> she whines with a playful smile. Clenching her breasts tightly, she begins rocking up and down on her knees, feeding your cockflesh up and down her greedy cleavage. The wet, slurping, slapping of her overfilled orbs is nothing next to the whimpering moans that bubble up in her chest.");

@@ -122,7 +122,7 @@ public function beatriceBonusButts(button:int = 0):void
 		addButton(button,"Woman",approachBeatrice,undefined,"Woman","Visit the friendly lady in uniform.");
 	}
 	//Repeat
-	else
+	else if(flags["BEA_TITLE"] != undefined)
 	{
 		output("\n\n" + flags["BEA_TITLE"] + " is here again, sipping her amber colored drink and enjoying the warm fire. She gives you a friendly smile.");
 		addButton(button,flags["BEA_TITLE"],approachBeatrice,undefined,flags["BEA_TITLE"],"Head to her table.");
@@ -233,7 +233,7 @@ public function setBeatriceName(arg:String):void
 	output("\n\n<i>“So, sweetie,”</i> she sets her snifter down and laces her fingers together, <i>“why don’t you tell me a bit about yourself. I’m sure you have many interesting stories to share.”</i>");
 	output("\n\nYou indulge her, recounting for her the details of your current quest and of your late father’s wish, leaving out certain need-to-know information. She hangs on your every word.");
 	output("\n\n<i>“That’s quite impressive,”</i> she says, <i>“I hope you don’t mind if I congratulate you early, since I know you’ll succeed.”</i>");
-	output("\n\nIt becomes quiet, and the two of you enjoy the the fire. It seems that " + flags["BEA_TITLE"] + " is the type of woman who simply likes the company of others, even if there isn’t anything to talk about at the moment.");
+	output("\n\nIt becomes quiet, and the two of you enjoy the fire. It seems that " + flags["BEA_TITLE"] + " is the type of woman who simply likes the company of others, even if there isn’t anything to talk about at the moment.");
 	output("\n\nBut what do you want?");
 	processTime(6);
 	//[Appearance] [Talk] [Leave]
@@ -757,7 +757,11 @@ public function makeLoveToBeatrice():void
 	//Suckle
 	addButton(1,"Suckle",suckleBeatriceTitttttaaaaaays,undefined,"Suckle","Drink from her bosom.");
 	//Reach-Around
-	if(pc.hasGenitals()) addButton(2,"Reach Around",reachAroooooooooogalaBeatrice,undefined,"Reach Around","Let " + flags["BEA_TITLE"] + " pleasure you with her hands.");
+	if(pc.hasGenitals()) 
+	{
+		if(!pc.hasCock() && pc.blockedVaginas() > 0) addDisabledButton(2,"Reach Around","Reach Around","With something obstructing your feminine sex, this would be a poor activity.");
+		else addButton(2,"Reach Around",reachAroooooooooogalaBeatrice,undefined,"Reach Around","Let " + flags["BEA_TITLE"] + " pleasure you with her hands.");
+	}
 	else addDisabledButton(2,"Reach Around","Reach Around","You need a penis or a vagina for this.");
 	addButton(14,"Nevermind",nevermindLetsNotFuckBecauseImTerrible);
 }
@@ -772,7 +776,7 @@ public function cowgirlMissReasner():void
 	author("Tacit");
 	var virgin:Boolean = pc.cockVirgin;
 	output(flags["BEA_TITLE"] + " takes you in her arms, slowly bringing her beautiful visage closer to your [pc.face] and lightly kissing you, tenderly catching your upper [pc.lipChaste] between hers. You eagerly return her ministrations while exploring her body and lifting her hefty bust, feeling the firm cups of her bra through her blouse. Her tongue traces the outline of your lips before slipping deeper into your mouth.");
-	output("\n\nYour [pc.tongue] swirls around hers, moaning into each other’s mouth and inhaling her smoky breath until you get a little dizzy. [pc.SkinFurScalesColor] hands unbutton the the front of " + flags["BEA_TITLE"] + "’s blouse, slip inside around her narrow waist and unhook her bra. She sucks your bottom [pc.lipChaste] into her mouth and pulls on it until the kiss breaks, leaving only a trail of spit connecting your mouths.");
+	output("\n\nYour [pc.tongue] swirls around hers, moaning into each other’s mouth and inhaling her smoky breath until you get a little dizzy. [pc.SkinFurScalesColor] hands unbutton the front of " + flags["BEA_TITLE"] + "’s blouse, slip inside around her narrow waist and unhook her bra. She sucks your bottom [pc.lipChaste] into her mouth and pulls on it until the kiss breaks, leaving only a trail of spit connecting your mouths.");
 	output("\n\n" + flags["BEA_TITLE"] + " pulls away and slowly starts to undress, giving you a little show by pushing out her chest as she removes her blouse and lacy bra, letting her milky F-cups hang free; circling and squeezing her brown areola makes her inverted nipples pop out. " + flags["BEA_TITLE"] + " shows off her body to you, leisurely stroking her limbs and down her midriff to finally undo her belt, letting her long skirt fall to the floor, leaving only her panties, sheer stockings and garter belt; all of it black and lacy with floral patterns. She hooks her thumbs around the sides of her panties and pulls them down her long legs, revealing her [bea.vagina], topped with a soft bush of brown pubic hair.");
 	output("\n\nYou ");
 	if(!pc.isCrotchExposed()) output("join her in stripping off your [pc.lowerGarments], and ");
@@ -1285,14 +1289,14 @@ public function beatriceLeaves2():void
 	if(pc.isNice()) output("You feel like you have a special connection, it’s");
 	else output("It’s");
 	output(" a shame you have to part ways.");
-	output("\n\n<i>“I may be late in saying this, but,</i> she pauses to get your attention, an unusually serious expression on her face, <i>“would you consider joining my crew?”</i>");
+	output("\n\n<i>“I may be late in saying this, but,”</i> she pauses to get your attention, an unusually serious expression on her face, <i>“would you consider joining my crew?”</i>");
 	output("\n\nFor a moment it tempts you, but you can’t. You ");
 	if(pc.isNice()) output("politely ");
 	output("decline her offer, saying that you still have an inheritance to claim.");
 
 	output("\n\n<i>“I see.”</i> " + flags["BEA_TITLE"] + "’s expression softens. <i>“When we first met, I could tell you were the type of person who’s independent");
-	if(!pc.isBimbo() && pc.WQ() >= 50) output(", strong willed, ");
-	output("and in control of your fate - the ultimate agent of your destiny. In this way we are the same, you and I.”</i>");
+	if(!pc.isBimbo() && pc.WQ() >= 50) output(", strong willed,");
+	output(" and in control of your fate - the ultimate agent of your destiny. In this way we are the same, you and I.”</i>");
 	output("\n\nThe kui-tan stands a respectful distance behind his captain, observing.");
 	output("\n\n<i>“To give up your adventure in order to serve aboard my vessel would be a demotion for you. Even knowing that you wouldn’t accept, I still wanted to at least present the opportunity before we part ways.”</i> She ");
 	if(flags["BEA_RELATIONSHIP"] == 2)
@@ -1300,6 +1304,7 @@ public function beatriceLeaves2():void
 		if(pc.tallness < 65) output("bends down");
 		else if(pc.tallness < 72) output("leans in");
 		else if(pc.tallness < 77) output("stands on her tiptoes");
+		else output("hops up");
 		output(" to put a chaste kiss on your cheek, leaving behind a red lipstick mark.");
 	}
 	else output("extends her hand and you shake it.");

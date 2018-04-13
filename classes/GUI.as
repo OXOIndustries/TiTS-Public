@@ -17,6 +17,7 @@
 	import classes.UIComponents.MainButton;
 	import classes.UIComponents.RightSideBar;
 	import classes.UIComponents.SideBarComponents.BigStatBlock;
+	import classes.UIComponents.SideBarComponents.LocationHeader;
 	import classes.UIComponents.SquareButton;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -757,9 +758,7 @@
 		
 		public function showName(name:String):void
 		{
-			//APRIL FOOLS! roomText = name;
-			//roomText = ParseText(name);
-			roomText = name;
+			roomText = (name != null ? ParseText(name) : "");
 		}
 
 		// Text input bullshittery
@@ -876,7 +875,7 @@
 			
 			kGAMECLASS.clearBust();
 			
-			if (tarButton.arg == undefined) 
+			if (tarButton.arg === undefined) 
 			{
 				tarButton.func();
 			}
@@ -1082,14 +1081,26 @@
 
 		public function addButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
 		{
-			//APRIL FOOLS!
-			//cap = kGAMECLASS.parser.recursiveParser(cap);
-			_buttonTray.addButton(slot, cap, func, arg, ttHeader, ttBody);
+			try
+			{
+				_buttonTray.addButton(slot, (cap != null ? ParseText(cap) : ""), func, arg, (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 		
 		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
 		{
-			_buttonTray.addItemButton(slot, cap, quantity, func, arg, ttHeader, ttBody, ttCompare);
+			try
+			{
+				_buttonTray.addItemButton(slot, cap, quantity, func, arg, ttHeader, ttBody, ttCompare);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 		
 		public function setButtonBlue(slot:int):void
@@ -1125,18 +1136,39 @@
 		
 		public function addDisabledButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void 
 		{
-			_buttonTray.addDisabledButton(slot, cap, ttHeader, ttBody);
+			try
+			{
+				_buttonTray.addDisabledButton(slot, (cap != null ? ParseText(cap) : ""), (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 		
 		//Ghost button - used for menu buttons that overlay the normal buttons. 
 		public function addGhostButton(slot:int, cap:String = "", func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void 
 		{
-			_buttonTray.addGhostButton(slot, cap, func, arg, ttHeader, ttBody);
+			try
+			{
+				_buttonTray.addGhostButton(slot, (cap != null ? ParseText(cap) : ""), func, arg, (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 		
 		public function addDisabledGhostButton(slot:int, cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
-			_buttonTray.addDisabledGhostButton(slot, cap, ttHeader, ttBody);
+			try
+			{
+				_buttonTray.addDisabledGhostButton(slot, (cap != null ? ParseText(cap) : ""), (ttHeader != null ? ParseText(ttHeader) : ""), ttBody);
+			}
+			catch (e:*)
+			{
+				if (kGAMECLASS.reportError(e)) throw e;
+			}
 		}
 
 		public function pushToBuffer():void 
@@ -1405,6 +1437,11 @@
 			this._rightSideBar.resetItems();
 		}
 		
+		public function resetPCCaptions():void
+		{
+			this._rightSideBar.resetCaptions();
+		}
+		
 		public function showNPCStats():void 
 		{
 			_leftSideBar.ShowStats();
@@ -1438,9 +1475,14 @@
 
 		public function showBust(... args):void 
 		{
-			var busts:Array = (args is String ? [args] : args);
+			var busts:Array = args.length && args[0] is Array ? args[0] : args;
 			
 			_leftSideBar.locationBlock.showBust(busts);
+		}
+		
+		public function getCurrentBusts():Array
+		{
+			return _leftSideBar.locationBlock.CurrentBusts;
 		}
 		
 		public function bringLastBustToTop():void
