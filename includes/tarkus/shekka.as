@@ -110,7 +110,7 @@ public function approachShekka(back:Boolean = false):void
 		//Merge
 		output("\n\nThe little mechanic nearly jumps out of her jumpsuit (a feat you would have thought impossible prior) and screams, <i>“Eyaaaaaaaaah!”</i> Her torch flies from suddenly nerveless fingers, but the safety kicks in, disabling it before the arcing electrical discharges can transform the workshop into a blazing inferno.");
 		output("\n\nYou step back from the tiny, gasping figure with its face hidden behind a welding mask. Are all raskvel this jumpy?");
-		output("\n\n<i>“Damnit, you nearly gave me a heart attack! Do ya’ just go about scaring harmless folk for your own sick pleasure, or did you not see me working here?”</i> She rounds on you, lifting her mask to reveal luminous pink eyes, a button nose, and unruly, salmon-tinted feathers in place of hair. She inhales sharply at the sight of you, interrupting her own tirade, <i>“Well... hello there, offworlder. Pardon my rudeness; I thought you might be a youngling with a bit too much time on his hands. I have to chase them out of my shop at least twice a rotation, it seems. ”</i> The raskvel smiles sheepishly before extending her hand. <i>“The name’s Shekka, and this here’s my shop. Nice to meet ya.”</i>");
+		output("\n\n<i>“Damnit, you nearly gave me a heart attack! Do ya’ just go about scaring harmless folk for your own sick pleasure, or did you not see me working here?”</i> She rounds on you, lifting her mask to reveal luminous pink eyes, a button nose, and unruly, salmon-tinted feathers in place of hair. She inhales sharply at the sight of you, interrupting her own tirade, <i>“Well... hello there, offworlder. Pardon my rudeness; I thought you might be a youngling with a bit too much time on his hands. I have to chase them out of my shop at least twice a rotation, it seems.”</i> The raskvel smiles sheepishly before extending her hand. <i>“The name’s Shekka, and this here’s my shop. Nice to meet ya.”</i>");
 		output("\n\nYou shake the diminutive girl’s hand and introduce yourself. Then, you muse aloud, <i>“This whole shop is yours?”</i>");
 		output("\n\n<i>“You betcha,”</i> she reports, her grin widening into a sassy smile. <i>“Don’t underestimate what one of us small folk can accomplish.");
 		if(pc.tallness <= 50) output(" I suppose you wouldn’t though. Always nice to get to talk to someone eye to eye, if you catch my meaning.");
@@ -124,7 +124,7 @@ public function approachShekka(back:Boolean = false):void
 	//Repeat Approach
 	else
 	{
-		output("You call out her name, and Shekka immediately steps away from her current project. The welding mask pops up out of the way to reveal a smiling face below. <i>“Welcome back, [pc.name]. Got a purchase to make or did you want to jabber a bit?");
+		output("You call out her name, and Shekka immediately steps away from her current project. The welding mask pops up out of the way to reveal a smiling face below. <i>“Welcome back, [pc.name]. Got a purchase to make or did you want to jabber a bit?”</i>");
 	}
 	//Menu
 	shekkaMainMenu();
