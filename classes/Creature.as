@@ -2424,6 +2424,12 @@
 				case "cuntNoun":
 					buffer = vaginaNounDescript(arg2);
 					break;
+				case "multiCunt":
+				case "multiCunts":
+				case "multiVaginas":
+				case "multiVagina":
+					buffer = multiCuntDescript();
+					break;
 				case "vaginasNoun":
 				case "pussiesNoun":
 				case "cuntsNoun":
@@ -14549,7 +14555,7 @@
 					if (!simple)
 					{
 						if (type == GLOBAL.TYPE_HUMAN)
-							desc += RandomInCollection(["human ", "human ", "terran ", "terran ", "homo sapien "]);
+							desc += RandomInCollection(["human ", "human ", "terran ", "terran "]);
 						else
 							desc += RandomInCollection(["alien ", "alien ", "exotic ", "exotic ", "inhuman "]);
 					}
@@ -15104,22 +15110,33 @@
 				descript += " " + multiCuntAdjective();
 				adjectives++;
 			}
-			//SPACINGS FOR NOUNS
+
+			//NOUN PREP!
+			var nounComplexity:Number = rand(3);
 			if(adjectives > 0)
 			{
-				//if(complex) descript += ", ";
-				//else descript += " ";
+				if(nounComplexity == 2 && hasSamevType()) descript += ", ";
+				else descript += " ";
 			}
 			else descript += " ";
+			var vag:VaginaClass = vaginas[0];
 
-			var matched:Boolean = hasSamevType();
-			
 			//ACTUAL NOUN DRAWS
-			//if(ultraSimple) descript += vaginaNoun2(vag, true, "default");
-			//else if(simple) descript += vaginaNoun2(vag, true);
-			//else descript += vaginaNoun2(vag);
-			return descript;
-
+			//Ultrasimple. Basic untyped puss-noun. Needs no variances for matching.
+			if(nounComplexity == 0) descript += vaginaNoun2(vag, true, "default");
+			//Type-nouns, usually hyphenated. Simplified if unmatched.
+			else if(nounComplexity == 1) 
+			{
+				if(hasSamevType()) descript += vaginaNoun2(vag, true);
+				else descript += vaginaNoun2(vag, true, "default");
+			}
+			//Complex type-nouns. Adjective included with noun.
+			else 
+			{
+				if(hasSamevType()) descript += vaginaNoun2(vag);
+				else descript += vaginaNoun2(vag, true, "default");
+			}
+			return plural(descript);
 		}
 		public function multiCuntAdjective():String
 		{
@@ -15198,7 +15215,7 @@
 				if(i == 0 && vaginas[i].vaginaColor != vaginas[i+1].vaginaColor) biggestSize = 0;
 				if(i > 0 && vaginas[i].vaginaColor != vaginas[i-1].vaginaColor) biggestSize = 0;
 			}
-			if(biggestSize = 1) adjectives.push("matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,vaginas[i].vaginaColor,vaginas[i].vaginaColor);
+			if(biggestSize == 1) adjectives.push("matching " + vaginas[0].vaginaColor,"matching " + vaginas[0].vaginaColor,"matching " + vaginas[0].vaginaColor,"matching " + vaginas[0].vaginaColor,"matching " + vaginas[0].vaginaColor,"matching " + vaginas[0].vaginaColor,vaginas[0].vaginaColor,vaginas[0].vaginaColor);
 			else adjectives.push("contrasting","contrasting","color-clashing","color-clashing");
 
 			if(adjectives.length == 0) adjectives.push("<b>ERROR:CUN7</b>");
