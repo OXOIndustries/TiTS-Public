@@ -15107,24 +15107,25 @@
 			//SPACINGS FOR NOUNS
 			if(adjectives > 0)
 			{
-				if(complex) desc += ", ";
-				else desc += " ";
+				//if(complex) descript += ", ";
+				//else descript += " ";
 			}
+			else descript += " ";
 
 			var matched:Boolean = hasSamevType();
-			else desc += " ";
+			
 			//ACTUAL NOUN DRAWS
-			if(ultraSimple) desc += vaginaNoun2(vag, true, "default");
-			else if(simple) desc += vaginaNoun2(vag, true);
-			else desc += vaginaNoun2(vag);
-			return desc;
+			//if(ultraSimple) descript += vaginaNoun2(vag, true, "default");
+			//else if(simple) descript += vaginaNoun2(vag, true);
+			//else descript += vaginaNoun2(vag);
+			return descript;
 
 		}
 		public function multiCuntAdjective():String
 		{
 			var adjectives:Array = [];
-			var smallestSize:Number = pc.tightestVaginalLooseness();
-			var biggestSize:Number = pc.gapestVaginaLooseness();
+			var smallestSize:Number = tightestVaginalLooseness();
+			var biggestSize:Number = gapestVaginaLooseness();
 			var loosie:Number = -1;
 			//Same sizes or within 1 loosness? Yay, basic looseness copy/paste:
 			if(biggestSize == smallestSize || biggestSize-1 == smallestSize)
