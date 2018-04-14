@@ -15077,6 +15077,133 @@
 			buffer += RandomInCollection(["womb", "womb", "uterus"]);
 			return buffer;
 		}
+		public function multiCuntDescript(includeIndefiniteArticle:Boolean = false):String
+		{
+			if(vaginas.length < 1) return "<b>Error! multiCuntDescript() called with no vaginas present!</b>";
+			var descript: String = "";
+			var adjectives:Number = 0;
+			
+			//Singles get an easy out!
+			if (vaginas.length == 1) return vaginaDescript(0);
+
+			//MOAR
+			if(vaginas.length <= 2)
+			{
+				//For cocks that are the same
+				if(includeIndefiniteArticle) descript += RandomInCollection(["a pair of","two"]);
+				else descript += RandomInCollection(["pair of","two"]);
+			}
+			else
+			{
+				if(includeIndefiniteArticle) descript += RandomInCollection(["three","a trio of","three"]);
+				else descript += RandomInCollection(["three","trio of","three"]);
+			}
+			//50% draw an adjective from the deck.
+			if(rand(2) == 0) 
+			{
+				descript += " " + multiCuntAdjective();
+				adjectives++;
+			}
+			//SPACINGS FOR NOUNS
+			if(adjectives > 0)
+			{
+				if(complex) desc += ", ";
+				else desc += " ";
+			}
+
+			var matched:Boolean = hasSamevType();
+			else desc += " ";
+			//ACTUAL NOUN DRAWS
+			if(ultraSimple) desc += vaginaNoun2(vag, true, "default");
+			else if(simple) desc += vaginaNoun2(vag, true);
+			else desc += vaginaNoun2(vag);
+			return desc;
+
+		}
+		public function multiCuntAdjective():String
+		{
+			var adjectives:Array = [];
+			var smallestSize:Number = pc.tightestVaginalLooseness();
+			var biggestSize:Number = pc.gapestVaginaLooseness();
+			var loosie:Number = -1;
+			//Same sizes or within 1 loosness? Yay, basic looseness copy/paste:
+			if(biggestSize == smallestSize || biggestSize-1 == smallestSize)
+			{
+				loosie = biggestSize;
+			}
+			//Only do looseness if we have a value to describe.
+			if(loosie > 0)
+			{
+				if (isBimbo())
+				{
+					if(loosie >= 5) adjectives.push("awesomely gaped","gapey","loosey-goosey","size-queen-sized");
+					else if(loosie >= 4) adjectives.push("perfect","super loosey","totally awesome");
+					else if(loosie <= 1) adjectives.push("perky little","overly-tight","too-tight");
+				}
+				if (loosie < 2) adjectives.push("tight","tight","tight","tight","narrow","narrow","pert little","pert","vice-like");
+				else if (loosie <= 3) adjectives.push("loose","loose","well-practiced","lightly stretched","slightly stretched");
+				else if (loosie <= 4) adjectives.push("well-loosened","slightly gaped","slightly gaped","well-used","widened");
+				else adjectives.push("gaped","gaped","gaped","wide","exceedingly well-used","ruined","over-used","stretched","dilated","voluminous","spacious","gaped","fistable","vast");
+			}
+			//Wetness! The most important one! Always just go with the wettest one for maximum soppage!
+			biggestSize = wettestVaginalWetness();
+			if(lust() <= 33) biggestSize--;
+			if(lust() > 66) biggestSize++;
+			if(lust() > 100) biggestSize++;
+			//Double them up.  Wayyyy more fun to describe than size.
+			if (biggestSize <= 1) adjectives.push("moist","dewy","damp","sticky","moist","dewy","damp","sticky","moist","dewy","damp","sticky");
+			else if (biggestSize <= 2) adjectives.push("wet","sweltering","slippery","juicy","slick","slippery","wet","sweltering","slippery","juicy","slick","slippery","wet","sweltering","slippery","juicy","slick","slippery");
+			else if (biggestSize <= 3) adjectives.push("sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched","sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched","sopping","soaked","drippy","dripping","succulent","oozy","soggy","drenched");
+			else if (biggestSize <= 4) adjectives.push("drooling","lube-leaking","crotch-soaking","leaky","panty-drenchingly wet","obscenely moist","fluid-oozing","slickness-leaking","drooling","lube-leaking","crotch-soaking","leaky","panty-drenchingly wet","obscenely moist","fluid-oozing","slickness-leaking","drooling","lube-leaking","crotch-soaking","leaky","panty-drenchingly wet","obscenely moist","fluid-oozing","slickness-leaking");
+			else adjectives.push("slavering","slobbering","puddling","juice-drooling","thigh-soaking","panty-flooding","leg-drenching","slobbering","fluid-drooling","slavering","slobbering","puddling","juice-drooling","thigh-soaking","panty-flooding","leg-soaking","slobbering","fluid-drooling","slavering","slobbering","puddling","juice-drooling","thigh-soaking","panty-flooding","leg-soaking","slobbering","fluid-drooling");
+
+			//Mimbranes!
+			if(statusEffectv3("Mimbrane Pussy") > 3) adjectives.push("parasite-wrapped","mimbrane-toting","mimbrane-swollen","parasite-engorged","plush","swollen","puffy");
+
+			//Pussy pump can show if ALL are at least pumped.
+			biggestSize = 2;
+			for(var i:int = 0; i < totalVaginas(); i++)
+			{
+				//No descs if any aren't pumped!
+				if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && !vaginas[i].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) biggestSize = 0;
+				//Track if they're all bigpump or smolpump
+				else if(!vaginas[i].hasFlag(GLOBAL.FLAG_PUMPED) && biggestSize == 2) biggestSize = 1;
+			}
+			if(biggestSize > 0)
+			{
+				if(biggestSize == 1) 
+				{
+					adjectives.push("cushy", "cushy", "cushy", "chubby", "lightly swollen", "puffy");
+					if(hasStatusEffect("Pussy Pumped")) adjectives.push("slightly pumped");
+					else adjectives.push("slightly plump");
+				}
+				else
+				{
+					adjectives.push("bulgy", "swollen", "plump", "pudgy", "jiggly", "wobbly", "prodigious", "obscenely swollen", "lewdly bulging", "bulging");
+					if(hasStatusEffect("Pussy Pumped")) adjectives.push("permanently pumped", "pump-enhanced", "pump-fattened");
+					else adjectives.push("permanently plump", "bloated", "fat");
+				}
+			}
+
+			//Bimbo flavor
+			if(isBimbo()) adjectives.push("fuckable","cock-ready","cock-hungry","sex-hungry","yummy-looking","yummy","fuckable","slutty","sexy","adorable");
+			//Omnisuit!
+			if(hasStatusEffect("Rubber Wrapped")) adjectives.push("rubber-lined","latex-lined","shrink-wrapped","ebony-coated","latex-lacquered","latex-enclosed","rubber-encased","latex-wrapped","rubber-painted");
+			
+			//Colors! Check for match
+			biggestSize = 1;
+			for(i = 0; i < totalVaginas(); i++)
+			{
+				if(i == 0 && vaginas[i].vaginaColor != vaginas[i+1].vaginaColor) biggestSize = 0;
+				if(i > 0 && vaginas[i].vaginaColor != vaginas[i-1].vaginaColor) biggestSize = 0;
+			}
+			if(biggestSize = 1) adjectives.push("matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,"matching " + vaginas[i].vaginaColor,vaginas[i].vaginaColor,vaginas[i].vaginaColor);
+			else adjectives.push("contrasting","contrasting","color-clashing","color-clashing");
+
+			if(adjectives.length == 0) adjectives.push("<b>ERROR:CUN7</b>");
+
+			return adjectives[rand(adjectives.length)];			
+		}
 		public function multiCockDescript(dynamicLength:Boolean = false,includeIndefiniteArticle:Boolean = false): String {
 			if (cocks.length < 1) return "<b>Error: multiCockDescript() called with no penises present.</b>";
 			//Get cock counts
@@ -15146,6 +15273,14 @@
 			var first: int = cocks[0].cType;
 			for (var x: int = 0; x < cocks.length; x++) {
 				if (cocks[x].cType != first) return false;
+			}
+			return true;
+		}
+		public function hasSamevType(): Boolean {
+			if (vaginas.length == 0) return false;
+			var first: int = vaginas[0].type;
+			for (var x: int = 0; x < vaginas.length; x++) {
+				if (vaginas[x].type != first) return false;
 			}
 			return true;
 		}
