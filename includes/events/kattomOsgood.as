@@ -17,6 +17,7 @@ public function pattonIsHere():Boolean
 		||	rooms[currentLocation].hasFlag(GLOBAL.PLANT_BULB)
 		||	rooms[currentLocation].hasFlag(GLOBAL.SPIDER_WEB)
 		||	rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)
+		||	shipLocation == "500" // Can't smuggle weapons on New Texas!
 		)
 		{
 			flags["KATTOM_LOCATION"] = undefined;
