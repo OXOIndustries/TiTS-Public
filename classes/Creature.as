@@ -12132,7 +12132,7 @@
 			if (armType == GLOBAL.TYPE_DEMONIC) counter++;
 			if (hasTail(GLOBAL.TYPE_DEMONIC) || hasTailCock(GLOBAL.TYPE_DEMONIC)) counter++;
 			if (InCollection(wingType, [GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_SMALLDEMONIC, GLOBAL.TYPE_TENTACLE])) counter++;
-			if (counter > 1 && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_SUCCUBUS || legType == GLOBAL.TYPE_BOVINE)) counter++;
+			if (counter > 1 && (legType == GLOBAL.TYPE_DEMONIC || legType == GLOBAL.TYPE_SUCCUBUS || hasLegFlag(GLOBAL.FLAG_HOOVES))) counter++;
 			if (counter > 2 && eyeType == GLOBAL.TYPE_DEMONIC && faceType == GLOBAL.TYPE_HUMAN) counter++;
 			if (counter > 3 && hasCock(GLOBAL.TYPE_DEMONIC)) counter++;
 			return counter;
