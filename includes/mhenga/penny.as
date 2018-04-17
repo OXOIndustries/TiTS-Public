@@ -1954,14 +1954,21 @@ public function pennySexMenu(outputT:Boolean = true):void {
 		this.addDisabledButton(4,"FaceFuckHer","FackFuckHer","This scene requires you to have a penis.");
 	}
 	this.addButton(5,"EatHerOut",gardeFordWritesPennySmex,undefined,"EatHerOut","Eat out Penny.");
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) this.addButton(6,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
-	else addDisabledButton(6,"Selfsuck","Selfsuck","Penny has to be a futanari cum-slut for this scene.");
-	if(flags["PENNY_IS_A_CUMSLUT"] != undefined && pc.hasCock()) this.addButton(7,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
-	else addDisabledButton(7,"Bukkake","Bukkake","This requires Penny to be a futanari cum-slut and for you to have a penis.");
-	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(8, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
-	else addDisabledButton(8, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
-	if(penny.hasCock()) this.addButton(9,"Catch Anal",getAssFuckedByPenny,false,"Catch Anal","Get ass-fucked by Penny.");
-	else addDisabledButton(9,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
+	if(penny.hasCock() && !pc.isTaur() && !pc.isNaga()) addButton(6,"U.Desk Suck",suckPennyUnderDesk,undefined,"Under Desk Suck","Suck Penny off under her desk.");
+	else if(!penny.hasCock()) addDisabledButton(6,"U.Desk Suck","Under Desk Suck","Penny needs to be a hermaphrodite for this.");
+	else addDisabledButton(6,"U.Desk Suck","Under Desk Suck","You need to have a body that would fit under Penny’s desk for this.");
+	if(penny.hasCock() && pc.hasGenitals()) addButton(7,"Roleplay",pennyRPScene,undefined,"Roleplay","Roleplay a penitent prisoner for Penny to abuse.");
+	else if(!penny.hasCock()) addDisabledButton(7,"Roleplay","Roleplay","Penny needs a penis in order to this.");
+	else addDisabledButton(7,"Roleplay","Roleplay","You need genitals to roleplay with Penny.");
+	if(penny.hasCock()) this.addButton(8,"Catch Anal",getAssFuckedByPenny,false,"Catch Anal","Get ass-fucked by Penny.");
+	else addDisabledButton(8,"Catch Anal","Catch Anal","Penny needs a dick to fuck you in the ass.");
+	
+	if(flags["PENNY_IS_A_CUMSLUT"] != undefined) this.addButton(9,"Selfsuck",pennySelfSuckCumsluttery,undefined,"Selfsuck","Watch Penny suck herself off.");
+	else addDisabledButton(9,"Selfsuck","Selfsuck","Penny has to be a futanari cum-slut for this scene.");
+	if(flags["PENNY_IS_A_CUMSLUT"] != undefined && pc.hasCock()) this.addButton(10,"Bukkake",bukkakePenny,undefined,"Bukkake","Cooperatively cover Penny in spunk.");
+	else addDisabledButton(10,"Bukkake","Bukkake","This requires Penny to be a futanari cum-slut and for you to have a penis.");
+	if (flags["FLAHNE_TALKED_ABOUT_CUMSLUTPENNY"] != undefined && flags["PENNY_IS_A_CUMSLUT"] != undefined) addButton(11, "Invite Flahne", pennyVsFlahneWhoWillOutslutWho,undefined,"Invite Flahne","Invite Flahne over for a threesome with Penny.");
+	else addDisabledButton(11, "Invite Flahne","Invite Flahne","This scene requires Penny to be a cum-slut and Flahne to have been told about it.");
 	this.addButton(14,"Back",approachGirlfriendPenny);
 }
 
@@ -3352,7 +3359,6 @@ public function givePennyAHossCawk():void
 	clearOutput();
 	showPenny(true);
 	author("Alkahest");
-	pc.destroyItemByClass(HorseCock);
 	if(!penny.hasCock())
 	{
 		output("Penny giggles as she waggles the toy in her hand, the huge balls attached to it swinging back and forth heavily. <i>“What is this even? You know I don’t have a cock, right, [pc.name]?”</i> she chuckles before stripping before you, her big breasts swaying enticingly before you. <i>“That’s okay though! We can still have some fun, regardless,”</i> she says seductively, her eyes half-lidded and focused on you. She looks down at the toy in her hand and absently presses it to her crotch. Giggling, Penny wiggles her ample hips back and forth, the sheath smushed into her groin. Penny laughs as the toy’s huge balls slap into her thighs.");
@@ -3653,4 +3659,214 @@ public function acquireCumslootPennyPanties():void
 	pc.createKeyItem("Panties - Penny's - Plain, blue, and crotchless.");
 	clearMenu();
 	addButton(0,"Next",pennyGirlfriendMenu);
+}
+
+//Requires penny to have a dick
+//Taurs and nagas not welcome
+public function suckPennyUnderDesk():void
+{
+	clearOutput();
+	showPenny(true);
+	author("Doots");
+	if(pc.isBimbo()) output("<i>“I could like kneel under your desk while sucking on your totally yummy cock.”</i>");
+	else output("<i>“How about I suck you off while you work?”</i>");
+	output(" You lick your [pc.lips], thinking of that delicious cock throbbing in her pants, eager to sink itself into a warm, wet hole.");
+
+	output("\n\n<i>“I don’t think I’ll be able to work with a pair of lips wrapped around my cock, but I’d love to try,”</i> Penny murrs seductively before standing up, her zipper down and her dick raring to go. She rounds the desk stopping in front of you, poking you with her erection. <i>“But we’re doing this my way.”</i>");
+	output("\n\nBefore you can react Penny pulls your arms behind your back and with a telltale click, she cuffs you. <i>“");
+	if(penny.cocks[0].cLength() >= 13) 
+	{
+		output("I need you to drink all of my ");
+		if(!silly) output("yummy spunk");
+		else output("cummies");
+		output(",”</i> she whimpers in a lustful tone.");
+	}
+	else output("We wouldn’t want our sexy cum-guzzler getting away before I bust a nut into [pc.hisHer] mouth.”</i>");
+	output(" Not giving you time to protest, Penny manhandles you under her desk before sitting down, her [penny.cock] poking at your [pc.lipsChaste]. With your hands cuffed behind your back and a cock in your face, you don’t have much of a choice, not that you would have it any other way.");
+	output("\n\nBefore Penny has a chance to get impatient you take the tip of her member into your mouth, earning an eager moan from Penny. You hear the tapping of her keyboard from above you; somehow she managed to start working. You breathe deep before plunging deeper on her cock, not stopping before you’ve reached her ");
+	if(penny.hasCock(GLOBAL.TYPE_EQUINE)) output("medial ring");
+	else if(penny.hasAKnot()) output("knot");
+	else output("half-way point");
+	output(". If you had access to your arms, you would stroke the rest of her dick and ");
+	if(penny.balls > 0) output("fondle her balls");
+	else output("finger her pussy");
+	output(", but as is you can’t do anything but bob along her length, which you do with gusto.");
+
+	output("\n\nDespite your sucking of her [penny.cock] she’s still diligently working.");
+	if(pc.isBimbo()) output(" This is like, an outrage! She’s totally insulting your awesome dick sucking skills.");
+	else output(" How the lusty fox girl can still work is beyond you, but you’re going to change that.");
+
+	output("\n\nEven more determined than before you start sucking even harder, hollowing your cheeks and descending on her cock again, before drawing back. The fennec girl can’t take this any longer, moaning and flexing her thighs on either side of your head. You push further, taking her shaft all the way into your throat.");
+	if(pc.canDeepthroat()) output(" Deepthroating might be a challenge to some, but to you, it comes as naturally as breathing.");
+	else output(" You splutter, gag, and struggle to fit all of her dick into your throat. But in the end, your gag reflex can’t stand against your will and the amount of dick trying to make its way into the tight confines of your throat.");
+
+	output("\n\nWhen your [pc.lips] touch Penny’s sheath, she can’t take it anymore. Her hands fly down to grab hold of your head. She pulls out of your throat before sinking back in. Quickly, she starts fucking your throat like her personal sex toy. Thankfully, she doesn’t last long; it takes only a few minutes of her sheath beating against your lips before she moans out loud, and her seed starts spilling down your throat and into your stomach.");
+	output("\n\nEventually, Penny’s output dies down, and she pulls her [penny.cock] out of your throat. You stare at the cum-covered girl-cock that just recently was plunging in and out of your throat. You’re about to start licking the spunk covering her member, but you hear an order from above you. ");
+	if(penny.cocks[0].cLength() >= 13)
+	{
+		output("<i>“Lick up my delicious jizz, but don’t swallow.”</i>\n\nYou think know what Penny has in mind and you like it.");
+	}
+	else output("<i>“Clean it up, cock-slut-mate.”</i> You roll your eyes at the pointless command and get back to what you were planning to do.");
+	output(" Giving Penny’s member long drags with your tongue, you gather up all of the salty Penny-cum that is covering her cock");
+	if(penny.cocks[0].cLength() >= 13) output(",making sure not to swallow.")
+	else output(" before swallowing it down. By the time you’re finished, her dick is shining with your saliva.");
+
+	output("\n\nPenny pulls you up from under the table straight into her lap. ");
+	if(penny.cocks[0].cLength() >= 13) output("She grabs a hold of your neck, kissing you straight on your [pc.lipsChaste]. Forcing your mouth open with her tongue, she savors the taste of her own jizz inside your mouth before scooping it into her own mouth and swallowing. ");
+	output("<i>“You’re too good at that, mate. I almost misfiled a police report,”</i> she laughingly whispers into your ear. She lets you get back onto your own two feet, before sending you away with a soft slap on your [pc.ass]. <i>“If you ever want me to return the favor, just let me know.”</i> She winks at you before turning her attention back to her work.");
+	processTime(20);
+	pc.loadInMouth(penny);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Roleplay] (requires genitalia. Taurs and nagas not welcome)
+public function pennyRPScene():void
+{
+	clearOutput();
+	showPenny();
+	author("Doots");
+	if(pc.isBimbo()) output("<i>“I was thinking that we could do like roleplay. I’ll be a really nasty criminal who tried to like seduce you and stuff and now you’re all pent up and super horny.”</i>");
+	else output("<i>“How about some roleplay? I’ll play a dirty crook who tried to seduce you but got arrested nonetheless and now you’re all pent up and lusty.”</i> you whisper in a low tone while drawing small circles on the desk.");
+	output("\n\n<i>“That sounds fun, my mate. But are you sure? I might get a bit lost in the role.”</i> Penny’s voice is a mixture of lust and worry.");
+	output("\n\n<i>There is a predatory glint in her eyes, she’ll probably be a touch rougher than usually</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Yes",yesPennyLetsRP);
+	addButton(1,"No",noPennyNoRP);
+}
+
+//[No] (not for bimbos)
+//Bimbo greyed out tooltip: you’re totally not going to say no to a good dicking
+public function noPennyNoRP():void
+{
+	clearOutput();
+	showPenny();
+	author("Doots");
+	output("After giving it some thought you change your mind, and let Penny know that after some thought you’re not up to it, at least not at the moment.");
+	output("\n\n<i>“That’s alright, no harm no foul. Do you want to do something else then?”</i> she seems to be a bit disappointed by your change of mind. But she perks up quickly, thinking of other things you could do.");
+	processTime(2);
+	//penny sex menu 4 real.
+	pennySexMenu(false);
+}
+
+//[Yes]
+public function yesPennyLetsRP():void
+{
+	clearOutput();
+	showPenny(true);
+	author("Doots");
+	if(pc.isBimbo()) output("<i>If I didn’t want it I wouldn’t, like, ask for it.”</i>");
+	else output("<i>“I’m sure that I can handle it.”</i>");
+	output(" You wave her concerns aside. When Penny hears your words her expression turns to much sterner, she stuffs her cock into her pants and stands up. Without a word, she walks behind you and grabs your wrists and pulls them behind your back and with a click, she cuffs your arms behind your back.");
+	output("\n\n<i>“You thought you could trick the long arm of the law huh? Well, you were wrong,”</i> she growls into your ear before pushing you to the back room. When you’re in the holding area Penny closes the door before starting to strip, sensually revealing parts of her body one by one.");
+	output("\n\nOnce she’s naked she uncuffs you before stepping back to ogle at your body. ");
+	if(!pc.isExposed()) output("You reach down to get your own clothes off but before you can even touch your own clothes Penny jabs you in the stomach with her nightstick, not so hard it would hurt but strong enough to get your attention. <i>“Did I tell you that you can take off your clothes? You’re not doing anything if I don’t give you permission.”</i> she waves her nightstick menacingly, <i>“turn around, hands against the wall.”</i> after you press your hands against the walls she kicks your legs apart before starting to pull off your clothing. Once you’re naked she pays special attention to your [pc.ass], roughly groping it before giving it a harsh slap.");
+	else output("Penny looks at your naked form with a grin on her muzzle. <i>“A criminal and a pervert to boot, you’re lucky that nudity isn’t illegal here. I’d love to give you a harsher punishment on top of the punishment I’ll be personally dealing.”</i> The way she grins as she speaks sends a shiver down to your [pc.vagOrAss].");
+	output("\n\nClearly hungering for more Penny pushes you into the cell, ordering you to lift your arms as high as you can against the bars. You do as she orders, not wanting her to threaten you with her nightstick again. With your arms up she cuffs them to the bars, forcing you to keep your arms up.");
+	output("\n\nPenny grabs one of your [pc.legs] and lifting it up, making you balance on one leg. You feel a hard, throbbing length grinding against your [pc.ass]. <i>“I’m going to wreck this so hard,”</i> Penny whispers into your ear while nipping your neck. Before you get worried about her going in dry you hear Penny spit and stroking of something wet, and you’re pretty sure that you know what she’s stroking.");
+	output("\n\nWith all of the preparations, she’s going to do out of the way she presses the tip of her cock against your [pc.asshole]. ");
+	if(pc.analCapacity() < penny.cockVolume(0)) output("You dread for your comparatively small asshole as she’s inches away from invading your back passage. ");
+	output("She doesn’t wait, eager to be inside you. With a single solid thrust, she steadily sinks herself into your [pc.asshole]. ");
+	if(pc.analCapacity() < penny.cockVolume(0)) output("Your eyes cross in painful pleasure as she stretches your asshole to degrees your rim is not prepared for. <i>“Oh, you’re a tight little bitch. I bet you’re a virgin too, yeah, you don’t seem the type to give your ass to anyone.”</i> she punctuates her words with another slap on your butt before continuing to speak, <i>“I bet it stings to get fucked by a cop.”</i> She continues to hammer your behind with her cock while repeatedly spanking your ass.");
+	else output("<i>“What a nice fit, you must take it from behind all the time.”</i>");
+	pc.buttChange(penny.cockVolume(0));
+
+	if(pc.hasGenitals()) 
+	{
+		output("\n\n");
+		if(pc.isHerm())
+		{
+			output("Your [pc.vaginas] dribble");
+			if(pc.totalVaginas() == 1) output("s");
+			output(" [pc.girlCum] and your [pc.cocks] leak");
+			if(pc.cockTotal() == 1) output("s");
+			output(" pre. your entire body yearns for more than just a cock up your ass. ");
+		}
+		else if(pc.hasVagina()) 
+		{
+			output("Your [pc.vaginas] clench");
+			if(pc.totalVaginas() == 1) output("es");
+			output(" around nothing, wishing that the cock filling your back passage was filling ");
+			if(pc.totalVaginas() == 1) output("it instead, but all it");
+			else output("them instead, but all they");
+			output(" can do is dribble around nothing. ");
+		}
+		else if(pc.hasCock())
+		{
+			output("Your [pc.cocks] ");
+			if(pc.cockTotal() == 1) output("is");
+			else output("are");
+			output(" rock hard and leaking pre despite no stimulation. The pressure on your prostate is all it takes to get you hard. ");
+		}
+	}
+	output("<i>“Enjoying this are you? You do realize that this isn’t supposed to be a reward?”</i>\n\nYou’re going to cum. It’s inevitable but from the way Penny’s [penny.cock] throbs and spits pre inside you, she’s not far behind either.");
+	output("\n\nPenny lets go of your leg, instead grabbing your [pc.hips] with both hands. There’s a pause as Penny shifts her stance to be wider. You know what’s coming so you brace for impact as best as you can. A second later it comes, Penny’s hips crash against your ass with a force that almost slams you against the bars. She thrusts as deep as she can and then few inches more as her sheath bunches up against your [pc.asshole], eliciting a groan from your [pc.lips] as she spears your colon on her [penny.cock].");
+
+	output("\n\n<i>“Hang in there, I’m about to make you into a police cum-dump.”</i> Penny pants loudly into your ear. After a handful of thrusts, Penny groans out loud into your ear before clamping her jaw around your neck. She bites down hard as her jizz starts to flood your ass, filling nooks and crannies with her sticky baby batter. Penny’s hand flies down to ");
+	if(pc.hasVagina() && !pc.hasCock()) 
+	{
+		output("finger ");
+		if(pc.totalVaginas() > 1) output("one");
+		else output("your");
+		output(" slit furiously, jilling your clit with lightning speed while pistoning her fingers into [pc.oneVagina]");
+	}
+	else if(pc.hasCock())
+	{
+		output("grab [pc.oneCock]. Stroking your length furiously, she milks pre from your [pc.cockHead], allowing her hand to glide across it with smooth, flawless strokes.");
+	}	
+
+	output("\n\nYou moan breathlessly as she pleasures you with her hand; all the while her cock is squirting more seed into you.");
+	if(pc.isHerm())
+	{
+		output(" [pc.Girlcum] floods down your thighs while [pc.oneCock] jerks in Penny’s hand, sending your [pc.cumNoun] over the floor.");
+		if(pc.cumQ() >= 1000) output(" Your groin might as well be a cornucopia of lust, pumping more and more [pc.cumVisc] relief onto the floor until the room looks like post-shoot porno set.");
+		if(pc.isSquirter() || pc.girlCumQ() >= 1500) 
+		{
+			output(" Your [pc.vaginas] ");
+			if(pc.totalVaginas() == 1) output("doesn’t");
+			else output("don’t");
+			output(" disappoint either, ");
+			if(pc.isSquirter()) output("squirting");
+			else output("leaking");
+			output(" enough [pc.girlcum] down your legs to extinguish a campfire.");
+		}
+		output(" Soon, the cell smells sex. There isn’t a spot on the floor that isn’t covered in some kind of sexual fluid, and you take a perverse sort of pride in that.");
+	}
+	else if(pc.hasVagina()) 
+	{
+		output(" You moan to the skies as [pc.girlCum] flows down your [pc.thighs] and coats Penny’s fingers.");
+		if(pc.isSquirter()) output(" [pc.EachVagina] leaks like a waterfall, utterly soaking your legs and creating an impressive puddle of your lewd juices beneath your legs.");
+	}
+	else if(pc.hasCock())
+	{
+		output(" Your [pc.cocks] squirt");
+		if(pc.cockTotal() == 1) output("s");
+		output(" [pc.cumNoun] all over the floor, creating [pc.cumVisc] ropes of wasted seed on the floor.");
+		if(pc.cumQ() >= 1000) output(" You keep cumming, turning the few ropes off [pc.cumNoun] into an ever-growing lake.");
+		if(pc.cumQ() >= 5000) output(" By the time you stop hosing down the room, you’re both standing in a lake of your [pc.cum] and the bars of the cell are soaked in your baby batter.");
+	}
+	output("\n\nBoth of you having achieved your orgasm, you just stand there for a minute, catching your breath. Eventually, Penny lets go of your neck and pulls her [penny.cock] out of your asshole. Pausing to unlock your cuffs, Penny walks out of the cell.\n\nOnce your hands are free you massage your slightly sore wrists while Penny puts her clothes back on. <i>“Don’t worry, I’ll come back to pump another load into you when I get my next break. I’ll be using you as the police-issue cumdump on every break until transfer is arranged. Could be a couple of weeks if you’re unlucky.”</i>\n\nShe leaves you there, naked with cum leaking out of your ");
+	if(pc.analCapacity() < penny.cockVolume(0)) output("sore ");
+	output("ass.");
+
+	output("\n\nNot a minute passes before Penny is back; this time her expression is gentle and loving instead of stern and domineering. She unlocks the cell and pulls you into her arms. <i>“I hope I wasn’t too rough with you, my mate.”</i> Her fingers gently trace the bite mark. <i>“Sorry... come on, let’s get a shower.”</i>");
+	processTime(30);
+	pc.orgasm();
+	pc.loadInAss(penny);
+	clearMenu();
+	addButton(0,"Next",pennyJailRPEpilogue);
+}
+
+public function pennyJailRPEpilogue():void
+{
+	clearOutput();
+	showPenny();
+	pc.shower();
+	author("Doots");
+	output("You spend the next half an hour in the shower in the gentle care of Penny. She thoroughly cleans you up while paying gentle attention to your thoroughly abused ass and the bite mark she left on your neck.");
+	output("\n\nAfter the shower, you get back to the front room with Penny. She sits down on the edge of her desk before pulling you into her lap. Her erection palpably throbs against your ass as you settle into position. <i>“I had so much fun, my mate. I really hope you’re up for this again sometime, but if not I understand.”</i> She’s still apologetic about biting your neck!\n\nYou assure her that your neck is fine before taking your leave. As you step outside, the bite mark on your neck tingles, you touch it instinctively, feeling a wave of lust shudder down your spine down to your [pc.asshole] at the memory.");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

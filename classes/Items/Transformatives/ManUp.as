@@ -444,7 +444,7 @@
 					else
 					{
 						x = 1 + rand(2);
-						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. After a while, the sensation stops and you pass your fingers through it. <b>You can confirm that it’s slightly longer than it was before, gaining about " + kGAMECLASS.num2Text(x) + " inches of beard.</b>");
+						kGAMECLASS.output("\n\nYour [pc.beard] tickles your jaw for a little bit, bringing yourself to scratch it. After a while, the sensation stops and you pass your fingers through it. <b>You can confirm that it’s slightly longer than it was before, gaining about " + num2Text(x) + " inches of beard.</b>");
 						target.beardLength += x;
 					}
 					if (target.beardStyle != 0 && target.beardStyleUnlocked(0))

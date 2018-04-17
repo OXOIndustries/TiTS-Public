@@ -220,6 +220,8 @@ public function grayGooAtBarSure():void
 	flags["ANNO_NOVA_UPDATE"] = 2;
 
 	processTime(45+rand(15));
+	
+	refreshRoamingBarEncounter();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -321,6 +323,8 @@ public function grayGooArmorRoamingTake():void
 	processTime(3);
 	
 	output("\n\n" + gooArmorInventoryBlurb(goo.armor, "obtain"));
+	
+	refreshRoamingBarEncounter();
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -826,9 +830,14 @@ public function gooArmorInventoryBlurb(armorItem:ItemSlotClass, reaction:String 
 					oldArmor.onRemove(pc);
 					itemCollect([oldArmor]);
 					pc.armor = armorItem;
+					armorItem.onEquip(pc);
 				});
 			}
-			else pc.armor = armorItem;
+			else
+			{
+				pc.armor = armorItem;
+				armorItem.onEquip(pc);
+			}
 			msg += ParseText(" are now wearing [goo.name] as armor!</b>");
 			
 			if(flags["GOO_ARMOR_AWAY"] != undefined)
@@ -1502,6 +1511,7 @@ public function gooArmorCrewOption(arg:Array):void
 			{
 				goo.armor = pc.armor;
 				goo.armor.quantity = 1;
+				pc.armor.onRemove(pc);
 				pc.armor = new EmptySlot();
 			}
 			else
@@ -1538,7 +1548,11 @@ public function gooArmorCrewOption(arg:Array):void
 			goo.armor.hasRandomProperties = true;
 			
 			// Reclaim goo armor.
-			if(!pc.hasArmor()) pc.armor = newArmor;
+			if(!pc.hasArmor())
+			{
+				pc.armor = newArmor;
+				newArmor.onEquip(pc);
+			}
 			else itemCollect([newArmor]);
 			
 			flags["GOO_ARMOR_ON_SHIP"] = undefined;

@@ -214,7 +214,7 @@ package classes.UIComponents.SideBarComponents
 		
 		public function SingleCharacterDisplay(alignment:String = "left") 
 		{
-			_leftAlign = (alignment == "left" ? true : false);
+			_leftAlign = (alignment == "left");
 			
 			addEventListener(Event.ADDED_TO_STAGE, init);
 		}

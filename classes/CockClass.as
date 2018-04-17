@@ -1,6 +1,8 @@
 ﻿package classes
 {
 	import classes.DataManager.Serialization.UnversionedSaveable;
+	import classes.ItemSlotClass;
+	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.GLOBAL;
 	public class CockClass extends UnversionedSaveable
 	{
@@ -86,7 +88,12 @@
 		public var pShort:String = "";
 		public var pLong:String = "";
 		public var sock:String = "";
-		
+		//New piercing hotness:
+		public var piercing:ItemSlotClass = new EmptySlot();
+		// Cocksock:
+		public var cocksock:ItemSlotClass = new EmptySlot();
+
+
 		//MEMBER FUNCTIONS
 		//COCK VOLUME
 		public function volume():Number {

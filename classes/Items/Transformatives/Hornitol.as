@@ -1,6 +1,7 @@
 ﻿package classes.Items.Transformatives
 {
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Utility.rand;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -151,7 +152,7 @@
 						if(rand(5) != 0 || target.horns > 1)
 						{
 							target.hornLength += bonus;
-							kGAMECLASS.output("\n\nYou feel a light pressure in your forehead as the new material is added to your [pc.horns], <b>giving you " + kGAMECLASS.num2Text(bonus) + " extra inch");
+							kGAMECLASS.output("\n\nYou feel a light pressure in your forehead as the new material is added to your [pc.horns], <b>giving you " + num2Text(bonus) + " extra inch");
 							if(bonus != 1) kGAMECLASS.output("es");
 							kGAMECLASS.output(" of [pc.hornNoun] by the time the changes are done.</b>");
 						}

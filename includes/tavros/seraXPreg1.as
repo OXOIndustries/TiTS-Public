@@ -301,7 +301,7 @@ public function seraBreedingApproach():Boolean
 		
 		// [Nope] [NRN]
 		if(!pc.hasVagina()) addDisabledButton(0, "Nope", "Nothing Planned", "You will need a vagina for this!");
-		else if(pcSeraPregDays() >= 190) addDisabledButton(0, "Nope", "Nothing Planned", "You might be a little too pregnant for this!");
+		else if(pc.isFullyWombPregnant() && pcSeraPregDays() >= 190) addDisabledButton(0, "Nope", "Nothing Planned", "You might be a little too pregnant for this!");
 		else addButton(0, "Nope", seraBreedResponse, ["ready"], "Nothing Planned", "You’re ready.");
 		addButton(1, "Not Now", seraBreedResponse, ["not now"], "Not Right Now", "Maybe get fucked a little later.");
 	}
@@ -314,7 +314,7 @@ public function seraBreedingApproach():Boolean
 		
 		// [Ready] [NRN]
 		if(!pc.hasVagina()) addDisabledButton(0, "Ready", "Ready", "You will need a vagina for this!");
-		else if(pcSeraPregDays() >= 190) addDisabledButton(0, "Ready", "Ready", "You might be a little too pregnant for this!");
+		else if(pc.isFullyWombPregnant() && pcSeraPregDays() >= 190) addDisabledButton(0, "Ready", "Ready", "You might be a little too pregnant for this!");
 		else addButton(0, "Ready", seraBreedResponse, ["ready"], "I’m Ready", "You’re ready.");
 		addButton(1, "Not Now", seraBreedResponse, ["not now"], "Not Right Now", "Maybe get fucked a little later.");
 	}
@@ -346,6 +346,8 @@ public function seraBreedResponse(arg:Array):void
 			
 			//Grey out [Sex]
 			pc.createStatusEffect("Sera Breed No Sex");
+			// Set flag for mandatory breeding.
+			pc.setStatusValue("Sera Breed No Sex", 1, 1);
 			
 			addButton(0, "Next", seraMenu, true);
 			break;
@@ -581,7 +583,7 @@ public function seraSpawnPregnancyEnds():void
 	var numChildren:int = se.value1;
 	var bRatingContrib:int = se.value2;
 	var pregSlot:int = se.value3;
-	var babym:Boolean = (se.value4 == 1 ? true : false);
+	var babym:Boolean = (se.value4 == 1);
 	
 	output("Pain in your gut bends you over and fluid spills");
 	if(!pc.isCrotchExposed()) output(" into your [pc.lowerGarment]");
@@ -715,7 +717,7 @@ public function seraSpawnPregnancyApproach(pregDays:Number = 0):Boolean
 		msgList.push("<i>“How’s it going, " + RandomInCollection(["breeding bitch", "babycakes", "up-stick", "broodmare", "barefoot", "slut oven", "Captain Hormones", "baby factory", "pramface", "bulge", "leaky tits"]) + "?”</i> leers Sera lasciviously, leaning on the counter and taking her handiwork in.");
 	}
 	
-	if(msgList.length > 0 && pregDays >= 100)
+	if(msgList.length > 0)
 	{
 		clearOutput();
 		author("Nonesuch");
@@ -852,7 +854,7 @@ public function seraNurseryCafeteriaApproach():void
 	if(flags["MET_SERA_IN_NURSERY"] == undefined)
 	{
 		babyIdx = 0;
-		babym = (seraNoNameBabies[babyIdx].NumMale > 0 ? true : false);
+		babym = (seraNoNameBabies[babyIdx].NumMale > 0);
 		babyName = seraNoNameBabies[babyIdx].Name;
 		
 		output("<i>“So this place is real then,”</i> Sera says without preamble, when you sit down opposite her. She jams another load of pasta into her cheek. <i>“S’good. I’d be killing you right about now ‘f it weren’t.”</i>");
@@ -874,7 +876,7 @@ public function seraNurseryCafeteriaApproach():void
 		processTime(1);
 		
 		babyIdx = 0;
-		babym = (seraNoNameBabies[babyIdx].NumMale > 0 ? true : false);
+		babym = (seraNoNameBabies[babyIdx].NumMale > 0);
 		babyName = seraNoNameBabies[babyIdx].Name;
 		
 		if(!seraRecruited())
@@ -1052,7 +1054,7 @@ public function nameSeraSpawnResultPlus(arg:Array):void
 	
 	var seraNoNameBabies:Array = listSeraNoNameBabies();
 	var babyIdx:int = 0;
-	var babym:Boolean = (seraNoNameBabies[babyIdx].NumMale > 0 ? true : false);
+	var babym:Boolean = (seraNoNameBabies[babyIdx].NumMale > 0);
 	var babyName:String = seraNoNameBabies[babyIdx].Name;
 	var namedBabies:int = arg[3];
 	var fromSera:Boolean = arg[4];
@@ -1095,7 +1097,7 @@ public function seraNurseryActions(arg:Array):void
 				if(seraBabies[i].Years > 1) seraBabies.splice(i, 1);
 			}
 			babyIdx = (seraBabies.length > 1 ? rand(seraBabies.length) : 0);
-			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
+			babym = (seraBabies[babyIdx].NumMale > 0);
 			babyName = seraBabies[babyIdx].Name;
 			
 			output("<i>“I was thinking we could both go and check in on them,”</i> you say. Sera fidgets.");
@@ -1116,7 +1118,7 @@ public function seraNurseryActions(arg:Array):void
 			var visitOption:int = -1;
 			
 			visitList.push([
-				(	babyName + " laboriously clambers to their feet and leans on " + (babym ? "his" : "her") + " crib railing as " + (babym ? "his" : "her") + " parents enter " + (babym ? "his" : "her") + " room, before doing what babies do best: stare. Sera goes across and puts a clawed hand up; with the same expression of furrowed concentration, " + babyName + " carefully draws their own tiny paw back and then pats it into her palm."
+				(	babyName + " laboriously clambers to " + (babym ? "his" : "her") + " feet and leans on " + (babym ? "his" : "her") + " crib railing as " + (babym ? "his" : "her") + " parents enter " + (babym ? "his" : "her") + " room, before doing what babies do best: stare. Sera goes across and puts a clawed hand up; with the same expression of furrowed concentration, " + babyName + " carefully draws " + (babym ? "his" : "her") + " own tiny paw back and then pats it into her palm."
 				+	"\n\n<i>“" + (babym ? "He" : "She") + " has... um." + (!seraRecruited() ? " You know I was only joking about it not being mine, right?" : "") + "”</i> The demon-morph says. There’s a soft, unfocused look on her face that you don’t see anywhere else. She gently runs her fingers over the hazel down on top of the baby’s head. <i>“" + (babym ? "He" : "She") + "’s got my natural color. That’s the first thing I noticed.”</i>"
 				), "SERA_NURSERY_VISIT_1"
 			]);
@@ -1186,7 +1188,7 @@ public function seraNurseryActions(arg:Array):void
 				if(seraBabies[i].Years <= 1) seraBabies.splice(i, 1);
 			}
 			babyIdx = (seraBabies.length > 1 ? rand(seraBabies.length) : 0);
-			babym = (seraBabies[babyIdx].NumMale > 0 ? true : false);
+			babym = (seraBabies[babyIdx].NumMale > 0);
 			babyName = seraBabies[babyIdx].Name;
 			
 			numKids = ChildManager.numOfMobileGendersInRange(1, 5).total;

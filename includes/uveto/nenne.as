@@ -73,7 +73,7 @@ public function approachNenne(back:Boolean = false):void
 {
 	clearOutput();
 	showNenne();
-	if(back) output("What else would you like to do with Nayna?");
+	if(back) output("What else would you like to do with Nenne?");
 	else
 	{
 		output("<i>“");
@@ -144,7 +144,7 @@ public function shopNennes():void
 		if(silly) addButton(5,"Credits?",nenneAcceptCredits,undefined,"Accept Credits?","Nenne’s offered you any one thing in her shop for free, provided you fuck her hot, Korgonne-milf ass until she’s a quivering, senseless mush on the floor.");
 		else addButton(5,"Credits?",nenneAcceptCredits,undefined,"Accept Credits?","Nenne’s offered you any one thing in her shop for free, provided you ‘satisfy’ her craving for some ‘conversation.’");
 	}
-	else if(korgiiCredits() && flags["NENNE_TAKES_CREDS"] != undefined) addButton(5,"Use Credits",nenneAcceptCredits,undefined,"Use Credits","Nenne accepts credit in her store, but she’s still willing to trade you something of hers in exchange for a bit of attention.");
+	else if(korgiiCredits() && flags["NENNE_TAKES_CREDS"] != undefined) addButton(5,"Use Credits",nenneAcceptCredits,undefined,"Use Credits","Nenne accepts " + (isAprilFools() ? "dogecoin" : "credit") + " in her store, but she’s still willing to trade you something of hers in exchange for a bit of attention.");
 	else addButton(5,"Credits?",nenneAcceptCredits,undefined,"Accept Credits?","Ask Nenne if she accepts credits as a form of economy in her shop.");
 
 	addButton(14,"Back",approachNenne,true);
@@ -235,8 +235,8 @@ public function nenneAcceptCredits():void
 		flags["NENNE_TAKES_CREDS"] = 1;
 
 		shopkeep.keeperBuy = "As you browse along Nenne’s wares, you notice that each little hole that houses her plants and herbs has a number of little scratches beneath them. They don’t look informative enough to be names or descriptions, so you surmise them to be price tags. But all you have are credits. You turn to her and ask if she accepts them.\n\n<i>“";
-		if(!korgiTranslate()) shopkeep.keeperBuy += "Princess saying to me that credit is good!";
-		else shopkeep.keeperBuy += "Tribe say credits are good for trade now thanks to Nayna,";
+		if(!korgiTranslate()) shopkeep.keeperBuy += "Princess saying to me that " + (isAprilFools() ? "dogecoin" : "credit") + " is good!";
+		else shopkeep.keeperBuy += "Tribe says credits are good for trade now thanks to Nayna,";
 		shopkeep.keeperBuy += "”</i> Nenne says, smiling toward you. <i>“";
 		if(!korgiTranslate()) shopkeep.keeperBuy += "Okay to taking herbs if I am okay to taking credits. Good trade!";
 		else shopkeep.keeperBuy += "It’s still not my preferred economy, but if it’s good for the princess, then it’s good for me.";

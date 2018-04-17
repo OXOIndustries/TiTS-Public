@@ -566,7 +566,7 @@ public function freedomBeefTauricMounting(beefType:uint):void
 	IncrementFlag(flags["FUCKED_FREEDOM_BEEF_TAURIC"]);
 
 	clearMenu();
-	addButton(0, "Next", freedomBeefSexOutro, [beefType, (pc.hasCock() ? true : false)]);
+	addButton(0, "Next", freedomBeefSexOutro, [beefType, (pc.hasCock())]);
 }
 
 public function freedomBeefSnuSnu(beefType:uint):void

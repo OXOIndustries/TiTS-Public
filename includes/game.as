@@ -198,6 +198,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	// Update the state of the players mails -- we don't want to do this all the time (ie in process time), and we're only going to care about it at the menu root soooooo...
 	updateMailStatus();
 	
+	// Update children cache
+	ChildManager.updateTime(-1);
+	
 	//Set up all appropriate flags
 	//Display the room description
 	clearOutput();
@@ -227,7 +230,8 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	lootScreen = inventory;
 	
 	// Dynamic room functions on enter
-	if(rooms[currentLocation].runOnEnter != undefined) {
+	if(rooms[currentLocation].runOnEnter != undefined)
+	{
 		if(rooms[currentLocation].runOnEnter()) return;
 		//If in a hazard area
 		if(rooms[currentLocation].hasFlag(GLOBAL.HAZARD) && !disableExploreEvents())
@@ -261,7 +265,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	else
 	{
-		if(canSleep()) addButton(9, "Sleep", sleepMenu);
+		if(canRest() || canSleep()) addButton(9, "Sleep", sleepMenu);
 		else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	}
 	addButton(14, "Codex", showCodex);
@@ -601,6 +605,8 @@ public const CREW_VARMINT:int = 10;
 public const CREW_SIEGEWFULFE:int = 11;
 public const CREW_AZRA:int = 12;
 public const CREW_PAIGE:int = 13;
+public const CREW_KASE:int = 14;
+public const CREW_SHEKKA:int = 15;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -618,6 +624,8 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (gooArmorIsCrew()) crewMembers.push(CREW_GOO_ARMOR_IS_CREW);
 	if (pexigaIsCrew()) crewMembers.push(CREW_PEXIGA);
 	if (paigeIsCrew()) crewMembers.push(CREW_PAIGE);
+	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
+	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -712,6 +720,36 @@ public function getCrewOnShip():Array
 	return c;
 }
 
+public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean = true):Array
+{
+	var crewMembers:Array = [];
+	
+	if (annoIsCrew()) crewMembers.push("Anno");
+	if (azraIsCrew()) crewMembers.push("Azra");
+	if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
+	if (celiseIsCrew()) crewMembers.push("Celise");
+	if (daneIsCrew()) crewMembers.push("Dane");
+	if (kaseIsCrew()) crewMembers.push("Kase");
+	if (kiroIsCrew()) crewMembers.push("Kiro");
+	if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
+	if (paigeIsCrew()) crewMembers.push("Paige");
+	if (pippaOnShip()) crewMembers.push("Pippa");
+	if (reahaIsCrew()) crewMembers.push("Reaha");
+	if (seraIsCrew()) crewMembers.push("Sera");
+	if (shekkaIsCrew()) crewMembers.push("Shekka");
+	if (syriIsCrew()) crewMembers.push("Syri");
+	if (yammiIsCrew()) crewMembers.push("Yammi");
+	
+	if (allcrew)
+	{
+		if (hasGooArmor() && !gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
+		if (siegwulfeIsCrew()) crewMembers.push(customName ? chars["WULFE"].short : "Siegwulfe");
+		if (varmintIsTame()) crewMembers.push("Varmint");
+	}
+	
+	return crewMembers;
+}
+
 public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
@@ -735,6 +773,12 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			{
 				crewMessages += "\n\nAnno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....";
 				addDisabledButton(btnSlot++,"Anno","Anno","Anno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....");
+			}
+			//If anno is away
+			else if(annoIsAway())
+			{
+				crewMessages += "\n\nAnno is currently away or otherwise busy at the moment.";
+				addDisabledButton(btnSlot++,"Anno","Anno","Anno is currently away or otherwise busy at the moment.");
 			}
 			//25% chance of special maid scene proccing if Anno has the maid outfit and haven't seen the scene in a day - gotta have a dink that fits and not be naga or taur
 			else if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
@@ -780,6 +824,11 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
 			addButton(btnSlot++, "Celise", celiseFollowerInteractions);
 		}
+	}
+	if (kaseIsCrew())
+	{
+		count++;
+		if(!counter) crewMessages += kaseCrewBlurbs(btnSlot++);
 	}
 	if (paigeIsCrew())
 	{
@@ -849,10 +898,14 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			crewMessages += seraOnShipBonus(btnSlot++);
 		}
 	}
-	if (kaseIsCrew())
+	if (shekkaIsCrew())
 	{
 		count++;
-		if(!counter) crewMessages += kaseCrewBlurbs(btnSlot++);
+		if(!counter)
+		{
+			crewMessages += "\n\nShekka is hanging out around your ship's engines, constantly calibrating one circuit or another to maximize power.";
+			addButton(btnSlot++,"Shekka",approachCrewShekka);
+		}
 	}
 	if (yammiIsCrew())
 	{
@@ -947,6 +1000,7 @@ public function canRest():Boolean
 }
 public function canSleep():Boolean
 {
+	if(InShipInterior(pc) && pc.hasStatusEffect("Disable Ship Bed")) return false;
 	return true;
 }
 
@@ -991,7 +1045,8 @@ public function sleepMenu():void
 	addButton(7, "Wait 3 hr", wait, 180, "Wait 3 Hours", "Wait for 3 hours.");
 	
 	addButton(8, "Rest", rest, undefined, "Rest", "Take a break and fully rest a while.");
-	addButton(9, "Sleep", sleep, undefined, "Sleep", "Go to sleep for some time.");
+	if(canSleep()) addButton(9, "Sleep", sleep, undefined, "Sleep", "Go to sleep for some time.");
+	else addDisabledButton(9, "Sleep", "Sleep", "You can’t seem to sleep here at the moment....");
 	
 	addButton(14, "Back", mainGameMenu);
 }
@@ -1151,7 +1206,18 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				annoSleepWithIntroduce();
 				return;
 			}
-
+			//Shekka interjection
+			if (flags["SHEKKA_SLEEPWITH_INTRODUCED"] == undefined && shekkaIsCrew() && (flags["CREWMEMBER_SLEEP_WITH"] == undefined || flags["CREWMEMBER_SLEEP_WITH"] == 0))
+			{
+				shareShekkaBedProc();
+				return;
+			}
+			//Shekka interjects to Anno
+			if (flags["SHEKKA_SLEEPWITH_INTRODUCED"] == undefined && shekkaIsCrew() && (flags["CREWMEMBER_SLEEP_WITH"] == "ANNO") && annoIsCrew())
+			{
+				shekkaBedIntroWithAnnoProc();
+				return;
+			}
 			// Azra interjection! - Req's Azra onboard, not professional, banged once, nobody else in bed, and a week since your last visit to the sharkgal. Also a dick that fits inside.
 			if(azraIsCrew() && !azraProfessional() && flags["AZRA_SEXED"] != undefined && (flags["CREWMEMBER_SLEEP_WITH"] == undefined || flags["CREWMEMBER_SLEEP_WITH"] == 0) && flags["AZRA_VISITED"] + (60*24*7) < GetGameTimestamp() && pc.hasCock() && pc.cockThatFits(azra.vaginalCapacity(0)) >= 0) 
 			{
@@ -1163,10 +1229,30 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 			
 			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
+				case "SHEKKA AND ANNO":
+					if (annoIsCrew() && (rand(3) == 0 || (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined)))
+					{
+						annoSleepSexyTimes();
+						interrupt = true;
+						break;
+					}
+					if (shekkaIsCrew() && rand(3) == 0)
+					{
+						shekkaSleepWithMornings();
+						interrupt = true;
+					}
+					break;
 				case "ANNO":
 					if (annoIsCrew() && (rand(3) == 0 || (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined)))
 					{
 						annoSleepSexyTimes();
+						interrupt = true;
+					}
+					break;
+				case "SHEKKA":
+					if (shekkaIsCrew() && rand(3) == 0)
+					{
+						shekkaSleepWithMornings();
 						interrupt = true;
 					}
 					break;
@@ -1192,8 +1278,14 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				case "KASE":
 					if (kaseIsCrew() && rand(3) == 0)
 					{
-						kaseCrewSleep();
-						interrupt = true;
+						if (pc.isLactating() && flags["KASE_SNOOZED"] == 1 && rand(2) == 0){
+							kaseCrewSleepSuckling();
+							interrupt = true;
+						}
+						else {
+							kaseCrewSleep();
+							interrupt = true;
+						}
 					}
 					break;
 				// No partner selected.
@@ -1437,19 +1529,8 @@ public function outputMaxXP():String
 	return msg;
 }
 
-public function shipMenu():Boolean
+public function insideShipEvents():Boolean
 {
-	rooms["SHIP INTERIOR"].outExit = shipLocation;
-	
-	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
-
-	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You’re parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
-	
-	// Lane follower hook
-	if (tryFollowerLaneIntervention())
-	{
-		return true;
-	}
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
@@ -1461,38 +1542,11 @@ public function shipMenu():Boolean
 		approachPexigaCrewFirstTime();
 		return true;
 	}
-	// Goo Armor hook
-	if (flags["ANNO_NOVA_UPDATE"] == 2)
-	{
-		grayGooArrivesAtShip();
-		return true;
-	}
-	// Azra follower greeting
-	if(flags["AZRA_RECRUITED"] == 1 && azraIsCrew())
-	{
-		azraInShipGreeting();
-		return true;
-	}
-	//Paige follower greeting
-	if(paigeIsCrew() && flags["PAIGE_SHIP_GREETING"] == undefined) 
-	{
-		firstTimePaigeCrewHiHi();
-		return true;
-	}
-	//Kase follower greeting
-	if(kaseIsCrew() && flags["KASE_CREW"] == 1)
-	{
-		kaseCrewGreeting();
-		return true;
-	}
 	//Kase/Anno Fun
-	if(kaseIsCrew() && annoIsCrew() && (flags["KASE_MATHED"] == undefined || ((flags["KASE_MATHED"] != undefined && flags["KASE_MATHED"] + 7*24*60 < GetGameTimestamp()))))
+	if(kaseIsCrew() && annoIsCrew() && (flags["KASE_MATHED"] == undefined || ((flags["KASE_MATHED"] != undefined && flags["KASE_MATHED"] + 7*24*60 < GetGameTimestamp()))) && rand(10) == 0)
 	{
-		if(rand(10) == 0)
-		{
-			annoAndKaseDoMath();
-			return true;
-		}
+		annoAndKaseDoMath();
+		return true;
 	}
 	//Ellie Preg laying
 	if(flags["ELLIE_LAYING_PC_MIA"] != undefined)
@@ -1506,16 +1560,18 @@ public function shipMenu():Boolean
 		annoSomethingsChanging();
 		return true;
 	}
+	return false;
+}
+
+public function shipMenu():Boolean
+{
+	rooms["SHIP INTERIOR"].outExit = shipLocation;
 	
-	//Anno/Erra Threesome
-	if((pc.hasCock() || pc.hasHardLightStrapOn()) && annoIsCrew() && flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined && erraAvailableForThreesome() && !pc.hasStatusEffect("Anno-Erra Cooldown"))
-	{
-		if(rand(10) == 0)
-		{
-			annoxErraIntro();
-			return true;
-		}
-	}
+	setLocation("SHIP\nINTERIOR", rooms[rooms["SHIP INTERIOR"].outExit].planet, rooms[rooms["SHIP INTERIOR"].outExit].system);
+	
+	if(insideShipEvents()) return true;
+	
+	if(shipLocation == "KIROS SHIP AIRLOCK") output("\n\n<b>You’re parked in the hangar of the distressed ship. You can step out to investigate at your leisure.</b>");
 	
 	// Location Exceptions
 	if(shipLocation == "600") myrellionLeaveShip();
@@ -1720,6 +1776,7 @@ public function flyTo(arg:String):void
 			shipLocation = "TAVROS HANGAR";
 			currentLocation = "TAVROS HANGAR";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_TAVROS"] = 1;
 			flyToTavros();
 			break;
 		case "Mhen'ga":
@@ -1738,18 +1795,21 @@ public function flyTo(arg:String):void
 			shipLocation = "500";
 			currentLocation = "500";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_NT"] = 1;
 			landOnNewTexas();
 			break;
 		case "Myrellion":
 			shipLocation = "600";
 			currentLocation = "600";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_MYRELLION"] = 1;
 			flyToMyrellion();
 			break;
 		case "MyrellionDeepCaves":
 			shipLocation = "2I7";
 			currentLocation = "2I7";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_MYRELLION"] = 1;
 			flyToMyrellionDeepCaves();
 			break;
 		case "Poe A":
@@ -1768,6 +1828,7 @@ public function flyTo(arg:String):void
 			shipLocation = "UVS F15";
 			currentLocation = "UVS F15";
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			if(shekkaIsCrew()) flags["SHEKKA_BEEN_UVETO"] = 1;
 			interruptMenu = true;
 			flyToUveto();
 			break;
@@ -1904,12 +1965,20 @@ public function nearestMedicalCenter():String
 	return roomID;
 }
 
-public function showerMenu(special:String = "ship"):void {
+public function showerMenu(special:String = "ship"):void
+{
 	clearOutput();
-	output("You find yourself in the " + special + "’s shower room. What would you like to do?");
+	
+	var showerInShip:Boolean = (special == "ship" && InShipInterior(pc));
+	
+	output("You find yourself in the " + special + "’s shower room.");
+	if(showerInShip) output("\n\nNext to the shower is a medicine cabinet with some various hygiene products.");
+	output("\n\nWhat would you like to do?");
+	
 	clearMenu();
 	addButton(0, "Shower", showerOptions, 0, "Shower", "Take a shower and wash off any sweat or grime you might have.");
-	if (special == "ship" && InShipInterior(pc) && pc.lust() >= 33 && crew(true) > 0) addButton(1, "Sex", showerOptions, 1, "Sex", "Have some shower sex with a crew member.");
+	if (showerInShip || special == "nursery") addButton(1, "Cabinet", showerOptions, 1, "Bathroom Cabinet", "Check your bathroom’s medicine cabinet.");
+	if (showerInShip && pc.lust() >= 33 && crew(true) > 0) addButton(2, "Sex", showerOptions, 2, "Sex", "Have some shower sex with a crew member.");
 	showerDoucheToggleButton(5);
 	addButton(14, "Back", showerExit);
 }
@@ -1935,7 +2004,7 @@ public function showerOptions(option:int = 0):void
 {
 	var showerInShip:Boolean = InShipInterior(pc);
 	
-	if(showerInShip && seranigansTrigger("shower")) return;
+	if(option == 0 && showerInShip && seranigansTrigger("shower")) return;
 	
 	clearOutput();
 	clearMenu();
@@ -2065,16 +2134,28 @@ public function showerOptions(option:int = 0):void
 		pc.shower();
 		processTime(10);
 	}
-	// Shower sex options
+	// Bathroom cabinet
 	else if (option == 1)
+	{
+		output("You open the medicine cabinet and find a small collection of body hygiene and toiletry supplies.");
+		
+		var btnSlot:int = 0;
+		
+		if(pc.hasBeard()) addButton(btnSlot++, "Beard", showerCabinet, "beard", "Beard", "Do something with your [pc.beardNoun].");
+		if(pc.isBimbo()) addButton(btnSlot++, "Cosmétique", showerCabinet, "cosmetique", "Cosmétique Magazine", "Like, read up on the latest beauty trends!");
+		
+		addButton(14, "Back", showerMenu);
+	}
+	// Shower sex options
+	else if (option == 2)
 	{
 		if (annoIsCrew() && pc.hasGenitals())
 		{
 			addButton(showerSex, "Anno", annoFollowerShowerSex);
 			showerSex++;
 		}
-		if (showerSex > 0) output(" Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
-		else output(" You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
+		if (showerSex > 0) output("Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
+		else output("You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
 		addButton(14, "Back", showerMenu);
 	}
 }
@@ -2086,7 +2167,101 @@ public function shipShowerFapButtons(showerSex:int = 0):void
 	{
 		showerSex = shipShowerFaps(true);
 	}
-	addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "On second thought...");
+	addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "Nevermind", "On second thought...");
+}
+public function showerCabinet(response:String = "none"):void
+{
+	clearOutput();
+	clearMenu();
+	
+	switch(response)
+	{
+		case "beard":
+			output("You pull the cabinet mirror to the side and take a good look at your [pc.beard].");
+			if(!pc.hasLivingBeard())
+			{
+				output("\n\nWith the supplies that you have on hand, you guess you can’t do more than a shave. If you want to do anything fancier, you’ll probably have better luck visiting a stylist who specializes in fixing facial hair.");
+				
+				addButton(0, "Shave", showerCabinet, "beard shave", "Shave", "Shave your [pc.beard].");
+			}
+			else
+			{
+				output("\n\nUnfortunately, you don’t have the supplies to manipulate your living facial hair. You’ll have to visit a specialist if you want to change it in style and length.");
+			}
+			
+			addButton(14, "Back", showerMenu);
+			break;
+		case "beard shave":
+			output("To prepare, you lather your lower face and around your [pc.lipsChaste], making sure to get the parts covered by your facial hair. You then wipe your hands dry and pull out");
+			if(pc.beardLength > 0.125)
+			{
+				output(" a cheap wireless electric razor. Flicking a switch, the battery charges and the device hums to life.");
+				output("\n\nYou spend the next ten minutes or so shaving the [pc.beardNoun] from your visage. After you you’ve got it all, you turn on the sink faucet and rinse your face and slap on some aftershave.");
+				output("\n\nTaking a final look at the mirror shows that the razor could only lop off so much, so you are left with some <b>stubble decorating your face</b>. If you want to remove it all, you’ll need to shave again.");
+				
+				processTime(11);
+				pc.beardLength = 0.050;
+			}
+			else
+			{
+				output(" an inexpensive, disposable razor. Getting in close, you slide the blade across the stubble on your face.");
+				output("\n\nIt doesn’t take long, but you do find yourself having to repeat a few times in order to get rid of the rough spots. Once complete, you rub on some post-shave balm and feel the tingly, stinging sensation it leaves behind.");
+				output("\n\nThe pain is worth it though. As you take a final review of your efforts, you grin. A clean shave. <b>You no longer have a beard!</b>");
+				
+				processTime(7);
+				pc.removeBeard();
+			}
+			
+			addButton(0, "Next", showerMenu);
+			break;
+		case "cosmetique":
+			output("A mini-slate with the Cosmétique logo emblazoned on it sits next to the mirror. " + RandomInCollection([
+				"<i>Ooo!</i>--maybe there’s a sexy article you can read!",
+				"<i>Yay!</i> It’s your favorite magazine!",
+				"<i>Hmm</i>, beauty tips and sex advice--<i>why not?!</i>",
+				"It’s, like, totally the latest and greatest source for <i>glamour and glitter!</i>",
+			]) + " You quickly flick on the device and page through the articles.");
+			
+			var cosmoList:Array = [];
+			var cosmoMsg:String = "";
+			
+			cosmoMsg = "An article";
+			if(silly) cosmoMsg += ", written by one with the handle of “Alexa Jonez”,";
+			cosmoMsg += " about the dangers of low semen intake catches your attention. It reads like alarmist propaganda, running off a sprinkling of obscure facts and small case “studies”. If you didn’t know any better, you would swear the author is prophesying an end-times scenario.";
+			cosmoMsg += "\n\n<i>“Like, get a grip silly lady--there’s plenty of spooge for everyone!”</i>";
+			cosmoMsg += "\n\nHmm... However, if the author is right, then you’ll have to do your best to prevent the world from imminent malnutrition. You must save all the cummies!";
+			cosmoList.push(cosmoMsg);
+			cosmoMsg = "A strikingly beautiful image of a glamour model pops up on the page and you have to pause for a moment to soak in the view. She is a natural bombshell of a woman, yet any signs of modding only accentuates her features even more. She seems so alien yet so familiar to you.";
+			cosmoMsg += "\n\n<i>“Wow, she’s gorgeous! Like a goddess!”</i> You fawn and fan-girl over the figure and set your sights on becoming just as pretty as she is.";
+			cosmoMsg += "\n\nYou save the image for later; for when you need another positive motivation booster.";
+			cosmoList.push(cosmoMsg);
+			cosmoMsg = "A colorful chart comes into view, advertising several shades of a new lipstick line. You scroll up and down, in awe of the color combinations.";
+			cosmoMsg += "\n\n<i>“Ooh, neat! I didn’t know lips can be that color!”</i> You study one that is of interest to you--one where the model’s lips are artistically covered in a thick, translucent white glaze. It looks completely oozing with life and at the same time, it’s gloss is hypnotizing to view, even at a glance. And to top it off, the lipstick has been sprinkled with a little glitter, giving it a playful shimmer. The lipstick is lusty, lewd and lively, all in one!";
+			cosmoMsg += "\n\nYou tap on the bookmark icon to save it for later. This is the kind of makeup that goes with everything--especially slutwear!";
+			cosmoList.push(cosmoMsg);
+			cosmoMsg = "An advertisement for a heavy-duty G-spot vibrator flashes onto the page. You struggle to press the tiny ‘x’ icon in the upper corner to close the window but accidently hit the ad instead. The slate’s browser opens up and loads a video that highlights the device’s features as very enticing audio plays. You surrender to it, as it is too late to turn back now, and give the commercial a fair listen.";
+			cosmoMsg += "\n\n<i>“Wow, that’s totally awesome!”</i> you remark as the incredibly erotic-looking machine transforms into a small, palmable cylinder--a shape reminiscent to that of a tube of lipstick. With a press of a button, the device shape-shifts back to its original lewd form.";
+			cosmoMsg += "\n\nThe advertisement ends with an info link and you ponder if it’s something you might want to invest in the future...";
+			cosmoList.push(cosmoMsg);
+			cosmoMsg = "A title springs out to you: “Gains for Girls on the Go: 10 Easy Steps!”. It seems to be an article about personal fitness and diet; to move fat to the most important parts of a girl’s figure. Interesting...";
+			cosmoMsg += "\n\nYou let out a loud giggle as you read. The author who wrote the piece gives very useful advice but delivers them in such a comedic manner that you can’t help but laugh at every punch line and witty comment.";
+			cosmoMsg += "\n\nYour eyes almost water from the humor being thrown your way. What a great read! You’re convinced that the writer is just as enjoyable in person and would definitely like to meet her.";
+			cosmoList.push(cosmoMsg);
+			
+			output("\n\n" + cosmoList[rand(cosmoList.length)]);
+			output("\n\nAfter some time, you finish browsing the articles and ogling the images, turn off the tablet, and set it aside.");
+			
+			processTime(14);
+			
+			addButton(0, "Next", showerMenu);
+			break;
+		default:
+			output("Nothing valid selected!");
+			output("\n\n");
+			
+			addButton(0, "Next", showerMenu);
+			break;
+	}
 }
 
 public function sneakBackYouNudist():void
@@ -2119,11 +2294,61 @@ public function sneakBackYouNudist():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+public function dropNewClothes():void
+{
+	clearOutput();
+	
+	output("Deciding to let consumerism solve your problem, you flip open your codex and search for a speedy clothing drop service. When you find one, you request an emergency drop and send them your current coordinates.");
+	output("\n\nYou don’t need to wait long as within a few minutes a service drone hovers toward your location with a supply box filled with mystery clothes.");
+	if(currentLocation == "SHIP INTERIOR") output(" You open your airlock and allow the drone to enter your ship.");
+	output(" It drops the box in front of you as a yellow light near its sensors blink awaitingly. It obviously expects a payment.");
+	output("\n\nYou wave your codex over the drone’s sensors and the light turns");
+	
+	var cost:int = 200;
+	var lootList:Array = [];
+	
+	lootList.push(new DressClothes());
+	if(!pc.hasVagina()) lootList.push(new PlainBriefs());
+	else lootList.push(new PlainPanties());
+	if(pc.biggestTitSize() < 1) lootList.push(new PlainUndershirt());
+	else lootList.push(new PlainBra());
+	
+	for(var i:int = 0; i < lootList.length; i++)
+	{
+		cost += lootList[i].basePrice;
+	}
+	
+	if(pc.credits <= 0)
+	{
+		output(" red. Your credit account is dry at the moment, of course, so this seems more like a charity drop than a business transaction. The drone makes a beeping tone of pity");
+	}
+	else if(pc.credits < cost)
+	{
+		output(" orange. You didn’t have enough to pay the full price, but your Codex shows that <b>the service took whatever you had left in your credit account</b>. Well, this better be worth the cost... The drone makes a disappointed beeping noise");
+		
+		pc.credits = 0;
+	}
+	else
+	{
+		output(" green. Your Codex shows that <b>the service took " + cost + " credits from your credit account</b>. Well, this better be worth the cost... The drone makes a satisfied beeping melody");
+		
+		pc.credits -= cost;
+	}
+	output(" and then buzzes away");
+	if(currentLocation == "SHIP INTERIOR") output(", out of your ship, and");
+	output(" into the distance.");
+	output("\n\nWith your new package in hand, you open the box and take out the vaccuum-sealed contents inside. After opening each packet, you look at your new clothing items. Not an impressive spread, but at least it will keep you covered.");
+	
+	processTime(15);
+	
+	output("\n\n");
+	itemCollect(lootList);
+}
 
 public function move(arg:String, goToMainMenu:Boolean = true):void
 {
 	//Prevent movement for nudists into nude-restricted zones.
-	if(rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
+	if(goToMainMenu && rooms[arg].hasFlag(GLOBAL.NUDITY_ILLEGAL))
 	{
 		var nudistPrevention:Boolean = false;
 		if(!pc.isCoveredUp())
@@ -2143,9 +2368,82 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 		{
 			clearOutput();
 			output("Nudity is illegal in that location! You’ll have to cover up if you want to go there.");
+			
+			var i:int = 0;
+			var chestCovered:Boolean = (pc.hasBreasts() ? false : true);
+			var groinCovered:Boolean = false;
+			var item:ItemSlotClass;
+			
+			for(i = 0; i < pc.inventory.length; i++)
+			{
+				item = pc.inventory[i];
+				switch(item.type)
+				{
+					case GLOBAL.CLOTHING:
+					case GLOBAL.ARMOR:
+						if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+						{
+							chestCovered = true;
+							groinCovered = true;
+						}
+						break;
+					case GLOBAL.UPPER_UNDERGARMENT:
+						if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+						{
+							chestCovered = true;
+						}
+						break;
+					case GLOBAL.LOWER_UNDERGARMENT:
+						if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+						{
+							groinCovered = true;
+						}
+						break;
+				}
+			}
+			
 			clearMenu();
-			if(currentLocation == "SHIP INTERIOR") { /* No need to sneak back if already in ship! */ }
-			else addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
+			if(currentLocation == "SHIP INTERIOR")
+			{
+				// No need to sneak back if already in ship!
+				for(i = 0; i < pc.ShipStorageInventory.length; i++)
+				{
+					item = pc.ShipStorageInventory[i];
+					switch(item.type)
+					{
+						case GLOBAL.CLOTHING:
+						case GLOBAL.ARMOR:
+							if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+							{
+								chestCovered = true;
+								groinCovered = true;
+							}
+							break;
+						case GLOBAL.UPPER_UNDERGARMENT:
+							if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST))
+							{
+								chestCovered = true;
+							}
+							break;
+						case GLOBAL.LOWER_UNDERGARMENT:
+							if(!item.hasFlag(GLOBAL.ITEM_FLAG_TRANSPARENT) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN) && !item.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS))
+							{
+								groinCovered = true;
+							}
+							break;
+					}
+				}
+			}
+			else
+			{
+				output("\n\nYou can try your luck and sneak back to your ship if you are daring...");
+				addButton(0, "SneakBack", sneakBackYouNudist, undefined, "SneakBack", "Sneak back to the ship. Fuckin’ prudes. It might take you a couple hours to get back safely.");
+			}
+			if(!chestCovered || !groinCovered)
+			{
+				output("\n\nDue to your lack of coverage, you can call for an emergency clothing drop to help with your situation--though it may cost you some credits if you choose to do so.");
+				addButton(1, "Help!", dropNewClothes, undefined, "Emergency Clothing Drop", "Call a drone to retrieve a new set of clothes.");
+			}
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
@@ -2158,8 +2456,43 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	{
 		if(currentLocation != "SHIP INTERIOR")
 		{
-			if(!disableExploreEvents() && seranigansTrigger("hijacked")) return;
+			if(goToMainMenu && !disableExploreEvents() && seranigansTrigger("hijacked")) return;
 			if(flags["SERA_QUIT_SMOKING"] == undefined && flags["SERA_PREGNANCY_TIMER"] >= 24) eventQueue.push(seraPregQuitSmoking);
+		}
+	}
+	
+	//Procs on ship enter:
+	if (arg == "SHIP INTERIOR")
+	{
+		// Lane follower hook
+		if (flags["LANE_FULLY_HYPNOTISED_DAY"] != undefined && flags["FOLLOWER_LANE_INTERVENTION"] == undefined)
+		{
+			tryFollowerLaneIntervention();
+		}
+		// Goo Armor hook
+		if (flags["ANNO_NOVA_UPDATE"] == 2)
+		{
+			eventQueue.push(grayGooArrivesAtShip);
+		}
+		// Azra follower greeting
+		if(flags["AZRA_RECRUITED"] == 1 && azraIsCrew())
+		{
+			eventQueue.push(azraInShipGreeting);
+		}
+		//Paige follower greeting
+		if(paigeIsCrew() && flags["PAIGE_SHIP_GREETING"] == undefined) 
+		{
+			eventQueue.push(firstTimePaigeCrewHiHi);
+		}
+		//Kase follower greeting
+		if(kaseIsCrew() && flags["KASE_CREW"] == 1)
+		{
+			eventQueue.push(kaseCrewGreeting);
+		}
+		//Anno/Erra Threesome
+		if((pc.hasCock() || pc.hasHardLightStrapOn()) && annoIsCrew() && flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined && erraAvailableForThreesome() && !pc.hasStatusEffect("Anno-Erra Cooldown") && rand(5) == 0)
+		{
+			eventQueue.push(annoxErraIntro);
 		}
 	}
 	
@@ -2174,7 +2507,7 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	}
 
 	//Waterfall stuff.
-	if(rooms[arg].hasFlag(GLOBAL.WATERFALL))
+	if(goToMainMenu && rooms[arg].hasFlag(GLOBAL.WATERFALL))
 	{
 		pc.energy(-6);
 		if(arg == "8. RED ROCK SCREE" && currentLocation == "7. DRIFTWOOD SHOULDER")
@@ -2303,13 +2636,13 @@ public function variableRoomUpdateCheck():void
 		rooms["9017"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["9017"].removeFlag(GLOBAL.NPC);
-	
+	// Fisi
 	if(fisiAtResDeck()) 
 	{
 		rooms["RESIDENTIAL DECK 5"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["RESIDENTIAL DECK 5"].removeFlag(GLOBAL.NPC);
-	
+	// Riya
 	if(flags["MET_RIYA"] != undefined && riyaAtNursery())
 	{
 		rooms["CANADA4"].removeFlag(GLOBAL.NPC);
@@ -2339,6 +2672,9 @@ public function variableRoomUpdateCheck():void
 	}
 	if(flags["KASE_CREW"] == 0 && !rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].addFlag(GLOBAL.NPC);
 	else if(flags["KASE_CREW"] != 0 && rooms["RESIDENTIAL DECK KASES APARTMENT"].hasFlag(GLOBAL.NPC)) rooms["RESIDENTIAL DECK KASES APARTMENT"].removeFlag(GLOBAL.NPC);
+	// Temp housing
+	if(nurserySpareApptIsOccupied()) rooms["NURSERYI6"].addFlag(GLOBAL.OBJECTIVE);
+	else rooms["NURSERYI6"].removeFlag(GLOBAL.OBJECTIVE);
 
 	/* MHENGA */
 	
@@ -2798,6 +3134,8 @@ public function variableRoomUpdateCheck():void
 		rooms["UVGR K20"].removeFlag(GLOBAL.NPC);
 		rooms["KORGII B14"].removeFlag(GLOBAL.OBJECTIVE);
 	}
+	if(flags["LUND_FUCKED_OFF"] == undefined && !rooms["KORGII F8"].hasFlag(GLOBAL.NPC)) rooms["KORGII F8"].addFlag(GLOBAL.NPC);
+	else if(flags["LUND_FUCKED_OFF"] != undefined && rooms["KORGII F8"].hasFlag(GLOBAL.NPC)) rooms["KORGII F8"].removeFlag(GLOBAL.NPC);
 	//Myrna
 	if(isChristmas())
 	{
@@ -2820,7 +3158,6 @@ public function variableRoomUpdateCheck():void
 		rooms["CANADA3"].addFlag(GLOBAL.NPC);
 	}
 	else rooms["CANADA3"].removeFlag(GLOBAL.NPC);
-
 
 	/* MISC */
 	
@@ -2947,6 +3284,17 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	if(sendMails)
 	{
+		/* SHEKKA RECROOT */
+		if(!shekkaRecruited() && flags["SHEKKA_REPEAT_TALKED"] != undefined && flags["SHEKKA_TALKED_PLAN"] != undefined && flags["PLANET_3_UNLOCKED"] != undefined && flags["TIMES_SEXED_SHEKKA"] != undefined)
+		{
+			if(!MailManager.isEntryUnlocked("shekkaFollowerIntroMail") && !pc.hasStatusEffect("Shekka_Follower_Email_CD") && currentLocation != "WIDGET WAREHOUSE") goMailGet("shekkaFollowerIntroMail");
+			if(flags["SHEKKA_CURE_TIMER"] != undefined)
+			{
+				if(flags["SHEKKA_CURE_TIMER"]+10080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerIntroMail")) goMailGet("shekkaFollowerFirstChildrenBorn");
+				if(flags["SHEKKA_CURE_TIMER"]+20080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerTesting")) goMailGet("shekkaFollowerTesting");
+				if(flags["SHEKKA_CURE_TIMER"]+24080 < GetGameTimestamp() && !MailManager.isEntryUnlocked("shekkaFollowerUnlockEmail")) goMailGet("shekkaFollowerUnlockEmail");
+			}	
+		}
 		/* ANNO THICKNESS! */
 		if(annoIsHuskar())
 		{
@@ -2977,6 +3325,8 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		//KIRO DATEMEET
 		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && kiroSexed() && rand(10) == 0) { goMailGet("kirodatemeet"); }
 		trySendStephMail();
+		//KIRO SMUT!
+		if(!MailManager.isEntryUnlocked("kiroandkallyholomail") && flags["KIRO_3SOME_REACTION"] != -1 && flags["KIRO_3SOME_REACTION"] != undefined && kiroKallyThreesomes() > 0 && flags["KIRO_KALLY_EMAIL"] != undefined && flags["KIRO_KALLY_EMAIL"] + 5*60 < GetGameTimestamp()) { goMailGet("kiroandkallyholomail"); }
 		
 		//Jade muff-ins
 		if (!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
@@ -3365,6 +3715,11 @@ public function processAnnoEvents(deltaT:uint, doOut:Boolean):void
 {	
 	var totalHours:int = ((minutes + deltaT) / 60);
 	if(!isChristmas()) flags["ANNO_GIFT_WRAPPED"] = undefined;
+	if(flags["ANNO_AWAY"] != undefined && deltaT >= 1)
+	{
+		flags["ANNO_AWAY"] -= deltaT;
+		if(flags["ANNO_AWAY"] <= 0) flags["ANNO_AWAY"] = undefined;
+	}
 	if(flags["ANNO_ASLEEP"] != undefined && totalHours >= 1)
 	{
 		flags["ANNO_ASLEEP"] -= totalHours;
@@ -3851,7 +4206,7 @@ public function holidaySeasonCheck(seasonFlag:String = ""):Boolean
 		case "VALENTINES": return checkDate(14, 2, 3); break;
 		case "ST_PATRICKS": return checkDate(17, 3, 3); break;
 		case "APRIL_FOOLS": return checkDate(1, 4, 0); break;
-		case "EASTER": return checkDate(16, 4, 2); break;
+		case "EASTER": return checkDate(15, 4, 14); break;
 		case "JULY_4TH": return checkDate(4, 7, 7); break;
 		case "OKTOBERFEST": return checkDate(18, 9, 4); break;
 		case "HALLOWEEN": return checkDate(29, 10, 10); break;

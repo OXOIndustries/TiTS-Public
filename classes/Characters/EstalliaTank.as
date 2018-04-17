@@ -31,7 +31,7 @@ package classes.Characters
 			this.a = "";
 			this.capitalA = "";
 			this.long = "";
-			this.customBlock = "The armor easily absorbs your attack.";
+			this.customBlock = "The armor easily absorbs the attack.";
 			this.isPlural = false;
 			
 			isLustImmune = true;
@@ -183,6 +183,7 @@ package classes.Characters
 			btnTargetText = "Queen Tank";
 			
 			this.createStatusEffect("Stun Immune");
+			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			this._isLoading = false;

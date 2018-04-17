@@ -209,8 +209,8 @@ public function myrellionNevrieShop(isDiscount:Boolean = false):void
 	}
 	else
 	{
-		nevrie.destroyItemByClass(RedPill);
-		nevrie.destroyItemByClass(GoldPill);
+		nevrie.destroyItemByClass(RedPill, -1);
+		nevrie.destroyItemByClass(GoldPill, -1);
 	}
 	if(flags["MCALLISTER_MYR_HYBRIDITY"] == 3 || flags["MCALLISTER_MYR_HYBRIDITY"] == 4)
 	{
@@ -218,7 +218,7 @@ public function myrellionNevrieShop(isDiscount:Boolean = false):void
 	}
 	else
 	{
-		nevrie.destroyItemByClass(OrangePill);
+		nevrie.destroyItemByClass(OrangePill, -1);
 	}
 	processTime(8 + rand(2));
 

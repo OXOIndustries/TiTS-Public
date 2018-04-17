@@ -8,6 +8,7 @@
 	import classes.Items.Miscellaneous.NukiCookies;
 	import classes.Items.Transformatives.Hornucopia;
 	import classes.Items.Transformatives.Nepeta;
+	import classes.Items.Transformatives.SirensBounty;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	
@@ -32,6 +33,7 @@
 			inventory.push(new LeithaCharm());
 			inventory.push(new Nepeta());
 			inventory.push(new NukiCookies());
+			inventory.push(new SirensBounty());
 			
 			this.typesBought = [];
 			

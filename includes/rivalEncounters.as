@@ -88,6 +88,7 @@ public function probeReclamationMhenga(response:int = 0):void
 {
 	clearOutput();
 	showName("STEELE\nTECH");
+	author("Jacques00");
 	
 	if(response == 0)
 	{
@@ -112,12 +113,19 @@ public function probeReclamationMhenga(response:int = 0):void
 	}
 	else if(response == 3)
 	{
+		showBust("MILLY");
+		
 		output("Over three-and-a-half hours pass and you start to wonder what is taking so long--but a mechanical humming noise breaks through the natural rainforest sounds, alerting you of an approaching hover bike.");
 		output("\n\nWhen the bike finally arrives, it lands next to the probe. The driver, clad in an armored Steele Tech suit and bio-helmet, steps off and props the vehicle to the parking position, then activates a towing device in the back. As the hydraulics hum and the tractor beam warms up, the person takes off their helmet to reveal a cocoa-toned young");
 		if(CodexManager.entryUnlocked("Dzaan")) output(" dzaan");
 		else output(" alien");
 		output(" female with bright violet eyes and platinum micro braids, tied up into a mid-ponytail. Her maroon-colored lips stretch into a brief smile as she deeply inhales.");
 		output("\n\n<i>“Pick-up crew at your service, " + pc.mf("Mr.","Ms.") + " Steele,”</i> she says, giving you a two-finger salute with her gloved fingers.");
+		if(!CodexManager.entryUnlocked("Dzaan"))
+		{
+			output("\n\n<b>(New Codex entry unlocked: Dzaan.)</b>");
+			CodexManager.unlockEntry("Dzaan");
+		}
 		if(pc.isNice()) output("\n\n<i>“Greetings, was there trouble? I’ve been waiting for quite some time,”</i> you answer");
 		else output("\n\n<i>“It’s about time, kid - what in the void took you so long?”</i> you retort");
 		output(", <i>“...and ‘crew’? There’s only one of you.”</i>");
@@ -138,18 +146,210 @@ public function probeReclamationMhenga(response:int = 0):void
 		output("\n\n<i>“Roger that, good buddy.”</i>");
 		output("\n\nYou lightly chuckle at the radio chatter you just witnessed.");
 		output("\n\n<i>“Oh, I almost forgot,”</i> she says, whipping out her Codex. <i>“These old probes still have a bounty attached to them, so I have to make sure you get paid before I jet.”</i> She waves her device next to yours and it gives a positive beep, alerting you to a new deposit of <b>10,000 credits</b> into your bank account.");
-		output("\n\nYou thank the young woman, as she double-checks the straps. With everything secured, she dons her helmet, positions herself on the bike, releases the parking stand and revs up the engine, hovering along with the newly acquired load. Giving her two-finger salute again, she bids you farewell and blasts through the narrow jungle depths towards the exit with a loud hum and the probe in tow.");
-		output("\n\nWhen she’s finally gone, you prepare your things and set out.");
-		
+
 		pc.credits += 10000;
 		processTime(60);
 		restHeal();
 		flags["MHENGA_PROBE_CASH_GOT"] = 1;
 		variableRoomUpdateCheck();
 		generateMapForLocation(currentLocation);
-		clearMenu();
-		addButton(0,"Next",mainGameMenu);
+		
+		if((pc.cockThatFits(600) >= 0 || pc.hasVagina()) && pc.lust() >= 33)
+		{
+			output("\n\nNice. Though there’s something else the cute dzaan could do for you if she has the time...");
+			clearMenu();
+			addButton(1,"Fuck",millyBonusSex,undefined,"Fuck","Have a quickie with Milly before she leaves.");
+			addButton(0,"Thank Her",thankMilly,true,"Thank Her","Thank Milly and send her on her way.");
+		}
+		else
+		{
+			thankMilly(false);
+		}
 	}
+}
+public function thankMilly(newPage:Boolean = false):void
+{
+	if(newPage)
+	{
+		clearOutput();
+		showName("\nMILLY");
+		showBust("MILLY");
+		author("Jacques00");
+	}
+	else output("\n\n");
+	
+	output("You thank the young woman, as she double-checks the straps. With everything secured, she dons her helmet, positions herself on the bike, releases the parking stand and revs up the engine, hovering along with the newly acquired load. Giving her two-finger salute again, she bids you farewell and blasts through the narrow jungle depths towards the exit with a loud hum and the probe in tow.");
+	output("\n\nWhen she’s finally gone, you prepare your things and set out.");
+	
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function millyBonusSex():void
+{
+	clearOutput();
+	showName("\nMILLY");
+	showBust("MILLY_NUDE");
+	author("Wsan");
+	//[Milly]
+	//Have a quickie with Milly before she leaves.
+	output("<i>“Hey Milly,”</i> you say, casually approaching her");
+	// while she’s laid out on the bike and not transmitting
+	output(". <i>“While we’re out here alone, just the two of us... up for a bit of fun?”</i>");
+	output("\n\n<i>“I- uh,”</i> she stutters, her face instantly flushing at the attention. She turns from you to the radio, then back to you, glancing at it sideways. <i>“Yes, b-but what will we do about the crew?”</i>");
+	output("\n\n<i>“Easy,”</i> you tell her, putting a hand on her voluptuous ass and leaning over the bike to key the transmitter. As you do, you can’t help but notice the amount of give to Milly’s plump butt. This girl might be thick, but she’s definitely fit. <i>“Steele here. We’re having some issues with the probe, but it’s nothing we can’t take care of. Keep up the good work and I’ll have Milly back to you soon.”</i>");
+	output("\n\nThe affirmative reply comes back, but frankly you’re far more interested in Milly’s incredible assets.");
+	output("\n\n<i>“C’mere, cutie,”</i> you tell her, giving her butt a fierce squeeze before letting go and stepping away.");
+	output("\n\n<i>“Ah, um,”</i> she says, stumbling on her words nervously as she hastily dismounts the bike. <i>“I don’t really have that much experience so...”</i>");
+	output("\n\n<i>“Relaaaax,”</i> you reassure her, flashing her a smile and helping her off the bike. <i>“I’m not here to grade you on your performance, y’know? We can leave all the company stuff behind us right now.”</i>");
+	output("\n\nYou can tell she’s definitely just a bit starstruck, so you’re going to have to help her out.");
+	output("\n\n<i>“Do you mind if I-?”</i> you ask, gesturing at the buckles and fasteners holding her breasts in place.");
+	output("\n\n<i>“Oh, no,”</i> she says, smiling back and thrusting her chest out a little. The sight is to die for. <i>“Go ahead.”</i>");
+	output("\n\nA few seconds later and you have her well-formed breasts exposed, every bit as luscious as her butt and just as nice to hold. You can see gooseflesh around the dark cocoa of her nipples, the studs in question jutting outwards and hard to the touch.");
+	output("\n\n<i>“Damn, you’re curvy </i>everywhere<i>,”</i> you murmur, teasing her nips just a bit.");
+	output("\n\n<i>“Nnnnmm,”</i> Milly sighs in satisfaction, subtly rubbing her thighs together as you play with her. <i>“I’m told that’s my best ass-et...”</i>");
+	output("\n\n<i>“Jokes too?”</i> you say, grinning. <i>“This should be fun.”</i>");
+	
+	var cIdx:int = pc.cockThatFits(600);
+	
+	if(!pc.isCrotchExposed()) 
+	{
+		output("\n\n<i>“Can I see- uh, what you’re... packing?”</i> Milly asks hesitantly. <i>“Sorry, I’ve never been very good with dirty talk.”</i>");
+		output("\n\n<i>“Sure,”</i> you say generously, lifting your hands off her perfect breasts. <i>“Get a good look.”</i>");
+		output("\n\nShedding your [pc.crotchCovers], Milly ");
+		if(!pc.isTaur()) 
+		{
+			output("puts her hands between your [pc.legs] and gets a nice handful of ");
+			if(cIdx >= 0 && pc.balls > 0) output("your [pc.balls]");
+			else if(cIdx >= 0) output("your [pc.cock " + cIdx + "]");
+			else output("your [pc.pussy]");
+			output(", her eyebrows raising before a grin crosses her face.");
+		}
+	}
+	if(pc.isTaur()) 
+	{
+		output("\n\nShuffling between your legs, Milly ");
+		if(cIdx >= 0) output("gets an immediate eyeful of your [pc.cock " + cIdx + "], a low whistle then a giggle issuing from underneath you");
+		else output("stretches her hand up your hindquarters and gets a couple of fingers inside your [pc.pussy]");
+		output(". You can hear the grin in her voice when she speaks.");
+	}
+	output("\n\n<i>“This </i>will<i> be fun,”</i> she agrees wholeheartedly, giving you a friendly stroke. <i>“We’d better hurry up, though.”</i>");
+	output("\n\n<i>“You don’t want lub- oh...”</i> you trail off, watching her pull her tights down and spread those amazing asscheeks. Her pussy is sopping wet, drooling pearlescent strands of arousal down her thick brown thighs. <i>“Damn, Milly.”</i>");
+	output("\n\n<i>“I get pretty wet,”</i> she admits, her face coloring itself a deep shade of scarlet once more. <i>“It’s a little embarrassing, actually.”</i>");
+	output("\n\n<i>“Don’t be embarrassed, that’s hot as fuck,”</i> you tell her, shaking your head. <i>“Like anyone’s going to complain that you’re turned on for them.”</i>");
+	output("\n\n<i>“Thanks, that does actually make me feel a little better,”</i> she says, giving you a lopsided grin. <i>“So... how do you want me?”</i>");
+	
+	if(cIdx >= 0 && !pc.isTaur()) 
+	{
+		output("\n\nGiven that you have a cock, you absolutely cannot pass up the opportunity to watch her jiggle from behind as you fuck her pussy. Some part of you harbors a slight suspicion about Steele Tech’s hiring criteria given Milly’s divine proportions, but you don’t see the issue. Regardless, you have a perfect d’zaan girl in front of you to fuck. You make a downward-pointing twirling motion with your finger and smile.");
+		output("\n\n<i>“Turn that amazing ass of yours around, Milly. Might help to brace yourself on the bike.”</i>");
+		output("\n\n<i>“Yes [pc.sir],”</i> she says, grinning as she turns. Putting her hands out on her bike, spreading her legs, and turning back to you, she flutters her eyelashes. <i>“Like what you see?”</i>");
+		output("\n\n<i>“Fuck yeah I do,”</i> you murmur, taking a second just to appreciate the sight. But only a second. <i>“Hope you’re ready for a little rough action, Milly.”</i>");
+		output("\n\n<i>“I’m well-equipped to handle it,”</i> she replies smugly, sighing lustily as you place your hands on her waspish waist. She’s not kidding, either. With this kind of padding you could probably rail her like she’s a New Texan cowgirl, but she did say she wasn’t too experienced. Best to start her off slow.");
+		output("\n\nShe moans when she feels you at her entrance, gasps when you slip your [pc.cockHead " + cIdx + "] in, and gives a low, lengthy scream of pleasure as you slide yourself home.");
+		
+		pc.cockChange();
+
+		if(pc.cocks[cIdx].cLength() < 12) output("\n\n<i>“Oh god, that’s goooood,”</i> she pants, squirming in your grasp. <i>“I can feel you so deep inside...”</i>");
+		else if(pc.cocks[cIdx].cLength() < 24) output("\n\n<i>“Oohhh god,”</i> she groans in pleasure, shaking in your grip. <i>“You’re a lot bigger than anyone I’ve been with!”</i>");
+		else output("\n\n<i>“Oh, god! Fuck!”</i> she screams into the forest, shuddering and bouncing on your cock. <i>“You’re fucking huge!”</i>");
+		output("\n\nBy the time you’ve even gotten yourself properly acquainted with the pleasure of fucking Milly’s pussy, she’s cum on your cock three times, straining her voice to express her joy. This girl is on a hair-trigger, and not afraid to let you know about it. With the way she squirts so hard when she cums, it’s impossible not to know when it happens.");
+		output("\n\n<i>“Ooooggggh god,”</i> she groans, head hanging low as your thighs bounce off her ass. <i>“Please cum in me before I go crazy! Please!”</i>");
+		output("\n\n<i>“Whatever you say,”</i> you huff, beginning to fuck her as hard as you can, the staccato sound of [pc.skinFurScales] slapping skin resounding throughout the little clearing as you fuck the daylights out of Milly with her draped over her bike. Gritting your teeth, you pull her braided ponytail and cum in her with a rough grunt, your instincts telling you to get as deep as possible inside her while she squirts all over your ");
+		if(pc.balls > 0) output("[pc.balls].");
+		else output("[pc.cock " + cIdx + "].");
+		output("\n\nOnce you’re satisfied with how much you’ve unloaded inside her, you pull out and let her drip all down her thighs. Her creamed cunt glistens with your and her fluids, a steady drool of spunk running down her legs.");
+		output("\n\n<i>“Ooohhhh my god,”</i> Milly moans, rolling over onto her back and sending another cascade of spunk down her thighs. <i>“I have </i>never<i> fucked like that. Ever.”</i>");
+		output("\n\n<i>“Glad to help,”</i> you say, tipping an imaginary ten-gallon hat and earning a breathless laugh. The sight of her lying on her back, chest heaving and sweat-slick caramel skin has you wanting to go all over again. Not to mention she’s still leaking <i>your</i> cum from that tight, quivering pussy...");
+		output("\n\n<i>“Ooh, someone’s eager,”</i> Milly murmurs, spotting your unflagging erection. <i>“Well, I don’t think I can go another round right now,”</i> she admits, gingerly sitting upright before tilting her head and looking at you from the side. <i>“But I miiiight be able to fit in a beejay...”</i>");
+		output("\n\nBy the time you send the happy girl back to her crew with a pat on the butt, spunk down her throat and up her pussy, and a kiss on the cheek, you’ve cum in her three times. You briefly entertain the notion that you’ve just encountered a succubus instead of a cute d’zaan chick before getting ready to head back into the jungle proper.");
+	}
+	//Havecock, taur
+	else if(cIdx >= 0)
+	{
+		output("\n\nHer divine proportions, like those of an old Earth fertility goddess, have inspired both you and your [pc.cock " + cIdx + "]. You’ve got to have that wet, warm pussy wrapped around your dick. You make a downward-pointing twirling motion with your finger and smile.");
+		output("\n\n<i>“Turn that amazing ass of yours around, Milly. Might help to brace yourself on the bike so I can mount you.”</i>");
+		output("\n\n<i>“Ooooh, </i>mounting<i>,”</i> she murmurs, biting her lip as she turns. <i>“Has a sexy ring to it...”</i>");
+		output("\n\n<i>“It does, doesn’t it?”</i> you agree, taking a step behind her as she bends.");
+		output("\n\nPutting her hands out on her bike, spreading her legs, and turning back to you, she flutters her eyelashes. <i>“Like what you see?”</i>");
+		output("\n\n<i>“Fuck yeah I do,”</i> you murmur, taking a second just to appreciate the sight. But only a second. <i>“Hope you’re ready for a little rough action, Milly.”</i>");
+		output("\n\n<i>“I’m well-equipped to handle it,”</i> she replies smugly, sighing lustily as you place your hands on her waspish waist. She’s not kidding, either. With this kind of padding you could probably rail her like she’s a New Texan cowgirl, but she did say she wasn’t too experienced. Best to start her off slow.");
+		output("\n\nShe moans when she feels you at her entrance, gasps when you slip your [pc.cockHead " + cIdx + "] in, and gives a low, lengthy scream of pleasure as you slide yourself home.");
+		
+		pc.cockChange();
+		
+		if(pc.cocks[cIdx].cLength() < 12) output("\n\n<i>“Oh god, that’s goooood,”</i> she pants, squirming in your grasp. <i>“I can feel you so deep inside...”</i>");
+		else if(pc.cocks[cIdx].cLength() < 24) output("\n\n<i>“Oohhh god,”</i> she groans in pleasure, shaking in your grip. <i>“You’re a lot bigger than anyone I’ve been with!”</i>");
+		else output("\n\n<i>“Oh, god! Fuck!”</i> she screams into the forest, shuddering and bouncing on your cock. <i>“You’re fucking huge!”</i>");
+		output("\n\nBy the time you’ve even gotten yourself properly acquainted with the pleasure of fucking Milly’s pussy, she’s cum on your cock three times, straining her voice to express her joy. This girl is on a hair-trigger, and not afraid to let you know about it. With the way she squirts so hard when she cums, it’s impossible not to know when it happens.");
+		output("\n\n<i>“Ooooggggh god,”</i> she groans, head hanging low as your thighs bounce off her ass. <i>“Please cum in me before I go crazy! Please!”</i>");
+		output("\n\n<i>“Whatever you say,”</i> you huff, beginning to fuck her as hard as you can, the staccato sound of [pc.skinFurScales] slapping skin resounding throughout the little clearing as you fuck the daylights out of Milly with her draped over her bike. Gritting your teeth, you cum in her with a rough grunt, your instincts telling you to get as deep as possible inside her while she squirts all over your ");
+		if(pc.balls > 0) output("[pc.balls]");
+		else output("[pc.cock " + cIdx + "]");
+		output(".");
+		output("\n\nOnce you’re satisfied with how much you’ve unloaded inside her, you pull out and let her drip all down her thighs. Her creamed cunt glistens with your and her fluids, a steady drool of spunk running down her legs.");
+		output("\n\n<i>“Ooohhhh my god,”</i> Milly moans, rolling over onto her back and sending another cascade of spunk down her thighs. <i>“I have </i>never<i> fucked like that. Ever. I’ve never even been with a ‘taur.”</i>");
+		output("\n\n<i>“Glad to help,”</i> you say, tipping an imaginary ten-gallon hat and earning a breathless laugh. The sight of her lying on her back, chest heaving and sweat-slick caramel skin has you wanting to go all over again. Not to mention she’s still leaking <i>your</i> cum from that tight, quivering pussy...");
+		output("\n\n<i>“Well, I don’t think I can go another round right now,”</i> she admits, gingerly sitting upright before tilting her head and looking at you from the side. <i>“But I miiiight be able to fit in a beejay...”</i>");
+		output("\n\nBy the time you send the happy girl back to her crew with a pat on the butt, spunk down her throat and up her pussy, and a kiss on the cheek, you’ve cum in her three times. You briefly entertain the notion that you’ve just encountered a succubus instead of a cute d’zaan chick before getting ready to head back into the jungle proper.");
+	}
+	//Nocock, nontaur:
+	else if(!pc.isTaur())
+	{
+		output("\n\nTaking a step closer to the beautiful young girl, you give her a light push and a grin as she steps back against the bike. <i>“We can start with you spreading those sexy legs of yours and see where we go from there.”</i>");
+		output("\n\n<i>“That sounds like a pretty good idea coming from yo- ooh!”</i> Milly suddenly gasps, lapsing into a gentle moan as you slowly stroke her from within with your fingers. <i>“That was sudden...”</i> she murmurs before licking her lips flirtatiously. <i>“But I liked it.”</i>");
+		output("\n\n<i>“Oh yeah?”</i> you say, leaning in as you place your thumb on her clit. <i>“How about this?”</i>");
+		output("\n\nMilly arches her back fiercely the moment you start rubbing her both inside and out, a louder moan escaping her lips as her thighs start instinctively closing. With your free hand you keep them open, rubbing her more and more vigorously until she’s looking up at you with eyes wide and shimmering, gasping your name as she starts to cum.");
+		output("\n\n<i>“Oh, [pc.name]! [pc.name]!”</i> Milly cries out before gritting her teeth, watching you hopelessly as you drive her to an orgasm so hard she forgets to breathe. She squirts all over your fingers again and again, shaking against your hand until you finally let her go and she follows suit, collapsing onto the bike’s seat and gasping. You lean over her and give her a vivacious smile.");
+		output("\n\n<i>“So? Did you like th-”</i> you start, only to be cut off by Milly pulling you down on top of her and kissing you wildly");
+		if(pc.hasHair()) output(", running her hands through your [pc.hair]");
+		output(". <i>“Mmmm!”</i>");
+		output("\n\nYou spend the next minute on top of Milly, touching the sensitive girl all over and letting her hands freely explore your body until they finally slip between your legs, a finger sliding right into your [pc.pussy].");
+		output("\n\n<i>“Oohh, yes,”</i> you moan, looking down at her with lidded eyes. <i>“That’s a good girl...”</i>");
+		output("\n\nIt quickly becomes apparent that Milly is a very fast learner, as she employs your own tactic against you to great effect, giving you an orgasm that has your eyes rolling in your head. The two of you lose track of time trading orgasms with your hands, capping off the wild, unrestrained experience by 69ing each other to a massive, body-shaking orgasm.");
+		if(pc.isSquirter()) output(" You both squirt all over each other, unable to hold yourself back in the face of such sheer, unrelenting pleasure and an able tongue.");
+		else output("Milly squirts all over your chin, unable to hold herself back in the face of such sheer, unrelenting pleasure and your able tongue.");
+		output("\n\n<i>“Ooohhhh my god,”</i> Milly moans, wrapping an arm around you once you’re both the right way up. <i>“I have </i>never<i> fucked like that. Ever. I’ve never even been with another girl.”</i>");
+		output("\n\n<i>“Glad to help,”</i> you say, giving her a quick peck on the cheek. Honestly, the sight of her lying on her back, chest heaving and sweat-slick caramel skin has you wanting to go all over again. Not to mention that first taste of her quivering pussy was utterly divine.");
+		output("\n\n<i>“Well, I’m probably too exhausted to fuck more right now,”</i> she moans, gingerly sitting upright before tilting her head and looking at you from the side. <i>“But if you wanted to, say, ride my face...”</i>");
+		output("\n\nBy the time you send the happy girl back to her crew with a pat on the butt, your juices all over her face, and a kiss on the cheek, you’ve cum three times and brought her to orgasm more times than you can count. You briefly entertain the notion that you’ve just encountered a succubus instead of a cute d’zaan chick before getting ready to head back into the jungle proper.");
+		
+		pc.applyPussyDrenched();
+	}
+	//Nocock, taur
+	else
+	{
+		output("\n\n<i>“What I want,”</i> you tell her, grinning all the while, <i>“is to have that pretty little face buried between my hindlegs.”</i>");
+		output("\n\n<i>“Wow, that might be the hottest thing anyone’s ever said to me,”</i> Milly says, eyebrows raised. <i>“Something to be said for pure, stark sexuality...”</i>");
+		output("\n\nShe slowly walks behind you, arm out and stroking your flank until she reaches your back half.");
+		output("\n\n<i>“I kinda wish I could kiss you when we do this,”</i> she admits, ");
+		if(pc.tailCount > 1 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("lightly tugging your [pc.tail] out of the way and ");
+		output("placing both her hands on your [pc.ass] and sinking to her knees.");
+		output("\n\n<i>“I’ve got another set of lips you can kiss, cutie,”</i> you murmur, giving Milly a ‘wink’ that elicits a small gasp.");
+		output("\n\n<i>“Oh, wow...”</i> she says, sliding her hand down closer. <i>“Is that your clit?”</i>");
+		output("\n\nYou answer by way of a loud, lusty groan when she strokes her finger across [pc.oneClit], your hindlegs shaking a little at the sensation.");
+		output("\n\n<i>“Yup,”</i> Milly mutters, bringing her mouth closer.");
+		output("\n\nYou moan happily when you feel the embrace of her lips on your own, parting your folds to plant a wet kiss right on your clit. What follows is a series of probing finger motions and experimental licks, sucks, and nibbles that soon have you crying out in pleasure, right on the edge of cumming. Milly’s a very fast learner, and taking note of all the spots that have you moaning like you’re in heat she manages to bring you to a massive, hip-shaking orgasm.");
+		output("\n\nYou’ve barely recovered from that when you feel her dainty fingers stretching you open, Milly splaying her hand inside the entrance of your tight, wet folds before slowly sinking herself deeper. Now you <i>really</i> scream in pleasure, the d’zaan girl looking on in awe as she brings a woman more than twice her size to an earth-shattering orgasm with a hand. Unsure of your limits but unwilling to let it go when you’re clearly in ecstasy, she makes you cum twice more before your front legs buckle as your voice breaks.");
+		output("\n\n<i>“Oh! A-are you okay?”</i> Milly says, uncertain. Slowly withdrawing her fist from your well-used pussy, she walks to your front to check on you. <i>“Oh... you’re definitely okay.”</i>");
+		output("\n\n[pc.Breasts] heaving, you gasp for air and grope at your own nipples before dazedly realizing that Milly’s bent over in front of you. A prime target for unleashing your lust. Standing back up, she follows your ascent and gives an ‘eep!’ of surprise as you sweep her off her feet, laying her back on her bike and immediately diving into her sopping wet pussy.");
+		output("\n\nYou bring her squealing and moaning to her first of many orgasms, the voluptuous d’zaan squirming in your inescapable grip and crying out your name over and over. By the time she cums a second time, she has those thick thighs wrapped around your head, begging you to stay in her pussy.");
+		output("\n\nBy the time you realize you have to return the probe, Milly is practically delirious and bordering on unconsciousness. Not only is she a very emphatic squirter, but she orgasms on a hair trigger. You admit to feeling a little jealous of her capability to have multiple rolling orgasms at once, her hips jerking into the air so hard you had to hold her down to keep tonguefucking her.");
+		output("\n\n<i>“Ooohhhh my god,”</i> Milly moans, lying spreadeagle with your chin resting on her abs. <i>“I have </i>never<i> fucked like that. Ever. I’ve never even been with another girl, let alone a ‘taur...”</i>");
+		output("\n\n<i>“Glad to help,”</i> you say, giving her a quick kiss on her tummy. Honestly, the sight of her lying on her back, chest heaving and sweat-slick caramel skin has you wanting to go all over again. Not to mention that her quivering pussy tastes divine. You could spend all day eating her out, or having her between your legs.");
+		output("\n\n<i>“I’m probably too exhausted to fuck more right now,”</i> she moans, gingerly sitting upright before tilting her head and looking at you from the side. <i>“But if you wanted to, say, ride my face and do all the work...”</i>");
+		output("\n\nBy the time you send the happy girl back to her crew with a pat on the butt, your juices all over her face, and a kiss on the cheek, you’ve cum seven times and brought her to orgasm more times than you can count. You briefly entertain the notion that you’ve just encountered a succubus instead of a cute d’zaan chick before getting ready to head back into the jungle.");
+		
+		pc.applyPussyDrenched();
+	}
+	//mainmenu
+	processTime(45);
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	IncrementFlag("MILLY_FUCKED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Fight

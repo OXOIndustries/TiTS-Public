@@ -187,6 +187,8 @@ package classes.Items.Transformatives
 					output(" It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
 
 					target.skinType = GLOBAL.SKIN_TYPE_SCALES;
+					target.clearSkinFlags();
+					target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 					target.scaleColor = tarColor;
 
 					var remColors:Array = scaleColors.splice(scaleColors.splice(scaleColors.indexOf(tarColor), 1));
@@ -503,6 +505,8 @@ package classes.Items.Transformatives
 					output(" It takes you a minute or two to fully peel away the layer of shed "+ target.skinNoun() +", but once your new epidermis is fully revealed you feel energized and ready to take on the world.");
 
 					target.skinType = GLOBAL.SKIN_TYPE_SCALES;
+					target.clearSkinFlags();
+					target.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 					target.scaleColor = tarColor;
 
 					remColors = scaleColors.splice(scaleColors.splice(scaleColors.indexOf(tarColor), 1));

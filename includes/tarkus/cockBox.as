@@ -233,6 +233,7 @@ public function cockBoxMenu(x:int):void
 	if(flags["COCKBOX_UPGRADE"] != undefined)
 	{
 		cockList.push([GLOBAL.TYPE_VULPINE, "Vulpine", "Vulpine", "Get a tapered and knotted vulpine penis."]);
+		cockList.push([GLOBAL.TYPE_SWINE, "Swine", "Swine", "Get a corkscrew-shaped pig dick."]);
 		cockList.push([GLOBAL.TYPE_DEMONIC, "Demonic", "Demonic", "Get a knotted, nubby and sinister-looking penis."]);
 		cockList.push([GLOBAL.TYPE_TENTACLE, "Tentacle", "Tentacle", "Get a prehensile tentacle penis."]);
 		cockList.push([GLOBAL.TYPE_DRACONIC, "Draconic", "Draconic", "Get a tapered and knotted dragon penis."]);

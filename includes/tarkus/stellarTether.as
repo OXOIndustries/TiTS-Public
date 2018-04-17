@@ -2603,6 +2603,8 @@ public function tooPoorToBuyTheProbe():void
 	output("\n\n<i>“No! No! Not while [pc.he]’s around!”</i> Your cousin panics, slapping ineffectually at the gleaming metal. A seam appears next to [rival.name]’s hand and retracts, revealing a blinking, electronic screen with a set of flashing coordinates. <i>“Damn,”</i> [rival.he] mutters. To [rival.his] credit, your cousin recovers quickly. [rival.He] flashes you a smarmy grin. <i>“I still beat you to two of them. I’ll be sure to send you a message when I get the keys to Uncle Vic’s fortune.”</i> Snapping [rival.his] fingers, [rival.name] calls, <i>“Dane, lug this hunk of metal back to the ship. We’re out of here.”</i>");
 	output("\n\nYou make sure to copy the coordinates down into your codex. It looks like <b>Myrellion</b> is the next stop on your journey.");
 	flags["PLANET_3_UNLOCKED"] = 1;
+	pc.createStatusEffect("Shekka_Follower_Email_CD");
+	pc.setStatusMinutes("Shekka_Follower_Email_CD",24*60);
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -150,6 +150,7 @@
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/pippa.as";
+		include "../includes/follower/shekka.as";
 		include "../includes/follower/siegwulfe.as";
 		include "../includes/follower/yammi.as";
 		
@@ -414,6 +415,7 @@
 		include "../includes/uveto/korgonneFemaleHostile.as";
 		include "../includes/uveto/korgonneMaleHostile.as";
 		include "../includes/uveto/krym.as";
+		include "../includes/uveto/lund.as";
 		include "../includes/uveto/majaTamedTamelings.as";
 		include "../includes/uveto/milodanFertilityPriestess.as";
 		include "../includes/uveto/milodanMaleHostile.as";
@@ -544,7 +546,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.143";
+			version = "0.7.151";
 
 			//temporary nonsense variables.
 			temp = 0;

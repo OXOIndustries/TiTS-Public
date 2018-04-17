@@ -341,7 +341,7 @@ public function cuddleDatAntBiyooootchToSleepizzles():void
 	if(pc.isNude()) output("blushing profusely");
 	else output("motioning that you can put your outfit there as well");
 	output(". You ");
-	if(!(pc.armor is EmptySlot))
+	if(pc.hasArmor())
 	{
 		output("strip down to your ");
 		if(!(pc.upperUndergarment is EmptySlot) || !(pc.lowerUndergarment is EmptySlot)) output("underthings");
@@ -363,7 +363,7 @@ public function cuddleDatAntBiyooootchToSleepizzles():void
 
 	output("\n\n<i>“It’s alright, nothing in your head will get you while I’m here,”</i> you whisper to her helpless form as she fights against the demons of her nightmares. Her struggles slowly ebb with your attentions, calming until the rampant thundering of her heart returns to a timely beat. Her painful grip slackens until it leaves her lying against you. You roll over so that she lies atop you, making sure she doesn’t suffocate in the night. Her expression is completely peaceful and her breath comes deep and steady. You pull the covers up to her head and lean back into the softness of the pillow, joining her in tranquil sleep.");
 
-	output("\n\nYou both have a sound night from then until morning, but after waking find that you’ve shifted into an awkward jumble of limbs. You untangle yourself from Liliana, who remains out cold during the endeavor. You get up and retrieve your [pc.gear] before sitting at the edge of the bed to wait for her to wake up. No use staying with her all night just to be gone when she wakes up. It doesn’t take as long as you might have thought it would. Only a few minutes after you get up she wakes, stretching her arms and yawning. She sits up, trying to brush the rats nest that her hair has become into something more manageable. Her head swivels slowly, looking around the bed before focusing on you with a groggy smile.");
+	output("\n\nYou both have a sound night from then until morning, but after waking find that you’ve shifted into an awkward jumble of limbs. You untangle yourself from Liliana, who remains out cold during the endeavor. You get up and retrieve your " + (pc.hasArmor() ? "[pc.armor]" : "[pc.gear]") + " before sitting at the edge of the bed to wait for her to wake up. No use staying with her all night just to be gone when she wakes up. It doesn’t take as long as you might have thought it would. Only a few minutes after you get up she wakes, stretching her arms and yawning. She sits up, trying to brush the rats nest that her hair has become into something more manageable. Her head swivels slowly, looking around the bed before focusing on you with a groggy smile.");
 
 	output("\n\n<i>“Hey. I think I slept better last night than I ever have. Even before the war I don’t think I slept that well. I might stay here and rest a while,");
 	if(lilianaEncouraged()) output(" but I hope to see you again sometime,");
@@ -537,7 +537,7 @@ public function girlsGetZeAntGurlSexWithLilianaNotLyrallaNoTheyreTotallyDifferen
 	output("\n\nA number of her now haphazard thrusts strike several chords of ardor, but the exhausted ant-girl can’t collect herself for long enough to notice the specific places. Her fingers attempt to splay out inside you multiple times, but your [pc.vagina " + x + "] keeps them bundled together. You join her in a duet of moans as she is rendered unable to continue playing with your [pc.chest].");
 	output("\n\nYou quickly stifle the noise with a kiss, your [pc.tongue] diving into her mouth and tickling its corners from cheek to cheek. The double ended assault is too much for Liliana to resist, and you see her eyes roll back as she moans into your lips. You thumb her clit as her tight pussy cums around your fingers.");
 	output("\n\nHer twitching fingers are just enough to lift you to the same cloud she’s on, your mind fluttering away as bolts of bliss pierce your every nerve. You collapse atop your equally well fucked partner, basking in each others warmth until you recover enough to move. You give her one more kiss before you push yourself up on shaky arms.");
-	output("\n\nThrough labored breaths, Liliana tells you she’s going to stay and sleep for a few minutes. You smile and gather your [pc.gear], giving her one last pat on her twitching abdomen before leaving the thoroughly sexed ant-girl to her rest. You slip out of the curtain, relieved to find that its sound dampening was effective. You head back to the DMZ, eager to return to your endeavors.");
+	output("\n\nThrough labored breaths, Liliana tells you she’s going to stay and sleep for a few minutes. You smile and gather your belongings, giving her one last pat on her twitching abdomen before leaving the thoroughly sexed ant-girl to her rest. You slip out of the curtain, relieved to find that its sound dampening was effective. You head back to the DMZ, eager to return to your endeavors.");
 	processTime(23+rand(3));
 	pc.orgasm();
 	clearMenu();
@@ -824,7 +824,7 @@ public function lilianaSexyholocawk(talked:Boolean = false):void
 		output(". When she has wind enough, she leans in for a hug and a final kiss.");
 		output("\n\n<i>“Thanks,”</i> Liliana says, breaking away from the embrace. <i>“I hope I see you again sometime.”</i>");
 		output("\n\nYou nod and pull free of her still-twitching pussy, then deactivate the dildo. It vanishes so quickly that a faint outline of myrrish girlcum hangs in the air for a split-second.");
-		if(!pc.isCrotchExposedByArmor() && !(pc.armor is EmptySlot)) output(" You re-dress, stuffing your soggy, nectar-sodden underwear into your [pc.armor], and bid her good-bye.");
+		if(!pc.isCrotchExposedByArmor() && pc.hasArmor()) output(" You re-dress, stuffing your soggy, nectar-sodden underwear into your [pc.armor], and bid her good-bye.");
 		else output(" You bid her good-bye, then exit the facility with your exposed, myr-cum-soaked underwear visible for all to see. You’re almost certain that, behind you, Liliana is blushing again.");
 		//end
 		//pass time; raise lust if unsexed or horse, else do PC orgasm

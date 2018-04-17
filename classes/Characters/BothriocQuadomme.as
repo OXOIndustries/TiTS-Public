@@ -62,6 +62,7 @@ package classes.Characters
 			baseHPResistances.electric.damageValue = 30.0;
 			baseHPResistances.burning.damageValue = 30.0;
 			baseHPResistances.pheromone.damageValue = 45.0;
+			baseHPResistances.tease.resistanceValue = -10.0;
 			
 			physiqueRaw = 18;
 			reflexesRaw = 25;
@@ -270,9 +271,15 @@ package classes.Characters
 		{
 			kGAMECLASS.clearOutput();
 			
-			var success:Boolean = ((attacker.hasMeleeWeapon() && attacker.meleeWeapon.baseDamage.burning.damageValue > 0) || (attacker.physique() + (rand(60) - 39) > 30));
+			var bMelee:Boolean = (attacker.hasMeleeWeapon() && (attacker.meleeWeapon.baseDamage.burning.damageValue > 0 || attacker.meleeWeapon.baseDamage.corrosive.damageValue > 0));
+			var bRanged:Boolean = (attacker.hasRangedWeapon() && (attacker.rangedWeapon.baseDamage.burning.damageValue > 0 || attacker.rangedWeapon.baseDamage.corrosive.damageValue > 0));
+			var success:Boolean = ( bMelee || bRanged || (attacker.physique() + (rand(60) - 39) > 30) );
 			
-			output("Turning away from the dominatrix you swing your " + attacker.meleeWeapon.longName + " at the ghostly veils and threads of gossamer trailing down from the ceiling, quickly trying to carve yourself out a bit of room so that every movement of yours isn’t coming into contact with human-sized flypaper.");
+			output("Turning away from the dominatrix you");
+			if(bMelee) output(" swing your " + attacker.meleeWeapon.longName + " at");
+			else if(bRanged) output(" use your " + attacker.rangedWeapon.longName + " on");
+			else output(" swing your arms at");
+			output(" the ghostly veils and threads of gossamer trailing down from the ceiling, quickly trying to carve yourself out a bit of room so that every movement of yours isn’t coming into contact with human-sized flypaper.");
 			
 			if (success)
 			{
@@ -280,7 +287,7 @@ package classes.Characters
 				output("\n\n<i>“Get it all out of your system?”</i> says the dominatrix with an edge of irritation. <i>“It’s not the web’s fault you’re so clumsy and aggressive, you know.”</i>");
 				
 				attacker.removeStatusEffect("Web");
-				createStatusEffect("Web CD", 3, 0, 0, 0, true);
+				createStatusEffect("Web CD", 4, 0, 0, 0, true);
 			}
 			else
 			{
@@ -299,8 +306,8 @@ package classes.Characters
 			output("\n\n<i>“Stop pouting,”</i> it says, lazily opening its eyes to gaze at you smugly. <i>“You’ll come to love this stuff eventually.”</i>");
 			
 			CombatAttacks.applyWeb(target);
-			createStatusEffect("Web CD", 3, 0, 0, 0, true);
-			lust(-30);
+			createStatusEffect("Web CD", 6, 0, 0, 0, true);
+			lust(-20);
 		}
 		private function webStick(target:Creature):void
 		{
@@ -311,7 +318,7 @@ package classes.Characters
 				output("\n\n<i>“Oh dear,”</i> coos your opponent with malicious glee. <i>“Who would’ve thought fighting a bothrioc in its own web would be a bad idea? Never mind, succulent morsel. Let’s make it into the best mistake you’ve ever made.”</i>");
 				
 				CombatAttacks.applyGrapple(target);
-				createStatusEffect("Grapple CD", 3, 0, 0, 0, true);
+				createStatusEffect("Grapple CD", 5, 0, 0, 0, true);
 			}
 		}
 		// PC struggles

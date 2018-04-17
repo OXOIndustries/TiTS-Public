@@ -97,7 +97,7 @@ public function seraSexXXXTFModsAsk():void
 		else 
 		{
 			output("\n\n<i>“This is a mod shop!”</i> you snap angrily. <i>“Show me your goddamn mods!”</i>");
-			output("\n\n<i>“Stick to the fem-pops, sweetheart,”</i> Sera sneers. <i>“You need to mellow out some. If I had a top shelf I wouldn’t be showing it to some credit-less slack-jawed colony hick who shuttled in here yesterday, I can tell you that.”</i>");
+			output("\n\n<i>“Stick to the fem-pops, sweetheart,”</i> Sera sneers. <i>“You need to mellow out some. If I had a top shelf I wouldn’t be showing it to some " + (isAprilFools() ? "dogecoin" : "credit") + "-less slack-jawed colony hick who shuttled in here yesterday, I can tell you that.”</i>");
 			processTime(2);
 		}
 	}

@@ -63,6 +63,7 @@ public function resetDrBadgerBimboTF():void
 	if(pc.skinType == GLOBAL.SKIN_TYPE_GOO) 
 	{
 		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		pc.clearSkinFlags();
 	}
 	//IF PC DOES NOT HAVE BREASTS
 	if(pc.biggestTitSize() < 1)

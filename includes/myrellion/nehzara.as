@@ -374,7 +374,7 @@ public function sexUnderDeskWithNehzara(fromMissionTalk:Boolean = false):void
 	output("\n\n<i>“Excellent,”</i> she murmurs. You see her fidget a little and draw back from the desk in her rolling chair. Once you’ve come around the desk to stand beside her, you can see that she’s hiked down her uniform pants to expose a pair of glistening, inviting lips positioned between two sinfully smooth, slender-yet-strong thighs. Oh, you’re pretty sure you’re going to enjoy this.");
 	output("\n\nYour eyes meet Nehzara’s, and her mouth quirks into a little smile that you can’t help but find devilishly attractive. Rough and commanding she may be, but there’s an oddly charming woman beneath all the abrasive bluntness.");
 
-	//output("\n\n{Taur/Naga/Drider/Caterpillar/Yawgmoth}");
+	// Taur/Naga/Drider/Caterpillar/Yawgmoth
 	if(pc.isTaur() || pc.isDrider() || pc.legCount > 3)
 	{
 		output("\n\nThe Red Myr officer beckons for you to get down behind the desk, and you ");

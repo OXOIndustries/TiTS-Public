@@ -225,7 +225,7 @@ package classes.Characters
 		
 		private function attackPass():void
 		{
-			output(StringUtil.capitalize(uniqueName, false) + " is unable to attack!");
+			output(StringUtil.capitalize(uniqueName, false) + (hasStatusEffect("Stunned") ? " is unable to attack!" : " goes scrambling for his dropped weapon."));
 		}
 		
 		private function rangedAttack(target:Creature):void
@@ -276,6 +276,11 @@ package classes.Characters
 				{
 					output(" blinding Kara, though you manage to avoid any serious effect.");
 					CombatAttacks.applyBlind(kara, 3);
+				}
+				else if (blindedPC && !blindedKara)
+				{
+					output(" blinding you, as Kara moves to avoid the blast.");
+					CombatAttacks.applyBlind(pc, 3);
 				}
 				else
 				{

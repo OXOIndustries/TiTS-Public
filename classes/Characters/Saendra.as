@@ -236,10 +236,10 @@ package classes.Characters
 			
 			var sHackAvail:Boolean = !hasStatusEffect("Shield Hack Cooldown");
 			var sBoostAvail:Boolean = !hasStatusEffect("Shield Boost Cooldown");
-			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !target.hasStatusEffect("Disarmed");
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
 			
 			var attacks:Array = [];
-			attacks.push( { v: x1HammerPistol, w: 40 } );
+			if(!hasStatusEffect("Disarmed")) attacks.push( { v: x1HammerPistol, w: 40 } );
 			attacks.push( { v: x1LowBlow, w:20 } );
 			
 			if (target.shields() > 0 && sHackAvail) attacks.push( { v: x1ShieldHack, w: 25 } );
@@ -272,38 +272,34 @@ package classes.Characters
 				output(", but just barely misses.");
 			}
 
-			target.createStatusEffect("Disarm Cooldown", 4, 0, 0, 0, false);
+			createStatusEffect("Disarm Cooldown", 4, 0, 0, 0, false);
 		}
 		
 		private function x1ShieldBooster(alliedCreatures:Array):void
 		{
 			// target will be the one with the worst current shield state
-			var target:Creature = null;
+			var target:Creature = alliedCreatures[0];
 			
-			for (var i:int = 0; i < alliedCreatures.length; i++)
+			for (var i:int = 1; i < alliedCreatures.length; i++)
 			{
-				if (target == null) target = alliedCreatures[i] as Creature;
-				else
-				{
-					var poss:Creature = alliedCreatures[i] as Creature;
-					
-					// If below the critical point
-					if (poss.shields() < 0.5 * poss.shieldsMax())
+				var poss:Creature = alliedCreatures[i] as Creature;
+				
+				// If below the critical point
+				//if (poss.shields() < 0.5 * poss.shieldsMax())
+				//{
+					// If this possibles shield perc is worse than the currents, switch
+					if (poss.shields() / poss.shieldsMax() < target.shields() / target.shieldsMax())
 					{
-						// If this possibles shield perc is worse than the currents, switch
-						if (poss.shields() / poss.shieldsMax() < target.shields() / target.shieldsMax())
-						{
-							target = poss;
-						}
+						target = poss;
 					}
-				}
+				//}
 			}
 			
 			// Shield Booster
 			output("Saen waves her mechanical arm " + (target is PlayerCharacter ? "at you" : "over herself") + " and the metallic probe shoots out, jacking into " + (target is PlayerCharacter ? "your" : "her") + " shield generator. " + (target is PlayerCharacter ? "You breath" : "She breathes") + " a sigh of relief as " + (target is PlayerCharacter ? "your" : "her") + " shields are restored!");
 
 			target.shields(target.shieldsMax() * 0.25);
-			target.createStatusEffect("Shield Boost Cooldown", 5, 0, 0, 0, false);
+			createStatusEffect("Shield Boost Cooldown", 5, 0, 0, 0, false);
 		}
 		
 		private function x1ShieldHack(target:Creature, hostileCreatures:Array):void
@@ -365,9 +361,11 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			var sDisarmAvail:Boolean = !hasStatusEffect("Disarm Cooldown") && !hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarmed") && !target.hasStatusEffect("Disarm Immune");
 			
-			if (rand(4) == 0) saendraDisarmingShot(target);
-			else saendraHammerPistol(target);
+			if (sDisarmAvail && rand(4) == 0) saendraDisarmingShot(target);
+			else if(!hasStatusEffect("Disarmed")) saendraHammerPistol(target);
+			else saendraNoAction();
 		}
 		
 		private function saendraDisarmingShot(target:Creature):void
@@ -386,6 +384,8 @@ package classes.Characters
 
 				CombatAttacks.applyDisarm(target, 2 + rand(2));
 			}
+			
+			createStatusEffect("Disarm Cooldown", 4, 0, 0, 0, false);
 		}
 		
 		private function saendraHammerPistol(target:Creature):void
@@ -402,6 +402,11 @@ package classes.Characters
 				output(" shooting one of the pirates square in the back!");
 				applyDamage(new TypeCollection( { kinetic: 10 }, DamageFlag.BULLET), this, target);
 			}
+		}
+		
+		private function saendraNoAction():void
+		{
+			output("Saendra attempts to get a hold of her Hammer pistol as the battle ensues but is unsuccessful.");
 		}
 	}
 

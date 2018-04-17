@@ -482,6 +482,9 @@ public function jackIntoDaBubbleBooty():void
 	author("Adjatha");
 	showName("BUBBLE\nBUDDY");
 	CodexManager.unlockEntry("Bubble Buddy");
+	
+	var x:int = pc.biggestCockIndex();
+	
 	if(flags["BUBBLE_BUDDIED"] == undefined) output("Taking out the light purple toy, you turn it around in your hands for a moment to inspect the thing. It’s roughly six inches long and two inches wide, with a hole at one of the ends. The interior drips with an oily lubrication that the wobbly gel of the toy seems to perpetually produce. The sheath has a thin membrane at the top that seems to serve as a cap, resembling nothing so much as a circle of stretched latex. It’s not shooting out any lasers or floating in mid air, so you assume you’ll have to do this the old fashioned way.\n\n");
 	
 	if(!pc.isNude()) output("Stripping out of your [pc.gear], you tentatively grip the squishy toy in one hand. ");
@@ -489,7 +492,6 @@ public function jackIntoDaBubbleBooty():void
 	if(pc.cockTotal() == 1) output("is");
 	else output("are");
 	output(" already stiffening at the thought of your release, so you bring the violet onahole to your [pc.cockHead " + x + "].");
-	var x:int = pc.biggestCockIndex();
 	if(pc.cocks[x].thickness() < 2) output(" The slick, slimy interior slides down the tender flesh of your swollen member, enlarging as it conforms to the shape of your stiffening shaft.");
 	else if(pc.cocks[x].thickness < 4) output(" The yielding toy slides over your [pc.cock " + x + "] with only a modicum of difficulty. Its yielding, purple bulk distends as it swallows the girth of your plump pecker.");
 	//Cock Thickness over 4":
@@ -1498,6 +1500,7 @@ public function bubbleBuddyVaandeEpilogue():void
 	output("\n\nGroaning, you pick up the sorely abused Bubble Buddy off of the floor and stow it with your other belongings. Poor girl had nearly as tough a time as you did yourself! You notice a credit chit on the nightstand and grab it in consideration of your unexpected generosity. At the very least, it should cover the added expenses the brothel mistress was so keen to hit you with. You leave with a mental note to avoid putting yourself on the wrong end of a hungry doh’rahn again.");
 	processTime(660);
 	pc.energyRaw = 0;
+	pc.credits += 15 + rand(16);
 	pc.HP(-Math.round(pc.HPMax()/2));
 	for(var x:int = 0; x < 15; x++) { pc.orgasm(); }
 	clearMenu();

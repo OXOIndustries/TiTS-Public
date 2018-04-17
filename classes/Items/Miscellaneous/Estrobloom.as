@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Utility.num2Text;
 	
 	public class Estrobloom extends ItemSlotClass
 	{
@@ -301,7 +302,7 @@
 					else
 					{
 						x = 2 + rand(4);
-						kGAMECLASS.output("\n\nYour [pc.hair] tickles your scalp as it grows longer. You grab a strand and hold it taut, feeling each additional inch of new length. After you’ve gained " + kGAMECLASS.num2Text(x) + " inches, your expanded locks stop their frenzied expansion.");
+						kGAMECLASS.output("\n\nYour [pc.hair] tickles your scalp as it grows longer. You grab a strand and hold it taut, feeling each additional inch of new length. After you’ve gained " + num2Text(x) + " inches, your expanded locks stop their frenzied expansion.");
 						target.hairLength += x;
 					}
 				}
@@ -317,7 +318,7 @@
 						target.cocks[x].cLengthRaw *= .75;
 						if(target.hasPerk("Mini")) target.cocks[x].cLengthRaw *= .75;
 						if(target.cocks[x].cLengthRaw < 1) target.cocks[x].cLengthRaw = 1;
-						kGAMECLASS.output(kGAMECLASS.num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you’re going to have a lot less dick to play with.");
+						kGAMECLASS.output(num2Text(Math.round(target.cocks[x].cLength()*10)/10) + " inches. If you keep taking this stuff, you’re going to have a lot less dick to play with.");
 					}
 					//Otherwise lose 2-3", minimum 4.5/8"
 					else

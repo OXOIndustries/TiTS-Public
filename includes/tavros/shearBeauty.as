@@ -139,8 +139,8 @@ public function buyFromCeria():void
 		}
 		else
 		{
-			chars["CERIA"].destroyItemByClass(Hornitol);
-			chars["CERIA"].destroyItemByClass(Hornucopia);
+			chars["CERIA"].destroyItemByClass(Hornitol, -1);
+			chars["CERIA"].destroyItemByClass(Hornucopia, -1);
 		}
 		if(flags["PLANET_3_UNLOCKED"] != undefined || CodexManager.entryViewed("Rubber-Made"))
 		{
@@ -150,20 +150,20 @@ public function buyFromCeria():void
 				if(!chars["CERIA"].hasItemByClass(DoveBalm)) chars["CERIA"].inventory.push(new DoveBalm());
 				chars["CERIA"].keeperBuy += " balms";
 			}
-			else chars["CERIA"].destroyItemByClass(DoveBalm);
+			else chars["CERIA"].destroyItemByClass(DoveBalm, -1);
 			if(flags["PLANET_3_UNLOCKED"] != undefined && CodexManager.entryViewed("Rubber-Made")) chars["CERIA"].keeperBuy += " and";
 			if(CodexManager.entryViewed("Rubber-Made"))
 			{
 				if(!chars["CERIA"].hasItemByClass(SkinClear)) chars["CERIA"].inventory.push(new SkinClear());
 				chars["CERIA"].keeperBuy += " lotions";
 			}
-			else chars["CERIA"].destroyItemByClass(SkinClear);
+			else chars["CERIA"].destroyItemByClass(SkinClear, -1);
 			chars["CERIA"].keeperBuy += ".";
 		}
 		else
 		{
-			chars["CERIA"].destroyItemByClass(DoveBalm);
-			chars["CERIA"].destroyItemByClass(SkinClear);
+			chars["CERIA"].destroyItemByClass(DoveBalm, -1);
+			chars["CERIA"].destroyItemByClass(SkinClear, -1);
 		}
 		
 		// 9999 - Temporary placement until Aislinn is implemented!
@@ -172,7 +172,7 @@ public function buyFromCeria():void
 			chars["CERIA"].keeperBuy += " Next to a small holo-mirror is a display holding an array of lip balms.";
 			if(!chars["CERIA"].hasItemByClass(LipTease)) chars["CERIA"].inventory.push(new LipTease());
 		}
-		else chars["CERIA"].destroyItemByClass(LipTease);
+		else chars["CERIA"].destroyItemByClass(LipTease, -1);
 	}
 	chars["CERIA"].keeperBuy += "\n";
 	//List prices and whatnot. Back should go back to CERIA's main menu.

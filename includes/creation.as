@@ -496,11 +496,26 @@ public function chooseHeight():void {
 	output("\n\n<b>Please give your character’s height in inches. For reference, six feet tall is 72 inches.</b>");
 	
 	displayInput();
+	userInterface.textInput.text = String(averageHeight());
 	output("\n\n\n");
 	//[Height Box]
 	clearMenu();
 	addButton(0,"Next",applyHeight);
 	addButton(14,"Back",startCharacterCreation);
+}
+
+public function averageHeight():Number
+{
+	var heightResult:Number = 68;
+	if(pc.originalRace == "half-leithan") heightResult += 14;
+	if(pc.originalRace == "half-kaithrit") heightResult -= 6;
+	if(pc.originalRace == "half kui-tan") heightResult -= 2;
+	if(pc.originalRace == "half-gryvain") heightResult += 4;
+	if(pc.hasCock()) heightResult += 5;
+	//Add a little randomness:
+	heightResult -= rand(3);
+	heightResult += rand(3);
+	return Math.round(heightResult);
 }
 
 public function applyHeight():void {
@@ -1498,13 +1513,13 @@ public function setClass(arg:int = 0):void {
 	switch(arg)
 	{
 		case GLOBAL.CLASS_SMUGGLER:
-			pc.rangedWeapon = new classes.Items.Guns.HoldOutPistol();
+			pc.rangedWeapon = new HoldOutPistol();
 			break;
 		case GLOBAL.CLASS_MERCENARY:
-			pc.rangedWeapon = new classes.Items.Guns.EagleHandgun();
+			pc.rangedWeapon = new EagleHandgun();
 			break;
 		case GLOBAL.CLASS_ENGINEER:
-			pc.rangedWeapon = new classes.Items.Guns.ScopedPistol();
+			pc.rangedWeapon = new ScopedPistol();
 			pc.rangedWeapon.shortName = "S.Pistol*";
 			pc.rangedWeapon.tooltip = "This compact laser pistol is equipped with a rather impressive scope and energy cell of your own manufacture. It is quite accurate but relatively low-powered.";
 			TooltipManager.addFullName(pc.rangedWeapon.shortName, StringUtil.toTitleCase(pc.rangedWeapon.longName));
@@ -1514,17 +1529,17 @@ public function setClass(arg:int = 0):void {
 			pc.shield = new classes.Items.Protection.DecentShield();
 			break;
 	}
-	pc.meleeWeapon = new classes.Items.Melee.Knife();
-	pc.armor = new classes.Items.Apparel.DressClothes();
+	pc.meleeWeapon = new Knife();
+	pc.armor = new DressClothes();
 	pc.shieldsRaw = pc.shieldsMax();
 	if(!pc.hasVagina()) 
-		pc.lowerUndergarment = new classes.Items.Apparel.PlainBriefs() // (items["9"]);
+		pc.lowerUndergarment = new PlainBriefs() // (items["9"]);
 	else 
-		pc.lowerUndergarment = new classes.Items.Apparel.PlainPanties() // (items["8"]);
+		pc.lowerUndergarment = new PlainPanties() // (items["8"]);
 	if(pc.biggestTitSize() < 1) 
-		pc.upperUndergarment = new classes.Items.Apparel.PlainUndershirt() // (items["11"]);
+		pc.upperUndergarment = new PlainUndershirt() // (items["11"]);
 	else 
-		pc.upperUndergarment = new classes.Items.Apparel.PlainBra() // (items["10"]);
+		pc.upperUndergarment = new PlainBra() // (items["10"]);
 	if(customPCCheck(false)) 
 	{
 		nameOfDestinyChoice();

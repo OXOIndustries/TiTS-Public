@@ -1580,7 +1580,11 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 	{
 		pc.credits -= 1000;
 		if (pc.hasItemByClass(Goovolver)) pc.destroyItemByClass(Goovolver, 1);
-		else if (pc.rangedWeapon is Goovolver) pc.rangedWeapon = new Rock();
+		else if (pc.rangedWeapon is Goovolver)
+		{
+			pc.rangedWeapon.onRemove(pc);
+			pc.rangedWeapon = new Rock();
+		}
 	}
 	else
 	{
@@ -2088,7 +2092,7 @@ public function lossToSecurityDroid():void
 	output("\n\n<i>ZAP</i>.");
 
 	badEnd();
-	addDisabledButton(0, "Game Over", "Game Over", "Roll credits etc.");
+	addDisabledButton(0, "Game Over", "Game Over", "Roll " + (isAprilFools() ? "end titles" : "credits") + " etc.");
 }
 
 public function victoryOverSecurityDroid():void
@@ -3169,7 +3173,7 @@ public function loseToGigaGoo():void
 	output("<i>“YOU SHOULD HAVE LET US WORK,”</i> Nova roars, reaching through the elevator’s lips and grabbing you and Anno, squeezing you together in one of her massive fists. You can already feel the life being crushed out of you before the monolithic goo-girl throws you down to the deck below, ending your life as a crushed husk in a haze of poison gas.");
 	
 	badEnd();
-	addDisabledButton(0, "Game Over", "GAME OVER", "Roll end credits etc.");
+	addDisabledButton(0, "Game Over", "GAME OVER", "Roll " + (isAprilFools() ? "end titles" : "end credits") + " etc.");
 }
 
 public function victoryOverGigaGoo():void

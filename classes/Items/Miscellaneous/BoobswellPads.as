@@ -8,6 +8,7 @@
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.num2Text;
 	
 	public class BoobswellPads extends ItemSlotClass
 	{
@@ -102,12 +103,12 @@
 						//If it's already covered, disabled button
 						if(swelledRows.lastIndexOf(x) >= 0) 
 						{
-							kGAMECLASS.addDisabledButton(x,kGAMECLASS.num2Text(x+1),kGAMECLASS.num2Text(x+1),"This row is already using boobswell pads.");
+							kGAMECLASS.addDisabledButton(x,num2Text(x+1),num2Text(x+1),"This row is already using boobswell pads.");
 							kGAMECLASS.output("\n" + (x+1) + ": [pc.breastCupSize " + x + "] - <b>ALREADY COVERED.</b>");
 						}
 						else 
 						{
-							kGAMECLASS.addButton(x,kGAMECLASS.num2Text(x+1),multiBoobPadRouter,x,kGAMECLASS.num2Text(x+1),"Place the pads on this row.");
+							kGAMECLASS.addButton(x,num2Text(x+1),multiBoobPadRouter,x,num2Text(x+1),"Place the pads on this row.");
 							kGAMECLASS.output("\n" + (x+1) + ": [pc.breastCupSize " + x + "]");
 						}
 					}

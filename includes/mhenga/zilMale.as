@@ -305,7 +305,7 @@ public function rideDatZilCawk():void {
 	}
 	var x:int = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 	if(x < 0) x = pc.cuntThatFits(enemy.cockVolume(0));
-	if(x < 0) x = pc.smallestVaginaIndex();
+	if(x < 0) x = pc.biggestVaginaIndex();
 	// End personality forks
 	// Too big 4 u
 	if(enemy.cockVolume(0) > pc.vaginalCapacity(x)) {
@@ -1385,7 +1385,7 @@ public function zilPregnancyBirthing(pregSlot:int = 0, numBabies:int = 2):void
 	else output(" the " + ((InShipInterior() || InPublicSpace()) ? "ground" : "floor"));
 	output(" are sure signs that your babies are coming.");
 	// mhen’gaWilderness:
-	if(getPlanetName() != "Mhen'ga" && (rooms[currentLocation].hasFlag(GLOBAL.FOREST) || rooms[currentLocation].hasFlag(GLOBAL.JUNGLE)) && rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR))
+	if(getPlanetName() == "Mhen'ga" && (rooms[currentLocation].hasFlag(GLOBAL.FOREST) || rooms[currentLocation].hasFlag(GLOBAL.JUNGLE)) && rooms[currentLocation].hasFlag(GLOBAL.OUTDOOR))
 	{
 		showBust("ZIL");
 		

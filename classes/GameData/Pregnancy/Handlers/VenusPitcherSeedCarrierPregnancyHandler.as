@@ -122,16 +122,17 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
-			if (mother.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) mother.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
-			if (mother.hasStatusEffect("Venus Pitcher Seed Residue")) mother.removeStatusEffect("Venus Pitcher Seed Residue");
+			mother.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
+			mother.removeStatusEffect("Venus Pitcher Seed Residue");
 			
 			mother.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 			
+			var nEggs:int = pData.pregnancyQuantity;
 			var tEventCall:Function = (function():Function
 			{
 				return function():void
 				{
-					kGAMECLASS.venusPitcherSeedNurseryEnds(pData.pregnancyQuantity);
+					kGAMECLASS.venusPitcherSeedNurseryEnds(nEggs);
 				}
 			})();
 			
@@ -167,16 +168,11 @@ package classes.GameData.Pregnancy.Handlers
 			
 			if (pData.pregnancyQuantity <= 0)
 			{
-				if (target.hasStatusEffect("Venus Pitcher Egg Incubation Finished")) target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
+				target.removeStatusEffect("Venus Pitcher Egg Incubation Finished");
 				
-				if (!target.hasStatusEffect("Venus Pitcher Seed Residue"))
-				{
-					target.createStatusEffect("Venus Pitcher Seed Residue", 0, 0, 0, 0, true, "", "", false, 20160); // 2 weeks
-				}
-				else
-				{
-					target.setStatusMinutes("Venus Pitcher Seed Residue", 20160); // Reset back to 2 weeks
-				}
+				target.createStatusEffect("Venus Pitcher Seed Residue", 0, 0, 0, 0, true, "", "", false, 20160); // 2 weeks
+				target.setStatusMinutes("Venus Pitcher Seed Residue", 20160); // Reset back to 2 weeks
+				
 				target.bellyRatingMod -= pData.pregnancyBellyRatingContribution;
 				pData.reset();
 			}

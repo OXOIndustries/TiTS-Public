@@ -587,7 +587,7 @@ package classes.GameData
 				if (target.customDodge.length > 0)
 				{
 					if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.getCombatName() + ". " + target.customDodge);
-					else output(attacker.getCombatName() + " take" + (attacker.isPlural ? "" : "s") + " " + indefiniteArticle(attacker.rangedWeapon.attackNoun) + " at " + target.getCombatName() + ". " + target.customDodge);
+					else output(StringUtil.capitalize(attacker.getCombatName(), false) + " take" + (attacker.isPlural ? "" : "s") + " " + indefiniteArticle(attacker.rangedWeapon.attackNoun) + " at " + target.getCombatName() + ". " + target.customDodge);
 				}
 				else if (attacker is PlayerCharacter) output("You " + attacker.rangedWeapon.attackVerb + " at " + target.getCombatName() + " with your " + attacker.rangedWeapon.longName + ", but just can’t connect.");
 				else if (target is PlayerCharacter) output("You manage to avoid " + possessive(attacker.getCombatName()) + " " + attacker.rangedWeapon.attackNoun + ".");

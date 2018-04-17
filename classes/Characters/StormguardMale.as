@@ -175,7 +175,6 @@
 			//balls
 			this.balls = 4;
 			this.cumMultiplierRaw = 20;
-			//this.impregnationType = "KorgonnePregnancy";
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUNDARIAN_SEED;
@@ -207,7 +206,7 @@
 			isUniqueInFight = true;
 			btnTargetText = "S.Lancer";
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
-			this.createStatusEffect("Disarm Immune");
+			//this.createStatusEffect("Disarm Immune");
 			
 			randomise();
 			//kGAMECLASS.uvetoSSTDChance(this);

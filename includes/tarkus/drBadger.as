@@ -275,6 +275,7 @@ public function heyDocImAHero():void
 	{
 		output("\n\nYou feel yourself solidify at the same time, your body turning to normal flesh. <b>You have lost your goo form</b>.");
 		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		pc.clearSkinFlags();
 	}
 	//IF PC DOES NOT HAVE BREASTS
 	if(pc.biggestTitSize() < 1)
@@ -765,6 +766,7 @@ public function removeDatCuntTail():void
 	{
 		output("\n\nYou feel yourself solidify at the same time, your body turning to normal flesh. <b>You have lost your goo form</b>.");
 		pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+		pc.clearSkinFlags();
 		changes++;
 	}
 	//IF PC DOES NOT HAVE BREASTS

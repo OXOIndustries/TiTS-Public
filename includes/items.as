@@ -69,7 +69,16 @@ public function useItem(item:ItemSlotClass):Boolean
 		output("Unable to use " + item.description + " at present.");
 		return false;
 	}
-	
+	if (item.type == GLOBAL.PIERCING)
+	{
+		useAPiercing(item);	
+		return false;
+	}
+	if (item.type == GLOBAL.COCKSOCK)
+	{
+		useACocksock(item);	
+		return false;
+	}
 	//Equippable items are equipped!
 	if (isEquippableItem(item))
 	{
@@ -119,6 +128,369 @@ public function useItem(item:ItemSlotClass):Boolean
 		}
 	}
 	return true;
+}
+
+public function useAPiercing(item:ItemSlotClass):Boolean
+{
+	clearOutput();
+	output("Where would you like to apply the piercing?\n\n<b><u>Potential Locales:</u></b>");
+	clearMenu();
+	var button:Number = 0;
+	var btnName:String = "";
+	var btnTitle:String = "";
+
+	//Ears!
+	output("\n\t*(" + (button+1) + ") Ear");
+	if(!(pc.earPiercing is EmptySlot)) 
+	{
+		output(" - Pierced: " + pc.earPiercing.longName);
+	}
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.earPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Ears",(button) + ": Ears","You cannot remove that piercing without outside assistance.");
+	else addButton(button++,(button) + ": Ears",actuallyPierceYourself,[item,"ears"]);
+
+	//Eyebrows
+	output("\n\t*(" + (button+1) + ") Eyebrows");
+	if(!(pc.eyebrowPiercing is EmptySlot)) 
+	{
+		output(" - Pierced: " + pc.eyebrowPiercing.longName);
+	}
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.eyebrowPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Brows",(button) + ": Eyebrows","You cannot remove that piercing without outside assistance.");
+	else addButton(button++,(button) + ": Brows",actuallyPierceYourself,[item,"brows"]);
+
+	//Nose
+	output("\n\t*(" + (button+1) + ") Nose");
+	if(!(pc.nosePiercing is EmptySlot)) 
+	{
+		output(" - Pierced: " + pc.nosePiercing.longName);
+	}
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.nosePiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Nose",(button) + ": Nose","You cannot remove that piercing without outside assistance.");
+	else addButton(button++,(button) + ": Nose",actuallyPierceYourself,[item,"nose"]);
+
+	//Lip
+	output("\n\t*(" + (button+1) + ") Lip");
+	if(!(pc.lipPiercing is EmptySlot)) output(" - Pierced: " + pc.lipPiercing.longName);
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.lipPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Lip",(button) + ": Lip","You cannot remove that piercing without outside assistance.");
+	else addButton(button++,(button) + ": Lip",actuallyPierceYourself,[item,"lip"]);
+
+	//Tongue
+	output("\n\t*(" + (button+1) + ") Tongue");
+	if(!(pc.tonguePiercing is EmptySlot)) output(" - Pierced: " + pc.tonguePiercing.longName);
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.tonguePiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Tongue",(button) + ": Tongue","You cannot remove that piercing without outside assistance.");
+	else addButton(button++,(button) + ": Tongue",actuallyPierceYourself,[item,"tongue"]);
+
+	//Bewbs
+	for(var x:int = 0; x < pc.bRows(); x++)
+	{
+		if(pc.bRows() > 1)
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " " + StringUtil.toDisplayCase(pc.nippleNoun(x, true)) + " Row");
+			btnName = "NipRow " + (x+1);
+			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " " + StringUtil.toDisplayCase(pc.nippleNoun(x, true)) + " Row";
+		}
+		else
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.toDisplayCase(pc.nipplesNoun(x, true)));
+			btnName = "Nipples";
+			btnTitle = StringUtil.toDisplayCase(pc.nipplesNoun(x, true));
+		}
+		if(!(pc.breastRows[x].piercing is EmptySlot)) output(" - Pierced: " + pc.breastRows[x].piercing.longName);
+		else
+		{
+			output(" - <b>(EMPTY)</b>");
+		}
+		if(pc.breastRows[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,"nipples",x]);
+	}
+
+	//Belly Buttan
+	output("\n\t*(" + (button+1) + ") Belly Button");
+	if(!(pc.bellyPiercing is EmptySlot)) output(" - Pierced: " + pc.bellyPiercing.longName);
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.bellyPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Belly",(button) + ": Belly","You cannot remove that piercing without outside assistance.");
+	else addButton(button++,(button) + ": Belly",actuallyPierceYourself,[item,"belly"]);
+	//Dix
+	for(x = 0; x < pc.cockTotal(); x++)
+	{
+		if(pc.cockTotal() > 1)
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Penis (" + Math.floor(pc.cocks[x].cLength()) + "\", " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ", " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType] + ")");
+			btnName = "Penis #" + (x+1);
+			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " Penis";
+		}
+		else
+		{
+			output("\n\t*(" + (button+1) + ") Penis (" + Math.floor(pc.cocks[x].cLength()) + "\", " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ", " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType] + ")");
+			btnName = "Penis";
+			btnTitle = "Penis";
+		}
+		if(!(pc.cocks[x].piercing is EmptySlot)) output(" - Pierced: " + pc.cocks[x].piercing.longName);
+		else
+		{
+			output(" - <b>(EMPTY)</b>");
+		}
+		if(pc.cocks[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,"cock",x]);
+	}
+	//Vaginas/Clits
+	for(x = 0; x < pc.totalVaginas(); x++)
+	{
+		//Labia!
+		if(pc.totalVaginas() > 1)
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina (" + StringUtil.toDisplayCase(pc.vaginas[x].vaginaColor) + ", " + GLOBAL.TYPE_NAMES[pc.vaginas[x].type] + ")");
+			btnName = "Vagina #" + (x+1);
+			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina";
+		}
+		else
+		{
+			output("\n\t*(" + (button+1) + ") Vagina (" + StringUtil.toDisplayCase(pc.vaginas[x].vaginaColor) + ", " + GLOBAL.TYPE_NAMES[pc.vaginas[x].type] + ")");
+			btnName = "Vagina";
+			btnTitle = "Vagina";
+		}
+		if(!(pc.vaginas[x].piercing is EmptySlot)) output(" - Pierced: " + pc.vaginas[x].piercing.longName);
+		else
+		{
+			output(" - <b>(EMPTY)</b>");
+		}
+		if(pc.vaginas[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,"vagina",x]);
+		//Clits
+		if(pc.totalVaginas() > 1)
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina’s Clit" + (pc.vaginas[x].clits == 1 ? "" : "s"));
+			btnName = "Clit" + (pc.vaginas[x].clits == 1 ? "" : "s") + " #" + (x+1);
+			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina’s Clit" + (pc.vaginas[x].clits == 1 ? "" : "s");
+		}
+		else
+		{
+			output("\n\t*(" + (button+1) + ") Clit" + (pc.vaginas[x].clits == 1 ? "" : "s"));
+			btnName = "Clit" + (pc.vaginas[x].clits == 1 ? "" : "s");
+			btnTitle = "Clit" + (pc.vaginas[x].clits == 1 ? "" : "s");
+		}
+		if(pc.vaginas[x].clits > 1 && !item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_MULTIPLE)) output(" (Max 1x/Vagina)");
+		if(!(pc.vaginas[x].clitPiercing is EmptySlot)) output(" - Pierced: " + pc.vaginas[x].clitPiercing.longName);
+		else
+		{
+			output(" - <b>(EMPTY)</b>");
+		}
+		if(pc.vaginas[x].clitPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else addButton(button++,(button) + ": " + btnName,actuallyPierceYourself,[item,(pc.vaginas[x].clits == 1 ? "clit" : "clits"),x]);
+	}
+	
+	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	
+	if(inCombat()) addButton(button++,"Cancel",backToCombatInventory);
+	else addButton(button++,"Cancel",itemScreen);
+	return false;
+}
+
+public function actuallyPierceYourself(args:Array):void
+{
+	var item:ItemSlotClass = args[0];
+	var oldItem:ItemSlotClass = new EmptySlot();
+	var slot:String = args[1];
+	var x:int = 0;
+	if(args.length >= 3) x = args[2];
+	clearOutput();
+	showName("\nPIERCING!");
+
+	//Bank old items then
+	switch(slot)
+	{
+		case "lip":
+			oldItem = pc.lipPiercing.makeCopy();
+			pc.lipPiercing = item.makeCopy();
+			pc.lipPiercing.onEquip(pc);
+			break;
+		case "ears":
+			oldItem = pc.earPiercing.makeCopy();
+			pc.earPiercing = item.makeCopy();
+			pc.earPiercing.onEquip(pc);
+			break;
+		case "brows":
+			oldItem = pc.eyebrowPiercing.makeCopy();
+			pc.eyebrowPiercing = item.makeCopy();
+			pc.eyebrowPiercing.onEquip(pc);
+			break;
+		case "nose":
+			oldItem = pc.nosePiercing.makeCopy();
+			pc.nosePiercing = item.makeCopy();
+			pc.nosePiercing.onEquip(pc);
+			break;
+		case "tongue":
+			oldItem = pc.tonguePiercing.makeCopy();
+			pc.tonguePiercing = item.makeCopy();
+			pc.tonguePiercing.onEquip(pc);
+			break;
+		case "nipples":
+			oldItem = pc.breastRows[x].piercing.makeCopy();
+			pc.breastRows[x].piercing = item.makeCopy();
+			pc.breastRows[x].piercing.onEquip(pc);
+			break;
+		case "belly":
+			oldItem = pc.bellyPiercing.makeCopy();
+			pc.bellyPiercing = item.makeCopy();
+			pc.bellyPiercing.onEquip(pc);
+			break;
+		case "cock":
+			oldItem = pc.cocks[x].piercing.makeCopy();
+			pc.cocks[x].piercing = item.makeCopy();
+			pc.cocks[x].piercing.onEquip(pc);
+			break;
+		case "vagina":
+			oldItem = pc.vaginas[x].piercing.makeCopy();
+			pc.vaginas[x].piercing = item.makeCopy();
+			pc.vaginas[x].piercing.onEquip(pc);
+			break;
+		case "clit":
+		case "clits":
+			oldItem = pc.vaginas[x].clitPiercing.makeCopy();
+			pc.vaginas[x].clitPiercing = item.makeCopy();
+			pc.vaginas[x].clitPiercing.onEquip(pc);
+			break;
+		default:
+			oldItem = pc.lipPiercing.makeCopy();
+			pc.lipPiercing = item.makeCopy();
+			pc.lipPiercing.onEquip(pc);
+			break;
+	}
+	//Remove the old item and store for looting!
+	if(!(oldItem is EmptySlot)) output("You remove " + oldItem.description + " to make room for the new piercing. ");
+	//Remove used piercing from inventory
+	if (pc.inventory.indexOf(item) != -1) 
+	{
+		if(!infiniteItems()) pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	}
+	//Text for it!
+	output("A quick pinch is all it takes to pierce yourself. Your upgraded immune system assists your body in sealing the wound and preventing infection. All finished, you can admire the placement of " + item.longName + " on your ");
+	if(InCollection(slot, ["nipples", "ears", "brows", "clits"]) && !item.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_MULTIPLE))
+	{
+		if(slot == "nipples") output("nipple");
+		else if(slot == "brows") output("eyebrow");
+		else if(slot == "clits") output("clit");
+		else output("ear");
+	}
+	else output(slot);
+	output(".");
+
+	//If item to loot after!
+	if(!(oldItem is EmptySlot)) 
+	{
+		output("\n\n");
+		// Renamed from lootList so I can distinguish old vs new uses
+		var unequippedItems:Array = new Array();
+		unequippedItems[unequippedItems.length] = oldItem;
+		
+		itemCollect(unequippedItems);
+		if(inCombat()) backToCombatInventory(oldItem);
+	}
+	else 
+	{
+		clearMenu();
+		if(inCombat()) backToCombatInventory(oldItem);
+		else addButton(0, "Next", itemScreen);
+	}
+}
+
+public function useACocksock(item:ItemSlotClass):Boolean
+{
+	clearOutput();
+	clearMenu();
+	
+	if(!pc.hasCock())
+	{
+		output("You do not have a penis to use this item on!");
+		if(inCombat()) addButton(0,"Next",backToCombatInventory);
+		else addButton(0,"Next",itemScreen);
+		return false;
+	}
+	
+	if(pc.cockTotal() == 1)
+	{
+		if(pc.cocks[0].cocksock.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE))
+		{
+			output("You cannot remove the current cockwear without outside assistance.");
+			if(inCombat()) addButton(0,"Next",backToCombatInventory);
+			else addButton(0,"Next",itemScreen);
+		}
+		else actuallyWearCocksock([item,0]);
+		return false;
+	}
+	
+	output("Which cock would you like to wear " + item.description + " on?");
+	
+	var button:Number = 0;
+	for(x = 0; x < pc.cockTotal(); x++)
+	{
+		output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Penis (" + Math.floor(pc.cocks[x].cLength()) + "\", " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ", " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType] + ")");
+		if(!(pc.cocks[x].cocksock is EmptySlot)) output(" - Wearing: " + pc.cocks[x].cocksock.longName);
+		else output(" - <b>(EMPTY)</b>");
+		
+		if(pc.cocks[x].cocksock.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Penis #" + (x+1),StringUtil.upperCase(num2Ordinal(x+1)) + " Penis","You cannot remove that cockwear without outside assistance.");
+		else addButton(button++,(button) + ": Penis #" + (x+1),actuallyWearCocksock,[item,x]);
+	}
+	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	
+	if(inCombat()) addButton(button++,"Cancel",backToCombatInventory);
+	else addButton(button++,"Cancel",itemScreen);
+	return false;
+}
+public function actuallyWearCocksock(args:Array):void
+{
+	var item:ItemSlotClass = args[0];
+	var cIdx:int = args[1];
+	var oldItem:ItemSlotClass = new EmptySlot();
+	clearOutput();
+	showName("\nCOCKWEAR!");
+	
+	oldItem = pc.cocks[x].cocksock.makeCopy();
+	
+	if(!(oldItem is EmptySlot)) output("You remove " + oldItem.description + " to make room for the new cock-wear. ");
+	output("You give your [pc.cock " + cIdx + "] a few strokes to get it ready, then dress it. Your [pc.cockNoun " + cIdx + "] is now wearing " + item.description + "!");
+	
+	pc.cocks[cIdx].cocksock = item.makeCopy();
+	pc.cocks[cIdx].cocksock.onEquip(pc);
+	
+	pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	
+	if(!(oldItem is EmptySlot))
+	{
+		output("\n\n");
+		var unequippedItems:Array = new Array();
+		unequippedItems[unequippedItems.length] = oldItem;
+		
+		itemCollect(unequippedItems);
+		if(inCombat()) backToCombatInventory(oldItem);
+	}
+	else 
+	{
+		clearMenu();
+		if(inCombat()) backToCombatInventory(oldItem);
+		else addButton(0, "Next", itemScreen);
+	}
 }
 
 // A call with just an item will 
@@ -473,7 +845,15 @@ public function buyItemGo(arg:ItemSlotClass):void {
 		output("\n\n" + gooArmorInventoryBlurb(arg, "buy"));
 		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
 	}
-	
+	if(arg is HorseCock)
+	{
+		//Gotta count these fuckers
+		IncrementFlag("SYNTHSHEATH_TWO_FOUND");
+		if(!synthSheathAvailable())
+		{
+			if(shopkeep is Shekka) shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
+		}
+	}
 	output("\n\n");
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;
@@ -957,9 +1337,346 @@ public function unequipMenu(inCombat:Boolean = false):void
 	}
 	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
 	
+	if(pc.hasPiercing()) addButton(8,"Piercing",removeAPiercingMenu);
+	else addDisabledButton(8, "Piercing", "Piercing", "You are note wearing any piercings.");
+	
+	if(pc.hasCock())
+	{
+		if(pc.hasCocksock()) addButton(10,"Cockwear",removeACocksockMenu);
+		else addDisabledButton(10, "Cockwear", "Cockwear", "You are not wearing any cockwear.");
+	}
+	
 	//Set user and target.
 	itemUser = pc;
 	addButton(14, "Back", inventory);
+}
+
+public function removeAPiercingMenu():void
+{
+	clearOutput();
+	showName("\nPIERCINGS");
+	output("You look yourself over for piercings.\n");
+
+	clearMenu();
+	var button:Number = 0;
+	var btnName:String = "";
+	var btnTitle:String = "";
+	
+	//Ears!
+	output("\n\t*(" + (button+1) + ") Ear");
+	if(!(pc.earPiercing is EmptySlot)) 
+	{
+		output(" - Pierced: " + pc.earPiercing.longName);
+	}
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.earPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Ears",(button) + ": Ears","You cannot remove that piercing without outside assistance.");
+	else if(pc.earPiercing is EmptySlot) addDisabledButton(button++,(button) + ": Ears",(button) + ": Ears","You have no piercing there!");
+	else addButton(button++,(button) + ": Ears",actuallyRemoveAPiercing,"ears");
+	
+	//Eyebrows
+	output("\n\t*(" + (button+1) + ") Eyebrows");
+	if(!(pc.eyebrowPiercing is EmptySlot)) 
+	{
+		output(" - Pierced: " + pc.eyebrowPiercing.longName);
+	}
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.eyebrowPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Brows",(button) + ": Eyebrows","You cannot remove that piercing without outside assistance.");
+	else if(pc.eyebrowPiercing is EmptySlot) addDisabledButton(button++,(button) + ": Brows",(button) + ": Eyebrows","You have no piercing there!");
+	else addButton(button++,(button) + ": Brows",actuallyRemoveAPiercing,"brows");
+
+	//Nose
+	output("\n\t*(" + (button+1) + ") Nose");
+	if(!(pc.nosePiercing is EmptySlot)) 
+	{
+		output(" - Pierced: " + pc.nosePiercing.longName);
+	}
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.nosePiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Nose",(button) + ": Nose","You cannot remove that piercing without outside assistance.");
+	else if(pc.nosePiercing is EmptySlot) addDisabledButton(button++,(button) + ": Nose",(button) + ": Nose","You have no piercing there!");
+	else addButton(button++,(button) + ": Nose",actuallyRemoveAPiercing,"nose");
+
+	//Lip
+	output("\n\t*(" + (button+1) + ") Lip");
+	if(!(pc.lipPiercing is EmptySlot)) output(" - Pierced: " + pc.lipPiercing.longName);
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.lipPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Lip",(button) + ": Lip","You cannot remove that piercing without outside assistance.");
+	else if(pc.lipPiercing is EmptySlot) addDisabledButton(button++,(button) + ": Lip",(button) + ": Lip","You have no piercing there!");
+	else addButton(button++,(button) + ": Lip",actuallyRemoveAPiercing,"lip");
+
+	//Tongue
+	output("\n\t*(" + (button+1) + ") Tongue");
+	if(!(pc.tonguePiercing is EmptySlot)) output(" - Pierced: " + pc.tonguePiercing.longName);
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.tonguePiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Tongue",(button) + ": Tongue","You cannot remove that piercing without outside assistance.");
+	else if(pc.tonguePiercing is EmptySlot) addDisabledButton(button++,(button) + ": Tongue",(button) + ": Tongue","You have no piercing there!");
+	else addButton(button++,(button) + ": Tongue",actuallyRemoveAPiercing,"tongue");
+
+	//Bewbs
+	for(var x:int = 0; x < pc.bRows(); x++)
+	{
+		if(pc.bRows() > 1)
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " " + StringUtil.toDisplayCase(pc.nippleNoun(x, true)) + " Row");
+			btnName = "NipRow #" + (x+1);
+			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " " + StringUtil.toDisplayCase(pc.nippleNoun(x, true)) + " Row";
+		}
+		else
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.toDisplayCase(pc.nipplesNoun(x, true)));
+			btnName = "Nipples";
+			btnTitle = StringUtil.toDisplayCase(pc.nipplesNoun(x, true));
+		}
+		if(!(pc.breastRows[x].piercing is EmptySlot)) output(" - Pierced: " + pc.breastRows[x].piercing.longName);
+		else
+		{
+			output(" - <b>(EMPTY)</b>");
+		}
+		if(pc.breastRows[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else if(pc.breastRows[x].piercing is EmptySlot) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You have no piercing there!");
+		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,"nipples");
+	}
+
+	//Belly Buttan
+	output("\n\t*(" + (button+1) + ") Belly Button");
+	if(!(pc.bellyPiercing is EmptySlot)) output(" - Pierced: " + pc.bellyPiercing.longName);
+	else
+	{
+		output(" - <b>(EMPTY)</b>");
+	}
+	if(pc.bellyPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Belly",(button) + ": Belly","You cannot remove that piercing without outside assistance.");
+	else if(pc.bellyPiercing is EmptySlot) addDisabledButton(button++,(button) + ": Belly",(button) + ": Belly","You have no piercing there!");
+	else addButton(button++,(button) + ": Belly",actuallyRemoveAPiercing,"belly");
+	//Dix
+	for(x = 0; x < pc.cockTotal(); x++)
+	{
+		if(pc.cockTotal() > 1)
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Penis (" + Math.floor(pc.cocks[x].cLength()) + "\", " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ", " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType] + ")");
+			btnName = "Penis #" + (x+1);
+			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " Penis";
+		}
+		else
+		{
+			output("\n\t*(" + (button+1) + ") Penis (" + Math.floor(pc.cocks[x].cLength()) + "\", " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ", " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType] + ")");
+			btnName = "Penis";
+			btnTitle = "Penis";
+		}
+		if(!(pc.cocks[x].piercing is EmptySlot)) output(" - Pierced: " + pc.cocks[x].piercing.longName);
+		else
+		{
+			output(" - <b>(EMPTY)</b>");
+		}
+		if(pc.cocks[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else if(pc.cocks[x].piercing is EmptySlot) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You have no piercing there!");
+		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,"cock");
+	}
+	//Vaginas/Clits
+	for(x = 0; x < pc.totalVaginas(); x++)
+	{
+		//Labia!
+		if(pc.totalVaginas() > 1)
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina (" + StringUtil.toDisplayCase(pc.vaginas[x].vaginaColor) + ", " + GLOBAL.TYPE_NAMES[pc.vaginas[x].type] + ")");
+			btnName = "Vagina #" + (x+1);
+			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina";
+		}
+		else
+		{
+			output("\n\t*(" + (button+1) + ") Vagina (" + StringUtil.toDisplayCase(pc.vaginas[x].vaginaColor) + ", " + GLOBAL.TYPE_NAMES[pc.vaginas[x].type] + ")");
+			btnName = "Vagina";
+			btnTitle = "Vagina";
+		}
+		if(!(pc.vaginas[x].piercing is EmptySlot)) output(" - Pierced: " + pc.vaginas[x].piercing.longName);
+		else
+		{
+			output(" - <b>(EMPTY)</b>");
+		}
+		if(pc.vaginas[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else if(pc.vaginas[x].piercing is EmptySlot) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You have no piercing there!");
+		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,"vagina");
+		//Clits
+		if(pc.totalVaginas() > 1)
+		{
+			output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina’s Clit");
+			btnName = "Clit #" + (x+1);
+			btnTitle = StringUtil.upperCase(num2Ordinal(x+1)) + " Vagina’s Clit";
+		}
+		else
+		{
+			output("\n\t*(" + (button+1) + ") Clit");
+			btnName = "Clit";
+			btnTitle = "Clit";
+		}
+		if(pc.vaginas[x].clits > 1 && !pc.vaginas[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_PIERCING_MULTIPLE)) output(" (Max 1x/Vagina)");
+		if(!(pc.vaginas[x].clitPiercing is EmptySlot)) output(" - Pierced: " + pc.vaginas[x].clitPiercing.longName);
+		else
+		{
+			output(" - <b>(EMPTY)</b>");
+		}
+		if(pc.vaginas[x].clitPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
+		else if(pc.vaginas[x].clitPiercing is EmptySlot) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You have no piercing there!");
+		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,"clit");
+	}
+	
+	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	
+	if(inCombat()) addButton(button++,"Cancel",unequipMenu,true);
+	else addButton(button++,"Cancel",unequipMenu,false);
+}
+
+public function actuallyRemoveAPiercing(slot:String = "lip"):void
+{
+	clearOutput();
+	showName("PIERCING\nREMOVAL");
+	output("You gingerly remove your the piercing in question.\n\n");
+
+	var item:ItemSlotClass = new EmptySlot();
+	switch(slot)
+	{
+		case "lip":
+			item = pc.lipPiercing;
+			pc.lipPiercing.onRemove(pc, true);
+			pc.lipPiercing = new EmptySlot();
+			break;
+		case "ears":
+			item = pc.earPiercing;
+			pc.earPiercing.onRemove(pc, true);
+			pc.earPiercing = new EmptySlot();
+			break;
+		case "brows":
+			item = pc.eyebrowPiercing;
+			pc.eyebrowPiercing.onRemove(pc, true);
+			pc.eyebrowPiercing = new EmptySlot();
+			break;
+		case "nose":
+			item = pc.nosePiercing;
+			pc.nosePiercing.onRemove(pc, true);
+			pc.nosePiercing = new EmptySlot();
+			break;
+		case "tongue":
+			item = pc.tonguePiercing;
+			pc.tonguePiercing.onRemove(pc, true);
+			pc.tonguePiercing = new EmptySlot();
+			break;
+		case "nipples":
+			item = pc.breastRows[x].piercing;
+			pc.breastRows[x].piercing.onRemove(pc, true);
+			pc.breastRows[x].piercing = new EmptySlot();
+			break;
+		case "belly":
+			item = pc.bellyPiercing;
+			pc.bellyPiercing.onRemove(pc, true);
+			pc.bellyPiercing = new EmptySlot();
+			break;
+		case "cock":
+			item = pc.cocks[x].piercing;
+			pc.cocks[x].piercing.onRemove(pc, true);
+			pc.cocks[x].piercing = new EmptySlot();
+			break;
+		case "vagina":
+			item = pc.vaginas[x].piercing;
+			pc.vaginas[x].piercing.onRemove(pc, true);
+			pc.vaginas[x].piercing = new EmptySlot();
+			break;
+		case "clit":
+			item = pc.vaginas[x].clitPiercing;
+			pc.vaginas[x].clitPiercing.onRemove(pc, true);
+			pc.vaginas[x].clitPiercing = new EmptySlot();
+			break;
+		default:
+			item = pc.lipPiercing;
+			pc.lipPiercing.onRemove(pc, true);
+			pc.lipPiercing = new EmptySlot();
+			break;
+	}
+	var unequippedItems:Array = [];
+	unequippedItems.push(item);
+	itemCollect(unequippedItems);
+	if(inCombat()) backToCombatInventory(item);
+}
+
+public function removeACocksockMenu():void
+{
+	clearOutput();
+	clearMenu();
+	showName("\nCOCKWEAR");
+	
+	if(!pc.hasCock())
+	{
+		output("You do not have a penis to remove cockwear from!");
+		if(inCombat()) addButton(0,"Next",unequipMenu,true);
+		else addButton(0,"Next",unequipMenu,false);
+		return;
+	}
+	
+	if(pc.cockTotal() == 1)
+	{
+		if(pc.cocks[0].cocksock is EmptySlot)
+		{
+			output("You have no cockwear to remove!");
+			if(inCombat()) addButton(0,"Next",unequipMenu,true);
+			else addButton(0,"Next",unequipMenu,false);
+		}
+		else if(pc.cocks[0].cocksock.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE))
+		{
+			output("You cannot remove the current cockwear without outside assistance.");
+			if(inCombat()) addButton(0,"Next",unequipMenu,true);
+			else addButton(0,"Next",unequipMenu,false);
+		}
+		else actuallyRemoveACocksock(0);
+		return;
+	}
+	
+	output("You look yourself over for cockwear.\n");
+	
+	var button:Number = 0;
+	for(x = 0; x < pc.cockTotal(); x++)
+	{
+		output("\n\t*(" + (button+1) + ") " + StringUtil.upperCase(num2Ordinal(x+1)) + " Penis (" + Math.floor(pc.cocks[x].cLength()) + "\", " + StringUtil.toDisplayCase(pc.cocks[x].cockColor) + ", " + GLOBAL.TYPE_NAMES[pc.cocks[x].cType] + ")");
+		if(!(pc.cocks[x].cocksock is EmptySlot)) output(" - Wearing: " + pc.cocks[x].cocksock.longName);
+		else output(" - <b>(EMPTY)</b>");
+		
+		if(pc.cocks[x].cocksock.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Penis #" + (x+1),StringUtil.upperCase(num2Ordinal(x+1)) + " Penis","You cannot remove that cockwear without outside assistance.");
+		else if(pc.cocks[x].cocksock is EmptySlot) addDisabledButton(button++,(button) + ": Penis #" + (x+1),StringUtil.upperCase(num2Ordinal(x+1)) + " Penis","You have no cockwear there!");
+		else addButton(button++,(button) + ": Penis #" + (x+1),actuallyRemoveACocksock,x);
+	}
+	
+	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
+	
+	if(inCombat()) addButton(button++,"Cancel",unequipMenu,true);
+	else addButton(button++,"Cancel",unequipMenu,false);
+}
+
+public function actuallyRemoveACocksock(cIdx:int = 0):void
+{
+	clearOutput();
+	showName("COCKWEAR\nREMOVAL");
+	output("You gingerly remove your the cockwear from your [pc.cock " + cIdx + "].\n\n");
+
+	var item:ItemSlotClass = new EmptySlot();
+	item = pc.cocks[cIdx].cocksock;
+	pc.cocks[cIdx].cocksock.onRemove(pc, true);
+	pc.cocks[cIdx].cocksock = new EmptySlot();
+	
+	var unequippedItems:Array = [];
+	unequippedItems.push(item);
+	itemCollect(unequippedItems);
+	if(inCombat()) backToCombatInventory(item);
 }
 
 public function keyItemDisplay(filter:String = ""):void
@@ -1375,6 +2092,7 @@ public function unequip(item:ItemSlotClass, override:Boolean = false):void
 	var i:int = 0;
 	for(i = 0; i < unequippedItems.length; i++)
 	{
+		if(unequippedItems[i].fortification != 0) pc.HP(-1 * unequippedItems[i].fortification);
 		unequippedItems[i].onRemove(pc, true);
 	}
 	
@@ -1529,7 +2247,10 @@ public function equipItem(arg:ItemSlotClass):void {
 			pc.upperUndergarment = arg;
 		}
 		else output(" <b>AN ERROR HAS OCCURRED: Equipped invalid item type. Item: " + arg.longName + "</b> ");
-
+		
+		if(removedItem.fortification != 0) pc.HP(-1 * removedItem.fortification);
+		if(arg.fortification != 0) pc.HP(arg.fortification);
+		
 		removedItem.onRemove(pc, true);
 		arg.onEquip(pc, true);
 	}
@@ -1720,8 +2441,7 @@ public function replaceItemPicker(lootList:Array):void {
 		
 		if(pc.inventory[i].shortName != "")
 		{
-			var butDesc:String = pc.inventory[i].shortName + " x" + pc.inventory[i].quantity
-			addButton(btnSlot, butDesc, replaceItemGo, [i, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
+			addItemButton(btnSlot, pc.inventory[i], replaceItemGo, [i, lootList]); // HAAACK. We can only pass one arg, so shove the two args into an array
 		}
 		btnSlot++;
 		i++;
@@ -2000,7 +2720,7 @@ public function getListOfType(from:Array, type:String):Array
 				break;
 				
 			case "TOYS":
-				if (InCollection(item.type, GLOBAL.SEXTOY))
+				if (InCollection(item.type, GLOBAL.SEXTOY, GLOBAL.PIERCING, GLOBAL.COCKSOCK))
 				{
 					items.push(item);
 				}

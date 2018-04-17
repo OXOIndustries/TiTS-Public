@@ -439,7 +439,7 @@ public function yesDommeSeer():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showSeer();
+	showSeer(true);
 	clearMenu();
 	
 	pc.maxOutLust();
@@ -480,7 +480,8 @@ public function yesSexSeer():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showSeer();
+	showSeer(true);
+	showBust("SEER_NIPPLES_NUDE");
 	clearMenu();
 	
 	pc.maxOutLust();
@@ -511,6 +512,7 @@ public function tentaSeer():void
 	clearOutput();
 	author("SoAndSo");
 	showSeer();
+	showBust("SEER_NIPPLES_NUDE");
 	clearMenu();
 	
 	output("The squeeze around your middle tightens and constricts against your [pc.skinFurScales] and it’s making you a... bit... lightheaded... eep...");
@@ -553,6 +555,7 @@ public function tentaSeer2():void
 	clearOutput();
 	author("SoAndSo");
 	showSeer();
+	showBust("SEER_NIPPLES_NUDE");
 	clearMenu();
 	
 	output("You’re not entirely sure how long you’re subjected to this tentacular terrorizing. Sometimes you’re fully aware of a thousand muscles twisting and spasming deep inside you, and sometimes it’s a blur of low-consciousness and piercing, amber eyes. At some point, the voice of the Seer fades away into random syllables and echoes before stopping entirely.");
@@ -573,6 +576,7 @@ public function tentaSeer3():void
 	clearOutput();
 	author("SoAndSo");
 	showSeer();
+	showBust("SEER_NIPPLES_NUDE");
 	clearMenu();
 	
 	output("You awaken.");
@@ -592,7 +596,7 @@ public function lezSeer():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showSeer();
+	showSeer(true);
 	clearMenu();
 	
 	output("With a quick jerk of the Seer’s right leg, the tentacles touching your body snap back like whips to her side. Chancing on the space to breathe without fear of oral invasion, you inhale a deep breath through your mouth to get over what just happened. Taking stock, there’s a fine layer of some sort of clear ooze that sticks to your [pc.skinFurScales]. Eww...");
@@ -614,7 +618,7 @@ public function lezSeer2():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showSeer();
+	showSeer(true);
 	clearMenu();
 	
 	output("\n\nThrough the peripheral view below you, you see the Seer’s tits jiggle and squirm in an eerily familiar manner. Like perverse flowers in full bloom, her purple-grey areola expand outwards and three more slimy tentacles from each breast grope and snatch at your [pc.fullChest]!");
@@ -644,7 +648,7 @@ public function lezSeer3():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showSeer();
+	showSeer(true);
 	clearMenu();
 	
 	output("The hazy, dreamy moments of peace spent with the Seer are broken by her speech.");
@@ -668,7 +672,7 @@ public function lezSeer4():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showSeer();
+	showSeer(true);
 	clearMenu();
 	
 	output("You wake up. Where are you? Where did the... pale lady go...");
@@ -689,7 +693,7 @@ public function wispedSeer():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showSeer();
+	showSeer(true);
 	clearMenu();
 	
 	output("After holding you place for some time, the Seers amber eyes brighten up, even more so than usual.");
@@ -713,7 +717,7 @@ public function wispedSeer2():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showSeer();
+	showSeer(true);
 	clearMenu();
 	
 	//Bad End due to already being under the effects of the wispy and overdosing - May need to change name of status effect once it’s implemented
@@ -814,7 +818,7 @@ public function wispedSeer3():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showSeer();
+	showSeer(true);
 	clearMenu();
 	
 	output("You open your eyes.");

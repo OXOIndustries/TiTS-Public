@@ -191,16 +191,17 @@ package classes.Items.Transformatives
 			else if (target.skinType == GLOBAL.SKIN_TYPE_SCALES) output(" Your abrasive, scaley covering starts to fall away, making way for spreading blotches of [pc.skinColor] skin beneath.");
 			else if (target.skinType == GLOBAL.SKIN_TYPE_GOO) output(" Your gooey body begins to solidify, wracking you with strange sensations. Slowly but surely, your goo is replaced with skin, and your internals solidify into something more normal for the kaithrit you’re striving to become! Before long, your body is covered with solid flesh!");
 			output(" <b>You have normal, humanoid skin now!</b>");
-
+			
 			target.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			target.clearSkinFlags();
 		}
 		
 		private function growTail(target:Creature):void
 		{
 			output("You feel a mounting pressure on your backside, culminating in what feels like a knot forming just over your [pc.butt]. You give a yelp as the knot bursts, and suddenly flesh is spilling out behind you, forming into a slender tendril. After a moment of combined panic and ecstasy, you realize the squirming mass of flesh is coalescing into a tail. It starts to sprout a thin layer of fur, a fuzzy coating");
-				if (target.hairLength > 0) output(" that matches the color of your [pc.hair]");
-				output(". You give it a little flex, and find that it curls about your [pc.leg] with prehensile grace. Yep, <b>you’ve definitely got a cat’s tail now.</b>");
-
+			if (target.hairLength > 0) output(" that matches the color of your [pc.hair]");
+			output(". You give it a little flex, and find that it curls about your [pc.leg] with prehensile grace. Yep, <b>you’ve definitely got a cat’s tail now.</b>");
+			
 			target.tailCount = 1;
 			target.tailType = GLOBAL.TYPE_FELINE;
 			target.clearTailFlags();
