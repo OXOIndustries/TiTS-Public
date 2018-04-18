@@ -3160,7 +3160,7 @@ public function futaShekkaLezOut():void
 	output(". The strokes are too fast for your body to recover from. When she yanks back too far, your pussy hangs open and drools, begging it for it to return. When she smacks into your cervix, you yelp and inwardly gloat at how you feel her flare swell against your walls.");
 
 	output("\n\n<i>“So f-f-fucking hot! Fuck... fuck-fuck-fuck-I-fucking-love-you!”</i> Shekka’s heavy, bestial balls quiver against your slit, followed a moment later by a flood of delightfully warm creaminess in your deepest recesses.");
-	if(!pc.isPregnant(x)) output(" You almost wish you weren’t pregnant, so that it could slide past your cervix and give Shekka the eggs she doubless wants.");
+	if(!pc.isPregnant(x)) output(" You almost wish you weren’t pregnant, so that it could slide past your cervix and give Shekka the eggs she doubtless wants.");
 	output(" Dribbles of white roll down your [pc.thighs] at the culmination of that first blast, but she’s just getting started. The blunt equine head strains wider still, opening your depths in ways they were never meant to be");
 	if(!pc.isPregnant(x)) 
 	{

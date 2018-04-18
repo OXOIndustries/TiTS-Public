@@ -625,6 +625,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone_nude.png", mimeType = "image/png")]
 		public var Bust_SIMONE_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/stella.png", mimeType = "image/png")]
+		public var Bust_STELLA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/stella_nude.png", mimeType = "image/png")]
+		public var Bust_STELLA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph.png", mimeType = "image/png")]
 		public var Bust_STEPH:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph_nude.png", mimeType = "image/png")]
@@ -1328,6 +1333,11 @@ package classes.Resources.Busts
 			public var Full_SLUTGOO:Class;
 			public function get Full_SLUTGOO_L():Class { return Full_SLUTGOO; }
 			public function get Full_SLUTGOO_R():Class { return Full_SLUTGOO; }
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella.png", mimeType = "image/png")]
+			public var Full_STELLA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella_nude.png", mimeType = "image/png")]
+			public var Full_STELLA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph.png", mimeType = "image/png")]
 			public var Full_STEPH:Class;

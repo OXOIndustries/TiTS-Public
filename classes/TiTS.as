@@ -223,6 +223,7 @@
 		include "../includes/tavros/seraXPreg2.as";
 		include "../includes/tavros/shearBeauty.as";
 		include "../includes/tavros/shelly.as";
+		include "../includes/tavros/stella.as";
 		include "../includes/tavros/tamaniCorpShop.as";
 		include "../includes/tavros/terensha.as";
 		include "../includes/tavros/vahn.as";
@@ -547,7 +548,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.155";
+			version = "0.7.156";
 
 			//temporary nonsense variables.
 			temp = 0;
