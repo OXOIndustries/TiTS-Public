@@ -261,7 +261,7 @@ public function initTavrosRooms():void
 	rooms["110"].addFlag(GLOBAL.INDOOR);
 	rooms["110"].addFlag(GLOBAL.PUBLIC);
 	rooms["110"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["110"].runOnEnter = undefined;
+	rooms["110"].runOnEnter = akaneCeleritasVeritasTheLegitimateBusinessBonus;
 
 	//9004
 	rooms["9004"] = new RoomClass(this);

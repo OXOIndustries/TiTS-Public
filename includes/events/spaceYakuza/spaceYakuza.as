@@ -1,6 +1,3 @@
-import classes.Characters.ShukuchiHuman;
-import classes.Characters.ZilMale;
-import classes.Engine.Combat.DamageTypes.TypeCollection;
 /* Finding the Shukuchi (so you can bang their local boss)
  * 
  * Flags:
@@ -18,14 +15,12 @@ import classes.Engine.Combat.DamageTypes.TypeCollection;
  * -1: Guys beat up
  * -2: Guys beat off
  * SHUKUCHI_FOURTH_ENCOUNTER
- * SHUKUCHI_FIRST_EMAIL_DATE
+ * SHUKUCHI_EMAIL_TIMER
  * */
 
- //This enables the regular
-public function shukuchiContacted():Boolean
-{
-	return MailManager.isEntryUnlocked("comegetyakuzawhipped");
-}
+import classes.Characters.ShukuchiHuman;
+import classes.Characters.ZilMale;
+import classes.Engine.Combat.DamageTypes.TypeCollection;
 
 //Starts the Akane event chain, for PCs level 7 and above
 public function shukuchiFoxBonus():Boolean
@@ -78,6 +73,7 @@ public function shukuchiTavrosChase():void
 	
 	//Chase that cyberninja towards a hair salon. Make your dad proud.
 	moveTo("9015");
+	showName("\nCHASE!");
 	clearOutput();
 	clearMenu();
 	author("SoAndSo");
@@ -112,7 +108,7 @@ public function shukuchiTavrosChasePartIITheChasening():void
 	clearMenu();
 	author("SoAndSo");
 	
-	output("\n\nThe crowd thins surprisingly quickly as you race down the deck, some sort of warning alert playing out along the plazas and walkways while the occasional UGC officer gets caught in the crowds.");
+	output("The crowd thins surprisingly quickly as you race down the deck, some sort of warning alert playing out along the plazas and walkways while the occasional UGC officer gets caught in the crowds.");
 	output("\n\nYou can see that even this acrobatic assailant is tiring somewhat, his parkour-esque jumping and people-dodging becoming less and less finessed as you catch him up! Even if it takes its toll on you all the same, you’re confident you can catch this bastard…");
 	output("\n\nThe assailant holds another device in his hand, the same blue as before!");
 	output("\n\nWith a little more forethought, he throws it almost directly at you!");
@@ -176,10 +172,14 @@ public function shukuchiTavrosTalkFoxman():void
 	//Foxguy doesn't matter anymore. Forever.
 	rooms["9013"].removeFlag(GLOBAL.NPC);
 	
-	//This button should take the pc back to the ship, but I'm feeling lazy right now
+	addButton(0, "Leave", shukuchiReturnFromFoxman);
+}
+
+public function shukuchiReturnFromFoxman():void
+{
 	processTime(60);
-	moveTo("SHIP INTERIOR");
-	addButton(0, "Leave", mainGameMenu);
+	moveTo("TAVROS HANGAR");
+	mainGameMenu();
 }
 
 //Private Steele Dick 2: Revenge on Mhenga (as in taking place there, not against it)
@@ -353,6 +353,7 @@ public function shukuchiUvetoSleuth():void
 	clearOutput();
 	author("SoAndSo");
 	moveTo("UVI N40");
+	showName("\nFOLLOWING SUSPECT");
 	
 	output("There’s little in the way of crowding as you track the masked agent towards the racecourse. With this weather, you both consider how to navigate the snowy streets. You’ve little difficulty in keeping up with him: the bulky jacket and general chill in the air would be enough to discourage anyone from going about in this weather.");
 	output("\n\nYou see him tapping on some sort of device every now and then, a small datapad no bigger than his hand. It’s impossible to tell what’s on it from that distance and angle.");
@@ -484,7 +485,9 @@ public function shukuchiUvetoYesYesAgain():void
 	output("\n\nAside that, only a few words stand out: Host and Shukuchi.");
 	output("\n\nBut with all your leads found by chance and burnt out, you’re not sure how to proceed. You’ve a suspicion that if you don’t find them, then they’ll find you...");
 	output("\n\nWith this in mind, you head back towards the spaceport elevator.\n\n");
-
+	
+	flags["SHUKUCHI_EMAIL_TIMER"] = GetGameTimestamp();
+	
 	if (flags["SHUKUCHI_UVETO7_ENCOUNTER"]) CombatManager.genericVictory();
 	else CombatManager.genericLoss();
 }

@@ -3039,6 +3039,11 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			flags["PRAI_EMAIL_NUMBER"] = undefined;
 			flags["PRAI_EMAIL_STAMP"] = undefined;
 		}
+		//Akane email
+		if (!pc.isPregnant() && !MailManager.isEntryUnlocked("shukuchi_veritas") && flags["SHUKUCHI_EMAIL_TIMER"] != undefined && nextTimestamp >= flags["SHUKUCHI_EMAIL_TIMER"] + (60*24*6))
+		{
+			goMailGet("shukuchi_veritas", flags["SHUKUCHI_EMAIL_TIMER"] + (60*24*6));
+		}
 		//Sucuccow email
 		if(pc.hasCock() && flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isHalloweenish())
 		{

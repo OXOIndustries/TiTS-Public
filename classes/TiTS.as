@@ -196,6 +196,7 @@
 		include "../includes/travelEvents/kiroRescue.as";
 
 		//Tavros Station
+		include "../includes/tavros/akane.as";
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";

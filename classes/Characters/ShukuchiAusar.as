@@ -5,6 +5,7 @@ package classes.Characters
 	import classes.kGAMECLASS;
 	import classes.Engine.Interfaces.output;
 	import classes.UIComponents.UIStyleSettings;
+	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	public class ShukuchiAusar extends ShukuchiAgent
 	{
 		public function ShukuchiAusar()
@@ -19,6 +20,7 @@ package classes.Characters
 			this.customDodge = "The masked ausar deftly side-steps your assault, putting a little distance between you" + this.customDodge;
 			this.customBlock = "The masked ausar" + this.customBlock;
 			
+			this.shield = new ReaperArmamentsMarkIIShield();
 			this.shieldsRaw = 150;
 			this.lustRaw = 15;
 			
@@ -58,7 +60,7 @@ package classes.Characters
 		{
 			output("The agent waves his hand over his face, an invisible field covering him from your view!");
 			//THIS JUST SHOWS THE ICON FOR NOW
-			this.createStatusEffect("Fade-cloak", 3, 0, 0, 0, false, "DefenseUp", "Evasion increased +80%, damage increased by 50%", true, 0, UIStyleSettings.gShieldColour);
+			createStatusEffect("Fade-cloak", 3, 0, 0, 0, false, "DefenseUp", "Evasion increased +80%, damage increased by 50%", true, 0, UIStyleSettings.gShieldColour);
 		}
 	}
 }

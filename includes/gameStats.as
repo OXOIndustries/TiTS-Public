@@ -1949,14 +1949,22 @@ public function displayQuestLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Mhenga:</b>");
 					if (flags["SHUKUCHI_MHENGA_ENCOUNTER"]) output2(" Defeated agent on Mhenga");
-					else output2(", Lost to agent on Mhenga");
+					else output2(" Lost to agent on Mhenga");
 				}
 				
 				if (flags["SHUKUCHI_UVETO7_ENCOUNTER"] != undefined)
 				{
-					output2("\n<b>* Uvetor:</b>");
+					output2("\n<b>* Uveto:</b>");
 					if (flags["SHUKUCHI_UVETO7_ENCOUNTER"]) output2(" Defeated agents on Uveto");
-					else output2(", Lost to agents on Uveto");
+					else output2(" Lost to agents on Uveto");
+				}
+				
+				if (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined)
+				{
+					output2("\n<b>* Meeting:</b>");
+					if (flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 1) output2(" Paid the Host");
+					else if (flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 2) output2(" Got a beatdown");
+					else output2(" Bow shicka bow wow " + (flags["AKANE_VISITS"] != undefined ? flags["AKANE_VISITS"] : ""));
 				}
 				
 				sideCount++;
@@ -3886,6 +3894,22 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["ILARIA_PREG_TIMER"] != undefined) output2("\n<b>* Ilaria, Days Pregnant:</b> " + flags["ILARIA_PREG_TIMER"]);
 				if(flags["ILARIA_TOTAL_KIDS"] > 0) output2("\n<b>* Ilaria, Total Kids:</b> " + flags["ILARIA_TOTAL_KIDS"]);
 				variousCount++;
+			}
+			// Akane
+			if (flags["AKANE_VISITS"] != undefined)
+			{
+					output2("\n<b><u>Host Shukuchi</u></b>");
+					output2("\n<b>* Akane:</b> Met her")
+					if (pcIsPainslut()) output2(", Became her <i>Painslut</i>");
+					if (flags["AKANE_FUN_VISITS"])
+					{
+						output2("\n<b>*Akane, Times Sexed:</b> " + flags["AKANE_FUN_VISITS"]); //Is "sexed the right word"?
+						if (flags["AKANE_TIMES_SHOCKED"]) output2("\n<b>* Akane, Times Stimmed:</b> " + flags["AKANE_TIMES_SHOCKED"]);
+						if (flags["AKANE_TIMES_WHIPPED"]) output2("\n<b>* Akane, Times Whipped:</b> " + flags["AKANE_TIMES_WHIPPED"]);
+						if (flags["AKANE_TIMES_FORCED"]) output2("\n<b>* Akane, Times Forced Orgasm Sessions:</b> " + flags["AKANE_TIMES_FORCED"]);
+						if (flags["AKANE_TIMES_RIDDEN"]) output2("\n<b>* Akane, Times Ridden:</b> " + flags["AKANE_TIMES_RIDDEN"]);
+					}
+					variousCount++;
 			}
 			// Nursery!
 			if(flags["USED_NURSERY_COMPUTER"] != undefined || flags["BRIGET_MET"] != undefined)
