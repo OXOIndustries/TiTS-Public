@@ -1000,6 +1000,9 @@ public function shekkaCrewSexMenu():void
 	if(flags["SHEKKA_ONAHOLED"] != undefined && shekka.hasCock()) addButton(6,"Onahole",shekkaOnaholeIntro,undefined,"Onahole","Get Shekka in the mood to play with her onahole again!");
 	else addDisabledButton(6,"Locked","Locked","Shekka needs a big ol’ horse-cock before you can catch her playing with it and unlock this scene!");
 
+	if(pc.totalCockOvipositors() > 0) addButton(7,"Ovi Eggs",oviEggShekka,undefined,"Ovi Eggs","Let Shekka enjoy being filled with some unfertilized eggs.");
+	else addDisabledButton(7,"Ovi Eggs","Ovi Eggs","You need an ovipositor phallus for this.");
+
 	addButton(14,"Back",approachCrewShekka,true);
 }
 
@@ -3017,6 +3020,185 @@ public function bonusShekkaWorkout(light:Boolean):void
 		pc.modTone(3, false);
 		pc.slowStatGain("physique",1);
 	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//A taste of what could've been
+//requires shekka crew member and pc has a nyrea dick(or other kind of ovicock) in slot 1 that fits shekka
+//pick [Eggs] from sex menu
+public function oviEggShekka():void
+{
+	clearOutput();
+	showShekka(true);
+	author("Gardeford");
+	var x:int = -1;
+	for(var i:int = 0; i < pc.cockTotal(); i++)
+	{
+		if(pc.isCockOvipositor(i))
+		{
+			//If no ovi found yet, store this one.
+			if(x < 0) x = i;
+			//If stored dick don't fit but new one does, swap to the new hot!
+			if(x > 0 && pc.cockVolume(i) <= shekka.vaginalCapacity(0) && pc.cockVolume(x) > shekka.vaginalCapacity(0)) x = i;
+		}
+	}
+	if(x < 0)
+	{
+		output("ERROR! COULDNT FIND THE OVI. OHHH NOOOO!");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//first time
+	if(flags["SHEKKA_OVIED"] == undefined)
+	{
+		output("<i>“I’ve got a present for you, or a bunch of presents I guess,”</i> You say with a sly grin, tracing your fingers down over your midsection");
+		if(!pc.isCrotchExposed()) output(" as you remove your [pc.crotchCovers]");
+		output(".");
+		if(!pc.isErect()) output(" You pause at your crotch, tugging on your [pc.cock " + x + "] a few times to bring it to full hardness.");
+		else output(" You pause at your crotch, fondling your already-erect cock in anticipation.");
+
+		output("\n\n<i>“Cute, but you don’t need to call each of your sperm a separate present, being with you out here is a gift enough already,”</i> Shekka replies, giving you the cheesiest twirl she can manage. You smile wider, hoping your surprise goes over as well as you think it will.");
+	}
+	//repeat
+	else
+	{
+		output("<i>“Hey, want some more presents?”</i> you ask");
+		if(!pc.isCrotchExposed()) output(", tugging off your [pc.crotchCovers]");
+		else output(", tugging on your [pc.cock " + x + "]");
+		output(". Shekka squirms, a shudder running through her body as her gaze settles on your ovipositor.");
+		output("\n\n<i>“Yeah, I-I guess I’ve got time. The ships not gonna... not gonna fall apart,”</i> she says, struggling to remain focused on the conversation as you rub up and down your length.");
+	}
+	//merge
+	output("\n\nYou grab a large cushion from the makeshift couch Shekka has set up in your engine room, plopping it down in an unobstructed corner of the room. You sit side-saddle on the plump pillow, patting your lap to invite the pint-sized tinker to join you.");
+	output("\n\n<i>“You’ll want to be sitting for this, and I’ve got the perfect seat for you right here,”</i> You angle your ovicock, presenting the [pc.cockHead " + x + "] to Shekka. She ");
+	if(flags["SHEKKA_OVIED"] == undefined) output("rolls her eyes, moving to join you and unzipping her form-fitting suit.");
+	else output("peels her suit off faster than you would have thought possible, strings of feminine juice already dripping from her lavender lips as she hurries to join you.");
+	output(" You pull the pint-sized tinker into a kiss as she ");
+	if(pc.isTaur()) output("steps onto your forehips");
+	else if(pc.tallness < 4*12*6) output("kneels");
+	else output("steps onto your hips");
+	output(" to get closer. Her dextrous tongue explores your mouth as she hooks her arms around your head.");
+
+	output("\n\nBefore you grow too enraptured with kisses, you wrest the small woman from her hold. She moans as you knead her ass, reaching down to play with her rear clit as you make sure she’s fully prepared. The mini mechanist’s slut-slit is raring to go, dripping with slippery juices by the time you reach it, but that doesn’t stop you from punishing her raging love buzzer to pump her up even further. You ");
+	if(pc.isTaur()) output("push her into a kneeling position, rising up to position yourself better.");
+	else output("rub the tip of your [pc.cock " + x + "] against her hungry cunt, holding her up as her knees grow weak from the sensation.");
+
+	if(pc.isTaur()) 
+	{
+		output("\n\nYou can hear Shekka sighing beneath you as your length sinks into her, her downy feathers brushing against your stomach. She braces herself, pushing back against the thundering thrusts of your [pc.hips]. You build up a rhythm, pumping into your miniature mechanic with reckless abandon. Moans echo from beneath you, only serving to ramp up your already boiling lusts.");
+		pc.cockChange();
+		output("\n\nThe breedable raskvel somehow manages to twist herself around beneath you, rubbing your underside with her hands and planting wet kisses between your forelegs. Her nipples grind against you as the rest of her bounces, twin pinpricks of pleasure on your belly. Her wriggling involves enough relaxation for your [pc.cock " + x + "] to ");
+		if(pc.cockVolume(x) < shekka.vaginalCapacity(0)) output("hilt inside her");
+		else output("reach as deeply as it can fit into her insides");
+		output(". The juices leaking from Shekka’s pussy do wonders at reducing the friction between you, allowing you to pound her more roughly with each passing second.");
+		if(shekka.hasCock()) output(" The slippery sensation brings the tiny technician’s bestial member to painful hardness, and you can feel gushes of pre spurting from her flaring tip in time with your thrusts.");
+
+		output("\n\nShekka’s moans reach a crescendo as she cums first, and you can feel the eggs shifting in your ovicock as her clenching muscles lead you toward a similar fate. Hot femcum showers your [pc.cockNoun " + x + "] as you continue thrusting, ");
+		if(pc.biggestTitSize() >= 1) output("squeezing your [pc.breasts] and pinching your [pc.nipples] to hasten your building lusts");
+		else output("gripping a support beam and holding on tight as you increase your speed.");
+		output(" You hear the crimson-scaled slut’s tail vibrator begin to whir, but pay it no heed until she whips it up and around your rear. The sex-juice slicked buzzer slips snuggly into your [pc.asshole], pushing till it nestles comfortably against your prostate. The resulting stimulation instantly breaks your already feeble restraint.");
+		pc.buttChange(20);
+
+		output("\n\nYou don’t even have time to stop thrusting as you cum, your body still delivering jerking thrusts as [pc.cum] fills your pregnable partner’s defenseless womb.");
+		if(pc.cumQ() < 6) output(" Some of it is lost as you piston in and out, joining the growing puddle of sexual fluid beneath you.");
+		else if(pc.cumQ() < 200) output(" Some of it leaks out as you piston your hips, joining the growing puddle of lusty juices beneath you.");
+		else output(" [pc.CumColor] jizz pulses out, splashing against your pistoning hips before joining the growing puddle of sexual fluid beneath you.");
+		output(" Shekka’s whole body tries to clamp around you and hold you still, but her short legs can’t reach all the way around your tauric body.");
+		if(shekka.hasCock()) output(" The tight grip fades as ropes of creamy cum erupt from her heavily flared horsecock. The spurts that don’t hit her in the chin or plaster your undercarriage shoot uselessly onto the engine room floor.");
+		output(" Her efforts barely manage to keep her secure beneath you as an egg launches itself from your ovipositor, pushed into her waiting womb by the force of your thrusting.");
+
+		output("\n\n<i>“");
+		if(flags["SHEKKA_OVIED"] == undefined) output("Huh? [pc.name]? What’s happening?");
+		else output("Yusssss, Egg... Good [pc.name] give eggs,");
+		output("”</i> she shouts from beneath you, her back arching as another egg works its way in.");
+	}
+	else
+	{
+		output("\n\nShekka sighs into your [pc.chest] as she sinks down your length, and you brush her vibrant feathers as you hold her there. You need to guide her for the first few thrusts, lifting her smooth-scaled butt into the air and bouncing her on your hips. After that she takes over, grinding her pelvis with single minded fervor.");
+		if(shekka.hasCock()) 
+		{
+			output(" Shekka’s shaft throbs needfully between the two of you, leaking pre that slickens the length till it ");
+			if(pc.biggestTitSize() >= 4) output("slides into the welcome embrace of your [pc.breasts].");
+			else output("slides haphazardly between the two of you.");
+		}
+		else output(" Shekka’s juices drip down your length, splashing onto your stomach with each downthrust. This in turn lubes up the front half of her body as she leans in for support during particularly strong throbs of pleasure.");
+		pc.cockChange();
+
+		output("\n\nNow that she’s secured in place, Shekka goes for another kiss. This time you go on the offensive, dueling with her dexterous tongue. Your own [pc.tongue] battles hers at every angle, and you counter a lick with a nibble at her lower lip. The conflict swiftly becomes a losing effort for your mechanic, her kisses becoming sloppier as lust shifts her focus to her crotch. You can feel her pause, lips brushing over your cheek as her insides clamp around your [pc.cock " + x + "]. She suddenly regains enough of her senses to continue the kiss, but doesn’t move from where she’s slouched, lapping at your neck like a lover.");
+		if(shekka.hasCock()) output(" A gush of pre from her cock catches her in the chin, not slowing her in the least.");
+
+		output("\n\nYou can feel your own orgasm approaching, can feel the eggs in your ovicock shifting. It’s too late to stop now. Shekka cums first, squirting hot, sticky femcum all over your hips as you ");
+		if(shekka.hasCock()) output("rapidly finger her hind-clit while playing with the flaring tip of her equine member. Equally hot rask-cream coats you as her prostate empties over your neck and [pc.chest].");
+		else output("rapidly finger her hind and fore-clits, causing a cascade of pleasure that has her spurting juices with every blissful contraction.");
+		output(" Muted moans sound like music to your ears as the tiny technician rubs her face against you.");
+
+		output("\n\n[pc.Cum] spurts from [pc.eachCock] first, filling her womb");
+		if(pc.cumQ() >= 100) output(" and leaking out around your [pc.cockNoun " + x + "]");
+		else output(" and pouring back over your hips as it overflows");
+		output(". Shekka sighs, riding the extra sensations for all they’re worth, content to ride her euphoria till you finish. You grit your teeth, holding the lusky raskvel tight as you prepare for what comes next. Her orgasm induced lethargy isn’t enough to fully distract her as the first egg works its way through your ovicock and pushes into her womb.");
+
+		output("\n\n<i>“");
+		if(flags["SHEKKA_OVIED"] == undefined) output("Huh? [pc.name]? What’s happening?");
+		else output("Yusssss, Egg... Good [pc.name] give eggs,");
+		output("”</i> she groans, sitting bolt upright as another egg works its way in.");
+	}
+	output("\n\n<i>“");
+	if(flags["SHEKKA_OVIED"] == undefined) output("W-wait, what is this!?”</i> She asks, staring at her belly with bewilderment.");
+	else output("More eggs! I wanna lay lots!”</i> she shouts ecstatically.");
+	output(" ");
+	if(shekka.hasCock()) output("Her equine cock surges back to full hardness, oozing a mouthfuls worth of pre as each egg enters her rapidly filling womb. ");
+	else output("Her plum colored pussy tightens again, cumming in rapid succession as more eggs enter her womb. ");
+	output("The eggs come faster and easier the longer your own orgasm stretches on, filling Shekka till her belly bulges with eggs. By the time you edge off your high the hard-working mechanic looks like one of her slutty sisters, full of enough eggs to look heavily pregnant. You pull out, setting the fully stuffed raskvel beside you. A few echoes rock through [pc.eachCock] and you direct a final weak spurt of [pc.cum] directly onto Shekka’s pregnant belly.");
+
+	output("\n\nYour partner hardly seems to notice. She rubs her belly, staring at it with half-comprehending wonder. A dumbstruck smile coats her features, and for a second you worry if you’ve broken the poor woman. She looks up to you, the smile growing wider as she tugs on your arm.");
+	output("\n\n<i>“Look, [pc.name]. I’m full of eggs. Your eggs, but now they’re in me... My eggs...”</i> She muddles, the words coming out slow and with much deliberation. Her hand never stops rubbing her stomach, and she leans against your shoulder with a love-drunk gaze that sends a pulsing throb through ");
+	if(pc.isHerm()) output("both of your sexes");
+	else if(pc.hasCock()) output("[pc.eachCock]");
+	else if(pc.hasVagina()) output("[pc.eachvagina]");
+	output(". She seems content to stay there forever, but suddenly grows alert, looking at her belly with a mixture of excitement and surprise.");
+
+	output("\n\n<i>“");
+	if(flags["SHEKKA_OVIED"] == undefined) output("Oh fuck! [pc.name], fuck!");
+	else output("Ungghhh! Eggsss cumming!");
+	output("”</i> She shouts, gripping your arm with both hands to steady herself. Her legs shudder, toes splaying as the shudder spreads to her whole body. You hear a wet plop and see one of the eggs roll out onto the engine room floor. Shekka watches it go before looking up at you again.");
+
+	output("\n\n<i>“");
+	if(flags["SHEKKA_OVIED"] == undefined) output("I’m laying already? But- all those- I’m gonna lay them all,”</i> She asks, transitioning from fearful wonder to giddy anticipation in the scope of seconds.");
+	else output("I’m laying again! [pc.name] I’m laying our eggs againngh!”</i> she shouts elatedly.");
+	output(" Her grip on your shoulder tightens as another egg pushes its way out of her. You reach out and gently rub her eggnant belly, feeling the echoing shudders of an endless orgasm that pushes the eggs out in a self sustaining loop of contractions.");
+	if(shekka.hasCock()) output(" A spurt of cum erupts from her fully flared horse-cock as the second egg pushes its way to freedom, followed by another, and another. Creamy rask-jizz paints the floor in front of her as each egg nudges its way by the sensitive bulge of her prostate.");
+
+	output("\n\nShekka’s chest heaves, gulping in air between full body shaking orgasms. Eggs plop out onto the floor one by one, splashing in the growing pool of femcum that drips from her sopping sex. You massage the ecstatic engineer’s convulsing muscles, squeezing her thighs and shoulders to try and relieve some of the tension caused by the constant pleasure signals flooding out of her brain. You can read the passage of each egg in the fluctuating strength of the tremors.");
+
+	output("\n\nThe vibrating buzzer in Shekka’s tail flips between on and off as the length of muscle flops haphazardly, batting against you and curling around your waist. The thrumming of the mechanical masturbation aid matches the intensity of the natural shivers running through her body. And her jeweled ears jingle in a chorus of melodious bliss.");
+
+	output("\n\nThe last egg pushes itself out before you know it, leaving about thirty of the palm sized ovoids strewn about the engine room floor around you, all incubating in a lake of warm sexual fluid that seems to have more volume than your pint-sized partner could produce. Shekka lies on your lap, insensate and half asleep, pulling in breaths to try and recharge. Laying took a lot out of her, it seems.");
+	if(shekka.hasCock()) output(" Her cock lays sidelong over one hip, softening but still dripping excess cum, unwilling to fully retreat into its sheath.");
+
+	output("\n\nYou lean back on cushions you set up, wholly comfortable with letting the crimson cutie sleep off the effort. When she transitions from exhausted euphoria to full on unconsciousness, you hop up to get her some water and a snack, coming back from the galley with a small tray of food and a refreshing beverage. Shekka is still asleep when you return, so you pass the time watching holovids on the extranet and sitting beside her.");
+	output("\n\n<i>“Mmn, [pc.name],”</i> the red skinned rask murmurs as she wakes, reaching blindly and finding your [pc.thighs]. She snuggles up till her head rests against you, awake but still groggy.");
+
+	output("\n\n<i>“");
+	if(flags["SHEKKA_OVIED"] == undefined) output("It’s probably good that I did the whole fixing my race thing before now. If we do this enough I think I might even start doubting my decisions. Then again, being one of the last raskvel to only need to worry about getting filled with eggs is a temptation all by itself,”</i> She smirks, stretching across your lap to look up at you.");
+	else output("I keep thinking I’ll get used to it, but I think it actually feels <b>better</i> every time,”</i> she marvels, flopping onto your lap and stretching with a grin.");
+	output(" She notices your tray of goodies, grabbing a snack and taking a few huge gulps of water. You lie together for a while longer, sharing the food and drink while recuperating from the exertion. Shekka sits up when she recovers, looking to the eggs scattered across the floor.");
+
+	output("\n\n<i>“");
+	if(flags["SHEKKA_OVIED"] == undefined) 
+	{
+		output("They’re not... not fertilized, are they?”</i> She asks,");
+		output("\n\n<i>“No, not this time anyway,”</i> you reply. She blushes at that, but doesn’t give any further comment as the two of you gather up the eggs. Maybe that’s a conversation for another time.");
+	}
+	else
+	{
+		output("So many,”</i> She observes, beginning to gather the palm-sized eggs. You move to join her, cleaning up the mess along the way.");
+		output("\n\n}When you’ve finished cleaning you give Shekka a squeeze on the butt, leaving her to rest before your next endeavor.");
+	}
+	processTime(120);
+	pc.orgasm();
+	IncrementFlag("SHEKKA_OVIED");
+	fuckedShekka();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
