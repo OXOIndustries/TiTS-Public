@@ -12344,7 +12344,7 @@
 			if (tailType == GLOBAL.TYPE_LAPINE) counter++;
 			if (armType == GLOBAL.TYPE_LAPINE) counter++;
 			if (counter > 0 && hasFur()) counter++;
-			if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVagina(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
+			if (!hasCock(GLOBAL.TYPE_EQUINE) && !hasVaginaType(GLOBAL.TYPE_EQUINE) && counter > 0) counter = 0;
 			return counter;
 		}
 		public function lupineScore(): int {
@@ -18019,9 +18019,9 @@
 		public function bellyRating():Number
 		{
 			var bonus:Number = 0;
-			var eggs:int = statusEffectv1("Nyrea Eggs");
+			var numEggs:int = eggCount();
 			
-			if(eggs > 50) bonus += (eggs - 50) * 0.01;
+			if(numEggs > 50) bonus += (numEggs - 50) * 0.01;
 			bonus += perkv3("Fecund Figure");
 			bonus += statusEffectv1("Anally-Filled")/1000;
 			bonus += statusEffectv1("Vaginally-Filled")/1000;
@@ -18375,12 +18375,23 @@
 			return false;
 		}
 		
+		// countType: -1 is unfertilized only, 1 is fertilized only, 0 is all
+		public function eggCount(countType:int = 0):Number
+		{
+			var bonus:Number = 0;
+			if(countType == 0 || countType == -1) bonus += statusEffectv1("Nyrea Eggs");
+			
+			if(countType == -1) return ((eggs - fertilizedEggs) + bonus);
+			if(countType == 1) return (fertilizedEggs + bonus);
+			return (eggs + bonus);
+		}
+		
 		public function addEggs(arg: int = 0): int 
 		{
 			if (!canOviposit()) return -1;
 			else {
 				eggs += arg;
-				if (eggs > 50) eggs = 50;
+				//if (eggs > 50) eggs = 50;
 			}
 			return eggs;
 		}
@@ -18409,9 +18420,38 @@
 				if(slot == "tail" && hasCuntSnake()) return kGAMECLASS.fertilizeCuntSnake();
 			}
 			if (!canOviposit(slot)) return -1;
-			fertilizedEggs += eggs * percent / 100;
+			fertilizedEggs += Math.round(eggs * percent / 100);
 			if (fertilizedEggs > eggs) fertilizedEggs = eggs;
 			return fertilizedEggs;
+		}
+		
+		// countType: -1 is unfertilized only, 1 is fertilized only, 0 is all
+		// if all, unfertilized eggs take priority
+		public function releaseEggs(countType:int = 0, percent:Number = 50): Number 
+		{
+			var eggsOut:Number = 0;
+			var numEggs:Number = eggs;
+			if(countType == -1) numEggs = (eggs - fertilizedEggs);
+			if(countType == 1) numEggs = (fertilizedEggs);
+			
+			eggsOut = numEggs - Math.round(numEggs * percent / 100);
+			
+			if(countType == 1)
+			{
+				if(eggsOut > fertilizedEggs) eggsOut = fertilizedEggs;
+				fertilizedEggs -= eggsOut;
+			}
+			else
+			{
+				if(eggsOut > eggs) eggsOut = eggs;
+				eggs -= eggsOut;
+			}
+			
+			if(fertilizedEggs > eggs) fertilizedEggs = eggs;
+			if(fertilizedEggs < 0) fertilizedEggs = 0;
+			if(eggs < 0) eggs = 0;
+			
+			return eggsOut;
 		}
 		
 		// Preg slot is the incubation slot we're gonna occupy, following the same rules as the array
@@ -19240,6 +19280,8 @@
 				weightFluid += fluidWeight(statusEffectv1("Orally-Filled"), statusEffectv3("Orally-Filled"));
 				//if(hasCock() || balls > 0) weightFluid += fluidWeight((cumQ() * 0.5), cumType);
 				weightBelly += weightFluid;
+				// Generic ovipositor eggs
+				if(eggs > 0) weightBelly += (0.125 * eggs);
 				if(thickness > tone)
 				{
 					weightFat = (thickness - tone) * 0.01 * (tallness / 60);

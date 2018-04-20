@@ -16,7 +16,7 @@ public function showCeria(nude:Boolean = false):void
 
 public function fuckedCeria(setItUp:Boolean = false):Boolean
 {
-	if(setItUp) flags["FUCKED_CERIA"] = 1;
+	if(setItUp) IncrementFlag("FUCKED_CERIA");
 	return (flags["FUCKED_CERIA"] != undefined);
 }
 

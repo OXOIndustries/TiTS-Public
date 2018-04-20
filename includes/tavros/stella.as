@@ -51,7 +51,7 @@ public function approachBeachSurfNSurf():Boolean
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) addDisabledButton(0,"Buy Pass","Buy Pass", "You already own a lifetime pass!");
 	else if(pc.hasStatusEffect("SURFPASS")) addDisabledButton(0,"Buy Pass","Buy Pass", "Your current pass has not yet expired!");
 	else addButton(0,"Buy Pass",buyAPass);
-	addButton(1,"You",tryToSeduceAlexSlooot);
+	if(flags["MET_ALEX_SURF"] != undefined) addButton(1,"You",tryToSeduceAlexSlooot);
 	addButton(2,"Swimwear",buySwimwear);
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass") || pc.hasStatusEffect("SURFPASS")) addButton(11,"To The Beach!",stepIntoChangingArea);
 	else addDisabledButton(11,"To The Beach!","To The Beach","You’ll need a pass to do this.");
@@ -234,7 +234,8 @@ public function meetingStella():void
 		processTime(3);
 	}
 	clearMenu();
-	addButton(0,"Yes",letsFuckeySuckeyStella);
+	if(pc.hasCock() || pc.hasVagina()) addButton(0,"Yes",letsFuckeySuckeyStella);
+	else addDisabledButton(0,"Yes","Yes", "You need genitals for this!");
 	addButton(1,"No",fuckOffBeachSlutbag);
 }
 
@@ -359,18 +360,18 @@ public function stellaMenu():void
 	else addButton(1,"Talk",stellaTalk);
 	if(pc.cockThatFits(stellaCapacity()) >= 0) 
 	{
-		addButton(2,"Pussy",stellaPussyFuck);
-		addButton(3,"Assfuck",assFuckStella);
+		addButton(5,"Pussy",stellaPussyFuck);
+		addButton(6,"Assfuck",assFuckStella);
 	}
 	else
 	{
-		addDisabledButton(2,"Pussy","Pussy","You’re too big to fit into the puppy-bimbo!");
-		addDisabledButton(3,"Assfuck","Assfuck","You’re too big to fit into the puppy-bimbo!");
+		addDisabledButton(5,"Pussy","Pussy","You’re too big to fit into the puppy-bimbo!");
+		addDisabledButton(6,"Assfuck","Assfuck","You’re too big to fit into the puppy-bimbo!");
 	}
-	if(pc.hasCock()) addButton(4,"Blowjob",stellaOralStuff);
-	else addDisabledButton(4,"Blowjob","Blowjob","She can’t suck your dick if you don’t have one!");
-	if(pc.hasVagina()) addButton(5,"Get Licked",stellaOralStuff,true);
-	else addDisabledButton(5,"Get Licked","Get Licked","She can’t munch your rug if you’ve got hardwood flooring.");
+	if(pc.hasCock()) addButton(7,"Blowjob",stellaOralStuff);
+	else addDisabledButton(7,"Blowjob","Blowjob","She can’t suck your dick if you don’t have one!");
+	if(pc.hasVagina()) addButton(8,"Get Licked",stellaOralStuff,true);
+	else addDisabledButton(8,"Get Licked","Get Licked","She can’t munch your rug if you’ve got hardwood flooring.");
 }
 
 //[Appearance]
@@ -380,7 +381,7 @@ public function stellaAppearance():void
 	showStella();
 	author("Wsan");
 	output("Stella is a full-fledged ausar beach babe, with aqua eyes and platinum blonde hair that sports rose gold highlights and is adorned with a beautiful pink flower. Her perky ears and long tail are both nice and fluffy, the brown silken-smooth fur just begging to have your hands run through it. Her skin is not only picture-perfect without a blemish to be seen, but browned enough that you can tell at a glance this is a girl who belongs outdoors on the beach. Usually clad in a leopard-print bikini, she sits on her bed right now smiling at you with no hint of a top in sight. Her sunglasses lie on the bedside drawers");
-	output("\n\nAt 5’8 and 140 lbs, Stella’s voluptuous body leaves no doubts at all as to where all her weight is. She’s bubbly <i>everywhere</i>, from personality to tits and ass. The latter is both huge and has a very appealing jiggle to it whenever you squeeze or spank, and the former are truly massive. Each breast is bigger than her head and capped by pink, puffy inverted nipples that pop out when you tease her enough, giving you a nice visual indicator of how turned on she is. Her overall look is that of a bimbo sex object, the kind that looks like she just stepped off a modelling magazine for an upscale agency. Her cute, pouty lips only add to the aesthetic, distracting you with thoughts about what she can - and will - do with them.");
+	output("\n\nAt 5\' 8\" and 140 lbs, Stella’s voluptuous body leaves no doubts at all as to where all her weight is. She’s bubbly <i>everywhere</i>, from personality to tits and ass. The latter is both huge and has a very appealing jiggle to it whenever you squeeze or spank, and the former are truly massive. Each breast is bigger than her head and capped by pink, puffy inverted nipples that pop out when you tease her enough, giving you a nice visual indicator of how turned on she is. Her overall look is that of a bimbo sex object, the kind that looks like she just stepped off a modelling magazine for an upscale agency. Her cute, pouty lips only add to the aesthetic, distracting you with thoughts about what she can - and will - do with them.");
 	if(flags["STELLA_FUCKED"] != undefined || flags["STELLA_BUTTFUCKED"] != undefined) output("\n\nBelow her puppy-bearing hips and trim waist lies her perfect, well-maintained pussy. You know from experience that being inside her is fucking amazing, from the way she cums almost constantly to the feeling of her desperately squeezing down on you for cum. Between her huge, bubble-butt asscheeks lies her asshole, tight as can be while somehow able to handle a cock of any size.");
 	output("\n\nOverall, Stella looks like a top of the line sex doll came to life and started talking about colorful alcoholic drinks.");
 
@@ -391,7 +392,7 @@ public function stellaAppearance():void
 public function stellaPostAppearance():void
 {
 	clearOutput();
-	showStella();
+	//showStella();
 	author("Wsan");
 	output("Now that you’re done checking out the babe, what would you like to do?");
 	stellaMenu();
@@ -400,7 +401,7 @@ public function stellaPostAppearance():void
 public function stellaTalk():void
 {
 	clearOutput();
-	showStella();
+	//showStella();
 	author("Wsan");
 	output("<i>“Hold on a second,”</i> you say, displaying incredible restraint ");
 	if(pc.hasCock()) output("between your [pc.cockBiggest] being painfully erect and");
@@ -648,6 +649,8 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 	if(pc.hasCock() && !forceVaginal)
 	{
 		var x:int = pc.biggestCockIndex();
+		var whoreshipped:Boolean = false;
+		
 		output("<i>“How do you feel about fetching a bone, Stella?”</i> you ask with a grin, pushing your hips forward just a little to present it to her. <i>“Remember not to use teeth, though.”</i>");
 		output("\n\n<i>“Ooh, yay! I love bones!”</i> Stella cheers eagerly, leaning forward on the bed. <i>“Remember to call me a good dog, master...”</i>");
 		output("\n\n<i>“When you’re done, Stella,”</i> you promise, touching the [pc.cockHead " + x + "] to her perfect, pouty lips. <i>“Go on.”</i>");
@@ -713,7 +716,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 				else output(" only ever see when she’s worshipping your balls");
 				output(", passionately washing your entire surface. With each lick you can tell she’s getting closer, her wide, puppy-bearing hips jerking and bucking until, finally, she cums all on her own. Femcum squirts down her plump thighs and buttocks, drizzling on the floor as she moans like a whore into your fat nuts, overcome by your evident fertility.");
 				output("\n\nIt doesn’t stop there, either. Endeavoring to cover your entire sack in cute, feminine kisses and licks of her tongue, Stella pays attention to every single aspect of worshipping your balls, fondling and sucking where she can, bringing herself to another mind-shattering orgasm before too long. The way she groans so loud, you suspect this is a fantasy she’s wanted to fulfill for quite some time - it’s pretty clear she has a big thing for size...");
-				IncrementFlag("STELLA_BALLWORSHIPPED");
+				whoreshipped = true;
 			}
 		}
 		else if(pc.balls == 1) 
@@ -734,7 +737,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 				else output(" only ever see when she’s worshipping your ball");
 				output(", passionately washing your entire surface. With each lick you can tell she’s getting closer, her wide, puppy-bearing hips jerking and bucking until, finally, she cums all on her own. Femcum squirts down her plump thighs and buttocks, drizzling on the floor as she moans like a whore into your fat nut, overcome by your evident fertility.");
 				output("\n\nIt doesn’t stop there, either. Endeavoring to cover your entire sack in cute, feminine kisses and licks of her tongue, Stella pays attention to every single aspect of worshipping your ball, fondling and sucking where she can, bringing herself to another mind-shattering orgasm before too long. The way she groans so loud, you suspect this is a fantasy she’s wanted to fulfill for quite some time - it’s pretty clear she has a big thing for size...");
-				IncrementFlag("STELLA_BALLWORSHIPPED");
+				whoreshipped = true;
 			}
 		}
 		else output("loins");
@@ -771,7 +774,11 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		{
 			output("\n\nGrunting, you grab Stella’s hair and tilt her head upwards so you can watch her reaction as you start cumming down her throat. She looks up at you with an expression of shocked amazement as your surging cock begins to fill her with warm, churning seed. Presented with no other choice than to submissively hold her throat open and just letting you cum straight into her stomach, Stella’s tummy rapidly begins to inflate, swelling with jizz.");
 			output("\n\nThe waterfall of spunk right into her belly doesn’t let up, either, Stella’s eyes rolling back in her head while her hips begin to buck in sympathetic orgasm. Overcome by your incredible virility, she squirts on the floor");
-			if(pc.balls > 1 && pc.ballDiameter() > 6) output(" just like when she was licking your balls}, her incredibly submissive tendencies in the face of an extremely well-endowed partner on display");
+			if(pc.balls > 1 && pc.ballDiameter() > 6)
+			{
+				if(flags["STELLA_BALLWORSHIPPED"] != undefined) output(" just like when she was licking your balls");
+				output(", her incredibly submissive tendencies in the face of an extremely well-endowed partner on display");
+			}
 			output(". You just grin and keep her there with your cock in her throat, letting her take on your burden by the gallon.");
 			output("\n\n<i>“Good little bitch, Stella.”</i>");
 		}
@@ -782,7 +789,9 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		if(cumQ >= 10000) output(".. Especially if you leave me looking like this...”</i> she says, stroking her swollen tummy. Her massive tits lie atop it, giving her the image of a fertility goddess. It looks good on her. <i>“I think it looks good on me!");
 		output("”</i>");
 		output("\n\nYou’re pretty sure she really means it, too. In fact, you could take her up on the offer right now...");
-
+		
+		if(whoreshipped) IncrementFlag("STELLA_BALLWORSHIPPED");
+		
 		processTime(30);
 		pc.orgasm();
 		//[Nah] [Keep going]

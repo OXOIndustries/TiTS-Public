@@ -345,7 +345,7 @@ public function lundMenu():void
 	if(flags["LUND_PB"] == undefined) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You wonder if Lund might enjoy having a peanut butter cookie.");
 	else if(flags["LUND_MADE_U_SUBMIT"] != undefined) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You wonder if you could get Lund somewhere private so you can give him another cookie...");
 	else if(flags["LUND_PB"] == 1) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You snicker as you wonder to yourself if Lund is in the mood for another cookie. He certainly seemed to enjoy the last one!");
-	else addDisabledButton(4,"PB Cookie","Peanut Butter Cookie","Lund has made it clear he won't be going near those again!");
+	else addDisabledButton(4,"PB Cookie","Peanut Butter Cookie","Lund has made it clear he won’t be going near those again!");
 	addButton(14,"Leave",mainGameMenu);
 }
 

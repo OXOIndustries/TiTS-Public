@@ -49,6 +49,14 @@ public function jessePCTitleSex(lowercase:Boolean = false):String
 	else return "[pc.name]";
 }
 
+public function getJessePregContainer():PregnancyPlaceholder
+{
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.createPerk("Fixed CumQ",700,0,0,0);
+	return pp;
+}
+
 // shameless copied from fisianna
 public function largestCockIndexThatFitsJessesAss():int
 {
@@ -586,7 +594,7 @@ public function jesseSecondTeaseI():void
 	output("\n\n<i>“Y-Yes, " + jessePCTitleSex() + ",”</i> she whimpers.");
 	output("\n\n<i>“G-goat lady goes to the other s-side of the table and u-undoes her suit. Her c-cock... gods, it’s even bigger tha... tha-”</i> there’s a pause, then she grunts like a powerlifter as she tries to hold back her need to cum.");
 	output("\n\n<i>“Fu-fuck... s-sorry, " + jessePCTitleSex() + ",”</i> Jesse murmurs. You whisper for her to continue regardless.");
-	output("\n\n<i>“A-ah... goat girl holds her meat to my m-mouth and I suck it up so quickly! I-I cant help it!”</i> She squeals, tensing herself again to hold back her orgasm. <i>“P-please may I c-cum, " + jessePCTitleSex() + "?? Pleeease...”</i>");
+	output("\n\n<i>“A-ah... goat girl holds her meat to my m-mouth and I suck it up so quickly! I-I can’t help it!”</i> She squeals, tensing herself again to hold back her orgasm. <i>“P-please may I c-cum, " + jessePCTitleSex() + "?? Pleeease...”</i>");
 	output("\n\n<i>“You may not,”</i> you say firmly. Your grip tightens in increments around the base of her femcock.");
 	output("\n\n<i>“Ungg...! G-goat girl grabs my h-hair and f-fucks my throat like I’m her toy. I g-gag and she slows, calling me a ‘g-good girl’, <b>gaah</b> I ca.. I ca-!”</i>");
 	output("\n\nWith a heavily stifled whine, a thin spurt of pre-cum shoots from her tightly gripped dick. It’s not enough to be a full orgasm but she still broke the rules...");
@@ -1377,7 +1385,7 @@ public function jesseSexRoleReversalEncourage():void
 	processTime(60 + rand(15));
 	pc.orgasm();
 	pc.applyCumSoaked();
-	pc.loadInAss();
+	pc.loadInAss(getJessePregContainer());
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1398,7 +1406,7 @@ public function jesseSexRoleReversalTakeOver():void
 	output("\n\nYou pull on the leash again so that her open lips are now pressed against your [pc.lips] and well, she can’t help herself. Her tongue and your [pc.tongue] enter a sloppy spiral of play, transferring coos of approval between you both.");
 	output("\n\nThe power bottomed Jesse begins rocking her hips back and forth again, picking up her steady and <i>deep</i> pace from before. She’s already much more into it, her pelvis gyrating as she pumps in and out of you. Every thrust tries to eek out more and more space inside but she always manages to hilt into your [pc.asshole]!");
 	output("\n\nOn the other side of things, her grip on your [pc.cockBiggest] is welcome but paltry so you put your free hand on top of hers to help you along. The strengthened combination of grips feels <i>amazingly</i> tight on your tender [pc.cockNoun], and the constant, smooth grinding of your prostate forces flecks of pre-cum to the very tip of the [pc.cockHeadBiggest].");
-	output("\n\nJesse speeds up a little, making shorter, shallow thrusts that tenderize your strained hole all the more. She lets go of the mouth lock to breath more easily and you ease back on the leash tension just enough for her to do so. Her face is only half a few inches from your [pc.face] and the poor girl just cant take her eyes off of you: swirling, starry orbs detailed with glistening, black streams of ruined eye liner. You wrap your [pc.legs] right around her middle and use ");
+	output("\n\nJesse speeds up a little, making shorter, shallow thrusts that tenderize your strained hole all the more. She lets go of the mouth lock to breath more easily and you ease back on the leash tension just enough for her to do so. Her face is only half a few inches from your [pc.face] and the poor girl just can’t take her eyes off of you: swirling, starry orbs detailed with glistening, black streams of ruined eye liner. You wrap your [pc.legs] right around her middle and use ");
 	if (pc.legCount > 1) output("them");
 	else output("it");
 	output(" to pull her just that bit closer, wishing for her to exceed.");
@@ -1415,7 +1423,7 @@ public function jesseSexRoleReversalTakeOver():void
 	processTime(60 + rand(15));
 	pc.orgasm();
 	pc.applyCumSoaked();
-	pc.loadInAss();
+	pc.loadInAss(getJessePregContainer());
 
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

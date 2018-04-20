@@ -36,7 +36,7 @@ package classes.GameData.Pregnancy.Handlers
 			_pregnancyQuantityMinimum = 3;
 			_pregnancyQuantityMaximum = 20;
 			_definedAverageLoadSize = 60;
-			_pregnancyChildType = GLOBAL.CHILD_TYPE_LIVE;
+			_pregnancyChildType = GLOBAL.CHILD_TYPE_EGGS;
 			_pregnancyChildRace = GLOBAL.TYPE_RASKVEL;
 			_childMaturationMultiplier = 1.0;
 			
@@ -52,35 +52,35 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (20 * 60), function(pregSlot:int):void {
-				AddLogEvent("That warm flush is back, and this time, it brought some arousal with it. You'd think getting stuffed with raskvel cum would be enough for you, but nope. Your body apparently wants more.", "passive");
+				AddLogEvent("That warm flush is back, and this time, it brought some arousal with it. You’d think getting stuffed with raskvel cum would be enough for you, but nope. Your body apparently wants more.", "passive");
 				kGAMECLASS.pc.lust(20);
 				kGAMECLASS.pc.libido(1);
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (30 * 60), function(pregSlot:int):void {
-				AddLogEvent("You could wave off the occasional strange craving or erotic thought, but so close after unprotected sex? You whip out your Codex for a quick check, and sure enough, <b>you're pregnant</b>. Apparently you're going to be incubating some raskvel, though it's too early for a complete embryo count. The data indicates you'll be laying some eggs in <b>about 13 days</b>.", "passive");
+				AddLogEvent("You could wave off the occasional strange craving or erotic thought, but so close after unprotected sex? You whip out your Codex for a quick check, and sure enough, <b>you’re pregnant</b>. Apparently you’re going to be incubating some raskvel, though it’s too early for a complete embryo count. The data indicates you’ll be laying some eggs in <b>about 13 days</b>.", "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (40 * 60), function(pregSlot:int):void {
 				if(kGAMECLASS.pc.vaginas[pregSlot].wetness() < 3)
 				{
-					AddLogEvent(ParseText("You're feeling a little more moisture between your [pc.thighs] than normal, not just now but over the past hour or so, like <b>you're just secreting more lubricant than before.</b> Maybe that'll come in handy come time to lay those eggs the raskvel seem so excited to have."), "passive");
+					AddLogEvent(ParseText("You’re feeling a little more moisture between your [pc.thighs] than normal, not just now but over the past hour or so, like <b>you’re just secreting more lubricant than before.</b> Maybe that’ll come in handy come time to lay those eggs the raskvel seem so excited to have."), "passive");
 					kGAMECLASS.pc.vaginas[pregSlot].wetness(1);
 				}
 				//Alright wetted - 10 lust
 				else
 				{
-					AddLogEvent(ParseText("Your gut twinges out of nowhere, but not with pain - with pleasure. Doubling over, you barely suppress a moan as feminine honey surges into your [pc.multiCunts]. The feeling passes blessedly quickly, leaving you with a decidedly slick feeling in your crotch. Do raskvel get like this? Maybe that's why they're always in a hurry to breed."),"passive");
+					AddLogEvent(ParseText("Your gut twinges out of nowhere, but not with pain - with pleasure. Doubling over, you barely suppress a moan as feminine honey surges into your [pc.multiCunts]. The feeling passes blessedly quickly, leaving you with a decidedly slick feeling in your crotch. Do raskvel get like this? Maybe that’s why they’re always in a hurry to breed."),"passive");
 					kGAMECLASS.pc.lust(10);
 				}
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (45 * 60), function(pregSlot:int):void {
-				AddLogEvent("Whenever you aren't otherwise occupied, your hands keep migrating back to your Codex to fiddle with the settings, tweaking the appearance and app layout for ever-greater efficiency.", "passive");
+				AddLogEvent("Whenever you aren’t otherwise occupied, your hands keep migrating back to your Codex to fiddle with the settings, tweaking the appearance and app layout for ever-greater efficiency.", "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (50 * 60), function(pregSlot:int):void {
-				AddLogEvent(ParseText("Your [pc.belly] feels a little " + (kGAMECLASS.pc.bellyRating() > 30 ? "more bloated than normal" : "bloated") + ". That alien seed sure takes fast. It's only been about two days, and you're already starting to show. You look at the pile of protein wrappers in your pack and shrug. Guess you're eating for two... or six."), "passive");
+				AddLogEvent(ParseText("Your [pc.belly] feels a little " + (kGAMECLASS.pc.bellyRating() > 30 ? "more bloated than normal" : "bloated") + ". That alien seed sure takes fast. It’s only been about two days, and you’re already starting to show. You look at the pile of protein wrappers in your pack and shrug. Guess you’re eating for two... or six."), "passive");
 				kGAMECLASS.pc.bellyRatingMod += 5;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;
@@ -91,7 +91,7 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (80 * 60), function(pregSlot:int):void {
-				AddLogEvent(ParseText("A thought occurs to you in your free time: your Codex is a portable wonder. It's a step above every other tablet computer on the market, and you let it casually dangle from your hip! Perhaps you should guard your technology more carefully."), "passive");
+				AddLogEvent(ParseText("A thought occurs to you in your free time: your Codex is a portable wonder. It’s a step above every other tablet computer on the market, and you let it casually dangle from your hip! Perhaps you should guard your technology more carefully."), "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (100 * 60), function(pregSlot:int):void {
@@ -99,13 +99,13 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 10;
 
-				AddLogEvent(ParseText("Oof! Your [pc.belly] is definitely getting bigger. Maybe the eggs are developed enough for your Codex to give you a count? One quick scan has your answers: it can, and there's " + pData.pregnancyQuantity + "! So much for terran genetics keeping you to single children."), "passive");
+				AddLogEvent(ParseText("Oof! Your [pc.belly] is definitely getting bigger. Maybe the eggs are developed enough for your Codex to give you a count? One quick scan has your answers: it can, and there’s " + pData.pregnancyQuantity + "! So much for terran genetics keeping you to single children."), "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (120 * 60), function(pregSlot:int):void {
 				kGAMECLASS.pc.lust(10);
 
-				AddLogEvent(ParseText("Your gut clenches, lighting up with pleasure and forcing you to stop what you're doing to take a seat. Again and again, you feel your womb fluttering around its alien passengers, somehow ecstatic to cradle them for the foreseeable future. It stops after thirty or forty seconds - long enough for you to gain an appreciation for how all those raskvel mothers must feel... as well as some extra moisture down below."), "passive");
+				AddLogEvent(ParseText("Your gut clenches, lighting up with pleasure and forcing you to stop what you’re doing to take a seat. Again and again, you feel your womb fluttering around its alien passengers, somehow ecstatic to cradle them for the foreseeable future. It stops after thirty or forty seconds - long enough for you to gain an appreciation for how all those raskvel mothers must feel... as well as some extra moisture down below."), "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (140 * 60), function(pregSlot:int):void {
@@ -160,7 +160,7 @@ package classes.GameData.Pregnancy.Handlers
 			addStageProgression(_basePregnancyIncubationTime - (240 * 60), function(pregSlot:int):void {
 				kGAMECLASS.pc.lust(10);
 				kGAMECLASS.pc.slowStatGain("libido",1);
-				AddLogEvent(ParseText("You have to admit that you're really having a good time being pregnant with raskvel. There's not much in the way of discomfort, just lots of low grade arousal."), "passive");
+				AddLogEvent(ParseText("You have to admit that you’re really having a good time being pregnant with raskvel. There’s not much in the way of discomfort, just lots of low grade arousal."), "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (260 * 60), function(pregSlot:int):void {
@@ -168,11 +168,11 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 10;
 
-				AddLogEvent(ParseText("The eggs in your womb are getting bigger, so much bigger that you've grown quite visibly pregnant. You don't really mind though. You all but glow with the pleasure of motherhood (and the infusion of carnal delights it has infused you with)."), "passive");
+				AddLogEvent(ParseText("The eggs in your womb are getting bigger, so much bigger that you’ve grown quite visibly pregnant. You don’t really mind though. You all but glow with the pleasure of motherhood (and the infusion of carnal delights it has infused you with)."), "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (280 * 60), function(pregSlot:int):void {
-				AddLogEvent(ParseText("You could really go for some fungus - the more pungent, the better. Maybe that's just the eggs, talking."), "passive");
+				AddLogEvent(ParseText("You could really go for some fungus - the more pungent, the better. Maybe that’s just the eggs, talking."), "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (300 * 60), function(pregSlot:int):void {
@@ -180,7 +180,7 @@ package classes.GameData.Pregnancy.Handlers
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 10;
 
-				AddLogEvent(ParseText("The [pc.skin] on your [pc.belly] creaks, taut and still stretching as it grows heavier with eggs. You're looking more and more like a real raskvel momma everyday."), "passive");
+				AddLogEvent(ParseText("The [pc.skin] on your [pc.belly] creaks, taut and still stretching as it grows heavier with eggs. You’re looking more and more like a real raskvel momma everyday."), "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (315 * 60), function(pregSlot:int):void {
@@ -189,14 +189,14 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 10;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 10;
-				AddLogEvent(ParseText("Toting around a tummy full of raskvel babies is no easy job. You sit down for a break, finally getting an understanding of why the scaly little brood-mothers prefer to spend the later stages of their pregnancies on the ground with fingers and cocks between their legs. It's exhausting, being this heavy <i>and</i> this horny all the time. <b>You might wind up like that before too long. Best find a safe place to wait out the rest of this.</b>"), "passive");
+				AddLogEvent(ParseText("Toting around a tummy full of raskvel babies is no easy job. You sit down for a break, finally getting an understanding of why the scaly little brood-mothers prefer to spend the later stages of their pregnancies on the ground with fingers and cocks between their legs. It’s exhausting, being this heavy <i>and</i> this horny all the time. <b>You might wind up like that before too long. Best find a safe place to wait out the rest of this.</b>"), "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (326 * 60), function(pregSlot:int):void {
 				kGAMECLASS.pc.bellyRatingMod += 500;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 500;
-				AddLogEvent(ParseText("You groan and slide down to the ground, not because you're too tired but because you're just <b>too pregnant to stand</b>. " + (kGAMECLASS.pc.buttRating() < 18 ? "Fortunately <b>your [pc.butt] seems a bit bigger</b> as you settle onto it. You're more suited to sitting prettily on your asscheeks with your [pc.vaginas] on display." : "Fortunately, you've got a nice, big ass to lie around on as you display your oh-so-fertile belly.") + " A little while spent lounging around is a small price to pay for giving birth to a litter of lovely little rasks."), "passive");
+				AddLogEvent(ParseText("You groan and slide down to the ground, not because you’re too tired but because you’re just <b>too pregnant to stand</b>. " + (kGAMECLASS.pc.buttRating() < 18 ? "Fortunately <b>your [pc.butt] seems a bit bigger</b> as you settle onto it. You’re more suited to sitting prettily on your asscheeks with your [pc.vaginas] on display." : "Fortunately, you’ve got a nice, big ass to lie around on as you display your oh-so-fertile belly.") + " A little while spent lounging around is a small price to pay for giving birth to a litter of lovely little rasks."), "passive");
 				if(kGAMECLASS.pc.buttRating() < 18) kGAMECLASS.pc.buttRating(2);
 			}, true);
 
@@ -206,13 +206,13 @@ package classes.GameData.Pregnancy.Handlers
 
 			addStageProgression(_basePregnancyIncubationTime - (331 * 60), function(pregSlot:int):void {
 				kGAMECLASS.pc.lust(5);
-				AddLogEvent(ParseText("A flutter between your pussy-soaked thighs reminds you that you're pregnant. You can feel things shifting inside you, adjusting and preparing. You'll probably be laying eggs in a few hours, just pumping them out one after another while screaming in heavenly delight."), "passive");
+				AddLogEvent(ParseText("A flutter between your pussy-soaked thighs reminds you that you’re pregnant. You can feel things shifting inside you, adjusting and preparing. You’ll probably be laying eggs in a few hours, just pumping them out one after another while screaming in heavenly delight."), "passive");
 			}, true);
 		}
 		
 		public static function raskvelSuccessfulImpregnation(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
-			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr, [3.0, 1.5, 0.5]);
+			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr);
 		}
 		
 		public static function raskvelOnDurationEnd(mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
@@ -245,7 +245,7 @@ package classes.GameData.Pregnancy.Handlers
 				if(genderList.length > 0) babyGender = genderList[rand(genderList.length)];
 
 				mother.createStatusEffect("Raskvel Pregnancy Ends", babies, belly, pregSlot, babyGender, true);
-				kGAMECLASS.eventQueue.push(kGAMECLASS.shekkaSlashRaskBirth);
+				kGAMECLASS.eventQueue.push(kGAMECLASS.raskvelPregnancyBirth);
 				RaskvelPregnancyHandler.raskvelCleanupData(mother, pregSlot, thisPtr);
 			}
 			//Delay subsequent births till the first has had time to go off.

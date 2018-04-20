@@ -729,7 +729,7 @@ public function erikaPublicSexThreesomeGryvainEnd():void
 
 	processTime(60+rand(15));
 	pc.orgasm();
-	erika.loadInAss();
+	erika.loadInAss(pc);
 	erika.orgasm();
 
 	clearMenu();
@@ -1186,7 +1186,7 @@ public function erikaSexRideHerPussy():void
 	IncrementFlag("ERIKA_SEXED");
 
 	processTime(60+rand(15));
-	pc.loadInCunt(erika);
+	pc.loadInCunt(erika, 0);
 	pc.orgasm();
 	erika.orgasm();
 

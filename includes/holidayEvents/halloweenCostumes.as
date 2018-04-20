@@ -1889,7 +1889,7 @@ public function spiderCostumeOutro():void
 	{
 		output("\n\nMore interesting still is the <b>spider-like vagina that you’ve gained!</b>");
 	}
-	else if(pc.hasVagina(GLOBAL.TYPE_ARACHNID))
+	else if(pc.hasVaginaType(GLOBAL.TYPE_ARACHNID))
 	{
 		output("\n\nAt least your spidery vagina is unchanged. You suppose that’s one of the perks of matching your costume to your pre-existing mods.");
 	}

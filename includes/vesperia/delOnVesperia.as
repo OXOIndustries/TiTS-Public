@@ -1066,7 +1066,9 @@ public function delSlootybuttTrainingSrTheDoombringer():void
 			output("\n\nNobody’s ever accused Kaede of keeping a lady waiting. It isn’t long before she’s moaning and digging her fingers into your [pc.hips], pounding away at your gripping asshole until her knot’s swollen and cum is leaking from her pointy cockhead.");
 			output("\n\nSuddenly, Kaede screams, and you feel her emptying her balls into your [pc.asshole]. You glance back in time to see a pair of Del’s fingers pistoning into Kaede’s ass, milking her prostate right over the edge of climax. Her knot spreads your rim, plugging your ass so none of her creamy orgasm can escape. When she’s finished, the ginger pup flops over on your back, moaning and twitching as Del’s fingers work her hole, and <i>your</i> ass drains her dry.");
 			output("\n\nWhen she’s finally done, Kaede staggers off you, breathing hard. Your eyes go wide and your breath catches in your throat when her knot, still mostly turgid, pops out of your abused behind. Blushing furiously, the ginger ausar rushes off to get cleaned up.");
-			pc.loadInAss();
+			
+			var ppKaede:PregnancyPlaceholder = getKaedePregContainer();
+			pc.loadInAss(ppKaede);
 			pc.buttChange(20);
 		}
 		flags["KAEDE_EXHIBITIONISM"] += 2;

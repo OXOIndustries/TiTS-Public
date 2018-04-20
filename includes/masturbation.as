@@ -330,7 +330,7 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		fap.ignoreRandomSelection = false;
 		faps.push(fap);
 	}
-	if (flags["LAQUINE_GENT_BONED"] != undefined && pc.inHeat() && pc.hasVagina(GLOBAL.TYPE_EQUINE))
+	if (flags["LAQUINE_GENT_BONED"] != undefined && pc.inHeat() && pc.hasVaginaType(GLOBAL.TYPE_EQUINE))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "M.Laquine";

@@ -621,12 +621,12 @@ public function steeleBiomedGangbangIII():void
 	{
 		for (var x:int = 0; x < pc.totalVaginas(); x++) 
 		{	
-			pc.cuntChange(x, walkCockVolume())
+			pc.cuntChange(x, waltCockVolume())
 			pc.loadInCunt(undefined, x)
 		}
 	}
-	pc.buttChange(walkCockVolume());
-	pc.loadInAss();
+	pc.buttChange(waltCockVolume());
+	pc.loadInAss(getWaltPregContainer());
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();

@@ -1483,7 +1483,7 @@ public function syriShowerAdventures():void
 	output("\n\nAs your lover finishes riding out her orgasm, you swallow down the rest of her seed, the sound of Syri’s labored breathing fading into the pitter-patter of water onto the shower floor. You pull yourself off her knotty cock and smile up at the wolf-girl. She looks back down at you, returning your grin, though sometimes her face is blocked by her heaving bosom. She reaches down and cups your cheek, wiping away some of her excess cum with a fuzzy thumb, hot water caressing your face. You quickly return your [pc.tongue] to Syri’s doggy-cock, licking up the few drops of cum that haven’t been washed away by your shower’s flow. <i>“Thanks for that, [pc.name],”</i> the she-wolf sighs, <i>“your mouth is </i>magic<i>.”</i>");
 	processTime(34);
 	pc.lust(10);
-	pc.loadInMouth();
+	pc.loadInMouth(chars["SYRI"]);
 	clearMenu();
 	addButton(0,"Next",syriShowerAdventures2);
 }
