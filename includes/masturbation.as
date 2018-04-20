@@ -106,7 +106,15 @@ public function arousalMenu():void
 	addButton(14, "Back", mainGameMenu);
 }
 
-public function availableFaps(roundTwo:Boolean = false):Array
+public function masturbateButton(btnSlot:int = 0):void
+{
+	if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+	else if(!pc.canMasturbate()) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+	else if(availableFaps(false, true).length <= 0) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You don’t have any available masturbation options at the moment....");
+	else addButton(btnSlot, "Masturbate", masturbateMenu);
+}
+
+public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = false):Array
 {
 	var faps:Array = new Array();
 	var fap:FapCommandContainer;
@@ -114,7 +122,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	// Overrides
 	// If any of these are true, do whatever you need and return after pushing a single function into the array
 	// We can then autoexecute on the only available option
-	if (pc.hasCuntSnake() && pc.hasCock() && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
+	if (!checkOnly && pc.hasCuntSnake() && pc.hasCock() && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 	{
 		clearOutput();
 		output("An insatiable hunger from your tail overwhelms you. <b>You have to feed it!</b>");
@@ -123,7 +131,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		return null;
 	}
 	
-	if (pc.milkFullness >= 150 && pc.isLactating() && flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] == undefined)
+	if (!checkOnly && pc.milkFullness >= 150 && pc.isLactating() && flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] == undefined)
 	{
 		// Super-lactation, must resist urge to fap!
 		if(pc.isMilkTank())

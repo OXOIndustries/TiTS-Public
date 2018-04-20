@@ -2109,7 +2109,7 @@ public function shekkaAnnoVibeOff():void
 		if(pc.canLactate() && pc.isLactating()) output(", receiving a healthy dose of [pc.milk] along with your pleasured moans");
 		output(". The horny Raskvel ");
 		if(pc.balls > 0) output("slips her hand beneath your [pc.balls] with a hungry purr as she ");
-		output("presses a teasing fingertip against your eager [pc.butthole]");
+		output("presses a teasing fingertip against your eager [pc.asshole]");
 		if(pc.balls == 0) output(" with a hungry little purr");
 		output(". <i>“There’s always so much of you to please!”</i> Anno announces brightly, giving your member");
 		if(pc.cockTotal() > 1) output("s");
@@ -2125,7 +2125,7 @@ public function shekkaAnnoVibeOff():void
 			if(pc.ballDiameter() < 6) output(", forced to wear your [pc.balls] like a hat");
 			else output(", forced to hold your massive testes to the side");
 		}
-		output(". At the same time your [pc.cock] drools liberal quantities of [pc.cumflavor] pre onto her head, ");
+		output(". At the same time your [pc.cock] drools liberal quantities of [pc.cumFlavor] pre onto her head, ");
 		if(pc.cumQ() >= 1000) output("in large enough quantities to utterly soak her ears");
 		else output("creating a little spunky crown");
 		output(". <i>“Fuck you look so good, [pc.name]... I could just eat you up. Alas,”</i> Anno begins, pressing the head of her toy up against your [pc.asshole]. <i>“This is for you, not me.”</i>");
@@ -2215,7 +2215,7 @@ public function shekkaAnnoVibeOff():void
 		else output("practically swallowing the entirety of your modest [pc.cock]");
 		output(".");
 
-		output("\n\nWarmth and wetness envelops your prick, but your attempts to gasp are stifled by having a faceful of pup-pussy. Instead you’re left with no choice but to eat her out until nectar dribbles down your chin. Shekka moans, low and deep as the vibrator is pressed into you until her knuckles are pressed up against your [pc.vagina]. Of course, it hasn’t started vibrating yet. Blessedly the girl riding your face lifts herself up in order to properly ");
+		output("\n\nWarmth and wetness envelops your prick, but your attempts to gasp are stifled by having a faceful of pup-pussy. Instead you’re left with no choice but to eat her out until nectar dribbles down your chin. Shekka moans, low and deep as the vibrator is pressed into you until her knuckles are pressed up against your [pc.asshole]. Of course, it hasn’t started vibrating yet. Blessedly the girl riding your face lifts herself up in order to properly ");
 		if(pc.cocks[0].cLength() > 14) output("suck on");
 		else if(pc.cocks[0].cLength() > 7) output("deepthroat");
 		else output("slobber the entirety of");

@@ -709,7 +709,7 @@ package classes.Characters
 				if (unflaggedVagNum == vaginas.length)
 				{
 					m = "You’re getting incredibly wet";
-					if(legCount > 1) m += " between the [pc.legs]";
+					if(legCount > 1) m += ParseText(" between the [pc.legs]");
 					else m += "... down there";
 					m += ". Moisture seems to be dripping everywhere, transforming your puss";
 					if(totalVaginas() == 1) m += "y into a slipperier, gooier version of itself. <b>Your entire vagina has become semi-solid, like the rest of your crotch.";
@@ -1125,23 +1125,23 @@ package classes.Characters
 					createStatusEffect("Latex Regrow", 0, 0, 0, 0, true, "", "", false, 720);
 				}
 			}
-			if(armType == GLOBAL.TYPE_FLOWER && hasVagina() && !hasStatusEffect("Arm Flower"))
+			if(armType == GLOBAL.TYPE_FLOWER && hasVagina())
 			{
-				if(totalWombPregnancies() < vaginas.length)
+				if(!hasStatusEffect("Arm Flower") && totalWombPregnancies() < vaginas.length)
 				{
 					// Choose Flower Color
 					var flowerColor:String = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 					
-					AddLogEvent("A summery feeling spreads down your arm ivy, like tiny veins of lustful energy. You intimately feel each of the small " + flowerColor + " flowers that pop and blossom into being on the delicate vines, like little skips of the heart.\n\nWhy have you flowered like this? The rational part of your brain doesn’t have an answer... but the clear, green part of you knows. Your empty womb and [pc.eachVagina] know. You are ripe and ready for seeding, and your body is brightly signaling that fact to anyone that looks at you the best way it knows how.", "passive", deltaT);
+					AddLogEvent(ParseText("A summery feeling spreads down your arm ivy, like tiny veins of lustful energy. You intimately feel each of the small " + flowerColor + " flowers that pop and blossom into being on the delicate vines, like little skips of the heart.\n\nWhy have you flowered like this? The rational part of your brain doesn’t have an answer... but the clear, green part of you knows. Your empty womb and [pc.eachVagina] know. You are ripe and ready for seeding, and your body is brightly signaling that fact to anyone that looks at you the best way it knows how."), "passive", deltaT);
 					
 					createStatusEffect("Arm Flower", 0, 0, 0, 0, true, "", flowerColor, false);
 					// +Lust, slow Libido increase of 5
 					slowStatGain("libido", 5);
 					lust(50);
 				}
-				else
+				else if(hasStatusEffect("Arm Flower") && totalWombPregnancies() >= vaginas.length)
 				{
-					AddLogEvent("Your " + getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly].", "passive", deltaT);
+					AddLogEvent(ParseText("Your " + getStatusTooltip("Arm Flower") + " arm flowers droop and, over the course of the next hour, de-petal. Evidently they feel their work is done... which can only mean one thing. You stroke your [pc.belly]."), "passive", deltaT);
 					
 					//Libido decrease of 3
 					libido(-3);
@@ -1209,7 +1209,7 @@ package classes.Characters
 				// Regrow wool when timer hits 0.
 				else if(perkv1("Wooly") == 0)
 				{
-					AddLogEvent(("A familiar tingle spreads across your [pc.skin], and before you can scratch the itch, " + (hasFur() ? "the fur on your chest and back grows and thickens into curls" : "thick, curly fur starts to push out from your chest and back") + ", making you appear like quite the sheep. <b>You have regrown your coat of wool!</b>"), "passive", deltaT);
+					AddLogEvent(ParseText("A familiar tingle spreads across your [pc.skin], and before you can scratch the itch, " + (hasFur() ? "the fur on your chest and back grows and thickens into curls" : "thick, curly fur starts to push out from your chest and back") + ", making you appear like quite the sheep. <b>You have regrown your coat of wool!</b>"), "passive", deltaT);
 					SheepTF.growWool(this);
 				}
 			}
@@ -1219,8 +1219,8 @@ package classes.Characters
 				// Remove Wooly Perk.
 				if(hasPerk("Wooly"))
 				{
-					if(hasFur() && perkv1("Wooly") >= 1) ExtendLogEvent(" As you claw at your [pc.skinNoun], thick patches of curly wool fall off the surface like loose yarn, " + (hasFur() ? "leaving behind relatively short fur" : "leaving you with your [pc.skinFurScales]") + ". Checking your codex, you confirm that your body has lost the ability to maintain its wooly coat.");
-					else ExtendLogEvent(" You claw at your [pc.skinNoun] until the irritation subsides. Relaxed, you check your codex, only to find that your body has lost the ability to regrow and maintain its wooly coat.");
+					if(hasFur() && perkv1("Wooly") >= 1) ExtendLogEvent(ParseText(" As you claw at your [pc.skinNoun], thick patches of curly wool fall off the surface like loose yarn, " + (hasFur() ? "leaving behind relatively short fur" : "leaving you with your [pc.skinFurScales]") + ". Checking your codex, you confirm that your body has lost the ability to maintain its wooly coat."));
+					else ExtendLogEvent(ParseText(" You claw at your [pc.skinNoun] until the irritation subsides. Relaxed, you check your codex, only to find that your body has lost the ability to regrow and maintain its wooly coat."));
 					ExtendLogEvent("\n\n(<b>Perk Lost: Wooly</b>)");
 					removePerk("Wooly");
 				}
