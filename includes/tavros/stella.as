@@ -13,7 +13,7 @@ public function showStella(nude:Boolean = false):void
 
 public function showAlex(nude:Boolean = false):void
 {
-	showName("\n" + flags["MET_SURF_ALEX"] != undefined ? "ALEX" : "STORE GIRL");
+	showName("\n" + flags["MET_ALEX_SURF"] != undefined ? "ALEX" : "STORE GIRL");
 	showBust("STORE_ALEX" + (nude ? "_NUDE" : ""));
 }
 
@@ -40,7 +40,7 @@ public function approachBeachSurfNSurf():Boolean
 	{
 		output("Stepping inside, you find yourself still admiring the decoration. It’s clear serious effort went into making this place look like a beach resort. You step up to the girl at the counter, whose name you now know to be Alex, based on your chatting with other visitors.");
 		
-		flags["MET_SURF_ALEX"] = 1;
+		flags["MET_ALEX_SURF"] = 1;
 		
 		output("\n\n<i>“Hi [pc.name], here to check out the facilities?”</i> Alex asks, smiling. <i>“");
 		if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) output("Since you’ve got a lifetime membership, you can just walk on in");
@@ -52,6 +52,7 @@ public function approachBeachSurfNSurf():Boolean
 	else if(pc.hasStatusEffect("SURFPASS")) addDisabledButton(0,"Buy Pass","Buy Pass", "Your current pass has not yet expired!");
 	else addButton(0,"Buy Pass",buyAPass);
 	addButton(1,"You",tryToSeduceAlexSlooot);
+	addButton(2,"Swimwear",buySwimwear);
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass") || pc.hasStatusEffect("SURFPASS")) addButton(11,"To The Beach!",stepIntoChangingArea);
 	else addDisabledButton(11,"To The Beach!","To The Beach","You’ll need a pass to do this.");
 	
@@ -64,7 +65,7 @@ public function tryToSeduceAlexSlooot():void
 	showAlex();
 	author("Wsan");
 	output("<i>“How about you");
-	if(flags["MET_SURF_ALEX"] != undefined) output(", Alex");
+	if(flags["MET_ALEX_SURF"] != undefined) output(", Alex");
 	output("?”</i> you ask, turning up the charm with a smile. <i>“Up for some fun in the sand?”</i>");
 
 	if(flags["MET_STELLA"] != undefined) output("\n\n<i>“Aaah, psshh, you don’t wanna hang out with me,”</i> she jokes, smiling. <i>“I heard you were up there with Stella. You two having a good time, huh? Seriously though,”</i> she continues, shrugging, <i>“I’m still at work, and still can’t bang. That’s life, huh?”</i>");
@@ -84,9 +85,8 @@ public function buyAPass():void
 	clearOutput();
 	showAlex();
 	author("Wsan");
-	output("<i>“Sure, I’ll take " + (flags["MET_SURF_ALEX"] != undefined ? "another" : "a" ) + " look,”</i> you nod.");
-
-	output("\n\n<i>“Will that be just for the day or a lifetime pass?”</i> " + (flags["MET_SURF_ALEX"] != undefined ? "Alex" : "the girl" ) + " asks, looking at you expectantly.\n\nYou recall that a day pass costs 45 credits and a lifetime pass will set you back a cool 1,500.");
+	output("<i>“Sure, I’ll take " + (flags["MET_ALEX_SURF"] != undefined ? "another" : "a" ) + " look,”</i> you nod.");
+	output("\n\n<i>“Will that be just for the day or a lifetime pass?”</i> " + (flags["MET_ALEX_SURF"] != undefined ? "Alex" : "the girl" ) + " asks, looking at you expectantly.\n\nYou recall that a day pass costs 45 credits and a lifetime pass will set you back a cool 1,500.");
 
 	processTime(2);
 	clearMenu();
@@ -96,6 +96,20 @@ public function buyAPass():void
 	else addDisabledButton(1,"Lifetime","Lifetime","You don’t have the credits for that.");
 	addButton(14,"Back",mainGameMenu);
 }
+
+public function buySwimwear():void
+{
+	shopkeep = chars["ALEX_SURF"];
+	chars["ALEX_SURF"].keeperBuy = "<i>“Looking to get yourself some new swimwear? We have a few nice pieces if you’d like.”</i>\n";
+	//List prices and whatnot. Back should go back to ALEX_SURF's main menu.
+	//Sell Menu
+	chars["ALEX_SURF"].keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	buyItem();
+}
+
 
 //[Day]
 public function buyADayPass():void
@@ -129,7 +143,7 @@ public function lifeTimePassBuy():void
 public function buyAPassEpilogue():void
 {
 	output("\n\nDoing so, the machine sprays a tiny marker across it in the design of the logo.");
-	output("\n\n<i>“Nanobots,”</i> " + (flags["MET_SURF_ALEX"] != undefined ? "Alex" : "the girl" ) + " explains. <i>“They’ll fall off automatically after twenty four hours");
+	output("\n\n<i>“Nanobots,”</i> " + (flags["MET_ALEX_SURF"] != undefined ? "Alex" : "the girl" ) + " explains. <i>“They’ll fall off automatically after twenty four hours");
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) output(" but you stay in the system with a lifetime pass");
 	output(". ");
 	if(!pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) output("Until then, you’ve got free reign of the facility! ");
@@ -147,10 +161,7 @@ public function leaveAlex():void
 	clearOutput();
 	showAlex();
 	output("<i>“Maybe some other time,”</i> you say, leaning back off the counter. <i>“See you around.”</i>");
-	output("\n\n<i>“Sure,”</i> ");
-	if(flags["MET_SURF_ALEX"] != undefined) output("Alex");
-	else output("the girl");
-	output(" says, flashing you a smile.");
+	output("\n\n<i>“Sure,”</i> " + (flags["MET_ALEX_SURF"] != undefined ? "Alex" : "the girl" ) + " says, flashing you a smile.");
 }*/
 
 public function stepIntoChangingArea():void
@@ -201,6 +212,8 @@ public function meetingStella():void
 	author("Wsan");
 	if(flags["MET_STELLA"] == undefined) 
 	{
+		//Wsan says you pick up her name from hanging out at the beach.
+		flags["MET_ALEX_SURF"] = 1;
 		output("Your mouth drops open momentarily. It’s like you’ve really set your foot on another world entirely, transported in an instant across the universe to a serene beach. A clear blue sky with wisps of white clouds floating through it stretches endlessly before you, and as you descend the stairs onto the beach proper you find your [pc.feet] met with the soft, warm crunch of golden sand shifting beneath you. Seagulls cry out in the distance, the sounds of waves crashing and people playing on the shore ring in your ears. For just a moment... it’s like you’re back on Earth.");
 		output("\n\nForgetting why you even really came in here in the first place, you just walk along the beach for a little while until a group of guys and girls your age calls you over to play some volleyball. By the time you’re finished, you’ve got a new group of friends and a bunch of sand inside your clothes, but at least you made a couple of game-winning saves. Figuring you’ll get some rest and tanning in, you wander around before you find a spot that’s relatively secluded, up on a deck and away from the crowds. You’re just sitting down when...");
 		output("\n\n<i>“Oooh, hey hot stuff!”</i> a sultry female voice calls out from nearby. <i>“I saw you down there before!”</i>");
@@ -212,7 +225,7 @@ public function meetingStella():void
 		output("\n\n<i>“Oh, this is your-?”</i> you say, beginning to get out of it before she pushes you back down and then, to your utmost surprise, sits right in your lap facing you.");
 		output("\n\n<i>“So, " + pc.mf("big boy","hottie") + ",”</i> she whispers, wrapping her arms around your neck. <i>“Got some time to play with your little doggie?”</i>");
 		output("\n\nStella’s clearly used to getting what she wants, but are you gonna give it to her?");
-		processTime(15);
+		processTime(35);
 		pc.lust(5);
 	}
 	else

@@ -3074,6 +3074,7 @@ public function futaShekkaLezOut():void
 	output(". <i>“You really need this, don’t you?”</i> She licks the juices from her fingers. <i>“");
 
 	var x:int = pc.findEmptyPregnancySlot(1);
+	if(x < 0) x = rand(pc.totalVaginas());
 
 	if(pc.vaginas[x].wetness() < 3) output("I know you core types don’t usually get that wet, but I bet I could slide in without anything but moans from you, couldn’t I?”</i>");
 	else if(pc.vaginas[x].wetness() < 4) output("Mmmm, you’re wetter than I was the first time we fucked, I think. I bet this dick would slip right in, and you’d love it.”</i>");
@@ -3160,7 +3161,7 @@ public function futaShekkaLezOut():void
 	output(". The strokes are too fast for your body to recover from. When she yanks back too far, your pussy hangs open and drools, begging it for it to return. When she smacks into your cervix, you yelp and inwardly gloat at how you feel her flare swell against your walls.");
 
 	output("\n\n<i>“So f-f-fucking hot! Fuck... fuck-fuck-fuck-I-fucking-love-you!”</i> Shekka’s heavy, bestial balls quiver against your slit, followed a moment later by a flood of delightfully warm creaminess in your deepest recesses.");
-	if(!pc.isPregnant(x)) output(" You almost wish you weren’t pregnant, so that it could slide past your cervix and give Shekka the eggs she doubtless wants.");
+	if(pc.isPregnant(x)) output(" You almost wish you weren’t pregnant, so that it could slide past your cervix and give Shekka the eggs she doubtless wants.");
 	output(" Dribbles of white roll down your [pc.thighs] at the culmination of that first blast, but she’s just getting started. The blunt equine head strains wider still, opening your depths in ways they were never meant to be");
 	if(!pc.isPregnant(x)) 
 	{

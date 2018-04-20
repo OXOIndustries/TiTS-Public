@@ -3574,7 +3574,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Beach ‘n Surf</u></b>");
 				output2("\n<b>* Store:</b> Visited");
-				if(flags["MET_SURF_ALEX"] != undefined) output2("\n<b>* Alex:</b> Met her");
+				if(flags["MET_ALEX_SURF"] != undefined) output2("\n<b>* Alex:</b> Met her");
 				if(flags["MET_STELLA"] != undefined) output2("\n<b>* Stella:</b> Met her");
 				if(flags["STELLA_FUCKED"] != undefined) output2("\n<b>* Stella, Times Sexed:</b> " + flags["STELLA_FUCKED"]);
 				if(flags["STELLA_BUTTFUCKED"] != undefined) output2("\n<b>* Stella, Times You Buttfucked Her:</b> " + flags["STELLA_BUTTFUCKED"]);
