@@ -252,9 +252,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	}
 	else
 	{
-		if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(8, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
-		else if(!pc.canMasturbate()) addDisabledButton(8, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-		else addButton(8, "Masturbate", masturbateMenu);
+		masturbateButton(8);
 	}
 	// Sleep/Rest
 	if(hasButton(9)) {} // Button overrides!

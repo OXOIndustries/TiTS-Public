@@ -2370,6 +2370,7 @@
 				case "anus":
 				case "assholeDescript":
 				case "asshole":
+				case "butthole":
 					buffer = assholeDescript();
 					break;
 				case "anusSimple":
@@ -20303,6 +20304,7 @@
 					case "Goblinola Bar":
 					case "Laquine Ears":
 					case "LimberTime":
+					case "The Treatment":
 						if(thisStatus.minutesLeft <= 0) thisStatus.minutesLeft = 1;
 						break;
 					case "Ovilium":
