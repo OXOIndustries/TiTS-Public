@@ -23,7 +23,7 @@ package classes.Items.Apparel
 			
 			description = "a strappy white bikini bottom";
 			
-			tooltip = "This white, strappy little number is made from premium ultralastic, allowing to tightly wrap anything from the a petite heiny to a leithan's bulky hindquarters. Its glossy pigmentation (or lack thereof) is eyecatching without being outright slutty.";
+			tooltip = "This white, strappy little number is made from premium ultralastic, allowing to tightly wrap anything from the a petite heiny to a leithan’s bulky hindquarters. Its glossy pigmentation (or lack thereof) is eyecatching without being outright slutty.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

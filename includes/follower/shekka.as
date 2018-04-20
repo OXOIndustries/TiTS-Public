@@ -3099,7 +3099,7 @@ public function futaShekkaLezOut():void
 	else output(" lines herself up behind you and steps");
 	output(" into position. One hand squeezes your [pc.butt]; the other holds her equine cock around the medial ring and hefts it up into position. <i>“");
 	if(flags["SHEKKA_TRIED_2_BREED_U"] == undefined) output("I got so into... I’m still not used to being on this side.");
-	else output("I get so into this... I'll never be used to being on this side, no matter often I get to do this.");
+	else output("I get so into this... I’ll never be used to being on this side, no matter often I get to do this.");
 	output("”</i> Shekka pauses, and her hand slaps down once more");
 	if(pc.buttRating() >= 6 && pc.tone < 50) output(", sending ripples across your cushiony hindquarters");
 	else output(", making your [pc.vaginas] clench and your body shudder");
@@ -3194,12 +3194,12 @@ public function futaShekkaLezOut():void
 	else
 	{
 		author("Fenoxo & B!");
-		output("\n\nYou feel her dick flex inside you as every potent drop of her thick cum seeps into your womb.  It pulses, and expands, and deflates in time with another hot, fresh batch of Raskvel cream blossoming inside you and soaking your ready, fertile eggs with her sperm.");
-		output("\n\n<i>“That’s the shit,”</i> Shekka sighs.  She slaps at your upturned [pc.ass] with both hands in time with another hot load lurching into you; she leans forward, her testicles draping over the meat of your ass, scrunching and flexing with more, and more, cum for your womb.");
-		output("\n\nShe takes a sharp breath through her clenched front teeth.  Her eyes are on you and your [pc.vagina " + x + "], which clenches and milks rhythmically with her cock, sucking down more cum into you.  <i>“Yep,”</i> she says elatedly, thrusting down to the hilt once more, <i>“there’s no way that’s not gonna take.”</i>");
-		output("\n\nIn some corner of your mind, you believe her, and even deeper, you hope she’s right.  You hope to one day swell with her kids, to carry her wonderful, intelligent progeny, and when it pops out, she doesn’t hesitate to get started again. Whatever it takes to get more of this Shekka-horse-cock and more cum for your cum-thirsty womb.");
-		output("\n\n<i>“Buuuut,”</i> Shekka drones as her hands pat at your ass.  Her dick hasn’t flagged at all, and in fact, the idea of impregnating you has all but kept her just as ready. <i>“There’s no harm in making sure, is there?”</i>");
-		output("\n\nShe pulls out a bit, just to thrust back in.  Maybe another three or four loads, just to be <i>totally</i> sure, couldn’t hurt.");
+		output("\n\nYou feel her dick flex inside you as every potent drop of her thick cum seeps into your womb. It pulses, and expands, and deflates in time with another hot, fresh batch of Raskvel cream blossoming inside you and soaking your ready, fertile eggs with her sperm.");
+		output("\n\n<i>“That’s the shit,”</i> Shekka sighs. She slaps at your upturned [pc.ass] with both hands in time with another hot load lurching into you; she leans forward, her testicles draping over the meat of your ass, scrunching and flexing with more, and more, cum for your womb.");
+		output("\n\nShe takes a sharp breath through her clenched front teeth. Her eyes are on you and your [pc.vagina " + x + "], which clenches and milks rhythmically with her cock, sucking down more cum into you. <i>“Yep,”</i> she says elatedly, thrusting down to the hilt once more, <i>“there’s no way that’s not gonna take.”</i>");
+		output("\n\nIn some corner of your mind, you believe her, and even deeper, you hope she’s right. You hope to one day swell with her kids, to carry her wonderful, intelligent progeny, and when it pops out, she doesn’t hesitate to get started again. Whatever it takes to get more of this Shekka-horse-cock and more cum for your cum-thirsty womb.");
+		output("\n\n<i>“Buuuut,”</i> Shekka drones as her hands pat at your ass. Her dick hasn’t flagged at all, and in fact, the idea of impregnating you has all but kept her just as ready. <i>“There’s no harm in making sure, is there?”</i>");
+		output("\n\nShe pulls out a bit, just to thrust back in. Maybe another three or four loads, just to be <i>totally</i> sure, couldn’t hurt.");
 		output("\n\nTurns out they didn’t hurt at all.");
 		processTime(90);
 		for(var i:int = 0; i < 4; i++)

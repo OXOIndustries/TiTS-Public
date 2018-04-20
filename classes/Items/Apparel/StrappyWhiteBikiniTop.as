@@ -23,7 +23,7 @@ package classes.Items.Apparel
 			
 			description = "a strappy white bikini top";
 			
-			tooltip = "All white bikinis are an uncommon fashion choice for terrans but quite popular among the darker-skinned races of the galaxy. This one has a number of fashionable white straps and a glossy finish that screams, <i>\"Look over here</i>\" while allowing its wearer a modicum of propiety. The ultralastic material is capable of stretching to contain everything from cute little bee-stings to a pair of XXL New Texan milk-tanks.";
+			tooltip = "All white bikinis are an uncommon fashion choice for terrans but quite popular among the darker-skinned races of the galaxy. This one has a number of fashionable white straps and a glossy finish that screams, “Look over here” while allowing its wearer a modicum of propiety. The ultralastic material is capable of stretching to contain everything from cute little bee-stings to a pair of XXL New Texan milk-tanks.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
