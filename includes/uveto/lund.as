@@ -1985,6 +1985,7 @@ public function repeatLundCookies():void
 	{
 		moveToLundsHouse();
 		showLund(true);
+		author("B!");
 		IncrementFlag("LUND_PB");
 		output("You’re reminded of the time that you had given Lund a peanut-butter cookie and the aftermath that had ensued. Now that your relationship with Lund has been cemented, with you as his pet, you wonder if he’d... do you the pleasure of having another one. It seems weird – the pet wanting to give the master a treat, not the other way around – but with any luck, he’ll play along.");
 		output("\n\nLund eyes you expectantly as you approach him; knowing him, he’s probably waiting for you to say the word before he whisks you away to his room in the hold so he can fuck your brains out again. And, by Gods, you’d let him in an instant. But that’s <i>why</i> you want to ask what you’re about to ask: this time, when he tastes that cookie, you want to be underneath him, to get a more up-close view of the whole spectacle.");
@@ -2180,6 +2181,7 @@ public function moreCookiesPleaseLund3():void
 {
 	clearOutput();
 	showLund(true);
+	author("B!");
 	output("Weakly, you reach to the side of the bed for your effects, where you keep the rest of your cookies. It takes some blind rummaging through your things to find them, but when you do, you reach back behind you, your face still buried into his pillow, and you offer it up to Lund.");
 	output("\n\nHe leans in and chomps his mouth around the whole thing, his teeth expertly avoiding your fingers as he does so. In a flash, his earlier stamina returns to him, and he’s ready to go once more.");
 	output("\n\n");
@@ -2253,6 +2255,7 @@ public function moreCookiesPleaseLund4():void
 {
 	clearOutput();
 	showLund(true);
+	author("B!");
 	output("Your hands are shaking; your breath is shallow; your eyes are half-lidded and crossed");
 	if(silly) output("; your arms are heavy; your [pc.legs] are weak; you have a hankering for pasta");
 	output("... you couldn’t keep up with Lund. You tried, and you gave yourself a huge advantage by giving him cookies that make him orgasm as soon as he tastes it, but you couldn’t do it.");
