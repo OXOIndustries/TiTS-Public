@@ -749,6 +749,13 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	return crewMembers;
 }
 
+public function crewButtonAdjustments(button:Number):Number
+{
+	button++;
+	if(button == 14) button++;
+	return button;
+}
+
 public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	if(!counter) {
 		clearOutput();
@@ -771,20 +778,23 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			if(flags["ANNO_HUSKAR_COMPLETE"] == undefined && flags["ANNO_HUSKARRED"] != undefined && flags["ANNO_HUSKARRED"] + 60 > GetGameTimestamp())
 			{
 				crewMessages += "\n\nAnno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....";
-				addDisabledButton(btnSlot++,"Anno","Anno","Anno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....");
+				addDisabledButton(btnSlot,"Anno","Anno","Anno isn’t in at the moment. You’ll have to wait a bit longer for her to start digging into the treats....");
+				btnSlot = crewButtonAdjustments(btnSlot);
 			}
 			//If anno is away
 			else if(annoIsAway())
 			{
 				crewMessages += "\n\nAnno is currently away or otherwise busy at the moment.";
-				addDisabledButton(btnSlot++,"Anno","Anno","Anno is currently away or otherwise busy at the moment.");
+				addDisabledButton(btnSlot,"Anno","Anno","Anno is currently away or otherwise busy at the moment.");
+				btnSlot = crewButtonAdjustments(btnSlot);
 			}
 			//25% chance of special maid scene proccing if Anno has the maid outfit and haven't seen the scene in a day - gotta have a dink that fits and not be naga or taur
 			else if (flags["ANNO_MAID_OUTFIT"] != undefined && rand(4) == 0 && !pc.hasStatusEffect("The Lusty Ausar Maid") && !pc.isTaur() && !pc.isNaga() && pc.cockThatFits(anno.vaginalCapacity()) >= 0)
 			{
 				if (rand(2) == 0) crewMessages += "\n\nAnno’s not in her quarters as you’d expect. Instead you find her prancing about the common area of your ship, dressed in what appears to be... a maid outfit?";
 				else crewMessages += "\n\nAnno doesn’t seem to be in her quarters at the moment, leaving the room strikingly empty, but you think you catch a few glimpses of the snowy pup cavorting about your ship’s common area. Odd.";
-				addButton(btnSlot++, "Anno", annoFrenchMaid);
+				addButton(btnSlot, "Anno", annoFrenchMaid);
+				btnSlot = crewButtonAdjustments(btnSlot);
 			}
 			else
 			{
@@ -797,14 +807,19 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 				// PC has Freed Reaha and Anno, add to Anno’s random selection:
 				else if (!curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nAnno’s sitting in the kitchen with a [reaha.milkNoun] moustache on her upper lip, looking awfully happy with herself. You can’t imagine where that came from...";
 				else crewMessages += "\n\nAnno is sitting in the common area with her nose buried in half a dozen different data slates. It looks like she’s splitting her attention between the latest Warp Gate research and several different field tests of experimental shield generators.";
-				addButton(btnSlot++, "Anno", annoFollowerApproach);
+				addButton(btnSlot, "Anno", annoFollowerApproach);
+				btnSlot = crewButtonAdjustments(btnSlot);
 			}
 		}
 	}
 	if (azraIsCrew())
 	{
 		count++;
-		if(!counter) crewMessages += azraCrewBlurbs(btnSlot++);
+		if(!counter) 
+		{
+			crewMessages += azraCrewBlurbs(btnSlot);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
 	}
 	if (bessIsCrew())
 	{
@@ -812,7 +827,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			if (InCollection(CREW_BESS, crewMembers)) crewMessages += "\n\n[bess.name] is wandering around the ship and keeping [bess.himHer]self busy. It shouldn’t be that hard to find [bess.himHer].";
-			addButton(btnSlot++, bess.short, approachFollowerBess);
+			addButton(btnSlot, bess.short, approachFollowerBess);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	if (celiseIsCrew())
@@ -821,13 +837,18 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if(!counter) {
 			if(reahaIsCrew() && !curedReahaInDebt() && rand(3) == 0) crewMessages += "\n\nCelise looks strangely [reaha.milkColor] at the moment, a cloud of discolored liquid floating listlessly inside her. Looks like she’s been feeding off a certain bovine lately...";
 			else crewMessages += "\n\nCelise is onboard, if you want to go see her. The ship does seem to stay clean of spills and debris with her around.";
-			addButton(btnSlot++, "Celise", celiseFollowerInteractions);
+			addButton(btnSlot, "Celise", celiseFollowerInteractions);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	if (kaseIsCrew())
 	{
 		count++;
-		if(!counter) crewMessages += kaseCrewBlurbs(btnSlot++);
+		if(!counter) 
+		{
+			crewMessages += kaseCrewBlurbs(btnSlot);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
 	}
 	if (paigeIsCrew())
 	{
@@ -835,7 +856,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if(!counter)
 		{
 			crewMessages += "\n\nPaige mostly keeps to her room when not helping you navigate the starways.";
-			addButton(btnSlot++,"Paige",paigeCrewApproach);
+			addButton(btnSlot,"Paige",paigeCrewApproach);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	if (pippaOnShip())
@@ -844,9 +866,10 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			if (InCollection(CREW_PIPPA, crewMembers)) crewMessages += "\n\n" + pippaShipBonusText();
-			if (flags["PIPPA_SETTLED_IN"] != 1) addButton(btnSlot++, "Pippa", pippaShipIntro);
-			else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot++, "Pippa", pippaYammiThreesomeIntro);
-			else addButton(btnSlot++, "Pippa", pippaMainMenu);
+			if (flags["PIPPA_SETTLED_IN"] != 1) addButton(btnSlot, "Pippa", pippaShipIntro);
+			else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot, "Pippa", pippaYammiThreesomeIntro);
+			else addButton(btnSlot, "Pippa", pippaMainMenu);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	if (reahaIsCrew())
@@ -879,13 +902,15 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 						]);
 					}
 				}
-				addButton(btnSlot++, "Reaha", curedReahaApproach);
+				addButton(btnSlot, "Reaha", curedReahaApproach);
+				btnSlot = crewButtonAdjustments(btnSlot);
 			}
 			//Normal Reaha
 			else 
 			{
 				crewMessages += "\n\nReaha is currently meandering around the ship, arms clutched under her hefty bosom, her nipples hooked up to a small portable milker.";
-				addButton(btnSlot++, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+				addButton(btnSlot, "Reaha", approachShipBoardReahaWhyDidntSavinCodeThisHeWasntExhaustedYesterday);
+				btnSlot = crewButtonAdjustments(btnSlot);
 			}
 		}
 	}
@@ -894,7 +919,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if (!counter)
 		{
-			crewMessages += seraOnShipBonus(btnSlot++);
+			crewMessages += seraOnShipBonus(btnSlot);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	if (shekkaIsCrew())
@@ -905,23 +931,24 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			if(pc.hasStatusEffect("Shekka_Cum_Playing"))
 			{
 				crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";
-				addDisabledButton(btnSlot++,"Shekka","Shekka","Shekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.");
+				addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.");
 			}
 			else if(pc.hasStatusEffect("SHEKKA_CHEATING_ON_YOU_CD"))
 			{
 				crewMessages += "\n\nShekka is still probably banging out her frustrations on a bull. She’ll be back before too long.";
-				addDisabledButton(btnSlot++,"Shekka","Shekka","Shekka is still probably banging out her frustrations on a bull. She’ll be back before too long.");
+				addDisabledButton(btnSlot,"Shekka","Shekka","Shekka is still probably banging out her frustrations on a bull. She’ll be back before too long.");
 			}
 			else if(shekka.hasCock() && flags["SHEKKA_ONAHOLED"] == undefined && rand(5) == 0)
 			{
 				crewMessages += "\n\nShekka should be around your ship’s engines, but there’s <b>a strangely musky smell coming from back there...</b>";
-				addButton(btnSlot++,"Shekka",shekkaOnaholeIntro);
+				addButton(btnSlot,"Shekka",shekkaOnaholeIntro);
 			}
 			else 
 			{
 				crewMessages += "\n\nShekka is hanging out around your ship’s engines, constantly calibrating one circuit or another to maximize power.";
-				addButton(btnSlot++,"Shekka",approachCrewShekka);
+				addButton(btnSlot,"Shekka",approachCrewShekka);
 			}
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	if (yammiIsCrew())
@@ -930,8 +957,9 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			if (InCollection(CREW_YAMMI, crewMembers)) crewMessages += "\n\n" + yammiShipBonusText();
-			if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot++, "Yammi", pippaYammiThreesomeIntro);
-			else addButton(btnSlot++, "Yammi", yammiInTheKitchen);
+			if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot, "Yammi", pippaYammiThreesomeIntro);
+			else addButton(btnSlot, "Yammi", yammiInTheKitchen);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	
@@ -942,7 +970,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		else other++; // Mostly quiet member on person or in storage.
 		if (!counter)
 		{
-			crewMessages += gooArmorOnSelfBonus(btnSlot++);
+			crewMessages += gooArmorOnSelfBonus(btnSlot);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	if (pexigaIsCrew())
@@ -951,7 +980,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += "\n\n" + pexigaShipBonusText();
-			addButton(btnSlot++, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
+			addButton(btnSlot, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	if (hasSiegwulfe() || siegwulfeIsCrew() || flags["WULFE_ON_SHIP"] == false)
@@ -959,7 +989,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		other++;
 		if (!counter)
 		{
-			crewMessages += siegwulfeOnShipBonus(btnSlot++);
+			crewMessages += siegwulfeOnShipBonus(btnSlot);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	if (varmintIsCrew())
@@ -967,7 +998,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		other++;
 		if (!counter)
 		{
-			crewMessages += varmintOnShipBonus(btnSlot++);
+			crewMessages += varmintOnShipBonus(btnSlot);
+			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
 	
