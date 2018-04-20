@@ -16,10 +16,12 @@
 	import classes.GameData.Pregnancy.Handlers.OviliumEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.PsychicTentacles;
 	import classes.GameData.Pregnancy.Handlers.QueenOfTheDeepPregnancy;
+	import classes.GameData.Pregnancy.Handlers.RaskvelPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.RenvraEggPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RenvraFullPregnancy;
 	import classes.GameData.Pregnancy.Handlers.RiyaPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.RoyalEggPregnancy;
+	import classes.GameData.Pregnancy.Handlers.ShekkaPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.SydianPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.SeraSpawnPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.VenusPitcherFertilizedSeedCarrierHandler;
@@ -59,6 +61,8 @@
 			PregnancyManager.insertNewHandler(new RiyaPregnancyHandler());
 			PregnancyManager.insertNewHandler(new ZaaltPregnancyHandler());
 			PregnancyManager.insertNewHandler(new ZilPregnancyHandler());
+			PregnancyManager.insertNewHandler(new ShekkaPregnancyHandler());
+			PregnancyManager.insertNewHandler(new RaskvelPregnancyHandler());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.

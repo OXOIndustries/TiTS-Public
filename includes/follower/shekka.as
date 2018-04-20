@@ -3188,7 +3188,7 @@ public function futaShekkaLezOut():void
 		output("\n\nSomehow, you doubt you will.");
 		processTime(30);
 		pc.orgasm();
-		pc.loadInCunt(shekka);	
+		pc.loadInCunt(shekka,x);	
 	}
 	//B halps
 	else
@@ -3210,6 +3210,232 @@ public function futaShekkaLezOut():void
 	}
 	fuckedShekka();
 	IncrementFlag("SHEKKA_TRIED_2_BREED_U");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function shekkaSlashRaskBirth():void
+{
+	clearOutput();
+	author("Fenoxo");
+	showName("\nBIRTHING!");
+	var se:StorageClass = pc.getStatusEffect("Shekka Pregnancy Ends");
+	if(!pc.hasStatusEffect("Shekka Pregnancy Ends")) se = pc.getStatusEffect("Raskvel Pregnancy Ends");
+	
+	var numChildren:int = se.value1;
+	var bRatingContrib:int = se.value2;
+	var pregSlot:int = se.value3;
+
+	output("Your [pc.hips] shudder and shift");
+	if(pc.hipRating() < 20)
+	{
+		output(", bone structure visibly widening into a more raskvel-like state");
+		pc.hipRating(2);
+	}
+	else output(", already wide enough to fit right in with raskvel matrons");
+	output(". Weight slides around inside your [pc.belly]. It wobbles in a way that causes you to cry out. A jiggling middle wouldn’t normally make you cry out like a hand on your clit, but there’s nothing normal about being stuffed this full of rask eggs. One of those eggs drops down, slapping into something inside you.");
+	output("\n\n[pc.GirlCum] rushes out in a torrent.");
+	if(pc.vaginas[pregSlot].wetness() < 4) output(" You aren’t a squirter, but you squirt now.");
+	output(" You squirt so fucking hard");
+	if(pc.hasToes()) output(" that your toes curl");
+	output(". The ovoid mass inside you rocks back and forth. Alien muscles wiggle it this way and that, pressing it into your cervix again and again. Your uterine obstruction is weakening, opening to make way, and even that mild pain feels... <i>erotic</i>. Syrupy lady-jizz coats everything. One hand brushes a [pc.clit] and you cum.");
+	output("\n\nOrgasmic contractions rock your body and flail your [pc.legOrLegs] like a rag-dolls. Smooth shell slides through you, and as you throw back your head and scream to the heavens, it ripples through your tunnel, triggering every nerve along the way. Your eyes roll, and your voice cuts out with a high-pitched squeak. Your [pc.hips] stretch just like your pussylips. Tightness overwhelms your slit. You are taut, like a coiled watchspring as its owner casually cranks its knob.");
+	pc.cuntChange(pregSlot,250);
+	output("\n\nThe egg slides an inch.");
+	output("\n\n<i>You cum.</i>");
+	output("\n\nEverything is still hellishly, beautifully tighter. Your [pc.vagina " + pregSlot + "] looks");
+	output(" beautiful, straining around the glossy egg.");
+	output("\n\n<i>You cum.</i>");
+	output("\n\nThe raskvel egg rolls out of you, trailing a sheen of love behind it as the next one slips from your womb into place. The third butts up against it, and you can contain yourself no longer. Both hands slide into your hyper-sensitive pussy and pull at the lips, your thumbs falling on [pc.oneClit]. You cum to the perfect pleasure of strumming your overheated femininity, that orgasm redoubling from the feeling of your beautiful baby eggs sliding through your slickened channel, touching you in ways a lover never could.");
+	pc.cuntChange(pregSlot,350);
+	output("\n\nThe contractions your climax sets off speed the process such that the eggs work their way through your cunt in one seamless, muscle-clenching slide. That, in turn, prevents your orgasm from ending. You ride high on sexual euphoria through the entirety of your egg-laying ordeal. Some part of you hears them click into place against their siblings as they slide out, but that part never manages to commit anything to memory. You’re far too busy addicting yourself to popping out raskvel babies.");
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+
+	//8 eggs
+	if(numChildren >= 8)
+	{
+		output("\n\nAnd oh, how nerve-scorchingly pleasant it is! There’s so many eggs inside you that you actually have time to grow somewhat accustomed to the endless climaxes. You manage to crane your head over your shrinking middle and watch as another new-born egg slides out, stretching your pussy wide. Juices gush, and you babble something that sounds like, <i>“So goood.”</i> The pile pile of eggs is quite large now.");
+		pc.cuntChange(pregSlot,450);
+	}
+	//14 eggs
+	if(numChildren >= 14)
+	{
+		output("\n\nUnfortunately you don’t have the energy to hold yourself up for long. You flop back onto your back as another egg triggers <i>another</i> perfect, pregnant cum and stare up past heavily drooping eyelids. You shudder and lay. Shudder and lay. The rasks are right. This is <i>heaven</i>. You groan and focus yourself entirely upon the act of <i>laying</i>, determined to do a good job of it. You’re happy to be a vessel for these alien eggs, delighted to help spread their population across the galaxy.");
+		pc.cuntChange(pregSlot,550);
+		pc.orgasm();
+		pc.orgasm();
+	}
+	//18 eggs
+	if(numChildren >= 18)
+	{
+		output("\n\nPerhaps fifteen eggs into the experience... you’re still going. Your missed your calling when you took to being a rusher. This body... it was meant to lay eggs. You know that now, even as you splatter more [pc.girlCum]");
+		if(pc.hasCock()) output(" and [pc.cum] from useless [pc.cocksNounSimple]");
+		output(". It would be easy to just ");
+		if(pc.hasStatusEffect("Shekka Pregnancy Ends")) output("park your ship in Novahome and let Shekka breed you forever.");
+		else output("stay in Novahome forever and rent out your womb to every rask with a credit and a cock.");
+		output(" Drool slides down your cheek. Maybe you’ll wipe it off, if you can pull your hands away from your [pc.vaginas].");
+		pc.orgasm();
+		pc.orgasm();
+	}
+	//20 eggs
+	if(numChildren >= 20)
+	{
+		output("\n\nOh, you can feel the last one now. You’re emptying out. This one... it’s bigger than the others. It’s the king... or queen of the litter. You whimper from how it stretches you as it slides past your compacted cervix and wonder how you’ll stay manage to lay this and stay sane. The comes when you pass out from raw, unadulterated bliss and sieg into a euphoric dreamstate of eggs floating in lakes of pussy-juice, surrounded by dick-rasks with swollen balls, ready to re-impregnate you.");
+		pc.cuntChange(pregSlot,750);
+		pc.orgasm();
+	}
+	//merge
+	output("\n\nThe potent sexual ecstasy at last ebbs as you run out of eggs to lay, but not entirely. Your gaping tunnel is still rippling, still squeezing as it tries to tighten back up, still shocking you with pleasant memories of the act you just completed. A pile of <b>" + num2Text(numChildren) + " eggs</b> lies before you, gleaming softly from your vaginal lubricant. You’ll... you’ll have to do something about that.");
+	output("\n\nFortunately, a small army of automated drones has arrived from the nursery, perhaps notified by your Codex whilst you were lost to the throes of laying. You’re too tired to load them now... maybe after a nap...");
+	var shekka:Boolean = pc.hasStatusEffect("Shekka Pregnancy Ends");
+	pc.removeStatusEffect("Shekka Pregnancy Ends");
+	pc.removeStatusEffect("Raskvel Pregnancy Ends");
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",postRaskBirthBit,shekka);
+}
+
+public function postRaskBirthBit(shekka:Boolean = false):void
+{
+	clearOutput();
+	showName("EGGY\nSATISFACTION");
+	output("You sit groggily and pull your fingers out of your [pc.vaginas]. Everything smells like pussy. You’re soaked in it, in fact. Right... you just gave birth to all these eggs. Feeling quite pleased with yourself, you load them into the drones, one after another. It would seem you’re more compatible with raskvel biology than you would have guessed.");
+	if(shekka) output("\n\nShekka is going to be delighted to hear that she’s a father. You send off a quick message. It’s answered almost immediately, the squealing hermaphrodite raskvel is more than delighted - and requests that you make plenty of stops at Tavros in the future.");
+	processTime(40);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//chain banged. Add status to suppress other normal messages
+public function raskPregChainBang():void
+{
+	clearOutput();
+	if(!rooms[currentLocation].hasFlag(GLOBAL.HAZARD))
+	{
+		showName("\nURGES!");
+		author("Fenoxo");
+		//Masturbate if not gangraped. Minlust to 80. Six cummies
+		output("A twinge in your oh-so-pregnant middle sets a pleasant rumble through your gravid frame, culminating in a [pc.thigh]-squeezing flash of pleasure. You press your hands into your [pc.vaginas] reflexively, discovering that your feminine flesh has grown heavily engorged and much more sensitive. Mere contact is enough to set you off, enough to send you rolling onto your back with your fingers buried in your [pc.thighs], squeaking and cumming");
+		if(pc.cockTotal() > 1) output(" as your [pc.cocks] fire arc after arc into the air");
+		output(".");
+		output("\n\nYou come down from the blissful peak with your heart beating hard");
+		if(rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) output(" and a crowd of applauding onlookers");
+		output(". You’re <i>still so horny</i>. If anything, the feeling of your fingers sinking deep into luscious, excited folds has grown <i>better</i>. You whine");
+		if(pc.exhibitionism() < 33) output(" and push yourself along into a darkened corner");
+		else output(" and push yourself into a more prominent position, showing everyone what pregnancy should feel like");
+		output(".");
+		output("\n\nYou bump [pc.oneClit], and writhe in delight");
+		if(pc.isSquirter()) output(", squirting a fountain of [pc.girlCum] everywhere");
+		else output(", leaking [pc.girlCum] everywhere");
+		output(". Your [pc.belly] shifts, and you cum again. You cum again, and again and again.");
+		output("\n\nYou’re a hot, wet, pregnant mess. You cradle your [pc.belly] with one hand, smearing it with pussy-juice while the other fondles your bliss-dispensing folds, more aroused and wanting with each passing second. If a hand feels this good... what would an egg feel like? What would ten eggs feel like? You pant and moan, already tempted to get knocked up again.");
+		pc.applyPussySoaked();
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		return;
+	}
+	showName("SURPRISE\nSEX!");
+	author("Fenoxo");
+	output("A twinge in your oh-so-pregnant middle sets a pleasant rumble through your gravid frame, culminating in a [pc.thigh]-squeezing flash of pleasure. You’re just about to answer it by sliding your fingers into your overheating, snatch when you become aware of a shadow falling across you.");
+	output("\n\nStrong hands roll you onto your back, and a veiny phallus is presented to your face, undoubtedly alien and yet so hard and enticing. Your growing irritation fades at the sight of it. Lust rises to take its place. The fire between your [pc.thighs] never truly went out, and it roars back to an inhibition-melting blaze as your lips are parted by dick. It shouldn’t taste as good as it does. It definitely shouldn’t make your [pc.vaginas] leak a puddle of eager [pc.girlCumNoun] onto the ground.");
+	output("\n\nYou moan at the appearance of another shadow. You’d lift your hips if your middle wasn’t so pregnant, but the rapacious visitor seems to know what you want even as you slurp at his cohort’s balls. Dick slides into a cunny that’s ached for cock these last few days, and you cum. You cum so fucking hard that you black out for a few seconds, unaware of how your slit");
+	if(pc.totalVaginas() > 1) output("s");
+	output(" clench and squeeze or the frenzied gyrations of your dilated eyes.");
+	output("\n\nBalls slap you into your chin until you can think again, just in time for a torrent of spicy alien seed to wick down your throat. You swallow instinctively, nearly cumming again, gulping it down in a hurry. Part of you wishes you could see it, wishes you could see yourself debased and abused, used by horny aliens who know you’re too pregnant and too slutty to care if they fuck you until you pass out.");
+	output("\n\nThe cum runs dry, but you suck at that dick all the same, wanting more. Below, you’re still being pounded, still treated to pleasures that set off miniature orgasms with alarming regularity. They don’t sate you. If anything, they make you more turned on, more eager for fucking... more... delighted that a new dick presses into your maw the moment the old one leaves.");
+	output("\n\nYou suck happily as a torrent of cum floods your pussy and drools out onto your thighs. There’s so many shadows now that you can’t see anything but cock... and that’s fine by you. It means you get to be a fucktoy for these gifted specimens that much longer.");
+
+	var pp:PregnancyPlaceholder = getRandoPregContainer();
+	pc.loadInMouth(pp);
+	for(var x:int = 0; x < pc.totalVaginas(); x++)
+	{
+		pc.loadInCunt(pp,x);
+		pc.cuntChange(x,10);
+	}
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	processTime(60);
+	clearMenu();
+	addButton(0,"Next",raskPregChainBang2);
+}
+
+public function getRandoPregContainer():PregnancyPlaceholder
+{
+	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!pp.hasCock()) pp.createCock();
+	pp.createPerk("Fixed CumQ", 100, 0, 0, 0);
+	return pp;
+}
+
+public function raskPregChainBang2():void
+{
+	clearOutput();
+	showName("SURPRISE\nSEX!");
+	author("Fenoxo");
+	output("Oh, someone is cumming on your [pc.belly]. You rub it in unthinkingly, moaning around what feels like the hundredth cock you’ve had the pleasure of sucking. A powerful, virile flex in deep in your cunt agrees with display. White-hot bliss stills you as more seed splashes on your cervix.");
+	processTime(60);
+	pc.orgasm();
+	pc.applyCumSoaked();
+	var pp:PregnancyPlaceholder = getRandoPregContainer();
+	pc.loadInMouth(pp);
+	for(var x:int = 0; x < pc.totalVaginas(); x++)
+	{
+		pc.loadInCunt(pp,x);
+	}
+	clearMenu();
+	addButton(0,"Next",raskPregChainBang3);
+}
+
+public function raskPregChainBang3():void
+{
+	clearOutput();
+	showName("SURPRISE\nSEX!");
+	author("Fenoxo");
+	output("Cum falls in heavy ropes across your [pc.chest] while the puddle under your [pc.butt] gets deeper. Great gobs of the stuff roll down your cheeks. Swallowing jizz is hard when you can’t stop cumming to the feeling of your pregnant pussy getting plowed. It’s even worse when your heavy, growing eggs shift and force you to squirt like a whore in heat. Like now-");
+	processTime(60);
+	pc.orgasm();
+	var pp:PregnancyPlaceholder = getRandoPregContainer();
+	pc.applyCumSoaked();
+	pc.loadInMouth(pp);
+	for(var x:int = 0; x < pc.totalVaginas(); x++)
+	{
+		pc.loadInCunt(pp,x);
+	}
+	clearMenu();
+	addButton(0,"Next",raskPregChainBang4);
+}
+
+public function raskPregChainBang4():void
+{
+	clearOutput();
+	showName("SURPRISE\nSEX!");
+	author("Fenoxo");
+	output("You don’t bother to move anymore. Your muscles are slack and exhausted. Every inch of your body is smothered in cooling, alien seed. The last cock is slapping into the back of your cum-lubed throat, and you love it. You wish there had been more of them. More cocks to fuck and suck.");
+	output("\n\nYour arousal never went away. You’re hornier than ever, really - a roly-poly pile of hormones, eggs, and fuckable holes. If you weren’t so tired from orgasm, you’d be frigging yourself right now. You cum again when that jaw-straining dick spurts into you, feeling those enormous rask eggs get bigger at the same time. Your [pc.thighs] spread wide of their own accord as something shifts. Your last thought before you black out is that it’s almost time to lay.");
+	//Fluid filled mouth, one load in pussy, applycumsoaked. Pass 8 hours.
+	processTime(5 * 60 + 1);
+	var pp:PregnancyPlaceholder = getRandoPregContainer();
+	pc.loadInMouth(pp);
+	pc.loadInMouth(pp);
+	pc.loadInMouth(pp);
+	for(var x:int = 0; x < pc.totalVaginas(); x++)
+	{
+		pc.loadInCunt(pp,x);
+		pc.loadInCunt(pp,x);
+	}
+	//Dont forget special status!
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

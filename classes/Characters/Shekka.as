@@ -19,7 +19,7 @@
 		//constructor
 		public function Shekka()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -158,6 +158,9 @@
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].bonusCapacity = 12;
 			this.vaginas[0].clits = 2;
+
+			this.impregnationType = "ShekkaPregnancy";
+
 			//balls
 			this.balls = 0;
 			this.cumMultiplierRaw = 6;
@@ -195,7 +198,10 @@
 		{
 			dataObject._neverSerialize = false;
 		}
-		
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.impregnationType = "ShekkaPregnancy";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();
