@@ -47,6 +47,7 @@ public function approachBeachSurfNSurf():void
 	processTime(6);
 	addButton(0,"Buy Pass",buyAPass);
 	addButton(1,"You",tryToSeduceAlexSlooot);
+	addButton(2,"Swimwear",buySwimwear);
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass") || pc.hasStatusEffect("SURFPASS")) addButton(11,"To The Beach!",stepIntoChangingArea);
 	else addDisabledButton(11,"To The Beach!","To The Beach","You'll need a pass to do this.");
 }
@@ -94,6 +95,20 @@ public function buyAPass():void
 	else addDisabledButton(1,"Lifetime","Lifetime","You don't have the credits for that.");
 	addButton(14,"Back",mainGameMenu);
 }
+
+public function buySwimwear():void
+{
+	shopkeep = chars["ALEX_SURF"];
+	chars["ALEX_SURF"].keeperBuy = "<i>“Looking to get yourself some new swimwear? We have a few nice pieces if you'd like.”</i>\n";
+	//List prices and whatnot. Back should go back to ALEX_SURF's main menu.
+	//Sell Menu
+	chars["ALEX_SURF"].keeperGreeting = "RUH ROH! SOMETHING WENT WRONG.";
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	buyItem();
+}
+
 
 //[Day]
 public function buyADayPass():void
