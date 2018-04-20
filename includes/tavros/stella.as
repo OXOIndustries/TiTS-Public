@@ -58,7 +58,7 @@ public function tryToSeduceAlexSlooot():void
 	showAlex();
 	author("Wsan");
 	output("<i>“How about you");
-	if(flags["MET_ALEX"] != undefined) output(", Alex");
+	if(flags["MET_ALEX_SURF"] != undefined) output(", Alex");
 	output("?”</i> you ask, turning up the charm with a smile. <i>“Up for some fun in the sand?”</i>");
 
 	if(flags["MET_STELLA"] != undefined) output("\n\n<i>“Aaah, psshh, you don’t wanna hang out with me,”</i> she jokes, smiling. <i>“I heard you were up there with Stella. You two having a good time, huh? Seriously though,”</i> she continues, shrugging, <i>“I’m still at work, and still can’t bang. That’s life, huh?”</i>");
@@ -79,11 +79,11 @@ public function buyAPass():void
 	showAlex();
 	author("Wsan");
 	output("<i>“Sure, I’ll take ");
-	if(flags["MET_ALEX"] != undefined) output("another ");
+	if(flags["MET_ALEX_SURF"] != undefined) output("another ");
 	output("look,”</i> you nod.");
 
 	output("\n\n<i>“Will that be just for the day or a lifetime pass?”</i> ");
-	if(flags["MET_ALEX"] != undefined) output("Alex");
+	if(flags["MET_ALEX_SURF"] != undefined) output("Alex");
 	else output("the girl");
 	output(" asks, looking at you expectantly.\n\nYou recall that a day pass costs 45 credits and a lifetime pass will set you back a cool 1,500.");
 
@@ -143,7 +143,7 @@ public function buyAPassEpilogue():void
 {
 	output("\n\nDoing so, the machine sprays a tiny marker across it in the design of the logo.");
 	output("\n\n<i>“Nanobots,”</i> ");
-	if(flags["MET_ALEX"] != undefined) output("Alex");
+	if(flags["MET_ALEX_SURF"] != undefined) output("Alex");
 	else output("the girl");
 	output(" explains. <i>“They’ll fall off automatically after twenty four hours");
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) output(" but you stay in the system with a lifetime pass");
@@ -164,7 +164,7 @@ public function leaveAlex():void
 	showAlex();
 	output("<i>“Maybe some other time,”</i> you say, leaning back off the counter. <i>“See you around.”</i>");
 	output("\n\n<i>“Sure,”</i> ");
-	if(flags["MET_ALEX"] != undefined) output("Alex");
+	if(flags["MET_ALEX_SURF"] != undefined) output("Alex");
 	else output("the girl");
 	output(" says, flashing you a smile.");
 }*/
@@ -217,6 +217,8 @@ public function meetingStella():void
 	author("Wsan");
 	if(flags["MET_STELLA"] == undefined) 
 	{
+		//Wsan says you pick up her name from hanging out at the beach.
+		flags["MET_ALEX_SURF"] = 1;
 		output("Your mouth drops open momentarily. It’s like you’ve really set your foot on another world entirely, transported in an instant across the universe to a serene beach. A clear blue sky with wisps of white clouds floating through it stretches endlessly before you, and as you descend the stairs onto the beach proper you find your [pc.feet] met with the soft, warm crunch of golden sand shifting beneath you. Seagulls cry out in the distance, the sounds of waves crashing and people playing on the shore ring in your ears. For just a moment... it’s like you’re back on Earth.");
 		output("\n\nForgetting why you even really came in here in the first place, you just walk along the beach for a little while until a group of guys and girls your age calls you over to play some volleyball. By the time you’re finished, you’ve got a new group of friends and a bunch of sand inside your clothes, but at least you made a couple of game-winning saves. Figuring you’ll get some rest and tanning in, you wander around before you find a spot that’s relatively secluded, up on a deck and away from the crowds. You’re just sitting down when...");
 		output("\n\n<i>“Oooh, hey hot stuff!”</i> a sultry female voice calls out from nearby. <i>“I saw you down there before!”</i>");
@@ -228,7 +230,7 @@ public function meetingStella():void
 		output("\n\n<i>“Oh, this is your-?”</i> you say, beginning to get out of it before she pushes you back down and then, to your utmost surprise, sits right in your lap facing you.");
 		output("\n\n<i>“So, " + pc.mf("big boy","hottie") + ",”</i> she whispers, wrapping her arms around your neck. <i>“Got some time to play with your little doggie?”</i>");
 		output("\n\nStella’s clearly used to getting what she wants, but are you gonna give it to her?");
-		processTime(15);
+		processTime(35);
 		pc.lust(5);
 	}
 	else
