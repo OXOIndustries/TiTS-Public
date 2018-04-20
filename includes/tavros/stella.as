@@ -13,7 +13,7 @@ public function showStella(nude:Boolean = false):void
 
 public function showAlex(nude:Boolean = false):void
 {
-	showName("\nSTORE GIRL");
+	showName("\n" + flags["MET_SURF_ALEX"] != undefined ? "ALEX" : "STORE GIRL");
 	showBust("STORE_ALEX" + (nude ? "_NUDE" : ""));
 }
 
@@ -25,7 +25,7 @@ public function beachNSurfOutsideBonus():void
 }
 
 //[Check it out]
-public function approachBeachSurfNSurf():void
+public function approachBeachSurfNSurf():Boolean
 {
 	clearOutput();
 	author("Wsan");
@@ -34,21 +34,28 @@ public function approachBeachSurfNSurf():void
 		output("Stepping inside, you can immediately see some serious work was put into the decoration of this place. It really does look like you’ve entered a beach resort, right down to the friendly human girl at the counter dressed in a tantalizing sling bikini. You give her a wave and lean down on the counter.");
 		output("\n\n<i>“Hey there!”</i> she chirps happily, handing you a brochure filled with information. <i>“Welcome to the Tavros Beach ‘n Surf. It’s 45 credits to check out all the facilities for a day, or 1500 for lifetime membership. We’ve got a surf beach, spa pools, tanning beds, and plenty of sexy beachgoers if that’s your thing. There are rooms by the beach and the nightclub next door is alive at all hours of the day, too!”</i>");
 		flags["SEEN_BEACHNSURF"] = 1;
+		processTime(6);
 	}
 	else
 	{
 		output("Stepping inside, you find yourself still admiring the decoration. It’s clear serious effort went into making this place look like a beach resort. You step up to the girl at the counter, whose name you now know to be Alex, based on your chatting with other visitors.");
-		output("\n\n<i>“Hi [pc.name], here to check out the facilities?”</i> Alex asks, smiling. ");
-		if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) output("<i>“Since you’ve got a lifetime membership, you can just walk on in");
-		else if(pc.hasStatusEffect("SURFPASS")) output("<i>“Your time’s still ticking from the last payment, so you can just walk on in");
-		else output("<i>“It’s still 45 credits for another round, or 1500 for the lifetime");
+		
+		flags["MET_SURF_ALEX"] = 1;
+		
+		output("\n\n<i>“Hi [pc.name], here to check out the facilities?”</i> Alex asks, smiling. <i>“");
+		if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) output("Since you’ve got a lifetime membership, you can just walk on in");
+		else if(pc.hasStatusEffect("SURFPASS")) output("Your time’s still ticking from the last payment, so you can just walk on in");
+		else output("It’s still 45 credits for another round, or 1500 for the lifetime");
 		output(".”</i>");
 	}
-	processTime(6);
-	addButton(0,"Buy Pass",buyAPass);
+	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) addDisabledButton(0,"Buy Pass","Buy Pass", "You already own a lifetime pass!");
+	else if(pc.hasStatusEffect("SURFPASS")) addDisabledButton(0,"Buy Pass","Buy Pass", "Your current pass has not yet expired!");
+	else addButton(0,"Buy Pass",buyAPass);
 	addButton(1,"You",tryToSeduceAlexSlooot);
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass") || pc.hasStatusEffect("SURFPASS")) addButton(11,"To The Beach!",stepIntoChangingArea);
-	else addDisabledButton(11,"To The Beach!","To The Beach","You'll need a pass to do this.");
+	else addDisabledButton(11,"To The Beach!","To The Beach","You’ll need a pass to do this.");
+	
+	return false;
 }
 
 public function tryToSeduceAlexSlooot():void
@@ -57,7 +64,7 @@ public function tryToSeduceAlexSlooot():void
 	showAlex();
 	author("Wsan");
 	output("<i>“How about you");
-	if(flags["MET_ALEX"] != undefined) output(", Alex");
+	if(flags["MET_SURF_ALEX"] != undefined) output(", Alex");
 	output("?”</i> you ask, turning up the charm with a smile. <i>“Up for some fun in the sand?”</i>");
 
 	if(flags["MET_STELLA"] != undefined) output("\n\n<i>“Aaah, psshh, you don’t wanna hang out with me,”</i> she jokes, smiling. <i>“I heard you were up there with Stella. You two having a good time, huh? Seriously though,”</i> she continues, shrugging, <i>“I’m still at work, and still can’t bang. That’s life, huh?”</i>");
@@ -77,21 +84,16 @@ public function buyAPass():void
 	clearOutput();
 	showAlex();
 	author("Wsan");
-	output("<i>“Sure, I’ll take ");
-	if(flags["MET_ALEX"] != undefined) output("another ");
-	output("look,”</i> you nod.");
+	output("<i>“Sure, I’ll take " + (flags["MET_SURF_ALEX"] != undefined ? "another" : "a" ) + " look,”</i> you nod.");
 
-	output("\n\n<i>“Will that be just for the day or a lifetime pass?”</i> ");
-	if(flags["MET_ALEX"] != undefined) output("Alex");
-	else output("the girl");
-	output(" asks, looking at you expectantly.\n\nYou recall that a day pass costs 45 credits and a lifetime pass will set you back a cool 1,500.");
+	output("\n\n<i>“Will that be just for the day or a lifetime pass?”</i> " + (flags["MET_SURF_ALEX"] != undefined ? "Alex" : "the girl" ) + " asks, looking at you expectantly.\n\nYou recall that a day pass costs 45 credits and a lifetime pass will set you back a cool 1,500.");
 
 	processTime(2);
 	clearMenu();
 	if(pc.credits >= 45) addButton(0,"Day",buyADayPass);
-	else addDisabledButton(0,"Day","Day","You can't afford it.");
+	else addDisabledButton(0,"Day","Day","You can’t afford it.");
 	if(pc.credits >= 1500) addButton(1,"Lifetime",lifeTimePassBuy);
-	else addDisabledButton(1,"Lifetime","Lifetime","You don't have the credits for that.");
+	else addDisabledButton(1,"Lifetime","Lifetime","You don’t have the credits for that.");
 	addButton(14,"Back",mainGameMenu);
 }
 
@@ -127,10 +129,7 @@ public function lifeTimePassBuy():void
 public function buyAPassEpilogue():void
 {
 	output("\n\nDoing so, the machine sprays a tiny marker across it in the design of the logo.");
-	output("\n\n<i>“Nanobots,”</i> ");
-	if(flags["MET_ALEX"] != undefined) output("Alex");
-	else output("the girl");
-	output(" explains. <i>“They’ll fall off automatically after twenty four hours");
+	output("\n\n<i>“Nanobots,”</i> " + (flags["MET_SURF_ALEX"] != undefined ? "Alex" : "the girl" ) + " explains. <i>“They’ll fall off automatically after twenty four hours");
 	if(pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) output(" but you stay in the system with a lifetime pass");
 	output(". ");
 	if(!pc.hasKeyItem("Beach ‘n Surf Lifetime Pass")) output("Until then, you’ve got free reign of the facility! ");
@@ -149,7 +148,7 @@ public function leaveAlex():void
 	showAlex();
 	output("<i>“Maybe some other time,”</i> you say, leaning back off the counter. <i>“See you around.”</i>");
 	output("\n\n<i>“Sure,”</i> ");
-	if(flags["MET_ALEX"] != undefined) output("Alex");
+	if(flags["MET_SURF_ALEX"] != undefined) output("Alex");
 	else output("the girl");
 	output(" says, flashing you a smile.");
 }*/
@@ -186,7 +185,7 @@ public function stepIntoChangingArea():void
 	}
 	else
 	{
-		output(" You consider heading into the rooms on the right, but you've brought your own beach-wear. There's no need to change when you're always ready for a dip!");
+		output(" You consider heading into the rooms on the right, but you’ve brought your own beach-wear. There’s no need to change when you’re always ready for a dip!");
 	}
 	output("\n\nAs you approach the doors, you can see sand has slipped under it to coat the corridor in a light dusting of golden-brown. Pushing them open, you’re immediately blinded by the intensity of the light and raise your arm to get better used to it, stepping through the doorway as you do.");
 	processTime(10);
@@ -343,7 +342,7 @@ public function letsFuckeySuckeyStella():void
 public function stellaMenu():void
 {
 	addButton(0,"Appearance",stellaAppearance);
-	if(pc.hasStatusEffect("StellaSickOfTalk")) addDisabledButton(1,"Talk","Talk","Stella's way past the point of talking.");
+	if(pc.hasStatusEffect("StellaSickOfTalk")) addDisabledButton(1,"Talk","Talk","Stella’s way past the point of talking.");
 	else addButton(1,"Talk",stellaTalk);
 	if(pc.cockThatFits(stellaCapacity()) >= 0) 
 	{
@@ -352,13 +351,13 @@ public function stellaMenu():void
 	}
 	else
 	{
-		addDisabledButton(2,"Pussy","Pussy","You're too big to fit into the puppy-bimbo!");
-		addDisabledButton(3,"Assfuck","Assfuck","You're too big to fit into the puppy-bimbo!");
+		addDisabledButton(2,"Pussy","Pussy","You’re too big to fit into the puppy-bimbo!");
+		addDisabledButton(3,"Assfuck","Assfuck","You’re too big to fit into the puppy-bimbo!");
 	}
 	if(pc.hasCock()) addButton(4,"Blowjob",stellaOralStuff);
-	else addDisabledButton(4,"Blowjob","Blowjob","She can't suck your dick if you don't have one!");
+	else addDisabledButton(4,"Blowjob","Blowjob","She can’t suck your dick if you don’t have one!");
 	if(pc.hasVagina()) addButton(5,"Get Licked",stellaOralStuff,true);
-	else addDisabledButton(5,"Get Licked","Get Licked","She can't munch your rug if you've got hardwood flooring.");
+	else addDisabledButton(5,"Get Licked","Get Licked","She can’t munch your rug if you’ve got hardwood flooring.");
 }
 
 //[Appearance]
@@ -381,7 +380,7 @@ public function stellaPostAppearance():void
 	clearOutput();
 	showStella();
 	author("Wsan");
-	output("Now that you're done checking out the babe, what would you like to do?");
+	output("Now that you’re done checking out the babe, what would you like to do?");
 	stellaMenu();
 }
 
@@ -454,12 +453,13 @@ public function stellaPussyFuck():void
 	output("\n\nEncouraged, you begin to fuck her faster, lewd, wet noises issuing from where the two of you are joined as your groin meets hers and your [pc.balls] slap between her cheeks. The sound of sex is all you can hear, Stella’s moans and the lurid smacking noises from between her thighs only spurring you onwards. Soon you’re pounding her so hard she’s practically screaming in orgasmic joy with every thrust, and your own peak is fast approaching.");
 	output("\n\nSeizing the bimbo beach girl around her waspish waist, you give a primal, bestial roar as you hilt her on your cock, your [pc.sack] tightening in advance of dumping its payload inside Stella. With your [pc.cockHead " + x + "] pressed right against her cervix, she screams in ecstasy when she feels the first load spurt inside her, warmth radiating outwards from her core.");
 	output("\n\n<i>“[pc.name]! [pc.name]!”</i> she cries, grabbing at you, feeling you up even as you cum inside her. <i>“Oh my god, yes!”</i>");
-
-	if(pc.cumQ() < 500) output("\n\nYou tense hard as you pump her slippery, dripping cunt full of your seed, withdrawing from her tight, gripping walls with a lewd slurp. A trail of your jizz slowly rolls down her beach-browned thigh, disappearing down between her asscheeks.");
-	else if(pc.cumQ() < 1000) output("\n\nYou tense hard as you pump her slippery, dripping cunt full of your seed, withdrawing from her tight, gripping walls with a lewd slurp. A thick trail of your jizz slowly rolls down her beach-browned thigh, sliding down between her asscheeks.");
-	else if(pc.cumQ() < 5000) output("\n\nYou tense and strain as you struggle to get all of your cum inside her slippery, dripping cunt, pumping her full of warm seed before withdrawing from her tight, gripping walls with a lewd slurp. A runnel of [pc.cumColor] cum slowly issues from Stella’s pink pussy, rolling down her beach-browned thigh and sliding between her asscheeks. The rest is still safely stuffed in her womb.");
-	else if(pc.cumQ() < 1000) output("\n\nYou tense, strain and squeeze as you struggle to pump all of your cum inside her slippery, dripping cunt, filling her with warm seed before withdrawing from her tight, gripping walls with a lewd slurp. [pc.cumColor] cum begins to slowly, rhythmically pump back out of her used pussy, splashing down her beach-browned thighs and sliding between her asscheeks. The rest is still crammed in her womb, stuffing her absolutely full of your jizz. You can see a slight bulge in her stomach where she’s swollen to capacity and then some.");
-	else if(pc.cumQ() < 25000) output("\n\nYou tense, strain and squeeze as you struggle to pump all of your cum inside her slippery, dripping cunt, filling her with warm seed before withdrawing from her tight, gripping walls with a lewd slurp. [pc.cumColor] cum begins to squirt from her pussy in time with her heartbeat, Stella moaning quietly as what must be a gallon or more flows from her well-used slit. The rest is still crammed in her womb, stuffing her absolutely full of your jizz. There’s a massive bulge in her stomach where she’s swollen to capacity and then some.");
+	
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 500) output("\n\nYou tense hard as you pump her slippery, dripping cunt full of your seed, withdrawing from her tight, gripping walls with a lewd slurp. A trail of your jizz slowly rolls down her beach-browned thigh, disappearing down between her asscheeks.");
+	else if(cumQ < 1000) output("\n\nYou tense hard as you pump her slippery, dripping cunt full of your seed, withdrawing from her tight, gripping walls with a lewd slurp. A thick trail of your jizz slowly rolls down her beach-browned thigh, sliding down between her asscheeks.");
+	else if(cumQ < 5000) output("\n\nYou tense and strain as you struggle to get all of your cum inside her slippery, dripping cunt, pumping her full of warm seed before withdrawing from her tight, gripping walls with a lewd slurp. A runnel of [pc.cumColor] cum slowly issues from Stella’s pink pussy, rolling down her beach-browned thigh and sliding between her asscheeks. The rest is still safely stuffed in her womb.");
+	else if(cumQ < 1000) output("\n\nYou tense, strain and squeeze as you struggle to pump all of your cum inside her slippery, dripping cunt, filling her with warm seed before withdrawing from her tight, gripping walls with a lewd slurp. [pc.cumColor] cum begins to slowly, rhythmically pump back out of her used pussy, splashing down her beach-browned thighs and sliding between her asscheeks. The rest is still crammed in her womb, stuffing her absolutely full of your jizz. You can see a slight bulge in her stomach where she’s swollen to capacity and then some.");
+	else if(cumQ < 25000) output("\n\nYou tense, strain and squeeze as you struggle to pump all of your cum inside her slippery, dripping cunt, filling her with warm seed before withdrawing from her tight, gripping walls with a lewd slurp. [pc.cumColor] cum begins to squirt from her pussy in time with her heartbeat, Stella moaning quietly as what must be a gallon or more flows from her well-used slit. The rest is still crammed in her womb, stuffing her absolutely full of your jizz. There’s a massive bulge in her stomach where she’s swollen to capacity and then some.");
 	else 
 	{
 		output("\n\nGripping her waist white-knuckled, you groan in blessed release as you begin to pump Stella full, filling her womb to the brim with just one voluminous jet of seed. Moaning, she begins to rub her clit while your [pc.cock " + x + "] throbs in her cunt, cumvein bulging with the sheer liquid payload passing through it. [pc.cumColor] jizz begins to spurt back down her beach-browned thighs even as more of it flows into her womb, swelling her stomach obscenely by the second. Stella throws her head back and cums <i>hard</i>, a deep groan rising from the back of her throat as her walls clamp down on your dick and milk it for all you’re worth.");
@@ -467,7 +467,7 @@ public function stellaPussyFuck():void
 		output("\n\n<i>“Hoooly wow, you’re like, a " + pc.mf("god","goddess") + " or something,”</i> Stella mumbles deliriously, rubbing her own bloated tummy. <i>“That’s like, really amazing...”</i>");
 	}
 	output("\n\n<i>“Nnnnhh,”</i> you grunt, stretching out in front of the prostrate girl. <i>“Wanna clean me up?”</i>");
-	if(pc.cumQ() >= 5000) output("\n\nDespite her condition, s");
+	if(cumQ >= 5000) output("\n\nDespite her condition, s");
 	else output("S");
 	output("he’s only too eager to get on her hands and knees and suck your cock completely clean. Stella licks you up and down, clearly savoring the experience, not all that dissimilar from how she might treat a lollipop. By the time she’s done your cock glistens with her saliva, a strand almost dripping from the end before she catches it with her tongue.");
 	output("\n\n<i>“Oops,”</i> she says, fluttering her eyelashes. <i>“Can’t have you walking out all </i>drippy<i>.”</i>");
@@ -523,13 +523,13 @@ public function keepFuckingStella():void
 	}
 	else
 	{
-		addDisabledButton(0,"Pussy","Pussy","You're too big to fit into the puppy-bimbo!");
-		addDisabledButton(1,"Assfuck","Assfuck","You're too big to fit into the puppy-bimbo!");
+		addDisabledButton(0,"Pussy","Pussy","You’re too big to fit into the puppy-bimbo!");
+		addDisabledButton(1,"Assfuck","Assfuck","You’re too big to fit into the puppy-bimbo!");
 	}
 	if(pc.hasCock()) addButton(2,"Blowjob",stellaOralStuff);
-	else addDisabledButton(2,"Blowjob","Blowjob","She can't suck your dick if you don't have one!");
+	else addDisabledButton(2,"Blowjob","Blowjob","She can’t suck your dick if you don’t have one!");
 	if(pc.hasVagina()) addButton(3,"Get Licked",stellaOralStuff,true);
-	else addDisabledButton(3,"Get Licked","Get Licked","She can't munch your rug if you've got hardwood flooring.");
+	else addDisabledButton(3,"Get Licked","Get Licked","She can’t munch your rug if you’ve got hardwood flooring.");
 }
 
 //[Assfuck]
@@ -551,7 +551,7 @@ public function assFuckStella():void
 	output("\n\n<i>“Yeah, thanks, Stella,”</i> you tell her, tapping her thick thigh. <i>“Why don’t you get up on all fours to make this a bit easier?”</i>");
 	output("\n\n<i>“Ooh, like a dog? Yay!”</i> she cheers, flipping onto her stomach and pushing herself up. <i>“Are you gonna punish your naughty puppy, master?”</i>");
 	output("\n\n<i>“Damn straight,”</i> you murmur, giving her expansive ass a nice smack that sets her lower half jiggling. <i>“Stretch yourself out for your master, Stella.”</i>");
-	output("\n\nPutting her face in the sheets and reaching back, she does a good job of grabbing her buttcheeks and spreading them, exposing both her pussy and her asshole. You can see she  already has wet arousal trickling down her thighs from her slightly-open puss, but you’re not interested in that right now. What you’re focused on is her tight pink little ring, barely open at all thanks to how grippy her skin is.");
+	output("\n\nPutting her face in the sheets and reaching back, she does a good job of grabbing her buttcheeks and spreading them, exposing both her pussy and her asshole. You can see she already has wet arousal trickling down her thighs from her slightly-open puss, but you’re not interested in that right now. What you’re focused on is her tight pink little ring, barely open at all thanks to how grippy her skin is.");
 	output("\n\nShe’s going to be really, really tight, though not for long. Getting up on the bed, you sit behind her and align yourself, rubbing your dick between her massive buttcheeks. Stella wiggles happily from side to side at the contact until you place your tip right at her entrance, halting her movement.");
 	output("\n\n<i>“Sit back on it,”</i> you order her, motivated in part by not wanting to hurt her but mostly because you want to see her follow your instructions. <i>“Be a good girl.”</i>");
 	output("\n\n<i>“Yes, master...”</i> she murmurs, hypnotized by your command. <i>“Ooooh...”</i>");
@@ -587,11 +587,12 @@ public function assFuckStella():void
 	output("\n\nEventually, it’s too much to bear. The sound of her lurid moans, the way her voluptuous body feels in your hands, the sensation of her sliding up and down your swelling dick; even tiny details like the way her tail stays needily wrapped around you like she never wants you outside of her are driving you insane with the need to blow a massive load inside her. Grabbing her hips, you pull her back upright into your lap, desperately hammering her ass from below until you finally cum.");
 	output("\n\n<i>“Yeeeesssss,”</i> Stella moans loudly, drowning out your grunts of release. <i>“Oh my goood, yes, cum inside me... empty those balls...”</i>");
 	output("\n\nShe continues with the lewd encouragement throughout your entire orgasm, working her ass both involuntarily and voluntarily as she suffers a mild orgasm herself just feeling your [pc.cum] flood her insides.");
-	if(pc.cumQ() < 500) { }
-	else if(pc.cumQ() < 1000) output(" By the time you’ve slowly extricated yourself from her clingy asshole, you’ve emptied your entire load into the depths of her ass. Not even a drip remains, and she’s loving it.");
-	else if(pc.cumQ() < 5000) output(" By the time you’ve slowly extricated yourself from her clingy asshole, you’ve emptied your entire load into the depths of her ass and left her dripping. She lets out a quiet moan just feeling it run between her legs.");
-	else if(pc.cumQ() < 10000) output(" By the time you’ve slowly extricated yourself from her clingy asshole, you’ve emptied your entire load into the depths of her ass and left a small river of spunk running between her legs. She lets out a loud moan at the feeling, lightly pushing her thighs together.");
-	else if(pc.cumQ() < 25000) output(" By the time you’ve slowly extricated yourself from her clingy asshole, you’ve left her with several added pounds worth of liquid weight and a swollen tummy. She looks at least a few months pregnant, and there’s a river of spunk flowing between her legs. She lets out a loud moan at the feeling, lightly pushing her thighs together.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 500) { }
+	else if(cumQ < 1000) output(" By the time you’ve slowly extricated yourself from her clingy asshole, you’ve emptied your entire load into the depths of her ass. Not even a drip remains, and she’s loving it.");
+	else if(cumQ < 5000) output(" By the time you’ve slowly extricated yourself from her clingy asshole, you’ve emptied your entire load into the depths of her ass and left her dripping. She lets out a quiet moan just feeling it run between her legs.");
+	else if(cumQ < 10000) output(" By the time you’ve slowly extricated yourself from her clingy asshole, you’ve emptied your entire load into the depths of her ass and left a small river of spunk running between her legs. She lets out a loud moan at the feeling, lightly pushing her thighs together.");
+	else if(cumQ < 25000) output(" By the time you’ve slowly extricated yourself from her clingy asshole, you’ve left her with several added pounds worth of liquid weight and a swollen tummy. She looks at least a few months pregnant, and there’s a river of spunk flowing between her legs. She lets out a loud moan at the feeling, lightly pushing her thighs together.");
 	else output(" By the time you’ve slowly extricated yourself from her clingy asshole, you’ve left her looking like she’s several months pregnant. She’s carrying enough liquid weight around for it to be a major inconvenience, and you can’t help but be a little proud of your performance. She lets out a loud groan at the feeling of a river of spunk flowing between her legs, lightly pushing her thighs together.");
 	output("\n\n<i>“Damn,”</i> you groan, standing up and letting her lazily stretch out on the bed. <i>“That was every bit as good as I thought it would be.”</i>");
 	output("\n\n<i>“Uh huuuuuh,”</i> Stella emphatically agrees, eyes still a little glassy. The way she’s lying on the bed, freshly fucked and still panting in the afterglow, has you kinda wanting to go again...");
@@ -733,21 +734,22 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		output(" and focused back on your shaft, re-planting all of the kisses she put there before, climbing back to your tip. You push her down your cock and she’s only too happy to acquiesce, placing herself in your hands as you begin to rock your hips on her bed, fucking her immaculate face while she looks up at you with those stunning aqua blue eyes.");
 
 		output("\n\nThe sight of a bimbo beach doll in complete submissiveness to your whims is too much to handle, and you find yourself fucking her throat even faster as you approach the peak, wet slaps echoing throughout Stella’s luxury suite as you defile it with her saliva and your juices. With a loud, bestial roar of release, you grab her and hold her down on your cock while you begin pumping her full of your spunk, your cumvein swelling in her throat. ");
-		if(pc.cumQ() < 1000) 
+		var cumQ:Number = pc.cumQ();
+		if(cumQ < 1000) 
 		{
 			output("You blow your entire load into her tummy, shooting rope after rope down her throat after the puppygirl’s ");
 			if(pc.balls > 1) output("ballplay ");
 			else output("attentions ");
 			output("earned her so much jizz. She looks thrilled about it, too, her eyes rolling back as your warmth slides down the back of her throat.");
 		}
-		else if(pc.cumQ() < 5000) 
+		else if(cumQ < 5000) 
 		{
 			output("You clench your teeth in pleasure while you");
 			if(pc.balls > 1) output("r churning balls empty themselves");
 			else output("empty yourself");
 			output(" into her tummy, painting the back of her throat [pc.cumColor] with your seed. Stella seems perfectly content to swallow it all down, her eyes having rolled back in her head the moment you started cumming.");
 		}
-		else if(pc.cumQ() < 25000)
+		else if(cumQ < 25000)
 		{
 			output("\n\nGrunting, you grab her hair and tilt her head upwards so you can watch her reaction as you start cumming down her throat. At first her eyes roll in delight and you can feel her almost smiling around your cock, but you grin when you see them widen slightly as she realizes how uniquely productive you are. Soon she’s desperately hollowing her cheeks in a vain attempt to swallow all of your [pc.cum], but after some time realizes she would be better off submissively opening her throat up and just letting you cum straight in her stomach.");
 			output("\n\nStella might be a bimbo, but she’s a good bitch. You give her a scratch behind the ears just to reinforce her submissiveness, letting her know she’s doing a good job just letting you be in charge. There’s no need for her to exert herself when she can just sit back and let you make her tummy swell with warm, churning seed. She’s loving it, too, her eyes rolling back in her head with the pleasure of being filled with your cum.");
@@ -761,10 +763,10 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 			output("\n\n<i>“Good little bitch, Stella.”</i>");
 		}
 		output("\n\nWhen you’re done, you coolly withdraw your [pc.cock " + x + "] from her face and let her sag backwards, slowing her descent to the floor with a [pc.foot] behind her back. You take some time to clean her up a little and put her back on the bed");
-		if(pc.cumQ() >= 10000) output(", albeit with some difficulty with all the weight in cum she’s put on");
+		if(cumQ >= 10000) output(", albeit with some difficulty with all the weight in cum she’s put on");
 		output(". Roused back to consciousness, she begins giggling shyly.");
 		output("\n\n<i>“Ummm, that was like, so much fun?”</i> she says, breaking into a smile that spans from ear to ear. <i>“Like, wow, [pc.name]. I’m totes down to suck your cock any time you want.");
-		if(pc.cumQ() >= 10000) output(".. Especially if you leave me looking like this...”</i> she says, stroking her swollen tummy. Her massive tits lie atop it, giving her the image of a fertility goddess. It looks good on her. <i>“I think it looks good on me!");
+		if(cumQ >= 10000) output(".. Especially if you leave me looking like this...”</i> she says, stroking her swollen tummy. Her massive tits lie atop it, giving her the image of a fertility goddess. It looks good on her. <i>“I think it looks good on me!");
 		output("”</i>");
 		output("\n\nYou’re pretty sure she really means it, too. In fact, you could take her up on the offer right now...");
 

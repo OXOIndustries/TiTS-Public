@@ -3569,6 +3569,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Stellaaaa!
+			if(flags["SEEN_BEACHNSURF"] != undefined)
+			{
+				output2("\n<b><u>Beach ‘n Surf</u></b>");
+				output2("\n<b>* Store:</b> Visited");
+				if(flags["MET_SURF_ALEX"] != undefined) output2("\n<b>* Alex:</b> Met her");
+				if(flags["MET_STELLA"] != undefined) output2("\n<b>* Stella:</b> Met her");
+				if(flags["STELLA_FUCKED"] != undefined) output2("\n<b>* Stella, Times Sexed:</b> " + flags["STELLA_FUCKED"]);
+				if(flags["STELLA_BUTTFUCKED"] != undefined) output2("\n<b>* Stella, Times You Buttfucked Her:</b> " + flags["STELLA_BUTTFUCKED"]);
+				if(flags["STELLA_GAVE_ORAL"] != undefined) output2("\n<b>* Stella, Times She She Gave You Oral:</b> " + flags["STELLA_GAVE_ORAL"]);
+				if(flags["STELLA_BALLWORSHIPPED"] != undefined) output2("\n<b>* Stella, Times She Worshipped Your Balls:</b> " + flags["STELLA_BALLWORSHIPPED"]);
+			}
 			// Beth's Busty Broads
 			if(flags["TALK_TO_LADY_1ST"] != undefined || flags["BETHS_TIMES_WHORED"] != undefined || flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined || flags["MET_VAANDE"] != undefined)
 			{
