@@ -7264,6 +7264,7 @@ public function listCharGenitals(charName:String = ""):String
 	
 	if(chars[charName].hasCock())
 	{
+		if(txt != "") txt += ", ";
 		if(chars[charName].cockVirgin) txt += "Virgin " + GLOBAL.TYPE_NAMES[chars[charName].cocks[0].cType].toLowerCase() + " cock";
 		else txt += GLOBAL.TYPE_NAMES[chars[charName].cocks[0].cType] + " cock";
 		if(chars[charName].hasSheath(0) || chars[charName].hasKnot(0))
@@ -7280,16 +7281,36 @@ public function listCharGenitals(charName:String = ""):String
 	}
 	if(chars[charName].hasVagina())
 	{
-		if(chars[charName].hasCock()) txt += ", ";
+		if(txt != "") txt += ", ";
 		if(chars[charName].vaginalVirgin) txt += "Virgin " + GLOBAL.TYPE_NAMES[chars[charName].vaginas[0].type].toLowerCase() + " vagina";
 		else if(chars[charName].vaginas[0].hymen) txt += "Unbroken " + GLOBAL.TYPE_NAMES[chars[charName].vaginas[0].type].toLowerCase() + " vagina";
 		else txt += GLOBAL.TYPE_NAMES[chars[charName].vaginas[0].type] + " vagina";
 		if(chars[charName].vaginas[0].clits == 1) txt += " with a clit";
 		else if(chars[charName].vaginas[0].clits > 1) txt += " with " + num2Text(chars[charName].vaginas[0].clits) + " clits";
 	}
-	if(chars[charName].hasCock() || chars[charName].hasVagina()) txt += ", ";
+	if(txt != "") txt += ", ";
 	if(chars[charName].analVirgin) txt += "Virgin asshole";
 	else txt += "Asshole";
+	
+	return txt;
+}
+public function listCharPerks(charName:String = ""):String
+{
+	if(charName == "" || chars[charName] == null) return "<i>Data unknown</i>";
+	
+	var txt:String = "";
+	
+	for(var i:int = 0; i < chars[charName].perks.length; i++)
+	{
+		if(chars[charName].perks[i].storageName != "")
+		{
+			if(txt != "") txt += ", ";
+			txt += chars[charName].perks[i].storageName;
+		}
+	}
+	
+	//if(txt == "") return ("<i>" + chars[charName].capitalA + chars[charName].short + " " + (!chars[charName].isPlural ? "has" : "have") + " no perks!</i>");
+	if(txt == "") return "<i>None</i>";
 	
 	return txt;
 }

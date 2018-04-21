@@ -985,24 +985,26 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 		output(" slipping in");
 	}
 	output(".");
-
+	
+	var cumQ:Number = pc.cumQ();
+	
 	//The knots have it
 	if(knot)
 	{
 		output("\n\nThe feeling of seating yourself deeply inside her and being locked in place by your expanding biology only makes your climax that much hotter.");
 		if(knots) output(" Doing that to both her holes at once is even better.");
-		if(pc.cumQ() < 10)
+		if(cumQ < 10)
 		{
 			output(" Dribs and drabs of [pc.cum] leak out from your ");
 			if(y >= 0) output("doubled dicks");
 			else output("[pc.cock " + x + "]");
 			output(", oozing in thin flows into her oh-so-receptive body. You run out long before the ecstasy subsides. Perhaps you should let your [pc.balls] rest a bit in between orgasms.");
 		}
-		else if(pc.cumQ() < 25)
+		else if(cumQ < 25)
 		{
 			output(" Spurts of [pc.cum] splatter into her waiting body with explosive eagerness, your [pc.hips] twitching a little further forward with each successive ejaculation.");
 		}
-		else if(pc.cumQ() < 250)
+		else if(cumQ < 250)
 		{
 			output(" Thick blobs of [pc.cumNoun] explode out of you one after another, bathing Shekka’s interior");
 			if(y >= 0) output("s");
@@ -1010,7 +1012,7 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 			if(knots) output("s");
 			output(" will pin every drop inside her.");
 		}
-		else if(pc.cumQ() < 2000)
+		else if(cumQ < 2000)
 		{
 			output(" Massive blobs of [pc.cum] pour out of you, so voluminous that each barely has time to finish before the next ejaculation is erupting like a volcano. Poor Shekka’s body is absolutely filled with your [pc.cumColor] seed.");
 			if(y >= 0) output(" Her belly even rounds from the combined injections.");
@@ -1026,7 +1028,7 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 			if(y >= 0) output("s");
 			output(", swell her [shekka.belly] with added weight, giving her a positively pregnant appearance.");
 			if(!knots && y >= 0) output(" Sadly, you don’t have knots to plug both sides, and waves of hot-pumping [pc.cumNoun] vent out over one of your [pc.cocks].");
-			if(pc.cumQ() >= 5000) output(" Her wobbly, spunk-stuffed tummy grows so big that you worry for her health, but by then the fluid distention widens her passage enough for streams of it to sluice out over your crotch, venting the pressure.");
+			if(cumQ >= 5000) output(" Her wobbly, spunk-stuffed tummy grows so big that you worry for her health, but by then the fluid distention widens her passage enough for streams of it to sluice out over your crotch, venting the pressure.");
 		}
 		output("\n\nYou go limp, your ardor spent, but your knot");
 		if(knots) output("s hold");
@@ -1039,18 +1041,18 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 		output("\n\nHer wet, milking walls coax you to a glorious a climax");
 		if(y >= 0) output(", and the way her asshole is tugging at your dick doesn’t hurt either");
 		output(". ");
-		if(pc.cumQ() < 10) 
+		if(cumQ < 10) 
 		{
 			output("Dribs and drabs of [pc.cum] leak out from your ");
 			if(y >= 0) output("doubled dicks");
 			else output("[pc.cock " + x + "]");
 			output(", oozing in thin flows into her oh-so-receptive body. You run out long before the ecstasy subsides. Perhaps you should let your [pc.balls] rest a bit in between orgasms.");
 		}
-		else if(pc.cumQ() < 25) 
+		else if(cumQ < 25) 
 		{
 			output("Spurts of [pc.cum] splatter into her waiting body with explosive eagerness, your [pc.hips] twitching a little further forward with each successive ejaculation.");
 		}
-		else if(pc.cumQ() < 250)
+		else if(cumQ < 250)
 		{
 			output("Thick blobs of [pc.cumNoun] explode out of you one after another, bathing Shekka’s interior");
 			if(y >= 0) output("s");
@@ -1058,7 +1060,7 @@ public function bendShekkaOverHerWorkbenchAndHaveHerFixWhileYouBang():void
 			if(pc.balls == 0) output("running down your [pc.leg].");
 			else output("clinging to your [pc.sack] to make it shine with sex.");
 		}
-		else if(pc.cumQ() < 2000)
+		else if(cumQ < 2000)
 		{
 			output("Massive blobs of [pc.cum] pour out of you, so voluminous that each barely has time to finish before the next ejaculation is erupting like a volcano. Poor Shekka’s body is absolutely filled with your [pc.cumColor] seed.");
 			if(y >= 0) output(" Her belly even rounds from the combined injections.");
@@ -1344,17 +1346,19 @@ public function hugeEarShekkaFaps():void
 	if(pc.balls > 1) output("Your [pc.balls] are beyond their breaking point, quaking with otherworldly intensity. ");
 	else output("Your [pc.balls] are beyond its breaking point, quaking with otherworldly intensity. ");
 	output("Any hope this orgasm could go on being denied any further is utterly quashed. ");
-	if(pc.cumQ() < 3000) output("Gallons");
-	else if(pc.cumQ() < 10000) output("Waves");
-	else if(pc.cumQ() < 20000) output("Tides");
-	else if(pc.cumQ() < 25000) output("Tsunamis");
+	
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 3000) output("Gallons");
+	else if(cumQ < 10000) output("Waves");
+	else if(cumQ < 20000) output("Tides");
+	else if(cumQ < 25000) output("Tsunamis");
 	else output("Planet-sized discharges");
 	output(" of [pc.cum] strongarm their way up your mighty passage. It takes a few more mighty convulsions for your flesh volcano to spew forth, meeting Shekka head on.");
 	output("\n\nThe spunky raskvel takes your offering in stride, downing a few mouthfuls with unrelenting rapture as she slams her face just short of being inside your dick. Your orgasm outpaces her consumption after a few more spasms. She recoils back, still taking the brunt of your climax face-first. Her cum-soaked ears still wrapped tightly around your [pc.cockBiggest], Shekka manages to pull your twitching gusher back up off your body. The wonderful gesture only works to spread your seed even further, ");
 	if(shekkaIsCrew()) output("cascading");
 	else output("recoiling");
 	output(" off the alien’s face back down to you and parts nearby.");
-	if(pc.cumQ() < 6000) output(" Her iron will cracks slightly under your ceaseless cum assault, causing her to cough and sputter against your convulsing hose.");
+	if(cumQ < 6000) output(" Her iron will cracks slightly under your ceaseless cum assault, causing her to cough and sputter against your convulsing hose.");
 	else output("You swear her cracked voice pierces through the haze of pleasure swirling around your senses. For all the scaled woman has been through in her life, it still must be hard to fathom just how much jism you can pump out.");
 
 	output("\n\nA deep breath signals the end of your rush, and your Shekka-shrouded sheathe plummets back down upon your [pc.fullChest] with an amazingly moist smack. She just about smashes what little oxygen you’d gulped down right back out of you. Speaking of the little cock accessory, her face is still buried into your [pc.cockHeadBiggest]. She’s fairly motionless. save for a hint of twitching down by her groin. It’s hard to believe how tight of a grip she’s managed to maintain around your member. A little life pops out of her through her toes, once more prodding at your ");
@@ -1519,6 +1523,7 @@ public function shekkaMilkDrankingPartII():void
 	userInterface.showName("\nSHEKKA");
 	
 	var x:int = -1;
+	var cumQ:Number = 0;
 
 	output("You can’t think of a better plan at the moment, and you pull Shekka into a forceful kiss, your [pc.lips] mashed roughly against hers. You let out a slutty moan into the kiss as she pinches your streaming nipples, the added stimulation sparking surges of pleasure all down your spine. ");
 
@@ -1575,9 +1580,11 @@ public function shekkaMilkDrankingPartII():void
 		if(pc.totalVaginas() == 1) output("it");
 		else output("them");
 		output(" and moves to her own quim, adding her moans to your chorus of screams. You can’t help but notice as her tail joins in on the fun, slipping into her stretched pussy along with your [pc.cock " + x + "] and beginning to vibrate, getting you off almost instantly inside of her, ");
-		if(pc.cumQ() < 25) output("filling her with your respectable load.");
-		else if(pc.cumQ() < 500) output("giving her egg bearing womb a nice cum bath.");
-		else if(pc.cumQ() < 2500) output("drenching her pussy and you cock with your prodigious load. The sheer volume bulges her litte tummy against you.");
+		
+		cumQ = pc.cumQ();
+		if(cumQ < 25) output("filling her with your respectable load.");
+		else if(cumQ < 500) output("giving her egg bearing womb a nice cum bath.");
+		else if(cumQ < 2500) output("drenching her pussy and you cock with your prodigious load. The sheer volume bulges her litte tummy against you.");
 		else 
 		{
 			output("blasting her womb with your ridiculous load of spunk. The sheer volume bulges her and drenches your ");
@@ -1615,9 +1622,11 @@ public function shekkaMilkDrankingPartII():void
 
 		output("\n\nSliding her wide, egg bearing Raskvel hips backwards on your stomach, her dual clits dragging over your sensitive [pc.skinFurScales], she positions herself and then leans down, finally giving you what you so eagerly desires. She finally wraps those plump lips of hers around your [pc.nipple] with a smile, her weight and the fluid weight in your chest enough to hold you pinned there on the floor. Raising her wide, egg bearing hips, she manages to sink her hot sex on your [pc.cock " + x + "], moaning into your [pc.chest] as she does so. Your [pc.chest] floods her mouth with [pc.milk] as she sucks it down, the flow so intense that her cheeks bulge, milk spilling from the corners from her mouth, and she has to pull back a few seconds later. With her body upright and no longer stimulating your [pc.chest], your base instincts kick in, and you pound your [pc.cocks] up into her hot, double clitted twat. As she gulps down the huge mouthful of lactic nourishment, the heavy streams of your [pc.milk] only intensify.");
 		output("\n\nYou find yourself screaming under her squeezing and massaging palms as the stimulation of your [pc.chest] continues to set your body off. You barely notice when you hear a faint hum coming from lower down. You can’t help but notice as her tail joins in on the fun, slipping into her stretched pussy along with your [pc.cock " + x + "] and beginning to vibrate, getting you off almost instantly inside of her ");
-		if(pc.cumQ() < 25) output("filling her with your respectable load.");
-		else if(pc.cumQ() < 500) output("giving her egg bearing womb a nice cum bath.");
-		else if(pc.cumQ() < 2500) output("drenching her pussy and your cock with your prodigious load. The sheer volume bulges her litte tummy against you.");
+		
+		cumQ = pc.cumQ();
+		if(cumQ < 25) output("filling her with your respectable load.");
+		else if(cumQ < 500) output("giving her egg bearing womb a nice cum bath.");
+		else if(cumQ < 2500) output("drenching her pussy and your cock with your prodigious load. The sheer volume bulges her litte tummy against you.");
 		else
 		{
 			output("blasting her womb with your ridiculous load of spunk. The sheer volume bulges her and drenches your ");
@@ -2786,12 +2795,13 @@ public function cureRewardUseDick():void
 	output("\n\nYou’ve never woken up with Shekka before, but it would seem her appetites are at their most potent... perfect for a little morning wood action, that’s for sure. She sits upright on one particularly deep thrust, crying out in pleasure and smashing her hips down hard enough to bruise lesser " + pc.mf("men","women") + ". <i>“C’mon [pc.name], I need this! Come! Fucking fill me up and make a mess of my bed!”</i>");
 	output("\n\nThe look in her eyes is absolutely fanatic, and again the bed creaks dangerously as you squeeze her hips, holding her still so that you can assault her cunt with jackhammer thrusts. Her moans and cries hit a fevered pitch as she’s brought cascading to orgasm, squirting like a broad-bottomed fountain full of Raskvel sex-juices.");
 	output("\n\nThe manic spasms of every wall of her pussy are what finally draw you over the edge as well. Everything tightens up into the singular sensation of your prostate clenching like a wound spring, and every ounce of cum your body can dredge up being ejaculated. Shekka simply collapses onto you, whining and moaning now that she’s already pleasure-screamed herself hoarse.");
-
+	
+	var cumQ:Number = pc.cumQ();
 	//Knot
 	if(pc.hasKnot(x))
 	{
 		output("\n\nSadly before you get a chance to lock her writhing body to you with your [pc.cock " + x + "]’s blood-engorged knot, a hard jerk of her hips has you growing on the <i>outside<i> of her cum-hungry cunny. Not necessarily a bad thing; now your knot gets to slam into both her front and rear clits at the same time while your cum ");
-		if(pc.cumQ() < 3000) output("leaks");
+		if(cumQ < 3000) output("leaks");
 		else output("rushes titanically");
 		output(" out of her well-abused slit.");
 	}
@@ -2799,7 +2809,7 @@ public function cureRewardUseDick():void
 	else
 	{
 		output("\n\nShe’s so damnably wet however that it only takes a few errant jerks of her hips to have your cock flopping out of her cum-basted cunt. At the very least you get to ");
-		if(pc.cumQ() < 2000) output("enjoy the sensation of your mixed cum pooling out beneath you");
+		if(cumQ < 2000) output("enjoy the sensation of your mixed cum pooling out beneath you");
 		else output("smirk as your seemingly endless reserves have you painting her entire backside with dripping alabaster");
 		output(".");
 	}
