@@ -2150,7 +2150,7 @@ public function whatOutfitWillCuredReahaDestroy():void
 		if(
 			InCollection(reaha.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
 		) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Reaha is already wearing one of these!");
-		else addItemButton(buttons, reaha.inventory[x], destroyCuredReahaSelection, reaha.inventory[x]);
+		else addItemButton(buttons, reaha.inventory[x], reahaClothingDestroyConfirm, x);
 		buttons++;
 		
 		if(invLimit > 14 && (x + 1) == invLimit)
@@ -2162,6 +2162,20 @@ public function whatOutfitWillCuredReahaDestroy():void
 	
 	addButton(14, "Back", curedReahaApproach);
 }
+
+public function reahaClothingDestroyConfirm(x:int):void
+{
+	clearOutput();
+	reahaHeader();
+	output("Are you sure you want Reaha to throw away " + reaha.inventory[x].description + "?");
+	//Inventory options here. Pick 1. Confirm:
+	//Are you sure you want to give {item} to Reaha?
+	//Yes // No (Back to Inventory)
+	clearMenu();
+	addButton(1,"No",whatOutfitWillCuredReahaDestroy);
+	addButton(0,"Yes",destroyCuredReahaSelection,reaha.inventory[x],"Yes","Destroy the item!");
+}
+
 public function destroyCuredReahaSelection(item:ItemSlotClass):void
 {
 	clearOutput();
