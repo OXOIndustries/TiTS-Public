@@ -4,7 +4,6 @@
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
 	import classes.StorageClass;
-	import classes.PregnancyData;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Melee.RaskvelWrench;
@@ -212,12 +211,6 @@
 			se.storageName = "Sterile";
 			dataObject.perks.push(se.getSaveObject());
 			dataObject.perks.sortOn("storageName", Array.CASEINSENSITIVE);
-			
-			dataObject.pregnancyData = new Array();
-			for (var i:int = 0; i < 4; i++)
-			{
-				dataObject.pregnancyData.push(new PregnancyData());
-			}
 		}
 		override public function onLeaveBuyMenu():void
 		{

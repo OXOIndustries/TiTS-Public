@@ -22,7 +22,24 @@ public function approachCrewShekka(back:Boolean = false):void
 {
 	clearOutput();
 	showShekka();
+	
 	author("SomeKindofWizard");
+	
+	// Accidental pregnancy hotfix
+	if(chars["SHEKKA"].isPregnant())
+	{
+		chars["SHEKKA"].pregnancyData = new Array();
+		for (var i:int = 0; i < 4; i++)
+		{
+			chars["SHEKKA"].pregnancyData.push(new PregnancyData());
+		}
+		output("<b>Shekka’s pregnancy issue has been resolved.</b>\n\n");
+		
+		clearMenu();
+		addButton(0, "Next", approachCrewShekka);
+		return;
+	}
+	
 	if(flags["SHEKKA_ANNO_NERDOFF"] == -1)
 	{
 		shekkaAnnoFightFollowup();

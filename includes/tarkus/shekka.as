@@ -32,7 +32,7 @@ public function shekkaBustDisplay(nude:Boolean = false):String
 	return ("SHEKKA" + (nude ? "_NUDE" : ""));
 }
 
-//Widget Warehouse Description\
+// Widget Warehouse Description
 public function widgetWarehouseBonusFuntimes():Boolean
 {
 	output("Reddish dust filters down from the improvised rafters of this small, warehouse-like structure. The door snaps shut behind you with the audible hiss you’d expect from a high-efficiency starship hatch in spite of its placement in a ramshackle hut. Ancient, rusted bins and buckets are stacked into wobbly pillars, each holding mechanical parts, circuits and devices in far better shape than themselves. The light from a dozen fixtures of various designs and luminances shines off the stored machine parts brightly enough to make you shield your eyes as you look around. Leaning against the far wall like an exhausted soldier is an improvised workbench. Why, its middle is built on the back of a torso from a hollowed-out construction droid.");
@@ -69,6 +69,22 @@ public function approachShekka(back:Boolean = false):void
 	clearOutput();
 	userInterface.showBust("SHEKKA");
 	userInterface.showName("\nSHEKKA");
+	
+	// Accidental pregnancy hotfix
+	if(chars["SHEKKA"].isPregnant())
+	{
+		chars["SHEKKA"].pregnancyData = new Array();
+		for (var i:int = 0; i < 4; i++)
+		{
+			chars["SHEKKA"].pregnancyData.push(new PregnancyData());
+		}
+		output("<b>Shekka’s pregnancy issue has been resolved.</b>\n\n");
+		
+		clearMenu();
+		addButton(0, "Next", approachCrewShekka);
+		return;
+	}
+	
 	if(pc.hasStatusEffect("Raskvel Prophylactic"))
 	{
 		output("The mechanic waves you away. <i>“Come back when you don’t stink like a rotting gark!”</i>");
