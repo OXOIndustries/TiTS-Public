@@ -213,6 +213,9 @@ public function lucaBusinessMenu():void
 	addButton(0,"Items",buyFromLuca,undefined,"Items","Luca sells a few items at retail price.");
 	if(pc.credits >= 500) addButton(1,"VR Simulation",lucasVRSims,undefined,"VR Simulation","Luca allows people to experience a wide range of virtual fantasies.\n\n<b>Cost:</b> 500 credits");
 	else addDisabledButton(1,"VR Simulation","VR Simulation","You cannot afford the 500 credits that this would cost.");
+	if(flags["LUCAS_MINDWASH"] == undefined) addButton(2,"Broken Visor",mindwashBrokenVisor,undefined,"Broken Visor","One of the booths has an “Out of Order” sign over it. Damage from an overexcited guest, maybe?");
+	else if(pc.credits >= 250)  addButton(2,"Broken Visor",mindwashBrokenVisor,undefined,"Broken Visor","The damaged VR booth is still roped off, but you're welcome to give it another try.\n\n<b>Cost:</b> 250 credits");
+	else addDisabledButton(2,"Broken Visor","Broken Visor","Despite the heavy discount, you can't use the weird, broken visor.");
 	addButton(14,"Back",approachLuca,true);
 }
 

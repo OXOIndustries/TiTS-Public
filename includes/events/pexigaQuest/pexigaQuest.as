@@ -2195,6 +2195,9 @@ public function dollmakerSalvage(item:ItemSlotClass):void
 		case "B.Emitter":
 			output("Getting the gun off the robot in a way that’ll let you use it isn’t fun, but the results could be.... Bingo! You got it.");
 			break;
+		case "MW Visor":
+			output("You rip a strange virtual headset off one of the arms. This could be... fun.");
+			break;
 		default:
 			output("BEEP BOOP. INPUT ERROR.");
 			break;
@@ -2224,6 +2227,9 @@ public function dollmakerSalvageMenu():void
 
 	if(enemy.hasItemByClass(BimboleumEmitter)) addDisabledButton(2,"Gun","Gun","You’ve already taken the gun.");
 	else addButton(2,"Gun",dollmakerSalvage,new BimboleumEmitter(),"Gun","A custom designed Bimboleum Emitter, like the kind Doctor Badger uses. Effects are probably not permanent... probably.");
+
+	if(enemy.hasItemByClass(MindwashVisor)) addDisabledButton(3,"Visor","Visor","You’ve already taken the visor.");
+	else addButton(3,"Visor",dollmakerSalvage,new MindwashVisor(),"Visor","A strange visor, presumably used for brainwashing its victims.");
 
 	addButton(14,"Leave",leaveTheDollmaker,undefined,"Leave","You’re done here. Time to get your pexiga healed!");
 }
