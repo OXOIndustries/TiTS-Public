@@ -752,7 +752,11 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 public function crewButtonAdjustments(button:Number):Number
 {
 	button++;
-	if(button == 14) button++;
+	if((button + 1) % 15 == 0)
+	{
+		addButton(button, "Back", mainGameMenu);
+		button++;
+	}
 	return button;
 }
 
@@ -1009,6 +1013,12 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			clearBust();
 			showName("\nCREW");
 			output("Who of your crew do you wish to interact with?" + crewMessages);
+			
+			if(btnSlot > 14)
+			{
+				while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
+				addButton(btnSlot, "Back", mainGameMenu);
+			}
 		}
 		addButton(14, "Back", mainGameMenu);
 	}

@@ -72,7 +72,10 @@ public function drBadgerBuyMenu():void
 		chars["DRBADGER"].inventory.push(new SlutRayAdvanced());
 		CodexManager.unlockEntry("Throbb");
 	}
-	if(flags["MINDWASH_VISOR_INSTALLED"] == undefined && !pc.hasItemByClass(MindwashVisor)) chars["DRBADGER"].inventory.push(new MindwashVisor());
+	if(flags["MINDWASH_VISOR_INSTALLED"] == undefined && !pc.hasItemByClass(MindwashVisor) && !pc.hasItemInStorageByClass(MindwashVisor))
+	{
+		chars["DRBADGER"].inventory.push(new MindwashVisor());
+	}
 	if(canBuySiegwulfe(true))
 	{
 		chars["DRBADGER"].inventory.push(new SiegwulfeItem());

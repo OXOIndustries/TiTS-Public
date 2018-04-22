@@ -5,7 +5,8 @@
 //Add the flagged CoC scenes as bonus content for the Visor, using static body variables
 
 
-/*Additional Visor smut scene ideas
+/*
+Additional Visor smut scene ideas
 Futa - The Galaxy's Worst Delivery Girl (uniform, hat, thigh-high stockings, cocksock, blasted liberally by folks who don't want to pay)
 Female - Does a Body Good (huge breasted, milky milf with breast pumps hooked to a dildo, the more she orgasms, the more milk is pumped from her tits to her womb)
 Male - Size Matters (twinky male bullied by two hyper-endowed dickgirls, smooshed between their cocks while they frot one another with the protag between them)
@@ -14,14 +15,15 @@ Futa - Thrill of the Hunt (bounty hunter in 'zero suit' hunting for bestial huma
 Male - Sensitivity Training (asshole guy is sent by female employer to be hooked up to electric tabs and vibes, making his whole body hypersensitive, cum by mere touch)
 Futa - Workplace anti-harassment video where the player is the aggressive boss and harasses their employees in exaggerated, stereotypical fashion w/ voiceover scolding
 Male - Tank Kannon as a secret agent, hit by a mega dongulator ray by evil lethian Dr. Elle Phantis, she splits into three girls, brains, boobs, and butt (doc, elle, and phanny?)
-Neutral - "Top Sluts: Spotting the Best" instructional video of going to bars, clubs, and brothels, explaining pros and cons of various sluts in mile-a-minute coked-out way*/
+Neutral - "Top Sluts: Spotting the Best" instructional video of going to bars, clubs, and brothels, explaining pros and cons of various sluts in mile-a-minute coked-out way
+*/
 
 //Broken Lotus
 //Allows the player to view a random Mindwash Visor scene from the Lotus Eaters VR Lounge on Canadia Station (maybe a discount of 250 credits)
 //Add "Broken Visor" to Luca's "Business" prompt
-//[Broken Visor]
+// [Broken Visor]
 //Mouseover (not yet selected) - One of the booths has an "Out of Order" sign over it. Damage from an overexcited guest, maybe?
-//Mouseover (repeat) - The damaged VR booth is still roped off, but you're welcome to give it another try.  Cost: 250 credits
+//Mouseover (repeat) - The damaged VR booth is still roped off, but you're welcome to give it another try. Cost: 250 credits
 
 //Broken Visor - First Time
 public function mindwashBrokenVisor():void
@@ -40,9 +42,9 @@ public function mindwashBrokenVisor():void
 		output("\n\nThe modded dzaan gives you an appraising look, her emerald eyes sweeping up and down while her plump lips purse in thought. <i>“I don’t suppose you’d like to take a look for me? See how safe it is to use? I won’t even charge you for it.”</i>");
 		processTime(3);
 		clearMenu();
-		//[No Way]  [Couldn’t Hurt]
+		// [No Way] [Couldn’t Hurt]
 		addButton(0,"No Way",noWayMindwash);
-		addButton(1,"Couldn't Hurt",mindwashingCouldntHurt);
+		addButton(1,"Couldn’t Hurt",mindwashingCouldntHurt);
 	}
 	else
 	{
@@ -66,10 +68,10 @@ public function mindwashBrokenVisor():void
 public function startMindwashSceneLucas():void
 {
 	pc.createStatusEffect("LucasMindwash");
-	RandomInCollection([pumpTheSpy,invasionOfTheDickSuckers,cowifiedMindwash,petPro,doorToDoorDildos,gymTripScene,poorLittleWhiteGel,bodysuitBubblesScene,breakingTheLaw])();
+	RandomInCollection(mindwashSceneList("Luca"))();
 }
 
-//[No Way]
+// [No Way]
 public function noWayMindwash():void
 {
 	clearOutput();
@@ -80,14 +82,14 @@ public function noWayMindwash():void
 	else if(pc.isMischievous()) output("wryly");
 	else output("firmly");
 	output(" decline the patroness’ offer and excuse yourself. You’re nobody’s guinea pig.");
-	///end and remove [Broken Visor] from Luca’s menu
+	//end and remove [Broken Visor] from Luca’s menu
 	flags["LUCAS_MINDWASH"] = -1;
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
-//[Couldn’t Hurt]
+// [Couldn’t Hurt]
 public function mindwashingCouldntHurt():void
 {
 	clearOutput();
@@ -99,7 +101,7 @@ public function mindwashingCouldntHurt():void
 	else output("<i>“A free ride in the porn machine? And you’re not even going to charge me?”</i> You bounce up and down, clapping your hands in excitement. <i>“Strap me in! Strap me in!”</i>");
 
 	//merge
-	output("\n\nLuca smiles and leads you to the roped off booth. Privacy curtains have been hung all around it, but she pulls them aside for the two of you to step in. The state of the machine is a sad one. The compact and stylish visor has been pulled apart and vandalized into little more than a series of plates and wires with a holoscreen between them. The far end of the booth has even been defaced with graffiti, renaming the machine the <i>“Mindwasher”</i>");
+	output("\n\nLuca smiles and leads you to the roped off booth. Privacy curtains have been hung all around it, but she pulls them aside for the two of you to step in. The state of the machine is a sad one. The compact and stylish visor has been pulled apart and vandalized into little more than a series of plates and wires with a holoscreen between them. The far end of the booth has even been defaced with graffiti, renaming the machine the “Mindwasher”.");
 	output("\n\nYou can see why she was reluctant to let anybody near this thing.");
 	output("\n\nLuca excuses herself from the booth, visibly upset by what’s been done to it. With a bit of trepidation, you take off your equipment and a seat and lower the thin plates of the Mindwash machine to either side of your head. The curved hardlight screen flickers across your field of vision before engulfing your senses. A small host of error messages scroll across the screen before the pink light fades to a soft blue. Your body seizes up, muscles straining and the hot wash of panic surging up your gullet. You force yourself to relax, and the tension melts away. It seems your body can have only one master at a time and the visor is in control for now.");
 
@@ -119,12 +121,8 @@ public function mindwashNextButtonAndStatAwardsAndClears(cumNum:Number):void
 	if(pc.hasStatusEffect("LucasMindwash"))
 	{
 		pc.removeStatusEffect("LucasMindwash");
-		if(flags["LUCAS_MINDWASH"] == undefined)
-		{
-			addButton(0,"Next",brokenMindwashVisorEpilogue);
-			return;
-		}
-		else IncrementFlag("LUCAS_MINDWASH");
+		if(flags["LUCAS_MINDWASH"] == undefined) addButton(0,"Next",brokenMindwashVisorEpilogue);
+		IncrementFlag("LUCAS_MINDWASH");
 	}
 	else if(pc.hasStatusEffect("BadgerMindwash"))
 	{
@@ -132,7 +130,7 @@ public function mindwashNextButtonAndStatAwardsAndClears(cumNum:Number):void
 		if(flags["BADGER_MINDWASH"] == undefined) noCumHarvest = true;
 		IncrementFlag("BADGER_MINDWASH");
 	}
-	if(checkToyDrawer(BubbleBuddy) && pc.hasCock())
+	if(!noCumHarvest && checkToyDrawer(BubbleBuddy) && pc.hasCock())
 	{
 		if(cumNum <= 300) quickLoot(new SmallCumBubble());
 		else if(cumNum <= 4000) quickLoot(new MediumCumBubble());
@@ -154,7 +152,6 @@ public function brokenMindwashVisorEpilogue():void
 	output("\n\n<i>“I suppose you’re welcome to use it in the meantime. I’ll even give you half off, as a way of saying ‘thank you’ for testing it out for me.”</i>");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	IncrementFlag("LUCAS_MINDWASH");
 }
 
 /*Mindwash Visor
@@ -163,12 +160,12 @@ public function brokenMindwashVisorEpilogue():void
 
 //Add Mindwash Visor to Dr. Badger’s inventory if the player has not harvested it from the Doll-Maker
 //Buy It From Badger
-//[Mindwash x1] 5,250 credits
+// [Mindwash x1] 5,250 credits
 //mouseover: A pair of shallow, nipple-like plates that - once attached to the head - link via a hardlight holo-screen. Apparently Badger heavily modified this so that it broadcasts porn directly onto your memories, as if they were little more than blank canvas. Dangerous to use out in the open, so you’ll have to install it in your ship if you want to try it out.
 */
 
-//[Install]
-//upon returning to your ship and using the <i>“Mindwash”</i> item
+// [Install]
+//upon returning to your ship and using the “Mindwash” item
 public function installTheMindwashVisor():void
 {
 	clearOutput();
@@ -183,9 +180,9 @@ public function installTheMindwashVisor():void
 		return;
 	}
 	output("Now that you’re safe aboard your vessel, you can take a look at the Mindwash Visor you got from the Bimbotorium. The device is quite small, little more than a pair of plastic discs connected by a curving screen of hardlight. Despite the light hum it lets off, there is a socket on one side that’ll have to be hooked into your ship’s power supply. It seems the little toy is quite an energy hog.");
-	output("\n\nYou plug it in next to a large, comfortable seat somewhere not too conspicuous and examine Badger’s visor. With the power on, its normally passive holoscreen is blinking with an inviting pink glow. One last check-through reveals an <i>“intensity”</i> gage on the side. It seems to go from <i>“Fuck Me Up”</i> all the way to <i>“Tabula Rasa”</i> so you go ahead and dial that down to the lowest setting. No sense in taking undue risks when dealing with Badger Tech.");
+	output("\n\nYou plug it in next to a large, comfortable seat somewhere not too conspicuous and examine Badger’s visor. With the power on, its normally passive holoscreen is blinking with an inviting pink glow. One last check-through reveals an “intensity” gage on the side. It seems to go from “Fuck Me Up” all the way to “Tabula Rasa” so you go ahead and dial that down to the lowest setting. No sense in taking undue risks when dealing with Badger Tech.");
 	output("\n\nNow that you’ve got it, though, do you really want to use it?");
-	output("\n\n<b><i>“Mindwash”</i> has been added to your masturbate menu while on your ship!</b>");
+	output("\n\n<b>“Mindwash” has been added to your masturbate menu while on your ship!</b>");
 	processTime(4);
 	flags["MINDWASH_VISOR_INSTALLED"] = 1;
 	pc.destroyItemByClass(MindwashVisor);
@@ -194,31 +191,73 @@ public function installTheMindwashVisor():void
 	addButton(0,"Next",useItemFunction);
 }
 
-//[Mindwash]
+// [Mindwash]
 public function mindwashMeShipVers():void
 {
 	clearOutput();
 	showName("\nMINDWASH!");
 	author("Adjatha");
 	output("A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, It induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.");
-	output("\n\nWill you plug in, or convince one of your companions to give it a spin?");
+	
 	processTime(3);
 	clearMenu();
-	addButton(0,"Me",useShipMindwashMeee);
-	addButton(1,"Celise",mindwashCelise);
-	addButton(14,"Back",masturbateMenu);
+	
+	output("\n\nWill you plug in");
+	
 	//Add Yammi and Pexiga scenes if there is demand for it
 	//Maybe get other folks to write a scene or two for Anno & Reaha trying out the Visor?
+	var eligibleCrew:Array = [];
+	if(celiseIsCrew()) eligibleCrew.push("Celise");
+	//if(yammiIsCrew()) eligibleCrew.push("Yammi");
+	//if(pexigaIsCrew()) eligibleCrew.push("Pexiga");
+	//if(annoIsCrew()) eligibleCrew.push("Anno");
+	//if(reahaIsCrew()) eligibleCrew.push("Reaha");
+	
+	if(eligibleCrew.length > 0)
+	{
+		output(", or convince " + (eligibleCrew.length == 1 ? "your crew member" : "one of your companions") + " to give it a spin");
+		
+		addButton(0,"Me",useShipMindwashMeee);
+		
+		var btnSlot:int = 1;
+		
+		for(var i:int = 0; i < eligibleCrew.length; i++)
+		{
+			if((btnSlot + 1) % 15 == 0)
+			{
+				addButton(btnSlot,"Back",masturbateMenu);
+				btnSlot++;
+			}
+			switch(eligibleCrew[i])
+			{
+				case "Celise": addButton(btnSlot,"Celise",mindwashCelise); btnSlot++; break;
+				//case "Yammi": addButton(btnSlot,"Yammi",mindwashYammi); btnSlot++; break;
+				//case "Pexiga": addButton(btnSlot,(pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short),mindwashPexiga); btnSlot++; break;
+				//case "Anno": addButton(btnSlot,"Anno",mindwashAnno); btnSlot++; break;
+				//case "Reaha": addButton(btnSlot,"Reaha",mindwashReaha); btnSlot++; break;
+			}
+		}
+		if(btnSlot > 14)
+		{
+			while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
+			addButton(btnSlot, "Back", masturbateMenu);
+		}
+	}
+	else addButton(0,"Use",useShipMindwashMeee);
+	
+	output("?");
+	
+	addButton(14,"Back",masturbateMenu);
 }
 
-//[Me]
+// [Me]
 public function useShipMindwashMeee():void
 {
 	clearOutput();
 	showName("\nMINDWASHING...");
 	author("Adjatha");
 	//first time
-	if(flags["MINDWASHED_SHIP"] == undefined)
+	if(flags["BADGER_MINDWASH"] == undefined)
 	{
 		output("With a bit of trepidation, you take off your gear, take a seat, and lower the thin plates of the Mindwash machine to either side of your head. The curved hardlight screen flickers across your field of vision before engulfing your senses. A small host of error messages scroll across the screen before the pink light fades to a soft blue. Your body seizes up, muscles straining and the hot wash of panic surging up your gullet. You force yourself to relax, and the tension melts away. It seems your body can have only one master at a time and the visor is in control for now.");
 	}
@@ -239,17 +278,104 @@ public function useShipMindwashMeee():void
 	addButton(0,"Next",mindwashVisorScenes);
 }
 
-//Maybe allow players to select gender if we have a lot of these eventually. Tech Specialists can get in there and slow down random selector enough to get a gender choice while non-Techies have to use a computer-savvy follower to do it for them?
-
-//{{ A menu spits a torrent of small, preview images out. With the sheer volume of smut available, it’d be impossible to focus on a single one. With a little effort, you could at least narrow down what kind of character you’ll be inhabiting.
-//[Random][Male] [Female] [Futa]  }}
-
-//After making a selection, the game displays a random scene from the appropriate gender
-
-public function mindwashVisorScenes():void
+public function mindwashVisorScenes(choice:String = "menu"):void
 {
+	// 9999
+	var characterSelect:Boolean = false;
+	
+	// Maybe allow players to select gender if we have a lot of these eventually. Tech Specialists can get in there and slow down random selector enough to get a gender choice while non-Techies have to use a computer-savvy follower to do it for them?
+	if(characterSelect && choice == "menu")
+	{
+		clearOutput();
+		showName("SELECT\nCHARACTER...");
+		author("Adjatha");
+		
+		output("A menu spits a torrent of small, preview images out. With the sheer volume of smut available, it’d be impossible to focus on a single one. With a little effort, you could at least narrow down what kind of character you’ll be inhabiting.");
+		
+		processTime(1);
+		clearMenu();
+		// [Random] [Male] [Female] [Futa]
+		// After making a selection, the game displays a random scene from the appropriate gender
+		addButton(0,"Random",mindwashVisorScenes, "random");
+		addButton(1,"Male",mindwashVisorScenes, "male");
+		addButton(2,"Female",mindwashVisorScenes, "female");
+		addButton(3,"Futa",mindwashVisorScenes, "futa");
+		
+		return;
+	}
+	
 	pc.createStatusEffect("BadgerMindwash");
-	RandomInCollection([pumpTheSpy,invasionOfTheDickSuckers,cowifiedMindwash,petPro,doorToDoorDildos,gymTripScene,poorLittleWhiteGel,bodysuitBubblesScene,breakingTheLaw])();
+	
+	if(characterSelect && choice != "random")
+	{
+		RandomInCollection(mindwashSceneList("Badger", [choice]))();
+		return;
+	}
+	
+	RandomInCollection(mindwashSceneList("Badger"))();
+}
+
+public function mindwashSceneList(sourceType:String = "", choices:Array = null):Array
+{
+	var sceneList:Array = [];
+	
+	// Auto generate choices if no paths provided (random)
+	if(choices == null || choices.length <= 0)
+	{
+		choices = [];
+		choices.push("male");
+		choices.push("female");
+		choices.push("futa");
+		choices.push("neutral");
+	}
+	
+	switch(sourceType)
+	{
+		case "Badger":
+			if(choices.indexOf("male") != -1)
+			{
+				sceneList.push(pumpTheSpy);
+				sceneList.push(invasionOfTheDickSuckers);
+				sceneList.push(cowifiedMindwash);
+			}
+			if(choices.indexOf("female") != -1)
+			{
+				sceneList.push(petPro);
+				sceneList.push(doorToDoorDildos);
+				sceneList.push(gymTripScene);
+			}
+			if(choices.indexOf("futa") != -1)
+			{
+				sceneList.push(poorLittleWhiteGel);
+				sceneList.push(bodysuitBubblesScene);
+				sceneList.push(breakingTheLaw);
+			}
+			break;
+		case "Luca":
+			if(choices.indexOf("male") != -1)
+			{
+				sceneList.push(pumpTheSpy);
+				sceneList.push(invasionOfTheDickSuckers);
+				sceneList.push(cowifiedMindwash);
+			}
+			if(choices.indexOf("female") != -1)
+			{
+				sceneList.push(petPro);
+				sceneList.push(doorToDoorDildos);
+				sceneList.push(gymTripScene);
+			}
+			if(choices.indexOf("futa") != -1)
+			{
+				sceneList.push(poorLittleWhiteGel);
+				sceneList.push(bodysuitBubblesScene);
+				sceneList.push(breakingTheLaw);
+			}
+			break;
+	}
+	
+	if(sceneList.length <= 0) return [mainGameMenu];
+	
+	return sceneList;
 }
 
 //Male Scenes
@@ -297,7 +423,7 @@ public function pumpTheSpyII():void
 public function pumpTheSpyIII():void
 {
 	clearOutput();
-	showName("PUMPING\NTHE SPY");
+	showName("PUMPING\nTHE SPY");
 	author("Adjatha");
 	output("Letting loose your animalistic instincts, you brace yourself with the slut’s inner thighs and pound into the freshly stretchy spy’s cunt. Despite its tightness, it offers little in the way of restriction for your mass. The wet warmth of her body parts before your inches as foot after foot slams into her with slurping, suckling relish. She gapes in disbelief as her womb is filled by your flesh and expands upwards, visibly distending her gut and chest. A nearly perfect imprint of your arm-thick pole bulges under her skin, pushing up past her stomach and between her breasts.");
 	output("\n\n<i>“M-my whole body is a pussy,”</i> she moans, her eyes rolling up in unexpected bliss. <i>“Oh... oh... oh fuck!”</i> she pants, breathlessly stroking the swell of your penetrating puss crusher. <i>“Fuck me,”</i> she whispers and sighs. <i>“Fuck me!”</i> Her high, thin voice becomes more frantic, crying out with sweet delight as you rock the little whore along your mast like a gooey green sex toy.");
@@ -349,7 +475,7 @@ public function pumpTheSpyIV(cumNum:Number):void
 	else
 	{
 		output("\n\nWhen you’ve finally put the after-effects of the simulation aside, you note that your rubbery cum-sheath has a present for you. It seems your VR orgasms were mirrored in real life and the Bubble Buddy has collected the results. You twist-seal the package and put your gear back on.");
-		//{player gains cum bubbles as if taking the Masturbate option with the Bubble Buddy}
+		// {player gains cum bubbles as if taking the Masturbate option with the Bubble Buddy}
 	}
 	mindwashNextButtonAndStatAwardsAndClears(cumNum);
 }
@@ -419,7 +545,7 @@ public function cowifiedMindwashIV():void
 	output("\n\nPulling off his belt and stepping out of his pants, he reveals his own, thick member. The vulkrim’s shaft is as dusky crimson as his face, robed in loose foreskin about the sloped, spaded peak. You gulp, your tail flicking in upwards in an unintentionally inviting gesture.");
 	output("\n\nA pinch on your breasts brings you back to the small man who has crouched next to your fattening tits. On the balls of his feet, he seizes both of your freshly thickened nipples between his forefingers and thumbs. <i>“Feels good, doesn’t it?”</i> he mocks. <i>“Being made into a cash chow instead of milking one? How about we get a sample for your bosses to taste?”</i>");
 	output("\n\nHis pinching grip tightens, squeezing your flush peaks between his coarse knuckles. Rolling back to front in slow, cruel motions, the scarlet man tugs instantly at your massive mounds. A tremble shudders through you, nerves aflame with a building needs for release that drives you to hands and knees with gasping, mooing tremors.");
-	output("\n\nA gradual, steady pressure below your flicking tail becomes a sudden, suffocating fullness in your lower half. A high, sharp ‘Moo!”</i> squeaks from your mouth as you force a ragged gasp from your overburdened chest. A pillar of stiff heat pushes into your rump with startling ease. The larger vulkrim grunts as his mast plows through your clenching rear, wearing your depths around his thickness like a too-tight sheath. You stretch to accomodate his girth even as your own prick leaps and bobs, waves of distress knocking aside your dignity. Ropes of jizz spurt your helpless bliss across the muted carpet.");
+	output("\n\nA gradual, steady pressure below your flicking tail becomes a sudden, suffocating fullness in your lower half. A high, sharp <i>“Moo!”</i> squeaks from your mouth as you force a ragged gasp from your overburdened chest. A pillar of stiff heat pushes into your rump with startling ease. The larger vulkrim grunts as his mast plows through your clenching rear, wearing your depths around his thickness like a too-tight sheath. You stretch to accomodate his girth even as your own prick leaps and bobs, waves of distress knocking aside your dignity. Ropes of jizz spurt your helpless bliss across the muted carpet.");
 	output("\n\nWith the big man drilling your overstuffed ass and the other finger-fucking your over-filled melons, it takes scarcely any time to reduce you to a mooing, moaning cow slut. Little more than a slave to the intoxicating abuses piled upon you, your body feels utterly defenseless. Each hip-slapping thrust sends spasms of orgasmic fire to your swollen, empty member.");
 	output("\n\nThe raw tugging at your udders is eventually rewarded with jets of pale white. Streams of milk spray from your engorged teats just like a prize cow. You expected an emptying feeling of relief and release for your first milking, but every calcium-laden spurt only adds to the flooding pressure swelling within your colossal cups.");
 	output("\n\nRough fingers clenching around your thick thighs is all the warning you get before the scorpion-tailed man behind you launches into a body-swaying, frantic pace. Each stroke pumps the fullness of his manhood through your suckling sphincter and slams his tensed, firm abdomen against your wobbling asscheeks with loud, crisp claps. His heavy, swinging sack slaps your achingly exhausted balls with encouraging thwacks.");
@@ -579,6 +705,7 @@ public function invasionOfTheDickSuckersV(cumNum:Number):void
 			{
 				output(" A sudden wave of exhaustion hits you and you numbly glance around. Every surface is coated in dripping streams of spunk, from the walls to yourself, and even the machine itself. Thankfully, it seems to be waterproof. You don’t have the energy to clean up, so you’ll just have to stew in your own juices for a while longer.");
 				pc.applyCumSoaked();
+				pc.applyCumSoaked();
 			}
 			output(" You gradually get up and put your gear back on.");
 		}
@@ -586,7 +713,7 @@ public function invasionOfTheDickSuckersV(cumNum:Number):void
 		else
 		{
 			output("\n\nWhen you’ve finally put the after-effects of the simulation aside, you note that your rubbery cum-sheath has a present for you. It seems your VR orgasms were mirrored in real life and the Bubble Buddy has collected the results. You twist-seal the package and put your gear back on.");
-			//{player gains cum bubbles as if taking the Masturbate option with the Bubble Buddy}
+			// {player gains cum bubbles as if taking the Masturbate option with the Bubble Buddy}
 		}
 	}
 	else
@@ -683,7 +810,7 @@ public function doorToDoorDildos():void
 	showBust("MIDEE");
 	showName("DOOR TO\nDOOR DILDOS");
 	output("An inopportune knock at the your apartment’s entry hatch draws you away from the smutty holo you were just getting into. <i>“What timing!”</i> you pout, pausing the explicit material mid-thrust. <i>“Who could that be this late?”</i> With no time to slip panties on, you grab a short, metallic silver skirt and yank a tight, white top over your perky B-cups. With a hurried skip, you cross the room to the polished steel of your door, catching a reflection on the way. A blue-scaled raskvel looks back at you with a pleasantly heart-shaped face. Your ass-length feathery plumage is still quite messy from an hour of your sweaty, panting, private time, but it’ll have to do.");
-	output("\n\nPressing a hand to the cool steel port, you open the door to a tall, thin feline girl. From your four-foot vantage, her face is almost entirely obscured by the massive, gravity-defying G-cup tits that are barely squeezed in a too-tight, strapless dress. Covered head to toe in black fur and a short, azure crop of spiked hair, the woman before you flashes a wide grin and  steps into your apartment without being invited.");
+	output("\n\nPressing a hand to the cool steel port, you open the door to a tall, thin feline girl. From your four-foot vantage, her face is almost entirely obscured by the massive, gravity-defying G-cup tits that are barely squeezed in a too-tight, strapless dress. Covered head to toe in black fur and a short, azure crop of spiked hair, the woman before you flashes a wide grin and steps into your apartment without being invited.");
 	output("\n\nWith a breathless enthusiasm she launches into her spiel. <i>“Hiya! I’m Mi’Dee and you’ll never believe what I’m selling! What could it be? Why, thank you for asking! It’s just about the bestest, most amazing thing ever produced by science, and I’m here to show you how it works!”</i>");
 	output("\n\n<i>“What-”</i> is all you manage to get out before she starts up again.");
 	output("\n\n<i>“You’re a girl, right? Yeah, totally. So, like, this is so cool you don’t even know. Have you ever wondered what it’d be like to have a dick? Sure you have! But gene mods can be expensive and can have all kinds of unwanted side effects like no-reason boners or erections lasting more than 72 hours, though personally I don’t see what’s so bad about that, ya know what I mean?”</i>");
@@ -740,7 +867,7 @@ public function doorToDoorDildosIII():void
 public function doorToDoorDildosIV():void
 {
 	clearOutput();
-	showName("ITS\nOVER");
+	showName("IT’S\nOVER");
 	author("Adjatha");
 	output("When the VR ends and you return to your body, you’re feeling more confused than disoriented. Is the visor playing first-person infomercials? ");
 	if(pc.hasStatusEffect("BadgerMindwash")) output("Dr. Badger really IS evil!");
@@ -870,7 +997,7 @@ public function poorLittleWhiteGelV(cumNum:Number):void
 	clearOutput();
 	showName("RECORD\nSEEKER");
 	author("Adjatha");
-	output("...[pc.name] Steele!. Wait. Who? You blink, shaking your head in disorientation. Despite not being a rahn, you think you can still feel the strain of all that cum filling your body at once. When you move, you keep expecting the spunk-bloated, jiggling weight of all that fluid hold you down. It takes a few minutes to re-orient yourself to your old body, and longer still to get the taste of thousands of gallons of cum off your mind.");
+	output("...[pc.name] Steele! Wait. Who? You blink, shaking your head in disorientation. Despite not being a rahn, you think you can still feel the strain of all that cum filling your body at once. When you move, you keep expecting the spunk-bloated, jiggling weight of all that fluid hold you down. It takes a few minutes to re-orient yourself to your old body, and longer still to get the taste of thousands of gallons of cum off your mind.");
 
 	if(pc.hasCock())
 	{
@@ -897,7 +1024,7 @@ public function poorLittleWhiteGelV(cumNum:Number):void
 		else
 		{
 			output("\n\nWhen you’ve finally put the after-effects of the simulation aside, you note that your rubbery cum-sheath has a present for you. It seems your VR orgasms were mirrored in real life and the Bubble Buddy has collected the results. You twist-seal the package and put your gear back on.");
-			//{player gains cum bubbles as if taking the Masturbate option with the Bubble Buddy}
+			// {player gains cum bubbles as if taking the Masturbate option with the Bubble Buddy}
 		}
 	}
 	else
@@ -1029,7 +1156,7 @@ public function bodysuitBubblesSceneV(cumNum:Number):void
 		else
 		{
 			output("\n\nWhen you’ve finally put the after-effects of the simulation aside, you note that your rubbery cum-sheath has a present for you. It seems your VR orgasms were mirrored in real life and the Bubble Buddy has collected the results. You twist-seal the package and put your gear back on.");
-			//{player gains cum bubbles as if taking the Masturbate option with the Bubble Buddy}
+			// {player gains cum bubbles as if taking the Masturbate option with the Bubble Buddy}
 		}
 	}
 	processTime(2);
@@ -1040,7 +1167,7 @@ public function bodysuitBubblesSceneV(cumNum:Number):void
 public function breakingTheLaw():void
 {
 	clearOutput();
-	showName("BREAKIN'\nTHE LAW");
+	showName("BREAKIN’\nTHE LAW");
 	author("Adjatha");
 	output("The rear hatch slides open with a whisper, noise following after like thunder following the rain. <i>“Whoo! We did it! Bastards never saw it coming, either. Fuck the UGC!”</i> The speaker, a boisterous galotian adopting the features of an eye-poppingly well-endowed human woman rolls into the ship’s interior with a further hoot of victory.");
 	output("\n\nHer companion, a purple rahn, enters more deliberately, tossing a lab tech’s uniform into the ship’s incinerator slot as she does so. <i>“We’re not free and clear yet,”</i> the gel woman cautions, rolling a number of stainless steel capsules in the palm of her hand. <i>“The police and security forces will be looking for amorphs.”</i> She turns to you with a thin smile. <i>“Time for you to earn your share.”</i>");
@@ -1056,9 +1183,9 @@ public function breakingTheLaw():void
 public function breakingTheLawII():void
 {
 	clearOutput();
-	showName("BREAKIN'\nTHE LAW");
+	showName("BREAKIN’\nTHE LAW");
 	author("Adjatha");
-	output("You’re on your butt in the captain’s chair before you realize you’d been moving. <i>“Open up,”</i> she murmurs and you pull the zipper of your inconspicuous flight-suit open, bearing your C-cup breasts and massive, 26” kui-tan cock. The knotty phallus is so thick it’s almost like a third leg resting atop your softly furred thighs. Your sac is as close to empty as you could get it, barely an inch across and virtually lost beneath the unfuckably thick member.");
+	output("You’re on your butt in the captain’s chair before you realize you’d been moving. <i>“Open up,”</i> she murmurs and you pull the zipper of your inconspicuous flight-suit open, bearing your C-cup breasts and massive, 26\" kui-tan cock. The knotty phallus is so thick it’s almost like a third leg resting atop your softly furred thighs. Your sac is as close to empty as you could get it, barely an inch across and virtually lost beneath the unfuckably thick member.");
 	output("\n\n<i>“Can’t we have a celebratory snack first,”</i> the goo girl whines.");
 	output("\n\n<i>“You’ll have all you can drink in a few minutes, Green. Patience.”</i> Violet takes the single capsule and pulls the two halves of its containment apart, revealing a squishy blob of ooze that glows with neon, lime-green light. <i>“The latest in Fixed-Body abuses,”</i> the rahn muses, using the term like a curse. <i>“Forget GaloMax, Formula 469 will give them all the flexibility of a galotian and the structure of a rahn, targeted exactly where they want.”</i> She sneers, looking at you as if you were responsible for the thing, rather than a hired accomplice to the theft. <i>“Notes destroyed, files wiped, and prototype stolen; let’s see them come back from that.”</i>");
 	output("\n\n<i>“Yeah, but, don’t we kinda need it to work, Violet? You know, to hide an’ stuff?”</i>");
@@ -1075,13 +1202,13 @@ public function breakingTheLawII():void
 public function breakingTheLawIII():void
 {
 	clearOutput();
-	showName("BREAKIN'\nTHE LAW");
+	showName("BREAKIN’\nTHE LAW");
 	author("Adjatha");
 	output("The galotian criminal puts her fingertips to your phallus and all but dives in with delighted squeals. Your permissive penis takes on her hands and forearms as easily as your lungs take in air. You lean back in your chair, biting your lower lip as your body expands with each passing moment. Green, both arms inside, mimes taking a big breath before lowering her head and ducking in, shoulders and all. The slime gal’s body warmth floods into you like an orgasm in reverse, her liquid body sliding through your sensitive, muscled interior, stretching the fleshy pole with her curvaceous form.");
 	output("\n\n<i>“S-slower!”</i> you beg as the faint ache of churning cum production starts deep within you. As if she can sense the brewing meal, Green hastens her descent, her breasts slipping past your swallowing slit, followed by her belly. You flex and gasp, doing your best to keep from jizzing her right back out, closing off your muscles and pulling her deeper into you, an inch at a time.");
 	output("\n\nYour triple-knotted cock is an virtual parody of itself- nearly two feet across as the green girl is sucked down into your ballooning balls. Her absurd hips press against your drug-treated body and are caught for a long, wonderfully tantalizing moment before being pulled in with a wet plop.");
-	output("\n\nWith the girl’s thickest spot swallowed, the rest is pulled in like water being sucked down a drain. Your urethra narrows and she kicks her feet daintily as  her gooey legs slip down and vanish into you, your cock returning to its normal size a moment later.");
-	output("\n\nGasping, you tremble and try to calm yourself. Your previously tunnel-sized cock shows no signs of its trial, not even the slightest stretch mark. The only sign that the galotian girl didn’t simply vanish is hanging between your legs. You scoot forward and let your nearly 3’ wide ball plop off your lap and down onto the floor with a burdened jiggle. You perch at the edge of the captain’s chair, rubbing your sing, mammoth nut gently, feeling the slight movements of Green within as she no doubt feasts on the cum steadily filling up her hiding place.");
+	output("\n\nWith the girl’s thickest spot swallowed, the rest is pulled in like water being sucked down a drain. Your urethra narrows and she kicks her feet daintily as her gooey legs slip down and vanish into you, your cock returning to its normal size a moment later.");
+	output("\n\nGasping, you tremble and try to calm yourself. Your previously tunnel-sized cock shows no signs of its trial, not even the slightest stretch mark. The only sign that the galotian girl didn’t simply vanish but is hanging between your legs. You scoot forward and let your nearly 3\' wide ball plop off your lap and down onto the floor with a burdened jiggle. You perch at the edge of the captain’s chair, rubbing your single, mammoth nut gently, feeling the slight movements of Green within as she no doubt feasts on the cum steadily filling up her hiding place.");
 	output("\n\nYou raise your gaze to Violet and are about to invite her in to fill the other orb when your voice cracks as a monumental orgasm sweeps through your momentary lapse of concentration. You shudder and gasp, fingers digging into your armrests as your chest heaves. You feel heat surging upward as the galotian, recently settled, is forced upward once more.");
 	processTime(10);
 	pc.lust(25);
@@ -1092,7 +1219,7 @@ public function breakingTheLawIII():void
 public function breakingTheLawIV():void
 {
 	clearOutput();
-	showName("BREAKIN'\nTHE LAW");
+	showName("BREAKIN’\nTHE LAW");
 	author("Adjatha");
 	output("A purple hand slams the stainless steel ring down onto your member, shutting off the release before it forces Green right back out. Violet shakes her head in exasperation. <i>“Try to be a professional,”</i> she scolds as you tremble your way through the dry shudders of your ring-locked climax. Once the threat has passed, Violet removes the sex toy and hands it to you with a look of disdain. <i>“Just in case you find yourself unable to hold back again.”</i>");
 	output("\n\nGulping, you nod silently and spread your knees, holding your mast in both hands. Rather than dive in like her companion, Violet moves forward and climbs onto your lap. Delicately, almost modestly, she raises one leg and presses her toeless foot to the peak of your heart-shaped cockhead. She wiggles as the elastic urethra opens and her purple gel and sinks into you, engulfed her up to the ankle. Her pheromones flood your senses once more and she grabs you by the jaw, locking eyes with you. <i>“Do. Not. Cum.”</i> You nod, mutely, as she slips one leg down to the knee into your stretching body.");
@@ -1110,9 +1237,9 @@ public function breakingTheLawIV():void
 public function breakingTheLawV():void
 {
 	clearOutput();
-	showName("BREAKIN'\nTHE LAW");
+	showName("BREAKIN’\nTHE LAW");
 	author("Adjatha");
-	output("You fit the cockring around your member, fitting it securely around the base of your lowest knot. With a comforting hand, you stroke the full length of your 6’ balls, feeling the two girls squirm helplessly within. <i>“Amorphs,”</i> you chuckle, reaching for the communicator hidden in the seat of your chair. <i>“Act like a push-over and they’ll assume you’re as spineless as they are.”</i> You pull the com to your mouth but hesitate. The sloshing inside of you keeps up at a steady pace, the girls pushing against the confines of their fleshy prisons, perhaps trying to communicate with one another through your internal walls.");
+	output("You fit the cockring around your member, fitting it securely around the base of your lowest knot. With a comforting hand, you stroke the full length of your 6\' balls, feeling the two girls squirm helplessly within. <i>“Amorphs,”</i> you chuckle, reaching for the communicator hidden in the seat of your chair. <i>“Act like a push-over and they’ll assume you’re as spineless as they are.”</i> You pull the com to your mouth but hesitate. The sloshing inside of you keeps up at a steady pace, the girls pushing against the confines of their fleshy prisons, perhaps trying to communicate with one another through your internal walls.");
 	output("\n\nYou set the com aside and pat the entrapped criminals almost affectionately. <i>“We planned out this sting for months, but not a single scenario went down like this,”</i> you admit. <i>“Still, I have to say, I’m pretty appreciative. Maybe enough to give you girls that celebratory snack after all.”</i> In preparation for the capture, you’d emptied your sac, so you swing your chair around and reach into a bin on the floor. Retrieving a fat, blobby balloon of a condom from it, you untie the tip and watch the white goo sloshing warmly within. <i>“A really big snack.”</i>");
 	output("\n\nYou lift the condom to your lips and slurp down the fresh nuki nut, swallowing the slightly salty jizz with satisfaction. A kui-tan cum cascade can be tough to handle under normal circumstances, but this time you’ve got help. The narcotic euphoria sweeps over you as heat builds under your fur. The tip of your tail twitches and your ears flick in agitation. <i>“I hope you girls are still hungry,”</i> you moan, grabbing your shaft and sliding a thumb up and down the sensitive peak.");
 	output("\n\nYour body goes into full blown cascade with a white flash behind your eyes that leaves you panting and pawing at your ring-sealed mast. Your balls begin filling with fresh spunk, filling the girls’ prisons with the thick batter of your alabaster seed. You can feel the two inside you, palming at your inner walls, trying to force their way out, to no avail. The two colossal orbs grow larger as they fill, bloating outwards with every rapid heartbeat.");
@@ -1130,15 +1257,15 @@ public function breakingTheLawV():void
 public function breakingTheLawVI(cumNum:Number):void
 {
 	clearOutput();
-	showName("BREAKIN'\nTHE LAW");
+	showName("BREAKIN’\nTHE LAW");
 	author("Adjatha");
-	output("When the smut fades away, you feel a deep emptiness that leaves you cold. You reach out for the massive balls housing your goo girls before remembering that it was just a porn. Still, the memory stays with you, making it difficult for you to stand and put on your gear, as if  you were still burdened by your cum-bound captives.");
+	output("When the smut fades away, you feel a deep emptiness that leaves you cold. You reach out for the massive balls housing your goo girls before remembering that it was just a porn. Still, the memory stays with you, making it difficult for you to stand and put on your gear, as if you were still burdened by your cum-bound captives.");
 	output("\n\nFaintly, you wonder if Formula 469 is a real thing or not.");
 	processTime(2);
 	mindwashNextButtonAndStatAwardsAndClears(cumNum);
 }
 
-//[Celise]
+// [Celise]
 //Spaceship only
 public function mindwashCelise():void
 {
@@ -1177,7 +1304,7 @@ public function mindwashCelise():void
 		else if(celiseScene == 1) output("a feminine ovir, her trunk-like shaft slipping out from between her thighs like a floppy third leg.");
 		else if(celiseScene == 2) output("a masculine, well-built ausar with muscles so tight that you can practically see veins in the goo.");
 		else if(celiseScene == 3) output("a particularly busty zil girl, her belly gravid with and extremely advanced pregnancy.");
-		else if(celiseScene == 4) output("a built  thraggen, drooping balls the only part of her that’s not rock hard.");
+		else if(celiseScene == 4) output("a built thraggen, drooping balls the only part of her that’s not rock hard.");
 		else output("a long-eared raskvel, her huge hips squishing against the limits of the chair’s armrests.");
 		output(" Celise seems to adjust to her new shape almost immediately, as if she’d worn it all her life. The flickering light of the visor seems to send pink trembles through her goo as the show gets started.");
 
@@ -1244,8 +1371,8 @@ public function mindwashCeliseFirstimeII():void
 	showCelise();
 	author("Adjatha");
 	output("The rounded peak of her nipple is pressed inward by an invisible force, squishing her bloated teat inward, further and further. As if opening with a heated sigh, the tip of her peak dilates, widening enough to allow what could only be a phallus into her massive, jiggling breast. You round the goo and stare down the two-inch tunnel being pressed into her and even reach a finger out to wiggle the digit in the deepening hole. If you didn’t know better, you’d think Celise were getting nipple-fucked by an invisible cock. Not a big deal for a galotian, but one has to wonder who the porn star was for whatever she’s watching.");
-	output("\n\nThe other breast experiences a similar procedure: unseen hands roughly grabbing the weighty mass before a fat phallus pushes past her impossibly pliant peak. More hands form around her knees and pull her plump thighs apart. A pair of indentations on her abdomen seem to suggest a double-dicked participant has entered the orgy and in short order he goes to work as well. Both her pussy and her asshold widen with intangible girth, all four shafts in her pushing deeper and deeper. Once every tunnel infiltrating the girl’s body seems to have reached its limit, she turns her head over one shoulder and the the ‘o’ of her moaning delight is pulled to the very limits of her cheeks, the largest cock of all jamming itself past her tongue and down her widening throat.");
-	output("\n\nShe jiggles with the weight of her unseen partners’ lust, her molded form possessed by thirty minutes of frenzied thrusts. She seems perpetually on the threshold of a full-body orgasm as her frame is plied to exhaustion by by unquenchable lusts. Cylindrical tunnels visibly bisect her body again and again, thrust after thrust. There is a sense of tension, every point of penetration widening more  and more until, at last, the invisible masses are pushed to their limits and fat bulbs pop into place. Celise - or more accurately, whoever she is watching - has just been quintuple knotted. The experience is too much for her, and the girl starts helplessly squirting in the intensity of her climax. Because her simulated partners have nothing real filling her tunnels, the galotian’s gooey juices start spraying out of her pussy, drenching her inner thighs and dripping into a pool on the chair seat.");
+	output("\n\nThe other breast experiences a similar procedure: unseen hands roughly grabbing the weighty mass before a fat phallus pushes past her impossibly pliant peak. More hands form around her knees and pull her plump thighs apart. A pair of indentations on her abdomen seem to suggest a double-dicked participant has entered the orgy and in short order he goes to work as well. Both her pussy and her asshole widen with intangible girth, all four shafts in her pushing deeper and deeper. Once every tunnel infiltrating the girl’s body seems to have reached its limit, she turns her head over one shoulder and the the ‘o’ of her moaning delight is pulled to the very limits of her cheeks, the largest cock of all jamming itself past her tongue and down her widening throat.");
+	output("\n\nShe jiggles with the weight of her unseen partners’ lust, her molded form possessed by thirty minutes of frenzied thrusts. She seems perpetually on the threshold of a full-body orgasm as her frame is plied to exhaustion by by unquenchable lusts. Cylindrical tunnels visibly bisect her body again and again, thrust after thrust. There is a sense of tension, every point of penetration widening more and more until, at last, the invisible masses are pushed to their limits and fat bulbs pop into place. Celise - or more accurately, whoever she is watching - has just been quintuple knotted. The experience is too much for her, and the girl starts helplessly squirting in the intensity of her climax. Because her simulated partners have nothing real filling her tunnels, the galotian’s gooey juices start spraying out of her pussy, drenching her inner thighs and dripping into a pool on the chair seat.");
 	output("\n\nThe outlines of knotted phalluses pump with the disjointed, shallow strokes you’d expect of four people reaming a single girl, all while the galotian squirms and creams herself with gushing, sloppy gurgles. The shaft in her throat bloats and you can practically see the path of its invisible spunk as the peak sprouts a thin offshoot which rolls down her chest and pools in her middle in an expanding, empty stomach. One after another, the knotted tunnels reach their own climax in the girl, pouring the bloating contents of their bliss into her overfilled form.");
 	output("\n\nThe imaginary dog dicks try to pull out, but the knots are too large and her body too tight, so they content themselves with a slow, lazy series of half-hearted thrusts, enjoying the spunk-filled cock holsters.");
 	processTime(15);

@@ -213,9 +213,10 @@ public function lucaBusinessMenu():void
 	addButton(0,"Items",buyFromLuca,undefined,"Items","Luca sells a few items at retail price.");
 	if(pc.credits >= 500) addButton(1,"VR Simulation",lucasVRSims,undefined,"VR Simulation","Luca allows people to experience a wide range of virtual fantasies.\n\n<b>Cost:</b> 500 credits");
 	else addDisabledButton(1,"VR Simulation","VR Simulation","You cannot afford the 500 credits that this would cost.");
-	if(flags["LUCAS_MINDWASH"] == undefined) addButton(2,"Broken Visor",mindwashBrokenVisor,undefined,"Broken Visor","One of the booths has an “Out of Order” sign over it. Damage from an overexcited guest, maybe?");
-	else if(pc.credits >= 250)  addButton(2,"Broken Visor",mindwashBrokenVisor,undefined,"Broken Visor","The damaged VR booth is still roped off, but you're welcome to give it another try.\n\n<b>Cost:</b> 250 credits");
-	else addDisabledButton(2,"Broken Visor","Broken Visor","Despite the heavy discount, you can't use the weird, broken visor.");
+	if(flags["LUCAS_MINDWASH"] == -1) { /* Visor removed! */ }
+	else if(flags["LUCAS_MINDWASH"] == undefined) addButton(2,"Broken Visor",mindwashBrokenVisor,undefined,"Broken Visor","One of the booths has an “Out of Order” sign over it. Damage from an overexcited guest, maybe?");
+	else if(pc.credits >= 250) addButton(2,"Broken Visor",mindwashBrokenVisor,undefined,"Broken Visor","The damaged VR booth is still roped off, but you’re welcome to give it another try.\n\n<b>Cost:</b> 250 credits");
+	else addDisabledButton(2,"Broken Visor","Broken Visor","Despite the heavy discount, you can’t use the weird, broken visor.");
 	addButton(14,"Back",approachLuca,true);
 }
 
@@ -648,7 +649,7 @@ public function simmCaged3A(exhibition:Boolean):void
 	output("\n\nYou mentally scream at the guard in your mind. You know shouting out loud won’t help. <i>“What can I do to get more food? I don’t know how long I’ll be in this cage and I’m very hungry.”</i>");
 	output("\n\nThe guard looks you up and down, judging you. She smiles and walks towards the cage. <i>“I have been standing here guarding you shortly after you awoke and spoke with priestess Seylia. I haven’t been able to do anything but stand here and make sure you don’t try to escape.”</i>");
 	output("\n\nShe takes her flaccid cock into her left hand. With a few gentle strokes it rises to a full <i>yummy looking twelve inches.</i> <i>“You will bring me pleasure with your mouth and I will in turn bring you food. Deal?”</i>");
-	output("\n\nSo you give her a blowjob and she gives you food? <i>That sounds like a tasty and mouth watering win-win!.</i> <i>“Deal.”</i>");
+	output("\n\nSo you give her a blowjob and she gives you food? <i>That sounds like a tasty and mouth watering win-win!</i> <i>“Deal.”</i>");
 	output("\n\nYou get onto your knees and move to the edge of the cage. The guard puts her ribbed length through the wooden bars. You’re too hungry to give her any foreplay. You take as much of her into your mouth as you can and start sucking. She stifles a low moan as she presses herself against the cage.");
 	output("\n\nYou pull her deeper into your mouth and start tasting her precum. In only a minute her crown starts to tickle the back of your throat. That’s when two hands grasp the back of your head and slam you forward. Her ribbed meaty length forcing itself down your gullet. The guard takes the lead assailing your oral cavity. Before long she climaxes and injects her cum directly into your stomach.");
 	output("\n\nThe guard releases her hold on your skull and you fall backwards onto your butt. She chuckles and walks away. You blissfully start sucking a finger in and out of your mouth. Tasting what little cum you didn’t swallow, you start rolling it around with your tongue.");

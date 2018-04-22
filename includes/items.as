@@ -854,6 +854,10 @@ public function buyItemGo(arg:ItemSlotClass):void {
 			if(shopkeep is Shekka) shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
 		}
 	}
+	if(arg is MindwashVisor)
+	{
+		shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
+	}
 	output("\n\n");
 	//Set everything to take us back to buyItem!
 	itemScreen = buyItem;
