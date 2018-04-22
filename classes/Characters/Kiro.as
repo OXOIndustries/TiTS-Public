@@ -21,7 +21,7 @@
 	{
 		public function Kiro() 
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -190,6 +190,8 @@
 			this.milkRate = 0;
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
+			
+			createPerk("'Nuki Drunk", 0, 0, 0, 0, "");
 		}
 		
 		public function UpgradeVersion1(d:Object):void
@@ -214,6 +216,15 @@
 		{
 			d.vaginas[0].type = GLOBAL.TYPE_KUITAN;
 		}
+		public function UpgradeVersion4(d:Object):void
+		{
+			for(var i:int = 0; i < d.perks.length; i++)
+			{
+				if(d.perks[i].storageName == "Nuki Drunk") d.perks[i].storageName = "'Nuki Drunk";
+			}
+			d.perks.sortOn("storageName", Array.CASEINSENSITIVE);
+		}
+		
 		//Gotta reset 'dem balls!'
 		override public function orgasm(): void {
 			super.orgasm();

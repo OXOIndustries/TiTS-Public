@@ -497,7 +497,7 @@ public function askLundAboutOutside():void
 		output("\n\nYou’re way past resistance at this point. Nothing can come between you and your determination to wrap your [pc.lips] around the entirety of his hot, throbbing dog-cock until it spews seed into your throat. And besides - it comes naturally.");
 		output("\n\n<i>“Pleeeeaaase let me suck your fat cock,”</i> you moan, wiggling your hips a little. <i>“I need to feel your warm, sticky seed in mmmmfffgbrl-”</i>");
 		output("\n\nYour eyes widen then flutter in pleasure as Lund viciously thrusts his entire length into your mouth, pointed tip penetrating straight past your tonsils and into your bulging throat. You can’t help yourself, immediately wetting your ");
-		if(!pc.isCrotchExposedByLowerUndergarment()) output("[pc.lowerUndergarments]");
+		if(!pc.isCrotchExposedByLowerUndergarment()) output("[pc.lowerUndergarment]");
 		else if(!pc.isCrotchExposedByArmor()) output("[pc.armor]");
 		else output("[pc.thighs]");
 		output(" with ");
@@ -520,9 +520,11 @@ public function askLundAboutOutside():void
 			output("handhold.”</i>");
 			output("\n\nWhether or not that’s their primary use, Lund’s definitely figured your body out quick. Using your long, sensitive ears to pull you up and down, he savagely bucks his hips against your face until spit is flying from your lips while you make wet gagging noises around the base of his cock. It hurts, but fuck if it isn’t so worth it...");
 		}
-		else output(" planting his hands on the back of your head with a grin. <i>“Hold tight.”</i>");
-
-		output("\n\nPressing your face into his abs repeatedly, he savagely bucks his hips against your face until spit is flying from your lips while you make wet gagging noises around the base of his cock}.");
+		else
+		{
+			output(" planting his hands on the back of your head with a grin. <i>“Hold tight.”</i>");
+			output("\n\nPressing your face into his abs repeatedly, he savagely bucks his hips against your face until spit is flying from your lips while you make wet gagging noises around the base of his cock.");
+		}
 		output("\n\n<i>“Glrk-! Gllllrrg,”</i> you gurgle when he holds you flush against the soft fur of his crotch, cock buried in your throat. You find yourself running your hands from his muscular thighs to his firm butt, lightly squeezing his cheeks in admiration while he holds you still.");
 		output("\n\n<i>“Good noises,”</i> Lund pants, imbuing you with a sense of pride. <i>“");
 		if(!korgiTranslate()) output("Alien sound best with lips around cock.");
