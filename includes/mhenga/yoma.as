@@ -2,14 +2,19 @@
  * https://docs.google.com/document/d/1UyMwEaKfiK6FNnNxCBF4EfqsSqS1RgZONiiUTmAydO8/edit#
  * 
  * YOMA_MET
- * YOMA_SEXED
- * YOMA_TIME_ORAL
+ * YOMA_SEEN_NAKED
+ * YOMA_TIMES_ORALED
+ * YOMA_TIMES_EATEN_OUT
  * YOMA_TIMES_VAGINAL
  * YOMA_TIMES_TAILFUCKED
  * YOMA_GAMES_PLAYED
  * YOMA_TALKED_ABOUT_HIMSELF
  * YOMA_TALKED_ABOUT_MASTER
 */
+
+//Missing:
+//Game
+//Appear in jungle
 
 public function showYoma(nude:Boolean = false):void
 {
@@ -41,7 +46,7 @@ public function yomaFirstMeeting():void
 		output("\n\nHis hand hasn’t dropped yet, it looks like he wants you to shake it.");
 
 		flags["YOMA_MET"] = 1;
-
+		processTime(10);
 		clearMenu();
 		addButton(0,"Shake it",yomaShakeHands);
 		addButton(1, "Don’t", yomaShakeHands, false);
@@ -51,6 +56,7 @@ public function yomaFirstMeeting():void
 		output("\n\nYoma is standing a several feet behind you, hands on hips.");
 		output("\n\nDo you want to stay and talk?");
 		
+		processTime(3);
 		clearMenu();
 		addButton(0,"Stay",yomaMenu,true);
 		addButton(1,"Leave",yomaLeave);
@@ -102,6 +108,7 @@ public function yomaShakeHands(handshake:Boolean = true):void
 	output("\n\nHuh, looks like you’ve got a robotic cunt boy here.");
 	output("\n\nIs there anything you want to talk about?");
 
+	processTime(10);
 	clearMenu();
 	yomaMenu(true);
 }
@@ -117,10 +124,12 @@ public function yomaMenu(clear:Boolean = false):void
 	addButton(1,"Talk",yomaTalkMenu, true);
 	if (flags["YOMA_TALKED_ABOUT_MASTER"] != 1) addDisabledButton(2, "Sex", "Sex", "You probably should find out who this android belongs to first, unless your kink is lawsuits.");
 	else if (pc.hasStatusEffect("Yoma Sex Disabled")) addDisabledButton(2, "Sex", "Sex", "Yoma doesn't want to have sex with you right now.");
+ 	else if (pc.lust() < 33) addDisabledButton(2, "Sex", "Sex", "You aren’t aroused enough for this.")
 	else addButton(2,"Sex",yomaSexMenu);
 
 //Available if the time is between 21:00 and 3:00
-	addButton(3,"Hugs",yomaHugsI);
+	if(hours > 3 && hours < 21) addDisabledButton(3, "Hugs", "Hugs", "This scene is only avaible in the evening.");
+	else addButton(3,"Hugs",yomaHugsI);
 	addButton(14,"Leave",yomaLeave);
 }
 
@@ -134,15 +143,16 @@ public function yomaAppearance():void
 	output("\n\nHe has solid glowing green eyes with only a paler line marking where he’s actually looking. Combined with the grooves running down his cheeks, it’s very apparent that he’s not organic.");
 	output("\n\nHe’s wearing a red, high-necked but armless cropped shirt that leaves his flat stomach exposed, with matching flared shorts that do nothing to cover his wide hips. The android has no noticeable muscle tone and is remarkably thin waisted.");
 	output("\n\nYou know that his shorts cover a ");
-	if (flags["YOMA_SEXED"] != undefined) output("human ");
+	if (flags["YOMA_SEEN_NAKED"] != undefined) output("human ");
 	output("pussy lying between his legs ");
-	if (flags["YOMA_SEXED"] != undefined) output("with a heart shaped patch of pubic hair above it ");
+	if (flags["YOMA_SEEN_NAKED"] != undefined) output("with a heart shaped patch of pubic hair above it ");
 	output("as well as ");
-	if (flags["YOMA_SEXED"] != undefined) output("a welcoming ");
+	if (flags["YOMA_SEEN_NAKED"] != undefined) output("a welcoming ");
 	else output("an ");
 	output("asshole");
 	output("\n\nHe must have caught you checking him out, because he tugs at his shirt collar and jokingly fans himself with his other hand.");
 
+	processTime(3);
 	yomaMenu();
 	addDisabledButton(0, "Appearance");
 }
@@ -190,8 +200,8 @@ public function yomaTalkHim():void
 		output("\n\nWell. That answers that question.");
 	}
 	
+	processTime(10);
 	if (flags["YOMA_TALKED_ABOUT_HIMSELF"] == 0) flags["YOMA_TALKED_ABOUT_HIMSELF"] = 1;
-
 	yomaTalkMenu();
 	addDisabledButton(0, "Him");
 }
@@ -209,6 +219,7 @@ public function yomaTalkMhenga():void
 	output("\n\nThat makes sense, you guess.");
 	output("\n\n<i>“Mhen’ga is not my first stop and it probably will not be the last. There are so many specimens I want to gather for him...”</i> There’s an almost sad note in his voice, you guess it’s just not the same without his owner here.");
 	
+	processTime(10);
 	yomaTalkMenu();
 	addDisabledButton(1, "Mhen’ga");
 }
@@ -225,15 +236,15 @@ public function yomaTalkMaster():void
 	output("\n\n<i>“Well, with his condition he is not employed, but he has quite the interest in robotics! The amount of times he has tried to take me apart is bordering on ridiculous.”</i> Considering that he’s laughing as he says it though, it looks like he doesn’t actually mind. <i>“He sells the odd patent though, despite the fortune his parents make, he prefers not to feel indebted to them.”</i>");
 	output("\n\nWhat’s he like?");
 	output("\n\nYou’ve really asked the golden question here, as Yoma absolutely <i>beams</i>. <i>“I fucking love him, [pc.name]. This is not just because I was made specifically for him, he is simply the most exemplary member of the human race I have ever met. He has such a genuine kindness about him, he is just... wonderful.”</i>");
-	if (flags["YOMA_SEXED"] != undefined) output("\n\nYou ask when you’ll get to meet him, and Yoma laughs. <i>“Now, now, I cannot bring back everyone I have slept with to meet my owner.”</i>");
+	if (flags["YOMA_SEEN_NAKED"] != undefined) output("\n\nYou ask when you’ll get to meet him, and Yoma laughs. <i>“Now, now, I cannot bring back everyone I have slept with to meet my owner.”</i>");
 	output("\n\nIt does look like he cares an awful lot about his owner, and you ask him what the two of them like doing together");
 	if(pc.isBimbo() || pc.isBro()) output(", and you can’t stop the mildly flirtatious tone in your voice");
 	output(". Yoma pauses before answering. <i>“Well, the... less explicit answer to that question is that we, well, adapted a tabletop roleplaying game so that’d it’d work for just two players");
 	if (flags["YOMA_GAMES_PLAYED"] !=undefined) output(" but you already know about that");
 	output(".”</i>");
 
+	processTime(15);
 	if (flags["YOMA_TALKED_ABOUT_MASTER"] != 1) flags["YOMA_TALKED_ABOUT_MASTER"] = 1;
-	
 	yomaTalkMenu();
 	addDisabledButton(2, "Master?");
 }
@@ -252,6 +263,7 @@ public function yomaTalkProbe():void
 	output("\n\nIt’s not much to go off, but it’s more than you had earlier.");
 	if (pc.isNice()) output(" You make sure to thank him, and he smiles again, a flash of brilliant white.");
 	
+	processTime(10);
 	yomaTalkMenu();
 	addDisabledButton(3, "Probe?");
 }
@@ -318,7 +330,10 @@ public function yomaInitiateFighte():void
 	output("\n\n");
 //	output("\n\n[Next]{take the PC into a fight with the respective enemy}");
 
+	processTime(15);
 	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function yomaSexMenu():void
@@ -334,8 +349,8 @@ public function yomaSexMenu():void
 		output("and he beams, stripping out of his shirt and hooking his thumbs into the waistband of his shorts before you can even process what’s happening.");
 		output("\n\n<i>“So, what do you want to do?”</i>");
 
-		//output("\n\n{Requires genitals .}");
-		addButton(0,"Get oral",yomaSexGetOral);
+		if (pc.hasGenitals()) addButton(0,"Get oral",yomaSexGetOral);
+		else addDisabledButton(0,"Get oral","Get oral", "You need genitals for this scene.");
 		addButton(1,"Give oral",yomaSexGiveOral);
 		if (pc.hasCock()) addButton(2,"Vaginal",yomaSexVaginal);
 		else addDisabledButton(2,"Vaginal","Vaginal", "You need a cock for this scene.");
@@ -349,6 +364,7 @@ public function yomaSexMenu():void
 		output("\n\nYou try to protest, explaining your enhanced immune system, but he folds his arms, tail bristling.");
 		output("\n\n<i>“You have a brilliant immune system, but my master has a terrible one. I am not taking any chances on that managing to balance out.”</i>");
 		output("\n\nIt looks like he won't budge on that.");
+		processTime(3);
 		pc.createStatusEffect("Yoma Sex Disabled");
 		addButton(0,"Next",yomaMenu);
 	}
@@ -369,69 +385,108 @@ public function yomaSexBack():void
 public function yomaSexGetOral():void
 {
 	clearOutput();
-	showYoma();
+	showYoma(true);
 	author("-GothPastel");
 
-/*
-output("\n\n");
-output("\n\n[Get oral]");
-output("\n\n");
-output("\n\n{Requires both a cock and a vagina.}");
-output("\n\nYou tell him not to bother removing his shorts, {//If PC clothed: pulling your own [pc.lowerGarments] down and kicking them off to show off your [pc.cocks] and [pc.vaginas]} {//If PC nude: gesturing down to your [pc.cocks] and [pc.vaginas]}, you’re more interested in getting oral than anything else right now.");
-output("\n\nYoma sticks his pink tongue out at you, but doesn’t complain as he pulls his hands away from his shorts, using them to beckon you closer.");
-output("\n\n<i>“Quite the arrangement you have got down here,”</i> he comments as he gracefully drops to his knees, <i>“It is not often that I meet hermaphrodites.”</i>");
-output("\n\nYou suppose that’s fair, but you’re not here for discussions about the rarity of certain genital configurations, so you {//PC is kind: gently //PC is Misch: playfully //PC is hard: roughly} grab a handful of platinum dreadlocks, pulling him closer.");
-output("\n\n<i>“Patience, [pc.name], patience,”</i> he murmurs, pressing a kiss to your inner thigh, <i>“I will be right to it.”</i>");
-output("\n\n");
-output("\n\nGood.");
-output("\n\n");
-output("\n\nHe doesn’t waste much time, kissing at your thighs and {//If PC has high fitness level: toned} stomach before taking the head of your cock into his mouth, engulfing it in wet heat. Not that he ignores your [pc.vagina], a free hand finding its way between your lips, soft fingertips playing over your outermost folds. He hums around your [pc.cock] as a little of your [pc.cum] slips out onto his tongue, before pulling away.");
-output("\n\nBefore you can even begin to protest, his mouth is back on you, licking a long stripe down your cock {//If PC has balls:, over your ball{s}} and right onto your clit, before snaking his way back up again to press messy kisses to the base of your cock.");
-output("\n\nYou’re throbbing under his ministrations to the extent that you barely notice that he’s slipped two fingers into you, until he finds your G-spot. At this  you cry out, feeling yourself wetten drastically. Before you can get off too soon though, Yoma pulls the fingers back out again, instead using his hand to pump your [pc.cock]. Luckily for your rather desperate feeling [pc.vagina], he’s swapping places entirely, and his flattened tongue is soon pressed to your wet folds, lapping at you with, well, the exact level of precision you’d expect from a companion droid.");
-output("\n\nEventually, he swaps back, but this time, instead of more kisses, he takes your cock all the way down, deepthroating you {//If PC has cock less than 10 inches: without a hint of difficulty //PC has cock more than 10 inches but less than 20: with a little difficulty //PC has cock more than 20 inches but less than 40:, although it’s quite a struggle to take it all down //PC has cock more than 40 inches:, that is, you feel your tip hit what his manufacturers must have thought was the absolute deepest his throat needed to go}. This combined with fingers once again pressed up against your G-spot while his other hand cups your balls, causes you to cum, your feminine fluids spraying the jungle floor as your [pc.cum] {//PC has low/high cum volume: trickles/floods} down Yoma’s throat.");
-output("\n\nAll things must come to an end though, and with one final loving lick, Yoma pulls himself away.");
-output("\n\n<i>“That was quite the time, {pc.name}!”</i> he says, muffled as he pulls his shirt back over his head, <i>“You should come back some time!”</i>");
-output("\n\nYou think you will, you decide as the two of you {//PC wears clothing/equipment: redress and} say your goodbyes.");
+	output("You tell him not to bother removing his shorts, ")
+	if (pc.isNude()) output("gesturing down to");
+	else output("pulling your own [pc.lowerGarments] down and kicking them off to show off");
+	if (pc.hasCock() && pc.hasVagina()) {
+		output(" your [pc.cocks] and [pc.vaginas], you’re more interested in getting oral than anything else right now.");
+		output("\n\nYoma sticks his pink tongue out at you, but doesn’t complain as he pulls his hands away from his shorts, using them to beckon you closer.");
+		output("\n\n<i>“Quite the arrangement you have got down here,”</i> he comments as he gracefully drops to his knees, <i>“It is not often that I meet hermaphrodites.”</i>");
+		output("\n\nYou suppose that’s fair, but you’re not here for discussions about the rarity of certain genital configurations, so you ");
+		if (pc.isNice()) output("gently");
+		else if(pc.isMischievous()) output("playfully");
+		else output("roughly");
+		output(" grab a handful of platinum dreadlocks, pulling him closer.");
+		output("\n\n<i>“Patience, [pc.name], patience,”</i> he murmurs, pressing a kiss to your inner thigh, <i>“I will be right to it.”</i>");
+		output("\n\nGood.");
+		output("\n\nHe doesn’t waste much time, kissing at your [pc.thighsDescript] and ");
+		if (pc.tone >= 50) output("toned ");
+		output("stomach before taking the head of your [pc.cockNounBiggest] into his mouth, engulfing it in wet heat. Not that he ignores your [pc.vagina], a free hand finding its way between your lips, soft fingertips playing over your outermost folds. He hums around your cock as a little of your [pc.cum] slips out onto his tongue, before pulling away.");
+		output("\n\nBefore you can even begin to protest, his mouth is back on you, licking a long stripe down your [pc.biggestCockDescript]");
+		if (pc.balls > 0) output(", over your [pc.scrotum]");
+		output(" and right onto your [pc.clit], before snaking his way back up again to press messy kisses to the base of your cock.");
+		output("\n\nYou’re throbbing under his ministrations to the extent that you barely notice that he’s slipped two fingers into you, until he finds your G-spot. At this  you cry out, feeling yourself wetten drastically. Before you can get off too soon though, Yoma pulls the fingers back out again, instead using his hand to pump your [pc.biggestCock]. Luckily for your rather desperate feeling [pc.vagina], he’s swapping places entirely, and his flattened tongue is soon pressed to your wet folds, lapping at you with, well, the exact level of precision you’d expect from a companion droid.");
+		output("\n\nEventually, he swaps back, but this time, instead of more kisses, he takes your cock all the way down, deepthroating you");
+		if (pc.cLength(pc.biggestCockIndex(), true) >= 40) output(", that is, you feel your tip hit what his manufacturers must have thought was the absolute deepest his throat needed to go");
+		else if (pc.cLength(pc.biggestCockIndex(), true) >= 20) output(", although it’s quite a struggle to take it all down");
+		else if (pc.cLength(pc.biggestCockIndex(), true) >= 10) output(" with a little difficulty");
+		else output(" without a hint of difficulty ");
+		output(". This combined with fingers once again pressed up against your G-spot");
+		if (pc.balls > 0) output(" while his other hand cups your [pc.ballsNoun]");
+		output(", causes you to cum, your feminine fluids spraying the jungle floor as your [pc.cum] ");
+		if (pc.cumQ() <= 500) output("trickles");
+		else output("floods");
+		output(" down Yoma’s throat.");
+		output("\n\nAll things must come to an end though, and with one final loving lick, Yoma pulls himself away.");
+		output("\n\n<i>“That was quite the time, [pc.name]!”</i> he says, muffled as he pulls his shirt back over his head, <i>“You should come back some time!”</i>");
+	}
+	else if (pc.hasCock()) {
+		output(" your [pc.cocks], you’re more interested in getting oral than anything else right now.");
+		output("\n\nYoma sticks his pink tongue out at you, but doesn’t complain as he pulls his hands away from his shorts, using them to beckon you closer.");
+		output("\n\n<i>“Mm,”</i> he hums, nuzzling his face against your [pc.cocks], seeming to almost sniff at ");
+		if (pc.cocks.length > 1) output("them");
+		else output("it");
+		output(", <i>“Lovely.”</i>");
+		output("\n\nWell, that sounds like approval.");
+		output("\n\nHe doesn’t waste much time, kissing at your [pc.thighsDescript] and ");
+		if (pc.tone >= 50) output("toned ");
+		output("stomach before taking the head of your [pc.biggestCockDescript] into his mouth, engulfing it in wet heat. His tongue slips past his lips, tracing the veins on your shaft deftly.");
+		output("\n\nYoma drags his soft lips back up your [pc.cockNounBiggest], pulling away only to press messy kisses to your shaft")
+		if (pc.balls > 0) {
+			output(" before sliding down to give your [pc.balls] some attention");
+			if (pc.balls > 1) output(", rolling them gently in his palms as he lathes the outside with his soft tongue");
+			output(". One hand moves up to stroke your cock as he continues to lavish attention on them");
+		}
+		output(".");
+		output("\n\nYou’re starting to get incredibly excited when he pulls away, and you swear he must be able to feel your heartbeat through your cock as he engulfs it again. He takes it deeper this time, deepthroating you ");
+		if (pc.cLength(pc.biggestCockIndex(), true) >= 40) output(", that is, you feel your tip hit what his manufacturers must have thought was the absolute deepest his throat needed to go");
+		else if (pc.cLength(pc.biggestCockIndex(), true) >= 20) output(", although it’s quite a struggle to take it all down");
+		else if (pc.cLength(pc.biggestCockIndex(), true) >= 10) output(" with a little difficulty");
+		else output(" without a hint of difficulty ");
+		output(". This");
+		if (pc.balls > 0) output(", combined with his hands caressing your [pc.ballsNoun],");
+		output(" pushes you to orgasm, your [pc.cum]");
+		if (pc.cumQ() <= 500) output("trickling");
+		else output("flooding");
+		output(" down Yoma’s throat.");
+		output("\n\nAll things must come to an end though, and with one final loving lick, Yoma pulls himself away.");
+		output("\n\n<i>“That was quite the time, [pc.name]!”</i> he says, muffled as he pulls his shirt back over his head, <i>“You should come back some time!”</i>");
+	}
+	else if (pc.hasVagina()) {
+		output(" your [pc.vaginas], you’re more interested in getting oral than anything else right now.");
+		output("\n\nYoma sticks his pink tongue out at you, but doesn’t complain as he pulls his hands away from his shorts, using them to beckon you closer.");
+		output("\n\n<i>“I’m not quite accustomed to taking care of more feminine anatomy,”</i> he comments as he gracefully drops to his knees, <i>“but I shall try my best.”</i>");
+		output("\n\nYou suppose that’s fair, but you’re not here for discussions about his preferences when he’s already on his knees, so you ");
+		if (pc.isNice()) output("gently");
+		else if(pc.isMischievous()) output("playfully");
+		else output("roughly");
+		output(" grab a handful of platinum dreadlocks, pulling him closer.");
+		output("\n\n<i>“Patience, [pc.name], patience,”</i> he murmurs, pressing a kiss to your inner thigh, <i>“I will be right to it.”</i>");
+		output("\n\nGood.");
+		output("\n\nHe keeps trailing those kisses further and further up your thigh, ears flicking and swivelling towards you as you let out small, pleasured noises. Luckily, once he’s run out of thigh to kiss, he doesn’t tease you further, instead going straight for your bare cunt. One hand nudges the hood of your [pc.clit] out of the way while the other braces against your thigh as his soft, pink tongue attacks your lower lips. His tongue strikes your clit, barraging it with a wave of short, sharp licks that makes you moan loudly.");
+		output("\n\nYou grip his ears, pulling him closer and gasping at the feeling of his lips pressing against your own. His response is to flatten his tongue out, giving you long, fast laps from base to clit that make you shudder violently. Eventually though, you pull him back up to your [pc.clit] and he hums against it. The vibrations bring you so much closer to the precipice, and when his tongue resumes its previous attacks on your button, you just don’t know how much longer you’re going to last.");
+		output("\n\nYour orgasm hits suddenly, then all at once. Yoma even has to snake his hands around your [pc.thighsDescript] to stop you from toppling over - not that it stops him from his oral ministrations, he’s still working your [pc.vagina] all the way through your climactic high.");
+		output("\n\nAll things must come to an end though, and with one final loving lick, Yoma pulls himself away, face drenched in your femcum.");
+		output("\n\n<i>“That was quite the time, [pc.name]!”</i> he says, muffled as he pulls his shirt back over his head, <i>“Maybe you will come back and help me get more practice?”</i>");
+	}
+	output("\n\nYou think you will, you decide as the two of you ");
+	if (!pc.isNude()) output("redress and ");
+	output("say your goodbyes.");
 
-output("\n\nDick:");
-output("\n\nYou tell him not to bother removing his shorts, {//If PC is clothed: pulling your own [pc.lowerGarments] down and kicking them off to show off your [pc.cocks]} {//If nude: gesturing down to your [pc.cocks]}, you’re more interested in getting oral than anything else right now.");
-output("\n\nYoma sticks his pink tongue out at you, but doesn’t complain as he pulls his hands away from his shorts, using them to beckon you closer.");
-output("\n\n<i>“Mm,”</i> he hums, nuzzling his face against your [pc.cocks], seeming to almost sniff at {it/them}, <i>“Lovely.”</i>");
-output("\n\nWell, that sounds like approval.");
-output("\n\nHe doesn’t waste much time, kissing at your thighs and {toned} stomach before taking the head of your cock into his mouth, engulfing it in wet heat. His tongue slips past his lips, tracing the veins on your shaft deftly.");
-output("\n\nYoma drags his soft lips back up your cock, pulling away only to press messy kisses to your shaft {//If PC has balls: before sliding down to give your [pc.balls] some attention, rolling them gently in his palms as he lathes the outside with his soft tongue. One hand moves up to stroke your cock as he continues to lavish attention on them}.");
-output("\n\nYou’re starting to get incredibly excited when he pulls away, and you swear he must be able to feel your heartbeat through your cock as he engulfs it again. He takes it deeper this time, deepthroating you {//If PC has cock less than 10 inches: without a hint of difficulty //PC has cock more than 10 inches but less than 20: with a little difficulty //PC has cock more than 20 inches but less than 40:, although it’s quite a struggle to take it all down //PC has cock more than 40 inches:, until  you feel your tip hit what his manufacturers must have thought was the absolute deepest his throat needed to go}. This, combined with his hands caressing your balls, pushes you to orgasm, your [pc.cum] {//Based on low/high cum output: trickling/flooding} down Yoma’s throat.");
-output("\n\nAll things must come to an end though, and with one final loving lick, Yoma pulls himself away.");
-output("\n\n<i>“That was quite the time, {pc.name}!”</i> he says, muffled as he pulls his shirt back over his head, <i>“You should come back some time!”</i>");
-output("\n\nYou think you will, you decide as the two of you {//If PC wears clothing/equipment: redress and} say your goodbyes.");
-output("\n\n");
-output("\n\nVagina:");
-output("\n\n{Requires a vagina:}");
-output("\n\nYou tell him not to bother removing his shorts, {//If PC is clothed: pulling your own [pc.lowerGarments] down and kicking them off to show off your [pc.vaginas]} {//If PC is nude: gesturing down to your [pc.vaginas]}, you’re more interested in getting oral than anything else right now.");
-output("\n\nYoma sticks his pink tongue out at you, but doesn’t complain as he pulls his hands away from his shorts, using them to beckon you closer.");
-output("\n\n<i>“I’m not quite accustomed to taking care of more feminine anatomy,”</i> he comments as he gracefully drops to his knees, <i>“but I shall try my best.”</i>");
-output("\n\nYou suppose that’s fair, but you’re not here for discussions about his preferences when he’s already on his knees, so you {//If PC is Kind: gently //PC is Misch: playfully //PC is Hard: roughly} grab a handful of platinum dreadlocks, pulling him closer.");
-output("\n\n<i>“Patience, [pc.name], patience,”</i> he murmurs, pressing a kiss to your inner thigh, <i>“I will be right to it.”</i>");
-output("\n\n");
-output("\n\nGood.");
-output("\n\n");
-output("\n\nHe keeps trailing those kisses further and further up your thigh, ears flicking and swivelling towards you as you let out small, pleasured noises. Luckily, once he’s run out of thigh to kiss, he doesn’t tease you further, instead going straight for your bare cunt. One hand nudges the hood of your [pc.clit] out of the way while the other braces against your thigh as his soft, pink tongue attacks your lower lips. His tongue strikes your clit, barraging it with a wave of short, sharp licks that makes you moan loudly. You grip his ears, pulling him closer and gasping at the feeling of his lips pressing against your own. His response is to flatten his tongue out, giving you long, fast laps from base to clit that make you shudder violently. Eventually though, you pull him back up to your [pc.clit] and he hums against it. The vibrations bring you so much closer to the precipice, and when his tongue resumes its previous attacks on your button, you just don’t know how much longer you’re going to last.");
-output("\n\nYour orgasm hits suddenly, then all at once. Yoma even has to snake his hands around your thighs to stop you from toppling over - not that it stops him from his oral ministrations, he’s still working your [pc.vagina] all the way through your climactic high.");
-output("\n\nAll things must come to an end though, and with one final loving lick, Yoma pulls himself away, face drenched in your femcum.");
-output("\n\n<i>“That was quite the time, [pc.name]!”</i> he says, muffled as he pulls his shirt back over his head, <i>“Maybe you will come back and help me get more practice?”</i>");
-output("\n\nYou think you will, you decide as the two of you {//If PC wears clothing/equipment: redress and} say your goodbyes.");
-output("\n\n");
-output("\n\n[Next]{back to map}");
-
-*/
-
-	IncrementFlag("YOMA_TIME_ORAL");
+	processTime(30+rand(15));
+	pc.orgasm();
+	IncrementFlag("YOMA_TIMES_ORALED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function yomaSexGiveOral():void
 {
 	clearOutput();
-	showYoma();
+	showYoma(true);
 	author("-GothPastel");
 
 	output("You wait for Yoma to finish stripping off before you gesture him closer, dropping to your knees in front of him. You look at his cute, human pussy and the heart shaped patch of hair above it almost hungrily.");
@@ -473,9 +528,11 @@ public function yomaSexGiveOral():void
 	output("and head back on your separate ways.");
 
 	if (pc.HPRaw <= pc.HPMax()) pc.HP(10);
+	processTime(30+rand(15));
 	pc.loadInMouth();
-	IncrementFlag("YOMA_TIME_ORAL");
-
+	pc.lust(10);
+	if (flags["YOMA_SEEN_NAKED"] == undefined) flags["YOMA_SEEN_NAKED"] = 1
+	IncrementFlag("YOMA_TIMES_EATEN_OUT");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -483,7 +540,7 @@ public function yomaSexGiveOral():void
 public function yomaSexVaginal():void
 {
 	clearOutput();
-	showYoma();
+	showYoma(true);
 	author("-GothPastel");
 
 	if (pc.isNude()) output("Already naked, you wait for Yoma to finish undressing before you step closer to him.");
@@ -526,9 +583,11 @@ public function yomaSexVaginal():void
 	else output("The");
 	output(" two of you soon say your goodbyes.");
 
+	processTime(30+rand(15));
+	pc.orgasm();
 	pc.applyPussyDrenched();
+	if (flags["YOMA_SEEN_NAKED"] == undefined) flags["YOMA_SEEN_NAKED"] = 1
 	IncrementFlag("YOMA_TIMES_VAGINAL");
-	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -536,7 +595,7 @@ public function yomaSexVaginal():void
 public function yomaSexCocktail():void
 {
 	clearOutput();
-	showYoma();
+	showYoma(true);
 	author("-GothPastel");
 
 	output("Your tail has been acting up recently with no relief to be found, but it looks like you’ve just found the perfect victim. Seemingly sensing your thoughts, it coils itself around your hip, in plain view of the fennec android.");
@@ -582,8 +641,10 @@ public function yomaSexCocktail():void
 	if (flags["YOMA_TIMES_TAILFUCKED"] == undefined) output("\n\n<i>“Thank you for the new experience, [pc.name], I hope to see you around!”</i>");
 	output("\n\nAfter a while of small talk, the two of you go on your separate ways, not without waving each other off, of course.");
 
+	processTime(30+rand(15));
+	pc.orgasm();
+	if (flags["YOMA_SEEN_NAKED"] == undefined) flags["YOMA_SEEN_NAKED"] = 1
 	IncrementFlag("YOMA_TIMES_TAILFUCKED");
-
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -610,9 +671,8 @@ public function yomaHugsI():void
 	else output("across your scalp");
 	output(". It’s not long before you fall asleep completely.");
 
-	sleepHeal();
 	processTime(420+rand(60));
-
+	sleepHeal();
 	clearMenu();
 	addButton(0,"Next",yomaHugsII);
 }
@@ -629,6 +689,7 @@ public function yomaHugsII():void
 	output(", but he laughs you off, getting to his feet too.");
 	output("\n\n<i>“I will see you around again, soon hopefully,”</i> he says, waving you off. The grin takes a little while to fade from your face, definitely sticking around longer than Yoma did. Void, you’re <i>still</i> comfortable, even now.");
 
+	processTime(3);
 	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
