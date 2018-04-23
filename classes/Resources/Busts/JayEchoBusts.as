@@ -120,6 +120,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jay_echo/subtuner.png", mimeType = "image/png")]
 		public var Bust_SUBTUNER:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/jay_echo/verusha.png", mimeType = "image/png")]
+		public var Bust_VERUSHA:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/verusha_nude.png", mimeType = "image/png")]
+		public var Bust_VERUSHA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jay_echo/walt.png", mimeType = "image/png")]
 		public var Bust_WALT:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/walt_nude.png", mimeType = "image/png")]
@@ -242,6 +247,11 @@ package classes.Resources.Busts
 			public var Full_WALT:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/walt_nude.png", mimeType = "image/png")]
 			public var Full_WALT_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/verusha.png", mimeType = "image/png")]
+			public var Full_VERUSHA:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/verusha_nude.png", mimeType = "image/png")]
+			public var Full_VERUSHA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/yarasta.png", mimeType = "image/png")]
 			public var Full_YARASTA:Class;

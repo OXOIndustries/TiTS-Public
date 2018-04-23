@@ -42,6 +42,7 @@
 		public static var PEEKAY:Object = new PeeKayBusts();
 		public static var RENEZUO:Object = new RenezuoBusts();
 		public static var SHOU:Object = new ShouBusts();
+		public static var TSUDA:Object = new TsudaBusts();
 		public static var UTHSTAR:Object = new UthstarBusts();
 		public static var WOLFYNAIL:Object = new WolfyNailBusts();
 		public static var YOHSL:Object = new YohSLBusts();

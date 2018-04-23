@@ -338,6 +338,8 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/james.png", mimeType = "image/png")]
 		public var Bust_JAMES:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/jejune.png", mimeType = "image/png")]
+		public var Bust_JEJUNE_VENDING_MACHINE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
 		public var Bust_JOYCO_VENDING_MACHINE:Class;
 		
@@ -485,6 +487,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/mirian.png", mimeType = "image/png")]
 		public var Bust_MIRIAN:Class;
 		public var Bounds_MIRIAN:Rectangle = new Rectangle(92, 0, 70, 70);
+		
+		[Embed(source = "../../../assets/images/npcs/adjatha/myrna.png", mimeType = "image/png")]
+		public var Bust_MYRNA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/myrna_nude.png", mimeType = "image/png")]
+		public var Bust_MYRNA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/myrra.png", mimeType = "image/png")]
 		public var Bust_MYRRA:Class;
@@ -1070,6 +1077,8 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/james.png", mimeType = "image/png")]
 			public var Full_JAMES:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jejune.png", mimeType = "image/png")]
+			public var Full_JEJUNE_VENDING_MACHINE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/joyco_vending_machine.png", mimeType = "image/png")]
 			public var Full_JOYCO_VENDING_MACHINE:Class;
 			
@@ -1212,6 +1221,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrna.png", mimeType = "image/png")]
+			public var Full_MYRNA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrna_nude.png", mimeType = "image/png")]
+			public var Full_MYRNA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrra.png", mimeType = "image/png")]
 			public var Full_MYRRA:Class;
