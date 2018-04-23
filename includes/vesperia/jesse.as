@@ -31,8 +31,8 @@
 
 public function showJesse(nude:Boolean = false):void
 {
-	if(nude) showBust("none");
-	else showBust("none");
+	if(nude) showBust("JESSE_NUDE");
+	else showBust("JESSE");
 	showName("\nJESSE");
 }
 
@@ -771,7 +771,7 @@ public function jesseSexOfficeRPII(x:int = -1):void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("As soon as you finish, you push her with force onto the bed. Now you’re her boss! The unaware strumpet yelps as she is shoved into the soft bedding. Her head half buried into some pillows, she dares to look back at you. Her chewed lip and her needy, glassy galaxy eyes say it all: <i>Fuck. Me.</i>");
 	output("\n\n<i>“Now that you’re under duress, I’ll have to check for company stability...”</i> you say, ");
@@ -818,7 +818,7 @@ public function jesseSexOfficeRPYes(x:int = -1):void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("With your " + pc.cockOrStrapon(x) + " still lodged within her, you help turn Jesse over so that she gets a full view of her dominator. That skirt of hers is in the way so you pull it up to reveal her hardened femcock. It’s clearly on the edge, twitchy and rock solid: you only need command her to cum.");
 	output("\n\nWrapping both hands around her ten inches of meat, you jerk her shaft just as she likes it. You stare her down: her face is scrunched up and flushed a hot pink, glassy nebul-eyes emphasised by running eye shadow. How adorable...");
@@ -843,7 +843,7 @@ public function jesseSexOfficeRPNo(x:int = -1):void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("No, not today. Your exhausted buttslut has had the honor of being plowed into the figurative mud. ");
 	if (largestCockIndexThatFitsJessesAss() >= 0) output("You remove your softening " + pc.cockDescript(x) + " from her hole, making sure to wipe it down against her thigh.");
@@ -864,7 +864,7 @@ public function jesseSexReverseCowgirlI():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	var x:int = largestCockIndexThatFitsJessesAss();
 
@@ -893,7 +893,7 @@ public function jesseSexReverseCowgirlII(x:int = -1):void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("Pulling her up by the chain, the force of which makes her wince, she now rests on her knees: a gasping, tongue-lolling and face-flushed mess of a slut; and you haven’t even started yet.");
 	output("\n\nYou twirl your finger around in the air to signify her to turn around, which she <i>does</i> do, if a little more gingerly. What a trooper.");
@@ -924,7 +924,7 @@ public function jesseSexReverseCowgirlYeah(x:int = -1):void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("<i>“Aww, still upright, hmm?”</i> you tease into her pointy ear. Letting go of the chain, you clasp her slender shaft with both hands. <i>“Maybe you’ve earned this...”</i>");
 	output("\n\nJesse giggles as she finally gets to cum.");
@@ -950,7 +950,7 @@ public function jesseSexReverseCowgirlNo(x:int = -1):void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("She’s had her reward: A good, <i>hard</i> plow. Besides, seeing her semi-hard femdick silently beg for release is just so satisfying!");
 	output("\n\nJesse lies enervated on top of you, her arms loosely dangling to the side. You pull her up slightly and kiss the top of her head, proceeding to undo the bindings of her leather collar. She coos happily as the restraint leaves her neck, a dopey smile on her face. <i>“Mmmm, " + jessePCTitleSex() + "...”</i> she murmurs, as if talking while sleeping.");
@@ -971,7 +971,7 @@ public function jesseSexHerFaceI():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("You squint your eyes to her as you think of what to do with your eager subby friend.");
 	output("\n\nJesse blinks in response, trying not to be phased by your subtle display.");
@@ -1000,7 +1000,7 @@ public function jesseSexHerFaceII():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("You clamber onto the bed and line yourself up so that you’re in line with the bound up Jesse. Shuffling backwards on your knees, you push down your lower body so that your [pc.pussy] is only a few inches from her face.");
 	if (pc.isNaga()) output(" It’s a little awkward with your naga half but you’ve got plenty of body strength to hold yourself up.");
@@ -1032,7 +1032,7 @@ public function jesseSexHerFaceYes():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("Taking pity on the sodden girl, you help her up onto the bed and untie the rope from her wrists. Placing it aside, you then gently pull her into your lap so that her back is against your naked [pc.chest]. With her limp little legs splayed aside, you grip her fem-member from behind with both hands and slowly pump it up and down.");
 	output("\n\nJesse’s contented sighs play into your [pc.ear] as she kisses up the side of your neck. They become sloppier and looser as you jerk her slender dick: must be all that arousal from being used like a toy. ");
@@ -1052,7 +1052,7 @@ public function jesseSexHerFaceNo():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("Deciding that she’s had her reward in the form of a gush of [pc.femCum], you help the strumpet up from the floor and onto your lap. Jesse giggles a little as manage to brush your hands against her buds and then relaxes when she’s firmly placed into your lap. Her half-hard fempecker slowly softens as you hold her tightly, although you imagine she’ll try to relive it later...");
 	output("\n\nThe both of you sit locked in mutual, blissful comfort, your hands round her middle and hers on your [pc.knees]. Jesse’s eyelids flutter and hang like she’s on the verge of sleep but you give her a little squeeze every now and then. Just enough to keep her awake, at least. She nuzzles against your neck and you see she’s sporting a playful grin.");
@@ -1069,7 +1069,7 @@ public function jesseSexBagOTricksI():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	var x:int = largestCockIndexThatFitsJessesAss();
 	output("You’re more than a little intrigued by that duffle bag.");
@@ -1110,7 +1110,7 @@ public function jesseSexBagOTricksII(x:int = -1):void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("You place your open palm on one of Jesse’s soft asscheeks, bidding her to stop her wiggle show. She does so, making her posture rigid all along her body. Her fleshy tongue undulates and licks at the air almost on its own accord while you have a few squeezes and plays with her buttflesh. ");
 	output("\n\nYou saunter to over to her side, then bend over to meet her face. [pc.eyes] and nebul-eyes lock in place.");
@@ -1146,7 +1146,7 @@ public function jesseSexBagOTricksRelease(x:int = -1):void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("You figure she could do with a reward for enduring so well.");
 	output("\n\nYou reach underneath her and gently palm at her rock hard femdick, brushing over her seeping cockhead every so often. Jesse audibly whimpers and shivers as you do, her back arching and bending as you tease her most sensitive of nerve clusters.");
@@ -1175,7 +1175,7 @@ public function jesseSexBagOTricksContinue(x:int = -1):void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("Being the devious sort, you figure you can really make her work for it.");
 	output("\n\nWith her toy-stuffed tush angled up in the air, Jesse is practically begging for a good reaming. Well, you can at least give her an equivalent.");
@@ -1209,7 +1209,7 @@ public function jesseSexTrapFunI():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("\Before you come to answer, Jesse raises her hand.");
 	output("\n\n<i>“Uhh, oh, um... feel free to shoot this idea down b-but I’ve a fun little toy I haven’t been able to use yet,”</i> she begins, fidgeting with her wrists. <i>“And well, I-I just wanted to do something less... rigid and more mutual, I s’pose.”</i>");
@@ -1259,7 +1259,7 @@ public function jesseSexTrapFunII():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("You give her a quick nod, your eyes focused on the dual meat-sticks in the strumpet’s hand. The grinding urethra send little pulses of discomfort through your [pc.cockNounSimple] and into your tender loins.");
 	if (silly) output(" So much at steak, Liara, I fckn <i>lurv</i> steak.");
@@ -1304,7 +1304,7 @@ public function jesseSexRoleReversal():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("Jesse pipes up before you come to an answer.");
 	output("\n\n<i>“A-actuallyyy... I’ve got an idea,”</i> she says with a cheeky tone, swiveling from side to side on her heel.");
@@ -1355,7 +1355,7 @@ public function jesseSexRoleReversalEncourage():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("<i>“You can do it,”</i> you say in a needy tone, wishing for her to want it too. You give her firmly lodged femcock a few squeezes with your [pc.asshole] to remind her of just how <i>awesome</i> it feels to fuck a Steele’s ass.");
 	output("\n\n<i>“Mm, I do love the feeling of this [pc.boyGirl]-butt,”</i> she says in a breathy tone, inhaling sharply through her nose afterwards. <i>“Been so long since I could... enter someone,”</i> she admits, gently rocking her hips against your [pc.ass] to tease at your hole. You coo in approval, giving your tush another enticing wiggle.");
@@ -1395,7 +1395,7 @@ public function jesseSexRoleReversalTakeOver():void
 {
 	clearOutput();
 	author("SoAndSo");
-	showJesse();
+	showJesse(true);
 
 	output("Damnit, you wanted cock and you’ll get some cock!");
 	output("\n\nYou twist around and guide her face to be a few inches from yours.");

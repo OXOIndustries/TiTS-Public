@@ -337,6 +337,11 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/james.png", mimeType = "image/png")]
 		public var Bust_JAMES:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/jesse.png", mimeType = "image/png")]
+		public var Bust_JESSE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/jesse_nude.png", mimeType = "image/png")]
+		public var Bust_JESSE_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/jejune.png", mimeType = "image/png")]
 		public var Bust_JEJUNE_VENDING_MACHINE:Class;
@@ -1010,6 +1015,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/frostwyrm.png", mimeType = "image/png")]
 			public var Full_FROSTWYRM:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jesse.png", mimeType = "image/png")]
+			public var Full_JESSE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jesse_nude.png", mimeType = "image/png")]
+			public var Full_JESSE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gene.png", mimeType = "image/png")]
 			public var Full_GENE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/gene_nude.png", mimeType = "image/png")]
