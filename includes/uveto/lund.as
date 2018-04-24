@@ -2296,7 +2296,114 @@ public function moreCookiesPleaseLund4():void
 
 	output("\n\nYour hand flinches, inching its way towards your effects. You have more.");
 
-	output("\n\n<i>“But,”</i> he continues, one hand on his stomach and the other on your ass, rubbing at the meat sensually, <i>“");
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(1,"Again",againLundAgainForeverAndEver,undefined,"Again","Why kid yourself? This is where you belong. Just let Lund take control, and you’ll never have to make another decision again.");
+	addButton(0,"Enough",enoughBeforeLundBadEnds);
+}
+
+//[=…Again=]
+// Be sure to flip the position of the buttons so that players don’t just click their way through to the Bad End accidentally
+// Tooltip: Why kid yourself? This is where you belong. Just let Lund take control, and you’ll never have to make another decision again.
+public function againLundAgainForeverAndEver():void
+{
+	clearOutput();
+	showLund(true);
+	author("B!");
+	output("In some part of your mind, you’re curious to know if there truly is a limit to Lund’s strength and stamina; he’s cum in you and on you so often in such a short amount of time that you just <i>have</i> to know. Lund is stronger than an ox and more virile than an elephant, and he’s only five feet tall. He’s some kind of biological marvel, and... and you have to know.");
+	output("\n\nIn some other part of your mind, you don’t actually care, and you’re simply a slave to your body’s wants. You’re fucked so thoroughly that your whole body feels oversensitive and on a hair trigger; all it would take for you to cum again is for Lund to thrust forward with his still-hard, still-leaking dog dick, and wrap your body around his for the umpteenth time in the space of an hour or two.");
+	output("\n\nYour hand meekly searches for your effects, and you blindly rummage through them once more for your cookies.");
+	output("\n\nLund hums in thought as he watches your hand rustle through your things, then, without provocation, you feel his strong, powerful hands on your waist, and he realigns himself, his pointed tip against your [pc.vagOrAss], and he starts thrusting back into you. Your hole is battered, stretched, and so full that Lund’s jizz is squirting out from you with each push in – and you cum again, your breath heaving from your lungs in surprise, as Lund’s tireless testicles bap against your upturned ass.");
+
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("No treats. Not now,");
+	else output("No more treats for now,");
+	output("”</i> he says, his tone mildly stern, as though he were disciplining a pet that begged once too often for a cookie of its own. <i>“");
+	if(!korgiTranslate()) output("Games no more, too. No leaving hold. Hardly leaving room of Lund. Alien too starved for Lund dick to let leave. Irresponsible of Lund.");
+	else output("No more games, either. You’re not leaving the hold. You’ll hardly ever leave my room. If you’re going to be this hungry for my cock, it’d be irresponsible of me to let you go.");
+	output("”</i>");
+	output("\n\nHis inflating knot batters against your [pc.vagOrAss], and your body doesn’t resist for long until it slides into you, tying you to him in more ways than one. The bed and your body both slosh with Lund’s cum as he vigorously pounds into you; your lower body collapses beneath the strain, and Lund repositions himself, his body laying flatly onto yours, and he resumes his ferocious fucking.");
+
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Will more treat making for Lund?");
+	else output("Will you make me more treats?");
+	output("”</i> he asks, his powerful heart beating against your back and his relaxed breath hot against your ears.");
+	output("\n\n<i>“Yes,”</i> you say dreamily, entranced by Lund and his abilities. It’ll take some doing – if you’re not allowed to leave the hold, you’ll have a hard time getting the ingredients. Maybe Lund will allow you to make the occasional expedition to Irestead or something.");
+	output("\n\n<i>“");
+	if(!korgiTranslate()) output("Will stay and be good pet for Lund?");
+	else output("Will you be a good pet for me and stay here?");
+	output("”</i> he asks, his heavy, furry balls clapping and bouncing off the cheeks of your [pc.ass] in between his words.");
+
+	output("\n\n<i>“Yes,”</i> you say through clenched teeth, your next orgasm on its way. You wonder what exactly that will entail: will you sleep in a doghouse or something? Wear a collar? Answer to a new name? Eat particular food? Whatever, you’ll do what it takes, as long as Lund keeps fucking you.");
+
+	if(pc.hasVagina())
+	{
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Will alien bear pups of Lund? Raise as strong Korgonne hunters?");
+		else output("Will you have my puppies? And will you raise them to be proud Korgonne warriors?");
+		output("”</i> he asks, his dick lurching inside of you at the thought of you swelling with his litter. His hips move frenetically against you, and his body gets hot and tense.");
+		output("\n\nYou groan in approval. The idea of bearing the offspring of someone as exemplary and superior as Lund – that you’d find yourself across the universe, in some tribal community, your [pc.vagina] getting seeded by the galaxy’s most unmatchable stud – you can’t help but cum yourself, your gash tightening on him and squeezing. The cum already inside you churns and bubbles at the tightness of your body.");
+	}
+	else
+	{
+		output("\n\n<i>“");
+		if(!korgiTranslate()) output("Was alien born for this? To take Lund’s cock in their ass and mouth? Will do forever?");
+		else output("Were you born for this? Do you exist and travel across the stars just to have me fuck you? And will you have me fuck you forever?");
+		output("”</i> he asks, his dick lurching inside you at the thought of you being his personal fuck toy for the rest of your life. His hips move frenetically against you, and his body gets hot and tense.");
+		output("\n\nYou groan in approval. The idea of being Lund’s property forever – that you’d find yourself across the universe, in some tribal community, your [pc.ass] getting seeded by the galaxy’s most unmatchable stud – you can’t help but cum yourself, your hole tightening on him and squeezing. The cum already inside you churns and bubbles at the tightness of your body.");
+	}
+	output("\n\nLund hisses through clenched teeth as you feel your already bloated ");
+	if(pc.hasVagina() && !pc.isPregnant()) output("womb");
+	else output("stomach");
+	output(" fill with yet more of his cum. He huffs through his nostrils and his body jerks spastically in short bursts while his balls clench one final time against you. You can feel your body expand with his load in an effort to contain it all – locked as you are by his knot, you have little other choice than to accept every fresh drop. That you do it willingly and graciously was up to you.");
+	output("\n\nYou’re too dazed and fucked to recite any of your promises or commit them to memory. Your eyes drift closed, to the sound of Lund’s beating heart against your back....");
+	processTime(25);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",lundBadEndFinale);
+}
+
+public function lundBadEndFinale():void
+{
+	days += 365*10;
+	hours + rand(23)+1;
+	clearOutput();
+	showLund(true);
+	author("B!");
+
+	output("A decade later, and not much has changed.");
+	output("\n\nOf course, after you had made that fateful promise to Lund, a whole lot had changed. You had given up your pursuit of your father’s legacy so that you could stay with Lund and be his personal cocksock. You had sold your ship");
+	if(crew(true) > 0) output(" and dismissed your crew");
+	output(" so that you could afford nice, exotic things for Lund to admire while you sucked his cock. You gave Lund your adventuring gear so that he’d have an easier time hunting for the hold, and so when you bent over and presented yourself to him, you’d feel, in some way, like you had earned the privilege to get fucked.");
+	output("\n\nYou know, <i>aside</i> from all that, not much has changed.");
+	output("\n\nYou had the hold establish a regular caravan going to the nearby station of Irestead and back for the ingredients to the peanut butter cookies. It also wasn’t too difficult to rig up a makeshift oven in the hold’s lower areas for you to cook them in. One of your primary promises to Lund was easily fulfilled, and with every batch of fresh cookies came a dozen-or-more rounds of ‘reward’ for you, his devoted pet.");
+	output("\n\nWith you being Lund’s live-in plaything and cum-dumpster, it was inevitable that you would develop something of a reputation. It’s less that you would live in the hold and then disappear into Lund’s room from time to time – it was more that you would <i>reappear</i> from his room, and you would otherwise spends days at a time in there. You’d stink like sweat and sex, and all you’d do when you come out is go to the lower levels and bake some cookies. Naturally, it got the other Korgonne talking.");
+	output("\n\nInitially, when the news inevitably leaked about what your cookies did to Korgonne biology, you were inundated with requests for personal batches. They had offered to pay you with other food, or jewellery, or services, or, the one commodity you had more than enough of, sex. It was easier to just teach a few Korgonne how to bake, and in the space of a month, the hold was a damp sex pit of orgasming Korgonne that would reward every completed task with a cookie or two.");
+	output("\n\nThat was all years ago. What’s important is right now. And right now isn’t much different than what’s been happening for years, now.");
+	output("\n\nLund’s reclined onto a makeshift armchair, relaxing after a day’s hard work of good hunting, with a plate of fresh peanut butter cookies at his hand. He hasn’t even taken off his loincloth, and you’re already upon him: you crawl on your hands and knees, your Savicite collar hanging loosely around your neck, and you wordlessly, obediently slide your head between his legs and underneath his leather cloth belt to suckle gently on his sheath, your [pc.tongue] slipping out to wetly cradle his balls.");
+	output("\n\nIt’s a routine that you two have established: he gets home; you blow him at <i>least</i> twice; you both get some actual food; and then you cap the day off with Lund on top of you, his mouth full of cookies and his legendary cock pumping into your [pc.vagOrAss] again and again, until you collapse in exhaustion. You’re usually the first of you two to wake up, so you wake him up with a calm, patient blowjob, and then he usually snacks on another cookie before he fucks you another three or four times before he heads off to hunt.");
+	if(pc.hasVagina()) output("\n\nWith all that fucking, of course it was going to take eventually. Since your rebirth as Lund’s slut, you’ve given birth to damn near thirty Korgonne pups: Lund is so virile and the cookies make him so potent that it’s rare for you to give birth to fewer than triplets at a time. And you’re expecting again right now – judging from the weight in your stomach, you’re guessing between three and five pups this time.");
+	output("\n\nIt’s something of a relief when your suckling on Lund’s flaccid cock gets him aroused – even after all this time, and even though the cookies have become a staple of the Korgonne’s diet, you still arouse him, and he still has the patience and the strength to fuck you just like he had the day you first submitted to him.");
+	output("\n\nYour [pc.lips] pinch softly at Lund’s sheath, and your tongue lathers are its opening, playing with the beady red tip that’s poked from there. Lund shuffles and sighs – you can’t see him very well because your vision is blocked from his loincloth still draped over your face. But you can tell that his hand is moving towards the plate of cookies you had set out for him.");
+	output("\n\nSuddenly, Lund’s cock <i>explodes</i> into your mouth: every corner of your maw is filled with his cock, and his beet-red tip prods at your palette, scraping a thick line of his precum along the roof of your mouth. His sheath bloats with his knot, and soon you’re kissing at his thick, pressing, bulbous shaft as it lurches and throbs against you.");
+	output("\n\nYour rub your hand gently over his balls as they clench and lurch, followed by several thick, juicy gouts of his cum flooding into you. You swallow his every load eagerly, your mind wandering to the more nostalgic times you had taken him into your mouth like this. You hear the telltale sound of teeth against crumbly flour again, and his body reacts once more.");
+	output("\n\nIn the ten years it’s been since you gave yourself to your master; you never did find the limit to his stamina.");
+	pc.libido(200);
+	pc.lust(200);
+	pc.willpower(-100);
+	pc.intelligence(-20);
+	//output("\n\n<b>GAME OVER</b>");
+	badEnd();
+}
+
+
+public function enoughBeforeLundBadEnds():void
+{
+	clearOutput();
+	showLund(true);
+	author("B!");
+	output("<i>“But,”</i> he continues, one hand on his stomach and the other on your ass, rubbing at the meat sensually, <i>“");
 	if(!korgiTranslate()) output("it been a while... and Lund getting full. Treats taste pretty good, but having good thing too much can be bad.");
 	else output("we’ve been at it for a while... and I’m starting to get a little full. The treats taste pretty good, but having too much of a good thing can come back to bite you.");
 	output("”</i>");
@@ -2315,7 +2422,7 @@ public function moreCookiesPleaseLund4():void
 	output("\n\nYou’ll make up your mind when you leave....");
 
 	processTime(10);
-	pc.lust(60);
+	pc.lust(50);
 	pc.energy(-100);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
