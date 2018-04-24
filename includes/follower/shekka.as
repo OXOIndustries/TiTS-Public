@@ -8,14 +8,43 @@ public function shekkaRecruited():Boolean
 {
 	return (flags["SHEKKA_RECRUITED"] == 1);
 }
-public function shekkaAddicted():Boolean
-{
-	return false;
-}
 public function shekkaIsAvailable():Boolean
 {
 	return (!pc.hasStatusEffect("Shekka_Cum_Playing") && !pc.hasStatusEffect("SHEKKA_CHEATING_ON_YOU_CD"));
 }
+public function shekkaSpitAddiction(arg:Number = 0):Number
+{
+	if(flags["SHEKKA_SPIT_ADDICTION"] == undefined) flags["SHEKKA_SPIT_ADDICTION"] = 0;
+	if(flags["SHEKKA_SPIT_TIME"] == undefined) flags["SHEKKA_SPIT_TIME"] = GetGameTimestamp();
+	//Not sleeping with Shekka? addiction can decrease after two days with no spit!
+	if(flags["CREWMEMBER_SLEEP_WITH"] != "SHEKKA" && flags["CREWMEMBER_SLEEP_WITH"] != "SHEKKA AND ANNO")
+	{
+		if(flags["SHEKKA_SPIT_TIME"] + 48*60 < GetGameTimestamp())
+		{
+			//reduce addiction and bump timer.
+			flags["SHEKKA_SPIT_ADDICTION"] -= 2;
+			flags["SHEKKA_SPIT_TIME"] = GetGameTimestamp();
+			if(flags["SHEKKA_SPITDICTED"] == 1 && flags["SHEKKA_SPIT_ADDICTION"] < 50) 
+			{
+				AddLogEvent("<b>Shekka is no longer addicted to your spit.</b> She seems kind of disappointed you let her go so long without a fix.");
+				flags["SHEKKA_SPITDICTED"] = undefined;
+			}
+		}
+	}
+	if(arg != 0) 
+	{
+		flags["SHEKKA_SPIT_ADDICTION"] += arg;
+		if(flags["SHEKKA_SPIT_ADDICTION"] > 100) flags["SHEKKA_SPIT_ADDICTION"] = 100;
+		if(flags["SHEKKA_SPIT_ADDICTION"] < 0) flags["SHEKKA_SPIT_ADDICTION"] = 0;
+	}
+	return flags["SHEKKA_SPIT_ADDICTION"];
+}
+
+public function shekkaSpitAddicted():Boolean
+{
+	return (flags["SHEKKA_SPITDICTED"] == 1 && shekkaSpitAddiction() >= 50);
+}
+
 //Post-Crew Menu
 //Clicking on Shekka’s name when you’re selecting Ship Followers gives you the current description.
 public function approachCrewShekka(back:Boolean = false):void
@@ -129,7 +158,7 @@ public function crewShekkaAppearance():void
 		output(" as it struggles not to break out of her clothing.");
 	}
 	output("\n\nThe feathers that makes for her species’ hair is still dyed the adorable bubblegum-pink, flaring exotically at the top whilst hanging down to her back. The red-scaled alien’s ears don’t so much as emerge from her plumage as it does drape down her sides. Thick golden rings and studs jingle and jangle from them with every errant head-moving, ensuring she can never sneak anywhere. Her face is adorable and youthful, with a button nose, soft lips, and big, slitted eyes.");
-	if(flags["SHEKKA_SPITDICTED"] == 1) output(".. although, those slit pupils are currently dilated as far as they can go, tracing the movement of your mouth with ill-disguised need.");
+	if(shekkaSpitAddicted()) output(".. although, those slit pupils are currently dilated as far as they can go, tracing the movement of your mouth with ill-disguised need.");
 	output("\n\nShe bounces on her heels, adding a little clicker-click of her clawed feet to the music of her ears. <i>“If you want a proper look at me, I’m happy to accommodate!”</i>");
 	clearMenu();
 	addButton(0,"Next",approachCrewShekka,true);
@@ -147,12 +176,14 @@ public function talkToCrewShekka():void
 	addButton(14,"Back",approachCrewShekka,true)
 	addButton(0,"Places",talkToShekkaAboutPlaces,undefined,"Places","Talk to Shekka about some of the places you’ve been.");
 	addButton(1,"People",talkToShekkaAboutPeople,undefined,"People","Talk to Shekka about some of the people you know.");
-	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || flags["SHEKKA_SPITDICTED"] != undefined) addButton(3,"Addiction",shekkaAddictionWheeee);
-	else addDisabledButton(3,"???","???","You need aphrodisiac spit for this...");
+	//if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) || flags["SHEKKA_SPITDICTED"] != undefined) addButton(3,"Addiction",shekkaAddictionWheeee);
+	//else addDisabledButton(3,"???","???","You need aphrodisiac spit for this...");
+	addButton(2,"Infertility",talkToShekkaAboutInfertility,undefined,"Infertility","Talk to Shekka about her infertility and potentially repairing it.");
 	if(flags["SHEKKA_SLEEPWITH_INTRODUCED"] != undefined) addButton(4,"Sleep With",shekkaRepeatBedTalkies);
 	else addDisabledButton(4,"Sleep With","Sleep With","Once Shekka has suggested sharing the bed, she’ll be more amenable to this in the future.");
 	if(!shekka.hasCock()) addButton(5,"Get A Dick",talkToShekkaAboutGettingADick,undefined,"Get A Dick","It’s always better to have a little extra.");
 	else addDisabledButton(5,"Get A Dick","Get A Dick","Shekka already has a dick!");
+	
 }
 
 //Places
@@ -270,7 +301,7 @@ public function shekkaMyrellionTalk():void
 	output("How does she feel about Myrellion? Plenty of sexy addictive Reds and squishable Honey-pot Golds there.");
 
 	//If Shekka’s Addicted
-	if(shekkaAddicted()) output("\n\n<i>“Well... the reds I... I got a chance to see a few. That was... yeah.”</i> Shekka chews on her bottom lip, staring at your own kisser in accusation. <i>“It’s better with you though.”</i>");
+	if(shekkaSpitAddicted()) output("\n\n<i>“Well... the reds I... I got a chance to see a few. That was... yeah.”</i> Shekka chews on her bottom lip, staring at your own kisser in accusation. <i>“It’s better with you though.”</i>");
 	//Else
 	else output("\n\n<i>“Hmmn... there is something appealing about those hard-body Reds. All that order they preach about makes them almost like machines, ya know? And that’s sort of exciting to me, like if I studied them long enough, I could puzzle out a way to squeeze a little bit of extra efficiency out of their society. They’re less like jerks than I expected, too. I even saw a few smile!”</i>");
 	//Merge
@@ -575,8 +606,65 @@ public function shekkaTavrosHangoutTwo():void
 	shekkaCrewSexMenu();
 }
 
+public function shekkaConfesesThatShesAddicted():void
+{
+	clearOutput();
+	showShekka();
+	author("SKoW & Fenoxo");
+	output("<i>“Hey, [pc.name].”</i> Shekka tugs on your arm. <i>“We need to talk.”</i>");
+	output("\n\nUh oh. You look ");
+	if(pc.tallness > shekka.tallness + 10) output("down ");
+	output("at your ship’s resident red mechanic ");
+	if(pc.isBro()) output("curiously.");
+	else if(pc.isBimbo()) output("and cheerily say. <i>“Okie-dokie!”</i>");
+	else output(" and ask, <i>“What’s up?”</i>");
+	output("\n\nThe wide-hipped raskvel is chewing on her lower lip. <i>“You know <b>how your spit’s an aphrodisiac</b>? A really... really potent one?”</i>");
+	output("\n\nYou nod. You’ve seen the effect is has on Shekka.");
+	output("\n\n<i>“<b>I’m fucking hooked on it</b>. And before you say anything else? It is fucking <i>awesome</i>.”</i>”</i> Shekka");
+	output("\n\nOkay. Not the response you were anticipating.");
+	output("\n\n<i>“Like, think about it. I crave you, in a way that temporarily completes me. Sure, sometimes the addict-brain thing kicks in and I start to get a bit shaky without a hit... the tradeoff is an incredible orgasm all lip-to-lip.”</i>");
+	output("\n\nJust thinking about it seems to have Shekka all juicy, judging by the way she squirms on the spot, pupils dilating. <i>“Look, [pc.name]. You don’t have to worry about me. The stuff you pump out is pretty damn clean chemically speaking. If you ever replace it, I should be able to drop the habit nooooo problem.”</i>");
+	output("\n\nWell, if she’s sure...");
+	output("\n\nShekka interrupts your thoughts");
+	if(pc.tallness > shekka.tallness + 10) output(" by climbing you like a tree for");
+	else output(" with");
+	output(" a long, wet kiss that leaves her moaning and giggling. <i>“Mmmm... I’ll never get tired of that.”</i>");
+	//Jump +10
+	shekkaSpitAddiction(10);
+	flags["SHEKKA_SPITDICTED"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+public function shekkaUnaddictionNotice():void
+{
+	clearOutput();
+	showShekka();
+	author("SomeKindofWizard");
+	output("Shekka flies at you out of nowhere, circling around you like a hungry shark. <i>“...You don’t smell like it anymore. Oh. Oooh... <b>No more aphrodisiac spit...</b>”</i> she mutters, sniffing a few times.");
+	output("\n\nIgnoring the fact that she can apparently pick up that scent on your lips, you squat down to get ");
+	if(pc.tallness < 7*12) output("eye-to-eye");
+	else output("closer to eye level");
+	output(". <i>“Are you going to be okay?”</i> you ask.");
+	output("\n\nShekka’s eyes skirt about the room, unconsciously twitching. She nervously scratches at her ear, before walking away <i>“Yeah, just... uh. Wait here a moment...”</i>");
+	output("\n\nA few minutes pass, and Shekka returns, looking flushed. She rubs idly at a nipple hard enough to be seen through her suit. <i>“All good, I’m cured.”</i> she says with a confident smile.");
+	output("\n\nThat easy?! You stare, aghast. ");
+	if(flags["REAHA_ADDICTION_CURED"] == 1) output("Just thinking about how long it took for Reaha to recover makes this seem a little unlikely. ");
+	output("Shekka shrugs helplessly <i>“I was addicted to you because it was fun. Fuck. Fuck it was so hot to crave you...”</i>");
+	output("\n\n<i>“And you just had the cure around because you were enjoying it?”</i>");
+	output("\n\nThe Raskvel smiles, taking another slow, deep breath. <i>“Yup, a different kind of addictive aphrodisiac, and a shit ton of caffeine. They’ll do battle in my brain or whatever for a while. Then I’m fine.");
+	if(flags["REAHA_ADDICTION_CURED"] == 1) output(" It’s not like Reaha’s case, that girl spent fuck knows how long on synthetic lust drugs.");
+	output("”</i>");
+	output("\n\nWell... if she’s sure.");
+	flags["SHEKKA_SPITDICTED"] = undefined;
+	processTime(20);
+	//Next: Back to ship menu
+	clearMenu();
+	addButton(0,"Next",approachCrewShekka,true);
+}
+
 //Addiction
 //This shows up as ??? and is greyed out unless you have addictive spit (such as red myr)
+/* FEN NOTE: REMOVED AND REPLACED WITH MORE DYNAMIC VARIANTS
 public function shekkaAddictionWheeee():void
 {
 	clearOutput();
@@ -625,7 +713,7 @@ public function shekkaAddictionWheeee():void
 		clearMenu();
 		addButton(0,"Next",talkToCrewShekka);
 	}
-}
+}*/
 
 //Body
 //Wherein we get Shekka to bolt on some of that sweet-sweet futa-donger.
@@ -643,6 +731,40 @@ public function talkToShekkaAboutGettingADick():void
 	addButton(0,"Get A Dick",giveShekkaFollowerADick);
 	addButton(1,"Stay A Girl",stayAGirl);
 }
+
+public function talkToShekkaAboutInfertility():void
+{
+	clearOutput();
+	showShekka();
+	author("Fenoxo");
+	output("You ask Shekka how she feels about her infertility. You helped bankroll a massive transformation for her entire race. You could probably help her lay eggs of her own, if she wanted.");
+	output("\n\nShekka stops dead in her tracks. <i>“You’d do that? Or... well you’d at least consider doing it. Wow.”</i> She shakes her head and mouths ‘wow’ once more. <i>“But I don’t want that, [pc.name] - not really. I mean, my cunt wants it. It wants it bad, but the rest of me? The rest of me just worked triple shifts for months to dig my race out of that cursed egg-addiction. Doing that, then turning around and turning myself into another baby-factory? It’d be hypocritical in the extreme.”</i> Shekka sighs and favors you with a mischievous smile. <i>“Besides, this way you can fuck my ass into the deckplates and still count on me to scrabble through the ductwork to fix a short in the electricals. An immobilized raskvel isn't much use on the rush.”</i>");
+	//Nonbimbo
+	output("\n\n<i>“True enough,”</i> you agree.");
+	//Bimbo
+	output("\n\n<i>“Awww, I guess that makes sense, but you’d be totes cute all stuffed up with eggs,”</i> you say, running a hand over Shekka’s belly. She blushes and bats it away, but you hardly seem to notice. <i>“But I guess you guys don’t get like, the big milky tits and stuff, so it’s fine. We’ll just fuck like bunnies even if we don’t breed like ‘em!”</i>");
+	if(shekka.hasCock())
+	{
+		//Horsedick, pc has birthed eggs
+		if(StatTracking.getStat("pregnancy/shekka kids") > 0) output("\n\n<i>“Besides, if you really want me to have lots of kids, we’re well on the way. Just hop on this fucknormous bitch-breaker you bought me, and I’ll father as many nests as you’re willing to bear.”</i> Shekka’s equine anatomy snakes its way up her straining suit. <i>“Perks of being the Captain - you can make everyone else wait while you lie around, incubating and horny. And you’ve got that incredible care facility set up! Our kids are going to be the best-educated raskvel in the galaxy!”</i>");
+		//Horsedick, pc pregnant
+		else if(pc.hasPregnancyOfType("ShekkaPregnancy")) 
+		{
+			output("\n\n<i>“Besides, if you really wanted to give me a lot of children, you can do that without spending another dime. This weird beast-cock you got me seems plenty virile. Guess that half of my is as hearty as a horse.”</i> Shekka rubs your [pc.belly]");
+			if(pc.isBimbo()) output(" this time");
+			output(". <i>“You’re going to love laying eggs, I just know it.”</i>");
+		}
+		//Horsedick, no shekka preggos yet.
+		else output("\n\n<i>“Besides, if you really wanted to give me a lot of children, you could always try hoping on this big ol’ dick you got me. There’s a whole different system of organs for it, and it sure as rust-in-rain feels like it could knock up a whole village.”</i> Shekka runs a single fingertip along the length of her swelling, equine boner. <i>“You’re the Captain, so we’d have to be okay with you taking some downtime when you get too full of eggs to move. And even if you do </i>love<i> being an egg-stuffed slut, at least it won’t be because you’re biologically programmed to ahead of time.”</i>");
+	}
+	//No dick
+	else output("\n\n<i>“Besides, if you really wanted to give me a shot at being a mommy, I hear people in the core can just go pick up a dick at a store and slap it on, right?”</i> Shekka lewdly cups at her camel toe. <i>“Could you imagine me with a dick as big as my torso, just knocking you up at the drop of a hat? Seems like a whole lot less work for both of us that way... so long as you don’t mind laying the occasional clutch of eggs.”</i>");
+	output("\n\nIt would seem Shekka has no interest in becoming fertile again. Perhaps it's time for a change of topic.");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",talkToCrewShekka);
+}
+
 
 //Get a dick
 public function giveShekkaFollowerADick():void
@@ -916,7 +1038,7 @@ public function shekkaSleepWithMornings():void
 	showShekka(true);
 	author("SomeKindofWizard");
 	//Aphrodisiac
-	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) && shekkaSpitAddicted())
 	{
 		//1
 		if(rand(2) == 0)
@@ -942,6 +1064,7 @@ public function shekkaSleepWithMornings():void
 			output("\n\nShe rolls off of you, idly stroking herself. <i>“Better than morning coffee...”</i>");
 			pc.lust(10);
 		}
+		shekkaSpitAddiction(4);
 	}
 	//Normal
 	else
@@ -969,6 +1092,7 @@ public function shekkaSleepWithMornings():void
 			else output("coating her face in [pc.girlcum]");
 			output(".");
 			output("\n\nShekka licks her lips, ensuring the rest of your morning is taken up by her dutiful cum-cleaning tongue, before you’re given a nuzzle. <i>“Good morning, [pc.name]!”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(4);
 		}
 	}
 	sleep(false);
@@ -1045,8 +1169,9 @@ public function shekkaCrewSexApproach():void
 			if(pc.tallness < 4*12+6) output("close the distance");
 			else output("crouch down to her level");
 			output(" and dip in for a kiss, growing more excited as your lips meet.");
-			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nShekka lets out a shuddering little moan, nipples instantly stiff and rigid through the suit, her eyes dilated from slits into circles. <i>“H-how... god-that’s-good... Uh... how do you wanna do it- me?”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) && shekkaSpitAddicted()) output("\n\nShekka lets out a shuddering little moan, nipples instantly stiff and rigid through the suit, her eyes dilated from slits into circles. <i>“H-how... god-that’s-good... Uh... how do you wanna do it- me?”</i>");
 			else output("\n\nShekka lets out a delighted little moan, nipples growing hard enough to be seen through her sheer suit. <i>“How do you wanna do it, [pc.name]?”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(2);
 		}
 		//In rut
 		else if(pc.inRut() && pc.hasCock())
@@ -1067,8 +1192,9 @@ public function shekkaCrewSexApproach():void
 			if(pc.biggestTitSize() < 1) output("pecs");
 			else output("tits");
 			output(", squeezing them like handholds as you draw her into a hungry make-out.");
-			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nBy the time you’re done warming up, Shekka’s drooling and shuddering, staring at you in chemically-supplimented adoration. <i>“Oh fuuuuck... How do you want me, [pc.name]? Just fucking take me.”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) && shekkaSpitAddicted()) output("\n\nBy the time you’re done warming up, Shekka’s drooling and shuddering, staring at you in chemically-supplimented adoration. <i>“Oh fuuuuck... How do you want me, [pc.name]? Just fucking take me.”</i>");
 			else output("\n\nBy the time you’re done warming up, Shekka’s gasping for breath. <i>“Oh fuck, how do you want me, [pc.name]?”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(2);
 		}
 		//Else
 		else
@@ -1093,8 +1219,9 @@ public function shekkaCrewSexApproach():void
 			else output("crouch down to her level");
 			output(" and dip in for a kiss, growing more excited as your lips meet.");
 
-			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nShekka lets out a shuddering little moan, nipples instantly stiff and rigid through the suit, though nowhere near as obvious as the throbbing, shrink-wrapped length. Her eyes dilate from slits into circles. <i>“H-how... god-that’s-good... Uh... how do you wanna do it- me?”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) && shekkaSpitAddicted()) output("\n\nShekka lets out a shuddering little moan, nipples instantly stiff and rigid through the suit, though nowhere near as obvious as the throbbing, shrink-wrapped length. Her eyes dilate from slits into circles. <i>“H-how... god-that’s-good... Uh... how do you wanna do it- me?”</i>");
 			else output("\n\nShekka lets out a delighted little moan, her cock presses against your body in accusation. <i>“How do you wanna do it, [pc.name]?”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(2);
 		}
 		//In rut
 		else if(pc.hasCock() && pc.inRut())
@@ -1115,8 +1242,9 @@ public function shekkaCrewSexApproach():void
 			if(pc.biggestTitSize() >= 5) output("between the plush softness of your breasts");
 			else output("between the press of your modest chests");
 			output(", already oozing pre into her suit. The smaller girl whimpers into a hard make-out, fingers squeezing at you.");
-			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nBy the time you’re done warming up, Shekka’s drooling and shuddering, staring at you in chemically-supplimented adoration. <i>“Oh fuuuuck... How do you want me, [pc.name]? Just fucking take me.”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) && shekkaSpitAddicted()) output("\n\nBy the time you’re done warming up, Shekka’s drooling and shuddering, staring at you in chemically-supplimented adoration. <i>“Oh fuuuuck... How do you want me, [pc.name]? Just fucking take me.”</i>");
 			else output("\n\nBy the time you’re done warming up, Shekka’s gasping for breath. <i>“Oh fuck, how do you want me, [pc.name]?”</i>");
+			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(2);
 		}
 		//Else
 		else
@@ -1573,7 +1701,11 @@ public function tribCrewVibeyVibe():void
 	output("grab her around the waist, pulling her up into a surprise kiss - payback for the touch of her teasing tail. Her lips are soft against your own, compressed down by the force of the kiss, but her long, sinuous tongue winds into your own mouth, its pernicious wiggling inciting your [pc.tongue] into a dance.");
 
 	//Aphrodisiac
-	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nThe chemical load hidden in your saliva hits the small woman like a dumptruck of fuck-hungry hormones. She squirms against you, pupils turning to dinner plates as her brain goes into overdrive. Her salivation redoubles, and her fingers dig into your [pc.chest] as she’s taken on a wild ride.");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
+	{
+		output("\n\nThe chemical load hidden in your saliva hits the small woman like a dumptruck of fuck-hungry hormones. She squirms against you, pupils turning to dinner plates as her brain goes into overdrive. Her salivation redoubles, and her fingers dig into your [pc.chest] as she’s taken on a wild ride.");
+		shekkaSpitAddiction(4);
+	}
 	//Else
 	else output("\n\nYou grab her by the back of the neck, the pink feathers of her hair soft between your fingers, and press her closer, tighter, her budding breasts against your [pc.chest].");
 	//Merge
@@ -1653,7 +1785,11 @@ public function shekkaCrewGrindsFinish():void
 	output("You come to feeling wet and sticky all over, a small form perched atop you. Its brilliant, exuberant eyes blink at you, and your groggy mind identifies it as Shekka. She giggles, kissing you on the lips once more before standing up and offering a hand");
 	if(pc.tallness >= 60) output(", a gesture that’s almost comical given the size difference");
 	output(".");
-	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output(" She sways slightly, hips wiggling and ready to pounce from the sample of your sinfully sensuous saliva.");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
+	{
+		output(" She sways slightly, hips wiggling and ready to pounce from the sample of your sinfully sensuous saliva.");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(2);
+	}
 
 	output("\n\n<i>“Wow,”</i> you pant, still a little stunned.");
 
@@ -1702,7 +1838,11 @@ public function shekkaCrewFutaTailTrib():void
 	output("grab her around the waist, pulling her up into a surprise kiss - payback for the touch of her teasing tail. Her lips are soft against your own, compressed down by the force of the kiss, but her long, sinuous tongue winds into your own mouth, its pernicious wiggling inciting your [pc.tongue] into a dance. The sheer fabric of her suit does nothing to hide the sultry heat of her futa-prick digging into your [pc.tummy], but the little Raskvel unabashedly grinds herself against you.");
 
 	//Aphrodisiac
-	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("\n\nThe chemical load hidden in your saliva hits the small woman like a dumptruck of fuck-hungry hormones. She squirms against you, pupils turning to dinner plates as her brain goes into overdrive. Her salivation redoubles, and her fingers dig into your [pc.chest] as she’s taken on a wild ride.");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
+	{
+		output("\n\nThe chemical load hidden in your saliva hits the small woman like a dumptruck of fuck-hungry hormones. She squirms against you, pupils turning to dinner plates as her brain goes into overdrive. Her salivation redoubles, and her fingers dig into your [pc.chest] as she’s taken on a wild ride.");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(2);
+	}
 	//Else
 	else output("\n\nYou grab her by the back of the neck, the pink feathers of her hair soft between your fingers, and press her closer, tighter, her budding breasts against your [pc.chest].");
 
@@ -2598,6 +2738,7 @@ public function tailAndOralShekka():void
 	output(" you forward, pinning Shekka’s bulging boner between you mid-orgasm. The urethra dilates, your eyes doing the same, and you dive forward, mouth opening wide (but not wide enough to get the whole way around its majestically swollen head). A thick hose of salty cream unloads into a throat that didn’t even know how much it wanted to swallow horse-flavored jism until a second ago.");
 	output("\n\nThat cum is a fix you didn’t even know you needed. It’s a balm that makes your clutching, sloppily squeezing [pc.vaginaNounSimple] cum all over again. You swallow what you can before the pressure forces you off, allowing Shekka to paint you in a mask of pearlescent, fragrant spunk. Her urethra thuds against your [pc.chest] like a beast’s heartbeat just before its explosive eruptions, giving you enough warning to throw your mouth in front of a few more flows.");
 	output("\n\nWhen you think life can’t get any better, Shekka is there, kissing you, sparring tongues while her dick unloads wave after wave of alabaster love into the sides of your faces. It’s hot as hell, letting that beast spray you down while you make out with the cute mechanic.");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(4);
 	//[Next]
 	processTime(20);
 	for(var x:int = 0; x < 5; x++)
@@ -2872,7 +3013,7 @@ public function shekkaGymmusInterruptus(light:Boolean = false):void
 		output(".");
 		if(shekka.hasCock()) output(" Her own dick is on full display, openly exposed by a cleverly opened seam. It bounces gently on your [pc.belly].");
 		output(" <i>“");
-		if(shekkaAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("Mmm, you don’t mind if I kiss you a little while you work out? I’ll make it worth your while and then some...");
+		if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("Mmm, you don’t mind if I kiss you a little while you work out? I’ll make it worth your while and then some...");
 		else output("Mmm, seeing you working out like this, surrounded by all this fucking fuck-smell? It’s the best part of this mudball.");
 		output("”</i>");
 		output("\n\nYour spotter flashes a thumbs up and casually adjusts the boner that’s threatening to burst out of his workout shorts.");
@@ -2894,10 +3035,10 @@ public function shekkaGymmusInterruptus(light:Boolean = false):void
 		else output(" and shifts to slide [pc.oneCock] between her cheeks.");
 		output("\n\nYour spotter grunts in approval and flashes a thumbs up.");
 		output("\n\nShekka leans forward, hands falling on the bar, and snakes under the bar, close enough to kiss. Her breath is electric on your chin as she whispers, <i>“Truthfully I’m ");
-		if(shekkaAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("jonesing for another taste of your mouth, and if I don’t get laid soon I’m going to wind up glued to some bull-brained idiot’s crotch");
+		if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("jonesing for another taste of your mouth, and if I don’t get laid soon I’m going to wind up glued to some bull-brained idiot’s crotch");
 		else output("horny as fuck from all this gorgeous man-musk and I’d rather fuck you than any of these bull-brains");
 		output(". So for every set you do... I’ll give you a ");
-		if(shekkaAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("kiss and a ");
+		if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("kiss and a ");
 		output("reward. Okay?”</i>");
 	}
 	//Merge
@@ -2963,7 +3104,7 @@ public function bonusShekkaWorkout(light:Boolean):void
 	output("\n\n<i>“Y-your turn.”</i>");
 	output("\n\nYou’re breathing hard too, but it has nothing to do with the first set. Shekka gave you plenty of time to rest, yet the disturbingly erotic feeling of her pussy clutching at you all this time has you feeling light-headed and ready to put on a show. You grunt and lift to the best of your abilities, powering through this group of exercises with comparative ease. Shekka gasps when the weights slam down after the final set, and you feel a trickle of feminine excitement slip onto your skin.");
 	//Aphrospit
-	if(shekkaAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
+	if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
 	{
 		output("\n\nShekka ");
 		if(pc.tallness >= 72) output("scrabbles up");
@@ -2981,6 +3122,7 @@ public function bonusShekkaWorkout(light:Boolean):void
 		else output("Her fingers slide over your head adoringly.");
 		output(" <i>“I got wetter just watching it. Keep that up, and I’m going to end up cumming from how your dick flexes while you lift.”</i> She’s gets a little wiggly as she gets into place for her next attempt at mid-fuck squats.");
 	}
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(3);
 	//Merge
 	output("\n\nThe thick-thighed aliens build may be well-suited for squatting, but she’s clearly forgotten her previous discipline. Her rise up uneven and shuddery. Instead of lowering herself slowly, Shekka slams herself down to the hilt");
 	if(pc.cocks[x].cLength() >= 13) output(", bulging your [pc.cockHead " + x + "] in her belly in the process");
@@ -2989,10 +3131,10 @@ public function bonusShekkaWorkout(light:Boolean):void
 	else output(" Shekka’s making a similar mess of your thighs, coating them in girl-cum.");
 	output("\n\nSpeaking of messes, the short-stack slut’s squats grow ever more undisciplined. By her fifteenth rep, she’s not even pretending to exercise. She’s just bouncing in your lap and moaning, running her fingers under the stretchy fabric of her bikini top to play with her nipples. Someone in the audience slaps her ass at rep number thirty, reminding her to stop.");
 	output("\n\n<i>“Uhh... got a bit carried away there. So I guess it’s your turn,”</i> Shekka purrs, her walls idly squeezing. <i>“I’m sorry... I can’t stop. This is just too hot.”</i> Her thighs ripple as she massages you with her cunt. <i>“");
-	if(shekkaAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("Maybe a good luck kiss will help you out.");
+	if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("Maybe a good luck kiss will help you out.");
 	else output("But I bet you can make it, can’t you?");
 	output("”</i>");
-	if(shekkaAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
+	if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
 	{
 		output(" A searing-hot tongue kiss is slams into you, pinning you to the bench. Her tongue slithers <i>everywhere</i> as she sucks face, extracting the maximum amount of your druggy spit before you finally push her back.\n\nJudging by her wobbles, the little raskvel came two or three times just from that. Your crotch is soaked");
 		if(shekka.hasCock()) output(", and her dick is still leaking cum");
@@ -3006,9 +3148,10 @@ public function bonusShekkaWorkout(light:Boolean):void
 	output("\n\n<i>“You did it!”</i> She cheers, moaning whorishly. <i>“And it felt so good inside me.”</i> Her tail whips around happily. <i>“And </i>you<i> get to cum inside me in front of all these sluts.”</i> She gyrates in circles, clitties dragging on your [pc.skinFurScales]");
 	if(shekka.hasCock()) output(", heavy balls quaking in delight");
 	output(". <i>“You’re the best thing on this fucked up dirtball of a planet, now give me that cum,”</i> Shekka cries. She seizes your head in her hands and pulls you into another kiss, passionate");
-	if(shekkaAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output(", hot, and for once not attempting to suck the spit out of your mouth");
+	if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output(", hot, and for once not attempting to suck the spit out of your mouth");
 	else output(" and hot");
 	output(".");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(2);
 	output("\n\nYou provide exactly what she asks for: one ");
 	if(pc.balls > 1) output("balls-deep");
 	else if(pc.hasKnot(x)) output("knot-deep");
@@ -3028,7 +3171,7 @@ public function bonusShekkaWorkout(light:Boolean):void
 	output(". Your spotter catches Shekka before her shuddering pleasure sends her falling to the side, again giving you a thumbs up.");
 	output("\n\nThe people on New Texas sure are helpful!");
 	output("\n\nAs things die down, the audience disperses, leaving you hold onto Shekka until she recovers");
-	if(shekkaAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output(", not that she will after that massive-venom load. She’s rubbing her pussy the whole way to the door and giggling something about how her pants are going to seal it for days.");
+	if(shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output(", not that she will after that massive-venom load. She’s rubbing her pussy the whole way to the door and giggling something about how her pants are going to seal it for days.");
 	else output(". She’s grateful, and gives you a wink and smile before leaving, slapping a couple bulls on the ass on the way out.");
 	processTime(45);
 	pc.orgasm();
@@ -3115,6 +3258,7 @@ public function oviEggShekka():void
 	output("\n\nBefore you grow too enraptured with kisses, you wrest the small woman from her hold. She moans as you knead her ass, reaching down to play with her rear clit as you make sure she’s fully prepared. The mini mechanist’s slut-slit is raring to go, dripping with slippery juices by the time you reach it, but that doesn’t stop you from punishing her raging love buzzer to pump her up even further. You ");
 	if(pc.isTaur()) output("push her into a kneeling position, rising up to position yourself better.");
 	else output("rub the tip of your [pc.cock " + x + "] against her hungry cunt, holding her up as her knees grow weak from the sensation.");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(3);
 
 	if(pc.isTaur()) 
 	{

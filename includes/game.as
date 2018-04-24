@@ -1619,6 +1619,16 @@ public function insideShipEvents():Boolean
 		annoSomethingsChanging();
 		return true;
 	}
+	if(shekkaSpitAddiction() >= 50 && !shekkaSpitAddicted() && pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) 
+	{
+		shekkaConfesesThatShesAddicted();
+		return true;
+	}
+	if(shekkaSpitAddicted() && !pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
+	{
+		shekkaUnaddictionNotice();
+		return true;
+	}
 	return false;
 }
 
