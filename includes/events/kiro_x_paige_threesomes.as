@@ -303,7 +303,7 @@ public function kiroPaigeGossip():void
 	if(kiro.vaginalVirgin)
 	{
 		output("\n\nKiro stops immediately.");
-		output("\n\n<i>“If we were trying to go after a woman, sure, you’d have all the cock in the world to get them to sing like a bird. But you having a big dick isn’t the</i> only <i>reason we’d get me to go after the male targets. Care to share why?”</i>");
+		output("\n\n<i>“If we were trying to go after a woman, sure, you’d have all the cock in the world to get them to sing like a bird. But you having a big dick isn’t the </i>only<i> reason we’d get me to go after the male targets. Care to share why?”</i>");
 		output("\n\nUncharacteristically, Kiro’s lips begin to quiver in shy anxiety. Her hands curl into fists on her lap and she, in her embarrassment, turns her gaze downward, unable to look at you or at Paige. The room falls silent as you and Paige both wait for an answer – and then, Kiro mumbles something unintelligible and too quiet to make out.");
 		output("\n\n<i>“Come on, Kiro, if we’re going to make fun of me for throwing my pussy around, you gotta tell [pc.name] why you wouldn’t do the same.”</i>");
 		output("\n\nYou do admit that you’re curious – when you first met both of the women, Kiro was the horny, cock-waggling seductress and Paige was the prim-and-proper professional that just wanted to teach a class how to exercise. To hear that their positions were at one point reversed sounds like a juicy story.");
@@ -1629,7 +1629,7 @@ public function PKTSA(args:Array):void
 	pc.orgasm();
 	IncrementFlag("PAIGE_KIRO_THREESOMES");
 	//Cleanup temporary statuses:
-	pc.removeStatusEffect("PAIGE_KIRO_COCKPATH")
+	pc.removeStatusEffect("PAIGE_KIRO_COCKPATH");
 	// end scene (scene: PKTSA)
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

@@ -3644,7 +3644,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						}
 						if(flags["REAHA_TALK_ADDICTION_CURE"] != undefined)
 						{
-							output2("\n<b>* Reaha, Patch Addiction:</b> " + reahaAddiction() + " %");
+							output2("\n<b>* Reaha, Patch Addiction Level:</b> " + reahaAddiction() + " %");
 							if(reahaIsCured()) output2(", Cured");
 							else output2(", Ongoing");
 						}
@@ -3945,6 +3945,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(paigeIsCrew()) output2(" (Onboard Ship)");
 					}
 					if(flags["SEXED_PAIGE"] != undefined) output2("\n<b>* Paige, Times Sexed:</b> " + flags["SEXED_PAIGE"]);
+					if(flags["PAIGE_KIRO_THREESOMES"] != undefined) output2("\n<b>* Paige, Times Sexed Her with Kiro:</b> " + flags["PAIGE_KIRO_THREESOMES"]);
 					if(flags["MET_IDDI"] != undefined) output2("\n<b>* Iddi:</b> Met her");
 				}
 				// Semith
@@ -4924,6 +4925,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(shekkaIsCrew()) output2(" (Onboard Ship)");
 				}
 				if(StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins") > 0) output2("\n<b>* Shekka, Robot Sex-Off, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/shekka sexoff wins") + "/" + StatTracking.getStat("contests/shekka sexoff losses") + ", of " + (StatTracking.getStat("contests/shekka sexoff losses") + StatTracking.getStat("contests/shekka sexoff wins")) + " games");
+				if(flags["SHEKKA_SPIT_ADDICTION"] > 0) output2("\n<b>* Shekka, Aphrodisiac Saliva Addiction Level:</b> " + flags["SHEKKA_SPIT_ADDICTION"] + " %");
 				if(flags["TIMES_SEXED_SHEKKA"] != undefined) output2("\n<b>* Shekka, Sex Organs:</b> " + listCharGenitals("SHEKKA"));
 				if(flags["TIMES_SEXED_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Sexed:</b> " + flags["TIMES_SEXED_SHEKKA"]);
 				if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] != undefined) output2("\n<b>* Shekka, Times Fucked Her Tail-Vibrator:</b> " + flags["TIMES_TAILVIBED_WITH_SHEKKA"]);
