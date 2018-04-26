@@ -1517,17 +1517,28 @@ public function normalZilgirlCockfuck():void
 	{
 		output("\n\nShe hisses as your [pc.cockhead "+ x +"] brushes against her honeyed sex, the dusky folds already saturated with nectar. <i>“Don’t worry,”</i> you whisper, <i>“I’ll take it slow.”</i> True to your word, you gently slide your dick against her entrance, moving back and forth to coat it with her juices.");
 		output("\n\nYou drag your shaft across her crotch, angling your hips as you pull back to send your cock across her tiny black button. The alien woman shudders and clenches her jaw, her reactions serving as nonverbal praise of your splendid technique. You continue to grind against her aromatic nethers, but find it increasingly difficult to concentrate, mind clouded by the zil’s lust-sparking pheromones.");
-		output("\n\nTwo chitinous arms wrap around your shoulders, and the moans of your sweet-smelling lover fill the air. You look down at your companion’s body, taking in every inch of her glistening figure until you see her wasp-like tail, and more importantly its venomous stinger, bobbing precariously close to your exposed [pc.skinFurScales].");
+		output("\n\nT");
+		if(pc.genitalLocation() < 2) output("wo chitinous arms wrap around your shoulders, and t");
+		output("he moans of your sweet-smelling lover fill the air. You look down at your companion’s body, taking in every inch of her glistening figure until you see her wasp-like tail, and more importantly its venomous stinger, bobbing precariously close to your exposed [pc.skinFurScales].");
 		output("\n\nShaking your head to clear your thoughts, you return your attention to the zil’s blushing face and meet a mischievous smirk, then tense up as you feel a point of pressure against your thigh. <i>“Worried?”</i> she coos.");
-		output("\n\n" + (pc.isAss() ? "Scoffing" : "Sighing") + ", you shift yourself forward to stare directly into her eyes, then plunge into her depths with a single, powerful thrust. She spasms, letting out a yelp as her muscles disobey her and her stinger flops onto the ground.");
+		output("\n\n" + (pc.isAss() ? "Scoffing" : "Sighing") + ", you shift yourself forward");
+		if(pc.genitalLocation() < 2) output(" to stare directly into her eyes, then");
+		else output(" and");
+		output(" plunge into her depths with a single, powerful thrust. She spasms, letting out a yelp as her muscles disobey her and her stinger flops onto the ground.");
 		output("\n\n<i>“No,”</i> you reply" + (!pc.isAss() ? " with a smile" : "") + ".");
 	}
 	//End Cockvirgin Vars.
 	pc.cockChange();
-	output("\n\nYou pump your hips, the insectile woman’s voice rising in response to your movements. She pulls you down to pant into your ear, pressing her breasts against ");
-	if(pc.hasBreasts()) output("your own" + (pc.isLactating() ? " and teasing out a few droplets of [pc.milk]" : "") + "");
-	else output("your " + (pc.tone >= 50 && pc.thickness >= 25 ? "muscular " : "") + "chest");
-	output(". Bodies pressed together, you lose yourself in the throes of passionate lovemaking, ignorant to everything but the feeling of your exotic alien partner.");
+	output("\n\nYou pump your hips, the insectile woman’s voice rising in response to your movements.");
+	if(pc.genitalLocation() < 2)
+	{
+		output(" She pulls you down to pant into your ear, pressing her breasts against ");
+		if(pc.hasBreasts()) output("your own" + (pc.isLactating() ? " and teasing out a few droplets of [pc.milk]" : "") + "");
+		else output("your " + (pc.tone >= 50 && pc.thickness >= 25 ? "muscular " : "") + "chest");
+		output(". Bodies pressed together, y");
+	}
+	else output(" She hugs your [pc.lowerBody], pressing her breasts against your underbelly. Y");
+	output("ou lose yourself in the throes of passionate lovemaking, ignorant to everything but the feeling of your exotic alien partner.");
 	output("\n\nThe zil tries to say something, but only manages a mess of gasps and broken whines as you drive your cock deeper and deeper into her womanhood, until you can go no farther. You slam into her, reaching a fever pitch as the zil’s scent pushes you over the edge of sense.");
 	output("\n\nHer vagina draws you in, suffocating your dick with its sweet warmth. Honey spills out of her slit and collects on the ground beneath, creating a sticky puddle with an overpowering aroma. Louder and less-controlled vocalizations come from the zil as you stretch her insides with your [pc.cock "+ x +"]. Before long, she’s practically screaming, and you can’t suppress a few needy groans of your own.");
 	output("\n\nA heat rises in your " + (pc.balls > 1 ? "balls" : "groin") + ", an aching need to fill the enraptured bee with everything you have. You barely have any time to consider whether you should finish inside or outside, but the zil’s legs wrap themselves around you as her grip tightens, and that’s answer enough for you. With your climax nearing, you plant a passionate, messy kiss against the alien woman’s sable lips.");

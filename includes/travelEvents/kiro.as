@@ -221,7 +221,7 @@ public function kiroMenu():void
 			if(flags["PAIGE_KIRO_THREESOMES"] == undefined) addButton(5,"Paige",paigeThreesomeIntro,undefined,"Paige","The Ausar yoga instructor, Paige, once told you that she considers Kiro to be her closest friend. Maybe you should ask Kiro if the name sounds familiar to her?");
 			else addButton(5,"Paige",paigeThreesomeIntro,undefined,"Paige","Nothing says good time like a Paige, Kiro, and Steele sandwich.");
 		}
-		else if(flags["PAIGE_TALK_SELF"] < 4 || flags["PAIGE_TALK_SELF"] == undefined) addDisabledButton(5,"Locked","Locked","You don't know the right person well enough for this.");
+		else if(flags["PAIGE_TALK_SELF"] < 4 || flags["PAIGE_TALK_SELF"] == undefined) addDisabledButton(5,"Locked","Locked","You don’t know the right person well enough for this.");
 		else if(flags["SEXED_PAIGE"] == undefined) addDisabledButton(5,"Paige","Paige","You need a deeper relationship with Paige for this.");
 		else addDisabledButton(5,"Paige","Paige","Paige needs to be on your crew, or you need to meet Kiro after 17:00 and before 9:00 in Tavros Station to pursue Paige.");
 
@@ -244,7 +244,7 @@ public function kiroMenu():void
 		if(flags["PAIGE_KIRO_THREESOMES"] == undefined) addButton(5,"Paige",paigeThreesomeIntro,undefined,"Paige","The Ausar yoga instructor, Paige, once told you that she considers Kiro to be her closest friend. Maybe you should ask Kiro if the name sounds familiar to her?");
 		else addButton(5,"Paige",paigeThreesomeIntro,undefined,"Paige","Nothing says good time like a Paige, Kiro, and Steele sandwich.");
 	}
-	else if(flags["PAIGE_TALK_SELF"] < 4 || flags["PAIGE_TALK_SELF"] == undefined) addDisabledButton(5,"Locked","Locked","You don't know the right person well enough for this.");
+	else if(flags["PAIGE_TALK_SELF"] < 4 || flags["PAIGE_TALK_SELF"] == undefined) addDisabledButton(5,"Locked","Locked","You don’t know the right person well enough for this.");
 	else if(flags["SEXED_PAIGE"] == undefined) addDisabledButton(5,"Paige","Paige","You need a deeper relationship with Paige for this.");
 	else addDisabledButton(5,"Paige","Paige","Paige needs to be on your crew, or you need to meet Kiro after 17:00 and before 9:00 in Tavros Station to pursue Paige.");
 	
@@ -1136,10 +1136,11 @@ public function wonKirosContestLikeAChampAndGotBlown():void
 	else if(pc.cockTotal() > 2) output(", your other cocks slipping along either side of her neck");
 	output(". The corners of Kiro’s mouth turn up in a smile, and her breasts turn into a blur of bouncing, jiggling, barely-contained titfuck. Pre-cum sloshes and spills out around the top of her clothing, announcing with lurid spurts of stickiness just how filled the tanuki-woman’s top has become. [pc.EachCock] surges with blissful heat, and you let out a low groan of ecstasy, feeling your urethra bulge and your meat flex in her throat, violently spurting ropes of [pc.cum] straight into the drunken hermaphrodite’s tummy. Her cheeks hollow encouragingly, and she winks, not even having to work to swallow thanks to her excellent technique.");
 	output("\n\nKiro is sucking you through what feels like the longest, slowest orgasm of your life, greedily taking every single drop of [pc.cumColor] delight directly into her gurgling middle. Her climax arrives hot on the heels of your own, erupting through a gap in her clothing to splatter off her chin. The next floods between her top and her fur, slicking out her sleeves and down her thighs, thoroughly coating her in cum. She whimpers around your dick at this, twisting and writhing, letting you fill her while simultaneously soaking herself.");
-	if(pc.cumQ() >= 1500) output(" The sheer amount of [pc.cum] you inject into her swells her belly into a noticeable bump. In turn, this causes her still-spurting shaft to bow out under the liquid weight, opening up more room for her own sperm to flood.");
-	if(pc.cumQ() >= 3500) output(" By the time you finish, her middle is visibly pregnant, and her cock has been yanked from her tits to futilely erupt alone and unaided outside her cum-soaked enclosure.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 1500) output(" The sheer amount of [pc.cum] you inject into her swells her belly into a noticeable bump. In turn, this causes her still-spurting shaft to bow out under the liquid weight, opening up more room for her own sperm to flood.");
+	if(cumQ >= 3500) output(" By the time you finish, her middle is visibly pregnant, and her cock has been yanked from her tits to futilely erupt alone and unaided outside her cum-soaked enclosure.");
 	output("\n\nPulling out, you drip a last, long strand of [pc.cum] across her tongue, which Kiro greedily gulps down. She opens wide after to show you that it has been swallowed");
-	if(pc.cumQ() >= 3500) output(", and immediately belches, her stomach far beyond its normal capacity");
+	if(cumQ >= 3500) output(", and immediately belches, her stomach far beyond its normal capacity");
 	output(". You can see that her throat has been stained [pc.cumColor], and it gives you a satisfied tingle throughout.");
 	output("\n\nKiro sways drunkenly for a moment before sliding on her side, stroking her still-cumming cock until she finishes at last. She moans, <i>“Fuuuuck, [pc.name]. That was good!”</i>");
 	output("\n\nTouching her chin with your [pc.foot], you turn her up to look at you. <i>“That’s [pc.Master]. I believe I have the rest of the day to use you.”</i> You may not have specified exactly as such in the terms of the wager, but it was definitely implied. Besides, she’s in no state to argue.");
@@ -1823,9 +1824,10 @@ public function kiroginityTakingPartII():void
 	output(".");
 	if(pc.hasKnot(x)) output(" The canine parts of your prick launch into action exactly as you would expect, inflating a thick knot near your base that quite effectively arrests your movement, locking you inside Kiro’s tunnel with such pleasure that you nearly pass out. Stars, you love knotting a girl.");
 	if(pc.hasCockFlag(GLOBAL.FLAG_FLARED,x)) output(" Your own flare expands, sealing your tip against her cervix just in time for the first wave of your inevitable ejaculation.");
-	if(pc.cumQ() <= 6) output(" If only you had a decent amount of stored-up cum to offer her. Despite the waves of bliss rolling through your crotch, you don’t offer more than a few token drops of [pc.cum].");
-	else if(pc.cumQ() <= 100) output(" The resulting jets of [pc.cum] are far more forceful than you would have expected. Maybe it’s how long it’s taken you to get here or the knowledge that yours is the first cum to ever grace this vagina. Whatever the case, you do a damned fine job of giving Kiro a creampie to remember.");
-	else if(pc.cumQ() < 1500)
+	var cumQ:Number = pc.cumQ();
+	if(cumQ <= 6) output(" If only you had a decent amount of stored-up cum to offer her. Despite the waves of bliss rolling through your crotch, you don’t offer more than a few token drops of [pc.cum].");
+	else if(cumQ <= 100) output(" The resulting jets of [pc.cum] are far more forceful than you would have expected. Maybe it’s how long it’s taken you to get here or the knowledge that yours is the first cum to ever grace this vagina. Whatever the case, you do a damned fine job of giving Kiro a creampie to remember.");
+	else if(cumQ < 1500)
 	{
 		output(" The torrent of [pc.cum] you unleash floods the inside of her canal, bathing the quivering folds in enough spunk to make her black lips glisten with a layer of [pc.cumColor]");
 		if(pc.hasKnot(x)) output(" despite your knot’s attempts at interdiction");
@@ -1836,7 +1838,7 @@ public function kiroginityTakingPartII():void
 		output(" The resulting geyser of [pc.cum] could easily have come from Kiro. Its volume floods her tunnel with the first blast and her womb with the second, distending the kui-tan’s belly to near-pregnancy with a few more shots. Again and again, you dump your too-virile passion into her preferred pussy, stuffing her with so much [pc.cum] that waves of it start to backwash out");
 		if(pc.hasKnot(x)) output(" around your bloated knot");
 		output(". The [pc.cumColor] stuff mixes with Kiro’s own leavings to complete the act of drenching her bed.");
-		if(pc.cumQ() >= 10000) output(" When it floods over the side in a waterfall, neither of you can protest, too busy moaning at how good it feels to climax almost unendingly. Fortunately there’s a drain in the floor, lest you manage to drown yourselves.");
+		if(cumQ >= 10000) output(" When it floods over the side in a waterfall, neither of you can protest, too busy moaning at how good it feels to climax almost unendingly. Fortunately there’s a drain in the floor, lest you manage to drown yourselves.");
 	}
 	processTime(9+rand(4));
 	pc.orgasm();
@@ -2226,6 +2228,7 @@ public function repeatVagFuckKiro():void
 
 	output("\n\n<i>“C’mon, Angel. Cum with me!”</i> she purrs, and suddenly Kiro’s condom becomes a geyser of liquid pressure blasting across your chest.");
 
+	var cumQ:Number = pc.cumQ();
 	//if hugebawls:
 	if(kiro.ballDiameter() > 14) 
 	{
@@ -2236,8 +2239,8 @@ public function repeatVagFuckKiro():void
 		
 		output("\n\nKiro’s balls visibly deflate as she cums, discharging the gallons and gallons of backed-up spunk through the throbbing shaft of her modded dick and into the straining reservoir of her condom. She looks like there’s a beach ball attached to her dick, bouncing up and down on your chest as it bloats with hot, musky horse-juice.");
 		output("\n\nYou’re afraid even the industrial-strength sheath is going to burst when Kiro finally gives a defeated sigh and slumps forward, dropping her exhausted weight onto the soft, hot bulb of cum-ball. That least little movement is just what you needed to send you over the edge too, it turns out - you grab Kiro’s hips and thrust yourself up into her drooling pussy, blowing your load deep in Kiro’s dark-lipped twat. She gasps, mewling as she feels your [pc.cumNoun] splash into her sex, ");
-		if(pc.cumQ() <= 200) output("smearing her pussy’s walls with seed");
-		else if(pc.cumQ() <= 5000) output("bloating her womb with a thick load of spunk");
+		if(cumQ <= 200) output("smearing her pussy’s walls with seed");
+		else if(cumQ <= 5000) output("bloating her womb with a thick load of spunk");
 		else output("pumping her with so much cum that she looks like all the weight in her balls has just transferred to her belly");
 		output(".");
 	}
@@ -2246,8 +2249,8 @@ public function repeatVagFuckKiro():void
 	{
 		output("\n\nKiro’s hefty nuts clench, rubbing vigorously against your [pc.belly] as their owner finally relieves the pressure that’s been building up in them since God knows when. You stroke her dick faster, using your whole body to ease the cataclysmic climax of tanuki-spunk billowing into her condom’s bloating tip. Kiro grunts and hammers her hips down on you harder and faster, apparently deciding that if she’s going to cum, you’re damn well going to join her.");
 		output("\n\nYour back arches, voice breaking with pleasure as Kiro milks your dick for all it’s worth. A rush of [pc.cumNoun] barrels through your [pc.cock] and into Kiro’s cunt, ");
-		if(pc.cumQ() <= 200) output("smearing her pussy’s walls with seed");
-		else if(pc.cumQ() <= 5000) output("bloating her womb with a thick load of spunk");
+		if(cumQ <= 200) output("smearing her pussy’s walls with seed");
+		else if(cumQ <= 5000) output("bloating her womb with a thick load of spunk");
 		else output("pumping her with so much cum that she looks like all the weight in her balls has just transferred to her belly");
 		output(".");
 	}
@@ -2258,8 +2261,8 @@ public function repeatVagFuckKiro():void
 		if(pc.biggestTitSize() >= 4) output("fucking your tits");
 		else output("grinding on your chest");
 		output(", and you watch as her condom’s reservoir is bloated by jets of hot, musky spunk. <i>“Fuck yeah!”</i> she cries out, bouncing and grinding and cumming like mad. The sensation quickly pushes you over the edge, and with a grunt of pleasure you end up hilting yourself inside the orgasming tanuki and ");
-		if(pc.cumQ() <= 200) output("smearing her pussy’s walls with seed");
-		else if(pc.cumQ() <= 5000) output("bloating her womb with a thick load of spunk");
+		if(cumQ <= 200) output("smearing her pussy’s walls with seed");
+		else if(cumQ <= 5000) output("bloating her womb with a thick load of spunk");
 		else output("pumping her with so much cum that she looks like all the weight in her balls has just transferred to her belly");
 		output(". She screams in pleasure as you join her in climax, eyes rolling up in her head like the blissed-out cum-slut she is.");
 	}
@@ -2512,13 +2515,14 @@ public function yesKiroIDoWantPubbieFJ():void
 	if(pc.balls > 0) output("ball-draining");
 	else output("prostate-draining");
 	output(" force, splattering the second shot against your target hard enough to dislodge some of the hanging [pc.cum] and shower Kiro’s feet with it. Her toes visibly glisten in the place’s neon light as she continue to milk you, wringing less forceful but still voluminous blasts from your body.");
+	var cumQ:Number = pc.cumQ();
 	//Low cum amount
-	if(pc.cumQ() < 50) output("\n\nYour orgasm coats her toes in a solid layer, weaving [pc.cumVisc] lace up to her ankles. The excess drips down around them to the floor, collecting in small puddles, the only evidence of your indiscretions.");
+	if(cumQ < 50) output("\n\nYour orgasm coats her toes in a solid layer, weaving [pc.cumVisc] lace up to her ankles. The excess drips down around them to the floor, collecting in small puddles, the only evidence of your indiscretions.");
 	//Med cum amount
-	else if(pc.cumQ() < 500) output("\n\nYour orgasm coats her feet from toe to heel in a solid layer, to say nothing of the battlefield that her shins have become, spattered with [pc.cumVisc] droplets that slowly dry on her fur. Thick puddles on the floor are slowly rolling toward the drain, the byproduct of your near-fountainous gushing. In a few moments, the only evidence of your whorish misdeeds will be the musky scent of your passion.");
+	else if(cumQ < 500) output("\n\nYour orgasm coats her feet from toe to heel in a solid layer, to say nothing of the battlefield that her shins have become, spattered with [pc.cumVisc] droplets that slowly dry on her fur. Thick puddles on the floor are slowly rolling toward the drain, the byproduct of your near-fountainous gushing. In a few moments, the only evidence of your whorish misdeeds will be the musky scent of your passion.");
 	//High cum
 	else output("\n\nThere’s no hiding the fruits of your orgasm, the way your gushing discharge gives Kiro thigh-high boots of molten [pc.cumNoun]. Even when your passion was winding down, you were still bathing her toes in a river of your milked-out sperm. The floor got it the worst. A drunken groom’s bachelor party could do the damage your single, Kiro-boosted climax did. The drains are choking and burbling on your thick [pc.cumNoun]-flood, and you dare not climb down without soaking your [pc.feet]. You’d have to make quite a leap to get free of the [pc.cumColor] lake.");
-	if(pc.cumQ() >= 5000) output("\n\nBest of all, Kiro is still squeezing your [pc.cockBiggest], still wringing blobs of [pc.cum] out of the [pc.cockHeadBiggest] to roll over her playfully wiggling toes. She keeps milking you for what feels like an hour, extending your orgasm past the point where you feel you should’ve gone dry. You let her too, giving her her money’s worth.");
+	if(cumQ >= 5000) output("\n\nBest of all, Kiro is still squeezing your [pc.cockBiggest], still wringing blobs of [pc.cum] out of the [pc.cockHeadBiggest] to roll over her playfully wiggling toes. She keeps milking you for what feels like an hour, extending your orgasm past the point where you feel you should’ve gone dry. You let her too, giving her her money’s worth.");
 	//Merge
 	output("\n\nBreathing heavily, you look around, meeting the eyes of a half-dozen blushing patrons before hanging your head to hide your shame");
 	if(pc.exhibitionism() >= 66) output(" and just how horny it’s making you");
@@ -2627,28 +2631,29 @@ public function balljobFromKiro():void
 	//Kiro not cock captured!
 	else output("\n\ninto the air. The heady deluge spurts out in huge ribbons of white, hanging precipitously before falling, one huge, sticky strand that splatters across you like a burst water balloon on impact. Alabaster love splats across your [pc.skinFurScales] just in time for the next spunksplosion to erupt from Mount Kiro. Wave after wave of her sticky jism erupts, some firing high enough to hit the ceiling, some falling across her bust, and still more pouring down over you, flooding the bedsheets with spent spooge. The tremendously large horse-cock seems to cum without end. It is a font of spermy goodness, a reliable fountain of jizz. It drenches you with so much cum that your eyes feel glued shut and the bed squishes with every twitch and movement of your orgasmically writhing frame.");
 	//PC cum epilogue.
+	var cumQ:Number = pc.cumQ();
 	//Small cumshots
-	if(pc.cumQ() < 20) output("\n\nYour meager contribution to Kiro’s soaked nutsack is drowned by the spunk-tsunamis that washed over her balls, your [pc.cumColor] mixing into the kui-tan’s thick deposits. Honestly, by the time her orbs shrink down and release you, you can’t even spot a single drop of your ejaculate. Kiro’s is all-consuming, a biblical flood compared to your droplets.");
+	if(cumQ < 20) output("\n\nYour meager contribution to Kiro’s soaked nutsack is drowned by the spunk-tsunamis that washed over her balls, your [pc.cumColor] mixing into the kui-tan’s thick deposits. Honestly, by the time her orbs shrink down and release you, you can’t even spot a single drop of your ejaculate. Kiro’s is all-consuming, a biblical flood compared to your droplets.");
 	//Mediumsmall cumshots
-	else if(pc.cumQ() < 100) output("\n\nYour orgasm would shame most human men, but compared to Kiro’s it is still just a drop in the bucket, or more appropriately ocean. The [pc.cumColor] you shot in between her hefty orbs is nowhere to be seen by the time her balls shrink down to a more normal size, releasing your [pc.cocks]. All you can see are the tsunami-like waves of thick, kui-tan seed coating everything from Kiro’s head down to your toes.");
+	else if(cumQ < 100) output("\n\nYour orgasm would shame most human men, but compared to Kiro’s it is still just a drop in the bucket, or more appropriately ocean. The [pc.cumColor] you shot in between her hefty orbs is nowhere to be seen by the time her balls shrink down to a more normal size, releasing your [pc.cocks]. All you can see are the tsunami-like waves of thick, kui-tan seed coating everything from Kiro’s head down to your toes.");
 	//Medium cumshot
-	else if(pc.cumQ() < 1000) output("\n\nThe whole time you’re cumming into that slick crevice, you’re aware of just how much more potent Kiro’s explosive release is than your own. Your jets of distilled lust are swamped in the waves of ivory goo, but you produce enough that you leave a distinct, [pc.cumColor] stain on the kui-tan’s receding nutsack as her balls shrink down to a more natural size. The mixed, dripping spooge falls from her in thick curtains, yours potent enough to cling on as a visible reminder of your own virility.");
+	else if(cumQ < 1000) output("\n\nThe whole time you’re cumming into that slick crevice, you’re aware of just how much more potent Kiro’s explosive release is than your own. Your jets of distilled lust are swamped in the waves of ivory goo, but you produce enough that you leave a distinct, [pc.cumColor] stain on the kui-tan’s receding nutsack as her balls shrink down to a more natural size. The mixed, dripping spooge falls from her in thick curtains, yours potent enough to cling on as a visible reminder of your own virility.");
 	//Medium-large cumshot
-	else if(pc.cumQ() < 2000) output("\n\nYour powerful cumshot, while noticeably less voluminous than your hermaphroditic partner’s, is still quite mighty; it’s powerful enough to rock her swollen jizz-factories back, making them wobble even as they shrink and spurt forth their stored lusts to rain down upon you. Her heavy orbs are painted with your [pc.cumColor] love, wreathed in it so thoroughly that when her tsunami of jism rolls over them your own deposits remain powerfully identifiable and distinct. Some of it does mix together, and the aroma of two powerful, combined orgasms saturates the air of this room in spite of the ship’s potent air scrubbers.");
+	else if(cumQ < 2000) output("\n\nYour powerful cumshot, while noticeably less voluminous than your hermaphroditic partner’s, is still quite mighty; it’s powerful enough to rock her swollen jizz-factories back, making them wobble even as they shrink and spurt forth their stored lusts to rain down upon you. Her heavy orbs are painted with your [pc.cumColor] love, wreathed in it so thoroughly that when her tsunami of jism rolls over them your own deposits remain powerfully identifiable and distinct. Some of it does mix together, and the aroma of two powerful, combined orgasms saturates the air of this room in spite of the ship’s potent air scrubbers.");
 	//Large cumshot
-	else if(pc.cumQ() < 3500) output("\n\nYour orgasm is so powerful and wonderful that it makes Kiro’s sloshing cumsacks wobble and rock with each mighty ejaculation, the [pc.cum] dripping down over your [pc.legOrLegs] and in the rapidly-moistening mattress. Together, you turn the pent-up herm’s bed into a sopping wet spunk-sponge and wallow in it, writhing together in absolute contentment and wonderful enjoyment, needlessly releasing so much baby-making love-juice that it’s dripping down the sides of the bed and onto Kiro’s already-splatted smut-books. Kiro’s ivory spunk mixes with your [pc.cumColor] juices as you both wind down. Her balls shrink and withdraw, painted with just slightly more of her virility than yours.");
+	else if(cumQ < 3500) output("\n\nYour orgasm is so powerful and wonderful that it makes Kiro’s sloshing cumsacks wobble and rock with each mighty ejaculation, the [pc.cum] dripping down over your [pc.legOrLegs] and in the rapidly-moistening mattress. Together, you turn the pent-up herm’s bed into a sopping wet spunk-sponge and wallow in it, writhing together in absolute contentment and wonderful enjoyment, needlessly releasing so much baby-making love-juice that it’s dripping down the sides of the bed and onto Kiro’s already-splatted smut-books. Kiro’s ivory spunk mixes with your [pc.cumColor] juices as you both wind down. Her balls shrink and withdraw, painted with just slightly more of her virility than yours.");
 	//Kiro-sized orgasm
-	else if(pc.cumQ() < 7000) output("\n\nYour mighty ejaculations are so powerful that they match Kiro’s jet for jet, the immense spunk-torrents exploding out against her shuddering, shrinking sack, making her balls bounce and roll around each time you launch a powerful spear of [pc.cumColor] into the valley between them. She doesn’t seem to mind and watches with fascination as you flood the bed beneath you both, releasing so much over her weighty orbs that the curtains of falling fuckslime stain the sheets, fill the mattress, and run over the sides towards the floor. There seems to be no end to the cum you both produce, and you shoot until Kiro’s balls shrink and you go dry, producing similarly sized messes that glaze both of you in intermingled, distilled love.");
+	else if(cumQ < 7000) output("\n\nYour mighty ejaculations are so powerful that they match Kiro’s jet for jet, the immense spunk-torrents exploding out against her shuddering, shrinking sack, making her balls bounce and roll around each time you launch a powerful spear of [pc.cumColor] into the valley between them. She doesn’t seem to mind and watches with fascination as you flood the bed beneath you both, releasing so much over her weighty orbs that the curtains of falling fuckslime stain the sheets, fill the mattress, and run over the sides towards the floor. There seems to be no end to the cum you both produce, and you shoot until Kiro’s balls shrink and you go dry, producing similarly sized messes that glaze both of you in intermingled, distilled love.");
 	//Beat Kiro’s cumshot - room flooder XL
 	else 
 	{
 		output("\n\nYour explosively powerfully shots are so supremely virile and so potent that the sprays actually push Kiro’s trembling nutsack away from your [pc.cocks], pushing her further and further down the bed until she’s about to fall off. This frees you to shoot as you will, painting her nuts with a glossy sheen before arcing up to splatter her belly, tits, face, wall, and ceiling with goo, all before allowing your convulsing tool");
 		if(pc.cockTotal() > 1) output("s");
 		output(" to aim a little farther up to hit your [pc.face] and [pc.chest]. Kiro’s cum is everywhere, but so is yours. And there’s more of yours. ");
-		if(pc.cumQ() >= 15000) output("Much more. ");
+		if(cumQ >= 15000) output("Much more. ");
 		output("Your [pc.cum] mixes with the gifted herm’s until the resulting spermy soup looks far more like a product of yours than anything to come out of her cock. Through it all, the mattresses soaked up their limit, and your combined release rolled out over the edge, covering Kiro’s piled-up porn with a [pc.cumColor] frosting before rising with the inevitability of a sexual tide. The nudie-mags are drowned in cum that reaches ");
-		if(pc.cumQ() < 20000) output("a foot");
-		else if(pc.cumQ() < 25000) output("several feet");
+		if(cumQ < 20000) output("a foot");
+		else if(cumQ < 25000) output("several feet");
 		else output("all the way");
 		output(" up the bed.");
 	}
@@ -2987,11 +2992,12 @@ public function fuckPumpedKiro():void
 	output(" with her glittering juices. Her balls quiver meaningfully above her increasingly well-used pussy. It’ll only take a little more to launch her over the edge.");
 	output("\n\nYou reach down, shifting the quivering orbs out of the way, and press your thumb against her poor, pumped-up clit. Kiro’s velvet-lined vice squeezes your dick so hard that it almost hurts. Her swollen, partly-drained cum-factories lurch and pulse, and her cock is erupting all over her tits and face once more. Kiro sucks as much of her flaring monstrosity into her mouth as possible, but the stallion-sized tool is too big to take when it’s stretching so wide. All she succeeds in doing is puffing out her cheeks as they fill with jism.");
 	output("\n\nMeanwhile, her cock-milking twat finally squeezes you <b>just</b> right, and you feel the blossoming warmth of your own climax spreading through your middle. [pc.EachCock] lurches, throwing a great, long rope of [pc.cum] out with force. You thrust as hard as you can, making the bed creak even though you were already close to hilted, your muscles straining to keep you as completely engulfed in pussy as possible. There, you spend the rest of your seed, pouring [pc.cum] directly into the unresisting kui-tan’s lovely, pumped up hole.");
-	if(pc.cumQ() >= 1000)
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 1000)
 	{
 		output(" She doesn’t protest in the slightest when you ");
-		if(pc.cumQ() < 2000) output("give her belly a slight cum-paunch");
-		else if(pc.cumQ() < 5000) output("distend her belly into a pregnant-looking dome");
+		if(cumQ < 2000) output("give her belly a slight cum-paunch");
+		else if(cumQ < 5000) output("distend her belly into a pregnant-looking dome");
 		else output("pack her so full that her belly rounds into a gravid, jiggling half-sphere");
 		output(".");
 	}
@@ -3974,9 +3980,10 @@ public function kiroKallyDoubleMilkingThreesome4(x:int):void
 	output("\n\nYou get more substantive sounds from her when you resume buttfucking her. Kiro looks on eagerly, clearly getting off on watching you prepare to nut in her sister. There’s so much moisture dribbling from Kally’s cunt that it hangs between your hips and her ass in webs when you draw back, and when you thrust home, it luridly splatters.");
 	output("\n\n<i>“Give her your biggest load, angel,”</i> Kiro coos. <i>“I want to see the look on her face when she realizes how much jizz she’s going to be carrying around in her gut the rest of the day.”</i>");
 	output("\n\nThe image of a big-bellied Kally stumbling around, blushing and dripping a trail of [pc.cumColor] sperm in her bar is enough to send you over the edge.");
-	if(pc.cumQ() < 50) output(" You spurt a much less impressive load into her sluttily stretched asshole, making sure every drop is deep enough to surface later as a surprise.");
-	else if(pc.cumQ() < 500) output(" You spurt a thick load deep into her sluttily stretched asshole, making sure the spunk-enema is deep enough to stay in there a good long while. You may not have given her a pregnant-looking middle, but you’ve certainly filled her with enough cream to make a half-dozen jelly-impregnated donuts jealous.");
-	else if(pc.cumQ() < 10000) output(" You flood her rectum with [pc.cumNoun]. There’s enough fluid filling to make her anus feel like your own private seed reservoir - and to give her a hint of an inflated paunch. The moment she stands up straight, strings of it will dribble out, assuming she even tries. Maybe you should have Kiro look into buying her a buttplug.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 50) output(" You spurt a much less impressive load into her sluttily stretched asshole, making sure every drop is deep enough to surface later as a surprise.");
+	else if(cumQ < 500) output(" You spurt a thick load deep into her sluttily stretched asshole, making sure the spunk-enema is deep enough to stay in there a good long while. You may not have given her a pregnant-looking middle, but you’ve certainly filled her with enough cream to make a half-dozen jelly-impregnated donuts jealous.");
+	else if(cumQ < 10000) output(" You flood her rectum with [pc.cumNoun]. There’s enough fluid filling to make her anus feel like your own private seed reservoir - and to give her a hint of an inflated paunch. The moment she stands up straight, strings of it will dribble out, assuming she even tries. Maybe you should have Kiro look into buying her a buttplug.");
 	else output(" You release a torrential outflow of jism - enough for the first burst to leave her belly thicker and sloshing. Your body seems intent on making your fantasy a reality, pumping gout after gout of [pc.cumGem] into her deepest recesses, so much so that rivers of it flood out from around you, soaking her luscious asscrack. Still, enough remains inside Kally to give her that <i>“just pregnant for seven or eight or nine months”</i> look that you desired. You rut against her bottom for a few minutes longer, cascading [pc.cum] everywhere, absolutely drenching the poor herm from the waist down.");
 	output("\n\nKiro is sitting down groaning by the time you finish up, her eyes half closed. She’s started to leak a steadier flow into her device.");
 	//No new PG: Knot
@@ -4065,15 +4072,16 @@ public function kiroKallyDoubleMilkingThreesome6(x:int):void
 	output("After what feels like hours of drilling Kiro’s depths, she goes limp in your hands. Kally squeezes her arms tight around her sister, and they snuggle together. You catch a peek at the edge of Kiro’s face; it’s clear she’s given herself over to the pleasure. Her eyes are rolled back, partly hidden by heavy lids. Her muscles are limp - all save the ones in her ass, squeezing down on you, begging you to press harder against her prostate.");
 	output("\n\nThe chubbier sibling is begging Kiro to cum while she does it, urging her to blow the biggest load of her life, right on top of her loving sister. It’s too much, too hot. The vice-like walls of Kiro’s ass contract. Her prostate spasms so hard it feels like a slow, pulsing vibrator, pressed against your [pc.cock " + x + "]. You manage to suppress your growing urge to climax and slap her ass, but that just makes her clench all the tighter - more than tight enough to push you over the edge. Your passionate cries intermingle with the incestual sisters’, and together, the three of you erupt one last time.");
 	output("\n\n");
-	if(pc.cumQ() < 100) output("Your contribution to the passionate flood is meager by comparison, but it’s more than enough to leave you breathless and panting.");
-	else if(pc.cumQ() < 1000) output("Your contribution to the passionate flood is more than copious enough to leave Kiro’s guts feeling slick and juicy, squelching along with your every movement.");
-	else if(pc.cumQ() < 4000) output("Your contribution to the passionate flood may not match Kiro’s, but it’s more than enough to flood the herm’s rectum, pushing back the walls of her gut until you feel like you’re dipping your dick in a tank full of warm lube.");
-	else if(pc.cumQ() < 10000) output("Your contribution to the passionate flood is just as significant as the kui-tans’. You can see it in the bulging of Kiro’s belly, the way each jet splashing off her prostate causes her own flow to thicken.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 100) output("Your contribution to the passionate flood is meager by comparison, but it’s more than enough to leave you breathless and panting.");
+	else if(cumQ < 1000) output("Your contribution to the passionate flood is more than copious enough to leave Kiro’s guts feeling slick and juicy, squelching along with your every movement.");
+	else if(cumQ < 4000) output("Your contribution to the passionate flood may not match Kiro’s, but it’s more than enough to flood the herm’s rectum, pushing back the walls of her gut until you feel like you’re dipping your dick in a tank full of warm lube.");
+	else if(cumQ < 10000) output("Your contribution to the passionate flood is just as significant as the kui-tans’. You can see it in the bulging of Kiro’s belly, the way each jet splashing off her prostate causes her own flow to thicken.");
 	else output("Your contribution to the passionate flood is every bit as voluminous as the kui-tans’. You can see it in the rising curvature of her belly and feel it in the backsplashes of [pc.cumVisc] cum leaking out around your [pc.knot " + x + "].");
-	if(pc.cumQ() >= 50000)
+	if(cumQ >= 50000)
 	{
 		output(" It doesn’t let up either. You flood Kiro with ever more seed until she doesn’t just look pregnant - she looks pregnant with triplets.");
-		if(pc.cumQ() >= 75000) output(".. or more!");
+		if(cumQ >= 75000) output(".. or more!");
 	}
 	//Knot
 	if(pc.hasKnot(x))

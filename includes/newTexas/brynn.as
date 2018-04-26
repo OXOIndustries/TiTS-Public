@@ -490,7 +490,6 @@ public function suckThatMassiveStudlyBrynnDick():void
 		output(". <i>“[pc.name] St-”</i>. Before you can finish your full name, the bull-man pulls you back onto his cock, smothering the words from your lips with the fat head of his dick.");
 		
 		output("\n\n<i>“Brynn,”</i> he replies. <i>“Now, o");
-		flags["BRYNN_INTRODUCED"] = 1;
 	}
 	else output("\n\n<i>“O");
 
@@ -712,4 +711,5 @@ public function suckThatMassiveStudlyBrynnDickII(didDeepthroat:Boolean):void
 	addButton(0, "Next", move, "514");
 
 	flags["BRYNN_MET_TODAY"] = 1;
+	if(!brynnIntroduced()) flags["BRYNN_INTRODUCED"] = 1;
 }

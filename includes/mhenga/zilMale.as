@@ -708,7 +708,11 @@ public function getABJFromAManzil():void
 	if(pc.balls > 0) output(" One hand slips underneath to your [pc.balls], where it starts to rub, tug and tease.");
 	else if(pc.hasVagina()) output(" One hand slips behind your [pc.cockBiggest] to start working its sensitive fingers into [pc.oneVagina].");
 	else output( "One hand slips behind your cock, feeling around your taint for something else to play with. Finding nothing, it moves on undeterred to your [pc.asshole] where it starts to make itself useful.");
-	output(" It seems you’ve happened upon quite the competent slut. Smiling, you jerk your hips forward, pushing further into his mouth and startling the zil-boy. He looks up at you and flutters his pretty wings lightly, looking straight into your [pc.eyes] as he teases you with his tongue.");
+	output(" It seems you’ve happened upon quite the competent slut. Smiling, you jerk your hips forward, pushing further into his mouth and startling the zil-boy. He");
+	if(pc.genitalLocation() < 2) output(" looks up at you and");
+	output(" flutters his pretty wings lightly");
+	if(pc.genitalLocation() < 2) output(", looking straight into your [pc.eyes]");
+	output(" as he teases you with his tongue.");
 
 	output("\n\nThe zil-boy’s tongue is exquisite, rolling around the tip of your increasingly horny member and collecting every bit of pre that you so graciously release. It soon slips out from between your [pc.cockBiggest] and his lower lip, managing to lick all the way along the bottom of your shaft and almost to the base. The bright yellow organ’s tube is normally used for collecting nectar, but this zil-boy slut uses it expertly to plant tiny kisses all across your length as it makes its journey.");
 	output("\n\nWith your [pc.cockBiggest] occupied by his tongue and your ");
@@ -717,7 +721,12 @@ public function getABJFromAManzil():void
 	else output("butthole");
 	output(" occupied by one of his hands, he drops the other hand down to his own jet-black boner and begins jerking, his drooping foreskin quickly becoming wet with sweet-smelling pre.");
 
-	output("\n\nYou put a hand behind his head, enjoying the feel of his downy spine-hair. He looks up at you, making his best subservient-little-bitch-boy face. You give his head a sudden pull, forcing your member further into his mouth. His eyes widen, but he adjusts himself, and with a wiggle of his hips, continues jerking away at his swollen boner and planting tongue-tube kisses all over your length.");
+	output("\n\n");
+	if(pc.genitalLocation() < 2) output("You put a hand behind his head, enjoying the feel of his downy spine-hair. He looks up at you, making his best subservient-little-bitch-boy face. You give his head a sudden pull");
+	else output("Encouraged by your subservient little bitch-boy, you push your [pc.lowerBody] forward some");
+	output(", forcing your member further into his mouth. H");
+	if(pc.genitalLocation() < 2) output("is eyes widen, but h");
+	output("e adjusts himself, and with a wiggle of his hips, continues jerking away at his swollen boner and planting tongue-tube kisses all over your length.");
 
 	output("\n\nYou jerk your hips again, pulling him closer still. The zil-boy almost starts to choke as your [pc.cockBiggest] pushes into his throat, but now he understands what you want.");
 	if(pc.balls > 0 || pc.hasVagina()) 

@@ -64,26 +64,29 @@ public function widgetWarehouseBonusFuntimes():Boolean
 	return false;
 }
 
+// Accidental pregnancy hotfix
+public function shekkaPregnancyHotfix():void
+{
+	clearOutput();
+	showBust("SHEKKA");
+	showName("SHEKKA\nFIXED!");
+	
+	chars["SHEKKA"].pregnancyData = new Array();
+	for (var i:int = 0; i < 4; i++)
+	{
+		chars["SHEKKA"].pregnancyData.push(new PregnancyData());
+	}
+	output("<b>Shekka’s pregnancy issue has been resolved.</b>\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
 public function approachShekka(back:Boolean = false):void
 {
 	clearOutput();
 	userInterface.showBust("SHEKKA");
 	userInterface.showName("\nSHEKKA");
-	
-	// Accidental pregnancy hotfix
-	if(chars["SHEKKA"].isPregnant())
-	{
-		chars["SHEKKA"].pregnancyData = new Array();
-		for (var i:int = 0; i < 4; i++)
-		{
-			chars["SHEKKA"].pregnancyData.push(new PregnancyData());
-		}
-		output("<b>Shekka’s pregnancy issue has been resolved.</b>\n\n");
-		
-		clearMenu();
-		addButton(0, "Next", approachCrewShekka);
-		return;
-	}
 	
 	if(pc.hasStatusEffect("Raskvel Prophylactic"))
 	{
