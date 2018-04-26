@@ -56,21 +56,6 @@ public function approachCrewShekka(back:Boolean = false):void
 	
 	author("SomeKindofWizard");
 	
-	// Accidental pregnancy hotfix
-	if(chars["SHEKKA"].isPregnant())
-	{
-		chars["SHEKKA"].pregnancyData = new Array();
-		for (var i:int = 0; i < 4; i++)
-		{
-			chars["SHEKKA"].pregnancyData.push(new PregnancyData());
-		}
-		output("<b>Shekka’s pregnancy issue has been resolved.</b>\n\n");
-		
-		clearMenu();
-		addButton(0, "Next", approachCrewShekka);
-		return;
-	}
-	
 	if(flags["SHEKKA_ANNO_NERDOFF"] == -1)
 	{
 		shekkaAnnoFightFollowup();
@@ -537,7 +522,7 @@ public function shekkaHangoutBed():void
 	output("\n\nShe actually manages to drop off before you do, although your own lids sink closed soon enough. It isn’t until a few hours pass that the music you left playing changes into a soft alarm. From experience you remember that ignoring this alarm will result in Ausaril Death Metal being played loudly, a warning you pass on to Shekka when she grumbles complaints.");
 	output("\n\n<i>“Hey, maybe I find metal roars to be relaxing”</i> she grunts, trying to get un-entwined from your nude form. You both manage to get redressed, just before the first thrumming drum-beats of Deth Gröwl kick to life.");
 	if(annoIsCrew()) output(" Probably Anno’s fault.");
-	output("\n\n<i>“It was a good nap, thank you for the company Shekka”</i> you say, putting on your most charming grin. Shekka blushes like a plum and waves it off.");
+	output("\n\n<i>“It was a good nap, thank you for the company Shekka,”</i> you say, putting on your most charming grin. Shekka blushes like a plum and waves it off.");
 	output("\n\n<i>“Yeah, yeah, it’s fine... I enjoyed it too. I now smell like you completely, which will make for distracting thoughts, but oh well. You’ll just have to swing by later and help me scratch that itch, no?”</i>");
 	output("\n\nAs if she could stop you.");
 	processTime(180);
@@ -740,7 +725,7 @@ public function talkToShekkaAboutInfertility():void
 	showShekka();
 	author("Fenoxo");
 	output("You ask Shekka how she feels about her infertility. You helped bankroll a massive transformation for her entire race. You could probably help her lay eggs of her own, if she wanted.");
-	output("\n\nShekka stops dead in her tracks. <i>“You’d do that? Or... well you’d at least consider doing it. Wow.”</i> She shakes her head and mouths ‘wow’ once more. <i>“But I don’t want that, [pc.name] - not really. I mean, my cunt wants it. It wants it bad, but the rest of me? The rest of me just worked triple shifts for months to dig my race out of that cursed egg-addiction. Doing that, then turning around and turning myself into another baby-factory? It’d be hypocritical in the extreme.”</i> Shekka sighs and favors you with a mischievous smile. <i>“Besides, this way you can fuck my ass into the deckplates and still count on me to scrabble through the ductwork to fix a short in the electricals. An immobilized raskvel isn't much use on the rush.”</i>");
+	output("\n\nShekka stops dead in her tracks. <i>“You’d do that? Or... well you’d at least consider doing it. Wow.”</i> She shakes her head and mouths ‘wow’ once more. <i>“But I don’t want that, [pc.name] - not really. I mean, my cunt wants it. It wants it bad, but the rest of me? The rest of me just worked triple shifts for months to dig my race out of that cursed egg-addiction. Doing that, then turning around and turning myself into another baby-factory? It’d be hypocritical in the extreme.”</i> Shekka sighs and favors you with a mischievous smile. <i>“Besides, this way you can fuck my ass into the deckplates and still count on me to scrabble through the ductwork to fix a short in the electricals. An immobilized raskvel isn’t much use on the rush.”</i>");
 	//Nonbimbo
 	output("\n\n<i>“True enough,”</i> you agree.");
 	//Bimbo
@@ -761,7 +746,7 @@ public function talkToShekkaAboutInfertility():void
 	}
 	//No dick
 	else output("\n\n<i>“Besides, if you really wanted to give me a shot at being a mommy, I hear people in the core can just go pick up a dick at a store and slap it on, right?”</i> Shekka lewdly cups at her camel toe. <i>“Could you imagine me with a dick as big as my torso, just knocking you up at the drop of a hat? Seems like a whole lot less work for both of us that way... so long as you don’t mind laying the occasional clutch of eggs.”</i>");
-	output("\n\nIt would seem Shekka has no interest in becoming fertile again. Perhaps it's time for a change of topic.");
+	output("\n\nIt would seem Shekka has no interest in becoming fertile again. Perhaps it’s time for a change of topic.");
 	processTime(10);
 	clearMenu();
 	addButton(0,"Next",talkToCrewShekka);
@@ -3159,14 +3144,15 @@ public function bonusShekkaWorkout(light:Boolean):void
 	else if(pc.hasKnot(x)) output("knot-deep");
 	else output("hilt-deep");
 	output(" cunt-stuffing. Your ejaculation is so forceful that your clenching muscles bounce you both on the bench with each pulse.");
-	if(pc.cumQ() < 75) output(" Trickles of seed leak out as proof of your virility for all to see.");
-	else if(pc.cumQ() < 500) output(" Gushes of seed drool out as proof of your virility for all to see.");
-	else if(pc.cumQ() < 3000) output(" Thick rivers of seed roll out as proof of your superior virility for all to see.");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ < 75) output(" Trickles of seed leak out as proof of your virility for all to see.");
+	else if(cumQ < 500) output(" Gushes of seed drool out as proof of your virility for all to see.");
+	else if(cumQ < 3000) output(" Thick rivers of seed roll out as proof of your superior virility for all to see.");
 	else output(" Huge sprays of seed jet out as proof that the cum-bubble of a raskvel will never get a load like this from anyone else.");
 	output(" Shekka cums to the feeling of it ");
-	if(pc.cumQ() < 75) output("hitting");
-	else if(pc.cumQ() < 500) output("filling");
-	else if(pc.cumQ() < 3000) output("flooding");
+	if(cumQ < 75) output("hitting");
+	else if(cumQ < 500) output("filling");
+	else if(cumQ < 3000) output("flooding");
 	else output("ballooning");
 	output(" her womb");
 	if(shekka.hasCock()) output(", her dick jerking and spurting onto your chest. Fortunately, some nice cow-girls are more than happy to lick it up");
@@ -3279,8 +3265,9 @@ public function oviEggShekka():void
 		pc.buttChange(20);
 
 		output("\n\nYou don’t even have time to stop thrusting as you cum, your body still delivering jerking thrusts as [pc.cum] fills your pregnable partner’s defenseless womb.");
-		if(pc.cumQ() < 6) output(" Some of it is lost as you piston in and out, joining the growing puddle of sexual fluid beneath you.");
-		else if(pc.cumQ() < 200) output(" Some of it leaks out as you piston your hips, joining the growing puddle of lusty juices beneath you.");
+		var cumQ:Number = pc.cumQ();
+		if(cumQ < 6) output(" Some of it is lost as you piston in and out, joining the growing puddle of sexual fluid beneath you.");
+		else if(cumQ < 200) output(" Some of it leaks out as you piston your hips, joining the growing puddle of lusty juices beneath you.");
 		else output(" [pc.CumColor] jizz pulses out, splashing against your pistoning hips before joining the growing puddle of sexual fluid beneath you.");
 		output(" Shekka’s whole body tries to clamp around you and hold you still, but her short legs can’t reach all the way around your tauric body.");
 		if(shekka.hasCock()) output(" The tight grip fades as ropes of creamy cum erupt from her heavily flared horsecock. The spurts that don’t hit her in the chin or plaster your undercarriage shoot uselessly onto the engine room floor.");

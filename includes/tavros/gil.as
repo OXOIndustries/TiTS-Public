@@ -1008,7 +1008,7 @@ public function doggyStyleWithGil():void
 		if(pc.biggestTitSize() >= 1) output("bosoms");
 		else if(pc.tone >= 70) output("pecs");
 		else output("chest");
-		output(". You plant a passionate kiss on his lips and spend a while just enjoying each other’s embrace. Then you break your kiss, throw him onto the bed, and fall on top of him.");
+		output(". You plant a passionate kiss on his lips and spend a while just enjoying each other’s embrace. Then you break your kiss, throw him onto the bed, and " + (pc.isTaur() ? "and lay beside" : "fall on top of") + " him.");
 	}
 	//else:
 	else
@@ -1018,7 +1018,7 @@ public function doggyStyleWithGil():void
 		//less than 5 feet:
 		if(pc.tallness < 5*12) output("really short, so the best you can do is bring him down to your level");
 		else output("about the same height as him, so you bring him down");
-		output(" and plant a romantic kiss on his lips. Both of you spend a while there, just enjoying each other’s embrace, before you break your kiss, throw him onto the bed, and fall on top of him.");
+		output(" and plant a romantic kiss on his lips. Both of you spend a while there, just enjoying each other’s embrace, before you break your kiss, throw him onto the bed, and " + (pc.isTaur() ? "and lay beside" : "fall on top of") + " him.");
 	}
 
 	output("\n\nYou put your hands on your lover’s chest and pinch his nipples. He moans and pulls you closer in response, caressing your back as he does. When you tire of teasing his nipples, you let one hand descend to his groin, while the other grabs one of his asscheeks. ");

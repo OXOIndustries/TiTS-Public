@@ -3531,12 +3531,20 @@ public function shipShowerFaps(genButtons:Boolean = false):Number
 	
 	if (pc.hasCock())
 	{
-		if(genButtons) addButton(showerSex, "Jerk Off", shipShowerFappening, "Jerk Off", "Jerk Off", "Time to lather up and beat off.");
+		if(genButtons)
+		{
+			if(pc.genitalLocation() >= 2) addDisabledButton(showerSex, "Jerk Off", "Jerk Off", "You can’t seem to easily reach your genitals for this!");
+			else addButton(showerSex, "Jerk Off", shipShowerFappening, "Jerk Off", "Jerk Off", "Time to lather up and beat off.");
+		}
 		showerSex++;
 	}
 	if (pc.hasVagina())
 	{
-		if(genButtons) addButton(showerSex, "Use Nozzle", shipShowerFappening, "Use Nozzle", "Use Nozzle", "That shower head looks pretty tempting for your pussy...");
+		if(genButtons)
+		{
+			if(pc.genitalLocation() >= 2) addDisabledButton(showerSex, "Use Nozzle", "Use Nozzle", "You can’t seem to easily reach your genitals for this!");
+			else addButton(showerSex, "Use Nozzle", shipShowerFappening, "Use Nozzle", "Use Nozzle", "That shower head looks pretty tempting for your pussy...");
+		}
 		showerSex++;
 	}
 	

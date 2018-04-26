@@ -747,6 +747,7 @@ public function quentonTrainingCatch(response:String = ""):void
 	clearOutput();
 	author("Slab Bulkhead");
 	showQuenton(true);
+	clearMenu();
 	
 	// Create Quenton
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
@@ -885,7 +886,6 @@ public function quentonTrainingCatch(response:String = ""):void
 	IncrementFlag("SEXED_QUENTON");
 	
 	// [Done] Go to Entrance
-	clearMenu();
 	addButton(0, "Next", quentonTrainingFinish);
 }
 

@@ -202,14 +202,15 @@ public function vanaeEscapeGrapple(escapeCause:String = ""):void
 public function vanaeTFScene():void
 {
 	// These paragraphs are to be inserted wherever there is a part that says // (TF SCENE). Didn't want to keep copy and pasting it. Played in scenes where the Vanae would spray the PC's genitals with body altering amounts of her milk.
-	if (!pc.hasCock() && !pc.hasVagina()) return;
-	// Does not play for Neuters.
 
 	var options:Array = [];
 	
 	if (pc.hasCock()) options.push("cock");
 	if (pc.balls > 0 && ((pc.ballDiameter() < 8 && !pc.hasPerk("Bulgy")) || (pc.ballDiameter() < 16 && pc.hasPerk("Bulgy")))) options.push("balls");
 	if (pc.hasVagina()) options.push("vagina");
+	
+	// Does not play for Neuters.
+	if (options.length <= 0) return;
 	
 	switch (options[rand(options.length)])
 	{
@@ -225,7 +226,7 @@ public function vanaeTFScene():void
 			if (pc.cumMultiplier() < 2) {pc.cumMultiplierRaw += 0.25; cumChanged = true}
 			if (pc.cumMultiplier() < 1) {pc.cumMultiplierRaw += 0.25; cumChanged = true}
 			
-			output("Your [pc.cocks]");
+			output("\n\nYour [pc.cocks]");
 			if (pc.cocks.length > 1) output(" tingle and throb");
 			else output(" tingles and throbs");
 			output(". Soon you feel an incredible pooling pressure in your loins becoming heavier and heavier and just aching to come out. You");
@@ -239,7 +240,7 @@ public function vanaeTFScene():void
 			break;
 		
 		case "balls":
-			output("As the slick fluid seeps into the pores of your [pc.sack]. You can feel even more of your hot [pc.cumNoun] surging and churning inside. You can feel your [pc.balls] swelling and stretching to abnormal proportions to contain your fiercely broiling spunk.");
+			output("\n\nAs the slick fluid seeps into the pores of your [pc.sack]. You can feel even more of your hot [pc.cumNoun] surging and churning inside. You can feel your [pc.balls] swelling and stretching to abnormal proportions to contain your fiercely broiling spunk.");
 	
 			// Increase ball size of PC and cancel trap pouch effect.
 			if (pc.hasStatusEffect("Uniball") && rand(3) == 0)
@@ -275,7 +276,7 @@ public function vanaeTFScene():void
 		case "vagina":
 			// Increase vaginal wetness of PC and make a squirter, if not already. If available, move wetness beyond squirter value and allow for collection/measurement like cum/milk.
 			
-			output("Deep inside of your [pc.vaginas], you feel a warm, pleasurable sensation begin to form. It builds and builds until the dams break, and a wellspring of [pc.girlCumVisc] juice comes flooding from your [pc.thighs]. Your legs quake and tremble as spurts of [pc.girlCum] jump from your soppy slit");
+			output("\n\nDeep inside of your [pc.vaginas], you feel a warm, pleasurable sensation begin to form. It builds and builds until the dams break, and a wellspring of [pc.girlCumVisc] juice comes flooding from your [pc.thighs]. Your legs quake and tremble as spurts of [pc.girlCum] jump from your soppy slit");
 			if (pc.vaginas.length > 1) output("s");
 			output(".");
 			
@@ -836,8 +837,9 @@ public function vanaeMaidenTakeVirginity():void
 	output("\n\nYour body moves on instinct as you seize her hips in your hands. Both of you frantically and feverishly grind against each other, pushing each other to even greater heights. She reaches the peak first, creaming herself in your lap as she shudders and jets her [enemy.girlCum] around your [pc.cock " + selCock + "]. It’s not long before you follow, shooting your load inside her unsullied, virgin depths and marking her insides with your [pc.cumNoun].");
 
 	output("\n\nYou");
-	if (pc.cumQ() <= 50) output(" splatter and spurt tiny dribbles");
-	else if (pc.cumQ() <= 200) output(" gloriously shoot spasmic jets");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ <= 50) output(" splatter and spurt tiny dribbles");
+	else if (cumQ <= 200) output(" gloriously shoot spasmic jets");
 	else output(" gloriously unload thick jets");
 	output(" of hot, [pc.cumVisc] jism deep inside of her, sullying her untouched womb with your [pc.cumNoun]. All the while she trembles in your lap and receives your spunk inside of her, feeling it spatter blissfully inside her inner walls.");
 	
@@ -1042,12 +1044,13 @@ public function vanaeHuntressVaginalSex():void
 	output("\n\nYou don’t stop and continue to thrust up inside of her spasming, squirting hole with merciless abandon. She squeals out loud as her mind shatters into a million glorious pieces. The air is filled with lewd squelching and smacking noises as you pound her [enemy.pussy] from below. A second, madder orgasm soon follows, the delirious huntress biting into your shoulder hard as she struggles to contain her pleasured screams.");
 
 	output("\n\nOne of her silky feelers slips inside of your cock hole and wiggles about, pushing you right over the edge. You shudder and drive your [pc.cock] as deep as you can inside of her, releasing your hot [pc.cumNoun] into her alien [enemy.vaginaNounSimple].");
-	if (pc.cumQ() <= 50) output(" While your orgasm feels truly explosive, you only dribble a small amount of your [pc.cumVisc] seed inside of her.");
-	else output(" You batter the inside of her [enemy.pussy] with " + ((pc.cumQ() >= 1000) ? "gallons of " : "") + "your [pc.cumVisc] seed, your mind immediately engulfed by a blissful haze.");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ <= 50) output(" While your orgasm feels truly explosive, you only dribble a small amount of your [pc.cumVisc] seed inside of her.");
+	else output(" You batter the inside of her [enemy.pussy] with " + ((cumQ >= 1000) ? "gallons of " : "") + "your [pc.cumVisc] seed, your mind immediately engulfed by a blissful haze.");
 
 	output("\n\nYour vanae lover then slides you out of her worn out [enemy.vaginaNounSimple]. You can see your [pc.cum]");
-	if (pc.cumQ() <= 50) output(" dribbling");
-	else if (pc.cumQ() <= 600) output(" oozing");
+	if (cumQ <= 50) output(" dribbling");
+	else if (cumQ <= 600) output(" oozing");
 	else output(" gushing");
 	output(" from her spasming fuck hole. Your [pc.cocks]");
 	if (pc.cockTotal() == 1) output(" aches and stiffens");
@@ -1080,7 +1083,6 @@ public function vanaeHuntressTitfuck():void
 	if (pc.cocks.length > 1) output("s");
 	output(" as your body begins to undergo some changes.");
 
-	output("\n\n");
 	vanaeTFScene();
 
 	output("\n\nWith your [pc.cocks] covered in her slick milk and your own [pc.cumNoun], she takes them and squeezes them between her supple breast flesh. You can see her [enemy.nipples] hardening as her alien assets wrap around your [pc.cumVisc] rod");
@@ -1438,7 +1440,6 @@ public function vanaeHuntressSquirNJerk():void
 	output("\n\nShe squirts thick, gooey ropes of [enemy.milk] from her [enemy.nipples], dousing [pc.eachCock]. You let out a " + pc.mfn("masculine groan", "girlish moan", "breathy moan") + ", your slick staff");
 	if (pc.cocks.length > 1) output("s");
 	output(" titillated and twitching. Your aching flesh is completely covered in her violet fluid, and you feel your body start to undergo some changes.");
-	output("\n\n");
 
 	vanaeTFScene();
 
@@ -1505,7 +1506,7 @@ public function vanaeHuntressMilkBath():void
 	output("\n\nShe grabs her [enemy.breasts] firmly in her webbed hands and begins to sensuously and forcefully massage them, almost as if she’s stirring up the contents inside. For all you know that’s exactly what she’s doing as she lets out a sensuous purr. Talk about a milkshake!");
 
 	output("\n\nOnce she seems to have finished, she grabs her [enemy.nipples] firmly between her fingers. Pointing her nubs at you she squirts a thick, gooey rope of her udder milk directly on your [pc.groin]. The liquid looks thicker than before and definitely different. It doesn’t take long at all for it to start taking effect.");
-	output("\n\n");
+
 	vanaeTFScene();
 
 	output("\n\n<i>“Feels good doesn’t it? I’m just getting started.”</i> She splatters twin streams of her [enemy.milk] all over your [pc.chest]. As your upper body is splattered and bathed your [pc.nipples] begin to ache.");
@@ -1759,7 +1760,6 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	}
 
 	// MERGE
-	output("\n\n");
 	vanaeTFScene();
 
 	output("\n\nAs your [pc.cum] drools down your [pc.cocks], she stands up and plants her [enemy.feet] on either side of your waist. When she spreads her organic tentacle skirt, you notice her [enemy.pussy] looks very humanoid, with the exception of her [enemy.clits].");
@@ -1792,8 +1792,9 @@ public function vanaeHuntressPCDefeatCuntFux():void
 	output("\n\nOverwhelmed with sensation, you cum once more - this time inside her [enemy.pussy]. Your [pc.hips] spasm shamefully as you batter her insides with your [pc.cum]. As your baby juice floods up inside of her, she lets out a sweet trembling cry, spastically creaming herself around your spurting [pc.cock " + selCock + "].");
 
 	output("\n\nOnce you are finished, your vanae lover slides you out of her [enemy.pussyNoun]. You can see your [pc.cum]");
-	if (pc.cumQ() <= 50) output(" dribbling");
-	else if (pc.cumQ() <= 600) output(" oozing");
+	var cumQ:Number = pc.cumQ();
+	if (cumQ <= 50) output(" dribbling");
+	else if (cumQ <= 600) output(" oozing");
 	else output(" gushing");
 	output(" from her fuck hole. [pc.EachCock] begins to stiffen and jerk at the glorious sight.");
 
@@ -1848,9 +1849,14 @@ public function vanaeHuntressPCDefeatMilkbath():void
 	output("\n\n<i>“I’m not going to even touch you,");
 	if (pc.zilScore() >= 4 || pc.naleenScore() >= 5) output(" my dear");
 	else output(" off-worlder");
-	output(". How would you like a nice bath?”</i> The exotic huntress purrs, pulling herself off your body, and standing upright. The [enemy.milk] dribbling from her [enemy.breasts] begins to turn a far richer hue. <i>“I’m going to bathe you with my special milk for a bit, I’m sure you’ll enjoy it. You’ll be pumping out plenty of your delicious ");
-	if (pc.hasVagina()) output("girl-");
-	output(" cream in no time.”</i>");
+	output(". How would you like a nice bath?”</i> The exotic huntress purrs, pulling herself off your body, and standing upright. The [enemy.milk] dribbling from her [enemy.breasts] begins to turn a far richer hue. <i>“I’m going to bathe you with my special milk for a bit, I’m sure you’ll enjoy it.");
+	if (pc.hasCock() || pc.hasVagina())
+	{
+		output(" You’ll be pumping out plenty of your delicious ");
+		if (pc.hasVagina()) output("girl-");
+		output(" cream in no time.");
+	}
+	output("”</i>");
 
 	if (flags["VANAE_MILKBATH_TIMES"] == undefined)
 	{
@@ -1863,7 +1869,6 @@ public function vanaeHuntressPCDefeatMilkbath():void
 
 	output("\n\nOnce she seems to have finished, she grabs her [enemy.nipples] firmly between her fingers. She points her nubs at you and squirts a thick, gooey rope of her udder milk directly on your [pc.groin]. The liquid looks thicker than before and definitely different. It doesn’t take long at all for it to start taking effect.");
 
-	output("\n\n");
 	vanaeTFScene();
 
 	output("\n\n<i>“Feels good doesn’t it? I’m just getting started.”</i> She splatters twin streams of her [enemy.milk] all over your [pc.chest]. As your upper body is splattered and bathed your [pc.nipples] begin to ache.");
@@ -1965,7 +1970,6 @@ public function vanaeHuntressPCDefeatSquirtNJerk():void
 	output(" a delicious little shiver runs down your spine. Moving closer towards you, the alien female places her webbed hands on your shoulders, a cheeky smile playing on her [enemy.lips]. She’s lubing you up, but for what? Suddenly, your loins start tingling and undergo some changes.");
 
 	// (TF SCENE)
-	output("\n\n");
 	vanaeTFScene();
 
 	output("\n\n<i>“Mmm, I think I missed a few spots. How about I rub it in for you?”</i> she asks, her organic skirt beginning to break apart to stroke your [pc.cumNoun]-coated [pc.cocks]. Violet and ivory tentacles reach out and sensuously caress your [pc.cockHeads].");
@@ -2052,7 +2056,6 @@ public function vanaeHuntressPCDefeatTitfux():void
 	if (pc.cocks.length > 1) output("s");
 	output(" as your body begins to undergo some changes.");
 
-	output("\n\n");
 	vanaeTFScene();
 
 	output("\n\nWith your [pc.cocks] covered in her slick milk and your own [pc.cumNoun], she takes them and squeezes them between her supple breast flesh. You can see her [enemy.nipples] hardening as her alien assets wrap around your [pc.cumVisc] rod"); // cumVisc rods seems kinda weird but it should work from the looks of the returns...
@@ -2112,7 +2115,6 @@ public function vanaeHuntressPCDefeatCunnilingus():void
 
 	output("\n\nOnce she seems to have finished stirring up her breasts, she grabs her [enemy.nipples] firmly between her fingers. She points her nubs at you and squirts a thick, gooey rope of her udder milk directly on your [pc.groin]. The liquid looks thicker than before and definitely different. It doesn’t take long at all for it to start taking effect.");
 
-	output("\n\n");
 	vanaeTFScene();
 
 	output("\n\nNow that your [pc.pussies] are utterly drenched in her milk, she crawls back up and strokes your slit from below. You let out a mewling cry as her slender fingers trail lazily up your sticky lips and cause a fresh batch of wetness to gush all over them.");
@@ -2181,7 +2183,7 @@ public function vanaeHuntressPCDefeatTentafux():void
 	output("\n\nShe pulls herself back from your body and cups her [enemy.breasts] firmly in her webbed hands. She begins sensuously and forcefully massaging them, almost as if she’s stirring up the mammary milk inside. For all you know, that’s exactly what she’s doing as she lets out a sensuous purr. Talk about a milkshake!");
 
 	output("\n\nOnce she seems to have finished, she grabs her [enemy.nipples] firmly between her fingers. She points her nubs at you and squirts a thick, gooey rope of her udder milk directly on your [pc.groin]. The liquid looks thicker than before and definitely different. It doesn’t take long at all for it to start taking effect.");
-	output("\n\n");
+	
 	vanaeTFScene();
 
 	output("\n\nAs your [pc.legOrLegs] tremble");

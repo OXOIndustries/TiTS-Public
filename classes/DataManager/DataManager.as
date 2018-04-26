@@ -2057,6 +2057,12 @@
 				{
 					kGAMECLASS.pc.removeStatusEffect("Queen Pregnancy State");
 				}
+				
+				// Accidental pregnancy hotfix
+				if(kGAMECLASS.chars["SHEKKA"].isPregnant())
+				{
+					if(kGAMECLASS.eventQueue.indexOf(kGAMECLASS.shekkaPregnancyHotfix) == -1) kGAMECLASS.eventQueue.push(kGAMECLASS.shekkaPregnancyHotfix);
+				}
 			}
 			
 			kGAMECLASS.mainGameMenu();

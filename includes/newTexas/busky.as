@@ -728,7 +728,7 @@ public function buskySexAnalPitch():void {
 	else if (pc.cumQ() >= 1000 && pc.cumQ() < 5000) output("\n\nThe amount of spunk you pour into Busky is clearly enough to make an impression, as you can see him place a hand over his belly, your seed filling him to the brim.");
 	else if (pc.cumQ() >= 5000) output("\n\nThe first few spurts of your seed are already enough to fill him full, but your balls are still churning, and you aren’t pulling out.\n\nHe looks back at you as he tries to get away but you hold him tight, forcing each drop of your load into his ass. You watch as his belly expands with your cum, slowly growing and growing, until he looks like he’s about to give birth.");
 
-	output("\n\nAfter you both finish, Busky collapses on the countertop, lying in a pool of his own cum and heaving in air. You follow suit and fall on top of him, still hilted inside his ass. You don’t pull out just yet, instead you take some time to rest yourself, absolutely wrecked by your orgasm. It takes a while, but you finally regain the strength to stand up.");
+	output("\n\nAfter you both finish, Busky collapses on the countertop, lying in a pool of his own cum and heaving in air. You follow suit and fall " + (pc.isTaur() ? "right next to" : "on top of") + " him, still hilted inside his ass. You don’t pull out just yet, instead you take some time to rest yourself, absolutely wrecked by your orgasm. It takes a while, but you finally regain the strength to stand up.");
 	
 	if(pc.hasKnot()) {
 		output("\n\nYou mindlessly try to pull out, only to be met with a tug of resistance, forgetting about your knot. Busky pulls his face out of the puddle cum and wipes it off with his hand, before turning back to face you.");
