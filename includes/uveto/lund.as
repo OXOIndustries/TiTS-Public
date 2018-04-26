@@ -2277,7 +2277,7 @@ public function moreCookiesPleaseLund4():void
 	else output("cunt");
 	output(".");
 
-	output("\n\nHe chews, and the ordeal restarts; now that he’s withdrawn, he grabs himself by the base and points himself higher as he masturbates excitedly. His shaking hips shoot his load through the air, and you feel it mark long, wet lines down your back; his cum reaches as far up as your shoulders and then drips down towards your [pc.waist] with each shot.");
+	output("\n\nHe chews, and the ordeal restarts; now that he’s withdrawn, he grabs himself by the base and points himself higher as he masturbates excitedly. His shaking hips shoot his load through the air, and you feel it mark long, wet lines down your back; his cum reaches as far up as your shoulders and then drips down towards your waist with each shot.");
 
 	output("\n\nYou lay there, sexually blitzed out of your mind, as Lund marks your entire back, neck to [pc.ass], with his cum. He grunts roughly through his mouthful of cookie; each time he bites and swallows a bit more, another two or three thick lines of his jizz arc across your back. It soaks into your [pc.skinFurScales], and you’re sure it’s going to take one vigorous scrub to get the smell off of you, if it even takes just one... and if you even want it gone.");
 

@@ -511,8 +511,8 @@ public function PKTSI():void
 	//[=You=][=Paige=][=Kiro=]
 	// end scene (scene: PKTSI)
 	addButton(0,"You",PKTSY);
-	addDisabledButton(1,"Paige","Paige","Coming in a future patch!");
-	addDisabledButton(2,"Kiro","Kiro","Coming in a future patch!");
+	addButton(1,"Paige",PKTSP);
+	addButton(2,"Kiro",PKTSK);
 }
 
 //[=You=]
@@ -998,579 +998,830 @@ public function PKTSYE(args:Array):void
 	addButton(0,"Next",PKTSA,args);
 }
 
-/*
-output("\n\n[=Paige=]");
-output("\n\n// (scene: PKTSP)");
-output("\n\n// Action tree: https://i.imgur.com/kgEjocX.png");
-
-output("\n\nAdmittedly, it’s kind of hard to focus on anyone, including yourself, other than the woman that’s currently fucking your mouth with her own tongue. You relax and allow your hands to travel along Paige’s body, exploring the creases and defined musculature of her back, shoulders, and glutes; you recline into the bed as she continues to assault you, and you let her.");
-
-output("\n\nYou squeeze and ply at the thick of her ass, kneading it like dough in your hands, as Paige’s humping against your thigh escalates to full-body humping; she has to crane her neck up and down to keep the kiss steady, but every part of your front, from your [pc.crotch] to your [pc.belly] to your [pc.chest] are massaged by hers as she eagerly, hungrily rocks against you, revving herself up for a good, proper fucking between you two and Kiro.");
-
-output("\n\nAnd speaking of Kiro, she doesn’t remain idle for too long: at first, from the corner of your eye, you see her stand there, her chin in her hand, as she watches Paige vigorously fuck herself against you; her other hand goes to the base of her own cock, giving it a few tugs and rousing her monster from its sleep. <i>“Goddamn,”</i> she says amusedly, <i>“I don’t think you’ve ever kissed me like that, Paige. Try not to suffocate the poor [pc.boyGirl].”</i>");
-
-output("\n\nYou hadn’t realized how much your chest was burning from the lack of air until Kiro brought it up. At the chiding, Paige pulls away, looking over her shoulder {at Kiro’s general direction}. <i>“Don’t start acting jealous now, you greedy bitch,”</i> she responds playfully. She wags her ass in Kiro’s direction, her tail swaying to one side, giving Kiro unrestricted, unimpeded vision of her wet, winking pussy, begging for some valiant, daring Kui-Tan to come and satisfy it.");
-
-output("\n\nKiro’s hands clap onto yours as they massage at Paige’s butt, moving with yours as they explore the contours of her meaty globes. Then, she lightly grips your hands and move them inward, towards the cleft of her ass, and she places them on the hot, steely meat of her rapidly inflating cock. She wordlessly guides you to jerk her off while she hotdogs against Paige’s rear end.");
-
-output("\n\n<i>“I’ll give you the chance to make a decision, here, [pc.name],”</i> Kiro says, her breath catching in her throat as she excitedly works herself against Paige. <i>“If you aren’t gonna have a piece of this pie, I won’t mind taking it for you.”</i>");
-
-output("\n\nKiro’s asking you if you want to take advantage of Paige’s invitation to fuck her. [if {PC has had anal sex with Paige}Considering that, when you met Paige, she was an anal virgin, Kiro’s never done Paige up the ass and that’s probably not going to change today. ]Your options are to politely decline Kiro’s offer and stay where you are, or to swap around and eat out Paige’s moist muffin while Kiro finds some other way to entertain herself.");
-
-output("\n\n[=Kiss Her=][=Eat Her Out=]");
-output("\n\n// end scene (scene: PKTSP)");
-
-output("\n\n[=Kiss Her=]");
-output("\n\n// (scene: PKTSPKH)");
-
-output("\n\nYou say nothing – it’s impolite to speak when your mouth is full, after all – and instead, you release one hand from Kiro’s rising cock and use it to pull on one of Paige’s cheeks, keeping them apart. With the other, still on Kiro’s shaft, you blindly start dragging and jabbing it at Paige’s crack, searching for the bullseye that you know both ladies are looking for.");
-
-output("\n\n<i>“Good choice,”</i> Kiro says huskily as she, like before, wraps her hand around yours, guiding you to guide her into Paige’s tight body. You can’t see what’s happening, but you feel Kiro’s hips push forward, then stop as she meets an obstruction – and then push forward again.");
-
-output("\n\nPaige lurches upward, hissing in pleasure as Kiro sinks into her, her back arching in a broad C above you. Kiro smirks at the reaction, loving just how automatic it is and how Paige is going to struggle to maintain herself in front of you both as she fucks her some more. And you: with your mouth no longer occupied, and with a sudden faceful of Ausar boob, you lean in, your hands wrapping at the crook of Paige’s back, and open wide to glom her left tit into your mouth, as much as you can stuff into there.");
-
-output("\n\n<i>“Gods!”</i> Paige shouts, unsure of what to do with her body. She instinctively tries to buck back against Kiro, to take more of that thick, wonderful, familiar horsecock into herself, to fuck Kiro as hard as she knows she can; but when she does, her upper body goes with her, and removes itself from your questing [pc.tongue] against her erect nipple. In an effort to try and solve both problems at once, her strong arms wrap around your back and your head, locking you in place and forcing you to move with her as she gets railed by Kiro.");
-
-output("\n\nKiro sighs through pursed lips as she sinks deeper and deeper into Paige’s body. Every few inches, she shuffles herself a little bit, readjusting herself inside her before pushing forward once more. <i>“Now, doesn’t that feel nostalgic,”</i> Kiro murmurs wistfully as her hands explore Paige’s ass, yanking at her tail and tickling at her erogenous spot, making her tense on top of you. <i>“Nobody’s ever quite fit me like you can, Paige. Every time with you feels like it’s the first time all over again.”</i>");
-
-output("\n\nYou glance up at Paige, seeing her mouth some words to herself. She squeaks out the occasional sound that almost comes out as a word, but it falls apart at her lips. <i>“Fuck!”</i> she finds the strength to yell when Kiro shuffles forward a bit more, splitting her just a little further apart. <i>“You’re so fucking...!”</i> Like before, she’s unable to finish her sentence.");
-
-output("\n\n<i>“Keep singing my favorite song, Bookworm,”</i> Kiro encourages as she eventually bottoms out inside Paige, successfully stuffing her entire length inside her Ausar. Paige’s breath comes out as whined, strained gasps of excitement as Kiro begins to casually thrust into her, the sound of their hips slapping together and the feel of Kiro’s heavy nuts banging against your [pc.legs] underscoring the symphony she’s putting on for the two of you.");
-
-output("\n\nYou maintain the course for a few moments: with Kiro behind Paige, stuffing herself into Paige’s glove at an easy, unremarkable pace and making Paige quiver with delight at each thrust, while you, held in place by Paige’s stiff, sturdy arms, lovingly tend to her bouncing boobs, sucking the globe of one into your mouth and tasting and nibbling her erect nipple until you pull back a moment to give your jaw a rest. And when you’re rested, you dive back in, going to the other boob and starting it all over again.");
-
-output("\n\n[if (pc.hasCock = true)[pc.EachCock] flounces to and fro underneath Paige’s bucking body; you don’t have a lot of leverage to do your own thrusting underneath her. [pc.EachCock] leaks pre-cum impiously, stranded in the cold air between your bodies, left to envy Kiro’s horsecock as it snugly makes itself at home inside Paige.");
-
-output("\n\nYour needy masculinity doesn’t go unnoticed by Kiro: she reaches down between the three of you and gently strokes at you, her fingers tickling down to your [pc.base] and gliding her palm over the head of your [pc.cockHead]. Whenever she thrusts in, she gives you a light tug, keeping you erect and ready, and when she pulls out, her hand travels lower, to palm at your [if (pc.hasBalls = true)[pc.balls]][if (pc.hasBalls = false)root].");
-
-output("\n\n<i>“I know you’re not just gonna lie there and let me pound Paige by myself, [pc.name],”</i> Kiro chides, leaning to one side to see you from around Paige’s form. Your vision is mostly obscured by Paige’s heaving titty in your face, but, if you lean a little bit, you can meet Kiro’s stare eye-to-eye. <i>“There’s only so much titty a [pc.boygirl] can suck before they need to bust a nut, am I right?”</i> Kiro’s hand on your [pc.cock] grows more insistent, eager for you to say what you want. <i>“Come on, let’s really fuck her brains out.”</i>]");
-
-output("\n\n[if (pc.hasCock = false)Your own [pc.vagina] lurches with Paige’s bucking body, leaking your [pc.femcum] down your [pc.thighs]. Your needy sex rests unoccupied in the open air between the three of you, left to enviously hump against Paige’s overstuffed cunt and fantasize about having a nice, thick horsecock of its own to seed it.");
-
-output("\n\nYour drooling femininity doesn’t go unnoticed by Kiro; she reaches down between the three of you and gently strokes at you, her fingers gliding along your hot, wet vulva and gingerly slipping a finger in between them, showing herself into your body. You clench and sigh at her passive fingerfucking, and you wriggle your [pc.hips] in her direction, silently urging her for more, to explore you deeper. When she sinks into her knuckle, she lays her palm flat against you, using the butt of her open palm to slide over your erect [pc.clit].");
-
-output("\n\n<i>“I know you’re getting impatient for something to fuck you good and hard, [pc.name],”</i> Kiro chides, leaning to one side to see you from around Paige’s form. Your vision is mostly obscured by Paige’s heaving titty in your face, but, if you lean a little bit, you can meet Kiro’s stare eye-to-eye. <i>“A girl can only take so much of watching someone else get fucked before they need some for themselves, am I right?”</i> Kiro’s hand becomes more insistent, the palm of her hand soaking in your lubrication, eager for you to give the word. <i>“I only have so much cock to go around, but just say the word, angel, and I’ll think of something.”</i>]");
-
-output("\n\nIt’s hard to say no to an invitation like that....");
-
-output("\n\n[=Double P.=][=Sandwich=]");
-output("\n\n// end scene (scene: PKTSPKH)");
-
-output("\n\n[=Eat Her Out=]");
-output("\n\n// (scene: PKTSPEHO)");
-
-output("\n\nYou don’t hesitate; a moment longer and Kiro might take your silence as an invitation to do what she likes. You raise your [pc.foot] to her belly, gently but insistently pushing her away; she steps back, relenting to your unspoken request, and as soon as you have the space, you lurch Paige off of you.");
-
-output("\n\nYou command Paige to lay on her back. Panting, she’s too horny to try and deny your commands, and she does so, swapping places with you on your bed and lying flat on her back, her arms and legs spread eagle, exposing every part of her vulnerable self to you and Kiro. The two of you can barely contain yourself; Kiro audibly licks her lips at the sight of Paige and her complete, total willingness to whatever you two think to do with her.");
-
-output("\n\nOf course, you don’t let Kiro make the decision for you: the sight of Paige’s soaked, puffy pussy, open to the air of your quarters and oh-so-inviting for anything to taste it, is too much for you to ignore. You kneel in between her legs and unceremoniously shove your face in between her thighs, using your arms to clamp her legs around your head and keep you in place as you loudly munch on her box.");
-
-output("\n\n<i>“What a hero,”</i> Kiro laughs as you eagerly go down on Paige. She runs her hand along your head, [if {pc.hasHair = true}ruffling your [pc.hair]][if {pc.hasHair = false}rubbing at your scalp], as she strides alongside the bed, towards Paige’s upper half. <i>“You always were the cocksucker-for-hire between us, Paige. I don’t suppose you’re rubbing off on [pc.name] in more ways than one?”</i>");
-
-output("\n\nWords form in Paige’s mouth that dissolve immediately as she tries to control her breathing. You’re really working her over in a hungry, horny frenzy: your hands run against the grain on Paige’s stomach, digging down low to fondle at her six-pack abdominals, while your [pc.tongue] drills and twists into her as deep as it can reach, touching and exploring every spongy surface inside her cunt. Your every spurious action and reaction to her reactions is rewarded with another mouthful of her squirting, feminine lube, which you swish in your mouth momentarily before either sliding it down your throat or drooling it along your tongue to further coat it in her taste.");
-
-output("\n\n<i>“Gods damn, you’d think [pc.heShe] did this for a living,”</i> Kiro admires as she watches you go to town on Paige’s squirming, spasming body. <i>“I’ll have to ask [pc.himHer] if I can get some of that later.”</i>");
-
-output("\n\nYou hear the bed creak and you feel it sink under Kiro’s weight as she clambers onto it. You glance up, along Paige’s stomach, and you’re treated to an eyeful of Kui-Tan testicles as Kiro straddles Paige’s body. Kiro rocks and thrusts gently, her ass flexing in front of you as she gets herself comfortable; you can even see Kiro’s own winking, delicious cunt and the streaks of her feminine arousal drip steady streams down her rolling nuts, wetly matting the fur of her own balls and along Paige’s ribs.");
-
-output("\n\nYou hear the sound of skin clapping against skin, followed by Paige making wet gurgling noises, followed by Kiro rhythmically pumping her hips forward and back – you can only imagine the sight of Kiro tittyfucking Paige, her horsecock so large and all-encompassing that it’s all Paige can do to open her mouth and take its flare into it. You close your eyes and try to imagine what Paige must be feeling: with Kiro and her massive nuts sitting on her chest, with a big, thick dick fucking her tits and plowing into her mouth, while you’re in between her legs and servicing her cunt properly.");
-
-output("\n\nHer body thrashes in pleasure at the combined assault: her legs can’t find a comfortable place to crook around your body to keep you in place, and her arms and hands fling to different parts of your bed again and again, grasping and pulling at your sheets. Her belly crunches and relaxes with each thrust Kiro makes into her mouth, while her already-hardened thighs clench and tighten around your head when you hit a particularly vulnerable spot. With how wet she is, you’re not entirely positive if she’s really, really horny from the onslaught, or if she’s actually already cum once or twice.");
-
-output("\n\nKiro sighs in satisfaction as she casually fucks Paige’s mouth. Your vision swims with Paige’s tense stomach and Kiro’s rocking balls, growing slicker and wetter with her dripping pussy juices the longer the show goes on. <i>“You two make a great pair,”</i> Kiro says off-handedly between her deep breaths. <i>“Gods, [pc.name], if we could bottle her skill with your enthusiasm – hell, forget the piracy, we’d make a killing selling that. You two should teach a class.”</i> She sighs again as she thrusts a little deeper than usual, and you can hear Paige hum in delight at having her mouth stuffed so full. <i>“If only you could feel the things this bitch’s tongue is doing to me.”</i>");
-
-output("\n\nYou reach forward with one hand, gently palming at her bloated testicles as they strain to contain her overwhelming seed. You massage at the leathery, stretchy flesh, soaking your fingers and your palm in her leaking cunt juices while giving Kiro a good feel.");
-
-output("\n\n<i>“Aahh,”</i> Kiro breathes delightedly, arching her back in reflex at your touch. She takes several deep breaths through her nose before she straightens herself. <i>“Fuck it, I’m not gonna last much longer at this rate.”</i> She stops her thrusting into Paige’s mouth, but does not remove herself yet. <i>“What’dya say, Paige? You want this fat dick in your pussy again? Gods, it’s been so long; think how nostalgic it’ll feel to have me cum inside you again.”</i>");
-
-output("\n\nPaige hums in ascension, her kicking legs shifting along your head again and another warm gush of her liquid coats your tongue. <i>“You heard the woman, [pc.name],”</i> Kiro announces as she shifts herself to the side, clambering off the bed again. You glance up, and you see her huge, black horsecock stand so erect that it nestles itself in between Kiro’s heavy boobs; it drips with its own spurting pre and with Paige’s spittle. <i>“Paige wants to be taken for a ride.”</i>");
-
-output("\n\n[if (pc.hasCock = false)You eye that monster of a dick, and your [pc.thighs] clench at the fantasy of having Kiro drive it into you; to impale you so deeply that you’d hang from her dick like a condom. Your eyes cross at the idea of being filled like one.][if (pc.hasCock = true)You idly wonder to yourself how you’re going to keep busy when Kiro’s stuffing Paige’s box with her dick. Your own [pc.cock] lurches at some ideas, including maybe swapping positions and fucking her mouth, but you’re too lust-addled to decide on any one idea.]");
-
-output("\n\n<i>“You’re welcome to come with,”</i> Kiro invites, placing a hand on your shoulder. <i>“[if (pc.hasCock = false)This doesn’t have to be a two-woman show.][if (pc.hasCock = true)Knowing Paige, she’s got ‘room’ for one more.]”</i>");
-
-output("\n\nYour mind’s eye swims with the possibilities....");
-
-output("\n\n[=Sandwich=][=CargoLift=]");
-output("\n\n// end scene (scene: PKTSPEHO)");
-
-output("\n\n[=Double P.=]");
-output("\n\n// if the PC does not have a penis, change this button to [=Cuddle Up=]");
-output("\n\n// (scene: PKTSPCU)");
-
-output("\n\n// continue here if the PC has a penis");
-
-output("\n\nYou tell Kiro that it sounds like a party to you. You ask her to pull out for a moment, and she does; you guide Paige to turn over, so that she’s laying face-up on top of you. The three of you are a bit tangled in each other, but you get the job done.");
-
-output("\n\nYou reach down in between your bodies, to grip your [pc.cock] by the base, and start waggling and flopping it against Paige’s buttcheek, slapping your pre-cum over the globe of her ass. Your [pc.cockHead] slaps against the entrance to her [if {PC has not done anal with Paige}wet tunnel, already a bit exhausted from the casual railing Kiro’s given it, but nonetheless primed and ready for more][if {PC has done anal with Paige}tight anus, unsullied by Kiro and her monster. Given that Paige was an anal virgin when you met, Kiro’s never had the privilege of exploring <i>all</i> of Paige.]");
-
-output("\n\n[if {not anal}Paige sighs as you tease her, your [pc.cockHead] fitting itself in between her spread labia but not penetrating her any deeper. You wait for Kiro to resume her position between Paige’s spread legs to guide you both in.");
-
-output("\n\n<i>“Now that I think about it, Bookworm, I don’t think we’ve ever had the pleasure of you getting double-teamed, have we?”</i> Kiro asks as she steps forward, her heavy cock landing with an audible slap against Paige’s stomach before she steps back to realign herself. You feel a hard obstruction on your dick, pressing against you insistently, and you slowly begin to slide into Paige.");
-
-output("\n\n<i>“I, uhhh,”</i> Paige groans out, followed by a sharp inhale as you and Kiro both spear into her, splitting her in half with your dual cocks working in tandem. She tenses her body on top of you, and then tries to relax, but the fact remains that she’s being pushed to her limits.");
-
-output("\n\n<i>“Let’s really put Peggy through the stress test, [pc.name],”</i> Kiro says with a predatory grin as she thrusts in harshly, burying both herself and you halfway into Paige’s tunnel.]");
-
-output("\n\n[if {anal}Paige hiccups in surprise as you tease her, your [pc.cockHead] pressing against the star of her asshole but not penetrating into it at all. You wait for Kiro to resume her position between Paige’s spread legs before stressing Paige’s body.");
-
-output("\n\nKiro hums as she sees what it is you’re aiming for. <i>“Now, don’t go making me too jealous, [pc.name],”</i> Kiro warns playfully as she steps forward, her heavy cock landing with an audible slap against Paige’s stomach before she steps back to realign herself. You feel Paige squirm above you, reflexively pulling away a bit from Kiro’s questing member, intimidated at the prospect of being split too tight.");
-
-output("\n\n<i>“I, uhhh,”</i> Paige groans out, followed by a quick yip as Kiro shallowly thrusts herself in. The motion rocks Paige backward, and it dislodges you from your held position, teasingly against Paige’s rear – and you too slip in. Just the tip, for now.");
-
-output("\n\n<i>“You’d better hope that Peggy comes through for you, Bookworm,”</i> Kiro says with a predatory grin as she thrusts in harshly, burying herself as deeply as she was before. You don’t wait for a better invitation, and you follow suit.]");
-
-output("\n\nWhere Paige’s body is hard as a rock and tight as a knot, the sensation you feel, buried inside her with Kiro, is altogether a different experience: [if {not anal}on one side, you feel the familiar ridges and ripples of Paige’s tight cunt, while on the other, you feel the hot, taut flesh of Kiro’s dick pulsating alongside yours][if {anal}her ass was always tight and clenched, for lack of better terms, but with Paige’s body split apart as it is, it’s a trial to even push yourself in, much less down to the [pc.knot]]. You aren’t given much time to cherish the sensations, though: Kiro, horny and impatient, begins thrusting, harder than before, and you resolve to match her pace and passion.");
-
-output("\n\nPaige’s breath catches in her lungs with every other thrust. You [if {not anal}thrust in time with Kiro, ensuring that every thrust home stuffs her fuller than she’s ever been][if {anal}thrust alternately with Kiro, ensuring that even on the backswing, she’s never left vacant]; she fights to maintain herself despite the constant tension on her hole{s}, and for a moment you wonder if you hadn’t made a mistake and that she wasn’t actually enjoying it.");
-
-output("\n\n<i>“Gods,”</i> Paige gasps, the word coming out in a sudden burst, like it was a bubble that she was struggling to pop. <i>“I can’t... why haven’t....”</i> She sputters some more half-sentences, unable to formulate a single coherent thought for the next half-minute. <i>“Fuck me!”</i> she finally demands, and with her demand, she begins thrusting back against you and Kiro, leaning into your dicks as they stretch her. <i>“This is amazing!”</i>");
-
-output("\n\n<i>“That’s what I like to hear, Bookworm,”</i> Kiro says huskily as she leans forward, gaining some leverage over you two so she can piston her hips harder and faster.");
-
-output("\n\nWith any worry you had assuaged, you do as she commands of you and plow into her as determinedly as you would if you two were alone. You eye Kiro, and she eyes you back, and you aren’t certain if this hasn’t suddenly become some competition between you two, to see who can make Paige holler their name.");
-
-output("\n\nYou say nothing, not that you’re positive anyone would hear you anyway: the room is a cacophony of two hard cocks fitting into {too small of a hole/two small holes}; the sound of two pelvises clapping wetly against a third; and the sound of a woman gasping and hollering in perverse delight as she gets ruined for any single prospective partner in the future, and loving every minute of it.");
-
-output("\n\nThe sensations – of the heat, [if {not anal}and the wetness, and the unique sensation of sharing a cooch with another cock, where you’re squeezed and milked on one side and you’re frotted and caressed on the other][if {anal}and the sheer tightness, and the unique sensation of feeling another cock through the thin boundary of Ausar biology separating her pussy from her ass as they both fuck their way into her], and Paige gasping in sexual bliss above you, and Kiro panting in a needy, desperate rut above <i>her,</i> and the stank that comes with three rutting bodies moving and fucking together, and the feel of two horny, furry women grinding against each other and you; it all builds up in a hurry, and you feel a familiar sensation in your [if (pc.hasBalls = true)[pc.balls]][if (pc.hasBalls = false)loins] of your impending orgasm coming up to you in a hurry.");
-
-output("\n\n<i>“Paige,”</i> Kiro blurts out, her voice cracked and shaky, with the sort of pleading tone that a child would have when they ask for candy.");
-
-output("\n\n<i>“Cum in me!”</i> she shouts, her body clenching on top of you both. <i>“Fuck, you’ve already stuffed ten yards of cock into a one-yard space; fucking load me up with cum, you assholes!”</i>");
-
-output("\n\nKiro leans back, her thrusts growing more elongated, more excited at the permission to fill what few spaces you two can’t fill with cock with your cum. <i>“You heard the woman, [pc.name],”</i> she says simply as her thrusting grows more powerful.");
-
-output("\n\nThe three of you are on the verge of your individual climaxes, and it’s not going to take too many more thrusts to get there. In fact, in just a few more....");
-
-output("\n\n// continue here if the PC does not have a penis");
-
-output("\n\nYou know that Kiro was coyly suggesting you play along and say something she wants to hear, rather than actually ask if you want to do one thing or the other. You take the bait and beg Kiro, with an exaggerated lilt in your voice, to do something about the raging fire in your cunt; you’re just so horny, and if you can’t get that thick Kiro cock inside you, you’re going to melt!");
-
-output("\n\nShe laughs at your performance and pulls out, leaving Paige gaping and open to the air. She whines in desperation, her hips automatically pushing back, searching for Kiro’s dick to take back inside it. <i>“How am I supposed to ignore that?”</i> Kiro asks as she shifts a bit, and you feel her huge, wet log of a dick flop onto your [pc.vagina], her blunt head poking between your vulva just a bit and depositing a sizeable dollop of pre at your entrance.");
-
-output("\n\nYou bite your lower [pc.lip] in anticipation, shivering as she teases you a bit, but she doesn’t penetrate you. <i>“Still, I can’t leave my good girl Paige all alone,”</i> Kiro muses, her hands greedily roaming over Paige’s tight ass cheeks. <i>“So I think all three of us are gonna have to compromise.”</i>");
-
-output("\n\nYou feel her reach between your bodies, her fingers gripping just beneath her fat cock head, and she lifts it slightly; she thrusts forward a bit, and her dick spears in between you and Paige, sliding along your [pc.belly] and against the ridges of Paige’s own abdominals.");
-
-output("\n\nKiro is meticulous with her positioning; she adjusts and readjusts herself, trying her best to use the immensity of her shaft so that she rubs against your [pc.clit] with every inward and outward thrust, and when she thinks she’s got a good angle, she lifts Paige by the thighs and aligns her until she’s accomplished the same thing.");
-
-output("\n\nHer cock is hot and wet against your stomach, and the hotness and wetness blooms periodically at her head as it spurts more and more pre. And then, satisfied that she’s wedged herself snugly enough between your bodies, she begins thrusting; the tactile sensation against your clit is powerful and immediate, and you hump up against the unyielding skin of Kiro’s shaft for more pressure against your button. From the way Paige ruts against you, hissing through clenched teeth, you gather she’s doing the same.");
-
-output("\n\nIt’s not as good or as fulfilling as if Kiro had stuck it inside you properly, and you’re left with a yearning in your honeypot that she’s is unable to fill. Still, you don’t complain – Paige is likely feeling the same yearning for a good, hard cock, and Kiro’s missing out on being inside a tight hole to milk her, so this is the best compromise between the three of you.");
-
-output("\n\nYou make the most of it: you kiss Paige, wrapping your [pc.tongue] around hers as you grind your bodies and your [pc.chest] against hers. Kiro fucks at the union of your bodies, splurting more and more pre against your stomachs, getting them nice and slick and aiding in the ‘penetration’ between you. The three of you melt into an indecipherable ooze of fur, boobs, cunts and cocks, each of them sharing grunts and moans and fluids.");
-
-output("\n\nYou wrap your [pc.legs] around Kiro’s waist, feeling along her ass whenever she completes a circuit. You reach lower, gently brushing at the top of her bloated Kui-Tan sack, coaxing out every last drop of cum stored inside them; you’re wet from her pre, and you can’t wait to share a veritable bath between you and the Ausar you’re making out with.");
-
-output("\n\n<i>“Fuck, you two are a treat,”</i> Kiro says as her thrusting grows more impatient. You can tell the poor girl is restraining herself; if she thrusts too deeply, she’d start pounding against your lowermost set of ribs. Despite that, her dick lurches forward impiously on the occasional thrust, and some hefty globs of pre reach high enough to nestle in the cleavage of your [pc.chest], which then mixes and meshes into Paige’s own boobs.");
-
-output("\n\n<i>“Gettin’ close, ladies,”</i> Kiro warns, her hands reaching beneath your [pc.ass] and hefting you up as well as she can, considering your positions and the fact that she’s also lifting Paige. The sound of her body clapping against yours as she fucks the space between you and Paige quickly drowns out the frequent, lusty moans coming from Paige’s throat.");
-
-output("\n\nPaige, unable to contain herself, pulls away from you and glances over her shoulder. <i>“Let’s see it, Kiro,”</i> she begs, lifting her tail higher and grinding herself harshly against Kiro’s dick. <i>“Fu-fucking cum! Soak us like I know you can!”</i>");
-
-output("\n\nYou have a difficult time adding much more to Paige’s begging, as close as you are; your teeth chew on your lips in orgasmic bliss as your [pc.clit] fires signal after signal to your head and your [pc.vagina] about your impending orgasm. Gods, if only you had a cock inside you right now....");
-
-output("\n\nYou slap both hands onto Paige’s ass, giving both cheeks a hard spank and a thorough grope, trying your best to bring her closer. She yips your name in surprise, which melds into a sultry moan, and she goes back to fucking your mouth with her tongue as she grinds her last few thrusts towards her orgasm.");
-
-output("\n\nKiro isn’t much farther behind, and, with some eagerness, you realize that you’re just a few more thrusts away from learning if Kiro really has what it takes to give you two a good, long soak....");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: PKTSPCU); go to (scene: PKTSPE)");
-
-output("\n\n[=Sandwich=]");
-output("\n\n// (scene: PKTSPS)");
-
-
-output("\n\nYou’ve got an idea. Paige gets to be the star of the show, but she’ll have to put her yoga skills to a bit of use.");
-
-output("\n\nYou pull away from Paige and reach for her shoulders. Her eyes narrow [if {Paige is blind}on you ]curiously, then widen when you give her a rough shove; she reaches for the blanket and clutches at it for something to grip on, to keep her steady, but you’re quick enough and Paige is in such a sexual stupor that she doesn’t have the reflexes to react in time to keep herself righted.");
-
-output("\n\nBefore she knows what’s happened, her shoulders are on the floor while her legs remain up and splayed on your mattress. Her eyes roll in her head as she tries to maintain some semblance of coherence with her surroundings, but before she can even tell which way is up, you squat over her face, facing the bed, aligning your [if (pc.hasCock = true)erect, dripping cock][if (pc.hasCock = false)[if (pc.hasVagina = true)gushing, leaking cunt]] with her gaping mouth, directing her in no uncertain terms to get to work.");
-
-output("\n\nPaige’s cunt winks in confused-yet-horny abandon, waiting for [if {PKTSPEHO}your tongue to get back to work. You use your fingers to gently pry the petals of her pussy apart, your digits getting soaked in her juices, and you eye Kiro invitingly. You’ll get back to work, alright – but you’re sure, for as skilled as your tongue is, she might enjoy a thick dick in her and Kiro would appreciate a warm hole to bust into][if {else}Kiro’s dick to start fucking it once more. You use your fingers to gently pry the petals of her pussy apart, your digits getting soaked in her juices, and you eye Kiro invitingly. You’re sure Kiro is eager to get back to work, alright – but, you’re just as sure that Paige would appreciate something a bit more flexible to tend to her more tender areas].");
-
-output("\n\nKiro smirks at your tenacity and ingenuity; her dick lurches at the position you and Paige are in and she gives it several elongated tugs, flexing the precum up her cock and spurting it onto Paige’s outstretched leg. <i>“Gotta give you props for the quick thinking, [pc.name],”</i> she says as she steps over you both, facing the bed, one foot on either side of Paige’s ribs, as she lines her fat cock head against Paige’s entrance[if {PKTSPKH} once again]. <i>“It’s certainly one of the more imaginative poses-for-three I’ve had. And if anyone can take it, it’s Paige.”</i>");
-
-output("\n\nYou’re treated to an up-close show of every inch and contour of Kiro’s fat horse cock sinking into Paige’s body: every pulse as it travels down Kiro’s shaft and every hungry throb of Paige’s cunt clamping and swallowing around her meat; every squelch and wet squeeze as their individual lubes mix to make the journey smoother; the way Paige’s cunt bloats and bulges with Kiro’s immensity, followed by her abdomen as Kiro sinks lower and lower; the sheer, damn-near overpowering stench of a cock big enough to look out of place on a horse fucking a wet, horny, receptive and fertile cunt – it’s all taking place a scant few millimeters in front of your nose.");
-
-output("\n\nKiro’s nuts press gently against the back of your head, pushing you closer and closer to the show. You stare in lustful bewilderment, [if (pc.isHerm = false)[if (pc.hasCock = true)at Kiro and her amazing cock, fantasizing how it would feel if it was your [pc.cock] sinking deeper and deeper into Paige][if (pc.hasVagina = true)at the amazing way Paige’s body molds itself around Kiro, and fantasizing that it was you on your back and with Kiro’s dick sliding into you]][if (pc.isHerm = true)unsure of which one you’re more jealous of and who you’d rather be: in Kiro’s position, fucking such a moist, tight hole, or in Paige’s, taking such a magnificent dick into herself]. Eventually, when Kiro sinks deep enough and her massive testicles push you forward enough, your nose bumps against the steely flesh of her shaft, and your [pc.lips] taste of the wet union of Kiro’s dick and Paige’s pussy.");
-
-output("\n\nYour tongue automatically slides out to lap a gentle ring around Paige’s split vagina, soaking in the fluids pooling there. And as you do, you feel Paige finally get to work on you as well, [if (pc.hasCock = true)her lips pursing on your [pc.cock] and her cheeks hollowing out, suckling on your shaft and eagerly drinking down your leaking pre-cum][if (pc.hasCock = false)her lips puckering against your [pc.vagina] and her own tongue spearing deeply into you, lapping at your juices and drinking down your [pc.femcum]]; your [pc.hips] shake in surprise, reminding you exactly how horny you’ve been since you started, and you sigh (through your nose, taking in more of the scent of Paige and Kiro’s sex).");
-
-output("\n\nOne of your hands wraps around to Paige’s ass, gripping onto her globes and massaging at her flesh as it flexes with every push Kiro makes into her cunt. Your nose grinds along Kiro’s shaft as it plows into the Ausar beneath you again and again; you lean forward a bit, wrapping your lips at the union of their sexual organs, letting that glorious, fat Kui-cock fuck its way between your lips as it grinds into Paige again and again, your patient tongue washing the flesh and tasting the new fluids accrued on it with every rotation. Occasionally, your conscious mind registers Paige’s own mouth working on you, and your [pc.hips] automatically adjust themselves on her face, getting her deeper, to work you over better.");
-
-output("\n\nYou feel very warm, which comes as no surprise: you’re sandwiched between the two bodies, with Paige below and in front of you, and Kiro above you with her massive, hanging testicles behind you, bapping you gently in the head and back with her every motion into Paige’s tunnel. You kiss and lick at Kiro’s piston of a cock and at Paige’s abused, stretched hole, tasting everything the two of them have, and with every devious taste, you shudder a little bit more out of your own loins for Paige to drink down.");
-
-output("\n\nTime becomes nebulous; your world is these two women surrounding you and the three of you being a part of a circuit of grinding, squeezing, milking, gurgling, tasting, and fucking. You can feel Kiro’s heartbeat through her balls as they rest against your shoulders and you can feel Paige’s lungs heave whenever they get the chance to breathe without you obstructing their wind. Kiro moans occasionally, telling you sweet nothings about how she enjoys your tongue on her as she fucks Paige, and how you three should do this more often and if you could think up more exotic positions for you three to take.");
-
-output("\n\nYou agree mindlessly with everything she suggests. You’ve checked out, at least for now: your mind swims too vividly with the smells and tastes of pure, raw sex for you to focus on anything but making the sensation better for yourself and your partners. Of course, that includes the building orgasm you feel in your crotch – it’s only a few pumps against Paige’s mouth away, and you reason that if you’re this out of it already, you can only imagine what your senses will experience when Paige and Kiro both cum.");
-
-output("\n\nThe telltale signs of an impending orgasm are different from this perspective: as acquainted with Kiro’s flesh as you are, you notice it grow warmer, thicker, and harder, and Paige’s pussy becomes wetter, her vulva bulging and changing color very slightly under the strain. You feel Kiro’s balls crawl up your back as they clench, ready to dump their payload into the yearning pocket that’s stuffed to the brim with Kiro’s dick, and you feel Paige’s work on your own genitals grow more rapid in intensity, but less directed and focused.");
-
-output("\n\nYou wonder, as the three of you reach your climaxes simultaneously, if you look, smell, or taste any different to Paige in the moments before your body clenches in that familiar release....");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: PKTSPS); go to (scene: PKTSPE)");
-
-output("\n\n[=Cargo Lift=]");
-output("\n\n// (scene: PKTSPCL)");
-
-output("\n\nThe idea of really getting down to business and fucking Paige like the proper, horny bitch she is, is too exciting an idea to pass up.");
-
-output("\n\nYou disengage from her, withdrawing your overworked mouth from her cooch. She whines in protest, her hips drawing upwards to try and chase after your tongue and suck it back into herself; you keep a hand on her pelvis and give her belly a gentle rub as you tell her that she deserves something a bit more substantial than just a tongue. When you ask if she agrees, she moans out something lazy and unintelligible.");
-
-output("\n\nYou and Kiro grab her by one wrist each and hoist her upward, into a sitting position, and then onto her wobbly, shaking feet. You know exactly how you want to see Paige fucked, and you ask Kiro for a hand[if {Strength <= 3} – you’re going to need it].");
-
-output("\n\nOne of your hands dips down, between Paige’s legs, giving her wet pussy a quick pat and her engorged clit a twiddle on the way, as you hook your hand beneath her knee and lift it high. Paige doesn’t lose her balance, even as you crane her leg up and hook her knee over your shoulder – her yoga-hardened center of gravity makes her damn-near impossible to topple. That only makes it all the easier to reach down behind her other leg and do the same thing, until you’re lifting Paige into the air by her legs.");
-
-output("\n\nHer arms wrap around your neck for stability, but Kiro steps forward, pressing her front against Paige’s back, her hefty boobs on either side of Paige’s face and framing her skull. Her brown-furred hands wrap around to Paige’s breasts, giving them a lascivious squeeze and pinching at her nipples, making her gasp and arch her back against Kiro. It has the pleasant side-effect of shifting Paige’s weight onto Kiro slightly, taking the weight off your arms.");
-
-output("\n\n<i>“Ready, Bookworm?”</i> Kiro asks softly, using the name more as a pet name than a childhood nickname. You can feel Kiro’s elephant-trunk of a cock slide between you and Paige, fucking at the loose meeting of bodies there, and you know what it wants. Your hands are a bit full; Kiro has to relinquish her grip on one of Paige’s tits to align herself, and when she does, Paige’s body stiffens and her teeth chew into her bottom lip in subconscious preparation.");
-
-output("\n\n// continue here if the PC has a dick");
-
-output("\n\nKiro, gracious and accommodating as she is, doesn’t leave you in the cold air. As soon as her hand grips at herself, you feel her fingers reach for your own [pc.cock], giving it a stroke and pulling your meat against hers, masturbating them together for a few tugs.");
-
-output("\n\n<i>“Try and relax, Paige,”</i> Kiro says comfortingly, giving her a gentle kiss on her collarbone, <i>“because things are about to get a little tight.”</i>");
-
-output("\n\nYou feel Kiro pull at you a little bit, and then, with a sudden flop, both you and Kiro are lined up at Paige’s vagina, sampling her wet heat and dripping lube together. You feel Paige shiver in anticipation, and her eyes grow wide in a hurry, but you and Kiro move before she has a chance to interject: with you two thrusting simultaneously, you both worm your way inside Paige, splitting her apart with your combined masculinities. If you thought Paige was tight before, it’s nothing compared to this.");
-
-output("\n\nBoth of you take your time inside her – you can’t imagine how she must be feeling and you let her adjust to your girths inch by salacious inch. The oil coating [if (pc.cockLength >= 16)both you and ]Kiro makes things a little stretchy and spongier, without losing any of the tightness enveloped around you, making thrusting into her a bit easier to accomplish. And when you both dig as deeply as you think Paige is comfortable with, and she doesn’t object to having you both inside her, you take her unspoken invitation and start fucking her properly.");
-
-output("\n\nGods, it’s tighter in there than you were expecting. On the one side, you have the tight ridges of Paige’s body clamping and slurping at your [pc.cock], eager to drink your [pc.cum] into itself. On the other, you’re pressed tight as could be against Kiro’s own shaft as it hotly bumps and grinds against yours, hungry and eager to seed Paige just as much as you are. Kiro’s bloated Kui-Tan nuts bounce forward with Kiro’s thrusts, slapping you in the [pc.legs][if (pc.hasBalls = true) and against your own [pc.sack]], gurgling loudly enough to let you both know that it’s about to get even more cramped inside Paige.");
-
-output("\n\n// continue here if the PC does not have a dick");
-
-output("\n\nKiro grunts a bit as she grips onto her horsecock halfway down the shaft, whipping it back and forth, slapping it against Paige’s abs, and then against yours, her precum flinging every which way as she does. When she’s good and riled up, she pulls back a bit, realigning her cock’s head against Paige’s entrance.");
-
-output("\n\n<i>“Gods, I can’t wait,”</i> Kiro says lustfully, giving Paige a rough suck on her neck. <i>“Sometimes, it feels like your body was made for me, Paige. Nobody takes me like you do.”</i>");
-
-output("\n\nYou glance down in between your body and Paige’s, and you watch as that flat, blunt cockHead presses forward, Paige’s pussy yielding area by the centimeter until it relents, Kiro slipping suddenly into her. Both of the ladies exhale in delight at having gotten the ‘hardest’ part out of the way; now that Kiro is securely lodged inside her, she thrusts, gently at first, and you hear the wet squishing of Paige’s body taking more and more horsecock into it.");
-
-output("\n\nYou thrust your [pc.hips] forward, slicking your [pc.vagina] against the shaft of Kiro’s cock as it slides into Paige. Your eyes cross as you feel the thick, hard meat of her shaft glide between your mons and the friction of her body against your clit; you drool as you fantasize that it’s you that Kiro is sliding herself home into, and not Paige. Maybe next time.");
-
-output("\n\nThe three of you work as best as you can to work your awkward threesome: Paige’s agency has been removed from the equation entirely, and she is helpless to do little more than bounce happily on Kiro’s meat. Kiro maintains her own pace, heedless of you or Paige; her hands grope and pull on Paige’s breasts, kneading them for her own benefit, while her massive, cum-filled nuts slap against your [pc.legs] with her thrusts, each heavy nut gurgling with seed. It’s you that’s doing all the work, and while you’re not getting penetrated and you’re not getting any specialized attention, you’re nonetheless lost in the atmosphere of sex, and your orgasm isn’t too far off.");
-
-output("\n\n// Merge here");
-
-output("\n\nThe thrusting, grinding, and fucking continues with the three of you working off-rhythm with each other; every time you push forward, Kiro is bounding back. Paige moans your name sometimes, and she moans Kiro’s name sometimes; she and Kiro would share an elongated, tongue-filled kiss before she disengages and reaches for you, continuing with you where Kiro left off. Her legs wrap themselves around your back as best as they can with your hands beneath them, while her arms cradle Kiro’s head behind her, her fingers playing with the Kui-Tan’s hair.");
-
-output("\n\nYou get a good look at them both as you continue. Their faces are each less than two feet from you. Paige’s eyes can’t decide where to focus, if anywhere, and sometimes they cross whenever[if (pc.hasCock = true) you and] Kiro hit[if (pc.hasCock = false)s] a particularly sensitive spot inside her; her tongue lolls from her mouth with strands of saliva dripping from its floppy tip, streaking toward her nearest tit.");
-
-output("\n\nKiro, meanwhile, has her eyes closed in concentration. She sometimes winks an eye open, and her gaze locks with yours for a moment; she smiles, winks more deliberately, and puckers her lips at you when she does, and she redoubles her efforts for your benefit. She licks at her lips time and again, and she pants in exhaustion and dehydration; she’s breathing deeply, in through her nose and out through her mouth, trying to main her own rhythm.");
-
-output("\n\nYou think, in some part of your mind, you realize how connected the three of you are – on a sexual level, at least, and you each know how close the others are. When Paige’s tongue slides into your mouth, you know that she’s begging you to cum; when Kiro’s eyes meet yours, she’s asking you to cum with her so that you three can get started on doing it all again.");
-
-output("\n\nYour [pc.lowerbody] shakes in pleasure, your orgasm building quickly inside you and ready to burst forth, to meet both of your lovers’ unspoken requests. The three of you become a little more frenetic as time goes on, until you’re thrusting so fiercely and wantonly that you can’t withhold yourself any longer....");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: PKTSPCL); decrease Energy by 10; go to (scene: PKTSPE)");
-
-output("\n\n// (scene: PKTSPE)");
-
-output("\n\nIt becomes a desperate race for last place between you three and your intense fucking. Who came first and who came last becomes completely nebulous when the fact arrives; what you’re at least sure of is that it was a close ‘race.’");
-
-output("\n\nKiro’s orgasm hits as hard as someone you’d expect with her endowments to orgasm. [if {all, except PKTSPCU if the PC is pure female}The cum bloats her already impressive equipment with her Kui-Tan seed, which sinks into Paige in rapid gouts[if {PKTSPS}; you watch with rapt awe as her load visible travels down her shaft, before disappearing into Paige’s body with a flush you can practically hear through her heaving body]. Kiro barks in pleasure as her body moves on its own, thrusting deeper and deeper into Paige with every new blast, seeding her as deeply as she can; her balls lurch and coil against her, squeezing out every drop for her thirsty childhood friend’s cunt to gorge itself on.[if {PKTSPCU, and the PC is pure female}You feel her load bloat her already fat cock all the more as her jizz rushes along her shaft, before it explodes from her cockHead wedged between you and Paige. A wet warmth blooms between you, starting at your [pc.belly] and shooting up to your [pc.chest]; your grinding and rocking against Paige suddenly becomes wet and easy, and the sound of Kiro’s bubbling cum squishing and squelching between your bodies fills your ears. All the while, she continues to thrust into the union of your bodies, her cum painting you two more and more, until it spills from between you and soaks into your bed.] Kiro’s output is so voluminous that you scarcely remember when it started, and you’re unsure of when it will, or can, end.");
-
-output("\n\nPaige wasn’t much further behind, and as soon as Kiro burst her bubble, it was enough to launch her over the edge. She groans out, a loud, lengthy, throaty groan, and you feel her shake and tense and relax in various, unrestrained waves throughout her body, from her limbs to her torso and back again. [if {PKTSPS}You watch her pussy spasm on its own, independent of the rest of her; it locks, presses, and gulps at Kiro’s thrusting shaft, coaxing and milking it for more, and more, yet more, of that delicious, familiar jizz; you see splashes of her girlcum float up and collect around Kiro’s cock at her vulva with every thrust. ][if {all, except PKTSPCU if the PC is pure female}Her hands clench, squeezing at anything they can find, including you and Kiro; her legs lock and stiffen, squeezing at anything caught between them. She has no control over her body: her eyes shut in blissful concentration and her tongue, unable to focus on kissing anyone, flops lamely out of her mouth.][if {PKTSPCU, and the PC is pure female}She squeezes and hugs at you as she deliberately moves her torso along yours, to spread Kiro’s jizz between you as deeply and thoroughly as she can; her eyes are shut in blissful concentration as she surrenders to her own body, but she has enough willpower to kiss you; to offer her tongue for you to suck, and to suck on yours when you offer it to her.]");
-
-output("\n\nAnd, of course, there’s yourself; you manage to hold on for a paltry few thrusts longer, but watching Paige and Kiro arrive on their own triggers something within you that you can’t, and removes the inclination to, stop. [if {PC is pure female}You clench your body, your orgasm rocketing through your body, clenching your [pc.belly] and buckling your knees. Your [pc.vagina] gushes in time with its Ausar counterpart, [if {PKTSPS}drenching Paige’s face and forcing her tongue and throat to work overtime to keep up with your squirts][if {else}soaking your own [pc.legs] and squirting your feminine cum onto Paige, drenching her own legs and belly in your fluids]. Orgasm after orgasm rips through your body, in time with [if {PKTSPS}the loads surging down Kiro’s dick and into Paige; your body tightens at the sight of each rolling surge down her meat, fantasizing that every heavy bubble of cum was being shot into you instead][if {PKTSPCU}every blast of cum Kiro shoots between you and Paige, bathing you both in Kui-Tan cum, just as Paige had begged her to do. Every hot, wet shot between you brings another surge from your cunt, and the fight leaves your body all over again – until the next shot][if {PKTSPCL}the palpable surges shooting up Kiro’s cunt and into Paige. You can feel every hot burst of cum flow up through Kiro’s shaft and into Paige through your tight proximity to the two; it’s a struggle to maintain your balance and your strength as you carry Paige through the whole thing, but, in a way, the sexual energy you’re feeding off of from the other two is keeping you going]][if {PC has a penis}Your [pc.cum] surges up through your [pc.cock], inflating it as the slit in your cock’s head yawns to deposit a thick, heaping load right into your Ausar lover; [if {PKTSPS}she gargles and swallows your load, every heady mouthful sliding down her throat. She struggles somewhat to keep up with your load; you’re enthralled by the way her pussy clenches and slurps at Kiro’s massive shaft, easily taking every thick shot of Kui-Tan cum into its womb, and you’re lost in the fantasy of it being your dick that Paige’s cunt is milking. You match Kiro’s output, if not strictly in quantity, but in duration][if {else}Your grip on Paige tightens, enough to make her wince, as your [pc.cum] surges up, through you, and into her. Your shaft is almost pinched at her entrance, stifling your flow somewhat, but you won’t be denied; your cum surges into [if {PKTSPCU and anal}her tight ass, filling her up into her belly][if {else}her tight, cramped cunt, seeding her willing womb] in time with Kiro’s pulsing, thick load. Whenever a new, fresh batch of cum blasts through you, Paige’s body becomes tighter around Kiro, and when Kiro matches your load, Paige grows tighter around you. The three of you work automatically, all semblance of conscious control leaving your body as you function as a pair of cocks depositing load after load into a wet, receptive, shuddering hole].");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: PKTSPE); reduce Lust to 0; go to (scene: PKTSA)");
-
-output("\n\n[=Kiro=]");
-output("\n\n// (scene: PKTSK)");
-output("\n\n// Action tree: https://i.imgur.com/kgEjocX.png");
-
-output("\n\nThough your tongue is in Paige’s mouth, and your hands are exploring her body, you can’t help but keep your eyes on Kiro and her horsecock. The way she lathers it with that oil, making it slick and shiny in the light of your quarters; the way it slowly rises over time, bloating and engorging with her flowing blood, getting it harder and readier; the way that Kiro knows you’re staring, and with a teasing smile, she rubs the palm of her hand over the cap of her cock, spreading the bead of pre that had emerged along the underside of her shaft, causing it to bob in your direction enticingly....");
-
-output("\n\nPaige notices that you’re a bit distracted with your kissing and exploring. <i>“Am I really that boring to you, [pc.name]?”</i> she pouts, flicking her fingers across your nose playfully. <i>“You’ve got a naked, horny bitch sitting on your lap and fucking your throat with her tongue, and all you can think about is Kiro’s cock.”</i>");
-
-output("\n\nKiro steps in between you both, placing her hands on both your scalps. She thrusts her hips forward, her thick tree-trunk of a cock slipping in between your bodies, nestling itself warmly against your stomachs. <i>“Can you really blame [pc.himHer]?”</i> she asks as she casually fucks the space in between you. <i>“It’s a pretty great dick, if I say so myself.”</i>");
-
-output("\n\nPaige smirks at Kiro’s forwardness. With her left hand, she trails her way down to Kiro’s base, running her palm along the smooth skin of her sack; with her right, she hefts Kiro’s cock slightly, lifting it between you two until it bumps against the underside of her breasts. She leans forward the rest of the way and, with her eyes on yours, runs her tongue along the beating, bloating side of her shaft. <i>“Nope,”</i> she says simply. <i>“Not even a little.”</i>");
-
-output("\n\nYour body tightens and your mouth waters at the sight. Your hands itch to grab onto Kiro’s shaft, much like how Paige is doing, and assist her in servicing such a magnificent piece of dick; meanwhile, your [pc.vagOrAss] clenches at the fantasy of taking it into itself, to get ploughed and fucked and seeded with her thick Kui-Tan cum.");
-
-output("\n\nIt’s all up to you on which fantasy you’d rather fulfill....");
-
-output("\n\n[=ServiceHer=][=Line Up=]");
-output("\n\n// end scene (scene: PKTSK)");
-
-output("\n\n[=ServiceHer=]");
-output("\n\n// (scene: PKTSKSH)");
-
-output("\n\nThat cock of Kiro’s is just too big and juicy to ignore. Your eyes are fixated on it and the way it throbs in your presence; the way that, the longer it stays lodged in between your body and Paige’s, it seems to steadily get larger, thicker, and more <i>delicious.</i>");
-
-output("\n\nYou actually salivate. A single strand of drool drips from your [pc.lips] and lands onto Kiro’s shaft. You sheepishly wipe at your chin while the two ladies share a well-meaning laugh.");
-
-output("\n\n<i>“I can guess what’s coming next, [pc.name],”</i> Kiro giggles as her hand rubs at your scalp. She’s pushing you, gently, forward, towards the tip of her burgeoning prick, towards what it is you truly want. <i>“Hell, don’t let me stop you. If you want a big mouthful of dick, I’m sure Paige will be more than happy to let you have the first taste.”</i>");
-
-output("\n\nPaige hums in ascension; she’s already busy licking and kissing at the thick, broad side of Kiro’s shaft, willfully leaving the head unattended. It would be rude of you to refuse such an invitation from them both; you mimic Paige’s motions, leaning forward putting your face and lips against Kiro’s cock, then draw a single, elongated lick up her shaft until you’re positioned at its head.");
-
-output("\n\n<i>“Atta {boy/girl},”</i> Kiro sighs as you work her with your mouth. You kiss, lick, and suck at the blunt, flared head of her dick, wrapping your [pc.lips] around it and giving it a hearty suck before disengaging and licking circles around the urethral opening. You suck down every drop of pre as they come from her shaft, savoring their flavor before opening wide and repeating the whole operation a second time.");
-
-output("\n\nYour hands busily work at the shaft, jerking what your mouth can’t take, which is quite a lot. Paige, meanwhile, occupies herself further down, opening her maw wide to suck at huge swaths of area, her broad Ausar tongue making wide, wet swipes at the meaty base of Kiro’s cock. She leans in occasionally, her nose butting against Kiro’s lower abdomen, as she dips lower, her questing, hungry mouth tasting at the skin of Kiro’s taut sack. She hefts one nut up to her pretty lips so she can give it a proper, wet kiss, before drawing her tongue at the crease of their union as she pulls herself back up to work the fat shaft again.");
-
-output("\n\nKiro sighs in delight, her hips instinctively humping forward whenever one of you hits a particularly sensitive nerve. She palms at both her boobs as her eyes narrow on yours. <i>“Gods, it’s good to be queen,”</i> she muses, and she punctuates the statement with a rough thrust, her blunt cockHead bumping you in the face.");
-
-output("\n\nYou pull away from Kiro and play along, telling her that you live to serve. She coos in delight, and you’re rewarded with another splurt of warm pre across your lips; [if (pc.hasCock = true)your own [pc.cock] lurches at the submissive gesture and at the tasty reward. You’re hard as diamonds and your own pre-cum is pouring from you in constant streams][if (pc.isHerm = true). Meanwhile, ][if (pc.hasVagina = true)your [pc.vagina] clenches and drools its own fluids down your [pc.thigh], thirsty for a taste of that fat cock for itself. Your eyes cross at the fantasy: if it feels this good to take Kiro into your mouth, you can only fantasize about how it will feel in your cunt]. You’re not that close to an orgasm yet, but you don’t doubt that it’s on the way if you keep this up.");
-
-output("\n\nJust as another service of Kui-Tan pre dresses your tongue, Paige pulls herself away from Kiro, taking a deep breath of comparatively fresh air. <i>“I can’t take much more of that,”</i> she says in frustration, slapping at Kiro’s meat and watching it bob and sag underneath its own weight. <i>“You’re fucking one of us right now, Kiro. I’m not spending all night sucking your balls.”</i>");
-
-output("\n\nKiro calmly puts a hand beneath Paige’s chin, keeping the Ausar’s focus on her. <i>“Would that be so bad, Paige?”</i> she asks, puckering her lips as she leans in.");
-
-output("\n\n<i>“I mean, no. But you know how this works, Kiro.”</i>");
-
-output("\n\n<i>“I do, Bookworm.”</i> Kiro ends the conversation by pressing forward, their lips colliding. You swirl your [pc.tongue] around Kiro’s cock as you watch the two ladies fiercely make out before you, their tongues exploring each other’s mouths, a long strand of saliva dripping down between them as they taste each other; Kiro grabs at Paige’s boob, massaging the flesh, and Paige returns the gesture, pinching at Kiro’s nipple.");
-
-output("\n\nKiro pulls away as that same hand dips lower, travelling across Paige’s tight abdominals. Her hand shoots lower, and her fingers dip into Paige’s cunt, sampling just how wet and ready she is for some real action. She fingerbangs Paige for a few thrusts; Paige’s knees buckle in pleasure at Kiro’s masterful movements, and she grips onto Kiro’s fur for support.");
-
-output("\n\nKiro’s eyes lock onto yours as she brings her hand up to her face. She slips her now-soaked fingers into her mouth, sucking them clean, and she hums her approval. <i>“How about it, [pc.name]?”</i> Kiro asks as she withdraws her fingers, her now-free hand wrapping around Paige’s body to grope at her ass. <i>“Paige is about ready to get fucked.”</i> Her eyes narrow deviously and her lips curl into a mischievous smile. <i>“Wanna go first?”</i>");
-
-output("\n\n<i>“What?!”</i> Paige asks in frustrated surprise.");
-
-output("\n\n<i>“Come on, look at [pc.himHer],”</i> Kiro insists, motioning to you and the way you still have her cock in your mouth, even after all that. <i>“You’re a horny bitch, Bookworm, but [pc.heShe]’s hasn’t had my dick off [pc.hisHer] mind since we started. Figured I’d ask the thirstier of you two first.”</i>");
-
-output("\n\nYou look down the long, bloated shaft of Kiro’s equine dong. Kiro’s giving you the opportunity to go first and take this monster into yourself – and, given how it’s coated in that elasticizing oil, you’ll probably be able to take <i>all</i> of it. But, on the other hand, you could continue doing what you’re doing here and let Paige get fucked. Kiro’s body tastes pretty good, after all....");
-
-output("\n\n[=Continue=][=Go First=]");
-output("\n\n// end scene (scene: PKTSKSH)");
-
-output("\n\n[=Line Up=]");
-output("\n\n// Randomly choose whether Kiro penetrates the PC or Paige, regardless of endowments");
-output("\n\n// (scene: PKTSKLU)");
-
-output("\n\nYou eyeball Kiro’s length, your lips pursed and dry as you imagine it in your mouth. With some reluctance, though, you admit that, even with that elasticizing oil on it, you doubt that you’d be able to give Kiro the pleasure she’s looking for with your mouth. And besides – you have another hole that could use the attention.");
-
-output("\n\nOne of your hands crawls down Paige’s side, stopping at the fat of her ass and giving her a good, hearty squeeze. You tell her to face away from Kiro and to get onto her hands and knees on the bed. Paige herself is hesitant to let go of the meaty horsecock between you, but relents and follows your instruction, turning away from Kiro and lifting her tail, presenting her drooling gash to the Kui-Tan.");
-
-output("\n\nYou take a similar position next to her, bumping your [pc.ass] against Paige’s, rubbing the [pc.skinFurScales] of your butt against the fine fur on her toned ass. You both giggle as you move off-rhythm from each other, wagging your asses towards Kiro, inviting her to choose one of you two for her to fuck. You bite your bottom lip in anticipation: will she choose Paige’s familiar cunt and fuck her into your mattress? Or will she shove that monster of a dick into your [pc.vagOrAss] and seed you like you hope she would?");
-
-output("\n\nKiro grunts in approval as she roughly brings both hands down on each of your cheeks: a hard slap on Paige’s right cheek, and one on your left. She rubs at the hot, red spots she just made as she explores your bodies with her hands; her dick slides itself in between your bodies once again, fucking at the tight space between you as she gropes and feels indecisively.");
-
-output("\n\n<i>“How’s a girl supposed to choose?”</i> Kiro asks nonchalantly as she teases and prods at different spots at your bodies. She admires the way your body relaxes against her palm, allowing your flesh to jiggle in time with her manhandling, while she coos at the tightness and intensity of Paige’s yoga-trained derriere. <i>“Gods, life is never easy,”</i> she laughs.");
-
-output("\n\n// continue here if Kiro fucks Paige");
-
-output("\n\nKiro’s questing hand dips a bit further inward, questing towards your [pc.vagOrAss]. You feel her skilled, furry fingers grind against your entrance, their pointed tips spearing into you just a little bit. Your body quakes in pleasure and you tense against her, hoping that this is just a taste before the real thing. But, much to your dismay, you watch Kiro out of the corner of your eye as she repositions herself behind Paige.");
-
-output("\n\n<i>“Paige has been waiting long enough for another taste of this, [pc.name].”</i> You watch as she realigns her cock against Paige; she hotdogs herself between her taut Ausar cheeks, the blunt tip beating against the base of her tail. Paige tenses and hiccups in pleasure as that battering ram of a dick bats against her erogenous zone, and from the way Kiro yanks at Paige’s tail to keep it steady, you guess that Kiro knows exactly what she’s doing. <i>“Be a good [pc.boyGirl], though, and maybe it’ll be you I wear like a condom next time.”</i>");
-
-output("\n\n<i>“Gods, Kiro, you’re such a biii</i>iiieeeeahhhhh,”</i> Paige utters in defeat as Kiro rears back, her dick spearing deeply into her with one, powerful, definitive thrust. You hear a distinct squelching noise, almost like a moist sponge being squeezed, as Kiro’s enormous tool unceremoniously worms its way into Paige’s cunt; the oil works its magic as both of their bodies meld perfectly around each other, accommodating each other to work in perfect synchronicity.");
-
-output("\n\n<i>“Yeah, I’m a bitch,”</i> she says snidely, punctuating her syllables with an audible ‘plap’ of her shapely hips pounding into Paige. <i>“But I’m a bitch with a</i> huge <i>dick.”</i>");
-
-output("\n\nPaige’s eyes cross and she lays her head to one side, her tongue lolling out in delirious pleasure. Her hands grip at the sheets on your bed in an effort to remain locked in place, but it fails: with every thrust, she inches just a bit further along your mattress. The sheets soak in a growing puddle around Paige’s face as her drool drips from her insensate mouth unabated.");
-
-output("\n\nKiro, proving that her bluster isn’t just words, expertly works your own genitals perfectly in time with her thrusting into Paige’s cunt. Her fingers thrust into your [pc.vagOrAss] as she thrusts into Paige, crooking and reaching for a different spot inside you every time[if (pc.hasCock = true), and after a few rough, intense minutes, she seamlessly switches to reaching for your [pc.cock], wrapping her fingers around it and giving you a handjob, still at the same tempo as her own thrusting]. Your [pc.hips] bend and turn with Kiro’s movements and actions, trying to eke out every last, wonderful stroke, pet, and fingerbang she’s willing to afford you.");
-
-output("\n\nThat said, there’s only so much pleasure a hand can give you, especially when there’s a rock hard dick fucking another hole a scant few inches away. You impatiently eye Paige; she’s been fucked so thoroughly across your bed that her head is beginning to fall off the edge, and her eyes have gone from crossed to rolled, her irises disappearing back into her head. You pout; it could have been you that’s getting fucked silly!");
-
-output("\n\nYou could voice your opinion as such; maybe Kiro will give you a break and pull out from Paige (if she can) so she can give you some lovin’. Or, alternatively, you could take a more proactive approach to this threesome: Kiro’s got a whole lot of cock, but that doesn’t mean she has to be the only one to do all the work between you three....");
-
-output("\n\n// Continue here if Kiro fucks the PC");
-
-output("\n\nKiro reaches for Paige’s tail, yanking it upright and pushing it over her back, exposing every part of Paige to herself. It reaches down, slipping a finger into Paige’s tight pussy, making her flinch and shudder in anticipation, but Kiro isn’t done: she withdraws, and then lightly scratches and palms at the base of Paige’s upraised tail, playing with the erogenous zone that she knows is there. In just a few strokes, Paige is a puddle of goo before her.");
-
-output("\n\nYou internally fret that Kiro’s chosen Paige to be gifted her cock, but, to your delight, Kiro shuffles towards you; you feel her hand work between you for a moment, and then her hot, heavy length wetly slaps onto your back, her thickness lodged warmly between the cheeks of your ass as she hotdogs you. <i>“Sorry, Bookworm, but [pc.name] has got an ass that’s just too good to pass up.”</i> Paige’s mouth opens as a retort forms on her lips, but another rough yank at her tail stops her immediately. <i>“Let’s not pretend you haven’t had enough of my dick to last you a lifetime regardless, eh?”</i>");
-
-output("\n\nPaige looks in your direction lustfully as she hears the squelching noise of Kiro thrusting herself into your [pc.vagOrAss]; you feel your body split, bloat, and inflate to accommodate her immensity, and you know that if it weren’t for the oil, this would have been significantly more of an ordeal than it is. As it is, your eyes cross and your vision blurs as you feel your body surrender to the invading girth of her tremendous horsecock: you feel every delicious inch tickle against the rim of your entrance as she pushes deeper and deeper into you, and your [pc.belly] pushes you up and forward as it makes room for herself.");
-
-output("\n\nKiro sighs a single, elongated sigh as she settles inside you; you feel the heat of her bloated, overfull testicles against your [pc.legs], their load churning and bubbling to seed you, and you want nothing more. When she pulls back and thrusts into you again, the shock through your body dislodges your tongue from your mouth, and you groan dumbly, drool seeping from around the corners of your mouth as you’re driven across your sheets by Kiro’s pounding.");
-
-output("\n\nKiro, proving that her bluster isn’t just words, even continues exploring your body with her available hand: [if (pc.hasCock = false)she explores the meat of your ass and down your thigh, squeezing and groping at your delectable [pc.skinFurScales] there. She even reaches back to your ass and drives a finger into your [pc.asshole], exploring that avenue a bit. You have no sensibilities to stop her even if you wanted to: with that cock of hers pounding into your [pc.vagina] like it owns it, you’re little more than a steak with a nice ass for Kiro to play with. Just as you like it][if (pc.hasCock = true)she pokes, grabs, and molests at the fat of your ass and your thigh, groping at the delectable [pc.skinFurScales] there, but she doesn’t waste much time with the teasing and eagerly reaches beneath you, her swift, precise fingers wrapping surely around your bobbing, leaking [pc.cock]. She jerks you expertly, the way only a woman with a dick herself could give someone else a handjob; you already had no control over your body, with the way her mammoth meat wraps your [pc.vagOrAss] around itself like it owns it, but with every milking, jerking motion she makes on your meat, you sink deeper into your sexual reverie with her].");
-
-output("\n\nThat said... for all the fucking you’re getting, and as delirious and pleasure-drunk you are with Kiro fucking you, the fact that you’re one of the wheels in this threesome is unshakeable. Your vision occasionally clears enough for you to see Paige, lying on her belly as Kiro roughly fingerfucks her in time with her thrusting into your [pc.vagOrAss]. She makes no effort to try and interrupt your time with Kiro, but you know that she’s going to need something a bit more substantial than a finger in the cooch to really get her off.");
-
-output("\n\nTwo ideas cross your mind at the same time. On the one hand, you could take a more proactive role in this threesome – Kiro might have a shitload of cock on her, but that doesn’t mean she has to do all the work. But, on the other hand, you could be selfish and greedy and do nothing as Kiro has her way with your willing body. You’re sure Paige would understand....");
-
-output("\n\n[=Your Turn=][=Reposition=]");
-output("\n\n// if PC is not getting fucked, the button is [=Your Turn=]; if the PC is getting fucked, the button is [=Do Nothing=]");
-output("\n\n// end scene (scene: PKTSKLU)");
-
-output("\n\n[=Continue=]");
-output("\n\n// (scene: PKTSKC)");
-
-output("\n\nYou decide that you’re just fine where you are. You do not respond to Kiro’s question; you instead answer by pulling her cock from your lips, and trailing them down its bloated underside, where you can feel every salacious throb of her cum tube against your tongue.");
-
-output("\n\n<i>“Looks like it’s your lucky day, Bookworm,”</i> Kiro muses as you kiss and lick your way down her shaft until your [pc.lips] mesh warmly against her stretched sheath. <i>“You bagged one of the better ones. You be sure you thank [pc.name] properly after we’re done.”</i>");
-
-output("\n\nPaige says nothing as she excitedly lifts a leg around Kiro’s waist; she swings her body around until she and Kiro are face-to-face, and she wastes no time in grinding and humping herself against her. When she flexes forward, her slippery cunt drools a slick line of girl-lube up Kiro’s abdominals, and when she leans back, she slides it along her length, forcing it down with her body weight until it rests heavily against your head.");
-
-output("\n\nYou hear the sound of them both kissing above you, and you occasionally feel Kiro’s fingers brush against your [pc.hair] as they roam over the broad of Paige’s ass. You continue your adventure beneath them, licking at Kiro’s base and pressing your [pc.chest] against Kiro’s balls, feeling them flex and hearing them rumble with seed as you work her. You lift your own hands skyward and join Kiro in feeling up Paige’s ass, groping at anywhere her hands aren’t and getting two thick handfuls for yourself.");
-
-output("\n\n<i>“I’d better not waste this opportunity,”</i> Paige giggles as she wiggles herself against your hands. You glance up and watch Paige rock her body against Kiro’s meat; you admire her tight pussy and the way it pulls at itself with her motions and leaks her fluids down around the sides of her shaft. Then, the vision is pulled away, as she traces the topside of Kiro’s dick from root to crown, inverse to what you did earlier, until she’s out of sight.");
-
-output("\n\nYou focus on your own work, fondling at Kiro’s equipment and patterning them with wet, sloppy kisses, when you feel Kiro’s body stiffen and you hear both ladies gasp in pleasure. Her rod flexes against you – you can hear her blood flow and her muscles strain with renewed vigor – followed by the unmistakable, wet, grinding, squeezing sound of a lubed dick sliding into a warm hole.");
-
-output("\n\nPaige has both her legs wrapped around Kiro’s waist and her arms wrapped around her shoulders, bracing herself against her while that monolith slides into her eager pussy. You’re given a front-row seat to watching that pussy spread and slide down, inch after inch, into Paige’s body; whenever she passes a new milestone on Kiro’s length, Kiro tenses and her balls pull against her momentarily before the whole cycle starts again.");
-
-output("\n\nDrops of their combined fluids streak in rivers down Kiro’s length until they either pool into the fur of her sheath, or they land on your own nose and cheek. You take it all in horny stride as you dip further down, lavishing her furry nuts in your spit, relaxing and bathing them to release their load into the hungry Ausar you’ve given this opportunity to.");
-
-output("\n\nYou don’t forget about yourself: your hand dives to your crotch, [if (pc.hasCock = true)jerking at your [pc.cock] with each thick lick you make against Kiro’s genitals. You use the flavor and your submissive posture as gasoline to fuel your diamond-hard erection; with every pull and tug at your dick, you get hornier – and, if you’re not mistaken, a little longer – until your pre-cum is leaking so expediently that you coat yourself with it three times over and then some][if (pc.isHerm = true).[pg]And, dexterously, you reach a bit deeper, ][if (pc.hasVagina = true)palming wetly at your [pc.vagina], matching your strokes of the tongue with long, extended pets at your gash. Kiro’s every shudder vibrates through you, shaking you to your cunt before your own pre-orgasmic tenses bounce them back. In some part of your mind, you regret not taking up Kiro on her invitation to get fucked – but, in most of your mind, you’re quite happy here, with such a sexy show taking place just a few inches above you].");
-
-output("\n\nWhen they feel they’ve hit a limit, you hear Paige sigh in delight and you feel her move and adjust herself to the length buried belly-deep in her gash. <i>“That’s a good girl,”</i> Kiro sighs, her own legs bouncing a bit to readjust her grip on Paige’s body. <i>“Just like old times.”</i>");
-
-output("\n\n<i>“Yeah,”</i> Paige answers wistfully.");
-
-output("\n\nThey pause momentarily, and then Kiro begins to aggressively buck her hips forward and back, sawing her dick into Paige. You hear Paige’s breath catch in her nose when she starts, and then her hot breath comes out in a single, shuddered gasp when Kiro picks up the pace. <i>“This too,”</i> Kiro says over the wet clapping of their hips meeting and the moist clenching of a pussy milking a penis.");
-
-output("\n\nPaige hums in lustful reverie as her body works automatically. She has no real leverage or control, with her limbs wrapped around Kiro’s body; all she does is let herself get impaled and then let Kiro and gravity do the rest. <i>“But we’ve never had a friend with us before,”</i> Paige says, her every other word coming out as hiccups, in time with Kiro’s forceful pounding. <i>“How does [pc.heShe] feel? What is [pc.heShe] doing?”</i>");
-
-output("\n\nIn response, you open your mouth wide and shuck in as much nut as you can, giving Kiro a delectable suck, letting her know exactly how she should answer. <i>“Goddamn,”</i> Kiro replies breathlessly, and her legs split apart subconsciously, giving you more room to work. <i>“[pc.HeShe]’s giving my right nut one hell of a bath.”</i> She doesn’t continue, and instead hooks her leg over your shoulder, trapping you directly beneath her and between her legs so that you can properly get all the hard-to-reach spots. <i>“A bit to the left, would you?”</i>");
-
-output("\n\n<i>“[pc.name] isn’t some rag you use to wash your nuts, Kiro,”</i> Paige chastises through her strained breath.");
-
-output("\n\n<i>“Yeah, of course,”</i> Kiro answers, and, around Paige’s toned leg and around Kiro’s pulsating log of a dick, you see her glance down in your direction, <i>“and Gods above if I don’t owe you one hell of a fuck for it or something, [pc.name]. But, you chose to stay down there.”</i> She steps forward, pressing you deeper into her sack and obscuring your vision and muffling the sounds of the room with her bloated balls. <i>“Might as well make the most of it.”</i>");
-
-output("\n\nWith that, her pace picks up considerably, her thrusting growing impatient and demanding as she fucks Paige so hard, you’re not sure she’ll be able to do yoga for a week. Paige’s voice comes out as high-pitched, strained whines as her body contorts around the log inside her; you’re sure she’s thanking the stars that Kiro remembered that elasticizing oil of hers.");
-
-output("\n\nYour senses are bombarded with the occasional fleeting vision of Kiro splitting Paige in half with her horsecock when it isn’t obscured by her testicles; the smell of a bitch getting fucked and a stud fucking her as hard as they can; and the taste of a furry set of bouncing, tensing balls as they prepare to unload. Your masturbation kicks up a notch as you work Kiro over as best you can with what you have.");
-
-output("\n\nAnd your efforts apparently have their intended effect: it isn’t long before you hear Kiro grunt, her voice coming up high and settling, announcing to the room in a primeval, monosyllabic way that she’s about to orgasm. The skin on her balls clench and bunch up all around her, pulling towards her groin, as her cum pumps and bubbles upward. And Paige: she’s been relatively quiet the whole time, but as soon as Kiro’s orgasm began to approach, she began to whine like a needy, horny puppy, wordlessly asking for her every drop.");
-
-output("\n\nIt’s only a few more thrusts before she gets what she wants. You keep your eyes peeled on them both: you wouldn’t want to miss this show for the world.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: PKTSKC); go to (PKTSKE)");
-
-output("\n\n[=Go First=]");
-output("\n\n// if coming from [=Service Her=], this button is labeled [=Go First=]; if coming from [=Line Up=] and Kiro is fucking Paige, this button is labeled [=Your turn=]; if coming from [=Line Up=] and Kiro is fucking the PC, this button is labeled [=Do Nothing=]");
-output("\n\n// (scene: PKTSKGF)");
-
-output("\n\n// continue here if coming from PKTSKLU and Kiro is fucking Paige");
-
-output("\n\nYour [pc.legs] clench at unrestrained want and lust as you watch Paige get fucked so hard that she’s lost all sense of where she is. You glance over your shoulder towards Kiro; your eyes lock, and although she’s balls-deep in Paige, you know you have her attention.");
-
-output("\n\nYou pout your [pc.lips] in her direction and you wriggle your hips, slapping the thick of your ass against Paige’s, feeling every powerful thrust Kiro makes into her. You adjust your lower body to give Kiro a better visage of your unoccupied rear end, wordlessly hinting to her that you’re cold, empty, and lonely, and you could really use a hot cock to warm you up.");
-
-output("\n\nShe laughs at your unsubtle hinting. <i>“Right, Paige. Sorry, but it looks like our {Mister/Missus} is getting a little impatient.”</i>");
-
-output("\n\nShe withdraws from Paige’s tight-and-unwilling-to-let-go tunnel with an audible slurp, followed by what sounds like a veritable splash of liquid as Paige’s honey drips off Kiro’s rod. As soon as her vagina becomes vacant, Paige’s expression hardens and her senses return to her; she looks over her shoulder in frustration before she remembers where she is and what Kiro is about to do; she’s still horny, but she doesn’t object when Kiro aligns herself against your [pc.vagOrAss] and, without any preamble at all, introduces herself into you.");
-
-output("\n\n// continue here if coming from PKTSKLU and Kiro is fucking the PC");
-
-output("\n\nYou lower your head into the sheets of your bed, resigning yourself to Kiro’s whims and whatever pleasure she decides to take from you. You hope, though, that the only thing she does differently is that she fucks you harder, and that the thought of pulling out from your [pc.vagOrAss] doesn’t even cross your mind.");
-
-output("\n\nLuckily for you, that seems to be exactly the case: you glance in Paige’s direction, and despite her being left alone and relatively unattended, she doesn’t seem to mind that she isn’t getting any – at least, not enough to raise her voice about it. Kiro, lost in her rut, makes no attempt to pull out of you, and fucks you like she owns you. Just as you wanted.");
-
-output("\n\n// continue here if coming from PKTSKSH");
-
-output("\n\nYou look into Kiro’s eyes, and then Paige’s, momentarily indecisive. The taste of Kiro’s pre soaks and cakes your [pc.tongue], leaving you subconsciously wanting more, almost like a junk food. But, you think that if you turned down Kiro’s invitation to properly take this wonderful beast into your body, you don’t think you’d ever forgive yourself.");
-
-output("\n\nYou disengage and lay on all fours on your bed, giving your [pc.ass] a shake in Kiro’s direction, inviting her to come and get it. <i>“Sorry, Bookworm, but it looks like [pc.heShe]’s made [pc.hisHer] choice,”</i> Kiro says as she steps forward, her hands clapping down on your cheeks roughly.");
-
-output("\n\nPaige, though, doesn’t seem too upset; she takes a spot next to you on the bed, watching you with an amused expression as Kiro positions the blunt tip of her cock against your [pc.vagOrAss]. <i>“It’s fine with me,”</i> she replies. <i>“You’ll just have to make it up to me later.”</i>");
-
-output("\n\nKiro doesn’t give you the opportunity to fantasize about what that might entail. As the words register in your head, she thrusts in, easily sinking her oiled-and-lubed dick into you in a quick, forceful thrust.");
-
-output("\n\n// merge here");
-
-output("\n\nKiro pounds you into your bed, and you couldn’t stop her if you wanted to; you relax and resign yourself to her brutal treatment, allowing your body to accept all of her into your [pc.vagOrAss], thanks in no small part to the oil covering her from tip to base. You can feel every tight, hard inch slide into you until your ass beats against her belly; when she pulls out, you feel an emptiness blossom within you in time with her vacating cock, only for it to be replaced with more dick.");
-
-output("\n\nPaige, for all her patience with you and your selfish, unspoken desire to keep getting fucked, is nonetheless none too keen to lay there with some fingers for her to play with. Through your blurred, crossed vision, you see her crawl towards you until she’s right next to you; she leans in, her lips against yours and her tongue suddenly in your mouth. It takes you a moment to understand what’s happening, and even when you <i>do,</i> your automatic response isn’t to kiss her back so much as it is to suck on her tongue.");
-
-output("\n\n<i>“I’m not going to sit here and watch you get all the dick, [pc.name],”</i> she says as her body begins to shift. <i>“I’m getting some action right here, right now, or so help me.”</i>");
-
-output("\n\nDexterously, Paige flips onto her back and lifts her left leg high, hooking it around Kiro’s neck and locking her foot between Kiro’s shoulderblades; with a heft, she does the same with her right leg. Keeping her steady on the bed with her hands, she places her body above yours, and then thrusts her kips towards Kiro’s face, mashing her sopping wet pussy against Kiro’s lips. <i>“Eat up,”</i> she commands.");
-
-output("\n\nYou don’t feel any pressure on your back, but you do see Paige’s hands on either side of her head, keeping her up. It’s a unique position she’s put herself in – her yoga practice must be coming through for her now.");
-
-output("\n\nPaige gasps in delight as you hear the obvious sounds of a questing tongue eagerly fucking, tasting, and eating a wet Ausar pussy; her hands struggle and strain in your vision, and you wonder how long she’ll be able to keep up the position.");
-
-output("\n\nKiro demonstrates her expertise as a fucker by not breaking stride, even as Paige fucks her mouth. Her dick continues to piston into your [pc.vagOrAss]: in fact, it gets faster and deeper now that Kiro’s busy on both ends. Your hands bunch the sheets of your bed into balls and your eyes begin to water as you feel that blunt horsecock pound against your [if (pc.hasCock = true)prostate. Her every pound into you causing a fresh gush of pre-cum to jet from your [pc.cock] in pleasure, soaking your bedding through][if (pc.hasCock = false)G-spot – not that that’s hard for Kiro: her dick is so big that it rubs at everything inside you at all times. Her every thrust into you causes a fresh gush of your personal lube to splurt from the crease of where her cock presses against your pussy, drenching your [pc.legs] and as far up as Kiro’s stomach]. You’re very close, and it’ll only take a dozen more thrusts, if even that.");
-
-output("\n\nYou can hear Kiro’s muffled voice as she chows on Paige’s box, and from the way she’s grunting in ascension, and the way her stiff dick seems to angle itself just a little bit higher, and the way the skin of her balls tense and scrunch around your legs, she’s not going to last much longer either. And Paige is the same way: she’s the most vocal of you three, with her voice coming out in wanton, feral, horny yelps; her grip slips occasionally and you can feel her quivering body press onto yours as she tries desperately to cum into Kiro’s mouth.");
-
-output("\n\nYou bite onto the sheet and clench your jaw, bracing for the tidal wave that’s about to come crashing into all three of you....");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: PKTSKGF); go to (PKTSKE)");
-
-output("\n\n[=Reposition=]");
-output("\n\n// (scene: PKTSKR)");
-
-output("\n\n// continue here if coming from PKTSKLU and Kiro is fucking Paige");
-
-output("\n\nAs hot as it is to watch Paige got fucked – and as mesmerizing as it might be to watch that thick tree of a dick saw in and out of a hole that should have been too small to accommodate it, Kiro’s every thrust being accompanied by a wet squeeze and a moan from the yoga instructor – you have some needs of your own and you aren’t about to just sit there and watch the fun unfold. It’s time to be a little more proactive in this threesome.");
-
-output("\n\n// continue here if coming from PKTSKLU and Kiro is fucking the PC");
-
-output("\n\nYour vision is blurred and your eyes are watering with how much pleasure you’re getting from having Kiro fuck your [pc.vagOrAss] so wantonly – and you know Kiro is feeling it too, with the way she pounds so hungrily into your body and the way her hand explores your creases and hills. But, despite your inability to focus, you know that this is a threesome, and that, although you very much could ride Kiro’s dick until the next sunrise, she has needs too.");
-
-output("\n\nYou weakly wave at Kiro, wordlessly instructing her to stop. It takes her a thrust and a half, but she dredges up the willpower to do so. You both remain still for a moment, catching your breath; she’s still lodged deep inside you, and you can feel her every heartbeat through her thick length. When your sensibilities return, you tell Kiro simply that it’s Paige’s turn.");
-
-output("\n\nPaige’s eyes light up at your generosity, and her mouth widens into a giddy smile – a pair of expressions that immediately wipe from her face when Kiro, sexually energized and close enough to her own orgasm, withdraws from you with a loud slurp and, without any preamble, thrusts herself into the bitch.");
-
-output("\n\nA muffled scream, gurgled by Paige’s spit as she chokes on her own breath in surprise, echoes through the room in time with the wet plap of Kiro’s nuts slapping into Paige’s ass. She takes a similar position as you: face-down, ass-up, hands clenched into balls on the sheets, while Kiro uses her puffy, tight cunt as a tool for her own pleasure. You lay there, collecting your energy, watching Paige’s body push along your bed, dragging your poor sheets along with her.");
-
-output("\n\nThe display reminds you that you haven’t cum yet, and you’re still horny as fuck. You might have done Paige a favor, but you still have needs of your own that haven’t been met. This whole threesome so far, you’ve done nothing but lie there for Kiro’s pleasure. It’s time to be a little more proactive.");
-
-output("\n\n// merge here");
-
-output("\n\n// continue here if the PC has a penis");
-
-output("\n\nYou stand from the bed; it rocks slightly from your weight shifting off it. Your [pc.cock] waggles in front of you, bobbing underneath its own weight in its almost-painfully erect posture. There’s only one unoccupied vagina in the room[if (pc.hasVagina = true) (aside from your own)]; you place one hand on Kiro’s jackhammering hips as you move behind her. You rub your [pc.cockHead] against the fat of her furry ass, streaking a line of your pre-cum towards her wet entrance.");
-
-output("\n\nKiro hums in approval when she feels your hands on her; she thrusts her hips backward, filling your hands with her body, inviting you to get a good, solid grope and to be a little more exploratory. You take the invitation, but not as much as you think she expected: you dip two fingers into the cleft of her butt to find her pussy and give them a playful, inquisitive thrust. She sighs and leans into your hand, but you withdraw – and replace it with something a little more... substantial.");
-
-output("\n\nShe remains still, yet impatient, as you guide yourself into her. You can hear Paige whine while Kiro momentarily abstains from fucking her brains out. <i>“To this day, [pc.name], you’re the only one who’s known what it’s like to fuck Kiro Tamahime in the pussy,”</i> she growls lustfully, looking over her shoulder, her eyes falling onto yours. Her mouth curls into a trusting, yet lustful, smile. <i>“I want you to remind me why, stud.”</i>");
-
-output("\n\nYour hands grip onto her ass tightly, manhandling the jiggly flesh and pressing them together to create more of a cleave for you to thrust into. You’re not as vigorous as Kiro was when she went into Paige (yet), and work your way into her slowly, feeling her split apart to welcome your [pc.cock].[if (pc.cockLength >= 16) She’s tight, remarkably so, and yet, despite her ‘inexperience,’ she takes you about as easily as any other slut – you’ll have to look into buying some of that elasticizing oil yourself!]");
-
-output("\n\nWhen you thrust crotch-deep into her, you push Kiro forward, burying her thick cock back into Paige, who sighs in delight at being filled up once more. You remain there until Kiro pulls out, and you repeat her action yourself. It’s a slow-going rhythm at first, but when you get it going, the three of you are a well-lubed fucking machine: no cocks are left unattended cold and[if (pc.hasVagina = true) almost] no vaginas are left empty and hungry.");
-
-output("\n\nYou lean in closer to Kiro, wrapping your arms around to her front and fondling her boobs; you pinch and pull at her nipples in alternating patterns that sync with your thrusts, and occasionally, you open up your hand and just get a good, thick grope of Kui-Tan titty. Your every grope and feel at a different part of her body is rewarded with a gentle, sexy laugh and a coo, followed by a harder thrust into Paige and a harder back-end into you, taking you deeper into her.");
-
-output("\n\n<i>“Gods,”</i> Kiro gasps when your fingers rub the nub of her nipple once again. <i>“You two are the best, you know that?”</i>");
-
-output("\n\nPaige doesn’t respond; she’s shoved a fistful of your bedsheets into her mouth in order to keep from screaming. You answer by saying that [if {Personality is Hard}yes, you <i>are</i> the best, and you always knew it. <i>“Smartass,”</i> Kiro laughs, slapping at your hand with her own.][if {else}you and Paige aren’t exactly doing her a favor – you’re in a threesome together because all three of you are important to each other, and because all three of you are sexy as hell. <i>“That’s what I mean, though,”</i> Kiro answers, but doesn’t continue.] Her breathing has become quick and shallow, and her grip on Paige’s body has become tight yet unsteady. You know what’s coming.");
-
-output("\n\n<i>“Kiss me[if {Personality is Hard}, Smartass],”</i> she demands, her left hand grabbing onto your scalp to keep you in place. You do as she says and thrust your [pc.tongue] into her mouth, and allow hers into yours; your kissing is aimless and frantic, used as a tool to hurry forth your impending orgasms. [if {Paige can see}Out of the corner of your eye, you can see Paige look back at you two, and when she sees Kiro give your tongue a suck, she tenses and spasms on the spot – it pushes her over the edge.]");
-
-output("\n\nIt works.");
-
-output("\n\n// continue here if PC is pure female");
-
-output("\n\nYou roll onto your hands and knees and crawl towards Paige, your eyes locked on that gorgeous meat pounding into her sopping box. Your [pc.tongue] snakes out to wet your [pc.lips] and no matter how altruistic your decision was, you can’t help but have niggling thoughts in the back of your head about what a mistake you’ve made. Still, you’ve made it; you’re not going to try and get Kiro to change her mind, but you <i>are</i> going to reward yourself for it.");
-
-output("\n\nCarefully, you drape your body over Paige’s, your [pc.legs] on her either side and your hands and shoulders next to hers. You layer yourself onto her back just slightly, feeling her fine, bristly fur rub and tickle at the [pc.skinFurScales] of your front side; your [pc.chest] rests against her shoulderblades, your [pc.nipples] carving lines across her back with every shove Kiro’s thrusts do into her.");
-
-output("\n\nPaige’s bushy tail is extended directly behind her, wrapping just slightly around Kiro’s belly and towards her ribs. You reach behind her and fix that: with a yank, which causes Paige to flinch in surprise, you lift her tail and bend it towards her back, where you trap it between your two bodies. With that done, you lower your [pc.hips] until her tail coarsely rubs against your [pc.vagina].");
-
-output("\n\n<i>“Imaginative girl,”</i> Kiro congratulates with a grin as she sees what you’re doing. The fur on Paige’s tail is soft enough to rub against your ladybits without being too overbearing, and the tail itself is stiff enough for you to fuck against. So you do: whenever Kiro thrusts home into Paige, she body shifts forward, dragging her tail against your vulva and your [pc.clit], making your eyes cross and your [pc.vagina] coat the underside of her tail with a little more juice.");
-
-output("\n\nYour [pc.chest] rubs against Paige’s strong back in time with Kiro’s thrusts into her. Your whole body feels electric: Paige’s tail thrashes between you occasionally, which does wondrous things to your [pc.clit]. You hardly have the strength to keep yourself upright the longer it goes on; you feel the strength leaving your arms and [pc.legs] and you begin to buckle, but the tactile sensation of having Paige’s tail rub against you the way it is, is too pleasurable for you to give up.");
-
-output("\n\nKiro, thank the Gods, comes to your aid when she sees how much effort you’re putting into just staying upright. <i>“C’mere, sexy,”</i> she growls, and you feel her hands wrap around your [pc.thighs]; with surprising strength considering your individual positions, she hefts you up suddenly, wrapping yourself around either side of her face and bringing your own closer to Paige’s lower back.");
-
-output("\n\nBefore you can even register what’s happening, you feel Kiro’s tongue inside you. Where before you were relatively content to just fuck Paige’s upturned tail, Kiro had other ideas, and now her wet, questing tongue pierces into your [pc.vagina], tasting at everything you have to give and playing at the ridges of your inner muscles, seeking your elusive G-spot. Her nose bumps against your [pc.asshole] with her every unforgotten thrust into Paige, making you shiver in delight.");
-
-output("\n\nBoth yourself and Paige are at the whims and mercy of Kiro and her masterful work on both your bodies. You glance down, your eyes drinking in the sight of Paige’s toned, flexing lower back and tight ass, as you see Kiro’s thick cock violate her pussy, the whole thing pounding down to the bone into the writhing Ausar beneath you both. If it weren’t for the oil, Paige would have been ruined for anybody else, and in some perverted part of your mind, you would have loved to see that.");
-
-output("\n\nIt’s all too much for the three of you. The collective breathing and rocking and fucking has gotten too intense for you three to control – Paige has resorted to shoving a fistful of your bedsheet into her mouth to keep from screaming in pleasure, and Kiro’s mouth is too full of your wet cunt, though her muffled grunts resonate through your body and into your ears well enough. You have to do the orgasmic shouting for them both: when that telltale bubbling starts between your legs and starts crackling through you like a lightning bolt, you start yelling to the room how you’re about to cum, and that you’re so close–");
-
-output("\n\nApparently, so were they.");
-
-output("\n\n[=Climax=]");
-output("\n\n// end scene (scene: PKTSKR); go to (scene: PKTSKE)");
-
-output("\n\n// (scene: PKTSKE)");
-output("\n\n// Sorry, Fen");
-
-output("\n\nAll three of you are wet (in more ways than one); bruised; exhausted; and you’re sure you’re awfully musky; but none of you are done yet. That’s going to change in just a few more thrusts: your orgasm is building up and up, and you know that Paige and Kiro won’t last much longer either. In just a few more heavy thrusts, all three of you make it there.");
-
-output("\n\nKiro, the star of the show between you three and an artisan of her craft, isn’t able to handle the sensory intake and cums first. Her body stiffens tight, and if you focus, you can hear the gurgle of her nutsack as her copious cum jets up her shaft and into its new, warm home, [if {PKTSKGF, and Kiro is fucking the PC}straight into your [pc.vagOrAss]. You count each load by the times your hole tightens around her shaft with how her dick bloats with her seed; you get to five full-bodied, thick shots of Kui-Tan cream before you’re too horny to keep track. Kiro’s nuts bunch up against her body and against your [pc.legs] and the flare of her horse cock inside your body pinches at your already-taxed body in just the right ways, prodding at your sensitive bits with each fresh, new gush. Your [pc.belly] begins to swell and round out with her load, and yet she keeps going – even when you hear a wet splash from behind you when your body can’t take any more and her cum backwashes out from you][if {else}straight into Paige’s cunt. You’re treated to a stage-side seat to the show that is Kiro’s dick inflating rhythmically, in time with the scrunching and bunching of her leathery sack against her legs, as she seeds her hole. Paige squeals in delight at the sensation, barely muffled by whatever she could possibly get into her mouth to stem the noise. With rapt, awed attention, you witness her belly, normally toned and defined with a visible six-pack even beneath her fur, round out with Kiro’s seed as her womb packs to bursting[if {PKSTKC} – which it does. You were so lost in the sight of those two magnificent bodies copulating just inches from you that you couldn’t react in time to the sudden backwash of cum that washes from Paige’s body, and all over your face and hands].");
-
-output("\n\nPaige isn’t too much further behind[if {PKTSKGF, and Kiro is fucking the PC}, and knowing, and hearing, that Kiro is cumming into your tight body just a few inches beneath her sets her over the edge. She loudly squeals into the room, her tight legs clamping around Kiro’s face, as her cunt clenches and milks at Kiro’s tongue, her ladycum squirting from her and straight into Kiro’s mouth. Her body shakes with concentrated effort, until a second, body-wracking orgasm shudders through her, robbing her arms of their strength, and she crashes into you on the bed. The motion not only does nothing to impede her rapid-fire orgasms, but it somehow gives her more, now that Kiro’s bending at the neck to suck at her cunt from a different angle][if {else}, emphasized by how her body squeezes and shivers, and her voice shrieks in pleasure, as Kiro unloads into her again and again. She does her best to stifle her own voice, to little avail: every time Kiro’s dick bloats and shoots another thick glob of seed inside her, she’s wracked with anywhere between one orgasm and three. Her lady-Ausar-jizz squirts from her hole, soaking up to her own belly and spraying back onto Kiro, lubing that amazing horse cock so it can slide ever deeper and give her ever more cum. No matter how much cum Paige takes into herself, it’s never enough, and she won’t be satisfied until every last drop of Kiro’s seed is emptied from her hefty nuts. So, they’ll probably be there for a while].");
-
-output("\n\nAnd that just leaves you. Surrounded on one side by an orgasming Ausar and on another by an orgasming Kui-Tan with a massive cock, a borderline instinctive response is trigged in some part of your brain, and the orgasm that was building inside you finally unleashes everything it has. [if {PKSTKC}Y[if (pc.hasCock = true)our [pc.cock], unable to sit idly by as you watch, and veritably bathe in the seed of, another shaking cock as it unloads into a fertile pussy, blasts your own load eagerly into the air. Your hands do nothing to stimulate yourself further as your [pc.cum] coats Kiro’s legs, as high up as her knees, uselessly soaking into her fur and slickening the floor when it comes crashing back down][if (pc.isHerm = true). And, at the same time, y][if (pc.hasVagina = true)our [pc.vagina] clenches and milks the air, your [pc.femcum] gushing from beneath you in powerful squirts, spraying and coating the floor beneath you as far back as your [pc.feet]. You can’t help but fantasize yourself in Paige’s position: to be in Kiro’s arms, with that magnificent cock pumping load after load after load into you and giving your neglected pussy the attention it so desperately craves. Using the fantasy as fuel, you urge out more and more orgasms from yourself, until you’re cross-eyed and dazed.][if {PKTSKGF, and Kiro is fucking the PC}[if (pc.hasVagina = false)Your body squeezes involuntarily as your orgasm rips through you, from your abused-yet-delighted [pc.asshole], up to your head, back to your [pc.cock], and back up to your head again, repeating again and again, and each time it hits your dick, you spray another load of [pc.cum] into your bedsheet. You feel muscles you didn’t realize you had tense around Kiro’s shaft, rippling around her, coaxing her for more and more; your [pc.belly] presses harshly against the bed, overfilled and heavy with her offering, and yet you couldn’t possibly imagine stopping for anything.][if (pc.hasVagina = true) Your body squeezes involuntarily as your orgasm rips through you, from your abused-yet-delighted [pc.vagina], up to your head, back to your [pc.clit], and back up to your head again, repeating again and again, and each time it hits your pussy, you spray another blast of [pc.femcum] back onto Kiro’s shaft. You feel muscles you didn’t realize you had tense around Kiro’s shaft, rippling around her, coaxing her for more and more; your [pc.belly] presses harshly against the bed, overfilled and heavy with her offering, until your womb just couldn’t possibly take another drop, and it all backwashes onto Kiro. And yet, you need more....]][if {PKTSKR}[if (pc.hasCock = true)Your [pc.cock], wedged deep into Kiro’s cunt, inflates with your rushing [pc.cum], eager to show her why she allows you to fuck her the way you do. You press your [pc.hips] against her, shoving yourself as deep as you can in a single thrust, and your cum flows from you unabated; Kiro, through her orgasm, coos in delight every time she feels another wad of your spunk bubble inside her, and her pussy flexes and milks at you, thirsty for more and more. You’d thrust into her some more if you could, but she’s got you trapped as tight as could be inside her – not that that’s an issue. If she wants your cum as deep inside her as you can, you’ve got more to give....][if (pc.hasCock = false)Locked as you are, with your face pressed into the small of Paige’s back and with your [pc.legs] wrapped around Kiro’s head, you have little agency in how you gush squirt after squirt of your [pc.femcum] into her thirsty, demanding maw – in some ways, that makes your orgasm all the better. Your elbows quake in effort as you try and keep yourself aloft above Paige, and their strength gets sapped every time you feel Kiro’s lips suck at your vulva, or her tongue search a little deeper inside you, or her throat swallow your lady-spunk down her gullet. Your senses are overloaded with pleasure on all sides, and there’s nothing you can do about it but cum in Kiro’s mouth some more. And then, some more. And then....]]");
-
-output("\n\n[=Afterglow=]");
-output("\n\n// end scene (scene: PKTSKE); go to (PKTSA)");
-*/
+//[=Paige=]
+// (scene: PKTSP)
+// Action tree: https://i.imgur.com/kgEjocX.png
+public function PKTSP():void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	var args:Array = ["PKTSP"];
+	output("Admittedly, it’s kind of hard to focus on anyone, including yourself, other than the woman that’s currently fucking your mouth with her own tongue. You relax and allow your hands to travel along Paige’s body, exploring the creases and defined musculature of her back, shoulders, and glutes; you recline into the bed as she continues to assault you, and you let her.");
+	output("\n\nYou squeeze and ply at the thick of her ass, kneading it like dough in your hands, as Paige’s humping against your thigh escalates to full-body humping; she has to crane her neck up and down to keep the kiss steady, but every part of your front, from your crotch to your [pc.belly] to your [pc.chest] are massaged by hers as she eagerly, hungrily rocks against you, revving herself up for a good, proper fucking between you two and Kiro.");
+	output("\n\nAnd speaking of Kiro, she doesn’t remain idle for too long: at first, from the corner of your eye, you see her stand there, her chin in her hand, as she watches Paige vigorously fuck herself against you; her other hand goes to the base of her own cock, giving it a few tugs and rousing her monster from its sleep. <i>“Goddamn,”</i> she says amusedly, <i>“I don’t think you’ve ever kissed me like that, Paige. Try not to suffocate the poor [pc.boyGirl].”</i>");
+	output("\n\nYou hadn’t realized how much your chest was burning from the lack of air until Kiro brought it up. At the chiding, Paige pulls away, looking over her shoulder");
+	if(paigeBlind()) output(" at Kiro’s general direction");
+	output(". <i>“Don’t start acting jealous now, you greedy bitch,”</i> she responds playfully. She wags her ass in Kiro’s direction, her tail swaying to one side, giving Kiro unrestricted, unimpeded vision of her wet, winking pussy, begging for some valiant, daring Kui-Tan to come and satisfy it.");
+	output("\n\nKiro’s hands clap onto yours as they massage at Paige’s butt, moving with yours as they explore the contours of her meaty globes. Then, she lightly grips your hands and move them inward, towards the cleft of her ass, and she places them on the hot, steely meat of her rapidly inflating cock. She wordlessly guides you to jerk her off while she hotdogs against Paige’s rear end.");
+	output("\n\n<i>“I’ll give you the chance to make a decision, here, [pc.name],”</i> Kiro says, her breath catching in her throat as she excitedly works herself against Paige. <i>“If you aren’t gonna have a piece of this pie, I won’t mind taking it for you.”</i>");
+	output("\n\nKiro’s asking you if you want to take advantage of Paige’s invitation to fuck her. ");
+	//if {PC has had anal sex with Paige}
+	if(flags["PAIGE_ANAL"] != undefined) output("Considering that, when you met Paige, she was an anal virgin, Kiro’s never done Paige up the ass and that’s probably not going to change today. ");
+	output("Your options are to politely decline Kiro’s offer and stay where you are, or to swap around and eat out Paige’s moist muffin while Kiro finds some other way to entertain herself.");
+
+	//[=Kiss Her=][=Eat Her Out=]
+	// end scene (scene: PKTSP)
+	processTime(10);
+	pc.lust(20);
+	clearMenu();
+	addButton(0,"Kiss Her",PKTSPKH,args);
+	addButton(1,"Eat Her Out",PKTSPEHO,args);
+}
+
+//[=Kiss Her=]
+// (scene: PKTSPKH)
+public function PKTSPKH(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSPKH");
+	output("You say nothing – it’s impolite to speak when your mouth is full, after all – and instead, you release one hand from Kiro’s rising cock and use it to pull on one of Paige’s cheeks, keeping them apart. With the other, still on Kiro’s shaft, you blindly start dragging and jabbing it at Paige’s crack, searching for the bullseye that you know both ladies are looking for.");
+	output("\n\n<i>“Good choice,”</i> Kiro says huskily as she, like before, wraps her hand around yours, guiding you to guide her into Paige’s tight body. You can’t see what’s happening, but you feel Kiro’s hips push forward, then stop as she meets an obstruction – and then push forward again.");
+	output("\n\nPaige lurches upward, hissing in pleasure as Kiro sinks into her, her back arching in a broad C above you. Kiro smirks at the reaction, loving just how automatic it is and how Paige is going to struggle to maintain herself in front of you both as she fucks her some more. And you: with your mouth no longer occupied, and with a sudden faceful of Ausar boob, you lean in, your hands wrapping at the crook of Paige’s back, and open wide to glom her left tit into your mouth, as much as you can stuff into there.");
+	output("\n\n<i>“Gods!”</i> Paige shouts, unsure of what to do with her body. She instinctively tries to buck back against Kiro, to take more of that thick, wonderful, familiar horsecock into herself, to fuck Kiro as hard as she knows she can; but when she does, her upper body goes with her, and removes itself from your questing [pc.tongue] against her erect nipple. In an effort to try and solve both problems at once, her strong arms wrap around your back and your head, locking you in place and forcing you to move with her as she gets railed by Kiro.");
+	output("\n\nKiro sighs through pursed lips as she sinks deeper and deeper into Paige’s body. Every few inches, she shuffles herself a little bit, readjusting herself inside her before pushing forward once more. <i>“Now, doesn’t that feel nostalgic,”</i> Kiro murmurs wistfully as her hands explore Paige’s ass, yanking at her tail and tickling at her erogenous spot, making her tense on top of you. <i>“Nobody’s ever quite fit me like you can, Paige. Every time with you feels like it’s the first time all over again.”</i>");
+	output("\n\nYou glance up at Paige, seeing her mouth some words to herself. She squeaks out the occasional sound that almost comes out as a word, but it falls apart at her lips. <i>“Fuck!”</i> she finds the strength to yell when Kiro shuffles forward a bit more, splitting her just a little further apart. <i>“You’re so fucking...!”</i> Like before, she’s unable to finish her sentence.");
+	output("\n\n<i>“Keep singing my favorite song, Bookworm,”</i> Kiro encourages as she eventually bottoms out inside Paige, successfully stuffing her entire length inside her Ausar. Paige’s breath comes out as whined, strained gasps of excitement as Kiro begins to casually thrust into her, the sound of their hips slapping together and the feel of Kiro’s heavy nuts banging against your [pc.legOrLegs] underscoring the symphony she’s putting on for the two of you.");
+	output("\n\nYou maintain the course for a few moments: with Kiro behind Paige, stuffing herself into Paige’s glove at an easy, unremarkable pace and making Paige quiver with delight at each thrust, while you, held in place by Paige’s stiff, sturdy arms, lovingly tend to her bouncing boobs, sucking the globe of one into your mouth and tasting and nibbling her erect nipple until you pull back a moment to give your jaw a rest. And when you’re rested, you dive back in, going to the other boob and starting it all over again.");
+	if(pc.hasCock()) 
+	{
+		output("\n\n[pc.EachCock] flounces to and fro underneath Paige’s bucking body; you don’t have a lot of leverage to do your own thrusting underneath her. ");
+		if(pc.cockTotal() == 1) output("It leaks");
+		else output("They leak");
+		output(" pre-cum impiously, stranded in the cold air between your bodies, left to envy Kiro’s horsecock as it snugly makes itself at home inside Paige.");
+
+		output("\n\nYour needy masculinity doesn’t go unnoticed by Kiro: she reaches down between the three of you and gently strokes at you, her fingers tickling down to your [pc.base] and gliding her palm over the head of your [pc.cockHead]. Whenever she thrusts in, she gives you a light tug, keeping you erect and ready, and when she pulls out, her hand travels lower, to palm at your ");
+		if(pc.balls > 0) output("[pc.balls]");
+		else output("root");
+		output(".");
+		
+		output("\n\n<i>“I know you’re not just gonna lie there and let me pound Paige by myself, [pc.name],”</i> Kiro chides, leaning to one side to see you from around Paige’s form. Your vision is mostly obscured by Paige’s heaving titty in your face, but, if you lean a little bit, you can meet Kiro’s stare eye-to-eye. <i>“There’s only so much titty a [pc.boyGirl] can suck before they need to bust a nut, am I right?”</i> Kiro’s hand on your [pc.cock] grows more insistent, eager for you to say what you want. <i>“Come on, let’s really fuck her brains out.”</i>");
+	}
+	else
+	{
+		output("\n\nYour own [pc.vagina] lurches with Paige’s bucking body, leaking your [pc.girlCum] down your [pc.thighs]. Your needy sex rests unoccupied in the open air between the three of you, left to enviously hump against Paige’s overstuffed cunt and fantasize about having a nice, thick horsecock of its own to seed it.");
+		output("\n\nYour drooling femininity doesn’t go unnoticed by Kiro; she reaches down between the three of you and gently strokes at you, her fingers gliding along your hot, wet vulva and gingerly slipping a finger in between them, showing herself into your body. You clench and sigh at her passive fingerfucking, and you wriggle your [pc.hips] in her direction, silently urging her for more, to explore you deeper. When she sinks into her knuckle, she lays her palm flat against you, using the butt of her open palm to slide over your [pc.clits].");
+		output("\n\n<i>“I know you’re getting impatient for something to fuck you good and hard, [pc.name],”</i> Kiro chides, leaning to one side to see you from around Paige’s form. Your vision is mostly obscured by Paige’s heaving titty in your face, but, if you lean a little bit, you can meet Kiro’s stare eye-to-eye. <i>“A girl can only take so much of watching someone else get fucked before they need some for themselves, am I right?”</i> Kiro’s hand becomes more insistent, the palm of her hand soaking in your lubrication, eager for you to give the word. <i>“I only have so much cock to go around, but just say the word, angel, and I’ll think of something.”</i>");
+	}
+	output("\n\nIt’s hard to say no to an invitation like that....");
+
+	//[=Double P.=][=Sandwich=]
+	processTime(20);
+	pc.lust(30);
+	clearMenu();
+	// end scene (scene: PKTSPKH)
+	if(!pc.hasCock()) addButton(0,"Cuddle Up",PKTSPCU,args);
+	else addButton(0,"Double P.",PKTSPCU,args);
+	addButton(1,"Sandwich",PKTSPS,args);
+}
+
+//[=Eat Her Out=]
+// (scene: PKTSPEHO)
+public function PKTSPEHO(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSPEHO");
+	output("You don’t hesitate; a moment longer and Kiro might take your silence as an invitation to do what she likes. You raise your [pc.foot] to her belly, gently but insistently pushing her away; she steps back, relenting to your unspoken request, and as soon as you have the space, you lurch Paige off of you.");
+	output("\n\nYou command Paige to lay on her back. Panting, she’s too horny to try and deny your commands, and she does so, swapping places with you on your bed and lying flat on her back, her arms and legs spread eagle, exposing every part of her vulnerable self to you and Kiro. The two of you can barely contain yourself; Kiro audibly licks her lips at the sight of Paige and her complete, total willingness to whatever you two think to do with her.");
+	output("\n\nOf course, you don’t let Kiro make the decision for you: the sight of Paige’s soaked, puffy pussy, open to the air of your quarters and oh-so-inviting for anything to taste it, is too much for you to ignore. You kneel in between her legs and unceremoniously shove your face in between her thighs, using your arms to clamp her legs around your head and keep you in place as you loudly munch on her box.");
+	output("\n\n<i>“What a hero,”</i> Kiro laughs as you eagerly go down on Paige. She runs her hand along your head, ");
+	if(pc.hasHair()) output("ruffling your [pc.hair]");
+	else output("rubbing at your scalp");
+	output(", as she strides alongside the bed, towards Paige’s upper half. <i>“You always were the cocksucker-for-hire between us, Paige. I don’t suppose you’re rubbing off on [pc.name] in more ways than one?”</i>");
+
+	output("\n\nWords form in Paige’s mouth that dissolve immediately as she tries to control her breathing. You’re really working her over in a hungry, horny frenzy: your hands run against the grain on Paige’s stomach, digging down low to fondle at her six-pack abdominals, while your [pc.tongue] drills and twists into her as deep as it can reach, touching and exploring every spongy surface inside her cunt. Your every spurious action and reaction to her reactions is rewarded with another mouthful of her squirting, feminine lube, which you swish in your mouth momentarily before either sliding it down your throat or drooling it along your tongue to further coat it in her taste.");
+	output("\n\n<i>“Gods damn, you’d think [pc.heShe] did this for a living,”</i> Kiro admires as she watches you go to town on Paige’s squirming, spasming body. <i>“I’ll have to ask [pc.himHer] if I can get some of that later.”</i>");
+
+	output("\n\nYou hear the bed creak and you feel it sink under Kiro’s weight as she clambers onto it. You glance up, along Paige’s stomach, and you’re treated to an eyeful of Kui-Tan testicles as Kiro straddles Paige’s body. Kiro rocks and thrusts gently, her ass flexing in front of you as she gets herself comfortable; you can even see Kiro’s own winking, delicious cunt and the streaks of her feminine arousal drip steady streams down her rolling nuts, wetly matting the fur of her own balls and along Paige’s ribs.");
+
+	output("\n\nYou hear the sound of skin clapping against skin, followed by Paige making wet gurgling noises, followed by Kiro rhythmically pumping her hips forward and back – you can only imagine the sight of Kiro tittyfucking Paige, her horsecock so large and all-encompassing that it’s all Paige can do to open her mouth and take its flare into it. You close your eyes and try to imagine what Paige must be feeling: with Kiro and her massive nuts sitting on her chest, with a big, thick dick fucking her tits and plowing into her mouth, while you’re in between her legs and servicing her cunt properly.");
+
+	output("\n\nHer body thrashes in pleasure at the combined assault: her legs can’t find a comfortable place to crook around your body to keep you in place, and her arms and hands fling to different parts of your bed again and again, grasping and pulling at your sheets. Her belly crunches and relaxes with each thrust Kiro makes into her mouth, while her already-hardened thighs clench and tighten around your head when you hit a particularly vulnerable spot. With how wet she is, you’re not entirely positive if she’s really, really horny from the onslaught, or if she’s actually already cum once or twice.");
+
+	output("\n\nKiro sighs in satisfaction as she casually fucks Paige’s mouth. Your vision swims with Paige’s tense stomach and Kiro’s rocking balls, growing slicker and wetter with her dripping pussy juices the longer the show goes on. <i>“You two make a great pair,”</i> Kiro says off-handedly between her deep breaths. <i>“Gods, [pc.name], if we could bottle her skill with your enthusiasm – hell, forget the piracy, we’d make a killing selling that. You two should teach a class.”</i> She sighs again as she thrusts a little deeper than usual, and you can hear Paige hum in delight at having her mouth stuffed so full. <i>“If only you could feel the things this bitch’s tongue is doing to me.”</i>");
+
+	output("\n\nYou reach forward with one hand, gently palming at her bloated testicles as they strain to contain her overwhelming seed. You massage at the leathery, stretchy flesh, soaking your fingers and your palm in her leaking cunt juices while giving Kiro a good feel.");
+
+	output("\n\n<i>“Aahh,”</i> Kiro breathes delightedly, arching her back in reflex at your touch. She takes several deep breaths through her nose before she straightens herself. <i>“Fuck it, I’m not gonna last much longer at this rate.”</i> She stops her thrusting into Paige’s mouth, but does not remove herself yet. <i>“What’dya say, Paige? You want this fat dick in your pussy again? Gods, it’s been so long; think how nostalgic it’ll feel to have me cum inside you again.”</i>");
+
+	output("\n\nPaige hums in ascension, her kicking legs shifting along your head again and another warm gush of her liquid coats your tongue. <i>“You heard the woman, [pc.name],”</i> Kiro announces as she shifts herself to the side, clambering off the bed again. You glance up, and you see her huge, black horsecock stand so erect that it nestles itself in between Kiro’s heavy boobs; it drips with its own spurting pre and with Paige’s spittle. <i>“Paige wants to be taken for a ride.”</i>");
+
+	if(!pc.hasCock()) output("\n\nYou eye that monster of a dick, and your [pc.thighs] clench at the fantasy of having Kiro drive it into you; to impale you so deeply that you’d hang from her dick like a condom. Your eyes cross at the idea of being filled like one.");
+	else output("You idly wonder to yourself how you’re going to keep busy when Kiro’s stuffing Paige’s box with her dick. Your own [pc.cock] lurches at some ideas, including maybe swapping positions and fucking her mouth, but you’re too lust-addled to decide on any one idea.");
+
+	output("\n\n<i>“You’re welcome to come with,”</i> Kiro invites, placing a hand on your shoulder. <i>“");
+	if(!pc.hasCock()) output("This doesn’t have to be a two-woman show.");
+	else output("Knowing Paige, she’s got ‘room’ for one more.");
+	output("”</i>");
+	output("\n\nYour mind’s eye swims with the possibilities....");
+	processTime(20);
+	pc.lust(30);
+	clearMenu();
+	//[=Sandwich=][=CargoLift=]
+	addButton(0,"Sandwich",PKTSPS,args);
+	addButton(1,"CargoLift",PKTSPCL,args);
+	// end scene (scene: PKTSPEHO)
+}
+
+//[=Double P.=]
+// if the PC does not have a penis, change this button to [=Cuddle Up=]
+// (scene: PKTSPCU)
+public function PKTSPCU(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	// continue here if the PC has a penis
+	if(pc.hasCock())
+	{
+		output("You tell Kiro that it sounds like a party to you. You ask her to pull out for a moment, and she does; you guide Paige to turn over, so that she’s laying face-up on top of you. The three of you are a bit tangled in each other, but you get the job done.");
+		output("\n\nYou reach down in between your bodies, to grip your [pc.cock] by the base, and start waggling and flopping it against Paige’s buttcheek, slapping your pre-cum over the globe of her ass. Your [pc.cockHead] slaps against the entrance to her ");
+		//if {PC has not done anal with Paige}
+		if(flags["PAIGE_ANAL"] == undefined) output("wet tunnel, already a bit exhausted from the casual railing Kiro’s given it, but nonetheless primed and ready for more");
+		else 
+		{
+			output("tight anus, unsullied by Kiro and her monster. Given that Paige was an anal virgin when you met, Kiro’s never had the privilege of exploring <i>all</i> of Paige.");
+			pc.createStatusEffect("Buttfucking Paige");
+			pc.setStatusMinutes("Buttfucking Paige",300);
+		}
+		if(!pc.hasStatusEffect("Buttfucking Paige")) 
+		{
+			output("\n\nPaige sighs as you tease her, your [pc.cockHead] fitting itself in between her spread labia but not penetrating her any deeper. You wait for Kiro to resume her position between Paige’s spread legs to guide you both in.");
+			output("\n\n<i>“Now that I think about it, Bookworm, I don’t think we’ve ever had the pleasure of you getting double-teamed, have we?”</i> Kiro asks as she steps forward, her heavy cock landing with an audible slap against Paige’s stomach before she steps back to realign herself. You feel a hard obstruction on your dick, pressing against you insistently, and you slowly begin to slide into Paige.");
+			output("\n\n<i>“I, uhhh,”</i> Paige groans out, followed by a sharp inhale as you and Kiro both spear into her, splitting her in half with your dual cocks working in tandem. She tenses her body on top of you, and then tries to relax, but the fact remains that she’s being pushed to her limits.");
+			output("\n\n<i>“Let’s really put Peggy through the stress test, [pc.name],”</i> Kiro says with a predatory grin as she thrusts in harshly, burying both herself and you halfway into Paige’s tunnel.");
+		}
+		else
+		{
+			output("\n\nPaige hiccups in surprise as you tease her, your [pc.cockHead] pressing against the star of her asshole but not penetrating into it at all. You wait for Kiro to resume her position between Paige’s spread legs before stressing Paige’s body.");
+			output("\n\nKiro hums as she sees what it is you’re aiming for. <i>“Now, don’t go making me too jealous, [pc.name],”</i> Kiro warns playfully as she steps forward, her heavy cock landing with an audible slap against Paige’s stomach before she steps back to realign herself. You feel Paige squirm above you, reflexively pulling away a bit from Kiro’s questing member, intimidated at the prospect of being split too tight.");
+			output("\n\n<i>“I, uhhh,”</i> Paige groans out, followed by a quick yip as Kiro shallowly thrusts herself in. The motion rocks Paige backward, and it dislodges you from your held position, teasingly against Paige’s rear – and you too slip in. Just the tip, for now.");
+			output("\n\n<i>“You’d better hope that Peggy comes through for you, Bookworm,”</i> Kiro says with a predatory grin as she thrusts in harshly, burying herself as deeply as she was before. You don’t wait for a better invitation, and you follow suit.");
+		}
+		pc.cockChange();
+
+		output("\n\nWhere Paige’s body is hard as a rock and tight as a knot, the sensation you feel, buried inside her with Kiro, is altogether a different experience: ");
+		if(!pc.hasStatusEffect("Buttfucking Paige")) output("on one side, you feel the familiar ridges and ripples of Paige’s tight cunt, while on the other, you feel the hot, taut flesh of Kiro’s dick pulsating alongside yours");
+		else output("her ass was always tight and clenched, for lack of better terms, but with Paige’s body split apart as it is, it’s a trial to even push yourself in, much less down to the [pc.knot]");
+		output(". You aren’t given much time to cherish the sensations, though: Kiro, horny and impatient, begins thrusting, harder than before, and you resolve to match her pace and passion.");
+
+		output("\n\nPaige’s breath catches in her lungs with every other thrust. You ");
+		if(!pc.hasStatusEffect("Buttfucking Paige")) output("thrust in time with Kiro, ensuring that every thrust home stuffs her fuller than she’s ever been");
+		else output("thrust alternately with Kiro, ensuring that even on the backswing, she’s never left vacant");
+		output("; she fights to maintain herself despite the constant tension on her hole");
+		if(pc.hasStatusEffect("Buttfucking Paige")) output("s");
+		output(", and for a moment you wonder if you hadn’t made a mistake and that she wasn’t actually enjoying it.");
+
+		output("\n\n<i>“Gods,”</i> Paige gasps, the word coming out in a sudden burst, like it was a bubble that she was struggling to pop. <i>“I can’t... why haven’t....”</i> She sputters some more half-sentences, unable to formulate a single coherent thought for the next half-minute. <i>“Fuck me!”</i> she finally demands, and with her demand, she begins thrusting back against you and Kiro, leaning into your dicks as they stretch her. <i>“This is amazing!”</i>");
+
+		output("\n\n<i>“That’s what I like to hear, Bookworm,”</i> Kiro says huskily as she leans forward, gaining some leverage over you two so she can piston her hips harder and faster.");
+
+		output("\n\nWith any worry you had assuaged, you do as she commands of you and plow into her as determinedly as you would if you two were alone. You eye Kiro, and she eyes you back, and you aren’t certain if this hasn’t suddenly become some competition between you two, to see who can make Paige holler their name.");
+
+		output("\n\nYou say nothing, not that you’re positive anyone would hear you anyway: the room is a cacophony of two hard cocks fitting into ");
+		if(!pc.hasStatusEffect("Buttfucking Paige")) output("too small of a hole");
+		else output("two small holes");
+		output("; the sound of two pelvises clapping wetly against a third; and the sound of a woman gasping and hollering in perverse delight as she gets ruined for any single prospective partner in the future, and loving every minute of it.");
+
+		output("\n\nThe sensations – of the heat, ");
+		if(!pc.hasStatusEffect("Buttfucking Paige")) output("and the wetness, and the unique sensation of sharing a cooch with another cock, where you’re squeezed and milked on one side and you’re frotted and caressed on the other");
+		else output("and the sheer tightness, and the unique sensation of feeling another cock through the thin boundary of Ausar biology separating her pussy from her ass as they both fuck their way into her");
+		output(", and Paige gasping in sexual bliss above you, and Kiro panting in a needy, desperate rut above <i>her,</i> and the stank that comes with three rutting bodies moving and fucking together, and the feel of two horny, furry women grinding against each other and you; it all builds up in a hurry, and you feel a familiar sensation in your ");
+		if(pc.balls > 0) output("[pc.balls]");
+		else output("loins");
+		output(" of your impending orgasm coming up to you in a hurry.");
+
+		output("\n\n<i>“Paige,”</i> Kiro blurts out, her voice cracked and shaky, with the sort of pleading tone that a child would have when they ask for candy.");
+
+		output("\n\n<i>“Cum in me!”</i> she shouts, her body clenching on top of you both. <i>“Fuck, you’ve already stuffed ten yards of cock into a one-yard space; fucking load me up with cum, you assholes!”</i>");
+
+		output("\n\nKiro leans back, her thrusts growing more elongated, more excited at the permission to fill what few spaces you two can’t fill with cock with your cum. <i>“You heard the woman, [pc.name],”</i> she says simply as her thrusting grows more powerful.");
+
+		output("\n\nThe three of you are on the verge of your individual climaxes, and it’s not going to take too many more thrusts to get there. In fact, in just a few more....");
+	}
+	// continue here if the PC does not have a penis
+	else
+	{
+		output("You know that Kiro was coyly suggesting you play along and say something she wants to hear, rather than actually ask if you want to do one thing or the other. You take the bait and beg Kiro, with an exaggerated lilt in your voice, to do something about the raging fire in your cunt; you’re just so horny, and if you can’t get that thick Kiro cock inside you, you’re going to melt!");
+		output("\n\nShe laughs at your performance and pulls out, leaving Paige gaping and open to the air. She whines in desperation, her hips automatically pushing back, searching for Kiro’s dick to take back inside it. <i>“How am I supposed to ignore that?”</i> Kiro asks as she shifts a bit, and you feel her huge, wet log of a dick flop onto your [pc.vagina], her blunt head poking between your vulva just a bit and depositing a sizeable dollop of pre at your entrance.");
+		output("\n\nYou bite your lower [pc.lip] in anticipation, shivering as she teases you a bit, but she doesn’t penetrate you. <i>“Still, I can’t leave my good girl Paige all alone,”</i> Kiro muses, her hands greedily roaming over Paige’s tight ass cheeks. <i>“So I think all three of us are gonna have to compromise.”</i>");
+		output("\n\nYou feel her reach between your bodies, her fingers gripping just beneath her fat cock head, and she lifts it slightly; she thrusts forward a bit, and her dick spears in between you and Paige, sliding along your [pc.belly] and against the ridges of Paige’s own abdominals.");
+		output("\n\nKiro is meticulous with her positioning; she adjusts and readjusts herself, trying her best to use the immensity of her shaft so that she rubs against your [pc.clit] with every inward and outward thrust, and when she thinks she’s got a good angle, she lifts Paige by the thighs and aligns her until she’s accomplished the same thing.");
+		output("\n\nHer cock is hot and wet against your stomach, and the hotness and wetness blooms periodically at her head as it spurts more and more pre. And then, satisfied that she’s wedged herself snugly enough between your bodies, she begins thrusting; the tactile sensation against your [pc.clits] is powerful and immediate, and you hump up against the unyielding skin of Kiro’s shaft for more pressure against your button. From the way Paige ruts against you, hissing through clenched teeth, you gather she’s doing the same.");
+		output("\n\nIt’s not as good or as fulfilling as if Kiro had stuck it inside you properly, and you’re left with a yearning in your honeypot that she’s is unable to fill. Still, you don’t complain – Paige is likely feeling the same yearning for a good, hard cock, and Kiro’s missing out on being inside a tight hole to milk her, so this is the best compromise between the three of you.");
+		output("\n\nYou make the most of it: you kiss Paige, wrapping your [pc.tongue] around hers as you grind your bodies and your [pc.chest] against hers. Kiro fucks at the union of your bodies, splurting more and more pre against your stomachs, getting them nice and slick and aiding in the ‘penetration’ between you. The three of you melt into an indecipherable ooze of fur, boobs, cunts and cocks, each of them sharing grunts and moans and fluids.");
+		output("\n\nYou wrap your [pc.legOrLegs] around Kiro’s waist, feeling along her ass whenever she completes a circuit. You reach lower, gently brushing at the top of her bloated Kui-Tan sack, coaxing out every last drop of cum stored inside them; you’re wet from her pre, and you can’t wait to share a veritable bath between you and the Ausar you’re making out with.");
+		output("\n\n<i>“Fuck, you two are a treat,”</i> Kiro says as her thrusting grows more impatient. You can tell the poor girl is restraining herself; if she thrusts too deeply, she’d start pounding against your lowermost set of ribs. Despite that, her dick lurches forward impiously on the occasional thrust, and some hefty globs of pre reach high enough to nestle in the cleavage of your [pc.chest], which then mixes and meshes into Paige’s own boobs.");
+		output("\n\n<i>“Gettin’ close, ladies,”</i> Kiro warns, her hands reaching beneath your [pc.ass] and hefting you up as well as she can, considering your positions and the fact that she’s also lifting Paige. The sound of her body clapping against yours as she fucks the space between you and Paige quickly drowns out the frequent, lusty moans coming from Paige’s throat.");
+		output("\n\nPaige, unable to contain herself, pulls away from you and glances over her shoulder. <i>“Let’s see it, Kiro,”</i> she begs, lifting her tail higher and grinding herself harshly against Kiro’s dick. <i>“Fu-fucking cum! Soak us like I know you can!”</i>");
+		output("\n\nYou have a difficult time adding much more to Paige’s begging, as close as you are; your teeth chew on your lips in orgasmic bliss as your [pc.clit] fires signal after signal to your head and your [pc.vagina] about your impending orgasm. Gods, if only you had a cock inside you right now....");
+		output("\n\nYou slap both hands onto Paige’s ass, giving both cheeks a hard spank and a thorough grope, trying your best to bring her closer. She yips your name in surprise, which melds into a sultry moan, and she goes back to fucking your mouth with her tongue as she grinds her last few thrusts towards her orgasm.");
+		output("\n\nKiro isn’t much farther behind, and, with some eagerness, you realize that you’re just a few more thrusts away from learning if Kiro really has what it takes to give you two a good, long soak....");
+	}
+	processTime(20);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",PKTSPE,args);
+	// end scene (scene: PKTSPCU); go to (scene: PKTSPE)
+}
+
+//[=Sandwich=]
+// (scene: PKTSPS)
+public function PKTSPS(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSPS");
+
+	output("You’ve got an idea. Paige gets to be the star of the show, but she’ll have to put her yoga skills to a bit of use.");
+
+	output("\n\nYou pull away from Paige and reach for her shoulders. Her eyes narrow ");
+	if(!paigeBlind()) output("on you ");
+	output("curiously, then widen when you give her a rough shove; she reaches for the blanket and clutches at it for something to grip on, to keep her steady, but you’re quick enough and Paige is in such a sexual stupor that she doesn’t have the reflexes to react in time to keep herself righted.");
+	output("\n\nBefore she knows what’s happened, her shoulders are on the floor while her legs remain up and splayed on your mattress. Her eyes roll in her head as she tries to maintain some semblance of coherence with her surroundings, but before she can even tell which way is up, you squat over her face, facing the bed, aligning your ");
+	if(pc.hasCock()) output("erect, dripping cock");
+	else output("gushing, leaking cunt");
+	output(" with her gaping mouth, directing her in no uncertain terms to get to work.");
+
+	output("\n\nPaige’s cunt winks in confused-yet-horny abandon, waiting for ");
+	//if {PKTSPEHO}
+	if(InCollection("PKTSPEHO", args)) output("your tongue to get back to work. You use your fingers to gently pry the petals of her pussy apart, your digits getting soaked in her juices, and you eye Kiro invitingly. You’ll get back to work, alright – but you’re sure, for as skilled as your tongue is, she might enjoy a thick dick in her and Kiro would appreciate a warm hole to bust into.");
+	else output("Kiro’s dick to start fucking it once more. You use your fingers to gently pry the petals of her pussy apart, your digits getting soaked in her juices, and you eye Kiro invitingly. You’re sure Kiro is eager to get back to work, alright – but, you’re just as sure that Paige would appreciate something a bit more flexible to tend to her more tender areas.");
+
+	output("\n\nKiro smirks at your tenacity and ingenuity; her dick lurches at the position you and Paige are in and she gives it several elongated tugs, flexing the precum up her cock and spurting it onto Paige’s outstretched leg. <i>“Gotta give you props for the quick thinking, [pc.name],”</i> she says as she steps over you both, facing the bed, one foot on either side of Paige’s ribs, as she lines her fat cock head against Paige’s entrance");
+	//if {PKTSPKH}
+	if(InCollection("PKTSPKH", args)) output(" once again");
+	output(". <i>“It’s certainly one of the more imaginative poses-for-three I’ve had. And if anyone can take it, it’s Paige.”</i>");
+
+	output("\n\nYou’re treated to an up-close show of every inch and contour of Kiro’s fat horse cock sinking into Paige’s body: every pulse as it travels down Kiro’s shaft and every hungry throb of Paige’s cunt clamping and swallowing around her meat; every squelch and wet squeeze as their individual lubes mix to make the journey smoother; the way Paige’s cunt bloats and bulges with Kiro’s immensity, followed by her abdomen as Kiro sinks lower and lower; the sheer, damn-near overpowering stench of a cock big enough to look out of place on a horse fucking a wet, horny, receptive and fertile cunt – it’s all taking place a scant few millimeters in front of your nose.");
+
+	output("\n\nKiro’s nuts press gently against the back of your head, pushing you closer and closer to the show. You stare in lustful bewilderment, ");
+	if(pc.isHerm()) output("unsure of which one you’re more jealous of and who you’d rather be: in Kiro’s position, fucking such a moist, tight hole, or in Paige’s, taking such a magnificent dick into herself");
+	else if(pc.hasCock()) output("at Kiro and her amazing cock, fantasizing how it would feel if it was your [pc.cock] sinking deeper and deeper into Paige");
+	else output("at the amazing way Paige’s body molds itself around Kiro, and fantasizing that it was you on your back and with Kiro’s dick sliding into you");
+	output(". Eventually, when Kiro sinks deep enough and her massive testicles push you forward enough, your nose bumps against the steely flesh of her shaft, and your [pc.lips] taste of the wet union of Kiro’s dick and Paige’s pussy.");
+
+	output("\n\nYour tongue automatically slides out to lap a gentle ring around Paige’s split vagina, soaking in the fluids pooling there. And as you do, you feel Paige finally get to work on you as well, ");
+	if(pc.hasCock()) output("her lips pursing on your [pc.cock] and her cheeks hollowing out, suckling on your shaft and eagerly drinking down your leaking pre-cum");
+	else output("her lips puckering against your [pc.vagina] and her own tongue spearing deeply into you, lapping at your juices and drinking down your [pc.girlCum]");
+	output("; your [pc.hips] shake in surprise, reminding you exactly how horny you’ve been since you started, and you sigh (through your nose, taking in more of the scent of Paige and Kiro’s sex).");
+
+	output("\n\nOne of your hands wraps around to Paige’s ass, gripping onto her globes and massaging at her flesh as it flexes with every push Kiro makes into her cunt. Your nose grinds along Kiro’s shaft as it plows into the Ausar beneath you again and again; you lean forward a bit, wrapping your lips at the union of their sexual organs, letting that glorious, fat Kui-cock fuck its way between your lips as it grinds into Paige again and again, your patient tongue washing the flesh and tasting the new fluids accrued on it with every rotation. Occasionally, your conscious mind registers Paige’s own mouth working on you, and your [pc.hips] automatically adjust themselves on her face, getting her deeper, to work you over better.");
+
+	output("\n\nYou feel very warm, which comes as no surprise: you’re sandwiched between the two bodies, with Paige below and in front of you, and Kiro above you with her massive, hanging testicles behind you, bapping you gently in the head and back with her every motion into Paige’s tunnel. You kiss and lick at Kiro’s piston of a cock and at Paige’s abused, stretched hole, tasting everything the two of them have, and with every devious taste, you shudder a little bit more out of your own loins for Paige to drink down.");
+
+	output("\n\nTime becomes nebulous; your world is these two women surrounding you and the three of you being a part of a circuit of grinding, squeezing, milking, gurgling, tasting, and fucking. You can feel Kiro’s heartbeat through her balls as they rest against your shoulders and you can feel Paige’s lungs heave whenever they get the chance to breathe without you obstructing their wind. Kiro moans occasionally, telling you sweet nothings about how she enjoys your tongue on her as she fucks Paige, and how you three should do this more often and if you could think up more exotic positions for you three to take.");
+
+	output("\n\nYou agree mindlessly with everything she suggests. You’ve checked out, at least for now: your mind swims too vividly with the smells and tastes of pure, raw sex for you to focus on anything but making the sensation better for yourself and your partners. Of course, that includes the building orgasm you feel in your crotch – it’s only a few pumps against Paige’s mouth away, and you reason that if you’re this out of it already, you can only imagine what your senses will experience when Paige and Kiro both cum.");
+
+	output("\n\nThe telltale signs of an impending orgasm are different from this perspective: as acquainted with Kiro’s flesh as you are, you notice it grow warmer, thicker, and harder, and Paige’s pussy becomes wetter, her vulva bulging and changing color very slightly under the strain. You feel Kiro’s balls crawl up your back as they clench, ready to dump their payload into the yearning pocket that’s stuffed to the brim with Kiro’s dick, and you feel Paige’s work on your own genitals grow more rapid in intensity, but less directed and focused.");
+
+	output("\n\nYou wonder, as the three of you reach your climaxes simultaneously, if you look, smell, or taste any different to Paige in the moments before your body clenches in that familiar release....");
+	processTime(30);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",PKTSPE,args);
+	// end scene (scene: PKTSPS); go to (scene: PKTSPE)
+}
+
+//[=Cargo Lift=]
+// (scene: PKTSPCL)
+public function PKTSPCL(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSPCL");
+
+	output("The idea of really getting down to business and fucking Paige like the proper, horny bitch she is, is too exciting an idea to pass up.");
+	output("\n\nYou disengage from her, withdrawing your overworked mouth from her cooch. She whines in protest, her hips drawing upwards to try and chase after your tongue and suck it back into herself; you keep a hand on her pelvis and give her belly a gentle rub as you tell her that she deserves something a bit more substantial than just a tongue. When you ask if she agrees, she moans out something lazy and unintelligible.");
+	output("\n\nYou and Kiro grab her by one wrist each and hoist her upward, into a sitting position, and then onto her wobbly, shaking feet. You know exactly how you want to see Paige fucked, and you ask Kiro for a hand");
+	if(pc.PQ() < 30) output(" – you’re going to need it");
+	output(".");
+
+	output("\n\nOne of your hands dips down, between Paige’s legs, giving her wet pussy a quick pat and her engorged clit a twiddle on the way, as you hook your hand beneath her knee and lift it high. Paige doesn’t lose her balance, even as you crane her leg up and hook her knee over your shoulder – her yoga-hardened center of gravity makes her damn-near impossible to topple. That only makes it all the easier to reach down behind her other leg and do the same thing, until you’re lifting Paige into the air by her legs.");
+
+	output("\n\nHer arms wrap around your neck for stability, but Kiro steps forward, pressing her front against Paige’s back, her hefty boobs on either side of Paige’s face and framing her skull. Her brown-furred hands wrap around to Paige’s breasts, giving them a lascivious squeeze and pinching at her nipples, making her gasp and arch her back against Kiro. It has the pleasant side-effect of shifting Paige’s weight onto Kiro slightly, taking the weight off your arms.");
+
+	output("\n\n<i>“Ready, Bookworm?”</i> Kiro asks softly, using the name more as a pet name than a childhood nickname. You can feel Kiro’s elephant-trunk of a cock slide between you and Paige, fucking at the loose meeting of bodies there, and you know what it wants. Your hands are a bit full; Kiro has to relinquish her grip on one of Paige’s tits to align herself, and when she does, Paige’s body stiffens and her teeth chew into her bottom lip in subconscious preparation.");
+
+	// continue here if the PC has a dick
+	if(pc.hasCock())
+	{
+		output("\n\nKiro, gracious and accommodating as she is, doesn’t leave you in the cold air. As soon as her hand grips at herself, you feel her fingers reach for your own [pc.cock], giving it a stroke and pulling your meat against hers, masturbating them together for a few tugs.");
+		output("\n\n<i>“Try and relax, Paige,”</i> Kiro says comfortingly, giving her a gentle kiss on her collarbone, <i>“because things are about to get a little tight.”</i>");
+		output("\n\nYou feel Kiro pull at you a little bit, and then, with a sudden flop, both you and Kiro are lined up at Paige’s vagina, sampling her wet heat and dripping lube together. You feel Paige shiver in anticipation, and her eyes grow wide in a hurry, but you and Kiro move before she has a chance to interject: with you two thrusting simultaneously, you both worm your way inside Paige, splitting her apart with your combined masculinities. If you thought Paige was tight before, it’s nothing compared to this.");
+
+		output("\n\nBoth of you take your time inside her – you can’t imagine how she must be feeling and you let her adjust to your girths inch by salacious inch. The oil coating ");
+		if(pc.cocks[0].cLength() >= 15) output("both you and ");
+		output("Kiro makes things a little stretchy and spongier, without losing any of the tightness enveloped around you, making thrusting into her a bit easier to accomplish. And when you both dig as deeply as you think Paige is comfortable with, and she doesn’t object to having you both inside her, you take her unspoken invitation and start fucking her properly.");
+
+		output("\n\nGods, it’s tighter in there than you were expecting. On the one side, you have the tight ridges of Paige’s body clamping and slurping at your [pc.cock], eager to drink your [pc.cum] into itself. On the other, you’re pressed tight as could be against Kiro’s own shaft as it hotly bumps and grinds against yours, hungry and eager to seed Paige just as much as you are. Kiro’s bloated Kui-Tan nuts bounce forward with Kiro’s thrusts, slapping you in the [pc.legOrLegs]");
+		if(pc.balls > 0) output(" and against your own [pc.sack]");
+		output(", gurgling loudly enough to let you both know that it’s about to get even more cramped inside Paige.");
+		pc.cockChange();
+	}
+	// continue here if the PC does not have a dick
+	else
+	{
+		output("\n\nKiro grunts a bit as she grips onto her horsecock halfway down the shaft, whipping it back and forth, slapping it against Paige’s abs, and then against yours, her precum flinging every which way as she does. When she’s good and riled up, she pulls back a bit, realigning her cock’s head against Paige’s entrance.");
+		output("\n\n<i>“Gods, I can’t wait,”</i> Kiro says lustfully, giving Paige a rough suck on her neck. <i>“Sometimes, it feels like your body was made for me, Paige. Nobody takes me like you do.”</i>");
+		output("\n\nYou glance down in between your body and Paige’s, and you watch as that flat, blunt cockHead presses forward, Paige’s pussy yielding area by the centimeter until it relents, Kiro slipping suddenly into her. Both of the ladies exhale in delight at having gotten the ‘hardest’ part out of the way; now that Kiro is securely lodged inside her, she thrusts, gently at first, and you hear the wet squishing of Paige’s body taking more and more horsecock into it.");
+		output("\n\nYou thrust your [pc.hips] forward, slicking your [pc.vagina] against the shaft of Kiro’s cock as it slides into Paige. Your eyes cross as you feel the thick, hard meat of her shaft glide between your mons and the friction of her body against your clit; you drool as you fantasize that it’s you that Kiro is sliding herself home into, and not Paige. Maybe next time.");
+
+		output("\n\nThe three of you work as best as you can to work your awkward threesome: Paige’s agency has been removed from the equation entirely, and she is helpless to do little more than bounce happily on Kiro’s meat. Kiro maintains her own pace, heedless of you or Paige; her hands grope and pull on Paige’s breasts, kneading them for her own benefit, while her massive, cum-filled nuts slap against your [pc.legOrLegs] with her thrusts, each heavy nut gurgling with seed. It’s you that’s doing all the work, and while you’re not getting penetrated and you’re not getting any specialized attention, you’re nonetheless lost in the atmosphere of sex, and your orgasm isn’t too far off.");
+	}
+	// Merge here
+	output("\n\nThe thrusting, grinding, and fucking continues with the three of you working off-rhythm with each other; every time you push forward, Kiro is bounding back. Paige moans your name sometimes, and she moans Kiro’s name sometimes; she and Kiro would share an elongated, tongue-filled kiss before she disengages and reaches for you, continuing with you where Kiro left off. Her legs wrap themselves around your back as best as they can with your hands beneath them, while her arms cradle Kiro’s head behind her, her fingers playing with the Kui-Tan’s hair.");
+	output("\n\nYou get a good look at them both as you continue. Their faces are each less than two feet from you. Paige’s eyes can’t decide where to focus, if anywhere, and sometimes they cross whenever");
+	if(pc.hasCock()) output(" you and");
+	output(" Kiro hit");
+	if(!pc.hasCock()) output("s");
+	output(" a particularly sensitive spot inside her; her tongue lolls from her mouth with strands of saliva dripping from its floppy tip, streaking toward her nearest tit.");
+
+	output("\n\nKiro, meanwhile, has her eyes closed in concentration. She sometimes winks an eye open, and her gaze locks with yours for a moment; she smiles, winks more deliberately, and puckers her lips at you when she does, and she redoubles her efforts for your benefit. She licks at her lips time and again, and she pants in exhaustion and dehydration; she’s breathing deeply, in through her nose and out through her mouth, trying to main her own rhythm.");
+
+	output("\n\nYou think, in some part of your mind, you realize how connected the three of you are – on a sexual level, at least, and you each know how close the others are. When Paige’s tongue slides into your mouth, you know that she’s begging you to cum; when Kiro’s eyes meet yours, she’s asking you to cum with her so that you three can get started on doing it all again.");
+
+	output("\n\nYour lower body shakes in pleasure, your orgasm building quickly inside you and ready to burst forth, to meet both of your lovers’ unspoken requests. The three of you become a little more frenetic as time goes on, until you’re thrusting so fiercely and wantonly that you can’t withhold yourself any longer....");
+
+	processTime(30);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",PKTSPE,args);
+	//[=Climax=]
+	// end scene (scene: PKTSPCL); decrease Energy by 10; go to (scene: PKTSPE)
+}
+
+// (scene: PKTSPE)
+public function PKTSPE(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSPE");
+	output("It becomes a desperate race for last place between you three and your intense fucking. Who came first and who came last becomes completely nebulous when the fact arrives; what you’re at least sure of is that it was a close ‘race.’");
+	output("\n\nKiro’s orgasm hits as hard as someone you’d expect with her endowments to orgasm. ");
+	//if {PKTSPCU, and the PC is pure female}
+	if(InCollection("PKTSPCU", args) && !pc.isHerm() && pc.hasVagina())
+	{
+		output("You feel her load bloat her already fat cock all the more as her jizz rushes along her shaft, before it explodes from her cockHead wedged between you and Paige. A wet warmth blooms between you, starting at your [pc.belly] and shooting up to your [pc.chest]; your grinding and rocking against Paige suddenly becomes wet and easy, and the sound of Kiro’s bubbling cum squishing and squelching between your bodies fills your ears. All the while, she continues to thrust into the union of your bodies, her cum painting you two more and more, until it spills from between you and soaks into your bed.");
+	}
+	//if {all, except PKTSPCU if the PC is pure female}
+	else 
+	{
+		output("The cum bloats her already impressive equipment with her Kui-Tan seed, which sinks into Paige in rapid gouts");
+		//if {PKTSPS}
+		if(InCollection("PKTSPS", args)) output("; you watch with rapt awe as her load visible travels down her shaft, before disappearing into Paige’s body with a flush you can practically hear through her heaving body");
+		output(". Kiro barks in pleasure as her body moves on its own, thrusting deeper and deeper into Paige with every new blast, seeding her as deeply as she can; her balls lurch and coil against her, squeezing out every drop for her thirsty childhood friend’s cunt to gorge itself on.");
+	}
+	
+	output(" Kiro’s output is so voluminous that you scarcely remember when it started, and you’re unsure of when it will, or can, end.");
+
+	output("\n\nPaige wasn’t much further behind, and as soon as Kiro burst her bubble, it was enough to launch her over the edge. She groans out, a loud, lengthy, throaty groan, and you feel her shake and tense and relax in various, unrestrained waves throughout her body, from her limbs to her torso and back again. ");
+	//if {PKTSPS}
+	if(InCollection("PKTSPS", args))
+	{
+		output("You watch her pussy spasm on its own, independent of the rest of her; it locks, presses, and gulps at Kiro’s thrusting shaft, coaxing and milking it for more, and more, yet more, of that delicious, familiar jizz; you see splashes of her girlcum float up and collect around Kiro’s cock at her vulva with every thrust. ");
+	}
+	//if {PKTSPCU, and the PC is pure female}
+	if(InCollection("PKTSPCU", args) && !pc.isHerm() && pc.hasVagina())
+	{
+		output("She squeezes and hugs at you as she deliberately moves her torso along yours, to spread Kiro’s jizz between you as deeply and thoroughly as she can; her eyes are shut in blissful concentration as she surrenders to her own body, but she has enough willpower to kiss you; to offer her tongue for you to suck, and to suck on yours when you offer it to her.");
+	}
+	//if {all, except PKTSPCU if the PC is pure female}
+	else
+	{
+		output("Her hands clench, squeezing at anything they can find, including you and Kiro; her legs lock and stiffen, squeezing at anything caught between them. She has no control over her body: her eyes shut in blissful concentration and her tongue, unable to focus on kissing anyone, flops lamely out of her mouth.");
+	}
+	
+
+	output("\n\nAnd, of course, there’s yourself; you manage to hold on for a paltry few thrusts longer, but watching Paige and Kiro arrive on their own triggers something within you that you can’t, and removes the inclination to, stop. ");
+	if(!pc.isHerm() && pc.hasVagina()) 
+	{
+		output("You clench your body, your orgasm rocketing through your body, tightening your [pc.belly] and buckling your knees. Your [pc.vagina] gushes in time with its Ausar counterpart, ");
+		//if {PKTSPS}
+		if(InCollection("PKTSPS", args)) output("drenching Paige’s face and forcing her tongue and throat to work overtime to keep up with your squirts");
+		else output("soaking your own [pc.legOrLegs] and squirting your feminine cum onto Paige, drenching her own legs and belly in your fluids");
+		output(". Orgasm after orgasm rips through your body, in time with ");
+		//if {PKTSPS}
+		if(InCollection("PKTSPS", args)) output("the loads surging down Kiro’s dick and into Paige; your body tightens at the sight of each rolling surge down her meat, fantasizing that every heavy bubble of cum was being shot into you instead");
+		//if {PKTSPCU}
+		if(InCollection("PKTSPCU", args)) output("every blast of cum Kiro shoots between you and Paige, bathing you both in Kui-Tan cum, just as Paige had begged her to do. Every hot, wet shot between you brings another surge from your cunt, and the fight leaves your body all over again – until the next shot");
+		//if {PKTSPCL}
+		if(InCollection("PKTSPCL", args)) output("the palpable surges shooting up Kiro’s cunt and into Paige. You can feel every hot burst of cum flow up through Kiro’s shaft and into Paige through your tight proximity to the two; it’s a struggle to maintain your balance and your strength as you carry Paige through the whole thing, but, in a way, the sexual energy you’re feeding off of from the other two is keeping you going");
+	}
+	//if {PC has a penis}
+	if(pc.hasCock())
+	{
+		output("Your [pc.cum] surges up through your [pc.cock], inflating it as the slit in your cock’s head yawns to deposit a thick, heaping load right into your Ausar lover; ");
+		//if {PKTSPS}
+		if(InCollection("PKTSPS", args)) output("she gargles and swallows your load, every heady mouthful sliding down her throat. She struggles somewhat to keep up with your load; you’re enthralled by the way her pussy clenches and slurps at Kiro’s massive shaft, easily taking every thick shot of Kui-Tan cum into its womb, and you’re lost in the fantasy of it being your dick that Paige’s cunt is milking. You match Kiro’s output, if not strictly in quantity, but in duration");
+		else 
+		{
+			output("Your grip on Paige tightens, enough to make her wince, as your [pc.cum] surges up, through you, and into her. Your shaft is almost pinched at her entrance, stifling your flow somewhat, but you won’t be denied; your cum surges into ");
+			//if {PKTSPCU and anal}
+			if(InCollection("PKTSPCU", args) && pc.hasStatusEffect("Buttfucking Paige")) output("her tight ass, filling her up into her belly]");
+			else output("her tight, cramped cunt, seeding her willing womb");
+			output(" in time with Kiro’s pulsing, thick load. Whenever a new, fresh batch of cum blasts through you, Paige’s body becomes tighter around Kiro, and when Kiro matches your load, Paige grows tighter around you. The three of you work automatically, all semblance of conscious control leaving your body as you function as a pair of cocks depositing load after load into a wet, receptive, shuddering hole");
+		}
+		output(".");
+	}
+	processTime(30);
+	clearMenu();
+	addButton(0,"Next",PKTSA,args);
+	//[=Afterglow=]
+	// end scene (scene: PKTSPE); reduce Lust to 0; go to (scene: PKTSA)
+}
+
+//[=Kiro=]
+// (scene: PKTSK)
+// Action tree: https://i.imgur.com/kgEjocX.png
+public function PKTSK():void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	var args:Array = ["PKTSK"];
+	author("B!");
+	output("Though your tongue is in Paige’s mouth, and your hands are exploring her body, you can’t help but keep your eyes on Kiro and her horsecock. The way she lathers it with that oil, making it slick and shiny in the light of your quarters; the way it slowly rises over time, bloating and engorging with her flowing blood, getting it harder and readier; the way that Kiro knows you’re staring, and with a teasing smile, she rubs the palm of her hand over the cap of her cock, spreading the bead of pre that had emerged along the underside of her shaft, causing it to bob in your direction enticingly....");
+	output("\n\nPaige notices that you’re a bit distracted with your kissing and exploring. <i>“Am I really that boring to you, [pc.name]?”</i> she pouts, flicking her fingers across your nose playfully. <i>“You’ve got a naked, horny bitch sitting on your lap and fucking your throat with her tongue, and all you can think about is Kiro’s cock.”</i>");
+	output("\n\nKiro steps in between you both, placing her hands on both your scalps. She thrusts her hips forward, her thick tree-trunk of a cock slipping in between your bodies, nestling itself warmly against your stomachs. <i>“Can you really blame [pc.himHer]?”</i> she asks as she casually fucks the space in between you. <i>“It’s a pretty great dick, if I say so myself.”</i>");
+	output("\n\nPaige smirks at Kiro’s forwardness. With her left hand, she trails her way down to Kiro’s base, running her palm along the smooth skin of her sack; with her right, she hefts Kiro’s cock slightly, lifting it between you two until it bumps against the underside of her breasts. She leans forward the rest of the way and, with her eyes on yours, runs her tongue along the beating, bloating side of her shaft. <i>“Nope,”</i> she says simply. <i>“Not even a little.”</i>");
+	output("\n\nYour body tightens and your mouth waters at the sight. Your hands itch to grab onto Kiro’s shaft, much like how Paige is doing, and assist her in servicing such a magnificent piece of dick; meanwhile, your [pc.vagOrAss] clenches at the fantasy of taking it into itself, to get ploughed and fucked and seeded with her thick Kui-Tan cum.");
+	output("\n\nIt’s all up to you on which fantasy you’d rather fulfill....");
+	processTime(7);
+	clearMenu();
+	//[=ServiceHer=][=Line Up=]
+	// end scene (scene: PKTSK)
+	addButton(0,"ServiceHer",PKTSKSH,args);
+	addButton(1,"Line Up",PKTSKLU,args);
+}
+
+//[=ServiceHer=]
+// (scene: PKTSKSH)
+public function PKTSKSH(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSKSH");
+	output("That cock of Kiro’s is just too big and juicy to ignore. Your eyes are fixated on it and the way it throbs in your presence; the way that, the longer it stays lodged in between your body and Paige’s, it seems to steadily get larger, thicker, and more <i>delicious.</i>");
+	output("\n\nYou actually salivate. A single strand of drool drips from your [pc.lips] and lands onto Kiro’s shaft. You sheepishly wipe at your chin while the two ladies share a well-meaning laugh.");
+	output("\n\n<i>“I can guess what’s coming next, [pc.name],”</i> Kiro giggles as her hand rubs at your scalp. She’s pushing you, gently, forward, towards the tip of her burgeoning prick, towards what it is you truly want. <i>“Hell, don’t let me stop you. If you want a big mouthful of dick, I’m sure Paige will be more than happy to let you have the first taste.”</i>");
+	output("\n\nPaige hums in ascension; she’s already busy licking and kissing at the thick, broad side of Kiro’s shaft, willfully leaving the head unattended. It would be rude of you to refuse such an invitation from them both; you mimic Paige’s motions, leaning forward putting your face and lips against Kiro’s cock, then draw a single, elongated lick up her shaft until you’re positioned at its head.");
+	output("\n\n<i>“Atta [pc.boyGirl],”</i> Kiro sighs as you work her with your mouth. You kiss, lick, and suck at the blunt, flared head of her dick, wrapping your [pc.lips] around it and giving it a hearty suck before disengaging and licking circles around the urethral opening. You suck down every drop of pre as they come from her shaft, savoring their flavor before opening wide and repeating the whole operation a second time.");
+	output("\n\nYour hands busily work at the shaft, jerking what your mouth can’t take, which is quite a lot. Paige, meanwhile, occupies herself further down, opening her maw wide to suck at huge swaths of area, her broad Ausar tongue making wide, wet swipes at the meaty base of Kiro’s cock. She leans in occasionally, her nose butting against Kiro’s lower abdomen, as she dips lower, her questing, hungry mouth tasting at the skin of Kiro’s taut sack. She hefts one nut up to her pretty lips so she can give it a proper, wet kiss, before drawing her tongue at the crease of their union as she pulls herself back up to work the fat shaft again.");
+	output("\n\nKiro sighs in delight, her hips instinctively humping forward whenever one of you hits a particularly sensitive nerve. She palms at both her boobs as her eyes narrow on yours. <i>“Gods, it’s good to be queen,”</i> she muses, and she punctuates the statement with a rough thrust, her blunt cockHead bumping you in the face.");
+	output("\n\nYou pull away from Kiro and play along, telling her that you live to serve. She coos in delight, and you’re rewarded with another splurt of warm pre across your lips; ");
+	if(pc.hasCock()) output("your own [pc.cock] lurches at the submissive gesture and at the tasty reward. You’re hard as diamonds and your own pre-cum is pouring from you in constant streams");
+	if(pc.isHerm()) output(". Meanwhile, ");
+	if(pc.hasVagina()) output("your [pc.vagina] clenches and drools its own fluids down your [pc.thigh], thirsty for a taste of that fat cock for itself. Your eyes cross at the fantasy: if it feels this good to take Kiro into your mouth, you can only fantasize about how it will feel in your cunt");
+	output(". You’re not that close to an orgasm yet, but you don’t doubt that it’s on the way if you keep this up.");
+
+	output("\n\nJust as another service of Kui-Tan pre dresses your tongue, Paige pulls herself away from Kiro, taking a deep breath of comparatively fresh air. <i>“I can’t take much more of that,”</i> she says in frustration, slapping at Kiro’s meat and watching it bob and sag underneath its own weight. <i>“You’re fucking one of us right now, Kiro. I’m not spending all night sucking your balls.”</i>");
+
+	output("\n\nKiro calmly puts a hand beneath Paige’s chin, keeping the Ausar’s focus on her. <i>“Would that be so bad, Paige?”</i> she asks, puckering her lips as she leans in.");
+	output("\n\n<i>“I mean, no. But you know how this works, Kiro.”</i>");
+	output("\n\n<i>“I do, Bookworm.”</i> Kiro ends the conversation by pressing forward, their lips colliding. You swirl your [pc.tongue] around Kiro’s cock as you watch the two ladies fiercely make out before you, their tongues exploring each other’s mouths, a long strand of saliva dripping down between them as they taste each other; Kiro grabs at Paige’s boob, massaging the flesh, and Paige returns the gesture, pinching at Kiro’s nipple.");
+	output("\n\nKiro pulls away as that same hand dips lower, travelling across Paige’s tight abdominals. Her hand shoots lower, and her fingers dip into Paige’s cunt, sampling just how wet and ready she is for some real action. She fingerbangs Paige for a few thrusts; Paige’s knees buckle in pleasure at Kiro’s masterful movements, and she grips onto Kiro’s fur for support.");
+	output("\n\nKiro’s eyes lock onto yours as she brings her hand up to her face. She slips her now-soaked fingers into her mouth, sucking them clean, and she hums her approval. <i>“How about it, [pc.name]?”</i> Kiro asks as she withdraws her fingers, her now-free hand wrapping around Paige’s body to grope at her ass. <i>“Paige is about ready to get fucked.”</i> Her eyes narrow deviously and her lips curl into a mischievous smile. <i>“Wanna go first?”</i>");
+	output("\n\n<i>“What?!”</i> Paige asks in frustrated surprise.");
+	output("\n\n<i>“Come on, look at [pc.himHer],”</i> Kiro insists, motioning to you and the way you still have her cock in your mouth, even after all that. <i>“You’re a horny bitch, Bookworm, but [pc.heShe]’s hasn’t had my dick off [pc.hisHer] mind since we started. Figured I’d ask the thirstier of you two first.”</i>");
+	output("\n\nYou look down the long, bloated shaft of Kiro’s equine dong. Kiro’s giving you the opportunity to go first and take this monster into yourself – and, given how it’s coated in that elasticizing oil, you’ll probably be able to take <i>all</i> of it. But, on the other hand, you could continue doing what you’re doing here and let Paige get fucked. Kiro’s body tastes pretty good, after all....");
+
+	processTime(10);
+	pc.lust(20);
+	clearMenu();
+	//[=Continue=][=Go First=]
+	// end scene (scene: PKTSKSH)
+	addButton(0,"Continue",PKTSKC,args);
+	addButton(1,"Go First",PKTSKGF,args);
+}
+
+//[=Line Up=]
+// Randomly choose whether Kiro penetrates the PC or Paige, regardless of endowments
+// (scene: PKTSKLU)
+public function PKTSKLU(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSKLU");
+	output("You eyeball Kiro’s length, your lips pursed and dry as you imagine it in your mouth. With some reluctance, though, you admit that, even with that elasticizing oil on it, you doubt that you’d be able to give Kiro the pleasure she’s looking for with your mouth. And besides – you have another hole that could use the attention.");
+	output("\n\nOne of your hands crawls down Paige’s side, stopping at the fat of her ass and giving her a good, hearty squeeze. You tell her to face away from Kiro and to get onto her hands and knees on the bed. Paige herself is hesitant to let go of the meaty horsecock between you, but relents and follows your instruction, turning away from Kiro and lifting her tail, presenting her drooling gash to the Kui-Tan.");
+	output("\n\nYou take a similar position next to her, bumping your [pc.ass] against Paige’s, rubbing the [pc.skinFurScales] of your butt against the fine fur on her toned ass. You both giggle as you move off-rhythm from each other, wagging your asses towards Kiro, inviting her to choose one of you two for her to fuck. You bite your bottom lip in anticipation: will she choose Paige’s familiar cunt and fuck her into your mattress? Or will she shove that monster of a dick into your [pc.vagOrAss] and seed you like you hope she would?");
+	output("\n\nKiro grunts in approval as she roughly brings both hands down on each of your cheeks: a hard slap on Paige’s right cheek, and one on your left. She rubs at the hot, red spots she just made as she explores your bodies with her hands; her dick slides itself in between your bodies once again, fucking at the tight space between you as she gropes and feels indecisively.");
+	output("\n\n<i>“How’s a girl supposed to choose?”</i> Kiro asks nonchalantly as she teases and prods at different spots at your bodies. She admires the way your body relaxes against her palm, allowing your flesh to jiggle in time with her manhandling, while she coos at the tightness and intensity of Paige’s yoga-trained derriere. <i>“Gods, life is never easy,”</i> she laughs.");
+
+	// continue here if Kiro fucks Paige
+	if(rand(2) == 0)
+	{
+		pc.createStatusEffect("KIRO_FUCKING_PAIGE");
+		pc.setStatusMinutes("KIRO_FUCKING_PAIGE",250);
+		output("\n\nKiro’s questing hand dips a bit further inward, questing towards your [pc.vagOrAss]. You feel her skilled, furry fingers grind against your entrance, their pointed tips spearing into you just a little bit. Your body quakes in pleasure and you tense against her, hoping that this is just a taste before the real thing. But, much to your dismay, you watch Kiro out of the corner of your eye as she repositions herself behind Paige.");
+		output("\n\n<i>“Paige has been waiting long enough for another taste of this, [pc.name].”</i> You watch as she realigns her cock against Paige; she hotdogs herself between her taut Ausar cheeks, the blunt tip beating against the base of her tail. Paige tenses and hiccups in pleasure as that battering ram of a dick bats against her erogenous zone, and from the way Kiro yanks at Paige’s tail to keep it steady, you guess that Kiro knows exactly what she’s doing. <i>“Be a good [pc.boyGirl], though, and maybe it’ll be you I wear like a condom next time.”</i>");
+		output("\n\n<i>“Gods, Kiro, you’re such a biii</i>iiieeeeahhhhh,”</i> Paige utters in defeat as Kiro rears back, her dick spearing deeply into her with one, powerful, definitive thrust. You hear a distinct squelching noise, almost like a moist sponge being squeezed, as Kiro’s enormous tool unceremoniously worms its way into Paige’s cunt; the oil works its magic as both of their bodies meld perfectly around each other, accommodating each other to work in perfect synchronicity.");
+		output("\n\n<i>“Yeah, I’m a bitch,”</i> she says snidely, punctuating her syllables with an audible ‘plap’ of her shapely hips pounding into Paige. <i>“But I’m a bitch with a</i> huge <i>dick.”</i>");
+		output("\n\nPaige’s eyes cross and she lays her head to one side, her tongue lolling out in delirious pleasure. Her hands grip at the sheets on your bed in an effort to remain locked in place, but it fails: with every thrust, she inches just a bit further along your mattress. The sheets soak in a growing puddle around Paige’s face as her drool drips from her insensate mouth unabated.");
+		output("\n\nKiro, proving that her bluster isn’t just words, expertly works your own genitals perfectly in time with her thrusting into Paige’s cunt. Her fingers thrust into your [pc.vagOrAss] as she thrusts into Paige, crooking and reaching for a different spot inside you every time");
+		if(pc.hasCock()) 
+		{
+			output(", and after a few rough, intense minutes, she seamlessly switches to reaching for your [pc.cock], wrapping her fingers around it and giving you a handjob, still at the same tempo as her own thrusting]. Your [pc.hips] bend and turn with Kiro’s movements and actions, trying to eke out every last, wonderful stroke, pet, and fingerbang she’s willing to afford you.");
+			output("\n\nThat said, there’s only so much pleasure a hand can give you, especially when there’s a rock hard dick fucking another hole a scant few inches away. You impatiently eye Paige; she’s been fucked so thoroughly across your bed that her head is beginning to fall off the edge, and her eyes have gone from crossed to rolled, her irises disappearing back into her head. You pout; it could have been you that’s getting fucked silly!");
+			output("\n\nYou could voice your opinion as such; maybe Kiro will give you a break and pull out from Paige (if she can) so she can give you some lovin’. Or, alternatively, you could take a more proactive approach to this threesome: Kiro’s got a whole lot of cock, but that doesn’t mean she has to be the only one to do all the work between you three....");
+		}
+	}
+	// Continue here if Kiro fucks the PC
+	else
+	{
+		pc.createStatusEffect("KIRO_FUCKING_PC");
+		pc.setStatusMinutes("KIRO_FUCKING_PC",250);
+		output("\n\nKiro reaches for Paige’s tail, yanking it upright and pushing it over her back, exposing every part of Paige to herself. It reaches down, slipping a finger into Paige’s tight pussy, making her flinch and shudder in anticipation, but Kiro isn’t done: she withdraws, and then lightly scratches and palms at the base of Paige’s upraised tail, playing with the erogenous zone that she knows is there. In just a few strokes, Paige is a puddle of goo before her.");
+		output("\n\nYou internally fret that Kiro’s chosen Paige to be gifted her cock, but, to your delight, Kiro shuffles towards you; you feel her hand work between you for a moment, and then her hot, heavy length wetly slaps onto your back, her thickness lodged warmly between the cheeks of your ass as she hotdogs you. <i>“Sorry, Bookworm, but [pc.name] has got an ass that’s just too good to pass up.”</i> Paige’s mouth opens as a retort forms on her lips, but another rough yank at her tail stops her immediately. <i>“Let’s not pretend you haven’t had enough of my dick to last you a lifetime regardless, eh?”</i>");
+		output("\n\nPaige looks in your direction lustfully as she hears the squelching noise of Kiro thrusting herself into your [pc.vagOrAss]; you feel your body split, bloat, and inflate to accommodate her immensity, and you know that if it weren’t for the oil, this would have been significantly more of an ordeal than it is. As it is, your eyes cross and your vision blurs as you feel your body surrender to the invading girth of her tremendous horsecock: you feel every delicious inch tickle against the rim of your entrance as she pushes deeper and deeper into you, and your [pc.belly] pushes you up and forward as it makes room for herself.");
+		if(pc.hasVagina()) pc.cuntChange(0,kiro.cockVolume(0));
+		else pc.buttChange(kiro.cockVolume(0));
+		output("\n\nKiro sighs a single, elongated sigh as she settles inside you; you feel the heat of her bloated, overfull testicles against your [pc.legs], their load churning and bubbling to seed you, and you want nothing more. When she pulls back and thrusts into you again, the shock through your body dislodges your tongue from your mouth, and you groan dumbly, drool seeping from around the corners of your mouth as you’re driven across your sheets by Kiro’s pounding.");
+		output("\n\nKiro, proving that her bluster isn’t just words, even continues exploring your body with her available hand: ");
+		if(!pc.hasCock()) output("she explores the meat of your ass and down your thigh, squeezing and groping at your delectable [pc.skinFurScales] there. She even reaches back to your ass and drives a finger into your [pc.asshole], exploring that avenue a bit. You have no sensibilities to stop her even if you wanted to: with that cock of hers pounding into your [pc.vagina] like it owns it, you’re little more than a steak with a nice ass for Kiro to play with. Just as you like it");
+		else output("she pokes, grabs, and molests at the fat of your ass and your thigh, groping at the delectable [pc.skinFurScales] there, but she doesn’t waste much time with the teasing and eagerly reaches beneath you, her swift, precise fingers wrapping surely around your bobbing, leaking [pc.cock]. She jerks you expertly, the way only a woman with a dick herself could give someone else a handjob; you already had no control over your body, with the way her mammoth meat wraps your [pc.vagOrAss] around itself like it owns it, but with every milking, jerking motion she makes on your meat, you sink deeper into your sexual reverie with her");
+		output(".");
+
+		output("\n\nThat said... for all the fucking you’re getting, and as delirious and pleasure-drunk you are with Kiro fucking you, the fact that you’re one of the wheels in this threesome is unshakeable. Your vision occasionally clears enough for you to see Paige, lying on her belly as Kiro roughly fingerfucks her in time with her thrusting into your [pc.vagOrAss]. She makes no effort to try and interrupt your time with Kiro, but you know that she’s going to need something a bit more substantial than a finger in the cooch to really get her off.");
+		output("\n\nTwo ideas cross your mind at the same time. On the one hand, you could take a more proactive role in this threesome – Kiro might have a shitload of cock on her, but that doesn’t mean she has to do all the work. But, on the other hand, you could be selfish and greedy and do nothing as Kiro has her way with your willing body. You’re sure Paige would understand....");
+	}
+	processTime(20);
+	pc.lust(30);
+	clearMenu();
+	//[=Your Turn=][=Reposition=]
+	// if PC is not getting fucked, the button is [=Your Turn=]; if the PC is getting fucked, the button is [=Do Nothing=]
+	// end scene (scene: PKTSKLU)
+	if(!pc.hasStatusEffect("KIRO_FUCKING_PC")) addButton(0,"Your Turn",PKTSKGF,args);
+	else addButton(0,"Do Nothing",PKTSKGF,args);
+	addButton(1,"Reposition",PKTSKR,args);
+}
+
+//[=Continue=]
+// (scene: PKTSKC)
+public function PKTSKC(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	args.push("PKTSKC");
+	author("B!");
+	output("You decide that you’re just fine where you are. You do not respond to Kiro’s question; you instead answer by pulling her cock from your lips, and trailing them down its bloated underside, where you can feel every salacious throb of her cum tube against your tongue.");
+	output("\n\n<i>“Looks like it’s your lucky day, Bookworm,”</i> Kiro muses as you kiss and lick your way down her shaft until your [pc.lips] mesh warmly against her stretched sheath. <i>“You bagged one of the better ones. You be sure you thank [pc.name] properly after we’re done.”</i>");
+	output("\n\nPaige says nothing as she excitedly lifts a leg around Kiro’s waist; she swings her body around until she and Kiro are face-to-face, and she wastes no time in grinding and humping herself against her. When she flexes forward, her slippery cunt drools a slick line of girl-lube up Kiro’s abdominals, and when she leans back, she slides it along her length, forcing it down with her body weight until it rests heavily against your head.");
+	output("\n\nYou hear the sound of them both kissing above you, and you occasionally feel Kiro’s fingers brush against your [pc.hair] as they roam over the broad of Paige’s ass. You continue your adventure beneath them, licking at Kiro’s base and pressing your [pc.chest] against Kiro’s balls, feeling them flex and hearing them rumble with seed as you work her. You lift your own hands skyward and join Kiro in feeling up Paige’s ass, groping at anywhere her hands aren’t and getting two thick handfuls for yourself.");
+	output("\n\n<i>“I’d better not waste this opportunity,”</i> Paige giggles as she wiggles herself against your hands. You glance up and watch Paige rock her body against Kiro’s meat; you admire her tight pussy and the way it pulls at itself with her motions and leaks her fluids down around the sides of her shaft. Then, the vision is pulled away, as she traces the topside of Kiro’s dick from root to crown, inverse to what you did earlier, until she’s out of sight.");
+	output("\n\nYou focus on your own work, fondling at Kiro’s equipment and patterning them with wet, sloppy kisses, when you feel Kiro’s body stiffen and you hear both ladies gasp in pleasure. Her rod flexes against you – you can hear her blood flow and her muscles strain with renewed vigor – followed by the unmistakable, wet, grinding, squeezing sound of a lubed dick sliding into a warm hole.");
+	output("\n\nPaige has both her legs wrapped around Kiro’s waist and her arms wrapped around her shoulders, bracing herself against her while that monolith slides into her eager pussy. You’re given a front-row seat to watching that pussy spread and slide down, inch after inch, into Paige’s body; whenever she passes a new milestone on Kiro’s length, Kiro tenses and her balls pull against her momentarily before the whole cycle starts again.");
+	output("\n\nDrops of their combined fluids streak in rivers down Kiro’s length until they either pool into the fur of her sheath, or they land on your own nose and cheek. You take it all in horny stride as you dip further down, lavishing her furry nuts in your spit, relaxing and bathing them to release their load into the hungry Ausar you’ve given this opportunity to.");
+	output("\n\nYou don’t forget about yourself: your hand dives to your crotch, ");
+	if(pc.hasCock()) output("jerking at your [pc.cock] with each thick lick you make against Kiro’s genitals. You use the flavor and your submissive posture as gasoline to fuel your diamond-hard erection; with every pull and tug at your dick, you get hornier – and, if you’re not mistaken, a little longer – until your pre-cum is leaking so expediently that you coat yourself with it three times over and then some");
+	if(pc.isHerm()) output(".\n\nAnd, dexterously, you reach a bit deeper, ");
+	if(pc.hasVagina()) output("palming wetly at your [pc.vagina], matching your strokes of the tongue with long, extended pets at your gash. Kiro’s every shudder vibrates through you, shaking you to your cunt before your own pre-orgasmic tenses bounce them back. In some part of your mind, you regret not taking up Kiro on her invitation to get fucked – but, in most of your mind, you’re quite happy here, with such a sexy show taking place just a few inches above you");
+	output(".");
+
+	output("\n\nWhen they feel they’ve hit a limit, you hear Paige sigh in delight and you feel her move and adjust herself to the length buried belly-deep in her gash. <i>“That’s a good girl,”</i> Kiro sighs, her own legs bouncing a bit to readjust her grip on Paige’s body. <i>“Just like old times.”</i>");
+	output("\n\n<i>“Yeah,”</i> Paige answers wistfully.");
+	output("\n\nThey pause momentarily, and then Kiro begins to aggressively buck her hips forward and back, sawing her dick into Paige. You hear Paige’s breath catch in her nose when she starts, and then her hot breath comes out in a single, shuddered gasp when Kiro picks up the pace. <i>“This too,”</i> Kiro says over the wet clapping of their hips meeting and the moist clenching of a pussy milking a penis.");
+	output("\n\nPaige hums in lustful reverie as her body works automatically. She has no real leverage or control, with her limbs wrapped around Kiro’s body; all she does is let herself get impaled and then let Kiro and gravity do the rest. <i>“But we’ve never had a friend with us before,”</i> Paige says, her every other word coming out as hiccups, in time with Kiro’s forceful pounding. <i>“How does [pc.heShe] feel? What is [pc.heShe] doing?”</i>");
+	output("\n\nIn response, you open your mouth wide and shuck in as much nut as you can, giving Kiro a delectable suck, letting her know exactly how she should answer. <i>“Goddamn,”</i> Kiro replies breathlessly, and her legs split apart subconsciously, giving you more room to work. <i>“[pc.HeShe]’s giving my right nut one hell of a bath.”</i> She doesn’t continue, and instead hooks her leg over your shoulder, trapping you directly beneath her and between her legs so that you can properly get all the hard-to-reach spots. <i>“A bit to the left, would you?”</i>");
+	output("\n\n<i>“[pc.name] isn’t some rag you use to wash your nuts, Kiro,”</i> Paige chastises through her strained breath.");
+	output("\n\n<i>“Yeah, of course,”</i> Kiro answers, and, around Paige’s toned leg and around Kiro’s pulsating log of a dick, you see her glance down in your direction, <i>“and Gods above if I don’t owe you one hell of a fuck for it or something, [pc.name]. But, you chose to stay down there.”</i> She steps forward, pressing you deeper into her sack and obscuring your vision and muffling the sounds of the room with her bloated balls. <i>“Might as well make the most of it.”</i>");
+	output("\n\nWith that, her pace picks up considerably, her thrusting growing impatient and demanding as she fucks Paige so hard, you’re not sure she’ll be able to do yoga for a week. Paige’s voice comes out as high-pitched, strained whines as her body contorts around the log inside her; you’re sure she’s thanking the stars that Kiro remembered that elasticizing oil of hers.");
+	output("\n\nYour senses are bombarded with the occasional fleeting vision of Kiro splitting Paige in half with her horsecock when it isn’t obscured by her testicles; the smell of a bitch getting fucked and a stud fucking her as hard as they can; and the taste of a furry set of bouncing, tensing balls as they prepare to unload. Your masturbation kicks up a notch as you work Kiro over as best you can with what you have.");
+	output("\n\nAnd your efforts apparently have their intended effect: it isn’t long before you hear Kiro grunt, her voice coming up high and settling, announcing to the room in a primeval, monosyllabic way that she’s about to orgasm. The skin on her balls clench and bunch up all around her, pulling towards her groin, as her cum pumps and bubbles upward. And Paige: she’s been relatively quiet the whole time, but as soon as Kiro’s orgasm began to approach, she began to whine like a needy, horny puppy, wordlessly asking for her every drop.");
+	output("\n\nIt’s only a few more thrusts before she gets what she wants. You keep your eyes peeled on them both: you wouldn’t want to miss this show for the world.");
+	processTime(20);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",PKTSKE,args);
+}
+//[=Climax=]
+// end scene (scene: PKTSKC); go to (PKTSKE)
+
+
+//[=Go First=]
+// if coming from [=Service Her=], this button is labeled [=Go First=]; if coming from [=Line Up=] and Kiro is fucking Paige, this button is labeled [=Your turn=]; if coming from [=Line Up=] and Kiro is fucking the PC, this button is labeled [=Do Nothing=]
+// (scene: PKTSKGF)
+public function PKTSKGF(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSKC");
+	
+	// continue here if coming from PKTSKLU and Kiro is fucking Paige
+	if(InCollection("PKTSKLU", args) && pc.hasStatusEffect("KIRO_FUCKING_PAIGE"))
+	{
+		output("Your [pc.legOrLegs] clench at unrestrained want and lust as you watch Paige get fucked so hard that she’s lost all sense of where she is. You glance over your shoulder towards Kiro; your eyes lock, and although she’s balls-deep in Paige, you know you have her attention.");
+		output("\n\nYou pout your [pc.lips] in her direction and you wriggle your hips, slapping the thick of your ass against Paige’s, feeling every powerful thrust Kiro makes into her. You adjust your lower body to give Kiro a better visage of your unoccupied rear end, wordlessly hinting to her that you’re cold, empty, and lonely, and you could really use a hot cock to warm you up.");
+		output("\n\nShe laughs at your unsubtle hinting. <i>“Right, Paige. Sorry, but it looks like our " + pc.mf("Mister","Missus") + " is getting a little impatient.”</i>");
+		output("\n\nShe withdraws from Paige’s tight-and-unwilling-to-let-go tunnel with an audible slurp, followed by what sounds like a veritable splash of liquid as Paige’s honey drips off Kiro’s rod. As soon as her vagina becomes vacant, Paige’s expression hardens and her senses return to her; she looks over her shoulder in frustration before she remembers where she is and what Kiro is about to do; she’s still horny, but she doesn’t object when Kiro aligns herself against your [pc.vagOrAss] and, without any preamble at all, introduces herself into you.");
+		pc.removeStatusEffect("KIRO_FUCKING_PAIGE");
+		pc.createStatusEffect("KIRO_FUCKING_PC");
+		pc.setStatusMinutes("KIRO_FUCKING_PC",200);
+		if(pc.hasVagina()) pc.cuntChange(0,kiro.cockVolume(0));
+		else pc.buttChange(kiro.cockVolume(0));
+	}
+	// continue here if coming from PKTSKLU and Kiro is fucking the PC
+	else if(InCollection("PKTSKLU", args))
+	{
+		output("You lower your head into the sheets of your bed, resigning yourself to Kiro’s whims and whatever pleasure she decides to take from you. You hope, though, that the only thing she does differently is that she fucks you harder, and that the thought of pulling out from your [pc.vagOrAss] doesn’t even cross your mind.");
+		output("\n\nLuckily for you, that seems to be exactly the case: you glance in Paige’s direction, and despite her being left alone and relatively unattended, she doesn’t seem to mind that she isn’t getting any – at least, not enough to raise her voice about it. Kiro, lost in her rut, makes no attempt to pull out of you, and fucks you like she owns you. Just as you wanted.");
+	}
+	// continue here if coming from PKTSKSH
+	if(InCollection("PKTSKSH", args))
+	{
+		output("You look into Kiro’s eyes, and then Paige’s, momentarily indecisive. The taste of Kiro’s pre soaks and cakes your [pc.tongue], leaving you subconsciously wanting more, almost like a junk food. But, you think that if you turned down Kiro’s invitation to properly take this wonderful beast into your body, you don’t think you’d ever forgive yourself.");
+		output("\n\nYou disengage and lay on all fours on your bed, giving your [pc.ass] a shake in Kiro’s direction, inviting her to come and get it. <i>“Sorry, Bookworm, but it looks like [pc.heShe]’s made [pc.hisHer] choice,”</i> Kiro says as she steps forward, her hands clapping down on your cheeks roughly.");
+		output("\n\nPaige, though, doesn’t seem too upset; she takes a spot next to you on the bed, watching you with an amused expression as Kiro positions the blunt tip of her cock against your [pc.vagOrAss]. <i>“It’s fine with me,”</i> she replies. <i>“You’ll just have to make it up to me later.”</i>");
+		output("\n\nKiro doesn’t give you the opportunity to fantasize about what that might entail. As the words register in your head, she thrusts in, easily sinking her oiled-and-lubed dick into you in a quick, forceful thrust.");
+		pc.removeStatusEffect("KIRO_FUCKING_PAIGE");
+		pc.createStatusEffect("KIRO_FUCKING_PC");
+		pc.setStatusMinutes("KIRO_FUCKING_PC",200);
+		if(pc.hasVagina()) pc.cuntChange(0,kiro.cockVolume(0));
+		else pc.buttChange(kiro.cockVolume(0));
+	}
+	// merge here
+	output("\n\nKiro pounds you into your bed, and you couldn’t stop her if you wanted to; you relax and resign yourself to her brutal treatment, allowing your body to accept all of her into your [pc.vagOrAss], thanks in no small part to the oil covering her from tip to base. You can feel every tight, hard inch slide into you until your ass beats against her belly; when she pulls out, you feel an emptiness blossom within you in time with her vacating cock, only for it to be replaced with more dick.");
+	output("\n\nPaige, for all her patience with you and your selfish, unspoken desire to keep getting fucked, is nonetheless none too keen to lay there with some fingers for her to play with. Through your blurred, crossed vision, you see her crawl towards you until she’s right next to you; she leans in, her lips against yours and her tongue suddenly in your mouth. It takes you a moment to understand what’s happening, and even when you <i>do,</i> your automatic response isn’t to kiss her back so much as it is to suck on her tongue.");
+	output("\n\n<i>“I’m not going to sit here and watch you get all the dick, [pc.name],”</i> she says as her body begins to shift. <i>“I’m getting some action right here, right now, or so help me.”</i>");
+	output("\n\nDexterously, Paige flips onto her back and lifts her left leg high, hooking it around Kiro’s neck and locking her foot between Kiro’s shoulderblades; with a heft, she does the same with her right leg. Keeping her steady on the bed with her hands, she places her body above yours, and then thrusts her kips towards Kiro’s face, mashing her sopping wet pussy against Kiro’s lips. <i>“Eat up,”</i> she commands.");
+	output("\n\nYou don’t feel any pressure on your back, but you do see Paige’s hands on either side of her head, keeping her up. It’s a unique position she’s put herself in – her yoga practice must be coming through for her now.");
+	output("\n\nPaige gasps in delight as you hear the obvious sounds of a questing tongue eagerly fucking, tasting, and eating a wet Ausar pussy; her hands struggle and strain in your vision, and you wonder how long she’ll be able to keep up the position.");
+	output("\n\nKiro demonstrates her expertise as a fucker by not breaking stride, even as Paige fucks her mouth. Her dick continues to piston into your [pc.vagOrAss]: in fact, it gets faster and deeper now that Kiro’s busy on both ends. Your hands bunch the sheets of your bed into balls and your eyes begin to water as you feel that blunt horsecock pound against your ");
+	if(pc.hasCock()) output("prostate. Her every pound into you causing a fresh gush of pre-cum to jet from your [pc.cock] in pleasure, soaking your bedding through");
+	else output("G-spot – not that that’s hard for Kiro: her dick is so big that it rubs at everything inside you at all times. Her every thrust into you causes a fresh gush of your personal lube to splurt from the crease of where her cock presses against your pussy, drenching your [pc.legs] and as far up as Kiro’s stomach");
+	output(". You’re very close, and it’ll only take a dozen more thrusts, if even that.");
+
+	output("\n\nYou can hear Kiro’s muffled voice as she chows on Paige’s box, and from the way she’s grunting in ascension, and the way her stiff dick seems to angle itself just a little bit higher, and the way the skin of her balls tense and scrunch around your legs, she’s not going to last much longer either. And Paige is the same way: she’s the most vocal of you three, with her voice coming out in wanton, feral, horny yelps; her grip slips occasionally and you can feel her quivering body press onto yours as she tries desperately to cum into Kiro’s mouth.");
+	output("\n\nYou bite onto the sheet and clench your jaw, bracing for the tidal wave that’s about to come crashing into all three of you....");
+	processTime(20);
+	pc.lust(100);
+	//[=Climax=]
+	// end scene (scene: PKTSKGF); go to (PKTSKE)
+	clearMenu();
+	addButton(0,"Next",PKTSKE,args);
+}
+
+//[=Reposition=]
+// (scene: PKTSKR)
+public function PKTSKR(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSKR");
+	// continue here if coming from PKTSKLU and Kiro is fucking Paige
+	if(InCollection("PKTSKLU", args) && pc.hasStatusEffect("KIRO_FUCKING_PAIGE"))
+	{
+		output("As hot as it is to watch Paige got fucked – and as mesmerizing as it might be to watch that thick tree of a dick saw in and out of a hole that should have been too small to accommodate it, Kiro’s every thrust being accompanied by a wet squeeze and a moan from the yoga instructor – you have some needs of your own and you aren’t about to just sit there and watch the fun unfold. It’s time to be a little more proactive in this threesome.");
+	}
+	// continue here if coming from PKTSKLU and Kiro is fucking the PC
+	if(InCollection("PKTSKLU", args) && pc.hasStatusEffect("KIRO_FUCKING_PC"))
+	{
+		output("Your vision is blurred and your eyes are watering with how much pleasure you’re getting from having Kiro fuck your [pc.vagOrAss] so wantonly – and you know Kiro is feeling it too, with the way she pounds so hungrily into your body and the way her hand explores your creases and hills. But, despite your inability to focus, you know that this is a threesome, and that, although you very much could ride Kiro’s dick until the next sunrise, she has needs too.");
+		output("\n\nYou weakly wave at Kiro, wordlessly instructing her to stop. It takes her a thrust and a half, but she dredges up the willpower to do so. You both remain still for a moment, catching your breath; she’s still lodged deep inside you, and you can feel her every heartbeat through her thick length. When your sensibilities return, you tell Kiro simply that it’s Paige’s turn.");
+		output("\n\nPaige’s eyes light up at your generosity, and her mouth widens into a giddy smile – a pair of expressions that immediately wipe from her face when Kiro, sexually energized and close enough to her own orgasm, withdraws from you with a loud slurp and, without any preamble, thrusts herself into the bitch.");
+		output("\n\nA muffled scream, gurgled by Paige’s spit as she chokes on her own breath in surprise, echoes through the room in time with the wet plap of Kiro’s nuts slapping into Paige’s ass. She takes a similar position as you: face-down, ass-up, hands clenched into balls on the sheets, while Kiro uses her puffy, tight cunt as a tool for her own pleasure. You lay there, collecting your energy, watching Paige’s body push along your bed, dragging your poor sheets along with her.");
+		output("\n\nThe display reminds you that you haven’t cum yet, and you’re still horny as fuck. You might have done Paige a favor, but you still have needs of your own that haven’t been met. This whole threesome so far, you’ve done nothing but lie there for Kiro’s pleasure. It’s time to be a little more proactive.");
+	}
+	pc.removeStatusEffect("KIRO_FUCKING_PAIGE");
+	pc.removeStatusEffect("KIRO_FUCKING_PC");
+	// merge here
+	// continue here if the PC has a penis
+	if(pc.hasCock())
+	{
+		//kiro pussfucking virginity check?
+		output("\n\nYou stand from the bed; it rocks slightly from your weight shifting off it. Your [pc.cock] waggles in front of you, bobbing underneath its own weight in its almost-painfully erect posture. There’s only one unoccupied vagina in the room");
+		if(pc.hasVagina()) output(" (aside from your own)");
+		output("; you place one hand on Kiro’s jackhammering hips as you move behind her. You rub your [pc.cockHead] against the fat of her furry ass, streaking a line of your pre-cum towards her wet entrance.");
+		output("\n\nKiro hums in approval when she feels your hands on her; she thrusts her hips backward, filling your hands with her body, inviting you to get a good, solid grope and to be a little more exploratory. You take the invitation, but not as much as you think she expected: you dip two fingers into the cleft of her butt to find her pussy and give them a playful, inquisitive thrust. She sighs and leans into your hand, but you withdraw – and replace it with something a little more... substantial.");
+		output("\n\nShe remains still, yet impatient, as you guide yourself into her. You can hear Paige whine while Kiro momentarily abstains from fucking her brains out. <i>“");
+		if(!kiro.vaginalVirgin) 
+		{
+			output("To this day, [pc.name], you’re the only one who’s known what it’s like to fuck Kiro Tamahime in the pussy,”</i> she growls lustfully, looking over her shoulder, her eyes falling onto yours. Her mouth curls into a trusting, yet lustful, smile. <i>“I want you to remind me why, stud.”</i>");
+		}
+		else
+		{
+			output("I guess you're going to get to be the only one who knows what it’s like to fuck Kiro Tamahime in the pussy,”</i> she growls lustfully, looking over her shoulder, her eyes falling onto yours. Her mouth curls into a trusting, yet lustful, smile. <i>“I want you to make an impression, " + pc.mf("stud","angel") + ".”</i>");
+		}
+		output("\n\nYour hands grip onto her ass tightly, manhandling the jiggly flesh and pressing them together to create more of a cleave for you to thrust into. You’re not as vigorous as Kiro was when she went into Paige (yet), and work your way into her slowly, feeling her split apart to welcome your [pc.cock].");
+		if(pc.cocks[0].cLength() >= 16) output(" She’s tight, remarkably so, and yet, despite her ‘inexperience,’ she takes you about as easily as any other slut – you’ll have to look into buying some of that elasticizing oil yourself!");
+		pc.cockChange();
+		kiro.cuntChange(0,pc.cockVolume(0));
+
+		output("\n\nWhen you thrust crotch-deep into her, you push Kiro forward, burying her thick cock back into Paige, who sighs in delight at being filled up once more. You remain there until Kiro pulls out, and you repeat her action yourself. It’s a slow-going rhythm at first, but when you get it going, the three of you are a well-lubed fucking machine: no cocks are left unattended cold and");
+		if(pc.hasVagina()) output(" almost");
+		output(" no vaginas are left empty and hungry.");
+
+		pc.createStatusEffect("KIRO_FUCKING_PAIGE");
+		pc.setStatusMinutes("KIRO_FUCKING_PAIGE",80);
+
+		output("\n\nYou lean in closer to Kiro, wrapping your arms around to her front and fondling her boobs; you pinch and pull at her nipples in alternating patterns that sync with your thrusts, and occasionally, you open up your hand and just get a good, thick grope of Kui-Tan titty. Your every grope and feel at a different part of her body is rewarded with a gentle, sexy laugh and a coo, followed by a harder thrust into Paige and a harder back-end into you, taking you deeper into her.");
+		output("\n\n<i>“Gods,”</i> Kiro gasps when your fingers rub the nub of her nipple once again. <i>“You two are the best, you know that?”</i>");
+		output("\n\nPaige doesn’t respond; she’s shoved a fistful of your bedsheets into her mouth in order to keep from screaming. You answer by saying that ");
+		if(pc.isAss()) output("yes, you <i>are</i> the best, and you always knew it. <i>“Smartass,”</i> Kiro laughs, slapping at your hand with her own.");
+		else output("you and Paige aren’t exactly doing her a favor – you’re in a threesome together because all three of you are important to each other, and because all three of you are sexy as hell. <i>“That’s what I mean, though,”</i> Kiro answers, but doesn’t continue.");
+		output(" Her breathing has become quick and shallow, and her grip on Paige’s body has become tight yet unsteady. You know what’s coming.");
+
+		output("\n\n<i>“Kiss me");
+		if(pc.isAss()) output(", Smartass");
+		output(",”</i> she demands, her left hand grabbing onto your scalp to keep you in place. You do as she says and thrust your [pc.tongue] into her mouth, and allow hers into yours; your kissing is aimless and frantic, used as a tool to hurry forth your impending orgasms.");
+		if(!paigeBlind()) output(" Out of the corner of your eye, you can see Paige look back at you two, and when she sees Kiro give your tongue a suck, she tenses and spasms on the spot – it pushes her over the edge.");
+		output("\n\nIt works.");
+	}
+	// continue here if PC is pure female
+	else
+	{
+		output("\n\nYou roll onto your hands and knees and crawl towards Paige, your eyes locked on that gorgeous meat pounding into her sopping box. Your [pc.tongue] snakes out to wet your [pc.lips] and no matter how altruistic your decision was, you can’t help but have niggling thoughts in the back of your head about what a mistake you’ve made. Still, you’ve made it; you’re not going to try and get Kiro to change her mind, but you <i>are</i> going to reward yourself for it.");
+		output("\n\nCarefully, you drape your body over Paige’s, your [pc.legs] on her either side and your hands and shoulders next to hers. You layer yourself onto her back just slightly, feeling her fine, bristly fur rub and tickle at the [pc.skinFurScales] of your front side; your [pc.chest] rests against her shoulderblades, your [pc.nipples] carving lines across her back with every shove Kiro’s thrusts do into her.");
+		output("\n\nPaige’s bushy tail is extended directly behind her, wrapping just slightly around Kiro’s belly and towards her ribs. You reach behind her and fix that: with a yank, which causes Paige to flinch in surprise, you lift her tail and bend it towards her back, where you trap it between your two bodies. With that done, you lower your [pc.hips] until her tail coarsely rubs against your [pc.vagina].");
+		output("\n\n<i>“Imaginative girl,”</i> Kiro congratulates with a grin as she sees what you’re doing. The fur on Paige’s tail is soft enough to rub against your ladybits without being too overbearing, and the tail itself is stiff enough for you to fuck against. So you do: whenever Kiro thrusts home into Paige, she body shifts forward, dragging her tail against your vulva and your [pc.clits], making your eyes cross and your [pc.vagina] coat the underside of her tail with a little more juice.");
+		output("\n\nYour [pc.chest] rubs against Paige’s strong back in time with Kiro’s thrusts into her. Your whole body feels electric: Paige’s tail thrashes between you occasionally, which does wondrous things to your [pc.clit]. You hardly have the strength to keep yourself upright the longer it goes on; you feel the strength leaving your arms and [pc.legs] and you begin to buckle, but the tactile sensation of having Paige’s tail rub against you the way it is, is too pleasurable for you to give up.");
+		output("\n\nKiro, thank the Gods, comes to your aid when she sees how much effort you’re putting into just staying upright. <i>“C’mere, sexy,”</i> she growls, and you feel her hands wrap around your [pc.thighs]; with surprising strength considering your individual positions, she hefts you up suddenly, wrapping yourself around either side of her face and bringing your own closer to Paige’s lower back.");
+		output("\n\nBefore you can even register what’s happening, you feel Kiro’s tongue inside you. Where before you were relatively content to just fuck Paige’s upturned tail, Kiro had other ideas, and now her wet, questing tongue pierces into your [pc.vagina], tasting at everything you have to give and playing at the ridges of your inner muscles, seeking your elusive G-spot. Her nose bumps against your [pc.asshole] with her every unforgotten thrust into Paige, making you shiver in delight.");
+		output("\n\nBoth yourself and Paige are at the whims and mercy of Kiro and her masterful work on both your bodies. You glance down, your eyes drinking in the sight of Paige’s toned, flexing lower back and tight ass, as you see Kiro’s thick cock violate her pussy, the whole thing pounding down to the bone into the writhing Ausar beneath you both. If it weren’t for the oil, Paige would have been ruined for anybody else, and in some perverted part of your mind, you would have loved to see that.");
+		output("\n\nIt’s all too much for the three of you. The collective breathing and rocking and fucking has gotten too intense for you three to control – Paige has resorted to shoving a fistful of your bedsheet into her mouth to keep from screaming in pleasure, and Kiro’s mouth is too full of your wet cunt, though her muffled grunts resonate through your body and into your ears well enough. You have to do the orgasmic shouting for them both: when that telltale bubbling starts between your legs and starts crackling through you like a lightning bolt, you start yelling to the room how you’re about to cum, and that you’re so close–");
+		output("\n\nApparently, so were they.");
+	}
+	//[=Climax=]
+	// end scene (scene: PKTSKR); go to (scene: PKTSKE)
+	processTime(20);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",PKTSKE,args);
+}
+
+// (scene: PKTSKE)
+// Sorry, Fen
+public function PKTSKE(args:Array):void
+{
+	clearOutput();
+	showPaigeAndKiro(true);
+	author("B!");
+	args.push("PKTSKE");
+	output("All three of you are wet (in more ways than one); bruised; exhausted; and you’re sure you’re awfully musky; but none of you are done yet. That’s going to change in just a few more thrusts: your orgasm is building up and up, and you know that Paige and Kiro won’t last much longer either. In just a few more heavy thrusts, all three of you make it there.");
+
+	output("\n\nKiro, the star of the show between you three and an artisan of her craft, isn’t able to handle the sensory intake and cums first. Her body stiffens tight, and if you focus, you can hear the gurgle of her nutsack as her copious cum jets up her shaft and into its new, warm home, ");
+	//if {PKTSKGF, and Kiro is fucking the PC}
+	if(InCollection("PKTSKGF", args) && pc.hasStatusEffect("KIRO_FUCKING_PC"))
+	{
+		output("straight into your [pc.vagOrAss]. You count each load by the times your hole tightens around her shaft with how her dick bloats with her seed; you get to five full-bodied, thick shots of Kui-Tan cream before you’re too horny to keep track. Kiro’s nuts bunch up against her body and against your [pc.legOrLegs] and the flare of her horse cock inside your body pinches at your already-taxed body in just the right ways, prodding at your sensitive bits with each fresh, new gush. Your [pc.belly] begins to swell and round out with her load, and yet she keeps going – even when you hear a wet splash from behind you when your body can’t take any more and her cum backwashes out from you");
+	}
+	else 
+	{
+		output("straight into Paige’s cunt. You’re treated to a stage-side seat to the show that is Kiro’s dick inflating rhythmically, in time with the scrunching and bunching of her leathery sack against her legs, as she seeds her hole. Paige squeals in delight at the sensation, barely muffled by whatever she could possibly get into her mouth to stem the noise. With rapt, awed attention, you witness her belly, normally toned and defined with a visible six-pack even beneath her fur, round out with Kiro’s seed as her womb packs to bursting");
+		//if {PKSTKC}
+		if(InCollection("PKSTKC", args)) 
+		{
+			output(" – which it does. You were so lost in the sight of those two magnificent bodies copulating just inches from you that you couldn’t react in time to the sudden backwash of cum that washes from Paige’s body, and all over your face and hands");
+			pc.applyCumSoaked();
+		}
+		output(".");
+	}
+	output("\n\nPaige isn’t too much further behind");
+	//if {PKTSKGF, and Kiro is fucking the PC}
+	if(InCollection("PKTSKGF", args) && pc.hasStatusEffect("KIRO_FUCKING_PC")) output(", and knowing, and hearing, that Kiro is cumming into your tight body just a few inches beneath her sets her over the edge. She loudly squeals into the room, her tight legs clamping around Kiro’s face, as her cunt clenches and milks at Kiro’s tongue, her ladycum squirting from her and straight into Kiro’s mouth. Her body shakes with concentrated effort, until a second, body-wracking orgasm shudders through her, robbing her arms of their strength, and she crashes into you on the bed. The motion not only does nothing to impede her rapid-fire orgasms, but it somehow gives her more, now that Kiro’s bending at the neck to suck at her cunt from a different angle");
+	else output(", emphasized by how her body squeezes and shivers, and her voice shrieks in pleasure, as Kiro unloads into her again and again. She does her best to stifle her own voice, to little avail: every time Kiro’s dick bloats and shoots another thick glob of seed inside her, she’s wracked with anywhere between one orgasm and three. Her lady-Ausar-jizz squirts from her hole, soaking up to her own belly and spraying back onto Kiro, lubing that amazing horse cock so it can slide ever deeper and give her ever more cum. No matter how much cum Paige takes into herself, it’s never enough, and she won’t be satisfied until every last drop of Kiro’s seed is emptied from her hefty nuts. So, they’ll probably be there for a while");
+	output(".");
+
+	output("\n\nAnd that just leaves you. Surrounded on one side by an orgasming Ausar and on another by an orgasming Kui-Tan with a massive cock, a borderline instinctive response is trigged in some part of your brain, and the orgasm that was building inside you finally unleashes everything it has. ");
+	//if {PKSTKC}
+	if(InCollection("PKSTKC", args)) 
+	{
+		output("Y");
+		if(pc.hasCock()) output("our [pc.cock], unable to sit idly by as you watch, and veritably bathe in the seed of, another shaking cock as it unloads into a fertile pussy, blasts your own load eagerly into the air. Your hands do nothing to stimulate yourself further as your [pc.cum] coats Kiro’s legs, as high up as her knees, uselessly soaking into her fur and slickening the floor when it comes crashing back down");
+		if(pc.isHerm()) output(". And, at the same time, y");
+		if(pc.hasVagina()) output("our [pc.vagina] clenches and milks the air, your [pc.girlCum] gushing from beneath you in powerful squirts, spraying and coating the floor beneath you as far back as your [pc.feet]. You can’t help but fantasize yourself in Paige’s position: to be in Kiro’s arms, with that magnificent cock pumping load after load after load into you and giving your neglected pussy the attention it so desperately craves. Using the fantasy as fuel, you urge out more and more orgasms from yourself, until you’re cross-eyed and dazed.");
+	}
+	//if {PKTSKGF, and Kiro is fucking the PC}
+	if(InCollection("PKTSKGF", args) && pc.hasStatusEffect("KIRO_FUCKING_PC"))
+	{
+		if(!pc.hasVagina()) output("\n\nYour body squeezes involuntarily as your orgasm rips through you, from your abused-yet-delighted [pc.asshole], up to your head, back to your [pc.cock], and back up to your head again, repeating again and again, and each time it hits your dick, you spray another load of [pc.cum] into your bedsheet. You feel muscles you didn’t realize you had tense around Kiro’s shaft, rippling around her, coaxing her for more and more; your [pc.belly] presses harshly against the bed, overfilled and heavy with her offering, and yet you couldn’t possibly imagine stopping for anything.");
+		else output("\n\nYour body squeezes involuntarily as your orgasm rips through you, from your abused-yet-delighted [pc.vagina], up to your head, back to your [pc.clit], and back up to your head again, repeating again and again, and each time it hits your pussy, you spray another blast of [pc.girlCum] back onto Kiro’s shaft. You feel muscles you didn’t realize you had tense around Kiro’s shaft, rippling around her, coaxing her for more and more; your [pc.belly] presses harshly against the bed, overfilled and heavy with her offering, until your womb just couldn’t possibly take another drop, and it all backwashes onto Kiro. And yet, you need more....");
+	}
+	//if {PKTSKR}
+	if(InCollection("PKTSKR", args))
+	{
+		if(pc.hasCock()) output("\n\nYour [pc.cock], wedged deep into Kiro’s cunt, inflates with your rushing [pc.cum], eager to show her why she allows you to fuck her the way you do. You press your [pc.hips] against her, shoving yourself as deep as you can in a single thrust, and your cum flows from you unabated; Kiro, through her orgasm, coos in delight every time she feels another wad of your spunk bubble inside her, and her pussy flexes and milks at you, thirsty for more and more. You’d thrust into her some more if you could, but she’s got you trapped as tight as could be inside her – not that that’s an issue. If she wants your cum as deep inside her as you can, you’ve got more to give....");
+		else output("Locked as you are, with your face pressed into the small of Paige’s back and with your [pc.legs] wrapped around Kiro’s head, you have little agency in how you gush squirt after squirt of your [pc.girlCum] into her thirsty, demanding maw – in some ways, that makes your orgasm all the better. Your elbows quake in effort as you try and keep yourself aloft above Paige, and their strength gets sapped every time you feel Kiro’s lips suck at your vulva, or her tongue search a little deeper inside you, or her throat swallow your lady-spunk down her gullet. Your senses are overloaded with pleasure on all sides, and there’s nothing you can do about it but cum in Kiro’s mouth some more. And then, some more. And then....");
+	}
+	//[=Afterglow=]
+	// end scene (scene: PKTSKE); go to (PKTSA)
+	processTime(20);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",PKTSA,args);
+}
 
 // (scene: PKTSA)
 public function PKTSA(args:Array):void
@@ -1596,7 +1847,7 @@ public function PKTSA(args:Array):void
 		output("\n\n<i>“And the star of the show is awake,”</i> she says playfully, leaning in towards you to boop your nose with hers. <i>“My Gods, [pc.name], but aren’t you just everything we could have asked for in a lover? That took so much out of me that, if I weren’t a Kui-Tan, I doubt I’d get hard again for a week.”</i>");
 		output("\n\nPaige plays with Kiro’s hair, humming contentedly as Kiro speaks. <i>“But lemme guess,”</i> she says, ruffling at Kiro’s scalp, <i>“I bet you could go again right now, am I right?”</i>");
 		output("\n\n<i>“Well, I certainly</i> could. <i>It’ll be a breezy day in hell when Kiro Tamahime isn’t in the mood to bust a good nut.”</i> All three of you share a quick laugh together. <i>“But I’m good for now.”</i>");
-		output("\n\nShe takes a deep sigh and cuddles into Paige, rubbing her cheek lovingly against Paige’s own. <i>“Good Gods above, I can’t believe... everything that’s happened to get us all here today,”</i> she says wistfully. Her other hand reaches towards you, pulling you closer to her and including you in the cuddle session. <i>“If I hadn’t had that malfunction on my ship, and if you, [pc.name], hadn’t answered the call, and if you hadn’t also taken Paige’s yoga classes, none of this could have happened.”</i> She gives you a surprisingly chaste kiss on your [pc.lipschaste], and then another on Paige’s. <i>“Given all the shit Paige and I have done, life isn’t even a little bit fair. And I’m absolutely fine with that.”</i>");
+		output("\n\nShe takes a deep sigh and cuddles into Paige, rubbing her cheek lovingly against Paige’s own. <i>“Good Gods above, I can’t believe... everything that’s happened to get us all here today,”</i> she says wistfully. Her other hand reaches towards you, pulling you closer to her and including you in the cuddle session. <i>“If I hadn’t had that malfunction on my ship, and if you, [pc.name], hadn’t answered the call, and if you hadn’t also taken Paige’s yoga classes, none of this could have happened.”</i> She gives you a surprisingly chaste kiss on your [pc.lipsChaste], and then another on Paige’s. <i>“Given all the shit Paige and I have done, life isn’t even a little bit fair. And I’m absolutely fine with that.”</i>");
 		output("\n\nPaige answers with another contented hum, squeezing at both you and Kiro once more. <i>“Don’t go getting emotional on us, Kiro,”</i> Paige says, before kissing her back. <i>“Or do. We’re both very lucky that we met [pc.name].”</i>");
 		output("\n\n<i>“Very lucky,”</i> Kiro repeats, as she hugs you and Paige closer to her. You say nothing – most of what had happened to bring you three together was pure happenstance, and they know that, but you don’t try to downplay what the ladies are feeling. They’ve been apart for years, and now that you’ve reunited them, they can start their lives again... with a bang, as it were.");
 		output("\n\nThe three of you don’t get up from the bed for what feels like the better part of another hour. The only ambience in your quarters is the soft breathing and gentle heartbeats from your two lovers.");
@@ -1628,6 +1879,7 @@ public function PKTSA(args:Array):void
 	}
 	processTime(180);
 	pc.orgasm();
+	kiro.orgasm();
 	IncrementFlag("PAIGE_KIRO_THREESOMES");
 	//Cleanup temporary statuses:
 	pc.removeStatusEffect("PAIGE_KIRO_COCKPATH")
