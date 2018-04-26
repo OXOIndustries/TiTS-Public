@@ -1882,6 +1882,8 @@ public function PKTSA(args:Array):void
 	IncrementFlag("PAIGE_KIRO_THREESOMES");
 	//Cleanup temporary statuses:
 	pc.removeStatusEffect("PAIGE_KIRO_COCKPATH");
+	pc.removeStatusEffect("KIRO_FUCKING_PC");
+	pc.removeStatusEffect("KIRO_FUCKING_PAIGE");
 	// end scene (scene: PKTSA)
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
