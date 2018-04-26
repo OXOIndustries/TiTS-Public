@@ -258,6 +258,7 @@ public function jungleEncounterChances():Boolean {
 			}
 		}
 		if(!pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
+		if(!pc.hasStatusEffect("Yoma Cooldown") && rand(2) == 0) choices.push(yomaJungleEncounter);
 		if(flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
 		{
 			choices.push(fZilPregEncounter);
@@ -318,6 +319,7 @@ public function jungleMiddleEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
+		if(!pc.hasStatusEffect("Yoma Cooldown") && rand(2) == 0) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
@@ -412,6 +414,7 @@ public function jungleDeepEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
+		if(!pc.hasStatusEffect("Yoma Cooldown") && rand(2) == 0) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined

@@ -10,10 +10,10 @@
  * YOMA_GAMES_PLAYED
  * YOMA_TALKED_ABOUT_HIMSELF
  * YOMA_TALKED_ABOUT_MASTER
+ * YOMA_AVAIBLE_ENEMIES
 */
 
 //Missing:
-//Game
 //Appear in jungle
 
 public function showYoma(nude:Boolean = false):void
@@ -30,12 +30,32 @@ public function yomaBustDisplay(nude:Boolean = false):String
 }
 */
 
+public function yomaJungleEncounter():void
+{
+	flags["YOMA_AVAIBLE_ENEMIES"] = 0;
+	yomaFirstMeeting();
+}
+
+public function yomaJungleMiddleEncounter():void
+{
+	flags["YOMA_AVAIBLE_ENEMIES"] = 1;
+	yomaFirstMeeting();
+}
+
+public function yomaLeave3():void
+{
+	flags["YOMA_AVAIBLE_ENEMIES"] = 2;
+	yomaFirstMeeting();
+}
+
 public function yomaFirstMeeting():void
 {
 	clearOutput();
 	showYoma();
 	author("-GothPastel");
 
+	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
+ //	pc.createStatusEffect("Yoma Cooldown", 0, 0, 0, 0, true, "", "", false, 24 * 60);
 	if (flags["YOMA_MET"] == undefined) {
 		output("You’re making your way through the jungle when you hear a crack behind you. Whipping around suddenly, you see a figure, too far away to make out in perfect detail but not far over five feet tall, slowly lifting their foot back off of a snapped twig. It’s definitely not a native, you realise - unless you’ve somehow missed a species with big fennec fox ears and tails.");
 		output("\n\n<i>“Damn it,”</i> they - no, he, that’s a distinctly rich, masculine voice - say, <i>“I really must ask master for less clumsy feet.”</i>");
@@ -53,7 +73,7 @@ public function yomaFirstMeeting():void
 	}
 	else {
 		output("You’re walking through the jungle when a familiar voice calls out: <i>“Greetings, [pc.name]!”</i>");
-		output("\n\nYoma is standing a several feet behind you, hands on hips.");
+		output("\n\nYoma is standing several feet behind you, hands on hips.");
 		output("\n\nDo you want to stay and talk?");
 		
 		processTime(3);
@@ -72,7 +92,6 @@ public function yomaLeave():void
 	output("You apologise to Yoma, saying you’re busy.");
 	output("\n\n<i>“No problem, I will see you around!”</i> And without further ado, he’s gone again, vanishing into the jungle.");
 
-	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -149,7 +168,7 @@ public function yomaAppearance():void
 	output("as well as ");
 	if (flags["YOMA_SEEN_NAKED"] != undefined) output("a welcoming ");
 	else output("an ");
-	output("asshole");
+	output("asshole.");
 	output("\n\nHe must have caught you checking him out, because he tugs at his shirt collar and jokingly fans himself with his other hand.");
 
 	processTime(3);
@@ -287,7 +306,7 @@ public function yomaTalkGame():void
 		output("\n\nYou agree");
 		if (pc.isNice()) output(" enthusiastically");
 		output(".");
-		output("\n\nBefore you know it, Yoma’s taken you through character creation and you’ve made a "+ [RandomInCollection(possibleRaces)] +"  "+ [RandomInCollection(possibleClasses)] +" for your main character. Yoma only teases you a <i>little</i> about [pc.himHer] being a self insert, that you ")
+		output("\n\nBefore you know it, Yoma’s taken you through character creation and you’ve made a "+ RandomInCollection(possibleRaces) +"  "+ RandomInCollection(possibleClasses) +" for your main character. Yoma only teases you a <i>little</i> about [pc.himHer] being a self insert, that you ")
 		if (pc.isMischievous()) output("don’t even try to ");
 		output("deny.");
 		output("\n\nAfter about an hour of going over the rules, you have to agree to reconvene another time to actually play.");
@@ -296,21 +315,20 @@ public function yomaTalkGame():void
 		output("You ask Yoma to get his ")
 		if (silly) output("dick, wait no, you mean ");
 		output("dice out, you’re ready to play.");
-		if (rand(10) == 0) {
-			yomaInitiateFighte();
+		if ((rand(3) == 0 && !(pc.accessory is JungleRepel)) || pc.accessory is JungleLure) {
+			yomaInitiateFight();
 			return;
 		}
 		else {
 			output("\n\nNot long after, you settle down into ");
 			if (pc.IQ() > 66) output("what proves to be a harsh fought battle of wits, as you try to catch up with Yoma’s constantly one step ahead spiralling plot threads");
-			if (pc.IQ() > 33) output("a fairly standard bit of campaign work");
+			else if (pc.IQ() > 33) output("a fairly standard bit of campaign work");
 			else output("a session that leaves you feeling just a little embarrassed as Yoma has to stop more than once to explain a plot hook you’d walked right past");
-			output(" and before you know it, almost an hour has gone past. You’ve made "+ [RandomInCollection(progress)] +", but not without "+ [RandomInCollection(results)] +".");
+			output(" and before you know it, almost an hour has gone past. You’ve made "+ RandomInCollection(progress) +", but not without "+ RandomInCollection(results) +".");
 			output("\n\nThe two of you spend a fair amount of time discussing the session, Yoma giving you pointers on strategy, you remarking on bits of plot that probably needed a little more polish.");
 			output("\n\nEventually, you part ways. You’ve relaxed a little, the session a welcoming distraction from the stress of the Rush, and you even feel a little smarter for it.");
 		}
 	}
-	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
 	IncrementFlag("YOMA_GAMES_PLAYED");
 	processTime(60);
 	//increased gain to 1, 0.2 seemed rather pointless
@@ -319,21 +337,80 @@ public function yomaTalkGame():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function yomaInitiateFighte():void
+public function yomaInitiateFight():void
 {
-	//clearOutput();
+	clearOutput();
 	showYoma();
 	author("-GothPastel");
 
-	output("\n\nYou don’t even really have the chance to finish setting up before Yoma’s ears perk up, his tail bristling. Just a second later you hear the undergrowth rustling.");
-//	output("\n\nBefore you know it, a {random: Vanae Huntress //Vanae Maiden //male Zil //female Zil //Kerokoras //male Naleen //female Naleen} is charging towards the two of you. You ready yourself for a fight }{//If PC has weapons: pulling out your [pc.weapons]} {//If PC has shields: and firing up your [pc.shield]}. Yoma, however, does not seem to have quite the same readiness. He locks eyes with you for a moment before a panicked grin spreads across his features. A moment later and he’s gone, <b>leaving you alone to fight off your attacker!</b>");
-	output("\n\n");
-//	output("\n\n[Next]{take the PC into a fight with the respective enemy}");
+//	flags["YOMA_AVAIBLE_ENEMIES"] = rand(3);
+	
+	var avaibleEnemies:Array = [];
+	if (flags["YOMA_AVAIBLE_ENEMIES"] == 1) avaibleEnemies.push(new Naleen(),new NaleenMale());
+	else if (flags["YOMA_AVAIBLE_ENEMIES"] == 2) avaibleEnemies.push(new HuntressVanae(),new MaidenVanae());
+	else avaibleEnemies.push(new ZilFemale(),new ZilMale(),new FrogGirl());	
 
-	processTime(15);
-	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
+	var attackingEnemy:Creature = RandomInCollection(avaibleEnemies);
+
+	output("You don’t even really have the chance to finish setting up before Yoma’s ears perk up, his tail bristling. Just a second later you hear the undergrowth rustling.");
+	output("\n\nBefore you know it, a "+ attackingEnemy.short +" is charging towards the two of you. You ready yourself for a fight, ");
+	if (pc.hasEquippedWeapon()) {
+		output("[pc.drawingWeapon]");
+		if (pc.hasShieldGenerator(true)) output(" and ");
+	}
+	if (pc.hasShieldGenerator(true)) output("firing up your "+ pc.shield.longName);
+	output(".");
+	output("\n\nYoma, however, does not seem to have quite the same readiness. He locks eyes with you for a moment before a panicked grin spreads across his features. A moment later and he’s gone, <b>leaving you alone to fight off your attacker!</b>");
+
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(attackingEnemy);
+
+	if (attackingEnemy.short == "huntress vanae") {
+	//	CodexManager.unlockEntry("Vanae");
+		CombatManager.victoryScene(vanaePCVictory);
+		CombatManager.lossScene(vanaeHuntressPCDefeat);
+		CombatManager.displayLocation("HUNTRESS");
+	}
+	else if (attackingEnemy.short == "maiden vanae") {
+	//	CodexManager.unlockEntry("Vanae");
+		CombatManager.victoryScene(vanaePCVictory);
+		CombatManager.lossScene(vanaeMaidenPCDefeat);
+		CombatManager.displayLocation("MAIDEN");
+	}
+	else if (attackingEnemy.short == "female zil") {
+	//	CodexManager.unlockEntry("Zil");
+		CombatManager.victoryScene(defeatHostileZil);
+		CombatManager.lossScene(girlZilLossRouter);
+		CombatManager.displayLocation("FEMALE ZIL");
+	}
+	else if (attackingEnemy.short == "zil male") {
+	//	CodexManager.unlockEntry("Zil");
+		CombatManager.victoryScene(winVsZil);
+		CombatManager.lossScene(zilLossRouter);
+		CombatManager.displayLocation("MALE ZIL");
+	}
+	else if (attackingEnemy.short == "kerokoras") {
+	//	CodexManager.unlockEntry("Kerokoras");
+		CombatManager.victoryScene(victoryAgainstTheFrogs);
+		CombatManager.lossScene(loseAgainstTheFrogs);
+		CombatManager.displayLocation("KEROKORAS");
+	}
+	else if (attackingEnemy.short == "naleen") {
+	//	CodexManager.unlockEntry("Naleen");
+		CombatManager.victoryScene(beatDatCatNaga);
+		CombatManager.lossScene(pcLosesToNaleenLiekABitch);
+		CombatManager.displayLocation("NALEEN");
+	}
+	else if (attackingEnemy.short == "naleen male") {
+	//	CodexManager.unlockEntry("Naleen");
+		CombatManager.victoryScene(defeatAMaleNaleen);
+		CombatManager.lossScene(loseToDudeleenRouter);
+		CombatManager.displayLocation("NALEEN MALE");
+	}
+
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next", CombatManager.beginCombat);
 }
 
 public function yomaSexMenu():void
@@ -352,8 +429,9 @@ public function yomaSexMenu():void
 		if (pc.hasGenitals()) addButton(0,"Get oral",yomaSexGetOral);
 		else addDisabledButton(0,"Get oral","Get oral", "You need genitals for this scene.");
 		addButton(1,"Give oral",yomaSexGiveOral);
-		if (pc.hasCock()) addButton(2,"Vaginal",yomaSexVaginal);
-		else addDisabledButton(2,"Vaginal","Vaginal", "You need a cock for this scene.");
+		if (pc.isTaur() || pc.isNaga()) addDisabledButton(2,"Vaginal","Vaginal", "You need a more humanoid anatomy for this.");
+		else if (!pc.hasCock()) addDisabledButton(2,"Vaginal","Vaginal", "You need a cock for this scene.");
+		else addButton(2, "Vaginal", yomaSexVaginal);
 		if (pc.hasCockTail()) addButton(3, "Cocktail", yomaSexCocktail);
 		else addDisabledButton(3,"Cocktail","Cocktail", "You need a tail-mounted, parasitic penis for this.");
 		addButton(14,"Back",yomaSexBack);
@@ -448,7 +526,7 @@ public function yomaSexGetOral():void
 		else output(" without a hint of difficulty ");
 		output(". This");
 		if (pc.balls > 0) output(", combined with his hands caressing your [pc.ballsNoun],");
-		output(" pushes you to orgasm, your [pc.cum]");
+		output(" pushes you to orgasm, your [pc.cum] ");
 		if (pc.cumQ() <= 500) output("trickling");
 		else output("flooding");
 		output(" down Yoma’s throat.");
@@ -504,8 +582,10 @@ public function yomaSexGiveOral():void
 	output(" as he’s caught off guard by the sudden doubling of your efforts. You take his swollen clit into your [pc.mouthFull], sucking it gently at first, but soon, emboldened by the cries of pleasure he’s letting out, you step up the intensity.");
 	output("\n\nVoid, he’s absolutely gushing.");
 	output("\n\nAll of this is affecting you too, it’s hard not to be swept up in the moment with a cute android moaning out your name like this. You can feel ");
-	if (pc.hasCock()) output("your [pc.multiCockDescript] stiffening");
-	if (pc.hasCock() && pc.hasVagina()) output(" and ");
+	if (pc.hasCock()) {
+		output("your [pc.multiCockDescript] stiffening");
+		if (pc.hasVagina()) output(" and ");
+	}
 	if (pc.hasVagina()) output("your [pc.vaginas] starting to leak");
 	else output("a warmth rush to the empty expanse between your legs");
 	output(". At this rate, Yoma isn’t the only one who’s going to get off here, you’re close to cumming");
@@ -666,7 +746,7 @@ public function yomaHugsI():void
 	output("\n\nYou might just do that, but before you forget, you gently take the end of his tail, tugging it towards you. Yoma takes the hint, flopping it over you like a fluffy, platinum blond blanket. <i>“Get some rest,”</i> he says, air tickling your cheek as he whispers in your ear.");
 	output("\n\nYou let your eyes drift shut, unable to stop a ");
 	if (pc.isAss()) output("hint of a ");
-	output("smile spreading across your features are you feel his long fingers card");
+	output("smile spreading across your features as you feel his long fingers card ");
 	if (pc.hasHair()) output("through your hair");
 	else output("across your scalp");
 	output(". It’s not long before you fall asleep completely.");
@@ -690,7 +770,6 @@ public function yomaHugsII():void
 	output("\n\n<i>“I will see you around again, soon hopefully,”</i> he says, waving you off. The grin takes a little while to fade from your face, definitely sticking around longer than Yoma did. Void, you’re <i>still</i> comfortable, even now.");
 
 	processTime(3);
-	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
