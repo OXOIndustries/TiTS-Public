@@ -17,7 +17,7 @@ public function shekkaSpitAddiction(arg:Number = 0):Number
 	if(flags["SHEKKA_SPIT_ADDICTION"] == undefined) flags["SHEKKA_SPIT_ADDICTION"] = 0;
 	if(flags["SHEKKA_SPIT_TIME"] == undefined) flags["SHEKKA_SPIT_TIME"] = GetGameTimestamp();
 	//Not sleeping with Shekka? addiction can decrease after two days with no spit!
-	if(flags["CREWMEMBER_SLEEP_WITH"] != "SHEKKA" && flags["CREWMEMBER_SLEEP_WITH"] != "SHEKKA AND ANNO")
+	if(flags["CREWMEMBER_SLEEP_WITH"] != "SHEKKA" && flags["CREWMEMBER_SLEEP_WITH"] != "SHEKKA AND ANNO" && arg <= 0)
 	{
 		if(flags["SHEKKA_SPIT_TIME"] + 48*60 < GetGameTimestamp())
 		{
@@ -34,6 +34,8 @@ public function shekkaSpitAddiction(arg:Number = 0):Number
 	if(arg != 0) 
 	{
 		flags["SHEKKA_SPIT_ADDICTION"] += arg;
+		//Reset loss counter if she gets a hit!
+		if(arg > 0) flags["SHEKKA_SPIT_TIME"] = GetGameTimestamp();
 		if(flags["SHEKKA_SPIT_ADDICTION"] > 100) flags["SHEKKA_SPIT_ADDICTION"] = 100;
 		if(flags["SHEKKA_SPIT_ADDICTION"] < 0) flags["SHEKKA_SPIT_ADDICTION"] = 0;
 	}
