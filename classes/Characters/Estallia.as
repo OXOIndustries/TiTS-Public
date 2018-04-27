@@ -10,6 +10,7 @@ package classes.Characters
 	import classes.Items.Miscellaneous.Picardine;
 	import classes.Items.Miscellaneous.Kirkite;
 	import classes.Items.Miscellaneous.Satyrite;
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -299,13 +300,15 @@ package classes.Characters
 		public function debrisRain(target:Creature):void
 		{
 			output("Estallia swings herself around, using the momentum of her towering body and the blade of one of her oversized swords to sweep the floor, sending a hail of debris and shrapnel smashing into you! ");
-			if(target.reflexes()/2 + rand(20) + 1 <= this.reflexes()/2 + 3)
+			if(target.accessory is FlashGoggles) output(" Your goggles shield your eyes from the attack and you avoid being blinded from the blast.");
+			else if(target.hasBlindImmunity()) output(" Your eyes are unaffected by the attack and you avoid being blinded from the blast.");
+			else if(target.reflexes()/2 + rand(20) + 1 <= this.reflexes()/2 + 3)
 			{
-				output("You manage to duck behind cover and shield your eyes, avoiding the worst of the blast. ");
+				output("You manage to duck behind cover and shield your eyes, avoiding the worst of the blast.");
 			}
 			else
 			{
-				output("You get hit full on the face with a blinding cacophony of metal detritus. ");
+				output("You get hit full on the face with a blinding cacophony of metal detritus.");
 				CombatAttacks.applyBlind(target, 1, true);
 			}
 			applyDamage(damageRand(rangedDamage().multiply(.85), 10), this, target, "minimal");

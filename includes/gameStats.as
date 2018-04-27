@@ -2592,7 +2592,11 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["EMMY_QUEST"] >= 2)
 				{
 					if(MailManager.isEntryViewed("emmy_gift_starter") && flags["EMMY_QUEST"] == 2) output2(", <i>Gift her with a gem!</i>");
-					else output2(", Gave her a gemstone");
+					else
+					{
+						output2(", Gave her a gemstone");
+						if(flags["EMMY_PRESEX_FUN_TIMER"] == undefined) output2(", <i>Perhaps you should have some fun with her?</i>");
+					}
 				}
 				if(flags["EMMY_QUEST"] >= 3)
 				{

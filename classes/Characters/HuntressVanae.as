@@ -142,6 +142,11 @@ package classes.Characters
 			kGAMECLASS.mhengaSSTDChance(this);
 		}
 		
+		override public function hasBlindImmunity():Boolean
+		{
+			return true;
+		}
+		
 		override public function get bustDisplay():String
 		{
 			return "VANAE_HUNTRESS";

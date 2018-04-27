@@ -258,7 +258,8 @@
 			}
 			else output("blasts into the debris behind you, a narrow miss!");
 			//Reflex Save Failed:
-			if(target.reflexes()/2 + rand(20) + 1 < this.aim()/2 + 10)
+			if(target.hasBlindImmunity()) output(" Your eyes are unaffected by the brilliance of the attack and you avoid being blinded!");
+			else if(target.reflexes()/2 + rand(20) + 1 < this.aim()/2 + 10)
 			{
 				output(" <b>The sheer brilliance of the attack leaves you blinded!</b>");
 				CombatAttacks.applyBlind(target);
