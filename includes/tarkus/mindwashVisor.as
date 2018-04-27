@@ -264,7 +264,7 @@ public function mindwashMeShipVers():void
 			{
 				case "Celise": addButton(btnSlot,"Celise",mindwashCelise); btnSlot++; break;
 				//case "Yammi": addButton(btnSlot,"Yammi",mindwashYammi); btnSlot++; break;
-				//case "Pexiga": addButton(btnSlot,(pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short),mindwashPexiga); btnSlot++; break;
+				//case "Pexiga": addButton(btnSlot,pexigaName(),mindwashPexiga); btnSlot++; break;
 				//case "Anno": addButton(btnSlot,"Anno",mindwashAnno); btnSlot++; break;
 				//case "Reaha": addButton(btnSlot,"Reaha",mindwashReaha); btnSlot++; break;
 			}
@@ -1847,7 +1847,7 @@ public function cumWitchBadEnd():void
 	clearMenu();
 	addButton(0,"Next",cumWitchBadEndII,cumNum);
 }
-public function cumWitchBadEndII():void
+public function cumWitchBadEndII(cumNum:Number):void
 {
 	clearOutput();
 	showName("CUM\nWITCH!");
@@ -1857,7 +1857,7 @@ public function cumWitchBadEndII():void
 	output("\n\nYou swallow a creamy batch of her spunk and cup her heavy balls. They’ve grown a little since you moved in, you suppose to keep up with your voracious appetite for her seed, but your black lover doesn’t seem to mind. If anything, she seems quite happy to have you between her knees while she’s studying her spells. You can focus on swallowing her cum until you’re full, and she gets the motivation she needs to properly develop her magics. Why, just last week she learned how to make her jizz taste like chocolate - that was a great week!");
 	output("\n\nStill, as you massage her quaking testes and drink down her delicious jism, you have to think, <i>“Life is good.”</i>");
 	processTime(45);
-	var cumNum:Number = pc.cumQ();
+	cumNum += pc.cumQ();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",CoCSceneEpilogue,cumNum);
@@ -2047,6 +2047,7 @@ public function loppeTheRabbot():void
 	output("\n\nPulling her onto your dick would result in some cowgirl fun, though you’d have to deal with her cock pointed right at you when she came. You could just whip it out and ask what she thinks of it, compared to hers - it might lead to some cross words and crossed swords, though. You could take her monster length vaginally, but if her libido is what she claims, you’ll probably wind up quite stretched. Her hardening horsecock looks like it would fit between your immense tits, an act likely to net you a messy demonstration of her enthusiasm. There’s always the option to receive her anally, though with her vaunted libido, you’d probably end up so flooded with her cum that it would wash from your mouth. Or you could be a prick-tease and leave.");
 	processTime(50);
 	pc.lust(40);
+	clearMenu();
 	addButton(0,"Get BJ",loppeBJ);
 	addButton(1,"Catch Anal",loppeAnal);
 }

@@ -984,7 +984,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if (!counter)
 		{
 			crewMessages += "\n\n" + pexigaShipBonusText();
-			addButton(btnSlot, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
+			addButton(btnSlot, pexigaName(), approachPexigaCrew);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}

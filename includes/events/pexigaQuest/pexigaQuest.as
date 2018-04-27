@@ -20,9 +20,7 @@ import classes.Items.Junk.DamagedVIChip;
 
 public function showDrBadgerAndPexiga(nude:Boolean = false):void
 {
-	var nameDisplay:String = "DR. BADGER &\n";
-	nameDisplay += pexiga.short.toUpperCase();
-	showName(nameDisplay);
+	showName("DR. BADGER &\n" + pexigaName().toUpperCase());
 
 	var pexigaString:String = "PEXIGA";
 	if(pexiga.hasPerk("Ditz Speech")) pexigaString = "PEXIGA_BIMBO";
@@ -35,6 +33,10 @@ public function showDrBadgerAndPexiga(nude:Boolean = false):void
 	showBust(badgerString,pexigaString);
 }
 
+public function pexigaName():String
+{
+	return (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short);
+}
 public function showPexiga():void
 {
 	if(pexiga.short.toLowerCase() == "lil bobby tables") showName("LIL\nBOBBY TABLES");

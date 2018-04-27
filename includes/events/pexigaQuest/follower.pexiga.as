@@ -13,7 +13,7 @@ public function showYammiAndPexiga(nude:Boolean = false):void
 {
 	var nudePrefix:String = "";
 	if(nude) nudePrefix = "_NUDE";
-	showName("YAMMI &\n" + pexiga.short.toUpperCase());
+	showName("YAMMI &\n" + pexigaName().toUpperCase());
 	
 	var pexigaString:String = "PEXIGA";
 	if(pexiga.hasPerk("Ditz Speech")) pexigaString += "_BIMBO";
