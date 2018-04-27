@@ -607,7 +607,7 @@ public function shekkaConfesesThatShesAddicted():void
 	else output(" and ask, <i>“What’s up?”</i>");
 	output("\n\nThe wide-hipped raskvel is chewing on her lower lip. <i>“You know <b>how your spit’s an aphrodisiac</b>? A really... really potent one?”</i>");
 	output("\n\nYou nod. You’ve seen the effect is has on Shekka.");
-	output("\n\n<i>“<b>I’m fucking hooked on it</b>. And before you say anything else? It is fucking <i>awesome</i>.”</i>”</i> Shekka");
+	output("\n\n<i>“<b>I’m fucking hooked on it</b>. And before you say anything else? It is fucking </i>awesome<i>.”</i> Shekka");
 	output("\n\nOkay. Not the response you were anticipating.");
 	output("\n\n<i>“Like, think about it. I crave you, in a way that temporarily completes me. Sure, sometimes the addict-brain thing kicks in and I start to get a bit shaky without a hit... the tradeoff is an incredible orgasm all lip-to-lip.”</i>");
 	output("\n\nJust thinking about it seems to have Shekka all juicy, judging by the way she squirms on the spot, pupils dilating. <i>“Look, [pc.name]. You don’t have to worry about me. The stuff you pump out is pretty damn clean chemically speaking. If you ever replace it, I should be able to drop the habit nooooo problem.”</i>");
@@ -3346,7 +3346,7 @@ public function oviEggShekka():void
 
 	output("\n\n");
 	if(flags["SHEKKA_OVIED"] == undefined) output("<i>“It’s probably good that I did the whole fixing my race thing before now. If we do this enough I think I might even start doubting my decisions. Then again, being one of the last raskvel to only need to worry about getting filled with eggs is a temptation all by itself,”</i> She smirks, stretching across your lap to look up at you.");
-	else output("<i>“I keep thinking I’ll get used to it, but I think it actually feels <b>better</i> every time,”</i> she marvels, flopping onto your lap and stretching with a grin.");
+	else output("<i>“I keep thinking I’ll get used to it, but I think it actually feels </i>better<i> every time,”</i> she marvels, flopping onto your lap and stretching with a grin.");
 	output(" She notices your tray of goodies, grabbing a snack and taking a few huge gulps of water. You lie together for a while longer, sharing the food and drink while recuperating from the exertion. Shekka sits up when she recovers, looking to the eggs scattered across the floor.");
 
 	output("\n\n<i>“");

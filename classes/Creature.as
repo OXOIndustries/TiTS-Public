@@ -7295,13 +7295,19 @@
 			var output: String = "";
 			// Status
 			if (isImmobilized()) output += "immobilized ";
+			var words:Array = [];
 			// Variants
-			if (isGoo()) output += RandomInCollection(["gooey base", "lower half of goo", "lower body"]);
-			else if (isNaga()) output += RandomInCollection(["snake-like half", "slithery lower half", "lower body"]);
-			else if (isTaur()) output += RandomInCollection(["tauric half", "bestial lower half", "lower body"]);
-			else if (isDrider()) output += RandomInCollection(["drider half", "arachnid lower half", "lower body"]);
-			else output += "lower body";
-			return output;
+			if (isGoo()) words.push("gooey base", "lower half of goo", "lower body");
+			else if (isNaga())
+			{
+				words.push("slithery lower half", "lower body");
+				if(legType == GLOBAL.TYPE_SNAKE) words.push("snake-like half");
+				if(legType == GLOBAL.TYPE_SHARK) words.push("shark-like half");
+			}
+			else if (isTaur()) words.push("tauric half", "bestial lower half", "lower body");
+			else if (isDrider()) words.push("drider half", "arachnid lower half", "lower body");
+			else words.push("lower body");
+			return output + words[rand(words.length)];
 		}
 		public function leg(forceType: Boolean = false, forceAdjective: Boolean = false, pluralAdjective: Boolean = false): String
 		{
@@ -7350,7 +7356,7 @@
 						case GLOBAL.TYPE_FROG: adjectives = ["frog", "amphibious", "frog-like", "powerful"]; break;
 						case GLOBAL.TYPE_NYREA: adjectives = ["chitinous", "armored", "insect-like", "carapace-covered"]; break;
 						case GLOBAL.TYPE_SIREN:
-						case GLOBAL.TYPE_SHARK: adjectives = ["finned","shark-like","aquatic"]; break;
+						case GLOBAL.TYPE_SHARK: adjectives = ["finned", "shark-like", "aquatic"]; break;
 						case GLOBAL.TYPE_SWINE: adjectives = ["swine", "swine", "pig-like"]; break;
 						case GLOBAL.TYPE_TENTACLE: adjectives = ["tentacle-toed", "tentacled", "tentacle imitation", "tentacle formed"]; break;
 						case GLOBAL.TYPE_SHEEP: adjectives = ["sheep", "sheep", "sheep-like", "lamb-like"]; break;
@@ -7388,6 +7394,7 @@
 		{
 			if (legType == GLOBAL.TYPE_SNAKE || (legType == GLOBAL.TYPE_GOOEY && hasLegFlag(GLOBAL.FLAG_PREHENSILE))) return "coil";
 			if ((legType == GLOBAL.TYPE_GOOEY || legType == GLOBAL.TYPE_TENTACLE) && hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) return "mound";
+			if (legCount == 1 && legType == GLOBAL.TYPE_SHARK) return "lower body";
 			return "leg";
 		}
 		public function legsNoun():String
@@ -7463,8 +7470,8 @@
 		public function shortHeight():String
 		{
 			var retStr:String = "";
-			retStr += Math.floor(tallness / 12) + "’";
-			if (tallness % 12 > 0) retStr += " " + tallness % 12 + "”";
+			retStr += Math.floor(tallness / 12) + "\'";
+			if (tallness % 12 > 0) retStr += " " + tallness % 12 + "\"";
 			return retStr;
 		}
 		
@@ -7478,14 +7485,17 @@
 		
 			//Noun
 			if (output != "") output += " ";
-			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";
+			if (isNaga())
+			{
+				if (tallness >= 84) output += "underbelly";
+				else if (tallness >= 48) output += "tails";
+				else output += "tail-tips";
+			}
+			else if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hooves";
 			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(10) < 8) output += "paws";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "high-heels";
 			else if (legType == GLOBAL.TYPE_LIZAN) output += "footclaws";
-			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 84) output += "underbelly";
-			else if (legType == GLOBAL.TYPE_NAGA && tallness >= 48) output += "tails";
-			else if (legType == GLOBAL.TYPE_NAGA) output += "tail-tips";
 			else if (legType == GLOBAL.TYPE_FROG && rand(2) == 0) output += "webbed feet";
 			else if (InCollection(legType, [GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN]) && rand(2) == 0) output += RandomInCollection(["footclaws", "webbed feet"]);
 			else if (legType == GLOBAL.TYPE_TENTACLE && rand(2) == 0) output += "tentacle feet";
@@ -7518,7 +7528,8 @@
 		public function toe(): String {
 			var output: String = "";
 			//Noun
-			if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof-tip";
+			if (isNaga()) output += "tail-tip";
+			else if (hasLegFlag(GLOBAL.FLAG_HOOVES)) output += "hoof-tip";
 			else if (hasLegFlag(GLOBAL.FLAG_PAWS) && legType != GLOBAL.TYPE_AVIAN && rand(2) == 0) output += "paw-toe";
 			else if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilia";
 			else if (hasLegFlag(GLOBAL.FLAG_HEELS) && rand(2) == 0) output += "pointed toe";
@@ -7568,7 +7579,7 @@
 			var output: String = "";
 			//Noun
 			if (hasLegFlag(GLOBAL.FLAG_AMORPHOUS) && legType == GLOBAL.TYPE_GOOEY) output += "cilium";
-			else if (legType == GLOBAL.TYPE_NAGA) output += "trunk";
+			else if (isNaga()) output += "trunk";
 			else output += "knee";
 			return output;
 		}
