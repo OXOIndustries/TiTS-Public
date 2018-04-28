@@ -11905,7 +11905,8 @@
 		
 		public function isHuman():Boolean
 		{
-			return race() == "human";
+			//return race() == "human";
+			return (humanScore() >= 4);
 		}
 		
 		public function isHalfHuman():Boolean
