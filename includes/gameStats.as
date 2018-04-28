@@ -4566,7 +4566,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["YOMA_MET"] != undefined)
 				{
 					output2("\n<b>* Yoma:</b> Met him");
-					if(flags["YOMA_GAMES_PLAYED"] != undefined) output2("\n<b>* Yoma, Times Played Game With Him:</b> " + flags["YOMA_GAMES_PLAYED"]);
+					if(flags["YOMA_GAMES_PLAYED"] != undefined) output2("\n<b>* Yoma, Times You Played His RPG Game:</b> " + flags["YOMA_GAMES_PLAYED"]);
 					if(flags["YOMA_TIMES_ORALED"] != undefined) output2("\n<b>* Yoma, Times He Oral Sexed You:</b> " + flags["YOMA_TIMES_ORALED"]);
 					if(flags["YOMA_TIMES_EATEN_OUT"] != undefined) output2("\n<b>* Yoma, Times Licked Him Out:</b> " + flags["YOMA_TIMES_EATEN_OUT"]);
 					if(flags["YOMA_TIMES_VAGINAL"] != undefined) output2("\n<b>* Yoma, Times Fucked Him With Your Dick:</b> " + flags["YOMA_TIMES_VAGINAL"]);

@@ -258,7 +258,7 @@ public function jungleEncounterChances():Boolean {
 			}
 		}
 		if(!pc.hasStatusEffect("Prai Cooldown") && rand(2) == 0) choices.push(praiFirstEncounter);
-		if(!pc.hasStatusEffect("Yoma Cooldown") && rand(2) == 0) choices.push(yomaJungleEncounter);
+		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Zil") && CodexManager.entryUnlocked("Kerokoras") && rand(2) == 0) choices.push(yomaJungleEncounter);
 		if(flags["FZIL_PREG_TIMER"] >= 80 && pc.hasCock())
 		{
 			choices.push(fZilPregEncounter);
@@ -319,7 +319,7 @@ public function jungleMiddleEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Yoma Cooldown") && rand(2) == 0) choices.push(yomaJungleMiddleEncounter);
+		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen") && rand(2) == 0) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
@@ -414,7 +414,7 @@ public function jungleDeepEncounters():Boolean {
 				choices.push(dryadMeeting);
 			}
 		}
-		if(!pc.hasStatusEffect("Yoma Cooldown") && rand(2) == 0) choices.push(yomaJungleMiddleEncounter);
+		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Naleen") && rand(2) == 0) choices.push(yomaJungleMiddleEncounter);
 		//need to have met the venus pitchers and not procced one of Prai's scenes in 24 hours and done first scene
 		if(flags["TIMES_MET_VENUS_PITCHER"] != undefined 
 			&& flags["PRAI_FIRST"] != undefined
@@ -496,7 +496,6 @@ public function mhengaVanaeCombatZone():Boolean
 		flags["JUNGLE_STEP"]++;
 	}
 	
-	var opts:Array = [];
 	
 	if ((pc.accessory is JungleRepel && flags["JUNGLE_STEP"] >= 10 && rand(2) == 0) || (!(pc.accessory is JungleRepel) && flags["JUNGLE_STEP"] >= 5 && rand(2) == 0)) 
 	{
@@ -507,9 +506,13 @@ public function mhengaVanaeCombatZone():Boolean
 		var MAIDEN:int = 0;
 		var HUNTRESS:int = 1;
 		var MIMBRANE:int = 3;
+
+		var YOMA:int = 4;
 		
-		var selected:int = RandomInCollection(MAIDEN, MAIDEN, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, MIMBRANE);
-		
+		var choices:Array = [MAIDEN, MAIDEN, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, HUNTRESS, MIMBRANE];
+		if(!pc.hasStatusEffect("Yoma Cooldown") && CodexManager.entryUnlocked("Vanae") && rand(3) == 0) choices.push(YOMA);
+		var selected:int = RandomInCollection(choices);
+	
 		if (selected == MAIDEN)
 		{
 			encounterVanae(false);
@@ -517,6 +520,10 @@ public function mhengaVanaeCombatZone():Boolean
 		else if (selected == HUNTRESS)
 		{
 			encounterVanae(true);
+		}
+		else if (selected == YOMA)
+		{
+			yomaVanaeZoneEncounter();
 		}
 		else
 		{

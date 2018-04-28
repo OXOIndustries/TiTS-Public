@@ -7,14 +7,11 @@
  * YOMA_TIMES_EATEN_OUT
  * YOMA_TIMES_VAGINAL
  * YOMA_TIMES_TAILFUCKED
- * YOMA_GAMES_PLAYED
  * YOMA_TALKED_ABOUT_HIMSELF
  * YOMA_TALKED_ABOUT_MASTER
+ * YOMA_GAMES_PLAYED
  * YOMA_AVAIBLE_ENEMIES
 */
-
-//Missing:
-//Appear in jungle
 
 public function showYoma(nude:Boolean = false):void
 {
@@ -42,7 +39,7 @@ public function yomaJungleMiddleEncounter():void
 	yomaFirstMeeting();
 }
 
-public function yomaLeave3():void
+public function yomaVanaeZoneEncounter():void
 {
 	flags["YOMA_AVAIBLE_ENEMIES"] = 2;
 	yomaFirstMeeting();
@@ -55,7 +52,7 @@ public function yomaFirstMeeting():void
 	author("-GothPastel");
 
 	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
- //	pc.createStatusEffect("Yoma Cooldown", 0, 0, 0, 0, true, "", "", false, 24 * 60);
+ 	pc.createStatusEffect("Yoma Cooldown", 0, 0, 0, 0, true, "", "", false, 24 * 60);
 	if (flags["YOMA_MET"] == undefined) {
 		output("You’re making your way through the jungle when you hear a crack behind you. Whipping around suddenly, you see a figure, too far away to make out in perfect detail but not far over five feet tall, slowly lifting their foot back off of a snapped twig. It’s definitely not a native, you realise - unless you’ve somehow missed a species with big fennec fox ears and tails.");
 		output("\n\n<i>“Damn it,”</i> they - no, he, that’s a distinctly rich, masculine voice - say, <i>“I really must ask master for less clumsy feet.”</i>");
@@ -146,7 +143,6 @@ public function yomaMenu(clear:Boolean = false):void
  	else if (pc.lust() < 33) addDisabledButton(2, "Sex", "Sex", "You aren’t aroused enough for this.")
 	else addButton(2,"Sex",yomaSexMenu);
 
-//Available if the time is between 21:00 and 3:00
 	if(hours > 3 && hours < 21) addDisabledButton(3, "Hugs", "Hugs", "This scene is only avaible in the evening.");
 	else addButton(3,"Hugs",yomaHugsI);
 	addButton(14,"Leave",yomaLeave);
@@ -343,8 +339,6 @@ public function yomaInitiateFight():void
 	showYoma();
 	author("-GothPastel");
 
-//	flags["YOMA_AVAIBLE_ENEMIES"] = rand(3);
-	
 	var avaibleEnemies:Array = [];
 	if (flags["YOMA_AVAIBLE_ENEMIES"] == 1) avaibleEnemies.push(new Naleen(),new NaleenMale());
 	else if (flags["YOMA_AVAIBLE_ENEMIES"] == 2) avaibleEnemies.push(new HuntressVanae(),new MaidenVanae());
@@ -367,42 +361,49 @@ public function yomaInitiateFight():void
 	CombatManager.setHostileActors(attackingEnemy);
 
 	if (attackingEnemy.short == "huntress vanae") {
+		IncrementFlag("MET_VANAE_HUNTRESS");
 	//	CodexManager.unlockEntry("Vanae");
 		CombatManager.victoryScene(vanaePCVictory);
 		CombatManager.lossScene(vanaeHuntressPCDefeat);
 		CombatManager.displayLocation("HUNTRESS");
 	}
 	else if (attackingEnemy.short == "maiden vanae") {
+		IncrementFlag("MET_VANAE_MAIDEN");
 	//	CodexManager.unlockEntry("Vanae");
 		CombatManager.victoryScene(vanaePCVictory);
 		CombatManager.lossScene(vanaeMaidenPCDefeat);
 		CombatManager.displayLocation("MAIDEN");
 	}
 	else if (attackingEnemy.short == "female zil") {
+		IncrementFlag("TIMES_MET_FEMZIL");
 	//	CodexManager.unlockEntry("Zil");
 		CombatManager.victoryScene(defeatHostileZil);
 		CombatManager.lossScene(girlZilLossRouter);
 		CombatManager.displayLocation("FEMALE ZIL");
 	}
 	else if (attackingEnemy.short == "zil male") {
+		IncrementFlag["ENCOUNTERED_ZIL"];
 	//	CodexManager.unlockEntry("Zil");
 		CombatManager.victoryScene(winVsZil);
 		CombatManager.lossScene(zilLossRouter);
 		CombatManager.displayLocation("MALE ZIL");
 	}
 	else if (attackingEnemy.short == "kerokoras") {
+		IncrementFlag("MET_KEROKORAS");
 	//	CodexManager.unlockEntry("Kerokoras");
 		CombatManager.victoryScene(victoryAgainstTheFrogs);
 		CombatManager.lossScene(loseAgainstTheFrogs);
 		CombatManager.displayLocation("KEROKORAS");
 	}
 	else if (attackingEnemy.short == "naleen") {
+		IncrementFlag("TIMES_MET_NALEEN");
 	//	CodexManager.unlockEntry("Naleen");
 		CombatManager.victoryScene(beatDatCatNaga);
 		CombatManager.lossScene(pcLosesToNaleenLiekABitch);
 		CombatManager.displayLocation("NALEEN");
 	}
 	else if (attackingEnemy.short == "naleen male") {
+		IncrementFlag("TIMES_MET_MALE_NALEEN");
 	//	CodexManager.unlockEntry("Naleen");
 		CombatManager.victoryScene(defeatAMaleNaleen);
 		CombatManager.lossScene(loseToDudeleenRouter);
