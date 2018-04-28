@@ -3507,7 +3507,7 @@ public function coochFuckThreeMaybeFourInOne():void
 		else if(giannaPersonality() < 70)
 		{
 			output("\n\n<i>“Why don’t we use the table, lover?”</i> Gianna gives the bed a few pats. <i>“I’ll lie down and you can make love to me like ");
-			if(pc.race() == "human") output("your people");
+			if(pc.isHuman()) output("your people");
 			else output("the terrans");
 			output(" do.”</i> Smiling roguishly, she adds, <i>“It’ll be a good way to remind you just how good I can be at keeping you happy - even the hard, overeager parts of you.”</i>");
 			output("\n\nSmiling back, you graciously extend your arm towards the table. <i>“Ladies first.”</i>");

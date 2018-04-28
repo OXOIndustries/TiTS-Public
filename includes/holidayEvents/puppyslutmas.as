@@ -16,7 +16,7 @@
 		output("\n\nYou cock an eyebrow at her, cutting her off with, <i>“You care about Christmas? Wouldn’t think an ausar would pay any attention to it.”</i>");
 		
 		output("\n\nAnno gives you a look and says, <i>“Hey, I’ve got a ");
-		if (pc.race() != "human") output("half-");
+		if (!pc.isHuman()) output("half-");
 		output("human " + pc.mf("boy","girl") + "friend, for one thing. Plus it’s the biggest shopping season in the galaxy. Hard not to notice all the advertisements literally everywhere. And all the softcore of girls in Santa hats and fuzzy red undies. That’s the </i>real<i> Christmas cheer if you ask me.”</i>");
 		
 		output("\n\nAnno sticks her tongue out at you before finishing, <i>“Anyway! What I was trying to say was, it’s our first holiday season together, and I was hoping maybe you’d like to come do something special with me to celebrate.”</i>");
