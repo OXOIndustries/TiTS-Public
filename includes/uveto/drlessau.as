@@ -264,7 +264,11 @@ public function drLessauOral():void
 	showLessau();
 	
 	output("You ask Lessau if he wouldn’t mind putting that long, flexible tongue of his to work, in response to which the chimera pats his desk invitingly. You take the offer, hauling yourself up ");
-	if (pc.legCount > 1) output("and swinging your legs around to sit in front of him.");
+	if (pc.legCount > 1)
+	{
+		if (pc.legCount > 3 || !pc.hasLegs()) output("and position your lower body to sit in front of him.");
+		else output("and swinging your legs around to sit in front of him.");
+	}
 	else output("after slithering around so your coils drape across his.");
 	output(" Two hands take hold of your hips, while two more set to relieving you of your gear so that you’re left completely nude.");
 	

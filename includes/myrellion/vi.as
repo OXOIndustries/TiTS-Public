@@ -772,7 +772,8 @@ public function viSexMenu():void
 		// No taurs
 		// No back genitals
 		// No Neuters
-		addButton(3,"Get Head",giveHeadToVi,undefined,"Get Head","Ask her to ‘give you some head’. Request may not work out as intended. Must not be a neuter or taur.");
+		if(pc.genitalLocation() >= 2 || pc.isTaur()) addDisabledButton(3,"Get Head","You must have your genitalia in the proper location and not be a taur for this.");
+		else addButton(3,"Get Head",giveHeadToVi,undefined,"Get Head","Ask her to ‘give you some head’. Request may not work out as intended. Must not be a neuter or taur.");
 	}
 	else addDisabledButton(3,"Get Head","Get Head","You need genitalia for this.");
 

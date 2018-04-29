@@ -727,9 +727,9 @@ public function talkToShekkaAboutInfertility():void
 	output("You ask Shekka how she feels about her infertility. You helped bankroll a massive transformation for her entire race. You could probably help her lay eggs of her own, if she wanted.");
 	output("\n\nShekka stops dead in her tracks. <i>“You’d do that? Or... well you’d at least consider doing it. Wow.”</i> She shakes her head and mouths ‘wow’ once more. <i>“But I don’t want that, [pc.name] - not really. I mean, my cunt wants it. It wants it bad, but the rest of me? The rest of me just worked triple shifts for months to dig my race out of that cursed egg-addiction. Doing that, then turning around and turning myself into another baby-factory? It’d be hypocritical in the extreme.”</i> Shekka sighs and favors you with a mischievous smile. <i>“Besides, this way you can fuck my ass into the deckplates and still count on me to scrabble through the ductwork to fix a short in the electricals. An immobilized raskvel isn’t much use on the rush.”</i>");
 	//Nonbimbo
-	output("\n\n<i>“True enough,”</i> you agree.");
+	if(!pc.isBimbo()) output("\n\n<i>“True enough,”</i> you agree.");
 	//Bimbo
-	output("\n\n<i>“Awww, I guess that makes sense, but you’d be totes cute all stuffed up with eggs,”</i> you say, running a hand over Shekka’s belly. She blushes and bats it away, but you hardly seem to notice. <i>“But I guess you guys don’t get like, the big milky tits and stuff, so it’s fine. We’ll just fuck like bunnies even if we don’t breed like ‘em!”</i>");
+	else output("\n\n<i>“Awww, I guess that makes sense, but you’d be totes cute all stuffed up with eggs,”</i> you say, running a hand over Shekka’s belly. She blushes and bats it away, but you hardly seem to notice. <i>“But I guess you guys don’t get like, the big milky tits and stuff, so it’s fine. We’ll just fuck like bunnies even if we don’t breed like ‘em!”</i>");
 	if(shekka.hasCock())
 	{
 		//Horsedick, pc has birthed eggs

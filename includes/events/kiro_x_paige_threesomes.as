@@ -1425,7 +1425,7 @@ public function PKTSPE(args:Array):void
 		{
 			output("Your grip on Paige tightens, enough to make her wince, as your [pc.cum] surges up, through you, and into her. Your shaft is almost pinched at her entrance, stifling your flow somewhat, but you won’t be denied; your cum surges into ");
 			//if {PKTSPCU and anal}
-			if(InCollection("PKTSPCU", args) && pc.hasStatusEffect("Buttfucking Paige")) output("her tight ass, filling her up into her belly]");
+			if(InCollection("PKTSPCU", args) || pc.hasStatusEffect("Buttfucking Paige")) output("her tight ass, filling her up into her belly");
 			else output("her tight, cramped cunt, seeding her willing womb");
 			output(" in time with Kiro’s pulsing, thick load. Whenever a new, fresh batch of cum blasts through you, Paige’s body becomes tighter around Kiro, and when Kiro matches your load, Paige grows tighter around you. The three of you work automatically, all semblance of conscious control leaving your body as you function as a pair of cocks depositing load after load into a wet, receptive, shuddering hole");
 		}
