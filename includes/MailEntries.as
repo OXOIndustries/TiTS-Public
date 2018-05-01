@@ -131,7 +131,13 @@ public function configureMails():void
 
 		return msg;
 	}, "Bar Night!", "Kiro Tamahime", "RealKiro27@anonexmail.mail", quickPCTo, quickPCToAddress);
-
+	
+	MailManager.addMailEntry("kiroandkallyholomail",
+	function():String {
+		var msg:String = "Hey there, [pc.name].\n\nI was just visiting Kally when the subject of you came up. It seems we owe you a great deal, and a good pirate always pays her debts, you know? I guess good bartenders do too. Without you, we’d never be able to do things like this:\n\n<i>A holo-file is attached: [pc.name]_present_XXX.holo\nYou can access this video from the <b>Smut</b> selection in your <b>Masturbate</b> menu.</i>\n\nYou make sure to give that a good look over, okay? I’ll take personal offense if you don’t enjoy it at least... four or five times.\n\n...a week.\n\nEnjoy,\n\t-Kiro";
+		return ParseText(msg);
+	},"A Present!","Kiro Tamahime", "RealKiro27@anonexmail.mail", quickPCTo, quickPCToAddress);
+	
 	MailManager.addMailEntry("saendrathanks", "You’re a lifesaver, captain. Just got patched up by the docs back on Tavros. Said I wouldn’t have lasted much longer, even if I didn’t get killed in the fight. Blood loss. Speaking of loss, old lefty was mangled pretty bad by that shotgun blast. Had to lose it. Good news is I’ve got myself some new chrome to replace it. Could have been a lot worse. I lived through it thanks to you. You’re my new hero, cap.\n\nI’m going to be grounded at Tavros for a bit. If you get the chance, look me up. I owe you a drink (and maybe a little more~).\n\nYour new friend,\nSaendra <3", "Thanks again, hero!", "Saendra en Illya", "FlyGirl@PhoenixCargo.net", quickPCTo, quickPCToAddress);
 
 	MailManager.addMailEntry("KashimaMail",
@@ -265,6 +271,13 @@ public function configureMails():void
 	MailManager.addMailEntry("syriReactsToHuskarAnnoEmailMail", syriReactsToHuskarAnnoEmail, "lol","Syri Dorna","BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("annoReactsToSyriHuskarTeasingMail", annoReactsToSyriHuskarTeasing, "-no subject-","Anno Dorna","Anno_Dorna@SteeleTech.corp", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("syriGetsBlockedByAnnoOverHuskarMail", syriGetsBlockedByAnnoOverHuskar, "Besties with testes","Syri Dorna","BlastMaster@GalLink.org", quickPCTo, quickPCToAddress);
+	//Shekka Recruitment Emails
+	MailManager.addMailEntry("shekkaFollowerIntroMail", shekkaFollowerIntroEmail, "Can We Talk?","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("shekkaFollowerFirstChildrenBorn", cureProgress1Email, "First Children Born","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("shekkaFollowerTesting", spellingAndReadingTestsMailText, "Test Results","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("shekkaFollowerUnlockEmail", lastRaskvelCureEmail, "Hey...","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
+
+
 
 	MailManager.addMailEntry("shukuchi_veritas", shukuchiKFineUSawSomethingMail, function():String{ return pc.mf("Mr", "Miss") + " Steele! A wonderful offer!"; }, "Celeritas Veritas LTD.", "no-reply@celeritasveritas.net", quickPCTo, quickPCToAddress);
 }

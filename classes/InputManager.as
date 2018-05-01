@@ -63,6 +63,8 @@
 		// A flag to determine if we're listening for keyCodes to execute, or waiting for user text input
 		private var _ignoreKeyPresses:Boolean;
 		
+		public function get ignoreKeyPresses():Boolean { return _ignoreKeyPresses; }
+		
 		public function ignoreInputKeys(flag:Boolean = false):void
 		{
 			trace("Setting key event listener event ignore flag to", flag)
@@ -225,7 +227,7 @@
 			if (_ignoreKeyPresses == false)
 			{
 				// Made it this far, process the key and call the relevant (if any) function
-				this.ExecuteKeyCode(e.keyCode);
+				this.ExecuteKeyCode(e.keyCode, e.shiftKey);
 			}
 			// Otherwise, we're listening in a mode where we just want to ignore keypresses (we're likely waiting for text entry or sommat)
 		}
@@ -234,9 +236,9 @@
 		 * Execute the BoundControlMethod's wrapped function associated with the given KeyCode
 		 * @param	keyCode		The KeyCode for which we wish to execute the BoundControlMethod for.
 		 */
-		private function ExecuteKeyCode(keyCode:int):void
+		private function ExecuteKeyCode(keyCode:int, shiftKey:Boolean):void
 		{
-			if (_keysToControlMethods[keyCode] != null)
+			if (_keysToControlMethods[keyCode] != null && !shiftKey)
 			{
 				if (_debug) trace("Attempting to exec func [" + _controlMethods[_keysToControlMethods[keyCode]].Name + "]");
 				

@@ -120,7 +120,7 @@ public function checkOutBountyBoard():void
 		if(flags["SATELLITE_QUEST"] == 2) output("<b>Completed:</b>");
 		else output("<b>Seen Before:</b>");
 	}
-	output(" Pyrite Industries requires assistance locating a crashed satellite in the jungle. They are offering a 2,500 credit bounty for the return of its stolen hard drive.");
+	output(" Pyrite Industries requires assistance locating a crashed satellite in the jungle. They are offering a 2,500 " + (isAprilFools() ? "dogecoin" : "credit") + " bounty for the return of its stolen hard drive.");
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -450,7 +450,7 @@ public function findOxoniumOnMhenga():Boolean {
 
 public function claimMhengaOxonium():void {
 	clearOutput();
-	output("Utilizing your codex’s sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. The amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you’ve had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 credit deposit.</b> Either you’re not a great geologist, or Dad’s company has orders to give you top dollar. Regardless, the profit is yours.");
+	output("Utilizing your codex’s sensors, you identify the material as Oxonium, a rare mineral used in holographic displays. The amount here is decent, easily worth at least 3,000 credits. You record your location and compose a short message, sending it off a few minutes later. Before you’ve had a chance to do anything else, the codex beeps.\n\n<b>Your bank account just got a 5,000 " + (isAprilFools() ? "dogecoin" : "credit") + " deposit.</b> Either you’re not a great geologist, or Dad’s company has orders to give you top dollar. Regardless, the profit is yours.");
 	
 	flags["TAGGED_MHENGA_OXONIUM_DEPOSIT"] = 1;
 	if(flags["OXONIUM_FOUND"] == undefined) flags["OXONIUM_FOUND"] = 0;
@@ -645,7 +645,7 @@ public function mhengaVanaeAbandonedCamp():Boolean
 public function fastTravelToEsbeth():void
 {
 	clearOutput();
-	output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick credit transfer later, and you’ve got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down into the clearing in the middle of camp with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
+	output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick " + (isAprilFools() ? "dogecoin" : "credit") + " transfer later, and you’ve got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down into the clearing in the middle of camp with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
 	pc.credits -= 40;
 	currentLocation = "ESBETH TRAVEL AUTHORITY";
 	generateMapForLocation(currentLocation);

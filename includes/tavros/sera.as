@@ -244,7 +244,8 @@ public function seraMenu(toLeave:Boolean = false):void
 		if(flags["SERA_TRIPLE_X_RATED"] > 0)
 		{
 			addButton(3,"Talk",talkToSera);
-			if(pc.hasStatusEffect("Sera Breed No Sex")) addDisabledButton(5, "Sex", "Sex", (pcSeraPregDays() > 220 ? "You are too pregnant for this!" : "You’ve convinced your mistress that she’d breed with you, so casual sex is probably out of the question..."));
+			if(pc.statusEffectv1("Sera Breed No Sex") == 1) addDisabledButton(5, "Sex", "Sex", "You’ve convinced your mistress that she’d breed with you, so casual sex is probably out of the question...");
+			else if(pc.isFullyWombPregnant() && pc.hasStatusEffect("Sera Breed No Sex")) addDisabledButton(5, "Sex", "Sex", "You are too pregnant for this!");
 			else addButton(5,"Sex?",seraSexMenu,true,"Sex?","Ask your mistress if you are allowed to have sex with her.");
 		}
 		else addButton(5,"Sex?",seraSexMenu,true);
@@ -358,7 +359,7 @@ public function seraDebtCheck():Boolean
 		else if(timeLeft >= (2 * 24 * 60)) output(" a couple more days");
 		else if(timeLeft >= (12 * 60)) output(" until tomorrow");
 		else output(" some more hours until my account clears");
-		output(" and then ask again, okay?”</i> After recomposing herself, she continues with a forced grin, <i>“In the meantime, if you have some expendable credit chits, feel free to browse my </i>lovely<i> inventory....”</i>");
+		output(" and then ask again, okay?”</i> After recomposing herself, she continues with a forced grin, <i>“In the meantime, if you have some expendable " + (isAprilFools() ? "dogecoins" : "credit chits") + ", feel free to browse my </i>lovely<i> inventory....”</i>");
 		
 		processTime(2);
 		clearMenu();
@@ -1161,10 +1162,7 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 	// Default
 	else
 	{
-		output(" <i>“Then prove it. Bark, little ");
-		if(pc.catDog("nyan", "bork", false) == "bork") output("bitch");
-		else output("doggy");
-		output(".”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said BARK, slut.”</i>");
+		output(" <i>“Then prove it. Bark, little " + pc.catDog("doggy", "bitch", false) + ".”</i> You hesitate a moment, not sure if she’s being serious, and her slim smile fades into a sneer. <i>“I said BARK, slut.”</i>");
 		
 		//if first-time:
 		if(flags["SERA_STUCK_IT_ALL_IN_BUTT"] == 0)
@@ -1320,7 +1318,7 @@ public function seraCockvineScene():void
 	output("\n\nYou shiver as you feel the flat of a purple talon run up the length of your [pc.tail]. It reacts eagerly, swelling with lust and rearing up towards your mistress’s face.");
 	output("\n\n<i>“Oh wow,”</i> she laughs, standing her curvy form over you and gazing into the thing’s moist slit. <i>“My cute little pet has got themselves infested with one of these new parasites I’ve been hearing about.”</i> She reaches out and grips the " + (pc.tailType == GLOBAL.TYPE_COCKVINE ? "cockvine" : "phallic tail") + " firmly, a few inches below the head.");
 	output("\n\n<i>“You... know about these things, mistress?”</i> you manage. Pleasure flares along your tail as Sera shifts her grip up and down the lust-swollen appendage.");
-	output("\n\n<i>“Uh, yeah?”</i> she snorts, whipping her own tail around, curling it around your neck with a practiced flick. <i>“One of them attached itself to some bimbo celebrity recently, and now everybody wants one.”</i> She undoes her tail suddenly, the pulpy spade slapping you sharply on the cheek as it departs. All the while her hand coils your [pc.cockTail], forcing more and more tight, floral lust down its shaft... <i>“Fucks me off to be honest. I pay top credit to get my own tail done, and then it turns out you can get one by bending over for some shrub? Typical. And typical cock-addicted </i>you<i>, letting one of these disgusting, creepy things slither themselves onto you. Ugh!”</i>");
+	output("\n\n<i>“Uh, yeah?”</i> she snorts, whipping her own tail around, curling it around your neck with a practiced flick. <i>“One of them attached itself to some bimbo celebrity recently, and now everybody wants one.”</i> She undoes her tail suddenly, the pulpy spade slapping you sharply on the cheek as it departs. All the while her hand coils your [pc.cockTail], forcing more and more tight, floral lust down its shaft... <i>“Fucks me off to be honest. I pay top " + (isAprilFools() ? "dogecoin" : "credit") + " to get my own tail done, and then it turns out you can get one by bending over for some shrub? Typical. And typical cock-addicted </i>you<i>, letting one of these disgusting, creepy things slither themselves onto you. Ugh!”</i>");
 	output("\n\nShe neither looks nor sounds disgusted. The tone of malicious delight that you’ve come to know so well is clear to hear, and her teal lips are split with a big, toothy sneer as she strokes and fondles your parasitic tail, make it coil and ripple with greedy lust. You groan as it darts, out of your control, batting Sera in the boob as it wriggles its way downwards. <i>Oh Void, please don’t do that...</i>");
 	output("\n\n<i>“Ooh,”</i> coos the demon morph, grin widening. <i>“Does somebody smell something interesting?”</i> She parts her full, smooth thighs slightly; it takes all of your willpower to stop the [pc.cockTail] from burrowing eagerly past her thick, semi-erect dick towards the bare, damp hole it can sense back there.");
 	output("\n\n<i>“I see how it is,”</i> murmurs Sera, reaching down to again take a firm grip of the throbbing tentacle, stroking its head like an unruly pet. <i>“You aren’t really in control of this thing, are you slut? And you </i>like<i> that. You like being weak and a slave to an alien creature’s lusts, having a dripping snake-dick attached to you that does whatever it pleases, when it pleases.”</i>");

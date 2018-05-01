@@ -107,7 +107,7 @@ public function winVsMilodanMale():void
 		{
 			output(" giving him a grin.");
 			output("\n\n<i>“You got that right. Sorry about the beatdown, but you did ask for it,”</i> you say with a wink.");
-			//, <i>“I’ll make it up to you.”</i>}");
+			//, <i>“I’ll make it up to you.”</i>");
 		}
 		//mischievous:
 		else if(pc.isMischievous())

@@ -7,6 +7,7 @@
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
+	import classes.Engine.Utility.num2Text;
 	
 	public class NaleenNip extends ItemSlotClass
 	{
@@ -123,7 +124,7 @@
 						kGAMECLASS.output("\n\nVertigo plays tricks with your balance, making the ground seem to drift a little further away as you nearly lose your balance. You do your best to keep upright until the sensation passes, but something isn’t quite right. You... are you taller? You check the codex’s scanners and confirm that you’ve grown ");
 						x = 1 + rand(5);
 						if(x == 1) kGAMECLASS.output("an inch.");
-						else kGAMECLASS.output(kGAMECLASS.num2Text(x) + " inches.");
+						else kGAMECLASS.output(num2Text(x) + " inches.");
 						target.tallness += x;
 						changes++;
 					}

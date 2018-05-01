@@ -80,12 +80,7 @@ public function approachCiaran():void
 		flags["CIARAN_MET"] = 1;
 	}
 	//Him reciprocating scritches
-	else if (flags["CIARAN_SCRITCH"] == 2 
-			&& !InCollection(pc.earType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FROG, 
-				GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_OVIR, 
-				GLOBAL.TYPE_SUULA, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DAYNAR, 
-				GLOBAL.TYPE_VANAE, GLOBAL.TYPE_DRIDER) 
-			&& pc.femininity >= 60)
+	else if (flags["CIARAN_SCRITCH"] == 2 && !pc.hasNonScritchEars() && pc.femininity >= 60)
 	{
 		ciaranGetScritched();
 		flags["CIARAN_SCRITCH"] = 1;
@@ -900,10 +895,7 @@ public function ciaranVanilla2(anal:Boolean = true):void
 		output("\n\nAs Ciaran’s orgasm wanes, he finally relaxes, letting out a deep breath before looking down at you. Though you expected him to be smug again about making you scream his name, he instead smiles earnestly at you, a very paternal warmth behind his expression. He strokes your sweat-soaked " + (pc.hasHair() ? "hair" : "head") + " gently as he leans down on his elbow, " + (pc.tallness < 5*12+8 ? "kissing the top of your head and whispering sweet nothings to you " : "capturing your [pc.lipsChaste] in a tender kiss as he cups your cheek protectively ") + "while his member continues to sporadically pulse, still trickling a non-stop stream of hot, creamy seed into your already-stuffed sex. You practically melt under the ausar’s gentle affections, even as you finally feel like you’ve adjusted to Ciaran’s higher body temperature. All too soon though, your eyelids grow heavy, your accumulated fatigue finally catching up to you. Ciaran props himself up on his elbows, grinning congenially and wagging his tail lazily. <i>“Feeling tired, kiddo?”</i>");
 		output("\n\nYou barely have the strength to do so, but you nod your head yes.");
 		output("\n\nCiaran chuckles a bit before wrapping his arms around you and rolling you over on top of him. You gasp for a moment in surprise, but you adjust quickly as he throws the driest part of the sheets over the two of you. He whispers his explanation to you, <i>“This ought to be more comfortable for you, keeping you up out of all the mess. Figure it’s only fair seeing as I caused it all.”</i> You murmur your thanks and nuzzle into the lawman’s muscled chest. Ciaran kisses the top of your head once more before he returns to massaging your scalp");
-		if (!InCollection(pc.earType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FROG, 
-				GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_OVIR, 
-				GLOBAL.TYPE_SUULA, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DAYNAR, 
-				GLOBAL.TYPE_VANAE, GLOBAL.TYPE_DRIDER)) output(" and scratching your ears like an expert");
+		if (!pc.hasNonScritchEars()) output(" and scratching your ears like an expert");
 		output(". The DILF wraps his arms affectionately around you, and you mirror him before falling asleep.");
 	}
 	else
@@ -1032,10 +1024,7 @@ public function ciaranVanilla2(anal:Boolean = true):void
 		output("\n\nAs Ciaran’s orgasm wanes, he finally relaxes, letting out a deep breath before looking down at you. Though you expected him to be smug again about making you scream his name, he instead smiles earnestly at you, a very paternal warmth behind his expression. He strokes your sweat-soaked " + (pc.hasHair() ? "hair" : "head") + " gently as he leans down on his elbow, " + (pc.tallness < 5*12+8 ? "kissing the top of your head and whispering sweet nothings to you " : "capturing your [pc.lipsChaste] in a tender kiss as he cups your cheek protectively ") + "while his member continues to sporadically pulse, still trickling a non-stop stream of hot, creamy seed into your already-stuffed bottom. You practically melt under the ausar’s gentle affections, even as you finally feel like you’ve adjusted to Ciaran’s higher body temperature. All too soon though, your eyelids grow heavy, your accumulated fatigue finally catching up to you. Ciaran props himself up on his elbows, grinning congenially and wagging his tail lazily. <i>“Feeling tired, kiddo?”</i>");
 		output("\n\nYou barely have the strength to do so, but you nod your head yes.");
 		output("\n\nCiaran chuckles a bit before wrapping his arms around you and rolling you over on top of him. You gasp for a moment in surprise, but you adjust quickly as he throws the driest part of the sheets over the two of you. He whispers his explanation to you, <i>“This ought to be more comfortable for you, keeping you up out of all the mess. Figure it’s only fair seeing as I caused it all.”</i> You murmur your thanks and nuzzle into the lawman’s muscled chest. Ciaran kisses the top of your head once more before he returns to massaging your scalp");
-		if (!InCollection(pc.earType, GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_FROG, 
-				GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SIREN, GLOBAL.TYPE_OVIR, 
-				GLOBAL.TYPE_SUULA, GLOBAL.TYPE_LIZAN, GLOBAL.TYPE_DAYNAR, 
-				GLOBAL.TYPE_VANAE, GLOBAL.TYPE_DRIDER)) output(" and scratching your ears like an expert");
+		if (!pc.hasNonScritchEars()) output(" and scratching your ears like an expert");
 		output(". The DILF wraps his arms affectionately around you, and you mirror him before falling asleep.");
 	}
 	output("\n\n");

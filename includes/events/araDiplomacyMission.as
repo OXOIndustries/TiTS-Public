@@ -35,6 +35,8 @@ public var BOTHRIOC_QUEST_FAILURE:int = -1; // Bothrioc do not unite.
 
 public function bothriocQuestAvailable():Boolean
 {
+	if(pc.level < 7) return false;
+	
 	return (flags["MET_CHARLES"] != undefined && flags["ARAKEI_TALKED"] != undefined && flags["ARAKEI_TALKED_BOTHRIOC"] != undefined && flags["ARAKEI_TALKED_AMBASSADOR"] != undefined && flags["ARAKEI_TALKED_HISTORY"] != undefined && flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined && flags["DEEP_CAVES_STEP"] != undefined);
 }
 public function bothriocQuestActive():Boolean
@@ -307,7 +309,7 @@ public function bothriocQuestDoctor(response:String):void
 		case "Haswell agree":
 			showDrHaswell();
 			
-			output("Ouch. Still, there’s a lot more riding on this than mere money. Reluctantly, you spend a minute preparing your bank for a large scale credit transfer, and then tap your chit against Haswell’s screen.");
+			output("Ouch. Still, there’s a lot more riding on this than mere money. Reluctantly, you spend a minute preparing your bank for a large scale " + (isAprilFools() ? "dogecoin" : "credit") + " transfer, and then tap your chit against Haswell’s screen.");
 			output("\n\n<i>“Good.”</i> Haswell taps at his screen, not looking at you. <i>“I shall begin work immediately. Come back in three days. It should be complete by then.”</i>");
 			
 			processTime(1);
@@ -871,7 +873,6 @@ public function feiAnAppear():void
 	
 	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.SPIDER_WEB);
 	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.HAZARD);
-	rooms[flags["FEIAN_LOCATION"]].runOnEnter = feiAnStrozoHaremBonus;
 }
 public function feiAnRemove():void
 {
@@ -879,7 +880,6 @@ public function feiAnRemove():void
 	
 	rooms[flags["FEIAN_LOCATION"]].removeFlag(GLOBAL.SPIDER_WEB);
 	rooms[flags["FEIAN_LOCATION"]].addFlag(GLOBAL.HAZARD);
-	rooms[flags["FEIAN_LOCATION"]].runOnEnter = DeepCavesBonus;
 }
 
 // Intro
@@ -972,7 +972,7 @@ public function bothriocQuestFeiAnStrozoResponse(arg:Array):void
 			break;
 		case "no":
 			output("<i>“You know I can’t agree to that,”</i> you say carefully.");
-			if(addiction >= 50) output(" It freezes your [pc.skin] to refuse this powerful, forceful creature, and the words taste bitter in your mouth, but you manage it. You aren’t willing to completely surrender yourself, not just yet.}");
+			if(addiction >= 50) output(" It freezes your [pc.skin] to refuse this powerful, forceful creature, and the words taste bitter in your mouth, but you manage it. You aren’t willing to completely surrender yourself, not just yet.");
 			output(" <i>“Surely there is some other tribute I could pay? I could... fetch a nyrea for you...”</i>");
 			output("\n\n<i>“You wish to buy me with some scabby-kneed beta worker crawling around nearby?”</i> Fei sneers elegantly, hungry eyes never leaving you. <i>“I accept only the most unique and delectable morsels into my harem. If you lack the integrity and courage to accept my terms, then clearly you do not deserve my ownership of you in the first place! So yes, we shall have to consider an alternative tribute. More’s the pity.”</i>");
 			output("\n\nShe is silent for a time, still in her resting squat, finger tapping her cheek.");
@@ -1703,7 +1703,7 @@ public function bothriocQuestApproachAraKei():void
 	if(flags["BOTHRIOC_QUEST_COMPLETE"] == undefined)
 	{
 		output("<i>“Steele!”</i>");
-		output("\n\nAra Kei instantly switches [ara.he] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
+		output("\n\nAra Kei instantly switches [ara.his] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
 		if(bothriocAddiction() < 50)
 		{
 			output("\n\n<i>“The returning hero. Do you like what you see?”</i> [ara.he] spread" + ara.mfn("s", "s", "") + " [ara.his] arms out to indicate the sprawling bustle around [ara.him], smiling grandly as [ara.he] do" + ara.mfn("es", "es", "") + ". <i>“Such are the resources warranted for a fully recognized sapient species within the U.G.C.’s jurisdiction. Such are the resources necessary to run a fledgling government.”</i> You don’t think you’ve ever heard that last word uttered with such relish.");
@@ -1740,7 +1740,7 @@ public function bothriocQuestApproachAraKei():void
 	else
 	{
 		output("<i>“Steele!”</i>");
-		output("\n\nAra Kei instantly switches [ara.he] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
+		output("\n\nAra Kei instantly switches [ara.his] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
 		output("\n\n<i>“And what do we owe this pleasure to?”</i> the quadomme asks, smiling.");
 		
 		processTime(1);

@@ -454,6 +454,7 @@ public function erraGoodGirl2():void
 	processTime(35);
 	restHeal();
 	currentLocation = shipLocation;
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -583,6 +584,7 @@ public function erraBadPupper2():void
 	processTime(60);
 	IncrementFlag("ERRA_SEXED");
 	currentLocation = shipLocation;
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -726,6 +728,7 @@ public function rejectErrasLoveYOUMONSTER():void
 	//[Next] //This should take the PC out of Erra’s menus and stop her from appearing for the PC.
 	processTime(4);
 	flags["ERRA_HEARTBROKEN"] = 1;
+	if(flags["BAR_NPC"] == erraBarText) refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -818,6 +821,7 @@ public function erraSexPets2():void
 	IncrementFlag("ERRA_SEXED");
 	currentLocation = shipLocation;
 	generateMap();
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -969,6 +973,7 @@ public function walkiesWithErra2(cock:Boolean):void
 	IncrementFlag("ERRA_SEXED");
 	pc.exhibitionism(2);
 	currentLocation = shipLocation;
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1025,6 +1030,7 @@ public function erraCuddleScenes2():void
 	pc.energy(100);
 	IncrementFlag("ERRA_CUDDLED");
 	currentLocation = shipLocation;
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

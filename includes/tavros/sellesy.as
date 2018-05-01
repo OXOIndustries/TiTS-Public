@@ -970,10 +970,7 @@ public function sellesyHardlightScene():void
 		output("\n\nBefore you can ask a question, you feel one of her clits unwind from the projection. It snakes into your underwear and begins to hunt; within seconds, it’s found your [pc.asshole] and is tickling your ring. You jerk, and Sellesy’s smile returns. She pivots her hips again, resuming the torture of your dildo, and the smooth clitoris invades your ass with an oily push and starts to thrust. Using expert flicks at your anal nerves, Sellesy brings you to orgasm; your asshole tries to squeeze, but her tapered tentacle easily eludes you as the alien laughs, leaving you to shake out your orgasm as she stirs your holo-cock for extra amusement.");
 	}
 	//common ending
-	output("\n\n<i>“I suppose that was alright,”</i> Sellesy says. <i>“It was a diversion, at least.”</i> She climbs off of you and redresses, then heads for the door... but not before casting one last glance and smirk back. <i>“Toy");
-	if(pc.catDog("nyan", "bork") == "bork") output("-poodle");
-	else output("-boy");
-	output(",”</i> she says, and slips out of the room.");
+	output("\n\n<i>“I suppose that was alright,”</i> Sellesy says. <i>“It was a diversion, at least.”</i> She climbs off of you and redresses, then heads for the door... but not before casting one last glance and smirk back. <i>“Toy" + pc.catDog("-boy", "-poodle") + ",”</i> she says, and slips out of the room.");
 	IncrementFlag("SELLESY_HL");
 	processTime(35);
 	pc.orgasm();

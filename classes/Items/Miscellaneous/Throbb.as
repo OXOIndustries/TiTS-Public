@@ -2,6 +2,7 @@
 {
 	import classes.Engine.Interfaces.*;
 	import classes.Engine.Utility.formatFloat;
+	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Utility.num2Ordinal;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
@@ -174,7 +175,7 @@
 					temp = Math.round(23 + rand(30))/10;
 					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
-					kGAMECLASS.output("\n\nThis is way more pleasurable than any normal masturbation! You don’t really recall being able to take such long strokes along your length or having it fill your hand so powerfully, throbbing just like the drug’s namesake. Looking down, you gasp. Your [pc.cock " + arg + "] is at least two inches longer and still growing! You tug it to help it on its way, moaning as it slops big ropes of pre onto your knuckles. <b>You’ve gained " + kGAMECLASS.num2Text(temp) + " inches of length!</b>");
+					kGAMECLASS.output("\n\nThis is way more pleasurable than any normal masturbation! You don’t really recall being able to take such long strokes along your length or having it fill your hand so powerfully, throbbing just like the drug’s namesake. Looking down, you gasp. Your [pc.cock " + arg + "] is at least two inches longer and still growing! You tug it to help it on its way, moaning as it slops big ropes of pre onto your knuckles. <b>You’ve gained " + num2Text(temp) + " inches of length!</b>");
 					changes++;
 				}
 				//Make a kinda big dick bigger!
@@ -184,7 +185,7 @@
 					temp = Math.round(15 + rand(30))/10;
 					if(pc.hasPerk("Hung")) temp *= 2;
 					pc.cocks[arg].cLengthRaw += temp;
-					kGAMECLASS.output("<b>It doesn’t stop until you’ve gained " + kGAMECLASS.num2Text(temp) + " inches of length.</b>");
+					kGAMECLASS.output("<b>It doesn’t stop until you’ve gained " + num2Text(temp) + " inches of length.</b>");
 					changes++;
 				}
 				//Make a hyper dick bigger!
@@ -278,7 +279,7 @@
 				pc.createCock();
 				pc.setNewCockValues(arg);
 				
-				kGAMECLASS.output("<b>your hand is wrapped around a " + kGAMECLASS.num2Text(Math.round(pc.cocks[arg].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
+				kGAMECLASS.output("<b>your hand is wrapped around a " + num2Text(Math.round(pc.cocks[arg].cLengthRaw*10)/10) + "-inch long, twitching [pc.cockNounSimple " + arg + "].</b>");
 				changes++;
 			}
 			else if (!pc.createCockUnlocked())

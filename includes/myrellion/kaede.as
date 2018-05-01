@@ -177,7 +177,7 @@ public function kaedeMyrellionTalkJob():void
 	
 	output("\n\n<i>“You bought a ship? That’s not cheap,”</i> you say, remembering what Kaede mentioned about noodles and crackers just a few minutes ago.");
 	
-	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every credit. Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
+	output("\n\nShe gives you a wry look. <i>“It wasn’t. I’m still paying </i>Talon<i> off, a chunk out of every paycheck I get. I’m so far in debt over her I can barely see the light, but she’s worth every " + (isAprilFools() ? "dogecoin" : "credit") + ". Every single one,”</i> Kaede says, her lips softening into a far-away smile.");
 	
 	output("\n\n<i>“Being out here, in space, seeing these strange planets... this is everything I ever wanted. I wouldn’t trade it for the world.”</i>");
 	
@@ -649,10 +649,7 @@ public function kaedeMyrellionSucknRide():void
 	clearOutput();
 	kaedeHeader(true);
 
-	output("Your eyes wander inexorably towards the turgid red shaft resting on your belly.");
-	if (pc.catDog("nyan", "bork", false) == "bork") output(" Now that’s one doggy bone you can’t wait to lick!");
-	else output(" You can’t help but lick your lips at the sight of it.");
-	output(" Your hand slips down and wraps around her cock, and you suck in a sharp breath as you feel the hotness of it, more than a human’s ought to be, and diamond hard between your fingers. Kaede moans, leaning back on her knees and cupping one of her breasts as you start to tentatively stroke her length.");
+	output("Your eyes wander inexorably towards the turgid red shaft resting on your belly. " + pc.catDog("You can’t help but lick your lips at the sight of it.", "Now that’s one doggy bone you can’t wait to lick!", false) + " Your hand slips down and wraps around her cock, and you suck in a sharp breath as you feel the hotness of it, more than a human’s ought to be, and diamond hard between your fingers. Kaede moans, leaning back on her knees and cupping one of her breasts as you start to tentatively stroke her length.");
 	
 	output("\n\n<i>“Oooh,”</i> she purrs, starting to move her hips. <i>“That’s nice...”</i>");
 	

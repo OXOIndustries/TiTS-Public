@@ -1337,9 +1337,19 @@ public function venusPitcherSeedNurseryEnds(nEggs:int = 0):void
 	showBust("");
 	showName("VENUS\nPOD!");
 	
-	StatTracking.track("pregnancy/unfertilized venus pitcher seeds", nEggs);
-	StatTracking.track("pregnancy/venus pitcher seeds", nEggs);
-	StatTracking.track("pregnancy/total births", nEggs);
+	if(nEggs <= 0)
+	{
+		output("It looks like you didn’t give birth to any venus pitcher seeds!");
+	}
+	else
+	{
+		output("You have given birth to " + num2Text(nEggs) + " venus pitcher seed" + (nEggs == 1 ? "" : "s") + "!");
+		
+		StatTracking.track("pregnancy/unfertilized venus pitcher seeds", nEggs);
+		StatTracking.track("pregnancy/venus pitcher seeds", nEggs);
+		StatTracking.track("pregnancy/total births", nEggs);
+	}
+	output("\n\n");
 	
 	venusPitcherPodReward(nEggs);
 }

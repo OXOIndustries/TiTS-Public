@@ -4397,6 +4397,10 @@ public function applyMutantDryadTF():void
 	if(!pc.hasVagina()) pc.createVagina();
 	
 	var ppCockvine:Cockvine = new Cockvine();
+	ppCockvine.impregnationType = "CockvinePregnancy";
+	ppCockvine.cumQualityRaw = 2.0;
+	ppCockvine.createPerk("Fixed CumQ", 9000, 0, 0, 0);
+	
 	var ppViola:PregnancyPlaceholder = new PregnancyPlaceholder();
 	if(!ppViola.hasCock()) ppViola.createCock();
 	ppViola.shiftCock(0, GLOBAL.TYPE_EQUINE);

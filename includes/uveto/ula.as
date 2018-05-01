@@ -35,6 +35,9 @@ Very susceptible to pheromones (including her own - which are quite strong), so 
 Snuck out to go alien hunting... and didn’t bring clothing for the cold.
 */
 
+import classes.PlayingCard;
+import classes.PlayingCardDeck;
+
 public function showCaveUla(nude:Boolean = false):void
 {
 	if(flags["MET_ULA"] == undefined) showName("COLD\nKORGONNE");
@@ -142,6 +145,11 @@ public function korgiTranslateProgress():Number
 	if(flags["ULAS_ROLE"] != undefined) qualifyingEvents++;
 	if(flags["ULA_MINING_TALKED"] != undefined) qualifyingEvents++;
 
+	if(flags["LUND_FUCKED_OFF"] != undefined) qualifyingEvents++;
+	if(flags["LUND_GO_AWAY"] != undefined) qualifyingEvents++;
+	if(flags["LUND_LEFT_FOOLISH"] != undefined) qualifyingEvents++;
+	if(flags["LUND_LAST_SEX"] != undefined) qualifyingEvents++;
+
 	qualifyingEvents *= 4;
 	if(qualifyingEvents >= 100) qualifyingEvents = 100;
 	if(qualifyingEvents < 0) qualifyingEvents = 0;
@@ -164,9 +172,18 @@ public function ulaBonus():void
 	if(flags["ULA_CAVE"] == currentLocation && flags["ULA_SAVED"] == undefined)
 	{
 		//ULA TEMPORARILY RE-ENABLED
-		if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*2 > GetGameTimestamp() || 9999 == 9999)
+		if(flags["ULA_LEAVE_TIMER"] == undefined || flags["ULA_LEAVE_TIMER"] + 60*24*5 > GetGameTimestamp())
 		{
 			output("\n\nA shivering figure lurks in shadowy darkness at the rear of the cave, its large, canine ears quivering in distress. Features are difficult to make out without getting any closer, but it is clear from the mop of snow-soaked hair and chattering teeth that whatever is cowering back there is suffering from some serious hypothermia.");
+			//Timer not started
+			if(flags["ULA_LEAVE_TIMER"] == undefined) { output("\n\n<b>Maybe you could help her out and improve relations with the locals...</b>"); }
+			else if(flags["ULA_LEAVE_TIMER"] + 60*24*4 < GetGameTimestamp()) output("\n\n<b>She seems to be gathering her strength for another trip into the wilds. If you mean to help her, do it soon.</b>");
+			else if(flags["ULA_LEAVE_TIMER"] + 60*24*3 < GetGameTimestamp()) output("\n\n<b>You doubt the korgonne will stick around too much longer. Delay too long, and you’ll miss your chance to help her out.</b>");
+			else if(flags["ULA_LEAVE_TIMER"] + 60*24*2 < GetGameTimestamp()) output("\n\n<b>She hasn’t left, but you’re sure that she’ll have to take off eventually. A cave is a poor substitute for a home. And with her departure, you’ll miss out on any chance to help her or her people out.</b>");
+			else
+			{
+				output("\n\n<b>If you don’t help her out now, she’s probably going to be gone forever in a few days.</b>");
+			}
 			addButton(0,"Figure",caveMeetUla);
 		}
 		else
@@ -505,7 +522,11 @@ public function giveUlaCoat():void
 	clearOutput();
 	showCaveUla();
 	//BINGE AND PURGE!
-	if(pc.armor is InsulatedCoat) pc.armor = new EmptySlot();
+	if(pc.armor is InsulatedCoat)
+	{
+		pc.armor.onRemove(pc);
+		pc.armor = new EmptySlot();
+	}
 	else pc.destroyItemByClass(InsulatedCoat);
 
 	output("<i>“Here,”</i> you hand her the Korgonne-made garment from your inventory");
@@ -585,15 +606,16 @@ public function stayAndStarsTell(inVillage:Boolean = false):void
 	output("\n\nLeaning close, ");
 	if(flags["MET_ULA"] != undefined) output("Ula");
 	else output("the Korgonne");
-	output(" licks her cyan-blue lips and glances toward the entrance, suddenly unsure. After a second of indecision, she straightens her little shoulders and faces you. <i>“");
+	output(" licks her cyan-blue lips and glances toward the entrance, suddenly unsure. After a second of indecision, she straightens her little shoulders and faces you.");
 
 	if(!korgiTranslate())
 	{
+		output(" <i>“");
 		if(inVillage) output("Space");
 		else output("Aliens");
 		output(" new. Never seen.”</i> A paw gingerly extends toward your [pc.face].");
 	}
-	else output("\n\n<i>“I don’t understand space. It’s too vast and strange to comprehend.”</i> A paw gingerly extends toward your [pc.face].");
+	else output(" <i>“I don’t understand space. It’s too vast and strange to comprehend.”</i> A paw gingerly extends toward your [pc.face].");
 
 	output("\n\nYou let it. <i>“Really?”</i>");
 
@@ -3105,3 +3127,189 @@ public function ulaPregPussBadEnd():void
 	
 	badEnd("BAD(GOOD?) END!");
 }
+
+public function blackjackTest():void
+{
+	clearOutput();
+	showUla();
+	flags["BLACKJACK_WIN"] = blackjackWin;
+	flags["BLACKJACK_LOSE"] = blackjackLose;
+	output("Want play blackjack? Kay!");
+	
+	startBlackjack();
+}
+
+public function startBlackjack():void
+{
+	clearOutput();
+	flags["BLACKJACK_STANDING"] = undefined;
+	showName("\nBLACKJACK!");
+	output("You start up a game of blackjack!");
+	var deck:PlayingCardDeck = new PlayingCardDeck();
+	var dealerHand:PlayingCardDeck = new PlayingCardDeck();
+	var pcHand:PlayingCardDeck = new PlayingCardDeck();
+	deck.initDeck();
+	deck.shuffleDeck();
+	deck.shuffleDeck();
+	deck.shuffleDeck();
+	output(" A quick shuffle of the cards and you’re ready to play!");
+	
+	pcHand.addCard(deck.drawCard()[0]);
+	pcHand.addCard(deck.drawCard()[0]);
+	output("\n\nYou draw: " + pcHand.listHand() + ".\nValue: <b>" + pcHand.getCardPointTotalBlackjack() + " </b>");
+
+	dealerHand.addCard(deck.drawCard()[0]);
+	dealerHand.addCard(deck.drawCard()[0]);
+	output("\n\nThe dealer draws: " + dealerHand.listHand() + ".\nValue: <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>");
+	blackJackOptions([deck,dealerHand,pcHand]);
+	
+}
+
+public function blackJackOptions(args:Array):void
+{
+	var deck:PlayingCardDeck = args[0];
+	var dealerHand:PlayingCardDeck = args[1];
+	var pcHand:PlayingCardDeck = args[2];
+	if(pcHand.getCardPointTotalBlackjack() == 21 && pcHand.cards.length == 2)
+	{
+		output("\n\n<b>BLACKJACK! You win!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_WIN"]);
+	}
+	else if(pcHand.getCardPointTotalBlackjack() > 21)
+	{
+		output("\n\n<b>Bust! You lose!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_LOSE"]);
+	}
+	else if(dealerHand.getCardPointTotalBlackjack() > 21)
+	{
+		output("\n\n<b>Dealer goes bust! You win!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_WIN"]);
+	}
+	else if(dealerHand.getCardPointTotalBlackjack() == 21)
+	{
+		output("\n\n<b>Dealer has 21! You lose!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_LOSE"]);
+	}
+	else if(dealerHand.getCardPointTotalBlackjack() >= 16 && pcHand.getCardPointTotalBlackjack() > dealerHand.getCardPointTotalBlackjack())
+	{
+		output("\n\n<b>You win!</b>");
+		clearMenu();
+		addButton(0,"Next",flags["BLACKJACK_WIN"]);
+	}
+	//If standing, proceed with dealer till result:
+	else if(flags["BLACKJACK_STANDING"] != undefined)
+	{
+		if(dealerHand.getCardPointTotalBlackjack() >= pcHand.getCardPointTotalBlackjack())
+		{
+			output("\n\n<b>Dealer wins!</b>");
+			clearMenu();
+			addButton(0,"Next",flags["BLACKJACK_LOSE"]);
+		}
+		//Dealer didnt win and must be below 16, so next round...
+		else
+		{
+			clearMenu();
+			addButton(0,"Next",blackjackStand,[deck,dealerHand,pcHand]);
+		}
+	}
+	else
+	{
+		output("\n\nDo you hit or stand? (Hitting draws a new card.)");
+		clearMenu();
+		addButton(0,"Hit",blackjackHit,[deck,dealerHand,pcHand],"Hit","Draw another card to try and get closer to 21 without going over.");
+		addButton(1,"Stand",blackjackStand,[deck,dealerHand,pcHand],"Stand","Keep your current cards for now.");
+	}
+}
+
+public function blackjackHit(args:Array):void
+{
+	var deck:PlayingCardDeck = args[0];
+	var dealerHand:PlayingCardDeck = args[1];
+	var pcHand:PlayingCardDeck = args[2];
+	clearOutput();
+	showName("\nBLACKJACK!");
+	pcHand.addCard(deck.drawCard()[0]);
+	output("You draw: " + pcHand.cards[pcHand.cards.length-1].cardDescription() + ".\n");
+	output("Your current hand: " + pcHand.listHand() + ".\nValue: <b>" + pcHand.getCardPointTotalBlackjack() + " </b>");
+	blackjackDealerAI([deck,dealerHand,pcHand]);
+
+}
+public function blackjackStand(args:Array):void
+{
+	var deck:PlayingCardDeck = args[0];
+	var dealerHand:PlayingCardDeck = args[1];
+	var pcHand:PlayingCardDeck = args[2];
+	flags["BLACKJACK_STANDING"] = true;
+	clearOutput();
+	showName("\nBLACKJACK!");
+	output("You keep your current hand: " + pcHand.listHand() + ".\nValue: <b>" + pcHand.getCardPointTotalBlackjack() + " </b>");
+	blackjackDealerAI([deck,dealerHand,pcHand]);
+}
+public function blackjackDealerAI(args:Array):void
+{
+	var deck:PlayingCardDeck = args[0];
+	var dealerHand:PlayingCardDeck = args[1];
+	var pcHand:PlayingCardDeck = args[2];
+	if(dealerHand.getCardPointTotalBlackjack() < 16)
+	{
+		dealerHand.addCard(deck.drawCard()[0]);
+		output("\n\nThe dealer draws a card: " + dealerHand.cards[dealerHand.cards.length-1].cardDescription() + ".\n");
+		output("Dealer’s hand: " + dealerHand.listHand() + ".\nValue: <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>");
+	}
+	else output("\n\nDealer stands: " + dealerHand.listHand() + ".\nValue: <b>" + dealerHand.getCardPointTotalBlackjack() + "</b>");
+	blackJackOptions([deck,dealerHand,pcHand]);
+}
+
+public function blackjackWin():void
+{
+	clearOutput();
+	output("Congrats on winning. Wagering TBAdded.");
+	clearMenu();
+	addButton(0,"Next",blackjackCleanup);
+	addButton(1,"Again",startBlackjack);
+}
+public function blackjackLose():void
+{
+	clearOutput();
+	output("That could have gone better. Wagering TBAdded.");
+	clearMenu();
+	addButton(0,"Next",blackjackCleanup);
+	addButton(1,"Again",startBlackjack);
+}
+public function blackjackCleanup():void
+{
+	flags["BLACKJACK_STANDING"] = undefined;
+	flags["BLACKJACK_LOSE"] = undefined;
+	flags["BLACKJACK_WIN"] = undefined;
+	mainGameMenu();
+}
+
+/*
+public function bjScorecheck():void
+{
+	var hand:PlayingCardDeck = new PlayingCardDeck();
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	hand.cards.push(new PlayingCard("diamonds",10,13));
+	output(hand.getCardPointTotalBlackjack() + "\n");
+	hand = new PlayingCardDeck();
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("hearts",10,10));
+	output(hand.getCardPointTotalBlackjack() + "\n");
+	hand = new PlayingCardDeck();
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("spades",10,14));
+	hand.cards.push(new PlayingCard("diamonds",10,13));
+	hand.cards.push(new PlayingCard("diamonds",10,13));
+	hand.cards.push(new PlayingCard("spades",10,14));
+	output(hand.getCardPointTotalBlackjack() + "\n");
+	hand = new PlayingCardDeck();
+}*/

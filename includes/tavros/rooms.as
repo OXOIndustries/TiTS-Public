@@ -23,9 +23,9 @@ public function initTavrosRooms():void
 	
 	// SX1 Rooms
 	rooms["SX1 FAKE ELEVATOR"] = new RoomClass(this);
+	rooms["SX1 FAKE ELEVATOR"].eastExit = "SX1 FAKE FIGHT ROOM";
 	rooms["SX1 FAKE ELEVATOR"].addFlag(GLOBAL.INDOOR);
 	rooms["SX1 FAKE ELEVATOR"].addFlag(GLOBAL.LIFTDOWN);
-	rooms["SX1 FAKE ELEVATOR"].eastExit = "SX1 FAKE FIGHT ROOM";
 	
 	rooms["SX1 FAKE FIGHT ROOM"] = new RoomClass(this);
 	rooms["SX1 FAKE FIGHT ROOM"].westExit = "SX1 FAKE ELEVATOR";
@@ -40,25 +40,28 @@ public function initTavrosRooms():void
 	rooms["HOTEL CORRIDOR"].moveMinutes = 1;
 	rooms["HOTEL CORRIDOR"].westExit = "ANON'S BOARD HALL";
 	rooms["HOTEL CORRIDOR"].southExit = "CALLGIRL ROOM";
-	rooms["HOTEL CORRIDOR"].northExit = "SX1 RESCUE ROOM";
+	rooms["HOTEL CORRIDOR"].eastExit = "SX1 RESCUE ROOM";
 	rooms["HOTEL CORRIDOR"].addFlag(GLOBAL.INDOOR);
 	rooms["HOTEL CORRIDOR"].addFlag(GLOBAL.PRIVATE);
 	
 	// Basically decoration room, player (should) never actually be able to enter it properly.
 	rooms["CALLGIRL ROOM"] = new RoomClass(this);
+	rooms["CALLGIRL ROOM"].roomName = "CALLGIRL’S\nROOM";
+	rooms["CALLGIRL ROOM"].planet = "TAVROS STATION";
+	rooms["CALLGIRL ROOM"].system = "SYSTEM: KALAS";
 	rooms["CALLGIRL ROOM"].northExit = "HOTEL CORRIDOR";
 	rooms["CALLGIRL ROOM"].addFlag(GLOBAL.INDOOR);
 	rooms["CALLGIRL ROOM"].addFlag(GLOBAL.PRIVATE);
 	rooms["CALLGIRL ROOM"].addFlag(GLOBAL.NPC);
 	
 	rooms["SX1 RESCUE ROOM"] = new RoomClass(this);
-	rooms["SX1 RESCUE ROOM"].southExit = "HOTEL CORRIDOR";
+	rooms["SX1 RESCUE ROOM"].roomName = "\nROOM";
 	rooms["SX1 RESCUE ROOM"].planet = "TAVROS STATION";
 	rooms["SX1 RESCUE ROOM"].system = "SYSTEM: KALAS";
+	rooms["SX1 RESCUE ROOM"].westExit = "HOTEL CORRIDOR";
 	rooms["SX1 RESCUE ROOM"].moveMinutes = 1;
 	rooms["SX1 RESCUE ROOM"].addFlag(GLOBAL.INDOOR);
 	rooms["SX1 RESCUE ROOM"].addFlag(GLOBAL.PRIVATE);
-	rooms["SX1 RESCUE ROOM"].southExit = "HOTEL CORRIDOR";
 
 	//101. Anon's Board Hall
 	rooms["ANON'S BOARD HALL"] = new RoomClass(this);

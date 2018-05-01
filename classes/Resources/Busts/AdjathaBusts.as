@@ -464,6 +464,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/lys_nude.png", mimeType = "image/png")]
 		public var Bust_LYS_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/maja.png", mimeType = "image/png")]
+		public var Bust_MAJA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/maja_nude.png", mimeType = "image/png")]
+		public var Bust_MAJA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/merc.png", mimeType = "image/png")]
 		public var Bust_MERCGUARD:Class;
 		
@@ -722,6 +727,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/vahn_nude.png", mimeType = "image/png")]
 		public var Bust_VAHN_NUDE:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/verusha.png", mimeType = "image/png")]
+		public var Bust_VERUSHA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/verusha_nude.png", mimeType = "image/png")]
+		public var Bust_VERUSHA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/vi.png", mimeType = "image/png")]
 		public var Bust_VI:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vi_nude.png", mimeType = "image/png")]
@@ -1178,6 +1188,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lys_nude.png", mimeType = "image/png")]
 			public var Full_LYS_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/maja.png", mimeType = "image/png")]
+			public var Full_MAJA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/maja_nude.png", mimeType = "image/png")]
+			public var Full_MAJA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/merc.png", mimeType = "image/png")]
 			public var Full_MERCGUARD:Class;
 			
@@ -1415,6 +1430,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vahn_nude.png", mimeType = "image/png")]
 			public var Full_VAHN_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/verusha.png", mimeType = "image/png")]
+			public var Full_VERUSHA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/verusha_nude.png", mimeType = "image/png")]
+			public var Full_VERUSHA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi.png", mimeType = "image/png")]
 			public var Full_VI:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vi_nude.png", mimeType = "image/png")]

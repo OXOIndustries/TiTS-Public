@@ -1,7 +1,7 @@
 // Roaming Bar Encounter Button
 public function roamingBarEncounter(button:int = 0):void
 {
-	if(flags["BAR_NPC_TIMER"] == undefined || flags["BAR_NPC"] == undefined) flags["BAR_NPC_TIMER"] = GetGameTimestamp()-1;
+	if(flags["BAR_NPC_TIMER"] == undefined || flags["BAR_NPC"] == undefined) flags["BAR_NPC_TIMER"] = (GetGameTimestamp() - 1);
 	//Do we need to set a new bar NPC? If yes, set it! (Changes 2 hours after proccing)
 	if(flags["BAR_NPC_TIMER"] < GetGameTimestamp())
 	{
@@ -12,10 +12,10 @@ public function roamingBarEncounter(button:int = 0):void
 		if(roamingKiroAvailable() && rand(3) <= 1) NPCs.push(kiroSetup);
 		//"Help: Bodies" option, has had an update from Anno about the Nova. @ Golden Peak
 		if(flags["DECK13_GRAY_PRIME_DECISION"] == 1 && flags["ANNO_NOVA_UPDATE"] == 1 && currentLocation == "609") NPCs.push(grayGooAtBarSetup);
-		//Verusha usually occupies the bar on Tarkus.
-		if(currentLocation == "302") NPCs.push(verushaBonusFunc,verushaBonusFunc,verushaBonusFunc,verushaBonusFunc,verushaBonusFunc);
 		// Repeat goo armor meet
 		else if(flags["GOO_ARMOR_AWAY"] != undefined) NPCs.push(grayGooArmorRoamingBonus);
+		//Verusha usually occupies the bar on Tarkus.
+		if(currentLocation == "302") NPCs.push(verushaBonusFunc,verushaBonusFunc,verushaBonusFunc,verushaBonusFunc,verushaBonusFunc);
 		//50% anno chances
 		if(
 		(	(currentLocation == "ANON'S BAR AND BOARD" && !pc.hasStatusEffect("Anno x Kaede Bar"))
@@ -33,6 +33,13 @@ public function roamingBarEncounter(button:int = 0):void
 	}
 	//If an NPC is active, run setup!
 	if(flags["BAR_NPC"] != undefined) flags["BAR_NPC"](button);
+}
+
+// Reset function for dynamic characters that can't stick around.
+public function refreshRoamingBarEncounter():void
+{
+	flags["BAR_NPC_TIMER"] = undefined;
+	flags["BAR_NPC"] = undefined;
 }
 
 //Bar Preview Blurb
@@ -54,6 +61,7 @@ public function roamingKiroAvailable():Boolean
 	//Kiro off doing something else...
 	if(flags["KIRO_DISABLED_MINUTES"] != undefined) return false;
 	//She can be there!
+	if(pc.hasStatusEffect("KIRO_TEMP_DISABLED")) return false;
 	return true;
 }
 
@@ -212,6 +220,7 @@ public function kiroMenu():void
 	}
 	else 
 	{
+		addDisabledButton(0,"Talk","Talk","Kiro doesn’t seem to be in the mood for long conversations right now.");
 		addButton(1,"Wingman",playWingmanWithKiro,undefined,"Play Wingman","Hang out with Kiro and help her get laid. With balls like that, she probably needs it.");
 		addButton(2,"DrinkOff",kiroDrankinConterst,undefined,"Drinking Contest","See who can hold their liquor better...");
 	}
@@ -750,6 +759,7 @@ public function embellishForKiro():void
 	addButton(0,"Next",mainGameMenu);
 	//start kiro encounter cooldown!
 	flags["KIRO_DISABLED_MINUTES"] = 130;
+	refreshRoamingBarEncounter();
 }
 
 //Wingman - Played Straight
@@ -793,6 +803,7 @@ public function playItStraightForKiro():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	flags["KIRO_DISABLED_MINUTES"] = 110;
+	refreshRoamingBarEncounter();
 }
 
 //Drinking Contest
@@ -1507,6 +1518,7 @@ public function reduceKirosBallSize():void
 	output("Looking down to Kiro’s swollen sack, you ask the lusty tanuki if she wouldn’t mind blowing off some steam. You’re not really in the mood for unleashing any floods right now. She gives you a look you can’t quite read, but with a long suffering sigh says, <i>“All right, all right, I guuueeessss I could go plug myself into my milker. Shame I’m not gonna get a " + pc.mf("handsome boy","beautiful girl") + " to help me out, though,”</i> she teases, giving you a wink as she slips out of the boot, dragging her engorged sack back to the ship to milk herself out.");
 	processTime(2);
 	flags["KIRO_DISABLED_MINUTES"] = 89;
+	refreshRoamingBarEncounter();
 	kiro.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -2405,7 +2417,7 @@ public function yesKiroIDoWantPubbieFJ():void
 	//HAVE MONIES
 	else
 	{
-		output("\n\nGrimly clamping your mouth closed, you pull up the credit transfer app on your Codex and pay for the drink. It’s a pittance to pay for something as nice as this anyway.");
+		output("\n\nGrimly clamping your mouth closed, you pull up the " + (isAprilFools() ? "dogecoin" : "credit") + " transfer app on your Codex and pay for the drink. It’s a pittance to pay for something as nice as this anyway.");
 		output("\n\nKiro giggles, <i>“What a gentle" + pc.mf("man","lady") + ". Such genteel manners on this one!”</i> Her foot flows back and forth like the lapping of gentle waves, squirming against your hot flesh.");
 		output("\n\nYou do your best to wear a mask of calm and sophistication, but your gut isn’t buying it. By the looks of it, neither is the bartender. A disbelieving smile later and the two of you are more or less alone once more.");
 		output("\n\n<i>“You really shouldn’t let pirates trick you into paying for their drinks. It’s a terrible habit to get into,”</i> Kiro drawls, ");
@@ -3180,6 +3192,7 @@ public function denyKiroOrgyFun():void
 	processTime(1);
 	flags["KIRO_DISABLED_MINUTES"] = 300;
 	flags["KIRO_ORGY_DATE"] = days;
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3519,13 +3532,10 @@ public function kiroFuckOrgyFuntimes7():void
 		pc.cumMultiplierRaw += 3;
 		pc.ballEfficiency += 9;
 	}
-	else
+	else if(pc.refractoryRate < 10)
 	{
-		if(pc.hasStatusEffect("RefractBoost") && pc.refractoryRate < 10)
-		{
-			output("\n\n...But a dull throb inside your middle seems to declare that Mai’s tricks haven’t completely worn off. <b>Your refractory period has been shortened, making your body produce [pc.cumNoun] even faster.</b>");
-			pc.refractoryRate += 0.5;
-		}
+		output("\n\n...But a dull throb inside your middle seems to declare that Mai’s tricks haven’t completely worn off. <b>Your refractory period has been shortened, making your body produce [pc.cumNoun] even faster.</b>");
+		pc.refractoryRate += 0.5;
 	}
 	pc.removeStatusEffect("RefractBoost");
 	pc.shower();
@@ -3545,6 +3555,8 @@ public function kiroFuckOrgyFuntimes7():void
 	}
 	IncrementFlag("KIRO_ORGIED");
 	flags["KIRO_ORGY_DATE"] = days;
+	flags["KIRO_DISABLED_MINUTES"] = 120;
+	refreshRoamingBarEncounter();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -3645,7 +3657,7 @@ public function kiroKallyThreesomesApproach():void
 	//THREESOME INTERRUPTUS!
 	if(pc.hasCock() && pc.ballDiameter() >= 12 && pc.balls >= 2)
 	{
-		if(pc.thinnestCock() < 7) 
+		if(pc.thinnestCockThickness() < 7 || (pc.hasPerk("'Nuki Nuts") && pc.hasStatusEffect("Blue Balls"))) 
 		{
 			if(pc.ballFullness >= 50) 
 			{

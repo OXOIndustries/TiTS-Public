@@ -433,7 +433,7 @@ public function saviciteBuyFromTuuva(arg:ItemSlotClass):void
 	output("Tuuva reaches under the counter and comes up with " + arg.description + ". She hands it to you with a smile.");
 	if(tuuvaCredits(arg.basePrice*-1) > 0)
 	{
-		if(!korgiTranslate()) output(" <i>“Having about " + tuuvaCredits() + " core-credits left for Tuuva-buy!”</i>");
+		if(!korgiTranslate()) output(" <i>“Having about " + tuuvaCredits() + " " + (isAprilFools() ? "dogecoins" : "core-credits") + " left for Tuuva-buy!”</i>");
 		else output("\n\n<i>“You can still buy about " + tuuvaCredits() + " credits worth of inventory will that savicite you gave me earlier.”</i>");
 	}
 	output("\n\n");
@@ -477,8 +477,8 @@ public function actuallyGiveSavicite(arg:Number = 1):void
 	showTuuva();
 	if(arg == 1) output("You hand over " + num2Text(arg) + " piece of Savicite. Tuuva smiles happily.");
 	else output("You hand over " + num2Text(arg) + " pieces of Savicite. With each piece, Tuuva’s smile grows wider.");
-	if(!korgiTranslate()) output(" <i>“That good stuff. Worth eh... " + arg*10000 + " of core-credits to Tuuva.”</i> She giggles. <i>“Dumb aliens always thinking in credits. Shine-rock better currency. You smart to use.”</i>");
-	else output(" <i>“That’s good stuff. Worth about... " + arg*10000 + " of your core-credits to me.”</i> She giggles. <i>“Aliens are so goofy, working with that made-up currency. Dealing directly is such a better way to go about it, and it seems you agree.”</i>");
+	if(!korgiTranslate()) output(" <i>“That good stuff. Worth eh... " + arg*10000 + " of " + (isAprilFools() ? "dogecoins" : "core-credits") + " to Tuuva.”</i> She giggles. <i>“Dumb aliens always thinking in credits. Shine-rock better currency. You smart to use.”</i>");
+	else output(" <i>“That’s good stuff. Worth about... " + arg*10000 + " of your " + (isAprilFools() ? "dogecoins" : "core-credits") + " to me.”</i> She giggles. <i>“Aliens are so goofy, working with that made-up currency. Dealing directly is such a better way to go about it, and it seems you agree.”</i>");
 	
 	output("\n\n");
 	pc.destroyItemByClass(Savicite,arg);

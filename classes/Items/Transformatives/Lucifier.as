@@ -1,6 +1,7 @@
 package classes.Items.Transformatives 
 {
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Utility.num2Text;
 	import classes.Engine.Utility.rand;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
@@ -427,7 +428,7 @@ package classes.Items.Transformatives
 					
 					if(target.hornsUnlocked(numHorns))
 					{
-						output("More horns sprout their way into the open air behind your already existing ones. <b>You now have " + kGAMECLASS.num2Text(numHorns/2) + " pairs of demon horns on your head</b>, a veritable forest of malevolence.");
+						output("More horns sprout their way into the open air behind your already existing ones. <b>You now have " + num2Text(numHorns/2) + " pairs of demon horns on your head</b>, a veritable forest of malevolence.");
 						
 						target.horns = numHorns;
 						if(target.hornLength < 10) target.hornLength = 10;
@@ -513,7 +514,7 @@ package classes.Items.Transformatives
 					
 					if(target.hornLengthUnlocked(newHornLength))
 					{
-						output("Hard keratin forces its way outward from above your brow, extending the length of your current horns by " + kGAMECLASS.num2Text(hornChange) + " inches when they finally stop growing. Touching them, you find that <b>your demonic horns are now longer.</b>");
+						output("Hard keratin forces its way outward from above your brow, extending the length of your current horns by " + num2Text(hornChange) + " inches when they finally stop growing. Touching them, you find that <b>your demonic horns are now longer.</b>");
 						
 						target.hornLength = newHornLength;
 					}

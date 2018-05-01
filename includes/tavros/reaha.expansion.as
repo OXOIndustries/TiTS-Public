@@ -1165,7 +1165,7 @@ public function reahaBreastMilkIceCream():void
 	
 	output("\n\n" + icedTeatsAlienName() + "’s eyes go wide at the suggestion. <i>“That’s... uh, well, I mean...”</i> ");
 	
-	output("\n\n<i>“What’s the harm? You’ve got a couple free stalls, and I’m willing to pay,”</i> you say, placing a credit chit on the counter. ");
+	output("\n\n<i>“What’s the harm? You’ve got a couple free stalls, and I’m willing to pay,”</i> you say, placing a " + (isAprilFools() ? "dogecoin" : "credit chit") + " on the counter. ");
 	
 	output("\n\n<i>“Well,”</i> " + icedTeatsAlienName() + " says, pursing her lips, <i>“I guess that’ll be alright.”</i> ");
 	

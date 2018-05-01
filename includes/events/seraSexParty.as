@@ -48,14 +48,14 @@ public function seraSexPartyWearOutfit(outfit:ItemSlotClass):void
 		output("\n\n");
 		var oldOutfit:ItemSlotClass = pc.armor;
 		oldOutfit.onRemove(pc);
-		outfit.onEquip(pc);
 		itemCollect([oldOutfit]);
 		pc.armor = outfit;
+		outfit.onEquip(pc);
 	}
 	else
 	{
-		outfit.onEquip(pc);
 		pc.armor = outfit;
+		outfit.onEquip(pc);
 	}
 	pc.createStatusEffect("Armor Slot Disabled", 0, 0, 0, 0, true, "Blocked", "Better not. Sera will have a fit.", false, 0);
 }
@@ -1621,7 +1621,7 @@ public function seraSexPartyConclusion():void
 	// If >5 days
 	else
 	{
-		showBust("SERA");
+		showBust("SERA","FIX");
 		
 		if(seraInfluence() <= 90)
 		{

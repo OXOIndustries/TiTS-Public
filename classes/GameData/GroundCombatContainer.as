@@ -440,8 +440,8 @@ package classes.GameData
 				{
 					output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " shield powers back up at one quarter power!</b>");
 				}
-				pc.shields(Math.round(pc.shieldsMax()/4));
-				pc.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
+				target.shields(Math.round(target.shieldsMax()/4));
+				target.createStatusEffect("Used Shield Regen",0,0,0,0,true,"","",true,0);
 			}
 
 			if (target.hasStatusEffect("Riposting")) target.removeStatusEffect("Riposting");
@@ -880,7 +880,7 @@ package classes.GameData
 					else
 					{
 						target.lust(5 + rand(10));
-						if (target is PlayerCharacter) output("\n\n<b>The parasite’s venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
+						output("\n\n<b>The parasite’s venom is coursing through your veins. Your sexual desire is rising at an alarming rate.</b>");
 					}
 				}
 				else
@@ -889,7 +889,7 @@ package classes.GameData
 				}
 			}
 			
-			if (target.hasStatusEffect("Disarmed") && flags["CHECKED_GEAR_AT_OGGY"] == undefined)
+			if (target.hasStatusEffect("Disarmed") && (!(target is PlayerCharacter) || flags["CHECKED_GEAR_AT_OGGY"] == undefined))
 			{
 				target.addStatusValue("Disarmed",1,-1);
 				if(target.statusEffectv1("Disarmed") <= 0)
@@ -3672,13 +3672,15 @@ package classes.GameData
 		{ 
 			_roundCounter = 1;
 			
-			genericVictory = function():void {
+			genericVictory = function(func:Function):void {
+				_continue = func;
 				StatTracking.track("combat/wins");
 				getCombatPrizes();
 				doCombatCleanup();
 			}
 			
-			genericLoss = function():void {
+			genericLoss = function(func:Function):void {
+				_continue = func;
 				StatTracking.track("combat/losses");
 				clearMenu();
 				if (StatTracking.getStat("combat/wins") == 0 && StatTracking.getStat("combat/losses") == 3)
@@ -4697,7 +4699,8 @@ package classes.GameData
 			userInterface().mainButtonsReset();
 			userInterface().hideNPCStats();
 			userInterface().leftBarDefaults();
-			kGAMECLASS.mainGameMenu();
+			if (_continue != null) _continue();
+			else kGAMECLASS.mainGameMenu();
 		}
 		
 		override public function getCombatPrizes():void

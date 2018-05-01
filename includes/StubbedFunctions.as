@@ -9,10 +9,6 @@ public function kiroIsCrew():Boolean
 {
 	return false;
 }
-public function shekkaIsCrew():Boolean
-{
-	return false;
-}
 public function syriAtTheFreezer():Boolean
 {
 	return false;

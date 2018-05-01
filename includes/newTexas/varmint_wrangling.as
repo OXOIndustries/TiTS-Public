@@ -146,7 +146,7 @@ public function turnInAVarmint():void
 		flags["VARMINTS_CAUGHT"]++;
 	}
 	output(" he cheers, taking the defeated beast from you.");
-	output("\n\n<i>“Don’t worry, I’ll take care of these little bastards when you bring ‘em. Here, for your trouble,”</i> he adds, handing you a five credit chit. For a creature that tried to rip your throat out, a fiver seems a little cheap. Still, it’s a beer or a sandwich somewhere, right?");
+	output("\n\n<i>“Don’t worry, I’ll take care of these little bastards when you bring ‘em. Here, for your trouble,”</i> he adds, handing you a five " + (isAprilFools() ? "dogecoin" : "credit") + " chit. For a creature that tried to rip your throat out, a fiver seems a little cheap. Still, it’s a beer or a sandwich somewhere, right?");
 	pc.credits += 5;
 	output("\n\nYou take the payment, and Cameron takes the varmint. Which promptly goes flying into the back of his hover-pickup sitting nearby. You don’t ask what happens next to the critter.");
 	processTime(3);
@@ -387,6 +387,7 @@ public function pcVictoryVsVarmints(clearText:Boolean = false):void
 			output("\n\n<b>Varmint bagged!</b>");
 			if(pc.isTreated()) output(" <i>“Yee-haw!”</i> you cheer.");
 		 	enemy.inventory.push(new VarmintItem());
+			//output("\n\nWhile you’re bagging the varmint, you see (a cannister of silicone / a stolen, unmarked credit chit / a mostly intact to-go meal from the ranch house restaurant). You take possession of the varmint’s lonely possession.} ");
 		}
 		else
 		{
@@ -394,7 +395,6 @@ public function pcVictoryVsVarmints(clearText:Boolean = false):void
 		}
 		enemy.removeStatusEffect("Lassoed");
 	}
-	//output("\n\nWhile you’re bagging the varmint, you see (a cannister of silicone / a stolen, unmarked credit chit / a mostly intact to-go meal from the ranch house restaurant). You take possession of the varmint’s lonely possession.} ");
 	else
 	{
 		output("The varmint hauls ass into the weeds before you can bring it down. Maybe you should look into using some kind of lasso on it.");
@@ -763,7 +763,7 @@ public function getAPetVarmintResponse(response:String = "none"):void
 			// Too poor!
 			else
 			{
-				output(", you bounce over to your personal terminal and browse the extranet for a cheap plus-sized animal collar and leash... Unfortunately, you don’t even have enough funds to purchase a <b>50-credit</b> leash. Aw, fooey--looks like you have to pick up whoring and shake your money-maker if you know what’s good for you!");
+				output(", you bounce over to your personal terminal and browse the extranet for a cheap plus-sized animal collar and leash... Unfortunately, you don’t even have enough funds to purchase a <b>50-" + (isAprilFools() ? "dogecoin" : "credit") + "</b> leash. Aw, fooey--looks like you have to pick up whoring and shake your money-maker if you know what’s good for you!");
 				output("\n\nTo get over your disappointment, you decide to play with your adorable baby some more. You giggle and pull the person-sized puppy into a huge hug, right up until it actually licks your cheek... and burns your [pc.skinFurScales]. You yelp and wipe at your cheek, stumbling away as the varmint’s saliva burns you. Ouchie! Your new friend whimpers and retreats into the corner, letting you run to the head and wash yourself off. OwowowowOW!");
 				output("\n\nYou huff and rub at your cheek as your nano-docs heal the burn on your skin. Better not let your naughty puppy do that again! Or maybe make sure it does that to anybody who wants to hurt you! <b>Maybe it’d make a cool battle buddy if you could afford to keep it on a leash!</b>");
 				processTime(40);

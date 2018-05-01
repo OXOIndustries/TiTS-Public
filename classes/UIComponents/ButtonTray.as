@@ -185,7 +185,7 @@
 		private function ButtonPageClickHandler(e:Event = null):void
 		{
 			if (!(e.currentTarget as SquareButton).isActive) return;
-			var forward:Boolean = ((e.currentTarget as SquareButton).name == "buttonPageNext") ? true : false;
+			var forward:Boolean = ((e.currentTarget as SquareButton).name == "buttonPageNext");
 			
 			if (forward)
 			{

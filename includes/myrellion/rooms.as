@@ -2895,7 +2895,7 @@ public function initializeMyrellionRooms():void
 	rooms["2K7"].southExit = "";
 	rooms["2K7"].westExit = "2I7";
 	rooms["2K7"].moveMinutes = 5;
-	rooms["2K7"].runOnEnter = DeepCavesBonus;
+	rooms["2K7"].runOnEnter = myrellionDerelictApproachBonus;
 	rooms["2K7"].addFlag(GLOBAL.CAVE);
 	rooms["2K7"].addFlag(GLOBAL.INDOOR);
 	rooms["2K7"].addFlag(GLOBAL.HAZARD);

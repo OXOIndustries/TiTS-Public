@@ -1,10 +1,13 @@
 ﻿// Smut check
 public function hasSmutOptions():Boolean
 {
-	if(MailManager.isEntryViewed("lets_fap_unlock")) return true;
-	if(MailManager.isEntryViewed("steph_on_demand")) return true;
-	if(MailManager.isEntryViewed("syri_video")) return true;
-	if(flags["KHORGAN_PREGSTURBATE"] != undefined) return true;
+	//Mails that require ship presence for some reason:
+	if(MailManager.isEntryViewed("lets_fap_unlock") && InShipInterior()) return true;
+	if(MailManager.isEntryViewed("steph_on_demand") && InShipInterior()) return true;
+	if(MailManager.isEntryViewed("syri_video") && InShipInterior()) return true;
+	if(flags["KHORGAN_PREGSTURBATE"] != undefined && InShipInterior()) return true;
+	//Ones that don't:
+	if(MailManager.isEntryViewed("kiroandkallyholomail")) return true;
 	return false;
 }
 
@@ -38,11 +41,11 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	// New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week
 	// Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?
 	var possibleFuncs:Array = [];
-	if (MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Watch Atha’s Let’s Fap episodes.", f: letsFapSelectionMain, ar: undefined } );
-	if (MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "Watch on-demand episodes of Steph Irson: Galactic Huntress.", f: stephOnDemandVODs, ar: undefined } );
-	if (MailManager.isEntryViewed("syri_video")) possibleFuncs.push( { t: "Syri", th: "Syri", tb: "Take a good look at that very private video Syri sent you.", f: syriJackVid, ar: undefined } );
-	if(flags["KHORGAN_PREGSTURBATE"] != undefined) possibleFuncs.push({ t: "Khorgan", th: "Khorgan", tb: "Witness an incredibly pregnant and horny Thraggen woman masturbate to the thought of you.", f: khorganPregsturbate, ar: undefined } );
-	
+	if (MailManager.isEntryViewed("lets_fap_unlock") && InShipInterior()) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Watch Atha’s Let’s Fap episodes.", f: letsFapSelectionMain, ar: undefined } );
+	if (MailManager.isEntryViewed("steph_on_demand") && InShipInterior()) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "Watch on-demand episodes of Steph Irson: Galactic Huntress.", f: stephOnDemandVODs, ar: undefined } );
+	if (MailManager.isEntryViewed("syri_video") && InShipInterior()) possibleFuncs.push( { t: "Syri", th: "Syri", tb: "Take a good look at that very private video Syri sent you.", f: syriJackVid, ar: undefined } );
+	if(flags["KHORGAN_PREGSTURBATE"] != undefined && InShipInterior()) possibleFuncs.push({ t: "Khorgan", th: "Khorgan", tb: "Witness an incredibly pregnant and horny Thraggen woman masturbate to the thought of you.", f: khorganPregsturbate, ar: undefined } );
+	if(MailManager.isEntryViewed("kiroandkallyholomail")) possibleFuncs.push({ t: "KiroXXXKally", th: "Kiro XXX Kally", tb: "Witness a little show Kiro and Kally recorded for you.", f: kiroXKallyEmailShow, ar: undefined } );
 	clearMenu();
 	
 	for (var i:int = 0; i < possibleFuncs.length; i++)
@@ -177,7 +180,7 @@ public function champeonAthaDonate(amount:int):void
 {
 	clearOutput();
 	showAtha();
-	output("You fill out a short contact form and authorize the credit transfer. A small ding tells you that the transaction has gone through and a confirmation message has been sent.");
+	output("You fill out a short contact form and authorize the " + (isAprilFools() ? "dogecoin" : "credit") + " transfer. A small ding tells you that the transaction has gone through and a confirmation message has been sent.");
 	if(flags["LETS_FAP_ARCHIVES"] == undefined)
 	{
 		output("\n\nPrevious episodes of Let’s Fap have been downloaded to your account!");
@@ -694,7 +697,7 @@ public function liveCumstreamerEpisode():void
 	output("\n\t<b>ZeroMinus:</b> I’m just hoping for something with a lotta cummies! XD");
 	output("\n\t<b>RavenWulf:</b> She should play some CoV while jacking off- that’d be hilarious!");
 	output("\n\nIt seems to join the conversation, you’ll need to put in a user name. Probably best to stay away from your real name, just in case. What would you like to call yourself?");
-	//output("\n\n{Enter CumStreamer name}");
+	// Enter CumStreamer name
 	displayInput();
 	userInterface.textInput.text = "";
 	userInterface.textInput.maxChars = 12;

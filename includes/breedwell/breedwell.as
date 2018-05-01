@@ -849,6 +849,12 @@ public function getBreedwellRahnPregContainer(rahnType:int = 0):PregnancyPlaceho
 			ppRahn.shiftCock(0, GLOBAL.TYPE_INHUMAN);
 			ppRahn.cocks[0].addFlag(GLOBAL.FLAG_NUBBY);
 			break;
+		default:
+			ppRahn.originalRace = "rahn";
+			ppRahn.skinTone = "iridescent";
+			ppRahn.createCock();
+			ppRahn.shiftCock(0, GLOBAL.TYPE_INHUMAN);
+			break;
 	}
 	ppRahn.cocks[0].addFlag(GLOBAL.FLAG_GOOEY);
 	ppRahn.cocks[0].addFlag(GLOBAL.FLAG_LUBRICATED);

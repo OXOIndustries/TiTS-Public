@@ -185,6 +185,7 @@
 					output("Swathes of new " + newFurColor + " fur begin to fill out across your skin, soon spreading to cover you completely in the warm pelt. It’s not quite thick enough to go without a heat belt on an ice world, but it should make you much more comfortable.");
 					
 					target.skinType = GLOBAL.SKIN_TYPE_FUR;
+					target.clearSkinFlags();
 					target.furColor = newFurColor;
 				}
 				else output("\n\n" + target.skinTypeLockedMessage());

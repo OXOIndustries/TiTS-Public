@@ -2,6 +2,7 @@
 import classes.Creature;
 import classes.StorageClass;
 import classes.GameData.Pregnancy.PregnancyManager;
+import classes.Items.Piercings.LundsRings;
 public function pcAppearance(e:MouseEvent = null):void 
 {
 	if (pc.short.length == 0) return;
@@ -402,6 +403,14 @@ public function appearance(forTarget:Creature):void
 			else if(hasLuminousEyes) output2(" each nestled within " + indefiniteArticle(target.eyeColor) + " iris.");
 			else output2(" each sat within " + indefiniteArticle(target.eyeColor) + " iris.");
 			output2(" A thick black ring lines your eye and your eyelids close from the side."); 
+			break;
+		case GLOBAL.TYPE_SIREN:
+			output2("Your eyes are predatory in nature, each with a vertical slit surrounded by");
+			if (hasMetallicEyes) output2(" a metallically glistening " + target.eyeColor + " iris.");
+			else if (hasGemstoneEyes) output2(" a shimmering gemstone-like " + target.eyeColor + " iris.");
+			else if (hasLuminousEyes) output2(" " +  indefiniteArticle(target.eyeColor) + " iris.");
+			else output2("  " + indefiniteArticle(target.eyeColor) + " iris.");
+			output2(" Your sclera are completely pitch black, giving you a slightly dangerous air."); 
 			break;
 		case GLOBAL.TYPE_SHEEP:
 			if(hasMetallicEyes) output2(" Metallically glistening in the light, your");
@@ -964,7 +973,7 @@ public function appearance(forTarget:Creature):void
 			output2(" Your mouth contains a long blue tongue that dangles over your lower lip whenever you stop thinking about it.");
 			break;
 		case GLOBAL.TYPE_BOVINE:
-			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth houses a broad, prehensile tongue which extends over a foot long with a smooth surface is perfect for pleasuring sensitive areas.");
+			if(target.hasTongueFlag(GLOBAL.FLAG_LONG)) output2(" Your mouth houses a broad, prehensile tongue which extends over a foot long with a smooth surface that is perfect for pleasuring sensitive areas.");
 			else output2(" Your mouth contains a smooth, broad tongue, perfect for pleasuring sensitive spots.");
 			break;
 		case GLOBAL.TYPE_TENTACLE:
@@ -1574,8 +1583,10 @@ public function appearance(forTarget:Creature):void
 				if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) output2(" completely");
 				output2(" covered in");
 				if(target.hasArmFlag(GLOBAL.FLAG_GOOEY)) output2(" gooey");
-				output2(" " + target.furColor + " feathers");
-				if(target.skinType != GLOBAL.SKIN_TYPE_FEATHERS && target.hasArmFlag(GLOBAL.FLAG_FEATHERED)) output2(" from elbow to wrist -- looking very much like natural arm warmers");
+				output2(" " + target.furColor + " vestigial feathers");
+				if(target.skinType != GLOBAL.SKIN_TYPE_FEATHERS && target.hasArmFlag(GLOBAL.FLAG_FEATHERED)) output2(" from elbow to wrist -- looking very much like natural arm warmers and");
+				else output2(",");
+				output2(" incapable of flight");
 			}
 			output2(".");
 			break;
@@ -2494,7 +2505,11 @@ public function appearance(forTarget:Creature):void
 			}
 			else
 			{
-				output2(" double jointed legs covered in " + target.skinFurScales(true,true,true,true) + " supports your body, looking much like a goat’s all the way down.");
+				output2(" double jointed legs covered in ");
+				if(target.hasLegFlag(GLOBAL.FLAG_GOOEY)) output2(target.skinTone + " goo");
+				else if(target.hasFur() || target.hasLegFlag(GLOBAL.FLAG_FURRED)) output2(target.furColor + " fur");
+				else output2(target.skinFurScales(true,true,true,true));
+				output2(" supports your body, looking much like a goat’s all the way down.");
 			}
 			break;
 		case GLOBAL.TYPE_OVIR:
@@ -2522,7 +2537,11 @@ public function appearance(forTarget:Creature):void
 			}
 			break;
 		case GLOBAL.TYPE_SHARK:
-			if(target.legCount == 2)
+			if(target.legCount == 1)
+			{
+				output2(" Below your thighs, your flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [target.asshole]. It is covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : target.scaleColor + "-colored scales") + "and has small protruding fins on each side. It ends in a large caudal fin, perfect for underwater propulsion.");
+			}
+			else if(target.legCount == 2)
 			{
 				output2(" Your");
 				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
@@ -2535,6 +2554,22 @@ public function appearance(forTarget:Creature):void
 				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(" plantigrade");
 				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(" digitigrade");
 				output2(" legs come with webbing and small fins to better propel you through water.");
+			}
+			break;
+		case GLOBAL.TYPE_SIREN:
+			if(target.hasLegFlag(GLOBAL.FLAG_GOOEY))
+			{
+				output2("You have " + StringUtil.upperCase(num2Text(target.legCount)) + " semi-solid legs and clawed");
+				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", plantigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", digitigrade");
+				output2(" feet.");
+			}
+			else
+			{
+				output2("You have " + (target.legCount == 2 ? "a pair of" : StringUtil.upperCase(num2Text(target.legCount))) + " powerful legs, with clawed");
+				if(target.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE)) output2(", plantigrade");
+				else if(target.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE)) output2(", digitigrade");
+				output2(" feet, powerful enough to propel you through water.");
 			}
 			break;
 		case GLOBAL.TYPE_TENTACLE:
@@ -3207,6 +3242,9 @@ public function boobStuff(forTarget:Creature = null):void
 			}
 		}
 	}
+	
+	// Lund piercing
+	if(target.breastRows[0].piercing is LundsRings && target is PlayerCharacter) output2("\n\nYour [pc.nipples] are each pierced with a small golden ring, courtesy of Lund. If you lift them to check, you can see inscriptions along the inside written in korgonne script. Lund only smiled when you asked him what they said, but you’re pretty sure you have a good idea. At least no-one else will know unless you tell them.");
 	
 	if(forTarget != null) setTarget(null);
 }

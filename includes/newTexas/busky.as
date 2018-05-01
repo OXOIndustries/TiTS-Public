@@ -838,7 +838,7 @@ public function buskyShopInitialization():void {
 		if(!chars["BUSKY"].hasItemByClass(SumaCream)) chars["BUSKY"].inventory.push(new SumaCream());
 		CodexManager.unlockEntry("Suma Cream");
 	}
-	else chars["BUSKY"].destroyItemByClass(SumaCream);
+	else chars["BUSKY"].destroyItemByClass(SumaCream, -1);
 	
 	//During christmas season sell extra stuff
 	if (isChristmas()) {
@@ -848,8 +848,8 @@ public function buskyShopInitialization():void {
 	}
 	else
 	{
-		chars["BUSKY"].destroyItemByClass(Nutnog);
-		chars["BUSKY"].destroyItemByClass(Peckermint);
+		chars["BUSKY"].destroyItemByClass(Nutnog, -1);
+		chars["BUSKY"].destroyItemByClass(Peckermint, -1);
 	}
 }
 

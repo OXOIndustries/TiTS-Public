@@ -102,6 +102,13 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/jay_echo/saec.png", mimeType = "image/png")]
 		public var Bust_SAEC:Class;
 
+		[Embed(source = "../../../assets/images/npcs/jay_echo/seer.png", mimeType = "image/png")]
+		public var Bust_SEER:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/seer_nips_nude.png", mimeType = "image/png")]
+		public var Bust_SEER_NIPPLES_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/jay_echo/seer_nude.png", mimeType = "image/png")]
+		public var Bust_SEER_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/jay_echo/sellera.png", mimeType = "image/png")]
 		public var Bust_SELLERA:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/sellera_nude.png", mimeType = "image/png")]
@@ -213,6 +220,13 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/saec.png", mimeType = "image/png")]
 			public var Full_SAEC:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/seer.png", mimeType = "image/png")]
+			public var Full_SEER:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/seer_nips_nude.png", mimeType = "image/png")]
+			public var Full_SEER_NIPPLES_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/seer_nude.png", mimeType = "image/png")]
+			public var Full_SEER_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/sellera.png", mimeType = "image/png")]
 			public var Full_SELLERA:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/sellera_nude.png", mimeType = "image/png")]

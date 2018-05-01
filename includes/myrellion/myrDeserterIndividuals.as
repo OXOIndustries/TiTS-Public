@@ -555,7 +555,7 @@ public function aboutAnAntSlootDeserter(gold:Boolean = false):void
 	if(!gold)
 	{
 		output("You ask Briha a little bit about herself. The amber-haired ant girl scratches her head, looking a little self-conscious.");
-		output("\n\n<i>“...Me? Just another dumb girl who got sucked into the propaganda,”</i> she answers. <i>“Honestly, girls like me are a credit a dozen. I’m nothing that special.”</i>");
+		output("\n\n<i>“...Me? Just another dumb girl who got sucked into the propaganda,”</i> she answers. <i>“Honestly, girls like me are a " + (isAprilFools() ? "dogecoin" : "credit") + " a dozen. I’m nothing that special.”</i>");
 		output("\n\nPushing her a little further, she gives you a bit more of an answer. <i>“Oh, okay. Well, where to start? I’m a twenty one year-old ex-career soldier from Rivalle. I was a Sergeant before I went AWOL.”</i>");
 		output("\n\n<i>“I’m not all work - or rather, I wasn’t. I used to want to be a career dancer before the war started. I’m a bit too scarred for that now, though,”</i> she smiles wryly. <i>“Plus, I’m pretty sure we’re all going to get blown up before long... not that I can return home.”</i>");
 	}

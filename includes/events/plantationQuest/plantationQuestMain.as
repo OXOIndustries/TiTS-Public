@@ -78,7 +78,6 @@ public function showLah(nude:Boolean = false):void
 	showBust("LAH" + nudeSuffix);
 	showName("\nRK LAH");
 }
-
 public function showLahAndQuinn():void
 {
 	showName("RK LAH\n& QUINN");
@@ -88,6 +87,12 @@ public function showQuinnAndLah():void
 {
 	showName("RK LAH\n& QUINN");
 	showBust("LAH","QUINN");
+}
+
+public function quinnVaginalCapacity():Number
+{
+	//return (new ZilFemale().vaginalCapacity(0));
+	return 200;
 }
 public function fuckedQuinn():Boolean
 {
@@ -1763,23 +1768,6 @@ public function agreeWithDemBiyaaaatches():void
 	}
 }
 
-//Leave
-public function leaveQuinn():void
-{
-	clearOutput();
-	showQuinn();
-	author("Nonesuch");
-	output("<i>“I should, uh...”</i>");
-	output("\n\n<i>“As you wish.”</i> Quinn gestures in the direction of the waterfall. <i>“");
-	if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
-	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, since you have vanquished the cliffs.");
-	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising pits of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
-
-	processTime(1);
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
-}
-
 //Challenge
 //Tooltip: Challenge Lah to a fight, zil-style.
 public function challengeLahToAFight():void
@@ -2099,7 +2087,7 @@ public function pcBeatsUpAWholeTribeNewsAt11():void
 	pc.createKeyItem("RK Lah - Captured");
 
 	//[Fuck Her] [Let Her Go]
-	if(pc.hasCock() && pc.cockThatFits(new ZilFemale().vaginalCapacity(0)) >= 0) addButton(0,"Use Dick",putItInQuinnYaCunt,undefined,"Use Dick","To the victor go the spoils...");
+	if(pc.hasCock() && pc.cockThatFits(quinnVaginalCapacity())) addButton(0,"Use Dick",putItInQuinnYaCunt,undefined,"Use Dick","To the victor go the spoils...");
 	else addDisabledButton(0,"Use Dick","Use Dick","You need a dick that will fit inside Quinn for this.");
 	if(pc.hasVagina()) addButton(1,"Use Vagina",takeQuinnInTheLadyWay,undefined,"Use Vagina","To the victor go the spoils...");
 	else addDisabledButton(1,"Use Vagina","Use Vagina","You need a vagina for this.");
@@ -2175,7 +2163,7 @@ public function thirdWayQuinnSolution():void
 	output("<i>“Alright, look,”</i> you say, as levelly as you can. <i>“I get that what Snugglé is doing is bad. But Lah’s plan is only going to result in more misery for you. Either they’ll send mercs after you, </i>real<i> ones this time, or your whole species is going to be declared savage and dangerous. You’ll get killed in droves. Nobody will protect you from slavers...”</i>");
 	output("\n\n<i>“What are you proposing?”</i> returns Quinn, the tone of strained patience echoed back at you.");
 	output("\n\n<i>“You have honey,”</i> you go on quickly. <i>“Star people really like that honey. Trade it with those in Esbeth for food, medicine, material. They aren’t with the land-stealers - if you show you aren’t violent, that you can be friends, they’ll help you. They can protect you against Snugglé, block them from expanding. You can be uplifted - and that is when you really can take the fight to them.”</i>");
-	output("\n\n<i>“Corporatist, credit-eyed logic!”</i> snaps Lah. <i>“Join the scramble at the bottom kids, maybe some of your betters’ crumbs will fall your way - and be sure to say thank you whilst they’re literally milking you dry!”</i>");
+	output("\n\n<i>“Corporatist, " + (isAprilFools() ? "dogecoin" : "credit") + "-eyed logic!”</i> snaps Lah. <i>“Join the scramble at the bottom kids, maybe some of your betters’ crumbs will fall your way - and be sure to say thank you whilst they’re literally milking you dry!”</i>");
 	output("\n\n<i>“Hmm,”</i> drones Quinn, gazing at you. <i>“You’ve gone through a lot in order to put this to me, but you must understand - putting down our weapons to chase after this plan of peace of yours, it sounds very dubious. The people of the place you call Esbeth have never shown anything but fear and mistrust of us. What are you really offering over the word-wolf’s truths?”</i>");
 	output("\n\n<b>You get the impression you’re only going to get a limited number of shots at this.</b>");
 	processTime(3);
@@ -2457,10 +2445,12 @@ public function leaveZeLovelyQuinnBeeeeeehind():void
 	showQuinn();
 	author("Nonesuch");
 	output("<i>“I should, uh...”</i>");
-	output("\n\n<i>“As you wish.”</i> Quinn sighs. She gestures in the direction of the waterfall. <i>“You have easily done enough to be treated as an honored guest in our village. ");
+	output("\n\n<i>“As you wish.”</i> Quinn");
+	if(rand(2) == 0) output(" sighs. She");
+	output(" gestures in the direction of the waterfall. <i>“You have easily done enough to be treated as an honored guest in our village. ");
 	if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
 	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
-	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising rings of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
+	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising " + (rand(2) == 0 ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
 	processTime(2);
 	
 	quinnFinishExit();
@@ -2488,7 +2478,7 @@ public function peacefulQuinnMenu():void
 	addButton(1,"Appearance",quinnAppearance);
 	if(flags["MET_QUINN"] != undefined) 
 	{
-		if(pc.hasVagina() || pc.cockThatFits(new ZilFemale().vaginalCapacity(0)) >= 0) 
+		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) 
 		{
 			if(pc.lust() >= 33) addButton(2,"Sex",sexWithQuinnOmnigenderWHYYYY);
 			else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
@@ -2556,7 +2546,7 @@ public function putItInQuinnYaCunt():void
 	clearOutput();
 	showQuinn(true);
 	author("Nonesuch");
-	var x:int = pc.cockThatFits(new ZilFemale().vaginalCapacity(0));
+	var x:int = pc.cockThatFits(quinnVaginalCapacity());
 	output("Damn right. Endorphins pumping through your veins, honeyed pheromones sinking hard heat into your [pc.groin], all you feel looking down at the defeated zil chieftain is prickly, angry lust. Staring her right in the eye, the image of her ordering your death redolent across your mind’s eye");
 	if(!pc.isCrotchExposed()) output(", you begin to briskly tear off your [pc.lowerGarments].");
 	output("\n\n<i>“Let’s see the goods,”</i> you demand. Quinn looks down at last, color peeking out of her pale cheeks as she slowly withdraws the plates across her chest and groin. Her breasts are the supple, beautifully formed handfuls the curve of her breastplate suggested they were, and as for her bare, yellow delta... you inhale deeply, closing your eyes as the smell of sexual honey engulfs you, gathering at the back of your nostrils and throat, blood rising eagerly to your [pc.skin] and surging down the shaft of your [pc.cock " + x + "], becoming almost unbearably erect.");
@@ -2957,7 +2947,7 @@ public function approachQuinn():void
 		if(hours >= 5 && hours < 19) output("day");
 		else output("night");
 		output(" has been long and tense, and I want sex. You will come with me to my home, [pc.name] Steele. Or you will fetch one of my men, as you wish.”</i>");
-		flags["MET_QUINN"];
+		
 		//Lust to 30 if <30
 		if(pc.lust() < 33) pc.lustRaw = 33;
 		while(pc.lust() < 33) { pc.lustRaw += 5; }
@@ -2965,7 +2955,7 @@ public function approachQuinn():void
 		flags["MET_QUINN"] = 1;
 		//[Sex] [No] [Appearance]
 		clearMenu();
-		if(pc.hasVagina() || pc.cockThatFits(new ZilFemale().vaginalCapacity(0)) >= 0) addButton(0,"Sex",sexWithQuinnOmnigenderWHYYYY);
+		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(0,"Sex",sexWithQuinnOmnigenderWHYYYY);
 		else addDisabledButton(0,"Sex","Sex","You are not suitably endowed for sex with Quinn.");
 		addButton(1,"Appearance",quinnAppearance);
 		addButton(2,"No",noGiveMeMens);
@@ -3028,7 +3018,7 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 	pc.lust(5);
 	//[Zil on top] [Every hole] [Scizzor]
 	clearMenu();
-	var dickFits:Boolean = (pc.cockThatFits(new ZilFemale().vaginalCapacity(0)) >= 0);
+	var dickFits:Boolean = (pc.cockThatFits(quinnVaginalCapacity()) >= 0);
 	if(dickFits && pc.hasCock()) addButton(0,"Zil on Top",zilOnTopOfPC);
 	else addDisabledButton(0,"Zil on Top","Zil on Top","You need a penis that fits inside her for this.");
 	if(pc.libido() >= 70 || pc.hasStatusEffect("Blue Balls")) 
@@ -3071,7 +3061,7 @@ public function putItInAllThreeOfQuinnHoles():void
 	else output("slither");
 	output(" towards the bed reactively.");
 
-	var x:int = pc.cockThatFits(new ZilFemale().vaginalCapacity(0));
+	var x:int = pc.cockThatFits(quinnVaginalCapacity());
 	if(x < 0) output("ERROR: FEN DUN FUCKED UP COCK SELECTION. ");
 	output("\n\n<i>“All </i>three<i> of my holes, you say?”</i> she wonders. <i>“But I only have... oh. Like the males sometimes do with each other, you mean?”</i> She touches her petite rump; the yellow flesh trembles ever so slightly underneath thin, gleaming fingertips. <i>“Well, I don’t know...”</i> She props herself up and drinks you");
 	if(!pc.isCrotchExposed()) output(" in as you impatiently tear off your [pc.gear]");
@@ -3107,7 +3097,7 @@ public function queenieDickingsAllHolesBonanzoBoBanzaWhyAmIStillWriting2(x:int):
 	if(x >= 3000) output("her swollen belly");
 	else output("her unfurled, cum-drooling snatch");
 	output(". <i>“What </i>energetic<i> creatures you star-people are.”</i> She folds her legs to one side and gazes at you coquettishly; you move forward on the bed, and exhale slowly as she wraps her hand around the base of your throbbing, honey-slathered dick.");
-	x = pc.cockThatFits(new ZilFemale().vaginalCapacity(0));
+	x = pc.cockThatFits(quinnVaginalCapacity());
 	if(x < 0) output("ERROR: FEN DUN FUCKED UP COCK SELECTION.");
 
 	output("\n\n<i>“Yes,”</i> she breathes, slowly moving her hand up and down your thick meat, smooth pressure all the way along your frenum, <i>“We must reach out, encourage many more of yours to come to our lands. I could stand to have many warriors like you at my side...”</i> Her slick, yellow tongue lolls out of her mouth, craning out like a hummingbird’s beak to dab at your [pc.cockHead " + x + "]; you move forward again, reactively presenting your musky, honeyed cock to her face. She gazes up at you winsomely as she rolls more of her insectile mouth-tube out, wrapping it around your length before drawing that brilliant, tight, wet coil back into her maw, touching its sucking, open end to your cum-slit to sample you.");
@@ -3260,8 +3250,8 @@ public function zilOnTopOfPC():void
 	showQuinn(true);
 	author("Nonesuch");
 
-	var x:int = pc.cockThatFits(new ZilFemale().vaginalCapacity(0));
-	var y:int = pc.cockThatFits2(new ZilFemale().vaginalCapacity(0));
+	var x:int = pc.cockThatFits(quinnVaginalCapacity());
+	var y:int = pc.cockThatFits2(quinnVaginalCapacity());
 	output("In this warm, confined, dusky space, filled with the suffocating, horny smell of female zil in heat, it’s difficult to think clearly. In a slight daze you just stare at the black-and-yellow vision sprawled across the furs in front of you - the gleaming, austere armor of her lean, plated limbs framing the soft, perfectly formed, gently leaking treats within - until [pc.eachCock] feels like it’s ");
 	if(!pc.isCrotchExposed()) output("going to tear through your [pc.lowerGarmentOuter]");
 	else output("shoot through the wax of the wall behind her");

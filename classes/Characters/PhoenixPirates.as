@@ -14,6 +14,7 @@ package classes.Characters
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.output;
+	import classes.StringUtil;
 	
 	public class PhoenixPirates extends Creature
 	{
@@ -164,7 +165,7 @@ package classes.Characters
 			this.ass.wetnessRaw = 0;
 			
 			createStatusEffect("Flee Disabled",0,0,0,0,true,"","",false,0);
-			createStatusEffect("Disarm Immune");
+			//createStatusEffect("Disarm Immune");
 			
 			isUniqueInFight = false;
 			btnTargetText = "Pirate";
@@ -181,6 +182,12 @@ package classes.Characters
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
+			
+			if(hasStatusEffect("Stunned") || hasStatusEffect("Disarmed"))
+			{
+				attackPass();
+				return;
+			}
 			
 			var bSideChance:int = 25;
 			if (rand(100) <= bSideChance)
@@ -204,6 +211,11 @@ package classes.Characters
 
 			// Fallback ranged attacku
 			CombatAttacks.RangedAttack(this, target);
+		}
+		
+		private function attackPass():void
+		{
+			output(StringUtil.capitalize(uniqueName, false) + (hasStatusEffect("Stunned") ? " is unable to attack!" : " goes scrambling for their dropped weapon."));
 		}
 		
 		private function phoenixPiratesBulletstorm(target:Creature):void

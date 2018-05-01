@@ -794,11 +794,7 @@ public function askEmmyBoutMeleeShit():void
 	output("\n\n");
 	if(flags["MET_EMMY"] != undefined) output("Emmy");
 	else output("The spotted shopkeep");
-	output(" pushes a jumpsuit-enclosed clawtip against the center of your chest hard enough to push you back a half step. Fortunately, the potentially dangerous digit was rounded off to a nub - probably to keep from tearing her shining, full-body uniform. <i>“Don’t doubt it, ");
-	if(pc.mf("b","") == "b") output("buster");
-	else if(pc.catDog("nyan", "bork", false) == "bork") output("bitch");
-	else output("lady");
-	output(".");
+	output(" pushes a jumpsuit-enclosed clawtip against the center of your chest hard enough to push you back a half step. Fortunately, the potentially dangerous digit was rounded off to a nub - probably to keep from tearing her shining, full-body uniform. <i>“Don’t doubt it, " + pc.mf("buster", pc.catDog("lady", "bitch", false)) + ".");
 	if(pc.tone < 30 && pc.tallness < 72) output(" Say, why are you even asking about this stuff? You don’t really have the build to be mixing it up in melee, ya know?”</i>");
 	else if(pc.tone >= 75) output(" Say, you are pretty muscly, aren’t you? I bet you don’t even have to swing a weapon to scare off a few ruffians, do you?”</i> She purrs - a louder, deeper sound than you’d hear from a kaithrit and strokes your arm.");
 	else output(" Say, are you really planning to fight up close? It seems risky.”</i>");
@@ -1539,7 +1535,7 @@ public function giveEmmyAnItem(item:String):void
 	//Kirkite, no new PG
 	if(item == "Kirkite")
 	{
-		output("\n\n<i>“Kirkite, huh?”</i> Emmy rolls sparkling gemstone between two claw-tipped fingers. <i>“This stuff is actually pretty rare around Ausaril and Terra, but with every new rush, it gets a little more common. Weird how the farther we get from the core, the more deposits we find.”</i> She smiles mischievously spins around, tail wagging beneath your nose. <i>“You’re lucky I’m not a thraggen or I probably wouldn’t have accepted it. I hear their planet is so rich in the stuff that they used to throw it away, back before they realized they could export it for a quick credit.”</i>");
+		output("\n\n<i>“Kirkite, huh?”</i> Emmy rolls sparkling gemstone between two claw-tipped fingers. <i>“This stuff is actually pretty rare around Ausaril and Terra, but with every new rush, it gets a little more common. Weird how the farther we get from the core, the more deposits we find.”</i> She smiles mischievously spins around, tail wagging beneath your nose. <i>“You’re lucky I’m not a thraggen or I probably wouldn’t have accepted it. I hear their planet is so rich in the stuff that they used to throw it away, back before they realized they could export it for a quick " + (isAprilFools() ? "coin" : "credit") + ".”</i>");
 		output("\n\n<i>“Really?”</i>");
 		output("\n\nEmmy’s bends over to a storage compartment, her hips wiggling. <i>“Nuts isn’t it? We don’t even know how lucky we are until we can get to know someone else and gain a little perspective. Life’s funny like that. Ah! Here it is!”</i> She slams the drawer closed with a heavy ‘thunk’ and straightens, balancing an expensive-looking weapon in front of the bullets of her nipples. <i>“");
 		if(getRanged) 
@@ -1712,7 +1708,7 @@ public function inviteEmmyToJoinCrew():void
 	output("<i>“Why not just");
 	if(pc.isBimbo()) output(" like,");
 	output(" join my crew?”</i> you counter, enfolding her in your arms and none-too-subtly squeezing her ass.");
-	output("\n\nEmmy’s expression lightens, then drops. <i>“It’d break my contract here, and there’s no way I can afford the 40,000 credit penalty it would hit me with.”</i> She rocks her hips against you, grinding her thickening tube of cock on your [pc.belly]. <i>“Trust me, I’ve thought about just leaving, going on the run with you, but not yet. I mean, we haven’t even properly fucked yet. What if we’re really bad at the whole tab A into slot B thing?”</i>");
+	output("\n\nEmmy’s expression lightens, then drops. <i>“It’d break my contract here, and there’s no way I can afford the 40,000 " + (isAprilFools() ? "dogecoin" : "credit") + " penalty it would hit me with.”</i> She rocks her hips against you, grinding her thickening tube of cock on your [pc.belly]. <i>“Trust me, I’ve thought about just leaving, going on the run with you, but not yet. I mean, we haven’t even properly fucked yet. What if we’re really bad at the whole tab A into slot B thing?”</i>");
 	output("\n\nStroking your fingertips up her spine, you make the furry woman gasp in pleasure before answering. <i>“We won’t be.”</i>");
 	output("\n\n<i>“Y-you’re probably right, but one step at a time, [pc.name]. Let’s get this toy and fuck for real, and if you’re still determined to have the galaxy’s best sales-herm </i>staffing<i> your crew quarters, we can talk contract buyouts and pay scale.”</i> Emmy licks her chops and openly moans. If she thrusts her quivering bazooka any harder against you, it’s going to go off mid-hug.");
 	output("\n\nYou briefly wonder whether she’ll rupture her suit, inflate part of it like a condom’s tip, or merely slosh around in her own spunk for the rest of the day, then remember that she’s still waiting for your verdict on the toy.");
@@ -1746,7 +1742,7 @@ public function giveEmmyTheDoshForHerHermHarnessssss():void
 	output(".");
 
 	output("\n\nThe jackal-herm’s eyes widen. <i>“R-really? I...”</i> She pulls you into a crushing hug. <i>“Thank you! I don’t know what I would have done if you hadn’t found me. Probably wound up slumming it in Gildenmere, getting drunk on honey and packing wombs full of cum for a few gems or handful of credits.”</i> She shivers in disgust, but her prick throbs powerfully against you.");
-	output("\n\nBreaking away from the hug before she starts dry-humping you, Emmy pants, <i>“Here, let me just send you the credit transfer request... done. Just approve it, and I’ll place the order.”</i>");
+	output("\n\nBreaking away from the hug before she starts dry-humping you, Emmy pants, <i>“Here, let me just send you the " + (isAprilFools() ? "dogecoin" : "credit") + " transfer request... done. Just approve it, and I’ll place the order.”</i>");
 	output("\n\nYou pull out your Codex, glance up at the jackal, noting her dilated pupils and lewdly jutting nipples, then swipe the approval button. <b>You’re out 15,000 credits, but now Emmy’s going to get that toy.</b>");
 	output("\n\nEmmy is on you the moment you put the Codex away, bowling you over in a tumble of tits, fur, and fully-loaded package. You let her pin you to the floor, grinning up at jackal-slut while her hands grope and her cock throbs, reveling in her raw animal passion. Emmy alternately growls and whines, lost somewhere between wanting to violate your every hole and raise her ass submissively into the air. Eventually, she manages to gasp, <i>“S-so... how do you want to do this?”</i>");
 	pc.credits -= 15000;
@@ -3369,7 +3365,7 @@ public function getFuckedByEmmyEmmyEms():void
 		output("\n\nYou ");
 		if(pc.isBimbo() || pc.IQ() < 50) output("cluelessly shake your head, but press backwards needfully into her hand.");
 		else output("shake your head, figuring she doesn’t expect you to answer.");
-		output("\n\nPulling her hand back, Emmy slaps your ass and squeezes roughly. <i>“Jackals fuck bitches.”</i> Her claw-tips don’t feel nearly blunt enough. They dig deep into your [pc.skinFurScales] and refuse to let go, holding your haunches more possessively than a beggar clutching his last credit. <i>“And here you are in front of me, ass in the air and puss");
+		output("\n\nPulling her hand back, Emmy slaps your ass and squeezes roughly. <i>“Jackals fuck bitches.”</i> Her claw-tips don’t feel nearly blunt enough. They dig deep into your [pc.skinFurScales] and refuse to let go, holding your haunches more possessively than a beggar clutching his last " + (isAprilFools() ? "dogecoin" : "credit") + ". <i>“And here you are in front of me, ass in the air and puss");
 		if(pc.totalVaginas() == 1) output("y");
 		else output("ies");
 		output(" on display.”</i> Her thumb grazes [pc.oneVagina]");

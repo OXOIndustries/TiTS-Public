@@ -45,13 +45,13 @@ package classes.Items.Upgrades
 			}
 			if(target.statusEffectv1("Backpack Upgrade") >= 5)
 			{
-				output("This backpack isn't any better than what you're already using.");
+				output("This backpack isn’t any better than what you’re already using.");
 				if(!kGAMECLASS.infiniteItems()) quantity++;
 				return false;
 			}
 			else
 			{
-				output("You discard your previous equipment and don the new pack. It's as comfy as it looks, and with it, you'll be toting far more prizes back to your ship.");
+				output("You discard your previous equipment and don the new pack. It’s as comfy as it looks, and with it, you’ll be toting far more prizes back to your ship.");
 				if(!target.hasStatusEffect("Backpack Upgrade")) target.createStatusEffect("Backpack Upgrade");
 				target.setStatusValue("Backpack Upgrade",1,5);
 			}

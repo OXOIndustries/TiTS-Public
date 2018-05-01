@@ -809,10 +809,7 @@ public function takeShadesHardlightPenisInYerBoot(xmasVers:Boolean = false):void
 	output(" hiked over Shade’s shoulders, leaving your ");
 	if(x >= 0) output("pussy");
 	else output("ass");
-	output(" tantalizingly close to the glowing cock sprouting from her panties. She leans in, pushing your backside up off the bed and curling your spine in as she goes, ");
-	if(pc.catDog("nyan", "bork") == "nyan") output("making full use of your feline flexibility");
-	else output("putting your flexibility to the limit");
-	output(" as she crawls up your prone body, trailing kisses up your belly, [pc.chest], and neck. Finally, she reaches your [pc.lips], pressing hers to yours and slowly urging your mouth open, just wide enough to let her tongue slip in.");
+	output(" tantalizingly close to the glowing cock sprouting from her panties. She leans in, pushing your backside up off the bed and curling your spine in as she goes, " + pc.catDog("making full use of your feline flexibility", "putting your flexibility to the limit") + " as she crawls up your prone body, trailing kisses up your belly, [pc.chest], and neck. Finally, she reaches your [pc.lips], pressing hers to yours and slowly urging your mouth open, just wide enough to let her tongue slip in.");
 
 	output("\n\nYou moan into her mouth as Shade’s hands slip down your [pc.legOrLegs], finding the cheeks of your [pc.butt] and digging in, squeezing your butt until you squeal. She breaks the kiss at that, a hungry look in her eyes as you give voice to your pleasure. You feel a hand release your cheek, traveling up your thigh toward the haft of her energy-cock, grasping it and guiding it back down toward your eagerly waiting hole. Your breath catches as the tingling crown caresses your [pc.skinFurScales], brushing against your [pc.vagOrAss " + x + "]. You shiver with anticipation, sucking in a breath as Shade’s holographic cock aligns with your eager hole. From this position, there’s nothing you can do but let it happen, no force you can exert to drive her onward but to wiggle your hips invitingly, trying to relax as best you can as Shade enters you.");
 

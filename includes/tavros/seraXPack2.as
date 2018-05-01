@@ -331,24 +331,21 @@ public function sentientAcquisitionsBuyOutSeraYesNext():void
 public function seraIsRepoed():void
 {
 	// Update Sera!
-	if(chars["SERA"].hasStatusEffect("Dedicked"))
+	if(chars["SERA"].removeStatusEffect("Dedicked"))
 	{
 		chars["SERA"].makeBallsInternal();
 		chars["SERA"].removeCocks();
 	}
-	if(chars["SERA"].hasStatusEffect("Hymenified"))
+	if(chars["SERA"].removeStatusEffect("Hymenified"))
 	{
 		//chars["SERA"].vaginalVirgin = true;
 		chars["SERA"].vaginas[0].hymen = true;
 	}
-	if(chars["SERA"].hasStatusEffect("Tickled Pink"))
+	if(chars["SERA"].removeStatusEffect("Tickled Pink"))
 	{
 		chars["SERA"].skinTone = "bright pink";
 		chars["SERA"].nippleColor = "maroon";
 	}
-	chars["SERA"].removeStatusEffect("Dedicked");
-	chars["SERA"].removeStatusEffect("Hymenified");
-	chars["SERA"].removeStatusEffect("Tickled Pink");
 	// Update Sera inventory!
 	chars["SERA"].inventory.length = 0;
 	// Reset Sera conditions!
@@ -525,7 +522,7 @@ public function mods4UChrysalisBuy():void
 		{
 			if(!chars["CHRYSALISDRONE"].hasItemByClass(GaloMax)) chars["CHRYSALISDRONE"].inventory.push(new GaloMax());
 		}
-		else chars["CHRYSALISDRONE"].destroyItemByClass(GaloMax);
+		else chars["CHRYSALISDRONE"].destroyItemByClass(GaloMax, -1);
 	}
 	
 	buyItem();
@@ -3411,73 +3408,20 @@ public function seraBitcheningStoreInventory(totalDays:int):void
 public function seraBitcheningStoreRandomize():void
 {
 	chars["SERA"].inventory.length = 0;
-	
-	// Group A
-	// ManUp, Estrobloom, Junk in the Trunk, Tittyblossom, Condensol, Virection
-	var groupA:Array = [];
-	groupA.push(new Estrobloom());
-	groupA.push(new Tittyblossom());
-	groupA.push(new JunkTrunk());
-	groupA.push(new ManUp());
-	groupA.push(new ManDown());
-	groupA.push(new Condensol());
-	groupA.push(new Virection());
-	// Group B
-	// DendroGro, Bumpy Road, Knot A Problem, Circumscriber, Equilibricum, Semen’s Friend
-	var groupB:Array = [];
-	groupB.push(new DendroGro());
-	groupB.push(new BumpyRoad());
-	groupB.push(new KnotAProblem());
-	groupB.push(new Circumscriber());
-	groupB.push(new Equilicum());
-	groupB.push(new SemensFriend());
-	groupB.push(new SweetTreat());
-	// Group C
-	// Clippex, Lactaid, Mighty Tight, Anusoft, Magic Milker, Pussyblossom
-	var groupC:Array = [];
-	groupC.push(new Clippex());
-	groupC.push(new Lactaid());
-	groupC.push(new Chocolac());
-	groupC.push(new MightyTight());
-	groupC.push(new Anusoft());
-	groupC.push(new MagicMilker());
-	groupC.push(new Pussybloom());
-	groupC.push(new Pussyblossom());
-	groupC.push(new Muffstick());
-	// Group D
-	// Throbb, Gush, Rubber Made, ClearYu, DumbFuck, Rainbotox
-	var groupD:Array = [];
-	groupD.push(new Throbb());
-	groupD.push(new Gush());
-	groupD.push(new RubberMade());
-	groupD.push(new ClearYu());
-	groupD.push(new Dumbfuck());
-	groupD.push(new Rainbotox());
-	// Group E
-	// Terran Treat, Ausar Treat, Nepeta, DracoGuard, Ovir Ace, Nuki Cookies
-	var groupE:Array = [];
-	groupE.push(new TerranTreats());
-	groupE.push(new AusarTreats());
-	groupE.push(new Nepeta());
-	groupE.push(new DracoGuard());
-	groupE.push(new OvirAce());
-	groupE.push(new NukiCookies());
-	// Group F
-	// Mino Charge, Lucifier, Sylvanol, Dovebalm, Bovinium, Hornitol
-	var groupF:Array = [];
-	groupF.push(new MinoCharge());
-	groupF.push(new Bovinium());
-	groupF.push(new Lucifier());
-	groupF.push(new Sylvanol());
-	groupF.push(new DoveBalm());
-	groupF.push(new Hornitol());
-	
-	chars["SERA"].inventory.push(groupA[rand(groupA.length)]);
-	chars["SERA"].inventory.push(groupB[rand(groupB.length)]);
-	chars["SERA"].inventory.push(groupC[rand(groupC.length)]);
-	chars["SERA"].inventory.push(groupD[rand(groupD.length)]);
-	chars["SERA"].inventory.push(groupE[rand(groupE.length)]);
-	chars["SERA"].inventory.push(groupF[rand(groupF.length)]);
+	chars["SERA"].inventory.push(
+		// Group A
+		new (RandomInCollection(Estrobloom, Tittyblossom, JunkTrunk, ManUp, ManDown, Condensol, Virection)),
+		// Group B
+		new (RandomInCollection(DendroGro, BumpyRoad, KnotAProblem, Circumscriber, Equilicum, SemensFriend, SweetTreat)),
+		// Group C
+		new (RandomInCollection(Clippex, Lactaid, Chocolac, MightyTight, Anusoft, MagicMilker, Pussybloom, Pussyblossom, Muffstick)),
+		// Group D
+		new (RandomInCollection(Throbb, Gush, RubberMade, ClearYu, Dumbfuck, Rainbotox)),
+		// Group E
+		new (RandomInCollection(TerranTreats, AusarTreats, Nepeta, DracoGuard, OvirAce, NukiCookies)),
+		// Group F
+		new (RandomInCollection(MinoCharge, Bovinium, Lucifier, Sylvanol, DoveBalm, Hornitol))
+	);
 }
 public function seraBitcheningStore(response:String = "buy"):void
 {
@@ -3506,7 +3450,7 @@ public function seraBitcheningStore(response:String = "buy"):void
 		{
 			if(!chars["SERA"].hasItemByClass(GaloMax)) chars["SERA"].inventory.push(new GaloMax());
 		}
-		else chars["SERA"].destroyItemByClass(GaloMax);
+		else chars["SERA"].destroyItemByClass(GaloMax, -1);
 	}
 	
 	shopkeep = chars["SERA"];
