@@ -4658,6 +4658,16 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(flags["PRAI_SEX"] != undefined) output2("\n<b>* Prai, Times Sexed:</b> " + flags["PRAI_SEX"]);
 					}
 				}
+				//Yoma
+				if(flags["YOMA_MET"] != undefined)
+				{
+					output2("\n<b>* Yoma:</b> Met him");
+					if(flags["YOMA_GAMES_PLAYED"] != undefined) output2("\n<b>* Yoma, Times You Played His RPG Game:</b> " + flags["YOMA_GAMES_PLAYED"]);
+					if(flags["YOMA_TIMES_ORALED"] != undefined) output2("\n<b>* Yoma, Times He Oral Sexed You:</b> " + flags["YOMA_TIMES_ORALED"]);
+					if(flags["YOMA_TIMES_EATEN_OUT"] != undefined) output2("\n<b>* Yoma, Times Licked Him Out:</b> " + flags["YOMA_TIMES_EATEN_OUT"]);
+					if(flags["YOMA_TIMES_VAGINAL"] != undefined) output2("\n<b>* Yoma, Times Fucked Him With Your Dick:</b> " + flags["YOMA_TIMES_VAGINAL"]);
+					if(flags["YOMA_TIMES_TAILFUCKED"] != undefined) output2("\n<b>* Yoma, Times Fucked Him With Your Tailcock:</b> " + flags["YOMA_TIMES_TAILFUCKED"]);
+				}
 				if(flags["MET_CUNT_SNAKE"] != undefined) output2("\n<b>* Cunt Snake, Times Encountered:</b> " + flags["MET_CUNT_SNAKE"]);
 				if(flags["MET_KEROKORAS"] != undefined) output2("\n<b>* Kerokoras, Times Encountered:</b> " + flags["MET_KEROKORAS"]);
 				if(flags["ENCOUNTERED_MIMBRANE"] != undefined) output2("\n<b>* Mimbranes, Times Encountered:</b> " + flags["ENCOUNTERED_MIMBRANE"]);
