@@ -2233,7 +2233,7 @@ public function shekkaAnnoVibeOff():void
 		//Big ol’ juicy cummy-cums
 		else 
 		{
-			output("\n\n could tell what’s about to follow as your ");
+			output("\n\nYou could tell what’s about to follow as your ");
 			if(pc.balls == 1) output("heaving ball tenses");
 			else if(pc.balls > 1) output("heaving balls tense");
 			else output("engorged prostate tenses");
@@ -2401,7 +2401,7 @@ public function shekkaAnnoVibeOff():void
 		//Big ol’ juicy cummy-cums
 		else 
 		{
-			output("\n\n could tell what’s about to follow as your ");
+			output("\n\nYou could tell what’s about to follow as your ");
 			if(pc.balls == 1) output("heaving ball tenses");
 			else if(pc.balls > 1) output("heaving balls tense");
 			else output("engorged prostate tenses");
