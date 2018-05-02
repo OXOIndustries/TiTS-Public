@@ -36,6 +36,7 @@ public function syriIsAFuckbuddy():Boolean
 // Is Syri actually at Burt's bar?
 public function syriAtBurts():Boolean
 {
+	if (syriQuestRunning() || syriQuestComplete()) return false;
 	return true;
 }
 public function syriAtBurtsBonus(btnSlot:int = 2):void

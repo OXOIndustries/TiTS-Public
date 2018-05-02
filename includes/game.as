@@ -1993,7 +1993,7 @@ public function landingEventCheck(arg:String = ""):Boolean
 	
 	if(arg == "Mhen'ga")
 	{
-		if(((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew()) && syriIsAFuckbuddy() && rand(5) == 0)
+		if(((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew()) && syriAtBurts() && syriIsAFuckbuddy() && rand(5) == 0)
 		{
 			currentLocation = "SHIP INTERIOR";
 			gettingSyrisPanties();

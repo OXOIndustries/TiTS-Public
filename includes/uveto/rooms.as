@@ -673,12 +673,9 @@ public function initUvetoRooms():void
 	rooms["UVI R32"].southExit = "UVI R34";
 	rooms["UVI R32"].westExit = "UVI P32"; // 9999 TEMP CHECK THIS
 	rooms["UVI R32"].moveMinutes = 1;
+	rooms["UVI R32"].runOnEnter = uvetoBarFirePitBonus;
 	rooms["UVI R32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI R32"].addFlag(GLOBAL.PUBLIC);
-	rooms["UVI R32"].runOnEnter = function():Boolean {
-		setNavDisabled(NAV_SOUTH_DISABLE);
-		return false;
-	}
 
 	/* Back Room */
 	rooms["UVI R34"] = new RoomClass(this);
