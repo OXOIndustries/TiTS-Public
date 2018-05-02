@@ -3964,7 +3964,9 @@ public function seraBitcheningSexTeaseF():void
 	output(" to the sight and sound of her. But you do your best to put your own heat out of mind for now, concentrating closely on your prize slut. You keep one hand clasped around her boob as you slide your other down flawless [sera.skinColor] skin; you brush over the nub of an erect nipple at the same time as you swab the flat plain of her stomach, inexorably sinking downwards, sliding between the warmth of her thighs and touching her bare pussy.");
 	output("\n\nIt’s wet and eager as ever, beading lustily onto your fingers, conditioned now to practically sit up and beg for you. You travel upwards and easily find the sturdy nub of her clit, protruding out of her lips as it is. You circle and then gently play with it, nudging and sliding over it as you continue to run your fingers over her silky, gooey pink slit.");
 	if(chars["SERA"].hasCock()) output(" As you do so you slide your other hand upwards, grasping her cock and begin to jerk her, tightening, softening and bending your grasp around her thick meat.");
-	output(" Sera grunts, flexing her hands in her bonds. She knows it’s useless to struggle or to exhort you to fuck her, and in the place where she is now, she’d much rather play up to it anyway. She pushes her pear of a behind back into you, sinuously writhing her form so it melds with your own, rubbing " + (pc.cocks.length == 1 ? "your erect cock" : "each of your erect cocks") + " and [pc.nipples] insistently, drawing you further and further into the delight of touching and teasing her over-sexed form.");
+	output(" Sera grunts, flexing her hands in her bonds. She knows it’s useless to struggle or to exhort you to fuck her, and in the place where she is now, she’d much rather play up to it anyway. She pushes her pear of a behind back into you, sinuously writhing her form so it melds with your own");
+	if(pc.hasCock()) output(", rubbing " + (pc.cocks.length == 1 ? "your erect cock" : "each of your erect cocks") + " and");
+	output(" [pc.nipples] insistently, drawing you further and further into the delight of touching and teasing her over-sexed form.");
 	output("\n\nYou know now exactly how to touch her, what parts of her soaked folds to touch to excite and engorge her, make her nerve clusters bloom and blood vessels reach needily to the surface of her skin. You tighten your grip on her breast, rubbing her erect nipple between your fingers as you inundate a similar stubborn nub in her pussy with attention, stroking and circling her clit insistently. It’s difficult to tell how much she’s exaggerating her moans and gasps, but they are full-blooded and there’s nothing artificial about the way she’s pumping her thighs into your hand. The spaded tip of the tail trapped against your side touches your ear.");
 	output("\n\n<i>“Right there!”</i> she whines. <i>“Yes, [pc.master]!”</i>");
 	
@@ -3986,7 +3988,9 @@ public function seraBitcheningSexTeaseFDeny():void
 	showSera(true);
 	author("Nonesuch");
 	
-	output("You keep curling your fingers into her with a deceptively steady rhythm, feeling the evidence of her excitement trickling warmly down your fingers, enjoying the heave of her soft flesh against your [pc.chest] and [pc.eachCock]. You’ve got her in the palm of your hand and you glory in it, drinking in her high scent, her neck is thrown back, her mouth open, all but tasting the incoming orgasm... and then you stop dead.");
+	output("You keep curling your fingers into her with a deceptively steady rhythm, feeling the evidence of her excitement trickling warmly down your fingers, enjoying the heave of her soft flesh against your [pc.chest]");
+	if(pc.hasCock()) output(" and [pc.eachCock]");
+	output(". You’ve got her in the palm of your hand and you glory in it, drinking in her high scent, her neck is thrown back, her mouth open, all but tasting the incoming orgasm... and then you stop dead.");
 	output("\n\n<i>“No... [pc.master], no!”</i> she whines in bitter frustration, humping your frozen hand" + (!chars["SERA"].hasCock() ? "" : "s") + ".");
 	output("\n\n<i>“That’s enough for today I think,”</i> you say breezily, getting up. <i>“If you continue to be a really good girl, I’ll let you cum next time.”</i>");
 	output("\n\n<i>“For... flip’s sake,”</i> she says, closing her eyes as she censors herself, savoring the control she exists under now. Her pussy is puffy and inflamed, dripping with pure frustration, as you undo her restraints.");
@@ -4018,7 +4022,7 @@ public function seraBitcheningSexTeaseFRelease():void
 	output(" to the sound. You know you don’t have to say it again.");
 	output("\n\n<i>“Please may I cum, [pc.master]!”</i> she cries out, color blooming in her cheeks. Immediately you up your rhythm, briskly frigging her to the high you’ve been keeping just out of her reach. Her eyes roll and her limbs spasm as her pussy clenches up and soaks your fingers");
 	if(chars["SERA"].hasCock()) output(", her cock seizing up in your grasp, forcefully fountaining cum upwards, spattering onto the bed and her thighs");
-	output(". It’s a pretty breathtaking orgasm, even seen and felt second-hand – her plush butt presses into [pc.eachCock] whilst she throws her frame into each ecstatic contraction, her cuffed hands seeming to force more energy into every other part of her body.");
+	output(". It’s a pretty breathtaking orgasm, even seen and felt second-hand – her plush butt presses " + (pc.hasCock() ? "into [pc.eachCock]" : "onto your body") + " whilst she throws her frame into each ecstatic contraction, her cuffed hands seeming to force more energy into every other part of her body.");
 	output("\n\nYou gently lay her down on her side on a non-soaked part of the bed when she’s finally done.");
 	output("\n\n<i>“Good girl,”</i> you say softly. She looks up at you, panting lightly, sweat dappling her naked skin. She looks completely different in this moment – an unsure, muddled look in her eyes, her features naked and soft without the scorn which usually guards and tightens them.");
 	output("\n\n<i>“Thank you, [pc.master],”</i> she says, suddenly looking up at you and smiling. <i>“It was getting... that was... you seem to know when... yeah, thanks.”</i> You curl a hand around her ear and jaw-line fondly, and she practically purrs to your touch.");
@@ -4954,7 +4958,7 @@ public function seraOnTavrosRecruit():void
 		processTime(2);
 	}
 	
-	output("\n\n(<b>Sera has joined your crew!</b>)");
+	output("\n\n(<b>Sera has rejoined your crew!</b>)");
 	flags["SERA_CREWMEMBER"] = 1;
 	
 	clearMenu();

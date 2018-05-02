@@ -1085,11 +1085,57 @@ public function uvetoMaglevStation():Boolean
 {
 	//removeUvetoColdBonus();
 	
-	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(0, "Probe");
-	else addButton(0, "Probe", move, "UVIP R10");
-	if(krymRespectsYou()) addButton(1,"Krym’s Camp",move,"UVGR M4");
-
+	addButton(0, "Transit", useUvetoTransportMenu);
 	return false;
+}
+
+public function uvetoCrashedProbe():Boolean {
+	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined)
+	{
+		output("\n\nIt looks like the probe was damaged in the crash. It’s silent and dark.");
+		addButton(0, "Reactivate", uvetoReactivateProbe, undefined, "Reactivate Probe", "You could probably give this probe a repair job and use it to broadcast a signal back to Irestead. If you do, you might be able to call for quick transportation...");
+	}
+	else
+	{
+		output("\n\nThe probe is blinking, occasionally making a high-pitched <i>beep!</i>");
+		addButton(0, "Use Probe", useUvetoTransportMenu);
+	}
+	return false;
+};
+
+public function useUvetoTransportMenu():void
+{
+	clearMenu();
+	var btnSlot:int = 0;
+	
+	if(currentLocation != "UVI P40")
+	{
+		addButton(btnSlot++, "Irestead", uvetoTaxiMove, "UVI P40");
+	}
+	if(currentLocation != "UVIP R10")
+	{
+		if(flags["UVIP_R10_PROBE_ACTIVE"] == undefined) addDisabledButton(btnSlot++, "Probe");
+		else addButton(btnSlot++, "Probe", uvetoTaxiMove, "UVIP R10");
+	}
+	if(currentLocation != "UVGR M4")
+	{
+		if(krymRespectsYou()) addButton(btnSlot++, "Krym’s Camp", uvetoTaxiMove, "UVGR M4");
+	}
+	
+	addButton(14, "Back", mainGameMenu);
+}
+public function uvetoTaxiMove(destination:String):void
+{
+	clearOutput();
+	showName("\nTRANSIT!");
+	output("You hop onto the nearest transit and lock in the desired coordinates.");
+	output("\n\nThe taxi drone takes you to your destination.");
+	
+	moveTo(destination);
+	processTime(20);
+	
+	clearMenu();
+	addButton(0,"Next", move, destination);
 }
 
 public function GlacialRiftS40():Boolean

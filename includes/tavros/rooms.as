@@ -446,11 +446,25 @@ public function initTavrosRooms():void
 	rooms["9016"].system = "SYSTEM: KALAS";
 	rooms["9016"].westExit = "9017";
 	rooms["9016"].eastExit = "9015";
+	rooms["9016"].southExit = "TAVROS_BEACH";
 	rooms["9016"].moveMinutes = 1;
 	rooms["9016"].addFlag(GLOBAL.INDOOR);
 	rooms["9016"].addFlag(GLOBAL.PUBLIC);
 	rooms["9016"].addFlag(GLOBAL.NUDITY_ILLEGAL);
 	rooms["9016"].runOnEnter = undefined;
+
+	rooms["TAVROS_BEACH"] = new RoomClass(this);
+	rooms["TAVROS_BEACH"].roomName = "BEACH \n‘N SURF";
+	rooms["TAVROS_BEACH"].description = "";
+	rooms["TAVROS_BEACH"].planet = "TAVROS STATION";
+	rooms["TAVROS_BEACH"].system = "SYSTEM: KALAS";
+	rooms["TAVROS_BEACH"].northExit = "9016";
+	rooms["TAVROS_BEACH"].moveMinutes = 1;
+	rooms["TAVROS_BEACH"].addFlag(GLOBAL.INDOOR);
+	rooms["TAVROS_BEACH"].addFlag(GLOBAL.PUBLIC);
+	rooms["TAVROS_BEACH"].addFlag(GLOBAL.POOL);
+	rooms["TAVROS_BEACH"].addFlag(GLOBAL.NPC);
+	rooms["TAVROS_BEACH"].runOnEnter = approachBeachSurfNSurf;
 
 	//9017
 	rooms["9017"] = new RoomClass(this);

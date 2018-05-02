@@ -161,6 +161,8 @@
 			this.minutesSinceCum = 420;
 			this.timesCum = 3711;
 
+			this.impregnationType = "RaskvelPregnancy";
+
 			this.elasticity = 2;
 			//Fertility is a % out of 100. 
 			this.fertilityRaw = 1.05;

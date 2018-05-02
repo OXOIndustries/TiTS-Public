@@ -65,7 +65,7 @@ public function approachFarmer():void
 		output("\n\nThat’s unfortunate. Maybe you could help the little feller out?");
 		if(!CodexManager.entryUnlocked("Varmints")) 
 		{
-			output(" <b>New Codex entry unlocked: Varmints.</b>");
+			output(" <b>(New Codex entry unlocked: Varmints.)</b>");
 			CodexManager.unlockEntry("Varmints");
 		}
 		//[Help] [Nah]
@@ -314,7 +314,7 @@ public function varmintProc():void
 	output("\n\nSure enough, as you approach, the creature pokes its head up, revealing a jaw of razor-sharp teeth and large, thin spikes poking up from its flat head. The varmint growls at you and lunges!");
 	if(!CodexManager.entryUnlocked("Varmints")) 
 	{
-		output(" <b>New Codex entry unlocked: Varmints.</b>");
+		output(" <b>(New Codex entry unlocked: Varmints.)</b>");
 		CodexManager.unlockEntry("Varmints");
 	}
 	if(flags["MET_VARMINT"] == undefined)

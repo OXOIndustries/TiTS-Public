@@ -295,6 +295,8 @@ public function kaseBuyContract():void
 	output("\n\n<i>“And that’s everything,”</i> Kase says, finally putting down his datapad, <i>“That’s it then, isn’t it? I’m finally done with Pyrite... it’s honestly hard to believe after all these years.”</i> He closes his eyes and takes a deep breath, remaining silent for a moment before opening his eyes again and looking at you, <i>“Alright, I I’ll pack my things and head off to your ship straight away.”</i>");
 	output("\n\nWith that, he stands from his seat and goes to make his way out of the bar. Before he does, though, he turns back to you, and raises his good arm to you in a salute, <i>“Captain...”</i> Then, he’s off again, back to your ship...");
 	
+	output("\n\n(<b>Kase has joined your crew!</b>)");
+	
 	pc.credits -= 5000;
 	flags["KASE_CREW"] = 1;
 	processTime(60+rand(45));
@@ -316,6 +318,8 @@ public function kaseHireSteeleTech():void
 	output("\n\nYou tell him that if he’s interested he should head to your ship at the docks and talk to the white-haired ausar aboard your craft, Anno Dorna.");
 	output("\n\nThe kaithrit hurriedly stands out of his seat, <i>“Yes, I’ll gather my things and head there right now! I thank you from the depths of my heart for this opportunity, " + pc.mf("sir", "ma’am") + ".”</i>");
 	output("\n\nWith that, he goes to make his way out of the bar. Before he does, though, he turns back to you, and raises his good arm to you in a salute, <i>“Captain...”</i> Then, he’s off again, back to your ship...");
+	
+	output("\n\n(<b>Kase has joined your crew!</b>)");
 	
 	flags["KASE_CREW"] = 1;
 	flags["KASE_STEELETECH"] = 1;

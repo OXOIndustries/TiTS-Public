@@ -126,6 +126,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
 			
 			chars["VENDINGMACHINE"].inventory.push(new TauricoVenidae());
+			chars["VENDINGMACHINE"].inventory.push(new ChillPill());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.05;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
@@ -148,6 +149,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].inventory.push(new LemonLoftcake());
 			chars["VENDINGMACHINE"].inventory.push(new StrawberryShortcake());
 			chars["VENDINGMACHINE"].inventory.push(new ManDown());
+			chars["VENDINGMACHINE"].inventory.push(new ChillPill());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.00;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;

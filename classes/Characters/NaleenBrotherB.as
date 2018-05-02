@@ -312,7 +312,7 @@
 			output(". It catches on the smallest eddy and breeze, spreading into a stinging white cloud.");
 
 			//Avoid
-			if(rangedCombatMiss(this, target))
+			if(target.hasBlindImmunity() || rangedCombatMiss(this, target))
 			{
 				if(target is PlayerCharacter) output(" You avoid getting any in your eyes.");
 				else output(" Azra avoids getting any in her eyes.");

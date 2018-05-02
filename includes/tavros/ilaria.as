@@ -414,7 +414,9 @@ public function bunnyCreamCumBonanzaBullshitRemoteFuntimesExplosionIDunnoWhyThis
 	output(". <i>“Of course. A little secret ingredient goes a long way. And a <b>lot</b> of it goes... even further, I guess! Enjoy, sweet thing!”</i>");
 	output("\n\nShe bounces off with a spring in her step, leaving you to enjoy your well-earned meal.");
 	processTime(15);
-	pc.loadInMouth();
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 500);
+	pc.loadInMouth(chars["ILARIA"]);
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 50000);
 	setOrderTFAndDeets(order,true);
 	IncrementFlag("ILERIA_GLAZED");
 	clearMenu();

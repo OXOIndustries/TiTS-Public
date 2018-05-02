@@ -7,6 +7,7 @@
 	import classes.Items.Guns.*
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
+	import classes.Items.Accessories.FlashGoggles;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -321,9 +322,14 @@
 					output(" You cry out as the vial shatters, exploding in a pink cloud that blows over you. You gag and cough and suddenly your hands are reaching to your crotch as if on their own. You yank back, but feel a hot haze washing across your exposed body. What the hell is this stuff?");
 					//PC must pass an willpower check, else:
 					target.lust(5);
-					if(target.willpower() + rand(20) + 1 < 20 && !target.hasStatusEffect("Blinded") && !target.hasBlindImmunity()) {
-						output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision’s collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, <b>you’re blinded</b>!");
-						CombatAttacks.applyBlind(target,rand(3) + 1 );
+					if(!target.hasStatusEffect("Blinded"))
+					{
+						if(target.accessory is FlashGoggles) output("\n\nFortunately, your goggles shield your eyes from the pink cloud and you avoid being blinded!");
+						else if(target.hasBlindImmunity()) output("\n\nFortunately, your eyes are unaffected by the pink cloud and you avoid being blinded!");
+						else if(target.willpower() + rand(20) + 1 < 20) {
+							output("\n\nSuddenly, you realize that in the wake of the pink cloud, your vision’s collapsed to just a few feet in front of you, and the zil girl is nowhere to be seen. You desperately rub at your eyes, but that only serves to make them burn as the lust-cloud sticks to your [pc.skin]. Oh, shit, <b>you’re blinded</b>!");
+							CombatAttacks.applyBlind(target,rand(3) + 1 );
+						}
 					}
 				}
 			}

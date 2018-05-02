@@ -851,7 +851,7 @@ public function sx1DoorBreach():void
 public function sx1InitShotguardFight(wasFlashed:Boolean = false):void
 {
 	var tEnemy:Creature = new SX1Shotguard();
-	CombatAttacks.applyBlind(tEnemy, 3);
+	if(wasFlashed) CombatAttacks.applyBlind(tEnemy, 3);
 	saendra.long = "Saendra quickly pokes out of cover from time to time, ready to take potshots at anything and everything she can sight quickly enough before shifting back to safety.";
 	saendra.customDodge = "Saen casually sidesteps out of the way.";
 	

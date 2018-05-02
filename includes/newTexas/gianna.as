@@ -3507,7 +3507,7 @@ public function coochFuckThreeMaybeFourInOne():void
 		else if(giannaPersonality() < 70)
 		{
 			output("\n\n<i>“Why don’t we use the table, lover?”</i> Gianna gives the bed a few pats. <i>“I’ll lie down and you can make love to me like ");
-			if(pc.race() == "human") output("your people");
+			if(pc.isHuman()) output("your people");
 			else output("the terrans");
 			output(" do.”</i> Smiling roguishly, she adds, <i>“It’ll be a good way to remind you just how good I can be at keeping you happy - even the hard, overeager parts of you.”</i>");
 			output("\n\nSmiling back, you graciously extend your arm towards the table. <i>“Ladies first.”</i>");
@@ -3974,15 +3974,27 @@ public function savinTriesToWriteGiannaButtfux():void
 	output("\n\nGianna’s words spur you on, urging you to fuck her faster until every impact is sending her shuddering forward, lurching into the table. The whole setup rocks forward every time you ");
 	if(pc.biggestCockLength() > 20) output("hammer a gut-straining cock-thrust into Gianna’s well-stretched asshole");
 	else output("thrust hilt-deep into Gianna’s welcoming behind");
-	output(". Her hips hump back against you, moving to take you deeper and faster as best she can, reaching back to meet your thrusting [pc.cockNounBiggest]. In turn, you plant a hand on the metallic port just over her quivering backside and give her a slight push down onto the table");
+	output(". Her hips hump back against you, moving to take you deeper and faster as best she can, reaching back to meet your thrusting [pc.cockNounBiggest]. In turn, you");
+	if(pc.isTaur()) output(" shift the weight of your bestial body");
+	else output(" plant a hand on the metallic port just");
+	output(" over her quivering backside and give her a slight push down onto the table");
 	if(gianna.biggestTitSize() >= 15) output(", though it’s not much considering her massive rack");
 	output(". Her hands move fluidly from one end of the table to the other, stretching herself out across the surface. She’s not quite tall enough to make it, and ends up pulling her feet off the ground to reach; that won’t do at all.");
 
-	output("\n\nReaching forward, you grab one of Gianna’s ");
-	if(gianna.biggestTitSize() <= 3) output("high, perky tits");
-	else if(gianna.biggestTitSize() < 40) output("hefty, silicon-laden tits");
-	else output("immense, cow-girl-like boobs");
-	output(". Starting there, you give her another little push, this time onto her back. She obediently rolls over");
+	output("\n\n");
+	if(pc.isTaur())
+	{
+		output("Shifting your weight again, you give her another little push and tell her to get onto her back.");
+	}
+	else
+	{
+		output("Reaching forward, you grab one of Gianna’s ");
+		if(gianna.biggestTitSize() <= 3) output("high, perky tits");
+		else if(gianna.biggestTitSize() < 40) output("hefty, silicon-laden tits");
+		else output("immense, cow-girl-like boobs");
+		output(". Starting there, you give her another little push, this time onto her back.");
+	}
+	output(" She obediently rolls over");
 	if(gianna.biggestTitSize() >= 15) output(", though with some effort, thanks to her massive rack,");
 	output(" which sends an incredible shock of twisting, wringing pleasure through your [pc.cockBiggest]. Even as she moves, you don’t let up, vigorously pounding into the android’s ass. She grins at you from her new vantage, cupping her arms under her jiggling breasts.");
 	output("\n\n<i>“I love the view,”</i> she purrs, licking her lips as she drinks in the sight of you. Her long, alabaster legs slip around your waist, pulling you tight against herself. Your ability to thrust evaporates under Gianna’s leg-lock, but that doesn’t mean the fun’s over - not for an instant. Her synthetic muscles go to work on you, squirming and writhing and wringing your [pc.cockBiggest]. Her tight passage kisses and caresses your prick, sucking you in. Her creamy skin flushes darker, and she adds, <i>“And I love the feeling of you inside me... stretching my ass like this. Mmmmm.”</i>");
@@ -4005,7 +4017,9 @@ public function savinTriesToWriteGiannaButtfux():void
 	output("\n\n");
 	if(giannaPersonality() >= 70) 
 	{
-		output("Gianna reaches up with one of her perfect, creamy-skinned feet and brushes her big toe across your [pc.lip]. <i>“Mmm, that was nice. My circuits are just </i>trembling<i> after that, " + pc.mf("stud","babe") + ".”</i> She makes a quiet purring sound, languidly stretching her arms back");
+		output("Gianna reaches up with one of her perfect, creamy-skinned feet");
+		if(!pc.isTaur()) output(" and brushes her big toe across your [pc.lip]");
+		output(". <i>“Mmm, that was nice. My circuits are just </i>trembling<i> after that, " + pc.mf("stud","babe") + ".”</i> She makes a quiet purring sound, languidly stretching her arms back");
 		if(pc.cumQ() > 5000) output(" and rubbing her cum-stuffed belly");
 		output(".");
 	}

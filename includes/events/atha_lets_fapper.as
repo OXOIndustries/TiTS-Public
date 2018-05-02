@@ -54,7 +54,7 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 		addButton(i, o.t, o.f, o.ar, o.th, o.tb);
 	}
 	
-	if(pc.lust() < 33) addButton(14, "Back", arousalMenu);
+	if(pc.lust() < 33 || availableFaps(false, true).length <= 0) addButton(14, "Back", arousalMenu);
 	else addButton(14, "Back", masturbateMenu);
 }
 public function backToSmutMenu(toMainMenu:Boolean = false):void

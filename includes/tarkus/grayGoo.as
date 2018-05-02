@@ -165,7 +165,7 @@ public function reprogramGrayGoosForYerPleasure():void
 	
 	CodexManager.unlockEntry("BI/G");
 	
-	if(CodexManager.entryViewed("BI/G") || flags["DECK13_CREW_TALK"] != undefined) output("\n\n<i>“Bell-Isle/Grunmann?”</i> you muse, watching the goo-girl reformat herself. <i>“Never heard of ‘em.”</i>");
+	if(!CodexManager.entryViewed("BI/G") && flags["DECK13_CREW_TALK"] == undefined) output("\n\n<i>“Bell-Isle/Grunmann?”</i> you muse, watching the goo-girl reformat herself. <i>“Never heard of ‘em.”</i>");
 	else output("\n\nYou watch the goo-girl reformat herself.");
 	output("\n\nAnother violent shudder and the goo-girl blinks as if waking from a long sleep. Her body quickly morphs itself into more... normal... human proportions: still voluptuous, but her tits slip down to a reasonable D-cup, and her butt and hips slim down to a more reasonable level. Were it not for her gray, shimmering exterior, she might just pass for human, now.");
 	output("\n\nTurning to you, she says, <i>“You are not on the crew manifest. ADDENDUM: Databanks corrupted. Re-setting security protocols to factory standards. How may I help you, master?”</i>");

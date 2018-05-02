@@ -1059,7 +1059,7 @@ public function boobToBoobSexathon():void {
 		output("\n\nShe shakes her head with a slight look of disbelief. <i>“It’s quite a universe, isn’t it? Okay, I guess this will feel good enough for you without any extra help,”</i> she declares.");
 		output("\n\nBefore you say anything, she steps forward, muffling your words and blocking your vision with her impressive cleavage as she slides in to straddle your waist. The plush panda-girl settles into your lap until she is quite comfortable seated atop you, her warm feminine treasure pressed plush and firm against your own featureless loins.");
 	}
-	output("\n\nWith a smile, Jade wraps her arms around your back as best she can, squeezing her own voluptuous tits against your [pc.boobs], gently rubbing them together. Her mouth opens into an O-shape, a soft moan echoing up from her throat as her tentacle-like nipples stretch out and out, sliding up and down the valleys of your respective cleavages to wrap themselves around both of pairs of pressed tits like perverse pythons encircling their prey.");
+	output("\n\nWith a smile, Jade wraps her arms around your back as best she can, squeezing her own voluptuous tits against your [pc.boobs], gently rubbing them together. Her mouth opens into an O-shape, a soft moan echoing up from her throat as her tentacle-like nipples stretch out and out, sliding up and down the valleys of your respective cleavages to wrap themselves around both pairs of pressed tits like perverse pythons encircling their prey.");
 
 	output("\n\nYou join her with your own moans of pleasure. ");
 	if(pc.hasCock() || (pc.hasVagina() && pc.hasClit() && pc.clitLength >= 4))

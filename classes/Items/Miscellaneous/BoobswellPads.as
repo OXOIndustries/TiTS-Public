@@ -135,7 +135,7 @@
 			{
 				kGAMECLASS.output("You pull the set of sticky, form-adhering pads out of their packaging");
 				if(pc.armor.shortName != "") kGAMECLASS.output(" and wiggle out of your [pc.armor]");
-				kGAMECLASS.output(". You quickly slip the pads into your [pc.upperUndergarment], spending a moment adjusting them so they hug the undersides of your breasts just right. As you’re working, the pads begin gently vibrating, and quickly become ever so slightly moist as the cocktail of hormones and nanomachines leaks out of the pad and into your [pc.skinFurScales]. ");
+				kGAMECLASS.output(". You quickly slip the pads into " + (pc.upperUndergarment.shortName != "" ? "place" : "your [pc.upperUndergarment]") + ", spending a moment adjusting them so they hug the undersides of your breasts just right. As you’re working, the pads begin gently vibrating, and quickly become ever so slightly moist as the cocktail of hormones and nanomachines leaks out of the pad and into your [pc.skinFurScales]. ");
 			}
 			//Use, PC has tits but isn’t wearing a top
 			else if(pc.biggestTitSize() >= 1)

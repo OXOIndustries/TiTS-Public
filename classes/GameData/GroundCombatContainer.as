@@ -3048,7 +3048,7 @@ package classes.GameData
 			//Reqs: Crotch skill 50+
 			if(flags["TIMES_CROTCH_TEASED"] >= 50 && pc.hasCock() || pc.hasVagina()) choices.push(12);
 			//Reqs: PC is in combat with a zil male, zil female, or the dual zil when meeting Penny, PC has a zil vagina
-			if((target is ZilFemale || target is ZilMale || target is ZilPack) && pc.hasVagina(GLOBAL.TYPE_BEE)) choices.push(13);
+			if((target is ZilFemale || target is ZilMale || target is ZilPack) && pc.hasVaginaType(GLOBAL.TYPE_BEE)) choices.push(13);
 			//Reqs: PC has at least 3 vaginal wetness
 			if(pc.hasVagina() && pc.wettestVaginalWetness() >= 3) choices.push(14);
 			//Reqs: PC is wearing harness upper undergarment + has cock
@@ -4032,7 +4032,7 @@ package classes.GameData
 							//Foe is masculine furry
 							else if(_hostiles[i].mf("m","f") == "m")
 							{
-								output("\n\nHe’s got such sexy fur covering his body! You could just snuggle into it and let him have his way with you... <b>Better hope he doesn’t tease you or you’ll spread your legs like a " + ((pc.hasVagina(GLOBAL.TYPE_EQUINE) || pc.horseScore() >= 3)  ? "mare" : "bitch") + " in heat!</b>");
+								output("\n\nHe’s got such sexy fur covering his body! You could just snuggle into it and let him have his way with you... <b>Better hope he doesn’t tease you or you’ll spread your legs like a " + ((pc.hasVaginaType(GLOBAL.TYPE_EQUINE) || pc.horseScore() >= 3)  ? "mare" : "bitch") + " in heat!</b>");
 							}
 							//Foe is feminine furry
 							else

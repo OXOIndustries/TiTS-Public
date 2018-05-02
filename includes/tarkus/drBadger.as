@@ -68,9 +68,13 @@ public function drBadgerBuyMenu():void
 	// Shop unlocks
 	if(flags["BADGER_QUEST"] >= 3)
 	{
-		chars["DRBADGER"].inventory.push(new SlutRayAdvanced());
 		chars["DRBADGER"].inventory.push(new Throbb());
+		chars["DRBADGER"].inventory.push(new SlutRayAdvanced());
 		CodexManager.unlockEntry("Throbb");
+	}
+	if(flags["MINDWASH_VISOR_INSTALLED"] == undefined && !pc.hasItemByClass(MindwashVisor) && !pc.hasItemInStorageByClass(MindwashVisor))
+	{
+		chars["DRBADGER"].inventory.push(new MindwashVisor());
 	}
 	if(canBuySiegwulfe(true))
 	{
@@ -514,6 +518,7 @@ public function heyDocImAHero():void
 	pc.loadInAss(chars["DRBADGER"]);
 	pc.loadInAss(chars["DRBADGER"]);
 	output("\n\n(You could probably like, report this troublemaker to a U.G.C. peacekeeper and get her arrested. Maybe you can find a sexy cop!)");
+	pc.taint(10);
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
 }
@@ -946,6 +951,7 @@ public function removeDatCuntTail():void
 	//do ‘Next’
 	processTime(47);
 	pc.libido(1);
+	pc.taint(4);
 	clearMenu();
 	addButton(0,"Next",badgerTailRemovalGo);
 }

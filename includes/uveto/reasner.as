@@ -863,22 +863,25 @@ public function cowgirlMissReasner():void
 	if(pc.cocks[x].cLength() >= 6) output("fertile womb");
 	else output("[bea.vagina]");
 	output(" full of virile [pc.cumNoun].");
-
+	
+	var cumQ:Number = pc.cumQ();
+	
 	output("\n\nGirl-cum squirts over your [pc.crotch] as " + flags["BEA_TITLE"] + " gasps in pleasure, her back arched, from having her ");
 	if(pc.cocks[x].cLength() > 6) output("womb");
 	else output("depths");
-	output(" filled ");
-	if(pc.cumQ() >= 4000) 
+	output(" filled");
+	if(cumQ >= 4000) 
 	{
-		output("to the brim, her belly swelling more and more with every jet of [pc.cum] you can pump into her depths");
+		output(" to the brim, her belly swelling more and more with every jet of [pc.cum] you can pump into her depths");
 		//has knot and cum volume not too high: 
-		if(pc.hasKnot(x) && pc.cumQ() < 30000) output(", especially with your [pc.knot] making sure none of your [pc.cumNoun] spills back out");
+		if(pc.hasKnot(x) && cumQ < 30000) output(", especially with your [pc.knot] making sure none of your [pc.cumNoun] spills back out");
 	}
 	// else: {has knot:
-	else if(pc.hasKnot(x)) output(" and knotted ");
-	output("by someone other than her husband");
+	else if(pc.hasKnot(x)) output(" and knotted");
+	output(" by someone other than her husband");
 	output(".");
-	if(pc.cumQ() >= 30000) 
+	
+	if(cumQ >= 30000) 
 	{
 		output(" But it’s too much for her womb to handle and the excess comes pouring out of her pussy and onto your groin");
 		if(pc.hasKnot(x)) output(", despite your knot being firmly in place");
@@ -899,16 +902,16 @@ public function cowgirlMissReasner():void
 		output(" tightly wrapped around her");
 	}
 	output(". It takes a conscious effort to relax your muscles enough to separate. " + flags["BEA_TITLE"] + ", still on your [pc.cock " + x + "], flushed and sweaty, with thoroughly mussed hair, looks radiant after such a strong orgasm");
-	if(pc.cumQ() >= 4000) output(" and with a tummy so stuffed with [pc.cumVisc] [pc.cumNoun] that she looks positively pregnant");
+	if(cumQ >= 4000) output(" and with a tummy so stuffed with [pc.cumVisc] [pc.cumNoun] that she looks positively pregnant");
 	output(".");
 	output("\n\nShe cradles her ");
-	if(pc.cumQ() >= 4000) output("inflated ");
+	if(cumQ >= 4000) output("inflated ");
 	output("belly and meets your gaze. <i>“I wonder if this will make my little girl into a big sister,”</i> she says with a maternal smile, resplendent in her fecundity. [pc.EachCock] twitches at the thought of impregnating " + flags["BEA_TITLE"] + ". Her thumb massages your cheekbone as soft hand cups your cheek and pulls you in for a long, wet kiss. She uses her internal muscle control to stroke your [pc.cock " + x + "] and draw every last drop of spunk out of you; it feels like you’re slowly sliding in and out of her even though neither of you are moving.");
 	output("\n\nEventually, your ");
 	if(pc.hasKnot(x)) output("[pc.knot] deflates, and your ");
 	output("[pc.cock " + x + "] softens and falls free from " + flags["BEA_TITLE"] + "’s now [pc.cumColor]-colored love-tunnel, a ");
 	//low cum volume: 
-	if(pc.cumQ() < 25) output("trickle");
+	if(cumQ < 25) output("trickle");
 	// large cum volume:
 	else output("stream");
 	output(" of [pc.cumVisc] [pc.cumNoun] leaks from her red, swollen pussy-lips. Quite spent from your lovemaking, " + flags["BEA_TITLE"] + " sinks down on your [pc.chest] and smiles");
@@ -919,7 +922,7 @@ public function cowgirlMissReasner():void
 	if(rand(3) == 0)
 	{
 		output("\n\nSome time later you awake, cleaned up and tucked into bed, to find " + flags["BEA_TITLE"] + " already showered and putting her clothes back on. She looks at the time. <i>“I wish I could stay longer, sweetie,”</i> she says, tucking her blouse into her skirt, <i>“but I have to give a speech at a meeting soon.”</i> The thought of her standing in front of a crowd, maybe even her husband, with ");
-		if(pc.cumQ() >= 3000) output("some of ");
+		if(cumQ >= 3000) output("some of ");
 		output("your cum still sloshing inside her womb almost turns you on enough for another round. She blows you a kiss before she leaves.");
 		processTime(27);
 		pc.orgasm();

@@ -26,7 +26,7 @@
 			
 			description = "a box containing a single “Chill Pill”";
 			
-			tooltip = "This box contains a single dose of “Chill Pill”, a beige tablet designed to reduce libido. The packaging is poor quality - done in an eye-searing green, and decorated with seemingly irrelevant clipart.\n\nSince the creators of this pill were sued into bankruptcy over supposed side effects, finding anywhere that sells it is surprising. Not even the ongoing rumors connecting the lawsuit to a popular sex product manufacturer were enough to save the brand.";
+			tooltip = "This box contains a single dose of “Chill Pill”, a beige tablet designed to reduce libido. The packaging is poor quality - done in an eye-searing green, and decorated with seemingly irrelevant clipart.\n\nSince the creators of this pill were sued into bankruptcy over supposed side effects, finding anywhere that sells it is surprising. Not even the ongoing rumors connecting the lawsuit to a popular sex product manufacturer were enough to save the brand.\n\n<b>Disclaimer:</b> This item is ineffective for individuals suffering high levels of genetic taint. <i>You could probably check your Codex to see if that applies to you.</i>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
@@ -64,42 +64,48 @@
 				output("The beige pill is an awkward size to swallow, and for a moment it almost feels like it’s gotten stuck in your throat. You find yourself wishing desperately for a drink of water, but before you can finish the thought, the pill has already dissolved, leaving behind only a bitter aftertaste.");
 				
 				// Reduce lust
-				output("\n\nYou take a deep breath and realize that you feel a lot calmer. If nothing else, this pill has certainly made you less aroused.");
+				var lust:Number = pc.lust();
 				pc.lust(-15);
+				if(lust > pc.lust()) output("\n\nYou take a deep breath and realize that you feel a lot calmer. If nothing else, this pill has certainly made you less aroused.");
+				
+				var inHeat:Boolean = pc.inHeat();
+				var inRut:Boolean = pc.inRut();
+				var inAnalHeat:Boolean = pc.inAnalHeat();
 				
 				// Remove heat/rut/fuck fever
-				if (pc.inHeat() || pc.inRut() || pc.inAnalHeat()) {
+				if (inHeat || inRut || inAnalHeat) {
 					output("\n\nThe inescapable warmth in");
 					// IF the player has all three status effects, use commas instead of "and"
-					if (pc.inRut() && pc.inHeat() && pc.inAnalHeat()) {
+					if (inRut && inHeat && inAnalHeat) {
 						output(" your [pc.cocksLight], [pc.vaginasLight], and asshole");
 					} else {
-						if (pc.inRut()) output(" your [pc.cocksLight]");
+						if (inRut) output(" your [pc.cocksLight]");
 						// IF player is in rut AND in heat
-						if (pc.inRut() && pc.inHeat()) output(" and");
-						if (pc.inHeat()) output(" your [pc.vaginasLight]");
+						if (inRut && inHeat) output(inAnalHeat ? "," : " and");
+						if (inHeat) output(" your [pc.vaginasLight]");
 						// IF player is EITHER in rut OR in heat AND has "Fuck Fever"
-						if ((pc.inRut() || pc.inHeat()) && pc.inAnalHeat()) output(" and");
-						if (pc.inAnalHeat()) output(" your [pc.asshole]");
+						if ((inRut || inHeat) && inAnalHeat) output(" and");
+						if (inAnalHeat) output(" your [pc.asshole]");
 					}
 					output(" also vanishes, and you no longer feel the overpowering need to");
-					if (pc.inRut()) output(" breed");
+					if (inRut) output(" breed");
 					// IF player is in rut AND has is EITHER in heat OR has "Fuck Fever"
-					if (pc.inRut() && (pc.inHeat() || pc.inAnalHeat())) output(" and to");
-					if (pc.inHeat() || pc.inAnalHeat()) output(" be bred");
+					if (inRut && (inHeat || inAnalHeat)) output(" and to");
+					if (inHeat || inAnalHeat) output(" be bred");
 					output(". ");
 					output("Your");
-					if (pc.inRut()) output(" rut");
+					if (inRut) output(" rut");
 					// IF player is in rut AND has is EITHER in heat OR has "Fuck Fever"
-					if (pc.inRut() && (pc.inHeat() || pc.inAnalHeat())) output(" and");
-					if (pc.inHeat() || pc.inAnalHeat()) output(" heat");
+					if (inRut && (inHeat || inAnalHeat)) output(" and");
+					if (inHeat || inAnalHeat) output(" heat");
 					output(" has ended.");
 					
-					if (pc.inRut()) pc.clearRut();
-					if (pc.inHeat()) pc.clearHeat();
-					if (pc.inAnalHeat()) pc.clearAnalHeat();
+					if (inRut) pc.clearRut();
+					if (inHeat) pc.clearHeat();
+					if (inAnalHeat) pc.clearAnalHeat();
 				}
 				
+				var libidoReduced:Boolean = false;
 				// Reduce libido
 				if (l > 3) {
 					var nMinus:Number = 0;
@@ -115,8 +121,11 @@
 					{
 						output("\n\nIn fact, now that you think about it, there’s a sense of permanence in the reduction of your lust. You know the arousal will come back eventually, but you have a hunch that it’ll take longer than it used to. <b>Your libido has dropped.</b>");
 						pc.libido(-1 * nMinus);
+						libidoReduced = true;
 					}
-				} else {
+				}
+				
+				if(!libidoReduced) {
 					output("\n\nNothing else happens. You wait a couple more minutes to be sure, but the drug continues to have absolutely no effect. If you had to guess, you’d say that this medication just can’t bring your libido any lower than it already is.");
 				}
 			}

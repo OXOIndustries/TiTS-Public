@@ -117,6 +117,12 @@ public function approachVerusha(back:Boolean = true):void
 		output("Verusha taps a finger impatiently as you change your mind.");
 		verushaMenu();
 	}
+	else if(pc.tallness > 8*12)
+	{
+		output("Verusha manages to catch your attention, so you walk up to her.");
+		output("\n\nWhen you reach her she slightly nods with disinterest.");
+		output("\n\nVery much like the first time, she’s very eager for a fuck and not so eager to talk, but you could at least try.");
+	}
 	//[Repeat approach]
 	else
 	{

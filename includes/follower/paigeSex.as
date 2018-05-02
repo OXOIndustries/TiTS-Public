@@ -373,7 +373,7 @@ public function FTGT1(args:Array):void
 	showPaige(true);
 	args.push("FTGT1");
 	output("Paige’s eyes are closed in concentrated bliss as she grinds on top of you. Her excited nipples guide your hands to them, asking you to fondle her, to make it a better experience for her. You’re all too happy to oblige.");
-	output("\n\nPaige has a set of tits worth fantasizing over: each large enough to fill your hands with just a little bit of overflow; pert without being tough, and soft without being saggy. Her nipples dig into your palms, flexing against your ministrations. Paige gasps out loud in pleasure as you touch her, and her body lazily follows your wrists when you palm her breasts one direction or another, lost in her pleasure as she rides you.");
+	output("\n\nPaige has a set of tits worth fantasizing over: each large enough to fill your hands with just a little bit of overflow; pert without being tough, and soft without being saggy. Her nipples dig into your palms, flexing against your ministrations. Paige gasps out loud in pleasure as you touch her. Her body lazily follows your wrists when you palm her breasts in one direction or another.");
 	output("\n\nShe leans forward, her own hands falling to your [pc.chest]");
 	if(pc.biggestTitSize() <= 2) output(" for stability as she rides you");
 	else output(" to not only return the favor, but for stability as she moves her hips atop you");

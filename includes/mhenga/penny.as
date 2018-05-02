@@ -893,7 +893,7 @@ public function firstTimePennyShowerSex():void {
 	output("<i>mate. We’ll have to do something like this again, and soon.”</i> She smiles. <i>“It is nice to finally cut loose with someone. I just hope you don’t mind too much when I get all riled up and get a little predatory on you.”</i> Her hand traces down your flank. <i>“You are one delicious piece of prey, though.”</i>");
 	output("\n\nThe conversation dies away, and the two of you get dressed to go on your separate ways. You find yourself on the receiving end of a tonguing kiss before Penny goes back to work, looking more satisfied than you’ve ever seen her.");
 	pc.orgasm();
-	penny.loadInCunt(pc);
+	penny.loadInCunt(pc, 0);
 	processTime(75+rand(25));
 	pc.shower();
 	this.clearMenu();
@@ -2639,7 +2639,7 @@ public function pennyOverTheDeskRoughFuck():void {
 	//Pass two hours.
 	processTime(110+rand(20));
 	pc.orgasm();
-	if (pc.hasCock()) penny.loadInCunt(pc);
+	if (pc.hasCock()) penny.loadInCunt(pc, 0);
 	pc.shower();
 	this.clearMenu();
 	this.addButton(0,"Next",mainGameMenu);
@@ -3771,6 +3771,7 @@ public function yesPennyLetsRP():void
 	if(pc.analCapacity() < penny.cockVolume(0)) output("Your eyes cross in painful pleasure as she stretches your asshole to degrees your rim is not prepared for. <i>“Oh, you’re a tight little bitch. I bet you’re a virgin too, yeah, you don’t seem the type to give your ass to anyone.”</i> she punctuates her words with another slap on your butt before continuing to speak, <i>“I bet it stings to get fucked by a cop.”</i> She continues to hammer your behind with her cock while repeatedly spanking your ass.");
 	else output("<i>“What a nice fit, you must take it from behind all the time.”</i>");
 	pc.buttChange(penny.cockVolume(0));
+	penny.cockChange();
 
 	if(pc.hasGenitals()) 
 	{

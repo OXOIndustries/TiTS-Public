@@ -750,7 +750,7 @@ package classes.Items.Transformatives
 					// cock 12 inches or more:
 					if (target.biggestCockLength() >= 12) output(" massive");
 					output(" bulge ");
-					if (target.isCrotchGarbed()) output("in your [pc.lowerUnderGarments]");
+					if (target.isCrotchGarbed()) output("in your [pc.lowerGarment]");
 					else output(" between your [pc.legOrLegs]");
 					output(".");
 					// 12 inches or more:

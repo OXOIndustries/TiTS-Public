@@ -251,7 +251,7 @@ public function BurtShopCollectables():void {
 	{
 		output("<i>“Oh no, I don’t really need any of that type of stuff from you anymore.”</i> The big human drums his fingers on the counter with an air of cheery industry. <i>“A tribe of zil are selling honey, their plates, anything they’re willing to give directly to us now. Barter, anyway - they got a real thing against credits for some reason. But it’s great! I’ve got vats of different honeys fermenting in the back now, people back in the core interested in the samples I’ve been sending out. I think we could really make a go of things here now!”</i>");
 		clearMenu();
-		this.addButton(0,"Next",burtapproach);
+		addButton(0,"Next",burtapproach);
 		return;
 	}
 	//First Visit
@@ -270,17 +270,30 @@ public function BurtShopCollectables():void {
 		output("Burt’s eyes light up as you mention his offer to buy Zil items from you. <i>“Hey, [pc.name], I’m still interested, if you have the stuff. But don’t go trying to pawn off any regular old honey or some old chunk of shredded plastic. I know what’s really theirs. I’m an expert.”</i> He clearly meant his warning in good humor and faith. <i>“So, you got anything for me?”</i> He gives you a hopeful grin.");
 		//[pg]
 	}
-	this.clearMenu();
-	for(var x:int = 0; x < pc.inventory.length; x++) {
-		if(pc.inventory[x].quantity > 0) {
-			if(x >= 14) this.addButton(x+1,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
-			else this.addButton(x,pc.inventory[x].shortName + " x" + pc.inventory[x].quantity,burtPurchase,x);
-		}
-	}
-	//[Inv1]		[Inv2]		[Inv3]		[Inv4]		[Inv5]
+	clearMenu();
+	
+ 	var buttons:int = 0;
+	var x:int = 0;
 	//Zil purchase menu!
-	//[Back]
-	this.addButton(14,"Back",burtapproach);
+	while (x < pc.inventory.length)
+ 	{	
+		//[Back]
+		if (buttons % 15 == 0)
+		{
+			addButton(buttons+14, "Back", burtapproach);
+			buttons++;
+		}
+		
+		if (x == pc.inventory.length) break;
+		
+		if(!pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) addItemButton(buttons-1, pc.inventory[x], burtPurchase, x);
+		else addDisabledButton(buttons-1, pc.inventory[x].shortName + " x" + pc.inventory[x].quantity, StringUtil.toDisplayCase(pc.inventory[x].longName), "You cannot drop this item.");
+		buttons++;
+		
+		x++;
+ 	}
+	if(pc.inventory.length <= 0) output("\nOh right... You don’t have anything to give him.");
+	addButton(14,"Back",burtapproach);
 }
 
 public function burtPurchase(arg:int = 0):void {
