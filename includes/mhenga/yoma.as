@@ -16,16 +16,15 @@
 public function showYoma(nude:Boolean = false):void
 {
 	showName("\nYOMA");
-//	showBust(yomaBustDisplay(nude));
+	showBust(yomaBustDisplay(nude));
 }
-/*
+
 public function yomaBustDisplay(nude:Boolean = false):String
 {
 	var sBust:String = "YOMA";
 	if(nude) sBust += "_NUDE";
 	return sBust;
 }
-*/
 
 public function yomaJungleEncounter():void
 {

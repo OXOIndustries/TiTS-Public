@@ -667,6 +667,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph_6_nude.png", mimeType = "image/png")]
 		public var Bust_STEPH_6_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/lancer.png", mimeType = "image/png")]
+		public var Bust_STORMGUARD_MALE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/lancer_nude.png", mimeType = "image/png")]
+		public var Bust_STORMGUARD_MALE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/sydian_queen.png", mimeType = "image/png")]
 		public var Bust_SYDIAN_QUEEN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/sydian_queen_nude.png", mimeType = "image/png")]
@@ -1387,6 +1392,11 @@ package classes.Resources.Busts
 			public var Full_STEPH_6:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph_6_nude.png", mimeType = "image/png")]
 			public var Full_STEPH_6_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lancer.png", mimeType = "image/png")]
+			public var Full_STORMGUARD_MALE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/lancer_nude.png", mimeType = "image/png")]
+			public var Full_STORMGUARD_MALE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/sydian_queen.png", mimeType = "image/png")]
 			public var Full_SYDIAN_QUEEN:Class;
