@@ -854,6 +854,16 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
+	if (mitziIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			crewMessages += mitziCrewBonus();
+			addButton(btnSlot,"Mitzi",approachCrewMitzi);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
 	if (paigeIsCrew())
 	{
 		count++;
@@ -1590,6 +1600,12 @@ public function outputMaxXP():String
 
 public function insideShipEvents():Boolean
 {
+	// Mitzi stops you from going inside~
+	if(pc.hasStatusEffect("SeenMitzi") && flags["MITZI_DISABLED"] == undefined && !mitziRecruited())
+	{
+		mitziFirstShipApproach();
+		return true;
+	}
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{

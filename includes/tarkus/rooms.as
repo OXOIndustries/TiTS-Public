@@ -1638,6 +1638,7 @@ public function initTarkusRooms():void
 	rooms["364"].planet = "PLANET: TARKUS";
 	rooms["364"].system = "SYSTEM: REDACTED";
 	rooms["364"].moveMinutes = 1;
+	rooms["364"].runOnEnter = stellarMitziBonus;
 	rooms["364"].addFlag(GLOBAL.OUTDOOR);
 	
 	rooms["365"] = new RoomClass(this);

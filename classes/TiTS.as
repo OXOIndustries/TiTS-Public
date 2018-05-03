@@ -144,6 +144,7 @@
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
 		include "../includes/follower/kase.as";
+		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeHalloweener.as";
@@ -1603,6 +1604,10 @@
 		public function get tuuva():Tuuva
 		{
 			return chars["TUUVA"];
+		}
+		public function get mitzi():Mitzi
+		{
+			return chars["MITZI"];
 		}
 
 		public function testShipCombat():void

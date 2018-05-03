@@ -150,6 +150,26 @@ public function tavrosHangarStuff():Boolean
 	if(celiseIsFollower() && !celiseIsCrew()) celiseTavrosBonus(btnSlot++);
 	if(bessAtTavros()) bessTavrosBonus(btnSlot++);
 	if(flags["AZRA_DISABLED"] == 0) azraBonusProc(btnSlot++);
+	//Mitzi
+	if(mitziOutsideShip())
+	{
+		if(flags["MET_MITZI"] == undefined)
+		{
+			if(!pc.hasStatusEffect("SeenMitzi"))
+			{
+				pc.createStatusEffect("SeenMitzi");
+				pc.setStatusMinutes("SeenMitzi",120);
+			}
+			output("\n\n<b>A buxon gabilani leans against the side of your ship, vacantly chewing bubblegum and twirling a lock of purple-dyed hair.</b> She doesn’t seem the least bit concerned about anything else.");
+			addButton(btnSlot++,"Gabilani",mitziFirstShipApproach);
+		}
+		//Mitzi has been kicked off or is lurking around.
+		else
+		{
+			output("\n\nMitzi the gabilani bimbo is lounging around, casting ‘fuck-me’ eyes at everything with two legs... or three... or more.");
+			addButton(btnSlot++,"Mitzi",mitziLurkingApproach);
+		}
+	}
 	
 	// Ships
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
