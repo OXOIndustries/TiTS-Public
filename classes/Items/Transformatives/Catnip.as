@@ -1005,6 +1005,16 @@ package classes.Items.Transformatives
 					target.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 					target.addLegFlag(GLOBAL.FLAG_PAWS);
 					target.addLegFlag(GLOBAL.FLAG_FURRED);
+					
+					if (target.legCount >= 4 && target.genitalSpot != 2) {
+						if(target.hasGenitals()) output("\n\nAfter taking a moment to get used to your new body, you notice that your genitals now reside between the hind legs of your [pc.lowerBody].");
+						target.genitalSpot = 2;
+					}
+					else if (target.genitalSpot != 0) {
+						if(target.hasGenitals()) output("\n\nAfter taking a moment to get used to your new body, you notice that your genitals now reside below your waist, between your [pc.thighs].");
+						target.genitalSpot = 0;
+					}
+					
 					changes++;
 				}
 				else output(target.legTypeLockedMessage());

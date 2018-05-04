@@ -175,15 +175,19 @@ public function loseAgainstTheFrogs():void
 	//Loss by HP text
 	else output("Despite your mind’s protests, your body can no longer resist the beating it has been subject to. The victorious frog girl saunters proudly over to you, grinning as she decides what she should do with you.");
 	output("\n\n");
+	
+	kerokorasLossScene();
+}
+
+public function kerokorasLossScene():void
+{
 	// Player loss scenes
 	//[hasCock Loss] // Obv. cocks >= 1
 	//[!hasCock Loss] // basic fem/neuter loss scene
 	//[Item rape] // if fem pc has any items that would cause dick growth, frog girl eats it, sexes pc with new cock.
-	var scenes:Array = new Array();
-	if(pc.hasVagina() && pc.hasItemByClass(Throbb)) scenes.push(itemRapeAFrogGirl);
-	else if(pc.hasCock()) scenes.push(hasCockLossForForgGirls)
-	else scenes.push(youDontHaveADickLossToFrogGirls);
-	scenes[0]();
+	if(pc.hasVagina() && pc.hasItemByClass(Throbb)) itemRapeAFrogGirl();
+	else if(pc.hasCock()) hasCockLossForForgGirls();
+	else youDontHaveADickLossToFrogGirls();
 }
 
 public function submitToFrogSex(tEnemy:Creature):void
@@ -191,10 +195,10 @@ public function submitToFrogSex(tEnemy:Creature):void
 	clearOutput();
 	setEnemy(tEnemy);
 	showFrogGirl(tEnemy);
-	if(pc.hasVagina() && pc.hasItemByClass(Throbb)) itemRapeAFrogGirl();
-	else if(pc.hasCock()) hasCockLossForForgGirls();
-	else youDontHaveADickLossToFrogGirls();
+	
+	kerokorasLossScene();
 }
+
 
 //hasCock Loss
 //should be able to fit just about anything under a foot thick.

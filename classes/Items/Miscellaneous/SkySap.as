@@ -33,7 +33,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a bamboo container of sky sap";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "An organic canister with a sticky, cream-colored sap inside. This sap has been harvested from a vanae “Sky Tree.” It has a pleasant smell. While the Codex states it’s safe to drink, it seems like the sort of thing that might transform you if consumed.";
+			this.tooltip = "An organic canister with a sticky, cream-colored sap inside. This sap has been harvested from a vanae “Sky Tree.” It has a pleasant smell. While the Codex states it’s safe to drink, it seems like the sort of thing that might transform you if consumed.\n\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -72,6 +72,7 @@
 				kGAMECLASS.output("You take a deep breath and bring the bamboo-like container to your lips. The creamy liquid spills onto your tongue, and you’re surprised how thick and rich it is. For a while you roll it around on your tongue, savouring the taste, before you finally swallow it.");
 				
 				kGAMECLASS.processTime(2);
+				target.taint(1);
 				
 				//Skin Change
 				// Prerequsites: Non human skin, or human skin w'o a Vanae skin color.

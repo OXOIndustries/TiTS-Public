@@ -848,7 +848,7 @@ public function femSydianCallOthers():void
 		}
 
 		processTime(30+rand(15));
-		enemy.loadInCunt(pc);
+		enemy.loadInCunt(pc, 0);
 		pc.orgasm();
 	}
 	else

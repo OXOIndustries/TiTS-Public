@@ -811,7 +811,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 	output(". Your mind is hazy and unfocused, but even you would know to not let a good thing pass.");
 	output("\n\nYou start rolling your [pc.hips] against her some more, rousing you both. Might as well get your money’s worth out of her....");
 
-	if(pc.cocks[x].cLength() < 14) chars["NENNE"].loadInCunt(pc);
+	if(pc.cocks[x].cLength() < 14) chars["NENNE"].loadInCunt(pc, 0);
 
 	processTime(30);
 	pc.orgasm();

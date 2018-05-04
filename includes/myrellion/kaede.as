@@ -675,10 +675,10 @@ public function kaedeMyrellionSucknRide():void
 	else output(" against your thigh");
 	output(".");
 	
-	output("\n\nA second of silent tension passes, Kaede staring at you, and you steadying yourself before you take the plunge. Finally, she gives you a little nod, and you start your slow descent. Your fingers wrap around Kaede’s spit-slicked cock, angling it towards the waiting");
-	if (pc.hasVagina()) output(" lips");
-	else output(" ring");
-	output(" of your [pc.vagOrAss]. Your lover shudders as her pointed tip brushes the entrance to your hole, but you hold her steady as your [pc.hips] start to slide downwards.");
+	output("\n\nA second of silent tension passes, Kaede staring at you, and you steadying yourself before you take the plunge. Finally, she gives you a little nod, and you start your slow descent.");
+	if(pc.genitalLocation() <= 1) output(" Your fingers wrap around Kaede’s spit-slicked cock, angling it towards the waiting " + (pc.hasVagina() ? "lips" : "ring") + " of your [pc.vagOrAss].");
+	else output(" You moan as Kaede takes her spit-slicked cock and angles it towards the waiting " + (pc.hasVagina() ? "lips" : "ring") + " of your [pc.vagOrAss].");
+	output(" Your lover shudders as her pointed tip brushes the entrance to your hole, but you hold her steady as your [pc.hips] start to slide downwards.");
 	
 	output("\n\nYour breath catches in your throat, feeling tendrils of electric pleasure writhing through your body when Kaede’s cock starts to spread your [pc.vagOrAss] open.");
 	if (pc.hasCock())
@@ -686,7 +686,10 @@ public function kaedeMyrellionSucknRide():void
 		output(" Your own [pc.cock] jumps in response, feeling the pressure on your");
 		if (!pc.hasVagina()) output(" prostate");
 		else output(" g-spot");
-		output(" reciprocating through your own prick. You can’t help but wrap a few fingers around your [pc.cock], stroking yourself while you slide down Kaede’s length.");
+		output(" reciprocating through your own prick. You");
+		if(pc.genitalLocation() <= 1) output(" can’t help but wrap a few fingers around your [pc.cock], stroking yourself");
+		else output("r [pc.cock] feels terribly neglected when your reach fails, all");
+		output(" while you slide down Kaede’s length.");
 	}
 	output(" A moan escapes your lips, voice warbling as you feel the stiff, pointed shaft of Kaede’s prick spear your hole.");
 	

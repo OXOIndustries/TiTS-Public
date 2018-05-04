@@ -475,7 +475,7 @@ public function feedAMimbrane(effectName:String, feedValue:int = 1, force:Boolea
 		var newFeedValue:int = tPC.statusEffectv3(effectName);
 		
 		// Omit willpower change
-		if (pc.hasPerk("Mimbrane Symbiosis"))
+		if (tPC.hasPerk("Mimbrane Symbiosis"))
 		{
 			if(tPC.willpowerMod != 0 && !willpowerModAffected()) tPC.willpowerMod = 0;
 		}
@@ -2417,9 +2417,7 @@ public function mimbraneGainSymbiosis(response:String = "intro"):void
 			if(pc.lust() >= 33)
 			{
 				output("\n\nYou could probably do something about that lust buildup too...");
-				if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(1, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
-				else if(!pc.canMasturbate()) addDisabledButton(1, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-				else addButton(1, "Masturbate", masturbateMenu);
+				masturbateButton(1);
 			}
 			break;
 	}

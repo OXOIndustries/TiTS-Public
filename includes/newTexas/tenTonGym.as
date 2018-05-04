@@ -112,7 +112,15 @@ public function lightWorkout():void
 	clearOutput();
 	author("Slab Bulkhead");
 	showName("LIGHT\nWORKOUT");
-	output("You work your way through a row of weight machines, keeping the weights at a moderate level. There’s something oddly relaxing about putting yourself through the simple motions, and the burn sets in after a while, leaving your muscles feeling tired and springy.");
+	output("You work your way through a row of weight machines, keeping the weights at a moderate level. ");
+	//Shekkus interruptus!
+	if(pc.hasCock() && pc.cockThatFits(shekka.vaginalCapacity(0)) >= 0 && shekkaIsCrew() && shekkaIsAvailable() && !pc.hasStatusEffect("SHEKKA_GYM_CD") && rand(2) == 0)
+	{
+		output("You’re just about to try a little more with a friendly, local spotter.");
+		shekkaGymmusInterruptus(true);
+		return;
+	}
+	output("There’s something oddly relaxing about putting yourself through the simple motions, and the burn sets in after a while, leaving your muscles feeling tired and springy.");
 	output("\n\nYou step away from the machines when done, wipe sweat from your forehead, and smile. Not a bad workout, but not too exhausting either. Let the bulls sweat and grunt until they can barely lift their arms; you’re just here to make sure you stay in good shape.");
 	output("\n\nYour muscles have become slightly more toned.");
 	//+1 muscle tone, +1 toward [Sore] debuff, +1 [Sweaty], -30 energy Time: 30 minutes";
@@ -132,6 +140,12 @@ public function hardWorkout():void
 	author("Slab Bulkhead");
 	showName("HARD\nWORKOUT");
 	output("Time to pump iron. You slam some weights on the bars and start hefting. The gym regulars clearly appreciate seeing you put in as much work as they do, and volunteer to spot you, so long as you can spot them in return.");
+	//Shekkus interruptus!
+	if(pc.hasCock() && pc.cockThatFits(shekka.vaginalCapacity(0)) >= 0 && shekkaIsCrew() && shekkaIsAvailable() && !pc.hasStatusEffect("SHEKKA_GYM_CD") && rand(2) == 0)
+	{
+		shekkaGymmusInterruptus(false);
+		return;
+	}
 	output("\n\nOne of the bulls starts lifting at the bar next to you, and an impromptu contest begins, both of you lifting heavier and heavier weights as the other does. You grit your teeth and push through it, determined to show the locals you’ve got what it takes.");
 	output("\n\nThe contest comes to an abrupt end when a cowgirl walks by and tickles the bull’s crotch, nearly making him drop the bar. He struggles to right his weight, and you do the same. It’s a strain to even sit up after that, but you nod to your worthy opponent, then head off to stretch out the soreness.");
 	output("\n\nYour muscles have become considerably more toned.");
@@ -733,6 +747,7 @@ public function quentonTrainingCatch(response:String = ""):void
 	clearOutput();
 	author("Slab Bulkhead");
 	showQuenton(true);
+	clearMenu();
 	
 	// Create Quenton
 	var pp:PregnancyPlaceholder = new PregnancyPlaceholder();
@@ -871,7 +886,6 @@ public function quentonTrainingCatch(response:String = ""):void
 	IncrementFlag("SEXED_QUENTON");
 	
 	// [Done] Go to Entrance
-	clearMenu();
 	addButton(0, "Next", quentonTrainingFinish);
 }
 

@@ -101,6 +101,8 @@ public function pippaTalkInitialRecruitAccept():void
 	
 	output("You accept Pippa’s request to join your crew, and she breathes a sigh of relief. <i>“I was pretty sure you’d accept, but I couldn’t help but be nervous. Thank you, " + pippaCallsSteele() + ". This is going to be a great thing.”</i> She closes the gap between the two of you and plants a kiss right on your lips. <i>“I need to pack up a few things. I’ll meet you on board, Captain.”</i>");
 	
+	output("\n\n(<b>Pippa has joined your crew!</b>)");
+	
 	processTime(1);
 	
 	addButton(0, "Next", move, rooms[currentLocation].eastExit);
@@ -132,6 +134,8 @@ public function pippaTalkRecruit():void
 	flags["PIPPA_RECRUITED"] = 1;
 	
 	output("You inform Pippa that you’ve changed your mind about her joining your crew, and her face lights up. <i>“I’m so glad you changed your mind, " + pippaCallsSteele() + "! I promise you’re making the right choice; this is going to be a great thing.”</i> She closes the gap between the two of you and plants a kiss right on your lips. <i>“I need to pack up a few things. I’ll meet you on board, Captain.”</i>");
+	
+	output("\n\n(<b>Pippa has joined your crew!</b>)");
 	
 	processTime(1);
 	
@@ -172,7 +176,7 @@ public function pippaAskToLeaveYes():void
 	
 	output("\n\nShe sighs. <i>“Alright, fine. Just don’t leave me waiting around too long.”</i> She kisses you on the cheek and goes to gather her things.");
 	
-	output("\n\n<b>Pippa is no longer on your crew. She can be found at her house on Uveto.</b>");
+	output("\n\n(<b>Pippa is no longer on your crew. She can be found at her house on Uveto.</b>)");
 	
 	processTime(1);
 	flags["PIPPA_RECRUITED"] = 2;
@@ -206,6 +210,8 @@ public function pippaTalkTakeBack():void
 	flags["PIPPA_RECRUITED"] = 1;
 	
 	output("You tell Pippa that you’d like to bring her back on board and she smiles at you reluctantly. <i>“I’d prefer that you hadn’t left me back here in the first place, but I’ll be happy to be back on the ship. I’ll see you on board.”</i>");
+	
+	output("\n\n(<b>Pippa has rejoined your crew!</b>)");
 	
 	processTime(1);
 	

@@ -32,7 +32,7 @@ package classes.Items.Transformatives
 			//Longass shit, not sure what used for yet.
 			this.description = "some korgonne snacks";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This packet of dried Uvetan foods is a favorite of the korgonne. Inside are two kinds of fish, a brittle wafer of indeterminate origin, and grainy mix of mineral seasonings. Your nose wrinkles in confusion at the alien aromas present, and your Codex informs you that these items are not fit for typical human consumption. It’s a safe bet your prototype immune system will kick in should you try to eat this, likely inducing korgonne-like mutations.";
+			this.tooltip = "This packet of dried Uvetan foods is a favorite of the korgonne. Inside are two kinds of fish, a brittle wafer of indeterminate origin, and grainy mix of mineral seasonings. Your nose wrinkles in confusion at the alien aromas present, and your Codex informs you that these items are not fit for typical human consumption. It’s a safe bet your prototype immune system will kick in should you try to eat this, likely inducing korgonne-like mutations.\n\n<b>Known to cause moderate amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -73,7 +73,7 @@ package classes.Items.Transformatives
 
 				//Consume
 				output("You unwrap the foreign treats. Placing the fish on the wafer, you sprinkle them with the included seasonings in hopes that it will improve the flavor. Sure enough, you find the result to be perfectly edible - if worryingly tingly on your tongue. A few bites later, and the evidence is safely stored in your belly. All you can do now is wait and hope the results are pleasant...");
-
+				pc.taint(3);
 				//Top chances:
 				//Height reduction to 5'3"
 				//Thickness increase to 67 - lower chance

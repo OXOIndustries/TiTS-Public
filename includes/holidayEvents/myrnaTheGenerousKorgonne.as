@@ -277,7 +277,7 @@ public function myrnaMyrnaTalk():void
 	{
 		output("She points a finger toward an empty syringe on a shelf nearby. The medipen looks innocuous enough from what you can tell, though you have a feeling your codex can tell you more about this item.");
 		CodexManager.unlockEntry("The Treatment");
-		output(" <b>New Codex entry unlocked: The Treatment.</b>");
+		output(" <b>(New Codex entry unlocked: The Treatment.)</b>");
 
 	}
 	output(" The moment you bring your gaze back to Myrna, her nose nuzzles into your loins, and she idly licks at it with her vivid red tongue.");

@@ -20,9 +20,7 @@ import classes.Items.Junk.DamagedVIChip;
 
 public function showDrBadgerAndPexiga(nude:Boolean = false):void
 {
-	var nameDisplay:String = "DR. BADGER &\n";
-	nameDisplay += pexiga.short.toUpperCase();
-	showName(nameDisplay);
+	showName("DR. BADGER &\n" + pexigaName().toUpperCase());
 
 	var pexigaString:String = "PEXIGA";
 	if(pexiga.hasPerk("Ditz Speech")) pexigaString = "PEXIGA_BIMBO";
@@ -35,6 +33,10 @@ public function showDrBadgerAndPexiga(nude:Boolean = false):void
 	showBust(badgerString,pexigaString);
 }
 
+public function pexigaName():String
+{
+	return (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short);
+}
 public function showPexiga():void
 {
 	if(pexiga.short.toLowerCase() == "lil bobby tables") showName("LIL\nBOBBY TABLES");
@@ -1337,7 +1339,8 @@ public function absenteePexigaPart2():void
 	else output("\n\n<i>“Feels like a low powered live wire. But why would Doctor Badger make something like this? Wait a second. I’m not talking... these are my thoughts but they’re being broadcast aloud.”</i> You set the gold balls down and the involuntary narration ceases. Badger must’ve made this to get her victims to tell her everything they know. Or maybe just to humiliate them. Either way, it might be the answer to your pexiga problem.");
 	output("\n\nYou take the barbell over to the ashen scaled girl and offer it to her. Her eyes widen with delight and she nods vigorously, clapping her hands. She tries to remove the other piercing, but with only two fingers to a hand and her claws filed down to nubs, she can’t quite manage it. You gently take her tongue in hand and unscrew her steel stud, slipping it out before replacing it with the golden device. As the piercing slides into place, she shivers with delight, pawing at her chest with one hand while she slides the heel of the other palm back and forth between her legs. <i>“Oooo! That feels good,”</i> she moans, her thoughts translated into speech by the decoration. She nearly leaps out of her skin at the sound of her voice, head spinning this way and that to look for some origin. <i>“Who was that...?”</i> she asks in a voice surprisingly soft and mild for such a dangerous species.");
 	if(pc.isBimbo()) output("\n\n<i>“You silly! The gold thingy in your tongue makes you speak without needing your mouth! Cool, huh? Badger comes up with the funnest toys.”</i>");
-	else output("\n\nYou explain your theory on how the piercing works, but her vacant glance tells you she understands little and less about technology. You summarize it by saying that anything she thinks will be translated by the gold balls.} The pexiga nods, touching the device in wide eyed wonder.");
+	else output("\n\nYou explain your theory on how the piercing works, but her vacant glance tells you she understands little and less about technology. You summarize it by saying that anything she thinks will be translated by the gold balls.");
+	output(" The pexiga nods, touching the device in wide eyed wonder.");
 	output("\n\n<i>“Wooooow,”</i> she marvels.");
 	output("\n\nWell, no sense in keeping her here, amid all the broken glass and twisted metal. Plus, there’s no telling how long the U.G.C. agents will be distracted. Taking her by the hand, you lead the albino girl up and out of the ruins of Badger’s lair. Along the way, she asks a cascade of questions about you, where you are, who she is, and just about anything and everything.");
 	if(pc.isBimbo()) output(" You happily answer every question, even the ones you don’t really know the answers to. It’s fun having somebody look up to you! Like you’re a sexy teacher or something. Oooh, how would you look in glasses?");
@@ -2195,6 +2198,9 @@ public function dollmakerSalvage(item:ItemSlotClass):void
 		case "B.Emitter":
 			output("Getting the gun off the robot in a way that’ll let you use it isn’t fun, but the results could be.... Bingo! You got it.");
 			break;
+		case "MW Visor":
+			output("You rip a strange virtual headset off one of the arms. This could be... fun.");
+			break;
 		default:
 			output("BEEP BOOP. INPUT ERROR.");
 			break;
@@ -2224,6 +2230,9 @@ public function dollmakerSalvageMenu():void
 
 	if(enemy.hasItemByClass(BimboleumEmitter)) addDisabledButton(2,"Gun","Gun","You’ve already taken the gun.");
 	else addButton(2,"Gun",dollmakerSalvage,new BimboleumEmitter(),"Gun","A custom designed Bimboleum Emitter, like the kind Doctor Badger uses. Effects are probably not permanent... probably.");
+
+	if(enemy.hasItemByClass(MindwashVisor)) addDisabledButton(3,"Visor","Visor","You’ve already taken the visor.");
+	else addButton(3,"Visor",dollmakerSalvage,new MindwashVisor(),"Visor","A strange visor, presumably used for brainwashing its victims.");
 
 	addButton(14,"Leave",leaveTheDollmaker,undefined,"Leave","You’re done here. Time to get your pexiga healed!");
 }

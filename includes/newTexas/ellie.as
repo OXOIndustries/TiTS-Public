@@ -151,7 +151,7 @@ public function ellieMenu(display:Boolean = true):void
 		//Codex locked:
 		if(!CodexManager.entryUnlocked("Leithans")) 
 		{
-			output("\n\nAs you contemplate what to say, your Codex beeps that it’s identified Ellie’s species - Leithans. <b>New Codex entry unlocked.</b>");
+			output("\n\nAs you contemplate what to say, your Codex beeps that it’s identified Ellie’s species - Leithans. <b>(New Codex entry unlocked: Leithans.)</b>");
 			CodexManager.unlockEntry("Leithans");
 		}
 		if(flags["MET_ELLIE"] == undefined) flags["MET_ELLIE"] = 1;

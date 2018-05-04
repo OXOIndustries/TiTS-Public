@@ -242,7 +242,7 @@ public function yammiFollowerMenu():void
 	//Pexiga
 	if(pexigaRecruited())
 	{
-		if(pexigaIsCrew()) addButton(1, (pexiga.short.toLowerCase() == "lil bobby tables" ? "Lil Bobby" : pexiga.short), approachPexigaCrew);
+		if(pexigaIsCrew()) addButton(1, pexigaName(), approachPexigaCrew);
 	}
 	else if(flags["YAMMI_HELPED"] >= 2) addButton(1,"Pexiga",pexigaVisit,undefined,"Pexiga","Visit Yammi’s pet pexiga.");
 	//[Food] (ie, Yammi’s Menu)
@@ -320,7 +320,7 @@ public function yesGetYammiBack():void
 	output("\n\n(<b>Yammi ");
 	if(pexigaRecruited()) output(" and [pexiga.name] have");
 	else output(" has");
-	output(" joined your crew!");
+	output(" rejoined your crew!");
 	output("</b>)");
 	flags["YAMMI_IS_CREW"] = 1;
 	clearMenu();

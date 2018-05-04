@@ -1765,7 +1765,7 @@ public function morningFuckAzraRound2(args:Array):void
 	if(pc.cumQ() >= 1000) output("erupts out of you in long, lewd jets that feel like an internal massage through the passages of your too-tight genitalia.");
 	else if(pc.cumQ() > 250) output("spurts out of you in lewd pulses that feel like swollen beads travelling through your too-tight genitalia, massaging you from the inside out until you feel your orgasm will never end.");
 	else output("dribbles out in a thin stream, the too-tight confines of your genitalia pinching off a proper flow and seemingly doubling the length of your orgasm.");
-	output("\n\nFatigue slams into you the moment [pc.cock " + x + "] finishes twitching, heavier than Azra herself. You collapse right alongside your exhausted lover, deep in her puddled jizz, still embedded inside her. Neither of you has the energy to stir.");
+	output("\n\nFatigue slams into you the moment your [pc.cock " + x + "] finishes twitching, heavier than Azra herself. You collapse right alongside your exhausted lover, deep in her puddled jizz, still embedded inside her. Neither of you has the energy to stir.");
 	processTime(25);
 	pc.orgasm();
 	clearMenu();

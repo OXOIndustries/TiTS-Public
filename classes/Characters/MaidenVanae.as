@@ -137,6 +137,11 @@ package classes.Characters
 			this._isLoading = false;
 		}
 		
+		override public function hasBlindImmunity():Boolean
+		{
+			return true;
+		}
+		
 		override public function get bustDisplay():String
 		{
 			return "VANAE_MAIDEN";

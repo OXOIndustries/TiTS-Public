@@ -844,10 +844,10 @@ public function myrVenomChaurmineFun():void
 	if(pc.hasFuckableNipples()) pc.loadInNipples(chars["CHAURMINE"]);
 
 	clearMenu();
-	addButton(0,"Next",chaurmineVenomsSlootings2);
+	addButton(0,"Next",chaurmineVenomsSlootings2, x);
 }
 
-public function chaurmineVenomsSlootings2():void
+public function chaurmineVenomsSlootings2(x:int):void
 {
 	clearOutput();
 	showChaurmine(true);

@@ -58,11 +58,11 @@ public function outsideLanesPlane():Boolean
 	// Safe paths lead north, east, and west from here.
 	if (flags["MET_LANE"] == undefined)
 	{
-		output("\n\nThere's a little hut built between some of the trees to the north; if you squint just right, you can barely make out a sign above the doorway- “Lane’s Plane: Unlocking the New You”.");
+		output("\n\nThere’s a little hut built between some of the trees to the north; if you squint just right, you can barely make out a sign above the doorway- “Lane’s Plane: Unlocking the New You”.");
 	}
 	else
 	{
-		output("\n\nLane's shop is tucked between some of the trees to the north.");
+		output("\n\nLane’s shop is tucked between some of the trees to the north.");
 	}
 	output(" Safe paths lead to the east and west from here.");
 	if (rustScytheGladeEncounters()) return true;
@@ -123,7 +123,7 @@ public function increaseLaneHypnosisLevel():Boolean
 	{
 		trace("Lane HypnoLevel:", flags["LANE_HYPNOSIS_LEVEL"]);
 		trace("Lane HypnoPower:", flags["LANE_HYPNOSIS_POWER"]);
-		trace("Didn't level!");
+		trace("Didn’t level!");
 		return false;
 	}
 }
@@ -203,7 +203,7 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 							break;
 
 						default:
-							throw new Error("Couldn't match selected effect.")
+							throw new Error("Couldn’t match selected effect.")
 							break;
 					}
 
@@ -288,7 +288,7 @@ public function baseHypnosisWearsOff(effectToRemove:String):void
 			break;
 
 		default:
-			throw new Error("Couldn't find selected effect.");
+			throw new Error("Couldn’t find selected effect.");
 			break;
 	}
 }
@@ -344,7 +344,7 @@ public function addHypnosisEffect(stat:String):Boolean
 	{
 		if (!pc.hasStatusEffect("Lane's Hypnosis - Physique"))
 		{
-			pc.createStatusEffect("Lane's Hypnosis - Physique", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your physique!", false, 60 * 24);
+			pc.createStatusEffect("Lane's Hypnosis - Physique", 5, 0, 0, 0, false, "Pill", "Lane’s hypnosis session has improved your physique!", false, 60 * 24);
 			pc.physiqueMod += 5;
 		}
 		else
@@ -356,7 +356,7 @@ public function addHypnosisEffect(stat:String):Boolean
 	{
 		if (!pc.hasStatusEffect("Lane's Hypnosis - Reflexes"))
 		{
-			pc.createStatusEffect("Lane's Hypnosis - Reflexes", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your reflexes!", false, 60 * 24);
+			pc.createStatusEffect("Lane's Hypnosis - Reflexes", 5, 0, 0, 0, false, "Pill", "Lane’s hypnosis session has improved your reflexes!", false, 60 * 24);
 			pc.reflexesMod += 5;
 		}
 		else
@@ -368,7 +368,7 @@ public function addHypnosisEffect(stat:String):Boolean
 	{
 		if (!pc.hasStatusEffect("Lane's Hypnosis - Intelligence"))
 		{
-			pc.createStatusEffect("Lane's Hypnosis - Intelligence", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your intelligence!", false, 60 * 24);
+			pc.createStatusEffect("Lane's Hypnosis - Intelligence", 5, 0, 0, 0, false, "Pill", "Lane’s hypnosis session has improved your intelligence!", false, 60 * 24);
 			pc.intelligenceMod += 5;
 		}
 		else
@@ -380,7 +380,7 @@ public function addHypnosisEffect(stat:String):Boolean
 	{
 		if (!pc.hasStatusEffect("Lane's Hypnosis - Aim"))
 		{
-			pc.createStatusEffect("Lane's Hypnosis - Aim", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your aim!", false, 60 * 24);
+			pc.createStatusEffect("Lane's Hypnosis - Aim", 5, 0, 0, 0, false, "Pill", "Lane’s hypnosis session has improved your aim!", false, 60 * 24);
 			pc.aimMod += 5;
 		}
 		else
@@ -392,7 +392,7 @@ public function addHypnosisEffect(stat:String):Boolean
 	{
 		if (!pc.hasStatusEffect("Lane's Hypnosis - Willpower"))
 		{
-			pc.createStatusEffect("Lane's Hypnosis - Willpower", 5, 0, 0, 0, false, "Pill", "Lane's hypnosis session has improved your willpower!", false, 60 * 24);
+			pc.createStatusEffect("Lane's Hypnosis - Willpower", 5, 0, 0, 0, false, "Pill", "Lane’s hypnosis session has improved your willpower!", false, 60 * 24);
 			pc.willpowerMod += 5;
 		}
 		else
@@ -487,7 +487,7 @@ public function laneHandleCredits(totalDays:uint):void
 	if (flags["LANE_PAYS_PC_ERRY_DAY"] == 1)
 	{
 		pc.credits += (200 * totalDays);
-		AddLogEvent("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it's a " + (isAprilFools() ? "dogecoin" : "credit") + " transfer message; Lane has paid you a total of " + String(200 * totalDays) + " credits, right on time.", "good", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		AddLogEvent("A notification arrives in your codex’s message box with a shrill bleep. Quickly reading it, it’s a " + (isAprilFools() ? "dogecoin" : "credit") + " transfer message; Lane has paid you a total of " + String(200 * totalDays) + " credits, right on time.", "good", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 	}
 	if (flags["PC_PAYS_LANE_ERRY_DAY"] == 1)
 	{
@@ -894,7 +894,7 @@ public function meetMaleLane():void
 	if (!CodexManager.entryUnlocked("Daynar"))
 	{
 		CodexManager.unlockEntry("Daynar");
-		output("\n\n<b>('Daynar' Codex entry unlocked!)</b>");
+		output("\n\n<b>(‘Daynar’ Codex entry unlocked!)</b>");
 	}
 	
 	processTime(15);
@@ -920,7 +920,7 @@ public function meetFemaleLane():void
 	if (!CodexManager.entryUnlocked("Daynar"))
 	{
 		CodexManager.unlockEntry("Daynar");
-		output("\n\n<b>('Daynar' Codex entry unlocked!)</b>");
+		output("\n\n<b>(‘Daynar’ Codex entry unlocked!)</b>");
 	}
 	
 	processTime(15);
@@ -979,7 +979,7 @@ public function lanesShopFullyUnder():void
 		else if (pc.hasVagina() && !pc.hasCock()) output(", [pc.eachVagina] moistening in rapt optimism that Lane will use [lane.hisHer] power over you to give you another life-altering orgasm.");
 		else output(", each and every part of you ready to sink deeper into [lane.hisHer] control, if it means getting off the way only [lane.heShe] can get you off anymore.");
 	}
-	else output(" which only serves to frustrate you, but your waking mind knows that your needs are secondary to [lane.hisHer], and providing yourself to Lane is the greatest pleasure you'll ever need.");
+	else output(" which only serves to frustrate you, but your waking mind knows that your needs are secondary to [lane.hisHer], and providing yourself to Lane is the greatest pleasure you’ll ever need.");
 
 	output("\n\n[lane.HeShe] flairs [lane.hisHer] tassels open, only for a moment, to let you taste of the sweet pleasure you’ve come to [lane.himHer] for. Teasingly, they shut again, and you’re left horny and thirsty for more of [lane.himHer]. <i>“Welcome back, my pet,”</i> [lane.heShe] says sensually, dragging a loving claw gently over your [pc.face]. <i>“Have you come to Lane for more of [lane.hisHer] magic?");
 	if (flags["LANE_MALE_SEXED"] != undefined || flags["LANE_FEMALE_SEXED"] != undefined) output(" Or are you here to pay your ‘taxes’?");
@@ -1008,7 +1008,7 @@ public function leaveLanes():void
 	laneHeader();
 	
 	output("On second thought, you decide to cut your visit to Lane’s short.");
-	output("\n\nLane seems a little dejected at your decision not to take up [lane.hisHer] offer of a little ‘treatment’ before you leave, but you make it clear that you've really got to be moving on.");
+	output("\n\nLane seems a little dejected at your decision not to take up [lane.hisHer] offer of a little ‘treatment’ before you leave, but you make it clear that you’ve really got to be moving on.");
 	output("\n\nYou bid the daynar a good day and take your leave, heading back out into the wilds of Tarkus.");
 	
 	processTime(5);
@@ -1206,7 +1206,7 @@ public function laneServices():void
 			}
 			else
 			{
-				output("<i>“Of course,”</i> says Lane, already reaching for [lane.hisHer] codex and writing up your receipt. <i>“I’m glad to see that you're still interested in my services, [pc.name].”</i> [lane.HeShe] passes you the codex. <i>“One hundred credits, as usual. Contract, no refunds, blah blah blah. What can I do for you?”</i>")
+				output("<i>“Of course,”</i> says Lane, already reaching for [lane.hisHer] codex and writing up your receipt. <i>“I’m glad to see that you’re still interested in my services, [pc.name].”</i> [lane.HeShe] passes you the codex. <i>“One hundred credits, as usual. Contract, no refunds, blah blah blah. What can I do for you?”</i>")
 			}
 
 			if (pc.credits < 100)
@@ -1491,7 +1491,7 @@ public function laneApplyService(selectedService:String):void
 			break;
 
 		default:
-			throw new Error("Couldn't match stat selection.");
+			throw new Error("Couldn’t match stat selection.");
 			break;
 	}
 
@@ -1590,7 +1590,7 @@ public function lanePostApplyEffect(selectedService:String):void
 			break;
 		
 		default:
-			throw new Error("Couldn't match selected service.");
+			throw new Error("Couldn’t match selected service.");
 			break;
 	}
 
@@ -3395,7 +3395,7 @@ public function followerLaneIntervention(followerName:String):void
 	if (lFollowerName() == "Dane") output("but");
 	else output("and");
 	output(" I can’t help but notice a pattern");
-	if (lFollowerName() == "Dane") output(", and frankly, I'm not quite ready to jump off this gravy train just yet, Steele");
+	if (lFollowerName() == "Dane") output(", and frankly, I’m not quite ready to jump off this gravy train just yet, Steele");
 	output(".”</i>");
 
 	output("\n\nYou already know the answer to the question "+ lFollowerMF("he", "she") +"’s not asking, but before you can explain yourself, "+ lFollowerMF("he", "she") +" pulls "+ lFollowerMF("his", "her") +" codex back. <i>“This has been going on for some time now,”</i> "+ lFollowerMF("he", "she") +" says, scrolling the page with "+ lFollowerMF("his", "her") +" finger. <i>“Five hundred credits have been disappearing from your account once a day at, coincidentally, the crack of midnight on Terra. Says here that they’ve been going to a PIN number rather than a business, so I couldn’t put a name to the benefactor.”</i> "+ lFollowerMF("He", "She") +" looks up from its glowing screen, and from the look in "+ lFollowerMF("his", "her") +" eyes, you could probably guess that she already knows your answer. <i>“Do you know anything about this?”</i>");
@@ -3403,10 +3403,10 @@ public function followerLaneIntervention(followerName:String):void
 	output("\n\n<i>“What if I did?”</i> you answer defensively, crossing your arms.");
 
 	output("\n\n<i>“It’d save us all a whole lot of trouble, for one.");
-	if (lFollowerName() == "Dane") output(" I've been in touch with a few of my contacts.");
+	if (lFollowerName() == "Dane") output(" I’ve been in touch with a few of my contacts.");
 	else output(" I’ve already contacted the UGC about it.");
 	output(" They think we’re a victim of fraud");
-	if (lFollowerName() == "Dane") output(". I'm asking what you know before I look into this any deeper.");
+	if (lFollowerName() == "Dane") output(". I’m asking what you know before I look into this any deeper.");
 	else output(", but I’ve told them to put off their investigation until I had a chance to speak with you.");
 	output("”</i> At the threat of");
 	if (lFollowerName() == "Dane") output(" dragging Dane");
@@ -3521,7 +3521,7 @@ public function followerLaneInterventionFuckOff():void
 	output(".”</i>");
 
 	output("\n\n<i>“That is </i>my<i> money, "+ lFollowerName() +", not yours.”</i> You snap at "+ lFollowerMF("him", "her") +", raising your voice slightly, hearing it echo off the steel girders and walls surrounding you. <i>“What I want to do with my goddamn money isn’t your prerogative or responsibility.");
-	if (lFollowerName() == "Dane") output(" Drop it. I'll make sure there's enough money for </i>you<i> to shut the fuck up, so I suggest you get back to work. Assuming you actually still want to do your fucking job.");
+	if (lFollowerName() == "Dane") output(" Drop it. I’ll make sure there’s enough money for </i>you<i> to shut the fuck up, so I suggest you get back to work. Assuming you actually still want to do your fucking job.");
 	else output(" The next chance you get, I want you to contact the UGC and tell them we’re not a victim of any sort of fraud.");
 	output(" Everything is under control, and I want you to remember that the next time you go poking your nose in someone else’s fucking affairs, least of all your </i>captain<i>, of all people.”</i>");
 
@@ -3558,7 +3558,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 
 		if (!pc.hasStatusEffect("Lane Detoxing Weakness"))
 		{
-			pc.createStatusEffect("Lane Detoxing Weakness", 1, 0, 0, 0, false, "Charmed", "Cutting yourself off from Lane's hypnotic treatments is taking its toll on your willpower.", false, 0);
+			pc.createStatusEffect("Lane Detoxing Weakness", 1, 0, 0, 0, false, "Charmed", "Cutting yourself off from Lane’s hypnotic treatments is taking its toll on your willpower.", false, 0);
 			pc.willpowerMod -= 1;
 		}
 	}
@@ -3653,7 +3653,7 @@ public function processLaneDetoxEvents(minutes:Number):void
 		}
 		else
 		{
-			ExtendLogEvent("\n\n<i>“I knew there was a reason I offered you my contract, Steele.”</i> it starts, <i>“You've proven yourself a far more capable captain than your idiot cousin could ever hope to be. You’ve only solidified the correctness of my choice again by breaking this Lanes hold over you. You’re an example of what a captain should be, Steele, and I'm glad to be a part of your crew.”</i>");
+			ExtendLogEvent("\n\n<i>“I knew there was a reason I offered you my contract, Steele.”</i> it starts, <i>“You’ve proven yourself a far more capable captain than your idiot cousin could ever hope to be. You’ve only solidified the correctness of my choice again by breaking this Lanes hold over you. You’re an example of what a captain should be, Steele, and I’m glad to be a part of your crew.”</i>");
 		}
 
 		ExtendLogEvent("\n\nYou feel a little something in your eye when you read that message for the fourth time. You place your codex back where it belongs and continue your day with a much stronger, more confident stride than before. The name ‘Lane’ leaves nothing more than a bland taste on your tongue. <b>You are no longer hypnotized!</b>");

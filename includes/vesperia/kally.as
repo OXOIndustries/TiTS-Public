@@ -169,10 +169,16 @@ public function kallyBonusRoomTexts():Boolean
 		addButton(2,"Kiro’s Codex",examineKirosCodex,undefined,"Kiro’s Codex","Take a look at Kiro’s abandoned codex.");
 	}
 	else roamingBarEncounter(2);
-	sylvieRoomBonuses(3);
+	
+	var NPCs:Array = [];
+	if (sylvieInBar()) NPCs.push(sylvieRoomBonuses);
+	if (ushameeAtBar()) NPCs.push(ushameeCanadiaBarBonus);
+	if (NPCs.length > 0) NPCs[rand(NPCs.length)](3);
+	
 	if(kaedeBlurb4KuiCountryBarAndGrilllll(4)) return true;
 	mabbsBonus(5);
-	ushameeCanadiaBarBonus(7);
+	jesseBarBonus(7);
+	
 	return false;
 }
 

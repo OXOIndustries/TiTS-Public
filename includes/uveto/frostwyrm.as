@@ -252,7 +252,7 @@ public function frostwyrmBadEndII():void
 		output("\n\nYou nod meekly as your captor carries you back to the cavern’s edge, and reattaches your chain to its pedestal. <i>Now rest,</i> it repeats, and you begin to feel your eyes becoming leaden. You drift off to sleep, completely content in the tight hug of your collar around your neck, a constant reminder of your servility.");
 		output("\n\nYou can’t wait to be a mother to such magnificent creatures.");
 		
-		pc.loadInCunt();
+		pc.loadInCunt(enemy, 0);
 	}
 	//cockwielder
 	else if (pc.hasCock())
@@ -295,7 +295,7 @@ public function frostwyrmBadEndII():void
 		output("\n\nYou nod meekly as your captor carries you back to the cavern’s edge, and reattaches your chain to its pedestal. <i>Now rest,</i> it repeats, and you begin to feel your eyes becoming leaden. You drift off to sleep, completely content in the tight hug of your collar around your neck, a constant reminder of your servility.");
 		output("\n\nYou can’t wait to be a mother to such magnificent creatures.");
 		
-		pc.loadInAss();
+		pc.loadInAss(enemy);
 	}
 
 	processTime(30)

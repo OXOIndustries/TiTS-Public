@@ -275,7 +275,7 @@ public function cleanUpWithShade():void
 			output("”</i>");
 			output("\n\nYou wouldn’t dream of it...");
 			pc.orgasm();
-			shade.loadInCunt(pc);
+			shade.loadInCunt(pc, 0);
 			IncrementFlag("SEXED_SHADE");
 		}
 		//PC Has No Cawk Vers.

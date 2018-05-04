@@ -1535,19 +1535,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R10"].system = "SYSTEM: SIRETTA";
 	rooms["UVIP R10"].westExit = "UVIP P10";
 	rooms["UVIP R10"].moveMinutes = 6;
-	rooms["UVIP R10"].runOnEnter = function():Boolean {
-		if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined)
-		{
-			output("\n\nIt looks like the probe was damaged in the crash. It’s silent and dark.");
-			addButton(0, "Reactivate", uvetoReactivateProbe, undefined, "Reactivate Probe", "You could probably give this probe a repair job and use it to broadcast a signal back to Irestead. If you do, you might be able to call for quick transportation...");
-		}
-		else
-		{
-			output("\n\nThe probe is blinking, occasionally making a high-pitched <i>beep!</i>");
-			addButton(0, "Maglev S.", move, "UVI P40");
-		}
-		return false;
-	};
+	rooms["UVIP R10"].runOnEnter = uvetoCrashedProbe;
 	rooms["UVIP R10"].addFlag(GLOBAL.ICYTUNDRA);
 	rooms["UVIP R10"].addFlag(GLOBAL.TAXI);
 
@@ -3770,7 +3758,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII X41"] = new RoomClass(this);
 	rooms["KORGII X41"].roomName = "ROUGH-HEWN\nTUNNEL";
-	rooms["KORGII X41"].description = "A nearby geothermal vent has warmed the air on this level to near balmy levels. You can only imagine how a thick-furred korgonne would deal with the heat, naked or not. Rough-carved tunnel stretches away to the south or bends south to a stairwell. The passage’s floor is smooth and hazard free in both directions.";
+	rooms["KORGII X41"].description = "A nearby geothermal vent has warmed the air on this level to near balmy levels. You can only imagine how a thick-furred korgonne would deal with the heat, naked or not. The rough-carved tunnel stretches away to the south or bends south to a stairwell. The passage’s floor is smooth and hazard free in both directions.";
 	rooms["KORGII X41"].planet = "PLANET: UVETO VII";
 	rooms["KORGII X41"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII X41"].moveMinutes = 2;
@@ -3788,7 +3776,7 @@ public function initUvetoRoomsII():void
 
 	rooms["KORGII V41"] = new RoomClass(this);
 	rooms["KORGII V41"].roomName = "ROUGH-HEWN\nTUNNEL";
-	rooms["KORGII V41"].description = "Bits of shiny but useless quarts sparkle in the walls and ceiling, left behind by miners intent on more valued prizes. The tunnel itself is carved straight along an east-west axis without much care for polish. They took the time to smooth the floor for comfort and safety but little else.";
+	rooms["KORGII V41"].description = "Bits of shiny but useless quartz sparkle in the walls and ceiling, left behind by miners intent on more valued prizes. The tunnel itself is carved straight along an east-west axis without much care for polish. They took the time to smooth the floor for comfort and safety but little else.";
 	rooms["KORGII V41"].planet = "PLANET: UVETO VII";
 	rooms["KORGII V41"].system = "SYSTEM: SIRETTA";
 	rooms["KORGII V41"].moveMinutes = 2;

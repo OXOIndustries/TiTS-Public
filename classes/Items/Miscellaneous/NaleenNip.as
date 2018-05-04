@@ -29,7 +29,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "a pouch of naleen nip";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This small pouch has a few dried leaves inside. The codex indicates that they’re locally referred to on Mhen’ga as naleen nip. When chewed by the aliens of the same name, they supposedly introduce a state of mild euphoria. The feline snake-women love them. You’re fairly certain the foreign plant matter <b>will</b> transform you if you chew on it.";
+			this.tooltip = "This small pouch has a few dried leaves inside. The codex indicates that they’re locally referred to on Mhen’ga as naleen nip. When chewed by the aliens of the same name, they supposedly introduce a state of mild euphoria. The feline snake-women love them. You’re fairly certain the foreign plant matter <b>will</b> transform you if you chew on it.\n\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -64,6 +64,7 @@
 				if(target.race() == "naleen") kGAMECLASS.output("full-blooded ");
 				kGAMECLASS.output("naleen.");
 				kGAMECLASS.processTime(3);
+				target.taint(1);
 				
 				//Stat TFs
 				//Increase libido to 60
@@ -318,7 +319,7 @@
 				changes++;
 			}
 			//rarely grow upup to F (rare version requires naleen tail and cunt)
-			if(target.breastRows[0].breastRatingRaw < 11 && target.breastRatingUnlocked(0, 11) && rand(6) == 0 && changes < changeLimit && target.isNaga() && target.hasVagina(GLOBAL.TYPE_NAGA)) {
+			if(target.breastRows[0].breastRatingRaw < 11 && target.breastRatingUnlocked(0, 11) && rand(6) == 0 && changes < changeLimit && target.isNaga() && target.hasVaginaType(GLOBAL.TYPE_NAGA)) {
 				kGAMECLASS.output("\n\nOhhh, your [pc.fullChest] feels warm! You reach up to idly rub at the affected area, but your fingers make contact sooner than you anticipated. They’re way bigger than before and still going! Maybe letting yourself change this much has made your breasts more receptive to the naleen mutations. ");
 				target.breastRows[0].breastRatingRaw += 3 + rand(3);
 				kGAMECLASS.output("Whatever the case, <b>you’re left with two, big pillowy " + target.breastCup(0) + "s.</b>");

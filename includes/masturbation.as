@@ -106,7 +106,15 @@ public function arousalMenu():void
 	addButton(14, "Back", mainGameMenu);
 }
 
-public function availableFaps(roundTwo:Boolean = false):Array
+public function masturbateButton(btnSlot:int = 0):void
+{
+	if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
+	else if(!pc.canMasturbate()) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
+	else if(availableFaps(false, true).length <= 0) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You don’t have any available masturbation options at the moment....");
+	else addButton(btnSlot, "Masturbate", masturbateMenu);
+}
+
+public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = false):Array
 {
 	var faps:Array = new Array();
 	var fap:FapCommandContainer;
@@ -114,7 +122,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 	// Overrides
 	// If any of these are true, do whatever you need and return after pushing a single function into the array
 	// We can then autoexecute on the only available option
-	if (pc.hasCuntSnake() && pc.hasCock() && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
+	if (!checkOnly && pc.hasCuntSnake() && pc.hasCock() && !pc.isTaur() && (pc.cockThatFits(pc.tailCuntCapacity()) >= 0) && flags["DAYS_SINCE_FED_CUNT_TAIL"] != undefined && flags["DAYS_SINCE_FED_CUNT_TAIL"] >= 7)
 	{
 		clearOutput();
 		output("An insatiable hunger from your tail overwhelms you. <b>You have to feed it!</b>");
@@ -123,7 +131,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		return null;
 	}
 	
-	if (pc.milkFullness >= 150 && pc.isLactating() && flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] == undefined)
+	if (!checkOnly && pc.milkFullness >= 150 && pc.isLactating() && flags["SUPRESS_TREATED_MILK_FAP_MESSAGE"] == undefined)
 	{
 		// Super-lactation, must resist urge to fap!
 		if(pc.isMilkTank())
@@ -322,7 +330,7 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ignoreRandomSelection = false;
 		faps.push(fap);
 	}
-	if (flags["LAQUINE_GENT_BONED"] != undefined && pc.inHeat() && pc.hasVagina(GLOBAL.TYPE_EQUINE))
+	if (flags["LAQUINE_GENT_BONED"] != undefined && pc.inHeat() && pc.hasVaginaType(GLOBAL.TYPE_EQUINE))
 	{
 		fap = new FapCommandContainer();
 		fap.text = "M.Laquine";
@@ -453,6 +461,15 @@ public function availableFaps(roundTwo:Boolean = false):Array
 		fap.ttHeader = "SukMastr 2000";
 		fap.ttBody = "This high-quality pussy pump is perfect for a little bit of cunt-expanding fun. Comes with pump, vaginal cup, and remote.";
 		fap.func = useTheSuckMasta;
+		faps.push(fap);
+	}
+	if(InShipInterior() && flags["MINDWASH_VISOR_INSTALLED"] == 1)
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Mindwash";
+		fap.ttHeader = "Mindwash Visor";
+		fap.ttBody = "A holovisor that has been significantly altered by Doctor Badger. While broadcasting smut, It induces a state of semi-hypnosis in the viewer, suppressing their sense of self and thrusting them into the role of one of the characters instead. At max power, it could very well be used to brainwash someone, but you’ve turned down the intensity, so it should be safe to use recreationally.";
+		fap.func = mindwashMeShipVers;
 		faps.push(fap);
 	}
 	if(pc.hasHardLightEquipped() && pc.hasHardLightUpgraded())
@@ -1189,7 +1206,7 @@ public function multiCockFap():void {
 		else output("Y");
 		output("our [pc.tail] arcs around while you are handling your [pc.cocks] in a way that reminds you vaguely of a snake’s sinuous slithering, only with dripping pussy-juice in place of baleful hissing. It quickly snaps down onto [pc.oneCockHead], butting its outstretched folds against it before parting them with a quick thrust downward, devouring much of the shaft. You throw back your head and moan out at the overwhelmingly blissful gratification of fucking a pussy and having an overly-sensitive pussy fucked all at the same. Meanwhile, the greedy tail-twat pushes down until it hits your fast-pumping knuckle, and there, it stops, squeezing tight and beginning to ripple in heavenly contractions that threaten to milk every drop of pre-cum from your body.");
 	}
-	//Hugecock lick - 1/6th body height and less than 1/2 body height or prehensile!.
+	//Hugecock lick - 1/6th body height and less than 1/2 body height or prehensile!
 	else if(select == 3) {
 		sucked = true;
 		output("\n\nAs you stroke, the gleaming, sensitive [pc.cockHead " + x + "] of your [pc.cock " + x + "] bounces ");
@@ -3514,12 +3531,20 @@ public function shipShowerFaps(genButtons:Boolean = false):Number
 	
 	if (pc.hasCock())
 	{
-		if(genButtons) addButton(showerSex, "Jerk Off", shipShowerFappening, "Jerk Off", "Jerk Off", "Time to lather up and beat off.");
+		if(genButtons)
+		{
+			if(pc.genitalLocation() >= 2) addDisabledButton(showerSex, "Jerk Off", "Jerk Off", "You can’t seem to easily reach your genitals for this!");
+			else addButton(showerSex, "Jerk Off", shipShowerFappening, "Jerk Off", "Jerk Off", "Time to lather up and beat off.");
+		}
 		showerSex++;
 	}
 	if (pc.hasVagina())
 	{
-		if(genButtons) addButton(showerSex, "Use Nozzle", shipShowerFappening, "Use Nozzle", "Use Nozzle", "That shower head looks pretty tempting for your pussy...");
+		if(genButtons)
+		{
+			if(pc.genitalLocation() >= 2) addDisabledButton(showerSex, "Use Nozzle", "Use Nozzle", "You can’t seem to easily reach your genitals for this!");
+			else addButton(showerSex, "Use Nozzle", shipShowerFappening, "Use Nozzle", "Use Nozzle", "That shower head looks pretty tempting for your pussy...");
+		}
 		showerSex++;
 	}
 	

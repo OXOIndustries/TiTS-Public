@@ -34,7 +34,7 @@
 			this.description = "an equine phallus complete with balls";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This oddly-detached penis has been crafted to look like a perfect representation of equine virility. It’s dotted with veins that look real enough to pump blood, to say nothing of the swaying balls that dangle from its base. The back end is flat; perhaps it’s meant to slot into a harness as a strap-on. Then again, there is a slit hidden on that smooth edge. Is it some kind of perverted masturbation sleeve?";
+			this.tooltip = "This oddly-detached penis has been crafted to look like a perfect representation of equine virility. It’s dotted with veins that look real enough to pump blood, to say nothing of the swaying balls that dangle from its base. The back end is flat; perhaps it’s meant to slot into a harness as a strap-on. Then again, there is a slit hidden on that smooth edge. Is it some kind of perverted masturbation sleeve?\n\n<b>Causes high amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -90,6 +90,7 @@
 					kGAMECLASS.processTime(5);
 					pc.orgasm();
 					pc.libido(2);
+					pc.taint(5);
 					kGAMECLASS.flags["SYNTHSHEATH_USED"]++;
 					return false;
 				}
@@ -247,6 +248,7 @@
 			kGAMECLASS.processTime(5);
 			pc.orgasm();
 			pc.libido(2);
+			pc.taint(5);
 			kGAMECLASS.flags["SYNTHSHEATH_USED"]++;
 			kGAMECLASS.clearMenu();
 			kGAMECLASS.addButton(0,"Next",kGAMECLASS.useItemFunction);

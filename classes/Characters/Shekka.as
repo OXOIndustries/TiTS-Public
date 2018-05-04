@@ -2,16 +2,15 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
+	import classes.StorageClass;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Items.Protection.ImprovisedShield;
 	import classes.Items.Melee.RaskvelWrench;
 	import classes.Items.Miscellaneous.Cargobot;
 	import classes.Items.Miscellaneous.Hoverboard;
 	import classes.Items.Apparel.Smartclothes;
 	import classes.Items.Upgrades.ExpandedBackpackI;
-	import classes.kGAMECLASS;
-	import classes.Engine.Utility.rand;
-	import classes.GameData.CodexManager;
-	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Items.Armor.Unique.StrangeCollar;
 	
 	public class Shekka extends Creature
@@ -19,9 +18,9 @@
 		//constructor
 		public function Shekka()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.inventory.push(new Cargobot());
 			this.inventory.push(new Hoverboard());
@@ -158,6 +157,9 @@
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].bonusCapacity = 12;
 			this.vaginas[0].clits = 2;
+
+			this.impregnationType = "ShekkaPregnancy";
+
 			//balls
 			this.balls = 0;
 			this.cumMultiplierRaw = 6;
@@ -175,10 +177,12 @@
 
 			this.elasticity = 1.4;
 			//Fertility is a % out of 100. 
-			this.fertilityRaw = 1;
+			this.fertilityRaw = 0;
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
-
+			
+			createPerk("Sterile", 0, 0, 0, 0, "");
+			
 			this.breastRows[0].breastRatingRaw = 2;
 			this.nippleColor = "purple";
 			this.milkMultiplier = 0;
@@ -191,6 +195,23 @@
 			this._isLoading = false;
 		}
 		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject._neverSerialize = false;
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.impregnationType = "ShekkaPregnancy";
+		}
+		public function UpgradeVersion3(dataObject:Object):void
+		{
+			dataObject.fertilityRaw = 0;
+			
+			var se:StorageClass = new StorageClass();
+			se.storageName = "Sterile";
+			dataObject.perks.push(se.getSaveObject());
+			dataObject.perks.sortOn("storageName", Array.CASEINSENSITIVE);
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();

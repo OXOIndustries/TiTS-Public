@@ -342,6 +342,7 @@ public function dickBoxTF(args:Array):void
 	clearOutput();
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
+	pc.taint(2);
 	if((rand(10) == 0 && flags["USED_DONG_DESIGNER"] != undefined) || (debug && rand(2) == 0))
 	{
 		if(pc.cockTotal() < 10)
@@ -497,6 +498,7 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	author("Fenoxo");
 	showName("\nUH OH!");
 	showBust("TAMANI");
+	pc.taint(4);
 	output("The moment you");
 	if(flags["COCKBOX_UPGRADE"] != undefined) output(" select a chosen color");
 	else output(" finalize your selection");

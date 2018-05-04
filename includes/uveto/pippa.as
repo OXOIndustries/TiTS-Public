@@ -997,7 +997,7 @@ public function pippaSpecialMassage():void
 	
 	output(", you reciprocate, rubbing oil all over Pippa’s body.");
 	
-	output("\n\nYou start by massaging it into each other’s chests. You run your hands over her [pippa.tits], gently squeezing and running your hands all around them. As you do, a light flush begins to spread through her chest. You stick your oiled up fingers into her inverted nipples, their hidden size obvious to the touch of your probing fingers. As your fingers emerge, so do her nippes, hardening with the further flushing of her chest. You fair about the same as she gives the same attention to you, rubbing the oil into your [pc.chest].");
+	output("\n\nYou start by massaging it into each other’s chests. You run your hands over her [pippa.tits], gently squeezing and running your hands all around them. As you do, a light flush begins to spread through her chest. You stick your oiled up fingers into her inverted nipples, their hidden size obvious to the touch of your probing fingers. As your fingers emerge, so do her nipples, hardening with the further flushing of her chest. You fair about the same as she gives the same attention to you, rubbing the oil into your [pc.chest].");
 	
 	if (pc.isLactating()) output(" In your case, her massaging causes some of your [pc.milk] to dribble out and mix with the oil.");
 	if (pippaCurrentOil() == PIPPA_OIL_NUMB) output(" Even with the numbing properties of the oil, you can only resist so much eroticism.");

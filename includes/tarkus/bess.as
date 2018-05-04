@@ -1019,7 +1019,7 @@ public function nameBessResult():void
 public function followerBessRoom():void
 {
 	clearOutput();
-	bessHeader();
+	//bessHeader();
 
 	//if (Bess/Ben Event 11 completed)
 	if(flags["BESS_EVENT_11"] != undefined)
@@ -1076,8 +1076,8 @@ public function verifyBessModel(jailbreaking:Boolean = false):void
 		if (flags["BESS_OWNS_JBKIT"] == 1) output(". Surprisingly, [bess.heShe] doesnt seem to be fazed in the slightest by the request and");
 		else output(" again. With a smirk, [bess.heShe] quickly");
 		output(" turns around, giving you easy access to the ports on [bess.hisHer] back.");
-		output("\n\nConnecting the gadget with [bess.name] is straightforward and soon you find yourself watching a progressbar on the device's display, waiting for a menu to appear. Once the bar is full however, you only get a brief text telling you to disconnect the machines again. As you pull the plug");
-		if (flags["BESS_OWNS_JBKIT"] == 1) output(" out of [bess.name], you can't help but wonder if you just wasted 25, 000 credits on some scam.");
+		output("\n\nConnecting the gadget with [bess.name] is straightforward and soon you find yourself watching a progressbar on the device’s display, waiting for a menu to appear. Once the bar is full however, you only get a brief text telling you to disconnect the machines again. As you pull the plug");
+		if (flags["BESS_OWNS_JBKIT"] == 1) output(" out of [bess.name], you can’t help but wonder if you just wasted 25, 000 credits on some scam.");
 		else output(", you suddenly remember the energy bubble from last time and take a step back just in case.");
 	}
 	else output("As you approach [bess.name], [bess.heShe] greets you with wave and a bright smile.");
@@ -1408,7 +1408,7 @@ public function bessFollowerMenu():void
 		}
 		else
 		{
-			addDisabledButton(5, "Date","Locked","It doens't seem like [bess.name] wants to go on a date ever again after the hassle on Ekurana.");
+			addDisabledButton(5, "Date","Locked","It doens’t seem like [bess.name] wants to go on a date ever again after the hassle on Ekurana.");
 		}
 	}
 
@@ -4050,6 +4050,8 @@ public function bessBuyShitOutfits():void
 	clearOutput();
 	bessHeader();
 	
+	output("What outfit would you like to purchase?\n\n");
+
 	clearMenu();
 	
 	bessBuyCIW(0, "C.Clothes", ComfortableClothes, "Casual Clothes", "Casual Clothes");
@@ -4094,7 +4096,7 @@ public function bessBuyCIW(idx:int, lbl:String, classT:Class, ttH:String, ttB:St
 	if (bessHasClothingItem(classT))
 	{
 		output(StringUtil.toTitleCase(item.longName) + " - [bess.name] already owns this item!\n");
-		addDisabledButton(idx, lbl, ttH, "[bess.name] already owns this item!");
+		addDisabledButton(idx, lbl, (item.longName != null ? StringUtil.toDisplayCase(item.longName) : ttH), "[bess.name] already owns this item!");
 	}
 	else
 	{
@@ -4102,14 +4104,14 @@ public function bessBuyCIW(idx:int, lbl:String, classT:Class, ttH:String, ttB:St
 		// Can afford
 		if (pc.credits >= item.basePrice)
 		{
-			output(" Cost: " + String(item.basePrice));
-			addButton(idx, lbl, bessBuyOutfit, item, ttH, ttB + "\n\nCost: " + item.basePrice);
+			output(" Cost: " + String(item.basePrice) + " credits");
+			addButton(idx, lbl, bessBuyOutfit, item, (item.longName != null ? StringUtil.toDisplayCase(item.longName) : ttH), (item.tooltip != null ? item.tooltip : ttB) + "\n\nCost: " + item.basePrice + " credits");
 		}
 		// too spensive
 		else
 		{
-			output(" Cost: " + String(item.basePrice) + " (Too expensive!)");
-			addDisabledButton(idx, lbl, ttH, ttB + "\n\nCost: " + item.basePrice + "\nToo expensive!");
+			output(" Cost: " + String(item.basePrice) + " credits (Too expensive!)");
+			addDisabledButton(idx, lbl, (item.longName != null ? StringUtil.toDisplayCase(item.longName) : ttH), (item.tooltip != null ? item.tooltip : ttB) + "\n\nCost: " + item.basePrice + " credits\nToo expensive!");
 		}
 		output("\n");
 	}
@@ -4121,18 +4123,29 @@ public function bessBuyOutfit(boughtItem:ItemSlotClass):void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved " + boughtItem.description + " for [bess.name]!");
 
 	bess.inventory.push(boughtItem);
 	pc.credits -= boughtItem.basePrice;
-
+	
+	var backFunc:Function = talkToBessAboutAccessories;
+	if(boughtItem.type == GLOBAL.ARMOR || boughtItem.type == GLOBAL.CLOTHING) backFunc = bessBuyShitOutfits;
+	if(boughtItem.type == GLOBAL.UPPER_UNDERGARMENT) backFunc = bessBuyShitBras;
+	if(boughtItem.type == GLOBAL.LOWER_UNDERGARMENT) backFunc = bessBuyShitPanties;
+	
 	clearMenu();
-	addButton(0, "Next", talkToBessAboutAccessories);
+	addButton(0, "Next", backFunc);
 
 	// 9999 -- offer option to immediately equip?
 }
 
 public function bessBuyShitBras():void
 {
+	clearOutput();
+	bessHeader();
+	
+	output("What top undergarment would you like to purchase?\n\n");
+	
 	clearMenu();
 	bessBuyCIW(0, "NormalBra", PlainBra, "Normal Bra", "Normal Bra");
 	bessBuyCIW(1, "GirlyBra", GirlyBra, "Girly Bra", "Girly Bra");
@@ -4149,6 +4162,11 @@ public function bessBuyShitBras():void
 
 public function bessBuyShitPanties():void
 {
+	clearOutput();
+	bessHeader();
+	
+	output("What bottom undergarment would you like to purchase?\n\n");
+	
 	clearMenu();
 
 	bessBuyCIW(0, "Normal", PlainPanties, "Normal Panties", "Normal Panties");
@@ -4215,11 +4233,11 @@ public function bessBASW(idx:int, lbl:String, accSet:uint, cost:int):void
 	{
 		if (pc.credits >= cost)
 		{
-			addButton(idx, lbl, bessBuyAccessory, [accSet, cost], lbl, "Cost: " + cost);
+			addButton(idx, lbl, bessBuyAccessory, [accSet, cost, lbl], lbl, "Cost: " + cost + " credits");
 		}
 		else
 		{
-			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + "\nToo expensive!");
+			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + " credits\nToo expensive!");
 		}
 	}
 }
@@ -4233,12 +4251,15 @@ public function bessBuyAccessory(opts:Array):void
 
 	var accSet:uint = opts[0];
 	var cost:int = opts[1];
+	var lbl:String = opts[2];
+	
+	output("\n\nYou’ve recieved " + indefiniteArticle(lbl.toLowerCase()) + " accessory set a for [bess.name]!");
 
 	pc.credits -= cost;
 	bessAddAccessorySet(accSet);
 
 	clearMenu();
-	addButton(0, "Next", bessBuyShitAccessories)
+	addButton(0, "Next", bessBuyShitAccessories);
 }
 
 public function bessBuyShitItems():void
@@ -4255,16 +4276,16 @@ public function bessBuyShitItems():void
 	clearMenu();
 	
 	if (bessHasGlasses()) addDisabledButton(0, "Glasses", "Glasses", "[bess.name] already owns glasses!");
-	else if (pc.credits < 500) addDisabledButton(0, "Glasses", "Glasses", "You can’t afford to buy [bess.name] glasses!");
-	else addButton(0, "Glasses", bessBuyGlasses, undefined, "Glasses", "Buy some glasses and allow [bess.name] to equip them!\n\nCost: 500");
+	else if (pc.credits < 500) addDisabledButton(0, "Glasses", "Glasses", "You can’t afford to buy [bess.name] glasses!\n\nCost: 500 credits");
+	else addButton(0, "Glasses", bessBuyGlasses, undefined, "Glasses", "Buy some glasses and allow [bess.name] to equip them!\n\nCost: 500 credits");
 
 	if (bessHasKatana()) addDisabledButton(1, "Katana", "Katana", "[bess.name] already owns a katana!");
-	else if (pc.credits < 1000) addDisabledButton(1, "Katana", "Katana", "You can’t afford to buy [bess.name] a katana!");
-	else addButton(1, "Katana", bessBuyKatana, undefined, "Katana", "Buy a katana for [bess.name] to saunter around with it!\n\nCost: 1000");
+	else if (pc.credits < 1000) addDisabledButton(1, "Katana", "Katana", "You can’t afford to buy [bess.name] a katana!\n\nCost: 1000 credits");
+	else addButton(1, "Katana", bessBuyKatana, undefined, "Katana", "Buy a katana for [bess.name] to saunter around with it!\n\nCost: 1000 credits");
 
 	if (flags["BESS_OWNS_JBKIT"] >= 1) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "You already own this!");
-	else if (pc.credits < 25000) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "Cost: 25000\nToo expensive!");
-	else addButton(2, "Jailbr. Kit", bessBuyJailbreakingKit, undefined, "Jailbreaking Kit", "This device allows you to change the model of your JoyCo unit from Bess-13 to Ben-14 and vice versa. \nWarning: While this should have no effect on the memory or personality of your android, the functionaly is no longer officially supported by JoyCo and may void the units warranty. Use with caution.\n\nCost: 25000");
+	else if (pc.credits < 25000) addDisabledButton(2, "Jailbr. Kit", "Jailbreaking Kit", "Cost: 25000 credits\nToo expensive!");
+	else addButton(2, "Jailbr. Kit", bessBuyJailbreakingKit, undefined, "Jailbreaking Kit", "This device allows you to change the model of your JoyCo unit from Bess-13 to Ben-14 and vice versa.\n\n<i><b>Warning:</b> While this should have no effect on the memory or personality of your android, the functionaly is no longer officially supported by JoyCo and may void the units warranty. Use with caution.</i>\n\nCost: 25000 credits");
 
 	addButton(14, "Back", talkToBessAboutAccessories);
 }
@@ -4275,6 +4296,7 @@ public function bessBuyGlasses():void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved a pair of glasses for [bess.name]!");
 
 	pc.credits -= 500;
 	flags["BESS_OWNS_GLASSES"] = 1;
@@ -4289,6 +4311,7 @@ public function bessBuyKatana():void
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved a katana for [bess.name]!");
 
 	pc.credits -= 1000;
 	flags["BESS_OWNS_KATANA"] = 1;
@@ -4303,6 +4326,7 @@ public function bessBuyJailbreakingKit():void
 	bessHeader();
 
 	output("You transfer the credits to the vendor and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved a jail-breaking kit for use on [bess.name]!");
 
 	pc.credits -= 25000;
 	flags["BESS_OWNS_JBKIT"] = 1;
@@ -4345,11 +4369,11 @@ public function bessBCW(idx:int, lbl:String, cockType:uint, cost:int):void
 	{
 		if (pc.credits >= cost)
 		{
-			addButton(idx, lbl, bessBuyCockType, [cockType, cost], lbl, "Cost: " + cost);
+			addButton(idx, lbl, bessBuyCockType, [cockType, cost, lbl], lbl, "Cost: " + cost + " credits");
 		}
 		else
 		{
-			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + "\nToo expensive!");
+			addDisabledButton(idx, lbl, lbl, "Cost: " + cost + " credits\nToo expensive!");
 		}
 	}
 }
@@ -4358,11 +4382,13 @@ public function bessBuyCockType(opts:Array):void
 {
 	var cType:uint = opts[0];
 	var cost:uint = opts[1];
+	var lbl:String = opts[2];
 
 	clearOutput();
 	bessHeader();
 
 	output("You transfer the credits to JoyCo and place your order. It’s not long before a warp-space delivery service is dropping off a package to your spaceship hangar.");
+	output("\n\nYou’ve recieved " + indefiniteArticle(lbl.toLowerCase()) + " cock for [bess.name]!");
 
 	bessAddCockType(cType);
 	pc.credits -= cost;
@@ -5675,7 +5701,7 @@ public function talkToBessPlayGraviballII():void
 			{
 				output("\n\nYou come up with a cunning plan in order to break through her defences. There’s no way you’re going to be able to beat her while she’s defending the goal - she’s far too good for that. Instead you come up with a plan to take advantage of ger biggest weakness, using your pulse boots to get up close to the goals.");
 				
-				output("\n\nYou stroke your her down your body and look at her rather suggestively, giving her a wink. <i>“...Hey Celise, how about you step away from those goals and we go get a little frisky?”</i>");
+				output("\n\nYou stroke your body and look at her rather suggestively, giving her a wink. <i>“...Hey Celise, how about you step away from those goals and we go get a little frisky?”</i>");
 				
 				output("\n\nCelise falls for it hook, line and sinker and moves away from the goals as soon as there’s a promise of a nice protein snack. The instant she does your team advances in, scoring a loud goal. The emerald galotian looks behind herself and suddenly realizes your ploy, looking thoroughly grumpy. <i>“...No fair, that’s cheating!”</i>");
 				
@@ -8577,7 +8603,7 @@ public function bessEvent18Response(response:String):void
 			));
 			output(" song and begins to sing to it, clutching the microphone to [bess.hisHer] chest. You relax back and watch [bess.himHer] go - while you’re not going to get up and sing, it doesn’t mean you can’t enjoy the karaoke machine in other ways. ");
 
-			output("\n\n[bess.name] is a wonderful vocalist, but that’s not really surprising since [bess.hisHer] voice is naturally melodious. [bess.HeShe] seems to have masterfully synthesized qualities of all the best "+ bess.mf("male", "female") +" vocalists together into [bess.hisHer] own voice, keeping it [bess.himHers] while improving it tenfold. Most AI singers sound technically flawless, but lifeless and methodical. In contrast, when the" + (bess.hairLength > 0 ? " [bess.hairColor] haired" : "") + " synthetic sings, there is creativity, energy, and flair both in [bess.hisHer] timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
+			output("\n\n[bess.name] is a wonderful vocalist, but that’s not really surprising since [bess.hisHer] voice is naturally melodious. [bess.HeShe] seems to have masterfully synthesized qualities of all the best "+ bess.mf("male", "female") +" vocalists together into [bess.hisHer] own voice, keeping it [bess.hisHers] while improving it tenfold. Most AI singers sound technically flawless, but lifeless and methodical. In contrast, when the" + (bess.hairLength > 0 ? " [bess.hairColor] haired" : "") + " synthetic sings, there is creativity, energy, and flair both in [bess.hisHer] timbre and movements. [bess.HeShe] sings with [bess.hisHer] entire body, letting the music flow through [bess.himHer] and course through [bess.hisHer] artificial skin.");
 
 			output("\n\nYou can see [bess.hisHer] [bess.eyeColor] eyes flicking to you every now and then, eager to see the reaction on your face to [bess.hisHer] singing. You’re sure that if you weren’t here [bess.heShe]’d sing anyway, but since you are, [bess.heShe]’s singing some of these songs for your benefit. It’s different from when [bess.heShe] was programmed to bring happiness - [bess.heShe]’s doing it as a friend who wants to see you smile.");
 

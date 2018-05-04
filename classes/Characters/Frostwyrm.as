@@ -230,7 +230,7 @@ package classes.Characters
 				CombatAttacks.applyTrip(target);
 			}
 			
-			createStatusEffect("Buffet Cooldown", 6)
+			createStatusEffect("Buffet Cooldown", 6);
 		}
 		
 		private function wyrmPsiMiasma(target:Creature):void
@@ -242,8 +242,8 @@ package classes.Characters
 			{
 				output("\nPsychic energy assaults your mind, filling your brain with confused and swirling thoughts, and your vision becomes incredibly hazy. It’s hard to focus on the fight, and <b>your reflexes and aim both seem lowered</b> by the psychic miasma.");
 				target.createStatusEffect("Psychic Miasma", 0, 0, 0, 0, false, "Icon_OffDown", "You’ve been struck by a psychic miasma, reducing your effective aim and reflexes by 5", true, 0, 0xFF0000);
-				target.aimMod -= 5
-				target.reflexesMod -= 5
+				target.aimMod -= 5;
+				target.reflexesMod -= 5;
 			}
 			//PC passes willpower save
 			else

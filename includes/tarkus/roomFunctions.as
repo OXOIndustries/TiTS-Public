@@ -137,12 +137,30 @@ public function bonusTubeSteak():Boolean
 	return rustPlainsEncounters();
 }
 
-public function synthSheathMax():Number
+public function synthSheathMax():int
 {
 	return 4;
 }
 
-public function synthSheathAvailable():Boolean
+public function synthSheathsOwned():int
+{
+	return (pc.numberOfItemByClass(HorseCock) + pc.numberOfItemInStorageByClass(HorseCock));
+}
+public function synthSheathsUsed():int
+{
+	var synthUsed:int = 0;
+	
+	if(flags["SYNTHSHEATH_USED"] > 0) synthUsed += flags["SYNTHSHEATH_USED"];
+	if(chars["DELILAH"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
+	if(chars["PENNY"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
+	if(chars["SHEKKA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
+	if(sylvieHasCock()) synthUsed++;
+	if(chars["TUUVA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
+	
+	return synthUsed;
+}
+
+public function synthSheathAvailable(used:Boolean = false):Boolean
 {
 	if(flags["SYNTHSHEATH_TWO_FOUND"] == undefined) flags["SYNTHSHEATH_TWO_FOUND"] = 0;
 	return (flags["SYNTHSHEATH_TWO_FOUND"] + 1 < synthSheathMax());

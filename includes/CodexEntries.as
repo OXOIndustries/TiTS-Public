@@ -140,11 +140,13 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Item Mechanics", mechanicsCodex, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_ITEM, "Technology", "Maia Series AI", Bess13CodexEntry);
 	
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "General Knowledge", "Taint", taintCodexEntry,true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Furpies", furpiesCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Locofever", locofeverCodexEntry);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_MEDICAL, "SSTDs", "Sneezing Tits", sneezingTitsCodexEntry);
 	
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "||||||||", eightClicksStory);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Assistant", assistantStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Becoming One...", becomingOneOfTheGirlsStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Bull’s Strength", bullsStrength, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: I", bxbiChapter1Story);
@@ -2036,7 +2038,7 @@ public function raskVelCodexEntry():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Reproduction"));
 	outputCodex("Raskvel are consummate breeders, one of the few races able to compete with gabilani when it comes to sheer reproductive enthusiasm. They will breed with almost anything at any time, so long as it has a pleasant disposition and a compatible-looking penis or vagina. Most would consider them sluts, but to them, it is a way to survive a planet rife with industrial accidents and deadly foes. They love to mate with creatures bigger than themselves, believing it will give the young the strength to survive longer on their harsh home planet.");
-	outputCodex("\n\nShortly before pregnancy they will be immobilized by the size of their incubating bellies, but birth occurs with such rapidity after that that there is little danger from this. They will lay anywhere from three to ten large eggs in an act that they describe as “hellishly pleasurable” before slumbering to recover. The eggs will hatch within a month, each containing a young raskvel if fertilized. The eggs do not need to be incubated. Once laid they are often left to fend for themselves, as the Raskvel are quite lacking in maternal instincts. The offspring are inquisitive, knowledge-hungry creatures that soak up information like sponges and mature enough to work and talk within a month or two. Full adulthood and sexual maturity do not come for at least two years.");
+	outputCodex("\n\nShortly before birth, they will be immobilized by the size of their incubating bellies, but birth occurs with such rapidity after that that there is little danger from this. They will lay anywhere from three to ten large eggs in an act that they describe as “hellishly pleasurable” before slumbering to recover. The eggs will hatch within a month, each containing a young raskvel if fertilized. The eggs do not need to be incubated. Once laid they are often left to fend for themselves, as the Raskvel are quite lacking in maternal instincts. The offspring are inquisitive, knowledge-hungry creatures that soak up information like sponges and mature enough to work and talk within a month or two. Full adulthood and sexual maturity do not come for at least two years.");
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Diplomatic Relations"));
 	outputCodex("Raskvel are often hostile toward gabilani but will rarely throw the first attack. They hate rust monsters with a passion, due to that race’s propensity for devouring their recently repaired machinery.");
@@ -3815,3 +3817,15 @@ public function sneezingTitsCodexEntry():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("Sneezing Tits");
 }
+
+public function taintCodexEntry():void
+{
+	clearOutputCodex();
+	showBust("CREATION_DOCTOR");
+	outputCodex(header("Taint"))
+	outputCodex("“Taint” is a slang term for a measure of the corruption of one’s genetic code (and/or microsurgeon subsystems). Early effects of taint manifest via a heightened libido, leading to lowered inhibitions. Very high levels of taint have been known to cause sexual mania, delusions of grandeur, extreme fetishes, and uncontrolled genetic mutation.");
+	outputCodex("\n\nLow levels of genetic taint can be repaired via expensive DNA treatment. More severe cases are treatable, though not curable, and in some cases can scramble the user’s genome to such an extent that even the best gene-mods will fail to have an effect. Microsurgeon taint is easier to handle typically. A few days in a dedicated center can typically reverse it, but treatment is still very expensive, requiring a programmer’s individual attention. In rare cases, whole planets have been quarantined due to especially virulent strains of infectious, tainted microsurgeons.");
+	outputCodex("\n\nVictor Steele notably survived near record levels of taint, though cutting-edge medical treatments helped him to keep his symptoms to a minimum after his early successes in the 13th Galactic Rush. Many well-to-do galactic citizens (including Victor’s heir apparent) have procured next-gen immune system enhancements, capable of altering genetic code on the fly to resist disease, poison, and hazardous conditions. Doing so comes at a cost: small amounts of genetic taint. Fortunately, most of these systems come with automatic repair subroutines, capable of reversing minor damage with sufficient time.\n\nMany street drugs, back-alley doctors, and supposed “salons” are prime sources of taint. The U.G.C. health commission recommends only using vendors backed by well-known mega-corps.\n\nThis particular Codex’s sensor package is capable of detecting your current taint level.\n\t<b>Current Taint:</b> " + Math.round(pc.taint()*10)/10 + " %\n");
+	CodexManager.viewedEntry("Taint");
+}
+

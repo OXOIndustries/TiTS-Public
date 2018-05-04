@@ -30,7 +30,7 @@
 			//Longass shit, not sure what used for yet.
 			this.description = "an amphora of Wiff-O-Wisp";
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "A small glass amphora of reddish orange liquid. It’s completely unmarked and fits in the palm of your hand. The amphora design seems like an odd choice, certainly a choice with a reason you can’t even think of. The liquid is kept inside by a glass stopper, one that takes a fair amount of strength to twist open.\n\nAlthough it makes sense to drink it, you’re certain that the slow moving vapours present mean inhalation over ingestion. <i>It’s advised not to take more than one in a row</i>.";
+			this.tooltip = "A small glass amphora of reddish orange liquid. It’s completely unmarked and fits in the palm of your hand. The amphora design seems like an odd choice, certainly a choice with a reason you can’t even think of. The liquid is kept inside by a glass stopper, one that takes a fair amount of strength to twist open.\n\nAlthough it makes sense to drink it, you’re certain that the slow moving vapours present mean inhalation over ingestion. <i>It’s advised not to take more than one in a row</i>.\n\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -95,6 +95,7 @@
 					pc.aimMod += -10;
 					pc.reflexesMod += -10;
 					pc.lustMod += 9000;
+					pc.taint(1);
 				}
 				//Bad End
 				else

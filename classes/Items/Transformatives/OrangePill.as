@@ -541,6 +541,7 @@ package classes.Items.Transformatives
 					output("\n\nAfter a few moments, your Codex beeps, informing you that a new chemical has been detected in your mouth, corresponding to a weak version of the venom of a red myrmedion. <b>You’ve gained a form of red myr venom!</b>");
 					changes++;
 					pc.createPerk("Myr Venom",0,0,0,0,"Grants a love-bite tease ability that deals a little lust damage to your opponent.");
+					if(!pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) pc.addTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 				}
 				//Breast Size Increase (Red: up to DD, Orange/Gold: up to GG
 				if(pc.hasVagina() && changes < changeLimit)

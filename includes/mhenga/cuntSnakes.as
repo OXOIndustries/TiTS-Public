@@ -151,9 +151,11 @@ public function getSuckedOffByACuntSnakeAfterLosing():void {
 	}
 	//MERGE
 	output("\n\nTwo pin-pricks of pain hit your [pc.leg], and you realize the creature is biting you again. The added aphrodisiac is more than you can bear, sending you to such heights of sexual need that your internal muscles begin to spasm and flutter, gathering up a hot, thick load to feed this slurping twat. You cry out as the pressure mounts, and then, relief. You cum hard, straight into the alien’s sucking slit, its surface clenching in concentric rings to draw your release towards the snake’s middle. It swallows your load with aplomb");
-	if(pc.cumQ() >= 1000) output(", at first. Each pulse of [pc.cum] is so large that it distends the alien’s surface with spherical bulges");
-	if(pc.cumQ() >= 2000) output(". Your lusty deposit leaks out around the edges of the " + enemy.tailVaginaDescript() + ", dripping from its noticeable clit in sticky ropes");
-	if(pc.cumQ() >= 10000) output(". Before long the excess is spraying out in a tidal wave of genetic material, though the tubular fuckhole seems content to drink as much as it can");
+	
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 1000) output(", at first. Each pulse of [pc.cum] is so large that it distends the alien’s surface with spherical bulges");
+	if(cumQ >= 2000) output(". Your lusty deposit leaks out around the edges of the " + enemy.tailVaginaDescript() + ", dripping from its noticeable clit in sticky ropes");
+	if(cumQ >= 10000) output(". Before long the excess is spraying out in a tidal wave of genetic material, though the tubular fuckhole seems content to drink as much as it can");
 	output(".");
 	if(pc.cockTotal() > 1)
 	{
@@ -198,7 +200,7 @@ public function loseToCuntSnakeAndDontGetSucked():void {
 		if(pc.hasFuckableNipples()) choices[choices.length] = 3;
 		if(pc.hasDickNipples()) choices[choices.length] = 4;
 		
-		var select:int = choices[rand(choices.length)];
+		var select:int = (choices.length > 0 ? choices[rand(choices.length)] : -1);
 		
 		output("Your body is so hot... so very hot. You’re burning up! You tear out of your gear as fast as possible, shedding the assembled equipment into a loose pile on the ground. Your [pc.skin] is flush with lust, and your ");
 		if(select == 0) output("juices are dripping");
@@ -467,9 +469,11 @@ public function fuckACuntSnake():void {
 		else output(" Trickles");
 		output(" of girl-cum escape your ignored netherlips, splattering all over your gear.");
 	}
-	if(pc.cumQ() >= 500) output(" The serpentine snake-pussy is soon bloating in your hands, and the cock-ring like front half of the creature unwinds, languidly sliding off of you as your load fills it beyond capacity. Bubbles of [pc.cum] dribble out of its gaped entrance as it falls to the ground and slowly begins to move away, a trail of [pc.cumColor] behind it.");
-	if(pc.cumQ() >= 1500) output(" You make sure to hose the snake down with the rest of your prodigious, gushing load, splattering huge ropes across its body until it’s practically swimming through your seed.");
-	else if(pc.cumQ() < 500) output(" The snake gulps down the last few pulses of [pc.cumColor] treat, squeezing and milking your rod as long as it can. Only after you cease to leak any ejaculate at all does it finally give up and uncoil, slipping off and squirming into the bushes before you can catch your breath.");
+	
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 500) output(" The serpentine snake-pussy is soon bloating in your hands, and the cock-ring like front half of the creature unwinds, languidly sliding off of you as your load fills it beyond capacity. Bubbles of [pc.cum] dribble out of its gaped entrance as it falls to the ground and slowly begins to move away, a trail of [pc.cumColor] behind it.");
+	if(cumQ >= 1500) output(" You make sure to hose the snake down with the rest of your prodigious, gushing load, splattering huge ropes across its body until it’s practically swimming through your seed.");
+	else if(cumQ < 500) output(" The snake gulps down the last few pulses of [pc.cumColor] treat, squeezing and milking your rod as long as it can. Only after you cease to leak any ejaculate at all does it finally give up and uncoil, slipping off and squirming into the bushes before you can catch your breath.");
 	
 	output("\n\n[pc.OneCock] is soaked in pussy juice but not a drop of cum, and you tuck your female-scented package ");
 	if(pc.armor.shortName != "") output("back into your [pc.armor] with a rueful smile.");

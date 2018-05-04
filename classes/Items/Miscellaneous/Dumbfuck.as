@@ -34,7 +34,7 @@ package classes.Items.Miscellaneous
 			this.description = "a purple Dumbfuck pill";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "It’s just a little purple pill, but it’s one of the most illegal drugs in the U.G.C. You’ll want to read up on it before you even consider using it. Check your codex if you haven’t already.";
+			this.tooltip = "It’s just a little purple pill, but it’s one of the most illegal drugs in the U.G.C. You’ll want to read up on it before you even consider using it. Check your codex if you haven’t already.\n\n<b>Known to cause extreme amounts of taint. Handle with care. Check your Codex for details.</b>";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

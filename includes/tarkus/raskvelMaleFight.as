@@ -397,8 +397,12 @@ public function shekkaGetsSoldRaskShitz():void
 	//Spaceship part
 	if(raskLootType == 1)
 	{
-		output("\n\n<i>“That looks like something one of the technicians could use, sure, but I’m not much of a scrapper. I don’t... think...”</i> The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn’t anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.");
-		output("\n\n<i>“Fine, fine. How does " + Math.round(getRaskLootPrice()*1.75) + " sound? C’mon, it might just be junk metal.”</i>");
+		if(shekkaIsCrew()) output("\n\n<i>“That doesn’t look like something that’d work with your ship. I’m not much of a scrapper, but I don’t... think...”</i> The small woman thinks a bit, then throws up her arms in resignation. <i>“Fine, I’ll take it off your hands. How does " + Math.round(getRaskLootPrice()*1.75) + " sound? C’mon, it might just be junk metal.”</i>”</i>);");
+		else 
+		{
+			output("\n\n<i>“That looks like something one of the technicians could use, sure, but I’m not much of a scrapper. I don’t... think...”</i> The small woman begins to trail off as she looks up and beyond you, a distracted frown forming on her face. When <i>you</i> look, there isn’t anything there but the doorway. Still, Shekka throws her hands up in the air in resignation.");
+			output("\n\n<i>“Fine, fine. How does " + Math.round(getRaskLootPrice()*1.75) + " sound? C’mon, it might just be junk metal.”</i>");
+		}
 		processTime(2);
 		clearMenu();
 		addButton(0,"Deal",dealOnShipPartWithShekka);
@@ -483,12 +487,20 @@ public function dealOnShipPartWithShekka():void
 {
 	clearOutput();
 	showShekka();
-	output("You stop yourself from going to help stow the machinery away when Shekka merely flops back down in her seat, crossing her arms with a surly expression on her face. Before you can ask why, someone comes bursting into the room above you and yanks the part up in her hands like an expert thief.");
-	//If you haven't met Aurora, you swine:
-	if(flags["MET_AURORA"] == undefined) output("\n\nThe child’s haphazard");
-	else output("\n\nAurora’s haphazard");
-	output(" motions are like a dangerous pendulum, a heavy wrecking ball that threatens to sprawl you across the floor with a blow to the head. You can only watch in surprise as she skitters along the ceiling, grasping her dexterous claws into exposed piping, perforated tiles, lights, and whatever else happens to be around to get back into the hall and, you assume, her workshop, all the while giggling with glee at her new toy.");
-	output("\n\n<i>“I’m sure she’s behaved...”</i> grumbles the woman behind you as she transfers the credits to your account. Well, you’ve made someone happy.");
+	if(!shekkaIsCrew())
+	{
+		output("You stop yourself from going to help stow the machinery away when Shekka merely flops back down in her seat, crossing her arms with a surly expression on her face. Before you can ask why, someone comes bursting into the room above you and yanks the part up in her hands like an expert thief.");
+		//If you haven't met Aurora, you swine:
+		if(flags["MET_AURORA"] == undefined) output("\n\nThe child’s haphazard");
+		else output("\n\nAurora’s haphazard");
+		output(" motions are like a dangerous pendulum, a heavy wrecking ball that threatens to sprawl you across the floor with a blow to the head. You can only watch in surprise as she skitters along the ceiling, grasping her dexterous claws into exposed piping, perforated tiles, lights, and whatever else happens to be around to get back into the hall and, you assume, her workshop, all the while giggling with glee at her new toy.");
+		output("\n\n<i>“I’m sure she’s behaved...”</i> grumbles the woman behind you as she transfers the credits to your account. Well, you’ve made someone happy.");
+	}
+	else
+	{
+		output("You toss Shekka the machinery and catch the credits in return.");
+		output("\n\n<i>“Aurora’s gonna fucking die when she sees this,”</i> Shekka chirps. <i>“I hope she’s behaving...”</i>");
+	}
 	processTime(3);
 	pc.credits += Math.round(getRaskLootPrice()*1.75);
 	removeRaskLoot();
@@ -502,7 +514,10 @@ public function noDealOnShipPartWivShekka():void
 	clearOutput();
 	showShekka();
 	output("<i>“For this thing? That’s practically the amount I’d pay for someone to lug it around in the first place!”</i>");
-	output("\n\n<i>“Hey! Watch it, you. Credits don’t spawn on trees around here, there’s plenty of trash to go around. You just made someone </i>very<i> unhappy, though.”</i> Shekka crosses her arms, looking up to you with a stern expression. <i>“That’s was my only offer. Go chuck it at the gabilani, then.”</i>");
+	output("\n\n<i>“Hey! Watch it, you. Credits don’t spawn on trees around here, there’s plenty of trash to go around. You just made someone </i>very<i> unhappy, though.”</i> Shekka crosses her arms, looking up to you with a stern expression. <i>“That’s was my only offer. ");
+	if(!shekkaIsCrew()) output("Go chuck it at the gabilani, then.");
+	else output("Go chuck it at someone else on Tarkus, then.");
+	output("”</i>");
 	//”Sell scrap” ghosted out for her as long as PC is still holding this piece
 	flags["SHEKKA_SCRAP_DISABLED"] = 1;
 	clearMenu();

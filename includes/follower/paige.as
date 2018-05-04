@@ -44,11 +44,17 @@ public function paigeBlind():Boolean
 
 public function showPaige(nude:Boolean = false):void
 {
-	if(nude) showBust("PAIGE_NUDE");
-	if(currentLocation == "PAIGE_HOUSE") showBust("PAIGE_CASUAL");
-	else showBust("PAIGE_YOGA");
+	showBust(getPaigeBustString(nude));
+	
 	if(flags["MET_PAIGE"] != undefined) showName("\nPAIGE");
 	author("B");
+}
+
+public function getPaigeBustString(nude:Boolean = false):String
+{
+	if(nude) return "PAIGE_NUDE";
+	if(currentLocation == "PAIGE_HOUSE") return "PAIGE_CASUAL";
+	else return "PAIGE_YOGA";
 }
 
 public function showIddi():void

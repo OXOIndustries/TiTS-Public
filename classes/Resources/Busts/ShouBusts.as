@@ -356,6 +356,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/kara_nude.png", mimeType = "image/png")]
 		public var Bust_KARA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/kattom.png", mimeType = "image/png")]
+		public var Bust_KATTOM_OSGOOD:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/dr_khan.png", mimeType = "image/png")]
 		public var Bust_KHAN:Class;
 		public var Bounds_KHAN:Rectangle = new Rectangle(42, 6, 64, 64);
@@ -666,6 +669,11 @@
 		public function get Bust_YAMMI_APRON():Class { return Bust_YAMMI; }
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/yammi_nude.png", mimeType = "image/png")]
 		public var Bust_YAMMI_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/yoma.png", mimeType = "image/png")]
+		public var Bust_YOMA:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/yoma_nude.png", mimeType = "image/png")]
+		public var Bust_YOMA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/zaalt.png", mimeType = "image/png")]
 		public var Bust_ZAALT:Class;
@@ -1021,6 +1029,9 @@
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kara_nude.png", mimeType = "image/png")]
 			public var Full_KARA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/kattom.png", mimeType = "image/png")]
+			public var Full_KATTOM_OSGOOD:Class;
+
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/dr_khan.png", mimeType = "image/png")]
 			public var Full_KHAN:Class;
 
@@ -1312,6 +1323,11 @@
 			public function get Full_YAMMI_APRON():Class { return Full_YAMMI; }
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yammi_nude.png", mimeType = "image/png")]
 			public var Full_YAMMI_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yoma.png", mimeType = "image/png")]
+			public var Full_YOMA:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/yoma_nude.png", mimeType = "image/png")]
+			public var Full_YOMA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/zephyr.png", mimeType = "image/png")]
 			public var Full_ZEPHYR:Class;

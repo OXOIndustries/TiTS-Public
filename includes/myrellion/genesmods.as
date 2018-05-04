@@ -900,7 +900,10 @@ public function genesModsBlowjob():void
 			output(" All of your instincts tell you that this is where you most belong -");
 			if (pc.isBiped()) output(" on your knees");
 			else output(" down");
-			output(" in front of a big, dominant male polishing his cock, and that fact combined with the sensations bathing your lips, nose and tongue envelopes you in a deep, golden bliss, your [pc.vagina] becoming wetter and wetter.");
+			output(" in front of a big, dominant male polishing his cock, and that fact combined with the sensations bathing your lips, nose and tongue envelopes you in a deep, golden bliss");
+			if(pc.hasVagina()) output(", your [pc.vagina] becoming wetter and wetter");
+			else if(pc.hasCock()) output(", your [pc.cock] becoming harder and harder");
+			output(".");
 		}
 		
 		output("\n\n<i>“That is exceptional,”</i> he murmurs, the tremors of his rich voice traveling down his cock and then your spine. <i>“The myr aren’t anywhere near as good as you at this, Steele. Too much teeth... no practice, you see...”</i> You make him trail off into a heartfelt rumble with a well-timed squeeze of the testicle.");

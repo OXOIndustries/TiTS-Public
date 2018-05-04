@@ -243,7 +243,11 @@ package classes.Items.Transformatives
 					else output("knees");
 					output(", leaving your clawed feet bare. <b>You now have bird-like legs!</b>");
 					
-					if (target.legCount == 1) target.legCount = 2;
+					if (target.legCount == 1)
+					{
+						target.legCount = 2;
+						target.genitalSpot = 0;
+					}
 					target.legType = GLOBAL.TYPE_AVIAN;
 					target.legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_PREHENSILE, GLOBAL.FLAG_PAWS, GLOBAL.FLAG_FEATHERED];
 					if (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY)) target.addLegFlag(GLOBAL.FLAG_FLUFFY);

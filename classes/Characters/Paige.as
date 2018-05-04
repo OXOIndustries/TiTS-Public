@@ -157,6 +157,10 @@
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Blind-ish", 0, 0, 0, 0, false, "Blind", "Paige may not see very well, but years of adapting to her current state leave her less impaired than you might think.", true, 0, 0xFF0000);
 		}
+		override public function hasBlindImmunity():Boolean
+		{
+			return true;
+		}
 		override public function isDefeated():Boolean
 		{
 			if (HP() <= 0) return true;

@@ -195,7 +195,7 @@ public function bothriocQuestTalkNext(arg:Array):void
 			if(addiction >= 75)
 			{
 				output("\n\nYou know it’s a silly question before you’re halfway through asking it. Indeed, Ara simply looks at you with a fond, patronizing smile until you’re forced to look down at [ara.his] feet.");
-				output("\n\n<i>“You get the shining ecstasy of any egg-bearer who outdoes themselves in service to their Masters,”</i> [ara.he] repl" + ara.mfn("y", "y", "ies") + " at length. <i>“You get the knowledge that your actions have saved the love and peace you feel within you, and have spread it to many others besides. You get your name emblazoned in the history of the bothrioc, as one of our greatest heroes. You get to kiss my boot-tips once it is over. Aren’t those things enough?”</i>");
+				output("\n\n<i>“You get the shining ecstasy of any egg-bearer who outdoes themself in service to their Masters,”</i> [ara.he] repl" + ara.mfn("y", "y", "ies") + " at length. <i>“You get the knowledge that your actions have saved the love and peace you feel within you, and have spread it to many others besides. You get your name emblazoned in the history of the bothrioc, as one of our greatest heroes. You get to kiss my boot-tips once it is over. Aren’t those things enough?”</i>");
 				output("\n\n<i>“Yes,”</i> you whisper, barely able to believe your own selfishness. A soothing hand is once again placed on the nape of your neck.");
 				output("\n\n<i>“But I am a generous quadomme, little one. So yes, there will be material reward.”</i>");
 			}
@@ -235,6 +235,9 @@ public function bothriocQuestDoctorButton(btnSlot:int = 0, doctor:String = ""):v
 	if(flags["BOTHRIOC_QUEST"] == BOTHRIOC_QUEST_RESEARCH && flags["BOTHRIOC_QUEST_DOCTOR"] == doctor && flags["BOTHRIOC_QUEST_RESEARCH"] != undefined)
 	{
 		addButton(btnSlot, "Bothrioc?", bothriocQuestResearch, doctor, "Bothrioc?", "Ask if the pheromonal counter-agent is ready.");
+		
+		output("\n\nYou can check to see if the bothrioc pheromonal counter-agent is ready.");
+		
 		return;
 	}
 	
@@ -242,6 +245,8 @@ public function bothriocQuestDoctorButton(btnSlot:int = 0, doctor:String = ""):v
 	if(flags[("BOTHRIOC_QUEST_TALK_" + (doctor).toUpperCase())] != undefined) return;
 	
 	addButton(btnSlot, "Bothrioc?", bothriocQuestDoctor, doctor, "Bothrioc?", "Ask if it’s possible they could create the pheromonal counter-agent Ara Kei asked for.");
+	
+	output("\n\nYou can try to ask him about the bothrioc pheromonal counter-agent Ara Kei requested.");
 }
 public function bothriocQuestDoctor(response:String):void
 {
@@ -505,7 +510,7 @@ public function bothriocQuestQuadomme(arg:Array):void
 			else
 			{
 				output("<i>“I have a message,”</i> you say, trying to keep your voice calm and level as the quadomme hovers above your thoroughly stuck form. <i>“From Ara Kei Anya.”</i>");
-				output("\n\n<i>“Do you indeed?”</i> the creature leers, twitching strands above so that sensation tickles through you. <i>“" + araQmfn("Does he", "Does she", "Do they") + " say don’t put eggs up my catspaw’s bum, please thank you very much?”</i> They laugh to themselves, before patronizingly folding their arms and leaning over you. <i>“Go ahead, farlander. I very much enjoy listening to how the morsels that fall into my web squeak.”</i>");
+				output("\n\n<i>“Do you indeed?”</i> the creature leers, twitching strands above so that sensation tickles through you. <i>“" + araQmfn("Does he", "Does she", "Do they") + " say don’t put eggs up my catspaw’s bum, please thank you very much?”</i> They laugh to themself, before patronizingly folding their arms and leaning over you. <i>“Go ahead, farlander. I very much enjoy listening to how the morsels that fall into my web squeak.”</i>");
 				
 				// Intelligence check: 100% = pass, 90-99 = ⅔ chance pass, 89 or less = fail
 				if(pc.IQ() >= 100 || (pc.IQ() >= 90 && rand(3) != 0))
@@ -1848,6 +1853,8 @@ public function bothriocQuestGenealogyButton(btnSlot:int = 0, doctor:String = ""
 			else if(pc.keyItemv1("Bothrioc Genealogy") > 0) addButton(btnSlot, "Genealogy", bothriocQuestGenealogy, "Haswell genealogy", "Genealogy", "Give him the bothrioc genealogy that Ara rewarded you with.");
 			break;
 	}
+	
+	if(pc.keyItemv1("Bothrioc Genealogy") > 0) output("\n\nDo you give him the bothrioc geneology?");
 }
 public function bothriocQuestGenealogy(response:String):void
 {

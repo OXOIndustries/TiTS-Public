@@ -410,7 +410,7 @@ public function FFLV():void
 		output("\n\nWith a few more pumps, she takes a sharp breath and holds still. You feel her pussy tighten around you, then convulse, milking your [pc.cock " + x + "] for its load. Already on the verge of an orgasm and eager to answer your dominator’s call, you oblige, ");
 		if(pc.cumQ() <= 300) output("your dick bloating with its load as it travels through you and into Paige. She winces in delight, her grip on your [pc.chest] tightening with every pulse she feels inside her; she rocks her hips and tenses her abs again, squeezing every last drop she can from you.");
 		else output("at last getting the upper hand on Paige, even if neither of you were expecting how: your load, far more substantial than she anticipated, rockets up your shaft and deluges her tunnel with your [pc.cum]. Her breath catches in her throat as her body instinctually works to take in as much as it can, even when it clearly can’t – her tense abs slowly bloat outward from her body trying to contain you, and when she can simply take no more, you feel it splash awkwardly back onto your pelvis, soaking you both through with your seed. And you’re still not done.");
-		paige.loadInCunt(pc);
+		paige.loadInCunt(pc, 0);
 	}
 	// Continue here if the PC is female or sexless
 	else
