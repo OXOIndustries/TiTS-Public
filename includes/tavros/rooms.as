@@ -451,7 +451,7 @@ public function initTavrosRooms():void
 	rooms["9016"].addFlag(GLOBAL.INDOOR);
 	rooms["9016"].addFlag(GLOBAL.PUBLIC);
 	rooms["9016"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9016"].runOnEnter = undefined;
+	rooms["9016"].runOnEnter = beachNSurfOutsideBonus;
 
 	rooms["TAVROS_BEACH"] = new RoomClass(this);
 	rooms["TAVROS_BEACH"].roomName = "BEACH \n‘N SURF";

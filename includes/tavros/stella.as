@@ -363,10 +363,15 @@ public function stellaMenu():void
 		addButton(5,"Pussy",stellaPussyFuck);
 		addButton(6,"Assfuck",assFuckStella);
 	}
-	else
+	else if(pc.hasCock())
 	{
 		addDisabledButton(5,"Pussy","Pussy","You’re too big to fit into the puppy-bimbo!");
 		addDisabledButton(6,"Assfuck","Assfuck","You’re too big to fit into the puppy-bimbo!");
+	}
+	else
+	{
+		addDisabledButton(5,"Pussy","Pussy","You need a penis for this.");
+		addDisabledButton(6,"Assfuck","Assfuck","You need a penis for this.");
 	}
 	if(pc.hasCock()) addButton(7,"Blowjob",stellaOralStuff);
 	else addDisabledButton(7,"Blowjob","Blowjob","She can’t suck your dick if you don’t have one!");
