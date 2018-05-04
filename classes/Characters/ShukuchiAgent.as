@@ -42,7 +42,6 @@ package classes.Characters
 			this.level = 8;
 			this.credits = 500;
 			this.XPRaw = 5000;
-			this.credits = 0;
 			this.HPMod = 20;
 			this.HPRaw = this.HPMax();
 			
@@ -96,7 +95,7 @@ package classes.Characters
 			
 			var choice:int = rand(9);
 			
-			if (CombatManager.getRoundCount() == 1){
+			if (CombatManager.getRoundCount() == 0){
 				punchySpecial(target);
 				return;
 			}

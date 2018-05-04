@@ -1945,6 +1945,9 @@ public function displayQuestLog(showID:String = "All"):void
 				switch(flags["SHUKUCHI_FOURTH_ENCOUNTER"])
 				{
 					case undefined: output2(" Tracking"); break;
+					case 1: output2(" Paid the Host"); break;
+					case 2: output2(" Accepted corporal punishment"); break;
+					case 3: output2(" Took Akane's offer"); break;
 				}
 				
 				output2("\n<b>* Tavros:</b>");
@@ -1965,12 +1968,19 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(" Lost to agents on Uveto");
 				}
 				
-				if (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined)
+				sideCount++;
+			}
+			//AkaneQuest
+			if (MailManager.isEntryViewed("akanequest_email")){
+				output2("\n<b><u>AkaneQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				output2(" Read Email");
+				if (flags["AKANEQUEST_STAGE"] == 0) output2(", Raid Planned");
+				else if (flags["AKANEQUEST_STAGE"] > 0)
 				{
-					output2("\n<b>* Meeting:</b>");
-					if (flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 1) output2(" Paid the Host");
-					else if (flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 2) output2(" Got a beatdown");
-					else output2(" Bow shicka bow wow " + (flags["AKANE_VISITS"] != undefined ? flags["AKANE_VISITS"] : ""));
+					output2(", Raid Succesful");
+					if (flags["AKANEQUEST_STAGE"] == 1) output2(", Rewarded with gun");
+					else output2(", Rewarded with sword");
 				}
 				
 				sideCount++;
@@ -3921,7 +3931,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if (pcIsPainslut()) output2(", Became her <i>Painslut</i>");
 					if (flags["AKANE_FUN_VISITS"])
 					{
-						output2("\n<b>*Akane, Times Sexed:</b> " + flags["AKANE_FUN_VISITS"]); //Is "sexed the right word"?
+						output2("\n<b>* Akane, Times Sexed:</b> " + flags["AKANE_FUN_VISITS"]); //Is "sexed the right word"?
 						if (flags["AKANE_TIMES_SHOCKED"]) output2("\n<b>* Akane, Times Stimmed:</b> " + flags["AKANE_TIMES_SHOCKED"]);
 						if (flags["AKANE_TIMES_WHIPPED"]) output2("\n<b>* Akane, Times Whipped:</b> " + flags["AKANE_TIMES_WHIPPED"]);
 						if (flags["AKANE_TIMES_FORCED"]) output2("\n<b>* Akane, Times Forced Orgasm Sessions:</b> " + flags["AKANE_TIMES_FORCED"]);

@@ -3389,10 +3389,15 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			flags["PRAI_EMAIL_NUMBER"] = undefined;
 			flags["PRAI_EMAIL_STAMP"] = undefined;
 		}
-		//Akane email
-		if (!pc.isPregnant() && !MailManager.isEntryUnlocked("shukuchi_veritas") && flags["SHUKUCHI_EMAIL_TIMER"] != undefined && nextTimestamp >= flags["SHUKUCHI_EMAIL_TIMER"] + (60*24*6))
+		//Akane, Celeritas Veritas email
+		if (!MailManager.isEntryUnlocked("shukuchi_veritas") && !pc.isPregnant() && flags["SHUKUCHI_EMAIL_TIMER"] != undefined && nextTimestamp >= flags["SHUKUCHI_EMAIL_TIMER"] + (60*24*6))
 		{
 			goMailGet("shukuchi_veritas", flags["SHUKUCHI_EMAIL_TIMER"] + (60*24*6));
+		}
+		//AkaneQuest email
+		if (!MailManager.isEntryUnlocked("akanequest_email") && flags["AKANE_TIMES_WHIPPED"] >= 2 && flags["AKANE_RIVALS_TIMESTAMP"] != undefined && nextTimestamp >= flags["AKANE_RIVALS_TIMESTAMP"] + (60*24*7))
+		{
+			goMailGet("akanequest_email", flags["AKANE_RIVALS_TIMESTAMP"] + (60*24*7));
 		}
 		//Sucuccow email
 		if(pc.hasCock() && flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isHalloweenish())

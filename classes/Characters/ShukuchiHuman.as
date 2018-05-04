@@ -13,7 +13,7 @@ package classes.Characters
 			this.short = "Host Agent";
 			this.originalRace = "human";
 			
-			this.long = "Two similarly built, human male agents wearing black body armor with masks and hoods. They’re taking up equal amounts of space, just enough to maneuver in a close-quarters environment. In their hands are a hardlight dagger each and some sort of advanced-looking fake knuckle device in the other. The blue glow of the devices makes you wary. While they’re not advancing on you, you’re sure they’ve no intention of letting you escape...";
+			this.long = "";
 			
 			this.customDodge = "The masked agent deftly side-steps your assault, fading in and out of visibility for safe measure" + this.customDodge;
 			this.customBlock = "The masked agent" + this.customBlock;

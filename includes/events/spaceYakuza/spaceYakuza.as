@@ -261,14 +261,14 @@ public function shukuchiMhengaVictory():void
 	author("SoAndSo");
 	if (enemy.HP() == 0)
 	{
-	output("The masked assailant slips to his knee, his head bowed low and his chest heaving for air as he struggles to recover from that last hit. He hides his blade, concealing it away as a sign of surrender. Now to get some juice out of him…");
-	flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 1;
+		output("The masked assailant slips to his knee, his head bowed low and his chest heaving for air as he struggles to recover from that last hit. He hides his blade, concealing it away as a sign of surrender. Now to get some juice out of him…");
+		flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 1;
 	}
 	else
 	{
-	output("The masked assailant staggers backwards and onto his knees and palms, whining as your sexual prowess upsets his physical aggression.");
-	output("\n\n<i>“Whyyyy didn’t I jack off before I left, whyyyy,”</i> he groans, crumpling up and hiding his weapon from view.");
-	flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 2;
+		output("The masked assailant staggers backwards and onto his knees and palms, whining as your sexual prowess upsets his physical aggression.");
+		output("\n\n<i>“Whyyyy didn’t I jack off before I left, whyyyy,”</i> he groans, crumpling up and hiding his weapon from view.");
+		flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 2;
 	}
 	
 	output("\n\nYou hold your weapon out all the same, figuring that he’d be smart enough to have a backup. At least you can threaten him for answers with the power of a [pc.weapon]! You’re within a half meters grasp of him, your hand outstretched to-");
@@ -353,7 +353,7 @@ public function shukuchiUvetoSleuth():void
 	clearOutput();
 	author("SoAndSo");
 	moveTo("UVI N40");
-	showName("\nFOLLOWING SUSPECT");
+	showName("FOLLOWING\nSUSPECT");
 	
 	output("There’s little in the way of crowding as you track the masked agent towards the racecourse. With this weather, you both consider how to navigate the snowy streets. You’ve little difficulty in keeping up with him: the bulky jacket and general chill in the air would be enough to discourage anyone from going about in this weather.");
 	output("\n\nYou see him tapping on some sort of device every now and then, a small datapad no bigger than his hand. It’s impossible to tell what’s on it from that distance and angle.");
@@ -401,7 +401,7 @@ public function shukuchiUvetoSleuthMost():void
 	output("\n\n<i>“I-I say, I know nothing, " + pc.mf("sir", "madam") + "! Is this some ruse o-or racket?! Need I scream for help?! Believe me, I have the lungs of a Netherfrostic whale a-and-”</i>");
 	output("\n\nYou jerk his arm enough to shake him on the spot, making him halt his ranting for a second. You assure him that you just need information: what’s his deal with the masked agent, does he know who they are, how they operate, what they’re planning?");
 	output("\n\n<i>“I-I-I’m just one of many betting managers, a humble fellow! Look, I’ll tell all just please, please! Let go of this jacket, it’s <b>exceedingly</b> expensive!”</i> he flusters, batting at your hand. You relent, letting go of his shoulder but cornering him with folded arms.");
-	output("\n\n“Right, right, right, you seem to be of at least a r-reasonable sort! But it’s true, I merely collect earnings and g-give them to the winners! Of course, that depends on who you see as ‘winners’, ahehehe…”</i> he begins timidly, idly rubbing his coat in duress.");
+	output("\n\n<i>“Right, right, right, you seem to be of at least a r-reasonable sort! But it’s true, I merely collect earnings and g-give them to the winners! Of course, that depends on who you see as ‘winners’, ahehehe…”</i> he begins timidly, idly rubbing his coat in duress.");
 	output("\n\n<i>“I just addle a few numbers here and t-there, the fairest form of tax, I assure you! And then… ‘they’ come by to collect. In turn, the racecourse gains security and an undercurrent of legitimate business. Think of it what you will, I have the city’s best interests in mind!”</i> he exclaims, thumping his cane against the floor.");
 	output("\n\nYou’re less concerned about that and more concerned about names, aims… dangers.");
 	output("\n\n<i>“Names? Only… Host and sometimes </i>‘Shukuchi’<i>. I don’t know what it all means! But apart from that, no names, only masks and agents. Sometimes male, female, alien, anything at all. If it weren’t for the agents, they’d might as well not exist and they’d be very far from my mind… I’d rather it all be left alone, be left alone myself! As for what they’re doing here, I’ve no idea, what do criminals usually do? Make money is my own guess, I’m sure yours as well! Undesirables all, the difference is the amount of firepower between me and them!”</i> he kicks up again, harrumphing his way through his answers.");
@@ -429,6 +429,7 @@ public function shukuchiUvetoAmbush():void
 	CombatManager.victoryScene(shukuchiUvetoVictory);
 	CombatManager.lossScene(shukuchiUvetoLoss);
 	CombatManager.displayLocation("HOST AGENTS");
+	CombatManager.encounterText("Two similarly built, human male agents wearing black body armor with masks and hoods. They’re taking up equal amounts of space, just enough to maneuver in a close-quarters environment. In their hands are a hardlight dagger each and some sort of advanced-looking fake knuckle device in the other. The blue glow of the devices makes you wary. While they’re not advancing on you, you’re sure they’ve no intention of letting you escape...");
 	
 	addButton(0, "Fight!", CombatManager.beginCombat);
 }
