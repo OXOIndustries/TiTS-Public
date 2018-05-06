@@ -2,9 +2,19 @@
 /*
  * SYRIQUEST_MET_SYRI_AT_MAGLEV_STATION	1 = run into Syri at the station
  * SYRIQUEST_HEARD_SYRIS_PLAN			1 = Syri told PC her plan
- * SYRIQUEST_RESOLUTION					-1: Never accepted the quest
+ * SYRIQUEST_RESOLUTION					-1 = never accepted the quest
+ * SYRIQUEST_SYRI_ONAHOLE				undefined = never found it, 1 = found it, 2 = gave it to Syri
+ * SYRIQUEST_POST_GAME_TALK_PENIS		1 = talked about Valden, 2 = talked about Syris cock, 3 = talked about Syris cock sleeve
+ * SYRIQUEST_POST_GAME_TALK_LOVE		1 = told her love her, 2 = stay friends
 */
 
+//Ask Savin about:
+/* syriTalksAboutAnno scene
+ * Mhenga Landig pad scene with syri
+ * Should CuntSleve be aviable even if Valden died?
+ * 
+*/
+ 
 //When the PC hits Level 9 and meets all other reqs., remove Syri from Mhen'ga. The next time the PC enters the transit hub on Uveto (and has access to at least one travel point), play this scene.");
 //Reqs: Level 9. Must be fuckbuddies with Syri and have gotten Syri's panties.");
 
@@ -104,6 +114,9 @@ public function syriQuestGoLater():void {
 	output("\n\n<i>“Yeah, no problem. You can probably guess where I'm hanging out most of the time, so drop by the bar whenever you're free for an hour or so. 'Kay?”</i>");
 	output("\n\nYou nod, slowly dislodging yourself from Syri's slicked tits. She gives you a little grin and slaps your cheek with a boob before you can fully extricate yourself. The two of you spend the next couple of minutes redressing, occasionally pausing to grope or spank each other until you're almost presentable. The pair of you slip out of the bathroom at a quiet moment, heading your separate ways for now.");
 
+	rooms["UVI R32"].addFlag(GLOBAL.NPC);
+	generateMap();
+
 	processTime(3);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -149,7 +162,9 @@ public function syriQuestYes():void {
 	output("<i>“Sure,”</i> you tell her. <i>“What's on your mind?”</i>");
 	output("\n\n<i>“It would be better if we talk somewhere private,”</i> Syri says, glancing around nervously. <i>“Can we go up to your ship?”</i>");
 	output("\n\nIt's a bit of a walk, but that makes her more comfortable, you can't see why not...");
-	output("\n\n");
+
+	rooms["UVI R32"].removeFlag(GLOBAL.NPC);
+	generateMap();
 	syriQuestGoNow();
 }
 
@@ -198,7 +213,7 @@ public function syriQuestGoNow():void {
 	output(" take the fall for you?”</i>");
 	output("\n\n<i>“Wha- no! No no no. I've got a cunning plan to get somebody </i>else<i> inside, completely undetected. Security will never see a trace of you, and they'll </i>know for a fact<i> that I was miles away when it happened. It'll work!”</i>");
 	output("\n\nSounds kind of sketchy, but it clearly means a lot to Syri... ");
-	processTime(20+rand(15));
+	processTime(45+rand(30));
 	syriQuestGoNowMenu();
 }
 

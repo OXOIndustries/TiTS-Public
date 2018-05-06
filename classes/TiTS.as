@@ -160,6 +160,7 @@
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
 		include "../includes/events/syriQuest/syriQuestMain.as";
+		include "../includes/events/syriQuest/rooms.as";
 
 		//Misc content
 		include "../includes/masturbation.as";
@@ -607,6 +608,7 @@
 			initVesperiaRoom();
 			initBreedwellRooms();
 			fqInitRooms();
+			syriQuestInitRooms();
 			
 			mapper = new Mapper(this.rooms)
 
