@@ -1081,6 +1081,8 @@ public function shekkaSleepWithMornings():void
 		}
 	}
 	//sleep(false);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function shekkaCrewSexMenu():void
