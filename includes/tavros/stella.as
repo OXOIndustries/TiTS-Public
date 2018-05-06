@@ -296,17 +296,34 @@ public function letsFuckeySuckeyStella():void
 		else
 		{
 			output("but suddenly recoils and gasps in utter delight when she sees what you’re packing.");
-			output("\n\n<i>“Oh </i>wow<i>,”</i> she breathes, then she’s instantly sucking your balls, ");
-			if(pc.ballDiameter() > 6) output("desperately trying to take them inside her mouth to no avail, planting horny kisses all over their smooth surface");
-			else output("taking them inside her warm, wet mouth and suckling while her eyes roll back in pleasure");
-			output(".");
-			output("\n\n<i>“Unf, fuck,”</i> you grunt, holding her down there. She’s all <i>over</i> you, pawing at your [pc.stomach] as she tries to get a better grip to suck your balls. Midway through the process she begins moaning loudly and you realize she’s cumming through her bikini bottoms even as she licks you. You’re treated to the first-class sight of an upper socialite submissively bucking her hips, panting and moaning with her hands around your waist and her lips around your balls, femcum drooling from her empty pussy.");
-			output("\n\n<i>“What a needy puppy,”</i> you murmur, scratching her behind the ear just to reinforce that she’s doing a good job. <i>“Keep it up and maybe you’ll get a bone between your legs.”</i>");
-			output("\n\n<i>“I whanna bhone,”</i> she mumbles from between your legs, still intent on sucking your balls for all she’s worth. <i>“Whanna bhoooone...”</i>");
+			output("\n\n<i>“Oh </i>wow<i>,”</i> she breathes, ");
+
+			if(pc.balls > 1)
+			{
+				output("then she’s instantly sucking your balls, ");
+				if(pc.ballDiameter() > 6) output("desperately trying to take them inside her mouth to no avail, planting horny kisses all over their smooth surface");
+				else output("taking them inside her warm, wet mouth and suckling while her eyes roll back in pleasure");
+				output(".");
+
+				output("\n\n<i>“Unf, fuck,”</i> you grunt, holding her down there. She’s all <i>over</i> you, pawing at your [pc.stomach] as she tries to get a better grip to suck your balls. Midway through the process she begins moaning loudly and you realize she’s cumming through her bikini bottoms even as she licks you. You’re treated to the first-class sight of an upper socialite submissively bucking her hips, panting and moaning with her hands around your waist and her lips around your balls, femcum drooling from her empty pussy.");
+				output("\n\n<i>“What a needy puppy,”</i> you murmur, scratching her behind the ear just to reinforce that she’s doing a good job. <i>“Keep it up and maybe you’ll get a bone between your legs.”</i>");
+				output("\n\n<i>“I whanna bhone,”</i> she mumbles from between your legs, still intent on sucking your balls for all she’s worth. <i>“Whanna bhoooone...”</i>");
+			}
+			else
+			{
+				output("licking your [pc.knot], a delicate hand on your cock as she desperately laps at you with her tongue, worshipping the first few inches of your length.");
+				output("\n\n<i>“Unf, fuck,”</i> you grunt, holding her down there. She’s all <i>over</i> you, pawing at your [pc.stomach] as she tries to get a better grip. Midway through the process she begins moaning loudly and you realize she’s cumming through her bikini bottoms even as she licks you. You’re treated to the first-class sight of an upper socialite submissively bucking her hips, panting and moaning with her hands around your waist and her lips pressed against your groin, femcum drooling from her empty pussy.");
+				output("\n\n<i>“What a needy puppy,”</i> you murmur, scratching her behind the ear just to reinforce that she’s doing a good job. <i>“Keep it up and maybe you’ll get a bone between your legs.”</i>");
+				output("\n\n<i>“I whanna bhone,”</i> she mumbles from between your legs, still intent on licking your dick for all she’s worth. <i>“Whanna bhoooone...”</i>");
+
+			}
 			output("\n\n<i>“Here,”</i> you say, pointing to the tip of your [pc.cock]. <i>“Suck this for a while instead, then you can get your bonefffuck!”</i>");
 			output("\n\nNo sooner than have you indicated it, Stella’s on the job. Fuck, she’s good at following orders... you’ll have to give her a special reward when she’s done, which is going to be pretty fucking soon what with the way she’s using that amazing tongue of hers. You let her have free reign over the movement of her head and she takes full advantage, alternating between bobbing on your [pc.cockHead] and swallowing it to the hilt until finally, you can’t take it any more. You <i>have</i> to blow this load down her throat.");
 			output("\n\n<i>“To the hilt, Stella,”</i> you pant, pulling her down your cock mere moments before you cum. <i>“Swallow it!”</i>");
-			output("\n\nA second later you groan in ecstatic release, Stella’s throat tightening around the head of your shaft as she frantically gulps down your jizz, pouty lips securely planted around the base of your penis. You can feel her fingers lightly pressing at your balls, urging, <i>begging</i> you to give her more of your cum, and you’re only too happy to oblige. She makes several loud, gulping swallows as she slowly slides back up your dick.");
+			output("\n\nA second later you groan in ecstatic release, Stella’s throat tightening around the head of your shaft as she frantically gulps down your jizz, pouty lips securely planted around the base of your penis. You can feel her fingers lightly pressing at your ");
+			if(pc.balls > 0) output("balls");
+			else output("base");
+			output(", urging, <i>begging</i> you to give her more of your cum, and you’re only too happy to oblige. She makes several loud, gulping swallows as she slowly slides back up your dick.");
 			output("\n\n<i>“Haaa, fuck,”</i> you sigh, leaning back in your chair as Stella pulls back off your cock and daintily swallows the cum left in her mouth. <i>“Nice work.”</i>");
 			output("\n\n<i>“Did I do good, master [pc.name]?”</i> Stella asks, dazed and a little confused. She seems uncertain.");
 			output("\n\n<i>“Fuck yeah, you did great!”</i> you reassure her, giving her a hard scritch behind the ears. <i>“I think we should take this somewhere else, though... you’re kinda loud.”</i>");
@@ -463,14 +480,23 @@ public function stellaPussyFuck():void
 	}
 	output("\n\n<i>“Oh </i>god<i>,”</i> she says loudly as you begin, her arms finding their way above her head to brace herself against the bed. <i>“Oh god, my pussy feels so goooood! Mmmmm!”</i>");
 	output("\n\n<i>“Good bitch,”</i> you grunt, wrapping an arm around her waist and hefting her into your lap.");
-	output("\n\nBraced and flexed, you begin laying into her roughly, fucking lusty moans from the back of her throat every time you go balls-deep inside her. Stella’s crazy with need, pushing her hips up to meet your thrusts with desperate movements and biting her fat bottom lip. Her callipygian ass starts to lift off the bed entirely as you rock it, the headboard slamming noisily against the wall while Stella’s moans reach a fever pitch of pleasure.");
+	output("\n\nBraced and flexed, you begin laying into her roughly, fucking lusty moans from the back of her throat every time you go ");
+	if(pc.balls > 1) output("balls-deep");
+	else output("sheath yourself");
+	output(" inside her. Stella’s crazy with need, pushing her hips up to meet your thrusts with desperate movements and biting her fat bottom lip. Her callipygian ass starts to lift off the bed entirely as you rock it, the headboard slamming noisily against the wall while Stella’s moans reach a fever pitch of pleasure.");
 	output("\n\n<i>“I’m cumming! OhmigoshI’mcummingsohardnnnnngh!”</i> she manages to gasp in a single breath before hugging you tightly, vigorously grinding her hips into the base of your crotch even as she cums. <i>“Ah! Ah! Aaah! Oh, gooood!”</i> Stella cries out, looking into your face with the most beautiful expression even as her body instinctively seeks further pleasure. Her tail is stuck straight up in the air and shaking just like the rest of her, incapable of dishonesty and betraying just how much she loves having you deep inside her spasming snatch.");
 	output("\n\nHaving the panting, big-titted ausar needily drive her hips down onto your [pc.cock " + x + "], her beachball-sized breasts jiggling in your face, is enough to drive you wild with desire. Retaking the initiative, you grab her breasts and push her back down onto the bed, sliding your cock almost completely out of her before ramming it home. She reacts immediately, sagging submissively in your grip as she lays back on the bed and slides her hands up your biceps.");
 	output("\n\n<i>“Oh, god,”</i> she whispers with every long, deep thrust, tightening her grip around your arms until finally she can bear it no longer and cums again, squeezing her eyes shut and groaning through grit teeth while you keep sliding in and out of her ridiculously-tight cunt. The way it grips and sucks at you you’d almost swear she had control over it, but you know she’s just trying as best she can to keep you inside her, anything to get you to keep fucking her bimbo pussy.");
 	output("\n\nNow that you’ve got her pinned and cumming, now seems like as good a time as any to fuck her as hard as you can and bust a nut in Stella’s flawless pussy. She instinctively spreads her legs as wide as possible and plants her heels behind your waist when you begin, one hand touching your [pc.chest] and the other on her lower stomach, tracing the obscene bulge of your cock through her taut, tanned skin.");
 	output("\n\n<i>“Hoohhhh god,”</i> Stella breathes, arching her back enough to make her massive tits splay to either side of her chest, <i>“Oohhh god, master...”</i>");
-	output("\n\nEncouraged, you begin to fuck her faster, lewd, wet noises issuing from where the two of you are joined as your groin meets hers and your [pc.balls] slap between her cheeks. The sound of sex is all you can hear, Stella’s moans and the lurid smacking noises from between her thighs only spurring you onwards. Soon you’re pounding her so hard she’s practically screaming in orgasmic joy with every thrust, and your own peak is fast approaching.");
-	output("\n\nSeizing the bimbo beach girl around her waspish waist, you give a primal, bestial roar as you hilt her on your cock, your [pc.sack] tightening in advance of dumping its payload inside Stella. With your [pc.cockHead " + x + "] pressed right against her cervix, she screams in ecstasy when she feels the first load spurt inside her, warmth radiating outwards from her core.");
+	output("\n\nEncouraged, you begin to fuck her faster, lewd, wet noises issuing from where the two of you are joined as your groin meets hers and your ");
+	if(pc.balls > 1) output("[pc.balls] slap between");
+	else output("[pc.hips] alap against");
+	output(" her cheeks. The sound of sex is all you can hear, Stella’s moans and the lurid smacking noises from between her thighs only spurring you onwards. Soon you’re pounding her so hard she’s practically screaming in orgasmic joy with every thrust, and your own peak is fast approaching.");
+	output("\n\nSeizing the bimbo beach girl around her waspish waist, you give a primal, bestial roar as you hilt her on your cock, your ");
+	if(pc.balls > 1) output("[pc.sack] tightening in advance of dumping its");
+	else output("stomach tightening as a knot of pleasure begins to unravel before you dump your");
+	output(" payload inside Stella. With your [pc.cockHead " + x + "] pressed right against her cervix, she screams in ecstasy when she feels the first load spurt inside her, warmth radiating outwards from her core.");
 	output("\n\n<i>“[pc.name]! [pc.name]!”</i> she cries, grabbing at you, feeling you up even as you cum inside her. <i>“Oh my god, yes!”</i>");
 	
 	var cumQ:Number = pc.cumQ();
@@ -604,7 +630,10 @@ public function assFuckStella():void
 	output("\n\n<i>“Good girl,”</i> you grunt, letting go of her hair and sending her tumbling back onto the bed.");
 	output("\n\nThe sound of rough, animalistic sex fills Stella’s room, her massive ass slapping against your thighs with every thrust, punctuated every so often by a firm slap on her butt and an accompanying scream of pleasure. She’s so goddamn tight that it’s hard to fight the instinct to just instantly cum, something Stella’s clearly not concerned with as she delightedly squeals her way to her fourth or fifth.");
 	output("\n\nEventually, it’s too much to bear. The sound of her lurid moans, the way her voluptuous body feels in your hands, the sensation of her sliding up and down your swelling dick; even tiny details like the way her tail stays needily wrapped around you like she never wants you outside of her are driving you insane with the need to blow a massive load inside her. Grabbing her hips, you pull her back upright into your lap, desperately hammering her ass from below until you finally cum.");
-	output("\n\n<i>“Yeeeesssss,”</i> Stella moans loudly, drowning out your grunts of release. <i>“Oh my goood, yes, cum inside me... empty those balls...”</i>");
+	output("\n\n<i>“Yeeeesssss,”</i> Stella moans loudly, drowning out your grunts of release. <i>“Oh my goood, yes, cum inside me... ");
+	if(pc.balls > 1) output("empty those balls");
+	else output("let it all out");
+	output("...”</i>");
 	output("\n\nShe continues with the lewd encouragement throughout your entire orgasm, working her ass both involuntarily and voluntarily as she suffers a mild orgasm herself just feeling your [pc.cum] flood her insides.");
 	var cumQ:Number = pc.cumQ();
 	if(cumQ < 500) { }
@@ -689,6 +718,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 			output(" as far down your [pc.cock " + x + "] as she possibly can, getting stuck around two feet down. Her tongue stretches desperately from her mouth, lapping at your cumvein as if begging for your load");
 			if(pc.balls > 0) output(", unable to reach your [pc.balls] with her lips.");
 			else if(pc.hasVagina()) output(", unable to reach your [pc.vaginas] with her lips.");
+			else output(".");
 		}
 		output("\n\n<i>“Mmmmn, god,”</i> you groan, running a hand through her luxurious hair. <i>“That’s a good start...”</i>");
 
@@ -700,6 +730,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 
 		output("\n\nShifting around a little, you sit on Stella’s bed and get her on the floor on her knees, content to enjoy her worshipping you without having to intervene. Her eyes lidded, she handles your cock with reverence, gently stroking and touching while her mouth is at the tip");
 		if(pc.balls > 0) output(" and fondling your balls when she has it deep in her throat");
+		else output(" and rubbing your thighs");
 		output(". She’s extremely skilled, titillating you with her soft, pretty lips and the wet warmth of her mouth but never pushing you over the edge, leaving you the choice of when you want to cum.");
 
 		output("\n\nWith a wet, lurid popping noise, she lets the head of your cock free from her lips’ embrace and takes your entire length in her hands, gently kissing you all over on the way down to your ");
@@ -723,6 +754,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 				output("\n\nIt doesn’t stop there, either. Endeavoring to cover your entire sack in cute, feminine kisses and licks of her tongue, Stella pays attention to every single aspect of worshipping your balls, fondling and sucking where she can, bringing herself to another mind-shattering orgasm before too long. The way she groans so loud, you suspect this is a fantasy she’s wanted to fulfill for quite some time - it’s pretty clear she has a big thing for size...");
 				whoreshipped = true;
 			}
+			output("\n\n");
 		}
 		else if(pc.balls == 1) 
 		{
@@ -744,14 +776,24 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 				output("\n\nIt doesn’t stop there, either. Endeavoring to cover your entire sack in cute, feminine kisses and licks of her tongue, Stella pays attention to every single aspect of worshipping your ball, fondling and sucking where she can, bringing herself to another mind-shattering orgasm before too long. The way she groans so loud, you suspect this is a fantasy she’s wanted to fulfill for quite some time - it’s pretty clear she has a big thing for size...");
 				whoreshipped = true;
 			}
+			output("\n\n");
 		}
-		else output("loins");
-
-		output("\n\nBy the time she’s done");
+		else
+		{
+			output("base. Slowly rubbing your entire length from ");
+			if(pc.cocks[0].hasFlag(GLOBAL.FLAG_FLARED)) output("flared");
+			else if(pc.cocks[0].hasFlag(GLOBAL.FLAG_TAPERED)) output("pointed");
+			else if(pc.cocks[0].hasFlag(GLOBAL.FLAG_BLUNT)) output("blunt");
+			else output("swollen");
+			output(" top to bulging bottom, Stella begins passionately planting long, noisy kisses on the base of your dick and all over your groin.");
+			output("\n\nIt’s a nice feeling to have a voluptuous, slutty bimbo pressing her lipsticked lips against you while she gives you a slow, sensual handjob, so you let it go on on for as long as she wants.");
+		}
+		output("By the time she’s done");
 		if(pc.balls > 1) output(" with your nuts");
 		else output(" face-fucking your lap");
-		output(", you’re pretty close to cumming. Gently directing her affections north, you gradually get her up");
-		if(pc.balls > 1) output(" from your balls");
+		output(", you’re pretty close to cumming. Gently directing her affections north, you gradually get her");
+		if(pc.balls > 1) output(" up from your balls");
+		else output(" mouth ascending again");
 		output(" and focused back on your shaft, re-planting all of the kisses she put there before, climbing back to your tip. You push her down your cock and she’s only too happy to acquiesce, placing herself in your hands as you begin to rock your hips on her bed, fucking her immaculate face while she looks up at you with those stunning aqua blue eyes.");
 
 		output("\n\nThe sight of a bimbo beach doll in complete submissiveness to your whims is too much to handle, and you find yourself fucking her throat even faster as you approach the peak, wet slaps echoing throughout Stella’s luxury suite as you defile it with her saliva and your juices. With a loud, bestial roar of release, you grab her and hold her down on your cock while you begin pumping her full of your spunk, your cumvein swelling in her throat. ");
@@ -760,7 +802,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		{
 			output("You blow your entire load into her tummy, shooting rope after rope down her throat after the puppygirl’s ");
 			if(pc.balls > 1) output("ballplay ");
-			else output("attentions ");
+			else output("oral play ");
 			output("earned her so much jizz. She looks thrilled about it, too, her eyes rolling back as your warmth slides down the back of her throat.");
 		}
 		else if(cumQ < 5000) 
