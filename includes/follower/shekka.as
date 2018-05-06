@@ -222,7 +222,7 @@ public function talkToCrewShekkaAboutTarkus():void
 	output("\n\n<i>“I’ve seen the syllabus for the new Rasks though. Unlike most of my people, I plan. I’m a planner. And hopefully all the new kids will turn out to be planners too. Happy, healthy planners... who won’t take any of their shit.”</i>");
 	output("\n\nIt’s the first time you’ve ever seen her properly express her distaste about someone. It’s kind of scary.");
 	//Domme//
-	//?if() output("The urge to break her in has your fingers twitching///subby//Mnf.}");
+	//?if() output("The urge to break her in has your fingers twitching///subby//Mnf.");
 	output("\n\nShekka takes a deep breath after that, fondly stroking a spanner. <i>“Well, with that little unpleasantness covered. Anything else, [pc.name]?”</i>");
 	//Next: back to Places menu
 	processTime(30);
@@ -240,7 +240,7 @@ public function shekkaTalksAboutTavros():void
 	output("\n\n<i>“Terrifying!”</i> she says with delight, wiggling her hips.");
 	output("\n\nThe response gives you a moment’s pause, but the curvy egg-layer doesn’t leave you curious for too long. <i>“Let’s look at it this way. Back when I lived on Tarkus the only thing that scared me was the dangers I already knew about. Tavros? Sweet stars and suns [pc.boyGirl]! There is now so much I don’t know. And somehow I’m fairly sure I could fix every last part of it!”</i>");
 	output("\n\nHer cheerful smile becomes a briefly bashful grin <i>“Nearly got in trouble trying to tweak some girl’s engine, apparently ship security? Noooot fans of unsolicited repairs on dry-docked stuff, even if it looks half like scrap. Maybe I was just nostalgic.”</i>");
-	output("\n\n<i>It couldn’t be, could it?</i>");
+	output("\n\n<i>“It couldn’t be, could it?”</i>");
 	output("\n\n<i>“The drinking is cool, the totally open sexual stuff is as exciting as it is mind-blowing... although I admit I’d have more fun doing that stuff with you than any other random spacer,”</i> she giggles when you roll your eyes before continuing. <i>“It’s a space station, except it’s right here in the middle of galactic fuck-nowhere, drawing in more varieties of aliens and droids and sex and drugs and foods than I’ve literally ever been able to dream of. And I dream pretty big.”</i>");
 	if(pc.isBro()) output("\n\n<i>“Yeah, I think it’s a cool place too.”</i>");
 	else if(pc.isBimbo()) output("\n\n<i>“Ohmigosh, I love it too Shekka!”</i>");
@@ -1069,20 +1069,18 @@ public function shekkaSleepWithMornings():void
 			output("Your dreams are interrupted by an all-encompasing sensation of warmth at your core, of dainty little fingers squeezing at your thighs. Opening your eyes to a brand new day feels a little bit too challenging, but you do so anyway at the rather insistent need to cum. Unknown waves of orgasm are apparently cresting the shores of your resolve, and a peek beneath the bedsheets reveals the culprit; Shekka.");
 			output("\n\nHer ears are laid out across your legs, ass up in the air as the nude creature lovingly licks and kisses at ");
 			if(pc.hasVagina()) output("your thoroughly-soaked slit");
-			else if(pc.hasAKnot()) output("engorging knot");
-			else output("turgid shaft");
-			output(". The very first question on your lips is how long she’s been at it, but the breath is practically stolen from you after one exceptionally adoring kiss. Apparently it must have been a while since you’re immediately sent crashing into orgasm, ");
-			if(pc.hasCock()) 
-			{
-				output("painting your own chest in [pc.cum]");
-			}
-			else output("coating her face in [pc.girlcum]");
+			else if(pc.hasCock()) output(pc.hasAKnot() ? "engorging knot" : "turgid shaft");
+			else output("your [pc.groin]");
+			output(". The very first question on your lips is how long she’s been at it, but the breath is practically stolen from you after one exceptionally adoring kiss. Apparently it must have been a while since you’re immediately sent crashing into orgasm");
+			if(pc.hasCock()) output(", painting your own chest in [pc.cum]");
+			else if(pc.hasVagina()) output(", coating her face in [pc.girlcum]");
 			output(".");
 			output("\n\nShekka licks her lips, ensuring the rest of your morning is taken up by her dutiful cum-cleaning tongue, before you’re given a nuzzle. <i>“Good morning, [pc.name]!”</i>");
 			if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) shekkaSpitAddiction(4);
+			pc.orgasm();
 		}
 	}
-	sleep(false);
+	//sleep(false);
 }
 
 public function shekkaCrewSexMenu():void
@@ -3404,7 +3402,7 @@ public function futaShekkaLezOut():void
 		output(". <i>“Go on, forelegs down, ass up. Gotta make sure to breed you right.”</i>");
 	}
 	//PC has muzzle & fur.
-	else if(pc.hasFur()) output("\n\n<i>“Good [pc.boyGirl], making the right choice,”</i> Shekka says with sassy smile. <i>“Go on. Get in position.”</i> She points at the floor. <i>“You know which one animals use.”</i> She strokes her cock, completely unaware of how offensive she’s being. <i>“Nature knows what the fuck it’s doing. Putting your face on the floor and your ass in the air is the best way to make sure every drop slides {into that fertile womb of yours/into the deepest, most sensitive parts of you.”</i>");
+	else if(pc.hasFur()) output("\n\n<i>“Good [pc.boyGirl], making the right choice,”</i> Shekka says with sassy smile. <i>“Go on. Get in position.”</i> She points at the floor. <i>“You know which one animals use.”</i> She strokes her cock, completely unaware of how offensive she’s being. <i>“Nature knows what the fuck it’s doing. Putting your face on the floor and your ass in the air is the best way to make sure every drop slides " + ((!pc.isPregnant(x) && pc.fertility() > 0) ? "into that fertile womb of yours" : "into the deepest, most sensitive parts of you") + ".”</i>");
 	//Nomuzznocent
 	else output("\n\n<i>“Oh, you fucking slut,”</i> Shekka growls. <i>“Get down on the ground and get that ass up in the air for me.”</i> She pants, openly jacking herself off to the sight of you. <i>“I’ve been fantasizing about this since you got me this cock, and it always comes back to thinking of you like that, offering it up to me, giving me the chance to pour enough cum into your womb to impregnate an entire raskvel village.”</i>");
 
@@ -3521,7 +3519,7 @@ public function futaShekkaLezOut():void
 	//No heat
 	if(!pc.inHeat())
 	{
-		output("\n\nSomething about the warmth and the heat of Shekka’s impassioned breeding feels just so... so very right to you. Your cheek rubs into the deck as she the little mechanic does her best to breed you, your [pc.vaginas] cumming reflexively");
+		output("\n\nSomething about the warmth and the heat of Shekka’s impassioned breeding feels just so... so very right to you. Your cheek rubs into the deck as the little mechanic does her best to breed you, your [pc.vaginas] cumming reflexively");
 		if(pc.hasCock()) output(", forcing your [pc.cocks] to dump your wasted load on the floor");
 		output(". You clench up from ");
 		if(pc.hasToes()) output("toes to tits");

@@ -252,6 +252,17 @@ package classes.UIComponents
 			this.mouseEnabled = true;
 		}
 		
+		public function setItemDisabledData(cap:String = "", quantity:int = 1, ttHeader:String = null, ttBody:String = null, ttComparison:String = null):void
+		{
+			this.clearData();
+			this.buttonName = cap;
+			this.itemQuantity = quantity;
+			this.tooltipHeader = ttHeader;
+			this.tooltipBody = ttBody;
+			this.tooltipComparison = ttComparison;
+			this.mouseEnabled = true;
+		}
+		
 		public function setDisabledData(cap:String = "", ttHeader:String = null, ttBody:String = null):void
 		{
 			this.clearData();

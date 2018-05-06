@@ -921,6 +921,11 @@
 			userInterface.addItemButton(slot, item.shortName, item.quantity, func, arg, ttHeader, ttBody, comparisonString);
 		}
 		
+		public function addItemDisabledButton(slot:int, item:ItemSlotClass, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
+		{
+			addItemButton(slot, item, undefined, undefined, ttHeader, ttBody, seller, buyer);
+		}
+		
 		public function addOverrideItemButton(slot:int, item:ItemSlotClass, buttonName:String, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
 		{
 			var comparisonString:String = null;

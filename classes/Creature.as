@@ -11906,7 +11906,7 @@
 		public function isHuman():Boolean
 		{
 			//return race() == "human";
-			return (humanScore() >= 4);
+			return (!isHalfHuman() && humanScore() >= 4);
 		}
 		
 		public function isHalfHuman():Boolean
@@ -20358,7 +20358,6 @@
 					case "Goblinola Bar":
 					case "Laquine Ears":
 					case "LimberTime":
-					case "The Treatment":
 						if(thisStatus.minutesLeft <= 0) thisStatus.minutesLeft = 1;
 						break;
 					case "Ovilium":

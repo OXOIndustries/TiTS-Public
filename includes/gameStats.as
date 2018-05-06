@@ -7071,13 +7071,23 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2(String(horseCocksTotal));
 				var horseCocksOwned:int = synthSheathsOwned();
 				var horseCocksUsed:int = synthSheathsUsed();
-				if(horseCocksOwned + horseCocksUsed > 0)
+				var horseCocksLost:int = synthSheathsLost();
+				if(horseCocksOwned + horseCocksUsed + horseCocksLost > 0)
 				{
-					output2(" (");
-					if(horseCocksOwned > 0) output2("Own " + horseCocksOwned);
-					if(horseCocksOwned > 0 && horseCocksUsed > 0) output2(", ");
-					if(horseCocksUsed > 0) output2("Used " + horseCocksUsed);
-					output2(")");
+					var horseCockList:Array = [];
+					if(horseCocksOwned > 0) horseCockList.push("Own " + horseCocksOwned);
+					if(horseCocksUsed > 0) horseCockList.push("Used " + horseCocksUsed);
+					if(horseCocksLost > 0) horseCockList.push("Lost " + horseCocksLost);
+					if(horseCockList.length > 0)
+					{
+						output2(" (");
+						for(var hc:int = 0; hc < horseCockList.length; hc++)
+						{
+							if(hc != 0) output2(", ");
+							output2(horseCockList[hc]);
+						}
+						output2(")");
+					}
 				}
 			}
 			// Mindwash!

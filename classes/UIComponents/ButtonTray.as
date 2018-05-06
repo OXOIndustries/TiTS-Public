@@ -430,7 +430,8 @@
 		{
 			if (slot <= 14)
 			{
-				_buttons[slot].setItemData(name, quantity, func, arg, ttHeader, ttBody, ttComparison);
+				if(func == undefined) _buttons[slot].setItemDisabledData(name, quantity, ttHeader, ttBody, ttComparison);
+				else _buttons[slot].setItemData(name, quantity, func, arg, ttHeader, ttBody, ttComparison);
 			}
 			
 			_buttonData[slot].setData(name, func, arg, ttHeader, ttBody);

@@ -1295,6 +1295,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 			}
 			
 			var interrupt:Boolean = false;
+			var wakeEvents:Array = [];
 			
 			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
@@ -1307,8 +1308,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 					}
 					if (shekkaIsCrew() && rand(3) == 0)
 					{
-						shekkaSleepWithMornings();
-						interrupt = true;
+						wakeEvents.push(shekkaSleepWithMornings);
 					}
 					break;
 				case "ANNO":
@@ -1321,8 +1321,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				case "SHEKKA":
 					if (shekkaIsCrew() && rand(3) == 0)
 					{
-						shekkaSleepWithMornings();
-						interrupt = true;
+						wakeEvents.push(shekkaSleepWithMornings);
 					}
 					break;
 				case "BESS":
@@ -1433,6 +1432,11 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (tryProcDommyReahaTime(minPass - rand(301)))
 		{
 			addButton(0, "Next", reahaDommyFuxTime);
+			return;
+		}
+		if (wakeEvents.length > 0)
+		{
+			addButton(0, "Next", wakeEvents[rand(wakeEvents.length)]);
 			return;
 		}
 	}

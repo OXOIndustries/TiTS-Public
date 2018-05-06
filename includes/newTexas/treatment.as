@@ -50,6 +50,14 @@ public static const TREATMENT_GAIN_TARGETS:Array = [50, 52, 56, 62, 71, 86, 100,
 public function treatmentHourProcs(totalHours:int):void
 {
 	var effect:StorageClass = pc.getStatusEffect("The Treatment");
+	
+	if(effect == null) return;
+	
+	if(effect.minutesLeft <= 0)
+	{
+		effect.minutesLeft = 1;
+		return;
+	}
 
 	var startHours:int = effect.value3;
 	effect.value3 += totalHours;

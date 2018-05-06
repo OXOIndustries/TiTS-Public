@@ -331,13 +331,20 @@ public function defeatDaKorgiShit():void
 	clearMenu();
 	//[Pump Her Puss]
 	//Cock that fits in pussy
-	if(pc.hasCock() && pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(0,"FuckHerPuss",pumpKorgiPuss,undefined,"Fuck Her Pussy","If you want to breed the puppy, you’ll need a cock.");
-	else addDisabledButton(0,"FuckHerPuss","Fuck Her Pussy","You need a penis that fits in her vagina in order to do this.");
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(0,"FuckHerPuss",pumpKorgiPuss,undefined,"Fuck Her Pussy","Fuck her right in the pussy.");
+		else addDisabledButton(0,"FuckHerPuss","Fuck Her Pussy","You need a penis that fits in her vagina in order to do this.");
+	}
+	else addDisabledButton(0,"FuckHerPuss","Fuck Her Pussy","If you want to breed the puppy, you’ll need a cock.");
 
 	//[Tit Fuck]
 	//Needs cock
-	if(pc.hasCock() && pc.smallestCockLength() < 42) addButton(1,"Tit Fuck",titfuckKorgonneWin,undefined,"Tit Fuck","A tightly bound chest like hers would be perfect for people with dicks.");
-	else if(pc.hasCock()) addDisabledButton(1,"Tit Fuck","Tit Fuck","You’re too big this. Maybe do something more appropriate to the size of your maleness.");
+	if(pc.hasCock())
+	{
+		if(pc.smallestCockLength() < 42) addButton(1,"Tit Fuck",titfuckKorgonneWin,undefined,"Tit Fuck","A tightly bound chest like hers would be perfect for people with dicks.");
+		else addDisabledButton(1,"Tit Fuck","Tit Fuck","You’re too big this. Maybe do something more appropriate to the size of your maleness.");
+	}
 	else addDisabledButton(1,"Tit Fuck","Tit Fuck","You need a penis to tit-fuck her.");
 
 	//Giant dick sex - dick >= 42
@@ -345,23 +352,35 @@ public function defeatDaKorgiShit():void
 	else addDisabledButton(2,"DickWorship","Dick Worship","You need a dick at least 42 inches long for her to please you with her whole body.");
 
 	//[Ride Her Tongue]
-	if(pc.hasVagina() && !pc.isBlocked(0)) addButton(3,"Ride Tongue",rideTheKorgiTongue,undefined,"Ride Tongue","That long tongue of hers would probably feel great if you had a pussy!");
-	else if(pc.isBlocked(0)) addDisabledButton(3,"Ride Tongue","Ride Tongue","You ought to get rid of that plug in your puss first.");
+	if(pc.hasVagina())
+	{
+		if(!pc.isBlocked(0)) addButton(3,"Ride Tongue",rideTheKorgiTongue,undefined,"Ride Tongue","That long tongue of hers would probably feel great if you had a pussy!");
+		else addDisabledButton(3,"Ride Tongue","Ride Tongue","You ought to get rid of that plug in your puss first.");
+	}
 	else addDisabledButton(3,"Ride Tongue","Ride Tongue","You need a vagina in order to ride her tongue.");
 
 	//[Let Her Lead]
 	//Needs fittable dick
-	if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(4,"Let Her Lead",letDatKorgiLeadWinsex,undefined,"Let Her Lead","You’ll need a dick if you want her to ride you.");
-	else addDisabledButton(4,"Let Her Lead","Let Her Lead","You need a dick that will fit in her ass for this.");
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(4,"Let Her Lead",letDatKorgiLeadWinsex,undefined,"Let Her Lead","Have her ride you.");
+		else addDisabledButton(4,"Let Her Lead","Let Her Lead","You need a dick that will fit in her ass for this.");
+	}
+	else addDisabledButton(4,"Let Her Lead","Let Her Lead","You’ll need a dick if you want her to ride you.");
 
 	//Requires taur + dick/balls or vagina.
-	if(pc.isTaur() && ((pc.hasVagina() && !pc.isBlocked(0)) || (pc.hasCock() && pc.balls > 0))) addButton(5,"Sit On Her",sitOnKorgiForTaurs,undefined,"Sit On Her","Only centaurs are going to be able to do this.");
+	if((pc.hasVagina() && !pc.isBlocked(0)) || (pc.hasCock() && pc.balls > 0))
+	{
+		if(pc.isTaur()) addButton(5,"Sit On Her",sitOnKorgiForTaurs,undefined,"Sit On Her","Use your tauric body to sit on her.");
+		else addDisabledButton(5,"Sit On Her","Sit On Her","Only centaurs are going to be able to do this.");
+	}
 	else addDisabledButton(5,"Sit On Her","Sit On Her","You need to be a centaur with a vagina or a centaur with balls and a penis for this.");
 	
-	if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades") && (!pc.hasCock() || eligibleForKorgiHumiliation())) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,undefined,"HardlightFuck","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
-	else if(!pc.hasHardLightEquipped()) addDisabledButton(6,"HardlightFuck","HardlightFuck","You need hardlight-enabled underwear for this.");
-	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","HardlightFuck","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size.</b>.");
-	else addDisabledButton(6,"HardlightFuck","HardlightFuck","Your [pc.cockBiggest] is nothing to scoff at. Use it instead.");
+	if(eligibleForKorgiHumiliation()) addButton(6,"CockMockery",korgonneHardlightPussyStuffsStuffStuffings,undefined,"Cock Mockery","Your [pc.cockBiggest] is nothing to scoff at. Use it instead.");
+	else if(pc.hasHardLightEquipped() && pc.hasKeyItem("Hardlight Strap-on Upgrades")) addButton(6,"HardlightFuck",korgonneHardlightPussyStuffsStuffStuffings,undefined,"Hardlight Punishment","See if your hardlight sextoy can satisfy this insatiable puppy slut.");
+	else if(pc.hasCock()) addDisabledButton(6,"CockMockery","Cock Mockery","Your [pc.cockBiggest] is not nearly thick enough for this.");
+	else if(!pc.hasHardLightEquipped()) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this.");
+	else if(!pc.hasKeyItem("Hardlight Strap-on Upgrades")) addDisabledButton(6,"HardlightFuck","Hardlight Punishment","You need hardlight-enabled underwear for this - <b>with the upgrade that enables you to change the size.</b>.");
 
 	addButton(14,"Leave",defeatDaKorgiLeave);
 }
@@ -945,7 +964,7 @@ public function korgonneHardlightPussyStuffsStuffStuffings():void
 	var buttfux:Boolean = (pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) 
 	//intro for small cocks
 	//coder to define 'small' based on korgonne capacity
-	if(eligibleForKorgiHumiliation() && pc.hasCock())
+	if(eligibleForKorgiHumiliation())
 	{
 		output("You ");
 		if(!pc.isCrotchExposedByArmor()) output("begin to strip your [pc.armor]");
