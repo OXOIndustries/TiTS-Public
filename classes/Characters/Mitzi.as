@@ -6,6 +6,13 @@
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.TarkusJokeBook;
 	import classes.Items.Apparel.MitzisDress;
+	import classes.Items.Apparel.SchoolgirlCostume;
+	import classes.Items.Apparel.MitzisYogaBikini;
+	import classes.Items.Apparel.MitzisLibrarianOutfit;
+	import classes.Items.Apparel.TransparentZipsuit;
+	import classes.Items.Apparel.MitzisSuccBikini;
+	import classes.Items.Apparel.MitziCowFetishCostume;
+	import classes.Items.Apparel.MitziNunFetishCostume;
 	
 	public class Mitzi extends Creature
 	{
@@ -16,7 +23,13 @@
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
-			//this.inventory.push(new ProphylacticGoblin());
+			this.inventory.push(new SchoolgirlCostume());
+			this.inventory.push(new MitzisYogaBikini());
+			this.inventory.push(new MitzisLibrarianOutfit());
+			this.inventory.push(new TransparentZipsuit());
+			this.inventory.push(new MitzisSuccBikini());
+			this.inventory.push(new MitziCowFetishCostume());
+			this.inventory.push(new MitziNunFetishCostume());
 						
 			this.typesBought[this.typesBought.length] = GLOBAL.ALL;
 			this.sellMarkup = 1.3;

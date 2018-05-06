@@ -41,7 +41,18 @@ public function mitziRecruited():Boolean
 public function showMitzi(nude:Boolean = false):void
 {
 	showName("\nMITZI");
-	showBust("MITZI" + mitziCurrentDress() + (nude ? "_NUDE":""));
+	var dressString:String = "";
+	var dress:ItemSlotClass = mitziCurrentDress();
+	if(dress is MitzisDress) dressString = "PINK_DRESS";
+	else if(dress is SchoolgirlCostume) dressString = "SCHOOLGIRL";
+	else if(dress is MitzisYogaBikini) dressString = "YOGAPANTS";
+	else if(dress is MitzisLibrarianOutfit) dressString = "LIBRARIAN";
+	else if(dress is TransparentZipsuit) dressString = "ZIPSUIT";
+	else if(dress is MitzisSuccBikini) dressString = "BIKINI";
+	else if(dress is MitziCowFetishCostume) dressString = "COW";
+	else if(dress is MitziNunFetishCostume) dressString = "NUN";
+	else dressString = "CUSTOM";
+	showBust("MITZI" + dressString + (nude ? "_NUDE":""));
 }
 
 //Mitzi first appears in the stellar tether dungeon in an empty square.
@@ -357,12 +368,25 @@ public function kickMitziOffCrew():void
 //Mitzi got picked up by a drug-dealer on his way through Tarkus and has a ton of <i>“special treats”</i> for her lover, including once-weekly presents of throbb or gush. This is basically a reskin of CoC goblin potions/salves.
 //Sometimes wears illegal perfumes like <i>“rutting,”</i> <i>“heat,”</i> <i>“priaprism”</i>, and <i>“adulation”</i>. The first three can induce the relevant statuses... the latter results in the loviest oral pairing scene I can write.
 
-public function mitziCurrentDress():String
+public function mitziCurrentDress():ItemSlotClass
 {
-	if(!pc.hasStatusEffect("Mitzi Dressed") || flags["MITZI_CLOTHING"] == undefined)
+	//Quick fix for my testing save. 9999 delete this for release
+	if(!mitzi.hasItemByClass(SchoolgirlCostume))
+	{
+		mitzi.inventory.push(new SchoolgirlCostume());
+		mitzi.inventory.push(new MitzisYogaBikini());
+		mitzi.inventory.push(new MitzisLibrarianOutfit());
+		mitzi.inventory.push(new TransparentZipsuit());
+		mitzi.inventory.push(new MitzisSuccBikini());
+		mitzi.inventory.push(new MitziCowFetishCostume());
+		mitzi.inventory.push(new MitziNunFetishCostume());
+	}
+	if(!pc.hasStatusEffect("Mitzi Dressed"))
 	{
 		pc.createStatusEffect("Mitzi Dressed");
 		pc.setStatusMinutes("Mitzi Dressed",120);
+		mitziEquip(mitzi.inventory[rand(mitzi.inventory.length)]);
+		/*
 		var clothselector:Number = rand(10);
 		if(clothselector <= 1) flags["MITZI_CLOTHING"] = "PINK_DRESS";
 		else if(clothselector == 2) flags["MITZI_CLOTHING"] = "SCHOOLGIRL";
@@ -373,55 +397,138 @@ public function mitziCurrentDress():String
 		else if(clothselector == 7) flags["MITZI_CLOTHING"] = "LIBRARIAN";
 		else if(clothselector == 8) flags["MITZI_CLOTHING"] = "NUN";
 		//else if(clothselector == 8) flags["MITZI_CLOTHING"] = "CUSTOM";
+		*/
 	}
-	return flags["MITZI_CLOTHING"];
+	return mitzi.armor;
+}
+
+public function mitziEquip(arg:ItemSlotClass):Boolean
+{
+	if(mitzi.armor.longName == arg.longName) return true;
+	for(var x:int = 0; x < mitzi.inventory.length; x++)
+	{
+		//Found the item in her inventory
+		if(mitzi.inventory[x].longName == arg.longName)
+		{
+			//Add armor to inventory.
+			mitzi.inventory.push(mitzi.armor);
+			//Set armor to new item:
+			mitzi.armor = mitzi.inventory[x];
+			//Remove equipped item from inventory.
+			mitzi.inventory.splice(x, 1);
+			return true;
+		}
+	}
+	return false;
+}
+
+public function dressMitziUpApproach():void
+{
+	clearOutput();
+	showMitzi();
+	output("You inform Mitzi that you’re going to pick out something for her to wear.");
+	output("\n\n<i>“Oooh, really? Mitzi has like, the best [pc.Master]! Who else would care enough to pretty up [pc.hisHer] favorite sex-toy?”</i>");
+	output("\n\n<u>Mitzi has the following outfits available:</u>");
+	output("\n(<b>Worn</b>) " + StringUtil.upperCase(mitzi.armor.description));
+	processTime(1);
+	clearMenu();
+	addItemButton(0, mitzi.armor, mitziKeepCurrentOutfit, mitzi.armor);
+	for(var x:int = 0; x < mitzi.inventory.length; x++)
+	{
+		output("\n" + StringUtil.upperCase(mitzi.inventory[x].description));
+		addItemButton(x+1, mitzi.inventory[x], mitziPCPickOutfit, mitzi.inventory[x]);
+	}
+	output("\n\nWhat will you have her wear?");
+	addButton(14,"Back",approachCrewMitzi,true);
+}
+
+public function mitziKeepCurrentOutfit(arg:ItemSlotClass):void
+{
+	clearOutput();
+	if(!pc.hasStatusEffect("Mitzi Dressed")) pc.createStatusEffect("Mitzi Dressed");
+	pc.setStatusMinutes("Mitzi Dressed",24*60*7);
+	showMitzi();
+	output("You let Mitzi know that she should keep wearing around her [mitzi.armor]. It’s the sexiest outfit she owns.");
+	output("\n\n<i>“Omigosh? Really? Okay, [pc.Master], Mitzi will wear it for like... a week! Unless it gets too cummy. Then she’ll lick it clean and wear it again.”</i>");
+	output("\n\nThat’s certainly... ");
+	if(pc.isBimbo()) output("a sexy");
+	else output("an");
+	output(" answer.");
+	processTime(2);
+	pc.lust(3);
+	clearMenu();
+	addButton(0,"Next",approachCrewMitzi,true);
+}
+public function mitziPCPickOutfit(arg:ItemSlotClass):void
+{
+	clearOutput();
+	if(!pc.hasStatusEffect("Mitzi Dressed")) pc.createStatusEffect("Mitzi Dressed");
+	pc.setStatusMinutes("Mitzi Dressed",24*60*3);
+	output("You make your selection.");
+	output("\n\n<i>“Ooooh, Mitzi has a lot of fun with that one. She’ll wear it around for days, [pc.Master], all for you.”</i> Her tail affectionately caresses your cheek");
+	if(pc.libido() >= 60) output(", and you can't help but give it a quick kiss");
+	output(".");
+	output(ParseText("\n\nThe bimbo goblin makes a show of peeling out of her [mitzi.armor] and slowly unveiling more and more of her almost perfectly smooth skin. You have to shut down multiple attempts at sex just to keep her simple mind on task, but after the third rejection, she gets the hint and slips into her newly designated slut-wear."));
+	mitziEquip(arg);
+	output(" <i>“Mmmm, maybe this’ll get you to fuck me. What do you think, [pc.Master]?”</i> Mitzi twirls. <i>“It makes you want to fuck Mitzi to pieces, doesn’t it?”</i>");
+	pc.lust(5);
+	processTime(2);
+	showMitzi();
+	clearMenu();
+	addButton(0,"Next",approachCrewMitzi,true);
 }
 
 //Mitzi crew bonus and approach screen is clothing dependant:
 public function mitziCrewBonus():String
 {
-	var dressString:String = mitziCurrentDress();
+	var dress:ItemSlotClass = mitziCurrentDress();
 	var buff:String = "";
 	//Pink dress
-	if(dressString == "PINK_DRESS")
+	if(dress is MitzisDress)
 	{
 		buff += "\n\nMitzi is brushing her pigtails, clad in the same pink, latex dress she wore when you met her. It seems to enhance her curves rather than hide them, displaying the highlights of her nipples in shimmering neon. At the sight of you, she puts down the brush and puckers her lips, rolling a layer of heavy, purple gloss across them with deliberate slowness.";
 	}
 	//Schoolgirl
-	else if(dressString == "SCHOOLGIRL")
+	else if(dress is SchoolgirlCostume)
 	{
 		buff += "\n\nMitzi spends her time patrolling the ship in a hyper-sexualized parody of a schoolgirl’s outfit, blowing bubbles and taking selfies. The skirt doesn’t even cover the bottom halves of her quaking buttcheeks, though it happily obscures her perpetually moist slit... most of the time. Her top is a low-cut, white blouse that’s too transparent to hide her braless state. An improperly applied tie and neatly done-up pigtails complete the goblin bimbo’s look.";
 	}
 	//Yoga pants & microbikini
-	else if(dressString == "YOGAPANTS")
+	else if(dress is MitzisYogaBikini)
 	{
 		buff += "\n\nMitzi has apparently decided to start doing yoga - and decided the best place to run through her routine of stretches is your ship’s busiest corridor. The green-skinned slut somehow blocks the entire passage with her routine, shifting to lift her ass, just barely shrink-wrapped in too-small yoga pants, in your direction. Her top is a white micro-bikini top that may as well be glued to her stiff nipples. Pink hearts adorn the teeny weeny cloth patches.";
 	}
 	//Crotchless black bikini
-	else if(dressString == "BIKINI")
+	else if(dress is MitzisSuccBikini)
 	{
 		buff += "\n\nMitzi casually leans against a bulkhead. Instead of her usual slutwear, she’s opted for a black, crotchless bikini with leather straps. Purple gemstones line the bands, glittering darkly as the emerald curves beneath twist and writhe in apparent ecstasy. Her spaded tail emerges from between her legs, dripping slowly as Mitzi regards you with hungry eyes. You notice the tiny horns on her forehead just then, held in place by a near-transparent band to complete her succubus costume.";
 	}
 	//Cow
-	else if(dressString == "COW")
+	else if(dress is MitziCowFetishCostume)
 	{
-		buff += "\n\nMitzi crawls around the ship on all fours. Brownish pads designed to resemble hooves guard her knees while pitch-black socks hide everything behind. Shoulder-length white gloves, marked with patchwork black splotches, compliment her panties and nursing bra. She’s even painted her spaded tail to resemble a puff of brown fur. Anyone can put together a cow-girl costume, but Mitzi takes it to the next level. Trails of dribbling white mark her path, thanks to a ";
-		if(CodexManager.entryUnlocked("Gush")) buff += "recent dose of gush";
-		else buff += "some sort of lactation drug";
+		buff += "\n\nMitzi crawls around the ship on all fours. Brownish pads designed to resemble hooves guard her knees while pitch-black socks hide everything behind. Shoulder-length white gloves, marked with patchwork black splotches, compliment her panties and nursing bra. She’s even painted her spaded tail to resemble a puff of brown fur. Anyone can put together a cow-girl costume, but Mitzi takes it to the next level. Trails of dribbling white mark her path, thanks to ";
+		if(9999 == 0) buff += "the time you gave her Gush";
+		else
+		{
+			buff += "a ";
+			if(CodexManager.entryUnlocked("Gush")) buff += "recent dose of gush";
+			else buff += "some sort of lactation drug";
+			buff += ". The flow is rapidly slowing";
+		}
 		buff += ", and every time you hear her moo, the humming of a concealed vibrator cranks up a notch.";
 	}
 	//Zipsuit
-	else if(dressString == "ZIPSUIT")
+	else if(dress is TransparentZipsuit)
 	{
 		buff += "\n\nA goblin in a full-body, translucent jumpsuit prowls the confines of your ship, parading her shrink-wrapped body around with nothing but a purr and a smile. When Mitzi sees you, or anyone else, for that matter, her tail slithers around her upper thigh, the spaded tip drawing the eye to feast upon her perpetually aroused nethers. Sometimes she’ll fold her arms under her chest and bounce around blind corners, hoping to slam tit-first the nearest warm body.";
 	}
 	//Librarian
-	else if(dressString == "LIBRARIAN")
+	else if(dress is MitzisLibrarianOutfit)
 	{
 		buff += "\n\nYour airheaded gabilani crewmate has taken to spending her time lounging about in the mess, reading something from a banged-up tablet. A pair of wide-rimmed, circular glasses nearly counter Mitzi’s typical vacant stare, and she’s chosen to match them with a laughably undersized vest and skimpy, ink-black skirt. The skirt does nothing to impede one of her hands from climbing up underneath it, and at second glance, you note that the screen is showing hardcore pornography. You wager she’s aiming for the sexy librarian look.";
 	}
 	//Nun!
-	else if(dressString == "NUN")
+	else if(dress is MitziNunFetishCostume)
 	{
 		buff += "\n\nYour self-titled \"pet goblin\”</i> can be found kneeling in front of your cockpit chair, hands steepled together in something that resembles prayer. Her mouth hangs wide-open in preparation to receive her " + pc.mf("lord’s","mistress’s") + " sexual sacrament. She has chosen to dress herself in the white and black of a nunnery, but like everything Mitzi touches, it’s been tarted up beyond indecency to deep perversion. A plunging neckline filled with cheap, transparent plastic dutifully displays her emerald orbs and the cusps of her dusky nipples. From the waist down, the rest of the garment tapers to a scanty ‘v,’ revealing Mitzi’s plump pussy through the too-thin fabric. Every fold and crease is plain to see, promising a heavenly sanctuary to any who dare enter.";
 	}
@@ -458,22 +565,22 @@ public function approachCrewMitzi(back:Boolean = false):void
 		mitziCrewMenu();
 		return;
 	}
-	var dressString:String = mitziCurrentDress();
+	var dressString:ItemSlotClass = mitziCurrentDress();
 	//Pink dress
-	if(dressString == "PINK_DRESS")
+	if(dressString is MitzisDress)
 	{
 		if(rand(2) == 0) output("<i>“Heya, [pc.Master],”</i> Mitzi chirps before you can so much as say ‘hi.’ <i>“Didja get bored, being all noble an’ heroic, and want to just bang Mitzi brainless for a few hours?”</i> She clutches at the hem of her dress excitedly and wiggles her hips.");
 		else output("<i>“Hi there, [pc.MisterMiss] Awesome!”</i> Mitzi shimmies up to press herself against you, one hand stroking the small of your back while the other winds toward your loins. <i>“Mitzi missed you...”</i> She squirms, rubbing her thighs together. <i>“Want to fuck? Just a quickie. Mitzi knowwws how busy her [pc.Master] is. She’ll make it quick.”</i> In a panic, she adds, <i>“But-it’ll-still-feel-supergood!”</i>");
 	}
 	//Schoolgirl
-	else if(dressString == "SCHOOLGIRL")
+	else if(dressString is SchoolgirlCostume)
 	{
 		if(rand(2) == 0) output("<i>“Mmmm,”</i> Mitzi coos, sucking a lollipop into her mouth. She pops it out a second later, stripped bare to the stalk. <i>“You wanna go fuck behind the drive core?”</i> She fans herself momentarily. <i>“Just bend me over and flip up my skirt. Nobody will see.”</i> She pops a beat-up codex out of... somewhere. <i>“Except for you, when you fuck Mitzi while we watch the holo.”</i>");
 
 		else output("<i>“Hey there, hot stuff.”</i> Mitzi jumps into your arms, scissoring her legs around your waist so that the jiggly globes of her ass are resting against your groin. <i>“Knew you couldn’t stay away. You’re like... a-dick-ted to little ol’ Mitzi, aren’t you?”</i> She kisses you, grinding her bare ass into your crotch for a long moment. When she finally lets you go, you feel dizzy and horny. <i>“Why don’t you take me right here, where the ship cams can see?”</i>");
 	}
 	//Yoga pants & microbikini
-	else if(dressString == "YOGAPANTS")
+	else if(dressString is MitzisYogaBikini)
 	{
 		if(rand(2) == 0) 
 		{
@@ -496,7 +603,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 		}
 	}
 	//Crotchless black bikini
-	else if(dressString == "BIKINI")
+	else if(dressString is MitzisSuccBikini)
 	{
 		if(rand(2) == 0) output("<i>“What a yummy looking morsel we have here,”</i> Mitzi throatily purrs the moment you give her the smallest inkling of attention. She stalks forward, soaked tail waving menacingly behind her. <i>“I’ve been so hungry without you, so aching and empty.”</i> The pretend succubus strokes her curvaceous body. <i>“Mitzi needs your sin. Just a little.”</i> She nibbles at a sensuously thick lip and gazes up at you imploringly. <i>“It’ll feel sooo good.”</i>\n\nShe really takes these outfits seriously...");
 		else 
@@ -509,7 +616,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 		}
 	}
 	//Cow
-	else if(dressString == "COW")
+	else if(dressString is MitziCowFetishCostume)
 	{
 		if(rand(2) == 0)
 		{
@@ -520,7 +627,10 @@ public function approachCrewMitzi(back:Boolean = false):void
 				if(pc.isTreated()) output(" if you didn’t moo fairly often yourself.");
 				else output(" if she wasn’t too dumb to know any better.");
 			}
-			output("\n\n<i>“Mitzi’s a cow-girl!”</i> the debased bimbo explains as if you were too dumb to understand her outfit. <i>“She’s been so good and so moo-milky, but [pc.Master] still didn’t fuck her enough!”</i> Pulling herself up onto her knees, she squeezes her tits. Thin trails of creamy gabilani milk sputter out onto the deck for a moment before drizzling to a stop. <i>“And now Mitzi’s all out of ma-moo-milk! That means it’s time to breed the cow, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
+			output("\n\n<i>“Mitzi’s a cow-girl!”</i> the debased bimbo explains as if you were too dumb to understand her outfit. <i>“She’s been so good and so moo-milky");
+
+			if(!mitzi.canLactate()) output(", but [pc.Master] still didn’t fuck her enough!”</i> Pulling herself up onto her knees, she squeezes her tits. Thin trails of creamy gabilani milk sputter out onto the deck for a moment before drizzling to a stop. <i>“And now Mitzi’s all out of ma-moo-milk! That means it’s time to breed the cow, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
+			else output(", but [pc.Master] doesn't give her enough Gush!”</i> Pulling herself up onto her knees, she squeezes her tits, hosing out a wave of milk. <i>“Mitzi wants to be a milky Mitzi-Cow for [pc.Master]! That means drugging and breeding until her brains squirt out of her big sexy cow-tits, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
 		}
 		else
 		{
@@ -528,7 +638,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 		}
 	}
 	//Zipsuit
-	else if(dressString == "ZIPSUIT")
+	else if(dressString is TransparentZipsuit)
 	{
 		if(rand(2) == 0)
 		{
@@ -540,7 +650,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 		}
 	}
 	//Librarian
-	else if(dressString == "LIBRARIAN")
+	else if(dressString is MitzisLibrarianOutfit)
 	{
 		if(rand(2) == 0)
 		{
@@ -556,7 +666,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 		}
 	}
 	//Nun!
-	else if(dressString == "NUN")
+	else if(dressString is MitziNunFetishCostume)
 	{
 		if(rand(2) == 0)
 		{
@@ -601,10 +711,65 @@ public function approachCrewMitzi(back:Boolean = false):void
 public function mitziCrewMenu():void
 {
 	clearMenu();
+	//Reset Mitzi's clothing change timer so long as the PC is interacting with her~
+	if(!pc.hasStatusEffect("Mitzi Dressed")) pc.createStatusEffect("Mitzi Dressed");
+	if(pc.getStatusMinutes("Mitzi Dressed") < 120) pc.setStatusMinutes("Mitzi Dressed",120);
+	addButton(0,"Appearance",mitziAppearance);
 	addButton(1,"Talk",talkToMitzi);
 	if(pc.lust() >= 33) addButton(2,"Sex",mitziCrewSexApproach);
 	else addDisabledButton(2,"Sex","Sex","You aren't turned on enough for this.");
+	addButton(3,"Dress Her",dressMitziUpApproach,undefined,"Dress Her","Help Mitzi pick out her wardrobe.");
 	addButton(14,"Back",crew);
+}
+
+//Appearance Screen
+public function mitziAppearance():void
+{
+	clearOutput();
+	showMitzi();
+	author("Fenoxo");
+	output("Mitzi rarely stands still unless it is to pose provocatively. Fortunately when the curvaceous cutie realizes that she is squarely fixed in your gaze, she does just that, cocking a hip and favoring you with a smoldering smile. To call the green-skinned gabilani over-sexualized would be an understatement. From her long, heavy lashes to her plush, angel-bow lips she radiates the kind of crass sensuality that high class prostitutes strive to embody. Bright pink, heart-shaped pupils stare back at you imploringly, begging you to finish your ocular exploration and ravish her for real.");
+	output("\n\nShifting slightly, the self-described goblin sets her purple pigtails, and her tits, bouncing.");
+	if(!mitzi.isChestExposed()) 
+	{
+		output(" The latter are barely contained by her [mitzi.chestCovers]. Mitzi’s outsized chest could make a pair of industrial wheelbarrows creak. It’s a wonder the clothing can hold together at all. Those K-cup knockers beg to be squeezed, and from the way the smirking bimbo keeps them jostling around, she knows.");
+		if(mitzi.isChestVisible()) output(" Jutting tit-tips lewdly distend her transparent garment, intent that you know every crease along their pebbly surface.");
+	}
+	else output("The latter are completely uncovered by her choice of attire, free to wobble and jostle in cleavage defining clashes. Those K-cup knockers seem like two emerald mountains, their summits crowned by sensitive, jutting tips whose perpetual hardness never seems to flag. Mitzi’s outsized chest could be wrapped up in the most chaste blouse, and the mammoth mounds’ libidinous squeezability would shine through as clear as daylight.");
+	output(" If you were small enough to squeeze under her 3’6”</i> frame, you could comfortable shelter beneath the physics-defying bosom.");
+
+	output("\n\nNo exploration of the viridian bimbo’s body would be complete without the long moments it takes your view to slide along the outlandishly bubbly expansive of her ass. She cocks her hip the other way when she sees you looking, sending the pillowy buttcheeks rolling.");
+	if(!mitzi.isAssExposed()) output(" A glimpse between the clapping callipygean orbs reveals a pristine pucker of the same vibrant green as its owner.");
+	else if(mitzi.isAssVisible()) output(" While you can see through her choice of transparent clothing, you can't glimpse the pucker beyond. Those colossal callipygean orbs are too firmly squeezed together to grant a peek between.");
+	else
+	{
+		output(" While you can’t see past her [pc.assCover] to view her pucker directly, ");
+		if(flags["9999"] != "anal") output("you can only assume it is as engineered for sex as the rest of its owner.");
+		else output("you know all too well that’s flawless and unblemished, almost brighter green than the rest of its owner.");
+	}
+	output(" A hind-end of such monumental magnitude would look absurd on anyone with normal bone-structure, but Mitzi’s hips are built like a freighter’s back-end, lending her more than ample room to sprout galaxy-class ass.");
+	//Crotch exposed
+	if(mitzi.isCrotchExposed() || mitzi.isCrotchVisible()) output("\n\nHow fortunate that your fuck-slave’s current clothing does nothing to conceal the sopping treasure between her thighs! When she spreads her breedable thighs apart, Mitzi’s box leaps into view. No matter what time of day, morning, or night, her incessant arousal ensures that her vulva remains plump and puffy. A sheen arousal slicks the inner lips, and the hyper-developed nub of her clitoris consistently peeks out in search of a caress, something Mitzi is all too happy to offer it.");
+	//Can’t see, havent fucked it.
+	else if(flags["MITZI_FUCKED"] == undefined) output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you can only assume that the feminine treasure between is every bit as libidinous and willing as the rest of her.");
+	//Can’t see it, have fucked it
+	else output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you’ve spent too long up close and personal with it to forget about it. The vulva is eternally plump with lust, slicked by beads of clear arousal at any time of the day or night. Its lusty sheen begs the viewer to lean closer, and a hyper-developed clitoris stands proudly out of its hood in search of a finger or tongue willing to bless its super-charged nerves with the a touch.");
+	//Merge
+	output("\n\nA spaded tail whips out to press against your chest");
+	if(!pc.isChestExposed())
+	{
+		if(pc.biggestTitSize() >= 3) output(", sliding meaningfully up your cleavage");
+		else output(", sliding meaningfully across your [pc.skinFurScalesNoun]");
+	}
+	else output(", sliding meaningfully across your still-dressed chest");
+	output(". From this angle, it looks almost heart-shaped, an idea reinforced by Mitzi’s skin brightening to pink at it’s edge. The affectionate attachment slithers up your neck to gently caress your chin. You can feel her heart excitedly beating through the soft skin as it slides higher still, only to yank away before it brushes your lips.");
+	output("\n\n<i>“Are you like, done looking now [pc.Master]? All this staring is getting Mitzi so horny!”</i>");
+	if(mitzi.armor is MitzisSuccBikini) output(" The giggling goblin points at the petite horns that jut from her forehead.");
+	else output(" The giggling goblin gestures to her chest. Horny indeed.");
+	pc.lust(5);
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",approachCrewMitzi,true);
 }
 
 public function mitziCrewSexApproach():void
