@@ -370,7 +370,7 @@ public function kickMitziOffCrew():void
 
 public function mitziCurrentDress():ItemSlotClass
 {
-	//Quick fix for my testing save. 9999 delete this for release
+	/*Quick fix for my testing save. delete this for release
 	if(!mitzi.hasItemByClass(SchoolgirlCostume))
 	{
 		mitzi.inventory.push(new SchoolgirlCostume());
@@ -380,7 +380,7 @@ public function mitziCurrentDress():ItemSlotClass
 		mitzi.inventory.push(new MitzisSuccBikini());
 		mitzi.inventory.push(new MitziCowFetishCostume());
 		mitzi.inventory.push(new MitziNunFetishCostume());
-	}
+	}*/
 	if(!pc.hasStatusEffect("Mitzi Dressed"))
 	{
 		pc.createStatusEffect("Mitzi Dressed");
