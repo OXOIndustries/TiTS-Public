@@ -422,6 +422,46 @@ public function mitziEquip(arg:ItemSlotClass):Boolean
 	return false;
 }
 
+public function giveMitziANewItem():void
+{
+	clearOutput();
+	showMitzi();
+	var buttonAdj:Number = 0;
+	output("What would you like to give to Mitzi?");
+	clearMenu();
+	addButton(14,"Back",dressMitziUpApproach);
+	for(var x:int = 0; x < pc.inventory.length; x++)
+	{
+		if(x == 14) buttonAdj = 1;
+		if((pc.inventory[x].type == GLOBAL.ARMOR || pc.inventory[x].type == GLOBAL.CLOTHING))
+		{
+			if(pc.inventory[x].sexiness >= 5)
+			{
+				addItemButton(x+buttonAdj,pc.inventory[x],giveMitziANewItemForReal,x);
+			}
+			else addItemDisabledButton(x+buttonAdj, pc.inventory[x], null, "<b>This isn't sexy enough for Mitzi.");
+		}
+		else addItemDisabledButton(x+buttonAdj, pc.inventory[x], null, "<b>Mitzi won't wear this type of item.");
+	}
+}
+
+public function giveMitziANewItemForReal(arg:Number):void
+{
+	clearOutput();
+	showMitzi();
+	output("You give Mitzi your " + pc.inventory[x].longName + ".");
+	output("\n\n<i>“Holyshitreally?”</i> Mitzi hugs your [pc.leg] crushingly tight. Little bimbo tears streak down her cheeks. <i>“You’re the best, [pc.Master]. Mitzi is going to wear this for you right now!”</i>\n\nUnsurprisingly, she makes it look hot as hell.");
+	//Shove that shit in Mitzi's inventory
+	mitzi.inventory.push(pc.inventory[arg]);
+	//Have her equip it.
+	mitziEquip(pc.inventory[arg]);
+	pc.inventory.splice(arg,1);
+	if(!pc.hasStatusEffect("Mitzi Dressed")) pc.createStatusEffect("Mitzi Dressed");
+	pc.setStatusMinutes("Mitzi Dressed",24*60*4);
+	clearMenu();
+	addButton(0,"Next",approachCrewMitzi,true);
+}
+
 public function dressMitziUpApproach():void
 {
 	clearOutput();
@@ -433,11 +473,14 @@ public function dressMitziUpApproach():void
 	processTime(1);
 	clearMenu();
 	addItemButton(0, mitzi.armor, mitziKeepCurrentOutfit, mitzi.armor);
+	var slotAdjustment:Number = 1;
 	for(var x:int = 0; x < mitzi.inventory.length; x++)
 	{
+		if(x == 13) slotAdjustment++;
 		output("\n" + StringUtil.upperCase(mitzi.inventory[x].description));
-		addItemButton(x+1, mitzi.inventory[x], mitziPCPickOutfit, mitzi.inventory[x]);
+		addItemButton(x+slotAdjustment, mitzi.inventory[x], mitziPCPickOutfit, mitzi.inventory[x]);
 	}
+	addButton(x+slotAdjustment,"Give Item",giveMitziANewItem,undefined,"Give Item","Give Mitzi a piece of clothing to wear around. As she typically avoids underwear, it will have to be an armor slot item.");	
 	output("\n\nWhat will you have her wear?");
 	addButton(14,"Back",approachCrewMitzi,true);
 }
@@ -739,7 +782,7 @@ public function mitziAppearance():void
 	output(" If you were small enough to squeeze under her 3’6”</i> frame, you could comfortable shelter beneath the physics-defying bosom.");
 
 	output("\n\nNo exploration of the viridian bimbo’s body would be complete without the long moments it takes your view to slide along the outlandishly bubbly expansive of her ass. She cocks her hip the other way when she sees you looking, sending the pillowy buttcheeks rolling.");
-	if(!mitzi.isAssExposed()) output(" A glimpse between the clapping callipygean orbs reveals a pristine pucker of the same vibrant green as its owner.");
+	if(mitzi.isAssExposed()) output(" A glimpse between the clapping callipygean orbs reveals a pristine pucker of the same vibrant green as its owner.");
 	else if(mitzi.isAssVisible()) output(" While you can see through her choice of transparent clothing, you can't glimpse the pucker beyond. Those colossal callipygean orbs are too firmly squeezed together to grant a peek between.");
 	else
 	{
