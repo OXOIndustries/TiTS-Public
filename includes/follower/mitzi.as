@@ -762,6 +762,8 @@ public function mitziCrewMenu():void
 	if(pc.lust() >= 33) addButton(2,"Sex",mitziCrewSexApproach);
 	else addDisabledButton(2,"Sex","Sex","You aren't turned on enough for this.");
 	addButton(3,"Dress Her",dressMitziUpApproach,undefined,"Dress Her","Help Mitzi pick out her wardrobe.");
+	if(flags["CREWMEMBER_SLEEP_WITH"] != "MITZI") addButton(5,"Sleep With",sleepWithToggleMitzi,undefined,"Sleep With","Invite Mitzi to share your bed and get you off in the mornings.");
+	else addButton(5,"NoSleepWith",sleepWithToggleMitzi,undefined,"No Sleep With","Kick Mitzi out of bed so she won't wake you up with orgasms in the morning.");
 	addButton(14,"Back",crew);
 }
 
@@ -843,29 +845,192 @@ public function mitziSexMenu():void
 
 	addButton(14,"Back",approachCrewMitzi,true);
 }
-/*output("\n\nMitzi Wakes You Up");
-output("\n\nA slowly fading wave of pleasure accompanies you all the way back to the waking world. As your [pc.hips] slide back down onto the mattress, you blink the sleep from your eyes and look down to discover Mitzi’s lips easing slowly off of your length. She opens wide to show you the [pc.cumGem] lake in her mouth before swallowing{, then rubs {massively }inflated belly with a happy little sigh}. <i>“{Yummy! Now you won’t need to waste any cum on dumb alien sluts. If you get too horny, you can just come back here and bang Mitzi to sleep!/Mmm, thanks for breakfast [pc.Master]! All set to go exploring! Let Mitzi know if you need help filling back up with lots of sperm, okay?/Ahhh! That hits the spot. You don’t have to like, leave if you don’t want to. Mitzi could fill your {balls/cock} back up with a fresh load if you asked.”</i> She kisses your [pc.sheathOrKnot]. <i>“Just ask./Oooh! I think I came a little bit. [pc.Master]’s cummies are always the best! Mitzi thinks your [pc.cockNoun] is falling in love.”</i> She preens. <i>“It always perks up for her./Yum-yum-yummy-in-slut-tummy! Mmmph! That’s like, the best breakfast in the uni...univ...world! Let Mitzi know if the cum might overflow, ‘kay?}”</i>");
-output("\n\nYou’re a little too tired to do much but nod and send the {cum-bubble of a goblin/cum-inflated goblin/cum-stuffed goblin/cum-hungry goblin} on her way. What a way to start a day!");
-output("\n\nMitzi Wakes Up Girls");
-output("\n\nCrests of pleasure, rising and falling, fill whole days worth of dreams. When you finally do manage to climb back to the waking world, it’s on the heels of a slow, rolling climax that makes your [pc.thighs] bonelessly quiver. Your voice hitches in a wordless sigh of pleasure. As your [pc.hips] relax, you look down to discover Mitzi’s tongue slowly sliding free of [pc.oneCunt]. She opens wide to show you all the [pc.girlCum] she’s collected.{ There’s far more than you would have expected. She’s been saving it for a long time./ There’s was more than you would have expected, judging by the trickles dried onto the sides of her chin./ There was clearly more than she expected, judging by the puddle in the sheets below./ There was clearly more than she could have expected, judging by her pudgy middle.}");
-output("\n\n<i>“Morning, [pc.Master]!”</i>");
-output("\n\nYou sit up onto your elbows and greet Mitzi{, like always}. <i>“Morning, {hottie!/slut./cutie./gorgeous/pussy-slut.}”</i>");
-output("\n\n<i>“Did [pc.Master] have sweet dreams?”</i> Mitzi climbs up next to you{, lapping at all the spilt [pc.cum] she couldn’t get at from down there/ with a wink and a smile}. Her eyes shine with absolute, sublime delight. <i>“{[pc.Master] has the sweetest pussy./All ready for adventures now!/[pc.Master] has such a yummy cunny!/[pc.Master]’s pussy is totally falling for Mitzi.”</i> She giggles. <i>“Don’t worry little pussy. Mitzi will lick you again tomorrow. Or now, if Mistress wants.}”</i>");
-output("\n\nYou’re too tired to do much but smile and let the muff-hungry goblin curl up into bed once you vacate it. Adventure calls!");
-output("\n\nMitzi Drains TiTS Wake-Up:");
-output("\n\nA sense of pulsating, mounting relief greets your return to the waking world - not from your nethers but from your [pc.nipples]. Mitzi is latched onto one, suckling you dry so gently that you’re surprised you woke at all. Her plush lips make a perfect seal, and her gently bobbing gullet sucks away your [pc.milk] with whisper-quiet efficiency. If you let her, she’d probably suckle you past the point of dryness.");
-output("\n\nYou shift, gently dislodging the slutty tit-milker, and {make ready to start the day.\n\nMitzi helps you gather your things with a hopeful smile that doesn’t go away until you give her a ‘good girl’ head-pat./wonder what you should do about this. You’ll never stop lactating if Mitzi keeps milking you like this, but that might be kind of nice - you could start every morning fresh and light, then stagger home with a heavy load of cream for the goblin to harvest. And if you change your mind later, you can always talk to her about it.}");
 
-output("\n\n[Good job]");
-output("\n\nYou give Mitzi a gentle head-pat and tell her she did a good job.");
-output("\n\n<i>“Thank you, [pc.Master].”</i> Mitzi beams and wraps you up in a big hug. <i>“That’s all Mitzi wants! To help... and maybe fuck sometimes. A lot."\n\nYou smile and pat her on the head for her troubles, an action that nearly makes the goblin melt. You’ll have to remember that.");
+//Mitzi Wakes You Up
+public function mitziMorningSuccOrWhatever():void
+{
+	clearOutput();
+	showMitzi();
+	author("Fenoxbro");
+	var choices:Array = [];
+	if(pc.hasCock()) choices.push(1);
+	if(pc.hasVagina()) choices.push(2);
+	if(pc.isLactating()) choices.push(3);
+	var select:Number = choices[rand(choices.length)];
+	if(select == 1)
+	{
+		output("A slowly fading wave of pleasure accompanies you all the way back to the waking world. As your [pc.hips] slide back down onto the mattress, you blink the sleep from your eyes and look down to discover Mitzi’s lips easing slowly off of your length. She opens wide to show you the [pc.cumGem] lake in her mouth before swallowing");
+		if(pc.cumQ() >= 1000) 
+		{
+			output(", then rubs her");
+			if(pc.cumQ() >= 4000) output("massively ");
+			output("inflated belly with a happy little sigh");
+		}
+		output(". <i>“");
+		if(rand(5) == 0) output("Yummy! Now you won’t need to waste any cum on dumb alien sluts. If you get too horny, you can just come back here and bang Mitzi to sleep!");
+		else if(rand(4) == 0) output("Mmm, thanks for breakfast [pc.Master]! All set to go exploring! Let Mitzi know if you need help filling back up with lots of sperm, okay?");
+		else if(rand(3) == 0) 
+		{
+			output("Ahhh! That hits the spot. You don’t have to like, leave if you don’t want to. Mitzi could fill your ");
+			if(pc.balls > 1) output("balls");
+			else if(pc.balls == 1) output("ball");
+			else output("cock");
+			output(" back up with a fresh load if you asked.”</i> She kisses your [pc.sheathOrKnot]. <i>“Just ask.");
+		}
+		else if(rand(2) == 0) output("Oooh! I think I came a little bit. [pc.Master]’s cummies are always the best! Mitzi thinks your [pc.cockNoun] is falling in love.”</i> She preens. <i>“It always perks up for her.");
+		else output("Yum-yum-yummy-in-slut-tummy! Mmmph! That’s like, the best breakfast in the uni...univ...world! Let Mitzi know if the cum might overflow, ‘kay?");
+		output("”</i>");
+		output("\n\nYou’re a little too tired to do much but nod and send the ");
+		if(pc.cumQ() >= 4000) output("cum-bubble of a goblin");
+		else if(pc.cumQ() >= 1000) output("cum-inflated goblin");
+		else if(pc.cumQ() >= 250) output("cum-stuffed goblin");
+		else output("cum-hungry goblin");
+		output(" on her way. What a way to start a day!");
+		pc.lust(100);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//Mitzi Wakes Up Girls
+	else if(select == 2)
+	{
+		output("Crests of pleasure, rising and falling, fill whole days worth of dreams. When you finally do manage to climb back to the waking world, it’s on the heels of a slow, rolling climax that makes your [pc.thighs] bonelessly quiver. Your voice hitches in a wordless sigh of pleasure. As your [pc.hips] relax, you look down to discover Mitzi’s tongue slowly sliding free of [pc.oneCunt]. She opens wide to show you all the [pc.girlCum] she’s collected.");
+		if(pc.wettestVaginalWetness() < 3) output(" There’s far more than you would have expected. She’s been saving it for a long time.");
+		else if(pc.wettestVaginalWetness() < 4) output(" There’s was more than you would have expected, judging by the trickles dried onto the sides of her chin.");
+		else if(pc.girlCumQ() < 3000) output(" There was clearly more than she expected, judging by the puddle in the sheets below.");
+		else output(" There was clearly more than she could have expected, judging by her pudgy middle.");
 
-output("\n\n[Not Again]");
-output("\n\nYou shake your head sternly at Mitzi and tell her that you don’t want her sucking on your [pc.chest] while you sleep.");
-output("\n\n<i>“But... what about the milkies?”</i> Mitzi seems confounded. <i>“Doesn’t it hurt?”</i>");
-output("\n\nYou explain that you’ll decide if and when anyone gets to drink your [pc.milk], whether it hurts or not. <i>“Got it?”</i>");
-output("\n\nMitzi pouts. <i>“O-okay. If [pc.Master] is sure, Mitzi will try to be good. Sorry she is such a dumb, stupid bitch-cunt.”</i> She runs from the room in a tizzy.\n\nBy the time you’re dressed, you can hear her moaning from elsewhere in the ship, sadness long since exchanged for arousal. At least she’s fairly resilient... but she’d have to be, with what she’s been through.");
-*/
+		output("\n\n<i>“Morning, [pc.Master]!”</i>");
+		output("\n\nYou sit up onto your elbows and greet Mitzi");
+		//{, like always}
+		output(". <i>“Morning, ");
+		if(pc.isBimbo()) output("hottie!");
+		else if(pc.isBro()) output("slut.");
+		else if(pc.isNice()) output("cutie.");
+		else if(pc.isMischievous()) output("gorgeous.");
+		else output("pussy-slut.");
+		output("”</i>");
+
+		output("\n\n<i>“Did [pc.Master] have sweet dreams?”</i> Mitzi climbs up next to you");
+		if(pc.hasCock()) output(", lapping at all the spilt [pc.cum] she couldn’t get at from down there");
+		else output(" with a wink and a smile");
+		output(". Her eyes shine with absolute, sublime delight. <i>“");
+		if(rand(4) == 0) output("[pc.Master] has the sweetest pussy.");
+		else if(rand(3) == 0) output("All ready for adventures now!");
+		else if(rand(2) == 0) output("[pc.Master] has such a yummy cunny!");
+		else output("[pc.Master]’s pussy is totally falling for Mitzi.”</i> She giggles. <i>“Don’t worry little pussy. Mitzi will lick you again tomorrow. Or now, if [pc.Master] wants.");
+		output("”</i>");
+		output("\n\nYou’re too tired to do much but smile and let the muff-hungry goblin curl up into bed once you vacate it. Adventure calls!");
+		pc.lust(100);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	//Mitzi Drains TiTS Wake-Up:
+	else
+	{
+		output("A sense of pulsating, mounting relief greets your return to the waking world - not from your nethers but from your [pc.nipples]. Mitzi is latched onto one, suckling you dry so gently that you’re surprised you woke at all. Her plush lips make a perfect seal, and her gently bobbing gullet sucks away your [pc.milk] with whisper-quiet efficiency. If you let her, she’d probably suckle you past the point of dryness.");
+		output("\n\nYou shift, gently dislodging the slutty tit-milker, and ");
+		if(flags["MITZI_MILK_CHOICE"] == 1) output("make ready to start the day.\n\nMitzi helps you gather your things with a hopeful smile that doesn’t go away until you give her a ‘good girl’ head-pat.");
+		else output("wonder what you should do about this. You’ll never stop lactating if Mitzi keeps milking you like this, but that might be kind of nice - you could start every morning fresh and light, then stagger home with a heavy load of cream for the goblin to harvest. And if you change your mind later, you can always talk to her about it.");
+		pc.milked(100);
+		clearMenu();
+		if(flags["MITZI_MILK_CHOICE"] == undefined)
+		{
+			addButton(0,"Good Job",goodJobMilkingMitzi);
+			addButton(1,"Not Again",tellMitziNotToKeepMilking);
+		}
+		else addButton(0,"Next",mainGameMenu);
+	}
+}
+
+//[Good job]
+public function goodJobMilkingMitzi():void
+{
+	clearOutput();
+	showMitzi();
+	output("You give Mitzi a gentle head-pat and tell her she did a good job.");
+	output("\n\n<i>“Thank you, [pc.Master].”</i> Mitzi beams and wraps you up in a big hug. <i>“That’s all Mitzi wants! To help... and maybe fuck sometimes. A lot.”</i>\n\nYou smile and pat her on the head for her troubles, an action that nearly makes the goblin melt. You’ll have to remember that.");
+	flags["MITZI_MILK_CHOICE"] = 1;
+	processTime(1);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Not Again]
+public function tellMitziNotToKeepMilking():void
+{
+	clearOutput();
+	showMitzi();
+	output("You shake your head sternly at Mitzi and tell her that you don’t want her sucking on your [pc.chest] while you sleep.");
+	output("\n\n<i>“But... what about the milkies?”</i> Mitzi seems confounded. <i>“Doesn’t it hurt?”</i>");
+	output("\n\nYou explain that you’ll decide if and when anyone gets to drink your [pc.milk], whether it hurts or not. <i>“Got it?”</i>");
+	output("\n\nMitzi pouts. <i>“O-okay. If [pc.Master] is sure, Mitzi will try to be good. Sorry she is such a dumb, stupid bitch-cunt.”</i> She runs from the room in a tizzy.\n\nBy the time you’re dressed, you can hear her moaning from elsewhere in the ship, sadness long since exchanged for arousal. At least she’s fairly resilient... but she’d have to be, with what she’s been through.");
+	flags["MITZI_MILK_CHOICE"] = -1;
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function sleepWithToggleMitzi():void
+{
+	clearOutput();
+	showMitzi();
+	if(flags["CREWMEMBER_SLEEP_WITH"] == "MITZI")
+	{
+		output("You tell Mitzi that you’ll need her to sleep somewhere else for a while.");
+		//No crew
+		if(crew(true) == 1)
+		{
+			output("\n\nMitzi’s eyes widen. <i>“But... who will make you your morning cummies? [pc.Master] needs lots of cummies or [pc.heShe]’ll lose to lots of aliens!”</i>");
+			output("\n\nYou let her know that you’ll take care of yourself in the morning - or come get her if you need her.");
+			output("\n\n<i>“You promise?”</i>");
+			output("\n\nThat seems like a better option than making the pint-sized fuck-slave cry.");
+			output("\n\n<i>“Okies. Mitzi will just be outside, dressing so sexy that you’ll have to fuck her every time you see her.”</i> She prances away, ass swaying hypnotically.");
+			output("\n\nPart of you regrets sending her away.");
+		}
+		else
+		{
+			output("The goblin’s pink eyes open wide. <i>“Oooooh. [pc.Master] wants to bang some other silly skank in bed!”</i>");
+			output("\n\nYou raise your hand to interject, but words are spilling out of Mitzi too rapid-fire to squeeze anything in edgewise.");
+			output("\n\n<i>“Mitzi gets it. She’s basically like, a sex-toy, and some people don’t like seeing those laying around in the bed.”</i> She brazenly reaches out to caress your crotch, forcing a blush from you. <i>“But when picky girls aren’t around and you need ");
+			if(pc.hasCock()) output("something to squeeze out some dickmilk");
+			else if(pc.hasVagina()) output("something to stuff in your pussy");
+			else output("something to play with");
+			output(", Mitzi will be there, and she’ll be ready.”</i>");
+			output("\n\nThat’s... well, at least your mornings won’t be interrupted by goblin shenanigans any longer.");
+		}
+		flags["CREWMEMBER_SLEEP_WITH"] = undefined;
+		processTime(2);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	else
+	{
+		output("You ask Mitzi if she'd like to share your bed with you at night.");
+		output("\n\n<i>“Really?”</i> the grinning greenskin batts her eyelashes at you. <i>“[pc.Master] wants to snuggle with his fuck-toy?”</i> She slowly licks her ");
+		if(pc.hasCock() || !pc.hasVagina()) output("dick-sucking lips");
+		else output("cunt-kissers");
+		output(" and groans, <i>“That’s so... lewd!”</i>");
+		//Bimbo
+		if(pc.isBimbo()) output("\n\n<i>“I’m like, the lewdest!”</i> You grab Mitzi and plant a hot, wet kiss on those purple puckers before her lil’ brain tries to think too hard. <i>“It’s gonna be sooo fun!”</i>");
+		//Bro
+		else if(pc.isBro()) output("\n\nYou pick Mitzi up and force her into a soul-searing kiss, obliterating whatever concerns she might have had in the face of your raw, forceful sexuality.");
+		//Nice
+		else if(pc.isNice()) output("\n\n<i>“Yeah, but I think I can handle a little lewdness in my life.”</i> You pat Mitzi’s head affectionately.");
+		//Misch
+		else if(pc.isMischievous()) output("\n\n<i>“Yeah, but fortunately for you, I </i>like<i> lewd, don’t I?”</i> You tussle Mitzi’s hair affectionately. <i>“And I don’t think anyone else could keep up with your lewdness but me.”</i>");
+		//Ass
+		else output("\n\n<i>“Bitch, don’t pretend you aren’t desperate to glued to my crotch.”</i> You tweak one of her nipples roughly. <i>“You’re gonna love it.”</i>");
+		//Merge
+		output("\n\nA full-body shudder races through the bright-eyed bimbo. <i>“Mitzi’s will be so good for you [pc.Master]. She’ll make you wake-up cummies and everything!”</i>");
+		output("\n\nThat’s more like it. Is there anything else you wanted from your emerald fuck-toy?");
+		flags["CREWMEMBER_SLEEP_WITH"] = "MITZI";
+		processTime(2);
+		clearMenu();
+		addButton(0,"Next",approachCrewMitzi,true);
+	}
+}
 
 public function talkToMitzi():void
 {

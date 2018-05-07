@@ -1311,6 +1311,12 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 						wakeEvents.push(shekkaSleepWithMornings);
 					}
 					break;
+				case "MITZI":
+					if (mitziIsCrew() && pc.hasGenitals() && flags["CREWMEMBER_SLEEP_WITH"] == "MITZI") 
+					{
+						wakeEvents.push(mitziMorningSuccOrWhatever);
+					}
+					break;
 				case "ANNO":
 					if (annoIsCrew() && (rand(3) == 0 || (isChristmas() && flags["ANNO_GIFT_WRAPPED"] == undefined)))
 					{
