@@ -343,7 +343,7 @@ public function lundMenu():void
 	else if(pc.lust() >= 33) addButton(3,"Sex",lundSexStarter);
 	else addDisabledButton(3,"Sex","Sex","You aren’t quite in the mood right now.");
 	if(flags["LUND_PB"] == undefined) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You wonder if Lund might enjoy having a peanut butter cookie.");
-	else if(flags["LUND_MADE_U_SUBMIT"] != undefined) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You wonder if you could get Lund somewhere private so you can give him another cookie...");
+	else if(flags["LUND_MADE_U_SUBMIT"] != undefined || pc.isBimbo()) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You wonder if you could get Lund somewhere private so you can give him another cookie...");
 	else if(flags["LUND_PB"] == 1) addButton(4,"PB Cookie",pbcookieForLund,undefined,"Peanut Butter Cookie","You snicker as you wonder to yourself if Lund is in the mood for another cookie. He certainly seemed to enjoy the last one!");
 	else addDisabledButton(4,"PB Cookie","Peanut Butter Cookie","Lund has made it clear he won’t be going near those again!");
 	addButton(14,"Leave",mainGameMenu);
@@ -1970,7 +1970,7 @@ public function repeatLundCookies():void
 	showLund();
 	author("B");
 	// continue here if the PC has given Lund a cookie but has not submitted to him
-	if(flags["LUND_MADE_U_SUBMIT"] == undefined)
+	if(flags["LUND_MADE_U_SUBMIT"] == undefined && !pc.isBimbo())
 	{
 		output("You glance at your codex for the time. Remembering the last time you were in this position, your [pc.belly] grumbles a bit, hungry for something to tide it over until you can get something a bit more substantial to eat.");
 		output("\n\nThen, of course, you remember that you’re carrying some peanut butter cookies with you right now, and you remember what happened when you gave one to Lund.");
@@ -1990,10 +1990,24 @@ public function repeatLundCookies():void
 		showLund(true);
 		author("B!");
 		IncrementFlag("LUND_PB");
-		output("You’re reminded of the time that you had given Lund a peanut-butter cookie and the aftermath that had ensued. Now that your relationship with Lund has been cemented, with you as his pet, you wonder if he’d... do you the pleasure of having another one. It seems weird – the pet wanting to give the master a treat, not the other way around – but with any luck, he’ll play along.");
-		output("\n\nLund eyes you expectantly as you approach him; knowing him, he’s probably waiting for you to say the word before he whisks you away to his room in the hold so he can fuck your brains out again. And, by Gods, you’d let him in an instant. But that’s <i>why</i> you want to ask what you’re about to ask: this time, when he tastes that cookie, you want to be underneath him, to get a more up-close view of the whole spectacle.");
-		output("\n\nYou <i>just happen</i> to have a fresh batch of peanut-butter cookies on you. You approach Lund and ask him if he’s hungry; you pull out two of the cookies and offer to share one with him if he’s feeling a mite peckish.");
-		output("\n\nLund’s eyes narrow on the cookies in your hand, and his expression hardens somewhat. You briefly wonder if you’ve overstepped some boundary, when he suddenly grabs you by the wrist. <i>“With me,”</i> he demands, pulling you by the hand through the winding twists and turns of the Korg’ii hold. Your own heart leaps into your chest, and your loins stir at the prospect of getting what you want.");
+		if(!pc.isBimbo())
+		{
+			output("You’re reminded of the time that you had given Lund a peanut-butter cookie and the aftermath that had ensued. Now that your relationship with Lund has been cemented, with you as his pet, you wonder if he’d... do you the pleasure of having another one. It seems weird – the pet wanting to give the master a treat, not the other way around – but with any luck, he’ll play along.");
+			output("\n\nLund eyes you expectantly as you approach him; knowing him, he’s probably waiting for you to say the word before he whisks you away to his room in the hold so he can fuck your brains out again. And, by Gods, you’d let him in an instant. But that’s <i>why</i> you want to ask what you’re about to ask: this time, when he tastes that cookie, you want to be underneath him, to get a more up-close view of the whole spectacle.");
+			output("\n\nYou <i>just happen</i> to have a fresh batch of peanut-butter cookies on you. You approach Lund and ask him if he’s hungry; you pull out two of the cookies and offer to share one with him if he’s feeling a mite peckish.");
+		}
+		else
+		{
+			output("Your [pc.belly] growls in hunger. You rub at it soothingly as you think about what it is you could tide yourself over with – there is no shortage of yummy Korgonne around you to eat out, male or female, you impishly think to yourself, but, as tasty as cum is (and in so many varieties!), it’s not very filling.");
+
+			output("\n\nUnless, of course, it’s Lund. That stud could put you on your knees and fuck your face for hours on end, and he’d give you a three-course meal by the time he’s done.");
+
+			output("\n\nYou have a couple peanut-butter cookies in your pack. Maybe, if you share some with Lund, he’ll reward your generosity with a fun romp in the sheets to wash it down. You withdraw two cookies and ask him if he wants one.");
+		}
+		output("\n\nLund’s eyes narrow on the cookies in your hand, and his expression hardens somewhat. "):
+		if(!pc.isBimbo()) output("You briefly wonder if you’ve overstepped some boundary, when he suddenly grabs you by the wrist");
+		else output("You aren’t sure what that look is for – had you offered him some before, and you just forgot or something? That sounds like something you’d do");
+		output(". <i>“With me,”</i> he demands, pulling you by the hand through the winding twists and turns of the Korg’ii hold. Your own heart leaps into your chest, and your loins stir at the prospect of getting what you want.");
 		output("\n\nLund pulls you with an excited strength that you weren’t expecting, even after being personally acquainted with the strength and eagerness he’s capable of. You’re back in the familiar surroundings of his room after just a few moments, and, with a rough yank, you’re on his bed, resting on your back, while he straddles you.");
 		output("\n\nHis claws snap at the band of his loincloth, and it falls away; you’re eye-to-eye with his flaccid sheath and fluffy, bunched balls, inches from your face. With one hand, he grabs you by the back of your head and forces your face into his crotch, particularly with your [pc.lips] against his sheath; with the other, his hand grabs at the cookies, still in your hand.");
 		output("\n\n<i>“");
