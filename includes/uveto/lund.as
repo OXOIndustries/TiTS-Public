@@ -2004,7 +2004,7 @@ public function repeatLundCookies():void
 
 			output("\n\nYou have a couple peanut-butter cookies in your pack. Maybe, if you share some with Lund, he’ll reward your generosity with a fun romp in the sheets to wash it down. You withdraw two cookies and ask him if he wants one.");
 		}
-		output("\n\nLund’s eyes narrow on the cookies in your hand, and his expression hardens somewhat. "):
+		output("\n\nLund’s eyes narrow on the cookies in your hand, and his expression hardens somewhat. ");
 		if(!pc.isBimbo()) output("You briefly wonder if you’ve overstepped some boundary, when he suddenly grabs you by the wrist");
 		else output("You aren’t sure what that look is for – had you offered him some before, and you just forgot or something? That sounds like something you’d do");
 		output(". <i>“With me,”</i> he demands, pulling you by the hand through the winding twists and turns of the Korg’ii hold. Your own heart leaps into your chest, and your loins stir at the prospect of getting what you want.");
