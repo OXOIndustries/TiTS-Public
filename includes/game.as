@@ -860,7 +860,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		if(!counter)
 		{
 			crewMessages += mitziCrewBonus();
-			addButton(btnSlot,"Mitzi",approachCrewMitzi);
+			if(pc.hasStatusEffect("Mitzi_Gushed_Out")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Maybe let her recover from that Gush, huh?");
+			else addButton(btnSlot,"Mitzi",approachCrewMitzi);
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1314,7 +1315,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				case "MITZI":
 					if (mitziIsCrew() && pc.hasGenitals() && flags["CREWMEMBER_SLEEP_WITH"] == "MITZI") 
 					{
-						wakeEvents.push(mitziMorningSuccOrWhatever);
+						if(!pc.hasStatusEffect("Mitzi_Gushed_Out")) wakeEvents.push(mitziMorningSuccOrWhatever);
 					}
 					break;
 				case "ANNO":

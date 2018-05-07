@@ -550,7 +550,7 @@ public function mitziCrewBonus():String
 	else if(dress is MitziCowFetishCostume)
 	{
 		buff += "\n\nMitzi crawls around the ship on all fours. Brownish pads designed to resemble hooves guard her knees while pitch-black socks hide everything behind. Shoulder-length white gloves, marked with patchwork black splotches, compliment her panties and nursing bra. She’s even painted her spaded tail to resemble a puff of brown fur. Anyone can put together a cow-girl costume, but Mitzi takes it to the next level. Trails of dribbling white mark her path, thanks to ";
-		if(9999 == 0) buff += "the time you gave her Gush";
+		if(flags["MITZI_GUSHED"] != undefined) buff += "the time you gave her Gush";
 		else
 		{
 			buff += "a ";
@@ -595,6 +595,14 @@ public function mitziCrewBonus():String
 			buff += ". When she’s not snapping the pictures, she’s inspecting them, applying filters and weeding any unsuitable to for later mailing to her [pc.master].";
 		}
 	}
+	//Milky Mitzi still recovering
+	if(pc.hasStatusEffect("Mitzi_Gushed_Out"))
+	{
+		if(rand(2) == 0) buff = "\n\nMitzi is in her bathroom, kneeling and the shower and tugging on her nipples. Soft, emphatic moos can be heard every now and then, accompanied by wet-sounding splats. You put your ear to the door and listen: <i>“Miss Moo is... Miss Moo? Noooo, wrong mooooo. Mmm, milking feels so gooood! [pc.Master] won’t fuck Moo if she doesn’t remember her name... Missy or Mimsy... MOOOO!”</i> You pull away and decide to <b>let her recover from that Gush dose in privacy.</b>";
+		//Repeat recovery
+		else buff = "\n\nMitzi is in her bedroom, milking her prodigious teats and mooing like a barnyard animal. Every now and then you hear an orgasmic screech and a liquid spattering followed by a high-pitched cry of, <i>“[pc.Master] so good to Moooo!”</i> <b>Mitzi still needs to recover from her recent bout with Gush.</b>";
+	}
+	else if(pc.hasStatusEffect("Mitzi_Gush_Thankyou")) buff = "\n\n<b>Mitzi has recovered from that dose of Gush!</b> She may be a little more top-heavy now, but she'd really like to see you.";
 	return buff;
 }
 
@@ -608,141 +616,174 @@ public function approachCrewMitzi(back:Boolean = false):void
 		mitziCrewMenu();
 		return;
 	}
-	var dressString:ItemSlotClass = mitziCurrentDress();
-	//Pink dress
-	if(dressString is MitzisDress)
+	if(pc.hasStatusEffect("Mitzi_Gush_Thankyou"))
 	{
-		if(rand(2) == 0) output("<i>“Heya, [pc.Master],”</i> Mitzi chirps before you can so much as say ‘hi.’ <i>“Didja get bored, being all noble an’ heroic, and want to just bang Mitzi brainless for a few hours?”</i> She clutches at the hem of her dress excitedly and wiggles her hips.");
-		else output("<i>“Hi there, [pc.MisterMiss] Awesome!”</i> Mitzi shimmies up to press herself against you, one hand stroking the small of your back while the other winds toward your loins. <i>“Mitzi missed you...”</i> She squirms, rubbing her thighs together. <i>“Want to fuck? Just a quickie. Mitzi knowwws how busy her [pc.Master] is. She’ll make it quick.”</i> In a panic, she adds, <i>“But-it’ll-still-feel-supergood!”</i>");
-	}
-	//Schoolgirl
-	else if(dressString is SchoolgirlCostume)
-	{
-		if(rand(2) == 0) output("<i>“Mmmm,”</i> Mitzi coos, sucking a lollipop into her mouth. She pops it out a second later, stripped bare to the stalk. <i>“You wanna go fuck behind the drive core?”</i> She fans herself momentarily. <i>“Just bend me over and flip up my skirt. Nobody will see.”</i> She pops a beat-up codex out of... somewhere. <i>“Except for you, when you fuck Mitzi while we watch the holo.”</i>");
-
-		else output("<i>“Hey there, hot stuff.”</i> Mitzi jumps into your arms, scissoring her legs around your waist so that the jiggly globes of her ass are resting against your groin. <i>“Knew you couldn’t stay away. You’re like... a-dick-ted to little ol’ Mitzi, aren’t you?”</i> She kisses you, grinding her bare ass into your crotch for a long moment. When she finally lets you go, you feel dizzy and horny. <i>“Why don’t you take me right here, where the ship cams can see?”</i>");
-	}
-	//Yoga pants & microbikini
-	else if(dressString is MitzisYogaBikini)
-	{
-		if(rand(2) == 0) 
+		pc.removeStatusEffect("Mitzi_Gush_Thankyou");
+		IncrementFlag("MITZI_GUSH_THANKED")
+		//First time approach
+		if(flags["MITZI_GUSH_THANKED"] == 1)
 		{
-			output("The limbered-up greenskin is on her feet and in your face before you can so much as call her name. <i>“Hiya, [pc.Mister] [pc.Master]! You wanna see how flexible I’ve gotten?”</i>\n\nHer tone leaves no doubt in your mind that she’s going to show you regardless. <i>“Sure.”</i>\n\n<i>“Watch thiiiis!”</i> Mitzi lifts one leg, balancing expertly, and grabs hold of it behind the ankle. With seeming ease, she raises it over her head until she’s doing a standing split");
-			if(pc.tallness >= 6*12) output(" and wiggling her toes against your groin.");
-			else if(pc.tallness >= 5*12) output(" and blowing kisses toward your groin.");
-			else output(" and gently fondling your groin with her free hand.");
-			output(" <i>“Just imagine how you can bend me around in the bedroom.”</i>");
+			output("Mitzi smiles dizzily. Her breasts, you note, remain ever so slightly larger than before you gave her gush, but awareness has returned to her eyes. <i>“Thanks for like, giving Mitzi that Gush, [pc.Master].”</i>");
+			output("\n\nYou tell her that it was your pleasure.");
+			output("\n\nShe blushes from head to toe and nods, <i>“So like, now that Mitzi can remember her name and stuff, did you wanna do it again?”</i> Milk seeps from her nipples");
+			if(!mitzi.isChestExposed()) output(" into her [mitzi.armor]");
+			output(". <i>“Mitzi promises she’ll be so milky and happy for you. You can do whatever you want with her big, dumb cow-boobs!”</i>");
+			output("\n\n<b>It would seem you have a milky goblin now</b>, one who is eager to repeat the experience.");
 		}
-		else 
-		{
-			output("<i>“Hey!”</i> Mitzi calls at you before you can come a step closer. <i>“Are you like, peeping on Mitzi’s workout routine.”</i> She stomps up, arms waving in hilariously over-acted anger until she bumps her top hard enough to dislodge a bikini cup. <i>“Oopsie! Now my boob’s fallen out... and I’m sooo tired from all that yoga. Since it’s your fault, do you think you could help Mitzi?”</i> She shrugs her shoulders, making the unsupported breast bounce all the harder.\n\nYou play along and ");
-			if(pc.isBimbo() || pc.isBro() || pc.taint() >= 66) output("make sure to rub her nipple until it gets and fat... then tuck it away under her bikini.");
-			else 
-			{
-				output("assist her in slipping her nips away");
-				if(pc.isMischievous() || pc.libido() >= 70) output(", getting a nice grope in for your efforts.");
-				output("\n\n<i>“Ahhh~! Thanks, [pc.Master]. Now, if you wanted to watch Mitzi, you could have like, just asked!”</i>");
-			}
-		}
-	}
-	//Crotchless black bikini
-	else if(dressString is MitzisSuccBikini)
-	{
-		if(rand(2) == 0) output("<i>“What a yummy looking morsel we have here,”</i> Mitzi throatily purrs the moment you give her the smallest inkling of attention. She stalks forward, soaked tail waving menacingly behind her. <i>“I’ve been so hungry without you, so aching and empty.”</i> The pretend succubus strokes her curvaceous body. <i>“Mitzi needs your sin. Just a little.”</i> She nibbles at a sensuously thick lip and gazes up at you imploringly. <i>“It’ll feel sooo good.”</i>\n\nShe really takes these outfits seriously...");
-		else 
-		{
-			output("<i>“[pc.Master]!”</i> Mitzi calls. <i>“Isn’t this outfit, like the best?”</i> She twirls, spaded tail flinging droplets of pussyjuice everywhere. <i>“Mitzi’s body is already made for sex. She should dress the part, don’t you think?”</i> She prances forward to lean against your thigh, one hand unashamedly sliding across your [pc.skinFurScales]. <i>“She’s just like a succubus. She’s so </i>hot<i> that you get ");
-			if(pc.hasCock()) output("all hard");
-			else if(pc.hasVagina()) output("all wet");
-			else output("all dizzy");
-			output(" around her, and she needs fucking </i>all the time<i>.”</i> An impish smile spreads over her inhuman features. <i>“So why don’t you... feed your pet succubus.”</i>");
-		}
-	}
-	//Cow
-	else if(dressString is MitziCowFetishCostume)
-	{
-		if(rand(2) == 0)
-		{
-			output("<i>“Moo!”</i> the cow-disguised goblin proudly declares.\n\nYou tilt your head in confusion, not quite getting what she’s supposed to be communicating.");
-			if(pc.bovineScore() >= 3)
-			{
-				output(" You suppose it would be kind of offensive");
-				if(pc.isTreated()) output(" if you didn’t moo fairly often yourself.");
-				else output(" if she wasn’t too dumb to know any better.");
-			}
-			output("\n\n<i>“Mitzi’s a cow-girl!”</i> the debased bimbo explains as if you were too dumb to understand her outfit. <i>“She’s been so good and so moo-milky");
-
-			if(!mitzi.canLactate()) output(", but [pc.Master] still didn’t fuck her enough!”</i> Pulling herself up onto her knees, she squeezes her tits. Thin trails of creamy gabilani milk sputter out onto the deck for a moment before drizzling to a stop. <i>“And now Mitzi’s all out of ma-moo-milk! That means it’s time to breed the cow, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
-			else output(", but [pc.Master] doesn't give her enough Gush!”</i> Pulling herself up onto her knees, she squeezes her tits, hosing out a wave of milk. <i>“Mitzi wants to be a milky Mitzi-Cow for [pc.Master]! That means drugging and breeding until her brains squirt out of her big sexy cow-tits, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
-		}
+		//Repeat post-gush approach.
 		else
 		{
-			output("Mitzi moos in distress and climbs up onto her knees. <i>“Oh nooo! Mitzi’s all out of ma-moo-milk!”</i> Sure enough, her steadily drizzling teets wind down to a slow, creamy trickle. <i>“But that means it’s time to breed the cow, doesn’t it, [pc.Master]?”</i> She rounds on you, her knee-pads making clopping sounds as she wobbles up. <i>“When a dumb cow like Mitzi runs out of milk, she gets to fuck and fuck until she makes more, right?”</i>\n\nYou fumble for an answer.\n\n<i>“Or did you want to do something else do dumb-cow Mitzi-slut? Mitzi’s such a good girl. She’ll do anything.”</i> She pulls the vibrator out of her pussy and sucks the cunt-juice off of it. <i>“Anything.”</i>");
+			output("Mitzi pokes a breast. <i>“Mitzi’s titties are getting bigger thanks [pc.Master]. And so milky!”</i> She squeezes a nipple to release a ");
+			if(mitzi.milkQ() < 400) output("spray");
+			else if(mitzi.milkQ() < 5000) output("gush");
+			else output("eruption");
+			output(" of creamy goblin milk. <i>“See? Mitzi’s a fuck-toy and a milk-cow now, and she </i>still<i> remembers her name. All because [pc.Master] is so generous.”</i> She shakes her breasts back and forth.  <i>“So you can like, make her a stupid fuck-cow as whenever you want, pretty much. Mitzi will love whatever you do to her big, dumb cow-tits. They’re [pc.Master]’s to milk!”</i>");
+			output("\n\n<b>");
+			if(mitzi.milkQ() < 2000) output("Mitzi is lactating even harder now.");
+			else if(mitzi.milkQ() < 5000) output("Mitzi is basically a walking milk-fountain now.");
+			else if(mitzi.milkQ() < 30000) output("Mitzi is capable of soaking you in milk at a moment’s notice.");
+			else output("Mitzi has reached the absolute limits of milkiness. Any more and she’d break the universe.");
+			output("</b> Any time you want to reduce her to a simpering milk-slut, she’s game. Of course she’s going to make a mess even if you don’t now.");
 		}
 	}
-	//Zipsuit
-	else if(dressString is TransparentZipsuit)
-	{
-		if(rand(2) == 0)
-		{
-			output("<i>“Hiiii, [pc.Master],”</i> Mitzi titters. <i>“See anything you like on your travels?”</i> She laces her fingers behind her back, thrusting her bosom forward, and wiggles in place. <i>“Anything at all?”</i> Green nipples jut accusingly at you from plastic-encased mounds of jiggling jello.\n\nYou’re certainly seeing something...\n\n<i>“Mitzi’s been all over this ship, and she’s found something very interesting.”</i> Sidling forward with an impish smile, the perky goblin fuck-toy presses herself adoringly against you. <i>“And she wants to play with it...”</i>");
-		}
-		else
-		{
-			output("<i>“Help!”</i> Mitzi calls, grabbing you by the hand. <i>“Mitzi put herself in this super sexy zipsuit, but she can’t get the zipper down to masturbate! Her pussy is like, super wet, but she can’t even finger herself, and it’s getting so wet down there! Could you like, fuck a hole in it, or whatever? You’re so smart, [pc.Master]. You’ll figure out a way to fuck Mitzi, right?”</i>\n\nThe zip mechanism is completely intact and undamaged.  Mitzi isn’t even trying to use it; instead she’s busy rubbing her pussy through the plastic hard enough for the squelches to echo down the passage.");
-		}
-	}
-	//Librarian
-	else if(dressString is MitzisLibrarianOutfit)
-	{
-		if(rand(2) == 0)
-		{
-			output("<i>“Hello [pc.Master],”</i> Mitzi curtly greets you. <i>“Is there some pornography you’d like to watch?”</i> She gestures to her codex with a sticky-fingered hand. <i>“Perhaps a hot, green, bitch you’d like  to ");
-			if(pc.hasCock()) output("fuck ten times past pregnant");
-			else if(pc.hasVagina()) output("pin to the deck with your pussy");
-			else output("watch masturbate entirely for your amusement");
-			output("? These glasses would totally look amazing buried under a nice, thick layer of cum, doncha think?”</i> She taps at the cosmetic frames and licks her lips. <i>“Or maybe you’re more interested the selection Mitzi has out back?”</i> She lifts the back of her skirt and spreads her cheeks, giving you a clear view of her clenching asshole.");
-		}
-		else
-		{
-			output("Mitzi doesn’t notice your approach until you’re standing right behind her. On her screen is a recording of you naked and masturbating.\n\n<i>“Where’d you get that?”</i>\n\nNearly jumping out of her seat, the goblin feverishly closes the app, paying for her haste by leaving half a dozen pussy-scented smudges on the screen. <i>“Mmm? Just researching s’all! Mitzi needs to know how to please her [pc.Master] better than anyone else - even [pc.himHer]! Turns out Mitzi’s still pretty good with cummy-puters for pornostuff! You wanna make a holo? Mitzi’ll study it suuuper hard after.”</i>");
-		}
-	}
-	//Nun!
-	else if(dressString is MitziNunFetishCostume)
-	{
-		if(rand(2) == 0)
-		{
-			output("<i>“Welcome, holy [pc.Master], savior of dumb goblin sluts, bringer of orgasms. Sexy is thy name.”</i> Mitzi opens her eyes and smiles radiantly, lips still ");
-			if(pc.hasCock()) output("pursed in readiness for a deep dicking");
-			else if(pc.hasVagina()) output("pursed and ready to press against a slit at a moment’s notice");
-			else output("pursed and pretty");
-			output(". <i>“Have a seat,”</i> she says with a gesture to your chair. <i>“What troubles you today, [pc.Master]? Is it lust? Impure thoughts?”</i> She squirms. <i>“Mitzi will absorb all your naughty sins, with her mouth, or pussy, or ass... or titties. Oooh, she’d look so hot getting banged in this costume!”</i> The green skinned trollop slips out of character the moment she starts fantasizing about all the ways you can bang her.");
-		}
-		else
-		{
-			output("Revealed by her slowly lifting eyelids, Mitzi’s heart-shaped eyes widen in delight at the sight of you. <i>“[pc.Master]! You came! Mitzi knew that if she prayed long and hard enough, you’d bless her with your presence. Did you... did you want to use Mitzi’s mouth?”</i> She runs her tongue around the circumference of her lips with deliberate slowness, heart-shaped pupils staring up adoringly.");
-		}
-	}
-	//Custom dresses~!
 	else
 	{
-		if(rand(2) == 0)
+		var dressString:ItemSlotClass = mitziCurrentDress();
+		//Pink dress
+		if(dressString is MitzisDress)
 		{
-			if(rand(2) == 0) output("Spotting you in the mirror, Mitzi pivots and waves. <i>“Hiya, [pc.Master]! Mitzi was just looking in the mirror and wanted to tell you just how much she loooved your present!”</i> Prancing forward with the grace of a fleet-footed deer, she stops just short of bouncing into your [pc.legs] and does a little spin-and-twirl. <i>“Whenever Mitzi looks in the mirror, she can’t help but just be like, so goddamn happy to be your fuck-bait, because you actually cared enough to dress her up pretty!”</i>");
-			else output("Mitzi starts at your sudden appearance. <i>“Oh! Hiya! Mitzi was just like, admiring the pretty clothing you gave her! Did you like dressing her up like this? Treating her like a pretty, slutty little doll? You could undress her too, you know. Or show her off to the whole extranet.”</i> Her tail swishes playfully behind. <i>“Just let her know.”</i>");
+			if(rand(2) == 0) output("<i>“Heya, [pc.Master],”</i> Mitzi chirps before you can so much as say ‘hi.’ <i>“Didja get bored, being all noble an’ heroic, and want to just bang Mitzi brainless for a few hours?”</i> She clutches at the hem of her dress excitedly and wiggles her hips.");
+			else output("<i>“Hi there, [pc.MisterMiss] Awesome!”</i> Mitzi shimmies up to press herself against you, one hand stroking the small of your back while the other winds toward your loins. <i>“Mitzi missed you...”</i> She squirms, rubbing her thighs together. <i>“Want to fuck? Just a quickie. Mitzi knowwws how busy her [pc.Master] is. She’ll make it quick.”</i> In a panic, she adds, <i>“But-it’ll-still-feel-supergood!”</i>");
 		}
-		else
+		//Schoolgirl
+		else if(dressString is SchoolgirlCostume)
 		{
-			if(rand(2) == 0) output("Mitzi spins around and puckers, snapping a half-dozen pictures of herself with you in frame over her shoulder. <i>“Mmm... we look good together, [pc.Master], but we’d look even better tangled up in bed.”</i> She giggles vapidly. <i>“You wanna make a holo or somethin’?”</i>");
+			if(rand(2) == 0) output("<i>“Mmmm,”</i> Mitzi coos, sucking a lollipop into her mouth. She pops it out a second later, stripped bare to the stalk. <i>“You wanna go fuck behind the drive core?”</i> She fans herself momentarily. <i>“Just bend me over and flip up my skirt. Nobody will see.”</i> She pops a beat-up codex out of... somewhere. <i>“Except for you, when you fuck Mitzi while we watch the holo.”</i>");
+
+			else output("<i>“Hey there, hot stuff.”</i> Mitzi jumps into your arms, scissoring her legs around your waist so that the jiggly globes of her ass are resting against your groin. <i>“Knew you couldn’t stay away. You’re like... a-dick-ted to little ol’ Mitzi, aren’t you?”</i> She kisses you, grinding her bare ass into your crotch for a long moment. When she finally lets you go, you feel dizzy and horny. <i>“Why don’t you take me right here, where the ship cams can see?”</i>");
+		}
+		//Yoga pants & microbikini
+		else if(dressString is MitzisYogaBikini)
+		{
+			if(rand(2) == 0) 
+			{
+				output("The limbered-up greenskin is on her feet and in your face before you can so much as call her name. <i>“Hiya, [pc.Mister] [pc.Master]! You wanna see how flexible I’ve gotten?”</i>\n\nHer tone leaves no doubt in your mind that she’s going to show you regardless. <i>“Sure.”</i>\n\n<i>“Watch thiiiis!”</i> Mitzi lifts one leg, balancing expertly, and grabs hold of it behind the ankle. With seeming ease, she raises it over her head until she’s doing a standing split");
+				if(pc.tallness >= 6*12) output(" and wiggling her toes against your groin.");
+				else if(pc.tallness >= 5*12) output(" and blowing kisses toward your groin.");
+				else output(" and gently fondling your groin with her free hand.");
+				output(" <i>“Just imagine how you can bend me around in the bedroom.”</i>");
+			}
 			else 
 			{
-				output("<i>“Hiya [pc.Mister] [pc.Master]! Did you want a copy of these pics? Mitzi got some that make her look totally fuckable.”</i> The brain-drained bimbo holds up the tablet to show you. It’s a smorgasbord of titillation and debaucher, including more than a few pictures of exposed nipples or a soaked pubic mound. <i>“It’s your fault. You’re the one that dressed her up so hot! It’s no wonder you’re getting all ");
-				if(pc.hasCock()) output("hard");
-				else output("blushy");
-				output(" now!");
-				if(pc.hasCock()) output("”</i> She sniffs. <i>“She can smell your [pc.cocks] getting hot and bothered.");
-				output(" There’s nothing to be ashamed of. Just pick me up and fuck me however you want.”</i>");
+				output("<i>“Hey!”</i> Mitzi calls at you before you can come a step closer. <i>“Are you like, peeping on Mitzi’s workout routine.”</i> She stomps up, arms waving in hilariously over-acted anger until she bumps her top hard enough to dislodge a bikini cup. <i>“Oopsie! Now my boob’s fallen out... and I’m sooo tired from all that yoga. Since it’s your fault, do you think you could help Mitzi?”</i> She shrugs her shoulders, making the unsupported breast bounce all the harder.\n\nYou play along and ");
+				if(pc.isBimbo() || pc.isBro() || pc.taint() >= 66) output("make sure to rub her nipple until it gets and fat... then tuck it away under her bikini.");
+				else 
+				{
+					output("assist her in slipping her nips away");
+					if(pc.isMischievous() || pc.libido() >= 70) output(", getting a nice grope in for your efforts.");
+					output("\n\n<i>“Ahhh~! Thanks, [pc.Master]. Now, if you wanted to watch Mitzi, you could have like, just asked!”</i>");
+				}
+			}
+		}
+		//Crotchless black bikini
+		else if(dressString is MitzisSuccBikini)
+		{
+			if(rand(2) == 0) output("<i>“What a yummy looking morsel we have here,”</i> Mitzi throatily purrs the moment you give her the smallest inkling of attention. She stalks forward, soaked tail waving menacingly behind her. <i>“I’ve been so hungry without you, so aching and empty.”</i> The pretend succubus strokes her curvaceous body. <i>“Mitzi needs your sin. Just a little.”</i> She nibbles at a sensuously thick lip and gazes up at you imploringly. <i>“It’ll feel sooo good.”</i>\n\nShe really takes these outfits seriously...");
+			else 
+			{
+				output("<i>“[pc.Master]!”</i> Mitzi calls. <i>“Isn’t this outfit, like the best?”</i> She twirls, spaded tail flinging droplets of pussyjuice everywhere. <i>“Mitzi’s body is already made for sex. She should dress the part, don’t you think?”</i> She prances forward to lean against your thigh, one hand unashamedly sliding across your [pc.skinFurScales]. <i>“She’s just like a succubus. She’s so </i>hot<i> that you get ");
+				if(pc.hasCock()) output("all hard");
+				else if(pc.hasVagina()) output("all wet");
+				else output("all dizzy");
+				output(" around her, and she needs fucking </i>all the time<i>.”</i> An impish smile spreads over her inhuman features. <i>“So why don’t you... feed your pet succubus.”</i>");
+			}
+		}
+		//Cow
+		else if(dressString is MitziCowFetishCostume)
+		{
+			if(rand(2) == 0)
+			{
+				output("<i>“Moo!”</i> the cow-disguised goblin proudly declares.\n\nYou tilt your head in confusion, not quite getting what she’s supposed to be communicating.");
+				if(pc.bovineScore() >= 3)
+				{
+					output(" You suppose it would be kind of offensive");
+					if(pc.isTreated()) output(" if you didn’t moo fairly often yourself.");
+					else output(" if she wasn’t too dumb to know any better.");
+				}
+				output("\n\n<i>“Mitzi’s a cow-girl!”</i> the debased bimbo explains as if you were too dumb to understand her outfit. <i>“She’s been so good and so moo-milky");
+
+				if(!mitzi.canLactate()) output(", but [pc.Master] still didn’t fuck her enough!”</i> Pulling herself up onto her knees, she squeezes her tits. Thin trails of creamy gabilani milk sputter out onto the deck for a moment before drizzling to a stop. <i>“And now Mitzi’s all out of ma-moo-milk! That means it’s time to breed the cow, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
+				else output(", but [pc.Master] doesn't give her enough Gush!”</i> Pulling herself up onto her knees, she squeezes her tits, hosing out a wave of milk. <i>“Mitzi wants to be a milky Mitzi-Cow for [pc.Master]! That means drugging and breeding until her brains squirt out of her big sexy cow-tits, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
+			}
+			else
+			{
+				output("Mitzi moos in distress and climbs up onto her knees. <i>“Oh nooo! Mitzi’s all out of ma-moo-milk!”</i> Sure enough, her steadily drizzling teets wind down to a slow, creamy trickle. <i>“But that means it’s time to breed the cow, doesn’t it, [pc.Master]?”</i> She rounds on you, her knee-pads making clopping sounds as she wobbles up. <i>“When a dumb cow like Mitzi runs out of milk, she gets to fuck and fuck until she makes more, right?”</i>\n\nYou fumble for an answer.\n\n<i>“Or did you want to do something else do dumb-cow Mitzi-slut? Mitzi’s such a good girl. She’ll do anything.”</i> She pulls the vibrator out of her pussy and sucks the cunt-juice off of it. <i>“Anything.”</i>");
+			}
+		}
+		//Zipsuit
+		else if(dressString is TransparentZipsuit)
+		{
+			if(rand(2) == 0)
+			{
+				output("<i>“Hiiii, [pc.Master],”</i> Mitzi titters. <i>“See anything you like on your travels?”</i> She laces her fingers behind her back, thrusting her bosom forward, and wiggles in place. <i>“Anything at all?”</i> Green nipples jut accusingly at you from plastic-encased mounds of jiggling jello.\n\nYou’re certainly seeing something...\n\n<i>“Mitzi’s been all over this ship, and she’s found something very interesting.”</i> Sidling forward with an impish smile, the perky goblin fuck-toy presses herself adoringly against you. <i>“And she wants to play with it...”</i>");
+			}
+			else
+			{
+				output("<i>“Help!”</i> Mitzi calls, grabbing you by the hand. <i>“Mitzi put herself in this super sexy zipsuit, but she can’t get the zipper down to masturbate! Her pussy is like, super wet, but she can’t even finger herself, and it’s getting so wet down there! Could you like, fuck a hole in it, or whatever? You’re so smart, [pc.Master]. You’ll figure out a way to fuck Mitzi, right?”</i>\n\nThe zip mechanism is completely intact and undamaged.  Mitzi isn’t even trying to use it; instead she’s busy rubbing her pussy through the plastic hard enough for the squelches to echo down the passage.");
+			}
+		}
+		//Librarian
+		else if(dressString is MitzisLibrarianOutfit)
+		{
+			if(rand(2) == 0)
+			{
+				output("<i>“Hello [pc.Master],”</i> Mitzi curtly greets you. <i>“Is there some pornography you’d like to watch?”</i> She gestures to her codex with a sticky-fingered hand. <i>“Perhaps a hot, green, bitch you’d like  to ");
+				if(pc.hasCock()) output("fuck ten times past pregnant");
+				else if(pc.hasVagina()) output("pin to the deck with your pussy");
+				else output("watch masturbate entirely for your amusement");
+				output("? These glasses would totally look amazing buried under a nice, thick layer of cum, doncha think?”</i> She taps at the cosmetic frames and licks her lips. <i>“Or maybe you’re more interested the selection Mitzi has out back?”</i> She lifts the back of her skirt and spreads her cheeks, giving you a clear view of her clenching asshole.");
+			}
+			else
+			{
+				output("Mitzi doesn’t notice your approach until you’re standing right behind her. On her screen is a recording of you naked and masturbating.\n\n<i>“Where’d you get that?”</i>\n\nNearly jumping out of her seat, the goblin feverishly closes the app, paying for her haste by leaving half a dozen pussy-scented smudges on the screen. <i>“Mmm? Just researching s’all! Mitzi needs to know how to please her [pc.Master] better than anyone else - even [pc.himHer]! Turns out Mitzi’s still pretty good with cummy-puters for pornostuff! You wanna make a holo? Mitzi’ll study it suuuper hard after.”</i>");
+			}
+		}
+		//Nun!
+		else if(dressString is MitziNunFetishCostume)
+		{
+			if(rand(2) == 0)
+			{
+				output("<i>“Welcome, holy [pc.Master], savior of dumb goblin sluts, bringer of orgasms. Sexy is thy name.”</i> Mitzi opens her eyes and smiles radiantly, lips still ");
+				if(pc.hasCock()) output("pursed in readiness for a deep dicking");
+				else if(pc.hasVagina()) output("pursed and ready to press against a slit at a moment’s notice");
+				else output("pursed and pretty");
+				output(". <i>“Have a seat,”</i> she says with a gesture to your chair. <i>“What troubles you today, [pc.Master]? Is it lust? Impure thoughts?”</i> She squirms. <i>“Mitzi will absorb all your naughty sins, with her mouth, or pussy, or ass... or titties. Oooh, she’d look so hot getting banged in this costume!”</i> The green skinned trollop slips out of character the moment she starts fantasizing about all the ways you can bang her.");
+			}
+			else
+			{
+				output("Revealed by her slowly lifting eyelids, Mitzi’s heart-shaped eyes widen in delight at the sight of you. <i>“[pc.Master]! You came! Mitzi knew that if she prayed long and hard enough, you’d bless her with your presence. Did you... did you want to use Mitzi’s mouth?”</i> She runs her tongue around the circumference of her lips with deliberate slowness, heart-shaped pupils staring up adoringly.");
+			}
+		}
+		//Custom dresses~!
+		else
+		{
+			if(rand(2) == 0)
+			{
+				if(rand(2) == 0) output("Spotting you in the mirror, Mitzi pivots and waves. <i>“Hiya, [pc.Master]! Mitzi was just looking in the mirror and wanted to tell you just how much she loooved your present!”</i> Prancing forward with the grace of a fleet-footed deer, she stops just short of bouncing into your [pc.legs] and does a little spin-and-twirl. <i>“Whenever Mitzi looks in the mirror, she can’t help but just be like, so goddamn happy to be your fuck-bait, because you actually cared enough to dress her up pretty!”</i>");
+				else output("Mitzi starts at your sudden appearance. <i>“Oh! Hiya! Mitzi was just like, admiring the pretty clothing you gave her! Did you like dressing her up like this? Treating her like a pretty, slutty little doll? You could undress her too, you know. Or show her off to the whole extranet.”</i> Her tail swishes playfully behind. <i>“Just let her know.”</i>");
+			}
+			else
+			{
+				if(rand(2) == 0) output("Mitzi spins around and puckers, snapping a half-dozen pictures of herself with you in frame over her shoulder. <i>“Mmm... we look good together, [pc.Master], but we’d look even better tangled up in bed.”</i> She giggles vapidly. <i>“You wanna make a holo or somethin’?”</i>");
+				else 
+				{
+					output("<i>“Hiya [pc.Mister] [pc.Master]! Did you want a copy of these pics? Mitzi got some that make her look totally fuckable.”</i> The brain-drained bimbo holds up the tablet to show you. It’s a smorgasbord of titillation and debaucher, including more than a few pictures of exposed nipples or a soaked pubic mound. <i>“It’s your fault. You’re the one that dressed her up so hot! It’s no wonder you’re getting all ");
+					if(pc.hasCock()) output("hard");
+					else output("blushy");
+					output(" now!");
+					if(pc.hasCock()) output("”</i> She sniffs. <i>“She can smell your [pc.cocks] getting hot and bothered.");
+					output(" There’s nothing to be ashamed of. Just pick me up and fuck me however you want.”</i>");
+				}
 			}
 		}
 	}
@@ -764,6 +805,11 @@ public function mitziCrewMenu():void
 	addButton(3,"Dress Her",dressMitziUpApproach,undefined,"Dress Her","Help Mitzi pick out her wardrobe.");
 	if(flags["CREWMEMBER_SLEEP_WITH"] != "MITZI") addButton(5,"Sleep With",sleepWithToggleMitzi,undefined,"Sleep With","Invite Mitzi to share your bed and get you off in the mornings.");
 	else addButton(5,"NoSleepWith",sleepWithToggleMitzi,undefined,"No Sleep With","Kick Mitzi out of bed so she won't wake you up with orgasms in the morning.");
+	if(flags["MITZI_FAV_DRUG"] != undefined)
+	{
+		if(pc.hasItemByClass(Gush)) addButton(6,"Give Gush",giveMitziGush,undefined,"Give Gush","Give Mitzi a dosage of Gush. It'll probably make her milky and sort dumb for a while, going by her stories.");
+		else addDisabledButton(6,"Give Gush","Give Gush","You need some Gush in order to do this.");
+	}
 	addButton(14,"Back",crew);
 }
 
@@ -777,10 +823,10 @@ public function mitziAppearance():void
 	output("\n\nShifting slightly, the self-described goblin sets her purple pigtails, and her tits, bouncing.");
 	if(!mitzi.isChestExposed()) 
 	{
-		output(" The latter are barely contained by her [mitzi.chestCovers]. Mitzi’s outsized chest could make a pair of industrial wheelbarrows creak. It’s a wonder the clothing can hold together at all. Those K-cup knockers beg to be squeezed, and from the way the smirking bimbo keeps them jostling around, she knows.");
+		output(" The latter are barely contained by her [mitzi.chestCovers]. Mitzi’s outsized chest could make a pair of industrial wheelbarrows creak. It’s a wonder the clothing can hold together at all. Those [mitzi.breastCupSize] knockers beg to be squeezed, and from the way the smirking bimbo keeps them jostling around, she knows.");
 		if(mitzi.isChestVisible()) output(" Jutting tit-tips lewdly distend her transparent garment, intent that you know every crease along their pebbly surface.");
 	}
-	else output("The latter are completely uncovered by her choice of attire, free to wobble and jostle in cleavage defining clashes. Those K-cup knockers seem like two emerald mountains, their summits crowned by sensitive, jutting tips whose perpetual hardness never seems to flag. Mitzi’s outsized chest could be wrapped up in the most chaste blouse, and the mammoth mounds’ libidinous squeezability would shine through as clear as daylight.");
+	else output("The latter are completely uncovered by her choice of attire, free to wobble and jostle in cleavage defining clashes. Those [mitzi.breastCupSize] knockers seem like two emerald mountains, their summits crowned by sensitive, jutting tips whose perpetual hardness never seems to flag. Mitzi’s outsized chest could be wrapped up in the most chaste blouse, and the mammoth mounds’ libidinous squeezability would shine through as clear as daylight.");
 	output(" If you were small enough to squeeze under her 3’6”</i> frame, you could comfortable shelter beneath the physics-defying bosom.");
 
 	output("\n\nNo exploration of the viridian bimbo’s body would be complete without the long moments it takes your view to slide along the outlandishly bubbly expansive of her ass. She cocks her hip the other way when she sees you looking, sending the pillowy buttcheeks rolling.");
@@ -1122,151 +1168,392 @@ public function mitziAphrodisiacTalk():void
 	addButton(0,"Next",talkToMitzi);
 }
 
+//[DONE] Give Mitzi Gush
+//Straightforward. Mitzi gets milky and stupid.
+//Req’s favorite drugs talk!
+public function giveMitziGush():void
+{
+	clearOutput();
+	showMitzi(true);
+	//Cock/NoCock variant.
+	output("You toss Mitzi a gush applicator. <i>“");
+	if(pc.isBimbo()) output("Wanna like, by my milky moo-goblin for a bit?");
+	else if(pc.isBro()) output("Gotcha a present.");
+	else if(pc.isNice()) output("I got you a present, since you were telling me how much you liked it.");
+	else if(pc.isMischievous()) output("I’ve had a hankering for fresh milk ever since you told me that story.");
+	else output("Gabilani milk better taste good.");
+	output("”</i>");
+	output("\n\n<i>“Is this...”</i> the emerald bimbo’s mouth lags while her overheated brain struggles to keep up, <i>“...Gush?”</i> She looks up with the biggest, happiest grin on her pouty purple lips. <i>“For me?”</i>");
+	output("\n\nYou nod. <i>“Go ahead if you want.");
+	if(pc.isNice()) output(" I’ll take care of you.");
+	output("”</i>");
+
+	//Done this before.
+	if(flags["MITZI_GUSHED"] != undefined)
+	{
+		output("\n\nMitzi beams, <i>“This’ll be even better than last time! Omigod, thank youuuu! Mitzi is so glad you’ll be here to help her out in case she forgets her name or whatever.”</i>");
+	}
+	//First time
+	else
+	{
+		output("\n\nMitzi beams, <i>“Thank you sooo much! Mitzi will try and stay milky afterward if she can remember. ‘Memberin’ is real hard in cow-space though!”</i>");
+	}
+	output("\n\nWhile that sounds worrisome, you remind yourself that Mitzi’s quite a resilient girl. If she can bounce back from the hand life dealt her and find her way to you, she can ");
+	if(flags["MITZI_GUSHED"] == undefined) output("dabble in a little Gush");
+	else output("indulge her Gush addiction");
+	output(" just fine.");
+
+	output("\n\n");
+	if(!mitzi.isChestExposed()) 
+	{
+		output("Yanking off her [mitzi.armor] to bare her ");
+		if(!mitzi.canLactate()) output("soon-to-be ");
+		output("leaky mammaries, Mitzi bounces with glee.");
+	}
+	else
+	{
+		output("Squeezing her ");
+		if(!mitzi.canLactate()) output("soon-to-be ");
+		output("leaky mammaries");
+		if(mitzi.canLactate())
+		{
+			if(mitzi.milkQ() < 400) output(" until a thin stream of milk shoots out");
+			else if(mitzi.milkQ() < 2000) output(" until streams of milk spray out");
+			else output(" until a river of creamy goblin-milk pours out");
+		}
+		output(", Mitzi bounces with glee.");
+	}
+	output(" <i>“Just thinking about it has Mitzi’s titties all perkied up! Look!”</i> Sure enough, those glamorous green ");
+	if(mitzi.canLactate()) output("milk-makers");
+	else output("jugs");
+	output(" are heaving, thrusting big fat nipples in your direction. High beams like that could poke out an eye - or fill flood your mouth with the sweet taste of Mitzi’s milk.");
+
+	output("\n\nYou lick your lips.");
+	output("\n\n<i>“Fuuuuck, [pc.Master], you look so </i>hot<i> when you stare at Mitzi’s tits like that, and she didn’t even use your present yet, the stupid cunt!”</i> Your pet goblin purses her lips in thought. <i>“Okay which end does the fun stuff come out of? This one?”</i> Surprisingly, she correctly identifies the drug applicator’s spray-port.");
+
+	//Bimbo
+	if(pc.isBimbo()) output("\n\n<i>“Yeppers! That’s it. You’re gonna have so much fun!”</i>");
+	//Bro
+	else if(pc.isBro()) output("\n\nYou nod.");
+	//Nice
+	else if(pc.isNice()) output("\n\n<i>“That’s it!”</i> You give her an encouraging thumbs up.");
+	//Misch
+	else if(pc.isMischievous()) output("\n\n<i>“Why don’t you give it a try, and if you still remember what we’re talking about, you’ll know it’s the wrong end.”</i>");
+	//Ass
+	else output("\n\n<i>“Yes, that’s it. Honestly I’m not sure you can get any dumber.”</i>");
+	//Merge
+	output("\n\nMitzi nods with a surprising sense of sobriety. <i>“Before Mitzi’s head gets all milky, she like, wanted to say she loves you.”</i> A trickle of wetness streams down her thighs. <i>“But Mitzi is really horny and is gonna milk herself stupid now!”</i> Waving the spraypen over her blushing tits, the goblin unleashes the entire load of Gush in one concentrated blast. Beads of moisture briefly freckle her heaving, emerald bosom for the moment it takes for the technologically-infused cocktail to penetrate her skin. <i>“Wow, it soaked in fast. [pc.Master] got me the good stuff!”</i>");
+	output("\n\nYou ask the horny short-stack if she’s feeling it yet. Her whole body is clearly flushed.");
+	output("\n\nAn airheaded giggle bursts out of Mitzi in answer, <i>“Like, not yet, ");
+	if(pc.hasCock() && pc.mf("m","") == "m") output("stud");
+	else output("[pc.Master]");
+	output(". Gush takes a couple sec... mmm... uh...”</i> She stops talking and looks down at her breasts just in time to see them wobble. The sudden growth bounces one into the other, creating a cascade of jiggliness that bounces back and forth from one side to the other. <i>“Like... uh... good. It’s good, [pc.Master]. Mitzi’s getting all gushy!”</i> She grabs hold of one in both hands and offers it up to you, the rich green skin slowly stretching and shining from the effort of containing her swelling milksacks.");
+	output("\n\nYou cautiously take Mitzi’s weighty mammary into your hands. The contact seems too much for the silly slut. She bites her lip to stifle a moan and arches her back. A rush of girl-cum vents between her bare thighs to splatter the ground, and her nipple strains forward, reaching out a full inch as it engorges beyond all reasonable biological limits.");
+	if(!mitzi.canLactate()) output(" A single bead of white appears on the tip.");
+	else output("An abrupt release of white erupts from the tip, cascading down her underbust to join her fragrant pussy-juice on the floor. Repeated dosages clearly make Mitzi a very milky girl.");
+
+	output("\n\nWith all the attention on her breasts, the bimbofied goblin appears to be in heaven. Her eyes are barely open, while her tongue is sliding further and further out of her lax maw. When she sees you looking, she ineffectually tries to suck it in, only to have a lurid moan undo every ounce of progress. <i>“Ma-ma-[pc.master]! Mitzi’s titties are sooo buzzy an’ good,”</i> she slurs. <i>“Gettin’ hot and full- soooo warm!!”</i> ");
+	if(!mitzi.canLactate()) output("Ribbons of white leak from her nipples without any effort at all.");
+	else output("Both sides erupt again, releasing warm torrents of goblin-cream without any nipple stimulation at all.");
+	output(" <i>“Mmmm-ma-mooo!”</i> A brainless giggle follows after the bovine proclamation, <i>“Mitzicow moo!”</i>");
+	output("\n\n<i>“Mitzi?”</i> you snap your fingers in front of her face, trying to focus her incredibly limited attention. <i>“You doing okay?”</i>");
+	output("\n\n<i>“Mmmhmmm,”</i> the drippy girl all but purrs in sexual delight. <i>“Mitzicow... so...”</i> She looks down at her tits again and stops to smile warmly. Catching milk in her palm, she watches more dribble out and begins to moo all over again. Bovine low after cow-infused moan escapes her, every wordless vocalization accompanied by a slight increase in flow from her distended nipples. Mitzi sips at the milk puddled in her hand, then seems to remember something of your question - or at the very least acknowledges your presence. <i>“Good. Miss Cow moo’s so good.”</i> Shuffling forward, she presses her cream-oozing breasts against your ");
+	if(pc.tallness >= 7*12) output("[pc.leg]");
+	else if(pc.tallness >= 5*12) output("[pc.thigh]");
+	else output("waist");
+	output(". <i>“Milkies?”</i>");
+	output("\n\nThose luscious, milk-filled pillows are so warm against your [pc.skin]. It’d be a waste <i>not</i> to milk them. The only question is if you’d like to do anything else whilst you play with ‘Miss Cow.’");
+	processTime(15);
+	pc.destroyItemByClass(Gush);
+	clearMenu();
+	//[Fuck Her] [Titfuck] [Just Drink]
+	if(pc.hasCock() && pc.cockThatFits(mitzi.vaginalCapacity(0)*1.25) >= 0) addButton(0,"Fuck Her",penisRouter,[fuckMitziMilkies,mitzi.vaginalCapacity(0)*1.25,false,1]);
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You'd never fit inside!");
+	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis for that!");
+	if(pc.hasCock()) addButton(1,"Titfuck",mitziMilkTitfuck);
+	else addDisabledButton(1,"Titfuck","Titfuck","You need a penis for this.");
+	addButton(2,"Just Drink",chastelyDrinkFromMitzi);
+}
+
+//Fuck Her
+public function fuckMitziMilkies(x:int):void
+{
+	clearOutput();
+	showMitzi(true);
+	output("<i>“Yes, Milkies,”</i> you say, ");
+	if(!pc.isCrotchExposed()) output("yanking open your [pc.crotchCover] to pull out your [pc.cocks]");
+	else output("pointing at your [pc.cocks]");
+	output(". <i>“Milked right into your cunt.”</i>");
+	output("\n\nMitzi’s eyes go wide and her obscene, purple tongue languidly slides out of her mouth to drool on an expanded tit. She just stares at your crotch with unashamed lust. The hearts in her eyes dilate until you’re looking at a sea of wanton pink. Meanwhile, her hands oafishly grab at her nipples, making half-hearted tugs at the milk while her brain tries to make room for the concept of getting fucked. <i>“If fuck, how will... Moo milk?”</i> the goblin slurs.");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\nYou giggle. The poor got all shorted out by dick! That’s fine though, you’ll just take charge and give her the hard dicking you know she’s aching for. She can thank you later, if she remembers. <i>“Don’t worry about it. I’ll fuck you real hard, and all the milk will come out just fine!”</i> It’ll probably work.");
+	//Bro
+	else if(pc.isBro()) output("\n\nYou snort. <i>“You don’t need to talk.”</i> The dumb cunt would be better off presenting to save you the time of posing her, but you suppose it doesn’t matter. You’ll fuck the green-skinned milk-bitch until her cunt is stuffed and her nipples are milked dry. <i>“I got this.”</i>");
+	//Nice
+	else if(pc.isNice()) output("\n\nYou stroke her head gently. Poor girl is enjoying her tits so much that she’s going to need a lot of help to enjoy her Gush-time to the max. Fortunately, she has you here to take care of her. Knowing Mitzi, she’d whine for days if you didn’t give her a half-dozen milk-squirting orgasms. <i>“Relax, Mitzi-Moo. I’ll take care of all the milking. You just focus on enjoying it.”</i>");
+	//Misch
+	else if(pc.isMischievous()) output("\n\nShrugging, you tease her by saying, <i>“I don’t know, but I think if I stick my dick inside you, we might just find a way.”</i> The poor girl’s pussy clenches hard enough to send fresh dribbles running down her thighs. <i>“Besides, if you’re Mitzi-Cow, you don’t have to bother thinking. I’ll handle the hard stuff, like making sure you cum super hard.”</i>");
+	//Hard
+	else output("\n\nOh for the love of... <i>“You dumb cunt.”</i> You slap your palm into your face in frustration. <i>“Don’t worry your little bimbo brain over it. I’m going to fuck you, and you’re going to love and it and squirt milk everywhere.”</i> You pinch one of her nipples, and a spout of milk arcs out. <i>“Just like that.”</i>");
+	//Merge
+	output("\n\n<i>“Ohhh! Oh... kay!”</i> The dumbed-down goblin nods, leaning closer to your crotch. She takes a sniff at [pc.oneCock] and nuzzles up to it. <i>“Moo loves cock.”</i>");
+	output("\n\nYou say, <i>“I bet you do,”</i> and force her down on her knees, then all fours. Mitzi’s pumped-up tits keep her on her fingertips, the pressure on her drugged-up knockers spraying fans of milk between her flushed skin and the floor. She doesn’t have to suffer long. You roll her over onto her back and watch her pornstar-caliber boobs wobble, most of their weight hanging over the sides of her chest to pull them apart, nipples jutting wide.");
+	output("\n\nThe goblin’s legs follow suit. <i>“Like this?”</i>");
+	output("\n\nClimbing on top of Mitzi, you drop [pc.oneCock] into place on top of her soaking pussy and smile. <i>“Just like that, ");
+	if(pc.isBimbo()) output("you sexy slut");
+	else if(pc.isBro()) output("sweet little cow");
+	else if(pc.isNice()) output("beautiful");
+	else if(pc.isMischievous()) output("you sweet mynx");
+	else output("bitch");
+	output(".”</i>");
+
+	output("\n\nThe giggling girl arches her back and sighs delightedly at the pressure on her mons, rocking her hips upward to slide a sinfully slick clit against the underside of your dick. Fresh streams of goblin-cream ooze out of her increasingly distended nipples. Sucking on her finger, Mitzi stifles another bovine vocalization and manages to find her voice. <i>“But the milk...”</i> She reaches for a teat, but the sheer weight and size of her stuff mammary drags the slippery nipple out of her fingers. It takes both hands to wrangle the tit into place and lift it up to you in offering. <i>“Miss Moo needs moo-ilked!”</i>");
+	output("\n\nYou wrap your [pc.lipsChaste] around the swollen nub to humor the poor thing and are rewarded with a blast of sweat milk potent enough to stream out of the corners of your mouth and down your chin. There’s no way to sip gently from Mitzi. She’s a living cornucopia of milk, sharing the tremendousness of her bounty with you in one cheek-bulging eruption after another. The only way to ride it out is to abandon any attempt at cleanliness and let the milk fall where it may, coating your body and hers alike.");
+	output("\n\nYour [pc.cocks] throb");
+	if(pc.cockTotal() == 1) output("s");
+	output(" in anticipation while you drink, but your attention is too full of nipple and milk to properly line ");
+	if(pc.cockTotal() == 1) output("it");
+	else output("one");
+	output(" up, too divided between Mitzi’s fecund swells to properly see to the satisfaction of your aching member. Keeping up with your breathing is");
+
+	output("\n\nFortunately, Mitzi’s sluttified, cock-hungry body is more than capable of seeing to your needs without a single conscious thought. She moos, low and loud, as her hips gyrate, confidently swinging up, angling forward, and pressing hard against your [pc.cockHead " + x + "]. Those lust-gilded goblin lips ");
+	if(pc.cockVolume(x) < mitzi.vaginalCapacity(0) * 0.25) output("open right up to swallow your [pc.cock " + x + "] whole, sheathing you in the liquid furnace of her loins. Overactive muscles clamp down to squeeze you in a slutty embrace. Mitzi’s elastic channel may be capable of handling the biggest, baddest cocks on the block, but it feels all too happy to wrap you up and squeeze until the cum can’t help but spurt out of you.");
+	else if(pc.cockVolume(x) < mitzi.vaginalCapacity(0) * 0.5) output("gently part to slowly swallow down your [pc.cock " + x + "], enjoying the sensuous friction of being filled by a decent-sized dick, sheathing you in the liquid furnace of Mitzi’s loins. Hidden muscles gently squeeze and stroke, careful not to contract too hard, lest they impede your pleasure. Her pussy is built for sex, able to please any dick - big, small, or the perfect size to curl her toes.");
+	else if(pc.cockVolume(x) < mitzi.vaginalCapacity(0) * 0.75) 
+	{
+		output("momentarily strain before giving way to your [pc.cock " + x + "], allowing themselves to be battered open to make way for your pleasure. Her insides are warm and soaking wet, clutching tightly to your veins as you glide by while gentle muscular contractions massage you better than an oiled-up masseuse. You’re clearly straining her limits. Mitzi’s toes curl as you hilt yourself, her cunt weeping desire");
+		if(pc.balls > 0) output(" down your [pc.balls]");
+		else if(pc.hasVagina()) output(" [over your [pc.vaginas]");
+		else output(" down your [thighs]");
+		output(".");
+	}
+	else
+	{
+		output("slam hard into your [pc.cock " + x + "] once, twice... and give way to the tunnel of liquid-gold pleasure that is her clutching, straining quim. You can see the outline of your dick bulging her belly; proud and hard and oh so ready to dump ");
+		if(pc.cumQ() >= 8000) output("gallons of seed into her womb");
+		else if(pc.cumQ() >= 1000) output("a gallon of seed");
+		else output("an enormous cumshot into her womb");
+		output(" as it plows forward an inch at a time. Mitzi’s eyes roll back, but her cunt still feebly works you, taut muscles vibrating like overtuned guitar strings around your manhood as they vainly try to squeeze down on a length big enough to split lesser women in half.");
+	}
+	pc.cockChange();
+	output("\n\n<i>“Moooooo!”</i> she squeals, riding high on waves of mind-melting pleasure. <i>“Moo-moooo-moooOOOOOO!”</i> Mitzi’s head slams back and her hips slap messily into yours, splattering you with girlcum as the goblin explodes into climax. Geysers of thick, creamy milk force you offer her nipple and wash down your [pc.chest] and [pc.belly].");
+	output("\n\nYou hold onto the squealing goblin-cow’s sopping-wet hips for stability and content yourself with fucking her silly. Without her tits to distract you, you can focus on giving her the furious fucking her augmented body was built to take. Mitzi likes it, the little slut. You can tell in from the way her ");
+	if(pc.cockVolume(x) >= mitzi.vaginalCapacity(0) * 0.75) output("straining ");
+	output("slit flexes in response, the way the slightly-too-big nubbin of her clit bulges out. When you hit a really good spot, the milk fountains jump a foot higher in the air, and when you you draw back to line up the next stroke their pressure drops.");
+	output("\n\nThere’s something sexy about seeing Mitzi like this, using her like this, something pure in the way she radiates raw, sluttish desire and a whorish sense of ecstasy in response to each and every action, unencumbered by the barriers of ego and indecision. The lactating bimbo simply does what her body wants, and her body wants to cum around her [pc.Master]’s ");
+	if(pc.cockVolume(x) < mitzi.vaginalCapacity(0) * 0.25) output("hard-fucking dick");
+	else if(pc.cockVolume(x) < mitzi.vaginalCapacity(0) * 0.5) output("big, beautiful cock");
+	else if(pc.cockVolume(x) < mitzi.vaginalCapacity(0) * 0.75) output("bitch-breaking cock");
+	else output("cunt-destroying cock");
+	output(" for as long as it can.");
+
+	output("\n\n<i>“Moooo-oooh-yeessss!”</i> Mitzi’s voice is raw from screaming out her pleasure already. Her fingers grope her tits hard, uncaring for anything but more stimulation, squeezing still more milk. She’s all but swimming in it, plastering in face in a mask of white. Both pigtails are utterly saturated and dripping. You could hold a cup under one and it’d be full in seconds. <i>“Such-a-milk-sluuuuuut!”</i>");
+
+	output("\n\n<i>“Yeah you are.”</i> You fall into her fantasy, guided by her pussy’s wanton affections. <i>“My little milk-slut.”</i>");
+	output("\n\nThat gets a reaction out of Mitzi. She jolts upright, twitching in orgasmic bliss. <i>“Cum in meeee~! Mooooo!”</i> And she flops back down, twitching, eyes rolling back, pussy milking your [pc.cock " + x + "] harder than ever. She might be incapable of properly enunciating it, but she wants your cum. She wants it fired deep into her womb. She wants the thickest, stickiest, most virile batch of baby-batter you can conjure up planted so deeply into her spasming body that her very soul is impregnated with your seed.");
+	output("\n\nAs if you could hold out when confronted with that kind of encouragement. Guided by the goblin-cunt’s silken touches, you hilt yourself deep");
+	if(pc.hasKnot(x)) output(", knot ballooning to lock you in place,");
+	output(" and shoot the first pulse of your load.");
+	if(pc.cumQ() < 25) output(" It’s relatively weak, all things told, but you give it all you’ve got regardless, spurting dollop after dollop until you feel sore and dizzy. That’ll happen from too many orgasms without rest, yet who could blame you? With a horny goblin slut like Mitzi on tap, you’re surprised you had any [pc.cum] at all in your [pc.balls].");
+	else if(pc.cumQ() < 250) output(" It feels like her pussy is swallowing up every drop, wicking away your [pc.cum] before you can feel it splash back around your girth. Mitzi’s altered body <i>milks</i> out your seed just as you milked her. Before long, you feel absolutely drained and a little bit dizzy.");
+	else 
+	{
+		output(" It feels incredible, flooding her pussy. At first, Mitzi’s modded uterus seems to devour your offering, but by the end of the first [pc.cum]-spurt, you can feel the slick warmth backwashing back out around your [pc.cockHead " + x + "]. And your successive squirts only make it hotter and wetter, thoroughly creampying the goblin with a load too big for her to handle.");
+		if(pc.cumQ() >= 6000) output(" She whimpers when her belly rises up, inflated by the sheer size and force of your load, but they aren’t sounds of pain - quite the opposite. Mitzi clearly adores you pumping her middle up with seed. Green-skinned hands slide over the milk-drizzled dome as you stuff her cum-pregnant.");
+		if(pc.cumQ() >= 15000) output(" When high-pressure jets spray out around your [pc.knot " + x + "], she shudders and blacks out from the bliss. It would seem even bimbos can cum so hard they black out.");
+		output(" By the time you run dry, you’re winded and dizzy.");
+	}
+	output("\n\nFlopping yourself in between her drooling tits for a rest seems like a good idea");
+	if(pc.hasKnot(x)) output(", especially since your knotted tool is still held in place, forced by Mitzi’s clenching cunt to continually seep more semen into her channel");
+	output(". You can’t imagine a cosier place to take a nap.");
+	processTime(30);
+	pc.orgasm();
+	mitziGushEffects();
+	pc.milkInMouth(mitzi);
+	clearMenu();
+	addButton(0,"Next",mitziGushFuckII,x);
+}
+
+public function mitziGushFuckII(x:int):void
+{
+	clearOutput();
+	showMitzi(true);
+	output("When you wake, it’s to the feeling of another climax. You wipe the milk from your eyes and push yourself up off of Mitzi’s tits to try and figure out what’s going on.");
+	output("\n\nShe’s riding you!");
+	output("\n\nNow that the effects of Gush have largely subsided, Mitzi’s chest is a little more reasonable looking, if a little bigger than it once was. <i>“Miss Moo made [pc.Master] cock-milk like... more than twice!”</i>");
+	output("\n\nJudging by the soreness in your loins, it was more than twice. <i>“Get off.”</i>");
+	output("\n\nMitzi pouts but complies, sliding to the side to let your cock pop out with a messy ‘shluck’ and answering gush of mixed sexual fluids.");
+	if(pc.hasKnot(x)) output(" Apparently after hours of non-stop knotting, she stretched out enough to pop right off.");
+	output(" <i>“Umm... Moo. No wait... uh... fuck more later?”</i>");
+	output("\n\nYou laugh and stagger up onto your [pc.feetOrFoot] on shaky legs. <i>“Sure. I guess. Once you’re recovered.”</i>");
+	output("\n\n<i>“Oh.”</i> Mitzi pouts. <i>“Umm, when Milk-girl remembers her name, huh?”</i>");
+	output("\n\nThat seems about right. You nod.");
+	output("\n\n<i>“Okay. Miss Moo-Milk is gonna play with her pussy for now though, cause it makes her tits suuuper drippy.”</i> The milk-caked goblin is already knuckle deep in herself and smiling, heart-shaped eyes watching you adoringly.");
+	output("\n\nIt might take her a while to recover.");
+	processTime(120);
+	pc.orgasm();
+	pc.orgasm();
+	pc.milkInMouth(mitzi);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Just Drink
+public function chastelyDrinkFromMitzi():void
+{
+	clearOutput();
+	showMitzi(true);
+	output("<i>“Yes, Milkies,”</i> you say, pulling the walking milk-tank into your lap. <i>“I’m thirsty.”</i>");
+	output("\n\nMitzi grins wide and does her best to lift a tit up for you, but it’s simply too heavy for her to raise it very high. You grab hold of one, fingers sinking deep, spilling milk out in a gooey spray, and heave it upward. The nipple throbs and gleams, beckoning you to take it into your mouth, to suckle it and taste of its bounty.");
+	output("\n\nYou do.");
+	output("\n\n<i>“M-m-mooo!”</i> Mitzi cries as her milk pours into your maw. It floods the space inside and balloons your cheeks. Trickles stream out of either side of your mouth as you struggle to gulp it down, able to enjoy its sweetness and creamy, palate pleasing flavor in spite of the inhuman quantity she presents. Fortunately, that flood diminishes to a steady pumping as the excitement of the moment passes. Mitzi’s trembling form stills somewhat, and you actually have a moment to attempt a suck.");
+	output("\n\nThe elasticized flesh in your mouth balloons the moment you draw in your breath, hot and heavy, then contracts just enough to overwhelm your capacity. It’s a messy process: gulping, sucking, leaking milk everywhere, and then gulping again. Mitzi loves it; she quietly moos when you suckle and sighs when you swallow. Her other breast is making a mess of everything, but she doesn’t seem to care, empty-headed cow that she is - at least at the moment.");
+	output("\n\nAt this rate, you won’t be able to handle both breasts’ liquid treasure. You’ll be lucky to drink everything this teat is putting out and still be able to walk! You swallow again, stroking Mitzi’s head affectionately as you try to think of a way to satisfy her. It’s quite relaxing, filling your belly, listening to the sluttified goblin’s animalistic sounds of pleasure and relief, warm juices spilling down your [pc.legOrLegs].");
+	output("\n\nWait... it’s not just milk rolling down your leg. You peek around the wall of over-productive mammary to look down, and sure enough, Mitzi has her tail buried deep into her slit. Pussy-juice is flowing out of her near-constantly, like she’s lounging in the midst of an orgasm without beginning or end. Your lap is bathed in it");
+	if(pc.hasVagina()) output(", mixing in with your own feminine secretions to perfume you with feminine musk");
+	else if(pc.hasCock()) 
+	{
+		output(", oiling your [pc.cocks] in feminine secretions that make your nose twitch and your dick");
+		if(pc.cockTotal() > 1) output("s");
+		output(" surge");
+	}
+	output(". You’d smile if your mouth wasn’t full, glad that she’s having a good time of it.");
+	output("\n\nMaybe later something can be done about that leaky hole between her legs.");
+	output("\n\nFor now, you’ve got a pair of exceedingly milky goblin-tits to drain, and since you aren’t going to drink Mitzi dry with your mouth, you might as well use your free hand to satisfactorily empty the other.");
+	output("\n\nThe spare nipple nearly slips out of your fingers the first time you try to grab it, but you manage to catch it just at the tip. Of course, this sets off a geyser of breast-milk. Mitzi babbles, <i>“Goooood milkies! Moooo! Moo moo moo moo!”</i> You adjust your grip to squeeze higher up. Maintaining proper milking form is difficult without the ability to look at what you’re doing, but you make do.");
+	output("\n\nMitzi doesn’t seem to mind. She wriggles slightly to press more of herself against you, her cum still sliding down your [pc.legOrLegs] in and endless stream, widening the pool of milk and sex-juice on the floor. You could look down at her blissed-out eyes and limp, dangling tongue for what feels like forever.");
+	output("\n\nThis is... nice.");
+	output("\n\nMitzi moos as if in agreeance, to which you respond with a fervent suck. Time passes as your belly fills, but still you continue to drink, egged on by bovine lowing and the occasional whispered word of English. The skin of your [pc.belly] may feel tight and your stomach bloated, but you soldier on for almost a solid hour before you can take no more.");
+	processTime(60);
+	//boost lac here?
+	mitziGushEffects();
+	pc.milkInMouth(mitzi);
+	pc.lust(5);
+	clearMenu();
+	addButton(0,"Next",mitziJustMilkII);
+}
+
+public function mitziJustMilkII():void
+{
+	clearOutput();
+	showMitzi(true);
+	output("<i>“Moo?”</i> Mitzi groans, blearily blinking her eyes. The tail slides out of her snatch with a wet pop as she comes down. <i>“No... no more milking Miss Moo?”</i>");
+	output("\n\nYou pat your milk-burdened belly. <i>“Not for the moment.”</i>");
+	output("\n\n<i>“Oh.”</i> The goblin’s brow crinkles for a moment. When she looks back up, she’s smiling as if she’s had the cleverest idea in all the galaxy. <i>“What about now?”</i>");
+	output("\n\n<i>“Not now either.”</i>");
+	output("\n\nThe look of shock on Mitzi’s face is priceless. She stutters, <i>“B-b-but Mi-mi-miss Moo has milk! See?”</i> She squeezes her breast, delivering a much slower flow of creamy goodness. <i>“Mmm...”</i> Her eyes flutter closed. <i>“Moo-ooooo!”</i>");
+	output("\n\nYou pat her on the head, a little concerned that she still seems to have forgotten her name. <i>“I need to sleep off this milk-gut. You’re welcome to milk yourself in the meantime.”</i>");
+	output("\n\n<i>“Awww... Miss Moo wants more milk. More milks and moos and sucks!”</i> She pouts. <i>“Maybe later? [pc.Master] make Moo even more milky later?”</i>");
+	output("\n\nYou promise that you will, but it’s probably best she wait until she’s recovered from this dose.");
+	processTime(30);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//Tit-Milk-Fuck
+public function mitziMilkTitfuck():void
+{
+	clearOutput();
+	showMitzi(true);
+	var x:int = pc.biggestCockIndex();
+	output("<i>“Yes, Milkies,”</i> you say, ");
+	if(!pc.isCrotchExposed()) output("pulling open your [pc.crotchCovers] to reveal");
+	else if(pc.isErect()) output("stroking your erect [pc.cocksNounSimple]");
+	else output("stroking your rapidly-stiffening [pc.cocksNounSimple]");
+	output(". <i>“Milkies here.”</i>");
+
+	output("\n\nMitzi’s eyes go as wide as saucers. Her hands drop from her tits, fingers twitching in eagerness while her Gush-melted mind tries to figure out how cock and milk go together. <i>“Miss Cow...”</i> she moos, <i>“...milks here?”</i> She hesitantly reaches out to grab [pc.oneCock]. On contact, the milk-streams from her nipples pulse out heavy flows.");
+	if(pc.cocks[x].thickness() > 3.5) output(" Her fingers can’t wrap all  the way around the turgid maleness, but she tries all the same, fingernails gently pricking at your sensitive skin.");
+	else output(" Her fingers casually wrap around it, gliding up in down an automatic handjob.");
+
+	output("\n\nAfter watching the bimbo willingly devolve herself into a leaking, lactic toy, something as simple as a hand on your dick feels amazing. You groan in delight and nod. <i>“Get it nice and wet so I can fuck your tits.”</i>");
+	output("\n\nAgain, this shorts Mitzi right the fuck out. Her eyes cross to stare at your dick while her hand continues to stroke it, bereft of conscious thought. She opens her mouth, then closes it, drools a bit, then gulps it all down and quietly moos. <i>“Titty-milk-fuck?”</i> Her voice is high-pitched and strained with unfiltered excitement. Biting a too-plush lip, she at last lets go of your [pc.cock " + x + "] to heft her tits, one in each hand. <i>“Help moo-me milk?”</i>");
+	output("\n\nYou’d like nothing better. Getting your hands on Mitzi’s nipples, you discover that they aren’t just engorged, they’re <i>ripe</i> and firm beyond belief. You can actually feel the liquid coursing through her milk ducts with enough pressure to send gentle vibrations through to your fingers. No wonder Mitzi’s drooling all over herself and speaking in ‘moo.’\n\nYou say, <i>“Easy girl,”</i> as you shift your grip a bit back and squeeze, forcing the milk forward with a gentle nip-ward press.");
+	output("\n\nYour milk-minded goblin tries her best to keep it together, but the moment her sweet juices are forcibly squeezed out of her still-inflating milk-bags, her knees knock together and her eyes roll back. She whimpers cutely as you tug down to her nipples, shaking like a leaf. The milk gets everywhere, of course. Her boobs spray like creamy sprinklers, splattering your body from [pc.belly] to [pc.foot]. It hits you like warm, wet cluster munitions, exploding into bursts of delightful warmth on your  [pc.thighs]");
+	if(pc.balls > 0) output(", your [pc.balls]");
+	output(", your crotch, and especially your [pc.cocks]. There’s enough pearly goblin-milk for it drizzle from your [pc.cockHead " + x + "] like sweet-smelling cum.");
+	output("\n\n<i>“Mooooo!”</i> Mitzi cries, leaning forward to sloppily kiss the top of your [pc.cock " + x + "], inadvertently making you waste your last few nipple-tugs onto the floor.");
+	output("\n\n<i>“Good girl,”</i> you say, letting go of her nipples to give her a friendly pat on the head. She leans into your hand, panting hotly. The goblin-cow’s heart-shaped pupils remain locked on your cock. You ask, <i>“Are you ready to titfuck?”</i>");
+	output("\n\nMitzi’s tongue falls out of her mouth, and her tail slips between her legs to rub at a soaking wet gabilani mound. <i>“Moo!”</i> She kisses your cock. <i>“Moo!”</i> She rubs her cheek against it, smearing milk on herself without a care in the world. <i>“Moo want dick!”</i>");
+	output("\n\nYou’re going to give it to her. With one hand on her back and the other wrapped possessively around her throat, you bear her to the ground. She lets you do it too. The closest she gets to struggling is accidentally spurting some milk on your [pc.chest] when her titties bounce against one another. Those gorgeous heart-shaped eyes of hers stare up at you longingly, right up until you squat overtop of her and drop your milk-soaked cock into her cleavage with an audible splat.");
+	output("\n\nThen Mitzi’s too busy arching her back and crying out in delight to do something as mundane as maintain eye contact. <i>“Oooooh mooooo! Mooooo liiiike!”</i>");
+	output("\n\n<i>“Here, let me help,”</i> you say as you put a hand on either side of her enormous tits and press them together. Mitzi’s pillowy flesh squeezes down around your [pc.cock " + x + "] in a vise of cream-coated skin, warm and wet in all the best ways. Better still, the added pressure causes her nipples to go into overdrive, spraying thick arcs into the air while less energetic streams roll down the swells of her tits to soak them in milky shine. You hold that position for a few moments, mashing the Gush-brained goblin’s mountainous mounds around your dick while you try to get used to the intense sensation.");
+	output("\n\nMitzi’s body goes limp, and you feel a splatter of feminine fluids against the underside of your [pc.butt]. A second later, her head pops up off the ground, milk-soaked pigtails bouncing, and she smiles at you. <i>“Moo!”</i>");
+	output("\n\nUnsure of how to respond, you continue to massage the goblin fuck-toy’s sinfully slick mammaries around your [pc.cock " + x + "], wringing a happy sigh from yourself.");
+	output("\n\n<i>“So moo-damned good!”</i> Mitzi bubbles, grabbing hold of her teats to squeeze out more milk. By now, her nipples seem almost comically large compared to her fingers. It’s actually looks sort  of like she’s trying to milk a cow, with a more than appropriate liquid result. <i>“I love moooo!”</i> She’s looking you in the eyes while she says it, smiling broadly, if a bit vacantly, and wiggling around so that her tits shift on your [pc.cock " + x + "]. <i>“Fuck-milk now?”</i>");
+	output("\n\nEven if the dopey goblin hadn’t asked, her cutely misspoken declaration was more than enough motivation to give her the righteous pounding a woman like her deserves. <i>“Yes,”</i> you announce, sliding your [pc.hips] back to drag your dick back to the [pc.cockHead " + x + "]. <i>“You’re so good, Mitzi.”</i> You thrust back in");
+	if(pc.balls > 0) output(", [pc.balls] dragging on her middle");
+	output(", cock throbbing, plowing a tunnel between her pillowy tits");
+	if(pc.cocks[x].cLength() > 14) 
+	{
+		output(" until your [pc.cockHead " + x + "] bursts out of the top");
+		if(pc.cocks[x].cLength() < 25) output(" and kisses her lips");
+		else output(" and slides past her cheek");
+	}
+	output(". <i>“So goddamn good!”</i>");
+
+	output("\n\nNow that you’ve started, you can’t stop yourself. You’re too worked up, and she’s too hot. Her drug-enhanced breasts are unreal. Nothing should be so big yet so soft and so utterly, completely slick on your skin. Nothing should wring droplets of pre-cum from you so freely or ripple so hotly around your girth. Mitzi is a powerhouse dynamo of breastly sensuality, whether she has the awareness to know it her not.");
+	output("\n\nYou hump her tits like a [pc.manWoman] possessed. Your [pc.hips] slap into them hard enough to make them bounce and shake. Mitzi is carried along by their inertia; every stroke shifts her an inch or two up and down, but she’s well past caring. The little mynx is coaxing out more milk to lube you up, more to keep you hot and bothered. She’s smiling and cumming and mooing without a care in the world.");
+	if(pc.cocks[x].cLength() > 14) 
+	{
+		if(pc.cocks[x].cLength() < 25) output(" Sometimes she stops to suck your [pc.cockHead " + x + "] for a few seconds but forgets the instant you draw it away.");
+		else output(" Sometimes she stops to slobber on your shaft for a few seconds but forgets the instant you draw it away.");
+	}
+	output("\n\nFrom far away it probably sounds like you’re banging an actual cow. Mitzi is incapable of forming words at this point, either from the pleasure or the drugs. There’s only squelching, slapping, and obvious sexual grunts in the air as you near your peak. Your fingers sink deep into supple emerald skin, unconsciously clenching tighter. Of course, this just releases more milk and makes Mitzi moo that much louder. She’s still looking at you though, and her eyes tell you what her lips cannot: that she wants you to blow the biggest, messiest load ");
+	if(pc.cocks[x].cLength() > 14) output("all over her face");
+	else output("into her tits");
+	output(".");
+
+	output("\n\nYou cum. How could you not? Pleasure races through your [pc.cocks], ");
+	if(pc.cumQ() < 100) output("spurting");
+	else output("spraying");
+	output(" out ");
+	if(pc.cocks[x].cLength() <= 14) output("into Mitzi’s milk-glazed mounds");
+	else output("onto Mitzi’s whorishly delighted face");
+	output(". You fuck your way through it, adding sensation to your orgasm. The second pulse is at least twice as potent as the first");
+	if(pc.cocks[x].cLength() > 14)
+	{
+		if(pc.cocks[x].cLength() < 25) output(", painting the goblin’s face and pig-tails [pc.cumColor]");
+		else output(", oozing out of both ends of her cleavage");
+	}
+	output(", and still, you keep fucking. You fuck Mitzi");
+	if(pc.cumQ() >= 1000) output(" until she’s more spunk than goblin, your seed splattered in more places than you could ever keep track of");
+	else output(" until you run out of spunk and stir it around in her milk with your [pc.cock " + x + "]");
+	output(". Her tongue slithers out to collect dabs of it to swallow.");
+	output("\n\n<i>“Mooooo,”</i> Mitzi moans after the first mouthful, going back for seconds. <i>“Mmmm good moo.”</i>");
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mitziMilkTitfuckII);
+}
+
+public function mitziMilkTitfuckII():void
+{
+	clearOutput();
+	showMitzi(true);
+	output("Satisfied at last, you extricate your milky cock from Mitzi’s milk-dribbling tits and look down at the soaked goblin. <i>“Are you alright?”</i>");
+	output("\n\nHer chest is heaving like she’s out of breath, and her legs are absolutely soaked in pussy juice. More concerning is that her nipples are still drooling milk, her hands still there to coax it out. Mitzi’s vacant stare pivots your way. <i>“Miss Moo uh... feels real good.”</i> She licks up a little more milk. <i>“Want more milk-fucks, but milk getting slow!”</i> Sure enough, you note that the milk-flow has receded somewhat. <i>“[pc.Master] make Moo milky again later?”</i>");
+	output("\n\nYou promise that you will, but it’s probably best to wait a bit for now.");
+	processTime(4);
+	mitziGushEffects();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function mitziGushEffects():void
+{
+	IncrementFlag("MITZI_GUSHED");
+	mitzi.breastRows[0].breastRatingRaw += 1 + rand(3);
+	pc.createStatusEffect("Mitzi_Gushed_Out");
+	pc.setStatusMinutes("Mitzi_Gushed_Out",60*24*3);
+	mitzi.milkFullness += 100;
+	if(mitzi.milkMultiplier < 100) mitzi.milkMultiplier += 60;
+	mitzi.milkStorageMultiplier += 0.25;
+	//output("\n\n<b>New Mitzi milkQ: </b>" + mitzi.milkQ());
+	if(!pc.hasStatusEffect("Mitzi_Gush_Thankyou")) pc.createStatusEffect("Mitzi_Gush_Thankyou");
+}
+
 /*
-output("\n\n[DONE] Give Mitzi Gush");
-output("\n\n//Straightforward. Mitzi gets milky and stupid.");
-output("\n\n//Req’s favorite drugs talk!");
-output("\n\n//Cock/NoCock variant.");
-output("\n\nYou toss Mitzi a gush applicator. <i>“{Wanna like, by my milky moo-goblin for a bit?/Gotcha a present./I got you a present, since you were telling me how much you liked it./I’ve had a hankering for fresh milk ever since you told me that story./Gabilani milk better taste good.}”</i>");
-output("\n\n<i>“Is this...”</i> the emerald bimbo’s mouth lags while her overheated brain struggles to keep up, <i>“...Gush?”</i> She looks up with the biggest, happiest grin on her pouty purple lips. <i>“For me?”</i>");
-output("\n\nYou nod. <i>“Go ahead if you want.{ I’ll take care of you.}”</i>");
-output("\n\n//Done this before.");
-output("\n\nMitzi beams, <i>“This’ll be even better than last time! Omigod, thank youuuu! Mitzi is so glad you’ll be here to help her out in case she forgets her name or whatever.”</i>");
-output("\n\n//First time");
-output("\n\nMitzi beams, <i>“Thank you sooo much! Mitzi will try and stay milky afterward if she can remember. ‘Memberin’ is real hard in cow-space though!”</i>");
-output("\n\nWhile that sounds worrisome, you remind yourself that Mitzi’s quite a resilient girl. If she can bounce back from the hand life dealt her and find her way to you, she can {dabble in a little Gush/indulge her Gush addiction} just fine.");
-output("\n\n{Yanking off her [mitzi.armor] to bare her {soon-to-be }leaky mammaries, Mitzi bounces with glee./Squeezing her {soon-to-be }leaky mammaries{ until a thin stream of milk shoots out/ until streams of milk spray out/ until a river of creamy goblin-milk pours out}, Mitzi bounces with glee.} <i>“Just thinking about it has Mitzi’s titties all perkied up! Look!”</i> Sure enough, those glamorous green {milk-makers/jugs} are heaving, thrusting big fat nipples in your direction. High beams like that could poke out an eye - or fill flood your mouth with the sweet taste of Mitzi’s milk.");
-output("\n\nYou lick your lips.");
-output("\n\n<i>“Fuuuuck, [pc.Master], you look so </i>hot<i> when you stare at Mitzi’s tits like that, and she didn’t even use your present yet, the stupid cunt!”</i> Your pet goblin purses her lips in thought.{ <i>“Guess Mitzi should get these out of the way before she forgets how.”</i> She tosses off her [pc.armor].} <i>“Okay which end does the fun stuff come out of? This one?”</i> Surprisingly, she correctly identifies the drug applicator’s spray-port.");
-output("\n\n//Bimbo");
-output("\n\n<i>“Yeppers! That’s it. You’re gonna have so much fun!”</i>");
-output("\n\n//Bro");
-output("\n\nYou nod.");
-output("\n\n//Nice");
-output("\n\n<i>“That’s it!”</i> You give her an encouraging thumbs up.");
-output("\n\n//Misch");
-output("\n\n<i>“Why don’t you give it a try, and if you still remember what we’re talking about, you’ll know it’s the wrong end.”</i>");
-output("\n\n//Ass");
-output("\n\n<i>“Yes, that’s it. Honestly I’m not sure you can get any dumber.”</i>");
-output("\n\n//Merge");
-output("\n\nMitzi nods with a surprising sense of sobriety. <i>“Before Mitzi’s head gets all milky, she like, wanted to say she loves you.”</i> A trickle of wetness streams down her thighs. <i>“But Mitzi is really horny and is gonna milk herself stupid now!”</i> Waving the spraypen over her blushing tits, the goblin unleashes the entire load of Gush in one concentrated blast. Beads of moisture briefly freckle her heaving, emerald bosom for the moment it takes for the technologically-infused cocktail to penetrate her skin. <i>“Wow, it soaked in fast. [pc.Master] got me the good stuff!”</i>");
-output("\n\nYou ask the horny short-stack if she’s feeling it yet. Her whole body is clearly flushed.");
-output("\n\nAn airheaded giggle bursts out of Mitzi in answer, <i>“Like, not yet, {stud/[pc.Master]}. Gush takes a couple sec... mmm... uh...”</i> She stops talking and looks down at her breasts just in time to see them wobble. The sudden growth bounces one into the other, creating a cascade of jiggliness that bounces back and forth from one side to the other. <i>“Like... uh... good. It’s good, [pc.Master]. Mitzi’s getting all gushy!”</i> She grabs hold of one in both hands and offers it up to you, the rich green skin slowly stretching and shining from the effort of containing her swelling milk-sacks.");
-output("\n\nYou cautiously take Mitzi’s weighty mammary into your hands. The contact seems too much for the silly slut. She bites her lip to stifle a moan and arches her back. A gush of girl-cum vents between her bare thighs to splatter the ground, and her nipple strains forward, reaching out a full inch as it engorges beyond all reasonable biological limits. {A single bead of white appears on the tip./An abrupt release of white erupts from the tip, cascading down her underbust to  join her fragrant pussy-juice on the floor. Repeated dosages clearly make Mitzi a very milky girl.}");
-output("\n\nWith all the attention on her breasts, the bimbofied goblin appears to be in heaven. Her eyes are barely open, while her tongue is sliding further and further out of her lax maw. When she sees you looking, she ineffectually tries to suck it in, only to have a lurid moan undo every ounce of progress. <i>“Ma-ma-[pc.master]! Mitzi’s titties are sooo buzzy an’ good,”</i> she slurs. <i>“Gettin’ hot and full- soooo warm!!”</i> {Ribbons of white leak from her nipples without any effort at all./Both sides erupt again, release warm torrents of goblin-cream without any nipple stimulation at all.} <i>“Mmmm-ma-mooo!”</i> A brainless giggle follows after the bovine proclamation, <i>“Mitzicow moo!”</i>");
-output("\n\n<i>“Mitzi?”</i> you snap your fingers in front of her face, trying to focus her incredibly limited attention. <i>“You doing okay?”</i>");
-output("\n\n<i>“Mmmhmmm,”</i> the drippy girl all but purrs in sexual delight. <i>“Mitzicow... so...”</i> She looks down at her tits again and stops to smile warmly. Catching milk in her palm, she watches more dribble out and begins to moo all over again. Bovine low after cow-infused moan escapes her, every wordless vocalization accompanied by a slight increase in flow from her distended nipples. Mitzi sips at the milk puddled in her hand, then seems to remember something of your question - or at the very least acknowledges your presence.  <i>“Good. Miss Cow moo’s so good.”</i> Shuffling forward, she presses her cream-oozing breasts against your {[pc.leg]/[pc.thigh]/waist}. <i>“Milkies?”</i>");
-output("\n\nThose luscious, milk-filled pillows are so warm against your [pc.skin]. It’d be a waste <i>not</i> to milk them. The only question is if you’d like to do anything else whilst you play with ‘Miss Cow.’");
-output("\n\n[Fuck Her] [Titfuck] [Just Drink]");
-
-output("\n\nFuck Her");
-output("\n\n<i>“Yes, Milkies,”</i> you say, {yanking open your [pc.crotchCover] to pull out your [pc.cocks]/pointing at your [pc.cocks]}. <i>“Milked right into your cunt.”</i>");
-output("\n\nMitzi’s eyes go wide and her languidly slides out of her mouth to drool on her expanded tit. She just stares at your crotch with unashamed lust. The hearts in her eyes dilate until you’re looking at a sea of wanton pink. Meanwhile, her hands oafishly grab at her nipples, making half-hearted tugs at the milk while her brain tries to make room for the concept of getting fucked. <i>“If fuck, how will... Moo milk?”</i> the goblin slurs.");
-output("\n\n//Bimbo");
-output("\n\nYou giggle. The poor got all shorted out by dick! That’s fine though, you’ll just take charge and give her the hard dicking you know she’s aching for. She can thank you later, if she remembers. <i>“Don’t worry about it. I’ll fuck you real hard, and all the milk will come out just fine!”</i> It’ll probably work.");
-output("\n\n//Bro");
-output("\n\nYou snort. <i>“You don’t need to talk.”</i> The dumb cunt would be better off presenting to save you the time of posing her, but you suppose it doesn’t matter. You’ll fuck the green-skinned milk-bitch until her cunt is stuffed and her nipples are milked dry. <i>“I got this.”</i>");
-output("\n\n//Nice");
-output("\n\nYou stroke her head gently. Poor girl is enjoying her tits so much that she’s going to need a lot of help to enjoy her Gush-time to the max. Fortunately, she has you here to take care of her. Knowing Mitzi, she’d whine for days if you didn’t give her a half-dozen milk-squirting orgasms. <i>“Relax, Mitzi-Moo. I’ll take care of all the milking. You just focus on enjoying it.”</i>");
-output("\n\n//Misch");
-output("\n\nShrugging, you tease her by saying, <i>“I don’t know, but I think if I stick my dick inside you, we might just find a way.”</i> The poor girl’s pussy clenches hard enough to send fresh dribbles running down her thighs. <i>“Besides, if you’re Mitzi-Cow, you don’t have to bother thinking. I’ll handle the hard stuff, like making sure you cum super hard.”</i>");
-output("\n\n//Hard");
-output("\n\nOh for the love of... <i>“You dumb cunt.”</i> You slap your palm into your face in frustration. <i>“Don’t worry your little bimbo brain over it. I’m going to fuck you, and you’re going to love and it and squirt milk everywhere.”</i> You pinch one of her nipples, and a spout of milk arcs out. <i>“Just like that.”</i>");
-output("\n\n//Merge");
-output("\n\n<i>“Ohhh! Oh... kay!”</i> The dumbed-down goblin nods, leaning closer to your crotch. She takes a sniff at [pc.oneCock] and nuzzles up to it. <i>“Moo loves cock.”</i>");
-output("\n\nYou say, <i>“I bet you do,”</i> and force her down on her knees, then all fours. Mitzi’s pumped-up tits keep her on her fingertips, the pressure on her drugged-up knockers spraying fans of milk between her flushed skin and the floor. She doesn’t have to suffer long. You roll her over onto her back and watch her pornstar-caliber boobs wobble, most of their weight hanging over the sides of her chest to pull them apart, nipples jutting wide.");
-output("\n\nThe goblin’s legs follow suit. <i>“Like this?”</i>");
-output("\n\nClimbing on top of Mitzi, you drop [pc.oneCock] into place on top of her soaking pussy and smile. <i>“Just like that, {you sexy slut/sweet little cow/beautiful/you sweet mynx/bitch}.”</i>");
-output("\n\nThe giggling girl arches her back and sighs delightedly at the pressure on her mons, rocking her hips upward to slide a sinfully slick clit against the underside of your dick. Fresh streams of goblin-cream ooze out of her increasingly distended nipples. Sucking on her finger, Mitzi stifles another bovine vocalization and manages to find her voice. <i>“But the milk...”</i> She reaches for a teat, but the sheer weight and size of her stuff mammary drags the slippery nipple out of her fingers. It takes both hands to wrangle the tit into place and lift it up to you in offering. <i>“Miss Moo needs moo-ilked!”</i>");
-output("\n\nYou wrap your [pc.lipsChaste] around the swollen nub to humor the poor thing and are rewarded with a blast of sweat milk potent enough to stream out of the corners of your mouth and down your chin. There’s no way to sip gently from Mitzi. She’s a living cornucopia of milk, sharing the tremendousness of her bounty with you in one cheek-bulging eruption after another. The only way to ride it out is to abandon any attempt at cleanliness and let the milk fall where it may, coating your body and hers alike.");
-output("\n\nYour [pc.cocks] throb{s} in anticipation while you drink, but your attention is too full of nipple and milk to properly line {it/one} up, too divided between Mitzi’s fecund swells to properly see to the satisfaction of your aching member. Keeping up with your breathing is");
-output("\n\nFortunately, Mitzi’s sluttified, cock-hungry body is more than capable of seeing to your needs without a single conscious thought. She moos, low and loud, as her hips gyrate, confidently swinging up, angling forward, and pressing hard against your [pc.cockHead]. Those lust-gilded goblin lips {open right up to swallow your [pc.cock] whole, sheathing you in the liquid furnace of her loins. Overactive muscles clamp down to squeeze you in a slutty embrace. Mitzi’s elastic channel may be capable of handling the biggest, baddest cocks on the block, but it feels all too happy to wrap you up and squeeze until the cum can’t help but spurt out of you./gently part to slowly swallow down your [pc.cock], enjoying the sensuous friction of being filled by a decent-sized dick, sheathing you in the liquid furnace of Mitzi’s loins. Hidden muscles gently squeeze and stroke, careful not to contract too hard, lest they impede your pleasure. Her pussy is built for sex, able to please any dick - big, small, or the perfect size to curl her toes./momentarily strain before giving way to your [pc.cock], allowing themselves to be battered open to make way for your pleasure. Her insides are warm and soaking wet, clutching tightly to your veins as you glide by while gentle muscular contractions massage you better than an oiled-up masseuse. You’re clearly straining her limits. Mitzi’s toes curl as you hilt yourself, her cunt weeping desire{ down your [pc.balls]/ [over your [pc.vaginas]/ down your [thighs]}./slam hard into your [pc.cock] once, twice... and give way to the tunnel of liquid-gold pleasure that is her clutching, straining quim. You can see the outline of your dick bulging her belly; proud and hard and oh so ready to dump {gallons of seed into her womb/a gallon of seed/an enormous cumshot into her womb} as it plows forward an inch at a time. Mitzi’s eyes roll back, but her cunt still feebly works you, taut muscles vibrating like overtuned guitar strings around your manhood as they vainly try to squeeze down on a length big enough to split lesser women in half.}");
-output("\n\n<i>“Moooooo!”</i> she squeals, riding high on waves of mind-melting pleasure. <i>“Moo-moooo-moooOOOOOO!”</i> Mitzi’s head slams back and her hips slap messily into yours, splattering you with girlcum as the goblin explodes into climax. Geysers of thick, creamy milk force you offer her nipple and wash down your [pc.chest] and [pc.belly].");
-output("\n\nYou hold onto the squealing goblin-cow’s sopping-wet hips for stability and content yourself with fucking her silly. Without her tits to distract you, you can focus on giving her the furious fucking her augmented body was built to take. Mitzi likes it, the little slut. You can tell in from the way her {straining }slit flexes in response, the way the slightly-too-big nubbin of her clit bulges out. When you hit a really good spot, the milk fountains jump a foot higher in the air, and when you you draw back to line up the next stroke their pressure drops.");
-output("\n\nThere’s something sexy about seeing Mitzi like this, using her like this, something pure in the way she radiates raw, sluttish desire and a whorish sense of ecstasy in response to each and every action, unencumbered by the barriers of ego and indecision. The lactating bimbo simply does what her body wants, and her body wants to cum around her [pc.Master]’s {hard-fucking dick/big, beautiful cock/bitch-breaking cock/cunt-destroying cock} for as long as it can.");
-output("\n\n<i>“Moooo-oooh-yeessss!”</i> Mitzi’s voice is raw from screaming out her pleasure already. Her fingers grope her tits hard, uncaring for anything but more stimulation, squeezing still more milk. She’s all but swimming in it, plastering in face in a mask of white. Both pigtails are utterly saturated and dripping. You could hold a cup under one and it’d be full in seconds. <i>“Such-a-milk-sluuuuuut!”</i>");
-output("\n\n<i>“Yeah you are.”</i> You fall into her fantasy, guided by her pussy’s wanton affections. <i>“My little milk-slut.”</i>");
-output("\n\nThat gets a reaction out of Mitzi. She jolts upright, twitching in orgasmic bliss. <i>“Cum in meeee~! Mooooo!”</i> And she flops back down, twitching, eyes rolling back, pussy milking your [pc.cock] harder than ever. She might be incapable of saying it, but she wants your cum. She wants it fired deep into her womb. She wants the thickest, stickiest, virilest batch of baby-batter you can conjure up planted so deeply into her spasming body that her very soul is impregnated with your seed.");
-output("\n\nAs if you could hold out when confronted with that kind of encouragement. Guided by the goblin-cunt’s silken touches, you hilt yourself deep{, knot ballooning to lock you in place,} and shoot the first pulse of your load.{ It’s relatively weak, all things told, but you give it all you’ve got regardless, spurting dollop after dollop until you feel sore and dizzy. That’ll happen from too many orgasms without rest, yet who could blame you? With a horny goblin slut like Mitzi on tap, you’re surprised you had any [pc.cum] at all in your [pc.balls]./ It feels like her pussy is swallowing up every drop, wicking away your [pc.cum] before you can feel it splash back around your girth. Mitzi’s altered body <i>milks</i> out your seed just as you milked her. Before long, you feel absolutely drained and a little bit dizzy./ It feels incredible, flooding her pussy. At first, Mitzi’s modded uterus seems to devour your offering, but by the end of the first [pc.cum]-spurt, you can feel the slick warmth backwashing back out around your [pc.cockHead]. And your successive squirts only make it hotter and wetter, thoroughly creampying the goblin with a load too big for her to handle.{ She whimpers when her belly rises up, inflated by the sheer size and force of your load, but they aren’t sounds of pain - quite the opposite. Mitzi clearly adores you pumping her middle up with seed. Green-skinned hands slide over the milk-drizzled dome as you stuff her cum-pregnant.{ When high-pressure jets spray out around your [pc.knot], she shudders and blacks out from the bliss. It would seem even bimbos can cum so hard they black out.}} By the time you run dry, you’re winded and dizzy.}");
-output("\n\nFlopping yourself inbetween her drooling tits for a rest seems like a good idea{, especially since your knotted tool is still held in place, forced by Mitzi’s clenching cunt to continually seep more semen into her channel}. You can’t imagine a cosier place to take a nap.");
-output("\n\n[Next]");
-output("\n\nWhen you wake, it’s to the feeling of another climax. You wipe the milk from your eyes and push yourself up off of Mitzi’s tits to try and figure out what’s going on.");
-output("\n\nShe’s riding you!");
-output("\n\nNow that the effects of Gush have largely subsided, Mitzi’s chest is a little more reasonable looking, if a little bigger than it once was. <i>“Miss Moo made [pc.Master] cock-milk like... more than twice!”</i>");
-output("\n\nJudging by the soreness in your loins, it was more than twice. <i>“Get off.”</i>");
-output("\n\nMitzi pouts but complies, sliding to the side to let your cock pop out with a messy ‘shluck’ and answering gush of mixed sexual fluids.{ Apparently after hours of non-stop knotting, she stretched out enough to pop right off.} <i>“Umm... Moo. No wait... uh... fuck more later?”</i>");
-output("\n\nYou laugh and stagger up onto your [pc.feetOrFoot] on shaky legs. <i>“Sure. I guess. Once you’re recovered.”</i>");
-output("\n\n<i>“Oh.”</i> Mitzi pouts. <i>“Umm, when Milk-girl remembers her name, huh?”</i>");
-output("\n\nThat seems about right. You nod.");
-output("\n\n<i>“Okay. Miss Moo-Milk is gonna play with her pussy for now though, cause it makes her tits suuuper drippy.”</i> The milk-caked goblin is already knuckle deep in herself and smiling, heart-shaped eyes watching you adoringly.");
-output("\n\nIt might take her a while to recover.");
-
-output("\n\nJust Drink");
-output("\n\n<i>“Yes, Milkies,”</i> you say, pulling the walking milk-tank into your lap. <i>“I’m thirsty.”</i>");
-output("\n\nMitzi grins wide and does her best to lift a tit up for you, but it’s simply too heavy for her to raise it very high. You grab hold of one, fingers sinking deep, spilling milk out in a gooey spray, and heave it upward. The nipple throbs and gleams, beckoning you to take it into your mouth, to suckle it and taste of its bounty.");
-output("\n\nYou do.");
-output("\n\n<i>“M-m-mooo!”</i> Mitzi cries as her milk pours into your maw. It floods the space inside and balloons your cheeks. Trickles stream out of either side of your mouth as you struggle to gulp it down, able to enjoy its sweetness and creamy, palate pleasing flavor in spite of the inhuman quantity she presents. Fortunately, that flood diminishes to a steady pumping as the excitement of the moment passes. Mitzi’s trembling form stills somewhat, and you actually have a moment to attempt a suck.");
-output("\n\nThe elasticized flesh in your mouth balloons the moment you draw in your breath, hot and heavy, then contracts just enough to overwhelm your capacity. It’s a messy process: gulping, sucking, leaking milk everywhere, and then gulping again. Mitzi loves it; she quietly moos when you suckle and sighs when you swallow. Her other breast is making a mess of everything, but she doesn’t seem to care, empty-headed cow that she is - at least at the moment.");
-output("\n\nAt this rate, you won’t be able to handle both breasts’ liquid treasure. You’ll be lucky to drink everything this teat is putting out and still be able to walk! You swallow again, stroking Mitzi’s head affectionately as you try to think of a way to satisfy her. It’s quite relaxing, filling your belly, listening to the sluttified goblin’s animalistic sounds of pleasure and relief, warm juices spilling down your [pc.legs].");
-output("\n\nWait... it’s not just milk rolling down your leg. You peek around the wall of over-productive mammary to look down, and sure enough, Mitzi has her tail buried deep into her slit. Pussy-juice is flowing out of her near-constantly, like she’s lounging in the midst of an orgasm without beginning or end. Your lap is bathed in it{, mixing in with your own feminine secretions to perfume you with feminine musk/, oiling your [pc.cocks] in feminine secretions that make your nose twitch and your dick{s} surge}. You’d smile if your mouth wasn’t full, glad that she’s having a good time of it.");
-output("\n\nMaybe later something can be done about that leaky hole between her legs.");
-output("\n\nFor now, you’ve got a pair of exceedingly milky goblin-tits to drain, and since you aren’t going to drink Mitzi dry with your mouth, you might as well use your free hand to satisfactorily empty the other.");
-output("\n\nThe spare nipple nearly slips out of your fingers the first time you try to grab it, but you manage to catch it just at the tip. Of course, this sets off a geyser of breast-milk. Mitzi babbles, <i>“Goooood milkies! Moooo! Moo moo moo moo!”</i> You adjust your grip to squeeze higher up. Maintaining proper milking form is difficult without the ability to look at what you’re doing, but you make do.");
-
-output("\n\nMitzi doesn’t seem to mind. She wriggles slightly to press more of herself against you, her cum still sliding down your [pc.legOrLegs] in and endless stream, widening the pool of milk and sex-juice on the floor. You could look down at her blissed-out eyes and limp, dangling tongue for what feels like forever.");
-output("\n\nThis is... nice.");
-output("\n\nMitzi moos as if in agreeance, to which you respond with a fervent suck. Time passes as your belly fills, but still you continue to drink, egged on by bovine lowing and the occassional whispered word of english. The skin of your [pc.belly] may feel tight and your stomach bloated, but you soldier on for almost a solid hour before you can take no more.");
-output("\n\n[Next]");
-output("\n\n<i>“Moo?”</i> Mitzi groans, blearily blinking her eyes. The tail slides out of her snatch with a wet pop as she comes down. <i>“No... no more milking Miss Moo?”</i>");
-output("\n\nYou pat your milk-burdened belly. <i>“Not for the moment.”</i>");
-output("\n\n<i>“Oh.”</i> The goblin’s brow crinkles for a moment. When she looks back up, she’s smiling as if she’s had the cleverest idea in all the galaxy. <i>“What about now?”</i>");
-output("\n\n<i>“Not now either.”</i>");
-output("\n\nThe look of shock on Mitzi’s face is priceless. She stutters, <i>“B-b-but Mi-mi-miss Moo has milk! See?”</i> She squeezes her breast, delivering a much slower flow of creamy goodness. <i>“Mmm...”</i> Her eyes flutter closed. <i>“Moo-ooooo!”</i>");
-output("\n\nYou pat her on the head, a little concerned that she still seems to have forgotten her name. <i>“I need to sleep off this milk-gut. You’re welcome to milk yourself in the meantime.”</i>");
-output("\n\n<i>“Awww... Miss Moo wants more milk. More milks and moos and sucks!”</i> She pouts. <i>“Maybe later? [pc.Master] make Moo even more milky later?”</i>");
-output("\n\nYou promise that you will, but it’s probably best she wait until she’s recovered from this dose.");
-output("\n\n//end");
-output("\n\nTit-Milk-Fuck");
-output("\n\n<i>“Yes, Milkies,”</i> you say, {pulling open your [pc.crotchCovers] to reveal/stroking your erect [pc.cocksNounSimple]/stroking your rapidly-stiffening [pc.cocksNounSimple]}. <i>“Milkies here.”</i>");
-output("\n\nMitzi’s eyes go as wide as saucers. Her hands drop from her tits, fingers twitching in eagerness while her Gush-melted mind tries to figure out how cock and milk go together. <i>“Miss Cow...”</i> she moos, <i>“...milks here?”</i> She hesitantly reaches out to grab [pc.oneCock]. On contact, the milk-streams from her nipples pulse out heavy flows.{ Her fingers can’t wrap all  the way around the turgid maleness, but she tries all the same, fingernails gently pricking at your sensitive skin./ Her fingers casually wrap around it, gliding up in down an automatic handjob.}");
-output("\n\nAfter watching the bimbo willingly devolve herself into a leaking, lactic toy, something as simple as a hand on your dick feels amazing. You groan in delight and nod. <i>“Get it nice and wet so I can fuck your tits.”</i>");
-output("\n\nAgain, this shorts Mitzi right the fuck out. Her eyes cross to stare at your dick while her hand continues to stroke it, bereft of conscious thought. She opens her mouth, then closes it, drools a bit, then gulps it all down and quietly moos. <i>“Titty-milk-fuck?”</i> Her voice is high-pitched and strained with unfiltered excitement. Biting a too-plush lip, she at last lets go of your [pc.cock] to heft her tits, one in each hand. <i>“Help moo-me milk?”</i>");
-output("\n\nYou’d like nothing better. Getting your hands on Mitzi’s nipples, you discover that they aren’t just engorged, they’re <i>ripe</i> and firm beyond belief. You can actually feel the liquid coursing through her milk ducts with enough pressure to send gentle vibrations through to your fingers. No wonder Mitzi’s drooling all over herself and speaking in ‘moo.’ You say, <i>“Easy girl,”</i> as you shift your grip a bit back and squeeze, forcing the milk forward with a gentle nip-ward press.");
-output("\n\nYour milk-minded goblin tries her best to keep it together, but the moment her sweet juices are forcibly squeezed out of her still-inflating milk-bags, her knees knock together and her eyes roll back. She whimpers cutely as you tug down to her nipples, shaking like a leaf. The milk gets everywhere, of course. Her boobs spray like creamy sprinklers, splattering your body from [pc.belly] to [pc.foot]. It hits you like warm, wet cluster munitions, exploding into bursts of delightful warmth on your  [pc.thighs]{, your [pc.balls]}, your crotch, and especially your [pc.cocks]. There’s enough pearly goblin-milk for it drizzle from your [pc.cockHead] like sweet-smelling cum.");
-output("\n\n<i>“Mooooo!”</i> Mitzi cries, leaning forward to sloppily kiss the top of your [pc.cock], inadvertently making you waste your last few nipple-tugs onto the floor.");
-output("\n\n<i>“Good girl,”</i> you say, letting go of her nipples to give her a friendly pat on the head. She leans into your hand, panting hotly. The goblin-cow’s heart-shaped pupils remain locked on your cock. <i>“Are you ready to titfuck?”</i>");
-output("\n\nMitzi’s tongue falls out of her mouth, and her tail slips between her legs to rub at a soaking wet gabilani mound. <i>“Moo!”</i> She kisses your cock. <i>“Moo!”</i> She rubs her cheek against it, smearing milk on herself without a care in the world. <i>“Moo want dick!”</i>");
-output("\n\nYou’re going to give it to her. With one hand on her back and the other wrapped possessively around her throat, you bear her to the ground. She lets you do it too. The closest she gets to struggling is accidentally spurting some milk on your [pc.chest] when her titties bounce against one another. Those gorgeous heart-shaped eyes of hers stare up at you longingly, right up until you squat overtop of her and drop your milk-soaked cock into her cleavage with an audible splat.");
-output("\n\nThen Mitzi’s too busy arching her back and crying out in delight to do something as mundane as maintain eye contact. <i>“Oooooh mooooo! Mooooo liiiike!”</i>");
-output("\n\n<i>“Here, let me help,”</i> you say as you put a hand on either side of her enormous tits and press them together. Mitzi’s pillowy flesh squeezes down around your [pc.cock] in a vise of cream-coated skin, warm and wet in all the best ways. Better still, the added pressure causes her nipples to go into overdrive, spraying thick arcs into the air while less energetic streams roll down the swells of her tits to soak them in milky shine. You hold that position for a few moments, mashing the Gush-brained goblin’s mountainous mounds around your dick while you try to get used to the intense sensation.");
-output("\n\nMitzi’s body goes limp, and you feel a splatter of feminine fluids against the underside of your [pc.butt]. A second later, her head pops up off the ground, milk-soaked pigtails bouncing, and she smiles at you. <i>“Moo!”</i>");
-output("\n\nUnsure of how to respond, you continue to massage the goblin fuck-toy’s sinfully slick mammaries around your [pc.cock], wringing a happy sigh from yourself.");
-output("\n\n<i>“So moo-damned good!”</i> Mitzi bubbles, grabbing hold of her teats to squeeze out more milk. By now, her nipples seem almost comically large compared to her fingers. It’s actually looks sort  of like she’s trying to milk a cow, with a more than appropriate liquid result. <i>“I love moooo!”</i> She’s looking you in the eyes while she says it, smiling broadly, if a bit vacantly, and wiggling around so that her tits shift on your [pc.cock]. <i>“Fuck-milk now?”</i>");
-output("\n\nEven if the dopey goblin hadn’t asked, her cutely misspoken declaration was more than enough motivation to give her the righteous pounding a woman like her deserves. <i>“Yes,”</i> you announce, sliding your [pc.hips] back to drag your dick back to the [pc.cockHead]. <i>“You’re so good, Mitzi.”</i> You thrust back in{, [pc.balls] dragging on her middle}, cock throbbing, plowing a tunnel between her pillowy tits{ until your [pc.cockHead] bursts out of the top{ and kisses her lips/ and slides past her cheek}}. <i>“So goddamn good!”</i>");
-output("\n\nNow that you’ve started, you can’t stop yourself. You’re too worked up, and she’s too hot. Her drug-enhanced breasts are unreal. Nothing should be so big yet so soft and so utterly, completely slick on your skin. Nothing should wring droplets of pre-cum from you so freely or ripple so hotly around your girth. Mitzi is a powerhouse dynamo of breastly sensuality, whether she has the awareness to know it her not.");
-output("\n\nYou hump her tits like a [pc.manWoman] possessed. Your [pc.hips] slap into them hard enough to make them bounce and shake. Mitzi is carried along by their inertia; every stroke shifts her an inch or two up and down, but she’s well past caring. The little mynx is coaxing out more milk to lube you up, more to keep you hot and bothered. She’s smiling and cumming and mooing without a care in the world.{ Sometimes she stops to suck your [pc.cockHead] for a few seconds but forgets the instant you draw it away./ Sometimes she stops to slobber on your shaft for a few seconds but forgets the instant you draw it away.}");
-output("\n\nFrom far away it probably sounds like you’re banging an actual cow. Mitzi seems incapable of forming words at this point, either from the pleasure or the drugs. There’s only squelching, slapping, and obvious sexual grunts in the air as you near your peak. Your fingers sink deep into supple emerald skin, unconsciously clenching tighter. Of course, this just releases more milk and makes Mitzi moo that much louder. She’s still looking at you though, and her eyes tell you what her lips cannot: that she wants you to blow the biggest, messiest load {all over her face/into her tits}.");
-output("\n\nYou cum. How could you not? Pleasure races through your [pc.cocks], {spurting/spraying} out {into Mitzi’s milk-glazed mounds/onto Mitzi’s whorishly delighted face}. You fuck your way through it, adding sensation to your orgasm. The second pulse is at least twice as potent as the first{, painting the goblin’s face and pig-tails [pc.cumColor]/, oozing out of both ends of her cleavage}, and still, you keep fucking. You fuck Mitzi{ until she’s more spunk than goblin, your seed splattered in more places than you could ever keep track of/ until you run out of spunk and stir it around in her milk with your [pc.cock]}. Her tongue slithers out to collect dabs of it to swallow.");
-output("\n\n<i>“Mooooo,”</i> Mitzi moans after the first mouthful, going back for seconds. <i>“Mmmm good moo.”</i>");
-output("\n\n[next]");
-output("\n\nSatisfied at last, you extricate your milky cock from Mitzi’s milk-dribbling tits and look down at the soaked goblin. <i>“Are you alright?”</i>");
-output("\n\nHer chest is heaving like she’s out of breath, and her legs are absolutely soaked in pussy juice. More concerning is that her nipples are still drooling milk, her hands still there to coax it out. Mitzi’s vacant stare pivots your way. <i>“Miss Moo uh... feels real good.”</i> She licks up a little more milk. <i>“Want more milk-fucks, but milk getting slow!”</i> Sure enough, you note that the milk-flow has receded somewhat. <i>“[pc.Master] make Moo milky again later?”</i>");
-output("\n\nYou promise that you will, but it’s probably best to wait a bit for now.");
-
-output("\n\n//Milky Mitzi still recovering");
-output("\n\nMitzi is in her bathroom, kneeling and the shower and tugging on her nipples. Soft, emphatic moos can be heard every now and then, accompanied by wet-sounding splats. You put your ear to the door and listen: <i>“Miss Moo is... Miss Moo? Noooo, wrong mooooo. Mmm, milking feels so gooood! [pc.Master] won’t fuck Moo if she doesn’t remember her name... Missy or Mimsy... MOOOO!”</i> You pull away and decide to let her recover in privacy.");
-output("\n\n//Repeat recovery");
-output("\n\nMitzi is in her bedroom, milking her prodigious teats and mooing like a barnyard animal. Every now and then you hear an orgasmic screech and a liquid spattering followed by a high-pitched cry of, <i>“[pc.Master] so good to Moooo!”</i>");
-
-output("\n\n//First time approach");
-output("\n\nMitzi smiles dizzily. Her breasts, you note, remain ever so slightly larger than before you gave her gush, but awareness has returned to her eyes. <i>“Thanks for like, giving Mitzi that Gush, [pc.Master].”</i>");
-output("\n\nYou tell her that it was your pleasure.");
-output("\n\nShe blushes from head to toe and nods, <i>“So like, now that Mitzi can remember her name and stuff, did you wanna do it again?”</i> Milk seeps from her nipples{ into her [mitzi.armor]}. <i>“Mitzi promises she’ll be so milky and happy for you. You can do whatever you want with her big, dumb cow-boobs!”</i>");
-output("\n\n<b>It would seem you have a milky goblin now</b>, one who is eager to repeat the experience.");
-
-output("\n\n//Repeat post-gush approach.");
-output("\n\nMitzi pokes a breast. <i>“Mitzi’s titties are getting bigger thanks [pc.Master]. And so milky!”</i> She squeezes a nipple to release a {spray/gush/eruption} of creamy goblin milk. <i>“See? Mitzi’s a fuck-toy and a milk-cow now, and she </i>still<i> remembers her name. All because [pc.Master] is so generous.”</i> She shakes her breasts back and forth.  <i>“So you can like, make her a stupid fuck-cow as whenever you want, pretty much. Mitzi will love whatever you do to her big, dumb cow-tits. They’re [pc.Master]’s to milk!”</i>");
-output("\n\n<b>{Mitzi is lactating even harder now./Mitzi is basically a walking milk-fountain now./Mitzi is capable of soaking you in milk at a moment’s notice./Mitzi has reached the absolute limits of milkiness. Any more and she’d break the universe.}</b> Any time you want to reduce her to a simpering milk-slut, she’s game. Of course she’s going to make a mess even if you don’t now.");
 output("\n\n[DONE] Give Mitzi Bubbles!");
 output("\n\n//Give Mitzi a bubble buddy bubble. Mitzi gives back a prize for the first time at a size.");
 output("\n\nSavicite-Lace Panties - increases minimum lust to 33.");

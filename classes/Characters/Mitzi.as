@@ -19,7 +19,7 @@
 		//constructor
 		public function Mitzi()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = this._latestVersion;
 			this._neverSerialize = true;
 			
@@ -174,7 +174,7 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 			
-			this.breastRows[0].breastRatingRaw = 21;
+			this.breastRows[0].breastRatingRaw = 15;
 			this.nippleColor = "purple";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
@@ -184,7 +184,10 @@
 			
 			this._isLoading = false;
 		}
-		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject.breastRows[0].breastRatingRaw = 15;
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.mainGameMenu();
