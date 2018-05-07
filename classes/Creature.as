@@ -5381,11 +5381,11 @@
 		public function critBonus(melee: Boolean = true): Number {
 			var temp: int = 5;
 			if (melee) temp += meleeWeapon.critBonus;
-			if (hasPerk("Linked Emitters"))
+			else temp += rangedWeapon.critBonus;
+			if (hasPerk("Linked Emitters") && shields() > 0)
 			{
 				if ((melee && hasMeleeEnergyWeapon()) || (!melee && hasRangedEnergyWeapon())) temp += 5;
 			} 
-			else temp += rangedWeapon.critBonus;
 			if (hasPerk("Critical Blows")) temp += 10;
 			if (hasStatusEffect("Quaramarta!")) temp += 15;
 			if (hasStatusEffect("Lieve Buff")) temp += 10;
