@@ -3696,7 +3696,6 @@ public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 	if (totalHours >= 1)
 	{
 		if (pc.hasPerk("Dumb4Cum")) dumb4CumUpdate(totalHours);
-		if (pc.hasStatusEffect("The Treatment")) treatmentHourProcs(totalHours);
 	}
 }
 

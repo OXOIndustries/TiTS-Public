@@ -134,8 +134,8 @@ public function locofeverProcs(deltaT:uint, maxEffectLength:uint, doOut:Boolean,
 		if(pc.isBimbo()) msg += " <i>Like, ew.</i>";
 		else msg += " <i>Disgusting.</i>";
 		msg += " Not only did the wipe cool you off, but it pulled out a nasty collection of mucus buildup. Looks like you caught some kind of infection that your body rejected...";
-		pc.removeStatusEffect("Undetected Locofever");
-		pc.removeStatusEffect("Locofever");
+		pc.removeStatusEffect("Undetected Locofever", true);
+		pc.removeStatusEffect("Locofever", true);
 	}
 	
 	if (msg.length > 0) AddLogEvent(msg, "passive", maxEffectLength);
@@ -164,7 +164,7 @@ public function locofeverFinish(deltaT:uint, maxEffectLength:uint, doOut:Boolean
 	msg += ". You must have gotten over your case of locofever.</b>";
 	if (msg.length > 0) AddLogEvent(msg, "passive", maxEffectLength);
 	
-	pc.removeStatusEffect("Undetected Locofever");
-	pc.removeStatusEffect("Locofever");
+	pc.removeStatusEffect("Undetected Locofever", true);
+	pc.removeStatusEffect("Locofever", true);
 }
 

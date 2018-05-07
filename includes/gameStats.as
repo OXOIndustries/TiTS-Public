@@ -1973,8 +1973,10 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" Untreated");
 				if(pc.hasStatusEffect("The Treatment"))
 				{
+					var treatment:StorageClass = pc.getStatusEffect("The Treatment");
+					
 					output2("\n<b>* Current Effects:</b>");
-					switch(pc.statusEffectv1("The Treatment"))
+					switch(treatment.value1)
 					{
 						case 0: output2(" Cow"); break;
 						case 1: output2(" Stud"); break;
@@ -1986,7 +1988,7 @@ public function displayQuestLog(showID:String = "All"):void
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					// Timer stuff
-					var treatedMinutes:Number = 10080 - pc.getStatusMinutes("The Treatment");
+					var treatedMinutes:Number = 10080 - treatment.minutesLeft;
 					output2("\n<b>* Duration:</b> " + prettifyMinutes(treatedMinutes));
 				}
 				if(pc.hasPerk("Dumb4Cum")) output2("\n<b>* Dumb4Cum, Status:</b> " + pc.perkv1("Dumb4Cum") + " hour" + (pc.perkv1("Dumb4Cum") == 1 ? "" : "s") + " since last ingested cum" + (pc.perkv1("Dumb4Cum") <= 24 ? "" : ", Craving cum"));

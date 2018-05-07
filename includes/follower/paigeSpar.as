@@ -519,11 +519,7 @@ public function FFLA():void
 	processTime(30);
 	pc.lust(50);
 	soreDebuff(3);
-	if(!pc.hasStatusEffect("Blue Balls"))
-	{
-		pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-		pc.ballFullness = 100;
-	}
+	if(!pc.hasStatusEffect("Blue Balls")) pc.applyBlueBalls();
 	clearMenu();
 	addButton(0,"Next",paigeExitWrapper);
 }
