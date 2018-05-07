@@ -1183,6 +1183,7 @@ public function initMhengaRooms():void
 	rooms["SCRAPYARD MAINTENANCE"].northExit = "SOUTH ESBETH 1";
 	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.INDOOR);
 	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.COMMERCE);
+	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.PUBLIC);
 
 	//89. Penny's Office. See Penny.as for more info.
 	rooms["PENNY'S OFFICE"] = new RoomClass(this);
@@ -1193,6 +1194,7 @@ public function initMhengaRooms():void
 	rooms["PENNY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["PENNY'S OFFICE"].southExit = "SOUTH ESBETH 3";
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.PUBLIC);
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.NPC);
 
 	//90. Kelly's Office - dat secretary
@@ -1205,6 +1207,7 @@ public function initMhengaRooms():void
 	rooms["KELLY'S OFFICE"].southExit = "SOUTH ESBETH 2";
 	rooms["KELLY'S OFFICE"].runOnEnter = kellysOfficeBonusFunction;
 	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.PUBLIC);
 	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
 
 	//91. Julian's Office
@@ -1216,6 +1219,7 @@ public function initMhengaRooms():void
 	rooms["JULIAN'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["JULIAN'S OFFICE"].eastExit = "KELLY'S OFFICE";
 	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.PUBLIC);
 	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
 	
 	//92. Crazy Carls
@@ -1228,6 +1232,7 @@ public function initMhengaRooms():void
 	rooms["CRAZY CARLS"].westExit = "WEST ESBETH 1";
 	rooms["CRAZY CARLS"].addFlag(GLOBAL.INDOOR);
 	rooms["CRAZY CARLS"].addFlag(GLOBAL.COMMERCE);
+	rooms["CRAZY CARLS"].addFlag(GLOBAL.PUBLIC);
 
 	//93. Medical Office
 	rooms["ESBETH MEDICAL OFFICE"] = new RoomClass(this);
@@ -1239,6 +1244,7 @@ public function initMhengaRooms():void
 	rooms["ESBETH MEDICAL OFFICE"].westExit = "EAST ESBETH";
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.MEDICAL);
+	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.PUBLIC);
 	
 	// Kelly's House
 	rooms["KELLY'S HOUSE"] = new RoomClass(this);
@@ -1248,6 +1254,7 @@ public function initMhengaRooms():void
 	rooms["KELLY'S HOUSE"].system = "SYSTEM: ARA ARA";
 	rooms["KELLY'S HOUSE"].southExit = "NORTH ESBETH 1";
 	rooms["KELLY'S HOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["KELLY'S HOUSE"].addFlag(GLOBAL.PRIVATE);
 	rooms["KELLY'S HOUSE"].addFlag(GLOBAL.NPC);
 
 	// Thare Plantation
@@ -1729,6 +1736,7 @@ public function initMhengaRooms():void
 	rooms["GOLD MYR EMBASSY"].westExit = "GOLD MYR CHAMBER";
 	rooms["GOLD MYR EMBASSY"].eastExit = "WEST ESBETH 1";
 	rooms["GOLD MYR EMBASSY"].addFlag(GLOBAL.INDOOR);
+	rooms["GOLD MYR EMBASSY"].addFlag(GLOBAL.PUBLIC);
 	//rooms["GOLD MYR EMBASSY"].addFlag(GLOBAL.COMMERCE);
 	
 	rooms["GOLD MYR CHAMBER"] = new RoomClass(this);
@@ -1739,6 +1747,7 @@ public function initMhengaRooms():void
 	rooms["GOLD MYR CHAMBER"].system = "SYSTEM: ARA ARA";
 	rooms["GOLD MYR CHAMBER"].eastExit = "GOLD MYR EMBASSY";
 	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.INDOOR);
+	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.PUBLIC);
 	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.NPC);
 	
 	//I should be banned for this but I'm not combing through all these rooms 1 by 1 and 
@@ -1756,11 +1765,11 @@ public function initMhengaRooms():void
 				function():void{
 					if(myrOnMhenga() && rand(2) == 0)
 					{
-						switch(rand(3))
+						switch(rand(4))
 						{
-							case 0:	output("\n\nA pair of human colonists are standing in an alleyway nearby, haggling with a busty gold myr woman who’s got a box of wine bottles tucked under one arm. A sign in crude English indicates she’s selling Honey Wine... or honey, straight from the tap. " + (pennyIsCumSlut() ? "A service which a third colonist is currently enjoying, nestled into her tits with a pair of her arms wrapped around him." : "") + ""); break;
-							case 1:	output("\n\nSeveral gold myr with toolbelts around their supple waists are going about some minor repairs to the electrical wire connecting the various buildings of Esbeth, chatting and giggling gaily amongst themselves while their four arms busily make adjustments and repairs to the grid."); break;
-							case 2:	output("\n\nA gold myr with the bottom half of a naleen is slithering around, burdened by bags of shopping from one of the Esbeth stores. Looks like somebody’s gotten in the naleen nip... but she’s making the most of it, and the other colonists sure seem to like the view of plump, naked myr butt protruding behind her."); break;
+							case 1:	output("\n\nA pair of human colonists are standing in an alleyway nearby, haggling with a busty gold myr woman who’s got a box of wine bottles tucked under one arm. A sign in crude English indicates she’s selling Honey Wine... or honey, straight from the tap. " + (pennyIsCumSlut() ? "A service which a third colonist is currently enjoying, nestled into her tits with a pair of her arms wrapped around him." : "") + ""); break;
+							case 2:	output("\n\nSeveral gold myr with toolbelts around their supple waists are going about some minor repairs to the electrical wire connecting the various buildings of Esbeth, chatting and giggling gaily amongst themselves while their four arms busily make adjustments and repairs to the grid."); break;
+							case 3:	output("\n\nA gold myr with the bottom half of a naleen is slithering around, burdened by bags of shopping from one of the Esbeth stores. Looks like somebody’s gotten in the naleen nip... but she’s making the most of it, and the other colonists sure seem to like the view of plump, naked myr butt protruding behind her."); break;
 						}
 					}
 				};

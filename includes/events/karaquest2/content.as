@@ -504,7 +504,7 @@ public function kq2DontTrust():void
 
 	addDisabledButton(0, "DontTrust");
 
-	addButton(5, "PayFirst", kq2PayFirst, undefined, "Payment First", "Tell Kara you might trust her if she payed you up front.");
+	addButton(5, "PayFirst", kq2PayFirst, undefined, "Payment First", "Tell Kara you might trust her if she paid you up front.");
 	addButton(6, "Sex", kq2SexFirst, undefined, "Sex", "Tell Kara you might trust her if she threw in a more... <i>personal</i> incentive.");
 }
 

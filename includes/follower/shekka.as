@@ -3392,7 +3392,10 @@ public function futaShekkaLezOut():void
 	}
 	//Merge
 	output("\n\nYou answer by flicking open the hidden clasp at her neckline. The suit all but explodes off her, pressured in ways it was never meant to handle by the obscene addition between Shekka’s legs. The stretchy, shining fabric slips from her shoulders, splitting down the middle to the raskvel’s hips. Seals at the wrist cling on for a second - long enough for Shekka to pop them up in excitement. She doesn’t bother pulling it any lower, the sheer size and engorgement of her fat fucking cock has free it from containment, and her balls look so lovely outlined in glossy white hexagon.");
-
+	
+	var x:int = pc.findEmptyPregnancySlot(1);
+	if(x < 0) x = rand(pc.totalVaginas());
+	
 	//PC is centaur
 	if(pc.isTaur()) 
 	{
@@ -3420,9 +3423,6 @@ public function futaShekkaLezOut():void
 	}
 	else output(", and you press back automatically");
 	output(". <i>“You really need this, don’t you?”</i> She licks the juices from her fingers. <i>“");
-
-	var x:int = pc.findEmptyPregnancySlot(1);
-	if(x < 0) x = rand(pc.totalVaginas());
 
 	if(pc.vaginas[x].wetness() < 3) output("I know you core types don’t usually get that wet, but I bet I could slide in without anything but moans from you, couldn’t I?”</i>");
 	else if(pc.vaginas[x].wetness() < 4) output("Mmmm, you’re wetter than I was the first time we fucked, I think. I bet this dick would slip right in, and you’d love it.”</i>");

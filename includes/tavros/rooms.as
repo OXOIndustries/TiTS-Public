@@ -13,7 +13,7 @@ public function initTavrosRooms():void
 
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";
-	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon’s Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father’s fortune. Luckily, the galaxy is vast. Your cousin won’t be claiming anything for at least a few months if the scale of your father’s challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";
+	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon’s Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father’s fortune. Luckily, the galaxy is vast. Your cousin won’t be claiming anything for at least a few months if the scale of your father’s challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only paid for one night.</b>";
 	rooms["HOTEL ROOM"].planet = "TAVROS STATION";
 	rooms["HOTEL ROOM"].system = "SYSTEM: KALAS";
 	rooms["HOTEL ROOM"].eastExit = "ANON'S BOARD HALL";

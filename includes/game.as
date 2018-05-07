@@ -1235,6 +1235,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	
 	var minPass:int = 420 + rand(80) + 1;
 	var inShip:Boolean = InShipInterior(pc);
+	var wakeEvents:Array = [];
 	
 	if(outputs)
 	{
@@ -1295,7 +1296,6 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 			}
 			
 			var interrupt:Boolean = false;
-			var wakeEvents:Array = [];
 			
 			switch(flags["CREWMEMBER_SLEEP_WITH"])
 			{
@@ -1327,7 +1327,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				case "BESS":
 					if (bessIsCrew() && rand(3) == 0)
 					{
-						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+						wakeEvents.push(bessMorningEvents);
 					}
 					break;
 				case "REAHA":
@@ -1409,31 +1409,11 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	// Waking up events
 	if(inShip && !dreamed)
 	{
-		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1)
-		{
-			addButton(0, "Next", annoMorningRouter);
-			return;
-		}
-		if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
-		{
-			addButton(0, "Next", bessMorningEvents);
-			return;
-		}
-		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1)
-		{
-			addButton(0, "Next", kaseCrewWake);
-			return;
-		}
-		if (seraBitchImpregnateBedWakeCheck())
-		{
-			addButton(0, "Next", seraBitchImpregnateBedWake);
-			return;
-		}
-		if (tryProcDommyReahaTime(minPass - rand(301)))
-		{
-			addButton(0, "Next", reahaDommyFuxTime);
-			return;
-		}
+		if (seraBitchImpregnateBedWakeCheck()) wakeEvents.push(seraBitchImpregnateBedWake);
+		if (tryProcDommyReahaTime(minPass - rand(301))) wakeEvents.push(reahaDommyFuxTime);
+		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [annoMorningRouter];
+		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
+		
 		if (wakeEvents.length > 0)
 		{
 			addButton(0, "Next", wakeEvents[rand(wakeEvents.length)]);

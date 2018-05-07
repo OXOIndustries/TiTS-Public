@@ -13,6 +13,9 @@ public function statsScreenMenu(currentFunc:Function):Boolean
 	else addGhostButton(1, "Medical", currentFunc, "Medical", "Medical Statistics", "Show your medical statistics.");
 	// Encounters
 	addGhostButton(2, "Encounters", displayEncounterLog, flags["TOGGLE_MENU_LOG"], "Encounters", "Show the encounters and other miscellaneous information.");
+	// Location
+	if(showID == "Location") addDisabledGhostButton(3, "Location");
+	else addGhostButton(3, "Location", currentFunc, "Location", "Location Information", "Show information about the current location.");
 	// Combat
 	if(showID == "Combat") addDisabledGhostButton(5, "Combat");
 	else addGhostButton(5, "Combat", currentFunc, "Combat", "Combat Statistics", "Show your combat statistics.");
@@ -839,6 +842,112 @@ public function statisticsScreen(showID:String = "All"):void
 		Moved all these to their respective sections under "Encounters"!
 		
 		*/
+	}
+	
+	// Location
+	if(showID == "Location" || showID == "All")
+	{
+		//=====LOCATION=====//
+		output2("\n\n" + blockHeader("Location Information", false));
+		
+		// Physical Location
+		output2("\n<b><u>Current Location</u></b>");
+		var inShip:Boolean = InShipInterior();
+		var roomFlagTypes:Array = [];
+		var roomFlagRules:Array = [];
+		var roomFlagPlace:Array = [];
+		var roomFlagFlags:Array = [];
+		for(i = 0; i < rooms[currentLocation].roomFlags.length; i++)
+		{
+			switch(rooms[currentLocation].roomFlags[i])
+			{
+				case GLOBAL.PUBLIC: roomFlagTypes.push("Public"); break;
+				case GLOBAL.PRIVATE: roomFlagTypes.push("Private"); break;
+				case GLOBAL.INDOOR: roomFlagTypes.push("Indoors"); break;
+				case GLOBAL.OUTDOOR: roomFlagTypes.push("Outdoors"); break;
+				case GLOBAL.SHIPINTERIOR: roomFlagTypes.push("Ship Interior"); break;
+				
+				case GLOBAL.FOREST: roomFlagTypes.push("Forest"); break;
+				case GLOBAL.JUNGLE: roomFlagTypes.push("Jungle"); break;
+				case GLOBAL.WATERFALL: roomFlagTypes.push("Waterfall"); break;
+				case GLOBAL.DESERT: roomFlagTypes.push("Desert"); break;
+				case GLOBAL.CAVE: roomFlagTypes.push("Caves"); break;
+				case GLOBAL.ICYTUNDRA: roomFlagTypes.push("Icy Tundra"); break;
+				case GLOBAL.FROZENTUNDRA: roomFlagTypes.push("Frozen Tundra"); break;
+				
+				case GLOBAL.NUDITY_ILLEGAL: roomFlagRules.push("Nudity Illegal"); break;
+				case GLOBAL.FAPPING_ILLEGAL: roomFlagRules.push("Masturbation Illegal"); break;
+				case GLOBAL.NOFAP: roomFlagRules.push("Masturbation Impossible"); break;
+				
+				case GLOBAL.SHIPHANGAR: roomFlagPlace.push("Ship Hangar"); break;
+				case GLOBAL.BAR: roomFlagPlace.push("Bar"); break;
+				case GLOBAL.COMMERCE: roomFlagPlace.push("Commerce"); break;
+				case GLOBAL.MEDICAL: roomFlagPlace.push("Medical"); break;
+				case GLOBAL.POOL: roomFlagPlace.push("Pool"); break;
+				case GLOBAL.LIFTUP:
+				case GLOBAL.LIFTDOWN: roomFlagPlace.push("Lift"); break;
+				case GLOBAL.TAXI: roomFlagPlace.push("Transport"); break;
+				case GLOBAL.PLANE: roomFlagPlace.push("Airplane"); break;
+				case GLOBAL.PLANT_BULB: roomFlagPlace.push("Venus Trap"); break;
+				case GLOBAL.SPIDER_WEB: roomFlagPlace.push("Web Trap"); break;
+				
+				case GLOBAL.QUEST: roomFlagFlags.push("This is an important location."); break;
+				case GLOBAL.OBJECTIVE: roomFlagFlags.push("This is a point of interest."); break;
+				case GLOBAL.HAZARD: roomFlagFlags.push("This location is potentially hazardous."); break;
+				case GLOBAL.NPC: roomFlagFlags.push("You may interact with someone here."); break;
+				case GLOBAL.BED: roomFlagFlags.push("It is possible to sleep here."); break;
+			}
+		}
+		output2("\n<b>* " + (rooms[(inShip ? shipLocation : currentLocation)].planet.indexOf("PLANET:") != -1 ? "Planet" : "Location") + ":</b> " + getPlanetName());
+		output2("\n<b>* System:</b> " + getSystemName());
+		if(roomFlagTypes.length > 0)
+		{
+			output2("\n<b>* Type:</b> ");
+			for(i = 0; i < roomFlagTypes.length; i++)
+			{
+				if(i != 0) output2(", ");
+				output2(roomFlagTypes[i]);
+			}
+		}
+		if(roomFlagRules.length > 0)
+		{
+			output2("\n<b>* Rules:</b> ");
+			for(i = 0; i < roomFlagRules.length; i++)
+			{
+				if(i != 0) output2(", ");
+				output2(roomFlagRules[i]);
+			}
+		}
+		if(roomFlagPlace.length > 0)
+		{
+			output2("\n<b>* Usage:</b> ");
+			for(i = 0; i < roomFlagPlace.length; i++)
+			{
+				if(i != 0) output2(", ");
+				output2(roomFlagPlace[i]);
+			}
+		}
+		if(roomFlagFlags.length > 0)
+		{
+			output2("\n<b>* Notes:</b> ");
+			for(i = 0; i < roomFlagFlags.length; i++)
+			{
+				if(i != 0) output2(" ");
+				output2(roomFlagFlags[i]);
+			}
+		}
+		
+		// Ship Location
+		output2("\n<b><u>Current Ship Details</u></b>");
+		output2("\n<b>* Name:</b> " + PCShipName(true));
+		output2("\n<b>* Manufacturer:</b> " + PCShipManufacturer());
+		output2("\n<b>* Model:</b> " + PCShipModel());
+		if(!inShip)
+		{
+			output2("\n<b><u>Ship Location</u></b>");
+			output2("\n<b>* " + (rooms[shipLocation].planet.indexOf("PLANET:") != -1 ? "Planet" : "Location") + ":</b> " + getPlanetName(shipLocation));
+			output2("\n<b>* System:</b> " + getSystemName(shipLocation));
+		}
 	}
 	
 	// Other

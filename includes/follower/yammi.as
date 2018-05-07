@@ -146,7 +146,7 @@ public function declineYammiBunsInShip():void
 	clearOutput();
 	yammiFollowerDisplay();
 	output("<i>“Sorry,”</i> you say, trying to let her down gently. You don’t really need a cook, and your adventures are probably going to be too dangerous.");
-	output("\n\n<i>“Oh,”</i> she says, more than a little dejectedly. <i>“I just thought... since you payed off my debts. Well! I guess I’ll have to make my own path, then!”</i> she says, flashing you a green-lipped smile.");
+	output("\n\n<i>“Oh,”</i> she says, more than a little dejectedly. <i>“I just thought... since you paid off my debts. Well! I guess I’ll have to make my own path, then!”</i> she says, flashing you a green-lipped smile.");
 	output("\n\nYou wish her all the best and point her to the spaceport just down the way. She gives you a parting peck on the cheek before spinning on a heel and marching off, to new adventures.");
 	flags["YAMMI_RECRUITED"] = -1;
 	processTime(2);

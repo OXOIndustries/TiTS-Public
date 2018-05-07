@@ -986,7 +986,7 @@ public function kaseEvict():void
 	clearMenu();
 	
 	output("You " + (!pc.isAss() ? "sigh heavy and " : "") + "tell Kase that it’s time for him to leave the ship and he should pack his things.");
-	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn’t hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma’am") + ",”</i> he says, keeping his poise, <i>“There’s " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has payed for so I can carry out my work when I’m not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I’ll head there, for now. I’m sure you can find me there if you require my services again.”</i>");
+	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn’t hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma’am") + ",”</i> he says, keeping his poise, <i>“There’s " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has paid for so I can carry out my work when I’m not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I’ll head there, for now. I’m sure you can find me there if you require my services again.”</i>");
 	output("\n\nWith that, Kase quickly begins gathering his things, finding containers to neatly pack away his belongings in. Seems like he’s taking the sudden eviction well, at least, an unflinching employee if there ever was one.");
 	
 	output("\n\n(<b>Kase is no longer on your crew. You can find him again in Tavros Station.</b>)");
