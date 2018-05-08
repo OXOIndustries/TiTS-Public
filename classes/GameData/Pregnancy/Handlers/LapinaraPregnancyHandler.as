@@ -9,6 +9,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GLOBAL;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.shortMinutes;
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Child;
 	import classes.Engine.Interfaces.AddLogEvent;
@@ -80,6 +81,7 @@ package classes.GameData.Pregnancy.Handlers
 			{
 				var pData:PregnancyData = (kGAMECLASS.pc as PlayerCharacter).pregnancyData[pregSlot];
 				var buffer:String = "";
+				var nTime:Number = Math.floor(2880/kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti);
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 				// IF LapiTrain == 0 THEN
 				if(kGAMECLASS.lapiTrain() == 0)
@@ -88,11 +90,11 @@ package classes.GameData.Pregnancy.Handlers
 				}
 				else if(pData.pregnancyQuantity > 6)
 				{
-					buffer += "Rubbing your belly, you feel a great sense of contentment when you realize that it has grown a good deal bigger in the last couple days. Having so many young inside you has caused even the early growth of your stomach to be dramatic. You feel glad that you are able to gestate so many at once. Your appetite is positively ravenous, but it doesn’t bother you in the slightest. You know it’s all for the good of your babies, and the changes they’ll be making to you. Of course, you’ve also been feeling somewhat lethargic. You don’t let it discourage you though, because you know it’s part of the changes that will make you into an even better mommy.";
+					buffer += "Rubbing your belly, you feel a great sense of contentment when you realize that it has grown a good deal bigger in the last " + shortMinutes(nTime, true, false) + ". Having so many young inside you has caused even the early growth of your stomach to be dramatic. You feel glad that you are able to gestate so many at once. Your appetite is positively ravenous, but it doesn’t bother you in the slightest. You know it’s all for the good of your babies, and the changes they’ll be making to you. Of course, you’ve also been feeling somewhat lethargic. You don’t let it discourage you though, because you know it’s part of the changes that will make you into an even better mommy.";
 				}
 				else
 				{
-					buffer += "Rubbing your belly, you feel a great sense of contentment when you realize that it has grown a good deal bigger in the last couple days. You feel a pleasant happiness knowing that your new children are growing so well. Similarly, your increased appetite doesn’t bother you in the slightest; you get to take care of your babies AND eat as much delicious food as you want. You’re used to the lethargy, and you have to admit that the results have been great so far.";
+					buffer += "Rubbing your belly, you feel a great sense of contentment when you realize that it has grown a good deal bigger in the last " + shortMinutes(nTime, true, false) + ". You feel a pleasant happiness knowing that your new children are growing so well. Similarly, your increased appetite doesn’t bother you in the slightest; you get to take care of your babies AND eat as much delicious food as you want. You’re used to the lethargy, and you have to admit that the results have been great so far.";
 				}
 				AddLogEvent(buffer);
 			}, true);
@@ -328,7 +330,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 				
 				//Single elasticity increase, lactation increase 
-				buffer += ParseText("Your [pc.belly] just keeps on growing. As happy as you are having this rambunctious bunch of bunnies inside you, you are really starting to wonder just how much longer you’ll have to wait in order to meet them. A quick peek at your codex reveals that you have around a week left. Realizing just how soon the babies will be born, you do an emotional 180 and feel a bit sad that the pregnancy will be over so much sooner than you thought. Your sadness doesn’t last long though, because you soon remember that all you have to do is go find another bunny to give you eggs.");
+				buffer += ParseText("Your [pc.belly] just keeps on growing. As happy as you are having this rambunctious bunch of bunnies inside you, you are really starting to wonder just how much longer you’ll have to wait in order to meet them. A quick peek at your codex reveals that you have around " + kGAMECLASS.pc.getPregnancyTimeString(pregSlot, true, true) + " left. Realizing just how soon the babies will be born, you do an emotional 180 and feel a bit sad that the pregnancy will be over so much sooner than you thought. Your sadness doesn’t last long though, because you soon remember that all you have to do is go find another bunny to give you eggs.");
 				// IF pc.elasticity < lapipregElasticity(LapiTrain) THEN pc.elasticity += 1
 				if(kGAMECLASS.pc.elasticity < kGAMECLASS.lapiTrain())
 				{
