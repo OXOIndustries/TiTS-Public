@@ -300,6 +300,13 @@
 			Cheats.toggleSeasons();
 		},
 		true);
+	inputManager.AddBindableControl(
+		"Mitzi Unlock",
+		"Unlock Mitzi as if she was rescued.",
+		function():void {
+			Cheats.MitziUnlock();
+		},
+		true);
 		
 	inputManager.BindCheatSequence("Give ZilRations", 38, 40, 37, 39);
 	inputManager.BindCheatSequence("Room Transport", "idclev");
@@ -316,6 +323,7 @@
 	inputManager.BindCheatSequence("Runamode Bess", "insaneinthemembrane");
 	inputManager.BindCheatSequence("Time Skip", 56, 56, 77, 80, 72);
 	inputManager.BindCheatSequence("Toggle Seasons", "tistheseason");
+	inputManager.BindCheatSequence("Mitzi Unlock", "mitzi");
 	
 	// Insert the default bindings
 	inputManager.BindKeyToControl(49, "Button 1");             // case 49: pressButton(0);

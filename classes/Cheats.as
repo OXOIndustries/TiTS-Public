@@ -43,7 +43,15 @@
 			lootArray.push(loot);
 			kGAMECLASS.itemCollect(lootArray);
 		}
-		
+		public static function MitziUnlock():void
+		{
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
+			{
+				return;
+			}
+			Cheats.OutputStuff(true);
+			kGAMECLASS.flags["MITZI_RESCUED"] = 0;
+		}
 		public static function XPToLevel():void
 		{
 			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0)
