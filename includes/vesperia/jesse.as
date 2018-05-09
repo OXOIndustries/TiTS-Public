@@ -1229,7 +1229,7 @@ public function jesseSexTrapFunI():void
 	output("\n\n<i>“W-whats wrong, [pc.name]? N-nervous?”</i> she teases, panting with her tongue out as she idly tugs at her twitching wang.");
 	output("\n\n<i>“Nooo...”</i> you say, your [pc.face] flushing a shade of pink. She was just really fast, is all! You can take that stupid thing up your butt, easy!");
 	output("\n\nCopying her pattern, you lift your lower body up and align it with the dildo tip. As it parts the fleshy cheeks of your [pc.ass] and presses on your [pc.asshole], you visibly bite your lower lip. The cold material is giving you a tingly adrenaline rush. Jesse giggles at your hesitation.");
-	output("\n\n<i>“Come oooon! Don’t be such a wimp, silly boy...”</i> she teases, openly jerking her femcock towards you. <i>“It’s going to be great.”</i>");
+	output("\n\n<i>“Come oooon! Don’t be such a wimp, silly [pc.boy]...”</i> she teases, openly jerking her femcock towards you. <i>“It’s going to be great.”</i>");
 	output("\n\nFine, fuck it! You push down from your [pc.hips] and your eager [pc.asshole] is speared by the smooth, cold dildo. A pleasured, rising whine is muffled by you biting your lower [pc.lip] as a reaction to adjusting to the length and width. ");
 	if (pc.ass.looseness() > 2) output("It’s pretty easy going for your well trained [pc.asshole], letting you slide easily down to the base just like Jesse.");
 	else output("It’s a tough insertion, your [pc.asshole] clenching tightly around the fake cock like it was your first. You make it to the base with some pained effort.");
