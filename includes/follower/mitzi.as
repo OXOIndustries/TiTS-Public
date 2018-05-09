@@ -363,7 +363,7 @@ public function kickMitziOffCrew():void
 //TiTS-Specific Mitzi Crew Stuff
 //Ideas:
 //Rotating cast of fetish costumes: Latex pink dress, latex school-girl outfit, yoga pants and bikini top, succubus, cow-girl, transparent zipsuit, slutty librarian, & nun!
-//PC can gift  her any <i>“armor”</i> class item with a sexiness of 5 or more, and she will wear it.
+//PC can gift her any <i>“armor”</i> class item with a sexiness of 5 or more, and she will wear it.
 //PC can dress her up, but only if he strips her down.
 //Mitzi got picked up by a drug-dealer on his way through Tarkus and has a ton of <i>“special treats”</i> for her lover, including once-weekly presents of throbb or gush. This is basically a reskin of CoC goblin potions/salves.
 //Sometimes wears illegal perfumes like <i>“rutting,”</i> <i>“heat,”</i> <i>“priaprism”</i>, and <i>“adulation”</i>. The first three can induce the relevant statuses... the latter results in the loviest oral pairing scene I can write.
@@ -637,7 +637,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 			if(mitzi.milkQ() < 400) output("spray");
 			else if(mitzi.milkQ() < 5000) output("gush");
 			else output("eruption");
-			output(" of creamy goblin milk. <i>“See? Mitzi’s a fuck-toy and a milk-cow now, and she </i>still<i> remembers her name. All because [pc.Master] is so generous.”</i> She shakes her breasts back and forth.  <i>“So you can like, make her a stupid fuck-cow as whenever you want, pretty much. Mitzi will love whatever you do to her big, dumb cow-tits. They’re [pc.Master]’s to milk!”</i>");
+			output(" of creamy goblin milk. <i>“See? Mitzi’s a fuck-toy and a milk-cow now, and she </i>still<i> remembers her name. All because [pc.Master] is so generous.”</i> She shakes her breasts back and forth. <i>“So you can like, make her a stupid fuck-cow as whenever you want, pretty much. Mitzi will love whatever you do to her big, dumb cow-tits. They’re [pc.Master]’s to milk!”</i>");
 			output("\n\n<b>");
 			if(mitzi.milkQ() < 2000) output("Mitzi is lactating even harder now.");
 			else if(mitzi.milkQ() < 5000) output("Mitzi is basically a walking milk-fountain now.");
@@ -729,7 +729,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 			}
 			else
 			{
-				output("<i>“Help!”</i> Mitzi calls, grabbing you by the hand. <i>“Mitzi put herself in this super sexy zipsuit, but she can’t get the zipper down to masturbate! Her pussy is like, super wet, but she can’t even finger herself, and it’s getting so wet down there! Could you like, fuck a hole in it, or whatever? You’re so smart, [pc.Master]. You’ll figure out a way to fuck Mitzi, right?”</i>\n\nThe zip mechanism is completely intact and undamaged.  Mitzi isn’t even trying to use it; instead she’s busy rubbing her pussy through the plastic hard enough for the squelches to echo down the passage.");
+				output("<i>“Help!”</i> Mitzi calls, grabbing you by the hand. <i>“Mitzi put herself in this super sexy zipsuit, but she can’t get the zipper down to masturbate! Her pussy is like, super wet, but she can’t even finger herself, and it’s getting so wet down there! Could you like, fuck a hole in it, or whatever? You’re so smart, [pc.Master]. You’ll figure out a way to fuck Mitzi, right?”</i>\n\nThe zip mechanism is completely intact and undamaged. Mitzi isn’t even trying to use it; instead she’s busy rubbing her pussy through the plastic hard enough for the squelches to echo down the passage.");
 			}
 		}
 		//Librarian
@@ -737,7 +737,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 		{
 			if(rand(2) == 0)
 			{
-				output("<i>“Hello [pc.Master],”</i> Mitzi curtly greets you. <i>“Is there some pornography you’d like to watch?”</i> She gestures to her codex with a sticky-fingered hand. <i>“Perhaps a hot, green, bitch you’d like  to ");
+				output("<i>“Hello [pc.Master],”</i> Mitzi curtly greets you. <i>“Is there some pornography you’d like to watch?”</i> She gestures to her codex with a sticky-fingered hand. <i>“Perhaps a hot, green, bitch you’d like to ");
 				if(pc.hasCock()) output("fuck ten times past pregnant");
 				else if(pc.hasVagina()) output("pin to the deck with your pussy");
 				else output("watch masturbate entirely for your amusement");
@@ -1089,7 +1089,7 @@ public function talkToMitzi():void
 	else addDisabledButton(1,"Your Body?","Your Body?","Maybe start out with how she turned into a bimbo...");
 	if(flags["MITZI_BODY_TALK"] == 1) addButton(2,"Fav.Drug?",favoriteDrugMitzi);
 	else addDisabledButton(2,"Fav. Drug?","Favorite Drug?","You don't know about Mitzi's drug use yet.");
-	if(flags["MITZI_FAV_DRUG"]  == 1) addButton(3,"Aphrodisiacs",mitziAphrodisiacTalk);
+	if(flags["MITZI_FAV_DRUG"] == 1) addButton(3,"Aphrodisiacs",mitziAphrodisiacTalk);
 	else addDisabledButton(3,"Aphrodisiacs","Aphrodisiacs","You'd need to know about Mitzi's drug usage first.");
 	addButton(14,"Back",approachCrewMitzi,true);
 }
@@ -1463,13 +1463,13 @@ public function mitziMilkTitfuck():void
 	output(". <i>“Milkies here.”</i>");
 
 	output("\n\nMitzi’s eyes go as wide as saucers. Her hands drop from her tits, fingers twitching in eagerness while her Gush-melted mind tries to figure out how cock and milk go together. <i>“Miss Cow...”</i> she moos, <i>“...milks here?”</i> She hesitantly reaches out to grab [pc.oneCock]. On contact, the milk-streams from her nipples pulse out heavy flows.");
-	if(pc.cocks[x].thickness() > 3.5) output(" Her fingers can’t wrap all  the way around the turgid maleness, but she tries all the same, fingernails gently pricking at your sensitive skin.");
+	if(pc.cocks[x].thickness() > 3.5) output(" Her fingers can’t wrap all the way around the turgid maleness, but she tries all the same, fingernails gently pricking at your sensitive skin.");
 	else output(" Her fingers casually wrap around it, gliding up in down an automatic handjob.");
 
 	output("\n\nAfter watching the bimbo willingly devolve herself into a leaking, lactic toy, something as simple as a hand on your dick feels amazing. You groan in delight and nod. <i>“Get it nice and wet so I can fuck your tits.”</i>");
 	output("\n\nAgain, this shorts Mitzi right the fuck out. Her eyes cross to stare at your dick while her hand continues to stroke it, bereft of conscious thought. She opens her mouth, then closes it, drools a bit, then gulps it all down and quietly moos. <i>“Titty-milk-fuck?”</i> Her voice is high-pitched and strained with unfiltered excitement. Biting a too-plush lip, she at last lets go of your [pc.cock " + x + "] to heft her tits, one in each hand. <i>“Help moo-me milk?”</i>");
 	output("\n\nYou’d like nothing better. Getting your hands on Mitzi’s nipples, you discover that they aren’t just engorged, they’re <i>ripe</i> and firm beyond belief. You can actually feel the liquid coursing through her milk ducts with enough pressure to send gentle vibrations through to your fingers. No wonder Mitzi’s drooling all over herself and speaking in ‘moo.’\n\nYou say, <i>“Easy girl,”</i> as you shift your grip a bit back and squeeze, forcing the milk forward with a gentle nip-ward press.");
-	output("\n\nYour milk-minded goblin tries her best to keep it together, but the moment her sweet juices are forcibly squeezed out of her still-inflating milk-bags, her knees knock together and her eyes roll back. She whimpers cutely as you tug down to her nipples, shaking like a leaf. The milk gets everywhere, of course. Her boobs spray like creamy sprinklers, splattering your body from [pc.belly] to [pc.foot]. It hits you like warm, wet cluster munitions, exploding into bursts of delightful warmth on your  [pc.thighs]");
+	output("\n\nYour milk-minded goblin tries her best to keep it together, but the moment her sweet juices are forcibly squeezed out of her still-inflating milk-bags, her knees knock together and her eyes roll back. She whimpers cutely as you tug down to her nipples, shaking like a leaf. The milk gets everywhere, of course. Her boobs spray like creamy sprinklers, splattering your body from [pc.belly] to [pc.foot]. It hits you like warm, wet cluster munitions, exploding into bursts of delightful warmth on your [pc.thighs]");
 	if(pc.balls > 0) output(", your [pc.balls]");
 	output(", your crotch, and especially your [pc.cocks]. There’s enough pearly goblin-milk for it drizzle from your [pc.cockHead " + x + "] like sweet-smelling cum.");
 	output("\n\n<i>“Mooooo!”</i> Mitzi cries, leaning forward to sloppily kiss the top of your [pc.cock " + x + "], inadvertently making you waste your last few nipple-tugs onto the floor.");
@@ -1480,7 +1480,7 @@ public function mitziMilkTitfuck():void
 	output("\n\n<i>“Here, let me help,”</i> you say as you put a hand on either side of her enormous tits and press them together. Mitzi’s pillowy flesh squeezes down around your [pc.cock " + x + "] in a vise of cream-coated skin, warm and wet in all the best ways. Better still, the added pressure causes her nipples to go into overdrive, spraying thick arcs into the air while less energetic streams roll down the swells of her tits to soak them in milky shine. You hold that position for a few moments, mashing the Gush-brained goblin’s mountainous mounds around your dick while you try to get used to the intense sensation.");
 	output("\n\nMitzi’s body goes limp, and you feel a splatter of feminine fluids against the underside of your [pc.butt]. A second later, her head pops up off the ground, milk-soaked pigtails bouncing, and she smiles at you. <i>“Moo!”</i>");
 	output("\n\nUnsure of how to respond, you continue to massage the goblin fuck-toy’s sinfully slick mammaries around your [pc.cock " + x + "], wringing a happy sigh from yourself.");
-	output("\n\n<i>“So moo-damned good!”</i> Mitzi bubbles, grabbing hold of her teats to squeeze out more milk. By now, her nipples seem almost comically large compared to her fingers. It’s actually looks sort  of like she’s trying to milk a cow, with a more than appropriate liquid result. <i>“I love moooo!”</i> She’s looking you in the eyes while she says it, smiling broadly, if a bit vacantly, and wiggling around so that her tits shift on your [pc.cock " + x + "]. <i>“Fuck-milk now?”</i>");
+	output("\n\n<i>“So moo-damned good!”</i> Mitzi bubbles, grabbing hold of her teats to squeeze out more milk. By now, her nipples seem almost comically large compared to her fingers. It’s actually looks sort of like she’s trying to milk a cow, with a more than appropriate liquid result. <i>“I love moooo!”</i> She’s looking you in the eyes while she says it, smiling broadly, if a bit vacantly, and wiggling around so that her tits shift on your [pc.cock " + x + "]. <i>“Fuck-milk now?”</i>");
 	output("\n\nEven if the dopey goblin hadn’t asked, her cutely misspoken declaration was more than enough motivation to give her the righteous pounding a woman like her deserves. <i>“Yes,”</i> you announce, sliding your [pc.hips] back to drag your dick back to the [pc.cockHead " + x + "]. <i>“You’re so good, Mitzi.”</i> You thrust back in");
 	if(pc.balls > 0) output(", [pc.balls] dragging on her middle");
 	output(", cock throbbing, plowing a tunnel between her pillowy tits");
@@ -1575,7 +1575,7 @@ output("\n\n//Use gift texts from first-time.");
 output("\n\n//First time medium");
 output("\n\nYou present Mitzi with a grapefruit-sized bubble of cum. <i>“Gotcha some more.”</i>");
 output("\n\nMitzi’s heart-shaped eyes seem to light up, almost glowing pink in delight. <i>“More cum for </i>me<i>!”</i> Clapping her hands to her cheeks, the goblin marvels at its size and shape before favoring you with a loving stare. <i>“Umm... Mitzi hardly deserves all this cum. She didn’t milk it out. She didn’t spend hours rubbing balls to make sure the spermies were all woke up and ready to shoot out. How... uh... oh!”</i> She snaps her fingers. <i>“Mitzi has just the thing! It’ll be sooo awesome. Hold on!”</i> She wheels about and hauls ass, off to look for a present to exchange.");
-output("\n\nWhen she returns, she’s moving at such speed that she slams into you and bounces off, cradling against her belly.  Thankfully she didn’t waste a billion condoms wrapping it this time.");
+output("\n\nWhen she returns, she’s moving at such speed that she slams into you and bounces off, cradling against her belly. Thankfully she didn’t waste a billion condoms wrapping it this time.");
 
 output("\n\n//First time bowling bawl");
 output("\n\nYou present Mitzi with a bowling ball-sized sack of cum. <i>“Gotcha another one!”</i>");
@@ -1601,7 +1601,7 @@ output("\n\nMitzi gingery {accepts the gift/hugs the goblin-sized gift}, squeezi
 output("\n\nThe second you signal in the affirmative, Mitzi swoons and moans, <i>“My hero! You’re the best [pc.Master] a girl could get.”</i> She produces a syringe and sticks it into the bubble, casually extracting a sample to spray onto her waiting tongue. <i>“Mmmm, yummy too. Mitzi should really return the favor. Give you something like, just as awesome.”</i> The goblin extra another hit of seed and swallows it with an enormously satisfied sigh, <i>“Ohhhhh gaaaawwwwwwd. Yeah. Something better than goblin-sex. You have all of that you can want. Back in a dick-suckin’-second!”</i>");
 output("\n\nPitter-pattering feet slap into the deck as the green-skinned cum-addict scampers off with her prize. You fold your arms and tap your foot, but she’s back before you know it, carrying in something gift-wrapped in neon condoms like wrapping paper. <i>“Here, [pc.Master].”</i> Mitzi’s lashes flutter adoringly above her pink, heart-shaped eyes.");
 output("\n\n//Bimbo");
-output("\n\nYou’re blown away at such inventive use of condoms. And here you thought they were  only good for like, storing snacks. You peel them off one at a time, sharing them with Mitzi in case either of you ever needs to bank up a little boy-batter.");
+output("\n\nYou’re blown away at such inventive use of condoms. And here you thought they were only good for like, storing snacks. You peel them off one at a time, sharing them with Mitzi in case either of you ever needs to bank up a little boy-batter.");
 output("\n\n//Bro");
 output("\n\nYou’re not sure what you should have expected. It is sort of impressive the dumb slut could remember that most people wrap presents. You rip off the condoms with a grunt of irritation.");
 output("\n\n//Else");
@@ -1672,14 +1672,14 @@ output("\n\n<i>“Good,”</i> Mitzi kisses just to the left of your cunt, leavi
 output("\n\nYou nod.");
 output("\n\nThe giggling goblin smooches down on the other side, leaving an identical patch of sinfully tingly happiness behind. <i>“Like, so horny it’s hard to think right?”</i> One of her hands disappears into her soaking-wet cunt. <i>“That’s how horny you make Mitzi. So horny that your pussy just kinda tells you what to do.”</i>");
 output("\n\nNow that she puts word to it, that’s <i>exactly</i> how you feel. You feel almost feverishly aroused, and Mitzi is so, so beautiful that looking at her is like staring at a star. Her erotic radiance leaves you dumbfounded and soaking wet, like a barely-sapient puddle. <i>“Oh-f-f-fuck yes!”</i>");
-output("\n\n<i>“Good.”</i> Mitzi grabs your ass and pulls you close, landing peck after peck in a slowly spinning spiral around your deliriously soupy puss. <i>“Pussy is amazing, isn’t it?”</i> She leans back to show you hers. From the luscious folds to the sheen of her leaking arousal, it’s awe-inspiring. Her silken interior glimmers with a stunning amount of erotic promise. <i>“It’s so powerful. So wonderful.”</i> She slides a finger through her slit. <i>“One cunt could bring down a government. Two cunts? Two cunts could addle a [pc.boyGirl]’s mind, just by existing.{ More? More could make  the universe fade away into irrelevance.} Couldn’t they?”</i>");
+output("\n\n<i>“Good.”</i> Mitzi grabs your ass and pulls you close, landing peck after peck in a slowly spinning spiral around your deliriously soupy puss. <i>“Pussy is amazing, isn’t it?”</i> She leans back to show you hers. From the luscious folds to the sheen of her leaking arousal, it’s awe-inspiring. Her silken interior glimmers with a stunning amount of erotic promise. <i>“It’s so powerful. So wonderful.”</i> She slides a finger through her slit. <i>“One cunt could bring down a government. Two cunts? Two cunts could addle a [pc.boyGirl]’s mind, just by existing.{ More? More could make the universe fade away into irrelevance.} Couldn’t they?”</i>");
 output("\n\nThe words are background noise next to the beautiful texture of Mitzi’s feminine jewel. Your mouth and [pc.vaginas] water together in perfect sync, every part of you wanting to press against the juicy mound, just to be closer to it. To rub against it would be divine. To taste or grind against it, mind-melting. <i>“Mmmhmmm.”</i>");
 output("\n\nMitzi grabs your hand and brings it to her mouth, sucking you in to the knuckle. Her tongue flicks at the tip teasingly, and then she’s sliding back, heavy lips smearing your digit in enough gloss to make it shine brightly. Her purple mouth seems matte by comparison. <i>“Pussies deserve fingers, dear. I know it’s so hard to think when you’re this wet, all hot and fluttery.”</i> She turns your hand around, pushing the finger toward the sopping cleft between your [pc.thighs]. <i>“But you should really do what your pussy wants... and fill it.”</i>");
 output("\n\nThat shining finger slides in all on its own. You don’t have to think. You don’t have to decide to move the muscles in your arm. Your [pc.vagina] does all that for you, guiding that spit-and-gloss-slicked digit into the molten heat that burns between your [pc.thighs]. The tip brushes the underside of [pc.oneClit] on its way in, exactly the way you need it to, and then it’s spreading your lips wide, leaving the residue from Mitzi’s lips smeared over the exterior as it plunges in deep - so deep that you’re moaning as the knuckle wiggles inside.");
 output("\n\n<i>“Atta girl. Look at us - just two soaking wet cunts who are finally getting what we need.”</i> Mitzi sighs in delight as her manicured fingertips plunder her emerald jewel, the lips so exquisitely plush and inviting that they all but demand something slap against them, violate them in whatever degrading way will make them cum the hardest. <i>“Look at these cunts. Look at how wet they are.”</i> The goblin groans stuffs a second finger into her box, spreading them a second later to expose the hypnotically glistening flesh. <i>“Cunts this wet must cum, like super easy, right?”</i>");
 output("\n\nThe {two pussies in your view/{NUMBER} pussies in your view/fact that {a [pc.sack] blocks/a [pc.cock] blocks/[pc.cocks] block} your view stymies you the six long seconds it takes your cunt to remind you that you can {lift it out of the way/shift {it/them} to the side}. Only then do you see your [pc.vaginas] revealed in all {its/their} glory, so close to the goblin’s. They} bob up and down in your nodding viewpoint. The backdrop is unsubstantial and unimportant next to the glistening honeypots that so dominate your world. There’s only the hot, wet frission of fingers against womanhoods, the pulsating thrum of hammering heartbeats tickling nerves so tenderized that the slightest breeze feels like a tongue’s tender strokes. You could cum at any second. It would be so easy, and your pussy wants it, so-");
 output("\n\nA second finger slides inside, exploding your [pc.vagina] with pleasure. Detonations of mind-shattering bliss chain up your spine, leaving undulating, uncoordinated masses of muscle in their wake. As your body slumps over, [pc.hips] gyrating wildly, an atomic bomb of ecstasy shatters what small part of your consciousness remained into slick, cummy pieces. You moan whorishly as you hump Mitzi’s leg, smearing in her [pc.girlCum]{, in between fountainous squirts}. It’s so easy to cum, and you (or your pussy - there’s no divide between the two any longer) want to do it forever.");
-output("\n\n<i>“Cumming’s soooo easy,”</i> Mitzi moans, reaching up to rub [pc.oneClit] alongside her  own.");
+output("\n\n<i>“Cumming’s soooo easy,”</i> Mitzi moans, reaching up to rub [pc.oneClit] alongside her own.");
 output("\n\nA second climax climbs onto the back of the last one’s heels and rides you to the ground. Your eyes roll back, leaving you to dwell on your own insensate moans and the endlessly delightful feeling of slickened digits plowing through a sopping tunnel.");
 output("\n\nThe goblin climbs onto your unresisting form and shifts away from your throbbing clitty to work your wrist, pumping your fingers in and out now that it has become too difficult for you. <i>“Just a hot wet cunt who can’t think of anything but slit-stuffing sex.”</i> [pc.Girlcum] puddles in your thighs. The Mitzi-assisted masturbation sounds so loud in your ears, but not loud enough to stop you from realizing how right she is. <i>“That’s the truth ‘bout pussies, [pc.name]. They’re so... like... mmmmph! So </i>receptive<i>. They’ll do anything you want as long as you make them feel good.”</i>");
 output("\n\nAnother climax steals any attempt at response. Your [pc.legOrLegs] twitch{es} bonelessly on the floor. <i>You’d put anything inside yourself to feel this good again.</i>");
@@ -2042,6 +2042,253 @@ public function quickieTittyGobbotitfuck():void
 	output("eyelashes at you and pushes a stray droplet of spooge past her puffy cocksuckers, swallowing noisily.");
 	processTime(10);
 	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Done] Mitzi Pussy Control~
+//Wherin Mitzi applies some drugged lipstick, kisses the PC into hypnotic receptivity, and temporarily causes them to believe that pussy is the only thing they care about, culminating in squirting everywhere from eating Mitzi out.
+public function mitziPussyControl():void
+{
+	clearOutput();
+	showMitzi();
+	author("Fenoxo");
+	if(flags["MITZI_CUNTNOSIS"] == undefined)
+	{
+		//Bimbo
+		if(pc.isBimbo()) output("<i>“Mmm, I could just like, eat you up! But could you maybe do something with this instead?”</i>");
+		//Nice
+		else if(pc.isNice()) output("<i>“Would you mind taking care of this for me?”</i>");
+		//Mischievous
+		else if(pc.isMischievous()) output("<i>“Mitzi... I have a problem that needs a goblin’s touch.”</i>");
+		//Hard
+		else output("<i>“Pleasure this.”</i>");
+		//Merge, no new PG.
+		if(!pc.isCrotchExposed()) output(" You pull down your obstructing garments to reveal your [pc.multiCunts] to your pet greenskin.");
+		else output("You gesture down to your [pc.multiCunts].");
+		output(" Exposed skin flushes hotly");
+		var wetness:Number = pc.wettestVaginalWetness();
+		if(wetness >= 4) output(", and moisture streams down your [pc.legOrLegs]");
+		else if(wetness >= 3) output(", and moisture dribbles down your [pc.legOrLegs]");
+		else if(wetness >= 2) output(", and moisture slicks your [pc.thighs]");
+		else output(", and aroused moisture lends your folds a dewy appearance");
+		output(".");
+
+		output("\n\n<i>“Ohhhhh...”</i> the dumbstruck goblin ");
+		if(pc.tallness < 5*12) output("drops to her knees before ");
+		else output("takes a halting step closer to ");
+		if(pc.totalVaginas() == 1) output("it");
+		else output("them");
+		output(". She gently extends a hand, slender fingers spreading to land on either side of the lustily engorging canal. <i>“Like, ");
+		if(pc.totalVaginas() > 1) output("these are super pretty pussies.");
+		else output("this is a super pretty pussy.");
+		output(" How hard do you want Mitzi to make you cum?”</i>");
+
+		//Bimbo
+		if(pc.isBimbo()) output("\n\n<i>“Just as hard as you want to cum!”</i>");
+		//Bro
+		else if(pc.isBro()) output("\n\n<i>“Fucking hard.”</i>");
+		//Else
+		else output("\n\nWhat kind of question is that? <i>“Hard.”</i> When you see the goblin’s face turn thoughtful, you append, <i>“Really hard.”</i> No sense in having her hold back.");
+		//Merge
+		output("\n\nThe hearts within Mitzi’s eyes widen at the suggestion. <i>“Then Mitzi has just the thing!”</i> She produces a bright pink tube of lip gloss from... somewhere and rolls a layer onto her lips. The fingers on your cunt push and slide, smearing your increasingly slick fluids everywhere. <i>“Don’t worry about a thing.”</i> The goblin puckers up, luscious lips parted slowly by their own sluttish volume as she rolls another layer onto them, lacquering on enough glass to make them glitter like mirrors. <i>“There!”</i> She smacks them together a few times to even the coat. <i>“It’s like, super good Mitzi wears so much lipstick!”</i>");
+		output("\n\nYou raise an eyebrow.");
+		output("\n\n<i>“Oh, this stuff is like a super illegal drug.”</i> She twirls the tube around her fingers and slides it out of view. <i>“Reaaaaaally strong. Mitzi would be so stupid fucked right now if it was able to absorb it through her lips.”</i>");
+		output("\n\n<i>“Wait-”</i>");
+		output("\n\nMitzi leans into [pc.oneCunt] and plants a wet kiss, halting your protests a simple press of warm, cushiony lips and the resulting smear of tainted lip gloss on your blood-engorged nethers.");
+		output("\n\n<i>“Oh.”</i>");
+		output("\n\nYour brain takes a few seconds to catch up to the pleasure of the contact, the way it makes your nerves tingle and sing the goblin’s praises. Looking down at her, you see her smiling up around your pussy, heart-shaped eyes crinkled with the delight that can only come from serving her [pc.Master]’s most sensitive places.");
+		output("\n\nShe’s gorgeous.");
+		processTime(10);
+		pc.lust(50);
+		clearMenu();
+		addButton(0,"Next",mitziFirstTimeCuntnosisII);
+	}
+	else
+	{
+		//Repeat Pussy Control
+		output("<i>“Do my pussy again,”</i> you instruct, immediately moistening at the half-forgotten memory of the last time Mitzi made you chain orgasm after orgasm together.");
+		output("\n\n<i>“Yay!”</i> Mitzi applauds, producing a tube of lip gloss from somewhere. <i>“Mitzi’s been like, wondering when you’d want to think with your cunt again.”</i> She rolls the insidious substance across a puckered lower lip with practiced precision. No mirror is necessary for a perfect, even coat. <i>“Mitzi doesn’t know how you do it so much. It’s sooo much easier to giggle and let your pussy tell you what to do.”</i> The top coat goes on smoothly and slowly. Long lashes flutter knowingly across pink, heart-shaped eyes. <i>“What kind of pussy-time does [pc.Master] want this time?”</i> She taps her chin as her sluttified mind goes to work.");
+		output("\n\n<i>“It’s so easy to make a cunt wanna breed. Like... that’s  what they’re there for, you know?”</i> The gabilani absentmindedly tucks away her special lip gloss. <i>“But it’s just as easy to melt a girl’s brains out through her cunt. It happened to Mitzi by accident, but if like, someone went into it wanting to fuck and suck themselves stupid, it would be so, so easy.”</i> Those mischievous modded eyes flick back up to your face. <i>“Or maybe [pc.Master] wants something else. Maybe [pc.Master] wants to share a little thoughtless cunt-time with another. Maybe [pc.heShe] wants her pussy to fall in love with rubbing against other slippery slits...”</i> Mitzi’s hand presses deep between her thighs.");
+		output("\n\nYou consider your answer while the sex-addicted green-skin prowls closer. All the choices seem like they’ll fuck you up a little, but if you haven to choose between-");
+		output("\n\nSoft, sticky lips caress your vulva. <i>“Tell Mitzi. What kind of cunt is this?”</i>");
+		output("\n\nOh. <i>“It’s a...”</i>");
+		processTime(5);
+		pc.lust(25);
+		//[Breeder Cunt] [Dumb Cunt] [Lesbo Cunt]
+		clearMenu();
+		addButton(1,"Lesbo Cunt",mitziLesboCuntnosis);
+
+	}
+}
+
+public function mitziLesboCuntnosis():void
+{
+	clearOutput();
+	showMitzi(true);
+	author("Fenoxo");
+	output("<i>“...lesbo cunt.”</i>");
+	output("\n\nDid you really just say that out loud? Did you - oh wow, that kiss felt great. Having Mitzi’s lips on your [pc.vaginaNounSimple] was really, really pleasant. Your [pc.skin] flushes");
+	if(pc.hasFur() || pc.hasScales() || pc.hasChitin() || pc.hasFeathers()) output(" beneath your [pc.skinFurScalesNoun]");
+	output(", and the room wobbles slightly. Grabbing Mitzi’s shoulder for support, you glance down and find yourself impressed by just how <i>pretty</i> Mitzi is. Her makeup is perfect, her hair playful yet slutty, and her smile looks like it’s inviting you to grind it against your pussylips.");
+	output("\n\n<i>“Oh.”</i> Mitzi grabs your [pc.butts] and pulls your [pc.vaginas] toward her face as she leans in, smacking heavy, drug-laced lips onto your vulva. Moisture bubbles inside you in response to her warm, moist breaths. She opens her mouth wide, sliding her plump lips up and down the outside of your cunt until you’re gasping and moaning for her whorish pussy-pleasers, grabbing her by the pigtails and holding on for dear life. Eventually, she breaks away, cheeks coated in [pc.girlCum].");
+	output("\n\nThe giggling green fucktoy is the only thing holding you up. She says, <i>“Thinking with your pussy already, aren’t you?”</i>");
+	output("\n\n<i>“Uh huh.”</i> You (well, your pussy, but that’s pretty much you) clench from the admission, already ditzy and dizzied by Mitzi’s mind-altering kisses. Thinking’s kind of hard, but cumming is so, so easy. You remember that at least.");
+	output("\n\n<i>“That’s because your pussy is training your brain, silly! The more you listen to it... obey it, the more you give in to its slipperiest, most sinful desires, the more you cum... and the more that big dumb brain up there can relax and... coast along.”</i> Mitzi drags a finger through your slit");
+	if(pc.totalVaginas() > 1)
+	{
+		output(", spreading her digits out to caress its sister");
+		if(pc.totalVaginas() > 1) output("s");
+	}
+	output(", extracting a strand of [pc.girlCumVisc] goo. <i>“And right now, it’s drenching itself at the sight of a cute girl, isn’t it?”</i>");
+	output("\n\nMitzi is so cute. Staring at her, you moan your assent and wiggle your fingers in her hair, so soft and feminine. <i>“Cute,”</i> you mumble.");
+	output("\n\n<i>“Awww, like... thanks!”</i> Mitzi beams and kisses [pc.oneClit]");
+	if(pc.clitLength > 3) 
+	{
+		output(", slowly sliding down its length until her nose presses to your pubic mound");
+		if(pc.clitLength > 6) output(", her neck bulging obscenely");
+		output(". Her cheeks hollow as she worships at your feminine mast, then eases back up to leave it shining with a coat of vacuum-sealed gloss");
+	}
+	else if(pc.totalClits() > 1)
+	{
+		output(", bouncing down ");
+		if(pc.totalClits() == 2) output("to the other a moment later");
+		else output("to jump from one to another until every pretty clitty has had at least one shining, cunt-sucking smooch");
+	}
+	output(". <i>“You’re such a sloppy lesbo, [pc.Master]. Mitzi loves that about you. You get all soaked just from looking at Mitzi’s mouth!”</i>");
+	output("\n\nYou watch in dazed rapture as Mitzi pouts up at you, her purple pillows gleaming with your [pc.girlCumNoun] and gloss, shaped so that the puffy angel bows crease beneath their own inhuman volume. She puckers them out in a kissing motion that seems to push them deep into your mind, squeezing out everything else in the form of thigh-staining ");
+	var wetness:Number = pc.wettestVaginalWetness();
+	
+
+	{trickling/dripping/flows/streams/outpourings}. A flash of thought warns that you shouldn’t react so strongly to your pet goblin’s sexual displays, but the beginnings of a smile tugs at the corners of those purple pillows, melting the intellectual rebellion into a wash of hot, horny pussy-juice.");
+	output("\n\n<i>“Omigawsh you mush be </i>such a slut for girls<i> to get turned on so easy. All Mitzi did was make a couple cute faces, and you’re already to cum like, super hard, aren’t you?”</i> The grinning goblin lazily fondles your [pc.vagina] while she talks. <i>“Probably because this cunt is going crazy with pussy-hornies. It just wants to get pinned down and rubbed on by some juicy little slit, to feel a hard clit slipping and sliding through the mixed juices. It’s like, the hottest, sexiest thing a cunt-for-brains like you can think of.”</i>");
+	output("\n\nYou shudder at the suggestion. Whatever you were going to say, whatever you were thinking... Mitzi’s fingers milk it out of you. Cogent thoughts split apart to reveal oozy, aroused vaginas. Words melt down into fragrant, tangy pussy-juice. Mitzi’s cunt invades your mind’s eye. The gleaming emerald box parts open invitingly, its lips wet with lusty dew. The nub of her clit juts forward, begging you to touch it. You open your eyes but see the smiling goblin’s most tender regions superimposed upon your suggestion-hijacked retinas.");
+	output("\n\n<i>“Lay down, [pc.Master],”</i> a beautiful siren’s voice calls. It dances through your cunt-brain’s synapses, making you wish you could fuck it. <i>“It’s easier to eat a girl out on the ground, and you really, really want to eat pussy, doncha?”</i> Slick fingers squeeze at your crotch, and your liquid arousal spatters the deck below. <i>“You wanna smell pussy. You wanna taste pussy. You wanna wake up in the morning and gargle pussy. You’re that much of a slut for girls.”</i>");
+	output("\n\n<i>“Hnnng-yessssss...”</i> you hiss, slowly slumping onto your back. Your pelvis thrusts upward, bouncing your [pc.butt] on the  deck.");
+	output("\n\nFootsteps to your left. <i>“Hold still.”</i>");
+	output("\n\nLike a marionette with its strings cut, you slacken into immobility, the spasms of your overheating, drooling puss{ies/y} your only remaining motion. <i>“Kay...”</i>");
+	output("\n\nA leg falls over one of your shoulders, then the other. Naked green skin blocks the light, and with it, the scent of <i>cunt</i> filters down to your nostrils. You salivate unthinkingly, licking your lips as Mitzi shifts position to bring that viridian treasure closer. The details reveal themselves now that your eyes have adjusted to the reduced light: two puffy outer lips that nearly complete conceal the goblin’s creamy inner folds. Her clit is bulging and heavy, a single droplet hanging from it. You desperate want to lick it, but you’re <i>hold</i>ing <i>still</i>.");
+	output("\n\nNothing stops you from smelling, though. Inhaling deeply, you savor Mitzi’s womanly aroma, filling yourself with her ardor in vapor form, wishing you could breathe in forever so that the moment could go on into infinity. The longer the seconds drag on, the wetter your [pc.vaginaNounSimple] gets. The moment you get a chance, you’re going to get a sample of your own flavor. You adore the scent of cunt.");
+	output("\n\n<i>“Omigod, you’re a pussy addict!”</i> that sweet sweet voice declares. <i>“I bet I could give you a wet pair of panties and you could cum, just from sniffing them.”</i>");
+	output("\n\nThe image of Mitzi’s panties, soaked from arousal and wrapped around your face, is so potently erotic that you feel a clench deep in your belly. [pc.EachVagina] flexes and squeezes in response. You feel strangely euphoric, unable to touch or taste that which you desire above all else, but it’s so painfully aroused that your [pc.vaginas] {is/are} trembling on the cusp of an orgasm.");
+	output("\n\nA single gasp and deep breath pushes you over the edge; your crotch tightens supremely to the sight and smell of Mitzi’s mouth-wateringly juicy cunt. Blissful spasms rub your folds together unassisted.{ [pc.GirlCum] sprays out in a fountain./ [pc.GirlCum] leaks out in a pulsating flow.} Your eyes roll back, but the sight of Mitzi’s pussy is engraved too deeply on your putty-like mind to fade.");
+	output("\n\n<i>“Awww, you’re such a lesbo that you got off just thinking about panty-sniffing?”</i> Mitzi drops herself down, smothering your moans and pants with her simmeringly hot labia. Gabilani juices pour into your mouth and roll down your cheeks. Your tongue thrusts out on its own, commanded by your zealously climaxing cunt to share the feeling with the thick-thighed goblin. <i>“Ah-ah! You really can’t help yourself?!”</i> Mitzi’s tits slap down onto your [pc.belly] as the pleasure doubles her over. <i>“You’ll just lick and lick and lick until your tongue doesn’t work anymore!”</i>");
+	output("\n\nWell... yeah. As you come down from your climactic high, you find yourself able to focus on eating pussy properly, whipping your tongue around to satisfy every surface{, spearing inhumanly deep to curl around in search of sensitive recesses}. You really could do this forever. At the very least, you could eat this sopping-wet treat until you pass out from exhaustion. It’d be worth it, just to spend a few extra hours completely subsumed in pussy-scent and taste.");
+	output("\n\nA happy sigh slips from your throat when you find an especially dense concentration of Mitzi’s juices.");
+	output("\n\n<i>“Ah! You’re insatiable!”</i> Mitzi kisses you again and again and again. Every thrust of your tongue earns another soft press of her lips. Your heart hammers in your ears. Your [pc.vaginas] burn{s}. <i>“You’re the perfect...”</i> A long kiss hits your belly button. <i>“...lesbo-slut.”</i> Fawning smooches trace around your side toward your hip. <i>“Juicing yourself over the taste of pussy. Cumming from the scent.”</i> Slut-thick lips pamper you with affection. <i>“And you cum so easy...”</i>");
+	output("\n\nYou’re getting close again already. There’s lightning between your legs, and with every pussy-swabbing stroke of your tongue, it crackles across your hypersensitive nerves. You thrust deep and bury {your muzzle deep into Mitzi’s pussy, letting her snatch become your world/your nose up to her clit}. A rolling wave of crackling, white-hot bliss starts between your [pc.thighs] and crashes into your brain with a thunderclap of sapphic ecstacy.");
+	output("\n\n<i>“Ahh! Poor [pc.Master], so devoted to cunt that your pussy’ll never let you think about anything else.”</i> The goblin’s torrid gash gushes for you, but she keeps talking, <i>“Betcha you wanna spend the rest of your life between my lil’ legs, right?”</i>");
+	output("\n\n<i>“Riggt,”</i> you mumble into her sublime slit.");
+	output("\n\n<i>“You’re almost as good a slut as Mitzi,”</i> she purrs. <i>“Just keep licking there... Fuck you’re so hot like this, so fucking sexy.”</i>");
+	output("\n\nYou devote yourself to satisfying her folds, sucking and licking in a frenzy. A puddle of girlish juices has formed around you, but it just makes it hotter. You’d be slick from head to toe in Mitzi’s fruits if you could. If you keep licking, maybe it’ll even happen.");
+	output("\n\nThe little minx screams, <i>“CUM!”</i> midway through an exceptionally deep exploration of her depths, scissoring your incredibly strong muscles down on either side of your wiggling muscle. The command cuts through the fog of confusing arousal like a plasma blade through warm butter.");
+	output("\n\nYou orgasm with your tongue trapped deep in Mitzi’s gushing box. Your mouth floods, overfilling before you can possibly swallow the womanly release. Crying from joy and pleasure, you realize that you love pussy above all else - not just Mitzi’s, but vaginas in general. The concept of a wet cunt fills you with overwhelming lust and affection. As you swallow the tangy juices that stream into your mouth, you acknowledge that you’re kind of a pussy-slut, but then your orgasm strengthens from knee-knocking to consciousness-eroding.");
+	output("\n\nThe only thought that persists: the taste and shape of Mitzi’s cunt.");
+	output("\n\n[Next]");
+	output("\n\nYou wake to an ambrosial taste on your [pc.lipsChaste].  With a happy sigh, you run your tongue over them, slowly savoring the flavor. You blink your eyes open and try to remember how you got here. First, the goblin was talking to you, and you wanted her to kiss your pussy. Then you really, really wanted to eat her out. You remember the features of her cunt in excruciating detail. Every crease and fold is accounted for.");
+	output("\n\nYou flush and stretch, sitting up, realizing that it’s Mitzi-cunt you taste on your [pc.lipsChaste]. You moan in delight. <b>That was some good pussy.</b> You might even be getting addicted to vaginas, because your <b>libido feels stronger than ever.</b> The little slut has certainly stoked a fire in your twat; that’s for sure.{ You could almost forget you even had a dick, if it wasn’t for all the [pc.cumNoun] plastered everywhere.}");
+	output("\n\nAs for the goblin herself, she must have scampered off somewhere while you were knocked out. It’s just as well. If she was still here, you’d probably crawl right back between her legs.");
+
+}
+
+
+public function mitziFirstTimeCuntnosisII():void
+{
+	clearOutput();
+	showMitzi(true);
+	author("Fenoxo");
+	output("<i>“Oh,”</i> you mumble again, one of your hands falling onto the back of Mitzi’s head. <i>“You’re really cute like that.”</i> Your concerns melt away under the warmth of the goblin’s luscious, drug-painted lips. <i>“Umm... I was worried about...”</i> She kisses [pc.oneClit], leaving a veneer of artificial shine behind. <i>“Wow that’s nice.”</i> The goblin is mind-blowingly pretty. You can scarcely believe that you lucked into earning the services of such an adoring beauty.");
+	output("\n\n<i>“Oh?”</i> Mitzi begins to apply another coat of lip gloss. She smacks those purple pillows together beams up at you. <i>“Did you really want me to wait, or should I like, keep going?”</i>");
+	output("\n\nThere’s so much heat between your [pc.thighs], flush and hot. You feel weak and silly, unsure of why exactly you wanted her to wait before. Was it... something about her lip-gloss? Yes! That’s it! <i>“Your gloss!”</i> You point accusingly at the tube.");
+	output("\n\nMitzi pouts, <i>“You wanted to watch Mitzi put on some more?”</i> The emerald slut pouts. <i>“If you really want. Do you really want Mitzi to roll more on? Paint these pussy-pleasing lips thick with shine until you get all silly and cummy?”</i>");
+	output("\n\nThe distracting heat boiling below keeps interrupting your thoughts, twisting them around when you to focus. Mitzi’s face is there through it all, smiling and beautiful, the picture of wantonness. You can’t see any problems with her gleaming mouth, still moist from your [pc.vaginas], but that must have been it. <i>“Yeah... that sounds right.”</i>");
+	output("\n\n<i>“Okay! Mitzi will put this one on super-dooper thick just for you [pc.Master]!”</i> She uncaps the tube once more, twirling dial at the bottom to push more jellied makeup out. Pink, heart-shaped eyes stare seductively up at you as Mitzi languidly presses the gloss against her lower lip and slowly begins to roll it across the taut, reflective surface. She blinks, layering it on nice and heavy, just like you asked. The way she flips it around to bring it to bear on her upper lip is almost hypnotic, and the application of her enchanting mouth-polish leaves you shudderingly, gaspingly aroused. <i>“There!”</i>");
+	output("\n\n<i>“Please, my puss");
+	if(pc.cockTotal() == 1) output("y");
+	else output("ies");
+	output(".”</i> You grab her by the pigtail, more for something to hold onto than with any intent of forcing her. Satisfying your budding desire by yourself seems a foreign concept.");
+	output("\n\n<i>“Mitzi will,”</i> the pretty bimbo purrs. <i>“You trust her, right? You trust Mitzi.”</i>");
+	output("\n\nOf course you trust Mitzi! That’s why you’re here begging her to make you cum! <i>“Uh huh...”</i> Putting that trust to words is hard, but the idea seems to communicate well enough.");
+	output("\n\n<i>“Good,”</i> Mitzi kisses just to the left of your cunt, leaving a gleaming patch of tingling warmth in her wake. <i>“And like, Mitzi makes you super horny, right?”</i>");
+	output("\n\nYou nod.");
+	output("\n\nThe giggling goblin smooches down on the other side, leaving an identical patch of sinfully tingly happiness behind. <i>“Like, so horny it’s hard to think right?”</i> One of her hands disappears into her soaking-wet cunt. <i>“That’s how horny you make Mitzi. So horny that your pussy just kinda tells you what to do.”</i>");
+	output("\n\nNow that she puts word to it, that’s <i>exactly</i> how you feel. You feel almost feverishly aroused, and Mitzi is so, so beautiful that looking at her is like staring at a star. Her erotic radiance leaves you dumbfounded and soaking wet, like a barely-sapient puddle. <i>“Oh-f-f-fuck yes!”</i>");
+	output("\n\n<i>“Good.”</i> Mitzi grabs your ass and pulls you close, landing peck after peck in a slowly spinning spiral around your deliriously soupy puss. <i>“Pussy is amazing, isn’t it?”</i> She leans back to show you hers. From the luscious folds to the sheen of her leaking arousal, it’s awe-inspiring. Her silken interior glimmers with a stunning amount of erotic promise. <i>“It’s so powerful. So wonderful.”</i> She slides a finger through her slit. <i>“One cunt could bring down a government. Two cunts? Two cunts could addle a [pc.boyGirl]’s mind, just by existing.");
+	if(pc.totalVaginas() > 1) output(" More? More could make the universe fade away into irrelevance.");
+	output(" Couldn’t they?”</i>");
+	output("\n\nThe words are background noise next to the beautiful texture of Mitzi’s feminine jewel. Your mouth and [pc.vaginas] water together in perfect sync, every part of you wanting to press against the juicy mound, just to be closer to it. To rub against it would be divine. To taste or grind against it, mind-melting. <i>“Mmmhmmm.”</i>");
+	output("\n\nMitzi grabs your hand and brings it to her mouth, sucking you in to the knuckle. Her tongue flicks at the tip teasingly, and then she’s sliding back, heavy lips smearing your digit in enough gloss to make it shine brightly. Her purple mouth seems matte by comparison. <i>“Pussies deserve fingers, dear. I know it’s so hard to think when you’re this wet, all hot and fluttery.”</i> She turns your hand around, pushing the finger toward the sopping cleft between your [pc.thighs]. <i>“But you should really do what your pussy wants... and fill it.”</i>");
+	output("\n\nThat shining finger slides in all on its own. You don’t have to think. You don’t have to decide to move the muscles in your arm. Your [pc.vagina] does all that for you, guiding that spit-and-gloss-slicked digit into the molten heat that burns between your [pc.thighs]. The tip brushes the underside of [pc.oneClit] on its way in, exactly the way you need it to, and then it’s spreading your lips wide, leaving the residue from Mitzi’s lips smeared over the exterior as it plunges in deep - so deep that you’re moaning as the knuckle wiggles inside.");
+	output("\n\n<i>“Atta girl. Look at us - just two soaking wet cunts who are finally getting what we need.”</i> Mitzi sighs in delight as her manicured fingertips plunder her emerald jewel, the lips so exquisitely plush and inviting that they all but demand something slap against them, violate them in whatever degrading way will make them cum the hardest. <i>“Look at these cunts. Look at how wet they are.”</i> The goblin groans stuffs a second finger into her box, spreading them a second later to expose the hypnotically glistening flesh. <i>“Cunts this wet must cum, like super easy, right?”</i>");
+	output("\n\nThe ");
+	if(pc.balls > 0 && pc.ballDiameter() > 1 || pc.hasCock())
+	{
+		output("fact that ");
+		if(pc.balls > 0 && pc.ballDiameter() > 1) output("a [pc.sack] blocks");
+		else if(pc.cockTotal() == 1) output("a [pc.cock] blocks");
+		else output("[pc.cocks] block");
+		output(" your view stymies you the six long seconds it takes your cunt to remind you that you can ");
+		if(pc.balls > 0 && pc.ballDiameter() > 1) output("lift it out of the way");
+		else 
+		{
+			output("shift ");
+			if(pc.cockTotal() == 1) output("it");
+			else output("them");
+			output(" to the side");
+		}
+		output(". Only then do you see your [pc.vaginas] revealed in all ");
+		if(pc.totalVaginas() == 1) output("its");
+		else output("their");
+		output(" glory, so close to the goblin’s. They");
+	}
+	else if(pc.totalVaginas() == 1) output("two pussies in your view");
+	else output(num2Text(pc.totalVaginas()+1) + " pussies in your view");
+	output(" bob up and down in your nodding viewpoint. The backdrop is unsubstantial and unimportant next to the glistening honeypots that so dominate your world. There’s only the hot, wet frission of fingers against womanhoods, the pulsating thrum of hammering heartbeats tickling nerves so tenderized that the slightest breeze feels like a tongue’s tender strokes. You could cum at any second. It would be so easy, and your pussy wants it, so-");
+	processTime(10);
+	pc.lust(50);
+	clearMenu();
+	addButton(0,"Next",mitziFirstTimeCuntnosisIII);
+}
+public function mitziFirstTimeCuntnosisIII():void
+{
+	clearOutput();
+	showMitzi(true);
+	author("Fenoxo");
+	output("A second finger slides inside, exploding your [pc.vagina] with pleasure. Detonations of mind-shattering bliss chain up your spine, leaving undulating, uncoordinated masses of muscle in their wake. As your body slumps over, [pc.hips] gyrating wildly, an atomic bomb of ecstasy shatters what small part of your consciousness remained into slick, cummy pieces. You moan whorishly as you hump Mitzi’s leg, smearing in her [pc.girlCum]");
+	if(pc.isSquirter()) output(", in between fountainous squirts");
+	output(". It’s so easy to cum, and you (or your pussy - there’s no divide between the two any longer) want to do it forever.");
+	output("\n\n<i>“Cumming’s soooo easy,”</i> Mitzi moans, reaching up to rub [pc.oneClit] alongside her own.");
+	output("\n\nA second climax climbs onto the back of the last one’s heels and rides you to the ground. Your eyes roll back, leaving you to dwell on your own insensate moans and the endlessly delightful feeling of slickened digits plowing through a sopping tunnel.");
+	output("\n\nThe goblin climbs onto your unresisting form and shifts away from your throbbing clitty to work your wrist, pumping your fingers in and out now that it has become too difficult for you. <i>“Just a hot wet cunt who can’t think of anything but slit-stuffing sex.”</i> [pc.Girlcum] puddles in your thighs. The Mitzi-assisted masturbation sounds so loud in your ears, but not loud enough to stop you from realizing how right she is. <i>“That’s the truth ‘bout pussies, [pc.name]. They’re so... like... mmmmph! So </i>receptive<i>. They’ll do anything you want as long as you make them feel good.”</i>");
+	output("\n\nAnother climax steals any attempt at response. Your [pc.legOrLegs] twitch");
+	if(pc.legCount == 1) output("es");
+	output(" bonelessly on the floor. <i>You’d put anything inside yourself to feel this good again.</i>");
+	output("\n\n<i>“You’re a slut, just like Mitzi, aren’t you?”</i> The devilishly grinning goblin releases your wrist now that it’s pumping your cunt on its own and climbs onto your face. Her arousal smells so sweet, so desirable. You thrust your tongue into it and cum, uncaring that you’re <i>sucking pussy like a total slut</i>.");
+	output("\n\nDewdrops of gabilani delight dribble into your maw.");
+	output("\n\n<i>“Mmmm, but it’s fun to be a slut. Especially when you’ve got a little slut like Mitzi to fuck whenever your cunt gets the least bit horny. And pussies are like, </i>always horny<i>.”</i> Mitzi proves her point by squirming onto your tongue, her thick thighs wrapping around the back of your head with surprising strength.");
+	output("\n\nAmbrosial tastes and smell intermingle with the satiny sawing of your masturbating fingers. The bliss of orgasm after orgasm has you so addled that you can scarcely tell where Mitzi’s cunt ends and your own begin");
+	if(pc.totalVaginas() == 1) output("s");
+	output(". She’s still talking, something about how every time you cum you get better and better at listening to your lusts, but you aren’t really listening anymore.");
+	output("\n\nYou’re too much of a slut to care what else happens, as long as you get to keep cumming... and cumming... and cumming.");
+	processTime(30);
+	for(var x:int = 0; x < 6; x++) { pc.orgasm(); }
+	clearMenu();
+	addButton(0,"Next",mitziFirstTimeCuntnosisIV);
+}
+
+public function mitziFirstTimeCuntnosisIV():void
+{
+	clearOutput();
+	showMitzi(true);
+	author("Fenoxo");
+	output("You wake up... sticky. Mitzi is next to you, snoring peacefully with her hand in her cunt... just like you were a moment ago. You lick the worst of it from your fingertips as you take stock of the situation. Your [pc.thighs] are completed plastered in [pc.girlCum], to say nothing of the puddle beneath. <i>Hot.</i>");
+	pc.applyPussyDrenched();
+	output("\n\nYou don’t have a very clear memory of exactly what all you got into aside from a faint memory of drugged lipstick and lots and lots of pussy, but you’re definitely feeling a little <b>more libidinous</b> your goblin fuckslave’s efforts.");
+	pc.taint(2);
+	pc.libido(4);
+	processTime(30);
+	pc.orgasm();
+	IncrementFlag("MITZI_CUNTNOSIS");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
