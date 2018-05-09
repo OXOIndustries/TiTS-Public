@@ -886,8 +886,22 @@ public function mitziSexMenu():void
 		addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis for this kind of sex.");
 		addDisabledButton(2,"Titfuck","Titfuck","You need a penis to titfuck her.");
 	}
-	if(pc.hasVagina()) addButton(1,"Get Licked",getLickedByMitzi);
-	else addDisabledButton(1,"Get Licked","Get Licked","You need a vagina for this.");
+	if(pc.hasVagina()) 
+	{
+		addButton(1,"Get Licked",getLickedByMitzi);
+		addButton(3,"Cuntnosis",mitziPussyControl,undefined,"Cuntnosis","Ask Mitzi to please your pussy and let her use some of her drugs to do a little too good of a job.\n\n<b>Contains Mind Control content.</b>\n<b>Known to cause slight amounts of taint. Check your Codex for details.</b>")
+	}
+	else 
+	{
+		addDisabledButton(1,"Get Licked","Get Licked","You need a vagina for this.");
+		addDisabledButton(3,"Cuntnosis","Cuntnosis","You need to have a vagina in order to engage in this.");
+	}
+
+	if(flags["MITZI_FAV_DRUG"] != undefined)
+	{
+		if(pc.hasItemByClass(Gush)) addButton(5,"Give Gush",giveMitziGush,undefined,"Give Gush","Give Mitzi a dosage of Gush. It’ll probably make her milky and sort dumb for a while, going by her stories.");
+		else addDisabledButton(5,"Give Gush","Give Gush","You need some Gush in order to do this.");
+	}
 
 	addButton(14,"Back",approachCrewMitzi,true);
 }
@@ -1082,7 +1096,7 @@ public function talkToMitzi():void
 {
 	clearOutput();
 	showMitzi();
-	output("The little goblin seems more interested in talking than fucking, but if you have question, you’re sure she’ll answer them.");
+	output("The little goblin seems more interested in fucking than talking, but if you have question, you’re sure she’ll answer them.");
 	clearMenu();
 	addButton(0,"Bimboed?",whatHappenedToMitzi);
 	if(flags["MITZI_BIMBO_TALK"] == 1) addButton(1,"Your Body?",talkToMitziAboutHerBody);
@@ -2119,7 +2133,8 @@ public function mitziPussyControl():void
 		clearMenu();
 		addButton(1,"Lesbo Cunt",mitziLesboCuntnosis);
 		addButton(0,"Breeder Cunt",breederCunt);
-		addButton(2,"Dumb Cunt",mitziMakesYouABimbo);
+		if(!pc.isBimbo()) addButton(2,"Dumb Cunt",mitziMakesYouABimbo);
+		else addDisabledButton(2,"Dumb Cunt","Dumb Cunt","You're as much of a dumb, jizz-sucking cunt as possible!");
 	}
 }
 
@@ -2241,8 +2256,6 @@ public function mitziMakesYouABimboIV():void
 		output(".");
 		output("\n\n<i>“Dumb, horny slut-cunt,”</i> Mitzi gasps.");
 		output("\n\nExplosive bliss carries you past consciousness. There’s white, and pink, and very, very happy pussy-lips in whatever place your mind goes to.");
-		//Easy - 20% extra lust from combat sources. 20% is set in v1. See if that’s used anywhere.
-		//Inhuman Desire, v1 stores 15, +15 minlust.
 	}
 	//Gain Inhuman Desire2 and Fuck Sense
 	else if((pc.hasPerk("Inhuman Desire") && pc.perkv1("Inhuman Desire") < 30) || !pc.hasPerk("Fuck Sense"))
@@ -2282,10 +2295,9 @@ public function mitziMakesYouABimboIV():void
 		processTime(20);
 		pc.orgasm();
 		pc.orgasm();
-		//9999 perk gains :3
 	}
-	
-	
+	clearMenu();
+	addButton(0,"Next",mitziBimbosYouEpilogue);
 }
 
 public function mitziBimbosYouEpilogue():void
@@ -2295,18 +2307,65 @@ public function mitziBimbosYouEpilogue():void
 	author("Fenoxo");
 	if(!pc.hasPerk("Easy") || !pc.hasPerk("Inhuman Desire"))
 	{
-		output("\n\nWhen you wake up, Mitzi is snoring soundly, her little hand buried up to the fist in her pussy. Bless her sweet, little heart. You stagger up and stretch, feeling a little soreness by your [pc.thighs]. Being fucked so hard never felt so good.");
+		output("When you wake up, Mitzi is snoring soundly, her little hand buried up to the fist in her pussy. Bless her sweet, little heart. You stagger up and stretch, feeling a little soreness by your [pc.thighs]. Being fucked so hard never felt so good.");
+		//Easy - 20% extra lust from combat sources. 20% is set in v1. See if that’s used anywhere.
+		//Inhuman Desire, v1 stores 15, +15 minlust.
+		//Easy Perk
+		if(!pc.hasPerk("Easy"))
+		{
+			output("\n\n(<b>Bimbo Perk Gained: Easy</b> - gain 20% more lust from combat sources.)");
+			pc.createPerk("Easy",20,0,0,0,"Gain 20% more lust from combat sources.");
+		}
+		//Inhuman Desire
+		if(!pc.hasPerk("Inhuman Desire"))
+		{
+			output("\n\n(<b>Bimbo Perk Gained: Inhuman Desire</b> - Your maximum lust is increased by 15.)");
+			pc.createPerk("Inhuman Desire",15,0,0,0,"Increases maximum lust by 15.");
+		}
 	}
 	else if((pc.hasPerk("Inhuman Desire") && pc.perkv1("Inhuman Desire") < 30) || !pc.hasPerk("Fuck Sense"))
 	{
 		//Gain Inhuman Desire2 and Fuck Sense
 		output("When you wake up, Mitzi’s fist is still in your cunt. You pull it out with a wince and a [pc.knee] buckling surge of pleasure. You’re tempted to put it back in, to bounce up and down on the petite bimbos arm while she slumbers, but you had some other stuff to do. Exactly what you were going to do seems fuzzy and indistinct. You’ll move along, and if you don’t remember, you can always just go find someone sexy to bang.");
+		if(!pc.hasPerk("Inhuman Desire"))
+		{
+			output("\n\n(<b>Bimbo Perk Gained: Inhuman Desire</b> - Your maximum lust is increased by 15.)");
+			pc.createPerk("Inhuman Desire",15,0,0,0,"Increases maximum lust by 15.");
+		}
+		if(pc.perkv1("Inhuman Desire") < 30)
+		{
+			output("\n\n(<b>Bimbo Perk Upgraded: Inhuman Desire</b> - Your maximum lust is increased by 30.)");
+			pc.setPerkValue("Inhuman Desire",1,30);
+			pc.setPerkTooltip("Inhuman Desire","Increases maximum lust by " + pc.perkv1("Inhuman Desire") + ".");
+		}
+		//Gain Fuck Sense
+		if(!pc.hasPerk("Fuck Sense"))
+		{
+			output("\n\n(<b>Bimbo Perk Gained: Fuck Sense</b> - The Sense ability now relies on your libido rather than intelligence.)");
+			pc.createPerk("Fuck Sense",15,0,0,0,"Allows your sense ability to base success off your libido instead of intelligence.");
+		}
 	}
 	else
 	{
 		output("You wake up giggling and happy, worry-free. Mitzi’s on the floor next to you with her tail lodged in her cunt and pussy-juice all of her face. Yours by the smell of it. She wouldn’t stop you if you woke her by sitting down her face and demanding another session with her tongue, but there’s so many other hotties in the universe. You should probably like, go look for those probes or whatever. There’ll be all sorts of hotties to bang on the way.");
+		if(!pc.hasPerk("Ditz Speech"))
+		{
+			output("\n\n(<b>Gained Perk: Ditz Speech</b> - You will now sound like a total bimbo in scenes that support it.)");
+			pc.createPerk("Ditz Speech",0,0,0,0,"Alters dialog in certain scenes.");
+		}
+		//Gain weak willed
+		if(!pc.hasPerk("Weak Mind"))
+		{
+			output("\n\n(<b>Gained Bimbo Perk: Weak Mind</b> - You lose willpower twice as fast.)");
+			pc.createPerk("Weak Mind",0,0,0,0,"Willpower losses are doubled.");
+		}
 	}
-	
+	processTime(40);
+	pc.orgasm();
+	IncrementFlag("MITZI_CUNTNOSIS");
+	restHeal();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);	
 }
 //Breeder Cunt
 public function breederCunt():void
@@ -2314,7 +2373,7 @@ public function breederCunt():void
 	clearOutput();
 	showMitzi(true);
 	author("Fenoxo");
-	output("\n\n<i>“...breeder cunt.”</i>");
+	output("<i>“...breeder cunt.”</i>");
 	output("\n\nDid you really just say that? Did you really just declare yourself to be some kind of... broodmother? The room got <i>hot</i> all of a sudden. You fan yourself as the idea of getting knocked up rolls around in your mind.");
 
 	//preggo already
@@ -2458,6 +2517,7 @@ public function mitziPutsYouInHeat2():void
 	pc.libido(3);
 	pc.taint(2);
 	pc.orgasm();
+	restHeal();
 	//increase count of times mitzi hypnoed :3
 	IncrementFlag("MITZI_CUNTNOSIS");
 	clearMenu();
@@ -2586,6 +2646,7 @@ public function mitziLesboCuntnosisII():void
 	pc.applyPussyDrenched();
 	if(pc.hasCock()) pc.applyCumSoaked();
 	IncrementFlag("MITZI_CUNTNOSIS");
+	restHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2688,6 +2749,7 @@ public function mitziFirstTimeCuntnosisIV():void
 	processTime(30);
 	pc.orgasm();
 	IncrementFlag("MITZI_CUNTNOSIS");
+	restHeal();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

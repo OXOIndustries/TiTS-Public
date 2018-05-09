@@ -2479,6 +2479,11 @@
 				case "uterus":
 					buffer = wombDescript(arg2);
 					break;
+				case "wombs":
+				case "uteruses":
+				case "uteri":
+					buffer = wombsDescript();
+					break;
 				case "clit":
 				case "clitoris":
 					buffer = clitDescript(arg2);
@@ -15110,6 +15115,34 @@
 					}
 				}
 			return true;
+		}
+		public function wombsDescript():String
+		{
+			var descriptions:Number = 0;
+			var buffer:String = "";
+			if(!hasVagina()) return "<b>Parse Error: No womb found for wombdescript.</b>";
+			var allPreg:Boolean = true;
+			for(var x:int = 0; x < totalVaginas(); x++)
+			{
+				if(!isPregnant(x))
+				{
+					allPreg = false;
+					break;
+				}
+			}
+			if(allPreg && rand(3) == 0)
+			{
+				descriptions++;
+				buffer += RandomInCollection(["pregnant","pregnant","gravid","gravid","impregnated","impregnated"]);
+			}
+			else if(rand(3) && !isPregnant() && inHeat())
+			{
+				descriptions++;
+				buffer += RandomInCollection(["cum-hungry","baby-craving","sex-starved","spunk-starved","breed-hungry","extra-fertile","sperm-sucking"]);
+			}
+			if(descriptions > 0) buffer += " ";
+			buffer += RandomInCollection(["wombs", "wombs", "uteri"]);
+			return buffer;
 		}
 		public function wombDescript(arg:Number = 0):String
 		{

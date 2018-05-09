@@ -297,13 +297,13 @@ public function procDumbfuckStuff():void
 		pc.createPerk("Fuck Sense",15,0,0,0,"Allows your sense ability to base success off your libido instead of intelligence.");
 	}
 	//Gain weak willed
-	if(flags["DUMBFUCK_SNEEZES"] >= 17 && !pc.hasPerk("Weak Willed"))
+	if(flags["DUMBFUCK_SNEEZES"] >= 17 && !pc.hasPerk("Weak Mind"))
 	{
 		output("\n\nBut why stop yourself? You could just let go and do what feels good, and it all feels good. Particularly touching. You love touching, being touched, whatever. You’d let someone do all kinds of stuff to you if they touched you!");
-		output("\n\n(<b>Gained Perk: Weak Will</b> - You lose willpower twice as fast.)");
+		output("\n\n(<b>Gained Perk: Weak Mind</b> - You lose willpower twice as fast.)");
 		//Reduce willpower by 6 immediately. (only need to mod by 3 if perk active)
 		pc.willpower(-6);
-		pc.createPerk("Weak Willed",0,0,0,0,"Willpower losses are doubled.");
+		pc.createPerk("Weak Mind",0,0,0,0,"Willpower losses are doubled.");
 	}
 	if(flags["DUMBFUCK_SNEEZES"] >= 20 && !pc.hasPerk("Ditz Speech") && !pc.hasPerk("Brute Speech"))
 	{
