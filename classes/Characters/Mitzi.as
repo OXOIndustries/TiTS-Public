@@ -21,7 +21,7 @@
 		{
 			this._latestVersion = 2;
 			this.version = this._latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			this.inventory.push(new SchoolgirlCostume());
 			this.inventory.push(new MitzisYogaBikini());
