@@ -8,6 +8,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GLOBAL;
 	import classes.StorageClass;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.shortMinutes;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Child;
@@ -58,7 +59,8 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (30 * 60), function(pregSlot:int):void {
-				AddLogEvent("You could wave off the occasional strange craving or erotic thought, but so close after unprotected sex? You whip out your Codex for a quick check, and sure enough, <b>you’re pregnant</b>. Apparently you’re going to be incubating some raskvel, though it’s too early for a complete embryo count. The data indicates you’ll be laying some eggs in <b>about 13 days</b>.", "passive");
+				var nTime:Number = Math.floor(18720/kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti);
+				AddLogEvent("You could wave off the occasional strange craving or erotic thought, but so close after unprotected sex? You whip out your Codex for a quick check, and sure enough, <b>you’re pregnant</b>. Apparently you’re going to be incubating some raskvel, though it’s too early for a complete embryo count. The data indicates you’ll be laying some eggs in <b>about " + shortMinutes(nTime, true, true) + "</b>.", "passive");
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (40 * 60), function(pregSlot:int):void {
@@ -80,7 +82,8 @@ package classes.GameData.Pregnancy.Handlers
 			}, true);
 
 			addStageProgression(_basePregnancyIncubationTime - (50 * 60), function(pregSlot:int):void {
-				AddLogEvent(ParseText("Your [pc.belly] feels a little " + (kGAMECLASS.pc.bellyRating() > 30 ? "more bloated than normal" : "bloated") + ". That alien seed sure takes fast. It’s only been about two days, and you’re already starting to show. You look at the pile of protein wrappers in your pack and shrug. Guess you’re eating for two... or six."), "passive");
+				var nTime:Number = Math.floor(2880/kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti);
+				AddLogEvent(ParseText("Your [pc.belly] feels a little " + (kGAMECLASS.pc.bellyRating() > 30 ? "more bloated than normal" : "bloated") + ". That alien seed sure takes fast. It’s only been about " + shortMinutes(nTime, true, true) + ", and you’re already starting to show. You look at the pile of protein wrappers in your pack and shrug. Guess you’re eating for two... or six."), "passive");
 				kGAMECLASS.pc.bellyRatingMod += 5;
 				var pData:PregnancyData = kGAMECLASS.pc.pregnancyData[pregSlot];
 				pData.pregnancyBellyRatingContribution += 5;

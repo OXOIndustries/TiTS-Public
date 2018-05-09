@@ -337,7 +337,7 @@ public function dontRetakeMitziOnboard():void
 {
 	clearOutput();
 	showMitzi();
-	output("You turn down the offer. There's plenty of sex to be had without attaching yourself to a nympho.");
+	output("You turn down the offer. There’s plenty of sex to be had without attaching yourself to a nympho.");
 	output("\n\n<i>“Awww, really? Mitzi got all hopeful and wet and-and... uh. Phoey.”</i> The goblin pouts and sighs. <i>“Well, like, Mitzi will be here if you change your mind or whatever.”</i>");
 	output("\n\nYou sigh heavily.");
 	processTime(1);
@@ -363,10 +363,10 @@ public function kickMitziOffCrew():void
 //TiTS-Specific Mitzi Crew Stuff
 //Ideas:
 //Rotating cast of fetish costumes: Latex pink dress, latex school-girl outfit, yoga pants and bikini top, succubus, cow-girl, transparent zipsuit, slutty librarian, & nun!
-//PC can gift her any <i>“armor”</i> class item with a sexiness of 5 or more, and she will wear it.
+//PC can gift her any “armor” class item with a sexiness of 5 or more, and she will wear it.
 //PC can dress her up, but only if he strips her down.
-//Mitzi got picked up by a drug-dealer on his way through Tarkus and has a ton of <i>“special treats”</i> for her lover, including once-weekly presents of throbb or gush. This is basically a reskin of CoC goblin potions/salves.
-//Sometimes wears illegal perfumes like <i>“rutting,”</i> <i>“heat,”</i> <i>“priaprism”</i>, and <i>“adulation”</i>. The first three can induce the relevant statuses... the latter results in the loviest oral pairing scene I can write.
+//Mitzi got picked up by a drug-dealer on his way through Tarkus and has a ton of “special treats” for her lover, including once-weekly presents of throbb or gush. This is basically a reskin of CoC goblin potions/salves.
+//Sometimes wears illegal perfumes like “rutting,” “heat,” “priaprism”, and “adulation”. The first three can induce the relevant statuses... the latter results in the loviest oral pairing scene I can write.
 
 public function mitziCurrentDress():ItemSlotClass
 {
@@ -439,9 +439,9 @@ public function giveMitziANewItem():void
 			{
 				addItemButton(x+buttonAdj,pc.inventory[x],giveMitziANewItemForReal,x);
 			}
-			else addItemDisabledButton(x+buttonAdj, pc.inventory[x], null, "<b>This isn't sexy enough for Mitzi.");
+			else addItemDisabledButton(x+buttonAdj, pc.inventory[x], null, "<b>This isn’t sexy enough for Mitzi.");
 		}
-		else addItemDisabledButton(x+buttonAdj, pc.inventory[x], null, "<b>Mitzi won't wear this type of item.");
+		else addItemDisabledButton(x+buttonAdj, pc.inventory[x], null, "<b>Mitzi won’t wear this type of item.");
 	}
 }
 
@@ -509,7 +509,7 @@ public function mitziPCPickOutfit(arg:ItemSlotClass):void
 	pc.setStatusMinutes("Mitzi Dressed",24*60*3);
 	output("You make your selection.");
 	output("\n\n<i>“Ooooh, Mitzi has a lot of fun with that one. She’ll wear it around for days, [pc.Master], all for you.”</i> Her tail affectionately caresses your cheek");
-	if(pc.libido() >= 60) output(", and you can't help but give it a quick kiss");
+	if(pc.libido() >= 60) output(", and you can’t help but give it a quick kiss");
 	output(".");
 	output(ParseText("\n\nThe bimbo goblin makes a show of peeling out of her [mitzi.armor] and slowly unveiling more and more of her almost perfectly smooth skin. You have to shut down multiple attempts at sex just to keep her simple mind on task, but after the third rejection, she gets the hint and slips into her newly designated slut-wear."));
 	mitziEquip(arg);
@@ -602,7 +602,7 @@ public function mitziCrewBonus():String
 		//Repeat recovery
 		else buff = "\n\nMitzi is in her bedroom, milking her prodigious teats and mooing like a barnyard animal. Every now and then you hear an orgasmic screech and a liquid spattering followed by a high-pitched cry of, <i>“[pc.Master] so good to Moooo!”</i> <b>Mitzi still needs to recover from her recent bout with Gush.</b>";
 	}
-	else if(pc.hasStatusEffect("Mitzi_Gush_Thankyou")) buff = "\n\n<b>Mitzi has recovered from that dose of Gush!</b> She may be a little more top-heavy now, but she'd really like to see you.";
+	else if(pc.hasStatusEffect("Mitzi_Gush_Thankyou")) buff = "\n\n<b>Mitzi has recovered from that dose of Gush!</b> She may be a little more top-heavy now, but she’d really like to see you.";
 	return buff;
 }
 
@@ -713,7 +713,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 				output("\n\n<i>“Mitzi’s a cow-girl!”</i> the debased bimbo explains as if you were too dumb to understand her outfit. <i>“She’s been so good and so moo-milky");
 
 				if(!mitzi.canLactate()) output(", but [pc.Master] still didn’t fuck her enough!”</i> Pulling herself up onto her knees, she squeezes her tits. Thin trails of creamy gabilani milk sputter out onto the deck for a moment before drizzling to a stop. <i>“And now Mitzi’s all out of ma-moo-milk! That means it’s time to breed the cow, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
-				else output(", but [pc.Master] doesn't give her enough Gush!”</i> Pulling herself up onto her knees, she squeezes her tits, hosing out a wave of milk. <i>“Mitzi wants to be a milky Mitzi-Cow for [pc.Master]! That means drugging and breeding until her brains squirt out of her big sexy cow-tits, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
+				else output(", but [pc.Master] doesn’t give her enough Gush!”</i> Pulling herself up onto her knees, she squeezes her tits, hosing out a wave of milk. <i>“Mitzi wants to be a milky Mitzi-Cow for [pc.Master]! That means drugging and breeding until her brains squirt out of her big sexy cow-tits, right?”</i>\n\nHer vibrator slips out of her now that she’s upright. It buzzes for a second, then powers down.");
 			}
 			else
 			{
@@ -801,13 +801,13 @@ public function mitziCrewMenu():void
 	addButton(0,"Appearance",mitziAppearance);
 	addButton(1,"Talk",talkToMitzi);
 	if(pc.lust() >= 33) addButton(2,"Sex",mitziCrewSexApproach);
-	else addDisabledButton(2,"Sex","Sex","You aren't turned on enough for this.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for this.");
 	addButton(3,"Dress Her",dressMitziUpApproach,undefined,"Dress Her","Help Mitzi pick out her wardrobe.");
 	if(flags["CREWMEMBER_SLEEP_WITH"] != "MITZI") addButton(5,"Sleep With",sleepWithToggleMitzi,undefined,"Sleep With","Invite Mitzi to share your bed and get you off in the mornings.");
-	else addButton(5,"NoSleepWith",sleepWithToggleMitzi,undefined,"No Sleep With","Kick Mitzi out of bed so she won't wake you up with orgasms in the morning.");
+	else addButton(5,"NoSleepWith",sleepWithToggleMitzi,undefined,"No Sleep With","Kick Mitzi out of bed so she won’t wake you up with orgasms in the morning.");
 	if(flags["MITZI_FAV_DRUG"] != undefined)
 	{
-		if(pc.hasItemByClass(Gush)) addButton(6,"Give Gush",giveMitziGush,undefined,"Give Gush","Give Mitzi a dosage of Gush. It'll probably make her milky and sort dumb for a while, going by her stories.");
+		if(pc.hasItemByClass(Gush)) addButton(6,"Give Gush",giveMitziGush,undefined,"Give Gush","Give Mitzi a dosage of Gush. It’ll probably make her milky and sort dumb for a while, going by her stories.");
 		else addDisabledButton(6,"Give Gush","Give Gush","You need some Gush in order to do this.");
 	}
 	addButton(14,"Back",crew);
@@ -831,10 +831,10 @@ public function mitziAppearance():void
 
 	output("\n\nNo exploration of the viridian bimbo’s body would be complete without the long moments it takes your view to slide along the outlandishly bubbly expansive of her ass. She cocks her hip the other way when she sees you looking, sending the pillowy buttcheeks rolling.");
 	if(mitzi.isAssExposed()) output(" A glimpse between the clapping callipygean orbs reveals a pristine pucker of the same vibrant green as its owner.");
-	else if(mitzi.isAssVisible()) output(" While you can see through her choice of transparent clothing, you can't glimpse the pucker beyond. Those colossal callipygean orbs are too firmly squeezed together to grant a peek between.");
+	else if(mitzi.isAssVisible()) output(" While you can see through her choice of transparent clothing, you can’t glimpse the pucker beyond. Those colossal callipygean orbs are too firmly squeezed together to grant a peek between.");
 	else
 	{
-		output(" While you can’t see past her [pc.assCover] to view her pucker directly, ");
+		output(" While you can’t see past her [mitzi.assCover] to view her pucker directly, ");
 		if(flags["9999"] != "anal") output("you can only assume it is as engineered for sex as the rest of its owner.");
 		else output("you know all too well that’s flawless and unblemished, almost brighter green than the rest of its owner.");
 	}
@@ -878,7 +878,7 @@ public function mitziSexMenu():void
 	if(pc.hasCock()) 
 	{
 		if(pc.cockThatFits(mitzi.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",fuckMitziJustLikeInCoC);
-		else addDisabledButton(0,"Fuck Her","Fuck Her","Stretchy as she is, even Mitzi's modded body has limits.");
+		else addDisabledButton(0,"Fuck Her","Fuck Her","Stretchy as she is, even Mitzi’s modded body has limits.");
 		addButton(2,"Titfuck",goblinTittyfuckoo);
 	}
 	else 
@@ -1053,7 +1053,7 @@ public function sleepWithToggleMitzi():void
 	}
 	else
 	{
-		output("You ask Mitzi if she'd like to share your bed with you at night.");
+		output("You ask Mitzi if she’d like to share your bed with you at night.");
 		output("\n\n<i>“Really?”</i> the grinning greenskin batts her eyelashes at you. <i>“[pc.Master] wants to snuggle with his fuck-toy?”</i> She slowly licks her ");
 		if(pc.hasCock() || !pc.hasVagina()) output("dick-sucking lips");
 		else output("cunt-kissers");
@@ -1088,9 +1088,9 @@ public function talkToMitzi():void
 	if(flags["MITZI_BIMBO_TALK"] == 1) addButton(1,"Your Body?",talkToMitziAboutHerBody);
 	else addDisabledButton(1,"Your Body?","Your Body?","Maybe start out with how she turned into a bimbo...");
 	if(flags["MITZI_BODY_TALK"] == 1) addButton(2,"Fav.Drug?",favoriteDrugMitzi);
-	else addDisabledButton(2,"Fav. Drug?","Favorite Drug?","You don't know about Mitzi's drug use yet.");
+	else addDisabledButton(2,"Fav. Drug?","Favorite Drug?","You don’t know about Mitzi’s drug use yet.");
 	if(flags["MITZI_FAV_DRUG"] == 1) addButton(3,"Aphrodisiacs",mitziAphrodisiacTalk);
-	else addDisabledButton(3,"Aphrodisiacs","Aphrodisiacs","You'd need to know about Mitzi's drug usage first.");
+	else addDisabledButton(3,"Aphrodisiacs","Aphrodisiacs","You’d need to know about Mitzi’s drug usage first.");
 	addButton(14,"Back",approachCrewMitzi,true);
 }
 
@@ -1102,7 +1102,7 @@ public function whatHappenedToMitzi():void
 	output("You ask Mitzi if she can repeat the story of how she got bimbofied in the first place.");
 	output("\n\n<i>“[pc.Master]... you didn’t get all dumb-fucky did you? ‘Cause Mitzi already told you about this! The mean ol’ dick-pirate jabbed her with a needle, an’ then fucked her so hard Mitzi fell asleep. And then when Mitzi woke up, [pc.Master] helped her escape! She didn’t know it was dumbfuck in the needle though, so when she started masturbating, she didn’t want to stop, and then she sneezed and sneezed... and sneezed. Each time made Mitzi’s slit feel better and better... by the time she stopped, thinking about machines and stuff was just like... bluh! Too hard. But instead she could think about all the best spots to touch her pussy, and like, how to make the orgasm last as long as possible.”</i>");
 	output("\n\nYou express your condolences, but Mitzi doesn’t seem to mind.");
-	output("\n\n<i>“It’s not your fault! You’re the one person that cared enough to help, even before Mitzi got this fuckable.”</i> The emerald slut grabs her enormous breasts and squeezes them fondly. <i>“Besides, Mitzi found </i>you.<i> Who cares if like, thinking about elecci-trical flux is worse than watching grass grow. Every part of Mitzi feels so good now. Just playing with her nipples is almost as good an entire old-Mitzi fuck. And getting mad is so hard that like, you can pull my pig-tails and I'll still be smiling and asking for more! Mitzi likes being happy!”</i>");
+	output("\n\n<i>“It’s not your fault! You’re the one person that cared enough to help, even before Mitzi got this fuckable.”</i> The emerald slut grabs her enormous breasts and squeezes them fondly. <i>“Besides, Mitzi found </i>you.<i> Who cares if like, thinking about elecci-trical flux is worse than watching grass grow. Every part of Mitzi feels so good now. Just playing with her nipples is almost as good an entire old-Mitzi fuck. And getting mad is so hard that like, you can pull my pig-tails and I’ll still be smiling and asking for more! Mitzi likes being happy!”</i>");
 	output("\n\nWell, that’s good to know. The way she spoke seemed to indicate that her ‘getting all sexy’ came separately from the mental transformation. She’d probably tell you if you asked.");
 	flags["MITZI_BIMBO_TALK"] = 1;
 	processTime(5);
@@ -1268,7 +1268,7 @@ public function giveMitziGush():void
 	clearMenu();
 	//[Fuck Her] [Titfuck] [Just Drink]
 	if(pc.hasCock() && pc.cockThatFits(mitzi.vaginalCapacity(0)*1.25) >= 0) addButton(0,"Fuck Her",penisRouter,[fuckMitziMilkies,mitzi.vaginalCapacity(0)*1.25,false,1]);
-	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You'd never fit inside!");
+	else if(pc.hasCock()) addDisabledButton(0,"Fuck Her","Fuck Her","You’d never fit inside!");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a penis for that!");
 	if(pc.hasCock()) addButton(1,"Titfuck",mitziMilkTitfuck);
 	else addDisabledButton(1,"Titfuck","Titfuck","You need a penis for this.");
@@ -1737,12 +1737,12 @@ public function fuckMitziJustLikeInCoC():void
 	output(". Biting her lower lip, she meekly nods. Her breeding instincts, augmented by ");
 	//demonic magics
 	output("endless bimbofying drugs");
-	output(", must be going wild. The only thing keeping her from jumping your dick this very second is her ingrained submissiveness. Her eyes are wide and pleading, backed up by a high-pitch whine from somewhere inside her throat. Mitzi rubs deeper between her legs, instantly soaking her fingers with incredibly liberal secretions. <i>“...yesssss. Please... fuck mitzi.”</i>");
-	output("\n\nYou grab a lock of purple hair and pull the mindbroken goblin’s face against your [pc.cock], smearing her cheek with your pre-cum, leaving her skin glistening with fuckscent. She doesn’t protest or complain. Instead, she grows more aroused by the second. Flushing hot, her face radiates heat and desire. Her nipples are as thick as pencil erasers and hard against your roving palm. She can’t even stop her pussy from absolutely drizzling. The off-beat spattering of cunt-juice on the floor is music to your ears.");
+	output(", must be going wild. The only thing keeping her from jumping your dick this very second is her ingrained submissiveness. Her eyes are wide and pleading, backed up by a high-pitch whine from somewhere inside her throat. Mitzi rubs deeper between her legs, instantly soaking her fingers with incredibly liberal secretions. <i>“...yesssss. Please... fuck Mitzi.”</i>");
+	output("\n\nYou grab a lock of purple hair and pull the mindbroken goblin’s face against your [pc.cock], smearing her cheek with your pre-cum, leaving her skin glistening with fuck-scent. She doesn’t protest or complain. Instead, she grows more aroused by the second. Flushing hot, her face radiates heat and desire. Her nipples are as thick as pencil erasers, hard against your roving palm. She can’t even stop her pussy from absolutely drizzling. The off-beat spattering of cunt-juice on the floor is music to your ears.");
 	output("\n\nMitzi licks her purple-painted lips a few times and opens wide, her bright-pink organ laid out like a landing strip for your pre-oozing sex-engine. You’ve seen some slutty aliens in the wild, but none have managed to look quite so brazenly whorish as this pirate-broken pet. Her mouth looks made for sucking dick, capped with lush angel-bows under a layer of fuck-me paint. Her breasts are huge and shapely without a hint of sag. Even her pussy is primed for fucking, so plush and full that it’d feel like it’s kissing your crotch while you take her.");
 
 	output("\n\nYou lay your pipe across her salivating tongue, but as you’re admiring the sight of it there, backlit by hungry goblin, she pulls it inside, wrapping you in the tight heat of her hungry mouth before you can possibly react. Mitzi’s cheeks hollow from establishing a fevered suction. Her eyes flick up, meeting yours while she gently begins to bob back and forth, establishing a gentle, face-fucking rhythm that soon has you freely dribbling condensed anticipation onto her constantly wiggling tongue.");
-	output("\n\nThere wouldn’t be a need for you to move, if you didn’t want to. You could let mitzi work your [pc.cock] for hours");
+	output("\n\nThere wouldn’t be a need for you to move, if you didn’t want to. You could let Mitzi work your [pc.cock] for hours");
 	if(pc.cocks[0].cLength() > 14) output(", her throat bulging with its unholy size");
 	output(", polishing your knob perfectly. You’ve no doubt she could bring you off quicker if she wanted to, but the little sex slave is treating this blowjob like a job application; she wants to make you last. She wants to make you wallow in pleasure until it becomes so overwhelming that you would fountain even without the back-and-forth bobbing of her head.");
 
@@ -1756,9 +1756,9 @@ public function fuckMitziJustLikeInCoC():void
 	if(pc.balls > 0) output("wraps her tail around your [pc.sack], giving eager little tugs");
 	else output("wraps her tail around your [pc.leg], giving you eager little tugs");
 	output(". She doesn’t need to pull you in - you can handle that all on your own. Grabbing her petite waist one handed, you pull her down onto your [pc.cock] using your free hand to keep your aim true.");
-	output("\n\nKnowing that a girl’s pussy is overflowing is one thing; experiencing the sodden reality is another. Her pumped-up petals kiss your [pc.cockHead], slowly giving as you try to thread yourself between them. Ribbons of wetness run down the underside of your [pc.cock], thickening the longer you’re in contact with the fountaining love-slave. The obscene plushness of her labia majora actually holds you back, but at a certain amount of force, they bow around you, allowing you to slip your first few inches into Mitzi’s silken vice.");
+	output("\n\nKnowing that a girl’s pussy is overflowing is one thing; experiencing the sodden reality is another. Her pumped-up petals kiss your [pc.cockHead], slowly giving as you try to thread yourself between them. Ribbons of wetness run down the underside of your [pc.cock], thickening the longer you’re in contact with the fountaining love-slave. The obscene plushness of her labia majora actually holds you back, but after a certain amount of force, they bow around you, allowing you to slip your first few inches into Mitzi’s silken vice.");
 	pc.cockChange();
-	output("\n\nWith what she looks like on the outside, falling somewhere between high class call-girl and short, stacked succubus, you expected her slit to be equally pleasing. The slippery, heated heaven into which you now sheath yourself is beyond any expectations. She feels molded to you, her entrance designed to welcome cocks deep inside its deepest recesses. Even compared to the sluttiest, most heavily engineered sexbots, Mitzi’s cunt is exceptional. Her silky folds squeeze down on you the further you thrust in, tending to your budding pleasure with excess of slickened sensation.");
+	output("\n\nWith what she looks like on the outside, falling somewhere between a high class call-girl and a short, stacked succubus, you expected her slit to be equally pleasing. The slippery, heated heaven into which you now sheath yourself is beyond any expectations. She feels molded to you, her entrance designed to welcome cocks deep inside its deepest recesses. Even compared to the sluttiest, most heavily engineered sexbots, Mitzi’s cunt is exceptional. Her silky folds squeeze down on you the further you thrust in, tending to your budding pleasure with excess of slickened sensation.");
 
 	//Hugedix
 	if(pc.cockVolume(0) > 500) output("\n\nThe best part is that she doesn’t seem to care about how enormous the cock you’re forcing into her is. Her belly is bulging out, displaying an imprint of your [pc.cock]’s shape, and all she does is moan harder. The muscles of her girlcum-drizzling slit never stop squeezing you encouragingly, demanding that you bury the whole thing inside.");
@@ -1771,12 +1771,12 @@ public function fuckMitziJustLikeInCoC():void
 	//output("\n\nThe demons in the area have either gone back to their own hedonistic pleasures or started masturbating to the show you and Mitzi are giving. Kinarial isn’t even visible any more. There’s only a puddle of cum amongst a few discarded webs where you left him. You’ve missed your chance to deal with him permanently, but who cares? Lethice isn’t too far away, and you’re getting the fuck of a lifetime.");
 	output("\n\nJust looking at the goblin’s smiling face as you smear it back and forth through puddles of girl-cum has you almost ready to go off. You swat her cushy heiny in between rapid-fire thrusts, wondering how you got so lucky while your orgasm rises up like a slumbering beast.");
 	//Continue from both forks, no new PG
-	output("There’s no harm in waking up with a sexpot milking every drop from your [pc.cocks]. You’ll be better prepared to deal with the trials and tribulations of new planets that way. Maybe someday you'll even knock her up, raise up an army of adoring gabilani children to continue your legacy.");
+	output("There’s no harm in waking up with a sexpot milking every drop from your [pc.cocks]. You’ll be better prepared to deal with the trials and tribulations of new planets that way. Maybe someday you’ll even knock her up, raising up an army of adoring gabilani children to continue your legacy.");
 	output("\n\nThe thought of Mitzi, pregnant with a half-dozen of your daughters, riding on your dick in the morning flips your switch. You couldn’t stop yourself from cumming if the entire galaxy was scolding you.");
 	if(pc.exhibitionism() >= 66) output(" Actually, that thought’s probably just going to make you blow that much harder. Damn you, exhibitionist fetishes!");
 	output("\n\nWith another victorious slap on Mitzi’s ass, you bottom out.");
-	if(pc.balls > 1) output(" Your [pc.balls] quake, pulling your [sack] taut against your body as they disgorge their creamy relief.");
-	output(" You hold yourself there, pumping incessantly against your chosen cum-dump. Her face radiates absolute bliss. Goblins must have some kind of sense of when cum is splattering against their cervix, because you’ve never seen Mitzi happier, not even when you saved her, so long ago.");
+	if(pc.balls > 1) output(" Your [pc.balls] quake, pulling your [pc.sack] taut against your body as they disgorge their creamy relief.");
+	output(" You hold yourself there, pumping incessantly against your chosen cum-dump. Her face radiates absolute bliss. Gabilani must have some kind of sense of when cum is splattering against their cervix, because you’ve never seen Mitzi happier, not even when you saved her, so long ago.");
 	output("\n\nPulling out");
 	if(pc.hasKnot(0)) output(" with a wet sounding pop after solid knotting");
 	output(", satisfied, you grab your ");
@@ -1846,9 +1846,9 @@ public function mitziLesboTongueFuckII():void
 	clearOutput();
 	showMitzi(true);
 	author("Fenoxo");
-	output("When your vision clears, Mitzi is sitting on your lap and gently massaging your [pc.chest]. Only a few seconds have passed, but the nearby goblin's face is somehow cleaned already. You push the slut off and rise up onto your [pc.feet], well and truly sated.");
+	output("When your vision clears, Mitzi is sitting on your lap and gently massaging your [pc.chest]. Only a few seconds have passed, but the nearby goblin’s face is somehow cleaned already. You push the slut off and rise up onto your [pc.feet], well and truly sated.");
 	output("\n\n<i>“What should Mitzi do now, [Master]?”</i> The harlot with the too-long tongue asks, licking her lips. <i>“Want another cum?”</i>");
-	output("\n\nYou don’t have time to join in on the debauchery here, but you doubt this'll be the last time you make use of her services.\n\n<i>“Whatever you want to do. I should probably get to work.”</i>");
+	output("\n\nYou don’t have time to join in on the debauchery here, but you doubt this’ll be the last time you make use of her services.\n\n<i>“Whatever you want to do. I should probably get to work.”</i>");
 	output("\n\nMitzi’s lips puff out in a whorish pout. <i>“Oookay. Mitzi’s gonna go like, eat herself out now. [pc.Master]’s gotten her hooked on pussy!”</i>");
 	processTime(1);
 	IncrementFlag("MITZI_CUNTLICKED_PC");
@@ -1866,7 +1866,7 @@ public function goblinTittyfuckoo():void
 	output("You grin at the goblin and ");
 	if(!pc.isCrotchExposed()) output("push your [pc.crotchCover] out of the way to expose ");
 	else output("point at ");
-	output("your [pc.cocks], explaining that you’d like to see her please your [pc.cock " + x + "] with her tits. After all, she's responsible for your current, rigid state");
+	output("your [pc.cocks], explaining that you’d like to see her please your [pc.cock " + x + "] with her tits. After all, she’s responsible for your current, rigid state");
 	if(pc.balls > 1) output(" and too-full feeling balls");
 	output(" thanks to all her teasing");
 	output(". It’s only fitting that she satisfy you.");
@@ -1874,7 +1874,7 @@ public function goblinTittyfuckoo():void
 	output("\n\nMitzi wastes no time in dropping to her knees and half crawling, half waddling over, her hard, purplish teats dragging on the ground whenever she tips too far forward, making her sweat-oiled breasts jiggle and bounce against one another. She blushes deeper from the stimulation, leaving a trail of fuck-me-juice on the floor behind her. When her nose finally reaches [pc.oneCock], she nuzzles against it, kissing softly against the veins while her nostrils flare excitedly.");
 
 	output("\n\n<i>“Ohhh, it really needs a good cum, doesn’t it?”</i> Mitzi purrs after one particularly slobbery kiss. <i>“Do you want Mitzi to make you squirt fast or slow? She knows you’re in a hurry.”</i> The goblin wraps both her small hands around you and gently strokes. <i>“Please, [pc.Master], tell Mitzi how.”</i>");
-	output("\n\nShe thinks she can get you off fast and let you return to hunting for your inheritance but is also offering to make love to your [pc.cock " + x + "] until the pleasure gradually overwhelms you. Which do you prefer?");
+	output("\n\nShe thinks she can get you off fast and let you return to hunting for your inheritance but she is also offering to make love to your [pc.cock " + x + "] until the pleasure gradually overwhelms you. Which do you prefer?");
 	processTime(5);
 	pc.lust(10);
 	//[Quick][Slow]
@@ -1890,7 +1890,7 @@ public function mitziSlowTitfuck():void
 	showMitzi(true);
 	var x:int = pc.biggestCockIndex();
 	output("<i>“Nice and slow, please.”</i> You grab her by her mane of purple hair and press her face more firmly into your dick. <i>“Milk out every drop. There can’t be a single squirt left to distract me.”</i>");
-	output("\n\nMitzi coos delightedly, <i>“Oooh, you’ll be sure to love Mitzi now! Your dick won't ever forget this!”</i> She kisses your [pc.cock " + x + "] with inflated lips so pillowy you could lie down on them for a nap. Her thick-painted, purple gloss allows them to slide up and down with the briefest nod to friction, planting wet, slobbery kisses across the underside. Your [pc.legOrLegs] go");
+	output("\n\nMitzi coos delightedly, <i>“Oooh, you’ll be sure to love Mitzi now! Your dick won’t ever forget this!”</i> She kisses your [pc.cock " + x + "] with inflated lips so pillowy you could lie down on them for a nap. Her thick-painted, purple gloss allows them to slide up and down with the briefest nod to friction, planting wet, slobbery kisses across the underside. Your [pc.legOrLegs] go");
 	if(pc.legCount == 1) output("es");
 	output(" weak, to say nothing of your grip on her hair. She slides out of your nerveless fingers as you try to stay upright, giving her full range to please your phallus. Her tongue uncoils to coat the trunk in enough spit to dilute a galotian.");
 	output("\n\nYou moan. There’s no point in holding it in, not here, in the confines of your ship. Even if you wanted to, you doubt you could resist the sheer carnality of your dick-obssessed bimbo-goblin, her every facet radiating pure sex. Looking her in the eyes is like gazing into a realm of drizzling slits and turgid, cum-hosing boners.");
@@ -1913,7 +1913,7 @@ public function mitziSlowTitfuck():void
 
 	output("\n\nThe kiss is slow yet searing, a declaration of the kind of sinful dicklust that can only come from someone who had one too many orgasms under the influence of Dumbfuck, one whose desire for spunk has been augmented past any modicum of reason by countless hours of drug-fueled face-fucks. Mitzi’s lips make love to your [pc.cock " + x + "]. They worship it, smacking wetly from her repeated oral forays. Her tongue sometimes slides back and forth across your still-sealed urethra. Other times it roams out on lusty excursions to locate and lick every available vein.");
 
-	output("\n\nGiggling, the viridian vixen collects your pre-cum on her tongue and spreads it across her puffy, purple cocksuckers until they shine like amethyst, glossed over by your own leaking desire. <i>“‘Course Mitzi’d never disobey [pc.Master]'s' command.”</i> She kisses the bare flesh above your insistent loins. <i>“Only the best titfucks for [pc.Master].”</i>");
+	output("\n\nGiggling, the viridian vixen collects your pre-cum on her tongue and spreads it across her puffy, purple cocksuckers until they shine like amethyst, glossed over by your own leaking desire. <i>“‘Course Mitzi’d never disobey [pc.Master]’s command.”</i> She kisses the bare flesh above your insistent loins. <i>“Only the best titfucks for [pc.Master].”</i>");
 
 	output("\n\nArching her back, Mitzi drags her oversized bosom");
 	if(pc.balls > 0) output(" over your [pc.balls] and");
@@ -1922,13 +1922,13 @@ public function mitziSlowTitfuck():void
 	else output(" You dribble yet more pre-cum into her swampy cleavage. You can feel it getting slicker and slicker but can’t quite see it happen. You’ve nothing to go on but the feel against your [pc.cockHead " + x + "].");
 
 	output("\n\n<i>“You like that?”</i> a voice somewhere above those two magnificent orbs asks.");
-	output("\n\nYour acknowledgement comes out as half a groan and half a sublime sigh. Rocking back your head, you push your [pc.hips] a bit further forward, properly seating you inside the quaking cleavage.");
+	output("\n\nYour acknowledgement comes out half groan and half sublime sigh. Rocking back your head, you push your [pc.hips] a bit further forward, properly seating you inside the quaking cleavage.");
 
 	output("\n\nMitzi asks, <i>“Do you want this slow or not?”</i> She slowly forces her breasts to bounce in pendulous, alternating motions, sliding and squelching around your drooling fuckstick. <i>“If you hump my tits, it won’t be as good. Promise.”</i> She winks pinching her nipples between her thumbs and index fingers.");
 
 	output("\n\nYou lazily nod and grab a nearby beam for support, trying to hold back before the squeezing tits drive you go over the edge. Mitzi’s look like bigger than they feel, capped with obscene areolae and rigid tips that must be incredibly sensitive. She certainly seems to enjoy them, judging by the way she’s moaning as she massages your [pc.cock " + x + "].");
 
-	output("\n\nLittle by little, the sensations assaulting you are overwhelming you. The feel of Mitzi’s exquisite tits on you could have you spurting in short order by themselves, but they aren't alone. They're matched by the goblin's flawless face. Her plush lips couldn't possibly be any more inviting, her heart-shaped eyes begging any more honestly for you to spill the hottest, most molten load into her syrupy-slick maw. You see it all; you smell Mitzi's passion, redolent in the air, pervasively reminding you that the goblin is getting off on this too.\n\nHow could you do anything but cum? How could you do anything but paint Mitzi's ecstatic features in a thick layer of [pc.cumColor]?");
+	output("\n\nLittle by little, the sensations assaulting you are overwhelming you. The feel of Mitzi’s exquisite tits on you could have you spurting in short order by themselves, but they aren’t alone. They’re matched by the goblin’s flawless face. Her plush lips couldn’t possibly be any more inviting, her heart-shaped eyes begging any more honestly for you to spill the hottest, most molten load into her syrupy-slick maw. You see it all; you smell Mitzi’s passion, redolent in the air, pervasively reminding you that the goblin is getting off on this too.\n\nHow could you do anything but cum? How could you do anything but paint Mitzi’s ecstatic features in a thick layer of [pc.cumColor]?");
 	//, but you aren’t by yourself. You’re surrounded by cavorting forms of all manner of sensuality: succubi with over-sized jugs and flawless faces, muscular minotaurs with cocks that may as well be baseball bats, incubi so devilishly handsome that a nun would rebuke her faith for a single kiss, and a hundred more. You see them all. You smell their passion, redolent in the air, pervasive and encouraging. How could you do anything but cum? How could you do anything but paint Mitzi’s ecstatic features in a thick layer of white?");
 	output("\n\nAnd just like that, the squeezing warmth vanishes, replaced by air that feels a little too cold to be comfortable. Your [pc.cock " + x + "] hangs in the air, exposed and twitching, on the edge of blowing and yet unable to without a hand from the greenskin.");
 	output("\n\n<i>“Please,”</i> you gasp, feeling the moment start to pass. <i>“I need to cum!”</i>");
@@ -1993,7 +1993,7 @@ public function mitziSlowTitfuckPostgasm():void
 	output("When you finally exhaust yourself, your [pc.legOrLegs] give");
 	if(pc.legCount == 1) output("s");
 	output(" out, and you collapse, sliding your still-hard shaft from betwixt those heavenly globes one last time. Mitzi falls away from you in the other direction, breathing heavily and idly masturbating herself with your [pc.cumNoun] as her lube. Her high-pitched voice moans, <i>“Oooh, [pc.Master]!”</i> or some variation of it again and again.");
-	output("\n\nYou sit up, noting that she’s positioned herself so that her lust-engorged quim is stuffed full of fist. She's humping her hand and crying in absolute delight, cooing about how she has the best [pc.Master] in the whole galaxy. Tears of unfettered joy stream down the goblin's face as her eyes roll back from raw pleasure. At last, her knees slap together, quivering madly, and Mitzi slumps back, satisfied into unconsciousness.\n\nYou know how she feels.");
+	output("\n\nYou sit up, noting that she’s positioned herself so that her lust-engorged quim is stuffed full of fist. She’s humping her hand and crying in absolute delight, cooing about how she has the best [pc.Master] in the whole galaxy. Tears of unfettered joy stream down the goblin’s face as her eyes roll back from raw pleasure. At last, her knees slap together, quivering madly, and Mitzi slumps back, satisfied into unconsciousness.\n\nYou know how she feels.");
 	//output("\n\nBut... you’ve got a demon queen to face down. If you want to have the goblin as your own, all you have to do is tell her to wait for you outside... Do you keep her?");
 	processTime(5);
 	IncrementFlag("MITZI_TITFUCKED");

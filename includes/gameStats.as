@@ -1382,30 +1382,30 @@ public function prettifyMinutes(nMinutes:Number, toDate:Boolean = false):String
 	var retStr:String = "";
 	var nHours:Number = 0;
 	var nDays:Number = 0;
-	//Days
-	if(nMinutes > 1440) 
+	// Days
+	if(nMinutes > 1440)
 	{
 		nDays = Math.floor(nMinutes/1440);
 		nMinutes -= 1440 * nDays;
 	}
-	//Hourz
+	// Hourz
 	if(nMinutes > 60)
 	{
 		nHours = Math.floor(nMinutes/60);
 		nMinutes -= 60 * nHours;
 	}
-	//Minutes
+	// Minutes
 	nMinutes = Math.floor(nMinutes);
 	
 	// Normal!
 	if(!toDate)
 	{
-		if(nDays > 0) 
+		if(nDays > 0)
 		{
 			retStr += nDays + " day";
 			if(nDays > 1) retStr += "s";
 		}
-		if(nHours > 0 || nDays > 0) 
+		if(nHours > 0 || nDays > 0)
 		{
 			if(nDays > 0) retStr += " ";
 			retStr += nHours + " hour"

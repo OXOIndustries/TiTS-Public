@@ -2729,6 +2729,7 @@
 				case "ma'am":
 					buffer = mf("sir", "ma’am");
 					break;
+				case "misterMiss":
 				case "mister":
 				case "miss":
 					buffer = mf("mister", "miss");
@@ -18148,6 +18149,39 @@
 		public function hasAnalPregnancy():Boolean
 		{
 			return (isPregnant(3));
+		}
+		
+		// Get pregnancy time in minutes.
+		public function getPregnancyTime(slot:int = -1):Number
+		{
+			if (isPregnant(slot))
+			{
+				var pData:PregnancyData = null;
+				var pTime:Number = 0;
+				
+				// Latest-most pregnancy
+				if (slot == -1)
+				{
+					var nTime:Number = 0;
+					for (var i:int = 0; i < pregnancyData.length; i++)
+					{
+						pData = pregnancyData[i];
+						nTime = (Math.floor(pData.pregnancyIncubation * (1 / pData.pregnancyIncubationMulti)));
+						if (pTime > nTime) pTime = nTime;
+					}
+				}
+				else
+				{
+					pData = pregnancyData[slot];
+					pTime = (Math.floor(pData.pregnancyIncubation * (1 / pData.pregnancyIncubationMulti)));
+				}
+				return pTime;
+			}
+			return 0;
+		}
+		public function getPregnancyTimeString(slot:int = -1, casualOnly:Boolean = false, article:Boolean = true):String
+		{
+			return shortMinutes(getPregnancyTime(slot), casualOnly, article);
 		}
 		
 		//Argument is the same string as defined in the handler.
