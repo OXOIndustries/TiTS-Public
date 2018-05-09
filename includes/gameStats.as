@@ -1894,6 +1894,11 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(" Tarkus saved from pirates of the <i>Tarasque</i>, Completed");
 				}
 				else output2(" <i>In progress...</i>");
+				if(flags["MITZI_RESCUED"] != undefined)
+				{
+					output2("\n<b>* " + ((flags["MITZI_DISABLED"] != undefined || flags["MITZI_GOODBAD"] != undefined) ? "Mitzi" : "Gabilani Technician") + ":</b> Rescued her");
+					if(flags["MITZI_DISABLED"] == undefined && flags["MITZI_GOODBAD"] == undefined) output2(" " + prettifyMinutes(GetGameTimestamp() - flags["MITZI_RESCUED"]) + " ago");
+				}
 				// Tam
 				if(flags["TAM_DISABLE_METHOD"] != undefined || flags["TAKEN_TAMWOLF"] != undefined)
 				{
@@ -6960,6 +6965,24 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Milly:</b> Met her");
 			if(flags["MILLY_FUCKED"] == 1) output2(", Sexed her");
 			else if(flags["MILLY_FUCKED"] > 1) output2("\n<b>* Milly, Times Sexed:</b> " + flags["MILLY_FUCKED"]);
+			roamCount++;
+		}
+		// Mitzi
+		if(flags["MET_MITZI"] != undefined || flags["MITZI_DISABLED"] != undefined || flags["MITZI_GOODBAD"] != undefined)
+		{
+			output2("\n<b>* Mitzi:</b> Met her");
+			if(flags["MITZI_GOODBAD"] != undefined) output2(", " + (flags["MITZI_GOODBAD"] < 1 ? "Bad" : "Good") + " fuck-toy");
+			if(mitziRecruited())
+			{
+				output2(", Crew member");
+				if(mitziIsCrew()) output2(" (Onboard Ship)");
+				else output2(" (At Tavros Station)");
+			}
+			if(flags["MITZI_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
+			if(flags["MITZI_GUSHED"] != undefined) output2("\n<b>* Mitzi, Gush, Times Used:</b> " + flags["MITZI_GUSHED"]);
+			if(flags["MITZI_FUCKED"] != undefined) output2("\n<b>* Mitzi, Times Fucked Her Vagina:</b> " + flags["MITZI_FUCKED"]);
+			if(flags["MITZI_CUNTLICKED_PC"] != undefined) output2("\n<b>* Mitzi, Times She Licked Your Vagina:</b> " + flags["MITZI_CUNTLICKED_PC"]);
+			if(flags["MITZI_TITFUCKED"] != undefined) output2("\n<b>* Mitzi, Times Slowly Tit-Fucked Her:</b> " + flags["MITZI_TITFUCKED"]);
 			roamCount++;
 		}
 		// BisonButts
