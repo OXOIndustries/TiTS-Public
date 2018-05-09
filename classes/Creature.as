@@ -2729,6 +2729,7 @@
 				case "ma'am":
 					buffer = mf("sir", "ma’am");
 					break;
+				case "misterMiss":
 				case "mister":
 				case "miss":
 					buffer = mf("mister", "miss");

@@ -834,7 +834,7 @@ public function mitziAppearance():void
 	else if(mitzi.isAssVisible()) output(" While you can see through her choice of transparent clothing, you can’t glimpse the pucker beyond. Those colossal callipygean orbs are too firmly squeezed together to grant a peek between.");
 	else
 	{
-		output(" While you can’t see past her [pc.assCover] to view her pucker directly, ");
+		output(" While you can’t see past her [mitzi.assCover] to view her pucker directly, ");
 		if(flags["9999"] != "anal") output("you can only assume it is as engineered for sex as the rest of its owner.");
 		else output("you know all too well that’s flawless and unblemished, almost brighter green than the rest of its owner.");
 	}
@@ -1775,7 +1775,7 @@ public function fuckMitziJustLikeInCoC():void
 	output("\n\nThe thought of Mitzi, pregnant with a half-dozen of your daughters, riding on your dick in the morning flips your switch. You couldn’t stop yourself from cumming if the entire galaxy was scolding you.");
 	if(pc.exhibitionism() >= 66) output(" Actually, that thought’s probably just going to make you blow that much harder. Damn you, exhibitionist fetishes!");
 	output("\n\nWith another victorious slap on Mitzi’s ass, you bottom out.");
-	if(pc.balls > 1) output(" Your [pc.balls] quake, pulling your [sack] taut against your body as they disgorge their creamy relief.");
+	if(pc.balls > 1) output(" Your [pc.balls] quake, pulling your [pc.sack] taut against your body as they disgorge their creamy relief.");
 	output(" You hold yourself there, pumping incessantly against your chosen cum-dump. Her face radiates absolute bliss. Gabilani must have some kind of sense of when cum is splattering against their cervix, because you’ve never seen Mitzi happier, not even when you saved her, so long ago.");
 	output("\n\nPulling out");
 	if(pc.hasKnot(0)) output(" with a wet sounding pop after solid knotting");
