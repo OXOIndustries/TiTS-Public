@@ -15121,6 +15121,10 @@
 			var descriptions:Number = 0;
 			var buffer:String = "";
 			if(!hasVagina()) return "<b>Parse Error: No womb found for wombdescript.</b>";
+			//Single goes to "wombDescript":
+			if(totalVaginas() == 1) return wombDescript(0);
+
+			//Multi cunt descript here:
 			var allPreg:Boolean = true;
 			for(var x:int = 0; x < totalVaginas(); x++)
 			{
