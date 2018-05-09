@@ -303,7 +303,7 @@ public function procDumbfuckStuff():void
 		output("\n\n(<b>Gained Perk: Weak Mind</b> - You lose willpower twice as fast.)");
 		//Reduce willpower by 6 immediately. (only need to mod by 3 if perk active)
 		pc.willpower(-6);
-		pc.createPerk("Weak Mind",0,0,0,0,"Willpower losses are doubled.");
+		pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
 	}
 	if(flags["DUMBFUCK_SNEEZES"] >= 20 && !pc.hasPerk("Ditz Speech") && !pc.hasPerk("Brute Speech"))
 	{

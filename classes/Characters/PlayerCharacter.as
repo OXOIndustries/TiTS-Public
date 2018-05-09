@@ -27,7 +27,7 @@ package classes.Characters
 	{
 		public function PlayerCharacter() 
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
@@ -508,6 +508,37 @@ package classes.Characters
 					if (d.statusEffects[i] && d.statusEffects[i].storageName)
 					{
 						d.statusEffects[i].tooltip = ParseQuotes(d.statusEffects[i].tooltip);
+					}
+				}
+			}
+		}
+		public function UpgradeVersion3(d:Object):void
+		{
+			var i:uint = 0;
+			var willIdx:int = -1;
+			var hasMind:Boolean = false;
+			if (d.perks)
+			{
+				for (i = 0; i < d.perks.length; i++)
+				{
+					if (d.perks[i] && d.perks[i].storageName)
+					{
+						switch(d.perks[i].storageName)
+						{
+							case "Weak Willed": willIdx = i; break;
+							case "Weak Mind": hasMind = true; break;
+						}
+					}
+				}
+				if(willIdx >= 0)
+				{
+					// Already has perk, remove dupe.
+					if(hasMind) d.perks.splice(willIdx, 1);
+					// Otherwise, replace old perk.
+					else
+					{
+						d.perks[willIdx].storageName = "Weak Mind";
+						d.perks[willIdx].tooltip = "Intelligence and willpower losses doubled.";
 					}
 				}
 			}

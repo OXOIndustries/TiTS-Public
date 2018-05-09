@@ -2134,7 +2134,7 @@ public function mitziPussyControl():void
 		addButton(1,"Lesbo Cunt",mitziLesboCuntnosis);
 		addButton(0,"Breeder Cunt",breederCunt);
 		if(!pc.isBimbo()) addButton(2,"Dumb Cunt",mitziMakesYouABimbo);
-		else addDisabledButton(2,"Dumb Cunt","Dumb Cunt","You're as much of a dumb, jizz-sucking cunt as possible!");
+		else addDisabledButton(2,"Dumb Cunt","Dumb Cunt","You’re as much of a dumb, jizz-sucking cunt as possible!");
 	}
 }
 
@@ -2357,7 +2357,7 @@ public function mitziBimbosYouEpilogue():void
 		if(!pc.hasPerk("Weak Mind"))
 		{
 			output("\n\n(<b>Gained Bimbo Perk: Weak Mind</b> - You lose willpower twice as fast.)");
-			pc.createPerk("Weak Mind",0,0,0,0,"Willpower losses are doubled.");
+			pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
 		}
 	}
 	processTime(40);
@@ -2393,8 +2393,8 @@ public function breederCunt():void
 	}
 	//Merge
 	output("\n\nEmptiness... you remember the emptiness, remember way Mitzi’s kisses make your pussy throb. It’s no different this time. A sense of terrible torridity wells up as your womanhood");
-	if(pc.totalVaginas() == 1) output("'s");
-	else output("s'");
+	if(pc.totalVaginas() == 1) output("’s");
+	else output("s’");
 	output(" internal thermometer leaps four or five degrees higher in an instant.");
 	if(pc.inHeat()) output(" Heat be damned, you’re boiling!");
 	output(" Sweat beads on your [pc.skin], and moisture pools in your cunt. Gasping, you nod down to the smiling goblin, whining in the back of your throat.");
@@ -2478,7 +2478,7 @@ public function mitziPutsYouInHeat2():void
 	author("Fenoxo");
 	if(!pc.inHeat())
 	{
-		output("You come to feeling horny and <i>empty.</i> The goblin is passed out next to you, snoring sweetly. Her taste is on your lips. You aren’t sure  when it got there, but you don’t care. It’s a secondary concern next to the ache gnawing at your [pc.womb].");
+		output("You come to feeling horny and <i>empty.</i> The goblin is passed out next to you, snoring sweetly. Her taste is on your lips. You aren’t sure when it got there, but you don’t care. It’s a secondary concern next to the ache gnawing at your [pc.womb].");
 		if(pc.isPregnant()) output(" Thankfully that fades a second later, your body finally reminding you that it was pregnant this entire time!");
 		else 
 		{
