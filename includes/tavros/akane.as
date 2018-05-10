@@ -23,6 +23,7 @@
  * -Times visited akane
  * AKANE_FUN_VISITS
  * -Times "visited" akane *wink wink nudge nudge*
+ * AKANE_LAST_FUN_VISIT_TIMESTAMP
  * AKANE_TIMES_SHOCKED
  * AKANE_TIMES_WHIPPED
  * AKANE_TIMES_FORCED
@@ -134,7 +135,7 @@ public function akaneCeleritasVeritasAvailable():Boolean
 
 public function akaneLairAvailable():Boolean
 {
-	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined && flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + 24 * 60);
+	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined && flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + 24*60);
 }
 
 public function akaneCeleritasVeritasTheLegitimateBusinessBonus():Boolean
@@ -149,8 +150,14 @@ public function akaneCeleritasVeritasTheLegitimateBusinessBonus():Boolean
 	else if (akaneLairAvailable())
 	{
 		output("\n\nYou spot a short male human in a very pristine suit standing behind an elaborate display of weapon models. While at first it seems to be a haphazard shop, it appears to merely be a stand for advertising wares: actual weapon selling would be a difficult thing to do on Tavros. The representative you remember is still there, smiling away as punters stop to look at catalogues and weapon models. He spots you and gives a friendly wave. You could visit Akane at any time if you speak to him, it looks like.");
-		
-		addButton(0, "To The Lair", akaneVisitLair, undefined, "To The Lair", "Get taken to the Shukuchi hideout...? Or is it more like a residence? <i>Where</i> is it? Oh who knows. You just wanna see Akane again for whatever reason.");
+		if (flags["AKANE_LAST_FUN_VISIT_TIMESTAMP"] + 24*60 > GetGameTimestamp())
+		{
+			output(" However, as you walk up to him, he raises his hand in a ‘stop’ sort of motion.");
+			output("\n\n<i>“Ah, the boss is resting for today. You may return the next day, " + pc.mf("Mister", "Miss") + " Steele,”</i> he says in a flat voice, still wearing that smile.");
+			output("\n\nWell shit, guess she tires out easily.");
+			addDisabledButton(0, "To The Lair");
+		}
+		else addButton(0, "To The Lair", akaneVisitLair, undefined, "To The Lair", "Get taken to the Shukuchi hideout...? Or is it more like a residence? <i>Where</i> is it? Oh who knows. You just wanna see Akane again for whatever reason.");
 	}
 	
 	return false;
@@ -1048,7 +1055,7 @@ public function akaneDontGiveTacetPermission():void
 	showAkane(true, true);
 	//Give this a real icon later on
 	if (pc.hasStatusEffect("Stinging Bruises")) pc.setStatusMinutes("Stinging Bruises", 7*24*60);
-	else pc.createStatusEffect("Stinging Bruises", 0, 0, 0, 0, false, akaneWhipIcon, "Equipping or unequipping items, walking and checking your appearance will damage you!", false, 7*24*60, UIStyleSettings.gStatusBadColour);
+	else pc.createStatusEffect("Stinging Bruises", -1, 0, 0, 0, false, akaneWhipIcon, "Equipping or unequipping items, walking and checking your appearance will damage you!", false, 7*24*60, UIStyleSettings.gStatusBadColour);
 	
 	output("You cry out the stopping word and at once, Akane drops her lash to the floor.");
 	output("\n\n<i>“Cheo, some assistance,”</i> she says decisively, her metallic hands holding you by the middle.");
@@ -1061,7 +1068,7 @@ public function akaneMyWhippingWillGoOn():void
 	clearOutput();
 	showAkane(true, true);
 	if (pc.hasStatusEffect("Stinging Bruises")) pc.removeStatusEffect("Stinging Bruises");
-	pc.createStatusEffect("Lash Marks", 0, 0, 0, 0, false, akaneWhipIcon, "Equipping or unequipping items, walking and checking your appearance will damage you!", false, 14*24*60, UIStyleSettings.gStatusBadColour);
+	pc.createStatusEffect("Lash Marks", -2, 0, 0, 0, false, akaneWhipIcon, "Equipping or unequipping items, walking and checking your appearance will damage you!", false, 14*24*60, UIStyleSettings.gStatusBadColour);
 	
 	output("You nod several times, leaning on your restraints for a few seconds. You tense and relax your shoulders in pulses, the sting biting into your nerves with each one. ");
 	output(painslutornot("You keep the rhythm consistent and fast, savoring the sensation like the dirty painslut you are.", "Some part of you wants to do more, push the envelope... but you remember that there’s still more to come."));
@@ -1686,6 +1693,7 @@ public function akanePostSexOptions(activity:String = "TALKED"):void
 	
 	IncrementFlag("AKANE_TIMES_" + activity);
 	if (silenceOnly) IncrementFlag("AKANE_TIMES_TALKED");
+	else flags["AKANE_LAST_FUN_VISIT_TIMESTAMP"] = GetGameTimestamp();
 		
 	if (!silenceOnly) addButton(0, "Pillow Talk", akanePillowTalk, undefined, "Pillow Talk", "Communicate, be healthy with your relationships. Might be a good time to uh, get to know her...");
 	addButton((silenceOnly ? 0 : 1), "Enjoy Silence", akaneEnjoySilence, undefined, "Enjoy Silence", "Just enjoy each other on an instinctual level.");

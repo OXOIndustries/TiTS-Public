@@ -166,6 +166,11 @@ package classes.Engine.Combat
 			{
 				baseHPDamage.multiply(attacker.statusEffectv3("Fade-cloak")/100.0 + 1);
 			}
+			if (attacker.hasStatusEffect("Brutalized"))
+			{
+				baseHPDamage.multiply(0.9);
+				baseLustDamage.multiply(0.9);
+			}
 		}
 		
 		//10% damage boost vs Treated

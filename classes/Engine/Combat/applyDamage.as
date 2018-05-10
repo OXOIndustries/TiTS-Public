@@ -6,7 +6,6 @@ package classes.Engine.Combat
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.DamageTypes.DamageType;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
-	import classes.Engine.Combat.applyPainslutGoodness;
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Utility.possessive;
 	import classes.Engine.Utility.rand;
@@ -40,8 +39,6 @@ package classes.Engine.Combat
 		var damageResult:DamageResult = calculateDamage(baseDamage, attacker, target, special);
 		
 		target.OnTakeDamage(damageResult.typedTotalDamage);
-		//Somewhere better to add this? - lighterfluid
-		applyPainslutGoodness(target, damageResult);
 		
 		/* Damage has already been applied by this point, so we can skip output if we want...
 	       FEN NOTE: Cut these so we can have all the procs still go off!

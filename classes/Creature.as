@@ -5282,8 +5282,6 @@
 			if (hasStatusEffect("Harden")) temp += 1;
 			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
 			if (hasStatusEffect("Crystal Coated")) temp += 4;
-			//Painslut!
-			if (hasStatusEffect("Painlust")) temp += statusEffectv1("Painlust");
 			if (hasStatusEffect("Burning")) 
 			{
 				temp -= 5;

@@ -1191,6 +1191,7 @@ package classes.GameData
 					target.removeStatusEffect("Fade-cloak");
 				}
 			}
+			if (target.hasStatusEffect("Internal Bleeding")) target.HP(-target.statusEffectv1("Internal Bleeding"));
 		}
 		
 		public function updateStatusEffects(collection:Array):void
