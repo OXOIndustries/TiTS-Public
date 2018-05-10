@@ -56,12 +56,11 @@ public function showMitzi(nude:Boolean = false):void
 }
 
 //Mitzi first appears in the stellar tether dungeon in an empty square.
-public function stellarMitziBonus():void
+public function stellarMitziBonus():Boolean
 {
 	if(flags["MITZI_RESCUED"] == undefined)
 	{
-		if(!rooms[currentLocation].hasFlag(GLOBAL.NPC)) rooms[currentLocation].addFlag(GLOBAL.NPC);
-		output("\n\nA naked, cum-covered gabilani techitian is tied to a post and drooling, fucked into exhaustion. You could help her escape, if you wanted to.");
+		output("\n\nA naked, cum-covered gabilani technician is tied to a post and drooling, fucked into exhaustion. You could help her escape, if you wanted to.");
 		//Not Gabilani’ed
 		if (!CodexManager.entryUnlocked("Gabilani"))
 		{
@@ -72,18 +71,18 @@ public function stellarMitziBonus():void
 		clearMenu();
 		addButton(0,"Untie Gabi.",untieMitzi);
 	}
-	else if(rooms[currentLocation].hasFlag(GLOBAL.NPC)) rooms[currentLocation].removeFlag(GLOBAL.NPC);
-	generateMap();
+	return false;
 }
 
 //Untie:
 public function untieMitzi():void
 {
 	clearOutput();
+	showBust("MITZI_NUDE");
 	showName("GRATEFUL\nGABILANI");
 	output("You make short work of her bindings, and your presence seems to rouse her somewhat.");
 	output("\n\n<i>“No... no more.”</i> She burps groggily and staggers up to her feet with your help. <i>“Oh... not pirate?”</i>");
-	output("\n\n<i>“No, I’m not a pirate.”</i> You explain to her that you’re dealing with the pirates and inform her how to get to make it safety.");
+	output("\n\n<i>“No, I’m not a pirate.”</i> You explain to her that you’re dealing with the pirates and inform her how to get to safety.");
 	output("\n\nThe Gabilani tech disgustedly wipes semen from her face and nods. <i>“Thanks. I won’t forget this. I promise.”</i> She runs off in a hurry.");
 	flags["MITZI_RESCUED"] = GetGameTimestamp();
 	if(rooms[currentLocation].hasFlag(GLOBAL.NPC)) rooms[currentLocation].removeFlag(GLOBAL.NPC);
@@ -167,6 +166,7 @@ public function letMitziGoAwayForever():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	pc.removeStatusEffect("SeenMitzi");
+	flags["MET_MITZI"] = 1;
 	flags["MITZI_DISABLED"] = 1;
 }
 
@@ -220,17 +220,18 @@ public function mitziMeetsPCNameForRealRealMergy():void
 	output("\n\nMitzi appears pleased by the ");
 	if(pc.isBro()) output("non-verbal ");
 	output("declaration, so pleased, in fact, that she whimpers, thighs twitching. Her hips quiver, dragging her latex-covered crotch back and forth your body in fanatical jerking motions until she hits her peak and wails in sublime pleasure, <i>“Yesss! Mitzi can be fuck-toooyyyyyy!!!”</i> Eyes rolling back and pigtails twitching, Mitzi shudders through an orgasm so powerful that halfway through she loses her grip on you and slides down to the ground. Clear girl-cum leaks out from between her thighs as her upper half wobbles.");
-	output("\n\n<i>“");
-	if(pc.isBro()) output("You okay?”</i> you grunt.");
-	else if(pc.isBimbo()) output("Wow! You came so hard, and I like, barely did anything! Are you all right?”</i>");
-	else if(pc.isNice()) output("Mitzi! Are you alright?”</i>");
+	output("\n\n");
+	if(pc.isBro()) output("<i>“You okay?”</i> you grunt.");
+	else if(pc.isBimbo()) output("<i>“Wow! You came so hard, and I like, barely did anything! Are you all right?”</i>");
+	else if(pc.isNice()) output("<i>“Mitzi! Are you alright?”</i>");
 	else if(pc.isMischievous()) output("Are you... are you okay?”</i>");
-	else output("Is that gonna happen every time we make-out?”</i>");
+	else output("<i>“Is that gonna happen every time we make-out?”</i>");
 	output("\n\nA breathless, momentarily satisfied Mitzi beams up at you. <i>“Mitzi wasn’t sure about becoming a fuck-toy...”</i> She staggers up onto her feet and hugs your ");
 	if(pc.tallness >= 5*12) output("[pc.leg]");
 	else output("waist");
 	output(". <i>“But now Mitzi knows how good it feels to be </i>owned<i>. How good it makes her pussy gush to be </i>your toy<i>. Gods!”</i> She whimpers and rubs herself through her dress. <i>“Did Mitzi do good?”</i> Doe-eyed, the gabilani slut looks up for your approval.");
 	processTime(12);
+	flags["MET_MITZI"] = 1;
 	pc.lust(5);
 	clearMenu();
 	//[Yes] [No]
@@ -286,7 +287,6 @@ public function noMitziNotCrewYettt():void
 	output("\n\nMitzi stumbles back, flabbergasted and tearful. She makes several attempts at sputtering out incoherent pleas that go nowhere. Shoulders sagging heavily, she at last accepts that you won’t need an empty cock-socket prowling around on your ship.");
 	output("\n\n<i>“Mitzi will... will wait for [pc.Master].”</i> The green-skin nods to herself. <i>“When [pc.Master] wants a fuck-toy, Mitzi will be ready to fuck, or lick, or suck. Anything [pc.Master] needs.”</i> She brings her shoulders back, exposing a massive valley of cleavage. <i>“Any time. Any thing. Mitzi will do for you.”</i>");
 	output("\n\nYou’ll be sure to leave that in mind.");
-	flags["MET_MITZI"] = 1;
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -619,7 +619,7 @@ public function approachCrewMitzi(back:Boolean = false):void
 	if(pc.hasStatusEffect("Mitzi_Gush_Thankyou"))
 	{
 		pc.removeStatusEffect("Mitzi_Gush_Thankyou");
-		IncrementFlag("MITZI_GUSH_THANKED")
+		IncrementFlag("MITZI_GUSH_THANKED");
 		//First time approach
 		if(flags["MITZI_GUSH_THANKED"] == 1)
 		{
@@ -2134,7 +2134,7 @@ public function mitziPussyControl():void
 		addButton(1,"Lesbo Cunt",mitziLesboCuntnosis);
 		addButton(0,"Breeder Cunt",breederCunt);
 		if(!pc.isBimbo()) addButton(2,"Dumb Cunt",mitziMakesYouABimbo);
-		else addDisabledButton(2,"Dumb Cunt","Dumb Cunt","You're as much of a dumb, jizz-sucking cunt as possible!");
+		else addDisabledButton(2,"Dumb Cunt","Dumb Cunt","You’re as much of a dumb, jizz-sucking cunt as possible!");
 	}
 }
 
@@ -2357,7 +2357,7 @@ public function mitziBimbosYouEpilogue():void
 		if(!pc.hasPerk("Weak Mind"))
 		{
 			output("\n\n(<b>Gained Bimbo Perk: Weak Mind</b> - You lose willpower twice as fast.)");
-			pc.createPerk("Weak Mind",0,0,0,0,"Willpower losses are doubled.");
+			pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
 		}
 	}
 	processTime(40);
@@ -2393,8 +2393,8 @@ public function breederCunt():void
 	}
 	//Merge
 	output("\n\nEmptiness... you remember the emptiness, remember way Mitzi’s kisses make your pussy throb. It’s no different this time. A sense of terrible torridity wells up as your womanhood");
-	if(pc.totalVaginas() == 1) output("'s");
-	else output("s'");
+	if(pc.totalVaginas() == 1) output("’s");
+	else output("s’");
 	output(" internal thermometer leaps four or five degrees higher in an instant.");
 	if(pc.inHeat()) output(" Heat be damned, you’re boiling!");
 	output(" Sweat beads on your [pc.skin], and moisture pools in your cunt. Gasping, you nod down to the smiling goblin, whining in the back of your throat.");
@@ -2478,7 +2478,7 @@ public function mitziPutsYouInHeat2():void
 	author("Fenoxo");
 	if(!pc.inHeat())
 	{
-		output("You come to feeling horny and <i>empty.</i> The goblin is passed out next to you, snoring sweetly. Her taste is on your lips. You aren’t sure  when it got there, but you don’t care. It’s a secondary concern next to the ache gnawing at your [pc.womb].");
+		output("You come to feeling horny and <i>empty.</i> The goblin is passed out next to you, snoring sweetly. Her taste is on your lips. You aren’t sure when it got there, but you don’t care. It’s a secondary concern next to the ache gnawing at your [pc.womb].");
 		if(pc.isPregnant()) output(" Thankfully that fades a second later, your body finally reminding you that it was pregnant this entire time!");
 		else 
 		{

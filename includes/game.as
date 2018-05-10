@@ -2900,6 +2900,9 @@ public function variableRoomUpdateCheck():void
 		rooms["350"].removeFlag(GLOBAL.HAZARD);
 		rooms["350"].removeFlag(GLOBAL.OBJECTIVE);
 	}
+	// Stellar Tether Mitzi
+	if(flags["MITZI_RESCUED"] == undefined) rooms["364"].addFlag(GLOBAL.NPC);
+	else rooms["364"].removeFlag(GLOBAL.NPC);
 	// Stellar Tether probe clue
 	if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] <= 0 && flags["PLANET_3_UNLOCKED"] == undefined) rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.QUEST);
 	else rooms["WIDGET WAREHOUSE"].removeFlag(GLOBAL.QUEST);
