@@ -161,6 +161,7 @@
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
 		include "../includes/events/syriQuest/syriQuestMain.as";
 		include "../includes/events/syriQuest/rooms.as";
+		include "../includes/events/syriQuest/roomFunctions.as";
 
 		//Misc content
 		include "../includes/masturbation.as";

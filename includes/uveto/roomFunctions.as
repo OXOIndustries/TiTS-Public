@@ -1092,7 +1092,7 @@ public function uvetoSheriffsOfficeBonus():Boolean
 public function uvetoMaglevStation():Boolean
 {
 	//removeUvetoColdBonus();
-	if (syriQuestRunning() && flags["SYRIQUEST_MET_SYRI_AT_MAGLEV_STATION"] == undefined && (flags["UVIP_R10_PROBE_ACTIVE"] != undefined || krymRespectsYou()) && rand(3) == 0) {
+	if (syriQuestRunning() && flags["SYRIQUEST_STATE"] == undefined && (flags["UVIP_R10_PROBE_ACTIVE"] != undefined || krymRespectsYou()) && rand(3) == 0) {
 		syriQuestInitialEncounter();
 		return true;
 	}

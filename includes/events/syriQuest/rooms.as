@@ -41,92 +41,116 @@ public function syriQuestInitRooms():void
 	
 	rooms["AKD K31"] = new RoomClass(this);
 	rooms["AKD K31"].roomName = "ENTRANCE";
-	rooms["AKD K31"].description = "You're standing in the entranceway to the Akkadi research facility. It's dark, sterile grey metal on the walls, ceiling, and floors, illuminated by {no power: nothing but the faint light of your Codex //else: red emergency lights}. Ausari words are sprayed on the wall to your left in big, blocky letters: AKKADI RESEARCH & DEVELOPMENT GROUP, IMC. UVETO RIFT DIVISION. Under those is inscribed, 'Restricted Access. Authorized Personnel Only.'\n\nSouthwards are the huge metal access doors, leading back outside to the Glacial Rift. Ahead, northwards, is a short hallway that leads up to an intersection.";
-	rooms["AKD K31"].runOnEnter = null;
+	rooms["AKD K31"].description = "You're standing in the entranceway to the Akkadi research facility. It's dark, sterile grey metal on the walls, ceiling, and floors, illuminated by ";
+	rooms["AKD K31"].runOnEnter = function():void{
+		author("Savin");
+		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("nothing but the faint light of your Codex");
+		else output("red emergency lights");
+		output(". Ausari words are sprayed on the wall to your left in big, blocky letters: AKKADI RESEARCH & DEVELOPMENT GROUP, IMC. UVETO RIFT DIVISION. Under those is inscribed, 'Restricted Access. Authorized Personnel Only.'\n\nSouthwards are the huge metal access doors, leading back outside to the Glacial Rift. Ahead, northwards, is a short hallway that leads up to an intersection.");
+	};
 	rooms["AKD K31"].planet = planetName;
 	rooms["AKD K31"].system = systemName;
 	rooms["AKD K31"].northExit = "AKD K29";
+	rooms["AKD K31"].moveMinutes = 1;
 	rooms["AKD K31"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD K29"] = new RoomClass(this);
 	rooms["AKD K29"].roomName = "CHECK\nPOINT";
 	rooms["AKD K29"].description = "Between the entrance and the main body of the Akkadi research building, you come through a security checkpoint. It's the same sort of thing you've seen a million times, including at every Steele Tech facility you've been through: there's an archway loaded out with sensors that can probably detect weapons, microscopic robots, and everything in between. Behind it is a small, reinforced cubicle where a security guard could stand and monitor things.\n\nThere <i>should</i> be someone here, even with the power out. Wonder where the welcome party went? Without a guard, you're easily able to hop the barrier -- just in case.";
-	rooms["AKD K29"].runOnEnter = null;
+	rooms["AKD K29"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD K29"].planet = planetName;
 	rooms["AKD K29"].system = systemName;
 	rooms["AKD K29"].northExit = "AKD K27";
 	rooms["AKD K29"].southExit = "AKD K31";
+	rooms["AKD K29"].moveMinutes = 1;
 	rooms["AKD K29"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD K27"] = new RoomClass(this);
 	rooms["AKD K27"].roomName = "INTER\nSECTION";
-rooms["AKD K27"].description = "You're standing in a three-way intersection, with the entrance back to the south and a bank of elevators on the north wall. East is a room with the words 'Security Office' printed beside it. A long, curved hallway runs to the west, out of sight.\n\n{no power: The elevators are locked down, since there's no power in the facility. The security office is dark as night, too, but the door is open. //else: One elevator has come back online, running off the emergency generator.}";
-	rooms["AKD K27"].runOnEnter = null;
+rooms["AKD K27"].description = "You're standing in a three-way intersection, with the entrance back to the south and a bank of elevators on the north wall. East is a room with the words 'Security Office' printed beside it. A long, curved hallway runs to the west, out of sight.\n\n";
+	rooms["AKD K27"].runOnEnter = function():void{
+		author("Savin");
+		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("The elevators are locked down, since there's no power in the facility. The security office is dark as night, too, but the door is open.");
+		else output("One elevator has come back online, running off the emergency generator.");
+	};
 	rooms["AKD K27"].planet = planetName;
 	rooms["AKD K27"].system = systemName;
 	rooms["AKD K27"].northExit = "AKD K25";
 	rooms["AKD K27"].southExit = "AKD K29";
 	rooms["AKD K27"].eastExit = "AKD M27";
 	rooms["AKD K27"].westExit = "AKD I27";
+	rooms["AKD K27"].moveMinutes = 1;
 	rooms["AKD K27"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD K25"] = new RoomClass(this);
 	rooms["AKD K25"].roomName = "\nELEVATOR";
-	rooms["AKD K25"].description = "You're standing in one of the elevators at the heart of the Akkadi complex. On a good day, you'd have access to what the panel tells you is fifty floors of research and development complex. Unfortunately, {power off: the power's out. You're not going anywhere in this thing. //power on, hasn't unlocked lab: Syri's electrical exploits outside have put the facility into lockdown. The only open floor is the one immediately above this one: a living quarters for the non-scientific staff, according to the holodisplay. //else power on, lab open: The only floors open to you are a public-access living space for staff, one floor up, and the secured lab you opened up near the bottom of the facility.}";
-	rooms["AKD K25"].runOnEnter = null;
+	rooms["AKD K25"].description = "You're standing in one of the elevators at the heart of the Akkadi complex. On a good day, you'd have access to what the panel tells you is fifty floors of research and development complex. Unfortunately, ";
+	rooms["AKD K25"].runOnEnter = function():void{
+		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("the power's out. You're not going anywhere in this thing.");
+		else if (flags["SYRIQUEST_ELEVATOR_STATE"] == 2) output("the only floors open to you are a public-access living space for staff, one floor up, and the secured lab you opened up near the bottom of the facility.");
+		else output("Syri's electrical exploits outside have put the facility into lockdown. The only open floor is the one immediately above this one: a living quarters for the non-scientific staff, according to the holodisplay.");
+		if (flags["SYRIQUEST_ELEVATOR_STATE"] == undefined) flags["SYRIQUEST_ELEVATOR_STATE"] = 1;
+		syriQuestAkkadiBaseElevators();
+	};
 	rooms["AKD K25"].planet = planetName;
 	rooms["AKD K25"].system = systemName;
 	rooms["AKD K25"].southExit = "AKD K27";
+	rooms["AKD K25"].moveMinutes = 1;
 	rooms["AKD K25"].addFlag(GLOBAL.INDOOR);
-	rooms["AKD K25"].addFlag(GLOBAL.LIFTDOWN);
+	rooms["AKD K25"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["AKD M27"] = new RoomClass(this);
 	rooms["AKD M27"].roomName = "SECURITY\nOFFICE";
 	//rooms["AKD M27"].description = "desc";
-	rooms["AKD M27"].runOnEnter = null;
+	rooms["AKD M27"].runOnEnter = syriQuestAkkadiBaseSecurityOffice;
 	rooms["AKD M27"].planet = planetName;
 	rooms["AKD M27"].system = systemName;
 	rooms["AKD M27"].westExit = "AKD K27";
+	rooms["AKD M27"].moveMinutes = 1;
 	rooms["AKD M27"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD I27"] = new RoomClass(this);
 	rooms["AKD I27"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD I27"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here. You can vaguely hear annoyed shouting from inside the labs: the techs inside are clearly unhappy about the sudden lockdown.\n\nFrom where you're standing, the hall goes north into the building, or east back towards the entrance.";
-	rooms["AKD I27"].runOnEnter = null;
+	rooms["AKD I27"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD I27"].planet = planetName;
 	rooms["AKD I27"].system = systemName;
 	rooms["AKD I27"].northExit = "AKD I25";
 	rooms["AKD I27"].eastExit = "AKD K27";
+	rooms["AKD I27"].moveMinutes = 1;
 	rooms["AKD I27"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD I25"] = new RoomClass(this);
 	rooms["AKD I25"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD I25"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThe hallway goes straight north to south here.";
-	rooms["AKD I25"].runOnEnter = null;
+	rooms["AKD I25"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD I25"].planet = planetName;
 	rooms["AKD I25"].system = systemName;
 	rooms["AKD I25"].northExit = "AKD I23";
 	rooms["AKD I25"].southExit = "AKD I27";
+	rooms["AKD I25"].moveMinutes = 1;
 	rooms["AKD I25"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD I23"] = new RoomClass(this);
 	rooms["AKD I23"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD I23"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThe hallway goes straight north to south here.";
-	rooms["AKD I23"].runOnEnter = null;
+	rooms["AKD I23"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD I23"].planet = planetName;
 	rooms["AKD I23"].system = systemName;
 	rooms["AKD I23"].northExit = "AKD I21";
 	rooms["AKD I23"].southExit = "AKD I25";
+	rooms["AKD I23"].moveMinutes = 1;
 	rooms["AKD I23"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD I21"] = new RoomClass(this);
 	rooms["AKD I21"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD I21"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThe hallway goes south from here, back towards the entrance, or eastwards along the outer wall opposite where Syri and the crew landed.";
-	rooms["AKD I21"].runOnEnter = null;
+	rooms["AKD I21"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD I21"].planet = planetName;
 	rooms["AKD I21"].system = systemName;
 	rooms["AKD I21"].southExit = "AKD I23";
 	rooms["AKD I21"].eastExit = "AKD K21";
+	rooms["AKD I21"].moveMinutes = 1;
 	rooms["AKD I21"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD K21"] = new RoomClass(this);
@@ -138,7 +162,9 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD K21"].eastExit = "AKD M21";
 	rooms["AKD K21"].westExit = "AKD I21";
 	rooms["AKD K21"].addFlag(GLOBAL.INDOOR);
+	rooms["AKD K21"].moveMinutes = 1;
 	rooms["AKD K21"].runOnEnter = function():Boolean {
+		author("Savin");
 		setNavDisabled(NAV_NORTH_DISABLE);
 		return false;
 	}
@@ -146,52 +172,68 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD K19"] = new RoomClass(this);
 	rooms["AKD K19"].roomName = "\nHELIPAD";
 	rooms["AKD K19"].description = "";
-	rooms["AKD K19"].runOnEnter = null;
+	rooms["AKD K19"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD K19"].planet = planetName;
 	rooms["AKD K19"].system = systemName;
 	rooms["AKD K19"].southExit = "AKD K21";
+	rooms["AKD K19"].moveMinutes = 1;
 	rooms["AKD K19"].addFlag(GLOBAL.OUTDOOR);
 	rooms["AKD K19"].addFlag(GLOBAL.SHIPHANGAR);
 
 	rooms["AKD M21"] = new RoomClass(this);
 	rooms["AKD M21"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD M21"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThere's a door to the south labeled 'Backup Generator.' If you want to turn the power back on, that's probably where you'd do it.";
-	rooms["AKD M21"].runOnEnter = null;
+	rooms["AKD M21"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD M21"].planet = planetName;
 	rooms["AKD M21"].system = systemName;
 	rooms["AKD M21"].southExit = "AKD M23";
 	rooms["AKD M21"].westExit = "AKD K21";
+	rooms["AKD M21"].moveMinutes = 1;
 	rooms["AKD M21"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD M23"] = new RoomClass(this);
 	rooms["AKD M23"].roomName = "BACKUP\nGENERATORS";
-	//rooms["AKD M23"].description = "desc";
-	rooms["AKD M23"].runOnEnter = null;
+	rooms["AKD M23"].description = "The backup generators for the base are housed down a short flight of stairs from the rest of the facility's main floor. You're at the top of the stairs, looking down ";
+	rooms["AKD M23"].runOnEnter = function():void{
+		author("Savin");
+		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("into a black abyss your feeble light cannot pierce.");
+		else output("the ladder into the substation.");
+		clearMenu();
+		if (flags["SYRIQUEST_POWER_STATE"] == undefined) addButton(0,"Down",syriQuestBackupGenerators,undefined,"Down","Head down the ladder into the darkness.");
+		else addDisabledButton(0,"Down");
+	};
 	rooms["AKD M23"].planet = planetName;
 	rooms["AKD M23"].system = systemName;
 	rooms["AKD M23"].northExit = "AKD M21";
+	rooms["AKD M23"].moveMinutes = 1;
 	rooms["AKD M23"].addFlag(GLOBAL.INDOOR);
 	rooms["AKD M23"].addFlag(GLOBAL.OBJECTIVE);
 
 
 	rooms["AKD C15"] = new RoomClass(this);
 	rooms["AKD C15"].roomName = "\nELEVATOR";
-	rooms["AKD C15"].description = "You're standing in one of the elevators at the heart of the Akkadi complex. On a good day, you'd have access to what the panel tells you is fifty floors of research and development complex. As it stands, you have access to the unsecured staff quarters {and the main floor // , the main floor, and a single research and development level far below the surface}.";
-	rooms["AKD C15"].runOnEnter = null;
+	rooms["AKD C15"].description = "You're standing in one of the elevators at the heart of the Akkadi complex. On a good day, you'd have access to what the panel tells you is fifty floors of research and development complex. As it stands, you have access to the unsecured staff quarters";
+	rooms["AKD C15"].runOnEnter = function():void{
+		if (flags["SYRIQUEST_ELEVATOR_STATE"] == 2) output(", the main floor, and a single research and development level far below the surface");
+		else output(" and the main floor.");
+		syriQuestAkkadiBaseElevators();
+	};
 	rooms["AKD C15"].planet = planetName;
 	rooms["AKD C15"].system = systemName;
 	rooms["AKD C15"].northExit = "AKD C13";
+	rooms["AKD C15"].moveMinutes = 1;
 	rooms["AKD C15"].addFlag(GLOBAL.INDOOR);
-	rooms["AKD K25"].addFlag(GLOBAL.LIFTDOWN);
+	rooms["AKD C15"].addFlag(GLOBAL.LIFTDOWN);
 
 	rooms["AKD C13"] = new RoomClass(this);
 	rooms["AKD C13"].roomName = "STAFF\nQUARTERS";
 	rooms["AKD C13"].description = "You're standing in a long, wide hallway that's flanked by dozens of doors on each side. Each of them has a small name plate on the outside, suggesting these are living quarters. They're all magnetically sealed, though, thanks to the continuing lockdown in the facility. The elevator to the south is still open, at least.\n\nThere's more barracks to the east as well.";
-	rooms["AKD C13"].runOnEnter = null;
+	rooms["AKD C13"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD C13"].planet = planetName;
 	rooms["AKD C13"].system = systemName;
 	rooms["AKD C13"].southExit = "AKD C15";
 	rooms["AKD C13"].eastExit = "AKD E13";
+	rooms["AKD C13"].moveMinutes = 1;
 	rooms["AKD C13"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD E13"] = new RoomClass(this);
@@ -202,142 +244,161 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD E13"].system = systemName;
 	rooms["AKD E13"].northExit = "AKD E11";
 	rooms["AKD E13"].westExit = "AKD C13";
+	rooms["AKD E13"].moveMinutes = 1;
 	rooms["AKD E13"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD E11"] = new RoomClass(this);
 	rooms["AKD E11"].roomName = "STAFF\nROOM";
 	rooms["AKD E11"].description = "The promised 'Staff Room' isn't much more than a locker room, with small stalls for private changing, a restroom, and a sliding glass door on the north wall. The glass is stained just enough that nothing can be seen through it.";
-	rooms["AKD E11"].runOnEnter = null;
+	rooms["AKD E11"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD E11"].planet = planetName;
 	rooms["AKD E11"].system = systemName;
 	rooms["AKD E11"].northExit = "AKD E9";
 	rooms["AKD E11"].southExit = "AKD E13";
+	rooms["AKD E11"].moveMinutes = 1;
 	rooms["AKD E11"].addFlag(GLOBAL.INDOOR);
 
+//Play the first time the PC enters E9 Showers *if* the PC hasn't resolved Valden's encounter. Else, just basic room description.
 	rooms["AKD E9"] = new RoomClass(this);
 	rooms["AKD E9"].roomName = "\nSHOWERS";
 	rooms["AKD E9"].description = "The Akkadi facility's showers are a small affair, with a half dozen tile cubicles each sealed off by nothing more than a sheer, largely transparent curtain. It's much better lit than the rest of the facility has been, thanks to all the aromatic candles that have been arranged around the perimeter. A light smell of roses and wine permeates the air{ fucked Cmdr: , mixed with the linger scent of sex and cum}.";
-	rooms["AKD E9"].runOnEnter = null;
+	rooms["AKD E9"].runOnEnter = syriQuestAkkadiBaseShowers;
 	rooms["AKD E9"].planet = planetName;
 	rooms["AKD E9"].system = systemName;
 	rooms["AKD E9"].southExit = "AKD E11";
+	rooms["AKD E9"].moveMinutes = 1;
 	rooms["AKD E9"].addFlag(GLOBAL.INDOOR);
+	rooms["AKD E9"].addFlag(GLOBAL.NPC);
 
 
 	rooms["AKD K15"] = new RoomClass(this);
 	rooms["AKD K15"].roomName = "\nELEVATOR";
 	rooms["AKD K15"].description = "You're standing in one of the elevators at the heart of the Akkadi complex. On a good day, you'd have access to what the panel tells you is fifty floors of research and development complex. You can still go up to access the main level and the staff quarters, but that's all you can access now.";
-	rooms["AKD K15"].runOnEnter = null;
+	rooms["AKD K15"].runOnEnter = function():void{
+		syriQuestAkkadiBaseElevators();
+	};
 	rooms["AKD K15"].planet = planetName;
 	rooms["AKD K15"].system = systemName;
 	rooms["AKD K15"].northExit = "AKD K13";
+	rooms["AKD K15"].moveMinutes = 1;
 	rooms["AKD K15"].addFlag(GLOBAL.INDOOR);
-	rooms["AKD K25"].addFlag(GLOBAL.LIFTUP);
+	rooms["AKD K15"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["AKD K13"] = new RoomClass(this);
 	rooms["AKD K13"].roomName = "R&D LEVEL\nHALLS";
 	//rooms["AKD K13"].description = "desc";
-	rooms["AKD K13"].runOnEnter = null;
+	rooms["AKD K13"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD K13"].planet = planetName;
 	rooms["AKD K13"].system = systemName;
 	rooms["AKD K13"].southExit = "AKD K15";
 	rooms["AKD K13"].eastExit = "AKD M13";
+	rooms["AKD K13"].moveMinutes = 1;
 	rooms["AKD K13"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD M13"] = new RoomClass(this);
 	rooms["AKD M13"].roomName = "ARCHIVES\nEXTERIOR HALL";
 	rooms["AKD M13"].description = "The long, brightly lit hallway continues here, east and west. The north wall sports a door marked 'ARCHIVES' in blocky caps.";
-	rooms["AKD M13"].runOnEnter = null;
+	rooms["AKD M13"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD M13"].planet = planetName;
 	rooms["AKD M13"].system = systemName;
 	rooms["AKD M13"].northExit = "AKD M11";
 	rooms["AKD M13"].eastExit = "AKD O13";
 	rooms["AKD M13"].westExit = "AKD K13";
+	rooms["AKD M13"].moveMinutes = 1;
 	rooms["AKD M13"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD M11"] = new RoomClass(this);
 	rooms["AKD M11"].roomName = "AKKADI\nARCHIVES";
 	//rooms["AKD M11"].description = "desc";
-	rooms["AKD M11"].runOnEnter = null;
+	rooms["AKD M11"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD M11"].planet = planetName;
 	rooms["AKD M11"].system = systemName;
 	rooms["AKD M11"].southExit = "AKD M13";
+	rooms["AKD M11"].moveMinutes = 1;
 	rooms["AKD M11"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD O13"] = new RoomClass(this);
 	rooms["AKD O13"].roomName = "RESEARCH\nHALL";
 	rooms["AKD O13"].description = "This long corridor connects the research labs to the main elevator block, and is monitored by what looks like some kind of sensor net -- though why it hasn't raised an alarm at your presence, you have no idea.\n\nThere are plenty of labs on either side that are still sealed due to the lockdown. You can vaguely hear talking from inside -- seems like the researchers inside are safe and sound, at least.";
-	rooms["AKD O13"].runOnEnter = null;
+	rooms["AKD O13"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD O13"].planet = planetName;
 	rooms["AKD O13"].system = systemName;
 	rooms["AKD O13"].eastExit = "AKD Q13";
 	rooms["AKD O13"].westExit = "AKD M13";
+	rooms["AKD O13"].moveMinutes = 1;
 	rooms["AKD O13"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD Q13"] = new RoomClass(this);
 	rooms["AKD Q13"].roomName = "RESEARCH HALL\nCHECKPOINT";
 	rooms["AKD Q13"].description = "You're standing in a standard-issue corporate security checkpoint, the kind you've passed through a million times in the past. There's a three-row scanner column to detect weapons and contraband connected to a guard post where someone can monitor the comings and goings. Right now, though, it's occupied by a masturbating milodan scientist; the woman's still face-down, ass-up on the ground and driving her fingers into her twat.\n\nTo the south is a large circular plaza dominated by a very fake looking palm tree. There's several doors leading off of the plaza into the major labs.";
-	rooms["AKD Q13"].runOnEnter = null;
+	rooms["AKD Q13"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD Q13"].planet = planetName;
 	rooms["AKD Q13"].system = systemName;
 	rooms["AKD Q13"].southExit = "AKD Q15";
 	rooms["AKD Q13"].westExit = "AKD O13";
+	rooms["AKD Q13"].moveMinutes = 1;
 	rooms["AKD Q13"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD Q15"] = new RoomClass(this);
 	rooms["AKD Q15"].roomName = "RESEARCH DEPT.\nPLAZA";
 	rooms["AKD K15"].description = "You're in the beating heart of Akkadi's Uvetan laboratories. There are three major labs branching off of this plaza, like spokes from a wheel -- one whose hub is a huge, fake palm tree. Guess they were trying to warm the place up a little.\n\nTo the west is a door labeled BioMed; to the east, one labelled Starship Lab. And to the south is a seriously heavy-duty metal door with the words 'Warp Field Lab' printed above it. {Haven't encountered Valden yet: If you had to take a guess, that's where you need to go.}";
-	rooms["AKD Q15"].runOnEnter = null;
+	rooms["AKD Q15"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD Q15"].planet = planetName;
 	rooms["AKD Q15"].system = systemName;
 	rooms["AKD Q15"].northExit = "AKD Q13";
 	rooms["AKD Q15"].southExit = "AKD Q17";
 	rooms["AKD Q15"].eastExit = "AKD S15";
 	rooms["AKD Q15"].westExit = "AKD O15";
+	rooms["AKD Q15"].moveMinutes = 1;
 	rooms["AKD Q15"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD O15"] = new RoomClass(this);
 	rooms["AKD O15"].roomName = "BIOMED\nLAB";
 	//rooms["AKD K15"].description = "desc";
-	rooms["AKD O15"].runOnEnter = null;
+	rooms["AKD O15"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD O15"].planet = planetName;
 	rooms["AKD O15"].system = systemName;
 	rooms["AKD O15"].eastExit = "AKD Q15";
+	rooms["AKD O15"].moveMinutes = 1;
 	rooms["AKD O15"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD S15"] = new RoomClass(this);
 	rooms["AKD S15"].roomName = "STARSHIP\nLAB";
 	rooms["AKD K15"].description = "The Starship Lab is by far the largest section of the facility you've come across: it's several floors deep, surrounded by a grated walkway that overlooks several gutted starships. They're all hooked up to various computer banks and sensors, apparently being studied. Tools and dataslates are scattered haphazardly across the floor, suggesting the researchers and technicians working in here evacuated in a hurry.\n\nA service elevator leads down to the lower floor.";
-	rooms["AKD S15"].runOnEnter = null;
+	rooms["AKD S15"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD S15"].planet = planetName;
 	rooms["AKD S15"].system = systemName;
 	rooms["AKD S15"].westExit = "AKD Q15";
+	rooms["AKD S15"].moveMinutes = 1;
 	rooms["AKD S15"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD T14"] = new RoomClass(this);
 	rooms["AKD T14"].roomName = "STARSHIP LAB\nLOWER FLOOR";
 	//rooms["AKD T14"].description = "The lower level of the lab is full of starships that have been pulled apart, stripped down and refit with experimental devices. You see several different Akkadi craft, but also a handful of ships from the competition, including another Casstech Z-14. Wonder why they're interested in retro tech like that?";
-	rooms["AKD T14"].runOnEnter = null;
+	rooms["AKD T14"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD T14"].planet = planetName;
 	rooms["AKD T14"].system = systemName;
+	rooms["AKD T14"].moveMinutes = 1;
 	rooms["AKD T14"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD Q17"] = new RoomClass(this);
 	rooms["AKD Q17"].roomName = "WARP FIELD\nLAB";
 	//rooms["AKD K15"].description = "desc";
-	rooms["AKD Q17"].runOnEnter = null;
+	rooms["AKD Q17"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD Q17"].planet = planetName;
 	rooms["AKD Q17"].system = systemName;
 	rooms["AKD Q17"].northExit = "AKD Q15";
 	rooms["AKD Q17"].eastExit = "AKD S17";
+	rooms["AKD Q17"].moveMinutes = 1;
 	rooms["AKD Q17"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD S17"] = new RoomClass(this);
 	rooms["AKD S17"].roomName = "CONTAINMENT\nCHAMBER";
 	//rooms["AKD K15"].description = "desc";
-	rooms["AKD S17"].runOnEnter = null;
+	rooms["AKD S17"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD S17"].planet = planetName;
 	rooms["AKD S17"].system = systemName;
 	rooms["AKD S17"].westExit = "AKD Q17";
+	rooms["AKD S17"].moveMinutes = 1;
 	rooms["AKD S17"].addFlag(GLOBAL.INDOOR);
 }

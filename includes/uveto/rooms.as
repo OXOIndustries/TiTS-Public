@@ -311,6 +311,12 @@ public function initUvetoRooms():void
 	rooms["UVI H34"].southExit = "UVI H36";
 	rooms["UVI H34"].westExit = "UVI F34";
 	rooms["UVI H34"].moveMinutes = 1;
+	rooms["UVI H34"].runOnEnter = function():void{
+		if (syriQuestRunning() && flags["SYRIQUEST_STATE"] == 3) {
+			output("\n\nYou see Syri hanging around here, impatiently pacing back and forth. Looks like she's waiting for you.");
+			addButton(0,"Syri",syriQuestMeetOutsideElevator);
+		}
+	};
 	rooms["UVI H34"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI H34"].addFlag(GLOBAL.INDOOR);
 	

@@ -8,31 +8,34 @@ public function SQDEBUG():void
 
 public function SQDEBUGAKDK31():void
 {
-	currentLocation = "AKD K31";
-	generateMap();
-	showLocationName();
+//	currentLocation = "AKD K31";
+//	generateMap();
+//	showLocationName();
+	moveTo("AKD K31");
 	mainGameMenu();
 }
 
 public function SQDEBUGAKDC15():void
 {
-	currentLocation = "AKD C15";
-	generateMap();
-	showLocationName();
+//	currentLocation = "AKD C15";
+//	generateMap();
+//	showLocationName();
+	moveTo("AKD C15");
 	mainGameMenu();
 }
 
 public function SQDEBUGAKDK15():void
 {
-	currentLocation = "AKD K15";
-	generateMap();
-	showLocationName();
+//	currentLocation = "AKD K15";
+//	generateMap();
+//	showLocationName();
+	moveTo("AKD K15");
 	mainGameMenu();
 }
 
 public function syriAtFreeezer():Boolean
 {
-	if ((syriQuestRunning() && flags["SYRIQUEST_MET_SYRI_AT_MAGLEV_STATION"] == 1) || syriQuestComplete()) return true;
+	if ((syriQuestRunning() && flags["SYRIQUEST_STATE"] == 1) || syriQuestComplete()) return true;
 	return false;
 }
 
