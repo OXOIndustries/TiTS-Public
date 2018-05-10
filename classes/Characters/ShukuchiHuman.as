@@ -4,6 +4,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.output;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Items.Protection.ReaperArmamentsMarkIShield;
 	public class ShukuchiHuman extends ShukuchiAgent
@@ -36,21 +37,29 @@ package classes.Characters
 			
 			this.hipRatingRaw = 3;
 			this.buttRatingRaw = 2;
-			
-			this.punchySpecial = this.punchyHuman;
 
 			this.cocks[0].cType = GLOBAL.TYPE_HUMAN;
 			
 			btnTargetText = "Human Agent";
 		}
-		
-		//NEED TO ACTUALLY IMPLEMENT THIS
-		private function punchyHuman(target:Creature):void
+
+		override protected function punchySpecial(target:Creature):void
 		{
+			//If no shields, flurry
+			if (target.shieldsRaw <= 0)
+			{
+				punchyFlurry(target);
+				return;
+			}
+			
 			//Does 45 base points of greater shield drain damage, no other kind of damage. Alwayshits.
 			output("The agent lunges at you with a knuckle device, a field of crackling energy building up around his fingers!");
 			output("\n\nYour shield crackles and shudders as it’s hit with violent anti-energy, although you’re unharmed by the assault!");
-			applyDamage(new TypeCollection(), this, target, "minimal");
+			
+			var bsDamage:TypeCollection = new TypeCollection();
+			bsDamage.electric.damageValue = 45;
+			bsDamage.addFlag(DamageFlag.GREATER_DRAINING);
+			applyDamage(bsDamage, this, target, "minimal");
 		}
 	}
 }

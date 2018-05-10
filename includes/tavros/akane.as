@@ -1,5 +1,3 @@
-import adobe.utils.CustomActions;
-import classes.CockClass;
 /* Flags:
  * SHUKUCHI_TAVROS_ENCOUNTER
  * -0: Chased, hasn't talked yet
@@ -39,6 +37,11 @@ import classes.CockClass;
  * AKANE_RIVALS_TIMESTAMP
  * */
 
+public var akaneBrutalizeIcon:String = "Icon_Slow";
+public var akaneSoreIcon:String = "Icon_Water_Drop";
+public var akaneWhipIcon:String = "Icon_Crying";
+public var akaneTenderIcon:String = "Icon_Paralysis";
+ 
 public function showAkane(nude:Boolean = false, showAuthor:Boolean = true):Boolean
 {
 	author("SoAndSo");
@@ -47,16 +50,60 @@ public function showAkane(nude:Boolean = false, showAuthor:Boolean = true):Boole
 }
 
 //NEED TO ACTUALLY MAKE THIS
+//UPDATE: ACTUALLY MADE THIS
 public function pcIsPainslut():Boolean
 {
-	return false;
+	return pc.hasPerk("Akane's Painslut");
 }
  
 public function pcReadyForPainsluttery():Boolean
 {
-	return false;
+	//Can't become a painslut twice... can you?
+	if (pcIsPainslut()) return false;
+	if (pc.isPregnant()) return false;
+	if (!pc.hasStatusEffect("Sore Tubes")) return false;
+	if (!pc.hasStatusEffect("Tenderized")) return false;
+	if (!pc.hasStatusEffect("Lash Marks")) return false;
+	if (flags["AKANE_TIMES_TALKED_HER"] == undefined) return false;
+	if (flags["AKANE_TIMES_TALKED_YOU"] == undefined) return false;
+	if (flags["AKANE_TIMES_TALKED_MODS"] == undefined) return false;
+	if (flags["AKANE_TIMES_TALKED_HOST"] == undefined) return false;
+	if (flags["AKANE_TIMES_TALKED_RIVALS"] == undefined) return false;
+	if (flags["AKANE_FUN_VISITS"] == undefined || flags["AKANE_FUN_VISITS"] < 9) return false;
+	return true;
 }
  
+public function akanePainslutTrigger():void
+{
+	clearMenu();
+	clearOutput();
+	showAkane(false, true);
+	
+	IncrementFlag("AKANE_VISITS");
+	
+	output("As you’re walked through the doors, the same old sights of artisan rock pools and a view of the throne greet you.");
+	output("\n\nInstead of waiting for you to be lead to the center, you hear Akane’s telltale <i>click-clacking</i> heels approaching you.");
+	output("\n\n<i>“Hold it, let me see [pc.himHer],”</i> she asserts, the sounds of much heavier feet moving away from you as hers come closer.");
+	output("\n\nYou wait patiently while she presumably eyes you over, adjusting your posture to allow her a better view. You hear her move from side to side then behind you, all the while ummming-and-arring with her own thoughts.");
+	output("\n\nSeemingly from nowhere, cold fingertips latch onto your [pc.face] and the sharp, overwhelming energy of Akane’s ‘touch’ sears itself into your nerves!");
+	output("\n\nYour body reacts before your mind does as everything seems to freeze in place. Instead of buckling in a pile, you stand firm and in place as the ephemeral current blazes through your [pc.skinFurScales].");
+	output("\n\nIn a flash, it ends. Akane’s warmed fingertips slip away from your head.");
+	output("\n\nYou lean forward out of reflex, whining with orgiastic agony as that touch - that pure <i>feeling</i> - that Akane provides touches you on the deepest level. You almost can’t tell where pain ends and pleasure begins…");
+	output("\n\n<i>“Perfect…”</i> comes her murmur from behind. You feel the cooling metal of fingers rest upon your shoulders, a gentle squeeze following. Your body almost shivers as she does, the anticipation for a loving shock forcing you to react to… nothing.");
+	output("\n\nJust the soft squeeze of her fingers.");
+	output("\n\n<i>“There, there, I think that reaction speaks on its own, hm? That little shiver of expectation, the way your fingers curl…”</i> whispers the domme into your ear, a knowing tone to her words.");
+	output("\n\nHer fingertip lands on your right temple and slides against your [pc.skinFurScales]. Taken unawares, the intense, pinpoint pain that you remember returns and spreads throughout your mind.");
+	output("\n\nAnd you want more.");
+	output("\n\n<i>“I think I can now declare you… <b>my painslut</b>. You’re so attuned to me that I could slap you and you’d cum on the spot, wouldn’t you? So filthy and debased, I love it.”</i>");
+	output("\n\n<b>(New Perk Gained: Akane’s Painslut)</b>");
+	output("\n\nThe blindfold slips away from your eyes, the warm white light of the throne room taking over your senses.");
+	output("\n\n<i>“And nooow,”</i> she purrs, darting in front of you with her body pressed against yours. <i>“You’re coming with me, [pc.name].”</i>");
+	
+	pc.createPerk("Akane's Painslut", 0, 0, 0, 0, "Your body is attuned to Akane’s methods of pleasurable pain. You have a chance to gain bonus Defense every time you take HP damage which increases with lower health… but you’ll also take additional lust damage. With higher lust, you gain bonus defence!");
+
+	addButton(0, "Uh...", akaneSexOptions);
+}
+
 //A copy of pc.mf() for painslutness
 public function painslutornot(painslut:String, notslut:String):String
 {
@@ -79,19 +126,27 @@ public function shukuchiKFineUSawSomethingMail():String
 	return body;
 }
 
+public function akaneCeleritasVeritasAvailable():Boolean
+{
+	
+	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] == undefined && !pc.isPregnant() && MailManager.isEntryViewed("shukuchi_veritas") && 13 <= hours && hours < 18);
+}
+
+public function akaneLairAvailable():Boolean
+{
+	return (flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined && flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + 24 * 60);
+}
+
 public function akaneCeleritasVeritasTheLegitimateBusinessBonus():Boolean
 {
-	if (flags["SHUKUCHI_FOURTH_ENCOUNTER"] == undefined)
+	if(akaneCeleritasVeritasAvailable())
 	{
-		if(!pc.isPregnant() && MailManager.isEntryViewed("shukuchi_veritas") && 13 <= hours && hours < 18)
-		{
-			output("\n\nYou spot a short male human in a very pristine suit standing behind an elaborate display of weapon models. While at first it seems to be a haphazard shop, it appears to merely be a stand for advertising wares: actual weapon selling would be a difficult thing to do on Tavros. There are two black-suited security guards milling around with unwavering, stern faces at odds with the salesman's cheerful appearance.");
-			output("\n\nThe sign on the front says Celeritas Veritas...");
+		output("\n\nYou spot a short male human in a very pristine suit standing behind an elaborate display of weapon models. While at first it seems to be a haphazard shop, it appears to merely be a stand for advertising wares: actual weapon selling would be a difficult thing to do on Tavros. There are two black-suited security guards milling around with unwavering, stern faces at odds with the salesman's cheerful appearance.");
+		output("\n\nThe sign on the front says Celeritas Veritas...");
 	
-			addButton(0, "Investigate", akaneEmailMeeting, undefined, "Investigate", "You know, the last few times you did this, they all got away in the end. They might not be so elusive this time around. But you’re gonna do it anyway, right? Ya big ol’ space hero, you.");
-		}
+		addButton(0, "Investigate", akaneEmailMeeting, undefined, "Investigate", "You know, the last few times you did this, they all got away in the end. They might not be so elusive this time around. But you’re gonna do it anyway, right? Ya big ol’ space hero, you.");
 	}
-	else if (flags["SHUKUCHI_FOURTH_ENCOUNTER"] == 3 && GetGameTimestamp() > flags["SHUKUCHI_FOURTH_ENCOUNTER_TIMESTAMP"] + 24*60)
+	else if (akaneLairAvailable())
 	{
 		output("\n\nYou spot a short male human in a very pristine suit standing behind an elaborate display of weapon models. While at first it seems to be a haphazard shop, it appears to merely be a stand for advertising wares: actual weapon selling would be a difficult thing to do on Tavros. The representative you remember is still there, smiling away as punters stop to look at catalogues and weapon models. He spots you and gives a friendly wave. You could visit Akane at any time if you speak to him, it looks like.");
 		
@@ -382,9 +437,9 @@ public function akaneShockMeAlready():void
 	output("\n\nHer splayed fingers latch back onto your face, those charged fingertips making you wince and gasp as they make contact with your [pc.skinFurScales]. But... nothing. She merely holds it there.");
 	output("\n\n<i>“Say it,”</i> she whispers, her thumb drawing circles across your cheek.");
 	output("\n\n<i>“Ah... akah... Akane,”</i> you force out, clenching your eyes closed as your words seem to chime with submission...");
-	output("\n\nHer fingers and thumb massage your [pc.face], the gentle motions belying the ghost pain your [pc.skinFurScales] tingles with.");
+	output("\n\nHer fingers and thumb massage your [pc.face], the gentle motions belying the ghost pain your muscles tingle with.");
 	output("\n\n<i>“There, there, surely that’s not all you have? A young, <b>strapping</b> spacer with nerves of steel? Aheh... Steele... “</i> she giggles, palming your head in her hand like an owner comforting their pet.");
-	output("\n\n“One more time now. ");
+	output("\n\n<i>“One more time now. ");
 	if (silly) output("WHO’S YOUR WAIFU?”</i>");
 	else output("Say my name.”</i>");
 	output("\n\nBefore you can think to even form the word, that warm current stings your skin again, rising in strength until your entire body is rapidly subjugated! You manage to gasp out, scream and inhale before your lungs seize up, the cycle continuing as constant <i>pain</i> keeps you locked to the floor and firmly within Akane’s hold.");
@@ -412,7 +467,7 @@ public function akaneShockMeAlready():void
 	output("\n\nYou find your head to be resting snugly against her lap. Her hands seem busy with untying your bonds. But...why...");
 	output("\n\nThe rope slackens and another burden falls free of you. You gasp as your joints gain fresh movement, the first they’ve had in hours. You’re still pretty sore and vulnerable: it wouldn’t be wise to try to escape the jaws of a tiger...");
 	output("\n\nA shadow of five prongs looms out of the corner of your eye...! You wince, tense up and brace for more!");
-	output("\n\n...but instead, those same cold tips play lightly and gently across your [pc.hair]. Instead of agony in its purest form, there’s a warmth and a fuzz from the metal digits. A flush of adrenaline overrides your fear as a tender caress plays about your head and [pc.face]. OOo, that feels <i>nice</i>....");
+	output("\n\n...but instead, those same cold tips play lightly and gently across your temple. Instead of agony in its purest form, there’s a warmth and a fuzz from the metal digits. A flush of adrenaline overrides your fear as a tender caress plays about your head and [pc.face]. OOo, that feels <i>nice</i>....");
 	output("\n\n<i>“Rather tame as punishments go, wouldn’t you say? Better than ripped out nails and a sliced tongue,”</i> she half-whispers, her middle finger tracing along your [pc.lips]. A small part of you wants to hate her as she teases you, another part internally thanking her for the gentle balm of her touch. With you so tender in body as you as are, you can only go along with her statements.");
 	output("\n\n<i>“Hmm, [pc.name], [pc.name]... I wonder,”</i> she thinks out loud, running her thrumming thumb along the back of your neck. An intense, pleasurable throb follows the motion, forcing a shallow inhale out of you as it numbs your lungs with pleasant feelings.");
 	output("\n\nWonder what? You realize that your voice tickles your throat something fierce, as if you’d been shouting for hours into the starry void. Akane places a finger across your [pc.lipsChaste], signaling for you to stay silent.");
@@ -452,7 +507,7 @@ public function akanePunchBye():void
 	author("SoAndSo");
 	moveTo("TAVROS HANGAR");
 	processTime(6 * 60);
-	pc.createStatusEffect("Brutalized", 0, 0, 0, 0, false, "crying", "You move in twice the time between tiles.\n-10% to all resistances and damage.", false, 14 * 24 * 60, UIStyleSettings.gStatusBadColour);
+	pc.createStatusEffect("Brutalized", 0, 0, 0, 0, false, akaneBrutalizeIcon, "You move in twice the time between tiles.\n-10% to all resistances and damage.", false, 14*24*60, UIStyleSettings.gStatusBadColour);
 	
 	output("It takes a long while to come round.");
 	output("\n\nWhen you awaken, you’re nestled on a chair of cargo crates and boxes in the Tavros docks.");
@@ -496,7 +551,7 @@ public function akaneDoneShockingMe():void
 		output(" Cheo continues unfazed, his arms stretching out to present you with your things.");
 	}
 	
-	output("\n\nHe cautiously offers you your [pc.gear], eyeing you as you holster your [pc.weapons].");
+	output("\n\nHe cautiously offers you your [pc.gear], eyeing you as you holster your [pc.weapon].");
 	output("\n<i>“No funny business,”</i> he growls through his mask, arms folded. You turn yourself away from the blank mask, proceeding to get dressed ");
 	if (pc.exhibitionism() > 40) output("with the intent of putting on a show.");
 	else output("quickly to avoid being out in the open.");
@@ -566,6 +621,12 @@ public function akaneLair():void
 	moveTo("GAME OVER");
 	showAkane(false, true);
 	
+	if (pcReadyForPainsluttery())
+	{
+		akanePainslutTrigger();
+		return;
+	}
+	
 	output("Some ten or so minutes later, a distinct <i>thun-thunk</i> of heavy sliding doors tells you you’ve arrived. The two pairs of hands let go of your shoulders and sides and the blindfold promptly falls away as you’re all brought to a halt. The bright white ambience of the hallway greets you again, the head honcho's chair at the opposite end of the grey slab floor. Akane sits on top, her chin resting on her right fist.");
 	output("\n\nShe visibly smiles.");
 	output("\n\nYou pluck up and approach her, mindful of the two agents to her left and right.");
@@ -596,7 +657,7 @@ public function akaneAkaneMain():void
 	output("\n\n<i>“Mmhmm, you know how to shame this old bag of bones and bolts, you monster. Care to entertain me, then?”</i>");
 	
 	addButton(0, "Appearance", akaneLookAtMafiaBoss, undefined, "Appearance", "Take in the full grace and majesty of this augmented crime boss. Respectfully of course. <i>She’s watching</i>.");
-	if (pc.isPregnant() /* || is hyper */) addDisabledButton(1, "Sex", "Throw yourself before her and get right up in that sweet, sweet agony that makes you want to die.");
+	if (pc.isPregnant()) addDisabledButton(1, "Sex", "Throw yourself before her and get right up in that sweet, sweet agony that makes you want to die.");
 	else addButton(1, "Sex", akaneSexOptions, undefined, "Sex", "Throw yourself before her and get right up in that sweet, sweet agony that makes you want to die.");
 	addButton(2, "Leave", akaneNevermind, true, "Leave", "You just wanna get out of here.");
 	
@@ -620,7 +681,7 @@ public function akaneNevermind(talked:Boolean = true):void
 	showAkane(false, true);
 	
 	if (!talked) output("<i>“Wait, you went through all that just to... say you don’t want to be here? Eugh... fine, Cheo, Yan, show [pc.himHer] out, I wonder if time away will open [pc.himHer] up,”</i> she says curtly, apparently having lost interest in you already.");
-	else output("<i>“Leaving so soon...? Hmm, you do have a life outside this place after all. Maybe I’ll..." + /*{pcPainslut: miss you}, + */ "”</i> she half whispers, beckoning Cheo to come over. He helps you up and reclaims your [pc.gear], showing you towards the door once you’re done.\n\nYou leave her darkened chambers, then...");
+	else output("<i>“Leaving so soon...? Hmm, you do have a life outside this place after all. Maybe I’ll..." + (pcIsPainslut() ? "miss you" : "") + ",”</i> she half whispers, beckoning Cheo to come over. He helps you up and reclaims your [pc.gear], showing you towards the door once you’re done.\n\nYou leave her darkened chambers, then...");
 
 	output("\n\nHer two attendants approach you with that same old blindfold. With a sigh, you stand ready and close your eyes, the blindfold then comfortably tightening around your head.");
 	output("\n\nLed back through the winding maze of doors, corridors and odd angles, you’re quickly put out onto the Tavros merchants deck.");
@@ -679,20 +740,29 @@ public function akaneSexOptions():void
 	output("\n\n<i>“Cheo? Some assistance is needed next door,”</i> commands Akane, her piercing stare focused squarely on you. Cheo leaves his spot, moving with a quick step through the door to Akane’s ‘dungeon’.");
 	output("\n\n<i>“And now, what to do with you...”</i>");
 	
+	//Stim
 	addButton(0, "StimDom", akaneShockMeAgainRegularly, undefined, "Stim Dom ", "Relive your first encounter and help get Akane off. She’ll use her hands and... other things.");
+	//What do the PC and cream have in common? They're best whipped.
 	if (!pc.hasStatusEffect("Lash Marks")) addButton(1, "Whipping", akanePlsWhipMe, undefined, "Whipping", "Get lashed in sensitive spots and know raw, sexual pain.");
 	else addDisabledButton(1, "Whipping");
+	//Come on, iykwim
 	if (pc.hasGenitals()) addButton(2, "ForcedOrg", akanePleaseComeAgain, undefined, "Forced Orgasms", "Get pinned down and made to orgasm over and over again. Involves toys.");
 	else addDisabledButton(2, "ForcedOrg");
-	
-	var fitCock:CockClass = null;
-	for (var i:int = 0; i < pc.cocks.length; ++i)
+	//Nom nom nom
+	if (flags["AKANE_TIMES_LICKED"] || (pc.hasStatusEffect("Tenderized") && pc.hasStatusEffect("Lash Marks"))) addButton(3, "Tender Oral", akaneTenderOralSurrender, undefined, "Tender Oral", "Aw ye, put that tongue to work baby. Then she’ll put her fingers to work on <i>you</i>...");
+	else addDisabledButton(3, "Tender Oral", "You're not quite deserving of this, yet...");
+	//Dunun dundun dunduun dununu nunun
+	if (pcIsPainslut())
 	{
-		var john:CockClass = pc.cocks[i];
-		if (john.cLengthRaw > 4 && john.cLengthRaw < 13 && john.thickness() < 2.5) fitCock = john;
+		var fitCock:CockClass = null;
+		for (var i:int = 0; i < pc.cocks.length; ++i)
+		{
+			var john:CockClass = pc.cocks[i];
+			if (john.cLengthRaw > 4 && john.cLengthRaw < 13 && john.thickness() < 2.5) fitCock = john;
+		}
+		if (!pc.isTaur() && (fitCock || pc.hasHardLightEquipped())) addButton(4, "SlowRide", akaneOPIsASlowRideFoghat, fitCock, "Slow Ride", "She wants to get properly intimate...?" + (silly ? " SHLOOOOW RIIIIDE, TAKE IT EEEEZEEEEH" : ""));
+		else addDisabledButton(4, "SlowRide", "Slow Ride", "She wants to get properly intimate...?" + (silly ? " SHLOOOOW RIIIIDE, TAKE IT EEEEZEEEEH" : "") + " Hmmm, seems you’re not properly equipped though...");
 	}
-	if (!pc.isTaur() && pcIsPainslut() && (fitCock || pc.hasHardLightEquipped())) addButton(3, "SlowRide", akaneOPIsASlowRideFoghat, fitCock, "Slow Ride", "She wants to get properly intimate...?" + (silly ? " SHLOOOOW RIIIIDE, TAKE IT EEEEZEEEEH" : ""));
-	else addDisabledButton(3, "SlowRide", "Slow Ride", "She wants to get properly intimate...?" + (silly ? " SHLOOOOW RIIIIDE, TAKE IT EEEEZEEEEH" : "") + " Hmmm, seems you’re not properly equipped though...");
 }
 
 public function akaneShockMeAgainRegularly():void
@@ -736,7 +806,7 @@ public function akaneShockMeAgainRegularly():void
 	output(" he sniffs under his mask, the roboticized tone at odds with Akane’s assertive direction.");
 	if (flags["AKANE_TIMES_SHOCKED"] != undefined) output("Yeah, yeah, rules is rules...");
 
-	if (!pc.isNude()) output("\n\n<i>“All that off too,”</i> he adds, pointing to your clothes. You turn around to undress properly, haste over precision.");
+	if (!pc.isNude()) output("\n\n<i>“All that off too,”</i> he adds, pointing to your clothes. You turn around to undress properly, precision over haste.");
 	
 	output("\n\nYou toss your [pc.gear] behind you with the more dangerous items placed on top of the pile. Apparently satisfied, he grips you by your shoulder with a vice-like paw. Not enough to hurt but there’s no way you could break that hold in this state...");
 	output("\n\nThe masked ausar turns you on the spot so that he faces your back. The <i>click-clack</i> of Akane’s heeled feet come closer from behind, the ausar manipulating and binding your arms and wrists while she inspects and observes.\n\n");
@@ -814,7 +884,8 @@ public function akaneKeepShockingMe():void
 {
 	clearOutput();
 	showAkane(true, true);
-	//Tenderize
+	if (pc.hasStatusEffect("Tenderized")) pc.setStatusMinutes("Tenderized", 3*24*60);
+	else pc.createStatusEffect("Tenderized", 0, 0, 0, 0, false, akaneTenderIcon, "-20% Kinetic and Electric resistance.\n+40% Lust resistance.", false, 3*24*60, UIStyleSettings.gStatusBadColour);
 	
 	output("You force it once more and immediately, Akane buckles forward with a pure, piercing note of joy. Her fingers claw into your head as a silent, quivering orgasm rocks her hunched over form, her face now an agape portrait of bliss.");
 	output("\n\nHer hold on you weakens, mechanical limbs shaking in their joints as Akane simply falls on her side. As she hits the bed, her body jerks and quivers in place as it shakes her to the core. You follow suit, your body finally giving out to ardor and exhaustion. With a quick turn of your head, it comes to rest against the soft mattress of the bed's edge. The contact makes your face ache as your tortured nerves have barely begun to settle, mercifully dissipating after some tense seconds.");
@@ -975,7 +1046,9 @@ public function akaneDontGiveTacetPermission():void
 {
 	clearOutput();
 	showAkane(true, true);
-	//Add Stinging bruises
+	//Give this a real icon later on
+	if (pc.hasStatusEffect("Stinging Bruises")) pc.setStatusMinutes("Stinging Bruises", 7*24*60);
+	else pc.createStatusEffect("Stinging Bruises", 0, 0, 0, 0, false, akaneWhipIcon, "Equipping or unequipping items, walking and checking your appearance will damage you!", false, 7*24*60, UIStyleSettings.gStatusBadColour);
 	
 	output("You cry out the stopping word and at once, Akane drops her lash to the floor.");
 	output("\n\n<i>“Cheo, some assistance,”</i> she says decisively, her metallic hands holding you by the middle.");
@@ -987,6 +1060,8 @@ public function akaneMyWhippingWillGoOn():void
 {
 	clearOutput();
 	showAkane(true, true);
+	if (pc.hasStatusEffect("Stinging Bruises")) pc.removeStatusEffect("Stinging Bruises");
+	pc.createStatusEffect("Lash Marks", 0, 0, 0, 0, false, akaneWhipIcon, "Equipping or unequipping items, walking and checking your appearance will damage you!", false, 14*24*60, UIStyleSettings.gStatusBadColour);
 	
 	output("You nod several times, leaning on your restraints for a few seconds. You tense and relax your shoulders in pulses, the sting biting into your nerves with each one. ");
 	output(painslutornot("You keep the rhythm consistent and fast, savoring the sensation like the dirty painslut you are.", "Some part of you wants to do more, push the envelope... but you remember that there’s still more to come."));
@@ -1244,9 +1319,11 @@ public function akaneAgainAndAgainAndAgainAndAgain():void
 
 public function akaneItsOverWaitNoItIsnt():void
 {
-	pc.orgasm(); //SORE 'EM TUBES srsly implement that
+	pc.orgasm();
 	clearOutput();
 	showAkane(true, true);
+	if (pc.hasStatusEffect("Sore Tubes")) pc.setStatusMinutes("Sore Tubes", 3*24*60);
+	else pc.createStatusEffect("Sore Tubes", 0, 0, 0, 0, false, akaneSoreIcon, "Orgasms damage you!", false, 3*24*60, UIStyleSettings.gStatusBadColour);
 	
 	output("All at once, everything reaches its peak; from the pain of tension to the euphoria of release, you clench your teeth and scream out. ");
 	if (pc.hasCock()) output("[pc.eachCockHead] erupt" + (pc.hasCocks() ? " with hot [pc.cum]! It pulses out of each" : "s with hot [pc.cum]! It pulses out of your") + " shaft in random directions, landing with audible splatters on you and around you. With a quick foot, Akane uses the arch of her heel to bend the pulsing shaft" + (pc.hasCocks() ? "s" : "") + " towards the grate beneath you. ");
@@ -1405,7 +1482,7 @@ public function akaneOPIsASlowRideFoghat(usingDick:CockClass):void
 	output("\n\nShe slinks backwards on her knees....");
 	
 	addButton(0, "Shhh", akaneEndOfTheRide, undefined, "Shhh", "Pull her to and continue hugging. Doesn’t matter if you didn’t get off, she’s all used up.");
-	addButton(1, "Let Her", function():void{akaneRideThroughTheNight(usingDick);}, undefined, "Let Her", "Sit back and let her do what she wants to you, she’s a tough old girl...");
+	addButton(1, "Let Her", akaneRideThroughTheNight, usingDick, "Let Her", "Sit back and let her do what she wants to you, she’s a tough old girl...");
 }
 
 public function akaneEndOfTheRide():void
@@ -1460,6 +1537,139 @@ public function akaneRideThroughTheNight(usingDick:CockClass):void
 	akanePostSexOptions("RIDDEN");
 }
 
+public function akaneTenderOralSurrender():void
+{
+	clearMenu();
+	clearOutput();
+	showAkane(false, true);
+	
+	var firstTime:Boolean = (flags["AKANE_TIMES_LICKED"] == undefined);
+	
+	if (firstTime)
+	{
+		output("Her face screws up as she looks you over, not out of frustration but more out of… worry?");
+		output("\n\n<i>“Perhaps something a bit less intense for today. What do you say, hm?”</i> she says softly, stroking your cheek with the back of her hand. <i>“There are many ways to get you what you need, after all.”</i>");
+		output("\nYou nod slowly, saying that her idea sounds intriguing. Your hand finds itself clasping her elbow as she strokes you, bringing a knowing grin to the dark-haired dommes face.");
+		output("\n\n<i>“Cheo, a wrist bind for [pc.name], if you please,”</i> calls out Akane, her eyes never looking away from you.");
+	}
+	else if (pcIsPainslut())
+	{
+		output("You merely point to your [pc.lipsChaste] with both hands, then point downwards to the ground.");
+		output("\n\nAkane giggles as you sign out your intentions, her thumb moving to caress your cheekbone.");
+		output("\n<i>“Already reading my mind, hm? I wouldn’t expect anything less,”</i> she giggles, planting a kiss on your forehead.");
+		output("\n\n<i>“Cheo, Cheo, wrist bind, you know the thing,”</i> Akane says quickly, stealing an opportunity to enjoy the feel if your cheek against hers.");
+	}
+	else
+	{
+		output("<i>“C-can I… please you like last time?”</i> you force out ahead of her answer, a mild blush forming under your cheeks.");
+		output("\n\n<i>“Awhaw, how could I say no to that face?”</i> giggles the domme, one of her hands moving to stroke your cheek. <i>“Got a taste for little old me? Mhm, hmhm…”</i>");
+		output("\nYou can’t help but return her smile, your gaze drifting off to the side as you briefly dwell on just how needy you must sound.");
+		output("\n\n<i>“Well then… Cheo? Going to need a nice wrist bind again, if you please,”</i> calls out Akane as she admires your [pc.face].");
+	}
+	
+	output("\n\nYou feel the fuzzy hands of Cheo guide your wrists together behind your back. He quickly binds them together with a comfortably tight arrangement and he’s over and done without you breaking your gaze from Akane. She can’t keep her eyes away from you, like a sculptor looking for flaws in her work. The moment is broken abruptly by her turning you on the spot, a firm but comfortable grip pushing you insistently to her personal chambers. You go along with it, of course: the excitement infects you both.");
+	output("\n\nThe door slides open and the two of you sprint over to the bed. The eager domme steps just ahead of you to lead the way with you awkwardly yanked along. Once you’ve reached the bed, she guides you to a rough spot in front of her and sits herself on the edge.");
+	output("\n\n<i>“Kneel,”</i> she commands, brushing her glossy hair from her face to reveal a lust-driven grin.");
+	output("\n\nYou do so " + painslutornot("immediately", "with a cautious step") + ", the excitement of it all stringing you along.");
+	if (firstTime) output("\n\nYou don’t even really know what you’re doing yet!");
+	else output("\n\nAnything to get a taste of… her.");
+	output("\n\nWith your [pc.knees] planted firmly on the ground and your head level with her");
+	if (pc.tallness > 84) output(" chest");
+	else output(" navel");
+	output(", she beckons you closer with her index fingers. You shuffle a few inches forward so that you’re level with her spreading cyber-legs, eager to maintain eye contact from below.");
+	output("\nAkane halts your advance with a full hand of fingertips pressed to your forehead.");
+		
+	if (firstTime)
+	{
+		output("\n\n<i>“Hold it. Good " + pc.mf("boy", "girl") + ". Put that tongue of yours out, would you?”</i> she coos, gently massaging your forehead with her sleek, metal fingers. The small sting that forms under your skin encourages your compliance.");
+		output("\n\nYou slowly open your mouth as wide as it can go, slowly pushing your [pc.tongue] out to its full length.");
+		if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" You restrain yourself from giggling as Akane’s face turns from excitement to confused surprise, her brow contorting in all shapes as she watches your mouth muscle unfurl."); 
+		else output(" Akane’s grin turns into a keen squint as your mouth muscle peeks out between your [pc.lips].");
+	}
+	else if (pcIsPainslut())
+	{
+		output("\n\n<i>“Hold it,”</i> she firmly calls out, your body automatically halting on command. As you stop, your mouth opens up just as reflexively. You just about manage to pause before she gives the command...");
+		output("\n\n<i>“Tongue. Out,”</i> she says with a pause in between, smiling as your [pc.tongue] escapes paste your [pc.lips].");
+		output("\n\n<i>“Mmhmm, lovely…”</i> she half-whispers, her fingertips massaging your brow with tender micromovements.");
+	}
+	else
+	{
+		output("\n\n<i>“Ahdadadastop. Stop. You know the drill, precious. Show me the goods,”</i> she smirks, pointing to your [pc.lips] with her free hand.");
+		output("\n\nOn command, you open your mouth as wide as it can go and unfurl your [pc.tongue] for her to see. Her smirk turns into a grin, the subtle twinge of stinging pain playing across your brow. It’s hard to say if that was firm encouragement or… a reward.");
+	}
+	
+	output("\n\nWith her free hand, she slides your tongue between her index and middle fingers. She clamps them together so that your tongue is caught in a painless pinch. Akane gently manipulates her pincering fingers up and down, side to side: you do your best oblige her, even having to turn your head in spots to avoid pain from her pulling.");
+	output("\n\nApparently satisfied, she retracts her hand from your forehead which leaves a subtle blooming of warmth under your [pc.skinFurScales]. On her other robo-hand, her fingers release your [pc.tongue] with her indexes tip trailing across the surface. You can almost taste the metal as her slow-drag goes from teeth to tongue tip. As she ends her little inspection, Akane’s lower lip receives a firm chewing and her hair loses some of its composure and cascading shape as she brushes it aside.");
+	output("\n\n<i>“Mm, here we go,”</i> she murmurs, gripping at the hem of her short silver qipao. She lifts the material with tantalizing slowness, pulling the back of it over her toned gymnasts derriere first. Her knees <i>clink</i> together as she moves her hands round to the front, forcing you to lean back slightly with a blocked view from in front of you. So close… you find yourself chewing your lower lip.");
+	output("\nShe pulls the hem up until it reaches her navel, exposing the taut, pale detail of her soft abs and midriff.");
+	if (pc.lust() >= pc.lustMax()) output(" The urge to just force her legs apart with your [pc.face] to get at what’s inside is… almost overwhelming!");
+	output("\n\nAkane - amused by your reaction - giggles in her seat.");
+	output("\n\n<i>“Just the sweetest little thing, aren’t you?”</i> she says adoringly, scrunching the hem up so that it holds at her navel. With an immovable mechanical grip, she pulls you ever so gently closer by the top of your [pc.hair]. With the other hand, she begins to glide her palm from her bellybutton to her nethers. With the two motions in sync, her legs spread apart once more to reveal your prize.");
+
+	addButton(0, "Oh Babeh", akaneBabyBabyBabyWhoooral, firstTime, "Oh Babeh", "<i><b>OH BABY</b></i>");
+}
+
+public function akaneBabyBabyBabyWhoooral(firstTime:Boolean):void
+{
+	if (silly)
+	{
+		clearOutput();
+		showAkane(true, true);
+		output("it's a penis lol");
+	}
+	else akaneBabySrslyTho(firstTime);
+	
+	akanePostSexOptions("LICKED");
+	if (silly) addButton(2, "SrslyTho", akaneBabySrslyTho, firstTime);
+}
+	
+public function akaneBabySrslyTho(firstTime:Boolean):void
+{
+	clearOutput();
+	showAkane(true, true);
+	output("What you see is a soft, delicate flower of a pussy between her thighs. Her splayed fingers rest just above it with the tip of her middle finger brushing against a nestled clit. The scent of feminine lust plays about your nose and you can see a shiny veneer of wet arousal adorning her dark pink labia.");
+	if (firstTime) output("<i>“Like it…?");
+	else output("<i>“Ready, precious?");
+	output("”</i> whispers the lightly blushing domme, her splayed fingers tightly squeezing across your scalp. You nod, your eyes shifting gazes from her snatch to her adoring gaze. In this moment, you want nothing but to please Akane.");
+	output("\n<i>“Tongue out, then.");
+	if (firstTime) output(" Show me how you use it"); 
+	else output(" Use it like you always do");
+	output(",”</i> she says casually, pulling your head to within an inch of her pussy. On command, you push your [pc.tongue] out to its full length once again and aim it at her slightly-parted lips. She squeaks and squirms on her seat as your tongue and her folds make warm and wet contact.");
+	output("\n\n<i>“Iiih, h-hold it,”</i> she she calls out, her chest rapidly rising with sudden breathlessness. 	You keep your patient tongue firmly held against her all the same, awaiting her next order. Several breathy seconds pass before she murmurs <i>“Continue”</i>, both her splayed hands now holding your head steady with a massagers grip. Her thumbs come to rest on your forehead while her palms cover your [pc.ears].");
+	output("\nYou begin by dragging the entire length of your tongue directly down the center of her pussy, the slow and smooth motion only stopping when the tip flicks against her clit. You can hear Akane inhale through her teeth as you both get into it, her fingers making small movements against your temples. You repeat the action in reverse, from top to bottom.");
+	output("Along the way, you add a little more pressure to her folds each time, threatening to plunge your [pc.tongue] in any second. With each lick and drag, you accentuate every movement with a pivoting motion from your neck, finding hidden angles and tender spaces that make the heaving domme quiver and quake.");
+	output("\n\n<i>“Mmph, right there,”</i> murmurs Akane, her thumbs massaging against your forehead. As she does so, the point of placement stings with that familiar sting and yet… a simultaneous soothing of the same nerves follows with her other thumb. You feel your [pc.face] tense up but the feeling is bearable when the second wave of pleasantness washes under your skin. You must be doing a good job…");
+	output("\n\nYou move onto more complex shapes with your tongue: swirls, circles, even a star constellation. With each new shape, you add more gentle pressure to her entrance until-");
+	output("\n\n<i>“Ooh…!”</i>");
+	output("\n\nYour mouth muscle pushes in.");
+	if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("\n\nWithout anything to stop you and with Akane now putty in your mouth, your long tongue unfurls within her depths like a snake making a home.");
+	else
+	{
+		output("\n\nWithout anything to stop you, your [pc.tongue] glides and swirls against her inner sanctum with near-involuntary urgency.")
+		if (pc.tongueType == GLOBAL.TYPE_FELINE) output(" You can feel her tense up a little as your rough kitty tongue makes itself known.");
+	}
+	output("\n\nYou press your [pc.lips] against her labia and form a soft seal with your open mouth. Each motion elicits a soft feminine whine from the domme, her hands planting your head firmly against her pussy. Using what wiggle room you have, your [pc.lips] kiss, suck and massage her entrance in tandem with the writhing motions of your tongue. You’re able to catch a glimpse of Akane’s face: blushing, panting, eyes screwed up in lust. She’s in your control now, right..?");
+	if (firstTime) output("\n\n<i>“Not enough… not enough yet");
+	else output("\n\n<i>“Efffhh, you know what comes next");
+	output(",”</i> she says quickly, her grip on your head now mechanically locked in place! Your instinct is to move your head back, only to find that it’s impossible with those fingers holding you place. With no option, you continue to eat her senseless.");
+
+	if (firstTime) output("\n\nYou just about stop yourself from biting down as a surge of bio-electrical pain sears itself across your skin and skull.");
+	else output("\n\nYou’ve got yourself braced for the sudden surge of bio-electrical pain that sears itself across your skin and skull, the effect overwhelming your senses.");
+	
+	output("\n\nYou whine through the seal that your mouth makes up, [pc.tongue] flailing wildly inside Akane’s wettening snatch. In " + (pcIsPainslut() ? "Akane’s own loving" : "some twisted") + " way, you’re spurred on to keep going, your face now so firmly held in place that your nose gets smushed against her clit.");
+	output("\nHer hands now in control, she uses your entire head as a physical sex toy. Your tongue seems to move on its own accord as your head is bent about and manhandled, your [pc.face] itself now an extra tool for her pleasure.");
+	output("\nYou both whine together as she sends another fused jolt of euphoric agony, the effect strong enough to make your limbs lock up in place. Akane becomes more and more insensate with using your body in such a way, almost losing her grip of you as her arms and legs quiver.");
+	output("\n\n<i>“Guh… gonna…! Ahhh…!”</i> are all she can say before her body locks up. You see her face contort in frozen bliss as a silent orgasm rocks her world, your mouth filling with the gentle flash of feminine juices. Her abs tense and contract through her skin, fighting against her lungs need to scream.");
+	output("\nA vibrant heat gets blurred into the frozen moment, one shattered by Akane thrusting you away and collapsing against the bed. You’re able to stay on your knees and your woozy view is now that of the orgasming domme jerking and quivering against the plush bedding. You slobber and gulp down as much of Akane’s ‘gift’ as you can so the flavour stays fresh in your mouth.");
+	output("\n\n<i>“Cheh… Cheo, put ‘em… up here,”</i> she forces in between breaths, her voice strained and high in pitch. You try to take stock of what she’s ordered, only to have a pair of fluffy arms hoist you from your armpits and guides onto the bed.");
+	if (pc.isTaur()) output(" It’s a little bit of a struggle but with some effort, you’re comfortably sat on top.");
+	output(" You shuffle across your side to the gasping Akane and, with a fiddle, your wrist bonds come undone with help from her ausar attendant.");
+	output("\nYou place a hand on top of Akane’s heaving abs, massaging her pale skin with your palm. She turns her head to the side, her glassy, weary gaze meeting yours. You can make out her whispering something to you.");
+	output("\n\n<i>“Oh… h-hey… stay with me, would you…?”</i>");
+	
+	removeButton(2);
+}
+
 public function akanePostSexOptions(activity:String = "TALKED"):void
 {
 	clearMenu();
@@ -1468,13 +1678,16 @@ public function akanePostSexOptions(activity:String = "TALKED"):void
 	//Does activity start with TALKED? If so, disable more talking.
 	var silenceOnly:Boolean = activity.split("_")[0] == "TALKED";
 	
+	//Quest triggerable
 	if (activity == "TALKED_RIVALS" && flags["AKANE_RIVALS_TIMESTAMP"] == undefined)
 	{
 		flags["AKANE_RIVALS_TIMESTAMP"] = GetGameTimestamp();
 	}
 	
-	if (!silenceOnly) addButton(0, "Pillow Talk", akanePillowTalk, undefined, "Pillow Talk", "Communicate, be healthy with your relationships. Might be a good time to uh, get to know her...");
 	IncrementFlag("AKANE_TIMES_" + activity);
+	if (silenceOnly) IncrementFlag("AKANE_TIMES_TALKED");
+		
+	if (!silenceOnly) addButton(0, "Pillow Talk", akanePillowTalk, undefined, "Pillow Talk", "Communicate, be healthy with your relationships. Might be a good time to uh, get to know her...");
 	addButton((silenceOnly ? 0 : 1), "Enjoy Silence", akaneEnjoySilence, undefined, "Enjoy Silence", "Just enjoy each other on an instinctual level.");
 }
 
@@ -1486,7 +1699,7 @@ public function akanePillowTalk():void
 	output("<i>“Chat with me? ");
 	if (flags["AKANE_FUN_VISITS"] == undefined) output("I always find it sweet when lovers lend ears, wouldn’t you agree?");
 	else output("I just want to make this last,");
-	output("” she says softly, idly fidgeting with her dress. She shuffles around and comes to rest on her side while using a palm to support her head.");
+	output("”</i> she says softly, idly fidgeting with her dress. She shuffles around and comes to rest on her side while using a palm to support her head.");
 	output("\n\n<i>“I’d love to,”</i> you say back, a tired smile forming across your face. Your body hasn’t fully calmed down from your latest ‘excursion’ so something relaxing could help...");
 	output("\n\n<i>“Hmmm... then ask me something. I know a bit about you but that’s hardly fair so go on, ask me,”</i> she smiles, her other palm resting upon yours.");
 
@@ -1501,7 +1714,7 @@ public function akanePillowTalk():void
 	addButton(4, "About Host", akaneTalkHost, undefined, "About Host", "It’s kind of fascinating that it remains this under the radar... you only found it because they let you, after all.");
 	addButton(5, "Rivalries", akaneTalkRivals, undefined, "Rivalries", "Surely she must have run-ins with various other groups and syndicates...?");
 
-	if (flags["AKANE_TIMES_TALKED_HISTORY"] != undefined && flags["AKANE_FUN_VISITS"] >= 12 && flags["AKANEQUEST_STAGE"] > 0)
+	if (flags["AKANE_TIMES_TALKED_HISTORY"] != undefined && flags["AKANE_FUN_VISITS"] >= 12 && pcIsPainslut() && flags["AKANEQUEST_STAGE"] > 0)
 		addButton(9, "Us...?", akaneTalkUs, undefined, "Us...?", "She’s allowed you close, she’s shared how she values you and how much she wants you to thrive... but what does it all mean?");
 }
 
@@ -1512,7 +1725,7 @@ public function akaneTalkHer():void
 	
 	if (flags["AKANE_TIMES_TALKED_HER"] == undefined) output("“<i>Tell me about you and who you are first. I know your name and... preferences but that’s it. What’s behind Akane’s mask...?");
 	else output("<i>“Talk about yourself again, I like it when you do that,");
-	output("” you say softly, a look of curiosity on your face. ");
+	output("”</i> you say softly, a look of curiosity on your face. ");
 	if (flags["AKANE_TIMES_TALKED_HER"] == undefined) output("She purses her lips as she tries to think.");
 	else output("You see her mouth <i>“Again?”</i> with a slight furrow in her brow.");
 	
@@ -1522,7 +1735,7 @@ public function akaneTalkHer():void
 	output("\n\n<i>“Fairly sure it’s 47,”</i> comes a low, distant voice from the door.");
 	output("\n\n<i>“Mmm, not as bad as I thought. Time has a habit of leaving you in this line of work,”</i> giggles Akane, brushing her hair from her face. <i>“Almost feels motherly at times, having all these young agents around me and making sure they’re not jumping into frying pans on a daily basis. I wonder if real mothers have ‘that’ sort of feeling...?”</i>");
 
-	if (StatTracking.getStat("pregnancy/total births") != 0) output("\n\nHaving been pregnant, you ask her to clarify what she means.\n\n<i>“Ohh! Hm... that overwhelming sense of worry and pride that bubbles up when I think about them. You know the thing right?”</i>\n\nYou nod, although you’ve no way of knowing if that’s what you’ve experienced.\n\n<i>“So young...”</i> you hear her whisper.");
+	if (StatTracking.getStat("pregnancy/total births") != 0) output("\n\nHaving been pregnant, you ask her to clarify what she means.\n\n<i>“Ohh! Hm... that overwhelming sense of worry and pride that bubbles up when I think about them. You know the thing right?”</i>\n\nYou nod, although you’ve no way of knowing if that’s the same experience.\n\n<i>“So young...”</i> you hear her whisper.");
 
 	output("\n\n<i>“Anyway,”</i> she continues, brushing the thought aside. <i>“I suppose there’s not really a lot to myself aside all this. It’s almost a 24 hour shift in a lot of ways, directing where things go and who faces the wrath of a fist. Even if I don’t have to do the dirty work, still...”</i> - she yawns in between with her mouth covered - <i>“still rather draining. I’m just blessed to have so many lovely boys and girls on the payroll.”</i>");
 	output("\n\nYou ask her about her particular sexual tastes, considering the idea that they seem very personal to her.");
@@ -1721,7 +1934,7 @@ public function akaneTalkUs():void
 	}
 	else
 	{
-		output("\n\n“You know what it would mean if we kept going. You’d leave your spacer life behind and have to adapt to mine. It wouldn’t be yours anymore... and I want you. But I want you to thrive. Y-you don’t need me, our time together has been perfect at every point as is! I...”</i>");
+		output("\n\n<i>“You know what it would mean if we kept going. You’d leave your spacer life behind and have to adapt to mine. It wouldn’t be yours anymore... and I want you. But I want you to thrive. Y-you don’t need me, our time together has been perfect at every point as is! I...”</i>");
 		output("\n\nShe trails off before finishing her thought, her glassy eyes looking lost and fearful.");
 	}
 	
@@ -1734,7 +1947,7 @@ public function akaneWantYouBaybeh():void
 	clearOutput();
 	showAkane(true, true);
 	
-	output("<i>“It’s alright, I want the same too. Existing as our own guilty pleasures,” you say to her, cupping her hand with the two of yours and bringing it up to your face.");
+	output("<i>“It’s alright, I want the same too. Existing as our own guilty pleasures,”</i> you say to her, cupping her hand with the two of yours and bringing it up to your face.");
 	output("\n\nWith a heavy sigh, Akane’s fearful face turns into a smile of relief. Her forehead comes to rest against yours as her shoulders visible relax.");
 	output("\n\n<i>“Good, good... making the better choice for your future. Effhhhfuck, my head... I was so worried! Almost shaking...”</i> she says slowly, half giggling as the moment of truth passes. <i>“D-don’t scare me like that again, you... monster.”</i>");
 	output("\n\nAkane nuzzles your nose to hers, the two of you then settling into a more relaxed mood...");

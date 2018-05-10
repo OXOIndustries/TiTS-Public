@@ -160,7 +160,7 @@
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
 		include "../includes/events/spaceYakuza/spaceYakuza.as";
-		include "../includes/events/akaneQuest.as";
+		include "../includes/events/spaceYakuza/akaneQuest.as";
 
 		//Misc content
 		include "../includes/masturbation.as";

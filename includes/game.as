@@ -1966,6 +1966,9 @@ public function flyTo(arg:String):void
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
+	
+	//Leaving the victim to sort his own shit out when starting the SpaceYakuza questline
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] === 0) flags["SHUKUCHI_TAVROS_ENCOUNTER"] = 1;
 }
 
 public function leaveShipOK():Boolean
@@ -2617,7 +2620,9 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItemByClass(DongDesigner)) moveMinutes *= 2;
-	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
+	if (pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
+	//Getting a beat-down from the mafia slows you down too
+	if (pc.hasStatusEffect("Brutalized")) moveMinutes *= 2;
 	//Things that make you go fastah!
 	//Nogwitch is fastest mount atm.
 	if(pc.accessory is NogwichLeash) moveMinutes = (moveMinutes >= 3 ? Math.floor(moveMinutes/3) : moveMinutes-1);
@@ -2762,7 +2767,12 @@ public function variableRoomUpdateCheck():void
 	// Temp housing
 	if(nurserySpareApptIsOccupied()) rooms["NURSERYI6"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["NURSERYI6"].removeFlag(GLOBAL.OBJECTIVE);
-
+	//Akane & Shukuchi
+	if (akaneCeleritasVeritasAvailable() || akaneLairAvailable()) rooms["110"].addFlag(GLOBAL.NPC);
+	else rooms["110"].removeFlag(GLOBAL.NPC);
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] === 0) rooms["9013"].addFlag(GLOBAL.NPC);
+	else rooms["9013"].removeFlag(GLOBAL.NPC);
+	
 	/* MHENGA */
 	
 	//Bounties

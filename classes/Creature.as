@@ -357,6 +357,22 @@
 				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
 			}
 			
+			//-20% electric, kinetic, +40% lust. maybe rebalance? -lighter
+			if (hasStatusEffect("Tenderized"))
+			{
+				r.kinetic.damageValue -= 20;
+				r.electric.damageValue -= 20;
+				r.drug.damageValue += 40;
+				r.tease.damageValue += 40;
+				r.psionic.damageValue += 40;
+				r.pheromone.damageValue += 40;
+			}
+			//-10% everything
+			if (hasStatusEffect("Brutalized"))
+			{
+				r.add(-10);//TEST
+			}
+			
 			return r;
 		}
 		
@@ -3564,6 +3580,8 @@
 				if(hasPerk("Amazonian Endurance")) energyLoss = false;
 				if(energyLoss) energy(-5);
 			}
+			//Maybe ease up a bit? - lighter
+			if (hasStatusEffect("Sore Tubes")) HP((hasStatusEffect("Blue Balls") ? -20 : -10));
 			minutesSinceCum = 0;
 			timesCum++;
 		}
@@ -5264,6 +5282,8 @@
 			if (hasStatusEffect("Harden")) temp += 1;
 			if (hasPerk("Armor Tweaks")) temp += Math.round(armor.defense * .2);
 			if (hasStatusEffect("Crystal Coated")) temp += 4;
+			//Painslut!
+			if (hasStatusEffect("Painlust")) temp += statusEffectv1("Painlust");
 			if (hasStatusEffect("Burning")) 
 			{
 				temp -= 5;
@@ -5425,6 +5445,7 @@
 			temp += statusEffectv2("Deep Freeze");
 			temp += statusEffectv1("Evasion Boost");
 			temp -= statusEffectv1("Evasion Reduction");
+			temp += statusEffectv2("Fade-cloak");
 			//Nonspecific evasion boost status effect enemies can use.
 			//Now reduced by restraints - 25% per point
 			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);

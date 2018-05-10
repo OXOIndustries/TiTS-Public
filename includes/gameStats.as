@@ -3910,6 +3910,37 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["FUCKED_LERRIS"] != undefined) output2("\n<b>* Lerris, Times Sexed:</b> " + flags["FUCKED_LERRIS"]);
 				variousCount++;
 			}
+			// Akane
+			if (flags["AKANE_VISITS"] != undefined)
+			{
+				output2("\n<b><u>Host Shukuchi</u></b>");
+				output2("\n<b>* Akane:</b> Met her")
+				if (pcIsPainslut()) output2(", Became her <i>Painslut</i>");
+				if (flags["AKANE_FUN_VISITS"])
+				{
+					output2("\n<b>* Akane, Times Sexed:</b> " + flags["AKANE_FUN_VISITS"]);
+					if (flags["AKANE_TIMES_SHOCKED"]) output2("\n<b>* Akane, Times Stimmed:</b> " + flags["AKANE_TIMES_SHOCKED"]);
+					if (flags["AKANE_TIMES_WHIPPED"]) output2("\n<b>* Akane, Times Whipped:</b> " + flags["AKANE_TIMES_WHIPPED"]);
+					if (flags["AKANE_TIMES_FORCED"]) output2("\n<b>* Akane, Times Forced Orgasm Sessions:</b> " + flags["AKANE_TIMES_FORCED"]);
+					if (flags["AKANE_TIMES_RIDDEN"]) output2("\n<b>* Akane, Times Ridden:</b> " + flags["AKANE_TIMES_RIDDEN"]);
+					if (flags["AKANE_TIMES_LICKED"]) output2("\n<b>* Akane, Times Eaten Out:</b> " + flags["AKANE_TIMES_LICKED"]);
+				}
+				if (flags["AKANE_TIMES_TALKED"])
+				{
+					output2("\n<b>* Akane, Times Talked:</b> " + flags["AKANE_TIMES_TALKED"]);
+					output2("\n<b>* Akane, Talked About:</b> ");
+					var akaneTopics:Array = new Array();
+					if (flags["AKANE_TIMES_TALKED_HER"]) akaneTopics.push("Her");
+					if (flags["AKANE_TIMES_TALKED_YOU"]) akaneTopics.push("You");
+					if (flags["AKANE_TIMES_TALKED_MODS"]) akaneTopics.push("Her Mods");
+					if (flags["AKANE_TIMES_TALKED_HOST"]) akaneTopics.push("The Host");
+					if (flags["AKANE_TIMES_TALKED_RIVALS"]) akaneTopics.push("Her Rivals");
+					if (flags["AKANE_TIMES_TALKED_HISTORY"]) akaneTopics.push("Her History");
+					if (flags["AKANE_TIMES_TALKED_US"]) akaneTopics.push("Us");
+					output2(akaneTopics.join(", "));
+				}			
+				variousCount++;
+			}
 			// Residential Deck Stuff!
 			if(flags["AINA_DAY_MET"] != undefined || flags["SEEN_FYN"] == true || flags["MET_SEMITH"] == true || flags["MET_LIAMME"] != undefined || flags["FISI_MET"] != undefined || flags["MET_PAIGE"] != undefined)
 			{
@@ -4018,22 +4049,6 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["ILARIA_PREG_TIMER"] != undefined) output2("\n<b>* Ilaria, Days Pregnant:</b> " + flags["ILARIA_PREG_TIMER"]);
 				if(flags["ILARIA_TOTAL_KIDS"] > 0) output2("\n<b>* Ilaria, Total Kids:</b> " + flags["ILARIA_TOTAL_KIDS"]);
 				variousCount++;
-			}
-			// Akane
-			if (flags["AKANE_VISITS"] != undefined)
-			{
-					output2("\n<b><u>Host Shukuchi</u></b>");
-					output2("\n<b>* Akane:</b> Met her")
-					if (pcIsPainslut()) output2(", Became her <i>Painslut</i>");
-					if (flags["AKANE_FUN_VISITS"])
-					{
-						output2("\n<b>* Akane, Times Sexed:</b> " + flags["AKANE_FUN_VISITS"]); //Is "sexed the right word"?
-						if (flags["AKANE_TIMES_SHOCKED"]) output2("\n<b>* Akane, Times Stimmed:</b> " + flags["AKANE_TIMES_SHOCKED"]);
-						if (flags["AKANE_TIMES_WHIPPED"]) output2("\n<b>* Akane, Times Whipped:</b> " + flags["AKANE_TIMES_WHIPPED"]);
-						if (flags["AKANE_TIMES_FORCED"]) output2("\n<b>* Akane, Times Forced Orgasm Sessions:</b> " + flags["AKANE_TIMES_FORCED"]);
-						if (flags["AKANE_TIMES_RIDDEN"]) output2("\n<b>* Akane, Times Ridden:</b> " + flags["AKANE_TIMES_RIDDEN"]);
-					}
-					variousCount++;
 			}
 			// Nursery!
 			if(flags["USED_NURSERY_COMPUTER"] != undefined || flags["BRIGET_MET"] != undefined)

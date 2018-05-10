@@ -159,6 +159,15 @@ package classes.Engine.Combat
 			}
 		}
 		
+		//lighterfluid added this and he feels bad if he should have added it somewhere else
+		if(attacker != null)
+		{
+			if (attacker.hasStatusEffect("Fade-cloak"))
+			{
+				baseHPDamage.multiply(attacker.statusEffectv3("Fade-cloak")/100.0 + 1);
+			}
+		}
+		
 		//10% damage boost vs Treated
 		//Fen note: No this is bad and it should feel bad.
 		//if(attacker.hasPerk("Chupacabro Slayer") && target.isTreated()) baseHPDamage.multiply(1.1);

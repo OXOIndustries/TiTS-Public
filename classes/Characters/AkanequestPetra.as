@@ -6,8 +6,10 @@ package classes.Characters
 	import classes.Items.Guns.WardenShield;
 	import classes.Items.Melee.Fists;
 	import classes.GameData.CombatManager;
+	import classes.GameData.CombatAttacks;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Interfaces.output;
+	import classes.Items.Melee.PetraWhip;
 	
 	/**
 	 * ...
@@ -16,9 +18,8 @@ package classes.Characters
 	public class AkanequestPetra extends Creature 
 	{
 		
-		public function AkanequestPetra() 
+		public function AkanequestPetra(drop:PetraWhip) 
 		{
-			super();
 			this._latestVersion = 1;
 			this.version = _latestVersion;
 			this._neverSerialize = true;
@@ -33,10 +34,11 @@ package classes.Characters
 			this.isPlural = false;
 			btnTargetText = "Petra"
 			
-			this.meleeWeapon = new Fists();//Change to whip
+			this.meleeWeapon = new PetraWhip();
 			rangedWeapon = new WardenShield();
 			
 			armor = new VoidPlateArmor();
+			this.inventory = [drop];
 			
 			this.physiqueRaw = 40;
 			this.reflexesRaw = 50;
@@ -53,34 +55,35 @@ package classes.Characters
 			this.shieldsRaw = 200;
 			
 			var baseHPResistances:TypeCollection = new TypeCollection();
-			baseHPResistances.psionic.damageValue = -10.0;
-			baseHPResistances.pheromone.damageValue = -10.0;
-			baseHPResistances.burning.damageValue = 1.0;
-			baseHPResistances.kinetic.damageValue = 1.0;
-			baseHPResistances.freezing.damageValue = -25.0;
-			baseHPResistances.electric.damageValue = 1.0;
-			baseHPResistances.corrosive.damageValue = 90.0;
-			this.baseHPResistances = baseHPResistances;
+			baseHPResistances.kinetic.damageValue = 25.0;
+			baseHPResistances.electric.damageValue = 25.0;
+			baseHPResistances.burning.damageValue = -10.0;
+			baseHPResistances.freezing.damageValue = 50.0;
+			baseHPResistances.psionic.damageValue = 1.0;
+			baseHPResistances.drug.damageValue = 1.0;
+			baseHPResistances.pheromone.damageValue = 1.0;
+			baseHPResistances.tease.damageValue = 1.0;
 			
-			this.femininity = 15;
+			this.femininity = 75;
 			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
 			this.hairColor = "black";
-			this.tone = 65;
-			this.thickness = 15;
+			this.tone = 70;
+			this.thickness = 35;
 			
 			this.skinTone = "pale";
 			this.skinFlags = [GLOBAL.FLAG_SMOOTH];
 			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
-			
+			this.eyeType = GLOBAL.TYPE_FELINE;
+			this.earType = GLOBAL.TYPE_FELINE;
 			this.lipMod = 0;
-			this.lipColor = "peach";
+			this.lipColor = "crimson";
 			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = [];
 			
-			this.breastRows[0].breastRatingRaw = 0;
+			this.breastRows[0].breastRatingRaw = 11;
 			this.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 			this.nipplesPerBreast = 1;
-			this.nippleColor = "brown";
+			this.nippleColor = "pink";
 			this.timesCum = 0;
 			this.minutesSinceCum = 9999;
 			this.cocks = new Array();
@@ -91,22 +94,13 @@ package classes.Characters
 			
 			isUniqueInFight = true;
 			_isLoading = false;
-		}
-		
-		public function updateEncounterText():void
-		{
-			var newText:String = "You’re fighting Petra, a slaver executive for the Black Void! Alongside are two of her slaver grunts!";
-			newText += "\n\nThe towering monster of a kaithrit is clad in heavy, tight armor with the black and red design of the Void. She stands well over 6’ tall and is heavily build in muscle if her tight suit is anything to go by. A large pelvic plate hints at a little something else that’s hidden away…";
-			newText += "\nIn her right hand, she carries a tri - whip that glows and crackles in neon blue light and in her left is some sort of hardlight siege-shield. The bulky hexagraphic shield is enough to cover her fully from the front when she crouches.";
-			newText += "\n\nTo her side are two slaver grunts. Although not as defensively equipped as normal Black Void pirates by having lighter plated armor, they all carry aftermarket Stormbull shotguns with obvious aftermarket tinkering.";
-
-			CombatManager.encounterText(newText);
+			
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			if (CombatManager.getRoundCount() == 1) updateEncounterText();
-			
+			var target:Creature = selectTarget(hostileCreatures);
 			var phase:int = 0;
 			if (shieldsRaw <= shieldsMax()/2) ++phase;
 			if (shieldsRaw == 0) ++phase;
@@ -118,34 +112,34 @@ package classes.Characters
 			
 			//WORK ON ACTUAL PROBABILITIES
 			var choice:int = rand([7, 11, 13][phase]);
-			if (choice < 5) entangle(hostileCreatures[0]);
+			if (choice < 5) entangle(target);
 			else if (choice < 8) hunkerDown();
-			else if (choice < 11) basicAttack(hostileCreatures[0]);
-			else if (choice < 12) shieldBash(hostileCreatures[0]);
+			else if (choice < 11) basicAttack(target);
+			else if (choice < 12) shieldBash(target);
 			else overchargeShield();
 		}
 		
-		public function tripleLash(target:Creature):void
+		private function tripleLash(target:Creature):void
 		{
 			output("\n\nPetra would use the triple lash if it were coded!");
 		}
-		public function spiralDevastation(target:Creature):void
+		private function spiralDevastation(target:Creature):void
 		{
 			output("\n\nPetra would use spiral devastation if it were coded!");
 		}
-		public function hunkerDown():void
+		private function hunkerDown():void
 		{
 			output("\n\nPetra would hunker down if it were coded!");
 		}
-		public function entangle(target:Creature):void
+		private function entangle(target:Creature):void
 		{
 			output("\n\nPetra would entangle if it were coded!");
 		}
-		public function shieldBash(target:Creature):void
+		private function shieldBash(target:Creature):void
 		{
 			output("\n\nPetra would use a shield bash if it were coded!");
 		}
-		public function overchargeShield():void
+		private function overchargeShield():void
 		{
 			output("\n\nPetra would overcharge her shields if it were coded!");
 		}

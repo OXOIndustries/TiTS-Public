@@ -1,6 +1,8 @@
 package classes.Characters
 {
 	import classes.Creature;
+	import classes.Engine.Combat.DamageTypes.DamageType;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GLOBAL;
 	import classes.kGAMECLASS;
 	import classes.Engine.Interfaces.output;
@@ -23,6 +25,9 @@ package classes.Characters
 			this.shield = new ReaperArmamentsMarkIIShield();
 			this.shieldsRaw = 150;
 			this.lustRaw = 15;
+			
+			baseHPResistances.freezing.damageValue = -10.0;
+			baseHPResistances.drug.damageValue = -25.0;
 			
 			this.hairColor += " and brown";
 			this.hairLength = 3;
@@ -49,18 +54,34 @@ package classes.Characters
 			btnTargetText = "Ausar Agent";
 			sexualPreferences.setRandomPrefs(5 + rand(3));
 			
-			this.punchySpecial = punchyAusar;
-			
 			this.cocks[0].cType = GLOBAL.TYPE_CANINE;
 			
 			isUniqueInFight = true;
 		}
 		
-		private function punchyAusar(target:Creature):void
+		override protected function punchySpecial(target:Creature):void
 		{
 			output("The agent waves his hand over his face, an invisible field covering him from your view!");
-			//THIS JUST SHOWS THE ICON FOR NOW
-			createStatusEffect("Fade-cloak", 3, 0, 0, 0, false, "DefenseUp", "Evasion increased +80%, damage increased by 50%", true, 0, UIStyleSettings.gShieldColour);
+			if (hasStatusEffect("Fade-cloak")) setStatusValue("Fade-cloak", 1, 3);
+			else createStatusEffect("Fade-cloak", 3, 80, 50, 0, false, "DefenseUp", "Evasion increased +80%, damage increased by 50%", true, 0, UIStyleSettings.gShieldColour);
+		}
+		
+		override public function OnTakeDamage(incomingDamage:TypeCollection):void
+		{
+			super.OnTakeDamage(incomingDamage);
+			for (var i:uint = 0; i < DamageType.NUMTYPES && hasStatusEffect("Fade-cloak") && !hasStatusEffect("Fade-cloak struck"); i++)
+				if (incomingDamage.getType(i).isHPDamage && incomingDamage.getType(i).damageValue > 0)
+					this.createStatusEffect("Fade-cloak struck", 0, 0, 0, 0, true, "", "", true);
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			if (hasStatusEffect("Fade-cloak struck"))
+			{
+				if (hasStatusEffect("Fade-cloak")) removeStatusEffect("Fade-cloak");
+				removeStatusEffect("Fade-cloak struck");
+			}
+			super.CombatAI(alliedCreatures, hostileCreatures);
 		}
 	}
 }

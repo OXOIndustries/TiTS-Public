@@ -2,6 +2,7 @@ package classes.Characters
 {
 	import classes.GLOBAL;
 	import classes.Creature;
+	import classes.Engine.Interfaces.output;
 	import classes.Items.Armor.VoidPlateArmor;
 	import classes.Items.Armor.WeavemailCoat;
 	import classes.Items.Guns.Stormbull;
@@ -9,11 +10,13 @@ package classes.Characters
 	import classes.Items.Melee.Fists;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.combatMiss;
+	import classes.Engine.Combat.applyDamage;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	
 	/**
 	 * ...
-	 * @author justadude
+	 * @author lighterfluid
 	 */
 	public class AkanequestSlaver extends Creature 
 	{
@@ -55,14 +58,14 @@ package classes.Characters
 			this.shieldsRaw = 80;
 			
 			var baseHPResistances:TypeCollection = new TypeCollection();
-			baseHPResistances.psionic.damageValue = -10.0;
-			baseHPResistances.pheromone.damageValue = -10.0;
-			baseHPResistances.burning.damageValue = 1.0;
-			baseHPResistances.kinetic.damageValue = 1.0;
-			baseHPResistances.freezing.damageValue = -25.0;
-			baseHPResistances.electric.damageValue = 1.0;
-			baseHPResistances.corrosive.damageValue = 90.0;
-			this.baseHPResistances = baseHPResistances;
+			baseHPResistances.kinetic.damageValue = 25.0;
+			baseHPResistances.electric.damageValue = 25.0;
+			baseHPResistances.burning.damageValue = -10.0;
+			baseHPResistances.freezing.damageValue = -10.0;
+			baseHPResistances.psionic.damageValue = 1.0;
+			baseHPResistances.drug.damageValue = 1.0;
+			baseHPResistances.pheromone.damageValue = 1.0;
+			baseHPResistances.tease.damageValue = 1.0;
 			
 			this.femininity = 0;
 			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
@@ -95,6 +98,8 @@ package classes.Characters
 			
 			isUniqueInFight = false;
 			_isLoading = false;
+			
+			CombatAttacks.applyBlind(this, 1);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
@@ -103,12 +108,18 @@ package classes.Characters
 			shootMahShotgun(hostileCreatures[0]);
 		}
 		
-		public function shootMahShotgun(target:Creature):void
+		private function shootMahShotgun(target:Creature):void
 		{
-			//output("\n\nThe slaver levels his shotgun at you and fires!");
-			CombatAttacks.SingleRangedAttackImpl(this, target); 
-			//output("\nSomehow, the shot doesn’t land!");
-			//else output("\nYou’re hit with the full blast of the shotgun!");
+			output("The slaver levels his shotgun at you and fires!");
+			if (combatMiss(this, target))
+			{
+				output(" Somehow, the shot doesn’t land!");
+			}
+			else
+			{
+				output(" You’re hit with the full blast of the shotgun!");
+				applyDamage(this.rangedWeapon.baseDamage, this, target, "minimal");
+			}
 		}
 	}
 

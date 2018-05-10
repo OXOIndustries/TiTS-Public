@@ -8,9 +8,9 @@ package classes.Characters
 	import classes.GameData.CombatManager;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Interfaces.output;
-	import classes.Engine.Interfaces.author;
 	import classes.Items.Melee.Fists;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Items.Melee.HardlightDagger;
 	public class ShukuchiAgent extends Creature
 	{
 		//MUST FIX RESISTANCES
@@ -26,11 +26,11 @@ package classes.Characters
 			this.customDodge = " as you swiftly recompose yourself before he takes up another stance.";
 			this.customBlock = " brushes your strike aside by parrying the pivot of your wrists, guaranteeing that it doesn’t make contact!";
 			this.isPlural = false;
-			this.meleeWeapon = new Fists();//Change to dagger
+			this.meleeWeapon = new HardlightDagger();
 			
 			this.armor.longName = "ShukuSuit";
 			this.armor.defense = 0;
-			this.armor.hasRandomProperties = false;
+			this.armor.resistances = new TypeCollection();
 			
 			this.physiqueRaw = 35;
 			this.reflexesRaw = 40;
@@ -46,14 +46,12 @@ package classes.Characters
 			this.HPRaw = this.HPMax();
 			
 			var baseHPResistances:TypeCollection = new TypeCollection();
-			baseHPResistances.psionic.damageValue = -10.0;
-			baseHPResistances.pheromone.damageValue = -10.0;
-			baseHPResistances.burning.damageValue = 1.0;
-			baseHPResistances.kinetic.damageValue = 1.0;
-			baseHPResistances.freezing.damageValue = -25.0;
-			baseHPResistances.electric.damageValue = 1.0;
-			baseHPResistances.corrosive.damageValue = 90.0;
-			this.baseHPResistances = baseHPResistances;
+			baseHPResistances.kinetic.damageValue = 25.0;
+			baseHPResistances.electric.damageValue = 50.0;
+			baseHPResistances.burning.damageValue = -10.0;
+			baseHPResistances.psionic.damageValue = 1.0;
+			baseHPResistances.pheromone.damageValue = 1.0;
+			baseHPResistances.tease.damageValue = 1.0;
 			
 			this.femininity = 15;
 			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
@@ -84,22 +82,22 @@ package classes.Characters
 			
 			isUniqueInFight = false;
 			_isLoading = false;
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
-			author("SoAndSo");
 			var target:Creature = selectTarget(hostileCreatures);
 			
 			if (target == null) return;
 			
 			var choice:int = rand(9);
 			
-			if (CombatManager.getRoundCount() == 0){
+			if (CombatManager.getRoundCount() == 1){
 				punchySpecial(target);
 				return;
 			}
-			if (choice > 3) punchyCutty(target);
+			else if (choice > 3) punchyCutty(target);
 			else if (choice > 1) punchyFlurry(target);
 			else if (choice > 0) punchyFlashy(target);
 			else punchySpecial(target);
@@ -108,25 +106,25 @@ package classes.Characters
 		private function punchyCutty(target:Creature):void
 		{
 			output("An agent swings a blade towards your eyes! ");
-			if (combatMiss(this, target)) output("You duck and twist, dodging the blade and the follow up punch to your ribs.");
+			if (combatMiss(this, target) || blindMiss(this, target, true)) output("You duck and twist, dodging the blade and the follow up punch to your ribs.");
 			else
 			{
 				output("The blade swings past your face, dazzling your senses! In that moment, follow up rib punches rock your side, pushing you back!");
-				applyDamage(new TypeCollection({kinetic: 30}), this, target, "minimal");
-				applyDamage(new TypeCollection({kinetic: 30}), this, target, "minimal");
+				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
+				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
 			}
 		}		
-		private function punchyFlurry(target:Creature):void
+		protected function punchyFlurry(target:Creature):void
 		{
-			output("The agent ducks low, throwing his fist towards your midsection! ");
-			if (combatMiss(this, target)) output("You’re able to avoid this odd maneuver, the agents follow-up punch failing to connect!");
+			output("The agent ducks low, throwing his fist towards your midsection!");
+			if (combatMiss(this, target) || blindMiss(this, target, true)) output(" You’re able to avoid this odd maneuver, the agent's follow-up punch failing to connect!");
 			else
 			{
-				output("His fist makes a hefty impact against your sternum, battering through any defense you have! A kick to the calves, a gut punch and a knife-hilt to the face follow!");
-				applyDamage(new TypeCollection({kinetic: 30}), this, target, "minimal");
-				applyDamage(new TypeCollection({kinetic: 30}), this, target, "minimal");
-				applyDamage(new TypeCollection({kinetic: 30}), this, target, "minimal");
-				applyDamage(new TypeCollection({kinetic: 30}), this, target, "minimal");
+				output(" His fist makes a hefty impact against your sternum, battering through any defense you have! A kick to the calves, a gut punch and a knife-hilt to the face follow!");
+				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
+				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
+				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
+				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
 			}
 		}
 		private function punchyFlashy(target:Creature):void
@@ -139,7 +137,9 @@ package classes.Characters
 				CombatAttacks.applyBlind(target, 2);
 			}
 		}
-		
-		public var punchySpecial:Function;
+		protected function punchySpecial(target:Creature):void
+		{
+			output("\n\n<b>This should <i>not</i> happen.</b> Was punchySpecial() overriden?");
+		}
 	}
 }

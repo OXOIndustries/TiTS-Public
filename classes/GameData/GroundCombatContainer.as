@@ -1181,6 +1181,16 @@ package classes.GameData
 					target.reflexesMod += 5
 				}
 			}
+			
+			//Shukuchi stoof
+			if (target.hasStatusEffect("Fade-cloak"))
+			{
+				target.addStatusValue("Fade-cloak",1,-1);
+				if(target.statusEffectv1("Fade-cloak") < 0)
+				{
+					target.removeStatusEffect("Fade-cloak");
+				}
+			}
 		}
 		
 		public function updateStatusEffects(collection:Array):void

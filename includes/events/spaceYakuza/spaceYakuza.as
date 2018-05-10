@@ -18,10 +18,6 @@
  * SHUKUCHI_EMAIL_TIMER
  * */
 
-import classes.Characters.ShukuchiHuman;
-import classes.Characters.ZilMale;
-import classes.Engine.Combat.DamageTypes.TypeCollection;
-
 //Starts the Akane event chain, for PCs level 7 and above
 public function shukuchiFoxBonus():Boolean
 {
@@ -31,7 +27,7 @@ public function shukuchiFoxBonus():Boolean
 		output("\nBut wait, is there someone in between them…? They - no, he - appears distressed. Some sort of fox-morph.");
 		output("\n\nYou can’t hear what the three figures are saying but you’re certain that this is shady.");
 	
-		addButton(0, "Investigate", shukuchiTavrosEncounter, undefined, "Investigate", "Be the hero the fox needs right now but not the one he deserves!\n\n< b > Warning: </ b > This quest involves getting your [pc.ass] beat up a lot and results in rather specific BDSM fun.\nDon’t expect to go away unscathed.");
+		addButton(0, "Investigate", shukuchiTavrosEncounter, undefined, "Investigate", "Be the hero the fox needs right now but not the one he deserves! <b>Warning:</b> This quest involves getting your [pc.ass] beat up a lot and results in rather specific BDSM fun.\nDon’t expect to go away unscathed.");
 	}
 	else if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] == 0)
 	{
@@ -69,7 +65,6 @@ public function shukuchiTavrosChase():void
 {	
 	//Foxguy will wait, don't worry
 	flags["SHUKUCHI_TAVROS_ENCOUNTER"] = 0;
-	rooms["9013"].addFlag(GLOBAL.NPC);
 	
 	//Chase that cyberninja towards a hair salon. Make your dad proud.
 	moveTo("9015");
@@ -154,9 +149,9 @@ public function shukuchiTavrosTalkFoxman():void
 		output("\n\nWith that window open, you power walk over to the fox and raise your hand to greet him, hoping that he doesn’t see you and freak out.");
 	}
 	
-	output("<i>“Ohh jeez, oh no!”</i> he calls out, wiping his eyes with the back of his paw. “Look, I’m too tired to run, just ask what you need and let me be, alright?");
+	output("<i>“Ohh jeez, oh no!”</i> he calls out, wiping his eyes with the back of his paw. <i>“Look, I’m too tired to run, just ask what you need and let me be, alright?");
 	if (!pcIsLazy) output(" The detective knows everything and that punch was… something else, I tells ya.");
-	output("”\n\nYou try to clarify, only wishing to get the facts straight with the hope of solving this strange incident.");
+	output("”</i>\n\nYou try to clarify, only wishing to get the facts straight with the hope of solving this strange incident.");
 	output("\n\n<i>“Consider me curious and keen,”</i> you add, offering a hand for him to shake. He does so with obvious reluctance, the winded look on his face turning into defeat.");
 	output("\n\n<i>“Might as well come clean then, U.G.C. are useless for this shit, enough for me to trust a random savior at least. So you know how it is in this galaxy, pretty much everything has its price. Little did I know that, as a small-time goods dealer on some backwater station, there are assholes with a vested interest in my ‘safety,’”</i> he begins, leaning his back against the wall. You fold your arms as he talks, occasionally staring him in the eye as he tells his story.");
 	output("\n\n<i>“Now these goods ain’t much, just food and drink not normally sold here, nothing illegal… okay, maybe some ‘grey areas’ but I paid off the right people. Who knew soybean was considered a rarity in this part of space? Anywho, some other people come along, all mysterious and masked like some motherfuckers out of one of them mindless " + (silly ? "vidja gaems" : "vid games") + " I grew out of. They lay down an ultimatum: take this deal or they take my legs,”</i> he sighs, clutching at his orange-red tail meekly. You ask him to continue, determined and patient as you listen.");
@@ -164,13 +159,10 @@ public function shukuchiTavrosTalkFoxman():void
 	output("\n\nHe finishes with his head in his hands, his breathing a little wheezy. You comfort him with a rub on his shoulder, asking him for any other details.");
 	output("\n\n<i>“Appreciated. Uh, details, details… no idea of any personal names, it’s different people each time. Same getup too, whole hood and mask thing. If I didn’t know it was an organic under there, I’d have thought it was androids or somethin’. Anyway, never had any direct confirmation but… I have <b>heard</b> a potential name for the group,”</i> he sighs, pulling at his tail again.");
 	output("\n\n<i>“Host Shukichi. I only heard it the once but it’s like a clan sign or something, iunno. Gotta be useful though, right? It’s not a name I’ve ever heard elsewhere,”</i> he finishes, shrugging his shoulders.");
-	output("\n\n“I’m pretty sure that this isn’t just a Tavros thing, how could it be? My suppliers probably get their own problems, the Host being one of them and with the tech they pool, they gotta be minting it somewhere else.”</i>");
+	output("\n\n<i>“I’m pretty sure that this isn’t just a Tavros thing, how could it be? My suppliers probably get their own problems, the Host being one of them and with the tech they pool, they gotta be minting it somewhere else.”</i>");
 	output("\n\nHe pauses for a moment.");
 	output("\n\n<i>“Ey one more thing, before you go hunting for ghosts: you might be as good as their agents or better but they’ll have their tricks. They ain’t the type to kill but they ain’t the type to let you off easy.”</i>");
 	output("\n\nYou mull it over a bit, taking time to consider the poor fox's ideas. You thank him with another shake, thinking that it would be best not to linger in case this ‘Host’ or anyone else intrudes on your investigations or - indeed - on any other investigators.");
-	
-	//Foxguy doesn't matter anymore. Forever.
-	rooms["9013"].removeFlag(GLOBAL.NPC);
 	
 	addButton(0, "Leave", shukuchiReturnFromFoxman);
 }
@@ -186,7 +178,7 @@ public function shukuchiReturnFromFoxman():void
 //Space jungle japanese crime syndicates
 public function shukuchiMhengaBonus():Boolean
 {
-	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined && flags["SHUKUCHI_MHENGA_ENCOUNTER"] == undefined && hours == 3 && minutes <= 30/* && InCollection(dw, [1, 5])*/)
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined && flags["SHUKUCHI_MHENGA_ENCOUNTER"] == undefined && hours == 3 && minutes <= 30)
 	{
 		output("\n\nThere’s a hooded, diminutive humanoid hanging around outside the space port. At a glance, you’d say a particularly bushy ausar male: a glossy tri-color of white, black, and toffee brown, lean and piston-like in his build. He has sleeveless body armor, all in black, with a short cape and hood. A smooth, featureless orb of a mask covers his features, a lot like…");
 		output("\n\nWait a second.");
@@ -259,7 +251,7 @@ public function shukuchiMhengaAmbush():void
 public function shukuchiMhengaVictory():void
 {
 	author("SoAndSo");
-	if (enemy.HP() == 0)
+	if (enemy.HP() <= 0)
 	{
 		output("The masked assailant slips to his knee, his head bowed low and his chest heaving for air as he struggles to recover from that last hit. He hides his blade, concealing it away as a sign of surrender. Now to get some juice out of him…");
 		flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 1;
@@ -438,7 +430,7 @@ public function shukuchiUvetoVictory():void
 {
 	author("SoAndSo");
 	
-	if (false)
+	if (enemy.lust() >= enemy.lustMax())
 	{
 		flags["SHUKUCHI_UVETO7_ENCOUNTER"] = 1;
 		output("Both agents struggle to hold themselves up after a very physical tussle, using the confines of the alleyway for support. Knowing failure, they both hide their weapons away and push themselves onto one knee.");
