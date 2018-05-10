@@ -1861,7 +1861,7 @@ public function mitziLesboTongueFuckII():void
 	showMitzi(true);
 	author("Fenoxo");
 	output("When your vision clears, Mitzi is sitting on your lap and gently massaging your [pc.chest]. Only a few seconds have passed, but the nearby goblin’s face is somehow cleaned already. You push the slut off and rise up onto your [pc.feet], well and truly sated.");
-	output("\n\n<i>“What should Mitzi do now, [Master]?”</i> The harlot with the too-long tongue asks, licking her lips. <i>“Want another cum?”</i>");
+	output("\n\n<i>“What should Mitzi do now, [pc.Master]?”</i> The harlot with the too-long tongue asks, licking her lips. <i>“Want another cum?”</i>");
 	output("\n\nYou don’t have time to join in on the debauchery here, but you doubt this’ll be the last time you make use of her services.\n\n<i>“Whatever you want to do. I should probably get to work.”</i>");
 	output("\n\nMitzi’s lips puff out in a whorish pout. <i>“Oookay. Mitzi’s gonna go like, eat herself out now. [pc.Master]’s gotten her hooked on pussy!”</i>");
 	processTime(1);
