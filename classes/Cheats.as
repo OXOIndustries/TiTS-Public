@@ -51,7 +51,7 @@
 			}
 			Cheats.OutputStuff(true);
 			kGAMECLASS.flags["MITZI_RESCUED"] = (kGAMECLASS.GetGameTimestamp() - (60*24*8));
-			if(kGAMECLASS.flags["MITZI_RESCUED"] < 0) kGAMECLASS.flags["MITZI_RESCUED"] = 0;
+			//if(kGAMECLASS.flags["MITZI_RESCUED"] < 0) kGAMECLASS.flags["MITZI_RESCUED"] = 0;
 		}
 		public static function XPToLevel():void
 		{
