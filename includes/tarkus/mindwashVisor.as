@@ -368,6 +368,7 @@ public function mindwashSceneList(sourceType:String = "", choices:Array = null):
 				sceneList.push(pumpTheSpy);
 				sceneList.push(invasionOfTheDickSuckers);
 				sceneList.push(cowifiedMindwash);
+				sceneList.push(jezebelMindwash);
 			}
 			if(choices.indexOf("female") != -1)
 			{
@@ -388,6 +389,7 @@ public function mindwashSceneList(sourceType:String = "", choices:Array = null):
 				sceneList.push(pumpTheSpy);
 				sceneList.push(invasionOfTheDickSuckers);
 				sceneList.push(cowifiedMindwash);
+				sceneList.push(jezebelMindwash);
 			}
 			if(choices.indexOf("female") != -1)
 			{
@@ -2818,4 +2820,118 @@ public function CoCSceneEpilogue(cumNum:Number):void
 		}
 	}
 	mindwashNextButtonAndStatAwardsAndClears(cumNum);
+}
+
+
+public function jezebelMindwash():void
+{
+	clearOutput();
+	showName("JEZEBEL'S\nDUNGEON");
+	author("Carol J");
+	var cumNum:Number = 0;
+	output("You’re a fool, you think to yourself through the haze of pleasure and exquisite relief you’ve found between your latest lover’s thighs. A stupid, feckless fool. If a deal like hers had sounded too good to be true, there wasn’t a doubt that it <i>was</i> too good to be true.");
+	output("\n\nBut you’d taken it anyway. You’d made your wager and decided that you were strong enough to weather whatever hex she cast. That you could overcome whatever handicap she saw fit to weigh upon your shoulders. You grunt, empty your balls into the latest slut that sashayed into your path, and thank any gods or goddesses that might be listening that you were wrong.");
+	output("\n\nHow long have you been in here for? It couldn’t be more than a few days, but the fugue of sex and rut dizzy your memory and make the whole blurry mess stretch on for what could be weeks. Maybe it could help you pin down something specific if you think back to how it all began. Probably not, given that you’ll likely end up hilted in some velvet-soft cunt before too long, but you have to at least pretend to struggle against this sinful pleasure.");
+	output("\n\nThe first thing that happened when you stepped into her dungeon was...you pinned down a succubus and fucked a child into her. No! No, no, it had been...Gods, it was so hard to think! You had made your way into the dungeon, and in a puff of sulfur and glittering pink, SHE had appeared. Jezebel, the Queen of Succubi. The vile demon that had captured your beloved and spirited her away to the depths of the netherworld. As beautiful as she was malicious, with a body that weaker men would do anything to lay but a single finger upon.");
+	output("\n\nBut you were stronger than them, and you were stronger than her. Or so you had thought. She dispelled such foolhardy notions within moments of your trespass, and she did so cannily. Your silver armor sent flaking into uselessness, and your sword along with it. In a matter of seconds, Jezebel had rendered you helpless, naked as a babe before her awful majesty. You remember...staring at her tits. Gawking at her milk-bloated udders and begging to suckle at her drooling teats as you fucked her cunt.");
+	output("\n\nNo! No, you have to focus! Gods, but it’s hard to think... You haven’t cum in minutes!");
+	output("\n\nYou remember standing tall in the face of her cowardly tricks, resolute despite her treachery. And you remember an offer.");
+	output("\n\nWhether or not it was the truth, Jezebel was quite candid in revealing her motives. <i>“True love,”</i> she had said, <i>“is rarer than gold and all the more precious for its scarcity.”</i> And to test your devotion for your beloved princess, she posed a challenge: if she could lay but one hex upon you - one tiny little spell - then she would allow you to proceed through her dungeons unmolested. Not just by her, but by all her fell, seductive minions. Not a one of them would lift a finger to impede your progress. If there were to be any detours - and surely there would not be any, given the gravity of your quest - they would be your own. Completely voluntary.");
+	output("\n\nNothing that would hurt you. Nothing that would <i>necessarily</i> stop you. Nothing that would keep you from proceeding and saving your princess. Unless you let it.");	
+	output("\n\nYou had agreed, like a fool, and she laid her silk-smooth hands upon you. Jezebel had cupped your balls, hissed her siren’s spell, and departed with a smirk... leaving you to proceed.");
+
+	processTime(20);
+	pc.lust(50);
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",jezebelMindwashII,cumNum);
+}
+
+public function jezebelMindwashII(cumNum:Number):void
+{
+	clearOutput();
+	showName("JEZEBEL'S\nDUNGEON");
+	author("Carol J");
+	output("It wasn’t until some time had passed that you realized what she’d done to you. Certainly you were no stranger to carnal desire; your vows included many things, but celibacy was not among them. But even if you were used to more...libidinous urges, you weren’t used to them surfacing with such intensity. And certainly not so quickly. Not five minutes had passed before you felt your balls bloat heavier with an unspent load. Nothing unmanageable, but there was a certain uncomfortable fullness to your sack. One that only grew the further you proceeded.");
+	
+	output("\n\nEventually you’d come across a goblin, all voluptuous curves and bared, green skin. Jezebel had told the truth. She hadn’t lifted a finger to stop you, but the impish grin on her beestung lips spoke volumes, and it was so devilishly easy to convince yourself that you needed relief if you were going to concentrate. You laid back, snarled a command, and watched her strut forward, your eyes locked on the sway of wide, child-bearing hips.");
+	
+	output("\n\nWhen she straddled your lap and wriggled her peach of an ass over your naked, throbbing cock, you were practically holding your breath. Waiting for her to drop down, to take your cock in her cunt and milk it dry. Only so you could clear your head, of course. It was important to keep in mind that this was really all for the princess’ sake. When the goblin had slammed her hips down and taken you to the hilt in one wet, sloppy push, you took solace in the fact that you were only going to stuff this little bitch full of stiff, throbbing cock so you could be united once more with your beloved princess. No matter how good a fuck this little green-skinned slut was, she was just a tool to help you get to your one, true love. No matter how fucking <i>good</i> it felt to pump a load of thick, sperm-packed seed into her womb, you were only doing this to clear your head.");
+	
+	output("\n\nYou were doing this for love, you reminded yourself as you cock-slapped the little creampied tease, shivering at the whorish moan that passed her lips in response. Now that your head had cleared - if only a little - you could proceed.");
+	
+	output("\n\nThings get hazier as you retrace your steps in your memory, and it’s difficult not to dwell on that. It’s a mess of rut and sex. Your latest conquest glistening on your shaft did one hell of a job distracting you from the dizzying twists and turns of Jezebel’s dungeon, and before you knew it, you were stiff again, your cock twitching with every step. It was torturous, and even if you knew that it was just the effects of Jezebel’s spell, it didn’t make it any easier to shake off the mounting need to empty your balls somewhere hot, wet, and tight...again.");
+
+	output("\n\nSo thank goodness you’d run into that enchantress. Buxom and beautiful, she’d gone to her knees in seconds when you commanded her to, and even if you didn’t quite have the energy to slamfuck her until her womb was bloated with your cum, she had a few tricks of her own. A few tricks that you were skeptical about...until the urge to cum grew too strong to resist. She mouthed arcane incantations for what felt like hours as she kneaded the pillowy flesh of her tits up and down against your shaft, but finally she finished and planted a doting kiss on the tip of your cockhead. The black of her lipstick seemed to tingle, but soon after that, her spell took hold of your member and...well, did exactly as she said it would.");
+	
+	output("\n\nA bigger cock meant that you could cum more and more, she’d purred up at you as you groaned your frustration. If your balls were too backed up for you to think clearly, all you needed was a bigger cock to pump out that seed, mm? The idea had made frightening sense to you, and it was that pernicious thought that made you accept her offer.");
+	processTime(30);
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",jezebelMindwashIII,cumNum);
+}
+public function jezebelMindwashIII(cumNum:Number):void
+{
+	clearOutput();
+	showName("JEZEBEL'S\nDUNGEON");
+	author("Carol J");
+	output("So there you were, stumbling forward, your cock sagging under its own weight, your balls swollen past the size of your fist, your quest to rescue the princess but an afterthought in the swirling haze of your fuckdrunk lust. You kept assuring yourself that you’d look for the princess...as soon as you cleared your head. Thank goodness Jezebel’s dungeon had so many curvaceous sluts to help you unload your spunk. Goblins and succubi to fuck pregnant, enchantresses to further enhance your bloated cock...");
+	output("\n\nAfter a few hours of rut and sex and debauchery, you stagger into the penultimate chamber, the blighted throne room of the succubus who cursed you with this insatiable libido. Your mind is still your own, you reassure yourself, and the moments of clarity you achieve after one of Jezebel’s monsters milks your cock dry are enough to help you power through the curse she laid upon you. True, they’re shorter and shorter. True, it feels far better to let her seductive minions further enhance your manhood and worship it, as they so eagerly say it deserves.");
+	output("\n\nIf you’re being honest with yourself, the sight of three freshly creampied goblins mashing their tits up against your twitching fuckrod and wringing out every last drop of spunk you have is...pleasant, to say the least. But that’s not why you’re here! You’re here to.");
+	output("\n\nTo, uh.");
+	output("\n\nTo save your beloved! Or something. Jezebel kidnapped someone, and you have to save her, and that’s why you let her curse your prick. More like <i>“bless,”</i> really. You think back fondly to the last round you had with one of the devil-worshiping enchantresses roaming the halls. The dumb bitch was so blinded by her own corrupt desires that she thought you were an <i>incubus</i>. Absurd. Still, that made it easier to bend her over and rape a child into her, so you’re hardly complaining.");
+	output("\n\nThe thought of how many fatherless children you’re going to leave behind in this miserable dungeon brings a smirk to your face, and you wonder if it wouldn’t be worth it to wander the halls a bit longer to make sure each of Jezebel’s slutty little temptresses have a full womb.");
+	output("\n\nThe thought sends your cock twitching, and even if sagging under its own ponderous weight, you can still enjoy the lightheadedness that an erection brings now. Fucking hell, but you can’t focus on your quest with your cock throbbing like this! Not to mention your balls churning with even more thick, virile cum. The door to the princess’ chambers is right ahead of you, behind Jezebel’s cursed throne...but you have to take care of this first.");
+	output("\n\nAnd it looks like Jezebel is prepared to lend a helping hand. The queen of succubi flutters up behind you, giggling as you reach out and clumsily grope at her, snarling that you’re going to bend her over and make her your bitch as soon as you catch her. She feigns sympathy and shakes her head with a pout. Floating just out of reach, Jezebel coaxes you forward with every bounce of her breasts and every sensuous sway of her hips...");
+	output("\n\n...until the strain proves too much to bear. With your bloated cock taking up so much blood, you’re remarkably easy to exhaust now. You have to rest for a moment. Have to sit down and catch your breath before you finally grab the dumb whore and impale her on your manhood. No other seat in sight, you stumble to Jezebel’s throne and collapse back into it, panting.");
+	processTime(30);
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",jezebelMindwashIV,cumNum);
+}
+
+public function jezebelMindwashIV(cumNum:Number):void
+{
+	clearOutput();
+	showName("JEZEBEL'S\nDUNGEON");
+	author("Carol J");
+	output("It’s comfortable. The sudden sensation of lips pressing kisses up against your cockhead, even moreso. You look down, only to find two succubi tenderly licking and suckling at the bulging tip of your penis, almost meek in their worship. And why wouldn’t they be? Your cock is magnificent, a monument unto itself, the kind of fuckpillar that has bitches cumming around it the instant you hilt yourself in them...assuming they can take your length. Still, it hardly matters if you can gape a monster’s cunt with your cock when they’re so eager to worship you with their mouths and breasts instead.");
+	output("\n\nYou lean back in the throne and let your eyes sink shut. Your lips curl up in a satisfied smile, and your two adherents earn a dollop of precum for their worship, which they lap up eagerly.");
+	output("\n\nYou hear someone giggle, and it’s enough to make you crack one eye open. When you see the source of the laughter, your manhood gives an involuntary twitch. Goblins. More of them, creeping into the throne room. Drawn by the scent of your musk, no doubt. Stupid little cock-obsessed whores are practically begging to be stuffed full of cock. Soon you shove the two succubi aside in favor of a quintet of busty, green-skinned sycophants, and they repay your favor by mashing their tits up against your cock, all of them, all at once, and cooing their praise up at you with wide, adoring eyes.");
+	output("\n\nLife is good, you decide, but...you can’t help but wonder if you’ve forgotten something.");
+	output("\n\nWhatever. You’ll remember when you cum. All you have to do is bust a fat, sloppy nut in one of these dumb, submissive whores, and you’ll have a clear head. You can stop whenever you want. You’re not weak like they are. After all, how could you be? You’re not the one on your knees. You’re the one in the throne, commanding your slaves to pleasure you. You’re the one who gets to cum whenever he fucking wants. You’re the one strong enough to overcome the curse Jezebel cast. It was designed to stop you, right? To trick you into giving up your quest or whatever. Joke’s on her, you finished it with flying colors! You got to her throne room and claimed your place as the king. You brought her forces to heel with nothing more than your magnificent prick and their own empty-headed urges.");
+	output("\n\nYou almost feel sorry for these stupid whores, utterly incapable of resisting the compulsion to fuck and cum.");
+	output("\n\nYour thoughts are hazy, but you’ve come to enjoy the dizziness that accompanies a goblin’s cunt around your prick. Or an enchantress’ tits wrapped around your shaft. Or a succubus’ lips suckling at your cockhead. The only problem is that split-second of stark ennui after you finish emptying your load into whatever hole you’ve decided to fuck. That little instant of confusion, as if there’s something to do besides rut and breed and cum.");
+	output("\n\nBut your enchantresses are quick to assure you that even that will fade in time. It’ll fade even faster if you let them further enhance your body and mind, and once you finish gulping down one of your goblin’s tinctures - you knew you had to try at least ONE when you heard it would make you grown a second cock - you tell them to do so.");
+	output("\n\nTrue love, you vaguely remember hearing, is rarer than gold and all the more precious for its scarcity. But who needs love? Especially when it means you’re shackled to the same woman for the rest of your life. Fuck love. You don’t need that. Not when you have a harem of women to worship you, to breed themselves on your manhood, to shower you in praise and ensure you don’t have to do anything but cum.");
+	output("\n\n...");
+	processTime(40);
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",jezebelMindwashV,cumNum);
+}
+
+public function jezebelMindwashV(cumNum:Number):void
+{
+	clearOutput();
+	showName("JEZEBEL'S\nDUNGEON");
+	author("Carol J");
+	output("Every now and then, Jezebel flutters into your throne room, amused for some reason. But the uppity cunt won’t put out, so you just growl and wave her away. What good is a woman who won’t let herself get bred? Stupid bitch should just fuck off and let you rape more children into your goblins and succubi.");
+	output("\n\nThen again, one of your enchantresses had an interesting idea the other day. True, your slaves had bodies made to wring men dry, but...more of the same grew boring after a while. So why not send some of your troops to kidnap a princess or two? You’d practically bred an army already. Why not capture some human fuckmeat to rape an heir into?");
+	output("\n\nThe thought brings a smile to your lips. You like the sound of that.");
+	clearMenu();
+	addButton(0,"Next",CoCSceneEpilogue,cumNum);
 }
