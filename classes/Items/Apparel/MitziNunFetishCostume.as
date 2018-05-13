@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a nun fetish costume";
 			
-			this.tooltip = "This parody of a nun's habit comes complete with a plunging neckline and massively tapered skirt that all but displays the wearer's genitals.";
+			this.tooltip = "This parody of a nun’s habit comes complete with a plunging neckline and massively tapered skirt that all but displays the wearer’s genitals.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

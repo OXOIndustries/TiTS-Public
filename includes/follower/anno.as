@@ -2218,7 +2218,7 @@ public function annoFollowerFirstTimeOnMhenga():void
 	output("As you dock at Mhen’ga, you feel a pair of familiar, fluffy arms wrap around your neck and shoulders as a big pair of");
 	if (anno.armor is AnnosCatsuit) output(" latex");
 	else output(" cloth");
-	output("-clad tits press into your back. <i>“Hey, isn’t this... yeah, Mhen’ga!”</i> Anno says, watching the jungle sprawl out through your viewscreen before slowly giving way to the town of Esbeth. ");
+	output("-clad tits press into your back. <i>“Hey, isn’t this... yeah, Mhen’ga!”</i> Anno says, watching the jungle sprawl out through your viewscreen before slowly giving way to the town of Esbeth.");
 	
 	if (flags["TOLD_TO_ANNO_ABOUT_SYRI_RELATIONSHIP"] == undefined)
 	{
@@ -2244,17 +2244,13 @@ public function annoFollowerFirstTimeOnMhenga():void
 	if (flags["MET_SYRI"] != undefined)
 	{
 		output("\n\n<i>“Steele!?”</i> Syri says, trying to look past Anno on the holo-cam. <i>“Hey! How’s it going, Steele?”</i>");
-		
 		output("\n\n<i>“Could be worse,”</i> you say, stepping into frame. <i>“How’re you?”</i>");
-		
 		output("\n\nShe grins. <i>“Good! Long time no see. Yeah, you two should definitely come by the bar. I’ve got some free time right now, if you want.”</i>");
 	}
 	else
 	{
 		output("\n\n<i>“Vic’s kid? Seriously, Anno... man, that’s fucked up. I know he just passed away, but...”</i>");
-	
 		output("\n\n<i>“But [pc.heShe]’s right here,”</i> Anno says, cutting her sister off. <i>“Do you want us to stop by or don’t you?”</i>");
-	
 		output("\n\nSyri shrugs. <i>“Sure, I guess. I’m hanging out at the bar right now - it’s just a couple of blocks east of the spaceport; you can’t miss it.”</i>");
 	}
 	
@@ -2277,7 +2273,7 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	showName("ANNO &\nSYRI");
 	showBust(annoBustDisplay(), syriBustDisplay());
 
-	output("<i>“Hey! Over here!”</i> you hear, just as soon as you and Anno walk into <i>“Burt’s Badass Meadhall.”</i> Syri’s sitting at the bar next to two empty stools and three beers, a great big grin on her face. ");
+	output("<i>“Hey! Over here!”</i> you hear, just as soon as you and Anno walk into “Burt’s Badass Meadhall.” Syri’s sitting at the bar next to two empty stools and three beers, a great big grin on her face. ");
 	
 	if (flags["MET_SYRI"] != undefined)
 	{
@@ -2286,12 +2282,8 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	else
 	{
 		output("\n\n<i>“Hey, Sis!”</i> Syri says, grabbing Anno and pulling her sister into a fierce hug. They might be the same size, but Syri seems to tower over her slighter sister, wrapping the nerdy scientist in her muscular arms. ");
-	
 		output("\n\nShe turns to you with a wolfish grin that shows off her pointed teeth. <i>“So you’re the one who pulled my sister off that rust bucket on Tarkus, huh? Name’s Syri,”</i> she says, giving you a vigorous handshake.");
-	
 		output("\n\n<i>“Steele. [pc.name] Steele,”</i> you answer, returning it before she ushers you and Anno into the empty seats.");
-		
-		flags["MET_SYRI"] = 1;
 	}
 	
 	output("\n\n<i>“God damn, it’s been ages,”</i> Syri says after a long swig of her beer. <i>“How’ve you been, Anno?”</i>");
@@ -2308,8 +2300,9 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 	}
 	else output("\n\n");
 	output("<i>“Good to hear. I’ve been worried about you,");
-	if (flags["TARKUS_DESTROYED"] == undefined) output(" all the way off on Tarkus. Frontier’s no place for a squishy lil’ scientist.”</i>");
-	else output(" especially when you</i> didn’t write after the whole fucking planet blew itself up.”");
+	if (flags["TARKUS_DESTROYED"] == undefined) output(" all the way off on Tarkus. Frontier’s no place for a squishy lil’ scientist.");
+	else output(" especially when you</i> didn’t write after the whole fucking planet blew itself up.");
+	output("”</i>");
 	
 	output("\n\n<i>“Hey,”</i> Anno protests, scowling at her sister. <i>“I can take care of myself, you know.”</i>");
 	
@@ -2352,6 +2345,7 @@ public function annoFollowerFirstTimeOnMhengaPartII():void
 
 	currentLocation = "BURT'S MAIN HALL";
 
+	if (flags["MET_SYRI"] == undefined) flags["MET_SYRI"] = 1;
 	flags["ANNOxSYRI_EVENT"] = 1;
 
 	clearMenu();

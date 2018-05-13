@@ -1796,8 +1796,8 @@ public function displayReahaInventory():void
 	output("<b><u>Reaha’s Available Clothing:</u></b>\n");
 	for(var x:int = 0; x < reaha.inventory.length; x++)
 	{
-		if(x >= REAHA_INV_SLOT_MAX) output("<span class='bad'>" + StringUtil.upperCase(reaha.inventory[x].description) + "</span>\n");
-		else output(StringUtil.upperCase(reaha.inventory[x].description) + "\n");
+		if(x >= REAHA_INV_SLOT_MAX) output("<span class='bad'>" + StringUtil.upperCase(reaha.inventory[x].description, false) + "</span>\n");
+		else output(StringUtil.upperCase(reaha.inventory[x].description, false) + "\n");
 	}
 	if(reaha.inventory.length == 0) output("Nothing. <i>Reaha has no" + (reaha.isNude() ? "": " extra") + " clothes!</i>\n");
 }

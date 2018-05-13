@@ -1,3 +1,6 @@
+import flash.utils.getDefinitionByName;
+import flash.utils.getQualifiedClassName;
+
 /*
 Mitzi the CoC/TiTS Goblin Cumslut - By Fenoxo Fenfenfenfenfenfnefnefnefnenfenfnefnwsmlfnsjkfhasdfjkhsbnj
 Hybrid TiTS/CoC character (Same Sex Scenes/Personality, but with minor adjustments for setting and a different TiTS intro).
@@ -29,6 +32,8 @@ Latex pink dress
 Pink, heart-shaped eyes
 TiTS Intro Stuff
 */
+
+public var MITZI_INV_SLOT_MAX:int = 55;
 
 public function mitziIsCrew():Boolean
 {
@@ -404,11 +409,12 @@ public function mitziCurrentDress():ItemSlotClass
 
 public function mitziEquip(arg:ItemSlotClass):Boolean
 {
-	if(mitzi.armor.longName == arg.longName) return true;
+	var cname:String = getQualifiedClassName(arg);
+	if(getQualifiedClassName(mitzi.armor) == cname) return true;
 	for(var x:int = 0; x < mitzi.inventory.length; x++)
 	{
 		//Found the item in her inventory
-		if(mitzi.inventory[x].longName == arg.longName)
+		if(getQualifiedClassName(mitzi.inventory[x]) == cname)
 		{
 			//Add armor to inventory.
 			mitzi.inventory.push(mitzi.armor);
@@ -422,34 +428,89 @@ public function mitziEquip(arg:ItemSlotClass):Boolean
 	return false;
 }
 
+public function displayMitziInventory():void
+{
+	output("<u>Mitzi has the following outfits available:</u>");
+	
+	if(mitzi.inventory.length <= 0)
+	{
+		output("\n<i>Mitzi currently has no outfits in her wardrobe!</i>");
+		return;
+	}
+	
+	output("\n(<b>Worn</b>) " + StringUtil.upperCase(mitzi.armor.description, false));
+	for(var x:int = 0; x < mitzi.inventory.length; x++)
+	{
+		if(x >= MITZI_INV_SLOT_MAX) output("\n<span class='bad'>" + StringUtil.upperCase(mitzi.inventory[x].description, false) + "</span>");
+		else if(getQualifiedClassName(mitzi.armor) != getQualifiedClassName(mitzi.inventory[x]))
+		{
+			output("\n" + StringUtil.upperCase(mitzi.inventory[x].description, false));
+		}
+	}
+}
+public function dressMitziUpMenu():void
+{
+	clearMenu();
+	
+	addButton(0,"Wear Item",dressMitziUpApproach,undefined,"Wear Item","Have Mitzi wear an item from her wardrobe.");
+	
+	if(pc.inventory.length > 0) addButton(1,"Give Item",giveMitziANewItem,undefined,"Give Item","Give Mitzi a piece of clothing to wear around. As she typically avoids underwear, it will have to be an armor slot item.");
+	else addDisabledButton(1,"Give Item","Give Item","You have nothing in your inventory to give to Mitzi!");
+	
+	if(pc.inventory.length < pc.inventorySlots()) addButton(2,"Take Item",takeMitziItem,undefined,"Take Item","Take and item from Mitzi’s wardrobe.");
+	else addDisabledButton(2,"Take Item","Take Item","Your inventory is too full for this!");
+	
+	if(mitzi.inventory.length > 0) addButton(3,"Destroy Item",destroyMitziItem,undefined,"Destroy Item","Destroy an item from Mitzi’s wardrobe.");
+	
+	addButton(14,"Back",approachCrewMitzi,true);
+}
+
 public function giveMitziANewItem():void
 {
 	clearOutput();
 	showMitzi();
-	var buttonAdj:Number = 0;
+	var buttons:int = 0;
+	var x:int = 0;
+	
 	output("What would you like to give to Mitzi?");
 	clearMenu();
-	addButton(14,"Back",dressMitziUpApproach);
-	for(var x:int = 0; x < pc.inventory.length; x++)
+	addButton(14,"Back",dressMitziUpMenu);
+	
+	for(x = 0; x < pc.inventory.length; x++)
 	{
-		if(x == 14) buttonAdj = 1;
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", dressMitziUpMenu);
+			buttons++;
+		}
+		
 		if((pc.inventory[x].type == GLOBAL.ARMOR || pc.inventory[x].type == GLOBAL.CLOTHING))
 		{
-			if(pc.inventory[x].sexiness >= 5)
-			{
-				addItemButton(x+buttonAdj,pc.inventory[x],giveMitziANewItemForReal,x);
-			}
-			else addItemDisabledButton(x+buttonAdj, pc.inventory[x], null, "<b>This isn’t sexy enough for Mitzi.");
+			var cname:String = getQualifiedClassName(pc.inventory[x]);
+			
+			if(pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) addItemDisabledButton(buttons, pc.inventory[x], null, "You cannot drop this item.");
+			else if(pc.inventory[x] is GooArmor) addItemDisabledButton(buttons, pc.inventory[x], null, "Mitzi is unable to wear this!");
+			else if(cname == getQualifiedClassName(mitzi.armor)) addItemDisabledButton(buttons, pc.inventory[x], null, "Mitzi is already wearing one of these!");
+			else if(mitzi.hasItemByClass(getDefinitionByName(cname) as Class)) addItemDisabledButton(buttons, pc.inventory[x], null, "Mitzi already has one of these.");
+			else if(pc.inventory[x].sexiness >= 5) addItemButton(buttons,pc.inventory[x],giveMitziANewItemForReal,x);
+			else addItemDisabledButton(buttons, pc.inventory[x], null, "<b>This isn’t sexy enough for Mitzi.</b>");
 		}
-		else addItemDisabledButton(x+buttonAdj, pc.inventory[x], null, "<b>Mitzi won’t wear this type of item.");
+		else addItemDisabledButton(buttons, pc.inventory[x], null, "<b>Mitzi won’t wear this type of item.</b>");
+		buttons++;
+		
+		if(pc.inventory.length > 14 && (x + 1) == pc.inventory.length)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", dressMitziUpMenu);
+		}
 	}
 }
 
-public function giveMitziANewItemForReal(arg:Number):void
+public function giveMitziANewItemForReal(arg:int):void
 {
 	clearOutput();
 	showMitzi();
-	output("You give Mitzi your " + pc.inventory[x].longName + ".");
+	output("You give Mitzi your " + pc.inventory[arg].longName + ".");
 	output("\n\n<i>“Holyshitreally?”</i> Mitzi hugs your [pc.leg] crushingly tight. Little bimbo tears streak down her cheeks. <i>“You’re the best, [pc.Master]. Mitzi is going to wear this for you right now!”</i>\n\nUnsurprisingly, she makes it look hot as hell.");
 	//Shove that shit in Mitzi's inventory
 	mitzi.inventory.push(pc.inventory[arg]);
@@ -468,21 +529,42 @@ public function dressMitziUpApproach():void
 	showMitzi();
 	output("You inform Mitzi that you’re going to pick out something for her to wear.");
 	output("\n\n<i>“Oooh, really? Mitzi has like, the best [pc.Master]! Who else would care enough to pretty up [pc.hisHer] favorite sex-toy?”</i>");
-	output("\n\n<u>Mitzi has the following outfits available:</u>");
-	output("\n(<b>Worn</b>) " + StringUtil.upperCase(mitzi.armor.description));
+	output("\n\n");
+	displayMitziInventory();
+	
 	processTime(1);
+	
 	clearMenu();
 	addItemButton(0, mitzi.armor, mitziKeepCurrentOutfit, mitzi.armor);
-	var slotAdjustment:Number = 1;
-	for(var x:int = 0; x < mitzi.inventory.length; x++)
+	
+	var buttons:int = 1;
+	var x:int = 0;
+	var invLimit:int = mitzi.inventory.length;
+	if(invLimit >= MITZI_INV_SLOT_MAX) invLimit = MITZI_INV_SLOT_MAX;
+	
+	for(x = 0; x < invLimit; x++)
 	{
-		if(x == 13) slotAdjustment++;
-		output("\n" + StringUtil.upperCase(mitzi.inventory[x].description));
-		addItemButton(x+slotAdjustment, mitzi.inventory[x], mitziPCPickOutfit, mitzi.inventory[x]);
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", dressMitziUpMenu);
+			buttons++;
+		}
+		
+		if(getQualifiedClassName(mitzi.armor) != getQualifiedClassName(mitzi.inventory[x]))
+		{
+			addItemButton(buttons, mitzi.inventory[x], mitziPCPickOutfit, mitzi.inventory[x]);
+			buttons++;
+		}
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", dressMitziUpMenu);
+		}
 	}
-	addButton(x+slotAdjustment,"Give Item",giveMitziANewItem,undefined,"Give Item","Give Mitzi a piece of clothing to wear around. As she typically avoids underwear, it will have to be an armor slot item.");	
+	
 	output("\n\nWhat will you have her wear?");
-	addButton(14,"Back",approachCrewMitzi,true);
+	addButton(14,"Back",dressMitziUpMenu);
 }
 
 public function mitziKeepCurrentOutfit(arg:ItemSlotClass):void
@@ -519,6 +601,88 @@ public function mitziPCPickOutfit(arg:ItemSlotClass):void
 	showMitzi();
 	clearMenu();
 	addButton(0,"Next",approachCrewMitzi,true);
+}
+
+public function takeMitziItem():void { dropMitziItem(); }
+public function destroyMitziItem():void { dropMitziItem(true); }
+public function dropMitziItem(destroy:Boolean = false):void
+{
+	clearOutput();
+	showMitzi();
+	output("What item do you want to " + (!destroy ? "take back" : "destroy") + "?");
+	output("\n\n");
+	displayMitziInventory();
+	
+	clearMenu();
+	var buttons:int = 0;
+	var x:int = 0;
+	var invLimit:int = mitzi.inventory.length;
+	if(invLimit >= MITZI_INV_SLOT_MAX) invLimit = MITZI_INV_SLOT_MAX;
+	for(x = 0; x < invLimit; x++)
+	{
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", dressMitziUpMenu);
+			buttons++;
+		}
+		
+		if(destroy && mitzi.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) {
+			addItemDisabledButton(buttons, mitzi.inventory[x], null, "You cannot destroy this item.");
+		}
+		else if( (mitzi.inventory[x] is MitzisDress)
+		||	(mitzi.inventory[x] is SchoolgirlCostume)
+		||	(mitzi.inventory[x] is MitzisYogaBikini)
+		||	(mitzi.inventory[x] is MitzisLibrarianOutfit)
+		||	(mitzi.inventory[x] is TransparentZipsuit)
+		||	(mitzi.inventory[x] is MitzisSuccBikini)
+		||	(mitzi.inventory[x] is MitziCowFetishCostume)
+		||	(mitzi.inventory[x] is MitziNunFetishCostume)
+		) {
+			addItemDisabledButton(buttons, mitzi.inventory[x], null, "Mitzi is not willing to part with this outfit!");
+		}
+		else addItemButton(buttons, mitzi.inventory[x], mitziPCDropOutfit, [x, destroy]);
+		buttons++;
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", dressMitziUpMenu);
+		}
+	}
+	
+	addButton(14,"Back",dressMitziUpMenu);
+}
+public function mitziPCDropOutfit(arg:Array):void
+{
+	var idx:int = arg[0];
+	var item:ItemSlotClass = mitzi.inventory[idx];
+	var destroy:Boolean = arg[1];
+	
+	clearOutput();
+	author("Jacques00");
+	
+	if(!destroy)
+	{
+		output("<i>“You want this back already?”</i> Mitzi asks, holding up the chosen outfit. <i>“Like, I was totally going to try this out sometime...”</i>");
+		output("\n\nMitzi puts the outfit on an extra hangar and hands it over. <i>“Don’t make me regret returning this to you, okay?”</i>");
+		output("\n\n");
+		
+		itemCollect([item]);
+		mitzi.inventory.splice(idx, 1);
+	}
+	else
+	{
+		output("<i>“Aw... such a shame to throw something so sexy away...”</i> Mitzi says, holding up the outfit as her large eyes glisten in the light.");
+		output("\n\nThe goblin girl sadly flattens out the piece and drops it into the trash chute. <i>“At least my wardrobe is a little less cramped now.”</i>");
+		
+		output("\n\n<b>Mitzi removed " + item.description + " from her wardrobe.<\b>");
+		mitzi.destroyItemByReference(item);
+	}
+	
+	processTime(2);
+	showMitzi();
+	clearMenu();
+	addButton(0,"Next",dressMitziUpMenu);
 }
 
 //Mitzi crew bonus and approach screen is clothing dependant:
@@ -634,14 +798,15 @@ public function approachCrewMitzi(back:Boolean = false):void
 		else
 		{
 			output("Mitzi pokes a breast. <i>“Mitzi’s titties are getting bigger thanks [pc.Master]. And so milky!”</i> She squeezes a nipple to release a ");
-			if(mitzi.milkQ() < 400) output("spray");
-			else if(mitzi.milkQ() < 5000) output("gush");
+			var milkQ:Number = mitzi.milkQ();
+			if(milkQ < 400) output("spray");
+			else if(milkQ < 5000) output("gush");
 			else output("eruption");
 			output(" of creamy goblin milk. <i>“See? Mitzi’s a fuck-toy and a milk-cow now, and she </i>still<i> remembers her name. All because [pc.Master] is so generous.”</i> She shakes her breasts back and forth. <i>“So you can like, make her a stupid fuck-cow as whenever you want, pretty much. Mitzi will love whatever you do to her big, dumb cow-tits. They’re [pc.Master]’s to milk!”</i>");
 			output("\n\n<b>");
-			if(mitzi.milkQ() < 2000) output("Mitzi is lactating even harder now.");
-			else if(mitzi.milkQ() < 5000) output("Mitzi is basically a walking milk-fountain now.");
-			else if(mitzi.milkQ() < 30000) output("Mitzi is capable of soaking you in milk at a moment’s notice.");
+			if(milkQ < 2000) output("Mitzi is lactating even harder now.");
+			else if(milkQ < 5000) output("Mitzi is basically a walking milk-fountain now.");
+			else if(milkQ < 30000) output("Mitzi is capable of soaking you in milk at a moment’s notice.");
 			else output("Mitzi has reached the absolute limits of milkiness. Any more and she’d break the universe.");
 			output("</b> Any time you want to reduce her to a simpering milk-slut, she’s game. Of course she’s going to make a mess even if you don’t now.");
 		}
@@ -802,7 +967,7 @@ public function mitziCrewMenu():void
 	addButton(1,"Talk",talkToMitzi);
 	if(pc.lust() >= 33) addButton(2,"Sex",mitziCrewSexApproach);
 	else addDisabledButton(2,"Sex","Sex","You aren’t turned on enough for this.");
-	addButton(3,"Dress Her",dressMitziUpApproach,undefined,"Dress Her","Help Mitzi pick out her wardrobe.");
+	addButton(3,"Dress Her",dressMitziUpMenu,undefined,"Dress Her","Help Mitzi pick out her wardrobe.");
 	if(flags["CREWMEMBER_SLEEP_WITH"] != "MITZI") addButton(5,"Sleep With",sleepWithToggleMitzi,undefined,"Sleep With","Invite Mitzi to share your bed and get you off in the mornings.");
 	else addButton(5,"NoSleepWith",sleepWithToggleMitzi,undefined,"No Sleep With","Kick Mitzi out of bed so she won’t wake you up with orgasms in the morning.");
 	if(flags["MITZI_FAV_DRUG"] != undefined)
@@ -920,10 +1085,11 @@ public function mitziMorningSuccOrWhatever():void
 	if(select == 1)
 	{
 		output("A slowly fading wave of pleasure accompanies you all the way back to the waking world. As your [pc.hips] slide back down onto the mattress, you blink the sleep from your eyes and look down to discover Mitzi’s lips easing slowly off of your length. She opens wide to show you the [pc.cumGem] lake in her mouth before swallowing");
-		if(pc.cumQ() >= 1000) 
+		var cumQ:Number = pc.cumQ();
+		if(cumQ >= 1000) 
 		{
 			output(", then rubs her");
-			if(pc.cumQ() >= 4000) output("massively ");
+			if(cumQ >= 4000) output("massively ");
 			output("inflated belly with a happy little sigh");
 		}
 		output(". <i>“");
@@ -941,9 +1107,9 @@ public function mitziMorningSuccOrWhatever():void
 		else output("Yum-yum-yummy-in-slut-tummy! Mmmph! That’s like, the best breakfast in the uni...univ...world! Let Mitzi know if the cum might overflow, ‘kay?");
 		output("”</i>");
 		output("\n\nYou’re a little too tired to do much but nod and send the ");
-		if(pc.cumQ() >= 4000) output("cum-bubble of a goblin");
-		else if(pc.cumQ() >= 1000) output("cum-inflated goblin");
-		else if(pc.cumQ() >= 250) output("cum-stuffed goblin");
+		if(cumQ >= 4000) output("cum-bubble of a goblin");
+		else if(cumQ >= 1000) output("cum-inflated goblin");
+		else if(cumQ >= 250) output("cum-stuffed goblin");
 		else output("cum-hungry goblin");
 		output(" on her way. What a way to start a day!");
 		pc.lust(100);
@@ -1231,8 +1397,9 @@ public function giveMitziGush():void
 		output("leaky mammaries");
 		if(mitzi.canLactate())
 		{
-			if(mitzi.milkQ() < 400) output(" until a thin stream of milk shoots out");
-			else if(mitzi.milkQ() < 2000) output(" until streams of milk spray out");
+			var milkQ:Number = mitzi.milkQ();
+			if(milkQ < 400) output(" until a thin stream of milk shoots out");
+			else if(milkQ < 2000) output(" until streams of milk spray out");
 			else output(" until a river of creamy goblin-milk pours out");
 		}
 		output(", Mitzi bounces with glee.");
@@ -1330,6 +1497,7 @@ public function fuckMitziMilkies(x:int):void
 	else output("one");
 	output(" up, too divided between Mitzi’s fecund swells to properly see to the satisfaction of your aching member. Keeping up with your breathing is");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nFortunately, Mitzi’s sluttified, cock-hungry body is more than capable of seeing to your needs without a single conscious thought. She moos, low and loud, as her hips gyrate, confidently swinging up, angling forward, and pressing hard against your [pc.cockHead " + x + "]. Those lust-gilded goblin lips ");
 	if(pc.cockVolume(x) < mitzi.vaginalCapacity(0) * 0.25) output("open right up to swallow your [pc.cock " + x + "] whole, sheathing you in the liquid furnace of her loins. Overactive muscles clamp down to squeeze you in a slutty embrace. Mitzi’s elastic channel may be capable of handling the biggest, baddest cocks on the block, but it feels all too happy to wrap you up and squeeze until the cum can’t help but spurt out of you.");
 	else if(pc.cockVolume(x) < mitzi.vaginalCapacity(0) * 0.5) output("gently part to slowly swallow down your [pc.cock " + x + "], enjoying the sensuous friction of being filled by a decent-sized dick, sheathing you in the liquid furnace of Mitzi’s loins. Hidden muscles gently squeeze and stroke, careful not to contract too hard, lest they impede your pleasure. Her pussy is built for sex, able to please any dick - big, small, or the perfect size to curl her toes.");
@@ -1344,8 +1512,8 @@ public function fuckMitziMilkies(x:int):void
 	else
 	{
 		output("slam hard into your [pc.cock " + x + "] once, twice... and give way to the tunnel of liquid-gold pleasure that is her clutching, straining quim. You can see the outline of your dick bulging her belly; proud and hard and oh so ready to dump ");
-		if(pc.cumQ() >= 8000) output("gallons of seed into her womb");
-		else if(pc.cumQ() >= 1000) output("a gallon of seed");
+		if(cumQ >= 8000) output("gallons of seed into her womb");
+		else if(cumQ >= 1000) output("a gallon of seed");
 		else output("an enormous cumshot into her womb");
 		output(" as it plows forward an inch at a time. Mitzi’s eyes roll back, but her cunt still feebly works you, taut muscles vibrating like overtuned guitar strings around your manhood as they vainly try to squeeze down on a length big enough to split lesser women in half.");
 	}
@@ -1368,13 +1536,13 @@ public function fuckMitziMilkies(x:int):void
 	output("\n\nAs if you could hold out when confronted with that kind of encouragement. Guided by the goblin-cunt’s silken touches, you hilt yourself deep");
 	if(pc.hasKnot(x)) output(", knot ballooning to lock you in place,");
 	output(" and shoot the first pulse of your load.");
-	if(pc.cumQ() < 25) output(" It’s relatively weak, all things told, but you give it all you’ve got regardless, spurting dollop after dollop until you feel sore and dizzy. That’ll happen from too many orgasms without rest, yet who could blame you? With a horny goblin slut like Mitzi on tap, you’re surprised you had any [pc.cum] at all in your [pc.balls].");
-	else if(pc.cumQ() < 250) output(" It feels like her pussy is swallowing up every drop, wicking away your [pc.cum] before you can feel it splash back around your girth. Mitzi’s altered body <i>milks</i> out your seed just as you milked her. Before long, you feel absolutely drained and a little bit dizzy.");
+	if(cumQ < 25) output(" It’s relatively weak, all things told, but you give it all you’ve got regardless, spurting dollop after dollop until you feel sore and dizzy. That’ll happen from too many orgasms without rest, yet who could blame you? With a horny goblin slut like Mitzi on tap, you’re surprised you had any [pc.cum] at all in your [pc.balls].");
+	else if(cumQ < 250) output(" It feels like her pussy is swallowing up every drop, wicking away your [pc.cum] before you can feel it splash back around your girth. Mitzi’s altered body <i>milks</i> out your seed just as you milked her. Before long, you feel absolutely drained and a little bit dizzy.");
 	else 
 	{
 		output(" It feels incredible, flooding her pussy. At first, Mitzi’s modded uterus seems to devour your offering, but by the end of the first [pc.cum]-spurt, you can feel the slick warmth backwashing back out around your [pc.cockHead " + x + "]. And your successive squirts only make it hotter and wetter, thoroughly creampying the goblin with a load too big for her to handle.");
-		if(pc.cumQ() >= 6000) output(" She whimpers when her belly rises up, inflated by the sheer size and force of your load, but they aren’t sounds of pain - quite the opposite. Mitzi clearly adores you pumping her middle up with seed. Green-skinned hands slide over the milk-drizzled dome as you stuff her cum-pregnant.");
-		if(pc.cumQ() >= 15000) output(" When high-pressure jets spray out around your [pc.knot " + x + "], she shudders and blacks out from the bliss. It would seem even bimbos can cum so hard they black out.");
+		if(cumQ >= 6000) output(" She whimpers when her belly rises up, inflated by the sheer size and force of your load, but they aren’t sounds of pain - quite the opposite. Mitzi clearly adores you pumping her middle up with seed. Green-skinned hands slide over the milk-drizzled dome as you stuff her cum-pregnant.");
+		if(cumQ >= 15000) output(" When high-pressure jets spray out around your [pc.knot " + x + "], she shudders and blacks out from the bliss. It would seem even bimbos can cum so hard they black out.");
 		output(" By the time you run dry, you’re winded and dizzy.");
 	}
 	output("\n\nFlopping yourself in between her drooling tits for a rest seems like a good idea");
@@ -1518,8 +1686,9 @@ public function mitziMilkTitfuck():void
 	else output("into her tits");
 	output(".");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nYou cum. How could you not? Pleasure races through your [pc.cocks], ");
-	if(pc.cumQ() < 100) output("spurting");
+	if(cumQ < 100) output("spurting");
 	else output("spraying");
 	output(" out ");
 	if(pc.cocks[x].cLength() <= 14) output("into Mitzi’s milk-glazed mounds");
@@ -1531,7 +1700,7 @@ public function mitziMilkTitfuck():void
 		else output(", oozing out of both ends of her cleavage");
 	}
 	output(", and still, you keep fucking. You fuck Mitzi");
-	if(pc.cumQ() >= 1000) output(" until she’s more spunk than goblin, your seed splattered in more places than you could ever keep track of");
+	if(cumQ >= 1000) output(" until she’s more spunk than goblin, your seed splattered in more places than you could ever keep track of");
 	else output(" until you run out of spunk and stir it around in her milk with your [pc.cock " + x + "]");
 	output(". Her tongue slithers out to collect dabs of it to swallow.");
 	output("\n\n<i>“Mooooo,”</i> Mitzi moans after the first mouthful, going back for seconds. <i>“Mmmm good moo.”</i>");
@@ -1797,8 +1966,9 @@ public function fuckMitziJustLikeInCoC():void
 	if(!pc.isCrotchExposed()) output("[pc.crotchCover]");
 	else output("things");
 	output(" and consider your options. Mitzi is still laying there");
-	if(pc.cumQ() >= 3000) output(" with a cum-pregnant belly");
-	if(pc.cumQ() >= 250) output(", spooge dripping down her thighs from her overfilled snatch");
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 3000) output(" with a cum-pregnant belly");
+	if(cumQ >= 250) output(", spooge dripping down her thighs from her overfilled snatch");
 	output(". She’s slowly rousing back to consciousness, but you should probably get on with your day.");
 	pc.orgasm();
 	clearMenu();
@@ -2035,8 +2205,9 @@ public function quickieTittyGobbotitfuck():void
 	output("\n\nYou tremble a little bit. You didn’t expect she’d have your [pc.cocks] so hard so fast, and you certainly didn’t expect she’d have your hips quivering and ready to thrust.");
 	output("\n\nMitzi moves to the next stage of her tittyfuck while you’re still trying to come to grips with the way her tongue curls and presses on the sensitive spot below your [pc.cockHead " + x + "]. She expertly drags her jugs down, bouncing them off your crotch in order to slide them back up without a second of downtime. Fuck, this greenskin knows how to make a [pc.guyGirl] blow his load!");
 	output("\n\nYou can feel the pleasure spasms in your gut starting already, and she’s only been touching your [pc.cocks] for thirty seconds or so! Mitzi mischievously meets your gaze and works her breasts faster, wetly slapping them against your [pc.hips] to a regularly building rhythm. By the time you begin to twitch and moan, her voluptuous tits are a blur of green around your [pc.cocks], but when you start to erupt, she slows to match the orgasmic throbs running through your body, milking you for every drop.");
+	var cumQ:Number = pc.cumQ();
 	//Low cum
-	if(pc.cumQ() < 100) output("\n\nHer lips never leave your tip; she swallows every drop with the kind of pleased expression that can only come from experiencing something extremely fulfilling.");
+	if(cumQ < 100) output("\n\nHer lips never leave your tip; she swallows every drop with the kind of pleased expression that can only come from experiencing something extremely fulfilling.");
 	//High cum
 	else output("\n\nShe tries to keep her lips glued to your tip, her throat gulping noisily in an attempt to swallow every drop of your gushing cum, but she just can’t keep up. The volume of spermy fluid pushes her off your [pc.cockBiggest], throwing a tremendously thick rope across her face. She dazedly drools spunk from her purple-painted lips while you coat her hair and face in a mask. Somehow, she looks extremely fulfilled.");
 	//Multidick, no new PG
@@ -2052,7 +2223,7 @@ public function quickieTittyGobbotitfuck():void
 	output(" and [pc.eachCock] bulges obscenely, unsure if it should wilt or start shooting a whole ‘nother load.");
 
 	output("\n\nLucky for you, you manage to stumble back before she has you ready to go again. Mitzi bats her ");
-	if(pc.cumQ() >= 100) output("cummy ");
+	if(cumQ >= 100) output("cummy ");
 	output("eyelashes at you and pushes a stray droplet of spooge past her puffy cocksuckers, swallowing noisily.");
 	processTime(10);
 	pc.orgasm();
