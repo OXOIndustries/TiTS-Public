@@ -1527,7 +1527,7 @@ public function fedQuestRadioSet():void
 		output("\n\n<i>“Uh, no, no, that’s alright. We, uh, have a fuel leak here! Hit a gas line. Give us a few minutes to patch it up!”</i>");
 		output("\n\nThe voice pauses again. <i>“You’re not Ellira. What have you done with my daughter!?”</i>");
 		output("\n\nYou sputter, looking out the window towards an approaching armored truck thundering down the street. Guess she’s coming to visit.");
-		output("\n\n<i>“Bye mom!”</i> you laugh, and blast the console.");
+		output("\n\n<i>“Bye, mom!”</i> you laugh, and blast the console.");
 		output("\n\nBetter get ready for your royal audience!");
 	}
 	else
