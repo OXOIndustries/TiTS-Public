@@ -492,6 +492,21 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/mirian.png", mimeType = "image/png")]
 		public var Bust_MIRIAN:Class;
 		public var Bounds_MIRIAN:Rectangle = new Rectangle(92, 0, 70, 70);
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi.png", mimeType = "image/png")]
+		public var Bust_MITZI_PINK_DRESS:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_school.png", mimeType = "image/png")]
+		public var Bust_MITZI_SCHOOLGIRL:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_gym.png", mimeType = "image/png")]
+		public var Bust_MITZI_YOGAPANTS:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_librarian.png", mimeType = "image/png")]
+		public var Bust_MITZI_LIBRARIAN:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_succubus.png", mimeType = "image/png")]
+		public var Bust_MITZI_BIKINI:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_cow.png", mimeType = "image/png")]
+		public var Bust_MITZI_COW:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/mitzi_nude.png", mimeType = "image/png")]
+		public var Bust_MITZI_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/myrna.png", mimeType = "image/png")]
 		public var Bust_MYRNA:Class;
@@ -1236,6 +1251,21 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mirian.png", mimeType = "image/png")]
 			public var Full_MIRIAN:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi.png", mimeType = "image/png")]
+			public var Bust_MITZI_PINK_DRESS:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_school.png", mimeType = "image/png")]
+			public var Bust_MITZI_SCHOOLGIRL:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_gym.png", mimeType = "image/png")]
+			public var Bust_MITZI_YOGAPANTS:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_librarian.png", mimeType = "image/png")]
+			public var Bust_MITZI_LIBRARIAN:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_succubus.png", mimeType = "image/png")]
+			public var Bust_MITZI_BIKINI:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_cow.png", mimeType = "image/png")]
+			public var Bust_MITZI_COW:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/mitzi_nude.png", mimeType = "image/png")]
+			public var Bust_MITZI_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrna.png", mimeType = "image/png")]
 			public var Full_MYRNA:Class;
