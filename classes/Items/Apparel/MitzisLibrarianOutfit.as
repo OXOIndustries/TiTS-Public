@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a sexy librarian outfit, complete with wide-rimmed glasses";
 			
-			this.tooltip = "This outfit combines a scandalously short skirt with sheer vest and completely ornamental glasses. It's the sort of costume you'd find laying around a porn set. It's brazen sexuality is its only redeeming quality.";
+			this.tooltip = "This outfit combines a scandalously short skirt with sheer vest and completely ornamental glasses. It’s the sort of costume you’d find laying around a porn set. It’s brazen sexuality is its only redeeming quality.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

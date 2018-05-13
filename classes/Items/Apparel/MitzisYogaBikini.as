@@ -22,7 +22,7 @@ package classes.Items.Apparel
 			
 			this.shortName = "YogaBik";
 			
-			this.longName = "sheer yoga pants with a slinky white bikini top";
+			this.longName = "yoga pants and bikini top";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

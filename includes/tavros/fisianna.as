@@ -1014,6 +1014,7 @@ public function oralFisi(fromMenu:Boolean = false):void
 	if (!fromMenu) fisiPrurience(-5);
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
+	if(x < 0 && pc.hasCock()) x = rand(pc.cocks.length);
 	//Randomize between penile and vaginal variants if PC has both.
 	var cockOrCunt:int = -1;
 	if (x >= 0 && pc.hasVagina()) cockOrCunt = rand(2);
@@ -2027,6 +2028,7 @@ public function sexyCuddlesWithFisiI():void
 	showFisi(2);
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
+	if(x < 0 && pc.hasCock()) x = rand(pc.cocks.length);
 	//Randomize between penile and vaginal variants if PC has both.
 	var cockOrCunt:int = -1;
 	if (x >= 0 && pc.hasVagina()) cockOrCunt = rand(2);
