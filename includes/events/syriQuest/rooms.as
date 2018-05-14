@@ -39,6 +39,46 @@ public function syriQuestInitRooms():void
 	var planetName:String = "PLANET: UVETO VII";
 	var systemName:String = "SYSTEM: SIRETTA";
 	
+	//dummy rooms for intro
+	rooms["AKD C21"] = new RoomClass(this);
+	rooms["AKD C21"].roomName = "HAKON\nOFFICES";
+	//rooms["AKD C21"].description = "desc";
+	rooms["AKD C21"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD C21"].planet = planetName;
+	rooms["AKD C21"].system = systemName;
+	rooms["AKD C21"].southExit = "AKD C23";
+	rooms["AKD C21"].addFlag(GLOBAL.INDOOR);
+	rooms["AKD C21"].addFlag(GLOBAL.NPC);
+
+	rooms["AKD C23"] = new RoomClass(this);
+	rooms["AKD C23"].roomName = "HAKON\nOFFICES";
+	//rooms["AKD C23"].description = "desc";
+	rooms["AKD C23"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD C23"].planet = planetName;
+	rooms["AKD C23"].system = systemName;
+	rooms["AKD C23"].northExit = "AKD C21";
+	rooms["AKD C23"].southExit = "AKD C25";
+	rooms["AKD C23"].addFlag(GLOBAL.INDOOR);
+
+	rooms["AKD C25"] = new RoomClass(this);
+	rooms["AKD C25"].roomName = "\nHANGAR";
+	//rooms["AKD C25"].description = "desc";
+	rooms["AKD C25"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD C25"].planet = planetName;
+	rooms["AKD C25"].system = systemName;
+	rooms["AKD C25"].northExit = "AKD C23";
+	rooms["AKD C25"].addFlag(GLOBAL.INDOOR);
+	rooms["AKD C25"].addFlag(GLOBAL.SHIPHANGAR);
+
+	rooms["AKD C27"] = new RoomClass(this);
+	rooms["AKD C27"].roomName = "\nHOVERCRAFT";
+	//rooms["AKD C27"].description = "desc";
+	rooms["AKD C27"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD C27"].planet = planetName;
+	rooms["AKD C27"].system = systemName;
+	rooms["AKD C27"].addFlag(GLOBAL.INDOOR);
+
+
 	rooms["AKD K31"] = new RoomClass(this);
 	rooms["AKD K31"].roomName = "ENTRANCE";
 	rooms["AKD K31"].description = "You're standing in the entranceway to the Akkadi research facility. It's dark, sterile grey metal on the walls, ceiling, and floors, illuminated by ";
@@ -47,6 +87,7 @@ public function syriQuestInitRooms():void
 		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("nothing but the faint light of your Codex");
 		else output("red emergency lights");
 		output(". Ausari words are sprayed on the wall to your left in big, blocky letters: AKKADI RESEARCH & DEVELOPMENT GROUP, IMC. UVETO RIFT DIVISION. Under those is inscribed, 'Restricted Access. Authorized Personnel Only.'\n\nSouthwards are the huge metal access doors, leading back outside to the Glacial Rift. Ahead, northwards, is a short hallway that leads up to an intersection.");
+		if (flags["SYRIQUEST_POWER_STATE"] == 2) syriQuestAkkadiBaseSecurityRobotsTrigger();
 	};
 	rooms["AKD K31"].planet = planetName;
 	rooms["AKD K31"].system = systemName;
@@ -172,7 +213,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD K19"] = new RoomClass(this);
 	rooms["AKD K19"].roomName = "\nHELIPAD";
 	rooms["AKD K19"].description = "";
-	rooms["AKD K19"].runOnEnter = function():void{author("Savin")};
+//	rooms["AKD K19"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD K19"].planet = planetName;
 	rooms["AKD K19"].system = systemName;
 	rooms["AKD K19"].southExit = "AKD K21";
@@ -250,7 +291,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD E11"] = new RoomClass(this);
 	rooms["AKD E11"].roomName = "STAFF\nROOM";
 	rooms["AKD E11"].description = "The promised 'Staff Room' isn't much more than a locker room, with small stalls for private changing, a restroom, and a sliding glass door on the north wall. The glass is stained just enough that nothing can be seen through it.";
-	rooms["AKD E11"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD E11"].runOnEnter = syriQuestAkkadiBaseStaffRoom;
 	rooms["AKD E11"].planet = planetName;
 	rooms["AKD E11"].system = systemName;
 	rooms["AKD E11"].northExit = "AKD E9";
@@ -261,7 +302,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 //Play the first time the PC enters E9 Showers *if* the PC hasn't resolved Valden's encounter. Else, just basic room description.
 	rooms["AKD E9"] = new RoomClass(this);
 	rooms["AKD E9"].roomName = "\nSHOWERS";
-	rooms["AKD E9"].description = "The Akkadi facility's showers are a small affair, with a half dozen tile cubicles each sealed off by nothing more than a sheer, largely transparent curtain. It's much better lit than the rest of the facility has been, thanks to all the aromatic candles that have been arranged around the perimeter. A light smell of roses and wine permeates the air{ fucked Cmdr: , mixed with the linger scent of sex and cum}.";
+	//rooms["AKD E9"].description = "";
 	rooms["AKD E9"].runOnEnter = syriQuestAkkadiBaseShowers;
 	rooms["AKD E9"].planet = planetName;
 	rooms["AKD E9"].system = systemName;
@@ -331,13 +372,16 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD Q13"] = new RoomClass(this);
 	rooms["AKD Q13"].roomName = "RESEARCH HALL\nCHECKPOINT";
 	rooms["AKD Q13"].description = "You're standing in a standard-issue corporate security checkpoint, the kind you've passed through a million times in the past. There's a three-row scanner column to detect weapons and contraband connected to a guard post where someone can monitor the comings and goings. Right now, though, it's occupied by a masturbating milodan scientist; the woman's still face-down, ass-up on the ground and driving her fingers into her twat.\n\nTo the south is a large circular plaza dominated by a very fake looking palm tree. There's several doors leading off of the plaza into the major labs.";
-	rooms["AKD Q13"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD Q13"].runOnEnter = function():void{
+		if (flags["MET_TORRA"] == undefined) syriQuestAkkadiBaseCheckPoint();
+	};
 	rooms["AKD Q13"].planet = planetName;
 	rooms["AKD Q13"].system = systemName;
 	rooms["AKD Q13"].southExit = "AKD Q15";
 	rooms["AKD Q13"].westExit = "AKD O13";
 	rooms["AKD Q13"].moveMinutes = 1;
 	rooms["AKD Q13"].addFlag(GLOBAL.INDOOR);
+	rooms["AKD Q13"].addFlag(GLOBAL.NPC);
 
 	rooms["AKD Q15"] = new RoomClass(this);
 	rooms["AKD Q15"].roomName = "RESEARCH DEPT.\nPLAZA";

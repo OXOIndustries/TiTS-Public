@@ -4,6 +4,7 @@ public function SQDEBUG():void
 	addButton(0,"AKD K31",SQDEBUGAKDK31);
 	addButton(1,"AKD C15",SQDEBUGAKDC15);
 	addButton(2,"AKD K15",SQDEBUGAKDK15);
+	addButton(6,"Torra Fight",syriQuestAkkadiBaseCheckPoint);
 }
 
 public function SQDEBUGAKDK31():void

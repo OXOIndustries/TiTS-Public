@@ -3,14 +3,18 @@
  * SYRIQUEST_STATE						1 = run into Syri at the station
  * 										2 = Syri told PC her plan
  * 										3 = PC accepted plan
- * SYRIQUEST_LOCK_BYPASS				1 = hacked, 2 = failed
+ * 										// remember to lock the shower scene once the quest has progressed to far
+ * SYRIQUEST_LOCK_BYPASS				-1 = failed at hacking, 1 = hacked, 2 = stealthed
  * SYRIQUEST_POWER_STATE				0 = off, 1 = on, 2 on (but too high)
  * SYRIQUEST_ELEVATOR_STATE				0 = nothing, 1 = entered elevator, 2 = unlocked lab access
  * SYRIQUEST_RESOLUTION					-1 = never accepted the quest
  * SYRIQUEST_SYRI_ONAHOLE				undefined = never found it, 1 = found it, 2 = gave it to Syri
  * SYRIQUEST_POST_GAME_TALK_PENIS		1 = talked about Valden, 2 = talked about Syris cock, 3 = talked about Syris cock sleeve
  * SYRIQUEST_POST_GAME_TALK_LOVE		1 = told her love her, 2 = stay friends
- * MET_ALYRU							meet Commander Alyru Schora
+ * MET_SCHORA							meet Commander Alyru Schora
+ * SCHORA_SEXED							1 = treat her right, 2 treat her bad
+ * MET_TORRA							meet Torra (and fucked her)
+ * SYRIQUEST_AKKADI_BASE_STEPS
 */
 
 //Ask Savin about:
@@ -49,18 +53,44 @@ public function showMyrraAndSyri(nude:Boolean = false):void
 	showBust(myrraBustDisplay(nude),syriBustDisplay(nude));
 }
 
-public function alyruBustDisplay(nude:Boolean = false):String
+//Commander Alyru Schora
+public function schoraBustDisplay(nude:Boolean = false):String
 {
-	var sBust:String = "ALYRU";
+//	var sBust:String = "SCHORA";
+	var sBust:String = "USHAMEE";
 	if(nude) sBust += "_NUDE";
 	return sBust;
 }
 
-public function showAlyru(nude:Boolean = false):void
+public function showCommanderSchora(nude:Boolean = false):void
 {
-	if (flags["MET_ALYRU"] == 1) showName("\nALYRU");
+	if (flags["SCHORA_SEXED"] != undefined) showName("\nSCHORA");
+	else if (flags["MET_SCHORA"] == 1 && flags["SYRIQUEST_LOCK_BYPASS"] >= 1) showName("COMMANDER\nSCHORA");
 	else showName("NAKED\nWOMAN");
-	showBust(alyruBustDisplay(nude));
+	showBust(schoraBustDisplay(nude));
+}
+
+//Torra, Assistant Researcher
+public function torraaBustDisplay(nude:Boolean = false):String
+{
+//	var sBust:String = "TORRA";
+	var sBust:String = "MILODAN_PRIESTESS";
+	if(nude) sBust += "_NUDE";
+	return sBust;
+}
+
+public function showTorra(nude:Boolean = false):void
+{
+//	showName("\nTORRA");
+	showName("ASSISTANT\nRESEARCHER");
+	showBust(torraaBustDisplay(nude));
+}
+
+public function showAkkadiSecBots():void
+{
+	showName("SECURITY\nROBOTS");
+//	showBust("SECURITY_ROBOTS");
+	showBust("DROID_SECURITY");
 }
 
 public function syriQuestInitialEncounter():Boolean {
@@ -280,6 +310,7 @@ public function syriQuestInitialTalkValden():void {
 	output("\n\n<i>“You're right,”</i> she answers.");
 	output("\n\nSilence follows for a long, long moment. Finally, Syri continues, <i>“I know. It was a shitshow. Hardest few days of my life. But Valden got me through it alive. Got a lot of people through it alive. And those Akkadi bastards repay him by turning him into a god-damn guinea pig! It's bullshit!”</i>");
 	output("\n\n”</i>I'm alive today because of his leadership. If he's still alive, I'd never forgive myself for not trying to help him.”</i>");
+
 	processTime(5);
 	syriQuestGoNowMenu();
 	addDisabledButton(0, "Valden");
@@ -298,6 +329,7 @@ public function syriQuestInitialTalkAkkadi():void {
 	output("\n\nYou nod. <i>“So let's talk about their operation here on Uveto...”</i>");
 	output("\n\n<i>“Right. Akkadi has a research station way north-east of Irestead, out on the very edge of this huge rift between two glaciers. It's in the middle of absolutely nowhere. They use it to do their most sensitive research, well away from prying eyes... and any kind of regulation or oversight. The documents I got make it look almost like a blacksite, the kind of place where they dissect the real nasty aliens out there.”</i>");
 	output("\n\nThat doesn't sound good for Valden...");
+
 	processTime(10);
 	syriQuestGoNowMenu();
 	addDisabledButton(1, "Akkadi");
@@ -320,6 +352,7 @@ public function syriQuestInitialTalkTransporter():void {
 	if (pc.isBimbo()) output("\n\n<i>“So'd you, like, bang her and stuff?”</i>");
 	else if (pc.isBro()) output("\n\n<i>“So you tap that ass or what?”</i>");
 	if (pc.isBimbo() || pc.isBro()) output("\n\n<i>“I don't like to fuck and tell,”</i> Syri laughs, <i>“But let's just say I got to try out my new equipment on the medbay bed. More than once.”</i>");
+
 	processTime(15);
 	syriQuestGoNowMenu();
 	addDisabledButton(2, "Transporter");
@@ -402,9 +435,13 @@ public function syriQuestMeetOutsideElevator():void {
 	output("\n\n<i>“...What?”</i>");
 	output("\n\nSyri grins and plants her hands on her hips. <i>“So the best way I could figure to get you inside the company's office was to set up a job interview. It's an excuse to get inside long enough for me to sneak you into one of the containers we're taking up to the research complex.”</i>");
 	output("\n\nThis can only end well. You tell Syri to lead on, falling in behind her sweeping tail as she guides you out into the searing cold of the planet's surface. It's a blessedly short walk through the narrow, snow-swept alleys between the squat Irestead homes and businesses west of the government building. Whether it's for warmth or just companionship, Syri wraps an arm around your waist and pulls you against herself. She gives you a little smile, and you feel her tail curling around your [pc.leg].");
-	output("\n\nThe contractor's office is only a few blocks away, but {even with your heat belt} you're shivering all the same by the time you arrive at the steps leading up to a square, one-floor office. A flickering holographic sign reading '<i>Hakon's Industrial Innovations, LLC</i>' sits above the door, alongside an animated image of a flexing, bearded huskar male with a hardhat and a toolbox in both hands.");
+	output("\n\nThe contractor's office is only a few blocks away, but ");
+	if (pc.hasHeatBelt()) output("even with your heat belt ");
+	output("you're shivering all the same by the time you arrive at the steps leading up to a square, one-floor office. A flickering holographic sign reading '<i>Hakon's Industrial Innovations, LLC</i>' sits above the door, alongside an animated image of a flexing, bearded huskar male with a hardhat and a toolbox in both hands.");
 	output("\n\n Syri swipes an ID card across a reader next to the sliding glass-pane doors and ushers the both of you inside.");
-	processTime(5);
+
+	moveTo("AKD C21");
+	processTime(45+rand(30));
 	clearMenu();
 	addButton(0,"Next",syriQuestJobInterview);
 }
@@ -456,6 +493,7 @@ public function syriQuestJobInterviewSerious():void {
 	output("\n\nWhen the interview's finally over, the huskar H.R. girl compiles all the notes she's taken and tabs the terminal closed, returning her attention to you with a broad smile. <i>“Okey-dokey! I think that'll about do us. See, wasn't so bad! You'll want to talk to the shift boss about setting up your payment deposits, but I'm gonna go ahead and get you started today, if that's alright. You can ask him if you can start today, but usually we wait till the start of the week for new employees. Since you'll be sharing a supervisor, I'm sure Ms. Dorna can take you right to him before she heads out for her shift.”</i>");
 	output("\n\n<i>“Sounds good,”</i> Syri says, jumping up and flicking out the sides of her coat. <i>“C'mon, [pc.name], I'll introduce you.”</i>");
 	output("\n\nYou bid your farewells to Myrra and hop up to follow your guide. <i>“Stay safe out there!”</i> Myrra calls after you as the door slides shut.");
+
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",syriQuestJobInterviewOutro,false);
@@ -585,6 +623,7 @@ public function syriQuestJobInterviewOutro(PostSex:Boolean = true):void {
 	output("\n\nYou nod. ");
 	output("\n\n<i>“Alright! Let's get out there, then.”</i>");
 
+	moveTo("AKD C23");
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",syriQuestHovercraftHangar);
@@ -604,6 +643,7 @@ public function syriQuestHovercraftHangar():void {
 	output("\n\nThe two move off towards the other side of the hangar, giving you a few moments with nobody looking to decide what you're going to do about disappearing...");
 	output("\n\nThere's several containers all around the place, but most of them are magnetically locked. ");
 
+	moveTo("AKD C25");
 	processTime(15);
 	clearMenu();
 	if (pc.hasPerk("Stealth Field Generator")) addButton(0,"Stealth Field",syriQuestStealthField,undefined,"Stealth Field","Turn on your Stealth Field Generator and sneak aboard.");
@@ -614,7 +654,7 @@ public function syriQuestHovercraftHangar():void {
 public function syriQuestStealthField():void {
 	clearOutput();
 	clearBust();
-	showName("\nHANGAR");
+	showLocationName();
 	author("Savin");
 	output("Well, this'll be easy. You click on your stealth field generator and shimmer out of sight, blending into the shadows. While you're hidden from view, you quickly make your way across the hangar and duck into the cargo hold underneath the hovercraft's main fuselage. The next few minutes are spent being very quiet as you're all but entombed behind other crates and containers, boxing you in until you have to curl up on yourself to fit.");
 	output("\n\nBut you've gone undetected! You let out a long-held breath and press your eye to one of the gaps between the containers, watching the remaining workers file aboard. They have the luxury of a warm trip inside the passenger deck, and seem all too happy to get inside. You count Syri among their number, trying to act natural. The supervisor is the last man aboard, reaching up to pull down the bay doors.");
@@ -627,6 +667,8 @@ public function syriQuestStealthField():void {
 	output("\n\nShe grins and chunks her duffle bag down on the deck. <i>“Well, all the handsome tourists treating me like a piece of the local meat didn't hurt, either. Perks of being half-dzaan!”</i>");
 	output("\n\nThat seems to trigger some kind of in-joke, and both the commander and supervisor laugh on their way up the stairs to the passenger deck. Now that everyone's out of earshot, you sigh and sit down, feeling the deck start to rumble underneath you. It isn't much longer before the temperature starts to drop, and you can feel the hovercraft start zooming through the stormy Uvetan skies...");
 
+	moveTo("AKD C27");
+	flags["SYRIQUEST_LOCK_BYPASS"] = 2;
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",syriQuestArriveAtAkkadiBase);
@@ -635,12 +677,15 @@ public function syriQuestStealthField():void {
 public function syriQuestLockBypass():void {
 	clearOutput();
 	clearBust();
-	showName("\nHANGAR");
+	showLocationName();
 	author("Savin");
 	output("You crouch down next to one of the electronic locks and start fiddling around. You've only got a few seconds to work before everyone's attention turns to you -- enough for ");
 	if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output("36");
 	else output("27");
 	output(" rewires.");
+
+	moveTo("AKD C27");
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",syriQuestLockBypassMinigame);
 }
@@ -676,7 +721,7 @@ public function syriQuestLockBypassMinigame():void
 
 public function syriQuestLockBypassSuccess():void {
 	clearOutput();
-	showName("\nHOVERCRAFT");
+	showLocationName();
 	author("Savin");
 	output("It takes you the barest few seconds to penetrate the lock's security, and you're just able to scarper inside the container and close the door behind you before anyone comes back your way. Letting out a sigh of relief, you look around your new surroundings: you've got a few feet of room to move around, wedged between the metal doors and several pallets full of metal plates all strapped together.");
 	output("\n\nYou're about to sit down when you hear several footfalls pass by outside. Must be the crew coming aboard. Once they've retreated out of earshot, and you feel the hovercraft start to rumble under your [pc.feet]. You risk the chance to slide the container door open a hair's breadth. Peeking out, you're treated to the sight of the supervisor, apparently the last man aboard, reaching up to pull down the bay doors.");
@@ -752,7 +797,7 @@ public function syriQuestLockBypassFailure():void {
 		output("\n\nOnce he's secured, you head back the hangar. Looks like in your absence, everybody's boarded the craft, leaving you with plenty of time to get aboard and find somewhere to hide. The hovercraft waits a good little while, apparently for the super to return, but eventually you feel the deck shudder under your [pc.feet] as it lifts off. Work waits for no man.");
 	}
 	
-	flags["SYRIQUEST_LOCK_BYPASS"] = 2;
+	flags["SYRIQUEST_LOCK_BYPASS"] = -1;
 	processTime(30);
 	clearMenu();
 	addButton(0,"Next",syriQuestArriveAtAkkadiBase);
@@ -760,8 +805,9 @@ public function syriQuestLockBypassFailure():void {
 
 public function syriQuestArriveAtAkkadiBase():void {
 	clearOutput();
-	clearBust();
-	showName("\nHOVERCRAFT");
+	showSyri();
+//	clearBust();
+//	showName("\nHOVERCRAFT");
 	author("Savin");
 	if (pc.willTakeColdDamage()) {
 		output("The journey to the Akkadi base is miserable beyond words. Shortly after takeoff, all the heat drains out of the cargo hold, leaving you to freeze your ass off in the Uvetan cold. You can barely feel your body, and you're trembling uncontrollably. ");
@@ -814,6 +860,6 @@ public function syriQuestEnterAkkadiBase():void {
 
 public function syriQuestEnterAkkadiBase2():void {
 	clearOutput();
-	moveTo("AKD K31");
+	currentLocation = "AKD K31";
 	mainGameMenu();
 }
