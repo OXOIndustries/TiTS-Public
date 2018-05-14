@@ -577,14 +577,6 @@ public function shipSexyFunTimes():void
 				output("\n\nAnno relinquishes her mouth's hold on your [pc.cock] and licks her lips. <i>“I can't get enough of your taste. But no trip to New Texas would be complete without a little bull riding.”</i> The Ausar scientist positions herself over you, rubbing your dick against her slit."); 
 				if (pc.cockThatFits(anno.vaginalCapacity()) != -1)
 				{
-					output("\n\nIt's a pity you're too big for Anno to take a proper ride, but as it is, she can still get you both off with the friction of rubbing your sexes together. Her slick slit slides up and down your shaft, with her hands keeping pressure on the opposite side of your phallus, mimicking the feel of a much larger passage. Anno's pussy clenches at your shaft. She orgasms again as she rides your big dick.");
-					output("\n\nThe way she's getting off on your massive bone strokes your ego nicely. Not quite as nicely as her tits, which form a valley for your dong to slide through."); 
-					if(flags["ANNO_HUSKARRED"] != undefined)output("Anno's breasts are large enough that your [pc.oneCock] can barely squeeze between them. It's tight enough to trick your dick into thinking it's found an appropriately-sized pussy to leave a deposit in. With the sensation from her breasts and hands working in tandem to get you off, ");
-					output("Anno does her best to push you over the edge.");
-					output("\n\nAs she reaches her peak once again, you know you've reached your limit. You feel [pc.eachCock] unleash the tide you had been holding back. Spurts of [pc.cumVisc] cum douse Anno and mess the sheets. As the pressure in your loins fades and the throbbing sensation with it, Anno releases her grip and leans back to admire her work.");
-				}
-				else
-				{
 					output("\n\nYou can hardly contain your excitement as [pc.oneCock] parts her folds, joining you together in the most sensuous way possible. Anno starts off at a pretty good pace. She's obviously not an amateur in this kind of rodeo. How many bulls did she have to ride to get this good? Her expression is pure lust, urging you to let go of everything else and succumb to your mutual desire. It becomes increasingly difficult to resist as she rides you harder.");
 					output("\n\nYou're just on the edge of ejaculating when she stops. <i>“Are you getting tired? We could call it good, if you're ready to be done.”</i> You inform her just how close you actually are. Her smile widens so you can see just a hint of her canines. <i>“I better take it easy then. If I go too fast, you'll blow before I do.”</i>"); 
 					output("\n\nHer fluffy ears twitching mischievously, Anno slowly humps your [pc.cock], not moving with much force or even in a rhythm, denying you from reaching your peak, so near yet so far. Your own hips thrust against her, struggling to push yourself over the edge. This startles Anno into letting out an involuntary moan. With a thrill, you realize she's closer than she had let on. Anno rapidly loses her cool and sweaty hands cup your face as she leans in to kiss you. It's then you notice just how much you're sweating too. This really has turned into a workout! Your heaving bodies rub together fervently as each strives to drive the other to orgasm first. Only minutes later, it all becomes just too much. Your hips buck and you release every ounce of your ");
@@ -601,7 +593,15 @@ public function shipSexyFunTimes():void
 					{
 						output("\n\nTaking the hint, you give her a gentle scratch behind the ears. She leans into you, nuzzling appreciatively. It isn't long before you're both blissfully asleep.");
 					}
-
+}
+				else
+				{
+					output("\n\nIt's a pity you're too big for Anno to take a proper ride, but as it is, she can still get you both off with the friction of rubbing your sexes together. Her slick slit slides up and down your shaft, with her hands keeping pressure on the opposite side of your phallus, mimicking the feel of a much larger passage. Anno's pussy clenches at your shaft. She orgasms again as she rides your big dick.");
+					output("\n\nThe way she's getting off on your massive bone strokes your ego nicely. Not quite as nicely as her tits, which form a valley for your dong to slide through."); 
+					if(flags["ANNO_HUSKARRED"] != undefined)output("Anno's breasts are large enough that your [pc.oneCock] can barely squeeze between them. It's tight enough to trick your dick into thinking it's found an appropriately-sized pussy to leave a deposit in. With the sensation from her breasts and hands working in tandem to get you off, ");
+					output("Anno does her best to push you over the edge.");
+					output("\n\nAs she reaches her peak once again, you know you've reached your limit. You feel [pc.eachCock] unleash the tide you had been holding back. Spurts of [pc.cumVisc] cum douse Anno and mess the sheets. As the pressure in your loins fades and the throbbing sensation with it, Anno releases her grip and leans back to admire her work.");
+				
 				}
 			}
 			
