@@ -298,7 +298,7 @@ public function wrapUpSemithChessMatch(): void
 	//Pc wins against Semith
 	else 
 	{
-		output("Semith taps a knight forward and then looks at you with the smug smirk.");
+		output("Semith taps a knight forward and then looks at you with a smug smirk.");
 		output("\n\n<i>“Checkmate.”</i>");
 		output("\n\n<i>“Indeed,”</i> you reply. You reach over and move your castle back into three dimensional play, trapping his king. At the same time, his knight that you Schrödingered four turns ago winks out of existence. The vulkrim stares at the board, dumbfounded.");
 	
