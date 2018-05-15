@@ -10378,6 +10378,8 @@
 					var nutChange:Number = (ballFullness/100) - 1;
 					//Get the actual bonus number to add. Keep it to 2 decimals.
 					var nutBonus:Number = Math.round(ballSizeRaw * nutChange * 100)/100;
+					if (hasStatusEffect("Slow Grow")) nutBonus = Math.round(nutBonus * statusEffectv1("Slow Grow") * 100) / 100;
+					if (hasStatusEffect("No Grow")) nutBonus *= 0;
 					trace("NUT BONUS: " + nutBonus);
 					//Apply nutbonus and track in v1 of the perk
 					ballSizeMod += nutBonus;
