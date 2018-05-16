@@ -62,7 +62,7 @@ package classes.Items.Miscellaneous
 				clearOutput();
 			else
 				output("\n\n");
-			kGAMECLASS.showName("\nReductPro");
+			kGAMECLASS.showName("\nREDUCTPRO");
 			output("You ponder over how to use ReductPro. Which body part will you shrink?");
 			
 			// Build menu:
@@ -101,13 +101,6 @@ package classes.Items.Miscellaneous
 					else
 						kGAMECLASS.addDisabledButton(1, "Nipple", "Nipple", "Your nipple is already as flat as it can be!");
 				}
-				else if (pc.breastRows.length > 1)
-				{
-					if (pc.nippleLengthRatio > 0.1)
-						addButton(1, "Nipples", useReductProShrinkNipplesMenu, -1, "Nipples (Single Row)", "Apply the paste to a row of your [pc.nipples].");
-					else
-						kGAMECLASS.addDisabledButton(1, "Nipples", "Nipples (Single Row)", "Your nipples are already as flat as they can be!");
-				}
 				else
 				{
 					if (pc.nippleLengthRatio > 0.1)
@@ -115,15 +108,6 @@ package classes.Items.Miscellaneous
 					else
 						kGAMECLASS.addDisabledButton(1, "Nipples", "Nipples", "Your nipples are already as flat as they can be!");
 				}
-				
-				if (pc.breastRows.length > 1)
-				{
-					if (pc.nippleLengthRatio > 0.1)
-						addButton(6, "NipplesAll", useReductProShrinkNipples, -1, "Nipples (All)", "Apply the paste to your [pc.nipples].");
-					else
-						kGAMECLASS.addDisabledButton(6, "NipplesAll", "Nipples (All)", "Your nipples are already as small as they can be!");
-				}
-					//else kGAMECLASS.addDisabledButton(6, "NipplesAll", "Nipples (All)", "You need multiple rows of nipples for that!");
 			}
 			else
 				kGAMECLASS.addDisabledButton(1, "Nipples", "Nipples", "You need nipples for that!");
@@ -268,41 +252,25 @@ package classes.Items.Miscellaneous
 			// Generate text and buttons:
 			clearMenu();
 			if (pc.breastRows.length <= 0)
-				output("\n\nIt looks like you don't have any extra rows...");
+				output("\n\nIt looks like you only have the one...");
 			else
 			{
-				output("\n\n<b>Total Rows:</b> " + pc.breastRows.length);
-				output("\n<b>Total Breast Count:</b> " + pc.totalBreasts());
+				output("\n\n<b><u>Total Rows:</u></b> " + pc.breastRows.length);
+				//output("\n<b>Total Breast Count:</b> " + pc.totalBreasts());
 				
-				var x:int = 0;
-				var y:int = 0;
-				var z:int = 0;
-				
-				for (x = 0; x < pc.breastRows.length; x++)
+				for (var x:int = 0; x < pc.breastRows.length; x++)
 				{
-					y = x + Math.floor(x / 14);
-					z = 15 * (Math.floor(x / 14)) - 1;
-					
-					output("\n\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b>");
-					output("\nCount: " + pc.breastRows[x].breasts);
-					if (pc.breastRows[x].breastRating() > 0)
-					{
-						output("\nSize: " + pc.breastCup());
-						if (pc.breastRows[x].breasts != 1)
-							output("s");
-					}
-					else
-						output("\nSize: Flat");
-					
+					output("\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b> ");
+					output(pc.breastRows[x].breasts + " ");
+					if (pc.breastRows[x].breastRating() > 0) output(pc.breastCup());
+					else output("flat pectoral");
+					if (pc.breastRows[x].breasts > 1) output("s");
+
 					// Valid boob row
-					addButton(y, String("Row " + (x + 1)), useReductProShrinkBreasts, x);
-					// Nah...
-					if (x == z)
-						addButton(x, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+					addButton(x, String("Row " + (x + 1)), useReductProShrinkBreasts, x);
 				}
 			}
 			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
-			
 			return;
 		}
 		
@@ -313,20 +281,12 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
-			if (pc.isChestCovered())
-				output("Preparing yourself, you remove your [pc.upperGarments]. ");
-			output("You unscrew the cap and squeeze the contents of ReductPro on your hand and apply the paste over your [pc.chest " + rowNum + "].");
+			if (pc.isChestCovered()) output("You remove your [pc.chestCovers] to prepare. ");
+			output("Unscrewing the cap, you squeeze the contents of ReductPro into your hand and apply the paste over your [pc.chest " + rowNum + "].");
 			
 			if (pc.biggestTitSize() <= 0)
 			{
-				output("\n\nYou shudder as");
-				if (pc.breastRows.length > 1)
-					output(" a single row of");
-				output(" your [pc.breasts " + rowNum + "] tingle");
-				if (pc.breastsPerRow(rowNum) == 1)
-					output("s");
-				output(" for a short moment, but then the feeling passes as soon as it starts... Perhaps you are as flat as you're going to get?");
-				
+				output(" A slight tingle makes you shudder, but then the feeling passes as soon as it starts... Perhaps you are as flat as you're going to get?");				
 				useReductProDone(true);
 				return;
 			}
@@ -347,33 +307,24 @@ package classes.Items.Miscellaneous
 			
 			if (pc.breastRatingUnlocked(rowNum, (pc.breastRows[rowNum].breastRatingRaw - nShrink)))
 			{
-				output("\n\nYou shudder as");
-				if (pc.breastRows.length > 1)
-					output(" a single row of");
-				output(" your [pc.breasts " + rowNum + "] shrink to a");
-				if (nShrink < 2)
-					output(" slightly");
-				else if (nShrink > 2)
-					output(" much");
+				output(" It tingles as the selected flesh shrinks to a");
+				if (nShrink < 2) output(" slightly");
+				else if (nShrink > 2) output(" much");
 				output(" smaller size!");
 				
 				pc.breastRows[rowNum].breastRatingRaw -= nShrink;
+				if(pc.breastRows[rowNum].breastRatingRaw < 0) pc.breastRows[rowNum].breastRatingRaw = 0;
 				
 				// Critical shrink!
-				if (pc.breastRows[rowNum].breastRatingRaw > 0 && rand(4) == 0)
+				if (pc.breastRows[rowNum].breastRatingRaw >= 1 && rand(4) == 0)
 				{
 					nShrink = 1 + rand(2);
 					
 					output("\n\n");
-					if (kGAMECLASS.silly)
-						output("<b>Critical shrinkage!</b> ");
-					output("The pasty substance continues to manifest, shrinking your [pc.breasts " + rowNum + "] by another");
-					if (nShrink != 1)
-						output(" " + num2Text(nShrink) + " cups!");
-					else
-						output(" cup!");
-					
+					if (kGAMECLASS.silly) output("<b>Critical shrinkage!</b> ");
+					output("A sharp tingle informs you that the ReductPro isn't done yet! The pasty substance continues to act, stealing still more size from your dwindling chest!");
 					pc.breastRows[rowNum].breastRatingRaw -= nShrink;
+					if(pc.breastRows[rowNum].breastRatingRaw < 0) pc.breastRows[rowNum].breastRatingRaw = 0;
 				}
 				
 				output("\n\nOnce the substance has been fully absorbed, <b>you confirm that your");
@@ -389,14 +340,11 @@ package classes.Items.Miscellaneous
 				else
 				{
 					if (pc.breastRows[rowNum].breastRating() > 0)
-						output(" tits are now at " + pc.breastCup(rowNum) + "s.");
+						output(" breasts are " + pc.breastCup(rowNum) + "s.");
 					else
-						output(" tits are now flat.");
+						output(" breasts are now flat pectorals.");
 				}
 				output("</b>");
-				
-				if (pc.isBimbo())
-					output(" <i>Aw, this is no time for me to lose my tits!</i>");
 				
 				// Done!
 				useReductProDone();
@@ -417,13 +365,13 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
-			if (pc.isChestCovered())
-				output("Preparing yourself, you remove your [pc.upperGarments]. ");
-			output("You unscrew the cap and squeeze the contents of ReductPro onto your hand, and smear the foul-smelling ointment all over your " + pc.allBreastsDescript() + ", covering them entirely as the paste begins to get absorbed into your " + pc.skin() + ".");
-			
+			if (pc.isChestCovered()) output("You remove your [pc.chestCovers] to prepare. ");
+			output("Unscrewing the cap, you squeeze the contents of ReductPro into your hand and apply the paste over your " + pc.allBreastsDescript() + ", covering them entirely.");
+
+
 			if (pc.biggestTitSize() <= 0)
 			{
-				output("\n\nYou shudder as your [pc.breasts] tingle for a short moment, but then the feeling passes as soon as it starts... Perhaps you are as flat as you're going to get?");
+				output(" A slight tingle makes you shudder, but then the feeling passes as soon as it starts... Perhaps you are as flat as you're going to get?");
 				
 				useReductProDone(true);
 				return;
@@ -446,7 +394,7 @@ package classes.Items.Miscellaneous
 			
 			if (pc.breastRatingUnlocked(pc.biggestTitRow(), (pc.breastRows[pc.biggestTitRow()].breastRatingRaw - nShrink)) || rand(10) == 0)
 			{
-				output("\n\nYou shudder as your [pc.chestFull] shrink to a");
+				output(" A slight tingle draws your attention as they shrink to a");
 				if (nShrink < 2)
 					output(" slightly");
 				else if (nShrink > 2)
@@ -456,6 +404,7 @@ package classes.Items.Miscellaneous
 				for (x = 0; x < pc.breastRows.length; x++)
 				{
 					pc.breastRows[x].breastRatingRaw -= nShrink;
+					if(pc.breastRows[x].breastRatingRaw < 0) pc.breastRows[x].breastRatingRaw = 0;
 				}
 				
 				// Critical shrink!
@@ -463,31 +412,19 @@ package classes.Items.Miscellaneous
 				{
 					nShrink = 1 + rand(2);
 					
-					output("\n\n");
-					if (kGAMECLASS.silly)
-						output("<b>Critical shrinkage!</b> ");
-					output("The pasty substance continues to manifest, shrinking your [pc.breasts] by another");
-					if (nShrink != 1)
-						output(" " + num2Text(nShrink) + " cups!");
-					else
-						output(" cup!");
-					
+					output(" No sooner than you adjust to the newer, more compact you, than the ReductPro continues to act, further reducing the size of your chest!");
 					for (x = 0; x < pc.breastRows.length; x++)
 					{
 						pc.breastRows[x].breastRatingRaw -= nShrink;
+						if(pc.breastRows[x].breastRatingRaw < 0) pc.breastRows[x].breastRatingRaw = 0;
 					}
 				}
 				
-				output("\n\nOnce the substance has been fully absorbed, <b>you confirm that your");
+				output("A minute later you confirm that <b>your");
 				if (pc.breastRows[pc.biggestTitRow()].breastRating() > 0)
-					output(" tits are now at " + pc.breastCup(pc.biggestTitRow()) + "s.");
+					output(" biggest breasts are now " + pc.breastCup(pc.biggestTitRow()) + "s.</b>");
 				else
-					output(" tits are now flat.");
-				output("</b>");
-				
-				if (pc.isBimbo())
-					output(" <i>Oopsies, my boobies!</i>");
-				
+					output(" breasts are more or less gone</b>, in their place, flat pectorals remain.");
 				// Done!
 				useReductProDone();
 				return;
@@ -500,7 +437,10 @@ package classes.Items.Miscellaneous
 			}
 		}
 		
-		// Nipples (Single Row) - Brings up prompt on which row to shrink.
+		/* Nipples (Single Row) - Brings up prompt on which row to shrink.
+		//FEN NOTE: COMPLETELY CUT THIS BECAUSE THERE IS NO REASON TO SELECT A ROW. FUCKING... I EDITED THE TEXT BEFORE I REALIZED HOW FUCKTARDED THIS ALL WAS. KILL ME FUCKING NOW.
+
+
 		private function useReductProShrinkNipplesMenu():void
 		{
 			var pc:PlayerCharacter = kGAMECLASS.pc;
@@ -515,46 +455,29 @@ package classes.Items.Miscellaneous
 				output("\n\nIt looks like you don't have any extra rows...");
 			else
 			{
-				output("\n\n<b>Total Rows:</b> " + pc.breastRows.length);
-				output("\n<b>Nipple Count:</b> " + pc.nipplesPerBreast + " nipple");
-				if (pc.nipplesPerBreast != 1)
-					output("s");
-				output(" per breast");
-				output("\n<b>Total:</b> " + pc.totalNipples());
-				
-				var x:int = 0;
-				var y:int = 0;
-				var z:int = 0;
-				
-				for (x = 0; x < pc.breastRows.length; x++)
+				output("\n\n<b>Total Rows:</b> " + pc.breastRows.length + " with " + num2Text(pc.nipplesPerBreast) + " nipple");
+				if (pc.nipplesPerBreast != 1) output("s");
+				output(" per breast.");
+
+				for (var x:int = 0; x < pc.breastRows.length; x++)
 				{
-					y = x + Math.floor(x / 14);
-					z = 15 * (Math.floor(x / 14)) - 1;
-					
-					output("\n\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b>");
-					output("\nType: " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
-					if (pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
-						output(", " + GLOBAL.TYPE_NAMES[pc.dickNippleType]);
-					output("\nNipple Length: " + pc.nippleLength(x) + " inch");
-					if (pc.nippleLength(x) != 1)
-						output("es");
-					output("\nAreola Size: " + pc.nippleWidth(x) + " inch");
-					if (pc.nippleWidth(x) != 1)
-						output("es");
-					
+					output("\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b> " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType] + " Nipples, " + Math.round(pc.nippleLength(x)*10)/10 + " inch");
+					if (Math.round(pc.nippleLength(x)*10)/10) output("es");
+					output(" long and " + Math.round(pc.nippleWidth(x)*10)/10 + " inch");
+					if (Math.round(pc.nippleWidth(x)*10)/10) output("es");
+					output(" wide.");
+
 					// Valid nipple row
-					addButton(y, String("Row " + (x + 1)), useReductProShrinkNipples, x);
-					// Nah...
-					if (x == z)
-						addButton(x, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+					addButton(x, String("Row " + (x + 1)), useReductProShrinkNipples, x);
 				}
 			}
 			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
 			
 			return;
-		}
+		}*/
 		
 		// Nipples (rowNum: -1 is all, 0+ is a row)
+		// Fen note: row selection is dumb and useless given how we do nipple size. Fuck you, game.
 		private function useReductProShrinkNipples(rowNum:int = 0):void
 		{
 			var pc:PlayerCharacter = kGAMECLASS.pc;
@@ -565,41 +488,15 @@ package classes.Items.Miscellaneous
 			var nShrink:Number = Math.max((pc.nippleLengthRatio * 0.5) / pc.breastRows.length, 0.1);
 			var bChanged:Boolean = false;
 			
-			if (pc.isChestCovered())
-				output("Preparing yourself, you remove your [pc.upperGarments]. ");
-			output("You unscrew the cap and squeeze the contents of ReductPro on your hand and you begin to apply them to");
+			if (pc.isChestCovered()) output("You remove your [pc.chestCovers] to prepare. ");
+			output("Unscrewing the cap, you squeeze the contents of ReductPro into your hand and apply the paste over ");
 			
-			if (rowNum >= 0)
-			{
-				if (pc.breastRows.length > 1)
-					output(" a single row of");
-				output(" your nipple");
-				if (pc.nipplesPerBreast * pc.breastRows[rowNum].breasts != 1)
-					output("s");
-				output(" evenly.");
-			}
-			else
-			{
-				if (pc.breastRows.length == 2)
-					output(" both rows of");
-				else if (pc.breastRows.length > 1)
-					output(" all rows of");
-				output(" your nipple");
-				if (pc.breastRows.length > 1 || pc.totalBreasts() != 1)
-					output("s");
-				output(" evenly.");
-			}
+			if(pc.totalNipples() == 1) output("your single [pc.nippleNoun] evenly.");
+			else output(" every single [pc.nipplesNoun] evenly.");
 			
 			if (pc.nippleLengthRatio <= 0.1 || pc.hasFlatNipples())
 			{
-				output("\n\nYou shudder as your [pc.nipples " + rowNum + "] tingle");
-				if (pc.totalNipples() == 1)
-					output("s");
-				output(" for a short moment, but then the feeling passes as soon as it starts... Looks like your [pc.nipples] won't be getting any smaller...");
-				
-				if (pc.isBimbo())
-					output(" <i>That's right--it only makes sense if my nips were bigger, like... like all suckable and stuff!</i>");
-				
+				output(" You shudder the resulting tingle for a short moment, but then the feeling passes as soon as it starts... Looks like your [pc.nipples] won't be getting any smaller...");
 				useReductProDone(true);
 				return;
 			}
@@ -607,139 +504,64 @@ package classes.Items.Miscellaneous
 			// Shrink nipple size by 50% divided by the number of rows.
 			if (pc.nippleLengthRatioUnlocked(pc.nippleLengthRatio - nShrink))
 			{
-				if (rowNum >= 0)
+				output(" You shudder as the coating causes your flesh to shrink.");
+				pc.nippleLengthRatio -= nShrink;
+				if (pc.nippleLengthRatio < 0.1) pc.nippleLengthRatio = 0.1;
+				// May remove fuckable status of your nipples as well as your nipplecocks.
+				if ((pc.hasFuckableNipples() || pc.hasDickNipples()) && rand(5) == 0)
 				{
-					output("\n\n");
-					if (pc.nipplesPerBreast * pc.breastRows[rowNum].breasts == 1)
-						output("You shudder as your [pc.nipple " + rowNum + "] shrinks until it has lost a fraction of its old size.");
-					else
-						output("Instead of affecting the row you've applied the drug to, the paste's effect seems to spread to all of your nipples... You shudder as your [pc.nipples " + rowNum + "] shrink until they have lost a fraction of their old size.");
-					
-					pc.nippleLengthRatio -= nShrink;
-					if (pc.nippleLengthRatio < 0.1)
-						pc.nippleLengthRatio = 0.1;
-					
-					// May lose nipplecunts and nipplecocks if you ReductPro them enough.
-					if ((pc.breastRows[rowNum].fuckable() || pc.breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_DICK) && rand(5) == 0)
+					for (x = 0; x < pc.breastRows.length; x++)
 					{
-						if (pc.nippleTypeUnlocked(rowNum, GLOBAL.NIPPLE_TYPE_NORMAL))
+						if (pc.nippleTypeUnlocked(x, GLOBAL.NIPPLE_TYPE_NORMAL))
 						{
-							if (pc.breastRows[rowNum].fuckable())
-							{
-								if (pc.breastsPerRow(rowNum) == 1 && pc.nipplesPerBreast == 1)
-									output("\n\nThe slit in your [pc.nipple " + rowNum + "] feels tighter and as you reach your fingers to it, you can find no traces of the slit. <b>Your nipple is no longer fuckable!</b>");
-								else
-									output("\n\nThe slit in your [pc.nipples " + rowNum + "] feel tighter and as you reach your fingers to them, you can find no traces of the slit. <b>Your nipples are no longer fuckable!</b>");
-								
-								pc.breastRows[rowNum].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
-							}
-							else if (pc.breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
-							{
-								if (pc.breastsPerRow(rowNum) == 1 && pc.nipplesPerBreast == 1)
-									output("\n\nYour [pc.nippleCock] slides out of your [pc.nipple] to full erection before the remaining ReductPro start to manifest and your [pc.nippleCock] shrinks back to nothing. You give your [pc.nipple " + rowNum + "] an experimental pinch to confirm that you no longer have it. <b>You have lost your nipplecock!</b>");
-								else
-									output("\n\nYour [pc.nippleCocks] slide out of your [pc.nipples] to full erection before the remaining ReductPro start to manifest and your [pc.nippleCocks] shrink back to nothing. You give your [pc.nipples " + rowNum + "] an experimental pinch to confirm that you no longer have them. <b>You have lost your nipplecocks!</b>");
-								
-								pc.breastRows[rowNum].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
-								
-								if (pc.isBimbo())
-									output(" <i>Aww, but I like my yummy cocks...</i>");
-							}
-						}
-						else
-						{
-							output("\n\n" + pc.nippleTypeLockedMessage());
-						}
-					}
-					// May get flat nipples!
-					else if (pc.nippleLengthRatio <= 0.2 && pc.breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && rand(2) == 0)
-					{
-						if (pc.nippleTypeUnlocked(rowNum, GLOBAL.NIPPLE_TYPE_FLAT))
-						{
-							if (pc.breastsPerRow(rowNum) == 1 && pc.nipplesPerBreast == 1)
-								output("\n\nRubbing your [pc.nipple " + rowNum + "] with your fingertips, you feel the nub getting smaller and smaller... until it completely disappears, leaving behind a tipless, pebbly surface <b>You now have a flat nipple!</b>");
-							else
-								output("\n\n\n\nRubbing your [pc.nipples " + rowNum + "] with your fingertips, you feel the nubs getting smaller and smaller... until they completely disappear, each leaving behind a tipless, pebbly surface <b>You now have flat nipples!</b>");
-							
-							pc.breastRows[rowNum].nippleType = GLOBAL.NIPPLE_TYPE_FLAT;
-							
-							if (pc.isBimbo())
-								output(" <i>Like, what happened to my nips?!</i>");
-						}
-						else
-						{
-							output("\n\n" + pc.nippleTypeLockedMessage());
-						}
-					}
-				}
-				else
-				{
-					if (pc.totalNipples() == 1)
-						output("\n\nYou shudder as your [pc.nipple] shrinks until it has lost a fraction of its old size.");
-					else
-						output("\n\nYou shudder as your [pc.nipples] shrink until they have lost a fraction of their old size.");
-					
-					pc.nippleLengthRatio -= nShrink;
-					if (pc.nippleLengthRatio < 0.1)
-						pc.nippleLengthRatio = 0.1;
-					
-					// May remove fuckable status of your nipples as well as your nipplecocks.
-					if ((pc.hasFuckableNipples() || pc.hasDickNipples()) && rand(5) == 0)
-					{
-						for (x = 0; x < pc.breastRows.length; x++)
-						{
-							if (pc.nippleTypeUnlocked(x, GLOBAL.NIPPLE_TYPE_NORMAL))
-							{
-								if (pc.breastRows[x].fuckable())
-								{
-									if (!bChanged)
-									{
-										if (pc.totalNipples() == 1)
-											output("\n\nThe slit in your [pc.nipple " + x + "] feels tighter and as you reach your fingers to it, you can find no traces of the slit. <b>Your nipple is no longer fuckable!</b>");
-										else
-											output("\n\nThe slit in your [pc.nipples " + x + "] feel tighter and as you reach your fingers to them, you can find no traces of the slit. <b>Your nipples are no longer fuckable!</b>");
-										bChanged = true;
-									}
-									
-									pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
-								}
-								else if (pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
-								{
-									if (!bChanged)
-									{
-										if (pc.totalNipples() == 1)
-											output("\n\nYour [pc.nippleCock] slides out of your [pc.nipple] to full erection before the remaining ReductPro start to manifest and your [pc.nippleCock] shrinks back to nothing. You give your [pc.nipple " + x + "] an experimental pinch to confirm that you no longer have it. <b>You have lost your nipplecock!</b>");
-										else
-											output("\n\nYour [pc.nippleCocks] slide out of your [pc.nipples] to full erection before the remaining ReductPro start to manifest and your [pc.nippleCocks] shrink back to nothing. You give your [pc.nipples " + x + "] an experimental pinch to confirm that you no longer have them. <b>You have lost your nipplecocks!</b>");
-										bChanged = true;
-									}
-									
-									pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
-								}
-							}
-						}
-					}
-					// May get flat nipples!
-					else if (pc.nippleLengthRatio <= 0.2 && !pc.hasFlatNipples() && rand(2) == 0)
-					{
-						for (x = 0; x < pc.breastRows.length; x++)
-						{
-							if (pc.nippleTypeUnlocked(x, GLOBAL.NIPPLE_TYPE_FLAT))
+							if (pc.breastRows[x].fuckable())
 							{
 								if (!bChanged)
 								{
 									if (pc.totalNipples() == 1)
-										output("\n\nRubbing your [pc.nipple " + x + "] with your fingertips, you feel the nub getting smaller and smaller... until it completely disappears, leaving behind a tipless, pebbly surface <b>You now have a flat nipple!</b>");
+										output(" The slit in your [pc.nippleNoun " + x + "] feels tighter, and as you reach your fingers to it, you can find no trace of it. <b>Your nipple is no longer fuckable!</b>");
 									else
-										output("\n\n\n\nRubbing your [pc.nipples " + x + "] with your fingertips, you feel the nubs getting smaller and smaller... until they completely disappear, each leaving behind a tipless, pebbly surface <b>You now have flat nipples!</b>");
+										output(" The slits in your [pc.nipplesNoun " + x + "] feel tighter, and as you reach your fingers to touch them, you can find no trace of the once-pliant entrances. <b>Your nipples are no longer fuckable!</b>");
+									bChanged = true;
+								}
+								pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+							}
+							else if (pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
+							{
+								if (!bChanged)
+								{
+									if (pc.totalNipples() == 1)
+										output(" Your [pc.nippleCock] slides out to full erection in protest before withdrawing back inside your body, shrinking down into nothing. You give your [pc.nipple " + x + "] an experimental pinch to confirm that you no longer have it. <b>You have lost your nipple-cock!</b>");
+									else
+										output(" Your [pc.nippleCocks] slide out to full erection in protest before withdrawing back inside your body, their tumescence dwindling to less than nothing. You give your [pc.nipples " + x + "] an experimental pinch to confirm that nothing remains. <b>You have lost your nipple-cocks!</b>");
 									bChanged = true;
 								}
 								
-								pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_FLAT;
+								pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 							}
 						}
 					}
 				}
+				// May get flat nipples!
+				/* FEN NOTE: No, this will fuck with too much shit.
+				else if (pc.nippleLengthRatio <= 0.2 && !pc.hasFlatNipples() && rand(2) == 0)
+				{
+					for (x = 0; x < pc.breastRows.length; x++)
+					{
+						if (pc.nippleTypeUnlocked(x, GLOBAL.NIPPLE_TYPE_FLAT))
+						{
+							if (!bChanged)
+							{
+								if (pc.totalNipples() == 1)
+									output(" Rubbing the tip with your fingertips, you feel the nub getting smaller and smaller... until it completely disappears, leaving behind blank, pebbly surface <b>You now have a flat nipple!</b>");
+								else
+									output(" Rubbing your tips with your fingertips, you feel the nubs getting smaller and smaller... until they completely disappear, each leaving behind a flat, pebbly surface <b>You now have flat nipples!</b>");
+								bChanged = true;
+							}
+							pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_FLAT;
+						}
+					}
+				}*/
 				// Done!
 				useReductProDone();
 				return;
@@ -768,10 +590,35 @@ package classes.Items.Miscellaneous
 			else if (kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] == undefined)
 				output("You've already tried this out on your ass, but you wonder what will happen when you get your lady parts involved... ");
 			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments],");
-			output(" unscrew the cap, squeeze the contents of ReductPro onto your fingers, and proceed to apply the foul-smelling paste inside your [pc.vaginas].");
+			if (pc.isCrotchGarbed()) output(" open up your [pc.crotchCovers],");
+			output(" unscrew the cap, squeeze the contents of ReductPro onto your fingers, and proceed to apply the paste to your [pc.vaginas].");
 			
+			//Reduce plump flags!
+			if(pc.hasPlumpPussy())
+			{
+				output(" Right away, something happens. A shock of sudden tightness in your nethers demands your attention as your swollen netherlips slim down.");
+				var pumpReported:Boolean = false;
+				for(var y:int = 0; y < pc.totalVaginas(); y++)
+				{
+					if(pc.hasPlumpPussy(y))
+					{
+						pc.deflateVagina(y);
+						if(!pumpReported)
+						{
+							if(pc.vaginas[y].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(" <b>Your [pc.vaginaNoun " + y + "] is less plump</b>, though only slightly so.")
+							else output(" <b>Your [pc.vaginaNoun " + y + "] is no longer so quite so plump</b>.");
+							pumpReported = true;
+						}
+					}
+				}
+				output("\n\nEverything is so delightfully sensitive afterward, you're tempted to use it again.");
+				pc.libido(4);
+				pc.taint(2);
+				kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] = 1;
+				useReductProDone(true);
+				return;
+			}
+
 			// Instantly reduces vaginal looseness by 1.
 			if (pc.loosenessUnlocked(iTightestVagina, pc.vaginas[iTightestVagina].loosenessRaw - 1))
 			{
@@ -787,7 +634,7 @@ package classes.Items.Miscellaneous
 			
 			if (iChanged > 0)
 			{
-				output("\n\nA clenching reflex and tingling feeling within your [pc.vaginas] is a sign that the drug is working its magic.");
+				output("\n\nA clenching sensation deep in your [pc.vaginas] signals that the drug is working its magic.");
 				if (kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] == undefined)
 					output(" To your surprise");
 				else
@@ -800,11 +647,9 @@ package classes.Items.Miscellaneous
 					output(" has");
 				else
 					output("s have");
-				output(" instantly tightened!</b>");
-				
-				if (pc.isBimbo())
-					output(" <i>Ooh, any tighter and I won't be able to fit all those yummy cocks!</i>");
-				
+				output(" instantly tightened!</b> Phew! Nothing else seems to happen, aside from a residual flush and the knowledge that you can stuff whatever you want up there with no repurcussions at all. Horray, science!");
+				pc.taint(2);
+				pc.libido(4);
 				kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] = 1;
 				
 				// Done!
@@ -826,24 +671,22 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
-			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments],");
-			output(" unscrew the cap, carefully apply the paste to your " + pc.clitDescript() + ", being very careful to avoid getting it on your " + pc.vaginaDescript(0) + ".  It burns with heat as it begins to make its effects known...");
+			if (pc.isCrotchGarbed()) output("Moving your clothing out of the way, y");
+			else output("Y");
+			output("ou unscrew the cap to carefully apply the paste to your " + pc.clitsDescript() + ". You'd hate to get any on your [pc.vaginas]. Burning heat envelops your hyper-sensitive organ");
+			if(pc.totalClits() > 1) output("s");
+			output(", signalling that something is about to happen.");
 			var newClitLength:Number = Math.round((pc.clitLength / (1 + (0.7 / (Math.ceil(pc.totalClits()) / 2)))) * 100) / 100;
 			if (pc.clitLength > 0 && pc.clitLengthUnlocked(newClitLength))
 			{
 				if (pc.totalClits() == 1)
-					output("\n\nYour " + pc.clitDescript() + " shrinks rapidly, dwindling down to almost half its old size before it finishes absorbing the paste.");
+					output("\n\nYour " + pc.clitDescript() + " shrinks rapidly, dwindling down to almost half its old size before it finishes absorbing the ReductPro.");
 				else
-					output("\n\nYour " + pc.clitDescript() + " shrink rapidly, dwindling down to almost half their old size before it finishes absorbing the paste.");
+					output("\n\nYour " + pc.clitsDescript() + " shrink rapidly, dwindling down to almost half their old size before they finishes absorbing the ReductPro.");
 				pc.clitLength -= (Math.round((pc.clitLength / 3) * 100) / 100);
 				if (pc.clitLength < 0)
 					pc.clitLength = 0.01;
-				
-				if (pc.isBimbo())
-					output(" <i>Not my happy button!</i>");
-				
+			
 				// Done!
 				useReductProDone();
 				return;
@@ -874,34 +717,23 @@ package classes.Items.Miscellaneous
 				output("\n\n<b>Total Cocks:</b> " + pc.cockTotal());
 				
 				var x:int = 0;
-				var y:int = 0;
-				var z:int = 0;
 				
 				for (x = 0; x < pc.cocks.length; x++)
 				{
-					y = x + Math.floor(x / 14);
-					z = 15 * (Math.floor(x / 14)) - 1;
-					
-					output("\n\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock:</b>");
-					output("\nLength: " + formatFloat((pc.cocks[x] as CockClass).cLength(), 3) + " inch");
-					if (pc.cocks[x].cLength() != 1)
-						output("es");
-					output("\nGirth: " + formatFloat((pc.cocks[x] as CockClass).thickness(), 3) + " inch");
-					if (pc.cocks[x].thickness() != 1)
-						output("es");
+					output("\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock:</b> " + pc.accurateCockName(x));
+					output("\n\tLength: " + formatFloat((pc.cocks[x] as CockClass).cLength(), 3) + " inch");
+					if (pc.cocks[x].cLength() != 1) output("es");
+					output("\n\tGirth: " + formatFloat((pc.cocks[x] as CockClass).thickness(), 3) + " inch");
+					if (pc.cocks[x].thickness() != 1) output("es");
 					
 					// Valid cock
-					addButton(y, String("Cock " + (x + 1)), useReductProShrinkCock, x);
-					// Nah...
-					if (x == z)
-						addButton(x, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+					addButton(x, String("Cock " + (x + 1)), useReductProShrinkCock, x);
 				}
 			}
 			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
-			
 			return;
 		}
-		
+		//9999 - fen redux continue here
 		// Cock (Single)
 		private function useReductProShrinkCock(cockNum:int = 0):void
 		{

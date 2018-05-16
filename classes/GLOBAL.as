@@ -705,7 +705,7 @@
 		public static const NIPPLE_TYPE_NAMES:Array = [
 			"Normal",
 			"Cunt",
-			"Lipples",
+			"Lip",
 			"Dick",
 			"Flat",
 			"Inverted",

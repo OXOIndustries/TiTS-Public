@@ -21202,7 +21202,22 @@
 		{
 			return (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED));
 		}
-		
+		public function hasPlumpPussy(arg:Number = -1):Boolean
+		{
+			if(!hasVagina()) return false;
+			if(arg >= 0 && arg > totalVaginas()-1) return false;
+			if(arg >= 0) return (vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED));
+			//check em all, fam
+			else
+			{
+				for (var x:int = 0; x < totalVaginas(); x++)
+				{
+					if(vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) return true;
+				}
+			}
+
+			return false;
+		}
 		public function catDog(c:String, d:String, prefDog:Boolean = true):String
 		{
 			var r:String = raceShort();
