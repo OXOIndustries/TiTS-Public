@@ -459,7 +459,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			
 				// Announce when passing a threshold:
 				// <= 90
-				if(y <= 90 && pc.femininity > 90) ExtendLogEvent(ParseText(" <b>You can’t help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It’s jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>"));
+				if(y <= 90 && pc.femininity > 90) ExtendLogEvent(ParseText(" <b>You can’t help but marvel at yourself when you look at your reflection. Your [pc.face] is the epitome of femininity. It’s jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>"));
 				// <= 80
 				else if(y <= 80 && pc.femininity > 80) ExtendLogEvent(" <b>Your eyelashes have gotten long and luxurious, your lips have gotten fuller, and even your nose looks cuter. You’re gorgeous.</b>");
 				// <= 72

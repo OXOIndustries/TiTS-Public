@@ -2826,7 +2826,7 @@ public function CoCSceneEpilogue(cumNum:Number):void
 public function jezebelMindwash():void
 {
 	clearOutput();
-	showName("JEZEBEL'S\nDUNGEON");
+	showName("JEZEBEL’S\nDUNGEON");
 	author("Carol J");
 	var cumNum:Number = 0;
 	output("You’re a fool, you think to yourself through the haze of pleasure and exquisite relief you’ve found between your latest lover’s thighs. A stupid, feckless fool. If a deal like hers had sounded too good to be true, there wasn’t a doubt that it <i>was</i> too good to be true.");
@@ -2852,7 +2852,7 @@ public function jezebelMindwash():void
 public function jezebelMindwashII(cumNum:Number):void
 {
 	clearOutput();
-	showName("JEZEBEL'S\nDUNGEON");
+	showName("JEZEBEL’S\nDUNGEON");
 	author("Carol J");
 	output("It wasn’t until some time had passed that you realized what she’d done to you. Certainly you were no stranger to carnal desire; your vows included many things, but celibacy was not among them. But even if you were used to more...libidinous urges, you weren’t used to them surfacing with such intensity. And certainly not so quickly. Not five minutes had passed before you felt your balls bloat heavier with an unspent load. Nothing unmanageable, but there was a certain uncomfortable fullness to your sack. One that only grew the further you proceeded.");
 	
@@ -2878,7 +2878,7 @@ public function jezebelMindwashII(cumNum:Number):void
 public function jezebelMindwashIII(cumNum:Number):void
 {
 	clearOutput();
-	showName("JEZEBEL'S\nDUNGEON");
+	showName("JEZEBEL’S\nDUNGEON");
 	author("Carol J");
 	output("So there you were, stumbling forward, your cock sagging under its own weight, your balls swollen past the size of your fist, your quest to rescue the princess but an afterthought in the swirling haze of your fuckdrunk lust. You kept assuring yourself that you’d look for the princess...as soon as you cleared your head. Thank goodness Jezebel’s dungeon had so many curvaceous sluts to help you unload your spunk. Goblins and succubi to fuck pregnant, enchantresses to further enhance your bloated cock...");
 	output("\n\nAfter a few hours of rut and sex and debauchery, you stagger into the penultimate chamber, the blighted throne room of the succubus who cursed you with this insatiable libido. Your mind is still your own, you reassure yourself, and the moments of clarity you achieve after one of Jezebel’s monsters milks your cock dry are enough to help you power through the curse she laid upon you. True, they’re shorter and shorter. True, it feels far better to let her seductive minions further enhance your manhood and worship it, as they so eagerly say it deserves.");
@@ -2903,7 +2903,7 @@ public function jezebelMindwashIII(cumNum:Number):void
 public function jezebelMindwashIV(cumNum:Number):void
 {
 	clearOutput();
-	showName("JEZEBEL'S\nDUNGEON");
+	showName("JEZEBEL’S\nDUNGEON");
 	author("Carol J");
 	output("It’s comfortable. The sudden sensation of lips pressing kisses up against your cockhead, even moreso. You look down, only to find two succubi tenderly licking and suckling at the bulging tip of your penis, almost meek in their worship. And why wouldn’t they be? Your cock is magnificent, a monument unto itself, the kind of fuckpillar that has bitches cumming around it the instant you hilt yourself in them...assuming they can take your length. Still, it hardly matters if you can gape a monster’s cunt with your cock when they’re so eager to worship you with their mouths and breasts instead.");
 	output("\n\nYou lean back in the throne and let your eyes sink shut. Your lips curl up in a satisfied smile, and your two adherents earn a dollop of precum for their worship, which they lap up eagerly.");
@@ -2927,7 +2927,7 @@ public function jezebelMindwashIV(cumNum:Number):void
 public function jezebelMindwashV(cumNum:Number):void
 {
 	clearOutput();
-	showName("JEZEBEL'S\nDUNGEON");
+	showName("JEZEBEL’S\nDUNGEON");
 	author("Carol J");
 	output("Every now and then, Jezebel flutters into your throne room, amused for some reason. But the uppity cunt won’t put out, so you just growl and wave her away. What good is a woman who won’t let herself get bred? Stupid bitch should just fuck off and let you rape more children into your goblins and succubi.");
 	output("\n\nThen again, one of your enchantresses had an interesting idea the other day. True, your slaves had bodies made to wring men dry, but...more of the same grew boring after a while. So why not send some of your troops to kidnap a princess or two? You’d practically bred an army already. Why not capture some human fuckmeat to rape an heir into?");
