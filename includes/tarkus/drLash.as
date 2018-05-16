@@ -397,7 +397,7 @@ public function lashTreatment2(treatment:String):void
 {
 	clearOutput();
 	showDrLash();
-	output("You come to feeling groggy and sore, like you ran a short footrace after taking a tumble down two flights of stairs. White laboratory walls gradually resolve into focus while you acquaint yourself with your surroundings and allow your mind to to slog its way out of the drug-induced stupor.");
+	output("You come to feeling groggy and sore, like you ran a short footrace after taking a tumble down two flights of stairs. White laboratory walls gradually resolve into focus while you acquaint yourself with your surroundings and allow your mind to slog its way out of the drug-induced stupor.");
 	output("\n\nYou’re naked on a bench in the center of the lab, completely uncovered and unprotected. Anyone could’ve walked in and seen you while you were unconscious!");
 	output(" Part of you thrills at the realization, but your body doesn’t react quite as you’d expect.");
 	output(" Gasping, you take in your changed form. <b>");

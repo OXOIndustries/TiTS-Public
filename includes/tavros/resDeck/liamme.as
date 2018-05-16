@@ -196,7 +196,7 @@ public function leaveLiamme():void
 {
 	clearOutput();
 	showLiamme();
-	output("You tell the femboy you have somewhere else to be. He tells you that’s fine with him and he bids you farewell, giving you a smile and a wink as you walk away.");
+	output("You tell the femboy you have somewhere else to be. He tells you that’s fine with him and bids you farewell, giving you a smile and a wink as you walk away.");
 	processTime(1);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -894,7 +894,7 @@ public function liammeShoppingAtAlissApproach():void
 		else output("You");
 		output(" tell him you were looking for something cute, and just happened to find him.");
 	}
-	else output("\n\nYou tell him you were browsing the selection Aliss keeps here, but you noticed him and figured you stop to say hey.");
+	else output("\n\nYou tell him you were browsing the selection Aliss keeps here, but you noticed him and figured you’d stop to say hey.");
 
 	output("\n\nLiamme smiles and blushes at your words, <i>“Thanks! It’s nice to have friends around here, especially ones you can meet in a lingerie shop.”</i> The trappy ausar’s eyes dart left to right for a moment, and he takes a few steps closer to you before whispering, <i>“Uh, hey, speaking of, we’re pretty good buds, right?”</i>");
 

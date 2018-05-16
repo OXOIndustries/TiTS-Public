@@ -602,7 +602,7 @@ package classes.GameData
 			gDisrupt.classLimit = GLOBAL.CLASS_ENGINEER;
 			gDisrupt.levelLimit = 5;
 			gDisrupt.perkName = "Gravidic Disruptor";
-			gDisrupt.perkDescription = "Grants the ability to deal Unresistable damage to targetted enemies.";
+			gDisrupt.perkDescription = "Grants the ability to deal Unresistable damage to targeted enemies.";
 			insertPerkData(gDisrupt);
 			
 			var tDisrupt:PerkData = new PerkData();

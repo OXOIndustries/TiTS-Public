@@ -243,7 +243,7 @@
 		
 		private function nyreaGroupBackstabby(target:Creature):void
 		{
-			output("Several of the huntresses attack you for the front, jabbing and stabbing and pushing you back. As they do, though, you ");
+			output("Several of the huntresses attack you from the front, jabbing and stabbing and pushing you back. As they do, though, you ");
 			if(combatMiss(this, target))
 			{
 				output("just barely notice another nyrea attempting to stab you in the back. You quickly spin around and shove her back, preventing the attack.");
