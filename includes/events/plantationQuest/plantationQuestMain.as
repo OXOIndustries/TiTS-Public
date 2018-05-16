@@ -334,7 +334,7 @@ public function snugglePlantationQuestStartMeetAble():void
 	showAble();
 	author("Nonesuch");
 	output("Able promptly buzzes out of the sky a short while after you press the button. He seems more tense and furtive than usual; his black eyes flicking up to yours and then away, his long tongue nipping in and out of his mouth, as if he were tasting something on the air.");
-	output("\n\n<i>“Master would like to see you,”</i> he says. The gate silently opens, gravel crunches as you are led up the immaculate path. <i>“He says it is important.”</i> The petite zil pauses at the steps, hands balling his Snugglé shift. <i>“Could you - once you have talked to Master, could we talk? I- I mean, you don’t have to. Just- just if you want.”</i> Eyes turned to the ground, he gestures at the open door of the mansion.");
+	output("\n\n<i>“Master would like to see you,”</i> he says. The gate silently opens, gravel crunches as you are led up the immaculate path. <i>“He says it is important.”</i> The petite zil pauses at the steps, hands balling his Snugglé shirt. <i>“Could you - once you have talked to Master, could we talk? I- I mean, you don’t have to. Just- just if you want.”</i> Eyes turned to the ground, he gestures at the open door of the mansion.");
 	processTime(2);
 	//Move PC to Mansion square
 	currentLocation = "THARE MANOR";
@@ -2087,7 +2087,7 @@ public function pcBeatsUpAWholeTribeNewsAt11():void
 	pc.createKeyItem("RK Lah - Captured");
 
 	//[Fuck Her] [Let Her Go]
-	if(pc.hasCock() && pc.cockThatFits(quinnVaginalCapacity())) addButton(0,"Use Dick",putItInQuinnYaCunt,undefined,"Use Dick","To the victor go the spoils...");
+	if(pc.hasCock() && pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(0,"Use Dick",putItInQuinnYaCunt,undefined,"Use Dick","To the victor go the spoils...");
 	else addDisabledButton(0,"Use Dick","Use Dick","You need a dick that will fit inside Quinn for this.");
 	if(pc.hasVagina()) addButton(1,"Use Vagina",takeQuinnInTheLadyWay,undefined,"Use Vagina","To the victor go the spoils...");
 	else addDisabledButton(1,"Use Vagina","Use Vagina","You need a vagina for this.");
@@ -2841,13 +2841,15 @@ public function postPlantationRest():void
 	}
 	output("You follow a supple, white-clad rump, a pair of wings the size of hoverboards and the scent of deep honey back out into the marble hall and up a grand staircase. Able leads you into a plush guest room, heavy on dark wood and lace. A large, claw-footed tub catches your eye in the adjoining washroom. Insects dance beyond the tall duraflex windows.");
 	if(flags["PQ_RESOLUTION"] == -1) output("\n\n<i>“I know,”</i> he says stonily, before you can speak. <i>“I was listening.”</i> He looks at the carpet, scuffs at it with his boot. <i>“It was stupid of me to think you could reason with my chieftain. There’s just too much for them to understand, and they’d been letting the ausar fill their minds with his anger for too long. In the end... in the end, they were in the wrong. We must learn from the star-walkers, not drive them away. Perhaps it had to be this way.”</i> He lets out a shuddering sigh. <i>“...Would you like a bath? Or something else?”</i>");
-	else output("\n\n<i>“Thank you so much for talking my chieftain down and not shooting my brothers and sisters,”</i> he whispers, the moment he closes the door. He hovers a bit, unsure of himself, and then abandons decorum to hug you tightly around the midriff. <i>“I was so worried about them... and about you. I thought all sorts of terrible things - that they’d kill you, or come back and do something awful like set the fields on fire - but you solved everything. You’re amazing.”</i> The slender zil looks ");
-	if(pc.tallness >= 72) output("up ");
-	else if(pc.tallness <= 55) output("down ");
-	output("at you, tar-pit eyes shining with hero worship. <i>“There must be something I can do for you. A bath? ");
-	if(!pc.hasVagina()) output("My behind");
-	else output("A lick");
-	output("? Anything.”</i>");
+	else {
+		output("\n\n<i>“Thank you so much for talking my chieftain down and not shooting my brothers and sisters,”</i> he whispers, the moment he closes the door. He hovers a bit, unsure of himself, and then abandons decorum to hug you tightly around the midriff. <i>“I was so worried about them... and about you. I thought all sorts of terrible things - that they’d kill you, or come back and do something awful like set the fields on fire - but you solved everything. You’re amazing.”</i> The slender zil looks ");
+		if(pc.tallness >= 72) output("up ");
+		else if(pc.tallness <= 55) output("down ");
+		output("at you, tar-pit eyes shining with hero worship. <i>“There must be something I can do for you. A bath? ");
+		if(!pc.hasVagina()) output("My behind");
+		else output("A lick");
+		output("? Anything.”</i>");
+	}
 
 	processTime(10);
 	//[Appearance] [Bath] [Fuck] [Sleep]
