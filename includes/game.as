@@ -2999,6 +2999,9 @@ public function variableRoomUpdateCheck():void
 	// Busky
 	if(hours >= 6 && hours < 17) rooms["STRAPS"].addFlag(GLOBAL.COMMERCE);
 	else rooms["STRAPS"].removeFlag(GLOBAL.COMMERCE);
+	//Brandy (she is in bar from 2 to 6
+	if (hours >= 2 && hours <= 5 && flags["BRANDY_RELATIONSHIP"] == 1 && flags["MET_SALLY"] != undefined && !pc.hasStatusEffect("Brandy Sally Timer")) rooms["505.75"].removeFlag(GLOBAL.NPC);
+	else rooms["505.75"].addFlag(GLOBAL.NPC);
 	
 	
 	/* MYRELLION */
