@@ -313,6 +313,7 @@
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
 		include "../includes/newTexas/brandy.as";
+		include "../includes/newTexas/brandyXPack1.as";
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";

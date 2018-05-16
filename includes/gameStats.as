@@ -4163,10 +4163,15 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Bailey’s Bovine Brewery</u></b>");
 				output2("\n<b>* Brandy:</b> Met her");
+				if(flags["BRANDY_AFFECTION"] != undefined) output2("\n<b>* Brandy, Affection:</b> " + flags["BRANDY_AFFECTION"] + " %");
+				if(flags["BRANDY_VAGINAL"] != undefined) output2("\n<b>* Brandy, Times Vaginally Fucked Her:</b> " + flags["BRANDY_VAGINAL"]);
+				if(flags["BRANDY_FINGERING"] != undefined) output2("\n<b>* Brandy, Times Mutually Fingered Her:</b> " + flags["BRANDY_FINGERING"]);
 				if(flags["SUCKLED_BRANDY"] != undefined) output2("\n<b>* Brandy, Times Suckled:</b> " + flags["SUCKLED_BRANDY"]);
-				if(flags["BRANDY_MISSIONARY"] != undefined) output2("\n<b>* Brandy, Times Missionary Fucked Her:</b> " + flags["BRANDY_MISSIONARY"]);
+				if(flags["BRANDY_MISSIONARY"] != undefined) output2("\n<b>* Brandy, Times Moosionary Fucked Her:</b> " + flags["BRANDY_MISSIONARY"]);
 				if(flags["BRANDY_MISCREANTED"] != undefined) output2("\n<b>* Brandy, Times Sexed at Miscreant Manor:</b> " + flags["BRANDY_MISCREANTED"]);
 				if(flags["BRANDY_STALLED"] != undefined) output2("\n<b>* Brandy, Times Sexed in Stall:</b> " + flags["BRANDY_STALLED"]);
+				if(flags["BRANDY_SALLY_THREESOME_PEN"] != undefined) output2("\n<b>* Brandy, Times had Threesome with Sally (penis):</b> " + flags["BRANDY_SALLY_THREESOME_PEN"]);
+				if(flags["BRANDY_SALLY_THREESOME_CUN"] != undefined) output2("\n<b>* Brandy, Times had Threesome with Sally (tongue):</b> " + flags["BRANDY_SALLY_THREESOME_CUN"]);
 				variousCount++;
 			}
 			// Bucking Bronco Saloonary
