@@ -159,6 +159,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 //	prepChar(justUpdate, "SECURITY_ROBOTS", AkkadiSecurityRobots);
 	prepChar(justUpdate, "SCHORA", CommanderSchora);
 	prepChar(justUpdate, "TORRA", Torra);
+	prepChar(justUpdate, "DRCALNOR", DrCalnor);
 	
 	
 	// Check all characters have version information set

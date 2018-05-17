@@ -87,7 +87,7 @@ public function syriQuestInitRooms():void
 		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("nothing but the faint light of your Codex");
 		else output("red emergency lights");
 		output(". Ausari words are sprayed on the wall to your left in big, blocky letters: AKKADI RESEARCH & DEVELOPMENT GROUP, IMC. UVETO RIFT DIVISION. Under those is inscribed, 'Restricted Access. Authorized Personnel Only.'\n\nSouthwards are the huge metal access doors, leading back outside to the Glacial Rift. Ahead, northwards, is a short hallway that leads up to an intersection.");
-		if (flags["SYRIQUEST_POWER_STATE"] == 2) syriQuestAkkadiBaseSecurityRobotsTrigger();
+//		if (flags["SYRIQUEST_POWER_STATE"] == 2) syriQuestAkkadiBaseSecurityRobotsTrigger();
 	};
 	rooms["AKD K31"].planet = planetName;
 	rooms["AKD K31"].system = systemName;
@@ -302,7 +302,6 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 //Play the first time the PC enters E9 Showers *if* the PC hasn't resolved Valden's encounter. Else, just basic room description.
 	rooms["AKD E9"] = new RoomClass(this);
 	rooms["AKD E9"].roomName = "\nSHOWERS";
-	//rooms["AKD E9"].description = "";
 	rooms["AKD E9"].runOnEnter = syriQuestAkkadiBaseShowers;
 	rooms["AKD E9"].planet = planetName;
 	rooms["AKD E9"].system = systemName;
@@ -350,8 +349,13 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD M11"] = new RoomClass(this);
 	rooms["AKD M11"].roomName = "AKKADI\nARCHIVES";
-	//rooms["AKD M11"].description = "desc";
-	rooms["AKD M11"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD M11"].description = "The inside of the archives room is about what you'd expect from the bleeding-edge tech company: it's an ice-cold room full of data servers and hard drives amid a forest of cables and power lines hanging from ceiling and wall. There's so many devices in here, stacking on top of each other right to the roof, that you can barely imagine how much data must be flowing through this room.";
+	rooms["AKD M11"].runOnEnter = function():void{
+		author("Savin");
+		if (pc.characterClass == GLOBAL.CLASS_ENGINEER && flags["SYRIQUEST_DATA_STOLEN"] == undefined) addButton(0, "Steal Data", syriQuestAkkadiBaseArchivesStealData, undefined, "Steal Data", "You could access the Akkadi servers, find some of their project documentation, and make a quick buck on the black market.");
+		else if (flags["SYRIQUEST_DATA_STOLEN"] == 1) addDisabledButton(0,"Steal Data");
+		else addDisabledButton(0,"Steal Data","Steal Data","You need to be a Tech Specialist for this.");
+	};
 	rooms["AKD M11"].planet = planetName;
 	rooms["AKD M11"].system = systemName;
 	rooms["AKD M11"].southExit = "AKD M13";
@@ -372,8 +376,12 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD Q13"] = new RoomClass(this);
 	rooms["AKD Q13"].roomName = "RESEARCH HALL\nCHECKPOINT";
 	rooms["AKD Q13"].description = "You're standing in a standard-issue corporate security checkpoint, the kind you've passed through a million times in the past. There's a three-row scanner column to detect weapons and contraband connected to a guard post where someone can monitor the comings and goings. Right now, though, it's occupied by a masturbating milodan scientist; the woman's still face-down, ass-up on the ground and driving her fingers into her twat.\n\nTo the south is a large circular plaza dominated by a very fake looking palm tree. There's several doors leading off of the plaza into the major labs.";
-	rooms["AKD Q13"].runOnEnter = function():void{
-		if (flags["MET_TORRA"] == undefined) syriQuestAkkadiBaseCheckPoint();
+	rooms["AKD Q13"].runOnEnter = function():Boolean{
+		if (flags["MET_TORRA"] == undefined) {
+			syriQuestAkkadiBaseCheckPoint();
+			return true;
+		}
+		return false;
 	};
 	rooms["AKD Q13"].planet = planetName;
 	rooms["AKD Q13"].system = systemName;
@@ -398,8 +406,12 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD O15"] = new RoomClass(this);
 	rooms["AKD O15"].roomName = "BIOMED\nLAB";
-	//rooms["AKD K15"].description = "desc";
-	rooms["AKD O15"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD O15"].description = "You're inside the Bio-Medical laboratory, a section of the facility dedicated to Akkadi's research into genetic manipulation, cloning, and all the other fun things a mega-corporation doesn't want the Confederate government to know about.\n\nYou see computer banks displaying all sorts of scientific data, jars and containers filled with unidentifiable liquid that suspends strange organic-looking parts within them. You can see skin-grafts stretched out across holographic pillars, huge vats of organic goop that gives the room a faintly sour smell... the list goes on.\n\nAt the far end of the laboratory, you see a secure sample case labelled 'Genetic Artifacts.'";
+	rooms["AKD O15"].runOnEnter = function():void{
+		author("Savin")
+		if (flags["SYRIQUEST_SYRI_ONAHOLE"] == undefined) addButton(0, "Artifacts?", syriQuestAkkadiBaseBioMedLabArtifacts, undefined, "Artifacts?", "Genetic artifacts, you say? That sounds lootable.");
+		else addDisabledButton(0,"Artifacts?");
+	};
 	rooms["AKD O15"].planet = planetName;
 	rooms["AKD O15"].system = systemName;
 	rooms["AKD O15"].eastExit = "AKD Q15";
@@ -408,8 +420,11 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD S15"] = new RoomClass(this);
 	rooms["AKD S15"].roomName = "STARSHIP\nLAB";
-	rooms["AKD K15"].description = "The Starship Lab is by far the largest section of the facility you've come across: it's several floors deep, surrounded by a grated walkway that overlooks several gutted starships. They're all hooked up to various computer banks and sensors, apparently being studied. Tools and dataslates are scattered haphazardly across the floor, suggesting the researchers and technicians working in here evacuated in a hurry.\n\nA service elevator leads down to the lower floor.";
-	rooms["AKD S15"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD S15"].description = "The Starship Lab is by far the largest section of the facility you've come across: it's several floors deep, surrounded by a grated walkway that overlooks several gutted starships. They're all hooked up to various computer banks and sensors, apparently being studied. Tools and dataslates are scattered haphazardly across the floor, suggesting the researchers and technicians working in here evacuated in a hurry.\n\nA service elevator leads down to the lower floor.";
+	rooms["AKD S15"].runOnEnter = function():void{
+		author("Savin");
+		addButton(0, "Elevator", function():void{moveTo("AKD T14");clearMenu();mainGameMenu();});
+	};
 	rooms["AKD S15"].planet = planetName;
 	rooms["AKD S15"].system = systemName;
 	rooms["AKD S15"].westExit = "AKD Q15";
@@ -418,8 +433,11 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD T14"] = new RoomClass(this);
 	rooms["AKD T14"].roomName = "STARSHIP LAB\nLOWER FLOOR";
-	//rooms["AKD T14"].description = "The lower level of the lab is full of starships that have been pulled apart, stripped down and refit with experimental devices. You see several different Akkadi craft, but also a handful of ships from the competition, including another Casstech Z-14. Wonder why they're interested in retro tech like that?";
-	rooms["AKD T14"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD T14"].description = "The lower level of the lab is full of starships that have been pulled apart, stripped down and refit with experimental devices. You see several different Akkadi craft, but also a handful of ships from the competition, including another Casstech Z-14. Wonder why they're interested in retro tech like that?";
+	rooms["AKD T14"].runOnEnter = function():void{
+		author("Savin");
+		addButton(0, "Investigate", syriQuestAkkadiBaseStarshipLabInvestigate,undefined,"Investigate","Search the Starship Lab for anything useful.");
+	};
 	rooms["AKD T14"].planet = planetName;
 	rooms["AKD T14"].system = systemName;
 	rooms["AKD T14"].moveMinutes = 1;

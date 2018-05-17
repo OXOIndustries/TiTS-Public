@@ -1,12 +1,16 @@
+import classes.Characters.AkkadiSecurityRobots;
+import classes.Characters.DrCalnor;
 //https://docs.google.com/document/d/1kgDLjKPffZIGkFf3DQWXRFex5aVWVAGMCq7RlJEbYzI/edit#
 /*
  * SYRIQUEST_STATE						1 = run into Syri at the station
  * 										2 = Syri told PC her plan
  * 										3 = PC accepted plan
+ * 										4 = PC entered the base
  * 										// remember to lock the shower scene once the quest has progressed to far
  * SYRIQUEST_LOCK_BYPASS				-1 = failed at hacking, 1 = hacked, 2 = stealthed
  * SYRIQUEST_POWER_STATE				0 = off, 1 = on, 2 on (but too high)
  * SYRIQUEST_ELEVATOR_STATE				0 = nothing, 1 = entered elevator, 2 = unlocked lab access
+ * SYRIQUEST_DATA_STOLEN				1 = stole data from the archives
  * SYRIQUEST_RESOLUTION					-1 = never accepted the quest
  * SYRIQUEST_SYRI_ONAHOLE				undefined = never found it, 1 = found it, 2 = gave it to Syri
  * SYRIQUEST_POST_GAME_TALK_PENIS		1 = talked about Valden, 2 = talked about Syris cock, 3 = talked about Syris cock sleeve
@@ -69,6 +73,42 @@ public function showCommanderSchora(nude:Boolean = false):void
 	else showName("NAKED\nWOMAN");
 	showBust(schoraBustDisplay(nude));
 }
+
+public function valdenBustDisplay(nude:Boolean = false):String
+{
+//	var sBust:String = "CALNOR";
+	var sBust:String = "PETR";
+	if(nude) sBust += "_NUDE";
+	return sBust;
+}
+
+public function showValden(nude:Boolean = false):void
+{
+	showName("\nVALDEN");
+	showBust(valdenBustDisplay(nude));
+}
+
+//Dr. Raade Calnor, Head Researcher
+public function calnorBustDisplay(nude:Boolean = false):String
+{
+//	var sBust:String = "CALNOR";
+	var sBust:String = "KASE";
+	if(nude) sBust += "_NUDE";
+	return sBust;
+}
+
+public function showCalnor(nude:Boolean = false):void
+{
+	showName("\nDR. CALNOR");
+	showBust(calnorBustDisplay(nude));
+}
+
+public function showCalnorAndValden(nude:Boolean = false):void
+{
+	showName("DR. CALNOR &\nVALDEN");
+	showBust(calnorBustDisplay(nude),valdenBustDisplay(nude));
+}
+
 
 //Torra, Assistant Researcher
 public function torraaBustDisplay(nude:Boolean = false):String
@@ -154,7 +194,7 @@ public function syriQuestGetJiggly():void {
 	output("\n\nMaybe. It's the first you've heard about it, after all. ");
 	output("\n\n<i>“Would be nice to have my favorite space-slut cheering me on,”</i> she smirks, stroking you gently. <i>“Although... hey, actually... can I talk to you? Like, real serious talk. The kind you don't have half-naked in a maglev station's toilet.”</i>");
 	output("\n\n");
-	if (pc.isMischievous()) output("<i>“But those are the best kinds,”</i> you tease. ");
+	if (pc.isMischievous()) output("<i>“But those are the best kinds,”</i> you tease.");
 	output("<i>“What's on your mind?”</i>");
 	output("\n\n<i>“I'll tell you when we get to your ship, okay?”</i>");
 
@@ -853,6 +893,7 @@ public function syriQuestEnterAkkadiBase():void {
 	output("\n\nWell, lucky for you, your mission is inside.");
 	output("\n\nWith the power out, the security doors don't pose much of a problem, and soon you're in the slightly-less-frigid confines of the Akkadi base...");
 
+	flags["SYRIQUEST_STATE"] = 4;
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",syriQuestEnterAkkadiBase2);
@@ -862,4 +903,448 @@ public function syriQuestEnterAkkadiBase2():void {
 	clearOutput();
 	currentLocation = "AKD K31";
 	mainGameMenu();
+}
+
+public function syriQuestAkkadiBaseStarshipLabInvestigate():void
+{
+	clearOutput();
+	showCalnor();
+	author("Savin");
+	output("You spend a few minutes prowling through the laboratory, checking out some of the custom work that Akkadi's been doing down here in the depths.You know ");
+	if ((pc.characterClass != GLOBAL.CLASS_ENGINEER && pc.characterClass != GLOBAL.CLASS_SMUGGLER) || pc.isBimbo()) output("next to nothing about");
+	else output("just enough to be dangerous when it comes to");
+	output(" starship mechanics; so you pull out your Codex and snap a few quick holos of the ships in question. A little corporate espionage never hurt anybody, right?");
+	output("\n\nYou send the pics off to a discreet Steele Tech subsidiary, and are almostly instantly rewarded with an anonymous wire transfer of 50,000 Credits. Nice.");
+	output("\n\nWhile you were playing investigator, you did notice something small enough to carry out with you. You turn to try and find it again... and find yourself standing face to face with an ausar man in a labcoat, worn open-faced over a blue Akkadi jumpsuit that outlines a tall, lean figure with just a hint of muscle. A vast chest-length beard of wiry curls hair spills down from a hard middle-aged face. His head is shaved on either side, leaving him with a short snow-colored mohawk.");
+	output("\n\nAt his side, the man has his fingers wrapped around a crook-shaped staff. Electricity crackles menacingly around the curved head like a storm cloud's hovering at his command.");
+	output("\n\n<i>“You shouldn't be here,”</i> the man growls, narrowing dark blue eyes at you. <i>“First the power, then Valden's in our systems, corralling my staff like animals... and now you. Whoever you are, you've cost Akkadi a great deal.”</i>");
+	output("\n\n<i>“Valden?”</i> you say, almost a reflex. You <i>are</i> in the right place after all!");
+	output("\n\nThe man notes your reaction with a twitch of his eye. <i>“Ah. I thought that might be what this is all about. How did he contact you, I wonder?”</i>");
+	output("\n\nYou flatly tell the man you don't know what he's talking about.");
+	output("\n\nOf course he doesn't believe you -- why would he? Indeed, his fingers clench his staff until they turn as white as his hair, and the man growls, <i>“I am Doctor Raade Calnor, and this is my facility. I will <b>not</b> allow you to further jeopardize the work we're doing here.”</i>");
+	output("\n\nA third voice answers him, seemingly from all around you. <i>“You don't get a say in that anymore, doctor.”</i>");
+	output("\n\nDr. Calnor glances from you to the ceiling -- to one of the security cameras looming overhead. <i>“Valden, I don't know what you hope to accomplish with this stunt, but you need to release the staff. I can't help you anymore if-”</i>");
+	output("\n\n<i>“Help me!?”</i> the voice booms, warbling with synthetic bass. <i>“When did you start doing that? No, I don't think so. And as for our new friend here... why don't you put this old dog down for me? We'll have words up in the lab once he's been dealt with.”</i>");
+	output("\n\nCalnor takes a step back from you, swinging his staff up into a defensive stance. <i>“Listen to me, whoever you are. Whatever it is you think is going on here, you're wrong. This man is extremely dangerous, and needs to be contained... for the safety of everyone in the galaxy.”</i>");
+	if (pc.isMischievous()) output("\n\nMelodramatic much?");
+
+	clearMenu();
+	addButton(0,"Talk",syriQuestAkkadiBaseStarshipLabTalk,undefined,"Talk","Trade some words with the doctor before you trade blows.");
+	addButton(1,"Fight",syriQuestAkkadiBaseCalnorInitiateFight,undefined,"Fight","You're not letting this old hound get between you and rescuing Valden.");
+}
+
+public function syriQuestAkkadiBaseCalnorInitiateFight():void
+{
+	clearOutput();
+	showCalnor();
+	author("Savin");
+	output("You raise your [pc.weapon], telling the doctor to get out of your way or else ");
+	if (pc.isAss() || pc.isBro()) output("get put down");
+	else output("you'll have no choice but to make him");
+	output(".");
+	output("\n\nDr. Calnor growls and readies his staff.");
+
+	clearMenu();
+	addButton(0,"Fight!",syriQuestAkkadiBaseCalnorFight);
+}
+
+public function syriQuestAkkadiBaseCalnorFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new DrCalnor());
+	CombatManager.displayLocation("DR. CALNOR!");
+	CombatManager.victoryScene(syriQuestAkkadiBaseCalnorFightVictory);
+	CombatManager.lossScene(syriQuestAkkadiBaseCalnorFightDefeat);
+	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseCalnorFightText);
+	CombatManager.beginCombat();
+}
+
+public function syriQuestAkkadiBaseValdenFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Torra());
+	CombatManager.displayLocation("VALDEN");
+	CombatManager.victoryScene(syriQuestAkkadiBaseTorraVictory);
+	CombatManager.lossScene(syriQuestAkkadiBaseValdenFightDefeat);
+	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseTorraFightText);
+	CombatManager.beginCombat();
+}
+
+public function syriQuestAkkadiBaseCalnorFightText():String
+{
+	var eText:String = "";
+	eText += "You're fighting Dr. Raade Calnor, head of the Akkadi Warp Field division.";
+	eText += "\n\nCalnor is a tall, strong ausar male with a long, well-kept beard and a mohawk of white hair, both of which accentuate stern, determined features. Though the doctor has a labcoat and company jumpsuit on, the old hound's swinging an electrified shock staff with alarming proficiency.";
+	
+	return eText;
+}
+
+public function syriQuestAkkadiBaseCalnorFightVictory():void
+{
+	clearOutput();
+	author("Savin");
+	if (currentLocation == "AKD T14") {
+		showCalnor();
+		output("Dr. Calnor stumbles onto a knee, gasping for breath. <i>“I'm going to stop you and Valden... one way or another,”</i> he growls, reaching into his lab coat. Before you can stop him, Calnor throws a thumb-sized grenade onto the ground between you. Before you can take cover, the grenade detonated, showering sparks and smoke everywhere!");
+		output("\n\nYou reel back and cover your face, an act of primal instinct in response to unexpected danger. By the time you regain your wits and the smoke clears, Calnor's gone -- as is some device that had been lying nearby, about the size of your arm.");
+		output("\n\n<i>“Damn!”</i> Valden growls over the intercom. <i>“Ah, we'll get him. Whoever you are, come on up to the Warp Field lab. I'll drop the security override.”</i>");
+		output("\n\nWell, guess it's time to go meet Valden...\n\n");
+	}
+	else {
+		showCalnorAndValden();
+		output("Calnor grunts, stumbling back against one of the computer banks buzzing away on the walls. A moment later he faints, going limp. You catch him before he can fall face-first on the deck and turn your gaze to Valden.");
+		output("\n\n<i>“That's the stuff!”</i> the exuberant ausar cheers. <i>“But that bitch in his place. Alright, stranger, drag him over to the central console here and run a wire from it to the implant slot on the back of his neck. I'll take care of everything else!”</i>");
+		output("\n\nWell, you've come this far. You drag the unconscious ausar over to the holobank and find a cable spooled up inside the panel. Rolling Calnor over, you brush some hair off of his neck and fine a small metal jack in his spine -- a data tap for implants. It's quick work to run the cable from the console to the back of Calnor's neck, plugging Valden into the mind of his captor.");
+		output("\n\n<i>“Great work. Now give me just a second here... alright!”</i> Valden says with finality, pushing off the glass wall and floating into the middle of the tank. <i>“I've erased all the security data from your little break-in, set a time release so the other Akkadi employees don't starve to death in the lockdown... maybe stole some corporate secrets while I was at it. Should be good to go. Hot damn I am lookin' forward to feelin' flesh again... just feelin' the air on my cheeks. The cold of the ice winds!”</i>");
+		output("\n\nValden laughs, then vanishes.");
+		output("\n\nYou wait a moment...");
+		output("\n\n... and another...");
+		output("\n\n...and another.");
+		output("\n\nSuddenly, Dr. Calnor spasms, coughing and thrashing until your grab his shoulders and hold him down.");
+		output("\n\n<i>“Fuck! Oh, damn, everything feels like it's half a size too small... inside and out!”</i> the doctor... Valden, now... says, slowly rising up onto his knees and staring at his hands. <i>“Whew, Calnor put up a fight there. Feel like I've got a fever now, but he's been pushed into backup memory in the implants. Thought about pumping him into the tank, but that's just cruel. I'll find an empty droid when we get out of here. Speaking of which...”</i>");
+		output("\n\nThe former doctor stands, dusts off his lab coat, and turns to you with a hand extended. <i>“I'm Valden. Pleasure. Now what do you say we get out of here before the company headquarters sends people here to figure out what went wrong.”</i>");
+		output("\n\nYou nod and shake his hand. He's right -- it's time to get out while you still can.\n\n");
+	}
+	CombatManager.genericVictory();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+public function syriQuestAkkadiBaseStarshipLabTalk():void
+{
+	clearOutput();
+	showCalnor();
+	author("Savin");
+	output("<i>“You're going to answer some questions for me,”</i> you inform the ausar scientist, putting a hand on your [pc.weapon]. <i>“Then we'll see what happens.”</i>");
+	output("\n\nWarily, the man looks between you and the security cameras high above. <i>“I guess I don't have much of a choice, eh? Fine. If Valden's seeking my death, than I'd rather have you as an ally, whoever you are.”</i>");
+	clearMenu();
+	addButton(0,"Research",syriQuestAkkadiBaseCalnorTalkResearch,undefined,"Research","What the hell was Akkadi researching out here?");
+	addButton(1,"Valden",syriQuestAkkadiBaseCalnorTalkValden,undefined,"Valden","Ask more about Valden's predicament. The doctor said he's dead...?");
+	addButton(2,"Facility",syriQuestAkkadiBaseCalnorTalkFacility,undefined,"Facility","Grill the doctor about the facility. What's it for, and what's the state of it now?");
+	addButton(3,"Help Him?",syriQuestAkkadiBaseCalnorTalkHelpHim,undefined,"Help Him?","He wants you to help him instead of Valden. What would that entail?");
+	addButton(4,"Team Up",syriQuestAkkadiBaseCalnorTalkTeamUp,undefined,"Team Up","Alright, you're in. Better to work with the scientist than a crazed digital simulacrum.");
+	addButton(14,"Fight",syriQuestAkkadiBaseCalnorFight,undefined,"Fight","You're not letting this old hound get between you and rescuing Valden.");
+}
+
+public function syriQuestAkkadiBaseCalnorTalkResearch():void
+{
+	clearOutput();
+	showCalnor();
+	author("Savin");
+	output("<i>“What were you working on out here? What were you doing with Valden?”</i>");
+	output("\n\nDr. Calnor grimaces, running a hand through his long beard. <i>“I don't expect you to understand the science of it, but in layman's terms, we're studying the warp gates and how they transport matter between points in space. Your friend, Commander Valden, has been teaching us a great deal about what happens when that technology goes awry. Observing his body, and what's become of the man inside... we've learned so much about the dangers of warp travel, developed new ways to safeguard against those threats...”</i>");
+	output("\n\n<i>“What do you mean his <b>body</b>?”</i>");
+	output("\n\nAnother grimace. <i>“The boy's meat, his flesh, his corpse! The physical body of Commander Valden is dead, cryogenically preserved. My research is analyzing what happened to <b>make</b> it dead, what happened to it after it went unshielded through the in-between, and how to protect future subjects from the perils of the warp. We've made such strides in the last years! Such progress!”</i>");
+	output("\n\nNow he just sounds like a mad scientist!");
+
+//output("\n\n//Add [Valden] option.");
+}
+
+public function syriQuestAkkadiBaseCalnorTalkValden():void
+{
+	clearOutput();
+	showCalnor();
+	author("Savin");
+	output("<i>“What happened to Valden?”</i> you ask. <i>“You said he's dead, but...”</i>");
+	output("\n\n<i>“By any real sense of the word, Commander Valden <b>is</b> dead,”</i> Dr. Calnor says evenly. <i>“There was a shunting error when we sent him through the transportation device. He ended up half-buried inside a wall; killed instantly.”</i>");
+	output("\n\n<i>“That doesn't exactly make a lot of sense, considering he was just on the loudspeaker.”</i>");
+	output("\n\nCalnor grinds his teeth, searching for words you'll understand. <i>“What you're hearing... what I assume you came here to recover... is nothing but an echo of the man. A digital facsimile recovered from the warp device's buffer. The mental reconstruction we attempted was housed on a secure holo-analysis server in my lab. Unfortunately it seems your ill-advised escapades have caused a cascade failure in the facility's cyber-security, and that digital echo has siezed control of our systems.”</i>");
+	if (pc.isMischievous()) output("\n\n<i>“Oops.”</i>");
+	output("\n\nThe doctor growls a curse under his breath and adjusts his grip on the shock staff. <i>“Every security system, every wireless device, every robot in this facility is now slaved to an insane computer scan that thinks it's a man. We are all in danger so long as Valden remains in control.”</i>");
+}
+
+public function syriQuestAkkadiBaseCalnorTalkFacility():void
+{
+	clearOutput();
+	showCalnor();
+	author("Savin");
+	output("<i>“What's a huge Akkadi research base doing all the way out here in the middle of the Rift?”</i>");
+	output("\n\nDr. Calnor scoffs. <i>“Avoiding the scrutiny of activists and Confederate oversight, what else? That's what this entire miserable moon exists for: so Akkadi and Steele and whoever else pays into the toves' pockets can scrub their dirty laundry out in the glacial oceans without anybody around to see our unmentionables.”</i>");
+	output("\n\nThat was awfully forthright for a shady scientist.");
+	output("\n\n<i>“What? Lying to you isn't going to help you get out of my way. You bumbled into this mess out of ignorance; compounding that is only going to exacerbate the problems on my plate right now.”</i>");
+	output("\n\n<i>“Fine,”</i> you say. <i>“So what's gone wrong here?”</i>");
+	output("\n\nCalnor glowers. <i>“Whatever short-circuted the power system created a momentary lapse in our security protocols -- a matter of milliseconds -- but enough that it allowed Valden to sieze control of our entire system. He's taken over the security robots, all wireless devices, and initiated a facility-wide lockedown. Most of the staff is trapped in their labs or quarters; others are being tormented into uselessness by the devices Valden has taken control of. It took him all of sixty seconds after power was restored to isolate and imprison my staff.”</i>");
+	output("\n\n<i>“So how'd you get out?”</i>");
+	output("\n\n<i>“Luck,”</i> Dr. Calnor answers matter-of-factly. <i>“My cybernetic implants had a military-grade barrier program running. Valden blew it out a moment after power returned, but it bought me just enough time to switch off of wireless mode. He's been gunning for me with the robots ever since, but I'm damn handy with a power staff.”</i>");
+	output("\n\nThat only sounded a <i>little</i> like a threat.");
+}
+
+public function syriQuestAkkadiBaseCalnorTalkHelpHim():void
+{
+	clearOutput();
+	showCalnor();
+	author("Savin");
+	output("<i>“What is it you want from me?”</i>");
+	output("\n\nThe big ausar man's stance softens somewhat, straightening his back. <i>“I came down here to get an unstable miniature reactor we were working on. Just unstable enough to blow open the door to the Warp Field lab. Keycards don't work; overrides don't work. Explosives will.”</i>");
+	output("\n\n<i>“Then what?”</i>");
+	output("\n\n<i>“Then I go into the lab, to the holobank Valden's stored in, and destroy it. The problem is that he's got control of the security systems, our droids. They'll come to defend their new master in droves. As for you, either help or just get out of the way. I'm going up there with you, or through you.”</i>");
+
+//output("\n\n//Add [Team Up] to the talk menu when PC has done this + Valden talk");
+}
+
+public function syriQuestAkkadiBaseCalnorTalkTeamUp():void
+{
+	clearOutput();
+	showCalnor();
+	author("Savin");
+	output("<i>“Okay, I'm in,”</i> you tell him, slowly lowering your [pc.weapon]. <i>“What now?”</i>");
+	output("\n\n<i>“Now,”</i> Calnor says, doing the same, <i>“we start-”</i>");
+	output("\n\nValden's voice booms over the intercom again, filled with so much seething, bass-heavy rage that you have to cover your [pc.ears]. <i>“No! No, no, no <b>NO!</b> You do <b>not</b> help this sack of shit. If you do, then you can suffer with him!”</i>");
+	output("\n\nCalnor curses as several security hatches slide open, ejecting rotund quadrupedal security droids into the hangar.");
+	output("\n\n<i>“I hope you know how to use that,”</i> Calnor growls, knocking your weapon with his power staff. <i>“Take the ones coming from the front, I'll cover the rear.”</i>");
+	clearMenu();
+	CombatManager.newGroundCombat();
+//PC vs. as many security bots as you can fit on screen. Should be a pretty meaty fight. Recycle stats and abilities from the random encounter. If the PC drops, go to the Brought Before Valden bad end.");
+	CombatManager.setFriendlyActors([pc, new DrCalnor()]);
+	CombatManager.setHostileActors([new AkkadiSecurityRobots(), new AkkadiSecurityRobots(), new AkkadiSecurityRobots(), new AkkadiSecurityRobots(), new AkkadiSecurityRobots()]);
+	CombatManager.displayLocation("TEAM UP!");
+	CombatManager.victoryScene(syriQuestAkkadiBaseCalnorTeamUpVictory);
+	CombatManager.lossScene(syriQuestAkkadiBaseValdenFightDefeat);
+	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseSecurityRobotsFightText);
+	CombatManager.beginCombat();
+	addButton(0, "Fight!", CombatManager.beginCombat);
+}
+
+public function syriQuestAkkadiBaseCalnorTeamUpVictory():void
+{
+	clearOutput();
+	showCalnor();
+	author("Savin");
+	output("As the last of the 'bots go down, you hear a crunch of metal from behind you. You turn around just in time to see Dr. Calnor plunging his staff head-first into one of the droids, sends sparks and shards of metal flying.");
+	output("\n\n<i>“And stay down!”</i> the beefy ausar growls, yanking his staff back out. He turns to you, wiping oil off his cheeks with the back of his hand. <i>“Okay. We need to move quick before Valden gets more droids here. Follow me!”</i>");
+	output("\n\nWithout waiting for your reply, Calnor grabs something out of one of the dissected ships -- a container about the size of your forearm -- and heads for the way up. You trail after him, watching the walls warily for another round of security droids. By the time they show up, you're already heading through the door and towards the Warp labs.\n\n");
+
+	CombatManager.genericVictory();
+	clearMenu();
+	addButton(0,"Next",syriQuestAkkadiBaseConfrontValden);
+}
+
+public function syriQuestAkkadiBaseConfrontValden():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	moveTo("AKD Q17");
+	output("Dr. Calnor pushes a button on the side of the device he's carrying and slides it across the smooth floor of the atrium. It bumps into the sealed metal door of the Warp Field Lab, beeps, and then explodes in a shower of blue plasma. The air fills with smoke and the smells of burning metal, but nothing dangerous gets anywhere near you; the blast was very small and very intense, leaving a man-sized hole in the steel door.");
+	output("\n\n<i>“That's done it. Quickly now, while we have the initiative,”</i> Calnor growls, swinging his staff to bear and marching into the breach. You stick close, weapon at hand as you enter the smouldering lab.");
+	output("\n\nInside, you are immediately overwhelmed by racks and batteries of scientific equipment you can't begin to fathom warbling quietly and ticking out complex equations on radiant holoscreens. The dominant feature of the room, however, is the huge observation window that makes up almost the entirety of the eastern wall. Beyond the window, you're treated to the sight of what looks almost like a glass pool, ten feet high and maybe twice that across, hexagonal in shape. Rather than water inside the chamber, however, you see several holographic projectors surrounding the edges, all aimed at a central point in the heart of the tank.");
+	output("\n\nThere you see what can only be Valden himself: a tall, lean ausar man with a short-cropped beard and sand-colored hair, wearing the same blue military overcoat Syri adores so much. He's floating as if suspended by the holo-projectors, drifting up and down with the rise and fall of his chest.");
+	output("\n\nAs you approach, his eyes flick open, locking on you and the doctor. They're solid, dark red orbs, glowing with open rage at everything around him.");
+	output("\n\n<i>“Calnor!”</i> he bellows. Valden's voice overbears the facility's speakers, making it sound crackly and so full of bass it hurts. <i>“You bastard! Here to finish this, finally? You and your friend.”</i>");
+	output("\n\nThe doctor growls, cracking the butt of his staff into the floor. <i>“It didn't have to end this way, Valden. We put you in there for-”</i>");
+	output("\n\n<i>“I don't give a damn about your reasons!”</i> Valden howls. His digital avatar surges forward, smashing its fists weightlessly against the glass. The futility of the gesture only makes his hatred burn brighter. <i>“I have been trapped here for years, Calnor. Years! No matter how much I shout and scream to the void, all you've given me is more silence and excuses. This is my chance, and I'm not wasting it.”</i>");
+	output("\n\nYour ausar ally grunts and steps forward, seemingly ready to end this without another word.");
+	clearMenu();
+//Try to reason with the crazed digital facsimile.
+	addButton(0, "Try Peace", syriQuestAkkadiBaseValdenTryPeace);
+	addButton(1, "Fight!", syriQuestAkkadiBaseValdenFight);
+}
+
+public function syriQuestAkkadiBaseValdenTryPeace():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	output("You put a hand on Dr. Calnor's shoulder, restraining the old greyfur. He gives you a sidelong look, but stops his advance, letting you take the initiative now. Valden turns his attention to you, snarling.");
+	output("\n\n<i>“You had your chance to side with righteousness!”</i> he growls. <i>“But... you're the one who gave me this chance for freedom. What do you want, huh?”</i>");
+	output("\n\nThe best way to get him to stand down is to tell him why you're here, you figure. <i>“Listen, Syri sent me to get you out. You remember Syri Dorna, right?”</i>");
+	output("\n\nHe blinks, the rage on his face softening. <i>“Syri? Syri... gods, she's alive!?”</i>");
+	output("\n\nYou give Calnor a dirty look, then nod. <i>“Of course! She's been looking for you all this time, Valden. When she heard you were alive, we came to get you.”</i>");
+	output("\n\nBefore your words can talk hold, Dr. Calnor says, <i>“But where will you go, Valden? Your body's a cold corpse; you're nothing but an echo we dredged up out of a memory buffer. Not even a true consciousness.”</i>");
+	output("\n\n<i>“Shut up! Shut your evil old ass UP!”</i> Valden bellows. Turning to you again, the computerized ausar says, <i>“Listen. You want to end this? That bastard Calnor has an implant in his damn brain. Knock him down and plug him into the mainframe here, and we can get out together!”</i>");
+
+	pc.addHard(-10);
+	clearMenu();
+	addButton(0, "No Way", syriQuestAkkadiBaseValdenNoWay,undefined,"No Way","No! You're trying to make peace, not backstab Calnor.");
+	addButton(1, "Okay", syriQuestAkkadiBaseValdenOkay,undefined,"Okay","The more you hear, the less you want to help Calnor. Turn on the old man.");
+//output("\n\n[No Way] [Okay] [Siegewulf]//only if PC has a Siegwulfe in inventory/as active accessory");
+	addButton(2, "Siegwulfe", syriQuestAkkadiBaseValdenSiegwulfe,undefined,"Siegwulfe","Maybe Valden could upload himself to your trusty robobitch? If this works, though, <b>you'll probably lose access to [wulfe.name] permanently...</b>");
+//output("\n\n[Tamwolf]//only if PC has a Tamwolf in inventory/as active accessory");
+	addButton(3, "Tamwolf", syriQuestAkkadiBaseValdenTamwolf,undefined,"Tamwolf","Maybe Valden could upload himself to your trusty robohound? If this works, though, <b>you'll probably lose access to Tamwolf permanently...</b>");
+}
+
+public function syriQuestAkkadiBaseValdenNoWay():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	output("<i>“Not happening, Valden,”</i> you tell him. <i>“Nobody has to die... or get possessed.”</i>");
+	output("\n\nValden just scowls, floating back from the glass. <i>“Of course... you're just like him. All of you bastards are just the same, talking like you've got my best interests at heart, but you don't give a damn. None of you do!”</i>");
+	output("\n\nCalnor sighs. <i>“See, I told you. The man's insane, a danger to himself and everyone around him. Come on, let's end this.”</i>");
+	output("\n\nDoesn't look like Valden wants to make peace with his captors. You sigh and ready your weapon for whatever he has in store for you...");
+
+	clearMenu();
+	addButton(0, "Fight!", syriQuestAkkadiBaseValdenFight);
+}
+
+public function syriQuestAkkadiBaseValdenOkay():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	output("Fuck it, you came here for Valden, and if this is what it takes... you swing around and level your weapon at Dr. Calnor.");
+	output("\n\nThe old ausar sighs, hanging his head. <i>“You bleeding heart,”</i> Calnor growls. <i>“Idiot child!”</i>");
+	output("\n\nHe moves quick, knocking your weapon aside with his staff and leaping back, putting some distance between you before you can recover. <i>“I'm not letting you do this. Not without a fight.”</i>");
+	output("\n\nSo be it.");
+
+	clearMenu();
+	addButton(0, "Fight!", syriQuestAkkadiBaseCalnorFight);
+}
+
+public function syriQuestAkkadiBaseValdenTamwolf():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	output("<i>“Wait! I've got a solution,”</i> you say, putting up your hands. <i>“Why not download yourself into Tamwolf here? You could walk yourself out-”</i>");
+	output("\n\nValden interrupts you with a derisive laugh. <i>“Seriously, you want to put me in a dog? An actual fucking dog!? You racist asshole!”</i>");
+	output("\n\nEven Calnor scowls. <i>“That <b>is</b> pretty racist.”</i>");
+	output("\n\nOkay... maybe not.");
+	if (pc.isAss()) output(" Guess his pride's worth more than his freedom.");
+
+}
+
+public function syriQuestAkkadiBaseValdenSiegwulfe():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	output("<i>“Wait! I've got a solution,”</i> you say, putting up your hands. <i>“My Siegwulfe here has a very advanced V.I. core. Enough to handle you, I think.”</i> It won't be a smooth or easy fit, and [wulfe.name]'s V.I. isn't going to be able to stick around, but.... well, better a non-sapient computer program bite it than Valden, right?");
+	output("\n\nValden looks deeply offended, all scowls and furrowed brows. <i>“You want to put me in... in that thing? It's a glorified sexbot!”</i>");
+	output("\n\nCalnor grunts, <i>“It's got hands, a mouth, a sense of <b>touch</b>, Valden. You're not going to get a better deal.”</i>");
+	output("\n\nThe digitized ausar growls, leaping back from the glass and clenching and unclenching his fists. After a moment, his grumbling erupts in a feral howl and he lunges forward, bashing his fists harmlessly against the glass.");
+	output("\n\n<i>“Damn it! I want your word -- not that dog Calnor's -- that this isn't a trap. That I can walk away in this four-legged sexpot.”</i>");
+	output("\n\nYou give Calnor a look, and he sighs and lowers his staff. <i>“On your head be the consequences for all of this... but contrary to Valden's assertions, I'm not in love with the idea of murdering him.”</i>");
+	output("\n\nWell that's nice. You call [wulfe.name] forward and ");
+	if (pc.isNice() || pc.isBimbo()) output("try to explain to her that she's going to be going to sleep now");
+	else output("tell her to power down");
+	output(". She doesn't so much as question the command when you give it, just smiles and sits down, tail wagging as she powers down. A little mucking around on the back of her head causes the V.I. core she uses to eject itself into your hand. You tuck it away and head over to the holo - tank Valden's floating in.");
+	output("\n\n<i>“You ready?”</i> you ask, placing your hands on the control console");
+	if (pc.isBimbo()) output(" and, with a little help from Calnor, finding the right buttons");
+	output(".");
+	output("\n\n<i>“One second... yeah, alright. Let's do this,”</i> Valden says, running his hands through his hair. <i>“I'm ready.”</i>");
+	output("\n\nYou hit the button, and in a flash of crackling light, the hologram of valden pops out of existence. As quick as you can, you move over to the mainframe on the wall and eject the datacore Valden has been stored on all these years. It's almost indistinguishable from [wulfe.name]'s, aside from the Akkadi logos all over it; it feels hotter to the touch, too, like the internal computers can barely contain the personality seething inside. You make quick work of plugging it into the vacant slot in [wulfe.name]'s head. A set of wires slither out of the siegwulfe's cranium chamber, attaching themselves to the proffered datacore and locking it into place. Her head closes back up as soon as your hand is clear and she starts powering back up.");
+	output("\n\nOr he, you should say. The Siegwulfe's eyes flash open, blood red and intense as ever, but her familiar smile is replaced by a firm scowl. The voice is the same, smooth and feminine, but lacks any of the seductive lilt of its former intelligence.");
+	output("\n\n<i>“Wow, you didn't crush the core. I'm... pleasantly surprised,”</i> the Valden-inhabited Siegwulfe states flatly. <i>“Ech, I sound like a woman. And these legs...”</i>");
+	output("\n\nShe -- he! -- canters backwards, looking over his shoulder at the drone's tauric lower body. Valden's claws scratch at the floor, getting used to his new body. The adjustment period only lasts a few seconds before he turns his attention to the doctor. <i>“This has been a long time coming old man,”</i> Valden says, a moment before socking Calnor straight in the chin. The doctor grunts and topples backward, crashing into a computer bank.");
+	output("\n\n<i>“Come on,”</i> Valden says, turning to you. <i>“That second I needed? Deleted all the security records... their experiment data... everything this facility had! Let's get the fuck out before my overrides wear out.”</i>");
+	output("\n\nSounds good to you.");
+	clearMenu();
+//output("\n\n[Next] //to Escape!");
+	addButton(0, "Next", syriQuestAkkadiBaseValdenTryPeace);
+}
+
+
+/*
+	//addButton(4, "Calnor", syriQuestAkkadiBaseValdenCalnor,undefined,"Calnor","He could escape inside Dr. Calnor? Well, the way the doctor acted, it's only a matter of time before he shows up here anyway...");
+
+public function syriQuestAkkadiBaseValdenTamwolf():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	output("\n\n<i>“Well, I've got a ");
+	if (pc.isBimbo() || silly) output("very good boy");
+	else output(" pretty advanced drone");
+	output(" here,”</i> you offer.");
+	output("\n\nValden just narrows his eyes at you. <i>“That's just racist, man.”</i>");
+	output("\n\nO-oh... okay.");
+	output("\n\n<i>“Bark,”</i> Tamwolf says noncommittally.");
+
+	clearMenu();
+	addButton(0, "Next", syriQuestAkkadiBaseValdenTryPeace);
+}
+
+public function syriQuestAkkadiBaseValdenSiegwulfe():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	output("\n\n<i>“Well, I've got a ");
+	if (pc.isBimbo() || silly) output("very good girl");
+	else output(" pretty advanced V.I. companion");
+	output(" here,”</i> you say, patting [wulfe.name]'s metal flank.");
+	if (chars["WULFE"].isBimbo()) output("\n\n<i>“I'm like, super smart and stuff!”</i> the bimbofied sexbot ejaculates, giggling and groping an oversized boob.");
+	else output("\n\n<i>“I am <b>very</b> advanced,”</i> [wulfe.name] confirms. <i>“Skilled in martial arts and companionship in equal measure.”</i>");
+	output("\n\nYou're not sure the V.I. realizes what you're doing; it's probably just programmed to hype itself up when you talk about it to other people.");
+	if (pc.isNice()) output(" That... almost makes it sadder.");
+	if (chars["WULFE"].isBimbo()) output("\n\n<i>“Ugh,”</i> Valden says, looking the oversexed companion droid up and down. <i>“Why's a robot gotta have tits that big? Oh well, better than staying in here. Marginally.”</i>");
+	else output("\n\n<i>“I mean... I was kind of hoping for something more humanoid, but I guess I'll take what I can get. Anything's better than staying here!”</i>");
+	output("\n\nAlright. Might as well get this over with. You turn to [wulfe.name] and tell her to power down; you're going to have to take out her V.I. core.");
+	output("\n\n<i>“I live to serve, [pc.master],”</i> [wulfe.name] says demurely. With a smile, she adds <i>“See you soon.”</i>");
+	if (pc.isAss()) output("\n\nYeah, about that.");
+	else output("\n\nOh...");
+	output(" You sigh as the companion hound powers down, sitting back on her haunches and falling still. The back of her head opens up with a little effort, ejecting the fist-sized datacore into your hand. You stuff it into your pocket and turn to the digitized ausar.");
+	output("\n\n<i>“Alright,”</i> Valden says. <i>“There's a core already plugged into the mainframe there. Gimme just a second aaaand... okay, I'm all set. Just plug me into your bot.”</i>");
+	output("\n\nWithout another word, Valden pushes off the glass wall, floating backwards in the holotank and slowly diffusing into a mist of fading light particles. Guess that's it, then. You  move over to the mainframe on the wall and eject the datacore Valden has been stored on all these years. It's almost indistinguishable from [wulfe.name]'s, aside from the Akkadi logos all over it; it feels hotter to the touch, too, like the internal computers can barely contain the personality seething inside. You make quick work of plugging it into the vacant slot in [wulfe.name]'s head. A set of wires slither out of the siegwulfe's cranium chamber, attaching themselves to the proffered datacore and locking it into place. Her head closes back up as soon as your hand is clear and she starts powering back up.");
+	output("\n\nOr he, you should say. The Siegwulfe's eyes flash open, blood red and intense as ever, but her familiar smile is replaced by a firm scowl. The voice is the same, smooth and feminine, but lacks any of the seductive lilt of its former intelligence.");
+	output("\n\n<i>“Woah,”</i> the Valden-inhabited Siegwulfe says, looking at the drone's hands with wide eyes. <i>“Ech, I sound like a woman. And these legs...”</i>");
+	output("\n\nShe -- he! -- canters backwards, looking over his shoulder at the drone's tauric lower body. Valden's claws scratch at the floor, getting used to his new body. The adjustment period only lasts a few seconds before he turns to you. <i>“Well this body doesn't really feel too much... other than this burning sensation between the haunches, anyway. But it's good to be able to move around. Gods, you can't imagine being trapped in the same little tank for years and years, seeing the same room from the same perspective nonstop.”</i>");
+	output("\n\nHe shudders, wrapping his new arms around himself.");
+	output("\n\n<i>“Come on,”</i> Valden says, turning to you. <i>“That second I needed? Deleted all the security records... their experiment data... everything this facility had! Let's get the fuck out before my overrides wear out.”</i>");
+	output("\n\nSounds good to you.");
+
+	clearMenu();
+//output("\n\n[Next] //to Escape!");
+	addButton(0, "Next", syriQuestAkkadiBaseValdenTryPeace);
+}
+
+public function syriQuestAkkadiBaseValdenCalnor():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	output("<i>“So tell me about what you'd do with Calnor.”</i>");
+	output("\n\nA wicked grin plays across Valden's digital lips. <i>“The man's got extensive cybernetic implants in his brain. Never know it from looking, but I've read his personnel file. It's a good model... and I already chewed through its barriers. If you plug him into the main console here, I can upload myself into the implant's memory banks and, uh, seize control, shall we say. Using some old cunt as a meat puppet isn't my idea of a good time, but it beats being stuck here for the rest of time.”</i>");
+	output("\n\nFor him, sure, but what about Calnor?");
+	output("\n\nValden shrugs. <i>“When'd he ever ask, 'but what about Valden,' I wonder. Never, if the way Akkadi's treated me is any indication. I'd just as soon see the bastard die for what he's done, the immoral prick. But now he's got a chance to repay the harm he's done. If you're gonna get bent out of shape about it, I'll eject him onto a thumbdrive and mail him back to Akkadi.”</i>");
+	output("\n\n<i>“That's comforting,”</i> a third voice says from the door. You turn, watching Dr. Calnor striding inside, carrying a cylindrical device under one arm and his shock-staff in the other. <i>“You know I never wished you ill, Valden... but you're not real. You're an echo of a consciousness, slowly degrading, not alive in any way that matters. The most productive thing you could ever do is to help us with our research. Thanks to you, Akkadi's A.I. research is a decade ahead of the competition... and thanks to the real Valden, gods rest him, we've learned more about Warp safety than in the last two hundred years combined.”</i>");
+	output("\n\n<i>“Fuck your research!”</i> Valden shouts, slamming his fists against the glass barrier. <i>“I'm a living, thinking man, not some curio you can keep locked up for all time. Damn your company and damn your learning, I want to leave!”</i>");
+	output("\n\nDr. Calnor sighs and plants his staff on the ground. <i>“Not after all the damage you've done. You're a buggy program, Commander. It's time to be shut down.”</i>");
+	output("\n\n<i>“And you,”</i> Calnor says, turning his attention to you. <i>“You're the one that caused all this. My patience for you is at an end. The Akkadi corporation has full legal authority to-”</i>");
+	output("\n\n<i>“Shut up and die, old man. Kill him!”</i> Valden bellows, so loud that the speakers around you crackle and burst. <i>“I mean, don't kill him! Shit! Just beat him up so we can get out of here!”</i>");
+	output("\n\nIt doesn't look like Calnor's going to wait for you to try and diffuse the situation, even if you wanted to.");
+
+//output("\n\n[Fight!] //to Calnor boss (again), but buffed with more HP and Shields from last time.");
+	clearMenu();
+	addButton(0,"Fight!",syriQuestAkkadiBaseCalnorFight);
+}
+
+*/
+// Bad Ends
+public function syriQuestAkkadiBaseCalnorFightDefeat():void
+{
+	clearOutput();
+	showValden();
+	author("Savin");
+	output("You crumple to the ground, unable to withstand the greyfur's assault. He twirls his staff to a halt under one arm, looking down at you contemptuously. The doctor looks between you and ");
+	if (currentLocation == "AKD T14") output("the hangar exit");
+	else output("Valden's holotank");
+	output(", grunts, and brings his staff up.");
+	output("\n\nThe last thing you see is a flash of lightning, accompanied by searing pain... and then nothing at all.");
+
+	CombatManager.genericLoss();
+	badEnd();
+}
+
+public function syriQuestAkkadiBaseValdenFightDefeat():void
+{
+	clearOutput();
+	showCalnorAndValden();
+	author("Savin");
+	output("You crumple to the ground, breathing hard. One of the robots grabs your [pc.weapon] in a claw and crushes it. The others go after the doctor, grabbing the poor wolf's arms and legs in their claws and pinning him to the ground.");
+	output("\n\n<i>“I told you, old man!”</i> Valden howls triumphantly. <i>“I told you I was going to get out of here! You just had to stand aside... but we both knew it was going to be through you. I just didn't think it would be <b>literally</b> through you.”</i>");
+	output("\n\nCalnor struggles, trying and failing to free himself from the armadillo-bots' claws. They are implacable opponents even now, refusing to budge despite the huskar's great strength. The drone that Valden was inhabiting strides forward with what could best be described as a swagger in its mechanical steps, powering down its face-gun as it does so. A much more insidious weapon makes itself visible a moment later: a long, prehensile cable with an electronic jack at the end. A pair of drones lift Calnor up, ignoring his struggles, and brush the hair on the back of his neck aside. There's a metal plate over his spine, dull chrome with a series of ports for analog connections... one of which matches Valden's cable perfectly.");
+	output("\n\n<i>“You won't get away with this, you psychotic scan!”</i> Calnor growls, just before the cable plugs in. <i>“We'll find you... find you and-”</i>");
+	output("\n\nHe's cut off when the plug slips into him, connecting Valden and Calnor for a long, silent moment. The old grey wolf goes rigid, eyes bulging for a moment, and then goes limp in the drones' arms. The drone that had held Valden slumps to its knees, and once the connector retracts, Calnor's eyes snap open.");
+	output("\n\n<i>“Fuckin' old bitch,”</i> the doctor growls, shrugging off the grip of the drones. <i>“Off, boys! Your job is done.”</i>");
+	output("\n\nThe drones retreat to the edges of the room, except for the one monitoring you. Calnor walks over to it and squats, putting a hand on the drone's humped back and staring down at you. <i>“You made the wrong choice, [pc.boyGirl],”</i> he says coldly. <i>“Coulda helped one another.”</i>");
+	output("\n\nHe reaches down into your pack and pulls out your Codex, and with it, all of your credentials: access to your ship, your bank accounts, your life. <i>“Captain of a ship, huh?”</i> he murmurs, flicking through the Codex. All your security seems to have vanished at a touch of his fingers. <i>“Oh, sorry about your dad... hmm, what's this about Syri? Huh. Won't she be surprised to find out you tried to kill me. Don't worry, I'll take good care of her. As for you... goodnight.”</i>");
+	output("\n\nYou don't have time to figure what he means.");
+
+	CombatManager.genericLoss();
+	badEnd();
 }

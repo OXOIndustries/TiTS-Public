@@ -471,10 +471,51 @@ public function syriQuestAkkadiBaseShowersTreatHerBadOutro():void
 	addButton(0, "Next", mainGameMenu);
 }
 
+public function syriQuestAkkadiBaseArchivesStealData():void
+{
+	clearOutput();
+	author("Savin");
+	output("You step up to one of the access computers and quickly run a cable from your Codex to a universal port on its side. You make quick work of disabling the firewalls; from the inside, the server defenses aren't much of an obstacle. It only takes a few moments to bypass them and then start digging around for something tasty to sell. There's so much data here, way more than you can parse or download on the fly here, so you just go for the project with the highest budget earmarked for it.");
+	output("\n\nA bit of searching turns up a new ultra-heavy dreadnought being designed for the Joint Ausar Federation navy. It's not being built here, but there are some parts being tested in the hangar down below, so they have the full specs for the ship. Somebody'll pay a pretty penny for this, and it <i>probably</i> won't actually hurt the navy.");
+	output("\n\nYou jack the documents, throw 'em up on an dark.net forum you've visited a few times, and within a minute you've got a bid that's hard to turn down. 12,500 credits are wired to your account, and the files vanish. Nice and easy.");
+	pc.credits += 12,500;
+	processTime(10);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function syriQuestAkkadiBaseBioMedLabArtifacts():void
+{
+	clearOutput();
+	author("Savin");
+
+	output("You swagger on over to the sample case at the end of the lab, looking it over as you do. It's standard corporate fare, and you've seen it's like before: all shiny black polymer, held nice and safe by a small computer lock. One that is easily defeated by a bit of ");
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output("hacking");
+	else if (pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("security bypassing");
+	else output("elbow grease");
+	output(". You spend a couple minutes cracking it open, revealing the contents within.");
+	output("\n\nIt looks like a flashlight.");
+	output("\n\nYou blink, curious as to who locked up a nondescript black metal cylinder and why. Luckily for your insatiable thirst for knowledge, there's a tag pinned to the protective foam holding the flashlight in place. Squinting at it, you see a familiar name printed on it:");
+	output("\n\nSyri Dorna.");
+	output("\n\nWhat? You blink, sure for a moment you've misread... but the text remains unchanged. Underneath the name is a string of text and numbers you can't parse, followed by something about 'sample collected from incident 376-A2.' The transporter accident, maybe? ");
+	output("\n\nNow you're curious. What kind of biological detritus did Akkadi collect from wherever Syri ended up after her accident? You pick up the cylinder and twist off the cap, staring into the depths of...");
+	output("\n\n... <b>There's a vagina in there.</b>");
+	output("\n\nWell, there's a lot of things you might have expected to find in a cylinder in a box with your friend's name on it, but that... wasn't exactly high on the list. But there it is, a pretty pink puss surrounded by a short circle of olive skin that melds into the ring of the cylinder. The pussy seems alive, too, slicked with moisture and radiating warmth against the sterile cold that permeates the place.");
+	output("\n\nIt's like some kind of living onahole");
+	if (CodexManager.entryViewed("BionaHoles")) output(" -- or more accurately, a BionaHole");
+	output("!");
+	output("\n\n<i>“What the hell?”</i> you mutter, staring at... what can only be Syri's own pussy. Has this really been sitting here all these years, suspended and kept alive? And if so, why... and what happened to Valden, if he didn't get Syri's twat?");
+	output("\n\nYou throw the living onahole into your pack. <b>Syri's going to want to see this!</b>");
+	flags["SYRIQUEST_SYRI_ONAHOLE"] = 1;
+	processTime(10);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
 
 
 // Torra, Assistent Researcher
-public function syriQuestAkkadiBaseCheckPoint():Boolean
+public function syriQuestAkkadiBaseCheckPoint():void
 {
 	clearOutput();
 	showTorra();
@@ -488,24 +529,23 @@ public function syriQuestAkkadiBaseCheckPoint():Boolean
 	processTime(10);
 	clearMenu();
 	flags["MET_TORRA"] = 1;
-	addButton(0,"Fight", syriQuestAkkadiTorraFight,undefined,"Fight","You've got a bad feeling about submitting to this needy kitty.");
-	addButton(1,"Fuck", syriQuestAkkadiTorraFuck,undefined,"Fuck","Why bother fighting? You both wan't the same thing anyway!");
-	return true;
+	addButton(0,"Fight", syriQuestAkkadiBaseTorraFight,undefined,"Fight","You've got a bad feeling about submitting to this needy kitty.");
+	addButton(1,"Fuck", syriQuestAkkadiBaseTorraFuck,undefined,"Fuck","Why bother fighting? You both wan't the same thing anyway!");
 }
 
-public function syriQuestAkkadiTorraFight():void
+public function syriQuestAkkadiBaseTorraFight():void
 {
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(new Torra());
 	CombatManager.displayLocation("ASSISTANT\nRESEARCHER");
-	CombatManager.victoryScene(syriQuestAkkadiTorraVictory);
-	CombatManager.lossScene(syriQuestAkkadiTorraDefeat);
-	CombatManager.encounterTextGenerator(syriQuestAkkadiTorraFightText);
+	CombatManager.victoryScene(syriQuestAkkadiBaseTorraVictory);
+	CombatManager.lossScene(syriQuestAkkadiBaseTorraDefeat);
+	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseTorraFightText);
 	CombatManager.beginCombat();
 }
 
-public function syriQuestAkkadiTorraFightText():String
+public function syriQuestAkkadiBaseTorraFightText():String
 {
 	var eText:String = "";
 	eText += "You're fighting the Milodan Researcher!";
@@ -514,13 +554,13 @@ public function syriQuestAkkadiTorraFightText():String
 	return eText;
 }
 
-public function syriQuestAkkadiTorraDefeat():void
+public function syriQuestAkkadiBaseTorraDefeat():void
 {
 	CombatManager.genericLoss();
-	syriQuestAkkadiTorraFuck();
+	syriQuestAkkadiBaseTorraFuck();
 }
 
-public function syriQuestAkkadiTorraFuck():void
+public function syriQuestAkkadiBaseTorraFuck():void
 {
 	clearOutput();
 	showTorra(true);
@@ -566,7 +606,7 @@ public function syriQuestAkkadiTorraFuck():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function syriQuestAkkadiTorraVictory():void
+public function syriQuestAkkadiBaseTorraVictory():void
 {
 	clearOutput();
 	showTorra();
@@ -585,12 +625,12 @@ public function syriQuestAkkadiTorraVictory():void
 	CombatManager.genericVictory();
 	processTime(3);
 	clearMenu();
-	if (pc.hasCock()) addButton(0,"Pound Puss",syriQuestAkkadiTorraPoundPuss,undefined,"Pound Puss","Take this curvy catgirl to the pound.");
+	if (pc.hasCock()) addButton(0,"Pound Puss",syriQuestAkkadiBaseTorraPoundPuss,undefined,"Pound Puss","Take this curvy catgirl to the pound.");
 	else addDisabledButton(0,"Pound Puss","Pound Puss","You need a penis for this.");
-	addButton(1,"Leave",syriQuestAkkadiTorraLeave,undefined,"Leave","Go away, cat.");
+	addButton(1,"Leave",syriQuestAkkadiBaseTorraLeave,undefined,"Leave","Go away, cat.");
 }
 
-public function syriQuestAkkadiTorraPoundPuss():void
+public function syriQuestAkkadiBaseTorraPoundPuss():void
 {
 	clearOutput();
 	showTorra(true);
@@ -616,7 +656,7 @@ public function syriQuestAkkadiTorraPoundPuss():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function syriQuestAkkadiTorraLeave():void
+public function syriQuestAkkadiBaseTorraLeave():void
 {
 	clearOutput();
 	showTorra();
