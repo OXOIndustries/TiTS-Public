@@ -110,8 +110,7 @@ package classes.Characters
 			else
 			{
 				output("The blade swings past your face, dazzling your senses! In that moment, follow up rib punches rock your side, pushing you back!");
-				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
-				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
+				for (var i:int = 0; i < 2; ++i) applyDamage(meleeDamage(), this, target, "minimal");
 			}
 		}		
 		protected function punchyFlurry(target:Creature):void
@@ -121,16 +120,13 @@ package classes.Characters
 			else
 			{
 				output(" His fist makes a hefty impact against your sternum, battering through any defense you have! A kick to the calves, a gut punch and a knife-hilt to the face follow!");
-				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
-				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
-				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
-				applyDamage(this.meleeWeapon.baseDamage, this, target, "minimal");
+				for (var i:int = 0; i < 4; ++i) applyDamage(meleeDamage(), this, target, "minimal");
 			}
 		}
 		private function punchyFlashy(target:Creature):void
 		{
 			output("With a quick dive of his hand to his belt, the masked madman throws a small blue object right at your feet: grenade! ");
-			if (combatMiss(this, target)) output("You manage to cover your eyes in time, the worst effect being the quickly passing piercing whine!");
+			if (combatMiss(this, target) || target.hasBlindImmunity()) output("You manage to cover your eyes in time, the worst effect being the quickly passing piercing whine!");
 			else
 			{
 				output("You can’t dodge or take cover in time, the extreme, cripplingly sharp flash doing enough to make you blinded!");

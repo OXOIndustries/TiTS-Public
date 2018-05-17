@@ -73,15 +73,5 @@ package classes.Characters
 				if (incomingDamage.getType(i).isHPDamage && incomingDamage.getType(i).damageValue > 0)
 					this.createStatusEffect("Fade-cloak struck", 0, 0, 0, 0, true, "", "", true);
 		}
-		
-		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
-		{
-			if (hasStatusEffect("Fade-cloak struck"))
-			{
-				if (hasStatusEffect("Fade-cloak")) removeStatusEffect("Fade-cloak");
-				removeStatusEffect("Fade-cloak struck");
-			}
-			super.CombatAI(alliedCreatures, hostileCreatures);
-		}
 	}
 }

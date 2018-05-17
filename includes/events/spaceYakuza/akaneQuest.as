@@ -1,5 +1,5 @@
 /* AkaneQuest: My Kingdom For A Grenade
- * 
+ * lighterfluid is the one to blame for anything that breaks
  * Flaggy flag-flags:
  * -AKANEQUEST_STAGE:
  * 0: talked about raid
@@ -28,7 +28,7 @@ public function akaneHasAnExclamationMarkOverHerHeadEmail():String
 	if (silly) mailtext += " snapshot of Akane smiling and giving you the ‘peace’ sign like a typical tourist with ice cream in the other hand.</i>";
 	else mailtext += " picture of the sales rep from the Celeritas Veritas storefront with his hand waving in the air.</i>";
 	
-	return mailtext;
+	return ParseText(mailtext);
 }
 
 public function akanequestImInButton(slot:int):void
@@ -58,7 +58,7 @@ public function akanequestRaidBriefing():void
 	output("\n\nShe swipes her hand again, bringing up the image of a bulky figure in black and red Reaper IV armor. Said figure seems to be a female kaithrit, far too tall for the average and far too powerfully built for anything other than rough work. Instead of hair, her head is covered in abstract tattoos and everything from the neck down is a mixture of shiny bodysuit and hi-tech armor, some sort of shield generator on her left forearm and a foot long hilt of <i>something</i> in her right.");
 	output("\n\n<i>“Name’s Petra, picked it up over the cameras. She’s filling some sort of ‘management’ role for this new cell of Black Void-affiliated slavers. Sort of like a consultant, only in armor and with the belligerence of a caged… well, large cat,”</i> she explains, spinning the model of Petra on its axis. <i>“She’s rather nasty from the sounds of things, has a predilection for young slaves... even more reason to have this whole thing removed. So we’ve got a nice tasty plan.”</i>");
 	output("\n\nYou watch intently as it swings back to the warehouse.");
-	output("\n\n<i>“We’ve already set ourselves up as a ‘prospective partner’ as a completely different company, ‘Sentient Acquisitions’. Our very own Mr. Shan will be handling the trade, you remember him right? The guy who escorts you when you visit?”</i>");
+	output("\n\n<i>“We’ve already set ourselves up as a ‘prospective partner’ as a completely different company, ‘Sentient Acquisitions’. It's a real company, just not ours, so hopefully they'll take a bit of a fall here... Our very own Mr. Shan will be handling the trade, you remember him right? The guy who escorts you when you visit?”</i>");
 	output("\n\nOh <i>him</i>.");
 	output("\n\n<i>“Mmhm,”</i> you nod, picturing the diminutive Shan against the monster that is Petra. <i>“Who else is involved?”</i>");
 	output("\n\n<i>“Me, Cheo, some others. You’ll not recognise them in their suits, especially Cheo. Dashing rogue that he is, mhmm. Oh let’s not forget you, of course,”</i> she quickly replies, prodding a finger into your shoulder. <i>“You’re going to be the goods.”</i>");
@@ -153,7 +153,7 @@ public function akanequestHereWeGoRaidingAgain():void
 	output("\n\nYou feel calm for the moment, knowing that you’re in safe hands. What tickles your anxiety is what happens once she lets go…");
 	output("\n\nAfter what feels like half an hour of traipsing and winding through corridors, you come to an abrupt halt. The air feels cool and stale, a varying period of heat making you think that you’re standing under a row of overhanging lights.");
 	output("\n\nThe blindfold pulls away over one eye.");
-	output("\n\n<i>“Shh. Throughout all this, just keep as quiet and play along. Shand and Cheo will be at your side, I’ll be… around. All good?”</i> whispers a winking Akane, holding a finger to her mouth.");
+	output("\n\n<i>“Shh. Throughout all this, just keep as quiet and play along. Shan and Cheo will be at your side, I’ll be… around. All good?”</i> whispers a winking Akane, holding a finger to her mouth.");
 	output("\n\nYou nod confidently but the growing butterflies in your gut tremble something fierce.");
 	output("\n\n<i>“It’ll be over soon, precious,”</i> she grins, donning an ornate black-and-gold mask in a similar style to her agents. You watch as Akane’s form dissolves into the air right before you, the blindfold then cutting your vision again.");
 	output("\n\nYou hear her steps fade and muffle into nothing and then another hand grips you by your arm.");
@@ -180,8 +180,8 @@ public function akanequestHereWeGoRaidingAgain():void
 	output("\n\nIn terms of weapons, you can see a large looking hilt hanging loosely off her hip and a complex looking gauntlet on her left arm. Wonder what they could be...");
 	output("\n\nCheo is… suited up? Oh and without his mask…");
 	output("\n\nCompletely unrecognisable save for his tri-colored tail, a somewhat boyish faced Cheo stands next to you with folded arms. You notice his 5’’ hair is a somewhat bushy bundle of brown, white and black. Black markings adorn his eyelids like some kind of warpaint, maybe a tattoo…? Snapping back to reality a second, you can’t spot any weapons on him. How does he plan to handle this if it goes");
-	if (silly) output("Trials in Tainted Space up?");
-	else output("tits up?");
+	if (silly) output(" Trials in Tainted Space up?");
+	else output(" tits up?");
 	output("\n\n<i>“What do I do now?”</i> you whisper to him.");
 	output("\n\n<i>“Shh, keep in character,”</i> is his terse response, a quick palm brushing your blindfold back over your eyes. You sigh to yourself and silently resign to continuing the act.");
 	output("\n\nYou can barely hear Shan when he’s talking. His usually cheerful and rehearsed voice has become more clinical and explanatory as he talks about prices for ‘parts’ and ‘expenses’. Petra barely says a word, sometimes a “yes” or a “no” in as blunt a manner as possible. Occasionally she says words like “extreme” and “exclusive” in relation to… something.");
@@ -211,9 +211,10 @@ public function akanequestWaaitFooorIiiit():void
 	output("\n\nThree, two, one…!");
 	output("\n\nMere feet before she can reach you, a flashbang separates you and her in a burst of harsh light and sound.");
 	output("\n\nYou jump to the left just in time to avoid the worst of it, the large stack of crates finally becoming useful. Cheo kneels behind you with his hands on various weapons: a hardlight dagger, those glowing knuckle things… your [pc.weapon].");
-	output("\n\n<i>“Here, just try to keep her distracted or something! We’ll take the rest down first,”</i> he growls, quickly pulling apart the knot around your wrists and handing you your weapon");
-	//if (s}
-	output(". You jump out from behind cover with your [pc.weapon] ready!");
+	output("\n\n<i>“Here, just try to keep her distracted or something! We’ll take the rest down first,”</i> he growls, quickly pulling apart the knot around your wrists and handing you your");
+	if (!pc.hasMeleeWeapon() || !pc.hasRangedWeapon()) output(" weapon.");
+	else output(" weapons.");
+	output(" You jump out from behind cover with your [pc.weapon] ready!");
 	output("\n\n<b>It’s a fight!</b>");
 	
 	akanequestConfigureFight();
@@ -229,8 +230,8 @@ public function akanequestImARebelMofo():void
 	output("\n\n<i>“Whassat? Thought this one was better trained, Shan,”</i> mocks Petra. <i>“If I’m gettin’ [pc.himHer], then I’m showin’ the way forward. Salvation if ya will. McGuinnugh, lovetap.”</i>");
 	output("\n\n<i>“Madam, if I-”</i>");
 	output("\n\n<i>“Nah, nah, you’ll get ya money Shan but I’m allowed my trial period. Forget property damage, I’ll just tip ya for insurance. McGuinnugh, gut ‘em,”</i> commands the kaithrit. Heavy steps come from your left like the pounding drums of war. What did you just star-<i><b>HRRRK</b></i>");
-	applyDamage(new TypeCollection({kinetic: pc.HP() / 5}, DamageFlag.BYPASS_SHIELD), undefined, pc, "minimal");
-	pc.createStatusEffect("Internal Bleeding", 15, 0, 0, 0, false, "Icon_Water_Drop", "This is going to need treatment. -15HP every turn!", true, 0, UIStyleSettings.gStatusBadColour);
+	applyDamage(new TypeCollection({unresistablehp: pc.HP() / 5}, DamageFlag.BYPASS_SHIELD), undefined, pc, "minimal");
+	pc.createStatusEffect("Internal Bleeding", 15, 0, 0, 0, false, "Icon_Water_Drop", "This is going to need treatment...\n-15HP every turn.", true, 0, UIStyleSettings.gStatusBadColour);
 	output("\n\nThe body of a very heavy shotgun slams into your guts, first crushing the wind from your body and then forcing your body to buckle over. The pain is unreal: just short of broken bones but there’s gonna be internal bleeding. This thought merely distracts you however.");
 	output("\n\n<i>“No you DON’T,”</i> comes an aggressive, rough voice from somewhere.");
 	output("\n\nWhat can only be described as the sharpest, most visceral neck snap in recent memory follows but that’s merely a trigger for the cascade of flashbangs that follows.");
@@ -239,7 +240,8 @@ public function akanequestImARebelMofo():void
 	output("\n\nYou can only murmur a few words, too winded to string a thought out. You’ve still got your limbs: with a desperate shake, you try to free your hands.");
 	output("\n\n<i>“Hang on, hang on. I guess if you’re still moving, you’re still shooting, as much as it pains me,”</i> growls Akane as she undoes your bonds. You’re barely on your feet when Cheo shoves your [pc.weapon] into your hands.");
 	output("\n\n<i>“Here, just try to take her down! We’ll thin the numbers,”</i> he growls. You nod and read yourself to face the smoke-covered tower that is Petra.");
-
+	processTime(0);
+	
 	akanequestConfigureFight(true);
 }
 
@@ -255,7 +257,41 @@ public function akanequestConfigureFight(provoked:Boolean = false):void
 		default: playerWhip = new PetraWhip(); break;
 	}
 	
-	var petra:AkanequestPetra = new AkanequestPetra(playerWhip);
+	var petra:AkanequestPetra = new AkanequestPetra();
+	
+	//Nakedificate pc
+	if (!(pc.armor is EmptySlot))
+	{
+		petra.inventory.push(pc.armor);
+		pc.armor.onRemove(pc);
+		pc.armor = new EmptySlot();
+	}
+	
+	if (!(pc.accessory is EmptySlot))
+	{
+		petra.inventory.push(pc.accessory);
+		pc.accessory.onRemove(pc);
+		pc.accessory = new EmptySlot();
+	}
+	
+	if (!(pc.upperUndergarment is EmptySlot))
+	{
+		petra.inventory.push(pc.upperUndergarment);
+		pc.upperUndergarment.onRemove(pc);
+	}
+	pc.upperUndergarment = new ShibariTop();
+	
+	if (!(pc.lowerUndergarment is EmptySlot))
+	{
+		petra.inventory.push(pc.lowerUndergarment);
+		pc.lowerUndergarment.onRemove(pc);
+	}
+	pc.lowerUndergarment = new ShibariBottom();
+	
+	//Your reward is getting your things back. Go you!
+	var items:Array = pc.inventory;
+	pc.inventory = new Array();
+	petra.inventory.push(playerWhip);
 	
 	//PC is an idiot
 	if (provoked) CombatAttacks.applyBlind(petra, 2);
@@ -268,7 +304,7 @@ public function akanequestConfigureFight(provoked:Boolean = false):void
 	//UPDATE: IT DOES
 	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, petra);
 	//Flags would be better, but...
-	CombatManager.victoryScene(function():void{akanequestVictory(provoked)});
+	CombatManager.victoryScene(function():void{akanequestVictory(provoked, items)});
 	CombatManager.lossScene(akanequestLoss);
 	CombatManager.displayLocation("SLAVERS!");
 	CombatManager.encounterTextGenerator(akanequestFightDesc);
@@ -280,7 +316,7 @@ public function akanequestFightDesc():String
 {
 	var encText:String = "You’re fighting Petra, a slaver executive for the Black Void! Alongside are two of her slaver grunts!";
 	encText += "\n\nThe towering monster of a kaithrit is clad in heavy, tight armor with the black and red design of the Void. She stands well over 6’ tall and is heavily build in muscle if her tight suit is anything to go by. A large pelvic plate hints at a little something else that’s hidden away…";
-	encText += "\nIn her right hand, she carries a tri-whip that glows and crackles in neon blue light and in her left is some sort of hardlight siege-shield. The bulky hexagraphic shield is enough to cover her fully from the front when she crouches.";
+	encText += "\n\nIn her right hand, she carries a tri-whip that glows and crackles in neon blue light and in her left is some sort of hardlight siege-shield. The bulky hexagraphic shield is enough to cover her fully from the front when she crouches.";
 	if (CombatManager.enemiesAlive() == 3) encText += "\n\nTo her side are two slaver grunts. Although not as defensively equipped as normal Black Void pirates by having lighter plated armor, they all carry aftermarket Stormbull shotguns with obvious aftermarket tinkering.";
 	else if (CombatManager.enemiesAlive() == 2) encText += "\n\nTo her side is a slaver grunt. Although not as defensively equipped as normal Black Void pirates by having lighter plated armor, he carries an aftermarket Stormbull shotgun with obvious aftermarket tinkering.";
 	if (CombatManager.getRoundCount() == 1) encText += " \n\nCurrently, they’re too blindsided to face you having been disrupted with a flashbang.";
@@ -288,7 +324,10 @@ public function akanequestFightDesc():String
 	return encText;
 }
 
-public function akanequestVictory(provoked:Boolean):void {
+public function akanequestVictory(provoked:Boolean, items:Array):void {
+	//You get your stuff back, yay
+	pc.inventory = items;
+	
 	var lust:Boolean = enemy.lust() >= enemy.lustMax();
 	CombatManager.genericVictory(function():void{akanequestLoot(provoked, lust)});
 }
@@ -319,7 +358,9 @@ public function akanequestLoot(wasProvoked:Boolean, lustWin:Boolean):void
 	output("\n\n<i>“Ohhh, fffff, uh, U.G.C offices. Make sure Shan is in charge, he’s far too smooth for those officers to handle. Oh and send a nice note to Officer Batra, would you?");
 	if (riyaOnCanada()) output(" Actually, she’s been moved, hasn’t she. Send a gift basket to the officers as well then");
 	else output(" She’d appreciate all the hard work we’re doing for her");
-	output(",”</i> directs a casually-toned Akane, intent on overseeing the busy cleanup work. Having seen the situation fully de-escalated, you approach her with your weapon{s} stowed away.");
+	output(",”</i> directs a casually-toned Akane, intent on overseeing the busy cleanup work. Having seen the situation fully de-escalated, you approach her with your");
+	if (!pc.hasMeleeWeapon() || !pc.hasRangedWeapon()) output(" weapon stowed away.");
+	else output(" weapons stowed away.");
 
 	if (wasProvoked)
 	{
@@ -335,10 +376,10 @@ public function akanequestLoot(wasProvoked:Boolean, lustWin:Boolean):void
 	if (wasProvoked) output(" Well, aside your ‘bold’ and ‘courageous’ use of derailment tactics.");
 	output(" A few scuffs here and there but nothing serious. We’ve recovered our warehouse, no missing stock, no traps or unwanted obstacles. Perfect timing. I certainly couldn’t have done this without you,”</i> she appraises, cupping your chin between her fingers. <i>“So how about a little something from me, hm? We have some new tech here, perfectly functional prototypes ready for deployment and I thiiiink… you’re deserving of one. Especially with the way you handled that [pc.weapon]. Took down that waste of existence over there, too...”</i>");
 	output("\n\nShe quickly strides off to an ordinary stack of silver-and-black cases, gesturing you to follow with her fingers. You do so, of course; the promise of useful tech is too much to turn down.");
-	output("\n\nYou watch from her side as she separates out two similar looking cases and places them side-by-side. One is marked ‘CV-x808’ while the other is ‘CV-x1375’ in spartan lettering along the top. They’re both code-locked with a robust data pad on the seals of each. Akane only needs a few seconds to override the locks and <i>psssshhhh</i>... the small of factory fresh materials hisses out from the boxes. Mmm, nothing like a good bit of new weapon smell!");
+	output("\n\nYou watch from her side as she separates out two similar looking cases and places them side-by-side. One is marked ‘CV-x808’ while the other is ‘CV-x1375’ in spartan lettering along the top. They’re both code-locked with a robust data pad on the seals of each. Akane only needs a few seconds to override the locks and <i>psssshhhh</i>... the smell of factory fresh materials hisses out from the boxes. Mmm, nothing like a good bit of new weapon smell!");
 	output("\n\nAs the lids open, you take a gander at the items within.");
 	output("\n\nOn the left is a large pistol, CV-x1375. Its smooth and svelte design belies its size, the white plating and shielding gives it a hi-tech feel and the stubby triple-barrels on the front suggest <i>serious</i> stopping power. From the looks of things, it could be some kind of obscure energy weapon.");
-	output("\n\nOn the right is a hardlight sword-grip, CV-x808. Its ornate black-and-gold scheme speaks of its high value immediately and the grip looks tailor-made. The inch-wide, ovaline cross-guard is decorated with abstract gold leaf designs. You palm it over and stand taken aback by how light it feels handle.");
+	output("\n\nOn the right is a hardlight sword-grip, CV-x808. Its ornate black-and-gold scheme speaks of its high value immediately and the grip looks tailor-made. The inch-wide, ovaline cross-guard is decorated with abstract gold leaf designs. You palm it over and stand taken aback by how light it feels.");
 	output("\n\n<i>“So what’re you feeling, precious? More for the sword or the gun? You’ll be in good hands either way, I think these were originally meant for me but… mmmm, I’m leaning less towards either style of engagement these days.”</i>");
 	
 	addButton(0, "Sword", akanequestRewards, 2);

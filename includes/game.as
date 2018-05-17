@@ -2623,8 +2623,11 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	if (pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
 	//Getting a beat-down from the mafia slows you down too
 	if (pc.hasStatusEffect("Brutalized")) moveMinutes *= 2;
-	if (pc.hasStatusEffect("Stinging Bruises")) pc.HP(pc.statusEffectv1("Stinging Bruises"));
-	if (pc.hasStatusEffect("Lash Marks")) pc.HP(pc.statusEffectv1("Lash Marks"));
+	if (rand(2) == 0)
+	{
+		if (pc.hasStatusEffect("Stinging Bruises")) pc.HP(pc.statusEffectv1("Stinging Bruises"));
+		if (pc.hasStatusEffect("Lash Marks")) pc.HP(pc.statusEffectv1("Lash Marks"));
+	}
 	//Things that make you go fastah!
 	//Nogwitch is fastest mount atm.
 	if(pc.accessory is NogwichLeash) moveMinutes = (moveMinutes >= 3 ? Math.floor(moveMinutes/3) : moveMinutes-1);

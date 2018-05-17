@@ -1182,16 +1182,36 @@ package classes.GameData
 				}
 			}
 			
-			//Shukuchi stoof
+			//Akane/Shukuchi stoofs
 			if (target.hasStatusEffect("Fade-cloak"))
 			{
 				target.addStatusValue("Fade-cloak",1,-1);
-				if(target.statusEffectv1("Fade-cloak") < 0)
+				if (target.hasStatusEffect("Fade-cloak struck") || target.statusEffectv1("Fade-cloak") < 0)
 				{
 					target.removeStatusEffect("Fade-cloak");
+					if (target.hasStatusEffect("Fade-cloak struck")) target.removeStatusEffect("Fade-cloak struck");
 				}
 			}
 			if (target.hasStatusEffect("Internal Bleeding")) target.HP(-target.statusEffectv1("Internal Bleeding"));
+			if (target.hasStatusEffect("Restricted"))
+			{
+				if (!target.hasStatusEffect("Grappled")) target.removeStatusEffect("Restricted");
+				else
+				{
+					if (target is PlayerCharacter) output("\n\nThe lashes continue to damage you! ");
+					var dam:TypeCollection = new TypeCollection({kinetic: target.statusEffectv1("Restricted"), electric: target.statusEffectv2("Restricted")});
+					applyDamage(dam, null, target, "minimal");
+				}
+			}
+			if (target.hasStatusEffect("Petra overcharge"))
+			{
+				target.addStatusValue("Petra overcharge", 1, -1);
+				if (target.statusEffectv1("Petra overcharge") < 0)
+				{
+					target.baseHPResistances.add(-target.statusEffectv2("Petra overcharge"));
+					target.removeStatusEffect("Petra overcharge");
+				}
+			}
 		}
 		
 		public function updateStatusEffects(collection:Array):void

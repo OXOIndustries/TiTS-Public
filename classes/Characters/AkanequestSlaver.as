@@ -10,9 +10,11 @@ package classes.Characters
 	import classes.Items.Melee.Fists;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.blindMiss;
 	import classes.Engine.Combat.combatMiss;
 	import classes.Engine.Combat.applyDamage;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Items.Protection.ReaperArmamentsMarkIShield;
 	
 	/**
 	 * ...
@@ -41,6 +43,8 @@ package classes.Characters
 			//this.meleeWeapon = new Fists();//Change to whip
 			rangedWeapon = new Stormbull();
 			
+			shield = new ReaperArmamentsMarkIShield();
+			this.shield.shields = 80;
 			armor = new WeavemailCoat();
 			
 			this.physiqueRaw = 20;
@@ -55,7 +59,7 @@ package classes.Characters
 			this.credits = 0;
 			this.HPMod = 20;
 			this.HPRaw = this.HPMax();
-			this.shieldsRaw = 80;
+			this.shieldsRaw = this.shieldsMax();
 			
 			var baseHPResistances:TypeCollection = new TypeCollection();
 			baseHPResistances.kinetic.damageValue = 25.0;
@@ -105,20 +109,21 @@ package classes.Characters
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			//These guys are lame, I'm only really making a separate function to keep things standard
+			if (hostileCreatures[0] == null) return;
 			shootMahShotgun(hostileCreatures[0]);
 		}
 		
 		private function shootMahShotgun(target:Creature):void
 		{
 			output("The slaver levels his shotgun at you and fires!");
-			if (combatMiss(this, target))
+			if (combatMiss(this, target) || blindMiss(this, target))
 			{
 				output(" Somehow, the shot doesn’t land!");
 			}
 			else
 			{
 				output(" You’re hit with the full blast of the shotgun!");
-				applyDamage(this.rangedWeapon.baseDamage, this, target, "minimal");
+				applyDamage(rangedDamage(), this, target, "minimal");
 			}
 		}
 	}

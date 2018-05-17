@@ -367,7 +367,7 @@
 				r.psionic.damageValue += 40;
 				r.pheromone.damageValue += 40;
 			}
-			//-10% everything
+			//-10% everything (including lust, right now)
 			if (hasStatusEffect("Brutalized"))
 			{
 				r.add(-10);//TEST
@@ -3580,8 +3580,10 @@
 				if(hasPerk("Amazonian Endurance")) energyLoss = false;
 				if(energyLoss) energy(-5);
 			}
-			//Maybe ease up a bit? - lighter
+			
+			//Sore Tubes debuff
 			if (hasStatusEffect("Sore Tubes")) HP((hasStatusEffect("Blue Balls") ? -20 : -10));
+			
 			minutesSinceCum = 0;
 			timesCum++;
 		}

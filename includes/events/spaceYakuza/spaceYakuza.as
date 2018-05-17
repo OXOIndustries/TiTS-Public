@@ -1,5 +1,5 @@
 /* Finding the Shukuchi (so you can bang their local boss)
- * 
+ * Yell at lighterfluid if this doesn't work
  * Flags:
  * SHUKUCHI_TAVROS_ENCOUNTER
  * -0: Chased, hasn't talked yet
@@ -228,14 +228,14 @@ public function shukuchiMhengaAmbush():void
 	output("\n\nHowever, you can’t quite shake the fee");
 	output("\n\n<i><b> GRNKKKK </b></i> ");
 	output("\n\nYour eyes close up as a heavy, shocking pain in the back of your head makes you lurch forward, almost to the floor!");
-	//Might change this and just remove 30 hp later, we'll see
-	applyDamage(new TypeCollection({kinetic: 30}, DamageFlag.BYPASS_SHIELD), null, pc, "minimal");
+	applyDamage(new TypeCollection({unresistablehp: 30}, DamageFlag.BYPASS_SHIELD), null, pc, "minimal");
 	output("\n\nA pair of fast, clawed hands grip you by the shoulder and neck, an angry bark coming from overhead.");
 	output("\n\n<i>“Gotcha! Whoareyou!!”</i> he growls, trying to wrestle you to the ground!");
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) output("\n\nWith your mercenaries instincts alert and ready, you fling your arm and upper body around with a fist at the other end, staggering the ausar back as it hits him right in the cheek!");
 	else if (pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("\n\nWith a little bit of sneaky thinking, you pull your [pc.legs] up so that you pivot on your palms, the sudden fall in posture from the ausar allowing you to springboard him away from you with your [pc.legs]!");
 	else if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output("\n\nWith a bit of desperation, you trigger a panic circuit in your codex and swing your arm around to make contact with the ausar! The shock staggers him back, leaving him open!");
-
+	processTime(0);
+	
 	output("\n\n<b>It’s a fight!</b>");
 	
 	CombatManager.newGroundCombat();
