@@ -342,7 +342,8 @@ public function defeatDaKorgiShit():void
 	//Needs cock
 	if(pc.hasCock())
 	{
-		if(pc.smallestCockLength() < 42) addButton(1,"Tit Fuck",titfuckKorgonneWin,undefined,"Tit Fuck","A tightly bound chest like hers would be perfect for people with dicks.");
+		if(pc.genitalLocation() >= 2) addDisabledButton(1,"Tit Fuck","Tit Fuck","Your genitals are not in the proper location to try this!");
+		else if(pc.smallestCockLength() < 42) addButton(1,"Tit Fuck",titfuckKorgonneWin,undefined,"Tit Fuck","A tightly bound chest like hers would be perfect for people with dicks.");
 		else addDisabledButton(1,"Tit Fuck","Tit Fuck","You’re too big this. Maybe do something more appropriate to the size of your maleness.");
 	}
 	else addDisabledButton(1,"Tit Fuck","Tit Fuck","You need a penis to tit-fuck her.");
@@ -661,11 +662,15 @@ public function pumpKorgiPuss():void
 	output(" between you. She closes her eyes and coos with delighted impatience as you swell against her soft stomach. ");
 	if(!korgiSillyTranslate()) output("She rocks her hips against yours with a need that transcends language.");
 	else output("<i>“Share water-heat,”</i> she begs softly. <i>“Fill korgonne with seed.”</i>");
-	output(" You break the embrace slowly, lips tingling from the final lick of her blue tongue. A strand of saliva bridges the gap between the two of you as she opens her eyes, her heart fluttering against your chest. Sliding your hips back, you brace your [pc.cockHead " + x + "] against the husky mounds of her torrid labia, kissing the folds of her dripping tunnel.");
+	output(" You break the embrace slowly, lips tingling from the final lick of her blue tongue.");
+	if(pc.genitalLocation() <= 1) output(" A strand of saliva bridges the gap between the two of you as she opens her eyes, her heart fluttering against your chest.");
+	output(" Sliding your hips " + (pc.genitalLocation() <= 1 ? "back" : "forward") + ", you brace your [pc.cockHead " + x + "] against the husky mounds of her torrid labia, kissing the folds of her dripping tunnel.");
 	output("\n\nHer nose blushes a dark indigo and she nods ever so slightly and you push into the savage with a slow-but-unrelenting stroke. She tenses, clutching your shoulders as her tongue lolls from her mouth, panting steamy clouds that flicker and writhe around your eyes. Her tightness slows your stroke to a crawl, but you push on, driving your swollen inches as deeply as ");
 	if(pc.cocks[x].cLength() < 9) output("you can.");
 	else output("the girl’s pussy permits.");
-	output(" Entrenched inside the barbarian, you grasp her thighs, thumbs sinking into her plush curves. And yet, under her jiggling exterior, you can feel the firm, corded muscles of the raider’s robust strength. Yielding and yet dense, the girl reminds you of some fruits: sweet, succulent flesh around a firm core.");
+	output(" Entrenched inside the barbarian,");
+	if(pc.genitalLocation() <= 1) output(" you grasp her thighs,");
+	output(" thumbs sinking into her plush curves. And yet, under her jiggling exterior, you can feel the firm, corded muscles of the raider’s robust strength. Yielding and yet dense, the girl reminds you of some fruits: sweet, succulent flesh around a firm core.");
 	pc.cockChange();
 	processTime(20);
 	pc.lust(100);

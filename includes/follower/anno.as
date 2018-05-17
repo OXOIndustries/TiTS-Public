@@ -3555,7 +3555,9 @@ public function annoUvetoHuskarFoursomePoundPuppies():void
 	output("\n\nHer pussy squeezes tight around your thrusting prick, making you work for every inch. But three lusty ausar-girls working together are more than enough to ensure you have all the motivation you need, pushing and pulling and caressing your body until your");
 	if (pc.balls > 0) output(" [pc.balls]");
 	else output(" hips");
-	output(" slap against Galina’s plump ass, and the chubby huskar is left panting and moaning, drooling feminine excitement down her thighs. Your hands settle on her breeder’s hips, sinking into jiggly ausar-flesh and pulling her right to the edge of the desk. You hilt deep inside her eager slit");
+	output(" slap against Galina’s plump ass, and the chubby huskar is left panting and moaning, drooling feminine excitement down her thighs.");
+	if(pc.genitalLocation() <= 1) output(" Your hands settle on her breeder’s hips, sinking into jiggly ausar-flesh and pulling her right to the edge of the desk.");
+	output(" You hilt deep inside her eager slit");
 	if (cIdx >= 0 && pc.cLength(cIdx) >= 12) output(", watching with glee as her plump belly distends around the sheer volume of cockflesh being stuffed inside her");
 	else output(" shivering as your entire [pc.cockOrStrapon " + cIdx + "] is consumed by the hungry slut’s pussy");
 	output(".");
@@ -3572,7 +3574,9 @@ public function annoUvetoHuskarFoursomePoundPuppies():void
 	
 	output("\n\nYou lose yourself in mindless repetition, hammering Gal’s pussy like a beast in rut. It’s only a sudden shriek of pleasure that snaps your attention back. Glancing over, you see Marina’s pussy quivering and squirting around the thick green shaft Anno’s drilling into her. Your snowy lover gives you a little wink, simultaneously jackhammering the green rock into the huskar’s quim and diddling her clit with the other hand. You can see Marina’s claws scouring the top of the desk, scrabbling for purchase on the smooth surface until her sister grabs her hand, holding it tight.");
 	
-	output("\n\nTeasing them about how cute they are, you give Galina’s jiggly butt a smack and hilt yourself again - hard enough to make her shriek and clench so hard that stars shoot through your vision. She cums hard, arching her back and squirting a heady spray of femcum across your [pc.lowerBody]. Her orgasmic cries echo off the walls, carrying on until you’re half-tempted to switch to face-fucking her.");
+	output("\n\nTeasing them about how cute they are");
+	if(pc.genitalLocation() <= 1) output(", you give Galina’s jiggly butt a smack and hilt yourself again");
+	output(" - hard enough to make her shriek and clench so hard that stars shoot through your vision. She cums hard, arching her back and squirting a heady spray of femcum across your [pc.lowerBody]. Her orgasmic cries echo off the walls, carrying on until you’re half-tempted to switch to face-fucking her.");
 	
 	output("\n\nInstead, though, Anno grabs your attention with a");
 	if (pc.tailCount > 0) output(" tug on your [pc.tail]");
@@ -3651,7 +3655,11 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII(cIdx:int):void
 	output(" to Anno and Marina. The girls’ mouths are already open, panting with lust and pleasure; it takes no effort to sheath your " + (cIdx >= 0 ? "" : "hardlight-") + "cock right in");
 	if (pc.cocks.length > 1) output(" their mouths");
 	else output(" Anno’s waiting mouth");
-	output(", shivering as your " + (cIdx >= 0 ? "cockflesh" : "holo-dick hard-on") + " is slurped up by wet ausar tongue. Anno moans around your manhood, fluttering her big blue eyes up at you. You grin and give her a scratch between the ears, which is all the encouragement she needs to really start sucking.");
+	output(", shivering as your " + (cIdx >= 0 ? "cockflesh" : "holo-dick hard-on") + " is slurped up by wet ausar tongue. Anno moans around your manhood");
+	if(pc.genitalLocation() <= 1) output(", fluttering her big blue eyes up at you");
+	output(". You grin");
+	if(pc.genitalLocation() <= 1) output(" and give her a scratch between the ears");
+	output(", which is all the encouragement she needs to really start sucking.");
 	if (pc.cocks.length > 1) output(" Marina, meanwhile, has nothing to distract her from gobbling cock, and she’s taking your shaft deep down her throat without prompting.");
 	
 	output("\n\nYou’re treated to a view of two snowy tails swishing behind Gal’s jiggling ass as she bounces; her tail flicks across your [pc.face], ticking your nose until your grab it and give her a rough pull - none of that! She squeals, giving you a pouty look over her shoulder that lasts only until you reach up and slap her behind, pushing her forward so you can get a good look at her rump while she rides. Since you’ve still got a hand free, you might as well put it to use.... You reach forward and slip a few fingers in between the rocky toy and Galina’s quim, thrusting knuckle-deep into her well-fucked slit.");
@@ -3692,7 +3700,9 @@ public function annoUvetoHuskarFoursomePoundPuppiesIII(cIdx:int):void
 		}
 	}
 
-	output("\n\nBefore you can recover, Marina’s shoved you against the wall and has your [pc.cockOrStrapon " + cIdx + "] in her hand. <i>“No way you’re done yet! We’re just getting started!”</i>");
+	output("\n\nBefore you can recover, Marina");
+	if(pc.genitalLocation() <= 1) output("’s shoved you against the wall and");
+	output(" has your [pc.cockOrStrapon " + cIdx + "] in her hand. <i>“No way you’re done yet! We’re just getting started!”</i>");
 
 	output("\n\nOh, boy...");
 
