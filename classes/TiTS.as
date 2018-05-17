@@ -159,6 +159,8 @@
 		include "../includes/events/pexigaQuest/pexigaQuest.as";
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
+		include "../includes/events/spaceYakuza/spaceYakuza.as";
+		include "../includes/events/spaceYakuza/akaneQuest.as";
 
 		//Misc content
 		include "../includes/masturbation.as";
@@ -197,6 +199,7 @@
 		include "../includes/travelEvents/kiroRescue.as";
 
 		//Tavros Station
+		include "../includes/tavros/akane.as";
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
