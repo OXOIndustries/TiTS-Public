@@ -4164,6 +4164,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b><u>Bailey’s Bovine Brewery</u></b>");
 				output2("\n<b>* Brandy:</b> Met her");
 				if(flags["BRANDY_AFFECTION"] != undefined) output2("\n<b>* Brandy, Affection:</b> " + flags["BRANDY_AFFECTION"] + " %");
+				if(flags["BRANDY_RELATIONSHIP"] != undefined)
+				{
+					output2("\n<b>* Brandy, Relationship:</b>");
+					switch(flags["BRANDY_RELATIONSHIP"])
+					{
+						default: output2(" Platonic"); break;
+						case 1: output2(" Casual"); break;
+						case 2: output2(" Couple"); break;
+					}
+				}
 				if(flags["BRANDY_VAGINAL"] != undefined) output2("\n<b>* Brandy, Times Vaginally Fucked Her:</b> " + flags["BRANDY_VAGINAL"]);
 				if(flags["BRANDY_FINGERING"] != undefined) output2("\n<b>* Brandy, Times Mutually Fingered Her:</b> " + flags["BRANDY_FINGERING"]);
 				if(flags["SUCKLED_BRANDY"] != undefined) output2("\n<b>* Brandy, Times Suckled:</b> " + flags["SUCKLED_BRANDY"]);

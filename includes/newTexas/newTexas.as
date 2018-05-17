@@ -39,6 +39,13 @@ public function landOnNewTexas():void
 //output("\n\nRoom Description");
 public function customsAndCheckInOnNewTexas():Boolean
 {
+	//if brandy affection at 100, sexed at least once and pc does not yet have brandy's letter go to letter scene
+	if (brandyAffection() >= 100 && brandySexed() > 0 && !pc.hasKeyItem("Brandy's Letter") && !pc.hasItemByClass(BrandyLetter))
+	{
+		getBrandysLetter();
+		return true;
+	}
+	
 	clearOutput();
 	author("Savin");
 	showBust("OGRAM","AMMA");
@@ -70,8 +77,6 @@ public function customsAndCheckInOnNewTexas():Boolean
 		addButton(0,"Ogram",repeatOgramApproach,undefined,"Ogram","Talk to the burly bull at the customs desk.");
 		addButton(1,"Amma",approachDatCowGalRepeat,undefined,"Amma","Talk to the busty cow-girl at the visitor’s desk.")
 	}
-	//if brandy affection at 100, sexed at least once and pc does not yet have brandy's letter go to letter scene
-	if (brandyAffection() >= 100 && !pc.hasKeyItem("Letter") && brandySexed() > 0) getBrandysLetter();
 	
 	return false;
 }

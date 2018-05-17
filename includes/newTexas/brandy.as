@@ -79,7 +79,7 @@ public function brandyIntroductions():void
 	output("\n\nA blush quickly returns to the busty bovine’s cheeks, as she looks downwards once more. You can’t help but smile seeing a New Texas girl so shy. ");
 	if(pc.isBro() || pc.isMischievous()) output("You decide to follow up, <i>“Well did you see anything you like?”</i> ");
 	output("You hold your arms out, inviting her to look you over, and she briefly runs her eyes over you as she raises her head back up. Once she’s completed her inspection, Brandy looks you in the eyes and smiles a bit wider than before. She nods, bell jingling as she does so.");
-	output("\n\nYou smile contentedly at the cowgirl and introduce yourself as \"[pc.name]\". Maybe now that the ice is broken you can get to know each other a bit better.");
+	output("\n\nYou smile contentedly at the cowgirl and introduce yourself as <i>“[pc.name]”</i>. Maybe now that the ice is broken you can get to know each other a bit better.");
 	flags["MET_BRANDY"] = 1;
 	processTime(6);
 	//increase affection +1
@@ -131,9 +131,9 @@ public function brandyRepeatApproaches():void
 	
 	if (aff >= 100)
 	{
-		output("The steady jingle of Brandy's bell gets louder and louder as you approach her, watching the cowgirl toil away at her work, mallet in hand, carefully inspecting each barrel her gaze meets. That is, until, you finally reach the girl, standing right behind her as you wait for her to notice you.");
-		output("\n\nAfter some time passes, you decide to take the initiative and tap on Brandy's shoulder, which makes her gasp silently and jump, and has the added effect of causing all her round, squishy bits to jiggle along with her bell. When the cowgirl turns around to see who it is, her face lights up, turning red with a big grin to match at the sight of your [pc.face].");
-		output("\n\nAlmost immediately after she realizes who's come to visit her, she wraps her arms around your back");
+		output("The steady jingle of Brandy’s bell gets louder and louder as you approach her, watching the cowgirl toil away at her work, mallet in hand, carefully inspecting each barrel her gaze meets. That is, until, you finally reach the girl, standing right behind her as you wait for her to notice you.");
+		output("\n\nAfter some time passes, you decide to take the initiative and tap on Brandy’s shoulder, which makes her gasp silently and jump, and has the added effect of causing all her round, squishy bits to jiggle along with her bell. When the cowgirl turns around to see who it is, her face lights up, turning red with a big grin to match at the sight of your [pc.face].");
+		output("\n\nAlmost immediately after she realizes who’s come to visit her, she wraps her arms around your back");
 		
 		if (pc.tallness > 72) output(", pulling you down into a nice, warm, booby-filled hug");
 		else output(", scooping you up into a nice, warm hug, your face buried in her expansive chest");
@@ -143,14 +143,14 @@ public function brandyRepeatApproaches():void
 		if(pc.isAss()) output("\n\nYou roll your eyes but”</i>");
 		else output("\n\nYou smile and");	
 		
-		output(" return Brandy's embrace, leaving her to ride out her wave of excitement until she finally releases you from her grasp, letting you");
+		output(" return Brandy’s embrace, leaving her to ride out her wave of excitement until she finally releases you from her grasp, letting you");
 		
 		if (pc.tallness > 72) output(" loose");
 		else output(" fall");
 		
 		output(" from her svelte, girly arms with a big smile still on her face.");
 		
-		output("\n\n\"Moo, moo!\" the blushing cowgirl exclaims, clasping her hands together and eagerly awaiting any word from you.");
+		output("\n\n<i>“Moo, moo!”</i> the blushing cowgirl exclaims, clasping her hands together and eagerly awaiting any word from you.");
 	}
 	else if (aff >= 50 && aff < 100)
 	{
@@ -158,7 +158,7 @@ public function brandyRepeatApproaches():void
 		if (pc.isNaga()) output(" [pc.legs] sliding through gravel and dirt");
 		else output(" [pc.footOrFeet] stepping against gravel and dust");
 		
-		output(", to which she quickly turns around. Her bell jingles and her face brightens with blush and happiness at the sight of your return. Finally closing in on her, Brandy raises a hand to wave at you and gives you an ecstatic, if somewhat quiet, \"Moo!\"");
+		output(", to which she quickly turns around. Her bell jingles and her face brightens with blush and happiness at the sight of your return. Finally closing in on her, Brandy raises a hand to wave at you and gives you an ecstatic, if somewhat quiet, <i>“Moo!”</i>");
 	}
 	else
 	{
@@ -202,14 +202,14 @@ public function talkToBrandywhine():void
 	//[Herself] Learn a bit about the cowgirl.
 	addButton(2,"Herself",talkToBrandyAboutHerself,undefined,"Herself","Learn a bit about the cowgirl.");
 	//[Her Mods] Ask Brandy about her lactation mods. //Requires the [Suckle] scene to have been completed once.
-	if(flags["SUCKLED_BRANDY"] != undefined || pc.hasKeyItem("Letter")) addButton(3,"Her Mods",askBrandyAboutHerMods,undefined,"Her Mods","Ask Brandy about her lactation mods.");
+	if(flags["SUCKLED_BRANDY"] != undefined || pc.hasKeyItem("Brandy's Letter")) addButton(3,"Her Mods",askBrandyAboutHerMods,undefined,"Her Mods","Ask Brandy about her lactation mods.");
 	else addDisabledButton(3,"Her Mods","Her Mods","You have no idea if she’s even modded!");
 	
 	//[Hug] No words, only hugs.
 	addButton(4, "Hug", hugBrandy, undefined, "Hug", "No words, only hugs.");
 	
 	//[Letter] talk about the letter she wrote you if you haven't already
-	if (pc.hasKeyItem("Letter") && flags["BRANDY_RELATIONSHIP"] == undefined) addButton(5, "Letter", brandyLetterTalk, undefined, "Letter", "Talk to Brandy about the contents of that letter she sent you.");
+	if (pc.hasKeyItem("Brandy's Letter") && flags["BRANDY_RELATIONSHIP"] == undefined) addButton(5, "Letter", brandyLetterTalk, undefined, "Letter", "Talk to Brandy about the contents of that letter she sent you.");
 	
 	//[Return]
 	//Return should take the PC back to Brandy’s main menu, when an option is chosen all other talk options should be available, with the current chosen option greyed out.
@@ -233,10 +233,10 @@ public function brandyDisabilityTalk():void
 	if (silly) author("HugsItsNotAlright");
 	
 	//if have brandy letter, have different convo
-	if (pc.hasKeyItem("Letter"))
+	if (pc.hasKeyItem("Brandy's Letter"))
 	{
-		output("Now that you know how Brandy's muteness came about, you decide to ask her if she can do anything about or if there's a cure.");
-		output("\n\nThe cowgirl only frowns down at her feet and shakes her head slowly, obviously distraught at that fact. Well, looks like the treatment and her aforementioned medication mixed together must have had a more adverse side effect than you thought.");
+		output("Now that you know how Brandy’s muteness came about, you decide to ask her if she can do anything about or if there’s a cure.");
+		output("\n\nThe cowgirl only frowns down at her feet and shakes her head slowly, obviously distraught at that fact. Well, looks like the Treatment and her aforementioned medication mixed together must have had a more adverse side effect than you thought.");
 		
 		//if pc not an ass
 		if (!pc.isAss()) output("\n\nAll the same, you smile at your melancholy cow-friend before bringing her into a surprise hug, which makes her jump with surprise at first before she quickly settles down and returns your embrace, throwing her arms around your back. You hold her for a short while, comforting the mute moo until she pulls back to reveal that her once sad look has been replaced with a soft smile. Brandy gives you a quiet, thankful moo as she parts from your hug.");
@@ -398,13 +398,13 @@ public function sexWithBrandy():void
 	if (aff >= 50)
 	{
 		output("You look Brandy up and down.");
-		output("\n\n\"So,\" you say, taking a few strides closer to her and putting on your most seductive voice, \"Want to get out of here and have a little fun?\"");
+		output("\n\n<i>“So,”</i> you say, taking a few strides closer to her and putting on your most seductive voice, <i>“Want to get out of here and have a little fun?”</i>");
 		output("\n\n\Brandy knows what she wants and hastily nods and bites her lip, practically shaking with nervous excitement as you grab at the rim of her shirt.");
-		output("\n\n\"So, where should we go?\" you ask, \"Your place again?\"");
-		output("\n\nBrandy gives your an affirming moo, grabbing your hand and holding it tight. She begins to walk, leading you to wherever it is she wants to go. Eventually, you reach her house: a nice looking building with yellow walls. She opens the door and extends her free arm, inviting you in with a hesitant smile. Your hand is still in hers as she leads you through the home. The familiar house looks cozy and warm with hand-knitted quilts and blankets lining her furniture. Finally, you reach your destination: Brandy's bedroom.");
+		output("\n\n<i>“So, where should we go?”</i> you ask, <i>“Your place again?”</i>");
+		output("\n\nBrandy gives your an affirming moo, grabbing your hand and holding it tight. She begins to walk, leading you to wherever it is she wants to go. Eventually, you reach her house: a nice looking building with yellow walls. She opens the door and extends her free arm, inviting you in with a hesitant smile. Your hand is still in hers as she leads you through the home. The familiar house looks cozy and warm with hand-knitted quilts and blankets lining her furniture. Finally, you reach your destination: Brandy’s bedroom.");
 		output("\n\nBrandy releases your hand, and rubs the back of her neck, trying to avert her gaze from you.");
-		output("\n\n\"M-moo?\"");
-		output("\n\nSmiling at her, you reach for the cowgirl's hands and grab hold of them. Brandy looks into your eyes, blushing fiercely, and all you can do is lean in and kiss the girl. She's a bit tense at first, but slowly succumbs to her lust and begins to return your kissing with force, your mouths opening to accept each other's tongues. Brandy moos softly as you bring her closer to the bed, managing to sit the two of you down on the downy mattress. Soon after, you feel Brandy's hand slips from yours and move toward your wrist, gently grabbing at your arm. She guides your hand across her thigh, fingers trailing along her smooth thighs and right between her legs. The cowgirl holds your digits there, and you're quick to get the idea, smiling and digging your fingers into her still-clothed crotch. Brandy quivers and whimpers needily under the weight of your touch, obviously up for more than just some rubbing…");
+		output("\n\n<i>“M-moo?”</i>");
+		output("\n\nSmiling at her, you reach for the cowgirl’s hands and grab hold of them. Brandy looks into your eyes, blushing fiercely, and all you can do is lean in and kiss the girl. She’s a bit tense at first, but slowly succumbs to her lust and begins to return your kissing with force, your mouths opening to accept each other’s tongues. Brandy moos softly as you bring her closer to the bed, managing to sit the two of you down on the downy mattress. Soon after, you feel Brandy’s hand slips from yours and move toward your wrist, gently grabbing at your arm. She guides your hand across her thigh, fingers trailing along her smooth thighs and right between her legs. The cowgirl holds your digits there, and you’re quick to get the idea, smiling and digging your fingers into her still-clothed crotch. Brandy quivers and whimpers needily under the weight of your touch, obviously up for more than just some rubbing...");
 	}
 	else
 	{
@@ -451,7 +451,7 @@ public function sexWithBrandy():void
 		if (aff >= 50)
 		{			
 			//[Vaginal] //Requires PC to have a cock and 50+ affection with her
-			if(pc.hasCock() && pc.cockThatFits(brandyCapacity()) >= 0) addButton(4, "Vaginal", brandyVaginal, undefined, "Vaginal", "Fuck Brandy's pussy like it was meant to be!");
+			if(pc.hasCock() && pc.cockThatFits(brandyCapacity()) >= 0) addButton(4, "Vaginal", brandyVaginal, undefined, "Vaginal", "Fuck Brandy’s pussy like it was meant to be!");
 			else addDisabledButton(4,"Vaginal","Vaginal","You need a penis that fits inside Brandy for this.");
 			//[M.Fingering] //requires vagina and 50+ affection with her
 			if (pc.hasVagina()) addButton(5, "M.Fingering", brandyMutualFingering, undefined, "M.Fingering", "Engage in some mutual fingering with the cowgirl.");
@@ -728,36 +728,36 @@ public function brandyExhibitionism():void
 	else
 	{
 		output("With a sly grin on your face, you saunter your way closer to Brandy, pressing yourself into her and grabbing at the hem of her shirt. ");
-		output("\n\n\"So,\" you say, putting on your most seductive voice, \"Want to get out of here and have a little fun?\"");
+		output("\n\n<i>“So,”</i> you say, putting on your most seductive voice, <i>“Want to get out of here and have a little fun?”</i>");
 		output("\n\nBrandy knows what she wants and hastily nods and bites her lip, practically shaking with nervous excitement as your grap at the rim of her shirt.");
-		output("\n\nThe cowgirl goes to grab your hand, probably intending on leading you back to her place, but you've got other plans.");
-		output("\n\n\"We don't have to go </i>all<i> the way back to your house, do we?\" you ask, \"I don't think I could wait that long, can't we just stay here?\"");
-		output("\n\nBrandy shivers nervously in her spot, \"M-moo?\"");
-		output("\n\nYou grin at her apprehensive response and go to take hold of one of her hands, \"Yeah, c'mon, I'm sure we can find somewhere nice and quiet.\"");
-		output("\n\nAnd with that, you're leading Brandy off, who still seems a bit nervous and reluctant as you walk her through the stockyard. Eventually, you come across a nice, tall wall of barrels stacked on a few pallets that should provide adequate cover from prying eyes.");
-		output("\n\n\"How's this?\" you ask your anxious lover.");
-		output("\n\nBrandy smiles and blushes, putting herself up against the wall of barrels and looking around to make sure the coast is clear before giving you a nod an affirming, \"M-moo\" while she rubs at the back of her neck.");
+		output("\n\nThe cowgirl goes to grab your hand, probably intending on leading you back to her place, but you’ve got other plans.");
+		output("\n\n<i>“We don’t have to go </i>all<i> the way back to your house, do we?”</i> you ask, <i>“I don’t think I could wait that long, can’t we just stay here?”</i>");
+		output("\n\nBrandy shivers nervously in her spot, <i>“M-moo?”</i>");
+		output("\n\nYou grin at her apprehensive response and go to take hold of one of her hands, <i>“Yeah, c’mon, I’m sure we can find somewhere nice and quiet.”</i>");
+		output("\n\nAnd with that, you’re leading Brandy off, who still seems a bit nervous and reluctant as you walk her through the stockyard. Eventually, you come across a nice, tall wall of barrels stacked on a few pallets that should provide adequate cover from prying eyes.");
+		output("\n\n<i>“How’s this?”</i> you ask your anxious lover.");
+		output("\n\nBrandy smiles and blushes, putting herself up against the wall of barrels and looking around to make sure the coast is clear before giving you a nod an affirming, <i>“M-moo”</i> while she rubs at the back of her neck.");
 		output("\n\nSmiling at her acceptance of this exhibitionistic venture, you get low onto the ground behind some barrels and beckon Brandy to join you. With a chuckling moo, the cowgirl joins you on the stockyard turf, smiling and blushing. You lean her back against the stack of barrels and gently lean into her, pressing your lips to hers.");
-		output("\n\nAny previous nervousness or apprehension Brandy may have been harboring vanishes as your kiss her, simply melting the cowgirl in your embrace. You slip your hands up to her breasts, giving those full orbs a gentle squeeze, resulting in a little moo from your lover before your fingers reach the buttons of her shirt. Grinning between kisses, you slowly undo Brandy's clothing, moving from button to button until her top is straining to keep her liquor-filled tits contained. Her hands are over yours by the time you reach the last clasp keeping her chest confined, working with yours to undo it. Finally, the cowgirl's tits come free with a contented moo from their owner as they come jiggling to a halt… right into your hands.");
-		output("\n\nBefore you can do anything else with that bountiful bosom, though, Brandy moos quietly into your mouth and starts wiggling her hips. It's only then you realize the needy New Texan is working her shorts off, pushing them down as fast she can until they're at her knees. Breaking the kiss for a moment, you move your hands to help your lover get her clothes all the way off, tossing the denim garments aside.");
-		output("\n\nAnd there's it is: all of Brandy. You sit there on your knees for a moment, admiring the cowgirl's bare form as she sits there and blushes with your [pc.eyes] working over her body. Instead of returning to your kiss, though, you bring your hands down to your lover's bare breasts, making her silent breath stutter when your fingers brush against her sensitive flesh. You give her sinfully-soft tits a gentle squeeze that coaxes a little pleasured moo from the cowgirl. Kneading and fondling her chest for a moment, enjoying Brandy's satisfied moos, you start to move your hands upward until your fingers are pinching at her big pink nipples. You tug and tweak at her teats until they're stiff and beads of her golden-brown nectar are dripping from her peaks.");
-		output("\n\nSmiling at the sight of her alcoholic bounty, you bend over and place your lips to her hard nipple, letting your [pc.tongue] loll from your mouth and flick across it, gathering up Brandy's brandy as your [pc.lipsChaste] close around her teat. The cowgirl shudders as you take in her flavor and start to suckle and squeeze her tits, leaning back further into the stack of barrels. At the same time, you sink a free hand down between her thighs, causing Brandy to practically melt under you with a quiet, needy moo. You don't waste any time and quickly sink a pair of digits between her already-soaked folds, spreading her lower lips and spilling her feminine fluids onto the ground. Louder, moaning moos fill the air as you draw your fingers in and out of the cowgirl's leaking slit while you suckle on her stiff nipples, switching between breasts until the brandy doesn't stop flowing down your throat.");
+		output("\n\nAny previous nervousness or apprehension Brandy may have been harboring vanishes as your kiss her, simply melting the cowgirl in your embrace. You slip your hands up to her breasts, giving those full orbs a gentle squeeze, resulting in a little moo from your lover before your fingers reach the buttons of her shirt. Grinning between kisses, you slowly undo Brandy’s clothing, moving from button to button until her top is straining to keep her liquor-filled tits contained. Her hands are over yours by the time you reach the last clasp keeping her chest confined, working with yours to undo it. Finally, the cowgirl’s tits come free with a contented moo from their owner as they come jiggling to a halt... right into your hands.");
+		output("\n\nBefore you can do anything else with that bountiful bosom, though, Brandy moos quietly into your mouth and starts wiggling her hips. It’s only then you realize the needy New Texan is working her shorts off, pushing them down as fast she can until they’re at her knees. Breaking the kiss for a moment, you move your hands to help your lover get her clothes all the way off, tossing the denim garments aside.");
+		output("\n\nAnd there’s it is: all of Brandy. You sit there on your knees for a moment, admiring the cowgirl’s bare form as she sits there and blushes with your [pc.eyes] working over her body. Instead of returning to your kiss, though, you bring your hands down to your lover’s bare breasts, making her silent breath stutter when your fingers brush against her sensitive flesh. You give her sinfully-soft tits a gentle squeeze that coaxes a little pleasured moo from the cowgirl. Kneading and fondling her chest for a moment, enjoying Brandy’s satisfied moos, you start to move your hands upward until your fingers are pinching at her big pink nipples. You tug and tweak at her teats until they’re stiff and beads of her golden-brown nectar are dripping from her peaks.");
+		output("\n\nSmiling at the sight of her alcoholic bounty, you bend over and place your lips to her hard nipple, letting your [pc.tongue] loll from your mouth and flick across it, gathering up Brandy’s brandy as your [pc.lipsChaste] close around her teat. The cowgirl shudders as you take in her flavor and start to suckle and squeeze her tits, leaning back further into the stack of barrels. At the same time, you sink a free hand down between her thighs, causing Brandy to practically melt under you with a quiet, needy moo. You don’t waste any time and quickly sink a pair of digits between her already-soaked folds, spreading her lower lips and spilling her feminine fluids onto the ground. Louder, moaning moos fill the air as you draw your fingers in and out of the cowgirl’s leaking slit while you suckle on her stiff nipples, switching between breasts until the brandy doesn’t stop flowing down your throat.");
 		output("\n\nIt goes on like that for a while, with Brandy mooing pleasurably as she gets wetter and wetter you get drunker and drunker off her delicious, fruity bounty.");
-		output("\n\nThen you hear it, over the New Texan's quiet, blissful noises: footsteps on gravel.");
-		output("\n\nIt looks like your lover hears it too, because her breath catches as the sound draws closer, but you don't stop.");
-		output("\n\n\"Hey, Brandy?!\" a voice calls out from around the corner, \"You out here?!\"");
-		output("\n\nThe cowgirl's eyes widen as her name is called, biting down on her lip to prevent another bunch of moos from forcing their way out.");
-		output("\n\nYou can see someone walk behind the wall of barrels out the corner of your eye: it's a bull, wearing a shirt bearing the brewery's logo. He jumps slightly when he catches you two in the act, but seems slightly relieved that he found his co-worker.");
-		output("\n\nStill, you don't stop, and keep suckling and fingering your lover right there on the ground for this random bull to see.");
-		output("\n\n\"Whoa, hey there, don't mean to interrupt,\" the New Texan begins to explain, \"But, uh, Brandy, the boss wants you to check that last batch of the 14-Special again, something about some lady finding a varmint in her whiskey or something… I dunno, boss said she needs you to look at it, though.\"");
+		output("\n\nThen you hear it, over the New Texan’s quiet, blissful noises: footsteps on gravel.");
+		output("\n\nIt looks like your lover hears it too, because her breath catches as the sound draws closer, but you don’t stop.");
+		output("\n\n<i>“Hey, Brandy?!”</i> a voice calls out from around the corner, <i>“You out here?!”</i>");
+		output("\n\nThe cowgirl’s eyes widen as her name is called, biting down on her lip to prevent another bunch of moos from forcing their way out.");
+		output("\n\nYou can see someone walk behind the wall of barrels out the corner of your eye: it’s a bull, wearing a shirt bearing the brewery’s logo. He jumps slightly when he catches you two in the act, but seems slightly relieved that he found his co-worker.");
+		output("\n\nStill, you don’t stop, and keep suckling and fingering your lover right there on the ground for this random bull to see.");
+		output("\n\n<i>“Whoa, hey there, don’t mean to interrupt,”</i> the New Texan begins to explain, <i>“But, uh, Brandy, the boss wants you to check that last batch of the 14-Special again, something about some lady finding a varmint in her whiskey or something... I dunno, boss said she needs you to look at it, though.”</i>");
 		output("\n\nBrandy, with a beet-red face and a few barely-suppressed moos, turns to her co-worker and manages to give him a hurried nod.");
-		output("\n\n\"Alright then,\" he continues, \"Just needed to relay that… I'll just uh, get out of you two's way then.\"");
+		output("\n\n<i>“Alright then,”</i> he continues, <i>“Just needed to relay that... I’ll just uh, get out of you two’s way then.”</i>");
 		output("\n\nAnd with that, the cow-guy points a pair of finger-guns and awkwardly shuffles off, leaving you and Brandy alone again. ");
-		output("\n\nAfter that, Brandy seems to simply let go, unable to hold in her pleasured moos any longer or stave off her orgasm. She lets out a single, long, blissful \"MoooooOOOOOO!\" as her whole body tenses under you, back arching. With all that alcohol moving through your system, you can just feel the cowgirl's pussy clench down around you fingers, her innerwalls spasming and gushing girlcum out onto the ground and your open hand. She writhes in pleasure on the ground for quite some time before finally coming down from her peak, after having expelled what seems like gallons of girlcum all over the turf beneath you.");
-		output("\n\nYou finally pull yourself from one of Brandy's stiff nipples, slightly-reddened from your suckling, licking your lips of the last of her delicious bounty. Looking down through a lust-and-alcohol-hazed mind, you see your spent lover smiling and blushing with her expansive bust heaving, looking just about ready for a nap.");
-		output("\n\nSuddenly feeling quite tired yourself, probably due to the all the breast-booze in your blood, you grin down at Brandy, managing to slur out \"Shee, that washn't so bald…\" before collapsing on top of her.");
+		output("\n\nAfter that, Brandy seems to simply let go, unable to hold in her pleasured moos any longer or stave off her orgasm. She lets out a single, long, blissful <i>“MoooooOOOOOO!”</i> as her whole body tenses under you, back arching. With all that alcohol moving through your system, you can just feel the cowgirl’s pussy clench down around you fingers, her innerwalls spasming and gushing girlcum out onto the ground and your open hand. She writhes in pleasure on the ground for quite some time before finally coming down from her peak, after having expelled what seems like gallons of girlcum all over the turf beneath you.");
+		output("\n\nYou finally pull yourself from one of Brandy’s stiff nipples, slightly-reddened from your suckling, licking your lips of the last of her delicious bounty. Looking down through a lust-and-alcohol-hazed mind, you see your spent lover smiling and blushing with her expansive bust heaving, looking just about ready for a nap.");
+		output("\n\nSuddenly feeling quite tired yourself, probably due to the all the breast-booze in your blood, you grin down at Brandy, managing to slur out <i>“Shee, that washn’t so bald...”</i> before collapsing on top of her.");
 		output("\n\nAnd there you rest atop your naked lover, drunk and happy, ready to sleep off your stooper while Brandy rest with her afterglow on the soft grass of the stockyard before you both have to get back to work.");
-		output("\n\nHopefully no one else comes to interrupt the two of you…");
+		output("\n\nHopefully no one else comes to interrupt the two of you...");
 		processTime(45);
 		pc.lust(10);
 		pc.exhibitionism(2);
