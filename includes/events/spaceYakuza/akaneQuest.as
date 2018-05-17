@@ -239,7 +239,7 @@ public function akanequestImARebelMofo():void
 	output("\n\n<i>“Why?! What was the point?!”</i> shouts the voice of Akane. Your blindfold is pulled away to reveal her and Cheo standing over you.");
 	output("\n\nYou can only murmur a few words, too winded to string a thought out. You’ve still got your limbs: with a desperate shake, you try to free your hands.");
 	output("\n\n<i>“Hang on, hang on. I guess if you’re still moving, you’re still shooting, as much as it pains me,”</i> growls Akane as she undoes your bonds. You’re barely on your feet when Cheo shoves your [pc.weapon] into your hands.");
-	output("\n\n<i>“Here, just try to take her down! We’ll thin the numbers,”</i> he growls. You nod and read yourself to face the smoke-covered tower that is Petra.");
+	output("\n\n<i>“Here, just try to take her down! We’ll thin the numbers,”</i> he growls. You nod and ready yourself to face the smoke-covered tower that is Petra.");
 	processTime(0);
 	
 	akanequestConfigureFight(true);
@@ -315,7 +315,7 @@ public function akanequestConfigureFight(provoked:Boolean = false):void
 public function akanequestFightDesc():String
 {
 	var encText:String = "You’re fighting Petra, a slaver executive for the Black Void! Alongside are two of her slaver grunts!";
-	encText += "\n\nThe towering monster of a kaithrit is clad in heavy, tight armor with the black and red design of the Void. She stands well over 6’ tall and is heavily build in muscle if her tight suit is anything to go by. A large pelvic plate hints at a little something else that’s hidden away…";
+	encText += "\n\nThe towering monster of a kaithrit is clad in heavy, tight armor with the black and red design of the Void. She stands well over 6’ tall and is heavily built in muscle if her tight suit is anything to go by. A large pelvic plate hints at a little something else that’s hidden away…";
 	encText += "\n\nIn her right hand, she carries a tri-whip that glows and crackles in neon blue light and in her left is some sort of hardlight siege-shield. The bulky hexagraphic shield is enough to cover her fully from the front when she crouches.";
 	if (CombatManager.enemiesAlive() == 3) encText += "\n\nTo her side are two slaver grunts. Although not as defensively equipped as normal Black Void pirates by having lighter plated armor, they all carry aftermarket Stormbull shotguns with obvious aftermarket tinkering.";
 	else if (CombatManager.enemiesAlive() == 2) encText += "\n\nTo her side is a slaver grunt. Although not as defensively equipped as normal Black Void pirates by having lighter plated armor, he carries an aftermarket Stormbull shotgun with obvious aftermarket tinkering.";
@@ -326,8 +326,11 @@ public function akanequestFightDesc():String
 
 public function akanequestVictory(provoked:Boolean, items:Array):void {
 	//You get your stuff back, yay
+	var tempitems:Array = pc.inventory;
 	pc.inventory = items;
+	if (tempitems.length >= 1) itemCollect(tempitems);
 	
+	if (silly) output("\n<b>40000 Microfusion Cells Added</b>\n");
 	var lust:Boolean = enemy.lust() >= enemy.lustMax();
 	CombatManager.genericVictory(function():void{akanequestLoot(provoked, lust)});
 }

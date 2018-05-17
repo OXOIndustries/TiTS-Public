@@ -1072,7 +1072,7 @@ public function akaneDontGiveTacetPermission():void
 	showAkane(true, true);
 	//Give this a real icon later on
 	if (pc.hasStatusEffect("Stinging Bruises")) pc.setStatusMinutes("Stinging Bruises", 7*24*60);
-	else pc.createStatusEffect("Stinging Bruises", -1, 0, 1, 0, false, akaneWhipIcon, "Equipping or unequipping items, walking and checking your appearance will damage you!", false, 84*60, UIStyleSettings.gStatusBadColour);
+	else pc.createStatusEffect("Stinging Bruises", -1, 0, 1, 0, false, akaneWhipIcon, "Walking and checking your appearance may damage you!", false, 84*60, UIStyleSettings.gStatusBadColour);
 	
 	output("You cry out the stopping word and at once, Akane drops her lash to the floor.");
 	output("\n\n<i>“Cheo, some assistance,”</i> she says decisively, her metallic hands holding you by the middle.");
@@ -1086,7 +1086,7 @@ public function akaneMyWhippingWillGoOn():void
 	showAkane(true, true);
 	if (pc.hasStatusEffect("Stinging Bruises")) pc.removeStatusEffect("Stinging Bruises");
 	if (pc.hasStatusEffect("Lash Marks")) pc.setStatusMinutes("Lash Marks", 7*24*60);
-	else pc.createStatusEffect("Lash Marks", -2, 0, 1, 0, false, akaneWhipIcon, "Equipping or unequipping items, walking and checking your appearance will damage you!", false, 7*24*60, UIStyleSettings.gStatusBadColour);
+	else pc.createStatusEffect("Lash Marks", -2, 0, 1, 0, false, akaneWhipIcon, "Walking and checking your appearance may damage you!", false, 7*24*60, UIStyleSettings.gStatusBadColour);
 	
 	output("You nod several times, leaning on your restraints for a few seconds. You tense and relax your shoulders in pulses, the sting biting into your nerves with each one. ");
 	output(painslutornot("You keep the rhythm consistent and fast, savoring the sensation like the dirty painslut you are.", "Some part of you wants to do more, push the envelope... but you remember that there’s still more to come."));
@@ -1824,7 +1824,7 @@ public function akaneTalkHistory():void
 	output("\n\n<i>“It’s okay, you don’t have to continue...”</i> you whisper back, hoping she’ll not push herself.");
 	output("\n\n<i>“No no, it’s fine. I just need to focus... I remember lying on a bed. Some sort of medical bed. Seemed like it lasted forever. I could barely see what was happening around me, like my head was fixed to the spot. Always fading in and out of consciousness. And just... one day, I’m alert and ready. I’m scared but I’m alive. Trapped in the same bed with some old guy looking over me. And uh...”</i>");
 	output("\n\nShe looks down to her hands, arms and knees.");
-	output("\n\n<i>“...some new hardware sticking out of me. I could barely handle it at first, until I actually moved the things. It all felt surprisingly normal, just... numb. I’ve had 25 odd years to get used to it, but there's still that slight numbness behind it all. Anyway, this old guy, he explains everything but I... don’t remember most of it. And then I’m just given a choice: get thrust back into the world like this, with no money, connections or sense of where I am <b>or</b> I can integrate with his little club... now </i>my<i> little club. In between that is a grueling, silent tale of rising up the foodchain and trying to impress this silly old man.”");
+	output("\n\n<i>“...some new hardware sticking out of me. I could barely handle it at first, until I actually moved the things. It all felt surprisingly normal, just... numb. I’ve had 25 odd years to get used to it, but there's still that slight numbness behind it all. Anyway, this old guy, he explains everything but I... don’t remember most of it. And then I’m just given a choice: get thrust back into the world like this, with no money, connections or sense of where I am <b>or</b> I can integrate with his little club... now </i>my<i> little club. In between that is a grueling, silent tale of rising up the foodchain and trying to impress this silly old man.”</i>");
 	output("\n\nShe blinks slowly and sighs, drawing a fingertip across your palm.");
 	output("\n\n<i>“His title was Bishamon. He lead this branch of the Shukuchi before it moved to Tavros station. All the faces have changed since I was new to it, save our business partners. Very taxing for younger folk, most burn out and retire by the time they’re in their mid 30’s. I only went further, outlasted them all. When Bishamon retired himself - probably 70 years old, I don’t even know - he only wanted me to lead. Said I knew the ‘pains of struggle’ on an instinctual level and it’s only in the last few years that I knew what he meant... “</i>");
 	output("\n\nAkane pauses, looking wistfully into your eyes.");
