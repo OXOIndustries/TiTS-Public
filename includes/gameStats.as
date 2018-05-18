@@ -902,7 +902,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* System:</b> " + getSystemName());
 		if(roomFlagTypes.length > 0)
 		{
-			output2("\n<b>* Type:</b> ");
+			output2("\n<b>* Area:</b> ");
 			for(i = 0; i < roomFlagTypes.length; i++)
 			{
 				if(i != 0) output2(", ");

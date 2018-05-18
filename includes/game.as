@@ -132,6 +132,13 @@ public function disableExploreEvents():Boolean
 
 public function mainGameMenu(minutesMoved:Number = 0):void
 {
+	for (var prop:String in chars)
+	{
+		chars[prop].sortPerks();
+		chars[prop].sortStatusEffects();
+		chars[prop].sortKeyItems();
+	}
+	
 	// Bad ends prevent triggering events and renewing menu.
 	if(gameOverEvent)
 	{

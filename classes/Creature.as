@@ -20224,10 +20224,6 @@
 			updateMilkValues(deltaT, doOut);
 			
 			shieldsRaw = shieldsMax();
-			
-			sortPerks();
-			sortStatusEffects();
-			sortKeyItems();
 		}
 		
 		public function updateVaginaStretch(deltaT:uint, doOut:Boolean):void
