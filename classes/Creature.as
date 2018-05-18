@@ -4812,6 +4812,9 @@
 				return currLib;
 			}
 		}
+		public function maxOutLibido(raw:Boolean = false): void {
+			libidoRaw = libidoMax(raw);
+		}
 
 		public function TQ():Number
 		{

@@ -30,7 +30,7 @@
 		//constructor
 		public function Anno()
 		{
-			this._latestVersion = 11;
+			this._latestVersion = 12;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -101,7 +101,7 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_FUR;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pale";
 			this.skinFlags = [GLOBAL.FLAG_FLUFFY];
 			this.faceType = 0;
@@ -274,6 +274,10 @@
 			dataObject.rangedWeapon.longName = "holdout pistol";
 			dataObject.rangedWeapon.description = "Anno’s holdout pistol";
 			dataObject.rangedWeapon.hasRandomProperties = true;
+		}
+		public function UpgradeVersion11(dataObject:Object):void
+		{
+			dataObject.skinType = GLOBAL.SKIN_TYPE_SKIN;
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

@@ -539,8 +539,8 @@ package classes.Items.Transformatives
 					target.girlCumType = GLOBAL.FLUID_TYPE_SPECIAL_GOO;
 					target.cumType = GLOBAL.FLUID_TYPE_SPECIAL_CUMGOO;
 					
-					target.libido(9000);
-					target.lust(9000);
+					target.maxOutLibido();
+					target.maxOutLust();
 					break;
 				case 2:
 					kGAMECLASS.showName("CLEARER\nSKIN...");
@@ -584,7 +584,7 @@ package classes.Items.Transformatives
 					
 					target.cockChange();
 					
-					target.lust(9000);
+					target.maxOutLust();
 					target.orgasm();
 					target.cocks.push(newCock);
 					target.copyCock(target.cocks.length - 1, target.biggestCockIndex());
@@ -667,8 +667,8 @@ package classes.Items.Transformatives
 					output("\n\nYou enter the hangar, approaching your Vice Ruler. The title is meaningless, since she’s also you, but it’s fun to give her nicknames. She smiles at you, kissing you on the cheek in greeting as you slap her on her ass. She giggles, jiggling from the gesture, then turns to direct your attention to the ground below. All the starcrafts you could collect are assembled below and you’re loading them with dozens upon dozens of yourself. They all turn to look at you, saluting before resuming to board the multitude of ships. You grimace, gooey fists clenching the railings. The only option you have left is to try and reach for the stars, or sit here and go crazy. Your lover wraps her arms around you, trying to console you, but you can’t even return her affection. As the engines fire up below you, the burning need pushes all other thoughts from your mind.");
 					
 					kGAMECLASS.processTime(35 + rand(5));
-					target.libido(9000);
-					target.lust(9000);
+					target.maxOutLibido();
+					target.maxOutLust();
 					break;
 				default:
 					output("Oh no, something unexpected happened!");

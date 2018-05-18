@@ -578,7 +578,7 @@ public function pcVictoryOverNyrea():void
 		}
 		else
 		{
-			output("Battered down, the nyrea starts trying to withdraw, warding you back with increasingly desperate thrusts of her spear. You grab the tip at the apex of one of her weakest thrusts, and easily snap the haft over");
+			output("Battered down, the nyrea starts trying to withdraw, warding you back with increasingly desperate thrusts of her spear. You grab the tip at the apex of one of her weakest thrusts, and easily snap the shaft over");
 			if (pc.isBiped()) output(" your knee");
 			else output(" a nearby rock");
 			output(", leaving her helpless. With a look of panic, the nyrea turns to run, but finds nothing but cave wall behind her. You slam her up against it, grabbing her wrists before she can try and strike back.");

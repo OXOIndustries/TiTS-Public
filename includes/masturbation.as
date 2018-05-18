@@ -106,11 +106,11 @@ public function arousalMenu():void
 	addButton(14, "Back", mainGameMenu);
 }
 
-public function masturbateButton(btnSlot:int = 0):void
+public function masturbateButton(btnSlot:int = 0, roundTwo:Boolean = false):void
 {
 	if(pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "While you’re in withdrawal, you don’t see much point in masturbating, no matter how much your body may want it.");
 	else if(!pc.canMasturbate()) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You can’t seem to masturbate at the moment....");
-	else if(availableFaps(false, true).length <= 0) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You don’t have any available masturbation options at the moment....");
+	else if(availableFaps(roundTwo, true).length <= 0) addDisabledButton(btnSlot, "Masturbate", "Masturbate", "You don’t have any available masturbation options at the moment....");
 	else addButton(btnSlot, "Masturbate", masturbateMenu);
 }
 
@@ -1498,7 +1498,7 @@ public function milkturbation():void
 	{
 		output("\n\nYou work your chest with rhythmic, ");
 		if(flags["TIMES_HAND_MILKED_SELF"] == undefined || flags["TIMES_HAND_MILKED_SELF"] < 4) output("almost ");
-		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.cumColor] tit-cream out. It doesn’t work though; you’ll have to give your body time to build some up first.");
+		output("practiced motions again and again, pinching your [pc.nipples] to try to squeeze out some [pc.milk]. However, all that you manage to do is make yourself irritated and sore. Whining in frustration, you tug harder at yourself, desperate to squeeze even a little bit of your [pc.milkColor] tit-cream out. It doesn’t work though; you’ll have to give your body time to build some up first.");
 		pc.lust(5 + rand(3));
 		pc.boostLactation(1);
 	}
@@ -1633,6 +1633,7 @@ public function milkturbation():void
 		if(pc.isTreated() && orgasmOdds < 100) orgasmOdds = 100;
 		var orgasmed:Boolean = (rand(100) + 1 <= orgasmOdds);
 		if(pc.lust() < 33) orgasmed = false;
+		var canFapAgain:Boolean = (availableFaps(true, true).length > 0);
 		//End: Didn't orgasm due to not enough milking (20% or less chance of orgasm)
 		if(!orgasmed && orgasmOdds <= 20)
 		{
@@ -1644,7 +1645,7 @@ public function milkturbation():void
 			}
 		}
 		//End: Got really close to orgasm but couldn't quite get there -> Immediately choose a random fap scene for next (had a chance above 20%)
-		else if(!orgasmed && orgasmOdds > 20)
+		else if(!orgasmed && orgasmOdds > 20 && canFapAgain)
 		{
 			output("\n\nMoaning as your flow gradually tapers off, your fingers go wild on your [pc.chest], tugging, squeezing, and pulling in an effort to take you to orgasm. Milking has felt so good, so wonderfully, sensuously swell, that you’ve let yourself grow aroused beyond reason. Your slick teats ache from the constant stimulation, but it’s a wonderfully satisfying ache that sends tingles of ");
 			if(pc.hasVagina()) output("crotch-dampening ");
@@ -1652,7 +1653,7 @@ public function milkturbation():void
 			else if(pc.balls > 0) output("ball-teasing ");
 			output("warmth to your most sensitive areas. You grind your [pc.hips] and cry out in need as the last droplets of [pc.milk], leaving you unfulfilled and delirious with need.");
 			output("\n\n<b>You start masturbating before the thought even reaches your brain. You have to.</b>");
-			pc.lust(9001);
+			pc.maxOutLust();
 		}
 		//End: Minor orgasm all up in
 		else if(milk <= 5000)
@@ -1730,7 +1731,7 @@ public function milkturbation():void
 		pc.milked(pc.milkFullness);
 	}
 	//Force faps
-	if(!orgasmed && milked && pc.lust() >= pc.lustMax())
+	if(!orgasmed && milked && pc.lust() >= pc.lustMax() && canFapAgain)
 	{
 		clearMenu();
 		addButton(0,"Next",masturbateMenu,true);
@@ -1831,31 +1832,30 @@ public function wutwutindabuttbuttFap():void
 	// pc.ass.looseness() <= 3
 	if (pc.ass.looseness() <= 2)
 	{
-		output("\n\nOwing to your lack of");
-		if (silly) output(" butt-stuff");
-		else output(" anal");
-		output(" experience,"); 
+		output("\n\n");
+		if(pc.analVirgin) output("Owing to your lack of " + (silly ? "butt-stuff" : "anal") + " experience, you");
+		else output("You");
 
 		if (pc.ass.wetness() >= 2) 
 		{
-			output(" you circle your fingertips around your wet bum, making sure to collect");
+			output(" circle your fingertips around your wet bum, making sure to collect");
 			if (pc.ass.wetness() >= 3) output(" a liberal amount of lubrication");
 			else output(" as much lubrication as you can muster");
 			output("; you have a feeling you’ll need all the help you can get.");
 		}
 		else if (pc.hasVagina())
 		{
-			output(" you take advantage of your [pc.vagina " + pc.highestWetnessIndex() + "] and coat your fingers with a");
+			output(" take advantage of your [pc.vagina " + pc.highestWetnessIndex() + "] and coat your fingers with a");
 			if (pc.wettestVaginalWetness() >= 3) output(" liberal");
 			output(" quantity of [pc.girlCum]; you have a feeling you’ll need all the help you can get.");
 		}
 		else if (pc.hasCock())
 		{
-			output(" you take advantage of your [pc.cock] and trail your fingers lazily along its length; scooping up some of the [pc.cumColor] pre-cum drooling from its [pc.cockHead].")
+			output(" take advantage of your [pc.cock] and trail your fingers lazily along its length; scooping up some of the [pc.cumColor] pre-cum drooling from its [pc.cockHead].")
 		}
 		else
 		{
-			output(" you divert one of your hands to your mouth and take a moment to");
+			output(" divert one of your hands to your mouth and take a moment to");
 			if (pc.ass.looseness() <= 1) output(" liberally");
 			output(" slaver a finger with spittle; you have a feeling you’ll need all the help you can get.");
 		}

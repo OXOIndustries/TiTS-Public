@@ -278,7 +278,7 @@
 			kGAMECLASS.days += ((7 * 3) + rand(5));
 			kGAMECLASS.hours = rand(24);
 			kGAMECLASS.processTime(rand(60));
-			target.lust(9000);
+			target.maxOutLust();
 			target.willpower(-50);
 			
 			if(!kGAMECLASS.pc.hasGenitals()) kGAMECLASS.badEnd();
