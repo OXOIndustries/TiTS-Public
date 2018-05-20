@@ -219,12 +219,13 @@ public function syriQuestAkkadiBaseShowers():Boolean
 {
 	clearOutput();
 	author("Savin");
-	if (flags["MET_SCHORA"] == undefined) {
-		showCommanderSchora(true);
+	if (flags["MET_SCHORA"] < 2) {
+		showSchora(true);
 		output("Everywhere else in this place has been abandoned, and so you don't think twice about sliding open the glass panel door at the far end of the locker room. The moment you do, though, you're assaulted with unexpected sensation: a rich smell of roses and wine leaks out of the crack in the door, followed by billowing steam that clings to your [pc.skinFurScales].");
 		output("\n\nWater is running inside, pounding down from multiple shower heads and hissing across the tile floor. You glimpse a half dozen stalls inside, separated by slender walls, but only one of them's got its curtain closed. The cheap plastic curtain's thin and almost transparent, letting you see the dark outline of a large woman inside: statuesque and tall, not thick like a huskar but shapely in all the right places, with large breasts from which water cascades down onto the shower floor. ");
 		output("\n\nShe's moaning softly, and you can see one of her hands moving sensually up and down her body, stopping to grope one of her meaty bosoms before delving down between her legs or reaching around to grope the plump mounds of assflesh swaying behind her.");
 		output("\n\nShe hasn't noticed you yet, if you want to sneak away...");
+		flags["MET_SCHORA"] = 1;
 		clearMenu();
 		addButton(0,"Watch",syriQuestAkkadiBaseShowersWatch,undefined,"Watch","Looks like somebody's enjoying the showerhead in there...");
 		addButton(1,"Approach", syriQuestAkkadiBaseShowersApproach,undefined,"Approach","Try and speak to the lusty lady.");
@@ -234,7 +235,7 @@ public function syriQuestAkkadiBaseShowers():Boolean
 	}
 	else {
 		output("The Akkadi facility's showers are a small affair, with a half dozen tile cubicles each sealed off by nothing more than a sheer, largely transparent curtain. It's much better lit than the rest of the facility has been, thanks to all the aromatic candles that have been arranged around the perimeter. A light smell of roses and wine permeates the air");
-		if (flags["SCHORA_SEXED"] != undefined) output(", mixed with the linger scent of sex and cum");
+		if (flags["MET_SCHORA"] >= 3) output(", mixed with the linger scent of sex and cum");
 		output(".");
 		return false;
 	}
@@ -243,7 +244,7 @@ public function syriQuestAkkadiBaseShowers():Boolean
 public function syriQuestAkkadiBaseShowersWatch():void
 {
 	clearOutput();
-	showCommanderSchora(true);
+	showSchora(true);
 	author("Savin");
 	output("Considering everybody's trapped on the lower levels, you guess you have a few minutes to enjoy the veiled sight of a busty Akkadi babe fucking <i>herself</i>. You slide the door open just enough to slip inside -- wouldn't want her to get cold, after all -- and find a seat against the wall opposite her.");
 	output("\n\nThe mysterious woman is a dark, shadowy outline on the other side of the curtain, just defined enough to let you see the womanly shape of her body and a hint of bronze-colored flesh and rose-gold hair. One of her hands is wrapped around a breast, fingers sinking into soft flesh and pinching a coal-black nipple. ");
@@ -269,9 +270,9 @@ public function syriQuestAkkadiBaseShowersLeave():void
 
 public function syriQuestAkkadiBaseShowersApproach():void
 {
-	flags["MET_SCHORA"] = 1;
+	flags["MET_SCHORA"] = 2;
 	clearOutput();
-	showCommanderSchora(true);
+	showSchora(true);
 	author("Savin");
 	output("You take an intentionally loud step forward, rapping your knuckles on the glass of the door as you stride towards the showers.");
 	output("\n\nThe alien woman gasps and jumps up. <i>“Oh shit! What time is it?”</i> she yelps, wrapping an arm around her chest. You still can't make out too much of her actual features, other than her shapely figure and a pair of horns growing out from her brow, sweeping back across her scalp.");
@@ -291,7 +292,7 @@ public function syriQuestAkkadiBaseShowersApproach():void
 public function syriQuestAkkadiBaseShowersWhatsUp():void
 {
 	clearOutput();
-	showCommanderSchora(true);
+	showSchora(true);
 	author("Savin")
 	output("<i>“Forget that. Where is everyone?”</i> you ask. <i>“You're the only other person I've seen!”</i>");
 	output("\n\nThe conversation's tone changes immediately. The woman yanks back a corner of the curtain, revealing a bronze-skinned face fringed by sodden rose-gold hair, parted around horns and fuzzy pointed ears. She stares at you with hard red eyes, brow furrowed. <i>“What do you mean 'where's everyone'? And who are <b>you</b> supposed to be?”</i>");
@@ -314,7 +315,7 @@ public function syriQuestAkkadiBaseShowersWhatsUp():void
 public function syriQuestAkkadiBaseShowersYeahIDid():void
 {
 	clearOutput();
-	showCommanderSchora(true);
+	showSchora(true);
 	author("Savin");
 	output("<i>“Oh I heard something alright,”</i> you say, stepping forward with a sexy swagger. <i>“");
 	if (pc.isAss()) output("Something about a dirty girl needing her worthless pussy pounded");
@@ -339,7 +340,7 @@ public function syriQuestAkkadiBaseShowersYeahIDid():void
 public function syriQuestAkkadiBaseShowersTreatHerRight():void
 {
 	clearOutput();
-	showCommanderSchora(true);
+	showSchora(true);
 	author("Savin");
 
 	output("<i>“Schora. Alyru Schora.”</i>");
@@ -395,7 +396,7 @@ public function syriQuestAkkadiBaseShowersTreatHerRight():void
 	}
 	pc.orgasm();
 	chars["SCHORA"].orgasm();
-	flags["SCHORA_SEXED"] = 1;
+	flags["MET_SCHORA"] = 3;
 	processTime(30+rand(15));
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -404,7 +405,7 @@ public function syriQuestAkkadiBaseShowersTreatHerRight():void
 public function syriQuestAkkadiBaseShowersTreatHerBad():void
 {
 	clearOutput();
-	showCommanderSchora(true);
+	showSchora(true);
 	author("Savin");
 
 	output("You reach down and grab the dusky halfbreed's cock, drawing a gasp from her. She squirms in your grip, pinned between you and the wall, completely at your mercy... and the way her dick is starting to throb and leak in your grasp, she's loving every second of it.");
@@ -455,14 +456,14 @@ public function syriQuestAkkadiBaseShowersTreatHerBad():void
 	}
 	pc.orgasm();
 	chars["SCHORA"].orgasm();
-	flags["SCHORA_SEXED"] = 2;
+	flags["MET_SCHORA"] = 4;
 	processTime(30+rand(15));
 }
 
 public function syriQuestAkkadiBaseShowersTreatHerBadOutro():void
 {
 	clearOutput();
-	showCommanderSchora(true);
+	showSchora(true);
 	author("Savin");
 	output("You wake up some time later, sore in the loins and tingly all over. Alyru's passed out on the floor, so you quietly slip out of her embrace and out of the shower, groping around for a towel. So much for your mission being swift. Wonder how Syri's kept the power down all this time?");
 
@@ -572,7 +573,7 @@ public function syriQuestAkkadiBaseTorraFuck():void
 	output("\n\n<i>“Need to... need to... need to...”</i> the cat-woman huffs, sniffing and groping at you. One of her hands wanders between your [pc.legs], grabbing at your crotch.");
 	if (pc.hasCock()) output("\n\n<i>“Ah, yes! Good!”</i> she mewls, wrapping her fluffy fingers around your [pc.cock]. <i>“Need this... so bad. Can barely think!”</i>");
 	else output("\n\n<i>“What -- no breeding rod?”</i> she huffs, squeezing your crotch. <i>“Noooo I need to </i>breed<i>!”</i>");
-	output("\n\nHer grip on your tightens, pushing you towards the ground; you slide down the wall, splaying your [pc.legs] while the milodan's hands grope all over your body, exploring every inch as she tears you out of your [pc.gear]. All the while you can hear the ever-present purr of her vibrator buzzing away inside her, making the science-slut pant and gasp as she works. Her nipples are rock hard, every breath pushing the jutting black mountains of pleasure into your face. You manage to wrest your hands free through her frantic stripping and grab the kitty's big titties, hard enough to make her howl in pleasure. Her fluffy tail thumps hard against your [pc.leg], silent encouragement to keep kneading her nipples until she's able to grind her dripping slit against your " + (pc.hasGenitals() ? "[pc.genitals]" : "thigh") + ".");
+	output("\n\nHer grip on your tightens, pushing you towards the ground; you slide down the wall, splaying your [pc.legs] while the milodan's hands grope all over your body, exploring every inch as she tears you out of your [pc.gear]. All the while you can hear the ever-present purr of her vibrator buzzing away inside her, making the science-slut pant and gasp as she works. Her nipples are rock hard, every breath pushing the jutting black mountains of pleasure into your face. You manage to wrest your hands free through her frantic stripping and grab the kitty's big titties, hard enough to make her howl in pleasure. Her fluffy tail thumps hard against your [pc.leg], silent encouragement to keep kneading her nipples until she's able to grind her dripping slit against your " + (pc.hasGenitals() ? "[pc.cockOrVag]" : "thigh") + ".");
 	if (pc.hasCock()) {
 		output("\n\nThe horny cat-woman purrs hungrily, straddling your hips and pressing your puffy puss against your rock-hard cock. She thrusts herself down on you the moment you're lined up, spearing herself on your [pc.cock] with a howl of bliss that echoes throughout the base. You yourself are busy gritting your teeth as her claws rake your [pc.skinFurScales], pinning you against the wall while the kitty starts to ride you.");
 		output("\n\nIt takes you a moment to realize some of the gripping, writhing pleasure encasing your cock isn't just from her needy cunt. The vibrator knotted in her ass is buzzing away so hard that you can feel it perfectly through her inner walls; the knot is right next to your " + (pc.hasKnot() ? "own knot" : "dick's base") + ", sending waves of pleasure up your shaft and back to your [pc.balls]. Fuck that feels good!");
