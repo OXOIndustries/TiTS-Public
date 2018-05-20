@@ -6479,6 +6479,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>The Warm Crusts</u></b>");
 				output2("\n<b>* Heidrun:</b> Met her");
+				if(flags["SEXED_HEIDRUN"] != undefined) output2("\n<b>* Heidrun, Times Sexed:</b> " + flags["SEXED_HEIDRUN"]);
 				variousCount++;
 			}
 			// Tamed Tamelings

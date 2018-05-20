@@ -4892,7 +4892,7 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 				if(flags["SERA_PREGNANCY_TIMER"] >= 195)
 				{
 					output("<i>“Hey [pc.master]! How’s it going?”</i>");
-					output("Sera puts down her holopad and grins up at you when you enter her room. She’s sat on her side in bed, resting her large, round belly, surrounded by slews of packaged gene mods and promotional material. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
+					output("\n\nSera puts down her holopad and grins up at you when you enter her room. She’s sat on her side in bed, resting her large, round belly, surrounded by slews of packaged gene mods and promotional material. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
 				}
 				else
 				{

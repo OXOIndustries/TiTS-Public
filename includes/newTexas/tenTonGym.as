@@ -2232,7 +2232,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				output("\n\nOnce you’re mostly hard, Betsy slides your cock between her plump tits and grabs your free hand, placing it on the side of one of her boobs. She leans over and wraps her lips around the flat head of Victoria’s cock, then starts gently bobbing her head up and down, her eyes slipping closed as she sucks on her girlfriend.");
 				output("\n\nNot a bad way to start things. You let go of Victoria’s ass and hold onto Betsy’s breasts with both hands, squeezing them tighter around your [pc.cockNoun " + x + "]. Next to you, Victoria leans in closer, aiming for a better angle as she tries to get more of her dong into Betsy’s mouth. You thrust gently as your dick grows harder, trying not to disturb Betsy’s blowjob as she slowly bobs her head down farther onto her girlfriend’s cock.");
 				output("\n\n<i>“Come on, babe, you can do more than that,”</i> Victoria says with a laugh. <i>“I’m going up [pc.hisHer] ass, remember? Better make sure I’m plenty lubed.”</i> She winks at you.");
-				output("\n\nBetsy raises her head from Victoria’s cock. <i>“I’ll give you–”</i> She bobs her head down again, giving her girlfriend’s shaft a long slurp. <i>“–all the lube–”</i> She bobs again, and and starts to stroke your [pc.cockHead " + x + "] where it sticks up from between her tits. <i>“–when you’re both ready, okay?”</i>");
+				output("\n\nBetsy raises her head from Victoria’s cock. <i>“I’ll give you–”</i> She bobs her head down again, giving her girlfriend’s shaft a long slurp. <i>“–all the lube–”</i> She bobs again and starts to stroke your [pc.cockHead " + x + "] where it sticks up from between her tits. <i>“–when you’re both ready, okay?”</i>");
 				output("\n\nVictoria laughs again, her hands at work on the base of her dick. She’s grown to a full foot long, and after having your dick squished between Betsy’s boobs, you’re not far from being fully stiff yourself. After a moment, Betsy pulls away from her girlfriend and lavishes your cock head with a few long licks, then gives your tip a kiss.");
 				output("\n\n<i>“Looks like you’re all set, cutie,”</i> she says, and releases your [pc.cockNoun " + x + "] from between her tits. <i>“Now give me just a second...”</i>");
 				output("\n\nBetsy turns and deep-throats Victoria all at once, making the fit cowgirl’s breath hitch. She pulls back from Victoria’s cock slowly, and you see her tongue lashing back and forth around Victoria’s shaft. When Betsy finishes, Victoria’s horsecock is slick with spit, hard and ready to go.");
@@ -2369,7 +2369,7 @@ public function soreChange(arg:int = 0):void
 		{
 			pc.removeStatusEffect("Sore");
 			pc.removeStatusEffect("Very Sore");
-			pc.createStatusEffect("Worn Out", 0, 0, 0, 0, false, "Icon_Crying", "You are worn out and and unable to regain energy. Working out is also impossible in this state. Sleep to recover.", false, 0, 0xFF0000);
+			pc.createStatusEffect("Worn Out", 0, 0, 0, 0, false, "Icon_Crying", "You are worn out and unable to regain energy. Working out is also impossible in this state. Sleep to recover.", false, 0, 0xFF0000);
 		}
 		else if(pc.statusEffectv1("Sore Counter") >= 6 && pc.statusEffectv1("Sore Counter") < 9 && !pc.hasStatusEffect("Very Sore"))
 		{

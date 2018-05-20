@@ -485,7 +485,7 @@ public function PKTSI():void
 		if(!pc.isNude()) output("effectively ");
 		output("a nudist, and you’ve been naked since the start");
 	}
-	output("); and Kiro practically struggles with her own outfit, with the way her assets press against it. And the longer it takes, the more aroused she becomes, making getting off her pants all the harder.");
+	output("; and Kiro practically struggles with her own outfit, with the way her assets press against it. And the longer it takes, the more aroused she becomes, making getting off her pants all the harder.");
 
 	output("\n\nWhen Kiro is finally naked, baring herself to you and Paige, she puts her hands on her furry hips and wiggles them back and forth, swinging her horsecock in the air, like she was baiting you and Paige to grab onto it. She and Paige share a laugh; her dick hangs in the air, too flaccid yet to support its own weight, but with each pump of her heart, that’s changing in a hurry.");
 
@@ -911,7 +911,7 @@ public function PKTSYBB(args:Array):void
 		output("\n\n<i>“Do you feel as lucky as you are, [pc.name]?”</i> Paige asks you, her tongue aimlessly licking swaths along your neck and up to your [pc.ear]. Every time Kiro thrusts into you, her words come out as an interrupted hiccup, the force billowing through her almost as hard as through you. <i>“Getting plowed by a great, big Kui-Tan cock and having a horny, devoted Ausar fucking you both where she can. There aren’t a lot of people in this universe that can say they’ve been in the same position.”</i>");
 		output("\n\nYou answer affirmatively: you feel very privileged to be in the middle of these two. You likewise ask Paige if she feels the same way.");
 		output("\n\n<i>“[pc.name]?”</i> she asks, her ");
-		if(!paigeBlind()) output("blind ");
+		if(paigeBlind()) output("blind ");
 		output("eyes locking onto yours, before she cups your cheeks with gentle hands and leans in, her tongue meeting yours with frenzied passion. You mutually suck on each other; Paige hums in amusement as she tastes herself on you. <i>“It’s like a dream come true.”</i>");
 
 		output("\n\nYou and Paige explore each other as you both ride Kiro for everything she’s worth, and you know that Kiro is watching. You yank at Paige’s tail; you slap at her ass; you run your fingers through her fur and her hair; you scratch at that erogenous zone of hers that make her tense up and whimper like a dog, accompanying a fresh, warm squirt of her juices. Paige mimics your every action as best as she can, and whenever she does something particularly juicy to you, Kiro knows it, because you clench and squeeze on her all the harder.");
