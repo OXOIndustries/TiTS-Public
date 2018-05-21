@@ -218,7 +218,6 @@ package classes.Items.Miscellaneous
 				addButton(4, "Belly", useReductProShrinkBelly, undefined, "Belly", "Apply the paste to your [pc.belly].");
 			else
 				kGAMECLASS.addDisabledButton(4, "Belly", "Belly", "Your belly is as flat as it can be!");
-			/* 9999 later
 			// 13 - Anus
 			if (!pc.ass.loosenessRaw >= 2)
 				addButton(13, "Anus", useReductProShrinkAnus, undefined, "Anus", "Apply the paste to your [pc.asshole].");
@@ -234,7 +233,6 @@ package classes.Items.Miscellaneous
 			}
 			else
 				kGAMECLASS.addDisabledButton(9, "Horns", "Horns", "You need horns for that!");
-			*/
 			// 14 - Back
 			addButton(14, "Back", menuReductProQuit, undefined, "Nevermind", "Put the container back in your inventory.");
 			
@@ -1158,7 +1156,6 @@ package classes.Items.Miscellaneous
 				return;
 			}
 		}
-		/*9999 futz with this later
 		// Anus
 		private function useReductProShrinkAnus():void
 		{
@@ -1169,16 +1166,22 @@ package classes.Items.Miscellaneous
 			if (kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] == undefined && kGAMECLASS.flags["REDUCTPRO_USED_ON_ASSHOLE"] == undefined)
 				output("Even though the paste is intended for topical use, you are curious to see what it will do internally. Only one way to find out, right? ");
 			else if (kGAMECLASS.flags["REDUCTPRO_USED_ON_ASSHOLE"] == undefined)
-				output("You already know what happens when this drug is applied to your cooch, but you wonder if the same applies to your rectum... ");
+			{
+				output("You already know what happens when this drug is applied to your vagina");
+				if(pc.totalVaginas() > 1) output("s");
+				output(", but you wonder if the same applies to your rectum... ");
+			}
 			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments],");
-			output(" unscrew the cap, squeeze the contents of ReductPro onto your fingers, and apply the foul-smelling paste onto your [pc.asshole], making sure to lather the rim nicely before injecting the rest inside yourself.");
+			if (!pc.isCrotchExposed())
+				output(" open up your [pc.crotchCover],");
+			output(" squeeze the contents of ReductPro onto your fingers");
+			if (!pc.isCrotchExposed()) output(",");
+			output(" and apply the foul-smelling paste onto your [pc.asshole], making sure to lather the rim nicely before injecting the rest inside yourself.");
 			
 			// Instantly reduces anal looseness by 1.
-			if (pc.loosenessUnlocked(-1, pc.ass.loosenessRaw - 1))
+			if (pc.loosenessUnlocked(-1, pc.ass.loosenessRaw - 1) && pc.ass.loosenessRaw >= 2)
 			{
-				output("\n\nYour sphincter throbs momentarily, giving you a sign that the drug is actually working.");
+				output(" Your sphincter throbs momentarily.");
 				if (kGAMECLASS.flags["REDUCTPRO_USED_ON_ASSHOLE"] == undefined)
 					output(" To your surprise");
 				else
@@ -1186,9 +1189,12 @@ package classes.Items.Miscellaneous
 				output(", <b>your anus has instantly tightened!</b>");
 				
 				pc.ass.loosenessRaw--;
-				
+
+				output("\n\nEverything is so delightfully sensitive afterward, you're tempted to use it again.");
+				pc.libido(4);
+				pc.taint(2);
+
 				kGAMECLASS.flags["REDUCTPRO_USED_ON_ASSHOLE"] = 1;
-				
 				// Done!
 				useReductProDone();
 				return;
@@ -1209,73 +1215,67 @@ package classes.Items.Miscellaneous
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
 			if (kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] == undefined)
-				output("You doubt if the ReductPro is going to work on your [pc.hornsNoun] but you proceed to unscrew the cap, squeeze out the contents and rub the paste all over your [pc.horns] anyway.");
+				output("You doubt if the ReductPro is going to work on your [pc.hornsNoun]. Nevertheless, you squeeze out the contents and rub the paste all over your [pc.horns]. ");
 			else
-				output("You unscrew the cap, squeeze out the contents of the ReductPro and rub the paste all over your [pc.horns].");
+				output("You squeeze the contents of the ReductPro out onto your [pc.horns]. ");
 			
 			var newHornLength:Number = pc.hornLength - 1;
 			if ((pc.hornLength > 0 && pc.hornLengthUnlocked(newHornLength)) || pc.hasStatusEffect("Horn Bumps"))
 			{
-				output("\n\n");
-				if (kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] == undefined)
-					output("It works much to your surprise! ");
-				
 				if (!pc.hasStatusEffect("Horn Bumps"))
 				{
 					// Not all horns are malleable--need to make special cases...
 					if (pc.hornType == 0)
 					{
-						output("[pc.EachHorn] vibrates vigorously, as if it is something that does not belong on your head... And so it seems, </b>the [pc.hornsNoun] rapidly vanish");
+						if(pc.horns == 1) output("It vibrates vigorously as if it doesn't belong on your head. The [pc.hornsNoun] rapidly vanish");
+						else output("They vibrate vigorously as if they doesn't belong on your head. The [pc.hornsNoun] rapidly vanish");
 						if (pc.horns != 1)
 							output("es");
-						output(", leaving your head void of any kind of horns!");
+						output(", leaving your head bare of bony protrusions!");
 						pc.hornLength = 0;
 						pc.horns = 0;
-						pc.hornType == 0;
+						pc.hornType = 0;
 					}
 					else if (pc.hornType == GLOBAL.TYPE_DEMONIC)
 					{
-						output("Your demonic-looking horns crackle and warp as the drug kicks in.");
+						output("Your demonic augmentations crackle and warp as the drug kicks in.");
 						if (pc.horns > 2)
 						{
-							output(" As this happens, you can feel your horns starting to decrase in");
+							output(" You can feel them starting to decrease in");
 							if (pc.horns <= 8)
 								output(" size and");
 							pc.horns -= 2;
-							if (pc.horns < 2)
-								pc.horns == 2;
-							output(" number. When the transformation finally completes, you rub your hand alongside each horn. <b>You now have " + num2Text(pc.horns) + " horns total.</b>");
+							if (pc.horns < 2) pc.horns = 2;
+							output(" number. When the transformation finally completes, you rub your hand along the side. <b>You now have " + num2Text(pc.horns) + " horns total.</b>");
 						}
 						else
 						{
-							output(" The two horns begin to shrink smaller and smaller, looking less and less threatening. <b>Your horns finally recede into your head, becoming small, barely visible horn bumps!</b>");
+							output(" The two horns begin to shrink smaller and smaller, looking less and less threatening. <b>Your horns finally recede into your head, becoming small, barely visible bumps!</b>");
 							pc.hornLength = 0;
 							pc.horns = 0;
-							pc.hornType == 0;
+							pc.hornType = 0;
 							pc.createStatusEffect("Horn Bumps");
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_BOVINE)
 					{
-						output("A tingling sensation runs across the length of your bovine horns as the drug kicks in.");
+						output("A tingling sensation runs across the length of your bovine accouterments as the drug kicks in.");
 						if (pc.hornLength >= 2)
 						{
 							pc.hornLength--;
-							output(" You can feel your pair of horns receding by one inch. <b>You now have a pair of " + num2Text(pc.hornLength) + "-inch horns.</b>");
+							output(" You can feel your them receding slowly, losing an inch. <b>You now have a pair of " + num2Text(pc.hornLength) + "-inch horns.</b>");
 						}
 						else if (pc.hornLength > 0.5 && pc.hornLength <= 1)
 						{
-							output(" <b>You can feel your pair of horns receding until they stop to about half-an-inch.</b>");
-							if (pc.isBimbo())
-								output(" <i>Cute!</i>");
+							output(" <b>You can feel your horns receding until they stop around around a half-inch in length.</b>");
 							pc.hornLength = 0.5;
 						}
 						else
 						{
-							output(" Even with how tiny they are, the paste is pretty effective, causing your calf-like horns to shrink. <b>Your horns keep receding into your head until they become small, barely visible horn bumps!</b>");
+							output(" Even with how tiny they are, the paste manages to make them shrink. <b>Your horns keep receding into your head until they become small, barely visible horn bumps!</b>");
 							pc.hornLength = 0;
 							pc.horns = 0;
-							pc.hornType == 0;
+							pc.hornType = 0;
 							pc.createStatusEffect("Horn Bumps");
 						}
 					}
@@ -1286,46 +1286,46 @@ package classes.Items.Miscellaneous
 						{
 							pc.horns = 2;
 							pc.hornLength = 15;
-							output(" draconic horns soften and vibrate quietly as the drug kicks in. The four horns begin to merge into themselves, changing and rearranging the total mass. As the mass solidifies, <b>you are left with two, " + num2Text(pc.hornLength) + "-inch, reptilian horns.</b>");
+							output(" draconic additions soften and vibrate quietly as the drug kicks in. The four horns merge into themselves, changing and rearranging their mass. As they solidify, <b>you are left with two, " + num2Text(pc.hornLength) + "-inch, reptilian horns.</b>");
 						}
 						else if (pc.hornLength > 1)
 						{
 							pc.hornLength--;
-							output(" reptilian horns soften and vibrate quietly as the drug kicks in. You can feel your pair of horns receding by one inch. <b>You now have a pair of " + num2Text(pc.hornLength) + "-inch horns.</b>");
+							output(" reptilian additions soften and vibrate quietly as the drug kicks in. You can feel your pair of horns sink one inch down into your skull. <b>You now have a pair of " + num2Text(pc.hornLength) + "-inch horns.</b>");
 						}
 						else
 						{
-							output(" horns soften and vibrate quietly as the drug kicks in. The pair begin to shrink smaller and smaller, looking less and less reptilian. <b>Your horns finally recede into your head, becoming small, barely visible horn bumps!</b>");
+							output(" horns soften and vibrate quietly as the drug kicks in. The pair shrink smaller and smaller, looking less and less reptilian. <b>Your horns finally recede into your head, becoming small, barely visible horn bumps!</b>");
 							pc.hornLength = 0;
 							pc.horns = 0;
-							pc.hornType == 0;
+							pc.hornType = 0;
 							pc.createStatusEffect("Horn Bumps");
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_DEER)
 					{
-						output("Your pair of deer-like antlers begin to melt and shift, and the branches of each start to fuse with themselves.");
+						output("They begin to melt and shift, and the branches of each antler start to fuse with themselves.");
 						if (pc.horns > 4)
 						{
 							pc.horns -= 2;
 							if (pc.horns < 4)
 								pc.horns == 4;
-							output(" After a moment to quickly solidify, <b>you find that your antlers have less prongs, giving you " + num2Text(pc.horns) + " antler points total.</b>");
+							output(" After a moment, <b>you find that your antlers have less prongs, giving you " + num2Text(pc.horns) + " antler points total.</b>");
 						}
 						else
 						{
-							output(" The " + num2Text(pc.horns) + " antler points quickly merge with one another to form two long horns. Examining yourself, you find that <b>your head posses a pair of six-inch horns, making you appear very much like a " + pc.mf("bull", "cow") + "!</b>");
+							output(" The " + num2Text(pc.horns) + " points quickly merge with one another to form two long horns. Examining yourself, you find that <b>your head posses a pair of six-inch horns, making you appear very much like a " + pc.mf("bull", "cow") + "!</b>");
 							pc.hornLength = 6;
 							pc.horns = 2;
-							pc.hornType == GLOBAL.TYPE_BOVINE;
+							pc.hornType = GLOBAL.TYPE_BOVINE;
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_GOAT)
 					{
-						output(" Like a loose hose, you ram-like horns begin to unravel themselves, straightening out, while curving forward. When the morphing process is complete, you discover that <b>you now have a pair of dangerous, foot-long horns, making you appear very much like a bull!</b>");
+						output("Like a loose hose, you ram-like horns begin to unravel themselves, straightening out, while curving forward. When the morphing process is complete, you discover that <b>you now have a pair of dangerous, foot-long horns, making you appear very much like a bull!</b>");
 						pc.hornLength = 12;
 						pc.horns = 2;
-						pc.hornType == GLOBAL.TYPE_BOVINE;
+						pc.hornType = GLOBAL.TYPE_BOVINE;
 					}
 					else if (pc.hornLength > 1)
 					{
@@ -1338,15 +1338,15 @@ package classes.Items.Miscellaneous
 						output("As the drug activates, you run your fingers over your very small and rapidly shrinking [pc.hornsNoun]. [EachHorn] diminishes in size until there is nothing left. <b>You have lost your [pc.hornsNoun]!</b>");
 						pc.hornLength = 0;
 						pc.horns = 0;
-						pc.hornType == 0;
+						pc.hornType = 0;
 					}
 				}
 				else
 				{
-					output("\n\nThe small horn bumps on your head pulsate softly. As you rub them against your fingers, you can feel them smoothing out and fading away completly. <b>Your head is now bare of any horns!</b>");
+					output("\n\nThe small horn bumps on your head pulsate softly. As you rub them against your fingers, you can feel them smoothing out and fading away completely. <b>Your head is now bare of any horns!</b>");
 					pc.hornLength = 0;
 					pc.horns = 0;
-					pc.hornType == 0;
+					pc.hornType = 0;
 					pc.removeStatusEffect("Horn Bumps");
 				}
 				output("\n\nAfter the feeling subsides, you close the empty container and throw it away, washing your hands afterward.");
@@ -1368,7 +1368,7 @@ package classes.Items.Miscellaneous
 			
 			return;
 		}
-		*/
+		
 		private function useReductProDone(failed:Boolean = false):void
 		{
 			var pc:PlayerCharacter = kGAMECLASS.pc;
