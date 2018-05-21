@@ -50,6 +50,7 @@ public function buyAPowahPotionMenu():void
 	if(pc.credits >= 5) addButton(0, "P.Potion", buyAPowahPotion,undefined, "Power Potion", "Get yourself an energy drink. Only 5 credits!");
 	else addDisabledButton(0, "P.Potion", "Power Potion", "You can’t even afford a five " + (isAprilFools() ? "dogecoin" : "credit") + " drink. Any poorer and you’ll be living out of a box.");
 	if(canVendAmazonaIcedTea()) addButton(1, "Amazona", approachItemVendingMachine, "Amazona", "Amazona Iced Tea", "Get yourself an Amazona drink.");
+	addButton(4, "Other", approachItemVendingMachine, "JoyCo", "Other JoyCo Products", "Browse some other JoyCo-brand products.");
 	addButton(14, "Back", mainGameMenu);
 }
 public function buyAPowahPotion():void
@@ -68,6 +69,16 @@ public function buyAPowahPotion():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Next",buyAPowahPotionMenu);
+}
+public function joyCoVendingBack():void
+{
+	clearOutput();
+	showBust("JOYCO_VENDING_MACHINE");
+	showName("VENDING\nMACHINE");
+	
+	output("Maybe you should try something else...");
+	
+	buyAPowahPotionMenu();
 }
 
 // Item vending machine
@@ -201,7 +212,24 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].sellMarkup = 1.0;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
 			
-			shopkeepBackFunctor = amazonaIcedTeaBack;
+			shopkeepBackFunctor = joyCoVendingBack;
+			break;
+		case "JoyCo":
+			showBust("JOYCO_VENDING_MACHINE");
+			
+			chars["VENDINGMACHINE"].originalRace = "JoyCo";
+			chars["VENDINGMACHINE"].keeperBuy = "You press the button on the machine and a small holoscreen projects a menu of miscellaneous JoyCo-related products. What do you decide to buy?\n";
+			chars["VENDINGMACHINE"].keeperSell = "ERROR.\n";
+			chars["VENDINGMACHINE"].keeperGreeting = "ERROR.\n";
+			
+			chars["VENDINGMACHINE"].inventory.push(new FocusPill());
+			chars["VENDINGMACHINE"].inventory.push(new LipTease());
+			//chars["VENDINGMACHINE"].inventory.push(new ThiccNShake());
+			
+			chars["VENDINGMACHINE"].sellMarkup = 1.0;
+			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
+			
+			shopkeepBackFunctor = joyCoVendingBack;
 			break;
 	}
 	
@@ -285,17 +313,6 @@ public function amazonaIcedTeaList(item:ItemSlotClass):String
 	}
 	
 	return msg;
-}
-public function amazonaIcedTeaBack():void
-{
-	clearOutput();
-	showBust("JOYCO_VENDING_MACHINE");
-	showName("VENDING\nMACHINE");
-	author("QuestyRobo");
-	
-	output("Maybe you should try something else...");
-	
-	buyAPowahPotionMenu();
 }
 public function amazonaIcedTeaBuyGo(item:ItemSlotClass):void
 {

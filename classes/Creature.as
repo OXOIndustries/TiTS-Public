@@ -20558,7 +20558,7 @@
 					case "Kally Cummed Out":
 						if(this is PlayerCharacter && requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
 						{
-							AddLogEvent(ParseText("Kally stumbles back into the bar while you’re waiting. Her garb isn’t quite as meticulously arranged. Her hair is damp, and when she thinks nobody is looking, she sighs dreamily, licking her lips."), "passive", maxEffectLength);
+							AddLogEvent("Kally stumbles back into the bar while you’re waiting. Her garb isn’t quite as meticulously arranged. Her hair is damp, and when she thinks nobody is looking, she sighs dreamily, licking her lips.", "passive", maxEffectLength);
 						}
 						break;
 					case "Flahne_Extra_Pissed":
@@ -20988,6 +20988,12 @@
 						if (this is PlayerCharacter && requiresRemoval)
 						{
 							Tentacool.tentacoolTF(this, thisStatus, maxEffectLength); 
+						}
+						break;
+					case "Thicc&Shake":
+						if(this is PlayerCharacter && requiresRemoval)
+						{
+							ThiccNShake.effectEnds(maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
 					case "Undetected Furpies":

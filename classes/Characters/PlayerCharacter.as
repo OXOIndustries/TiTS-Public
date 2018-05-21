@@ -600,6 +600,11 @@ package classes.Characters
 					woolyFurGrow(totalDays);
 				}
 				
+				if (hasPerk("Hips Don't Lie"))
+				{
+					hipsDontLieHipGrowth(totalDays);
+				}
+				
 				if (hasPerk("Buttslut"))
 				{
 					buttslutBootyGrowth(totalDays);
@@ -800,6 +805,10 @@ package classes.Characters
 				addPerkValue("Fecund Figure", 1, (0.05 * totalDays)); // Hips
 				addPerkValue("Fecund Figure", 2, (0.05 * totalDays)); // Butt
 				addPerkValue("Fecund Figure", 4, -(totalDays)); // Gains
+				
+				var msg:String = "";
+				if(numPreg > 0 && bellyRating() >= 10) msg += "You nestle your belly with your hand and feel your hips and ass ripen in blissful contentment.";
+				if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 			}
 			
 			if(perkv4("Fecund Figure") < 0) setPerkValue("Fecund Figure", 4, 0);
@@ -836,6 +845,48 @@ package classes.Characters
 				if(hairType == GLOBAL.HAIR_TYPE_GOO && addBooty > 0)
 				{
 					var gooCost:Number = (20 * addBooty);
+					if(gooCost > 0 && kGAMECLASS.gooBiomass() >= gooCost)
+					{
+						m += " Although, the growth took up some of your gooey biomass in the process...";
+						kGAMECLASS.gooBiomass(-1 * gooCost);
+					}
+				}
+				
+				AddLogEvent(m, "passive", baseDShift + (i * 1440));
+			}
+		}
+		
+		private function hipsDontLieHipGrowth(totalDays:int):void
+		{
+			var hipsMin:Number = 18;
+			
+			// If hips is max size or is currently filled, no need to grow.
+			if (hipRatingRaw >= hipsMin) return;
+			
+			var baseDShift:uint = 1440 - (GetGameTimestamp() % 1440);
+			
+			for (var i:int = 0; i < totalDays; i++)
+			{
+				//var oldHips:Number = hipRatingRaw;
+				var addHips:Number = 1 + rand(9);
+				if (hipRatingRaw + addHips > hipsMin) addHips = hipsMin - hipRatingRaw;
+				if (addHips < 0) return;
+				
+				var m:String = "You suddenly wobble as your stride changes, surprising you where you stand. Putting your hands to your sides and moving downward, you find that your hips have gained"
+				
+				if (addHips > 5) m += " a monstrous amount of girth";
+				else if (addHips > 4) m += " a massive surge in width";
+				else if (addHips > 3) m += " a much wider measurement";
+				else if (addHips > 2) m += " a few sizes horizontally";
+				else if (addHips > 1) m += " a couple sizes in width";
+				else m += " some width";
+				m += ParseText("... It seems your body is not happy with you looking as thin as a rail, so it is adding a few pounds of fecund weight where it counts most" + (hipRatingRaw < 10 ? "." : "--much to your pleasure!") + " <b>Your [pc.hips] have grown wider!</b>");
+				
+				hipsMin += addHips;
+				
+				if(hairType == GLOBAL.HAIR_TYPE_GOO && addHips > 0)
+				{
+					var gooCost:Number = (20 * addHips);
 					if(gooCost > 0 && kGAMECLASS.gooBiomass() >= gooCost)
 					{
 						m += " Although, the growth took up some of your gooey biomass in the process...";

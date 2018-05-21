@@ -11,6 +11,7 @@ package classes.GameData
 	import classes.Items.Accessories.GrunchLeash;
 	import classes.Items.Apparel.Harness;
 	import classes.Items.Armor.GooArmor;
+	import classes.Items.Transformatives.ThiccNShake;
 	import classes.ItemSlotClass;
 	import classes.StorageClass;
 	import classes.Engine.Interfaces.*;
@@ -2640,6 +2641,8 @@ package classes.GameData
 					output(".");
 				}
 			}
+			
+			if(pc.hasStatusEffect("Thicc&Shake")) output(ThiccNShake.teaseCheck(pc, false));
 		}
 
 		private function teaseChest(target:Creature):void
@@ -2824,7 +2827,7 @@ package classes.GameData
 			
 			hipsTeaseText(target);
 			applyTeaseDamage(pc, target, teaseCount, "HIPS", likeAdjustments);
-				
+			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -2914,6 +2917,8 @@ package classes.GameData
 				if(pc.armor.shortName != "") output(" before putting your [pc.armor] back on");
 				output(".");
 			}
+			
+			if(pc.hasStatusEffect("Thicc&Shake")) output(ThiccNShake.teaseCheck(pc, true));
 		}
 		private function teaseCrotch(target:Creature):void
 		{
@@ -2954,7 +2959,7 @@ package classes.GameData
 			
 			crotchTeaseText(target);
 			applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
-				
+			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -3005,7 +3010,7 @@ package classes.GameData
 			else output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on " + target.mfn("his","her","its") + " face before jumping back to a safe distance.");
 			
 			applyTeaseDamage(pc, target, teaseCount, "DICK SLAP", likeAdjustments);
-				
+			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -3420,7 +3425,7 @@ package classes.GameData
 			
 			squirtTeaseText(target);
 			applyTeaseDamage(pc, target, teaseCount, "SQUIRT", likeAdjustments);
-				
+			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isSquirt: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isSquirt: true } );

@@ -340,6 +340,18 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		fap.ignoreRandomSelection = false;
 		faps.push(fap);
 	}
+	
+	if (pc.hasStatusEffect("Thicc&Shake"))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Shake";
+		fap.ttHeader = "Shake the Thiccness";
+		fap.ttBody = "Shake what your momma gave ya!";
+		fap.func = thiccNShakeWrapper;
+		fap.ignoreRandomSelection = false;
+		faps.push(fap);
+	}
+	
 	//PANTY FAPS!
 	if(pc.hasCock()) 
 	{
@@ -4237,6 +4249,11 @@ public function laquineEarsMaleWrapper():void
 public function laquineEarsFemaleWrapper():void
 {
 	LaquineEars.bunnyGirlFapScene(pc,true);
+}
+
+public function thiccNShakeWrapper():void
+{
+	ThiccNShake.masturbate(pc);
 }
 
 // Parasitic Pregnancy Placeholder Creation
