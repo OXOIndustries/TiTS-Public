@@ -3036,6 +3036,20 @@ public function displayQuestLog(showID:String = "All"):void
 				else output2(" <i>Not yet obtained</i>");
 				sideCount++;
 			}
+			// Getting Taivra a new throne
+			if(flags["TAIVRA_NEW_THRONE"] != undefined)
+			{
+				output2("\n<b><u>Queen Taivra’s New Throne</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["TAIVRA_NEW_THRONE"])
+				{
+					case 0: output2(" Purchased, <i>Retrieve at hangar...</i>"); break;
+					case 1: output2(" Purchased, Retrieved, <i>Return to Taivra...</i>"); break;
+					case 2: output2(" Purchased, Retrieved, Installed in her throne room, Completed"); break;
+					default: output2(" <i>Unknown</i>"); break;
+				}
+				sideCount++;
+			}
 			// Red Myr Venom Addiction
 			if(CodexManager.entryViewed("Red Myr") && (drankMyrVenom() || sexedMyrVenom()))
 			{
@@ -5885,17 +5899,6 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FUCKED_TAIVRA"] != undefined) output2(", Sexed her");
 					if(flags["FUCKED_BY_TAIVRA"] != undefined) output2(", Fucked by her");
 					if(flags["TAIVRA_FOOTJOBBED"] != undefined) output2(", Footjob by her");
-					if(flags["TAIVRA_NEW_THRONE"] != undefined)
-					{
-						output2("\n<b>* Queen Taivra, New Throne:</b>");
-						switch(flags["TAIVRA_NEW_THRONE"])
-						{
-							case 0: output2(" Purchased, <i>Retrieve at hangar...</i>"); break;
-							case 1: output2(" Purchased, Retrieved, <i>Return to Taivra...</i>"); break;
-							case 2: output2(" Purchased, Retrieved, Installed in her throne room"); break;
-							default: output2(" <i>Unknown</i>"); break;
-						}
-					}
 					if(flags["TAIVRA_FERTILE"] != undefined)
 					{
 						output2("\n<b>* Queen Taivra, Fertility:</b>");
