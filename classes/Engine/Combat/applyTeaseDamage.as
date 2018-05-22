@@ -37,6 +37,7 @@ package classes.Engine.Combat
 		}
 		
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
+		if (attacker.hasStatusEffect("\"Rutting\"")) factor *= 1.5;		
 		if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
 		if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
 		if (attacker.hasFur())

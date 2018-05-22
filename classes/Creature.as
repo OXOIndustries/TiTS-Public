@@ -5,11 +5,13 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.*;
+	import classes.Items.Apparel.SavicitePanties;
 	import classes.Items.Armor.*
 	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.*;
 	import classes.Items.Melee.*
 	import classes.Items.Miscellaneous.*;
+	import classes.Items.Piercings.OpalRingPiercing;
 	import classes.Items.Transformatives.*;
 	import classes.Items.Treasures.Savicite;
 	import classes.Ships.IOwner;
@@ -4212,6 +4214,8 @@
 			if(accessory is Allure) muskLevel += 1;
 			if(hasStatusEffect("Roehm Slimed")) muskLevel += Math.min((statusEffectv4("Roehm Slimed") * 3), statusEffectv3("Roehm Slimed"));
 			if(hasStatusEffect("Zil Pheromones")) muskLevel += statusEffectv1("Zil Pheromones");
+			//Modifies by % elsewhere, just setting to 1 for "hasPheromones"
+			if(hasStatusEffect("\"Rutting\"")) muskLevel += 1;
 			
 			return muskLevel;
 		}
@@ -4902,7 +4906,7 @@
 			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
 			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
 			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
-			
+			if (bonus < 33 && lowerUndergarment is SavicitePanties) bonus = 33;
 			return (0 + bonus);
 		}
 		public function physiqueMax(raw:Boolean = false): Number {
@@ -10272,6 +10276,13 @@
 			if (hasPerk("Treated Readiness") && quantity < 200) quantity = 200;
 			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
 			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
+			//OPAL RING BOOOST
+			if(hasOpalRingCock()) 
+			{
+				quantity *= 1.5;
+				quantity += 1000;
+			}
+
 			//You can't cum more than you can possibly have!
 			if(quantity > maxCum()) quantity = maxCum();
 			//Overloaded nuki' nuts will fully drain
@@ -10297,6 +10308,11 @@
 			//Overriiiide for stuff
 			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
 			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
+			if(hasOpalRingCock()) 
+			{
+				quantity *= 2;
+				quantity += 3000;
+			}
 			return quantity;
 		}
 		public function currentCum(): Number {
@@ -10307,6 +10323,7 @@
 			}
 			return Math.round(maxCum() * ballFullness/100);
 		}
+
 		public function cumProduced(minutes: Number, doOut:Boolean = true):void {
 			var cumDelta:Number = 0;
 			var subDelta:Number = 0;
@@ -10398,10 +10415,10 @@
 			if (arg > (totalVaginas() - 1)) return false;
 			if (arg < 0)
 			{
-				if(wettestVaginalWetness() >= 4) return true;
+				if(wettestVaginalWetness() >= 4 || hasOpalRingVagina()) return true;
 				return false;
 			}
-			if (vaginas[arg].wetness() >= 4) return true;
+			if (vaginas[arg].wetness() >= 4 || hasOpalRingVagina()) return true;
 			return false;
 		}
 		//Placeholder
@@ -10439,6 +10456,11 @@
 			// Heat means wetter orgasms.
 			if(inHeat()) quantity *= 1.5;
 			if(hasPerk("Treated Readiness")) quantity *= 2;
+			if(hasOpalRingVagina()) 
+			{
+				quantity *= 2;
+				quantity += 1000;
+			}
 			//GOO VENT BONUS!
 			if(statusEffectv1("Goo Vent") == 1) quantity += biomassQ(true);
 			// Round values.
@@ -10447,6 +10469,23 @@
 			// Default minimum of 1mL
 			if (quantity < 1) quantity = 1;
 			return quantity;
+		}
+		public function hasOpalRingCock():Boolean
+		{
+			for(var i:int = 0; i < cocks.length; i++)
+			{
+				if(cocks[i].piercing is OpalRingPiercing) return true;
+			}
+			return false;
+		}
+		public function hasOpalRingVagina():Boolean
+		{
+			for(var i:int = 0; i < vaginas.length; i++)
+			{
+				if(vaginas[i].piercing is OpalRingPiercing) return true;
+				if(vaginas[i].clitPiercing is OpalRingPiercing) return true;
+			}
+			return false;
 		}
 		public function boostGirlCum(arg:Number):void
 		{

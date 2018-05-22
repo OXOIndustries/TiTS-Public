@@ -1,5 +1,9 @@
 import flash.utils.getDefinitionByName;
 import flash.utils.getQualifiedClassName;
+import classes.Items.Apparel.SavicitePanties;
+import classes.Items.Combat.RuttingPerfume;
+import classes.Items.Piercings.OpalRingPiercing;
+import classes.Items.Toys.MitziBionaHole;
 
 /*
 Mitzi the CoC/TiTS Goblin Cumslut - By Fenoxo Fenfenfenfenfenfnefnefnefnenfenfnefnwsmlfnsjkfhasdfjkhsbnj
@@ -13,6 +17,8 @@ TiTS version is girl that got drugged by Kaska with dumbfuck. PC can rescue her 
 MITZI_GOODBAD				1 = "good" during recruit, -1 = "bad"
 MITZI_DISABLED				1 = Mitzi removed from game during initial meeting
 MITZI_RESCUED				= the timestamp that she was rescued.
+
+MITZI_CUM_PRESENTS			cum bubbles given from bubble buddy
 
 
 
@@ -976,6 +982,7 @@ public function mitziCrewMenu():void
 		if(pc.hasItemByClass(Gush)) addButton(6,"Give Gush",giveMitziGush,undefined,"Give Gush","Give Mitzi a dosage of Gush. It’ll probably make her milky and sort dumb for a while, going by her stories.");
 		else addDisabledButton(6,"Give Gush","Give Gush","You need some Gush in order to do this.");
 	}
+	addButton(7,"Give Bubble",giveMitziACumBubble,undefined,"Give Cum Bubble","Maybe you could give Mitzi some stored-up cum?");
 	addButton(14,"Back",crew);
 }
 
@@ -1740,147 +1747,205 @@ public function mitziGushEffects():void
 	if(!pc.hasStatusEffect("Mitzi_Gush_Thankyou")) pc.createStatusEffect("Mitzi_Gush_Thankyou");
 }
 
-/*
-output("\n\n[DONE] Give Mitzi Bubbles!");
-output("\n\n//Give Mitzi a bubble buddy bubble. Mitzi gives back a prize for the first time at a size.");
-output("\n\nSavicite-Lace Panties - increases minimum lust to 33.");
-output("\n\n<i>“Rutting”</i> perfume - tease damage boost + vuln, infinite uses. Lasts 16 hours.");
-output("\n\nScylla - A bionahole made from her cloned pussy.");
-output("\n\nOpal Ring piercing - looted ring from drug dealer. Releases cum/girlCum enhancing drugs in moments of climax");
+//[DONE] Give Mitzi Bubbles!
+//Give Mitzi a bubble buddy bubble. Mitzi gives back a prize for the first time at a size.
+//Savicite-Lace Panties - increases minimum lust to 33.
+//<i>“Rutting”</i> perfume - tease damage boost + vuln, infinite uses. Lasts 16 hours.
+//Scylla - A bionahole made from her cloned pussy.
+//Opal Ring piercing - looted ring from drug dealer. Releases cum/girlCum enhancing drugs in moments of climax
 
-output("\n\n//Repeat cum gift - already gave her one");
-output("\n\nYou {toss Mitzi another small, latex bubble./gently hand Mitzi a big, latex ball full of liquid./carefully hand Mitzi a bowling-ball of latex-sealed fluid./roll an enormous, wobbling latex ball toward Mitzi.} <i>“{I got you the best thing ever - even more cummies!/Hey./Here’s some more bubbles of... you know. It’s the least I could do./I brought you some happiness in a bubble, if you know what I mean./We both know you love these, you little slut.}”</i>");
-output("\n\nMitzi greedily accepts your offering and quickly squirrels it away, out of view. <i>“Thank you [pc.Master]! {Now Mitzi has a snack for later!/Now Mitzi has more snacks for later!/Now Mitzi can like, do cum facials and stuff. It’s super good for your skin!/Now Mitzi can have cum-facials for her skin </i>and<i> use it for lube. Probably even have a snack after!/ Wow! You’re like, the best at cumming, you know that? No wonder Mitzi is your personal cunt-rag! So much to drink and play with.../There’s like... umm... sooo much of your jizz now. Mitzi’s gonna take a bath in it later. Then see how much she can drink, okay?/Umm... Mitzi is going to have to take cummy baths every day to use all this up... and... and... it’s the best thing ever! Mitzi loves you so much, [pc.Master]!}”</i>");
-output("\n\nThe big-eyed goblin flutters her lashes and squeezes you into a hug, tits and ass spilling everywhere. Her fingertip slides slowly up and down your {[pc.leg]/spine}. <i>“So like... how can Mitzi pay you back?”</i> She snuggles up to you{, cheek pressed against your [pc.cocks]./, cheek pressed against your [pc.multiCunts]./, cheek nuzzling into your [pc.belly]./, cheek nuzzling int o your [pc.chest].} <i>“[pc.Master] is so perfect...”</i>");
+public function giveMitziACumBubble():void
+{
+	clearOutput();
+	showMitzi();
+	output("Mitzi would probably enjoy some bubbled cum, if you really want to give it to her.");
+	if(flags["BUBBLE_BUDDIED"] == undefined) output(" Now where could you get some of that? Maybe TamaniCorp sells something.");
+	
+	clearMenu();
+	if(pc.hasItemByClass(SmallCumBubble)) addButton(0,"Small Bubble",giveMitziACumBubble4Real,SmallCumBubble);
+	else addDisabledButton(0,"Small Bubble","Small Bubble","You don't have any to give her.");
+	if(pc.hasItemByClass(MediumCumBubble)) addButton(1,"Medium Bubble",giveMitziACumBubble4Real,MediumCumBubble);
+	else addDisabledButton(1,"Medium Bubble","Medium Bubble","You don't have any to give her.");
+	if(pc.hasItemByClass(LargeCumBubble)) addButton(2,"Large Bubble",giveMitziACumBubble4Real,LargeCumBubble);
+	else addDisabledButton(2,"Large Bubble","Large Bubble","You don't have any to give her.");
+	if(pc.hasItemByClass(HugeCumBubble)) addButton(3,"Huge Bubble",giveMitziACumBubble4Real,HugeCumBubble);
+	else addDisabledButton(3,"Huge Bubble","Huge Bubble","You don't have any to give her.");
+	
+	addButton(14,"Back",approachCrewMitzi,true);
+}
 
-output("\n\n//First time small");
-output("\n\nYou pull out a small, latex-wrapped cum-bubble and hand it to the horny goblin. <i>“I got you another one.”</i>");
-output("\n\n<i>“Ooooh,”</i> Mitzi purrs as she accepts it. <i>“It’s like... a baby cum-ball. Fun-sized. Like Mitzi!”</i> She squints at your crotch. <i>“Kinda thought it’d be bigger this time... Maybe [pc.Master] wasn’t turned on enough. Mitzi has just the thing.”</i> She scampers off down a hall, biting into the bubble on the way in order to slurp down the contents.");
-output("\n\nWhen she returns, she’s got another present for you - this one balled up in her hands instead of condom-wrapped.");
-output("\n\n//Use gift texts from first-time.");
+public function giveMitziACumBubble4Real(arg:Class):void
+{
+	clearOutput();
+	showMitzi();
+	pc.destroyItemByClass(arg);
+	//First time any size
+	if(flags["MITZI_CUM_PRESENTS"] == undefined)
+	{
+		output("You pull a ");
+		if(arg == SmallCumBubble) output("small, latex-wrapped");
+		else if(arg == MediumCumBubble) output("grapefruit-sized");
+		else if(arg == LargeCumBubble) output("bowling ball-sized");
+		else output("beachball-sized");
+		output(" cum bubble out of your pack and ");
+		if(!(arg == HugeCumBubble)) output("extend it to");
+		else output("roll it toward");
+		output(" the horny goblin. <i>“I got you a present.”</i>");
 
-output("\n\n//First time medium");
-output("\n\nYou present Mitzi with a grapefruit-sized bubble of cum. <i>“Gotcha some more.”</i>");
-output("\n\nMitzi’s heart-shaped eyes seem to light up, almost glowing pink in delight. <i>“More cum for </i>me<i>!”</i> Clapping her hands to her cheeks, the goblin marvels at its size and shape before favoring you with a loving stare. <i>“Umm... Mitzi hardly deserves all this cum. She didn’t milk it out. She didn’t spend hours rubbing balls to make sure the spermies were all woke up and ready to shoot out. How... uh... oh!”</i> She snaps her fingers. <i>“Mitzi has just the thing! It’ll be sooo awesome. Hold on!”</i> She wheels about and hauls ass, off to look for a present to exchange.");
-output("\n\nWhen she returns, she’s moving at such speed that she slams into you and bounces off, cradling against her belly. Thankfully she didn’t waste a billion condoms wrapping it this time.");
+		output("\n\nMitzi gingery ");
+		if(!(arg == HugeCumBubble)) output("accepts the gift");
+		else output("hugs the goblin-sized gift");
+		output(", squeezing it between ");
+		if(!(arg == HugeCumBubble)) output("her tiny palms");
+		else output("her arms");
+		output(" in excitement. <i>“Omigawwwwd! Nobody ever gets Mitzi like, anything!”</i> She shakes it, listening to the sloshing. <i>“...It’s cum right? Please let it be cum.”</i>");
+		output("\n\nThe second you signal in the affirmative, Mitzi swoons and moans, <i>“My hero! You’re the best [pc.Master] a girl could get.”</i> She produces a syringe and sticks it into the bubble, casually extracting a sample to spray onto her waiting tongue. <i>“Mmmm, yummy too. Mitzi should really return the favor. Give you something like, just as awesome.”</i> The goblin extra another hit of seed and swallows it with an enormously satisfied sigh, <i>“Ohhhhh gaaaawwwwwwd. Yeah. Something better than goblin-sex. You have all of that you can want. Back in a dick-suckin’-second!”</i>");
+		output("\n\nPitter-pattering feet slap into the deck as the green-skinned cum-addict scampers off with her prize. You fold your arms and tap your foot, but she’s back before you know it, carrying in something gift-wrapped in neon condoms like wrapping paper. <i>“Here, [pc.Master].”</i> Mitzi’s lashes flutter adoringly above her pink, heart-shaped eyes.");
+		//Bimbo
+		if(pc.isBimbo()) output("\n\nYou’re blown away at such inventive use of condoms. And here you thought they were only good for like, storing snacks. You peel them off one at a time, sharing them with Mitzi in case either of you ever needs to bank up a little boy-batter.");
+		//Bro
+		else if(pc.isBro()) output("\n\nYou’re not sure what you should have expected. It is sort of impressive the dumb slut could remember that most people wrap presents. You rip off the condoms with a grunt of irritation.");
+		//Else
+		else output("\n\nYou’re a little thrown off by her decorative choices, all things told, but you suppose that’s what happen when a girl accidentally gets her brain rewritten to focus exclusively on being a fuckable piece of ass. The condoms come off easily enough anyway.");
+		//Merge
+		awardMitziBubblePrize(arg);
+	}
+	//First time small
+	else if(arg == SmallCumBubble && flags["MITZI_SMALL_CUM_PRESENT"] == undefined)
+	{
+		output("You pull out a small, latex-wrapped cum-bubble and hand it to the horny goblin. <i>“I got you another one.”</i>");
+		output("\n\n<i>“Ooooh,”</i> Mitzi purrs as she accepts it. <i>“It’s like... a baby cum-ball. Fun-sized. Like Mitzi!”</i> She squints at your crotch. <i>“Kinda thought it’d be bigger this time... Maybe [pc.Master] wasn’t turned on enough. Mitzi has just the thing.”</i> She scampers off down a hall, biting into the bubble on the way in order to slurp down the contents.");
+		output("\n\nWhen she returns, she’s got another present for you - this one balled up in her hands instead of condom-wrapped.");
+		//Use gift texts from first-time.
+		awardMitziBubblePrize(arg);
+	}
+	//First time medium
+	else if(arg == MediumCumBubble && flags["MITZI_MEDIUM_CUM_PRESENT"] == undefined)
+	{
+		output("You present Mitzi with a grapefruit-sized bubble of cum. <i>“Gotcha some more.”</i>");
+		output("\n\nMitzi’s heart-shaped eyes seem to light up, almost glowing pink in delight. <i>“More cum for </i>me<i>!”</i> Clapping her hands to her cheeks, the goblin marvels at its size and shape before favoring you with a loving stare. <i>“Umm... Mitzi hardly deserves all this cum. She didn’t milk it out. She didn’t spend hours rubbing balls to make sure the spermies were all woke up and ready to shoot out. How... uh... oh!”</i> She snaps her fingers. <i>“Mitzi has just the thing! It’ll be sooo awesome. Hold on!”</i> She wheels about and hauls ass, off to look for a present to exchange.");
+		output("\n\nWhen she returns, she’s moving at such speed that she slams into you and bounces off, cradling against her belly. Thankfully she didn’t waste a billion condoms wrapping it this time.");
+		awardMitziBubblePrize(arg);
+	}
+	//First time bowling bawl
+	else if(arg == LargeCumBubble && flags["MITZI_LARGE_CUM_PRESENT"] == undefined)
+	{
+		output("You present Mitzi with a bowling ball-sized sack of cum. <i>“Gotcha another one!”</i>");
+		output("\n\nShe nearly tumbles over from the weight of it. <i>“Ooooh, what a big, virile dick this must have cum from.”</i> Rubbing her cheek against the straining surface, Mitzi marvels, <i>“And you got it all for favorite fuck-toy. Such a generous [pc.Master]!”</i> Happiness-lighted eyes gaze longingly up at you. <i>“Mitzi doesn’t deserve... doesn’t deserve this.”</i> Tears well up at the corners of her eyes. <i>“[pc.Master] is too kind. Oh!”</i> She wipes away the moisture and returns to carefree bimbosity. <i>“There’s this thing Mitzi got. [pc.Master] might like it!”</i>");
+		output("\n\nThe goblin darts away in a flash of green, returning a short time later with something tucked out of view between her tits. <i>“Know what Mitzi got you?”</i>");
+		output("\n\nYou shake your head in the negative.");
+		//Normal reveal
+		awardMitziBubblePrize(arg);
+	}
+	//First time Beach Ball
+	else if(arg == HugeCumBubble && flags["MITZI_HUGE_CUM_PRESENT"] == undefined)
+	{
+		output("You present Mitzi with an enormous, wobbling fluid bubble. <i>“Ever wanted a lifetime supply?”</i>");
+		output("\n\nMitzi’s mouth falls open. Her eyes grow wider and wider, heart-shaped pupils dilating until they’re nearly all you can see. <i>“All this is cum?”</i> She runs a hand across the surface, feeling how the taut expanse wobbles with the promise of luscious seed. <i>“You made this... for Mitzi?”</i> She looks up uncertainty.");
+		output("\n\nYou nod.");
+		output("\n\n<i>“That’s not... not fair. It must have taken so many strokes to squeeze out this much!”</i> Mitzi pouts forlornly. <i>“All that time milking a heavy dick and you didn’t even have any real help. Mitzi should have done it for you. It would have felt so much better.”</i>");
+		output("\n\nPatting her head between the pigtails, you assure her that you’re quite happy to give her this present. Besides, this is all the cum she could ever need, right?");
+		output("\n\nA snorting giggle interrupts you. <i>“You’re so funny, [pc.Master]! This is like, one good cum-bath, maybe. Mitzi can make it last a long, long time if she needs to, just like you in bed, but there’s always room for more cum. Oh! Mitzi’s such a dumb fucking cunt! Hold on a squirt, k?”</i> She hauls ass down a hallway, leaving you alone with an enormous bubble of spunk.");
+		output("\n\nMitzi returns with a tiny box in hand and a proud smile. <i>“Gotcha something! Not as good as cum, but close!”</i>");
+		output("\n\n<i>“What is it?”</i>");
+		//Generic gift text here!
+		awardMitziBubblePrize(arg);
+	}
+	//Repeat cum gift - already gave her one
+	else
+	{
+		output("You ");
+		if(arg == SmallCumBubble) output("toss Mitzi another small, latex bubble.");
+		else if(arg == MediumCumBubble) output("gently hand Mitzi a big, latex ball full of liquid.");
+		else if(arg == LargeCumBubble) output("carefully hand Mitzi a bowling-ball of latex-sealed fluid.");
+		else output("roll an enormous, wobbling latex ball toward Mitzi.");
+		output(" <i>“");
+		if(pc.isBimbo()) output("I got you the best thing ever - even more cummies!");
+		else if(pc.isBro()) output("Hey.");
+		else if(pc.isNice()) output("Here’s some more bubbles of... you know. It’s the least I could do.");
+		else if(pc.isMischievous()) output("I brought you some happiness in a bubble, if you know what I mean.");
+		else output("We both know you love these, you little slut.");
+		output("”</i>");
+		output("\n\nMitzi greedily accepts your offering and quickly squirrels it away, out of view. <i>“Thank you [pc.Master]! ");
+		if(arg == SmallCumBubble) output("Now Mitzi has a snack for later!");
+		else if(arg == MediumCumBubble && rand(2) == 0) output("Now Mitzi has more snacks for later!");
+		else if(arg == MediumCumBubble) output("Now Mitzi can like, do cum facials and stuff. It’s super good for your skin!");
+		else if(arg == LargeCumBubble && rand(2) == 0) output("Now Mitzi can have cum-facials for her skin </i>and<i> use it for lube. Probably even have a snack after!");
+		else if(arg == LargeCumBubble) output("Wow! You’re like, the best at cumming, you know that? No wonder Mitzi is your personal cunt-rag! So much to drink and play with...");
+		else if(arg == HugeCumBubble && rand(2) == 0) output("There’s like... umm... sooo much of your jizz now. Mitzi’s gonna take a bath in it later. Then see how much she can drink, okay?");
+		else output("Umm... Mitzi is going to have to take cummy baths every day to use all this up... and... and... it’s the best thing ever! Mitzi loves you so much, [pc.Master]!");
+		output("”</i>");
+		output("\n\nThe big-eyed goblin flutters her lashes and squeezes you into a hug, tits and ass spilling everywhere. Her fingertip slides slowly up and down your ");
+		if(pc.tallness >= 5*12) output("[pc.leg]");
+		else output("spine");
+		output(". <i>“So like... how can Mitzi pay you back?”</i> She snuggles up to you");
+		if(pc.tallness >= 5*12)
+		{
+			if(pc.hasCock()) output(", cheek pressed against your [pc.cocks].");
+			else if(pc.hasVagina()) output(", cheek pressed against your [pc.multiCunts].");
+		}
+		else if(pc.tallness >= 4*12+6) output(", cheek nuzzling into your [pc.belly].");
+		else output(", cheek nuzzling int o your [pc.chest].");
+		output(" <i>“[pc.Master] is so perfect...”</i>");
+		processTime(10);
+		mitziSexMenu();
+	}
+	IncrementFlag("MITZI_CUM_PRESENTS");
+	if(arg == SmallCumBubble) IncrementFlag("MITZI_SMALL_CUM_PRESENT");
+	if(arg == MediumCumBubble) IncrementFlag("MITZI_MEDIUM_CUM_PRESENT");
+	if(arg == LargeCumBubble) IncrementFlag("MITZI_LARGE_CUM_PRESENT");
+	if(arg == HugeCumBubble) IncrementFlag("MITZI_HUGE_CUM_PRESENT");
+}
 
-output("\n\n//First time bowling bawl");
-output("\n\nYou present Mitzi with a bowling ball-sized sack of cum. <i>“Gotcha another one!”</i>");
-output("\n\nShe nearly tumbles over from the weight of it. <i>“Ooooh, what a big, virile dick this must have cum from.”</i> Rubbing her cheek against the straining surface, Mitzi marvels, <i>“And you got it all for favorite fuck-toy. Such a generous [pc.Master]!”</i> Happiness-lighted eyes gaze longingly up at you. <i>“Mitzi doesn’t deserve... doesn’t deserve this.”</i> Tears well up at the corners of her eyes. <i>“[pc.Master] is too kind. Oh!”</i> She wipes away the moisture and returns to carefree bimbosity. <i>“There’s this thing Mitzi got. [pc.Master] might like it!”</i>");
-output("\n\nThe goblin darts away in a flash of green, returning a short time later with something tucked out of view between her tits. <i>“Know what Mitzi got you?”</i>");
-output("\n\nYou shake your head in the negative.");
-output("\n\n//Normal reveal");
+public function awardMitziBubblePrize(arg:Class):void
+{
+	//Panties
+	if(arg == SmallCumBubble)
+	{
+		output("\n\n<i>“It’s panties!”</i> Mitzi cheers, the picture of radiance. <i>“They’re like, the best panties ever. They’ve got like... savi...savick... uh, some kind horny-making stuff in woven all over the lacing. It’s super strong! I’m like, always wet when I wear them. So I thought, maybe if you ever wanted to fuck a whole-whole-whole-whole lot, you’d really like them.”</i> She hugs your [pc.leg] and kisses your [pc.thigh]. <i>“And they’re crotchless, so you don’t even need to take them off, like ever!”</i>");
+		output("\n\nIt is clear the goblin treasures this underwear something fierce. You pat her on the head and slip them into your pack.");
+		output("\n\n<i>“So like, do you wanna fuck now?”</i>");
+		output("\n\nEver a one-track mind with Mitzi.\n\n");
+		processTime(20);
+		quickLoot(new SavicitePanties());
+		eventQueue.push(mitziCrewSexApproach);
+	}
+	//"Rutting”</i> perfume - tease damage boost + vuln, infinite uses. Lasts 16 hours.
+	else if(arg == MediumCumBubble)
+	{
+		output("\n\n<i>“It’s Mitzi’s favorite perfume-slash-cologne-slash-smell-good-stuff!”</i> the ditzy bimbo cheers, absolutely radiant. <i>“It even has a sexy name! ‘Rutting’! One spritz has like, more phero...pherom... smelly-moans than an a hellhound in heat! See?”</i> She squeezes the bulb on the end and blasts you in the face with the indescribably woodsy fragrance.");
+		output("\n\nIt’s... woah, Mitzi looks awfully sexy when she looks at you like that, especially when she leans in and sniffs. A gift this good almost demands a hard fuck, especially now that you’re feeling so... sexy.");
+		output("\n\n<i>“Mitzi knew you’d love it.”</i> The pint-sized fuck-toy says, her hands roaming all over your [pc.thighs]. <i>“Mitzi loves it too.”</i> She sniffs. <i>“She loves you too, and she wants to love you so much more. Ummm... just be careful, cause like... it makes you smell super sexy, but then you kinda get turned on real easy too, see?”</i> Manicured fingernails gently caress your groin, nearly buckling your ");
+		if(pc.hasKnees()) output("knees");
+		else output("[pc.legOrLegs]");
+		output(".");
+		output("\n\nYou see what she means. This stuff could come in handy when you’re trying to seduce someone... so long as you don’t wind up spread-eagled and gasping yourself. Best of all, the reservoir bulb is so full that you’re unlikely to run out in the foreseeable future.");
+		output("\n\n<i>“So... you wanna fuck or something?”</i>\n\n");
+		processTime(20);
+		quickLoot(new RuttingPerfume());
+		eventQueue.push(mitziCrewSexApproach);
+	}
+	//Scylla - A bionahole made from her cloned pussy.
+	else if(arg == LargeCumBubble)
+	{
+		output("\n\n<i>“It’s Mitzi’s pussy!”</i> the pint-sized sex-addict purrs. <i>“Some company makes them, so you can like, have your favorite fuck-toy’s cunt as you know, an actual fuck-toy you can have on the go.”</i> She reaches out to fondle your crotch. <i>“Now whenever you’re too far away for Mitzi to take care of, you can play with her clone-pussy. It’s even like, got a mod to release a little bit of aphrodisiac in the juices. They wouldn’t put throbb in it, even after I sucked off the shopkeeper like, ten times, but this is still pretty nice, right? You could probably cum just from eating it out, if you did it long enough.”</i>");
+		output("\n\nYou place the cap back on Mitzi’s BionaHole and store it in your pack. She’s right. It might be fun to play with on the road.\n\n");
+		processTime(20);
+		quickLoot(new MitziBionaHole());
+		eventQueue.push(mitziCrewSexApproach);
 
-output("\n\n//First time Beach Ball");
-output("\n\nYou present Mitzi with an enormous, wobbling fluid bubble. <i>“Ever wanted a lifetime supply?”</i>");
-output("\n\nMitzi’s mouth falls open. Her eyes grow wider and wider, heart-shaped pupils dilating until they’re nearly all you can see. <i>“All this is cum?”</i> She runs a hand across the surface, feeling how the taut expanse wobbles with the promise of luscious seed. <i>“You made this... for Mitzi?”</i> She looks up uncertainty.");
-output("\n\nYou nod.");
-output("\n\n<i>“That’s not... not fair. It must have taken so many strokes to squeeze out this much!”</i> Mitzi pouts forlornly. <i>“All that time milking a heavy dick and you didn’t even have any real help. Mitzi should have done it for you. It would have felt so much better.”</i>");
-output("\n\nPatting her head between the pigtails, you assure her that you’re quite happy to give her this present. Besides, this is all the cum she could ever need, right?");
-output("\n\nA snorting giggle interrupts you. <i>“You’re so funny, [pc.Master]! This is like, one good cum-bath, maybe. Mitzi can make it last a long, long time if she needs to, just like you in bed, but there’s always room for more cum. Oh! Mitzi’s such a dumb fucking cunt! Hold on a squirt, k?”</i> She hauls ass down a hallway, leaving you alone with an enormous bubble of spunk.");
-output("\n\nMitzi returns with a tiny box in hand and a proud smile. <i>“Gotcha something! Not as good as cum, but close!”</i>");
-output("\n\n<i>“What is it?”</i>");
-output("\n\n//Generic gift text here!");
-
-output("\n\n//First time any size");
-output("\n\nYou pull a {small, latex-wrapped/grapefruit-sized/bowling ball-sized/beachball-sized} cum bubble out of your pack and {extend it to/roll it toward} the horny goblin. <i>“I got you a present.”</i>");
-output("\n\nMitzi gingery {accepts the gift/hugs the goblin-sized gift}, squeezing it between {her tiny palms/her arms} in excitement. <i>“Omigawwwwd! Nobody ever gets Mitzi like, anything!”</i> She shakes it, listening to the sloshing. <i>“...It’s cum right? Please let it be cum.”</i>");
-output("\n\nThe second you signal in the affirmative, Mitzi swoons and moans, <i>“My hero! You’re the best [pc.Master] a girl could get.”</i> She produces a syringe and sticks it into the bubble, casually extracting a sample to spray onto her waiting tongue. <i>“Mmmm, yummy too. Mitzi should really return the favor. Give you something like, just as awesome.”</i> The goblin extra another hit of seed and swallows it with an enormously satisfied sigh, <i>“Ohhhhh gaaaawwwwwwd. Yeah. Something better than goblin-sex. You have all of that you can want. Back in a dick-suckin’-second!”</i>");
-output("\n\nPitter-pattering feet slap into the deck as the green-skinned cum-addict scampers off with her prize. You fold your arms and tap your foot, but she’s back before you know it, carrying in something gift-wrapped in neon condoms like wrapping paper. <i>“Here, [pc.Master].”</i> Mitzi’s lashes flutter adoringly above her pink, heart-shaped eyes.");
-output("\n\n//Bimbo");
-output("\n\nYou’re blown away at such inventive use of condoms. And here you thought they were only good for like, storing snacks. You peel them off one at a time, sharing them with Mitzi in case either of you ever needs to bank up a little boy-batter.");
-output("\n\n//Bro");
-output("\n\nYou’re not sure what you should have expected. It is sort of impressive the dumb slut could remember that most people wrap presents. You rip off the condoms with a grunt of irritation.");
-output("\n\n//Else");
-output("\n\nYou’re a little thrown off by her decorative choices, all things told, but you suppose that’s what happen when a girl accidentally gets her brain rewritten to focus exclusively on being a fuckable piece of ass. The condoms come off easily enough anyway.");
-output("\n\n//Merge");
-output("\n\n//Panties");
-output("\n\n<i>“It’s panties!”</i> Mitzi cheers, the picture of radiance. <i>“They’re like, the best panties ever. They’ve got like... savi...savick... uh, some kind horny-making stuff in woven all over the lacing. It’s super strong! I’m like, always wet when I wear them. So I thought, maybe if you ever wanted to fuck a whole-whole-whole-whole lot, you’d really like them.”</i> She hugs your [pc.leg] and kisses your [pc.thigh]. <i>“And they’re crotchless, so you don’t even need to take them off, like ever!”</i>");
-output("\n\nIt is clear the goblin treasures this underwear something fierce. You pat her on the head and slip them into your pack.");
-output("\n\n<i>“So like, do you wanna fuck now?”</i>");
-output("\n\nEver a one-track mind with Mitzi.");
-output("\n\n//"Rutting”</i> perfume - tease damage boost + vuln, infinite uses. Lasts 16 hours.");
-output("\n\n<i>“It’s Mitzi’s favorite perfume-slash-cologne-slash-smell-good-stuff!”</i> the ditzy bimbo cheers, absolutely radiant. <i>“It even has a sexy name! ‘Rutting’! One spritz has like, more phero...pherom... smelly-moans than an a hellhound in heat! See?”</i> She squeezes the bulb on the end and blasts you in the face with the indescribably woodsy fragrance.");
-output("\n\nIt’s... woah, Mitzi looks awfully sexy when she looks at you like that, especially when she leans in and sniffs. A gift this good almost demands a hard fuck, especially now that you’re feeling so... sexy.");
-output("\n\n<i>“Mitzi knew you’d love it.”</i> The pint-sized fuck-toy says, her hands roaming all over your [pc.thighs]. <i>“Mitzi loves it too.”</i> She sniffs. <i>“She loves you too, and she wants to love you so much more. Ummm... just be careful, cause like... it makes you smell super sexy, but then you kinda get turned on real easy too, see?”</i> Manicured fingernails gently caress your groin, nearly buckling your {knees/[pc.legOrLegs]}.");
-output("\n\nYou see what she means. This stuff could come in handy when you’re trying to seduce someone... so long as you don’t wind up spread-eagled and gasping yourself. Best of all, the reservoir bulb is so full that you’re unlikely to run out in the foreseeable future.");
-output("\n\n<i>“So... you wanna fuck or something?”</i>");
-
-output("\n\n//Scylla - A bionahole made from her cloned pussy.");
-output("\n\n<i>“It’s Mitzi’s pussy!”</i> the pint-sized sex-addict purrs. <i>“Some company makes them, so you can like, have your favorite fuck-toy’s cunt as you know, an actual fuck-toy you can have on the go.”</i> She reaches out to fondle your crotch. <i>“Now whenever you’re too far away for Mitzi to take care of, you can play with her clone-pussy. It’s even like, got a mod to release a little bit of aphrodisiac in the juices. They wouldn’t put throbb in it, even after I sucked off the shopkeeper like, ten times, but this is still pretty nice, right? You could probably cum just from eating it out, if you did it long enough.”</i>");
-output("\n\nYou place the cap back on Mitzi’s BionaHole and store it in your pack. She’s right. It might be fun to play with on the road.");
-
-output("\n\n//Opal Ring piercing - looted ring from drug dealer. Releases cum/girlCum enhancing drugs in moments of climax");
-output("\n\n<i>“It’s jewelry!”</i> the excitedly emerald minx cheers, the picture of radiance. <i>“But not just any jewelry: a piercing! The sluttiest, prettiest, most wonderful kind of jewelry in the galaxy. And this one is special, since you gave Mitzi such a special gift.”</i> She hugs the enormous cum-bubble, wobbling back and forth with it. <i>“So like, the opal in that ring is hollow or something and filled with micro-surgies that’ll go to work on your junk right before you cummy! Mitzi tried it once, and she squirted like, two gallons. It’s gonna be on like, a cock or pussy to work though. If you put it on a nipple or something, it just looks really, really cute.”</i>");
-output("\n\nYou look it over hesitantly. That does sound sort of fun.");
-output("\n\n<i>“So like, you wanna fuck now, or should Mitzi go have a snack?”</i>");
-output("\n\nRepeat Pussy Control");
-output("\n\n<i>“Do my pussy again,”</i> you instruct, immediately moistening at the half-forgotten memory of the last time Mitzi made you chain orgasm after orgasm together.");
-output("\n\n<i>“Yay!”</i> Mitzi applauds, producing a tube of lip gloss from somewhere. <i>“Mitzi’s been like, wondering when you’d wanna go again.”</i>");
-output("\n\n[Done] Mitzi Pussy Control~");
-output("\n\n//Wherin Mitzi applies some drugged lipstick, kisses the PC into hypnotic receptivity, and temporarily causes them to believe that pussy is the only thing they care about, culminating in squirting everywhere from eating Mitzi out.");
-
-output("\n\n//Bimbo");
-output("\n\n<i>“Mmm, I could just like, eat you up! But could you maybe do something with this instead?”</i>");
-output("\n\n//Nice");
-output("\n\n<i>“Would you mind taking care of this for me?”</i>");
-output("\n\n//Mischievous");
-output("\n\n<i>“Mitzi... I have a problem that needs a goblin’s touch.”</i>");
-output("\n\n//Hard");
-output("\n\n<i>“Pleasure this.”</i>");
-output("\n\n//Merge, no new PG.");
-output("\n\n{You pull down your obstructing garments to reveal your [pc.multiCunts] to your pet greenskin./You gesture down to your [pc.multiCunts].} Exposed skin flushed hotly{, and moisture streams down your [pc.legOrLegs]/, and moisture dribbles down your [pc.legOrLegs]/, and moisture slicks your [pc.thighs]/, and aroused moisture lends your folds a dewy appearance}.");
-output("\n\n<i>“Ohhhhh...”</i> the dumbstruck goblin {drops to her knees before /takes a halting step closer to }{it/them}. She gently extends a hand, slender fingers spreading to land on either side of the lustily engorging canal. <i>“Like, {these are super pretty pussies./this is a super pretty pussy.} How hard do you want Mitzi to make you cum?”</i>");
-output("\n\n//Bimbo");
-output("\n\n<i>“Just as hard as you want to cum!”</i>");
-output("\n\n//Bro");
-output("\n\n<i>“Fucking hard.”</i>");
-output("\n\n//Else");
-output("\n\nWhat kind of question is that? <i>“Hard.”</i> When you see the goblin’s face turn thoughtful, you append, <i>“Really hard.”</i> No sense in having her hold back.");
-output("\n\n//Merge");
-output("\n\nThe hearts within Mitzi’s eyes widen at the suggestion. <i>“Then Mitzi has just the thing!”</i> She produces a bright pink tube of lip gloss from... somewhere and rolls a layer onto her lips. The fingers on your cunt push and slide, smearing your increasingly slick fluids everywhere. <i>“Don’t worry about a thing.”</i> The goblin puckers up, luscious lips parted slowly by their own sluttish volume as she rolls another layer onto them, lacquering on enough glass to make them glitter like mirrors. <i>“There!”</i> She smacks them together a few times to even the coat. <i>“It’s like, super good Mitzi wears so much lipstick!”</i>");
-output("\n\nYou raise an eyebrow.");
-output("\n\n<i>“Oh, this stuff is like a super illegal drug.”</i> She twirls the tube around her fingers and slides it out of view. <i>“Reaaaaaally strong. Mitzi would be so stupid fucked right now if it was able to absorb it through her lips.”</i>");
-output("\n\n<i>“Wait-”</i>");
-output("\n\nMitzi leans into [pc.oneCunt] and plants a wet kiss, halting your protests a simple press of warm, cushiony lips and the resulting smear of tainted lip gloss on your blood-engorged nethers.");
-output("\n\n<i>“Oh.”</i>");
-output("\n\nYour brain takes a few seconds to catch up to the pleasure of the contact, the way it makes your nerves tingle and sing the goblin’s praises. Looking down at her, you see her smiling up around your pussy, heart-shaped eyes crinkled with the delight that can only come from serving her [pc.Master]’s most sensitive places.");
-output("\n\nShe’s gorgeous.");
-output("\n\n<i>“Oh,”</i> you mumble again, one of your hands falling onto the back of Mitzi’s head. <i>“You’re really cute like that.”</i> Your concerns melt away under the warmth of the goblin’s luscious, drug-painted lips. <i>“Umm... I was worried about...”</i> She kisses [pc.oneClit], leaving a veneer of artificial shine behind. <i>“Wow that’s nice.”</i> The goblin is mind-blowingly pretty. You can scarcely believe that you lucked into earning the services of such an adoring beauty.");
-output("\n\n<i>“Oh?”</i> Mitzi begins to apply another coat of lip gloss. She smacks those purple pillows together beams up at you. <i>“Did you really want me to wait, or should I like, keep going?”</i>");
-output("\n\nThere’s so much heat between your [pc.thighs], flush and hot. You feel weak and silly, unsure of why exactly you wanted her to wait before. Was it... something about her lipsgloss? Yes! That’s it! <i>“Your gloss!”</i> You point accusingly at the tube.");
-output("\n\nMitzi pouts, <i>“You wanted to watch Mitzi put on some more?”</i> The emerald slut puts, <i>“If you really want. Do you really want Mitzi to roll more on? Paint these pussy-pleasing lips thich with shine until you get all silly and cummy?”</i>");
-output("\n\nThe distracting heat boiling below keeps interrupting your thoughts, twisting them around when you to focus. Mitzi’s face is there through it all, smiling and beautiful, the picture of wantonness. You can’t see any problems with her gleaming mouth, still moist from your [pc.vaginas], but that must have been it. <i>“Yeah... that sounds right.”</i>");
-output("\n\n<i>“Okay! Mitzi will put this one on super-dooper thick just for you [pc.Master]!”</i> She uncaps the tube once more, twirling dial at the bottom to push more jellied makeup out. Pink, heart-shaped eyes stare seductively up at you as Mitzi languidly presses the gloss against her lower lip and slowly begins to roll it across the taut, reflective surface. She blinks, layering it on nice and heavy, just like you asked. The way she flips it around to bring it to bear on her upper lip is almost hypnotic, and the application of her enchanting mouth-polish leaves you shudderingly, gaspingly aroused. <i>“There!”</i>");
-output("\n\n<i>“Please, my puss{y/ies}.”</i> You grab her by the pigtail, more for something to hold onto than with any intent of forcing her. Satisfying your budding desire by yourself seems a foreign concept.");
-output("\n\n<i>“Mitzi will,”</i> the pretty bimbo purrs. <i>“You trust her, right? You trust Mitzi.”</i>");
-output("\n\nOf course you trust Mitzi! That’s why you’re here begging her to make you cum! <i>“Uh huh...”</i> Putting that trust to words is hard, but the idea seems to communicate well enough.");
-output("\n\n<i>“Good,”</i> Mitzi kisses just to the left of your cunt, leaving a gleaming patch of tingling warmth in her wake. <i>“And like, Mitzi makes you super horny, right?”</i>");
-output("\n\nYou nod.");
-output("\n\nThe giggling goblin smooches down on the other side, leaving an identical patch of sinfully tingly happiness behind. <i>“Like, so horny it’s hard to think right?”</i> One of her hands disappears into her soaking-wet cunt. <i>“That’s how horny you make Mitzi. So horny that your pussy just kinda tells you what to do.”</i>");
-output("\n\nNow that she puts word to it, that’s <i>exactly</i> how you feel. You feel almost feverishly aroused, and Mitzi is so, so beautiful that looking at her is like staring at a star. Her erotic radiance leaves you dumbfounded and soaking wet, like a barely-sapient puddle. <i>“Oh-f-f-fuck yes!”</i>");
-output("\n\n<i>“Good.”</i> Mitzi grabs your ass and pulls you close, landing peck after peck in a slowly spinning spiral around your deliriously soupy puss. <i>“Pussy is amazing, isn’t it?”</i> She leans back to show you hers. From the luscious folds to the sheen of her leaking arousal, it’s awe-inspiring. Her silken interior glimmers with a stunning amount of erotic promise. <i>“It’s so powerful. So wonderful.”</i> She slides a finger through her slit. <i>“One cunt could bring down a government. Two cunts? Two cunts could addle a [pc.boyGirl]’s mind, just by existing.{ More? More could make the universe fade away into irrelevance.} Couldn’t they?”</i>");
-output("\n\nThe words are background noise next to the beautiful texture of Mitzi’s feminine jewel. Your mouth and [pc.vaginas] water together in perfect sync, every part of you wanting to press against the juicy mound, just to be closer to it. To rub against it would be divine. To taste or grind against it, mind-melting. <i>“Mmmhmmm.”</i>");
-output("\n\nMitzi grabs your hand and brings it to her mouth, sucking you in to the knuckle. Her tongue flicks at the tip teasingly, and then she’s sliding back, heavy lips smearing your digit in enough gloss to make it shine brightly. Her purple mouth seems matte by comparison. <i>“Pussies deserve fingers, dear. I know it’s so hard to think when you’re this wet, all hot and fluttery.”</i> She turns your hand around, pushing the finger toward the sopping cleft between your [pc.thighs]. <i>“But you should really do what your pussy wants... and fill it.”</i>");
-output("\n\nThat shining finger slides in all on its own. You don’t have to think. You don’t have to decide to move the muscles in your arm. Your [pc.vagina] does all that for you, guiding that spit-and-gloss-slicked digit into the molten heat that burns between your [pc.thighs]. The tip brushes the underside of [pc.oneClit] on its way in, exactly the way you need it to, and then it’s spreading your lips wide, leaving the residue from Mitzi’s lips smeared over the exterior as it plunges in deep - so deep that you’re moaning as the knuckle wiggles inside.");
-output("\n\n<i>“Atta girl. Look at us - just two soaking wet cunts who are finally getting what we need.”</i> Mitzi sighs in delight as her manicured fingertips plunder her emerald jewel, the lips so exquisitely plush and inviting that they all but demand something slap against them, violate them in whatever degrading way will make them cum the hardest. <i>“Look at these cunts. Look at how wet they are.”</i> The goblin groans stuffs a second finger into her box, spreading them a second later to expose the hypnotically glistening flesh. <i>“Cunts this wet must cum, like super easy, right?”</i>");
-output("\n\nThe {two pussies in your view/{NUMBER} pussies in your view/fact that {a [pc.sack] blocks/a [pc.cock] blocks/[pc.cocks] block} your view stymies you the six long seconds it takes your cunt to remind you that you can {lift it out of the way/shift {it/them} to the side}. Only then do you see your [pc.vaginas] revealed in all {its/their} glory, so close to the goblin’s. They} bob up and down in your nodding viewpoint. The backdrop is unsubstantial and unimportant next to the glistening honeypots that so dominate your world. There’s only the hot, wet frission of fingers against womanhoods, the pulsating thrum of hammering heartbeats tickling nerves so tenderized that the slightest breeze feels like a tongue’s tender strokes. You could cum at any second. It would be so easy, and your pussy wants it, so-");
-output("\n\nA second finger slides inside, exploding your [pc.vagina] with pleasure. Detonations of mind-shattering bliss chain up your spine, leaving undulating, uncoordinated masses of muscle in their wake. As your body slumps over, [pc.hips] gyrating wildly, an atomic bomb of ecstasy shatters what small part of your consciousness remained into slick, cummy pieces. You moan whorishly as you hump Mitzi’s leg, smearing in her [pc.girlCum]{, in between fountainous squirts}. It’s so easy to cum, and you (or your pussy - there’s no divide between the two any longer) want to do it forever.");
-output("\n\n<i>“Cumming’s soooo easy,”</i> Mitzi moans, reaching up to rub [pc.oneClit] alongside her own.");
-output("\n\nA second climax climbs onto the back of the last one’s heels and rides you to the ground. Your eyes roll back, leaving you to dwell on your own insensate moans and the endlessly delightful feeling of slickened digits plowing through a sopping tunnel.");
-output("\n\nThe goblin climbs onto your unresisting form and shifts away from your throbbing clitty to work your wrist, pumping your fingers in and out now that it has become too difficult for you. <i>“Just a hot wet cunt who can’t think of anything but slit-stuffing sex.”</i> [pc.Girlcum] puddles in your thighs. The Mitzi-assisted masturbation sounds so loud in your ears, but not loud enough to stop you from realizing how right she is. <i>“That’s the truth ‘bout pussies, [pc.name]. They’re so... like... mmmmph! So </i>receptive<i>. They’ll do anything you want as long as you make them feel good.”</i>");
-output("\n\nAnother climax steals any attempt at response. Your [pc.legOrLegs] twitch{es} bonelessly on the floor. <i>You’d put anything inside yourself to feel this good again.</i>");
-output("\n\n<i>“You’re a slut, just like Mitzi, aren’t you?”</i> The devilishly grinning goblin releases your wrist now that it’s pumping your cunt on its own and climbs onto your face. Her arousal smells so sweet, so desirable. You thrust your tongue into it and cum, uncaring that you’re <i>sucking pussy like a total slut</i>.");
-output("\n\nDewdrops of gabilani delight dribble into your maw.");
-output("\n\n<i>“Mmmm, but it’s fun to be a slut. Especially when you’ve got a little slut like Mitzi to fuck whenever your cunt gets the least bit horny. And pussies are like, </i>always horny<i>.”</i> Mitzi proves her point by squirming onto your tongue, her thick thighs wrapping around the back of your head with surprising strength.");
-output("\n\nAmbrosial tastes and smell intermingle with the satiny sawing of your masturbating fingers. The bliss of orgasm after orgasm has you so addled that you can scarcely tell where Mitzi’s cunt ends and your own begin{s}. She’s still talking, something about how every time you cum you get better and better at listening to your lusts, but you aren’t really listening anymore.");
-output("\n\nYou’re too much of a slut to care what else happens, as long as you get to keep cumming... and cumming... and cumming.");
-output("\n\n[Next]");
-output("\n\nYou wake up... sticky. Mitzi is next to you, snoring peacefully with her hand in her cunt... just like you were a moment ago. You lick the worst of it from your fingertips as you take stock of the situation. Your [pc.thighs] are completed plastered in [pc.girlCum], to say nothing of the puddle beneath. <i>Hot.</i>");
-output("\n\nYou don’t have a very clear memory of exactly what all you got into aside from a faint memory of drugged lipstick and lots and lots of pussy, but you’re definitely feeling a little more libidinous your goblin fuckslave’s efforts.");
-*/
-
-
+	}
+	//Opal Ring piercing - looted ring from drug dealer. Releases cum/girlCum enhancing drugs in moments of climax
+	else
+	{
+		output("\n\n<i>“It’s jewelry!”</i> the excitedly emerald minx cheers, the picture of radiance. <i>“But not just any jewelry: a piercing! The sluttiest, prettiest, most wonderful kind of jewelry in the galaxy. And this one is special, since you gave Mitzi such a special gift.”</i> She hugs the enormous cum-bubble, wobbling back and forth with it. <i>“So like, the opal in that ring is hollow or something and filled with micro-surgies that’ll go to work on your junk right before you cummy! Mitzi tried it once, and she squirted like, two gallons. It’s gonna be on like, a cock or pussy to work though. If you put it on a nipple or something, it just looks really, really cute.”</i>");
+		output("\n\nYou look it over hesitantly. That does sound sort of fun.");
+		output("\n\n<i>“So like, you wanna fuck now, or should Mitzi go have a snack?”</i>\n\n");
+		processTime(20);
+		quickLoot(new OpalRingPiercing());
+		eventQueue.push(mitziCrewSexApproach);
+	}
+}
 
 //Archived CoC Scenes, to be repurposed:
 //Fuck Mitzi

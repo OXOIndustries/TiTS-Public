@@ -60,6 +60,7 @@ package classes.Engine.Combat
 		var damMulti:Number = 1;
 		if (target.hasStatusEffect("Blue Balls")) damMulti += 0.25;
 		if (target.hasStatusEffect("Sex On a Meteor")) damMulti += 0.5;
+		if (target.hasStatusEffect("\"Rutting\"")) damMulti += 0.5;
 		if (target.hasStatusEffect("Tallavarian Tingler")) damMulti += 0.5;
 		//New status: "Red Myr Venom" replaces this.
 		//if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;

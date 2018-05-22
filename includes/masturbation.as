@@ -409,6 +409,15 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 		fap.func = TamaniFapSetup;
 		faps.push(fap);
 	}
+	if(checkToyDrawer(MitziBionaHole) && pc.hasCock())
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Mitzi B.H.";
+		fap.ttHeader = "Mitzi BionaHole";
+		fap.ttBody = "Put Mitzi's cloned pocket pussy to use.";
+		fap.func = mitziFapSetup;
+		faps.push(fap);
+	}
 	if(checkToyDrawer(TamaniBionaHole) && pc.hasCock() && flags["TAMANI_HOLED"] != undefined)
 	{
 		fap = new FapCommandContainer();
@@ -568,6 +577,10 @@ public function nivasFapSetup():void
 public function TamaniFapSetup():void
 {
 	bionaholeUse("Tamani");
+}
+public function mitziFapSetup():void
+{
+	bionaholeUse("Mitzi");
 }
 
 public function selectRandomFap(faps:Array):void
@@ -3151,18 +3164,21 @@ public function bionaColor(arg:String = "Nivas"):String
 {
 	if(arg == "Nivas") return "creamy";
 	else if(arg == "Tamani") return "pink";
+	else if(arg == "Mitzi") return "green";
 	return "<b>ERROR UNDEFINED COLOR</b>";
 }
 public function bionaSheathColor(arg:String = "Nivas"):String
 {
 	if(arg == "Nivas") return "dark blue";
 	else if(arg == "Tamani") return "black";
+	else if(arg == "Mitzi") return "neon pink";
 	return "<b>ERROR UNDEFINED SHEATH COLOR</b>";
 }
 public function bionaTexture(arg:String = "Nivas"):String
 {
 	if(arg == "Nivas") return "smooth";
 	else if(arg == "Tamani") return "silken";
+	else if(arg == "Mitzi") return "silky-slick";
 	return "<b>ERROR UNDEFINED TEXTURE</b>";
 }
 
@@ -3191,6 +3207,11 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(InShipInterior()) output("pop the BionaHole off its charger");
 	else output("fish the BionaHole out of your pack");
 	output(" and twist off the vented cap, revealing the " + bionaColor(arg) + " flesh beneath. The visible part of the toy looks exactly like a perfectly shaved woman’s vulva, complete with mons and lips that glisten with just a hint of moisture. The cloned cunt looks positively delicious - enough so that you bring it up to your [pc.lips] and give it an experimental lick. The taste is lush and <i>alive</i>, warm and sweet in the same way any other pussy ought to be. And like a real cunt, the lips flush with arousal when you touch them, gently clenching around your [pc.tongue] as it passes between them.");
+	if(arg == "Mitzi") 
+	{
+		output("\n\nOf course, your indiscriminate licking lights a fire in your loins. Mitzi wasn't kidding about the aphrodisiacs.");
+		pc.lust(100);
+	}
 	output("\n\nGrinning to yourself, you ");
 	if(!pc.isCrotchExposed()) output("slip out of your clothes");
 	else output("toss your gear aside");
@@ -3205,6 +3226,7 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(pc.cockVolume(x) < 500) output("until it’s pressing against your groin, completely enveloping your [pc.cock " + x + "] in its sultry embrace");
 	else output("until your [pc.cockHead " + x + "] is battering against the sealed back of the pussy’s channel, wrapped so tightly by " + bionaTexture(arg) + " wetness that you can barely think");
 	output(". Leaning back, you let your eyes roll closed and start to piston the BionaHole up and down your lube-slicked shaft. The toy is everything you’d expect it to be, reacting as if it was mounted between its owner’s legs, clenching and drooling and flushing with its own arousal. You can see its clit swelling, so sensitive that you can’t help but twist your thumb down to caress it. The pussy trembles at your touch, drenching you in sweet fem-cum at the apex of every thrust between its lips.");
+	if(arg == "Mitzi") output(" You can almost image the look on the slutty goblin's face as she takes you cervix-deep, the whorish delight painted heavily across her fuck-drunk features.");
 	
 	var cum:Number = pc.cumQ();
 	
@@ -3219,6 +3241,10 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(cum < 400) output("until you’re utterly spent.");
 	else if(cum <= 1500) output("until the toy’s so full you’re afraid it will burst.");
 	else output("as wave after wave of [pc.cumNoun] fills it with inhuman magnitude, quickly overwhelming the poor toy’s ability to cope. Spunk gushes out of its tight pussylips and onto your lap, washing you down in spooge.");
+	if(arg == "Mitzi")
+	{
+		output("\n\nNot two seconds later, paroxysms of pleasure rock your [pc.cocks]. You erupt again and again, phallic flesh straining, spunk pumping. Aphrodisiac-induced pleasure wrings you for every drop. If you could think through the ejaculatory ecstasy, you might consider pulling the cloned cunt off, but you’re far too busy feeding Mitzi’s pouty pussylips with every single sperm in your body.");
+	}
 
 	output("\n\nWith a heavy sigh, you flop back and release your grip on the BionaHole, letting the " + bionaSheathColor(arg) + " case hang from your slowly deflating member");
 	if(pc.hasKnot(x)) output(", caught on the bulk of your [pc.knot " + x + "]");
@@ -3230,10 +3256,17 @@ public function bionaholeUse(arg:String = "Nivas"):void
 	if(InShipInterior()) output("return it to its power charger");
 	else output("toss it back in your pack");
 	output(" and get ready to return to work.");
-	IncrementFlag("NIVAS_BIONAHOLE_USES");
+	if(arg == "Nivas") IncrementFlag("NIVAS_BIONAHOLE_USES");
+	else if(arg == "Mitzi") IncrementFlag("MITZI_BIONAHOLE_USES");
+	else if(arg == "Tamani") IncrementFlag("TAMANI_HOLED");
 	processTime(25+rand(10));
 	pc.orgasm();
-
+	if(arg == "Mitzi") 
+	{
+		pc.orgasm();
+		pc.ballFullness = 0;
+		pc.taint(1);
+	}
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
