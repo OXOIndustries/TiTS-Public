@@ -5,8 +5,6 @@ public function SQDEBUG():void
 	addButton(1,"AKD C15",SQDEBUGAKDC15);
 	addButton(2,"AKD K15",SQDEBUGAKDK15);
 	addButton(6,"Torra Fight",syriQuestAkkadiBaseCheckPoint);
-	addButton(7,"Escape",SQDEBUGEscape);
-	addButton(8,"Escape",SQDEBUGEscapeSiegWulfe);
 }
 
 public function SQDEBUGAKDK31():void
@@ -34,18 +32,6 @@ public function SQDEBUGAKDK15():void
 //	showLocationName();
 	moveTo("AKD K15");
 	mainGameMenu();
-}
-
-public function SQDEBUGEscape():void
-{
-	flags["SYRIQUEST_VALDEN_BODY_CHOICE"] = 1;
-	syriQuestEscape();
-}
-
-public function SQDEBUGEscapeSiegWulfe():void
-{
-	flags["SYRIQUEST_VALDEN_BODY_CHOICE"] = 2;
-	syriQuestEscape();
 }
 
 public function syriAtFreeezer():Boolean
