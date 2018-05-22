@@ -1756,6 +1756,12 @@ public function flyMenu():void
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	
+	if(reclaimedProbeMyrellion())
+	{
+		addButton(4,"ZhengShi",flyTo,"ZhengShi");
+	}
+	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
@@ -1907,6 +1913,13 @@ public function flyTo(arg:String):void
 			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
 			if(shekkaIsCrew()) flags["SHEKKA_BEEN_MYRELLION"] = 1;
 			flyToMyrellionDeepCaves();
+			break;
+		case "ZhengShi":
+			shipLocation = "ZS L50";
+			currentLocation = "ZS L50";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			landingAtZhengShi();
+			interruptMenu = true;
 			break;
 		case "Poe A":
 			shipLocation = "POESPACE";

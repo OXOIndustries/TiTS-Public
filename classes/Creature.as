@@ -6918,6 +6918,11 @@
 		public function isBlind(): Boolean {
 			return (hasStatusEffect("Blinded") || hasStatusEffect("Smoke Grenade"));
 		}
+		public function removeBlindness():void
+		{
+			removeStatusEffect("Blinded");
+			removeStatusEffect("Smoke Grenade");
+		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String 
 		{
 			return plural(leg(forceType, forceAdjective, true));

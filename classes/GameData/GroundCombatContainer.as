@@ -4405,7 +4405,7 @@ package classes.GameData
 				if (target is PlayerCharacter) continue;
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.
 				
-				if (target.hasStatusEffect("Paralyzed"))
+				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
 				{
 					// noop, handled by updateStatusEffects
 				}
@@ -4414,7 +4414,7 @@ package classes.GameData
 					output("\n\n");
 					doStruggleRecover(target);
 				}
-				else if (target.hasStatusEffect("Stunned"))
+				else if (target.hasStatusEffect("Stunned") && !(target is Urbolg))
 				{
 					output("\n\n");
 					doStunRecover(target);
@@ -4498,7 +4498,7 @@ package classes.GameData
 				
 				if (target.isDefeated()) continue;
 				
-				if (target.hasStatusEffect("Paralyzed"))
+				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
 				{
 					// noop, this is handled as part of updateStatusEffectsFor()
 				}
@@ -4507,7 +4507,7 @@ package classes.GameData
 					output("\n\n");
 					doStruggleRecover(target);
 				}
-				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale))
+				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg))
 				{
 					output("\n\n");
 					doStunRecover(target);

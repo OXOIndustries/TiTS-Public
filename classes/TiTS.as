@@ -384,6 +384,11 @@
 		include "../includes/myrellion/wetraxxel.as";
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
+
+		//FIFTH PLANET: ZHENG SHI
+		include "../includes/zhengShiStation/rooms.as";
+		include "../includes/zhengShiStation/roomFunctions.as";
+		include "../includes/zhengShiStation/urbolg.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -602,6 +607,7 @@
 			kquest2InitRooms();
 			initUvetoRooms();
 			initUvetoRoomsII();
+			initZhengRooms();
 			initGastigothRooms();
 			kiInitRooms();
 			initVesperiaRoom();
