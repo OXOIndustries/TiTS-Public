@@ -55,6 +55,7 @@
     <element path="style_uiscroll.swc" />
     <element path="lib\AndroidFullScreen.ane" />
     <element path="lib\adt\AndroidFullScreen.ane" />
+    <element path="C:\dammit\TiTS-Public\libraries\flash.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
