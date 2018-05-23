@@ -1,3 +1,17 @@
+public function zhengElevatorF1Bonus():void
+{
+	//Power Out: 
+	if(9999 == 9999) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn't change that. Looks like the power's been cut somewhere...");
+	else output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
+}
+
+public function urbolgsOffice():void
+{
+	vendingMachineButton(0,"energy");
+	output(" You're surprised it doesn't have a combination as well.");
+}
+
+
 //Making Landfall at Zheng Shi
 public function landingAtZhengShi():void 
 {

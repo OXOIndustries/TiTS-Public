@@ -259,11 +259,11 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 
-			if(_roundCount % 5 == 0 && energy() >= 25) turretMite(target);
+			if(hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed")) augmentedBody(target);
+			else if(_roundCount % 5 == 0 && energy() >= 25) turretMite(target);
 
 			else if(this.lust() >= 80) ironWill(target);
 			else if(isBlind()) augmentedSight(target);
-			else if(hasStatusEffect("Stunned") || hasStatusEffect("Paralyzed")) augmentedBody(target);
 			else if(target.shields() >= 40) useShieldHackUrby(alliedCreatures,hostileCreatures,target);
 			//need disarmed ability!
 			else if(hasStatusEffect("Disarmed"))

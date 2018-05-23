@@ -157,6 +157,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "TUUVA", Tuuva);
 	prepChar(justUpdate, "ALEX_SURF", AlexSurf);
 	prepChar(justUpdate, "MITZI", Mitzi);
+	prepChar(justUpdate, "URBOLG", Urbolg);
 	
 	
 	// Check all characters have version information set
