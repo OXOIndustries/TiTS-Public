@@ -77,6 +77,7 @@ public function syriQuestInitRooms():void
 	rooms["AKD C27"].planet = planetName;
 	rooms["AKD C27"].system = systemName;
 	rooms["AKD C27"].addFlag(GLOBAL.INDOOR);
+	rooms["AKD C27"].addFlag(GLOBAL.SHIPHANGAR);
 
 
 	rooms["AKD K31"] = new RoomClass(this);
@@ -299,7 +300,6 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD E11"].moveMinutes = 1;
 	rooms["AKD E11"].addFlag(GLOBAL.INDOOR);
 
-//Play the first time the PC enters E9 Showers *if* the PC hasn't resolved Valden's encounter. Else, just basic room description.
 	rooms["AKD E9"] = new RoomClass(this);
 	rooms["AKD E9"].roomName = "\nSHOWERS";
 	rooms["AKD E9"].runOnEnter = syriQuestAkkadiBaseShowers;
@@ -314,9 +314,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD K15"] = new RoomClass(this);
 	rooms["AKD K15"].roomName = "\nELEVATOR";
 	rooms["AKD K15"].description = "You're standing in one of the elevators at the heart of the Akkadi complex. On a good day, you'd have access to what the panel tells you is fifty floors of research and development complex. You can still go up to access the main level and the staff quarters, but that's all you can access now.";
-	rooms["AKD K15"].runOnEnter = function():void{
-		syriQuestAkkadiBaseElevators();
-	};
+	rooms["AKD K15"].runOnEnter = syriQuestAkkadiBaseElevators;
 	rooms["AKD K15"].planet = planetName;
 	rooms["AKD K15"].system = systemName;
 	rooms["AKD K15"].northExit = "AKD K13";
@@ -375,14 +373,8 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD Q13"] = new RoomClass(this);
 	rooms["AKD Q13"].roomName = "RESEARCH HALL\nCHECKPOINT";
-	rooms["AKD Q13"].description = "You're standing in a standard-issue corporate security checkpoint, the kind you've passed through a million times in the past. There's a three-row scanner column to detect weapons and contraband connected to a guard post where someone can monitor the comings and goings. Right now, though, it's occupied by a masturbating milodan scientist; the woman's still face-down, ass-up on the ground and driving her fingers into her twat.\n\nTo the south is a large circular plaza dominated by a very fake looking palm tree. There's several doors leading off of the plaza into the major labs.";
-	rooms["AKD Q13"].runOnEnter = function():Boolean{
-		if (flags["MET_TORRA"] == undefined) {
-			syriQuestAkkadiBaseCheckPoint();
-			return true;
-		}
-		return false;
-	};
+	rooms["AKD Q13"].description = "";
+	rooms["AKD Q13"].runOnEnter = syriQuestAkkadiBaseCheckPoint;
 	rooms["AKD Q13"].planet = planetName;
 	rooms["AKD Q13"].system = systemName;
 	rooms["AKD Q13"].southExit = "AKD Q15";
@@ -393,8 +385,8 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD Q15"] = new RoomClass(this);
 	rooms["AKD Q15"].roomName = "RESEARCH DEPT.\nPLAZA";
-	rooms["AKD K15"].description = "You're in the beating heart of Akkadi's Uvetan laboratories. There are three major labs branching off of this plaza, like spokes from a wheel -- one whose hub is a huge, fake palm tree. Guess they were trying to warm the place up a little.\n\nTo the west is a door labeled BioMed; to the east, one labelled Starship Lab. And to the south is a seriously heavy-duty metal door with the words 'Warp Field Lab' printed above it. {Haven't encountered Valden yet: If you had to take a guess, that's where you need to go.}";
-	rooms["AKD Q15"].runOnEnter = function():void{author("Savin")};
+//	rooms["AKD Q15"].description = "";
+	rooms["AKD Q15"].runOnEnter = syriQuestAkkadiBaseResearchDeptPlaza;
 	rooms["AKD Q15"].planet = planetName;
 	rooms["AKD Q15"].system = systemName;
 	rooms["AKD Q15"].northExit = "AKD Q13";
@@ -423,30 +415,34 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD S15"].description = "The Starship Lab is by far the largest section of the facility you've come across: it's several floors deep, surrounded by a grated walkway that overlooks several gutted starships. They're all hooked up to various computer banks and sensors, apparently being studied. Tools and dataslates are scattered haphazardly across the floor, suggesting the researchers and technicians working in here evacuated in a hurry.\n\nA service elevator leads down to the lower floor.";
 	rooms["AKD S15"].runOnEnter = function():void{
 		author("Savin");
-		addButton(0, "Elevator", function():void{moveTo("AKD T14");clearMenu();mainGameMenu();});
+		if (flags["SYRIQUEST_STATE"] >= 5) addDisabledButton(0,"Elevator");
+		else addButton(0, "Elevator", function():void{moveTo("AKD T14");clearMenu();mainGameMenu();});
 	};
 	rooms["AKD S15"].planet = planetName;
 	rooms["AKD S15"].system = systemName;
 	rooms["AKD S15"].westExit = "AKD Q15";
 	rooms["AKD S15"].moveMinutes = 1;
 	rooms["AKD S15"].addFlag(GLOBAL.INDOOR);
+	rooms["AKD S15"].addFlag(GLOBAL.OBJECTIVE);
 
 	rooms["AKD T14"] = new RoomClass(this);
 	rooms["AKD T14"].roomName = "STARSHIP LAB\nLOWER FLOOR";
 	rooms["AKD T14"].description = "The lower level of the lab is full of starships that have been pulled apart, stripped down and refit with experimental devices. You see several different Akkadi craft, but also a handful of ships from the competition, including another Casstech Z-14. Wonder why they're interested in retro tech like that?";
 	rooms["AKD T14"].runOnEnter = function():void{
 		author("Savin");
-		addButton(0, "Investigate", syriQuestAkkadiBaseStarshipLabInvestigate,undefined,"Investigate","Search the Starship Lab for anything useful.");
+		if (flags["SYRIQUEST_STATE"] >= 5) addButton(0, "Elevator", function():void{moveTo("AKD S15"); clearMenu(); mainGameMenu(); });
+		else addButton(0, "Investigate", syriQuestAkkadiBaseStarshipLabInvestigate, undefined, "Investigate", "Search the Starship Lab for anything useful.");
 	};
 	rooms["AKD T14"].planet = planetName;
 	rooms["AKD T14"].system = systemName;
 	rooms["AKD T14"].moveMinutes = 1;
 	rooms["AKD T14"].addFlag(GLOBAL.INDOOR);
+	rooms["AKD T14"].addFlag(GLOBAL.SHIPHANGAR);
 
 	rooms["AKD Q17"] = new RoomClass(this);
 	rooms["AKD Q17"].roomName = "WARP FIELD\nLAB";
-	//rooms["AKD K15"].description = "desc";
-	rooms["AKD Q17"].runOnEnter = function():void{author("Savin")};
+	//rooms["AKD Q17"].description = "";
+	rooms["AKD Q17"].runOnEnter = syriQuestAkkadiBaseWarpLab;
 	rooms["AKD Q17"].planet = planetName;
 	rooms["AKD Q17"].system = systemName;
 	rooms["AKD Q17"].northExit = "AKD Q15";

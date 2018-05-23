@@ -26,7 +26,7 @@
 			this.a = "";
 			this.capitalA = "";
 			this.long = "Dane stands tall; he's nearly eight feet of powerful, corded muscle. His most obvious feature is his quartet of arms. Evidently, the ausar has turned to genetic modifications for his enhanced stature. His fur is so white it practically glows, and his ivory hair is tied back in a short ponytail. His eyes are red too, marking him as an albino. In his upper arms, Dane wields a pair of electrified cutlasses, and in his lower ones, he's gripping a matched set of powder pistols. A lightweight set of high-tech armor guards his chest and thighs.";
-			this.customDodge = "Dane casually sidesteps out of the way.";
+			this.customDodge = "Dr. Calnor casually sidesteps out of the way.";
 			this.customBlock = "Obvious placeholder is obvious.";
 			this.isPlural = false;
 			
@@ -174,20 +174,17 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.loosenessRaw = 1;
 
-			this.inventory.push(new ShockBlade());
-			this.createPerk("Multiple Attacks",1,0,0,0,"");
-			this.createPerk("Multiple Shots",1,0,0,0,"");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
 			
 			isUniqueInFight = true;
-			btnTargetText = "Dane";
+			btnTargetText = "Dr. Calnor";
 			//kGAMECLASS.mhengaSSTDChance(this);
 			_isLoading = false;
 		}
 		
 		override public function get bustDisplay():String
 		{
-			return "DANE";
+			return "BYRON";
 		}
 				
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

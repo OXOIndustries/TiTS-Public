@@ -1,10 +1,22 @@
 public function SQDEBUG():void
 {
+	clearOutput();
+	output("SYRIQUEST_STATE: " + flags["SYRIQUEST_STATE"])
+	output("\n\nSYRIQUEST_LOCK_BYPASS: " + flags["SYRIQUEST_LOCK_BYPASS"])
+	output("\n\nSYRIQUEST_POWER_STATE: " + flags["SYRIQUEST_POWER_STATE"])
+	output("\n\nSYRIQUEST_ELEVATOR_STATE: " + flags["SYRIQUEST_ELEVATOR_STATE"])
+	output("\n\nSYRIQUEST_VALDEN_BODY_CHOICE: " + flags["SYRIQUEST_VALDEN_BODY_CHOICE"])
+	output("\n\nSYRIQUEST_RESOLUTION: " + flags["SYRIQUEST_RESOLUTION"])
+	output("\n\nMET_SCHORA: " + flags["MET_SCHORA"])
+	output("\n\nMET_TORRA: " + flags["MET_TORRA"])
+	output("\n\nSYRIQUEST_SIEGWULFE_NAME: " + flags["SYRIQUEST_SIEGWULFE_NAME"])
 	clearMenu();
 	addButton(0,"AKD K31",SQDEBUGAKDK31);
 	addButton(1,"AKD C15",SQDEBUGAKDC15);
 	addButton(2,"AKD K15",SQDEBUGAKDK15);
-	addButton(6,"Torra Fight",syriQuestAkkadiBaseCheckPoint);
+//	addButton(6,"Torra Fight",syriQuestAkkadiBaseCheckPoint);
+	addButton(7,"Escape",SQDEBUGEscape);
+	addButton(8,"Escape",SQDEBUGEscapeSiegWulfe);
 }
 
 public function SQDEBUGAKDK31():void
@@ -21,6 +33,8 @@ public function SQDEBUGAKDC15():void
 //	currentLocation = "AKD C15";
 //	generateMap();
 //	showLocationName();
+//	flags["MET_SCHORA"] = 0;
+//	flags["SYRIQUEST_STATE"] = 0;
 	moveTo("AKD C15");
 	mainGameMenu();
 }
@@ -30,8 +44,21 @@ public function SQDEBUGAKDK15():void
 //	currentLocation = "AKD K15";
 //	generateMap();
 //	showLocationName();
+//	flags["SYRIQUEST_STATE"] = 3;
 	moveTo("AKD K15");
 	mainGameMenu();
+}
+
+public function SQDEBUGEscape():void
+{
+	flags["SYRIQUEST_VALDEN_BODY_CHOICE"] = 1;
+//	syriQuestEscape();
+}
+
+public function SQDEBUGEscapeSiegWulfe():void
+{
+	flags["SYRIQUEST_VALDEN_BODY_CHOICE"] = 2;
+//	syriQuestEscape();
 }
 
 public function syriAtFreeezer():Boolean
