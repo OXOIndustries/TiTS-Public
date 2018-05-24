@@ -1993,6 +1993,9 @@ public function flyTo(arg:String):void
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
+	
+	//Leaving the victim to sort his own shit out when starting the SpaceYakuza questline
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] === 0) flags["SHUKUCHI_TAVROS_ENCOUNTER"] = 1;
 }
 
 public function leaveShipOK():Boolean
@@ -2644,7 +2647,14 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItemByClass(DongDesigner)) moveMinutes *= 2;
-	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
+	if (pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
+	//Getting a beat-down from the mafia slows you down too
+	if (pc.hasStatusEffect("Brutalized")) moveMinutes *= 2;
+	if (rand(2) == 0)
+	{
+		if (pc.hasStatusEffect("Stinging Bruises")) pc.HP(pc.statusEffectv1("Stinging Bruises"));
+		if (pc.hasStatusEffect("Lash Marks")) pc.HP(pc.statusEffectv1("Lash Marks"));
+	}
 	//Things that make you go fastah!
 	//Nogwitch is fastest mount atm.
 	if(pc.accessory is NogwichLeash) moveMinutes = (moveMinutes >= 3 ? Math.floor(moveMinutes/3) : moveMinutes-1);
@@ -2789,7 +2799,12 @@ public function variableRoomUpdateCheck():void
 	// Temp housing
 	if(nurserySpareApptIsOccupied()) rooms["NURSERYI6"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["NURSERYI6"].removeFlag(GLOBAL.OBJECTIVE);
-
+	//Akane & Shukuchi
+	if (akaneCeleritasVeritasAvailable() || akaneLairAvailable()) rooms["110"].addFlag(GLOBAL.NPC);
+	else rooms["110"].removeFlag(GLOBAL.NPC);
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] === 0) rooms["9013"].addFlag(GLOBAL.NPC);
+	else rooms["9013"].removeFlag(GLOBAL.NPC);
+	
 	/* MHENGA */
 	
 	//Bounties
@@ -3508,6 +3523,16 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			resendMail("prai_email", (flags["PRAI_EMAIL_STAMP"] + (60*10)));
 			flags["PRAI_EMAIL_NUMBER"] = undefined;
 			flags["PRAI_EMAIL_STAMP"] = undefined;
+		}
+		//Akane, Celeritas Veritas email
+		if (!MailManager.isEntryUnlocked("shukuchi_veritas") && !pc.isPregnant() && flags["SHUKUCHI_EMAIL_TIMER"] != undefined && nextTimestamp >= flags["SHUKUCHI_EMAIL_TIMER"] + (60*24*6))
+		{
+			goMailGet("shukuchi_veritas", flags["SHUKUCHI_EMAIL_TIMER"] + (60*24*6));
+		}
+		//AkaneQuest email
+		if (!MailManager.isEntryUnlocked("akanequest_email") && flags["AKANE_TIMES_WHIPPED"] >= 2 && flags["AKANE_RIVALS_TIMESTAMP"] != undefined && nextTimestamp >= flags["AKANE_RIVALS_TIMESTAMP"] + (60*24*7))
+		{
+			goMailGet("akanequest_email", flags["AKANE_RIVALS_TIMESTAMP"] + (60*24*7));
 		}
 		//Sucuccow email
 		if(pc.hasCock() && flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isHalloweenish())

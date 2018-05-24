@@ -455,6 +455,7 @@ public function initUvetoRooms():void
 	rooms["UVI N34"].moveMinutes = 3;
 	rooms["UVI N34"].addFlag(GLOBAL.OUTDOOR);
 	rooms["UVI N34"].addFlag(GLOBAL.PUBLIC);
+	rooms["UVI N34"].runOnEnter = shukuchiUvetoBonus;
 
 	rooms["UVI N36"] = new RoomClass(this);
 	rooms["UVI N36"].roomName = "CAR\nPARK";

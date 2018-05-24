@@ -2066,6 +2066,54 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			//Host Shukuchi
+			if(flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined)
+			{
+				output2("\n<b><u>" + (flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 2 ? "Tavros Mafia?" : "Host Shukuchi") + "</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["SHUKUCHI_FOURTH_ENCOUNTER"])
+				{
+					case undefined: output2(" Tracking"); break;
+					case 1: output2(" Paid the Host"); break;
+					case 2: output2(" Accepted corporal punishment"); break;
+					case 3: output2(" Took Akane's offer"); break;
+				}
+				
+				output2("\n<b>* Tavros:</b>");
+				output2((flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 3 ? " Chased" : " Didn't chase") + " culprits");
+				if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] >= 2) output2(", Talked to the victim");
+				
+				if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined)
+				{
+					output2("\n<b>* Mhenga:</b>");
+					if (flags["SHUKUCHI_MHENGA_ENCOUNTER"]) output2(" Defeated agent on Mhenga");
+					else output2(" Lost to agent on Mhenga");
+				}
+				
+				if (flags["SHUKUCHI_UVETO7_ENCOUNTER"] != undefined)
+				{
+					output2("\n<b>* Uveto:</b>");
+					if (flags["SHUKUCHI_UVETO7_ENCOUNTER"]) output2(" Defeated agents on Uveto");
+					else output2(" Lost to agents on Uveto");
+				}
+				
+				sideCount++;
+			}
+			//AkaneQuest
+			if (MailManager.isEntryViewed("akanequest_email")){
+				output2("\n<b><u>AkaneQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				output2(" Read Email");
+				if (flags["AKANEQUEST_STAGE"] == 0) output2(", Raid Planned");
+				else if (flags["AKANEQUEST_STAGE"] > 0)
+				{
+					output2(", Raid Succesful");
+					if (flags["AKANEQUEST_STAGE"] == 1) output2(", Rewarded with gun");
+					else output2(", Rewarded with sword");
+				}
+				
+				sideCount++;
+			}
 		}
 		if(showID == "New Texas" || showID == "All")
 		{
@@ -3993,6 +4041,37 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				if(flags["SUCKLED_LERRIS"] != undefined) output2("\n<b>* Lerris, Times Suckled:</b> " + flags["SUCKLED_LERRIS"]);
 				if(flags["FUCKED_LERRIS"] != undefined) output2("\n<b>* Lerris, Times Sexed:</b> " + flags["FUCKED_LERRIS"]);
+				variousCount++;
+			}
+			// Akane
+			if (flags["AKANE_VISITS"] != undefined)
+			{
+				output2("\n<b><u>Host Shukuchi</u></b>");
+				output2("\n<b>* Akane:</b> Met her")
+				if (pcIsPainslut()) output2(", Became her <i>Painslut</i>");
+				if (flags["AKANE_FUN_VISITS"])
+				{
+					output2("\n<b>* Akane, Times Sexed:</b> " + flags["AKANE_FUN_VISITS"]);
+					if (flags["AKANE_TIMES_SHOCKED"]) output2("\n<b>* Akane, Times Stimmed:</b> " + flags["AKANE_TIMES_SHOCKED"]);
+					if (flags["AKANE_TIMES_WHIPPED"]) output2("\n<b>* Akane, Times Whipped:</b> " + flags["AKANE_TIMES_WHIPPED"]);
+					if (flags["AKANE_TIMES_FORCED"]) output2("\n<b>* Akane, Times Forced Orgasm Sessions:</b> " + flags["AKANE_TIMES_FORCED"]);
+					if (flags["AKANE_TIMES_RIDDEN"]) output2("\n<b>* Akane, Times Ridden:</b> " + flags["AKANE_TIMES_RIDDEN"]);
+					if (flags["AKANE_TIMES_LICKED"]) output2("\n<b>* Akane, Times Eaten Out:</b> " + flags["AKANE_TIMES_LICKED"]);
+				}
+				if (flags["AKANE_TIMES_TALKED"])
+				{
+					output2("\n<b>* Akane, Times Talked:</b> " + flags["AKANE_TIMES_TALKED"]);
+					output2("\n<b>* Akane, Talked About:</b> ");
+					var akaneTopics:Array = new Array();
+					if (flags["AKANE_TIMES_TALKED_HER"]) akaneTopics.push("Her");
+					if (flags["AKANE_TIMES_TALKED_YOU"]) akaneTopics.push("You");
+					if (flags["AKANE_TIMES_TALKED_MODS"]) akaneTopics.push("Her Mods");
+					if (flags["AKANE_TIMES_TALKED_HOST"]) akaneTopics.push("The Host");
+					if (flags["AKANE_TIMES_TALKED_RIVALS"]) akaneTopics.push("Her Rivals");
+					if (flags["AKANE_TIMES_TALKED_HISTORY"]) akaneTopics.push("Her History");
+					if (flags["AKANE_TIMES_TALKED_US"]) akaneTopics.push("Us");
+					output2(akaneTopics.join(", "));
+				}			
 				variousCount++;
 			}
 			// Residential Deck Stuff!

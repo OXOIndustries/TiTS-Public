@@ -65,6 +65,7 @@ public function initMhengaRooms():void
 	rooms["NORTHWEST ESBETH"].moveMinutes = 2;
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.PUBLIC);
+	rooms["NORTHWEST ESBETH"].runOnEnter = shukuchiMhengaBonus;
 
 	//5. Esbeth’s Western Path
 	rooms["WEST ESBETH 1"] = new RoomClass(this);

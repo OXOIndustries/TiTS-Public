@@ -60,6 +60,11 @@ public function appearance(forTarget:Creature):void
 		return;
 	}
 	
+	//Stinging Bruises & Lash Marks
+	if (target.hasStatusEffect("Stinging Bruises")) target.HP(target.statusEffectv1("Stinging Bruises"));
+	if (target.hasStatusEffect("Lash Marks")) target.HP(target.statusEffectv1("Lash Marks"));
+	processTime(0);
+	
 	//Overall
 	if(target.originalRace == target.race()) output2("You are " + indefiniteArticle(target.originalRace) + ".");
 	else
