@@ -738,7 +738,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 		output("\n\n<i>“Fek, yer more of a slut than the slaves on the station,”</i> the gruff korgonne sighs in disappointment, moving to your front. He presents you with his still-hard, juice-covered dogcock. <i>“Clean it.”</i>");
 		output("\n\nYou dutifully suck his cock, spitshining it to a saliva-slicked finish and getting several throatfuls of his cum as his bulging knot very slowly deflates.");
 		output("\n\n<i>“Always preferred my sluts from both ends,”</i> he sighs in satisfaction as he dresses, his immense canine cock finally flagging after your minutes-long blowjob. Just how long can he go for? <i>“Arright. You come see me when ye need some takin’ care of, " + pc.mf("lad","lass") + ". I’ll do ye right.”</i>");
-		output("\n\nWith a wink, he disappears from your room and your hear his bootfalls leading down the ramp. Not long afterwards, you hear the whine of machinery as he works on something. You just stay on your bed facedown for a while, wondering if his cock destroyed your mind as much as your ruined, spunk-dripping [pc.vagOrAss]. After about ten minutes of thinking about him and his fantastic dick, you decide it’s probably best to take a shower");
+		output("\n\nWith a wink, he disappears from your room and your hear his bootfalls leading down the ramp. Not long afterwards, you hear the whine of machinery as he works on something. You just stay on your bed facedown for a while, wondering if his cock destroyed your mind as much as your [pc.vagOrAss]. After about ten minutes of thinking about him and his fantastic dick, you decide it’s probably best to take a shower");
 		if(!pc.isNude()) output(" and get dressed");
 		output(". Half an hour later and cheeks still slightly flushed with afterglow, you’re ready to go.");
 	}
@@ -755,7 +755,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 		if(pc.canineScore() >= 3) output(" bitch");
 		else output(" pup");
 		output(".”</i>");
-		output("\n\nWith a wink, he disappears from your room and your hear his bootfalls leading down the ramp. Not long afterwards, you hear the whine of machinery as he works on something. You just stay on your bed facedown for a while, wondering if his cock destroyed your mind as much as your ruined, spunk-dripping [pc.vagOrAss]. After about ten minutes of thinking about him and his fantastic dick, you decide it’s probably best to take a shower");
+		output("\n\nWith a wink, he disappears from your room and your hear his bootfalls leading down the ramp. Not long afterwards, you hear the whine of machinery as he works on something. You just stay on your bed facedown for a while, wondering if his cock destroyed your mind as much as your [pc.vagOrAss]. After about ten minutes of thinking about him and his fantastic dick, you decide it’s probably best to take a shower");
 		if(!pc.isNude()) output(" and get dressed");
 		output(". Half an hour later and cheeks still slightly flushed with afterglow, you’re ready to go.");
 	}
