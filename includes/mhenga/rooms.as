@@ -50,7 +50,7 @@ public function initMhengaRooms():void
 	rooms["ESBETH'S NORTH PATH"].westExit = "NORTHWEST ESBETH";
 	rooms["ESBETH'S NORTH PATH"].eastExit = "NORTH ESBETH 2";
 	rooms["ESBETH'S NORTH PATH"].moveMinutes = 2;
-	rooms["ESBETH'S NORTH PATH"].runOnEnter = function():void{bountyBoardExtra(); zilTwinsEsbethBonus();}
+	rooms["ESBETH'S NORTH PATH"].runOnEnter = function():Boolean{bountyBoardExtra(); return zilTwinsEsbethBonus();}
 	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.PUBLIC);
 
@@ -212,7 +212,7 @@ public function initMhengaRooms():void
 	rooms["NORTHEAST ESBETH"].westExit = "NORTH ESBETH 1";
 	rooms["NORTHEAST ESBETH"].southExit = "EAST ESBETH ENTRANCE";
 	rooms["NORTHEAST ESBETH"].moveMinutes = 2;
-	rooms["NORTHEAST ESBETH"].runOnEnter = function():void{azraMhengaHook(); zilTwinsEsbethBonus(); };
+	rooms["NORTHEAST ESBETH"].runOnEnter = function():Boolean{azraMhengaHook(); return zilTwinsEsbethBonus();};
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
