@@ -9,8 +9,14 @@ public function urbolgsOffice():void
 {
 	vendingMachineButton(0,"energy");
 	output(" You're surprised it doesn't have a combination as well.");
+	//Appended to Urbolg's room description.
+	if(flags["GOT_URBOLGS_SHIELD"] == 0) 
+	{
+		output("\n\nThe brown safe Urbolg mentioned is in fact under his desk. If you remember correctly, the combination is 7-8-9. You could pop it open, if you wanted to.");
+		addButton(1,"Open Safe",collectUrbolgsSafe);
+	}
+	else if(flags["GOT_URBOLGS_SHIELD"] == 1) output("\n\nUrbolg's brown safe is open and empty, like you left it. How nice of him to let you use his extra shield belt!");
 }
-
 
 //Making Landfall at Zheng Shi
 public function landingAtZhengShi():void 

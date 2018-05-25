@@ -1,3 +1,9 @@
+import classes.Items.Protection.ProtoShield;
+import classes.Items.Protection.JumperShield;
+import classes.Items.Armor.RattyArmor;
+import classes.Items.Guns.HandCannon;
+
+
 /* By Fenoxo Fenbutte:
 Teenage runaway who got mauled by a Kordiiak Bear.
 Big game hunting pirate killed the bear, saved him, and adopted him. Name/Rank TBD, but probably one of the bosses.
@@ -24,8 +30,14 @@ public function zhengShiHangerFloorBonus():Boolean
 	}
 	else
 	{
+		if(pc.hasStatusEffect("URBOLG_DISABLED"))
+		{
+			output("\n\nUrbolg the korgonne mechanic is here, working on something, but he still looks kind of mad. Letting him cool off for a day might be best.");
+			addDisabledButton(0,"Urbolg","Urbolg","Urbolg is still mad at you.");
+			return false;
+		}
 		//Defeated Urbolg by lust or ever fucked him:
-		if(flags["URBOLG_LUSTED"] != undefined || flags["SEXED_URBOLG"] != undefined) output("\n\nUrbolg the korgonne mechanic busily works to repair a scrap engine hanging from a lift, but he keeps casting sly glances in your direction with his robotic eye. The fluffy little devil seems to have taken a liking to you!");
+		else if(flags["URBOLG_LUSTED"] != undefined || flags["SEXED_URBOLG"] != undefined) output("\n\nUrbolg the korgonne mechanic busily works to repair a scrap engine hanging from a lift, but he keeps casting sly glances in your direction with his robotic eye. The fluffy little devil seems to have taken a liking to you!");
 		//Normal Urbolg
 		else output("\n\nUrbolg the korgonne mechanic busily toils over junked engine. The hunk of blast-ruined metal hangs from a lift as he works on it, fully absorbing his attention.");
 		addButton(0,"Ubolg",peacefulApproachUrbolg);
@@ -270,12 +282,13 @@ public function urbolgMenu():void
 	clearMenu();
 	addButton(0,"Appearance",urbolgAppearance);
 	addButton(1,"Talk",talkToUrbolg);
+	addButton(2,"Buy",buyFromUrbolg);
 	if(pc.lust() >= 33) 
 	{
-		if(flags["SEXED_URBOLG"] == undefined) addButton(2,"Flirt",urbolgFlirtSex);
-		else addButton(2,"Sex",urbolgFlirtSex);
+		if(flags["SEXED_URBOLG"] == undefined) addButton(3,"Flirt",urbolgFlirtSex);
+		else addButton(3,"Sex",urbolgFlirtSex);
 	}
-	else addDisabledButton(2,"Flirt","Flirt","You're not really in the mood for that right now.");
+	else addDisabledButton(3,"Flirt","Flirt","You're not really in the mood for that right now.");
 	addButton(14,"Leave",mainGameMenu);
 }
 //Appearance
@@ -309,6 +322,7 @@ public function talkToUrbolg():void
 	addButton(0,"His History",urbolgsHistory);
 	if(flags["URBOLG_ARTIFICER"] != undefined) addButton(1,"Artificer",urbolgArtificerTalk);
 	addDisabledButton(1,"Locked","Locked","You don't know enough about him to ask this.");
+	addButton(2,"His Shield",urbolgHisShield,undefined,"His Shield","Ask him where he got such a fabulous shield from.");
 	addButton(14,"Back",peacefulApproachUrbolg,true);
 }
 
@@ -418,6 +432,98 @@ public function urbolgArtificerTalk():void
 	addButton(0,"Next",talkToUrbolg);
 }
 
+//Talk: His Shield
+public function urbolgHisShield():void
+{
+	clearOutput();
+	showUrbolg();
+	output("You glance at Urbolg’s belt.");
+	//no new pg.
+	//bimbo
+	if(pc.isBimbo()) output(" <i>“Your shield is really like, super strong, isn’t it?”</i>");
+	//Bro
+	else if(pc.isBro()) output(" <i>“Nice shield.”</i>");
+	//Nice
+	else if(pc.isNice()) output("<i>“You’ve got a really nice shield. Where’d you get it?”</i>");
+	//Misch
+	else if(pc.isMischievous()) output("<i>“So did you make that shield yourself or peel it off some unlucky sap?”</i>");
+	//Hard
+	else output("<i>“Know where a [pc.guyGirl] can get a shield like that?”</i>");
+	//Merge
+	output("\n\nThe korgonne tugs at his ample waist, <i>“This beauty?”</i> He lifts it up a bit and pats at one of several blocky boxes along its length. <i>“Made her meself. Took a couple of half-fried belts off the scrapheap, redid the supercaps, wound some new coils by hand, and topped it all off by putting three times as many power cells and emitters as anything on the market. Tch.”</i> Urbolg spits. <i>“Core-sucking babies can’t handle a little weight ‘round the middle. Bah!”</i>");
+	output("\n\nIt does appear to be a bit weightier than most. <i>“Probably slows you down a bit, huh?”</i>");
+	output("\n\n<i>“It may a bit, aye. But who cares about hoppin’ around all nimbly bimbly when you can shrug off a hit from an RPG with a smile?”</i> He pounds a meaty fist to his fluffy shoulders. <i>“I know it too. Happened once. Gave the fekkin’ tool a few missing limbs for his trouble. ‘Course I built him some new ones after. ‘Twas better than he deserved, the sneak, but it’s worth it to hear him clomp around on the deck”</i> He hops and pounds his paws into the deck heavily, chuckling. <i>“Ye let me know if ye see ol’ no-legs around. We’ll have a giggle and a drink over it.”</i>");
+	output("\n\nA quick scan of the hangar reveals that whoever no-legs is, he isn’t around.");
+	output("\n\n<i>“Doncha worry, yer head ‘bout him. ‘E doesn’t come in here if he can help it, on account of me threatening to take the legs back and give him some curvy pink numbers as replacements.”</i> Urbolg bellows with mirth. <i>“I’ll do it too. I made some real cute looking limbs for the next idiot who comes after me. Got ‘em locked up in my office. Even left a few surprises in the sensory circuits to leave ‘em squirming like a virgin on New Texas.”</i> He glances your way. <i>“Why, was you wanting one?”</i>");
+	output("\n\nDo you want one?");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Yes",yesGimmeShieldUrbolg);
+	addButton(1,"No",noShieldForYouUbolg);
+}
+//No
+public function noShieldForYouUbolg():void
+{
+	clearOutput();
+	showUrbolg();
+	output("You shake your head in the negative.");
+	output("\n\n<i>“Probably fer the best. I only made the one, and I ain’t of a mind to make the same thing twice if’n I can help it.”</i> Urbolg slaps your back");
+	if(pc.physique() < chars["URBOLG"].physique()-4) output(" hard enough to make you stumble");
+	output(". <i>“I like a [pc.manWoman] who’s confident in their gear. Shows ye got some backbone in there. Just don’t let it lead ye into foolishness. Sooner or later ye gotta get some new kit, or the wizard-engineers in the core’ll leave ye behind.”</i>");
+	output("\n\nThere’s more than some sense in that.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",peacefulApproachUrbolg,true);
+}
+
+//Yes
+public function yesGimmeShieldUrbolg():void
+{
+	clearOutput();
+	showUrbolg();
+	output("You nod.");
+	//Already got a shield generate
+	if(flags["GOT_URBOLGS_SHIELD"] == 1)
+	{
+		output("\n\n<i>“Fek you!”</i> Ubrolg bellows. <i>“Greedy sodding sack of shit-fer-brains. Ye come into my shop and have the nerve to ask for me for shield belt after shield belt like I’m some kind of belt-sewing machine!”</i> He spits on your [pc.foot]. <i>“I may look like an endless pile of goodwill, but yer on thin ice, " + pc.mf("boy","missee") + "! Get out of me face before I do something you’ll regret. Fek!”</i> He brusquely waves you off. <i>“Sodding empty-souled cred-mongers...”</i>");
+		processTime(1);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+		pc.createStatusEffect("URBOLG_DISABLED");
+		pc.setStatusMinutes("URBOLG_DISABLED",60*24);
+	}
+	//No freebie yet
+	else
+	{
+		output("\n\n<i>“One like this?”</i> Ubrolg lifts his belt with a proud smile.");
+		output("\n\n<i>“Exactly.”</i>");
+		output("\n\n<i>“Too bad.”</i> The scruffy korgonne barks a laugh. <i>“I don’t make the same thing twice if’n I can help it. No fun in repeating yourself word for word, so to speak. Besides, if I wanted to slap together the same boring piece of tech over and over again, I’d have set up in some slapdash core shop. The freedom out here is worth the risk... and the pay cuts.”</i>");
+		output("\n\nUrbolg looks appraisingly at your belt. <i>“");
+		if(pc.shields() >= 150) output("You’ll do just fine with what ye got, I reckon. Just pick your fights carefully.”</i>");
+		else
+		{
+			output("Still, that piece of garbage about your waist ain’t doing ye any favors. I did make a prototype before to test out my ideas before putting this beaut together. I guess ye can have her if ye need. Head on up to my office and hit up the brown safe under my computer desk. Combo is 7-8-9.”</i> He grins savagely. <i>“Don’t worry ‘bout traps or nothing. It’s the black one that’s rigged with a bomb. And some of the other ones. Moral of the story is: don’t fuck with my shit.”</i>");
+			output("\n\nYou promise not to.");
+			flags["GOT_URBOLGS_SHIELD"] = 0;
+		}
+		processTime(2);
+		clearMenu();
+		addButton(0,"Next",peacefulApproachUrbolg,true);
+	}
+}
+
+//Open brown safe
+public function collectUrbolgsSafe():void
+{
+	clearOutput();
+	output("You cautiously avoid the nearby black safe - the one with the bomb - and delicately spin the combination lock in the specified pattern: 7... 8...");
+	output("\n\n...9... ‘click’! The door swings open, revealing a matte black shield belt. Crude, boxy protrusions house the assorted emitters and machinery that allow for it to project a defensive screen. As promised, it’s far heavier than most and capable of putting up an impressive shieldwall.");
+	output("\n\nUrbolg was true to his word.\n\n");
+	flags["GOT_URBOLGS_SHIELD"] = 1;
+	processTime(3);
+	quickLoot(new ProtoShield());
+}
+	
 //Flirt/Sex Intro
 public function urbolgFlirtSex():void
 {
@@ -802,4 +908,14 @@ public function leaveUrbolgSexAngerRar():void
 	output("<i>“Don’t tease me like that or I’ll have ye over a fekkin’ crate, ya little shit,”</i> Urbolg grumbles, turning away.");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function buyFromUrbolg():void
+{
+	clearOutput();
+	showUrbolg();
+	shopkeep = chars["URBOLG"];
+	shopkeep.keeperBuy = "You indicate that you’d like to buy something from him.\n\nUrbolg raises an eyebrow. <i>“Ye ain’t pulling on my tail, are ye? Most of the stuff I have laying around fer sale isn’t exactly masterwork material, just standard gear some idiot broke and tossed my way. Lucky for you, it was me what fixed it up, so this second-hand junk’ll serve ye better than the brand new crap from JoyCo.”</i>\n";
+	shopkeep.inventory = [new HandCannon(),new JumperShield(),new RattyArmor()];
+	buyItem();
 }

@@ -39,6 +39,9 @@
 			this.customDodge = "He swaggers out of the way!";
 			this.isPlural = false;
 
+			this.sellMarkup = 1.1;
+			this.buyMarkdown = .25;
+
 			this.meleeWeapon.attackVerb = "swing";
 			this.meleeWeapon.longName = "spiked fist";
 			this.meleeWeapon.attackNoun = "clawed punch";
@@ -228,6 +231,12 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_LONG_HAIR, GLOBAL.KINDA_DISLIKES_SEXPREF);
 			this._isLoading = false;
 		}
+
+		override public function onLeaveBuyMenu():void
+		{
+			kGAMECLASS.peacefulApproachUrbolg(true);
+		}
+
 		override public function get bustDisplay():String
 		{
 			//this.furColor = RandomInCollection(["white","tawny","gray-speckled"]);
