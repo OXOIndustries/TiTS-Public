@@ -347,7 +347,7 @@ public function zilTwinsTalkThem():void
 	output(" She shakes her head, smiling at fond memories, <i>\"After all of that, how could I resist coming back? Well, I'm sure my brother would rather laze about the village with me all day long.\"</i>");
 	output("\n\n<i>\"I… do get a bit nervous here,\"</i> Mica says, shrinking in his seat and turning to his sister, <i>\"but I'm happy as long as I'm with you, Tetra.\"</i>");
 	output("\n\nThat statement brings joy to the bee girl's mien and has her resting a hand lovingly on her brother's chitinous chest, <i>\"See, how could I afford to come to Esbeth without this lovely thing?");
-	output(" But, yes, we visit the town every few days or so to enjoy ourselves… and offworlders, if we can't help it.\"</i>");
+	output(" But, yes, we visit the town as often as we can to enjoy ourselves… and offworlders, if we can't help it.\"</i>");
 	output("\n\nWith that, she gives you a knowing little wink.");
 	output("\n\nStill, though, even after all that, you have to ask why Mica walks around with his dick hanging out all the time while she stays covered.");
 	output("\n\n<i>\"Because I told him to,\"</i> Tetra says with a devious grin, <i>\"Why wouldn't I want to have all of this out and ready whenever I want it.\"</i>");
