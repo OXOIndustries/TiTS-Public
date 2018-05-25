@@ -277,6 +277,7 @@
 		include "../includes/mhenga/yoma.as";
 		include "../includes/mhenga/zilMale.as";
 		include "../includes/mhenga/zilFemale.as";
+		include "../includes/mhenga/zilTwins.as";
 		
 		//Second planet
 		include "../includes/tarkus/anno.as";
