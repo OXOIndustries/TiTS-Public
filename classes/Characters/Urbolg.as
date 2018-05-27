@@ -35,7 +35,7 @@
 			this.originalRace = "korgonne";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "The korgonne mechanic blocks your way into the station. His stocky body stands all of 4’11”</i> tall, but he stands with the implacable authority of a bouder. More pressing is his mechanical arm and the deadly gadgets hidden within. A heavy hand cannon occupies his organic paw, though he hefts it with a surprisingly steady grip. Green eyes stare out of his white-furred muzzle accusingly to follow your every movement. The left one is artificial by the look of it. Jagged, claw-shaped scars hint at an encounter with a predatory beast in his distant past.\n\nA pocket-lined apron hangs from the mechanic’s shoulders, cinched about his waist by a shield belt built for a creature several times bigger. Who knows what gadgets he could have hidden away?";
+			this.long = "The korgonne mechanic blocks your way into the station. His stocky body stands all of 4\' 11\" tall, but he stands with the implacable authority of a bouder. More pressing is his mechanical arm and the deadly gadgets hidden within. A heavy hand cannon occupies his organic paw, though he hefts it with a surprisingly steady grip. Green eyes stare out of his white-furred muzzle accusingly to follow your every movement. The left one is artificial by the look of it. Jagged, claw-shaped scars hint at an encounter with a predatory beast in his distant past.\n\nA pocket-lined apron hangs from the mechanic’s shoulders, cinched about his waist by a shield belt built for a creature several times bigger. Who knows what gadgets he could have hidden away?";
 			this.customDodge = "He swaggers out of the way!";
 			this.isPlural = false;
 
@@ -368,7 +368,7 @@
 			else output("The canine combatant tosses yet another turret mite onto the field. How many of these does he have?");
 			this.energy(-25);
 			var newTurr:GunTurretLaser = new GunTurretLaser();
-    		CombatManager.addHostileActor(newTurr);
+			CombatManager.addHostileActor(newTurr);
 		}
 	}
 }

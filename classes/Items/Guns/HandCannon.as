@@ -31,7 +31,7 @@
 			this.description = "a hand cannon";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Most pistols are designed to efficiently put rounds downrange without breaking the wielder's wrist. This one is designed to throw a super-heated lead slug at a target with absolutely no concern for the crushing amounts of recoil. The perfect weapon for when you absolutely must destroy a target - assuming you can hit it.";
+			this.tooltip = "Most pistols are designed to efficiently put rounds downrange without breaking the wielder’s wrist. This one is designed to throw a super-heated lead slug at a target with absolutely no concern for the crushing amounts of recoil. The perfect weapon for when you absolutely must destroy a target - assuming you can hit it.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

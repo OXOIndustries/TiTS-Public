@@ -8,15 +8,15 @@ import classes.Items.Guns.HandCannon;
 Teenage runaway who got mauled by a Kordiiak Bear.
 Big game hunting pirate killed the bear, saved him, and adopted him. Name/Rank TBD, but probably one of the bosses.
 Speaks decent english, but a bit of an oddity. Considers technology to be magic and himself an artificer.
-<i>“Affably Gruff”</i> personality.
-Other young pirates took him out for an <i>“initiation”</i> when he came of age, resulting in his more interesting sexual attributes and heightened libido.
+“Affably Gruff” personality.
+Other young pirates took him out for an “initiation” when he came of age, resulting in his more interesting sexual attributes and heightened libido.
 
 Appearance:
-4’11”</i> tall and stocky.
+4'11" tall and stocky.
 White fur, green eyes,
 Robotic hand halfway up his forearm. Sophisticated and packed with retractable tools.
 Claw scars across his face and one subtly robotic eye. Bite scars on his shoulder (the same side as the eye and arm injury)
-11”</i> bright blue dog-dick with an oversized knot that engorges fully whenever he has a boner.
+11" bright blue dog-dick with an oversized knot that engorges fully whenever he has a boner.
 Leaks cum the moment any pressure is applied to his knot, often running dry long before the actual orgasm.
 */
 
@@ -47,7 +47,7 @@ public function zhengShiHangerFloorBonus():Boolean
 
 public function showUrbolg(nude:Boolean = false):void
 {
-	if(flags["MET_URBOLG"] == undefined) showName("KORGONNE\nMECHANIC");
+	showName(flags["MET_URBOLG"] == undefined ? ((CodexManager.entryUnlocked("Korgonne") ? "KORGONNE" : "CANINE") + "\nMECHANIC") : "\nURBOLG");
 	showBust("URBOLG" + (nude ? "_NUDE":""));
 }
 
@@ -77,7 +77,7 @@ public function urbolgMeeting():void
 	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(defeatUrbolg);
 	CombatManager.lossScene(loseToUrbolg);
-	CombatManager.displayLocation("KORGONNE\nMECHANIC");
+	CombatManager.displayLocation("MECHANIC");
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
 }
@@ -288,7 +288,7 @@ public function urbolgMenu():void
 		if(flags["SEXED_URBOLG"] == undefined) addButton(3,"Flirt",urbolgFlirtSex);
 		else addButton(3,"Sex",urbolgFlirtSex);
 	}
-	else addDisabledButton(3,"Flirt","Flirt","You're not really in the mood for that right now.");
+	else addDisabledButton(3,"Flirt","Flirt","You’re not really in the mood for that right now.");
 	addButton(14,"Leave",mainGameMenu);
 }
 //Appearance
@@ -321,7 +321,7 @@ public function talkToUrbolg():void
 	clearMenu();
 	addButton(0,"His History",urbolgsHistory);
 	if(flags["URBOLG_ARTIFICER"] != undefined) addButton(1,"Artificer",urbolgArtificerTalk);
-	addDisabledButton(1,"Locked","Locked","You don't know enough about him to ask this.");
+	addDisabledButton(1,"Locked","Locked","You don’t know enough about him to ask this.");
 	addButton(2,"His Shield",urbolgHisShield,undefined,"His Shield","Ask him where he got such a fabulous shield from.");
 	addButton(14,"Back",peacefulApproachUrbolg,true);
 }

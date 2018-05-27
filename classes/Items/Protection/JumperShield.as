@@ -21,15 +21,15 @@ package classes.Items.Protection
 			this.shortName = "JumpShield";
 		
 			//Regular name
-			this.longName = "'Jumper' shield";
+			this.longName = "‘Jumper’ shield";
 		
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a 'Jumper' shield";
+			this.description = "a ‘Jumper’ shield";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Designed and used by the 'Jumper' pirate gang, this lightweight belt is manufactured to produce a decent amount of protection and additional mobility via an array of microjets around its length.";
+			this.tooltip = "Designed and used by the ‘Jumper’ pirate gang, this lightweight belt is manufactured to produce a decent amount of protection and additional mobility via an array of microjets around its length.";
 			this.attackVerb = "null";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);

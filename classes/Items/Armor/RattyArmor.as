@@ -28,7 +28,7 @@ package classes.Items.Armor
 			
 			this.description = "a suit of ratty armor";
 			
-			this.tooltip = "This suit of combat armor looks to have been assembled by salvaged or looted parts from a half-dozen different companies and designs. Somehow, it all came together in an effective-looking package; the coat of matte black paint certainly helps. For some reason the helmet has a fold-up pair of mouse ears, presumably in keeping with a pirate gang's aesthetics.";
+			this.tooltip = "This suit of combat armor looks to have been assembled by salvaged or looted parts from a half-dozen different companies and designs. Somehow, it all came together in an effective-looking package; the coat of matte black paint certainly helps. For some reason the helmet has a fold-up pair of mouse ears, presumably in keeping with a pirate gang’s aesthetics.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

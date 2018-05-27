@@ -744,7 +744,7 @@ public function mitziCrewBonus():String
 	//Nun!
 	else if(dress is MitziNunFetishCostume)
 	{
-		buff += "\n\nYour self-titled \"pet goblin\”</i> can be found kneeling in front of your cockpit chair, hands steepled together in something that resembles prayer. Her mouth hangs wide-open in preparation to receive her " + pc.mf("lord’s","mistress’s") + " sexual sacrament. She has chosen to dress herself in the white and black of a nunnery, but like everything Mitzi touches, it’s been tarted up beyond indecency to deep perversion. A plunging neckline filled with cheap, transparent plastic dutifully displays her emerald orbs and the cusps of her dusky nipples. From the waist down, the rest of the garment tapers to a scanty ‘v,’ revealing Mitzi’s plump pussy through the too-thin fabric. Every fold and crease is plain to see, promising a heavenly sanctuary to any who dare enter.";
+		buff += "\n\nYour self-titled “pet goblin” can be found kneeling in front of your cockpit chair, hands steepled together in something that resembles prayer. Her mouth hangs wide-open in preparation to receive her " + pc.mf("lord’s","mistress’s") + " sexual sacrament. She has chosen to dress herself in the white and black of a nunnery, but like everything Mitzi touches, it’s been tarted up beyond indecency to deep perversion. A plunging neckline filled with cheap, transparent plastic dutifully displays her emerald orbs and the cusps of her dusky nipples. From the waist down, the rest of the garment tapers to a scanty ‘v,’ revealing Mitzi’s plump pussy through the too-thin fabric. Every fold and crease is plain to see, promising a heavenly sanctuary to any who dare enter.";
 	}
 	//Custom dresses~!
 	else
@@ -1053,8 +1053,8 @@ public function mitziSexMenu():void
 		if(pc.cockThatFits(mitzi.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",fuckMitziJustLikeInCoC);
 		else addDisabledButton(0,"Fuck Her","Fuck Her","Stretchy as she is, even Mitzi’s modded body has limits.");
 		addButton(2,"Titfuck",goblinTittyfuckoo);
-		if(pc.cockThatFits(mitzi.analCapacity()*1.5) >= 0) addButton(4,"Pitch Anal", penisRouter, [mitziTakesItUpTheAssFINALLY,mitzi.analCapacity()*1.5,false,0], "Pitch Anal", "Take the goblin in your favorite celestial body - her black hole." + (flags["MITZI_ANALED"] != undefined ? "\n\n<b>You know from past experience that this is likely to inflict a small amount of taint, but what doesn't in this day and age?</b>" : ""));
-		else addDisabledButton(4,"Pitch Anal","Pitch Anal","Mitzi is more than willing to stretch her body past the limit, and you're still too big for her.")
+		if(pc.cockThatFits(mitzi.analCapacity()*1.5) >= 0) addButton(4,"Pitch Anal", penisRouter, [mitziTakesItUpTheAssFINALLY,mitzi.analCapacity()*1.5,false,0], "Pitch Anal", "Take the goblin in your favorite celestial body - her black hole." + (flags["MITZI_ANALED"] != undefined ? "\n\n<b>You know from past experience that this is likely to inflict a small amount of taint, but what doesn’t in this day and age?</b>" : ""));
+		else addDisabledButton(4,"Pitch Anal","Pitch Anal","Mitzi is more than willing to stretch her body past the limit, and you’re still too big for her.")
 	}
 	else 
 	{
@@ -1763,13 +1763,13 @@ public function giveMitziACumBubble():void
 	
 	clearMenu();
 	if(pc.hasItemByClass(SmallCumBubble)) addButton(0,"Small Bubble",giveMitziACumBubble4Real,SmallCumBubble);
-	else addDisabledButton(0,"Small Bubble","Small Bubble","You don't have any to give her.");
+	else addDisabledButton(0,"Small Bubble","Small Bubble","You don’t have any to give her.");
 	if(pc.hasItemByClass(MediumCumBubble)) addButton(1,"Medium Bubble",giveMitziACumBubble4Real,MediumCumBubble);
-	else addDisabledButton(1,"Medium Bubble","Medium Bubble","You don't have any to give her.");
+	else addDisabledButton(1,"Medium Bubble","Medium Bubble","You don’t have any to give her.");
 	if(pc.hasItemByClass(LargeCumBubble)) addButton(2,"Large Bubble",giveMitziACumBubble4Real,LargeCumBubble);
-	else addDisabledButton(2,"Large Bubble","Large Bubble","You don't have any to give her.");
+	else addDisabledButton(2,"Large Bubble","Large Bubble","You don’t have any to give her.");
 	if(pc.hasItemByClass(HugeCumBubble)) addButton(3,"Huge Bubble",giveMitziACumBubble4Real,HugeCumBubble);
-	else addDisabledButton(3,"Huge Bubble","Huge Bubble","You don't have any to give her.");
+	else addDisabledButton(3,"Huge Bubble","Huge Bubble","You don’t have any to give her.");
 	
 	addButton(14,"Back",approachCrewMitzi,true);
 }
@@ -1910,7 +1910,7 @@ public function awardMitziBubblePrize(arg:Class):void
 		quickLoot(new SavicitePanties());
 		eventQueue.push(mitziCrewSexApproach);
 	}
-	//"Rutting”</i> perfume - tease damage boost + vuln, infinite uses. Lasts 16 hours.
+	//"Rutting” perfume - tease damage boost + vuln, infinite uses. Lasts 16 hours.
 	else if(arg == MediumCumBubble)
 	{
 		output("\n\n<i>“It’s Mitzi’s favorite perfume-slash-cologne-slash-smell-good-stuff!”</i> the ditzy bimbo cheers, absolutely radiant. <i>“It even has a sexy name! ‘Rutting’! One spritz has like, more phero...pherom... smelly-moans than an a hellhound in heat! See?”</i> She squeezes the bulb on the end and blasts you in the face with the indescribably woodsy fragrance.");
