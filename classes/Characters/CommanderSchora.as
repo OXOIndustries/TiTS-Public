@@ -4,6 +4,20 @@
 	import classes.GLOBAL;
 	import classes.Items.Apparel.UGCUniform;
 	import classes.Items.Melee.Tonfas;
+	import classes.Items.Guns.HammerPistol;
+	import classes.Items.Protection.BasicShield;
+	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.Items.Accessories.FlashGoggles;
+	import classes.kGAMECLASS;
+	import classes.Engine.Utility.rand;
+	import classes.GameData.CodexManager;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	
+	import classes.Engine.Combat.DamageTypes.*;
+	import classes.Engine.Combat.*;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Interfaces.output;
 	
 	public class CommanderSchora extends Creature
 	{
@@ -12,9 +26,9 @@
 		//constructor
 		public function CommanderSchora()
 		{
-			this._latestVersion = 5;
+			this._latestVersion = 1;
 			this.version = _latestVersion;
-			this._neverSerialize = false;
+			this._neverSerialize = true;
 			
 			this.short = "Commander Schora";
 			this.originalRace = "human";
@@ -38,10 +52,10 @@
 			this.energyRaw = 100;
 			this.lustRaw = 85;
 			
-			this.level = 1;
+			this.level = 10;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 20;
+			this.HPMod = 200;
 			this.HPRaw = this.HPMax();
 			
 			this.femininity = 85;
@@ -80,9 +94,6 @@
 			//2 - Between last legs or at end of long tail.
 			//3 - On underside of a tail, used for driders and the like, maybe?
 			this.genitalSpot = 0;
-			this.tailType = GLOBAL.TYPE_VULPINE;
-			this.tailCount = 1;
-			this.tailFlags = [GLOBAL.FLAG_FLUFFY,GLOBAL.FLAG_LONG,GLOBAL.FLAG_THICK,GLOBAL.FLAG_FURRED];
 			//Used to set cunt or dick type for cunt/dick tails!
 			this.tailGenitalArg = 0;
 			//tailGenital:
@@ -116,8 +127,15 @@
 			this.buttRatingRaw = 7;
 			//No dicks here!
 			this.cocks = new Array();
+			this.createCock();
+			this.cocks[0].cThicknessRatioRaw = 1.2;
+			this.cocks[0].cLengthRaw = 18;
+			this.cocks[0].cType = GLOBAL.TYPE_HUMAN;
+			this.cocks[0].cockColor = "red";
+			this.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+			this.cocks[0].addFlag(GLOBAL.FLAG_KNOTTED);
 			//balls
-			this.balls = 0;
+			this.balls = 2;
 			this.cumMultiplierRaw = 1.5;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
 			this.cumQualityRaw = 1;
@@ -156,6 +174,86 @@
 			this.ass.wetnessRaw = 0;
 			
 			this._isLoading = false;
+		}
+		override public function get bustDisplay():String
+		{
+			return "VERUSHA";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+			
+			if (!target.hasStatusEffect("Blinded") && rand(5) == 0) securityDroidFlashbang(target);
+			else if (!hasStatusEffect("Blinded") && !hasStatusEffect("Stunned") && rand(3) == 0) securityDroidChargeShot(target);
+			else securityDroidLaserBarrage(target);
+		}
+		
+		private function securityDroidLaserBarrage(target:Creature):void
+		{
+			//Laser Barrage
+			//Lots of moderate laser attacks
+			output("Several of the drones lock onto " + ((target is Anno) ? "your ausar friend" : "you") + " and let loose with a hail of laser bolts.");
+			
+			var attacks:int = 2 + rand(2);
+
+			for (var i:int = 0; i < attacks; i++)
+			{
+				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
+			}
+		}
+		
+		private function securityDroidChargeShot(target:Creature):void
+		{
+			//Charge Shot
+			//Two moderate laser shots (as above) + one HEAVY one
+			output("Amid several other drones lighting you up, one steps to the forefront, its laser pistol glowing red-hot as it charges up a power shot!");
+			
+			for (var i:int = 0; i < 2; i++)
+			{
+				output("\n");
+				CombatAttacks.SingleRangedAttackImpl(this, target, true);
+			}
+
+			// Heavy attack
+			if (rangedCombatMiss(this, target))
+			{
+				if(target is Anno) output(" Anno quickly dodges to the side, just in time to avoid the energy blast.");
+				else
+				{
+					output(" You tumble to the side, ducking out of the way just in time to avoid a face-melting energy blast");
+					if (kGAMECLASS.silly) output(" to the, uh, face");
+					output(".");
+				}
+			}
+			else
+			{
+				if(target is Anno) output(" Anno staggers back as the heavy laser bolt slams into her with a sizzling noise--ouch!");
+				else output(" You stagger back as the heavy laser bolt slams into your chest, burning into your defenses and leaving you smoking like a sausage!");
+
+				applyDamage(new TypeCollection( { burning: 20, electric:10 }, DamageFlag.LASER), this, target);
+			}
+		}
+		
+		private function securityDroidFlashbang(target:Creature):void
+		{
+			// Flashbang
+			// Blind, possibly Stun attack
+			output("One of the drones pulls a small, cylindrical grenade from its slender steel hip and lobs it at the pair of you!");
+
+			if(aim()/2 + rand(20) + 6 > target.reflexes()/2 + 10 && !target.hasStatusEffect("Blinded") && !target.hasBlindImmunity())
+			{
+				CombatAttacks.applyBlind(target, 3);
+				if(target is Anno) output(" Anno wasn’t able to avoid it in time as the flash grenade goes off with a deafening BANG, leaving her <b>blinded</b>!");
+				else output(" You aren’t able to shield yourself in time as the flash grenade goes off with a deafening BANG, leaving you <b>blinded</b>!");
+			}
+			else
+			{
+				if(target is Anno) output(" Anno" + (target.accessory is FlashGoggles ? "’s goggles cover her eyes" : " looks away") + " just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+				else output(" You" + (target.accessory is FlashGoggles ? "r goggles" : "") + " cover your eyes just in time to avoid the flash as the stun grenade goes off with a deafening BANG!");
+			}
 		}
 	}
 }

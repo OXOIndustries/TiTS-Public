@@ -61,6 +61,16 @@ public function SQDEBUGEscapeSiegWulfe():void
 //	syriQuestEscape();
 }
 
+public function SQDebugValues():void
+{
+	output(chars["SYRI"].analCapacity() + "\n\n");
+	output(pc.cockVolume(0) + "\n\n");
+	output(pc.cockVolume(1) + "\n\n");
+	output(pc.cockVolume(2) + "\n\n");
+	output(pc.cockVolume(3) + "\n\n");
+	output(pc.cockThatFits(2) + "\n\n");
+}
+
 public function syriAtFreeezer():Boolean
 {
 	if ((syriQuestRunning() && flags["SYRIQUEST_STATE"] == 1) || syriQuestComplete()) return true;

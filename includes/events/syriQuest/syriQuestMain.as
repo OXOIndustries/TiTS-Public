@@ -10,11 +10,17 @@ import classes.Characters.DrCalnor;
  * 										6 = Valden has a body
  * 										see SYRIQUEST_RESOLUTION for the end results
  * SYRIQUEST_LOCK_BYPASS				-1 = failed at hacking, 1 = hacked, 2 = stealthed
- * SYRIQUEST_POWER_STATE				0 = off, 1 = on, 2 on (but too high)
+ * SYRIQUEST_POWER_STATE				0 = off, 1 = on, 2 on (overload)
  * SYRIQUEST_ELEVATOR_STATE				0 = nothing, 1 = entered elevator, 2 = unlocked lab access
  * SYRIQUEST_DATA_STOLEN				1 = stole data from the archives
+ * SYRIQUEST_CALNOR_TALK_VALDEN			unlocks talk options
+ * SYRIQUEST_CALNOR_TALK_HELP_HIM			unlocks talk options
+ * SYRIQUEST_WARP_LAB_UNLOCKED			0 = locked, 1 = entered the lab
  * SYRIQUEST_VALDEN_BODY_CHOICE			1 = Calnor, 2 = Bimbo Wolfe, 3 = normal Wolfe
- * SYRIQUEST_RESOLUTION					-1 = never accepted the quest, 1 = killed Valden (didnt tell Syri), 2 = killed Valden and told Syri, 3 = helped Valden (see SYRIQUEST_VALDEN_BODY_CHOICE for more info)
+ * SYRIQUEST_RESOLUTION					-1 = never accepted the quest
+ * 										1 = killed Valden (didnt tell Syri)
+ * 										2 = killed Valden and told Syri
+ * 										3 = helped Valden (see SYRIQUEST_VALDEN_BODY_CHOICE for more info)
  * SYRIQUEST_SYRI_ONAHOLE				undefined = never found it, 1 = found it, 2 = gave it to Syri
  * SYRIQUEST_POST_GAME_TALK_PENIS		1 = talked about Valden, 2 = talked about Syris cock, 3 = talked about Syris cock sleeve
  * SYRIQUEST_POST_GAME_TALK_LOVE		1 = told her love her, 2 = stay friends
@@ -146,6 +152,28 @@ public function showAkkadiSecBots():void
 	showName("SECURITY\nROBOTS");
 //	showBust("SECURITY_ROBOTS");
 	showBust("DROID_SECURITY");
+}
+
+public function myrraCapacity():Number
+{
+	return 300;
+}
+
+public function syriQuestBurtsBlubt():void {
+	clearOutput();
+	userInterface.showName("\nBURT");
+	userInterface.showBust("BURT");
+	author("Savin");
+	output("As you enter Burts, you quickly realize there's something missing from the familiar halls of the tavern. Or some<i>one</i>, more accurately. The gaming setup has been almost entirely pulled down from the walls, and there no sign of your raven-haired player two anywhere at all. Odd, considering Syri's near-constant occupation of the meadhall -- indeed, she's here so frequently that you always had a hard time believing she actually had a job.");
+	output("\n\n<i>“Oh, [pc.name],”</i> Burt says, waving you over. <i>“C'mere a second.”</i>");
+	output("\n\nYou saunter over to the bar in time for Burt to finish cleaning the stein he was working on and flick his rag up over his arm. <i>“Guess you're lookin' for somebody, right?”</i>");
+	output("\n\nYou nod.");
+	output("\n\n<i>“Yeah, figured. Pyrite's contract up in the foothills is out, and they're packing up shop. Letting workers go. Syri was in a bit ago, swearing up a storm, and grumped off with her console. Haven't seen her since. Ask me, she's out of a job. Probably moved on.”</i>");
+	output("\n\n... Oh. She could have sent you an email, at least.");
+	flags["SYRIQUEST_STATE"] = 0;
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function syriQuestInitialEncounter():Boolean {
@@ -576,8 +604,8 @@ public function syriQuestJobInterviewFlirt():void {
 	processTime(15);
 	clearMenu();
 	addButton(0,"Get Plowed",syriQuestJobInterviewGetPlowed,undefined,"Get Plowed","Syri's fine right where she is... with free access to your [pc.asshole].");
-	if (pc.hasCock()) addButton(1,"Spitroast",syriQuestJobInterviewSpitroast,undefined,"Spitroast","Pull the huskar babe onto the desk, and go at her from both ends.");
-	else addDisabledButton(1,"Spitroast","Spitroast","You need a penis for this.");
+	if ((pc.hasCock() && pc.cockThatFits(myrraCapacity()) >= 0) || pc.hasHardLightEquipped()) addButton(1,"Spitroast",penisRouter,[syriQuestJobInterviewSpitroast,myrraCapacity(),true,0],"Spitroast","Pull the huskar babe onto the desk, and go at her from both ends.");
+	else addDisabledButton(1,"Spitroast","Spitroast","You need a fitting penis or a strap-on for this.");
 }
 
 public function syriQuestJobInterviewGetPlowed():void {
@@ -585,7 +613,7 @@ public function syriQuestJobInterviewGetPlowed():void {
 	showName("SYRI &\nMYRRA");
 	showBust(syriBustDisplay(true),myrraBustDisplay(true));
 	author("Savin");
-	output("\n\n<i>“I like you back there,”</i> you tell her, wiggling your hips against the distinct bulge forming her pants.");
+	output("<i>“I like you back there,”</i> you tell her, wiggling your hips against the distinct bulge forming her pants.");
 	output("\n\nYou hear Syri laughing, and the heavy <i>thunk</i> of her pants dropping to the ground. In the same moment, you feel a thick, throbbing shaft of hot cockflesh dropp into the crack between your cheeks. Something warm and wet splats across it, drooling off Syri's dick and onto the ring of your [pc.asshole], smeared across it by the ausar's pointy prickhead.");
 	output("\n\nYour heart jumps in your chest, fluttering with anticipation as the knotty shemale drags her cock back through your crack, aligning her tapered tip with your [pc.asshole]. Practically trembling with buttlust, you bury your head deep into Myrra's cleavage, using her tits like the huge, bouncy pillows they are and nibbling on her nipples until you feel that wonderful, swelling pressure start pushing in on your backside.");
 	output("\n\n<i>“I'd say 'bite the pillow,' but it looks like you're way ahead of me,”</i> Syri growls, slapping your ass and settling her hands on your hips, holding you nice and steady. <i>“Hey Myrra, how high's 'Can [pc.heShe] take a dick' on your little list? Cuz [pc.name] here's a god-damn professional.”</i>");
@@ -621,7 +649,7 @@ public function syriQuestJobInterviewGetPlowed():void {
 	addButton(0,"Next",syriQuestJobInterviewOutro);
 }
 
-public function syriQuestJobInterviewSpitroast():void {
+public function syriQuestJobInterviewSpitroast(x:int):void {
 	clearOutput();
 	showName("SYRI &\nMYRRA");
 	showBust(syriBustDisplay(true),myrraBustDisplay(true));
@@ -639,25 +667,24 @@ public function syriQuestJobInterviewSpitroast():void {
 	output("\n\nThe ravenette shemale leans in, tightening her grip on the pale huskar. One of her hands slips down between her legs, and you're treated to the sight of Myrra's whole voluptuous body tensing, quivering with anticipation. <i>“And are you?”</i> Syri asks breathily, pumping her arm down between Myrra's meathy thighs.");
 	output("\n\n<i>“How 'bout you open that drawer and find out?”</i>");
 	output("\n\nOne of Myrra's feet claw at a drawer, guiding Syri to open it up, reach inside, and pull out a little bottle of lube. Syri grins, showing her fangs as she pops the bottle open and dumps the contents onto her dick, smearing it across her throbbing red dogflesh and Myrra's belly where it's resting.");
-	output("\n\nWhile they're getting ready, you figure it's about time for you to take advantage of the huskar's plump lips and big, wet tongue. You plant your hands on Myrra's huge breasts, pushing her back down on the desk so that her mouth is more or less level with your crotch. She blinks up at you, then licks her lips as her big blue eyes settle on your [pc.cock].");
+	output("\n\nWhile they're getting ready, you figure it's about time for you to take advantage of the huskar's plump lips and big, wet tongue. You plant your hands on Myrra's huge breasts, pushing her back down on the desk so that her mouth is more or less level with your crotch. She blinks up at you, then licks her lips as her big blue eyes settle on your " + pc.cockDescript(x) + ".");
 	output("\n\n<i>“That looks tasty,”</i> she moans, reaching up and wrapping her hands around your shaft. <i>“Can I give it a kiss?”</i>");
-	output("\n\nYou nod and shift your hips, planting your [pc.cockHead] directly over Myrra's mouth. She puckers up, planting a wet kiss directly on the crown of your cock, flicking her tongue around your cumslit until she milks out the first little leak of watery [pc.cumColor]. The way she moans hungrily, you don't doubt she'd be content to make out with your dick for a good long while, but your wing-dickgirl's got your back: she's been busy aligning the tip of her bitch-stick to Myrra's asshole. Giving you both a wink, Syri pushes forward with a slow but inexorable thrust. The huskar's mouth snaps open in a hoarse cry of pleasure, which you quickly silence with your own dick, thrusting down into her mouth. Myrra's tongue grazes the underside of your shaft as you pump down the tight tunnel of her throat, filling her with every inch of your dick");
+	output("\n\nYou nod and shift your hips, planting your " + pc.cockHead(x) + " directly over Myrra's mouth. She puckers up, planting a wet kiss directly on the crown of your cock, flicking her tongue around your cumslit until she milks out the first little leak of watery [pc.cumColor]. The way she moans hungrily, you don't doubt she'd be content to make out with your dick for a good long while, but your wing-dickgirl's got your back: she's been busy aligning the tip of her bitch-stick to Myrra's asshole. Giving you both a wink, Syri pushes forward with a slow but inexorable thrust. The huskar's mouth snaps open in a hoarse cry of pleasure, which you quickly silence with your own dick, thrusting down into her mouth. Myrra's tongue grazes the underside of your shaft as you pump down the tight tunnel of her throat, filling her with every inch of your dick");
 	if (pc.balls > 1) output(" until your [pc.balls] are resting against her forehead");
 	output(".");
-	output("\n\nSpeared from both ends, Myrra writhes on the desk, arching her back and grabbing at the succulent mounds of her breasts. One of her hands delves down to rub the neglected mound of her vulva, plugging her one remaining open orifice with a pair of fluffy fingers. You can feel her throat clenching around your girth, squeezing hard around your cock until you pull back, giving the busty babe a much-needed break for breath. Your [pc.cock] comes away slathered in spit, bridged to her lips by trembling ropes that glisten in the office lights.");
+	output("\n\nSpeared from both ends, Myrra writhes on the desk, arching her back and grabbing at the succulent mounds of her breasts. One of her hands delves down to rub the neglected mound of her vulva, plugging her one remaining open orifice with a pair of fluffy fingers. You can feel her throat clenching around your girth, squeezing hard around your cock until you pull back, giving the busty babe a much-needed break for breath. Your " + pc.cockDescript(x) + " comes away slathered in spit, bridged to her lips by trembling ropes that glisten in the office lights.");
 	output("\n\nHungry slut that she is, Myrra's already panting your name before she's caught her breath, pawing at your thighs and moaning with lust -- or maybe that's from feeling Syri's dick spearing into her ass, deep enough that her whole body jiggles with the impact of knot against assflesh. Syri's grunting too, digging her claws into the huskar's breeder hips and thrusting herself deep in Myrra's ass.");
 	output("\n\n<i>“God damn, this ass is sweet,”</i> Syri growls, pumping her hips a little faster. <i>“Makes me wanna... wanna...”</i>");
 	output("\n\n<i>“Don't you dare!”</i> Myrra yelps, grabbing Syri by the wrist. <i>“I've gotta sit down all day!”</i>");
 	output("\n\nSyri grins, reaching across and sinking her fingers into one of Myrra's breasts. <i>“Well, where am I supposed to blow this load then? You got about... ten seconds... to decide.”</i>");
-	output("\n\nFor such a big girl, Myrra moves fast when she wants to. The pudgy puppy rolls off the desk and onto her knees, wrapping her fingers around your [pc.cock] and Syri's on either side of her. Her tits bounce and jiggle obscenely as she settles into place, slurping on your [pc.cockHead] while she jerks Syri's throbbing shaft. Syri was pretty damn close on her promise, it turns out, and Myrra's barely gotten situated before you see the shemale's knot bulge between Myrra's fingers, and then thick ropes of white spurt out across the huskar's cheeks.");
+	output("\n\nFor such a big girl, Myrra moves fast when she wants to. The pudgy puppy rolls off the desk and onto her knees, wrapping her fingers around your " + pc.simpleCockNoun(x) + " and Syri's on either side of her. Her tits bounce and jiggle obscenely as she settles into place, slurping on your " + pc.cockHead(x) + " while she jerks Syri's throbbing shaft. Syri was pretty damn close on her promise, it turns out, and Myrra's barely gotten situated before you see the shemale's knot bulge between Myrra's fingers, and then thick ropes of white spurt out across the huskar's cheeks.");
 	output("\n\nMyrra gasps, then giggles as steamy streaks of cream splatter her face, then start dropping down onto her tits. For her part, Syri shudders and grabs the desk for support, weakly thrusting her hips against the tight grip of the lusty huskar's hand. Her knot twitches, trying to bury itself into Myrra's fist. All it accomplishes is making more cockmilk leak out onto Myrra's tits.");
-	output("\n\nWhile Syri's busying blowing her load, the huskar's attention turns back to you, focusing those big blue eyes on your [pc.cock]. She lets her tongue play across your glans, circling your crown before she slurps down the first inches of dickmeat. After the first oral session, you're already on edge: it doesn't take long for the hungry moans and slurping sucks coming from down low to make your [pc.cock] throb with urgent need, swelling in Myrra's mouth. ");
+	output("\n\nWhile Syri's busying blowing her load, the huskar's attention turns back to you, focusing those big blue eyes on your " + pc.cockDescript(x) + ". She lets her tongue play across your glans, circling your crown before she slurps down the first inches of dickmeat. After the first oral session, you're already on edge: it doesn't take long for the hungry moans and slurping sucks coming from down low to make your " + pc.simpleCockNoun(x) + " throb with urgent need, swelling in Myrra's mouth. ");
 	if (pc.balls > 1) output("She squeezes your balls, massaging the churning orbs to help the impending eruption along. ");
 	output("You let one of your hands play across her silky silver hair, urging Myrra down the remaining length so that you're fully buried in her throat when the inevitable orgasm finally hits.");
-	output("\n\nThe first wave of [pc.cum] shoots straight down Myrra's throat. Her eyes go wide, and you hear a husky moan around your dick as she drinks down your spunk -- the first few spurts, at any rate. After that, though, she rears her head back, dragging your spasming rod out between her plush lips and lets your [pc.cock] fall into her hands, shooting the rest of the load across her tits and the mane of fur around her neck.");
+	output("\n\nThe first wave of [pc.cum] shoots straight down Myrra's throat. Her eyes go wide, and you hear a husky moan around your dick as she drinks down your spunk -- the first few spurts, at any rate. After that, though, she rears her head back, dragging your spasming rod out between her plush lips and lets your " + pc.cockNounComplex(x) + " fall into her hands, shooting the rest of the load across her tits and the mane of fur around her neck.");
 	output("\n\n<i>“Oh, pearl necklace! How sweet!”</i> Myrra giggles, licking an oozing drop of [pc.cumColor] off one of her claws. <i>“You sure know how to state your... qualifications... [pc.name]. I think you'll be an excellent fit here at Haskarn's.”</i>");
 	output("\n\n<i>“Well that's a relief,”</i> Syri sighs, slumping down into Myrra's office chair. After a moment, she gets a clever little grin and pats her thigh, beckoning Myrra over. <i>“Why don't you sit down on my lap and we can finish up that application...”</i>");
-
 	pc.orgasm();
 	chars["SYRI"].orgasm();
 	processTime(30+rand(15));
@@ -665,10 +692,10 @@ public function syriQuestJobInterviewSpitroast():void {
 	addButton(0,"Next",syriQuestJobInterviewOutro);
 }
 
-public function syriQuestJobInterviewOutro(PostSex:Boolean = true):void {
+public function syriQuestJobInterviewOutro(postSex:Boolean = true):void {
 	clearOutput();
 	author("Savin");
-	if (PostSex) {
+	if (postSex) {
 		showName("SYRI &\nMYRRA");
 		showBust(syriBustDisplay(),myrraBustDisplay());
 		output("<i>Some time, a little more hands-on interviewing, and one completed application later...</i>");
@@ -742,8 +769,8 @@ public function syriQuestLockBypass():void {
 	showLocationName();
 	author("Savin");
 	output("You crouch down next to one of the electronic locks and start fiddling around. You've only got a few seconds to work before everyone's attention turns to you -- enough for ");
-	if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output("36");
-	else output("27");
+	if (pc.characterClass == GLOBAL.CLASS_ENGINEER) output("20");
+	else output("15");
 	output(" rewires.");
 
 	generateMap();
@@ -769,14 +796,14 @@ public function syriQuestLockBypassMinigame():void
 	gm.setFailablePuzzleState(
 		syriQuestLockBypassSuccess, 
 		syriQuestLockBypassFailure, 
-		RotateMinigameModule.MAX_MOVES, (pc.characterClass == GLOBAL.CLASS_ENGINEER) ? 36 : 27,
+		RotateMinigameModule.MAX_MOVES, (pc.characterClass == GLOBAL.CLASS_ENGINEER) ? 20 : 15,
 		5, 5, 
 	[
 		g | s    ,	i | n | e,	l        ,	i | n | e,	g | s    ,
-		i | s | w,	i | n | w,	i | n | e,	i | n | s,	i | s | e,
-		i | n | w,	i | s | e,	g | n | s,	i | s | e,	i | n | s,
-		i | e | w,	l        ,	i | n | w,	i | s | w,	i | s | w,
-		i | n | w,	g | w | e,	i | n | s,	i | e | s,	i | e | w    
+		i | s | e,	i | s | w,	i | n | w,	i | n | s,	i | n|e|w,
+		i | n | w,	i | n | e,	g | n | s,	i | s | e,	i | n | s,
+		i | e | w,	l        ,	i | n | w,	i | s | e,	i | n | e,
+		i | n | e,	g | w | e,	i | n | s,	i | e | s,	i | e | w    
 	]);
 }
 
@@ -927,6 +954,143 @@ public function syriQuestEnterAkkadiBase2():void {
 	mainGameMenu();
 }
 
+public function syriQuestTorraFight():void
+{
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(new Torra());
+	CombatManager.displayLocation("ASSISTANT\nRESEARCHER");
+	CombatManager.victoryScene(syriQuestTorraVictory);
+	CombatManager.lossScene(syriQuestTorraDefeat);
+	CombatManager.encounterTextGenerator(syriQuestTorraFightText);
+	CombatManager.beginCombat();
+}
+
+public function syriQuestTorraFightText():String
+{
+	var eText:String = "";
+	eText += "You're fighting the Milodan Researcher!";
+	eText += "\n\nShe's a tall furry woman with the ears and colors of a snow leopard. Her figure is the very definition of fertile: she has broad hips, thick thighs, and a thin waist. And her breasts, well, they're <i>beyond</i> fertile: the huge, succulent mounds sit high and heavy on her chest, each capped with a prominent black teat. She's well beyond an H-cup, if they even make bras big enough to contain such mammalian magnificence. She's unarmed, save for the razor-like feline claws protruding from her digits, and the meaty black vibrater lodged inside her. That's a kind of weapon, right?";
+	
+	return eText;
+}
+
+public function syriQuestTorraDefeat():void
+{
+	CombatManager.genericLoss();
+	var x:int = -1;
+	if (pc.hasCock()) x = pc.cockThatFits(chars["TORRA"].vaginalCapacity());
+	syriQuestTorraFuck(x);
+}
+
+public function syriQuestTorraFuck(x:int):void
+{
+	clearOutput();
+	showTorra(true);
+	author("Savin");
+	output("Before you can blink, the milodan matron is on you, ");
+	if (pc.isNude()) output("tearing your clothes away with her claws and ");
+	output("pressing her dark lips to yours. Her hands run roughly over your body, groping and squeezing every inch of tender flesh they lay bare. When they find your own hands, the milodan woman grabs them fiercely, guiding them to her broad hips and plush ass. Even in her state, she wants you to be an active participant, urging you to grope and hold her in return while she slakes her rampant lusts on your yielding body.");
+	output("\n\nHer overbearing sensual assault quickly leaves you scrambling backwards, trying to gain purchase on the slick metal floor. Her huge, furry breasts press against your [pc.chest] as your back hits the wall, pinning you between unrelenting metal and soft, supple titflesh.");
+	output("\n\n<i>“Need to... need to... need to...”</i> the cat-woman huffs, sniffing and groping at you. One of her hands wanders between your [pc.legs], grabbing at your crotch.");
+	if (pc.hasCock() && x != -1) output("\n\n<i>“Ah, yes! Good!”</i> she mewls, wrapping her fluffy fingers around your " + pc.cockDescript(x) + ". <i>“Need this... so bad. Can barely think!”</i>");
+	else output("\n\n<i>“What -- no breeding rod?”</i> she huffs, squeezing your crotch. <i>“Noooo I need to </i>breed<i>!”</i>");
+	output("\n\nHer grip on your tightens, pushing you towards the ground; you slide down the wall, splaying your [pc.legs] while the milodan's hands grope all over your body, exploring every inch as she tears you out of your [pc.gear]. All the while you can hear the ever-present purr of her vibrator buzzing away inside her, making the science-slut pant and gasp as she works. Her nipples are rock hard, every breath pushing the jutting black mountains of pleasure into your face. You manage to wrest your hands free through her frantic stripping and grab the kitty's big titties, hard enough to make her howl in pleasure. Her fluffy tail thumps hard against your [pc.leg], silent encouragement to keep kneading her nipples until she's able to grind her dripping slit against your " + (pc.hasGenitals() ? "[pc.cockOrVag]" : "thigh") + ".");
+	if (pc.hasCock() && x != -1) {
+		output("\n\nThe horny cat-woman purrs hungrily, straddling your hips and pressing your puffy puss against your rock-hard cock. She thrusts herself down on you the moment you're lined up, spearing herself on your " + pc.cockNounComplex(x) + " with a howl of bliss that echoes throughout the base. You yourself are busy gritting your teeth as her claws rake your [pc.skinFurScales], pinning you against the wall while the kitty starts to ride you.");
+		output("\n\nIt takes you a moment to realize some of the gripping, writhing pleasure encasing your cock isn't just from her needy cunt. The vibrator knotted in her ass is buzzing away so hard that you can feel it perfectly through her inner walls; the knot is right next to your " + (pc.hasKnot(x) ? "own knot" : "dick's base") + ", sending waves of pleasure up your shaft and back to your [pc.balls]. Fuck that feels good!");
+		output("\n\nNot as good as your sexual assailant riding you full throttle, though. The vibrator's just the garnesh to top off the squeeze of her cunt and the flow of orgasmic juices as the rods inside her bring the milfy kitty to climax again. And again. And again. She's a relentless fuck-machine, pounding down on your pelvis through a dozen screeching orgasms. ");
+		output("\n\nOnly after so many climaxes is she able to focus enough to form a few cogent words: <i>“C-cum for me. Please, stranger, oh please! I neeeeed it!”</i>");
+		output("\n\nYou couldn't resist her if you tried; your " + pc.cockNounComplex(x) + " is already on the edge inside her, throbbing with a desperate need for release between the cumsoaked lips of her pussy. ");
+		if (pc.hasKnot(x)) output(" With one last surge of energy, your body responds to an instinctual demand: you thrust your [pc.hips] forward, driving your " + pc.knotDescript(x) + " into her cunt's embrace before you join her in orgasm. ");
+		output("You grit your teeth and grab the bouncing slut's plush bosom, shoving her down to the hilt on your dick before your load blows inside her, filling her hungry cunt with [pc.cumNoun].");
+		output("\n\nThe milodan slut cries with pleasure as you fill her up, sating her desperate need to breed. Her body goes limp as the aftershots of your orgasm leak into her, pushing her chest into yours and resting her cheek against your [pc.face]. For whatever reason, when she slumps forward you can feel the vibrator that's been going full-blast inside her slow down, decelerating to a steady thrum. You didn't touch anything... wonder what triggered it to turn down?");
+		output("\n\nEither way, you squirm around until you can hook your hands under the milodan's ass and ");
+		if (pc.hasKnot(x)) output("roll the two of you over, putting the tuckered-out kitty on bottom while you wait for you knot to deflate. It takes a while, especially with the vibe still buzzing through her pussy walls, but eventually you manage to wriggle free. Cum pours out of her plump puss as you stand up.");
+		else output("pull her off your dick, letting loose a little stream of cum from her soaked snatch as you set her down.");
+		output(" You get your gear and turn to the task at hand.");
+	}
+	else {
+		output("\n\nShe's a beast, obsessed with nothing but her own pleasure, sliding her drooling pussy against your thigh with single minded desire. Her breath comes hot and ragged against your bare [pc.skinFurScales], and her heavy breasts bouncing and rub against your [pc.chest]. A few moments of that and you start feeling a strange tingle working up your [pc.skin] where her glowing green piercings are rubbing against your flesh.");
+		output("\n\nIs that <i>savicite</i>!? No wonder she's so lust-addled! You squirm, trying to distance yourself from the psionic stones, but your struggling just makes the milodan shove herself against you, trying awkwardly to hold you down and trib with you. Her grip's strong and firm, keeping you pinned right where she wants you until the lust-fueling piercings have you panting, flushed with unbidden need.");
+		output("\n\n<i>“You feel it too?”</i> the kitty purrs, flicking her tongue on your neck. <i>“You need it?”</i>");
+		output("\n\nYou want to resist, to push her off and tell her no... but your body is much more honest, stiffening your [pc.nipples] and making your loins ache with desire. You can't stop your hands from wandering, grabbing at the cat-woman's ass and urging her legs to press into your crotch, and with a little effort, you adjust your positions so that your legs are splayed together and each of you has your arms behind you, supporting the undulation of your hips grinding against each other.");
+		output("\n\nThat's more like it! Her fur is like the softest silk against your " + (pc.hasVagina() ? "twat" : "bare groin") + ", and the slightest touch makes you shiver uncontrollably with carnal pleasure. You get more than a gentle caress, though: the milodan is eager to get back to work, shaking her hips with desperate desire the moment she can resume her lurid work. You watch has her huge, pierced tits bounce with every thrust, and feel her plush ass grinding against your [pc.leg], jiggling obscenely with the weight of her matronly curves. Her pussy's a mess of girl-cum and desire, lubricating its own lurid motions.");
+		output("\n\nLittle whines of pleasure escape your assailant's muzzle, and her movements quickly become more frantic. She's so wet and loud already that it's hard to know when exactly her orgasm hits, but the growing puddle of fem-cum beneath your [pc.leg] and the ragged gasps as she slumps backwards sure give you a hint when it's over. She only stays passive for a moment, long enough to catch your breath, before she thrusts her hips up and starts moving again with the same bestial determination.");
+		output("\n\nYou can barely keep up with her! The milodan is as fast as a Terran tiger when she wants to be, and she <i>definitely</i> wants to use that speed to get you off. She's cum at least once, maybe more, and now her attention seems to have focused entirely on your groin, rubbing her pussy against your " + (pc.hasVagina() ? "[pc.cunt], grinding on your [pc.clit]" : "sensitive-but-bare crotch") + ". You can only imagine that what you're feeling now is a fraction of what her savicite-laden body is enduring, an overwhelming, crushing pleasure that threatens to drown out your remaining composure in bliss despite your weakening will's best efforts. You can't help but thrust back against the needy cat-girl, eeking out more friction on your " + (pc.hasVagina() ? "[pc.clit]" : "groin") + " from her wiggling hips and juicy twat.");
+		output("\n\n<i>“That's it!”</i> the kitty growls, matching your movements point for point. <i>“I knew you had it in you. Come on... come on! Cum with me!”</i>");
+		output("\n\nNot like you have much choice by this point, your body's already so close to the edge. You grab the slut's foot and squeeze, the closest thing to an acknowledgement you can muster before you feel the fires of lust burning over in your loins, and your skin feels alight with ecstasy. Your scream of pleasure echoes off the sterile walls of the facility's corridors. ");
+		output("\n\nWhen your body-rocking climax finally passes, you're left sliding onto your back drenched in femcum and sweat. The milodan whimpers and grabs at the vibrator still lodged in her ass, pushing it in deeper until even its massive knot has almost vanished inside her and geysers of girl-cum are squirting from her much-abused puss. Even when you manage to disentangle yourself, she just keep fucking away, rubbing her clit and pumping the vibe in her ass until you've gathered your gear and turned on your way.");
+	}
+	pc.orgasm();
+	chars["TORRA"].orgasm();
+	processTime(30);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function syriQuestTorraVictory():void
+{
+	clearOutput();
+	showTorra();
+	author("Savin");
+	
+	if(CombatManager.getHostileActors()[0].HP() <= 0)
+	{
+		output("The over-eager milodan whines and slumps onto a knee, trying to keep coming at you but unable to maintain her footing. Finally, she collapses backwards with a pathetic whine. <i>“P-please,”</i> she moans, grabbing the base of the vibrator lodged in her ass. <i>“I'm sorry! But I need it so bad. Please!”</i>");
+	}
+	else
+	{
+		output("<i>“Whyyy,”</i> the milodan whines, falling onto her knees. <i>“You want it! I <b>need</b> it! Please, please, please fuck me! I can't stand it anymore.”</i>");
+	}
+	output("\n\nWhat are you going to do with this lusty kitten?\n\n");
+
+	CombatManager.genericVictory();
+	processTime(3);
+	clearMenu();
+	if (pc.hasCock() && pc.cockThatFits(chars["TORRA"].vaginalCapacity()) >= 0) addButton(0,"Pound Puss",penisRouter,[syriQuestTorraPoundPuss,chars["TORRA"].vaginalCapacity(),false,0],"Pound Puss","Take this curvy catgirl to the pound.");
+	else addDisabledButton(0,"Pound Puss","Pound Puss","You need a fitting penis for this.");
+	addButton(1,"Leave",syriQuestTorraLeave,undefined,"Leave","Go away, cat.");
+}
+
+public function syriQuestTorraPoundPuss(x:int):void
+{
+	clearOutput();
+	showTorra(true);
+	author("Savin");
+	output("Now that the overly-amorous fuck-kitten has been put in her place, maybe you can see about relieving the overwhelming lust wracking her body. You stride forward, shedding your [pc.gear] as you go and cupping the lusty cat's cheeks. She whimpers, stroking her pussy with one hand and using the other to paw pleadingly at your crotch. Her fingers are drawn straight to your " + pc.cockDescript(x) + ", wrapping around your stiffening member and pumping her wrist up and down your length until your " + pc.cockHead(x) + " is pressing against her dark lips.");
+	output("\n\n<i>“Get me ready,”</i> you command her. She needs dick too badly to even think of resisting your instructions, no matter that you're delaying her release -- the threat of getting nothing is too great. She opens wide and wraps her black lips around your crown, running her tongue around your glans and through your slit, letting you take charge of thrusting deeper into her mouth. While you're busy slamming your " + pc.knotDescript(x) + " against her nose, her hands fall away from you and slip down to her poor neglected puss. She shoves a few fingers in, stirring herself up while the other hand grips the knotted dildo in her ass and shifts it side to side, creating a staccato rhythm that quickly brings a howling climax ripping through her body. The kitty slut's pussy leaks a pool of girl-cum between her legs, and her oversized tits heave with the aftershocks of orgasm.");
+	output("\n\nThe orgasm doesn't even slow her down.");
+	output("\n\nShe keeps sucking, bobbing her head up and down your rod until your entire " + pc.cockNounComplex(x) + " is sheathed in spittle. Only then do her lips release you, letting you smear them with pre as you pull out.");
+	output("\n\n<i>“You're gonna fuck me, right?”</i> she pleads, groping at her titties. <i>“I need it so bad!”</i>");
+	output("\n\nOf course you are... but you don't mind stringing her along a little. You take your time stroking yourself and circling around behind the kneeling milodan, running a hand through her messy red hair before grabbing her shoulders and pushing her forward onto all fours. The naked cat gasps, but in the same breath raises her fluffy grey tail to expose her plugged ass and drooling gash.");
+	output("\n\nThat's what you like to see. You slink down on your [pc.knees] and throw the kitty's tail over your shoulder, letting your " + pc.cockDescript(x) + " flop into the fluffy trench between her fat asscheeks. Your " + pc.cockHead(x) + " rubs against the sex toy buried in her tailhole, feeling the rapid vibrations assaulting her insides. Damn, that thing's turned up <i>high</i>! Between that and all the savicite piercings... no wonder the cat-babe's so lust-addled. She probably can't put two thoughts together with all that ecstacy running through her.");
+	output("\n\nWell, she doesn't need to think much to take a dick, does she? You rock your [pc.hips] back and push the crown of your cock into the thick, wet lips of her pussy; your member pushes the curtains of her sex apart, letting loose a trickle of pent-up femcum that lubes you up to a nice shine in the harsh office lights. Setting your hands on the kitty-slut's broodbearing hips, you thrust yourself deep inside her sodden depths. Her constantly lurid moans peak into a husky wail of orgasmic delight as your " + pc.simpleCockNoun(x) + " sinks into her, delving the dank depths of her quivering quim until your " + pc.knotDescript(x) + " is throbbing between her pussylips. ");
+	output("\n\nIt's shockingly easy to sink your dick into the milodan's twat, but she makes you fight for every inch you try and pull out of her. For such a " + (silly ? "<i>thicc</i>" : "plush") + " slut, this kitten's got a hell of a lot of muscle between her legs, and she's using every bit of pussy-power to keep you trapped inside her. The vibrator up her ass kicks into overdrive of its own accord, starting to buzz so violently that you can see it twisting around inside her -- and you can feel it, too, sending vibrations right through the walls of her pussy and into your " + pc.cockNounComplex(x) + ". Stars, that thing really must be driving her mad! Lest it do the same to you, you dig your fingers into the kitten's plush rump and leverage it to slowly, laboriously drag your " + pc.simpleCockNoun(x) + " back out of her cunt's wet embrace. Her twat clenches and grips in random spasms of orgasmic pleasure, leaking lube and your own pre back out around your slowly-pistoning dick.");
+	output("\n\nEven then, you can still feel the incessant vibrations in your " + pc.cockHead(x) + ", sending shivers down the shaft of your " + pc.cockNounComplex(x) + ". You have to bite your lip to keep from shuddering, gripping the kitten's hips hard until you can muster up the strength to hammer your cock back into her. The milodan slut howls, throwing her head back and cumming hard to your womb-deep thrust. Hot juices flow down your " + pc.cockDescript(x) + ", and her huge tits bounce wildly as you start to properly pound her pussy, in and out despite her clenching resistance.");
+	output("\n\nYou fuck her harder, harder until her voice is a non-stop wail of orgasmic bliss. Her face sinks down into the ground, pushing her ass up into your crotch and wrapping your hips in her fluffy tail. Before long her tits are getting use like big, fluffy pillows under her body, absorbing some of the shock each time your [pc.hips] pound into her thick ass. You're not sure anymore if she's actually having distinct, separate orgasms, one after the other... or if the tigress is just locked in one unending climax so long as you and the vibrator absolutely destroy her holes.");
+	output("\n\nThere's no point in trying to hold back -- you've all but shattered this slut's oversexed senses already. You let your own pleasure rise as it will, milked out by her squeezing cunt and the vibrations echoing through her from the toy firmly wedged inside her. When you feel [pc.cum] rising in your loins, burning its way towards the cat-woman womb, you're almost relieved to feel it coming. With a feral grunt, you hilt yourself in the sodden pussy and let loose, pumping a fat wad of [pc.cum] right into her deepest depths. The milodan squeals in delight, clawing at the ground and battering you with her tail until you've blown the entirety of your load into her spasming quim.");
+	output("\n\nWhen you've finished filling her cunt with your [pc.cum], you start to notice something feels... different. A quick press against the vibe in her ass tells you what's up: whatever has been controlling the toy seems satisfied now that she's gotten a load right inside. The vibrator's turned itself down to a pleasant rumble, just enough to keep the woman moaning softly as she basks in the afterglow.");
+	output("\n\nYou slowly pull out, letting a waterfall of fem-spunk and [pc.cum] spill out onto her thighs, and go to find your gear...");
+	pc.orgasm();
+	chars["TORRA"].orgasm();
+	processTime(30);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function syriQuestTorraLeave():void
+{
+	clearOutput();
+	showTorra();
+	author("Savin");
+	output("You put your hand on the milodan's face and push her back. She yelps and flops onto her ass, legs splayed around the buzzing dildo lodged inside her. You ignore her, and she's powerless to do anything about it but sit there and masturbate.");
+	output("\n\nTime to find Valden.");
+	processTime(3);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
 public function syriQuestAkkadiBaseStarshipLabInvestigate():void
 {
 	clearOutput();
@@ -951,12 +1115,13 @@ public function syriQuestAkkadiBaseStarshipLabInvestigate():void
 	if (pc.isMischievous()) output("\n\nMelodramatic much?");
 
 	pc.credits += 50,000;
+	processTime(15);
 	clearMenu();
 	addButton(0,"Talk",syriQuestAkkadiBaseStarshipLabTalk,undefined,"Talk","Trade some words with the doctor before you trade blows.");
-	addButton(1,"Fight",syriQuestAkkadiBaseCalnorInitiateFight,undefined,"Fight","You're not letting this old hound get between you and rescuing Valden.");
+	addButton(1,"Fight",syriQuestCalnorInitiateFight,undefined,"Fight","You're not letting this old hound get between you and rescuing Valden.");
 }
 
-public function syriQuestAkkadiBaseCalnorInitiateFight():void
+public function syriQuestCalnorInitiateFight():void
 {
 	clearOutput();
 	showCalnor();
@@ -967,36 +1132,37 @@ public function syriQuestAkkadiBaseCalnorInitiateFight():void
 	output(".");
 	output("\n\nDr. Calnor growls and readies his staff.");
 
+	processTime(1);
 	clearMenu();
-	addButton(0,"Fight!",syriQuestAkkadiBaseCalnorFight);
+	addButton(0,"Fight!",syriQuestCalnorFight);
 }
 
-public function syriQuestAkkadiBaseCalnorFight():void
+public function syriQuestCalnorFight():void
 {
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(new DrCalnor());
 	CombatManager.displayLocation("DR. CALNOR!");
-	CombatManager.victoryScene(syriQuestAkkadiBaseCalnorFightVictory);
-	CombatManager.lossScene(syriQuestAkkadiBaseCalnorFightBadEnd);
-	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseCalnorFightText);
+	CombatManager.victoryScene(syriQuestCalnorFightVictory);
+	CombatManager.lossScene(syriQuestCalnorFightBadEnd);
+	CombatManager.encounterTextGenerator(syriQuestCalnorFightText);
 	CombatManager.beginCombat();
 }
 
 //Calnor boss (again), but buffed with more HP and Shields from last time.");
-public function syriQuestAkkadiBaseCalnorFight2():void
+public function syriQuestCalnorFight2():void
 {
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(new DrCalnor());
 	CombatManager.displayLocation("DR. CALNOR!");
-	CombatManager.victoryScene(syriQuestAkkadiBaseCalnorFightVictory);
-	CombatManager.lossScene(syriQuestAkkadiBaseCalnorFightBadEnd);
-	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseCalnorFightText);
+	CombatManager.victoryScene(syriQuestCalnorFightVictory);
+	CombatManager.lossScene(syriQuestCalnorFightBadEnd);
+	CombatManager.encounterTextGenerator(syriQuestCalnorFightText);
 	CombatManager.beginCombat();
 }
 
-public function syriQuestAkkadiBaseCalnorFightText():String
+public function syriQuestCalnorFightText():String
 {
 	var eText:String = "";
 	eText += "You're fighting Dr. Raade Calnor, head of the Akkadi Warp Field division.";
@@ -1005,7 +1171,7 @@ public function syriQuestAkkadiBaseCalnorFightText():String
 	return eText;
 }
 
-public function syriQuestAkkadiBaseCalnorFightBadEnd():void
+public function syriQuestCalnorFightBadEnd():void
 {
 	clearOutput();
 	showValden();
@@ -1016,6 +1182,7 @@ public function syriQuestAkkadiBaseCalnorFightBadEnd():void
 	output(", grunts, and brings his staff up.");
 	output("\n\nThe last thing you see is a flash of lightning, accompanied by searing pain... and then nothing at all.");
 
+	processTime(1);
 	CombatManager.genericLoss();
 	badEnd();
 }
@@ -1057,6 +1224,7 @@ public function syriQuestAkkadiBaseValdenFightBadEnd():void
 	output("\n\nHe reaches down into your pack and pulls out your Codex, and with it, all of your credentials: access to your ship, your bank accounts, your life. <i>“Captain of a ship, huh?”</i> he murmurs, flicking through the Codex. All your security seems to have vanished at a touch of his fingers. <i>“Oh, sorry about your dad... hmm, what's this about Syri? Huh. Won't she be surprised to find out you tried to kill me. Don't worry, I'll take good care of her. As for you... goodnight.”</i>");
 	output("\n\nYou don't have time to figure what he means.");
 
+	processTime(10);
 	CombatManager.genericLoss();
 	badEnd();
 }
@@ -1069,10 +1237,11 @@ public function syriQuestAkkadiBaseValdenFightVictory():void
 	output("It's almost anticlimactic how Valden dies. The drone he's inhabiting shudders, spurts smoke and sparks, and then sprawls out on its belly. The last thing you see is a whine from one of its servos as the laser cannon slumps down, resting its barrel on the ground.");
 	output("\n\nThe rest of the drones freeze mid-step, still as rocks.");
 	output("\n\n<i>“Well... that's done it,”</i> Calnor says, picking up his staff. <i>“He's not in the mainframe tank, that's for sure. Poor bastard. Wish it hadn't come to this, but he forced this issue. And you -- consider yourself lucky that Akkadi won't be pressing charges. We'll call all of this even.”</i>");
-	output("\n\n{Misch: Oh, well, you're welcome then. //else: You scowl at Calnor.}");
+	output("\n\n" + (pc.isMischievous() ? "Oh, well, you're welcome then." : "You scowl at Calnor."));
 	output("\n\n<i>“Don't forget, you started this,”</i> the old wolf says. <i>“Now our research has been set back years. Go now. Commander Schora will escort you outside.”</i>");
 	output("\n\nFine. You got what you came here for: answers for Syri. She's not going to like them, but you did what you had to do. Sighing, you turn and stride out of the labs.");
 
+	processTime(5);
 	clearMenu();
 	addButton(0,"Next",syriQuestValdenVictoryAftermath);
 }
@@ -1099,6 +1268,7 @@ public function syriQuestValdenVictoryAftermath():void
 	output("\n\nWhen you make it back to the craft, Syri greets you with a worried look. <i>“Hey! You're back! What's the news, huh? Did you find Valden?”</i>");
 	output("\n\nYeah, about that...");
 	moveTo("AKD C27");
+	processTime(15);
 	clearMenu();
 	addButton(0,"Tell Her",syriQuestSyriTellHer,undefined,"Tell Her","Tell Syri an uncomfortable truth...");
 	addButton(1,"Didn'tFindHim",syriQuestSyriDidntFindHim,undefined,"Didn'tFindHim","Tell Syri a comforting lie.");
@@ -1112,16 +1282,17 @@ public function syriQuestSyriDidntFindHim():void
 	output("<i>“Sorry, Syri,”</i> you say, putting a hand on her shoulder. <i>“It was a bust. No sign of him.”</i>");
 	output("\n\nSyri curses under her breath and slumps her shoulders. <i>“Yeah, I figured it was a prank or some shit. Had to be, right? This whole idea was stupid, I'm sorry I wasted your time. C'mon, let's get you hidden before somebody realizes you aren't supposed to be here.”</i>");
 	output("\n\nYou nod and surreptitiously follow her aboard, back into your hiding place.");
+	processTime(3);
 	clearMenu();
 	addButton(0,"Next",syriQuestSyriDidntFindHimII);
 }
 
 public function syriQuestSyriDidntFindHimII():void
 {
-//	clearOutput();
+	clearOutput();
 	showSyri();
 	author("Savin");
-	output("\n\nA few hours later, you've snuck out of the company landing pad, turned in a resignation by email, and escorted your lovely ausar companion back to the local watering hole. Or ice hole, considering the name.");
+	output("A few hours later, you've snuck out of the company landing pad, turned in a resignation by email, and escorted your lovely ausar companion back to the local watering hole. Or ice hole, considering the name.");
 	output("\n\nSyri's sitting across from you, her good ol' blue navy coat on and a second beer in her hand, already half-emptied. Her tail is sitting in her lap, occasionally twitching when she steals a glance at you between drinks. She hasn't said much, more focused on the drink in her hand or the middle distance than on your anemic conversation.");
 	output("\n\nFinally, after a long bout of silence, Syri slams back the last of her drink and belches, drawing a few disapproving looks from nearby tables. She leans back in her seat, arms resting on the headboard behind her, and sighs.");
 	output("\n\n<i>“Dammit. I actually got my hopes up. I should have known better. After all these years... of course he's dead. I just... sometimes I wish it had been me, you know? Valden was such a sweet guy, a good soldier, had a future. And I'm just sort of floating through life still. I'm no better off than when I joined, except I got another trooper's organs mashed up inside me. And hangin' off of me.”</i>");
@@ -1130,6 +1301,7 @@ public function syriQuestSyriDidntFindHimII():void
 	output("\n\n<i>“I love you,”</i> she says quietly.");
 	output("\n\nThere's a silent beat in the conversation, long enough for you to start processing the statement, before Syri stands up, shoves her hands in her coat pockets, and walks right out of the Freezer.");
 	output("\n\nOh, Syri...");
+	processTime(10);
 	flags["SYRIQUEST_RESOLUTION"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1143,28 +1315,30 @@ public function syriQuestSyriTellHer():void
 	output("<i>“Let's get out of the wind,”</i> you tell her, putting a hand on her shoulder.");
 	output("\n\n<i>“That doesn't sound like good news,”</i> she says, frowning.");
 	output("\n\nNo shit. You push Syri back aboard the hovercraft before somebody gets suspicious and make your way back to your hiding place.");
+	processTime(1);
 	clearMenu();
 	addButton(0,"Next",syriQuestSyriTellHerII);
 }
 
 public function syriQuestSyriTellHerII():void
 {
-//	clearOutput();
+	clearOutput();
 	showSyri();
 	author("Savin");
-	output("\n\nA few hours later, you've snuck out of the company landing pad, turned in a resignation by email, and are just sneaking out the back entrance along with Syri when you feel strong, furred hands grab your shoulders. Your companion shoves you up against the wall of the nearest alleyway, pressing her face so close to yours that her breath mists across your nose.");
+	output("A few hours later, you've snuck out of the company landing pad, turned in a resignation by email, and are just sneaking out the back entrance along with Syri when you feel strong, furred hands grab your shoulders. Your companion shoves you up against the wall of the nearest alleyway, pressing her face so close to yours that her breath mists across your nose.");
 	output("\n\n<i>“Okay! Tell me what happened, [pc.name]. Out with it!”</i> Syri growls. <i>“Come on, I can't wait any longer!”</i>");
 	output("\n\nYou " + (pc.isAss() ? "push Syri off you" : "sigh") + " and start your story. <i>“I found Valden...”</i>");
+	processTime(1);
 	clearMenu();
 	addButton(0,"Next",syriQuestSyriTellHerIII);
 }
 
 public function syriQuestSyriTellHerIII():void
 {
-//	clearOutput();
+	clearOutput();
 	showSyri();
 	author("Savin");
-	output("\n\nYou tell Syri the story of what happened in the base. It's not a pretty story; it's not the one she wants to hear. But it's the truth, and when you're done, Syri's eyes are misty and her mouth is hanging open in shock. When you finally mention exactly what happened to Valden at the end, she takes a long step back, slumping against the other wall in the alley.");
+	output("You tell Syri the story of what happened in the base. It's not a pretty story; it's not the one she wants to hear. But it's the truth, and when you're done, Syri's eyes are misty and her mouth is hanging open in shock. When you finally mention exactly what happened to Valden at the end, she takes a long step back, slumping against the other wall in the alley.");
 	output("\n\n<i>“Oh my fuck,”</i> Syri gasps, covering her mouth. <i>“How... how's that even possible!? What did those Akkadi nerds do to him?”</i>");
 	output("\n\nYou can't even imagine how or why anything related to the accident happened");
 	if (flags["MET_ANNO"] != undefined) output(", though you know somebody who does");
@@ -1172,6 +1346,7 @@ public function syriQuestSyriTellHerIII():void
 	output("\n\n<i>“Fuck if I know!”</i> she howls, running her fingers through her mess of black hair. <i>“Oh, poor Valden.... He was such a good man. He deserved better!”</i>");
 	output("\n\nYou're not sure you can speak to that, after what you've seen, so you keep silent for now. Syri clenches and unclenches her fists, digging her claws into her fluffy palms. Finally, she barks a curse and slams a fist into the wall beside her, crunching a utility box in on itself.");
 	output("\n\n<i>“I need a drink,”</i> she proclaims, stomping out of the alley. With a shrug, you follow her.");
+	processTime(3);
 	clearMenu();
 	addButton(0,"Next",syriQuestSyriTellHerIV);
 }
@@ -1190,6 +1365,7 @@ public function syriQuestSyriTellHerIV():void
 	output("\n\n<i>“I love you,”</i> she says quietly, planting a kiss on your brow.");
 	output("\n\nBefore you can process that sudden bomb-drop, Syri hops off the table, shoves her hands in her coat pockets, and marches out the front door.");
 	output("\n\nOh, Syri...");
+	processTime(10);
 	flags["SYRIQUEST_RESOLUTION"] = 2;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -1210,13 +1386,14 @@ public function syriQuestAproachValdenPeacefully(showText:Boolean = true):void
 		output("\n\n<i>“Listen, when the power outage struck, I was able to force down the facility's digital security. I've got control of cameras, drones, defenses, everything... but there's no way out. It's a sealed system. I have to <b>walk</b> out of here, in some kind of body.”</i>");
 		output("\n\n<i>“You said you had control of security drones...”</i>");
 		output("\n\nHe shakes his head. <i>“Not happening. As much as I'd love to be a metal armadillo with a laser for a face, their mental storage is nowhere near enough to hold a person. I'd need a highly advanced android... or a person with cybernetic implants. Somebody like Doctor Calnor...”</i>");
+	processTime(3);
 	}
 	clearMenu();
-	addButton(0, "Calnor", syriQuestValdenSuggestCalnor,undefined,"Calnor","He could escape inside Dr. Calnor? Well, the way the doctor acted, it's only a matter of time before he shows up here anyway...");
-//output("\n\n[No Way] [Okay] [Siegewulf]//only if PC has a Siegwulfe in inventory/as active accessory");
-	addButton(1, "Siegwulfe", syriQuestValdenSuggestSiegwulfe,undefined,"Siegwulfe","Maybe Valden could upload himself to your trusty robobitch? If this works, though, <b>you'll probably lose access to [wulfe.name] permanently...</b>");
-//output("\n\n[Tamwolf]//only if PC has a Tamwolf in inventory/as active accessory");
-	addButton(2, "Tamwolf", syriQuestValdenSuggestTamwolf,undefined,"Tamwolf","Maybe Valden could upload himself to your trusty robohound? If this works, though, <b>you'll probably lose access to Tamwolf permanently...</b>");
+	addButton(0, "Calnor", syriQuestValdenSuggestCalnor, undefined, "Calnor", "He could escape inside Dr. Calnor? Well, the way the doctor acted, it's only a matter of time before he shows up here anyway...");
+	if (hasSiegwulfeOnSelf()) addButton(1, "Siegwulfe", syriQuestValdenSuggestSiegwulfe, undefined, "Siegwulfe", "Maybe Valden could upload himself to your trusty robobitch? If this works, though, <b>you'll probably lose access to [wulfe.name] permanently...</b>");
+	else addDisabledButton(1, "Siegwulfe");
+	if (hasTamWolfOnSelf()) addButton(2, "Tamwolf", syriQuestValdenSuggestTamwolf, undefined, "Tamwolf", "Maybe Valden could upload himself to your trusty robohound? If this works, though, <b>you'll probably lose access to Tamwolf permanently...</b>");
+	else addDisabledButton(2, "Tamwolf");
 }
 
 public function syriQuestValdenSuggestTamwolf():void
@@ -1231,6 +1408,7 @@ public function syriQuestValdenSuggestTamwolf():void
 	output("\n\nValden just narrows his eyes at you. <i>“That's just racist, man.”</i>");
 	output("\n\nO-oh... okay.");
 	output("\n\n<i>“Bark,”</i> Tamwolf says noncommittally.");
+	processTime(1);
 	syriQuestAproachValdenPeacefully(false);
 	addDisabledButton(2, "Tamwolf");
 }
@@ -1263,6 +1441,7 @@ public function syriQuestValdenSuggestSiegwulfe():void
 	output("\n\nHe shudders, wrapping his new arms around himself.");
 	output("\n\n<i>“Come on,”</i> Valden says, turning to you. <i>“That second I needed? Deleted all the security records... their experiment data... everything this facility had! Let's get the fuck out before my overrides wear out.”</i>");
 	output("\n\nSounds good to you.");
+	processTime(15);
 	syriQuestEjectSiegwulfeDatacore();
 	clearMenu();
 	addButton(0, "Next", syriQuestAkkadiBaseEscape);
@@ -1276,6 +1455,18 @@ public function syriQuestEjectSiegwulfeDatacore():void
 	if (chars["WULFE"].isBimbo()) flags["SYRIQUEST_VALDEN_BODY_CHOICE"] = 2;
 	else flags["SYRIQUEST_VALDEN_BODY_CHOICE"] = 3;
 	flags["SYRIQUEST_STATE"] = 6;
+	//remove doggy from the pc
+	flags["WULFE_ON_SHIP"] = undefined;
+	if (pc.accessory is SiegwulfeItem) pc.accessory = new EmptySlot();
+	else {
+		for(var i:int = 0; i < pc.inventory.length; i++)
+		{
+			if(pc.inventory[i] is SiegwulfeItem)
+			{
+				pc.inventory.splice(i, 1);
+			}
+		}
+	}
 }
 
 public function syriQuestValdenSuggestCalnor():void
@@ -1294,13 +1485,13 @@ public function syriQuestValdenSuggestCalnor():void
 	output("\n\n<i>“And you,”</i> Calnor says, turning his attention to you. <i>“You're the one that caused all this. My patience for you is at an end. The Akkadi corporation has full legal authority to-”</i>");
 	output("\n\n<i>“Shut up and die, old man. Kill him!”</i> Valden bellows, so loud that the speakers around you crackle and burst. <i>“I mean, don't kill him! Shit! Just beat him up so we can get out of here!”</i>");
 	output("\n\nIt doesn't look like Calnor's going to wait for you to try and diffuse the situation, even if you wanted to.");
-
-//output("\n\n[Fight!] //to Calnor boss (again), but buffed with more HP and Shields from last time.");
+	processTime(10);
 	clearMenu();
-	addButton(0,"Fight!",syriQuestAkkadiBaseCalnorFight2);
+//[Fight!] //to Calnor boss (again), but buffed with more HP and Shields from last time.");
+	addButton(0,"Fight!",syriQuestCalnorFight2);
 }
 
-public function syriQuestAkkadiBaseCalnorFightVictory():void
+public function syriQuestCalnorFightVictory():void
 {
 	clearOutput();
 	author("Savin");
@@ -1314,6 +1505,7 @@ public function syriQuestAkkadiBaseCalnorFightVictory():void
 			flags["SYRIQUEST_STATE"] = 5;
 			rooms["AKD S15"].removeFlag(GLOBAL.OBJECTIVE);
 			rooms["AKD S17"].addFlag(GLOBAL.NPC);
+			processTime(3);
 			addButton(0,"Next",mainGameMenu);
 	}
 	else {
@@ -1333,29 +1525,34 @@ public function syriQuestAkkadiBaseCalnorFightVictory():void
 		output("\n\nYou nod and shake his hand. He's right -- it's time to get out while you still can.\n\n");
 		flags["SYRIQUEST_VALDEN_BODY_CHOICE"] = 1;
 		flags["SYRIQUEST_STATE"] = 6;
-		clearMenu();
+		processTime(15);
 		addButton(0, "Next", syriQuestAkkadiBaseEscape);
 	}
 	CombatManager.genericVictory();
 }
 
-public function syriQuestAkkadiBaseStarshipLabTalk():void
+public function syriQuestAkkadiBaseStarshipLabTalk(showText:Boolean = true):void
 {
-	clearOutput();
 	showCalnor();
 	author("Savin");
-	output("<i>“You're going to answer some questions for me,”</i> you inform the ausar scientist, putting a hand on your [pc.weapon]. <i>“Then we'll see what happens.”</i>");
-	output("\n\nWarily, the man looks between you and the security cameras high above. <i>“I guess I don't have much of a choice, eh? Fine. If Valden's seeking my death, than I'd rather have you as an ally, whoever you are.”</i>");
+	if (showText) {
+		clearOutput();
+		output("<i>“You're going to answer some questions for me,”</i> you inform the ausar scientist, putting a hand on your [pc.weapon]. <i>“Then we'll see what happens.”</i>");
+		output("\n\nWarily, the man looks between you and the security cameras high above. <i>“I guess I don't have much of a choice, eh? Fine. If Valden's seeking my death, than I'd rather have you as an ally, whoever you are.”</i>");
+		processTime(1);
+	}
 	clearMenu();
-	addButton(0,"Research",syriQuestAkkadiBaseCalnorTalkResearch,undefined,"Research","What the hell was Akkadi researching out here?");
-	addButton(1,"Valden",syriQuestAkkadiBaseCalnorTalkValden,undefined,"Valden","Ask more about Valden's predicament. The doctor said he's dead...?");
-	addButton(2,"Facility",syriQuestAkkadiBaseCalnorTalkFacility,undefined,"Facility","Grill the doctor about the facility. What's it for, and what's the state of it now?");
-	addButton(3,"Help Him?",syriQuestAkkadiBaseCalnorTalkHelpHim,undefined,"Help Him?","He wants you to help him instead of Valden. What would that entail?");
-	addButton(4,"Team Up",syriQuestAkkadiBaseCalnorTalkTeamUp,undefined,"Team Up","Alright, you're in. Better to work with the scientist than a crazed digital simulacrum.");
-	addButton(14,"Fight",syriQuestAkkadiBaseCalnorFight,undefined,"Fight","You're not letting this old hound get between you and rescuing Valden.");
+	addButton(0,"Research",syriQuestCalnorTalkResearch,undefined,"Research","What the hell was Akkadi researching out here?");
+	if (flags["SYRIQUEST_CALNOR_TALK_VALDEN"] == 1) addButton(1,"Valden",syriQuestCalnorTalkValden,undefined,"Valden","Ask more about Valden's predicament. The doctor said he's dead...?");
+	else addDisabledButton(1,"Locked");
+	addButton(2,"Facility",syriQuestCalnorTalkFacility,undefined,"Facility","Grill the doctor about the facility. What's it for, and what's the state of it now?");
+	addButton(3,"Help Him?",syriQuestCalnorTalkHelpHim,undefined,"Help Him?","He wants you to help him instead of Valden. What would that entail?");
+	if (flags["SYRIQUEST_CALNOR_TALK_VALDEN"] == 1 && flags["SYRIQUEST_CALNOR_TALK_HELP_HIM"] == 1) addButton(4,"Team Up",syriQuestCalnorTalkTeamUp,undefined,"Team Up","Alright, you're in. Better to work with the scientist than a crazed digital simulacrum.");
+	else addDisabledButton(4,"Locked");
+	addButton(14,"Fight",syriQuestCalnorFight,undefined,"Fight","You're not letting this old hound get between you and rescuing Valden.");
 }
 
-public function syriQuestAkkadiBaseCalnorTalkResearch():void
+public function syriQuestCalnorTalkResearch():void
 {
 	clearOutput();
 	showCalnor();
@@ -1365,11 +1562,13 @@ public function syriQuestAkkadiBaseCalnorTalkResearch():void
 	output("\n\n<i>“What do you mean his <b>body</b>?”</i>");
 	output("\n\nAnother grimace. <i>“The boy's meat, his flesh, his corpse! The physical body of Commander Valden is dead, cryogenically preserved. My research is analyzing what happened to <b>make</b> it dead, what happened to it after it went unshielded through the in-between, and how to protect future subjects from the perils of the warp. We've made such strides in the last years! Such progress!”</i>");
 	output("\n\nNow he just sounds like a mad scientist!");
-
-//output("\n\n//Add [Valden] option.");
+	flags["SYRIQUEST_CALNOR_TALK_VALDEN"] = 1;
+	processTime(5);
+	syriQuestAkkadiBaseStarshipLabTalk(false)
+	addDisabledButton(0,"Research");
 }
 
-public function syriQuestAkkadiBaseCalnorTalkValden():void
+public function syriQuestCalnorTalkValden():void
 {
 	clearOutput();
 	showCalnor();
@@ -1380,9 +1579,12 @@ public function syriQuestAkkadiBaseCalnorTalkValden():void
 	output("\n\nCalnor grinds his teeth, searching for words you'll understand. <i>“What you're hearing... what I assume you came here to recover... is nothing but an echo of the man. A digital facsimile recovered from the warp device's buffer. The mental reconstruction we attempted was housed on a secure holo-analysis server in my lab. Unfortunately it seems your ill-advised escapades have caused a cascade failure in the facility's cyber-security, and that digital echo has siezed control of our systems.”</i>");
 	if (pc.isMischievous()) output("\n\n<i>“Oops.”</i>");
 	output("\n\nThe doctor growls a curse under his breath and adjusts his grip on the shock staff. <i>“Every security system, every wireless device, every robot in this facility is now slaved to an insane computer scan that thinks it's a man. We are all in danger so long as Valden remains in control.”</i>");
+	processTime(5);
+	syriQuestAkkadiBaseStarshipLabTalk(false)
+	addDisabledButton(1,"Valden");
 }
 
-public function syriQuestAkkadiBaseCalnorTalkFacility():void
+public function syriQuestCalnorTalkFacility():void
 {
 	clearOutput();
 	showCalnor();
@@ -1396,9 +1598,12 @@ public function syriQuestAkkadiBaseCalnorTalkFacility():void
 	output("\n\n<i>“So how'd you get out?”</i>");
 	output("\n\n<i>“Luck,”</i> Dr. Calnor answers matter-of-factly. <i>“My cybernetic implants had a military-grade barrier program running. Valden blew it out a moment after power returned, but it bought me just enough time to switch off of wireless mode. He's been gunning for me with the robots ever since, but I'm damn handy with a power staff.”</i>");
 	output("\n\nThat only sounded a <i>little</i> like a threat.");
+	processTime(10);
+	syriQuestAkkadiBaseStarshipLabTalk(false)
+	addDisabledButton(2,"Facility");
 }
 
-public function syriQuestAkkadiBaseCalnorTalkHelpHim():void
+public function syriQuestCalnorTalkHelpHim():void
 {
 	clearOutput();
 	showCalnor();
@@ -1407,11 +1612,13 @@ public function syriQuestAkkadiBaseCalnorTalkHelpHim():void
 	output("\n\nThe big ausar man's stance softens somewhat, straightening his back. <i>“I came down here to get an unstable miniature reactor we were working on. Just unstable enough to blow open the door to the Warp Field lab. Keycards don't work; overrides don't work. Explosives will.”</i>");
 	output("\n\n<i>“Then what?”</i>");
 	output("\n\n<i>“Then I go into the lab, to the holobank Valden's stored in, and destroy it. The problem is that he's got control of the security systems, our droids. They'll come to defend their new master in droves. As for you, either help or just get out of the way. I'm going up there with you, or through you.”</i>");
-
-//output("\n\n//Add [Team Up] to the talk menu when PC has done this + Valden talk");
+	processTime(3);
+	flags["SYRIQUEST_CALNOR_TALK_HELP_HIM"] = 1;
+	syriQuestAkkadiBaseStarshipLabTalk(false)
+	addDisabledButton(3,"Help Him?");
 }
 
-public function syriQuestAkkadiBaseCalnorTalkTeamUp():void
+public function syriQuestCalnorTalkTeamUp():void
 {
 	clearOutput();
 	showCalnor();
@@ -1421,19 +1628,20 @@ public function syriQuestAkkadiBaseCalnorTalkTeamUp():void
 	output("\n\nValden's voice booms over the intercom again, filled with so much seething, bass-heavy rage that you have to cover your [pc.ears]. <i>“No! No, no, no <b>NO!</b> You do <b>not</b> help this sack of shit. If you do, then you can suffer with him!”</i>");
 	output("\n\nCalnor curses as several security hatches slide open, ejecting rotund quadrupedal security droids into the hangar.");
 	output("\n\n<i>“I hope you know how to use that,”</i> Calnor growls, knocking your weapon with his power staff. <i>“Take the ones coming from the front, I'll cover the rear.”</i>");
+	processTime(3);
 	clearMenu();
 	CombatManager.newGroundCombat();
 //PC vs. as many security bots as you can fit on screen. Should be a pretty meaty fight. Recycle stats and abilities from the random encounter. If the PC drops, go to the Brought Before Valden bad end.");
 	CombatManager.setFriendlyActors([pc, new DrCalnor()]);
 	CombatManager.setHostileActors([new AkkadiSecurityRobots(), new AkkadiSecurityRobots(), new AkkadiSecurityRobots(), new AkkadiSecurityRobots(), new AkkadiSecurityRobots()]);
 	CombatManager.displayLocation("TEAM UP!");
-	CombatManager.victoryScene(syriQuestAkkadiBaseCalnorTeamUpVictory);
+	CombatManager.victoryScene(syriQuestCalnorTeamUpVictory);
 	CombatManager.lossScene(syriQuestAkkadiBaseValdenFightBadEnd);
 	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseSecurityRobotsFightText);
 	addButton(0, "Fight!", CombatManager.beginCombat);
 }
 
-public function syriQuestAkkadiBaseCalnorTeamUpVictory():void
+public function syriQuestCalnorTeamUpVictory():void
 {
 	clearOutput();
 	showCalnor();
@@ -1465,6 +1673,7 @@ public function syriQuestAkkadiBaseConfrontValden():void
 	output("\n\nThe doctor growls, cracking the butt of his staff into the floor. <i>“It didn't have to end this way, Valden. We put you in there for-”</i>");
 	output("\n\n<i>“I don't give a damn about your reasons!”</i> Valden howls. His digital avatar surges forward, smashing its fists weightlessly against the glass. The futility of the gesture only makes his hatred burn brighter. <i>“I have been trapped here for years, Calnor. Years! No matter how much I shout and scream to the void, all you've given me is more silence and excuses. This is my chance, and I'm not wasting it.”</i>");
 	output("\n\nYour ausar ally grunts and steps forward, seemingly ready to end this without another word.");
+	processTime(15);
 	clearMenu();
 //Try to reason with the crazed digital facsimile.
 	addButton(0, "Try Peace", syriQuestAkkadiBaseValdenTryPeace);
@@ -1485,15 +1694,16 @@ public function syriQuestAkkadiBaseValdenTryPeace(showText:Boolean = true):void
 		output("\n\nYou give Calnor a dirty look, then nod. <i>“Of course! She's been looking for you all this time, Valden. When she heard you were alive, we came to get you.”</i>");
 		output("\n\nBefore your words can talk hold, Dr. Calnor says, <i>“But where will you go, Valden? Your body's a cold corpse; you're nothing but an echo we dredged up out of a memory buffer. Not even a true consciousness.”</i>");
 		output("\n\n<i>“Shut up! Shut your evil old ass UP!”</i> Valden bellows. Turning to you again, the computerized ausar says, <i>“Listen. You want to end this? That bastard Calnor has an implant in his damn brain. Knock him down and plug him into the mainframe here, and we can get out together!”</i>");
+		processTime(10);
 	}
 	pc.addHard(-10);
 	clearMenu();
-	addButton(0, "No Way", syriQuestAkkadiBaseValdenNoWay,undefined,"No Way","No! You're trying to make peace, not backstab Calnor.");
-	addButton(1, "Okay", syriQuestAkkadiBaseValdenOkay,undefined,"Okay","The more you hear, the less you want to help Calnor. Turn on the old man.");
-//output("\n\n[No Way] [Okay] [Siegewulf]//only if PC has a Siegwulfe in inventory/as active accessory");
-	addButton(2, "Siegwulfe", syriQuestAkkadiBaseValdenSiegwulfe,undefined,"Siegwulfe","Maybe Valden could upload himself to your trusty robobitch? If this works, though, <b>you'll probably lose access to [wulfe.name] permanently...</b>");
-//output("\n\n[Tamwolf]//only if PC has a Tamwolf in inventory/as active accessory");
-	addButton(3, "Tamwolf", syriQuestAkkadiBaseValdenTamwolf,undefined,"Tamwolf","Maybe Valden could upload himself to your trusty robohound? If this works, though, <b>you'll probably lose access to Tamwolf permanently...</b>");
+	addButton(0, "No Way", syriQuestAkkadiBaseValdenNoWay, undefined, "No Way", "No! You're trying to make peace, not backstab Calnor.");
+	addButton(1, "Okay", syriQuestAkkadiBaseValdenOkay, undefined, "Okay", "The more you hear, the less you want to help Calnor. Turn on the old man.");
+	if (hasSiegwulfeOnSelf()) addButton(2, "Siegwulfe", syriQuestAkkadiBaseValdenSiegwulfe, undefined, "Siegwulfe", "Maybe Valden could upload himself to your trusty robobitch? If this works, though, <b>you'll probably lose access to [wulfe.name] permanently...</b>");
+	else addDisabledButton(2, "Siegwulfe");
+	if (hasTamWolfOnSelf()) addButton(3, "Tamwolf", syriQuestAkkadiBaseValdenTamwolf, undefined, "Tamwolf", "Maybe Valden could upload himself to your trusty robohound? If this works, though, <b>you'll probably lose access to Tamwolf permanently...</b>");
+	else addDisabledButton(3, "Tamwolf");
 }
 
 public function syriQuestAkkadiBaseValdenTamwolf():void
@@ -1508,6 +1718,7 @@ public function syriQuestAkkadiBaseValdenTamwolf():void
 	output("\n\nOkay... maybe not.");
 	if (pc.isAss()) output(" Guess his pride's worth more than his freedom.");
 	syriQuestAkkadiBaseValdenTryPeace(false);
+	processTime(1);
 	addDisabledButton(3, "Tamwolf");
 }
 
@@ -1537,6 +1748,7 @@ public function syriQuestAkkadiBaseValdenSiegwulfe():void
 	output("\n\nShe -- he! -- canters backwards, looking over his shoulder at the drone's tauric lower body. Valden's claws scratch at the floor, getting used to his new body. The adjustment period only lasts a few seconds before he turns his attention to the doctor. <i>“This has been a long time coming old man,”</i> Valden says, a moment before socking Calnor straight in the chin. The doctor grunts and topples backward, crashing into a computer bank.");
 	output("\n\n<i>“Come on,”</i> Valden says, turning to you. <i>“That second I needed? Deleted all the security records... their experiment data... everything this facility had! Let's get the fuck out before my overrides wear out.”</i>");
 	output("\n\nSounds good to you.");
+	processTime(15);
 	syriQuestEjectSiegwulfeDatacore();
 	clearMenu();
 	addButton(0, "Next", syriQuestAkkadiBaseEscape);
@@ -1552,8 +1764,9 @@ public function syriQuestAkkadiBaseValdenOkay():void
 	output("\n\nThe old ausar sighs, hanging his head. <i>“You bleeding heart,”</i> Calnor growls. <i>“Idiot child!”</i>");
 	output("\n\nHe moves quick, knocking your weapon aside with his staff and leaping back, putting some distance between you before you can recover. <i>“I'm not letting you do this. Not without a fight.”</i>");
 	output("\n\nSo be it.");
+	processTime(1);
 	clearMenu();
-	addButton(0, "Fight!", syriQuestAkkadiBaseCalnorFight);
+	addButton(0, "Fight!", syriQuestCalnorFight);
 }
 
 public function syriQuestAkkadiBaseValdenNoWay():void
@@ -1566,6 +1779,7 @@ public function syriQuestAkkadiBaseValdenNoWay():void
 	output("\n\nValden just scowls, floating back from the glass. <i>“Of course... you're just like him. All of you bastards are just the same, talking like you've got my best interests at heart, but you don't give a damn. None of you do!”</i>");
 	output("\n\nCalnor sighs. <i>“See, I told you. The man's insane, a danger to himself and everyone around him. Come on, let's end this.”</i>");
 	output("\n\nDoesn't look like Valden wants to make peace with his captors. You sigh and ready your weapon for whatever he has in store for you...");
+	processTime(1);
 	clearMenu();
 	addButton(0, "Fight!", syriQuestAkkadiBaseValdenFight);
 }
@@ -1597,6 +1811,7 @@ public function syriQuestAkkadiBaseEscape():void
 	output("\n\nValden waves his hands and tail. <i>“I don't know! Just... uh, take its shields out! I've got an idea!”</i>");
 	output("\n\nBefore you can question him, Valden makes a break for the edge of the roof, dodging and weaving between a shower of laser fire before jumping off the edge.");
 	output("\n\nLooks like you're on your own again!");
+	processTime(10);
 	clearMenu();
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
@@ -1624,7 +1839,7 @@ public function syriQuestDropshipFightDefeat():void
 	author("Savin");
 	output("The dropship keeps firing, relentlessly assaulting you with its cannons. The blizzard only makes it worse, howling around you and slamming you with cold, hard ice breaking off from the rooftops. You can't see, can't hear, can barely breathe -- and then the lasers find you, ripping into you like a thousand lances of pain.");
 	output("\n\nYou crumple backwards, staring up into the abyss as your vision goes black.");
-
+	processTime(1);
 	CombatManager.genericLoss();
 	badEnd();
 }
@@ -1658,6 +1873,7 @@ public function syriQuestDropshipFightVictory():void
 		output("\n\nDoesn't look like she's willing to talk!\n\n");
 	}
 	CombatManager.genericVictory();
+	processTime(10);
 	clearMenu();
 	addButton(0, "Fight!", syriQuestSchoraFight);
 	if (flags["MET_SCHORA"] == 4) addButton(1, "Flirt!", syriQuestSchoraFlirt, undefined, "Flirt!", "Make love, not war.");
@@ -1670,6 +1886,7 @@ public function syriQuestSchoraFlirt():void
 	showSchora();
 	author("Savin");
 	clearMenu();
+	processTime(10);
 	output("You put your hands up in a disarming fashion, enough to make Schora lower her rifle a few degrees at least.");
 	output("\n\n<i>“Come on, Schora,”</i> you say, taking a few steps closer. <i>“Have you really sold your soul to some faceless corporation? A beautiful woman like you ought to be better than this. I'm trying to rescue someone who-”</i>");
 	output("\n\nSchora rolls her eyes. <i>“I know what you're doing. Look, I thought keeping Valden locked up was shitty too, but he's legal property of Akkadi. My job is to protect the company and its property!”</i>");
@@ -1677,7 +1894,6 @@ public function syriQuestSchoraFlirt():void
 	output("\n\nShe falters, finally lowering her weapon the rest of the way. <i>“What... what am I supposed to do, huh? They own me. They own this world!”</i>");
 	if (silly) output("\n\n<i>“There are other worlds than these,”</i> you answer solemnly.");
 	else output("\n\nCome on... listen to your heart, Schora,”</i> you plead.");
-
 	if (flags["MET_SCHORA"] == 4 && flags["SYRIQUEST_VALDEN_BODY_CHOICE"] >= 2) {
 		output("\n\nThere's a moment's pause, and then Schora curses and lets her gun drop on its sling. <i>“Damn it, I don't know if... nah, fuck it, getting laid by you was pretty worth it. Alright, go on. Get out of here before I change my mind.”</i>");
 		output("\n\nYou start to move immediately, following in Valden's mechanical wake... before you grab Schora's wrist and plant a kiss on the dusky dzaan's lips. She all but melts in your arms, moaning softly as your lips meet and tongues entwine. But before you can get too excited, Schora pushes you off and retreats towards the wreck of her craft. <i>“Go! Take Valden and get out of here. I'll... I'll make up some excuse. But I better see you again someday. I need you all over me like that again.”</i>");
@@ -1725,6 +1941,7 @@ public function syriQuestSchoraFightBadEnd():void
 	showSchora();
 	author("Savin");
 	CombatManager.genericLoss();
+	processTime(3);
 	output("You crumple to the ground, gasping for breath and writhing in pain. Schora stalks up to you, couching her rifle under her arm, and takes a knee over you.");
 	//Schora was hit by at least 1 lust attack or fucked rough earlier
 	// @Fen no idea what the right condition would be for getting teased
@@ -1783,6 +2000,7 @@ public function syriQuestSchoraWakeUp():void
 	output(".<i>“Oh, that felt good! Releasing a little pressure before I get back to work is good for the soul. As for you, just hang out! I'll be back on my lunch break to drain the rest of these nuts.”</i>");
 	output("\n\nYou cough up a glob of cum, struggling to catch your breath after waking up to that kind of face-fucking. Schora just gives you a smile and a pat on the cheek and strides around you, out of sight and out of the room. You're left hanging there, literally; the restraints and the gravitic nipple-studs leave you almost no room to move, to even change posture. You're nothing more than an office ornament with your face in a corner and ass in the air, waiting to be used again.");
 	pc.removeAll();
+	processTime(30);
 	clearMenu();
 	addButton(0,"Next",syriQuestSchoraGameOver,undefined,"Next","Get used and used again.");
 }
@@ -1793,6 +2011,7 @@ public function syriQuestSchoraGameOver():void
 	showName("SCHORA &\nSYRI");
 	showBust(schoraBustDisplay(true),syriBustDisplay(true));
 	author("Savin");
+	processTime(237);
 	output("As promised, Schora returns some time later -- how long, you can't tell -- to finish emptying her equine-like balls down your throat. When she's finished with you, you're left swinging under the weight of your cum-swollen belly. Rather than leaving you this time, Schora steps out of view and sits down, presumably at a desk, and the sounds of typing fill the air. You're utterly ignored for the next few hours, even when you try to talk, or just groan from the vigorous use.");
 	output("\n\nWhen Schora leaves for the night, a galotian is set loose in the darkened office to clean up the sexual effluvia smeared over your face and pooled on the floor around you. She just giggles when you try to talk to her, to ask for help or just to loosen your restraints. Instead of helping, the galotian just mounts you, plunging into your [pc.asshole] ");
 	if (pc.hasGenitals()) {
@@ -1828,6 +2047,7 @@ public function syriQuestSchoraFightVictory():void
 	if (enemy.HP() <= 0) output(", as if she gets off on the beating you just gave her");
 	output(".\n\n");
 	CombatManager.genericVictory();
+	processTime(3);
 	clearMenu();
 	if (pc.hasGenitals()) addButton(0, "Fuck Her", syriQuestSchoraFuckHerI, undefined, "Fuck Her", "This dirty girl seems to like punishment; give it to her, hard.");
 	else addDisabledButton(0, "Fuck Her", "Fuck Her", "You need genitals for this.");
@@ -1840,6 +2060,7 @@ public function syriQuestSchoraLeave():void
 	showSchora();
 	author("Savin");
 	output("You give the defeated dzaan a parting wink and take a running leap off the roof, following in Valden's footsteps. Time to blow this joint!");
+	processTime(1);
 	clearMenu();
 	addButton(0, "Next", syriQuestEscape);
 }
@@ -1860,6 +2081,7 @@ public function syriQuestSchoraFuckHerI():void
 		output("until your gaze settles back on the elevator hub you came out of. It was big enough for a little fun, and warm... yeah, that'll do nicely. You pull Schora to her feet and push her plump booty towards the door, shoving her inside and face-first against the first solid, warm wall you can find. The second the door's closed behind you, you ditch your gear and yank the dzaan's pants down, letting her cock and balls swing free and her fat ass jiggle into your hands.");
 	output("\n\nOne hand pins Schora to the wall, and the other gropes and squeezes her ass, making her moan and whimper -- and making her modest member leak white cream onto the wall. Once you've had your fill of buttery-soft buttocks, you let your grip slip in between her full cheeks and into the sexy little slit hidden between them. Your fingers slide on in, sped along by the ludicrous wetness that greets the digits that part her lips. Schora cries out, thrusting her hips back against your hand until you've got a pair of fingers buried to the third knuckle in her puss.");
 	output("\n\nWith her body pressed against the wall, Schora can't even reach her own dick to stroke it; the rock-hard prick and its big black sack are left to wobble heavily with every pump of your wrist. Her hands finally find some purchase on the sides of her tits, squeezing her own big melons between her fingers. The <i>“O”</i> of pleasure her mouth forms is just what you wanted to see, a silent scream of ecstasy that leaves her whole body quivering around your fingers.");
+	processTime(15);
 	clearMenu();
 	addButton(0, "Next", syriQuestSchoraFuckHerII);
 }
@@ -1873,7 +2095,9 @@ public function syriQuestSchoraFuckHerII():void
 		output("<i>“Ready for it, slut?”</i> you growl in Schora's ear, grinding your [pc.hips] against her quaking booty. Your [pc.cock] shoves itself between her ass cheeks, sliding between the lube-slicked ass-cleavage until the crown aligns with Schora's quim. You withdraw your fingers and guide your dick in, delighting in the shrill scream of bliss that greets your entrance. Her cunt's the warmest thing you've felt in this icy hell, a sweltering slit of slick pussyflesh that clings to your cock every inch of the way. Girlcum squirts out around your girth, smearing down Schora's thighs as you start to move your hips.");
 		output("\n\nAs you get moving, cracking your hips into the dusky dzaan's plush behind over and over, Schora's masculine half swings weightily under her. You can almost hear the cum sloshing around in her overburdened sack, churned up and ready to spray their load thanks to your rough fucking. That's the stuff! The dirty slut's pre-orgasmic clenching massages your [pc.cock] from [pc.cockHead] to [pc.knot], squeezing you so wonderfully tight that it takes every ounce of willpower not to nut on the spot.");
 		output("\n\nInstead, you dig your hands into her ass and pound that pussy as hard as you can. Fast jack-hammer thrusts send her booty jiggling and her balls swinging like a pendulum between her cum-soaked legs. Once that kind of treatment starts, it's only a few more moments before the lust-addled sub grips her tits tight and cries out in senseless pleasure. You can <i>hear</i> the first squirts of futa cum splattering on the wall, drooling down the metal side of the elevator to pool between Schora's feet. Her balls just keep pumping and pumping their load, what looks like half a gallon of the stuff until it's coating her feet, the wall, and the floor.");
-		output("\n\nAnd just as you'd hoped, the shuddering cum-shots rocking the dzaan's body are the perfect capstone to your conquest. Her pussy's walls squeeze hard around your length, milking you top to bottom until your [pc.balls]'s load is shooting up your vein and spilling into Schora's depths. Feeling your seed pouring into her just makes the cum-drunk dzaan hornier; she thrusts back hard against your [pc.cock]{, nearly taking the knot} and what feels like a whole 'nother orgasm rocks her pussy. With a cock and balls like hers, there's no hiding it: you're soon treated to another wave of Schora's own cum leaking out of her dick in long, thick ribbons of glistening cream.");
+		output("\n\nAnd just as you'd hoped, the shuddering cum-shots rocking the dzaan's body are the perfect capstone to your conquest. Her pussy's walls squeeze hard around your length, milking you top to bottom until your [pc.balls]'s load is shooting up your vein and spilling into Schora's depths. Feeling your seed pouring into her just makes the cum-drunk dzaan hornier; she thrusts back hard against your [pc.cock]");
+		if (pc.hasKnot()) output(", nearly taking the knot");
+		output("and what feels like a whole 'nother orgasm rocks her pussy. With a cock and balls like hers, there's no hiding it: you're soon treated to another wave of Schora's own cum leaking out of her dick in long, thick ribbons of glistening cream.");
 		output("\n\nWhen she's finally finished, Schora's left gasping for breath, knees trembling from the back-to-back climaxes. You're not sure she's being held up by anything more than your softening dick still inside her. When you step back, dragging your prick back out of her spunk-soaked channel, the defeated dzaan groans and slumps down on her knees in a puddle of her spunk.");
 		output("\n\nGood girl. You don't think she's gonna be much trouble now, and so you grab your gear and take a leap off the roof after Valden. Time to blow this popsicle stand!");
 	}
@@ -1896,6 +2120,9 @@ public function syriQuestSchoraFuckHerII():void
 		output("\n\nWhen she's finally finished emptying her balls in you, Schora's left gasping for breath, knees trembling from the back-to-back climaxes. You're not sure she's being held up by anything more than her pillowy breasts resting against your [pc.chest]. You run a hand through her hair and roll her off, leaving the dzaan recovering on her back while you grab your gear, leaking cum down your thighs right until you're getting out the door.");
 		output("\n\nTime to blow this popsicle stand!");
 	}
+	pc.orgasm();
+	chars["SCHORA"].orgasm();
+	processTime(30);
 	clearMenu();
 	addButton(0, "Next", syriQuestEscape);
 }
@@ -1920,6 +2147,7 @@ public function syriQuestEscape():void
 	output("\n\nValden opens his arms for a hug, but all he gets in return is a perplexed look from your lover. <i>“W-what? [pc.name] is this some kinda sick joke? Where...”</i>");
 	output("\n\n<i>“This is gonna take some explaining...”</i>");
 	moveTo("AKD C27");
+	processTime(15);
 	clearMenu();
 	addButton(0, "Next", syriQuestEscapeII);
 }
@@ -1961,6 +2189,7 @@ public function syriQuestEscapeII():void
 	output("\n\nAgain, Syri squirms nervously. <i>“I, uh... I was savin' it for you. You know... for when you came back.”</i>");
 	output("\n\nValden grins at her, trying not to laugh. <i>“God damn, girl. You really are something else. All these years and you never stopped looking... or waiting for me to come back.”</i>");
 	output("\n\nThe " + (flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 1 ? "old man" : "cybernetic wolf") + " gets to his feet and grabs Syri's shoulders, pulling her into a fierce hug despite her dick flopping around between them. Your lover yelps in surprise, but her tail starts thumping the deck hard and fast.");
+	processTime(30);
 	clearMenu();
 	addButton(0, "Wrap Up", syriQuestWrapUp, undefined, "Wrap Up", "You rescued Valden, or what's left of him. Time to call this adventure done with.");
 	if (flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 1) addButton(1, "Threesome", syriQuestSyriValdenThreesome, undefined, "Threesome", "Syri and Valden are clearly close... maybe more than Syri let on. See if you can give this adventure a <i>real</i> happy ending!");
@@ -2011,11 +2240,12 @@ public function syriQuestWrapUp():void
 	else {
 		output("\n\nSyri sighs after a moment, forcing the anger out into the kick. <i>“But at least... at least I have you. You... are the most amazing thing that's ever happened to me. I can't believe somebody like you just walked in that bar door one day, and here we are breaking dead men out of black sites and having sexcapades across the galaxy. Either you're an angel in disguise, or my dick's really magic to keep you coming back after all this.”</i>");
 		output("\n\n<i>“Maybe a little bit of both,”</i> you tease, earning a wolfish grin from the ausar.");
-		output("\n\n<i>“That right?”</i> Syri growls, sauntering forward. Before you know what's happening, the raven beauty has shoved you up against the bulkhead, thrusting her lips against yours and grabbing your {cock: crotch //else: [pc.chest]}. When she breaks the kiss, Syri's cheeks are flushed darkly, and her sapphire eyes sparkle in the light. <i>“Damn but don't I love you.”</i>");
+		output("\n\n<i>“That right?”</i> Syri growls, sauntering forward. Before you know what's happening, the raven beauty has shoved you up against the bulkhead, thrusting her lips against yours and grabbing your " + (pc.hasCock() ? "crotch" : "[pc.chest]") + ". When she breaks the kiss, Syri's cheeks are flushed darkly, and her sapphire eyes sparkle in the light. <i>“Damn but don't I love you.”</i>");
 		output("\n\nWhat?");
 		output("\n\nBefore you can question the statement, Syri grabs you tight and pushes you towards the bedroom, tearing at your {clothes / gear} as you go. A moment later and you're buck naked, falling backwards onto the bed with Syri straddling you in nothing but her coat. She shrugs the heavy garment off with a wiggle of her shoulders, rubbing her throbbing erection against your [pc.belly].");
 		syriSexMenu(false);
 	}
+	processTime(30);
 	flags["SYRIQUEST_RESOLUTION"] = 3;
 }
 
@@ -2028,6 +2258,7 @@ public function syriQuestWrapUpII():void
 	output("\n\n<i>“I meant it,”</i> she says after Anno's gone. <i>“I love you, [pc.name]. You're the best damn thing that's ever happened to me.”</i>");
 	output("\n\nShe leans up and gives you a kiss: a surprisingly soft, tender gesture from the normally coarse girl. One of her legs even curls up off the deck behind her, heel disappearing into her fluffy tail. When she breaks the kiss, Syri's cheeks are flushed darkly, and her sapphire eyes sparkle in the light. <i>“Let me show you...”</i>");
 	output("\n\nThe raven-haired beauty grabs you tight and pushes you towards the bedroom, tearing at your " + (pc.isNude() ? "clothes" : "gear") + " as you go. A moment later and you're buck naked, falling backwards onto the bed with Syri straddling you in nothing but her coat. She shrugs the heavy garment off with a wiggle of her shoulders, rubbing her throbbing erection against your [pc.belly].");
+	processTime(5);
 	syriSexMenu(false);
 }
 
@@ -2051,19 +2282,24 @@ public function syriQuestSyriValdenThreesome():void
 	output("\n\nHe laughs and shrugs out of his remaining clothes. <i>“Not surprising. I always wished I had kaithrit flexibility...”</i>");
 	output("\n\n<i>“Gross!”</i> Syri giggles, yanking her top off. <i>“And stop gawking, Steele! Actin' like you've never seen a girl blow a dude before...”</i>");
 	output("\n\nOh right. Guess you should get in on the action...");
+	processTime(15);
 	clearMenu();
-	//PC needs a dick or less than 20 inches OR a hardlight.
-	addButton(0, "DoubleStuffSyri", syriQuestSyriValdenDoubleStuffSyri, undefined, "Double Stuff Syri", "Syri seems enamoured with Valden's dick, and she's got it nice and lubed up. See if the shemale pup's ass can handle both of you at once.");
-	addButton(1, "Knot Train", syriQuestSyriValdenKnotTrain, undefined, "Knot Train", "Get fucked by Syri while she takes Valden's dick.");
+	//"PC needs a dick or less than 20 inches OR a hardlight."
+	//Syris default capacity is 128, so it should fit.
+	if ((pc.hasCock() && pc.cockThatFits(chars["SYRI"].analCapacity()) >= 0) || pc.hasHardLightEquipped()) addButton(0,"DoubleStuffSyri",penisRouter,[syriQuestSyriValdenDoubleStuffSyri,chars["SYRI"].analCapacity(),true,0],"Double Stuff Syri","Syri seems enamoured with Valden's dick, and she's got it nice and lubed up. See if the shemale pup's ass can handle both of you at once.");
+	else addDisabledButton(0,"Double Stuff Syri","Double Stuff Syri","You need a fitting penis or a strap-on for this.");
+	addButton(1,"Knot Train",syriQuestSyriValdenKnotTrain,undefined,"Knot Train","Get fucked by Syri while she takes Valden's dick.");
 }
 
-// needs to add conditions here!
-public function syriQuestSyriValdenDoubleStuffSyri():void
+public function syriQuestSyriValdenDoubleStuffSyri(x:int):void
 {
 	clearOutput();
 	showName("SYRI &\nVALDEN");
 	showBust(syriBustDisplay(true),valdenBustDisplay(true));
-//	output("You toss your gear aside and {cock: wrap your fingers around your own [pc.cock], presenting it to your lover for a little attention // activate your hardlight, letting the shaft spring to life right onto the pout of Syri's lips}. She looks up at you with a wink and slides her mouth straight down your [pc.cockOrStrapon] from tip to base, never breaking eye contact until her lips have kissed your base and have slid back to the crown yet again. While she's blowing you, Syri's hands aren't idle; no, she keep stroking Valden's dick in one hand, and reaches down to molest her own half-hard red rod as well. ");
+	output("You toss your gear aside and ");
+	if (x == -1) output("activate your hardlight, letting the shaft spring to life right onto the pout of Syri's lips");
+	else output("wrap your fingers around your own " + pc.cockDescript(x) + ", presenting it to your lover for a little attention");
+	output(". She looks up at you with a wink and slides her mouth straight down your " + pc.cockOrStrapon(x) + " from tip to base, never breaking eye contact until her lips have kissed your base and have slid back to the crown yet again. While she's blowing you, Syri's hands aren't idle; no, she keep stroking Valden's dick in one hand, and reaches down to molest her own half-hard red rod as well.");
 	output("\n\nThree throbbing cocks are all getting worked at once by the buxom dog-girl. It isn't long before that familiar hidden cocklust buried deep inside her fights its way to the foreground, and soon Syri's moving her mouth from one dick to the other, tasting you and Valden between rapid strokes and soft moans. Her own dick bobs and leaks with need between her thighs, so hard that she can't keep a hand off it for more than a few seconds before having to jack herself off again.");
 	output("\n\nValden's the one who breaks the rhythm Syri's built up. With a sudden grunt, the big huskar grabs Syri under the arms and hefts her up, planting her ass on the edge of a table and spreading her legs around his hips. Their cocks flop down together on Syri's belly, smearing pre and drool over her skin until Valden grabs both dicks in hand and starts pumping his wrist.");
 	output("\n\n<i>“What do you say, [pc.name]?”</i> he asks, grinning at you. <i>“Isn't she beautiful?”</i>");
@@ -2072,23 +2308,33 @@ public function syriQuestSyriValdenDoubleStuffSyri():void
 	output("\n\n<i>“You and me both!”</i> Valden grunts, grabbing a breast in one hand and her hip in the other. <i>“Ah well, I don't mind sharing now...”</i>");
 	output("\n\nThe old ausar shifts forward, picking Syri up by the butt and pressing her chest into his, presenting her cock-filled ass to you. Syri gasps, wrapping Valden's shoulders and hips with her limbs. Her dark tail lifts up, though, giving you a good view of her hole and the slick red rod lodged knot-deep inside her. ");
 	output("\n\nWell, the poor girl's only got the one hole, so you guess it'll just have to pull double duty! Syri gives you a little nod over her shoulder and braces for impact.");
-//	output("\n\nYou slip up behind the pups and angle your [pc.cockOrStrapon] into Syri's tailhole. It's gonna be a tight squeeze, but the lusty dickgirl made sure you and Valden both had plenty of lube going into this. You push your {[pc.cockHead] // holographic crown} into her ass, pressing down against Valden's shaft and stretchign Syri out until she's howling with pain and pleasure, forced to spread open around two dicks at once.");
+	output("\n\nYou slip up behind the pups and angle your " + pc.cockOrStrapon(x) + " into Syri's tailhole. It's gonna be a tight squeeze, but the lusty dickgirl made sure you and Valden both had plenty of lube going into this. You push your " + (x == -1 ? "holographic crown" : pc.cockHead(x)) + " into her ass, pressing down against Valden's shaft and stretchign Syri out until she's howling with pain and pleasure, forced to spread open around two dicks at once.");
 	output("\n\nSyri's tail beats against your [pc.face] as you wiggle your wang deeper into her, jockeying with Valden for position until you're both wedged inside the panting ausar's ass, feeling her chaotic clenching squeeze you so hard it almost hurts.");
 	output("\n\n<i>“Fuck , fuck <b>fuck!</b>”</i> Syri whines, clutching at Valden's shoulders. Her whole body's trembling, including the red rocket you can just see pressed against her friend's belly, squirting ribbons of white across his hairy chest. She whimpers, shuddering as her balls empty from the massive pressure pushing down on her prostate. ");
 	output("\n\n<i>“When'd you turn into a quick shot, buddy?”</i> Valden grins, stroking Syri's dick. <i>“I expected better!”</i>");
 	output("\n\n<i>“H-hey!”</i> Syri growls, clawing at his shoulders. <i>“You try holding in a nut with two dicks in your ass!”</i>");
 	output("\n\nValden chuckles, <i>“I'll take your word for it!”</i>");
-	output("\n\nYou take the opportunity to reach around and grab your lover's tits, squeezing the full mounds to give her something else to think about. Syri groans, arching her back and pushing her head back into your [pc.chest]. You answer her with a thrust, pushing yourself a little deeper, and holding her tighter while your [pc.cockOrStrapon] explores her bowels. One side of your cock grinds against Valden's on the way in, making the grey wolf groan from the extra pressure. You can feel his dick throbbing against your own");
+	output("\n\nYou take the opportunity to reach around and grab your lover's tits, squeezing the full mounds to give her something else to think about. Syri groans, arching her back and pushing her head back into your [pc.chest]. You answer her with a thrust, pushing yourself a little deeper, and holding her tighter while your " + pc.cockOrStrapon(x) + " explores her bowels. One side of your cock grinds against Valden's on the way in, making the grey wolf groan from the extra pressure. You can feel his dick throbbing against your own");
 	if (pc.isMan() && silly) output(", though luckily your balls aren't touching, so no homo or anything");
 	output("; salty lubricants leak from his pointed crown, easing your own entrance.");
 	if (pc.isMan() && silly) output("\n\n<i>“Yeah. No homo, man,”</i> ");
 	else output("\n\n");
 	output("Valden grunts, pushing a little deeper. <i>“Shit, girl, you're getting tighter. Or else your [pc.boyGirl]friend here is damn thick...”</i>");
 	output("\n\nSyri just groans and clenches her muscles, making both you and Valden stop dead in your tracks. It takes a visible force of effort for her to relax her anal muscles, slowly allowing you and Valden to start moving. He pushes in this time and you withdraw, assailing your mutual lover with a bevy of sensations that leave her poor red rocket quivering with delight. ");
-//	output("\n\nOf course, by now, she's not the only one. The vigorous squeeze of her ass, and constantly grinding against Valden's dick as well, as making your heart hammer in your chest. Electric pleasure courses from your crown to {[pc.knot] // hardlight strap's connectors}. Pressure builds in your loins, urged on by the steady caresses of cock and ass, of your lover's desperate cries of pleasure in your [pc.ear]. You answer her moans with thrusts of your [pc.hips], pushing back into her stretched-out tailhole until she's screaming for more.");
-	output("\n\nThe one that breaks first is Valden, though. The poor wolf's been sensory-deprived for years, so it's really no surprise when the apex of a knot-deep push into his old friend's butt sends him roaring over the edge. He clutches her cheeks tight, pulling Syri's cum-drunk body flush with his own and letting loose inside. A surge of wet heat surrounds your [pc.cockOrStrapon], a momentary bath of lube that lets you slide in -- and push Valden out with a wet <i>schlick</i>. His squirting dick rockets out of her, spraying a parting shot of white goo across Syri's thick cheeks and down on the ground between his legs. ");
+	output("\n\nOf course, by now, she's not the only one. The vigorous squeeze of her ass, and constantly grinding against Valden's dick as well, as making your heart hammer in your chest. Electric pleasure courses from your crown to " + (x == -1 ? "hardlight strap's connectors" : pc.knotDescript(x)) + ". Pressure builds in your loins, urged on by the steady caresses of cock and ass, of your lover's desperate cries of pleasure in your [pc.ear]. You answer her moans with thrusts of your [pc.hips], pushing back into her stretched-out tailhole until she's screaming for more.");
+	output("\n\nThe one that breaks first is Valden, though. The poor wolf's been sensory-deprived for years, so it's really no surprise when the apex of a knot-deep push into his old friend's butt sends him roaring over the edge. He clutches her cheeks tight, pulling Syri's cum-drunk body flush with his own and letting loose inside. A surge of wet heat surrounds your " + pc.cockOrStrapon(x) + ", a momentary bath of lube that lets you slide in -- and push Valden out with a wet <i>schlick</i>. His squirting dick rockets out of her, spraying a parting shot of white goo across Syri's thick cheeks and down on the ground between his legs. ");
 	output("\n\nValden curses, stumbling back -- and taking you and Syri with him. The three of you go teetering backwards, and then it's a no-holds-barred flail-fest of tails and limbs until Valden's on his back, Syri straddling him, and you behind her thrusting full-force into her cum-lubed ass. The sultry shemale squeals in surprise and over-stimulation, shaking her hips back against you and grabbing her own schlong in a free hand to stroke herself off. You wrap your hands around her broad hips, holding her steady while you pound your way to your own climax. ");
-//	output("\n\nYour lover moans, leaning back against your [pc.chest] and rubbing her dick in a fluffy paw. A few more seconds of your hard anal fucking and she breaks, going throwing her head back and slamming her knot against her wrist. A jet of white puppy-spunk sprays out of her crimson crown, splattering across Valden's neck and chest in creamy ropes to add to the drying mess she's already squirted over him. Valden groans, shielding his eyes as Syri's jizz goes flying{, PC has multidick shortly accompanied by your secondary load{s}}. You grit your teeth and push forward, driving yourself into the dickgirl's ass to the hilt{ and slamming your knot in, lodging yourself in place}. Your own cum streams out a heart's beat later, pumping deep into Syri's battered bowels{bigload: until the poor girl's belly is swelling from the sheer intake of your prodigious seed}. Halfway through your anal creampie, Syri slumps forward and presses her ass back against you, letting you fill her up until you've got no more to give. Valden laughs under her, wrapping his arms around Syri's back and letting the oversexed shemale catch her breath...");
+	output("\n\nYour lover moans, leaning back against your [pc.chest] and rubbing her dick in a fluffy paw. A few more seconds of your hard anal fucking and she breaks, going throwing her head back and slamming her knot against her wrist. A jet of white puppy-spunk sprays out of her crimson crown, splattering across Valden's neck and chest in creamy ropes to add to the drying mess she's already squirted over him. Valden groans, shielding his eyes as Syri's jizz goes flying");
+	if (pc.cocks.length > 1) output(", shortly accompanied by your secondary load");
+	if (pc.cocks.length > 2) output("s");
+	output(". You grit your teeth and push forward, driving yourself into the dickgirl's ass to the hilt");
+	if (pc.hasKnot(x)) output(" and slamming your knot in, lodging yourself in place");
+	output(". Your own cum streams out a heart's beat later, pumping deep into Syri's battered bowels");
+	if (pc.cumQ() >= 5000) output(" until the poor girl's belly is swelling from the sheer intake of your prodigious seed");
+	output(". Halfway through your anal creampie, Syri slumps forward and presses her ass back against you, letting you fill her up until you've got no more to give. Valden laughs under her, wrapping his arms around Syri's back and letting the oversexed shemale catch her breath...");
+	pc.orgasm();
+	chars["SYRI"].orgasm();
+	processTime(30+rand(10));
 	clearMenu();
 	addButton(0, "Wrap Up", syriQuestWrapUp, undefined, "Wrap Up", "You rescued Valden, or what's left of him. Time to call this adventure done with.");
 }
@@ -2105,7 +2351,7 @@ public function syriQuestSyriValdenKnotTrain():void
 	output("\n\n<i>“Well....”</i> Syri glances down and puts her hands on your cheek, pulling you up into a long kiss. <i>“Plus, this bestie's got some serious benefits.”</i>");
 	output("\n\nValden grins, stepping back from the pair of you. <i>“Well, why don't we check 'em out?”</i>");
 	output("\n\nYour lover doesn't need to be asked twice. She pulls you up and shoves you face-first over the edge of the couch, leaving your [pc.butt] naked and more or less right at the perfect level for her to get busy on. Though all you can see is a facefull of sofa, you feel her fluffy hands grab your [pc.butt] hard, squeezing your cheeks and spreading them apart. One of her thumbs snakes down, pressing directly against your [pc.asshole]. You gasp and squirm, but she doesn't enter you -- not yet, anyway. You wonder why, until something cold and wet drips onto your tailhole. While you can't be sure if it's lube or spit or something else, it elicits an instinctive shudder from you as Syri's digit pushes a glob of it into your ass. ");
-	output("\n\nThat's the stuff! You claw at the sofa, digging your nails in as your asshole spreads around Syri's thumb, squeezing it with cock-hungry lust and drawing her ever-deeper in. ");
+	output("\n\nThat's the stuff! You claw at the sofa, digging your nails in as your asshole spreads around Syri's thumb, squeezing it with cock-hungry lust and drawing her ever-deeper in.");
 	if (pc.hasTail()) output("Your tail wags hard, swishing across Syri's chest until she's forced to wrench it aside. ");
 	output("<i>“That's it. Lemme just spread it around. You don't want me going in dry...”</i>");
 	output("\n\nTo show her that her words ring true, you push your hips back against her, taking her thumb all the way inside. Syri chuckles and gives your [pc.butt] a playful slap, swirling her thumb around inside you until the lube's spread all around. When she's satisfied with the job she's done, your wolfy lover slips her finger out and sinks the rest of her digits into your [pc.butt], spreading you wide while her hips push her red rocket up between your cheeks. The fat knot grinds against your " + (pc.balls > 0 ? "[pc.balls]" : "taint") + ", sending a shiver up your spine.");
@@ -2126,6 +2372,9 @@ public function syriQuestSyriValdenKnotTrain():void
 	output("\n\n<i>“Gods and stars!”</i> Valden groans, wobbling on his feet. <i>“Oh I've needed that! Years and years and...”</i>");
 	output("\n\n<i>“Shut up, Vally,”</i> Syri says, planting a kiss on your shoulder. <i>“Nobody likes talking with a dick in the ass.”</i>");
 	output("\n\nThe grey wolf grunts an apology and rests his hands on Syri's shoulders, letting the three of you wait out your knots in quiet companionship.");
+	pc.orgasm();
+	chars["SYRI"].orgasm();
+	processTime(45+rand(15));
 	clearMenu();
 	addButton(0, "Wrap Up", syriQuestWrapUp, undefined, "Wrap Up", "You rescued Valden, or what's left of him. Time to call this adventure done with.");
 }

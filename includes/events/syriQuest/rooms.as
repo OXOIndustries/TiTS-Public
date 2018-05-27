@@ -83,12 +83,13 @@ public function syriQuestInitRooms():void
 	rooms["AKD K31"] = new RoomClass(this);
 	rooms["AKD K31"].roomName = "ENTRANCE";
 	rooms["AKD K31"].description = "You're standing in the entranceway to the Akkadi research facility. It's dark, sterile grey metal on the walls, ceiling, and floors, illuminated by ";
-	rooms["AKD K31"].runOnEnter = function():void{
+	rooms["AKD K31"].runOnEnter = function():Boolean{
 		author("Savin");
 		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("nothing but the faint light of your Codex");
 		else output("red emergency lights");
 		output(". Ausari words are sprayed on the wall to your left in big, blocky letters: AKKADI RESEARCH & DEVELOPMENT GROUP, IMC. UVETO RIFT DIVISION. Under those is inscribed, 'Restricted Access. Authorized Personnel Only.'\n\nSouthwards are the huge metal access doors, leading back outside to the Glacial Rift. Ahead, northwards, is a short hallway that leads up to an intersection.");
-//		if (flags["SYRIQUEST_POWER_STATE"] == 2) syriQuestAkkadiBaseSecurityRobotsTrigger();
+		if (flags["SYRIQUEST_POWER_STATE"] == 2) syriQuestAkkadiBaseSecurityRobotsTrigger();
+		return false;
 	};
 	rooms["AKD K31"].planet = planetName;
 	rooms["AKD K31"].system = systemName;

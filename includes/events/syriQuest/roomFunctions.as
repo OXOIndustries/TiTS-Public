@@ -333,11 +333,16 @@ public function syriQuestAkkadiBaseShowersYeahIDid():void
 
 	processTime(10);
 	clearMenu();
-	addButton(0,"TreatHerRight", syriQuestAkkadiBaseShowersTreatHerRight,undefined,"Treat Her Right","A beauty like this needs to be treated like a lady... a dirty, slutty dickgirl of a lady, but still.");
-	addButton(1,"TreatHerBad", syriQuestAkkadiBaseShowersTreatHerBad,undefined,"Treat Her Bad","Treat this chunky dickgirl like the big, slutty half-puppy she is.");
+	// -1 = no cock
+	var x:int = -1;
+	if (pc.hasCock() && pc.cockThatFits(chars["SCHORA"].vaginalCapacity()) >= 0) addButton(0,"TreatHerRight",penisRouter,[syriQuestAkkadiBaseShowersTreatHerRight,chars["SCHORA"].vaginalCapacity(),false,0],"Treat Her Right","A beauty like this needs to be treated like a lady... a dirty, slutty dickgirl of a lady, but still.");
+	else addButton(0,"TreatHerRight",syriQuestAkkadiBaseShowersTreatHerRight,-1,"Treat Her Right","A beauty like this needs to be treated like a lady... a dirty, slutty dickgirl of a lady, but still.");
+	if (pc.hasCock() && pc.cockThatFits(chars["SCHORA"].vaginalCapacity()) >= 0) addButton(1,"TreatHerBad",penisRouter,[syriQuestAkkadiBaseShowersTreatHerBad,chars["SCHORA"].vaginalCapacity(),false,0],"Treat Her Bad","Treat this chunky dickgirl like the big, slutty half-puppy she is.");
+	else addButton(1,"TreatHerBad",syriQuestAkkadiBaseShowersTreatHerBad,-1,"Treat Her Bad","Treat this chunky dickgirl like the big, slutty half-puppy she is.");
+
 }
 
-public function syriQuestAkkadiBaseShowersTreatHerRight():void
+public function syriQuestAkkadiBaseShowersTreatHerRight(x:int):void
 {
 	clearOutput();
 	showSchora(true);
@@ -351,26 +356,26 @@ public function syriQuestAkkadiBaseShowersTreatHerRight():void
 	if (pc.hasBreasts()) output(" and groping at your breasts, cupping and squeezing them");
 	else output(", running her fingers across the muscles there");
 	output(". Oh, that's nice... especially when those magic fingers start playing around your [pc.nipples], pinching and stroking until you're getting just as excited as Alyru and her rock-hard cock.");
-	if (pc.hasCock()) {
-		output("\n\nYou feel your own [pc.cock] stiffening, grinding against the half-dzaan's bronzed thigh until it's at full mast, searching for a hole to slide into. One of Alyru's hands reaches down, wrapping around your turgid girth and starting to stroke it, slowly at first, letting the water lubricate her motions until she's properly pumping away. You push back against the lustful dickgirl, squishing her a little tighter between you and the wall, digging your hands into her plush flesh.");
+	if (pc.hasCock() && x != -1) {
+		output("\n\nYou feel your own " + pc.cockDescript(x) + " stiffening, grinding against the half-dzaan's bronzed thigh until it's at full mast, searching for a hole to slide into. One of Alyru's hands reaches down, wrapping around your turgid girth and starting to stroke it, slowly at first, letting the water lubricate her motions until she's properly pumping away. You push back against the lustful dickgirl, squishing her a little tighter between you and the wall, digging your hands into her plush flesh.");
 		output("\n\nIt's taken you no time at all to go from idle curiosity to unrestrained desire for this chocolate she-wolf's body. You dig your hands into her plump flanks and turn her around, pushing her face-first into the tiles. Her ass is fucking <i>huge</i>, a pair of perfectly shaped mounds of jiggling booty that thrust back against your crotch. Your cock's almost instantly enveloped, swallowed up into the butt-cleavage you've suddenly exposed -- and you wouldn't have it any other way. Alyru's been in here long enough that the water's soaked into all the hard to reach places, making it nice and slick for you: it's easy to rock your hips back and forth, fucking her crack between hard spanks and squeezes and gropes.");
 		output("\n\n<i>“Oh! That's the stuff!”</i> Alyru moans, thrusting back against you. One of her hands hefts up a plump bronze boob, squeezing it between her fingers, while the other reaches back, brushing against your thigh. Gently, she guides your hands to her hips, her intentions clear: hold on, and fuck her hard.");
 		output("\n\nYou give her exactly what she wants.");
-		output("\n\nYou tighten your grip on Alyru, holding her steady while you pull your own hips back, dragging your [pc.cock] back through the channel of her asscrack. A little work and you're lined up with the slick pussyslit hidden between those full-moon cheeks. Your [pc.cockHead] presses in between her lips, gently parting the fleshy folds. Alyru lets loose a soft moan as you start to enter her, and you can feel her muscles tightening -- including her cock twitching, leaking dickmilk onto her thighs.");
+		output("\n\nYou tighten your grip on Alyru, holding her steady while you pull your own hips back, dragging your " + pc.cockNounComplex(x) + " back through the channel of her asscrack. A little work and you're lined up with the slick pussyslit hidden between those full-moon cheeks. Your " + pc.cockHead(x) + " presses in between her lips, gently parting the fleshy folds. Alyru lets loose a soft moan as you start to enter her, and you can feel her muscles tightening -- including her cock twitching, leaking dickmilk onto her thighs.");
 		output("\n\nAlyru flashes you a little grin over her shoulder and wiggles her hips, taking the first inch of your dick. <i>“C'mon, stud, give it to me!”</i>");
 		output("\n\nShe asked for it. You slam yourself in ");
-		if (pc.biggestCockLength() >= 8) output("as deep as you can go");
+		if (pc.cocks[x].cLength() >= 8) output("as deep as you can go");
 		else output("all the way to the hilt");
 		output(", and Alyru's scream of pleasure echoes throughout the room. Her body goes stiff for a moment, clenching hard around your sudden invasion, before relaxing as she sighs and moans. The tension bleeds out of her, letting you start to move your [pc.hips] and fuck that pussy like it deserves: hard, fast, and loud.");
 		output("\n\nThe sound of your hips slapping against Alyru's ass fills the showers. Your partner's plump balls swing underneath her, rocking back and forth with the impacts. You can feel just how full and heavy they are just from the way they move! The halfbreed slut gropes herself and strokes her cock, letting you decide exactly how hard to pound her into the wall.");
-		output("\n\nAnd how she gets off, apparently. Alyru's pussy clenches around your [pc.cock] at the apex of one womb-deep thrust, holding you inside her. Even drenched in hot water as you are, you're able to feel a sudden flood of sultry moisture around your shaft, spilling down her dusky thighs. The real show is in front of her, though: her cock is pressed straight downward, crown swelling against the tile before leaking a thick streak of white cream. Her cum smears across the shower wall, drooling downwards in thick rivulets before being washed away by the beating rain of the shower.");
-		output("\n\n<i>“Oh, <b>fuck</b>,”</i> Alyru says with a shudder you feel all the way to your [pc.knot]. You don't let up just because she came, of course. The second her grip on your [pc.cock] slacks, you start thrusting again, just as hard as before. <i>“Oh fuck oh fuck oh FUCK!”</i>");
+		output("\n\nAnd how she gets off, apparently. Alyru's pussy clenches around your " + pc.cockNounComplex(x) + " at the apex of one womb-deep thrust, holding you inside her. Even drenched in hot water as you are, you're able to feel a sudden flood of sultry moisture around your shaft, spilling down her dusky thighs. The real show is in front of her, though: her cock is pressed straight downward, crown swelling against the tile before leaking a thick streak of white cream. Her cum smears across the shower wall, drooling downwards in thick rivulets before being washed away by the beating rain of the shower.");
+		output("\n\n<i>“Oh, <b>fuck</b>,”</i> Alyru says with a shudder you feel all the way to your " + pc.knotDescript(x) + ". You don't let up just because she came, of course. The second her grip on your " + pc.cockDescript(x) + " slacks, you start thrusting again, just as hard as before. <i>“Oh fuck oh fuck oh FUCK!”</i>");
 		output("\n\nIt's all of a minute of her blubbering and gasping before her cock stiffens again, and more of that sweet, musky white is dripping down the walls. Alyru desperately tugs on her little dick, milking out more and more until her cum-swollen sack attains its sweet release. You reach down and give her balls a gentle squeeze, feeling how much lighter they've gotten since you starting pounding her pussy. You can see the fruits of your labor splattered on the tiles between Alyru's legs, pooling under her dainty little feet.");
 		output("\n\nYou let the twitches and erratic clenches of Alyru's orgasming quim finally lead you to your own climax. ");
-		if (pc.hasKnot()) output("You give her one last, mighty thrust, burying your [pc.knot] into the sodden slit of her pussy. Alyru screams and cums again, spraying her cockmilk all over the wall one last time while you unload into her waiting womb. With nowhere else to go, your [pc.cum] fills her up from the depths out, trapped inside her spasming slit.");
+		if (pc.hasKnot(x)) output("You give her one last, mighty thrust, burying your " + pc.knotDescript(x) + " into the sodden slit of her pussy. Alyru screams and cums again, spraying her cockmilk all over the wall one last time while you unload into her waiting womb. With nowhere else to go, your [pc.cum] fills her up from the depths out, trapped inside her spasming slit.");
 		else output(" [pc.Cum] rushes up through your [pc.cock], swelling your member turgid for a split second before erupting into Alyru's innermost depths.");
 			output(" You gasp, a ragged sound from deep in your chest, as your orgasm paints the halfbreed's inner walls [pc.cumColor]. Your [pc.chest] presses into her back, holding this naked stranger close until your climax passes, leaving her full of your jizz and the shower floor a sloppy mess between your [pc.feet].");
-		if (pc.hasKnot()) output("\n\nThankfully for your mission, the water's lubed Alyru up inside and out. With a little work, you're able to pull your knot back out of her -- but not without triggering one last orgasm from the poor half-ausar. She's only able to give you a few little spasms from her dick, dripping the last of her cum onto the ground. When your [pc.knot] pops free, a deluge of spunk spills free, leaving Alyru's thighs a creamy [pc.cumColor].");
+		if (pc.hasKnot(x)) output("\n\nThankfully for your mission, the water's lubed Alyru up inside and out. With a little work, you're able to pull your knot back out of her -- but not without triggering one last orgasm from the poor half-ausar. She's only able to give you a few little spasms from her dick, dripping the last of her cum onto the ground. When your [pc.knot] pops free, a deluge of spunk spills free, leaving Alyru's thighs a creamy [pc.cumColor].");
 		output("\n\n<i>“Fuck yeah!”</i> Alyru sighs, shivering as a little of your seed leaks down her legs. <i>“First day back on the job... pretty good so far.”</i>");
 		output("\n\nShe laughs, slowly slumping down onto the floor. Guess you've satiated the lusty halfbreed, though you're no closer to your actual goals. ");
 		output("\n\nBut hey, never a bad time to get your dick wet, right?");
@@ -402,7 +407,7 @@ public function syriQuestAkkadiBaseShowersTreatHerRight():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function syriQuestAkkadiBaseShowersTreatHerBad():void
+public function syriQuestAkkadiBaseShowersTreatHerBad(x:int):void
 {
 	clearOutput();
 	showSchora(true);
@@ -412,13 +417,13 @@ public function syriQuestAkkadiBaseShowersTreatHerBad():void
 	output("\n\n<i>“What's your name, slut?”</i> you breathe into her ear, stroking her off with forceful, even motions.");
 	output("\n\nShe moans, clutching at your [pc.butt], trying to keep her balance. <i>“A-Alyru. Alyru Schora.”</i>");
 	output("\n\n<i>“Good. Now get on your knees and put that mouth to use for something,”</i> you growl, releasing her dick in exchange for one of her meaty tits, squeezing it until she complies. The bronzed halfbreed slinks down, resting her hands on your [pc.hips] and fixes her gaze on what's between your [pc.legs]. No time for that. You wrap your fingers around her dark horns and just smash her face right down in there.");
-	if (pc.hasCock()) {
-		output("\n\nThe dusky little exhibitionist knows exactly what to do with a dick -- surprising nobody, considering the stiff little prick wobbling between her legs. If she hasn't been sucking her own cock, then she's clearly the office fucktoy. Without hesitation, she wraps her lips around your [pc.cockHead], swirling her tongue around the tip before opening her throat for you. She doesn't move past that, just slobbering all over your knob, waiting for your pleasure.");
-		output("\n\nHer horns are handlebars, at the perfect height for you to hold her head steady and start face-fucking her. No preamble, no foreplay; you just start slamming your hips into her face, driving your [pc.cock] deep into the dickgirl's clenching throat. She's got exactly no gag reflex, but seems perfectly capable of rhythmically squeezing her throat around your thrusting member. You grin down at her, watching your [pc.cock] disappear between her dark lips again and again, coming back shining with spittle every time, only to have it washed away by the beating waters before it goes balls-deep back in again.");
+	if (pc.hasCock() && x != -1) {
+		output("\n\nThe dusky little exhibitionist knows exactly what to do with a dick -- surprising nobody, considering the stiff little prick wobbling between her legs. If she hasn't been sucking her own cock, then she's clearly the office fucktoy. Without hesitation, she wraps her lips around your " + pc.cockHead(x) + ", swirling her tongue around the tip before opening her throat for you. She doesn't move past that, just slobbering all over your knob, waiting for your pleasure.");
+		output("\n\nHer horns are handlebars, at the perfect height for you to hold her head steady and start face-fucking her. No preamble, no foreplay; you just start slamming your hips into her face, driving your " + pc.cockDescript(x) + " deep into the dickgirl's clenching throat. She's got exactly no gag reflex, but seems perfectly capable of rhythmically squeezing her throat around your thrusting member. You grin down at her, watching your " + pc.cockNounComplex(x) + " disappear between her dark lips again and again, coming back shining with spittle every time, only to have it washed away by the beating waters before it goes balls-deep back in again.");
 		output("\n\nAlyru's rosey rump swishes in the water while you use her mouth. She's shameless about enjoying it, even reaching down to tug on her own little prick.");
 		output("\n\nCan't have any of that. You take her horns and pull her sideways, off her knees and sprawling her out on the shower floor. Her dick bobs in the air, bumping into her plump ballsack when you push it up out of the way, revealing the thick, dark lips of her sex. ");
-		output("\n\n<i>“Hands off,”</i> you command, lacing your fingers through hers and pinning Alyru's hands against the tile. Her sack's heavy enough with pent-up desire to hold her dick down and out of the way, and you're able to press your [pc.cockHead] to her pussylips, parting the slick folds of her sex ever so slightly. Alyru shivers, whining with shameless desire, and her pussy quivers around your crown. You push your hips forward, and are immediately rewarded with a visible throb of the dickgirl's pinned pecker; her hands clench around yours, trying desperately to break free and pleasure herself, but you hold her fast. Her legs squirm on either side of you, kicking haplessly in the water while you slowly grind your [pc.cock] into her pussy.");
-		output("\n\nEmphasis on slow. You take your own time, enjoying the way her pussy clenches and squeezes around every inch of your shaft. She's a soaking wet mess, inside and out, making it almost too easy to slide all the way in. She can't resist you, even if she wanted to, only able to add a little slick friction to your penetration that enhances your pleasure. By the time you've bottomed out in the buxom bitch, there's a broad smear of halfbreed cream on her belly; a constant stream of pre leaks from her dusky cockhead, bubbling up with every little movement of your [pc.cock].");
+		output("\n\n<i>“Hands off,”</i> you command, lacing your fingers through hers and pinning Alyru's hands against the tile. Her sack's heavy enough with pent-up desire to hold her dick down and out of the way, and you're able to press your " + pc.cockHead(x) + " to her pussylips, parting the slick folds of her sex ever so slightly. Alyru shivers, whining with shameless desire, and her pussy quivers around your crown. You push your hips forward, and are immediately rewarded with a visible throb of the dickgirl's pinned pecker; her hands clench around yours, trying desperately to break free and pleasure herself, but you hold her fast. Her legs squirm on either side of you, kicking haplessly in the water while you slowly grind your " + pc.cockNounComplex(x) + " into her pussy.");
+		output("\n\nEmphasis on slow. You take your own time, enjoying the way her pussy clenches and squeezes around every inch of your shaft. She's a soaking wet mess, inside and out, making it almost too easy to slide all the way in. She can't resist you, even if she wanted to, only able to add a little slick friction to your penetration that enhances your pleasure. By the time you've bottomed out in the buxom bitch, there's a broad smear of halfbreed cream on her belly; a constant stream of pre leaks from her dusky cockhead, bubbling up with every little movement of your " + pc.simpleCockNoun(x) + ".");
 		output("\n\nYou don't want to let her adjust to your size, so you start moving immediately, pumping your [pc.hips] against her plump posterior. Her ass jiggles with every impact, sending shockwaves through her plush body that reach all the way to her mammoth bosoms, making the olive mounds bounce every time your dick slams back home inside her. Alyru's voice is nothing but a cascade of gasps, whimpers, and cries of pleasure, driven insensate by your relentless fucking. You can tell she desperately wants to jack off, to have some measure of control over the waves of ecstasy crashing through her, but you refuse to let her move, dominating her mind and body with your [pc.cock].");
 		output("\n\nAlyru squirms harder suddenly, thrashing her legs and tail around your waist until her back arches and her dick juts up with enough force to dislodge it from underneath her balls. An absolute geyser of white cream lances up from her crown, arcing through the sultry air between your bodies before ");
 		if(pc.biggestTitSize() >= 5) output("coming down in a hot smear across the tops of your [pc.boobs].");
@@ -534,8 +539,9 @@ public function syriQuestAkkadiBaseCheckPoint():Boolean
 		processTime(10);
 		clearMenu();
 		flags["MET_TORRA"] = 1;
-		addButton(0, "Fight", syriQuestAkkadiBaseTorraFight, undefined, "Fight", "You've got a bad feeling about submitting to this needy kitty.");
-		addButton(1, "Fuck", syriQuestAkkadiBaseTorraFuck, undefined, "Fuck", "Why bother fighting? You both wan't the same thing anyway!");
+		addButton(0, "Fight", syriQuestTorraFight, undefined, "Fight", "You've got a bad feeling about submitting to this needy kitty.");
+		if (pc.hasCock() && pc.cockThatFits(chars["TORRA"].vaginalCapacity()) >= 0) addButton(1,"Fuck",penisRouter,[syriQuestTorraFuck,chars["TORRA"].vaginalCapacity(),false,0],"Fuck","Why bother fighting? You both wan't the same thing anyway!");
+		else addButton(1,"Fuck",syriQuestTorraFuck,-1,"Fuck","Why bother fighting? You both wan't the same thing anyway!");
 		return true;
 	}
 	else {
@@ -545,150 +551,13 @@ public function syriQuestAkkadiBaseCheckPoint():Boolean
 	}
 }
 
-public function syriQuestAkkadiBaseTorraFight():void
-{
-	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyActors(pc);
-	CombatManager.setHostileActors(new Torra());
-	CombatManager.displayLocation("ASSISTANT\nRESEARCHER");
-	CombatManager.victoryScene(syriQuestAkkadiBaseTorraVictory);
-	CombatManager.lossScene(syriQuestAkkadiBaseTorraDefeat);
-	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseTorraFightText);
-	CombatManager.beginCombat();
-}
-
-public function syriQuestAkkadiBaseTorraFightText():String
-{
-	var eText:String = "";
-	eText += "You're fighting the Milodan Researcher!";
-	eText += "\n\nShe's a tall furry woman with the ears and colors of a snow leopard. Her figure is the very definition of fertile: she has broad hips, thick thighs, and a thin waist. And her breasts, well, they're <i>beyond</i> fertile: the huge, succulent mounds sit high and heavy on her chest, each capped with a prominent black teat. She's well beyond an H-cup, if they even make bras big enough to contain such mammalian magnificence. She's unarmed, save for the razor-like feline claws protruding from her digits, and the meaty black vibrater lodged inside her. That's a kind of weapon, right?";
-	
-	return eText;
-}
-
-public function syriQuestAkkadiBaseTorraDefeat():void
-{
-	CombatManager.genericLoss();
-	syriQuestAkkadiBaseTorraFuck();
-}
-
-public function syriQuestAkkadiBaseTorraFuck():void
-{
-	clearOutput();
-	showTorra(true);
-	author("Savin");
-	 output("Before you can blink, the milodan matron is on you, ");
-	if (pc.isNude()) output("tearing your clothes away with her claws and ");
-	output("pressing her dark lips to yours. Her hands run roughly over your body, groping and squeezing every inch of tender flesh they lay bare. When they find your own hands, the milodan woman grabs them fiercely, guiding them to her broad hips and plush ass. Even in her state, she wants you to be an active participant, urging you to grope and hold her in return while she slakes her rampant lusts on your yielding body.");
-	output("\n\nHer overbearing sensual assault quickly leaves you scrambling backwards, trying to gain purchase on the slick metal floor. Her huge, furry breasts press against your [pc.chest] as your back hits the wall, pinning you between unrelenting metal and soft, supple titflesh.");
-	output("\n\n<i>“Need to... need to... need to...”</i> the cat-woman huffs, sniffing and groping at you. One of her hands wanders between your [pc.legs], grabbing at your crotch.");
-	if (pc.hasCock()) output("\n\n<i>“Ah, yes! Good!”</i> she mewls, wrapping her fluffy fingers around your [pc.cock]. <i>“Need this... so bad. Can barely think!”</i>");
-	else output("\n\n<i>“What -- no breeding rod?”</i> she huffs, squeezing your crotch. <i>“Noooo I need to </i>breed<i>!”</i>");
-	output("\n\nHer grip on your tightens, pushing you towards the ground; you slide down the wall, splaying your [pc.legs] while the milodan's hands grope all over your body, exploring every inch as she tears you out of your [pc.gear]. All the while you can hear the ever-present purr of her vibrator buzzing away inside her, making the science-slut pant and gasp as she works. Her nipples are rock hard, every breath pushing the jutting black mountains of pleasure into your face. You manage to wrest your hands free through her frantic stripping and grab the kitty's big titties, hard enough to make her howl in pleasure. Her fluffy tail thumps hard against your [pc.leg], silent encouragement to keep kneading her nipples until she's able to grind her dripping slit against your " + (pc.hasGenitals() ? "[pc.cockOrVag]" : "thigh") + ".");
-	if (pc.hasCock()) {
-		output("\n\nThe horny cat-woman purrs hungrily, straddling your hips and pressing your puffy puss against your rock-hard cock. She thrusts herself down on you the moment you're lined up, spearing herself on your [pc.cock] with a howl of bliss that echoes throughout the base. You yourself are busy gritting your teeth as her claws rake your [pc.skinFurScales], pinning you against the wall while the kitty starts to ride you.");
-		output("\n\nIt takes you a moment to realize some of the gripping, writhing pleasure encasing your cock isn't just from her needy cunt. The vibrator knotted in her ass is buzzing away so hard that you can feel it perfectly through her inner walls; the knot is right next to your " + (pc.hasKnot() ? "own knot" : "dick's base") + ", sending waves of pleasure up your shaft and back to your [pc.balls]. Fuck that feels good!");
-		output("\n\nNot as good as your sexual assailant riding you full throttle, though. The vibrator's just the garnesh to top off the squeeze of her cunt and the flow of orgasmic juices as the rods inside her bring the milfy kitty to climax again. And again. And again. She's a relentless fuck-machine, pounding down on your pelvis through a dozen screeching orgasms. ");
-		output("\n\nOnly after so many climaxes is she able to focus enough to form a few cogent words: <i>“C-cum for me. Please, stranger, oh please! I neeeeed it!”</i>");
-		output("\n\nYou couldn't resist her if you tried; your [pc.cock] is already on the edge inside her, throbbing with a desperate need for release between the cumsoaked lips of her pussy. ");
-		if (pc.hasKnot()) output(" With one last surge of energy, your body responds to an instinctual demand: you thrust your [pc.hips] forward, driving your [pc.knot] into her cunt's embrace before you join her in orgasm. ");
-		output("You grit your teeth and grab the bouncing slut's plush bosom, shoving her down to the hilt on your dick before your load blows inside her, filling her hungry cunt with [pc.cumNoun].");
-		output("\n\nThe milodan slut cries with pleasure as you fill her up, sating her desperate need to breed. Her body goes limp as the aftershots of your orgasm leak into her, pushing her chest into yours and resting her cheek against your [pc.face]. For whatever reason, when she slumps forward you can feel the vibrator that's been going full-blast inside her slow down, decelerating to a steady thrum. You didn't touch anything... wonder what triggered it to turn down?");
-		output("\n\nEither way, you squirm around until you can hook your hands under the milodan's ass and ");
-		if (pc.hasKnot()) output("roll the two of you over, putting the tuckered-out kitty on bottom while you wait for you knot to deflate. It takes a while, especially with the vibe still buzzing through her pussy walls, but eventually you manage to wriggle free. Cum pours out of her plump puss as you stand up.");
-		else output("pull her off your dick, letting loose a little stream of cum from her soaked snatch as you set her down.");
-		output(" You get your gear and turn to the task at hand.");
-	}
-	else {
-		output("\n\nShe's a beast, obsessed with nothing but her own pleasure, sliding her drooling pussy against your thigh with single minded desire. Her breath comes hot and ragged against your bare [pc.skinFurScales], and her heavy breasts bouncing and rub against your [pc.chest]. A few moments of that and you start feeling a strange tingle working up your [pc.skin] where her glowing green piercings are rubbing against your flesh.");
-		output("\n\nIs that <i>savicite</i>!? No wonder she's so lust-addled! You squirm, trying to distance yourself from the psionic stones, but your struggling just makes the milodan shove herself against you, trying awkwardly to hold you down and trib with you. Her grip's strong and firm, keeping you pinned right where she wants you until the lust-fueling piercings have you panting, flushed with unbidden need.");
-		output("\n\n<i>“You feel it too?”</i> the kitty purrs, flicking her tongue on your neck. <i>“You need it?”</i>");
-		output("\n\nYou want to resist, to push her off and tell her no... but your body is much more honest, stiffening your [pc.nipples] and making your loins ache with desire. You can't stop your hands from wandering, grabbing at the cat-woman's ass and urging her legs to press into your crotch, and with a little effort, you adjust your positions so that your legs are splayed together and each of you has your arms behind you, supporting the undulation of your hips grinding against each other.");
-		output("\n\nThat's more like it! Her fur is like the softest silk against your " + (pc.hasVagina() ? "twat" : "bare groin") + ", and the slightest touch makes you shiver uncontrollably with carnal pleasure. You get more than a gentle caress, though: the milodan is eager to get back to work, shaking her hips with desperate desire the moment she can resume her lurid work. You watch has her huge, pierced tits bounce with every thrust, and feel her plush ass grinding against your [pc.leg], jiggling obscenely with the weight of her matronly curves. Her pussy's a mess of girl-cum and desire, lubricating its own lurid motions.");
-		output("\n\nLittle whines of pleasure escape your assailant's muzzle, and her movements quickly become more frantic. She's so wet and loud already that it's hard to know when exactly her orgasm hits, but the growing puddle of fem-cum beneath your [pc.leg] and the ragged gasps as she slumps backwards sure give you a hint when it's over. She only stays passive for a moment, long enough to catch your breath, before she thrusts her hips up and starts moving again with the same bestial determination.");
-		output("\n\nYou can barely keep up with her! The milodan is as fast as a Terran tiger when she wants to be, and she <i>definitely</i> wants to use that speed to get you off. She's cum at least once, maybe more, and now her attention seems to have focused entirely on your groin, rubbing her pussy against your " + (pc.hasVagina() ? "[pc.cunt], grinding on your [pc.clit]" : "sensitive-but-bare crotch") + ". You can only imagine that what you're feeling now is a fraction of what her savicite-laden body is enduring, an overwhelming, crushing pleasure that threatens to drown out your remaining composure in bliss despite your weakening will's best efforts. You can't help but thrust back against the needy cat-girl, eeking out more friction on your " + (pc.hasVagina() ? "[pc.clit]" : "groin") + " from her wiggling hips and juicy twat.");
-		output("\n\n<i>“That's it!”</i> the kitty growls, matching your movements point for point. <i>“I knew you had it in you. Come on... come on! Cum with me!”</i>");
-		output("\n\nNot like you have much choice by this point, your body's already so close to the edge. You grab the slut's foot and squeeze, the closest thing to an acknowledgement you can muster before you feel the fires of lust burning over in your loins, and your skin feels alight with ecstasy. Your scream of pleasure echoes off the sterile walls of the facility's corridors. ");
-		output("\n\nWhen your body-rocking climax finally passes, you're left sliding onto your back drenched in femcum and sweat. The milodan whimpers and grabs at the vibrator still lodged in her ass, pushing it in deeper until even its massive knot has almost vanished inside her and geysers of girl-cum are squirting from her much-abused puss. Even when you manage to disentangle yourself, she just keep fucking away, rubbing her clit and pumping the vibe in her ass until you've gathered your gear and turned on your way.");
-	}
-	pc.orgasm();
-	chars["TORRA"].orgasm();
-	processTime(30);
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
-}
-
-public function syriQuestAkkadiBaseTorraVictory():void
-{
-	clearOutput();
-	showTorra();
-	author("Savin");
-	
-	if(CombatManager.getHostileActors()[0].HP() <= 0)
-	{
-		output("The over-eager milodan whines and slumps onto a knee, trying to keep coming at you but unable to maintain her footing. Finally, she collapses backwards with a pathetic whine. <i>“P-please,”</i> she moans, grabbing the base of the vibrator lodged in her ass. <i>“I'm sorry! But I need it so bad. Please!”</i>");
-	}
-	else
-	{
-		output("<i>“Whyyy,”</i> the milodan whines, falling onto her knees. <i>“You want it! I <b>need</b> it! Please, please, please fuck me! I can't stand it anymore.”</i>");
-	}
-	output("\n\nWhat are you going to do with this lusty kitten?\n\n");
-
-	CombatManager.genericVictory();
-	processTime(3);
-	clearMenu();
-	if (pc.hasCock()) addButton(0,"Pound Puss",syriQuestAkkadiBaseTorraPoundPuss,undefined,"Pound Puss","Take this curvy catgirl to the pound.");
-	else addDisabledButton(0,"Pound Puss","Pound Puss","You need a penis for this.");
-	addButton(1,"Leave",syriQuestAkkadiBaseTorraLeave,undefined,"Leave","Go away, cat.");
-}
-
-public function syriQuestAkkadiBaseTorraPoundPuss():void
-{
-	clearOutput();
-	showTorra(true);
-	author("Savin");
-	output("Now that the overly-amorous fuck-kitten has been put in her place, maybe you can see about relieving the overwhelming lust wracking her body. You stride forward, shedding your [pc.gear] as you go and cupping the lusty cat's cheeks. She whimpers, stroking her pussy with one hand and using the other to paw pleadingly at your crotch. Her fingers are drawn straight to your [pc.cock], wrapping around your stiffening member and pumping her wrist up and down your length until your [pc.cockHead] is pressing against her dark lips.");
-	output("\n\n<i>“Get me ready,”</i> you command her. She needs dick too badly to even think of resisting your instructions, no matter that you're delaying her release -- the threat of getting nothing is too great. She opens wide and wraps her black lips around your crown, running her tongue around your glans and through your slit, letting you take charge of thrusting deeper into her mouth. While you're busy slamming your [pc.knot] against her nose, her hands fall away from you and slip down to her poor neglected puss. She shoves a few fingers in, stirring herself up while the other hand grips the knotted dildo in her ass and shifts it side to side, creating a staccato rhythm that quickly brings a howling climax ripping through her body. The kitty slut's pussy leaks a pool of girl-cum between her legs, and her oversized tits heave with the aftershocks of orgasm.");
-	output("\n\nThe orgasm doesn't even slow her down.");
-	output("\n\nShe keeps sucking, bobbing her head up and down your rod until your entire [pc.cock] is sheathed in spittle. Only then do her lips release you, letting you smear them with pre as you pull out.");
-	output("\n\n<i>“You're gonna fuck me, right?”</i> she pleads, groping at her titties. <i>“I need it so bad!”</i>");
-	output("\n\nOf course you are... but you don't mind stringing her along a little. You take your time stroking yourself and circling around behind the kneeling milodan, running a hand through her messy red hair before grabbing her shoulders and pushing her forward onto all fours. The naked cat gasps, but in the same breath raises her fluffy grey tail to expose her plugged ass and drooling gash.");
-	output("\n\nThat's what you like to see. You slink down on your [pc.knees] and throw the kitty's tail over your shoulder, letting your [pc.cock] flop into the fluffy trench between her fat asscheeks. Your [pc.cockHead] rubs against the sex toy buried in her tailhole, feeling the rapid vibrations assaulting her insides. Damn, that thing's turned up <i>high</i>! Between that and all the savicite piercings... no wonder the cat-babe's so lust-addled. She probably can't put two thoughts together with all that ecstacy running through her.");
-	output("\n\nWell, she doesn't need to think much to take a dick, does she? You rock your [pc.hips] back and push the crown of your cock into the thick, wet lips of her pussy; your member pushes the curtains of her sex apart, letting loose a trickle of pent-up femcum that lubes you up to a nice shine in the harsh office lights. Setting your hands on the kitty-slut's broodbearing hips, you thrust yourself deep inside her sodden depths. Her constantly lurid moans peak into a husky wail of orgasmic delight as your [pc.cock] sinks into her, delving the dank depths of her quivering quim until your [pc.knot] is throbbing between her pussylips. ");
-	output("\n\nIt's shockingly easy to sink your dick into the milodan's twat, but she makes you fight for every inch you try and pull out of her. For such a " + (silly ? "<i>thicc</i>" : "plush") + " slut, this kitten's got a hell of a lot of muscle between her legs, and she's using every bit of pussy-power to keep you trapped inside her. The vibrator up her ass kicks into overdrive of its own accord, starting to buzz so violently that you can see it twisting around inside her -- and you can feel it, too, sending vibrations right through the walls of her pussy and into your [pc.cock]. Stars, that thing really must be driving her mad! Lest it do the same to you, you dig your fingers into the kitten's plush rump and leverage it to slowly, laboriously drag your [pc.cock] back out of her cunt's wet embrace. Her twat clenches and grips in random spasms of orgasmic pleasure, leaking lube and your own pre back out around your slowly-pistoning dick.");
-	output("\n\nEven then, you can still feel the incessant vibrations in your [pc.cockHead], sending shivers down the shaft of your [pc.cock]. You have to bite your lip to keep from shuddering, gripping the kitten's hips hard until you can muster up the strength to hammer your cock back into her. The milodan slut howls, throwing her head back and cumming hard to your womb-deep thrust. Hot juices flow down your [pc.cock], and her huge tits bounce wildly as you start to properly pound her pussy, in and out despite her clenching resistance.");
-	output("\n\nYou fuck her harder, harder until her voice is a non-stop wail of orgasmic bliss. Her face sinks down into the ground, pushing her ass up into your crotch and wrapping your hips in her fluffy tail. Before long her tits are getting use like big, fluffy pillows under her body, absorbing some of the shock each time your [pc.hips] pound into her thick ass. You're not sure anymore if she's actually having distinct, separate orgasms, one after the other... or if the tigress is just locked in one unending climax so long as you and the vibrator absolutely destroy her holes.");
-	output("\n\nThere's no point in trying to hold back -- you've all but shattered this slut's oversexed senses already. You let your own pleasure rise as it will, milked out by her squeezing cunt and the vibrations echoing through her from the toy firmly wedged inside her. When you feel [pc.cum] rising in your loins, burning its way towards the cat-woman womb, you're almost relieved to feel it coming. With a feral grunt, you hilt yourself in the sodden pussy and let loose, pumping a fat wad of [pc.cum] right into her deepest depths. The milodan squeals in delight, clawing at the ground and battering you with her tail until you've blown the entirety of your load into her spasming quim.");
-	output("\n\nWhen you've finished filling her cunt with your [pc.cum], you start to notice something feels... different. A quick press against the vibe in her ass tells you what's up: whatever has been controlling the toy seems satisfied now that she's gotten a load right inside. The vibrator's turned itself down to a pleasant rumble, just enough to keep the woman moaning softly as she basks in the afterglow.");
-	output("\n\nYou slowly pull out, letting a waterfall of fem-spunk and [pc.cum] spill out onto her thighs, and go to find your gear...");
-	pc.orgasm();
-	chars["TORRA"].orgasm();
-	processTime(30);
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
-}
-
-public function syriQuestAkkadiBaseTorraLeave():void
-{
-	clearOutput();
-	showTorra();
-	author("Savin");
-	output("You put your hand on the milodan's face and push her back. She yelps and flops onto her ass, legs splayed around the buzzing dildo lodged inside her. You ignore her, and she's powerless to do anything about it but sit there and masturbate.");
-	output("\n\nTime to find Valden.");
-	processTime(3);
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
-}
-
-public var syriQuestOpenedWarpLab:Boolean = false;
-
 public function syriQuestAkkadiBaseResearchDeptPlaza():void
 {
 	clearOutput();
 	author("Savin");
 	output("You're in the beating heart of Akkadi's Uvetan laboratories. There are three major labs branching off of this plaza, like spokes from a wheel -- one whose hub is a huge, fake palm tree. Guess they were trying to warm the place up a little.");
 	output("\n\nTo the west is a door labeled BioMed; to the east, one labelled Starship Lab. And to the south is a seriously heavy-duty metal door with the words 'Warp Field Lab' printed above it.");
-	if (!syriQuestOpenedWarpLab) output(" If you had to take a guess, that's where you need to go.")
+	if (flags["SYRIQUEST_WARP_LAB_UNLOCKED"] == undefined) output(" If you had to take a guess, that's where you need to go.")
 }
 
 public function syriQuestAkkadiBaseWarpLab():Boolean
@@ -696,11 +565,11 @@ public function syriQuestAkkadiBaseWarpLab():Boolean
 	clearOutput();
 	author("Savin");
 	clearMenu();
-	if (!syriQuestOpenedWarpLab) {
+	if (flags["SYRIQUEST_WARP_LAB_UNLOCKED"] == undefined) {
 		if (flags["SYRIQUEST_STATE"] >= 5) {
 			output("The door to the Warp Field Lab remains steadfastly closed, but the panel beside it beeps and crackles. After a moment, you hear Commander Valden's voice. He speaks quickly, barely pausing between words. <i>“There you are ! Good... good ! Come inside; I'll release the locks.”</i>");
 			output("\n\nThe panel beeps again, and you hear the seal on the door releasing. Okay... this is it!");
-			syriQuestOpenedWarpLab = true;
+			flags["SYRIQUEST_WARP_LAB_UNLOCKED"] = 1;
 			addButton(0, "Next", mainGameMenu);
 		}
 		else {
