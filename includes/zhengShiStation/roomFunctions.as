@@ -1,21 +1,26 @@
+public function zhengCoordinatesUnlocked():Boolean
+{
+	return (nyreaDungeonFinished() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords")));
+}
+
 public function zhengElevatorF1Bonus():void
 {
 	//Power Out: 
-	if(9999 == 9999) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn't change that. Looks like the power's been cut somewhere...");
+	if(9999 == 9999) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
 	else output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
 }
 
 public function urbolgsOffice():void
 {
 	vendingMachineButton(0,"energy");
-	output(" You're surprised it doesn't have a combination as well.");
+	output(" You’re surprised it doesn’t have a combination as well.");
 	//Appended to Urbolg's room description.
 	if(flags["GOT_URBOLGS_SHIELD"] == 0) 
 	{
 		output("\n\nThe brown safe Urbolg mentioned is in fact under his desk. If you remember correctly, the combination is 7-8-9. You could pop it open, if you wanted to.");
 		addButton(1,"Open Safe",collectUrbolgsSafe);
 	}
-	else if(flags["GOT_URBOLGS_SHIELD"] == 1) output("\n\nUrbolg's brown safe is open and empty, like you left it. How nice of him to let you use his extra shield belt!");
+	else if(flags["GOT_URBOLGS_SHIELD"] == 1) output("\n\nUrbolg’s brown safe is open and empty, like you left it. How nice of him to let you use his extra shield belt!");
 }
 
 //Making Landfall at Zheng Shi
@@ -59,7 +64,7 @@ public function landingAtZhengShi():void
 		clearMenu();
 		addButton(0,"Submit",submitThePiratePassword);
 		if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
-		else addDisabledButton(1,"Locked","Locked","You haven't met a character you could call in a favor from...");
+		else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
 		addButton(4,"Run!",fuckThisShit);
 	}
 	//Repeat Approach, Post Correct Answer
@@ -129,7 +134,7 @@ public function firstTimeZhengApproachIV():void
 	clearMenu();
 	addButton(0,"Submit",submitThePiratePassword);
 	if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
-	else addDisabledButton(1,"Locked","Locked","You haven't met a character you could call in a favor from...");
+	else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
 	addButton(4,"Run!",fuckThisShit);
 }
 

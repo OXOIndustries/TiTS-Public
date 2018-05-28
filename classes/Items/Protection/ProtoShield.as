@@ -26,10 +26,10 @@ package classes.Items.Protection
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a pirate's prototype shield";
+			this.description = "a pirate’s prototype shield";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This shield belt was hand-crafted by the pirate artificer, Urbolg, as a prototype for the even heavier shield belt he wears today. Numerous circuits have been replaced with more robust variants, and an excessive number of weighty power cells allow for higher peak deflections and longer sustained operation. In short, the weight will slow you down a bit, but it'll provide plenty of protection in exchange.";
+			this.tooltip = "This shield belt was hand-crafted by the pirate artificer, Urbolg, as a prototype for the even heavier shield belt he wears today. Numerous circuits have been replaced with more robust variants, and an excessive number of weighty power cells allow for higher peak deflections and longer sustained operation. In short, the weight will slow you down a bit, but it’ll provide plenty of protection in exchange.";
 			this.attackVerb = "null";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);

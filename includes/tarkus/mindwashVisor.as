@@ -53,7 +53,7 @@ public function mindwashBrokenVisor():void
 		//if Bubble Buddy & penis:
 		if(checkToyDrawer(BubbleBuddy) && pc.hasCock()) 
 		{
-			output(" Speaking of messes, you pull out your Bubble Buddy, and secure it on your [pc.cockLargest]. Picking up goo-filled condoms is a much easier cleanup than wiping down the interior of your ship!");
+			output(" Speaking of messes, you pull out your Bubble Buddy, and secure it on your [pc.cockBiggest]. Picking up goo-filled condoms is a much easier cleanup than wiping down the interior of your ship!");
 			if(pc.cockTotal() > 1) output("\n\n ...not that it’s going to do anything for the mess left by the rest of your body. But hey, every little bit helps.");
 		}
 		output("\n\nYou make yourself comfortable and put on the ‘Mindwash’ Visor. A feeling of elated disorientation passes just behind your eyes as your brain does the mental gymnastics needed to survive the visor’s hypnotic displacement. It flickers from a dangerously vibrant pink color to a more comforting blue and your muscles relax as the light radiates into you.");
@@ -301,7 +301,7 @@ public function useShipMindwashMeee():void
 		output("It’d probably be best to keep your messes to a minimum. You strip, setting your equipment away from the splash zone and take your seat.");
 		if(checkToyDrawer(BubbleBuddy) && pc.hasCock()) 
 		{
-			output(" Speaking of messes, you pull out your Bubble Buddy, and secure it on your [pc.cockLargest]. Picking up goo-filled condoms is a much easier cleanup than wiping down the interior of your ship!");
+			output(" Speaking of messes, you pull out your Bubble Buddy, and secure it on your [pc.cockBiggest]. Picking up goo-filled condoms is a much easier cleanup than wiping down the interior of your ship!");
 			if(pc.cockTotal() > 1) output("\n\n ...not that it’s going to do anything for the mess left by the rest of your body. But hey, every little bit helps.");
 		}
 		output("\n\nYou settle in and put on the Mindwash Visor. A feeling of elated disorientation passes just behind your eyes as your brain does the mental gymnastics needed to survive the visor’s hypnotic displacement. It flickers from a dangerously vibrant pink color to the more comforting blue and your muscles relax as the light radiates into you.");

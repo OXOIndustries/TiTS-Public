@@ -8,15 +8,15 @@ import classes.Items.Guns.HandCannon;
 Teenage runaway who got mauled by a Kordiiak Bear.
 Big game hunting pirate killed the bear, saved him, and adopted him. Name/Rank TBD, but probably one of the bosses.
 Speaks decent english, but a bit of an oddity. Considers technology to be magic and himself an artificer.
-<i>“Affably Gruff”</i> personality.
-Other young pirates took him out for an <i>“initiation”</i> when he came of age, resulting in his more interesting sexual attributes and heightened libido.
+“Affably Gruff” personality.
+Other young pirates took him out for an “initiation” when he came of age, resulting in his more interesting sexual attributes and heightened libido.
 
 Appearance:
-4’11”</i> tall and stocky.
+4'11" tall and stocky.
 White fur, green eyes,
 Robotic hand halfway up his forearm. Sophisticated and packed with retractable tools.
 Claw scars across his face and one subtly robotic eye. Bite scars on his shoulder (the same side as the eye and arm injury)
-11”</i> bright blue dog-dick with an oversized knot that engorges fully whenever he has a boner.
+11" bright blue dog-dick with an oversized knot that engorges fully whenever he has a boner.
 Leaks cum the moment any pressure is applied to his knot, often running dry long before the actual orgasm.
 */
 
@@ -47,7 +47,7 @@ public function zhengShiHangerFloorBonus():Boolean
 
 public function showUrbolg(nude:Boolean = false):void
 {
-	if(flags["MET_URBOLG"] == undefined) showName("KORGONNE\nMECHANIC");
+	showName(flags["MET_URBOLG"] == undefined ? ((CodexManager.entryUnlocked("Korgonne") ? "KORGONNE" : "CANINE") + "\nMECHANIC") : "\nURBOLG");
 	showBust("URBOLG" + (nude ? "_NUDE":""));
 }
 
@@ -77,7 +77,7 @@ public function urbolgMeeting():void
 	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(defeatUrbolg);
 	CombatManager.lossScene(loseToUrbolg);
-	CombatManager.displayLocation("KORGONNE\nMECHANIC");
+	CombatManager.displayLocation("MECHANIC");
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
 }
@@ -288,7 +288,7 @@ public function urbolgMenu():void
 		if(flags["SEXED_URBOLG"] == undefined) addButton(3,"Flirt",urbolgFlirtSex);
 		else addButton(3,"Sex",urbolgFlirtSex);
 	}
-	else addDisabledButton(3,"Flirt","Flirt","You're not really in the mood for that right now.");
+	else addDisabledButton(3,"Flirt","Flirt","You’re not really in the mood for that right now.");
 	addButton(14,"Leave",mainGameMenu);
 }
 //Appearance
@@ -321,7 +321,7 @@ public function talkToUrbolg():void
 	clearMenu();
 	addButton(0,"His History",urbolgsHistory);
 	if(flags["URBOLG_ARTIFICER"] != undefined) addButton(1,"Artificer",urbolgArtificerTalk);
-	else addDisabledButton(1,"Locked","Locked","You don't know enough about him to ask this.");
+	addDisabledButton(1,"Locked","Locked","You don’t know enough about him to ask this.");
 	addButton(2,"His Shield",urbolgHisShield,undefined,"His Shield","Ask him where he got such a fabulous shield from.");
 	addButton(14,"Back",peacefulApproachUrbolg,true);
 }
@@ -579,6 +579,9 @@ public function getDoggyDoggyUrbolg(x:int):void
 	clearOutput();
 	showUrbolg(true);
 	author("Wsan");
+	
+	var isDog:Boolean = (pc.catDog("nyan", "bork", false) == "bork");
+	
 	IncrementFlag("URBOLG_DOGGYED");
 	if(pc.mf("m","") == "m" && flags["URBOLG_DOGGYED"] == 1) 
 	{
@@ -661,7 +664,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 
 		if(flags["URBOLG_DOGGYED"] >= 3) output("\n\n<i>“Yes daddy,”</i> you moan, obediently kneeling before him and opening your mouth as wide as you can, letting your tongue loll from your lips");
 		else output("\n\nGetting down on your hands and knees, you crawl forward and open your mouth for him");
-		if(pc.canineScore() >= 3) output(", your tongue hanging out like the bitch you are");
+		if(isDog) output(", your tongue hanging out like the bitch you are");
 		output(".");
 
 		output("\n\n<i>“");
@@ -701,7 +704,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 	}
 	output(" Eventually, when you’ve swallowed down what must surely be all he has to give, he pulls himself from your warm, wet mouth with a pop and you take a gasping breath. Somehow, he’s still hard after all that.");
 	output("\n\n<i>“How’s that for a treat afore we get started");
-	if(pc.canineScore() >= 3) output(", pup");
+	if(isDog) output(", pup");
 	output("?”</i> he says, hand");
 	if(pc.hasHair()) output(" in your [pc.hair].");
 	else output(" still on your head.");
@@ -709,10 +712,10 @@ public function getDoggyDoggyUrbolg(x:int):void
 	if(flags["URBOLG_DOGGYED"] >= 3)
 	{
 		output("\n\n<i>“Thank you, daddy...”</i> you moan,");
-		if(pc.canineScore() >= 3 && pc.tailCount > 0) output(" wagging your [pc.tails]");
+		if(isDog && pc.tailCount > 0) output(" wagging your [pc.tails]");
 		else output(" desperately resisting the urge to get yourself off.");
 	}
-	else if(pc.canineScore() >= 3 && pc.tailCount > 0) output("\n\nYou stay silent and just wag your tail, panting and smiling up at him.");
+	else if(isDog && pc.tailCount > 0) output("\n\nYou stay silent and just wag your tail, panting and smiling up at him.");
 	else 
 	{
 		output("\n\n<i>“Guh-goddamn,”</i> you pant, unconsciously reaching to your lips and touching them. <i>“");
@@ -725,7 +728,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 	//Thirdtime+:
 	if(flags["URBOLG_DOGGYED"] >= 3) output(" you’d say");
 	output(" as much,”</i> he chuckles");
-	if(pc.canineScore() >= 3) output(", scratching your ear");
+	if(isDog && !pc.hasNonScritchEars()) output(", scratching your ear");
 	output(". <i>“Now up on the bed and spread yerself.”</i>");
 
 	output("\n\nYou’re only too happy to get to it,");
@@ -761,7 +764,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 	output("\n\n<i>“Nnnh,”</i> you moan quietly, trying not to make a big deal out it. It feels so <i>good</i>, though...");
 	output("\n\nHe doesn’t spend much time on foreplay - that finger is pretty much all the warning you get before he’s behind you and aligned with your fuckhole.");
 	output("\n\n<i>“");
-	if(pc.canineScore() >= 3) 
+	if(isDog) 
 	{
 		output("Here’s how an alpha does it, bitch,”</i> he growls, roughly seizing your tail and lifting it out of the way.");
 		if(flags["URBOLG_DOGGYED"] > 1) output(" <i>“Just in case you’d forgotten.”</i>");
@@ -825,7 +828,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 		else output(" insides");
 	}
 	output(". <i>“Oh, fuhuuuck! ");
-	if(flags["URBOLG_DOGGYED"] >= 2) output("Daddy, p");
+	if(flags["URBOLG_DOGGYED"] >= 3) output("Daddy, p");
 	else output("P");
 	output("lease!”</i>");
 
@@ -839,7 +842,7 @@ public function getDoggyDoggyUrbolg(x:int):void
 	output("\n\nHe immediately pulls out when you’re finished, leading you to half-scream as your oversensitive and well-used fuckhole gapes open, clenching and trying to close itself. You struggle to sit back up, but feel a metal arm on your back.");
 	output("\n\n<i>“Stay down,”</i> Urbolg commands, and you obey without question.");
 	output("\n\n<i>“Yes, daddy,”</i> you moan, caught up in being utterly and brutally dominated by a man probably more than twice your age.");
-	if(flags["URBOLG_DOGGYED"] == 1)
+	if(flags["URBOLG_DOGGYED"] <= 1)
 	{
 		output("\n\n<i>“Fek, yer more of a slut than the slaves on the station,”</i> the gruff korgonne sighs in disappointment, moving to your front. He presents you with his still-hard, juice-covered dogcock. <i>“Clean it.”</i>");
 		output("\n\nYou dutifully suck his cock, spitshining it to a saliva-slicked finish and getting several throatfuls of his cum as his bulging knot very slowly deflates.");
@@ -848,17 +851,17 @@ public function getDoggyDoggyUrbolg(x:int):void
 		if(!pc.isNude()) output(" and get dressed");
 		output(". Half an hour later and cheeks still slightly flushed with afterglow, you’re ready to go.");
 	}
-	if(flags["URBOLG_DOGGYED"] == 2)
+	if(flags["URBOLG_DOGGYED"] <= 2)
 	{
 		output("\n\n<i>“You attached to that word, are ye?”</i> he grunts, not sounding too displeased this time. <i>“Fekkin’ sluts. Here.”</i>");
 		output("\n\nUpon being presented with his swollen, juice-covered cock you practically leap forward, eager to clean him off and show your thankfulness for his time. He worked you over so thoroughly you can’t help but want to suck him, loudly gulping down his seed every time your lips encounter his knot and gazing upwards for his approval.");
 		output("\n\nWhen he’s finally finished, he");
-		if(pc.canineScore() >= 3) output(" scratches you behind the ear");
+		if(isDog) output(" scratches you behind the ear");
 		else output(" pats your head");
 		output(" and dresses, making to leave.");
 		output("\n\n<i>“Can we fuck again sometime?”</i> you ask, hopeful.");
 		output("\n\n<i>“Aye, a’course,”</i> Urbolg nods. <i>“Long as ye don’t get too clingy like. I got an obedience collar for that if I want it. No doubt I’ll see ye again soon,");
-		if(pc.canineScore() >= 3) output(" bitch");
+		if(isDog) output(" bitch");
 		else output(" pup");
 		output(".”</i>");
 		output("\n\nWith a wink, he disappears from your room and your hear his bootfalls leading down the ramp. Not long afterwards, you hear the whine of machinery as he works on something. You just stay on your bed facedown for a while, wondering if his cock destroyed your mind as much as your [pc.vagOrAss]. After about ten minutes of thinking about him and his fantastic dick, you decide it’s probably best to take a shower");
