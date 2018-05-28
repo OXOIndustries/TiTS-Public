@@ -391,6 +391,7 @@
 		//FIFTH PLANET: ZHENG SHI
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
+		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		
 		// Breedwell
