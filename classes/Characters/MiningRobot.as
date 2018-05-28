@@ -68,7 +68,7 @@
 			this.level = 9;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 200;
+			this.HPMod = 165;
 			this.HPRaw = this.HPMax();
 
 			this.femininity = 5;
