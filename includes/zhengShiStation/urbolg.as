@@ -321,7 +321,7 @@ public function talkToUrbolg():void
 	clearMenu();
 	addButton(0,"His History",urbolgsHistory);
 	if(flags["URBOLG_ARTIFICER"] != undefined) addButton(1,"Artificer",urbolgArtificerTalk);
-	addDisabledButton(1,"Locked","Locked","You don’t know enough about him to ask this.");
+	else addDisabledButton(1,"Locked","Locked","You don’t know enough about him to ask this.");
 	addButton(2,"His Shield",urbolgHisShield,undefined,"His Shield","Ask him where he got such a fabulous shield from.");
 	addButton(14,"Back",peacefulApproachUrbolg,true);
 }
