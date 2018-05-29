@@ -4207,7 +4207,7 @@
 		}
 		public function isCumSlut():Boolean
 		{
-			return (isCumCow() || hasPerk("Dumb4Cum"));
+			return (isCumCow() || hasPerk("Dumb4Cum") || isDependant(DEPENDANT_CUM));
 		}
 		public function isFauxCow():Boolean
 		{
@@ -4329,7 +4329,7 @@
 		public static const DEPENDANT_MYRVENOM:uint = 1;
 		public static const DEPENDANT_CUM:uint = 2;
 		public static const DEPENDANT_ANAL:uint = 3;
-		
+	
 		// Is the character dependant on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
 		{
