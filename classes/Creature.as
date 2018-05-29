@@ -5034,27 +5034,27 @@
 			switch(stat)
 			{
 				case "physique":
-					statCurrent = physique();
+					statCurrent = physiqueRaw;
 					statPercent = statCurrent / physiqueMax(true) * 100;
 					break;
 				case "reflexes":
-					statCurrent = reflexes();
+					statCurrent = reflexesRaw;
 					statPercent = statCurrent / reflexesMax(true) * 100;
 					break;
 				case "aim":
-					statCurrent = aim();
+					statCurrent = aimRaw;
 					statPercent = statCurrent / aimMax(true) * 100;
 					break;
 				case "intelligence":
-					statCurrent = intelligence();
+					statCurrent = intelligenceRaw;
 					statPercent = statCurrent / intelligenceMax(true) * 100;
 					break;
 				case "willpower":
-					statCurrent = willpower();
+					statCurrent = willpowerRaw;
 					statPercent = statCurrent / willpowerMax(true) * 100;
 					break;
 				case "libido":
-					statCurrent = libido();
+					statCurrent = libidoRaw;
 					statPercent = statCurrent / libidoMax(true) * 100;
 					break;
 				default:

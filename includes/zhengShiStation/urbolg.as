@@ -40,7 +40,7 @@ public function zhengShiHangerFloorBonus():Boolean
 		else if(flags["URBOLG_LUSTED"] != undefined || flags["SEXED_URBOLG"] != undefined) output("\n\nUrbolg the korgonne mechanic busily works to repair a scrap engine hanging from a lift, but he keeps casting sly glances in your direction with his robotic eye. The fluffy little devil seems to have taken a liking to you!");
 		//Normal Urbolg
 		else output("\n\nUrbolg the korgonne mechanic busily toils over junked engine. The hunk of blast-ruined metal hangs from a lift as he works on it, fully absorbing his attention.");
-		addButton(0,"Ubolg",peacefulApproachUrbolg);
+		addButton(0,"Urbolg",peacefulApproachUrbolg);
 	}
 	return false;
 }
@@ -459,10 +459,10 @@ public function urbolgHisShield():void
 	processTime(10);
 	clearMenu();
 	addButton(0,"Yes",yesGimmeShieldUrbolg);
-	addButton(1,"No",noShieldForYouUbolg);
+	addButton(1,"No",noShieldForYouUrbolg);
 }
 //No
-public function noShieldForYouUbolg():void
+public function noShieldForYouUrbolg():void
 {
 	clearOutput();
 	showUrbolg();

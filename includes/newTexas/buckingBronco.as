@@ -592,7 +592,7 @@ public function eatAtTheBB(fud:String):void
 	else if(fud == "Country Ham")
 	{
 		output("\n\nYou grab your knife and fork and slice off a piece of the ham, scooping up a bit of the grits and gravy with it. It’s a symphony of flavors: the pan-seared ham is savory, the grits are creamy and slightly sweet, and the red-eye gravy is bitter and salty. Your mouth tingles deliciously from the salty taste of the meal. It’s as salty as something can be without being at all unpleasant, and it only gives you an excuse to drink more of your delicious iced tea.");
-		output("\n\nYou take a bite of the delicious cornbread. There’s no corn kernels in it and the texture is unlike like most bread you’ve had; rather, it’s made of cornmeal, flour, and buttermilk placed in a cast-iron skillet and baked in an oven. It crumbles in your mouth immediately, the top surface of the cornbread satisfyingly and audibly crunchy, while the interior and bottom is soft and chewy.");
+		output("\n\nYou take a bite of the delicious cornbread. There’s no corn kernels in it and the texture is unlike most bread you’ve had; rather, it’s made of cornmeal, flour, and buttermilk placed in a cast-iron skillet and baked in an oven. It crumbles in your mouth immediately, the top surface of the cornbread satisfyingly and audibly crunchy, while the interior and bottom is soft and chewy.");
 		output("\n\nYou make quick work of the ham before using the cornbread to sop up the red-eye gravy and remaining grits. The salty meal has left your tea pitcher completely empty, but your belly is delightfully full.");
 		restHeal();
 		pc.credits -= 10;

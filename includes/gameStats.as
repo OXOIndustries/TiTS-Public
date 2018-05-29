@@ -6703,8 +6703,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_JESSE"] != undefined)
 				{
 					output2("\n<b>* Jesse:</b> Met her");
-					if (flags["JESSE_PC_TITLE"] != undefined) output2("\n<b>* Jesse, will refer to you as:</b> " + jessePCTitle());
-					if (flags["JESSE_PC_TITLE_SEX"] != undefined) output2("\n<b>* Jesse, will refer to you during sex as:</b> " + jessePCTitleSex());
+					if (flags["JESSE_PC_TITLE"] != undefined) output2("\n<b>* Jesse, Preferred Name, She Calls You:</b> " + jessePCTitle());
+					if (flags["JESSE_PC_TITLE_SEX"] != undefined) output2("\n<b>* Jesse, Preferred Sex Name, She Calls You:</b> " + jessePCTitleSex());
 					if (flags["JESSE_TIMES_SEXED"] != undefined) output2("\n<b>* Jesse, Times Sexed:</b> " + flags["JESSE_TIMES_SEXED"]);
 				}
 				// Kally
