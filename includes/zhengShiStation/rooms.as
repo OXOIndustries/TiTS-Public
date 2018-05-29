@@ -147,8 +147,8 @@ public function initZhengRooms():void
 	rooms["ZS H42"].addFlag(GLOBAL.PUBLIC);
 
 	rooms["ZS J42"] = new RoomClass(this);
-	rooms["ZS J42"].roomName = "MAIKE'S\nQUARTERS";
-	rooms["ZS J42"].description = "The personal quarters to Overseer Maike are dark and sultry; the lights are perpetually dimmed and the air inside is thick with the smell of incense. It looks more like a room in a high-class bordello than a pirate's quarters... especially when you take in all the black leather and latex hung up on the walls between silky drapes and hooks for restraints.";
+	rooms["ZS J42"].roomName = "MAIKE’S\nQUARTERS";
+	rooms["ZS J42"].description = "The personal quarters to Overseer Maike are dark and sultry; the lights are perpetually dimmed and the air inside is thick with the smell of incense. It looks more like a room in a high-class bordello than a pirate’s quarters... especially when you take in all the black leather and latex hung up on the walls between silky drapes and hooks for restraints.";
 	rooms["ZS J42"].planet = "ZHENG SHI STATION";
 	rooms["ZS J42"].system = "SYSTEM: HERISIOD";
 	rooms["ZS J42"].northExit = "";
