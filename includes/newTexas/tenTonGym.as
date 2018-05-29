@@ -1,4 +1,4 @@
-﻿//The Ten Ton Gym (ver. 1.2)
+//The Ten Ton Gym (ver. 1.2)
 //- Slab Bulkhead
 //Overview
 //A gym on New Texas, complete with weight room, swimming pool, track, locker room, and showers. The owner and manager, <i>“Ten-Ton”</i> Quenton Jones, is here to help you look your best. The purpose is to provide a place for PCs to adjust their muscle tone and body thickness.

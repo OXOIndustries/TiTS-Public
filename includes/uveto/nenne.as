@@ -749,8 +749,8 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 	else output("crotch");
 	output(". And you feel when Nenne scoops it between her fingers and use that little drop as lube.");
 
-	// Continue here if the PC has a cock length of 14 or less
-	if(pc.cocks[x].cLength() < 14)
+	// Continue here if the PC cock fits
+	if(pc.cockThatFits(chars["NENNE"].vaginalCapacity()) >= 0)
 	{
 		output("\n\nThen, a light pinch, as Nenne adjusts her grip on you and gives you a light tug. Your [pc.cock " + x + "] is pulled along the tight, warm valley of her hefty bottom, until it finds something warmer and tighter: the pre that Nenne had used to lube your shaft is washed with the feminine juices that’s practically spilling from her pursed pussy lips. With a light downward thrust from her hips, you’ve entered her.");
 		pc.cockChange();
@@ -778,7 +778,7 @@ public function maleOrHermAndNotDoingOral(x:int = 0):void
 		if(pc.cumQ() < 400) output("\n\nYour [pc.cum] floods into Nenne in elongated spurts, jetting up your [pc.cock " + x + "] and bloating it. You can feel yourself expand from the inside of yourself, and likewise you can feel Nenne squeezing down on you from the outside, her own body convulsing in orgasmic pleasure as she wordlessly, physically begs you for your seed. Though most of your jizz disappears into Nenne’s womb, right where she wants it, you can feel some of your [pc.cum] backwash against you; that won’t do, and you thrust into her again, offering another heady spurt, which Nenne accepts graciously into herself.");
 		else output("\n\nNenne is momentarily snapped out of her sexual reverie when you burst inside her, your load filling her to the brim in one mere spurt. You feel your enormous quantity bloat your cock from its inside, which in turn causes Nenne’s cunt to feel all the more tighter around you, coaxing more and more out of your body. She gasps in surprise, and then her body tenses in a rolling orgasm; her fur bristles on end when you fill her welcoming womb to its limit, and your [pc.cum] rushes back onto you, backwashing your [pc.cock " + x + "] and squirting from the union between you in long, sprinkling bouts.");
 	}
-	// Continue here if the PC has a cock length of 15 or more
+	// Continue here if the PC cock doesn't fit
 	else
 	{
 		output("\n\nNenne hums to herself, a little in lust and a little in frustration, as she bucks her own motherly hips backward. You feel a light pinch at your [pc.knot " + x + "] as she gives your [pc.cock " + x + "] a pull, and your gargantuan shaft bends and pulls against her pelvis, but it’s clear that no matter how high she raises her hips, she’s not going to be able to align your tip with her entrance.");
