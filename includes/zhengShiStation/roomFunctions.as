@@ -18,6 +18,8 @@ public function zhengMinesEncounterBonus():Boolean
 	var encounters:Array = [];
 	if(flags["ZS_MINE_STEP"] >= 4 && rand(3) == 0)
 	{
+		flags["ZS_MINE_STEP"] = 0;
+		
 		encounters.push(miningRobotAttack);
 	}
 	if(encounters.length > 0) 
@@ -44,7 +46,7 @@ public function slavePensBonus():Boolean
 
 public function miningRobotAttack():Boolean
 {
-	showName("MINING\n'BOT");
+	showName("MINING\n‘BOT");
 	showBust("MINING_ROBOT");
 	output("\n\nAs you wander through the byzantine sprawl of mine tunnels, you hear a thunderous <i>stomp... stomp... stomp...</i> coming towards you from one of the side passages. You turn to face it, just in time to see a lumbering black mass of metal, cables, and flickering digital readouts. A robot, shoddily built and probably a thousand years out of date besides... but it’s got a massive drill in place of one of its arms, and you can see where several lasers have been bolted onto the droid’s head and shoulders.");
 	//player has RFID card
@@ -77,7 +79,7 @@ public function defeatAMiningRobot():void
 	showName("\nVICTORY!");
 	showBust("MINING_ROBOT");
 	output("The robot shudders, stumbles backwards, and with a shrieking howl, collapses on its back and starts flailing its legs like a capsized turtle. As it goes down, a compartment on its chest bursts open and spews a handful of small gemstones across the ground.");
-	if(silly) output(" It’s like a big metal pinata!");
+	if(silly) output(" It’s like a big metal piñata!");
 	//PC gets a random gemstone stack.
 	output("\n\n");
 	CombatManager.genericVictory();
@@ -91,9 +93,10 @@ public function loseToAMiningRobot():void
 	//if PC has no gemstones or goo core.
 	var hasGems:Number = 0;
 	var purgeSlots:Array = [];
-	for(var i:int = 0; i < pc.inventory.length; i++)
+	var i:int = 0;
+	for(i = 0; i < pc.inventory.length; i++)
 	{
-		if(pc.inventory[i].type == GLOBAL.GEM) 
+		if(pc.inventory[i].type == GLOBAL.GEM && !pc.inventory[i].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE))
 		{
 			hasGems++;
 			purgeSlots.push(i);
@@ -101,12 +104,15 @@ public function loseToAMiningRobot():void
 	}
 	if(hasGems == 0 && 9999 == 9999)
 	{
+		CombatManager.abortCombat();
+		
 		output("The droid stomps forward, bashing you in the face before rearing back with its mighty drill arm.");
 		output("\n\nThe last thing you ever see is the tip whirring, spinning up.");
 		badEnd();
+		return;
 	}
 	//PC has 1+ gemstone on them.
-	else if(hasGems > 0)
+	if(hasGems > 0)
 	{
 		output("The droid backhands you, sending you sprawling back on your ass. Rather than immediately driving its drill into your guts to harvest you, the droid stomps forward and activates its scanners again. A wave of light passes over you, stem to stern, before the robot’s great big hand reaches down and grabs your pack. It brusquely rips your pack open and reaches in, yanking out the gemstone");
 		if(hasGems > 1) output("s");
@@ -114,6 +120,7 @@ public function loseToAMiningRobot():void
 		output("\n\n<i>“Valuable minerals detected. Efficiency protocols activated.”</i>");
 		output("\n\nThe robot dumps your gems into a cabinet in its chest and turns, stomping off down another tunnel.");
 		output("\n\nGood thing you had something to distract it, you guess...");
+		
 		while(purgeSlots.length > 0)
 		{
 			pc.inventory.splice(purgeSlots[purgeSlots.length-1],1);
@@ -144,8 +151,8 @@ public function maikesOfficeBonus():Boolean
 		output("You try to open the door to Overseer Maike’s quarters, but find the door locked down tight. There’s a security lock in place next to it with a card reader in place. Looks like the Overseer values her privacy.");
 		clearMenu();
 		//[Use Card] [Bypass]
-		if(9999 == 0) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer's access card. Go ahead and use it.");
-		else addDisabledButton(0,"Use Card","Use Card","You'd need the overseer's card for that!");
+		if(9999 == 0) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
+		else addDisabledButton(0,"Use Card","Use Card","You’d need the overseer’s card for that!");
 		addButton(1,"Bypass",bypassMaikesRoomieroomHackerman,undefined,"Bypass","Embrace your inner Hackerman.");
 		return true;
 	}
