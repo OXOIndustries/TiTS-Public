@@ -117,6 +117,7 @@ public function loseToAMiningRobot():void
 		while(purgeSlots.length > 0)
 		{
 			pc.inventory.splice(purgeSlots[purgeSlots.length-1],1);
+			purgeSlots.splice(purgeSlots.length-1,1);
 		}
 	}
 	//PC has a goo core equipped:
