@@ -229,8 +229,8 @@ public function approachJesse(back:Boolean = false):void
 	else if (flags["JESSE_TALK_PRUDE"] == 1) addButton(2, "Tease", jesseFirstTeaseI, undefined, "Tease", "Break her out of her shell, you filthy opportunist.");
 	else addDisabledButton(2, "Locked", "Locked", "You don’t know her well enough to talk about this yet.");
 	if (flags["JESSE_TALK_BODY"] == undefined) addDisabledButton(3, "Locked", "Locked", "You don’t know her well enough to talk about this yet.");
-// check if the bagotricks scene needs genitals, otherwise kill this line
-//else if (!pc.hasGenitals() && !pc.hasHardLightEquipped()) addDisabledButton(3, "Sex", "Sex", "You need genitals or a hardlight dildo for this.");
+	// check if the bagotricks scene needs genitals, otherwise kill this line
+	//else if (!pc.hasGenitals() && !pc.hasHardLightEquipped()) addDisabledButton(3, "Sex", "Sex", "You need genitals or a hardlight dildo for this.");
 	else if (pc.lust() < 33) addDisabledButton(3, "Sex", "Sex", "You are not aroused enough for this.");
 	else addButton(3, "Sex", jesseSexMenu, undefined, "Sex", "Get at that eager booty!");
 	addButton(14, "Leave", mainGameMenu);
@@ -652,7 +652,7 @@ public function jesseSexMenu():void
 	clearOutput();
 	author("SoAndSo");
 	showJesse();
-
+	
 	if (flags["JESSE_TIMES_SEXED"] == undefined)
 	{
 		jesseSexIntroI();
@@ -680,7 +680,7 @@ public function jesseSexMenu():void
 
 public function jesseSexMenuOptions():void
 {
-	pc.lust(100);
+	pc.maxOutLust();
 	clearMenu();
 	if (largestCockIndexThatFitsJessesAss() >= 0 || pc.hasHardLightEquipped()) addButton(0, "Office RP", jesseSexOfficeRPI, undefined, "Office RP", "Just another day in the office! Give her the hostile takeover she needs.");
 	else addDisabledButton(0, "Office RP", "Office RP", "You need a fitting penis or a hardlight dildo for this.");
@@ -693,6 +693,11 @@ public function jesseSexMenuOptions():void
 	else addDisabledButton(4,"Trap Fun","Trap Fun","You need a fitting penis for this.");
 	if (largestCockIndexThatFitsJessesAss() >= 0) addButton(5, "Role Reversal", jesseSexRoleReversal, undefined, "Role Reversal", "Face it, you’re as subby as she is! Get her to do the buttfun, although it’ll be awkward...");
 	else addDisabledButton(5,"Role Reversal","Role Reversal","You need a fitting penis for this.");
+}
+public function jesseSexEnd():void
+{
+	IncrementFlag("JESSE_TIMES_SEXED");
+	mainGameMenu();
 }
 
 public function jesseSexIntroI():void
@@ -740,7 +745,6 @@ public function jesseSexIntroII():void
 	output("\n\nShe stands ready, waiting for your instruction.");
 	output("\n\nWhat do you decide to do with her?");
 
-	IncrementFlag("JESSE_TIMES_SEXED");
 	processTime(15);
 	jesseSexMenuOptions();
 }
@@ -836,7 +840,7 @@ public function jesseSexOfficeRPYes(x:int = -1):void
 	processTime(60 + rand(15));
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 	
 public function jesseSexOfficeRPNo(x:int = -1):void
@@ -857,7 +861,7 @@ public function jesseSexOfficeRPNo(x:int = -1):void
 	processTime(60 + rand(15));
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 
 public function jesseSexReverseCowgirlI():void
@@ -931,7 +935,7 @@ public function jesseSexReverseCowgirlYeah(x:int = -1):void
 	output("\n\nWith loose wrists, you vigorously pump her slender member to its full state. You can feel it twitch and tense in your palms, her hips trying to keep up with your furious motions.");
 	output("\n\n<i>“Ah-ahhh! P-please! Lemmc-cum! Pleeease " + jessePCTitleSex() + "!”</i> shrieks the insensate wench.");
 	output("\n\n<i>“You may,”</i> you whisper.");
-	output("\n\n In that instant, her rapturous cries are joined with four thick shots of her milky spunk! It spurts on and around your hands and her crimson belly, dots and splotches of her pleasure juice dripping and drying all over you both. She really must’ve been pent up! You squeeze and tug to force the last few drops out and then feed the gasping slut your cum-covered fingers. She licks and sucks up her own seed, mumbling <i>“t-thankyu”</i> with your middle finger in her mouth.");
+	output("\n\n In that instant, her rapturous cries are joined with four thick shots of her milky spunk! It spurts on and around your hands as well as her crimson belly, dots and splotches of her pleasure juice dripping and drying all over you both. She really must’ve been pent up! You squeeze and tug to force the last few drops out and then feed the gasping slut your cum-covered fingers. She licks and sucks up her own seed, mumbling <i>“t-thankyu”</i> with your middle finger in her mouth.");
 	output("\n\nOnce she’s cleaned you up, you unbind the black collar and toss it to the side of the bed. You wrap your arms round her middle and hug her tight, both basking in the mutual afterglow with her head nestled on your [pc.chest].");
 	output("\n\nPerhaps an hour passes as you both just wordlessly enjoy each others bodies. The enervated Jesse pushes herself up from the bed and lazily slides off of the edge of the bed. You laugh as she falls onto her back.");
 	output("\n\n<i>“H-hey... it’s not funny,”</i> she croaks, trying to grab at her clothes from the floor. <i>“Now I’m all soiled </i>and<i> bruised...”</i>");
@@ -943,7 +947,7 @@ public function jesseSexReverseCowgirlYeah(x:int = -1):void
 	processTime(60 + rand(15));
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 	
 public function jesseSexReverseCowgirlNo(x:int = -1):void
@@ -964,7 +968,7 @@ public function jesseSexReverseCowgirlNo(x:int = -1):void
 	processTime(60 + rand(15));
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 
 public function jesseSexHerFaceI():void
@@ -1045,7 +1049,7 @@ public function jesseSexHerFaceYes():void
 	processTime(60 + rand(15));
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 	
 public function jesseSexHerFaceNo():void
@@ -1062,7 +1066,7 @@ public function jesseSexHerFaceNo():void
 	processTime(60 + rand(15));
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 
 public function jesseSexBagOTricksI():void
@@ -1168,7 +1172,7 @@ public function jesseSexBagOTricksRelease(x:int = -1):void
 	pc.lust(100);
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 	
 public function jesseSexBagOTricksContinue(x:int = -1):void
@@ -1202,7 +1206,7 @@ public function jesseSexBagOTricksContinue(x:int = -1):void
 	pc.lust(100);
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 
 public function jesseSexTrapFunI():void
@@ -1287,7 +1291,7 @@ public function jesseSexTrapFunII():void
 	output("\n\n<i>“S-see? That was <b>awesome</b>,”</i> whispers a tired Jesse into your [pc.ear]. <i>“Feels good letting me choose things for once, hmmmm?”</i>");
 	output("\n\nYou have to agree: the leftover spooge pool is an undeniable confirmation. You whisper back.");
 	output("\n\n<i>“M-maybe...”</i>");
-	output("\n\nYou give her a quick peck on the cheek then flop back against the bed. She does the same, using a lazy hand to fiddle with the switches on the side of the mutualizer. The pick fake dicks retract slowly and smoothly from within you, leaving a strangely comforting emptiness.");
+	output("\n\nYou give her a quick peck on the cheek then flop back against the bed. She does the same, using a lazy hand to fiddle with the switches on the side of the mutualizer. The pink fake dicks retract slowly and smoothly from within you, leaving a strangely comforting emptiness.");
 	output("\n\nJesse takes her time getting herself up and running. The [pc.cumColor]-covered toy is buried very deep into her bag and the used up onahole looks positively pregnant after you’ve both been through it!");
 	output("\n\nBeing so spent, you lay akimbo on your comfy, comfy bed and watch the wobbly strumpet delicately redress. You can see her face screw up as the tightness of her boxers squishes her slightly shrunken sack. Aw, poor girl.");
 	output("\n\nYou give each other a silent wave and a blown kiss, then Jesse heads back to her place.");
@@ -1297,7 +1301,7 @@ public function jesseSexTrapFunII():void
 	pc.applyCumSoaked();
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 
 public function jesseSexRoleReversal():void
@@ -1388,7 +1392,7 @@ public function jesseSexRoleReversalEncourage():void
 	pc.loadInAss(getJessePregContainer());
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }
 
 public function jesseSexRoleReversalTakeOver():void
@@ -1426,5 +1430,5 @@ public function jesseSexRoleReversalTakeOver():void
 	pc.loadInAss(getJessePregContainer());
 
 	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(0,"Next",jesseSexEnd);
 }

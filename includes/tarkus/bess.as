@@ -382,18 +382,14 @@ public static const BESS_DISABLED:uint = 3;
 
 public function bessHeader():void
 {
-	if (bess.isFeminine())
-	{
-		//showName("\nBESS-13");
-		showBust("BESS");
-	}
-	else
-	{
-		//showName("\nBEN-14");
-		showBust("BEN");
-	}
+	showBust(bessBustDisplay());
 	showName("\n" + chars["BESS"].short.toUpperCase());
 	author("JimT");
+}
+public function bessBustDisplay():String
+{
+	if (bess.isFeminine()) return "BESS";
+	return "BEN";
 }
 
 public function bessIsCrew():Boolean
