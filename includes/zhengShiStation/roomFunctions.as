@@ -121,11 +121,10 @@ public function loseToAMiningRobot():void
 		output("\n\nThe robot dumps your gems into a cabinet in its chest and turns, stomping off down another tunnel.");
 		output("\n\nGood thing you had something to distract it, you guess...");
 		
-		i = (purgeSlots.length-1);
-		while(i >= 0)
+		while(purgeSlots.length > 0)
 		{
-			pc.inventory.splice(purgeSlots[i],1);
-			i--;
+			pc.inventory.splice(purgeSlots[purgeSlots.length-1],1);
+			purgeSlots.splice(purgeSlots.length-1,1);
 		}
 	}
 	//PC has a goo core equipped:
