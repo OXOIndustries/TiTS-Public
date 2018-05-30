@@ -16,7 +16,8 @@ public function zhengMinesEncounterBonus():Boolean
 {
 	IncrementFlag("ZS_MINE_STEP");
 	var encounters:Array = [];
-	if(flags["ZS_MINE_STEP"] >= 4 && rand(3) == 0)
+	//First 3 times are gimmes, then increasing odds till step 15 or so.
+	if(flags["ZS_MINE_STEP"]-4 > rand(16))
 	{
 		flags["ZS_MINE_STEP"] = 0;
 		
