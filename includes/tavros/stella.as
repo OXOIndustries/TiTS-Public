@@ -1400,7 +1400,7 @@ public function buyStellaCollar(arg:String):void
 			flags["STELLA_COLLAR_GIFT"] = arg;
 			pc.credits -= 2500;
 		}
-		if(arg == "plain") 
+		if(arg == "platinum") 
 		{
 			flags["STELLA_COLLAR_GIFT"] = arg;
 			pc.credits -= 25000;
@@ -1612,6 +1612,8 @@ public function stellaKnockupCheck():void
 	//Stella is pretty fertile and takes a loooot of loads.
 	var chance:Number = 25;
 	chance *= pc.virility();
+	if(chance > 300) chance = 300;
+	
 	var maxCum:Number = pc.maxCum();
 	
 	if(maxCum >= 200) chance += 10;
@@ -1650,6 +1652,7 @@ public function stellaKnockupCheck():void
 		//3 month incubation!
 		pc.setStatusMinutes("STELLA_PREGNANT",60*24*30*3);
 	}
+	AddLogEvent("A text message from Stella pings your Codex. <b>She’s definitely pregnant!</b>");
 }
 
 //After Delivery scene
