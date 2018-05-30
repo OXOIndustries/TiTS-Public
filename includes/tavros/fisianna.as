@@ -1140,7 +1140,6 @@ public function analFisiI(fromMenu:Boolean = false):void
 	clearOutput();
 	author("Lkynmbr24");
 	showFisi(2);
-
 	if (!fromMenu) fisiPrurience(-10);
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
@@ -4425,7 +4424,8 @@ public function largestCockIndexThatFitsFisiDimensions():int
 	var maxFitVol:Number = 0;
 	for (i = 0; i < pc.cocks.length; i++)
 	{
-		if (pc.cocks[i].cLength() <= 14 && pc.cocks[i].thickness() <= 2.5 && pc.cockVolume(i, false) > maxFitVol)
+		//if (pc.cocks[i].cLength() <= 14 && pc.cocks[i].thickness() <= 2.5 && pc.cockVolume(i, false) > maxFitVol)
+		if(pc.cockThatFits(chars["FISIANNA"].vaginalCapacity()) >= 0)
 		{
 			maxFitIndex = i;
 			maxFitVol = pc.cockVolume(i, false);
