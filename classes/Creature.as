@@ -20632,6 +20632,9 @@
 							flags["FLAHNE_MAKEUP"] = 1;
 						}
 						break;
+					case "STELLA_PREGNANT":
+						if (this is PlayerCharacter && requiresRemoval) kGAMECLASS.flags["STELLA_PREGNANCY_NOTIFIER"] = thisStatus.value1;
+						break;
 					case "Massaging":
 					case "Slow Fucking":
 						if (requiresRemoval)
