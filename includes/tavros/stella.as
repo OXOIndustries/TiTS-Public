@@ -405,7 +405,7 @@ public function stellaMenu():void
 		if(!pregShowing) 
 		{
 			if(flags["STELLA_FUCKED"] == undefined) addDisabledButton(9,"Breed","Breed","Maybe start with a regular fuck before moving up to breeding.");
-			else if(flags["STELLA_GAVE_ORAL"] == undefined) addDisabledButton(9,"Breed","Breed","How can you knock up a girl when you haven't even done oral?");
+			else if(flags["STELLA_GAVE_ORAL"] == undefined) addDisabledButton(9,"Breed","Breed","How can you knock up a girl when you haven’t even done oral?");
 			else if(flags["STELLA_BUTTFUCKED"] == undefined) addDisabledButton(9,"Breed","Breed","You could at least try out her butt first...");
 			else addButton(9,"Breed",breedStella,undefined,"Breed","Fuck Stella’s pussy until she’s probably pregnant.");
 		}
@@ -431,28 +431,9 @@ public function stellaMenu():void
 	else addDisabledButton(8,"Get Licked","Get Licked","She can’t munch your rug if you’ve got hardwood flooring.");
 	
 	if(pc.hasVagina() || pc.cockThatFits(stellaCapacity())) addButton(10,"WalkNPlay",walkiesAndPetPlayStuff,undefined,"WalkNPlay","Take Stella out for a bit of petplay with walkies.");
-	else if(pc.hasCock()) addDisabledButton(10,"WalkNPlay","WalkNPlay","You need a vagina or a dick that'll fit inside her for this.");
+	else if(pc.hasCock()) addDisabledButton(10,"WalkNPlay","WalkNPlay","You need a vagina or a dick that’ll fit inside her for this.");
 	else addDisabledButton(10,"WalkNPlay","WalkNPlay","You need genitals for this.");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 	if(pc.cockThatFits(stellaCapacity()) >= 0) 
 	{
 		addButton(5,"Pussy",stellaPussyFuck);
@@ -476,7 +457,7 @@ public function stellaMenu():void
 	else if(!stellaPregnantShowing()) 
 	{
 		if(flags["STELLA_FUCKED"] == undefined) addDisabledButton(9,"Breed","Breed","Maybe start with a regular fuck before moving up to breeding.");
-		else if(flags["STELLA_GAVE_ORAL"] == undefined) addDisabledButton(9,"Breed","Breed","How can you knock up a girl when you haven't even done oral?");
+		else if(flags["STELLA_GAVE_ORAL"] == undefined) addDisabledButton(9,"Breed","Breed","How can you knock up a girl when you haven’t even done oral?");
 		else if(flags["STELLA_BUTTFUCKED"] == undefined) addDisabledButton(9,"Breed","Breed","You could at least try out her butt first...");
 		else addButton(9,"Breed",breedStella,undefined,"Breed","Fuck Stella’s pussy until she’s probably pregnant.");
 	}
@@ -676,7 +657,7 @@ public function keepFuckingStella():void
 		if(!pregShowing) 
 		{
 			if(flags["STELLA_FUCKED"] == undefined) addDisabledButton(4,"Breed","Breed","Maybe start with a regular fuck before moving up to breeding.");
-			else if(flags["STELLA_GAVE_ORAL"] == undefined) addDisabledButton(4,"Breed","Breed","How can you knock up a girl when you haven't even done oral?");
+			else if(flags["STELLA_GAVE_ORAL"] == undefined) addDisabledButton(4,"Breed","Breed","How can you knock up a girl when you haven’t even done oral?");
 			else if(flags["STELLA_BUTTFUCKED"] == undefined) addDisabledButton(4,"Breed","Breed","You could at least try out her butt first...");
 			else addButton(4,"Breed",breedStella,undefined,"Breed","Fuck Stella’s pussy until she’s probably pregnant.");
 		}
@@ -702,7 +683,7 @@ public function keepFuckingStella():void
 	else addDisabledButton(3,"Get Licked","Get Licked","She can’t munch your rug if you’ve got hardwood flooring.");
 	
 	if(pc.hasVagina() || pc.cockThatFits(stellaCapacity())) addButton(5,"WalkNPlay",walkiesAndPetPlayStuff,undefined,"WalkNPlay","Take Stella out for a bit of petplay with walkies.");
-	else if(pc.hasCock()) addDisabledButton(5,"WalkNPlay","WalkNPlay","You need a vagina or a dick that'll fit inside her for this.");
+	else if(pc.hasCock()) addDisabledButton(5,"WalkNPlay","WalkNPlay","You need a vagina or a dick that’ll fit inside her for this.");
 	else addDisabledButton(5,"WalkNPlay","WalkNPlay","You need genitals for this.");
 }
 
@@ -1195,7 +1176,7 @@ public function breedStella():void
 	}
 	output(".");
 
-	if(pc.PQ() < 50 && pc.libido() < 80 && !pc.isBro() && !pc.isAmazon()) output("A bit winded, you flop back, only to have Stella appear overhead, cracking open a can of something marked 'Sanguine Stallion'. You thirstily guzzle the beverage, more invigorated by the second. Before long, you're grabbing the can out of her hand and sucking down the last of the energy drink. [pc.EachCock] is hard and full, rearing to go. You want to <i>breed</i>.");
+	if(pc.PQ() < 50 && pc.libido() < 80 && !pc.isBro() && !pc.isAmazon()) output("A bit winded, you flop back, only to have Stella appear overhead, cracking open a can of something marked ‘Sanguine Stallion’. You thirstily guzzle the beverage, more invigorated by the second. Before long, you’re grabbing the can out of her hand and sucking down the last of the energy drink. [pc.EachCock] is hard and full, rearing to go. You want to <i>breed</i>.");
 
 	output("\n\nYou flip the horny ausar over, laying your eyes upon her face once more, and you like what you see. A woman mired in heat and need, a sweat-slicked bimbo with flushed cheeks, the perfect image of a girl who needs your cock to live. Stella looks every bit as happy to see you as you do her, panting hotly and gazing at you with desire. She sweeps her wet, sweaty blonde hair out of her face and flirts.");
 	output("\n\n<i>“Oooh,”</i> she moans, running her hands up and down her");
@@ -1246,7 +1227,7 @@ public function stellaBreedingOutro():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 	//Stella gets pregnant. If she wasn’t already pregnant, start a 1 month timer - you can’t do breeding sex after a month passes until two more months have passed after that. Instead, replace with Pregsex for those two months.
-	if(!stellaPregnant()) AddLogEvent(ParseText("A brief text message from Stella informs you that the breeding didn't take. Looks like you'll have to pay her another visit..."));
+	if(!stellaPregnant()) AddLogEvent(ParseText("A brief text message from Stella informs you that the breeding didn’t take. Looks like you’ll have to pay her another visit..."));
 }
 
 //[WalkNPlay]
@@ -1325,7 +1306,7 @@ public function walkiesAndPetPlayStuff():void
 		stellaSexFatigue(1);
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
-		addButton(0,"That's It",genericNoMoreSexStella);
+		addButton(0,"That’s It",genericNoMoreSexStella);
 	}
 	else
 	{
@@ -1352,7 +1333,7 @@ public function walkiesAndPetPlayStuff():void
 		stellaSexFatigue(1);
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
-		addButton(0,"That's It",genericNoMoreSexStella);
+		addButton(0,"That’s It",genericNoMoreSexStella);
 	}
 }
 
@@ -1379,13 +1360,13 @@ public function volleyballBeachPetplayEpi():void
 	//tooltip: Leave without a collar.
 	clearMenu();
 	if(pc.credits >= 25) addButton(0,"Plain",buyStellaCollar,"plain","Plain Collar","A plain pink collar with a silver heart hanging from it.\n\n<b>Cost:</b> 25 credits.");
-	else addDisabledButton(0,"Plain","Plain","You can't afford that.");
+	else addDisabledButton(0,"Plain","Plain","You can’t afford that.");
 	if(pc.credits >= 250) addButton(1,"Leather",buyStellaCollar,"leather","Leather Collar","A nice dark leather collar, its quality evident upon a glance. Has a silver heart hanging from it.\n\n<b>Cost:</b> 250 credits.");
-	else addDisabledButton(1,"Leather","Leather","You can't afford that.");
+	else addDisabledButton(1,"Leather","Leather","You can’t afford that.");
 	if(pc.credits >= 2500) addButton(2,"Jeweled",buyStellaCollar,"jeweled","Jeweled Collar","A bejewelled collar studded with sapphires. They match Stella’s eyes beautifully. Has a silver heart hanging from it.\n\n<b>Cost:</b> 2500 credits.");
-	else addDisabledButton(2,"Jeweled","Jeweled","You can't afford that.");
+	else addDisabledButton(2,"Jeweled","Jeweled","You can’t afford that.");
 	if(pc.credits >= 25000) addButton(3,"Platinum",buyStellaCollar,"platinum","Platinum Collar","An extremely fancy collar made from platinum and studded with sapphires. Something draws you to it, and you innately know Stella would love this. Has a silver heart hanging from it.\n\n<b>Cost:</b> 25000 credits.");
-	else addDisabledButton(3,"Platinum","Platinum","You can't afford that collar.");
+	else addDisabledButton(3,"Platinum","Platinum","You can’t afford that collar.");
 
 	if(flags["STELLA_COLLAR"] == "plain") setButtonDisabled(0);
 	else if(flags["STELLA_COLLAR"] == "leather") setButtonDisabled(1);
@@ -1467,7 +1448,6 @@ public function moreStellaPetPlayPostCollarShop():void
 	addButton(0,"Next",moreStellaPetPlayPostCollarShop2);
 }
 
-
 public function moreStellaPetPlayPostCollarShop2():void
 {
 	clearOutput();
@@ -1493,7 +1473,7 @@ public function moreStellaPetPlayPostCollarShop2():void
 		else if(flags["STELLA_COLLAR"] == "jeweled") output(" The sapphires are perfect, matching her eyes as she smiles up at you adoringly");
 		//Platinum:
 		else output(" It looks on amazing on her, your perfect pet wearing the jewelry someone of her status deserves. The sapphires match her eyes perfectly too, both of them reflecting the sunlight as she smiles up at you adoringly");
-		output(". The attached heart hangs below, reading ‘Property of [pc.name] Steele. If lost please mail [pc.email]’.");
+		output(". The attached heart hangs below, reading ‘Property of [pc.name] Steele. If lost please mail " + quickPCToAddress() + "’.");
 
 		output("\n\nYou snap some pictures with the overjoyed bimbo clambering all over you, the best of them probably the one where you managed to get her to be still for 0.5 seconds as she smushed her face into yours and looked up for the photo. Both of you are wearing huge grins in it, and she’s tilting her head upwards to proudly show off the collar.");
 		processTime(20);
@@ -1541,7 +1521,7 @@ public function moreStellaPetPlayPostCollarShop2():void
 	stellaSexFatigue(1);
 	if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
-	addButton(0,"That's It",genericNoMoreSexStella);
+	addButton(0,"That’s It",genericNoMoreSexStella);
 }
 
 //[Pregsex]
@@ -1562,7 +1542,7 @@ public function stellaPreggoSex():void
 	output("\n\n<i>“Oh, gosh,”</i> Stella moans, hooding her eyes and gazing at you lustfully. <i>“I can’t wait...”</i>");
 	output("\n\nYou start slow, in direct contrast to your usual time with Stella. There’s just something about watching this beautiful woman, already carrying your children, writhe and shudder in delight while you fuck deep inside her. She’s so honest and easy to read, it takes you no effort at all to please her. Her mouth pops open to moan in joy every time your dick bottoms out inside her, lightly brushing her depths, and the way her face contorts in bliss on your outstroke is divine.");
 	output("\n\nStella wants nothing more than for you to fuck her, over and over until you cum inside her... and then start all over again. Even with the pregnancy she’s still so tight and agile, wrapping herself around you as if her body was begging you to keep going and never stop. It’s taking all of your willpower to resist just bearing down on her and fucking her like an animal, but slowly and surely your efforts begin to bear fruit.");
-	output("\n\n<i>“Nnnnh, ah,”</i> Stella moans, her hips shifting from side to side while your [pc.cockBiggestHead] gently kisses her womb’s entrance. <i>“Oooh, that’s good...”</i>");
+	output("\n\n<i>“Nnnnh, ah,”</i> Stella moans, her hips shifting from side to side while your [pc.cockHead " + pc.biggestCockIndex() + "] gently kisses her womb’s entrance. <i>“Oooh, that’s good...”</i>");
 	output("\n\nShe’s getting closer without even realizing it, her hyperporn-sized ass beginning to lift off the bed while she flexes her pussy, squeezing her eyes shut with the pleasure. Her swollen midriff is streaked with salty sweat, the added weight making it difficult for her to arch her back but proving that she looks no less sexy when she does. Between her enormous assets and the fecund bump in her body, you feel like you’re fucking a fertility goddess.");
 	output("\n\n<i>“Oh... oh! Haa-aaah,”</i> Stella pants, grabbing the bedsheets and twisting them. <i>“Oh, it feels so di-different...!”</i>");
 	output("\n\nGoing slower and more methodically than usual, you give Stella an orgasm more deep and overwhelming than she’s used to. The slowly running river of pleasure at last swells beyond its banks and floods her all at once, radiating outward from her warm, wet pussy and spreading throughout her body.");
@@ -1627,28 +1607,31 @@ public function stellaPregbangEpilogue():void
 
 public function stellaKnockupCheck():void
 {
+	if(stellaPregnant()) return;
+	
 	//Stella is pretty fertile and takes a loooot of loads.
 	var chance:Number = 25;
 	chance *= pc.virility();
-	if(pc.maxCum() >= 200) chance += 10;
-	if(pc.maxCum() >= 500) chance += 10;
-	if(pc.maxCum() >= 1000) chance += 15;
-	if(pc.maxCum() >= 2000) chance += 20;
-	if(pc.maxCum() >= 4000) chance += 20;
-	if(pc.maxCum() >= 5000) chance += 20;
-	if(pc.maxCum() >= 8000) chance += 20;
+	var maxCum:Number = pc.maxCum();
+	
+	if(maxCum >= 200) chance += 10;
+	if(maxCum >= 500) chance += 10;
+	if(maxCum >= 1000) chance += 15;
+	if(maxCum >= 2000) chance += 20;
+	if(maxCum >= 4000) chance += 20;
+	if(maxCum >= 5000) chance += 20;
+	if(maxCum >= 8000) chance += 20;
 	//These go up past 100%, but useful for rolling for kids later...
-	if(pc.maxCum() >= 12000) chance += 20;
-	if(pc.maxCum() >= 15000) chance += 20;
-	if(pc.maxCum() >= 20000) chance += 20;
-	if(pc.maxCum() >= 25000) chance += 20;
-	if(pc.maxCum() >= 30000) chance += 20;
-	if(pc.maxCum() >= 40000) chance += 20;
-	if(pc.maxCum() >= 50000) chance += 20;
-	if(pc.maxCum() >= 60000) chance += 20;
-	if(pc.maxCum() >= 70000) chance += 20;
-
-	if(stellaPregnant()) chance = 0;
+	if(maxCum >= 12000) chance += 20;
+	if(maxCum >= 15000) chance += 20;
+	if(maxCum >= 20000) chance += 20;
+	if(maxCum >= 25000) chance += 20;
+	if(maxCum >= 30000) chance += 20;
+	if(maxCum >= 40000) chance += 20;
+	if(maxCum >= 50000) chance += 20;
+	if(maxCum >= 60000) chance += 20;
+	if(maxCum >= 70000) chance += 20;
+	
 	//PREGGO!
 	if(chance > rand(100)+1)
 	{

@@ -20283,6 +20283,7 @@
 			updateBoobswellPads(deltaT, doOut);
 			updateStatusEffects(deltaT, doOut);
 			updateAlcoholState(deltaT, doOut);
+			sstdPurgeCheck(deltaT, doOut);
 			
 			updateLustValues(deltaT, doOut);
 			updateCumValues(deltaT, doOut);
@@ -21363,14 +21364,14 @@
 		}
 		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
-			if(this.isSSTDImmune() || cumFrom == null || cumFrom.isSSTDImmune()) return;
+			if(isSSTDImmune() || cumFrom == null || cumFrom.isSSTDImmune()) return;
 			
 			var catchSSTD:String = "";
 			if(!(cumFrom is PlayerCharacter) && cumFrom.hasSSTD())
 			{
 				sstdCatch(cumFrom, this, location);
 			}
-			if((cumFrom is PlayerCharacter) && this.hasSSTD())
+			if((cumFrom is PlayerCharacter) && hasSSTD())
 			{
 				sstdCatch(this, cumFrom, location);
 			}
@@ -21395,6 +21396,17 @@
 					if(victim.hasSSTD("Sneezing Tits", true)) { /* Already have it! */ }
 					else victim.createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
 					break;
+			}
+		}
+		public function sstdPurgeCheck(deltaT:uint, doOut:Boolean):void
+		{
+			if(hasSSTD() && isSSTDImmune())
+			{
+				if(this is PlayerCharacter)
+				{
+					AddLogEvent("Your codex beeps, alerting you that your immune system’s activity has suddenly spiked before returning to normal levels. <b>You body has purged itself from any and all SSTD infections.</b>", "words", deltaT);
+				}
+				removeSSTDs();
 			}
 		}
 		public function applyCumSoaked():void
