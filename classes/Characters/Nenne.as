@@ -28,7 +28,7 @@
 			this.vaginas[0].wetnessRaw = 2;
 			this.vaginas[0].bonusCapacity = 10;
 			this.clitLength = 0.5;
-			this.vaginalVirgin = true;
+			this.vaginalVirgin = false;
 			
 			//None of this character's stats matter, soz we're leaving everything but inventory shit as default.
 			this.inventory.push(new AphroDaisy());
