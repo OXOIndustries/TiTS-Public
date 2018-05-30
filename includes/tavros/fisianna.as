@@ -1140,7 +1140,6 @@ public function analFisiI(fromMenu:Boolean = false):void
 	clearOutput();
 	author("Lkynmbr24");
 	showFisi(2);
-	
 	if (!fromMenu) fisiPrurience(-10);
 
 	var x:int = largestCockIndexThatFitsFisiDimensions();
