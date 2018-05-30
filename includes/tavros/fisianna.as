@@ -1140,8 +1140,6 @@ public function analFisiI(fromMenu:Boolean = false):void
 	clearOutput();
 	author("Lkynmbr24");
 	showFisi(2);
-//search
-	//if(pc.cockThatFits(chars["FISIANNA"].vaginalCapacity(0)) >= 0
 	
 	if (!fromMenu) fisiPrurience(-10);
 
