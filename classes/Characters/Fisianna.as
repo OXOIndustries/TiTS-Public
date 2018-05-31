@@ -11,7 +11,7 @@ package classes.Characters
 		
 		public function Fisianna() 
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -79,7 +79,11 @@ package classes.Characters
 			this.buttRatingRaw = 8;
 
 		}
-		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+		dataObject.vaginas[0].wetnessRaw = 2; //Tweaked to more closely represent Lyn's specifications. Although slightly larger cocks are now allowed. [Down from ~100vol to 80.4. 14by2.5 is 72.8 volume]
+				
+		}
 		//I'm assuming we'll call her bust FISIANNA lol
 		override public function get bustDisplay():String
 		{
