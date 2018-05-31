@@ -1756,7 +1756,7 @@ public function flyMenu():void
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	
-	if(reclaimedProbeMyrellion())
+	if(zhengCoordinatesUnlocked())
 	{
 		addButton(4,"ZhengShi",flyTo,"ZhengShi");
 	}

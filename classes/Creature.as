@@ -4207,7 +4207,7 @@
 		}
 		public function isCumSlut():Boolean
 		{
-			return (isCumCow() || hasPerk("Dumb4Cum"));
+			return (isCumCow() || hasPerk("Dumb4Cum") || isDependant(DEPENDANT_CUM));
 		}
 		public function isFauxCow():Boolean
 		{
@@ -4329,7 +4329,7 @@
 		public static const DEPENDANT_MYRVENOM:uint = 1;
 		public static const DEPENDANT_CUM:uint = 2;
 		public static const DEPENDANT_ANAL:uint = 3;
-		
+	
 		// Is the character dependant on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
 		{
@@ -5034,27 +5034,27 @@
 			switch(stat)
 			{
 				case "physique":
-					statCurrent = physique();
+					statCurrent = physiqueRaw;
 					statPercent = statCurrent / physiqueMax(true) * 100;
 					break;
 				case "reflexes":
-					statCurrent = reflexes();
+					statCurrent = reflexesRaw;
 					statPercent = statCurrent / reflexesMax(true) * 100;
 					break;
 				case "aim":
-					statCurrent = aim();
+					statCurrent = aimRaw;
 					statPercent = statCurrent / aimMax(true) * 100;
 					break;
 				case "intelligence":
-					statCurrent = intelligence();
+					statCurrent = intelligenceRaw;
 					statPercent = statCurrent / intelligenceMax(true) * 100;
 					break;
 				case "willpower":
-					statCurrent = willpower();
+					statCurrent = willpowerRaw;
 					statPercent = statCurrent / willpowerMax(true) * 100;
 					break;
 				case "libido":
-					statCurrent = libido();
+					statCurrent = libidoRaw;
 					statPercent = statCurrent / libidoMax(true) * 100;
 					break;
 				default:
@@ -20283,6 +20283,7 @@
 			updateBoobswellPads(deltaT, doOut);
 			updateStatusEffects(deltaT, doOut);
 			updateAlcoholState(deltaT, doOut);
+			sstdPurgeCheck(deltaT, doOut);
 			
 			updateLustValues(deltaT, doOut);
 			updateCumValues(deltaT, doOut);
@@ -20631,6 +20632,9 @@
 						{
 							flags["FLAHNE_MAKEUP"] = 1;
 						}
+						break;
+					case "STELLA_PREGNANT":
+						if (this is PlayerCharacter && requiresRemoval) kGAMECLASS.flags["STELLA_PREGNANCY_NOTIFIER"] = thisStatus.value1;
 						break;
 					case "Massaging":
 					case "Slow Fucking":
@@ -21360,14 +21364,14 @@
 		}
 		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
-			if(this.isSSTDImmune() || cumFrom == null || cumFrom.isSSTDImmune()) return;
+			if(isSSTDImmune() || cumFrom == null || cumFrom.isSSTDImmune()) return;
 			
 			var catchSSTD:String = "";
 			if(!(cumFrom is PlayerCharacter) && cumFrom.hasSSTD())
 			{
 				sstdCatch(cumFrom, this, location);
 			}
-			if((cumFrom is PlayerCharacter) && this.hasSSTD())
+			if((cumFrom is PlayerCharacter) && hasSSTD())
 			{
 				sstdCatch(this, cumFrom, location);
 			}
@@ -21392,6 +21396,17 @@
 					if(victim.hasSSTD("Sneezing Tits", true)) { /* Already have it! */ }
 					else victim.createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
 					break;
+			}
+		}
+		public function sstdPurgeCheck(deltaT:uint, doOut:Boolean):void
+		{
+			if(hasSSTD() && isSSTDImmune())
+			{
+				if(this is PlayerCharacter)
+				{
+					AddLogEvent("Your codex beeps, alerting you that your immune system’s activity has suddenly spiked before returning to normal levels. <b>You body has purged itself from any and all SSTD infections.</b>", "words", deltaT);
+				}
+				removeSSTDs();
 			}
 		}
 		public function applyCumSoaked():void

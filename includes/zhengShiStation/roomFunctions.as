@@ -1,16 +1,284 @@
+//import classes.Characters.MiningRobot;
+
+public function zhengCoordinatesUnlocked():Boolean
+{
+	return (nyreaDungeonFinished() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords")));
+}
+
 public function zhengElevatorF1Bonus():void
 {
 	//Power Out: 
-	if(9999 == 9999) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn't change that. Looks like the power's been cut somewhere...");
+	if(9999 == 9999) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
 	else output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
+}
+
+public function zhengMinesEncounterBonus():Boolean
+{
+	IncrementFlag("ZS_MINE_STEP");
+	var encounters:Array = [];
+	//First 3 times are gimmes, then increasing odds till step 15 or so.
+	if(flags["ZS_MINE_STEP"]-4 > rand(16))
+	{
+		flags["ZS_MINE_STEP"] = 0;
+		
+		encounters.push(miningRobotAttack);
+	}
+	if(encounters.length > 0) 
+	{
+		return encounters[rand(encounters.length)]();
+	}
+	return false;
+}
+
+public function slavePensBonus():Boolean
+{
+	//Hasn't freed slaves:
+	if(9999 == 9999) 
+	{
+		output("\n\nIndeed, you can see several dozen shadowy figures shuffling around inside, trying to avoid your sight.");
+		output("\n\nYou can’t get inside thanks to a massive metal bar running across the door. It’s electronically locked and hardened against hacking; you can’t even see a seam or a plug to abuse. You’ll have to find the right keycard for this one.");
+	}
+	else
+	{
+		output("\n\nThe door is hanging open, almost ripped off its hinges in the stampede of freed slaves. There’s nothing here for you anymore.");
+	}
+	return false;
+}
+
+public function miningRobotAttack():Boolean
+{
+	showName("MINING\n‘BOT");
+	showBust("MINING_ROBOT");
+	output("\n\nAs you wander through the byzantine sprawl of mine tunnels, you hear a thunderous <i>stomp... stomp... stomp...</i> coming towards you from one of the side passages. You turn to face it, just in time to see a lumbering black mass of metal, cables, and flickering digital readouts. A robot, shoddily built and probably a thousand years out of date besides... but it’s got a massive drill in place of one of its arms, and you can see where several lasers have been bolted onto the droid’s head and shoulders.");
+	//player has RFID card
+	if(pc.hasKeyItem("9999")) output("\n\nThe droid passes you by, however, stomping away towards a deposit it’s allowed to mine.");
+	//else:
+	else 
+	{
+		output("\n\nThe robot’s square head cranks towards you, flashing a scanner that beeps menacingly as it passes over you. A deep, bass-heavy voice booms through the tunnel: <i>“New source of minerals detected! Beginning excavation process!”</i>");
+		
+		output("\n\nUh oh...");
+
+		clearMenu();
+		CombatManager.newGroundCombat();
+		CombatManager.setFriendlyActors(pc);
+		CombatManager.setHostileActors(new MiningRobot());
+		CombatManager.victoryScene(defeatAMiningRobot);
+		CombatManager.lossScene(loseToAMiningRobot);
+		CombatManager.displayLocation("M.ROBOT");
+		
+		clearMenu();
+		addButton(0,"Next",CombatManager.beginCombat);
+		return true;
+	}
+	return false;
+}
+
+public function defeatAMiningRobot():void
+{
+	clearOutput();
+	showName("\nVICTORY!");
+	showBust("MINING_ROBOT");
+	output("The robot shudders, stumbles backwards, and with a shrieking howl, collapses on its back and starts flailing its legs like a capsized turtle. As it goes down, a compartment on its chest bursts open and spews a handful of small gemstones across the ground.");
+	if(silly) output(" It’s like a big metal piñata!");
+	//PC gets a random gemstone stack.
+	output("\n\n");
+	CombatManager.genericVictory();
+}
+
+public function loseToAMiningRobot():void
+{
+	clearOutput();
+	showName("\nDEFEAT!");
+	showBust("MINING_ROBOT");
+	//if PC has no gemstones or goo core.
+	var hasGems:Number = 0;
+	var purgeSlots:Array = [];
+	var i:int = 0;
+	for(i = 0; i < pc.inventory.length; i++)
+	{
+		if(pc.inventory[i].type == GLOBAL.GEM && !pc.inventory[i].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE))
+		{
+			hasGems++;
+			purgeSlots.push(i);
+		}
+	}
+	if(hasGems == 0 && 9999 == 9999)
+	{
+		CombatManager.abortCombat();
+		
+		output("The droid stomps forward, bashing you in the face before rearing back with its mighty drill arm.");
+		output("\n\nThe last thing you ever see is the tip whirring, spinning up.");
+		badEnd();
+		return;
+	}
+	//PC has 1+ gemstone on them.
+	if(hasGems > 0)
+	{
+		output("The droid backhands you, sending you sprawling back on your ass. Rather than immediately driving its drill into your guts to harvest you, the droid stomps forward and activates its scanners again. A wave of light passes over you, stem to stern, before the robot’s great big hand reaches down and grabs your pack. It brusquely rips your pack open and reaches in, yanking out the gemstone");
+		if(hasGems > 1) output("s");
+		output(" inside and lifting them up to be analyzed.");
+		output("\n\n<i>“Valuable minerals detected. Efficiency protocols activated.”</i>");
+		output("\n\nThe robot dumps your gems into a cabinet in its chest and turns, stomping off down another tunnel.");
+		output("\n\nGood thing you had something to distract it, you guess...");
+		
+		while(purgeSlots.length > 0)
+		{
+			pc.inventory.splice(purgeSlots[purgeSlots.length-1],1);
+			purgeSlots.splice(purgeSlots.length-1,1);
+		}
+	}
+	//PC has a goo core equipped:
+	else
+	{
+		output("You quiver with the impact of the droid’s last punch, splattering yourself against the nearby wall. The droid advances, drill whirring, until its scanner fixates on your [pc.chest]. You stare doe-eyed up at the monumental mountain of metal while it bathes you with a wave of searching light. It seems to find something it likes, because the drill powers down, and its more humanoid hand reaches down to you. You try and squirm away, but the bastard’s backed you up into a corner, and soon its hand is sinking into your chest, pushing into your gooey body and wrapping its metal fingers around your core!");
+		output("\n\n<i>“No!”</i> you yelp, flailing helplessly as the robot yanks on your core. There’s a pulling sensation deep inside, like he’s grabbing at your formerly-fleshy heart, and then it’s out! You watch in horror as the droid rips your core out and chucks it into a cabinet in its chest - and as it does so, you can almost immediately feel your mind becoming hazy, your thoughts getting... hungrier!");
+		output("\n\nToo bad this big guy doesn’t have a dick you can suck while he takes your pretty core stone.");
+		output("\n\nThe robot stalks off, leaving you to recongeal yourself and try to find your gear.");
+	}
+	output("\n\n");
+	CombatManager.genericLoss();
+}
+
+public function maikesOfficeBonus():Boolean
+{
+	if(flags["MAIKE_QUARTERS_UNLOCKED"] == undefined)
+	{
+		clearOutput();
+		showName("\nLOCKED...");
+		currentLocation = rooms[currentLocation].westExit;
+		generateMap();
+		//Maike's door has a lock puzzle the PC must bypass to enter, or have her access card.
+		output("You try to open the door to Overseer Maike’s quarters, but find the door locked down tight. There’s a security lock in place next to it with a card reader in place. Looks like the Overseer values her privacy.");
+		clearMenu();
+		//[Use Card] [Bypass]
+		if(9999 == 0) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
+		else addDisabledButton(0,"Use Card","Use Card","You’d need the overseer’s card for that!");
+		addButton(1,"Bypass",bypassMaikesRoomieroomHackerman,undefined,"Bypass","Embrace your inner Hackerman.");
+		return true;
+	}
+	else if(flags["MET_TIVF"] == undefined)
+	{
+		tivfGreeting();
+		return true;
+	}
+	//Hasn't freed slaves:
+	if(9999 == 9999)
+	{
+		output("Tivf is lounging on the bed, and perks up at your approach.");
+		//[Tivf]
+		//Go talk to the zil boy slave.
+		//Slaves must not have been freed.
+		addButton(0,"Tivf",repeatTivfApproach,undefined,"Tivf","Go talk to the zil boy slave.");
+	}
+	addButton(9,"Sleep",maikeRestOverride);
+	return false;
+}
+
+public function useMaikesCard():void
+{
+	clearOutput();
+	showName("\nCLICK!");
+	output("You slide Maike’s card through the reader, and are rewarded with a high-pitched beep and a flashing green light. It’s open!");
+	flags["MAIKE_QUARTERS_UNLOCKED"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Bypass]
+public function bypassMaikesRoomieroomHackerman():void
+{
+	clearOutput();
+	showName("\nHACKING!");
+	output("Well, you should be able to take care of this no problem. You wrench off the protective plastic casing and start dicking with the wiring inside...");
+	//Insert KaraQuest-style connect-the-node puzzle. TechSpecs get an easier version.
+	clearMenu();
+	addButton(0,"Next",startUpMaikeHackerman);
+
+}
+
+public function startUpMaikeHackerman():void
+{
+	userInterface.showMinigame();
+	var gm:RotateMinigameModule = userInterface.getMinigameModule();
+	
+	var g:uint = RGMK.NODE_GOAL;
+	var i:uint = RGMK.NODE_INTERACT;
+	var l:uint = RGMK.NODE_LOCKED;
+	
+	var n:uint = RGMK.CON_NORTH;
+	var e:uint = RGMK.CON_EAST;
+	var s:uint = RGMK.CON_SOUTH;
+	var w:uint = RGMK.CON_WEST;
+	
+	//Baby difficulty
+	/*
+	if(pc.characterClass == GLOBAL.CLASS_ENGINEER)
+	{
+		gm.setPuzzleState(azraQuestHackerDoor, 3, 3,
+		[
+			g | s    ,	i | w | n,	i | n | w,
+			i | e | w,	i | w | e,	g | n    ,
+			i | s | w,	i | s | e,	i | s | n
+		]);
+	}*/
+	/*Commented out for Gedan to look at it.
+	else if(pc.isBimbo() || pc.IQ() <= 30)
+	{
+		gm.setPuzzleState(azraQuestHackerDoor, 6, 6,
+		[
+			l        ,	i | n | e,	i | e | w,	i | s | w,	i | n | w,	l        ,
+			i | n | w,	i | w | n,	i | n | s,	i | n | w,	i | e | s,	i | e | w,
+			i | s | n,	i | e | w,	i | n | s,	i | n | s,	l | n | s,	i | w | s,
+			i | e | n,	l | n | w,	i | w | s,	i | e | w,	i | n | e,	i | w | n,
+			i | w | e,	l        ,	i | e | w,	i | s | w,	i | s | e,	i | w | s,
+			g | n | e,	i | n | s,	i | n | s,	i | e | s,	i | w | n,	g | s    ,
+		]);
+	}*/
+	gm.setPuzzleState(hackingMaikeDoorSuccess, 5, 5,
+	[
+		g | e | s,	i | n | s,	i | n | e,	i | s | e,	i | n | w,
+		i | n | s,	l        ,	i | w | e,	i | w | e,	i | w | e,
+		i | w | s,	i | s | w,	l | n | e,	i | e | w,	i | n | e,
+		i | n | w,	l | e | s,	i | n | w,	i | s | w,	i | n | s,
+		i | n | w,	g | e    ,	i | n | s,	i | w | e,	i | n | e,
+	]);
+}
+
+/*
+public function hackingFailure():void
+{
+	clearOutput();
+	showName("\nFAILURE");
+	//On fail, play:
+	output("Shit! You stumble back as sparks fly from a miss-crossed wire. You’ll have to give that another try.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}*/
+
+//On success, play:
+public function hackingMaikeDoorSuccess():void
+{
+	clearOutput();
+	showName("\nSUCCESS");
+	output("A little finesse, a little skill, and a little determination is all it takes to slice through the security box and unlock the Overseer’s door. After a few minutes’ work, the lock beeps and flashes green: you’re in!");
+	flags["MAIKE_QUARTERS_UNLOCKED"] = 2;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 public function urbolgsOffice():void
 {
 	vendingMachineButton(0,"energy");
-	output(" You're surprised it doesn't have a combination as well.");
+	output(" You’re surprised it doesn’t have a combination as well.");
+	//Appended to Urbolg's room description.
+	if(flags["GOT_URBOLGS_SHIELD"] == 0) 
+	{
+		output("\n\nThe brown safe Urbolg mentioned is in fact under his desk. If you remember correctly, the combination is 7-8-9. You could pop it open, if you wanted to.");
+		addButton(1,"Open Safe",collectUrbolgsSafe);
+	}
+	else if(flags["GOT_URBOLGS_SHIELD"] == 1) output("\n\nUrbolg’s brown safe is open and empty, like you left it. How nice of him to let you use his extra shield belt!");
 }
-
 
 //Making Landfall at Zheng Shi
 public function landingAtZhengShi():void 
@@ -53,7 +321,7 @@ public function landingAtZhengShi():void
 		clearMenu();
 		addButton(0,"Submit",submitThePiratePassword);
 		if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
-		else addDisabledButton(1,"Locked","Locked","You haven't met a character you could call in a favor from...");
+		else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
 		addButton(4,"Run!",fuckThisShit);
 	}
 	//Repeat Approach, Post Correct Answer
@@ -123,7 +391,7 @@ public function firstTimeZhengApproachIV():void
 	clearMenu();
 	addButton(0,"Submit",submitThePiratePassword);
 	if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
-	else addDisabledButton(1,"Locked","Locked","You haven't met a character you could call in a favor from...");
+	else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
 	addButton(4,"Run!",fuckThisShit);
 }
 

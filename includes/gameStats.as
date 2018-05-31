@@ -1758,6 +1758,13 @@ public function questLogMenu(currentFunc:Function):Boolean
 		if(showID == "Myrellion") { output2(header("<u>Myrellion</u>", false)); addDisabledGhostButton(3, "Myrellion"); }
 		else addGhostButton(3, "Myrellion", currentFunc, "Myrellion");
 	}
+	// Zheng Shi
+	if(zhengCoordinatesUnlocked())
+	{
+		if(showID == "Zheng Shi") { output2(header("<u>Zhèng Shi Station</u>", false)); addDisabledGhostButton(4, "ZhengShi"); }
+		else addGhostButton(4, "ZhengShi", currentFunc, "Zheng Shi");
+	}
+	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	// New Texas
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
@@ -1943,7 +1950,7 @@ public function displayQuestLog(showID:String = "All"):void
 		{
 			output2("\n<b><u>Myrellion</u></b>");
 			output2("\n<b>* Status:</b>");
-			if(nyreaDungeonFinished() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords")))
+			if(zhengCoordinatesUnlocked())
 			{
 				output2(" Coordinates received");
 				if(flags["MYRELLION_PROBE_CASH_GOT"] != undefined) output2(", Reclaimed probe");
@@ -2007,6 +2014,27 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["QUEENSGUARD_STAB_TIME"] != undefined || flags["KILLED_TAIVRA"] != undefined) output2(", Escaped with [rival.name]");
 				}
 			}
+			mainCount++;
+		}
+		// Zheng Shi
+		if(zhengCoordinatesUnlocked() && (showID == "Zheng Shi" || showID == "All"))
+		{
+			output2("\n<b><u>Zhèng Shi Station</u></b>");
+			output2("\n<b>* Status:</b>");
+			if(9999 == 0)
+			{
+				output2(" Coordinates received");
+				if(9999 == 0) output2(", Reclaimed probe");
+			}
+			else output2(" <i>In progress...</i>");
+			if(flags["ZHENG_SHI_PASSWORDED"] != undefined)
+			{
+				output2("\n<b>* Entry Password:</b>");
+				if(flags["KIRO_HELPED_ZHENG"] != undefined) output2(" Kiro assisted,");
+				if(flags["ZHENG_SHI_PASSWORDED"] >= 1) output2(" Access granted");
+				else output2(" <i>Unknown</i>, Access denied");
+			}
+			
 			mainCount++;
 		}
 		// Nothing recorded
@@ -2076,34 +2104,29 @@ public function displayQuestLog(showID:String = "All"):void
 					case undefined: output2(" Tracking"); break;
 					case 1: output2(" Paid the Host"); break;
 					case 2: output2(" Accepted corporal punishment"); break;
-					case 3: output2(" Took Akane's offer"); break;
+					case 3: output2(" Took Akane’s offer"); break;
 				}
 				
-				output2("\n<b>* Tavros:</b>");
-				output2((flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 3 ? " Chased" : " Didn't chase") + " culprits");
+				output2("\n<b>* Tavros:</b> " + (flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 3 ? "Chased" : "Didn’t chase") + " culprits");
 				if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] >= 2) output2(", Talked to the victim");
 				
 				if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined)
 				{
-					output2("\n<b>* Mhenga:</b>");
-					if (flags["SHUKUCHI_MHENGA_ENCOUNTER"]) output2(" Defeated agent on Mhenga");
-					else output2(" Lost to agent on Mhenga");
+					output2("\n<b>* Mhenga:</b> " + (flags["SHUKUCHI_MHENGA_ENCOUNTER"] ? "Defeated agent on Mhenga" : "Lost to agent on Mhenga"));
 				}
 				
 				if (flags["SHUKUCHI_UVETO7_ENCOUNTER"] != undefined)
 				{
-					output2("\n<b>* Uveto:</b>");
-					if (flags["SHUKUCHI_UVETO7_ENCOUNTER"]) output2(" Defeated agents on Uveto");
-					else output2(" Lost to agents on Uveto");
+					output2("\n<b>* Uveto:</b> " + (flags["SHUKUCHI_UVETO7_ENCOUNTER"] ? "Defeated agents on Uveto" : "Lost to agents on Uveto"));
 				}
 				
 				sideCount++;
 			}
 			//AkaneQuest
-			if (MailManager.isEntryViewed("akanequest_email")){
+			if (MailManager.isEntryViewed("akanequest_email"))
+			{
 				output2("\n<b><u>AkaneQuest</u></b>");
-				output2("\n<b>* Status:</b>");
-				output2(" Read Email");
+				output2("\n<b>* Status:</b> Read Email");
 				if (flags["AKANEQUEST_STAGE"] == 0) output2(", Raid Planned");
 				else if (flags["AKANEQUEST_STAGE"] > 0)
 				{
@@ -3772,6 +3795,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Store:</b> Visited");
 				if(flags["MET_ALEX_SURF"] != undefined) output2("\n<b>* Alex:</b> Met her");
 				if(flags["MET_STELLA"] != undefined) output2("\n<b>* Stella:</b> Met her");
+				if(flags["STELLA_COLLAR"] != undefined) output2("\n<b>* Stella, Collar, Worn:</b> " + StringUtil.toDisplayCase(flags["STELLA_COLLAR"]));
+				if(flags["STELLA_COLLAR_GIFT"] != undefined) output2("\n<b>* Stella, Collar, Gift:</b> " + StringUtil.toDisplayCase(flags["STELLA_COLLAR_GIFT"]));
+				if(pc.hasStatusEffect("STELLA_PREGNANT")) output2("\n<b>* Stella, Days Pregnant:</b> " + Math.floor(((60*24*30*3) - pc.getStatusMinutes("STELLA_PREGNANT"))/(60*24)));
 				if(flags["STELLA_FUCKED"] != undefined) output2("\n<b>* Stella, Times Sexed:</b> " + flags["STELLA_FUCKED"]);
 				if(flags["STELLA_BUTTFUCKED"] != undefined) output2("\n<b>* Stella, Times You Buttfucked Her:</b> " + flags["STELLA_BUTTFUCKED"]);
 				if(flags["STELLA_GAVE_ORAL"] != undefined) output2("\n<b>* Stella, Times She She Gave You Oral:</b> " + flags["STELLA_GAVE_ORAL"]);
@@ -4071,7 +4097,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if (flags["AKANE_TIMES_TALKED_HISTORY"]) akaneTopics.push("Her History");
 					if (flags["AKANE_TIMES_TALKED_US"]) akaneTopics.push("Us");
 					output2(akaneTopics.join(", "));
-				}			
+				}
 				variousCount++;
 			}
 			// Residential Deck Stuff!
@@ -6130,6 +6156,28 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 		}
 		
+		if(showID == "Zheng Shi" || showID == "All")
+		{
+			if(flags["MET_URBOLG"] == undefined)
+			{
+				output2("\n<b><u>Hangar Bay</u></b>");
+				output2("\n<b>* Urbolg:</b> Met him");
+				if(flags["URBOLG_LOSSES"] != undefined) output2(", Defeated by him in combat");
+				if(flags["URBOLG_LUSTED"] != undefined) output2(", Defeated him with lust");
+				if(flags["SEXED_URBOLG"] != undefined) output2("\n<b>* Urbolg, Times Sexed:</b> " + flags["SEXED_URBOLG"]);
+				if(flags["URBOLG_DOGGYED"] != undefined) output2("\n<b>* Urbolg, Times He Fucked You Doggy-style:</b> " + flags["URBOLG_DOGGYED"]);
+				variousCount++;
+			}
+			if(flags["GOT_URBOLGS_SHIELD"] != undefined)
+			{
+				output2("\n<b><u>Artificer’s\nOffice</u></b>");
+				output2("\n<b>* Urbolg’s Safe:</b>");
+				if(flags["GOT_URBOLGS_SHIELD"] >= 1) output2(" Found, Shield looted");
+				else output2(" Know about it, <i>Lock combination is 7-8-9</i>");
+				variousCount++;
+			}
+		}
+		
 		if(showID == "Uveto" || showID == "All")
 		{
 			// Uveto Station
@@ -6668,8 +6716,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_JESSE"] != undefined)
 				{
 					output2("\n<b>* Jesse:</b> Met her");
-					if (flags["JESSE_PC_TITLE"] != undefined) output2("\n<b>* Jesse, will refer to you as:</b> " + jessePCTitle());
-					if (flags["JESSE_PC_TITLE_SEX"] != undefined) output2("\n<b>* Jesse, will refer to you during sex as:</b> " + jessePCTitleSex());
+					if (flags["JESSE_PC_TITLE"] != undefined) output2("\n<b>* Jesse, Preferred Name, She Calls You:</b> " + jessePCTitle());
+					if (flags["JESSE_PC_TITLE_SEX"] != undefined) output2("\n<b>* Jesse, Preferred Sex Name, She Calls You:</b> " + jessePCTitleSex());
 					if (flags["JESSE_TIMES_SEXED"] != undefined) output2("\n<b>* Jesse, Times Sexed:</b> " + flags["JESSE_TIMES_SEXED"]);
 				}
 				// Kally

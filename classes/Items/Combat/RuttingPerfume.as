@@ -37,12 +37,12 @@
 			this.shortName = "\"Rutting\"";
 			
 			//Regular name
-			this.longName = "spray bottle titled \"Rutting\"";
+			this.longName = "spray bottle titled “Rutting”";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a spray bottle of perfume or cologne labelled \"Rutting\"";
+			this.description = "a spray bottle of perfume or cologne labelled “Rutting”";
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "According to Mitzi, this bottle of pleasant scents also packs a dense load of pheromones designed to appeal to nearly every race in the known (and unknown) galaxy. While wearing it, your tease attacks will be extra effective, though you yourself will be more receptive to the attentions of others...";
@@ -78,7 +78,7 @@
 		{
 			if (!inCombat())
 			{
-				if(!kGAMECLASS.infiniteItems()) quantity++;
+				//if(!kGAMECLASS.infiniteItems()) quantity++;
 				if (targetCreature is PlayerCharacter)
 				{
 					clearOutput();
@@ -89,7 +89,7 @@
 					}
 					else 
 					{
-						output("No time like the present to thicken the fuckable cloud you're floating about in! A single squeeze, and you're feeling absolutely irresistible.");
+						output("No time like the present to thicken the fuckable cloud you’re floating about in! A single squeeze, and you’re feeling absolutely irresistible.");
 						targetCreature.setStatusMinutes("\"Rutting\"",5*60);
 					}
 					targetCreature.lust(4);
@@ -114,7 +114,7 @@
 					}
 					else 
 					{
-						output("No time like the present to thicken the fuckable cloud you're floating about in! A single squeeze, and you're feeling absolutely irresistible.");
+						output("No time like the present to thicken the fuckable cloud you’re floating about in! A single squeeze, and you’re feeling absolutely irresistible.");
 						targetCreature.setStatusMinutes("\"Rutting\"",5*60);
 					}
 					targetCreature.lust(4);
