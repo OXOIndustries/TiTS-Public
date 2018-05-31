@@ -2824,7 +2824,6 @@ public function variableRoomUpdateCheck():void
 	if(hours >= 6 && hours < 17) 
 	{
 		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
-		rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 		//Add back in icons.
 		rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
 		rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
@@ -2836,9 +2835,12 @@ public function variableRoomUpdateCheck():void
 		//Get rid of icons
 		rooms["KELLY'S OFFICE"].removeFlag(GLOBAL.NPC);
 		rooms["JULIAN'S OFFICE"].removeFlag(GLOBAL.NPC);
-		//Add Kelly icon in the bar
-		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	}
+	//Filling Burt's back end
+	//Kally not at work or incesty zil
+	if ((hours < 6 || hours >= 17) || zilTwinsAtBar())
+		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
+	else rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 	//Hungry Hungry Rahn
 	if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17))
 	{

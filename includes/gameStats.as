@@ -4669,7 +4669,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Badass Mead Hall
-			if(flags["MET_BURT"] != undefined || flags["KELLY_MET"] != undefined || flags["MET_SYRI"] != undefined || flags["KASE_INTRO"] != undefined || flags["ERIKA_MET"] != undefined)
+			if(flags["MET_BURT"] != undefined || flags["KELLY_MET"] != undefined || flags["MET_SYRI"] != undefined || flags["KASE_INTRO"] != undefined || flags["ERIKA_MET"] != undefined || flags["ZILTWINS_MET"] != undefined)
 			{
 				output2("\n<b><u>Burt’s Badass Mead Hall</u></b>");
 				// Burt and Company
@@ -4755,6 +4755,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ERIKA_SEEN_NAKED"] != undefined) output2(", Seen Her Naked");
 					if(flags["ERIKA_GIVEN_ANUSOFT"] != undefined) output2(", You have given her some Anusoft");
 					if(flags["ERIKA_SEXED"] != undefined) output2("\n<b>* Erika, Times Sexed:</b> " + flags["ERIKA_SEXED"]);
+				}
+				//Tetra & Mica The Zil Twins
+				if (flags["ZILTWINS_MET"] != undefined)
+				{
+					output2("\n<b>* Tetra & Mica:</b> Met them");
+					if (flags["ZILTWINS_MET"]) output2(", Let Mica sample you");
+					if (flags["ZILTWINS_MICA_TEASED"] != undefined) output2(", Saw Mica dance");
+					if (flags["ZILTWINS_MICA_BUTTFUCKED"] != undefined) output2(", Fucked Mica");
+					if (flags["ZILTWINS_TETRA_FUCKED"] != undefined) output2(", Fucked Tetra");
+					if (flags["ZILTWINS_BOTH_FUCKED"] != undefined) output2(", Got spitroasted");
 				}
 				variousCount++;
 			}

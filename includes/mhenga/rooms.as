@@ -50,7 +50,7 @@ public function initMhengaRooms():void
 	rooms["ESBETH'S NORTH PATH"].westExit = "NORTHWEST ESBETH";
 	rooms["ESBETH'S NORTH PATH"].eastExit = "NORTH ESBETH 2";
 	rooms["ESBETH'S NORTH PATH"].moveMinutes = 2;
-	rooms["ESBETH'S NORTH PATH"].runOnEnter = bountyBoardExtra;
+	rooms["ESBETH'S NORTH PATH"].runOnEnter = function():Boolean{bountyBoardExtra(); return zilTwinsEsbethBonus();}
 	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.PUBLIC);
 
@@ -63,6 +63,7 @@ public function initMhengaRooms():void
 	rooms["NORTHWEST ESBETH"].southExit = "WEST ESBETH 1";
 	rooms["NORTHWEST ESBETH"].eastExit = "ESBETH'S NORTH PATH";
 	rooms["NORTHWEST ESBETH"].moveMinutes = 2;
+	rooms["NORTHWEST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.PUBLIC);
 	rooms["NORTHWEST ESBETH"].runOnEnter = shukuchiMhengaBonus;
@@ -77,7 +78,7 @@ public function initMhengaRooms():void
 	rooms["WEST ESBETH 1"].northExit = "NORTHWEST ESBETH";
 	rooms["WEST ESBETH 1"].eastExit = "CRAZY CARLS";
 	rooms["WEST ESBETH 1"].moveMinutes = 2;
-	rooms["WEST ESBETH 1"].runOnEnter = function():void{output("The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends farther to the north and continues straight on to the south. " + (myrOnMhenga() ? "\n\nThe western building has been opened up, and a pair of gold myr women are standing outside with rifles slung over their shoulders. A sign above the door in clear, crisp English says “Embassy of the Gilden Republics, Mhen’ga.”" : "The western building is closed and locked, for now.") + "\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front states their purpose: “Crazy Carl’s Crude Cylinder Collection Cache”. The crude neon outline of a handgun helps you fill in the blanks.");};
+	rooms["WEST ESBETH 1"].runOnEnter = westMyrRebelsBonus;
 	rooms["WEST ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["WEST ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
@@ -90,6 +91,7 @@ public function initMhengaRooms():void
 	rooms["WEST ESBETH 2"].northExit = "WEST ESBETH 1";
 	rooms["WEST ESBETH 2"].southExit = "SOUTHWEST ESBETH";
 	rooms["WEST ESBETH 2"].moveMinutes = 2;
+	rooms["WEST ESBETH 2"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["WEST ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 	rooms["WEST ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 
@@ -102,6 +104,7 @@ public function initMhengaRooms():void
 	rooms["SOUTHWEST ESBETH"].northExit = "WEST ESBETH 2";
 	rooms["SOUTHWEST ESBETH"].eastExit = "SOUTH ESBETH 1";
 	rooms["SOUTHWEST ESBETH"].moveMinutes = 2;
+	rooms["SOUTHWEST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTHWEST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -115,6 +118,7 @@ public function initMhengaRooms():void
 	rooms["SOUTH ESBETH 1"].eastExit = "SOUTH ESBETH 2";
 	rooms["SOUTH ESBETH 1"].southExit = "SCRAPYARD MAINTENANCE";
 	rooms["SOUTH ESBETH 1"].moveMinutes = 2;
+	rooms["SOUTH ESBETH 1"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTH ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
@@ -128,6 +132,7 @@ public function initMhengaRooms():void
 	rooms["SOUTH ESBETH 2"].eastExit = "SOUTH ESBETH 3";
 	rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
 	rooms["SOUTH ESBETH 2"].moveMinutes = 2;
+	rooms["SOUTH ESBETH 2"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 	rooms["SOUTH ESBETH 2"].runOnEnter = xenogenOutsideBlurb;
@@ -143,6 +148,7 @@ public function initMhengaRooms():void
 	rooms["SOUTH ESBETH 3"].northExit = "PENNY'S OFFICE";
 	rooms["SOUTH ESBETH 3"].southExit = "ESBETH TRAVEL AUTHORITY";
 	rooms["SOUTH ESBETH 3"].moveMinutes = 2;
+	rooms["SOUTH ESBETH 3"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.PUBLIC);
 
@@ -167,6 +173,7 @@ public function initMhengaRooms():void
 	rooms["SOUTHEAST ESBETH"].northExit = "EAST ESBETH";
 	rooms["SOUTHEAST ESBETH"].westExit = "SOUTH ESBETH 3";
 	rooms["SOUTHEAST ESBETH"].moveMinutes = 2;
+	rooms["SOUTHEAST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTHEAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -180,6 +187,7 @@ public function initMhengaRooms():void
 	rooms["EAST ESBETH"].eastExit = "ESBETH MEDICAL OFFICE";
 	rooms["EAST ESBETH"].northExit = "EAST ESBETH ENTRANCE";
 	rooms["EAST ESBETH"].moveMinutes = 2;
+	rooms["EAST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["EAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["EAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -205,7 +213,7 @@ public function initMhengaRooms():void
 	rooms["NORTHEAST ESBETH"].westExit = "NORTH ESBETH 1";
 	rooms["NORTHEAST ESBETH"].southExit = "EAST ESBETH ENTRANCE";
 	rooms["NORTHEAST ESBETH"].moveMinutes = 2;
-	rooms["NORTHEAST ESBETH"].runOnEnter = azraMhengaHook;
+	rooms["NORTHEAST ESBETH"].runOnEnter = function():Boolean{azraMhengaHook(); return zilTwinsEsbethBonus();};
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -218,6 +226,7 @@ public function initMhengaRooms():void
 	rooms["NORTH ESBETH 1"].westExit = "NORTH ESBETH 2";
 	rooms["NORTH ESBETH 1"].eastExit = "NORTHEAST ESBETH";
 	rooms["NORTH ESBETH 1"].moveMinutes = 2;
+	rooms["NORTH ESBETH 1"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["NORTH ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTH ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
@@ -231,6 +240,7 @@ public function initMhengaRooms():void
 	rooms["NORTH ESBETH 2"].eastExit = "NORTH ESBETH 1";
 	rooms["NORTH ESBETH 2"].northExit = "BURT'S MAIN HALL";
 	rooms["NORTH ESBETH 2"].moveMinutes = 2;
+	rooms["NORTH ESBETH 2"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["NORTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTH ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 
