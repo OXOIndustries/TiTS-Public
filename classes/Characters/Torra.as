@@ -28,11 +28,11 @@
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "Assistent Researcher";
+			this.short = "Assistent";
 			this.originalRace = "milodan";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "Placeholdah";
+			this.long = "Assistent Researcher";
 			this.isPlural = false;
 			
 			this.meleeWeapon.attack = 4;
@@ -86,11 +86,11 @@
 			this.tallness = 87;
 			this.thickness = 50;
 			this.tone = 85;
-			this.hairColor = RandomInCollection(["silver","blue","white","silvery-white","silvery-blue","blue-white"]);
+			this.hairColor = "orange";
 			//this.hairType = GLOBAL.TYPE_FELINE;
 			//this.scaleColor = "red";;
-			this.furColor = this.hairColor;
-			this.hairLength = 3;
+			this.furColor = "white";
+			this.hairLength = 7;
 			
 			//this.beardLength = 0;
 			//this.beardStyle = 0;
@@ -139,7 +139,7 @@
 			//10 - curvy//flaring
 			//15 - child-bearing/fertile
 			//20 - inhumanly wide
-			this.hipRatingRaw = 10;
+			this.hipRatingRaw = 15;
 			//buttRating
 			//0 - buttless
 			//2 - tight
@@ -153,34 +153,39 @@
 			this.buttRatingRaw = 10;
 			//No dicks here!
 			this.cocks = [];
-			vaginas = [new VaginaClass(true)];
-			var v:VaginaClass = vaginas[0];
-			v.wetnessRaw = 3;
-			v.loosenessRaw = 3;
-			
+			//Vag!
+			this.vaginas = new Array();
+			this.createVagina();
+			this.vaginas[0].loosenessRaw = 3;
+			this.vaginas[0].wetnessRaw = 3;
+			this.vaginas[0].bonusCapacity = 300;
 			//balls
 			this.balls = 0;
-			this.cumMultiplierRaw = 6;
+			this.cumMultiplierRaw = 3;
 			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
-			this.cumQualityRaw = 3;
+			this.cumQualityRaw = 1;
 			this.cumType = GLOBAL.FLUID_TYPE_CUM;
-			this.ballSizeRaw = 8;
+			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
+			this.ballSizeRaw = 2;
 			this.ballFullness = 100;
 			//How many "normal" orgams worth of jizz your balls can hold.
-			this.ballEfficiency = 7;
+			this.ballEfficiency = 15;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 6;
-			this.minutesSinceCum = 420;
-			this.timesCum = 850;
-
-			this.elasticity = 1;
+			this.refractoryRate = 9;
+			this.minutesSinceCum = 900;
+			this.timesCum = 1302;
+			this.cockVirgin = true;
+			this.vaginalVirgin = false;
+			this.analVirgin = false;
+			//Goo is hyper friendly!
+			this.elasticity = 1.5;
 			//Fertility is a % out of 100. 
-			this.fertilityRaw = 1;
-			//this.clitLength = .5;
+			this.fertilityRaw = 15;
+			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 
-			this.breastRows[0].breastRatingRaw = 8;
-			this.nippleColor = "white";
+			this.breastRows[0].breastRatingRaw = 22;
+			this.nippleColor = "black";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
@@ -190,14 +195,13 @@
 			this.ass.bonusCapacity += 75;
 			
 			isUniqueInFight = true;
-			btnTargetText = "Priestess";
+			btnTargetText = "Assistent";
 			
 			sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS, GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_HYPER, GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_SMALL_MALEBITS, GLOBAL.REALLY_LIKES_SEXPREF);
-			kGAMECLASS.uvetoSSTDChance(this);
 
 			this._isLoading = false;
 		}

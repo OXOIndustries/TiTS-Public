@@ -83,14 +83,7 @@ public function syriQuestInitRooms():void
 	rooms["AKD K31"] = new RoomClass(this);
 	rooms["AKD K31"].roomName = "ENTRANCE";
 	rooms["AKD K31"].description = "You're standing in the entranceway to the Akkadi research facility. It's dark, sterile grey metal on the walls, ceiling, and floors, illuminated by ";
-	rooms["AKD K31"].runOnEnter = function():Boolean{
-		author("Savin");
-		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("nothing but the faint light of your Codex");
-		else output("red emergency lights");
-		output(". Ausari words are sprayed on the wall to your left in big, blocky letters: AKKADI RESEARCH & DEVELOPMENT GROUP, IMC. UVETO RIFT DIVISION. Under those is inscribed, 'Restricted Access. Authorized Personnel Only.'\n\nSouthwards are the huge metal access doors, leading back outside to the Glacial Rift. Ahead, northwards, is a short hallway that leads up to an intersection.");
-		if (flags["SYRIQUEST_POWER_STATE"] == 2) syriQuestAkkadiBaseSecurityRobotsTrigger();
-		return false;
-	};
+	rooms["AKD K31"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD K31"].planet = planetName;
 	rooms["AKD K31"].system = systemName;
 	rooms["AKD K31"].northExit = "AKD K29";
@@ -100,7 +93,7 @@ public function syriQuestInitRooms():void
 	rooms["AKD K29"] = new RoomClass(this);
 	rooms["AKD K29"].roomName = "CHECK\nPOINT";
 	rooms["AKD K29"].description = "Between the entrance and the main body of the Akkadi research building, you come through a security checkpoint. It's the same sort of thing you've seen a million times, including at every Steele Tech facility you've been through: there's an archway loaded out with sensors that can probably detect weapons, microscopic robots, and everything in between. Behind it is a small, reinforced cubicle where a security guard could stand and monitor things.\n\nThere <i>should</i> be someone here, even with the power out. Wonder where the welcome party went? Without a guard, you're easily able to hop the barrier -- just in case.";
-	rooms["AKD K29"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD K29"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD K29"].planet = planetName;
 	rooms["AKD K29"].system = systemName;
 	rooms["AKD K29"].northExit = "AKD K27";
@@ -110,12 +103,8 @@ public function syriQuestInitRooms():void
 
 	rooms["AKD K27"] = new RoomClass(this);
 	rooms["AKD K27"].roomName = "INTER\nSECTION";
-rooms["AKD K27"].description = "You're standing in a three-way intersection, with the entrance back to the south and a bank of elevators on the north wall. East is a room with the words 'Security Office' printed beside it. A long, curved hallway runs to the west, out of sight.\n\n";
-	rooms["AKD K27"].runOnEnter = function():void{
-		author("Savin");
-		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("The elevators are locked down, since there's no power in the facility. The security office is dark as night, too, but the door is open.");
-		else output("One elevator has come back online, running off the emergency generator.");
-	};
+	rooms["AKD K27"].description = "You're standing in a three-way intersection, with the entrance back to the south and a bank of elevators on the north wall. East is a room with the words 'Security Office' printed beside it. A long, curved hallway runs to the west, out of sight.\n\n";
+	rooms["AKD K27"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD K27"].planet = planetName;
 	rooms["AKD K27"].system = systemName;
 	rooms["AKD K27"].northExit = "AKD K25";
@@ -130,9 +119,9 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD K25"].description = "You're standing in one of the elevators at the heart of the Akkadi complex. On a good day, you'd have access to what the panel tells you is fifty floors of research and development complex. Unfortunately, ";
 	rooms["AKD K25"].runOnEnter = function():void{
 		if (flags["SYRIQUEST_POWER_STATE"] == undefined) output("the power's out. You're not going anywhere in this thing.");
-		else if (flags["SYRIQUEST_ELEVATOR_STATE"] == 2) output("the only floors open to you are a public-access living space for staff, one floor up, and the secured lab you opened up near the bottom of the facility.");
+		else if (flags["SYRIQUEST_STATE"] >= 5) output("the only floors open to you are a public-access living space for staff, one floor up, and the secured lab you opened up near the bottom of the facility.");
 		else output("Syri's electrical exploits outside have put the facility into lockdown. The only open floor is the one immediately above this one: a living quarters for the non-scientific staff, according to the holodisplay.");
-		if (flags["SYRIQUEST_ELEVATOR_STATE"] == undefined) flags["SYRIQUEST_ELEVATOR_STATE"] = 1;
+		if (flags["SYRIQUEST_ELEVATOR_STATE"] == undefined) flags["SYRIQUEST_ELEVATOR_STATE"] = 0;
 		syriQuestAkkadiBaseElevators();
 	};
 	rooms["AKD K25"].planet = planetName;
@@ -155,7 +144,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD I27"] = new RoomClass(this);
 	rooms["AKD I27"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD I27"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here. You can vaguely hear annoyed shouting from inside the labs: the techs inside are clearly unhappy about the sudden lockdown.\n\nFrom where you're standing, the hall goes north into the building, or east back towards the entrance.";
-	rooms["AKD I27"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD I27"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD I27"].planet = planetName;
 	rooms["AKD I27"].system = systemName;
 	rooms["AKD I27"].northExit = "AKD I25";
@@ -166,7 +155,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD I25"] = new RoomClass(this);
 	rooms["AKD I25"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD I25"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThe hallway goes straight north to south here.";
-	rooms["AKD I25"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD I25"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD I25"].planet = planetName;
 	rooms["AKD I25"].system = systemName;
 	rooms["AKD I25"].northExit = "AKD I23";
@@ -177,7 +166,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD I23"] = new RoomClass(this);
 	rooms["AKD I23"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD I23"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThe hallway goes straight north to south here.";
-	rooms["AKD I23"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD I23"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD I23"].planet = planetName;
 	rooms["AKD I23"].system = systemName;
 	rooms["AKD I23"].northExit = "AKD I21";
@@ -188,7 +177,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD I21"] = new RoomClass(this);
 	rooms["AKD I21"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD I21"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThe hallway goes south from here, back towards the entrance, or eastwards along the outer wall opposite where Syri and the crew landed.";
-	rooms["AKD I21"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD I21"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD I21"].planet = planetName;
 	rooms["AKD I21"].system = systemName;
 	rooms["AKD I21"].southExit = "AKD I23";
@@ -199,23 +188,19 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD K21"] = new RoomClass(this);
 	rooms["AKD K21"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD K21"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThe hallway goes east to west here. More importantly, there's a door labelled 'HELIPAD' in bold ausari characters on the north wall. Like most of the facility, it's locked down.";
+	rooms["AKD K21"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD K21"].planet = planetName;
 	rooms["AKD K21"].system = systemName;
 	rooms["AKD K21"].northExit = "AKD K19";
 	rooms["AKD K21"].eastExit = "AKD M21";
 	rooms["AKD K21"].westExit = "AKD I21";
-	rooms["AKD K21"].addFlag(GLOBAL.INDOOR);
 	rooms["AKD K21"].moveMinutes = 1;
-	rooms["AKD K21"].runOnEnter = function():Boolean {
-		author("Savin");
-		setNavDisabled(NAV_NORTH_DISABLE);
-		return false;
-	}
+	rooms["AKD K21"].addFlag(GLOBAL.INDOOR);
 
 	rooms["AKD K19"] = new RoomClass(this);
 	rooms["AKD K19"].roomName = "\nHELIPAD";
 	rooms["AKD K19"].description = "";
-//	rooms["AKD K19"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD K19"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD K19"].planet = planetName;
 	rooms["AKD K19"].system = systemName;
 	rooms["AKD K19"].southExit = "AKD K21";
@@ -226,7 +211,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD M21"] = new RoomClass(this);
 	rooms["AKD M21"].roomName = "RESEARCH HALL\nOFFICES";
 	rooms["AKD M21"].description = "You're walking down a long, winding hallway that curves around the entire outer wall of the Akkadi research building. Several small doors lead off from the hall into the building's interior. They look like offices, each with a different ausar name printed beside it. They're all hermetically sealed, doors bolted due to the security lockdown. No amount of finesse is getting you off this hallway here.\n\nThere's a door to the south labeled 'Backup Generator.' If you want to turn the power back on, that's probably where you'd do it.";
-	rooms["AKD M21"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD M21"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD M21"].planet = planetName;
 	rooms["AKD M21"].system = systemName;
 	rooms["AKD M21"].southExit = "AKD M23";
@@ -257,7 +242,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD C15"].roomName = "\nELEVATOR";
 	rooms["AKD C15"].description = "You're standing in one of the elevators at the heart of the Akkadi complex. On a good day, you'd have access to what the panel tells you is fifty floors of research and development complex. As it stands, you have access to the unsecured staff quarters";
 	rooms["AKD C15"].runOnEnter = function():void{
-		if (flags["SYRIQUEST_ELEVATOR_STATE"] == 2) output(", the main floor, and a single research and development level far below the surface");
+		if (flags["SYRIQUEST_STATE"] >= 5) output(", the main floor, and a single research and development level far below the surface");
 		else output(" and the main floor.");
 		syriQuestAkkadiBaseElevators();
 	};
@@ -271,7 +256,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD C13"] = new RoomClass(this);
 	rooms["AKD C13"].roomName = "STAFF\nQUARTERS";
 	rooms["AKD C13"].description = "You're standing in a long, wide hallway that's flanked by dozens of doors on each side. Each of them has a small name plate on the outside, suggesting these are living quarters. They're all magnetically sealed, though, thanks to the continuing lockdown in the facility. The elevator to the south is still open, at least.\n\nThere's more barracks to the east as well.";
-	rooms["AKD C13"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD C13"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD C13"].planet = planetName;
 	rooms["AKD C13"].system = systemName;
 	rooms["AKD C13"].southExit = "AKD C15";
@@ -281,8 +266,8 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD E13"] = new RoomClass(this);
 	rooms["AKD E13"].roomName = "STAFF\nQUARTERS";
-	rooms["AKD E13"].description = "desc";
 	rooms["AKD E13"].description = "You're standing in a long, wide hallway that's flanked by dozens of doors on each side. Each of them has a small name plate on the outside, suggesting these are living quarters. They're all magnetically sealed, though, thanks to the continuing lockdown in the facility. The hall goes back east, towards the elevator, and culminates here in a large open area with couches and holoscreens and a coffee table with several boxes of half-eaten Roshan takeout.\n\nTo the north is another door labelled 'Staff Room.'";
+	rooms["AKD E13"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD E13"].planet = planetName;
 	rooms["AKD E13"].system = systemName;
 	rooms["AKD E13"].northExit = "AKD E11";
@@ -325,8 +310,8 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD K13"] = new RoomClass(this);
 	rooms["AKD K13"].roomName = "R&D LEVEL\nHALLS";
-	//rooms["AKD K13"].description = "desc";
-	rooms["AKD K13"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD K13"].description = "The R&D floor is fully illuminated, as if the power had never gone out at all.The walls are streaked with a dark blue stripe, about the width of your hand, running all the way down at shoulder height. Some kind of sensor, maybe?\n\n";
+	rooms["AKD K13"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD K13"].planet = planetName;
 	rooms["AKD K13"].system = systemName;
 	rooms["AKD K13"].southExit = "AKD K15";
@@ -337,7 +322,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD M13"] = new RoomClass(this);
 	rooms["AKD M13"].roomName = "ARCHIVES\nEXTERIOR HALL";
 	rooms["AKD M13"].description = "The long, brightly lit hallway continues here, east and west. The north wall sports a door marked 'ARCHIVES' in blocky caps.";
-	rooms["AKD M13"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD M13"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD M13"].planet = planetName;
 	rooms["AKD M13"].system = systemName;
 	rooms["AKD M13"].northExit = "AKD M11";
@@ -364,7 +349,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD O13"] = new RoomClass(this);
 	rooms["AKD O13"].roomName = "RESEARCH\nHALL";
 	rooms["AKD O13"].description = "This long corridor connects the research labs to the main elevator block, and is monitored by what looks like some kind of sensor net -- though why it hasn't raised an alarm at your presence, you have no idea.\n\nThere are plenty of labs on either side that are still sealed due to the lockdown. You can vaguely hear talking from inside -- seems like the researchers inside are safe and sound, at least.";
-	rooms["AKD O13"].runOnEnter = function():void{author("Savin")};
+	rooms["AKD O13"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD O13"].planet = planetName;
 	rooms["AKD O13"].system = systemName;
 	rooms["AKD O13"].eastExit = "AKD Q13";
@@ -386,7 +371,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD Q15"] = new RoomClass(this);
 	rooms["AKD Q15"].roomName = "RESEARCH DEPT.\nPLAZA";
-//	rooms["AKD Q15"].description = "";
+//	rooms["AKD Q15"].description = "desc";
 	rooms["AKD Q15"].runOnEnter = syriQuestAkkadiBaseResearchDeptPlaza;
 	rooms["AKD Q15"].planet = planetName;
 	rooms["AKD Q15"].system = systemName;
@@ -416,7 +401,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD S15"].description = "The Starship Lab is by far the largest section of the facility you've come across: it's several floors deep, surrounded by a grated walkway that overlooks several gutted starships. They're all hooked up to various computer banks and sensors, apparently being studied. Tools and dataslates are scattered haphazardly across the floor, suggesting the researchers and technicians working in here evacuated in a hurry.\n\nA service elevator leads down to the lower floor.";
 	rooms["AKD S15"].runOnEnter = function():void{
 		author("Savin");
-		if (flags["SYRIQUEST_STATE"] >= 5) addDisabledButton(0,"Elevator");
+		if (flags["SYRIQUEST_STATE"] >= 8) addDisabledButton(0,"Elevator");
 		else addButton(0, "Elevator", function():void{moveTo("AKD T14");clearMenu();mainGameMenu();});
 	};
 	rooms["AKD S15"].planet = planetName;
@@ -431,7 +416,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 	rooms["AKD T14"].description = "The lower level of the lab is full of starships that have been pulled apart, stripped down and refit with experimental devices. You see several different Akkadi craft, but also a handful of ships from the competition, including another Casstech Z-14. Wonder why they're interested in retro tech like that?";
 	rooms["AKD T14"].runOnEnter = function():void{
 		author("Savin");
-		if (flags["SYRIQUEST_STATE"] >= 5) addButton(0, "Elevator", function():void{moveTo("AKD S15"); clearMenu(); mainGameMenu(); });
+		if (flags["SYRIQUEST_STATE"] >= 8) addButton(0, "Elevator", function():void{moveTo("AKD S15"); clearMenu(); mainGameMenu(); });
 		else addButton(0, "Investigate", syriQuestAkkadiBaseStarshipLabInvestigate, undefined, "Investigate", "Search the Starship Lab for anything useful.");
 	};
 	rooms["AKD T14"].planet = planetName;
@@ -442,7 +427,7 @@ rooms["AKD K27"].description = "You're standing in a three-way intersection, wit
 
 	rooms["AKD Q17"] = new RoomClass(this);
 	rooms["AKD Q17"].roomName = "WARP FIELD\nLAB";
-	//rooms["AKD Q17"].description = "";
+	//rooms["AKD Q17"].description = "desc";
 	rooms["AKD Q17"].runOnEnter = syriQuestAkkadiBaseWarpLab;
 	rooms["AKD Q17"].planet = planetName;
 	rooms["AKD Q17"].system = systemName;
