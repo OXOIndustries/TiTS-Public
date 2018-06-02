@@ -1553,7 +1553,6 @@
 		{
 			return chars["DELILAH"];
 		}
-
 		public function get yammi():Yammi
 		{
 			return chars["YAMMI"];
@@ -1578,42 +1577,34 @@
 		{
 			return chars["KRYM"];
 		}
-
 		public function get paige():Paige 
 		{
 			return chars["PAIGE"];
 		}
-		
 		public function get ciaran():Ciaran
 		{
 			return chars["CIARAN"];
 		}
-		
 		public function get ellie():Ellie
 		{
 			return chars["ELLIE"];
 		}
-		
 		public function get sam():SX1Techguard
 		{
 			return chars["SX1TECHGUARD"];
 		}
-		
 		public function get khorgan():CaptainKhorgan
 		{
 			return chars["CAPTAINKHORGAN"];
 		}
-		
 		public function get tamtam():TamTam
 		{
 			return chars["TAMTAM"];
 		}
-
 		public function get erika():Erika
 		{
 			return chars["ERIKA"];
 		}
-		
 		public function get lieve():Lieve
 		{
 			return chars["LIEVE"];
@@ -1625,6 +1616,10 @@
 		public function get mitzi():Mitzi
 		{
 			return chars["MITZI"];
+		}
+		public function get frostwyrm():Frostwyrm
+		{
+			return chars["FROSTWYRM"];
 		}
 
 		public function testShipCombat():void

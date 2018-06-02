@@ -843,11 +843,6 @@ public function GRM44Apologize():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function GlacialRiftCoast():Boolean
-{
-	return HereBeDragonBonus();
-}
-
 public function soloFertilityPriestessFight():void
 {
 	clearOutput();

@@ -10890,6 +10890,10 @@
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
+				case GLOBAL.TYPE_FROSTWYRM:
+					vaginas[slot].vaginaColor = "blue";
+					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
+					break;
 				case GLOBAL.TYPE_FLOWER:
 					vaginas[slot].vaginaColor = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
@@ -11017,6 +11021,13 @@
 				case GLOBAL.TYPE_DRACONIC:
 					cocks[slot].cockColor = "blue";
 					cocks[slot].knotMultiplier = RandomInCollection([1.25, 1.3]);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					break;
+				case GLOBAL.TYPE_FROSTWYRM:
+					cocks[slot].cockColor = "blue";
+					cocks[slot].knotMultiplier = 1.4;
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);

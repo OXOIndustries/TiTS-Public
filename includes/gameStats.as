@@ -612,6 +612,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "ZilPregnancy": output2(" Zil"); break;
 						case "RaskvelPregnancy": output2(" Raskvel, Eggs"); break;
 						case "ShekkaPregnancy": output2(" Shekka, Eggs"); break;
+						case "FrostwyrmPregnancy": output2(" [frostwyrm.name], Eggs"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1032,6 +1033,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Cockvines, Captured:</b> " + StatTracking.getStat("pregnancy/cockvine seedlings captured"));
 				if(StatTracking.getStat("pregnancy/cuntsnake hatched") > 0)
 					output2("\n<b>* Births, Cuntsnake Eggs, Hatched:</b> " + StatTracking.getStat("pregnancy/cuntsnake hatched"));
+				if(StatTracking.getStat("pregnancy/frostwyrm eggs laid") > 0)
+					output2("\n<b>* Births, [frostwyrm.name]’s Eggs:</b> " + StatTracking.getStat("pregnancy/frostwyrm eggs laid"));
 				if(StatTracking.getStat("pregnancy/korgonne births") > 0)
 					output2("\n<b>* Births, Korgonne Young:</b> " + StatTracking.getStat("pregnancy/korgonne births"));
 				if(StatTracking.getStat("pregnancy/lapinara eggs") > 0)
@@ -1123,6 +1126,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Sired, Briha’s Daughters:</b> " + StatTracking.getStat("pregnancy/briha daughters"));
 				if(StatTracking.getStat("pregnancy/ellie sired") > 0)
 					output2("\n<b>* Sired, Ellie’s Children:</b> " + StatTracking.getStat("pregnancy/ellie sired"));
+				if(StatTracking.getStat("pregnancy/frostwyrm eggs sired") > 0)
+					output2("\n<b>* Sired, [frostwyrm.name]’s Eggs:</b> " + StatTracking.getStat("pregnancy/frostwyrm eggs sired"));
 				if(StatTracking.getStat("pregnancy/ilaria sired") > 0)
 					output2("\n<b>* Sired, Ilaria’s Children:</b> " + StatTracking.getStat("pregnancy/ilaria sired"));
 				if(StatTracking.getStat("pregnancy/khorgan sired") > 0)
@@ -6158,7 +6163,7 @@ public function displayEncounterLog(showID:String = "All"):void
 		
 		if(showID == "Zheng Shi" || showID == "All")
 		{
-			if(flags["MET_URBOLG"] == undefined)
+			if(flags["MET_URBOLG"] != undefined)
 			{
 				output2("\n<b><u>Hangar Bay</u></b>");
 				output2("\n<b>* Urbolg:</b> Met him");
@@ -6527,13 +6532,26 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["MET_FROSTWYRM"] != undefined)
 			{
 				output2("\n<b><u>Frostwyrm</u></b>");
-				if(flags["MET_FROSTWYRM"] != undefined) output2("\n<b>* Frostwyrm, Times Encountered:</b> " + flags["MET_FROSTWYRM"]);
-				if(flags["FROSTWYRMWARNING"] != undefined || flags["FROSTWYRMSLAIN"] != undefined)
+				if(flags["FROSTWYRM_EGGS"] != undefined) output2("\n<b>* Frostwyrm Lair, Eggs Nested, Total:</b> " + flags["FROSTWYRM_EGGS"]);
+				if(flags["FROSTWYRM_YOUNG"] != undefined) output2("\n<b>* Frostwyrm Lair, Young Maturing, Total:</b> " + flags["FROSTWYRM_YOUNG"]);
+				if(flags["FROSTWYRM_KIP_COUNT"] != undefined) output2("\n<b>* Frostwyrm Lair, Kips, Total:</b> " + flags["FROSTWYRM_KIP_COUNT"]);
+				if(flags["MET_FROSTWYRM"] != undefined) output2("\n<b>* " + chars["FROSTWYRM"].short + ", Times Encountered:</b> " + flags["MET_FROSTWYRM"]);
+				if(flags["FROSTWYRM_NOT_HOSTILE"] != undefined) output2(", Non-hostile");
+				if(flags["FROSTWYRM_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
+				else if(flags["FROSTWYRMWARNING"] != undefined || flags["FROSTWYRMSLAIN"] != undefined)
 				{
 					output2("\n<b>* Frostwyrm, Status:</b>");
 					if(flags["FROSTWYRMWARNING"] != undefined) output2(" You were defeated by the Frostwyrm and warned never to return.");
 					if(flags["FROSTWYRMSLAIN"] != undefined) output2(" You have slain the Frostwyrm!");
 				}
+				if(flags["FROSTWYRM_INCUBATION_TIMER"] != undefined) output2("\n<b>* [frostwyrm.name], Days Pregnant:</b> " + flags["FROSTWYRM_INCUBATION_TIMER"]);
+				if(flags["FROSTWYRM_GOT_DICKED"] != undefined) output2("\n<b>* [frostwyrm.name], Times You Bred Her:</b> " + flags["FROSTWYRM_GOT_DICKED"]);
+				if(flags["FROSTWYRM_DICKED_YOU"] != undefined) output2("\n<b>* [frostwyrm.name], Times Breeded by Her:</b> " + flags["FROSTWYRM_DICKED_YOU"]);
+				if(flags["FROSTWYRM_ANAL_PITCH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Fucked Your Ass:</b> " + flags["FROSTWYRM_ANAL_PITCH"]);
+				if(flags["FROSTWYRM_GAVE_BATH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Gave Tongue Bath:</b> " + flags["FROSTWYRM_GAVE_BATH"]);
+				if(flags["FROSTWYRM_GOT_BLOWN"] != undefined) output2("\n<b>* [frostwyrm.name], Times You Gave Her Oral:</b> " + flags["FROSTWYRM_GOT_BLOWN"]);
+				if(flags[""] != undefined) output2("\n<b>* [frostwyrm.name], Times :</b> " + flags[""]);
+				
 				variousCount++;
 			}
 			// Korg’ii Hold

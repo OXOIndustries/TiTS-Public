@@ -229,6 +229,7 @@
 		public static const TYPE_THRAGGEN:int 								= 79;
 		public static const TYPE_ADREMMALEX:int 							= 80;
 		public static const TYPE_MOTHRINE:int 								= 81;
+		public static const TYPE_FROSTWYRM:int 								= 82;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -313,6 +314,7 @@
 			"Thraggen",
 			"Adremmalex",
 			"Mothrine",
+			"Frostwyrm",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -949,6 +951,7 @@
 			TYPE_HRAD,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -993,6 +996,7 @@
 			TYPE_FLOWER,
 			TYPE_SWINE,
 			TYPE_MOUTHGINA,
+			TYPE_FROSTWYRM,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
