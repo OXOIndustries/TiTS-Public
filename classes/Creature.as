@@ -20835,7 +20835,8 @@
 					case "Taint_CD":
 						if(this is PlayerCharacter && requiresRemoval && !hasPerk("Corrupted"))
 						{
-							taint(-1);
+							var taintCycles:int = Math.max(Math.floor(deltaT / (72*60)), 1);
+							taint(-1 * taintCycles);
 							thisStatus.minutesLeft = (72*60);
 							requiresRemoval = false;
 						}

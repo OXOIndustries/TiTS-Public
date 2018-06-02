@@ -3807,6 +3807,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["STELLA_BUTTFUCKED"] != undefined) output2("\n<b>* Stella, Times You Buttfucked Her:</b> " + flags["STELLA_BUTTFUCKED"]);
 				if(flags["STELLA_GAVE_ORAL"] != undefined) output2("\n<b>* Stella, Times She She Gave You Oral:</b> " + flags["STELLA_GAVE_ORAL"]);
 				if(flags["STELLA_BALLWORSHIPPED"] != undefined) output2("\n<b>* Stella, Times She Worshipped Your Balls:</b> " + flags["STELLA_BALLWORSHIPPED"]);
+				if(flags["STELLA_BREEDINGS"] != undefined) output2("\n<b>* Stella, Times Bred Her:</b> " + flags["STELLA_BREEDINGS"]);
+				if(flags["STELLA_PETPLAYED"] != undefined) output2("\n<b>* Stella, Times Pet-Played:</b> " + flags["STELLA_PETPLAYED"]);
+				if(flags["STELLA_PREG_FUCKED"] != undefined) output2("\n<b>* Stella, Times Preg-Fucked:</b> " + flags["STELLA_PREG_FUCKED"]);
 				variousCount++;
 			}
 			// Beth's Busty Broads

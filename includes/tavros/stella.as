@@ -393,6 +393,8 @@ public function letsFuckeySuckeyStella():void
 
 public function stellaMenu():void
 {
+	clearMenu();
+	
 	var pregShowing:Boolean = stellaPregnantShowing();
 	addButton(0,"Appearance",stellaAppearance);
 	if(pc.hasStatusEffect("StellaSickOfTalk")) addDisabledButton(1,"Talk","Talk","Stella’s way past the point of talking.");
@@ -1372,11 +1374,12 @@ public function volleyballBeachPetplayEpi():void
 	else if(flags["STELLA_COLLAR"] == "leather") setButtonDisabled(1);
 	else if(flags["STELLA_COLLAR"] == "jeweled") setButtonDisabled(2);
 	else if(flags["STELLA_COLLAR"] == "platinum") setButtonDisabled(3);
+	
 	addButton(4,"None",buyStellaCollar,"","None","Leave without a collar.");
 }
 
 //Buy any collar:
-public function buyStellaCollar(arg:String):void
+public function buyStellaCollar(arg:String = ""):void
 {
 	clearOutput();
 	showStella();

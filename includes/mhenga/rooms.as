@@ -1305,6 +1305,8 @@ public function initMhengaRooms():void
 	//Plantation Quest Additions
 	rooms["1. UPPER BROOK"] = new RoomClass(this);
 	rooms["1. UPPER BROOK"].roomName = "UPPER\nBROOK";
+	rooms["1. UPPER BROOK"].planet = "PLANET: MHEN'GA";
+	rooms["1. UPPER BROOK"].system = "SYSTEM: ARA ARA";
 	rooms["1. UPPER BROOK"].description = "";
 	rooms["1. UPPER BROOK"].northExit = "2. WATERFALL POOL";
 	rooms["1. UPPER BROOK"].southExit = "BABBLING BROOK 1"
@@ -1315,6 +1317,8 @@ public function initMhengaRooms():void
 
 	rooms["2. WATERFALL POOL"] = new RoomClass(this);
 	rooms["2. WATERFALL POOL"].roomName = "WATERFALL\nPOOL";
+	rooms["2. WATERFALL POOL"].planet = "PLANET: MHEN'GA";
+	rooms["2. WATERFALL POOL"].system = "SYSTEM: ARA ARA";
 	rooms["2. WATERFALL POOL"].description = "";
 	rooms["2. WATERFALL POOL"].westExit = "3. FOOT OF THE CLIFF";
 	rooms["2. WATERFALL POOL"].southExit = "1. UPPER BROOK"
@@ -1325,6 +1329,8 @@ public function initMhengaRooms():void
 
 	rooms["3. FOOT OF THE CLIFF"] = new RoomClass(this);
 	rooms["3. FOOT OF THE CLIFF"].roomName = "FOOT OF\nTHE CLIFF";
+	rooms["3. FOOT OF THE CLIFF"].planet = "PLANET: MHEN'GA";
+	rooms["3. FOOT OF THE CLIFF"].system = "SYSTEM: ARA ARA";
 	rooms["3. FOOT OF THE CLIFF"].description = "";
 	rooms["3. FOOT OF THE CLIFF"].northExit = "4. RED ROCK OUTCROP";
 	rooms["3. FOOT OF THE CLIFF"].eastExit = "2. WATERFALL POOL"
@@ -1336,6 +1342,8 @@ public function initMhengaRooms():void
 
 	rooms["4. RED ROCK OUTCROP"] = new RoomClass(this);
 	rooms["4. RED ROCK OUTCROP"].roomName = "RED ROCK\nOUTCROP";
+	rooms["4. RED ROCK OUTCROP"].planet = "PLANET: MHEN'GA";
+	rooms["4. RED ROCK OUTCROP"].system = "SYSTEM: ARA ARA";
 	rooms["4. RED ROCK OUTCROP"].description = "You wipe your brow. You are clutching onto a bulging outcrop of red stone, maybe 30 feet off the ground. You can find handholds and are reasonably stable, but also frighteningly exposed. Behind you, you can hear the shift and hiss of leaves in the breeze; you are almost beyond the reach of those towering ironwoods, but not quite. The cascade tumbles down nearby, the flume of water no longer obscured by the white veil it throws up at the bottom. It’s impossible to make out anything above, but it looks like you can keep climbing upwards if you have the strength, or inch your way back down to the scrub steps.";
 	rooms["4. RED ROCK OUTCROP"].northExit = "5. RED ROCK LEDGE";
 	rooms["4. RED ROCK OUTCROP"].southExit = "3. FOOT OF THE CLIFF";
@@ -1347,6 +1355,8 @@ public function initMhengaRooms():void
 
 	rooms["5. RED ROCK LEDGE"] = new RoomClass(this);
 	rooms["5. RED ROCK LEDGE"].roomName = "RED ROCK\nLEDGE";
+	rooms["5. RED ROCK LEDGE"].planet = "PLANET: MHEN'GA";
+	rooms["5. RED ROCK LEDGE"].system = "SYSTEM: ARA ARA";
 	rooms["5. RED ROCK LEDGE"].description = "The cliff face steps in here like a skewed pile of books, offering a place for you to stand in reasonable comfort as long as you keep a tight grip on the rock. To one side a spindly tree like a long, dark asparagus grows out of the rock, bulbous head waggling in the wind. Remarkable what can cling to life in the most perilous of places. Above you, the rock marches back outwards threateningly; you don’t want to even try and climb onto that. It’s just about possible to descend though. Or you could sidle along the ledge towards the hushing crash of the waterfall, see if you can progress from there.";
 	rooms["5. RED ROCK LEDGE"].eastExit = "6. WATERFALL STAIRWAY";
 	rooms["5. RED ROCK LEDGE"].southExit = "4. RED ROCK OUTCROP";
@@ -1358,6 +1368,8 @@ public function initMhengaRooms():void
 
 	rooms["6. WATERFALL STAIRWAY"] = new RoomClass(this);
 	rooms["6. WATERFALL STAIRWAY"].roomName = "WATERFALL\nSTAIRWAY";
+	rooms["6. WATERFALL STAIRWAY"].planet = "PLANET: MHEN'GA";
+	rooms["6. WATERFALL STAIRWAY"].system = "SYSTEM: ARA ARA";
 	rooms["6. WATERFALL STAIRWAY"].description = "You take deep breaths, clutching onto the dank rock. The waterfall thunders directly overhead, raw elemental power that is hard to comprehend, much less handle being underneath. Here, the cliff face offers a gradual advance upwards - if you’ve got the stomach to climb under the gigantic flume of water, feel its spray on your back and [pc.hair], risk the slippery, mossy, jagged stone under hand and foot. If you can just keep pulling yourself upwards, it looks like there’s a level shoulder ahead - or you can shuffle back towards the dry ledge.";
 	rooms["6. WATERFALL STAIRWAY"].northExit = "7. DRIFTWOOD SHOULDER";
 	rooms["6. WATERFALL STAIRWAY"].westExit = "5. RED ROCK LEDGE";
@@ -1369,6 +1381,8 @@ public function initMhengaRooms():void
 
 	rooms["7. DRIFTWOOD SHOULDER"] = new RoomClass(this);
 	rooms["7. DRIFTWOOD SHOULDER"].roomName = "DRIFTWOOD\nSHOULDER";
+	rooms["7. DRIFTWOOD SHOULDER"].planet = "PLANET: MHEN'GA";
+	rooms["7. DRIFTWOOD SHOULDER"].system = "SYSTEM: ARA ARA";
 	rooms["7. DRIFTWOOD SHOULDER"].description = "";
 	rooms["7. DRIFTWOOD SHOULDER"].northExit = "8. RED ROCK SCREE";
 	rooms["7. DRIFTWOOD SHOULDER"].southExit = "6. WATERFALL STAIRWAY";
@@ -1380,6 +1394,8 @@ public function initMhengaRooms():void
 
 	rooms["8. RED ROCK SCREE"] = new RoomClass(this);
 	rooms["8. RED ROCK SCREE"].roomName = "RED\nROCK SCREE";
+	rooms["8. RED ROCK SCREE"].planet = "PLANET: MHEN'GA";
+	rooms["8. RED ROCK SCREE"].system = "SYSTEM: ARA ARA";
 	rooms["8. RED ROCK SCREE"].description = "You are on a higgledy-piggledy run of loose sunburned rock, above the lenient shoulder. You really are a considerable distance up now - the sound of the waterfall is running liquid and a distant crash far below - but at least it’s no longer a straight drop down. The loose, crumbling rock means you have to be careful as you climb. To the east you can see a crevice in the gray rock face 45 degrees to the one you are currently on. A tough, fibrous rope bridge strung across the cliff wall and the smoothness wrought by many feet around its entrance suggest it’s frequently visited by the zil. Meanwhile you think you can just about see the tops of some wax structures to the west, beyond the head of the falls.";
 	rooms["8. RED ROCK SCREE"].eastExit = "9. GREY ROCK SHRINE";
 	rooms["8. RED ROCK SCREE"].westExit = "10. TOP OF THE CLIFF";
@@ -1392,6 +1408,8 @@ public function initMhengaRooms():void
 
 	rooms["9. GREY ROCK SHRINE"] = new RoomClass(this);
 	rooms["9. GREY ROCK SHRINE"].roomName = "GRAY\nROCK SHRINE";
+	rooms["9. GREY ROCK SHRINE"].planet = "PLANET: MHEN'GA";
+	rooms["9. GREY ROCK SHRINE"].system = "SYSTEM: ARA ARA";
 	rooms["9. GREY ROCK SHRINE"].description = "";
 	rooms["9. GREY ROCK SHRINE"].westExit = "8. RED ROCK SCREE";
 	rooms["9. GREY ROCK SHRINE"].addFlag(GLOBAL.OUTDOOR);
@@ -1400,6 +1418,8 @@ public function initMhengaRooms():void
 
 	rooms["10. TOP OF THE CLIFF"] = new RoomClass(this);
 	rooms["10. TOP OF THE CLIFF"].roomName = "TOP OF\nTHE CLIFF";
+	rooms["10. TOP OF THE CLIFF"].planet = "PLANET: MHEN'GA";
+	rooms["10. TOP OF THE CLIFF"].system = "SYSTEM: ARA ARA";
 	rooms["10. TOP OF THE CLIFF"].description = "";
 	rooms["10. TOP OF THE CLIFF"].eastExit = "8. RED ROCK SCREE";
 	rooms["10. TOP OF THE CLIFF"].northExit = "11. Zil Village Outskirts";
@@ -1411,6 +1431,8 @@ public function initMhengaRooms():void
 
 	rooms["11. Zil Village Outskirts"] = new RoomClass(this);
 	rooms["11. Zil Village Outskirts"].roomName = "VILLAGE\nOUTSKIRTS";
+	rooms["11. Zil Village Outskirts"].planet = "PLANET: MHEN'GA";
+	rooms["11. Zil Village Outskirts"].system = "SYSTEM: ARA ARA";
 	rooms["11. Zil Village Outskirts"].description = "";
 	rooms["11. Zil Village Outskirts"].southExit = "10. TOP OF THE CLIFF";
 	rooms["11. Zil Village Outskirts"].northExit = "12. Zil Village Winnar";
@@ -1420,6 +1442,8 @@ public function initMhengaRooms():void
 
 	rooms["12. Zil Village Winnar"] = new RoomClass(this);
 	rooms["12. Zil Village Winnar"].roomName = "CHIEFTAN’S\nCIRCLE";
+	rooms["12. Zil Village Winnar"].planet = "PLANET: MHEN'GA";
+	rooms["12. Zil Village Winnar"].system = "SYSTEM: ARA ARA";
 	rooms["12. Zil Village Winnar"].description = "";
 	rooms["12. Zil Village Winnar"].southExit = "11. Zil Village Outskirts";
 	rooms["12. Zil Village Winnar"].addFlag(GLOBAL.OUTDOOR);
