@@ -2505,7 +2505,35 @@ package classes.GameData
 			}
 			addButton(14, "Back", showCombatMenu, undefined, "Back", backTooltip);
 		}
-		
+		public function globalTeaseAdjustments(target:Creature):Array
+		{
+			var likeAdjustments:Array = new Array();
+			//Masc/Fem
+			if(pc.femininity > 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE);
+			if(pc.femininity <= 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE);
+			//Hair or lack thereof!
+			if(!pc.hasHair() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS);
+			if(pc.hasHair() && pc.hairLength >= 8 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR);
+			//Coatings:
+			if(pc.hasStatusEffect("Sweaty") && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SWEAT) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SWEAT);
+			if((pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_CUMMY) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_CUMMY);
+			//Shit 4chan hates:
+			if(pc.hasFur() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_FURRIES) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FURRIES);
+			if(pc.hasScales() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SCALIES) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SCALIES);
+			if(pc.hasFeathers() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEATHERS) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEATHERS);
+			if(pc.hasChitin() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_CHITIN) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_CHITIN);
+			return likeAdjustments;
+		}
 		private function teaseButt(target:Creature):void
 		{
 			var teaseCount:Number = 0;
@@ -2528,7 +2556,9 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_TAILGENITALS);
 			if((pc.isTaur() || pc.isNaga()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			buttTeaseText(target);
@@ -2698,7 +2728,9 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NIPPLECUNTS);
 			if(pc.isLactating() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			chestTeaseText(target);
@@ -2853,7 +2885,9 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NARROW_HIPS);
 			if((pc.isTaur() || pc.isNaga() || pc.isGoo()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
-		
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			hipsTeaseText(target);
@@ -2985,7 +3019,9 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NEUTER);
 			if (pc.hasCock() && pc.hasVagina() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			crotchTeaseText(target);
@@ -3027,7 +3063,9 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
 			if (pc.hasCock() && pc.hasVagina() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			output("Smiling coyly, you run up to " + ((_hostiles.length == 1 && !target.isPlural) ? "your opponent" : target.getCombatName()) + " and knock " + target.getCombatPronoun("himher") + " down. Before " + target.getCombatPronoun("heshe") + " can react, you");
 			if(!pc.isCrotchExposed())
@@ -3451,7 +3489,9 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NIPPLECUNTS);
 			if(pc.isLactating() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			squirtTeaseText(target);

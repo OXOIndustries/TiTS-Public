@@ -5355,12 +5355,13 @@
 				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
-			//Sweaty penalties!
+			/*Sweaty penalties!
+			Instead of being hard-coded extra checks, this is being worked into the sexual preferences system.
 			if(hasStatusEffect("Sweaty"))
 			{
 				if(hasFur()) temp -= statusEffectv1("Sweaty") * 5;
 				temp -= statusEffectv1("Sweaty") * 5;
-			}
+			}*/
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
 			if (hasStatusEffect("Mare Musk")) temp += 2;
