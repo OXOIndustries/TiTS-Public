@@ -25,7 +25,7 @@ package classes.Characters
 		//constructor
 		public function Frostwyrm()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -197,6 +197,11 @@ package classes.Characters
 			
 			
 			this._isLoading = false;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			dataObject._neverSerialize = false;
 		}
 		
 		override public function get bustDisplay():String
