@@ -1239,7 +1239,15 @@
 		public static const SEXPREF_BALDNESS:int = 24;
 		public static const SEXPREF_LONG_HAIR:int = 25;
 		public static const SEXPREF_NEUTER:int = 26
-		public static const MAX_SEXPREF_VALUE:int = 27; // Keep this as a book-end on the values. Check penny for how you'd random shit
+		public static const SEXPREF_SWEAT:int = 27
+		public static const SEXPREF_CUMMY:int = 28
+		//"racial" type
+		public static const SEXPREF_FURRIES:int = 29
+		public static const SEXPREF_SCALIES:int = 30
+		public static const SEXPREF_FEATHERS:int = 31
+		public static const SEXPREF_CHITIN:int = 32
+		
+		public static const MAX_SEXPREF_VALUE:int = 33; // Keep this as a book-end on the values. Check penny for how you'd random shit
 		
 		// Not ideal, but it's possibly better than using switch statements, plus it keeps the Keys ^ with Descriptors \/
 		// The two will have to forever be in the same order though, but I can probably rig up some better system.
@@ -1272,6 +1280,12 @@
 			"Baldness",
 			"Long hair",
 			"Neuters",
+			"Sweat",
+			"Sexjuice coatings",
+			"Furries",
+			"Scalies",
+			"Feathers",
+			"Chitin",
 			"ERROR ERROR ABORT ABORT"
 		];
 		

@@ -109,6 +109,16 @@
 				}
 				//trace("CURRENT MULTI: " + getTotalPrefMultiplier());
 			}
+			//33% chance to hate sweat on top of everything else
+			if(this.getPref(GLOBAL.SEXPREF_SWEAT) == 0 && rand(3) == 0)
+			{
+				this.setPref(GLOBAL.SEXPREF_SWEAT, this.getRandomDislikeFactor());
+			}
+			//25% chance to hate cum on top of everything else
+			if(this.getPref(GLOBAL.SEXPREF_CUMMY) == 0 && rand(3) == 0)
+			{
+				this.setPref(GLOBAL.SEXPREF_CUMMY, this.getRandomDislikeFactor());
+			}
 			//trace("Sexprefs generated. total multiplier: " + getTotalPrefMultiplier(true))
 		}
 		public function getTotalPrefMultiplier(traced:Boolean = false):Number
