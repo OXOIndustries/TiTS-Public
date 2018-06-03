@@ -6548,6 +6548,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FROSTWYRMSLAIN"] != undefined) output2(" You have slain the Frostwyrm!");
 				}
 				if(flags["FROSTWYRM_INCUBATION_TIMER"] != undefined) output2("\n<b>* [frostwyrm.name], Days Pregnant:</b> " + flags["FROSTWYRM_INCUBATION_TIMER"]);
+				if(flags["FROSTWYRM_BELLY_RUB"] != undefined) output2("\n<b>* [frostwyrm.name], Times Gave Her Belly Rub:</b> " + flags["FROSTWYRM_BELLY_RUB"]);
 				if(flags["FROSTWYRM_GOT_DICKED"] != undefined) output2("\n<b>* [frostwyrm.name], Times You Bred Her:</b> " + flags["FROSTWYRM_GOT_DICKED"]);
 				if(flags["FROSTWYRM_DICKED_YOU"] != undefined) output2("\n<b>* [frostwyrm.name], Times Breeded by Her:</b> " + flags["FROSTWYRM_DICKED_YOU"]);
 				if(flags["FROSTWYRM_ANAL_PITCH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Fucked Your Ass:</b> " + flags["FROSTWYRM_ANAL_PITCH"]);
@@ -7131,6 +7132,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["KIRO_DEEPTHROATED_YOU"] != undefined) output2(", She deepthroated you");
 				if(flags["KIRO_BALLJOBBED_YOU"] != undefined) output2(", She gave you a balljob");
 				if(flags["PUMPED_KIRO_PUSSY"] != undefined) output2(", Pumped her pussy");
+				if(flags["KIRO_VAG_FUCKED"] != undefined) output2("\n<b>* Kiro, Times Fucked Her Vagina:</b> " + flags["KIRO_VAG_FUCKED"]);
+				if(flags["KIRO_FUCKED_PC"] != undefined) output2("\n<b>* Kiro, Times She Fucked You:</b> " + flags["KIRO_FUCKED_PC"]);
 				if(flags["KIRO_ORGIED"] != undefined)
 				{
 					output2("\n<b>* Kiro, Times Had Orgy with You, Flahne, Miko, Mai and Mi’dee:</b> " + flags["KIRO_ORGIED"]);
