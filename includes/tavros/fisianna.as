@@ -1148,7 +1148,7 @@ public function analFisiI(fromMenu:Boolean = false):void
 	output("Your hands wander idly over Fisianna’s shapely thighs and hips. Her breath becomes labored while you continue to grope her affectionately. When you reach her shapely posterior, you give it a firm squeeze, prompting a soft mewl to escape her lips. You continue kneading her soft bum while snaking your hand towards her belt buckles. With relative ease, you undo the clasps binding them together and slide her jeans off. After unceremoniously throwing them to the side, you are treated to the lovely vision of an already stained-through pair of lace panties, leaving her aroused vulva on full display for you.");
 	output("\n\n<i>“Well then... someone’s raring to go,”</i> you tease the kitten, smiling coyly while easing the rest of her clothing off. ");
 	if (fisiPrurience() < 50) output("Fisianna flushes a dark shade of scarlet at your comment, but otherwise stays silent, ");
-	else output("Fisianna smiles back in response as if saying, ‘Of course I am,’");
+	else output("Fisianna smiles back in response as if saying, ‘Of course I am,’ ");
 	output("breathing steadily heavier while you disrobe her. Once you strip her naked, you ");
 	if (!pc.isNude()) {
 		output("follow suit in shedding your own gear ");
@@ -1159,7 +1159,7 @@ public function analFisiI(fromMenu:Boolean = false):void
 	if (flags["FISI_TIMES_ANAL"] == undefined) output("\n\n<i>“I-I... [pc.name], that’s my...”</i> the neko stammers with a somewhat worried expression on her face.");
 	else output("\n\n<i>“A-are... Did you...?”</i> the neko stammers with a knowing expression on her face.");
 	output(" You shoot a grin back at her in response while proposing the idea that the two of you could engage in some ");
-	if (flags["FISI_TIMES_ANAL"] != undefined) output("more"); 
+	if (flags["FISI_TIMES_ANAL"] != undefined) output("more "); 
 	output("anal play.");
 	output("\n\n");
 	if (flags["FISI_TIMES_ANAL"] == undefined) {

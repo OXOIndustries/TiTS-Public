@@ -1541,7 +1541,8 @@ public function azraMorningFucko():void
 	output("member");
 	if(pc.cocks[x].cLength() < azra.cocks[0].cLength() - 2) output(", smothering it in pheromonal alien phallus");
 	else if(pc.cocks[x].cLength() < azra.cocks[0].cLength() + 2) output(", matched up almost perfectly, inch-to-inch");
-	else output(", sinfully pleasant against the sensitive skin of your absolutely monstrous tool.");
+	else output(", sinfully pleasant against the sensitive skin of your absolutely monstrous tool");
+	output(".");
 
 	output("\n\n<i>“");
 	if(pc.isBimbo()) output("Not yet,”</i> you cheerily quip, rocking your hips against her instinctively, seeking pleasure without thought, <i>“but it’s about to be.”</i>");

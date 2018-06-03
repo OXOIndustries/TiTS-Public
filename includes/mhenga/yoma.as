@@ -773,6 +773,7 @@ public function yomaHugsII():void
 	output("\n\n<i>“I will see you around again, soon hopefully,”</i> he says, waving you off. The grin takes a little while to fade from your face, definitely sticking around longer than Yoma did. Void, you’re <i>still</i> comfortable, even now.");
 
 	processTime(3);
+	IncrementFlag("YOMA_TIMES_HUGGED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
