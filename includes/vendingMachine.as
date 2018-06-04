@@ -224,7 +224,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			
 			chars["VENDINGMACHINE"].inventory.push(new FocusPill());
 			chars["VENDINGMACHINE"].inventory.push(new LipTease());
-			//chars["VENDINGMACHINE"].inventory.push(new ThiccNShake());
+			chars["VENDINGMACHINE"].inventory.push(new ThiccNShake());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.0;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;
