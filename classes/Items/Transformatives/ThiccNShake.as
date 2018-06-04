@@ -441,7 +441,7 @@ package classes.Items.Transformatives
 				if(target.hasVagina()) output(" [pc.vaginas]");
 				if(target.isHerm()) output(" and");
 				if(target.hasCock()) output(" [pc.cocks]");
-				output((target.totalGenitals() == 1 ? "is" : "are") + " crying tears of joy that soak the ground beneath you.");
+				output(" " + (target.totalGenitals() == 1 ? "is" : "are") + " crying tears of joy that soak the ground beneath you.");
 			}
 			output(" You have to see what you’ve become! As you turn your head to indulge in the magnificent that is you, the world suddenly goes black.");
 			output("\n\n");

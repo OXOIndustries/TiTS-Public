@@ -73,7 +73,7 @@ public function fleeFrostwyrm():void
 {
 	clearOutput();
 	frostWyrmHeader();
-	author("Neoptolemus")
+	author("Neoptolemus");
 	
 	output("You’ve gone toe to toe with some terrifying foes in your time. But there’s no way you’re going to fight <b>that</b>. Instead, adrenaline pumping, you break into a desperate sprint away from the gigantic lizard behind you. When you hazard a glance back over your shoulder the frostwyrm doesn’t seem to have given chase at all, although those four draconic eyes are still fixed on you.");
 	output("\n\nWhat feels like an eternity latter, the wyrm beats its wings and takes off again, flying back the way it came. You take a few minutes to recover your breath, by then the beast is completely out of sight.");
@@ -131,30 +131,7 @@ public function leaveFrostwyrm():void
 
 public function frostwyrmPCLoss():void
 {
-	if (flags["FROSTWYRMWARNING"] == undefined)
-	{
-		clearOutput();
-		frostWyrmHeader();
-		
-		flags["FROSTWYRMWARNING"] = 1;
-		
-		output("With a final gasp, you crumple to the ground, utterly defeated. Your life, short that it’s been, flashes before your eyes as the behemoth of frost and scales lumbers toward you, fangs bared and slavering with bestial hunger.");
-		output("\n\nYou scramble back, but a single stride of the creature’s six huge legs brings it so close that you can feel its breath hot against your [pc.face]. It growls, regarding you with its four red eyes. Rather than open wide to devour you, though, the creature snorts in your face, and you feel a sudden pressure on the back of your head. Your vision swims as an unwelcome force burrows into your mind.");
-		output("\n\nA pounding pain thunders through your mind, feeling like your head is about to be wrent apart. You wrap your hands around your head, a feeble effort to ward off the psychic assault drilling through your consciousness. Your attempts are futile, utterly insufficient in your state of ");
-		if (pc.HP() <= 0) output("physical defeat.");
-		else output("overwhelming sexual arousal.");
-		output(" Your defenses are compromised, and you can feel them slowly peeled apart, stripped layer by layer like an onion until you’re suddenly aware of another presence in your mind, a worming coldness squirming through your brain.");
-		output("\n\nA voice pounds between your ears, bestial and guttural, yet soft as a whisper. <i>You did not run</i>, it says, as the frostwyrm snorts a frigid breath across your face. <i>Most run.</i>");
-		output("\n\n“W-what?” you groan, not sure if you’re speaking aloud or just thinking back at the voice burrowing in your brain.");
-		output("\n\n<i>Are you brave, or foolish, I wonder?</i> the voice says. <i>Your kind come to slay me with their great machines of fire and war... and yet here you stand alone. Ah, a word in your language: hubris.</i>");
-		output("\n\nThe creature snorts again and withdraws, rising to its full and terrifying height. With an ear-piercing bellow, the wyrm turns away from you, looking back across the misty sea to the east. <i>Never again come to my domain, creature. Keep your distance from the coastlands. I will not be so forgiving a second time.</i>");
-		output("\n\nGlancing at you over its shoulder, the wyrm takes wing and dives beneath the glacial cliff and out of sight.");
-		
-		processTime(5);
-		clearMenu();
-		addButton(0,"Next",frostwyrmPClossEpil);
-	}
-	else if (flags["FROSTWYRM_VICTORY_COUNT"] >= 3 && ((pc.hasCock() && pc.virility() > 0) || (pc.hasVagina() && pc.fertility() > 0 && !pc.isPregnant())))
+	if (flags["FROSTWYRM_VICTORY_COUNT"] >= 3 && ((pc.hasCock() && pc.virility() > 0) || (pc.hasVagina() && pc.fertility() > 0 && !pc.isPregnant())))
 	{
 		clearOutput();
 		frostWyrmHeader();
@@ -208,6 +185,29 @@ public function frostwyrmPCLoss():void
 		addButton(0,"Accept",frostwyrmEpilogueAccept,undefined,"Accept","Willingly breed with the Frostwyrm and work with it to ensure the survival of its species.");
 		addButton(1,"Refuse",frostwyrmEpilogueRefuse,undefined,"Refuse","Refuse its invitation and part ways with it forever.");
 	}
+	else if (flags["FROSTWYRMWARNING"] == undefined)
+	{
+		clearOutput();
+		frostWyrmHeader();
+		
+		flags["FROSTWYRMWARNING"] = 1;
+		
+		output("With a final gasp, you crumple to the ground, utterly defeated. Your life, short that it’s been, flashes before your eyes as the behemoth of frost and scales lumbers toward you, fangs bared and slavering with bestial hunger.");
+		output("\n\nYou scramble back, but a single stride of the creature’s six huge legs brings it so close that you can feel its breath hot against your [pc.face]. It growls, regarding you with its four red eyes. Rather than open wide to devour you, though, the creature snorts in your face, and you feel a sudden pressure on the back of your head. Your vision swims as an unwelcome force burrows into your mind.");
+		output("\n\nA pounding pain thunders through your mind, feeling like your head is about to be wrent apart. You wrap your hands around your head, a feeble effort to ward off the psychic assault drilling through your consciousness. Your attempts are futile, utterly insufficient in your state of ");
+		if (pc.HP() <= 0) output("physical defeat.");
+		else output("overwhelming sexual arousal.");
+		output(" Your defenses are compromised, and you can feel them slowly peeled apart, stripped layer by layer like an onion until you’re suddenly aware of another presence in your mind, a worming coldness squirming through your brain.");
+		output("\n\nA voice pounds between your ears, bestial and guttural, yet soft as a whisper. <i>You did not run</i>, it says, as the frostwyrm snorts a frigid breath across your face. <i>Most run.</i>");
+		output("\n\n“W-what?” you groan, not sure if you’re speaking aloud or just thinking back at the voice burrowing in your brain.");
+		output("\n\n<i>Are you brave, or foolish, I wonder?</i> the voice says. <i>Your kind come to slay me with their great machines of fire and war... and yet here you stand alone. Ah, a word in your language: hubris.</i>");
+		output("\n\nThe creature snorts again and withdraws, rising to its full and terrifying height. With an ear-piercing bellow, the wyrm turns away from you, looking back across the misty sea to the east. <i>Never again come to my domain, creature. Keep your distance from the coastlands. I will not be so forgiving a second time.</i>");
+		output("\n\nGlancing at you over its shoulder, the wyrm takes wing and dives beneath the glacial cliff and out of sight.");
+		
+		processTime(5);
+		clearMenu();
+		addButton(0,"Next",frostwyrmPClossEpil);
+	}
 	else
 	{
 		clearOutput();
@@ -248,7 +248,7 @@ public function frostwyrmBadEnd():void
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
 	
-	moveTo("FROSTWYRM LAIR");
+	moveTo("FROSTWYRM LAIR", true);
 	removeUvetoCold();
 	
 	clearOutput();
@@ -627,8 +627,8 @@ public function frostwyrmCanWeFuckYet():void
 	
 	clearMenu();
 	processTime(5);
-	if (pc.hasCock() && pc.virility() > 0) addButton(0, "Next", frostwyrmItsAHotdogInAHallway,undefined);
-	else addButton(0, "Next", frostwyrmRidersMustBeOver4FeetToContinue,undefined);
+	if (pc.hasCock() && pc.virility() > 0) addButton(0, "Next", (flags["FROSTWYRM_GOT_DICKED"] == undefined ? frostwyrmItsAHotdogInAHallway : frostwyrmVaginalRepeat));
+	else addButton(0, "Next", (flags["FROSTWYRM_DICKED_YOU"] == undefined ? frostwyrmRidersMustBeOver4FeetToContinue : frostwyrmDickRepeat));
 }
 
 public function frostwyrmHomeAtLast():void
@@ -637,15 +637,15 @@ public function frostwyrmHomeAtLast():void
 	removeUvetoCold();
 	
 	clearOutput();
-	author("B");
 	frostWyrmHeader();
+	author("B");
 	
 	output("You arrive at [frostwyrm.name]’s lair after an uneventful flight about an hour later. You feel [frostwyrm.name]’s psionics pull at your mind slightly, suggesting that she won’t have her Qal wearing clothing in her lair, and that she’d like to see you bared to her. You agree, rather eagerly; the more naked you become, the more pleasure [frostwyrm.name] bestows upon you through her link. You quickly work to remove your effects.");
 	
 	processTime(60);
 	clearMenu();
 	
-	if (pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched"))
+	if (flags["FROSTWYRM_GAVE_BATH"] == undefined && (pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")))
 	{
 		addButton(0, "Next", frostwyrmSteeleIsADirtyGirl);
 		return;
@@ -951,16 +951,14 @@ public function frostwyrmIWantToBangTheLizard():void
 	{
 		if(pc.fertility() <= 0) addDisabledButton(0, "Get Bred", "Get Bred", "You are infertile and unable to be bred.");
 		else if(pc.isPregnant() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addDisabledButton(0, "Get Bred", "Get Bred", "You are unable to be bred while pregnant with different pregnancy types other than [frostwyrm.name]’s.");
-		else if (flags["FROSTWYRM_DICKED_YOU"] != undefined) addButton(0, "Get Bred", frostwyrmDickRepeat, undefined);
-		else addButton(0, "Get Bred", frostwyrmRidersMustBeOver4FeetToContinue, undefined);
+		else addButton(0, "Get Bred", (flags["FROSTWYRM_DICKED_YOU"] == undefined ? frostwyrmRidersMustBeOver4FeetToContinue : frostwyrmDickRepeat));
 	}
 	else addDisabledButton(0, "Get Bred", "Get Bred", "Requires a vagina.");
 	addButton(1, "Up Your Butt", frostwyrmAnalFunTimes, undefined);
 	if(pc.hasCock())
 	{
 		if(pc.virility() <= 0) addDisabledButton(2, "Behind Her", "Behind Her", "You are not virile and unable to breed her.");
-		else if (flags["FROSTWYRM_GOT_DICKED"] != undefined) addButton(2, "Behind Her", frostwyrmVaginalRepeat, undefined);
-		else addButton(2, "Behind Her", frostwyrmItsAHotdogInAHallway, undefined);
+		else addButton(2, "Behind Her", (flags["FROSTWYRM_GOT_DICKED"] == undefined ? frostwyrmItsAHotdogInAHallway : frostwyrmVaginalRepeat));
 	}
 	else addDisabledButton(2, "Behind Her", "Behind Her", "You can’t properly breed your mate if you have nothing to breed her with!");
 	if (flags["FROSTWYRM_GAVE_BATH"] != undefined) addButton(3, "Bathe", frostwyrmSteeleIsADirtyGirl, undefined);
@@ -1249,7 +1247,7 @@ public function frostwyrmVaginalRepeat():void
 	clearMenu();
 	if (flags["FROSTWYRM_KIP_COUNT"] == undefined)
 	{
-		if (pc.hasVagina() && pc.fertility() > 0 && (!pc.isPregnant() || !pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))) addButton(0, "Next", frostwyrmWhoPutThisTreeUpMyAss1);
+		if (pc.hasVagina() && pc.fertility() > 0 && (!pc.isPregnant() || !pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) && flags["FROSTWYRM_DICKED_YOU"] == undefined) addButton(0, "Next", frostwyrmWhoPutThisTreeUpMyAss1);
 		else addButton(0, "Next", frostwyrmGoodGodImHurt, vIdx);
 	}
 	else addButton(0, "Next", frostwyrmAftercare, vIdx);
@@ -1322,7 +1320,7 @@ public function frostwyrmWhoPutThisTreeUpMyAss1():void
 	output("\n\nYou slump to your knees, your face aligned with the sloppy, pleased hole you’ve been acquainting yourself with for the past few hours and the root of the enormous ballsack just underneath it. [frostwyrm.name] steps forward and turns her enormous body to you, spreading her rear legs once more, and her red eyes bore into you. <i>Our mating is not yet truly consummated,</i> she warns slyly, her fat tongue licking across her muzzle. <i>You are capable of laying as well. Splay yourself, [pc.name]. It is time you pleasure the rest of your mate.</i>");
 	
 	clearMenu();
-	addButton(0, "Next", frostwyrmRidersMustBeOver4FeetToContinue,undefined);
+	addButton(0, "Next", (flags["FROSTWYRM_DICKED_YOU"] == undefined ? frostwyrmRidersMustBeOver4FeetToContinue : frostwyrmDickRepeat));
 }
 public function frostwyrmRidersMustBeOver4FeetToContinue():void
 {
@@ -1356,7 +1354,7 @@ public function frostwyrmRidersMustBeOver4FeetToContinue():void
 	output("\n\nMore than the cock in your [pc.vagOrAss " + vIdx + "], though, you feel something... else. A sort of excitement rushes through you: it feels electric, energizing you throughout your body, starting at your chest and rushing through your limbs. You feel... intense. Powerful. Young. <i>Alive.</i> The feeling powers your whole body, but especially your [pc.vagOrAss " + vIdx + "]");
 	if (pc.hasCock()) output(" and <i>especially</i> your [pc.cock]");
 	output(". You imagine this must be how [frostwyrm.name] feels – she’s been lonely and horny for so many years, and finally having someone to mate with is invigorating her.");
-	output("\n\n[frostwyrm.name] makes what sounds like a grunt as her mating grows more forceful. She doesn’t move faster, but her hips draw further back and they press forward more insistently, digging into your body for your core. Despite being spread on her body like a living sock, you feel nothing but elation at the treatment, and you beg to her (via her psionics – you can barely breath, as stuffed as you are, much less speak) for more.");
+	output("\n\n[frostwyrm.name] makes what sounds like a grunt as her mating grows more forceful. She doesn’t move faster, but her hips draw further back and they press forward more insistently, digging into your body for your core. Despite being spread on her body like a living sock, you feel nothing but elation at the treatment, and you beg to her (via her psionics – you can barely breathe, as stuffed as you are, much less speak) for more.");
 	output("\n\n<i>I have yet much more to give, [pc.name].</i> She emphasizes her points by thrusting forward, cramming yet more of herself into you somehow. <i>And we will provide each other with as many couplings as we desire. I am abundant with seed, and I will guarantee you lay before the next Light’s Rise. Then we will start again.</i>");
 	output("\n\n[frostwyrm.name]’s posture becomes stiffer and upright as she feels herself sink deeper into you. A heavy thumping reverberates behind you with her every push in; after a few more powerful thrusts, you feel hot, smooth, leathery skin bump against your [pc.feet], then drape up your ankles. She’s almost balls-deep inside you; you both come to the same realization at the same time, and you’re flooded with another wave of the same energy from before. She’s forceful and determined, and you’re receptive and greedy – the perfect combination for a pair of mates like yourselves.");
 	output("\n\nYou’re too paralyzed to try and get a look behind you, to see how much is inside you or how much is left. All you can do is focus on not blacking out from the intense pleasure: it feels as though every nerve in every cell is stimulated. [frostwyrm.name]’s heavy musk permeates your nose and even your mouth, thick as it is beneath her; your sight is consumed by the heaving, thick, armored underbelly of your Frostwyrm lover and the way her four visible legs repeatedly flex and paw at the ice; you hear her ragged breathing and powerful heartbeat resonate and sync with your own; and, of course, there’s the feeling of having a cock ");
@@ -1411,10 +1409,7 @@ public function frostwyrmRidersMustBeOver4FeetToContinue():void
 	IncrementFlag("FROSTWYRM_DICKED_YOU");
 	
 	clearMenu();
-	if(vIdx >= 0)
-	{
-		addButton(0, "Next", frostwyrmGoodGodImHurt, vIdx);
-	}
+	addButton(0, "Next", frostwyrmGoodGodImHurt, vIdx);
 }
 public function frostwyrmDickRepeat():void
 {
@@ -1458,7 +1453,7 @@ public function frostwyrmDickRepeat():void
 	output("\n\nMore than the cock in your [pc.vagOrAss " + vIdx + "], though, you feel something... else. A sort of excitement rushes through you: it feels electric, energizing you throughout your body, starting at your chest and rushing through your limbs. You feel... intense. Powerful. Young. <i>Alive.</i> The feeling powers your whole body, but especially your [pc.vagOrAss " + vIdx + "]");
 	if (pc.hasCock()) output(" and <i>especially</i> your [pc.cock]");
 	output(". You come back to [frostwyrm.name] for a lot of reasons – her mammoth tool certainly being one of them, and this vitalizing feeling coursing through your soul is another.");
-	output("\n\n[frostwyrm.name] makes what sounds like a grunt as her mating grows more forceful. She doesn’t move faster, but her hips draw further back and they press forward more insistently, digging into your body for your core. Despite being spread on her body like a living sock, you feel nothing but elation at the treatment, and you beg to her (via her psionics – you can barely breath, as stuffed as you are, much less speak) for more.");
+	output("\n\n[frostwyrm.name] makes what sounds like a grunt as her mating grows more forceful. She doesn’t move faster, but her hips draw further back and they press forward more insistently, digging into your body for your core. Despite being spread on her body like a living sock, you feel nothing but elation at the treatment, and you beg to her (via her psionics – you can barely breathe, as stuffed as you are, much less speak) for more.");
 	output("\n\n<i>I am pleased that you are so receptive to myself and my seed, [pc.name],</i> she says, casually pumping forward to jam even more of herself into your warm, welcoming, and experienced tunnel. <i>You needn’t be hesitant to ask for any part of myself. I have a lifetime’s worth of breeding to accomplish with you. I will provide all the pleasures you desire.</i>");
 	output("\n\n[frostwyrm.name]’s posture becomes stiffer and upright as she feels herself sink deeper into you. A heavy thumping reverberates behind you with her every push in; after a few more powerful thrusts, you feel hot, smooth, leathery skin bump against your [pc.feet], then drape up your ankles. She’s almost balls-deep inside you; you both come to the same realization at the same time, and you’re flooded with another wave of the same energy from before. She’s forceful and determined, and you’re receptive and greedy – the perfect combination for a pair of mates like yourselves.");
 	output("\n\nYou’re too paralyzed to try and get a look behind you, to see how much is inside you or how much is left. All you can do is focus on not blacking out from the intense pleasure: it feels as though every nerve in every cell is stimulated. [frostwyrm.name]’s heavy musk permeates your nose and even your mouth, thick as it is beneath her; your sight is consumed by the heaving, thick, armored underbelly of your Frostwyrm lover and the way her four visible legs repeatedly flex and paw at the ice; you hear her ragged breathing and powerful heartbeat resonate and sync with your own; and, of course, there’s the feeling of having a cock ");
@@ -1509,11 +1504,8 @@ public function frostwyrmDickRepeat():void
 	IncrementFlag("FROSTWYRM_DICKED_YOU");
 	
 	clearMenu();
-	if(vIdx >= 0)
-	{
-		if (flags["FROSTWYRM_KIP_COUNT"] == undefined) addButton(0, "Next", frostwyrmGoodGodImHurt, vIdx);
-		else addButton(0, "Next", frostwyrmAftercare, vIdx);
-	}
+	if (flags["FROSTWYRM_KIP_COUNT"] == undefined) addButton(0, "Next", frostwyrmGoodGodImHurt, vIdx);
+	else addButton(0, "Next", frostwyrmAftercare, vIdx);
 }
 public function frostwyrmAnalFunTimes():void
 {
@@ -1564,7 +1556,7 @@ public function frostwyrmAnalFunTimes():void
 	output("\n\nMore than the cock in your [pc.ass], though, you feel something... else. A sort of excitement rushes through you: it feels electric, energizing you throughout your body, starting at your chest and rushing through your limbs. You feel... intense. Powerful. Young. <i>Alive.</i> The feeling powers your whole body, but especially your [pc.ass]");
 	if (pc.hasCock()) output(" and <i>especially</i> your [pc.cock]");
 	output(". You come back to [frostwyrm.name] for a lot of reasons – her mammoth tool certainly being one of them, and this vitalizing feeling coursing through your soul is another.");
-	output("\n\n[frostwyrm.name] makes what sounds like a grunt as her mating grows more forceful. She doesn’t move faster, but her hips draw further back and they press forward more insistently, digging into your body for your core. Despite being spread on her body like a living sock, you feel nothing but elation at the treatment, and you beg to her (via her psionics – you can barely breath, as stuffed as you are, much less speak) for more.");
+	output("\n\n[frostwyrm.name] makes what sounds like a grunt as her mating grows more forceful. She doesn’t move faster, but her hips draw further back and they press forward more insistently, digging into your body for your core. Despite being spread on her body like a living sock, you feel nothing but elation at the treatment, and you beg to her (via her psionics – you can barely breathe, as stuffed as you are, much less speak) for more.");
 	output("\n\n<i>I am pleased that you are so receptive to myself and my seed, [pc.name],</i> she says, casually pumping forward to jam even more of herself into your warm, welcoming, and experienced tunnel. <i>You needn’t be hesitant to ask for any part of myself. I have a lifetime’s worth of breeding to accomplish with you. I will provide all the pleasures you desire.</i>");
 	output("\n\n[frostwyrm.name]’s posture becomes stiffer and upright as she feels herself sink deeper into you. A heavy thumping reverberates behind you with her every push in; after a few more powerful thrusts, you feel hot, smooth, leathery skin bump against your [pc.feet], then drape up your ankles. She’s almost balls-deep inside you; you both come to the same realization at the same time, and you’re flooded with another wave of the same energy from before. She’s forceful and determined, and you’re receptive and greedy – the perfect combination for a pair of mates like yourselves.");
 	output("\n\nYou’re too paralyzed to try and get a look behind you, to see how much is inside you or how much is left. All you can do is focus on not blacking out from the intense pleasure: it feels as though every nerve in every cell is stimulated. [frostwyrm.name]’s heavy musk permeates your nose and even your mouth, thick as it is beneath her; your sight is consumed by the heaving, thick, armored underbelly of your Frostwyrm lover and the way her four visible legs repeatedly flex and paw at the ice; you hear her ragged breathing and powerful heartbeat resonate and sync with your own; and, of course, there’s the feeling of having a cock ");
@@ -1586,13 +1578,12 @@ public function frostwyrmAnalFunTimes():void
 	if (pc.hasPregnancyOfType("FrostwyrmPregnancy")) output(" Our kip will grow strong, gracious, and grateful.");
 	else output(" You may lay once more, before another Storm’s Phase.");
 	output("</i>");
-	output("\n\nHer haunches press forward once more, burying the entirety of her dick inside you, and she unloads. You hear it before you feel it: her massive balls clench and the hot cum inside begins to rush. Her pole flexes and stretches inside you, accommodating the huge surge of liquid straight to your womb – and then you feel the hot stream unleash within you, coating your innards with her seed.");
-	output("\n\nYou’re overloaded with so many sensations at once: [frostwyrm.name]’s cum fills your already-overstuffed body even fuller; the electric, energizing power flowing through your body lifts your spirit to a height you’ve never even imagined; and both of them combined cause you to orgasm explosively. Your [pc.girlcum] sprays up and around [frostwyrm.name]’s tool, soaking and squeezing it, milking it and enticing it for yet more cum");
+	output("\n\nHer haunches press forward once more, burying the entirety of her dick inside you, and she unloads. You hear it before you feel it: her massive balls clench and the hot cum inside begins to rush. Her pole flexes and stretches inside you, accommodating the huge surge of liquid straight to your core – and then you feel the hot stream unleash within you, coating your innards with her seed.");
+	output("\n\nYou’re overloaded with so many sensations at once: [frostwyrm.name]’s cum fills your already-overstuffed body even fuller; the electric, energizing power flowing through your body lifts your spirit to a height you’ve never even imagined; and both of them combined cause you to orgasm explosively.");
 	if (pc.isHerm()) {
-		output(". Similarly, your [pc.cum] launches from your [pc.cock] unbidden; it paints the ice beneath you, surging as high as your [pc.chest] as you ride out your mate’s orgasm.");
+		output(" Similarly, your [pc.cum] launches from your [pc.cock] unbidden; it paints the ice beneath you, surging as high as your [pc.chest] as you ride out your mate’s orgasm.");
 		if (pc.cumQ() >= 1000) output(" Briefly, you wonder who between you has the bigger load. Maybe you could compare someday...");
 	}
-	else output(".");
 	output("\n\nAnd yet more cum [frostwyrm.name] provides: with balls like hers, she must have enough in one wave than most have across a month, and she bloats you with all of it. Your already-distended [pc.belly] inflates with her draconic cum, and it doesn’t stop: your every nerve counts every drop of her cum inside you, ushering it all towards your willing body and stomach, providing you both the thrill you’ve been looking for. When your stomach touches down against the icy floor, you feel a thick heat rise up your chest, then along your throat. You lean your head down, mouth open, and out it pours: [frostwyrm.name]’s cum, having overwhelmed your system, comes unbidden out the other end. You meekly try to swallow it back down, but anything that comes out is just replaced with yet more up your [pc.ass].");
 	output("\n\n[frostwyrm.name] sighs and relaxes her front legs, lowering her body while she unloads inside you. You follow suit, taking a similar position, allowing gravity to do its work in drawing the liquid deeper into your body. The contrasting coolness of the ice beneath you and the body heat above you make you dizzy at first, but the electricity flowing through you, emanating from your [pc.ass], makes you feel like a million credits.");
 	
@@ -1772,7 +1763,7 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 		if (pc.cumQ() < 1000) output(", although your entire load could hardly equal one-tenth of a single pulse of the output [frostwyrm.name]’s fire-hydrant of a cock is deluging you in");
 		else output("; despite [frostwyrm.name]’s copious load, you’re managing to match her shot - for - shot, until you’re both an absolute mess from each other’s cum");
 	}
-	if (pc.isHerm()) output(".\n\n[pg]Not to be outdone, y");
+	if (pc.isHerm()) output(".\n\nNot to be outdone, y");
 	if (pc.hasVagina()) output("our [pc.vagina] clenches at nothing, milking a phantom cock for all the semen it wishes is going into it instead of your mouth. Every time a strand of cum graces the lips of your cunt, it burns in pleasure, and you have another, smaller orgasm on the spot. You alternate between jerking [frostwyrm.name] for more of her gift to grace you, and using one hand to frantically jill yourself, spooning up whatever cum you can in one swing and cramming it into your box.");
 	output("\n\nLost in the frenzy of [frostwyrm.name]’s erupting volcano of a dick, you quickly lose track of time, and the only two things that finally snap you out of your reverie is the aching fullness of your [pc.belly], and the way [frostwyrm.name]’s load gets smaller and smaller with each pulse, until her last few loads are barely enough to fill your mouth – while miniscule in comparison, it’s still an impressive load compared to someone of your own race.");
 	output("\n\n[frostwyrm.name]’s dick begins to lose its rigidity, and you collapse backward, making a loud splash in the lake of draconic cum. You pant for breath while you rub at your full, rotund belly; your eyes are unfocused and dizzy, unable to lock onto any single thing in the lair, even when [frostwyrm.name] begins to shuffle. Before you have the cognizance, you’re face-to-face with her enormous, elongated face.");
@@ -1964,9 +1955,20 @@ public function frostwyrmShouldIStayOrShouldIGo(vIdx:int = -1):void
 	}
 }
 
-public function frostwyrmSayonara():void
+public function frostwyrmSayonara(returnLoc:String = ""):void
 {
 	clearOutput();
+	clearMenu();
+	
+	if(returnLoc == "")
+	{
+		output("Where would you like to be dropped off at?");
+		
+		if(flags["PREV_LOCATION"] == undefined) addDisabledButton(0, "Shore", "Previous Location", "Return to the location you were at before arriving to the lair.");
+		else addButton(0, "Shore", frostwyrmSayonara, flags["PREV_LOCATION"], "Previous Location", "Return to the location you were at before arriving to the lair.");
+		addButton(1, "Irestead", frostwyrmSayonara, "UVI P38", "Irestead", "Return to Irestead.");
+	}
+	
 	frostWyrmHeader();
 	author("B");
 	
@@ -1993,10 +1995,9 @@ public function frostwyrmSayonara():void
 	
 	processTime(5);
 	
-	currentLocation = "UVI P38";
+	currentLocation = returnLoc;
 	addUvetoCold();
 	
-	clearMenu();
 	addButton(0,"Next",mainGameMenu,undefined);
 }
 /*public function pcFrostwyrmPregTime(percentage:Boolean = false):int
@@ -2073,8 +2074,6 @@ public function frostwyrmPregnancyEnds(pregSlot:int, nEggs:int = 0):void
 	
 	clearMenu();
 	
-	IncrementFlag("FROSTWYRM_EGGS");
-	
 	addButton(0, "Next", mainGameMenu);
 }
 
@@ -2145,7 +2144,7 @@ public function frostwyrmDearGodThisIsGonnaBeAWhile(nEggs:int = 0):void
 		output("\n\nWhile the most tedious part is over for you both, you don’t have to leave just yet if you don’t want.");
 	}
 	
-	var totalTime:int = ((4 * 4 * 7 * 24 * 60) + 5);
+	var totalTime:int = ((4 * 4 * 7 * 24 * 60) + 15);
 	
 	var baseTime:uint = GetGameTimestamp();
 	var ends:uint = baseTime;
@@ -2170,7 +2169,12 @@ public function frostwyrmDearGodThisIsGonnaBeAWhile(nEggs:int = 0):void
 	dailyAutoSleep(totalTime);
 	
 	clearMenu();
-	addButton(0, "4 Months...", frostwyrmHolyCrapYoureStillWaiting);
+	if(flags["FROSTWYRM_EGGS"] == undefined)
+	{
+		output("\n\n<b>Unfotunately, all that time waiting produced no eggs...</b>");
+		addDisabledButton(0, "4 Months...", "Progress 4 Months...", "You cannot do this without eggs!");
+	}
+	else addButton(0, "4 Months...", frostwyrmHolyCrapYoureStillWaiting);
 	addButton(1, "Leave", frostwyrmSayonara, undefined);
 }
 public function frostwyrmHolyCrapYoureStillWaiting():void
@@ -2281,6 +2285,7 @@ public function frostwyrmIncubateEggs():void
 // Hatches all incubating eggs.
 public function frostwyrmHatchEggs():void
 {
+	if(flags["FROSTWYRM_EGGS"] == undefined) return;
 	if(flags["FROSTWYRM_YOUNG"] == undefined) flags["FROSTWYRM_YOUNG"] = 0;
 	flags["FROSTWYRM_YOUNG"] += flags["FROSTWYRM_EGGS"];
 	flags["FROSTWYRM_EGGS"] = undefined;
@@ -2288,6 +2293,7 @@ public function frostwyrmHatchEggs():void
 // Matures all growing young.
 public function frostwyrmMatureYoung():void
 {
+	if(flags["FROSTWYRM_YOUNG"] == undefined) return;
 	if(flags["FROSTWYRM_KIP_COUNT"] == undefined) flags["FROSTWYRM_KIP_COUNT"] = 0;
 	flags["FROSTWYRM_KIP_COUNT"] += flags["FROSTWYRM_YOUNG"];
 	flags["FROSTWYRM_YOUNG"] = undefined;
@@ -2374,6 +2380,8 @@ public function frostwyrmBunchaKiddoContent():void
 	if (flags["FROSTWYRM_KIP_COUNT"] != 1) output(" eldest");
 	output(" daughter. She’s curled up against you, her legs entwined around your own [pc.legs] and her arms wrapped around your torso. Her eyes are closed, but you’re aware that she’s wide awake and she’s more than ready and willing to spend some time bonding with her Qal.");
 	output("\n\nYou grip onto her shoulder and give her a bit of a nudge. Your intent is clear, especially through your psionic link with your daughter, and she rouses quickly. <i>“Hey, yourself, my Qal,”</i> she says verbally. <i>“What’s up?”</i>");
+	
+	if (flags["FROSTWYRM_KIP_COUNT"] != 1) output("\n\nYou are speaking to the eldest of your " + num2Text(flags["FROSTWYRM_KIP_COUNT"]) + " Frostwyrm daughters.");
 	
 	clearMenu();
 	addButton(0, "Appearance", frostwyrmlingAppearance, undefined);
@@ -2969,6 +2977,8 @@ public function frostwyrmlingBathing():void
 	processTime(60);
 	pc.shower();
 	pc.orgasm();
+	
+	clearMenu();
 	addButton(0, "Next", frostwyrmGoodGodImHurtAgain, undefined);
 }
 public function frostwyrmGiveThemABath():void
@@ -3061,6 +3071,8 @@ public function frostwyrmGiveThemABath():void
 	pc.applyCumSoaked();
 	pc.loadInMouth(ppFrostwyrmling);
 	processTime(60);
+	
+	clearMenu();
 	addButton(0, "Next", frostwyrmGoodGodImHurtAgain, undefined);
 }
 public function frostwyrmGoodGodImHurtAgain():void

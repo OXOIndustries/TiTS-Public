@@ -858,7 +858,7 @@ public function shareShekkaBedProc():void
 	showShekka();
 	author("SomeKindofWizard");
 	output("You’re partway to pulling off your [pc.clothes] when there’s a gentle tap on your leg. <i>“Hey, [pc.name]. Can’t help but notice that your bed is looking awfully not-full-of-Raskvel. Fancy changing that?”</i>");
-	output("\n\nYou peek down at her, raising a brow slowly. That was a rather cheesy line. Shekka grins bashfully, grinding her foot into the floor. <i>“I’m not hearing a no! Well, not yet at least”</i>");
+	output("\n\nYou peek down at her, raising a brow slowly. That was a rather cheesy line. Shekka grins bashfully, grinding her foot into the floor. <i>“I’m not hearing a no! Well, not yet at least...”</i>");
 	processTime(1);
 	flags["SHEKKA_SLEEPWITH_INTRODUCED"] = 1;
 	clearMenu();
@@ -871,10 +871,10 @@ public function shareBedWithShekka():void
 	clearOutput();
 	showShekka();
 	author("SomeKindofWizard");
-	output("Too cute. You don’t so much as take her to bed as you do throw her into it, dropping ontop of her and nibbling at one particularly large ear, nuzzling until she squirms. <i>“Oooh fuck! Want!”</i>");
+	output("Too cute. You don’t so much as take her to bed as you do throw her into it, dropping on top of her and nibbling at one particularly large ear, nuzzling until she squirms. <i>“Oooh fuck! Want!”</i>");
 	flags["CREWMEMBER_SLEEP_WITH"] = "SHEKKA";
 	//Sex Options:
-	shekkaCrewSexMenu();
+	shekkaCrewSexMenu(true);
 }
 
 //No:
@@ -1085,7 +1085,7 @@ public function shekkaSleepWithMornings():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-public function shekkaCrewSexMenu():void
+public function shekkaCrewSexMenu(inBed:Boolean = false):void
 {
 	clearMenu();
 	penisRouter,[shekkaCrewFutaBendoverFuck,chars["SHEKKA"].vaginalCapacity(),false,0]
@@ -1119,7 +1119,7 @@ public function shekkaCrewSexMenu():void
 	else addDisabledButton(3,"Locked","Locked","Shekka would need to be some kind of hermaphrodite to unlock this!");
 
 	//MilkQ over 1000
-	if(pc.milkQ() >= 1000 && pc.isLactating()) addButton(4,"FeedMilk",shekkaMilkDranking,undefined,"FeedMilk","Feed her some of the copious milk you’re carrying around.");
+	if(pc.milkQ() >= 1000 && pc.isLactating()) addButton(4,"FeedMilk",shekkaMilkDranking,inBed,"FeedMilk","Feed her some of the copious milk you’re carrying around.");
 	else addDisabledButton(4,"FeedMilk","Feed Shekka Some Milk","You need to be lactating quite heavily to satisfy the little raskvel with your teats alone.");
 
 	if(flags["SHEKKA_ANNO_NERDOFF"] != undefined && flags["SHEKKA_ANNO_NERDOFF"] != -1) addButton(5,"Anno Comp.",shekkaAnnoVibeOffpre,true,"Anno Competition","Have your two mechanically-inclined crew-mates see who can make the more stimulating sex-toy.\n\n<b>Warning:</b> Something will be inserted into an orifice.");
@@ -1710,7 +1710,7 @@ public function tribCrewVibeyVibe():void
 	output(" form.");
 
 	output("\n\nThe raskvel rides you like a bucking bronco, taking you to the ground once your excitement overwhelms your motor control. She breaks the kiss at last with a satisfied sigh. Her lips are glossy with shared saliva, and her meager chest is heaving with panting breaths. ");
-	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("After ingesting so much of your aphrodisiac saliva, her jumpsuit audibly squishes when she squirms ontop of you. ");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("After ingesting so much of your aphrodisiac saliva, her jumpsuit audibly squishes when she squirms on top of you. ");
 	output("Shekka grins and raises a finger to the neckline of her jumpsuit. <i>“Just a little bit of girlish fun.”</i> The suit parts, a line opening up down the center of her chest. She ");
 	if(pc.biggestTitSize() < 1) output("greedily caresses your own, letting her fingernail dig in just a little.");
 	else output("greedily gropes your tits, squeezing and caressing the orbs impulsively.");
@@ -1847,7 +1847,7 @@ public function shekkaCrewFutaTailTrib():void
 	output(" form.");
 
 	output("\n\nThe raskvel rides you like a bucking bronco, taking you to the ground once your excitement overwhelms your motor control. She breaks the kiss at last with a satisfied sigh. Her lips are glossy with shared saliva, and her meager chest is heaving with panting breaths. ");
-	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("After ingesting so much of your aphrodisiac saliva, her jumpsuit audibly squishes when she squirms ontop of you. ");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED)) output("After ingesting so much of your aphrodisiac saliva, her jumpsuit audibly squishes when she squirms on top of you. ");
 	output("Shekka grins and raises a finger to the neckline of her jumpsuit. <i>“Just a little bit of girlish fun.”</i> The suit parts, a line opening up down the center of her chest. She ");
 	if(pc.biggestTitSize() < 1) output("greedily caresses your own, letting her fingernail dig in just a little.");
 	else output("greedily gropes your tits, squeezing and caressing the orbs impulsively.");
