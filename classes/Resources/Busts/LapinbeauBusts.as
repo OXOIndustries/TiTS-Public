@@ -17,5 +17,4 @@ package classes.Resources.Busts
 			public var Full_FYN:Class;
 		}
 	}
-
 }

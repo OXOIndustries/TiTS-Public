@@ -55,11 +55,10 @@ package classes.GameData
 		{
 			
 			// Speical handle for ZILPACK- use ZIL, ZIL
-			// ^ RASKVEL_GANG => RASKVEL_MALE x3
 			// ^ PRAETORIAN => PRAETORIAN x3
 			// ^ TAIVRADANE => TAIVRA, DANE
 			
-			var overrides:Array = ["ZILPACK", "RASKVEL_GANG", "PRAETORIAN", "TAIVRADANE", "TAMTURRETS"];
+			var overrides:Array = ["ZILPACK", "PRAETORIAN", "TAIVRADANE", "TAMTURRETS"];
 			var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
 			
 			if (InCollection(bustIdx, overrides))
@@ -67,7 +66,7 @@ package classes.GameData
 				switch (bustIdx)
 				{
 					case "ZILPACK": kGAMECLASS.showBust("ZIL", "ZIL"); break;
-					case "RASKVEL_GANG": kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE"); break;
+					//case "RASKVEL_GANG": kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE"); break;
 					case "PRAETORIAN": kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN"); break;
 					case "TAIVRADANE": kGAMECLASS.showBust("TAIVRA", "DANE"); break;
 					case "TAMTURRETS": kGAMECLASS.showBust("TAMTAM", "TAMWOLF"); break;

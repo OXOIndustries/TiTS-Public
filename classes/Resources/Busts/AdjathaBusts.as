@@ -597,6 +597,15 @@ package classes.Resources.Busts
 		public function get Bust_RASK_TRAP():Class { return Bust_AZAPHEL; }
 		public function get Bust_RASK_TRAP_NUDE():Class { return Bust_AZAPHEL_NUDE; }
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/raskvel_male.png", mimeType = "image/png")]
+		public var Bust_RASKVEL_MALE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/raskvel_male_nude.png", mimeType = "image/png")]
+		public var Bust_RASKVEL_MALE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/raskvel_gang.png", mimeType = "image/png")]
+		public var Bust_RASKVEL_GANG:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/raskvel_gang_nude.png", mimeType = "image/png")]
+		public var Bust_RASKVEL_GANG_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/reaha_anusoft.png", mimeType = "image/png")]
 		public var Bust_REAHA_ANUSOFT:Class;
 		
@@ -1351,6 +1360,16 @@ package classes.Resources.Busts
 			public var Full_QUINN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_nude.png", mimeType = "image/png")]
 			public var Full_QUINN_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_male.png", mimeType = "image/png")]
+			
+			public var Bust_RASKVEL_MALE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_male_nude.png", mimeType = "image/png")]
+			public var Bust_RASKVEL_MALE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_gang.png", mimeType = "image/png")]
+			public var Bust_RASKVEL_GANG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_gang_nude.png", mimeType = "image/png")]
+			public var Bust_RASKVEL_GANG_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/reaha_anusoft.png", mimeType = "image/png")]
 			public var Full_REAHA_ANUSOFT:Class;
