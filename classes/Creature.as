@@ -17700,9 +17700,7 @@
 				return "flat, almost non-existent breasts";
 				}
 			//33% of the time size-descript them
-			if (rand(3) == 0) {
-				descript += breastSize(breastRows[rowNum].breastRating());
-			}
+			if (rand(3) == 0) descript += breastSize(breastRows[rowNum].breastRating());
 			//Lactation notices are rare unless near-empty or full!
 			var lacBonusChance:Number = 0;
 			if(canMilkSquirt()) lacBonusChance = 2;

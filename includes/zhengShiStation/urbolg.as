@@ -36,6 +36,12 @@ public function zhengShiHangerFloorBonus():Boolean
 			addDisabledButton(0,"Urbolg","Urbolg","Urbolg is still mad at you.");
 			return false;
 		}
+		else if(pc.hasStatusEffect("URBOLG_DISABLED_BY_COOKIES"))
+		{
+			output("\n\nUrbolg is still cleaning up the mess he made with those cookies! Wow, that's a lot of cum!");
+			addDisabledButton(0,"Urbolg","Urbolg","Urbolg is still cleaning.");
+			return false;
+		}
 		//Defeated Urbolg by lust or ever fucked him:
 		else if(flags["URBOLG_LUSTED"] != undefined || flags["SEXED_URBOLG"] != undefined) output("\n\nUrbolg the korgonne mechanic busily works to repair a scrap engine hanging from a lift, but he keeps casting sly glances in your direction with his robotic eye. The fluffy little devil seems to have taken a liking to you!");
 		//Normal Urbolg
@@ -49,6 +55,15 @@ public function showUrbolg(nude:Boolean = false):void
 {
 	showName(flags["MET_URBOLG"] == undefined ? ((CodexManager.entryUnlocked("Korgonne") ? "KORGONNE" : "CANINE") + "\nMECHANIC") : "\nURBOLG");
 	showBust("URBOLG" + (nude ? "_NUDE":""));
+}
+public function pbcookiesUsedOnKorgonne():Number
+{
+	var count:Number = 0;
+	if(flags["LUND_PB"] != undefined) count += flags["LUND_PB"];
+	if(flags["URBOLG_PBED"] != undefined) count += flags["URBOLG_PBED"];
+	if(flags["TUUVA_COOKIES"] != undefined) count += flags["TUUVA_COOKIES"];
+	if(flags["NENNE_COOKIES"] != undefined) count += flags["NENNE_COOKIES"];
+	return count;
 }
 
 public function urbolgMeeting():void 
@@ -289,6 +304,7 @@ public function urbolgMenu():void
 		else addButton(3,"Sex",urbolgFlirtSex);
 	}
 	else addDisabledButton(3,"Flirt","Flirt","You’re not really in the mood for that right now.");
+	addButton(4,"PB Cookie",urbolgPBCookiesBYOUMADMAN,undefined,"PB Cookie","You often see Urbolg when he’s hard at work. Maybe he’d like to have a nice treat to relax after some hard work.");
 	addButton(14,"Leave",mainGameMenu);
 }
 //Appearance
@@ -578,6 +594,7 @@ public function urbolgSexMenu():void
 		if(pc.hasCock()) addButton(1,"Toys & Frot",urbolgFuckHimOrToyMilking,undefined,"Toys & Frot","Have a session with Urbolg and some of his prostate-stimulating toys! No penetration required!");
 		else addDisabledButton(1,"Toys & Frot","Toys & Frot","You need a penis for this. Never should have gotten rid of it!");
 	}
+	addButton(2,"SuckCock",giveUrbolgBlowies,undefined,"SuckCock","Give the half-pint half-mechanical mechanic some oral service.");
 	addButton(14,"Leave",leaveUrbolgSexAngerRar);
 }
 
@@ -1180,3 +1197,461 @@ public function urbolgToysPartIV(x:int):void
 	IncrementFlag("URBOLG_TOY_MILKING");
 }
 
+//[=PB Cookie=]
+// Display this button in Urbolg’s main menu
+// Tooltip: You often see Urbolg when he’s hard at work. Maybe he’d like to have a nice treat to relax after some hard work.
+public function urbolgPBCookiesBYOUMADMAN():void
+{
+	clearOutput();
+	showUrbolg(true);
+	author("B!");
+	if(flags["URBOLG_PBED"] == undefined)
+	{
+		output("You check the time. ");
+		if (hours < 7) output("It’s pretty late at night; you wonder if Urbolg is in the mood for a quick bite to eat.");
+		else if(hours < 12) output("It’s about morning. You idly wonder if Urbolg’s had anything to eat, and if he wouldn’t mind having a quick, early snack with you.");
+		else if(hours < 18) output("It’s about afternoon. Given that Urbolg is a mechanic by trade, there’s a good chance he hasn’t had many opportunities to stop for some food. You wonder if he’s willing to pass the time with a snack.");
+		else output("It’s starting to get a little late, and Urbolg is still hard at work; maybe he’s in the mood to share a snack to wind down from a hard day’s work.");
+		output(" You ask him if he’s feeling hungry.");
+
+		output("\n\nHe hums in thought at the question and pats at his stomach through his thick apron. <i>“Aye, ‘spose I could go fer somethin’ t’ take the edge off,”</i> he admits. <i>“Whatcha thinkin', " + pc.mf("lad","lass") + "?”</i>");
+
+		output("\n\nYou say that you have a handful of field rations that you always keep on you that you’re willing to share. They aren’t exactly a five-star meal but they’ll tide you both over for a little while, at least. <i>“Take it from me, livin’ on a rock like this, ye get used to eating whatever's about.”</i>");
+
+		output("\n\nAt that, you reach into your pack and scrounge for the treats you had in mind. The first thing your hands find are a pack of about a half-dozen ");
+		if(yammiIsCrew()) output("home-baked ");
+		output("peanut-butter cookies, wrapped in a single, clear plastic baggie to maintain their freshness. Three between you and Urbolg ought to be plenty.");
+
+		output("\n\nYou withdraw the baggie and hold it in the air for Urbolg to see. You ask him if he’s ever had a peanut-butter cookie before.");
+
+		output("\n\nAt the question, and when he recognizes what it is you’re holding, his eyes widen and his back straightens. <i>“Ah, " + pc.mf("lad","lass") + ",”</i> he says with a start. He’s surprised, momentarily at a loss for words, but he recollects himself. <i>“In a bit of a kinky mood, are ye? And here I thought ye were just lookin’ fer somethin’ to munch on. Er... maybe ye are?”</i>");
+
+		// Continue here if the PC has never given any other character a PB cookie
+		if(pbcookiesUsedOnKorgonne() == 0)
+		{
+			output("\n\nYou tilt your head and ask him what he means.");
+			output("\n\n<i>“Ye fer real?”</i> he asks incredulously. <i>“Ye really be havin’ no idea what peanut butter be doin’ to a Korgonne’s, uh... biology?”</i> You answer positively: ");
+			if(pc.race() != "korgonne") output("he’s the first Korgonne you’ve ever offered a peanut-butter cookie to.");
+			else output("you hadn’t had peanut butter cookies in a while and thought they would just be a fun, nostalgic snack. Should you have not done that?");
+
+			output("\n\n<i>“No way to mince werds, then,”</i> he says, not shying away from the topic. <i>“Peanut-butter, in any shape er form, makes us Korgonne jizz like a fekkin’ fire hydrant. One taste of the stuff and we’re cummin’ our brains straight through our dicks; shit, us Korgonne aren’t exactly the most sexually aggressive out there, and just a whiff’a peanut butter’ll get us ready to rut like horny bastards. Werks on our women, too. Don’t matter if yer gay or straight, either: one of them cookies’ll make a hell of a mess, fer sure.”</i>");
+			output("\n\nYou stare at Urbolg, surprised and amazed; you scan his expression to see if it’ll crack, and it doesn’t. He’s telling the truth.");
+			output("\n\nYou look at the cookies. They <i>truly</i> have that sort of effect on a Korgonne? <i>“Do I look like a fekkin’ liar to ye?”</i> he asks, his tone lighter than his words. <i>“One bite o’ one of them cookies and ");
+			if(pc.race() != "korgonne") output("I’ll");
+			else output("we’ll");
+			output(" be fekkin’ paintin’ the floor with ");
+			if(pc.race() != "korgonne") output("my");
+			else output("our");
+			output(" cum.”</i>");
+
+			output("\n\nHe crosses his arms as your gaze goes from him, back to the cookies, then back to him. Honestly, you’re at a loss as to how this is a bad deal. You impishly ask him if he wants one or not.");
+
+			output("\n\nYou look at the cookies. They <i>truly</i> have that sort of effect on a Korgonne? <i>“Do I look like a fekkin’ liar to ye?”</i> he asks, his tone lighter than his words. <i>“One bite o’ one of them cookies and I’ll be painting the floor with me cum.”</i>");
+			output("\n\nHe crosses his arms as your gaze goes from him, back to the cookies, then back to him. Impishly, you ask him if he wants one or not.");
+			output("\n\nUrbolg hums and strokes at the bottom of his muzzle as he considers it. <i>“Hell, why not,”</i> he asks as he hooks his hands underneath his apron to lift it off himself, bearing his full, nude body to the air. <i>“Could go for some relief, an’ I’m a bit peckish, besides.”</i>");
+		}
+		// Continue here if the PC has given any Korgonne a cookie even once
+		else
+		{
+			output("\n\nYou smirk; you’ve been caught and you know it. You ask Urbolg how he figured out what peanut butter does to Korgonne.");
+			output("\n\n<i>“We didn’ have nothin’ like peanut butter back in the hold,”</i> he explains. <i>“When I left Uveto, and I got integrated into new cultures and shit, I was told that a normal pick-me-up was somethin’ called a peanut-butter-and-jam sammich. So I gave ‘er a try.”</i>");
+			output("\n\nHe chuckles as he recalls the memory. <i>“Caught that fekkin’ nurse I was with for a loop, fer sure. ’Course, afterwerd, I wanted te know what part of the sammich could gimme such a reaction. For, uh, science, and junk. Long story short, that’s how I know.”</i>");
+			output("\n\nYou tell Urbolg that he’s the first Korgonne you’ve met that knew what peanut-butter did to them beforehand. It was always a bit of a kick to feed a Korgonne such a plain, innocent cookie, and... be treated to a ‘show’ in return.");
+			output("\n\n<i>“Well, hell, " + pc.mf("lad","lass") + ", if that’s what yer after, I ain’t sayin’ no to some food and a good time,”</i> he offers.");
+			output("\n\nNow that you two are on the same page, you open up the baggie, letting the scent of your peanut-butter treats permeate the air. <i>“Thassa good [pc.boyGirl],”</i> Urbolg says as he hooks his arms beneath his apron and lifts it over his head, bearing his full, nude body to the air. <i>“Could go for some relief, an’ I’m a bit peckish, besides.”</i>");
+		}
+	}
+	// Continue here for subsequent cookies
+ 	else
+ 	{
+ 		output("You glance at your Codex for the time.");
+ 		output("\n\n<i>“Time for another cookie, is it, [pc.name]?”</i> Urbolg asks quickly when he sees your by-now familiar motion. You look at him and smirk, and he straightens himself at his sudden, uncharacteristic change in demeanour. After just a few cookies, you’ve already gotten him trained to respond to some specific motions and commands.");
+ 		output("\n\n<i>“Oh, fuck off,”</i> he says, annunciating his curse as clearly as he can, making it clear that he doesn’t appreciate being likened to some trained pet. <i>“Don’t pretend you’d pass up a chance to eat somethin’ that makes ye blow yer load when it hits yer tongue. A’course I want some more!”</i>");
+ 		output("\n\nUrbolg hasn’t been a part of the Korgonne hold for some time, now. He’s aware of what peanut butter does to him, and he <i>must</i> know that it’s not exactly a difficult commodity to find – why doesn’t he just go and buy some jars and skip the cookies altogether?");
+ 		output("\n\n<i>“Ye outta yer mind? With that much peanut butter lying around my workshop, I’d get nothin’ done! As great as it is to feckin’ cum myself dry, it ain’t what I’d call productive. Not in th’ sense I’m thinkin’, anyway.”</i> He eyes you impatiently and his robotic arm’s finger taps on the table; he wants a cookie, and he’s getting tired of answering questions. <i>“But I ain’t gonna resist if some’a the stuff</i> happens <i>to find its way here. Now, ya gonna gimme some ‘er not?”</i>");
+ 		output("\n\nYou point out that you never said you were carrying any; just that he assumed that you were, and all that from glancing at your codex. Just as Urbolg’s expression begins to sour, you point at that, of <i>course</i> you have some cookies. You wouldn’t dream of teasing one of your favourite Korgonne like that.");
+ 	}
+	// Merge here
+	processTime(6);
+	clearMenu();
+	addButton(0,"Next",urbyPBCookie2);
+}
+
+public function urbyPBCookie2():void
+{
+	clearOutput();
+	showUrbolg(true);
+	author("B!");
+	if(flags["URBOLG_PBED"] != undefined) output("In an excited, horny flash, his smithy’s apron is off, and he’s bared all of himself to you in the light of his workshop. ");
+	output("You catch yourself stealing glances at his package, knowing what sort of power something as simple as peanut-butter – a staple condiment where you come from – has on a Korgonne’s biology. You lick your [pc.lipsChaste], and wonder idly if you’re more looking forward to the cookies, or to... something else.");
+	if(pbcookiesUsedOnKorgonne() == 0 && flags["ULA_SAVED"] != undefined) output("\n\nYou wonder to yourself if you could get away with smuggling some cookies back into the Korgonne hold on Uveto. What sort of havoc would you induce by introducing something so powerful into their ecology?");
+	output("\n\n<i>“Hand ‘em over,”</i> he says impatiently, his robotic hand outstretched for the cookies in your baggie. <i>“I know I’m a sight to see, but just you wait ‘till I git myself one’a them in my mouth.”</i>");
+	output("\n\nYou do as he asks, reaching into the bag to withdraw three cookies to give to him, keeping the other three for yourself. He waves you towards the other side of his workbench, where he has a pair of scrap chairs, cushioned by a leathery material that you don’t immediately recognize. They look like he made them himself. You sit in the furthest chair: it’s not the most comfortable of seats, but, it’s a chair. And it reclines!");
+	output("\n\nUrbolg flops into his seat with familiar, graceless flair, kicking his legs up as it absorbs his weight. <i>“Bottoms up to ye, " + pc.mf("lad","lass") + ",”</i> he says, toasting you across the gap between you with his first cookie. You respond in kind with a smile, but you let him bite into his cookie first.");
+
+	output("\n\nHe does so immediately: he opens his mouth wide and shucks the whole thing in, chewing through the entire cookie in a single bite. You wait for the reactions: first, Urbolg sighs in delight at the taste of the home-baked treat... and then, the show begins.");
+
+	output("\n\nUrbolg spreads his legs slightly, and his sexual reaction is immediate. Originally, his overfull sheath bobbed against his heavy, bloated testicles under its own weight, resting snuggly in the valley between his balls – once the cookie’s flavor hits the right tastebuds, it fills and bloats at a shocking pace, going from stuffed, to stiff, to half-erect, to spurting, in the space of a few exaggerated bites and a few pumps of his heart.");
+	output("\n\nUrbolg grunts through a clenched jaw and he wraps his biological hand around his shaft, stroking it until it’s at its full, concrete, complete hardness, standing at an intimidating twelve inches");
+	//fucked Urbolg:
+	if(flags["SEXED_URBOLG"] != undefined) output(" – it’s standing longer and thicker than you remember it being. Perhaps the cookie is giving his body a bit of extra oomph, to push it to its very limits");
+	output(". Beneath it, his heavy, fuzzy balls pull up against his pelvis, bouncing and tightening at the sensations, already working to shoot his cum from his rocket and arc it through the air between you.");
+
+	output("\n\n<i>“Yep,”</i> Urbolg says to nothing in particular as his first orgasm overtakes him. His back arches, and he consciously focuses on not crushing the other two cookies in his hand, while his cock bloats with his seed. His abs crunch as the first elongated, pearly streak shoots from him, audibly splurting from his body. His first shot of his Korgonne cum is so long that, despite having an arc that reaches over three feet off the ground, it touches down before the first string cuts off from his body.");
+	output("\n\nHe has the decency to not point his dick in your direction, aiming his spasming cock away from you, while still giving you the full show that you had come to expect with giving him a cookie. He times his masturbating hand with his bites into the cookie: every bite, he jerks his rod five or six times, making sure that his white cum reaches as far as it can. He grins whenever some new splurt makes it the furthest; like he had just broken his high score or something.");
+	output("\n\nAs soon as he swallows what’s remaining in his mouth, and he jerks out the last few bursts of jizz, he doesn’t hesitate to stuff his second-of-three cookies into his maw and start the cycle over again. He crunches his body forward and works his wrist furiously on his meat: he grips it by the knot and only jerks his hand and fingers by centimeters at a time, coaxing out his cum and taking advantage of his own leaky weakness to ensure that his orgasm is as messy as possible.");
+	output("\n\nYou’re so engrossed in the sight of Urbolg and his showmanship, that you’ve forgotten to even bite into your own cookies. They sit, forgotten, in your baggie, which rests on your lap; your eyes follow each streak of his white jizz as they first bubble from his enormous balls, then erupt from his canine cock and audibly hit the growing puddle of his cum with a wet ‘plap.’");
+	output("\n\n<i>“Not feelin’ so hungry?”</i> Urbolg asks through a mouthful of cookie, panting in exertion. You shake your head slightly, shaking the daze from your eyes, as you turn your face to his. You ask him to repeat the question. <i>“I’m sayin’ you haven’ had any, urrrnghh,”</i> he grunts, riding out another intense, sloppy orgasm, his hand rubbing and jerking at his meat, <i>“any cookies. You gonna have yers, or didja just wanna watch an old Korgonne cum himself silly?”</i>");
+	output("\n\nYou glance toward your cookies, and you lick your [pc.lipsChaste] once more. Watching the display has gotten you a bit hungry, you won’t deny it. But... are you hungry for <i>cookies</i>, exactly? Or, would you rather put yourself in the crossfire with an open mouth and sate yourself on Urbolg’s fountaining jizz?");
+	processTime(20);
+	pc.lust(15);
+	clearMenu();
+	addButton(0,"Cookies",urbyCookiePCSnacks);
+	addButton(1,"Jizz",drinkYummyUrbolgCum);
+}
+
+//[=Cookies=]
+public function urbyCookiePCSnacks():void
+{
+	clearOutput();
+	showUrbolg(true);
+	author("B!");
+	// Continue here if the PC is not a Korgonne
+	if(pc.race() != "korgonne") 
+	{
+		output("Urbolg’s chiding snaps you out of your reverie and reminds you that, yes, you have cookies, and yes, you’re hungry. You thank him for goading you out of your daze as you reach for the cookies in the bag.");
+		output("\n\n<i>“Right,”</i> he hums in disinterest through the cookie in his mouth. His abdominals crunch as his body strains to keep up with its own output: his testicles visibly contract, then relax, over and over, and every shaking, quivering clench is met by another beady stream of cum arcing through the air between you, exactly as impressive as the one before it.");
+		output("\n\nYou study the floor in front of Urbolg as you eat your own cookie. His cum diffuses onto the steel floor shortly after it splats down, making the streaks not-as-white as you’d expect. His longest shot had reached a good five or six feet from him, and every time his most recent wave of jizz calms down, it adds to the veritable runway of Korgonne seed, widening the streak. You won’t shy away from saying that Urbolg has some pretty big balls, but it’s insane that some peanut butter could kick his reproductive and refractory periods into such an overdrive.");
+		output("\n\nHis throat works down his cookie, and he refreshes his maw with his third and final pastry. <i>“Damn, but don’t that taste good,”</i> he hums absently as the cycle starts for the third time: his body, particularly everything between his abdominals and thighs, clench in effort and pleasure as he spontaneously orgasms from the taste of the peanut butter hitting his tongue. And when his teeth chew down, his blue rocket pulses with effort and bloats with cum before breaking his five-or-six-foot record with a fresh shot.");
+		output("\n\nYou swallow your own cookie and reach for the second while Urbolg jerks himself casually, yet quickly, through orgasm after orgasm. You ask aloud if there’s a limit to how much a Korgonne can cum from peanut butter; Urbolg’s eaten two-and-a-half and he’s jizzed enough to fill a small bucket – or impregnate maybe dozens of women.");
+		output("\n\n<i>“Dunno,”</i> he answers through gritted teeth and a mouthful of pastry. In his current predicament, he’s not exactly above table manners. <i>“Never really, hnnng... never tested meself. I’d just eat whatever’s there and be done with it.”</i>");
+		output("\n\nOn that note, he chews once, his tongue flicking out from between his chops, and he arcs another elongated shot through his workstation. He reclines into his chair as he goes, and he takes a deep sigh through his nose as he watches his ‘product’ coat the floor in front of him. <i>“Korgonne, though,”</i> he says wearily, <i>“normally, we ain’t so... libidinous. I think that’s the word.”</i> His jerking hand dips a little lower and wraps itself around his bulging knot, squirting out a bit more juice. <i>“Maybe’s the stuff unleashes some repressed sexual energy or summin’. Whatever. Makes me cum buckets, an’ that’s all I need to know.”</i>");
+		output("\n\nYou agree; it’s a matter for someone else. You kick back in your own chair and swallow your second cookie while you watch Urbolg take his time; as you put the third cookie in your mouth, you can’t help but realize that you’ve been kinda thirsty ever since Urbolg started his show. You’re sure it’s the dry pastry’s fault. Surely.");
+		output("\n\nUrbolg’s display finally winds to a close: he savors what remains in his mouth for as long as he can, eking out his pleasure every time his tongue swishes the cookie mush around in his mouth, before finally swallowing. His bright-blue cock gives one final pulse, its veins thumping angrily on the surface of its skin, and then, his final blast of canine cum squirts from his tip and adds to the lake of semen beneath him. He’s exhausted and spent for his finale, but it’s nonetheless impressive considering all he’s done is eat a cookie.");
+		output("\n\nHe exaggerates one last sigh as he sinks into his chair. He kicks out his legs and rests his arms on his stomach, keeping his hands away from his surely-by-now sensitive dick; he’s content to merely lounge and watch his own erection slowly flag and recede back into his sheathe.");
+		output("\n\n<i>“Feckin’ thing’s gonna be an arse to wipe up,”</i> he muses; he doesn’t sound too terribly distraught. <i>“Moppin’ up yer own jizz after a hearty peanut butter snack or two gits old real fast, lemme tell you, but I’ll be fekked sideways if it ain’t worth the time.”</i>");
+		output("\n\nYou swallow the remainder of your final cookie and take a similar posture as him. You ask if he’d be in the mood for some more some other time.");
+		//SUCH A COP-OUT! Just do a repeat intro >.>
+		output("\n\n<i>“Yeh, of course,”</i> he replies. He stretches his body, unwinding the kinks and knots his muscles had built up from staying tense for so long. <i>“An’ next time we can pretend ye still just wanna gimme a cookie, and that yer not interested in watching a man blow his load all over the place.”</i>");
+		output("\n\nAt that, he falls silent and relaxes into his chair – but only for a moment. After a blissful few seconds of cooling down, he turns his chair towards you and stands. His cock has receded quite a bit: only the head and maybe half an inch of his shaft are still exposed to the air.");
+		output("\n\n<i>“Better git to mopping this up before it dries and stains,”</i> he grunts as he reaches for his apron.");
+		output("\n\nYou stand and excuse yourself. You wouldn’t want to get in the way of Urbolg cleaning up his own mess.");
+		processTime(20);
+		pc.lust(10);
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	// Continue here if the PC is a Korgonne
+	else
+	{
+		output("Urbolg’s put on a pretty impressive display, no doubt... but, you wonder as you eye your cookies, still in their baggie on his workbench, if you can’t do better. You reach for the bag and withdraw a cookie; you run it across your nostrils and take a whiff. It was just a quick sniff, not a deep lungful - but your [pc.crotch] responds immediately, rousing and stirring, putting you in the mood in a hurry. It wouldn’t take much teasing to get you full-blown horny, and that was only a sniff!");
+		output("\n\nUrbolg watches you as you flirt with your food, readying yourself to take a bite and join him in his ecstasy. <i>“Go ahead, " + pc.mf("lad","lass") + ", it ain’t gonna bite ya back,”</i> he encourages, waiting for you to take the plunge before he goes any further, though his bright-blue cock continues to beat and pulse with his adrenaline-fueled heartbeats.");
+		output("\n\nYou don’t make him wait any further, and you bite in, letting the flaky peanut-butter pasty coat your [pc.tongue].");
+		output("\n\nJust like what had happened with Urbolg, your bodily reaction is intense and sudden: your [pc.belly] crunches under sudden pangs of pleasure coursing through your body, originating at your mouth and bee-lining straight to your crotch. Y");
+		if(pc.hasCock()) 
+		{
+			output("our [pc.cock], at first moderately aroused from Urbolg’s display, launches to its full " + num2Text(Math.floor(pc.cocks[0].cLength())) + "-inch");
+			if(pc.cockTotal() > 1)
+			{
+				if(pc.cockTotal() > 2) output(", followed by [pc.eachCock] after it");
+				else output(", followed by your other one");
+			}
+			output(". At first, it’s moderately uncomfortable: it feels like your ");
+			if(pc.cockTotal() == 1) output("dick is");
+			else output("dicks are");
+			output(" too tight for ");
+			if(pc.cockTotal() == 1) output("itself");
+			else output("themselves");
+			output(", with your cock flesh stretching to accommodate so much blood so suddenly");
+		}
+		if(pc.isHerm()) output(". And, on top of that, y");
+		if(pc.hasVagina()) 
+		{
+			output("our [pc.vagina], already slick from the display, suddenly gushes itself soaked: at first, you were aroused and in the mood, but in a flash, your [pc.clit] is engorged and your pussy-lips are all puffed and thick, ready for the thickest, most phallic thing in the room to fuck it. It takes no small amount of willpower to jump from your chair and pop a squat on Urbolg’s lap. Not that you have the time to formulate any plan of action");
+		}
+		output(": like Urbolg before you, the arousal is eclipsed very suddenly by one <i>hell</i> of an orgasm.");
+
+		output("\n\nYou clench onto the armrests of Urbolg’s chair, your [pc.legs] quivering and shaking as ");
+		if(pc.hasCock()) output("rope after rope of jizz");
+		if(pc.isHerm()) output(" and ");
+		if(pc.hasVagina()) output("jets of ladyspunk");
+		output(" eject from your body at wild, intense rates and speeds. Your vision crosses, and after a moment, your lungs start to burn because you had forgotten to breathe.");
+
+		output("\n\nUrbolg laughs well-meaningly at your reaction. <i>“You’ll get used to it,”</i> he says as he bites into his cookie, and he joins you in rapt, continuous orgasm. <i>“But, urrrnghh, don’t rush it. I wish I were still as fresh to it as you.”</i>");
+
+		output("\n\nYour heart is hammering in your ears, and y");
+		if(pc.hasCock()) output("our [pc.cock], as hard as you’ve ever seen or felt it, shoots your [pc.cum] so far forward that it splashes against the wheels of Urbolg’s chair. You barely have the cognizance to try and move a bit to the side, so you can cross your stream with his");
+		if(pc.isHerm()) output(". Likewise, y");
+		if(pc.hasVagina()) output("our [pc.vagina] clenches and spasms on nothing, again and again; your [pc.girlcum] builds up on your seat, soaking up to your [pc.ass] and down your [pc.thighs], before dribbling off the side and splashing to the floor ineffectually");
+		output(". You gasp in pleasure, which causes you to bite down, and you start the whole sequence over again.");
+
+		output("\n\n<i>“Fuck,”</i> Urbolg says crassly, his eyes on your quivering form. His own jerking on his rod and his own streaming jizz doesn’t stop for anything the whole time, but it’s obvious to you both where his attention is. <i>“It’s different watching another Korgonne do it. Feels like I’m back at one’a them rutting rooms in the hold.”</i>");
+
+		output("\n\nDrool drips from your mouth, taking bits of cookie with it, as your loins clench and spasm uncontrollably, spilling your juices every which way. Spittle builds up in your mouth, and you instinctually swallow, taking the bit of cookie still in your mouth with it, and the patterns start over: y");
+		if(pc.hasCock()) output("our rod bloats with another fresh few loads of hot cum to spray all over the floor");
+		if(pc.isHerm()) output(", and y");
+		if(pc.hasVagina()) output("our pussy clenches and pulls at nothing, showering your seat, and then the floor, with more of your juice");
+		output(".");
+
+		output("\n\nUrbolg swallows what’s left of his cookie, then reaches for his third and final pastry, but waits patiently for you to calm down from the last aftershocks of your own. It takes you some time: your body still fidgets in muscles and joints even after there’s no more cookie on your tongue, and your genitals push out more liquids time and again, adding to your mess. It takes you a few minutes to calm down.");
+
+		output("\n\n<i>“Last one?”</i> he asks, holding up his own cookie. You’re panting from the exertion, but, yes – you have one more, and you likewise lift it to show him.");
+
+		output("\n\nHe grunts, then kicks off the floor, bringing himself towards you. He swivels on his chair so that his erect, throbbing, <i>angry</i> cock is pointing in your direction, his knot bulging and his cum dribbling from his tip.");
+
+		output("\n\n<i>“Left yer legs an’ put yer feet on my armrests,”</i> he instructs, and he follows his own instruction as he places his paws on your own chair. You do as he commands, and you’re taint-to-taint: your genitals are a scant few inches from each other. <i>“Let’s make the last one real messy, " + pc.mf("lad","lass") + ", whaddya say?”</i>");
+		output("\n\nYou’re way too horny to argue: you lift your cookie, toasting him, and he responds in kind. When your words are done, you place the whole cookie into your mouth and bite down.");
+		output("\n\nYour reaction comes first: like before, the pleasure starts at your tongue, then shoots straight to your [pc.crotch], before spreading to the rest of your body. You can hardly believe that some cookies are capable of making you cum so much");
+		if(pc.cumQ() < 1000) output(", and that it’d make you cum so much more than you thought you were capable of");
+		output("!");
+
+		output("\n\nBut, you and Urbolg are seeing the effects in real-time: y");
+		if(pc.hasCock()) output("our [pc.cock] inflates with your seed once again, and it streams from you unabated and uncontrolled, directly onto Urbolg’s stomach and chest. You barely have the wits to aim it anywhere, and it never goes higher than his neck, but your [pc.cum] gets all over him: from his burly, fluffy chest, to his stomach, and all over his jerking hands and writhing cock");
+		if(pc.isHerm()) output(". Adding to the mess, y");
+		if(pc.hasVagina()) output("our [pc.vagina], given a target (and an object of inspiration), squirts its lube through the air, arcing the distance between your body and Urbolg’s; your juices coat his stomach and his hands, which in turn coat his cock as he masturbates it. You catch a few glances at his face, and his eyes are rather determinedly on your crotch: it would only take a word and you know he’d thrust forward without hesitation, to give all the cum that he’s about to shoot a warm home – but you say nothing. You’re barely sensate enough to form words, and besides... being covered in each other’s cum is hotter");
+		output(".");
+
+		output("\n\nUrbolg’s reaction, especially now that he’s covered with your fluids, come shortly after: with a grunt and a chew, his rod bloats, and you’re given a birds-eye view of his urethra as it expands, ushering his jizz forward. Reciprocating you, his cum arcs through the space between you, and it lands squarely on your [pc.belly], arcing as high as your neck");
+		if(pc.biggestTitSize() >= 3) output(". More than a bit of it lands in your cleavage; with a free, shaking hand, you press your boobs together, drawing his cum deeper into the valley of your chest and getting your boobs nice, warm, and slick");
+		output(".");
+		output("\n\nYou two remain like that for as long as you have cookies in your mouths: every bite is punctuated by two more explosive orgasms, heading in different directions, splashing and soaking onto Urbolg’s fur and onto your [pc.skinFurScales]. It’s difficult to keep track of anything: your senses are so overloaded that sometimes, it’s difficult to tell who’s cum is going where.");
+		output("\n\nYou both swallow, and you’re both treated to one final show: you recline into your seat as Urbolg’s slick, sticky jizz pools in the crunch of your abs and it drips off the side of your body. After he blows his last few shots, he does the same, taking a similar posture as you.");
+		output("\n\n<i>“Damn,”</i> he sighs, his hand still on his cock and giving it a few more strokes for good measure. You agree wholeheartedly, though you refrain from touching yourself: everything feels so sensitive that you might just be on a hair-trigger for another round or two. Hell, if wouldn’t be hard to bake some more; your ship isn’t far from here, after all.");
+		output("\n\n<i>“Can’t say I’ve met many other Korgonne outside’a the hold, and definitely never shared any peanut-anything with ‘em,”</i> he says as he shuffles his chair backward. <i>“Sure was a fucker of a trip, fer damn sure.”</i>");
+		output("\n\nIt takes you some time to collect yourself (and for your eyes to un-cross). <i>“If ye ever make any other’a them cookies, " + pc.mf("lad","lass") + ", you bring ‘em here and we’ll, uh, have another go, if ye want.”</i> You hear the words, but the sentiment doesn’t settle into your head for at least a another little while.");
+		output("\n\nIt must have been minutes before Urbolg starts patting you on the side, urging you to move. He’s wearing his smithy apron, hiding whether he still has an erection, though you can still see his fluffy, low-hanging balls, and they’re still pretty wet from some combined, accumulated juices. <i>“C’mon, now, I gotta mop up these floors an’ clean these chairs, a’fore they leave a kinda grease stain that I ain’t ever explaining away.”</i>");
+		output("\n\nGroggily, you stand. You have some stains of your own that you should probably get to washing out, too.");
+		// exit to map; decrease Lust to 0; add Cum Covered status
+		processTime(30);
+		pc.orgasm();
+		pc.orgasm();
+		pc.orgasm();
+		pc.applyCumSoaked();
+		IncrementFlag("SEXED_URBOLG");
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	if(!pc.hasStatusEffect("URBOLG_DISABLED_BY_COOKIES")) pc.createStatusEffect("URBOLG_DISABLED_BY_COOKIES");
+	pc.setStatusMinutes("URBOLG_DISABLED_BY_COOKIES",25);
+	IncrementFlag("URBOLG_PBED");
+}
+
+//[=Jizz=]
+public function drinkYummyUrbolgCum():void
+{
+	clearOutput();
+	showUrbolg(true);
+	author("B!");
+	output("You know what? You’re the one who introduced the peanut butter to Urbolg, and all you’re doing is sitting there while the dog-man is jizzing himself dry just a few feet away from you. You have an idea that’s positively slutty and degenerate, but hell, Urbolg is having the time of his life with just a few pastries; why not have a bit of fun yourself?");
+	output("\n\nYour cookies remain on Urbolg’s worktable, forgotten. You slump out of the chair");
+	if(pc.hasKnees()) output(", onto your knees");
+	output(", and shuffle your way forward, toward Urbolg. Your movement surprises the older Korgonne; he knows exactly what it is you’re about to do, but he can scarcely believe you’re about to do it.");
+
+	output("\n\nIt only takes him a moment to snap out of his surprise, though. <i>“Heh,”</i> he chuckles when you shimmy your way into your position between his spread legs. He does his best to crook his tongue away from the peanut butter cookie already in his mouth, to try to save and stem the flow until you’re in place. <i>“But aren’t ye just a slut at heart, " + pc.mf("lad","lass") + ". You’d give some of the thirstiest whores in the hold a run.”</i>");
+	output("\n\nYou grin wryly in response, aware of how you look (and how you’re <i>about</i> to look). Urbolg doesn’t give you much time to prepare or to make yourself comfy: as soon as your mouth is open, he realigns the tip of his bulging blue cock in between your [pc.lips] and chews again.");
+	output("\n\nHis cum lands squarely in your mouth, dousing your tongue and pinching your soft palette a bit with the force of his jet. He’s so copious and so forceful that already it backwashes a bit, and you drool a strand of his cum from the corner of your lips; you fix yourself and lean forward, sinking your mouth halfway down his burgeoning shaft, and you audibly gulp and swallow the first load – the first of many.");
+	output("\n\nUrbolg grunts in pleasure as your lips seal around his flesh and your [pc.tongue] laps and presses against the underside of his shaft. <i>“Work the knot,”</i> he instructs you, and you do: you reach up with one hand and massage his inflated knot, and he moans in delight at the sensation. The stream of cum in your mouth reinvigorates with each press and prod your digits make on him. <i>“The nuts too.”</i> With your other hand, you massage his quaking balls, easing them as they tense against his body and force out another thick wad into your mouth.");
+	output("\n\nThere’s a disparity between what’s going into Urbolg’s body and what’s coming out: he chews into his cookie, finishing it off, and in exchange for the one mouthful of pastry, you get three full gulps of his creamy cum down your throat. Your submissive posture and working hands and mouth contribute to his pleasure and his output, but even if you had chosen to remain in your seat, it’s incredible that the Korgonne isn’t cumming dust, or that he isn’t severely dehydrated.");
+	output("\n\n<i>“Ye know,”</i> he says casually as he reaches for his third and final cookie. He pauses for effect, watching you as your motions become automatic: without the cookie in his mouth, you’re simply blowing him. <i>“There ain’t a lot of people that’re interested in feeding an old dog like me some cookies just so they can get a good bellyful of his cum. If all ye were interested in was sucking down some Korgonne jizz, I could always slap one’a my collars on ye. Make it better for ye. Give us both something we want.”</i>");
+	output("\n\nYour eyes close; there’s something awfully zen about blowing someone. Your mind wanders to his offer and you consider it; right this red-hot moment, it doesn’t sound so awful to you.");
+	output("\n\nWith your eyes closed, you don’t see Urbolg place the last pastry in his mouth, and you don’t brace for the flood of Korgonne jizz suddenly pounding you in the mouth. You struggle momentarily, swishing the hot juice in your mouth with your tongue, your cheeks bloating, until you remember to swallow. Compared to how much he’s putting out, it’s a negligible effort.");
+	output("\n\nCum slips from the union of your lips and his cock, dribbling down your chin and dripping onto your [pc.chest]. You grunt and moan in combined effort and pleasure as you try and keep up with him: with every swallow, your [pc.belly] gets a little fuller and a little warmer. You certainly wouldn’t have gotten this kind of meal from some measly cookies!");
+	output("\n\nSeeing your effort to stay paced with him, Urbolg pools the remainder of his cookie in his cheek, keeping it away from his tongue. The onslaught of semen calms down enough for you to catch up; you struggle to chug his load, and you feel like such a tramp doing it, but hell, if it doesn’t make you ");
+	if(pc.hasCock()) output("hard as diamonds");
+	if(pc.isHerm()) output(" and ");
+	if(pc.hasVagina()) output("wet as a puddle");
+	output(".");
+	output("\n\n<i>“Thanks for the cookies,”</i> Urbolg says suddenly. You glance up his fluffy, furry body, towards his face, and you see one of his cheeks bulging with what remains of the last cookie. <i>“Now, say ‘you’re welcome.’”</i>");
+	output("\n\n<i>“You’re welco–”</i> you try to say, but Urbolg bites into the remainder of his cookie, and the flow restarts: caught unawares, his jizz blasts onto your tongue and pools in your cheeks and across your gums. With nowhere to go, it splashes back across his crotch.");
+	output("\n\n<i>“Keep trying,”</i> he says. It’s probably just a hot idea, at least to him, to see you visibly and audibly struggle with so much cum.");
+	output("\n\n<i>“You’re wel – grk!”</i> you gurgle, his white streams washing back across your hands, which haven’t stopped working his genitals the whole time. <i>“You’re welc–”</i> you sputter as one well-placed shot reflexively makes you swallow. <i>“You’re welco–”</i> you say, when one particularly strong wave causes his cock to wrench from your control, and his cock’s head aims squarely for your right cheek, followed by it drawing a long, white line up to your forehead.");
+	output("\n\nUrbolg swallows the remainder of his cookie, signalling to you that you’re about to take the last couple shots of his cum. You forgo the games: you clamp your lips, now soaking and dripping with his spooge, as far down as you can: they wetly press against his knot and massage against his bulging flesh while his vibrating dick shoots his final loads directly down your throat. You moan in slutty delight as each stream warms your throat and pools in your stomach.");
+	output("\n\n<i>“Good to know your momma raised you with some manners,”</i> Urbolg snickers as his dick lurches one final time in your maw, depositing the last of his load. You remain still for a time, resting in between his legs with his thick dick lodged knot-deep into your face, wallowing in the position you’ve put yourself in.");
+	output("\n\nYou lick and suckle at his cock as it recedes into his sheath. You debate with yourself if you want another round or three – your cookies are still on Urbolg’s worktable, after all.");
+	output("\n\n<i>“Tha’s enough,”</i> Urbolg says, tapping at your skull to get you to disengage. Reluctantly, you do so; you give his fleshy sheath a kiss before pulling away, your [pc.tongue] licking and cleaning your [pc.lips] without thought.");
+	output("\n\n<i>“Much as I could eat yer share a’ the cookies, and much as I’m sure ye’d let me, I gotta say, that’s enough for now. Ain’t much to be done when yer sitting around all day eating pastries and getting your dick sucked.”</i>");
+	output("\n\nYou shuffle away from him, allowing him to stand. When he does, he gives a big stretch, working out all the tension in his limbs and his torso that had built up with his prolonged orgasms. <i>“That said, ye come straight back to me when yer fixin’ for another load or two dozen,”</i> he laughs as he reaches for his smithy apron. <i>“Nobody’s ever gonna say no to blowing a load and I’m sure as shit not gonna say no to a treat and a show.”</i>");
+	output("\n\nIt takes you a moment longer to pull yourself to your [pc.feet], dazed and high of the sexual energy Urbolg had given off from some cookies. You’re positively dripping with his load – your ship is nearby, if you wanted to take a shower. Or, of course, you still have your cookies, if, like Urbolg had offered, you’d rather add to your mess....");
+	processTime(25);
+	pc.loadInMouth(chars["URBOLG"]);
+	pc.loadInMouth(chars["URBOLG"]);
+	pc.loadInMouth(chars["URBOLG"]);
+	pc.lust(25);
+	pc.applyCumSoaked();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	IncrementFlag("URBOLG_PBED");
+	IncrementFlag("SEXED_URBOLG");
+}
+
+//[SuckCock]
+//Tooltip: Give the half-pint half-mechanical mechanic some oral service.
+public function giveUrbolgBlowies():void
+{
+	clearOutput();
+	showUrbolg(true);
+	author("Wsan");
+	if(!pc.isBimbo()) 
+	{
+		output("<i>“Wanna teach me the finer points of paying oral respect to my elders,");
+		if(flags["URBOLG_DOGGYED"] >= 3 && flags["URBOLG_DOGGYED"] != undefined) output("daddy");
+		else output("Urbolg");
+		output("?”</i> you say, grinning");
+		if(pc.tailCount > 0) output(" while your tail wags");
+	}
+	else 
+	{
+		output("<i>“Umm,”</i> you begin, looking down at Urbolg’s apron innocently. Your tenuous grasp on words slips away from you when you think about what lies under it. <i>“Can I suck your cock,");
+		if(flags["URBOLG_DOGGYED"] >= 3 && flags["URBOLG_DOGGYED"] != undefined) output(" daddy");
+		else output(" Urbolg");
+		output("?”</i>");
+	}
+	output("\n\n<i>“Aye, a’reckon I can spare some time for ye,”</i> Urbolg nods, dropping a wrench onto a nearby crate. <i>“Not in my workspace, mind. Be better to teach you with some space, and ‘sides,”</i> he says, eyeing you meaningfully, <i>“yer gonna need somewhere comfortable to lay.”</i>");
+	if(pc.isBimbo()) output("\n\n<i>“Let’s go play in my ship then,”</i> you say, clapping your hands together and smiling as you head towards your ship. <i>“I can’t wait");
+	else output("<i>“Oh, not keen to take me over a crate?”</i> you say over your shoulder, already walking towards your ship. <i>“I thought worse of you");
+	output("!”</i>");
+
+	if(pc.isBimbo()) output("\n\n<i>“Hnh,”</i> Urbolg grunts, walking up the ramp behind you. <i>“Nice view");
+	else output("<i>“Aye, no doubt,”</i> he says, grinning up at you from down the ramp. <i>“But the workplace is fer </i>work<i>, [pc.girlBoy]. Can’t have ye dirtying it up");
+	output(".”</i>");
+
+	output("\n\n<i>“Good to know even pirates have their standards,”</i> you murmur, approaching your room.");
+	if(!pc.isChestExposed() && !pc.isCrotchExposed()) output(" You have your clothes off by the time Urbolg joins you in the room");
+	else output(" By the time Urbolg enters after you, you’re ready for him");
+	output(". Turning and");
+	if(pc.isTaur()) output(" seating your rear half");
+	else output(" sitting");
+	output(" on the edge of your bed, you smile at the stocky korgonne.");
+
+	output("\n\n<i>“How do you want me?”</i> you ask.");
+	output("\n\n<i>“Preferably with those lips of yours forming a vacuum seal around my dick,”</i> Urbolg grunts, lifting his apron over his head and tossing it to the floor. His light blue cock is already making a tantalizing appearance from his sheath, pushing upwards gradually. You’ll have to be quick if you want to coax it out for yourself.");
+	output("\n\nLuckily, Urbolg takes a couple of steps closer and you take the matter into your own hands. Kissing the tip, you sink your lips down to his overtaxed sheath, already beginning to bulge as his knot inflates. Feeling him growing, throbbing and hardening in your mouth,");
+	if(pc.hasCock()) output(" you can’t help but get erect yourself");
+	else output(" your [pc.vagOrAss] squeezes tight, as if to just affirm in your mind that he could fuck you there too if he wanted");
+	output(". Worshipping a man has never felt so satisfying.");
+	output("\n\n<i>“Hnn... can’t tell whether I like ye more with or without the ability t’speak,”</i> Urbolg sighs, looking down at you. <i>“Feels nice having my cock inside yer mouth either way. Now take the rest of it.”</i>");
+
+	output("\n\nWith a commanding hand");
+	if(pc.hasHair()) output(" gripping your [pc.hairNoun]");
+	else output(" on the back of your head");
+	output(", Urbolg slowly pushes you down his oversized cock. The taper means the first few inches are a cinch, but the next several not so much. It takes you a couple of tries and some wet, dribbling jaw-stretching, but you get it eventually. Your reward is the feeling of smooth, gradual friction being applied to your lips as Urbolg holds you in place and slides his entire cock up into your mouth and down your throat.");
+	output("\n\n<i>“Fek... yer talented alright, [pc.boyGirl],”</i> Urbolg grunts, your eyes watering a little as you approach his knot. <i>“Give ye that much.”</i>");
+	output("\n\nWhen at last your lips touch his bright blue, throbbing knot, you get a");
+	if(flags["SEXED_URBOLG"] != undefined) output(" nice, thick rope of cum right down your throat. The more you bob against his knot, the more of it pumps into your stomach. Maybe you can empty him before he even cums for real if you try hard enough");
+	else output(" sudden shock as a rope of cum shoots down your throat. You can tell he’s not cumming what with the glaring lack of reaction, but there’s milky jizz trailing down to your stomach all the same. Urbolg’s full of surprises");
+	output(". Softly laying your hands on his thighs, you close your eyes and let him fuck your face at his own pace.");
+
+	output("\n\nAs it turns out, his own pace is pretty rough");
+	if(flags["URBOLG_DOGGYED"] >= 3 && flags["URBOLG_DOGGYED"] != undefined) output(", not that you’re surprised with your prior experience");
+	output(". Your throat is getting a heavy dose of cream filling while he jerks you up and down, lurid wet noises emanating from between your lips. Every thrust gets you another faceful of spunk, his warm knot pressing against your mouth with need. In mere minutes, Urbolg has you looking like a mess. Your face is red, your eyes are watering, and drool runs freely from the corners of your mouth. You get a brief respite when he pulls out and nods at the bed.");
+	output("\n\n<i>“Lie down on yer back,”</i> Urbolg grunts, swollen dick in one hand and patting your face with the other. <i>“Time for a change of scenery.”</i>");
+	output("\n\n<i>“Uh huh,”</i> you pant, dazed and not really thinking anything of his instructions.");
+	output("\n\nIt’s only when you’re lying on your back with");
+	if(pc.isTaur()) output(" your [pc.legs] curled up and");
+	output(" a korgonne poised to sit on your face that you realize he was speaking for himself. Of course - in his new position he’ll be able to see every little reaction your body goes through while he’s balls-deep in your mouth.");
+
+	output("\n\nUrbolg doesn’t wait around, grunting as he angles himself for penetration and slides right in. Your vision is almost wholly occupied by his fuzzy butt, but his nuts sitting on your nose are a nice distraction. They’re the size of clenched fists and already pumping more seed down your throat.");
+	output("\n\n<i>“Glk! Gllrk, goghk,”</i> you choke around his cock, each thrust to the hilt punctuated by your gagging exclamation. <i>“Urllgh!”</i>");
+	output("\n\n<i>“Sexiest thing you’ve said t’me,”</i> Urbolg grunts, then leans forward and begins pounding your face hard enough to sting.");
+	output("\n\nHands on his legs, you just lie there with your eyes bulging and");
+	if(pc.hasCock()) output(" cock hard");
+	else 
+	{
+		if(pc.hasVagina()) output(" pussy");
+		else output(" asshole");
+		output(" twitching");
+	}
+	output(" while he fucks you with reckless abandon, driving your head into the pillows with the force of it. You can feel him getting closer, both with your throat and your nostrils. His oversized balls are withdrawing, getting tighter in his sack and dragging over your nose as he approaches his peak.");
+	output("\n\n<i>“Nnnnngh,”</i> Urbolg groans, finally cumming between your lips. His movement halted, you give the underside of his fat prick a cursory lick and get a drip of his seed for your efforts. Owing to his unique biology, he’s already completely emptied himself into your stomach.");
+	var cummed:Boolean = false;
+	if(pc.isBimbo()) 
+	{
+		output("\n\nAt the last taste of his rich seed, you cum");
+		if(pc.hasCock()) output(" all over yourself, [pc.cockBiggest] fountaining upwards over your stomach while your hips jerk instinctively");
+		else if(pc.hasVagina())
+		{
+			output(" hard");
+			if(!pc.isTaur()) output(" down your [pc.thighs], hips rolling in pleasure");
+			else output(", femcum rolling down your hindquarters");
+		}
+		else output(" in submission, your bimbo bitch instincts bringing you to a giggly peak");
+		cummed = true;
+	}
+	else
+	{
+		if(flags["URBOLG_DOGGYED"] >= 3 && flags["URBOLG_DOGGYED"] != undefined) 
+		{
+			output("\n\nHaving serviced your daddy like the good little slut bitch you are, you feel a slight bit of guilt for cumming before the ecstasy washes it away as you cum your brains out all over the bed. Even Urbolg grunts in pleasure as your throat massages his half-hard cock while your");
+			if(pc.isHerm()) 
+			{
+				output(" [pc.biggestCock] spurts all over your [pc.stomach], your [pc.pussy] sympathetically squeezing and");
+				if(pc.isSquirter()) output(" squirting");
+				else output(" dripping");
+			}
+			else if(pc.hasVagina())
+			{
+				output(" [pc.pussy] flexes hard, squeezing as if his cock were hilted there instead of in your face");
+			}
+			else if(pc.hasCock()) 
+			{
+				output(" [pc.biggestCock] unloads itself all over your [pc.stomach], spurting seed all");
+				if(!pc.isTaur()) 
+				{
+					output(" up your torso");
+					if(pc.biggestTitSize() >= 1) output(" and spattering the underside of your tits");
+				}
+				else output(" over the bed beneath you, staining your underside");
+			}
+			cummed = true;
+		}
+		else output("\n\nYou don’t reach orgasm yourself, but you’re pretty close to satisfied just bathing in the afterglow of the mechanic’s orgasm");
+	}
+	output(".");
+
+	output("\n\n<i>“Hmmmmmnh,”</i> Urbolg sighs in satisfaction, still sitting on your face.");
+
+	if(cummed) output(" <i>“Glad you had some fun too");
+	else output(" <i>“Looks like you had a little bit of fun yourself");
+	output(", kid.”</i>");
+
+	output("\n\nHe reaches down to lightly squeeze your [pc.nipples], gently rolling them between his fingers and making you moan around his cock.");
+	if(pc.biggestTitSize() < 1) output(" <i>“Doesn’t feel too bad,”</i> he chuckles at your earnest admission of pleasure. <i>“Have t’remember that one.”</i>");
+	else if(pc.biggestTitSize() < 3) output(" <i>“These’re nice,”</i> he mutters in appreciation. <i>“Modest, but nice.”</i>");
+	else if(pc.biggestTitSize() < 7) output(" <i>“Beautiful big tits for such a polite young lass,”</i> he says, getting a nice squeeze of your [pc.breasts] in as his balls lay across your face. <i>“Mebbe I should fuck these next time.”</i>");
+	else if(pc.biggestTitSize() < 24) output(" <i>“Bloody hell, these are a sight for sore eyes,”</i> he murmurs, grabbing your [pc.breasts] and squeezing. <i>“That’s one way to keep every eye in the room on ye, kid.”</i>");
+	else output(" <i>“Fuck, kid, ye look like a sex toy with these udders of yers,”</i> Urbolg says, taking a couple of handfuls and squeezing. <i>“Guess that’s what yer into, ye little slut.”</i>");
+
+	output("\n\nHe finally lifts himself from your face with a long, wet slurp as his cock exits your throat. You groan as you feel yourself tighten back up upon his exit, the passage still slick with sperm and saliva. A rope of spit intimately connects the two of you until it snaps, landing across your face. Urbolg grabs a towel and rubs himself off before tossing it to you, letting it land squarely across your face.");
+	output("\n\n<i>“For yer face,”</i> he explains, pointing. <i>“Ye look like shit.”</i>");
+	if(pc.isBimbo()) output("\n\n<i>“Hey, thanks!”</i> you say, appreciating the gift rather than the insult");
+	else if(flags["URBOLG_DOGGYED"] != undefined && flags["URBOLG_DOGGYED"] >= 3) output("\n\n<i>“Thank you daddy,”</i> you mumble, trying not to cough");
+	else output("\n\n<i>“Thanks, I think,”</i> you mutter");
+	output(".");
+
+	output("\n\nYou wipe yourself off for a little bit as Urbolg leaves, going back to tending his machines. It doesn’t take you long to give up on the idea and take a shower instead");
+	if(flags["URBOLG_DOGGYED"] != undefined && flags["URBOLG_DOGGYED"] >= 3) 
+	{
+		output(", but not before letting the towel rest across your face and inhaling. Your master’s scent...");
+		output("\n\nYou spend close to half an hour in the ship’s shower,");
+		if(pc.isHerm()) output(" desperately frigging your cunt with your fingers while you jack yourself off");
+		else if(pc.hasCock()) output(" jacking yourself off roughly while you groan and imagine Urbolg dominating you");
+		else if(pc.hasVagina()) output(" fingerfucking yourself desperately while you imagine it’s Urbolg’s thick, fat doggycock");
+		output(". When you finally emerge from the shower, your skin is flushed");
+		if(pc.hasFur()) output(" under your fur");
+		else if(pc.hasScales()) output(" where it isn’t covered by scales");
+		output(". You’re ready to begin your journey anew, or maybe to pay another visit to the manly mechanic just outside");
+	}
+	else
+	{
+		output(".");
+		output("\n\nYou step out five minutes later, refreshed and ready to begin your journey anew. Or ready to see Urbolg again");
+	}
+	output(". You haven’t decided which yet.");
+	processTime(30);
+	pc.orgasm();
+	pc.shower();
+	pc.loadInMouth(chars["URBOLG"]);
+	IncrementFlag("SEXED_URBOLG");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
