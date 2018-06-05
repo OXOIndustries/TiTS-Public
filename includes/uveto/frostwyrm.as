@@ -1,5 +1,70 @@
 import classes.Characters.Frostwyrm;
 
+public function HereBeDragonBonus():Boolean
+{
+	if(flags["ENCOUNTERS_DISABLED"] != undefined || flags["FROSTWYRMSLAIN"] == 1 || flags["FROSTWYRM_DISABLED"] != undefined) return false;
+	
+	//Always encounter Frostwyrm first time
+	if(flags["MET_FROSTWYRM"] == undefined)
+	{
+		flags["UVETOCOAST_STEP"] = 0;
+		encounterFrostwyrm();
+		return true;
+	}
+	
+	IncrementFlag("UVETOCOAST_STEP");
+
+	var choices:Array = new Array();
+	//If walked far enough w/o an encounter (temporary values, should be replaced when moved to Glacial Rift)
+	if(flags["UVETOCOAST_STEP"] >= 7 && rand(2) == 0) {
+		//Reset step counter
+		flags["UVETOCOAST_STEP"] = 0;
+		
+		if(flags["FROSTWYRM_NOT_HOSTILE"] == undefined)
+		{
+			//Build encounter
+			encounterFrostwyrm();
+			return true;
+		}
+	}
+	
+	if(flags["FROSTWYRM_NOT_HOSTILE"] != undefined)
+	{
+		output("\n\nThe shore here is where you can summon");
+		
+		if(flags["FROSTWYRM_NOT_HOSTILE"] < 2)
+		{
+			output(" the Frostwyrm.");
+			if(!pc.hasGenitals()) {
+				output(".. that is, if you had the equipment useful for breeding...");
+				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You need genitals to interact with the frostwyrm.");
+			}
+			else if((pc.hasCock() && pc.virility() <= 0) || (pc.hasVagina() && pc.fertility() <= 0)) {
+				output(".. but being that breeding is the objective, maybe you should have more " + ((pc.hasCock() && pc.virility() <= 0) ? "virile" : "fertile") + " genitalia first?");
+				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "Your genitalia are not fit for breeding--make sure you are fertile before summoning the dragon!");
+			}
+			else if(!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) {
+				output(".. though breeding while you are a carrying mother might not be the best idea. Perhaps you should return after you've given birth to your current pregnancy first?");
+				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You already have a bun in the oven, so make sure you are clear of your current pregnancies before summoning the dragon!");
+			}
+			else {
+				output(" Are you are fully prepared for the coming breeding session?");
+				addButton(0, "Frostwyrm", frostyReadyToBang, undefined, "Call The Frostwyrm", "Make contact with the frostwyrm and get ready for the breeding!");
+			}
+		}
+		else
+		{
+			output(" [frostwyrm.name].");
+			addButton(0, frostwyrm.short, frostwyrmPickMeUpBaby, undefined, "Call [frostwyrm.name]", "Make contact with the frostwyrm.");
+		}
+	}
+	
+	if (tryUvetoWeatherEvent(flags["UVETOCOAST_STEP"])) return true;
+	if (tryEncounterSavicite(flags["UVETOCOAST_STEP"])) return true;
+	
+	return false;
+}
+
 public function frostWyrmHeader():void
 {
 	author("Savin");
@@ -9,7 +74,7 @@ public function frostWyrmHeader():void
 }
 public function frostWyrmlingHeader():void
 {
-	showName("\nFROSTWYRMLING");
+	showName("FROST-\nWYRMLING");
 	showBust("FROSTWYRMLING");
 }
 public function getFrostwyrmlingPregContainer():PregnancyPlaceholder
@@ -131,7 +196,7 @@ public function leaveFrostwyrm():void
 
 public function frostwyrmPCLoss():void
 {
-	if (flags["FROSTWYRM_VICTORY_COUNT"] >= 3 && ((pc.hasCock() && pc.virility() > 0) || (pc.hasVagina() && pc.fertility() > 0 && !pc.isPregnant())))
+	if (flags["FROSTWYRM_VICTORY_COUNT"] >= 3 && ((pc.hasCock() && pc.virility() > 0) || (pc.hasVagina() && pc.fertility() > 0)))
 	{
 		clearOutput();
 		frostWyrmHeader();
@@ -416,7 +481,7 @@ public function frostwyrmEpilogueAccept():void
 	frostWyrmHeader();
 	author("B");
 	
-	if (!pc.hasCock() && pc.hasVagina() && pc.isPregnant() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))
+	if (!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))
 	{
 		output("You’re humbled by the Frostwyrm’s offer – not so much for the opportunity to bear its offspring, but that it considers you such a valid option. You tell it that you consider its offer very flattering, and you’d love to help it, but, you rub at your belly as you tell it that you’re currently... occupied. You can’t exactly double-dip.");
 		output("\n\n<i>I understand,</i> it replies soothingly. <i>I will not ask more from you than you can provide. Return to this coast when your current child is reared and you’ve recovered, and think of me. I will respond to your summons.</i>");
@@ -560,6 +625,8 @@ public function nameThatFrostwyrm():void
 }
 public function nameThatFrostwyrm1():void
 {
+	flags["FROSTWYRM_NOT_HOSTILE"] = 2;
+	
 	clearOutput();
 	frostWyrmHeader();
 	author("B");
@@ -583,8 +650,6 @@ public function nameThatFrostwyrm1():void
 	processTime(65+rand(3));
 	pc.lust(50);
 	
-	flags["FROSTWYRM_NOT_HOSTILE"] = 2;
-	
 	clearMenu();
 	processTime(5);
 	addButton(0, "Next", frostwyrmJesusWeFinallyLanded,undefined);
@@ -592,8 +657,8 @@ public function nameThatFrostwyrm1():void
 public function frostwyrmJesusWeFinallyLanded():void
 {
 	clearOutput();
-	author("B");
 	frostWyrmHeader();
+	author("B");
 	
 	output("Finally, after a punishing hour-long flight, you spot land. It isn’t another continent or beach; instead, it’s an island, several miles in diameter. It’s featureless – as the rest of the frozen wastes of Uveto are – save for a single spire on one edge of the island with a lazy slope leaning towards the island’s center. At the base of the mountain is a massive mouth, leading into a deep, underground cave.");
 	output("\n\n<i>Grab tight,</i> [frostwyrm.name] instructs, and you do so as she slowly descends. The drop is much gentler than the rise was, though you come hurtling towards the ground much faster than you appreciated, having grown accustomed to the height. [frostwyrm.name] pulls up just before you land; she flaps her wings several times, adjusting her body to the land, before finally settling down.");
@@ -651,7 +716,7 @@ public function frostwyrmHomeAtLast():void
 		return;
 	}
 	
-	if (flags["FROSTWYRM_EGGS"] != undefined && !pc.isPregnant())
+	if (flags["FROSTWYRM_EGGS"] != undefined && !pc.hasWombPregnancy())
 	{
 		if (flags["FROSTWYRM_KIP_COUNT"] < 100) output("\n\nSitting in one corner of the lair is a large, oblong egg, resting on its side against a nearby wall. [frostwyrm.name] has brought in some fluffy snow from outside of the lair to act as something of a nest for the egg while it incubates.");
 		else output("\n\nSitting in one corner of the lair is a large, oblong egg, resting on its side in something of a makeshift incubator that your daughters have collectively assembled. The area is plush and secure, away from the bustle of the rest of your clan, and it has two of your daughters attending it at all times, making sure that whatever is occupying it has need for nothing.");
@@ -713,8 +778,8 @@ public function frostwyrmHomeAtLast():void
 /*public function frostwyrmSheHatchedWithoutYou():void
 {
 	clearOutput();
-	author("B");
 	frostWyrmHeader();
+	author("B");
 	
 	output("When you familiarize yourself with the lair, you’re greeted by a rambunctious little face that you’ve never seen before. It bears scales with the same designs and colorations as [frostwyrm.name], but it walks on two legs and has four arms, with a skeletal and muscular structure similar to your own. And when you feel a light pressure on the back of your mind, you recognize the method of communication as psionics, but it’s different: untrained and unfocused, but somehow familiar.");
 	output("\n\nIt doesn’t take you long to realize that you’re standing eye-to-eye with your first offspring! Living, breathing proof that Frostwyrms can crossbreed with your species! Your heart skips a beat as you study your child and your child studies you, the two of you familiarizing yourselves with each other and imprinting on one-another as parent and child.");
@@ -737,27 +802,33 @@ public function frostwyrmMainMenu(bOutput:Boolean = true):void
 	if(bOutput)
 	{
 		clearOutput();
-		author("B");
 		frostWyrmHeader();
+		author("B");
 		output("Now that you’re here, what would you like to do with [frostwyrm.name]?");
+		output("\n\n");
+		if(flags["FROSTWYRM_KIP_COUNT"] > 0) output("You have " + (flags["FROSTWYRM_KIP_COUNT"] == 1 ? "a kip" : (num2Text(flags["FROSTWYRM_KIP_COUNT"]) + " kips")) + " you can interact with. ");
+		if(flags["FROSTWYRM_YOUNG"] > 0) output("You have " + (flags["FROSTWYRM_YOUNG"] == 1 ? "one young hatchling" : (num2Text(flags["FROSTWYRM_YOUNG"]) + " young hatchlings")) + " you can spend the time to raise to maturity. ");
+		if(flags["FROSTWYRM_EGGS"] > 0) output("You have " + (flags["FROSTWYRM_EGGS"] == 1 ? "an egg" : (num2Text(flags["FROSTWYRM_EGGS"]) + " eggs")) + " you can spend time with until " + (flags["FROSTWYRM_EGGS"] == 1 ? "it hatches" : "they hatch") + ". ");
 	}
 	
 	clearMenu();
 	addButton(0, "Appearance", frostwyrmAppearance, undefined);
 	addButton(1, "Talk", frostwyrmWeGotSomeDialogue, undefined);
 	addButton(2, "Sex", frostwyrmIWantToBangTheLizard, undefined);
-	addButton(3, "Kips", frostwyrmBunchaKiddoContent, undefined);
+	if(flags["FROSTWYRM_KIP_COUNT"] > 0) addButton(3, "Kips", frostwyrmBunchaKiddoContent, undefined);
+	else addDisabledButton(3, "Kips", "Kips", "You have no fully matured kips to interact with!");
 	addButton(4, "Bellyrub", whosAGoodFrostwyrm, undefined);
 	
 	//(9999 == 0) addButton(5, "Extract", frostwyrmQuestSample, undefined);
-	if(flags["FROSTWYRM_EGGS"] != undefined)
-	{
-		addButton(8, "Incubate", frostwyrmIncubateEggs, undefined, (flags["FROSTWYRM_EGGS"] == 1 ? "Incubate Egg" : "Incubate " + StringUtil.toDisplayCase(num2Text(flags["FROSTWYRM_EGGS"])) + " Eggs"), (flags["FROSTWYRM_EGGS"] == 1 ? "You currently have one egg waiting to bond with you and [frostwyrm.name] before it can hatch. Choosing to remain here will have the kip in the egg bond with you, allowing it to hatch!" : "You currently have " + num2Text(flags["FROSTWYRM_EGGS"]) + " eggs waiting to bond with you and [frostwyrm.name] before they can hatch. Choosing to remain here will have the kips in the eggs bond with you, allowing them to hatch!"));
-	}
+	
+	if(flags["FROSTWYRM_YOUNG"] > 0) addButton(7, "Raise", frostwyrmRaiseHatchlings, undefined, (flags["FROSTWYRM_YOUNG"] == 1 ? "Raise Hatchling" : "Raise " + StringUtil.toDisplayCase(num2Text(flags["FROSTWYRM_YOUNG"])) + " Hatchlings"), (flags["FROSTWYRM_YOUNG"] == 1 ? "You currently have one hatchling waiting to bond with you and [frostwyrm.name] before it can mature. Choosing to remain here will have the hatchling bond with you, allowing it to mature!" : "You currently have " + num2Text(flags["FROSTWYRM_EGGS"]) + " hatchlings waiting to bond with you and [frostwyrm.name] before they can mature. Choosing to remain here will have the hatchlings bond with you, allowing them to mature!"));
+	
+	if(flags["FROSTWYRM_EGGS"] > 0) addButton(8, "Incubate", frostwyrmIncubateEggs, undefined, (flags["FROSTWYRM_EGGS"] == 1 ? "Incubate Egg" : "Incubate " + StringUtil.toDisplayCase(num2Text(flags["FROSTWYRM_EGGS"])) + " Eggs"), (flags["FROSTWYRM_EGGS"] == 1 ? "You currently have one egg waiting to bond with you and [frostwyrm.name] before it can hatch. Choosing to remain here will have the kip in the egg bond with you, allowing it to hatch!" : "You currently have " + num2Text(flags["FROSTWYRM_EGGS"]) + " eggs waiting to bond with you and [frostwyrm.name] before they can hatch. Choosing to remain here will have the kips in the eggs bond with you, allowing them to hatch!"));
 	else addDisabledButton(8, "Incubate", "Incubate", "This is for if you have at least one egg waiting to hatch in the lair. You don’t have any eggs waiting – [frostwyrm.name] would be delighted if you offered to fix that.");
 	
 	if (flags["FROSTWYRM_KIP_COUNT"] >= 100) addButton(10, "Rule Uveto", frostwyrmItsMineAllMine, undefined, "Rule Uveto", "You sit on your icy throne, your Qim behind you and your village of Amazonian Frostwyrm hybrids before you. With just a word, you could control more than an icy dome in the ocean....");
 	else addDisabledButton(10, "Rule Uveto", "Rule Uveto", "You being Qal to a Frostwyrm has given you an idea, but you’ll need more kips before you can act on it....");
+	
 	addButton(14, "Leave", frostwyrmSayonara, undefined);
 }
 public function frostwyrmAppearance():void
@@ -950,7 +1021,7 @@ public function frostwyrmIWantToBangTheLizard():void
 	if(pc.hasVagina())
 	{
 		if(pc.fertility() <= 0) addDisabledButton(0, "Get Bred", "Get Bred", "You are infertile and unable to be bred.");
-		else if(pc.isPregnant() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addDisabledButton(0, "Get Bred", "Get Bred", "You are unable to be bred while pregnant with different pregnancy types other than [frostwyrm.name]’s.");
+		else if(pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addDisabledButton(0, "Get Bred", "Get Bred", "You are unable to be bred while pregnant with different pregnancy types other than [frostwyrm.name]’s.");
 		else addButton(0, "Get Bred", (flags["FROSTWYRM_DICKED_YOU"] == undefined ? frostwyrmRidersMustBeOver4FeetToContinue : frostwyrmDickRepeat));
 	}
 	else addDisabledButton(0, "Get Bred", "Get Bred", "Requires a vagina.");
@@ -1112,7 +1183,7 @@ public function frostwyrmItsAHotdogInAHallway():void
 	knockedUpFrostwyrm();
 	IncrementFlag("FROSTWYRM_GOT_DICKED");
 	clearMenu();
-	if (pc.hasVagina() && pc.fertility() > 0 && (!pc.isPregnant() || !pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))) addButton(0, "Next", frostwyrmWhoPutThisTreeUpMyAss1);
+	if (pc.hasVagina() && pc.fertility() > 0 && (!pc.hasWombPregnancy() || !pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))) addButton(0, "Next", frostwyrmWhoPutThisTreeUpMyAss1);
 	else addButton(0, "Next", frostwyrmGoodGodImHurt, vIdx);
 }
 public function frostwyrmVaginalRepeat():void
@@ -1247,7 +1318,7 @@ public function frostwyrmVaginalRepeat():void
 	clearMenu();
 	if (flags["FROSTWYRM_KIP_COUNT"] == undefined)
 	{
-		if (pc.hasVagina() && pc.fertility() > 0 && (!pc.isPregnant() || !pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) && flags["FROSTWYRM_DICKED_YOU"] == undefined) addButton(0, "Next", frostwyrmWhoPutThisTreeUpMyAss1);
+		if (pc.hasVagina() && pc.fertility() > 0 && (!pc.hasWombPregnancy() || !pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) && flags["FROSTWYRM_DICKED_YOU"] == undefined) addButton(0, "Next", frostwyrmWhoPutThisTreeUpMyAss1);
 		else addButton(0, "Next", frostwyrmGoodGodImHurt, vIdx);
 	}
 	else addButton(0, "Next", frostwyrmAftercare, vIdx);
@@ -1264,7 +1335,12 @@ public function knockedUpFrostwyrm():Boolean
 	return false;
 }
 
-public function frostwyrmBirth(birthTimestamp:int = -1):void
+public function frostwyrmIncubationDays():int
+{
+	// (4 * 4 * 7)
+	return 112;
+}
+public function frostwyrmBirth():void
 {
 	StatTracking.track("pregnancy/frostwyrm eggs sired", 2);
 	StatTracking.track("pregnancy/total sired", 2);
@@ -1280,10 +1356,9 @@ public function processFrostwyrmPregEvents(deltaT:uint, doOut:Boolean, totalDays
 	{
 		flags["FROSTWYRM_INCUBATION_TIMER"] += totalDays;
 		
-		if (flags["FROSTWYRM_INCUBATION_TIMER"] >= 120)
+		if (flags["FROSTWYRM_INCUBATION_TIMER"] >= frostwyrmIncubationDays())
 		{
-			var birthTimestamp:int = (GetGameTimestamp() + deltaT - (flags["FROSTWYRM_INCUBATION_TIMER"] * 24 * 60) + (120 * 24 * 60));
-			frostwyrmBirth(birthTimestamp);
+			frostwyrmBirth();
 		}
 	}
 }
@@ -1325,8 +1400,8 @@ public function frostwyrmWhoPutThisTreeUpMyAss1():void
 public function frostwyrmRidersMustBeOver4FeetToContinue():void
 {
 	clearOutput();
-	author("B");
 	frostWyrmHeader();
+	author("B");
 	
 	var vIdx:int = -1;
 	if(pc.hasVagina() && pc.fertility() > 0 && pc.blockedVaginas() == 0){
@@ -1414,8 +1489,8 @@ public function frostwyrmRidersMustBeOver4FeetToContinue():void
 public function frostwyrmDickRepeat():void
 {
 	clearOutput();
-	author("B");
 	frostWyrmHeader();
+	author("B");
 	
 	var vIdx:int = -1;
 	if(pc.hasVagina() && pc.blockedVaginas() == 0){
@@ -1967,6 +2042,8 @@ public function frostwyrmSayonara(returnLoc:String = ""):void
 		if(flags["PREV_LOCATION"] == undefined) addDisabledButton(0, "Shore", "Previous Location", "Return to the location you were at before arriving to the lair.");
 		else addButton(0, "Shore", frostwyrmSayonara, flags["PREV_LOCATION"], "Previous Location", "Return to the location you were at before arriving to the lair.");
 		addButton(1, "Irestead", frostwyrmSayonara, "UVI P38", "Irestead", "Return to Irestead.");
+		
+		return;
 	}
 	
 	frostWyrmHeader();
@@ -2029,9 +2106,9 @@ public function frostwyrmSayonara(returnLoc:String = ""):void
 public function frostwyrmPregnancyEnds(pregSlot:int, nEggs:int = 0):void
 {
 	clearOutput();
-	author("B");
 	showBust("");
 	showName("\nBIRTHING!");
+	author("B");
 	
 	var pData:PregnancyData = (pc.pregnancyData[pregSlot] as PregnancyData);
 	var x:int = pregSlot;
@@ -2144,7 +2221,7 @@ public function frostwyrmDearGodThisIsGonnaBeAWhile(nEggs:int = 0):void
 		output("\n\nWhile the most tedious part is over for you both, you don’t have to leave just yet if you don’t want.");
 	}
 	
-	var totalTime:int = ((4 * 4 * 7 * 24 * 60) + 15);
+	var totalTime:int = ((frostwyrmIncubationDays() * 24 * 60) + 15);
 	
 	var baseTime:uint = GetGameTimestamp();
 	var ends:uint = baseTime;
@@ -2223,7 +2300,7 @@ public function frostwyrmHolyCrapYoureStillWaiting():void
 	output("\n\nThe most exciting part of rearing your Frostwyrm hybrid children is over with; just another four months until " + (nEggs == 1 ? "its" : "they’re") + " fully mature.");
 	//output(" You don’t have to wait around to see it, if you have other things you’d like to do.");
 	
-	processTime(4 * 4 * 7 * 24 * 60);
+	processTime((4 * 4 * 7 * 24 * 60) + rand(1440));
 	
 	clearMenu();
 	addButton(0, "4 Months...", frostwyrmWowThisReallyTakesAWhile, undefined);
@@ -2255,7 +2332,7 @@ public function frostwyrmWowThisReallyTakesAWhile():void
 	if (nKids != 1) output("their questions dutifully and truthfully, explaining the differences in biology between you and [frostwyrm.name] in the clearest, simplest ways you can. Questions that are answered are beget with more questions, which you encourage.");
 	else output("her questions dutifully and truthfully, explaining the differences in biology between you and [frostwyrm.name] in the clearest, simplest ways you can. Questions that are answered are beget with more questions, which you encourage.");
 	
-	processTime(4 * 4 * 7 * 24 * 60);
+	processTime((4 * 4 * 7 * 24 * 60) + rand(1440));
 	
 	clearMenu();
 	if (flags["FROSTWYRM_KIP_COUNT"] == undefined) addButton(0, "Next", frostwyrmDoYouWantSumFuk, nKids);
@@ -2277,9 +2354,25 @@ public function frostwyrmIncubateEggs():void
 	output("\n\nWill you opt to stay and incubate now, or will you save it for later, when you have four months’ worth of free time?");
 	
 	clearMenu();
-	if(pc.isPregnant()) addDisabledButton(0, "4 Months...", "Progress 4 Months...", "You cannot do this while currently pregnant!");
+	if(pc.hasPregnancy()) addDisabledButton(0, "4 Months...", "Progress 4 Months...", "You cannot do this while currently pregnant!");
 	else addButton(0, "4 Months...", frostwyrmHolyCrapYoureStillWaiting, undefined);
-	addButton(1, "Leave", frostwyrmSayonara, undefined);
+	addButton(1, "Nevermind", frostwyrmMainMenu, undefined);
+}
+
+public function frostwyrmRaiseHatchlings():void
+{
+	clearOutput();
+	frostWyrmHeader();
+	author("B");
+	
+	var nKids:int = (flags["FROSTWYRM_YOUNG"] == undefined ? 0 : flags["FROSTWYRM_YOUNG"]);
+	
+	output("Are you sure you want to spend the four months with [frostwyrm.name] to raise your hatchling" + (nKids == 1 ? "" : "s") + "?");
+	
+	clearMenu();
+	if(pc.hasPregnancy()) addDisabledButton(0, "4 Months...", "Progress 4 Months...", "You cannot do this while currently pregnant!");
+	else addButton(0, "4 Months...", frostwyrmWowThisReallyTakesAWhile, undefined);
+	addButton(1, "Nevermind", frostwyrmMainMenu, undefined);
 }
 
 // Hatches all incubating eggs.

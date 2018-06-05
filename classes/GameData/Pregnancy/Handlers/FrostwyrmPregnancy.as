@@ -23,7 +23,7 @@ package classes.GameData.Pregnancy.Handlers
 		public function FrostwyrmPregnancy()
 		{
 			_handlesType = "FrostwyrmPregnancy";
-			_basePregnancyIncubationTime = 4 * 4 * 7 * 24 * 60; //4 months
+			_basePregnancyIncubationTime = 112 * 24 * 60; //4 months
 			_basePregnancyChance = 1;
 			_alwaysImpregnate = true;
 			_ignoreInfertility = true;
