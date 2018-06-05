@@ -1246,8 +1246,6 @@ public function urbolgPBCookiesBYOUMADMAN():void
 
 			output("\n\nHe crosses his arms as your gaze goes from him, back to the cookies, then back to him. Honestly, you’re at a loss as to how this is a bad deal. You impishly ask him if he wants one or not.");
 
-			output("\n\nYou look at the cookies. They <i>truly</i> have that sort of effect on a Korgonne? <i>“Do I look like a fekkin’ liar to ye?”</i> he asks, his tone lighter than his words. <i>“One bite o’ one of them cookies and I’ll be painting the floor with me cum.”</i>");
-			output("\n\nHe crosses his arms as your gaze goes from him, back to the cookies, then back to him. Impishly, you ask him if he wants one or not.");
 			output("\n\nUrbolg hums and strokes at the bottom of his muzzle as he considers it. <i>“Hell, why not,”</i> he asks as he hooks his hands underneath his apron to lift it off himself, bearing his full, nude body to the air. <i>“Could go for some relief, an’ I’m a bit peckish, besides.”</i>");
 		}
 		// Continue here if the PC has given any Korgonne a cookie even once
