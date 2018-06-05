@@ -24,7 +24,7 @@ public function shukuchiFoxBonus():Boolean
 	if(pc.level >= 7 && hours >= 21 && flags["SHUKUCHI_TAVROS_ENCOUNTER"] == undefined)
 	{
 		output("\n\nThere appears to be a couple of hooded humanoids in a shadowed corner of a badly lit, closed up shop front. With their backs turned and wide postures, you can’t say for sure what it is they’re doing. Could just be idle conversation for all you know.");
-		output("\nBut wait, is there someone in between them…? They - no, he - appears distressed. Some sort of fox-morph.");
+		output("\nBut wait, is there someone in between them...? They - no, he - appears distressed. Some sort of fox-morph.");
 		output("\n\nYou can’t hear what the three figures are saying but you’re certain that this is shady.");
 	
 		addButton(0, "Investigate", shukuchiTavrosEncounter, undefined, "Investigate", "Be the hero the fox needs right now but not the one he deserves! <b>Warning:</b> This quest involves getting your [pc.ass] beat up a lot and results in rather specific BDSM fun.\nDon’t expect to go away unscathed.");
@@ -48,16 +48,16 @@ public function shukuchiTavrosEncounter():void
 	if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output(" Wait, no, you’re just some tech nerd with a gun. Like that’s ever stopped you before!");
 	output(" Having spotted all obvious routes for escape, you begin [pc.walking] with a hand loosely placed on your [pc.weapon]. You approach from the crowds, using the overall ambience and low light levels of the red-light sector as a cover.");
 
-	output("\n\nIt only takes a few feet for you to hear the group, your suspicions confirmed when you hear not two but three voices in confrontational tones. Something about ‘protection’, ‘money’ and… ‘beans’? It’s all muffled and accented in a way unfamiliar to you, forcing you to focus instead on your potential battle plan. You think of what ifs: could you risk open combat in such a high security area? <i>Would they</i> risk it? When another’s life is potentially in danger, there’s no point to question it.");
+	output("\n\nIt only takes a few feet for you to hear the group, your suspicions confirmed when you hear not two but three voices in confrontational tones. Something about ‘protection’, ‘money’ and... ‘beans’? It’s all muffled and accented in a way unfamiliar to you, forcing you to focus instead on your potential battle plan. You think of what ifs: could you risk open combat in such a high security area? <i>Would they</i> risk it? When another’s life is potentially in danger, there’s no point to question it.");
 	if(pc.personality <= 33) output(" Something nags you internally that it’s the right thing to do.");
 	else output(" The old idea of some kind of kudos or reward shakes up your energy alongside...");
 	
-	output("\n\nYou’re within jumping distance of the three, wary of their arm movements and increased aggression of the hooded figures. You can see the third figure - a short fox-morph with a human face - nestled in between the two, his pawed hands put up defensively as one of the hoods barks something at him in a language you can’t make out: they’re turned away from you. The fox's eyes seem to catch you moving, their glassy terror looking straight at you.");
+	output("\n\nYou’re within jumping distance of the three, wary of their arm movements and increased aggression of the hooded figures. You can see the third figure - a short fox-morph with a human face - nestled in between the two, his pawed hands put up defensively as one of the hoods barks something at him in a language you can’t make out: they’re turned away from you. The fox’s eyes seem to catch you moving, their glassy terror looking straight at you.");
 	output("\n\nOh crap.");
 	output("\n\nBoth hoods turn to you as if having bodies powered by pistons, revealing blank, black masks underneath and light-looking, sleeveless black body armor under cloaks and scarves.");
 	output("\n\n<i>“You saw nothing!”</i> shouts one, pointing his finger at you. All at once - before you can react - the other hood gut-punches the hapless fox, the two culprits then darting off in opposite directions! Their victim collapses to the floor with a groan, clutching all over his abdomen. You let go of your [pc.weapon]’s grip, forcing yourself to choose a target!");
 
-	addButton(0, "Chase!", shukuchiTavrosChase, undefined, "Chase!", "It's on! Pick a guy, chase him through Tavros!" + (silly ? " YEAH, YOU, WHO ELSE AM I ADDRESSING?" : ""));
+	addButton(0, "Chase!", shukuchiTavrosChase, undefined, "Chase!", "It’s on! Pick a guy, chase him through Tavros!" + (silly ? " YEAH, YOU, WHO ELSE AM I ADDRESSING?" : ""));
 	addButton(1, "Ignore", shukuchiTavrosTalkFoxman, undefined, "Ignore", "Or... don’t. You’ve got a good source already. The culprits could be long gone in seconds.");
 }
 
@@ -104,12 +104,12 @@ public function shukuchiTavrosChasePartIITheChasening():void
 	author("SoAndSo");
 	
 	output("The crowd thins surprisingly quickly as you race down the deck, some sort of warning alert playing out along the plazas and walkways while the occasional UGC officer gets caught in the crowds.");
-	output("\n\nYou can see that even this acrobatic assailant is tiring somewhat, his parkour-esque jumping and people-dodging becoming less and less finessed as you catch him up! Even if it takes its toll on you all the same, you’re confident you can catch this bastard…");
+	output("\n\nYou can see that even this acrobatic assailant is tiring somewhat, his parkour-esque jumping and people-dodging becoming less and less finessed as you catch him up! Even if it takes its toll on you all the same, you’re confident you can catch this bastard...");
 	output("\n\nThe assailant holds another device in his hand, the same blue as before!");
 	output("\n\nWith a little more forethought, he throws it almost directly at you!");
-	output("\n\nOn instinct, you dive to the left with your arms in front of your face, just about keeping yourself on your [pc.feet] as another flashbang, wall of horrified screams and chorus of loudspeaker announcements causes more pain for your senses! But you’re so close…!");
+	output("\n\nOn instinct, you dive to the left with your arms in front of your face, just about keeping yourself on your [pc.feet] as another flashbang, wall of horrified screams and chorus of loudspeaker announcements causes more pain for your senses! But you’re so close...!");
 	output("\n\nYou see the elevator up ahead, the doors opening just wide enough for the assailant to slip into the empty carriage. Now’s the chance!");
-	output("\n\nOnly a few feet away, you dive for the open doors and land inside! Taken over by adrenaline, you ignore the painful ache in your elbows from impact and push yourself up to see the…\nculprit…");
+	output("\n\nOnly a few feet away, you dive for the open doors and land inside! Taken over by adrenaline, you ignore the painful ache in your elbows from impact and push yourself up to see the... culprit...");
 	output("\n\n...as he looks at you from the other side of the doors.");
 	output("\n\n<i>“You saw. Nothing,”</i> he says in a roboticized voice, gesturing with an open palm over his face. As he lowers it, a stealth field follows and completely removes him from view, as if he was never there to begin with.");
 	if(silly) output(" <i>dramatic brass section</i>");
@@ -150,19 +150,19 @@ public function shukuchiTavrosTalkFoxman():void
 	}
 	
 	output("<i>“Ohh jeez, oh no!”</i> he calls out, wiping his eyes with the back of his paw. <i>“Look, I’m too tired to run, just ask what you need and let me be, alright?");
-	if (!pcIsLazy) output(" The detective knows everything and that punch was… something else, I tells ya.");
+	if (!pcIsLazy) output(" The detective knows everything and that punch was... something else, I tells ya.");
 	output("”</i>\n\nYou try to clarify, only wishing to get the facts straight with the hope of solving this strange incident.");
 	output("\n\n<i>“Consider me curious and keen,”</i> you add, offering a hand for him to shake. He does so with obvious reluctance, the winded look on his face turning into defeat.");
 	output("\n\n<i>“Might as well come clean then, U.G.C. are useless for this shit, enough for me to trust a random savior at least. So you know how it is in this galaxy, pretty much everything has its price. Little did I know that, as a small-time goods dealer on some backwater station, there are assholes with a vested interest in my ‘safety,’”</i> he begins, leaning his back against the wall. You fold your arms as he talks, occasionally staring him in the eye as he tells his story.");
-	output("\n\n<i>“Now these goods ain’t much, just food and drink not normally sold here, nothing illegal… okay, maybe some ‘grey areas’ but I paid off the right people. Who knew soybean was considered a rarity in this part of space? Anywho, some other people come along, all mysterious and masked like some motherfuckers out of one of them mindless " + (silly ? "vidja gaems" : "vid games") + " I grew out of. They lay down an ultimatum: take this deal or they take my legs,”</i> he sighs, clutching at his orange-red tail meekly. You ask him to continue, determined and patient as you listen.");
-	output("\n\n<i>“Deal isn’t so bad, all things considered. I give them some profit and an ‘associates discount,’ they come by and <b>buy</b> some things, keep the competitors away from suppliers, usually treat me right… just sometimes I can’t pull enough cash. They play rough a bit, never enough to put the nails in though. That punch was the worst I’d had in months so it’s usually ok. But, ‘nice’ as it is, I wouldn’t say no to having them gone…”</i>");
+	output("\n\n<i>“Now these goods ain’t much, just food and drink not normally sold here, nothing illegal... okay, maybe some ‘grey areas’ but I paid off the right people. Who knew soybean was considered a rarity in this part of space? Anywho, some other people come along, all mysterious and masked like some motherfuckers out of one of them mindless " + (silly ? "vidja gaems" : "vid games") + " I grew out of. They lay down an ultimatum: take this deal or they take my legs,”</i> he sighs, clutching at his orange-red tail meekly. You ask him to continue, determined and patient as you listen.");
+	output("\n\n<i>“Deal isn’t so bad, all things considered. I give them some profit and an ‘associates discount,’ they come by and <b>buy</b> some things, keep the competitors away from suppliers, usually treat me right... just sometimes I can’t pull enough cash. They play rough a bit, never enough to put the nails in though. That punch was the worst I’d had in months so it’s usually ok. But, ‘nice’ as it is, I wouldn’t say no to having them gone...”</i>");
 	output("\n\nHe finishes with his head in his hands, his breathing a little wheezy. You comfort him with a rub on his shoulder, asking him for any other details.");
-	output("\n\n<i>“Appreciated. Uh, details, details… no idea of any personal names, it’s different people each time. Same getup too, whole hood and mask thing. If I didn’t know it was an organic under there, I’d have thought it was androids or somethin’. Anyway, never had any direct confirmation but… I have <b>heard</b> a potential name for the group,”</i> he sighs, pulling at his tail again.");
+	output("\n\n<i>“Appreciated. Uh, details, details... no idea of any personal names, it’s different people each time. Same getup too, whole hood and mask thing. If I didn’t know it was an organic under there, I’d have thought it was androids or somethin’. Anyway, never had any direct confirmation but... I have <b>heard</b> a potential name for the group,”</i> he sighs, pulling at his tail again.");
 	output("\n\n<i>“Host Shukichi. I only heard it the once but it’s like a clan sign or something, iunno. Gotta be useful though, right? It’s not a name I’ve ever heard elsewhere,”</i> he finishes, shrugging his shoulders.");
 	output("\n\n<i>“I’m pretty sure that this isn’t just a Tavros thing, how could it be? My suppliers probably get their own problems, the Host being one of them and with the tech they pool, they gotta be minting it somewhere else.”</i>");
 	output("\n\nHe pauses for a moment.");
 	output("\n\n<i>“Ey one more thing, before you go hunting for ghosts: you might be as good as their agents or better but they’ll have their tricks. They ain’t the type to kill but they ain’t the type to let you off easy.”</i>");
-	output("\n\nYou mull it over a bit, taking time to consider the poor fox's ideas. You thank him with another shake, thinking that it would be best not to linger in case this ‘Host’ or anyone else intrudes on your investigations or - indeed - on any other investigators.");
+	output("\n\nYou mull it over a bit, taking time to consider the poor fox’s ideas. You thank him with another shake, thinking that it would be best not to linger in case this ‘Host’ or anyone else intrudes on your investigations or - indeed - on any other investigators.");
 	
 	addButton(0, "Leave", shukuchiReturnFromFoxman);
 }
@@ -180,7 +180,7 @@ public function shukuchiMhengaBonus():Boolean
 {
 	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined && flags["SHUKUCHI_MHENGA_ENCOUNTER"] == undefined && hours == 3 && minutes <= 30)
 	{
-		output("\n\nThere’s a hooded, diminutive humanoid hanging around outside the space port. At a glance, you’d say a particularly bushy ausar male: a glossy tri-color of white, black, and toffee brown, lean and piston-like in his build. He has sleeveless body armor, all in black, with a short cape and hood. A smooth, featureless orb of a mask covers his features, a lot like…");
+		output("\n\nThere’s a hooded, diminutive humanoid hanging around outside the space port. At a glance, you’d say a particularly bushy ausar male: a glossy tri-color of white, black, and toffee brown, lean and piston-like in his build. He has sleeveless body armor, all in black, with a short cape and hood. A smooth, featureless orb of a mask covers his features, a lot like...");
 		output("\n\nWait a second.");
 		output("\n\n...A lot like those thugs on Tavros.");
 
@@ -200,19 +200,19 @@ public function shukuchiMhengaEncounter():void
 	output("\n\nHe’s on his own, so it seems. Waiting for something, perhaps, or at least setting up for some scheme you couldn’t put a finger on.");
 	if(flags["MET_PENNY"]){
 		output("\n\nYou’re certain that Officer Penny would be aware of a shady character operating like this, although this is the most backwater a planet can be.");
-		if (flags["PENNY_BIMBO"] || flags["PENNY_IS_A_CUMSLUT"]) output("\n\nThinking on it, Officer Penny probably has more cum-centric problems to take care of, anyway…");
+		if (flags["PENNY_BIMBO"] || flags["PENNY_IS_A_CUMSLUT"]) output("\n\nThinking on it, Officer Penny probably has more cum-centric problems to take care of, anyway...");
 	}
-	output("\n\nHaving no clear route of action on the spot, you approach the leaning figure from the side with your left arm to the wall, careful not to make yourself too obvious. You can’t see him react to you and with that mask, it’s impossible to know if he’s playing you or not. Nothing for it, either way…");
-	output("\n\nAs you come within several feet of him, there’s the echo of synthetic voice chatter and static coming through your codex. How in the hell…?");
+	output("\n\nHaving no clear route of action on the spot, you approach the leaning figure from the side with your left arm to the wall, careful not to make yourself too obvious. You can’t see him react to you and with that mask, it’s impossible to know if he’s playing you or not. Nothing for it, either way...");
+	output("\n\nAs you come within several feet of him, there’s the echo of synthetic voice chatter and static coming through your codex. How in the hell...?");
 	output("\n\nYou press an [pc.ear] to it, hoping to pick up the details.");
-	output("\n\nSale, chemicals, no show, mark, blood money…");
+	output("\n\nSale, chemicals, no show, mark, blood money...");
 	output("\n\nSome terms seem to make sense but the rest is just digitized enough to be indecipherable. You pause for a moment, hoping to pick up on anything else important while keeping out of sight. A hand finds itself trailing along your [pc.weapon], just in case... even against your better judgement. Perhaps a desperate measure, although flashbangs could only be the tip of the iceberg with these types of organized criminals.");
 	if(pc.isBimbo() || pc.isBro()) output(" Jeez, when did I get all smarty and brainful? Gotta get rid of this non - sexy stuff later!");
 	output("\n\nYou keep quiet as the strange communication continues, a knot rising in your chest as you seem close to uncovering some master mystery in the easiest way possible.");
-	output("\n\n<i>“I could do with a fuckin’ lay…”</i> is blurted through the codex.");
+	output("\n\n<i>“I could do with a fuckin’ lay...”</i> is blurted through the codex.");
 	output("\n\nInteresting.");
 	output("\n\nWithout a signal, the cloaked ausar pushes himself off the wall and walks off south. Giving a wide berth, you hold on before following him, only taking a few trepidatious movements once you’re certain he’s out of earshot.");
-	output("\n\nLooking this way and that to check for a clear coast, you start following him as he sticks to the jungle side of the path. What you’ll find when he finds his destination, you couldn’t posit at this point with any kind of certainty…");
+	output("\n\nLooking this way and that to check for a clear coast, you start following him as he sticks to the jungle side of the path. What you’ll find when he finds his destination, you couldn’t posit at this point with any kind of certainty...");
 	output("\n\nAnd as you think for a second too long on that point, the ausar waves his hand in front of his face and melds into the foliage, becoming a ghost of green leaves and air.");
 	output("\n\nWell <i>shit</i>...");
 
@@ -253,7 +253,7 @@ public function shukuchiMhengaVictory():void
 	author("SoAndSo");
 	if (enemy.HP() <= 0)
 	{
-		output("The masked assailant slips to his knee, his head bowed low and his chest heaving for air as he struggles to recover from that last hit. He hides his blade, concealing it away as a sign of surrender. Now to get some juice out of him…");
+		output("The masked assailant slips to his knee, his head bowed low and his chest heaving for air as he struggles to recover from that last hit. He hides his blade, concealing it away as a sign of surrender. Now to get some juice out of him...");
 		flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 1;
 	}
 	else
@@ -275,8 +275,8 @@ public function shukuchiMhengaLoss():void
 	output("\n\nYou look up from your prone position, gasping for air as pain aches and throbs throughout your entire abdomen.");
 	output("\n\nThe ausar squats beside you, his arms on his knees and weapon nowhere to be seen.");
 	if (silly) output(" <b>“CYKA BLYAT,”</b> is what his body seems to say.");
-	output("\n\nYou fully expect him to do you in there and then, his entire M.O. seeming to leave no room for a scene…");
-	output("\n\nHe leans in closer, picking up your piece and putting it back in your...hands…?");
+	output("\n\nYou fully expect him to do you in there and then, his entire M.O. seeming to leave no room for a scene...");
+	output("\n\nHe leans in closer, picking up your piece and putting it back in your...hands...?");
 	
 	flags["SHUKUCHI_MHENGA_ENCOUNTER"] = 0;
 
@@ -310,7 +310,7 @@ public function shukuchiUvetoBonus():Boolean
 		output("\n\nYou spot him fumbling with something, something bowl-ish and black, almost like...");
 		output("\n\n...a mask.");
 		
-		addButton(0, "Investigate", shukuchiUvetoEncounter, undefined, "Investigate", "More of these thugs and their sneaky tech. You swear to fuck, if they run away again…");
+		addButton(0, "Investigate", shukuchiUvetoEncounter, undefined, "Investigate", "More of these thugs and their sneaky tech. You swear to fuck, if they run away again...");
 	}
 	
 	return false;
@@ -322,8 +322,8 @@ public function shukuchiUvetoEncounter():void
 	clearMenu();
 	author("SoAndSo");
 	
-	output("Before setting off, you measure your choices: previous run-ins have had these Host agents ahead of you at a moment's notice, they’re dangerous and seemingly <i>too</i> fast for the local law enforcement.");
-	output("\n\nPerhaps the past methods of jumping out with all the bells and whistles to alert the suspects should be avoided this time…");
+	output("Before setting off, you measure your choices: previous run-ins have had these Host agents ahead of you at a moment’s notice, they’re dangerous and seemingly <i>too</i> fast for the local law enforcement.");
+	output("\n\nPerhaps the past methods of jumping out with all the bells and whistles to alert the suspects should be avoided this time...");
 	output("\n\nYou decide to go full covert, looking all over for a distant spot to observe this suspicious human. Spying a shadowed nook from behind a building support, you casually walk behind it and lean back just enough to give yourself a view of the suspect.");
 	output("\n\nNo major movements so far, just more hand-warming and twitchy looks.");
 	output("\n\nMight be a rookie, you posit. Is this what you do when you join such an organization? Stand in the snow on a frozen ice-ball of a planet and wait around for... something? Irrelevant now, any movement could mean something. You keep a hand near your [pc.weapon], the absolute last resort in every case.");
@@ -334,7 +334,7 @@ public function shukuchiUvetoEncounter():void
 	output("\n\nNothing.");
 	output("\n\nHm.");
 	output("\n\nThe huskar continues walking along, mask and all, while the human merely looks around him as if ignoring the other agent completely. As the huskar strides away and out of view, the human dons his mask in a slow and purposeful manner. From the way he angles it as he puts it on - from forehead to mouth in one slow motion - an idea springs about that it must be some sort of rite or ritual. You couldn’t say at this point, only that the game plan stays the same: follow the rookie.");
-	output("\n\nAt that moment, the human turns right and begins a slow walk south. What could be down there? Racecourse…?");
+	output("\n\nAt that moment, the human turns right and begins a slow walk south. What could be down there? Racecourse...?");
 	output("\n\nWould make sense that a crime ring would have a gambling and betting angle. With that in mind, you wait just long enough for him to be out of earshot and consider following.");
 	
 	addButton(0, "Next", shukuchiUvetoSleuth);
@@ -354,7 +354,7 @@ public function shukuchiUvetoSleuth():void
 	output("\n\nAs you ponder that, a portly looking figure lumbers from around a corner, a walking cane in his right hand. Wearing some sort of furred hat and the smuggest smile you’ve seen on a man, he ambles along at a leisurely pace in the opposite direction to you, northbound for some other reason. You’d think nothing of it at any other point but when the portly man and the masked agent brush against each other.");
 	output("\n\nYou raise your codex UI up: even a low rez image could be useful here.");
 	output("\n\nYou see the glint of several small circles exchange hands in the meeting, the fat, gloved hand of the portly gentleman dropping them into the incoming palm of the masked agent. That smug grin beams ever brighter as he does so, perhaps the sign of a job well done. In any case, as quickly as they intersect, they brush past each other as if nothing had happened at all.");
-	output("\n\nHmm…");
+	output("\n\nHmm...");
 	output("\n\nThe human then raises his hand in front of his face, some distance away from the sparsely populated streets. In a motion you’ve grown to recognize, he pulls his hand down and a stealth field blends over his form. You stop as you lose complete sight of him, reconsidering your options. Thinking on your toes, you decide to track down the wobbling fat man. You could put the nails to him if need be: you’ve got photographic evidence of collusion with a criminal gang...");
 	
 	addButton(0, "Follow", shukuchiUvetoSleuthMore);
@@ -383,7 +383,7 @@ public function shukuchiUvetoSleuthMost():void
 	output("The fat man comes to a halt as he hugs a building, reaching for some device or another in his pocket.");
 	output("\n\nNow’s your chance, while he’s preoccupied.");
 	output("\n\nChecking for any witnesses, you take a path over to him that puts you out of his line of sight. From what you’ve seen and gathered, you can force a response out of him with some deft words and finger waving.");
-	output("\n\nAnd all of this right under the syndicate's nose.");
+	output("\n\nAnd all of this right under the syndicate’s nose.");
 	output("\n\nYou approach from his right, [pc.walking] lightly and cautiously up to his side. You reach out and grab his arm and shoulder, holding him in place!");
 	output("\n\n<i>“Oh pardon me, I- excuse me! Let go you-”</i> he stammers, stuffing his device into a pocket.");
 	output("\n\n<i>“I have evidence of you making deals with known criminals,”</i> you state flatly, boring your eyes into his alarmed face.");
@@ -393,14 +393,14 @@ public function shukuchiUvetoSleuthMost():void
 	output("\n\n<i>“I-I say, I know nothing, " + pc.mf("sir", "madam") + "! Is this some ruse o-or racket?! Need I scream for help?! Believe me, I have the lungs of a Netherfrostic whale a-and-”</i>");
 	output("\n\nYou jerk his arm enough to shake him on the spot, making him halt his ranting for a second. You assure him that you just need information: what’s his deal with the masked agent, does he know who they are, how they operate, what they’re planning?");
 	output("\n\n<i>“I-I-I’m just one of many betting managers, a humble fellow! Look, I’ll tell all just please, please! Let go of this jacket, it’s <b>exceedingly</b> expensive!”</i> he flusters, batting at your hand. You relent, letting go of his shoulder but cornering him with folded arms.");
-	output("\n\n<i>“Right, right, right, you seem to be of at least a r-reasonable sort! But it’s true, I merely collect earnings and g-give them to the winners! Of course, that depends on who you see as ‘winners’, ahehehe…”</i> he begins timidly, idly rubbing his coat in duress.");
-	output("\n\n<i>“I just addle a few numbers here and t-there, the fairest form of tax, I assure you! And then… ‘they’ come by to collect. In turn, the racecourse gains security and an undercurrent of legitimate business. Think of it what you will, I have the city’s best interests in mind!”</i> he exclaims, thumping his cane against the floor.");
-	output("\n\nYou’re less concerned about that and more concerned about names, aims… dangers.");
-	output("\n\n<i>“Names? Only… Host and sometimes </i>‘Shukuchi’<i>. I don’t know what it all means! But apart from that, no names, only masks and agents. Sometimes male, female, alien, anything at all. If it weren’t for the agents, they’d might as well not exist and they’d be very far from my mind… I’d rather it all be left alone, be left alone myself! As for what they’re doing here, I’ve no idea, what do criminals usually do? Make money is my own guess, I’m sure yours as well! Undesirables all, the difference is the amount of firepower between me and them!”</i> he kicks up again, harrumphing his way through his answers.");
+	output("\n\n<i>“Right, right, right, you seem to be of at least a r-reasonable sort! But it’s true, I merely collect earnings and g-give them to the winners! Of course, that depends on who you see as ‘winners’, ahehehe...”</i> he begins timidly, idly rubbing his coat in duress.");
+	output("\n\n<i>“I just addle a few numbers here and t-there, the fairest form of tax, I assure you! And then... ‘they’ come by to collect. In turn, the racecourse gains security and an undercurrent of legitimate business. Think of it what you will, I have the city’s best interests in mind!”</i> he exclaims, thumping his cane against the floor.");
+	output("\n\nYou’re less concerned about that and more concerned about names, aims... dangers.");
+	output("\n\n<i>“Names? Only... Host and sometimes </i>‘Shukuchi’<i>. I don’t know what it all means! But apart from that, no names, only masks and agents. Sometimes male, female, alien, anything at all. If it weren’t for the agents, they’d might as well not exist and they’d be very far from my mind... I’d rather it all be left alone, be left alone myself! As for what they’re doing here, I’ve no idea, what do criminals usually do? Make money is my own guess, I’m sure yours as well! Undesirables all, the difference is the amount of firepower between me and them!”</i> he kicks up again, harrumphing his way through his answers.");
 	output("\n\nYou draw your thumb and index finger across your eyes, inhaling slowly and exhaling with audible annoyance. Another dead end, it seems.");
 	if (pc.isBro()) output(" This sucks balls: why can’t those buttholes just fight you already?!");
 	output("\n\nYou back away from the suspect, not knowing what to make of it all. The portly man slinks off in a surprisingly speedy fashion, as if his life was hinging on it. Not as if he’s any use now. With another dead lead, you decide to put the whole thing to rest and get back on the road.");
-	output("\n\nYou shuffle a few meters forward, past a nearby alleyway and then…");
+	output("\n\nYou shuffle a few meters forward, past a nearby alleyway and then...");
 
 	addButton(0, "Huh??", shukuchiUvetoAmbush);
 }
@@ -412,7 +412,7 @@ public function shukuchiUvetoAmbush():void
 	
 	output("A bristling wave of air leads to something throwing you into the alleyway!");
 	output("\n\nYou land on your elbows and [pc.knees], pushing yourself forward by your [pc.feet] to face your attacker.");
-	output("\n\nThe air ripples then breaks away as two tall figures in black materialize before you: blank masks, hoods, body armor…");
+	output("\n\nThe air ripples then breaks away as two tall figures in black materialize before you: blank masks, hoods, body armor...");
 	output("\n\nAh shit.");
 	
 	CombatManager.newGroundCombat();
@@ -443,7 +443,7 @@ public function shukuchiUvetoVictory():void
 		
 	}
 	output("\n\nYou saunter over to the two of them with your [pc.weapon] held up, knowing that their M.O. is to run first. True to that assertion, both assailants adjust themselves to kneel properly, their heads bowed low: it seems you’ve cut off their escape route.");
-	output("\n\n<i>“You should’ve left our mutual friend alone,”</i> says one, the roboticized voice low and breathless. Mutual friend… the betting manager?");
+	output("\n\n<i>“You should’ve left our mutual friend alone,”</i> says one, the roboticized voice low and breathless. Mutual friend... the betting manager?");
 	output("\n\n<i>“And what could you do now? You’re in my sights,”</i> you say, staring the two down as you approach with an unsure step.");
 	output("\n\nYou couldn’t be more than a foot away from them when-");
 	
@@ -456,7 +456,7 @@ public function shukuchiUvetoLoss():void
 	flags["SHUKUCHI_UVETO7_ENCOUNTER"] = 0;
 	
 	output("You stagger backwards as your body and strength give in to the twin assault, clutching your [pc.weapon] in both hands.");
-	output("\n\nThe two agents, with the confident postures of victory, cast longer shadows as they slowly, defiantly corner you in. You brace yourself for inevitable pain…!");
+	output("\n\nThe two agents, with the confident postures of victory, cast longer shadows as they slowly, defiantly corner you in. You brace yourself for inevitable pain...!");
 	output("\n\n<i>“You’d be wise to not get involved in the future,”</i> says the closest, the two of them stowing their weapons away in brisk movements.");
 	output("\n\n<i>“S-so...I’m free to go?”</i> is all you blurt out.");
 	output("\n\nThey both raise their hands over the faces.");
@@ -471,7 +471,7 @@ public function shukuchiUvetoYesYesAgain():void
 	
 	output("<i>“You saw nothing,”</i> says the closest agent, both of their hands giving way to stealth fields.");
 	output("\n\nYou consider retaliation. Invisible as they are, a swipe or a shot would catch them in this window.");
-	if (flags["SHUKUCHI_UVETO7_ENCOUNTER"]) output("\n\nThey did submit, however… honor for honor. You instead put your [pc.weapon] in its holster and dust yourself down.");
+	if (flags["SHUKUCHI_UVETO7_ENCOUNTER"]) output("\n\nThey did submit, however... honor for honor. You instead put your [pc.weapon] in its holster and dust yourself down.");
 	else output("\n\nYou wouldn’t want to antagonize them further: you lost, after all. Tired and beaten, you pull yourself up against the wall, stow your [pc.weapon] and dust yourself down.");
 	output("\n\nWith a sigh, you stumble out of the alleyway and hold yourself up against a wall. You consider what you’ve learned and uncovered from all of this...");
 	output("\n\nThey’ve got their fingers in many financial pies, small scale by the looks of things. They’re highly trained and seem adept at stealth-based combat. They have some semblance of moral code: it wouldn’t be difficult for them to outright kill anyone that got in their way, yet they’ve only tried to subdue you instead...");

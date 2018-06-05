@@ -882,7 +882,7 @@ package classes.Characters
 				else m += " some width";
 				m += ParseText("... It seems your body is not happy with you looking as thin as a rail, so it is adding a few pounds of fecund weight where it counts most" + (hipRatingRaw < 10 ? "." : "--much to your pleasure!") + " <b>Your [pc.hips] have grown wider!</b>");
 				
-				hipsMin += addHips;
+				hipRatingRaw += addHips;
 				
 				if(hairType == GLOBAL.HAIR_TYPE_GOO && addHips > 0)
 				{
