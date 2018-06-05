@@ -738,7 +738,7 @@ public function yomaHugsI():void
 	showYoma();
 	author("GothPastel");
 
-	output("t’s getting late, you notice, barely stifling a yawn. Yoma’s large ears swivel, catching the sound and he speaks, <i>“Are you tired, [pc.name]?”</i>");
+	output("It’s getting late, you notice, barely stifling a yawn. Yoma’s large ears swivel, catching the sound and he speaks, <i>“Are you tired, [pc.name]?”</i>");
 	output("\n\nNow that he mentions it, yeah, you are.");
 	output("\n\nHe smiles, wrapps an arm around your ");
 	if (pc.tallness >= 53) output("shoulders");

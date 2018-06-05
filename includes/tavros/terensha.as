@@ -1535,9 +1535,7 @@ public function getTerenshaPregContainer():PregnancyPlaceholder
 
 public function showRenshaAndReaha(nude:Boolean = false):void
 {
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
 	showName("REAHA &\nTERENSHA");
-	showBust("REAHA"+nudeS,"TERENSHA");
+	showBust(reahaBustDisplay(nude),"TERENSHA");
 	author("Savin");
 }
