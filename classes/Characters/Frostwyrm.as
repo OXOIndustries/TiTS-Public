@@ -201,7 +201,7 @@ package classes.Characters
 		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
-			dataObject._neverSerialize = false;
+			//dataObject._neverSerialize = false;
 		}
 		
 		override public function get bustDisplay():String
