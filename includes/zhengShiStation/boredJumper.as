@@ -1,7 +1,7 @@
 import classes.Characters.JumperBored;
-//Random sweaty bunnygirl in a latex jumpsuit with a real craving for some hot, sweaty sex. Part of the <i>“Jumper”</i> gang.
+//Random sweaty bunnygirl in a latex jumpsuit with a real craving for some hot, sweaty sex. Part of the “Jumper” gang.
 	//Pert and perky: C-cups
-	//13”</i> Human Cock, sometimes horsecock. Figure they got a dong designer stashed up top, of course the mooks make use of it for funsies.
+	//13" Human Cock, sometimes horsecock. Figure they got a dong designer stashed up top, of course the mooks make use of it for funsies.
 	//Big fat cuntlips that ache for a plowing.
 	//Lop-eared in those hot hot mines.
 	//Shieldbelt with jet boosters, dart gun, gas grenades, and a stealth field. Left her real firepower upstairs and only brought what she’d need to subdue a resisting slave...
@@ -10,13 +10,13 @@ import classes.Characters.JumperBored;
 	//Very evasive, resistant to heat and cold
 	//Uses second wind if HP damaged much.
 	//Uses a healing item if HP damaged much a second time.
-	//Low lust defenses & <i>“easy”</i> fetishes. - Good contrast to the beefy robots that require HP damage.
+	//Low lust defenses & “easy” fetishes. - Good contrast to the beefy robots that require HP damage.
 	//Always takes extra lust damage from PCs with the sweaty flag
 	//Cum covered PCs cause passive lust reduction each turn. She wants a fresh, sweaty fuck!
 
 /*
 output("\n\n//Combat");
-output("\n\nThis bored laquine’s pirate affiliation is as plain as the glowing red letters on her glossy black zipsuit: they spell <i>“Jumper”</i> down the side. Beneath the lettering, a powerfully muscled thigh flexes with idle energy. Her wide hips and bubbly butt hint at her prowess as both a leaper and a breeder, but it’s the sizeable {equine/canine/feline/terran-shaped} bulge in the crotch that proudly declares what she’s here to get. You can drag your eyes up higher to take in her horny smile, but the outline of her turgid dick and perky, C-cup tits lingers behind.");
+output("\n\nThis bored laquine’s pirate affiliation is as plain as the glowing red letters on her glossy black zipsuit: they spell “Jumper” down the side. Beneath the lettering, a powerfully muscled thigh flexes with idle energy. Her wide hips and bubbly butt hint at her prowess as both a leaper and a breeder, but it’s the sizeable {equine/canine/feline/terran-shaped} bulge in the crotch that proudly declares what she’s here to get. You can drag your eyes up higher to take in her horny smile, but the outline of her turgid dick and perky, C-cup tits lingers behind.");
 
 output("\n\nThe ambient warmth looks to be affecting her more than you, slicking her fur down until it shines just like her latex suit. It must be a sauna under that slick, creaking material. Her ears are droopy from the heat, oozing over her shoulders like half-melted wax, but she shows no sign of minding. This bored Jumper likes the heat!");
 
@@ -270,7 +270,7 @@ public function sweatBunHyperCockDock():void
 	output("\n\nYou’re beaten.");
 	output("\n\n<i>“Oh, whoah. What’s this?”</i> She gently drops a latex-covered footpaw onto your crotch, rubbing ");
 
-	var x:int = pc.biggestTitSize();
+	var x:int = pc.biggestCockIndex();
 
 	if(!pc.isCrotchExposed()) output("at the monumental bulge");
 	else if(pc.cockTotal() == 1) output("your disproportionately well-hung cock");
