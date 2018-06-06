@@ -578,7 +578,7 @@ public function ganJail4():void
 	output("\n\n<i>“Damn, she’s really out cold. I changed her out of those soaked clothes so she wouldn’t get sick. It’s way too big for her, but it’ll work till she gets back up top, and I’ve got plenty of other shirts like it,”</i> she explains, brushing inky hairs away from her eyes. She looks towards the village proper just as you hear the rattle of the door. You turn to find the head judge from the night before entering the enclosure.");
 	output("\n\n<i>“Good morning prisoners, did you have any good sleepings? I always wonder what you solid creatures are thinking when you do that stuff, but you sure look super cute doing it. Now, what did I come out here for... Oh yes! It is your punishment time. Since you’re a first time offender you have a choice to make. You can either accept the usual punishment, or we will make an exception and use a more crude method of extracting some of your genetic material,”</i> the orange bodied woman explains. It looks like you have a choice to make.");
 	processTime(333);
-	//[Acceptmale][acceptfemale]]{take the usual, it can’t be that bad} [Deny]{goo sex doesn’t sound like your cup of tea right now}
+	//[Acceptmale][acceptfemale]{take the usual, it can’t be that bad} [Deny]{goo sex doesn’t sound like your cup of tea right now}
 	clearMenu();
 	if(pc.hasCock()) addButton(0,"Accept (Dick)",acceptStupidoopyPunishment,true,"Accept (Dick)","Let her collect all the genetic material she wants from your penis. It can’t be that bad.");
 	else addDisabledButton(0,"Accept (Dick)","Accept (Dick)","You have no dick to accept with.");

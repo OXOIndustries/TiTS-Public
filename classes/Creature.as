@@ -3545,7 +3545,7 @@
 				//Slamazon shit
 				if(hasStatusEffect("Amazonian Endurance Report Needed")) 
 				{
-					kGAMECLASS.eventQueue.push(kGAMECLASS.amazonEnduranceNotice);
+					kGAMECLASS.amazonEnduranceNotice();
 					removeStatusEffect("Amazonian Endurance Report Needed", true);
 				}
 				StatTracking.track("sex/player/orgasms");

@@ -2182,7 +2182,7 @@ public function frostwyrmDearGodThisIsGonnaBeAWhile(nEggs:int = 0):void
 	
 	output("The first four months go by in a flash: you’re [frostwyrm.name]’s extended guest and attentive mate, and she is far more hospitable than you expected a dragon could be. She provided food when you were hungry; she kept you warm at night; and she’s an excellent conversationalist, providing you with entertainment and enlightenment throughout the four months.");
 	
-	if (pc.hasPregnancyOfType("FrostwyrmPregnancy") && frostwyrm.isPregnant())
+	if (pc.hasPregnancyOfType("FrostwyrmPregnancy") && !frostwyrm.isPregnant())
 	{
 		output("\n\nThe whole time, your belly was slowly growing more and more gravid; it grew harder to walk with each passing day and the weight on your spine became increasingly unbearable. By the time the fourth month rolled around, you were as large as any nine-month-pregnant woman of your kind.");
 		output("\n\nBy the end of month one, you had started to experience mood swings, but they were different from what you had expected from your sexual education classes. You weren’t experiencing joy, or anger, or sadness – not in the traditional sense. What you felt was more primeval, more unfocused. Raw. You had come to understand that they were the emotions your kip was feeling: as it developed inside you, its psionic powers grew, but it was too young yet to understand anything other than pure emotion.");
@@ -2195,7 +2195,7 @@ public function frostwyrmDearGodThisIsGonnaBeAWhile(nEggs:int = 0):void
 		}
 		output("The hardest part’s over now, but you don’t have to leave if you don’t want.");
 	}
-	else if (pc.hasPregnancyOfType("FrostwyrmPregnancy") && !frostwyrm.isPregnant())
+	else if (pc.hasPregnancyOfType("FrostwyrmPregnancy") && frostwyrm.isPregnant())
 	{
 		output("\n\nThe whole time, your belly was slowly growing more and more gravid; it grew harder to walk with each passing day and the weight on your spine became increasingly unbearable. By the time the fourth month rolled around, you were as large as any nine-month-pregnant woman of your kind. Meanwhile, [frostwyrm.name]’s outward appearance doesn’t change much during her gestation; her belly grows firmer and her scales grow more resilient, making it less comfy to snuggle against her, but she otherwise does not pack on any noticeable weight and her walking stature does not change.");
 		output("\n\nBy the end of month one, you had started to experience mood swings, but they were different from what you had expected from your sexual education classes. You weren’t experiencing joy, or anger, or sadness – not in the traditional sense. What you felt was more primeval, more unfocused. Raw. You had come to understand that they were the emotions your kip was feeling: as it developed inside you, its psionic powers grew, but it was too young yet to understand anything other than pure emotion.");
