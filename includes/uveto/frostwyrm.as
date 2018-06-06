@@ -2777,7 +2777,7 @@ public function frostwyrmlingSexMenu():void
 	if (pc.hasCock()) addButton(0, "Breed Them", frostwyrmlingPitchGangbang, undefined);
 	else addDisabledButton(0, "Breed Them", "Breed Them", "You need a penis for this.");
 	if (pc.hasVagina()) addButton(1, "Get Bred", frostwyrmlingCatchGangbang, undefined);
-	else addDisabledButton(0, "Get Bred", "Get Bred", "You need a vagina for this.");
+	else addDisabledButton(1, "Get Bred", "Get Bred", "You need a vagina for this.");
 	addButton(2, "Bath Time", frostwyrmlingBathing, undefined);
 	addButton(3, "Blow Them", frostwyrmGiveThemABath, undefined);
 	//addButton(14, "Back", frostwyrmBunchaKiddoContent, undefined);
