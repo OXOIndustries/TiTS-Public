@@ -815,8 +815,7 @@ public function frostwyrmMainMenu(bOutput:Boolean = true):void
 	addButton(0, "Appearance", frostwyrmAppearance, undefined);
 	addButton(1, "Talk", frostwyrmWeGotSomeDialogue, undefined);
 	addButton(2, "Sex", frostwyrmIWantToBangTheLizard, undefined);
-	if(flags["FROSTWYRM_KIP_COUNT"] > 0) addButton(3, "Kips", frostwyrmBunchaKiddoContent, undefined);
-	else addDisabledButton(3, "Kips", "Kips", "You have no fully matured kips to interact with!");
+	addButton(3, "Kips", frostwyrmBunchaKiddoContent, undefined);
 	addButton(4, "Bellyrub", whosAGoodFrostwyrm, undefined);
 	
 	//(9999 == 0) addButton(5, "Extract", frostwyrmQuestSample, undefined);
@@ -851,7 +850,7 @@ public function frostwyrmAppearance():void
 	output(". Capping her vagina is a clitoris, blue and beady, about the size of your fist - while large to you, it’s about appropriate for her size.");
 	output("\n\nThough it’s usually concealed by her tail, she has a large, blue-ringed anus where her tail meets her spine, right where it belongs.");
 	output("\n\n[frostwyrm.name] shuffles her body slightly, gently nudging you closer to her belly and to her rear legs. <i>Your observations are not subtle, [pc.name],</i> she tells you. <i>If you are so inclined to study my body, I can provide you with a closer look.</i>");
-	output("\n\nHer penile vent begins to bulge just slightly as her arousal begins to stir. Perhaps she likes it when you ‘study’ her");
+	output("\n\nHer penile vent begins to bulge just slightly as her arousal begins to stir. Perhaps she likes it when you ‘study’ her.");
 	
 	clearMenu();
 	processTime(5);
@@ -2463,10 +2462,65 @@ public function frostwyrmWhatDidYouChoose(nKids:int = 0):void
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
 }
 
+public function frostwyrmWyrmlingHotfix():void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	clearOutput();
+	
+	output("How many kips do you remember having?");
+	output("\n");
+	displayInput();
+	output("\n\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", frostwyrmWyrmlingHotfixOK);
+}
+public function frostwyrmWyrmlingHotfixOK():void
+{
+	if(isNaN(Number(userInterface.textInput.text))) {
+		frostwyrmWyrmlingHotfix();
+		output("Choose a quantity that is a positive integer, please.");
+		return;
+	}
+	else if(Number(userInterface.textInput.text) < 1) {
+		frostwyrmWyrmlingHotfix();
+		output("Choose a quantity that is 1 or more, please.");
+		return;
+	}
+	flags["FROSTWYRM_KIP_COUNT"] = Math.floor(Number(userInterface.textInput.text));
+	frostwyrmWyrmlingHotfixGo();
+}
+public function frostwyrmWyrmlingHotfixGo():void
+{
+	if(stage.contains(userInterface.textInput)) removeInput();
+	
+	clearOutput();
+	
+	output("You now have " + num2Text(flags["FROSTWYRM_KIP_COUNT"]) + " kip" + (flags["FROSTWYRM_KIP_COUNT"] == 1 ? "" : "s") + " residing in [frostwyrm.name]’s lair.");
+	
+	clearMenu();
+	addButton(0, "Next", frostwyrmMainMenu, undefined);
+}
+
 public function frostwyrmBunchaKiddoContent():void
 {
 	clearOutput();
 	frostWyrmlingHeader();
+	
+	if(flags["FROSTWYRM_KIP_COUNT"] == undefined || flags["FROSTWYRM_KIP_COUNT"] <= 0 || isNaN(flags["FROSTWYRM_KIP_COUNT"]))
+	{
+		showBust("");
+		output("You have no fully matured kips to interact with!");
+		clearMenu();
+		addButton(0, "Next", frostwyrmMainMenu, undefined);
+		if(flags["FROSTWYRM_KIP_COUNT"] != undefined && isNaN(flags["FROSTWYRM_KIP_COUNT"]))
+		{
+			output("\n\nHowever, you are pretty sure you did...");
+			addButton(4, "Fix", frostwyrmWyrmlingHotfix, undefined);
+		}
+		return;
+	}
+	
 	author("B");
 	
 	output("You look to your");
