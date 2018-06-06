@@ -275,7 +275,7 @@ public function kaseTalkCrewWork(btnSlot:int = 0):void
 	}
 	else
 	{
-		output("<i>“I’m feeling much better since I started working for you,”</i> he begins, a smile on his face, <i>“I’ve been experience a lot less anxiety and distress working on your ship. There’s been quite a few less broken arms, as well.”</i>");
+		output("<i>“I’m feeling much better since I started working for you,”</i> he begins, a smile on his face, <i>“I’ve been experiencing a lot less anxiety and distress working on your ship. There’s been quite a few less broken arms, as well.”</i>");
 		if(pc.isAss()) output("\n\nYou ask him what he’s been doing around your vessel.");
 		else output("\n\nYou tell him you’re glad he’s happy with his new job and ask him what he’s been doing around your vessel.");
 		output("\n\n<i>“Oh, plenty!”</i> he exclaims, picking up his datapad, <i>“I’ve been keeping track of our travel and fuel consumption mostly, along with cataloging the ship’s storage and anything that leaves or enters the ship. Even when I’m not busy I attempt to organizes the ship’s inventory to the best of my ability.”</i> He sighs complacently, <i>“I couldn’t be happier, Captain. Thank you, again, for this opportunity. There isn’t a boss I’d rather have.”</i>");
@@ -986,7 +986,7 @@ public function kaseEvict():void
 	clearMenu();
 	
 	output("You " + (!pc.isAss() ? "sigh heavy and " : "") + "tell Kase that it’s time for him to leave the ship and he should pack his things.");
-	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn’t hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma’am") + ",”</i> he says, keeping his poise, <i>“There’s " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has payed for so I can carry out my work when I’m not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I’ll head there, for now. I’m sure you can find me there if you require my services again.”</i>");
+	output("\n\nHis ears swivel rounds and perk at your word, looking like he didn’t hear you quite right. <i>“Oh, of course, " + pc.mf("sir","ma’am") + ",”</i> he says, keeping his poise, <i>“There’s " + (flags["KASE_STEELETECH"] != undefined ? "a place on Tavros SteeleTech has paid for so I can carry out my work when I’m not onboard your ship" : "an apartment on Tavros I rent out for any delays I had between Pyrite deployments") + ", I’ll head there, for now. I’m sure you can find me there if you require my services again.”</i>");
 	output("\n\nWith that, Kase quickly begins gathering his things, finding containers to neatly pack away his belongings in. Seems like he’s taking the sudden eviction well, at least, an unflinching employee if there ever was one.");
 	
 	output("\n\n(<b>Kase is no longer on your crew. You can find him again in Tavros Station.</b>)");

@@ -1561,7 +1561,7 @@ public function brothelTurnTrixWhoring(service:String = "none"):Number
 				output("\n\n<i>“Just. Um. I think it needs more testing. Definitely more testing.”</i> the researcher says, heading to the door, almost as red-faced as the ausar is.");
 				output("\n\n<i>“See you next week,”</i> snarks Kat.");
 				processTime(30);
-				pc.lust(9000);
+				pc.maxOutLust();
 				scenesLimit--;
 				scenesIndex[scenesIndex.length] = 2;
 			}
@@ -2963,7 +2963,7 @@ public function brothelTurnTrixWhoringTrap(service:String = "none"):Number
 				output("\n\n<i>“Just. Um. I think it needs more testing. Definitely more testing,”</i> the researcher says, heading to the door, almost as red-faced as the ausar is.");
 				output("\n\n<i>“See you next week,”</i> snarks Kat.");
 				processTime(30);
-				pc.lust(9000);
+				pc.maxOutLust();
 				scenesLimit--;
 				scenesIndex[scenesIndex.length] = 2;
 			}

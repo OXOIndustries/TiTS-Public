@@ -52,7 +52,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += 1 * pData.pregnancyQuantity;
 				pData.pregnancyBellyRatingContribution += 1 * pData.pregnancyQuantity;
 				
-				AddLogEvent("The last couple of days you’ve battled with constant pangs of hunger, despite generally feeling strangely full. You notice that your stomach has developed a bit of a curve.", "passive");
+				AddLogEvent("The last " + kGAMECLASS.pc.getPregnancyTimeString(pregSlot, true, false) + " you’ve battled with constant pangs of hunger, despite generally feeling strangely full. You notice that your stomach has developed a bit of a curve.", "passive");
 			}, true);
 			
 			this.addStageProgression(3320, function(pregSlot:int):void {

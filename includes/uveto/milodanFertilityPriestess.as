@@ -709,7 +709,7 @@ public function pcDunkedByFertilityPriestess(isRepeat:Boolean = false):void
 		output("\n\n<i>“Don’t be selfish,”</i> she coos, reaching down and slapping his ass. <i>“Your brother needs a turn, too.”</i>");
 
 		processTime(10+rand(2));
-		pc.lust(9001);
+		pc.maxOutLust();
 
 		clearMenu();
 		addButton(0, "Next", fertilityPriestessPcKnockUpII, vagIdx);
@@ -750,7 +750,7 @@ public function fertilityPriestessPcKnockUpII(vagIdx:int):void
 	
 	output("\n\nIt doesn’t take long for him to reach his peak, but you can hardly complain: you’ve cum once just from his entrance, and the actual act has nearly brought you to the edge again. A sudden rush of musky heat flooding into your [pc.cunt "+vagIdx+"] is exactly what you need to find that glorious peak of ecstasy once again.");
 	
-	pc.lust(9001);
+	pc.maxOutLust();
 	
 	output("\n\n<i>“Take it. Take it all!”</i> the milodan man grunts, coming so close to knotting himself between spurts that the priestess has to grab hold of his cock, wrapping the bitch breaker in her fist. At the apex of one of his pelvic thrusts, the priestess pulls him back by the shoulders. He stumbles back, dragging his cock right out of your well-fucked pussy and causing a parting arc of white to shoot from his crown across your [pc.belly].");
 	
@@ -762,7 +762,7 @@ public function fertilityPriestessPcKnockUpII(vagIdx:int):void
 	
 	output("\n\n<i>“I’m amazed a weak little off-worlder has lasted so long,”</i> the priestess teases, running a hand across your [pc.chest] before leaning down and licking the cum off your belly. You shudder from the touch of her rough, feline tongue and the simultaneous intrusion of the male’s thick dick. The alien stone in your ass grows even warmer, radiating all throughout your body now. Every nerve feels like it’s ready to erupt - to explode in pleasure.");
 	
-	pc.lust(9001);
+	pc.maxOutLust();
 	
 	output("\n\n<i>“You’re stronger than I expected,”</i> the priestess continues, tracing her tongue down and down your body. <i>“You’ll be sure to conceive great warriors... new hosts for the lingering spirits of our ancestors. They must approve of you, to let you see the end of things.”</i>");
 
@@ -841,11 +841,6 @@ public function GRM44Apologize():void
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
-}
-
-public function GlacialRiftCoast():Boolean
-{
-	return HereBeDragonBonus();
 }
 
 public function soloFertilityPriestessFight():void
@@ -957,7 +952,7 @@ public function pcRepeatFertilityPriestessLoss():void
 
 		output("\n\nYou’re... mostly sure she’s teasing, but the threat is enough to convince you to obey. That, and the way she sways her hips seductively, winking her hole at you with enough control to tell you that she’s had plenty of experience. Reluctant as you might be, you reach your [pc.tongue] out and flick the tip across the pink tailhole hovering over your face. The taste comes in a rush of bitterness, earthy and just a bit salty with the sweat of your battle. The priestess’s tail thumps hard against your [pc.belly], and you’re fairly sure you hear a little gasp escape her lips before she stifles it.");
 
-		output("\n\n<i>“Keep going!”</i> she orders, reaching down and pinching one of your [pc.nipples] when you pause to savor her pleasured sounds. Dammit. You reach up and dig your hands into her furry flanks, getting yourself some leverage on those massive thighs. The priestess just laughs and pushes her ass further on your face, giving you no choice but to get back to work. Your tongue runs through the valley of her ass’s ample cleavage, working until the slender stretch of furless ass-flesh glistens with a sheen of saliva. Between long licks, you circle her pink hole with your [pc.tongue], teasing the rim and and putting just the barest hint of pressure on her ass, threatening to penetrate.");
+		output("\n\n<i>“Keep going!”</i> she orders, reaching down and pinching one of your [pc.nipples] when you pause to savor her pleasured sounds. Dammit. You reach up and dig your hands into her furry flanks, getting yourself some leverage on those massive thighs. The priestess just laughs and pushes her ass further on your face, giving you no choice but to get back to work. Your tongue runs through the valley of her ass’s ample cleavage, working until the slender stretch of furless ass-flesh glistens with a sheen of saliva. Between long licks, you circle her pink hole with your [pc.tongue], teasing the rim and putting just the barest hint of pressure on her ass, threatening to penetrate.");
 
 		output("\n\nRather than squirm, or recoil, or whatever you might have expected, the sultry priestess relaxes her muscles, and you find your tongue slipping an inch into the squeezing confines of her asshole. That draws a long, lurid moan out of her at last, along with a rapid-fire series of clenches that completely trap your tongue inside her. Her muscles pull your [pc.tongue] out from between your [pc.lips], refusing to let go as if you’d licked a lamppost in winter.");
 

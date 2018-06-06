@@ -495,7 +495,7 @@ public function bigBallBadEnd(bBadEnd:Boolean = true):void
 		pc.removeStatusEffect("Milk Paused");
 		pc.removeStatusEffect("Cum Paused");
 		
-		if(pc.hasStatusEffect("Blue Balls")) pc.removeStatusEffect("Blue Balls");
+		pc.removeStatusEffect("Blue Balls");
 		if(pc.perkv1("'Nuki Nuts") > 0)
 		{
 			pc.ballSizeMod -= pc.perkv1("'Nuki Nuts");

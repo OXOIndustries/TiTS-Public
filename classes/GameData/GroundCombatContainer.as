@@ -11,6 +11,7 @@ package classes.GameData
 	import classes.Items.Accessories.GrunchLeash;
 	import classes.Items.Apparel.Harness;
 	import classes.Items.Armor.GooArmor;
+	import classes.Items.Transformatives.ThiccNShake;
 	import classes.ItemSlotClass;
 	import classes.StorageClass;
 	import classes.Engine.Interfaces.*;
@@ -54,11 +55,10 @@ package classes.GameData
 		{
 			
 			// Speical handle for ZILPACK- use ZIL, ZIL
-			// ^ RASKVEL_GANG => RASKVEL_MALE x3
 			// ^ PRAETORIAN => PRAETORIAN x3
 			// ^ TAIVRADANE => TAIVRA, DANE
 			
-			var overrides:Array = ["ZILPACK", "RASKVEL_GANG", "PRAETORIAN", "TAIVRADANE", "TAMTURRETS"];
+			var overrides:Array = ["ZILPACK", "PRAETORIAN", "TAIVRADANE", "TAMTURRETS"];
 			var bustIdx:String = (_hostiles[0] as Creature).bustDisplay;
 			
 			if (InCollection(bustIdx, overrides))
@@ -66,7 +66,7 @@ package classes.GameData
 				switch (bustIdx)
 				{
 					case "ZILPACK": kGAMECLASS.showBust("ZIL", "ZIL"); break;
-					case "RASKVEL_GANG": kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE"); break;
+					//case "RASKVEL_GANG": kGAMECLASS.showBust("RASKVEL_MALE", "RASKVEL_MALE", "RASKVEL_MALE"); break;
 					case "PRAETORIAN": kGAMECLASS.showBust("PRAETORIAN", "PRAETORIAN", "PRAETORIAN"); break;
 					case "TAIVRADANE": kGAMECLASS.showBust("TAIVRA", "DANE"); break;
 					case "TAMTURRETS": kGAMECLASS.showBust("TAMTAM", "TAMWOLF"); break;
@@ -1179,6 +1179,37 @@ package classes.GameData
 					
 					target.aimMod += 5
 					target.reflexesMod += 5
+				}
+			}
+			
+			//Akane/Shukuchi stoofs
+			if (target.hasStatusEffect("Fade-cloak"))
+			{
+				target.addStatusValue("Fade-cloak",1,-1);
+				if (target.hasStatusEffect("Fade-cloak struck") || target.statusEffectv1("Fade-cloak") < 0)
+				{
+					target.removeStatusEffect("Fade-cloak");
+					if (target.hasStatusEffect("Fade-cloak struck")) target.removeStatusEffect("Fade-cloak struck");
+				}
+			}
+			if (target.hasStatusEffect("Internal Bleeding")) target.HP(-target.statusEffectv1("Internal Bleeding"));
+			if (target.hasStatusEffect("Restricted"))
+			{
+				if (!target.hasStatusEffect("Grappled")) target.removeStatusEffect("Restricted");
+				else
+				{
+					if (target is PlayerCharacter) output("\n\nThe lashes continue to damage you! ");
+					var dam:TypeCollection = new TypeCollection({kinetic: target.statusEffectv1("Restricted"), electric: target.statusEffectv2("Restricted")});
+					applyDamage(dam, null, target, "minimal");
+				}
+			}
+			if (target.hasStatusEffect("Petra overcharge"))
+			{
+				target.addStatusValue("Petra overcharge", 1, -1);
+				if (target.statusEffectv1("Petra overcharge") < 0)
+				{
+					target.baseHPResistances.add(-target.statusEffectv2("Petra overcharge"));
+					target.removeStatusEffect("Petra overcharge");
 				}
 			}
 		}
@@ -2473,7 +2504,35 @@ package classes.GameData
 			}
 			addButton(14, "Back", showCombatMenu, undefined, "Back", backTooltip);
 		}
-		
+		public function globalTeaseAdjustments(target:Creature):Array
+		{
+			var likeAdjustments:Array = new Array();
+			//Masc/Fem
+			if(pc.femininity > 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEMININE);
+			if(pc.femininity <= 50 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_MASCULINE);
+			//Hair or lack thereof!
+			if(!pc.hasHair() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BALDNESS);
+			if(pc.hasHair() && pc.hairLength >= 8 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LONG_HAIR);
+			//Coatings:
+			if(pc.hasStatusEffect("Sweaty") && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SWEAT) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SWEAT);
+			if((pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_CUMMY) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_CUMMY);
+			//Shit 4chan hates:
+			if(pc.hasFur() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_FURRIES) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FURRIES);
+			if(pc.hasScales() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SCALIES) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_SCALIES);
+			if(pc.hasFeathers() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEATHERS) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_FEATHERS);
+			if(pc.hasChitin() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_CHITIN) > 0)
+				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_CHITIN);
+			return likeAdjustments;
+		}
 		private function teaseButt(target:Creature):void
 		{
 			var teaseCount:Number = 0;
@@ -2496,7 +2555,9 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_TAILGENITALS);
 			if((pc.isTaur() || pc.isNaga()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			buttTeaseText(target);
@@ -2640,6 +2701,8 @@ package classes.GameData
 					output(".");
 				}
 			}
+			
+			if(pc.hasStatusEffect("Thicc&Shake")) output(ThiccNShake.teaseCheck(pc, false));
 		}
 
 		private function teaseChest(target:Creature):void
@@ -2664,7 +2727,9 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NIPPLECUNTS);
 			if(pc.isLactating() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			chestTeaseText(target);
@@ -2819,12 +2884,14 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NARROW_HIPS);
 			if((pc.isTaur() || pc.isNaga() || pc.isGoo()) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE);
-		
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			hipsTeaseText(target);
 			applyTeaseDamage(pc, target, teaseCount, "HIPS", likeAdjustments);
-				
+			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -2914,6 +2981,8 @@ package classes.GameData
 				if(pc.armor.shortName != "") output(" before putting your [pc.armor] back on");
 				output(".");
 			}
+			
+			if(pc.hasStatusEffect("Thicc&Shake")) output(ThiccNShake.teaseCheck(pc, true));
 		}
 		private function teaseCrotch(target:Creature):void
 		{
@@ -2949,12 +3018,14 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NEUTER);
 			if (pc.hasCock() && pc.hasVagina() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			crotchTeaseText(target);
 			applyTeaseDamage(pc, target, teaseCount, "CROTCH", likeAdjustments);
-				
+			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -2991,7 +3062,9 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
 			if (pc.hasCock() && pc.hasVagina() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HERMAPHRODITE);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			output("Smiling coyly, you run up to " + ((_hostiles.length == 1 && !target.isPlural) ? "your opponent" : target.getCombatName()) + " and knock " + target.getCombatPronoun("himher") + " down. Before " + target.getCombatPronoun("heshe") + " can react, you");
 			if(!pc.isCrotchExposed())
@@ -3005,7 +3078,7 @@ package classes.GameData
 			else output(" and use it to slap " + target.mfn("him","her","it") + " across the face a few times. You make sure that some of your aphrodisiac dick oil is smeared on " + target.mfn("his","her","its") + " face before jumping back to a safe distance.");
 			
 			applyTeaseDamage(pc, target, teaseCount, "DICK SLAP", likeAdjustments);
-				
+			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
@@ -3415,12 +3488,14 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_NIPPLECUNTS);
 			if(pc.isLactating() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION) > 0) 
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_LACTATION);
-			
+			//Global adjustments for things like fur, sweat, cum-covered, etc.
+			likeAdjustments.concat(globalTeaseAdjustments(target));
+
 			clearOutput();
 			
 			squirtTeaseText(target);
 			applyTeaseDamage(pc, target, teaseCount, "SQUIRT", likeAdjustments);
-				
+			
 			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isSquirt: true }))
 			{
 				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isSquirt: true } );
@@ -4400,7 +4475,7 @@ package classes.GameData
 				if (target is PlayerCharacter) continue;
 				if (target.isDefeated()) continue; // TODO maybe allow the combatAI method to handle this- allows for a certain degree of cheese in encounter impl.
 				
-				if (target.hasStatusEffect("Paralyzed"))
+				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
 				{
 					// noop, handled by updateStatusEffects
 				}
@@ -4409,7 +4484,7 @@ package classes.GameData
 					output("\n\n");
 					doStruggleRecover(target);
 				}
-				else if (target.hasStatusEffect("Stunned"))
+				else if (target.hasStatusEffect("Stunned") && !(target is Urbolg))
 				{
 					output("\n\n");
 					doStunRecover(target);
@@ -4493,7 +4568,7 @@ package classes.GameData
 				
 				if (target.isDefeated()) continue;
 				
-				if (target.hasStatusEffect("Paralyzed"))
+				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
 				{
 					// noop, this is handled as part of updateStatusEffectsFor()
 				}
@@ -4502,7 +4577,7 @@ package classes.GameData
 					output("\n\n");
 					doStruggleRecover(target);
 				}
-				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale))
+				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg))
 				{
 					output("\n\n");
 					doStunRecover(target);

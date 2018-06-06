@@ -37,6 +37,7 @@ package classes.Engine.Combat
 		}
 		
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
+		if (attacker.hasStatusEffect("\"Rutting\"")) factor *= 1.5;		
 		if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
 		if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
 		if (attacker.hasFur())
@@ -50,16 +51,17 @@ package classes.Engine.Combat
 		if (teaseType == "SQUIRT") bonus += 2;
 		if (attacker.hasStatusEffect("Sweet Tooth")) bonus += 1;
 		
+		/* Fen note: cut to move this over to the sexprefs system.
 		var sweatyBonus:int = 0;
-		if(attacker.hasStatusEffect("Sweaty") && target.hasPerk("Likes_Sweaty")) 
+		if(attacker.hasStatusEffect("Sweaty") && target.sexualPreferences.getPref(GLOBAL.SEXPREF_SWEAT) > 0) 
 		{
 			//-5 per level normally, so add twice that since we flippin it'
 			sweatyBonus = attacker.statusEffectv1("Sweaty") * 10;
 			//Furries dont benefit quite as much.
 			if(attacker.hasFur()) sweatyBonus = attacker.statusEffectv1("Sweaty") * 5;
-		}
+		}*/
 		
-		if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus + sweatyBonus))
+		if (target.isLustImmune || (target.willpower() / 2 + rand(20) + 1 > attacker.level * 2.5 * factor + 10 + teaseCount / 10 + attacker.sexiness() + bonus))
 		{
 			if(target is HandSoBot)
 			{
@@ -124,7 +126,7 @@ package classes.Engine.Combat
 		}
 		else
 		{
-			var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + sweatyBonus / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
+			var damage:Number = 10 * (teaseCount / 100 + 1) + attacker.sexiness() / 2 + attacker.statusEffectv2("Painted Penis") + attacker.statusEffectv4("Heat");
 			if (teaseType == "SQUIRT") damage += 5;
 			if (attacker.hasPheromones()) damage += 1 + rand(4);
 			damage *= (rand(31) + 85) / 100;

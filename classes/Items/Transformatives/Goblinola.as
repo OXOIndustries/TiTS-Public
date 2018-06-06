@@ -57,7 +57,6 @@ package classes.Items.Transformatives
 		{
 			var msg:String = "";
 			var totalTFs:Number = effect.value2;
-			target.taint(3);
 			if(totalTFs == 0) totalTFs = 1;
 			//Used to hold the TF we pull out of the array of effects
 			var select:int = 0;
@@ -108,7 +107,7 @@ package classes.Items.Transformatives
 			
 			//Loop through doing TFs until we run out, pulling out whichever we use.
 			while(TFList.length > 0 && totalTFs > 0)
-			{	
+			{
 				msg += "\n\n";
 				//Pick a TF	
 				x = rand(TFList.length);
@@ -352,6 +351,9 @@ package classes.Items.Transformatives
 						msg += target.tailTypeLockedMessage();
 					}
 				}
+				
+				if(select != 0) target.taint(1);
+				
 				totalTFs--;
 			}
 			if (msg.length > 0) ExtendLogEvent(msg);
@@ -618,6 +620,9 @@ package classes.Items.Transformatives
 					// v4: ???
 					target.createPerk("Cybernetic Synchronization", 5, 0, 0, 0, "Cybernetic enhancements will give you an additional intelligence capacity boost.");
 				}
+				
+				if(select != 0) target.taint(1);
+				
 				totalTFs--;
 			}
 			if (msg.length > 0) ExtendLogEvent(msg);

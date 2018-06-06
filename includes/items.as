@@ -708,7 +708,7 @@ public function buyItem():void {
 			}
 			else {
 				trace("SHOWAN HIDE BUTTONS");
-				addDisabledButton(btnSlot, shopkeep.inventory[i].shortName + " x" + shopkeep.inventory[i].quantity);
+				addItemDisabledButton(btnSlot, shopkeep.inventory[i], null, null, shopkeep, pc);
 			}
 		}
 		
@@ -849,7 +849,7 @@ public function buyItemGo(arg:ItemSlotClass):void {
 	{
 		//Gotta count these fuckers
 		IncrementFlag("SYNTHSHEATH_TWO_FOUND");
-		if(!synthSheathAvailable())
+		if(!synthSheathAvailable(arg.quantity))
 		{
 			if(shopkeep is Shekka) shopkeep.inventory.splice(shopkeep.inventory.indexOf(arg), 1);
 		}
@@ -919,7 +919,7 @@ public function sellItem():void
 				}
 			}
 			else {
-				addDisabledButton(btnSlot, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "The vendor is not interested in this item.");
+				addItemDisabledButton(btnSlot, pc.inventory[i], null, "<i>The vendor is not interested in this item.</i>", pc, shopkeep);
 			}
 		}
 		btnSlot++;
@@ -1034,6 +1034,12 @@ public function sellItemMulti(arg:Array):void
 	
 	output("You sell " + soldItem.description + " (x" + soldNumber + ") for " + num2Text(soldPrice) + " credits.");
 	
+	// Special Events
+	if(soldItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(soldItem, "sell"));
+	if(soldItem is HorseCock) {
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = soldNumber;
+		else flags["SYNTHSHEATH_LOST"] += soldNumber;
+	}
 	soldItem.quantity -= soldNumber;
 	if (soldItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(soldItem), 1);
 	
@@ -1052,6 +1058,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "sell"));
+	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
@@ -1130,7 +1137,7 @@ public function dropItem():void {
 			output("\n");
 			if(pc.inventory[i].stackSize > 1) output(pc.inventory[i].quantity + "x ");
 			output(StringUtil.toDisplayCase(pc.inventory[i].longName) + " - <i>Not droppable</i>.");
-			addDisabledButton(btnSlot, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "You cannot drop this item.");
+			addItemDisabledButton(btnSlot, pc.inventory[i], null, "<i>You cannot drop this item.</i>", pc, null);
 		}
 		btnSlot++;
 		i++;
@@ -1239,6 +1246,12 @@ public function dropItemMulti(arg:Array):void
 	
 	output("You drop " + dumpItem.description + " (x" + dumpNumber + ").");
 	
+	// Special Events
+	if(dumpItem is GooArmor) output("\n\n" + gooArmorInventoryBlurb(dumpItem, "drop"));
+	if(dumpItem is HorseCock) {
+		if(flags["SYNTHSHEATH_LOST"] == undefined) flags["SYNTHSHEATH_LOST"] = dumpNumber;
+		else flags["SYNTHSHEATH_LOST"] += dumpNumber;
+	}
 	dumpItem.quantity -= dumpNumber;
 	if (dumpItem.quantity == 0) pc.inventory.splice(pc.inventory.indexOf(dumpItem), 1);
 	
@@ -1253,6 +1266,7 @@ public function dropItemGo(arg:ItemSlotClass):void {
 	
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "drop"));
+	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
@@ -1960,7 +1974,7 @@ public function combatInventoryMenu():void
 		}
 		else
 		{
-			addDisabledButton(btnSlot, pc.inventory[i].shortName + " x" + pc.inventory[i].quantity, StringUtil.toDisplayCase(pc.inventory[i].longName), "Cannot be used in combat.");
+			addItemDisabledButton(btnSlot, pc.inventory[i], null, "<i>Cannot be used in combat.</i>");
 		}
 		btnSlot++;
 		i++;

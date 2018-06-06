@@ -39,6 +39,8 @@
 			public var Full_KIRO:Class;
 			//[Embed(source = "../../../assets/images/npcs/tsuda/hr/kiro_nude.png", mimeType = "image/png")]
 			//public var Full_KIRO_NUDE:Class;
+			//PLACEHOLDER TILL ABOVE IS DONE
+			public function get Full_KIRO_NUDE():Class { return Full_KIRO; }
 			public function get Full_KIRO_1():Class { return Full_KIRO; }
 			public function get Full_KIRO_1_NUDE():Class { return Full_KIRO_NUDE; }
 			public function get Full_KIRO_2():Class { return Full_KIRO; }

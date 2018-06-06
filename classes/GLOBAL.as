@@ -229,6 +229,7 @@
 		public static const TYPE_THRAGGEN:int 								= 79;
 		public static const TYPE_ADREMMALEX:int 							= 80;
 		public static const TYPE_MOTHRINE:int 								= 81;
+		public static const TYPE_FROSTWYRM:int 								= 82;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -313,6 +314,7 @@
 			"Thraggen",
 			"Adremmalex",
 			"Mothrine",
+			"Frostwyrm",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -705,7 +707,7 @@
 		public static const NIPPLE_TYPE_NAMES:Array = [
 			"Normal",
 			"Cunt",
-			"Lipples",
+			"Lip",
 			"Dick",
 			"Flat",
 			"Inverted",
@@ -949,6 +951,7 @@
 			TYPE_HRAD,
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
@@ -993,6 +996,7 @@
 			TYPE_FLOWER,
 			TYPE_SWINE,
 			TYPE_MOUTHGINA,
+			TYPE_FROSTWYRM,
 		];
 		
 		// As far as I can tell, at time of writing there are no flags currently used/assigned to vaginas
@@ -1235,7 +1239,15 @@
 		public static const SEXPREF_BALDNESS:int = 24;
 		public static const SEXPREF_LONG_HAIR:int = 25;
 		public static const SEXPREF_NEUTER:int = 26
-		public static const MAX_SEXPREF_VALUE:int = 27; // Keep this as a book-end on the values. Check penny for how you'd random shit
+		public static const SEXPREF_SWEAT:int = 27
+		public static const SEXPREF_CUMMY:int = 28
+		//"racial" type
+		public static const SEXPREF_FURRIES:int = 29
+		public static const SEXPREF_SCALIES:int = 30
+		public static const SEXPREF_FEATHERS:int = 31
+		public static const SEXPREF_CHITIN:int = 32
+		
+		public static const MAX_SEXPREF_VALUE:int = 33; // Keep this as a book-end on the values. Check penny for how you'd random shit
 		
 		// Not ideal, but it's possibly better than using switch statements, plus it keeps the Keys ^ with Descriptors \/
 		// The two will have to forever be in the same order though, but I can probably rig up some better system.
@@ -1268,6 +1280,12 @@
 			"Baldness",
 			"Long hair",
 			"Neuters",
+			"Sweat",
+			"Sexjuice coatings",
+			"Furries",
+			"Scalies",
+			"Feathers",
+			"Chitin",
 			"ERROR ERROR ABORT ABORT"
 		];
 		
@@ -1312,6 +1330,7 @@
 			"DAMNIT",
 			"DOCBADGER",
 			"DOXY",
+			"FRIENDLYALIENFRIEND",
 			"GATS",
 			"GATSOLD",
 			"JACQUES",
@@ -1346,6 +1365,7 @@
 			"Damnit",
 			"DatBadger",
 			"Doxy",
+			"FriendlyAlienFriend",
 			"Gats",
 			"Old Gats",
 			"Jacques00",

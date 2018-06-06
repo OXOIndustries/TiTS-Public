@@ -872,13 +872,13 @@ public function cowgirlMissReasner():void
 	output(" filled");
 	if(cumQ >= 4000) 
 	{
-		output(" to the brim, her belly swelling more and more with every jet of [pc.cum] you can pump into her depths");
+		output(" to the brim. Her belly swells more and more with every jet of [pc.cum] you can pump into her depths");
 		//has knot and cum volume not too high: 
 		if(pc.hasKnot(x) && cumQ < 30000) output(", especially with your [pc.knot] making sure none of your [pc.cumNoun] spills back out");
 	}
 	// else: {has knot:
 	else if(pc.hasKnot(x)) output(" and knotted");
-	output(" by someone other than her husband");
+	else output(" by someone other than her husband");
 	output(".");
 	
 	if(cumQ >= 30000) 

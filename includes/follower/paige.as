@@ -1866,7 +1866,7 @@ public function declareSparWithPaige():void
 public function paigeSparAccept():void
 {
 	clearOutput();
-	showPaige(true);
+	showPaige();
 	if(paigeIsCrew())
 	{
 		output("No weapons? You ask Paige: aren’t we beyond that, now that she doesn’t have her disability?");

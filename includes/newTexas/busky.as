@@ -221,7 +221,7 @@ public function buskyTalksAboutHimself():void {
 	output("\n\nYou introduce yourself as Steele, [pc.name] Steele.");
 	output("\n\n<i>“Kind of an odd last name; it Terran or something?”</i>");
 	output("\n\nYou awkwardly explain Steele Co. and how you’re the soon to be CEO while Busky nods in understanding.");
-	output("\n\n<i>“Cool. Never really payed attention to Steele Co. myself, not much of a big deal to me since I don’t really have much need for tetratazmanian carbonoid alloys or whatever. Anyway, nice to meet you, [pc.name].”</i>");
+	output("\n\n<i>“Cool. Never really paid attention to Steele Co. myself, not much of a big deal to me since I don’t really have much need for tetratazmanian carbonoid alloys or whatever. Anyway, nice to meet you, [pc.name].”</i>");
 	
 	processTime(2);
 	

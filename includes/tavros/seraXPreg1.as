@@ -808,7 +808,7 @@ public function seraHasKidInNursery(unnamed:Boolean = false):Boolean
 }
 public function seraNurseryVisitCheck(totalAttempts:int = 1):void
 {
-	if(totalAttempts < 1 || (!seraRecruited() && currentLocation == "DARK CHRYSALIS")) return;
+	if(totalAttempts < 1 || (!seraRecruited() && currentLocation == "DARK CHRYSALIS") || (seraIsCrew() && shipLocation != "TAVROS HANGAR")) return;
 	
 	var probMax:int = (seraRecruited() ? 1 : 1000);
 	var prob:int = Math.round((1 - Math.pow((1 / 2), totalAttempts)) * probMax);

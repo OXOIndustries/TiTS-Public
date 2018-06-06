@@ -584,12 +584,13 @@ public function kirosShipChubnookiUpDaCooter():void
 	if (pc.cockTotal() == 1) output(" it");
 	else output(" them");
 	output(" with your liquid warmth while she wastes hers in a floor-flooding downpour.");
-
-	if (pc.cumQ() >= 1000) output(" You pump her so full that her belly rounds atop you, and in an orgasmic daze, you let your fingers play across the swelling spunk-bump.");
-	if (pc.cumQ() >= 3000) output(" It gets bigger and bigger, to the point where she could easily pass for a pregnant woman");
-	if (pc.cumQ() >= 5000) output(", but your enhanced virility won’t stop there. You pump that striped pirate so full that her doctor would want to induce birthing were she human, and then you cum some more.");
+	
+	var cumQ:Number = pc.cumQ();
+	if (cumQ >= 1000) output(" You pump her so full that her belly rounds atop you, and in an orgasmic daze, you let your fingers play across the swelling spunk-bump.");
+	if (cumQ >= 3000) output(" It gets bigger and bigger, to the point where she could easily pass for a pregnant woman");
+	if (cumQ >= 5000) output(", but your enhanced virility won’t stop there. You pump that striped pirate so full that her doctor would want to induce birthing were she human, and then you cum some more.");
 	else output(".");
-	if (pc.cumQ() >= 7000)
+	if (cumQ >= 7000)
 	{
 		output(" This time, the pressure is so great that it comes out her entrance");
 		if (pc.cockTotal() > 1) output("s");
@@ -610,6 +611,8 @@ public function kirosShipChubnookiUpDaCooter():void
 	}
 
 	processTime(60+rand(15));
+	
+	IncrementFlag("KIRO_VAG_FUCKED");
 
 	clearMenu();
 	addButton(0, "Next", kirosShipPostFirstFuck);
@@ -697,12 +700,13 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 		else if (pc.vaginaTotal() > 2) output(" another");
 		if (pc.vaginaTotal() > 1) output(" of your [pc.vaginas], fingerfucking yourself in a way that lets you press against the cock inside you, rubbing it to ease the penetration.");
 		
-		pc.cuntChange(selVag, (kiro as Creature).biggestCockVolume(), true, true, false);
+		pc.cuntChange(selVag, kiro.cockVolume(0), true, true, false);
 	}
 	else
 	{
-		pc.buttChange((kiro as Creature).biggestCockVolume(), true, true, false);
+		pc.buttChange(kiro.cockVolume(0), true, true, false);
 	}
+
 	output("\n\n<i>“Ohhhh yesss,”</i> the raccoon-girl gasps, <i>“You’re going to make me cum so hard. I can feel it.”</i> She kisses you without warning, her pouty lower lip slipping over your own in advance of her probing tongue. It finds your own and begins to tangle with it, distracting you from your pace until your muscles relax and your body slides three inches down that turgid fuckpole all at once. You moan and aggressively kiss her back, not even trying to control your descent anymore. It feels too good, and you’re too horny to try to master yourself any longer. You’re going to let yourself be fucked as fast as your");
 	if (!anal) output(" soaking-wet snatch");
 	else output(" greedy anus");
@@ -854,7 +858,9 @@ public function kirosShipChubnookiFucksYouGud(anal:Boolean = false):void
 	pc.applyCumSoaked();
 
 	processTime(60+rand(15));
-
+	
+	IncrementFlag("KIRO_FUCKED_PC");
+	
 	clearMenu();
 	addButton(0, "Next", kirosShipPostFirstFuck);
 }

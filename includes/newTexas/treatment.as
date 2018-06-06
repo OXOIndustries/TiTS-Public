@@ -47,21 +47,28 @@ v3 hour counter
 */
 public static const TREATMENT_GAIN_TARGETS:Array = [50, 52, 56, 62, 71, 86, 100, 120, 147, 165];
 
-public function treatmentHourProcs(totalHours:int):void
+public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 {
-	var effect:StorageClass = pc.getStatusEffect("The Treatment");
-
+	if(effect == null) return;
+	
+	// Fix for maximum hours.
+	if(totalHours > 168) totalHours = 168;
+	
 	var startHours:int = effect.value3;
 	effect.value3 += totalHours;
 	
 	var treatedHours:int = startHours + totalHours;
+	
+	var numHornAttempts:int = 0;
+	var numHornGains:int = 0;
+	var hornTimestampStride:int = 0;
 	
 	var x:int = 0;
 	var i:int = 0;
 	
 	// Amazon Effects
 	// 1. Amazon Treatment Section
-	if(pc.statusEffectv1("The Treatment") == 4)
+	if(effect.value1 == 4)
 	{
 		if(treatedHours <= 48)
 		{
@@ -452,7 +459,7 @@ public function treatmentHourProcs(totalHours:int):void
 			
 				// Announce when passing a threshold:
 				// <= 90
-				if(y <= 90 && pc.femininity > 90) ExtendLogEvent(ParseText(" <b>You can’t help but marvel at yourself when you look at yourself. Your [pc.face] is the epitome of femininity. It’s jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>"));
+				if(y <= 90 && pc.femininity > 90) ExtendLogEvent(ParseText(" <b>You can’t help but marvel at yourself when you look at your reflection. Your [pc.face] is the epitome of femininity. It’s jaw-droppingly girly. Your eyelashes are long and thick. Your nose is adorable. Even your lips look ready for a night on the town.</b>"));
 				// <= 80
 				else if(y <= 80 && pc.femininity > 80) ExtendLogEvent(" <b>Your eyelashes have gotten long and luxurious, your lips have gotten fuller, and even your nose looks cuter. You’re gorgeous.</b>");
 				// <= 72
@@ -1034,8 +1041,9 @@ public function treatmentHourProcs(totalHours:int):void
 		// 5 to 8" max
 		if((pc.horns == 0 || (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT) || pc.hornLength < pc.statusEffectv2("Treated")) && treatedHours >= 82)
 		{
-			var numHornAttempts:int = treatedHours - Math.max(startHours, 81);
-			var numHornGains:int = 0;
+			numHornAttempts = treatedHours - Math.max(startHours, 81);
+			numHornGains = 0;
+			hornTimestampStride = 0;
 			
 			for (i = 0; i < numHornAttempts; i++)
 			{
@@ -1044,7 +1052,7 @@ public function treatmentHourProcs(totalHours:int):void
 			
 			if (numHornGains > 0)
 			{
-				var hornTimestampStride:int = Math.floor(numHornGains / (treatedHours - Math.max(startHours, 81)));
+				hornTimestampStride = Math.floor((treatedHours - Math.max(startHours, 81)) / numHornGains);
 				
 				for (i = 0; i < numHornGains; i++)
 				{		
@@ -1070,7 +1078,7 @@ public function treatmentHourProcs(totalHours:int):void
 						ExtendLogEvent("\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.");
 						ExtendLogEvent(ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you’re... <b>you’ve got the cutest pair of horns growing out of your forehead!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all’s said and done, all the better to compliment your other growing rack."));
 						pc.hornType = GLOBAL.TYPE_BOVINE;
-						pc.removeStatusEffect("Horn Bumps");
+						pc.removeStatusEffect("Horn Bumps", true);
 						pc.horns = 2;
 						pc.hornLength = .5;
 					}
@@ -1348,7 +1356,7 @@ public function treatmentHourProcs(totalHours:int):void
 	}
 	// Female Effects
 	// 2. Female Treatment Section
-	else if(pc.statusEffectv1("The Treatment") == 0 || pc.statusEffectv1("The Treatment") == 2)
+	else if(effect.value1 == 0 || effect.value1 == 2)
 	{
 		// Over Time Intelligence + Perks
 		// Intelligence/Willpower Reductions to 25 statquotient every 2 hours for 2 days. (time remaining % 60 == 0) for 48 hours. Played even if stats are done dropping.
@@ -1656,7 +1664,7 @@ public function treatmentHourProcs(totalHours:int):void
 		}
 		
 		// SPECIAL BIMBOCOW STUFF!
-		if(pc.statusEffectv1("The Treatment") == 0)
+		if(effect.value1 == 0)
 		{
 			// by AHornyPanda
 			
@@ -1728,7 +1736,7 @@ public function treatmentHourProcs(totalHours:int):void
 		}
 		
 		// SPECIAL CUMCOW STUFF :D
-		if(pc.statusEffectv1("The Treatment") == 2)
+		if(effect.value1 == 2)
 		{
 			// 49 hours:
 			// Grow a dick at 49 hours on the dot if doesn't have one. PC immediately becomes enthused.
@@ -1746,7 +1754,7 @@ public function treatmentHourProcs(totalHours:int):void
 					if(pc.hasVagina()) ExtendLogEvent(ParseText(" [pc.GirlCum] runs down your [pc.legs] as you bend low to inspect the disturbance, accidentally putting your [pc.vaginas] on to display to anyone who dares take a peek."));
 					else ExtendLogEvent(ParseText(" Your [pc.asshole] flexes sympathetically as you bend low to inspect the disturbance, putting its eagerly winking ring on to display to anyone who dares take a peek."));
 					ExtendLogEvent(" Stars! It feels so good you can barely stand!");
-					ExtendLogEvent(ParseText("\n\nYou spot the source of it all a moment later, ignorant of your [pc.butt] subtly lifting itself to better display itself. "));
+					ExtendLogEvent(ParseText("\n\nYou spot the source of it all a moment later, ignorant of your [pc.butt] subtly lifting in the air to better display itself. "));
 					if(pc.hasVagina()) ExtendLogEvent(ParseText("Right above your [pc.vaginas]"));
 					else ExtendLogEvent("Right in the middle of your pubic region");
 					ExtendLogEvent(" is a small bulge, red and angry and getting bigger by the minute. Gingerly, you reach down and nearly collapse from the pleasure. Touching the little nub is like touching a live wire, like fondling a clit after an hour of foreplay, like ecstatic lightning is coursing up your spine and into your brain.");
@@ -2135,11 +2143,7 @@ public function treatmentHourProcs(totalHours:int):void
 					pc.cocks[x].cLengthRaw += 1 + rand(2);
 					if(pc.cocks[x].flaccidMultiplier < 0.75) pc.cocks[x].flaccidMultiplier = 0.75;
 				}
-				if(!pc.hasStatusEffect("Blue Balls"))
-				{
-					pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-					if(pc.ballFullness < 100) pc.ballFullness = 100;
-				}
+				if(!pc.hasStatusEffect("Blue Balls")) pc.applyBlueBalls();
 				// Orgasm -> +5 lust
 				pc.orgasm();
 				pc.lust(5);
@@ -2754,20 +2758,23 @@ public function treatmentHourProcs(totalHours:int):void
 		// Horn Grow 2 Nubs
 		if((pc.horns == 0 || (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT) || pc.hornLength < pc.statusEffectv2("Treated")) && treatedHours >= 82)
 		{
+			numHornAttempts = treatedHours - Math.max(startHours, 81);
 			numHornGains = 0;
-			for (i = 0; i < treatedHours - startHours; i++)
+			hornTimestampStride = 0;
+			
+			for (i = 0; i < numHornAttempts; i++)
 			{
 				if (rand(6) == 0) numHornGains++;
 			}
 			
-			var hornPerTick:Number = (treatedHours - startHours) / numHornGains;
+			if(numHornGains > 0) hornTimestampStride = Math.floor((treatedHours - Math.max(startHours, 81)) / numHornGains);
 			
 			for (i = 0; i < numHornGains; i++)
 			{
 				// Existing horns transform into lil bull nubs.
 				if(pc.horns > 0 && (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT))
 				{
-					AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They’re small and pointed, like little cow horns.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They’re small and pointed, like little cow horns.", "passive", (hornTimestampStride * i) * 60);
 					pc.horns = 2;
 					pc.hornLength = .5;
 					pc.hornType = GLOBAL.TYPE_BOVINE;
@@ -2775,32 +2782,32 @@ public function treatmentHourProcs(totalHours:int):void
 				// Starting
 				else if(pc.horns == 0 && !pc.hasStatusEffect("Horn Bumps"))
 				{
-					AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it’s red and irritated, though you haven’t seen a head form on the zit yet. You’ve never had such prominent acne before, and there’s a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it’s red and irritated, though you haven’t seen a head form on the zit yet. You’ve never had such prominent acne before, and there’s a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", (hornTimestampStride * i) * 60);
 					pc.createStatusEffect("Horn Bumps");
 				}
 				// Breaking Skin
 				else if(pc.horns == 0)
 				{
-					AddLogEvent("The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?", "passive", (hornTimestampStride * i) * 60);
 					ExtendLogEvent("\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".");
 					ExtendLogEvent("\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.");
 					ExtendLogEvent(ParseText("\n\nYou tumble onto your [pc.butt] in shock. You... y-you’re... <b>you’ve got the cutest pair of horns growing out of your forehead!</b> They’re small little nubs at the moment - adorable really, but they do a great job telling everyone about your bovine proclivities."));
 					pc.hornType = GLOBAL.TYPE_BOVINE;
-					pc.removeStatusEffect("Horn Bumps");
+					pc.removeStatusEffect("Horn Bumps", true);
 					pc.horns = 2;
 					pc.hornLength = .5;
 				}
 				// nubs -> 1" horns
 				else if(pc.hornLength < 1)
 				{
-					AddLogEvent("For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.", "passive", (hornTimestampStride * i) * 60);
 					ExtendLogEvent(ParseText("\n\nYou gingerly prod yourself; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them. They’re mostly there for ornamentation, you figure, like a pair of earrings for your forehead."));
 					pc.hornLength = 1;
 				}
 				// 1" horns to 2" horns
 				else if(pc.hornLength < 2)
 				{
-					AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There’s really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to your own horny transformation show. You giggle to yourself and watch.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There’s really only one thing it can be - your horns getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to your own horny transformation show. You giggle to yourself and watch.", "passive", (hornTimestampStride * i) * 60);
 					ExtendLogEvent("\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they’re growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory.");
 					if(pc.hasHair() && pc.hairLength >= 2) ExtendLogEvent(" You brush your bangs to one side, hooking them around one of the horns in the cutest way.");
 					ExtendLogEvent(" The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.");
@@ -2812,22 +2819,22 @@ public function treatmentHourProcs(totalHours:int):void
 				// 2" horns to 3" horns
 				else if(pc.hornLength < 3)
 				{
-					AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There’s a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There’s blessedly little pain, but when it passes, you’re very aware of additional weight tugging on your head. Your horns have grown: they’re now three inches of gleaming white bovine beauty. You resolve to polish them at the first opportunity, maybe even buy some jewelry for them once you’re sure they’re done growing.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There’s a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There’s blessedly little pain, but when it passes, you’re very aware of additional weight tugging on your head. Your horns have grown: they’re now three inches of gleaming white bovine beauty. You resolve to polish them at the first opportunity, maybe even buy some jewelry for them once you’re sure they’re done growing.", "passive", (hornTimestampStride * i) * 60);
 					pc.hornLength = 3;
 				}
 				// 3" horns to 4" horns - prolly gonna reuse some of this for guys.
 				else if(pc.hornLength < 4)
 				{
-					AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn’t hurt, but it is very disconcerting, making it next to impossible to think.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn’t hurt, but it is very disconcerting, making it next to impossible to think.", "passive", (hornTimestampStride * i) * 60);
 					ExtendLogEvent("\n\nYou grunt and groan, feeling the sensation slide <i>outside</i> of your head as your horns expand, growing thicker and heavier.");
-					if(pc.statusEffectv1("The Treatment") == 0) ExtendLogEvent(" The Treatment isn’t supposed to give you such large horns. You frown as they finish growing; the Texans will probably call you a milk-bull or something equally degrading.");
+					if(effect.value1 == 0) ExtendLogEvent(" The Treatment isn’t supposed to give you such large horns. You frown as they finish growing; the Texans will probably call you a milk-bull or something equally degrading.");
 					else ExtendLogEvent("You sigh in satisfaction once they stop growing. Now these are respectable horns!");
 					pc.hornLength = 4;
 				}
 				// 4" horsn to 5" horns - MAX LADIES CAN GET.
 				else if(pc.hornLength < 5)
 				{
-					AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it’s all over, you’re left holding two big, strong five-inch horns.", "passive", ((treatedHours - startHours) + (hornPerTick * (i + 1))) * 60);
+					AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it’s all over, you’re left holding two big, strong five-inch horns.", "passive", (hornTimestampStride * i) * 60);
 					pc.hornLength = 5;
 					break;
 				}
@@ -3023,7 +3030,7 @@ public function treatmentHourProcs(totalHours:int):void
 	}
 	// REGULAR DUDEMOAD
 	// 3. Male Treatment Section
-	else if(pc.statusEffectv1("The Treatment") == 1)
+	else if(effect.value1 == 1)
 	{
 		// 48 Hours of Mental Changes: slowStatGain of 2 libido an hour.
 		// +Confidence
@@ -3343,7 +3350,7 @@ public function treatmentHourProcs(totalHours:int):void
 				if(pc.hasStatusEffect("Uniball"))
 				{
 					AddLogEvent(ParseText("You manage to make your swaying sack smack against your [pc.thigh] in the most painful way. It almost doubles you over. How could that have happened? You had such a tight, compact pouch for your ") + pc.ballsDescript() + ". Once the pain clears, you grab hold of yourself and sigh. Your almost vacuum-tight pouch is gone. In its place you’ve got a very normal, masculine-looking nutsack.", "passive", (ballSizeGains[firstBallSizeGain + i] - startHours) * 60);
-					pc.removeStatusEffect("Uniball");
+					pc.removeStatusEffect("Uniball", true);
 					// Remove pouch
 					// pc.lust(-10);
 					pc.lust(-10);
@@ -3767,8 +3774,11 @@ public function treatmentHourProcs(totalHours:int):void
 		// Horn Grow 2 Nubs
 		if((pc.horns == 0 || (pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT) || pc.hornLength < pc.statusEffectv2("Treated")) && treatedHours >= 82)
 		{
+			numHornAttempts = treatedHours - Math.max(startHours, 81);
 			numHornGains = 0;
-			for (i = 0; i < treatedHours - startHours; i += 2)
+			hornTimestampStride = 0;
+			
+			for (i = 0; i < numHornAttempts; i++)
 			{
 				if (treatedHours % 2 == 1)
 				{
@@ -3782,16 +3792,16 @@ public function treatmentHourProcs(totalHours:int):void
 				}
 			}
 			
-			var hornPerkTick:Number = (treatedHours - startHours) / numHornGains;
-			
 			if (numHornGains > 0)
 			{
+				hornTimestampStride = Math.floor((treatedHours - Math.max(startHours, 81)) / numHornGains);
+				
 				for (i = 0; i < numHornGains; i++)
 				{
 					// Existing horns transform into lil bull nubs.
 					if(pc.horns > 0 && pc.hornType != GLOBAL.TYPE_BOVINE && pc.hornType != GLOBAL.TYPE_GOAT)
 					{
-						AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They’re small and pointed, like little cow horns.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("There is a crackling, rustling sound coming from above you. You look up, but nothing is there. Instead, you hear the same sound from behind you. This time, you twist around to try and identify the source, but to no avail. A minute later a piece of horn bounces off your nose on the way to the ground.\n\n<b>Your horns are breaking apart!</b> Dazedly, you feel at the crumbling totems, feeling them come apart in your fingers. Chalky dust clings to your hand, but more importantly, two little nubs remain on your head. They’re small and pointed, like little cow horns.", "passive", (hornTimestampStride * i) * 60);
 						pc.horns = 2;
 						pc.hornLength = .5;
 						pc.hornType = GLOBAL.TYPE_BOVINE;
@@ -3799,32 +3809,32 @@ public function treatmentHourProcs(totalHours:int):void
 					// Starting
 					else if(pc.horns == 0 && !pc.hasStatusEffect("Horn Bumps"))
 					{
-						AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it’s red and irritated, though you haven’t seen a head form on the zit yet. You’ve never had such prominent acne before, and there’s a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("Ugh. Your head itches! Reaching up to take a scratch, you wince when you come across a painful bump on your forehead. A quick check with the Codex confirms that it’s red and irritated, though you haven’t seen a head form on the zit yet. You’ve never had such prominent acne before, and there’s a matching lump on the either side. Maybe something stung you? It could always be a pair of bug bites. Gross.", "passive", (hornTimestampStride * i) * 60);
 						pc.createStatusEffect("Horn Bumps");
 					}
 					// Breaking Skin
 					else if(pc.horns == 0)
 					{
-						AddLogEvent("The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("The pain from those irritating red bumps on your forehead is getting worse and worse with each passing moment, matched by a sudden desire to scratch madly at them until you flay the skin away. You resist as long as you can, but the need to tend to the maddening itch overwhelms your subpar self-control. Besides, if something itches, why not scratch it?", "passive", (hornTimestampStride * i) * 60);
 						ExtendLogEvent("\n\nTo your horror, your first scratch peels away a patch of offending skin, but with it comes a sense of relief. Helpless to stop yourself, you scratch and scratch until the desire is completely gone - and a pile of discarded skin has built up before your " + pc.feet() + ".");
 						ExtendLogEvent("\n\nWhat have you done to yourself!? Pulling out your Codex, you use the camera to check.");
 						ExtendLogEvent("\n\nYou cup your chin and smile, regarding what you see with delight. <b>Your horns are coming in!</b> They’re only little nubs at the moment, but there’s no way they’re done growing. You’ll probably have an impressive rack when all is said and done, all the better to attract girls with nice squishy racks of their own.");
 						pc.hornType = GLOBAL.TYPE_BOVINE;
-						pc.removeStatusEffect("Horn Bumps");
+						pc.removeStatusEffect("Horn Bumps", true);
 						pc.horns = 2;
 						pc.hornLength = .5;
 					}
 					// nubs -> 1" horns
 					else if(pc.hornLength < 1)
 					{
-						AddLogEvent("For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("For the past few minutes, a nasty little headache has been brewing. You squeeze your eyes closed, flexing your jaw in an effort to deal with it, when it abruptly fades, vanishing in the span of a second.", "passive", (hornTimestampStride * i) * 60);
 						ExtendLogEvent(ParseText("\n\nYou aggressively prod yourself, trying to find the source of the fleeting pain; just what kind of headache was that? You get your answer when your fingers find what your nubs have become: full blown horns. They stick at least a full inch out from your [pc.skinFurScales], coming to two proud points, though their tips are rounded enough that you doubt you could do any real injury with them just yet. You’ll have to sharpen them up a little once they finish coming in, maybe even get them capped with ornamental steel."));
 						pc.hornLength = 1;
 					}
 					// 1" horns to 2" horns
 					else if(pc.hornLength < 2)
 					{
-						AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There’s really only one thing it can be - your horns are getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to watch your own burgeoning masculinity.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("A wave of discomfort strikes just behind your forehead, growing worse by the second. There’s really only one thing it can be - your horns are getting bigger! You whip out your Codex, wincing from the sudden motion, and flick it on, getting yourself a ticket to watch your own burgeoning masculinity.", "passive", (hornTimestampStride * i) * 60);
 						ExtendLogEvent("\n\nYour formerly one-inch horns have already pushed a little further out, perhaps a quarter inch. The longer they get, the wider their bases are becoming, and they’re growing fast enough now that you can actually see them slowly sliding out, revealing bit after bit of gleaming white ivory. The process is fascinating enough for you to forget your earlier discomfort. You watch, spellbound, as your horns continue to expand, growing ever more prominent on your face until they stop at around two inches long.");
 						ExtendLogEvent("\n\nNow this is more like it. A little bigger, and you’ll almost look like a respectable " + pc.mf("bull","breeder") + ".");
 						pc.hornLength = 2;
@@ -3832,38 +3842,38 @@ public function treatmentHourProcs(totalHours:int):void
 					// 2" horns to 3" horns
 					else if(pc.hornLength < 3)
 					{
-						AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There’s a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There’s blessedly little pain, but when it passes, you’re very aware of additional weight tugging on your head. Your horns have grown: they’re now three inches of gleaming white, bovine awesomeness. You resolve to polish them at the first opportunity, maybe even get some ornamental studs for them.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("Your jaw clenches, a low growl escaping your throat entirely uncontrollably. There’s a powerful shifting and sliding going on in your skull. It leaves you seeing stars with your eyes half-crossed. There’s blessedly little pain, but when it passes, you’re very aware of additional weight tugging on your head. Your horns have grown: they’re now three inches of gleaming white, bovine awesomeness. You resolve to polish them at the first opportunity, maybe even get some ornamental studs for them.", "passive", (hornTimestampStride * i) * 60);
 						pc.hornLength = 3;
 					}
 					// 3" horns to 4" horns - prolly gonna reuse some of this for guys.
 					else if(pc.hornLength < 4)
 					{
-						AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn’t hurt, but it is very disconcerting, making it next to impossible to think.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("Your eyes suddenly cross, and you drop yourself to the ground, lest you run into something or worse. The rumbling sense of movement is working on your skull once more, like giant boulders rolling around the inside of your head. It doesn’t hurt, but it is very disconcerting, making it next to impossible to think.", "passive", (hornTimestampStride * i) * 60);
 						ExtendLogEvent("\n\nYou grunt and groan, feeling the sensation slide <i>outside</i> of your head as your horns expand, growing thicker and heavier. You sigh in satisfaction once they stop growing. Now these are respectable horns! If they stop here, you won’t mind too badly.");
 						pc.hornLength = 4;
 					}
 					// 4" horsn to 5" horns - MAX LADIES CAN GET.
 					else if(pc.hornLength < 5)
 					{
-						AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it’s all over, you’re left holding two big, strong five-inch horns. Nice.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("You feel a sense of... potential building within your head, expanding until it changes from a kind of nebulous energy into an unstoppable pressure. You feel your horns giving under the weight of it all, slowly sliding forward, expanding outward, growing heavier by the moment. You wrap your hands around them, feeling the change against your palms. When it’s all over, you’re left holding two big, strong five-inch horns. Nice.", "passive", (hornTimestampStride * i) * 60);
 						pc.hornLength = 5;
 					}
 					// 5" to six" horns
 					else if(pc.hornLength < 6)
 					{
-						AddLogEvent("Here it comes! You wince at the onset of tightness in your forehead, increasingly familiar as your horns continue their trek toward their full size. It doesn’t even hurt that bad this time; it just feels like a strange, tight tingling as your horns add another inch to their already impressive length. When the sensation fades, <b>you admire your six-inch long horns.</b> Not too shabby. Any longer and you’ll have to be careful with them when going through doorways.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("Here it comes! You wince at the onset of tightness in your forehead, increasingly familiar as your horns continue their trek toward their full size. It doesn’t even hurt that bad this time; it just feels like a strange, tight tingling as your horns add another inch to their already impressive length. When the sensation fades, <b>you admire your six-inch long horns.</b> Not too shabby. Any longer and you’ll have to be careful with them when going through doorways.", "passive", (hornTimestampStride * i) * 60);
 						pc.hornLength = 6;
 					}
 					// 6" -> 7"
 					else if(pc.hornLength < 7)
 					{
-						AddLogEvent("You grunt as the familiar feeling of horn growth sets in. Grabbing hold of the curved, steer-like protrusions, you give them a tug, easing more gleaming ivory into the air. The more horn you grow, the wider their stance and the more threatening you become. You could probably just tip your head an inch forward, snort, and send half the galaxy running. The thought makes you smile almost as much as the idea of a cow-girl squeezing them like handlebars while you give her a few good licks.", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("You grunt as the familiar feeling of horn growth sets in. Grabbing hold of the curved, steer-like protrusions, you give them a tug, easing more gleaming ivory into the air. The more horn you grow, the wider their stance and the more threatening you become. You could probably just tip your head an inch forward, snort, and send half the galaxy running. The thought makes you smile almost as much as the idea of a cow-girl squeezing them like handlebars while you give her a few good licks.", "passive", (hornTimestampStride * i) * 60);
 						pc.hornLength = 7;
 					}
 					// 7" -> 8"
 					else if(pc.hornLength < 8)
 					{
-						AddLogEvent("You wince at the headache as it returns. The familiar ache that’s right behind your forehead can only mean one thing: your horns are about to grow again. But they’re already so big! You watch in disbelief as an extra inch", "passive", ((startHours < 82 ? 82 - startHours : 0) + (hornPerTick * (i + 1))) * 60);
+						AddLogEvent("You wince at the headache as it returns. The familiar ache that’s right behind your forehead can only mean one thing: your horns are about to grow again. But they’re already so big! You watch in disbelief as an extra inch", "passive", (hornTimestampStride * i) * 60);
 						if(rand(3) == 0) 
 						{
 							ExtendLogEvent("... no two extra inches pour");
@@ -3992,6 +4002,16 @@ public function treatmentHourProcs(totalHours:int):void
 			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
 			pc.addLegFlag(GLOBAL.FLAG_FURRED);
 		}
+	}
+	
+	// Treatment Ends
+	if(effect.minutesLeft <= 0 && effect.value1 != -1)
+	{
+		AddLogEvent("<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.\n\nOnce you claim your fortune, you can retire on New Texas, maybe even get your own private milker.", "passive", (treatedHours - startHours) * 60);
+		
+		pc.taint(4);
+		
+		effect.value1 = -1;
 	}
 }
 
@@ -4253,11 +4273,7 @@ public function autoCocknosisDistraction():void
 	if(pc.hasVagina()) eBuffer += " The ground below is absolutely soaked in your pussy juices.";
 	eBuffer += ParseText(" You’re as pent up as you’ve ever been, like your body spent the entire time doing nothing but turning you on and brewing ever more [pc.cum] in your [pc.balls].");
 	// Give full cum + blue balls + Lots of lust
-	if(!pc.hasStatusEffect("Blue Balls"))
-	{
-		pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-		if(pc.ballFullness < 100) pc.ballFullness = 100;
-	}
+	if(!pc.hasStatusEffect("Blue Balls")) pc.applyBlueBalls();
 	output(eBuffer);
 }
 

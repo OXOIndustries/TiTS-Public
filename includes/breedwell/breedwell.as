@@ -1677,12 +1677,16 @@ public function breedwellCockmilkerOutput(arg:Array):void
 		output("\n\nYou");
 		if(pc.isCrotchGarbed()) output(" put your [pc.lowerGarments] back on and");
 		output(" exit the cubicle, [pc.eachCock] throbbing pleasantly.");
+		
+		pc.orgasm();
 	}
 	else if(!porno && dildo)
 	{
 		output("\n\nThe dildo assiduously pumps into you all the way through your orgasm, ruthlessly kneading your prostate so that the machine may extract every last drop of [pc.cum] out of you. Only then does it slowly retract out of your puckered anus, dragging over your tenderized walls as it goes, leaving you wobbly and completely, achingly drained. It’s only after a couple minutes rest, and making use of the conveniently situated moistened towel dispenser, that you");
 		if(pc.isCrotchGarbed()) output(" put your [pc.lowerGarments] back on and");
 		output(" exit the cubicle, [pc.eachCock] throbbing mightily.");
+		
+		pc.orgasm();
 	}
 	else
 	{

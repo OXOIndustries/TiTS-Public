@@ -124,7 +124,7 @@ public function kiroPaigeIntro2():void
 			output("\n\n<i>“Half a million,”</i> you correct her. You show Kiro into your personal quarters and wave your hand to the room, allowing her to sit whenever she likes. As you do, you reach for the ship’s intercom, and dial up Paige’s quarters. <i>“Navigator Paige, please come to my personal quarters,”</i> you say into the ship’s microphone.");
 			output("\n\n<i>“On my way, captain!”</i> Paige replies seconds later.");
 			output("\n\n<i>“Feel free to ask her yourself,”</i> you say as you take your own seat, at a small desk in the corner of the room, next to Kiro on your bed. The seconds pass by palpably – Kiro’s hands fidget on her lap, and her lips quiver with excitement. She’s very eager to meet Paige again.");
-			output("\n\nThen, there’s a knock on your door, the sound of your knuckles against the metal reverberating through the cold hallway of the ship. It swings open without your invitation; on the other side is Paige, your Ausar navigator.");
+			output("\n\nThen, there’s a knock on your door, the sound of knuckles against the metal reverberating through the cold hallway of the ship. It swings open without your invitation; on the other side is Paige, your Ausar navigator.");
 			output("\n\n<i>“Captain?”</i> asks Paige, her eyes scanning the room as she enters – until her eyes meet Kiro’s.");
 			output("\n\n<i>“Uh,”</i> Kiro stutters, at a loss for words – a rarity for her. <i>“Hey there, Bookworm.”</i>");
 			showPaigeAndKiro();
@@ -485,7 +485,7 @@ public function PKTSI():void
 		if(!pc.isNude()) output("effectively ");
 		output("a nudist, and you’ve been naked since the start");
 	}
-	output("); and Kiro practically struggles with her own outfit, with the way her assets press against it. And the longer it takes, the more aroused she becomes, making getting off her pants all the harder.");
+	output("; and Kiro practically struggles with her own outfit, with the way her assets press against it. And the longer it takes, the more aroused she becomes, making getting off her pants all the harder.");
 
 	output("\n\nWhen Kiro is finally naked, baring herself to you and Paige, she puts her hands on her furry hips and wiggles them back and forth, swinging her horsecock in the air, like she was baiting you and Paige to grab onto it. She and Paige share a laugh; her dick hangs in the air, too flaccid yet to support its own weight, but with each pump of her heart, that’s changing in a hurry.");
 
@@ -911,7 +911,7 @@ public function PKTSYBB(args:Array):void
 		output("\n\n<i>“Do you feel as lucky as you are, [pc.name]?”</i> Paige asks you, her tongue aimlessly licking swaths along your neck and up to your [pc.ear]. Every time Kiro thrusts into you, her words come out as an interrupted hiccup, the force billowing through her almost as hard as through you. <i>“Getting plowed by a great, big Kui-Tan cock and having a horny, devoted Ausar fucking you both where she can. There aren’t a lot of people in this universe that can say they’ve been in the same position.”</i>");
 		output("\n\nYou answer affirmatively: you feel very privileged to be in the middle of these two. You likewise ask Paige if she feels the same way.");
 		output("\n\n<i>“[pc.name]?”</i> she asks, her ");
-		if(!paigeBlind()) output("blind ");
+		if(paigeBlind()) output("blind ");
 		output("eyes locking onto yours, before she cups your cheeks with gentle hands and leans in, her tongue meeting yours with frenzied passion. You mutually suck on each other; Paige hums in amusement as she tastes herself on you. <i>“It’s like a dream come true.”</i>");
 
 		output("\n\nYou and Paige explore each other as you both ride Kiro for everything she’s worth, and you know that Kiro is watching. You yank at Paige’s tail; you slap at her ass; you run your fingers through her fur and her hair; you scratch at that erogenous zone of hers that make her tense up and whimper like a dog, accompanying a fresh, warm squirt of her juices. Paige mimics your every action as best as she can, and whenever she does something particularly juicy to you, Kiro knows it, because you clench and squeeze on her all the harder.");
@@ -985,7 +985,7 @@ public function PKTSYE(args:Array):void
 		paige.loadInCunt(pc,0);
 	}
 	else output("You submit to Kiro’s onslaught, and your [pc.vagina] spasms in time with her rolling, ongoing blasts of cum into your willing cunt. The strength leaves your own limbs as you dissolve into a quivering puddle along with Paige and Kiro; your mind surrenders to your body and the pleasure that radiates from your crotch, sucking load after load of hot, viscous Kui-Tan cum into your womb. Kiro’s cock is as hot as burning coal; as hard as the sturdiest oak; and her output is as voluminous as a geyser. Your [pc.belly] rounds out with her output, and when you’re filled to your brim, it comes splashing out from between you, blasting from the tight creases between her dick and your walls, and splashing back onto her vibrating nuts, only to be replaced by a fresh batch and starting the cycle all over again.");
-	output("\n\nThe three of you are a writhing, senseless, directionless mass of muscle, cocks, cunts, fur, and [pc.skinFurScales]. Liquids of all types spout from orifices of all sorts between you; your bed creaks and strains with the weight of three hyperactive participants all fucking each other into its mattress, and it will stink like Ausar and Kui-Tan for months to come, if it washes out at all.");
+	output("\n\nThe three of you are a writhing, senseless, directionless mass of muscle, cocks, cunts, " + (pc.hasFur() ? "and fur" : "fur, and [pc.skinFurScalesNoun]") + ". Liquids of all types spout from orifices of all sorts between you; your bed creaks and strains with the weight of three hyperactive participants all fucking each other into its mattress, and it will stink like Ausar and Kui-Tan for months to come, if it washes out at all.");
 	output("\n\nYou’ve lost track of time since your threesome started, and you nearly lost consciousness in the pleasure that came with your climax. By the time you’re once again cognizant of yourself and your surroundings, the three of you have collapsed into a puddle of heaving breasts, panting mouths, and satisfied cunts and limp cocks; every movement you make is accompanied by the sound of something being peeled from something else. But you all have one thing in common: the slight, yet obvious, grins on your faces, of a person that’s well and truly satisfied.");
 	processTime(10);
 	pc.applyPussyDrenched();
