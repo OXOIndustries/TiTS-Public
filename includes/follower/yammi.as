@@ -224,6 +224,8 @@ public function yammiInTheKitchen():void
 	//Yammi in the Kitchen Main
 	else
 	{
+		//Shizuya's cunt snake recipe
+		if (flags["SHIZZY_MET"] != undefined && flags["SHIZZY_CUNT_SNAKE_RECIPE"] == undefined) return shizzyCuntRecipeGet();
 		//Interacting with Yammi:
 		output("The kitchen’s a busy place, with steam rising from boiling soups and hot food hissing as it is fried. A stove in back seems to be baking something. In the center of this storm of culinary chaos is Yammi, humming to herself and stirring, flipping, and chopping various foodstuffs, wearing nothing but an apron, gloves, and a bikini bottom. She smiles when she sees you.");
 		output("\n\n<i>“Heya, Boss! What’s up?”</i> She inquires, setting down her spatula and turning the heat down so nothing burns. <i>“Can I get you anything?”</i>");
@@ -236,6 +238,7 @@ public function yammiInTheKitchen():void
 public function yammiFollowerMenu():void
 {
 	clearMenu();
+	yammiFollowerDisplay();
 	addButton(0,"Talk",yammiTalkRouter,undefined,"Talk","Sit down and talk with your chef for a bit.");
 	//Help Yammi
 	addButton(1,"Help Out",offerToHelpYammi,undefined,"Help Out","Offer to help Yammi out around in the kitchen.");
@@ -617,7 +620,10 @@ public function yammisMenu():void
 	addButton(7,"Y’s Sammich",yammiSammich,undefined,"Yammi’s Sandwich","A four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
 	//N.T. Milkshake
 	//Requires Crew Reaha
-	if(reahaIsCrew()) addButton(8,"N.T.Milkshake",newTexasMilkshake,undefined,"N.T.Milkshake","New Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
+	if (reahaIsCrew()) addButton(8, "N.T.Milkshake", newTexasMilkshake, undefined, "N.T.Milkshake", "New Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
+	//Cunt Snake
+	//Get from shizuya
+	if (flags["SHIZZY_CUNT_SNAKE_RECIPE"] == 1) addButton(9, "Cunt Snake", shizzyCuntSnakeEat);
 	addButton(14,"Back",yammiInTheKitchen);
 }
 

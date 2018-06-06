@@ -809,6 +809,8 @@ public function annoFollowerTalkAkkadi():void
 
 	output(" Your dad helped me out of a tough spot after that... I was in a pretty bad place. Gave me a chance to come work for his company, to work without... </i>that<i> hanging over me, without brass breathing down my neck about my projects.”</i>");
 
+	flags["SHIZZY_ANNO_MENTIONED_AKKADI"] = 1;
+	
 	annoFollowerTalkMenu(false);
 	addDisabledButton(0, "Akkadi R&D");
 	processTime(10+rand(5));

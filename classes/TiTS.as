@@ -195,6 +195,7 @@
 		include "../includes/travelEvents/fallOfThePhoenix.as";
 		include "../includes/travelEvents/kiro.as";
 		include "../includes/travelEvents/kiroRescue.as";
+		include "../includes/travelEvents/shizuya.as";
 
 		//Tavros Station
 		include "../includes/tavros/aliss.as";

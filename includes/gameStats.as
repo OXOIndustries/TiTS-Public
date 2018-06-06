@@ -6944,6 +6944,13 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["SHADE_BOOBWORSHIP"] != undefined) output2("\n<b>* Shade, Times Worshipped Her Boobs:</b> " + flags["SHADE_BOOBWORSHIP"]);
 			roamCount++;
 		}
+		// Shizuya
+		if (flags["SHIZZY_TRAP_ENCOUNTERED"] != undefined)
+		{
+			if (shizzyTrapAvailable()) output2("\n<b>* Distress Signal:</b> Encountered");
+			else output2("\n<b>* Distress Signal:</b> Dismissed");
+			roamCount++;
+		}
 		// Zo'dee
 		if(flags["MET_ZODEE"] != undefined)
 		{

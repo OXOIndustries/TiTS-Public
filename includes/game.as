@@ -1825,6 +1825,11 @@ public function flyTo(arg:String):void
 				return;
 			}
 		}
+		else if (shizzyTrapAvailable() && rand(4) == 0)
+		{
+			shizzySpezzOdysseyEncounter(arg);
+			return;
+		}
 		else if (silly)
 		{
 			if (flags["SPACE_BEAR"] == undefined && days >= 10) 
