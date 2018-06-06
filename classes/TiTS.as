@@ -390,6 +390,7 @@
 		include "../includes/myrellion/xenogenbiotech.as";
 
 		//FIFTH PLANET: ZHENG SHI
+		include "../includes/zhengShiStation/boredJumper.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/tivf.as";

@@ -22,6 +22,8 @@ public function zhengMinesEncounterBonus():Boolean
 		flags["ZS_MINE_STEP"] = 0;
 		
 		encounters.push(miningRobotAttack);
+		encounters.push(boredJumperAttackProc);
+		encounters.push(boredJumperAttackProc);
 	}
 	if(encounters.length > 0) 
 	{
