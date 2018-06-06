@@ -707,8 +707,9 @@ public function nenneGets69():void
 	output("\n\nThat said, your orgasm is a lot stronger than you remember any recent orgasm of yours: ");
 	if(pc.hasCock()) 
 	{
-		output("your [pc.cock] bloats suddenly in Nenne’s mouth, and you feel every pulse of your veins massaging every little muscle in your dick to usher every single drop of your [pc.cum] up");
-		if(pc.balls > 0) output(" from your [pc.balls]] and out your bloated [pc.cockHead], which is lodged comfortably in Nenne’s moist mouth");
+		output("your [pc.cock] swells suddenly in Nenne’s maw, and you feel every pulse of your veins massaging every little muscle in your dick to usher every single drop of your [pc.cum] up");
+		if(pc.balls > 0) output(" from your [pc.balls] and");
+		output(" out your bloated [pc.cockHead], which is lodged comfortably in Nenne’s moist mouth");
 		if(pc.cumQ() < 400) output(". She doesn’t let a drop out of her mouth, and she moans in delight at the [pc.cumFlavor] taste dressing her buds; her expert tongue coils around your shaft and lets your squirming [pc.cock] squirt into the back of her mouth, and when she’s got a mouthful, she withdraws slightly, dragging her tongue along your [pc.skinFurScales] so she can swish your jizz around before swallowing to make room for some more");
 		else 
 		{
