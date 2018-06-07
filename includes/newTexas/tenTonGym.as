@@ -576,13 +576,16 @@ public function annoWorkoutShipSexyFunTimes():void
 	output("\n\nWhen her orgasm has subsided, Anno leans back and rubs her lips, tentatively. <i>“That was great. I wish all my partners gave head that good. Now that I’m all warmed up, it’s time we gave your lower body some exercise.”</i> Her expression is positively feral, eyes burning with the fire in her loins. How could you refuse?");
 
 	//Find if any dicks fit.
-	var selCock:Number = pc.cockThatFits(anno.vaginalCapacity());
-	//Pick a fork. 0 - vagina, 1 - dick.
-	var sceneChoice:Number = 0;
-	//Herms with fitty dickies get either.
-	if(pc.isHerm()) sceneChoice = rand(2);
-	//Dudes just the dicking.
-	else sceneChoice = 1;
+    	var selCock:Number = pc.cockThatFits(anno.vaginalCapacity());
+    	//Pick a fork. 0 - vagina, 1 - dick.
+    	var sceneChoice:Number = 0;
+    	//Herms with fitty dickies get either.
+    	if(pc.isHerm()) sceneChoice = rand(2);
+    	//Dudes just the dicking.
+    	else if (pc.hasCock()) sceneChoice = 1;
+	//Females play vag variant
+	else sceneChoice = 0;
+
 
 	//Dick scene!
 	if (sceneChoice == 1)
