@@ -10,7 +10,7 @@
 		//constructor
 		public function Syri()
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = this._latestVersion;
 			this._neverSerialize = false;
 			
@@ -60,7 +60,7 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_FUR;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "tanned";
 			this.skinFlags = [GLOBAL.FLAG_FLUFFY];
 			this.faceType = 0;
@@ -181,6 +181,10 @@
 		public function UpgradeVersion3(dataObject:Object):void
 		{
 			dataObject.tone = 30;
+		}
+		public function UpgradeVersion4(dataObject:Object):void
+		{
+			dataObject.skinType = GLOBAL.SKIN_TYPE_SKIN;
 		}
 	}
 }

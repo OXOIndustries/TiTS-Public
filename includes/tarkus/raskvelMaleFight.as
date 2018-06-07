@@ -11,7 +11,7 @@ import classes.GameData.CombatManager;
 
 public function showRaskGang():void
 {
-	userInterface.showBust("RASKVEL_MALE","RASKVEL_MALE","RASKVEL_MALE");
+	userInterface.showBust("RASKVEL_GANG");
 	if(inCombat()) userInterface.showName("RASKVEL\nMALE");
 	else 
 	{
@@ -778,7 +778,7 @@ public function consensualGangBang():void
 	
 	clearOutput();
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	output("As you walk, hands begin to wander and the talk – which the raskvel seem to bounce between them equally – turns increasingly saucy. With supple scales pushing into you from all sides there’s plenty for you to grasp");
 	if(pc.tallness >= 84) output(", even if you do have to reach a distance down to get at it");
 	output(", and by the time they lead you to their cubbyhole underneath a massive leaning crane you are feeling hot, at ease and more than glad you’ve got three of them all to yourself, ");
@@ -936,7 +936,7 @@ public function raskMaleButtfuckery():void
 {
 	clearOutput();
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	var x:int = pc.cockThatFits(enemy.analCapacity());
 	if(x < 0) x = pc.smallestCockIndex();
 	var y:int = pc.cockThatFits2(enemy.analCapacity());
@@ -1143,7 +1143,7 @@ public function redRidingRaskvel():void
 			y = x+1;
 		}
 	}
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	output("<i>“On the floor,”</i> you say curtly to the largest one, <i>“and let’s see it. Now.”</i> The raskvel is clearly not used to this treatment; cheeks burgundy and with no idea where to put his eyes, he clumsily sits down and ");
 	if(enemy.lust() >= 60) output("exposes the thick, purple erection you’ve caused to erupt out of his slender slit, curling his hand around it in an almost protective gesture");
 	else output("slides his thick, purple, semi-erect erection out of his slender slit. Probably aware of what you want, he wraps his hand around and nervously rubs it, practically urging it to get harder quickly.");
@@ -1215,7 +1215,7 @@ public function feedRaskGangMalk(args:Array):void
 {
 	clearOutput();
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	var x:int = args[0];
 	var y:int = args[1];
 	output("<i>“Come here, little boy,”</i> you purr, ");
@@ -1253,7 +1253,7 @@ public function raskvelHardlightPegEdition(args:Array):void
 {
 	clearOutput();
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	var x:int = args[0];
 	var y:int = args[1];
 	output("<i>“Come here, little boy,”</i> you purr, bending across and flapping through your pile of discarded clothes for what you need. What with you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. He does pause when he sees you click on the bright light of your strap-on with a flourish, and the impulse to turn and make for the hills clearly occurs to him.");
@@ -1270,7 +1270,7 @@ public function raskVelCockTailPegging(args:Array):void
 {
 	clearOutput();
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	var x:int = args[0];
 	var y:int = args[1];
 	output("<i>“Come here, little boy,”</i> you purr. What with you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. Perhaps he lives in hope he will get in on the pussy action – if that is what he thinks he’s about to be sorely disappointed, quite literally. He pauses when your [pc.cockTail] rears into view, throbbing with frustrated lust and beading pre, and the impulse to turn and make for the hills does now clearly occur to him.");
@@ -1290,7 +1290,7 @@ public function cuntTailRaskPlay(args:Array):void
 {
 	clearOutput();
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	var x:int = args[0];
 	var y:int = args[1];
 	output("<i>“Come here, little boy,”</i> you purr. With you thoroughly embedded in his two friends he could easily run away if he wanted – but instead he obeys, meekly trotting over to your side. He pauses as your [pc.cuntTail] rears into view, dripping and spreading itself with unrequited arousal, an expression somewhere between fright and lust crossing his ruddy face.");
@@ -1315,7 +1315,7 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 	var originalScene:Function = args[2];
 	clearOutput();
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	output("You swiftly become immersed in the sex, rutting and thrusting into the multiple hot, gasping, licking raskvel. Domineered they may be but they’ve retained their energy and the two beneath you buck their cock and tongue into you vigorously, their bodies almost working on auto-pilot. You gasp and squeeze your [pc.hips] into the groaning reptile beneath you, tensing up to the hard bounce of his cock into your walls as you mercilessly ride him to orgasm. Catching him up in your excited bucking, you force him to cum with you, juicing him with the delicious flexing of your [pc.vagina " + x + "]");
 	if(pc.totalVaginas() == 1) output(", smearing the face of the second raskvel with girl-lube as you do");
 	output(".");
@@ -1414,7 +1414,7 @@ public function vaginaRaskStuffEpilogus(args:Array):void
 public function loseToRaskvelAndGetGangBangued():void
 {
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	output("You collapse into the red dust of Tarkus, too ");
 	if(pc.HP() < 1) output("battered");
 	else output("aroused");
@@ -1624,7 +1624,7 @@ public function seduceTheRaskvelAttackYaNerd():void
 {
 	clearOutput();
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	output("<i>“Oh no, the big strong raskvel are going to get me!”</i> You widen your eyes in dismay and set your upper lip to tremulous as the three of them surround you. <i>“Please don’t get rough with me! Oh, this is all too much...”</i> you deliberately stagger back into the medium sized one, gasping as you do, pushing your [pc.butt] against his hard, flat abdomen. You throw an arm around his shoulders, apparently for support, and bend into his ear.");
 	output("\n\n<i>“You won’t let them harm me, will you?”</i> you whisper, letting your warm breath curl around his long ears and neck. <i>“It’s plain to see you’re the smartest one here, you could make them go away... imagine the fun we could have, just the two of us...”</i> He pushes you off him, but you can see that the laughter on his face has been replaced with a slight, uncertain frown.");
 	output("\n\n<i>“What did she say to you?”</i> says the smallest suspiciously. The biggest makes to grab you; you dart out of his reach.");
@@ -1661,7 +1661,7 @@ public function sneakAwayFromRaskvel():void
 {
 	clearOutput();
 	showRaskGang();
-	userInterface.showBust("RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE","RASKVEL_MALE_NUDE");
+	userInterface.showBust("RASKVEL_GANG_NUDE");
 	output("With all three of the raskvel entirely concerned with beating the hell out of each other, it’s easy for you to quietly take your leave. You giggle to yourself as you imagine the expression of whoever wins, once he realizes you’re no longer there.");
 	CombatManager.abortCombat();
 	processTime(2);

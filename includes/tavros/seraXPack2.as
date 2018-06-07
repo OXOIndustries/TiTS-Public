@@ -2759,7 +2759,7 @@ public function seraBitchTrainingPunishCumRation(fromMenu:Boolean = false):void
 		output(", pull out, and give her a light cock-slap across the cheeks.");
 		output("\n\n<i>“All this time demanding blowjobs off anyone who came close, and you never learnt to do it properly yourself?”</i> you chide. <i>“For someone who fancies themselves a succubus, it’s nowhere near good enough.”</i>");
 		
-		pc.lust(9001);
+		pc.maxOutLust();
 		
 		if(!seraMasturbated)
 		{
@@ -2822,7 +2822,7 @@ public function seraBitchTrainingPunishCumRation(fromMenu:Boolean = false):void
 		output("\n\n<i>“What I know,”</i> she snaps, <i>“is that if you don’t play fair I don’t play at all.”</i>");
 		output("\n\nOh well. You wait unmoving, and eventually, with as much surly reluctance as she can muster, the demoness saunters over, flops down in front of you and takes hold of your [pc.cock " + cIdx + "].");
 		
-		pc.lust(9001);
+		pc.maxOutLust();
 		
 		// Same as 41-60
 		if(!seraMasturbated)
@@ -4137,7 +4137,7 @@ public function seraBitcheningPunishCumRation():void
 	output(", sensuously bathing your sex in pleasure, her opened, luscious lips undulating over it.");
 	if(chars["SERA"].hasCock()) output(" Her own cock, you notice, is erect itself, keening upwards for the oral pleasure happening above that it will never experience.");
 	
-	pc.lust(9001);
+	pc.maxOutLust();
 	
 	output("\n\nShe loves the taste of your dick, and just watching her is enjoyable enough, but that being the case makes this hardly a punishment. Her status has to be reaffirmed. After a few more moments of simmering in that wonderful, wet pleasure on your [pc.cockHead " + cIdx + "], you tighten your grip on her hair and withdraw from her mouth. She blinks out of her reverie, slightly surprised.");
 	output("\n\nYou brush your cock against her lips slowly, tantalizing her with the heavy smell of your pre, and then pull away as she rears her neck, attempting to engulf it in your mouth. Her nipples are as erect as tiny spikes.");
@@ -4892,7 +4892,7 @@ public function approachServantSeraOnTavros(introText:Boolean = false):void
 				if(flags["SERA_PREGNANCY_TIMER"] >= 195)
 				{
 					output("<i>“Hey [pc.master]! How’s it going?”</i>");
-					output("Sera puts down her holopad and grins up at you when you enter her room. She’s sat on her side in bed, resting her large, round belly, surrounded by slews of packaged gene mods and promotional material. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
+					output("\n\nSera puts down her holopad and grins up at you when you enter her room. She’s sat on her side in bed, resting her large, round belly, surrounded by slews of packaged gene mods and promotional material. Going off the state of her room, pregnancy has intensified her predilection for untidiness more than anything.");
 				}
 				else
 				{

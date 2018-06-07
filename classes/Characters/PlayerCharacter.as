@@ -27,7 +27,7 @@ package classes.Characters
 	{
 		public function PlayerCharacter() 
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			this._isLoading = false;
@@ -512,6 +512,37 @@ package classes.Characters
 				}
 			}
 		}
+		public function UpgradeVersion3(d:Object):void
+		{
+			var i:uint = 0;
+			var willIdx:int = -1;
+			var hasMind:Boolean = false;
+			if (d.perks)
+			{
+				for (i = 0; i < d.perks.length; i++)
+				{
+					if (d.perks[i] && d.perks[i].storageName)
+					{
+						switch(d.perks[i].storageName)
+						{
+							case "Weak Willed": willIdx = i; break;
+							case "Weak Mind": hasMind = true; break;
+						}
+					}
+				}
+				if(willIdx >= 0)
+				{
+					// Already has perk, remove dupe.
+					if(hasMind) d.perks.splice(willIdx, 1);
+					// Otherwise, replace old perk.
+					else
+					{
+						d.perks[willIdx].storageName = "Weak Mind";
+						d.perks[willIdx].tooltip = "Intelligence and willpower losses doubled.";
+					}
+				}
+			}
+		}
 		
 		override public function get bustDisplay():String
 		{
@@ -567,6 +598,11 @@ package classes.Characters
 				if (hasPerk("Wooly"))
 				{
 					woolyFurGrow(totalDays);
+				}
+				
+				if (hasPerk("Hips Don't Lie"))
+				{
+					hipsDontLieHipGrowth(totalDays);
 				}
 				
 				if (hasPerk("Buttslut"))
@@ -769,6 +805,10 @@ package classes.Characters
 				addPerkValue("Fecund Figure", 1, (0.05 * totalDays)); // Hips
 				addPerkValue("Fecund Figure", 2, (0.05 * totalDays)); // Butt
 				addPerkValue("Fecund Figure", 4, -(totalDays)); // Gains
+				
+				var msg:String = "";
+				if(numPreg > 0 && bellyRating() >= 10) msg += "You nestle your belly with your hand and feel your hips and ass ripen in blissful contentment.";
+				if(msg != "") AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
 			}
 			
 			if(perkv4("Fecund Figure") < 0) setPerkValue("Fecund Figure", 4, 0);
@@ -805,6 +845,48 @@ package classes.Characters
 				if(hairType == GLOBAL.HAIR_TYPE_GOO && addBooty > 0)
 				{
 					var gooCost:Number = (20 * addBooty);
+					if(gooCost > 0 && kGAMECLASS.gooBiomass() >= gooCost)
+					{
+						m += " Although, the growth took up some of your gooey biomass in the process...";
+						kGAMECLASS.gooBiomass(-1 * gooCost);
+					}
+				}
+				
+				AddLogEvent(m, "passive", baseDShift + (i * 1440));
+			}
+		}
+		
+		private function hipsDontLieHipGrowth(totalDays:int):void
+		{
+			var hipsMin:Number = 18;
+			
+			// If hips is max size or is currently filled, no need to grow.
+			if (hipRatingRaw >= hipsMin) return;
+			
+			var baseDShift:uint = 1440 - (GetGameTimestamp() % 1440);
+			
+			for (var i:int = 0; i < totalDays; i++)
+			{
+				//var oldHips:Number = hipRatingRaw;
+				var addHips:Number = 1 + rand(9);
+				if (hipRatingRaw + addHips > hipsMin) addHips = hipsMin - hipRatingRaw;
+				if (addHips < 0) return;
+				
+				var m:String = "You suddenly wobble as your stride changes, surprising you where you stand. Putting your hands to your sides and moving downward, you find that your hips have gained"
+				
+				if (addHips > 5) m += " a monstrous amount of girth";
+				else if (addHips > 4) m += " a massive surge in width";
+				else if (addHips > 3) m += " a much wider measurement";
+				else if (addHips > 2) m += " a few sizes horizontally";
+				else if (addHips > 1) m += " a couple sizes in width";
+				else m += " some width";
+				m += ParseText("... It seems your body is not happy with you looking as thin as a rail, so it is adding a few pounds of fecund weight where it counts most" + (hipRatingRaw < 10 ? "." : "--much to your pleasure!") + " <b>Your [pc.hips] have grown wider!</b>");
+				
+				hipRatingRaw += addHips;
+				
+				if(hairType == GLOBAL.HAIR_TYPE_GOO && addHips > 0)
+				{
+					var gooCost:Number = (20 * addHips);
 					if(gooCost > 0 && kGAMECLASS.gooBiomass() >= gooCost)
 					{
 						m += " Although, the growth took up some of your gooey biomass in the process...";

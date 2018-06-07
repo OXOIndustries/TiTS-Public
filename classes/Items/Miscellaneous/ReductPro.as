@@ -62,7 +62,7 @@ package classes.Items.Miscellaneous
 				clearOutput();
 			else
 				output("\n\n");
-			kGAMECLASS.showName("\nReductPro");
+			kGAMECLASS.showName("\nREDUCTPRO");
 			output("You ponder over how to use ReductPro. Which body part will you shrink?");
 			
 			// Build menu:
@@ -101,13 +101,6 @@ package classes.Items.Miscellaneous
 					else
 						kGAMECLASS.addDisabledButton(1, "Nipple", "Nipple", "Your nipple is already as flat as it can be!");
 				}
-				else if (pc.breastRows.length > 1)
-				{
-					if (pc.nippleLengthRatio > 0.1)
-						addButton(1, "Nipples", useReductProShrinkNipplesMenu, -1, "Nipples (Single Row)", "Apply the paste to a row of your [pc.nipples].");
-					else
-						kGAMECLASS.addDisabledButton(1, "Nipples", "Nipples (Single Row)", "Your nipples are already as flat as they can be!");
-				}
 				else
 				{
 					if (pc.nippleLengthRatio > 0.1)
@@ -115,15 +108,6 @@ package classes.Items.Miscellaneous
 					else
 						kGAMECLASS.addDisabledButton(1, "Nipples", "Nipples", "Your nipples are already as flat as they can be!");
 				}
-				
-				if (pc.breastRows.length > 1)
-				{
-					if (pc.nippleLengthRatio > 0.1)
-						addButton(6, "NipplesAll", useReductProShrinkNipples, -1, "Nipples (All)", "Apply the paste to your [pc.nipples].");
-					else
-						kGAMECLASS.addDisabledButton(6, "NipplesAll", "Nipples (All)", "Your nipples are already as small as they can be!");
-				}
-					//else kGAMECLASS.addDisabledButton(6, "NipplesAll", "Nipples (All)", "You need multiple rows of nipples for that!");
 			}
 			else
 				kGAMECLASS.addDisabledButton(1, "Nipples", "Nipples", "You need nipples for that!");
@@ -234,7 +218,6 @@ package classes.Items.Miscellaneous
 				addButton(4, "Belly", useReductProShrinkBelly, undefined, "Belly", "Apply the paste to your [pc.belly].");
 			else
 				kGAMECLASS.addDisabledButton(4, "Belly", "Belly", "Your belly is as flat as it can be!");
-			
 			// 13 - Anus
 			if (!pc.ass.loosenessRaw >= 2)
 				addButton(13, "Anus", useReductProShrinkAnus, undefined, "Anus", "Apply the paste to your [pc.asshole].");
@@ -268,41 +251,25 @@ package classes.Items.Miscellaneous
 			// Generate text and buttons:
 			clearMenu();
 			if (pc.breastRows.length <= 0)
-				output("\n\nIt looks like you don't have any extra rows...");
+				output("\n\nIt looks like you only have the one...");
 			else
 			{
-				output("\n\n<b>Total Rows:</b> " + pc.breastRows.length);
-				output("\n<b>Total Breast Count:</b> " + pc.totalBreasts());
+				output("\n\n<b><u>Total Rows:</u></b> " + pc.breastRows.length);
+				//output("\n<b>Total Breast Count:</b> " + pc.totalBreasts());
 				
-				var x:int = 0;
-				var y:int = 0;
-				var z:int = 0;
-				
-				for (x = 0; x < pc.breastRows.length; x++)
+				for (var x:int = 0; x < pc.breastRows.length; x++)
 				{
-					y = x + Math.floor(x / 14);
-					z = 15 * (Math.floor(x / 14)) - 1;
-					
-					output("\n\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b>");
-					output("\nCount: " + pc.breastRows[x].breasts);
-					if (pc.breastRows[x].breastRating() > 0)
-					{
-						output("\nSize: " + pc.breastCup());
-						if (pc.breastRows[x].breasts != 1)
-							output("s");
-					}
-					else
-						output("\nSize: Flat");
-					
+					output("\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b> ");
+					output(pc.breastRows[x].breasts + " ");
+					if (pc.breastRows[x].breastRating() > 0) output(pc.breastCup());
+					else output("flat pectoral");
+					if (pc.breastRows[x].breasts > 1) output("s");
+
 					// Valid boob row
-					addButton(y, String("Row " + (x + 1)), useReductProShrinkBreasts, x);
-					// Nah...
-					if (x == z)
-						addButton(x, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+					addButton(x, String("Row " + (x + 1)), useReductProShrinkBreasts, x);
 				}
 			}
 			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
-			
 			return;
 		}
 		
@@ -313,20 +280,12 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
-			if (pc.isChestCovered())
-				output("Preparing yourself, you remove your [pc.upperGarments]. ");
-			output("You unscrew the cap and squeeze the contents of ReductPro on your hand and apply the paste over your [pc.chest " + rowNum + "].");
+			if (pc.isChestCovered()) output("You remove your [pc.chestCovers] to prepare. ");
+			output("Unscrewing the cap, you squeeze the contents of ReductPro into your hand and apply the paste over your [pc.chest " + rowNum + "].");
 			
 			if (pc.biggestTitSize() <= 0)
 			{
-				output("\n\nYou shudder as");
-				if (pc.breastRows.length > 1)
-					output(" a single row of");
-				output(" your [pc.breasts " + rowNum + "] tingle");
-				if (pc.breastsPerRow(rowNum) == 1)
-					output("s");
-				output(" for a short moment, but then the feeling passes as soon as it starts... Perhaps you are as flat as you're going to get?");
-				
+				output(" A slight tingle makes you shudder, but then the feeling passes as soon as it starts... Perhaps you are as flat as you're going to get?");				
 				useReductProDone(true);
 				return;
 			}
@@ -347,33 +306,24 @@ package classes.Items.Miscellaneous
 			
 			if (pc.breastRatingUnlocked(rowNum, (pc.breastRows[rowNum].breastRatingRaw - nShrink)))
 			{
-				output("\n\nYou shudder as");
-				if (pc.breastRows.length > 1)
-					output(" a single row of");
-				output(" your [pc.breasts " + rowNum + "] shrink to a");
-				if (nShrink < 2)
-					output(" slightly");
-				else if (nShrink > 2)
-					output(" much");
+				output(" It tingles as the selected flesh shrinks to a");
+				if (nShrink < 2) output(" slightly");
+				else if (nShrink > 2) output(" much");
 				output(" smaller size!");
 				
 				pc.breastRows[rowNum].breastRatingRaw -= nShrink;
+				if(pc.breastRows[rowNum].breastRatingRaw < 0) pc.breastRows[rowNum].breastRatingRaw = 0;
 				
 				// Critical shrink!
-				if (pc.breastRows[rowNum].breastRatingRaw > 0 && rand(4) == 0)
+				if (pc.breastRows[rowNum].breastRatingRaw >= 1 && rand(4) == 0)
 				{
 					nShrink = 1 + rand(2);
 					
 					output("\n\n");
-					if (kGAMECLASS.silly)
-						output("<b>Critical shrinkage!</b> ");
-					output("The pasty substance continues to manifest, shrinking your [pc.breasts " + rowNum + "] by another");
-					if (nShrink != 1)
-						output(" " + num2Text(nShrink) + " cups!");
-					else
-						output(" cup!");
-					
+					if (kGAMECLASS.silly) output("<b>Critical shrinkage!</b> ");
+					output("A sharp tingle informs you that the ReductPro isn't done yet! The pasty substance continues to act, stealing still more size from your dwindling chest!");
 					pc.breastRows[rowNum].breastRatingRaw -= nShrink;
+					if(pc.breastRows[rowNum].breastRatingRaw < 0) pc.breastRows[rowNum].breastRatingRaw = 0;
 				}
 				
 				output("\n\nOnce the substance has been fully absorbed, <b>you confirm that your");
@@ -389,14 +339,11 @@ package classes.Items.Miscellaneous
 				else
 				{
 					if (pc.breastRows[rowNum].breastRating() > 0)
-						output(" tits are now at " + pc.breastCup(rowNum) + "s.");
+						output(" breasts are " + pc.breastCup(rowNum) + "s.");
 					else
-						output(" tits are now flat.");
+						output(" breasts are now flat pectorals.");
 				}
 				output("</b>");
-				
-				if (pc.isBimbo())
-					output(" <i>Aw, this is no time for me to lose my tits!</i>");
 				
 				// Done!
 				useReductProDone();
@@ -417,13 +364,13 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
-			if (pc.isChestCovered())
-				output("Preparing yourself, you remove your [pc.upperGarments]. ");
-			output("You unscrew the cap and squeeze the contents of ReductPro onto your hand, and smear the foul-smelling ointment all over your " + pc.allBreastsDescript() + ", covering them entirely as the paste begins to get absorbed into your " + pc.skin() + ".");
-			
+			if (pc.isChestCovered()) output("You remove your [pc.chestCovers] to prepare. ");
+			output("Unscrewing the cap, you squeeze the contents of ReductPro into your hand and apply the paste over your " + pc.allBreastsDescript() + ", covering them entirely.");
+
+
 			if (pc.biggestTitSize() <= 0)
 			{
-				output("\n\nYou shudder as your [pc.breasts] tingle for a short moment, but then the feeling passes as soon as it starts... Perhaps you are as flat as you're going to get?");
+				output(" A slight tingle makes you shudder, but then the feeling passes as soon as it starts... Perhaps you are as flat as you're going to get?");
 				
 				useReductProDone(true);
 				return;
@@ -446,7 +393,7 @@ package classes.Items.Miscellaneous
 			
 			if (pc.breastRatingUnlocked(pc.biggestTitRow(), (pc.breastRows[pc.biggestTitRow()].breastRatingRaw - nShrink)) || rand(10) == 0)
 			{
-				output("\n\nYou shudder as your [pc.chestFull] shrink to a");
+				output(" A slight tingle draws your attention as they shrink to a");
 				if (nShrink < 2)
 					output(" slightly");
 				else if (nShrink > 2)
@@ -456,6 +403,7 @@ package classes.Items.Miscellaneous
 				for (x = 0; x < pc.breastRows.length; x++)
 				{
 					pc.breastRows[x].breastRatingRaw -= nShrink;
+					if(pc.breastRows[x].breastRatingRaw < 0) pc.breastRows[x].breastRatingRaw = 0;
 				}
 				
 				// Critical shrink!
@@ -463,31 +411,19 @@ package classes.Items.Miscellaneous
 				{
 					nShrink = 1 + rand(2);
 					
-					output("\n\n");
-					if (kGAMECLASS.silly)
-						output("<b>Critical shrinkage!</b> ");
-					output("The pasty substance continues to manifest, shrinking your [pc.breasts] by another");
-					if (nShrink != 1)
-						output(" " + num2Text(nShrink) + " cups!");
-					else
-						output(" cup!");
-					
+					output(" No sooner than you adjust to the newer, more compact you, than the ReductPro continues to act, further reducing the size of your chest!");
 					for (x = 0; x < pc.breastRows.length; x++)
 					{
 						pc.breastRows[x].breastRatingRaw -= nShrink;
+						if(pc.breastRows[x].breastRatingRaw < 0) pc.breastRows[x].breastRatingRaw = 0;
 					}
 				}
 				
-				output("\n\nOnce the substance has been fully absorbed, <b>you confirm that your");
+				output("A minute later you confirm that <b>your");
 				if (pc.breastRows[pc.biggestTitRow()].breastRating() > 0)
-					output(" tits are now at " + pc.breastCup(pc.biggestTitRow()) + "s.");
+					output(" biggest breasts are now " + pc.breastCup(pc.biggestTitRow()) + "s.</b>");
 				else
-					output(" tits are now flat.");
-				output("</b>");
-				
-				if (pc.isBimbo())
-					output(" <i>Oopsies, my boobies!</i>");
-				
+					output(" breasts are more or less gone</b>, in their place, flat pectorals remain.");
 				// Done!
 				useReductProDone();
 				return;
@@ -500,7 +436,10 @@ package classes.Items.Miscellaneous
 			}
 		}
 		
-		// Nipples (Single Row) - Brings up prompt on which row to shrink.
+		/* Nipples (Single Row) - Brings up prompt on which row to shrink.
+		//FEN NOTE: COMPLETELY CUT THIS BECAUSE THERE IS NO REASON TO SELECT A ROW. FUCKING... I EDITED THE TEXT BEFORE I REALIZED HOW FUCKTARDED THIS ALL WAS. KILL ME FUCKING NOW.
+
+
 		private function useReductProShrinkNipplesMenu():void
 		{
 			var pc:PlayerCharacter = kGAMECLASS.pc;
@@ -515,46 +454,29 @@ package classes.Items.Miscellaneous
 				output("\n\nIt looks like you don't have any extra rows...");
 			else
 			{
-				output("\n\n<b>Total Rows:</b> " + pc.breastRows.length);
-				output("\n<b>Nipple Count:</b> " + pc.nipplesPerBreast + " nipple");
-				if (pc.nipplesPerBreast != 1)
-					output("s");
-				output(" per breast");
-				output("\n<b>Total:</b> " + pc.totalNipples());
-				
-				var x:int = 0;
-				var y:int = 0;
-				var z:int = 0;
-				
-				for (x = 0; x < pc.breastRows.length; x++)
+				output("\n\n<b>Total Rows:</b> " + pc.breastRows.length + " with " + num2Text(pc.nipplesPerBreast) + " nipple");
+				if (pc.nipplesPerBreast != 1) output("s");
+				output(" per breast.");
+
+				for (var x:int = 0; x < pc.breastRows.length; x++)
 				{
-					y = x + Math.floor(x / 14);
-					z = 15 * (Math.floor(x / 14)) - 1;
-					
-					output("\n\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b>");
-					output("\nType: " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType]);
-					if (pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
-						output(", " + GLOBAL.TYPE_NAMES[pc.dickNippleType]);
-					output("\nNipple Length: " + pc.nippleLength(x) + " inch");
-					if (pc.nippleLength(x) != 1)
-						output("es");
-					output("\nAreola Size: " + pc.nippleWidth(x) + " inch");
-					if (pc.nippleWidth(x) != 1)
-						output("es");
-					
+					output("\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b> " + GLOBAL.NIPPLE_TYPE_NAMES[pc.breastRows[x].nippleType] + " Nipples, " + Math.round(pc.nippleLength(x)*10)/10 + " inch");
+					if (Math.round(pc.nippleLength(x)*10)/10) output("es");
+					output(" long and " + Math.round(pc.nippleWidth(x)*10)/10 + " inch");
+					if (Math.round(pc.nippleWidth(x)*10)/10) output("es");
+					output(" wide.");
+
 					// Valid nipple row
-					addButton(y, String("Row " + (x + 1)), useReductProShrinkNipples, x);
-					// Nah...
-					if (x == z)
-						addButton(x, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+					addButton(x, String("Row " + (x + 1)), useReductProShrinkNipples, x);
 				}
 			}
 			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
 			
 			return;
-		}
+		}*/
 		
 		// Nipples (rowNum: -1 is all, 0+ is a row)
+		// Fen note: row selection is dumb and useless given how we do nipple size. Fuck you, game.
 		private function useReductProShrinkNipples(rowNum:int = 0):void
 		{
 			var pc:PlayerCharacter = kGAMECLASS.pc;
@@ -565,41 +487,15 @@ package classes.Items.Miscellaneous
 			var nShrink:Number = Math.max((pc.nippleLengthRatio * 0.5) / pc.breastRows.length, 0.1);
 			var bChanged:Boolean = false;
 			
-			if (pc.isChestCovered())
-				output("Preparing yourself, you remove your [pc.upperGarments]. ");
-			output("You unscrew the cap and squeeze the contents of ReductPro on your hand and you begin to apply them to");
+			if (pc.isChestCovered()) output("You remove your [pc.chestCovers] to prepare. ");
+			output("Unscrewing the cap, you squeeze the contents of ReductPro into your hand and apply the paste over ");
 			
-			if (rowNum >= 0)
-			{
-				if (pc.breastRows.length > 1)
-					output(" a single row of");
-				output(" your nipple");
-				if (pc.nipplesPerBreast * pc.breastRows[rowNum].breasts != 1)
-					output("s");
-				output(" evenly.");
-			}
-			else
-			{
-				if (pc.breastRows.length == 2)
-					output(" both rows of");
-				else if (pc.breastRows.length > 1)
-					output(" all rows of");
-				output(" your nipple");
-				if (pc.breastRows.length > 1 || pc.totalBreasts() != 1)
-					output("s");
-				output(" evenly.");
-			}
+			if(pc.totalNipples() == 1) output("your single [pc.nippleNoun] evenly.");
+			else output(" every single [pc.nipplesNoun] evenly.");
 			
 			if (pc.nippleLengthRatio <= 0.1 || pc.hasFlatNipples())
 			{
-				output("\n\nYou shudder as your [pc.nipples " + rowNum + "] tingle");
-				if (pc.totalNipples() == 1)
-					output("s");
-				output(" for a short moment, but then the feeling passes as soon as it starts... Looks like your [pc.nipples] won't be getting any smaller...");
-				
-				if (pc.isBimbo())
-					output(" <i>That's right--it only makes sense if my nips were bigger, like... like all suckable and stuff!</i>");
-				
+				output(" You shudder the resulting tingle for a short moment, but then the feeling passes as soon as it starts... Looks like your [pc.nipples] won't be getting any smaller...");
 				useReductProDone(true);
 				return;
 			}
@@ -607,139 +503,64 @@ package classes.Items.Miscellaneous
 			// Shrink nipple size by 50% divided by the number of rows.
 			if (pc.nippleLengthRatioUnlocked(pc.nippleLengthRatio - nShrink))
 			{
-				if (rowNum >= 0)
+				output(" You shudder as the coating causes your flesh to shrink.");
+				pc.nippleLengthRatio -= nShrink;
+				if (pc.nippleLengthRatio < 0.1) pc.nippleLengthRatio = 0.1;
+				// May remove fuckable status of your nipples as well as your nipplecocks.
+				if ((pc.hasFuckableNipples() || pc.hasDickNipples()) && rand(5) == 0)
 				{
-					output("\n\n");
-					if (pc.nipplesPerBreast * pc.breastRows[rowNum].breasts == 1)
-						output("You shudder as your [pc.nipple " + rowNum + "] shrinks until it has lost a fraction of its old size.");
-					else
-						output("Instead of affecting the row you've applied the drug to, the paste's effect seems to spread to all of your nipples... You shudder as your [pc.nipples " + rowNum + "] shrink until they have lost a fraction of their old size.");
-					
-					pc.nippleLengthRatio -= nShrink;
-					if (pc.nippleLengthRatio < 0.1)
-						pc.nippleLengthRatio = 0.1;
-					
-					// May lose nipplecunts and nipplecocks if you ReductPro them enough.
-					if ((pc.breastRows[rowNum].fuckable() || pc.breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_DICK) && rand(5) == 0)
+					for (x = 0; x < pc.breastRows.length; x++)
 					{
-						if (pc.nippleTypeUnlocked(rowNum, GLOBAL.NIPPLE_TYPE_NORMAL))
+						if (pc.nippleTypeUnlocked(x, GLOBAL.NIPPLE_TYPE_NORMAL))
 						{
-							if (pc.breastRows[rowNum].fuckable())
-							{
-								if (pc.breastsPerRow(rowNum) == 1 && pc.nipplesPerBreast == 1)
-									output("\n\nThe slit in your [pc.nipple " + rowNum + "] feels tighter and as you reach your fingers to it, you can find no traces of the slit. <b>Your nipple is no longer fuckable!</b>");
-								else
-									output("\n\nThe slit in your [pc.nipples " + rowNum + "] feel tighter and as you reach your fingers to them, you can find no traces of the slit. <b>Your nipples are no longer fuckable!</b>");
-								
-								pc.breastRows[rowNum].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
-							}
-							else if (pc.breastRows[rowNum].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
-							{
-								if (pc.breastsPerRow(rowNum) == 1 && pc.nipplesPerBreast == 1)
-									output("\n\nYour [pc.nippleCock] slides out of your [pc.nipple] to full erection before the remaining ReductPro start to manifest and your [pc.nippleCock] shrinks back to nothing. You give your [pc.nipple " + rowNum + "] an experimental pinch to confirm that you no longer have it. <b>You have lost your nipplecock!</b>");
-								else
-									output("\n\nYour [pc.nippleCocks] slide out of your [pc.nipples] to full erection before the remaining ReductPro start to manifest and your [pc.nippleCocks] shrink back to nothing. You give your [pc.nipples " + rowNum + "] an experimental pinch to confirm that you no longer have them. <b>You have lost your nipplecocks!</b>");
-								
-								pc.breastRows[rowNum].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
-								
-								if (pc.isBimbo())
-									output(" <i>Aww, but I like my yummy cocks...</i>");
-							}
-						}
-						else
-						{
-							output("\n\n" + pc.nippleTypeLockedMessage());
-						}
-					}
-					// May get flat nipples!
-					else if (pc.nippleLengthRatio <= 0.2 && pc.breastRows[rowNum].nippleType != GLOBAL.NIPPLE_TYPE_FLAT && rand(2) == 0)
-					{
-						if (pc.nippleTypeUnlocked(rowNum, GLOBAL.NIPPLE_TYPE_FLAT))
-						{
-							if (pc.breastsPerRow(rowNum) == 1 && pc.nipplesPerBreast == 1)
-								output("\n\nRubbing your [pc.nipple " + rowNum + "] with your fingertips, you feel the nub getting smaller and smaller... until it completely disappears, leaving behind a tipless, pebbly surface <b>You now have a flat nipple!</b>");
-							else
-								output("\n\n\n\nRubbing your [pc.nipples " + rowNum + "] with your fingertips, you feel the nubs getting smaller and smaller... until they completely disappear, each leaving behind a tipless, pebbly surface <b>You now have flat nipples!</b>");
-							
-							pc.breastRows[rowNum].nippleType = GLOBAL.NIPPLE_TYPE_FLAT;
-							
-							if (pc.isBimbo())
-								output(" <i>Like, what happened to my nips?!</i>");
-						}
-						else
-						{
-							output("\n\n" + pc.nippleTypeLockedMessage());
-						}
-					}
-				}
-				else
-				{
-					if (pc.totalNipples() == 1)
-						output("\n\nYou shudder as your [pc.nipple] shrinks until it has lost a fraction of its old size.");
-					else
-						output("\n\nYou shudder as your [pc.nipples] shrink until they have lost a fraction of their old size.");
-					
-					pc.nippleLengthRatio -= nShrink;
-					if (pc.nippleLengthRatio < 0.1)
-						pc.nippleLengthRatio = 0.1;
-					
-					// May remove fuckable status of your nipples as well as your nipplecocks.
-					if ((pc.hasFuckableNipples() || pc.hasDickNipples()) && rand(5) == 0)
-					{
-						for (x = 0; x < pc.breastRows.length; x++)
-						{
-							if (pc.nippleTypeUnlocked(x, GLOBAL.NIPPLE_TYPE_NORMAL))
-							{
-								if (pc.breastRows[x].fuckable())
-								{
-									if (!bChanged)
-									{
-										if (pc.totalNipples() == 1)
-											output("\n\nThe slit in your [pc.nipple " + x + "] feels tighter and as you reach your fingers to it, you can find no traces of the slit. <b>Your nipple is no longer fuckable!</b>");
-										else
-											output("\n\nThe slit in your [pc.nipples " + x + "] feel tighter and as you reach your fingers to them, you can find no traces of the slit. <b>Your nipples are no longer fuckable!</b>");
-										bChanged = true;
-									}
-									
-									pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
-								}
-								else if (pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
-								{
-									if (!bChanged)
-									{
-										if (pc.totalNipples() == 1)
-											output("\n\nYour [pc.nippleCock] slides out of your [pc.nipple] to full erection before the remaining ReductPro start to manifest and your [pc.nippleCock] shrinks back to nothing. You give your [pc.nipple " + x + "] an experimental pinch to confirm that you no longer have it. <b>You have lost your nipplecock!</b>");
-										else
-											output("\n\nYour [pc.nippleCocks] slide out of your [pc.nipples] to full erection before the remaining ReductPro start to manifest and your [pc.nippleCocks] shrink back to nothing. You give your [pc.nipples " + x + "] an experimental pinch to confirm that you no longer have them. <b>You have lost your nipplecocks!</b>");
-										bChanged = true;
-									}
-									
-									pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
-								}
-							}
-						}
-					}
-					// May get flat nipples!
-					else if (pc.nippleLengthRatio <= 0.2 && !pc.hasFlatNipples() && rand(2) == 0)
-					{
-						for (x = 0; x < pc.breastRows.length; x++)
-						{
-							if (pc.nippleTypeUnlocked(x, GLOBAL.NIPPLE_TYPE_FLAT))
+							if (pc.breastRows[x].fuckable())
 							{
 								if (!bChanged)
 								{
 									if (pc.totalNipples() == 1)
-										output("\n\nRubbing your [pc.nipple " + x + "] with your fingertips, you feel the nub getting smaller and smaller... until it completely disappears, leaving behind a tipless, pebbly surface <b>You now have a flat nipple!</b>");
+										output(" The slit in your [pc.nippleNoun " + x + "] feels tighter, and as you reach your fingers to it, you can find no trace of it. <b>Your nipple is no longer fuckable!</b>");
 									else
-										output("\n\n\n\nRubbing your [pc.nipples " + x + "] with your fingertips, you feel the nubs getting smaller and smaller... until they completely disappear, each leaving behind a tipless, pebbly surface <b>You now have flat nipples!</b>");
+										output(" The slits in your [pc.nipplesNoun " + x + "] feel tighter, and as you reach your fingers to touch them, you can find no trace of the once-pliant entrances. <b>Your nipples are no longer fuckable!</b>");
+									bChanged = true;
+								}
+								pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
+							}
+							else if (pc.breastRows[x].nippleType == GLOBAL.NIPPLE_TYPE_DICK)
+							{
+								if (!bChanged)
+								{
+									if (pc.totalNipples() == 1)
+										output(" Your [pc.nippleCock] slides out to full erection in protest before withdrawing back inside your body, shrinking down into nothing. You give your [pc.nipple " + x + "] an experimental pinch to confirm that you no longer have it. <b>You have lost your nipple-cock!</b>");
+									else
+										output(" Your [pc.nippleCocks] slide out to full erection in protest before withdrawing back inside your body, their tumescence dwindling to less than nothing. You give your [pc.nipples " + x + "] an experimental pinch to confirm that nothing remains. <b>You have lost your nipple-cocks!</b>");
 									bChanged = true;
 								}
 								
-								pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_FLAT;
+								pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_NORMAL;
 							}
 						}
 					}
 				}
+				// May get flat nipples!
+				/* FEN NOTE: No, this will fuck with too much shit.
+				else if (pc.nippleLengthRatio <= 0.2 && !pc.hasFlatNipples() && rand(2) == 0)
+				{
+					for (x = 0; x < pc.breastRows.length; x++)
+					{
+						if (pc.nippleTypeUnlocked(x, GLOBAL.NIPPLE_TYPE_FLAT))
+						{
+							if (!bChanged)
+							{
+								if (pc.totalNipples() == 1)
+									output(" Rubbing the tip with your fingertips, you feel the nub getting smaller and smaller... until it completely disappears, leaving behind blank, pebbly surface <b>You now have a flat nipple!</b>");
+								else
+									output(" Rubbing your tips with your fingertips, you feel the nubs getting smaller and smaller... until they completely disappear, each leaving behind a flat, pebbly surface <b>You now have flat nipples!</b>");
+								bChanged = true;
+							}
+							pc.breastRows[x].nippleType = GLOBAL.NIPPLE_TYPE_FLAT;
+						}
+					}
+				}*/
 				// Done!
 				useReductProDone();
 				return;
@@ -768,10 +589,35 @@ package classes.Items.Miscellaneous
 			else if (kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] == undefined)
 				output("You've already tried this out on your ass, but you wonder what will happen when you get your lady parts involved... ");
 			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments],");
-			output(" unscrew the cap, squeeze the contents of ReductPro onto your fingers, and proceed to apply the foul-smelling paste inside your [pc.vaginas].");
+			if (!pc.isCrotchExposed()) output(" open up your [pc.crotchCovers],");
+			output(" unscrew the cap, squeeze the contents of ReductPro onto your fingers, and proceed to apply the paste to your [pc.vaginas].");
 			
+			//Reduce plump flags!
+			if(pc.hasPlumpPussy())
+			{
+				output(" Right away, something happens. A shock of sudden tightness in your nethers demands your attention as your swollen netherlips slim down.");
+				var pumpReported:Boolean = false;
+				for(var y:int = 0; y < pc.totalVaginas(); y++)
+				{
+					if(pc.hasPlumpPussy(y))
+					{
+						pc.deflateVagina(y);
+						if(!pumpReported)
+						{
+							if(pc.vaginas[y].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) output(" <b>Your [pc.vaginaNoun " + y + "] is less plump</b>, though only slightly so.")
+							else output(" <b>Your [pc.vaginaNoun " + y + "] is no longer so quite so plump</b>.");
+							pumpReported = true;
+						}
+					}
+				}
+				output("\n\nEverything is so delightfully sensitive afterward, you're tempted to use it again.");
+				pc.libido(4);
+				pc.taint(2);
+				kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] = 1;
+				useReductProDone(true);
+				return;
+			}
+
 			// Instantly reduces vaginal looseness by 1.
 			if (pc.loosenessUnlocked(iTightestVagina, pc.vaginas[iTightestVagina].loosenessRaw - 1))
 			{
@@ -787,7 +633,7 @@ package classes.Items.Miscellaneous
 			
 			if (iChanged > 0)
 			{
-				output("\n\nA clenching reflex and tingling feeling within your [pc.vaginas] is a sign that the drug is working its magic.");
+				output("\n\nA clenching sensation deep in your [pc.vaginas] signals that the drug is working its magic.");
 				if (kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] == undefined)
 					output(" To your surprise");
 				else
@@ -800,11 +646,9 @@ package classes.Items.Miscellaneous
 					output(" has");
 				else
 					output("s have");
-				output(" instantly tightened!</b>");
-				
-				if (pc.isBimbo())
-					output(" <i>Ooh, any tighter and I won't be able to fit all those yummy cocks!</i>");
-				
+				output(" instantly tightened!</b> Phew! Nothing else seems to happen, aside from a residual flush and the knowledge that you can stuff whatever you want up there with no repurcussions at all. Horray, science!");
+				pc.taint(2);
+				pc.libido(4);
 				kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] = 1;
 				
 				// Done!
@@ -826,24 +670,22 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
-			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments],");
-			output(" unscrew the cap, carefully apply the paste to your " + pc.clitDescript() + ", being very careful to avoid getting it on your " + pc.vaginaDescript(0) + ".  It burns with heat as it begins to make its effects known...");
+			if (!pc.isCrotchExposed()) output("Moving your clothing out of the way, y");
+			else output("Y");
+			output("ou unscrew the cap to carefully apply the paste to your " + pc.clitsDescript() + ". You'd hate to get any on your [pc.vaginas]. Burning heat envelops your hyper-sensitive organ");
+			if(pc.totalClits() > 1) output("s");
+			output(", signalling that something is about to happen.");
 			var newClitLength:Number = Math.round((pc.clitLength / (1 + (0.7 / (Math.ceil(pc.totalClits()) / 2)))) * 100) / 100;
 			if (pc.clitLength > 0 && pc.clitLengthUnlocked(newClitLength))
 			{
 				if (pc.totalClits() == 1)
-					output("\n\nYour " + pc.clitDescript() + " shrinks rapidly, dwindling down to almost half its old size before it finishes absorbing the paste.");
+					output("\n\nYour " + pc.clitDescript() + " shrinks rapidly, dwindling down to almost half its old size before it finishes absorbing the ReductPro.");
 				else
-					output("\n\nYour " + pc.clitDescript() + " shrink rapidly, dwindling down to almost half their old size before it finishes absorbing the paste.");
+					output("\n\nYour " + pc.clitsDescript() + " shrink rapidly, dwindling down to almost half their old size before they finishes absorbing the ReductPro.");
 				pc.clitLength -= (Math.round((pc.clitLength / 3) * 100) / 100);
 				if (pc.clitLength < 0)
 					pc.clitLength = 0.01;
-				
-				if (pc.isBimbo())
-					output(" <i>Not my happy button!</i>");
-				
+			
 				// Done!
 				useReductProDone();
 				return;
@@ -874,34 +716,23 @@ package classes.Items.Miscellaneous
 				output("\n\n<b>Total Cocks:</b> " + pc.cockTotal());
 				
 				var x:int = 0;
-				var y:int = 0;
-				var z:int = 0;
 				
 				for (x = 0; x < pc.cocks.length; x++)
 				{
-					y = x + Math.floor(x / 14);
-					z = 15 * (Math.floor(x / 14)) - 1;
-					
-					output("\n\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock:</b>");
-					output("\nLength: " + formatFloat((pc.cocks[x] as CockClass).cLength(), 3) + " inch");
-					if (pc.cocks[x].cLength() != 1)
-						output("es");
-					output("\nGirth: " + formatFloat((pc.cocks[x] as CockClass).thickness(), 3) + " inch");
-					if (pc.cocks[x].thickness() != 1)
-						output("es");
+					output("\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Cock:</b> " + pc.accurateCockName(x));
+					output("\n\tLength: " + formatFloat((pc.cocks[x] as CockClass).cLength(), 3) + " inch");
+					if (pc.cocks[x].cLength() != 1) output("es");
+					output("\n\tGirth: " + formatFloat((pc.cocks[x] as CockClass).thickness(), 3) + " inch");
+					if (pc.cocks[x].thickness() != 1) output("es");
 					
 					// Valid cock
-					addButton(y, String("Cock " + (x + 1)), useReductProShrinkCock, x);
-					// Nah...
-					if (x == z)
-						addButton(x, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
+					addButton(x, String("Cock " + (x + 1)), useReductProShrinkCock, x);
 				}
 			}
 			addButton(14, "Back", menuReductProOptions, true, "Nevermind", "Choose something else...");
-			
 			return;
 		}
-		
+		//fen redux continue here
 		// Cock (Single)
 		private function useReductProShrinkCock(cockNum:int = 0):void
 		{
@@ -910,22 +741,22 @@ package classes.Items.Miscellaneous
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
 			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments],");
-			output(" unscrew the cap and smear the repulsive smelling paste over your " + pc.cockDescript(cockNum) + ". It immediately begins to grow warm, almost uncomfortably so, as your " + pc.cockDescript(cockNum) + " begins to shrink.");
+			if (!pc.isCrotchExposed()) output(" pull open your attire in order to");
+			else output(" unscrew the cap in order to");
+			output(" smear the repulsive smelling paste over your " + pc.cockDescript(cockNum) + ". It immediately begins to grow warm, almost uncomfortably so");
+			if (pc.cocks[cockNum].cLength() > 3) output(", as it starts to shrink");
+			output(".");
 			
 			// Too short!
 			if (pc.cocks[cockNum].cLength() <= 3)
 			{
-				output("\n\nYou shudder as your [pc.cock " + cockNum + "] pulses for a short moment, but then the feeling passes and it soon goes flaccid... Perhaps your little pecker is as small as it's going to get?");
-				
+				output(" The feeling is short-lived. You go flaccid after a second with no change in size... Perhaps <b>you've reached the minimum size this product allows?</b>");				
 				// Reduce libido by 1 down to 10.
 				if (pc.libidoRaw > (pc.libidoMin() + 10))
 				{
 					output("\n\nEven though your cock refuses to change, you can feel a small part of your urgency for lust fade...");
 					pc.libido(-1);
 				}
-				
 				useReductProDone();
 				return;
 			}
@@ -935,20 +766,16 @@ package classes.Items.Miscellaneous
 			
 			if (pc.cockLengthUnlocked(cockNum, (pc.cocks[cockNum].cLengthRaw - nShrink)))
 			{
-				output("\n\nYour " + pc.cockDescript(cockNum) + " twitches as it shrinks, disappearing steadily into your " + (pc.hasSheath() ? "sheath" : "crotch"));
+				output(" Small twitches ripple through the length of your diminishing phallus until");
 				pc.cocks[cockNum].cLengthRaw -= nShrink;
 				if (pc.cocks[cockNum].cLengthRaw < 3)
 				{
 					// ... down to a minimum of 3 inches.
 					pc.cocks[cockNum].cLengthRaw = 3;
-					output(" to about three inches in length");
+					output(" it halts around three inches in length");
 				}
-				else
-					output(" until it has lost a third of its old size");
+				else output(" one third of its mass has vanished");
 				output(".</b>");
-				
-				if (pc.isBro())
-					output(" <i>Damn, I gotta be more careful... I'll need this if I'm gonna fuck all the bitches!</i>");
 				
 				// Reduce libido by 1 down to 10.
 				if (pc.libidoRaw > (pc.libidoMin() + 10))
@@ -986,24 +813,22 @@ package classes.Items.Miscellaneous
 			var iChanged:int = 0;
 			
 			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments],");
-			output(" unscrew the cap and stroke all of your [pc.cocks] until they are brought to full erection. Next, you squeeze the tube of ReductPro all over them, spreading the pasty substance evenly across your");
-			if (pc.cocks.length == 2)
-				output(" pair");
-			else
-				output(" entire set");
-			output(" of manhoods.");
+			if (!pc.isCrotchExposed()) output(" open up your [pc.crotchCovers] to");
+			if(!pc.isErect()) output(" stroke all of your [pc.cocks] until they are brought to full erection. Next, you");
+			output("squeeze the tube of ReductPro all over them, spreading the pasty substance evenly across your");
+			if (pc.cocks.length == 2) output(" pair of");
+			else output(" multitudinous");
+			output(" manhoods.");
 			
 			// Too short!
 			if (pc.longestCockLength() <= 3)
 			{
-				output("\n\nYou shudder as your cocks pulse for a short moment, but then the feeling passes and they soon go flaccid... Perhaps your peckers are as small as they're going to get?");
+				output("Pulsing shocks grow and grow... and fade to nothing. Perhaps <b>you're as small as this product can possibly make you.</b>");
 				
 				// Reduce libido by 1 down to 10.
 				if (pc.libidoRaw > (pc.libidoMin() + 10))
 				{
-					output("\n\nEven though your cocks refuse to change, you can feel a small part of your urgency for lust fade...");
+					output("\n\nEven though your cocks refuse to change, you can feel a slight reduction in the accompanying urges.");
 					pc.libido(-1);
 				}
 				
@@ -1019,10 +844,10 @@ package classes.Items.Miscellaneous
 			{
 				for (x = 0; x < pc.cocks.length; x++)
 				{
-					if (pc.cocks[x].cLengthRaw() > 3 && pc.cockLengthUnlocked(x, pc.cocks[x].cLengthRaw - nShrink))
+					if (pc.cocks[x].cLengthRaw > 3 && pc.cockLengthUnlocked(x, pc.cocks[x].cLengthRaw - nShrink))
 					{
 						pc.cocks[x].cLengthRaw -= nShrink;
-						if (pc.cocks[x].cLengthRaw() < 3)
+						if (pc.cocks[x].cLengthRaw < 3)
 							pc.cocks[x].cLengthRaw = 3;
 						iChanged++;
 					}
@@ -1031,11 +856,8 @@ package classes.Items.Miscellaneous
 			
 			if (iChanged > 0)
 			{
-				output("\n\nYou shudder as your [pc.cocks] shrink until they have lost a fraction of their old size.");
-				
-				if (pc.isBro())
-					output(" <i>Totally </i>not<i> what I wanted to do, man...</i>");
-				
+				output(" Shudders and twitches ripple through your [pc.cocks] as the chemical treatment works its magic, stealing your mass like a thief in the night.");
+							
 				// Reduce libido by 1 down to 10.
 				if (pc.libidoRaw > (pc.libidoMin() + 10))
 				{
@@ -1044,7 +866,7 @@ package classes.Items.Miscellaneous
 						output(" one of your cocks settles to its");
 					else
 						output(" your cocks settle to their");
-					output(" new size, you feel a part of your urgency for lust fade with it...");
+					output(" new size, you feel your urges shrinking apace...");
 					pc.libido(-1);
 				}
 			}
@@ -1055,7 +877,7 @@ package classes.Items.Miscellaneous
 				// Reduce libido by 1 down to 10.
 				if (pc.libidoRaw > (pc.libidoMin() + 10))
 				{
-					output("\n\nEven though your cocks refuse to change, you can feel a small part of your urgency for lust fade...");
+					output("\n\nEven though your cocks refuse to change, you can feel a slight reduction in the accompanying urges.");
 					pc.libido(-1);
 				}
 			}
@@ -1073,9 +895,11 @@ package classes.Items.Miscellaneous
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
 			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments],");
-			output(" unscrew the cap, squeeze the contents of ReductPro onto your hand, and smear the foul-smelling paste onto your " + pc.sackDescript() + ".  It feels cool at first but rapidly warms to an uncomfortable level of heat.");
+			if (!pc.isCrotchExposed())
+				output(" open up your [pc.crotchCovers],");
+			output(" unscrew the cap");
+			if(!pc.isCrotchExposed()) output(",");
+			output(" and squeeze the contents of ReductPro onto your hand. The foul-smelling paste smears onto your " + pc.sackDescript() + " with ease.  It feels cool at first but rapidly warms to discomfort by the time you've finished applying it.");
 			
 			// Shrink ball size by up to 50%, depending on the size and how many of balls you have.
 			var nReduce:Number = 1.00;
@@ -1108,38 +932,17 @@ package classes.Items.Miscellaneous
 			
 			if (nSize >= 1 && pc.ballSizeUnlocked(nSize))
 			{
-				output("\n\nYou feel your scrotum shift, shrinking down along with your " + pc.ballsDescript() + ". Within a few seconds the paste has been totally absorbed and the shrinking stops.");
+				output(" You feel your scrotum shift, shrinking down along with your " + pc.ballsDescript() + ". Within a few seconds, the paste's shrinking power has been exhausted.");
 				pc.ballSize(nSize, true);
-				
-				if (pc.isBro())
-					output(" <i>Ah man, come on now! Seriously?</i>");
-				
-				// Reduce libido by 1 down to 15.
-				if (pc.libidoRaw > (pc.libidoMin() + 15))
-				{
-					output("\n\nAs your");
-					if (pc.balls == 1)
-						output(" ball shrinks to its");
-					else
-						output(" balls shrink to their");
-					output(" new size, you feel a little bit of your libido fade as well...");
-					pc.libido(-1);
-				}
 			}
 			else
 			{
 				output("\n\n" + pc.cockLengthLockedMessage());
-				
-				// Reduce libido by 1 down to 10.
-				if (pc.libidoRaw > (pc.libidoMin() + 10))
-				{
-					output("\n\nEven though your [pc.sack] remains unchanged, you can feel a small part of your libido fade...");
-					pc.libido(-1);
-				}
 			}
 			
 			// If ball size is 4 inches or less, 10% chance to remove Nuki Nuts perk.
 			// Nuki Nuts perk removal, must not be a Kui-tan:
+			/* FEN NOTE!: I cut this. You already lose the perk when your kui-tan score drops.
 			if (pc.ballSizeRaw <= 4 && pc.hasPerk("'Nuki Nuts") && pc.race() != "kui-tan" && rand(10) == 0)
 			{
 				output("\n\n");
@@ -1155,8 +958,8 @@ package classes.Items.Miscellaneous
 				pc.removePerk("'Nuki Nuts");
 				if (pc.hasStatusEffect("Slow Grow")) pc.removeStatusEffect("Slow Grow");
 				if (pc.hasStatusEffect("No Grow")) pc.removeStatusEffect("No Grow");						
-			}
-			else if (pc.hasPerk("'Nuki Nuts"))
+			}*/
+			if (pc.hasPerk("'Nuki Nuts"))
 			{
 				// ... Adds status effect to prevent ball growth for 4 hours ...
 				if (!pc.hasStatusEffect("No Grow") && rand(4) > 0)
@@ -1164,18 +967,19 @@ package classes.Items.Miscellaneous
 					output("\n\n");
 					if (pc.cocks.length != 0)
 						output("A small trickle of pre leaks from [pc.eachCock] as goosebumps travel up your back... ");
-					output("You feel another change in your [pc.balls] and give your [pc.balls] an experimental squeeze to find out that");
+					output("You feel another change in your [pc.balls] and give yourself an experimental squeeze to little effect.");
 					if (pc.balls == 1)
-						output(" it");
+						output(" It");
 					else
-						output(" they");
-					output(" won’t grow for a while. Could it be a temporary relief? <b>Your balls will not grow for four hours.</b>");
+						output(" They");
+					output(" seem subtly different. Could the ReductPro be temporarily suppressing your ability to swell up with excess seed?");
 					
 					pc.createStatusEffect("No Grow", 0, 0, 0, 0, false, "Blocked", "Expansion due to an overfull nutsack is currently prevented.", false, 240);
 					
 					useReductProDone();
 					return;
 				}
+				/* FEN NOTE: Cutting this. Buncha needlessly complex shit piled ontop of an overly complex system
 				// ... OR slow down ball growth by 10% multiplicatively and rounded...
 				if (!pc.hasStatusEffect("Slow Grow"))
 				{
@@ -1221,12 +1025,11 @@ package classes.Items.Miscellaneous
 							output(" they appear");
 						output(" to be growing much slower than normal. You can probably go around longer without being worried about the weight of your [pc.ballsNoun] dragging you down. <b>Your balls will expand at an even slower rate.</b>")
 					}
-				}
+				}*/
 			}
 			useReductProDone();
 			return;
 		}
-		
 		// Hips
 		private function useReductProShrinkHips():void
 		{
@@ -1234,10 +1037,7 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
-			output("Standing straight, you");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments] to ready yourself for the application. Next, you");
-			output(" unscrew the cap, squeeze the contents of ReductPro and smear them evenly onto your [pc.hips]. It feels cool at first but rapidly warms to an uncomfortable level of heat.");
+			output("Standing straight, you unscrew the cap and squeeze the contents of ReductPro evenly onto your [pc.hips]. It feels cool at first but rapidly warms to an uncomfortable heat.");
 			
 			// Shrink hip rating by up to 4.
 			var nShrink:Number = 1 + rand(4);
@@ -1245,7 +1045,7 @@ package classes.Items.Miscellaneous
 				Math.floor(nShrink /= 2);
 			if (pc.hipRatingRaw >= nShrink && pc.hipRatingUnlocked(pc.hipRatingRaw - nShrink))
 			{
-				output("\n\nYou shudder as the changes begin to take effect...");
+				output(" You shudder as the changes begin to take effect...");
 				output(" Your [pc.hips] visibly narrow by a");
 				if (nShrink <= 1)
 					output(" tiny");
@@ -1255,12 +1055,9 @@ package classes.Items.Miscellaneous
 					output(" decent");
 				else
 					output(" great");
-				output(" amount, making your [pc.legOrLegs] wobble a bit while trying to remain upright. <b>You feel lighter thanks to the shrinkage of your hips.</b>");
+				output(" amount, making you wobble a bit and threaten to tip over.");
 				
 				pc.hipRating(-nShrink);
-				
-				if (pc.isBimbo())
-					output(" <i>But that's, like, my money maker!</i>");
 				
 				useReductProDone();
 				return;
@@ -1268,7 +1065,7 @@ package classes.Items.Miscellaneous
 			else
 			{
 				output("\n\n" + pc.hipRatingLockedMessage());
-				
+			
 				useReductProDone(true);
 				return;
 			}
@@ -1281,10 +1078,7 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
-			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments], ");
-			output(" unscrew the cap, squeeze the contents of ReductPro onto your hand and smear the foul-smelling paste onto your " + pc.buttDescript() + ". It feels cool at first but rapidly warms to an uncomfortable level of heat.");
+			output("You unscrew the cap, squeeze the contents of ReductPro onto your hand and smear the foul-smelling paste onto your " + pc.buttDescript() + ". It feels cool at first but rapidly warms to an uncomfortable level of heat.");
 			
 			// Shrink butt rating by up to 4.
 			var nShrink:Number = 1 + rand(4);
@@ -1292,7 +1086,6 @@ package classes.Items.Miscellaneous
 				Math.round(nShrink /= 2);
 			if (pc.buttRatingRaw >= nShrink && pc.buttRatingUnlocked(pc.buttRatingRaw - nShrink) || rand(10) == 0)
 			{
-				output("\n\nSuddenly, You shudder as the changes take place...");
 				output(" Your [pc.butts] begin to shrink by a");
 				if (nShrink <= 1)
 					output(" tiny");
@@ -1302,34 +1095,13 @@ package classes.Items.Miscellaneous
 					output(" decent");
 				else
 					output(" great");
-				output(" amount, making your [pc.hips] sway in response. You turn back and confirm that <b>your ass has reduced to a smaller size.</b>");
+				output(" amount, making your [pc.hips] sway in response. You turn back and confirm that <b>your ass is smaller!</b>");
 				
 				pc.buttRating(-nShrink);
-				
-				if (pc.isBimbo())
-					output(" <i>Oh no, not my booty!</i>");
-				else if (pc.buttRating() <= 8)
-					output(" You feel like a dragging weight has been lifted off your behind.");
-				else
-					output(" It's not much, but it is noticeable.");
-				
-				// Reduce libido by 1 down to 20.
-				if (pc.libidoRaw > (pc.libidoMin() + 20))
-				{
-					output("\n\nYou cup your smaller [pc.butts] and feel a soft tingle with a little bit of clarity returning to you. It seems your shrinking derrière has taken a piece of libido with it...");
-					pc.libido(-1);
-				}
 			}
 			else
 			{
 				output("\n\n" + pc.buttRatingLockedMessage());
-				
-				// Reduce libido by 1 down to 20.
-				if (pc.libidoRaw > (pc.libidoMin() + 20))
-				{
-					output("\n\nOdd... Even though your [pc.butt] remains unchanged, you can feel a small part of your libido fade...");
-					pc.libido(-1);
-				}
 			}
 			
 			// Done!
@@ -1344,10 +1116,7 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
-			output("You");
-			if (pc.isChestCovered())
-				output(" open up your [pc.upperGarments], ");
-			output(" unscrew the cap and squeeze the contents of ReductPro and rub them evenly onto your [pc.belly]. It feels cool at first but rapidly warms to an uncomfortable level of heat.");
+			output("You unscrew the cap and squeeze the contents of ReductPro evenly onto your [pc.belly]. It feels cool at first but rapidly warms to an uncomfortable level of heat.");
 			
 			// Shrink belly rating by up to 4.
 			var nShrink:Number = 1 + rand(4);
@@ -1355,7 +1124,6 @@ package classes.Items.Miscellaneous
 				Math.round(nShrink /= 2)
 			if (pc.bellyRatingRaw > 1)
 			{
-				output("\n\nAlmost instantaneously, you shudder as the changes take place...");
 				output(" Your belly");
 				if (pc.isPregnant())
 					output(" pulses");
@@ -1381,17 +1149,13 @@ package classes.Items.Miscellaneous
 			}
 			else
 			{
-				output("\n\nThere is a rumbling warmth in your [pc.belly], and then... nothing. Hm, it seems that whatever change was about to happen had quickly dissipated.");
+				output(" There is a rumbling warmth in your [pc.belly], and then... nothing. Hm, it seems ReductPro can't make your middle any smaller.");
 				if (pc.bellyRating() > 0 && pc.isPregnant())
-					output(" The extra mass on the your belly must be maternal.");
-				else
-					output(" Your stomach must be too flat to shrink anymore.");
-				
+					output(" The extra mass on your belly must be maternal.");				
 				useReductProDone(true);
 				return;
 			}
 		}
-		
 		// Anus
 		private function useReductProShrinkAnus():void
 		{
@@ -1402,16 +1166,22 @@ package classes.Items.Miscellaneous
 			if (kGAMECLASS.flags["REDUCTPRO_USED_ON_VAGINA"] == undefined && kGAMECLASS.flags["REDUCTPRO_USED_ON_ASSHOLE"] == undefined)
 				output("Even though the paste is intended for topical use, you are curious to see what it will do internally. Only one way to find out, right? ");
 			else if (kGAMECLASS.flags["REDUCTPRO_USED_ON_ASSHOLE"] == undefined)
-				output("You already know what happens when this drug is applied to your cooch, but you wonder if the same applies to your rectum... ");
+			{
+				output("You already know what happens when this drug is applied to your vagina");
+				if(pc.totalVaginas() > 1) output("s");
+				output(", but you wonder if the same applies to your rectum... ");
+			}
 			output("You");
-			if (pc.isCrotchGarbed())
-				output(" open up your [pc.lowerGarments],");
-			output(" unscrew the cap, squeeze the contents of ReductPro onto your fingers, and apply the foul-smelling paste onto your [pc.asshole], making sure to lather the rim nicely before injecting the rest inside yourself.");
+			if (!pc.isCrotchExposed())
+				output(" open up your [pc.crotchCover],");
+			output(" squeeze the contents of ReductPro onto your fingers");
+			if (!pc.isCrotchExposed()) output(",");
+			output(" and apply the foul-smelling paste onto your [pc.asshole], making sure to lather the rim nicely before injecting the rest inside yourself.");
 			
 			// Instantly reduces anal looseness by 1.
-			if (pc.loosenessUnlocked(-1, pc.ass.loosenessRaw - 1))
+			if (pc.loosenessUnlocked(-1, pc.ass.loosenessRaw - 1) && pc.ass.loosenessRaw >= 2)
 			{
-				output("\n\nYour sphincter throbs momentarily, giving you a sign that the drug is actually working.");
+				output(" Your sphincter throbs momentarily.");
 				if (kGAMECLASS.flags["REDUCTPRO_USED_ON_ASSHOLE"] == undefined)
 					output(" To your surprise");
 				else
@@ -1419,9 +1189,12 @@ package classes.Items.Miscellaneous
 				output(", <b>your anus has instantly tightened!</b>");
 				
 				pc.ass.loosenessRaw--;
-				
+
+				output("\n\nEverything is so delightfully sensitive afterward, you're tempted to use it again.");
+				pc.libido(4);
+				pc.taint(2);
+
 				kGAMECLASS.flags["REDUCTPRO_USED_ON_ASSHOLE"] = 1;
-				
 				// Done!
 				useReductProDone();
 				return;
@@ -1442,73 +1215,67 @@ package classes.Items.Miscellaneous
 			kGAMECLASS.userInterface.author("Kitteh6660");
 			
 			if (kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] == undefined)
-				output("You doubt if the ReductPro is going to work on your [pc.hornsNoun] but you proceed to unscrew the cap, squeeze out the contents and rub the paste all over your [pc.horns] anyway.");
+				output("You doubt if the ReductPro is going to work on your [pc.hornsNoun]. Nevertheless, you squeeze out the contents and rub the paste all over your [pc.horns]. ");
 			else
-				output("You unscrew the cap, squeeze out the contents of the ReductPro and rub the paste all over your [pc.horns].");
+				output("You squeeze the contents of the ReductPro out onto your [pc.horns]. ");
 			
 			var newHornLength:Number = pc.hornLength - 1;
 			if ((pc.hornLength > 0 && pc.hornLengthUnlocked(newHornLength)) || pc.hasStatusEffect("Horn Bumps"))
 			{
-				output("\n\n");
-				if (kGAMECLASS.flags["REDUCTPRO_USED_ON_HORNS"] == undefined)
-					output("It works much to your surprise! ");
-				
 				if (!pc.hasStatusEffect("Horn Bumps"))
 				{
 					// Not all horns are malleable--need to make special cases...
 					if (pc.hornType == 0)
 					{
-						output("[pc.EachHorn] vibrates vigorously, as if it is something that does not belong on your head... And so it seems, </b>the [pc.hornsNoun] rapidly vanish");
+						if(pc.horns == 1) output("It vibrates vigorously as if it doesn't belong on your head. The [pc.hornsNoun] rapidly vanish");
+						else output("They vibrate vigorously as if they doesn't belong on your head. The [pc.hornsNoun] rapidly vanish");
 						if (pc.horns != 1)
 							output("es");
-						output(", leaving your head void of any kind of horns!");
+						output(", leaving your head bare of bony protrusions!");
 						pc.hornLength = 0;
 						pc.horns = 0;
-						pc.hornType == 0;
+						pc.hornType = 0;
 					}
 					else if (pc.hornType == GLOBAL.TYPE_DEMONIC)
 					{
-						output("Your demonic-looking horns crackle and warp as the drug kicks in.");
+						output("Your demonic augmentations crackle and warp as the drug kicks in.");
 						if (pc.horns > 2)
 						{
-							output(" As this happens, you can feel your horns starting to decrase in");
+							output(" You can feel them starting to decrease in");
 							if (pc.horns <= 8)
 								output(" size and");
 							pc.horns -= 2;
-							if (pc.horns < 2)
-								pc.horns == 2;
-							output(" number. When the transformation finally completes, you rub your hand alongside each horn. <b>You now have " + num2Text(pc.horns) + " horns total.</b>");
+							if (pc.horns < 2) pc.horns = 2;
+							output(" number. When the transformation finally completes, you rub your hand along the side. <b>You now have " + num2Text(pc.horns) + " horns total.</b>");
 						}
 						else
 						{
-							output(" The two horns begin to shrink smaller and smaller, looking less and less threatening. <b>Your horns finally recede into your head, becoming small, barely visible horn bumps!</b>");
+							output(" The two horns begin to shrink smaller and smaller, looking less and less threatening. <b>Your horns finally recede into your head, becoming small, barely visible bumps!</b>");
 							pc.hornLength = 0;
 							pc.horns = 0;
-							pc.hornType == 0;
+							pc.hornType = 0;
 							pc.createStatusEffect("Horn Bumps");
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_BOVINE)
 					{
-						output("A tingling sensation runs across the length of your bovine horns as the drug kicks in.");
+						output("A tingling sensation runs across the length of your bovine accouterments as the drug kicks in.");
 						if (pc.hornLength >= 2)
 						{
 							pc.hornLength--;
-							output(" You can feel your pair of horns receding by one inch. <b>You now have a pair of " + num2Text(pc.hornLength) + "-inch horns.</b>");
+							output(" You can feel your them receding slowly, losing an inch. <b>You now have a pair of " + num2Text(pc.hornLength) + "-inch horns.</b>");
 						}
 						else if (pc.hornLength > 0.5 && pc.hornLength <= 1)
 						{
-							output(" <b>You can feel your pair of horns receding until they stop to about half-an-inch.</b>");
-							if (pc.isBimbo())
-								output(" <i>Cute!</i>");
+							output(" <b>You can feel your horns receding until they stop around around a half-inch in length.</b>");
 							pc.hornLength = 0.5;
 						}
 						else
 						{
-							output(" Even with how tiny they are, the paste is pretty effective, causing your calf-like horns to shrink. <b>Your horns keep receding into your head until they become small, barely visible horn bumps!</b>");
+							output(" Even with how tiny they are, the paste manages to make them shrink. <b>Your horns keep receding into your head until they become small, barely visible horn bumps!</b>");
 							pc.hornLength = 0;
 							pc.horns = 0;
-							pc.hornType == 0;
+							pc.hornType = 0;
 							pc.createStatusEffect("Horn Bumps");
 						}
 					}
@@ -1519,46 +1286,46 @@ package classes.Items.Miscellaneous
 						{
 							pc.horns = 2;
 							pc.hornLength = 15;
-							output(" draconic horns soften and vibrate quietly as the drug kicks in. The four horns begin to merge into themselves, changing and rearranging the total mass. As the mass solidifies, <b>you are left with two, " + num2Text(pc.hornLength) + "-inch, reptilian horns.</b>");
+							output(" draconic additions soften and vibrate quietly as the drug kicks in. The four horns merge into themselves, changing and rearranging their mass. As they solidify, <b>you are left with two, " + num2Text(pc.hornLength) + "-inch, reptilian horns.</b>");
 						}
 						else if (pc.hornLength > 1)
 						{
 							pc.hornLength--;
-							output(" reptilian horns soften and vibrate quietly as the drug kicks in. You can feel your pair of horns receding by one inch. <b>You now have a pair of " + num2Text(pc.hornLength) + "-inch horns.</b>");
+							output(" reptilian additions soften and vibrate quietly as the drug kicks in. You can feel your pair of horns sink one inch down into your skull. <b>You now have a pair of " + num2Text(pc.hornLength) + "-inch horns.</b>");
 						}
 						else
 						{
-							output(" horns soften and vibrate quietly as the drug kicks in. The pair begin to shrink smaller and smaller, looking less and less reptilian. <b>Your horns finally recede into your head, becoming small, barely visible horn bumps!</b>");
+							output(" horns soften and vibrate quietly as the drug kicks in. The pair shrink smaller and smaller, looking less and less reptilian. <b>Your horns finally recede into your head, becoming small, barely visible horn bumps!</b>");
 							pc.hornLength = 0;
 							pc.horns = 0;
-							pc.hornType == 0;
+							pc.hornType = 0;
 							pc.createStatusEffect("Horn Bumps");
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_DEER)
 					{
-						output("Your pair of deer-like antlers begin to melt and shift, and the branches of each start to fuse with themselves.");
+						output("They begin to melt and shift, and the branches of each antler start to fuse with themselves.");
 						if (pc.horns > 4)
 						{
 							pc.horns -= 2;
 							if (pc.horns < 4)
 								pc.horns == 4;
-							output(" After a moment to quickly solidify, <b>you find that your antlers have less prongs, giving you " + num2Text(pc.horns) + " antler points total.</b>");
+							output(" After a moment, <b>you find that your antlers have less prongs, giving you " + num2Text(pc.horns) + " antler points total.</b>");
 						}
 						else
 						{
-							output(" The " + num2Text(pc.horns) + " antler points quickly merge with one another to form two long horns. Examining yourself, you find that <b>your head posses a pair of six-inch horns, making you appear very much like a " + pc.mf("bull", "cow") + "!</b>");
+							output(" The " + num2Text(pc.horns) + " points quickly merge with one another to form two long horns. Examining yourself, you find that <b>your head posses a pair of six-inch horns, making you appear very much like a " + pc.mf("bull", "cow") + "!</b>");
 							pc.hornLength = 6;
 							pc.horns = 2;
-							pc.hornType == GLOBAL.TYPE_BOVINE;
+							pc.hornType = GLOBAL.TYPE_BOVINE;
 						}
 					}
 					else if (pc.hornType == GLOBAL.TYPE_GOAT)
 					{
-						output(" Like a loose hose, you ram-like horns begin to unravel themselves, straightening out, while curving forward. When the morphing process is complete, you discover that <b>you now have a pair of dangerous, foot-long horns, making you appear very much like a bull!</b>");
+						output("Like a loose hose, you ram-like horns begin to unravel themselves, straightening out, while curving forward. When the morphing process is complete, you discover that <b>you now have a pair of dangerous, foot-long horns, making you appear very much like a bull!</b>");
 						pc.hornLength = 12;
 						pc.horns = 2;
-						pc.hornType == GLOBAL.TYPE_BOVINE;
+						pc.hornType = GLOBAL.TYPE_BOVINE;
 					}
 					else if (pc.hornLength > 1)
 					{
@@ -1571,15 +1338,15 @@ package classes.Items.Miscellaneous
 						output("As the drug activates, you run your fingers over your very small and rapidly shrinking [pc.hornsNoun]. [EachHorn] diminishes in size until there is nothing left. <b>You have lost your [pc.hornsNoun]!</b>");
 						pc.hornLength = 0;
 						pc.horns = 0;
-						pc.hornType == 0;
+						pc.hornType = 0;
 					}
 				}
 				else
 				{
-					output("\n\nThe small horn bumps on your head pulsate softly. As you rub them against your fingers, you can feel them smoothing out and fading away completly. <b>Your head is now bare of any horns!</b>");
+					output("\n\nThe small horn bumps on your head pulsate softly. As you rub them against your fingers, you can feel them smoothing out and fading away completely. <b>Your head is now bare of any horns!</b>");
 					pc.hornLength = 0;
 					pc.horns = 0;
-					pc.hornType == 0;
+					pc.hornType = 0;
 					pc.removeStatusEffect("Horn Bumps");
 				}
 				output("\n\nAfter the feeling subsides, you close the empty container and throw it away, washing your hands afterward.");
@@ -1610,9 +1377,6 @@ package classes.Items.Miscellaneous
 				output("Recovering from the sensation, you close the empty container and throw it away");
 			else
 				output("You sigh in disappointment and throw out the empty container");
-			output(", washing your hands afterward");
-			if (!pc.isNude())
-				output(", and redressing your gear");
 			output(".");
 			
 			if (kGAMECLASS.flags["TIMES_REDUCTPRO_USED"] == undefined)
@@ -1631,7 +1395,7 @@ package classes.Items.Miscellaneous
 			clearOutput();
 			var pc:PlayerCharacter = kGAMECLASS.pc;
 			
-			output("You decide not to use the cream and put the container back into its box and into your inventory.");
+			output("You decide not to use the cream and put the container back into its box.");
 			
 			clearMenu();
 			addButton(0, "Next", kGAMECLASS.mainGameMenu);
@@ -1659,7 +1423,7 @@ package classes.Items.Miscellaneous
 				output(" pull the paste container out of the box");
 				if (firstTime)
 				{
-					output(" and decide to scan the item. The codex pulls up a research abstract that reveals the drug is completely safe to use although it’s quite potent");
+					output(", and decide to scan the item. The codex pulls up a research abstract that reveals the drug is completely safe to use although it’s quite potent");
 					if (CodexManager.entryViewed("Simii"))
 						output(", even capable of affecting the Simii");
 					if (target.originalRace == "half kui-tan" || target.race() == "half kui-tan" || target.race() == "kui-tan" || CodexManager.entryViewed("Kui-Tan"))

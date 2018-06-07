@@ -144,6 +144,7 @@
 		include "../includes/follower/celise.as";
 		include "../includes/follower/celiseGiga.as";
 		include "../includes/follower/kase.as";
+		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
 		include "../includes/follower/paigeHalloweener.as";
@@ -159,6 +160,8 @@
 		include "../includes/events/pexigaQuest/pexigaQuest.as";
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
+		include "../includes/events/spaceYakuza/spaceYakuza.as";
+		include "../includes/events/spaceYakuza/akaneQuest.as";
 
 		//Misc content
 		include "../includes/masturbation.as";
@@ -197,6 +200,7 @@
 		include "../includes/travelEvents/kiroRescue.as";
 
 		//Tavros Station
+		include "../includes/tavros/akane.as";
 		include "../includes/tavros/aliss.as";
 		include "../includes/tavros/alex.as";
 		include "../includes/tavros/beths.as";
@@ -277,6 +281,7 @@
 		include "../includes/mhenga/yoma.as";
 		include "../includes/mhenga/zilMale.as";
 		include "../includes/mhenga/zilFemale.as";
+		include "../includes/mhenga/zilTwins.as";
 		
 		//Second planet
 		include "../includes/tarkus/anno.as";
@@ -312,6 +317,7 @@
 		include "../includes/newTexas/newTexas.as";
 		include "../includes/newTexas/bigT.as";
 		include "../includes/newTexas/brandy.as";
+		include "../includes/newTexas/brandyXPack1.as";
 		include "../includes/newTexas/brynn.as";
 		include "../includes/newTexas/buckingBronco.as";
 		include "../includes/newTexas/busky.as";
@@ -382,6 +388,12 @@
 		include "../includes/myrellion/wetraxxel.as";
 		include "../includes/myrellion/xanthe.as";
 		include "../includes/myrellion/xenogenbiotech.as";
+
+		//FIFTH PLANET: ZHENG SHI
+		include "../includes/zhengShiStation/rooms.as";
+		include "../includes/zhengShiStation/roomFunctions.as";
+		include "../includes/zhengShiStation/tivf.as";
+		include "../includes/zhengShiStation/urbolg.as";
 		
 		// Breedwell
 		include "../includes/breedwell/breedwell.as";
@@ -551,7 +563,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.164";
+			version = "0.7.179";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -600,6 +612,7 @@
 			kquest2InitRooms();
 			initUvetoRooms();
 			initUvetoRoomsII();
+			initZhengRooms();
 			initGastigothRooms();
 			kiInitRooms();
 			initVesperiaRoom();
@@ -918,6 +931,11 @@
 			// Do GUI stuff with the compareItem string -- can probably mangle a call together a call to addButton() to do the needful
 			// if we have any null arguments at this point rather than throwing an error and shit.
 			userInterface.addItemButton(slot, item.shortName, item.quantity, func, arg, ttHeader, ttBody, comparisonString);
+		}
+		
+		public function addItemDisabledButton(slot:int, item:ItemSlotClass, ttHeader:String = null, ttBody:String = null, seller:Creature = null, buyer:Creature = null):void
+		{
+			addItemButton(slot, item, undefined, undefined, ttHeader, ttBody, seller, buyer);
 		}
 		
 		public function addOverrideItemButton(slot:int, item:ItemSlotClass, buttonName:String, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null):void
@@ -1535,7 +1553,6 @@
 		{
 			return chars["DELILAH"];
 		}
-
 		public function get yammi():Yammi
 		{
 			return chars["YAMMI"];
@@ -1560,42 +1577,34 @@
 		{
 			return chars["KRYM"];
 		}
-
 		public function get paige():Paige 
 		{
 			return chars["PAIGE"];
 		}
-		
 		public function get ciaran():Ciaran
 		{
 			return chars["CIARAN"];
 		}
-		
 		public function get ellie():Ellie
 		{
 			return chars["ELLIE"];
 		}
-		
 		public function get sam():SX1Techguard
 		{
 			return chars["SX1TECHGUARD"];
 		}
-		
 		public function get khorgan():CaptainKhorgan
 		{
 			return chars["CAPTAINKHORGAN"];
 		}
-		
 		public function get tamtam():TamTam
 		{
 			return chars["TAMTAM"];
 		}
-
 		public function get erika():Erika
 		{
 			return chars["ERIKA"];
 		}
-		
 		public function get lieve():Lieve
 		{
 			return chars["LIEVE"];
@@ -1603,6 +1612,14 @@
 		public function get tuuva():Tuuva
 		{
 			return chars["TUUVA"];
+		}
+		public function get mitzi():Mitzi
+		{
+			return chars["MITZI"];
+		}
+		public function get frostwyrm():Frostwyrm
+		{
+			return chars["FROSTWYRM"];
 		}
 
 		public function testShipCombat():void

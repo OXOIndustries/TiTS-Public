@@ -67,7 +67,7 @@ public function roamingKiroAvailable():Boolean
 
 public function kiroSexed():Boolean
 {
-	return (flags["KIRO_FUCKED_DURING_RESCUE"] != undefined || flags["KIRO_DEEPTHROATED_YOU"] != undefined || flags["KIRO_BALLJOBBED_YOU"] != undefined || flags["KIRO_X_SAEN_HAPPENED"] != undefined || flags["PUMPED_KIRO_PUSSY"] != undefined || flags["KIRO_ORGIED"] != undefined || flags["KIRO_CELISE_3SOME"] != undefined || flags["KIRO_KALLY_THREESOMES"] > 0 || flags["SISTER_MILK_ACT"] != undefined);
+	return (flags["KIRO_FUCKED_DURING_RESCUE"] != undefined || flags["KIRO_VAG_FUCKED"] != undefined || flags["KIRO_FUCKED_PC"] != undefined || flags["KIRO_DEEPTHROATED_YOU"] != undefined || flags["KIRO_BALLJOBBED_YOU"] != undefined || flags["KIRO_X_SAEN_HAPPENED"] != undefined || flags["PUMPED_KIRO_PUSSY"] != undefined || flags["KIRO_ORGIED"] != undefined || flags["KIRO_CELISE_3SOME"] != undefined || flags["KIRO_KALLY_THREESOMES"] > 0 || flags["SISTER_MILK_ACT"] != undefined);
 }
 public function kiroTrust(arg:Number = 0):Number
 {
@@ -1121,7 +1121,6 @@ public function wonKirosContestLikeAChampAndGotBlown():void
 	{
 		output("Does your race not have a gag reflex or something?”</i>");
 		output("\n\nKiro smiles beatifically, giggling. <i>“Nooope!”</i> She affectionately strokes herself through her bodysuit, her leaky pre turning white as excitement thrums through her body. <i>“I just happen to have the best blowjob teaching tool a girl could ask for.”</i>");
-		flags["KIRO_DEEPTHROATED_YOU"] = 1;
 	}
 	else
 	{
@@ -1153,6 +1152,9 @@ public function wonKirosContestLikeAChampAndGotBlown():void
 	pc.orgasm();
 	pc.shower();
 	kiro.loadInMouth(pc);
+	
+	IncrementFlag("KIRO_DEEPTHROATED_YOU");
+	
 	kiroVictoryDrinkEpilogueRouter(true);
 }
 
@@ -1873,6 +1875,9 @@ public function tookKiroginityPartIII():void
 	kiro.vaginalVirgin = false;
 	processTime(7);
 	pc.shower();
+	
+	IncrementFlag("KIRO_VAG_FUCKED");
+	
 	clearMenu();
 	addButton(0,"Next",kiroginityEpilogue);
 }
@@ -2122,6 +2127,9 @@ public function kiroFucksYourCuntPartII(x:int = 0):void
 	pc.loadInCunt(kiro, x);
 	pc.orgasm();
 	kiro.orgasm();
+	
+	IncrementFlag("KIRO_FUCKED_PC");
+	
 	clearMenu();
 	addButton(0,"Next",kiroFucksYourCuntPartIII,x);
 }
@@ -2667,7 +2675,9 @@ public function balljobFromKiro():void
 	pc.shower();
 	kiro.orgasm();
 	clearMenu();
-	flags["KIRO_BALLJOBBED_YOU"] = 1;
+	
+	IncrementFlag("KIRO_BALLJOBBED_YOU");
+	
 	addButton(0,"Next", move, shipLocation);
 }
 
@@ -2767,6 +2777,9 @@ public function bodyBloatingButtObliteratingBowelBasting():void
 	pc.orgasm();
 	pc.shower();
 	kiro.orgasm();
+	
+	IncrementFlag("KIRO_FUCKED_PC");
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2828,7 +2841,6 @@ public function inviteSaenForKiroFilling():void
 		output("\n\nKiro opens her mouth for some other acrid snipe but is caught off-guard by the praise. <i>“Well, I don’t know if I’d say ‘queen’ exactly. I mean, I’m pretty great, it’s true, but...”</i>");
 		output("\n\n<i>“She’s hung like a fertility idol and you were gonna keep her all for yourself? This is the kind of lady they write epics about! Not sharing would be... well, criminal!”</i> The girl gushes, giving you another short, sharp punch for good measure.");
 		output("\n\nThe raccoon-girl appears to be blushing under her chestnut fur, inordinately pleased by the flattering tribute your mongrel friend is slathering on her. <i>“Y- yeah, she’s right!”</i> Kiro echos. <i>“I’m a damned work of art. You should be on your knees worshipping me!”</i> Her voice wavers, lacking some of its normal force, suggesting that for all her bluster, she’s still not quite over the surprised delight of Saendra’s flattery.");
-		flags["KIRO_X_SAEN_HAPPENED"] = 1;
 	}
 	//Repeat Variant
 	else
@@ -2856,6 +2868,9 @@ public function inviteSaenForKiroFilling():void
 	saendra.orgasm();
 	processTime(55);
 	sleepHeal();
+	
+	IncrementFlag("KIRO_X_SAEN_HAPPENED");
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -2961,7 +2976,7 @@ public function kiroPussPumpPartII():void
 	pc.lust(35);
 	clearMenu();
 
-	flags["PUMPED_KIRO_PUSSY"] = 1;
+	IncrementFlag("PUMPED_KIRO_PUSSY");
 
 	//[FuckThem] [TribThem] [GrindFrot]
 	if(pc.hasCock() && pc.cockThatFits(kiro.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Them",fuckPumpedKiro,undefined,"Fuck Them","Fuck Kiro’s plush, pumped-up lips. She’s begging for it.");
@@ -3013,6 +3028,9 @@ public function fuckPumpedKiro():void
 	kiro.orgasm();
 	pc.orgasm();
 	processTime(22);
+	
+	IncrementFlag("KIRO_VAG_FUCKED");
+	
 	clearMenu();
 	if(!pc.hasKeyItem("Panties - Kiro's - Lacy, black, and crotchless.")) addButton(0,"Next",kiroginityEpilogue) 
 	else addButton(0,"Next",mainGameMenu);

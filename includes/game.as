@@ -132,6 +132,13 @@ public function disableExploreEvents():Boolean
 
 public function mainGameMenu(minutesMoved:Number = 0):void
 {
+	for (var prop:String in chars)
+	{
+		chars[prop].sortPerks();
+		chars[prop].sortStatusEffects();
+		chars[prop].sortKeyItems();
+	}
+	
 	// Bad ends prevent triggering events and renewing menu.
 	if(gameOverEvent)
 	{
@@ -854,6 +861,17 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
+	if (mitziIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			crewMessages += mitziCrewBonus();
+			if(pc.hasStatusEffect("Mitzi_Gushed_Out")) addDisabledButton(btnSlot,"Mitzi","Mitzi","Maybe let her recover from that Gush, huh?");
+			else addButton(btnSlot,"Mitzi",approachCrewMitzi);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
 	if (paigeIsCrew())
 	{
 		count++;
@@ -1225,6 +1243,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	
 	var minPass:int = 420 + rand(80) + 1;
 	var inShip:Boolean = InShipInterior(pc);
+	var wakeEvents:Array = [];
 	
 	if(outputs)
 	{
@@ -1297,8 +1316,13 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 					}
 					if (shekkaIsCrew() && rand(3) == 0)
 					{
-						shekkaSleepWithMornings();
-						interrupt = true;
+						wakeEvents.push(shekkaSleepWithMornings);
+					}
+					break;
+				case "MITZI":
+					if (mitziIsCrew() && pc.hasGenitals() && flags["CREWMEMBER_SLEEP_WITH"] == "MITZI") 
+					{
+						if(!pc.hasStatusEffect("Mitzi_Gushed_Out")) wakeEvents.push(mitziMorningSuccOrWhatever);
 					}
 					break;
 				case "ANNO":
@@ -1311,14 +1335,13 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 				case "SHEKKA":
 					if (shekkaIsCrew() && rand(3) == 0)
 					{
-						shekkaSleepWithMornings();
-						interrupt = true;
+						wakeEvents.push(shekkaSleepWithMornings);
 					}
 					break;
 				case "BESS":
 					if (bessIsCrew() && rand(3) == 0)
 					{
-						flags["BESS_SLEEPWITH_DOMORNING"] = 1;
+						wakeEvents.push(bessMorningEvents);
 					}
 					break;
 				case "REAHA":
@@ -1400,29 +1423,14 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 	// Waking up events
 	if(inShip && !dreamed)
 	{
-		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1)
+		if (seraBitchImpregnateBedWakeCheck()) wakeEvents.push(seraBitchImpregnateBedWake);
+		if (tryProcDommyReahaTime(minPass - rand(301))) wakeEvents.push(reahaDommyFuxTime);
+		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [annoMorningRouter];
+		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
+		
+		if (wakeEvents.length > 0)
 		{
-			addButton(0, "Next", annoMorningRouter);
-			return;
-		}
-		if (flags["BESS_SLEEPWITH_DOMORNING"] == 1)
-		{
-			addButton(0, "Next", bessMorningEvents);
-			return;
-		}
-		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1)
-		{
-			addButton(0, "Next", kaseCrewWake);
-			return;
-		}
-		if (seraBitchImpregnateBedWakeCheck())
-		{
-			addButton(0, "Next", seraBitchImpregnateBedWake);
-			return;
-		}
-		if (tryProcDommyReahaTime(minPass - rand(301)))
-		{
-			addButton(0, "Next", reahaDommyFuxTime);
+			addButton(0, "Next", wakeEvents[rand(wakeEvents.length)]);
 			return;
 		}
 	}
@@ -1590,6 +1598,12 @@ public function outputMaxXP():String
 
 public function insideShipEvents():Boolean
 {
+	// Mitzi stops you from going inside~
+	if(pc.hasStatusEffect("SeenMitzi") && flags["MITZI_DISABLED"] == undefined && !mitziRecruited())
+	{
+		mitziFirstShipApproach();
+		return true;
+	}
 	// Puppyslutmas hook :D
 	if (annoIsCrew() && annoPuppyslutmasEntry())
 	{
@@ -1742,6 +1756,12 @@ public function flyMenu():void
 	}
 	else addDisabledButton(3, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	
+	if(zhengCoordinatesUnlocked())
+	{
+		addButton(4,"ZhengShi",flyTo,"ZhengShi");
+	}
+	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
+
 	//NEW TEXAS
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
@@ -1894,6 +1914,13 @@ public function flyTo(arg:String):void
 			if(shekkaIsCrew()) flags["SHEKKA_BEEN_MYRELLION"] = 1;
 			flyToMyrellionDeepCaves();
 			break;
+		case "ZhengShi":
+			shipLocation = "ZS L50";
+			currentLocation = "ZS L50";
+			setLocation("SHIP\nINTERIOR", rooms[shipLocation].planet, rooms[shipLocation].system);
+			landingAtZhengShi();
+			interruptMenu = true;
+			break;
 		case "Poe A":
 			shipLocation = "POESPACE";
 			currentLocation = "POESPACE";
@@ -1966,6 +1993,9 @@ public function flyTo(arg:String):void
 		clearMenu();
 		addButton(0, "Next", mainGameMenu);
 	}
+	
+	//Leaving the victim to sort his own shit out when starting the SpaceYakuza questline
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] === 0) flags["SHUKUCHI_TAVROS_ENCOUNTER"] = 1;
 }
 
 public function leaveShipOK():Boolean
@@ -2617,7 +2647,14 @@ public function move(arg:String, goToMainMenu:Boolean = true):void
 	//Huge nuts slow you down
 	if(pc.hasStatusEffect("Egregiously Endowed")) moveMinutes *= 2;
 	if(pc.hasItemByClass(DongDesigner)) moveMinutes *= 2;
-	if(pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
+	if (pc.hasPowerArmorItem() && !pc.inPowerArmor()) moveMinutes *= 2;
+	//Getting a beat-down from the mafia slows you down too
+	if (pc.hasStatusEffect("Brutalized")) moveMinutes *= 2;
+	if (rand(2) == 0)
+	{
+		if (pc.hasStatusEffect("Stinging Bruises")) pc.HP(pc.statusEffectv1("Stinging Bruises"));
+		if (pc.hasStatusEffect("Lash Marks")) pc.HP(pc.statusEffectv1("Lash Marks"));
+	}
 	//Things that make you go fastah!
 	//Nogwitch is fastest mount atm.
 	if(pc.accessory is NogwichLeash) moveMinutes = (moveMinutes >= 3 ? Math.floor(moveMinutes/3) : moveMinutes-1);
@@ -2762,7 +2799,12 @@ public function variableRoomUpdateCheck():void
 	// Temp housing
 	if(nurserySpareApptIsOccupied()) rooms["NURSERYI6"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["NURSERYI6"].removeFlag(GLOBAL.OBJECTIVE);
-
+	//Akane & Shukuchi
+	if (akaneCeleritasVeritasAvailable() || akaneLairAvailable()) rooms["110"].addFlag(GLOBAL.NPC);
+	else rooms["110"].removeFlag(GLOBAL.NPC);
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] === 0) rooms["9013"].addFlag(GLOBAL.NPC);
+	else rooms["9013"].removeFlag(GLOBAL.NPC);
+	
 	/* MHENGA */
 	
 	//Bounties
@@ -2782,7 +2824,6 @@ public function variableRoomUpdateCheck():void
 	if(hours >= 6 && hours < 17) 
 	{
 		rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
-		rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 		//Add back in icons.
 		rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
 		rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
@@ -2794,9 +2835,12 @@ public function variableRoomUpdateCheck():void
 		//Get rid of icons
 		rooms["KELLY'S OFFICE"].removeFlag(GLOBAL.NPC);
 		rooms["JULIAN'S OFFICE"].removeFlag(GLOBAL.NPC);
-		//Add Kelly icon in the bar
-		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
 	}
+	//Filling Burt's back end
+	//Kally not at work or incesty zil
+	if ((hours < 6 || hours >= 17) || zilTwinsAtBar())
+		rooms["BURT'S BACK END"].addFlag(GLOBAL.NPC);
+	else rooms["BURT'S BACK END"].removeFlag(GLOBAL.NPC);
 	//Hungry Hungry Rahn
 	if(flags["SEEN_BIMBO_PENNY"] != undefined && (hours < 8 || hours >= 17))
 	{
@@ -2893,6 +2937,9 @@ public function variableRoomUpdateCheck():void
 		rooms["350"].removeFlag(GLOBAL.HAZARD);
 		rooms["350"].removeFlag(GLOBAL.OBJECTIVE);
 	}
+	// Stellar Tether Mitzi
+	if(flags["MITZI_RESCUED"] == undefined) rooms["364"].addFlag(GLOBAL.NPC);
+	else rooms["364"].removeFlag(GLOBAL.NPC);
 	// Stellar Tether probe clue
 	if(flags["TARKUS_BOMB_TIMER"] != undefined && flags["TARKUS_BOMB_TIMER"] <= 0 && flags["PLANET_3_UNLOCKED"] == undefined) rooms["WIDGET WAREHOUSE"].addFlag(GLOBAL.QUEST);
 	else rooms["WIDGET WAREHOUSE"].removeFlag(GLOBAL.QUEST);
@@ -2999,6 +3046,9 @@ public function variableRoomUpdateCheck():void
 	// Busky
 	if(hours >= 6 && hours < 17) rooms["STRAPS"].addFlag(GLOBAL.COMMERCE);
 	else rooms["STRAPS"].removeFlag(GLOBAL.COMMERCE);
+	//Brandy (she is in bar from 2 to 6
+	if (hours >= 2 && hours <= 5 && flags["BRANDY_RELATIONSHIP"] == 1 && flags["MET_SALLY"] != undefined && !pc.hasStatusEffect("Brandy Sally Timer")) rooms["505.75"].removeFlag(GLOBAL.NPC);
+	else rooms["505.75"].addFlag(GLOBAL.NPC);
 	
 	
 	/* MYRELLION */
@@ -3318,6 +3368,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	processSubTunerShit();
 	processHardlightAGThongBlurbs(deltaT, doOut);
 	processGastigothPregEvents(deltaT, doOut, totalDays);
+	processFrostwyrmPregEvents(deltaT, doOut, totalDays);
 	
 	
 	// Per-day events
@@ -3411,9 +3462,10 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if (!MailManager.isEntryUnlocked("kirofucknet") && flags["RESCUE KIRO FROM BLUEBALLS"] == 1 && kiroTrust() >= 50 && flags["MET_FLAHNE"] != undefined && flags["KIRO_ORGY_DATE"] == undefined && rand(3) == 0) { goMailGet("kirofucknet", nextTimestamp, kiroFuckNetBonus(deltaT)); }
 		//KIRO DATEMEET
 		if (!MailManager.isEntryUnlocked("kirodatemeet") && kiroTrust() >= 100 && kiroSexed() && rand(10) == 0) { goMailGet("kirodatemeet"); }
-		trySendStephMail();
 		//KIRO SMUT!
 		if(!MailManager.isEntryUnlocked("kiroandkallyholomail") && flags["KIRO_3SOME_REACTION"] != -1 && flags["KIRO_3SOME_REACTION"] != undefined && kiroKallyThreesomes() > 0 && flags["KIRO_KALLY_EMAIL"] != undefined && flags["KIRO_KALLY_EMAIL"] + 5*60 < GetGameTimestamp()) { goMailGet("kiroandkallyholomail"); }
+		
+		trySendStephMail();
 		
 		//Jade muff-ins
 		if (!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
@@ -3475,6 +3527,16 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 			resendMail("prai_email", (flags["PRAI_EMAIL_STAMP"] + (60*10)));
 			flags["PRAI_EMAIL_NUMBER"] = undefined;
 			flags["PRAI_EMAIL_STAMP"] = undefined;
+		}
+		//Akane, Celeritas Veritas email
+		if (!MailManager.isEntryUnlocked("shukuchi_veritas") && !pc.isPregnant() && flags["SHUKUCHI_EMAIL_TIMER"] != undefined && nextTimestamp >= flags["SHUKUCHI_EMAIL_TIMER"] + (60*24*6))
+		{
+			goMailGet("shukuchi_veritas", flags["SHUKUCHI_EMAIL_TIMER"] + (60*24*6));
+		}
+		//AkaneQuest email
+		if (!MailManager.isEntryUnlocked("akanequest_email") && flags["AKANE_TIMES_WHIPPED"] >= 2 && flags["AKANE_RIVALS_TIMESTAMP"] != undefined && nextTimestamp >= flags["AKANE_RIVALS_TIMESTAMP"] + (60*24*7))
+		{
+			goMailGet("akanequest_email", flags["AKANE_RIVALS_TIMESTAMP"] + (60*24*7));
 		}
 		//Sucuccow email
 		if(pc.hasCock() && flags["SUCCUCOW_EMAIL_THIS_YEAR"] == undefined && flags["CIARAN_MET"] != undefined && isHalloweenish())
@@ -3676,7 +3738,6 @@ public function processTreatmentEvents(deltaT:uint, doOut:Boolean):void
 	if (totalHours >= 1)
 	{
 		if (pc.hasPerk("Dumb4Cum")) dumb4CumUpdate(totalHours);
-		if (pc.hasStatusEffect("The Treatment")) treatmentHourProcs(totalHours);
 	}
 }
 

@@ -11,6 +11,7 @@ package classes.GameData.Pregnancy.Handlers
 	import classes.GLOBAL;
 	import classes.StorageClass;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.shortMinutes;
 	import classes.Engine.Interfaces.ParseText;
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Child;
@@ -103,7 +104,11 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 90)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent(ParseText("Your pregnancy seems to be progressing normally, with your [pc.stomach] slowly swelling outwards over the days, full of new life. You can’t help but feel a warm bliss as you look down at your gravid tummy, a sense of fulfillment that serves as a reward for taking care of your unborn offspring like this. It’s hard to describe, but you think the word you’d use is “motherly”.\n\nThough, at the same time, your stomach has been hindering your movement and impairing your ability to navigate more difficult terrain.\n\nMaybe you should find somewhere nice to settle down and wait out this pregnancy before you continue your adventures in uncharted space."), "passive");
+						var sTime:String = "days";
+						var nTime:Number = ((345600 / kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti) - kGAMECLASS.pc.getPregnancyTime(pregSlot));
+						if(nTime < 2880) sTime = "hours";
+						if(nTime < 120) sTime = "minutes";
+						AddLogEvent(ParseText("Your pregnancy seems to be progressing normally, with your [pc.stomach] slowly swelling outwards over the " + sTime + ", full of new life. You can’t help but feel a warm bliss as you look down at your gravid tummy, a sense of fulfillment that serves as a reward for taking care of your unborn offspring like this. It’s hard to describe, but you think the word you’d use is “motherly”.\n\nThough, at the same time, your stomach has been hindering your movement and impairing your ability to navigate more difficult terrain.\n\nMaybe you should find somewhere nice to settle down and wait out this pregnancy before you continue your adventures in uncharted space."), "passive");
 						// Should apply the reflex reduction modifier.
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 					}, true);
@@ -130,10 +135,11 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 150)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
+						var nTime:Number = Math.floor(30240/kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti);
 						AddLogEvent("Well, this is odd.", "passive");
 						if(kGAMECLASS.pc.milkType != GLOBAL.FLUID_TYPE_HONEY)
 						{
-							ExtendLogEvent(ParseText("\n\nOver the past few weeks, you’ve noticed something strange happening to your [pc.milk], along with an increase in the intensity of those pheromones you’ve been giving off. Your lactations have been gaining a golden hue and sweet scent, and you just think it might have something to do with the bee-babies you’re carrying."));
+							ExtendLogEvent(ParseText("\n\nOver the past " + shortMinutes(nTime, true, false) + ", you’ve noticed something strange happening to your [pc.milk], along with an increase in the intensity of those pheromones you’ve been giving off. Your lactations have been gaining a golden hue and sweet scent, and you just think it might have something to do with the bee-babies you’re carrying."));
 							ExtendLogEvent(ParseText("\n\nOnce you get a moment to rest, you decide to inspect your [pc.breasts], finding a nice private spot to"));
 							if(!kGAMECLASS.pc.isChestExposed()) ExtendLogEvent(" peel away your top and");
 							ExtendLogEvent(ParseText(" check yourself out. Sure enough, you find that your [pc.nipples] are already leaking their nectar. Your bosom feels heavier now, and it takes a firm squeeze of your chest and rough tug of your nipples draw more of the fluids out."));
@@ -148,13 +154,13 @@ package classes.GameData.Pregnancy.Handlers
 						}
 						else if(kGAMECLASS.pc.girlCumType != GLOBAL.FLUID_TYPE_HONEY)
 						{
-							ExtendLogEvent("\n\nOver the past few weeks you’ve discovered something very odd happening to your body: you’re leaking honey, from your genitals in particular, with your more feminine fluids having changed to that of a sweet, golden variety");
+							ExtendLogEvent("\n\nOver the past " + shortMinutes(nTime, true, false) + " you’ve discovered something very odd happening to your body: you’re leaking honey, from your genitals in particular, with your more feminine fluids having changed to that of a sweet, golden variety");
 							if(kGAMECLASS.pc.hasCock()) ExtendLogEvent(ParseText(", with your [pc.cocks] also leaking a potent, sugary nectar"));
 							ExtendLogEvent(". Seems like this alien pregnancy is having some extra effects on your body.");
 						}
 						else
 						{
-							ExtendLogEvent("\n\nOver the past few weeks you’ve noticed an uptake in the amount of honey your breasts are producing. You’re guessing it’s your body getting itself read for your alien offspring.");
+							ExtendLogEvent("\n\nOver the past " + shortMinutes(nTime, true, false) + " you’ve noticed an uptake in the amount of honey your breasts are producing. You’re guessing it’s your body getting itself read for your alien offspring.");
 						}
 						kGAMECLASS.pc.milkType = GLOBAL.FLUID_TYPE_HONEY;
 						kGAMECLASS.pc.cumType = GLOBAL.FLUID_TYPE_HONEY;
@@ -169,7 +175,13 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 175)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("Your belly grows by the week, and it’s getting to the point where you have to stop and catch your breath very often. Your figure is dominated by your swollen tummy now, blocking your view of the world below you, and slowing you down more and more each day. Your alien children seem keen on kicking against the inside of your womb every now and then, a constant reminder of the precious load you’re carrying.", "passive");
+						var sTime:String = "week";
+						var sTime2:String = "day";
+						var nTime:Number = ((345600 / kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti) - kGAMECLASS.pc.getPregnancyTime(pregSlot));
+						if(nTime < 20160) { sTime = "day"; sTime2 = "hour"; }
+						if(nTime < 2880) { sTime = "hour"; sTime2 = "minute"; }
+						if(nTime < 120) { sTime = "minute"; sTime2 = "second"; }
+						AddLogEvent("Your belly grows by the " + sTime + ", and it’s getting to the point where you have to stop and catch your breath very often. Your figure is dominated by your swollen tummy now, blocking your view of the world below you, and slowing you down more and more each " + sTime2 + ". Your alien children seem keen on kicking against the inside of your womb every now and then, a constant reminder of the precious load you’re carrying.", "passive");
 						ExtendLogEvent("\n\nNo doubt there are at least two tiny half-zil in there.");
 						// Increase reflex multiplier.
 						kGAMECLASS.pc.createStatusEffect("Zil Pregnancy Reflex Mod", 0, 0, 0, 0, true, "", "", false, 0);
@@ -184,11 +196,15 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 210)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
+						var sTime:String = "day";
+						var nTime:Number = ((345600 / kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti) - kGAMECLASS.pc.getPregnancyTime(pregSlot));
+						if(nTime < 2880) sTime = "hour";
+						if(nTime < 120) sTime = "minute";
 						if(kGAMECLASS.pc.milkFullness < 10) kGAMECLASS.pc.milkFullness += 25;
 						if(kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;
 						if(kGAMECLASS.pc.milkRate < 25) kGAMECLASS.pc.milkRate += 5;
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 2, true);
-						AddLogEvent(ParseText("You can’t be more than a month away from giving birth at this point: your [pc.stomach] is distended outward with as much weight and size as you can carry, but still growing by the day. At the same time, your [pc.vagina " + pregSlot + "] is dilated and your young are constantly kicking inside you."), "passive");
+						AddLogEvent(ParseText("You can’t be more than a month away from giving birth at this point: your [pc.stomach] is distended outward with as much weight and size as you can carry, but still growing by the " + sTime + ". At the same time, your [pc.vagina " + pregSlot + "] is dilated and your young are constantly kicking inside you."), "passive");
 						if(!InPublicSpace()) ExtendLogEvent(" Your instincts are telling you to find somewhere safe to have your children, and you think you better trust them.");
 					}, true);
 				}

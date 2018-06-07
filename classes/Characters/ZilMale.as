@@ -260,7 +260,7 @@
 			output("The zil abruptly begins to fondle his [zil.cock], stimulating the organ as he alters his wingbeats to gust musk-laced air in your direction. He floats up high and flies erratically enough that you doubt you could hit him.");
 			if(target.hasAirtightSuit())
 			{
-				output("\n\nLuckily your [pc.armor] is sealed tight, so you unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
+				output("\n\nLuckily your [pc.armor] is sealed tight, so you are unaffected by it. He grumps at his failed attempt. You definitely came prepared!");
 			}
 			// Moderate toughness check pass
 			else if(target.physique() + rand(20) + 1 > 20) {

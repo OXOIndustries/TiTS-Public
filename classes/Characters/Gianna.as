@@ -18,7 +18,7 @@
 		//constructor
 		public function Gianna()
 		{
-			this._latestVersion = 3;
+			this._latestVersion = 4;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -192,6 +192,13 @@
 			{
 				d.cocks[0].cType == GLOBAL.TYPE_DRACONIC;
 			}
+		}
+		public function UpgradeVersion4(d:Object):void
+		{
+			d.analVirgin = false;
+			d.vaginas[0].hymen = false;
+			d.vaginalVirgin = false;
+			d.cockVirgin = false;
 		}
 	}
 }

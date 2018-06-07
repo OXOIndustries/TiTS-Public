@@ -17,6 +17,18 @@ public function showAlex(nude:Boolean = false):void
 	showBust("STORE_ALEX" + (nude ? "_NUDE" : ""));
 }
 
+public function stellaPregnantShowing():Boolean
+{
+	if(!pc.hasStatusEffect("STELLA_PREGNANT")) return false;
+	if (pc.getStatusMinutes("STELLA_PREGNANT") <= 60 * 24 * 30 * 2) return true;
+	return false;
+}
+
+public function stellaPregnant():Boolean
+{
+	return (pc.hasStatusEffect("STELLA_PREGNANT"));
+}
+
 //Setup
 public function beachNSurfOutsideBonus():void
 {
@@ -230,7 +242,9 @@ public function meetingStella():void
 	}
 	else
 	{
-		output("<i>“Yoohoo! Over here, baby!”</i> A familiar voice calls out the moment you step foot inside, drawing your attention upwards. Craning your neck and covering your eyes with a hand, you see Stella up on her balcony waving fervently at you. As you watch, her vigorous shaking sets her enormous breasts free of her bikini, which springs back and whaps her softly in the face. She promptly removes it and keeps waving, tits out and jiggling up and down. <i>“Come play!”</i>");
+		output("<i>“Yoohoo! Over here, baby!”</i> A familiar voice calls out the moment you step foot inside, drawing your attention upwards. Craning your neck and covering your eyes with a hand, you see Stella up on her balcony waving fervently at you. As you watch, her vigorous shaking sets her enormous breasts free of her bikini, which springs back and whaps her softly in the face. She promptly removes it and keeps waving, tits out and jiggling up and down. ");
+		if(stellaPregnantShowing()) output("Her pregnant belly is on show the whole time, too, her excitedness leaving little doubt as to who’s responsible. ");
+		output("<i>“Come play!”</i>");
 		processTime(3);
 	}
 	clearMenu();
@@ -296,17 +310,34 @@ public function letsFuckeySuckeyStella():void
 		else
 		{
 			output("but suddenly recoils and gasps in utter delight when she sees what you’re packing.");
-			output("\n\n<i>“Oh </i>wow<i>,”</i> she breathes, then she’s instantly sucking your balls, ");
-			if(pc.ballDiameter() > 6) output("desperately trying to take them inside her mouth to no avail, planting horny kisses all over their smooth surface");
-			else output("taking them inside her warm, wet mouth and suckling while her eyes roll back in pleasure");
-			output(".");
-			output("\n\n<i>“Unf, fuck,”</i> you grunt, holding her down there. She’s all <i>over</i> you, pawing at your [pc.stomach] as she tries to get a better grip to suck your balls. Midway through the process she begins moaning loudly and you realize she’s cumming through her bikini bottoms even as she licks you. You’re treated to the first-class sight of an upper socialite submissively bucking her hips, panting and moaning with her hands around your waist and her lips around your balls, femcum drooling from her empty pussy.");
-			output("\n\n<i>“What a needy puppy,”</i> you murmur, scratching her behind the ear just to reinforce that she’s doing a good job. <i>“Keep it up and maybe you’ll get a bone between your legs.”</i>");
-			output("\n\n<i>“I whanna bhone,”</i> she mumbles from between your legs, still intent on sucking your balls for all she’s worth. <i>“Whanna bhoooone...”</i>");
+			output("\n\n<i>“Oh </i>wow<i>,”</i> she breathes, ");
+
+			if(pc.balls > 1)
+			{
+				output("then she’s instantly sucking your balls, ");
+				if(pc.ballDiameter() > 6) output("desperately trying to take them inside her mouth to no avail, planting horny kisses all over their smooth surface");
+				else output("taking them inside her warm, wet mouth and suckling while her eyes roll back in pleasure");
+				output(".");
+
+				output("\n\n<i>“Unf, fuck,”</i> you grunt, holding her down there. She’s all <i>over</i> you, pawing at your [pc.stomach] as she tries to get a better grip to suck your balls. Midway through the process she begins moaning loudly and you realize she’s cumming through her bikini bottoms even as she licks you. You’re treated to the first-class sight of an upper socialite submissively bucking her hips, panting and moaning with her hands around your waist and her lips around your balls, femcum drooling from her empty pussy.");
+				output("\n\n<i>“What a needy puppy,”</i> you murmur, scratching her behind the ear just to reinforce that she’s doing a good job. <i>“Keep it up and maybe you’ll get a bone between your legs.”</i>");
+				output("\n\n<i>“I whanna bhone,”</i> she mumbles from between your legs, still intent on sucking your balls for all she’s worth. <i>“Whanna bhoooone...”</i>");
+			}
+			else
+			{
+				output("licking your [pc.knot], a delicate hand on your cock as she desperately laps at you with her tongue, worshipping the first few inches of your length.");
+				output("\n\n<i>“Unf, fuck,”</i> you grunt, holding her down there. She’s all <i>over</i> you, pawing at your [pc.stomach] as she tries to get a better grip. Midway through the process she begins moaning loudly and you realize she’s cumming through her bikini bottoms even as she licks you. You’re treated to the first-class sight of an upper socialite submissively bucking her hips, panting and moaning with her hands around your waist and her lips pressed against your groin, femcum drooling from her empty pussy.");
+				output("\n\n<i>“What a needy puppy,”</i> you murmur, scratching her behind the ear just to reinforce that she’s doing a good job. <i>“Keep it up and maybe you’ll get a bone between your legs.”</i>");
+				output("\n\n<i>“I whanna bhone,”</i> she mumbles from between your legs, still intent on licking your dick for all she’s worth. <i>“Whanna bhoooone...”</i>");
+
+			}
 			output("\n\n<i>“Here,”</i> you say, pointing to the tip of your [pc.cock]. <i>“Suck this for a while instead, then you can get your bonefffuck!”</i>");
 			output("\n\nNo sooner than have you indicated it, Stella’s on the job. Fuck, she’s good at following orders... you’ll have to give her a special reward when she’s done, which is going to be pretty fucking soon what with the way she’s using that amazing tongue of hers. You let her have free reign over the movement of her head and she takes full advantage, alternating between bobbing on your [pc.cockHead] and swallowing it to the hilt until finally, you can’t take it any more. You <i>have</i> to blow this load down her throat.");
 			output("\n\n<i>“To the hilt, Stella,”</i> you pant, pulling her down your cock mere moments before you cum. <i>“Swallow it!”</i>");
-			output("\n\nA second later you groan in ecstatic release, Stella’s throat tightening around the head of your shaft as she frantically gulps down your jizz, pouty lips securely planted around the base of your penis. You can feel her fingers lightly pressing at your balls, urging, <i>begging</i> you to give her more of your cum, and you’re only too happy to oblige. She makes several loud, gulping swallows as she slowly slides back up your dick.");
+			output("\n\nA second later you groan in ecstatic release, Stella’s throat tightening around the head of your shaft as she frantically gulps down your jizz, pouty lips securely planted around the base of your penis. You can feel her fingers lightly pressing at your ");
+			if(pc.balls > 0) output("balls");
+			else output("base");
+			output(", urging, <i>begging</i> you to give her more of your cum, and you’re only too happy to oblige. She makes several loud, gulping swallows as she slowly slides back up your dick.");
 			output("\n\n<i>“Haaa, fuck,”</i> you sigh, leaning back in your chair as Stella pulls back off your cock and daintily swallows the cum left in her mouth. <i>“Nice work.”</i>");
 			output("\n\n<i>“Did I do good, master [pc.name]?”</i> Stella asks, dazed and a little confused. She seems uncertain.");
 			output("\n\n<i>“Fuck yeah, you did great!”</i> you reassure her, giving her a hard scritch behind the ears. <i>“I think we should take this somewhere else, though... you’re kinda loud.”</i>");
@@ -337,6 +368,11 @@ public function letsFuckeySuckeyStella():void
 		processTime(20);
 		pc.orgasm();
 	}
+	else if(flags["STELLA_PREGNANCY_NOTIFIER"] != undefined) 
+	{
+		stellaKidTalkScene();
+		return;
+	}
 	else
 	{
 		output("<i>“So I’m gonna take a pass on the volleyball,”</i> you call out to the usual crew of guys and girls on the beach.");
@@ -344,7 +380,9 @@ public function letsFuckeySuckeyStella():void
 		output("\n\nClimbing the stairs up to Stella’s suite, you find yourself really looking forward to seeing Stella again. It’s a lot of fun to be around such a naturally happy beach girl like her, and it doesn’t hurt that she has an absolutely banging body. Any deeper thoughts than that are immediately interrupted by your reception at the top of the stairs, as Stella immediately throws herself against you with a squeal of joy.");
 		output("\n\n<i>“OhmygoshhiImissedyou!”</i> she exclaims, eyes wide and sparkling. You notice she’s still very much topless, either having forgotten she needs to wear something or having consciously chosen to forgo it. You give it 50/50 odds either way.");
 		output("\n\n<i>“Hey, Stella,”</i> you say, smiling at her. <i>“How’s my girl?”</i>");
-		output("\n\nListening to her tell you about her idyllic day, you half-walk and half-carry the bubbly bimbo into her room, away from prying eyes. It’s actually kind of comforting having this beautiful girl tell you about the little things, living her regular, if admittedly more than a little charmed, life here in a resort on Tavros. You appreciate the normalcy of it all. By the time you put her down on the bed, she remembers what you’re here for and lights up like a firework.");
+		output("\n\nListening to her tell you about her idyllic day, you half-walk and half-carry the bubbly bimbo into her room, away from prying eyes. It’s actually kind of comforting having this beautiful girl tell you about the little things, living her regular, if admittedly more than a little charmed, life here in a resort on Tavros. You appreciate the normalcy of it all");
+		if(stellaPregnantShowing()) output(", her pregnancy making it feel a little like you’re returning to your housewife");
+		output(". By the time you put her down on the bed, she remembers what you’re here for and lights up like a firework.");
 		processTime(10);
 		pc.lust(10);
 	}
@@ -355,23 +393,83 @@ public function letsFuckeySuckeyStella():void
 
 public function stellaMenu():void
 {
+	clearMenu();
+	
+	var pregShowing:Boolean = stellaPregnantShowing();
 	addButton(0,"Appearance",stellaAppearance);
 	if(pc.hasStatusEffect("StellaSickOfTalk")) addDisabledButton(1,"Talk","Talk","Stella’s way past the point of talking.");
 	else addButton(1,"Talk",stellaTalk);
+	
 	if(pc.cockThatFits(stellaCapacity()) >= 0) 
 	{
-		addButton(5,"Pussy",stellaPussyFuck);
-		addButton(6,"Assfuck",assFuckStella);
+		addButton(5,"PussyFuck",stellaPussyFuck);
+		addButton(6,"AssFuck",assFuckStella);
+		if(!pregShowing) 
+		{
+			if(flags["STELLA_FUCKED"] == undefined) addDisabledButton(9,"Breed","Breed","Maybe start with a regular fuck before moving up to breeding.");
+			else if(flags["STELLA_GAVE_ORAL"] == undefined) addDisabledButton(9,"Breed","Breed","How can you knock up a girl when you haven’t even done oral?");
+			else if(flags["STELLA_BUTTFUCKED"] == undefined) addDisabledButton(9,"Breed","Breed","You could at least try out her butt first...");
+			else addButton(9,"Breed",breedStella,undefined,"Breed","Fuck Stella’s pussy until she’s probably pregnant.");
+		}
+		else addButton(9,"Preg Sex",stellaPreggoSex,undefined,"Preg Sex","Take your pregnant dog-slut and enjoy every bit of her current state.");
 	}
-	else
+	else if(pc.hasCock())
 	{
 		addDisabledButton(5,"Pussy","Pussy","You’re too big to fit into the puppy-bimbo!");
 		addDisabledButton(6,"Assfuck","Assfuck","You’re too big to fit into the puppy-bimbo!");
+		if(pregShowing) addDisabledButton(9,"Preg Sex","Preg Sex","You’re too big to fit into the puppy-bimbo!");
+		else addDisabledButton(9,"Breed","Breed","You’re too big to fit into the puppy-bimbo!");
+	}
+	else
+	{
+		addDisabledButton(5,"Pussy","Pussy","You need a penis for this.");
+		addDisabledButton(6,"Assfuck","Assfuck","You need a penis for this.");
+		if(pregShowing) addDisabledButton(9,"Preg Sex","Preg Sex","You need a penis for this. SadTrombone.mp3~");
+		else addDisabledButton(9,"Breed","Breed","You need a penis for this.");
 	}
 	if(pc.hasCock()) addButton(7,"Blowjob",stellaOralStuff);
 	else addDisabledButton(7,"Blowjob","Blowjob","She can’t suck your dick if you don’t have one!");
 	if(pc.hasVagina()) addButton(8,"Get Licked",stellaOralStuff,true);
 	else addDisabledButton(8,"Get Licked","Get Licked","She can’t munch your rug if you’ve got hardwood flooring.");
+	
+	if(pc.hasVagina() || pc.cockThatFits(stellaCapacity())) addButton(10,"WalkNPlay",walkiesAndPetPlayStuff,undefined,"WalkNPlay","Take Stella out for a bit of petplay with walkies.");
+	else if(pc.hasCock()) addDisabledButton(10,"WalkNPlay","WalkNPlay","You need a vagina or a dick that’ll fit inside her for this.");
+	else addDisabledButton(10,"WalkNPlay","WalkNPlay","You need genitals for this.");
+	
+	if(pc.cockThatFits(stellaCapacity()) >= 0) 
+	{
+		addButton(5,"Pussy",stellaPussyFuck);
+		addButton(6,"Assfuck",assFuckStella);
+	}
+	else if(pc.hasCock())
+	{
+		addDisabledButton(5,"Pussy","Pussy","You’re too big to fit into the puppy-bimbo!");
+		addDisabledButton(6,"Assfuck","Assfuck","You’re too big to fit into the puppy-bimbo!");
+	}
+	else
+	{
+		addDisabledButton(5,"Pussy","Pussy","You need a penis for this.");
+		addDisabledButton(6,"Assfuck","Assfuck","You need a penis for this.");
+	}
+	if(pc.hasCock()) addButton(7,"Blowjob",stellaOralStuff);
+	else addDisabledButton(7,"Blowjob","Blowjob","She can’t suck your dick if you don’t have one!");
+	if(pc.hasVagina()) addButton(8,"Get Licked",stellaOralStuff,true);
+	else addDisabledButton(8,"Get Licked","Get Licked","She can’t munch your rug if you’ve got hardwood flooring.");
+	if(!pc.hasCock()) addDisabledButton(9,"Breed","Breed","You need a penis for this.");
+	else if(!stellaPregnantShowing()) 
+	{
+		if(flags["STELLA_FUCKED"] == undefined) addDisabledButton(9,"Breed","Breed","Maybe start with a regular fuck before moving up to breeding.");
+		else if(flags["STELLA_GAVE_ORAL"] == undefined) addDisabledButton(9,"Breed","Breed","How can you knock up a girl when you haven’t even done oral?");
+		else if(flags["STELLA_BUTTFUCKED"] == undefined) addDisabledButton(9,"Breed","Breed","You could at least try out her butt first...");
+		else addButton(9,"Breed",breedStella,undefined,"Breed","Fuck Stella’s pussy until she’s probably pregnant.");
+	}
+	else
+	{
+		if(pc.hasCock()) addButton(9,"Preg Sex",stellaPreggoSex,undefined,"Preg Sex","Take your pregnant dog-slut and enjoy every bit of her current state.");
+		else addDisabledButton(9,"Preg Sex","Preg Sex","You need a penis for this. SadTrombone.mp3~");
+	}
+	if(pc.hasGenitals()) addButton(10,"WalkNPlay",walkiesAndPetPlayStuff,undefined,"WalkNPlay","Take Stella out for a bit of petplay with walkies.");
+	else addDisabledButton(10,"WalkNPlay","WalkNPlay","You need genitals for this.");
 }
 
 //[Appearance]
@@ -381,8 +479,16 @@ public function stellaAppearance():void
 	showStella();
 	author("Wsan");
 	output("Stella is a full-fledged ausar beach babe, with aqua eyes and platinum blonde hair that sports rose gold highlights and is adorned with a beautiful pink flower. Her perky ears and long tail are both nice and fluffy, the brown silken-smooth fur just begging to have your hands run through it. Her skin is not only picture-perfect without a blemish to be seen, but browned enough that you can tell at a glance this is a girl who belongs outdoors on the beach. Usually clad in a leopard-print bikini, she sits on her bed right now smiling at you with no hint of a top in sight. Her sunglasses lie on the bedside drawers");
-	output("\n\nAt 5\' 8\" and 140 lbs, Stella’s voluptuous body leaves no doubts at all as to where all her weight is. She’s bubbly <i>everywhere</i>, from personality to tits and ass. The latter is both huge and has a very appealing jiggle to it whenever you squeeze or spank, and the former are truly massive. Each breast is bigger than her head and capped by pink, puffy inverted nipples that pop out when you tease her enough, giving you a nice visual indicator of how turned on she is. Her overall look is that of a bimbo sex object, the kind that looks like she just stepped off a modelling magazine for an upscale agency. Her cute, pouty lips only add to the aesthetic, distracting you with thoughts about what she can - and will - do with them.");
+
+	output("\n\nAt 5’8”");
+	if(!stellaPregnantShowing()) output(" and 140 lbs, Stella’s voluptuous body leaves no doubts at all as to where all her weight is. She’s bubbly <i>everywhere</i>, from personality to tits and ass. The latter is both huge and has a very appealing jiggle to it whenever you squeeze or spank, and the former are truly massive. Each breast is bigger than her head and capped by pink, puffy inverted nipples that pop out when you tease her enough, giving you a nice visual indicator of how turned on she is");
+	else output(", Stella carries her newly added weight very well. Her voluptuous body has a new, sexy curve to it every bit as appealing as her others; the curve of fertility, her pregnant tummy. Her ass is truly impressive on both the size and spankability scales, but what really grabs your eye right now is the way her gigantic breasts rest atop the protrusion of her gravid tummy. Each one is far bigger than her head and capped by pink, puffy inverted nipples that pop out after some coaxing, as you well know. Right now, you can see a dribble of milk leaking from the grooves, a tempting sight if there ever was one");
+	output(". Her overall appearance is that of a bimbo sex object, the kind that looks like she just stepped off a modelling magazine for an upscale agency. Her cute, pouty lips only add to the aesthetic, distracting you with thoughts about what she can - and will - do with them.");
+
 	if(flags["STELLA_FUCKED"] != undefined || flags["STELLA_BUTTFUCKED"] != undefined) output("\n\nBelow her puppy-bearing hips and trim waist lies her perfect, well-maintained pussy. You know from experience that being inside her is fucking amazing, from the way she cums almost constantly to the feeling of her desperately squeezing down on you for cum. Between her huge, bubble-butt asscheeks lies her asshole, tight as can be while somehow able to handle a cock of any size.");
+
+	if(flags["STELLA_COLLAR"] != undefined) output("\n\nShe’s wearing a " + flags["STELLA_COLLAR"] + " collar around her neck. A silver heart dangles from it, engraved with text naming you as her owner. Every so often, she runs her dainty fingers across the surface and smiles fondly.");
+
 	output("\n\nOverall, Stella looks like a top of the line sex doll came to life and started talking about colorful alcoholic drinks.");
 
 	clearMenu();
@@ -458,18 +564,33 @@ public function stellaPussyFuck():void
 	}
 	output("\n\n<i>“Oh </i>god<i>,”</i> she says loudly as you begin, her arms finding their way above her head to brace herself against the bed. <i>“Oh god, my pussy feels so goooood! Mmmmm!”</i>");
 	output("\n\n<i>“Good bitch,”</i> you grunt, wrapping an arm around her waist and hefting her into your lap.");
-	output("\n\nBraced and flexed, you begin laying into her roughly, fucking lusty moans from the back of her throat every time you go balls-deep inside her. Stella’s crazy with need, pushing her hips up to meet your thrusts with desperate movements and biting her fat bottom lip. Her callipygian ass starts to lift off the bed entirely as you rock it, the headboard slamming noisily against the wall while Stella’s moans reach a fever pitch of pleasure.");
+	output("\n\nBraced and flexed, you begin laying into her roughly, fucking lusty moans from the back of her throat every time you go ");
+	if(pc.balls > 1) output("balls-deep");
+	else output("sheath yourself");
+	output(" inside her. Stella’s crazy with need, pushing her hips up to meet your thrusts with desperate movements and biting her fat bottom lip. Her callipygian ass starts to lift off the bed entirely as you rock it, the headboard slamming noisily against the wall while Stella’s moans reach a fever pitch of pleasure.");
 	output("\n\n<i>“I’m cumming! OhmigoshI’mcummingsohardnnnnngh!”</i> she manages to gasp in a single breath before hugging you tightly, vigorously grinding her hips into the base of your crotch even as she cums. <i>“Ah! Ah! Aaah! Oh, gooood!”</i> Stella cries out, looking into your face with the most beautiful expression even as her body instinctively seeks further pleasure. Her tail is stuck straight up in the air and shaking just like the rest of her, incapable of dishonesty and betraying just how much she loves having you deep inside her spasming snatch.");
 	output("\n\nHaving the panting, big-titted ausar needily drive her hips down onto your [pc.cock " + x + "], her beachball-sized breasts jiggling in your face, is enough to drive you wild with desire. Retaking the initiative, you grab her breasts and push her back down onto the bed, sliding your cock almost completely out of her before ramming it home. She reacts immediately, sagging submissively in your grip as she lays back on the bed and slides her hands up your biceps.");
 	output("\n\n<i>“Oh, god,”</i> she whispers with every long, deep thrust, tightening her grip around your arms until finally she can bear it no longer and cums again, squeezing her eyes shut and groaning through grit teeth while you keep sliding in and out of her ridiculously-tight cunt. The way it grips and sucks at you you’d almost swear she had control over it, but you know she’s just trying as best she can to keep you inside her, anything to get you to keep fucking her bimbo pussy.");
 	output("\n\nNow that you’ve got her pinned and cumming, now seems like as good a time as any to fuck her as hard as you can and bust a nut in Stella’s flawless pussy. She instinctively spreads her legs as wide as possible and plants her heels behind your waist when you begin, one hand touching your [pc.chest] and the other on her lower stomach, tracing the obscene bulge of your cock through her taut, tanned skin.");
 	output("\n\n<i>“Hoohhhh god,”</i> Stella breathes, arching her back enough to make her massive tits splay to either side of her chest, <i>“Oohhh god, master...”</i>");
-	output("\n\nEncouraged, you begin to fuck her faster, lewd, wet noises issuing from where the two of you are joined as your groin meets hers and your [pc.balls] slap between her cheeks. The sound of sex is all you can hear, Stella’s moans and the lurid smacking noises from between her thighs only spurring you onwards. Soon you’re pounding her so hard she’s practically screaming in orgasmic joy with every thrust, and your own peak is fast approaching.");
-	output("\n\nSeizing the bimbo beach girl around her waspish waist, you give a primal, bestial roar as you hilt her on your cock, your [pc.sack] tightening in advance of dumping its payload inside Stella. With your [pc.cockHead " + x + "] pressed right against her cervix, she screams in ecstasy when she feels the first load spurt inside her, warmth radiating outwards from her core.");
+	output("\n\nEncouraged, you begin to fuck her faster, lewd, wet noises issuing from where the two of you are joined as your groin meets hers and your ");
+	if(pc.balls > 1) output("[pc.balls] slap between");
+	else output("[pc.hips] alap against");
+	output(" her cheeks. The sound of sex is all you can hear, Stella’s moans and the lurid smacking noises from between her thighs only spurring you onwards. Soon you’re pounding her so hard she’s practically screaming in orgasmic joy with every thrust, and your own peak is fast approaching.");
+	output("\n\nSeizing the bimbo beach girl around her waspish waist, you give a primal, bestial roar as you hilt her on your cock, your ");
+	if(pc.balls > 1) output("[pc.sack] tightening in advance of dumping its");
+	else output("stomach tightening as a knot of pleasure begins to unravel before you dump your");
+	output(" payload inside Stella. With your [pc.cockHead " + x + "] pressed right against her cervix, she screams in ecstasy when she feels the first load spurt inside her, warmth radiating outwards from her core.");
 	output("\n\n<i>“[pc.name]! [pc.name]!”</i> she cries, grabbing at you, feeling you up even as you cum inside her. <i>“Oh my god, yes!”</i>");
-	
 	var cumQ:Number = pc.cumQ();
-	if(cumQ < 500) output("\n\nYou tense hard as you pump her slippery, dripping cunt full of your seed, withdrawing from her tight, gripping walls with a lewd slurp. A trail of your jizz slowly rolls down her beach-browned thigh, disappearing down between her asscheeks.");
+	if(stellaPregnant())
+	{
+		output("\n\nYou tense hard, shuddering as you pump Stella’s pregnant body full of seed. The extra");
+		if(pc.cumQ() < 1000) output(" drips");
+		else output(" gushes");
+		output(" back out of her, wetting her thighs and bed.");
+	}
+	else if(cumQ < 500) output("\n\nYou tense hard as you pump her slippery, dripping cunt full of your seed, withdrawing from her tight, gripping walls with a lewd slurp. A trail of your jizz slowly rolls down her beach-browned thigh, disappearing down between her asscheeks.");
 	else if(cumQ < 1000) output("\n\nYou tense hard as you pump her slippery, dripping cunt full of your seed, withdrawing from her tight, gripping walls with a lewd slurp. A thick trail of your jizz slowly rolls down her beach-browned thigh, sliding down between her asscheeks.");
 	else if(cumQ < 5000) output("\n\nYou tense and strain as you struggle to get all of your cum inside her slippery, dripping cunt, pumping her full of warm seed before withdrawing from her tight, gripping walls with a lewd slurp. A runnel of [pc.cumColor] cum slowly issues from Stella’s pink pussy, rolling down her beach-browned thigh and sliding between her asscheeks. The rest is still safely stuffed in her womb.");
 	else if(cumQ < 1000) output("\n\nYou tense, strain and squeeze as you struggle to pump all of your cum inside her slippery, dripping cunt, filling her with warm seed before withdrawing from her tight, gripping walls with a lewd slurp. [pc.cumColor] cum begins to slowly, rhythmically pump back out of her used pussy, splashing down her beach-browned thighs and sliding between her asscheeks. The rest is still crammed in her womb, stuffing her absolutely full of your jizz. You can see a slight bulge in her stomach where she’s swollen to capacity and then some.");
@@ -494,10 +615,10 @@ public function stellaPussyFuck():void
 	stellaSexFatigue(1);
 	if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but the body is worn out.");
-	addButton(0,"Nah",nahNoMoreDickingStella);
+	addButton(0,"Nah",genericNoMoreSexStella);
 }
 
-public function nahNoMoreDickingStella():void
+public function genericNoMoreSexStella():void
 {
 	clearOutput();
 	showStella(true);
@@ -527,23 +648,45 @@ public function keepFuckingStella():void
 	pc.slowStatGain("libido",1);
 	output("You’d rather keep fucking this bodacious ausar babe than be anywhere else in the universe right now, and you’re pretty sure she thinks the same. The only question left is how you want to take her this time.");
 	processTime(1);
+	var pregShowing:Boolean = stellaPregnantShowing();
 	//loops back to her sex menu, but doesn’t have the talk option.
 	clearMenu();
 	//[Pussy] [Assfuck] [Oral]
 	if(pc.cockThatFits(stellaCapacity()) >= 0) 
 	{
-		addButton(0,"Pussy",stellaPussyFuck);
-		addButton(1,"Assfuck",assFuckStella);
+		addButton(0,"PussyFuck",stellaPussyFuck);
+		addButton(1,"AssFuck",assFuckStella);
+		if(!pregShowing) 
+		{
+			if(flags["STELLA_FUCKED"] == undefined) addDisabledButton(4,"Breed","Breed","Maybe start with a regular fuck before moving up to breeding.");
+			else if(flags["STELLA_GAVE_ORAL"] == undefined) addDisabledButton(4,"Breed","Breed","How can you knock up a girl when you haven’t even done oral?");
+			else if(flags["STELLA_BUTTFUCKED"] == undefined) addDisabledButton(4,"Breed","Breed","You could at least try out her butt first...");
+			else addButton(4,"Breed",breedStella,undefined,"Breed","Fuck Stella’s pussy until she’s probably pregnant.");
+		}
+		else addButton(4,"Preg Sex",stellaPreggoSex,undefined,"Preg Sex","Take your pregnant dog-slut and enjoy every bit of her current state.");
 	}
-	else
+	else if(pc.hasCock())
 	{
 		addDisabledButton(0,"Pussy","Pussy","You’re too big to fit into the puppy-bimbo!");
 		addDisabledButton(1,"Assfuck","Assfuck","You’re too big to fit into the puppy-bimbo!");
+		if(pregShowing) addDisabledButton(4,"Preg Sex","Preg Sex","You’re too big to fit into the puppy-bimbo!");
+		else addDisabledButton(4,"Breed","Breed","You’re too big to fit into the puppy-bimbo!");
+	}
+	else
+	{
+		addDisabledButton(0,"Pussy","Pussy","You need a penis for this.");
+		addDisabledButton(1,"Assfuck","Assfuck","You need a penis for this.");
+		if(pregShowing) addDisabledButton(4,"Preg Sex","Preg Sex","You need a penis for this. SadTrombone.mp3~");
+		else addDisabledButton(4,"Breed","Breed","You need a penis for this.");
 	}
 	if(pc.hasCock()) addButton(2,"Blowjob",stellaOralStuff);
 	else addDisabledButton(2,"Blowjob","Blowjob","She can’t suck your dick if you don’t have one!");
 	if(pc.hasVagina()) addButton(3,"Get Licked",stellaOralStuff,true);
 	else addDisabledButton(3,"Get Licked","Get Licked","She can’t munch your rug if you’ve got hardwood flooring.");
+	
+	if(pc.hasVagina() || pc.cockThatFits(stellaCapacity())) addButton(5,"WalkNPlay",walkiesAndPetPlayStuff,undefined,"WalkNPlay","Take Stella out for a bit of petplay with walkies.");
+	else if(pc.hasCock()) addDisabledButton(5,"WalkNPlay","WalkNPlay","You need a vagina or a dick that’ll fit inside her for this.");
+	else addDisabledButton(5,"WalkNPlay","WalkNPlay","You need genitals for this.");
 }
 
 //[Assfuck]
@@ -599,7 +742,10 @@ public function assFuckStella():void
 	output("\n\n<i>“Good girl,”</i> you grunt, letting go of her hair and sending her tumbling back onto the bed.");
 	output("\n\nThe sound of rough, animalistic sex fills Stella’s room, her massive ass slapping against your thighs with every thrust, punctuated every so often by a firm slap on her butt and an accompanying scream of pleasure. She’s so goddamn tight that it’s hard to fight the instinct to just instantly cum, something Stella’s clearly not concerned with as she delightedly squeals her way to her fourth or fifth.");
 	output("\n\nEventually, it’s too much to bear. The sound of her lurid moans, the way her voluptuous body feels in your hands, the sensation of her sliding up and down your swelling dick; even tiny details like the way her tail stays needily wrapped around you like she never wants you outside of her are driving you insane with the need to blow a massive load inside her. Grabbing her hips, you pull her back upright into your lap, desperately hammering her ass from below until you finally cum.");
-	output("\n\n<i>“Yeeeesssss,”</i> Stella moans loudly, drowning out your grunts of release. <i>“Oh my goood, yes, cum inside me... empty those balls...”</i>");
+	output("\n\n<i>“Yeeeesssss,”</i> Stella moans loudly, drowning out your grunts of release. <i>“Oh my goood, yes, cum inside me... ");
+	if(pc.balls > 1) output("empty those balls");
+	else output("let it all out");
+	output("...”</i>");
 	output("\n\nShe continues with the lewd encouragement throughout your entire orgasm, working her ass both involuntarily and voluntarily as she suffers a mild orgasm herself just feeling your [pc.cum] flood her insides.");
 	var cumQ:Number = pc.cumQ();
 	if(cumQ < 500) { }
@@ -613,10 +759,10 @@ public function assFuckStella():void
 	processTime(30);
 	pc.orgasm();
 	IncrementFlag("STELLA_BUTTFUCKED");
+	stellaSexFatigue(1);
 	clearMenu();
 	addButton(0,"Nah",nahNoMoreButtfuckStella);
-	stellaSexFatigue(1);
-	if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
+	if(moreStellaSexAvailable()) addButton(1,"More Sex",keepFuckingStella);
 	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but the body is worn out.");
 }
 
@@ -684,10 +830,13 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 			output(" as far down your [pc.cock " + x + "] as she possibly can, getting stuck around two feet down. Her tongue stretches desperately from her mouth, lapping at your cumvein as if begging for your load");
 			if(pc.balls > 0) output(", unable to reach your [pc.balls] with her lips.");
 			else if(pc.hasVagina()) output(", unable to reach your [pc.vaginas] with her lips.");
+			else output(".");
 		}
 		output("\n\n<i>“Mmmmn, god,”</i> you groan, running a hand through her luxurious hair. <i>“That’s a good start...”</i>");
 
-		output("\n\nEncouraged by your praise, Stella begins to eagerly bob up and down on your cock, withdrawing all the way to the tip to wash her tongue over your slit before opening her throat to your use. The way she slowly wraps your swollen dick in her warm throat’s embrace is an artform, the beautiful bimbo’s lips");
+		output("\n\nEncouraged by your praise, Stella begins to eagerly bob up and down on your cock, withdrawing all the way to the tip to wash her tongue over your slit before opening her throat to your use. The way she slowly wraps your swollen dick in her warm throat’s embrace is an artform, the beautiful ");
+		if(stellaPregnantShowing()) output("pregnant ");
+		output("bimbo’s lips");
 
 		if(pc.cocks[x].cLength() < 25) output(" paying each vein and ridge their due respect on the way to your groin, where she plants a wet, sloppy kiss with her pink lipstick");
 		else output(" sliding over each vein and bump with a measured, intimate pace until she bottoms out, sucking hard enough to leave a depth indicator made out of lipstick on your dick");
@@ -695,6 +844,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 
 		output("\n\nShifting around a little, you sit on Stella’s bed and get her on the floor on her knees, content to enjoy her worshipping you without having to intervene. Her eyes lidded, she handles your cock with reverence, gently stroking and touching while her mouth is at the tip");
 		if(pc.balls > 0) output(" and fondling your balls when she has it deep in her throat");
+		else output(" and rubbing your thighs");
 		output(". She’s extremely skilled, titillating you with her soft, pretty lips and the wet warmth of her mouth but never pushing you over the edge, leaving you the choice of when you want to cum.");
 
 		output("\n\nWith a wet, lurid popping noise, she lets the head of your cock free from her lips’ embrace and takes your entire length in her hands, gently kissing you all over on the way down to your ");
@@ -718,6 +868,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 				output("\n\nIt doesn’t stop there, either. Endeavoring to cover your entire sack in cute, feminine kisses and licks of her tongue, Stella pays attention to every single aspect of worshipping your balls, fondling and sucking where she can, bringing herself to another mind-shattering orgasm before too long. The way she groans so loud, you suspect this is a fantasy she’s wanted to fulfill for quite some time - it’s pretty clear she has a big thing for size...");
 				whoreshipped = true;
 			}
+			output("\n\n");
 		}
 		else if(pc.balls == 1) 
 		{
@@ -739,14 +890,24 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 				output("\n\nIt doesn’t stop there, either. Endeavoring to cover your entire sack in cute, feminine kisses and licks of her tongue, Stella pays attention to every single aspect of worshipping your ball, fondling and sucking where she can, bringing herself to another mind-shattering orgasm before too long. The way she groans so loud, you suspect this is a fantasy she’s wanted to fulfill for quite some time - it’s pretty clear she has a big thing for size...");
 				whoreshipped = true;
 			}
+			output("\n\n");
 		}
-		else output("loins");
-
-		output("\n\nBy the time she’s done");
+		else
+		{
+			output("base. Slowly rubbing your entire length from ");
+			if(pc.cocks[0].hasFlag(GLOBAL.FLAG_FLARED)) output("flared");
+			else if(pc.cocks[0].hasFlag(GLOBAL.FLAG_TAPERED)) output("pointed");
+			else if(pc.cocks[0].hasFlag(GLOBAL.FLAG_BLUNT)) output("blunt");
+			else output("swollen");
+			output(" top to bulging bottom, Stella begins passionately planting long, noisy kisses on the base of your dick and all over your groin.");
+			output("\n\nIt’s a nice feeling to have a voluptuous, slutty bimbo pressing her lipsticked lips against you while she gives you a slow, sensual handjob, so you let it go on on for as long as she wants.");
+		}
+		output("By the time she’s done");
 		if(pc.balls > 1) output(" with your nuts");
 		else output(" face-fucking your lap");
-		output(", you’re pretty close to cumming. Gently directing her affections north, you gradually get her up");
-		if(pc.balls > 1) output(" from your balls");
+		output(", you’re pretty close to cumming. Gently directing her affections north, you gradually get her");
+		if(pc.balls > 1) output(" up from your balls");
+		else output(" mouth ascending again");
 		output(" and focused back on your shaft, re-planting all of the kisses she put there before, climbing back to your tip. You push her down your cock and she’s only too happy to acquiesce, placing herself in your hands as you begin to rock your hips on her bed, fucking her immaculate face while she looks up at you with those stunning aqua blue eyes.");
 
 		output("\n\nThe sight of a bimbo beach doll in complete submissiveness to your whims is too much to handle, and you find yourself fucking her throat even faster as you approach the peak, wet slaps echoing throughout Stella’s luxury suite as you defile it with her saliva and your juices. With a loud, bestial roar of release, you grab her and hold her down on your cock while you begin pumping her full of your spunk, your cumvein swelling in her throat. ");
@@ -755,7 +916,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		{
 			output("You blow your entire load into her tummy, shooting rope after rope down her throat after the puppygirl’s ");
 			if(pc.balls > 1) output("ballplay ");
-			else output("attentions ");
+			else output("oral play ");
 			output("earned her so much jizz. She looks thrilled about it, too, her eyes rolling back as your warmth slides down the back of her throat.");
 		}
 		else if(cumQ < 5000) 
@@ -786,7 +947,14 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		if(cumQ >= 10000) output(", albeit with some difficulty with all the weight in cum she’s put on");
 		output(". Roused back to consciousness, she begins giggling shyly.");
 		output("\n\n<i>“Ummm, that was like, so much fun?”</i> she says, breaking into a smile that spans from ear to ear. <i>“Like, wow, [pc.name]. I’m totes down to suck your cock any time you want.");
-		if(cumQ >= 10000) output(".. Especially if you leave me looking like this...”</i> she says, stroking her swollen tummy. Her massive tits lie atop it, giving her the image of a fertility goddess. It looks good on her. <i>“I think it looks good on me!");
+		if(cumQ >= 10000) 
+		{
+			output(".. Especially if you leave me looking like this...”</i> she says, stroking her");
+			if(stellaPregnantShowing()) output(" enormously");
+			output(" swollen tummy. Her massive");
+			if(stellaPregnantShowing()) output(", milky");
+			output(" tits lie atop it, giving her the image of a fertility goddess. It looks good on her. <i>“I think it looks good on me!");
+		}
 		output("”</i>");
 		output("\n\nYou’re pretty sure she really means it, too. In fact, you could take her up on the offer right now...");
 		
@@ -913,4 +1081,614 @@ public function moreStellaSexAvailable():Boolean
 	if(pc.inRut()) sexPoints++;
 
 	return (sexPoints >= stellaSexFatigue());
+}
+
+/*[Breed]
+[WalkNPlay]
+[Pregsex]
+[Appearance]
+
+Breed not to be added to the repeat sex menu. Others are.
+[Breed]
+//Fuck Stella’s pussy until she’s pregnant. Only unlocks after you’ve completed pussy, assfuck, and oral. Requires dick.*/
+public function breedStella():void
+{
+	clearOutput();
+	showStella(true);
+	author("Wsan");
+	var x:int = pc.cockThatFits(stellaCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
+	if(flags["STELLA_BREEDINGS"] == undefined) 
+	{
+		output("<i>“You know, Stella, I’ve been thinking...”</i> you murmur, getting on the bed");
+		if(!pc.inSwimwear(true))
+		{
+			output(" and slowly pulling your " + pc.mf("shorts","skirt") + " down to expose your [pc.cock " + x + "]. It springs free of the elastic band");
+		}
+		else if(!pc.isCrotchExposed()) output(" and slowly pulling your [pc.crotchCovers] down to expose your [pc.cock " + x + "]. It springs free");
+		else output(" and idly rubbing your [pc.cock " + x + "]");
+		output(", drawing Stella’s rapt attention immediately. <i>“How do you feel about getting bred?”</i>");
+	}
+	else
+	{
+		output("<i>“Feel like playing with your favorite bone some more, Stella?”</i> you ask her, climbing onto the bed and presenting her with your [pc.cock " + x + "]. Her gaze snaps to it instantly, attention wholly directed at your groin. <i>“Wanna get bred again? You loved it so much last time.”</i>");
+	}
+	output("\n\n<i>“Oh, </i>heck<i> yeah,”</i> Stella replies immediately, literally salivating at the sight of your bulging dick. Her pupils are slightly dilated, and you think it’s somewhat appropriate that all you can see in the reflection of her captivating blue eyes is your straining erection. Spreading her legs for you to see her wet, glistening pussy, she affects a cutesy voice. <i>“Does master want to knock up [pc.hisHer] slutty little pet with a litter of beautiful little puppies?”</i>");
+	output("\n\n<i>“That’s what I like to hear,”</i> you say, grinning. Pushing her down and leaning over the voluptuous dog girl, you align yourself and push in with one swift, strong stroke. Stella moans loudly, immediately throwing her head back and wrapping her thick, soft thighs around your back. You sink yourself");
+	if(pc.balls > 1) output(" balls-deep");
+	else output(" to the hilt");
+	output(", each inch earning you with a rise in octave of Stella’s voice until she cums, screaming your name once as her back arches so forcefully you have to hold her down. Even so, her wide hips buck so roughly her massive bubble butt almost comes off the bed completely.");
+	pc.cockChange();
+	output("\n\n<i>“Wow, excited, huh?”</i> you murmur, rolling your hips into hers and eliciting a desirous groan from Stella’s perfect lips. <i>“What, the idea of getting your master’s load in that fertile womb of yours too much to take?”</i>");
+	output("\n\n<i>“Breed me,”</i> Stella gasps, clutching at you desperately. The feral way she looks into your eyes, drooling with need and desire makes your swollen dick throb with pleasure and you have to fight the urge to immediately cum inside her, to just lay your [pc.cockHead " + x + "] at the entrance of her womb and start pumping it absolutely full of thick, virile seed. <i>“Don’t stop, [pc.name]! Pleeeeaaaase, master! Breed me breed me </i>breed me<i>!”</i>");
+	output("\n\nRather than respond with words, you instead rock your [pc.hips] back and start fucking her tight, wet pussy with reckless abandon. Stella’s like a mindless animal right now, clawing at your back in her lustful desire, her immaculate fingernails digging into your [pc.skinFurScales]. You can’t stop yourself from indulging her and your own desires, both of you panting with need not even an inch away from each others faces, watching the other experience ecstasy.");
+	output("\n\nYou can feel her cumming, her sopping wet cunt squeezing down on you as hard as it can, but it does nothing to stop your wild, bestial thrusting. All it does is hasten your own orgasm, but even the tightly wound knot of pleasure unravelling in your taut abs doesn’t halt or even slow your thrusting. The wet, impossibly loud slap of flesh on flesh resounds through the room, your cock erupting with jizz and staying hard throughout the entire process. [pc.Cum] spurts violently into Stella’s fertile womb, but it’s not enough. It’s not <i>nearly</i> enough.");
+	output("\n\n<i>“Keep going, master!”</i> Stella screams in pleasure, thrusting her hips up into you. <i>“Oh! Oohh! [pc.name]! Oh-mmmn!”</i>");
+	output("\n\nYou kiss her savagely, completely without technique, your tongues roughly and passionately wrapping around each other in pure, wanton sexual lust. Reduced to the level of beasts, all either of you can do is roughly fuck the other, sweat flying from Stella’s glistening breasts as your motion rocks her bed against the wall. Holding her down with your embrace and your kiss you fuck her so hard she shakes underneath you, her legs so tightly flexed around you that you’re almost fighting each other to keep fucking.");
+	output("\n\nStella lewdly moans into your mouth as she cums again, unable to resist your unfettered sexual appetite for her blissfully hot, tight pussy or her half-filled womb. Even now a mix of cum and Stella’s juices spurts out from around your dick, flecks of it spattering your stomach and groin.");
+	if(pc.hasKnot(x)) output(" Your [pc.knot " + x + "] has swollen to its full size by the time you finish cumming, and you can feel Stella buck <i>hard</i> under you every time it presses roughly down on her oversensitive clit.");
+	output("\n\nSeveral minutes of wet, desperate sex go by before you cum again, your insane pace outmatching your legendary stamina. Seized by bestial lust, you bite Stella’s neck, holding her head in place with your hands while your hips continue to piston in and out. She cums <i>instantly</i> as well as violently, her entire body shaking as her fingernails rake your back.");
+	output("\n\n<i>“Grrrrh- nnnnngh!”</i> Stella strains through grit teeth, her breaths coming in massive pants. Her ausar instincts have taken over and it’s all she can do to retain control of her mind with you forcing her submission in such a dog-like manner. The orgasm rolling through her body has her bucking so wildly you have to pull her in with your limbs, and thankfully she immediately follows your lead by wrapping her shuddering arms and legs around you. Her loud, aggressively sexual growl of release gradually fades, lowering in volume and raising in pitch until you’re holding a girl in the throes of passion and not a wild beast.");
+	output("\n\n<i>“Master,”</i> she desperately moans in your ear. <i>“Master, master, master!”</i>");
+	output("\n\n<i>“Good girl,”</i> you whisper to her, letting go of your bitehold and shifting your grip to her waspish waist, your hands gliding down her shiny, sweat-slicked body. Sitting back up on your knees you start to fuck her fast and shallow, taking advantage of Stella’s oversensitive pussy. Wriggling in your grip while you hammer her lower lips, Stella gasps and moans, turning her head this way and that until her mounting pleasure becomes too much to bear.");
+	output("\n\n<i>“[pc.name]!”</i> she says breathlessly, right before her walls clamp down on you so hard you lose control and explode inside her. Stella exults in the feeling of your warm cum flooding her pussy once more, throwing her head back in ecstasy. <i>“Yes, yes, yes!”</i>");
+	output("\n\nYou groan in pleasure, sinking yourself to the hilt and rolling your [pc.hips] against Stella’s, immediately eliciting pleased noises from the back of her throat. It’s insane how wet she is, your swollen, straining dick rubbing her stretched-taut walls with almost no friction at all. You take it slow, long, deep strokes that brush against her innermost depths and tease her with your tip. The reaction is instant.");
+	output("\n\n<i>“Oh, my gosh!”</i> Stella cries out, mouth wide and gulping down air. <i>“Hmmngh! Nnnnn!”</i>");
+	output("\n\nThat one’s a winner. Ignoring the rivulets of cum flowing out of her pussy and rolling down her flawless beach-brown skin, you just hold her steady and take a moment to think while you fuck her through another orgasm. It might be best if you give her a break - she has the sexual appetite of a fertility goddess and the figure of one to match, but even gods have their limits. You could keep going but Stella’s already probably not going to be able to get out of bed tomorrow, let alone walk.");
+	output("\n\nWhen you’ve both finally stopped cumming you slowly pull out of Stella’s tantalizingly-tight pussy with a wet pop, her walls desperately gripping at you to keep you from leaving. Hot, bubbling spunk begins to leak from her depths, no longer plugged up. It takes her a second to realize you’re no longer inside her, and when she does her head pops up instantly to look at you. You’re about to ask if she wants to take a break, but she’s somehow faster.");
+	output("\n\nStella <i>dives</i> headfirst onto your still-throbbing cock, hollowing her cheeks and bobbing up and down, sucking your [pc.cockHead " + x + "] as hard as she can. She gets a mouthful of fresh, warm cum for her efforts, which she immediately swallows down on an outstroke. You can see the look in Stella’s eyes - she is <i>ravenous</i>, and she doesn’t <i>want</i> a break. She wants nothing more than to fuck you until either you run out of spunk or one of you passes out.");
+	output("\n\nUnder such rough, desperately erotic treatment, your [pc.cock " + x + "] doesn’t stand a chance with Stella’s perfect lips wrapped around it. You can feel your orgasm approaching fast and right before it hits Stella sits up and leaps into your lap, landing securely in your hands and");
+	if(pc.balls > 1) output(" with her ass parked right on top of your balls as they begin to empty themselves in her welcoming cunt, your entire cock sheathed snugly inside her");
+	else output(" her pussy lips gripping the base of your cock tightly right as you blow your load in her welcoming cunt");
+	output(".");
+
+	output("\n\nStella gives you an incredibly sly, slutty smile, her tongue slowly running across her plump, glossy lips while she grinds her curvaceous ass into your lap, moaning softly all the while. It’s a sight you’ll never forget. You hold her from below, letting Stella take her fill of you in her womb while she gyrates. She cums after a few seconds of feeling you pump her full, biting her bottom lip while she looks down at the thick base of your dick, softly stroking your [pc.stomach].");
+	output("\n\nWhen she feels your orgasm beginning to slow, she gives a coquettish giggle and swings herself forward, bowling the two of you over and landing on top. Grabbing your hands and interlocking her fingers with yours, she clasps you tight and begins bouncing her callipygian ass up and down in your lap, taking you to the hilt with every wet, wild thrust. There’s absolutely no art, no well-practiced technique to her movements at all, each stinging impact of skin on [pc.skinFurScales] sinking you a few inches into her mattress. She pants in your face wild-eyed and gasping for air even as her pussy walls wrap around your cock and her luxurious tail waves from side to side.");
+	output("\n\n<i>“Fuck, Stella,”</i> you gasp, taken a little by surprise by her unusual aggressiveness.");
+	output("\n\n<i>“Keep breeding me, master,”</i> Stella pants, gazing at you with the fire of lust in her eyes as wet slaps ring out from behind her. <i>“I’ve never- this has never- just don’t stop, please!”</i>");
+	output("\n\nShe’s tough and durable, but even the sex-crazed beach doggy has her limits. Orgasming so hard and so often takes it toll on her and soon enough she’s stopped moving almost completely, too busy shaking and squeezing while her pussy spurts femcum and massages you from base to tip. The reflexive milking continues for almost half a minute while she shudders atop you, slowly grinding in your lap. ");
+	output("\n\n<i>“Oooooh, master...”</i> she moans breathily, looking down at you with nothing but love in her eyes. <i>“Keep going...”</i>");
+	output("\n\nIf she doesn’t want to stop but she doesn’t have the strength to keep bouncing, you’ll have to take matters into your own hands. You push upwards and pull out of Stella, earning a despondent whine as she submissively rolls onto her back, setting her gigantic, sweat-slicked breasts jiggling softly.");
+	output("\n\n<i>“On your stomach Stella, c’mon,”</i> you urge your puppy, her fluffy brown ears twitching at the recognition of a command. She obediently rolls face down upon which you immediately hook your hands behind her massive puppy-bearing hips and tug, pulling her expansive, shapely ass up to present you with her spunk-dripping pussy.");
+	output("\n\n<i>“Oh, I </i>like<i> this!”</i> Stella gasps, and you have to grab her tail to stop it from wagging so distractingly. <i>“Gimme! No teasing!”</i>");
+	output("\n\nWith her tail in hand you spank her ass just for fun, Stella crying out in pleasure.");
+	output("\n\n<i>“Spank me, master! I’m such a bad girl,”</i> she moans, throwing her head back and groaning lustily when you get the other cheek too.");
+	output("\n\nWith your handhold established, you reinsert yourself back into Stella’s tight, squeezing pussy, thrusting");
+	if(pc.balls > 1) output(" balls-deep");
+	else output(" to the hilt");
+	output(" in one stroke. She screams in joy and cums on a hair trigger, her legs kicking upwards and toes curling as you slide in and out of her warm canal, your passage eased by your spunk and Stella’s plentiful juices. She’s so easy, so nice to fuck, each passing second better than the last when you’re inside her.");
+
+	output("\n\n<i>“God damn, Stella!”</i> you groan, sinking yourself as deep as you possibly can, leaning over her from behind. <i>“By the time we’re done you’ll be having fucking triplets.”</i>");
+
+	output("\n\n<i>“Mmmm,”</i> she croons, her tail wagging in your hand. <i>“Why stop there, master? I’ll give you as many puppies as you want!”</i>");
+
+	output("\n\nHow can you say no to that? Pushing her upper back down and sending her sprawling into the pillow with a muffled squeal of surprise, you start railing her as hard as you can. You can feel the bed rocking beneath you while you pound the fuck out of her ausar pussy, sending her sweet juices squirting down her thick legs with every thrust.");
+
+	output("\n\n<i>“Uunnnnf!”</i> she screams into the pillow, her back arching as she does. You love how honest she is, how every bit of her reflects how into it she is, and how much that makes you want to keep giving it to her. You couldn’t stop fucking her right now even if you wanted to, driven on by the need to reduce this sexy bimbo bitch to a quivering, cum-filled mess. You can see her massive breasts and ass jiggling as you slam her tight little cunt, the sight driving you wild.");
+
+	output("\n\nIt feels like she’s even tighter than she is otherwise in this position, her pussy walls intimately wrapping around your [pc.cock " + x + "] and kissing your tip every time you plunge it inside her. Right on time, you grunt and cum inside her, somehow your biggest load yet despite having had several orgasms by now. This time, you slow down and really focus on pumping her full.");
+	if(pc.cumQ() < 1000) output(" You shudder in pleasure as you shoot several thick ropes of seed inside her, pressed right up against the entrance to her womb, your spunk joining the rest of what you’ve fucked inside her");
+	else if(pc.cumQ() < 4000) output(" Groaning, you shake in pleasure while what feels like a gallon of spunk pours into Stella’s womb, the bimbo moaning like a whore in heat the entire time");
+	else if(pc.cumQ() < 8000) output(" You groan through grit teeth while you unload more than a gallon of thick [pc.cum] right into Stella’s overstuffed womb, ejaculating so much that her lower stomach begins to outwardly sag");
+	else if(pc.cumQ() < 12000) output(" You clench your teeth and hiss in fierce satisfaction while you slowly hump Stella’s womb full of what must be two or three gallons of [pc.cum], listening to her slutty moans all the while. By the time you’re done, she’s cumming again and her tummy is sagging with the liquid weight of your spunk");
+	else if(pc.cumQ() < 25000) output(" [pc.Cum] jets from your [pc.cockHead " + x + "], filling Stella’s womb to the brim and then, finding no escape, swelling her even further. Her loud, slutty moans accompanying each pulsing ejaculation, you rapidly swell her tummy outwards with the sheer liquid weight of your cum. By the time you’re done, her formerly flat, fit stomach is about as big as her massive tits");
+	else
+	{
+		output("\n\n<i>“Fuck, fuck, fuuuuck,”</i> you groan in pleasure, your hips shaking while you grasp Stella’s hips and ride the high of ejaculation. Barrelful after barrelful of thick, virile spunk splatters into her waiting womb, almost immediately stuffing it to capacity and then swelling it further. Each passing second makes her fatter and fatter, the liquid weight of your seed weighing her stomach down until it’s sagging on the bed like she’s starring in a hyperporn. The excess spurts back out onto the bed, unable to find purchase in her overstuffed womb");
+	}
+	output(".");
+
+	if(pc.PQ() < 50 && pc.libido() < 80 && !pc.isBro() && !pc.isAmazon()) output("A bit winded, you flop back, only to have Stella appear overhead, cracking open a can of something marked ‘Sanguine Stallion’. You thirstily guzzle the beverage, more invigorated by the second. Before long, you’re grabbing the can out of her hand and sucking down the last of the energy drink. [pc.EachCock] is hard and full, rearing to go. You want to <i>breed</i>.");
+
+	output("\n\nYou flip the horny ausar over, laying your eyes upon her face once more, and you like what you see. A woman mired in heat and need, a sweat-slicked bimbo with flushed cheeks, the perfect image of a girl who needs your cock to live. Stella looks every bit as happy to see you as you do her, panting hotly and gazing at you with desire. She sweeps her wet, sweaty blonde hair out of her face and flirts.");
+	output("\n\n<i>“Oooh,”</i> she moans, running her hands up and down her");
+	if(pc.cumQ() < 1000) output(" washboard flat");
+	else output(" curvaceous");
+	output(" stomach and voluptuous breasts, hooding her eyes and fluttering her eyelashes at you. <i>“Do you like");
+	if(pc.cumQ() < 1000) output(" pumping");
+	else output(" seeing");
+	output(" me full of your cum, master?”</i>");
+	output("\n\n<i>“Fuck yeah I do,”</i> you pant, your sweaty hands wrapped around her waist, squeezing her enormous asscheeks in lust.");
+
+	output("\n\n<i>“You’re still so hard in my slutty little pussy,”</i> she whispers, looking up at you needily. <i>“Wanna fill me up even more?”</i>");
+
+	output("\n\nYou can’t say no to that face...");
+	//processTime(540);
+	processTime(540);
+	for(var i:int = 0; i < 8; i++)
+	{
+		pc.orgasm();
+	}
+	stellaKnockupCheck();
+	stellaSexFatigue(4);
+	clearMenu();
+	addButton(0,"Next",stellaBreedingOutro);
+}
+
+public function stellaBreedingOutro():void
+{
+	clearOutput();
+	showStella(true);
+	author("Wsan");
+	output("You were in there for hours, though it felt like days. It wasn’t until you realized how thirsty you were that you thought about taking a break, and though Stella whined a little you think she’ll be happy she isn’t even more sore tomorrow. You get her to take a quick shower, then join her in the tub.");
+	output("\n\n<i>“This is nice,”</i> you sigh, staring at the patterned ceiling while your voluptuous ausar lover cuddles up to you in the bath, nuzzling her face into your neck with a blissful smile. Your arm wrapped around Stella’s side and getting a nice feel of her squishy breast, your thoughts turn briefly to the consequences of your wild romp.");
+	output("\n\n<i>“How do you want to handle kids, Stella?”</i> you ask, looking down at her. She doesn’t open her eyes, but her ears twitch and turn towards you. <i>“Do you have plans? I have a Nursery here on Tavros.”</i>");
+	output("\n\n<i>“Naw, s’okay,”</i> Stella murmurs, breathing deeply. <i>“My family’ll handle everything.”</i> She giggles. <i>“Mom’ll be thrilled, she’s been waiting for me to have kids foreeeeverrrr.”</i>");
+	output("\n\n<i>“How about you?”</i> you ask. <i>“Have you been waiting?”</i>");
+
+	output("\n\n<i>“");
+	if(flags["STELLA_BREEDINGS"] != undefined) output("Tol’ you, o");
+	else output("O");
+	output("nly w-wan... kids wif... person I love,”</i> Stella mumbles, her voice trailing off into peaceful silence as she falls asleep, her head on your chest while you lie in the tub. Getting her out without waking her proves to actually be quite easy, no doubt due to the ‘exertions’ of the day you’ve spent with her. Toweling off her naked body, you deposit the sleeping beach bimbo in her bed, pulling the blankets up over her. You idly wonder if she’ll even be able to get up tomorrow.");
+	output("\n\nCasting a last look back as you leave, you can see Stella wiggling from side to side fast asleep, the same smile still on her face. Then she turns on her side and curls up, her tail emerging from under the blankets and wagging a couple of times before drooping tiredly. You chuckle and walk for the exit.");
+	output("\n\n<i>“Wow, you were in there for a while!”</i> Alex remarks, looking up from a tablet when you re-enter the lobby. <i>“Hope you had a good time!”</i>");
+	output("\n\n<i>“Always do,”</i> you say with a grin, waving as you leave.");
+	IncrementFlag("STELLA_BREEDINGS");
+	processTime(30);
+	pc.shower();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	//Stella gets pregnant. If she wasn’t already pregnant, start a 1 month timer - you can’t do breeding sex after a month passes until two more months have passed after that. Instead, replace with Pregsex for those two months.
+	if(!stellaPregnant()) AddLogEvent(ParseText("A brief text message from Stella informs you that the breeding didn’t take. Looks like you’ll have to pay her another visit..."));
+}
+
+//[WalkNPlay]
+//Walkies and petplay. Goes in sex menu. Can’t do if pregnancy showing.
+public function walkiesAndPetPlayStuff():void
+{
+	clearOutput();
+	showStella();
+	author("Wsan");
+	if(flags["STELLA_PETPLAYED"] == undefined)
+	{
+		output("<i>“Do you have any toys, Stella?”</i> you ask her.");
+		output("\n\n<i>“Yup!”</i> she chirps, turning over and reaching for her dresser.");
+	}
+	else output("<i>“Get your toys out, Stella,”</i> you tell her, nodding at the dresser.");
+
+	output("\n\nShe eagerly rummages through the drawers, tossing her clothes this way and that. You catch most of it and put it in a neat pile, noting the disproportionately high number of lacy and sexy pieces of underwear and various swimming outfits. It seems like she really does spend most of her life at the beach.");
+
+	output("\n\n<i>“Aha!”</i> Stella cheers, producing a box from one of the drawers. <i>“Here.”</i>");
+
+	output("\n\nPeering into it you see a jumble of miscellaneous toys, sexy and otherwise. Putting it up on the bed, Stella lets you have a look through it, eyeing you curiously.");
+
+	output("\n\n<i>“You wanna use toys on me, master?”</i>");
+
+	output("\n\n<i>“There’s something specific I’m... oh,”</i> you say, picking out");
+	if(flags["STELLA_PETPLAYED"] == undefined) output(" three");
+	else output(" some");
+	output(" items. <i>“");
+	if(flags["STELLA_PETPLAYED"] == undefined) output("So you </i>do<i> have some");
+	else output("Here they are");
+	output("!”</i>");
+
+	output("\n\nYou throw her leash, collar, and a set of cute knee & paw pads with pawprints on them on Stella’s bed. Her ears perk up immediately, the ausar bimbo picking up on your intentions.");
+	output("\n\n<i>“Are, are we,”</i> she starts, overexcitedly wagging her tail.");
+	output("\n\n<i>“You wanna go for a </i>walk<i>, Stella?”</i> you ask, and almost have to shield your eyes from the sparkling enthusiasm in her bright-eyed face.");
+	output("\n\n<i>“Yayayayay!”</i> Stella cheers, bouncing up and down on the bed on all fours. <i>“Let’s go for a walk! Walk!”</i>");
+	output("\n\nSnapping her leash to her collar, you stand back and inspect your overexcited dog. Up on her kneepads and panting happily, she looks like she’s having the time of her life. You hold out your hand.");
+	output("\n\n<i>“Paw.”</i>");
+	output("\n\nShe puts her padded hand in your own, looking up at you with adoration.");
+	output("\n\n<i>“Good girl,”</i> you nod, letting go and taking the leash. <i>“C’mon Stella, let’s go.”</i>");
+	//First time/random%ifyoudontbuyplatinumcollar:
+	if(flags["STELLA_PETPLAYED"] == undefined || (flags["STELLA_COLLAR"] != "platinum" && rand(3) == 0))
+	{
+		output("\n\nYou already know where your first destination is gonna be with your bimbo pup. Taking Stella carefully down the stairs that lead to her little apartment, she obediently pads along behind you on all fours. It’s a captivating sight what with the way her heavy tits sway from side to side with every step, barely avoiding touching the ground.");
+		output("\n\nYou take her past the volleyball players, and one of them gets spiked right in the face as their jaw drops at the sight. The rest of them don’t seem as surprised, calling out hellos and waving. A couple of the girls come over, all smiles and cooing, to give Stella some scritches behind the ears. She’s all about it, leaning into their touch while smiling and humming happily.");
+		output("\n\n<i>“You have such a good dog, Steele,”</i> one of them says, rubbing Stella’s cheeks while your dog wags its tail. <i>“Aren’t you such a good girl! Yes you are.”</i>");
+		output("\n\n<i>“She usually just plays with her frisbee or runs around on the beach, you’re the only person I’ve seen walking her,”</i> the other says, watching Stella. <i>“Good that she’s got a nice owner to take her out now.”</i>");
+		output("\n\nAfter some light playing with the girls, you wave and leave, heading towards the lobby. When you emerge, Alex raises her eyebrows.");
+		output("\n\n<i>“Oh boy,”</i> Alex says, eyeing the two of you nervously. <i>“Please tell me I still have a job tomorrow.”</i>");
+		output("\n\n<i>“Don’t see why you wouldn’t, just taking my dog for a walk after all,”</i> you reply lightly, giving her a wink. <i>“See you when we get back, Alex.”</i>");
+		output("\n\nStella lets out a happy bark as you open the door, emerging back into Tavros proper. From there, it’s straight to the red light district to check out some stuff you want to buy her. You keep her close, walking alongside you on the pads and smiling down at her when she licks your hand. Not that many people gawk - it’s Tavros after all, host to all manner of debauchery - but when they do, it’s at Stella’s amazing assets. You can’t blame them for it, but you can definitely give them a shit-eating grin as you pass them by. <i>That’s right fuckers, this is </i>my<i> bitch.");
+
+		//[Next]
+		processTime(20);
+		clearMenu();
+		addButton(0,"Next",volleyballBeachPetplayEpi);
+	}
+	//Other petplay variants (random%)
+	else if(rand(2) == 0)
+	{
+		output("\n\nYou take her outside and head down to the ocean, bringing her frisbee. It’s got a bunch of teethmarks in it, and you soon see why. Stella catches it in her mouth in fantastic fashion, puffs of dry sand spraying from behind her feet as she leaps into the air to grab it. Soon you’re throwing it over ten feet in the air and she’s still catching it expertly, twisting her body in an unexpectedly unathletic manner to steady herself before she lands.");
+		output("\n\nWhen you’ve tired her out a little, you take her to go get some icecream from a beachside vendor at a stall. Stella literally wolfs it down, sticking her tongue out and shaking her head at the brainfreeze while you laugh. She takes the second one a little slower, licking the different flavors from the double cone while the two of you sit on the beach. It’s nice and peaceful, the sun hanging in the sky eternally and shining down on your idyllic vacation.");
+		output("\n\nYou spend half an hour just lying with her in the sunrays, your arms around each other and your eyes closed in relaxation. Over time she shuffles closer and closer until she’s lying across you, her head on your shoulder and a wide smile on her pretty face. You rouse her from sleepiness to take a swim in the ocean, which stretches as far as you can see. Your thoughts about how they manage to create this place are interrupted by Stella’s overexcited attentiveness, not to mention the way the water makes her bikini top mostly see-through.");
+		output("\n\nYou wind up");
+		if(pc.hasCock()) output(" fucking her from behind right there on the beach, half-hidden by the waves, not that there’s anyone around. The water washes past you as you pull Stella’s luscious hair, tilting her head back so you can kiss her lips while she shudders and cums on your [pc.biggestCock], squeezing you up and down until you can’t help but join her");
+		else output(" having her on top of you back on the beach, the waves lapping at your feet as she desperately rubs her pussy against yours, crying out in orgasm. It doesn’t take long for you to join her, your back arching and pressing your [pc.breasts] into Stella’s");
+		output(".");
+
+		output("\n\nAfterwards you spend a few minutes just lying around on the sand panting, keeping each other close. Eventually, you bring her back to her apartment and put the toys away, giving her a scratch behind the ears and letting her collapse onto the bed to watch you.");
+		output("\n\n<i>“Good girl.”</i>");
+		processTime(20);
+		pc.exhibitionism(2);
+		pc.orgasm();
+		IncrementFlag("STELLA_PETPLAYED");
+		clearMenu();
+		stellaSexFatigue(1);
+		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
+		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
+		addButton(0,"That’s It",genericNoMoreSexStella);
+	}
+	else
+	{
+		output("\n\nHeading down to the ocean you let Stella off the leash and toss her a ball, fondly watching her dash down the sand and disappear momentarily over some dunes to fetch it. She moves fast considering how endowed she is... you guess some instincts never die. When she comes back you scratch her lightly behind the ears and toss it again, this time into the surf, watching her paddle out into the sky blue water to grab it in her mouth. She looks extremely pleased with herself when she returns, almost prancing around you in delight.");
+		output("\n\nAfter you tire her out a bit, her tail wagging from side to side and her tongue lolling from her mouth as she pants, you take her a bit further up the beach to get some icecream. You share a triple scoop cone, holding it out for her to take a lick after yours. She slowly inches closer and closer with every lick, her eyes gleaming with eagerness, and after a couple of minutes she pounces on you to lick your face.");
+		output("\n\n<i>“Tasty!”</i> Stella declares, licking your lips clean of any icecream that might have been left behind. <i>“Hmm... but I’m still hungry.”</i>");
+		output("\n\nWith Stella lying on your chest and her beautiful face filling your vision, it’s impossible to resist. She makes a pleased noise as you pull her down and kiss her, her tongue wrapping around your own. Before your eyes close in the embrace, you can see her tail wagging overexcitedly in the air. Typical Stella.");
+		output("\n\nOne thing leads to another and soon you’ve got your feisty pup on top of you, moaning in desire as you");
+		if(pc.hasCock()) output(" pound her from below, driving your [pc.biggestCock] inside her");
+		else output(" scissor, rubbing your [pc.pussy] against Stella’s sensitive clit");
+		output(". She cums all over you, shaking and whining while her back arches to thrust her massive breasts forward. The sight of it drives you onwards, fucking her");
+		if(pc.hasCock()) output(" to make them quake as she bounces atop you");
+		output(" until you cum with a loud, deep groan of satisfaction.");
+
+		output("\n\nLying in the sand for a couple of minutes and kissing Stella, you eventually muster the willpower required to forgo doggy kisses for a moment and get up. Gathering your equipment, you head back to her little lodge and spot the forgotten, half-eaten icecream in the sand as you leave. Oops. At least Stella");
+		if(pc.hasCock()) output("’s more than happy with the cream she got");
+		else output("’s happy with what she got");
+		output(".");
+		output("\n\nBack ‘home’, Stella pounces on her bed and sends sand flying everywhere. She turns over and eyes you excitedly.");
+		processTime(20);
+		pc.exhibitionism(2);
+		pc.orgasm();
+		IncrementFlag("STELLA_PETPLAYED");
+		stellaSexFatigue(1);
+		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
+		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
+		addButton(0,"That’s It",genericNoMoreSexStella);
+	}
+}
+
+public function volleyballBeachPetplayEpi():void
+{
+	clearOutput();
+	showStella();
+	author("Wsan");
+	output("When you finally find the shop you’re looking for, you head on inside and find an amicable ausar boy around your age tending the counter. He gives you and Stella a friendly smile, greeting you as you approach.");
+	output("\n\n<i>“Welcome to the Dogpound! Are you looking for something in particular?”</i> he says, gesturing at the walls and racks of toys ranging from utterly benign to downright dirty. <i>“We have all sorts of things for you and your beloved pet.”</i>");
+	output("\n\nYour beloved pet doesn’t seem to be listening to him at all, instead tangling her leash around your [pc.legOrLegs] while she explores the store’s cornucopia of various items. You lean on the counter and mention you’re looking for a collar for her.");
+	output("\n\n<i>“Ah, yes. We’ve got a whole range of them, actually! The cheapest is 25 credits and comes with a totally adorbs little heart you can get an engraving on. Our midrange stuff is a bit more expensive, and then there’s the platinum option.”</i> He leans in a little closer, and you can see he has a collar on himself. <i>“I really, really recommend the platinum one if it’s within your means. Pets </i>love<i> it.”</i>");
+	processTime(10);
+	//[Plain] [Leather] [Jeweled] [Platinum] [None]
+	//[Plain]
+	//tooltip: A plain pink collar with a silver heart hanging from it. Costs 25 credits.
+	//[Leather]
+	//tooltip: A nice dark leather collar, its quality evident upon a glance. Has a silver heart hanging from it. Costs 250 credits.
+	//[Jeweled]
+	//tooltip: A bejewelled collar studded with sapphires. They match Stella’s eyes beautifully. Has a silver heart hanging from it. Costs 2500 credits.
+	//[Platinum]
+	//tooltip: An extremely fancy collar made from platinum and studded with sapphires. Something draws you to it, and you innately know Stella would love this. Has a silver heart hanging from it. Costs 25000 credits.
+	//[None]
+	//tooltip: Leave without a collar.
+	clearMenu();
+	if(pc.credits >= 25) addButton(0,"Plain",buyStellaCollar,"plain","Plain Collar","A plain pink collar with a silver heart hanging from it.\n\n<b>Cost:</b> 25 credits.");
+	else addDisabledButton(0,"Plain","Plain","You can’t afford that.");
+	if(pc.credits >= 250) addButton(1,"Leather",buyStellaCollar,"leather","Leather Collar","A nice dark leather collar, its quality evident upon a glance. Has a silver heart hanging from it.\n\n<b>Cost:</b> 250 credits.");
+	else addDisabledButton(1,"Leather","Leather","You can’t afford that.");
+	if(pc.credits >= 2500) addButton(2,"Jeweled",buyStellaCollar,"jeweled","Jeweled Collar","A bejewelled collar studded with sapphires. They match Stella’s eyes beautifully. Has a silver heart hanging from it.\n\n<b>Cost:</b> 2500 credits.");
+	else addDisabledButton(2,"Jeweled","Jeweled","You can’t afford that.");
+	if(pc.credits >= 25000) addButton(3,"Platinum",buyStellaCollar,"platinum","Platinum Collar","An extremely fancy collar made from platinum and studded with sapphires. Something draws you to it, and you innately know Stella would love this. Has a silver heart hanging from it.\n\n<b>Cost:</b> 25000 credits.");
+	else addDisabledButton(3,"Platinum","Platinum","You can’t afford that collar.");
+
+	if(flags["STELLA_COLLAR"] == "plain") setButtonDisabled(0);
+	else if(flags["STELLA_COLLAR"] == "leather") setButtonDisabled(1);
+	else if(flags["STELLA_COLLAR"] == "jeweled") setButtonDisabled(2);
+	else if(flags["STELLA_COLLAR"] == "platinum") setButtonDisabled(3);
+	
+	addButton(4,"None",buyStellaCollar,"","None","Leave without a collar.");
+}
+
+//Buy any collar:
+public function buyStellaCollar(arg:String = ""):void
+{
+	clearOutput();
+	showStella();
+	author("Wsan");
+	if(arg != "")
+	{
+		output("<i>“Great!”</i> the boy says, clapping his hands. <i>“Let me get that wrapped for you. What would you like engraved on it?”</i>");
+		output("\n\nA minute later and you’re headed out the door with your purchase in a little container.");
+		if(arg == "plain") 
+		{
+			flags["STELLA_COLLAR_GIFT"] = arg;
+			pc.credits -= 25;
+		}
+		if(arg == "leather") 
+		{
+			flags["STELLA_COLLAR_GIFT"] = arg;
+			pc.credits -= 250;
+		}
+		if(arg == "jeweled") 
+		{
+			flags["STELLA_COLLAR_GIFT"] = arg;
+			pc.credits -= 2500;
+		}
+		if(arg == "platinum") 
+		{
+			flags["STELLA_COLLAR_GIFT"] = arg;
+			pc.credits -= 25000;
+		}
+	}
+	else 
+	{
+		output("<i>“Maybe next time,”</i> you say, shaking your head. <i>“C’mon Stella, let’s go.”</i>");
+		output("\n\n<i>“Come back soon!”</i> the boy says, waving as you leave.");
+	}
+	//[Next]
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",moreStellaPetPlayPostCollarShop);
+}
+
+public function moreStellaPetPlayPostCollarShop():void
+{
+	clearOutput();
+	showStella();
+	author("Wsan");
+	output("When you’re back out on the streets, you immediately know where you’re going next. A narrow, disused alley in the red light district, shaded and quiet. You tug on the leash and point to the wall.");
+	output("\n\n<i>“Up.”</i>");
+	output("\n\nPanting excitedly, Stella gets to her feet and stretches up, pressing herself against the wall while you position yourself behind her. Pulling her bottoms aside, you can see she’s soaking wet, and probably has been this whole time. You waste no time in sliding");
+	if(pc.hasCock()) output(" your [pc.cockBiggest]");
+	else output(" two fingers");
+	output(" into her devilishly tight pussy, fucking her as fast as you can.");
+
+	output("\n\n<i>“You love this, don’t you?”</i> you murmur in her twitching ears, your hands grasping roughly at her breasts. <i>“Getting your slutty little pussy pounded in an alley by your master.”</i>");
+
+	output("\n\nShe can’t resist that. Before you’ve even finished talking, she cums and moans loudly enough while doing so that more than one person casts curious glances at the two of you as they walk by. When they realize what’s going on, a couple of people linger to watch you fuck your bodacious ausar slutpet to");
+	if(pc.hasCock()) output(" until you orgasm, grunting as you unload yourself in her cunt");
+	else output(" an explosive, moaning orgasm");
+	output(". Then you order her to get down, pulling her bottoms back into place and walking back into the crowd before things get too serious.");
+
+	output("\n\nYou’re not overly concerned about the two of you ending up on the extranet - SteeleTech is ostensibly a force for good, but its lawyers have no qualms about scouring ‘particular’ unsavory videos from existence. You expect you’ll get a call later. Still, though, it was worth it.");
+
+	output("\n\n<i>“That was fun, wasn’t it?”</i> you mutter to Stella, lightly pulling the leash. She barks in affirmative, her tail and butt wagging madly. <i>“Good girl.”</i>");
+
+	processTime(15);
+	if(pc.hasCock()) pc.orgasm();
+	else pc.lust(5);
+	pc.exhibitionism(1);
+	clearMenu();
+	addButton(0,"Next",moreStellaPetPlayPostCollarShop2);
+}
+
+public function moreStellaPetPlayPostCollarShop2():void
+{
+	clearOutput();
+	showStella();
+	author("Wsan");
+	output("You wave at Alex when you re-enter the building, guiding Stella back to the beach. You take a seat on the sand near the ocean and let her run around a bit, enjoying the stress-free live of a pet dog before you call her over.");
+	output("\n\n<i>“Hey Stella, c’mere for a moment. I’ve got a present for you,”</i> you call, and she bounds over on all fours, sniffing curiously.");
+	//Bought collar:
+	if(flags["STELLA_COLLAR_GIFT"] != undefined) 
+	{
+		flags["STELLA_COLLAR"] = flags["STELLA_COLLAR_GIFT"];
+		flags["STELLA_COLLAR_GIFT"] = undefined;
+		showStella(true);
+		output(" You present her with the " + flags["STELLA_COLLAR"] + " collar, pulling it out from the container. <i>“Here you go.”</i>");
+		output("\n\nForgetting herself, Stella gasps and claps her hands to her cheeks. <i>“Oh my gosh, a collar! Wow, this is great! Thank you master!”</i>");
+		output("\n\nShe throws her arms around you and gives you a big smooch, kissing your lips before looking down at it again. <i>“Put it on me and let’s take a picture!”</i>");
+		output("\n\nRemoving her old collar, you fasten the new one and it clicks into place around her flawless neck, adorning her beautifully.");
+		//Plain: 
+		if(flags["STELLA_COLLAR"] == "plain") output(" It looks amazing on her, like she was born to wear it");
+		//Leather:
+		else if(flags["STELLA_COLLAR"] == "leather") output(" The dark leather matches her fur amazingly, like it was custom-made for her");
+		//Jewelled:
+		else if(flags["STELLA_COLLAR"] == "jeweled") output(" The sapphires are perfect, matching her eyes as she smiles up at you adoringly");
+		//Platinum:
+		else output(" It looks on amazing on her, your perfect pet wearing the jewelry someone of her status deserves. The sapphires match her eyes perfectly too, both of them reflecting the sunlight as she smiles up at you adoringly");
+		output(". The attached heart hangs below, reading ‘Property of [pc.name] Steele. If lost please mail " + quickPCToAddress() + "’.");
+
+		output("\n\nYou snap some pictures with the overjoyed bimbo clambering all over you, the best of them probably the one where you managed to get her to be still for 0.5 seconds as she smushed her face into yours and looked up for the photo. Both of you are wearing huge grins in it, and she’s tilting her head upwards to proudly show off the collar.");
+		processTime(20);
+		pc.lust(3);
+	}
+	else
+	{
+		output("\n\nYou ");
+		if(!pc.isCrotchExposed()) output("pull out ");
+		else if(pc.hasCock()) output("pull on ");
+		else output("draw her eyes to ");
+		if(pc.hasCock()) output("your [pc.cockBiggest], already half-erect and getting harder owing to her presence");
+		else output("your [pc.pussy], already wet thanks to Stella");
+		output(". <i>“No collar, but you don’t mind");
+		if(pc.hasCock()) output(" a bone");
+		output(", right?”</i>");
+		output("\n\n<i>“Ooooh,”</i> Stella says, her eyes lighting up. <i>“Lemme at it!”</i>");
+
+		output("\n\nYou throw your head back in exultation as she begins lapping at you, working her tongue");
+		if(pc.hasCock()) 
+		{
+			output(" up and down your swollen prick");
+			if(pc.balls > 1) output(" with a detour to your [pc.balls] to make sure they’re spit-shined with her saliva");
+			else output(", working your length to a spit-shine");
+		}
+		else output(" inside and out, wrapping around your [pc.clits] and stroking your lips before spearing inside");
+		output(". It doesn’t take long for you to cum under her overeager ministrations, and that only makes her all the more eager.");
+
+		output("\n\nIt’s some time before you finally get Stella off you, her pouty lips covered in your");
+		if(pc.hasCock()) output(" seed");
+		else output(" juices");
+		output(" and some of");
+		if(pc.hasCock()) output(" it");
+		else output(" them");
+		output(" running down her chin. She licks herself clean and settles back, letting you finally relax your oversensitive ");
+		if(pc.hasCock()) output("dick");
+		else output("pussy");
+		output(".");
+		processTime(15);
+		pc.orgasm();
+		pc.exhibitionism(2);
+	}
+	output("\n\nAfterwards, you head back up to her room and casually settle in.");
+	IncrementFlag("STELLA_PETPLAYED");
+	stellaSexFatigue(1);
+	if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
+	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
+	addButton(0,"That’s It",genericNoMoreSexStella);
+}
+
+//[Pregsex]
+//Only available when Stella’s pregnancy is showing. Requires dik.
+public function stellaPreggoSex():void
+{
+	clearOutput();
+	showStella(true);
+	author("Wsan");
+	var x:int = pc.cockThatFits(stellaCapacity());
+	if(x < 0) x = pc.smallestCockIndex();
+
+	output("<i>“Fuck, you look so hot like that,”</i> you murmur, your [pc.cockBiggest] already hardening as your eyes sweep over Stella’s pregnant form.");
+	output("\n\n<i>“Do you like me like this, master?”</i> Stella giggles, spreading out on the bed and rubbing her protruding tummy. <i>“All heavy and full of your kids? ‘Cuz honestly, it makes me all wet when I think about it too much... ‘n I just wanna... ooooh...”</i>");
+	output("\n\nTrue to her word, you can see just how soaking she is between her thighs when they part on the bed, granting you silent approval. You climb up on the mattress, rock hard and fixated entirely on that tight, dripping pussy. Kneeling before her, you align yourself carefully and press at her entrance.");
+	output("\n\n<i>“Ooh, master,”</i> Stella moans, her legs curling around yours, <i>“you gonna fuck me until I’m all messy and covered in spunk?”</i>");
+	output("\n\n<i>“Hell yes,”</i> you mutter, gently putting one hand on her stomach as you slide inside her, forcing a loud groan of pleasure from Stella’s lips. <i>“I’m not gonna stop until you’re screaming.”</i>");
+	output("\n\n<i>“Oh, gosh,”</i> Stella moans, hooding her eyes and gazing at you lustfully. <i>“I can’t wait...”</i>");
+	output("\n\nYou start slow, in direct contrast to your usual time with Stella. There’s just something about watching this beautiful woman, already carrying your children, writhe and shudder in delight while you fuck deep inside her. She’s so honest and easy to read, it takes you no effort at all to please her. Her mouth pops open to moan in joy every time your dick bottoms out inside her, lightly brushing her depths, and the way her face contorts in bliss on your outstroke is divine.");
+	output("\n\nStella wants nothing more than for you to fuck her, over and over until you cum inside her... and then start all over again. Even with the pregnancy she’s still so tight and agile, wrapping herself around you as if her body was begging you to keep going and never stop. It’s taking all of your willpower to resist just bearing down on her and fucking her like an animal, but slowly and surely your efforts begin to bear fruit.");
+	output("\n\n<i>“Nnnnh, ah,”</i> Stella moans, her hips shifting from side to side while your [pc.cockHead " + pc.biggestCockIndex() + "] gently kisses her womb’s entrance. <i>“Oooh, that’s good...”</i>");
+	output("\n\nShe’s getting closer without even realizing it, her hyperporn-sized ass beginning to lift off the bed while she flexes her pussy, squeezing her eyes shut with the pleasure. Her swollen midriff is streaked with salty sweat, the added weight making it difficult for her to arch her back but proving that she looks no less sexy when she does. Between her enormous assets and the fecund bump in her body, you feel like you’re fucking a fertility goddess.");
+	output("\n\n<i>“Oh... oh! Haa-aaah,”</i> Stella pants, grabbing the bedsheets and twisting them. <i>“Oh, it feels so di-different...!”</i>");
+	output("\n\nGoing slower and more methodically than usual, you give Stella an orgasm more deep and overwhelming than she’s used to. The slowly running river of pleasure at last swells beyond its banks and floods her all at once, radiating outward from her warm, wet pussy and spreading throughout her body.");
+	output("\n\n<i>“Oh, </i>oh! Oh my god!”</i> Stella half-screams in joy, her pussy tightening and convulsing around your dick so hard it feels like a galotian is sucking you. <i>“Oh, I’m cumming! [pc.name]! [pc.name]! Uhhh!”</i>");
+	output("\n\nYou keep the exact same mechanical pace throughout her shuddering, body-twisting orgasm, only driving her more and more wild as she bucks in your arms.");
+	output("\n\n<i>“Oh, [pc.name], [pc.name], [pc.name]!”</i> Stella pants, each utterance of your name getting closer to a growl coming from deep in her throat. <i>“[pc.name]! Nnnnngh!”</i>");
+	output("\n\nAll at once as if let loose from a dam, Stella’s pussy squirts all over");
+	if(pc.balls > 0) output(" your [pc.balls]");
+	else output(" her thighs");
+	output(", spraying them with warm evidence of her complete submission. It doesn’t stop, either, spurting all over you and the bed with each and every thrust until, finally, she collapses on her back with a loud, shuddering moan. Her thick thighs are still shaking against you as aftershocks rock her body,");
+	//firsttime:
+	if(flags["STELLA_PREG_FUCKED"] == undefined) output(" and it’s then that you notice it.");
+	else output(" and that’s when you take advantage.");
+
+	output("\n\n<i>“Oh?”</i> you murmur, reaching out for one of her round, curvy breasts. Her normally inverted nipples are out, jutting from her pink areolae and stiff as diamonds. That’s usual for Stella during sex, though - what’s unusual is the pure white creamy liquid that’s slowly trickling down the underside of her massive teats. <i>“You’re lactating, Stella.”</i>");
+	output("\n\nYou lightly squeeze one of her nipples and enjoy her sultry moan in response, her nipple gently spraying white milk all over her beach-brown skin. Lifting a finger to your lips while she pants, you take a taste. It’s deliciously sweet, the slight bitterness of residual sweat being wicked away by Stella’s milk.");
+	output("\n\n<i>“Don’t mind if I do,”</i> you grunt, putting an arm around Stella’s back and pulling the fucked-silly ausar into your lap. <i>“You wanna keep going, Stella?”</i>");
+	output("\n\n<i>“Uh... uh huh,”</i> she replies, head slowly dipping forward to rest on your reliable shoulder. <i>“Don’t stop, master...”</i>");
+	output("\n\nShe’s still got her head in the clouds in the wake of being so thoroughly fucked, but neither of you are about to let that get in the way of a good time. Rolling your hips, you begin fucking her from below, this time as fast and hard as you usually do. Suddenly caught by the contrast of styles, Stella immediately tightens up and lewdly moans in your ear, wrapping her calves around your lower back.");
+	output("\n\nYou hilt yourself inside her, pushing through her wet, grippy walls to fuck her hard. With one hand around her back to keep her in place, you reach down with the other to grab a massive teat and lift it to your mouth. The response when you suck on it is immediate.");
+	output("\n\n<i>“Unh! Oh my gosh!”</i> Stella moans, looking at you with an expression halfway between surprise and lust. <i>“Oh, that- that feels </i>good<i>...”</i>");
+	output("\n\nShe doesn’t seem to mind. You have no doubt that Stella being Stella she’ll be over-fertile to the point of having to be milked anyway, and in that case there’s no harm in getting a sweet, erotic milkshake from your bimbo lover. Sucking at her breast and eliciting a soft, high-pitched moan that turns aggressive when you thrust your cock up into her, you enjoy the boons of Stella’s approaching motherhood.");
+	output("\n\nHaving already slowly fucked Stella to one massive orgasm, it’s no surprise that you feel your own swiftly approaching while you pound her from below. You can only resist her amazing body for so long, and the way her pussy walls grip and suck at you it’s a testament to your strength that you don’t cum the moment you begin thrusting.");
+	output("\n\n<i>“Gonna cum soon,”</i> you grunt, letting Stella’s breast go and clamping your hands around her wide, motherly hips. <i>“Hope you’re ready!”</i>");
+	output("\n\n<i>“Oohhhh yes yes yes,”</i> Stella pants, being bounced up and down in your lap and setting her entire body jiggling vivaciously. <i>“Inside! Cum inside my pussy, [pc.name]!”</i>");
+	output("\n\nYou slam Stella down on your dick and groan in release, holding her curvaceous body against you while your cock flexes and strains inside her, pumping her full of your warmth. Your seed drips");
+	if(pc.cumQ() < 1000) output(" and spurts");
+	else output(", spurts and gushes");
+	output(" from her spasming pussy, the pregnant bimbo ausar having cum at the same time you did.");
+
+	output("\n\nYou finally release her after a minute, Stella exhaustedly flopping backwards onto the bed with a soft <i>fwump</i> when you pull out. She’s panting, covered in sweat, and still shaking with the effort of a massive orgasm. She lifts her head to look at you and complain.");
+
+	output("\n\n<i>“Being pregnant is </i>hard<i>,”</i> she moans, settling back on the pillow.");
+
+	output("\n\n<i>“Uh huh,”</i> you say, settling down alongside her and running your hand up her side. <i>“Still a lot of fun, though...”</i>");
+	output("\n\n<i>“Nnnn... I can’t wait until I give birth and we go through like, the whole thing again,”</i> Stella giggles dreamily, looking into your eyes. <i>“Getting bred by master is just </i>so<i> much fun...”</i>");
+	output("\n\nYou’re tempted to go through at least part of it right now...");
+	processTime(25);
+	pc.orgasm();
+	pc.milkInMouth();
+	clearMenu();
+	IncrementFlag("STELLA_PREG_FUCKED");
+	stellaSexFatigue(1);
+	if(moreStellaSexAvailable()) addButton(1,"Again",keepFuckingStella);
+	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
+	addButton(0,"Nah",stellaPregbangEpilogue);
+}
+
+public function stellaPregbangEpilogue():void
+{
+	clearOutput();
+	showStella(true);
+	author("Wsan");
+	output("<i>“It’s a lot of fun for me too,”</i> you tell her, scratching behind her ears. She lolls on the bed and stretches her legs, relaxing at your touch. <i>“I gotta run, though. You gonna be okay to take care of yourself, Stella?”</i>");
+	output("\n\n<i>“Uh huh,”</i> she says, looking up at you adoringly. <i>“Come back soon though, ‘kay?”</i>");
+	output("\n\n<i>“Of course, I wouldn’t leave my favorite pregnant beach bimbo all alone, right?”</i> you say, chuckling. <i>“See you soon, Stella.”</i>");
+	output("\n\n<i>“Byeeee!”</i> she calls after you as you step out.");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function stellaKnockupCheck():void
+{
+	if(stellaPregnant()) return;
+	
+	//Stella is pretty fertile and takes a loooot of loads.
+	var chance:Number = 25;
+	chance *= pc.virility();
+	if(chance > 300) chance = 300;
+	
+	var maxCum:Number = pc.maxCum();
+	
+	if(maxCum >= 200) chance += 10;
+	if(maxCum >= 500) chance += 10;
+	if(maxCum >= 1000) chance += 15;
+	if(maxCum >= 2000) chance += 20;
+	if(maxCum >= 4000) chance += 20;
+	if(maxCum >= 5000) chance += 20;
+	if(maxCum >= 8000) chance += 20;
+	//These go up past 100%, but useful for rolling for kids later...
+	if(maxCum >= 12000) chance += 20;
+	if(maxCum >= 15000) chance += 20;
+	if(maxCum >= 20000) chance += 20;
+	if(maxCum >= 25000) chance += 20;
+	if(maxCum >= 30000) chance += 20;
+	if(maxCum >= 40000) chance += 20;
+	if(maxCum >= 50000) chance += 20;
+	if(maxCum >= 60000) chance += 20;
+	if(maxCum >= 70000) chance += 20;
+	
+	//PREGGO!
+	if(chance > rand(100)+1)
+	{
+		//Every 10% pregChance adds a 50% chance of adding another kid.
+		var kids:Number = 2;
+		while(chance > 0)
+		{
+			chance -= 10;
+			if(rand(2) == 0) kids += 1;
+		}
+		//Max the kids at 10.
+		if(kids > 10) kids = 10;
+
+		//Create the status with kids stored in v1.
+		pc.createStatusEffect("STELLA_PREGNANT",kids);
+		//3 month incubation!
+		pc.setStatusMinutes("STELLA_PREGNANT",60*24*30*3);
+	}
+	AddLogEvent("A text message from Stella pings your Codex. <b>She’s definitely pregnant!</b>");
+}
+
+//After Delivery scene
+//Plays after you pick the option to go up to her room after she’s delivered her kids.
+public function stellaKidTalkScene():void
+{
+	var kiddos:Number = flags["STELLA_PREGNANCY_NOTIFIER"];
+	flags["STELLA_PREGNANCY_NOTIFIER"] = undefined;
+	output("<i>“Hey, so, I’ve got a surprise for you this time!”</i> Stella says as you come up the stairs, her tail wagging. <i>“Come in and see!”</i>");
+	output("\n\nSomething’s different about her... oh, she’s not pregnant! Her tummy is back to fit, flat and flawless. She looks more radiant and beautiful than before, if such a thing is even possible.");
+	output("\n\n<i>“So what’s the surprise?”</i> you say as Stella turns to you, a smile playing across her face.");
+	output("\n\n<i>“Guess!”</i> she tells you, her tail sweeping from side to side and thumping against the door.");
+	output("\n\n<i>“<b>You’re not pregnant any more?</b>”</i> you reply, shrugging.");
+	output("\n\n<i>“Wha- aww,”</i> Stella mutters, her tail drooping in disappointment. <i>“You’re too smart for me to play a surprise on...”</i>");
+	output("\n\n<i>“Well, the lack of a tummy is kind of a big giveaway,”</i> you chuckle, pantomiming the bulge of pregnancy over your own stomach.");
+	output("\n\n<i>“Dang! I shoulda worn a baggy t-shirt,”</i> Stella sighs, then appears lost in thought for a moment. <i>“Wait, do I have any t-shirts?”</i>");
+	if(flags["STELLA_PETPLAYED"] != undefined) output(" Having had a first-hand look at the contents of her drawers, you’re almost certain Stella has nothing in there except swimwear and sexy clothing.");
+	output("\n\n<i>“Oh well! Anyway,”</i> she continues, leaning forward and emphasizing her incredible rack by squishing her boobs between her arms, <i>“y’wanna start from the beginning, </i>master<i>?”</i>");
+	output("\n\n<i>“Fuck ye- wait, what about the kids?”</i> you ask.");
+	output("\n\n<i>“They’re in our nursery. I told you, right?”</i> she says, then looks puzzled. <i>“Wait, I did tell you, right?”</i>");
+	output("\n\nWell, having them in a nursery is no different than what you do.");
+	output("\n\n<i>“Wait, did you say ‘they’?”</i> you say, realizing the implications. <i>“How many did you have?”</i>");
+	//can have up to 10
+	output("\n\n<i>“" + StringUtil.upperCase(num2Text(kiddos)) + ",”</i> she says, holding up " + num2Text(kiddos) + " furry fingers.");
+	output("\n\n<i>“" + StringUtil.upperCase(num2Text(kiddos)) + " babies?!”</i> you exclaim, wide-eyed. <i>“We’re gonna have a fucking baseball team at the rate we’re going.”</i>");
+	output("\n\n<i>“What’s a base-ball?”</i> Stella asks, tilting her head. <i>“Is it fun? It has ball in the name, so I’m guessing yes.”</i>");
+	output("\n\n<i>“I’ll show you some other time,”</i> you say, shaking your head. The D’Amore family situation is gonna get reeeeeaaaal complicated down the line... but that’s a problem for future you. For now, you have a refreshed, eager, and notably un-pregnant ausar beach bimbo just waiting to be bred. You grin at her, and she smiles back in recognition.");
+
+	StatTracking.track("pregnancy/Stella children sired/total",kiddos);
+	StatTracking.track("pregnancy/total sired",kiddos);
+
+	processTime(20);
+	pc.lust(5);
+	//Go to sex menu, with Breed available (sry).
+	stellaMenu();
 }

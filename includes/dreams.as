@@ -65,6 +65,7 @@ public function dreamChances(inShip:Boolean = false):Boolean
 			dreams.push(angelDreamGo);
 		}
 		if(wearingSubTuner() && flags["MET_SAEC"] != undefined) dreams.push(subTunahDream);
+		if(flags["FROSTWYRM_NOT_HOSTILE"] != undefined) dreams.push(frostwyrmWetDream);
 		if(venusSubmission() >= 65)
 		{
 			if(pc.hasVagina()) dreams.push(everyLittleInchDream);
@@ -255,12 +256,8 @@ public function shotgunWeddingDream2():void
 	else output("profound shame.");
 	output(" You dutifully sink to your knees and crawl under Anno’s dress, letting her drop the hem down again as you do.");
 	output("\n\nYour first breath in your new cloth oubliette overwhelms you with the scent of lilies and aroused female. You notice that your knees are wet before you feel a warm, slimy droplet hit your face. Although it’s too dark to see, you realize immediately what’s happening: Anno is hornier than she has ever been; she’s almost trickling, and you’re practically being showered in her girlcum. After just a few moments though, Anno taps you urgently with her leg, an obvious signal to get started. You begin just above her knee, your [pc.tongue] following a stream of your bride’s liquid lust upwards to her blooming flower. Her flavor is utterly divine. It’s possibly the best thing you’ve ever tasted. You can sense with your oral organ that her lips are already slightly parted, and her clitoris is standing proud, begging for attention. Eager for more of her nectar, you trace the outline of her mound before working inwards and tracing her lips. You relish every droplet of sweet, sweet arousal you find before moving your [pc.lipsChaste] to the top of her pussy, sealing off her precious pearl with a sucking kiss. You hear a whine as her thighs suddenly clench around your head, covering your [pc.ears]. You place your hands on her thighs to steady yourself and relieve some of the crushing pressure in preparation for your next move. You release her clit from your kiss and move lower down again, working your tongue into her channel proper.");
-
 	//PC has normal tongue:
-	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) 
-	{
-		output("\n\n You move your head back and forth to grind Anno’s pleasure buzzer as you prod the sides of her love-tunnel with your [pc.tongue]. Your ministrations bear fruit almost immediately: Anno’s trickle turns into an actual stream of femlube, and you have to start immediately swallowing to avoid drowning. You alternate between swirling your tongue in rapid circles inside her and lapping at her pussy like" + pc.catDog("", ", appropriately,", false) + " a thirsty dog lapping at water: your tongue powerfully stroking her pearl at the apex of each lick, pulling back her hood.");
-	}
+	if(!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("\n\nYou move your head back and forth to grind Anno’s pleasure buzzer as you prod the sides of her love-tunnel with your [pc.tongue]. Your ministrations bear fruit almost immediately: Anno’s trickle turns into an actual stream of femlube, and you have to start immediately swallowing to avoid drowning. You alternate between swirling your tongue in rapid circles inside her and lapping at her pussy like" + pc.catDog("", ", appropriately,", false) + " a thirsty dog lapping at water: your tongue powerfully stroking her pearl at the apex of each lick, pulling back her hood.");
 	//PC has long tongue:
 	else output("\n\nYour inhuman tongue slithers into her love-tunnel like a self-lubricated cock. You just keep unfurling more and more oral muscle into Anno until you reach her cervix. After giving it a few loving little flicks, you sensuously withdraw your muscle until it’s completely outside of her. You proceed to tenderly wrap a few inches of tongue around her pearl, digging under her clitoral hood before rapidly withdrawing your tongue in the exact same pattern you unfurled it in to begin with, drawing her hood back in the process. You alternate between plundering her pussy and worshipping her button, hearing muffled screams of pleasure the whole time.");
 	output("\n\nA few minutes of this has her going wild until with ");
@@ -1384,5 +1381,63 @@ public function capraphormPrimorditattsGain():void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 	return;
+}
+
+// Frostwyrm dreams
+public function frostwyrmWetDream():void
+{
+	clearOutput();
+	showBust("");
+	showName("\nDRAGONS");
+	author("B");
+	
+	output("[frostwyrm.name] lays on her back, and you lay on yours, on her belly, using her like a mattress. Her middle two legs wrap gently around you, keeping you in place, pinning you to her; her breathing rises you a solid foot higher with every inhale, and her heartbeat rocks through you, shaking your whole body with each pulse, and both only grow more raucous the more excited she becomes.");
+	output("\n\nHer haunches jerk impiously off the icy ground of her lair, and with every thrust you hear a wet ‘schlap,’ followed by a sticky peeling. [frostwyrm.name]’s legs obstruct your view somewhat, but beyond them you see the angry red, bloated tip of her cock, waggling in the air, its precum spraying every which way as she humps herself upward.");
+	output("\n\n<i>We are not done yet,</i> she says to you. She crunches her rear end, her dick remaining still and adjusting its aim towards you, its bulbous, leaking head peering and winking in your direction. With a visible flex, another dollop of hot Frostwyrm precum juts out, splashing across your body and all the way up to [frostwyrm.name]’s ribs.");
+	output("\n\nYou open your mouth as it rains down, hoping to catch as much as you can across your [pc.tongue]; the few drops of her fine elixir you collect are tangy, powerful, musky, and delicious; it incentivizes you for more. But [frostwyrm.name] has you so thoroughly pinned: there’s no way you’re going to wriggle yourself free from her grip.");
+	output("\n\nIn response, you feel what feels like someone climbing along [frostwyrm.name]’s belly scales. You crane your head to the side, and you see... yourself, hoisting yourself onto her body. You lick your [pc.lips] as you eye [frostwyrm.name]’s turgid, leaking rod, and you don’t hesitate to crawl towards it, wrapping your arms around its flesh and pressing your [pc.chest] against it.");
+	output("\n\nAnother person climbs up her other side, and again, it’s you, clamoring into position on the other side of [frostwyrm.name]’s tool. You give yourself a glance and a wink before you take your position on the other side of the titanic cock; you take a similar position, joining hands with yourself and with your [pc.chest] against the throbbing heat of [frostwyrm.name]’s body.");
+	output("\n\nThe one on the left rubs [pc.hisHer] cheek against it, while the one on the right plants several, loving kisses, licking [pc.hisHer] [pc.lips] in between each one. You both move synchronously up and down [frostwyrm.name]’s dick; familiarizing yourselves with its contours and ridges, until its bloats once and rains down yet more precum; the salty ambrosia dribbles down the sides of her dick, and, thirsty, you each slide out your [pc.tongue], scrounging up [frostwyrm.name]’s gift and then actively bathing her cock to entice out more.");
+	output("\n\nYou feel every sensation: you can feel yourself grip yourself by the wrists, and you can feel the texture of [frostwyrm.name]s penis against your tongue. You taste the tincture on your tongue and you smell the growing musk pervading from her raised haunches. You feel [frostwyrm.name]’s heartbeat through her mammoth cock, and your own heart skips a beat when you feel it pump another wad of thick pre for you to sup on. Pinned to her belly, you watch two of yourself worship [frostwyrm.name], but your vision is also blocked by the veiny, red skin of the massive rod you’re worshipping – occasionally, you catch a glimpse of yourself on the other side, licking and kissing at her body like a whore, and it only entices you to do the same.");
+	output("\n\n<i>More,</i> [frostwyrm.name] demands. On cue, you feel your fingers trail along her belly, your [pc.feet] patting against the cold ice as you go down her side to her haunches – and then again, on her other side. You watch yourselves tend to her throbbing erection, coaxing out more juice, but now your focus is a bit southward, to her aching testicles and the feminine treasure they hide beneath; you watch them bounce and struggle in her tight, leathery sack. A good, attentive mate has to make sure that their mate has no need left unfulfilled.");
+	output("\n\nYou meet yourself behind [frostwyrm.name]’s overturned form, and you both gently take a knee on the base of her tail. You give yourself a deep, tongue-filled kiss, before you heft up her sack by the center, revealing [frostwyrm.name]’s glistening, inviting pussy, patient for someone to tend to it. One of you climbs forward, submerging yourself in the musky heat of your Frostwyrm’s body; two questing hands find the vulva of her draconic pussy, pulling at the spongy flesh just slightly, before your [pc.face] lunges forward and immerses itself into the wetness of her cunt.");
+	output("\n\nOnce you’re settled into attending [frostwyrm.name]’s feminine needs, the one still behind her releases [pc.hisHer] grip on the scaly sack; you feel the heavy weight of [frostwyrm.name]’s testicles on your back, but you’re not done. You shuffle forward a bit, placing your torso into the crease between [frostwyrm.name]’s testicles, and get to work massaging both, working them with both hands and pressing your [pc.lips] against the pliant flesh, your [pc.tongue] reaching out to push against the thick, powerful ball within one. When the patch of skin on her sack is adequately washed, you switch to the other, washing another patch before repeating the process.");
+	output("\n\n[frostwyrm.name] sighs and her haunches thrust again, pumping out another blast of her precum, washing the you locked against her belly and feeding the two of you tending to her inflated dick. The you underneath her body, pleasing her pussy, reaches forward and dips [pc.hisHer] hand in; [frostwyrm.name]’s body reacts instinctively, sucking on your hand as though it were a cock, urging out the cum it wants.");
+	output("\n\n<i>I need more,</i> [frostwyrm.name] says, her voice sounding guttural and forceful. Her wishes are your command: the two of you at her cock, now dripping from [pc.hair] to waist in precum, disengage and draw their hands along the spine of her cock, tilting it towards [frostwyrm.name]’s belly, and towards you.");
+	output("\n\nIt bumps against the you locked against [frostwyrm.name]’s body, its heat searing against your [pc.skinFurScales] and its precum staining you some more. The left you inches forward, your hands grabbing at your own [pc.ass] to lift you slightly, aligning your [pc.vagOrAss] upward and against the head of [frostwyrm.name]’s cock. Once it’s pressed against your body, you give its head one long lick, encouraging out another blob of precum to be injected directly into you.");
+	output("\n\n[frostwyrm.name] lets her instincts take over, and she thrusts, sinking most of herself into your [pc.vagOrAss] in one swift motion. She exhales deeply as your body takes her massive, heavy cock with ease, each centimeter sliding into you uninhibited. You squirm in her grip, cheeks flushed in pleasure, while the two of you still at her dick resume their work, kissing and rubbing along the exposed parts of [frostwyrm.name]’s shaft.");
+	output("\n\n[frostwyrm.name] relaxes her haunches, sliding herself out of you, and thrusts back in; her testicles pull against her body, bringing the you bathing them along with, and when they relax, they ease back against you, bubbling full of cum and eager for more of your ministrations. When she thrusts again, you feel every single bit slide inside you, stretching your [pc.vagOrAss] for more, and you’re eager for it.");
+	output("\n\nWith every thrust, every one of you clenches against her, each experiencing the same sensation as the other. Every time she withdraws, her freshly-exposed cock is covered in her own pre, which you lap at leisurely, taking in your taste as well. Every time you find a new, sensitive spot against her pussy, she douses you in her feminine ichor, baptizing you and squeezing against whatever body part is against her or inside her. With every splurt of precum, her balls tense, then relax against you, their weight roiling towards you and their submerging you in their musk.");
+	output("\n\nEvery little action causes a feedback chain-reaction against you, and you beg her for more between getting impaled on her dick, and between licks and kisses on her cock, and between licks and massages on her balls, and between plies and tickles on her cunt. She grows closer with every thrust into your [pc.vagOrAss], until she can’t take it anymore: the you at her balls finds out first, when they suddenly bloat, then squeeze against her.");
+	output("\n\nYour body fills to the brim with her warm, draconic cum by the first blast, and that was only the first one. You rapturously watch every wad of cum crawl its way up her cock and then into yourself; when her pearly white cum gushes from your inflated, distended body, you’re on yourself immediately, lapping at the rim of your own [pc.vagOrAss] to collect every drop you can’t contain.");
+	output("\n\nThe you at her pussy is having just as fun a time: she clenches hard on your arm, sucking you up to the shoulder and dousing the rest of you with her cum, soaking you from head to [pc.chest] to waist in herself as you service her. The orgasm racking along her cock times perfectly with the one vibrating her cunt, and they work in tandem to fill you and shower you, respectively, with her cum.");
+	output("\n\nIt lasts longer than you could have hoped for; though she’s dumped gallons of her draconic cum inside your willing body, you don’t feel the slightest bit overextended and you only hunger for more. You beg her for it; you tell her that you want every last drop she has; to fill you with herself, and to baptize yourself, and to feed yourself. You want nobody and nothing else in the universe; you want nothing but [frostwyrm.name] and her body.");
+	output("\n\n[frostwyrm.name] takes one final, deep breath as her cock pumps its last and her pussy coats you one final time. You sigh with her, licking gently at your own body and at her still-red cock and her still-wet cunny, winding down from the vigorous session. Her balls relax against you once more, and you press into them, sinking into the crease between each heavy nut, surrounding yourself in their heat and musk.");
+	output("\n\n<i>More,</i> [frostwyrm.name] demands. On cue, you feel four more pairs of hands trail along her body; two go to her neck, while two more go to her haunches, climbing aboard and shuffling their way to the base of her thick dick. She thrusts her hips impiously once more, driving her back inside her mate’s welcoming hole....");
+	
+	clearMenu();
+	addButton(0, "Next", frostwyrmAwakening, undefined);
+}
+public function frostwyrmAwakening():void
+{
+	clearOutput();
+	showBust("");
+	showName("\nWaking");
+	author("B");
+	
+	output("Your eyes flutter open. You’re back in your bed.");
+	output("\n\nYou check your codex for the time. You’ve been asleep for eight hours, but it felt like that dream had lasted an eternity. So many things happened in such a short amount of time; you doubt you’ll be able to remember a lot of the finer details.");
+	output("\n\nThat said, if anyone’s going to remember any part of that");
+	if(pc.hasGenitals()) {
+		output(", it’s going to be y");
+		if (pc.hasCock()) output("our raging, almost angry tent between your legs, demanding a ‘Good Morning’ <i>right now</i>");
+		if (pc.isHerm()) output(". Just underneath it, y");
+		if (pc.hasVagina()) output("our sheets that are stained and wet, tainted with the familiar tang of your own horny, needy pocket, ready to jump on the first halfway-phallic thing it sees");
+	}
+	output(".");
+	output("\n\nYou’re already starting to forget a lot of the dream, but for some reason, you’re inspired to take a visit to Uveto. You’re sure [frostwyrm.name] (and the kips) wouldn’t mind you spending some familial time together.");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 

@@ -48,7 +48,7 @@ public function yomaFirstMeeting():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	if (pc.hasStatusEffect("Yoma Sex Disabled")) pc.removeStatusEffect("Yoma Sex Disabled");
  	pc.createStatusEffect("Yoma Cooldown", 0, 0, 0, 0, true, "", "", false, 24 * 60);
@@ -83,7 +83,7 @@ public function yomaLeave():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("You apologise to Yoma, saying you’re busy.");
 	output("\n\n<i>“No problem, I will see you around!”</i> And without further ado, he’s gone again, vanishing into the jungle.");
@@ -96,7 +96,7 @@ public function yomaShakeHands(handshake:Boolean = true):void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	if (handshake) {
 		output("<i>“Hah! Nice to meet someone with manners for once!”</i> he says, grip warm and firm.");
@@ -131,14 +131,14 @@ public function yomaShakeHands(handshake:Boolean = true):void
 public function yomaMenu(clear:Boolean = false):void
 {
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	if (clear) clearMenu();
 
 	addButton(0,"Appearance",yomaAppearance);
 	addButton(1,"Talk",yomaTalkMenu, true);
 	if (flags["YOMA_TALKED_ABOUT_MASTER"] != 1) addDisabledButton(2, "Sex", "Sex", "You probably should find out who this android belongs to first, unless your kink is lawsuits.");
-	else if (pc.hasStatusEffect("Yoma Sex Disabled")) addDisabledButton(2, "Sex", "Sex", "Yoma doesn't want to have sex with you right now.");
+	else if (pc.hasStatusEffect("Yoma Sex Disabled")) addDisabledButton(2, "Sex", "Sex", "Yoma doesn’t want to have sex with you right now.");
  	else if (pc.lust() < 33) addDisabledButton(2, "Sex", "Sex", "You aren’t aroused enough for this.")
 	else addButton(2,"Sex",yomaSexMenu);
 
@@ -151,7 +151,7 @@ public function yomaAppearance():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("Yoma is a 5 foot and 3 inch tall dark-skinned android with big, pointed fennec fox ears and a long, fluffy tail sprouting from just above his soft, well proportioned ass. His fur and chin-length dreadlocks are a pale, platinum blond.");
 	output("\n\nHe has solid glowing green eyes with only a paler line marking where he’s actually looking. Combined with the grooves running down his cheeks, it’s very apparent that he’s not organic.");
@@ -180,7 +180,7 @@ public function yomaTalkMenu(clear:Boolean = false):void
 	}
 
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	addButton(0,"Him",yomaTalkHim);
 	addButton(1,"Mhen’ga",yomaTalkMhenga);
@@ -197,7 +197,7 @@ public function yomaTalkHim():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("You ask him about himself.");
 	output("\n\n<i>“Me?”</i> He pauses for a moment. <i>“Well... I am an android, I have fox bits, I, uh...”</i>");
@@ -224,7 +224,7 @@ public function yomaTalkMhenga():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("You ask why he’s on Mhen’ga, of all places.");
 	output("\n\nHe hums, like he’s trying to think of what to say for a moment, before finally speaking. <i>“My master gets very sick. Frequently he is unable to so much as leave his bed.”</i>");
@@ -242,7 +242,7 @@ public function yomaTalkMaster():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("You ask him about the man he keeps referring to as his ‘master’.");
 	output("\n\n<i>“My master is a relatively wealthy Terran human, but he is plagued by a very serious immune condition that doesn’t seem to respond to any treatment that has been attempted thus far.”</i> His shoulders sag a little, the trademark grin fading as he sighs. <i>“He probably will not live very long.”</i>");
@@ -267,7 +267,7 @@ public function yomaTalkProbe():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("You ask if him if he’s seen anything resembling your dad’s probe.");
 	output("\n\n<i>“Not personally, no, but you are not the first person to ask about that,”</i> he says, suddenly peering inquisitively at your face, probably wondering just what could be so interesting about a crashed space vessel.");
@@ -286,7 +286,7 @@ public function yomaTalkGame():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	var possibleRaces:Array = ["human","ausar","kaithrit","gryvain","leithan","elvish","demonic","dwarvish"];
 	var possibleClasses:Array = ["fighter","magic user","ranged fighter","healer"];
@@ -301,7 +301,7 @@ public function yomaTalkGame():void
 		output("\n\nYou agree");
 		if (pc.isNice()) output(" enthusiastically");
 		output(".");
-		output("\n\nBefore you know it, Yoma’s taken you through character creation and you’ve made a "+ RandomInCollection(possibleRaces) +"  "+ RandomInCollection(possibleClasses) +" for your main character. Yoma only teases you a <i>little</i> about [pc.himHer] being a self insert, that you ")
+		output("\n\nBefore you know it, Yoma’s taken you through character creation and you’ve made a "+ RandomInCollection(possibleRaces) +" "+ RandomInCollection(possibleClasses) +" for your main character. Yoma only teases you a <i>little</i> about [pc.himHer] being a self insert, that you ")
 		if (pc.isMischievous()) output("don’t even try to ");
 		output("deny.");
 		output("\n\nAfter about an hour of going over the rules, you have to agree to reconvene another time to actually play.");
@@ -336,7 +336,7 @@ public function yomaInitiateFight():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	var avaibleEnemies:Array = [];
 	if (flags["YOMA_AVAIBLE_ENEMIES"] == 1) avaibleEnemies.push(new Naleen(),new NaleenMale());
@@ -346,12 +346,15 @@ public function yomaInitiateFight():void
 	var attackingEnemy:Creature = RandomInCollection(avaibleEnemies);
 
 	output("You don’t even really have the chance to finish setting up before Yoma’s ears perk up, his tail bristling. Just a second later you hear the undergrowth rustling.");
-	output("\n\nBefore you know it, a "+ attackingEnemy.short +" is charging towards the two of you. You ready yourself for a fight, ");
-	if (pc.hasEquippedWeapon()) {
-		output("[pc.drawingWeapon]");
-		if (pc.hasShieldGenerator(true)) output(" and ");
+	output("\n\nBefore you know it, a "+ attackingEnemy.short +" is charging towards the two of you. You ready yourself for a fight");
+	if(pc.hasEquippedWeapon() || pc.hasShieldGenerator(true)) {
+		output(", ");
+		if (pc.hasEquippedWeapon()) {
+			output("[pc.drawingWeapon]");
+			if (pc.hasShieldGenerator(true)) output(" and ");
+		}
+		if (pc.hasShieldGenerator(true)) output("firing up your "+ pc.shield.longName);
 	}
-	if (pc.hasShieldGenerator(true)) output("firing up your "+ pc.shield.longName);
 	output(".");
 	output("\n\nYoma, however, does not seem to have quite the same readiness. He locks eyes with you for a moment before a panicked grin spreads across his features. A moment later and he’s gone, <b>leaving you alone to fight off your attacker!</b>");
 
@@ -381,7 +384,7 @@ public function yomaInitiateFight():void
 		CombatManager.displayLocation("FEMALE ZIL");
 	}
 	else if (attackingEnemy.short == "zil male") {
-		IncrementFlag["ENCOUNTERED_ZIL"];
+		IncrementFlag("ENCOUNTERED_ZIL");
 	//	CodexManager.unlockEntry("Zil");
 		CombatManager.victoryScene(winVsZil);
 		CombatManager.lossScene(zilLossRouter);
@@ -417,7 +420,7 @@ public function yomaSexMenu():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	clearMenu();
 
@@ -441,7 +444,7 @@ public function yomaSexMenu():void
 		output("\n\n<i>“No way. I do not care whether it is benign or not, you are not coming near me like that when you are infected.”</i>");
 		output("\n\nYou try to protest, explaining your enhanced immune system, but he folds his arms, tail bristling.");
 		output("\n\n<i>“You have a brilliant immune system, but my master has a terrible one. I am not taking any chances on that managing to balance out.”</i>");
-		output("\n\nIt looks like he won't budge on that.");
+		output("\n\nIt looks like he won’t budge on that.");
 		processTime(3);
 		pc.createStatusEffect("Yoma Sex Disabled");
 		addButton(0,"Next",yomaMenu);
@@ -452,7 +455,7 @@ public function yomaSexBack():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("On second thoughts, you change your mind, telling him to put his shirt back on.");
 	output("\n\n<i>“Oh, come on now, you are going to be like that?”</i> he huffs, but pulls it back on anyway, <i>“Very well, but do not go changing your mind another time.”</i>");
@@ -464,7 +467,7 @@ public function yomaSexGetOral():void
 {
 	clearOutput();
 	showYoma(true);
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("You tell him not to bother removing his shorts, ")
 	if (pc.isNude()) output("gesturing down to");
@@ -486,7 +489,7 @@ public function yomaSexGetOral():void
 		output("\n\nBefore you can even begin to protest, his mouth is back on you, licking a long stripe down your [pc.biggestCockDescript]");
 		if (pc.balls > 0) output(", over your [pc.scrotum]");
 		output(" and right onto your [pc.clit], before snaking his way back up again to press messy kisses to the base of your cock.");
-		output("\n\nYou’re throbbing under his ministrations to the extent that you barely notice that he’s slipped two fingers into you, until he finds your G-spot. At this  you cry out, feeling yourself wetten drastically. Before you can get off too soon though, Yoma pulls the fingers back out again, instead using his hand to pump your [pc.biggestCock]. Luckily for your rather desperate feeling [pc.vagina], he’s swapping places entirely, and his flattened tongue is soon pressed to your wet folds, lapping at you with, well, the exact level of precision you’d expect from a companion droid.");
+		output("\n\nYou’re throbbing under his ministrations to the extent that you barely notice that he’s slipped two fingers into you, until he finds your G-spot. At this you cry out, feeling yourself wetten drastically. Before you can get off too soon though, Yoma pulls the fingers back out again, instead using his hand to pump your [pc.biggestCock]. Luckily for your rather desperate feeling [pc.vagina], he’s swapping places entirely, and his flattened tongue is soon pressed to your wet folds, lapping at you with, well, the exact level of precision you’d expect from a companion droid.");
 		output("\n\nEventually, he swaps back, but this time, instead of more kisses, he takes your cock all the way down, deepthroating you");
 		if (pc.cLength(pc.biggestCockIndex(), true) >= 40) output(", that is, you feel your tip hit what his manufacturers must have thought was the absolute deepest his throat needed to go");
 		else if (pc.cLength(pc.biggestCockIndex(), true) >= 20) output(", although it’s quite a struggle to take it all down");
@@ -565,7 +568,7 @@ public function yomaSexGiveOral():void
 {
 	clearOutput();
 	showYoma(true);
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("You wait for Yoma to finish stripping off before you gesture him closer, dropping to your knees in front of him. You look at his cute, human pussy and the heart shaped patch of hair above it almost hungrily.");
 	output("\n\n<i>“Oh?”</i> He starts, <i>“You want to eat me out down there? Well, it would be rude to refuse you.”</i> He places his hand on your head, ")
@@ -621,7 +624,7 @@ public function yomaSexVaginal():void
 {
 	clearOutput();
 	showYoma(true);
-	author("-GothPastel");
+	author("GothPastel");
 
 	if (pc.isNude()) output("Already naked, you wait for Yoma to finish undressing before you step closer to him.");
 	else output("You join Yoma in stripping off, carefully putting your [pc.gear] somewhere you’ll be able to find them later and set down your codex.");
@@ -676,7 +679,7 @@ public function yomaSexCocktail():void
 {
 	clearOutput();
 	showYoma(true);
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("Your tail has been acting up recently with no relief to be found, but it looks like you’ve just found the perfect victim. Seemingly sensing your thoughts, it coils itself around your hip, in plain view of the fennec android.");
 	output("\n\n<i>“A parasitic life formlifeform?”</i> he asks, curiously, <i>“That is certainly interesting... It is not contagious, is it?”</i>");
@@ -687,7 +690,7 @@ public function yomaSexCocktail():void
 	output("\n\n<i>“Citrus?”</i> he muses, <i>“I was expecting something a bit more herbal. But this? This is much better.”</i>");
 	output("\n\nYou ask if that means he’s going to give this a go.");
 	output("\n\n<i>“Oh, absolutely,”</i> he agrees, hooking his thumbs back into his shorts again, pulling them off, treating you to a very nice view of his soft, human pussy and a cute little love heart shape of hair above it. <i>“So, how do you want me?”</i> he asks, green eyes half lidded.");
-	output("\n\nAfter a moment of consideration, you tell him to stand against the nearest tree, ass facing you. He does it without a moment's hesitation, putting his hands against it and lifting his tail out of the way. You don’t waste a moment, ");
+	output("\n\nAfter a moment of consideration, you tell him to stand against the nearest tree, ass facing you. He does it without a moment’s hesitation, putting his hands against it and lifting his tail out of the way. You don’t waste a moment, ");
 	if (!pc.isNude()) output("stripping off your clothes and" );
 	output("stepping closer, taking his hips in your hands. Your cockvine snaps to attention, tucking itself through your legs to brush against your ");
 	if (pc.hasVagina()) output("own [pc.vaginasNounSimple]");
@@ -733,9 +736,9 @@ public function yomaHugsI():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
-	output("t’s getting late, you notice, barely stifling a yawn. Yoma’s large ears swivel, catching the sound and he speaks, <i>“Are you tired, [pc.name]?”</i>");
+	output("It’s getting late, you notice, barely stifling a yawn. Yoma’s large ears swivel, catching the sound and he speaks, <i>“Are you tired, [pc.name]?”</i>");
 	output("\n\nNow that he mentions it, yeah, you are.");
 	output("\n\nHe smiles, wrapps an arm around your ");
 	if (pc.tallness >= 53) output("shoulders");
@@ -761,7 +764,7 @@ public function yomaHugsII():void
 {
 	clearOutput();
 	showYoma();
-	author("-GothPastel");
+	author("GothPastel");
 
 	output("You wake up several hours later to Yoma grinning down at you, trilling out a, <i>“Good morning, [pc.name]!”</i>");
 	output("\n\nIt takes a little effort, but you soon extricate yourself from the android’s grip, climbing to your feet. Morning? It’s barely daybreak, you grumble ");
@@ -770,6 +773,7 @@ public function yomaHugsII():void
 	output("\n\n<i>“I will see you around again, soon hopefully,”</i> he says, waving you off. The grin takes a little while to fade from your face, definitely sticking around longer than Yoma did. Void, you’re <i>still</i> comfortable, even now.");
 
 	processTime(3);
+	IncrementFlag("YOMA_TIMES_HUGGED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

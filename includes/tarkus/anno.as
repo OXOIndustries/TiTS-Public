@@ -26,7 +26,7 @@ public function annoSexed(arg:int = 0):int {
 
 public function haveFuckedAnno():Boolean
 {
-	if (flags["ANNO_SEXED"] == undefined) return false;
+	if (flags["ANNO_SEXED"] == undefined || flags["ANNO_SEXED"] == 0) return false;
 	return true;
 }
 

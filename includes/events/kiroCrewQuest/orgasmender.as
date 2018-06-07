@@ -245,7 +245,7 @@ public function climbIntoTheDamnedTank():void
 		output(" fitfully, fighting to remain active, perhaps roused by your own arousal. It doesn’t matter, not when a tentacle is looping around it, squeezing it so tightly that it can’t possible move. You feel a pinch, passed your way by your conjoined nervous systems, and then the rogue appendage goes as obligingly limp as the rest of your body. It feels somewhat numb, but that’s fine, there’s so many sensations pouring out of the rest of your body that you’re thankful not to have to endure another source of intense arousal.");
 	}
 	processTime(14);
-	pc.lust(9001);
+	pc.maxOutLust();
 	clearMenu();
 	addButton(0,"Next",orgasmenderScene2);
 }

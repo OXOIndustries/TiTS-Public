@@ -791,7 +791,7 @@ public function tailPegStuffTimes():void
 	{
 		output("Ren’s tail finds your most tender parts with alacrity, making sure your poor, battered ass doesn’t get any hint of respite until your orgasm has well and truly passed, leaving you breathless... and craving more. The way your body spasms and clenches around her tender tail’s tip drives Ren to another moaning orgasm, too: a rush of heat sears across your back, the latex knot between your crack bloating with her spilled seed until it’s the size of an apple, and sloshing luridly with every thrust.");
 	}
-	output("\n\n<i>“Ooof, you take it like a champion, sweetheart,”</i> Ren laughs. She lets out a tired breath and leans forward, pressing those huge breasts of hers into your back. Just the weight of them is enough to make your [pc.knees] buckle, and you end up pressed belly-first into the bed with Ren laying ontop of you, still leaking cum");
+	output("\n\n<i>“Ooof, you take it like a champion, sweetheart,”</i> Ren laughs. She lets out a tired breath and leans forward, pressing those huge breasts of hers into your back. Just the weight of them is enough to make your [pc.knees] buckle, and you end up pressed belly-first into the bed with Ren laying on top of you, still leaking cum");
 	if(x >= 0) output(" into your ass");
 	output(" and flicking the tip of her tail around to tease your insides. The spunk-bubble on the crown of her cock’s only getting bigger, making sure you feel just how hot and full it is trapped ");
 	if(x >= 0) output("inside you");
@@ -1535,9 +1535,7 @@ public function getTerenshaPregContainer():PregnancyPlaceholder
 
 public function showRenshaAndReaha(nude:Boolean = false):void
 {
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
 	showName("REAHA &\nTERENSHA");
-	showBust("REAHA"+nudeS,"TERENSHA");
+	showBust(reahaBustDisplay(nude),"TERENSHA");
 	author("Savin");
 }

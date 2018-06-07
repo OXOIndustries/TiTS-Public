@@ -28,6 +28,7 @@
 		public static var DAMNIT:Object = new DamnitBusts();
 		public static var DOCBADGER:Object = new DocBadgerBusts();
 		public static var DOXY:Object = new DoxyBusts();
+		public static var FRIENDLYALIENFRIEND:Object = new FriendlyAlienFriendBusts();
 		public static var FUBMISTRESS:Object = new FubMistressBusts();
 		public static var GATS:Object = new GatsBusts();
 		public static var GATSOLD:Object = new GatsOldBusts();

@@ -1547,7 +1547,7 @@ public function kiVanderbiltFuckHer():void
 		
 		output("\n\n<i>“The parasites,”</i> Elenora mumbles, still gasping for breath. <i>“They’re... they’re still. For now.”</i>");
 		
-		output("\n\nYou give a sigh of relief. Looks like the gamble payed off. <i>“How long do you think they’ll stay quiet?”</i>");
+		output("\n\nYou give a sigh of relief. Looks like the gamble paid off. <i>“How long do you think they’ll stay quiet?”</i>");
 		
 		output("\n\n<i>“A few hours. Maybe,”</i> she answers with a grimace. Almost as a reflex afterwards, she licks the cum off her lips. She flushes the second she realizes what she’s done, quickly looking down to the floor. <i>“Whatever you intend to do, you need to hurry, [pc.name]. Please.”</i>");
 	}
@@ -1570,7 +1570,7 @@ public function kiVanderbiltFuckHer():void
 		
 		output("\n\n<i>“The parasites,”</i> Elenora mumbles, still gasping for breath. <i>“They’re... they’re still. For now.”</i>");
 		
-		output("\n\nYou give a sigh of relief. Looks like the gamble payed off. <i>“How long do you think they’ll stay quiet?”</i>");
+		output("\n\nYou give a sigh of relief. Looks like the gamble paid off. <i>“How long do you think they’ll stay quiet?”</i>");
 		
 		output("\n\n<i>“A few hours. Maybe,”</i> she answers with a grimace. Almost as a reflex afterwards, she licks the cum off her lips. She flushes the second she realizes what she’s done, quickly looking down to the floor. <i>“Whatever you intend to do, you need to hurry, [pc.name]. Please.”</i>");
 	}
@@ -1606,7 +1606,7 @@ public function kiVanderbiltFuckHer():void
 		
 		output("\n\n<i>“The parasites,”</i> Elenora mumbles, still gasping for breath. <i>“They’re... they’re still. For now.”</i>");
 		
-		output("\n\nYou give a sigh of relief. Looks like the gamble payed off. <i>“How long do you think they’ll stay quiet?”</i>");
+		output("\n\nYou give a sigh of relief. Looks like the gamble paid off. <i>“How long do you think they’ll stay quiet?”</i>");
 		
 		output("\n\n<i>“A few hours. Maybe,”</i> she answers with a grimace. Almost as a reflex afterwards, she licks the cum off her lips. She flushes the second she realizes what she’s done, quickly looking down to the floor. <i>“Whatever you intend to do, you need to hurry, [pc.name]. Please.”</i>");
 	}
