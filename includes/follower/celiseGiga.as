@@ -454,8 +454,7 @@ public function properKiroSceneTimeLetsGo():void
 	processTime(160+rand(20));
 	pc.lust(40);
 	//Lets keep count, whynot?
-	if(flags["KIRO_CELISE_3SOME"] == undefined) flags["KIRO_CELISE_3SOME"] = 0;
-	flags["KIRO_CELISE_3SOME"]++;
+	IncrementFlag("KIRO_CELISE_3SOME");
 	
 	currentLocation = shipLocation;
 	

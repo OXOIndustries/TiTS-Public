@@ -146,7 +146,7 @@ public function NTGiftShopBonusFunc():Boolean
 		return false;
 	}
 	//Kids are about to be hatched why are you here
-	else if(flags["ELLIE_OPERATION"] == 3 && flags["ELLIE_PREG_TIMER"] == 70)
+	if(flags["ELLIE_OPERATION"] == 3 && flags["ELLIE_PREG_TIMER"] == 70)
 	{
 		output("Ellie isn't here right now, she's at the Nursery waiting for you! You're gunna be a dad any minute now!");
 		addDisabledButton(0, "Ellie", "Ellie", "Go to the Nursery! ASAP!");
@@ -154,11 +154,12 @@ public function NTGiftShopBonusFunc():Boolean
 		return false;
 	}
 	//First Time Entering the Shop
-	else if(flags["SEEN_ELLIES_SHOP"] == undefined)
+	if(flags["SEEN_ELLIES_SHOP"] == undefined)
 	{
 		flags["SEEN_ELLIES_SHOP"] = 1;
-		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you’ve just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.\n\n");
+		output("You step into the gift shop, pushing the glass door open ahead of you. You all but recoil when the door slides open, and an almost overpowering aroma assails your senses. It feels like you’ve just been hit by a brick, right in the chest; catching your breath is almost impossible for a long moment. Your mind swims as the potent musk in the shop washes over you, and you suddenly manage to identify the odor: sex. Raw, untamed sexuality and need. Your skin flushes as the musky odor clings to you, feeling like a haze around you as you force yourself to walk, not run, into the gift shop.");
 		applyDamage(new TypeCollection( { tease: 10 } ), chars["ELLIE"], pc, "minimal");
+		output("\n\n");
 	}
 	else pc.lust(5);
 	output("The gift shop looks like every other gift shop in the ‘verse, with racks of memorabilia ranging from ten-gallon hats to holographic greeting cards. There’s a pretty good line leading up to the cashiers, and the most popular item going out seems to be a small white medipen labeled “The Treatment.” ");

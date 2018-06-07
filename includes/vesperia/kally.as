@@ -86,6 +86,21 @@ public function kiroKallyThreesomesAvailable():Boolean
 	return (kiroKallyThreesomes() > 0 && flags["KALLY_3SOME_TALK"] != undefined && flags["KIRO_3SOME_REACTION"] != undefined);
 }
 
+public function kallySexedCount(arg:int = 0):Number
+{
+	if(flags["KALLY_GENERIC_SEX_ENCOUNTER"] == undefined) flags["KALLY_GENERIC_SEX_ENCOUNTER"] = 0;
+	if(arg != 0)
+	{
+		flags["KALLY_GENERIC_SEX_ENCOUNTER"] += arg;
+	}
+	var counter:Number = flags["KALLY_GENERIC_SEX_ENCOUNTER"];
+	if(flags["KALLY_BROED"] != undefined) counter += flags["KALLY_BROED"];
+	if(flags["KALLY_DRUNK_SNOWBALL_FUCKED"] != undefined) counter += flags["KALLY_DRUNK_SNOWBALL_FUCKED"];
+	if(flags["KALLY_BIMBO_TAPPED"] != undefined) counter += flags["KALLY_BIMBO_TAPPED"];
+	counter += kiroKallyThreesomes();
+	return counter;
+}
+
 public function drinkFromTapKally():Number
 {
 	var drinks:Number = 0;
@@ -435,7 +450,7 @@ public function approachKally():void
 public function kallyBarMenu():void
 {
 	clearMenu();
-	if(!pc.isSmashed()) addButton(0,"Buy Drink",buyADrinkFromKally);
+	if(!pc.isSmashed() && !pc.hasStatusEffect("KALLY_FORCE_CUTOFF")) addButton(0,"Buy Drink",buyADrinkFromKally);
 	else addDisabledButton(0,"Buy Drink","Buy Drink","You’re so drunk she won’t serve you any more.");
 	addButton(1,"Appearance",kallyAppearance);
 	if(!pc.hasStatusEffect("Tapped Kally") && pc.isBimbo()) addButton(5,"Suck Kally",kallyNeedsTappedByBimbos,undefined,"Suck Kally","Kally looks... and smells... like she needs some relief. Who better to help than you?");
@@ -446,6 +461,15 @@ public function kallyBarMenu():void
 	else if(pc.isBro()) addDisabledButton(5,"Eat Pussy","Eat Pussy","Something tell you she isn’t going to let you just pick her up and start eating her pussy unless you’ve got the biggest, nicest smelling cock in the bar.");
 	else if(pc.isBimbo()) addDisabledButton(5,"Suck Kally","Suck Kally","She’s still cooling off from your last attempt!");
 	else addDisabledButton(5,"Seduce Kally","Seduce Kally","You’d need to be extremely oversexed to so brazenly seduce Kally - like a bimbo or brute.");
+	if(kallySexedCount() > 0 && pc.hasCock() && pc.cockThatFits(900) >= 0) 
+	{
+		if(pc.lust() >= 33)	addButton(6,"Hotdog&Fuck",kallyHotdogNFuck,undefined,"Hotdog & Fuck","Use her big squishy booty to warm up before taking her to pound town.");
+		else addDisabledButton(6,"Hotdog&Fuck","Hotdog & Fuck","You aren't turned on enough right now.");
+	}
+	else if(kallySexedCount() == 0) addDisabledButton(6,"Hotdog&Fuck","Hotdog & Fuck","This isn't the way to begin an intimate relationship with her.");
+	else if(pc.hasCock()) addDisabledButton(6,"Hotdog&Fuck","Hotdog & Fuck","Not even Kally can handle that behemoth.");
+	else addDisabledButton(6,"Hotdog&Fuck","Hotdog & Fuck","You need a penis for this.");
+
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -706,6 +730,12 @@ public function kallyDrinkPurchase(drink:String):void
 			pc.credits -= 22;
 			break;
 	}
+	if(pc.hasStatusEffect("Adorahol") && pc.isDrunk() && special && flags["KALLYS_SECRET_INGREDIENT"] == 1 && CodexManager.entryViewed("Kui-Tan") && rand(2) == 0)
+	{
+		kallyDrunkDraino();
+		return;
+	}
+
 	output("You swipe the creds over to Kally. She swiftly rushes off to make your drink, returning with ");
 	if(drink != "Kui Creamer") output("an ice cold glass of " + drink);
 	else output("shot glasses of " + drink);
@@ -4150,3 +4180,285 @@ public function kiroXKallyEmailShow():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
+
+//Extra Kally Scenes
+//By QuestyRobo
+//Hotdog and Fuck
+//Requires a dick.
+//Requires you to have had sex with Kally before. (done Eat Pussy a few times, or any of her three/foursome scenes with Kiro/Sylvie/Del)
+public function kallyHotdogNFuck():void
+{
+	clearOutput();
+	showKally(true);
+	author("QuestyRobo");
+	var x:int = pc.cockThatFits(900);
+	if(x < 0) x = pc.smallestCockIndex();
+	/*
+	output("You ask for a drink menu and Kally passes it over. You’re not quite sure what you want to order, but Kally is patient, up until a rather large group enters the bar.");
+	output("\n\n<i>“Sorry, hun, I gotta deal with these guys. You can go ahead and find a place to seat yourself, I’ll be right with you.”</i> She struts out from behind the counter and hurries over to the seated party, notepad in hand.");
+
+	output("You take a seat and decide that you’re fine enough just observing Kally for the moment. ");*/
+
+	output("Stars, why does ");
+	if(pc.isBro()) output("that slut");
+	else output("she");
+	output(" even bother wearing a skirt? Not only are her dick and balls swinging freely in the breeze, but every slight sway of her hips knocks it out of the way enough to see the fat, jiggling globes of her chocolate-hued ass. [pc.EachCock] swells");
+	if(!pc.isCrotchExposed()) output(", tenting your [pc.crotchCover]");
+	else output(", standing proud and shameless in the open air of the bar");
+	output(" as you watch her swing her sweet rear around.");
+
+	output("\n\n");
+	if(pc.isBro()) output("Kally is such a skank. You bet anything that if you worked her over the right way you could get her to serve drinks naked. Maybe when you get control of the company, you could buy this place out and fill it with nothing but big-assed drink-sluts, perhaps even keep her for your personal harem. Oh the possibilities! ");
+	output("Eventually Kally sees you staring. Instead of acting even a bit embarrassed, she just smiles and comes closer, putting a bit of extra swing in her step for show.");
+
+	output("\n\n<i>“Ready to order something, sugar?”</i> The sultry ");
+	if(silly) output("trash panda");
+	else output("kui-tan");
+	output(" says as her eyes drift toward your ");
+	if(!pc.isCrotchExposed()) output("distended garments");
+	else output("brazenly exposed [pc.cocks]");
+	output(".");
+
+	if(pc.isBro())
+	{
+		output("\n\nInstead of saying anything immediately, you roughly grab her ass, squeezing her bubbly cheek like you own in. Kally gasps but doesn’t resist even as your hand wanders toward her honeypot. <i>“You. Bed. Now.”</i> You command as you stare straight into her foggy eyes.");
+		output("\n\n<i>“O-okay, sounds good, hun.”</i> She says almost drooling onto her notepad. <i>“J-just let me...”</i>");
+		output("\n\nYou interrupt her before she can finish. <i>“Now.”</i> You couldn’t care less about whatever crap she has to do, you wanna fuck! Kally babbles incoherently under her breath as you stand up and lead her by the ass. You do give her just enough time to slap a note on the counter saying ‘Break Time’, but that’s all you give her before you whisk her away to the back rooms, catcalls and faint cheering erupting behind you.");
+	}
+	else
+	{
+		output("\n\n<i>“Hmm, there was this one thing I saw that really caught my eye.”</i> You scoot toward her, making sure to emphasize your ");
+		if(!pc.isCrotchExposed()) output("straining bulge");
+		else output("[pc.cocks]");
+		output(". <i>“I’m sure you saw it, but it was this big, juicy, delicious looking treat that I’m just dying to get my hands on.”</i> Kally stares you dead in the eye while you hungrily praise her booty.");
+		output("\n\n<i>“You mean this, hun?”</i> She swings around and pushes her jiggling ‘nuki butt out just enough that it peaks from under her too-short skirt.");
+		output("\n\n<i>“Yeah. I’d like a big helping of that.”</i>");
+		output("\n\nShe purrs, <i>“coming right up, sugar. Just come on back and you can have as much as you want.”</i> You can see her cock tent her skirt before she walks off. Her breeding hips sway enticingly as she heads over to the counter. She leans over way more than she needs to as she puts down a ‘Break Time’ sign, letting you see her full moon as well as her drooling gash.");
+		output("\n\nYou practically jump out of your seat and start following her. Kally looks back at you with her smokiest look as she leads you to the back rooms, catcalls erupting as you leave the bar.");
+	}
+	output("\n\nKally");
+	if(pc.isBro()) output(" slips off of your hand and");
+	output(" throws herself against the door of her room, pressing her hands against it before reaching back and pulling up her skirt. <i>“Oh dang, I can’t find my keys. Could you help about a bit here? Don’t be afraid to get <b>real</b> deep in there.”</i> She bounces her booty a few times for emphasis, sending the dusky masses jiggling out of control. It’s too tempting to resist, and you take the reigns immediately. Your hands sink into the bubbly buns, barely even stopping their momentum before they settle down in your grasp.");
+	output("\n\nYou grope her rear, feeling the pliable flesh ripple with every movement. It’s warm and soft like a pair of luxury pillows; so much like them that you decide it’s only right to have your head between them. Kally moans as you motorboat her cheeks, feeling their sheer mass cradle and smother your face as they jiggle around it.");
+	output("\n\nIt’s impossible to ignore just how much Kally is getting off from this. Her cock is rock-hard and drooling pre onto the ground, and her puffy pussy mound is soaked in her juices. You decide that that’s too tempting an offer to pass up, and dive right in. Her moans punch up an octave as you put your [pc.tongue] to work. The outer lips are thick, but plush enough that you can push into them with just your tongue. Diving through the fat mons gets you into her honeypot proper, where your tongue is utterly drenched in her juices.");
+	output("\n\nYou sit there, eating her out while your hands go back to work on her booty, for a few minutes before the pressure ");
+	if(!pc.isCrotchExposed()) output("down below");
+	else output("from your achingly hard [pc.cocks]");
+	output(" becomes too much. But taking her right now just wouldn’t feel right; you haven’t even gotten into her room yet. Your busy hands give you an idea though. You ");
+	if(!pc.isCrotchExposed()) output("pull off your clothes as fast as possible before ");
+	output("grab");
+	if(!pc.isCrotchExposed()) output("ing");
+	output(" [pc.oneCock] and flop");
+	if(!pc.isCrotchExposed()) output("ping");
+	output(" it down between her cheeks.");
+
+	output("\n\nPressing her grandiose ass around your dick feels utterly heavenly. The way the mountains of warm flesh and soft fur wrap around you so perfectly almost makes you never want to leave! There’s just enough resistance when you start to thrust to make it pleasurable, but not enough to impede you in any real way. You plant your feet and start plowing her asscheeks for real");
+	//big donger:
+	if(pc.cocks[x].cLength() >= 18) output(", marveling at how your sheer length is too much for even her massive tush to contain");
+	output(". Kally huffs and stumbles against her door as you rail her booty, struggling to stay on her feet in the face of your onslaught and her own lust.");
+
+	output("\n\n<i>“D-dang, sugar, you’re a real ass lover aren’t you? Hold on here, let’s get in so you can really dig in there.”</i> Kally pulls out a small key from her cleavage and unlocks the door. She pushes the door open and spills in as you refuse to let go of her ass. The stumbling slut falls forward onto her bed, letting her rear and still erect dick spill over the edge.");
+
+	output("\n\nYou resume your assfucking immediately, not even giving her time to adjust. She groans against her sheets as her cock leaks more and more against the side of the bed. One of your thrusts passes over her anus, stimulating the entrance while denying it what it really wants. Each pass over elicits another twitch out of her cock and another splash of increasingly white pre.");
+	output("\n\nIf the volume of pre-jizz coming draining out of her, and her increasingly desperate gasps are any indication, she’s right on the verge of orgasm. Rather than spare her the <i>“shame”</i> of cumming first, you decide to drive her right over the edge. You bring your hand down and deliver a series of hearty slaps to her jiggling bubble butt. She yelps out, but if the way her cock strains is any indication, she’s enjoying it.");
+
+	output("\n\n<i>“W-wait, stop doing that or I’m gonna...”</i> One more slap cuts her off as her balls tighten and swell right before her hermhood sprays liters of ‘nuki cum onto her floor. Not content to let her settle, you decide it’s time for the main event. You pull your [pc.cock " + x + "] out of the warm confines of her ass and spear yourself into her pussy without a second thought.");
+	pc.cockChange();
+
+	output("\n\nShe cries out as you plow into her before her orgasm even finishes. Her pussy is so drenched and ready by this point that you don’t even need to hold back. You bang her so hard that the whole bed shakes, and her slutty ass jiggles like a bowl of jelly.");
+
+	output("\n\n<i>“Come on, sugar, you can’t even g-give me a minute to calm down here.”</i>");
+
+	if(pc.isBro()) output("\n\nYou grunt as you continue to plow her. Why should <i>you</i> wait for her?");
+	else output("<i>“Nope,”</i> you say playfully as you continue to fuck her.");
+	output(" Kally’s eyes start to cross as she barrels into another orgasm, just as her first one was trailing off. Her balls pulse again, eager to expel more of their creamy load, even after shrinking a good amount after her first orgasm. Her pussy squeezes down on your [pc.cock " + x + "], begging for you to cum already.");
+
+	output("\n\nYou push through her resistance, telling her through action that you’ll cum at your own pace. Of course you’re already pretty close, but that’s not the point! You fuck her as hard as possible, feeling your orgasm start to loom over you. If you’re going down then you’re taking her with you! You can already feel her hurtling towards a third climax. Almost there.");
+
+	output("\n\nHer cunt tightens up as you keep thrusting, hearing her moans grow louder and more frequent. Your own orgasm is coming at you just as fast, and it’s a race at this point to see who’ll cum first. You feel it cresting, just about to burst, when Kally suddenly cries out. Her spent and sore cock spews one last spray of cum as she limply twitches on her bed. You sigh in relief as your own orgasm blooms.");
+
+	output("\n\n");
+	if(pc.cumQ() < 100) 
+	{
+		output("Your sore cock liberally bastes the walls of her honeypot [pc.cumColor]. You go and go until your [pc.balls] ");
+		if(pc.balls <= 1) output("is");
+		else output("are");
+		output(" spent, and your [pc.legOrLegs] refuse");
+		if(pc.legCount == 1) output("s");
+		output(" to hold you up anymore.");
+	}
+	else if(pc.cumQ() < 2000)
+	{
+		output("You pump what feels like every drop of liquid in your body into Kally. Her pudgy belly swells out even more as your flood of seed settles in her womb. She does a remarkable job keeping it all in, but even she can’t keep all of it, and streams of [pc.cum] leak out of her pussy. Your [pc.legOrLegs] give");
+		if(pc.legCount == 1) output("s");
+		output(" out as your orgasm wanes.");
+	}
+	else
+	{
+		output("Kally groans out as she feels your inhuman production go to work. Her belly bloats out in seconds, filling to capacity and then stretching far enough to strain believability. You’ve yet to find a normal person who could take the entirety of one of your super-massive loads, and Kally is no exception. [pc.cum] flows out of her in flooding waves that stain the floor of her room with deep, [pc.cumColor] puddles. Your cum-soaked [pc.legOrLegs] give");
+		if(pc.legCount == 1) output("s");
+		output(" out under you as your expansive orgasm trails off.");
+	}
+	output("\n\nYou collapse onto Kally, your body either unable or unwilling to move off of her");
+	if(pc.hasKnot(x)) output(", not like your knot would let you get too far anyway");
+	output(". Kally is even worse off. You don’t even think she’s awake. Her breath is heavy and ragged, and her legs are still twitching from the aftershocks of your orgasm. When you finish recovering");
+	if(pc.hasKnot(x)) output(" and your knot deflates");
+	output(", you try and get her up to minimal success.");
+
+	output("\n\n<i>“Let me cool off, hun. I’ve been in the oven too long.”</i> She lazily drones out before passing out again. Oh well. ");
+	if(!pc.isCrotchExposed()) output("You pick up your discarded [pc.crotchCovers] from the hallway outside and make yourself decent once more. ");
+	output("Since Kally isn’t getting up anytime soon, you decide to take your leave, ");
+	if(pc.isBro()) output("giving her ass one last slap before you do.");
+	else output("giving her a quick kiss on the cheek before you do.");
+	kallySexedCount(1);
+	//[Next]
+	processTime(45);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+	if(!pc.hasStatusEffect("Kally Cummed Out")) pc.createStatusEffect("Kally Cummed Out",0,0,0,0,true,"Icon_Wine","",false,30,0xB793C4);
+}
+
+//Drunk Draining
+//Triggers when you drink one of Kally's "special" drinks near to, or when she cuts you off. A new scene will play where you can choose to kiss her and spit the drink into her mouth.
+//Requires you to know about her "special ingredient"
+public function kallyDrunkDraino():void
+{
+	clearOutput();
+	showKally();
+	author("QuestyRobo");
+	output("Kally whips you up another drink, knocking it down on the counter in front of you. You’re utterly out of it at this point, and Kally has to actually step in and steady your hand so you don’t spill your drink all over yourself.");
+	output("\n\n<i>“Alright, sugar, I think I’m gonna cut you off after this one. You’re gettin’ a little loose here.”</i>");
+	output("\n\nYou ‘awwww’ and drunkenly beg for just one more. She shakes her head. <i>“Nuh uh. You finish that one off and I’ll get you some juice to calm down with.”</i>");
+	output("\n\nShe goes to serve up another customer, leaving you with your last drink.");
+	output("\n\nA wicked thought comes to your mind. You know exactly what would happen if you were to share some of this delicious drink with Kally. If you did that, you’d get a nice, <i>big</i> helping straight from the tap.");
+	output("\n\nOr you could just finish your drink and get on with your day, like a well adjusted member of society.");
+	processTime(30);
+	clearMenu();
+	//[Kiss] This can’t possibly be a bad idea!
+	//[Finish] Just finish your drink like a normal person.
+	addButton(0,"Kiss",kallyCumKissySurprise);
+	addButton(1,"Finish",kallyFinishDrunkDrain);
+}
+
+//Finish
+public function kallyFinishDrunkDrain():void
+{
+	clearOutput();
+	showKally();
+	author("QuestyRobo");
+	output("You knock back your booze, letting out a hearty belch as you slam the glass down. Kally chuckles and pours out a glass of orange juice, placing it down in front of you while she swipes your old glass away.");
+	output("\n\n<i>“On the house, hun. If you wanna’ wind down a bit more, we could talk about something.”</i>");
+	processTime(1);
+	pc.createStatusEffect("KALLY_FORCE_CUTOFF");
+	pc.setStatusMinutes("KALLY_FORCE_CUTOFF",120);
+	//Go to Kally’s Talk menu
+	kallyTalkMenu();
+}
+
+//Kiss
+public function kallyCumKissySurprise():void
+{
+	clearOutput();
+	showKally();
+	author("QuestRobo");
+	output("<i>“Hey Kallllly?”</i> You call over the busy ‘nuki, crooking your finger in order to add emphasis as you take a swig of your nutty drink.");
+	//First:
+	if(flags["KALLY_DRUNK_SNOWBALL_FUCKED"] == undefined) 
+	{
+		output(" She gives a puzzled look but comes over anyway.");
+		output("\n\n<i>“Need somethin’?”</i> You motion her in closer. She rolls her eyes and leans in, at which point you ambush her with a kiss, spitting the drink you stored in your mouth into hers. Her eyes go wide for a second before her face twists into a smug smirk. Instead of shoving you off she goes in harder, ravishing your [pc.lipsChaste]. She pops off your lips, and her smirk grows wider.");
+		output("\n\n<i>“Alright sweet thing. If you want another drink that bad, how about we go in back and I’ll give you one from my, unf, ‘private reserves’? Don’t worry, there’s <b>loads</b> of the stuff, so you can be as greedy as you want!”</i> She wraps one hand around your shoulder, and sinks the other down beneath her skirt.");
+	}
+	else
+	{
+		output("\n\nShe rolls her eyes, very much aware of what you’re planning this time. Instead of ignoring you, or even calling you out, however, she struts over to you. The scheming bartender smiles down at your intoxicated form.");
+		output("\n\nShe shakes her head and sighs, <i>“Alright, let’s get this over with,”</i> before grabbing you by the head and shoving your [pc.lipsChaste] into hers. Her tongue dives into your mouth, scooping out every last drop of cum-laced booze she can find before pulling off with a husky sigh, and then a shuttering moan as her cum cascade begins.");
+		output("\n\n<i>“The things I do for a piece of that ass.”</i>");
+	}
+	output("\n\nShe leads you down the bar to the end, where she exits. When she comes from behind it, the whole bar is treated to the sight of her balls obscenely spilling out underneath her skirt. The twin orbs slosh and throb as Kally throws up a <i>“Break Time”</i> sign. She yelps as they jump several inches in size, seemingly spurred on by the wandering eyes of the bar patrons. She roughly grabs your arm and brings you in close. There’s a distinct look of embarrassment on her face as she does so. <i>“Mmmpf! Come on, let’s get out of here while I can still walk!”</i> The ballooning bartender drags you away from the main area and toward her room.");
+
+	output("\n\nHer gait widens awkwardly as you approach, her legs stretched wide by her swelling sack. <i>“I don’t know if it’s just you or if that was a <b>real</b> nice batch, but my girls are going nuts down there!”</i> When you reach the door Kally unlocks it and then practically kicks it in. She hurls you toward the bed, letting you flop down onto it under your own cumbersome weight.");
+	currentLocation = "CANADA8";
+	generateMap();
+	clearMenu();
+	addButton(0,"Next",kallyKissCumSurprise2);
+}
+
+public function kallyKissCumSurprise2():void
+{
+	clearOutput();
+	showKally(true);
+	output("Kally moves up to the side of the bed in front of you and groans under her breath as her balls undergo another growth spurt, swelling past her knees. <i>“Ugghh. You want a drink, sugar? Tap’s right here.”</i> Her beast-dong juts out in front of you, desperately erect and ");
+	if(kally.cumQ() < 8000)  output("dripping");
+	else if(kally.cumQ() < 16000) output("drooling");
+	else output("leaking");
+	output(" her heady pre.");
+
+	output("\n\n");
+	if(pc.isBimbo()) 
+	{
+		output("You squeal excitedly and open your mouth as wide as possible, pointing at your open maw and nodding your head excitedly. Kally licks her lips at the sight of your eagerness. <i>“I knew you’d be up for it. You’re always so thirsty, aren’t you?”</i> You nod even harder, opening your mouth so hard that your jaw starts to hurt. <i>“Alright, settle down there, we’ll get ya served up quick.”</i> She puts her cock right up against your [pc.lips], causing your eyes to start drifitng into your skull just from the smell right before she rears back and gets ready to thrust in. Here it comes!");
+	}
+	else 
+	{
+		output("That is why you did this in the first place, right? You open your mouth as far as you can");
+		if (kiroSexed()) output(", thankful that Kally is nowhere near as massive as her sister,");
+		output(" and look up at her with puppy - dog eyes. Kally licks her lips, <i> “Hun, I can promise to hold back all I want, but you give me that kinda look, I can’t even lie to ya. Take a deep breath and get ready, I’m coming in !” </i> She presses her cock against your [pc.lips] and rears back to thrust in.");
+	}
+	output("\n\nYou choke as you feel her length spear into your throat");
+	if(pc.canDeepthroat()) output(", uninhibited by any sort of stupid gag reflex");
+	else output("with ease as your inebriated state has weakened your gag reflex to uselessness");
+	output(". Kally sits there for a moment, her thighs and still-expanding balls twitching against your face as she sputters. <i>“D-damn. Sorry, Steele! I didn’t mean to bottom out that quick. Guh. Fuck it! You’re good with that right? Cause I don’t think my big ol’ hips are gonna slow down!”</i>");
+	output("\n\nShe grabs you by the ");
+	if(pc.hasHair()) output("[pc.hair]");
+	else output("back of the head");
+	output(", extracts her cock from your mouth, giving you a scant second to get your breath back, before ramming back in with a loud groan. True to her word, her next thrust is just as impactful as the last one. Your face is repeatedly smothered in the dark fur of her crotch as she pounds you relentlessly. Spit flies all around the room, flung out by the sheer force of her facefucking.");
+	output("\n\nYou wonder what happened to make her so ravenous, until you feel the bed shake. Looking down as best as you can, you can see that Kally’s balls are almost touching the floor at this point! She’s desperate to cum, and do it while she can still move. Darting your eyes back up, you see that hers have almost completely screwed into her head, and that her tongue is lolling out, completely uncontrolled.");
+	output("\n\n<i>“D-damn it! Sorry hun, but there’s soooooooo much cum, I can’t help it!”</i> Through her brutal face reaming, you can feel the flow of her pre quickly getting thicker and more voluminous. Her shaft is following suit, throbbing and pulsing as it grows thicker, getting ready for what’s shaping up to be an immense climax. <i>“C-cumcumcummingcumming! Take my cum you sluuuuuuuuuuuuuut!”</i> She yells as she bottoms out in your throat and starts pumping her load into your stomach.");
+	output("\n\n");
+	//Base Kally:
+	if(kally.cumQ() < 16000) output("You feel her underside bulge against your tongue as her urethra dilates and expels huge blasts of her intoxicating cum into your gut. Each one feels like an atomic bomb, sending numbing, blissful sensation quaking throughout your whole body. You’d be complaining about her not pulling out right now if you didn’t feel like you could breathe her jizz. It doesn’t even matter to you that your [pc.belly] looks like a blimp, it’s all worth it to get a taste of that sweet ‘nuki nookie juice!");
+	else output("Her whole dick bloats as her overloading virility blasts through it. Your [pc.belly] balloons out to capacity on the first shot. By the third, you look like a living waterbed, and she just keeps going! <i>“Da-damn it, Kiro! Why did these stupid drugs have to work so weeeeeeeell!”</i> Her voice raises higher and higher as she struggles to cope with her own output. Thankfully, with the sheer amount of alcohol swimming around in your system, you’re not even uncomfortable. Everything is so light and warm that you feel like a stiff breeze could just carry you off, and that’d be fine.");
+	output("\n\nWilling as you are to take her loads, it soon becomes physically impossible. Kally’s cock is forced out of your mouth by the pressure, as you cough up gouts of her alcoholic jizz. The rest of her orgasm is spent painting you");
+	if(kally.cumQ() >= 16000) output(" and the room");
+	output(" white with the remains of her extensive climax. You’re so drunk that you can’t even see straight, all you can hear is the sound of cum splashing down to the floor; at least until Kally starts shouting.");
+
+	output("\n\n<i>“Are you serious!”</i> It’s a struggle, but you manage to drag your eyes up and focus them enough to see what she’s yelling about. Her sack is still massive, though not nearly as much as before, and it’s starting to fill again. The almost hungry way she looks at you, not to mention her still raging erection, tell you that this is nowhere near over. She moves behind you and gets on the bed. You’re not able to turn your head to see what she’s doing, but it’s easy to tell when you feel her hands grab your [pc.ass]");
+	output("\n\nSorry, hun, but I’m gonna pop if I don’t drain these puppies some more!”</i> She scoops up some cum off of you and you can hear her slicking up her cock with it. Her tip presses against your [pc.anus] and not even a few seconds pass before she drives it in. Your drunk state combined with her copious lubrication make the trip painless, which is good because she doesn’t intend to go easy on you.");
+	output("\n\nKally rams your ass like a wild beast, never even bothering to warm you up. Her colossal sack slams into your booty with each thrust, sending the both of them jiggling wildly. Eventually it becomes big enough that it just sits there, weighing against you as it engorges even more. Kally is completely lost at this point, every thought in her mind melting away as she chants <i>“f-fuckcumfuckgottacumcumgottacuuuuuuuuuuuuuum!”</i> You yourself are too far gone to care either. At this point you’re having trouble even staying conscious, despite Kally banging so hard on your backdoor.");
+	output("\n\nThe combination of her last orgasm, combined with the ferocity of her fucking sends her over the edge very quickly. She bottoms out as her voice pitches up a few octaves. Her cum flows through your body, joining up with the reservoir already sitting in your gut to give you a full-body feeling of warm fullness.");
+	output("\n\nIt’s all too much for you to handle. Your eyelids feel like lead, and there’s no way you can stay awake, even while Kally seems to be rearing up for round three.");
+	processTime(20);
+	pc.orgasm();
+	pc.loadInMouth(kally);
+	processTime(20);
+	pc.applyCumSoaked();
+	pc.loadInAss(kally);
+	processTime(15);
+	//Doing it this way to let some of the drunkeness spam happen
+	eventQueue.push(endKallyDrunkoMouthyButtFuntimes);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function endKallyDrunkoMouthyButtFuntimes():void
+{
+	clearOutput();
+	showKally();
+	output("You wake up stars know how long later with a raging headache. You’re still in Kally’s room, but it’s nowhere near as flooded as it was while you were going at it, so you can surmise that at least an hour has gone by. You’re also still tipsy, but it seems like she did a good job draining you so you’re not wasted all day");
+	if(pc.bellyRating() >= 50) output(" (you still have a good belly on you though)");
+	output(".");
+	output("\n\nKally walks out of the bathroom with a soaked mop and freshly emptied bucket in hand. She smiles when she sees that you’re awake. <i>“Morning, hun. Just got done cleaning up. Don’t worry, wasn’t anything I haven’t had to deal with on my own, other than draining you out, of course.");
+	//first time, haven’t fucked Kally before:
+	if(kallySexedCount() == 0) output(" I’m normally not so loose when it comes to drunk barflys, but most of them aren’t as pushy as you. Not that I mind that, so long as we keep it back here.”</i> She shoots you a sultry look while her cock visibly pulses under her skirt. <i>“");
+	output("Anyway, I gotta go take these back down to the janitor’s closet. You just take a load off and come down when you’re ready.”</i> She steps out of the room, leaving you to stew over.");
+	output("\n\nAfter a few minutes of drunken lounging you drag yourself out of Kally’s bed and downstairs, where the busy bartender gives you a knowing wink before getting back to work.");
+	currentLocation = "CANADA5";
+	generateMap();
+	processTime(120);
+	IncrementFlag("KALLY_DRUNK_SNOWBALL_FUCKED");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+

@@ -554,6 +554,9 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/princess_bandoleer.png", mimeType = "image/png")]
 		public var Bust_PRINCESS_BANDOLEER:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/quaddomme.png", mimeType = "image/png")]
+		public var Bust_BOTHRIOC_QUADOMME:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/queensguard.png", mimeType = "image/png")]
 		public var Bust_QUEENSGUARD:Class;
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/queensguard_nude.png", mimeType = "image/png")]
@@ -1215,6 +1218,9 @@
 			public var Full_PRINCESS:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/princess_bandoleer.png", mimeType = "image/png")]
 			public var Full_PRINCESS_BANDOLEER:Class;
+
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/quaddomme.png", mimeType = "image/png")]
+			public var Full_BOTHRIOC_QUADOMME:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/queensguard.png", mimeType = "image/png")]
 			public var Full_QUEENSGUARD:Class;

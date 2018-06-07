@@ -1541,7 +1541,8 @@ public function azraMorningFucko():void
 	output("member");
 	if(pc.cocks[x].cLength() < azra.cocks[0].cLength() - 2) output(", smothering it in pheromonal alien phallus");
 	else if(pc.cocks[x].cLength() < azra.cocks[0].cLength() + 2) output(", matched up almost perfectly, inch-to-inch");
-	else output(", sinfully pleasant against the sensitive skin of your absolutely monstrous tool.");
+	else output(", sinfully pleasant against the sensitive skin of your absolutely monstrous tool");
+	output(".");
 
 	output("\n\n<i>“");
 	if(pc.isBimbo()) output("Not yet,”</i> you cheerily quip, rocking your hips against her instinctively, seeking pleasure without thought, <i>“but it’s about to be.”</i>");
@@ -1685,7 +1686,9 @@ public function actualMorningAzraBone(x:int):void
 	if(azra.canMilkSquirt()) output(" as it sprays milk into the increasingly debauched sexual milieu");
 	output(". You cum to the feeling of her salty spooge plastering your eyes closed as much as much as to the ecstasy of her fluttering folds.");
 
-	output("\n\n<i>“God yes! More!”</i> the cum-fountaining shark-girl cries in ecstasy. Her dick bulges obscenely and sprays its biggest load yet{, even as the curve of her belly slowly bloats with your orgasmic filling}. She grabs hold in both hands, still grinding into your dick, and milks the last few sprays out, depositing the hot loads onto your [pc.chest] and [pc.belly] until you look like a siren-glazed donut.");
+	output("\n\n<i>“God yes! More!”</i> the cum-fountaining shark-girl cries in ecstasy. Her dick bulges obscenely and sprays its biggest load yet");
+	if(cumQ >= 1000) output(" as the curve of her belly slowly bloats with your orgasmic filling");
+	output(". She grabs hold in both hands, still grinding into your dick, and milks the last few sprays out, depositing the hot loads onto your [pc.chest] and [pc.belly] until you look like a siren-glazed donut.");
 	if(cumQ >= 5000) output(" Through it all, her belly continues to expand, pumped bigger and bigger with each passing second.");
 	if(cumQ >= 20000) output(" You inflate the gigantic suula until she looks positively pregnant, and she loves every second of it.");
 	if(azrasStud() && cumQ > 100) output(" Excess cum pools back onto your [pc.thighs], mixed with Azra’s own passionate leakings.");

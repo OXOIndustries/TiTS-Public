@@ -518,6 +518,7 @@ public function pcDefeatByGooBitch():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.shower();
 	pc.energy(-5);
 	CombatManager.genericLoss();
 }
@@ -609,6 +610,7 @@ public function cockVariantForGrayGooKirbutashis():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.shower();
 	pc.energy(-5);
 	CombatManager.genericLoss();
 }
@@ -671,6 +673,7 @@ public function gooGooEnvelopsCunts():void
 	pc.orgasm();
 	pc.orgasm();
 	pc.orgasm();
+	pc.shower();
 	pc.energy(-5);
 	CombatManager.genericLoss();
 }

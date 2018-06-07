@@ -722,6 +722,8 @@ public function liftDownEvent():void
 		output("You step into the personnel lift and press the big red DOWN button. With a loud mechanical rumble and the sound of gears grinding, the lift shudders to life and starts sliding down the track toward the planetary core. This trip is much like the last. You try and spend the time the admiring what passes for a view, mentally preparing yourself for whatever challenges remain at the bottom.");
 		output("\n\nGravity slowly fades, and you’re sure to put on some of the electromagnetic equipment before it vanishes completely.")
 	}
+	if(!rooms["364"].hasFlag(GLOBAL.NPC)) rooms["364"].addFlag(GLOBAL.NPC);
+
 	processTime(23);
 	//Move the PC
 	moveTo("354");

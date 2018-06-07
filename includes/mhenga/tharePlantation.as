@@ -398,7 +398,7 @@ public function thareAbleResponse(response:String = "none"):void
 			if(!pc.isNude())
 			{
 				// Not naked, exhibitionist:
-				if(pc.exhibitionism() >= 66) output(" You give him a small show as you do it, throwing your garments away with little flicks and wiggles, exhaling slowly as you bare more and more of your [pc.skin].");
+				if(pc.exhibitionism() >= 66) output(" You give him a small show as you do it, throwing your garments away with little flicks and wiggles, exhaling slowly as you bare more and more of your [pc.skinFurScales].");
 				// Not naked, not exhibitionist:
 				else output(" You feel fleetingly uncomfortable doing this in front of the manservant");
 			}
@@ -406,7 +406,7 @@ public function thareAbleResponse(response:String = "none"):void
 			if(ableSexed() || flags["ABLE_BATHS"] != undefined) output(" - but that is swiftly followed by the thought that he’s seen it all before.");
 			// If else:
 			else output(" - but then the first thought of what zil are like in the wild makes such an attitude laughable.");
-			output(" You sink your bare [pc.skin] into the steaming hot water with a pleased sigh, feeling the little aches and knots of stress picked up from slogging through an alien wilderness slipping off you.");
+			output(" You sink your bare [pc.skinFurScalesNoun] into the steaming hot water with a pleased sigh, feeling the little aches and knots of stress picked up from slogging through an alien wilderness slipping off you.");
 			output("\n\n<i>“You look like you needed that,”</i> murmurs Able. He sounds genuinely happy <i>you’re</i> happy.");
 			
 			processTime(5 + rand(6));
@@ -556,7 +556,7 @@ public function thareSexResponse(response:String = "none"):void
 			output(" You");
 			if(!pc.isNaga()) output(" clamber");
 			else output(" slither");
-			output(" onto the overstuffed bed, enjoying the plush give of it against your hands and [pc.butt] as you turn over and consider the supple bodied zil servant at length. His own smile has been replaced with a slightly vacant expression as his black insect eyes travel up and down your body. The smell of honeyed pheromones is becoming cloying, causing heat to rise up to your [pc.skin], making you feel tender and tensed up with lust. It requires only for you to lounge back and lasciviously slide a finger up the length of your [pc.cock " + x + "] a single time for it to become burningly, readily erect.");
+			output(" onto the overstuffed bed, enjoying the plush give of it against your hands and [pc.butt] as you turn over and consider the supple bodied zil servant at length. His own smile has been replaced with a slightly vacant expression as his black insect eyes travel up and down your body. The smell of honeyed pheromones is becoming cloying, causing heat to rise up to your [pc.skinFurScales], making you feel tender and tensed up with lust. It requires only for you to lounge back and lasciviously slide a finger up the length of your [pc.cock " + x + "] a single time for it to become burningly, readily erect.");
 			output("\n\n<i>“Come here, sissy boy,”</i> you murmur, <i>“and get ready to eat some pillow.”</i>");
 			output("\n\nAble ducks his head submissively, but his thin fingers are eager as he peels off his neat smock and trousers and climbs his gleaming black boy-whore body onto the squashy mattress with you. Silently and without instruction he retracts the carapace around his chest, sliding the hard chitin to the side so that you can drink in the subtle ripples of his lean yellow under-front - quite sensitive, by the way he tenses up and inhales sharply, wings twitching when you brush across a small, black nipple, almost instantly becoming erect to your touch.");
 			output("\n\nThe carapace across his groin seems to retract of his own volition, his fat, five-inch foreskinned zil prick seemingly unwilling to be caged up any longer - he sighs breathily as it pops into view. Instantly the pheromone hum becomes far stronger, stepping up from a sultry background perfume to a heavy, heady atmosphere, making your lust-driven actions unstoppable, instinctive. Your breath comes hot and hard as you push into the zil, bumping your [pc.chest] into his flat front as you grip his shoulder and turn his pert face and chest around, exposing the flawless curve of his back and the round swell of his rump.");
@@ -712,7 +712,7 @@ public function thareSexResponse(response:String = "none"):void
 			output("You");
 			if(!pc.isNaga()) output(" clamber");
 			else output(" slither");
-			output(" onto the overstuffed bed, enjoying the plush give of it against your hands and [pc.butt] as you turn over and consider the supple bodied zil servant at length. His own smile has been replaced with a slightly vacant expression as his black insect eyes travel up and down your body. The smell of honeyed pheromones is becoming cloying, causing heat to rise up to your [pc.skin], making you feel tender and tensed up with lust.");
+			output(" onto the overstuffed bed, enjoying the plush give of it against your hands and [pc.butt] as you turn over and consider the supple bodied zil servant at length. His own smile has been replaced with a slightly vacant expression as his black insect eyes travel up and down your body. The smell of honeyed pheromones is becoming cloying, causing heat to rise up to your [pc.skinFurScales], making you feel tender and tensed up with lust.");
 			output("\n\nYou lounge back, spreading your [pc.hips] with apparent carelessness as you gaze at him, exposing the [pc.cuntColor " + x + "] of your [pc.vagina " + x + "] to the open air.");
 			output("\n\n<i>“See anything that interests you, boy?”</i> you ask with husky archness.");
 			output("\n\nAble keeps his eyes submissively to the floor, but trips over to the king-sized bed and climbs his lithe, tight form on with barely concealed enthusiasm. He slides his thin, carapace-covered fingers along your thigh, excitement tightening his fresh young features as he takes in the moist, fragrant treat you’ve deigned to present him with. You’re slightly worried that he’s forgotten to breathe - perhaps you have to order him to do that? You stifle a");
@@ -842,7 +842,7 @@ public function thareSexResponse(response:String = "none"):void
 			output("You");
 			if(!pc.isNaga()) output(" clamber");
 			else output(" slither");
-			output(" onto the overstuffed bed, enjoying the plush give of it against your hands and [pc.butt] as you turn over and consider the supple bodied zil servant at length. His own smile has been replaced with a slightly vacant expression as his black insect eyes travel up and down your body. The smell of honeyed pheromones is becoming cloying, causing heat to rise up to your [pc.skin], making you feel tender and tensed up with lust.");
+			output(" onto the overstuffed bed, enjoying the plush give of it against your hands and [pc.butt] as you turn over and consider the supple bodied zil servant at length. His own smile has been replaced with a slightly vacant expression as his black insect eyes travel up and down your body. The smell of honeyed pheromones is becoming cloying, causing heat to rise up to your [pc.skinFurScales], making you feel tender and tensed up with lust.");
 			output("\n\nYou quite fancy the idea of letting an energetic zil boy go at you - but you also feel he should be shown his place first. And there’s only one, extremely satisfying way of doing that. You lounge back and lasciviously slide a hand up the length of your [pc.cock " + z + "]. In the heady atmosphere the zil is generating, it requires only that to become burningly, readily erect.");
 			output("\n\n<i>“Take it off, boy,”</i> you murmur. <i>“And come up here.”</i>");
 			output("\n\nAble ducks his head submissively, but his thin fingers are eager as he peels off his neat smock and trousers and climbs his gleaming black boy-whore body onto the squashy mattress with you. A single, meaningful glance downwards at your bulgingly erect cock is all the instruction the zil needs. You sigh blissfully as he straddles your waist, runs his thin, smooth fingers down your erection as he raises himself above it, positioning himself so that your [pc.cockHead] is nestled between his cute, round buttocks. You teasingly jerk your [pc.hips], burrowing your erection inwards towards his black star, making him gasp quietly, wings twitching.");
@@ -962,7 +962,7 @@ public function thareSexResponse(response:String = "none"):void
 			output(" such a good boy. Cum.”</i> You synchronize your words with a slow, firm thrust of your [pc.hips], savoring his cute little tool within you.");
 			output("\n\nThe effect is immediate - you feel Able’s slender muscles tense up, his black-gloved");
 			if(!fromBoth) output(" forearms shoot up to grasp the air");
-			else output(" hands tighten on your [pc.skin]");
+			else output(" hands tighten on your [pc.skinFurScales]");
 			output(", and he gasps as he fills your [pc.vagina " + x + "] up with thick honey-seed after half a dozen obviously ecstatic pulses. It oozes back out of you, golden streamers");
 			if(!fromBoth) output(" crawling their way down his waist");
 			else output(" spurting down your inner thighs");

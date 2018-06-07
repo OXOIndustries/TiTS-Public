@@ -514,6 +514,7 @@
 				output("\n\nYour nipples feel oddly hot, a sensation that compels you to reach up and massage them. Soon your fingers are greeted with squirts of fresh cow’s milk. <b>You’ve started lactating, albeit slowly.</b>");
 				
 				target.boostLactation(50);
+				target.milkFullness += 15;
 				
 				return;
 			}
@@ -522,6 +523,7 @@
 				output("\n\nYou let out a lusty moo as [pc.milkNoun] squirts from your nipples unbidden, your breasts growing ever more deliciously full.");
 				
 				target.boostLactation(5);
+				target.milkFullness += 15;
 				
 				return;
 			}

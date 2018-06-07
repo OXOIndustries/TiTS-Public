@@ -60,6 +60,8 @@ public static const FREEDOM_BEEF_RIPPED:uint = 3;
 
 public function doFreedomBeefEncounter():void
 {
+	showBust("");
+	
 	output("\n\nA deafening <i><b>crack!</b></i> booms overhead, a concussive blast of thunder that makes you duck and grab your [pc.weapon]. Your brain immediately leaps to a gunshot going off, but you’re able to relax a bit when you see a corona of crimson sparks erupting in the");
 	if (hours >= 20 || hours <= 4) output(" night’s");
 	else if (hours >= 12) output(" afternoon");

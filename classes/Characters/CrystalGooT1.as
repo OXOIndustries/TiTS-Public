@@ -150,7 +150,8 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "GooAmbusher";
 			sexualPreferences.setRandomPrefs(2 + rand(3));
-			
+			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikesFactor());
+			if(rand(2) == 0) sexualPreferences.setPref(GLOBAL.SEXPREF_SWEAT, sexualPreferences.getRandomLikesFactor());
 			Randomise();
 			
 			this._isLoading = false;

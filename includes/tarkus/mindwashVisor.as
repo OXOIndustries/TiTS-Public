@@ -53,7 +53,7 @@ public function mindwashBrokenVisor():void
 		//if Bubble Buddy & penis:
 		if(checkToyDrawer(BubbleBuddy) && pc.hasCock()) 
 		{
-			output(" Speaking of messes, you pull out your Bubble Buddy, and secure it on your [pc.cockLargest]. Picking up goo-filled condoms is a much easier cleanup than wiping down the interior of your ship!");
+			output(" Speaking of messes, you pull out your Bubble Buddy, and secure it on your [pc.cockBiggest]. Picking up goo-filled condoms is a much easier cleanup than wiping down the interior of your ship!");
 			if(pc.cockTotal() > 1) output("\n\n ...not that it’s going to do anything for the mess left by the rest of your body. But hey, every little bit helps.");
 		}
 		output("\n\nYou make yourself comfortable and put on the ‘Mindwash’ Visor. A feeling of elated disorientation passes just behind your eyes as your brain does the mental gymnastics needed to survive the visor’s hypnotic displacement. It flickers from a dangerously vibrant pink color to a more comforting blue and your muscles relax as the light radiates into you.");
@@ -244,6 +244,7 @@ public function mindwashMeShipVers():void
 	//if(pexigaIsCrew()) eligibleCrew.push("Pexiga");
 	//if(annoIsCrew()) eligibleCrew.push("Anno");
 	//if(reahaIsCrew()) eligibleCrew.push("Reaha");
+	if(shekkaIsCrew()) eligibleCrew.push("Shekka");
 	
 	if(eligibleCrew.length > 0)
 	{
@@ -267,6 +268,7 @@ public function mindwashMeShipVers():void
 				//case "Pexiga": addButton(btnSlot,pexigaName(),mindwashPexiga); btnSlot++; break;
 				//case "Anno": addButton(btnSlot,"Anno",mindwashAnno); btnSlot++; break;
 				//case "Reaha": addButton(btnSlot,"Reaha",mindwashReaha); btnSlot++; break;
+				case "Shekka": addButton(btnSlot,"Shekka",useMindwashOnShekka); btnSlot++;
 			}
 		}
 		if(btnSlot > 14)
@@ -299,7 +301,7 @@ public function useShipMindwashMeee():void
 		output("It’d probably be best to keep your messes to a minimum. You strip, setting your equipment away from the splash zone and take your seat.");
 		if(checkToyDrawer(BubbleBuddy) && pc.hasCock()) 
 		{
-			output(" Speaking of messes, you pull out your Bubble Buddy, and secure it on your [pc.cockLargest]. Picking up goo-filled condoms is a much easier cleanup than wiping down the interior of your ship!");
+			output(" Speaking of messes, you pull out your Bubble Buddy, and secure it on your [pc.cockBiggest]. Picking up goo-filled condoms is a much easier cleanup than wiping down the interior of your ship!");
 			if(pc.cockTotal() > 1) output("\n\n ...not that it’s going to do anything for the mess left by the rest of your body. But hey, every little bit helps.");
 		}
 		output("\n\nYou settle in and put on the Mindwash Visor. A feeling of elated disorientation passes just behind your eyes as your brain does the mental gymnastics needed to survive the visor’s hypnotic displacement. It flickers from a dangerously vibrant pink color to the more comforting blue and your muscles relax as the light radiates into you.");
@@ -368,6 +370,7 @@ public function mindwashSceneList(sourceType:String = "", choices:Array = null):
 				sceneList.push(pumpTheSpy);
 				sceneList.push(invasionOfTheDickSuckers);
 				sceneList.push(cowifiedMindwash);
+				sceneList.push(jezebelMindwash);
 			}
 			if(choices.indexOf("female") != -1)
 			{
@@ -388,6 +391,7 @@ public function mindwashSceneList(sourceType:String = "", choices:Array = null):
 				sceneList.push(pumpTheSpy);
 				sceneList.push(invasionOfTheDickSuckers);
 				sceneList.push(cowifiedMindwash);
+				sceneList.push(jezebelMindwash);
 			}
 			if(choices.indexOf("female") != -1)
 			{
@@ -2818,4 +2822,588 @@ public function CoCSceneEpilogue(cumNum:Number):void
 		}
 	}
 	mindwashNextButtonAndStatAwardsAndClears(cumNum);
+}
+
+
+public function jezebelMindwash():void
+{
+	clearOutput();
+	showName("JEZEBEL’S\nDUNGEON");
+	author("Carol J");
+	var cumNum:Number = 0;
+	output("You’re a fool, you think to yourself through the haze of pleasure and exquisite relief you’ve found between your latest lover’s thighs. A stupid, feckless fool. If a deal like hers had sounded too good to be true, there wasn’t a doubt that it <i>was</i> too good to be true.");
+	output("\n\nBut you’d taken it anyway. You’d made your wager and decided that you were strong enough to weather whatever hex she cast. That you could overcome whatever handicap she saw fit to weigh upon your shoulders. You grunt, empty your balls into the latest slut that sashayed into your path, and thank any gods or goddesses that might be listening that you were wrong.");
+	output("\n\nHow long have you been in here for? It couldn’t be more than a few days, but the fugue of sex and rut dizzy your memory and make the whole blurry mess stretch on for what could be weeks. Maybe it could help you pin down something specific if you think back to how it all began. Probably not, given that you’ll likely end up hilted in some velvet-soft cunt before too long, but you have to at least pretend to struggle against this sinful pleasure.");
+	output("\n\nThe first thing that happened when you stepped into her dungeon was...you pinned down a succubus and fucked a child into her. No! No, no, it had been...Gods, it was so hard to think! You had made your way into the dungeon, and in a puff of sulfur and glittering pink, SHE had appeared. Jezebel, the Queen of Succubi. The vile demon that had captured your beloved and spirited her away to the depths of the netherworld. As beautiful as she was malicious, with a body that weaker men would do anything to lay but a single finger upon.");
+	output("\n\nBut you were stronger than them, and you were stronger than her. Or so you had thought. She dispelled such foolhardy notions within moments of your trespass, and she did so cannily. Your silver armor sent flaking into uselessness, and your sword along with it. In a matter of seconds, Jezebel had rendered you helpless, naked as a babe before her awful majesty. You remember...staring at her tits. Gawking at her milk-bloated udders and begging to suckle at her drooling teats as you fucked her cunt.");
+	output("\n\nNo! No, you have to focus! Gods, but it’s hard to think... You haven’t cum in minutes!");
+	output("\n\nYou remember standing tall in the face of her cowardly tricks, resolute despite her treachery. And you remember an offer.");
+	output("\n\nWhether or not it was the truth, Jezebel was quite candid in revealing her motives. <i>“True love,”</i> she had said, <i>“is rarer than gold and all the more precious for its scarcity.”</i> And to test your devotion for your beloved princess, she posed a challenge: if she could lay but one hex upon you - one tiny little spell - then she would allow you to proceed through her dungeons unmolested. Not just by her, but by all her fell, seductive minions. Not a one of them would lift a finger to impede your progress. If there were to be any detours - and surely there would not be any, given the gravity of your quest - they would be your own. Completely voluntary.");
+	output("\n\nNothing that would hurt you. Nothing that would <i>necessarily</i> stop you. Nothing that would keep you from proceeding and saving your princess. Unless you let it.");	
+	output("\n\nYou had agreed, like a fool, and she laid her silk-smooth hands upon you. Jezebel had cupped your balls, hissed her siren’s spell, and departed with a smirk... leaving you to proceed.");
+
+	processTime(20);
+	pc.lust(50);
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",jezebelMindwashII,cumNum);
+}
+
+public function jezebelMindwashII(cumNum:Number):void
+{
+	clearOutput();
+	showName("JEZEBEL’S\nDUNGEON");
+	author("Carol J");
+	output("It wasn’t until some time had passed that you realized what she’d done to you. Certainly you were no stranger to carnal desire; your vows included many things, but celibacy was not among them. But even if you were used to more...libidinous urges, you weren’t used to them surfacing with such intensity. And certainly not so quickly. Not five minutes had passed before you felt your balls bloat heavier with an unspent load. Nothing unmanageable, but there was a certain uncomfortable fullness to your sack. One that only grew the further you proceeded.");
+	
+	output("\n\nEventually you’d come across a goblin, all voluptuous curves and bared, green skin. Jezebel had told the truth. She hadn’t lifted a finger to stop you, but the impish grin on her beestung lips spoke volumes, and it was so devilishly easy to convince yourself that you needed relief if you were going to concentrate. You laid back, snarled a command, and watched her strut forward, your eyes locked on the sway of wide, child-bearing hips.");
+	
+	output("\n\nWhen she straddled your lap and wriggled her peach of an ass over your naked, throbbing cock, you were practically holding your breath. Waiting for her to drop down, to take your cock in her cunt and milk it dry. Only so you could clear your head, of course. It was important to keep in mind that this was really all for the princess’ sake. When the goblin had slammed her hips down and taken you to the hilt in one wet, sloppy push, you took solace in the fact that you were only going to stuff this little bitch full of stiff, throbbing cock so you could be united once more with your beloved princess. No matter how good a fuck this little green-skinned slut was, she was just a tool to help you get to your one, true love. No matter how fucking <i>good</i> it felt to pump a load of thick, sperm-packed seed into her womb, you were only doing this to clear your head.");
+	
+	output("\n\nYou were doing this for love, you reminded yourself as you cock-slapped the little creampied tease, shivering at the whorish moan that passed her lips in response. Now that your head had cleared - if only a little - you could proceed.");
+	
+	output("\n\nThings get hazier as you retrace your steps in your memory, and it’s difficult not to dwell on that. It’s a mess of rut and sex. Your latest conquest glistening on your shaft did one hell of a job distracting you from the dizzying twists and turns of Jezebel’s dungeon, and before you knew it, you were stiff again, your cock twitching with every step. It was torturous, and even if you knew that it was just the effects of Jezebel’s spell, it didn’t make it any easier to shake off the mounting need to empty your balls somewhere hot, wet, and tight...again.");
+
+	output("\n\nSo thank goodness you’d run into that enchantress. Buxom and beautiful, she’d gone to her knees in seconds when you commanded her to, and even if you didn’t quite have the energy to slamfuck her until her womb was bloated with your cum, she had a few tricks of her own. A few tricks that you were skeptical about...until the urge to cum grew too strong to resist. She mouthed arcane incantations for what felt like hours as she kneaded the pillowy flesh of her tits up and down against your shaft, but finally she finished and planted a doting kiss on the tip of your cockhead. The black of her lipstick seemed to tingle, but soon after that, her spell took hold of your member and...well, did exactly as she said it would.");
+	
+	output("\n\nA bigger cock meant that you could cum more and more, she’d purred up at you as you groaned your frustration. If your balls were too backed up for you to think clearly, all you needed was a bigger cock to pump out that seed, mm? The idea had made frightening sense to you, and it was that pernicious thought that made you accept her offer.");
+	processTime(30);
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",jezebelMindwashIII,cumNum);
+}
+public function jezebelMindwashIII(cumNum:Number):void
+{
+	clearOutput();
+	showName("JEZEBEL’S\nDUNGEON");
+	author("Carol J");
+	output("So there you were, stumbling forward, your cock sagging under its own weight, your balls swollen past the size of your fist, your quest to rescue the princess but an afterthought in the swirling haze of your fuckdrunk lust. You kept assuring yourself that you’d look for the princess...as soon as you cleared your head. Thank goodness Jezebel’s dungeon had so many curvaceous sluts to help you unload your spunk. Goblins and succubi to fuck pregnant, enchantresses to further enhance your bloated cock...");
+	output("\n\nAfter a few hours of rut and sex and debauchery, you stagger into the penultimate chamber, the blighted throne room of the succubus who cursed you with this insatiable libido. Your mind is still your own, you reassure yourself, and the moments of clarity you achieve after one of Jezebel’s monsters milks your cock dry are enough to help you power through the curse she laid upon you. True, they’re shorter and shorter. True, it feels far better to let her seductive minions further enhance your manhood and worship it, as they so eagerly say it deserves.");
+	output("\n\nIf you’re being honest with yourself, the sight of three freshly creampied goblins mashing their tits up against your twitching fuckrod and wringing out every last drop of spunk you have is...pleasant, to say the least. But that’s not why you’re here! You’re here to.");
+	output("\n\nTo, uh.");
+	output("\n\nTo save your beloved! Or something. Jezebel kidnapped someone, and you have to save her, and that’s why you let her curse your prick. More like <i>“bless,”</i> really. You think back fondly to the last round you had with one of the devil-worshiping enchantresses roaming the halls. The dumb bitch was so blinded by her own corrupt desires that she thought you were an <i>incubus</i>. Absurd. Still, that made it easier to bend her over and rape a child into her, so you’re hardly complaining.");
+	output("\n\nThe thought of how many fatherless children you’re going to leave behind in this miserable dungeon brings a smirk to your face, and you wonder if it wouldn’t be worth it to wander the halls a bit longer to make sure each of Jezebel’s slutty little temptresses have a full womb.");
+	output("\n\nThe thought sends your cock twitching, and even if sagging under its own ponderous weight, you can still enjoy the lightheadedness that an erection brings now. Fucking hell, but you can’t focus on your quest with your cock throbbing like this! Not to mention your balls churning with even more thick, virile cum. The door to the princess’ chambers is right ahead of you, behind Jezebel’s cursed throne...but you have to take care of this first.");
+	output("\n\nAnd it looks like Jezebel is prepared to lend a helping hand. The queen of succubi flutters up behind you, giggling as you reach out and clumsily grope at her, snarling that you’re going to bend her over and make her your bitch as soon as you catch her. She feigns sympathy and shakes her head with a pout. Floating just out of reach, Jezebel coaxes you forward with every bounce of her breasts and every sensuous sway of her hips...");
+	output("\n\n...until the strain proves too much to bear. With your bloated cock taking up so much blood, you’re remarkably easy to exhaust now. You have to rest for a moment. Have to sit down and catch your breath before you finally grab the dumb whore and impale her on your manhood. No other seat in sight, you stumble to Jezebel’s throne and collapse back into it, panting.");
+	processTime(30);
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",jezebelMindwashIV,cumNum);
+}
+
+public function jezebelMindwashIV(cumNum:Number):void
+{
+	clearOutput();
+	showName("JEZEBEL’S\nDUNGEON");
+	author("Carol J");
+	output("It’s comfortable. The sudden sensation of lips pressing kisses up against your cockhead, even moreso. You look down, only to find two succubi tenderly licking and suckling at the bulging tip of your penis, almost meek in their worship. And why wouldn’t they be? Your cock is magnificent, a monument unto itself, the kind of fuckpillar that has bitches cumming around it the instant you hilt yourself in them...assuming they can take your length. Still, it hardly matters if you can gape a monster’s cunt with your cock when they’re so eager to worship you with their mouths and breasts instead.");
+	output("\n\nYou lean back in the throne and let your eyes sink shut. Your lips curl up in a satisfied smile, and your two adherents earn a dollop of precum for their worship, which they lap up eagerly.");
+	output("\n\nYou hear someone giggle, and it’s enough to make you crack one eye open. When you see the source of the laughter, your manhood gives an involuntary twitch. Goblins. More of them, creeping into the throne room. Drawn by the scent of your musk, no doubt. Stupid little cock-obsessed whores are practically begging to be stuffed full of cock. Soon you shove the two succubi aside in favor of a quintet of busty, green-skinned sycophants, and they repay your favor by mashing their tits up against your cock, all of them, all at once, and cooing their praise up at you with wide, adoring eyes.");
+	output("\n\nLife is good, you decide, but...you can’t help but wonder if you’ve forgotten something.");
+	output("\n\nWhatever. You’ll remember when you cum. All you have to do is bust a fat, sloppy nut in one of these dumb, submissive whores, and you’ll have a clear head. You can stop whenever you want. You’re not weak like they are. After all, how could you be? You’re not the one on your knees. You’re the one in the throne, commanding your slaves to pleasure you. You’re the one who gets to cum whenever he fucking wants. You’re the one strong enough to overcome the curse Jezebel cast. It was designed to stop you, right? To trick you into giving up your quest or whatever. Joke’s on her, you finished it with flying colors! You got to her throne room and claimed your place as the king. You brought her forces to heel with nothing more than your magnificent prick and their own empty-headed urges.");
+	output("\n\nYou almost feel sorry for these stupid whores, utterly incapable of resisting the compulsion to fuck and cum.");
+	output("\n\nYour thoughts are hazy, but you’ve come to enjoy the dizziness that accompanies a goblin’s cunt around your prick. Or an enchantress’ tits wrapped around your shaft. Or a succubus’ lips suckling at your cockhead. The only problem is that split-second of stark ennui after you finish emptying your load into whatever hole you’ve decided to fuck. That little instant of confusion, as if there’s something to do besides rut and breed and cum.");
+	output("\n\nBut your enchantresses are quick to assure you that even that will fade in time. It’ll fade even faster if you let them further enhance your body and mind, and once you finish gulping down one of your goblin’s tinctures - you knew you had to try at least ONE when you heard it would make you grown a second cock - you tell them to do so.");
+	output("\n\nTrue love, you vaguely remember hearing, is rarer than gold and all the more precious for its scarcity. But who needs love? Especially when it means you’re shackled to the same woman for the rest of your life. Fuck love. You don’t need that. Not when you have a harem of women to worship you, to breed themselves on your manhood, to shower you in praise and ensure you don’t have to do anything but cum.");
+	output("\n\n...");
+	processTime(40);
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	cumNum += pc.cumQ();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",jezebelMindwashV,cumNum);
+}
+
+public function jezebelMindwashV(cumNum:Number):void
+{
+	clearOutput();
+	showName("JEZEBEL’S\nDUNGEON");
+	author("Carol J");
+	output("Every now and then, Jezebel flutters into your throne room, amused for some reason. But the uppity cunt won’t put out, so you just growl and wave her away. What good is a woman who won’t let herself get bred? Stupid bitch should just fuck off and let you rape more children into your goblins and succubi.");
+	output("\n\nThen again, one of your enchantresses had an interesting idea the other day. True, your slaves had bodies made to wring men dry, but...more of the same grew boring after a while. So why not send some of your troops to kidnap a princess or two? You’d practically bred an army already. Why not capture some human fuckmeat to rape an heir into?");
+	output("\n\nThe thought brings a smile to your lips. You like the sound of that.");
+	clearMenu();
+	addButton(0,"Next",CoCSceneEpilogue,cumNum);
+}
+
+//Shekka goes through the mindwash, by B!
+//Overview:
+//A short expack for Shekka and the Mindwash Visor, as requested by Fenoxo. There isn’t much more to explain than that: it’s just a handful of scenes where Shekka gets sexy memories implanted into her head and she acts them out. Ta-da!
+
+//[=Shekka=]
+// Continue here when the PC selects the [=Shekka=] button from the Mindwash Visor menu
+// (scene: First Time 1)
+public function useMindwashOnShekka():void
+{
+	clearOutput();
+	showShekka();
+	author("B!");
+	IncrementFlag("SHEKKA_MINDWASHED");
+	if(flags["SHEKKA_MINDWASHED"] == 1)
+	{
+		output("You look at the device before you, with the wires and the sensitive materials connected to it. ");
+		if(pc.characterClass != GLOBAL.CLASS_ENGINEER && pc.IQ() <= 65) output("You’re not totally sure how it works");
+		else output("It’s a pretty simple device, honestly");
+		output(", but you’re sure that if anyone could appreciate a device like this, it’d be Shekka. You use the ship’s intercom to call her to you.");
+		output("\n\nShekka is with you just a moment later. <i>“Yeah, [pc.name], what’s–”</i> she asks, then halts herself, as she eyes the device in your hands. It’s little more than a headset with a visor, which is connected to a socket in the wall.");
+		output("\n\n<i>“Is that what I think it is?”</i> she asks, pointing to it obliviously. You ask her you don’t know: what does she think it is? <i>“Well, I’ve only read about it in some theoretical engineering tabloids, but it looks like one of those memory abrogation devices. I’ve only ever seen a diagram or two, but... I kind of doubt this thing just plays some music.”</i>");
+		if(pc.IQ() <= 65 && pc.characterClass != GLOBAL.CLASS_ENGINEER) 
+		{
+			output("\n\nYou stutter. Uh, yes! You tell her that it’s exactly what she’s thinking, and that that would have been your first guess, as well. Great minds think alike!");
+			output("\n\nShekka giggles. <i>“It means that this thing rewrites memories. Or... rather, it ‘implants’ them, at least temporarily. It’s sort of like having a really, really vivid dream, but it’s someone</i> else’s <i>dream, and you’re living it out.”</i>");
+			output("\n\nYou collect yourself and answer more appropriately.");
+		}
+		else 
+		{
+			output("\n\nYou reply that that’s exactly correct: this device, you’re told, can rewrite memories, and place new ones in the wearer’s mind.");
+			output("\n\n<i>“Well, not</i> exactly,”</i> she answers. <i>“It doesn’t ‘rewrite’ them as it does... temporarily ‘overwrite’ them. Sort of like a really vivid, waking dream, but you’re living out someone</i> else’s <i>dream.");
+			output("\n\nYou hum to yourself as you consider your answer and her own.");
+		}
+		output(" Yes, as a matter of fact, that’s what this device does. You wanted to call Shekka here because you thought she would appreciate a piece of modern engineering like this one.");
+		output("\n\n<i>“Hell yeah I would,”</i> Shekka answers, eyeing the device from the plug to its visor. <i>“This is some pretty advanced tech; I couldn’t have <i>hoped</i> to have the funds to put one together before I met you! Like, do you have any idea what the process to extract memories, and then write them in a... I guess the word ‘format’ would be appropriate, in such a format that the brain could process it all?”</i>");
+		if(pc.IQ() <= 65 && pc.characterClass != GLOBAL.CLASS_ENGINEER) output("\n\nTo be honest, you hadn’t put a lot of thought into the workings of the machine and how it functions, or how or where it gets the data for its memories. You just know what the lady that sold it to you said.");
+		else output("\n\nWhile you haven’t cracked the device open or anything, you could probably reverse-engineer it with some time. It honestly doesn’t sound all that complicated to you.");
+
+		output("\n\n<i>“Have you used it yet?”</i> she asks, her eyes wide and sparkling with delight at the very concept of the device. ");
+		//yes:
+		if(flags["BADGER_MINDWASH"] != undefined) output("You reply that you have; you, uh, you enjoyed it.");
+		else output("You answer that you haven’t, actually; you had only gotten a hold of it recently.");
+		output(" <i>“Can I... can I try it? Man, if this thing is real, I’d love to experience it for myself!”</i>");
+
+		output("\n\nGiven how enthusiastic she is, you couldn’t possibly turn her down; you motion towards the chair and invite her to sit. She’s giddy as can be as she sits down, and you had her the device; the earpieces fit awkwardly around her massive, floppy ears, and the headpiece is a bit fragile underneath its own weight, but she’s excited to give the device ");
+		if(flags["BADGER_MINDWASH"] != undefined) output("a try.");
+		else output("its inaugural activation.");
+
+		output("\n\n<i>“Think of the applications!”</i> Shekka says excitedly as she adjusts and readjusts the headset, nervous to keep it steady on her head. She fidgets the visor slightly to ensure that its translucent screen covers all facets of her vision. <i>“Like, say, an artist, a painter, could upload their memories to this thing. A lifetime’s worth of artistry and mastery over their craft. Then, someone else could use it to learn everything that painter’s learned in the space of an afternoon. It could further the knowledge of our species, of</i> all <i>species, to unimaginable heights in the space of a generation!”</i>");
+		output("\n\nShekka continues to rattle off some of the visor’s applications when you tighten the band around her head and flip the switch. Sure, there are plenty of miraculous applications that this device could have – but, in this degenerate universe, it could also be used sexily. She’ll figure it out in a hurry.");
+		//[=Next=]
+		processTime(10);
+		// end scene (scene: First Time 1); go to (scene: First Time 2)
+		clearMenu();
+		addButton(0,"Next",shekkaFirstTimeMindwashII);
+	}
+	// Continue here if it’s not the first time
+	// (scene: Intro)
+	else
+	{
+		showShekka(true);
+		output("You use your ship’s intercom to call Shekka to you. In just another moment, your Raskvel engineer is with you.");
+		output("\n\n<i>“Hey, captain, what do you–”</i> she begins, then stutters, as she realizes where she is... and what’s in your hand. You smile coyly at her and ask if she happens to be in the mood to give the visor another go – you’re in a giving mood, and, well, you rather enjoyed the show last time. And, if memory serves, so did she.");
+		output("\n\nShekka grins wryly as she considers the offer. <i>“Well, I guess I wouldn’t want the invitation to go to waste,”</i> she says.");
+		output("\n\nShe turns and secures the door behind her, to give you both a bit of privacy. That done, she strips down, until she’s naked as could be; after her first outing with the device, she’s since learned to expect every time with it to be a little messy. ");
+		if(!shekka.hasCock()) output("Her pussy glistens and puffs only slightly: the idea of giving the visor another try has already got her a bit ready");
+		else output("Her huge horse dick flops limply with her every step, but its circumference bulges every other moment: the idea of using the visor once more already has her in the mood");
+		output(".");
+
+		output("\n\n<i>“So, do you use this thing at all, [pc.name]?”</i> she asks as she sits in the chair, wriggling her ass into the cushion to get herself nice and comfortable, <i>“or do you just get off on watching others use it?”</i>");
+
+		output("\n\n");
+		//Used it:
+		if(flags["BADGER_MINDWASH"] != undefined) output("Of course you’ve used it. You understand the risks just as well, but, you’re not about to let her, or anyone else, have all the fun to themselves. You paid for it, after all.");
+		else output("You avoid the question and instead ask Shekka if it bothers her that you watch. Of course, if it does, then she doesn’t have to use the device at all. She laughs, and, following your example, does not answer.");
+
+		output("\n\n<i>“Let’s see what else this thing’s got in store for me, then,”</i> she says giddily as you gently fit the device around her massive, floppy ears. When it’s good and snug against her head, you flip the switch and let it do its thing. You can hear sounds play from the headphones, and you see a myriad of lights and images from the visor, and in just a few more moments, Shekka is ‘gone.’");
+		processTime(10);
+		clearMenu();
+		addButton(0,"Next",shekkaRepeatMindwash);
+	}
+}
+
+// (scene: First Time 2)
+public function shekkaFirstTimeMindwashII():void
+{
+	clearOutput();
+	showShekka();
+	author("B!");
+	output("As soon as the device hums alive and you can see some lights begin to blink on the visor’s screen, Shekka freezes up and stops muttering about the device’s usefulness. <i>“Wait,”</i> she implores suddenly, <i>“this isn’t – I thought – wait! Wait...”</i>");
+	output("\n\nHer voice trails off after that, until she’s silent as could be while the machine does its work. Her pupils dilate; her jaw hangs slack; and her body goes somewhat limp in the chair. You can see her eyes move back and forth quickly, and you can hear a very faint sound from the headphones against her ears. It’s clearly having an effect on her, although you can hardly imagine what memory she’s witnessing right now.");
+	output("\n\nLike you had expected, though, given who you bought the machine from, you can see the effects the device is having on Shekka’s body. Her fingers fidget and her hands reflexively go from the chair’s armrests to her knees, then to her crotch; she doesn’t bother trying to unzip or remove her suit, and she plays with herself straight through the fabric.");
+	output("\n\n<i>“Elijah,”</i> Shekka whispers to herself, her tongue slipping from her lips to wet them with a long, thick lick, one swipe for each lip. <i>“I had waited so long for this, Elijah....”</i> Whichever memory she’s experiencing, it’s clearly from someone smitten with someone named Elijah.");
+	output("\n\n<i>“No,”</i> she whispers, a little louder. Shekka thrusts her chest out and her arms bend upward, to her sides, giving her invisible lover free, unrestricted access to her upper body. She leans to one side, thrusting out her right boob; her erect nipple pokes obscenely at the fabric of her suit, and her body rotates in a slow circle, following some unseen pattern instinctually. <i>“Start here... touch me here.”</i>");
+	output("\n\nYou stand there, admiring the sight of Shekka being so completely engrossed in the Mindwash Visor’s mechanics. Her body fidgets in small, excited bursts; she’s acting like a pure, blushing virgin, being taken for the first time by someone that knows how to press all her right buttons. <i>“N-No,”</i> Shekka stutters, her body rocking forward from her chest to her belly, <i>“there... I like it there. Touch me there.”</i>");
+	output("\n\nShekka has completely surrendered to the device, and she’s begging ‘Elijah’ to touch her. You could... you could take the role of ‘Elijah’ right here and now. Help Shekka act out her false-memory. She’s clearly in need of some ‘external stimulus.’ But, on the other hand, she isn’t herself right now, technically speaking....");
+
+	//[=Touch Her=][=Do Nothing=]
+	processTime(3);
+	clearMenu();
+	addButton(0,"Touch Her",shekkaMindwashFirstTime3,true);
+	addButton(1,"Do Nothing",shekkaMindwashFirstTime3,false);
+}
+// end scene (scene: First Time 2); regardless of the option chosen, go to (scene: First Time 3)
+
+// (scene: First Time 3)
+public function shekkaMindwashFirstTime3(touch:Boolean):void
+{
+	clearOutput();
+	showShekka();
+	author("B!");
+	if(touch)
+	{
+		output("Hell, it’s not like you and Shekka haven’t fucked already. She trusts you enough to subject herself to whatever this device is doing to her; you doubt she’d mind if you got a feel, especially when she’s asking for it – even if she isn’t totally herself. You ");
+		if(pc.hasKnees()) output("kneel");
+		else output("place yourself");
+		output(" next to the chair and do as she asks: your hand finds her right titty, and you give her a firm, yet gentle, cup, massaging her boob and palming at her pebbly nipple through her vest.\n\n");
+	}
+	output("Her fingers fidget, then grip tightly onto the chair’s armrests. Her breathing has increased in pure, sexual excitement, and she chews absently onto her bottom lip. Her legs grind together at the knees, ");
+	if(!shekka.hasCock()) output("and you can see a very distinct damp spot spread from between them, at her crotch. The scent of her feminine arousal begins to permeate the air");
+	else output("and her horsecock bloats obscenely at the crotch of her pants, straining the fabric there. A damp spot spreads from the bloating, leaking head as the scent of her pre begins to permeate the air");
+	output(", and she visibly restrains herself from humping against her imaginary (to you) lover.");
+
+	output("\n\n<i>“If only I had known you felt the same way,”</i> she whimpers as her chest levels out, ");
+	if(touch) output("and you follow along with her, bringing your other hand to her other boob and giving it as much attention as its sister");
+	else output("as you imagine ‘Elijah’ moving to her left tit");
+	output(". She moans in horny delight, and you watch her shiver in her seat; her legs kick spontaneously, trying to find a comfortable position to be in during her horny state. Her hips shuffle back and forth, and Shekka gasps as her ass thrusts forward a bit, stimulated by something.");
+
+	output("\n\n<i>“Kiss me,”</i> she begs, and, almost without any preamble, she gags on nothing. Her lips move in sensual, repeated open-and-closed motions, her tongue flailing out and whipping up and down and back and forth in the air, mingling with her lover’s. ");
+	if(touch) output("You’re already in pretty deep, and, you can’t deny, you’re enjoying playing the role as Elijah – you lean in, and you mesh your [pc.lips] to hers, sucking on her pretty lips and tongue as they thrash against you excitedly.");
+	else output("Drool runs unabashedly down her chin, dripping onto the material of her suit, and you can see her face turn slightly blue as she struggles to hold her breath so she can keep kissing her lover.");
+	//aphro venom!
+	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED) && shekkaSpitAddicted()) shekkaSpitAddiction(4);
+
+	output("\n\nShekka’s head whips back suddenly, and she gasps, taking in a deep breath of air and her tongue slips back into her mouth. <i>“I can’t take this anymore,”</i> she says, and her body jerks backward, into the chair. Her legs spread wide, as wide as she comfortably can, displaying her arousal unabashedly to you: ");
+	if(!shekka.hasCock()) output("her cunt has bloated with her arousal, her puffy lips pushing against, and clenching onto, the fabric of her suit, giving her a <i>massive</i> camel-toe; her juices seep into the fabric’s linings so deeply that occasional beads soak through and drip onto the floor in front of her");
+	else output("her massive cock pulses through the stretched fabric with her every heartbeat, and it pushes higher and higher as the flesh bloats with her arousal. Her balls inflate with ready seed, themselves pushing against her pants and framing themselves almost perfectly. Through Shekka’s rabid, horny breathing, you can hear the occasional rip of a fabric stretched too thin: if she gets any hornier, her cock is going to burst straight through her pants");
+	output(". <i>“Please... just... just...!”</i>");
+
+	output("\n\n");
+	if(touch)
+	{
+		output("The poor girl is in some serious heat, and she needs something, <i>anything,</i> to give her a bit of release. You’d be a terrible friend to just let her sit there, so you move the hand at her left tit down to her crotch, and ");
+		if(!shekka.hasCock()) output("give her a cup, followed by a shallow thrust, your fingers pressing into her through the wet material of her suit");
+		else output("gently grip her cresting cock, stroking at it, and you feel the tense fabric of her suit strain even harder to maintain her");
+		output(". ");
+	}
+	output("Suddenly, her hips thrust upwards, and she gasps in pure, sexual delight. Shekka grunts and hisses as her body struggles to maintain its balance on the chair while she fucks the air straight through her pants. Her knuckles turn white from gripping onto the chair too tightly, and ");
+	if(!shekka.hasCock()) output("her girlish lube flings from her crotch and arcs through the air on a particularly hasty thrust.");
+	else output("her dick lurches tightly against her pants with every push, her pre dribbling from her leaking head at an alarming rate.");
+
+	output("\n\n<i>“Yes, like that, Elijah!”</i> she says loudly – she’s trying to resist the urge to scream in delight as Elijah");
+	if(touch) output(" likely does the same thing you’re doing to her right now.");
+	else output("... does whatever he’s doing to her. You can’t tell if Elijah is supposed to be fucking her, or if he’s supposed to be going down on her. Either way, whatever’s going on in front of you look like a hell of a good time.");
+
+	output("\n\n<i>“I...”</i> she struggles to say as her hips pump and her juices leak, staining down the inside of her thighs, <i>“I... I love you, Elijah! Gods, this is everything I ever wanted! I, eeeughhh...”</i>");
+
+	output("\n\nApparently, Shekka, or whoever she thinks she is, got a little too excited in the heat of the moment: her body stiffens and goes still, and she starts breathing hard and heavy through her nose as her orgasm overtakes her in a hurry. Her knees buckle and");
+	if(!shekka.hasCock())
+	{
+		output(" you can almost hear her pussy wetly gurgle and squeeze at ");
+		if(touch) output("your fingers");
+		else output("nothing");
+		output("; long, connected streams of her girly-jizz spills from her crotch ");
+		if(touch) output("and across your hand ");
+		output("in waves that are interrupted by the fabric of her pants, and they splash to the floor in broken flows. They streak down the inside of her thighs, pooling all the way down to her ankles,");
+	}
+	else 
+	{
+		output(", with some rapt awe, you watch as the fabric of Shekka’s pants give way: with a loud, harsh tear, her massive horsecock bursts through her pants, standing throbbing and erect as could possibly be, followed by a torrent, then another, of her Raskvel cum arcing from her bouncing balls and across the room. Her eyes close, part in bliss and part in concentration, as her hips pump impishly into nothing, her every thrust complimented by another thick gout of her cum decorating the floor some distance from her chair.");
+		if(touch) output(" You stroke her through it all: your hand rubs along her thick, steely length again and again, coaxing more of her cum from her body.");
+		output(" Her meat is beet-red and her every vein pulses with blood");
+	}
+	output(" as she experiences what must be the orgasm of a goddamn lifetime.");
+
+	output("\n\nShekka slumps into her chair, dissolving into it languidly, her tongue lolling from her mouth as she pants in exhaustion. Her head rolls to one side, but her eyes are focused on something in front of her; after she takes a moment to collect herself, her mouth resumes its previous licking-and-smacking motions, restarting her kiss with Elijah");
+	if(touch) output(". You opt not to join in this time. In fact, convinced that the show is about to end, you disengage from Shekka and stand back up");
+	output(".");
+
+	output("\n\n<i>“Oh, Elijah,”</i> she whimpers. Her left hand rubs and massages at something in front of her, before it dips a little lower and grips at nothing. Then, mapping out Elijah’s waist, she brings her hand around his waist. <i>“That was incredible. It was everything I had hoped it would be. You’re so good to me....”</i>");
+
+	output("\n\nThe fingers of her hand take a very unsubtle tube shape, and she starts jerking her hand by the wrist back and forth: she’s giving Elijah one slow, but eager, handjob. <i>“But I came before you, baby... I can’t just leave a stud like you hanging, can I?”</i> Shekka licks her lips, drool dripping from her lips and onto the material covering her breasts once more. <i>“These balls must be full to the brim after that. Why don’t you lemme–”</i>");
+
+	processTime(35);
+	pc.lust(50);
+	clearMenu();
+	addButton(0,"Next",shekkaFirstTimeMindwashIII);
+	// end scene (scene: First Time 3); increase Lust by 50; go to (scene: First Time Ending)
+}
+public function shekkaFirstTimeMindwashIII():void
+{
+	clearOutput();
+	showShekka();
+	author("B!");
+	output("The device shuts off suddenly. The light whirring from around its headpiece silences, and the shimmering lights from the visor go dark. Parts of the device, namely, the silver box that looks like a hard drive, are still lit, so the device is still receiving power – the memory must have ended, or something.");
+	output("\n\n<i>“–get on my kneeaaash annnnd, uhhhh, lemme suck onnnnn sommmaaaa–”</i> Shekka drones as her ‘implanted memories’ get cut off. She acts out the ending in her imagination: her mind tries to piece together how that memory <i>should</i> have ended, but without the device, she’s simply Shekka, and not the woman getting railed by a guy named Elijah.");
+	output("\n\nGingerly, you remove the device from her head, carefully working the wires from around her massive, floppy ears. Her eyes are open, but glassy and unfocused; it takes her some time before she remembers to blink, and, after a few moments, she pulls herself together; she slowly pulls herself into a more proper sitting position, then she pulls her lolling tongue back into her mouth.");
+	output("\n\nShe groans and rubs at her eyes as she collects herself. <i>“[pc.name]?”</i> she says dreamily as she tries to get a clearer vision of you and the room around her. <i>“Did... ugh. Where am I?”</i>");
+	output("\n\nYou tell her that she is safe aboard your ship, and, if she doesn’t remember, she had just sat through a session with a device that implants memories. You’re careful not to call it by its name – Shekka’s in such a dizzy state that you don’t want to imply that you might have tried to brainwash her or something.");
+	output("\n\nAs soon as you describe what happened, though, she bolts upright. <i>“Holy shit, yeah! It worked! Everything worked! It was all so real!”</i>");
+	output("\n\nYou say nothing; she’ll figure out just how ‘real’ it was in a moment.");
+	output("\n\n<i>“I... I can only remember bits and pieces of it. It really was like a dream, but it was so vivid! It looked so real, it felt so real! It–”</i> she says as she stands, and the wet");
+	if(shekka.hasCock()) output(", breezy");
+	output(" sensation between her legs hits her very suddenly. She looks down at her body, and her eyes widen and her cheeks flush in realization. <i>“It, uh... it felt pretty real, alright.”</i>");
+
+	output("\n\nYou snicker well-meaningly, and ask Shekka if she wants to go into any more detail. She doesn’t answer right away; she scans the room for the mess that she made, ");
+	if(!pc.hasCock()) output("and notes the rather substantial puddle at the foot of the chair. Her juices are still dripping from her suit and down her legs, adding to it");
+	else output("and gasps at the long, white streaks of thick Raskvel cum she had painted down the floor of the room. Her hands gently fondle at her tired-and-sensitive cock, and she flaps at the torn material of her suit, surprised that it had given way");
+	output(". <i>“Holy hell, I must have given you quite the show, huh, [pc.name]?”</i>");
+
+	output("\n\nYou answer that it was... entertaining, to put it one way. You ask your question again, if she would like to go into detail about what she had seen. <i>“Yeah, I... I was a human woman. Twenty-something years old; the memory is already leaving me. Me and this – yowza, [pc.name], this absolute</i> hunk <i>of a guy named Elijah was there, and this lady that I was, she was a virgin, and she had been after Elijah since they had met in high school.”</i>");
+	output("\n\nShe blushes deeper, but in a more shy, goofy way than in an embarrassed way. Her thighs rub together sensually as she recalls it, ");
+	if(!shekka.hasCock()) output("and her pussy already threatens to add a bit more to the mess");
+	else output("and her cock throbs and bobs under its own flaccid weight, stirring and rousing at the memory");
+	output(". <i>“Gods, the way my heart was going pitter-patter at the idea of finally getting a piece of him...! And he was so gentle, but he was insistent; he knew just how to touch me and he was an</i> amazing <i>kisser!”</i>");
+	output("\n\nYou ask Shekka if Elijah really was all that, or if she only <i>thinks</i> he was all that because the memories she experienced remembered him being all that.");
+	output("\n\n<i>“See,</i> now <i>we’re getting into the ethical stuff when it comes to this device,”</i> Shekka says, indirectly answering your question. <i>“Truth be told, if I really think about it, I don’t think he was all that attractive – or, at least, he wasn’t my type. But you’re right: I thought he was an absolute superstar. How much of that was</i> me <i>saying that, and how much of it was the woman I</i> was <i>saying that?”</i>");
+	output("\n\nShekka adjusts her pants to try and get more comfortable");
+	if(shekka.hasCock()) output(" (to little avail – her cock is still flopping about with her every step)");
+	output(". <i>“That’s what makes this thing dangerous, if you don’t use it in moderation. It’s impossible to know how much is</i> too <i>much, before you forget who you are, and your memories become someone else’s. But then, it also has a ton of benefits to it. Even if it wasn’t my memory... I hadn’t cum that hard in years.");
+	if(shekka.hasCock()) output("”</i> She looks down at her torn pants and gives her dick a waggle with her hips. <i>“Evidently.");
+	output("”</i>");
+	output("\n\nYou ask her if <i>she</i> thinks it’s worth the risk.");
+	output("\n\nShekka hums as she eyes the device in your hand. It’s not an easy question to answer, and she takes her time regarding it, and you. <i>“I,”</i> she drones for a moment. <i>“I think I wouldn’t mind a few more turns in that thing. I think I could take it.”</i>");
+	output("\n\nAt that, she makes her way to the door, presumably so she can head to her quarters and get a change of pants. <i>“Although, next time, I’ll be sure to dress for the occasion,”</i> she laughs.");
+
+	//[=Next=]
+	// end scene (scene: First Time Ending); go back to the ship’s main menu
+	processTime(20);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+
+// end scene (scene: Intro); randomly choose one of the following scenes to play
+// (scene: Random 1)
+public function shekkaRepeatMindwash():void
+{
+	clearOutput();
+	showShekka(true);
+	author("B!");
+	if(0 == 0)
+	{
+		output("Shekka’s posture corrects itself: she sits upright, her back straight against the chair. She lifts her left leg and bends it over the right, crossing them. Her fingers rap against the chair’s armrest impatiently, and she rests her cheek against her other hand, balled into a fist. She immediately exudes a confident, domineering air, as whoever’s memories are being implanted into her begin to act themselves out.");
+		output("\n\n <i>“You’re late,”</i> she says lowly, clearly displeased with someone. Her finger rap another wave against the armrest. <i>“I thought I had told you to be here at seventeen-hundred, on the dot. I won’t tolerate disobedience, rookie.”</i>");
+		output("\n\nIt surprises you to hear Shekka say these words, and with this tone, but, of course, that’s just another feature of the device. You can be anyone, doing anything, at any time.");
+		output("\n\n<i>“This is the third time this week,”</i> she continues, her eyes narrowing as she focuses on something directly in front of her. <i>“I’m starting to think you like it when I put you through the paces. Unless you’re just an idiot?”</i>");
+		output("\n\nSilence, for a moment. <i>“There’s no excuse for this, rookie. It’s one or the other. Either you’re dumb, or you like it. Now, which is it?”</i> Another beat of silence – followed by Shekka exhaling through her nose as she grins in satisfaction. <i>“That’s what I figured. Assume the position and show me how much you like it, you little shit-disturber.”</i>");
+		output("\n\nShekka uncrosses her legs, giving you an unrestricted view of her ");
+		if(!shekka.hasCock()) output("dripping wet snatch");
+		else output("her half-chub of a horsecock");
+		output(", then crosses them again, the right leg on top. She extends it, pointing her foot directly forward, and she splays her toes, their sharpened nails pointing straight towards you. <i>“You know the drill. Work your way up. Ask me to forgive you</i> properly<i>.”</i>");
+		output("\n\nWhoever Shekka is commanding, it’s clear that she wants them to redeem themselves for their rule-breaking by kissing her feet, followed by ‘working their way up,’ whatever that means (and you have a pretty good idea what it does). You stand there as you consider your own options: while this isn’t Shekka you’re with, technically speaking, you doubt she’d mind if you helped her act out whatever memory she’s replaying. Besides, it could be fun....");
+		//[=Touch Her=][=Do Nothing=]
+		// end scene (scene: Random 1); regardless of the option chosen, go to (scene: Random 1 Cont.)
+		clearMenu();
+		addButton(0,"Touch Her",shekkaRepeatMindwashVarI,true);
+		addButton(1,"Do Nothing",shekkaRepeatMindwashVarI,false)
+	}
+}
+
+// (scene: Random 1 Cont.)
+public function shekkaRepeatMindwashVarI(touch:Boolean):void
+{
+	clearOutput();
+	showShekka(true);
+	author("B!");
+	if(touch) output("You gotta admit, you kind of like this tone that Shekka has. It’s a different experience with her, when the normally hard-working genius of a Raskvel makes some sexy demands of you. It sends a shiver up your spine when you kneel down in front of her and nestle yourself in between her legs so that you can get to work.\n\n");
+	output("Shekka relaxes in her chair and slides forward slightly, ruining her otherwise perfect posture. Her eyes droop in a satisfied half-lidded stupor, and she realigns her fingers so that she could idly chew on the nail of her pinky as she watches ");
+	if(!touch) output("her invisible subordinate");
+	else output("you");
+	output(" service her. She hums once, long and low, almost like a single, elongated laugh.");
+
+	output("\n\n");
+	if(touch) output("You get to work, keeping one hand underneath her ankle to keep her steady, as you reverently kiss and lick at the flat of her foot. ");
+	output("Her toes splay and they each move individually as you ");
+	if(!touch) output("imagine her subordinate ");
+	output("suck on them individually. She stretches her leg straight out, pointing her toes, and spreads them slightly, giving ");
+	if(!touch) output("her ghostly rookie");
+	else output("you");
+	output(" easier access to the rest of her leg.");
+
+	output("\n\n<i>“You’re very lucky to be in my squad, rookie,”</i> she sighs, her eyes laser-focused ");
+	//No touch:
+	if(!touch) output("on a spot just in front of her");
+	else output("you and your performance – even if she’s more likely seeing straight through you");
+	output(". <i>“Any other sergeant would have you do laps with weights, or would impose sanctions on your rations or something. And all</i> you <i>have to do to make it up to me is kiss my legs and ");
+	if(!shekka.hasVagina()) output("eat my box");
+	else output("lick my balls");
+	output(" a little bit.”</i>");
+
+	output("\n\nYou idly wonder if Shekka isn’t actually acting out some sort of role-play within the memory. Having an uncooperative and undisciplined rookie perform oral sex hardly seems like the most effective correctional exercise. No wonder this rookie kept slacking off.");
+
+	output("\n\nShekka laughs in disdain at something her rookie has said or done. <i>“Enough with the shit, rookie. If you were really going to make some noise about how I manage my squad, you’d have done it by now.”</i> Her hand reaches forward and ");
+	if(!touch) output("openly palms at the air, the sharp claws on her fingers scratching harshly at something");
+	else output("clamps onto the back of your head, her sharp nails etching into your [pc.skinFurScales] a little roughly");
+	output(". <i>“There are some rules that don’t need to be said. And one of them is to never front, especially to your superiors. Always be ready to cash checks that your mouth writes.”</i>");
+
+	output("\n\nWith a harsh pull, Shekka thrusts ");
+	if(!touch) output("her palm");
+	else output("you");
+	output(" into her crotch. She has a toothy grin plastered on her face as she grinds her ");
+	if(!shekka.hasCock()) 
+	{
+		output("wet, gushing snatch against ");
+		if(!touch) output("where her rookie’s face might be");
+		else output("your face, meshing your [pc.nose] into her button and forcing you to inhale her aroma directly");
+	}
+	else 
+	{
+		output("erect, throbbing, sweaty horse cock ");
+		//No touch:
+		if(!touch) output("against her rookie’s face, her massive equine balls bouncing off their chin");
+		else output("into your features: her half-chub-and-rising horsecock grinds against your forehead while your nose and lips are pressed into the taut, leathery sack of her balls");
+	}
+	output(". <i>“And in this case, I think it’s about time you paid the bills, rookie. Get in there nice and deep. And tell me how much you enjoy being my underling.”</i>");
+
+	if(!touch) 
+	{
+		output("\n\nIt’s a hot sight, watching Shekka manhandle someone, even if you can’t see them, to ");
+		if(!shekka.hasCock()) output("eating her out – and somewhat sloppily, too, given how much of a mess she’s making");
+		else output("sucking her off – if that’s what they’re doing at all. Shekka might be perfectly okay with just frotting her thick cock against their face");
+		output(". She pulls both her legs up, planting her feet on the edge of the chair, and she spreads her knees, giving her rookie completely unrestricted access to her crotch.");
+	}
+	else
+	{
+		output("\n\nYou have to admit, it’s kind of hot to see Shekka take on such a different, domineering role. You love Shekka, of course, but hearing her take such an authorizing tone and feeling her be so insistent in pressing you against her genitals is a different trip all together. You can help but submerse yourself in the role of her rookie and eagerly ");
+		if(!shekka.hasCock()) output("service her dripping gash, driving your [pc.tongue] into her body to lap at all the delicious juices she’s dripping in her arousal");
+		else output("extend your [pc.tongue] to draw long, wanton licks at her heavy, heaving testicles; you bury your nose into her wrinkly sack as you worship her nuts, feeling their heat against your mouth and her cock rise to full erect stiffness above you");
+		output(".");
+	}
+	output("\n\n<i>“Would you rather do some push ups, or would you rather ");
+	if(!shekka.hasCock()) output("eat me out");
+	else output("kiss my dick");
+	output("?”</i> she asks. Her breasts heave in excitement as ");
+	if(!touch) output("her rookie");
+	else output("you");
+	output(" goes to work on her, her wide grin remaining the whole time as she revels in the power-play between her and ");
+	if(!touch) output("whoever’s going down on her");
+	else output("you, playing as the role of her subordinate");
+	output(". <i>“Would you rather scrub the halls with a toothbrush, or would you rather be on your knees, between my legs, ");
+	if(!shekka.hasCock()) output("kissing my clit");
+	else output("licking my balls");
+	output("?”</i>");
+
+	output("\n\n");
+	if(touch) output("You don’t answer, but given the expression on her face, she must be getting one from the rookie. ");
+	output("Whatever answers she’s hearing, they’re all the correct ones. She squirms in her seat, and you can ");
+	if(!touch) output("see");
+	else output("feel");
+	output(" her ");
+	if(!shekka.hasCock()) 
+	{
+		output("pussy drip with arousal, flinching automatically as ");
+		if(!touch) output("some phantom appendage");
+		else output("your [pc.tongue]");
+		output(" pierces into it, giving it the fucking it deserves. Her vulva is bloated with blood and her clit stands painfully erect, and every now and then, her thighs clench in pleasure, presumably from ");
+		if(!touch) output("her rookie");
+		else output("you");
+		output(" hitting some particularly sensitive spot.");
+	}
+	else output("horse cock stand tall, bobbing back and forth from its own weight but never toppling over itself. Beads of pearly pre slide tantalizingly down the broad-side of her cum-tube, and her flare balloons in pleasure every now and then, which is succeeded by another audible splurt of more of her juices. Her balls clench and pull against her body in time with her emissions, ready to start one hell of a fountain.");
+
+	output("\n\n<i>“You and me, I think we’ll make it pretty far,”</i> she muses, her expression unchanging but her tone unsteady. <i>“Imagine, me as a Colonel and you as my Major. We’ll have entire platoons answer to us both, and none of them will ever realize that you made it as far as you did because you’re my precious little ");
+	if(!shekka.hasCock()) output("carpet muncher");
+	else output("dick kisser");
+	output(". I mean, let’s face it, you’re not going to get there based on your conduct or your merits.”</i>");
+
+	output("\n\nShe flinches suddenly. <i>“Oh, don’t fight the truth, rookie, you’re face-deep in my ");
+	if(!shekka.hasCock()) output("muff");
+	else output("sack");
+	output(" right now. I could give you a task as simple as getting me a coffee and you’d fuck it up so you could personally service me some more.”</i>");
+	if(touch) output(" Hell... honestly, that doesn’t sound so bad to you. Maybe her rookie had the right idea after all.");
+
+	output("\n\nHer other hand comes to rest ");
+	if(!touch) output("at where her rookie’s head must be, and she holds his invisible skull steady");
+	else output("on your head, on top of her other hand, and she holds your skull steady");
+	output(" as she thrusts her hips forward, <i>really</i> meshing her crotch into ");
+	if(!touch) output("their");
+	else output("your");
+	output(" face. <i>“Speaking of which, our time is about at an end this time, rookie,”</i> she says, a high lilt in her voice. <i>“Let’s see how much backtalk you can give me after this one.”</i>");
+
+	output("\n\nShekka is finally done with the talking, and instead, she sits there, roughly humping her hips forward again and again, crudely forcing ");
+	if(!touch) output("her rookie");
+	else output("you");
+	output(" to take the brunt of her sexual release. She’s as close as she had implied, and with just a few more humps forward, she clenches her body ");
+	if(!shekka.hasCock()) 
+	{
+		output("and her pussy squirts her Raskvel ladyjizz in several");
+		if(!touch) output(", sharp arcs through the air");
+		else output(" wet bursts straight into your gullet");
+		output(". She hisses and bites into her lower lip through her toothy smile as you get a personal ");
+		if(!touch) output("look");
+		else output("taste and feel");
+		output(" at how female Raskvel anatomy behaves during an orgasm: her pussy visibly ripples, starting from the outside and working deeper, milking the ");
+		if(!touch) output("phantom ");
+		output("tongue inside it. Her cum ");
+		if(!touch) output("splashes onto the floor and pools at the feet of the chair, soaking into the metal floorboards and staining them with her scent");
+		else output("Touch:pools into your mouth, coating your tongue and your cheeks with her tang, forcing you to swallow it down to keep up. You’ll be tasting her for hours after this");
+	}
+	else
+	{
+		output("and her cock bloats, from the base to her crown, in one very visible wave; her Raskvel cum shoots from her like it were a cannon, squirting from the urethra in the middle of her horse-like flare and arcing so high and so far that it reaches all the way to the opposite wall");
+		if(!touch) output(". Most of the cum splashes onto the floors and the wall of the room, but when the arcs recede slightly, you feel it pool and drip and flow down your back as you service her");
+		output(". Her massive nuts bounce and jostle under the strain and effort of keeping up with her body’s demands; when her first load begins to subside, she realigns her body a bit to force ");
+		if(!touch) output("her rookie");
+		else output("you");
+		output(" into a new position, and each hefty nut clenches against her, starting it all over again");
+		output(". Her fingers crook and scratch some more, and you wonder if whoever this drill sergeant is isn’t also into masochism: nails that sharp ");
+		if(!touch) output("definitely would have drawn");
+		else output("are about to draw");
+		output(" blood.");
+	}
+	output("\n\nIt takes Shekka several heated moments to calm down from such a hot and heavy romp. Her orgasm takes a while to slow, and then stop, and she sits in her chair with a giddy childlike smile on her face the whole while as she ");
+	if(!shekka.hasCock())
+	{
+		output("paints ");
+		if(!touch) output("her rookie’s");
+		else output("your");
+		output(" face with her cum");
+	}
+	else 
+	{
+		output("imprints ");
+		if(!touch) output("her rookie’s");
+		else output("your");
+		output(" features into her sack");
+	}
+	output(". When she finishes, and her orgasm finally winds down, she sighs and pulls herself back into her chair; she lets her feet down until they’re flat on the floor, and she resets her posture back to its perfect straightness");
+	if(touch) 
+	{
+		output(". You lean forward, following her body momentarily, your mouth still tight against her ");
+		if(!shekka.hasCock()) output("wet, beady pussy");
+		else output("huge, heavy balls");
+		output(" until her thighs begin to close around you. Reluctantly, you pull away");
+	}
+	output(".");
+	
+	output("\n\nShekka clears her throat and goes through the motions of adjusting her clothing – she’s probably wearing a uniform in the memory, if you had to guess. <i>“That’ll be all for now,”</i> she says with a stern, proper authority, as if whatever had just happened didn’t transpire at all. <i>“Don’t be late for your assignment tomorrow, rookie. I expect you in my office at thirteen-hundred.”</i>");
+	output("\n\nShe grins deviously as the lights on her visor begin to flicker.");
+
+	processTime(30);
+	pc.lust(50);
+	if(touch)
+	{
+		if(!shekka.hasCock()) pc.girlCumInMouth(shekka);
+		if(shekka.hasCock()) pc.applyCumSoaked();
+	}
+	//[=Next=]
+	clearMenu();
+	addButton(0,"Next",shekkaRepeatMindwashVarIOutro);
+}
+
+public function shekkaRepeatMindwashVarIOutro():void
+{
+	clearOutput();
+	showShekka(true);
+	author("B!");
+	// (scene: Ending)
+	output("The memory draws to a close, and the visor shuts itself off slowly: the lights fade, and the few sounds you hear whir to silence over time. Shekka’s reaction isn’t immediate: she maintains her pose, and she tries to act out how her mind reasons that the memory <i>should</i> end, until her senses return to her, and you find yourself in the room with the one and only Shekka once more.");
+	output("\n\n<i>“Ugh,”</i> she winces as she slips the visor off her head, rubbing at her eyes. <i>“[pc.name]?”</i> she asks drearily as she scans the room. She spots the mess she had made, and her expression changes as her blurry mind pieces together the clues of where she is and what she must have been doing.");
+	output("\n\nShe laughs well-meaningly. <i>“How, uh, how was it this time? What did I do?”</i>");
+	output("\n\nYou walk her through what she had done, and she corroborates your explanation with the fading memories still rattling in her head. You ask her some simple rudimentary questions – what is her name, where she is, and what the date is, among others – and she answers each of them correctly, satisfying you that she’s still her and that she hasn’t been brainwashed, or ‘overwritten,’ by whatever memory the visor had her act out.");
+	output("\n\n<i>“I wouldn’t mind doing it again,”</i> Shekka says happily, pulling herself to her feet and reaching for her clothing. <i>“It’s always a great time in that thing; some of the memories in that thing are... well. I’d never act them out myself, that’s for sure!”</i>");
+	output("\n\nYou tell her that she’s welcome to use the visor as much as she likes, as long as she’s comfortable with the risks, of course. With that, Shekka dresses herself, and shows herself out.");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }

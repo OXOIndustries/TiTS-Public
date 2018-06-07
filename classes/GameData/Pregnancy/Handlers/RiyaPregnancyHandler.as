@@ -75,7 +75,12 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 120)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("Even if you didn’t already know the truth, at this point there’d be no other explanation for your current state besides pregnancy. Your tummy has swollen out noticeably, harder and harder to conceal as the weeks go on.", "passive");
+						var sTime:String = "weeks";
+						var nTime:Number = (20160/kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti);
+						if(nTime < 20160) sTime = "days";
+						if(nTime < 2880) sTime = "hours";
+						if(nTime < 120) sTime = "minutes";
+						AddLogEvent("Even if you didn’t already know the truth, at this point there’d be no other explanation for your current state besides pregnancy. Your tummy has swollen out noticeably, harder and harder to conceal as the " + sTime + " go on.", "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 1, true);
 					}, true);
 				}

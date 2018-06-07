@@ -131,7 +131,13 @@ package classes.GameData.Pregnancy.Handlers
 				else if(i == 260)
 				{
 					addStageProgression(_basePregnancyIncubationTime - (i * 24 * 60), function(pregSlot:int):void {
-						AddLogEvent("You really can’t be far off giving birth now - a week, at most. Your [pc.vagina] is permanently soft and slightly dilated now, and the kicks inside your distended stomach grow more prominent by the day." + (!kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) ? " The instinct to find somewhere safe to have your child is growing very difficult to ignore." : ""), "passive");
+						var sTime:String = "a week";
+						var sTime2:String = "day";
+						var nTime:Number = Math.floor(10080/kGAMECLASS.pc.pregnancyData[pregSlot].pregnancyIncubationMulti);
+						if(nTime <= 1440) { sTime = "a day"; sTime2 = "hour"; }
+						if(nTime <= 60) { sTime = "an hour"; sTime2 = "minute"; }
+						if(nTime <= 0) { sTime = "a minute"; sTime2 = "second"; }
+						AddLogEvent("You really can’t be far off giving birth now - " + sTime + ", at most. Your [pc.vagina " + pregSlot + "] is permanently soft and slightly dilated now, and the kicks inside your distended stomach grow more prominent by the " + sTime2 + "." + (!kGAMECLASS.rooms[kGAMECLASS.currentLocation].hasFlag(GLOBAL.PUBLIC) ? " The instinct to find somewhere safe to have your child is growing very difficult to ignore." : ""), "passive");
 						kGAMECLASS.pc.addPregnancyBellyMod(pregSlot, 2, true);
 						if (kGAMECLASS.pc.milkFullness < 20) kGAMECLASS.pc.milkFullness += 25;
 						if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;

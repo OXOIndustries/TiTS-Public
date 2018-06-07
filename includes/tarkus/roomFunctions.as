@@ -159,11 +159,14 @@ public function synthSheathsUsed():int
 	
 	return synthUsed;
 }
-
-public function synthSheathAvailable(used:Boolean = false):Boolean
+public function synthSheathsLost():int
 {
-	if(flags["SYNTHSHEATH_TWO_FOUND"] == undefined) flags["SYNTHSHEATH_TWO_FOUND"] = 0;
-	return (flags["SYNTHSHEATH_TWO_FOUND"] + 1 < synthSheathMax());
+	return (flags["SYNTHSHEATH_LOST"] != undefined ? flags["SYNTHSHEATH_LOST"] : 0);
+}
+
+public function synthSheathAvailable(offset:int = 0):Boolean
+{
+	return ((synthSheathsOwned() + synthSheathsUsed() + synthSheathsLost() + offset) < synthSheathMax());
 }
 
 public function bonusTubeSteakRepeat():Boolean

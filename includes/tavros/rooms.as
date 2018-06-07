@@ -13,7 +13,7 @@ public function initTavrosRooms():void
 
 	rooms["HOTEL ROOM"] = new RoomClass(this);
 	rooms["HOTEL ROOM"].roomName = "HOTEL\nROOM";
-	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon’s Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father’s fortune. Luckily, the galaxy is vast. Your cousin won’t be claiming anything for at least a few months if the scale of your father’s challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only payed for one night.</b>";
+	rooms["HOTEL ROOM"].description = "This small, station-bound room is attached to Anon’s Bar and Board. The quarters are cramped, there are no windows, and worst of all, your cousin has a headstart on locking down your deceased father’s fortune. Luckily, the galaxy is vast. Your cousin won’t be claiming anything for at least a few months if the scale of your father’s challenge is anything like you expect. The door to the east is unlocked, leading back into the hallway above the bar. <b>Once you leave, it will seal shut behind you, since you only paid for one night.</b>";
 	rooms["HOTEL ROOM"].planet = "TAVROS STATION";
 	rooms["HOTEL ROOM"].system = "SYSTEM: KALAS";
 	rooms["HOTEL ROOM"].eastExit = "ANON'S BOARD HALL";
@@ -264,7 +264,7 @@ public function initTavrosRooms():void
 	rooms["110"].addFlag(GLOBAL.INDOOR);
 	rooms["110"].addFlag(GLOBAL.PUBLIC);
 	rooms["110"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["110"].runOnEnter = undefined;
+	rooms["110"].runOnEnter = akaneCeleritasVeritasTheLegitimateBusinessBonus;
 
 	//9004
 	rooms["9004"] = new RoomClass(this);
@@ -407,7 +407,7 @@ public function initTavrosRooms():void
 	rooms["9013"].addFlag(GLOBAL.INDOOR);
 	rooms["9013"].addFlag(GLOBAL.PUBLIC);
 	rooms["9013"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9013"].runOnEnter = undefined;
+	rooms["9013"].runOnEnter = shukuchiFoxBonus;
 
 	//9014
 	rooms["9014"] = new RoomClass(this);
@@ -451,7 +451,7 @@ public function initTavrosRooms():void
 	rooms["9016"].addFlag(GLOBAL.INDOOR);
 	rooms["9016"].addFlag(GLOBAL.PUBLIC);
 	rooms["9016"].addFlag(GLOBAL.NUDITY_ILLEGAL);
-	rooms["9016"].runOnEnter = undefined;
+	rooms["9016"].runOnEnter = beachNSurfOutsideBonus;
 
 	rooms["TAVROS_BEACH"] = new RoomClass(this);
 	rooms["TAVROS_BEACH"].roomName = "BEACH \n‘N SURF";

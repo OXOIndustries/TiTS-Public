@@ -759,7 +759,9 @@ public function bothriocQuadommePCNeedFillLow(arg:Array):void
 				if(!pc.hasFuckableNipples()) output(" rubbing them back and forth between finger and thumb");
 				else output(" slipping deep into their sensitive insides");
 				if(pc.isLactating()) output(" until they are moist and beading [pc.milk] readily onto the sheer blackness of its latex-like chitin");
-				output(". You shiver in your bindings, unable to do anything but be tormented by the pleasure of it and listen to the spidery predator’s ruminations. <i>“Never mind. Once you have drunk deep of my oil, you will grow them, and you will love their weight and tenderness. There is so much joy ahead of you, farlander...”</i>");
+				output(". You shiver in your bindings, unable to do anything but be tormented by the pleasure of it and listen to the spidery predator’s ruminations. <i>“Never mind.");
+				if(pc.biggestTitSize(true) >= 2) output(" Once you have drunk deep of my oil, you will grow them, and you will love their weight and tenderness.");
+				output(" There is so much joy ahead of you, farlander...”</i>");
 			}
 			processTime(4);
 			clearMenu();

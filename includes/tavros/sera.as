@@ -74,7 +74,7 @@ public function seraLustGain(minPassed:int = 60):void
 }
 public function serasBodyIsReady():void
 {
-	chars["SERA"].lust(9000);
+	chars["SERA"].maxOutLust();
 	chars["SERA"].ballFullness = 100;
 	chars["SERA"].cumQualityRaw = 1;
 	//chars["SERA"].minutesSinceCum = 9000;
@@ -1155,7 +1155,9 @@ public function catchEverythingInYoButtBySavinForSeraDogcock():void {
 			output("\n\n<i>“Wait,”</i> you answer, putting out a hand to stop her from turning away from you. <i>“I didn’t... I mean, I do, but...”</i>");
 			output("\n\nShe cocks an eyebrow at you, but her sneer slowly fades. <i>“Alright, meat, I’ll go easy on you this time. But next time...”</i>");
 		}
-		output("\n\n<i>“Meow!”</i> you answer, raising [pc.eachTail], approaching your mistress and lowering down to your knees.");
+		output("\n\n<i>“Meow!”</i> you answer");
+		if(pc.hasTail()) output(", raising [pc.eachTail]");
+		output(", approaching your mistress and lowering down to your knees.");
 		output("\n\n<i>“Now there’s a good kitty cat,”</i> she teases, long fingers running through your hair before hooking firmly behind your head, guiding your down until you’re kneeling before her, arms raised like a begging bitch. Seeing your debase yourself certainly seems to send a thrill through the demon-babe: her cock jumps to attention as you settle between her legs, raising up like a flagpole to loom over you, firm and throbbing in its immensity. <i>“Does pussy want a taste?”</i>");
 		output("\n\nYour eyes roll up to gaze upon the majesty of Sera’s mammoth member as it hangs over you; the purple temptress releases her tensed cock-muscles just enough to let it her prick flop onto your face. You give a muted gasp as the hot, musky rod twacks you on the cheek, rolling off the side of your face to hang beside your mouth, primed for entry. Sera leans back against the counter, arms braced on the edge, tail wiggling with anticipation. <i>“C’mon, slut-kitty, open wide. Where this is going next, you’re gonna be thanking me for every second I let you suck my cock beforehand.”</i>");
 	}

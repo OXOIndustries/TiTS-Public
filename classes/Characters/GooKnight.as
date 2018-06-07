@@ -167,6 +167,9 @@ package classes.Characters
 			isUniqueInFight = true;
 			btnTargetText = "GooKnight";
 			sexualPreferences.setRandomPrefs(2 + rand(3));
+			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY, sexualPreferences.getRandomLikesFactor());
+			if(rand(2) == 0) sexualPreferences.setPref(GLOBAL.SEXPREF_SWEAT, sexualPreferences.getRandomLikesFactor());
+			
 			if(rand(2) == 0) skinTone = "green";
 			else skinTone = "blue";
 			long = "The ganraen knight’s " + skinTone + " armor shines in the dimly lit cave, reflecting the pale glow of the pulsing fungi that cover the walls. She holds a simply shaped shield and sword, though the blade looks a bit more like a sharpened slab. Strategically placed joints prevent the armor from slowing her swift movements.";

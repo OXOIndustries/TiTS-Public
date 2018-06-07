@@ -1042,6 +1042,7 @@ public function reahaAddictionTherapyDickwielder():void
 
 	reaha.orgasm();
 	pc.orgasm();
+	IncrementFlag("SEXED_REAHA");
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -1111,6 +1112,8 @@ public function reahaAddictionTherapyNoWingWang():void
 	if (reahaAddiction() < REAHA_ADDICTION_LOW) output("<i>“Who needs patches when I’ve got you?”</i> Reaha purrs, nuzzling against you.");
 	else output("<i>“I definitely feel better now,”</i> Reaha admits, giving a contented little groan as you pull out of her. <i>“If I can still feel like </i>this<i>... maybe I can make it without the patches.”</i>");
 
+	IncrementFlag("SEXED_REAHA");
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1376,6 +1379,7 @@ public function reahaDommyFuxTimeWait():void
 	pc.orgasm();
 	pc.milkInMouth(chars["REAHA"]);
 	pc.milkInMouth(chars["REAHA"]);
+	IncrementFlag("SEXED_REAHA");
 
 	addNextButton(mainGameMenu);
 }

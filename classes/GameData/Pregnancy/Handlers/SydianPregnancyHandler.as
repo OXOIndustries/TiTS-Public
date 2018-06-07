@@ -118,7 +118,14 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += (12 * pData.pregnancyQuantity);
 				pData.pregnancyBellyRatingContribution += (12 * pData.pregnancyQuantity);
 				
-				AddLogEvent("The clamor in your distended womb worsens every day as " + (pData.pregnancyQuantity == 1 ? "the" : "a") + " baby exercises its body. You expect the little hellion’s birth within the week, and are torn between excitement and dread.", "passive");
+				var sTime:String = "day";
+				var sTime2:String = "week";
+				var nTime:Number = Math.floor(10080/pData.pregnancyIncubationMulti);
+				if(nTime <= 1440) { sTime = "hour"; sTime2 = "day"; }
+				if(nTime <= 60) { sTime = "minute"; sTime2 = "hour"; }
+				if(nTime <= 0) { sTime = "second"; sTime2 = "minute"; }
+				
+				AddLogEvent("The clamor in your distended womb worsens every " + sTime + " as " + (pData.pregnancyQuantity == 1 ? "the" : "a") + " baby exercises its body. You expect the little hellion’s birth within the " + sTime2 + ", and are torn between excitement and dread.", "passive");
 				
 				if (kGAMECLASS.pc.milkFullness < 20) kGAMECLASS.pc.milkFullness += 25;
 				if (kGAMECLASS.pc.milkMultiplier < 1.5) kGAMECLASS.pc.milkMultiplier += 0.15;

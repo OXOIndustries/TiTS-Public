@@ -204,7 +204,7 @@ package classes.Items.Transformatives {
 						else output("body feeling a bit backed up and ready to go.");
 						//Gib blue balls status!
 						pc.lust(10);
-						applyBlueBalls(pc);
+						pc.applyBlueBalls();
 						while(pc.maxCum() < 1100)
 						{
 							pc.boostCum(4);
@@ -257,7 +257,7 @@ package classes.Items.Transformatives {
 							pc.boostCum(4);
 						}
 						//Max lust. Give blue balls.
-						applyBlueBalls(pc);
+						pc.applyBlueBalls();
 						clearMenu();
 						addButton(0,"Next",blueBallsEpilogue,pc);
 						return true;
@@ -341,7 +341,7 @@ package classes.Items.Transformatives {
 						//+33lust.
 						pc.lust(33);
 						//Apply blueballs / fillcum. :3	
-						applyBlueBalls(pc);
+						pc.applyBlueBalls();
 						pc.boostCum(10);
 					}
 					//100k+ repeatable
@@ -398,11 +398,6 @@ package classes.Items.Transformatives {
 			pc.applyCumSoaked();
 			clearMenu();
 			addButton(0,"Next",kGAMECLASS.mainGameMenu);
-		}
-		public function applyBlueBalls(target:Creature):void
-		{
-			if(target.ballFullness < 100) target.ballFullness = 100;
-			target.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
 		}
 	}
 }

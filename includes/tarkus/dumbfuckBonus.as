@@ -108,6 +108,13 @@ public function procDumbfuckStuff():void
 		return;
 	}
 	
+	var nMult:Number = 1;
+	var taint:Number = pc.taint();
+	if(taint <= 50) nMult = 3;
+	else if(taint <= 70) nMult = 2.5;
+	else if(taint <= 85) nMult = 2;
+	else if(taint <= 95) nMult = 1.5;
+	
 	//Small sneeze - 1 cum
 	if(dumbfuckOrgasms.value1 <= 1)
 	{
@@ -117,7 +124,7 @@ public function procDumbfuckStuff():void
 		else output("A sudden, somewhat quiet sneeze goes off in your nose.");
 		pc.intelligence(-1);
 		pc.libido(1);
-		pc.taint(0.5);
+		pc.taint(0.5 * nMult);
 	}
 	//Medium sneeze - 2-3 cums
 	else if(dumbfuckOrgasms.value1 <= 3)
@@ -127,7 +134,7 @@ public function procDumbfuckStuff():void
 		else output("A big sneeze slowly builds in your nose. You try to hold it in, but it erupts out all the same.");
 		pc.intelligence(-2);
 		pc.libido(2);
-		pc.taint(1);
+		pc.taint(1 * nMult);
 	}
 	//Huge sneeze - 4-6 cums
 	else if(dumbfuckOrgasms.value1 <= 6)
@@ -137,7 +144,7 @@ public function procDumbfuckStuff():void
 		else output("A chain of three decent-sized sneezes interrupts you.");
 		pc.intelligence(-4);
 		pc.libido(4);
-		pc.taint(2);
+		pc.taint(2 * nMult);
 	}
 	//Sneezing fit - 7+
 	else
@@ -146,7 +153,7 @@ public function procDumbfuckStuff():void
 		else output("A bunch of sneezes are rising up in the back of your nose, and there’s nothing you can do but hold onto yourself and wait it out. If only you hadn’t cum so-achoo! The first one hits a split second before the second... and the third... and the fourth.... You sneeze for what feels like a minute straight, each one feeling better than the last.");
 		pc.intelligence(-5 - rand(3));
 		pc.libido(5 + rand(3));
-		pc.taint(3);
+		pc.taint(3 * nMult);
 	}
 	
 	if(flags["DUMBFUCK_SNEEZES"] == undefined) flags["DUMBFUCK_SNEEZES"] = 0;
@@ -290,13 +297,13 @@ public function procDumbfuckStuff():void
 		pc.createPerk("Fuck Sense",15,0,0,0,"Allows your sense ability to base success off your libido instead of intelligence.");
 	}
 	//Gain weak willed
-	if(flags["DUMBFUCK_SNEEZES"] >= 17 && !pc.hasPerk("Weak Willed"))
+	if(flags["DUMBFUCK_SNEEZES"] >= 17 && !pc.hasPerk("Weak Mind"))
 	{
 		output("\n\nBut why stop yourself? You could just let go and do what feels good, and it all feels good. Particularly touching. You love touching, being touched, whatever. You’d let someone do all kinds of stuff to you if they touched you!");
-		output("\n\n(<b>Gained Perk: Weak Will</b> - You lose willpower twice as fast.)");
+		output("\n\n(<b>Gained Perk: Weak Mind</b> - You lose willpower twice as fast.)");
 		//Reduce willpower by 6 immediately. (only need to mod by 3 if perk active)
 		pc.willpower(-6);
-		pc.createPerk("Weak Willed",0,0,0,0,"Willpower losses are doubled.");
+		pc.createPerk("Weak Mind",0,0,0,0,"Intelligence and willpower losses doubled.");
 	}
 	if(flags["DUMBFUCK_SNEEZES"] >= 20 && !pc.hasPerk("Ditz Speech") && !pc.hasPerk("Brute Speech"))
 	{

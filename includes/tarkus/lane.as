@@ -3356,8 +3356,14 @@ public function lFollowerName(customName:Boolean = true):String
 	if (customName)
 	{
 		if (InCollection(flags["FOLLOWER_LANE_INTERVENTION"], ["Ben-14", "Bess-13"])) return chars["BESS"].short;
+		return bessBustDisplay();
 	}
 	return flags["FOLLOWER_LANE_INTERVENTION"];
+}
+public function lFollowerBustDisplay():String
+{
+	if (InCollection(flags["FOLLOWER_LANE_INTERVENTION"], ["Ben-14", "Bess-13"])) return bessBustDisplay();
+	return flags["FOLLOWER_LANE_INTERVENTION"].toUpperCase();
 }
 
 public function lFollowerMF(m:String, f:String):String
@@ -3372,14 +3378,14 @@ public function followerLaneIntervention(followerName:String):void
 
 	clearOutput();
 	showName("\n" + lFollowerName(true).toUpperCase());
-	showBust(lFollowerName(false).toUpperCase());
+	showBust(lFollowerBustDisplay());
 	author("B");
 
 	// I woulda used something like:
 	// var tFollower:Creature = arg, tFollower.mf()
 	// through this, but I figure some of these potential followers may not always have a statblock and fuck adding one.
 
-	output("You board your ship once more, and shortly after you arrive, you’re met by " + followerName + ". You greet her");
+	output("You board your ship once more, and shortly after you arrive, you’re met by " + lFollowerName() + ". You greet "+ lFollowerMF("him", "her"));
 	if (lFollowerName() != "Dane") output(" warmly");
 	output(", but in return, you get a scrunched, perplexed look. You see in "+ lFollowerMF("his", "her") +" left hand "+ lFollowerMF("his", "her") +" own codex, its light shimmering against "+ lFollowerMF("his", "her") +" thigh dependably.");
 
@@ -3398,7 +3404,7 @@ public function followerLaneIntervention(followerName:String):void
 	if (lFollowerName() == "Dane") output(", and frankly, I’m not quite ready to jump off this gravy train just yet, Steele");
 	output(".”</i>");
 
-	output("\n\nYou already know the answer to the question "+ lFollowerMF("he", "she") +"’s not asking, but before you can explain yourself, "+ lFollowerMF("he", "she") +" pulls "+ lFollowerMF("his", "her") +" codex back. <i>“This has been going on for some time now,”</i> "+ lFollowerMF("he", "she") +" says, scrolling the page with "+ lFollowerMF("his", "her") +" finger. <i>“Five hundred credits have been disappearing from your account once a day at, coincidentally, the crack of midnight on Terra. Says here that they’ve been going to a PIN number rather than a business, so I couldn’t put a name to the benefactor.”</i> "+ lFollowerMF("He", "She") +" looks up from its glowing screen, and from the look in "+ lFollowerMF("his", "her") +" eyes, you could probably guess that she already knows your answer. <i>“Do you know anything about this?”</i>");
+	output("\n\nYou already know the answer to the question "+ lFollowerMF("he", "she") +"’s not asking, but before you can explain yourself, "+ lFollowerMF("he", "she") +" pulls "+ lFollowerMF("his", "her") +" codex back. <i>“This has been going on for some time now,”</i> "+ lFollowerMF("he", "she") +" says, scrolling the page with "+ lFollowerMF("his", "her") +" finger. <i>“Five hundred credits have been disappearing from your account once a day at, coincidentally, the crack of midnight on Terra. Says here that they’ve been going to a PIN number rather than a business, so I couldn’t put a name to the benefactor.”</i> "+ lFollowerMF("He", "She") +" looks up from its glowing screen, and from the look in "+ lFollowerMF("his", "her") +" eyes, you could probably guess that "+ lFollowerMF("he", "she") +" already knows your answer. <i>“Do you know anything about this?”</i>");
 
 	output("\n\n<i>“What if I did?”</i> you answer defensively, crossing your arms.");
 
@@ -3416,7 +3422,7 @@ public function followerLaneIntervention(followerName:String):void
 	output(" junkyard planet Tarkus");
 	output("? Is any of this ringing a bell?”</i>");
 
-	output("\n\nYou grit your teeth as you consider "+ lFollowerMF("his", "her") +" words and think on the implications of your next actions. You love your [lane.master] Lane; what [lane.heShe] wants is what you want, but you’re not entirely certain someone like " + followerName + " would see it that way. You could try to confide in her how you feel about Lane and what [lane.heShe] means to you – or you could tell "+ lFollowerMF("him", "her") +" to mind her own goddamn business. "+ lFollowerMF("He", "She") +" knows who the captain of this ship is; if you told "+ lFollowerMF("him", "her") +" to fuck off, "+ lFollowerMF("he", "she") +" would, plain and simple.");
+	output("\n\nYou grit your teeth as you consider "+ lFollowerMF("his", "her") +" words and think on the implications of your next actions. You love your [lane.master] Lane; what [lane.heShe] wants is what you want, but you’re not entirely certain someone like " + lFollowerName() + " would see it that way. You could try to confide in "+ lFollowerMF("him", "her") +" how you feel about Lane and what [lane.heShe] means to you – or you could tell "+ lFollowerMF("him", "her") +" to mind "+ lFollowerMF("his", "her") +" own goddamn business. "+ lFollowerMF("He", "She") +" knows who the captain of this ship is; if you told "+ lFollowerMF("him", "her") +" to fuck off, "+ lFollowerMF("he", "she") +" would, plain and simple.");
 
 	processTime(20);
 
@@ -3430,7 +3436,7 @@ public function followerLaneInterventionConfide():void
 {
 	clearOutput();
 	showName("\n" + lFollowerName(true).toUpperCase());
-	showBust(lFollowerName(false).toUpperCase());
+	showBust(lFollowerBustDisplay());
 	author("B");
 
 	output("<i>“I trust you,”</i> you tell "+ lFollowerName() +" suddenly. In response, "+ lFollowerMF("his", "her") +" eyes widen slightly");
@@ -3463,7 +3469,7 @@ public function followerLaneInterventionConfide():void
 
 	output("\n\n<i>“And what was your opinion of [lane.himHer] before that ‘session’?”</i>");
 
-	output("\n\nIt was a cloudier time, you admit, but after focusing on it a moment longer, you tell her that your opinion of Lane before that was that [lane.heShe] was an all right person, all around. [lane.HeShe] was a dependable business" + lane.mf("", "wo") + "man that ran a fair, if obscure, little business in the");
+	output("\n\nIt was a cloudier time, you admit, but after focusing on it a moment longer, you tell "+ lFollowerMF("him", "her") +" that your opinion of Lane before that was that [lane.heShe] was an all right person, all around. [lane.HeShe] was a dependable business" + lane.mf("", "wo") + "man that ran a fair, if obscure, little business in the");
 	//output(" desert");
 	output(" forest");
 	output(". You thought [lane.heShe] was attractive and were considering asking [lane.himHer] out on a date, or something.");
@@ -3477,7 +3483,7 @@ public function followerLaneInterventionConfide():void
 	else if (!pc.hasCock() && pc.hasVagina()) output(" your [pc.vagina]");
 	else if (pc.hasCock() && pc.hasVagina()) output(" your genitals, [pc.eachCock] and your [pc.vagina] each demanding attention");
 	else output(" your [pc.asshole]");
-	output(" and you have an insatiable need to go to Lane, knowing that [lane.heShe]’ll be able to scratch your itch just right. You look to "+lFollowerName()+", your eyes wide and begging. <i>“You can’t go to [lane.himHer] again, [pc.name],”</i> she says to you as calmly as she can, knowing that you’re about to freak out. <i>“[lane.HeShe]’ll only keep abusing you and stealing your money. You have to stop going to Lane, starting right now, or else [lane.heShe]’ll </i>own<i> you. Do you understand what that would mean?”</i>");
+	output(" and you have an insatiable need to go to Lane, knowing that [lane.heShe]’ll be able to scratch your itch just right. You look to "+lFollowerName()+", your eyes wide and begging. <i>“You can’t go to [lane.himHer] again, [pc.name],”</i> "+ lFollowerMF("he", "she") +" says to you as calmly as "+ lFollowerMF("he", "she") +" can, knowing that you’re about to freak out. <i>“[lane.HeShe]’ll only keep abusing you and stealing your money. You have to stop going to Lane, starting right now, or else [lane.heShe]’ll </i>own<i> you. Do you understand what that would mean?”</i>");
 
 	output("\n\n<i>“Tell me what I need to do,”</i> you practically beg "+lFollowerMF("him", "her")+".");
 
@@ -3493,7 +3499,7 @@ public function followerLaneInterventionConfide():void
 	else output(" " + lFollowerMF("He", "She") + " cups your cheeks gently, and smiles warmly at you");
 	output(". <i>“Whatever you think only [lane.heShe] can do, you can find someone else in the whole wide universe who can do it better. If you just need to blow off some steam and relieve some tension... you don’t need to pay a whole five hundred bones and look any farther than your own ship for that.”</i> You smile back at "+lFollowerMF("him", "her")+" – you knew you brought "+lFollowerMF("him", "her")+" on your ship for a reason.");
 
-	output("\n\n"+ lFollowerName() +" is confident in your strength, and you feel some relief in confiding with "+lFollowerMF("him", "her")+" – and you thank "+lFollowerMF("him", "her")+" for her help in realizing what Lane was doing to you. <b>From now on, you <i>cannot</i> visit Lane again.</b> You’re afraid of what might happen if you do. You and "+lFollowerName()+" both figure that <b>if you can make it ten days without any contact with Lane,</b> you ought to be cleansed of [lane.hisHer] influence.");
+	output("\n\n"+ lFollowerName() +" is confident in your strength, and you feel some relief in confiding with "+lFollowerMF("him", "her")+" – and you thank "+lFollowerMF("him", "her")+" for "+ lFollowerMF("his", "her") +" help in realizing what Lane was doing to you. <b>From now on, you <i>cannot</i> visit Lane again.</b> You’re afraid of what might happen if you do. You and "+lFollowerName()+" both figure that <b>if you can make it ten days without any contact with Lane,</b> you ought to be cleansed of [lane.hisHer] influence.");
 
 	output("\n\nYour old life starts again today.");
 
@@ -3510,8 +3516,8 @@ public function followerLaneInterventionConfide():void
 public function followerLaneInterventionFuckOff():void
 {
 	clearOutput();
-	showName("\n" + lFollowerName(false).toUpperCase());
-	showBust(lFollowerName(false).toUpperCase());
+	showName("\n" + lFollowerName(true).toUpperCase());
+	showBust(lFollowerBustDisplay());
 	author("B");
 
 	output("You look "+ lFollowerName() +" dead in the eye. <i>“It’s not any of your business,”</i> you tell "+ lFollowerMF("him", "her") +" sternly. You try to look as serious as possible, but "+ lFollowerMF("he", "she") +"’s not entirely convinced.");
@@ -3528,7 +3534,7 @@ public function followerLaneInterventionFuckOff():void
 	output("\n\nNeither of you blink or flinch, sizing each other up in the bay of your ship. You clench your fists, bracing yourself to throw down if you need to. Finally, after a tense few seconds, "+ lFollowerName() +" takes a long sigh through "+ lFollowerMF("his", "her") +" nose. "+ lFollowerMF("His", "Her") +" expression softens, from a determined poker face to something decidedly more");
 	if (lFollowerName() == "Dane") output(" defeated");
 	else output(" hopeless");
-	output(". <i>“Whatever you say,</i> Captain <i>[pc.name].”</i> "+ lFollowerMF("He", "She") +" turns and begins making "+ lFollowerMF("his", "her") +" way down the corridors of your ship, the light of "+ lFollowerMF("his", "her") +" codex flickering off the walls until she’s out of sight.");
+	output(". <i>“Whatever you say,</i> Captain <i>[pc.name].”</i> "+ lFollowerMF("He", "She") +" turns and begins making "+ lFollowerMF("his", "her") +" way down the corridors of your ship, the light of "+ lFollowerMF("his", "her") +" codex flickering off the walls until "+ lFollowerMF("he", "she") +"’s out of sight.");
 
 	output("\n\nYou exhale; that was close. As much as you love Lane, you’re too attached to "+ lFollowerName() + " to want to fight "+ lFollowerMF("him", "her") +". But at least now your future with your sexy Daynar "+ lane.mf("master", "mistress") +" is secure. You wonder if you should tell [lane.himHer] – maybe [lane.heShe]’ll reward you for your loyalty...");
 

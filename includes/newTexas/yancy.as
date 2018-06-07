@@ -977,8 +977,9 @@ public function yancyGiantParagraphButtfucksByAnalmancyIncorporated():void
 	else
 	{
 		output("You press yourself up against Yancy’s bare chest, grabbing his hand and guiding it down to your bare, stiff erection. His eyes grow a little wider as he feels what you’re packing for him, and you’re gratified to feel a little growth in that bulge of his. Looks like he enjoyed what you were able to do with it last time.");
-		if(pc.isTreated()) output("\n\n<i>“Mind being my personal little cock-cozy again, Yancy?");
-		else output("\n\n\"<i>Think you could stand letting me get milked from both ends again?");
+		output("\n\n<i>“");
+		if(pc.isTreated()) output("Mind being my personal little cock-cozy again, Yancy?");
+		else output("Think you could stand letting me get milked from both ends again?");
 		output("”</i> you tease, releasing his hand in exchange for a nice grip on his butt that makes him flinch.");
 	}
 

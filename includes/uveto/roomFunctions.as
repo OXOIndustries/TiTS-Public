@@ -105,33 +105,9 @@ public function GlacialRiftEncounterBonus():Boolean
 	return false;
 }
 
-public function HereBeDragonBonus():Boolean
+public function GlacialRiftCoast():Boolean
 {
-	if(flags["ENCOUNTERS_DISABLED"] != undefined || flags["FROSTWYRMSLAIN"] == 1) return false;
-	
-	//Always encounter Frostwyrm first time
-	if(flags["MET_FROSTWYRM"] == undefined)
-	{
-		flags["UVETOCOAST_STEP"] = 0;
-		encounterFrostwyrm();
-		return true;
-	}
-	
-	IncrementFlag("UVETOCOAST_STEP");
-
-	var choices:Array = new Array();
-	//If walked far enough w/o an encounter (temporary values, should be replaced when moved to Glacial Rift)
-	if(flags["UVETOCOAST_STEP"] >= 7 && rand(2) == 0) {
-		//Reset step counter
-		flags["UVETOCOAST_STEP"] = 0;
-		//Build encounter
-		encounterFrostwyrm();
-		return true;
-	}
-	if (tryUvetoWeatherEvent(flags["UVETOCOAST_STEP"])) return true;
-	if (tryEncounterSavicite(flags["UVETOCOAST_STEP"])) return true;
-	
-	return false;
+	return HereBeDragonBonus();
 }
 
 public function uvetoShipDock():Boolean
@@ -641,8 +617,7 @@ public function uvetoReactivateProbe():void
 	}
 	else
 	{
-		output("\n\nYou give the machine a long, thorough once-over, looking up parts and connections in your Codex, trying to deduce what went wrong... other than it explosively crashing, anyway. With a few helpful forum posts, you’re able to dig into the probe’s mechanical guts and and start pulling and rearranging things, trying to reboot it.");
-	
+		output("\n\nYou give the machine a long, thorough once-over, looking up parts and connections in your Codex, trying to deduce what went wrong... other than it explosively crashing, anyway. With a few helpful forum posts, you’re able to dig into the probe’s mechanical guts and start pulling and rearranging things, trying to reboot it.");
 		output("\n\nEventually, you manage to get it sorted out, and punch the power button inside it again. It takes a moment, but eventually the probe starts whirring and the systems begin coming online.");
 	}
 	

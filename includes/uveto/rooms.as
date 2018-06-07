@@ -455,6 +455,7 @@ public function initUvetoRooms():void
 	rooms["UVI N34"].moveMinutes = 3;
 	rooms["UVI N34"].addFlag(GLOBAL.OUTDOOR);
 	rooms["UVI N34"].addFlag(GLOBAL.PUBLIC);
+	rooms["UVI N34"].runOnEnter = shukuchiUvetoBonus;
 
 	rooms["UVI N36"] = new RoomClass(this);
 	rooms["UVI N36"].roomName = "CAR\nPARK";
@@ -3971,7 +3972,6 @@ public function initUvetoRoomsII():void
 	rooms["KORGII X33"].addFlag(GLOBAL.PUBLIC);
 	//rooms["KORGII X33"].runOnEnter = korgiD12Bonus;
 
-
 	//One-off encounter
 	rooms["MYRNAS CAVE"] = new RoomClass(this);
 	rooms["MYRNAS CAVE"].roomName = "MYRNA’S\nCAVE";
@@ -3988,5 +3988,22 @@ public function initUvetoRoomsII():void
 	rooms["MYRNAS CAVE"].inExit = "";
 	rooms["MYRNAS CAVE"].inText = "Up";
 	rooms["MYRNAS CAVE"].addFlag(GLOBAL.INDOOR);
-	//rooms["MYRNAS CAVE"].addFlag(GLOBAL.PUBLIC);
+	rooms["MYRNAS CAVE"].addFlag(GLOBAL.PRIVATE);
+
+	rooms["FROSTWYRM LAIR"] = new RoomClass(this);
+	rooms["FROSTWYRM LAIR"].roomName = "FROSTWYRM\nLAIR";
+	rooms["FROSTWYRM LAIR"].description = "";
+	rooms["FROSTWYRM LAIR"].planet = "PLANET: UVETO VII";
+	rooms["FROSTWYRM LAIR"].system = "SYSTEM: SIRETTA";
+	rooms["FROSTWYRM LAIR"].moveMinutes = 1;
+	rooms["FROSTWYRM LAIR"].northExit = "";
+	rooms["FROSTWYRM LAIR"].eastExit = "";
+	rooms["FROSTWYRM LAIR"].southExit = "";
+	rooms["FROSTWYRM LAIR"].westExit = "";
+	rooms["FROSTWYRM LAIR"].outExit = "";
+	rooms["FROSTWYRM LAIR"].outText = "Down";
+	rooms["FROSTWYRM LAIR"].inExit = "";
+	rooms["FROSTWYRM LAIR"].inText = "Up";
+	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.INDOOR);
+	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.PRIVATE);
 }

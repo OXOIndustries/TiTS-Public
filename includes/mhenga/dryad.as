@@ -241,7 +241,12 @@ public function dryadAss():void
 	output("legs and onto the ground beneath you.");
 	IncrementFlag("DRYAD_BANGED_PC");
 	pc.loadInAss(pp);
-	pc.lust(30)
+	pc.lust(30);
+	if(pc.lustQ() >= 100)
+	{
+		output("\n\nThe sensation of fullness added with the spike in lust sends you over the edge and you let out a complimentary orgasm. That was quite the experience!");
+		pc.orgasm();
+	}
 	processTime(10);
 	clearMenu();
 	addButton(0, "Next", dryadAfterscene);

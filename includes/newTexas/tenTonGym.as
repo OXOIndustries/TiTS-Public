@@ -1,7 +1,7 @@
 ﻿//The Ten Ton Gym (ver. 1.2)
 //- Slab Bulkhead
 //Overview
-//A gym on New Texas, complete with weight room, swimming pool, track, locker room, and showers. The owner and manager, <i>“Ten-Ton”</i> Quenton Jones, is here to help you look your best. The purpose is to provide a place for PCs to adjust their muscle tone and body thickness.
+//A gym on New Texas, complete with weight room, swimming pool, track, locker room, and showers. The owner and manager, “Ten-Ton” Quenton Jones, is here to help you look your best. The purpose is to provide a place for PCs to adjust their muscle tone and body thickness.
 
 //Room Descriptions
 /*
@@ -161,7 +161,8 @@ public function hardWorkout():void
 	else addButton(0,"Next",mainGameMenu);
 }
 
-//Track
+
+// Track
 public function newTexasTrackBonus():Boolean
 {
 	clearOutput();
@@ -170,6 +171,12 @@ public function newTexasTrackBonus():Boolean
 	output("The whirr of air conditioners greets you as you enter the track room. It’s longer than you expected, taken up largely by an extended oval loop of running track, with lights hanging from bars that crisscross the ceiling. The track itself is some sort of brown synthetic, and bounces slightly under the runners’ feet. White lines designate the track’s five lanes.");
 	output("\n\nA few young bulls are running the track in perfect synch, calling out their steps in time. One group of cows runs together in a loose cluster, some of them quite sweaty; another group of cows sits along the wall, calling out encouragement and lewd comments to the runners. A few other New Texans run at their own pace or catch their breath against the wall.");
 	output("\n\nAt the center of the track, some sort of aerobics class is in progress, with an older cow calling out exercises and counting down numbers for the group she leads. The sight of a group of bulls and cows all moving and bending in synch like that is oddly hypnotizing, for quite a few reasons.");
+	//Is Anno working out? 33% chance to find her.
+	if(annoIsCrew() && rand(3) == 0)
+	{
+		output("\n\nFlanked by two young bulls as she runs around the track, a familiar white-furred beauty rushes by. With tail wagging and sweat darkening her exercise wear, she’s clearly having fun.");
+		addButton(2, "Anno", aWildJoggingAnno, undefined, "Anno", "Greet Anno.");
+	}
 	//[Jog] Go to Jog {locked if PC has [Sore] debuff or doesn’t have 30 energy}
 	if(pc.energy() >= 30 && !pc.isWornOut()) addButton(0,"Jog",takeAJogInTenTonGym,undefined,"Jog","Jog around the track to burn some fat.");
 	else addDisabledButton(0,"Jog","Jog","You’re too tired for that workout.");
@@ -178,6 +185,451 @@ public function newTexasTrackBonus():Boolean
 	else addDisabledButton(1,"Run","Run","You’re too tired for that workout.");
 	//[To Hallway]
 	return false;
+}
+
+//Approach Anno
+public function aWildJoggingAnno():void
+{
+	clearOutput();
+	clearMenu();
+	author("Twin Flare Tails");
+	showName("ANNO");
+	showBust(annoBustDisplay());
+	output("As she comes by on the track, you wave and call to her. Her ears perk up at your voice and she rushes over.");
+	output("\n\n<i>“Hey, boss! Came to get a little exercise, too? There are so many tasty treats on New Texas, I have to burn some calories just to stay in shape.”</i> You have to wonder which tasty treats she means exactly.Anno puts in a lot of effort to take care of herself. Her choice of dress reflects her confidence; a snug black tank top and white shorts advertising an almost indecent amount of her lower body.");
+	if(flags["ANNO_HUSKARRED"] != undefined)
+	{
+		output(" It must have been some time since she last updated her exercise wear, though. Her sporty shorts and tank top are straining to contain her abundant assets. You can also clearly see she isn’t wearing a sports bra. Whether by choice or lack thereof, you cannot say.");
+	}
+	output("\n\n<i>“I’d still like to go for a while longer. I wouldn’t mind a little company, if you wanted to join me for a few laps?”</i>");
+	output("\n\nWell, what will it be? A little exercise couldn’t hurt, right? On the other hand, you don’t really need it, and watching Anno run would be enjoyable in itself. And with all that talk of laps... maybe you could go back to the ship for a few “laps.”");
+	if (pc.energy() >= 30) addButton(0, "Join In", runWithAnno, undefined, "Join In", "Run with Anno.");
+	else addDisabledButton(0, "Join In", "Join In", "You’re too tired to run with Anno.");
+	addButton(1,"Watch",annoWorkoutWatchItJiggle,undefined,"Watch","Watch Anno run.");
+	if (pc.hasGenitals() && !pc.isTaur()) addButton(2,"Ship",annoWorkoutShipSexyFunTimes);
+	else addDisabledButton(2,"Ship","Ship","You must have a fitting cock and/or cannot be a taur.");
+	//"Leave" should always be button slot 14 for proper hotkeying.
+	addButton(14,"Leave",howCouldYouLeaveAnno,undefined,"Leave","Leave Anno to her run.");
+}
+
+//Run with Anno
+public function runWithAnno():void
+{
+	clearOutput();
+	clearMenu();
+	author("Twin Flare Tails");
+	showName("ANNO");
+	showBust(annoBustDisplay());
+	output("Sure, why not? You and Anno begin jogging around the track together. You’re no slouch, but she’s making you exert yourself to keep up.");
+	output("\n\n<i>“Nothing like a healthy jog to get the blood pumping,”</i> she pants.");
+	output("\n\nAs you complete your first lap around the track, a bull behind you makes his presence known."); 
+	output("\n\n<i>“Excuse me! Some of us here are trying to actually exercise. If you can’t go any faster, then would you mind moving over for a real athlete?”</i>");
+	output("\n\nAnno rolls her eyes and picks up the pace to run in front of you. This puts her well-sculpted behind directly into your field of vision. With every step, her plush bottom shifts in her skintight athletic shorts. Your eyes shift as each cheek lifts: left, right, left right..."); 
+	if(pc.hasCock()) output(" If you’re not careful, you’ll be too encumbered by your swollen erection to keep up with your puppy girl.");
+	output("While you’re still enraptured with her bouncing behind, a gentle cough reminds you there’s still an Anno attached to it. The suggestive look she’s giving you lets you know your behavior is being taken as a compliment.");
+	if(flags["ANNO_HUSKARRED"] != undefined)
+	{
+		output("\n\nYour eyes can’t help but be drawn back to her luscious backside. That thick bottom is too tempting to resist. Your right hand reaches down and gives her perfectly squishy butt a squeeze. With her wagging tail smacking against your arm, she pivots her upper body to give you another significant look.");
+		output("\n\nThe sudden shift in position allows her full, fluffy tits to spring free from her ill-fitting tank top. Anno lets out a bark of surprise and clutches at her exposed breasts. You grab two handfuls of Anno’s abundant rack and do your best to return it to the reluctant tank top.");
+		output(" You manage to squeeze the right breast back inside, but have some difficulty stowing the other away. Just as you think you’ve got it, her right breast springs free and tit-slaps you across the face.");
+		output("\n\nOnly with a monumental amount effort do you succeed in restoring her tits to their residency within Anno’s top. With the crisis handled, you look around to see whether anyone noticed your little problem. The least observant detective in the universe would be able to tell you just how noticeable your little accident was. Every bull in the room is sporting a throbbing erection and not a small number of the cows are leaking at the breast or groin. Not that you can blame them.");
+		pc.lust(10);
+	}
+	output("\n\nYou run a few more laps around the track before calling that a good work out. Sweat runs down your [pc.skin], leaving slick, salty trails. Your exercise buddy is similarly dripping with sweat, her [anno.chest] heaving with each breath as she cools down from the run.");
+	output("\n\n<i>“Woo, That was a great jog! We worked up quite a sweat, huh, boss? What say we go rinse off?”<i>");
+	processTime(30);
+	pc.energy( -30);
+	pc.modTone(1,false);
+	sweatyDebuff(1);
+	soreDebuff(1);
+	addButton(0,"Pass",mainGameMenu,undefined,"Pass","Ends the scene.");
+	addButton(1,"Showers",annoWorkoutShowerSex,undefined,"Showers","Hit the showers with Anno.");
+	
+	//Non-Huskar Anno has vag penetration. Huskar Anno does not. Have to do some shenanagins if we want to allow Huskar Anno scene with large cock.
+	if (pc.hasCock())
+	{
+		if (pc.isTaur()) addDisabledButton(2,"Sexercise","Sexercise","You must not be a taur.");
+		else if (pc.cockThatFits(anno.vaginalCapacity()) == -1 && flags["ANNO_HUSKARRED"] == undefined) addDisabledButton(2,"Sexercise","Sexercise","You must have a cock that fits.");
+		else addButton(2,"Sexercise",annoWorkoutGimmeDatBootySweat,undefined,"Sexercise","You like it sweaty.");
+	}
+	else addDisabledButton(2,"Sexercise","Sexercise","You must have a cock.");
+}
+	
+//Leave	
+public function howCouldYouLeaveAnno():void
+{
+	clearOutput();
+	showName("ANNO");
+	author("Twin Flare Tails");
+	showBust(annoBustDisplay());
+	output("You don’t feel like exercising right now.");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}	
+	
+//Get Squeaky Clean	
+public function annoWorkoutShowerSex():void
+
+{
+	clearOutput();
+	showName("ANNO");
+	author("Twin Flare Tails");
+	showBust(annoBustDisplay(true));
+	//Actually put in lockers/showers
+	currentLocation = "571";
+	generateMap();
+	output("You let Anno know that hitting the showers sounds good to you, and she leads the way to the locker room. A number of the bulls and cows who had also been on the track not-so-coincidentally decide they’re also ready to be done. Anno wastes no time in taking off her exercise wear and stowing it away in a locker. "); 
+	output("\n\nYou follow suit, throwing your things in with hers. You are aware of hungry eyes watching the pair of you disrobe. At least a dozen bulls hastily remove their own clothing, some not even bothering with a locker. Anno latches a biosecurity lock onto the locker containing your gear.");
+	output("\n\n<i>“I’ve come back to find my clothes gone a few times before,” she explains.</i>");
+	output("\n\nYou follow your [anno.race] companion to the showers, trailed by a small herd of bulls and even a few cows. The shower room doesn’t have quite enough capacity for everyone to have their own nozzle, so Anno offers to wash your back if you do hers. You both have a quick rinse under the showerhead, then");
+	 if(pc.hasHair())output(" lather each other’s hair up with shampoo and ");
+	output("give each other a thorough scrubbing with your fingers. ");
+	output("\n\nAnno’s steady, confident fingers sweep across your back and scalp, then your [pc.chest], soothing every inch of [pc.skinNoun]. You’re not sure, but she seems to take just a little more time rubbing your [pc.butt] than elsewhere. After her stellar performance, it’s your turn to wash Anno’s succulent body.");
+	
+	if(flags["ANNO_HUSKARRED"] != undefined)
+	{
+		output("\n\nYour fingers knead her thick, squishy body with enthusiasm, digging into every plentiful curve and crevice. You take special care going over her bouncy bosom and the smooth skin of her hips. Anno makes sure you do a good job on her tail as well.");
+	}
+	else
+	{
+		output("\n\nYou put your fingers to work on her sleek skin, washing away the sticky sweat she accumulated from exercising. She seems to take special pleasure in the effort you put into cleansing her perky tits. So much so that she seems almost reluctant to remind you to get her ears."); 
+		if(silly) output(" As you dig your fingers into her smooth belly, she tenses up and begins to tap her foot uncontrollably. When you stop, she gives you an amused smile.");
+	}
+	output("\n\nAt last, you appear to have given your companion a thorough washing. There’s not many places left which could be in need of attention. Anno doesn’t seem quite ready to leave yet, though.");
+	output("\n\n<i>“Hey, boss, what do you say to a bit of deep cleaning? You know, making sure we get all the dirty places really clean?”</i>");
+	output("\n\nOne of the bulls who followed you in drops a bottle of shampoo with a clatter. A quick glance reminds you that they’re all still there, watching. Well, what will it be?");
+	
+	processTime(10);
+	pc.shower();
+	
+	clearMenu();
+	addButton(0,"Just Us",deepCleanDatDirtyAusar,undefined,"Just Us", "Get a thorough cleaning");
+	addButton(1,"Them First",runTrainOnAnno,undefined,"Them First","Let the bulls go first.");
+	addButton(2,"Clean",allCleanCausePartyPooper,undefined,"Clean","Leave the showers.");
+}
+
+//Clean dat dirty dirty Ausar	
+public function deepCleanDatDirtyAusar():void
+
+{
+	clearOutput();
+	showName("ANNO");
+	author("Twin Flare Tails");
+	showBust(annoBustDisplay(true));
+	output("That sounds like a great idea to you. Anno cheerfully pops open a bottle of coconut oil and begins to rub it into her hands. She’s wearing that sexy smile again and you’re pretty sure you know what’s coming.");
+	if(silly) output(" If past experience can be trusted: you.");
+	output("\n\nHer magic hands begin by running across your [pc.breasts], thumbing your nipples only fleetingly.");
+	if (pc.isLactating()) output(" A few drops of [pc.milk] drip down her fingers.");
+	output(" She moves behind you, rubbing your shoulders, then a few motions across your back. As her hands reach your hips, you can feel her [anno.breasts] press into your back and her pelvis bump your [pc.butt].");
+	
+	var selCock:Number = pc.cockThatFits(anno.vaginalCapacity());
+	if (selCock != -1)
+	{
+		output("Her fingers trail down to your [pc.cock " + selCock + "], wrapping sensuously around it"); 
+		if(pc.balls > 0) output(" and teasing your [pc.balls] with her fingertips");
+		output(". She begins to stroke you with expert skill, her fingers traveling only partially up your length, mostly staying near to the base."); 
+		if(pc.hasKnot(selCock)) output("As your [pc.cock " + selCock + "] becomes fully erect, your [pc.knot " + selCock + "] begins to swell, too. Anno mercilessly fondles your knot, giving you an uncomfortable feeling of closeness in your belly and exposure in your unsheathed cock.");
+		output("Your dick feels amazing, each throb pulsing between her slick fingers forcing [pc.cumVisc] precum from the tip, lubricating her hand as it jerks you off. You grunt as Anno picks up the pace.");
+	}
+	output("\n\n<i>“Oh, don’t worry,”</i> she whispers in your ear, <i>“We’re not done yet.”</i> She turns you around to face her. <i>“Mind giving my front a wash while I do yours?”</i>");
+	output("\n\nYou apply yourself with vigor, going over her breasts once more with your fingers, but now you’re doing it explicitly for pleasure. Her [anno.chest] feels magnificent in your hands. You could do this all day. Anno on the other hand can’t seem to wait for the end, lightly pushing into you as you wash her.");
+	if (pc.hasVagina()) 
+	{
+		output("\n\nWith not a twinge of discomfort or awkwardness, Anno reaches down and begins rubbing your [pc.pussy] with her ");
+		if (pc.hasCock()) output(" precum-lubed");
+		output(" hand. She’s had years of practice with other girls, so this shouldn’t come as any surprise. Her fingers seem to locate all of your most sensitive spots with ease and coax them until your gonads are throbbing with desire. You feel a tightening in your belly as your body makes its want known.");
+	}
+	output("\n\nYou reach down with your right hand to Anno’s pussy, still handling her breast with your left, and begin to tease her clit. Her breathing slows and tail begins to wag in time with your handiwork as the intensity of your stimulation increases. As her own pleasure increases, Anno decides to step her game up as well.");
+	if (selCock >= 0)
+	{
+		output("\n\n<i>“Let’s just slide this in here for now, okay?”</i> Anno murmurs sweetly as she slowly mounts your [pc.cock " + selCock + "]. Her inner passage parts to accept your cock into its warm embrace. This alone is nearly enough to make your dick erupt. <i>“Make sure you get it nice and clean in there.”</i> Her hips begin to rock against yours, producing a slippery spurting noise from where the two of you are connected."); 
+		if(pc.hasKnot(selCock)) output(" You can feel your knot swell to its full size, trapping your [pc.cock " + selCock + "] in her love tunnel.");
+		pc.cockChange();
+		output("\n\nYou’re not sure how clean you’ll be making her, with every instinct telling you to dirty her tight snatch with your spooge. Especially not with her grinding on you like this. It’s all you can do to not blow your load right now.");
+	}
+	output("\n\nAnno takes advantage of having a free hand to reach down to your behind, brushing your backdoor with a finger.");
+	output("\n\n<i>“Don’t want to forget about here,”</i> she teases.");
+	if (pc.hasTailCock())
+	{
+		output("\n\nWithout any conscious effort on your part, your tailcock spears itself into Anno’s behind. She lets out a yelp of surprise, turning to see your [pc.tailCock] pumping her tailhole in senseless abandon, determined to deliver its parasitic payload.");
+		output("\n\nAnno’s face is blushing crimson with arousal from the sensations running through her, <i>“I guess you had the same idea, huh? Let’s see how long you can last like this.”</i> You try to hold out as your tailcock does it’s best to accelerate your impending orgasm.");
+	}
+	output("\n\nAnno’s teasing goes on for minutes which feel like hours, stretched by the intensity of the pressure you feel building inside. Anno is clearly enjoying the build up to her orgasm but also seems aware how close you are to your limit. Moments before you lose control completely, she leans forward and whispers playfully in your ear.");
+	output("\n\n<i>“Cum.”</i>");
+	if (pc.hasTailCock()) output("\n\nWith immense difficulty, you manage to free your [pc.tailCock] from her tailhole, just in time for it to spray its seed across her back.");
+	if (selCock >= 0)
+	{
+		output("\n\nYou cry out as your [pc.cock " + selCock + "] explodes, firing shot after shot into her waiting womb.");
+		if(pc.hasVagina()) output(" Your [pc.pussy] clenches around Anno’s clever fingers as you cum, her rhythm setting the pace for your climax.");
+		output(" Anno rides your joined orgasm out, rocking her hips steadily as if to make sure you’ve emptied every sperm in your ");
+		if(pc.balls > 0)output("[pc.balls");
+		else output("body");
+		output(" into her. There’s no question she really cleaned you out, in any case. ");
+		if(pc.hasKnot(selCock)) output("But with your knot sealing her entrance shut, your swimmers are trapped in her with nowhere to go, leaving her insides anything but clean.");
+		if (pc.cumQ() >= 1000) output(" Indeed, her belly is visibly swollen with your reproductive potential.");
+	}
+	if(pc.hasVagina() &&!pc.cockThatFits(anno.vaginalCapacity()) != -1)output("\n\nYour [pc.pussy] clenches up throughout your orgasm, tensing in tune with Anno’s fingers. It feels like you are giving birth to a massive dildo as your pussy milks a phantom cock of its imaginary load.");
+	output("\n\nWhen at last you come down from your orgasm, you realize you’re not alone. The bulls who came to join you in the shower appear to have had climaxes of their own, the products of which now criss cross the tiled floor in a display of spent virility.");
+	output("\n\n<i>“There. I think we’re all clean now,”</i> Anno pants, <i>“Inside and out.”</i>");
+	output("\n\n You share a few more pleasant moments with Anno before returning to the locker room."); 
+	pc.orgasm();
+	processTime(30);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+	
+//Running a train on Anno
+public function runTrainOnAnno():void
+{	
+	clearOutput();
+	showName("ANNO");
+	author("Twin Flare Tails");
+	showBust(annoBustDisplay(true));
+	output("You ask Anno if she wouldn’t prefer to help some of the bulls clean their hard-to-reach places first.");
+	output("\n\nHer ears perk up at the thought and she smiles. <i>“I know we just got done exercising, but I think a few warm-ups wouldn’t be out of the question.”</i> She approaches the nearest bull and compliments his impressive equipment. <i>“You’ve got a nice set on you.”</i>");
+	output("\n\nShe begins stroking his sizable manhood. He gives an appreciative grunt and reaches out to give one of her breasts a friendly squeeze. The other bulls move closer to get a better view of the action. You can hardly keep your eyes off it yourself."); 
+	output("\n\n<i>“Almost as nice as yours,”</i> the bull replies, palming her ample tits in his equally large hands and massaging them lightly between his thick fingers."); 
+	output("\n\nHis dick is a big, fat model with a pair of gleaming, cum-heavy balls under it. The nanofiber condom Anno unrolls over his dick is a tight fit, but secure. The white-furred [anno.race] girl bends over and braces herself against the tiled wall with her hands. After a few trial runs through her asscrack, the big bull enters her pussy. It’s a tight squeeze and you’re not sure if Anno is going to have the capacity to accommodate his girth, but after three or four pushes, he manages to fit it in. Anno lets out a big gasp when he finally penetrates her, a mixture of pain and pleasure. ");
+	output("\n\nHe begins slowly but steadily humping her backside. It only takes him about two minutes of slow, methodical pumping to blow his load. Anno continues to hump her behind against his crotch for another thirty seconds before reaching her orgasm. Getting his dick out takes the bull significantly less time than putting it in. Anno’s walls practically push him out and, after tying a knot in it, the bull pulls the condom from her sex. As the pint cum balloon flops out, a trickle of Anno’s feminine juices follows after."); 
+	output("\n\nThe first satisfied bull leaves, another stepping forward to take his place. His dick is a lot thinner than his predecessor and Anno has no trouble fitting it into her mouth, but it’s still a bit unwieldy at over a foot in length. He closes his eyes and lets out a low moo as she alternates between giving his dick a tongue bath and polishing his crown. Another bull sidles up and nudges Anno’s shoulder with his cock until she grasps it in her left hand and begins jerking it."); 
+	if(pc.hasCock()) output(" By this point, yourself and the other bulls are all handling your respective dicks.");
+	output("\n\nAnno isn’t alone in getting some action. A couple of the bulls who came in after you have gotten busy with a trio of cowgirls, faces and cocks buried in mouths, tits, and puss as they go to town.");
+	output("\n\nThe bull Anno is fellating whispers something you can’t catch over the noise of a dozen bulls playing with themselves, but which evidently Anno caught. She gives him a nod, and allows him to ease most of his dick into her mouth. It gives a whole new meaning to the term deepthroat. With all those inches for Anno’s tongue to play with, he doesn’t last long, and after five minutes of getting his shaft milked, releases his load into her belly with a grunt."); 
+	output("\n\n<i>“After a snack like that,”</i> Anno jokes between gasps, <i>“I might have to run a few more laps.”</i>"); 
+	output("The bull she’s been jerking asks if he can try her mouth on for size, too. Anno silently glances over his rather more underwhelming dick, before slipping a condom over it."); 
+	output("\n\n<i>“I’m feeling a little full right now. Okay if I save some of this for later?”</i>");
+	output("\n\nThe bull doesn’t mind, and Anno proceeds to suck on his nanofiber-sealed prick. A bigger bull next to you tears open a condom and, after no small amount of trouble, unrolls it over his arm-length stallion dick. This guy looks like he must have a few mods. Anno sees him and motions him over, widening her stance as she does so. Not needing any more invitation than that, the big bull mounts her doggystyle, his horsecock nudging into her entrance until Anno’s pussy admits him.");
+	output("\n\nOnce inside, it still takes quite a bit of humping and straining for him to fit it deeper down her passage. You’re not sure where there’s room in there for it, but she somehow manages to fit it in. With her mouth busy, it’d be impossible to ask, but if her moans of pleasure are any indicator, she appears to enjoy being spitroasted.");
+	output("\n\nOnce fully inside, the big bull begins bucking his hips steadily, making his watermelon-sized spunk tanks bounce against Anno’s ass. The remaining bulls move closer to the ménage à trois in progress, still beating their meat. The big bull lifts Anno off her feet as he continues to pump away, but she’s beyond caring by this point, holes filled and surrounded by dick. Each free hand and foot finds its way to a throbbing erection,");
+	if(pc.hasCock())output(" one of them your own,");
+	output("as Anno attempts to get everyone off. Her tight little tailhole even finds an occupant: a cowgirl with a tailcock and a mean look in her eye.");
+	output("\n\nAnno’s voice rises above the slapping and clapping of cock as she climaxes for the umpteenth time. The dick in her mouth slips free, a baseball-sized cumballoon drooping from his cockhead. A smaller bull with a pink-and-black pockmarked prick takes his place and Anno doesn’t even seem to notice, eyes glazed with pleasure from the shower gangbang. As each bull reaches his peak, he blows his load on Anno’s body, coating her in a layer of slippery spooge.");
+	if(pc.hasCock())output(" Your own [pc.cock] erupts a few times, mingling your seed with that already on Anno.");
+ 	output("\n\nAs Anno begins whimpering with another orgasm, the big bull supporting her picks up speed, grunting with each thrust. The other bulls, realizing the end is coming, work their dicks harder to get in one more cum before the big bull’s horsecock goes off. The tailcock in her ass quivers and withdraws reservedly from her now-creamed asshole. The bumpy pink and black one in her mouth has just enough time to add a couple swallows of dense spunk to the load already digesting in her before, with a roar, the final thrust is made.");
+	output(" There’s no way that condom isn’t going to burst. The stud’s stallion balls slam upwards and his horsecock quivers, buried as deep as it can get in Anno’s quim.");
+	output("\n\nAnno is pushed steadily forwards on his rolling orgasm. He takes hold of her to prevent his equine dong from dropping her to the floor. With each shudder that runs through their merged frames, the nanofiber condom on the bull’s dick is sucked further up his shaft and he is pushed further out of Anno until he has been fully ejected. His horsecock hoses her back and ass with the few spurts of virile jizz he couldn’t deposit in her overstuffed womb.");
+	output("\n\nThat volume of spunk could make a kui-tan envious. At long last his rapidly softening dick gives its final dry surge and the bull steps back to admire his work. He thanks Anno and leaves, shadowed by a couple eager-looking cowgirls. Anno, for her part, makes vague noises of recognition from where she lies slumped on the floor, rivers of white hot semen leaking from both ends and a slimy film coating the rest of her. The other bulls show their appreciation with a few words or a squeeze and make their way out of the shower.");
+	output("\n\nYou take the time to give your tuckered pup a thorough cleansing, taking care to wash behind her ears, comb clumps of jizz out of her tail, and dry her off with a towel. As you haul her back to the ship to recover from her exercise session, she wakes briefly, just long enough to give you a whispered, <i>“Thank you,”</i> snuggles into your chest and falls fast asleep."); 
+	pc.orgasm();
+	processTime(30);
+	clearMenu(); 
+	addButton(0, "Next", mainGameMenu);
+}
+	
+//Clean Ends the scene.
+public function allCleanCausePartyPooper():void
+{	
+	clearOutput();
+	showName("ANNO");
+	author("Twin Flare Tails");
+	showBust(annoBustDisplay(true)); 
+	output("You tell Anno that you feel clean enough now. The bulls and cows watch with envious eyes as you leave the shower room with Anno. If you were a gambling [pc.manWoman], you’d wager on there being a few bulls blowing their loads in the shower in short order. After you and Anno have dried and dressed, you leave the locker room."); 
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+
+}
+
+//Work out more with Anno. Mmm dat booty sweat.
+public function annoWorkoutGimmeDatBootySweat():void
+{
+	clearOutput();
+	showName("ANNO");
+	author("Twin Flare Tails");
+	showBust(annoBustDisplay());
+	currentLocation = "572";
+	generateMap();
+	output("You let Anno know that you happen to like her sweat.");
+	output("\n\nAnno cocks an eyebrow at that. <i>Are you saying you want to exercise a little more? I think I’d be up for that. If you’re not too tired, that is.”</i> She tucks her thumbs into the front of her waistband and runs them around to the back. <i>“What did you have in mind?”</i>");
+	output("\n\nYou suggest the weight room. She gives you a dubious look, thinking you might have actually been serious about continuing your work out. You make your way over to the weight room and soon find what you were looking for: a machine with overhead hand grips. You set the weights on the machine to 1500 lbs and take a seat. As Anno watches with a bemused expression, you pull futilely on the grips, fighting the insurmountable weight you set. After a minute or two, she asks if you would like a little help.");
+	output("\n\nAnno plops down before you on the seat, legs spread wide to either side of it and her bottom rubbing against your [pc.crotch]. She raises her arms and intertwines her fingers with yours."); 
+	output("\n\n<i>“Ready?”</i> your cheeky pup asks as she gives her [anno.butt] a little shake on your manhood.");
+	output("\n\n<i>“Ready.”</i>");
+	output("\n\nYou pull down with all your might on the hand grips, straining to make the weights even shudder. Anno’s fingers cut into your own as she also pulls to no effect. You make a good show of it, though. If someone were completely stupid, they might be convinced you were attempting regular exercise. When you are certain no one is paying any attention, you tell Anno to try turning around. Your [anno.race] workout companion obliges, reorienting herself so that you can sit face-to-face, with her atop your lap.");
+	var selCock:int = pc.cockThatFits(anno.vaginalCapacity(0));
+	if(!pc.isCrotchExposed())
+	{
+		output("\n\nWith her body for cover, you slip [pc.oneCock] out of your [pc.crotchCovers], only for it to be wrapped in the confines of Anno’s sweaty thighs. You resume your facade of struggling to lift weights as Anno pulls rhythmically, raising herself up your length, then pushing back down it."); 
+	}
+	else
+	{
+		output("\n\nAnno traps [pc.oneCock] in the slick, sweaty embrace of her thighs. You continue with your weightlifting charade, fighting against the frankly insane amount of weight you set the machine to while Anno works her crotch against yours.");
+	}
+	if(flags["ANNO_HUSKARRED"] != undefined)
+	{
+		if(selCock < 0) selCock = pc.smallestCockIndex();
+		output("\n\nAs you struggle against the machine and Anno rubs against your erect cock, the inevitable happens. Her too-small exercise shorts are pushed just a little too far and, with an audible ripping noise, split a seam in the crotch. Anno looks down with surprise at her own huskar pussy, glistening with a mixture of sweat and girlcum, its lips wrapped around the base of your [pc.cock " + selCock + "]."); 
+	}
+	else
+	{
+		selCock = pc.biggestCockIndex();
+		output("\n\nAnno lets out a grunt as she bucks her hips into yours, the wetness of your mixed sweat, precum, and girlcum lubricating her thrusts. After several minutes grinding against your bone, the Ausar girl can’t seem to take it anymore. Anno stands and slides her shorts and panties off, tosses them to one side, and returns to schlicking your [pc.cock " + selCock + "], only now with the lips of her bare pussy."); 
+	}
+	output("\n\nA moan escapes Anno’s lips as her orgasming pussy coats your [pc.cock " + selCock + "] in her love juice. You can’t help but be aware that some of the nearer patrons of the gym have taken notice, but there’s nothing you can really do about it while you’re receiving lip service from your puppy’s sopping wet cunt. Panting heavily with her tongue out and thrusting lewdly into you with wet slaps, Anno appears to have given up any pretense of engaging in a normal exercise routine. Ah, what the hell! You release your grip on the weight machine and take hold of Anno’s tank top. In one motion you lift it over her head ");
+	if (flags["ANNO_HUSKARRED"] != undefined) output("ripping her sports bra off with a loud snap ");
+	output("so her [anno.breasts] can spring free. Taking her [anno.hips] in your hands and a nipple in your mouth, you lean into the [anno.race] girl."); 
+	if(flags["ANNO_HUSKARRED"] != undefined)
+	{
+		output("\n\nAnno leans into you in turn, her huge mammaries suffocating you with the scent of puppy sweat and lust.");
+		if(pc.cocks[selCock].cLength() >= 16) output(" With every thrust, your dick is immersed not only in wet snatch, but also in her amazing tits.");
+		output(" Your fingers dig into her thick, squeezable body. She’s softer and squishier than any sextoy known to man. As tightly as her thighs are squeezing you, they mould into the perfect shape to massage your [pc.cock " + selCock + "]. You can feel a building pressure");
+		if(pc.balls > 1) output("in your spunk-makers");
+		output(". You’re going to cum; the only question is when. Anno’s moans are beginning to crescendo just as you feel like you can’t take it anymore, and you slap your hips into Anno’s, making her bounce on your lap. With a cry of pure ecstacy, ");
+		if(silly) output("you unleash a fountain of excessive virility, dousing both of your bodies with billions of potential future heirs to the Steele line.");
+		else output(" your [pc.cock " + selCock + "] empties your load into Anno’s spacious cleavage, marking your huskar lover’s [anno.chest] with hot [pc.cum].");
+		if(pc.hasCuntSnake())
+		{
+			output(" Your tailpussy swiftly descends on the tip of your cock, catching the last few spurts for its own greedy hunger, then sucking futilely at your shaft as it begs for more."); 
+			feedCuntSnake(pc);
+		}
+	}
+	else
+	{
+		output("\n\nYour Ausar lover lets out a cry of pleasure as your tongue tickles her salty puppy teat. ");
+		if(pc.balls > 0) output("You feel your [pc.balls] jump a little as Anno wraps her fingers around your [pc.cock " + selCock + "] and angles it into herself. With a growing moan, Anno squeezes her own tits while you continue to tease her nipple orally.");
+		if(pc.cocks[selCock].cLength() >= 12) 
+		{
+			output(" Your dick plows Anno’s innermost depths");
+			if(silly) output(" pounding the back wall of her womb hard enough to scramble her eggs");
+			output(".");
+		}
+		else output(" Your cock glides through her positively soaked love tunnel with practically no friction whatsoever."); 
+		pc.cockChange();
+		output("\n\nYou can feel Anno picking up the pace as you near your own climax. Slamming your hips together furiously, you simultaneously reach orgasm, cumming hard. You empty yourself into Anno like it’s your last chance at procreation"); 
+		if(pc.cumQ() >= 1000) output(" every shot filling her more excessively than the last"); 
+		output(".");
+		if(pc.virility() == 0)output(" Not that you could knock her up, lacking functional sperm.");
+		else output(" You wonder when Anno last took sterilex, not that knowing the answer would make any difference now.");
+	}
+	output("\n\nAs you both come down from your climaxes, you notice that all eyes are on you. Admittedly, the weight most people came to the gym to pump was not liquid, so it’s hardly surprising you attracted this much attention. After taking the time to rearrange your equipment and cleaning up the mess you made with supplies from the janitor’s closet, you leave the weight room.");
+	if(flags["ANNO_HUSKARRED"] != undefined) output("\n\n<i>“That was a lot of fun,”</i> your Huskar companion says conversationally. <i>“We might have to do it again sometime, after I replace these workout clothes.”</i>");
+	else output("\n\n<i>“Now that’s what I call good exercise,”</i> your Ausar companion puts a hand on your waist as she comments on your rather public escapade. <i>“I’d be up for doing that again. Beats any other way I know of staying in shape.”</i>"); 
+	output("\n\nIt certainly doesn’t sound like a bad idea.");
+	pc.orgasm();
+	processTime(30);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+//Watch Anno Jog
+public function annoWorkoutWatchItJiggle():void
+{	
+	clearOutput();
+	showName("ANNO");
+	author("Twin Flare Tails");
+	showBust(annoBustDisplay());
+	output("You sit down on a nearby bench to spectate. Anno resumes her exercise routine. It doesn’t take long for her to get back into it. You admire her sumptuous curves and bouncing assets as she jogs around the track. With each footfall, her [anno.chest] jiggles in the rhythmic motion cultivated by nature to excite the male brain.");
+	if(pc.hasGenitals())
+	{	
+		output("\n\n");
+		if(pc.hasCock()) output("Your face reddens and you realize you’re sporting a rather noticeable boner. You’re not the only one, you note. Several of the bulls around you are sporting tentpoles of their own. ");
+		if(pc.hasVagina()) output("You manage to keep your fingers away from your privates, but that does nothing to slow the spreading moisture permeating your nether regions."); 
+	}
+	if(flags["ANNO_HUSKARRED"] != undefined)
+	{	
+		showBust(annoBustDisplay(true));
+		output("\n\nAs Anno runs by you on the track, you notice that she looks rather uncomfortable in her exercise wear and comment on it.");
+		output("\n\n<i>“It is a little tight,”</i> Anno admits.");
+		//Porn logic. Running with unsupported big breasts hurts.
+		output("\n\nYou mention noticing that some patrons of the gym choose to exercise au naturale. It would probably be fine if she chose to do so as well. She is unsure at first, but the idea seems to excite her. With only slight hesitation, Anno pulls her top over her head, letting her big, squishy breasts spring free. She then drops her shorts and steps out of them one leg at a time. Having tossed her exercise gear aside, Anno resumes jogging.");
+		output("\n\nNow that her body is fully exposed, there are very few eyes not watching her progress around the track and more than a few hands tucked into waistbands. Her tits bounce freely in rhythm as she runs, tossing droplets of salty Huskar sweat into the air with each jiggle. She’s not the only one jogging on the track in the buff now, though. A cluster of nude bulls and cows have grouped around her, giving the impression she’s being chased by a herd of throbbing erections, fervently churning balls, and milky breasts. As you watch, a confident bull directly behind Anno gains enough ground on her that his cock begins bopping her well-formed Huskar butt with each footfall.");
+		output("\n\nAnno is sweating far more unclothed than clothed. She is panting heavily now and her face is flushed; signs she is working up a good heat in her muscles, and possibly somewhere else, too. Streaks of sweat coat her entire body, the rivulets running down her back, merging with the splatters of virile bull precum sprinkling her squishy backside."); 
+		output("\n\nAfter completing one final lap, Anno slows to a walk. She stretches her arms above her head and lets out an exaggerated sigh.");
+		output("\n\n<i>“It’s about time I threw in the towel. That was a lot of fun. Maybe next time you’ll want to join in.</i>");
+		output("\n\nWith one last shake of her sexy little tail, Anno heads toward the showers, trailed by her crowd of rutting bulls and cowgirls. You have some idea what they might be getting up to in there.");
+	}
+	else
+	{
+		output("\n\nYou have ample opportunity to take in all the curves and contours of her fit body as Anno does several loops of the track. After you’ve had plenty opportunity to enjoy the show, Anno slows to a walk and heads your way.");
+		output("\n\n<i>“I worked up quite an appetite with that workout. After I have a quick shower, I’ll have to take another trip to the buffet. Maybe you’ll join me next time?”</i> Her tail twitches suggestively."); 
+		output("\n\nSomething tells you that might not be a bad idea.");
+	}
+	if(flags["ANNO_HUSKARRED"] != undefined) pc.lust(25);
+	else pc.lust(15);
+	processTime(30);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function annoWorkoutShipSexyFunTimes():void
+{
+	clearOutput();
+	author("Twin Flare Tails");
+	showName("ANNO");
+	showBust(annoBustDisplay(true));
+	output("You ask if Anno wouldn’t rather have a little exercise back on the ship. The idea of a private exercise session seems to appeal to her and in almost no time at all, you’re back in your bedroom, with a sweaty [anno.race] girl giving you her sexiest smile."); 
+
+	//Actually put PC in the ship interior
+	currentLocation = "SHIP INTERIOR";
+	generateMap();
+	pc.energy(-20);
+
+	output("\n\nYou begin with a workout for your lips. It’s an exercise quite unlike any other. Anno smells magnificent, the familiar damp scent of her body permeating your nostrils. The feel of her lips on yours is soft and refreshing, and every so often her wet tongue slips from between to tantalize you with its sensation. She has had a lot of practice."); 
+	output("\n\nAs her hand grips tighter into your shoulder and an electric tingle runs through you, she draws back. <i>“I’m feeling kinda hot. We don’t want to overheat, do we? Better dress more appropriately for exercise like this.</i>");
+	if(!pc.isNude())
+	{
+		output("\n\nAnno helps you out of your [pc.gear], taking her time and enjoying every inch of your [pc.skinFurScales] as it’s revealed. You’re eager to help her out of her exercise wear in turn, still damp with sweat. Her [anno.breasts] flop out of her tank top onto your [pc.chest], squishing into you with their characteristic soft warmth.");
+	}
+	else output("\n\nYou’re more than eager to help Anno strip off her exercise wear. Off comes her black top, still soaked in sweat. Her [anno.breastCupSize] puppies look even better out in the open air. As you help her out of her exercise shorts, the scent of her hot, dripping femininity overtakes you.");
+	output("\n\n<i>“Well?”</i> Anno raises an eyebrow questioningly at you. <i>“Ready to try another kind of exercise? I believe we were going to do some laps.”</i>");
+	output("\n\nYou move into an appropriate position to give Anno oral pleasure, prostrate in her lap. The scent of her wet sex is driving you crazy. As soon as you have it within reach, your tongue begins its assault on Anno’s puppyhole. Her luscious lower lips become your sole focus, everything else driven from your mind. Right now, you exist only to pleasure her. Your tongue work is having a powerful effect on Anno. As your [pc.tongue] explores the contours of her pussy, Anno gives a moan of appreciation. This just pushes you to pleasure her further.");
+	output("\n\nYou switch the focus of your efforts to her clitoris, delivering slow flicks across it, teasing it. Anno’s love juice is leaking steadily across your taste buds, flooding your senses more completely with your [anno.race] lover. She begins to whine as you bring her closer to climax, alternating your technique between quick, short licks and long, flowing laps. As Anno reaches her limit, you press your lips to her bud and lightly blow on her most sensitive point. Her pussy clenches for purchase on a cock which isn’t there, milking the air for seed in desperate ecstasy.");
+	output("\n\nWhen her orgasm has subsided, Anno leans back and rubs her lips, tentatively. <i>“That was great. I wish all my partners gave head that good. Now that I’m all warmed up, it’s time we gave your lower body some exercise.”</i> Her expression is positively feral, eyes burning with the fire in her loins. How could you refuse?");
+
+	//Find if any dicks fit.
+	var selCock:Number = pc.cockThatFits(anno.vaginalCapacity());
+	//Pick a fork. 0 - vagina, 1 - dick.
+	var sceneChoice:Number = 0;
+	//Herms with fitty dickies get either.
+	if(pc.isHerm()) sceneChoice = rand(2);
+	//Dudes just the dicking.
+	else sceneChoice = 1;
+
+	//Dick scene!
+	if (sceneChoice == 1)
+	{
+		if (selCock != -1)
+		{
+			output("\n\nYou can hardly contain your excitement as [pc.oneCock] parts her folds, joining you together in the most sensuous way possible. Anno starts off at a pretty good pace. She’s obviously not an amateur in this kind of rodeo. How many bulls did she have to ride to get this good? Her expression is pure lust, urging you to let go of everything else and succumb to your mutual desire. It becomes increasingly difficult to resist as she rides you harder.");
+			//Twas missing a dick virginity check
+			pc.cockChange();
+			output("\n\nYou’re just on the edge of ejaculating when she stops. <i>“Are you getting tired? We could call it good, if you’re ready to be done.”</i> You inform her just how close you actually are. Her smile widens so you can see just a hint of her canines. <i>“I better take it easy then. If I go too fast, you’ll blow before I do.”</i>"); 
+			output("\n\nHer fluffy ears twitching mischievously, Anno slowly humps your [pc.cock " + selCock + "], not moving with much force or even in a rhythm, denying you from reaching your peak, so near yet so far. Your own hips thrust against her, struggling to push yourself over the edge. This startles Anno into letting out an involuntary moan. With a thrill, you realize she’s closer than she had let on. Anno rapidly loses her cool and sweaty hands cup your face as she leans in to kiss you. It’s then you notice just how much you’re sweating too. This really has turned into a workout! Your heaving bodies rub together fervently as each strives to drive the other to orgasm first. Only minutes later, it all becomes just too much. Your hips buck and you release every ounce of your ");
+			if(pc.virility() == 0 ) output("ineffectual puppymakers");
+			else output("egg-hunting swimmers");
+			output(" into your [anno.race] workout partner. As she feels your [pc.cum] filling her, Anno loses it. Her legs squeeze tight around you and she buries her face in your [pc.chest]. The warm wetness of her orgasm soaks sheets already drenched with sweat.");
+			output("\n\nYou lie back with Anno after you’ve both had some time to recover from the experience. She holds you close, breathing in your scent just as you are hers.");
+			output("\n\n<i>“Who needs a gym when I’ve got you? Besides, this way I get free scratches.”</i>");
+			if(flags["ANNO_HUSKARRED"] != undefined) output("\n\nYou oblige, giving her chubby belly a good rub. Anno squirms in your grip, laughing and swatting at your hand. She really is a good pup.");
+			else output("\n\nTaking the hint, you give her a gentle scratch behind the ears. She leans into you, nuzzling appreciatively. It isn’t long before you’re both blissfully asleep.");
+		}
+		else
+		{
+			output("\n\nIt’s a pity you’re too big for Anno to take a proper ride, but as it is, she can still get you both off with the friction of rubbing your sexes together. Her slick slit slides up and down your shaft, with her hands keeping pressure on the opposite side of your phallus, mimicking the feel of a much larger passage. Anno’s pussy clenches at your shaft. She orgasms again as she rides your big dick.");
+			output("\n\nThe way she’s getting off on your massive bone strokes your ego nicely. Not quite as nicely as her tits, which form a valley for your dong to slide through."); 
+			if(flags["ANNO_HUSKARRED"] != undefined) output("Anno’s breasts are large enough that your [pc.oneCock] can barely squeeze between them. It’s tight enough to trick your dick into thinking it’s found an appropriately-sized pussy to leave a deposit in. With the sensation from her breasts and hands working in tandem to get you off, ");
+			output("Anno does her best to push you over the edge.");
+			output("\n\nAs she reaches her peak once again, you know you’ve reached your limit. You feel [pc.eachCock] unleash the tide you had been holding back. Spurts of [pc.cumVisc] cum douse Anno and mess the sheets. As the pressure in your loins fades and the throbbing sensation with it, Anno releases her grip and leans back to admire her work.");
+		}
+	}
+	else
+	{
+		var selCunt:Number = rand(pc.totalVaginas());
+		output("\n\nAnno hops off the bed for a moment and returns with a double-ended Ausar dildo. <i>“Equipment we can use together.");
+		if(silly) output(" And best of all, it’s pink!");
+		output("”</i>");
+		output("\n\nWasting no time, you put yourself tail-to-tail with Anno so she can insert the device. It slips between Anno’s plump lips and penetrates your own [pc.pussy " + selCunt + "] in one swift motion. It’s not so large as to be uncomfortable, but big enough that it reaches your most sensitive places. Anno sure knows how to pick ‘em. You rock steadily back and forth, pushing and giving against Anno, the toy acting as your mutual phallus. Each of you gets the sensation of giving and receiving the pleasure of filling the other’s hole.");
+		pc.cuntChange(selCunt,100);
+		output("\n\nYou feel the pleasure build as your motions grow bigger and bigger. Anno takes it up a notch, aggressively fucking herself backwards into you. It feels like you’re really getting fucked, only instead of thighs slapping into your bottom, it’s Anno’s bulbous backside. After the heat that grew in you from eating her out earlier, it isn’t long before you’re close to achieving orgasm. If you had to guess, Anno must be close, too. Not wanting to be outdone, you set the pace yourself, fucking Anno’s pussy with your own [pc.pussy " + selCunt + "]."); 
+		output("\n\nYour furious pace soon brings you both to climax. Your fingers clap to your [pc.clit], rubbing and massaging it as best you can to intensify your orgasm."); 
+		output("\n\nA hot warmth spreads through your love tunnel. Anno must have chosen a model with synthcum. Behind you, Anno works her way through her own orgasm, her breath sharp and fast."); 
+		output("\n\nWhen she has come the rest of the way down, Anno looks back over her shoulder at you. <i>“That was some exercise. I think I may have to try that routine again sometime.”</i> You attempt to pull free and express a similar sentiment, but find your ass glued to hers. <i>“Oh, right. This model is really faithful. It’s got the knot and everything. Guess we’ll just have to wait it out.”</i> There are worse ways to spend a cool down period. Only it’s too bad you’re not able to hold Anno in your arms while knotted together like this.");
+	}
+	pc.orgasm();
+	processTime(30);
+	//Ran back to ship, so some sweat:
+	sweatyDebuff(1);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);	
 }
 
 //Jog
@@ -1780,7 +2232,7 @@ public function showerWithBetsyAndVictoriaScene(response:String = ""):void
 				output("\n\nOnce you’re mostly hard, Betsy slides your cock between her plump tits and grabs your free hand, placing it on the side of one of her boobs. She leans over and wraps her lips around the flat head of Victoria’s cock, then starts gently bobbing her head up and down, her eyes slipping closed as she sucks on her girlfriend.");
 				output("\n\nNot a bad way to start things. You let go of Victoria’s ass and hold onto Betsy’s breasts with both hands, squeezing them tighter around your [pc.cockNoun " + x + "]. Next to you, Victoria leans in closer, aiming for a better angle as she tries to get more of her dong into Betsy’s mouth. You thrust gently as your dick grows harder, trying not to disturb Betsy’s blowjob as she slowly bobs her head down farther onto her girlfriend’s cock.");
 				output("\n\n<i>“Come on, babe, you can do more than that,”</i> Victoria says with a laugh. <i>“I’m going up [pc.hisHer] ass, remember? Better make sure I’m plenty lubed.”</i> She winks at you.");
-				output("\n\nBetsy raises her head from Victoria’s cock. <i>“I’ll give you–”</i> She bobs her head down again, giving her girlfriend’s shaft a long slurp. <i>“–all the lube–”</i> She bobs again, and and starts to stroke your [pc.cockHead " + x + "] where it sticks up from between her tits. <i>“–when you’re both ready, okay?”</i>");
+				output("\n\nBetsy raises her head from Victoria’s cock. <i>“I’ll give you–”</i> She bobs her head down again, giving her girlfriend’s shaft a long slurp. <i>“–all the lube–”</i> She bobs again and starts to stroke your [pc.cockHead " + x + "] where it sticks up from between her tits. <i>“–when you’re both ready, okay?”</i>");
 				output("\n\nVictoria laughs again, her hands at work on the base of her dick. She’s grown to a full foot long, and after having your dick squished between Betsy’s boobs, you’re not far from being fully stiff yourself. After a moment, Betsy pulls away from her girlfriend and lavishes your cock head with a few long licks, then gives your tip a kiss.");
 				output("\n\n<i>“Looks like you’re all set, cutie,”</i> she says, and releases your [pc.cockNoun " + x + "] from between her tits. <i>“Now give me just a second...”</i>");
 				output("\n\nBetsy turns and deep-throats Victoria all at once, making the fit cowgirl’s breath hitch. She pulls back from Victoria’s cock slowly, and you see her tongue lashing back and forth around Victoria’s shaft. When Betsy finishes, Victoria’s horsecock is slick with spit, hard and ready to go.");
@@ -1917,7 +2369,7 @@ public function soreChange(arg:int = 0):void
 		{
 			pc.removeStatusEffect("Sore");
 			pc.removeStatusEffect("Very Sore");
-			pc.createStatusEffect("Worn Out", 0, 0, 0, 0, false, "Icon_Crying", "You are worn out and and unable to regain energy. Working out is also impossible in this state. Sleep to recover.", false, 0, 0xFF0000);
+			pc.createStatusEffect("Worn Out", 0, 0, 0, 0, false, "Icon_Crying", "You are worn out and unable to regain energy. Working out is also impossible in this state. Sleep to recover.", false, 0, 0xFF0000);
 		}
 		else if(pc.statusEffectv1("Sore Counter") >= 6 && pc.statusEffectv1("Sore Counter") < 9 && !pc.hasStatusEffect("Very Sore"))
 		{
