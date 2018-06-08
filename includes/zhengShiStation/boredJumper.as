@@ -39,7 +39,7 @@ public function boredJumperAttackProc():Boolean
 		if(!CodexManager.entryUnlocked("Laquines")) output("bunny-girl");
 		else output("laquine");
 		output(" bounds into the room. She glances at you with sultry intent in her eyes and announces, <i>“You’ll do.”</i>");
-		if(!CodexManager.entryUnlocked("Laquines")) output("\n\nA chirp from your Codex notifies you that she is a member of the hermaphroditic ‘laquine’ race, known for their libido and single hermaphroditic sex.");
+		if(!CodexManager.entryUnlocked("Laquines")) output("\n\nA chirp from your Codex notifies you that she is a member of the ‘laquine’ race, known for their libido and single hermaphroditic sex.");
 		output("\n\nWhen you don’t fall to your knees, she sighs and draws a compact dart-gun from the holster on her shield belt. <i>“I guess you’re not a slave, huh?”</i>");
 		output("\n\nYou nod");
 		if(pc.isBimbo()) output(", kind of hoping you can just get straight to the fucking");
@@ -88,7 +88,17 @@ public function winVsBoredJumper():void
 	//Enough
 	else output("\n\nYou aren’t sure why, but she seems more than into the idea of being your personal fuck-puppet for a few hours. What do you want to do with her?");
 	clearMenu();
-	addDisabledButton(0,"Sex","Sex","These scenes haven't been written yet. Sorry!");
+	addDisabledButton(1,"Sex","Sex","These scenes haven't been written yet. Sorry!");
+	if(pc.hasCock())
+	{
+		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(0,"FuckHerPussy",bunslutBigPussyBunFucking,undefined,"Fuck Her Pussy","You know what this is...");
+		else addDisabledButton(0,"FuckHerPussy","Fuck Her Pussy","No way! That cunt's wayyyyy too small for you.");
+	}
+	else addDisabledButton(0,"FuckHerPussy","Fuck Her Pussy","You need a penis for that.");
+	if(pc.hasGenitals()) addButton(1,"Frottage",frottageVictoryVsBoredJumperByB,undefined,"Frottage","Grind your way to victory!");
+	else addDisabledButton(1,"Frottage","Frottage","You need genitals for this scene.");
+	if(pc.hasGenitals()) addButton(2,"Suit Burster",meanHandySuitBurster,undefined,"Suit Burster","Tease the laquine Jumper till she bursts out of her suit.");
+	else addDisabledButton(2,"Suit Burster","Suit Burster","You need genitals for this scene.");
 	addButton(14,"Leave",leaveTheBoredJumperAfterWinning);
 }
 
@@ -105,8 +115,9 @@ public function leaveTheBoredJumperAfterWinning():void
 
 //Lose to Bunny
 public function loseToBoredJumperRouting():void
-{
+{	
 	if(pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")) cumCumCoverLossForSweatquine();
+	else if(pc.isTaur()) taursLoseToSweatLaquineByWsan();
 	else if(pc.biggestTitSize() >= 11 && rand(2) == 0) sweatBunSlickyslickTitbang();
 	else if(pc.biggestCockLength() >= 36 && rand(3) <= 1) sweatBunHyperCockDock();
 	else loseToSweatBunny69();
@@ -157,7 +168,7 @@ public function loseToSweatBunny69():void
 	output("\n\nYou sprawl, overheating. The stone you’re laying on is so incredibly warm, and the bunny on top of you is even hotter. Her thick thighs clutch you tightly, scissoring you into her sweltering embrace. You feel so moist that you’re sure you must be dripping too, something the laquines roving [enemy.eyeColor] eyes seem to approve of.");
 	output("\n\n<i>“This is how sex is supposed to be! Two mammals all sweaty from the hunt, satisfying their bodies in a deep... dark... cave.”</i> One finger goes to the zipper at her neck, and the laquine’s [enemy.eyeColor] eyes twinkle merrily. <i>“Oooh, you’re such a hot fucking mess.”</i> She arches her back and yanks the fastener down, unveiling a curtain of creamy [enemy.furColor] fur and the swells of her pert breasts. They glisten under the mine’s cheap lights. <i>“And I am too.”</i> She yanks on one glove, peeling an arm free, then the other. Soaked latex flops down behind her, leaving the laquine’s upper body bare.");
 	output("\n\nGlistening, heaving breasts thrust forward. Tight nipples jut even further out, a droplet moisture beading off the tip. Fingers curl up around them as the laquine brazenly gropes herself. <i>“Fuck yes. Can you see how hot you’ve gotten me?”</i> Her eyes flick down meaningfully.");
-	//Potential pagebreak9999?
+	//Potential pagebreak?
 	output("\n\nFollowing her gaze across her taut tummy, you see exactly what she means. Her [enemy.cock] is jutting up out of the zipper, which is even now being worked lower by the pulsating, thickening organ. If you thought she was hard before, you were dead wrong. The horny bunny-pirate’s prong swells well past ten inches and well into footlong territory before your eyes, thrusting against the zipper until it slides itself underneath her fuzzy, drenched nutsack.");
 
 	//Bimbo/cumslut
@@ -169,7 +180,7 @@ public function loseToSweatBunny69():void
 	//Low
 	else output("\n\nYou can’t look away. It’s such a powerfully erotic sight that it makes you feel a little uneasy... until your overwhelming lust reasserts itself, reminding you that you need to cum.");
 	//Merge
-	output("\n\nFortunately the laquine actually smells sort of... nice. She’s a little musky, maybe, laced with a spicy note of alien scent that presume must be her long-stewed body odor. Nose wrinkling, you sniff again, too fascinated by the aroma in the do care when she shifts higher... and higher, presenting you with the twitching [enemy.cockHeadNoun] of her dick.");
+	output("\n\nFortunately the laquine actually smells sort of... nice. She’s a little musky, maybe, laced with a spicy note of alien scent that presume must be her long-stewed body odor. Nose wrinkling, you sniff again, too fascinated by the aroma in the do care when she shifts higher... and higher, presenting you with the twitching [enemy.cockHead] of her dick.");
 	//add sweaty
 	sweatyDebuff(1);
 	processTime(8);
@@ -667,4 +678,755 @@ public function cumCumCoverLossForSweatquine():void
 	//Merge: no new pg:
 	output("\n\nShe steps away from you, careful not to get any of the caked-on juices on her suit. <i>“Grab yourself a shower, and I’ll give you a real welcome to Zheng Shi, but uh... don’t be afraid to work up a sweat while you wait for me. ‘Kay?”</i>\n\n");
 	CombatManager.genericLoss();
+}
+
+//Bunslut Big Pussy-Bun Fucking
+//By QuestyRobo
+public function bunslutBigPussyBunFucking():void
+{
+	clearOutput();
+	showBoredJumper(true);
+	author("QuestyRobo");
+	output("The beaten-down bun bounces her breeding hips into the air as she begs you to fuck her. Her protruding package pendulously swings with her movements. As the sealed sex organs bounce it gives you a glimpse of the other half of her sexuality. A pair of fat pussy lips distends her shiny latex suit, so tight against their confines that you can make out almost every detail. Your [pc.cocks] rocket");
+	if(pc.cockTotal() == 1) output("s");
+	output(" to full hardness as you get a full look at the laquine slut’s womanhood.");
+	output("\n\nThe bounding slut sees ");
+	if(!pc.isCrotchExposed()) output("the distended state of your [pc.crotchCover]");
+	else 
+	{
+		output("your member");
+		if(pc.totalCocks() > 1) output("s");
+		output(" shamelessly erect and swaying in the open");
+	}
+	output(" and coos in approval. <i>“Oh yeah, seeing something you like, big " + pc.mf("guy","girl") + "?”</i> She rolls over and pushes her big bunny booty out at you, squeezing her puffy cunt between her meaty thighs. The way her plush lips squeeze and compress between her legs is mesmerizing, and you start thinking about how... <i>“Bet you’re thinking about how that dick of yours is gonna feel when you’re fucking me?”</i>");
+	output("\n\n<i>“... Maybe.”</i>");
+
+	output("\n\n<i>“Then come and unwrap your present!”</i> The bunny slut reaches back and pulls her cheeks apart before releasing them, letting the bountiful, muscular globes bounce against each other as her hips continue to slide along her engorged outer lips. It’s an offer that’s too good to turn down and you strut up to the laquine whore, grab her by the jiggling bunny butt, and kneel down to get a nice closeup of her lower lips. Being this close makes the sheer tightness of her suit even more obvious. If you didn’t know any better, you’d say that this was actually her skin. A close inspection of her honeypot even reveals that the latex is so tight that it extends a few inches into her pussy!");
+
+	output("\n\nShe takes you by the hand and guides you to the zipper of her suit. From there she leaves you to undress her. You do so with gusto, practically ripping her zipper off as you pass over her perky tits. A wave of heat bellows out as you release the seal of her suit. Hours, maybe even days of built up heat and sweat are finally released as the bunslut lets out a hearty sigh.");
+
+	output("\n\n<i>“Aaaah, that’s the good stuff. Feels almost as good to let it all out as it does to let it sit.”</i> You ignore it for now, even as your hand starts to sweat harder just from being close to her. The real obstacle comes with her [enemy.cock]. It’s fully, throbingly erect, and the suit is so tight against it that you have no end of trouble getting the zipper up and over it. She groans and huffs as you try, and the fact that she’s enjoying the struggle is painfully obvious as her [enemy.cockNoun] throbs shamelessly.");
+
+	output("\n\n<i>“D-don’t be afr-afraid to, uuugh! To get real rough with that sucker. Yank it good, space [pc.boyGirl]!”</i> Honoring her request, you pull the zipper as hard as you can, hearing her moans build at an exponential pace as you yank. It slowly jerks up her shaft, working itself free of the pillar of hot meat. Her moans reach a crescendo as you near the tip, and a balloon of her cum starts filling before you can get it all the way over. Not wanting to get blocked from your prize by her jizz, you give the zipper one last yank, sending it all the way over and breaking the jizz balloon, creating a puddle of the stuff under her that she continues to contribute to.");
+	output("\n\nYou finish unzipping her as she continues to cum. You have to practically dig the suit out of her pussy, an act that only serves to draw out the skank’s orgasm. Opening her suit around her honeypot is like busting open a dam. Her juices flow out in waves, mixing with her cum into a sexual slurry.");
+	output("\n\nWith her zipper all the way down, you’re finally able to pull her suit completely off. There’s still a good bit of cling to it, but you’re eventually able to yank it clean off. Her body almost sizzles from the heat and aftermath of her orgasm. Her fat lips wink at you as her hips start wiggling at you again.");
+	processTime(20);
+	clearMenu();
+	addButton(0,"Next",bunslutPussFuck2);
+}
+public function bunslutPussFuck2():void
+{
+	clearOutput();
+	showBoredJumper(true);
+	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0) * 2);
+	if(x < 0) pc.smallestCockIndex();
+	author("QuestyRobo");
+	output("You press your face between her beefy bun thighs, barely an inch from her entrance. Stars, you thought it was hot before; just being this close to her overheated form is like going into a sauna! You swear the juices coating her lips are actually steaming, but that’s far down your list of priorities.");
+	output("\n\nYou stick your [pc.tongue] into her cunt, recoiling slightly at first as the almost inhuman temperature near-singes your tongue. Once you’ve battered through the heat you dive as far into her as possible");
+	if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(", which is quite deep, thanks to your anatomy");
+	output(", feeling every overcooked fold and drop of boiling pussyjuice landing on your exploring oral organ. The laquine groans and squirts another drop of bunny cum from her still-hard member, adding to the sex-juice soup below her.");
+
+	output("\n\nHer cunny squeezes down on your tongue like it were a cock, but the overexcited little hole is going to have to wait for that. Perhaps not as long as you’d want though. As she gets closer to orgasm, the muscles in her vagina pull harder and harder, to the point where you feel like she’s trying to rip your tongue clean out of your mouth! You pull out, though you still tipped her over enough that your tongue is followed by a torrent of hot ladyjuice that splatters all over your face.");
+	output("\n\n<i>“Come on, I’m not done yet!”</i> And you haven’t even started!");
+	if(!pc.isCrotchExposed()) output(" You undo your [pc.lowerGarments], letting them drop limply to the floor as you brandish your [pc.cockNounSimple]. You slap her pussy with it, causing the bun-bitch to groan out.");
+	else output(" You slap her pussy with your [pc.cock], causing the bun-bitch to groan out.");
+
+	output("\n\n<i>“Fuuuuuuuuck, do that again!”</i> You do so, grabbing the base of your member and mightily slapping her womanhood. There’s so much padding from her outer lips that it feels like beating your meat against a lavish pillow rather than a slut’s pelvis. You go and go until she screaming out in pleasure, her voice echoing off the walls as you pound on her. Eventually you tire of the teasing and rear back to start fucking her in ernest.");
+	output("\n\n<i>“Hell yeah hot stuff! Don’t even think about that slow shit, we laquines like it <b>rough</b>!”</i>");
+	if(pc.cockVolume(x) > enemy.vaginalCapacity(0)) output(" You get the feeling she <i>might</i> not know exactly what she’s getting into here, but you press on anyway.");
+	else output("That’s an invitation if you ever heard one, and you press on!");
+
+	if(pc.cockVolume(x) > enemy.vaginalCapacity(0) * 1.5) 
+	{
+		output("\n\nHer lips open up surprisingly easily. You imagine laquines are made to take ‘em, but you’re more equipped to breed taurs. Your confusion fades as the initial ease turns into tightness, and she yells out.");
+		output("\n\n<i>“H-holy fuck! Why are you so big?”</i>");
+		output("\n\nYou mockingly shrug your shoulders with a smirk as her initial look of terror at your inhuman endowment turns to one of resolve.");
+		output("\n\n<i>“Okay fuckmeat! I bet just cause you have that big, dumb thing it doesn’t mean you know how to use it. So FUCK me! Fuck me til I break! If you can of cooooooooooooooooooourseeeeeeeee!”</i> Her voice breaks as soon as you drive a foot of your monumental cock into her. You continue to cram yourself in until you feel yourself bottom out against her cervix. She claws at the hot ground below her as her eyes cross and her mouth hangs open. Looks like she was all talk.");
+		output("\n\n<i>“I-i-is that all you got?”</i> she weakly stammers out. Evidently she still has some fight in her. Time to see how long that lasts! You pull out, feeling her muscles cling to you, just as powerless to stop you from leaving as they are at keeping you out. Proof of that comes when you bottom out again with minimal resistance. She groans and gurgles, still trying to goad you on, but finding it hard to even keep herself together.");
+		pc.cockChange();
+		output("\n\nEvery thrust breaks her down even more. You keep them slow and deliberate, if not to spare her sanity, than to spare your [pc.hips] of having to carry such a monumental package through rapid movements. That doesn’t mean you’re going easy on her, though. Every time you feel like the little cocksock is getting too used to you, you up the tempo just enough to beat her back down. If she wants you to break her, that’s damn well what you’re going to do!");
+		output("\n\nAnother dozen, herculean thrusts later and she’s a broken mess on the floor, spasming in pleasure and babbling out barely-coherent reverence for your unbelievable monster. The beating heat of your [pc.cock] actually hammers you almost as much as it does her. Cramming so much fat, sensitive flesh in such a tight hole is a task in of itself, and it takes all of your willpower to keep yourself from blowing on the spot. The writhing of the brain-fucked bunslut only makes it harder to keep it together, and before long you feel the telltale tightness in your [pc.balls].");
+		if(pc.cumQ() < 500) 
+		{
+			output("\n\nYour shaft shudders as it starts unloading into the laquine skank. Compared to the goliath size of your cock, your orgasm is pitiful in comparison. Despite being close to insensate, the bunny bitch still gets out one last jab.");
+			output("\n\n<i>“All bark and no bite huh? weeeeeeeeeeeeeeeeeeeeeeeeeeeeak...”</i> She passes out with your mammoth member still lodged inside her.");
+		}
+		else if(pc.cumQ() < 5000)
+		{
+			output("\n\nYour shaft throbs heavily as your load funnels through your urethra into the laquine slut. Whatever small crevices there were that weren’t filled out by your monstrous meat are almost immediately filled with [pc.cum]. The furry cocksock groans as her body is even further reduced into a receptacle for your lusts; not like she seems to mind all that much. By the time you’re done, you’ve reduced her to a happily babbling little cum balloon, rubbing her doubly swollen belly in blissed-out reverence.");
+			output("\n\nHer eyes flutter shut as your cock slowly starts softening inside her, passing out after the intense session.");
+		}
+		else
+		{
+			output("\n\nYour cock bloats as your mighty load distends your urethra. The laquine slut breaks out of her stupor for a moment as the explosive eruption of your orgasm rockets into her.");
+			output("\n\n<i>“What the fuck are you!”</i> She screams out as her body is flooded in an instant. Her stomach swells out obscenely, every nanometer of empty space getting overstuffed with copious amounts of [pc.cum]. It’s enough that even the outline of your ridiculous dick is lost in it. The pressure is so great that you have to grab her and hold her down just to keep her from flying off. Huge ribbons of jizz fly out of the tight seal of her cunt, washing away her own cum puddle from earlier, in favor of you cum river.");
+			output("\n\nThe laquine lost consciousness long before your orgasm subsided, contently snoozing despite being stuffed to the brim with cock and cum.");
+		}
+		output("\n\nYou pull out of the unconscious bunny slut and wipe the remaining residue off on her ass and thighs. With your [pc.cock] all cleaned up");
+		if(!pc.isCrotchExposed()) output(" and shoved back into your [pc.crotchCover]");
+		output(", you take your leave of her, letting fate decide what happens next.");
+	}
+	//Not stupid big dodongos:
+	else
+	{
+		output("\n\nHer fat bunny pussy takes everything you have with ease, the thick lips hungrily throbbing against your skin as you find yourself balls-deep.");
+		output("\n\n<i>“");
+		if(pc.cockVolume(x) < enemy.vaginalCapacity(0) * .35) output("A little lacking, aren’t ya? I hope you weren’t expecting me to be impressed by this. You better at least know how to use it.");
+		else output("Damn, you’re really packing aren’t you? You better know how to use it. It takes more than just a big dick to make a laquine squirt.");
+		output("”</i>");
+		pc.cockChange();
+
+		output("\n\nYou assure her that you more than know what you’re doing as you rear back again. Her lips kiss your length all the way out, the soft outer folds feeling like a pair of warm massage pillows. It takes a good amount of resistance not to cum just from that, and she knows it.");
+		output("\n\n<i>“Something wrong?”</i> She says with a huge grin. You grunt in irritation and give her butt a heavy slap to get her to shut up. She complies, for now, as you thrust back in with renewed force. The bounding bun matches each of your thrusts with one of her own, getting in sync with you in short order. She starts pushing you to go faster, increasing her own speed in order to force you to keep up. It’s quite the exercise, and you find that both of you are sweating like a pair of overworked animals in no time.");
+		output("\n\nYou grit your teeth as the slut’s tunnel gets harder and harder to pull out of with each thrust. She’s getting close to cumming, and with how many times she’s cum already, it’s surprising that she lasted this long. You aren’t too far away yourself, if the rumbling in your [pc.balls] is anything to go by. Both of you decide to give it a big finish. You practically ram your bodies together, feeling the sheer impact force repelling you before you can even start rearing back.");
+		if(pc.balls > 0)
+		{
+			output(" Your [pc.balls] slap");
+			if(pc.balls == 1) output("s");
+			output(" into hers with each thrust. The impact should be painful, but in your overstimulated state it almost crosses into pleasure!");
+		}
+		output("\n\n<i>“There you go, meat. This is some proper laquine breeding right here!”</i> Her words are lost in the rut as you feel your orgasm slipping into your mind. It’s too late to stop it now! You and her give one last thrust into each other and meet with an almost concussive bump as you both cum.");
+		if(pc.cumQ() < 500)
+		{
+			if(pc.balls > 0)
+			{
+				output("\n\nYour [pc.balls] clench");
+				if(pc.balls == 1) output("es as it unloads everything it has");
+				else output(" as they unload everything they have");
+				output(" into the laquine. Your cumvein burns at the effort it’s exerting, even going as far as to try and push out phantom loads after you’ve completely emptied.");
+			}
+			else 
+			{
+				output("You feel a great weight being lifted from your loins as your orgasm flows forth. Torrents of [pc.cum] bulge out of your cumslit and fill the bunny bitch to bursting. She doesn’t seem to mind your output, even when it rounds her belly out to about eight months pregnant.");
+				output("\n\n<i>“Are you sure you’re not a laquine under all that? Cause that’s a laquine orgasm if I ever felt one.”</i> That has to be the first thing she’s said to you that wasn’t dripping in sarcasm.");
+			}
+		}
+		else
+		{
+			output("\n\nYour vision blurs as your explosive orgasm bursts inside her. Her stomach distends almost immediately, your first shot more than enough to turn her trim belly into a cum-pregnant paunch. The rest of your shots only serve to push her limits, rounding her out into a little bunny beachball before spilling out in huge waves.");
+			output("\n\nShe doesn’t seem that bothered by it though. <i>“Fuck, you really like to overdo it don’t you? I like that!”</i>");
+		}
+	}
+	output("\n\nYou finally decouple, letting her fall to the ground in a heap of ");
+	if(pc.cumQ() < 2000) output("her own");
+	else output("both of your");
+	output(" cum. She pants and waves you away as her eyes drift shut. Deciding that she’s fine down there, you put your gear back on and head out, leaving her to fate.");
+	processTime(30);
+	pc.orgasm();
+	enemy.loadInCunt(pc,0);
+	output("\n\n");
+	CombatManager.genericVictory();
+}
+
+public function taursLoseToSweatLaquineByWsan():void
+{
+	showBoredJumper(true);
+	author("Wsan");
+	var x:int = -1;
+	if(pc.hasVagina()) x = rand(pc.totalVaginas());
+	output("<i>“Jeez, you’re a big beasty, aren’t you?”</i> the sweaty laquine girl asks, looking down at you and tilting her head. <i>“Y’know... one of the captains looks a bit like you, and I’ve always wondered what it’d be like...”</i>");
+	output("\n\nShe claps once like she’s decided something, the motion sending sweat droplets everywhere and setting her generous breasts jiggling in her suit.");
+	output("\n\n<i>“Yeah!”</i> she says, smiling. <i>“I’m gonna fuck the hell outta you!”</i>");
+	if(pc.HP() <= 1) 
+	{
+		output("\n\nYou groan, lying on your side. You’re not in much of a position to refuse, but if you could just reach a weapon...");
+		output("\n\n<i>“Ah ah,”</i> the horny laquine says, lightly kicking at your hands. <i>“Don’t be a sore loser. Relax, I’m not gonna sell you into slavery or anything. Just have a bit of fun with that big round rump of yours!”</i>");
+	}
+	else
+	{
+		output("\n\nThat honestly sounds fucking amazing right now, and she can see as much in your expression.");
+		output("\n\n<i>“Aw yeah, come to momma,”</i> she says, grinning. <i>“Atta[pc.boyGirl].”</i>");
+	}
+	output("\n\nShe bends down to give you a quick poke in the shoulder, then gives you a once over before another jab in your other shoulder, dosing you with something. <i>“I’d ordinarily just do the one but uh, you’re pretty big and you might need more, maybe?”</i> She shrugs. <i>“I dunno! I’m not a doctor.”</i>");
+	output("\n\nYou can feel strength running through your body... along with some other sensation you can’t put a finger on yet.");
+	output("\n\n<i>“C’mon bub, that should give you enough to get up,”</i> she says, pulling your arm. <i>“Up! Can’t get at that fat ass otherwise.”</i>");
+	output("\n\nSurprising even yourself, you manage to stagger to your feet and steady yourself against a wall, breathing hard. The laquine, taking her time, crouches down to look at you from behind.");
+	output("\n\n<i>“Wow, ‘taur bodies are something else!”</i> she exclaims,");
+	if(pc.hasCock())
+	{
+		if(pc.ballDiameter() >= 4 && pc.balls > 1) output(" grabbing a handful of your balls from behind and giving them a light squeeze");
+		else output(" reaching under to grab your [pc.cockBiggest] and squeeze it");
+	}
+	else if(pc.hasVagina())
+	{
+		output(" running her fingers");
+		if(pc.vaginas[0].type == GLOBAL.TYPE_EQUINE || pc.vaginas[0].type == GLOBAL.TYPE_LEITHAN) output(" up and down the blackened lips of your dripping marecunt");
+		else output(" between your pussy lips");
+	}
+	else output(" her fingers tracing around your [pc.asshole]");
+	output(".");
+	output("\n\n<i>“I- I,”</i> you gasp, starting to shiver and sweat. <i>“I don’t think you were m-meant to use t-t-two of those...”</i>");
+
+	output("\n\n<i>“Oooh...”</i> the bunnygirl murmurs, rising back to her feet with a hand on your flank. <i>“Well, the good news is the side effects aren’t too heavy. Just a little bit of fever and heat.”</i> She rubs your butt in a manner that’s probably intended to be comforting but just makes you want to sit on her face. <i>“The bad news, though,”</i> she continues, exaggeratedly clicking her tongue in faux regret, <i>“is that it lasts a few hours. Hope you had a lot to drink, [pc.boyGirl], ‘cuz I’m gonna be making you sweat all that out.”</i>");
+
+	output("\n\nYou should be angry about her misuse of drugs. You should be - but honestly, that’s too much effort. All you can muster the energy for right now is a desperate groan of lust as");
+	if(pc.isHerm())
+	{
+		output(" your cock");
+		if(pc.cockTotal() > 1) output("s stand");
+		else output(" stand");
+		output(" up impossibly hard, batting against your underside and dribbling while your [pc.multiCunts] slaver");
+		if(pc.totalVaginas() == 1) output("s");
+		output(" for attention");
+	}
+	else if(pc.hasCock())
+	{
+		output(" your prick");
+		if(pc.cockTotal() > 1) output("s");
+		output(" harden to the point of pain, slapping against your stomach in a desperate bid for stimulation");
+	}
+	else if(pc.hasVagina())
+	{
+		output(" your [pc.vaginas] juice");
+		if(pc.totalVaginas() == 1) output("s itself");
+		else output(" themselves");
+		output(", dripping and dribbling with clear, pearlescent liquid to hopefully spur your partner to action");
+	}
+	output(".");
+	output("\n\n<i>“Please enough taunting!”</i> you beg, spreading your hindlegs a little to demonstrate how willing you are. <i>“Just shut up and fuck me through this!”</i>");
+
+	output("\n\n<i>“Fine,”</i> she says, giving you such a hard spank that you cry out in pain. Fuck, just having <i>any</i> stimulation near your hindquarters is enough to make you want to cum! You can hear her unzipping her suit, each second slipping by feeling like an hour until, suddenly, she’s poised at your ");
+	if(pc.hasVagina()) 
+	{
+		if(pc.vaginas[0].looseness() < 3) output("tight, dripping");
+		else output("wet, accommodating");
+		output(" entrance");
+	}
+	else 
+	{
+		if(pc.ass.looseness() < 3) output("tight");
+		else output("gaping");
+		output(", round");
+		if(pc.hasPlumpAsshole()) output(" and ridged donut of a");
+		output(" ring");
+	}
+	output(".");
+
+	output("\n\nShe doesn’t fuck around, something you’re intensely grateful for as she drives her entire length into");
+	output(" you");
+	if(pc.hasVagina()) output("r overeager cunt");
+	output(", her");
+	if(enemy.cocks[0].cType == GLOBAL.TYPE_EQUINE) 
+	{
+		output(" blunt, slightly flared head pressing against your cervix insistently.");
+		output("\n\n<i>“H-horse,”</i> you gasp, taken in by the sensation of having a studly equine member inside your needy ");
+		if(pc.hasVagina()) output("pussy");
+		else output("asshole");
+	}
+	else if(enemy.cocks[0].cType == GLOBAL.TYPE_FELINE) 
+	{
+		output(" thick, barbed length stimulating you in all the ways a regular cock can’t.");
+		output("\n\n<i>“C-cat,”</i> you gasp, the tiny spikes rubbing your ");
+		if(pc.hasVagina()) output("pussy walls");
+		else output("insides");
+		output(" on the outstroke, exploiting your instincts to make you clench up on her");
+	}
+	else if(enemy.cocks[0].cType == GLOBAL.TYPE_CANINE)
+	{
+		output(" tapered tip slyly pushing up ");
+		if(pc.hasVagina()) output("against the entrance to your womb, leaving a deposit of precum as a little ‘bitch-marker’");
+		else output("into the depths of your behind, precum dripping from the end of it");
+		output(".");
+		output("\n\n<i>“D-dog”</i> you gasp, a little surprised - but grateful - she didn’t shove her accompanying knot inside, too");
+	}
+	else 
+	{
+		output(" swollen, pre-dripping cockhead nestled right up against the entrance to your womb.");
+		output("\n\n<i>“H-human,”</i> you gasp, the size of it taking you off-guard. Most human cocks couldn’t hope to please your bestial form, but this one..");
+	}
+	output(".");
+	if(pc.hasVagina()) pc.cuntChange(x,enemy.cockVolume(0));
+	else pc.buttChange(enemy.cockVolume(0));
+	output("\n\n<i>“Ah, yup! Expecting something else?”</i> she asks, apparently having a good time.");
+	output("\n\n<i>“No, juh-just fucking </i>destroy<i> me,”</i> you plead, thrusting your rear back at her with your hindlegs. <i>“Please! I can take it, it’s what we’re good at!”</i>");
+	output("\n\n<i>“You... fuckin’...”</i> she grunts, drawing back her powerful laquine hips. <i>“</i>Got it<i>!”</i>");
+
+	output("\n\nThe ensuing thrust is so hard you");
+	if(pc.isBimbo()) output("r eyes cross with the brain-melting pleasure");
+	else output(" see stars for a second");
+	output(".");
+	
+	if(pc.hasCock())
+	{
+		output(" Your [pc.cocks] wildly spray");
+		if(pc.totalCocks() == 1) output("s");
+		output(" [pc.cum] all over the wall you’re braced against, your fuckhole trembling in bliss as the bunnygirl hammers you");
+	}
+	else if(pc.hasVagina()) output(" Your stuffed-full pussy immediately clamps down on the bunnygirl’s dick, your walls trembling in pleasure while you grit your teeth and cum all over her");
+	else output(" The sensation of her hammering your fuckhole, being <i>used</i>, is so intense you almost cum right on the spot");
+	output(". The thought of being angry at her is gone from your mind, banished by the glee of penetration - whatever she injected you with, it’s some seriously good shit!");
+	output("\n\n<i>“Uhhh! K-keep goooiing!”</i> you wail, pushing back into her with every stroke. She spanks you again, even harder this time, both your cheeks now reddened.");
+	output("\n\n<i>“Relax, slut! I’m good to go more than once!”</i> she says, rubbing your [pc.ass]. <i>“Finally, someone I can really let loose on!”</i>");
+
+	output("\n\nShe starts to fuck you so fast it would feel like her cock has never left your body if not for the intense, stomach-clenching pleasure emanating from your thoroughly conquered ");
+	if(pc.hasVagina()) output("cunt");
+	else output("asshole");
+	output(". Those laquine hips have an insane amount of drive in them and you’ve got front row seats to witness just how hard she can pound your hole until it gapes for her.");
+
+	output("\n\n<i>“Oohhh fuck </i>yes<i>,”</i> you groan, bowing your head. You’re ready to let her take over from here, submitting entirely and slowing your thrusts back into her before coming to a complete stop. It’s okay, the capable jumper has it handled.");
+
+	output("\n\n<i>“Oh, good [pc.girlBoy]!”</i> she says, patting your flank while your hindlegs twitch, creating a groove in the ground as they stretch a little further outwards for her. <i>“You do learn!”</i>");
+
+	if(pc.hasCock()) 
+	{
+		output("\n\nYou’re like a fountain, cum surging helplessly from the end of your cock");
+		if(pc.cockTotal() > 1) output("s");
+		output(" as the hyperactive bunny fucks it out of you with an intensity you’ve come to crave");
+	}
+	else output("\n\nYour [pc.vagOrAss " + x + "] quivers, having held you in an almost perpetual state of orgasm since she first started pummeling you");
+	output(". It doesn’t take long for her to cum, both of you groaning thankfully as rabbitjizz begins to flood into you, assuaging your heat just a little.");
+
+	output("\n\nBarely even breathing hard but soaked in sweat, the bunnygirl withdraws from your spunked-up hole and begins fumbling for some of her equipment.");
+	output("\n\n<i>“Thanks...”</i> you pant, looking back at her with unfulfilled desire in your eyes. <i>“You’re not </i>leaving<i>, right?”</i>");
+
+	output("\n\n<i>“Nope,”</i> the bunny says, delicately injecting herself with something. You can see her flagging cock immediately begin to stand back up, angrily swelling with blood until she’s as stiff as diamond. <i>“Gotta take responsibility for my fuckups!”</i> Lining herself back up, she gives you a wink and adds, <i>“Miiight be a little bit of selfish pleasure in there, too. I don’t get to fuck a ‘taur everyday, y’know?”</i>");
+
+	output("\n\nWhatever her reasoning, you’re <i>extremely</i> grateful for it and let her know by screaming in pleasure when she shoves herself back inside your ");
+	if(pc.hasVagina()) output("cunt");
+	else output("ass");
+	output(". Barely even a drip of her cum escapes from you, the laquine having cum too deeply inside for it to leak outwards, but you’re pretty sure that at the rate she’s going");
+	if(x >= 0 && !pc.isPregnant(x)) output(" your womb will be stuffed to the point of swelling outwards with her virile jizz when she’s done with you. Who knows, maybe you’ll end up delivering a litter of rabbits. Right now, the thought is more than a little enchanting.");
+	else output(" you’re going to have a river of jizz between your hindlegs by the time she’s done.");
+
+	output("\n\nHer second orgasm takes much longer, perhaps owing to the drug or just that it’s too soon after her first, but you’re not thinking so much about the reason. All you’re thinking about is how fucking good she is and wondering whether you’ll pass out from exertion before she’s truly done.");
+	if(pc.isTreated()) output(" It’s a good thing you’re Treated, or else you really might.");
+
+	output("\n\n<i>“Do,”</i> you pant, having to take long breaths, <i>“do you want me, to change positions?”</i>");
+
+	output("\n\n<i>“Oh?”</i> the bunnygirl says, eyeing you with interest as she juices herself up again. You can’t tell if it’s your imagination, but every time she injects herself it seems like her cock gets bigger...");
+	output("\n\n<i>“Can you lie on your back, then?”</i> she asks, curious. <i>“I wanna see this.”</i>");
+	output("\n\n<i>“Fine,”</i> you nod, and gently lie down before rolling over.");
+
+	output("\n\nIt’s a very vulnerable position, as even the most untrained of eyes can tell. Your soft underbelly is exposed and your [pc.legOrLegs] ");
+	if(pc.legCount == 1) output("is");
+	else output("are");
+	output(" up in the air. If you wanted to recover from this to protect yourself, it would take you multiple seconds to get back up.");
+	if(pc.hasCock())
+	{
+		output(" Not to mention your cock");
+		if(pc.cockTotal() == 1) output("s is");
+		else output("are");
+	}
+	output(" completely exposed, still drooling across your tummy.");
+
+	output("\n\n<i>“Ooooh,”</i> the bunnygirl says, her eyes gleaming as she sinks to her knees with her veiny cock in hand. <i>“I </i>like<i> it.”</i>");
+
+	output("\n\nThere’s no doubt about it now - that dick of hers is definitely larger. If you’re going to be here for a few hours like she said, you can only imagine how big she’s gonna get by the end of it. She notices your intent stare.");
+
+	output("\n\n<i>“Oh, this?”</i> she says lightheartedly, pointing to her dick. <i>“It’s drug-induced and temporary. But uh, if you take multiple doses within a couple hours of each other, the effects kinda ‘stack up’. So this’ll go away, but not before we’re done here.”</i> She breaks into a predatory grin. <i>“Isn’t that nice for you?”</i>");
+
+	output("\n\n<i>“Oh fffuuhh!”</i> you half-moan, half-scream as she violently re-enters you, not giving you any time to adjust to her size. <i>“Guh! Unh! Uhhh!”</i>");
+	output("\n\n<i>“Remember, babe: you still tried to fight me and lost,”</i> she whispers under your pitiable groaning. <i>“So! You’ve got this coming.”</i>");
+	output("\n\nYou turn this way and that, twisting in her grip while she plows your ");
+	if(pc.hasVagina()) output("pussy");
+	else output("asshole");
+	output(" and moaning in the bliss of being dominated. She’s rough, but rough is exactly what you need right now. The way she’s stretching you out with her head is <i>amazing</i>, and already you can barely wait to feel it pulse and cum inside you once more.");
+
+	output("\n\nWhen it does, you can’t help but cum yourself.");
+	if(pc.isHerm()) output(" Your [pc.biggestCock] spurts all up your stomach and torso, covering you in spunk while your cunt hungrily sucks out all of the rabbitgirl’s cum while she moans in pleasure");
+	else if(pc.hasCock()) 
+	{
+		output(" Your [pc.cocks]");
+		if(pc.cockTotal() > 1) output(" splatter cum all over your stomach and chest, each one pulsing in time with the other");
+		else output(" sprays seed all up your tummy and torso, cumming so hard it almost hits you in the chin");
+	}
+	else if(pc.hasVagina()) 
+	{
+		output(" Your [pc.pussy " + x + "] clamps down on her cock and sucks at her for all she’s worth, leaving your");
+		if(pc.isPregnant(x)) output(" canal full of fertile spunk with nowhere to go");
+		else output(" womb stuffed full even further");
+	}
+	output(". Gritting her teeth and holding your hindlegs apart, she rolls her hips into you and lets your nethers swallow down her spunk.");
+
+	output("\n\n<i>“Guh, fuck, you’re good,”</i> she huffs eventually, sighing in satisfaction. <i>“I could keep this up all day if I had the time.”</i>");
+
+	output("\n\nYou don’t know if you’d even be able to weather such a storm. An insensate moan is your only reply.");
+
+	output("\n\n<i>“Aw, you can thank me later!”</i> she says cheerily, grabbing another syringe.");
+	//Havepuss+notpreg:
+	if(pc.hasVagina() && !pc.isPregnant(x)) 
+	{
+		output(" This one is colored differently from the rest, and she gently inserts it into your uprotected underside and depresses the top.");
+		output("\n\n<i>“Wh-what was that?”</i> you pant, not feeling any different. Maybe a little twinge from deep inside, but you can’t tell amidst the sensations of post-orgasm and the aftermath of such rough sex.");
+		output("\n\n<i>“Oh, just a hyperfertility drug,”</i> she says innocently, putting it away. <i>“I gotta get some payoff outta this, y’know? Makes me feel nice knowing your tummy’s gonna grow big and fat with my kids. Hell, you’ll prolly deliver thirty of ‘em!”</i>");
+		output("\n\n<i>“You...”</i> you begin, but think better of it. She still has you at her mercy, and you know the moment she leaves you’ll be back to the nonstop itching of heat. You’d rather not go looking around the mine for someone to fuck who might end up being less charitable.");
+		output("\n\n<i>“That’s riiight,”</i> she chirps in a singsong voice, patting your underside. <i>“Just relax and lemme fill you up some more, okay?”</i>");
+	}
+	else 
+	{
+		output(" She injects it into herself without even pulling out, and you can feel her hardening, widening, inside your depths. She gives you a meaningful look.");
+		output("\n\n<i>“This is about when it gets to be too much to take for most. So don’t feel too bad if you pass out, okay?”</i>");
+	}
+	output("\n\n<i>“F-fuuuck,”</i> you groan, feeling your insides stretch to their utmost limits. <i>“Oh, god!”</i>");
+	if(pc.hasVagina()) pc.cuntChange(x,enemy.cockVolume(0)*2);
+	else pc.buttChange(enemy.cockVolume(0)*2);
+
+	output("\n\nAs the pounding begins anew, you find yourself wondering if she actually killed you when you lost and now you’re stuck in limbo, here to get dicked down forever.");
+	if(!pc.isTreated()) 
+	{
+		output(" Whether lucky or unlucky, you soon find her prophecy coming true, and you start to pass out while she reorganizes your insides. The last thing you see is her grinning face as your underside begins to bloat with spunk.");
+		output("\n\nWhen you awaken, it’s a few hours later. True to her word, the jumper fucked you through your entire heat. You’re slightly sore between your hindlegs, but frankly it’s a small price to pay compared to going through that hell. You’re definitely missing ");
+		//some gems/credits/whatever} 
+		if(pc.credits > 1)
+		{
+			var stolenCreds:Number = pc.credits;
+			if(stolenCreds > 1000) stolenCreds /= 2;
+			if(stolenCreds > 5000) stolenCreds /= 2;
+			if(stolenCreds > 10000) stolenCreds /= 2;
+			if(stolenCreds > 20000) stolenCreds /= 2;
+			if(stolenCreds > 40000) stolenCreds /= 2;
+			if(stolenCreds > 80000) stolenCreds /= 2;
+			if(stolenCreds > 200000) stolenCreds /= 2;
+			stolenCreds = Math.ceil(stolenCreds);
+			if(stolenCreds > pc.credits) stolenCreds = pc.credits;
+			pc.credits -= stolenCreds;
+			output("a bunch of your credits");
+		}
+		else if(pc.hasItemByClass(Picardine) || pc.hasItemByClass(Satyrite) || pc.hasItemByClass(Savicite) || pc.hasItemByClass(Kirkite))
+		{
+			output("a gemstone");
+			if(pc.hasItemByClass(Picardine)) pc.destroyItemByClass(Picardine);
+			else if(pc.hasItemByClass(Satyrite)) pc.destroyItemByClass(Satyrite);
+			else if(pc.hasItemByClass(Savicite)) pc.destroyItemByClass(Savicite);
+			else if(pc.hasItemByClass(Kirkite)) pc.destroyItemByClass(Kirkite);
+		}
+		else output("your dignity");
+		output(" though, and you suppose she took her prize as payment for services rendered. Sighing, you get to your feet and dust yourself off. Next time you’ll be a little more wary.");
+	}
+	else
+	{
+		output(" Whether unfortunate or fortunate, your Treated stamina keeps you awake for the entire duration of the hot, sweaty experience. You suffer her growing cock for <i>hours</i>, screaming louder and louder until your voice finally breaks and you let out nothing but a silent gasp of air on every rough instroke.");
+		if(pc.hasVagina() && !pc.isPregnant(x)) output(" Your stomach has swollen to more than twice its original size, bulging outwards thanks to your newly-stuffed womb heralding the laquine’s virility");
+		else if(pc.hasVagina()) output(" Your pussy has an almost endless stream of her spunk flowing from it, running down your backside and onto the ground");
+		else output(" Your guts are stuffed full of laquine spunk, your stomach bloated with it to the point of ridiculousness");
+		output(".");
+		output("\n\nWhen all is finally said and done, she pulls her now-behemoth cock out of you with a happy moan and inspects your rump.");
+		output("\n\n<i>“Yikes! I don’t think that’s gonna close up for a while,”</i> she says, whistling low. <i>“Oh well! This is gonna be a fun story for both of us! Pity I don’t have a camera on me...”</i>");
+		output("\n\nShe daintily wipes herself off on your underside, carefully zipping herself back up before she inspects your belongings. Helpless to stop her, you watch her make off with ");
+		//{gems/your credits/whatever}
+		if(pc.credits > 1)
+		{
+			var stolenCreds:Number = pc.credits;
+			if(stolenCreds > 1000) stolenCreds /= 2;
+			if(stolenCreds > 5000) stolenCreds /= 2;
+			if(stolenCreds > 10000) stolenCreds /= 2;
+			if(stolenCreds > 20000) stolenCreds /= 2;
+			if(stolenCreds > 40000) stolenCreds /= 2;
+			if(stolenCreds > 80000) stolenCreds /= 2;
+			if(stolenCreds > 200000) stolenCreds /= 2;
+			stolenCreds = Math.ceil(stolenCreds);
+			if(stolenCreds > pc.credits) stolenCreds = pc.credits;
+			pc.credits -= stolenCreds;
+			output("a bunch of your credits");
+		}
+		else if(pc.hasItemByClass(Picardine) || pc.hasItemByClass(Satyrite) || pc.hasItemByClass(Savicite) || pc.hasItemByClass(Kirkite))
+		{
+			output("a gemstone");
+			if(pc.hasItemByClass(Picardine)) pc.destroyItemByClass(Picardine);
+			else if(pc.hasItemByClass(Satyrite)) pc.destroyItemByClass(Satyrite);
+			else if(pc.hasItemByClass(Savicite)) pc.destroyItemByClass(Savicite);
+			else if(pc.hasItemByClass(Kirkite)) pc.destroyItemByClass(Kirkite);
+		}
+		else output("your dignity");
+		output(". She gives you a wave as she leaves.");
+
+		output("\n\n<i>“Ugh,”</i> you groan, feeling the ache in your hips and back. She <i>really</i> did a number on you...");
+
+		output("\n\nIt takes you a few minutes for you to unsteadily get to your shaking feet, but you manage it by leaning against the wall. It’s going to take even more time until your [pc.vagOrAss " + x + "] stops dripping with her spunk, too, but for now you’re back on the hunt.");
+	}
+	output("\n\n");
+	processTime(65);
+	for(var y:int = 0; y < 5; y++)
+	{
+		pc.orgasm();
+		if(x >= 0) pc.loadInCunt(enemy,x);
+		else pc.loadInAss(enemy);
+	}
+	sweatyDebuff(1);
+	CombatManager.genericLoss();
+}
+
+// Victory scene against the Bored Jumper
+// The PC undoes their suit and gets to frottin’ but refuses to let the Jumper penetrate/get penetrated. Has male/female variations.
+public function frottageVictoryVsBoredJumperByB():void
+{
+	clearOutput();
+	showBoredJumper(true);
+	author("B");
+	output("This horny laquine just wanted a quick and easy fuck, did she? Well, now you’re on top, and you have the say on who gets to fuck who. You tell the laquine that she could have just asked, if she was so horny");
+	if(pc.lust() >= 50) output("; you were pretty horny, yourself, and you probably would have said yes");
+	output(".");
+	output("\n\n<i>“Sure, but where’s the fun in that?”</i> she asks, her hand stroking at her growing bulge, making her latex suit squeak with her motions. <i>“There’s nothing like a little rough-housing to make a good fuck all the more enjoyable. It establishes who’s who in the relationship pretty well, too.”</i>");
+	output("\n\nThat’s an awfully mercenary attitude to have. If she likes things a little rough, you’re okay with indulging.");
+
+	var cunted:Boolean = (pc.hasVagina() && (!pc.isHerm() || rand(2) == 0));
+	// Continue here if PC is female/herm (randomly choose between this and male variant for herms)
+	if(cunted)
+	{
+		output("\n\nYou put your hands on your [pc.hips] and motion to the zipper on her suit, wordlessly telling her to pull it down and expose her body to the heat of the mine. She does so, grinning up at you, her other hand still fondling her thick dick through the material; she starts at her neck, then slowly teases the zipper down the valley of her breasts, thrusting out her C-cups to fill the material before they inevitably pop out, jiggling from the thrust.");
+		output("\n\nThe thick smell of her musk hits your nostrils, and you can see her [enemy.furColor] is matted and slick with sweat; you lick your [pc.lipsChaste] at the sight of her pebbly, hard nipples, begging to be pinched and sucked – but you’re here to give this horny bunny the rough time she was looking for, and giving her boobs a suck doesn’t sound very intense to you.");
+		output("\n\nShe teasingly unzips her suit down the front, until it gets to her crotch; the bulge in her suit throbs before your eyes, her no-doubt impressive package threatening to burst out without provocation. She undoes the last of her zipper, rounding it over the crest of her cock, and it springs free: hard as could be; pre leaking down its sides and flinging to and fro with the its bobbing and bounding; and ready to fuck [pc.oneVagina] until it splits you in half.");
+		output("\n\nYou take a moment to admire her dick: ");
+		if(enemy.cocks[0].cType == GLOBAL.TYPE_HUMAN) output("she’s sporting the normal model, with a human-shaped helmet of a cock-head and a smooth, taut shaft");
+		else if(enemy.cocks[0].cType == GLOBAL.TYPE_CANINE) output("with its telltale pointed tip, she’s rocking a canine-shaped cock, complete with blossoming, cunt-filling knot slowly inflating at its base");
+		else if(enemy.cocks[0].cType == GLOBAL.TYPE_FELINE) output("its tip tapers sharply, and its shaft is covered in soft little nubs; typical traits of a perfect feline-cock");
+		else output("it’s fat all the way from base to tip, and its tip bloats and flattens into a plateau, typical of a classic equine-shaped cock");
+		output(". Your [pc.legOrLegs] clench");
+		if(pc.legCount == 1) output("es");
+		output(" at the idea of stuffing that meat inside of you");
+		if(!pc.isCrotchExposed()) output(", and you instinctively begin undressing until your [pc.crotchCovers] are removed, and you’re just as exposed as she is");
+		output(" – but you maintain your composure. You have something specific in mind... but, that said, it’s not like you can’t enjoy yourself in the meantime, of course.");
+
+		output("\n\nYou ");
+		if(pc.hasKnees()) output("drop to your knees");
+		else output("lower yourself");
+		output(", gripping her dick by its base tightly and giving it a few experimental strokes. Her skin feels hot, and, so close to her crotch, you can feel the humidity of her suit wash over your own [pc.skinFurScales]. You sigh through your nose, rousing yourself, and you thrust your [pc.hips] forward");
+		if(pc.hasCock()) output(", angling your own [pc.cock] away; you have a better idea, and it doesn’t involve your own equipment. Not this time, anyway");
+		output(".");
+		output("\n\n<i>“Fuck yeah,”</i> the laquine muses as you point the tip of her dick towards your entrance, making her believe that you’re aiming to have yourself penetrated. But, you don’t do as she expects: instead, you glide your vulva down the fat of her cock, allowing her tip to kiss your [pc.clit] before sliding it down to her base.");
+
+		output("\n\nYour slick [pc.girlCumNoun] coats the side of her bloated cock, cooling it against the searing heat of the mine’s air. Your crotch makes contact with the top of her bouncing, full nuts, and her scrotum clenches in delight at the sensory stimulation, readying her cum to breed you and seed you.");
+		output("\n\nWith a slow, languid slide, you bring your body back up her shaft, slathering more of your own lube against her. Once again, you toy with her cock’s tip, using it to trace your pussy lips and teasing the laquine with what would undoubtedly be an incredible time, but you relent at the last second and slide yourself back down.");
+		output("\n\n<i>“Come on,”</i> the laquine whines, her hands both resting on your [pc.hips] as her hips instinctively hump against you, making the frotting all the more intense. <i>“Quit it with the teasing. We’re both hot as hell; we’re both ready to fuck; I got a dick thick enough to make you walk bow-legged for a week, and you got a cunt that’s gonna snap my dick in half. We’re made for each other! Let’s just give each other what we want.”</i>");
+
+		if(pc.lust() >= 50) 
+		{
+			output("\n\nYou have to admit, the laquine makes a convincing argument. It would just take a deft slip of the fingers to drive that meaty, succulent stick of pure masculine meat into you and drive you fucking wild. But");
+			if(pc.WQ() <= 15) output(", for once in your life");
+			output(", you steel yourself and resolve to have the discipline to not let her honeyed words get to you.");
+		}
+		output("\n\nGrinning, you release the base of her dick. She smiles back at you, confident that she’s convinced you – but you instead thrust your [pc.hips] forward, pinning her cock beneath the weight of your body and trapping it against hers");
+		if(pc.hasCock()) output(". [pc.EachCock] flops around obscenely, your own pre-cum flinging into the laquine’s face with the single, hearty thrust");
+		output(". She winces at the pressure being applied to her dick, and she tries to hump up and into your body, but you’ve got her stuck.");
+
+		output("\n\n<i>“I guess you’re not in the mood to play with your food, huh?”</i> she asks good-naturedly.");
+		output("\n\nYou don’t answer, and instead, you frot against her with not a little bit of pressure and effort: your hips jack harshly atop hers, stimulating your own cunt with every glide and press, especially with you lean forward enough so that your clit gets in on the action. But you’re careful not to go so far forward as to stimulate the laquine’s cock head, and you’re careful to keep the pressure on her dick, so that she can’t cum yet, even if the motions put her over the edge.");
+		output("\n\nHer hands cling to your hips as you move, a little tighter than you would have liked, but you ignore her every flail and her every exhausted moan. You tell her that you thought she just enjoyed having it rough, and what’s rougher than having someone as hot as you giving her cock a hard time?");
+		output("\n\nYou fuck yourself against her flesh, and despite your efforts, you can feel her getting hornier and harder beneath you: her shaft inflates with her heartbeat, and jets of pre shoot from her tip every time you slide yourself forward. Still, it was never your intention to keep her from cumming altogether; you just wanted her to feel the burn for it.");
+		output("\n\nLeaning forward, your own hands clasp harshly onto her heaving chest. Your fingers sink into her fur with a wet squish while you continue to frot against her shaft. You’re close, and you just need a few more motions before you’re there; you ask her if she’s ready to blow yet.");
+		output("\n\n<i>“This, hnng,”</i> she grunts, trying to match your high-speed rhythm, but she’s trapped beneath you and the floor of the mine. <i>“This coulda been better, you know. Does this feel good for you? It coulda felt so much better.”</i>");
+		output("\n\nMaybe it could have, you acquiesce, but that’s not how you chose to do things this time. And besides, there’s more to sex and stimulation than just some penetration. As your bottom, she should understand that.");
+		output("\n\nWith that established, you proceed with what you’re doing: your motions get more and more frenetic the closer you get. Your pussy-juices have polished the underside of her shaft to a marble-esque sheen");
+		if(pc.hasCock()) output(", and [pc.eachCock] stands hard as could be, ready to pump your [pc.cum] across the room at a moment’s notice");
+		output(". Your [pc.hips] quiver in excitement the closer you get, and with just another couple rocks forward...");
+
+		output("\n\nYou detonate, clenching your body on top of the laquine as you cum your share between you. Your [pc.vagina] clamps onto the broad, hot sides of her dick, and you ");
+		if(pc.isSquirter()) output("spray");
+		else output("leak");
+		output(" your [pc.girlCum] onto her shaft, coating it from base to crown with your fluids. Your fucking gets haphazard and uncontrollable; you hardly have the core strength to remain still and maintain your patterns while your feminine sex shudders, squirts, milks, and starts again beneath you, robbing your body of its strength");
+		if(pc.hasCock()) output(". And, not to be outdone, [pc.eachCock] bloats and inflates with your rushing cum, spraying it through the air, just as promised. The first volley arcs high above the laquine below you, before it splashes down across her face and down her chest. And that’s only the first of many");
+		output(".");
+
+		output("\n\nThe girl you’re pinning down takes a deep breath through her nose, unable to contain herself as she cums right alongside you. Her ");
+		if(enemy.cocks[0].cType == GLOBAL.TYPE_HUMAN) output("rounded");
+		else if(enemy.cocks[0].cType == GLOBAL.TYPE_CANINE) output("tapered");
+		else if(enemy.cocks[0].cType == GLOBAL.TYPE_FELINE) output("nubbed");
+		else output("flat");
+		output(" cock noticeably inflates beneath you as her testicles bunch up, ushering her bunny cum forward. With a hiss and a gasp, her jizz erupts from her body, spraying forward across her belly and painting the underside of her boobs, soaking against your clenching hands. You try to hump in time with her cum-sprays, using your body to massage her loads forward and spray herself as high up as she can. You’re hoping to get her in the face with her own jizz.");
+	}
+	// Continue here if PC is male/herm (randomly choose between this and male variant for herms)
+	else
+	{
+		output("\n\nYou extend your finger and rotate your wrist, motioning for the laquine to roll over and properly present herself. Her eyes dip from you to your crotch; you’ve got an unsubtle bulge yourself, and, with a smile, you can tell she likes the direction you’re about to take this encounter.");
+		output("\n\nShe does as you wordlessly command, flipping onto her front side and putting her knees underneath her body, propping up her heart-shaped bunny ass. She wriggles it back and forth in front of you as one of her hands reaches to her neck, and you hear the sound of her zipper sliding undone. The latex material across her back relaxes and crinkles slightly as the tension is relieved from the zipper, ruining its skintight appeal – but soon enough, you’ll have the real deal to ogle.");
+		output("\n\nThe zipper reaches to her upper back after going all the way down her front and across her crotch. She teases the buckle over her own thick bulge, and when she gets it over the mound that is her bundled-up dick, her ");
+		if(enemy.cocks[0].cType == GLOBAL.TYPE_HUMAN) output("human");
+		else if(enemy.cocks[0].cType == GLOBAL.TYPE_CANINE) output("canine");
+		else if(enemy.cocks[0].cType == GLOBAL.TYPE_FELINE) output("feline");
+		else output("equine");
+		output("-shaped cock flops out, its ");
+		if(enemy.cocks[0].cType == GLOBAL.TYPE_HUMAN) output("helmeted, circular");
+		else if(enemy.cocks[0].cType == GLOBAL.TYPE_CANINE) output("pointed, tapered");
+		else if(enemy.cocks[0].cType == GLOBAL.TYPE_FELINE) output("tapered, nubbed");
+		else output("thick and flat");
+		output(" head reaching far enough down to bop onto the ground beneath her.");
+
+		output("\n\nReleased from its confines, her musk permeates the air and assaults your nostrils, especially when you’re this close to her. Her cock dribbles a bit of her pre, proof of her excitement, and her dick throbs and grows larger with each heartbeat, ready to bury itself hilt-deep in the warmest, wettest hole nearby and release the payload that her bunched-up, sweaty balls are ready to shoot.");
+		output("\n\nY");
+		if(!pc.isCrotchExposed()) output("ou undress yourself, removing your [pc.crotchCover] and baring yourself to the hot air of the mine and adding your own brand of stank to the mix between you. Y");
+		output("ou give [pc.eachCock] a stroke, enjoying the show before you – but the real prize your after is still obscured by her suit.");
+		output("\n\nShe unzips the rest of the way, hooking the buckle of her zipper around her bubble-butt, and giving you a big eyeful of what it is you’re after: her winking, soaking cunt, surrounded by [enemy.furColor] fur, dripping with arousal, clit engorged and red, ready for you to fuck it and plough it like you own it.");
+		output("\n\nYou waste no time and step forward, angling your [pc.cock] against her entrance and dragging the helmet of your [pc.cockHead] against her supple pussy lips. She’s drenched and scorching hot – honestly, she’s in a prime position to get absolutely railed into the mine’s floor until she’s little more than a satiated puddle of laquine.");
+		output("\n\n<i>“Come on,”</i> she implores, using her other hand to reach back, hooking it underneath her bloated cock and heavy testicles, so she can use her fingers to spread herself open for you. She wants you bad, and the look and the smell is difficult to ignore. <i>“You won the fight. I’m allllllllll yours. Fuck me until I can’t remember where I am.”</i>");
+		output("\n\nYou agree that you won the fight, but you had something else in mind. You tell her that this is how you want to enjoy her body, and she’ll lie there and accept it.");
+		output("\n\nAt that, you start sawing your [pc.cock] against her steaming pussy, arcing your shaft upward so that the broad side of your meat slides warmly in between the folds of her cunt. Her juices coat you and drip down your dick");
+		if(pc.balls > 0) output(", pooling at where your [pc.sheath] meets your nuts and collecting in there");
+		output("; she gasps inwardly in pleasure with each hot, meaty press against her body, but outwardly grunts in frustration when you refuse to penetrate her.");
+		output("\n\n<i>“Come onnnnnnnn,”</i> she begs, wiggling and pressing herself harder against your body. Her questing fingers tickle at your shaft, wrapping gently around it to pull it down just a little, so that you’d properly penetrate her. You slap her hand away, and for her punishment, you give her bouncy rear-end a hearty slap on the left cheek as well.");
+		output("\n\n<i>“What’s the matter?”</i> she asks, and instead uses her hand to wrap around her own, thick dick to give it a tug in time with your frotting. <i>“Look, we’re both hot as fuck; you’re hard enough to smash diamonds and I’m wet enough to drown a man. You’ve got a wet pussy just, urrnggg,”</i> she pauses, stimulating herself with another few well-timed humps against your body, <i>“just</i> asking <i>you to fuck it. We’re both made for it. Fuck me already, would ya?”</i>");
+		if(pc.lust() >= 50)
+		{
+			output("\n\nYou’ve got to admit, the request isn’t an awful one. You’ve got a bit of a rut going with yourself right now, and all it’d take to calm yourself down is to reposition your [pc.cockHead] and fuck the willing, horny bunny beneath you until she screams your name. But, you’re committed to what you’ve started – and besides, it’s not like you aren’t going to cum at the end of the day either way");
+			if(pc.hasVagina()) output(". Still, from the way your own [pc.vagina] clenches sympathetically to the laquine’s, you’re not sure your cunt will ever forgive you for refusing to give another one what it wants");
+			output(".");
+		}
+		output("\n\nYou respond that, the next time she loses the fight, she can decide how you to fuck. You’re taking your prize the way you want it, and if that means she doesn’t get a cock in a pussy, then she doesn’t get a cock in her pussy.");
+		output("\n\nShe grunts in defeat and lies there, face-down in the dirt, one hand masturbating her turgid length and her hips moving and pressing against yours to eke out whatever pleasure she can from you. You decide to throw her a bone (but not the bone she wants).");
+		output("\n\nYour hands roam over the meaty globes of her ass, your fingers coursing through the wet, sweaty fur. Whenever you squeeze down, you can hear the sweat audibly squish and collect between your fingers, soaking the fluid into your palms. One hand stays on the fat of her butt, groping and squeezing for your mutual pleasure, while the other reaches inward, your thumb finding the star of her anus and pressing in swiftly.");
+		output("\n\nShe ‘eep!’s in surprise and her body straightens and stiffens, but then relaxes after a few cursory pumps into her anus. She starts to mouth something at you, but gives up and submits to the pleasures she’s feeling: a thumb in her ass; her own hand on her dick; and a stranger’s dick teasing her cunt relentlessly and refusing to give her the satisfaction of some penetration.");
+		output("\n\nStill, despite her whining and her every attempt at getting you to fuck her, you can tell that she’s close. Her body shivers around you and your own, and her breathing is coming out unsteadily – telltale signs of a herm about to blow from both ends:");
+		if(pc.isHerm()) output(". You can relate");
+		output(". You’re about to go off in a little bit, too...");
+
+		output("\n\nYour frotting gets more intense as the seconds tick by, and the thumb thrusting into her asshole has sunk to its second knuckle in your excitement. ");
+		//PC’s skin is not scales:
+		if(!pc.hasScales()) output("Sweat drips from your body, streaking watery lines down your [pc.chest] and [pc.belly] before adding to the sopping smorgasbord of fluids collecting at your crotch");
+		else output("The heat energizes you, making you rowdier and hornier as the friction between you and the bunny gets more intense. Pre jets from your [pc.cock], streaking off-white lines down your shaft and adding to the sopping smorgasbord of fluids collecting between you two");
+		output(". There’s a familiar tightness in your dick");
+		if(pc.totalCocks() > 1) output("s");
+		if(pc.hasVagina()) output(", and in your cunt, despite its loneliness");
+		if(pc.balls > 1) output(", and <i>especially</i> in your balls");
+		output(" as you get yourself closer and closer. Just a few more, and–");
+
+		output("\n\nYou grunt, and your orgasm overtakes you: your [pc.cock] thickens as your [pc.cum] surges through it, erupting from your tip and arcing over the laquine’s upturned ass. ");
+		if(pc.cumQ() < 400) output("Your each spurt reaches up maybe a solid foot from your [pc.cockHead] before raining back down onto the bunny’s soft bum, painting her [enemy.furColor] [pc.cumColor]. You thrust impiously against the velvety texture of her mons, feeling her pussy ripple against you in simultaneous orgasm, almost perfectly synced with your cum as it travels up your shaft.");
+		else output("Your [pc.cum] jets high into the air, easily reaching well over the bunny’s butt and reaching as high up as her still-clothed upper-back and shoulders – some of it even lands on her head and in her hair. You use her soft, velvety body as a rag for your own pleasure, and you fuck yourself against her willing body, urging out every precious drop of your semen to coat her [enemy.furColor] [pc.cumColor]. And, if the clenching and rippling from her pussy is any indication, she loves being coated.");
+
+		if(pc.hasVagina()) 
+		{
+			output("\n\nYour own [pc.multiCunts] clench");
+			if(pc.isSquirter())
+			{
+				if(pc.totalVaginas() == 1) output("es and squirts");
+				else output(" and squirt");
+				output(" your [pc.girlCum] out from behind you, spraying");
+			}
+			else
+			{
+				if(pc.totalVaginas() == 1) output("es");
+				output(", your [pc.girlCum] dribbling out from behind you");
+			}
+			output(" onto the floor of the mine. You’re overwhelmed from both sexes, neither of them getting the proper penetration that they crave, though it’s your pussy that makes you weak in the knees; you force yourself to lean over the laquine and put more weight onto her body so that you can maintain your balance. Halfway through your feminine orgasm, you aren’t sure whether this will even satisfy you; you’re going to need to put something in it, and soon.");
+		}
+		output("\n\nYou glance beneath the bunny’s body, and you see that the hand on her cock has kept still");
+		if(enemy.hasKnot(0)) output(", wrapped around her beating knot");
+		output("); her legs shiver and strain, and there’s a growing pool of white beneath her pelvis, an obvious sign that she enjoyed the time between you two more than she’d apparently like to admit. Her bouncing balls have bunched up against her, squirting out every drop she has into a growing puddle.");
+	}
+	// Merge here
+	output("\n\nIt takes you both a moment to wind down, between the animalistic rutting and the constant, sweaty musk the laquine is giving off threatening to make you rowdy for a round two. By the time you’ve caught your breath and you’ve remembered where you are and what you were doing before you ran into this lady in a latex jumpsuit, you’ve mostly come down from your lust-addled high.");
+	output("\n\nFrom the looks of things, the laquine beneath you have come to her senses as well, although she looks significantly more worn out than you, ");
+	//female scene:
+	if(cunted) output("and her poor dick is still trapped and pinched beneath your body");
+	else output("and her poor cunt is still weakly trying to grasp, flex, and milk the first dick that finally has the gumption to penetrate it");
+	output(".");
+	output("\n\nYou ask her if it was rough enough for her. She lazily gurgles something in response – and she neither notices nor resists when you fondle at the belt of her suit for a credit chit, as spoils for your victory. You stand, leaving the laquine half-naked, satiated, and completely exposed to the air of the mine beneath you.");
+	output("\n\nHopefully every laquine in a jump suit you run into is this easy to negotiate a good time with!");
+	// reduce Lust to 0; add [x] credits to PC’s credit count
+	output("\n\n");
+	processTime(30);
+	pc.orgasm();
+	sweatyDebuff(1);
+	CombatManager.genericVictory();
+}
+
+// Victory scene against Bored Jumper
+// PC gives Jumper a mean ol’ handy-jay, teases her until she bursts out of her suit
+public function meanHandySuitBurster():void
+{
+	clearOutput();
+	showBoredJumper(true);
+	author("B");
+	output("Her cock bulges obscenely at the crotch of her suit, along the length of her zipper, which goes from her neck all the way down between her legs. It gets larger as the seconds tick by; you could set your watch to the rhythmic, excited pulsing of the laquine’s meat as it strains against the material of her suit.");
+	output("\n\nIt gives you a naughty idea.");
+	output("\n\nYou ");
+	if(pc.legCount > 1) output("step next to your plaything, your [pc.legs] against her left side");
+	else 
+	{
+		output("slither along your plaything’s side");
+		if(pc.isNaga()) output(", exaggerating your exotic, serpentine movements for her");
+	}
+	output(". She whimpers and bites her lower lip, her eyes trailing from your [pc.footOrFeet] and up across your body, ");
+	if(enemy.HP() <= 1) output("in a sort of mock-reverence for you and your prowess – but, hell, ‘mock’ reverence is still reverence");
+	else output("drinking in your every sexy, taut detail and practically fucking your [pc.crotch] and your [pc.chest] with her eyes as she fantasizes about what you’re about to do to her");
+	output(".");
+	output("\n\nInstead of indulging any of the fantasies you’re sure she’s having, you instead gently fall to your own side next to her, and you prop yourself up with your elbow. Your [pc.eyes] are steadily on hers as you reach for the clasp at her neck and gently pull it down, letting the familiar sound of a zipper being undone be the only ambience between you two.");
+
+	output("\n\nHer breath catches in her throat as the metal teeth of her suit come undone against her body. Her sweaty musk assaults your nostrils; you pause the zipper at just below her [enemy.furColor] pelvis, your knuckles brushing against the bulge of her suit teasingly. Her hot meat, and all the potent scent with it, is trapped in the unforgiving confines of her suit and one measly zipper.");
+
+	output("\n\nShe whimpers, her hand flinching towards her crotch to pull it the rest of the way down, but you’re quick on the draw and, with your free hand, you slap hers away. She flinches at the impact and pulls back – she can give her cock some air when you say it can, and not a moment sooner.");
+
+	output("\n\nTo that end, you work your hand through her bellyfur. The sweat from her body bunches and collects in the gaps between your fingers; you can faintly hear audible, wet squishes and squelches as your fingers roam over her body, patting her down and massaging her. She moans and grinds her stomach against your hand, pushing her abs upward, imploring you to touch her more.");
+
+	output("\n\nAnd you do: the laquine’s C-cup breasts are exposed to the warm air of the mines, her nipples hard enough to cut glass. Confidently, you lean forward, your eyes still on hers, and you take her nipple into your mouth, giving her right boob a wet suck: you can taste the collected sweat along the meat of her titty, and her permeating musk is all the more potent when her sweat hits your [pc.tongue].");
+	if(pc.lust() < 50) output(" It’s more than enough to arouse you. Good; you weren’t quite as horny as she was, and this will make things more entertaining for you both.");
+	else output(" The scent and the taste of such a horny, willing, hot body so close to you is intoxicating: if you’re intent on doing what you’re about to do to her, you’d better move quickly, or else you’re liable to blow your own gasket before her.");
+
+	output("\n\nYour tracing hand dips further south, towards her burgeoning cock. You can hear the latex of her suit creak with effort as it attempts to maintain her immensity. You dip the tips of your fingers beneath the zipper, making like you’re going to reach underneath the surface of her suit and give her dick some company – but you pull back at the last second and drape your hand over the topside of her suit.");
+
+	output("\n\n<i>“You’re a sore winner, you bit–”</i> the laquine starts, but you nibble on her nipple, causing her to ‘eek!’ and shut her mouth in surprise.");
+
+	output("\n\nYou heft her package through the latex: it’s thick and bloated enough to resist your pushes and pinches, but it’s packaged and contained enough that it bobbles under its own weight when you push it this way and that. Your mouth salivates, wetting your tongue as it lathers and suckles on the laquine’s chest, as you have some fantasies of your own about what sort of weaponry she’s packing under that suit.");
+
+	output("\n\nIt’s folded over itself, confined within the suit, but you map your way around its anatomy well enough with your fingers: when you dip down far enough, your fingertips press into the tender, thick flesh of her testicles, and you prod at them just to make your laquine victim jump in pleasure; you trace upwards, along what must be her vas deferens, until it curves into itself; and from there, the telltale curve of ");
+	if(enemy.hasCock(GLOBAL.TYPE_HUMAN)) output("a flat, rounded helmet of a human-shaped cock");
+	else if(enemy.hasCock(GLOBAL.TYPE_EQUINE)) output("a blunted, flattened tip of an equine-shaped cock");
+	else if(enemy.hasCock(GLOBAL.TYPE_CANINE)) output("a pointed, tapered tip of a canine-shaped cock");
+	else if(enemy.hasCock(GLOBAL.TYPE_FELINE)) output("a stubby, pointed tip, with telltale nubs along the sides, of a feline-shaped cock");
+	output(". And you know it’s the tip because that’s where her suit is wettest.");
+
+	output("\n\nYou switch nipples, leaning over the laquine and pressing your hot body against her hot body; you shuffle your shoulders and grind forward, your [pc.chest] against her, increasing the friction and sharing the heat between you two, making things all the wetter and succulent for your mouth to suck at. Your eyes haven’t left hers: she keeps licking her lips and she keeps fidgeting on her back, trying to do something about her mounting lust, but no matter what she tries, you won’t let her.");
+
+	output("\n\nGently, you stroke at her dick, using your fingers to press at her cock’s head through the smooth texture of her latex suit, and you tickle them down the side of her growing meat, giving it as much tactile feedback as one hand can. You get the results you want: the material of her suit continues to creak and stretch and groan under the pressure as her dick gets harder and bloats thicker. Her latex suit feels sort of stringy – like it’s taut enough to be played like a stringed instrument. Shouldn’t take much longer now.");
+	output("\n\nYou go in for the kill. First, your mouth opens wider, to suck in more of her wet, squishy boob and give it a love-bite: you suck on it like it were a meal, compressing your cheeks and cleaning it of its salty sweat. The laquine grunts in pleasure, her chest reflexively heaving into your face to feed you more of her chest.");
+	output("\n\nBut it’s a distraction: your hand loops back towards the zipper of her suit, and it slithers underneath the latex, working towards the bulge of her crotch. It’s humid as could be in there, and it’s scalding hot, enough to make your fingers twitch, but you don’t stop: you find her cock, and you eagerly wrap your fingers around its turgid base, jerking it roughly with the scant few millimeters you have inside the overstuffed suit.");
+
+	output("\n\n<i>“Fuck, aahh,”</i> the laquine groans as everything comes to a head against her. Her eyes keep blinking and focusing on other things in the room, but they’re inevitably drawn back to your confident, steely gaze every few seconds. Her body rocks against you asymmetrically: her chest first, shoving more boob into your face, followed by her pelvis, desperately trying to fuck your hand, but there’s just so little room in her suit...!");
+
+	output("\n\nHer breathing quickens as her orgasm approaches, and the back of your hand is soaked with what you assume is her hot precum. She humps against you, her eyes slowly crossing–");
+
+	output("\n\nAnd, just as you hoped, you hear the sound of a zipper’s teeth being pulled apart in quick succession. The ‘click-click’ of each individual tooth coming undone punctuates the cute, horny moans the laquine is making; the heat surrounding your hand is released into the air of the mine as the zipper gives way under her expanding flesh, and her cock springs to its full, proud mast, flicking its dribbling pre halfway across the room as it does so.");
+
+	output("\n\nShe gives one, last, satisfied moan as you feel her dick bloat once more, this time with its payload: her wet flesh expands in your palm one final time as her creamy load blasts straight up into the air before raining back down onto your hand, and a bit reaching as high as your [pc.hair].");
+
+	output("\n\nYou had gotten exactly what you wanted – to arouse the laquine so much that you get her to burst through her own suit – but it comes with a consequence you weren’t expecting. As soon as her suit gives way, it releases a cloud of her musk into the already-cramped and heated space between you, and soon, you’re smelling the same smell you had since you had first brought your mouth to her tit, but it’s <i>so</i> much more potent.");
+
+	if(pc.lust() < 50) output("\n\nThe smell takes some modicum of control of you and your instincts, and you have a tougher time than you expected to focus on what you’re doing");
+	else output("You were on a bit of a hair-trigger when you started, and now the musk is threatening to break the control you have over yourself and the laquine beneath you with its intensity");
+	output(": what you smell is a fucking <i>potent</i> breeding ");
+	//PC is male:
+	if(pc.hasCock() && !pc.hasVagina()) output("bitch, even through all the cum and all the testosterone-laced sweat; you had spent all this time jerking her meat that you hadn’t considered that she might have a little bit extra, and you dip your fingers down, questing for where her cunt would be. Sure enough, she has one, and it’s spasming and squeezing in time with her throbbing dick – moreso now that you’re giving it a bit of attention. It takes everything you have to not rip off her suit and start ploughing that fertile hole for everything it’s got");
+	else if(pc.hasVagina() && !pc.hasCock()) 
+	{
+		output("stud, her antenna of a cock broadcasting just how badly she needs something for all that <i>masculinity</i> to be put to use to. You drool on her chest a little bit as you resist the urge to glance back – hell, you resist the urge to crawl yourself over her and shove that cumming rocket of hers into your ");
+		if(!pc.isPregnant()) output("fertile ");
+		output("box and fuck you like the victor of the confrontation that you are. She’s so hard, and she’s got so much cum... it’s difficult to convince yourself against doing something you might regret, no matter how good it might feel");
+	}
+	else
+	{
+		output("body, equipped with everything you might need to sate a crossed-up hermaphrodite like yourself. You feel the heat of her cock pound against your palm and its cum splash onto your hand, and you can pick out the familiar tang of a fertile, willing cunt clenching in orgasm mingling with the masculine musk of a proper cock shooting its load. Your body clenches and flinches at the sensory overload, and it takes everything you have to not roll over the laquine and start properly fucking it with everything you have: to plough that cute, hungry cunt and, when you’re done, you pop a squat of your own on that rock-hard piece of delectable meat");
+	}
+	output(".");
+
+
+	output("\n\n");
+	var cummies:Boolean = false;
+	if(pc.lust() >= 50) 
+	{
+		cummies = true;
+		output("The fantasies start to get a little carried away, and you struggle with yourself to remain in control of not just yourself, but the both of you: you’re both in a pretty vulnerable position, and one slip-up could mean that the roles would be reversed between you. Nonetheless, you can’t help but grind your body against hers throughout it all, and ultimately, you bring yourself to your own wet, sticky orgasm, ");
+		if(pc.hasCock()) output("[pc.eachCock] flexing and billowing against the laquine’s thigh as you soak her body from the stomach down");
+		if(pc.isHerm()) output(", followed by ");
+		if(pc.hasVagina()) 
+		{
+			output("your [pc.vaginas] winking and squirting ");
+			if(pc.totalVaginas() == 1) output("its");
+			else output("their");
+			output(" juices down your [pc.thigh], adding to the hot mess the two of you are collectively making. You can feel it dribble down your body before it splashes audibly onto the floor beneath you");
+		}
+		output(".");
+	}
+	output("\n\nThe laquine rides out her orgasm for a few moments longer, her cum spraying down onto you both with each impish skyward thrust of her body. You continue to jerk her through it all, helping her gush the last of her juices onto her ruined, sticky latex suit. You can practically see the sweat, and soon the cum, evaporate off her body in the heat of the mines.");
+	output("\n\nSatisfied with the display you’ve made, demonstrating your position over the defeated laquine, you disengage from her. Your [pc.skinFurScales] sticks to her sweaty, furry body, and you have to slowly peel yourself from her. Her nipples are puffy and red; her cock is flagging and leaking the last of her cum onto her stomach; and she’s completely out of breath and exhausted.");
+	output("\n\n<i>“Hah,”</i> she gasps, looking up at you defiantly, <i>“is... is that your idea of... putting me in my place? Sucking my tits and giving me a handjob? Who... who really came out ahead between us?”</i>");
+	output("\n\nYou tell her that she can brag to her friends that she ‘won,’ if she wants – but she has to include the parts where you had subdued her first; then, you had teased her until she had burst through her own suit; and, if she ever wants another ride like that again, she’ll just have to keep losing to you. If she keeps losing, she’ll keep winning.");
+	output("\n\nHer eyes narrow and her lips mouth to herself as she tries to parse the logic behind what you had just said to her. You make it easier for her: you won, and she lost, between you two, and you can prove it – you withdraw a credit chit that you had managed to slip from her belt while you were giving her that handjob.");
+	output("\n\nShe starts, trying to lunge up and grab it out of your hand, but she’s too exhausted, physically and sexually, to get very far. She laughs again, at herself and her predicament, her gaze on yours. <i>“Fine,”</i> she relents, waving you off. <i>“I’ll be sure to put up a better fight next time.”</i>");
+	output("\n\nYou advise her to not try <i>too</i> hard.\n\n");
+	enemy.credits += 150;
+	// Give the PC [x] credits; if the PC entered the scene with less than 49 Lust, increase Lust by 50; else, reduce Lust to 0
+	processTime(30);
+	if(cummies) pc.orgasm();
+	sweatyDebuff(1);
+	pc.applyCumSoaked();
+	CombatManager.genericVictory();
 }
