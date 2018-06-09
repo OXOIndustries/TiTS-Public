@@ -2537,8 +2537,7 @@ public function roomOutsideShekkasBonus():Boolean
 	if(flags["TARKUS_BOMB_TIMER"] <= 0 && flags["TARKUS_BOMB_TIMER"] != undefined && flags["PLANET_3_UNLOCKED"] == undefined)
 	{
 		author("Fenoxo");
-		showBust("DANE");
-		showName("\nDANE");
+		showDane();
 		output("\n\n<b>Dane is standing outside of Shekka’s Widget Warehouse, his four arms crossed over his chest. His white-furred ears flick up in recognition. <i>“");
 		if(flags["LOST_TO_DANE_ON_MHENGA"] != undefined) output("The boss was mighty pleased with how I handled you last mission. I wouldn’t mind a repeat sometime when I’m off the clock.”</i> The ausar merc chuckles. <i>“Boss also said to let you in if you showed up. Guess [rival.he] figured you were too poor to stop him now.");
 		else output("You’ve got a lot of balls showing up here,”</i> he growls before smiling. <i>“Boss said not to stop you, and after last time, I’m not sure I’d want to try. Just don’t start any trouble, all right?");

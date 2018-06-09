@@ -1924,25 +1924,7 @@ public function nurseryMaternityWaitGo():void
 
 		if (flags["CREWMEMBER_SLEEP_WITH"] != undefined)
 		{
-			var sleepWithIsMale:Boolean = false;
-			if (flags["CREWMEMBER_SLEEP_WITH"] == "BESS")
-			{
-				output(" [bess.name]");
-				sleepWithIsMale = (bess.mf("m", "f") == "m");
-			}
-			else
-			{
-				output(" " + StringUtil.capitalize(flags["CREWMEMBER_SLEEP_WITH"], true));
-				// for crewmember gender
-				switch(flags["CREWMEMBER_SLEEP_WITH"])
-				{
-					case "CASE":
-					case "DANE":
-						sleepWithIsMale = true;
-						break;
-				}
-			}
-			output(" joins you after the first night, carrying in a handful of belongings and making " + (sleepWithIsMale ? "him" : "her") + "self comfortable in your shared living space. Briget");
+			output(" " + getSleepingPartnerName() + " joins you after the first night, carrying in a handful of belongings and making " + (isSleepingPartnerMale() ? "him" : "her") + "self comfortable in your shared living space. Briget");
 			if (flags["BRIGET_FUCKED"] != undefined) output(" takes the extra presence in your bed in stride - you are a Steele, after all. Your poor bed, however, clearly wasn’t made for the sexual escapades that the three of you get up to - though a shattered headboard or two is easily replaced.");
 			else output(" quickly rearranges things to accommodate your lover, making sure you’re both well tended to.");
 		}

@@ -44,7 +44,7 @@ public function HereBeDragonBonus():Boolean
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "Your genitalia are not fit for breeding--make sure you are fertile before summoning the dragon!");
 			}
 			else if(!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) {
-				output(".. though breeding while you are a carrying mother might not be the best idea. Perhaps you should return after you've given birth to your current pregnancy first?");
+				output(".. though breeding while you are a carrying mother might not be the best idea. Perhaps you should return after you’ve given birth to your current pregnancy first?");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You already have a bun in the oven, so make sure you are clear of your current pregnancies before summoning the dragon!");
 			}
 			else {

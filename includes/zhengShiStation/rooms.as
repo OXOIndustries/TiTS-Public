@@ -177,7 +177,7 @@ public function initZhengRooms():void
 	
 	rooms["ZS F44"] = new RoomClass(this);
 	rooms["ZS F44"].roomName = "\nMINESHAFT";
-	rooms["ZS F44"].description = "This deep in the mineshaft, you can barely see the large exit door to the east. If you venture any further to the west, you'll be deep in the rocky underbelly of Zheng Shi Station. Metal reinforcements line the strangely hot walls, studded with anchor points for mining equipment or slaves, most likely.";
+	rooms["ZS F44"].description = "This deep in the mineshaft, you can barely see the large exit door to the east. If you venture any further to the west, you’ll be deep in the rocky underbelly of Zheng Shi Station. Metal reinforcements line the strangely hot walls, studded with anchor points for mining equipment or slaves, most likely.";
 	rooms["ZS F44"].planet = "ZHENG SHI STATION";
 	rooms["ZS F44"].system = "SYSTEM: HERISIOD";
 	rooms["ZS F44"].northExit = "";
@@ -191,7 +191,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM K22"] = new RoomClass(this);
 	rooms["ZSM K22"].roomName = "\nMINESHAFT";
-	rooms["ZSM K22"].description = "Puffs of steam issue forth from tiny rents in the mineshaft's strangely warmed walls. A pile of cheap hand tools leans against one such opening, half rusted from the moisture. Toolmarks in the northern wall reveal that someone tried to use them to little effect.";
+	rooms["ZSM K22"].description = "Puffs of steam issue forth from tiny rents in the mineshaft’s strangely warmed walls. A pile of cheap hand tools leans against one such opening, half rusted from the moisture. Toolmarks in the northern wall reveal that someone tried to use them to little effect.";
 	rooms["ZSM K22"].planet = "ZHENG SHI STATION";
 	rooms["ZSM K22"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM K22"].northExit = "";
@@ -205,7 +205,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM I22"] = new RoomClass(this);
 	rooms["ZSM I22"].roomName = "MINESHAFT\nCORNER";
-	rooms["ZSM I22"].description = "The sweeping bend ahead reduces visibility within the already poorly lit tunnel even further. A quick look at your Codex confirms that whoever carved out the stone did it with an eye for detail; it's a nearly perfect 90 degree bend. The mineshaft continues in straight lines to the north and east for as far as you can see.";
+	rooms["ZSM I22"].description = "The sweeping bend ahead reduces visibility within the already poorly lit tunnel even further. A quick look at your Codex confirms that whoever carved out the stone did it with an eye for detail; it’s a nearly perfect 90 degree bend. The mineshaft continues in straight lines to the north and east for as far as you can see.";
 	rooms["ZSM I22"].planet = "ZHENG SHI STATION";
 	rooms["ZSM I22"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM I22"].northExit = "ZSM I20";
@@ -219,7 +219,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM I20"] = new RoomClass(this);
 	rooms["ZSM I20"].roomName = "\nMINESHAFT";
-	rooms["ZSM I20"].description = "Oppressive darkness seems to surround you. Yes, there's the odd light bolted into the metal reinforcements, but the endless black stone in the walls seems to drink in the bulk of it. You pant slightly from the warmth as you regard your current position in the mines. The shaft stretches north and south from here.";
+	rooms["ZSM I20"].description = "Oppressive darkness seems to surround you. Yes, there’s the odd light bolted into the metal reinforcements, but the endless black stone in the walls seems to drink in the bulk of it. You pant slightly from the warmth as you regard your current position in the mines. The shaft stretches north and south from here.";
 	rooms["ZSM I20"].planet = "ZHENG SHI STATION";
 	rooms["ZSM I20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM I20"].northExit = "ZSM I18";
@@ -233,7 +233,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM I18"] = new RoomClass(this);
 	rooms["ZSM I18"].roomName = "FORKED\nCHAMBER";
-	rooms["ZSM I18"].description = "Heavy metal reinforcements shore up the ceiling around this chamber's three exits: north, south, and west. Bits of black stone and broken tools pile up against the east wall. Worn grooves in the floor indicate the presence of large scale, low grade mechanized mining.";
+	rooms["ZSM I18"].description = "Heavy metal reinforcements shore up the ceiling around this chamber’s three exits: north, south, and west. Bits of black stone and broken tools pile up against the east wall. Worn grooves in the floor indicate the presence of large scale, low grade mechanized mining.";
 	rooms["ZSM I18"].planet = "ZHENG SHI STATION";
 	rooms["ZSM I18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM I18"].northExit = "ZSM I16";
@@ -289,7 +289,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM G12"] = new RoomClass(this);
 	rooms["ZSM G12"].roomName = "\nMINESHAFT";
-	rooms["ZSM G12"].description = "Fist sized chunks of broken rock give this section of the mines an ill-kept feeling that's further reinforced by the off-kilter metal reinforcements. You have little doubt they're doing much to protect you. If the hot, black rock that made up the walls wasn't so strong, you'd probably be neck deep in rubble right now.";
+	rooms["ZSM G12"].description = "Fist sized chunks of broken rock give this section of the mines an ill-kept feeling that’s further reinforced by the off-kilter metal reinforcements. You have little doubt they’re doing much to protect you. If the hot, black rock that made up the walls wasn’t so strong, you’d probably be neck deep in rubble right now.";
 	rooms["ZSM G12"].planet = "ZHENG SHI STATION";
 	rooms["ZSM G12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM G12"].northExit = "ZSM G10";
@@ -303,7 +303,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM G10"] = new RoomClass(this);
 	rooms["ZSM G10"].roomName = "WRECK &\nMINESHAFTS";
-	rooms["ZSM G10"].description = "A broken down mining robot lays sprawled across the floor where it fell, its storage bins already picked clean. One arm is missing, and numerous metal plates have been removed by other mining robots, if the laser scoring you're seeing is to be believed. You doubt there's any worthwhile salvage left, but perhaps the tunnels to the north, east, and south will offer greater bounties.";
+	rooms["ZSM G10"].description = "A broken down mining robot lays sprawled across the floor where it fell, its storage bins already picked clean. One arm is missing, and numerous metal plates have been removed by other mining robots, if the laser scoring you’re seeing is to be believed. You doubt there’s any worthwhile salvage left, but perhaps the tunnels to the north, east, and south will offer greater bounties.";
 	rooms["ZSM G10"].planet = "ZHENG SHI STATION";
 	rooms["ZSM G10"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM G10"].northExit = "ZSM G8";
@@ -317,7 +317,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM G8"] = new RoomClass(this);
 	rooms["ZSM G8"].roomName = "MINESHAFT\nCORNER";
-	rooms["ZSM G8"].description = "You step on a discarded ration wrapper, which crinkles quite loudly. There's dozens of them littering the floor, but the perpetrator of this crime against cleanliness is long gone. A small nook in the wall offers a reasonably comfortable place to sit and rest, explaining why the mystery litterer chose to snack here.";
+	rooms["ZSM G8"].description = "You step on a discarded ration wrapper, which crinkles quite loudly. There’s dozens of them littering the floor, but the perpetrator of this crime against cleanliness is long gone. A small nook in the wall offers a reasonably comfortable place to sit and rest, explaining why the mystery litterer chose to snack here.";
 	rooms["ZSM G8"].planet = "ZHENG SHI STATION";
 	rooms["ZSM G8"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM G8"].northExit = "";
@@ -373,7 +373,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM C12"] = new RoomClass(this);
 	rooms["ZSM C12"].roomName = "\nMINESHAFT";
-	rooms["ZSM C12"].description = "Faint rumbles of mining equipment can be heard from elsewhere in the mines, transmitted through the rigid rock beneath Zheng Shi's upper level. It would be soothing if it wasn't for the too-hot walls and the blatant fixtures for restraining slave labor. You can follow this passage north and south from here.";
+	rooms["ZSM C12"].description = "Faint rumbles of mining equipment can be heard from elsewhere in the mines, transmitted through the rigid rock beneath Zheng Shi’s upper level. It would be soothing if it wasn’t for the too-hot walls and the blatant fixtures for restraining slave labor. You can follow this passage north and south from here.";
 	rooms["ZSM C12"].planet = "ZHENG SHI STATION";
 	rooms["ZSM C12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM C12"].northExit = "ZSM C10";
@@ -401,7 +401,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM C16"] = new RoomClass(this);
 	rooms["ZSM C16"].roomName = "FORKED\nSHAFT";
-	rooms["ZSM C16"].description = "This 'T' intersections splits off to localized north, east, and west according to your Codex's navigational subroutines. All three tunnels vanish into the ink-black stone you've seen elsewhere. The northmost one has a suspended metal bar with fixtures to attach to slave restraints. The others have more general chain-and-ring mounts peppered over their walls and ceilings.";
+	rooms["ZSM C16"].description = "This ‘T’ intersections splits off to localized north, east, and west according to your Codex’s navigational subroutines. All three tunnels vanish into the ink-black stone you’ve seen elsewhere. The northmost one has a suspended metal bar with fixtures to attach to slave restraints. The others have more general chain-and-ring mounts peppered over their walls and ceilings.";
 	rooms["ZSM C16"].planet = "ZHENG SHI STATION";
 	rooms["ZSM C16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM C16"].northExit = "ZSM C14";
@@ -415,7 +415,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM A16"] = new RoomClass(this);
 	rooms["ZSM A16"].roomName = "MINESHAFT\nCORNER";
-	rooms["ZSM A16"].description = "Writhing through the stone like some kind of subterranean snake, the mines of Zheng Shi bend east and south from this point. There are fewer reinforcements and slave restraints in this segment than elsewhere, and the walls are less marked by hand tools. A single, swaying overhead electro-lamp is the only source of illumination, when it isn't flickering like a flame in the wind.";
+	rooms["ZSM A16"].description = "Writhing through the stone like some kind of subterranean snake, the mines of Zheng Shi bend east and south from this point. There are fewer reinforcements and slave restraints in this segment than elsewhere, and the walls are less marked by hand tools. A single, swaying overhead electro-lamp is the only source of illumination, when it isn’t flickering like a flame in the wind.";
 	rooms["ZSM A16"].planet = "ZHENG SHI STATION";
 	rooms["ZSM A16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM A16"].northExit = "";
@@ -429,7 +429,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM A18"] = new RoomClass(this);
 	rooms["ZSM A18"].roomName = "DEAD\nEND";
-	rooms["ZSM A18"].description = "You stand in a cocoon of rigid, unfeeling darkness. There is nothing to light up this dank, fetid corner of the mine, nothing to brighten your mood in the slightest. There are only walls of solid shadow and the palpable sense that nothing good ever happened in this place. Your Codex confirms: there aren't any valuable resources to be had either. No wonder they stopped digging this way.";
+	rooms["ZSM A18"].description = "You stand in a cocoon of rigid, unfeeling darkness. There is nothing to light up this dank, fetid corner of the mine, nothing to brighten your mood in the slightest. There are only walls of solid shadow and the palpable sense that nothing good ever happened in this place. Your Codex confirms: there aren’t any valuable resources to be had either. No wonder they stopped digging this way.";
 	rooms["ZSM A18"].planet = "ZHENG SHI STATION";
 	rooms["ZSM A18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM A18"].northExit = "ZSM A16";
@@ -443,7 +443,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM E16"] = new RoomClass(this);
 	rooms["ZSM E16"].roomName = "MINESHAFT\nCORNER";
-	rooms["ZSM E16"].description = "Low ceilings and a sharp bend make this tunnel feel more claustrophobic than it ought to. The dangling slave restraints embedded in the ceiling don't help, and the thick reinforcing bands that keep it all from collapsing make you feel like you're in some kind of hellscape instead of an outpost of civilization.";
+	rooms["ZSM E16"].description = "Low ceilings and a sharp bend make this tunnel feel more claustrophobic than it ought to. The dangling slave restraints embedded in the ceiling don’t help, and the thick reinforcing bands that keep it all from collapsing make you feel like you’re in some kind of hellscape instead of an outpost of civilization.";
 	rooms["ZSM E16"].planet = "ZHENG SHI STATION";
 	rooms["ZSM E16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM E16"].northExit = "";
@@ -457,7 +457,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM E18"] = new RoomClass(this);
 	rooms["ZSM E18"].roomName = "MINESHAFT\nCORNER";
-	rooms["ZSM E18"].description = "The mineshaft twists narrowly through the ebony stone. The walls are so close that you're forced to move carefully not to brush against jagged bits of rock on the sides. Hastily assembled reinforcements offer some reassurance that it's all not going to come down on your head, though the bolted-on chains fill you with unease. You'd hate to be locked in here.";
+	rooms["ZSM E18"].description = "The mineshaft twists narrowly through the ebony stone. The walls are so close that you’re forced to move carefully not to brush against jagged bits of rock on the sides. Hastily assembled reinforcements offer some reassurance that it’s all not going to come down on your head, though the bolted-on chains fill you with unease. You’d hate to be locked in here.";
 	rooms["ZSM E18"].planet = "ZHENG SHI STATION";
 	rooms["ZSM E18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM E18"].northExit = "ZSM E16";

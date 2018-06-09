@@ -996,6 +996,8 @@ public function korgiCockFuck2():void
 	var x:int = pc.cockThatFits(ulaCapacity());
 	if(x < 0) x = pc.biggestCockIndex();
 
+	var cumQ:Number = pc.cumQ();
+	
 	output("You slide bonelessly onto your back as the tension is sucked from your body. Frenetic licks and slobbery kisses work their way along [pc.oneCock] unceasingly. Soft paws, wet from cunt, pre-cum, and melted snow join in to explore the space around your [pc.knot " + x + "]. It all began so artlessly, but with each moment spent sealed around your dick, the proud puppy learns new ways to make you gasp. Her tongue curiously ventures over the musky skin, seeking out pockets of virile flavor, coaxing your pre to channel into the curved middle where she can hold and savor it.");
 	output("\n\nYou nearly cum to the sound of her lurid gulp.");
 	output("\n\nAnd then she swivels around, muzzle suddenly a vortex of pleasure. Furry thighs land to either side of your ");
@@ -1022,7 +1024,7 @@ public function korgiCockFuck2():void
 	output("\n\nStars, that sounds appealing. In this moment, you’d like nothing better than to bust a ");
 	if(pc.perkv1("'Nuki Nuts") > 0) output("swollen ");
 	else if(pc.ballFullness >= 90) output("backed-up ");
-	else if(pc.cumQ() >= 9000) output("womb-flooding ");
+	else if(cumQ >= 9000) output("womb-flooding ");
 	output("nut in this bitch. <i>“Yeaaahhh...”</i>");
 	output("\n\nNo sooner is the word out of your mouth than the korgonne is shifting on top of you, hips rolling feverishly in an attempt to slide your [pc.cock " + x + "] inside.");
 
@@ -1038,9 +1040,9 @@ public function korgiCockFuck2():void
 		output(". <i>“Very stroooong! Many pups!”</i>");
 		output("\n\nPuppies? You make an effort to hold yourself back, but she smells so good. Her feet squeeze you so wonderfully, milking you into her, fanning the compelling breed-scent into the air until your body obliges her request for cum with orgasmic clenching. <i>“I’m cumming!”</i> You pride yourself on the warning, futile though it might be.");
 		output("\n\n<i>“Happiness! Give puppies.”</i> She grabs your ears and tugs your lips to a tit, hips rolling. <i>“Warm... Good... Motherness!”</i> Eyes closing, her tongues dangles stupidly out of her mouth as her body seizes. The cum-hungry tunnel flutters confusedly, stretched too full yet mostly empty.");
-		if(pc.cumQ() < 8) output(" Nothing more than dribbles slips out, but she doesn’t seem to mind. She climaxes from the feeble [pc.cumNoun]-drops leaking into her passage, folds fluttering to escort the feeble fluids closer to her aching eggs.");
-		else if(pc.cumQ() < 250) output(" The [pc.cumNoun]-shots fire in deep. Every lance makes her feel warmer and wetter, squelching and hot. You have no doubt that some is slipping upward into her womb, journeying to those aching eggs.");
-		else if(pc.cumQ() < 10000) 
+		if(cumQ < 8) output(" Nothing more than dribbles slips out, but she doesn’t seem to mind. She climaxes from the feeble [pc.cumNoun]-drops leaking into her passage, folds fluttering to escort the feeble fluids closer to her aching eggs.");
+		else if(cumQ < 250) output(" The [pc.cumNoun]-shots fire in deep. Every lance makes her feel warmer and wetter, squelching and hot. You have no doubt that some is slipping upward into her womb, journeying to those aching eggs.");
+		else if(cumQ < 10000) 
 		{
 			output(" She moans at the feeling of your thick, virile pumps of [pc.cumNoun]. [pc.cumVisc] blobs slip out of her stretched lips");
 			if(pc.hasKnot(x)) output(" to shine your straining knot");
@@ -1049,7 +1051,7 @@ public function korgiCockFuck2():void
 		else 
 		{
 			output(" Nothing could prepare her for the near-biblical flood of [pc.cumNoun] pouring into her womb, filling every crack and crevice. Rivers spray out around your [pc.cockHead " + x + "] as her belly bulges obscenely. She already looks like a mother");
-			if(pc.cumQ() >= 25000)
+			if(cumQ >= 25000)
 			{
 				output(", and you’ve barely begun to breed.");
 				output("\n\n<i>“You asked for it,”</i> you pant, roughly groping a tit, squirting in endless passion. You’ve long since seeded every inch of exposed womb, yet your body is far from done, not with her scent so thick in your nose, grabbing you by the ");
@@ -1060,12 +1062,12 @@ public function korgiCockFuck2():void
 			output(".");
 		}
 		output("\n\nPlush lips press against yours as she relaxes, softly this time. The fire has gone out of the fluffy bitch, quenched by");
-		if(pc.cumQ() >= 10000) output(" a lake of");
+		if(cumQ >= 10000) output(" a lake of");
 		output(" your cum. She nuzzles into you, tired arms on your shoulders");
 		if(!pc.hasKnot(x))
 		{
 			output(" as she slowly drags herself off your dick.");
-			if(pc.cumQ() >= 10000) output(" A river of spent jizz sprays from her uncorked cunt onto your [pc.belly].");
+			if(cumQ >= 10000) output(" A river of spent jizz sprays from her uncorked cunt onto your [pc.belly].");
 		}
 		output(" <i>“Wow.”</i> She nuzzles your cheek, then licks your nose. <i>“Many cummies. Alien sex hurt-good.”</i> Her eyes twinkle. <i>“Need practice. Make pussy big for alien-cock.”</i>");
 		//[Next] -> Same post-gasm as regular variant (though make sure the knotting variant isn’t referenced)
@@ -1082,9 +1084,9 @@ public function korgiCockFuck2():void
 		output("\n\n<i>“Ah!”</i> the deflowered dog-woman gasps, drooling webs of spit and vaginal lube. She shudders, her hard nipples begging to be tugged. Further down, her tunnel ripples in mixed agony and ecstasy. The fertile folds feel like they’re milking you for how they clench and flutter, and you realize that you’ve already slipped past the point of no return. Even if you pulled out now, you’d cum from the pheromones clogging your nostrils. If she kissed you, you’d give her every sperm in your body and then some.");
 		output("\n\n<i>“I’m cumming!”</i> you warn.");
 		output("\n\n<i>“Good. Give puppies.”</i> She grabs your ears and kisses you again, hips rolling. <i>“Warm... Good...”</i> Eyes closing, her tongue goes still in your mouth as her body seizes everywhere except the cum-hungry tunnel still clenching down around your ecstatically spurting [pc.cockNounSimple " + x + "].");
-		if(pc.cumQ() < 10) output(" Nothing more than dribbles slips out, but she doesn’t seem to mind. She grinds the feeble [pc.cumNoun]-drops throughout her passage, giving your deposit ample opportunity to swim upstream to her aching eggs.");
-		else if(pc.cumQ() < 250) output(" The [pc.cumNoun]-shots fire in deep. Every lance makes her feel warmer and wetter, squelching and hot. You have no doubt that some is slipping upward into her womb, journeying to those aching eggs.");
-		else if(pc.cumQ() < 10000) 
+		if(cumQ < 10) output(" Nothing more than dribbles slips out, but she doesn’t seem to mind. She grinds the feeble [pc.cumNoun]-drops throughout her passage, giving your deposit ample opportunity to swim upstream to her aching eggs.");
+		else if(cumQ < 250) output(" The [pc.cumNoun]-shots fire in deep. Every lance makes her feel warmer and wetter, squelching and hot. You have no doubt that some is slipping upward into her womb, journeying to those aching eggs.");
+		else if(cumQ < 10000) 
 		{
 			output(" She moans at the feeling of your thick, virile pumps of [pc.cumNoun]. [pc.cumVisc] blobs slip out of her stretched lips");
 			if(pc.hasKnot(x)) output(" past your straining knot");
@@ -1093,7 +1095,7 @@ public function korgiCockFuck2():void
 		else
 		{
 			output(" Nothing could prepare her for the near-biblical flood of [pc.cumNoun] pouring into her womb, filling every crack and crevice. Rivers spray out around your [pc.knot " + x + "] as her belly bulges obscenely. She already looks like a mother");
-			if(pc.cumQ() >= 25000) 
+			if(cumQ >= 25000) 
 			{
 				output(", and you’ve barely begun to breed.");
 				output("\n\n<i>“You asked for it,”</i> you pant, grinding against her, thrusting and squirting in endless passion. You’ve long since seeded every inch of exposed womb, yet your body is far from done, not with her scent so thick in your nose, grabbing you by the ");
@@ -1104,12 +1106,12 @@ public function korgiCockFuck2():void
 			output(".");
 		}
 		output("\n\nPlush lips press against yours, softly this time. The fire has gone out of the fluffy bitch, quenched by");
-		if(pc.cumQ() >= 10000) output(" a lake of");
+		if(cumQ >= 10000) output(" a lake of");
 		output(" your cum. She nuzzles into you, tired arms on your shoulders");
 		if(!pc.hasKnot(x))
 		{
 			output(" as she slowly drags herself off your dick.");
-			if(pc.cumQ() >= 10000) output(" A river of spent jizz sprays from her uncorked cunt onto your [pc.belly].");
+			if(cumQ >= 10000) output(" A river of spent jizz sprays from her uncorked cunt onto your [pc.belly].");
 		}
 		else output(" as she wiggles in place, stuck on your knot while still more [pc.cumNoun] pours in.");
 		output(" <i>“Wow.”</i> She nuzzles your cheek, then licks your nose. <i>“Many cummies. You best heat-sharer. Not forget.”</i>");
@@ -1550,10 +1552,11 @@ public function breedWithUla():void
 	output("\n\n<i>Slap-slap-slap</i>. The clap of your hips banging away at her rings through the room, gradually rising in tempo to your ever-growing ardor. The korg-girl shivers and sighs, rag-dolling from the pounding and orgasmic aftershocks alike. That hardly seems to matter. The fucked-stupid glaze in her eyes may as well be an advertisement to your [pc.balls] to brew up an extra-virile load for how you feel. Burying your nose into her neck, you hump her powerfully, bestially, the way you know she wants to be taken.");
 
 	output("\n\nWhen you cry out in ecstasy, the clan princess’s voice joins you. Her pussy clamps down in answer to your climactic throbbing, and when your " + (silly ? "cum cum" : "[pc.cumVisc] [pc.cumNoun]") + " boils out of you, it’s met by a torrent of syrupy, feminine orgasm.");
-	if(pc.cumQ() >= 50) 
+	var cumQ:Number = pc.cumQ();
+	if(cumQ >= 50) 
 	{
 		output(" You flood her quim with pulse after pulse of seed.");
-		if(pc.cumQ() >= 300)
+		if(cumQ >= 300)
 		{
 			if(ulaPregBelly() < 1)
 			{
@@ -1562,13 +1565,13 @@ public function breedWithUla():void
 				output("cervix to pack her womb.");
 			}
 			else output(" Eruptions of it flood her passage, blocked from further progress by her well-inseminated womb.");
-			if(pc.cumQ() >= 2000)
+			if(cumQ >= 2000)
 			{
 				output(" Rivers of jism spill out onto the sheets");
-				if(pc.cumQ() >= 10000) 
+				if(cumQ >= 10000) 
 				{
 					output(", but still, you cum");
-					if(pc.cumQ() >= 25000 && ulaPregBelly() < 1) output(". Her belly bloats obscenely from the volume, transforming her from chubby waif into gravid-looking broodmother, a look she is all too happy to have from how she gurgles and strokes her distended tummy");
+					if(cumQ >= 25000 && ulaPregBelly() < 1) output(". Her belly bloats obscenely from the volume, transforming her from chubby waif into gravid-looking broodmother, a look she is all too happy to have from how she gurgles and strokes her distended tummy");
 				}
 				output(".");
 			}
@@ -1915,8 +1918,9 @@ public function tentatailFuckUla():void
 	if(pc.tailCount > 1) output("s");
 	output(", watching the korgonne’s blue-lipped cunt grow progressively more soaked.");
 
+	var cumQ:Number = pc.cumQ();
 	output("\n\nWhen you pull out a moment later, her cupped pussy dribbles slightly, thoroughly creampied.");
-	if(pc.hasCock() && pc.cumQ() >= 1000) {
+	if(pc.hasCock() && cumQ >= 1000) {
 		output(" Ula isn’t done with you, however. Not while [pc.eachCock] is still shooting ropes, not while she can stroke you with her feet and milk thicker flows of virile seed onto her fluffy chest. She purrs as you bury her in a layer of [pc.cumColor], even shovels some of the excess into the creamy alien deposit presently lingering between her thighs. She showers with your seed and seemingly revels in it. <i>“");
 		if(!korgiTranslate()) output("Such");
 		else output("Sooo");
@@ -1929,7 +1933,7 @@ public function tentatailFuckUla():void
 		else output("<i>“Mmm... pretty good, for a tentacle-cock.”</i> She strokes your tail like a pet. <i>“Good boy. You gave me some good orgasms.”</i>");
 	}
 	output("\n\nYou won’t get a more glowing endorsement than that...");
-	if(pc.cumQ() >= 1000)
+	if(cumQ >= 1000)
 	{
 		output("\n\nUla turns away from you to groom the... excessive amounts of semen from her coat... with her tongue.");
 		if(pc.isBimbo()) output(" You salivate in jealousy. Maybe you should collect a little for yourself next time!");
@@ -1959,12 +1963,13 @@ public function centaurServiceForUla(x:int):void
 
 	output("\n\n<i>“Like this?”</i> Ula asks, bent over the side of the bed, her thick thighs quivering excitedly. Pussyjuice beads from her cyan blue lips, drip-drip-dripping into a clear puddle below. The pose has her cunt popping open and closed with her breathing, all but begging you to canter forward and lay claim to it once and for all.");
 
+	var cumQ:Number = pc.cumQ();
 	//Too big
 	if(pc.cockVolume(x) > ulaCapacity())
 	{
 		output("\n\n<i>“Like that,”</i> you growl as you step into position. Your [pc.cock " + x + "] slaps against your bestial half’s belly");
-		if(pc.cumQ() >= 100) output(", flinging strands of wet, animalistic pre-cum over everything from the floor to your conquest’s upraised ass");
-		if(pc.cumQ() >= 1000) output(". Dollops of the stuff pump out by the time you’re lined up, individually thicker than the average man’s orgasm");
+		if(cumQ >= 100) output(", flinging strands of wet, animalistic pre-cum over everything from the floor to your conquest’s upraised ass");
+		if(cumQ >= 1000) output(". Dollops of the stuff pump out by the time you’re lined up, individually thicker than the average man’s orgasm");
 		output(".");
 
 		output("\n\nWhimpering, Ula peers through your legs with no small measure of concern on her features. <i>“");
@@ -2014,8 +2019,8 @@ public function centaurServiceForUla(x:int):void
 	else
 	{
 		output("\n\n<i>“Like that,”</i> you growl as you step into position. Your [pc.cock " + x + "] slaps against your bestial half’s belly");
-		if(pc.cumQ() >= 100) output(", flinging strands of wet, animalistic pre-cum over everything from the floor to your conquest’s upraised ass");
-		if(pc.cumQ() >= 1000) output(". Dollops of the stuff pump out by the time you’re lined up, individually thicker than the average man’s orgasm");
+		if(cumQ >= 100) output(", flinging strands of wet, animalistic pre-cum over everything from the floor to your conquest’s upraised ass");
+		if(cumQ >= 1000) output(". Dollops of the stuff pump out by the time you’re lined up, individually thicker than the average man’s orgasm");
 		output(".");
 		output("\n\nYou grab hold of the bed’s headboard and rear up, putting every ounce of your considerable weight into the act of penetrating the petite korgonne. She’s a fine fit for your [pc.cock " + x + "], judging by the way her body smoothly parts to accept your [pc.cockHead " + x + "], tight on the inside but not so tight as to slow your passage into her chubby cunny. She’s whimpering by the time you bury yourself up to the [pc.knotOrSheath " + x + "], but you’re on floating cloud nine. While it’s only been a few minutes, it felt like her scent had been tormenting you for years.");
 		if(flags["ULA_DEFLOWERED"] == undefined)
@@ -2100,8 +2105,8 @@ public function centaurServiceForUla(x:int):void
 	if(pc.balls > 0) output("[pc.balls] quivering, ");
 	output("[pc.cocks] jerking, and eyes rolling back delightedly.");
 	var sheetsoak:Boolean = false;
-	if(pc.cumQ() >= 4000) output(" There’s so much that you can hear jism squelching into your petite lover’s middle, pumping her up with virile goo.");
-	if(pc.cumQ() >= 25000) 
+	if(cumQ >= 4000) output(" There’s so much that you can hear jism squelching into your petite lover’s middle, pumping her up with virile goo.");
+	if(cumQ >= 25000) 
 	{
 		sheetsoak = true;
 		pc.applyCumSoaked();

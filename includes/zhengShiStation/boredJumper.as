@@ -75,7 +75,7 @@ public function winVsBoredJumper():void
 	//HP
 	if(enemy.HP() <= 1)
 	{
-		output("The bored Jumper tumbles to the ground, clutching one arm and looking up at you in... adoration? She smiles shyly and reaches into a pouch. You bring up your guard, but it’s unnecessary. She lifts the medical-grade injector to her neck and releases the payload with a hiss of discomfort. <i>“Okay hot s-s-tuff.”</i> The distention in her crotch jerks forward, stretching her suit. <i>“Mmmm, so warm.”</i> Her visible injuries knit before your eyes, but her nipples look firm enough to serve as improvised weapons. <i>“Was saving this for you, if I had to beat you down, but I guess uh... now you get to be charge.”</i>");
+		output("The bored Jumper tumbles to the ground, clutching one arm and looking up at you in... adoration? She smiles shyly and reaches into a pouch. You bring up your guard, but it’s unnecessary. She lifts the medical-grade injector to her neck and releases the payload with a hiss of discomfort. <i>“Okay hot s-s-tuff.”</i> The distention in her crotch jerks forward, stretching her suit. <i>“Mmmm, so warm.”</i> Her visible injuries knit before your eyes, but her nipples look firm enough to serve as improvised weapons. <i>“Was saving this for you, if I had to beat you down, but I guess uh... now you get to be in charge.”</i>");
 	}
 	//Lust
 	else
@@ -88,11 +88,11 @@ public function winVsBoredJumper():void
 	//Enough
 	else output("\n\nYou aren’t sure why, but she seems more than into the idea of being your personal fuck-puppet for a few hours. What do you want to do with her?");
 	clearMenu();
-	addDisabledButton(1,"Sex","Sex","These scenes haven't been written yet. Sorry!");
+	addDisabledButton(1,"Sex","Sex","These scenes haven’t been written yet. Sorry!");
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(0,"FuckHerPussy",bunslutBigPussyBunFucking,undefined,"Fuck Her Pussy","You know what this is...");
-		else addDisabledButton(0,"FuckHerPussy","Fuck Her Pussy","No way! That cunt's wayyyyy too small for you.");
+		else addDisabledButton(0,"FuckHerPussy","Fuck Her Pussy","No way! That cunt’s wayyyyy too small for you.");
 	}
 	else addDisabledButton(0,"FuckHerPussy","Fuck Her Pussy","You need a penis for that.");
 	if(pc.hasGenitals()) addButton(1,"Frottage",frottageVictoryVsBoredJumperByB,undefined,"Frottage","Grind your way to victory!");
@@ -287,7 +287,7 @@ public function sweatBunHyperCockDock():void
 	else if(pc.cockTotal() == 1) output("your disproportionately well-hung cock");
 	else output("biggest totem pole of a cock");
 	output(". <i>“I had some other things in mind, but do you know what?”</i> She tweaks you just behind the [pc.cockHead " + x + "] with her toes. <i>“I think... I think I’m gonna fuck your cock.”</i> She slides it down your entire ");
-	if(pc.isErect()) output(num2Text(Math.round(pc.cocks[x].cLength())) + "-foot");
+	if(pc.isErect()) output(num2Text(Math.round(pc.cocks[x].cLength() / 12)) + "-foot");
 	else output("growing, increasingly monstrous");
 	output(" length, all but drooling in anticipation. <i>“Gonna break it in till you come back here looking for me, asking me to dump another load into your ");
 	if(pc.balls > 1) output("balls");
@@ -908,7 +908,11 @@ public function taursLoseToSweatLaquineByWsan():void
 	output(", her");
 	if(enemy.cocks[0].cType == GLOBAL.TYPE_EQUINE) 
 	{
-		output(" blunt, slightly flared head pressing against your cervix insistently.");
+		output(" blunt, slightly flared head pressing against your");
+		if(pc.hasVagina()) output(" cervix");
+		else if(pc.hasCock()) output(" prostate");
+		else output(" colon");
+		output(" insistently.");
 		output("\n\n<i>“H-horse,”</i> you gasp, taken in by the sensation of having a studly equine member inside your needy ");
 		if(pc.hasVagina()) output("pussy");
 		else output("asshole");
@@ -1061,6 +1065,8 @@ public function taursLoseToSweatLaquineByWsan():void
 	if(pc.hasVagina()) pc.cuntChange(x,enemy.cockVolume(0)*2);
 	else pc.buttChange(enemy.cockVolume(0)*2);
 
+	var stolenCreds:Number = 0;
+	
 	output("\n\nAs the pounding begins anew, you find yourself wondering if she actually killed you when you lost and now you’re stuck in limbo, here to get dicked down forever.");
 	if(!pc.isTreated()) 
 	{
@@ -1069,7 +1075,7 @@ public function taursLoseToSweatLaquineByWsan():void
 		//some gems/credits/whatever} 
 		if(pc.credits > 1)
 		{
-			var stolenCreds:Number = pc.credits;
+			stolenCreds = pc.credits;
 			if(stolenCreds > 1000) stolenCreds /= 2;
 			if(stolenCreds > 5000) stolenCreds /= 2;
 			if(stolenCreds > 10000) stolenCreds /= 2;
@@ -1106,17 +1112,17 @@ public function taursLoseToSweatLaquineByWsan():void
 		//{gems/your credits/whatever}
 		if(pc.credits > 1)
 		{
-			var stolenCreds2:Number = pc.credits;
-			if(stolenCreds2 > 1000) stolenCreds2 /= 2;
-			if(stolenCreds2 > 5000) stolenCreds2 /= 2;
-			if(stolenCreds2 > 10000) stolenCreds2 /= 2;
-			if(stolenCreds2 > 20000) stolenCreds2 /= 2;
-			if(stolenCreds2 > 40000) stolenCreds2 /= 2;
-			if(stolenCreds2 > 80000) stolenCreds2 /= 2;
-			if(stolenCreds2 > 200000) stolenCreds2 /= 2;
-			stolenCreds2 = Math.ceil(stolenCreds2);
-			if(stolenCreds2 > pc.credits) stolenCreds2 = pc.credits;
-			pc.credits -= stolenCreds2;
+			stolenCreds = pc.credits;
+			if(stolenCreds > 1000) stolenCreds /= 2;
+			if(stolenCreds > 5000) stolenCreds /= 2;
+			if(stolenCreds > 10000) stolenCreds /= 2;
+			if(stolenCreds > 20000) stolenCreds /= 2;
+			if(stolenCreds > 40000) stolenCreds /= 2;
+			if(stolenCreds > 80000) stolenCreds /= 2;
+			if(stolenCreds > 200000) stolenCreds /= 2;
+			stolenCreds = Math.ceil(stolenCreds);
+			if(stolenCreds > pc.credits) stolenCreds = pc.credits;
+			pc.credits -= stolenCreds;
 			output("a bunch of your credits");
 		}
 		else if(pc.hasItemByClass(Picardine) || pc.hasItemByClass(Satyrite) || pc.hasItemByClass(Savicite) || pc.hasItemByClass(Kirkite))

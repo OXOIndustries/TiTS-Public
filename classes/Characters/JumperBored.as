@@ -30,7 +30,7 @@
 			this.capitalA = "The ";
 			this.long = ""; // Implementation in prepForCombat
 			this.customBlock = "";
-			this.customDodge = "She easily hops aside, boosted by her belt's jets.";
+			this.customDodge = "She easily hops aside, boosted by her belt’s jets.";
 			this.isPlural = false;
 			
 			meleeWeapon.baseDamage.kinetic.damageValue = 0;
