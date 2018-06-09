@@ -756,6 +756,97 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	return crewMembers;
 }
 
+// Returns the custom name for the follower, if any.
+public function getFollowerName(followerName:String = ""):String
+{
+	switch(followerName)
+	{
+		case "Ben-14":
+		case "Bess-13": return chars["BESS"].short; break;
+		case "Goo Armor": return chars["GOO"].short; break;
+		case "Siegwulfe": return chars["WULFE"].short; break;
+	}
+	return followerName;
+}
+// Returns the custom bust for the follower, if any.
+public function getFollowerBustDisplay(followerName:String = ""):String
+{
+	switch(followerName)
+	{
+		case "Anno": return annoBustDisplay(); break;
+		case "Azra": return azraBustString(); break;
+		case "Ben-14":
+		case "Bess-13": return bessBustDisplay(); break;
+		case "Celise": return celiseBustDisplay(); break;
+		case "Dane": return daneBustDisplay(); break;
+		case "Kase": return kaseBustDisplay(); break;
+		case "Kiro": return kiroBustDisplay(); break;
+		case "Goo Armor": return novaBustDisplay(); break;
+		case "Paige": return getPaigeBustString(); break;
+		case "Pippa": return pippaBustDisplay(); break;
+		case "Reaha": return reahaBustDisplay(); break;
+		case "Sera": return seraBustDisplay(); break;
+		case "Shekka": return shekkaBustDisplay(); break;
+		case "Syri": return syriBustDisplay(); break;
+		case "Yammi": return yammiBustDisplay(); break;
+		case "Siegwulfe": return wulfeBustDisplay(); break;
+		case "Varmint": return varmintPetBustDisplay(); break;
+	}
+	return followerName.toUpperCase();
+}
+// Returns a follower gender.
+public function isFollowerMale(followerName:String = ""):Boolean
+{
+	switch(followerName)
+	{
+		case "Bess-13":
+		case "Dane":
+		case "Kase": return true; break;
+	}
+	return false;
+}
+
+// Sleeping partner-specific names, busts and gender
+public function getSleepingPartnerName():String
+{
+	if (flags["CREWMEMBER_SLEEP_WITH"] == undefined) return "";
+	if(chars[flags["CREWMEMBER_SLEEP_WITH"]] != null) return chars[flags["CREWMEMBER_SLEEP_WITH"]].nameDisplay();
+	return StringUtil.toTitleCase(flags["CREWMEMBER_SLEEP_WITH"].toLowerCase());
+}
+public function getSleepingPartnerBustDisplay():String
+{
+	if (flags["CREWMEMBER_SLEEP_WITH"] == undefined) return "";
+	switch(flags["CREWMEMBER_SLEEP_WITH"])
+	{
+		case "ANNO": return annoBustDisplay(); break;
+		case "AZRA": return azraBustString(); break;
+		case "BESS": return bessBustDisplay(); break;
+		case "CELISE": return celiseBustDisplay(); break;
+		case "DANE": return daneBustDisplay(); break;
+		case "KASE": return kaseBustDisplay(); break;
+		case "KIRO": return kiroBustDisplay(); break;
+		case "PAIGE": return getPaigeBustString(); break;
+		case "PIPPA": return pippaBustDisplay(); break;
+		case "REAHA": return reahaBustDisplay(); break;
+		case "SERA": return seraBustDisplay(); break;
+		case "SHEKKA": return shekkaBustDisplay(); break;
+		case "SYRI": return syriBustDisplay(); break;
+		case "YAMMI": return yammiBustDisplay(); break;
+	}
+	return flags["CREWMEMBER_SLEEP_WITH"].toUpperCase();
+}
+public function isSleepingPartnerMale():Boolean
+{
+	if (flags["CREWMEMBER_SLEEP_WITH"] == undefined) return false;
+	switch(flags["CREWMEMBER_SLEEP_WITH"])
+	{
+		case "BESS": return (chars["BESS"].mf("m", "f") == "m"); break;
+		case "DANE":
+		case "KASE": return true; break;
+	}
+	return false;
+}
+
 public function crewButtonAdjustments(button:Number):Number
 {
 	button++;

@@ -1100,8 +1100,8 @@ public function mitziMorningSuccOrWhatever():void
 		if(cumQ >= 1000) 
 		{
 			output(", then rubs her");
-			if(cumQ >= 4000) output("massively ");
-			output("inflated belly with a happy little sigh");
+			if(cumQ >= 4000) output(" massively");
+			output(" inflated belly with a happy little sigh");
 		}
 		output(". <i>“");
 		if(rand(5) == 0) output("Yummy! Now you won’t need to waste any cum on dumb alien sluts. If you get too horny, you can just come back here and bang Mitzi to sleep!");
