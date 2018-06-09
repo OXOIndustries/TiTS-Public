@@ -1106,17 +1106,17 @@ public function taursLoseToSweatLaquineByWsan():void
 		//{gems/your credits/whatever}
 		if(pc.credits > 1)
 		{
-			var stolenCreds:Number = pc.credits;
-			if(stolenCreds > 1000) stolenCreds /= 2;
-			if(stolenCreds > 5000) stolenCreds /= 2;
-			if(stolenCreds > 10000) stolenCreds /= 2;
-			if(stolenCreds > 20000) stolenCreds /= 2;
-			if(stolenCreds > 40000) stolenCreds /= 2;
-			if(stolenCreds > 80000) stolenCreds /= 2;
-			if(stolenCreds > 200000) stolenCreds /= 2;
-			stolenCreds = Math.ceil(stolenCreds);
-			if(stolenCreds > pc.credits) stolenCreds = pc.credits;
-			pc.credits -= stolenCreds;
+			var stolenCreds2:Number = pc.credits;
+			if(stolenCreds2 > 1000) stolenCreds2 /= 2;
+			if(stolenCreds2 > 5000) stolenCreds2 /= 2;
+			if(stolenCreds2 > 10000) stolenCreds2 /= 2;
+			if(stolenCreds2 > 20000) stolenCreds2 /= 2;
+			if(stolenCreds2 > 40000) stolenCreds2 /= 2;
+			if(stolenCreds2 > 80000) stolenCreds2 /= 2;
+			if(stolenCreds2 > 200000) stolenCreds2 /= 2;
+			stolenCreds2 = Math.ceil(stolenCreds2);
+			if(stolenCreds2 > pc.credits) stolenCreds2 = pc.credits;
+			pc.credits -= stolenCreds2;
 			output("a bunch of your credits");
 		}
 		else if(pc.hasItemByClass(Picardine) || pc.hasItemByClass(Satyrite) || pc.hasItemByClass(Savicite) || pc.hasItemByClass(Kirkite))
