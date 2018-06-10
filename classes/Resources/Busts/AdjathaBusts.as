@@ -750,6 +750,11 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/egg.png", mimeType = "image/png")]
 		public var Bust_TENTACLE_EGG:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/tivf.png", mimeType = "image/png")]
+		public var Bust_TIVF:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/tivf_nude.png", mimeType = "image/png")]
+		public var Bust_TIVF_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/tlako.png", mimeType = "image/png")]
 		public var Bust_TLAKO:Class;
@@ -1510,6 +1515,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/egg.png", mimeType = "image/png")]
 			public var Full_TENTACLE_EGG:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tivf.png", mimeType = "image/png")]
+			public var Full_TIVF:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tivf_nude.png", mimeType = "image/png")]
+			public var Full_TIVF_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tlako.png", mimeType = "image/png")]
 			public var Full_TLAKO:Class;
