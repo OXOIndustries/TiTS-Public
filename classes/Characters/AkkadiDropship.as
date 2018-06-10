@@ -27,10 +27,8 @@ package classes.Characters
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			// Originally a clone of the zilpack
-			// Needs a few things checked.
-			this.short = "security robot";
-			this.originalRace = "automaton";
+			this.short = "dropship";
+			this.originalRace = "ship";
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";

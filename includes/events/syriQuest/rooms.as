@@ -81,7 +81,7 @@ public function syriQuestInitRooms():void
 
 
 	rooms["AKD K31"] = new RoomClass(this);
-	rooms["AKD K31"].roomName = "ENTRANCE";
+	rooms["AKD K31"].roomName = "\nENTRANCE";
 	rooms["AKD K31"].description = "You're standing in the entranceway to the Akkadi research facility. It's dark, sterile grey metal on the walls, ceiling, and floors, illuminated by ";
 	rooms["AKD K31"].runOnEnter = syriQuestAkkadiBaseSecurityRobotsTrigger;
 	rooms["AKD K31"].planet = planetName;
@@ -133,7 +133,6 @@ public function syriQuestInitRooms():void
 
 	rooms["AKD M27"] = new RoomClass(this);
 	rooms["AKD M27"].roomName = "SECURITY\nOFFICE";
-	//rooms["AKD M27"].description = "desc";
 	rooms["AKD M27"].runOnEnter = syriQuestAkkadiBaseSecurityOffice;
 	rooms["AKD M27"].planet = planetName;
 	rooms["AKD M27"].system = systemName;
@@ -371,7 +370,6 @@ public function syriQuestInitRooms():void
 
 	rooms["AKD Q15"] = new RoomClass(this);
 	rooms["AKD Q15"].roomName = "RESEARCH DEPT.\nPLAZA";
-//	rooms["AKD Q15"].description = "desc";
 	rooms["AKD Q15"].runOnEnter = syriQuestAkkadiBaseResearchDeptPlaza;
 	rooms["AKD Q15"].planet = planetName;
 	rooms["AKD Q15"].system = systemName;

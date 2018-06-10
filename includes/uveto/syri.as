@@ -1,3 +1,9 @@
+
+/*
+The only one of her old talk scenes that seems like it'd carry over might be her Books talk; the rest are all invalidated by the quest.
+The Anno talk can come forward too; would just need to change "when I get off work later" to like "when I'm done talkin' with you"
+Good catch
+*/
 public function SQDEBUG():void
 {
 	clearOutput();
@@ -6,7 +12,6 @@ public function SQDEBUG():void
 	output("\n\nSYRIQUEST_POWER_STATE: " + flags["SYRIQUEST_POWER_STATE"])
 	output("\n\nSYRIQUEST_ELEVATOR_STATE: " + flags["SYRIQUEST_ELEVATOR_STATE"])
 	output("\n\nSYRIQUEST_VALDEN_BODY_CHOICE: " + flags["SYRIQUEST_VALDEN_BODY_CHOICE"])
-	output("\n\nSYRIQUEST_RESOLUTION: " + flags["SYRIQUEST_RESOLUTION"])
 	output("\n\nMET_SCHORA: " + flags["MET_SCHORA"])
 	output("\n\nMET_TORRA: " + flags["MET_TORRA"])
 	output("\n\nSYRIQUEST_SIEGWULFE_NAME: " + flags["SYRIQUEST_SIEGWULFE_NAME"])
@@ -101,7 +106,7 @@ public function syriFreezerMenu(outputs:Boolean = true):void
 		else addDisabledButton(1,"Sex");
 	}
 	addButton(2,"Appearance",syriAppearance);
-//	if(flags["UNLOCK_SYRI_ANNO_TALK"] != undefined) addButton(3,"Anno",syriTalksAboutAnno);
+	if(flags["UNLOCK_SYRI_ANNO_TALK"] != undefined) addButton(3,"Anno",syriTalksAboutAnno);
 	addButton(4,"Kiss Her",syriFreezerKissHer,undefined,"Kiss Her",silly ? "Give your favorite pooch a smooch." : "Give Syri a smooch.");
 	addButton(14,"Leave",mainGameMenu);
 
@@ -138,7 +143,7 @@ public function syriFreezerTalkMenu(outputs:Boolean = true):void
 	}
 	clearMenu();
 	//output("\n\n//Only if PC saved Valden, naturally.");
-	if (flags["SYRIQUEST_RESOLUTION"] >= 1) addButton(0,"Valden",syriFreezerTalkValden,undefined,"Valden","How's Valden doing? Is Syri keeping up with him at all?");
+	if (flags["SYRIQUEST_STATE"] >= 23) addButton(0,"Valden",syriFreezerTalkValden,undefined,"Valden","How's Valden doing? Is Syri keeping up with him at all?");
 	else addDisabledButton(0,"Locked");
 	addButton(1,"What's Next?",syriFreezerTalkWhatsNext,undefined,"What's Next?","What's next for Syri Dorna?");
 	//output("\n\n//One time only");
@@ -148,6 +153,7 @@ public function syriFreezerTalkMenu(outputs:Boolean = true):void
 	else addDisabledButton(3,"Locked");
 	if (flags["SYRIQUEST_SYRI_ONAHOLE"] >= 1 && flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2) addButton(4, "Cunt Sleeve", syriFreezerTalkCuntSleeve, undefined, "Cunt Sleeve", "Since Syri's not interested in a new pussy, maybe she'd be interested in seeing what happened to the old model...");
 	else addDisabledButton(4,"Locked");
+	addButton(5,"Books",syriTalkThree,undefined,"Books","What is she reading these days?");
 	addButton(14,"Back",syriFreezerMenu);
 }
 

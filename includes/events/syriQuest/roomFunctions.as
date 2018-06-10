@@ -525,7 +525,7 @@ public function syriQuestAkkadiBaseSecurityRobotsVictory():void
 	showAkkadiSecBots();
 	author("Savin");
 	output("The last of the robots collapses, and as the din of weapon fire fades, you're left once more with an eerie silence. There's... nothing. Nobody's rushing out to see what's happening. No screams. No jackbooted security guards charging you. The lockdown's keeping everyone, even the people in charge, sealed out of your way.");
-	output("\n\nGlancing around warily, you put your [pc.weapon] away and turn back to the hall ahead. Better get a move on.");
+	output("\n\nGlancing around warily, you put your [pc.weapon] away and turn back to the hall ahead. Better get a move on.\n\n");
 	CombatManager.genericVictory();
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

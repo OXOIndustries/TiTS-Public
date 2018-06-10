@@ -39,6 +39,7 @@ public function syriAtBurts():Boolean
 	if (syriQuestRunning() || syriQuestComplete()) return false;
 	return true;
 }
+
 public function syriAtBurtsBonus(btnSlot:int = 2):void
 {
 	if(hours >= 12) {
@@ -864,7 +865,8 @@ public function syriBookTalkEpilogue():void {
 	//[Tiny INT increase?]
 	pc.slowStatGain("intelligence",1);
 	clearMenu();
-	addButton(0,"Next",approachSyriIntheMorning);
+	if (syriQuestComplete()) addButton(0,"Next",syriFreezerMenu);
+	else addButton(0,"Next",approachSyriIntheMorning);
 }
 
 //Talk 4
@@ -1534,7 +1536,7 @@ public function syriAppearance():void {
 
 	output("\n\nA thick eight-inch knotty dog-cock rests between Syri’s legs where her cunt ought to be, hanging over a pair of cum-filled testicles, surrounded by a nicely trimmed bush of downy pubes. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
 	clearMenu();
-	if (syriQuestComplete()) addButton(14,"Leave",syriFreezerMenu);
+	if (syriQuestComplete()) addButton(0,"Next",syriFreezerMenu);
 	else addButton(0,"Next",approachSyriIntheMorning);
 }
 

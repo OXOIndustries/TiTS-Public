@@ -896,7 +896,7 @@ public function syriTalksAboutAnno():void
 
 	output("\n\nSyri cocks an eyebrow at you. <i>“Why do... right, billionaire play" + pc.mf("boy","girl") + ",”</i> she rolls her eyes. <i>“Tell that pussy-stealing harpy she can write </i>me<i> whenever she feels like it. I haven’t exactly changed email addresses.”</i>");
 	output("\n\n<i>“Harsh.”</i>");
-	output("\n\nSyri holds your gaze for a long second before sighing, the fight gone out of her. <i>“Yeah. I’ll write her when I get off work later.”</i>");
+	output("\n\nSyri holds your gaze for a long second before sighing, the fight gone out of her. <i>“Yeah. I’ll write her when " + (syriQuestComplete() ? "I get off work later" : "I'm done talkin' with you") + ".”</i>");
 	if(syriIsAFuckbuddy() && pc.lust() >= 33)
 	{
 		output("\n\nSuddenly, Syri’s lips curl into a fierce grin, and her big, blue eyes search you over. <i>“Hmm... maybe I ought to ask her to take some vacation time and come on out here. What do you say, Steele... ever thought about what it’d be like with twins?”</i>");
