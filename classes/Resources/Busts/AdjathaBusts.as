@@ -485,6 +485,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/miko_mai.png", mimeType = "image/png")]
 		public var Bust_MIKO_AND_MAI:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/milly.png", mimeType = "image/png")]
+		public var Bust_MILLY:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/milly_nude.png", mimeType = "image/png")]
+		public var Bust_MILLY_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/priestess.png", mimeType = "image/png")]
 		public var Bust_MILODAN_PRIESTESS:Class;
 		public var Bounds_MILODAN_PRIESTESS:Rectangle = new Rectangle(60, 3, 65, 63);
@@ -745,6 +750,11 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/egg.png", mimeType = "image/png")]
 		public var Bust_TENTACLE_EGG:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/tivf.png", mimeType = "image/png")]
+		public var Bust_TIVF:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/tivf_nude.png", mimeType = "image/png")]
+		public var Bust_TIVF_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/tlako.png", mimeType = "image/png")]
 		public var Bust_TLAKO:Class;
@@ -1259,6 +1269,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/miko_mai.png", mimeType = "image/png")]
 			public var Full_MIKO_AND_MAI:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/milly.png", mimeType = "image/png")]
+			public var Full_MILLY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/milly_nude.png", mimeType = "image/png")]
+			public var Full_MILLY_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/priestess.png", mimeType = "image/png")]
 			public var Full_MILODAN_PRIESTESS:Class;
 
@@ -1500,6 +1515,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/egg.png", mimeType = "image/png")]
 			public var Full_TENTACLE_EGG:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tivf.png", mimeType = "image/png")]
+			public var Full_TIVF:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tivf_nude.png", mimeType = "image/png")]
+			public var Full_TIVF_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tlako.png", mimeType = "image/png")]
 			public var Full_TLAKO:Class;

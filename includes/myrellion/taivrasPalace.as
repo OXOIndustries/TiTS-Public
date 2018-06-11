@@ -15,7 +15,7 @@ public function showTaivra(nude:Boolean = false):void
 	else 
 	{
 		showName("FIGHT:\nQUEEN TAIVRA");
-		if(flags["FREED_DANE_FROM_TAIVRA"] == 1) showBust("TAIVRA","DANE");
+		if(flags["FREED_DANE_FROM_TAIVRA"] == 1) showBust("TAIVRA",daneBustDisplay());
 	}
 }
 public function showQueensguard():void
@@ -1520,7 +1520,7 @@ public function youMarriedAnEvilChick():void
 	clearOutput();
 	showTaivra();
 	showName("DANE &\nQUEENSGUARD");
-	showBust("DANE_NUDE","QUEENSGUARD");
+	showBust(daneBustDisplay(true),"QUEENSGUARD");
 	author("Savin");
 	output("<i>“RUN FOR IT!”</i> a voice booms behind you, just as you and Taivra are about to seal the metaphorical deal. You scramble to your ");
 	if(pc.legCount > 1) output("[pc.feet]");
@@ -1599,7 +1599,7 @@ public function breakOutDane():void
 		output("\n\nYou take aim at the lock and strike!");
 		// Unfortunately for you, the lock isn’t completely destroyed by your attack - you’ll need to try again! //else, [Next] to Dane Breakout Fen wrote
 		showName("DANE &\nQUEENSGUARD");
-		showBust("DANE_NUDE","QUEENSGUARD");
+		showBust(daneBustDisplay(true),"QUEENSGUARD");
 		output("\n\nAs soon as you destroy the cage’s primitive lock, Dane is surging into action. The big ausar combat rolls into the door, smashing it fully open with his muscular bulk. His hands wrap around the haft of his warden’s spear, and with a simple tug, the weapon is liberated from the gape-mouthed nyrea. As big as Dane is, the spear looks like a toothpick in his hammer-thick hands. He growls, deep in his throat and snaps it in two, simultaneously backhanding the surprised cave-dweller into the wall with one of his free hands.");
 		output("\n\nThe alabaster ausar is utterly naked, stripped of his gear and bruised from his capture, but he’s grinning like a mad dog all the same. The veins on his arms bulge as he flexes his corded muscles, flipping the pieces of primitive weaponry down to his lower arms to hold like daggers. <i>“You should’ve killed me when you had the chance. This time you won’t get a chance to jump me in the dark.”</i>");
 		output("\n\n<i>“Slaves should learn their place,”</i> Queensguard answers, lowering her shield into place and readying her sword. <i>“If they cannot fathom that, then they will be fed to the deeps, piece by piece.”</i> She advances steadily, one plated boot in front of the other warily moving to intercept Dane.");

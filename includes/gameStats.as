@@ -904,6 +904,7 @@ public function statisticsScreen(showID:String = "All"):void
 				case GLOBAL.BED: roomFlagFlags.push("It is possible to sleep here."); break;
 			}
 		}
+		if(disableExploreEvents()) roomFlagFlags.push("<i>Explore events are disabled.</i>");
 		output2("\n<b>* " + (rooms[(inShip ? shipLocation : currentLocation)].planet.indexOf("PLANET:") != -1 ? "Planet" : "Location") + ":</b> " + getPlanetName());
 		output2("\n<b>* System:</b> " + getSystemName());
 		if(roomFlagTypes.length > 0)
@@ -970,10 +971,7 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b>* Time Spent Moving From Room to Room:</b> " + prettifyMinutes(StatTracking.getStat("movement/time travelled")));
 		output2("\n<b>* Time Spent Flying:</b> " + prettifyMinutes(StatTracking.getStat("movement/time flown")));
 		// Sleeping partner
-		var sleepingPartner:String = "";
-		if(flags["CREWMEMBER_SLEEP_WITH"] == undefined) sleepingPartner = "";
-		else if(chars[flags["CREWMEMBER_SLEEP_WITH"]] != null) sleepingPartner = chars[flags["CREWMEMBER_SLEEP_WITH"]].nameDisplay();
-		else sleepingPartner = StringUtil.toTitleCase(flags["CREWMEMBER_SLEEP_WITH"].toLowerCase());
+		var sleepingPartner:String = getSleepingPartnerName();
 		// Virgin booties claimed
 		var totalVirginitiesTaken:Number = 0;
 		if(StatTracking.getStat("characters/maiden vanae/cherrys popped") > 0) totalVirginitiesTaken += StatTracking.getStat("characters/maiden vanae/cherrys popped");
@@ -2969,6 +2967,7 @@ public function displayQuestLog(showID:String = "All"):void
 					else output2(", Undecided about mission");
 					if(flags["KQ2_SEX_PAY"] != undefined) output2(", Kara sexed you");
 					if(flags["KQ2_CREDS_FIRST"] != undefined) output2(", Kara paid you");
+					if(flags["KQ2_SHADE_ENCOUNTERED"] != undefined) output2(", Shade encountered");
 					if(flags["KQ2_SHADE_DEAD"] != undefined) output2(", Kara killed Shade");
 					if(flags["KQ2_KHANS_FILES"] != undefined) output2(", Took Khan’s files");
 					if(flags["KQ2_LOST_TO_AMARA"] != undefined) output2(", Lost to Amara");
@@ -6187,6 +6186,30 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2(" Know about it, <i>Lock combination is 7-8-9</i>");
 				variousCount++;
 			}
+			if(flags["MAIKE_QUARTERS_UNLOCKED"] != undefined)
+			{
+				output2("\n<b><u>Maike’s\nQuarters</u></b>");
+				output2("\n<b>* Status:</b>");
+				switch(flags["MAIKE_QUARTERS_UNLOCKED"])
+				{
+					case 1: output2(" Unlocked by card"); break;
+					case 2: output2(" Unlocked by hacking"); break;
+					default: output2(" <i>Unknown</i>"); break;
+				}
+				if(flags["MET_TIVF"] != undefined) output2("\n<b>* Tivf:</b> Met him");
+				variousCount++;
+			}
+			if(flags["BORED_JUMPER_JUMPED"] != undefined)
+			{
+				output2("\n<b><u>Mineshaft</u></b>");
+				// Jumper
+				if(flags["BORED_JUMPER_JUMPED"] != undefined)
+				{
+					output2("\n<b>* Bored Jumper, Times Encountered:</b> " + flags["BORED_JUMPER_JUMPED"]);
+					if(flags["JUMPER_DOCKED"] != undefined) output2("\n<b>* Bored Jumper, Times Docked By:</b> " + flags["JUMPER_DOCKED"]);
+				}
+				variousCount++;
+			}
 		}
 		
 		if(showID == "Uveto" || showID == "All")
@@ -6546,7 +6569,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["FROSTWYRM_DISABLED"] != undefined) output2(", <i>Whereabouts unknown</i>");
 				else if(flags["FROSTWYRMWARNING"] != undefined || flags["FROSTWYRMSLAIN"] != undefined)
 				{
-					output2("\n<b>* Frostwyrm, Status:</b>");
+					output2("\n<b>* " + chars["FROSTWYRM"].short + ", Status:</b>");
 					if(flags["FROSTWYRMWARNING"] != undefined) output2(" You were defeated by the Frostwyrm and warned never to return.");
 					if(flags["FROSTWYRMSLAIN"] != undefined) output2(" You have slain the Frostwyrm!");
 				}

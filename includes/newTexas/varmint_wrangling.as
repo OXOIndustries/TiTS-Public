@@ -563,6 +563,11 @@ public function takeSilicone():void
 
 /* How to Train Your Pet Varmint */
 
+public function varmintPetBustDisplay():String
+{
+	return "VARMINT";
+}
+
 // Varmint event check
 public function varmintStowaway():Boolean
 {
@@ -654,7 +659,7 @@ public function getAPetVarmint():void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VARMINT");
+	showBust(varmintPetBustDisplay());
 	clearMenu();
 	
 	if(flags["VARMINT_IS_CREW"] == undefined)
@@ -694,7 +699,7 @@ public function getAPetVarmintResponse(response:String = "none"):void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VARMINT");
+	showBust(varmintPetBustDisplay());
 	clearMenu();
 	// Kill It
 	if(response == "kill")
@@ -816,7 +821,7 @@ public function approachPetVarmint(introText:Boolean = false):void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VARMINT");
+	showBust(varmintPetBustDisplay());
 	showName("\nVARMINT");
 	clearMenu();
 	//When approaching Varmint.
@@ -870,7 +875,7 @@ public function doVarmintPlayTime(response:String = "none"):void
 {
 	clearOutput();
 	author("Savin");
-	showBust("VARMINT");
+	showBust(varmintPetBustDisplay());
 	showName("\nVARMINT");
 	clearMenu();
 	

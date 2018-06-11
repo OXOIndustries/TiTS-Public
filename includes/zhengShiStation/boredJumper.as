@@ -75,7 +75,7 @@ public function winVsBoredJumper():void
 	//HP
 	if(enemy.HP() <= 1)
 	{
-		output("The bored Jumper tumbles to the ground, clutching one arm and looking up at you in... adoration? She smiles shyly and reaches into a pouch. You bring up your guard, but it’s unnecessary. She lifts the medical-grade injector to her neck and releases the payload with a hiss of discomfort. <i>“Okay hot s-s-tuff.”</i> The distention in her crotch jerks forward, stretching her suit. <i>“Mmmm, so warm.”</i> Her visible injuries knit before your eyes, but her nipples look firm enough to serve as improvised weapons. <i>“Was saving this for you, if I had to beat you down, but I guess uh... now you get to be charge.”</i>");
+		output("The bored Jumper tumbles to the ground, clutching one arm and looking up at you in... adoration? She smiles shyly and reaches into a pouch. You bring up your guard, but it’s unnecessary. She lifts the medical-grade injector to her neck and releases the payload with a hiss of discomfort. <i>“Okay hot s-s-tuff.”</i> The distention in her crotch jerks forward, stretching her suit. <i>“Mmmm, so warm.”</i> Her visible injuries knit before your eyes, but her nipples look firm enough to serve as improvised weapons. <i>“Was saving this for you, if I had to beat you down, but I guess uh... now you get to be in charge.”</i>");
 	}
 	//Lust
 	else
@@ -88,17 +88,19 @@ public function winVsBoredJumper():void
 	//Enough
 	else output("\n\nYou aren’t sure why, but she seems more than into the idea of being your personal fuck-puppet for a few hours. What do you want to do with her?");
 	clearMenu();
-	addDisabledButton(1,"Sex","Sex","These scenes haven't been written yet. Sorry!");
+	addDisabledButton(1,"Sex","Sex","These scenes haven’t been written yet. Sorry!");
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(0,"FuckHerPussy",bunslutBigPussyBunFucking,undefined,"Fuck Her Pussy","You know what this is...");
-		else addDisabledButton(0,"FuckHerPussy","Fuck Her Pussy","No way! That cunt's wayyyyy too small for you.");
+		else addDisabledButton(0,"FuckHerPussy","Fuck Her Pussy","No way! That cunt’s wayyyyy too small for you.");
 	}
 	else addDisabledButton(0,"FuckHerPussy","Fuck Her Pussy","You need a penis for that.");
 	if(pc.hasGenitals()) addButton(1,"Frottage",frottageVictoryVsBoredJumperByB,undefined,"Frottage","Grind your way to victory!");
 	else addDisabledButton(1,"Frottage","Frottage","You need genitals for this scene.");
 	if(pc.hasGenitals()) addButton(2,"Suit Burster",meanHandySuitBurster,undefined,"Suit Burster","Tease the laquine Jumper till she bursts out of her suit.");
 	else addDisabledButton(2,"Suit Burster","Suit Burster","You need genitals for this scene.");
+	if(pc.hasVagina()) addButton(3,"Get Licked",facePussyFuckJumper,undefined,"Get Licked","Put her mouth to work on your [pc.vaginas].");
+	else addDisabledButton(3,"Get Licked","Get Licked","You need a vagina for this.");
 	addButton(14,"Leave",leaveTheBoredJumperAfterWinning);
 }
 
@@ -287,7 +289,7 @@ public function sweatBunHyperCockDock():void
 	else if(pc.cockTotal() == 1) output("your disproportionately well-hung cock");
 	else output("biggest totem pole of a cock");
 	output(". <i>“I had some other things in mind, but do you know what?”</i> She tweaks you just behind the [pc.cockHead " + x + "] with her toes. <i>“I think... I think I’m gonna fuck your cock.”</i> She slides it down your entire ");
-	if(pc.isErect()) output(num2Text(Math.round(pc.cocks[x].cLength())) + "-foot");
+	if(pc.isErect()) output(num2Text(Math.round(pc.cocks[x].cLength() / 12)) + "-foot");
 	else output("growing, increasingly monstrous");
 	output(" length, all but drooling in anticipation. <i>“Gonna break it in till you come back here looking for me, asking me to dump another load into your ");
 	if(pc.balls > 1) output("balls");
@@ -908,7 +910,11 @@ public function taursLoseToSweatLaquineByWsan():void
 	output(", her");
 	if(enemy.cocks[0].cType == GLOBAL.TYPE_EQUINE) 
 	{
-		output(" blunt, slightly flared head pressing against your cervix insistently.");
+		output(" blunt, slightly flared head pressing against your");
+		if(pc.hasVagina()) output(" cervix");
+		else if(pc.hasCock()) output(" prostate");
+		else output(" colon");
+		output(" insistently.");
 		output("\n\n<i>“H-horse,”</i> you gasp, taken in by the sensation of having a studly equine member inside your needy ");
 		if(pc.hasVagina()) output("pussy");
 		else output("asshole");
@@ -1061,6 +1067,8 @@ public function taursLoseToSweatLaquineByWsan():void
 	if(pc.hasVagina()) pc.cuntChange(x,enemy.cockVolume(0)*2);
 	else pc.buttChange(enemy.cockVolume(0)*2);
 
+	var stolenCreds:Number = 0;
+	
 	output("\n\nAs the pounding begins anew, you find yourself wondering if she actually killed you when you lost and now you’re stuck in limbo, here to get dicked down forever.");
 	if(!pc.isTreated()) 
 	{
@@ -1069,7 +1077,7 @@ public function taursLoseToSweatLaquineByWsan():void
 		//some gems/credits/whatever} 
 		if(pc.credits > 1)
 		{
-			var stolenCreds:Number = pc.credits;
+			stolenCreds = pc.credits;
 			if(stolenCreds > 1000) stolenCreds /= 2;
 			if(stolenCreds > 5000) stolenCreds /= 2;
 			if(stolenCreds > 10000) stolenCreds /= 2;
@@ -1106,7 +1114,7 @@ public function taursLoseToSweatLaquineByWsan():void
 		//{gems/your credits/whatever}
 		if(pc.credits > 1)
 		{
-			var stolenCreds:Number = pc.credits;
+			stolenCreds = pc.credits;
 			if(stolenCreds > 1000) stolenCreds /= 2;
 			if(stolenCreds > 5000) stolenCreds /= 2;
 			if(stolenCreds > 10000) stolenCreds /= 2;
@@ -1428,5 +1436,112 @@ public function meanHandySuitBurster():void
 	if(cummies) pc.orgasm();
 	sweatyDebuff(1);
 	pc.applyCumSoaked();
+	CombatManager.genericVictory();
+}
+
+public function facePussyFuckJumper():void
+{
+	clearOutput();
+	showBoredJumper(true);
+	//Bimbo
+	if(pc.isBimbo()) output("<i>“’Kay!”</i> you cheer, wiggling your hips with a friendly smile. <i>“But I hope you like, really like pussy!”</i>");
+	//Bro
+	else if(pc.isBro()) output("You smirk self-assuredly. <i>“Hope you like puss.”</i> Of course she likes pussy.");
+	//Nice
+	else if(pc.isNice()) output("<i>“Don’t worry. I’m not going to leave before we can have a bit of fun.”</i>");
+	//Mischievous
+	else if(pc.isMischievous()) output("<i>“Don’t fret. No way I’d leave a sweet little love bun behind before having a bit of fun.”</i> You wink at the squirming pirate. <i>“I just hope you like my cunt as much as the rest of me.”</i>");
+	//Hard
+	else output("<i>“Sucks to be you. Or at least it will in a second, once you’re stuffing your tongue in my cunt.”</i>");
+	//Merge
+	output("\n\nThe lusty laquine licks her lips and stares you square in the crotch, ");
+	if(pc.isCrotchExposed()) 
+	{
+		output("drinking in the sight of your lust-swollen vulva");
+		if(pc.totalVaginas() > 1) output("e");
+		output(".");
+	}
+	else output("wishing she could peer through your [pc.crotchCover] to glimpse the beauty behind.");
+	output(" <i>“Pussy?”</i> Her ears perk halfway up before slumping back down under their own sweat-soaked weight. <i>“I love pussy.”</i> She rolls over onto her front, crawling on hands and knees toward you. <i>“Sweet, supple, sweaty cunt on my face...”</i> Her eyes stare up at you, dilated with hunger. <i>“Gimme. Please!”</i>");
+	output("\n\nWho are you to deny the horny minx her just rewards? You");
+	if(!pc.isCrotchExposed()) output(" shuck your kit with obscene swiftness, revealing");
+	else output(" cock your hips to better display");
+	output(" your [pc.vaginas]. ");
+	if(pc.totalVaginas() == 1) output("It");
+	else output("They");
+	output(" glisten in the mine’s faint light thanks to the clinging sweat");
+	if(pc.wettestVaginalWetness() >= 4 || pc.lust() >= 80) output(" and [pc.girlCum]");
+	output(", and their reflection fills the wide-eyed laquine’s gaze. Pussy dominates her mind with temptations of smooth, sapphic skin and ambrosial, feminine honey. Bare twat makes her eyes cross when she leans closer, and her breaths come out as rapid, near-hyperventilating pants. The mere sight of your dewy mound");
+	if(pc.totalVaginas() > 1) output("s");
+	output(" proves hypnotic enough to control the once-rapacious rabbit.");
+	output("\n\nThe mesmerized Jumper’s tongue lolls out in supplication. It’s lined up perfectly. An inch closer, and it’d be swimming through your slick cuntlips, but the bunny-girl waits. She knows she’s lost, knows that if she wants taste the sweat-and-pussy mix you’re offering she’ll have to do it on your terms. <i>“Please?”</i>");
+	//Bimbo
+	if(pc.isBimbo()) output("\n\n<i>“Get in there, silly rabbit!”</i> You rake your middle finger through the sopping slit, displaying the heady mixture to your defeated aggressor. <i>“The water’s fiiiine.”</i> You suck the digit clean, the scrumptious juice jogging your silly brain into thinking a bit. <i>“’Course the water’s pussy, I guess. Even better!”</i>");
+	//Hard
+	else if(pc.isAss()) output("\n\n<i>“That’s what you should have started with, bitch.”</i> You slap her across the face. <i>“Instead of wasting my time and energy, you should’ve been on your knees, begging for cunt.”</i> You pause, glaring at the flinching rabbit. <i>“Now quit slacking and </i>lick<i>.”</i>");
+	//Else
+	output("\n\n<i>“So the feral savage has some manners buried under all the sweat and grime after all.”</i> You smile down at her. <i>“Good. Get started, and show me what a good girl you can be.”</i>");
+	//Merge
+	output("\n\nLike a centaur barreling out of a racetrack’s gates, the lusty pirate lunges forward with every muscle in her entire body. Those powerful lapine legs launch her with catapult-strength, driving her face-first into your [pc.vagina] with sufficient force to pin you into the wall. Her nose deflects off [pc.oneClit], sliding south and in even as the hungry tongue worms around the southern portions of your femininity, seeking out leaking [pc.girlCum] and sweat with unnerring accuracy.");
+
+	output("\n\nYou push back, but your fingers just slip through the the laquine’s soaking fur. A spray of salty droplets sizzles on the stone behind. Changing tactics, you grab hold of her ears, one in each fist, squeezing out dribbles of sweat in the process, but this time, you don’t lose your hold. You wrench her muzzle backward, revealing frenzied eyes and a muzzle caked in your [pc.girlCumColor] [pc.girlCumNoun]. She strains against your grip twice before giving up and stretching out her tongue, subserviently licking.");
+	output("\n\n<i>“Better,”</i> you coo, pulling away from the too hot stone. <i>“Not so hard.”</i> Relaxing slightly, you let an inch of her furry ears slide through your fingers - enough for her lips to kiss your hungry folds.");
+	output("\n\nThis is more like it. Tentative licks and kisses are exactly what you need, not brutal face-fucking... at least, not to start. You don’t release her, however. The troublesome slut-bun hasn’t earned that luxury, not after how she started. Her tongue is yours to command, and her face with it. You firmly guide her mouth around your exterior, then tip her head back for another taste of her lips on [pc.oneClit].");
+	processTime(20);
+	pc.lust(100);
+	clearMenu();
+	addButton(0,"Next",boredJumperMuzzleFuck2);
+}
+
+public function boredJumperMuzzleFuck2():void
+{
+	clearOutput();
+	showBoredJumper(true);
+	//Huge
+	if(pc.clitLength > 12) 
+	{
+		output("Your captive cunt-kisser moans as she slides down the enormous, feminine fuck-pole. <i>“Mmmmm,”</i> is about the only sound she manages to make, though you sense she wants to say more. Her tail flutters happily as she takes you deep, opening her throat to surround you in the suckling sweetness of her skilled clitoral fellatio. You can only endure it for a few moments before you’re forced to pull back by raw sensation, baring your spit-shined clit to sauna-like air.");
+		output("\n\n<i>“I fucking love clit-dicks,”</i> the cooing captive gasps. <i>“Especially when they’re all sweaty and hard from fighting slutty, horned up pirates.”</i>");
+	}
+	//Dicksized
+	else if(pc.clitLength > 3)
+	{
+		output("Your captive cunt-kisser moans, <i>“I looove cli-”</i> right up until you push your feminine fuck-pole into her lips, quieting her into a gently vibrating hum of pleasure. You sense she wants to say more, to keep talking, but with that much pussyflesh in her mouth, she has far better things to do. Her tongue swiftly adapts to its new lot in life even as her cheeks hollow. The magnificent muscle coils and slides across the sensitive underside while her sweat, suckling maw pulls tighter, embracing you in dizzyingly intense pressure. You pull before the raw sensation overwhelms you, baring your spit-shined clit to the sauna-like air.");
+		output("\n\n<i>“Clit-dicks are so much fun!”</i> the cooing captive gasps. <i>“Especially when they get all sweat and hard from fighting silly, horny pirates!”</i>");
+	}
+	//Else
+	else output("Your captive cunt-kisser moans, <i>“I loooove clits.”</i> Her tail flutters in happiness as her tongue tries its best to show you the truth of her statement. It coils and slides, licks then laps. Finally, it drums gently on your button, teasing you with short, sharp spikes of pleasure. <i>“Especially after they get all big and swollen for me.”</i> She suckles it adoringly. <i>“Even better when they’re salty and sweaty from fighting big, mean pirates.”</i>");
+	//Merge
+	output("\n\nYou note that both the latex laquine’s hands are between her legs, rubbing her cock through the rubber of her suit. The sweat dripping from her head has rendered the surface slick for easy teasing, and in her current position, they have little to do but squeeze and caress. The play across the glossy surface with expert care and attention. No wonder the dual-sexed slut is behaving: she’s getting exactly what she wants, but... so are you. You tighten your hold on the bouncing bunny’s ears and guide her south further south.");
+	output("\n\nShe gasps, <i>“A little harder, please?”</i> as her nose comes to rest against the source of your increasingly noticeable girlmusk. She mimes licking in a frenzy, bobbing her neck back and forth as much your grip allows.");
+	output("\n\nYou nod graciously, satisfied with the foreplay. The frenzied desire she displayed before seems more and more appealing the longer she touches your [pc.vagina].");
+	output("\n\n<i>“Yessss,”</i> she hisses, diving in, stuffing her nose deep inside. Faint squeaks from below indicate that her own masturbation has ramped up even while she presses most of her muzzle inside you, sliding her tongue into your deepest recesses to harvest the freshest, tastiest [pc.girlCumNoun]. You groan in delight and thrust back against her, tugging her ears to seat her deeper. The cunt-loving laquine’s eyes cross, then drift closed. Her tongue’s intensity increases, swirling around, probing and teasing. Her throat audibly gulps with the fruits of her perverted harvest.");
+	output("\n\nYou pull the sweaty pirate back before she can bring you over the edge and look down. Her mouth is wide and panting. Her eyes are barely open and staring up at you in adoration. Her fingers squeak noisily as they tease a dick that looks hard enough to rip through her suit, but it’s clear that the self-pleasure is entirely secondary to her next to the taste of your ambrosial slit.");
+	output("\n\n<i>“More!”</i>");
+	output("\n\nYou pull her back in before she gets any ideas. She gets a single lick in before you drag her back out by her ears, setting a slow but forceful pace as you ramp up to fucking her face. Your [pc.hips] pump along with your hands as you take your pleasure from her, no longer allowing her any control over how she serves your [pc.vagina]. Her slutty, furry muzzle is your new dildo. You fuck it firmly, at first being careful not to hurt her, but as time passes, you’re less and less careful with how you manhandle her by the ears.");
+	output("\n\nThe little slut loves it anyhow. Whenever your motions flag, she looks up stupidly, drooling pussy and spit everywhere. Her hands stroke, and her tail wags in happiness. The little minx clearly adores the rough treatment, so you let all pretenses drop and focus on what you really want: to cum.");
+	output("\n\nYou push both her ears into one hand and put the other on the back of her head for better grip, then you really start to fuck her. The lurid squelches echo down the tunnel. She slobbers everywhere she can get at on her way in and out, and the friction of her sweat-impregnated fur sliding against the sides of your [pc.clits] is heavenly. With each face-fucking cycle, the pleasure grows more intense and demanding. Your muscles quiver at the edge of exquisite delight.");
+	output("\n\nVibration ripples through your [pc.vagina] from your lapine dildo as she abruptly begins to scream in delight. The crotch of her suit bulges out obscenely from her orgasm. You can hear it squelch and creak. The forceful ejaculations briefly create forward-facing dents, though they fade into benign yet undoubtedly fragrant bubbles of creamy cum in no time at all.");
+	output("\n\nYou cum right along with her, socketing her deep into your [pc.vagina] and crying out yourself.");
+	if(pc.hasCock()) output(" [pc.Cum] rains down on the back of your head as your masculine equipment unloads.");
+	if(pc.canMilkSquirt()) output(" Simultaneously, streamers of [pc.milk] gush out from your [pc.chest], let down as your body gives in to the overwhelmingly erotic release.");
+	if(pc.isSquirter()) output(" The cunt-embedded laquine gurgles, her throat bulging. With her stuffed that deep, there’s nowhere for your squirting climax to go but straight into her belly. You hold her place through the entire orgasm, milking your climax into her slobbering, slutty maw.");
+	else output(" The cunt-embedded laquine gurgles, struggling to vocalize the strength of her own climax and keep up with the juices yours produces. Ultimately, she winds up swallowing. You hold her in place through the entire thing, drizzling [pc.girlCum] into her maw until her teeth are drowning in it.");
+	processTime(20);
+	pc.orgasm();
+	if(pc.canMilkSquirt()) pc.milked();
+	clearMenu();
+	addButton(0,"Next",boredJumperMuzzleFuck3);
+}
+public function boredJumperMuzzleFuck3():void
+{
+	clearOutput();
+	showBoredJumper(true);
+	output("Neither of you has much strength in the wake of those powerful orgasms. She slides out of your grip - and your [pc.vagina] - with a ");
+	if(!pc.isSquirter()) output("pleased sigh");
+	else output("heavy gasp and [pc.girlCumNoun] dribbling from her slack maw");
+	output(". You stumble to the floor not long after, clutching your [pc.chest] and shuddering your way through a half-dozen aftershocks.");
+	output("\n\nLooking over at your would-be conqueror, you can’t help but smile. She’s still rubbing her cock, squeezing more cum into her suit, inflating it by sheer force of lust. It looks good on her like that, lending her a thicker, more curvaceous appearance, up until the beads of white spill out of the seam at her neck, anyway. She glances your way, trying to lick your pussy-juice from her face and moaning, <i>“This was soooooo worth it!”</i>\n\n");
+	processTime(10);
 	CombatManager.genericVictory();
 }

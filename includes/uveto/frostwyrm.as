@@ -44,7 +44,7 @@ public function HereBeDragonBonus():Boolean
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "Your genitalia are not fit for breeding--make sure you are fertile before summoning the dragon!");
 			}
 			else if(!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) {
-				output(".. though breeding while you are a carrying mother might not be the best idea. Perhaps you should return after you've given birth to your current pregnancy first?");
+				output(".. though breeding while you are a carrying mother might not be the best idea. Perhaps you should return after you’ve given birth to your current pregnancy first?");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You already have a bun in the oven, so make sure you are clear of your current pregnancies before summoning the dragon!");
 			}
 			else {
@@ -1846,7 +1846,9 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	output("\n\nYou sigh, the distinctive taste of [frostwyrm.name] on your breath. Perhaps you are.");
 	if (flags["FROSTWYRM_INCEST_OPTION"] == 1){
 		if (flags["FROSTWYRM_KIP_COUNT"] >= 2){
-			output("\n\nWhen you pull yourself up, peeling away from the new liquid coating on the floor, you hazily look out to the lair and spy your daughters. Inspired by the act their Qim and Qal had shamelessly put on for them, they’re locked into a tantalizing sizty-nine[if {PC has nine kips or more}, and others are assembled in a long, circular train], each of them eagerly fucking the mouth of their willing and ready sister, sawing their foot-long dick into the warm, wet maw of their sibling.");
+			output("\n\nWhen you pull yourself up, peeling away from the new liquid coating on the floor, you hazily look out to the lair and spy your daughters. Inspired by the act their Qim and Qal had shamelessly put on for them, they’re locked into a tantalizing sizty-nine");
+			if (flags["FROSTWYRM_KIP_COUNT"] >= 9) output(", and others are assembled in a long, circular train");
+			output(", each of them eagerly fucking the mouth of their willing and ready sister, sawing their foot-long dick into the warm, wet maw of their sibling.");
 			output("\n\n<i>I do hope we have not created an... epidemic of sorts,</i> [frostwyrm.name] says amusedly, watching her daughters with some awe and a little bit of jealousy. <i>I should hope they remember to breed with their mates properly when the time comes.</i>");
 		}
 	}

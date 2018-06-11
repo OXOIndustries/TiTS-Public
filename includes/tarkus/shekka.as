@@ -2566,7 +2566,7 @@ public function payShekkaForFunding1():void
 	clearOutput();
 	showShekka();
 	author("SomeKindofWizard");
-	output("What’s an heiress’ fortune between friends? You snatch up the fidgeting Raskvel’s datapad (catching a glimpse of her background image; lewd) and swipe a portion of your codex across it. There’s an affirmative chirp, and your account’s loads are lightened.");
+	output("What’s an " + pc.mf("heir’s", "heiress’") + " fortune between friends? You snatch up the fidgeting Raskvel’s datapad (catching a glimpse of her background image; lewd) and swipe a portion of your codex across it. There’s an affirmative chirp, and your account’s loads are lightened.");
 	output("\n\nShekka’s cheeks blush a cute little purple as she reclaims her datapad. <i>“You didn’t see that, right?”</i> Your only response is a toothy grin and a knowing eyebrow wiggle.");
 	output("\n\n<i>“A-anyway. Thanks for this, I’ll get this out to a few of them in no time... hopefully we won’t come up against any issues.”</i> She gives your leg a quick hug before scampering over to her workbench, casting an eye over everything in an attempt to get her brain back on track again.");
 	output("\n\nWell... you’ve got her back on this, regardless of what crops up.\n\n(<b>You’ll want to check back in a day or so...</b>)");

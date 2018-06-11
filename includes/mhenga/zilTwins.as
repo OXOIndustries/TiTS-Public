@@ -18,7 +18,7 @@
 public function zilTwinsAtBar():Boolean
 {
 	//The zil show up on FUZZBUZZ
-	return flags["ZILTWINS_MET"] && pc.hasGenitals() && !pc.isTaur() && hours >= 10 && hours < 18 /*&& (days % 3 == 0 || days % 5 == 0)*/;
+	return flags["ZILTWINS_MET"] != undefined && pc.hasGenitals() && !pc.isTaur() && hours >= 10 && hours < 18 /*&& (days % 3 == 0 || days % 5 == 0)*/;
 }
 
 //nekkidStates: 0 - not showing up, 1 - chitined, 2 - naked
