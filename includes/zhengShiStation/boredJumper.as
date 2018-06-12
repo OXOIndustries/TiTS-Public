@@ -80,7 +80,7 @@ public function winVsBoredJumper():void
 	//Lust
 	else
 	{
-		output("The bored Jumper tumbles to the ground, arching her back and thrusting her crotch against her palm. Latex squeaks against latex as she assails her body with wild abandon. The sweaty bunny roughly gropes her own breast, staring at you with wild, adoring eyes. <i>“F-f-fuck, you’re so fucking hot. You know that right? I don’t even care anymore. Fuck me how you want! Screw me so silly I sleep through my next job - just fuck me!”</i>");
+		output("The bored Jumper tumbles to the ground, arching her back and thrusting her crotch against her palm. Latex squeaks against latex as she assails her body with reckless abandon. The sweaty bunny roughly gropes her own breast, staring at you with wild, adoring eyes. <i>“F-f-fuck, you’re so fucking hot. You know that right? I don’t even care anymore. Fuck me how you want! Screw me so silly I sleep through my next job - just fuck me!”</i>");
 	}
 	//Merge
 	//Now enough lust.
@@ -156,7 +156,7 @@ public function loseToSweatBunny69():void
 	if(pc.hasCock())
 	{
 		if(!pc.isCrotchExposed()) output("Her nimble fingers have your [pc.cocks] free in short order, springing out into proud tumescence.");
-		else output("Her nimble fingers brush your [pc.cocks] by accident, enough to your proud tumescence pulsate with pleasure.");
+		else output("Her nimble fingers brush your [pc.cocks] by accident, enough to make your proud tumescence pulsate with pleasure.");
 		output(" <i>“Working up a nice sweat down there, aren’t you? I could give you a handjob in these gloves without needing a single droplet of lube.”</i>");
 	}
 	else if(pc.hasVagina()) 
@@ -228,14 +228,14 @@ public function sweatBunny69Loss2():void
 	if(pc.isBimbo()) output("It tastes just as good as her balls, maybe even better. Head swimming, you lick and lap at it, swallowing hours of her collected sweat and leaking pre with eager gulps.");
 	else output("It tastes... kind of nice, just like her balls. Before you know it, you’re licking her cock like it’s your favorite flavor of lollipop, savoring the dribbling pre and hours’ worth of collected sweat.");
 	output(" You find your cheeks hollowing and your [pc.lips] sealing down to suck her a little harder, pulling her a little deeper.");
-	if(pc.canDeepthroat()) output(" Your nose nestles into her pheromonally drenched bellyfur.");
+	if(pc.canDeepthroat()) output(" Your nose nestles into her pheromonally drenched nut-fuzz.");
 	else output("Your gag reflex doesn’t give you too much trouble this time, though you don’t take her the entire way.");
 	output("\n\nMeanwhile, the slut-bun’s mouth is all over the lower half of your body. She’s already seen to licking your thighs, your [pc.belly], and even brought her maw down to visit your crotch. Boiling hot kisses pepper that sensitive flesh, all while her paw continues to tease and abuse your tenderest places");
 	if(pc.hasCock()) output(", squeezing you until you ache with the need to cum");
 	else if(pc.hasVagina()) output(", fingering you until you’re aching with the need to clamp down and cum");
 	output(". Your [pc.hips] squirm around on autopilot, your brain fully occupied with tending to the bunny-bitch’s fragrant dong.");
 	output("\n\n<i>“Fuck yeah, suck that cock!”</i> The lusty pirate cries, thrusting hard into your face");
-	if(pc.canDeepthroat() || pc.isBimbo()) output(", not that it matters. Silly girl! You’ve sucked her so deep and so hard that there’s position for her to take besides ‘balls-deep’.");
+	if(pc.canDeepthroat() || pc.isBimbo()) output(", not that it matters. Silly girl! You’ve sucked her so deep and so hard that there’s no position for her to take besides ‘balls-deep’.");
 	else output(", painting your throat in pre as she burrows in. Tears well at the corners of your eyes while she goes balls-deep.");
 	if(pc.hasCock()) output(" At the same time, she sucks down on your [pc.cock], ravishing it with oral attention. Her whiskers tickle your belly as she inhales inches like oxygen and begins to swish her tongue back and forth with the speed of a high quality vibrator.");
 	else if(pc.hasVagina()) output(" At the same time, she kiss [pc.oneClit] and breathes it in like oxygen. Her whiskers tickle your belly as she goes wild around the pretty clusty of nerves, tongue vibrating with near-mechanical speed.");
@@ -287,7 +287,7 @@ public function sweatBunHyperCockDock():void
 
 	if(!pc.isCrotchExposed()) output("at the monumental bulge");
 	else if(pc.cockTotal() == 1) output("your disproportionately well-hung cock");
-	else output("biggest totem pole of a cock");
+	else output("the biggest totem pole of a cock");
 	output(". <i>“I had some other things in mind, but do you know what?”</i> She tweaks you just behind the [pc.cockHead " + x + "] with her toes. <i>“I think... I think I’m gonna fuck your cock.”</i> She slides it down your entire ");
 	if(pc.isErect()) output(num2Text(Math.round(pc.cocks[x].cLength() / 12)) + "-foot");
 	else output("growing, increasingly monstrous");
@@ -1476,7 +1476,7 @@ public function facePussyFuckJumper():void
 	output(" proves hypnotic enough to control the once-rapacious rabbit.");
 	output("\n\nThe mesmerized Jumper’s tongue lolls out in supplication. It’s lined up perfectly. An inch closer, and it’d be swimming through your slick cuntlips, but the bunny-girl waits. She knows she’s lost, knows that if she wants taste the sweat-and-pussy mix you’re offering she’ll have to do it on your terms. <i>“Please?”</i>");
 	//Bimbo
-	if(pc.isBimbo()) output("\n\n<i>“Get in there, silly rabbit!”</i> You rake your middle finger through the sopping slit, displaying the heady mixture to your defeated aggressor. <i>“The water’s fiiiine.”</i> You suck the digit clean, the scrumptious juice jogging your silly brain into thinking a bit. <i>“’Course the water’s pussy, I guess. Even better!”</i>");
+	if(pc.isBimbo()) output("\n\n<i>“Get in there, silly rabbit!”</i> You rake your middle finger through the sopping slit, displaying the heady mixture to your defeated aggressor. <i>“The water’s fiiiine.”</i> You suck the digit clean, the scrumptious juice jogging your silly brain into thinking a bit. <i>“Course the water’s pussy, I guess. Even better!”</i>");
 	//Hard
 	else if(pc.isAss()) output("\n\n<i>“That’s what you should have started with, bitch.”</i> You slap her across the face. <i>“Instead of wasting my time and energy, you should’ve been on your knees, begging for cunt.”</i> You pause, glaring at the flinching rabbit. <i>“Now quit slacking and </i>lick<i>.”</i>");
 	//Else
