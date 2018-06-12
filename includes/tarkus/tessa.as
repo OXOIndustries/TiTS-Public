@@ -8,7 +8,6 @@
 	//TESSA_SPECIES
 	//TESSA_ALONE
 	//TESSA_GENDER
-	//TESSA_SEXED
 	//TESSA_H2H1
 	//TESSA_H2H2
 	//TESSA_JOB
@@ -364,7 +363,7 @@ public function talkWifDatLizTessa():void
 	addButton(0,"Herself",askAboutDatSexyTessa,undefined,"Herself","Ask her about herself.");
 	if (flags["TESSA_HERSELF"]!= undefined)	addButton(1,"Species",tessaSpecies,undefined,"Species","Ask her about her species.");
 	if (flags["TESSA_SPECIES"]!= undefined)	addButton(2,"Alone?",whySoLonelyTessa,undefined,"Alone?","Ask why she always drinks alone.");
-	if (flags["TESSA_SEXED"]!= undefined && flags["TESSA_ALONE"]!= undefined) addButton(3,"Her Sex",didYouJustAssumeTessaGender,undefined,"Her Sex","Ask her what her “deal”</i> is.");
+	if (flags["TESSA_SENSEPLAY"]!= undefined && flags["TESSA_ALONE"]!= undefined) addButton(3,"Her Sex",didYouJustAssumeTessaGender,undefined,"Her Sex","Ask her what her “deal”</i> is.");
 	if (tessaTrust() >= 60) addButton(4, "Profession", whatSexyTessaDo, undefined, "Profession", "Wait, what did you do again?");
 	addButton(14,"Back",whiteWomanTessa);
 }
@@ -799,6 +798,7 @@ public function tessaDrinkBeer():void
 	output("\n\n<i>“Shhh, don’t be a… Hm, what was the word you used?”</i> The white ovir woman looks you in the eye, finished tightening the binders. <i>“Prude.”</i> She smirks and then takes the ends of the rope, securing them to each binding, leaving your arms strung up in the air. Taking a step back she examines her work.");
 	output("\n\n<i>“This wasn’t exactly what I had in mind….”</i> You tug at the rope a bit, noticing it wasn’t very taut, but you can’t lower your arms. While you are looking up at you arms, Tessa moves back to you and puts the blindfold over your eyes. <i>“Hey! Wait-”</i>");
 	output("\n\n<i>“Shut up. God damn.”</i> You hear her heels clicking, moving away from you. <i>“I understand this is a little bit <b>rape dungeon</b>-y, but I swear this is super mellow, you’ll love it.”</i> You hear two zipper pulls and the sounds of something hitting the floor. <i>“Relax, it’s just my shoes.”</i>");
+	
 	currentLocation = shipLocation;
 	addButton(0,"Next",tessaCleverGirl2);
 	pc.imbibeAlcohol(25);
