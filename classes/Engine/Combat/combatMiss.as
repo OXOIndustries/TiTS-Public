@@ -13,13 +13,17 @@ package classes.Engine.Combat
 	{
 		if (overrideAttack == -1) overrideAttack = attacker.attack(true);
 		
-		if(rand(100) + attacker.physique()/5 + overrideAttack - target.reflexes()/5 < 10 * missModifier && !target.isImmobilized()) 
+		var evasion:Number = target.evasion();
+		//Negative evasion also helps you be hit by attacks.
+		var evasionPenalty:Number = (evasion < 0 ? evasion*-3 : 0);
+		//D100 + attackPhysBonus + targetEvasionPenalty - targetReflexBonus < 10? Miss.
+		if(rand(100) + attacker.physique()/5 + evasionPenalty + overrideAttack - target.reflexes()/5 < 10 * missModifier && !target.isImmobilized()) 
 		{
 			return true;
 		}
 		//Evasion chances
-		if(target.evasion() >= rand(100) + 1) {
-			trace("EVASION WORKED!: " + target.evasion());
+		if(evasion >= rand(100) + 1) {
+			trace("EVASION WORKED!: " + evasion);
 			return true;
 		}
 		//10% miss chance for lucky breaks!

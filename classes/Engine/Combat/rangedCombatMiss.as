@@ -21,15 +21,18 @@ package classes.Engine.Combat
 			overrideAttack -= 50;
 		}
 
+		var evasion:Number = target.evasion();
+		//Negative evasion also helps you be hit by attacks.
+		var evasionPenalty:Number = (evasion < 0 ? evasion*-3 : 0);
 		//Standard miss chance
-		if(rand(100) + attacker.aim()/5 + overrideAttack - target.reflexes()/3 < 10 * missModifier && !target.isImmobilized()) 
+		if(rand(100) + attacker.aim()/5 + evasionPenalty + overrideAttack - target.reflexes()/3 < 10 * missModifier && !target.isImmobilized()) 
 		{
 			return true;
 		}
 		//Evasion chances
-		if(target.evasion() >= rand(100) + 1) 
+		if(evasion >= rand(100) + 1) 
 		{
-			trace("RANGED EVASION SUCCESS: " + target.evasion() + "%");
+			trace("RANGED EVASION SUCCESS: " + target.evasion + "%");
 			return true;
 		}
 		
