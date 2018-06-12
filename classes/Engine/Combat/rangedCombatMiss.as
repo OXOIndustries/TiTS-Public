@@ -23,7 +23,7 @@ package classes.Engine.Combat
 
 		var evasion:Number = target.evasion();
 		//Negative evasion also helps you be hit by attacks.
-		var evasionPenalty:Number = (evasion < 0 ? evasion*-3 : 0);
+		var evasionPenalty:Number = Math.max(0, evasion * -3);
 		//Standard miss chance
 		if(rand(100) + attacker.aim()/5 + evasionPenalty + overrideAttack - target.reflexes()/3 < 10 * missModifier && !target.isImmobilized()) 
 		{
