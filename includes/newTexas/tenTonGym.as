@@ -582,7 +582,7 @@ public function annoWorkoutShipSexyFunTimes():void
 	//Herms with fitty dickies get either.
 	if(pc.isHerm()) sceneChoice = rand(2);
 	//Dudes just the dicking.
-	else sceneChoice = 1;
+	else if(pc.hasCock()) sceneChoice = 1;
 
 	//Dick scene!
 	if (sceneChoice == 1)
