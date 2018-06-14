@@ -64,7 +64,7 @@ public function tessaBustDisplay(nude:Boolean = false):String
 }
 public function showTessa(nude:Boolean = false):void {
 	showBust(tessaBustDisplay(nude));
-	showKellyName();
+	showTessa();
 	author("Fr0sty");
 }
 	
