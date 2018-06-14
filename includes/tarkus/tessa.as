@@ -639,8 +639,8 @@ public function tessaNothingPersonalKid():void
 	if(pc.hasCock()||pc.hasVagina())
 	{	
 		output("Feeling a sudden");
-		if(pc.hasCock())output("tightness");
-		if(pc.hasVagina())output("heat");
+		if(pc.hasCock())output(" tightness");
+		else if(pc.hasVagina())output(" heat");
 		output(" in your ");
 		if(!pc.isCrotchExposed())output("[pc.lowerGarment]");
 		else output("[pc.groin]");
