@@ -2043,6 +2043,7 @@ public function saurmorianTimes2():void
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "silver";
 		pc.earType = GLOBAL.TYPE_LIZAN;
+		pc.eyeType = GLOBAL.TYPE_NAGA;
 		pc.tongueType = GLOBAL.TYPE_CANINE;
 		pc.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_SQUISHY];
 		pc.armType = GLOBAL.TYPE_LEITHAN;

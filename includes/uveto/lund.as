@@ -3135,7 +3135,7 @@ public function lundBreakHimA2():void
 	
 	output("\n\n<i>“Good boy,”</i> you purr, standing behind him with your cock in hand. <i>“Gooood boy... now spread your legs a little and bend over at the waist, pup. Keep your back straight.”</i>");
 	
-	output("\n\nFollowing your instructions to a T, he spreads his legs for you and bends over, putting his arms out on the dresser next to his bed. You don’t bother with foreplay - he’s too eager, and truth be told so are you. Seeing your furry fucktoy lewdly debasing himself in a tight little thong has you rock hard, precum already running from your tip. Aligning yourself with the smooth, soft skin of his asshole, you push your [pc.cockBiggestHead] inside, forcing a needy whine from Lund’s mouth.");
+	output("\n\nFollowing your instructions to a T, he spreads his legs for you and bends over, putting his arms out on the dresser next to his bed. You don’t bother with foreplay - he’s too eager, and truth be told so are you. Seeing your furry fucktoy lewdly debasing himself in a tight little thong has you rock hard, precum already running from your tip. Aligning yourself with the smooth, soft skin of his asshole, you push your [pc.cockHeadBiggest] inside, forcing a needy whine from Lund’s mouth.");
 	pc.cockChange();
 	
 	output("\n\n<i>“Aaah, fuck...”</i> you sigh happily, luxuriating in the way his asshole eagerly grips and squeezes you, practically begging for you to go deeper. <i>“Good boy, Lund...”</i>");
@@ -3305,7 +3305,7 @@ public function lundBreakHimB2():void
 	output("\n\n<i>“Here,”</i> you murmur, pulling his thong to the side and sliding yourself");
 	if (pc.balls > 0) output(" balls-deep");
 	else output(" to the hilt");
-	output(" in one swift, smooth motion. Lund’s movement ceases immediately and he moans as you draw your hips back, pulling your [pc.cockBiggestHead] back to his entrance and spreading him wide once more.");
+	output(" in one swift, smooth motion. Lund’s movement ceases immediately and he moans as you draw your hips back, pulling your [pc.cockHeadBiggest] back to his entrance and spreading him wide once more.");
 	
 	output("\n\nHe cums immediately, a low groan escaping his lips that gradually grows in volume with every thrust until, finally, he gives in and howls. He was so worked up that his cum comes out in an almost never ending flow, spurting and spraying from the tip of his jerking cock while you fuck his ass. His doggy dick is like a plentiful fountain, one that lets loose a massive rope of jizz every time you bottom out inside him.");
 	
@@ -3422,7 +3422,7 @@ public function lundBreakHimC():void
 	output("\n\nBy the time you reach it neither of you are in the mood for waiting. Already panting with desire, Lund pulls his thong to the side before you even reach the bed and you sink yourself");
 	if (pc.biggestCockLength() <= 6) output(" to the hilt/");
 	else output(" six inches deep");
-	output(" with a groan of pleasure, feeling the way Lund’s tight asshole eagerly grips and sucks at your [pc.cockBiggestHead]. Both of you standing in the middle of the room, you rut your slutty pup with a commanding hand at his neck and another on his washboard stomach.");
+	output(" with a groan of pleasure, feeling the way Lund’s tight asshole eagerly grips and sucks at your [pc.cockHeadBiggest]. Both of you standing in the middle of the room, you rut your slutty pup with a commanding hand at his neck and another on his washboard stomach.");
 	
 	output("\n\n<i>“[pc.Master], [pc.master],”</i> Lund whines, losing himself in your motions. With your head over his");
 	if (pc.tallness >= 60 && pc.tallness <= 68) output(" shoulder");
@@ -3490,7 +3490,7 @@ public function lundBreakHimC():void
 	
 	output("\n\n<i>“Okay, relax, I’ll give you what you need,”</i> you tell him, getting back into position. <i>“You’re such a little slut, Lund.”</i>");
 	
-	output("\n\nWith your [pc.cockBiggestHead] at his entrance, you can already feel the difference. It’s like you’re being sucked inside, a welcoming mat at your favorite hole to fuck, like his ass is trying to suck your cock, and you’re more than willing to let him try it. You slide in <i>slowly</i>, letting him savor the feel of his [pc.master] indulging his need and enjoying his loud, pleasured moans. He shivers underneath you in joy and you can’t help but smile. You’ve still got more than half the cream left in the tube.");
+	output("\n\nWith your [pc.cockHeadBiggest] at his entrance, you can already feel the difference. It’s like you’re being sucked inside, a welcoming mat at your favorite hole to fuck, like his ass is trying to suck your cock, and you’re more than willing to let him try it. You slide in <i>slowly</i>, letting him savor the feel of his [pc.master] indulging his need and enjoying his loud, pleasured moans. He shivers underneath you in joy and you can’t help but smile. You’ve still got more than half the cream left in the tube.");
 	
 	output("\n\nYou take Lund at a nice and gentle pace, rocking back and forth on top of him and keeping him in the splits. It’s a cute look, but more importantly you’ve got a nice view of the way his asshole’s ridged donut sucks at you, gripping you on your outstroke as if he’s begging you not to leave. His tail lolls from side to side whenever you enter him, his mind too involved in the process of enjoying the sex to properly wag it.");
 	
@@ -3515,7 +3515,7 @@ public function lundBreakHimC():void
 	
 	output("\n\n<i>“Alright, get on all fours for a second, Lund,”</i> you tell him, his ears cocking towards you. <i>“I wanna see your butt.”</i>");
 	
-	output("\n\nPulling out with a grunt - his ring <i>really</i> doesn’t want to let go of your [pc.cockBiggestHead] - you sigh and settle back as Lund gets up on all fours and looks back at you, a little embarrassed.");
+	output("\n\nPulling out with a grunt - his ring <i>really</i> doesn’t want to let go of your [pc.cockHeadBiggest] - you sigh and settle back as Lund gets up on all fours and looks back at you, a little embarrassed.");
 	
 	output("\n\n<i>“Is this good?”</i> he asks, sweaty and still panting after the exertion.");
 

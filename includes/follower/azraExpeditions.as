@@ -1797,13 +1797,17 @@ public function letAzraTrapQueenTalk():void
 		processTime(5);
 		clearMenu();
 		var button:Number = 0;
-		if(pc.canDropItem(pc.meleeWeapon)) addDisabledButton(button,"Melee Wpn","Melee Weapon","You cannot drop your " + pc.meleeWeapon.description + "!");
-		else if(pc.hasMeleeWeapon()) addButton(button,"Melee Wpn",giveQueenAWeapon,-1,"Melee Weapon.","Give her your melee weapon: " + pc.meleeWeapon.description + ".");
+		if(pc.hasMeleeWeapon()) {
+			if(!pc.canDropItem(pc.meleeWeapon)) addDisabledButton(button,"Melee Wpn","Melee Weapon","You cannot drop your " + pc.meleeWeapon.description + "!");
+			else addButton(button,"Melee Wpn",giveQueenAWeapon,-1,"Melee Weapon.","Give her your melee weapon: " + pc.meleeWeapon.description + ".");
+		}
 		else if(pc.meleeWeapon is Rock) addDisabledButton(button,"Melee Wpn","Melee Weapon","She has no interest in a rock.");
 		else addDisabledButton(button,"Melee Wpn","Melee Weapon","You do not have a melee weapon on hand.");
 		button++;
-		if(pc.canDropItem(pc.rangedWeapon)) addDisabledButton(button,"Melee Wpn","Melee Weapon","You cannot drop your " + pc.rangedWeapon.description + "!");
-		else if(pc.hasRangedWeapon()) addButton(button,"Ranged Wpn",giveQueenAWeapon,-2,"Ranged Weapon.","Give her your ranged weapon: " + pc.rangedWeapon.description + ".");
+		if(pc.hasRangedWeapon()) {
+			if(!pc.canDropItem(pc.rangedWeapon)) addDisabledButton(button,"Ranged Wpn","Ranged Weapon","You cannot drop your " + pc.rangedWeapon.description + "!");
+			else addButton(button,"Ranged Wpn",giveQueenAWeapon,-2,"Ranged Weapon.","Give her your ranged weapon: " + pc.rangedWeapon.description + ".");
+		}
 		else if(pc.rangedWeapon is Rock) addDisabledButton(button,"RangedWpn","Ranged Weapon","She has no interest in a rock.");
 		else addDisabledButton(button,"RangedWpn","Ranged Weapon","You do not have a ranged weapon on hand.");
 		button++;
