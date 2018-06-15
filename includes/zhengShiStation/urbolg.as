@@ -306,7 +306,7 @@ public function urbolgMenu():void
 	else addDisabledButton(3,"Flirt","Flirt","You’re not really in the mood for that right now.");
 	addButton(4,"PB Cookie",urbolgPBCookiesBYOUMADMAN,undefined,"PB Cookie","You often see Urbolg when he’s hard at work. Maybe he’d like to have a nice treat to relax after some hard work.");
 	if(flags["URBY_COLLAR_FUN"] != undefined) addButton(5,"Slave Collar",urbyCollarBadEndByWsan,undefined,"Slave Collar","It’s so tempting. You could have it all again if you just put it on... just once more should be fine.");
-	else addButton(5,"Collar",urbyCollarFunByWsan,undefined,"Collar","There's a collar sitting out on his workstation. Ask him about it.");
+	else addButton(5,"Collar",urbyCollarFunByWsan,undefined,"Collar","There’s a collar sitting out on his workstation. Ask him about it.");
 	addButton(14,"Leave",mainGameMenu);
 }
 //Appearance
@@ -1690,8 +1690,8 @@ public function urbyCollarFunByWsan():void
 		processTime(5);
 		clearMenu();
 		if(pc.hasGenitals()) addButton(0,"Put It On",putOnUrbysCollar,undefined,"Put It On"," An intrusive thought muscles its way to the front of your mind. You should put it on and see if you can resist it, just for fun.");
-		else addDisabledButton(0,"Put It On","Put It On","This won't be much fun without any proper genitalia.");
-		addButton(1,"Don't",dontUseUrbysSlaveCollar);
+		else addDisabledButton(0,"Put It On","Put It On","This won’t be much fun without any proper genitalia.");
+		addButton(1,"Don’t",dontUseUrbysSlaveCollar);
 	}
 }
 
@@ -1987,7 +1987,7 @@ public function urbyCollarBadEndByWsanIV():void
 		else output(" and torso");
 	}
 	else output(" your [pc.vagOrAss] squeezing down on him with pleasure");
-	output(". Your bliss is so blatantly evident, written all across your face in the giant 'O' of orgasm your lips make and the deep, lusty groans of joy coming from deep in your throat.");
+	output(". Your bliss is so blatantly evident, written all across your face in the giant ‘O’ of orgasm your lips make and the deep, lusty groans of joy coming from deep in your throat.");
 
 	output("\n\nHe makes you cum three more times before he does himself, your legs wrapped firmly around his back, relishing the slight pain as your fuckhole stretches wide around his immense knot.");
 

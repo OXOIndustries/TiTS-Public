@@ -485,7 +485,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM E6"] = new RoomClass(this);
 	rooms["ZSM E6"].roomName = "HOT\nMINESHAFT";
-	rooms["ZSM E6"].description = "The heat that pours off the walls is almost stifling. It the air weren't so dry, you'd be drowning in your own sweat. As it is, you're merely uncomfortable. Support arches embedded in the inky rock threaten to clip your shoulders when you walk too close. Fortunately, you aren't one of the unfortunates intended to be tied to them.";
+	rooms["ZSM E6"].description = "The heat that pours off the walls is almost stifling. It the air weren’t so dry, you’d be drowning in your own sweat. As it is, you’re merely uncomfortable. Support arches embedded in the inky rock threaten to clip your shoulders when you walk too close. Fortunately, you aren’t one of the unfortunates intended to be tied to them.";
 	rooms["ZSM E6"].planet = "ZHENG SHI STATION";
 	rooms["ZSM E6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM E6"].northExit = "ZSM E4";
@@ -541,7 +541,7 @@ public function initZhengRooms():void
 	
 	rooms["ZSM I2"] = new RoomClass(this);
 	rooms["ZSM I2"].roomName = "HOT\nMINESHAFT";
-	rooms["ZSM I2"].description = "Unearthly groans reverberate from the jagged onyx walls as this chunk of floating once-planet struggles to stay together after being blasted in space. Doubtless the tunnels the pirates are carving through it aren't exactly contributing to its structural stability. Fortunately there are metal bands encircling the shaft, bracing it on all sides. There probably ought to be more of them, but they seem stable enough... for now.";
+	rooms["ZSM I2"].description = "Unearthly groans reverberate from the jagged onyx walls as this chunk of floating once-planet struggles to stay together after being blasted in space. Doubtless the tunnels the pirates are carving through it aren’t exactly contributing to its structural stability. Fortunately there are metal bands encircling the shaft, bracing it on all sides. There probably ought to be more of them, but they seem stable enough... for now.";
 	rooms["ZSM I2"].planet = "ZHENG SHI STATION";
 	rooms["ZSM I2"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM I2"].northExit = "";
@@ -585,7 +585,7 @@ public function initZhengRooms():void
 	//M4 "HOT"\nTUNNEL
 	rooms["ZSM M4"] = new RoomClass(this);
 	rooms["ZSM M4"].roomName = "\"HOT\"\nTUNNEL";
-	rooms["ZSM M4"].description = "The radiation detector in your Codex buzzes with alerts. This tunnel isn't just warm - it's radioactive! What you're seeing onscreen isn't anywhere near lethal. Apparently your immune system can keep up with most of it, so long as you don't linger overlong. Hanging around in a place like this for a while would undoubtedly leave a little taint in your system. You're lucky to have blood swimming with prototype-tier medical technology. The radiation fades to the west.";
+	rooms["ZSM M4"].description = "The radiation detector in your Codex buzzes with alerts. This tunnel isn’t just warm - it’s radioactive! What you’re seeing onscreen isn’t anywhere near lethal. Apparently your immune system can keep up with most of it, so long as you don’t linger overlong. Hanging around in a place like this for a while would undoubtedly leave a little taint in your system. You’re lucky to have blood swimming with prototype-tier medical technology. The radiation fades to the west.";
 	rooms["ZSM M4"].planet = "ZHENG SHI STATION";
 	rooms["ZSM M4"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM M4"].northExit = "";
@@ -600,7 +600,7 @@ public function initZhengRooms():void
 	//O4 "HOT"\nTUNNEL
 	rooms["ZSM O4"] = new RoomClass(this);
 	rooms["ZSM O4"].roomName = "\"HOT\"\nTUNNEL";
-	rooms["ZSM O4"].description = "Buzzing, blaring alerts from your Codex scream out that you're standing in a radioactive area. The screen relays that you're not in immediate danger - unless you hang out here for quite a while. Your augmented immune system is actively defending you from the worst radioactive depredations. Still, sticking around is a guaranteed way to wind up hobbled by genetic taint. If you're going to frag up your genome as badly as Dad did, you might as well have fun doing it. There's less radiation to the east.";
+	rooms["ZSM O4"].description = "Buzzing, blaring alerts from your Codex scream out that you’re standing in a radioactive area. The screen relays that you’re not in immediate danger - unless you hang out here for quite a while. Your augmented immune system is actively defending you from the worst radioactive depredations. Still, sticking around is a guaranteed way to wind up hobbled by genetic taint. If you’re going to frag up your genome as badly as Dad did, you might as well have fun doing it. There’s less radiation to the east.";
 	rooms["ZSM O4"].planet = "ZHENG SHI STATION";
 	rooms["ZSM O4"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM O4"].northExit = "";
@@ -615,7 +615,7 @@ public function initZhengRooms():void
 	//Q4 HOT\nINTERSECTION
 	rooms["ZSM Q4"] = new RoomClass(this);
 	rooms["ZSM Q4"].roomName = "HOT\nINTERSECTION";
-	rooms["ZSM Q4"].description = "Three shafts bore through the sable stone of Zheng Shi Station: one to the east, into mineral rich tunnels. The air seems cooler there. Another leads south along a square-hewn passage. The last stretches west. Acrid, too-warm currents blow in from that directions. It's bound to be an uncomfortable path.";
+	rooms["ZSM Q4"].description = "Three shafts bore through the sable stone of Zheng Shi Station: one to the east, into mineral rich tunnels. The air seems cooler there. Another leads south along a square-hewn passage. The last stretches west. Acrid, too-warm currents blow in from that directions. It’s bound to be an uncomfortable path.";
 	rooms["ZSM Q4"].planet = "ZHENG SHI STATION";
 	rooms["ZSM Q4"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM Q4"].northExit = "";
@@ -630,7 +630,7 @@ public function initZhengRooms():void
 	//Q6 SQUARE\nMINESHAFT
 	rooms["ZSM Q6"] = new RoomClass(this);
 	rooms["ZSM Q6"].roomName = "SQUARE\nMINESHAFT";
-	rooms["ZSM Q6"].description = "Carved from the ebon stone of Zheng Shi, or what's left of it at any rate, this tunnel is bored in a completely square shape. Extra braces line the walls for stability; an arching roof would've been a far more structurally sound choice. Chains and restraints hang from some of them as an afterthought. Barely any holes have been dug into the walls, though you don't see much worth digging for either.";
+	rooms["ZSM Q6"].description = "Carved from the ebon stone of Zheng Shi, or what’s left of it at any rate, this tunnel is bored in a completely square shape. Extra braces line the walls for stability; an arching roof would’ve been a far more structurally sound choice. Chains and restraints hang from some of them as an afterthought. Barely any holes have been dug into the walls, though you don’t see much worth digging for either.";
 	rooms["ZSM Q6"].planet = "ZHENG SHI STATION";
 	rooms["ZSM Q6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM Q6"].northExit = "ZSM Q4";
@@ -720,7 +720,7 @@ public function initZhengRooms():void
 	//O12 BENDING\nTRACK
 	rooms["ZSM O12"] = new RoomClass(this);
 	rooms["ZSM O12"].roomName = "BENDING\nTRACK";
-	rooms["ZSM O12"].description = "A portable climate control unit sits cockeyed against the wall, belching out a torrent of ice-cold air. The power cell's indicator flashes red, almost spent. Discarded cups fan in a semi-circle around it, left behind by a long-ago hydration break. Every now and then and a cart loaded with minerals races by on the roof-mounted track, travelling northward. The tunnel also twists east toward the source of the carts.";
+	rooms["ZSM O12"].description = "A portable climate control unit sits cockeyed against the wall, belching out a torrent of ice-cold air. The power cell’s indicator flashes red, almost spent. Discarded cups fan in a semi-circle around it, left behind by a long-ago hydration break. Every now and then and a cart loaded with minerals races by on the roof-mounted track, travelling northward. The tunnel also twists east toward the source of the carts.";
 	rooms["ZSM O12"].planet = "ZHENG SHI STATION";
 	rooms["ZSM O12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM O12"].northExit = "ZSM O10";
@@ -735,7 +735,7 @@ public function initZhengRooms():void
 	//O10 BENDING\nTRACK
 	rooms["ZSM O10"] = new RoomClass(this);
 	rooms["ZSM O10"].roomName = "BENDING\nTRACK";
-	rooms["ZSM O10"].description = "Following the twisting, bending track in the ceiling, you come upon a cut-up section of mine so dug out that the walls resemble of swiss cheese. Dozens of holes have been bored deep, wide enough to crawl inside and long enough to stretch out for a nap, though you can't imagine comfortably resting on the unnaturally warm rock. The shaft bends south and west.";
+	rooms["ZSM O10"].description = "Following the twisting, bending track in the ceiling, you come upon a cut-up section of mine so dug out that the walls resemble of swiss cheese. Dozens of holes have been bored deep, wide enough to crawl inside and long enough to stretch out for a nap, though you can’t imagine comfortably resting on the unnaturally warm rock. The shaft bends south and west.";
 	rooms["ZSM O10"].planet = "ZHENG SHI STATION";
 	rooms["ZSM O10"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM O10"].northExit = "";
@@ -751,7 +751,7 @@ public function initZhengRooms():void
 	//Brittle Pumice?
 	rooms["ZSM M10"] = new RoomClass(this);
 	rooms["ZSM M10"].roomName = "HOPPER\nTRACK";
-	rooms["ZSM M10"].description = "The ground cracks and crumbles with your every movement. The porous stone reveals itself as the reason; every surface is made of it - walls, floors, and ceilings. It vaguely resembles pumice save for its slightly more reflective sheen. You're thankful that the ceiling braces are stacked three times thicker than elsewhere, though they fail to keep the occasional pebble from dropping on your head.";
+	rooms["ZSM M10"].description = "The ground cracks and crumbles with your every movement. The porous stone reveals itself as the reason; every surface is made of it - walls, floors, and ceilings. It vaguely resembles pumice save for its slightly more reflective sheen. You’re thankful that the ceiling braces are stacked three times thicker than elsewhere, though they fail to keep the occasional pebble from dropping on your head.";
 	rooms["ZSM M10"].planet = "ZHENG SHI STATION";
 	rooms["ZSM M10"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM M10"].northExit = "";
@@ -767,7 +767,7 @@ public function initZhengRooms():void
 	//Obsidian vein
 	rooms["ZSM K10"] = new RoomClass(this);
 	rooms["ZSM K10"].roomName = "HOPPER\nTRACK";
-	rooms["ZSM K10"].description = "The dusky stone gives way to glassy obsidian for a few feet. The mineshaft's path was dug straight through volcanic material, shattering it into a jagged array of funhouse mirrors. In one place, a blackened version of yourself seems half as tall and twice as fat. In another, your head is larger than the rest of your body. Fortunately the ceiling-bound track continues straight and true on its east-west path.";
+	rooms["ZSM K10"].description = "The dusky stone gives way to glassy obsidian for a few feet. The mineshaft’s path was dug straight through volcanic material, shattering it into a jagged array of funhouse mirrors. In one place, a blackened version of yourself seems half as tall and twice as fat. In another, your head is larger than the rest of your body. Fortunately the ceiling-bound track continues straight and true on its east-west path.";
 	rooms["ZSM K10"].planet = "ZHENG SHI STATION";
 	rooms["ZSM K10"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM K10"].northExit = "";

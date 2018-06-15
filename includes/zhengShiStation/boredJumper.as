@@ -104,14 +104,14 @@ public function winVsBoredJumper():void
 
 	if(pc.hasCock())
 	{
-		if(pc.cumQ() >= 1000) addButton(4,"Fill 'Er Up",fillErUpBBY,undefined,"Fill 'Er Up","Open up her suit and give her a cream filling.");
-		else addDisabledButton(4,"Fill 'Er Up","Fill 'Er Up","You're not quite 'potent' enough to give a good stuffing during this.");
+		if(pc.cumQ() >= 1000) addButton(4,"Fill ‘Er Up",fillErUpBBY,undefined,"Fill ‘Er Up","Open up her suit and give her a cream filling.");
+		else addDisabledButton(4,"Fill ‘Er Up","Fill ‘Er Up","You’re not quite ‘potent’ enough to give a good stuffing during this.");
 		if(pc.cockThatFits(700) >= 0) addButton(5,"Facefuck",penisRouter,[faceFuckTheLaquineJumperooni,700,false,0],"Facefuck","Grab a face and give it a fuck. Pretty self-explanatory.");
-		else addDisabledButton(5,"Facefuck","Facefuck","You're pretty sure she's not a snake, so dislocating her jaw with your giant dick wouldn't be the best idea.");
+		else addDisabledButton(5,"Facefuck","Facefuck","You’re pretty sure she’s not a snake, so dislocating her jaw with your giant dick wouldn’t be the best idea.");
 	}
 	else 
 	{
-		addDisabledButton(4,"Fill 'Er Up","Fill 'Er Up","You need a dick to do this.");
+		addDisabledButton(4,"Fill ‘Er Up","Fill ‘Er Up","You need a dick to do this.");
 		addDisabledButton(5,"Facefuck","Facefuck","You need a dick to do this.");
 	}
 	addButton(6,"TakeHerDick",takeTheBunnyDick,undefined,"TakeHerDick","The slut-bunny has powerful legs. More importantly, she has a big, juicy, gorgeous cock. You could get that furry futa ready and give her the perfect chance and place to use those assets.");
