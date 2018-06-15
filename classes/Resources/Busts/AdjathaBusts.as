@@ -347,6 +347,9 @@ package classes.Resources.Busts
 		public var Bust_JEJUNE_VENDING_MACHINE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/joyco_vending_machine.png", mimeType = "image/png")]
 		public var Bust_JOYCO_VENDING_MACHINE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/jumper_horse.png", mimeType = "image/png")]
+		public var Bust_BORED_JUMPER_EQUINE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/kally.png", mimeType = "image/png")]
 		public var Bust_KALLY:Class;
@@ -1135,6 +1138,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/joyco_vending_machine.png", mimeType = "image/png")]
 			public var Full_JOYCO_VENDING_MACHINE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/jumper_horse.png", mimeType = "image/png")]
+			public var Full_BORED_JUMPER_EQUINE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kally.png", mimeType = "image/png")]
 			public var Full_KALLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/kally_nude.png", mimeType = "image/png")]

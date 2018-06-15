@@ -250,7 +250,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "BORED_JUMPER";
+			return "BORED_JUMPER_EQUINE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

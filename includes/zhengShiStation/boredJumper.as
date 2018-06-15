@@ -26,7 +26,7 @@ output("\n\nThe ambient warmth looks to be affecting her more than you, slicking
 public function showBoredJumper(nude:Boolean = false):void
 {
 	showName("BORED\nJUMPER");
-	showBust("BORED_JUMPER" + (nude ? "_NUDE" : ""));
+	showBust("BORED_JUMPER_EQUINE" + (nude ? "_NUDE" : ""));
 }
 //Approach Proc Texts:
 public function boredJumperAttackProc():Boolean
