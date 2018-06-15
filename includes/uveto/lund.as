@@ -395,27 +395,23 @@ public function lundAppearance():void
 {
 	clearOutput();
 	showLund();
-	if (flags["LUND_BROKEN"] == undefined)
+	if (flags["LUND_BROKEN"] == undefined || flags["LUND_BROKEN"] == 1)
 	{
 		output("Lund stands at a very proud 5\' 4\", covered in pale blue fur. Though his coat is quite shaggy and thick, you can still see the musculature underneath. He’s not particularly big, but he is a very well-built biped in a compact package. Wearing nothing across his torso, you can see his well-defined pectoral muscles and multiple rows of abdominals. He has a brown cloth belt around his waist with two short hunting swords sheathed there, lustrous and clearly created with some care.");
 		output("\n\nAround his wrists, he has some furry armlets that you suppose he wears to stay warm. You wonder how much good it’s doing him what with the bare chest and exposed skin, but he’s evidently managing. He at least has a sort of short, fluffy kilt covering his thighs, and furry anklets to match the ones around his wrists.");
 		output("\n\n<i>“Don’t you get cold?”</i> you ask him. He only shrugs.");
-
-		if(flags["SEXED_LUND"] != undefined) output("\n\nYou know from prior experience that though it’s hidden by his clothing and a sheath right now, Lund has a huge 10”</i> cock totally at odds with his relatively tiny frame. No wonder he’s so proud of himself. When he cums, a fat knot forms at the base of it, bulging with virility and ensuring his partner is going to be taking in - or swallowing - every shot of jizz he has to give.");
+		if(flags["SEXED_LUND"] != undefined) output("\n\nYou know from prior experience that though it’s hidden by his clothing and a sheath right now, Lund has a huge 10\" cock totally at odds with his relatively tiny frame. No wonder he’s so proud of himself. When he cums, a fat knot forms at the base of it, bulging with virility and ensuring his partner is going to be taking in - or swallowing - every shot of jizz he has to give.");
 		//Dicked him:
 		if(flags["LUND_DICKED_DOWN"] != undefined) output(" You also know, through intimate discovery, that he has a tight, sensitive asshole between his taut, firm buttcheeks that feels amazing to be inside.");
 	}
 	else
 	{
-		output("\n\nLund stands at a very proud 5’4, covered in pale blue fur. Though his coat is quite shaggy and thick, you can still see the musculature underneath. He’s not particularly big, but he is a very well-built biped in a compact package. Wearing nothing across his torso, you can see his well-defined pectoral muscles and multiple rows of abdominals. He has a brown cloth belt around his waist with two short hunting swords sheathed there, lustrous and clearly created with some care.");
-		
+		output("\n\nLund stands at a very proud 5\' 4\", covered in pale blue fur. Though his coat is quite shaggy and thick, you can still see the musculature underneath. He’s not particularly big, but he is a very well-built biped in a compact package. Wearing nothing across his torso, you can see his well-defined pectoral muscles and multiple rows of abdominals. He has a brown cloth belt around his waist with two short hunting swords sheathed there, lustrous and clearly created with some care.");
 		output("\n\nAround his wrists, he has some furry armlets that you suppose he wears to combat the cold. You wonder how much good it’s doing him what with the bare chest and exposed skin, but he’s evidently managing. He’s got a cute little thong on below the belt, the only garment you’ve allowed him to wear. It does almost nothing to conceal what it’s meant to, but it looks sexy as hell on him.");
-		
 		output("\n\n<i>“Looking good, Lund,”</i> you murmur to him, putting your hand on his stomach and stroking him. He looks");
 		if (pc.tallness >= 64) output(" up");
 		output(" at you with a shy smile, lust in his eyes.");
-		
-		output("\n\nYou know from prior experience that though it’s just barely hidden by his thong and a sheath right now, Lund has a huge 10”</i> cock totally at odds with his relatively tiny frame. It’s amusing and more than a little hot to see just how much he cums from it when you fuck him in the ass, which has proven to be extremely sensitive.");
+		output("\n\nYou know from prior experience that though it’s just barely hidden by his thong and a sheath right now, Lund has a huge 10\" cock totally at odds with his relatively tiny frame. It’s amusing and more than a little hot to see just how much he cums from it when you fuck him in the ass, which has proven to be extremely sensitive.");
 		if (flags["LUND_ANUSOFT"] == undefined) {}
 		else if (flags["LUND_ANUSOFT"] == 1) output(" And that was <i>before</i> you used the Anusoft on him.");
 		else output(" Now he has a lewd fuckhole back there totally unhidden by the line of the thong, just begging for you to slam your cock in and fuck it.");
