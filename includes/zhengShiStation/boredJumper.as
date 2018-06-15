@@ -118,9 +118,9 @@ public function winVsBoredJumper():void
 	if(!pc.hasCock()) addDisabledButton(7,"Cowgirl","Cowgirl","You’ll need a cock to fuck the tricksy rabbit with.");
 	else if(pc.cockThatFits(enemy.vaginalCapacity(0)) < 0) addDisabledButton(7,"Cowgirl","Cowgirl","You would split her in half!");
 	else addButton(7,"Cowgirl",boredJumperCowgirlWinByWilliam,undefined,"Cowgirl","Use the lewd leporine’s steamy mouth to get yourself ready before bouncing her on your lap and then some.");
-	if(pc.hasItemByClass(BreedersBliss,2) && pc.hasVagina()) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It's as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
-	else if(pc.hasVagina()) addDisabledButton(8,"Heat Sex","Heat Sex","You'll need some 'breeding inducers' to get ruined with the lusty laquine. Two Breeder's Bliss ought to do...");
-	else addDisabledButton(8,"Heat Sex","Heat Sex","You'll need a vagina for this.");
+	if(pc.hasItemByClass(BreedersBliss,2) && pc.hasVagina()) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
+	else if(pc.hasVagina()) addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need some ‘breeding inducers’ to get ruined with the lusty laquine. Two Breeder’s Bliss ought to do...");
+	else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need a vagina for this.");
 	addButton(14,"Leave",leaveTheBoredJumperAfterWinning);
 }
 
