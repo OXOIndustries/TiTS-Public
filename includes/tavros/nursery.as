@@ -1204,6 +1204,8 @@ public function nurserySiredRecordsFix():void
 			}
 		}
 	}
+	if(numSired < 0) numSired = 0;
+	if(numBirth < 0) numBirth = 0;
 	
 	StatTracking.setStat("pregnancy/total sired", numSired);
 	StatTracking.setStat("pregnancy/total births", numBirth);
