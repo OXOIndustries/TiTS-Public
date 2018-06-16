@@ -462,7 +462,7 @@ public function fuckThisShit():void
 	flags["ZHENG_SHI_PASSWORDED"] = -1;
 	processTime(5);
 	clearMenu();
-	addButton(0, "Next", flyTo, "Tarkus");
+	addButton(0, "Next", flyToWrapper, "Tarkus");
 }
 
 public function submitThePiratePassword():void

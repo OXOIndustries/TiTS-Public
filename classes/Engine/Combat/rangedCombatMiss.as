@@ -2,6 +2,7 @@ package classes.Engine.Combat
 {
 	import classes.Creature;
 	import classes.Characters.Dollmaker;
+	import classes.Characters.JumperBored;
 	import classes.Engine.Utility.rand;
 	import classes.GLOBAL;
 	/**
@@ -15,21 +16,22 @@ package classes.Engine.Combat
 		//Immune!
 		if (target.hasPerk("Ranged Immune")) return true;
 		
-		//Extra 50% miss chance for dollmakuh
-		if(target is Dollmaker)
-		{
-			overrideAttack -= 50;
-		}
+		//Extra 50% miss chances for certain foes~
+		if(target is Dollmaker) overrideAttack -= 50;
+		else if(target is JumperBored) overrideAttack -= 30;
 
+		var evasion:Number = target.evasion();
+		//Negative evasion also helps you be hit by attacks.
+		var evasionPenalty:Number = Math.max(0, evasion * -3);
 		//Standard miss chance
-		if(rand(100) + attacker.aim()/5 + overrideAttack - target.reflexes()/3 < 10 * missModifier && !target.isImmobilized()) 
+		if(rand(100) + attacker.aim()/5 + evasionPenalty + overrideAttack - target.reflexes()/3 < 10 * missModifier && !target.isImmobilized()) 
 		{
 			return true;
 		}
 		//Evasion chances
-		if(target.evasion() >= rand(100) + 1) 
+		if(evasion >= rand(100) + 1) 
 		{
-			trace("RANGED EVASION SUCCESS: " + target.evasion() + "%");
+			trace("RANGED EVASION SUCCESS: " + target.evasion + "%");
 			return true;
 		}
 		

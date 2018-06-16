@@ -1111,9 +1111,8 @@ public function statisticsScreen(showID:String = "All"):void
 						if(unnamedBrihaKids == 1) output2(" and");
 						output2(" Brahn");
 						unnamedBrihaKids--;
-						if(unnamedBrihaKids > 0) output2(",");
 					}
-					if((unnamedBrihaKids + 2) < StatTracking.getStat("pregnancy/briha kids"))
+					if(unnamedBrihaKids > 0)
 					{
 						output2(" and " + num2Text(unnamedBrihaKids) + " other");
 						if(unnamedBrihaKids != 1) output2("s");
@@ -4787,8 +4786,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["ERIKA_MET"] != undefined)
 				{
 					output2("\n<b>* Erika:</b> Met her");
-					if(flags["ERIKA_SEEN_NAKED"] != undefined) output2(", Seen Her Naked");
-					if(flags["ERIKA_GIVEN_ANUSOFT"] != undefined) output2(", You have given her some Anusoft");
+					if(flags["ERIKA_SEEN_NAKED"] != undefined) output2(", Seen her naked");
+					if(flags["ERIKA_GIVEN_ANUSOFT"] != undefined) output2(", Gave her Anusoft");
 					if(flags["ERIKA_SEXED"] != undefined) output2("\n<b>* Erika, Times Sexed:</b> " + flags["ERIKA_SEXED"]);
 				}
 				//Tetra & Mica The Zil Twins
@@ -6625,6 +6624,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["ULA_SAVED"] != undefined && flags["MET_LUND"] != undefined)
 				{
 					output2("\n<b>* Lund:</b> Met him");
+					if(flags["LUND_BROKEN"] != undefined) output2(", Broken him");
+					if(flags["LUND_BROKEN"] >= 1) output2(", Gave him thong");
+					if(flags["LUND_ANUSOFT"] != undefined) output2(", Gave him Anusoft");
 					if(flags["LUND_FUCKED_OFF"] != undefined) output2(", He is hostile, <i>Whereabouts unknown</i>");
 					if(flags["SEXED_LUND"] != undefined) output2("\n<b>* Lund, Times Sexed:</b> " + flags["SEXED_LUND"]);
 					if(flags["LUND_DICKED_DOWN"] != undefined) output2(", Dicked him down");
@@ -7260,6 +7262,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			output2("\n<b>* Shade:</b> Met her");
 			if(flags["SHADE_IS_YER_SIS"] != undefined) output2(", She is your sister");
 			else if(flags["TOLD_SHADE_SHES_YER_SIS"] != undefined) output2(", " + (flags["TOLD_SHADE_SHES_YER_SIS"] < 0 ? "She’s secretly" : "Told her she’s") + " your sister");
+			if(shadeIsLover()) output2(", She is your lover");
 			if(flags["KQ2_SHADE_DEAD"] != undefined || flags["SHADE_DISABLED"] == 1) output2(", Inactive");
 			else if(flags["SHADE_IS_HOSTILE"] != undefined) output2(", She is hostile, <i>Whereabouts unknown</i>");
 			else if(shadeAtTheBar()) output2(", Active (On Myrellion)");

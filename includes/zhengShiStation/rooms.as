@@ -307,7 +307,7 @@ public function initZhengRooms():void
 	rooms["ZSM G10"].planet = "ZHENG SHI STATION";
 	rooms["ZSM G10"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM G10"].northExit = "ZSM G8";
-	rooms["ZSM G10"].eastExit = "";//ZSM I10
+	rooms["ZSM G10"].eastExit = "ZSM I10";
 	rooms["ZSM G10"].southExit = "ZSM G12";
 	rooms["ZSM G10"].westExit = "";
 	rooms["ZSM G10"].moveMinutes = 3;
@@ -334,7 +334,7 @@ public function initZhengRooms():void
 	rooms["ZSM E8"].description = "Acrid warmth blows out of the north mineshaft, while regular, unpalatably warm tunnels dig east and west into the strange black substrate. Hooks and rings are bolted into all of it. An abandoned, busted hover-cart lays on its side where it fell.";
 	rooms["ZSM E8"].planet = "ZHENG SHI STATION";
 	rooms["ZSM E8"].system = "SYSTEM: HERISIOD";
-	rooms["ZSM E8"].northExit = ""; //ZSM E6
+	rooms["ZSM E8"].northExit = "ZSM E6";
 	rooms["ZSM E8"].eastExit = "ZSM G8";
 	rooms["ZSM E8"].southExit = "";
 	rooms["ZSM E8"].westExit = "ZSM C8";
@@ -482,6 +482,317 @@ public function initZhengRooms():void
 	rooms["ZSM G18"].runOnEnter = zhengMinesEncounterBonus;
 	rooms["ZSM G18"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSM G18"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSM E6"] = new RoomClass(this);
+	rooms["ZSM E6"].roomName = "HOT\nMINESHAFT";
+	rooms["ZSM E6"].description = "The heat that pours off the walls is almost stifling. It the air weren’t so dry, you’d be drowning in your own sweat. As it is, you’re merely uncomfortable. Support arches embedded in the inky rock threaten to clip your shoulders when you walk too close. Fortunately, you aren’t one of the unfortunates intended to be tied to them.";
+	rooms["ZSM E6"].planet = "ZHENG SHI STATION";
+	rooms["ZSM E6"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM E6"].northExit = "ZSM E4";
+	rooms["ZSM E6"].eastExit = "";
+	rooms["ZSM E6"].southExit = "ZSM E8";
+	rooms["ZSM E6"].westExit = "";
+	rooms["ZSM E6"].moveMinutes = 3;
+	rooms["ZSM E6"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM E6"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM E6"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSM E4"] = new RoomClass(this);
+	rooms["ZSM E4"].roomName = "HOT\nMINESHAFT";
+	rooms["ZSM E4"].description = "Bits of shrapnel pockmark the walls. The center of the blast is easily identifiable by the carbon streaks and smattering of shattered machinery in its wake. You recognize some of the parts as pieces of heavy mining equipment. This sweltering shaft continues to the north and the south. Fortunately there is less debris in either direction.";
+	rooms["ZSM E4"].planet = "ZHENG SHI STATION";
+	rooms["ZSM E4"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM E4"].northExit = "ZSM E2";
+	rooms["ZSM E4"].eastExit = "";
+	rooms["ZSM E4"].southExit = "ZSM E6";
+	rooms["ZSM E4"].westExit = "";
+	rooms["ZSM E4"].moveMinutes = 3;
+	rooms["ZSM E4"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM E4"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM E4"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSM E2"] = new RoomClass(this);
+	rooms["ZSM E2"].roomName = "HOT\nMINESHAFT";
+	rooms["ZSM E2"].description = "Twisting 90 degrees on an east-south bend, this tunnel follows an eerily programmatic path through the asteroid core of Zheng Shi. Metal braces are anchored deep in the walls keep the cracked stone in place. The striated black-on-black walls glitter here and there with hidden treasures yet to be extracted. Elsewhere, crude holes reveal where valuable seams have already been carved out.";
+	rooms["ZSM E2"].planet = "ZHENG SHI STATION";
+	rooms["ZSM E2"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM E2"].northExit = "";
+	rooms["ZSM E2"].eastExit = "ZSM G2";
+	rooms["ZSM E2"].southExit = "ZSM E4";
+	rooms["ZSM E2"].westExit = "";
+	rooms["ZSM E2"].moveMinutes = 3;
+	rooms["ZSM E2"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM E2"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM E2"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSM G2"] = new RoomClass(this);
+	rooms["ZSM G2"].roomName = "HOT\nMINESHAFT";
+	rooms["ZSM G2"].description = "You step carefully. In certain places, the floor is hotter than others - unbearably so. Where your sweat falls, it steams. The stone faintly glitters with valuable minerals, many already extracted, judging by the bits of rubble and gaping holes in the wall.";
+	rooms["ZSM G2"].planet = "ZHENG SHI STATION";
+	rooms["ZSM G2"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM G2"].northExit = "";
+	rooms["ZSM G2"].eastExit = "ZSM I2";
+	rooms["ZSM G2"].southExit = "";
+	rooms["ZSM G2"].westExit = "ZSM E2";
+	rooms["ZSM G2"].moveMinutes = 3;
+	rooms["ZSM G2"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM G2"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM G2"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSM I2"] = new RoomClass(this);
+	rooms["ZSM I2"].roomName = "HOT\nMINESHAFT";
+	rooms["ZSM I2"].description = "Unearthly groans reverberate from the jagged onyx walls as this chunk of floating once-planet struggles to stay together after being blasted in space. Doubtless the tunnels the pirates are carving through it aren’t exactly contributing to its structural stability. Fortunately there are metal bands encircling the shaft, bracing it on all sides. There probably ought to be more of them, but they seem stable enough... for now.";
+	rooms["ZSM I2"].planet = "ZHENG SHI STATION";
+	rooms["ZSM I2"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM I2"].northExit = "";
+	rooms["ZSM I2"].eastExit = "ZSM K2";
+	rooms["ZSM I2"].southExit = "";
+	rooms["ZSM I2"].westExit = "ZSM G2";
+	rooms["ZSM I2"].moveMinutes = 3;
+	rooms["ZSM I2"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM I2"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM I2"].addFlag(GLOBAL.HAZARD);
+	
+	rooms["ZSM K2"] = new RoomClass(this);
+	rooms["ZSM K2"].roomName = "STEAMY\nCORNER";
+	rooms["ZSM K2"].description = "Foul-smelling gouts of steam issue forth from tiny fissures in the wall. They burst out in fits and starts without any rhythm, the result of geological processes run amok. Rich veins of glittering minerals remain unmined, protected by the boiling-hot bursts. No wonder the shaft bends south and west from here, away from the worst eruptions.";
+	rooms["ZSM K2"].planet = "ZHENG SHI STATION";
+	rooms["ZSM K2"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM K2"].northExit = "";
+	rooms["ZSM K2"].eastExit = "";
+	rooms["ZSM K2"].southExit = "ZSM K4";
+	rooms["ZSM K2"].westExit = "ZSM I2";
+	rooms["ZSM K2"].moveMinutes = 3;
+	rooms["ZSM K2"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM K2"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM K2"].addFlag(GLOBAL.HAZARD);
+
+	//K4 HOT\nCORNER
+	rooms["ZSM K4"] = new RoomClass(this);
+	rooms["ZSM K4"].roomName = "HOT\nCORNER";
+	rooms["ZSM K4"].description = "Uncomfortable heat and bleak surroundings are the rule of the day. Flickering lights in the ceiling do a less than adequate job of illuminating the craggy surroundings. The walls hurt to touch, so hot remaining in contact for more than a handful of seconds would leave you with a handful of first degree burns. Bits of broken rock litter the floor, leftover from the efforts of slave miners and robots. Twinkling spots mark minute deposits of ores and gemstones too small to be worth harvesting.";
+	rooms["ZSM K4"].planet = "ZHENG SHI STATION";
+	rooms["ZSM K4"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM K4"].northExit = "ZSM K2";
+	rooms["ZSM K4"].eastExit = "ZSM M4";
+	rooms["ZSM K4"].southExit = "";
+	rooms["ZSM K4"].westExit = "";
+	rooms["ZSM K4"].moveMinutes = 3;
+	rooms["ZSM K4"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM K4"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM K4"].addFlag(GLOBAL.HAZARD);
+	
+	//M4 "HOT"\nTUNNEL
+	rooms["ZSM M4"] = new RoomClass(this);
+	rooms["ZSM M4"].roomName = "\"HOT\"\nTUNNEL";
+	rooms["ZSM M4"].description = "The radiation detector in your Codex buzzes with alerts. This tunnel isn’t just warm - it’s radioactive! What you’re seeing onscreen isn’t anywhere near lethal. Apparently your immune system can keep up with most of it, so long as you don’t linger overlong. Hanging around in a place like this for a while would undoubtedly leave a little taint in your system. You’re lucky to have blood swimming with prototype-tier medical technology. The radiation fades to the west.";
+	rooms["ZSM M4"].planet = "ZHENG SHI STATION";
+	rooms["ZSM M4"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM M4"].northExit = "";
+	rooms["ZSM M4"].eastExit = "ZSM O4";
+	rooms["ZSM M4"].southExit = "";
+	rooms["ZSM M4"].westExit = "ZSM K4";
+	rooms["ZSM M4"].moveMinutes = 3;
+	rooms["ZSM M4"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM M4"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM M4"].addFlag(GLOBAL.HAZARD);
+		
+	//O4 "HOT"\nTUNNEL
+	rooms["ZSM O4"] = new RoomClass(this);
+	rooms["ZSM O4"].roomName = "\"HOT\"\nTUNNEL";
+	rooms["ZSM O4"].description = "Buzzing, blaring alerts from your Codex scream out that you’re standing in a radioactive area. The screen relays that you’re not in immediate danger - unless you hang out here for quite a while. Your augmented immune system is actively defending you from the worst radioactive depredations. Still, sticking around is a guaranteed way to wind up hobbled by genetic taint. If you’re going to frag up your genome as badly as Dad did, you might as well have fun doing it. There’s less radiation to the east.";
+	rooms["ZSM O4"].planet = "ZHENG SHI STATION";
+	rooms["ZSM O4"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM O4"].northExit = "";
+	rooms["ZSM O4"].eastExit = "ZSM Q4";
+	rooms["ZSM O4"].southExit = "";
+	rooms["ZSM O4"].westExit = "ZSM M4";
+	rooms["ZSM O4"].moveMinutes = 3;
+	rooms["ZSM O4"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM O4"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM O4"].addFlag(GLOBAL.HAZARD);
+	
+	//Q4 HOT\nINTERSECTION
+	rooms["ZSM Q4"] = new RoomClass(this);
+	rooms["ZSM Q4"].roomName = "HOT\nINTERSECTION";
+	rooms["ZSM Q4"].description = "Three shafts bore through the sable stone of Zheng Shi Station: one to the east, into mineral rich tunnels. The air seems cooler there. Another leads south along a square-hewn passage. The last stretches west. Acrid, too-warm currents blow in from that directions. It’s bound to be an uncomfortable path.";
+	rooms["ZSM Q4"].planet = "ZHENG SHI STATION";
+	rooms["ZSM Q4"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM Q4"].northExit = "";
+	rooms["ZSM Q4"].eastExit = "";//"KSM S4";
+	rooms["ZSM Q4"].southExit = "ZSM Q6";
+	rooms["ZSM Q4"].westExit = "ZSM O4";
+	rooms["ZSM Q4"].moveMinutes = 3;
+	rooms["ZSM Q4"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM Q4"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM Q4"].addFlag(GLOBAL.HAZARD);
+	
+	//Q6 SQUARE\nMINESHAFT
+	rooms["ZSM Q6"] = new RoomClass(this);
+	rooms["ZSM Q6"].roomName = "SQUARE\nMINESHAFT";
+	rooms["ZSM Q6"].description = "Carved from the ebon stone of Zheng Shi, or what’s left of it at any rate, this tunnel is bored in a completely square shape. Extra braces line the walls for stability; an arching roof would’ve been a far more structurally sound choice. Chains and restraints hang from some of them as an afterthought. Barely any holes have been dug into the walls, though you don’t see much worth digging for either.";
+	rooms["ZSM Q6"].planet = "ZHENG SHI STATION";
+	rooms["ZSM Q6"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM Q6"].northExit = "ZSM Q4";
+	rooms["ZSM Q6"].eastExit = "";
+	rooms["ZSM Q6"].southExit = "ZSM Q8";
+	rooms["ZSM Q6"].westExit = "";
+	rooms["ZSM Q6"].moveMinutes = 3;
+	rooms["ZSM Q6"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM Q6"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM Q6"].addFlag(GLOBAL.HAZARD);
+
+	//Q8 SQUARE\nCORNER
+	rooms["ZSM Q8"] = new RoomClass(this);
+	rooms["ZSM Q8"].roomName = "SQUARE\nCORNER";
+	rooms["ZSM Q8"].description = "The sharp-cornered mineshaft takes an even sharper corner to the east and north. The floor is clean of debris and detritus. Rigid metal supports post every few feet to brace the ceiling, lest it all come tumbling down on your head. Scans report that this region is relatively low in high-value metals and gems, though the ink-black rock itself is quite dense and prized for construction and ornamentation.";
+	rooms["ZSM Q8"].planet = "ZHENG SHI STATION";
+	rooms["ZSM Q8"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM Q8"].northExit = "ZSM Q6";
+	rooms["ZSM Q8"].eastExit = "ZSM S8";
+	rooms["ZSM Q8"].southExit = "";
+	rooms["ZSM Q8"].westExit = "";
+	rooms["ZSM Q8"].moveMinutes = 3;
+	rooms["ZSM Q8"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM Q8"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM Q8"].addFlag(GLOBAL.HAZARD);
+	
+	//S8 TRIPLE\nINTERSECTION
+	rooms["ZSM S8"] = new RoomClass(this);
+	rooms["ZSM S8"].roomName = "TRIPLE\nINTERSECTION";
+	rooms["ZSM S8"].description = "This flat-ceilinged chamber serves as the intersection point for three different paths. To the west and south, squared-off mineshafts chew rigid paths into the rock. East lies an arched tunnel with numerous chains tipped in cruel-looking clamps. The faint sounds of active mining echo from that direction.";
+	rooms["ZSM S8"].planet = "ZHENG SHI STATION";
+	rooms["ZSM S8"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM S8"].northExit = "";
+	rooms["ZSM S8"].eastExit = "";//ZSM U8
+	rooms["ZSM S8"].southExit = "ZSM S10";
+	rooms["ZSM S8"].westExit = "ZSM Q8";
+	rooms["ZSM S8"].moveMinutes = 3;
+	rooms["ZSM S8"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM S8"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM S8"].addFlag(GLOBAL.HAZARD);
+	
+	//S10 SQUARE\nMINESHAFT
+	rooms["ZSM S10"] = new RoomClass(this);
+	rooms["ZSM S10"].roomName = "SQUARE\nMINESHAFT";
+	rooms["ZSM S10"].description = "The light in this section has gone out, leaving it depressingly cloaked in darkness. Fortunately, the lights to the north and south are still operational enough to offer you limited vision. You can see just enough to get around. The floor seems clear of debris, and the walls are smooth and straight enough to track without issue. Lucky you.";
+	rooms["ZSM S10"].planet = "ZHENG SHI STATION";
+	rooms["ZSM S10"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM S10"].northExit = "ZSM S8";
+	rooms["ZSM S10"].eastExit = "";
+	rooms["ZSM S10"].southExit = "ZSM S12";
+	rooms["ZSM S10"].westExit = "";
+	rooms["ZSM S10"].moveMinutes = 3;
+	rooms["ZSM S10"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM S10"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM S10"].addFlag(GLOBAL.HAZARD);
+	
+	//S12 TRIPLE\nINTERSECTION
+	rooms["ZSM S12"] = new RoomClass(this);
+	rooms["ZSM S12"].roomName = "TRIPLE\nINTERSECTION";
+	rooms["ZSM S12"].description = "An autonomous robot stands next to an enormous pile of rubble, sorting pieces out and placing them into differently colored hoppers. When one is full, it places it on a track in the ceiling to be whisked away toward the refinery. For better or worse, it displays no response to your presence. A square tunnel burrows north through the rock, while the western passage follows the whirring carts toward their destination. The south mineshaft is something different. You can hear heavy equipment in active use, and the number of available restraints seems much greater than elsewhere.";
+	rooms["ZSM S12"].planet = "ZHENG SHI STATION";
+	rooms["ZSM S12"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM S12"].northExit = "ZSM S10";
+	rooms["ZSM S12"].eastExit = "";
+	rooms["ZSM S12"].southExit = "";//"ZSM S14";
+	rooms["ZSM S12"].westExit = "ZSM Q12";
+	rooms["ZSM S12"].moveMinutes = 3;
+	rooms["ZSM S12"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM S12"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM S12"].addFlag(GLOBAL.HAZARD);
+	
+	//Q12 HOPPER\nTRACK
+	rooms["ZSM Q12"] = new RoomClass(this);
+	rooms["ZSM Q12"].roomName = "HOPPER\nTRACK";
+	rooms["ZSM Q12"].description = "The track in the ceiling follows the mineshaft along its east-west path. A distant robot loads raw ores to the east, placing filled hoppers on the track to zip along on a westward trajectory. The walls in this segment are mined out. Deep pits mark where minerals were extracted, the chains for slave restraint removed in their wake.";
+	rooms["ZSM Q12"].planet = "ZHENG SHI STATION";
+	rooms["ZSM Q12"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM Q12"].northExit = "";
+	rooms["ZSM Q12"].eastExit = "ZSM S12";
+	rooms["ZSM Q12"].southExit = "";
+	rooms["ZSM Q12"].westExit = "ZSM O12";
+	rooms["ZSM Q12"].moveMinutes = 3;
+	rooms["ZSM Q12"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM Q12"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM Q12"].addFlag(GLOBAL.HAZARD);
+	
+	//O12 BENDING\nTRACK
+	rooms["ZSM O12"] = new RoomClass(this);
+	rooms["ZSM O12"].roomName = "BENDING\nTRACK";
+	rooms["ZSM O12"].description = "A portable climate control unit sits cockeyed against the wall, belching out a torrent of ice-cold air. The power cell’s indicator flashes red, almost spent. Discarded cups fan in a semi-circle around it, left behind by a long-ago hydration break. Every now and then and a cart loaded with minerals races by on the roof-mounted track, travelling northward. The tunnel also twists east toward the source of the carts.";
+	rooms["ZSM O12"].planet = "ZHENG SHI STATION";
+	rooms["ZSM O12"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM O12"].northExit = "ZSM O10";
+	rooms["ZSM O12"].eastExit = "ZSM Q12";
+	rooms["ZSM O12"].southExit = "";
+	rooms["ZSM O12"].westExit = "";
+	rooms["ZSM O12"].moveMinutes = 3;
+	rooms["ZSM O12"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM O12"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM O12"].addFlag(GLOBAL.HAZARD);
+	
+	//O10 BENDING\nTRACK
+	rooms["ZSM O10"] = new RoomClass(this);
+	rooms["ZSM O10"].roomName = "BENDING\nTRACK";
+	rooms["ZSM O10"].description = "Following the twisting, bending track in the ceiling, you come upon a cut-up section of mine so dug out that the walls resemble of swiss cheese. Dozens of holes have been bored deep, wide enough to crawl inside and long enough to stretch out for a nap, though you can’t imagine comfortably resting on the unnaturally warm rock. The shaft bends south and west.";
+	rooms["ZSM O10"].planet = "ZHENG SHI STATION";
+	rooms["ZSM O10"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM O10"].northExit = "";
+	rooms["ZSM O10"].eastExit = "";
+	rooms["ZSM O10"].southExit = "ZSM O12";
+	rooms["ZSM O10"].westExit = "ZSM M10";
+	rooms["ZSM O10"].moveMinutes = 3;
+	rooms["ZSM O10"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM O10"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM O10"].addFlag(GLOBAL.HAZARD);
+	
+	//M10 HOPPER\nTRACK
+	//Brittle Pumice?
+	rooms["ZSM M10"] = new RoomClass(this);
+	rooms["ZSM M10"].roomName = "HOPPER\nTRACK";
+	rooms["ZSM M10"].description = "The ground cracks and crumbles with your every movement. The porous stone reveals itself as the reason; every surface is made of it - walls, floors, and ceilings. It vaguely resembles pumice save for its slightly more reflective sheen. You’re thankful that the ceiling braces are stacked three times thicker than elsewhere, though they fail to keep the occasional pebble from dropping on your head.";
+	rooms["ZSM M10"].planet = "ZHENG SHI STATION";
+	rooms["ZSM M10"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM M10"].northExit = "";
+	rooms["ZSM M10"].eastExit = "ZSM O10";
+	rooms["ZSM M10"].southExit = "";
+	rooms["ZSM M10"].westExit = "ZSM K10";
+	rooms["ZSM M10"].moveMinutes = 3;
+	rooms["ZSM M10"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM M10"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM M10"].addFlag(GLOBAL.HAZARD);
+	
+	//K10 HOPPER\nTRACK
+	//Obsidian vein
+	rooms["ZSM K10"] = new RoomClass(this);
+	rooms["ZSM K10"].roomName = "HOPPER\nTRACK";
+	rooms["ZSM K10"].description = "The dusky stone gives way to glassy obsidian for a few feet. The mineshaft’s path was dug straight through volcanic material, shattering it into a jagged array of funhouse mirrors. In one place, a blackened version of yourself seems half as tall and twice as fat. In another, your head is larger than the rest of your body. Fortunately the ceiling-bound track continues straight and true on its east-west path.";
+	rooms["ZSM K10"].planet = "ZHENG SHI STATION";
+	rooms["ZSM K10"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM K10"].northExit = "";
+	rooms["ZSM K10"].eastExit = "ZSM M10";
+	rooms["ZSM K10"].southExit = "";
+	rooms["ZSM K10"].westExit = "ZSM I10";
+	rooms["ZSM K10"].moveMinutes = 3;
+	rooms["ZSM K10"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM K10"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM K10"].addFlag(GLOBAL.HAZARD);
+	
+	//I10 HOPPER\nTRACK
+	rooms["ZSM I10"] = new RoomClass(this);
+	rooms["ZSM I10"].roomName = "HOPPER\nTRACK";
+	rooms["ZSM I10"].description = "Just above your head, a ceiling mounted track bends upward to climb through a narrow tunnel in the stone. Fast moving hoppers, packed with stone, zip along the mechanized path before vanishing into the hole, presumably on their way to the refinery. You briefly entertain the idea of grabbing hold of one to ride up, but that hole is awfully small (and those carts are moving devilishly fast). Besides, the last thing you want to experience is being dumped face-first into an industrial blast-furnace.";
+	rooms["ZSM I10"].planet = "ZHENG SHI STATION";
+	rooms["ZSM I10"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM I10"].northExit = "";
+	rooms["ZSM I10"].eastExit = "ZSM K10";
+	rooms["ZSM I10"].southExit = "";
+	rooms["ZSM I10"].westExit = "ZSM G10";
+	rooms["ZSM I10"].moveMinutes = 3;
+	rooms["ZSM I10"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM I10"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM I10"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSM PLACEHOLDER"] = new RoomClass(this);
 	rooms["ZSM PLACEHOLDER"].roomName = "\n";

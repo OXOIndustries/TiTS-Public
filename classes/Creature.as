@@ -3486,13 +3486,13 @@
 				{
 					//Mimbrane feeding
 					kGAMECLASS.mimbraneFeed("cock");
-					if(hasStatusEffect("Blue Balls") && balls > 0)
-					{
-						AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive", -1);
-						removeStatusEffect("Blue Balls", true);
-					}
 					if(balls > 0)
 					{
+						if(hasStatusEffect("Blue Balls", true) && ballFullness < 100)
+						{
+							AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive", -1);
+							removeStatusEffect("Blue Balls", true);
+						}
 						//'Nuki Ball Reduction
 						if(perkv1("'Nuki Nuts") > 0)
 						{
@@ -3543,7 +3543,7 @@
 					flags["GOO_BIOMASS"] = 0;
 				}
 				//Slamazon shit
-				if(hasStatusEffect("Amazonian Endurance Report Needed")) 
+				if(hasStatusEffect("Amazonian Endurance Report Needed", true)) 
 				{
 					kGAMECLASS.amazonEnduranceNotice();
 					removeStatusEffect("Amazonian Endurance Report Needed", true);
@@ -6601,7 +6601,6 @@
 		public function legFurScales():String 
 		{
 			var output: String = "";
-			var temp:*;
 			var noun:String = "";
 			var adjectives:Array = [];
 			//Figure out if we're talking skin or fur.
@@ -6623,7 +6622,7 @@
 					if (noun == "fur") adjectives.push("fluffy");
 					if (noun == "feathers") adjectives.push("downy");
 				}
-				output += RandomInCollection(adjectives);
+				if(adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
 			//25% of time, describe tone.
 			if (rand(4) == 0) {
@@ -6640,7 +6639,6 @@
 		}
 		public function skinFurScales(forceTone: Boolean = false, forceAdjective: Boolean = false, skin: Boolean = false, appearance: Boolean = false): String {
 			var output: String = "";
-			var temp:*;
 			var adjectives:Array = [];
 			//33% of the time, add an adjective.
 			if (forceAdjective || rand(3) == 0) {
@@ -6672,8 +6670,8 @@
 						if (skinType == GLOBAL.SKIN_TYPE_SCALES || skinType == GLOBAL.SKIN_TYPE_CHITIN || skinType == GLOBAL.SKIN_TYPE_LATEX) adjectives.push(RandomInCollection(["glossy", "glistening", "slick"]));
 						if (skinType == GLOBAL.SKIN_TYPE_PLANT || skinType == GLOBAL.SKIN_TYPE_BARK) adjectives.push(RandomInCollection(["dewy", "damp", "moist"]));
 					}
-					if(adjectives.length > 0) output += RandomInCollection(adjectives);
 				}
+				if(adjectives.length > 0) output += RandomInCollection(adjectives);
 			}
 			//25% of time, describe skin tone.
 			if (forceTone || rand(4) == 0) {
@@ -8015,8 +8013,8 @@
 		}
 		//CHECKING IF HAS A SPECIFIC STORAGE ITEM
 		//Status
-		public function hasStatusEffect(statusName: String): Boolean {
-			return hasStorageName(statusEffects, statusName);
+		public function hasStatusEffect(statusName: String, ignoreHidden:Boolean = false): Boolean {
+			return hasStorageName(statusEffects, statusName, ignoreHidden);
 		}
 		public function hasStatusEffectCount(statusName:String):Number
 		{
@@ -8030,11 +8028,11 @@
 			return amount;
 		}
 		//Perk
-		public function hasPerk(perkName: String): Boolean {
-			return hasStorageName(perks, perkName);
+		public function hasPerk(perkName: String, ignoreHidden:Boolean = false): Boolean {
+			return hasStorageName(perks, perkName, ignoreHidden);
 		}
-		public function hasKeyItem(keyName: String): Boolean {
-			return hasStorageName(keyItems, keyName);
+		public function hasKeyItem(keyName: String, ignoreHidden:Boolean = false): Boolean {
+			return hasStorageName(keyItems, keyName, ignoreHidden);
 		}
 		public function getKeyItem(keyName:String):StorageClass
 		{
@@ -8046,12 +8044,12 @@
 			return null;
 		}
 		//General function.
-		public function hasStorageName(array:Array, storageName: String): Boolean {
+		public function hasStorageName(array:Array, storageName: String, ignoreHidden:Boolean = false): Boolean {
 			var counter: Number = array.length;
 			if (array.length <= 0) return false;
 			while (counter > 0) {
 				counter--;
-				if (array[counter].storageName == storageName) return true;
+				if (array[counter].storageName == storageName && (!ignoreHidden || array[counter].tooltip != "< REMOVE >")) return true;
 			}
 			return false;
 		}

@@ -3315,7 +3315,7 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["UVI P30"].addFlag(GLOBAL.OBJECTIVE);
 	}
-	else if(flags["SHADE_ON_UVETO"] >= 3 && shadeIsHome())
+	else if(flags["SHADE_ON_UVETO"] >= 3 && (shadeIsHome() || astraIsHome()))
 	{
 		rooms["UVI P30"].addFlag(GLOBAL.NPC);
 	}

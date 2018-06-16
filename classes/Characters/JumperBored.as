@@ -50,6 +50,9 @@
 			this.armor.longName = "inky bodysuit";
 			this.armor.defense = 3;
 			this.armor.hasRandomProperties = true;
+
+			baseHPResistances.burning.damageValue = 40.0;
+			baseHPResistances.freezing.damageValue = 40.0;
 			
 			this.shield = new JumperShield();
 			this.shield.shields = 150;
@@ -247,7 +250,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "BORED_JUMPER";
+			return "BORED_JUMPER_EQUINE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
