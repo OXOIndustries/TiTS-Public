@@ -90,6 +90,14 @@ public function syriQuestElevatorAKDK15():void {
 	mainGameMenu();
 }
 
+/*
+ *Generator Layout:
+ * 
+ * 8 | 9  | 16
+ * 4 | 10 | 21
+ * 6 | 11 | 15
+*/
+
 public var syriQuestBackupGeneratorsButtons:Array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 public function syriQuestBackupGenerators(doOutput:Boolean = true):void
@@ -173,7 +181,10 @@ public function syriQuestToggleSettings(slot:int):void
 	if (syriQuestBackupGeneratorsPower == sweetSpot) {
 		if (syriQuestBackupGeneratorsActiveA() && syriQuestBackupGeneratorsActiveB() && syriQuestBackupGeneratorsActiveC()) syriQuestBackupGeneratorsSuccess();
 	}
-	if (syriQuestBackupGeneratorsPower >= overCharged) syriQuestBackupGeneratorsSuccessOverload();
+	if (syriQuestBackupGeneratorsPower >= overCharged) {
+		if (syriQuestBackupGeneratorsActiveA() && syriQuestBackupGeneratorsActiveB() && syriQuestBackupGeneratorsActiveC()) syriQuestBackupGeneratorsSuccessOverload();
+		else syriQuestBackupGeneratorsFailure();
+	}
 }
 
 public function syriQuestBackupGeneratorsCalculateThePower():int
@@ -493,13 +504,15 @@ public function syriQuestAkkadiBaseSecurityRobotsFightText():void
 	showAkkadiSecBots();
 	author("Savin");
 	output("You're fighting Akkadi security bots!");
-	output("\n\nEach bot is a mechanical biped, more lizard-like than canid, with a squat body covered in sleek armor plates. Rather than a head, they have angled blast shields that face you, parted around the barrel of a gun and a laser sight that ceaselessly tracks your movements. There's {still one/two standing // still several robots in the fray}!");
+	output("\n\nEach bot is a mechanical biped, more lizard-like than canid, with a squat body covered in sleek armor plates. Rather than a head, they have angled blast shields that face you, parted around the barrel of a gun and a laser sight that ceaselessly tracks your movements. There's still ");
+	if (CombatManager.enemiesAlive() == 1) output("one standing");
+	else if (CombatManager.enemiesAlive() == 1) output("two standing");
+	else output("several robots in the fray");
+	output("!");
 }
 
 public function syriQuestAkkadiBaseSecurityRobotsDefeat():void
 {
-	//@fEN
-	//-1000 Credits; -1000 more per guard bot defeated
 	clearOutput();
 	showAkkadiSecBots();
 	author("Savin");
@@ -509,9 +522,10 @@ public function syriQuestAkkadiBaseSecurityRobotsDefeat():void
 	output("\n\nYou groan and squirm under the robot, but it's... not moving. At all. Slowly, warily, you push the robotic guard-dog's leg off your chest. It doesn't fight back until you're completely out from under it, whereupon the robot beeps noisily and looks up at you.");
 	output("\n\n<i>“SECURITY PERSONNEL ARE PREOCCUPIED. WE WILL LET YOU OFF WITH A FINE THIS TIME.”</i>");
 	output("\n\nUh, okay. The guard-bot's gun is still tracking you, and you really don't want to get shot by more beanbags... so when a little screen pops out of its flank, you just swipe your Codex and be done with it. ");
-	//@Fen 
-	//{PC has 0 money: 
-	if (1 == 9999) output("The fact that you're broke doesn't seem to bother the guard bot. It just beeps at you and then takes its pack and retreats into the side panels from whence it came.");
+	//-1000 Credits; -1000 more per guard bot defeated
+	var moneyFine:int = 1000 + (CombatManager.enemiesAlive() * 1000);
+	pc.credits -= moneyFine;
+	if (pc.credits <= 0) output("The fact that you're broke doesn't seem to bother the guard bot. It just beeps at you and then takes its pack and retreats into the side panels from whence it came.");
 	else output("The robot siphons off some credits and beeps approvingly before leading its pack back into the wall alcoves and disappearing.");
 	if (flags["SYRIQUEST_ELEVATOR_STATE"] == undefined || flags["SYRIQUEST_ELEVATOR_STATE"] == 0) output("\n\nWonder what happened to the security staff...");
 	CombatManager.genericLoss();

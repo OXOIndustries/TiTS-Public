@@ -17,7 +17,9 @@ package classes.Characters
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Interfaces.output;
-	
+	import classes.Engine.Utility.possessive;
+	import classes.StringUtil;
+
 	public class AkkadiSecurityRobots extends Creature
 	{
 		
@@ -32,13 +34,13 @@ package classes.Characters
 			this.a = "the ";
 			this.capitalA = "The ";
 			this.long = "";
-			this.customDodge = "Somehow, the robot manages to move out of the way of your fire.";
-			this.customBlock = "The hardened exterior of the robot absorbs your attack.";
+//			this.customDodge = "Somehow, the robot manages to move out of the way of your fire.";
+//			this.customBlock = "The hardened exterior of the robot absorbs your attack.";
 			this.isPlural = true;
 			isLustImmune = true;
 			
 			this.meleeWeapon = new Fists();
-			this.rangedWeapon.longName = "laser emitter";
+			this.rangedWeapon.longName = "machinegun";
 			this.rangedWeapon.attack = 0;
 			rangedWeapon.baseDamage.electric.damageValue = 1;
 			rangedWeapon.baseDamage.burning.damageValue = 1;
@@ -50,7 +52,7 @@ package classes.Characters
 			this.armor.longName = "steel plates";
 			this.armor.defense = 3;
 			this.armor.hasRandomProperties = true;
-			this.shield = new BasicShield();
+			this.shield = new JoyCoPremiumShield();
 			
 			this.physiqueRaw = 8;
 			this.reflexesRaw = 4;
@@ -72,6 +74,79 @@ package classes.Characters
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			
+			this.femininity = 50;
+			this.eyeType = GLOBAL.TYPE_HUMAN;
+			this.eyeColor = "black";
+			this.tallness = 24;
+			this.thickness = 70;
+			this.tone = 80;
+			this.hairColor = "none";
+			this.scaleColor = "none";
+			this.furColor = "none";
+			this.hairLength = 0;
+			this.hairType = GLOBAL.TYPE_HUMAN;
+			this.beardLength = 0;
+			this.beardStyle = 0;
+			this.skinType = GLOBAL.TYPE_HUMAN;
+			this.skinTone = "steel gray";
+			this.skinFlags = new Array();
+			this.faceType = GLOBAL.TYPE_HUMAN;
+			this.faceFlags = new Array();
+			this.tongueType = GLOBAL.TYPE_HUMAN;
+			this.lipMod = 0;
+			this.earType = 0;
+			this.antennae = 1;
+			this.antennaeType = GLOBAL.TYPE_HUMAN;
+			this.horns = 0;
+			this.hornType = 0;
+			this.armType = GLOBAL.TYPE_HUMAN;
+			this.gills = false;
+			this.wingType = GLOBAL.TYPE_HUMAN;
+			this.legType = GLOBAL.TYPE_HUMAN;
+			this.legCount = 3;
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
+			//0 - Waist
+			//1 - Middle of a long tail. Defaults to waist on bipeds.
+			//2 - Between last legs or at end of long tail.
+			//3 - On underside of a tail, used for driders and the like, maybe?
+			this.genitalSpot = 0;
+			this.tailType = GLOBAL.TYPE_HUMAN;
+			this.tailCount = 1;
+			this.tailFlags = new Array();
+			//Used to set cunt or dick type for cunt/dick tails!
+			this.tailGenitalArg = 0;
+			//tailGenital:
+			//0 - none.
+			//1 - cock
+			//2 - vagina
+			this.tailGenital = 0;
+			//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
+			this.tailVenom = 0;
+			//Tail recharge determines how fast venom/webs comes back per hour.
+			this.tailRecharge = 5;
+			//hipRating
+			//0 - boyish
+			//2 - slender
+			//4 - average
+			//6 - noticable/ample
+			//10 - curvy//flaring
+			//15 - child-bearing/fertile
+			//20 - inhumanly wide
+			this.hipRatingRaw = 2;
+			//buttRating
+			//0 - buttless
+			//2 - tight
+			//4 - average
+			//6 - noticable
+			//8 - large
+			//10 - jiggly
+			//13 - expansive
+			//16 - huge
+			//20 - inconceivably large/big/huge etc
+			this.buttRatingRaw = 2;
+			//No dicks here!
+			this.cocks = new Array();
+
 			this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Force It Gender");
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
@@ -86,32 +161,61 @@ package classes.Characters
 		{
 			return "DROID_SECURITY";
 		}
-		
+/*
+
+You're fighting Akkadi security bots!
+
+Each bot is a mechanical biped, more lizard-like than canid, with a squat body covered in sleek armor plates. Rather than a head, they have angled blast shields that face you, parted around the barrel of a gun and a laser sight that ceaselessly tracks your movements. There's {still one/two standing // still several robots in the fray}!
+
+
+Robots have medium Health, lots of Shields. Immune to Lust. Regenerate a small amount of Health each turn they are up due to repair protocols.
+
+Machinegun Burst
+//Single kinetic attack, medium damage, high accuracy
+
+Drone {X} fires a burst of automatic weapons fire at you. Fist-sized beanbags pound into {you // the wall behind you}!
+
+Net Gun
+//Once per fight, between the whole group. Grapples the PC.
+
+One of the drones anchors its clawed feet in the floor and launches something from a cannister on its back! The object erupts into a wide, weighted net that {you just barely manage to avoid. The weights must be magnetic, as they stick to the wall as well. Nasty surprise! //else: slams into you, smearing itself against the wall with sticky cables and magnetic weights. Your arms are pinned to your side, and your [pc.weapon] clatters to the ground. A cable connecting you to the offening bot goes taut, and its weapons level at you. Shit!}
+
+//Escape Grapple
+You finally manage to tear your way out of the net!
+
+//TechSpec uses shock to escape
+You send a burst of electricity back along the grappling line, right into the offending security bot. It lurches backward and squeals, disconnecting the grappling line. The magnets deactivate, releasing you from the robot's grasp.
+
+Target Link
+//Once per fight, between the whole group. Dramatically increase the bots' accuracy for 3 rounds. If the PC stealths or stuns/blinds them, the bonus ends.
+
+{One of the robots // the remaining bot} raises up on its legs and focuses its targeting laser on you. You hear a whirring sound from the robot's gun-head, and then it beeps ominously. {All the robots beep in unison after that, apparently sharing some sort of linked targeting!}
+
+*/
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
-			if (target == null) return;
 			
+			/*
 			if (!target.hasStatusEffect("Blinded") && rand(5) == 0) securityDroidFlashbang(target);
-			else if (!hasStatusEffect("Blinded") && !hasStatusEffect("Stunned") && rand(3) == 0) securityDroidChargeShot(target);
+			else if (!hasStatusEffect("Blinded") && !hasStatusEffect("Stunned") && rand(3) == 0) akkadiSecurityRobotsMachinegunBurst(target);
 			else securityDroidLaserBarrage(target);
+			*/
+			akkadiSecurityRobotsMachinegunBurst(target);
 		}
 		
-		private function securityDroidLaserBarrage(target:Creature):void
+		private function akkadiSecurityRobotsMachinegunBurst(target:Creature):void
 		{
-			//Laser Barrage
-			//Lots of moderate laser attacks
-			output("Several of the drones lock onto " + ((target is Anno) ? "your ausar friend" : "you") + " and let loose with a hail of laser bolts.");
-			
-			var attacks:int = 2 + rand(2);
-
-			for (var i:int = 0; i < attacks; i++)
-			{
-				output("\n");
+			//Machinegun Burst
+			//Single kinetic attack, medium damage, high accuracy
+			output(StringUtil.capitalize(possessive(target.getCombatName()), false) + " fires a burst of automatic weapons fire at you. Fist-sized beanbags pound into ");
+			if (rangedCombatMiss(this, target)) output("you!");
+			else {
+				output("the wall behind you!");
 				CombatAttacks.SingleRangedAttackImpl(this, target, true);
 			}
 		}
-		
+
 		private function securityDroidChargeShot(target:Creature):void
 		{
 			//Charge Shot
