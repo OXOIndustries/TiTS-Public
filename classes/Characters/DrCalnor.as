@@ -184,9 +184,9 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "BYRON";
+			return "CALNOR";
 		}
-				
+		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);

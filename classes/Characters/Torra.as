@@ -208,7 +208,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "MILODAN_PRIESTESS";
+			return "TORRA";
 		}
 		
 		override public function downedViaLust():String

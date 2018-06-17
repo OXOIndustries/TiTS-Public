@@ -85,7 +85,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "MACHINA";
+			return "DROPSHIP";
 		}
 		
 			

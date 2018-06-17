@@ -79,8 +79,7 @@ public function showMyrraAndSyri(nude:Boolean = false):void
 //Commander Alyru Schora
 public function schoraBustDisplay(nude:Boolean = false):String
 {
-//	var sBust:String = "SCHORA";
-	var sBust:String = "VERUSHA";
+	var sBust:String = "SCHORA";
 	if(nude) sBust += "_NUDE";
 	return sBust;
 }
@@ -97,15 +96,14 @@ public function showSchora(nude:Boolean = false):void
 public function showDropship():void
 {
 	showName("AKKADI\nDROPSHIP");
-	showBust("MACHINA");
+	showBust("DROPSHIP");
 }
+
 // Valden
 public function valdenBustDisplay(nude:Boolean = false):String
 {
-//	var sBust:String = "VALDEN";
-	var sBust:String = "PETR";
-//	if (flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 1) sBust = "CALNOR";
-	if (flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 1) sBust = "BYRON";
+	var sBust:String = "VALDEN";
+	if (flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 1) sBust = "CALNOR";
 	else if (flags["SYRIQUEST_VALDEN_BODY_CHOICE"] >= 2) sBust = chars["WULFE"].bustDisplay;
 	if(nude) sBust += "_NUDE";
 	return sBust;
@@ -120,8 +118,7 @@ public function showValden(nude:Boolean = false):void
 //Dr. Raade Calnor, Head Researcher
 public function calnorBustDisplay(nude:Boolean = false):String
 {
-//	var sBust:String = "CALNOR";
-	var sBust:String = "BYRON";
+	var sBust:String = "CALNOR";
 	if(nude) sBust += "_NUDE";
 	return sBust;
 }
@@ -135,7 +132,7 @@ public function showCalnor(nude:Boolean = false):void
 //Torra, Assistant Researcher
 public function torraaBustDisplay(nude:Boolean = false):String
 {
-//	var sBust:String = "TORRA";
+	var sBust:String = "TORRA";
 	var sBust:String = "CARRIE";
 	if(nude) sBust += "_NUDE";
 	return sBust;
@@ -151,8 +148,7 @@ public function showTorra(nude:Boolean = false):void
 public function showAkkadiSecBots():void
 {
 	showName("SECURITY\nROBOTS");
-//	showBust("SECURITY_ROBOTS");
-	showBust("DROID_SECURITY");
+	showBust("SECURITY_ROBOTS");
 }
 
 public function myrraCapacity():Number
@@ -948,6 +944,80 @@ public function syriQuestEnterAkkadiBase2():void {
 	mainGameMenu();
 }
 
+public function syriQuestAkkadiBaseSecurityRobotsEncounter():void
+{
+	clearOutput();
+	showAkkadiSecBots();
+	author("Savin");
+	output("As you're running down the sterile corridor, you suddenly hear a shuddering <i>creeeak</i> of metal grinding on metal. You spin around, watching panels slide open on the walls behind you. From hidden alcoves, several quadrupedal security robots -- each not much bigger than a trash can, and plated with shiny Akkadi-blue armor -- stomp out. They've got angled blast shields in place of faces, and between the plates, each robot has the all-too-familiar shape of a gun barrel peeking out, scanning around for targets.");
+	output("\n\nAnd they settle on you!");
+	output("\n\n<i>“INTRUDER! CEASE RESISTANCE, DISARM, AND LAY FLAT ON THE GROUND.”</i>");
+	
+	var numEnemies:int = 3+rand(3);
+	var hostiles:Array = [];
+	for (var i:int = 0; i < numEnemies; i++)
+	{
+		hostiles.push(new AkkadiSecurityRobots());
+	}
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(hostiles);
+	CombatManager.displayLocation("SECURITY ROBOTS");
+	CombatManager.victoryScene(syriQuestAkkadiBaseSecurityRobotsVictory);
+	CombatManager.lossScene(syriQuestAkkadiBaseSecurityRobotsDefeat);
+	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseSecurityRobotsFightText);
+
+	clearMenu();
+	addButton(0, "Fight!", CombatManager.beginCombat);
+}
+
+public function syriQuestAkkadiBaseSecurityRobotsFightText():void
+{
+	clearOutput();
+	showAkkadiSecBots();
+	author("Savin");
+	output("You're fighting Akkadi security bots!");
+	output("\n\nEach bot is a mechanical biped, more lizard-like than canid, with a squat body covered in sleek armor plates. Rather than a head, they have angled blast shields that face you, parted around the barrel of a gun and a laser sight that ceaselessly tracks your movements. There's still ");
+	if (CombatManager.enemiesAlive() == 1) output("one standing");
+	else if (CombatManager.enemiesAlive() == 1) output("two standing");
+	else output("several robots in the fray");
+	output("!");
+}
+
+public function syriQuestAkkadiBaseSecurityRobotsDefeat():void
+{
+	clearOutput();
+	showAkkadiSecBots();
+	author("Savin");
+	output("One of the robots growls, stomping over and delivering a solid kick to your stomach, planting you directly in the ground. <i>“Intruder neutralized!”</i> it barks, stomping on your chest to pin you on the ground.");
+	output("\n\nA moment passes.");
+	output("\n\nThen another.");
+	output("\n\nYou groan and squirm under the robot, but it's... not moving. At all. Slowly, warily, you push the robotic guard-dog's leg off your chest. It doesn't fight back until you're completely out from under it, whereupon the robot beeps noisily and looks up at you.");
+	output("\n\n<i>“SECURITY PERSONNEL ARE PREOCCUPIED. WE WILL LET YOU OFF WITH A FINE THIS TIME.”</i>");
+	output("\n\nUh, okay. The guard-bot's gun is still tracking you, and you really don't want to get shot by more beanbags... so when a little screen pops out of its flank, you just swipe your Codex and be done with it. ");
+	//-1000 Credits; -1000 more per guard bot defeated
+	var moneyFine:int = 1000 + (CombatManager.enemiesAlive() * 1000);
+	pc.credits -= moneyFine;
+	if (pc.credits <= 0) output("The fact that you're broke doesn't seem to bother the guard bot. It just beeps at you and then takes its pack and retreats into the side panels from whence it came.");
+	else output("The robot siphons off some credits and beeps approvingly before leading its pack back into the wall alcoves and disappearing.");
+	if (flags["SYRIQUEST_ELEVATOR_STATE"] == undefined || flags["SYRIQUEST_ELEVATOR_STATE"] == 0) output("\n\nWonder what happened to the security staff...");
+	CombatManager.genericLoss();
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function syriQuestAkkadiBaseSecurityRobotsVictory():void
+{
+	clearOutput();
+	showAkkadiSecBots();
+	author("Savin");
+	output("The last of the robots collapses, and as the din of weapon fire fades, you're left once more with an eerie silence. There's... nothing. Nobody's rushing out to see what's happening. No screams. No jackbooted security guards charging you. The lockdown's keeping everyone, even the people in charge, sealed out of your way.");
+	output("\n\nGlancing around warily, you put your [pc.weapon] away and turn back to the hall ahead. Better get a move on.\n\n");
+	CombatManager.genericVictory();
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
 public function syriQuestAkkadiBaseShowersWatch():void
 {
 	clearOutput();
@@ -1422,6 +1492,7 @@ public function syriQuestCalnorFightBadEnd():void
 
 public function syriQuestAkkadiBaseValdenFight():void
 {
+	//@Fen this is a placeholder as I have absolutly no idea how to code that combat
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(new Torra());

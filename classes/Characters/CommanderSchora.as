@@ -186,7 +186,7 @@
 		}
 		override public function get bustDisplay():String
 		{
-			return "VERUSHA";
+			return "SCHORA";
 		}
 /*
 //Dance with the dzaan, combat style.

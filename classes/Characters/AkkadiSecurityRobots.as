@@ -159,7 +159,7 @@ package classes.Characters
 		
 		override public function get bustDisplay():String
 		{
-			return "DROID_SECURITY";
+			return "SECURITY_ROBOTS";
 		}
 /*
 
