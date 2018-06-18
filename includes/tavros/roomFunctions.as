@@ -170,6 +170,7 @@ public function tavrosHangarStuff():Boolean
 			addButton(btnSlot++,"Mitzi",mitziLurkingApproach);
 		}
 	}
+	shizzyGreatMajinBonus(btnSlot++);
 	
 	// Ships
 	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
