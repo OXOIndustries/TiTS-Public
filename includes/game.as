@@ -1643,6 +1643,11 @@ public function insideShipEvents():Boolean
 		shekkaUnaddictionNotice();
 		return true;
 	}
+	if(majinHere() && flags["SHIZZY_MET"] == 1 && annoIsCrew()) 
+	{
+		shizzyAnnoShipTalk();
+		return true;
+	}
 	return false;
 }
 
@@ -3307,6 +3312,8 @@ public function variableRoomUpdateCheck():void
 	kirosShipAirlockUpdate();
 	// Phoenix's Rec Room
 	phoenixRecRoomUpdate();
+	// Shizuya's Great Majin
+	majinUpdate(false);
 	// Kashima
 	if(flags["KI_ESCAPE_UNCURED"] != undefined)
 	{

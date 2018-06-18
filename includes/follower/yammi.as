@@ -598,6 +598,7 @@ public function yammisMenu():void
 	if(flags["NALEEN_SNUGGLED"] != undefined) output("\n<b>Ginder Fish</b>\nA flame-cooked fish from the jungle world of Mhen’ga, imported at the captain’s request. Soft and rich; topped with lemons and a native honey-sauce.");
 	output("\n<b>Yammi’s Sandwich</b>\nA four foot long bread roll stuffed with a blend of spiced meat, seafood and cheese until it’s about to explode, then baked.");
 	if(reahaIsCrew()) output("\n<b>New Texas Milkshake</b>\nNew Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
+	if (flags["SHIZZY_CUNT_SNAKE_RECIPE"] == 1) output("\n<b>Fried And Stuffed Cunt Snake</b>\nA meal made from the invasive Cunt Snakes of Mhen'ga. The head and 'tail' are removed, and the middle stuffed with a mixture of fruits and vegetables, all imported from Mhen'ga for an authentic taste. The meat is then coated in a special mixture, and fried in fruit oil.");
 	clearMenu();
 	//Pepper Pie
 	addButton(0,"Pepper Pie",pepperPieYammi,undefined,"Pepper Pie","A special blend of hot and sweet peppers in a ground meat pie with fresh baked crust and rolls. Spicy!");
@@ -623,7 +624,7 @@ public function yammisMenu():void
 	if (reahaIsCrew()) addButton(8, "N.T.Milkshake", newTexasMilkshake, undefined, "N.T.Milkshake", "New Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
 	//Cunt Snake
 	//Get from shizuya
-	if (flags["SHIZZY_CUNT_SNAKE_RECIPE"] == 1) addButton(9, "Cunt Snake", shizzyCuntSnakeEat);
+	if (flags["SHIZZY_CUNT_SNAKE_RECIPE"] == 1) addButton(9, "F.S.CuntSnake", shizzyCuntSnakeEat, "Fried And Stuffed Cunt Snake", "A meal made from the invasive Cunt Snakes of Mhen'ga. The head and 'tail' are removed, and the middle stuffed with a mixture of fruits and vegetables, all imported from Mhen'ga for an authentic taste. The meat is then coated in a special mixture, and fried in fruit oil.");
 	addButton(14,"Back",yammiInTheKitchen);
 }
 

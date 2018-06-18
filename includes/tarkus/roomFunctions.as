@@ -27,8 +27,8 @@ public function landOnTarkus():void
 }
 public function novahomeHangerBonus():Boolean
 {
-	if(flags["CHAURMINE_LOVER"] == undefined && chaurmineRelationship() >= 50 && (flags["ABANDONED_CHAURMINE"] == undefined || flags["ABANDONED_CHAURMINE"] < 3)) novahomeChaurmineGoodbyeBonus(0);
 	
+	if(flags["CHAURMINE_LOVER"] == undefined && chaurmineRelationship() >= 50 && (flags["ABANDONED_CHAURMINE"] == undefined || flags["ABANDONED_CHAURMINE"] < 3)) novahomeChaurmineGoodbyeBonus(0);
 	return false;
 }
 
@@ -52,7 +52,9 @@ public function firstTimeOnTarkusBonus():Boolean
 		CodexManager.unlockEntry("Raskvel");
 		output("\n\n<b>You are on the starship Nova, now known as the raskvel’s city, Novahome.</b>");
 	}
-	return returnToShipAfterRecruitingAnno();
+		
+	if (returnToShipAfterRecruitingAnno()) return true;
+	else return shizzyGreatMajinBonus(0);
 }
 
 public function BonusFunction210():Boolean

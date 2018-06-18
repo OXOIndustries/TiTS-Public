@@ -199,6 +199,8 @@
 		include "../includes/travelEvents/kiro.as";
 		include "../includes/travelEvents/kiroRescue.as";
 		include "../includes/travelEvents/shizuya.as";
+		include "../includes/travelEvents/shizuyaGreatMajin.as";
+		include "../includes/travelEvents/shizuyaGreatMajinFunctions.as";
 
 		//Tavros Station
 		include "../includes/tavros/akane.as";
@@ -619,6 +621,7 @@
 			initVesperiaRoom();
 			initBreedwellRooms();
 			fqInitRooms();
+			initGreatMajinRooms();
 			
 			mapper = new Mapper(this.rooms)
 
