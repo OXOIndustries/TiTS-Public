@@ -4544,6 +4544,7 @@
 
 			var currPhys:int = physiqueRaw + physiqueMod;
 
+			currPhys += statusEffectv1("Dispassion Fruit");
 			if (hasStatusEffect("Tripped")) currPhys -= 4;
 			if (hasStatusEffect("Crunched")) currPhys -= 8;
 			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
@@ -4583,12 +4584,16 @@
 			var bonus:int = 0;
 			bonus += statusEffectv1("Sera Spawn Reflex Mod");
 			bonus += statusEffectv1("Riya Spawn Reflex Mod");
+			bonus += statusEffectv1("Lah Pregnancy Reflex Mod");
 			bonus += statusEffectv1("Zil Pregnancy Reflex Mod");
 			bonus += statusEffectv2("Cum High");
 
 			var currReflexes:int = reflexesRaw + reflexesMod + bonus;
 
 			//Debuffs!
+			currReflexes += statusEffectv2("Dispassion Fruit");
+			currReflexes += statusEffectv1("Plumpkin");
+			currReflexes += statusEffectv1("Peprika");
 			if (hasStatusEffect("Tripped")) currReflexes -= 4;
 			if (hasStatusEffect("Staggered")) currReflexes *= 0.8;
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
@@ -4816,6 +4821,7 @@
 				currLib += perkv1("Slut Stamp");
 			}
 			if (perkv1("Dumb4Cum") > 24) currLib += (perkv1("Dumb4Cum") - 24);
+			currLib += statusEffectv3("Dispassion Fruit");
 			currLib += statusEffectv3("Heat");
 			currLib += statusEffectv1("Rut");
 			currLib += statusEffectv1("Lagonic Rut");
@@ -4939,6 +4945,7 @@
 		}
 		public function reflexesMax(raw:Boolean = false): Number {
 			var bonuses:int = 0;
+			bonuses += statusEffectv2("Peprika");
 			if(hasStatusEffect("Perfect Simulant")) bonuses += 3;
 			
 			var scalar:Number = 1;
@@ -6243,7 +6250,12 @@
 			}
 			return faceo;
 		}
-
+		
+		public function faceHasFangs():Boolean
+		{
+			return InCollection(faceType, [GLOBAL.TYPE_NALEEN_FACE, GLOBAL.TYPE_SNAKE, GLOBAL.TYPE_ARACHNID]);
+		}
+		
 		public function faceLipMimbraneDescript(): String {
 			//Mimbrane additions in relation to face.
 			var facemim: String = "";

@@ -7,20 +7,20 @@ package classes.GameData.Pregnancy.Templates
 	import classes.Engine.Utility.rand;
 	import classes.Util.RandomInCollection;
 	
-	public class IlariaUniqueChild extends UniqueChild
+	public class LahUniqueChild extends UniqueChild
 	{
-		public function IlariaUniqueChild()
+		public function LahUniqueChild()
 		{
 			Name = "";
-			UniqueParent = "ILARIA";
+			UniqueParent = "LAH";
 			
 			originalRace = "ausar";
-			skinTone = "fair";
+			skinTone = "bronzed";
 			lipColor = "red";
-			nippleColor = "light pink";
-			eyeColor = "red";
-			hairColor = "white";
-			furColor = "white";
+			nippleColor = "pale pink";
+			eyeColor = "gray";
+			hairColor = "orange-gray";
+			furColor = "orange-gray";
 			scaleColor = "NOT SET";
 			chitinColor = "NOT SET";
 			featherColor = "NOT SET";

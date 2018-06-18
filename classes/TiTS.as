@@ -160,6 +160,7 @@
 		include "../includes/events/pexigaQuest/pexigaQuest.as";
 		include "../includes/events/pexigaQuest/follower.pexiga.as";
 		include "../includes/events/plantationQuest/plantationQuestMain.as";
+		include "../includes/events/plantationQuest/plantationQuestXPack1.as";
 		include "../includes/events/spaceYakuza/spaceYakuza.as";
 		include "../includes/events/spaceYakuza/akaneQuest.as";
 
@@ -1621,6 +1622,10 @@
 		public function get frostwyrm():Frostwyrm
 		{
 			return chars["FROSTWYRM"];
+		}
+		public function get lah():RKLah
+		{
+			return chars["LAH"];
 		}
 
 		public function testShipCombat():void
