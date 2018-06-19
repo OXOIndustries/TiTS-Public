@@ -1767,7 +1767,7 @@
 					buffer = armor.longName;
 					break;
 				case "weapon":
-					buffer = getWeaponName();
+					buffer = getWeaponName(true);
 					break;
 				case "meleeWeapon":
 				case "weaponMelee":
