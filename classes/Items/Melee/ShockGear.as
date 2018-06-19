@@ -11,6 +11,7 @@ package classes.Items.Melee
 	 * ...
 	 * @author justadude
 	 */
+	 //Fen note: level 10 rare quality
 	public class ShockGear extends ItemSlotClass 
 	{
 		
@@ -27,14 +28,14 @@ package classes.Items.Melee
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a set of electrically charged black gauntlets and greaves";
+			description = "a set of electrically-charged black gauntlets and greaves";
 			
-			tooltip = "An invention of Shizuya herself, this wicked looking weapon consists of a pair of jet-black gauntlets and greaves. This weapon was designed with hand-to-hand combat in mind. The lining of the set is made of a lightweight, military grade fibre, with a layer of non-conductive padding to keep the wearer from being electrocuted. The plating is made of a dense, conductive metal. The gauntlets plating is especially dense at the back, allowing them to be used defensively. Small generators in each piece generate electricity as the wearer moves, sending it into the conductive plating, and releasing it on impact.";
+			tooltip = "An invention of Shizuya herself, this wicked looking weapon consists of a pair of jet-black gauntlets and greaves. It was designed with hand-to-hand combat in mind. The lining of the set is made of a lightweight, military grade fibre with a layer of non-conductive padding to keep the wearer from being electrocuted. The outer plating is made of a dense, conductive metal. It is especially dense at the back, allowing them to be used defensively. Small generators in each piece generate electricity as the wearer moves, to be discharged on impact.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			
 			attackVerb = "beat";
-			attackNoun = "punch";
+			attackNoun = "shocking punch";
 			
 			basePrice = 340;
 			

@@ -9,6 +9,7 @@ package classes.Items.Armor
 	 * ...
 	 * @author justadude
 	 */
+	 //Fen note: Level 10 Rare Stats.
 	public class YellowClothes extends ItemSlotClass 
 	{
 		
@@ -26,21 +27,21 @@ package classes.Items.Armor
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 
-			this.description = "a bright yellow jacket and pants enhanced with cybernetics";
-			this.tooltip = "This tight jacket and pants combo are bright yellow, accented with black stripes down the sleeves, pant legs, sides, and zipper. The design is clearly inspired by old Terran action movies, and allows for very fluid and unobstructed movement. Despite appearing to offer no protection, the outfit is lined with special cybernetics that amplify shield power and absorb electricity.";
+			this.description = "a bright yellow jacket and pants enhanced with microcircuitry";
+			this.tooltip = "This tight jacket and pants combo are bright yellow, accented with black stripes down the sleeves, pant legs, sides, and zipper. The design is clearly inspired by old Terran action movies, and allows for very fluid and unobstructed movement. Despite appearing to offer no protection, the outfit is lined with special microcircuitry that amplify shield power and absorbs electricity.";
 
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.attackVerb = "null";
 			
 			//Information
-			this.basePrice = 30;
-			this.shields = 50;
-			this.sexiness = 4;
+			this.basePrice = 3000;
+			this.shields = 60;
+			this.sexiness = 3;
 			this.critBonus = 0;
-			this.evasion = 10;
+			this.evasion = 12;
 			
-			resistances.electric.resistanceValue = 30.0;
+			resistances.electric.resistanceValue = 40.0;
 			
 			this.version = _latestVersion;
 		}
