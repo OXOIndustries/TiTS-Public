@@ -10,6 +10,7 @@ package classes.GameData
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.RaskvelFemale;
 	import classes.Characters.RaskvelMale;
+	import classes.Characters.Shizuya;
 	import classes.Characters.StormguardMale;
 	import classes.Characters.ZilFemale;
 	import classes.Creature;
@@ -583,6 +584,11 @@ package classes.GameData
 				output("Further action is interrupted!");
 				return false;
 			}
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return false;
+			}
 			if (rangedCombatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0)
@@ -682,6 +688,11 @@ package classes.GameData
 			)
 			{
 				output("Further action is interrupted!");
+				return false;
+			}
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker, true);
 				return false;
 			}
 			if(target is BothriocQuadomme && !target.hasStatusEffect("Melee Hit")) 
@@ -949,7 +960,11 @@ package classes.GameData
 				else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " removes " + (attacker.isPlural ? "their" : attacker.getCombatPronoun("himher")) + " helmet and darts toward you, mouth agape... ");
 				else output(StringUtil.capitalize(attacker.getCombatName(), false) + " removes " + (attacker.isPlural ? "their" : attacker.getCombatPronoun("himher")) + " helmet and darts toward " + target.getCombatName() + ", mouth agape... ");
 			}
-			
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker, true);
+				return;
+			}
 			if (combatMiss(attacker, target))
 			{
 				if (attacker is PlayerCharacter) output("You can’t manage to sneak in a bite!");
@@ -1150,6 +1165,11 @@ package classes.GameData
 				else output(attacker.getCombatName() + " scrabble" + (attacker.isPlural ? "" : "s") + " about, trying to find " + attacker.getCombatPronoun("hisher") + " missing weapon.");
 				return;
 			}
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
 			
 			SingleRangedAttackImpl(attacker, target, false, "goovolver");
 		}
@@ -1162,7 +1182,11 @@ package classes.GameData
 				else output(attacker.getCombatName() + " scrabble" + (attacker.isPlural ? "" : "s") + " about, trying to find " + attacker.getCombatPronoun("hisher") + " missing weapon.");
 				return;
 			}
-			
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
 			SingleRangedAttackImpl(attacker, target, false, "slut ray");
 		}
 		
@@ -1174,7 +1198,11 @@ package classes.GameData
 				else output(attacker.getCombatName() + " scrabble" + (attacker.isPlural ? "" : "s") + " about, trying to find " + attacker.getCombatPronoun("hisher") + " missing weapon.");
 				return;
 			}
-			
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
 			SingleRangedAttackImpl(attacker, target, false, "fzr");
 		}
 		//} endregion
@@ -1333,7 +1361,12 @@ package classes.GameData
 		public static var Headbutt:SingleCombatAttack;
 		public static function HeadbuttImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			if (attacker is PlayerCharacter)
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker, true);
+				return;
+			}
+			else if (attacker is PlayerCharacter)
 			{
 				output("You lean back before whipping your head forward in a sudden headbutt.\n");
 			}
@@ -1389,6 +1422,11 @@ package classes.GameData
 		public static var RapidFire:SingleCombatAttack;
 		private static function RapidFireImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
 			// Do regular attack (including multi-attack and additional flurry shots)
 			RangedAttack(attacker, target);
 			
@@ -1408,6 +1446,11 @@ package classes.GameData
 		public static var PowerStrike:SingleCombatAttack;
 		private static function PowerStrikeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker, true);
+				return;
+			}
 			if (combatMiss(attacker, target))
 			{
 				if (target.customDodge.length > 0) output(target.customDodge);
@@ -1475,6 +1518,11 @@ package classes.GameData
 		public static var DetonationCharge:SingleCombatAttack;
 		private static function DetonationChargeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
 			if (attacker is PlayerCharacter) output("You toss a bundle of explosives in the direction of " + target.getCombatName() + "!");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " throw" + (attacker.isPlural ? "" : "s") + " a bundle of explosives in " + possessive(target.getCombatName()) + " direction!");
 			
@@ -1505,6 +1553,11 @@ package classes.GameData
 		public static var ParalyzingShock:SingleCombatAttack;
 		private static function ParalyzingShockImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
 			if (target.hasStatusEffect("Paralyzed"))
 			{
 				if (target is PlayerCharacter) output("You’re already paralyzed!");
@@ -1541,6 +1594,11 @@ package classes.GameData
 		public static var Volley:SingleCombatAttack;
 		private static function VolleyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
 			RangedAttack(attacker, target);
 			output("\n");
 			SingleRangedAttackImpl(attacker, target, true);
@@ -1576,6 +1634,11 @@ package classes.GameData
 		public static var Overcharge:SingleCombatAttack;
 		private static function OverchargeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
 			if (!(attacker is PlayerCharacter))
 			{
 				if(attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " smile as high-pitched whines emanate from their " + plural(attacker.rangedWeapon.longName) + "! ");
@@ -1668,6 +1731,12 @@ package classes.GameData
 		public static var ThermalDisruptor:SingleCombatAttack;
 		private static function ThermalDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			if (attacker is PlayerCharacter) 
 			{
 				output("Raising the disruptor, you unleash a wave of burning fire on " + target.getCombatName() + ".");
@@ -1713,6 +1782,12 @@ package classes.GameData
 		public static var GravidicDisruptor:SingleCombatAttack;
 		private static function GravidicDisruptorImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			if (attacker is PlayerCharacter) 
 			{
 				if(!attacker.isBimbo()) output("Raising the disruptor, you unleash a targeted gravitic disruption on " + target.getCombatName() + ".");
@@ -1757,6 +1832,12 @@ package classes.GameData
 		public static var ShieldHack:SingleCombatAttack;
 		private static function ShieldHackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			if (!target.hasShields() || target.shields() <= 0)
 			{
 				if (attacker is PlayerCharacter) output("You attempt to hack the nonexistent shield" + (target.isPlural ? "s" : "") + " protecting " + target.getCombatName() + "! It doesn’t work - <b>there" + (target.isPlural ? " are no shields" : "’s no shield") + " there.</b>");
@@ -1806,6 +1887,12 @@ package classes.GameData
 		public static var WeaponHack:SingleCombatAttack;
 		private static function WeaponHackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			if (target.hasStatusEffect("Disarm Immune"))
 			{
 				if (attacker is PlayerCharacter) output("You try to hack " + possessive(target.getCombatName()) + " weapon" + (target.isPlural ? "s" : "") + " but can’t. <b>It’s physically impossible!</b>");
@@ -1888,6 +1975,12 @@ package classes.GameData
 		public static var FlashGrenade:SingleCombatAttack;
 		private static function FlashGrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			var aTarget:Creature = GetBestPotentialTarget(hGroup);
 			if(aTarget == null)
 			{
@@ -1934,6 +2027,12 @@ package classes.GameData
 		public static var LowBlow:SingleCombatAttack;
 		private static function LowBlowImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker, true);
+				return;
+			}
+			
 			if (attacker is PlayerCharacter) output("You swing low, aiming for a sensitive spot.");
 			else if (target is PlayerCharacter) output(StringUtil.capitalize(attacker.getCombatName(), false) + " swing" + (attacker.isPlural ? "" : "s") + " low at you, aiming for a sensitive spot.");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " swing" + (attacker.isPlural ? "" : "s") + " low at " + target.getCombatName() + ", aiming for a sensitive spot.");
@@ -1995,6 +2094,12 @@ package classes.GameData
 		public static var DisarmingShot:SingleCombatAttack;
 		private static function DisarmingShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			if (target.hasStatusEffect("Disarm Immune"))
 			{
 				if (attacker is PlayerCharacter) output("You try to disarm " + target.getCombatName() + " but can’t. <b>It’s physically impossible!</b>");
@@ -2056,6 +2161,12 @@ package classes.GameData
 		public static var Grenade:SingleCombatAttack;
 		private static function GrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			var aTarget:Creature = GetBestPotentialTarget(hGroup);
 			if(aTarget == null)
 			{
@@ -2098,6 +2209,12 @@ package classes.GameData
 		public static var GasGrenade:SingleCombatAttack;
 		private static function GasGrenadeImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			var aTarget:Creature = GetBestPotentialTarget(hGroup);
 			if(aTarget == null)
 			{
@@ -2156,6 +2273,12 @@ package classes.GameData
 		public static var MagBinders:SingleCombatAttack;
 		public static function MagBindersImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			if (attacker is PlayerCharacter)
 			{
 				output("You produce a set of self-guided restraints and sling them at your target!\n");
@@ -2212,6 +2335,12 @@ package classes.GameData
 		public static var ConcussiveShot:SingleCombatAttack;
 		private static function ConcussiveShotImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			if (attacker is PlayerCharacter) output("You nock one of your concussive arrows and draw your bowstring back, taking careful aim at the space just ahead of " + target.getCombatName() + ".");
 			else throw new Error("Concussive Shot does not support a non-player attacker!");
 			
@@ -2254,6 +2383,12 @@ package classes.GameData
 		public static var MultiArrow:SingleCombatAttack;
 		private static function MultiArrowImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			if (attacker is PlayerCharacter) output("You nock a number of your smart arrows and draw your hardlight bowstring back, taking careful aim at the space just ahead of your enemy.");
 			else if (attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " nock a number of their smart arrows and draw your hardlight bowstrings back, taking careful aim at the space just ahead of you.");
 			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " nocks a number of " + attacker.getCombatPronoun("hisher") + " smart arrows and draws " + attacker.getCombatPronoun("hisher") + " hardlight bowstring back, taking careful aim at the space just ahead of you.");
@@ -2305,6 +2440,12 @@ package classes.GameData
 		public static var GoozookaAttack:SingleCombatAttack;
 		private static function GoozookaAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
+			if(target is Shizuya && target.hasStatusEffect("SHIZUYA COUNTER") && !target.isImmobilized())
+			{
+				if (target.statusEffectv1("SHIZUYA COUNTER") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
+				return;
+			}
+			
 			attacker.destroyItemByClass(GrayMicrobots, 1);
 	
 			output("You pull the goo launcher from over your shoulder and slam a vial of Gray Goo into the back. You brace yourself, sighting in on your target" + (target.isPlural ? "s" : "") + " and flipping the ON switch. The launcher beeps, and you pull the trigger, sending a great big blob of gray goop hurtling toward your opponent" + (target.isPlural ? "s" : "") + "!");

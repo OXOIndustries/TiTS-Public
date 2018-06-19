@@ -4827,6 +4827,7 @@
 			currLib += statusEffectv1("Lagonic Rut");
 			currLib += statusEffectv1("Undetected Locofever");
 			currLib += statusEffectv1("Locofever");
+			currLib += statusEffectv1("Fried Cunt Snake");
 			if (hasStatusEffect("Priapin")) currLib *= statusEffectv3("Priapin");
 			if (pluggedVaginas() > 0 || isPlugged(-1)) currLib *= 2;
 			if (currLib > libidoMax())
@@ -4923,6 +4924,7 @@
 			bonus += statusEffectv2("Rut");
 			bonus += statusEffectv2("Lagonic Rut");
 			bonus += statusEffectv1("Omega Oil");
+			bonus += statusEffectv2("Fried Cunt Snake");
 
 			if (hasStatusEffect("Lane Detoxing Weakness"))
 			{

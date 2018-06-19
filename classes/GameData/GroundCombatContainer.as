@@ -1212,6 +1212,12 @@ package classes.GameData
 					target.removeStatusEffect("Petra overcharge");
 				}
 			}
+			
+			if (target.hasStatusEffect("SHIZZY CUM"))
+			{
+				output("\n\n<b>She reeks so strongly of pheromones that it's starting to get to you.</b>");
+				applyDamage(damageRand(new TypeCollection({pheromone:target.statusEffectv1("SHIZZY CUM")}), 20), null, target, "minimal");
+			}
 		}
 		
 		public function updateStatusEffects(collection:Array):void
@@ -1427,6 +1433,10 @@ package classes.GameData
 			{
 				// trip
 				addButton(14, "Stand Up", standupRound, undefined, "Stand Up", "Stand up, getting rid of the “Trip” status effect. This will consume your offensive action for this turn.");
+			}
+			else if (_hostiles.length == 1 && _hostiles[0] is Shizuya)
+			{
+				addDisabledButton(14, "Run", "Run", "You agreed to this, no turning back now.");
 			}
 			else
 			{

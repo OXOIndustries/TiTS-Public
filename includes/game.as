@@ -1734,6 +1734,11 @@ public function insideShipEvents():Boolean
 		shekkaUnaddictionNotice();
 		return true;
 	}
+	if(majinHere() && flags["SHIZZY_MET"] == 1 && annoIsCrew()) 
+	{
+		shizzyAnnoShipTalk();
+		return true;
+	}
 	return false;
 }
 
@@ -1935,6 +1940,11 @@ public function flyTo(arg:String):void
 				fuckingEggHatchOhFuck(arg);
 				return;
 			}
+		}
+		else if (shizzyTrapAvailable() && rand(4) == 0)
+		{
+			shizzySpezzOdysseyEncounter(arg);
+			return;
 		}
 		else if (silly)
 		{
@@ -3399,6 +3409,8 @@ public function variableRoomUpdateCheck():void
 	kirosShipAirlockUpdate();
 	// Phoenix's Rec Room
 	phoenixRecRoomUpdate();
+	// Shizuya's Great Majin
+	majinUpdate(false);
 	// Kashima
 	if(flags["KI_ESCAPE_UNCURED"] != undefined)
 	{

@@ -7325,6 +7325,25 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["SHADE_BOOBWORSHIP"] != undefined) output2("\n<b>* Shade, Times Worshipped Her Boobs:</b> " + flags["SHADE_BOOBWORSHIP"]);
 			roamCount++;
 		}
+		// Shizuya
+		if (flags["SHIZZY_TRAP_ENCOUNTERED"] != undefined)
+		{
+			if (shizzyTrapAvailable()) output2("\n<b>* Distress Signal:</b> Encountered");
+			else if (flags["SHIZZY_MET"] == undefined) output2("\n<b>* Distress Signal:</b> Dismissed");
+			else 
+			{
+				output2("\n<b>* Shizuya:</b> Met her");
+				if (flags["SHIZZY_SEXED"] != undefined) output2(", Sexed her");
+				if (flags["SHIZZY_BEEN_ROUGH"] != undefined) output2(", Sexed you <i>hard</i>");
+				if (flags["SHIZZY_OUTFIT_STATE"] != undefined){
+					output2("\n<b>* Shizuya, Sparring:</b>");
+					if (flags["SHIZZY_OUTFIT_STATE"] < 2) output2(" Sparred with her");
+					else output2(" Beat her");
+					if (flags["SHIZZY_OUTFIT_STATE"] == 4) output2(", Got prize");
+				}
+			}
+			roamCount++;
+		}
 		// Zo'dee
 		if(flags["MET_ZODEE"] != undefined)
 		{
