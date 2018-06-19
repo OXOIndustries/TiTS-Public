@@ -2923,6 +2923,9 @@ public function variableRoomUpdateCheck():void
 		if(flags["SATELLITE_QUEST"] == 1 || flags["SATELLITE_QUEST"] == -1) rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.NPC);
 		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.NPC);
 	}
+	//Yakuza things
+	if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined && flags["SHUKUCHI_UVETO7_ENCOUNTER"] == undefined) rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.NPC);
+	else rooms["NORTHWEST ESBETH"].removeFlag(GLOBAL.NPC);
 	//Azra stuff
 	if(azraRecruited() && !azraIsCrew()) rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.NPC);
 	else rooms["NORTHEAST ESBETH"].removeFlag(GLOBAL.NPC);
@@ -3355,6 +3358,9 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["PIPPA HOUSE"].addFlag(GLOBAL.NPC);
 	}
+	// Yakuza people
+	if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined && flags["SHUKUCHI_UVETO7_ENCOUNTER"] == undefined) rooms["UVI N34"].addFlag(GLOBAL.NPC);
+	else rooms["UVI N34"].removeFlag(GLOBAL.NPC);
 	// Princess Ula Location
 	if(flags["ULA_CAVE"] != undefined)
 	{
