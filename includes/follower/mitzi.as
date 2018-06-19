@@ -1245,7 +1245,7 @@ public function sleepWithToggleMitzi():void
 	else
 	{
 		output("You ask Mitzi if she’d like to share your bed with you at night.");
-		output("\n\n<i>“Really?”</i> the grinning greenskin batts her eyelashes at you. <i>“[pc.Master] wants to snuggle with his fuck-toy?”</i> She slowly licks her ");
+		output("\n\n<i>“Really?”</i> the grinning greenskin batts her eyelashes at you. <i>“[pc.Master] wants to snuggle with [pc.his] fuck-toy?”</i> She slowly licks her ");
 		if(pc.hasCock() || !pc.hasVagina()) output("dick-sucking lips");
 		else output("cunt-kissers");
 		output(" and groans, <i>“That’s so... lewd!”</i>");

@@ -156,7 +156,7 @@ public function firstTimeOmniSuitOn():void
 		output("\n\n[pc.Cum] abruptly fires out of you in one long, ropey spurt, appearing on the outside of your shining encasement as if by magic. Either ");
 		if(pc.cockTotal() == 1) output("a tiny hole has");
 		else output("tiny holes have");
-		output(" opened or the slick black is more permeable than it would appear. Two more successive, uncontrollable ejaculations fire off, undeniably pleasant but without any accompanying relief, leaving you stiff, aching, and just as horny as you were a moment ago. Only now that you think about it, you realize that your latex bondage no longer feels quite so tight. The rubbery goo might as well be a second skin... or just your regular skin. It’s increasingly hard to tell the difference with your ultra-sensitized organ");
+		output(" opened or the slick black material is more permeable than it would appear. Two more successive, uncontrollable ejaculations fire off, undeniably pleasant but without any accompanying relief, leaving you stiff, aching, and just as horny as you were a moment ago. Only now that you think about it, you realize that your latex bondage no longer feels quite so tight. The rubbery goo might as well be a second skin... or just your regular skin. It’s increasingly hard to tell the difference with your ultra-sensitized organ");
 		if(pc.cockTotal() > 1) output("s");
 		output(".");
 		pc.orgasm();

@@ -220,7 +220,7 @@ public function frostwyrmPCLoss():void
 		output("\n\nThe Frostwyrm sits on its haunches, awaiting your reply. You hesitate, wondering if it’s an actual question, and then, honestly, you struggle to think of any single, reasonable answer. What possessed you to explore the frozen, restricting wastes of Uveto and scour its eastern coastline, knowing that a Frostwyrm claimed it as its territory?");
 		if (pc.isBimbo()) output(" To be honest, there’s only one reason that immediately pops into your head. You’re... sexually-minded a lot of the time, and, like, there aren’t a lot of creatures that are as big, like, physically, in the universe. Imagine the cheers you’d get if you told everyone that you tamed a Frostwyrm to the point of it allowing you to fuck it!");
 		else output(" You answer that you’ve never put much thought into the <i>why</i>, other than because... it exists. The satisfaction of asserting your superiority over a creature as glorious and mythical as a Frostwyrm is one that you’ve never heard another person rightfully boast.");
-		output("\n\nThe creature huffs once in frustration, its four eyes narrowing on yours. <i>How cruel,</i> it says. <i>My kind are so few now. You would play with extinguishing a species so that you can crow about it to other [pc.race]s. All I wish is to protect my domain.</i>");
+		output("\n\nThe creature huffs once in frustration, its four eyes narrowing on yours. <i>How cruel,</i> it says. <i>My kind are so few now. You would play with extinguishing a species so that you can crow about it to other " + plural(pc.race()) + ". All I wish is to protect my domain.</i>");
 		output("\n\nYou remain silent as the beast criticizes you and your brash way of thinking. <i>That said,</i> it continues, a heavy sigh flaring its nostrils once again, <i>you have proven yourself quite capable. I have existed for many Sky Cycles, and I have battled many peoples and creatures before you. You are the first to not only best me, but to do so consistently. Consider your ‘superiority’ asserted, [pc.race]: you are an exemplary specimen.</i>");
 		output("\n\nYour earlier aches from the battle quickly fade at the Frostwyrm’s praise");
 		if (pc.lust() >= 100)
@@ -389,8 +389,8 @@ public function frostwyrmBadEndII():void
 		pc.cuntChange(0, frostwyrm.cockVolume(0));
 		
 		output("\n\nInstead of tearing you apart, the frostwyrm begins to move its hindquarters, drawing itself almost out of you, and grinding back in again. It’s not everything you wanted, but the thunderous pleasure that crashes through you erases any sense of deprivation. Conscious thought gives way to cries of animalistic pleasure, followed by orgasm as the wyrm hammers you, filling you utterly and completely. Your head lolls back, insensate as you climax around the beastial member, spraying it with [pc.girlCumNoun]");
-		if (pc.hasCock()) output(" and hosing your belly with your own spunk as your [pc.multiCocks] erupts.");
-		else output(".");
+		if (pc.hasCock()) output(" and hosing your belly with your own spunk as your [pc.multiCocks] erupt" + (pc.cocks.length == 1 ? "s" : ""));
+		output(".");
 		
 		output("\n\nThe wyrm follows you a mere moment later, bellowing a triumphant roar as its cock swells with impending need. You have but a moment to brace yourself before the flood of cold, sticky wetness floods into your womb, bloating your gut as a monstrous load of wyrm-spunk takes root.");
 		output("\n\nAfter a long minute, the frostwyrm withdraws from you with a wet, resounding squelch. The moment it does, you feel like you’re a balloon deflating with gallons of spunk leaking out of your abused hole. The sensation is as frightening as it is amazing.");
@@ -915,7 +915,8 @@ public function frostwyrmPsionicsTalk():void
 	if (pc.hasCock()) output(" your [pc.cock] is rock hard and leaking, eager for the first warm, wet hole it finds");
 	if (pc.isHerm()) output(", and ");
 	if (pc.hasVagina()) output(" your [pc.vagina] is soaked and lubed, signaling for the first nearby pulse to penetrate it and seed it properly");
-	if (pc.lust() > 70) output(". Not that any of that wasn’t already true, but you’re feeling it all the harder right now].");
+	if (pc.lust() > 70) output(". Not that any of that wasn’t already true, but you’re feeling it all the harder right now");
+	output(".");
 	output("\n\n<i>Your kind use words to express sadness.</i> You subconsciously brace for whatever it is that [frostwyrm.name] is about to make you experience; the last two emotions were powerful and raw, and you’re certain that whatever [frostwyrm.name] has in mind for ‘sadness’ is going to be a bad time. Yet, nothing - nothing, except, the sudden flagging in your rampant lust, back to what it was before. <i>I would not subject you to that sort of experience, my Qal, but you now understand the power of proper communication between individuals of my kind.</i>");
 	output("\n\nCan she read your mind?");
 	output("\n\n<i>... yes,</i> she hesitates, <i>but your thoughts are... difficult to understand. My kind spares only one idea at a time; your kind, or perhaps only</i> you, <i>have so many ideas, all at once, and it is disorienting to follow them all. When you use a word or idea I do not understand, it is a taxing effort to search your mind for its definition. I rather prefer it when your mouth filters your ideas to one at a time.</i>");
@@ -972,7 +973,7 @@ public function whosAGoodFrostwyrm():void
 	output("\n\nYou do as she asks, your arm reaching toward the same pit of her leg that you used to climb onto her. When your fingers tickle at the thick muscle there, her leg starts to paw at nothing in the air gently, her claws extending to cut at the air before retracting as she pulls back and starts the cycle over. Her body shakes very slightly on her other side, and you look over your shoulder – her rearmost right leg is doing the same thing.");
 	output("\n\nHer breathing is long, exaggerated, and steady. Soon, her body starts to vibrate, starting at her chest and going all the way south to her groin and all the way north to her throat; it’s intense on her inhales and comes out as whiny, almost infantile whines and sighs on her exhales. She’s purring, and quite loudly.");
 	output("\n\nYou maintain your pattern, with working a certain spot for a few moments before inching your way across her body and starting again, methodically getting different spots on her belly scales. When you do, and [frostwyrm.name] notices that you’re moving, her purring raises another decibel, and a different leg of hers begins to kick. After a while, her body twists slightly, curving her spine laterally until her body takes an S shape. It doesn’t look comfortable to you, but hell, whatever she wants.");
-	output("\n\nIt takes you the better part of an hour, to cover [frostwyrm.name]s gargantuan belly with rubs, but you get it done. You’ve gotten everywhere from her belly, to the pits of her limbs, to her ribcage, and you’ve ended at her lower belly, about arm’s reach from her groin. You don’t proceed any further – not without her permission, anyway.");
+	output("\n\nIt takes you the better part of an hour, to cover [frostwyrm.name]’s gargantuan belly with rubs, but you get it done. You’ve gotten everywhere from her belly, to the pits of her limbs, to her ribcage, and you’ve ended at her lower belly, about arm’s reach from her groin. You don’t proceed any further – not without her permission, anyway.");
 	output("\n\nYou climb down from her belly, back towards her side. She rocks from one side to the other again, like she had to get onto her back, until she’s on her side, facing you. You retake your position in the crook of her limbs, nestling and cuddling yourself against her body.");
 	output("\n\n<i>The words of your language do not do you or your practices justice, my Qal,</i> she says, her huge head craning towards you and her long, pink tongue sliding out to give you a loving, sensual lick across your body. Her purring has calmed somewhat, but has not stopped. <i>I am privileged to call you my mate.</i>");
 	output("\n\nYou adjust yourself against her, getting yourself warm and comfortable against her scaly body once more. The loud-yet-gentle purring relaxes your body and mind as you press an ear against her heart.");
@@ -1798,7 +1799,7 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	}
 	else{
 		output("\n\nThe sound of [frostwyrm.name]’s purring is music to your ears as you work her over. Like before, every time your tongue or your hands find a new spot for you to pleasure, her belly quivers in delight. <i>I am curious, [pc.name],</i> she begins out-of-turn. Her words are unsteady as she tries her best to maintain her composure. <i>Have you learned who among your kind was the first to discover this pleasure? How did they come to discover it?</i>");
-		output("\n\nYou pull away just long enough to answer her questions. You don’t know who, in the long history of [pc.race]s, was the first to realize that using your mouth to pleasure someone was a good idea, but you tell her that your kind is a very sexual species: if there’s any way to bring pleasure between two mates, you guarantee someone has thought of it.");
+		output("\n\nYou pull away just long enough to answer her questions. You don’t know who, in the long history of " + plural(pc.race()) + ", was the first to realize that using your mouth to pleasure someone was a good idea, but you tell her that your kind is a very sexual species: if there’s any way to bring pleasure between two mates, you guarantee someone has thought of it.");
 		output("\n\nShe hums in thought at your words. <i>Your kind is very... self-educated. I cannot say that I am not envious; I could never have imagined–</i> She stutters as you touch a sensitive nerve cluster just beneath the rim of her glans, and you attack it with your tongue viciously, loving every little squirm and exhalation [frostwyrm.name] makes. She doesn’t attempt to finish her sentence.");
 	}
 	output("\n\nHer cock has swelled large enough that its girth is as wide as your head: you stare into the spit - shined head of her cock, its width reaching from one ear to the other");
@@ -1931,26 +1932,33 @@ public function frostwyrmAftercare(vIdx:int = -1):void
 	
 	processTime(9 * 60);
 	
+	var variant:int = -1;
+	
 	clearMenu();
 	if(fwPreg)
 	{
 		if (pc.isHerm())
 		{
+			variant = 3;
 			addButton(0, "Leave", frostwyrmSayonara, undefined, "Leave", "You’ll know exactly when the egg in [frostwyrm.name] pops out of her too, at least.");
 			addButton(1, "Wait", frostwyrmIWannaSeeHerGrowUp, nEggs, "Wait", "What better way to ensure a strong familial bond than being with your mate and your kips for every step of the way?");
 		}
 		else
 		{
+			variant = 1;
 			addButton(0, "Leave", frostwyrmSayonara, undefined, "Leave", "Four months is a lot of time for your species. You’re sure [frostwyrm.name] would understand.");
 			addButton(1, "Wait", frostwyrmIWannaSeeHerGrowUp, nEggs, "Wait", "You’re sure [frostwyrm.name] would appreciate her mate being on-hand at all times to help with the laying.");
 		}
 	}
 	else
 	{
+		variant = 2;
 		addButton(0, "Leave", frostwyrmSayonara, undefined, "Leave", "Four months until this thing pops out of you... that’s plenty of time to get to other tasks.");
 		if(!pcPreg) addDisabledButton(1, "Wait", "Wait", "There is nothing to wait for...");
 		else addButton(1, "Wait", frostwyrmIWannaSeeHerGrowUp, nEggs, "Wait", "In the grand scheme of things, one year of your life to ensure a strong, healthy start to more Frostwyrms seems like nothing.");
 	}
+	
+	flags["FROSTWYRM_HATCH_VARIANT"] = variant;
 }
 public function frostwyrmShouldIStayOrShouldIGo(vIdx:int = -1):void
 {
@@ -2009,26 +2017,34 @@ public function frostwyrmShouldIStayOrShouldIGo(vIdx:int = -1):void
 	output("\n\nYou could probably just wait the year out here in her lair, if you wanted....");
 	
 	processTime(9 * 60);
+	
+	var variant:int = -1;
+	
 	clearMenu();
 	if(fwPreg)
 	{
 		if (pc.isHerm())
 		{
+			variant = 3;
 			addButton(0, "Leave", frostwyrmSayonara, undefined, "Leave", "You’ll know exactly when the egg in [frostwyrm.name] pops out of her too, at least.");
 			addButton(1, "Wait", frostwyrmIWannaSeeHerGrowUp, nEggs, "Wait", "What better way to ensure a strong familial bond than being with your mate and your kips for every step of the way?");
 		}
 		else
 		{
+			variant = 1;
 			addButton(0, "Leave", frostwyrmSayonara, undefined, "Leave", "Four months is a lot of time for your species. You’re sure [frostwyrm.name] would understand.");
 			addButton(1, "Wait", frostwyrmIWannaSeeHerGrowUp, nEggs, "Wait", "You’re sure [frostwyrm.name] would appreciate her mate being on-hand at all times to help with the laying.");
 		}
 	}
 	else
 	{
+		variant = 2;
 		addButton(0, "Leave", frostwyrmSayonara, undefined, "Leave", "Four months until this thing pops out of you... that’s plenty of time to get to other tasks.");
 		if(!pcPreg) addDisabledButton(1, "Wait", "Wait", "There is nothing to wait for...");
 		else addButton(1, "Wait", frostwyrmIWannaSeeHerGrowUp, nEggs, "Wait", "In the grand scheme of things, one year of your life to ensure a strong, healthy start to more Frostwyrms seems like nothing.");
 	}
+	
+	flags["FROSTWYRM_HATCH_VARIANT"] = variant;
 }
 
 public function frostwyrmSayonara(returnLoc:String = ""):void
@@ -2053,10 +2069,10 @@ public function frostwyrmSayonara(returnLoc:String = ""):void
 	output("As comfortable as you are, and as much as you’re sure [frostwyrm.name] would rather her mate remain at her side");
 	if (flags["FROSTWYRM_KIP_COUNT"] >= 1)
 	{
-		output(" and your ");
-		if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output("daughters have their");
-		else output("daughter has her");
-		output("Qal nearby at all times");
+		output(" and your");
+		if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output(" daughters have their");
+		else output(" daughter has her");
+		output(" Qal nearby at all times");
 	}
 	output(", you have other responsibilities to attend to. You’re afraid you can’t stay here until the new kip is fully mature.");
 	output("\n\n");
@@ -2068,7 +2084,7 @@ public function frostwyrmSayonara(returnLoc:String = ""):void
 	{
 		if (flags["FROSTWYRM_KIP_COUNT"] == 1) output("Your daughter pouts loudly, disappointed at the news, but [frostwyrm.name] hushes her.");
 		else output("Your daughters each pout loudly, disappointed at the news, but [frostwyrm.name] hushes them.");
-		output("<i>I understand that you have other necessities in your life as well. Your kind are not as long - lived as mine; you have my blessing to do what you require, when you require it. You will know when to return to your Qim.</i> She nudges gently at your scalp with her nose. <i>Do not forget that distance will not separate us, and if you need of my guidance, I will respond.</i>");
+		output(" <i>I understand that you have other necessities in your life as well. Your kind are not as long-lived as mine; you have my blessing to do what you require, when you require it. You will know when to return to your Qim.</i> She nudges gently at your scalp with her nose. <i>Do not forget that distance will not separate us, and if you need of my guidance, I will respond.</i>");
 	}
 	
 	processTime(5);
@@ -2183,6 +2199,8 @@ public function frostwyrmDearGodThisIsGonnaBeAWhile(nEggs:int = 0):void
 	
 	output("The first four months go by in a flash: you’re [frostwyrm.name]’s extended guest and attentive mate, and she is far more hospitable than you expected a dragon could be. She provided food when you were hungry; she kept you warm at night; and she’s an excellent conversationalist, providing you with entertainment and enlightenment throughout the four months.");
 	
+	var variant:int = -1;
+	
 	if (pc.hasPregnancyOfType("FrostwyrmPregnancy") && !frostwyrm.isPregnant())
 	{
 		output("\n\nThe whole time, your belly was slowly growing more and more gravid; it grew harder to walk with each passing day and the weight on your spine became increasingly unbearable. By the time the fourth month rolled around, you were as large as any nine-month-pregnant woman of your kind.");
@@ -2195,6 +2213,8 @@ public function frostwyrmDearGodThisIsGonnaBeAWhile(nEggs:int = 0):void
 			output("You ask [frostwyrm.name] if you two should think of a name for the kip" + (nEggs == 1 ? "" : "s") + ", but she voices against it; as she told you before, her kind’s traditions don’t include names, only titles. That said, you’ll know to tell each kip apart through your psionic link with each of them.");
 		}
 		output("The hardest part’s over now, but you don’t have to leave if you don’t want.");
+		
+		variant = 2;
 	}
 	else if (pc.hasPregnancyOfType("FrostwyrmPregnancy") && frostwyrm.isPregnant())
 	{
@@ -2208,6 +2228,8 @@ public function frostwyrmDearGodThisIsGonnaBeAWhile(nEggs:int = 0):void
 			output("\n\nYou ask [frostwyrm.name] if you two should think of a name for the kip" + (nEggs == 1 ? "" : "s") + ", but she voices against it; as she told you before, her kind’s traditions don’t include names, only titles. That said, you’ll know to tell each kip apart through your psionic link with each of them.");
 		}
 		output("\n\nThe hardest part’s over now, but you don’t have to leave if you don’t want.");
+		
+		variant = 3;
 	}
 	else if (frostwyrm.isPregnant())
 	{
@@ -2220,7 +2242,10 @@ public function frostwyrmDearGodThisIsGonnaBeAWhile(nEggs:int = 0):void
 			output("\n\nYou ask [frostwyrm.name] if you two should think of a name for the kip" + (nEggs == 1 ? "" : "s") + ", but she voices against it; as she told you before, her kind’s traditions don’t include names, only titles. That said, you’ll know to tell each kip apart through your psionic link with each of them.");
 		}
 		output("\n\nWhile the most tedious part is over for you both, you don’t have to leave just yet if you don’t want.");
+		
+		variant = 1;
 	}
+	flags["FROSTWYRM_HATCH_VARIANT"] = variant;
 	
 	var totalTime:int = ((frostwyrmIncubationDays() * 24 * 60) + 15);
 	
@@ -2262,20 +2287,18 @@ public function frostwyrmHolyCrapYoureStillWaiting():void
 	author("B");
 	
 	var nEggs:int = (flags["FROSTWYRM_EGGS"] == undefined ? 0 : flags["FROSTWYRM_EGGS"]);
+	var variant:int = (flags["FROSTWYRM_HATCH_VARIANT"] == undefined ? -1 : flags["FROSTWYRM_HATCH_VARIANT"]);
 	
 	output("For the most part, the next four months were more of the same: you and [frostwyrm.name] kept each other company within her lair while you patiently waited for your kip" + (nEggs == 1 ? "" : "s") + " to hatch.");
-	if (nEggs >= 2) output(" While you’re glad to finally be done with the extra weight, in some primordial part of your brain, you not only miss the feeling of the pregnancy but you also want to get right back to it. You have a lot of propagating to do for [frostwyrm.name]!")
-	output("\n\nBy month five, you notice something rather unusual about the egg" + (nEggs == 1 ? "" : "s") + ": ");
-	if (nEggs == 1) output("it seems to be growing");
-	else output("they seem to be growing.");
-	output(" You had to explain to [frostwyrm.name] that every other egg in the universe is hatched when the creature inside it grows too big for it; you’ve never heard of an egg growing <i>with</i> the creature inside it. She assures you that it’s perfectly normal and healthy for her kind, and you’d trust her judgment over your own, so, that’s that.");
-	if (nEggs >= 2) output("\n\nThe sounds you heard from the kip remained, even when the egg was no longer inside you; whenever you asked to hear them, they seemed to get louder and, in a way, articulate: sounds would repeat and the melody would be punctuated by a dip in pitch, similar to how sentences are formed.");
+	if (variant == 2 || variant == 3) output(" While you’re glad to finally be done with the extra weight, in some primordial part of your brain, you not only miss the feeling of the pregnancy but you also want to get right back to it. You have a lot of propagating to do for [frostwyrm.name]!")
+	output("\n\nBy month five, you notice something rather unusual about the egg" + (nEggs == 1 ? ": it seems" : "s: they seem") + " to be growing. You had to explain to [frostwyrm.name] that every other egg in the universe is hatched when the creature inside it grows too big for it; you’ve never heard of an egg growing <i>with</i> the creature inside it. She assures you that it’s perfectly normal and healthy for her kind, and you’d trust her judgment over your own, so, that’s that.");
+	if (variant == 2 || variant == 3) output("\n\nThe sounds you heard from the kip remained, even when the egg was no longer inside you; whenever you asked to hear them, they seemed to get louder and, in a way, articulate: sounds would repeat and the melody would be punctuated by a dip in pitch, similar to how sentences are formed.");
 	output("\n\nHalfway through month six");
-	if (nEggs == 1) output(", you begin to hear odd sounds at all times bellow themselves into your mind; [frostwyrm.name] tells you that it’s your kip, and that it’s finally made a link to its Qal, establishing you as its parent and attempting to communicate with you");
+	if (variant == 2 || variant == 3) output(", you begin to hear odd sounds at all times bellow themselves into your mind; [frostwyrm.name] tells you that it’s your kip, and that it’s finally made a link to its Qal, establishing you as its parent and attempting to communicate with you");
 	else output(", you began to understand very basic ‘words’ from the growing kip" + (nEggs == 1 ? "" : "s") + "; one sound would mean ‘Qim,’ and another would mean ‘warm,’ and you’d know the kip would be asking for [frostwyrm.name] to warm it up.");
-	if (nEggs == 3) output(" Once the kip that grew within [frostwyrm.name] made its psionic connection with you, you were finally included in the conversations between the two siblings.");
+	if (variant == 1 || variant == 3) output(" Once the kip that grew within [frostwyrm.name] made its psionic connection with you, you were finally included in the conversations between the two siblings.");
 	output("\n\nBy the end of month seven, ");
-	if (nEggs == 3) output("the kips within were capable of making proper sentences, and by the start of month eight, you were having short conversations together. Their eggs were growing at a rather alarming rate: ")
+	if (nEggs != 1) output("the kips within were capable of making proper sentences, and by the start of month eight, you were having short conversations together. Their eggs were growing at a rather alarming rate: ")
 	else output("the kip within was capable of making proper sentences, and by the start of month eight, you were having short conversations together. The egg was growing at a rather alarming rate: ");
 	if (pc.tallness > 84)
 	{
@@ -2308,6 +2331,7 @@ public function frostwyrmHolyCrapYoureStillWaiting():void
 	//addButton(1, "Leave", frostwyrmSayonara, undefined);
 	
 	frostwyrmHatchEggs();
+	flags["FROSTWYRM_HATCH_VARIANT"] = undefined;
 }
 public function frostwyrmWowThisReallyTakesAWhile():void
 {
@@ -2354,9 +2378,11 @@ public function frostwyrmIncubateEggs():void
 	output("\n\nAccording to [frostwyrm.name], it will take approximately four months for the egg" + (nEggs == 1 ? "" : "s") + " to hatch once " + (nEggs == 1 ? "it bonds" : "they bond") + " with you and her. If you choose to incubate now, <b>you will remain here in the lair for the whole four months.</b>");
 	output("\n\nWill you opt to stay and incubate now, or will you save it for later, when you have four months’ worth of free time?");
 	
+	var variant:int = -1;
+	
 	clearMenu();
 	if(pc.hasPregnancy()) addDisabledButton(0, "4 Months...", "Progress 4 Months...", "You cannot do this while currently pregnant!");
-	else addButton(0, "4 Months...", frostwyrmHolyCrapYoureStillWaiting, undefined);
+	else addButton(0, "4 Months...", frostwyrmHolyCrapYoureStillWaiting);
 	addButton(1, "Nevermind", frostwyrmMainMenu, undefined);
 }
 
@@ -3048,8 +3074,8 @@ public function frostwyrmlingBathing():void
 	output(".");
 	output("\n\n<i>Look at you, my Qal,</i> she says to you through your psionic connection. You gasp in pleasure: you have ");
 	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output("at least ");
-	output("three tongues all cleaning various parts of your body, and now your daughter is commanding your body through dexterous, even inspiring, manipulations of her body. <i>Reduced to a quibbling puddle of happy pleasure over a little bath. Are all [pc.race]s this easy to pleasure?</i>");
-	output("\n\nYou don’t answer, knowing that she isn’t looking for one. She pinches your [pc.nipple] with her lips and pulls back, stretching your breast as she pulls back, and watches it snap into place when she opens her mouth with a quiet ‘pop.’ <i>But then again, a bath isn’t quite as personal as it is with Frostwyrms, is it?</i> she asks you, her {leg/foot} continuing their motions. <i>Goodness, my Qal, is this making you feel... comfortable?</i> She resumes her bathing your [pc.chest], swiveling her head to get as much flesh as she can in as few passes. <i>Try and hold on, or else you’ll make a bigger mess for us to clean up. And we wouldn’t want that, would we?</i>");
+	output("three tongues all cleaning various parts of your body, and now your daughter is commanding your body through dexterous, even inspiring, manipulations of her body. <i>Reduced to a quibbling puddle of happy pleasure over a little bath. Are all " + plural(pc.race()) + " this easy to pleasure?</i>");
+	output("\n\nYou don’t answer, knowing that she isn’t looking for one. She pinches your [pc.nipple] with her lips and pulls back, stretching your breast as she pulls back, and watches it snap into place when she opens her mouth with a quiet ‘pop.’ <i>But then again, a bath isn’t quite as personal as it is with Frostwyrms, is it?</i> she asks you, her " + (pc.tallness < 60 ? "leg" : "foot") + " continuing their motions. <i>Goodness, my Qal, is this making you feel... comfortable?</i> She resumes her bathing your [pc.chest], swiveling her head to get as much flesh as she can in as few passes. <i>Try and hold on, or else you’ll make a bigger mess for us to clean up. And we wouldn’t want that, would we?</i>");
 	output("\n\nThere isn’t much sensory feedback between you and your daughters: you’re the one receiving all the pleasure. But your lust is obvious through the simultaneous link you have with each of them, and it’s no secret what they’re accomplishing by ‘bathing’ you. Every little kiss your second - oldest makes on your back, tickling your spine as she runs her flat tongue along it; every little pull the other two make on your chest");
 	if(pc.hasGenitals()) {
 		output("; you’re ");
@@ -3067,7 +3093,7 @@ public function frostwyrmlingBathing():void
 	if(pc.hasGenitals()) {
 		output(", painting a bullseye with their saliva, with your");
 		if (pc.hasCock()) output(" [pc.cock]");
-		if (pc.isHerm()) output(" and your ");
+		if (pc.isHerm()) output(" and your");
 		if (pc.hasVagina()) output(" [pc.vagina]");
 		output(" as the target.");
 		output("\n\nAll three of them strike simultaneously:");
@@ -3099,8 +3125,8 @@ public function frostwyrmlingBathing():void
 	output(".");
 	output("\n\n<i>About to cum, my Qal, just from a bath?</i> she asks you, her eyes locked onto yours, her ‘service’ uninterrupted. <i>You should learn to have some self-control. Weak willpower isn’t the sign of a proper Qal! What would [frostwyrm.name] say?</i>");
 	output("\n\nYou meet your daughter’s gaze");
-	if (!pc.isBimbo()) output("and frown. First of all, she is not [frostwyrm.name], not to her; [frostwyrm.name] deserves your daughter’s respect, and a respectful daughter would refer to her as her Qim. And, second of all, she’d find it <i>exhilarating.</i>");
-	else output("and tut-tut yourself, putting a finger on her adorable little nose. [frostwyrm.name] thought it was yummy! She thought it was really fun that other kinds got off just by having a good, uh, bath. But, more importantly, she should refer to her Qim as her Qim, and not as [frostwyrm.name]. You kinda like it when your daughter doesn’t respect you when things get sexy, but [frostwyrm.name] isn’t the same way.");
+	if (!pc.isBimbo()) output(" and frown. First of all, she is not [frostwyrm.name], not to her; [frostwyrm.name] deserves your daughter’s respect, and a respectful daughter would refer to her as her Qim. And, second of all, she’d find it <i>exhilarating.</i>");
+	else output(" and tut-tut yourself, putting a finger on her adorable little nose. [frostwyrm.name] thought it was yummy! She thought it was really fun that other kinds got off just by having a good, uh, bath. But, more importantly, she should refer to her Qim as her Qim, and not as [frostwyrm.name]. You kinda like it when your daughter doesn’t respect you when things get sexy, but [frostwyrm.name] isn’t the same way.");
 	output("\n\n<i>Right, sorry,</i> she laughs. <i>But, if the Qim really thought that it was a good thing – if</i> she <i>got to taste all of you, then it’s only fair I get it, too.</i>");
 	if(pc.hasGenitals()) {
 		output(" She cranes her head forward, ");
@@ -3110,7 +3136,8 @@ public function frostwyrmlingBathing():void
 		output("\n\nFar be it from you to deny your daughter after she asked so nicely. With her blockade removed, you do as she asks: ");
 		if (pc.hasCock()) {
 			output("you grip your oldest daughter by the horns on her head and thrust forward – not that you could go any deeper, seeing as she had already taken you as deep as you had – and you gush your load into her throat");
-			if (pc.balls > 0) output(", your third - oldest flexing her tongue in time with your [pc.balls] to eke out as much delicious cum for her sister as she can]. Your seed comes out in waves, ");
+			if (pc.balls > 0) output(", your third - oldest flexing her tongue in time with your [pc.balls] to eke out as much delicious cum for her sister as she can");
+			output(". Your seed comes out in waves, ");
 			if (pc.cumQ() < 500) output("each wave getting successively weaker but your daughters do everything in their power to prolong it as long as they can, to make sure that their oldest sibling is given the treat she had craved. Every time a new blast rockets up from inside you, you pull back and thrust in, coating her throat with yourself, and she loves every little action you make, swallowing easily and demanding more with her tongue");
 			else output("though, with your quantity, it’s difficult to tell when one ends and another begins. Her cheeks balloon with yourself, her tongue swimming in the deluge of semen that occupies her mouth, but she takes it all easily. When she hits her alien - infused limit, she swallows, but only enough to allow more in. Not a drop is spilt from her sealed lips, and she demands more, she <i>challenges you</i> for more, with each new shot. It isn’t until you’re finally spent that, with an elongated series of gulps, she swallows your every precious drop");
 		}

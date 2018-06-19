@@ -660,7 +660,6 @@ public function thareSexResponse(response:String = "none"):void
 			else
 			{
 				output("\n\nThe opportunity to tease the sensitive, submissive zil some more is far too good to pass up. You slide your hand between his slim, armored thighs and catch hold of his hot prick. His apprehensive murmur turns into a full-throated gasp when you begin to firmly jerk him, at the same time as firmly meeting his cute, upturned ass with your [pc.hips]. Honey oozes and spurts freely from the tip of his cock, bulging and flexing up in your kneading grip. The syrupy smell saturating your nostrils compels you to swiftly change hands, bringing your fingers to your mouth so you can suck them clean.");
-				
 			}
 			// {merge}
 			output("\n\nThe sweet, horny taste of bee-seed");
@@ -713,7 +712,7 @@ public function thareSexResponse(response:String = "none"):void
 			}
 			else
 			{
-				pc.loadInMouth(ppAble);
+				//pc.loadInMouth(ppAble);
 			}
 			pc.orgasm();
 			IncrementFlag("ABLE_BUTTSEXED");

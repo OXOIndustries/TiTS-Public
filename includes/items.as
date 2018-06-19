@@ -2492,6 +2492,7 @@ public function useLoot(lootList:Array):void {
 	
 	if (lootList.length > 0)
 	{
+		output("Loot list looped!\n\n");
 		itemCollect(lootList);
 	}
 }

@@ -4267,7 +4267,7 @@ public function kallyHotdogNFuck():void
 	output("\n\n<i>“Come on, sugar, you can’t even g-give me a minute to calm down here.”</i>");
 
 	if(pc.isBro()) output("\n\nYou grunt as you continue to plow her. Why should <i>you</i> wait for her?");
-	else output("<i>“Nope,”</i> you say playfully as you continue to fuck her.");
+	else output("\n\n<i>“Nope,”</i> you say playfully as you continue to fuck her.");
 	output(" Kally’s eyes start to cross as she barrels into another orgasm, just as her first one was trailing off. Her balls pulse again, eager to expel more of their creamy load, even after shrinking a good amount after her first orgasm. Her pussy squeezes down on your [pc.cock " + x + "], begging for you to cum already.");
 
 	output("\n\nYou push through her resistance, telling her through action that you’ll cum at your own pace. Of course you’re already pretty close, but that’s not the point! You fuck her as hard as possible, feeling your orgasm start to loom over you. If you’re going down then you’re taking her with you! You can already feel her hurtling towards a third climax. Almost there.");

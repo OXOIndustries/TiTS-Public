@@ -3117,7 +3117,7 @@ public function seranigansEvent(sEvent:String = "none"):void
 			if(tfList.length <= 0)
 			{
 				output("It’s just a prank, bro!");
-				showerOptions(0);
+				showerOptions([0, "ship"]);
 				return;
 			}
 			
