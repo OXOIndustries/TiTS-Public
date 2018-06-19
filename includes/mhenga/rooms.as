@@ -50,7 +50,7 @@ public function initMhengaRooms():void
 	rooms["ESBETH'S NORTH PATH"].westExit = "NORTHWEST ESBETH";
 	rooms["ESBETH'S NORTH PATH"].eastExit = "NORTH ESBETH 2";
 	rooms["ESBETH'S NORTH PATH"].moveMinutes = 2;
-	rooms["ESBETH'S NORTH PATH"].runOnEnter = bountyBoardExtra;
+	rooms["ESBETH'S NORTH PATH"].runOnEnter = function():Boolean{bountyBoardExtra(); return zilTwinsEsbethBonus();}
 	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["ESBETH'S NORTH PATH"].addFlag(GLOBAL.PUBLIC);
 
@@ -63,8 +63,10 @@ public function initMhengaRooms():void
 	rooms["NORTHWEST ESBETH"].southExit = "WEST ESBETH 1";
 	rooms["NORTHWEST ESBETH"].eastExit = "ESBETH'S NORTH PATH";
 	rooms["NORTHWEST ESBETH"].moveMinutes = 2;
+	rooms["NORTHWEST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.PUBLIC);
+	rooms["NORTHWEST ESBETH"].runOnEnter = shukuchiMhengaBonus;
 
 	//5. Esbeth’s Western Path
 	rooms["WEST ESBETH 1"] = new RoomClass(this);
@@ -76,7 +78,7 @@ public function initMhengaRooms():void
 	rooms["WEST ESBETH 1"].northExit = "NORTHWEST ESBETH";
 	rooms["WEST ESBETH 1"].eastExit = "CRAZY CARLS";
 	rooms["WEST ESBETH 1"].moveMinutes = 2;
-	rooms["WEST ESBETH 1"].runOnEnter = function():void{output("The western side of Esbeth is barely more than the tamped down path you now tread. Self-assembling, pre-fabricated houses have been set up here and there by the settlers brave enough to try their luck on a new, untested planet. Thus far, Mhen’ga has not sent its jungles in to claim the small town, but that doesn’t mean it won’t. The path bends farther to the north and continues straight on to the south. " + (myrOnMhenga() ? "\n\nThe western building has been opened up, and a pair of gold myr women are standing outside with rifles slung over their shoulders. A sign above the door in clear, crisp English says “Embassy of the Gilden Republics, Mhen’ga.”" : "The western building is closed and locked, for now.") + "\n\nTo the east you see one of the many pre-fabricated buildings in the colony, somewhat out of place among the shacks and more nondescript buildings. A pair of industrial stacks spewing out harmless wafts of steam denotes use, while the colorful and somewhat stretched sign up front states their purpose: “Crazy Carl’s Crude Cylinder Collection Cache”. The crude neon outline of a handgun helps you fill in the blanks.");};
+	rooms["WEST ESBETH 1"].runOnEnter = westMyrRebelsBonus;
 	rooms["WEST ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["WEST ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
@@ -89,6 +91,7 @@ public function initMhengaRooms():void
 	rooms["WEST ESBETH 2"].northExit = "WEST ESBETH 1";
 	rooms["WEST ESBETH 2"].southExit = "SOUTHWEST ESBETH";
 	rooms["WEST ESBETH 2"].moveMinutes = 2;
+	rooms["WEST ESBETH 2"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["WEST ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 	rooms["WEST ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 
@@ -101,6 +104,7 @@ public function initMhengaRooms():void
 	rooms["SOUTHWEST ESBETH"].northExit = "WEST ESBETH 2";
 	rooms["SOUTHWEST ESBETH"].eastExit = "SOUTH ESBETH 1";
 	rooms["SOUTHWEST ESBETH"].moveMinutes = 2;
+	rooms["SOUTHWEST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTHWEST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -114,6 +118,7 @@ public function initMhengaRooms():void
 	rooms["SOUTH ESBETH 1"].eastExit = "SOUTH ESBETH 2";
 	rooms["SOUTH ESBETH 1"].southExit = "SCRAPYARD MAINTENANCE";
 	rooms["SOUTH ESBETH 1"].moveMinutes = 2;
+	rooms["SOUTH ESBETH 1"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTH ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
@@ -127,6 +132,7 @@ public function initMhengaRooms():void
 	rooms["SOUTH ESBETH 2"].eastExit = "SOUTH ESBETH 3";
 	rooms["SOUTH ESBETH 2"].northExit = "KELLY'S OFFICE";
 	rooms["SOUTH ESBETH 2"].moveMinutes = 2;
+	rooms["SOUTH ESBETH 2"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 	rooms["SOUTH ESBETH 2"].runOnEnter = xenogenOutsideBlurb;
@@ -142,6 +148,7 @@ public function initMhengaRooms():void
 	rooms["SOUTH ESBETH 3"].northExit = "PENNY'S OFFICE";
 	rooms["SOUTH ESBETH 3"].southExit = "ESBETH TRAVEL AUTHORITY";
 	rooms["SOUTH ESBETH 3"].moveMinutes = 2;
+	rooms["SOUTH ESBETH 3"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTH ESBETH 3"].addFlag(GLOBAL.PUBLIC);
 
@@ -166,6 +173,7 @@ public function initMhengaRooms():void
 	rooms["SOUTHEAST ESBETH"].northExit = "EAST ESBETH";
 	rooms["SOUTHEAST ESBETH"].westExit = "SOUTH ESBETH 3";
 	rooms["SOUTHEAST ESBETH"].moveMinutes = 2;
+	rooms["SOUTHEAST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["SOUTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["SOUTHEAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -179,6 +187,7 @@ public function initMhengaRooms():void
 	rooms["EAST ESBETH"].eastExit = "ESBETH MEDICAL OFFICE";
 	rooms["EAST ESBETH"].northExit = "EAST ESBETH ENTRANCE";
 	rooms["EAST ESBETH"].moveMinutes = 2;
+	rooms["EAST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["EAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["EAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -204,7 +213,7 @@ public function initMhengaRooms():void
 	rooms["NORTHEAST ESBETH"].westExit = "NORTH ESBETH 1";
 	rooms["NORTHEAST ESBETH"].southExit = "EAST ESBETH ENTRANCE";
 	rooms["NORTHEAST ESBETH"].moveMinutes = 2;
-	rooms["NORTHEAST ESBETH"].runOnEnter = azraMhengaHook;
+	rooms["NORTHEAST ESBETH"].runOnEnter = function():Boolean{azraMhengaHook(); return zilTwinsEsbethBonus();};
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.PUBLIC);
 
@@ -217,6 +226,7 @@ public function initMhengaRooms():void
 	rooms["NORTH ESBETH 1"].westExit = "NORTH ESBETH 2";
 	rooms["NORTH ESBETH 1"].eastExit = "NORTHEAST ESBETH";
 	rooms["NORTH ESBETH 1"].moveMinutes = 2;
+	rooms["NORTH ESBETH 1"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["NORTH ESBETH 1"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTH ESBETH 1"].addFlag(GLOBAL.PUBLIC);
 
@@ -230,6 +240,7 @@ public function initMhengaRooms():void
 	rooms["NORTH ESBETH 2"].eastExit = "NORTH ESBETH 1";
 	rooms["NORTH ESBETH 2"].northExit = "BURT'S MAIN HALL";
 	rooms["NORTH ESBETH 2"].moveMinutes = 2;
+	rooms["NORTH ESBETH 2"].runOnEnter = zilTwinsEsbethBonus;
 	rooms["NORTH ESBETH 2"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTH ESBETH 2"].addFlag(GLOBAL.PUBLIC);
 
@@ -1183,6 +1194,7 @@ public function initMhengaRooms():void
 	rooms["SCRAPYARD MAINTENANCE"].northExit = "SOUTH ESBETH 1";
 	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.INDOOR);
 	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.COMMERCE);
+	rooms["SCRAPYARD MAINTENANCE"].addFlag(GLOBAL.PUBLIC);
 
 	//89. Penny's Office. See Penny.as for more info.
 	rooms["PENNY'S OFFICE"] = new RoomClass(this);
@@ -1193,6 +1205,7 @@ public function initMhengaRooms():void
 	rooms["PENNY'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["PENNY'S OFFICE"].southExit = "SOUTH ESBETH 3";
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.PUBLIC);
 	rooms["PENNY'S OFFICE"].addFlag(GLOBAL.NPC);
 
 	//90. Kelly's Office - dat secretary
@@ -1205,6 +1218,7 @@ public function initMhengaRooms():void
 	rooms["KELLY'S OFFICE"].southExit = "SOUTH ESBETH 2";
 	rooms["KELLY'S OFFICE"].runOnEnter = kellysOfficeBonusFunction;
 	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.PUBLIC);
 	rooms["KELLY'S OFFICE"].addFlag(GLOBAL.NPC);
 
 	//91. Julian's Office
@@ -1216,6 +1230,7 @@ public function initMhengaRooms():void
 	rooms["JULIAN'S OFFICE"].system = "SYSTEM: ARA ARA";
 	rooms["JULIAN'S OFFICE"].eastExit = "KELLY'S OFFICE";
 	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.INDOOR);
+	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.PUBLIC);
 	rooms["JULIAN'S OFFICE"].addFlag(GLOBAL.NPC);
 	
 	//92. Crazy Carls
@@ -1228,6 +1243,7 @@ public function initMhengaRooms():void
 	rooms["CRAZY CARLS"].westExit = "WEST ESBETH 1";
 	rooms["CRAZY CARLS"].addFlag(GLOBAL.INDOOR);
 	rooms["CRAZY CARLS"].addFlag(GLOBAL.COMMERCE);
+	rooms["CRAZY CARLS"].addFlag(GLOBAL.PUBLIC);
 
 	//93. Medical Office
 	rooms["ESBETH MEDICAL OFFICE"] = new RoomClass(this);
@@ -1239,6 +1255,7 @@ public function initMhengaRooms():void
 	rooms["ESBETH MEDICAL OFFICE"].westExit = "EAST ESBETH";
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.INDOOR);
 	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.MEDICAL);
+	rooms["ESBETH MEDICAL OFFICE"].addFlag(GLOBAL.PUBLIC);
 	
 	// Kelly's House
 	rooms["KELLY'S HOUSE"] = new RoomClass(this);
@@ -1248,6 +1265,7 @@ public function initMhengaRooms():void
 	rooms["KELLY'S HOUSE"].system = "SYSTEM: ARA ARA";
 	rooms["KELLY'S HOUSE"].southExit = "NORTH ESBETH 1";
 	rooms["KELLY'S HOUSE"].addFlag(GLOBAL.INDOOR);
+	rooms["KELLY'S HOUSE"].addFlag(GLOBAL.PRIVATE);
 	rooms["KELLY'S HOUSE"].addFlag(GLOBAL.NPC);
 
 	// Thare Plantation
@@ -1287,6 +1305,8 @@ public function initMhengaRooms():void
 	//Plantation Quest Additions
 	rooms["1. UPPER BROOK"] = new RoomClass(this);
 	rooms["1. UPPER BROOK"].roomName = "UPPER\nBROOK";
+	rooms["1. UPPER BROOK"].planet = "PLANET: MHEN'GA";
+	rooms["1. UPPER BROOK"].system = "SYSTEM: ARA ARA";
 	rooms["1. UPPER BROOK"].description = "";
 	rooms["1. UPPER BROOK"].northExit = "2. WATERFALL POOL";
 	rooms["1. UPPER BROOK"].southExit = "BABBLING BROOK 1"
@@ -1297,6 +1317,8 @@ public function initMhengaRooms():void
 
 	rooms["2. WATERFALL POOL"] = new RoomClass(this);
 	rooms["2. WATERFALL POOL"].roomName = "WATERFALL\nPOOL";
+	rooms["2. WATERFALL POOL"].planet = "PLANET: MHEN'GA";
+	rooms["2. WATERFALL POOL"].system = "SYSTEM: ARA ARA";
 	rooms["2. WATERFALL POOL"].description = "";
 	rooms["2. WATERFALL POOL"].westExit = "3. FOOT OF THE CLIFF";
 	rooms["2. WATERFALL POOL"].southExit = "1. UPPER BROOK"
@@ -1307,6 +1329,8 @@ public function initMhengaRooms():void
 
 	rooms["3. FOOT OF THE CLIFF"] = new RoomClass(this);
 	rooms["3. FOOT OF THE CLIFF"].roomName = "FOOT OF\nTHE CLIFF";
+	rooms["3. FOOT OF THE CLIFF"].planet = "PLANET: MHEN'GA";
+	rooms["3. FOOT OF THE CLIFF"].system = "SYSTEM: ARA ARA";
 	rooms["3. FOOT OF THE CLIFF"].description = "";
 	rooms["3. FOOT OF THE CLIFF"].northExit = "4. RED ROCK OUTCROP";
 	rooms["3. FOOT OF THE CLIFF"].eastExit = "2. WATERFALL POOL"
@@ -1318,6 +1342,8 @@ public function initMhengaRooms():void
 
 	rooms["4. RED ROCK OUTCROP"] = new RoomClass(this);
 	rooms["4. RED ROCK OUTCROP"].roomName = "RED ROCK\nOUTCROP";
+	rooms["4. RED ROCK OUTCROP"].planet = "PLANET: MHEN'GA";
+	rooms["4. RED ROCK OUTCROP"].system = "SYSTEM: ARA ARA";
 	rooms["4. RED ROCK OUTCROP"].description = "You wipe your brow. You are clutching onto a bulging outcrop of red stone, maybe 30 feet off the ground. You can find handholds and are reasonably stable, but also frighteningly exposed. Behind you, you can hear the shift and hiss of leaves in the breeze; you are almost beyond the reach of those towering ironwoods, but not quite. The cascade tumbles down nearby, the flume of water no longer obscured by the white veil it throws up at the bottom. It’s impossible to make out anything above, but it looks like you can keep climbing upwards if you have the strength, or inch your way back down to the scrub steps.";
 	rooms["4. RED ROCK OUTCROP"].northExit = "5. RED ROCK LEDGE";
 	rooms["4. RED ROCK OUTCROP"].southExit = "3. FOOT OF THE CLIFF";
@@ -1329,6 +1355,8 @@ public function initMhengaRooms():void
 
 	rooms["5. RED ROCK LEDGE"] = new RoomClass(this);
 	rooms["5. RED ROCK LEDGE"].roomName = "RED ROCK\nLEDGE";
+	rooms["5. RED ROCK LEDGE"].planet = "PLANET: MHEN'GA";
+	rooms["5. RED ROCK LEDGE"].system = "SYSTEM: ARA ARA";
 	rooms["5. RED ROCK LEDGE"].description = "The cliff face steps in here like a skewed pile of books, offering a place for you to stand in reasonable comfort as long as you keep a tight grip on the rock. To one side a spindly tree like a long, dark asparagus grows out of the rock, bulbous head waggling in the wind. Remarkable what can cling to life in the most perilous of places. Above you, the rock marches back outwards threateningly; you don’t want to even try and climb onto that. It’s just about possible to descend though. Or you could sidle along the ledge towards the hushing crash of the waterfall, see if you can progress from there.";
 	rooms["5. RED ROCK LEDGE"].eastExit = "6. WATERFALL STAIRWAY";
 	rooms["5. RED ROCK LEDGE"].southExit = "4. RED ROCK OUTCROP";
@@ -1340,6 +1368,8 @@ public function initMhengaRooms():void
 
 	rooms["6. WATERFALL STAIRWAY"] = new RoomClass(this);
 	rooms["6. WATERFALL STAIRWAY"].roomName = "WATERFALL\nSTAIRWAY";
+	rooms["6. WATERFALL STAIRWAY"].planet = "PLANET: MHEN'GA";
+	rooms["6. WATERFALL STAIRWAY"].system = "SYSTEM: ARA ARA";
 	rooms["6. WATERFALL STAIRWAY"].description = "You take deep breaths, clutching onto the dank rock. The waterfall thunders directly overhead, raw elemental power that is hard to comprehend, much less handle being underneath. Here, the cliff face offers a gradual advance upwards - if you’ve got the stomach to climb under the gigantic flume of water, feel its spray on your back and [pc.hair], risk the slippery, mossy, jagged stone under hand and foot. If you can just keep pulling yourself upwards, it looks like there’s a level shoulder ahead - or you can shuffle back towards the dry ledge.";
 	rooms["6. WATERFALL STAIRWAY"].northExit = "7. DRIFTWOOD SHOULDER";
 	rooms["6. WATERFALL STAIRWAY"].westExit = "5. RED ROCK LEDGE";
@@ -1351,6 +1381,8 @@ public function initMhengaRooms():void
 
 	rooms["7. DRIFTWOOD SHOULDER"] = new RoomClass(this);
 	rooms["7. DRIFTWOOD SHOULDER"].roomName = "DRIFTWOOD\nSHOULDER";
+	rooms["7. DRIFTWOOD SHOULDER"].planet = "PLANET: MHEN'GA";
+	rooms["7. DRIFTWOOD SHOULDER"].system = "SYSTEM: ARA ARA";
 	rooms["7. DRIFTWOOD SHOULDER"].description = "";
 	rooms["7. DRIFTWOOD SHOULDER"].northExit = "8. RED ROCK SCREE";
 	rooms["7. DRIFTWOOD SHOULDER"].southExit = "6. WATERFALL STAIRWAY";
@@ -1362,6 +1394,8 @@ public function initMhengaRooms():void
 
 	rooms["8. RED ROCK SCREE"] = new RoomClass(this);
 	rooms["8. RED ROCK SCREE"].roomName = "RED\nROCK SCREE";
+	rooms["8. RED ROCK SCREE"].planet = "PLANET: MHEN'GA";
+	rooms["8. RED ROCK SCREE"].system = "SYSTEM: ARA ARA";
 	rooms["8. RED ROCK SCREE"].description = "You are on a higgledy-piggledy run of loose sunburned rock, above the lenient shoulder. You really are a considerable distance up now - the sound of the waterfall is running liquid and a distant crash far below - but at least it’s no longer a straight drop down. The loose, crumbling rock means you have to be careful as you climb. To the east you can see a crevice in the gray rock face 45 degrees to the one you are currently on. A tough, fibrous rope bridge strung across the cliff wall and the smoothness wrought by many feet around its entrance suggest it’s frequently visited by the zil. Meanwhile you think you can just about see the tops of some wax structures to the west, beyond the head of the falls.";
 	rooms["8. RED ROCK SCREE"].eastExit = "9. GREY ROCK SHRINE";
 	rooms["8. RED ROCK SCREE"].westExit = "10. TOP OF THE CLIFF";
@@ -1374,6 +1408,8 @@ public function initMhengaRooms():void
 
 	rooms["9. GREY ROCK SHRINE"] = new RoomClass(this);
 	rooms["9. GREY ROCK SHRINE"].roomName = "GRAY\nROCK SHRINE";
+	rooms["9. GREY ROCK SHRINE"].planet = "PLANET: MHEN'GA";
+	rooms["9. GREY ROCK SHRINE"].system = "SYSTEM: ARA ARA";
 	rooms["9. GREY ROCK SHRINE"].description = "";
 	rooms["9. GREY ROCK SHRINE"].westExit = "8. RED ROCK SCREE";
 	rooms["9. GREY ROCK SHRINE"].addFlag(GLOBAL.OUTDOOR);
@@ -1382,6 +1418,8 @@ public function initMhengaRooms():void
 
 	rooms["10. TOP OF THE CLIFF"] = new RoomClass(this);
 	rooms["10. TOP OF THE CLIFF"].roomName = "TOP OF\nTHE CLIFF";
+	rooms["10. TOP OF THE CLIFF"].planet = "PLANET: MHEN'GA";
+	rooms["10. TOP OF THE CLIFF"].system = "SYSTEM: ARA ARA";
 	rooms["10. TOP OF THE CLIFF"].description = "";
 	rooms["10. TOP OF THE CLIFF"].eastExit = "8. RED ROCK SCREE";
 	rooms["10. TOP OF THE CLIFF"].northExit = "11. Zil Village Outskirts";
@@ -1393,6 +1431,8 @@ public function initMhengaRooms():void
 
 	rooms["11. Zil Village Outskirts"] = new RoomClass(this);
 	rooms["11. Zil Village Outskirts"].roomName = "VILLAGE\nOUTSKIRTS";
+	rooms["11. Zil Village Outskirts"].planet = "PLANET: MHEN'GA";
+	rooms["11. Zil Village Outskirts"].system = "SYSTEM: ARA ARA";
 	rooms["11. Zil Village Outskirts"].description = "";
 	rooms["11. Zil Village Outskirts"].southExit = "10. TOP OF THE CLIFF";
 	rooms["11. Zil Village Outskirts"].northExit = "12. Zil Village Winnar";
@@ -1402,6 +1442,8 @@ public function initMhengaRooms():void
 
 	rooms["12. Zil Village Winnar"] = new RoomClass(this);
 	rooms["12. Zil Village Winnar"].roomName = "CHIEFTAN’S\nCIRCLE";
+	rooms["12. Zil Village Winnar"].planet = "PLANET: MHEN'GA";
+	rooms["12. Zil Village Winnar"].system = "SYSTEM: ARA ARA";
 	rooms["12. Zil Village Winnar"].description = "";
 	rooms["12. Zil Village Winnar"].southExit = "11. Zil Village Outskirts";
 	rooms["12. Zil Village Winnar"].addFlag(GLOBAL.OUTDOOR);
@@ -1729,6 +1771,7 @@ public function initMhengaRooms():void
 	rooms["GOLD MYR EMBASSY"].westExit = "GOLD MYR CHAMBER";
 	rooms["GOLD MYR EMBASSY"].eastExit = "WEST ESBETH 1";
 	rooms["GOLD MYR EMBASSY"].addFlag(GLOBAL.INDOOR);
+	rooms["GOLD MYR EMBASSY"].addFlag(GLOBAL.PUBLIC);
 	//rooms["GOLD MYR EMBASSY"].addFlag(GLOBAL.COMMERCE);
 	
 	rooms["GOLD MYR CHAMBER"] = new RoomClass(this);
@@ -1739,6 +1782,7 @@ public function initMhengaRooms():void
 	rooms["GOLD MYR CHAMBER"].system = "SYSTEM: ARA ARA";
 	rooms["GOLD MYR CHAMBER"].eastExit = "GOLD MYR EMBASSY";
 	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.INDOOR);
+	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.PUBLIC);
 	rooms["GOLD MYR CHAMBER"].addFlag(GLOBAL.NPC);
 	
 	//I should be banned for this but I'm not combing through all these rooms 1 by 1 and 
@@ -1756,11 +1800,11 @@ public function initMhengaRooms():void
 				function():void{
 					if(myrOnMhenga() && rand(2) == 0)
 					{
-						switch(rand(3))
+						switch(rand(4))
 						{
-							case 0:	output("\n\nA pair of human colonists are standing in an alleyway nearby, haggling with a busty gold myr woman who’s got a box of wine bottles tucked under one arm. A sign in crude English indicates she’s selling Honey Wine... or honey, straight from the tap. " + (pennyIsCumSlut() ? "A service which a third colonist is currently enjoying, nestled into her tits with a pair of her arms wrapped around him." : "") + ""); break;
-							case 1:	output("\n\nSeveral gold myr with toolbelts around their supple waists are going about some minor repairs to the electrical wire connecting the various buildings of Esbeth, chatting and giggling gaily amongst themselves while their four arms busily make adjustments and repairs to the grid."); break;
-							case 2:	output("\n\nA gold myr with the bottom half of a naleen is slithering around, burdened by bags of shopping from one of the Esbeth stores. Looks like somebody’s gotten in the naleen nip... but she’s making the most of it, and the other colonists sure seem to like the view of plump, naked myr butt protruding behind her."); break;
+							case 1:	output("\n\nA pair of human colonists are standing in an alleyway nearby, haggling with a busty gold myr woman who’s got a box of wine bottles tucked under one arm. A sign in crude English indicates she’s selling Honey Wine... or honey, straight from the tap. " + (pennyIsCumSlut() ? "A service which a third colonist is currently enjoying, nestled into her tits with a pair of her arms wrapped around him." : "") + ""); break;
+							case 2:	output("\n\nSeveral gold myr with toolbelts around their supple waists are going about some minor repairs to the electrical wire connecting the various buildings of Esbeth, chatting and giggling gaily amongst themselves while their four arms busily make adjustments and repairs to the grid."); break;
+							case 3:	output("\n\nA gold myr with the bottom half of a naleen is slithering around, burdened by bags of shopping from one of the Esbeth stores. Looks like somebody’s gotten in the naleen nip... but she’s making the most of it, and the other colonists sure seem to like the view of plump, naked myr butt protruding behind her."); break;
 						}
 					}
 				};

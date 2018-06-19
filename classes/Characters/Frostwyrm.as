@@ -6,6 +6,9 @@ package classes.Characters
 	import classes.Items.Melee.Fists;
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.TITSSaveEdit.Data.CoCVaginaClass;
+	import classes.VaginaClass;
+	import classes.CockClass;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -22,9 +25,9 @@ package classes.Characters
 		//constructor
 		public function Frostwyrm()
 		{
-			this._latestVersion = 1;
+			this._latestVersion = 2;
 			this.version = _latestVersion;
-			this._neverSerialize = true;
+			this._neverSerialize = false;
 			
 			//Bunch of cosmetic items are placeholders
 			this.short = "Frostwyrm";
@@ -35,6 +38,8 @@ package classes.Characters
 			this.customBlock = "The attack just glances off the Wyrm’s scales.";
 			this.isPlural = false;
 			isLustImmune = true;
+			
+			
 			
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.psionic.resistanceValue = 45.0;
@@ -139,6 +144,48 @@ package classes.Characters
 			//20 - inconceivably large/big/huge etc
 			this.buttRatingRaw = 20;
 			
+			this.vaginas = new Array();
+			this.createVagina();
+			this.shiftVagina(0, GLOBAL.TYPE_FROSTWYRM);
+			this.vaginas[0].hymen = false;
+			this.vaginas[0].wetnessRaw = 5;
+			this.vaginas[0].loosenessRaw = 3;
+			this.vaginas[0].vaginaColor = "blue";
+			
+			this.cocks = new Array();
+			this.createCock();
+			this.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
+			this.cocks[0].cLengthRaw = 36;
+			this.cocks[0].cThicknessRatioRaw = 5.5;
+			
+			this.balls = 2;
+			this.cumMultiplierRaw = 3500;
+			this.cumQualityRaw = 1;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
+			this.ballSizeRaw = 100;
+			this.ballFullness = 100;
+			this.ballEfficiency = 200;
+			this.refractoryRate = 50;
+			this.minutesSinceCum = 5256000;
+			this.timesCum = 0;
+			
+			this.createPerk("Fixed CumQ",450000,0,0,0);
+			
+			this.cockVirgin = true;
+			this.analVirgin = true;
+			this.vaginalVirgin = true;
+			
+			this.elasticity = 1;
+			this.fertilityRaw = 10;
+			this.clitLength = 3;
+			this.pregnancyMultiplierRaw = 1;
+			
+			this.ass.wetnessRaw = 0;
+			this.ass.bonusCapacity += 500
+			this.ass.loosenessRaw = 1;
+			
+			impregnationType = "FrostwyrmPregnancy";
+			
 			createStatusEffect("Disarm Immune");
 			createStatusEffect("Stun Immune");
 			
@@ -147,8 +194,14 @@ package classes.Characters
 			
 			sexualPreferences.setRandomPrefs(4 + rand(3), 2);
 			//kGAMECLASS.uvetoSSTDChance(this);
-
+			
+			
 			this._isLoading = false;
+		}
+		
+		public function UpgradeVersion1(dataObject:Object):void
+		{
+			//dataObject._neverSerialize = false;
 		}
 		
 		override public function get bustDisplay():String
@@ -167,7 +220,7 @@ package classes.Characters
 			{	
 				enemyAttacks.push( { v: wyrmPsiScream, w: 10 } );
 			}
-			if (!target.hasStatusEffect("Blinded") && !hasStatusEffect("Buffet Cooldown") )
+			if (!target.hasStatusEffect("Blinded") && !hasStatusEffect("Buffet Cooldown"))
 			{
 				enemyAttacks.push( { v: wyrmWingBuffet, w: 10 } );
 			}
@@ -182,8 +235,13 @@ package classes.Characters
 			
 			weightedRand(enemyAttacks)(target);
 			
-			wyrmBarrier()
-		}	
+			wyrmBarrier();
+		}
+		
+		override public function isPregnant(x:int = 0):Boolean
+		{
+			return (kGAMECLASS.flags["FROSTWYRM_INCUBATION_TIMER"] != undefined);
+		}
 		
 		private function wyrmPsiScream(target:Creature):void
 		{
@@ -242,8 +300,8 @@ package classes.Characters
 			{
 				output("\nPsychic energy assaults your mind, filling your brain with confused and swirling thoughts, and your vision becomes incredibly hazy. It’s hard to focus on the fight, and <b>your reflexes and aim both seem lowered</b> by the psychic miasma.");
 				target.createStatusEffect("Psychic Miasma", 0, 0, 0, 0, false, "Icon_OffDown", "You’ve been struck by a psychic miasma, reducing your effective aim and reflexes by 5", true, 0, 0xFF0000);
-				target.aimMod -= 5;
-				target.reflexesMod -= 5;
+				target.aimMod -= 5
+				target.reflexesMod -= 5
 			}
 			//PC passes willpower save
 			else
@@ -316,7 +374,7 @@ package classes.Characters
 			{
 				output("\n\nThe air around the frostwyrm crackles and shimmers with strange energy. With this protection, the creature can amplify its psionic abilities.");
 				willpowerRaw += 10;
-				createStatusEffect("Psionic Amplifier",0,0,0,0,false,"Icon_OffUp","Undisturbed focus due to the barrier",true);
+				createStatusEffect("Psionic Amplifier",0,0,0,0,false,"Icon_OffUp","Undisturbed focus due to the barrier.",true);
 			}
 			
 			else if (shields() <= 0)

@@ -1506,7 +1506,7 @@ public function pageThreeOfShekkaStuffs():void
 }
 
 //MilkQ over 1000
-public function shekkaMilkDranking():void
+public function shekkaMilkDranking(inBed:Boolean = false):void
 {
 	clearOutput();
 	//By Tanini
@@ -1522,15 +1522,15 @@ public function shekkaMilkDranking():void
 	output(" In an instant, the lively mechanic is on you, her arms wrapped around your waist as her momentum topples your unprepared form onto your [pc.butt]. In your new position on the floor, you can feel her face pressed between your [pc.fullChest]. The sensation of aching fullness in your exposed, swollen teats is too much for you to bear, and you reach down, taking hold of her head in your hands, pressing her face to your bosom. Her feathery red hair tickles your hands.");
 	output("\n\nWith her big, red, reptilian eyes so close, she can’t help but see the budding beads of [pc.milk] on your [pc.nipples]. You moan as you feel her hot breath on them, your arousal rising even more as she pushes down on your [pc.chest] to pull her face away, squishing your heavy chest against you in the process. The resultant streams of [pc.milk] are enough to pull a laugh from the mechanic as you soak her palms in cream. <i>“");
 	if(!shekkaIsCrew()) output("One of those milky rushers, are you?”</i> she asks with a hearty laugh, watching you moan beneath her. <i>“I’ll have to have some extra fun with you for making a lake in my workshop - after I milk you dry that is.”</i>");
-	else output("How great that my captain is a milky rusher!”</i> she cheers with a hearty laugh, watching you moan beneath her. <i>“I’ll have to have some extra fun with you for making a lake in my engine room - after I milk you dry that is.”</i>");
+	else output("How great that my captain is a milky rusher!”</i> she cheers with a hearty laugh, watching you moan beneath her. <i>“I’ll have to have some extra fun with you for making a lake in " + (!inBed ? "my engine room" : "your bedroom") + " - after I milk you dry that is.”</i>");
 	pc.lust(10);
 	processTime(5);
 	clearMenu();
-	addButton(0,"Next",shekkaMilkDrankingPartII);
+	addButton(0,"Next",shekkaMilkDrankingPartII, inBed);
 }
 
 
-public function shekkaMilkDrankingPartII():void
+public function shekkaMilkDrankingPartII(inBed:Boolean = false):void
 {
 	clearOutput();
 	//By Tanini
@@ -1553,7 +1553,10 @@ public function shekkaMilkDrankingPartII():void
 		else
 		{
 			output("she breaks the kiss and looks into your [pc.eyes] you find yourself desperately rolling your [pc.hips] and grinding your needy body up into her pussy");
-			if(pc.hasTail()) output(", your [pc.tails] pressed under your [pc.butt] to the hard workshop floor, wiggling uselessly");
+			if(pc.hasTail()) output(", your [pc.tails] pressed under your [pc.butt] to the");
+			if(!shekkaIsCrew()) output(" hard workshop");
+			else output(" " + (!inBed ? "hard engine room" : "bedroom"));
+			output(" floor, wiggling uselessly");
 			output(".");
 		}
 
@@ -1585,7 +1588,10 @@ public function shekkaMilkDrankingPartII():void
 		{
 			output("she breaks the kiss and looks into your [pc.eyes], you find yourself desperately rolling your [pc.hips] and grinding your needy body up into her pussy");
 			//if(hasTail=true)
-			if(pc.hasTail()) output(", your [pc.tails] pressed under your [pc.butt] to the hard workshop floor, wiggling uselessly");
+			if(pc.hasTail()) output(", your [pc.tails] pressed under your [pc.butt] to the");
+			if(!shekkaIsCrew()) output(" hard workshop");
+			else output(" " + (!inBed ? "hard engine room" : "bedroom"));
+			output(" floor, wiggling uselessly");
 			output(".");
 		}
 
@@ -1629,7 +1635,10 @@ public function shekkaMilkDrankingPartII():void
 		else
 		{
 			output("she breaks the kiss and looks into your [pc.eyes], you find yourself desperately rolling your [pc.hips] and grinding your needy body up into her pussy, ");
-			if(pc.hasTail()) output("your [pc.tail] pressed under your [pc.butt] to the hard workshop floor, wiggling uselessly");
+			if(pc.hasTail()) output("your [pc.tail] pressed under your [pc.butt] to the");
+			if(!shekkaIsCrew()) output(" hard workshop");
+			else output(" " + (!inBed ? "hard engine room" : "bedroom"));
+			output(" floor, wiggling uselessly");
 			output(". You can’t help but run your [pc.cocks] over her clits, getting her nice and wet while you drench ");
 			if(pc.cockTotal() > 1) output("a");
 			else output("your");
@@ -1656,8 +1665,13 @@ public function shekkaMilkDrankingPartII():void
 		output("\n\nIn her absence, your hand slips down to your [pc.cocks], fingers wrapping around your turgid shaft and gliding over its overstimulated length. Yet she’s not gone for long, returning with an odd pair of gloves on her hands. You notice she’s inches deep on her tail vibrator and leaking like a faucet, though you shouldn’t be talking when you’re nearly swimming in your own [pc.milk]. With all the thinking you’ve managed, you don’t notice her straddling you again.");
 		output("\n\nYou do notice when you feel her hands on your [pc.chest], squeezing your [pc.nipples] and pulling, but something’s different. Something is making your entire chest tingle, and looking down at her strange gloves, you get an idea of just what it is. Shekka smiles as she lets the shock gloves pulse a surge into your sensitive [pc.nipples] causing your already painful arousal to intensify, even as you buck your hips and drench your thighs, her pussy, and her deliciously vibrating tail with [pc.cum], silent screams gripping you as you thrash like a bronco, making the smaller woman bounce her big, fertile, Raskvel hips on you.");
 	}
-	output("\n\nThe sexy, red, Raskvel rides you for half an hour, happily getting the pair of you off with her hot pussy and those amazing gloves, completely draining your chest. You two have so much fun she forgets to punish you before she turns her head to see the clock. <i>“Fuck! Got carried away,”</i> she says, moving off of you in a rush and pulling on her almost shrink-wrapped suit after falling over on dismount. <i>“Look, [pc.name], I had a ton of fun, but I really have to get back to work. I’m a busy girl, you know. You get on out of here and I’ll clean this up. We’ll worry about punishing you later.”</i>");
-	output("\n\nShe leaves you with that last comment, flashing a smile and slapping your [pc.butt] before rushing off to presumably pick up some cleaning supplies. You pull on your [pc.gear] and head out, feeling sated and much less chest heavy.");
+	output("\n\nThe sexy, red, Raskvel rides you for half an hour, happily getting the pair of you off with her hot pussy and those amazing gloves, completely draining your chest. You two have so much fun she forgets to punish you before she turns her head to see the clock. <i>“Fuck! Got carried away,”</i> she says, moving off of you in a rush and pulling on her almost shrink-wrapped suit after falling over on dismount.");
+	if(!inBed) output(" <i>“Look, [pc.name], I had a ton of fun, but I really have to get back to work. I’m a busy girl, you know. You get on out of here and I’ll clean this up. We’ll worry about punishing you later.”</i>");
+	output("\n\nShe leaves you with that last comment, flashing a smile and slapping your [pc.butt]");
+	if(!inBed) output(" before rushing off to presumably pick up some cleaning supplies");
+	output(". You pull on your [pc.gear]");
+	if(!inBed) output(" and head out");
+	output(", feeling sated and much less chest heavy.");
 	processTime(31+rand(10));
 	pc.orgasm();
 	pc.milked(pc.milkFullness);
@@ -2787,7 +2801,7 @@ public function cureRewardUseDick():void
 	if(pc.hasTongueFlag(GLOBAL.FLAG_APHRODISIAC_LACED))
 	{
 		output("\n\nIt’s impossible to miss the way her pupils turn to dinner plates, or the way her body-heat seems to double. You press your fingers into her great big ears and give them a grope, earning a high-pitched cry from your now-drugged lover. A practical swamp of sticky-sweet fem-juices splash against your crotch as your aphrodisiac saliva takes hold with a passion.");
-		output("\n\nJudging by the way her pussy spreads open like a flower, and her eyes temporarily roll back, you’re fairly certain a wordless orgasm just rocketed its way through her body. It seems hardly fair–you’ve not gotten <i>yours<i> yet–so you plant a firm spank on the broad expanse of her callipygian bootie, reveling in the way it trembles and quivers afterwards. If anything Shekka only whimpers harder into your mouth, sucking on your tongue as much as she can. It’s impossible to wait any longer however, and you line your [pc.cock " + x + "] with her pliant fuck-hole.");
+		output("\n\nJudging by the way her pussy spreads open like a flower, and her eyes temporarily roll back, you’re fairly certain a wordless orgasm just rocketed its way through her body. It seems hardly fair–you’ve not gotten <i>yours</i> yet–so you plant a firm spank on the broad expanse of her callipygian bootie, reveling in the way it trembles and quivers afterwards. If anything Shekka only whimpers harder into your mouth, sucking on your tongue as much as she can. It’s impossible to wait any longer however, and you line your [pc.cock " + x + "] with her pliant fuck-hole.");
 		pc.cockChange();
 		output("\n\nYour whole being is swallowed and crushed down on with vice-like intensity by a soaking-wet furnace as your ");
 		if(pc.cocks[x].cLength() >= 20) output("prick doesn’t so much as stop. In the same penetration, your [pc.cockHead " + x + "] batters its way past Shekka’s cervix before making its home in the very depths of her womb");

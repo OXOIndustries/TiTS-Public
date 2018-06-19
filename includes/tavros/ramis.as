@@ -705,7 +705,7 @@ public function ramisFuck(response:String = "none"):void
 			
 			processTime(20 + rand(15));
 			// Lust maxed out
-			pc.lust(9000);
+			pc.maxOutLust();
 			
 			break;
 		// Man Fuck

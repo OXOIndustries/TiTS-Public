@@ -1246,7 +1246,7 @@ public function crystalGooSounding(pcVictory:Boolean = false):void
 	
 	if (!megaDong)
 	{
-		output("\n\nThe ganrael inspects the opening, then slides a finger under the palm plate of her left hand and and pries upward; "+enemy.skinTone+" gel drools from the ‘wound’, forming a thin strand with a teardrop tip. It bubbles and clouds, stiffening into a small rod. She takes a knee and brings the newly-made sound to your genitals, and you shudder.");
+		output("\n\nThe ganrael inspects the opening, then slides a finger under the palm plate of her left hand and pries upward; "+enemy.skinTone+" gel drools from the ‘wound’, forming a thin strand with a teardrop tip. It bubbles and clouds, stiffening into a small rod. She takes a knee and brings the newly-made sound to your genitals, and you shudder.");
 	}
 	
 	output("\n\nThe alien begins slowly, testing your urethra with ticklish care. The");

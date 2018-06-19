@@ -15,7 +15,7 @@ public function havePumpkinCarvingScenes():Boolean
 	//If condition is met, set the '<<x'th bit to 1
 	//If any condition is met flags["HWEEN_BIT_FLAGS"] will be > 0
 	//for copy-pasta: (condition ?1<<x:0) + //what it means
-	flags["HWEEN_BIT_FLAGS"] = (zilCallgirlAtNursery()?1<<0:0) + //Zheniya is at Nursery
+	flags["HWEEN_BIT_FLAGS"] = (zilCallgirlAtNursery() && ChildManager.ofUniqueType(ZilCallgirlUniqueChild) ?1<<0:0) + //Zheniya is at Nursery and have Zheniya babies
 					(ChildManager.ofType(GLOBAL.TYPE_MILODAN) ?1<<1:0) + //Have Milodan pups
 					(ChildManager.ofType(GLOBAL.TYPE_CUNTSNAKE) && (ChildManager.numChildrenAtNursery() - ChildManager.numOfType(GLOBAL.TYPE_CUNTSNAKE)) > 0 ?1<<2:0) + //Have cuntsnake babies and other kids
 					(ChildManager.ofUniqueType(SeraUniqueChild) ?1<<3:0) + //Have Sera spawn

@@ -2363,7 +2363,7 @@ public function mimbraneGainSymbiosis(response:String = "intro"):void
 			output("\n\nYour hands automatically float to your most sensitive spots and begin coaxing you into peak arousal... Clearly this is a test of some kind. You could accept the urge to cum and let the Mimbranes do what they will to sate your ever-building lust, or you could try to refuse and bare the consequences of holding it in...");
 			output("\n\nWhat will you choose to do?");
 			
-			pc.lust(9000);
+			pc.maxOutLust();
 			
 			addButton(0, "Accept", mimbraneGainSymbiosis, "yes", "Accept Urges", "Give in to the power of your Mimbranes.");
 			if(pc.WQ() >= 75) addButton(1, "Refuse", mimbraneGainSymbiosis, "nah", "Refuse Urges", "Actively resist the urge to give in.");
@@ -2411,7 +2411,7 @@ public function mimbraneGainSymbiosis(response:String = "intro"):void
 			output("\n\n(<b>Perk Gained: Mimbrane Symbiosis</b> - Due to your body’s adaptation to the Mimbranes attached to you, they will no longer drain your willpower after each feeding.)");
 			pc.createPerk("Mimbrane Symbiosis", 0, 0, 0, 0, "Attached Mimbranes will no longer drain your willpower when feeding.");
 			
-			pc.lust(9000);
+			pc.maxOutLust();
 			
 			addButton(0, "Next", mainGameMenu);
 			if(pc.lust() >= 33)

@@ -146,7 +146,7 @@ public function declineYammiBunsInShip():void
 	clearOutput();
 	yammiFollowerDisplay();
 	output("<i>“Sorry,”</i> you say, trying to let her down gently. You don’t really need a cook, and your adventures are probably going to be too dangerous.");
-	output("\n\n<i>“Oh,”</i> she says, more than a little dejectedly. <i>“I just thought... since you payed off my debts. Well! I guess I’ll have to make my own path, then!”</i> she says, flashing you a green-lipped smile.");
+	output("\n\n<i>“Oh,”</i> she says, more than a little dejectedly. <i>“I just thought... since you paid off my debts. Well! I guess I’ll have to make my own path, then!”</i> she says, flashing you a green-lipped smile.");
 	output("\n\nYou wish her all the best and point her to the spaceport just down the way. She gives you a parting peck on the cheek before spinning on a heel and marching off, to new adventures.");
 	flags["YAMMI_RECRUITED"] = -1;
 	processTime(2);
@@ -479,7 +479,7 @@ public function offerToHelpYammi():void
 		output("\n\n<i>“Trust me, I’m not above indentured service... what was good enough for me is fine for others for a little while! But this one’s different, it’s literally lived its entire life and would otherwise be waiting to die. But as long as I feed her, and keep her muzzled so she doesn’t eat anybody, she’s fine!”</i>");
 		output("\n\nEat anybody?");
 		output("\n\n<i>“Like I said, they’re cannibals. But now that she’s passed her young, she’s totally lethargic. Won’t even try to take the gag out, and even that’s just a safety precaution. She probably wouldn’t hurt anybody even if she could. Really, she’s a sweetie!”</i>");
-		output("\n\nYammi smiles and and pats the pexiga on the hair, careful to move her hand along the way its spines grow. The lizard-creature makes a soft, almost feline purring sound and swishes its tail, but otherwise doesn’t react much.");
+		output("\n\nYammi smiles and pats the pexiga on the hair, careful to move her hand along the way its spines grow. The lizard-creature makes a soft, almost feline purring sound and swishes its tail, but otherwise doesn’t react much.");
 		output("\n\nYammi giggles and hands you the bowl. <i>“I promise, she’s totally harmless! So you here to help or no?”</i>");
 		output("\n\nYou shrug and then nod, inquiring what you have to do. Yammi kneels on her opposite side. The captive reptilian flits her gaze back and forth between you two with barely any interest.");
 		output("\n\n<i>“Okay, hold her tongue from low down. Then firmly rub your thumbs up either side of the top. This will fool her body into thinking food’s coming, and she’ll start to, well, drool more or less.”</i> She instructs you. <i>“I think it’s because they eat each other and they must taste awful, so they make something they like to taste naturally.”</i>");

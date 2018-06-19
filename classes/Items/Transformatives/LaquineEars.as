@@ -721,8 +721,7 @@ package classes.Items.Transformatives
 				//Change instantly, but proc message next time you get blue balls.
 				//FEN NOTE: FUCK THAT. How about Instant Blue Balls.
 				textBuff += ParseText("You’re getting blue balls already? Just how quickly is your body producing [pc.cumNoun]? Did the Laquine Ears do this to you? <b>You’re going to have to get off more frequently to avoid blue balls...</b>");
-				pc.createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
-				pc.ballFullness = 100;
+				pc.applyBlueBalls();
 				pc.refractoryRate = 4;
 			}
 			//(Penor & balls dun growin’) Get hard if not, and dribble pre. (+cum volume, target of 10L cumshot. Higher if bulgy?)

@@ -89,7 +89,7 @@ package classes.Items.Transformatives
 			return false;
 		}
 		
-		public static function tentacoolTF(target:Creature, effect:StorageClass):void
+		public static function tentacoolTF(target:Creature, effect:StorageClass, deltaT:int = 0):void
 		{
 			var isPlus:Boolean = effect.value1 > 1;
 			
@@ -573,7 +573,7 @@ package classes.Items.Transformatives
 			// Effect over:
 			msg += "Finally your skin stops tingling and any remaining tension dissipates. It seems the effects of the Tentatool have worn off."
 			
-			AddLogEvent(msg, "passive");
+			AddLogEvent(msg, "passive", deltaT);
 			
 			return;
 		}

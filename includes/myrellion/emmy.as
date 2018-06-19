@@ -72,8 +72,8 @@ public function emmyCumClearance():void
 {
 	if(currentLocation == "KIHASHOP")
 	{
-		if (emmy.bellyRating() >= 40) AddLogEvent("Emmy excuses herself to the employee room. A few moments of pregnant silence follow, broken by the abrupt sound of gallons of fluid jetting from something... something that isn’t a faucet. Emmy’s voice can be heard moaning deliriously, and wet-sounding slaps echo out to the sales floor. You’re about to go check on her when she staggers out with a smile, her belly significantly deflated.", "passive");
-		else if(emmy.bellyRating() >= 5) AddLogEvent("Emmy excuses herself to the back room, promising to return in a moment. You barely hear the sound of something wet popping out and a muffled, throaty moan. A few moments later, Emmy staggers back out with a tighter belly and a twitching dick.", "passive");
+		if (emmy.bellyRating() >= 40) AddLogEvent("Emmy excuses herself to the employee room. A few moments of pregnant silence follow, broken by the abrupt sound of gallons of fluid jetting from something... something that isn’t a faucet. Emmy’s voice can be heard moaning deliriously, and wet-sounding slaps echo out to the sales floor. You’re about to go check on her when she staggers out with a smile, her belly significantly deflated.", "passive", -1);
+		else if(emmy.bellyRating() >= 5) AddLogEvent("Emmy excuses herself to the back room, promising to return in a moment. You barely hear the sound of something wet popping out and a muffled, throaty moan. A few moments later, Emmy staggers back out with a tighter belly and a twitching dick.", "passive", -1);
 	}
 }
 
@@ -81,7 +81,7 @@ public function emmyTeaseCum():void
 {
 	if(currentLocation == "KIHASHOP")
 	{
-		AddLogEvent("Emmy abruptly moans and collapses over the top of the counter, her hips furtively pumping back and forth. You don’t get a good look at it, but it seems like the constant teasing has finally gotten to her, leaving the poor thing with nothing to do but quietly stuff her own womb with hours of backed-up discharge. By the time she straightens, she’s gained a massively wobbling, cum-pregnant belly.", "passive");
+		AddLogEvent("Emmy abruptly moans and collapses over the top of the counter, her hips furtively pumping back and forth. You don’t get a good look at it, but it seems like the constant teasing has finally gotten to her, leaving the poor thing with nothing to do but quietly stuff her own womb with hours of backed-up discharge. By the time she straightens, she’s gained a massively wobbling, cum-pregnant belly.", "passive", -1);
 	}
 }
 

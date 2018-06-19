@@ -5,11 +5,13 @@
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.*;
+	import classes.Items.Apparel.SavicitePanties;
 	import classes.Items.Armor.*
 	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.*;
 	import classes.Items.Melee.*
 	import classes.Items.Miscellaneous.*;
+	import classes.Items.Piercings.OpalRingPiercing;
 	import classes.Items.Transformatives.*;
 	import classes.Items.Treasures.Savicite;
 	import classes.Ships.IOwner;
@@ -355,6 +357,22 @@
 			if (hasStatusEffect("Oil Cooled"))
 			{
 				r.burning.damageValue += Math.ceil(MathUtil.LinearInterpolate(5, 15, getStatusMinutes("Oil Cooled") / 1440));
+			}
+			
+			//-20% electric, kinetic, +40% lust. maybe rebalance? -lighter
+			if (hasStatusEffect("Tenderized"))
+			{
+				r.kinetic.damageValue -= 20;
+				r.electric.damageValue -= 20;
+				r.drug.damageValue += 40;
+				r.tease.damageValue += 40;
+				r.psionic.damageValue += 40;
+				r.pheromone.damageValue += 40;
+			}
+			//-10% everything (including lust, right now)
+			if (hasStatusEffect("Brutalized"))
+			{
+				r.add(-10);//TEST
 			}
 			
 			return r;
@@ -2479,6 +2497,11 @@
 				case "uterus":
 					buffer = wombDescript(arg2);
 					break;
+				case "wombs":
+				case "uteruses":
+				case "uteri":
+					buffer = wombsDescript();
+					break;
 				case "clit":
 				case "clitoris":
 					buffer = clitDescript(arg2);
@@ -2729,6 +2752,7 @@
 				case "ma'am":
 					buffer = mf("sir", "ma’am");
 					break;
+				case "misterMiss":
 				case "mister":
 				case "miss":
 					buffer = mf("mister", "miss");
@@ -3464,8 +3488,8 @@
 					kGAMECLASS.mimbraneFeed("cock");
 					if(hasStatusEffect("Blue Balls") && balls > 0)
 					{
-						AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive");
-						removeStatusEffect("Blue Balls");
+						AddLogEvent(ParseText("With a satisfied sigh, your [pc.balls] " + (balls <= 1 ? "is" : "are") + " finally relieved of all the pent-up " + (rand(2) == 0 ? "seed" : "[pc.cumNoun]") + "."), "passive", -1);
+						removeStatusEffect("Blue Balls", true);
 					}
 					if(balls > 0)
 					{
@@ -3476,7 +3500,7 @@
 							if(balls == 1) msg += " testicle is back to its";
 							else msg += " balls are back to their";
 							msg += " normal size once more. What an incredible relief!";
-							AddLogEvent(msg, "passive");
+							AddLogEvent(msg, "passive", -1);
 							ballSizeMod -= perkv1("'Nuki Nuts");
 							setPerkValue("'Nuki Nuts",1,0);
 						}
@@ -3490,7 +3514,7 @@
 						if(nyreaEggs == 1) msg += " one faux nyrea egg";
 						else msg += " " + num2Text(nyreaEggs) + " faux nyrea eggs";
 						msg += " from your orgasm!";
-						AddLogEvent(msg, "passive");
+						AddLogEvent(msg, "passive", -1);
 						addStatusValue("Nyrea Eggs", 1, -1 * (nyreaEggs));
 						if(statusEffectv1("Nyrea Eggs") < 0) setStatusValue("Nyrea Eggs", 1, 0);
 					}
@@ -3522,7 +3546,7 @@
 				if(hasStatusEffect("Amazonian Endurance Report Needed")) 
 				{
 					kGAMECLASS.eventQueue.push(kGAMECLASS.amazonEnduranceNotice);
-					removeStatusEffect("Amazonian Endurance Report Needed");
+					removeStatusEffect("Amazonian Endurance Report Needed", true);
 				}
 				StatTracking.track("sex/player/orgasms");
 			}
@@ -3564,6 +3588,10 @@
 				if(hasPerk("Amazonian Endurance")) energyLoss = false;
 				if(energyLoss) energy(-5);
 			}
+			
+			//Sore Tubes debuff
+			if (hasStatusEffect("Sore Tubes")) HP((hasStatusEffect("Blue Balls") ? -20 : -10));
+			
 			minutesSinceCum = 0;
 			timesCum++;
 		}
@@ -4179,7 +4207,7 @@
 		}
 		public function isCumSlut():Boolean
 		{
-			return (isCumCow() || hasPerk("Dumb4Cum"));
+			return (isCumCow() || hasPerk("Dumb4Cum") || isDependant(DEPENDANT_CUM));
 		}
 		public function isFauxCow():Boolean
 		{
@@ -4206,6 +4234,8 @@
 			if(accessory is Allure) muskLevel += 1;
 			if(hasStatusEffect("Roehm Slimed")) muskLevel += Math.min((statusEffectv4("Roehm Slimed") * 3), statusEffectv3("Roehm Slimed"));
 			if(hasStatusEffect("Zil Pheromones")) muskLevel += statusEffectv1("Zil Pheromones");
+			//Modifies by % elsewhere, just setting to 1 for "hasPheromones"
+			if(hasStatusEffect("\"Rutting\"")) muskLevel += 1;
 			
 			return muskLevel;
 		}
@@ -4299,7 +4329,7 @@
 		public static const DEPENDANT_MYRVENOM:uint = 1;
 		public static const DEPENDANT_CUM:uint = 2;
 		public static const DEPENDANT_ANAL:uint = 3;
-		
+	
 		// Is the character dependant on some external drug/chemical/etc
 		public function isDependant(dependantType:uint = DEPENDANT_ANY):Boolean
 		{
@@ -4806,6 +4836,9 @@
 				return currLib;
 			}
 		}
+		public function maxOutLibido(raw:Boolean = false): void {
+			libidoRaw = libidoMax(raw);
+		}
 
 		public function TQ():Number
 		{
@@ -4893,7 +4926,7 @@
 			if (bonus < 35 && hasStatusEffect("Red Myr Venom")) bonus = 35;
 			if (bonus < 20 && hasStatusEffect("Paradise!")) bonus = 20;
 			if (bonus < 20 && hasPerk("Peace of Mind")) bonus = 20;
-			
+			if (bonus < 33 && lowerUndergarment is SavicitePanties) bonus = 33;
 			return (0 + bonus);
 		}
 		public function physiqueMax(raw:Boolean = false): Number {
@@ -5001,27 +5034,27 @@
 			switch(stat)
 			{
 				case "physique":
-					statCurrent = physique();
+					statCurrent = physiqueRaw;
 					statPercent = statCurrent / physiqueMax(true) * 100;
 					break;
 				case "reflexes":
-					statCurrent = reflexes();
+					statCurrent = reflexesRaw;
 					statPercent = statCurrent / reflexesMax(true) * 100;
 					break;
 				case "aim":
-					statCurrent = aim();
+					statCurrent = aimRaw;
 					statPercent = statCurrent / aimMax(true) * 100;
 					break;
 				case "intelligence":
-					statCurrent = intelligence();
+					statCurrent = intelligenceRaw;
 					statPercent = statCurrent / intelligenceMax(true) * 100;
 					break;
 				case "willpower":
-					statCurrent = willpower();
+					statCurrent = willpowerRaw;
 					statPercent = statCurrent / willpowerMax(true) * 100;
 					break;
 				case "libido":
-					statCurrent = libido();
+					statCurrent = libidoRaw;
 					statPercent = statCurrent / libidoMax(true) * 100;
 					break;
 				default:
@@ -5322,12 +5355,13 @@
 				if(this is PlayerCharacter && !kGAMECLASS.chars["WULFE"].isBimbo()) { /* Nada! */ }
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
-			//Sweaty penalties!
+			/*Sweaty penalties!
+			Instead of being hard-coded extra checks, this is being worked into the sexual preferences system.
 			if(hasStatusEffect("Sweaty"))
 			{
 				if(hasFur()) temp -= statusEffectv1("Sweaty") * 5;
 				temp -= statusEffectv1("Sweaty") * 5;
-			}
+			}*/
 			//Apply sexy moves before flat boni effects
 			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
 			if (hasStatusEffect("Mare Musk")) temp += 2;
@@ -5381,11 +5415,11 @@
 		public function critBonus(melee: Boolean = true): Number {
 			var temp: int = 5;
 			if (melee) temp += meleeWeapon.critBonus;
-			if (hasPerk("Linked Emitters"))
+			else temp += rangedWeapon.critBonus;
+			if (hasPerk("Linked Emitters") && shields() > 0)
 			{
 				if ((melee && hasMeleeEnergyWeapon()) || (!melee && hasRangedEnergyWeapon())) temp += 5;
 			} 
-			else temp += rangedWeapon.critBonus;
 			if (hasPerk("Critical Blows")) temp += 10;
 			if (hasStatusEffect("Quaramarta!")) temp += 15;
 			if (hasStatusEffect("Lieve Buff")) temp += 10;
@@ -5425,6 +5459,7 @@
 			temp += statusEffectv2("Deep Freeze");
 			temp += statusEffectv1("Evasion Boost");
 			temp -= statusEffectv1("Evasion Reduction");
+			temp += statusEffectv2("Fade-cloak");
 			//Nonspecific evasion boost status effect enemies can use.
 			//Now reduced by restraints - 25% per point
 			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);
@@ -6905,6 +6940,11 @@
 		public function isBlind(): Boolean {
 			return (hasStatusEffect("Blinded") || hasStatusEffect("Smoke Grenade"));
 		}
+		public function removeBlindness():void
+		{
+			removeStatusEffect("Blinded");
+			removeStatusEffect("Smoke Grenade");
+		}
 		public function legs(forceType: Boolean = false, forceAdjective: Boolean = false): String 
 		{
 			return plural(leg(forceType, forceAdjective, true));
@@ -7772,6 +7812,15 @@
 			newPerk.tooltip = desc;
 			
 			perks.push(newPerk);
+		}
+		public function sortPerks(): void 
+		{
+			if(perks.length <= 0) return;
+			
+			for(var i:int = 0; i < perks.length; i++)
+			{
+				if(perks[i].tooltip == "< REMOVE >") { perks.splice(i, 1); i--; }
+			}
 			
 			perks.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
@@ -7797,10 +7846,19 @@
 			newStatusEffect.iconShade = iconShade;
 			
 			statusEffects.push(newStatusEffect);
-			
-			statusEffects.sortOn("storageName", Array.CASEINSENSITIVE);
 
 			trace("New status applied to " + short + ": " + statusName);
+		}
+		public function sortStatusEffects(): void 
+		{
+			if(statusEffects.length <= 0) return;
+			
+			for(var i:int = 0; i < statusEffects.length; i++)
+			{
+				if(statusEffects[i].tooltip == "< REMOVE >") { statusEffects.splice(i, 1); i--; }
+			}
+			
+			statusEffects.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
 		//Create a keyItem
 		public function createKeyItem(keyName: String, value1:Number = 0, value2:Number = 0, value3:Number = 0, value4:Number = 0, description: String = ""): void {
@@ -7814,14 +7872,23 @@
 			
 			keyItems.push(newKeyItem);
 			
-			keyItems.sortOn("storageName", Array.CASEINSENSITIVE);
-			
 			trace("New key item applied to " + short + ": " + keyName);
+		}
+		public function sortKeyItems(): void 
+		{
+			if(keyItems.length <= 0) return;
+			
+			for(var i:int = 0; i < keyItems.length; i++)
+			{
+				if(keyItems[i].tooltip == "< REMOVE >") { keyItems.splice(i, 1); i--; }
+			}
+			
+			keyItems.sortOn("storageName", Array.CASEINSENSITIVE);
 		}
 		//REMOVING THINGS!
 		//status
-		public function removeStatusEffect(statusName: String): Boolean {
-			return removeStorageSlot(statusEffects, statusName);
+		public function removeStatusEffect(statusName: String, forQueue: Boolean = false): Boolean {
+			return removeStorageSlot(statusEffects, statusName, forQueue);
 		}
 		//statuses
 		public function removeStatuses(): void {
@@ -7913,7 +7980,7 @@
 			}
 		}
 		//General function used by all
-		public function removeStorageSlot(array:Array, storageName:String): Boolean {
+		public function removeStorageSlot(array:Array, storageName:String, forQueue:Boolean = false): Boolean {
 			trace("Removing storage slot", storageName);
 			//Various Errors preventing action
 			if (array.length <= 0) {
@@ -7924,8 +7991,17 @@
 			while (counter > 0) {
 				counter--;
 				if (array[counter].storageName == storageName) {
-					array.splice(counter, 1);
-					trace("Removed \"" + storageName + "\" from a storage array on " + short + ".");
+					if(forQueue)
+					{
+						array[counter].hidden = true;
+						array[counter].tooltip = "< REMOVE >";
+						trace("Queued \"" + storageName + "\" for removal on " + short + ".");
+					}
+					else
+					{
+						array.splice(counter, 1);
+						trace("Removed \"" + storageName + "\" from a storage array on " + short + ".");
+					}
 					//counter = 0;
 					return true;
 				}
@@ -9985,7 +10061,7 @@
 		public function boostLactation(amount:Number = 1):void
 		{
 			//Record this for tracking change
-			var originalMultiplier:* = milkMultiplier;
+			var originalMultiplier:Number = milkMultiplier;
 			//If below 100...
 			if(milkMultiplier < 100) {
 				//If we cross 100 threshold, set to 100 & go for slow grow.
@@ -10003,8 +10079,8 @@
 			//Milk multiplier is over 100... slow gro.
 			if(amount > 0)
 			{
-				if(milkMultiplier < 110) milkMultiplier += amount/5;
-				else if(milkMultiplier < 125) milkMultiplier += amount/10;
+				if(milkMultiplier < 110) milkMultiplier += (amount/5);
+				else if(milkMultiplier < 125) milkMultiplier += (amount/10);
 			}
 			//Queue threshold notes!
 			if(originalMultiplier < 30 && milkMultiplier >= 30) createStatusEffect("Pending Gain MilkMultiplier Note: 30");
@@ -10227,6 +10303,13 @@
 			if (hasPerk("Treated Readiness") && quantity < 200) quantity = 200;
 			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
 			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
+			//OPAL RING BOOOST
+			if(hasOpalRingCock()) 
+			{
+				quantity *= 1.5;
+				quantity += 1000;
+			}
+
 			//You can't cum more than you can possibly have!
 			if(quantity > maxCum()) quantity = maxCum();
 			//Overloaded nuki' nuts will fully drain
@@ -10252,6 +10335,11 @@
 			//Overriiiide for stuff
 			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
 			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
+			if(hasOpalRingCock()) 
+			{
+				quantity *= 2;
+				quantity += 3000;
+			}
 			return quantity;
 		}
 		public function currentCum(): Number {
@@ -10262,6 +10350,7 @@
 			}
 			return Math.round(maxCum() * ballFullness/100);
 		}
+
 		public function cumProduced(minutes: Number, doOut:Boolean = true):void {
 			var cumDelta:Number = 0;
 			var subDelta:Number = 0;
@@ -10322,7 +10411,7 @@
 					}
 				}
 				AddLogEvent(m, "words", minutes);
-				createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
+				applyBlueBalls(true);
 			}
 			
 			ballFullness += ballFullnessBonus + (cumDelta * minutes);
@@ -10336,6 +10425,9 @@
 					var nutChange:Number = (ballFullness/100) - 1;
 					//Get the actual bonus number to add. Keep it to 2 decimals.
 					var nutBonus:Number = Math.round(ballSizeRaw * nutChange * 100)/100;
+					//FEN NOTE: I cut this from reductPro, but leaving the comment in case we change our mind about it.
+					//if (hasStatusEffect("Slow Grow")) nutBonus = Math.round(nutBonus * statusEffectv1("Slow Grow") * 100) / 100;
+					if (hasStatusEffect("No Grow")) nutBonus *= 0;
 					trace("NUT BONUS: " + nutBonus);
 					//Apply nutbonus and track in v1 of the perk
 					ballSizeMod += nutBonus;
@@ -10350,10 +10442,10 @@
 			if (arg > (totalVaginas() - 1)) return false;
 			if (arg < 0)
 			{
-				if(wettestVaginalWetness() >= 4) return true;
+				if(wettestVaginalWetness() >= 4 || hasOpalRingVagina()) return true;
 				return false;
 			}
-			if (vaginas[arg].wetness() >= 4) return true;
+			if (vaginas[arg].wetness() >= 4 || hasOpalRingVagina()) return true;
 			return false;
 		}
 		//Placeholder
@@ -10391,6 +10483,11 @@
 			// Heat means wetter orgasms.
 			if(inHeat()) quantity *= 1.5;
 			if(hasPerk("Treated Readiness")) quantity *= 2;
+			if(hasOpalRingVagina()) 
+			{
+				quantity *= 2;
+				quantity += 1000;
+			}
 			//GOO VENT BONUS!
 			if(statusEffectv1("Goo Vent") == 1) quantity += biomassQ(true);
 			// Round values.
@@ -10399,6 +10496,23 @@
 			// Default minimum of 1mL
 			if (quantity < 1) quantity = 1;
 			return quantity;
+		}
+		public function hasOpalRingCock():Boolean
+		{
+			for(var i:int = 0; i < cocks.length; i++)
+			{
+				if(cocks[i].piercing is OpalRingPiercing) return true;
+			}
+			return false;
+		}
+		public function hasOpalRingVagina():Boolean
+		{
+			for(var i:int = 0; i < vaginas.length; i++)
+			{
+				if(vaginas[i].piercing is OpalRingPiercing) return true;
+				if(vaginas[i].clitPiercing is OpalRingPiercing) return true;
+			}
+			return false;
 		}
 		public function boostGirlCum(arg:Number):void
 		{
@@ -10777,6 +10891,10 @@
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
+				case GLOBAL.TYPE_FROSTWYRM:
+					vaginas[slot].vaginaColor = "blue";
+					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
+					break;
 				case GLOBAL.TYPE_FLOWER:
 					vaginas[slot].vaginaColor = RandomInCollection(["red", "yellow", "blue", "purple", "pink", "white"]);
 					vaginas[slot].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
@@ -10904,6 +11022,13 @@
 				case GLOBAL.TYPE_DRACONIC:
 					cocks[slot].cockColor = "blue";
 					cocks[slot].knotMultiplier = RandomInCollection([1.25, 1.3]);
+					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
+					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
+					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					break;
+				case GLOBAL.TYPE_FROSTWYRM:
+					cocks[slot].cockColor = "blue";
+					cocks[slot].knotMultiplier = 1.4;
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
@@ -11906,7 +12031,7 @@
 		public function isHuman():Boolean
 		{
 			//return race() == "human";
-			return (humanScore() >= 4);
+			return (!isHalfHuman() && humanScore() >= 4);
 		}
 		
 		public function isHalfHuman():Boolean
@@ -15074,6 +15199,38 @@
 				}
 			return true;
 		}
+		public function wombsDescript():String
+		{
+			var descriptions:Number = 0;
+			var buffer:String = "";
+			if(!hasVagina()) return "<b>Parse Error: No womb found for wombdescript.</b>";
+			//Single goes to "wombDescript":
+			if(totalVaginas() == 1) return wombDescript(0);
+
+			//Multi cunt descript here:
+			var allPreg:Boolean = true;
+			for(var x:int = 0; x < totalVaginas(); x++)
+			{
+				if(!isPregnant(x))
+				{
+					allPreg = false;
+					break;
+				}
+			}
+			if(allPreg && rand(3) == 0)
+			{
+				descriptions++;
+				buffer += RandomInCollection(["pregnant","pregnant","gravid","gravid","impregnated","impregnated"]);
+			}
+			else if(rand(3) && !isPregnant() && inHeat())
+			{
+				descriptions++;
+				buffer += RandomInCollection(["cum-hungry","baby-craving","sex-starved","spunk-starved","breed-hungry","extra-fertile","sperm-sucking"]);
+			}
+			if(descriptions > 0) buffer += " ";
+			buffer += RandomInCollection(["wombs", "wombs", "uteri"]);
+			return buffer;
+		}
 		public function wombDescript(arg:Number = 0):String
 		{
 			var descriptions:Number = 0;
@@ -17543,9 +17700,7 @@
 				return "flat, almost non-existent breasts";
 				}
 			//33% of the time size-descript them
-			if (rand(3) == 0) {
-				descript += breastSize(breastRows[rowNum].breastRating());
-			}
+			if (rand(3) == 0) descript += breastSize(breastRows[rowNum].breastRating());
 			//Lactation notices are rare unless near-empty or full!
 			var lacBonusChance:Number = 0;
 			if(canMilkSquirt()) lacBonusChance = 2;
@@ -18112,6 +18267,39 @@
 		public function hasAnalPregnancy():Boolean
 		{
 			return (isPregnant(3));
+		}
+		
+		// Get pregnancy time in minutes.
+		public function getPregnancyTime(slot:int = -1):Number
+		{
+			if (isPregnant(slot))
+			{
+				var pData:PregnancyData = null;
+				var pTime:Number = 0;
+				
+				// Latest-most pregnancy
+				if (slot == -1)
+				{
+					var nTime:Number = 0;
+					for (var i:int = 0; i < pregnancyData.length; i++)
+					{
+						pData = pregnancyData[i];
+						nTime = (Math.floor(pData.pregnancyIncubation * (1 / pData.pregnancyIncubationMulti)));
+						if (pTime > nTime) pTime = nTime;
+					}
+				}
+				else
+				{
+					pData = pregnancyData[slot];
+					pTime = (Math.floor(pData.pregnancyIncubation * (1 / pData.pregnancyIncubationMulti)));
+				}
+				return pTime;
+			}
+			return 0;
+		}
+		public function getPregnancyTimeString(slot:int = -1, casualOnly:Boolean = false, article:Boolean = true):String
+		{
+			return shortMinutes(getPregnancyTime(slot), casualOnly, article);
 		}
 		
 		//Argument is the same string as defined in the handler.
@@ -19914,6 +20102,12 @@
 			// Cum Cascade
 			if(balls <= 0 || !hasPerk("'Nuki Nuts") || !hasStatusEffect("Orally-Filled") || !InCollection(statusEffectv3("Orally-Filled"), GLOBAL.VALID_CUM_TYPES)) removeStatusEffect("Cum Cascade");
 		}
+		public function applyBlueBalls(effectOnly:Boolean = false):void
+		{
+			if(!effectOnly && ballFullness < 100) ballFullness = 100;
+			if(balls <= 0) return;
+			createStatusEffect("Blue Balls", 0,0,0,0,false,"Icon_Sperm_Hearts", "Take 25% more lust damage in combat!", false, 0,0xB793C4);
+		}
 		
 		// Tiredness Conditions
 		public function isSore():Boolean
@@ -20099,6 +20293,7 @@
 			updateBoobswellPads(deltaT, doOut);
 			updateStatusEffects(deltaT, doOut);
 			updateAlcoholState(deltaT, doOut);
+			sstdPurgeCheck(deltaT, doOut);
 			
 			updateLustValues(deltaT, doOut);
 			updateCumValues(deltaT, doOut);
@@ -20328,11 +20523,13 @@
 		{
 			if (!(this is PlayerCharacter) && !statusSimulate) return;
 			
-			var deferredEvents:Array = null;
+			var deferredEvents:Array = [];
 			
 			var i:int = 0;
 			var y:int = 0;
 			var z:int = 0;
+			
+			var wholeHoursPassed:uint = Math.floor((kGAMECLASS.minutes + deltaT) / 60);
 			
 			for (i = 0; i < statusEffects.length; i++)
 			{
@@ -20354,6 +20551,20 @@
 	 						}
 						}
 						break;
+					case "Cum Soaked":
+					case "Pussy Drenched":
+						if(hasSkinFlag(GLOBAL.FLAG_ABSORBENT))
+						{
+							var cumScale:Number = Math.min((deltaT / 60), 1);
+							if(this is PlayerCharacter && hairType == GLOBAL.HAIR_TYPE_GOO)
+							{
+								addBiomass(Math.round(500 * cumScale));
+								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(Math.round(500 * cumScale));
+							}
+							thisStatus.value1 -= cumScale;
+							if(thisStatus.value1 <= 0 && thisStatus.minutesLeft <= 0) thisStatus.minutesLeft = 1;
+						}
+						break;
 					case "adjjjisjjrhiwig":
 					case "Goblinola Bar":
 					case "Laquine Ears":
@@ -20366,10 +20577,7 @@
 						break;
 					case "Zil Pheromones":
 					case "Zil Pregnancy Reflex Mod":
-						if (!hasPregnancyOfType("ZilPregnancy"))
-						{
-							thisStatus.minutesLeft = 1;
-						}
+						if (!hasPregnancyOfType("ZilPregnancy")) thisStatus.minutesLeft = 1;
 						break;
 					/*
 					case "Exhibitionism Reserve":
@@ -20380,15 +20588,13 @@
 				}
 				
 				// Effects created with a 0 or less duration aren't handled by this code ever.
-				if (thisStatus.minutesLeft <= 0) continue;
+				if (thisStatus.minutesLeft <= 0 && thisStatus.tooltip != "< REMOVE >") continue;
 				
 				var startEffectLength:uint = thisStatus.minutesLeft;
 				var maxEffectLength:uint = Math.min(deltaT, thisStatus.minutesLeft);
 				thisStatus.minutesLeft -= maxEffectLength;
 				
-				var requiresRemoval:Boolean = thisStatus.minutesLeft <= 0;
-				
-				var wholeHoursPassed:uint = ((kGAMECLASS.minutes + deltaT) / 60);
+				var requiresRemoval:Boolean = (thisStatus.minutesLeft <= 0);
 				
 				var desc:String = "";
 				
@@ -20397,13 +20603,13 @@
 					case "Shekka_Pay_CD":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
-							AddLogEvent("Now would be a good time to check back in with Shekka...");
+							AddLogEvent("Now would be a good time to check back in with Shekka...", "words", maxEffectLength);
 						}
 						break;
 					case "Shekka_Cure_CD":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
-							AddLogEvent("<b>It’s been a while since you left Shekka with everything she needed to pursue a cure. Now would be a good time to check on her progress.</b>");
+							AddLogEvent("<b>It’s been a while since you left Shekka with everything she needed to pursue a cure. Now would be a good time to check on her progress.</b>", "words", maxEffectLength);
 						}
 						break;
 					case "LimberTime":
@@ -20423,6 +20629,36 @@
 						if (this is PlayerCharacter && requiresRemoval)
 						{
 							kGAMECLASS.eventQueue.push(kGAMECLASS.paigeEyeholeEmailEvent);
+						}
+						break;
+					case "Kally Cummed Out":
+						if(this is PlayerCharacter && requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
+						{
+							AddLogEvent("Kally stumbles back into the bar while you’re waiting. Her garb isn’t quite as meticulously arranged. Her hair is damp, and when she thinks nobody is looking, she sighs dreamily, licking her lips.", "passive", maxEffectLength);
+						}
+						break;
+					case "Flahne_Extra_Pissed":
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							flags["FLAHNE_MAKEUP"] = 1;
+						}
+						break;
+					case "STELLA_PREGNANT":
+						if (this is PlayerCharacter && requiresRemoval) kGAMECLASS.flags["STELLA_PREGNANCY_NOTIFIER"] = thisStatus.value1;
+						break;
+					case "Massaging":
+					case "Slow Fucking":
+						if (requiresRemoval)
+						{
+							if(this is PlayerCharacter) kGAMECLASS.emmyTeaseCum();
+							deferredEvents.push(kGAMECLASS.emmyTeaseCumEffects);
+						}
+						break;
+					case "Drain Cooldown":
+						if (requiresRemoval)
+						{
+							if(this is PlayerCharacter) kGAMECLASS.emmyCumClearance();
+							deferredEvents.push(kGAMECLASS.emmyCumStatusPurge);
 						}
 						break;
 					case "Uveto Cloudy":
@@ -20449,25 +20685,24 @@
 						break;
 					case "Heat":
 						if(!hasVagina() || fertility() <= 0) requiresRemoval = true;
-						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive");
+						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("You feel a little more calm and rational now that <b>your heat has ended.</b>","passive", maxEffectLength);
 						else if(isFullyWombPregnant())
 						{
-							if (deferredEvents == null) deferredEvents = [heatCleanup];
-							else deferredEvents.push(heatCleanup);
+							deferredEvents.push(heatCleanup);
 						}
 						break;
 					case "Rut":
 					case "Lagonic Rut":
 						if(!hasCock() || virility() <= 0) requiresRemoval = true;
-						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("You find yourself more calm, less aggressive and sexually driven. <b>It appears your rut has ended.</b>");
+						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("You find yourself more calm, less aggressive and sexually driven. <b>It appears your rut has ended.</b>", "words", maxEffectLength);
 						break;
 					case "Exhibitionism Reserve":
-						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("The urge to publicly display yourself, which has been welling up inside of you fades from your body. <b>You may now enjoy public sex without the risk of becoming a permanent exhibitionist... for a while.</b>");
+						if(this is PlayerCharacter && requiresRemoval) AddLogEvent("The urge to publicly display yourself, which has been welling up inside of you fades from your body. <b>You may now enjoy public sex without the risk of becoming a permanent exhibitionist... for a while.</b>", "words", maxEffectLength);
 						break;
 					case "Woozy":
 						if(this is PlayerCharacter && requiresRemoval)
 						{
-							AddLogEvent("You are no longer woozy.");
+							AddLogEvent("You are no longer woozy.", "words", maxEffectLength);
 							intelligenceMod -= 10;
 							aimMod += 10;
 							reflexesMod += 10;
@@ -20490,14 +20725,14 @@
 					case "Painted Penis":
 						if(requiresRemoval)
 						{
-							if(this is PlayerCharacter) AddLogEvent("The paint on your phallus flakes away, leaving you bare and unadorned once more.","passive");
-							libidoMod -= statusEffectv4("Painted Penis");
+							if(this is PlayerCharacter) AddLogEvent("The paint on your phallus flakes away, leaving you bare and unadorned once more.","passive", maxEffectLength);
+							libidoMod -= thisStatus.value4;
 						}
 						break;
 					case "Priapism":
 						if(requiresRemoval)
 						{
-							if(this is PlayerCharacter && hasCock()) AddLogEvent("The constant pressure on [pc.eachCock] subsides... You sigh in relief as you feel your maleness able to soften once more. <b>It looks like your case of priapism has finally passed!</b>","passive");
+							if(this is PlayerCharacter && hasCock()) AddLogEvent("The constant pressure on [pc.eachCock] subsides... You sigh in relief as you feel your maleness able to soften once more. <b>It looks like your case of priapism has finally passed!</b>","passive", maxEffectLength);
 						}
 						break;
 					case "IQBGoneTimer":
@@ -20509,14 +20744,13 @@
 						//Wears off
 						if(requiresRemoval)
 						{
-							if(this is PlayerCharacter) AddLogEvent("The heat in your body finally recedes after an exhausting couple of days. <b>You are no longer feeling so unnaturally aroused.</b>", "passive");
-							if(hasPerk("Omega Fever")) createStatusEffect("Omega Fever Delay", 0, 0, 0, 0, true, "", "", false, 1440);
+							if(this is PlayerCharacter) AddLogEvent("The heat in your body finally recedes after an exhausting couple of days. <b>You are no longer feeling so unnaturally aroused.</b>", "passive", maxEffectLength);
+							if(hasPerk("Omega Fever")) createStatusEffect("Omega Fever Delay", 0, 0, 0, 0, true, "", "", false, maxEffectLength + 1440);
 						}
 						//Pregnancy clears - gotta cheat to get the Omega Oil status clear.
 						else if(hasAnalPregnancy())
 						{
-							if (deferredEvents == null) deferredEvents = [analHeatCleanup];
-							else deferredEvents.push(analHeatCleanup);
+							deferredEvents.push(analHeatCleanup);
 						}
 						//Random notices for top 2 status tiers
 						else if(this is PlayerCharacter && rand(100) == 0 && thisStatus.storageName != "Strangely Warm")
@@ -20526,13 +20760,7 @@
 							omegaBlurbs.push("You suddenly really, <i>really</i> want to get knotted " + RandomInCollection(["like a bitch in heat","by a nice dildo or a well-endowed stud","and pumped full of cum"]) + ". Your [pc.asshole] " + RandomInCollection(["spasms","clenches around nothing"]) + ", desperately empty.");
 							omegaBlurbs.push("You find yourself idly wondering how much a breeding stand custom-made to your measurements would cost, and if it would really be worth the investment.");
 							omegaBlurbs.push("You feel oddly serene, for someone who’s supposed to crave being fucked all the time.");
-							AddLogEvent(omegaBlurbs[rand(omegaBlurbs.length)], "passive");
-						}
-						break;
-					case "Kally Cummed Out":
-						if(this is PlayerCharacter && requiresRemoval && kGAMECLASS.currentLocation == "CANADA5")
-						{
-							AddLogEvent(ParseText("Kally stumbles back into the bar while you’re waiting. Her garb isn’t quite as meticulously arranged. Her hair is damp, and when she thinks nobody is looking, she sighs dreamily, licking her lips."), "passive", maxEffectLength);
+							AddLogEvent(omegaBlurbs[rand(omegaBlurbs.length)], "passive", maxEffectLength);
 						}
 						break;
 					case "Condensol-A":
@@ -20596,7 +20824,6 @@
 						if(this is PlayerCharacter)
 						{
 							Clippex.ClippexLustIncrease(deltaT, doOut, this, thisStatus);
-
 							if (requiresRemoval)
 							{
 								Clippex.ClippexTF(deltaT, doOut, this, thisStatus); 
@@ -20607,9 +20834,10 @@
 					case "Taint_CD":
 						if(this is PlayerCharacter && requiresRemoval && !hasPerk("Corrupted"))
 						{
+							var taintCycles:int = Math.max(Math.floor(deltaT / (72*60)), 1);
+							taint(-1 * taintCycles);
+							thisStatus.minutesLeft = (72*60);
 							requiresRemoval = false;
-							setStatusMinutes("Taint_CD",72*60);
-							taint(-1);
 						}
 						break;
 					case "Semen's Candy":
@@ -20644,20 +20872,6 @@
 						if (this is PlayerCharacter && (wholeHoursPassed >= 1 || requiresRemoval))
 						{
 							Capraphorm.OnHourTF(deltaT, maxEffectLength, doOut, this, thisStatus);
-						}
-						break;
-					case "Cum Soaked":
-					case "Pussy Drenched":
-						if(hasSkinFlag(GLOBAL.FLAG_ABSORBENT))
-						{
-							var cumScale:Number = Math.min((deltaT / 60), 1);
-							if(this is PlayerCharacter && hairType == GLOBAL.HAIR_TYPE_GOO)
-							{
-								addBiomass(Math.round(500 * cumScale));
-								if(hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) addBiomass(Math.round(500 * cumScale));
-							}
-							thisStatus.value1 -= cumScale;
-							if(thisStatus.value1 <= 0) requiresRemoval = true;
 						}
 						break;
 					case "Hair Regoo":
@@ -20714,10 +20928,9 @@
 						}
 						break;
 					case "The Treatment":
-						if (this is PlayerCharacter && requiresRemoval)
+						if (this is PlayerCharacter && (wholeHoursPassed >= 1 || requiresRemoval))
 						{
-							AddLogEvent("<b>The Treatment is over.</b> You aren’t sure why or how you know, but you know it all the same. Well, there’s nothing left to do but enjoy your enhanced body to the fullest! ...While hunting for Dad’s probes, of course. It’s the best way to meet sexy new aliens.\n\nOnce you claim your fortune, you can retire on New Texas, maybe even get your own private milker.", "passive", maxEffectLength);
-							taint(4);
+							kGAMECLASS.treatmentHourProcs(wholeHoursPassed, thisStatus);
 						}
 						break;
 					case "Infertile":
@@ -20789,12 +21002,6 @@
 							if(this is PlayerCharacter) kGAMECLASS.eventQueue.push(kGAMECLASS.galoMaxTFProc);
 						}
 						break;
-					case "Flahne_Extra_Pissed":
-						if (this is PlayerCharacter && requiresRemoval)
-						{
-							flags["FLAHNE_MAKEUP"] = 1;
-						}
-						break;
 					case "Goo Armor Defense Drain":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
@@ -20803,30 +21010,10 @@
 							kGAMECLASS.gooArmorDefense(thisStatus.value1);
 						}
 						break;
-					case "Massaging":
-					case "Slow Fucking":
-						if (requiresRemoval)
-						{
-							if(this is PlayerCharacter) kGAMECLASS.emmyTeaseCum();
-							
-							if (deferredEvents == null) deferredEvents = [kGAMECLASS.emmyTeaseCumEffects];
-							else deferredEvents.push(kGAMECLASS.emmyTeaseCumEffects);
-						}
-						break;
-					case "Drain Cooldown":
-						if (requiresRemoval)
-						{
-							if(this is PlayerCharacter) kGAMECLASS.emmyCumClearance();
-							
-							if (deferredEvents == null) deferredEvents = [kGAMECLASS.emmyCumStatusPurge];
-							else deferredEvents.push(kGAMECLASS.emmyCumStatusPurge);
-						}
-						break;
 					case "Red Myr Venom":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
-							if (deferredEvents == null) deferredEvents = [kGAMECLASS.venomExpirationNotice];
-							else deferredEvents.push(kGAMECLASS.venomExpirationNotice);
+							deferredEvents.push(kGAMECLASS.venomExpirationNotice);
 						}
 						break;
 					case "Ovalasting Message":
@@ -20880,7 +21067,13 @@
 					case "Tentatool":
 						if (this is PlayerCharacter && requiresRemoval)
 						{
-							Tentacool.tentacoolTF(this, thisStatus); 
+							Tentacool.tentacoolTF(this, thisStatus, maxEffectLength); 
+						}
+						break;
+					case "Thicc&Shake":
+						if(this is PlayerCharacter && requiresRemoval)
+						{
+							ThiccNShake.effectEnds(maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
 					case "Undetected Furpies":
@@ -20923,6 +21116,9 @@
 						}
 						break;
 				}
+				
+				// Removal check!
+				if (thisStatus.tooltip == "< REMOVE >") requiresRemoval = true;
 				
 				if (requiresRemoval)
 				{
@@ -21092,7 +21288,22 @@
 		{
 			return (ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || ass.hasFlag(GLOBAL.FLAG_PUMPED));
 		}
-		
+		public function hasPlumpPussy(arg:Number = -1):Boolean
+		{
+			if(!hasVagina()) return false;
+			if(arg >= 0 && arg > totalVaginas()-1) return false;
+			if(arg >= 0) return (vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED));
+			//check em all, fam
+			else
+			{
+				for (var x:int = 0; x < totalVaginas(); x++)
+				{
+					if(vaginas[x].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED) || vaginas[x].hasFlag(GLOBAL.FLAG_PUMPED)) return true;
+				}
+			}
+
+			return false;
+		}
 		public function catDog(c:String, d:String, prefDog:Boolean = true):String
 		{
 			var r:String = raceShort();
@@ -21164,14 +21375,14 @@
 		}
 		public function sstdChecks(cumFrom:Creature = null, location:String = "ass"):void
 		{
-			if(this.isSSTDImmune() || cumFrom == null || cumFrom.isSSTDImmune()) return;
+			if(isSSTDImmune() || cumFrom == null || cumFrom.isSSTDImmune()) return;
 			
 			var catchSSTD:String = "";
 			if(!(cumFrom is PlayerCharacter) && cumFrom.hasSSTD())
 			{
 				sstdCatch(cumFrom, this, location);
 			}
-			if((cumFrom is PlayerCharacter) && this.hasSSTD())
+			if((cumFrom is PlayerCharacter) && hasSSTD())
 			{
 				sstdCatch(this, cumFrom, location);
 			}
@@ -21196,6 +21407,17 @@
 					if(victim.hasSSTD("Sneezing Tits", true)) { /* Already have it! */ }
 					else victim.createStatusEffect("Undetected Sneezing Tits", 0, 0, 0, 0, true, "Icon_Boob_Torso", "Hidden Sneezing Tits infection!", false, 10080, 0xFF69B4);
 					break;
+			}
+		}
+		public function sstdPurgeCheck(deltaT:uint, doOut:Boolean):void
+		{
+			if(hasSSTD() && isSSTDImmune())
+			{
+				if(this is PlayerCharacter)
+				{
+					AddLogEvent("Your codex beeps, alerting you that your immune system’s activity has suddenly spiked before returning to normal levels. <b>You body has purged itself from any and all SSTD infections.</b>", "words", deltaT);
+				}
+				removeSSTDs();
 			}
 		}
 		public function applyCumSoaked():void

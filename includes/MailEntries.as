@@ -276,9 +276,9 @@ public function configureMails():void
 	MailManager.addMailEntry("shekkaFollowerFirstChildrenBorn", cureProgress1Email, "First Children Born","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("shekkaFollowerTesting", spellingAndReadingTestsMailText, "Test Results","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("shekkaFollowerUnlockEmail", lastRaskvelCureEmail, "Hey...","Shekka","shekka_mail@GalLink.org", quickPCTo, quickPCToAddress);
-
-
-
+	//Akane emails
+	MailManager.addMailEntry("shukuchi_veritas", shukuchiKFineUSawSomethingMail, function():String{ return pc.mf("Mr", "Miss") + " Steele! A wonderful offer!"; }, "Celeritas Veritas LTD.", "no-reply@celeritasveritas.net", quickPCTo, quickPCToAddress);
+	MailManager.addMailEntry("akanequest_email", akaneHasAnExclamationMarkOverHerHeadEmail, "You Are Needed", "gg45645yrtyy", "gg45645yrtyy@no-reply-arid.net", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

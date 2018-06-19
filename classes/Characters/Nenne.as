@@ -20,6 +20,16 @@
 			short = "Nenne";
 			originalRace = "korgonne";
 			
+			this.createVagina();
+			this.vaginas[0].vaginaColor = "black";
+			this.vaginas[0].clits = 1;
+			this.vaginas[0].type = GLOBAL.TYPE_CANINE;
+			this.vaginas[0].loosenessRaw = 1;
+			this.vaginas[0].wetnessRaw = 2;
+			this.vaginas[0].bonusCapacity = 10;
+			this.clitLength = 0.5;
+			this.vaginalVirgin = false;
+			
 			//None of this character's stats matter, soz we're leaving everything but inventory shit as default.
 			this.inventory.push(new AphroDaisy());
 			this.inventory.push(new HealingPoultice());
