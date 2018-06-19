@@ -31,6 +31,10 @@ package classes.Characters
 			capitalA = "";
 			
 			meleeWeapon = new ShockGear();
+			meleeWeapon.hasRandomProperties = true;
+			//Doesn't need MORE CCs.
+			meleeWeapon.baseDamage.removeFlag(DamageFlag.CHANCE_APPLY_STUN);
+
 			armor = new YellowClothes();
 			shield = new ReaperArmamentsMarkIShield();
 			shield.shields = 240;
