@@ -22,7 +22,7 @@ package classes.Engine.Combat
 			return true;
 		}
 		//Evasion chances
-		if(evasion >= rand(100) + 1) {
+		if(evasion >= rand(100) + 1 && !target.isImmobilized()) {
 			trace("EVASION WORKED!: " + evasion);
 			return true;
 		}
