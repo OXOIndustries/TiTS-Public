@@ -534,7 +534,7 @@ public function shizzyIntroductionPartII(destination:String):void
 		else output(" Anno looks away, but you keep looking, even giving her a thumbs up on that delicious rump.");
 		output(" She looks mad, but the way she starts swaying her hips says that she's actually enjoying the attention.");
 		output("\n\n<i>\"Better get moving, lot of stuff left to fix. Hey, if you don't have anything else to do, why don't you come with? We could use the help.\"</i> Why not? You help Anno finish up here before moving on. On the way there, you decide to finally ask Anno how she knows Shizuya.");
-		if (flags["SHIZZY_ANNO_MENTIONED_AKKADI"] != undefined) output("\n\n<i>\"Remember when I told you I got my own team for the warp gate project at Akkadi? She was one of them.");
+		if (flags["SHIZZY_ANNO_MENTIONED_AKKADI"] != undefined) output("\n\n<i>\"Remember when I told you I got my own team for the warp gate project at Akkadi? She was one of them.\"</i>");
 		else output("\n\n<i>\"It's a long story, but the gist of it is; back at Akkadi I got on a project to upgrade the tech used in warp gates, got my own team and everything. She was one of the people who got assigned to my team.");
 		output(" She was a lot different back then, I'd say she was just a bit taller than Mika, skinny as a rail too. Not much to really say; she was nice, fun, knew what she was doing, could hold her drinks like a machine. Stars, I remember this time we were out celebrating a big find in our research, and this nine or ten-foot Treated guy was harassing us. She challenged him to a drinking contest, and she drank him so far under the table that he could barely speak. The look on his face was priceless!\"</i>");
 		output("\n\n<i>\"Sounds like you had fun, what happened?\"</i>");
@@ -1720,7 +1720,7 @@ public function shizzyLetsDwellOnThePast():void
 	output("\n\nShe holds her hands up toward you, and gives you a look like a kid telling a story by the campfire.");
 	output("\n\n<i>\"Spooky, right? Anyway, that was the project where I met Roy. He was a JAF officer who was supposed to test pilot a craft with the engine in it. Of course, that plan assumed the damn thing worked, so he ended up just hanging around. He was the cutest little ausar you'd ever seen; short and stout, with big ears and a teeny little tail. We hit it off after the third engine decided to explode on us, and the cleaning crew had to come in. After the project went south, we both took a day off and went out on a date.\"</i>");
 	output("\n\nA big smile goes across her face. <i>\"That was an amazing night; the food was great, the places he took me were so beautiful, Roy was such a charmer. I remember sitting on the grass, him holding me in his arms while we looked over the city lights... I miss him.\"</i>");
-	output("\n\nShe takes a more solemn look as she finishes that thought. <i>\"Anyway, a bit after that, " + (flags["SHIZZY_MET_ANNO"] == undefined ? "Ms. Dorna" : "Anno") + " pushed her thesis about the warp gates through, and Cheret jumped on that and used it to get the project going. {Anno/Ms. Dorna} was put in charge, and me and the others he was grooming got assigned to her team. And then... I think we covered what happened after that enough, let's move on.\"</i>");
+	output("\n\nShe takes a more solemn look as she finishes that thought. <i>\"Anyway, a bit after that, " + (flags["SHIZZY_MET_ANNO"] == undefined ? "Ms. Dorna" : "Anno") + " pushed her thesis about the warp gates through, and Cheret jumped on that and used it to get the project going. " + (flags["SHIZZY_MET_ANNO"] == undefined ? "Ms. Dorna" : "Anno") + " was put in charge, and me and the others he was grooming got assigned to her team. And then... I think we covered what happened after that enough, let's move on.\"</i>");
 
 	processTime(15);
 	
@@ -1897,7 +1897,7 @@ public function shizzyTellMeAboutTheBooty():void
 	output("\n\n<i>\"They probably could, but the bigger thing here is shutting down distribution before they can make much headway. Far as anyone can tell, these guys are running a pretty small operation, but they're keeping really quiet, and obviously know their way around the underworld. Black Iron... let's just say we're in a better position to be nosing around there.\"</i>");
 	output("\n\n<i>\"I thought you were a PMC?\"</i>");
 	output("\n\n<i>\"Weeeeeeeee are! But we also aren't. It's weird. We've got connections, that's all I'll say for now. I feel like we're pretty close to wrapping this one up, honestly, just gotta get the info out of Judau. Probably gonna hold off on big jobs for a whiiiiiiiile after this. Maybe you could tag along, if you're not too busy.\"</i>");
-	output("\n\nYou'll see");
+	output("\n\nYou'll see.");
 	
 	processTime(5);
 	
