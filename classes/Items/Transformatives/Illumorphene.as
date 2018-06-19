@@ -75,6 +75,8 @@ package classes.Items.Transformatives
 					output("\n\n");
 					
 					if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new Illumorphene()]);
+					
+					return true;
 				}
 				else
 				{

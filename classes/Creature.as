@@ -20582,6 +20582,11 @@
 					case "The Treatment":
 						if(thisStatus.minutesLeft <= 0) thisStatus.minutesLeft = 1;
 						break;
+					case "Furpies Simplex H":
+					case "Furpies Simplex C":
+					case "Furpies Simplex D":
+						if(thisStatus.minutesLeft <= 0 && thisStatus.value4 < 12) thisStatus.minutesLeft = 1;
+						break;
 					case "Ovilium":
 						if(thisStatus.minutesLeft < deltaT) thisStatus.minutesLeft = (deltaT + 1);
 						break;
