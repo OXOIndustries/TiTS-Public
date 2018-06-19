@@ -2179,9 +2179,9 @@ public function showerMenu(special:String = "ship"):void
 	output("\n\nWhat would you like to do?");
 	
 	clearMenu();
-	addButton(0, "Shower", showerOptions, 0, "Shower", "Take a shower and wash off any sweat or grime you might have.");
-	if (showerInShip || special == "nursery") addButton(1, "Cabinet", showerOptions, 1, "Bathroom Cabinet", "Check your bathroom’s medicine cabinet.");
-	if (showerInShip && pc.lust() >= 33 && crew(true) > 0) addButton(2, "Sex", showerOptions, 2, "Sex", "Have some shower sex with a crew member.");
+	addButton(0, "Shower", showerOptions, [0, special], "Shower", "Take a shower and wash off any sweat or grime you might have.");
+	if (showerInShip || special == "nursery") addButton(1, "Cabinet", showerOptions, [1, special], "Bathroom Cabinet", "Check your bathroom’s medicine cabinet.");
+	if (showerInShip && pc.lust() >= 33 && crew(true) > 0) addButton(2, "Sex", showerOptions, [2, special], "Sex", "Have some shower sex with a crew member.");
 	showerDoucheToggleButton(5);
 	addButton(14, "Back", showerExit);
 }
@@ -2203,9 +2203,12 @@ public function showerExit():void
 	mainGameMenu();
 }
 
-public function showerOptions(option:int = 0):void
+public function showerOptions(arg:Array):void
 {
 	var showerInShip:Boolean = InShipInterior(pc);
+	
+	var option:int = arg[0];
+	var special:String = arg[1];
 	
 	if(option == 0 && showerInShip && seranigansTrigger("shower")) return;
 	
@@ -2344,10 +2347,10 @@ public function showerOptions(option:int = 0):void
 		
 		var btnSlot:int = 0;
 		
-		if(pc.hasBeard()) addButton(btnSlot++, "Beard", showerCabinet, "beard", "Beard", "Do something with your [pc.beardNoun].");
-		if(pc.isBimbo()) addButton(btnSlot++, "Cosmétique", showerCabinet, "cosmetique", "Cosmétique Magazine", "Like, read up on the latest beauty trends!");
+		if(pc.hasBeard()) addButton(btnSlot++, "Beard", showerCabinet, ["beard", special], "Beard", "Do something with your [pc.beardNoun].");
+		if(pc.isBimbo()) addButton(btnSlot++, "Cosmétique", showerCabinet, ["cosmetique", special], "Cosmétique Magazine", "Like, read up on the latest beauty trends!");
 		
-		addButton(14, "Back", showerMenu);
+		addButton(14, "Back", showerMenu, special);
 	}
 	// Shower sex options
 	else if (option == 2)
@@ -2359,7 +2362,7 @@ public function showerOptions(option:int = 0):void
 		}
 		if (showerSex > 0) output("Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
 		else output("You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
-		addButton(14, "Back", showerMenu);
+		addButton(14, "Back", showerMenu, special);
 	}
 }
 public function shipShowerFapButtons(showerSex:int = 0):void
@@ -2372,10 +2375,13 @@ public function shipShowerFapButtons(showerSex:int = 0):void
 	}
 	addButton(showerSex, "Nevermind", shipShowerFappening, "Nevermind", "Nevermind", "On second thought...");
 }
-public function showerCabinet(response:String = "none"):void
+public function showerCabinet(arg:Array):void
 {
 	clearOutput();
 	clearMenu();
+	
+	var response:String = arg[0];
+	var special:String = arg[1];
 	
 	switch(response)
 	{
@@ -2385,14 +2391,14 @@ public function showerCabinet(response:String = "none"):void
 			{
 				output("\n\nWith the supplies that you have on hand, you guess you can’t do more than a shave. If you want to do anything fancier, you’ll probably have better luck visiting a stylist who specializes in fixing facial hair.");
 				
-				addButton(0, "Shave", showerCabinet, "beard shave", "Shave", "Shave your [pc.beard].");
+				addButton(0, "Shave", showerCabinet, ["beard shave", special], "Shave", "Shave your [pc.beard].");
 			}
 			else
 			{
 				output("\n\nUnfortunately, you don’t have the supplies to manipulate your living facial hair. You’ll have to visit a specialist if you want to change it in style and length.");
 			}
 			
-			addButton(14, "Back", showerMenu);
+			addButton(14, "Back", showerMenu, special);
 			break;
 		case "beard shave":
 			output("To prepare, you lather your lower face and around your [pc.lipsChaste], making sure to get the parts covered by your facial hair. You then wipe your hands dry and pull out");
@@ -2415,7 +2421,7 @@ public function showerCabinet(response:String = "none"):void
 				pc.removeBeard();
 			}
 			
-			addButton(0, "Next", showerMenu);
+			addButton(0, "Next", showerMenu, special);
 			break;
 		case "cosmetique":
 			output("A mini-slate with the Cosmétique logo emblazoned on it sits next to the mirror. " + RandomInCollection([
@@ -2456,13 +2462,13 @@ public function showerCabinet(response:String = "none"):void
 			
 			processTime(14);
 			
-			addButton(0, "Next", showerMenu);
+			addButton(0, "Next", showerMenu, special);
 			break;
 		default:
 			output("Nothing valid selected!");
 			output("\n\n");
 			
-			addButton(0, "Next", showerMenu);
+			addButton(0, "Next", showerMenu, special);
 			break;
 	}
 }

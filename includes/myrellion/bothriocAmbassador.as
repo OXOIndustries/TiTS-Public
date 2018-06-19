@@ -1080,7 +1080,7 @@ public function araKeiTheReameningII():void
 		output(" spurted wildly into the air");
 	}
 	output(" as [ara.he] carefully close"+ ara.mfn("s", "s", "") +" your windpipe, lovingly asphyxiating you with a knot of silken sheets so that sensuous stars burst inside your head. Another is pushed onto you whilst you’re still trying to regaining your breath, a low, tuneful groan forced past your lips, nerves jangling up one side of your body and then the other,");
-	if (pc.hasCock()) output(" your aching [pc.cock] flexing ecstatically but dryly to the bothrioc’s rigorous milking of your prostrate");
+	if (pc.hasCock()) output(" your aching [pc.cock] flexing ecstatically but dryly to the bothrioc’s rigorous milking of your prostate");
 	if (pc.hasCock() && pc.hasVagina()) output(" and");
 	if (pc.hasVagina()) output(" your throbbing [pc.vagina] quivering and clenching up to how [ara.he] pressures its tender walls through your stuffed [pc.asshole]");
 	if (!pc.hasVagina() && !pc.hasCock()) output(" your [pc.asshole] quivering and clenching up around the thick intruder spreading it wide")

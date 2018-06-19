@@ -439,7 +439,7 @@ public function annoWorkoutGimmeDatBootySweat():void
 	currentLocation = "572";
 	generateMap();
 	output("You let Anno know that you happen to like her sweat.");
-	output("\n\nAnno cocks an eyebrow at that. <i>Are you saying you want to exercise a little more? I think I’d be up for that. If you’re not too tired, that is.”</i> She tucks her thumbs into the front of her waistband and runs them around to the back. <i>“What did you have in mind?”</i>");
+	output("\n\nAnno cocks an eyebrow at that. <i>“Are you saying you want to exercise a little more? I think I’d be up for that. If you’re not too tired, that is.”</i> She tucks her thumbs into the front of her waistband and runs them around to the back. <i>“What did you have in mind?”</i>");
 	output("\n\nYou suggest the weight room. She gives you a dubious look, thinking you might have actually been serious about continuing your work out. You make your way over to the weight room and soon find what you were looking for: a machine with overhead hand grips. You set the weights on the machine to 1500 lbs and take a seat. As Anno watches with a bemused expression, you pull futilely on the grips, fighting the insurmountable weight you set. After a minute or two, she asks if you would like a little help.");
 	output("\n\nAnno plops down before you on the seat, legs spread wide to either side of it and her bottom rubbing against your [pc.crotch]. She raises her arms and intertwines her fingers with yours."); 
 	output("\n\n<i>“Ready?”</i> your cheeky pup asks as she gives her [anno.butt] a little shake on your manhood.");

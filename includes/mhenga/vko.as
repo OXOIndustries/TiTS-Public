@@ -658,7 +658,7 @@ public function VKoStressReliefForLadyginas():void
 		output("\n\nV-Ko licks her lips at the sight of your juice-dripping pussy. <i>“Such a productive vagina.... It is made to be penetrated until it gushes with delight. I will not hold back. You will achieve orgasm and complete sexual relief in no more than five minutes.”</i>");
 	}
 	//Super gaped
-	else if(pc.looseness(x) >= 5) output("\n\nV-Ko licks her lips at the sight of your capacitive cunt. <i>“You appear to be quite experienced at receiving vaginal pleasure. I will be sure to use an appropriately sized implement so that your walls receive the thrilling stretching they are surely used to at this point. Frequent orgams are essential to long life!”</i>");
+	else if(pc.looseness(x) >= 5) output("\n\nV-Ko licks her lips at the sight of your capacitive cunt. <i>“You appear to be quite experienced at receiving vaginal pleasure. I will be sure to use an appropriately sized implement so that your walls receive the thrilling stretching they are surely used to at this point. Frequent orgasms are essential to long life!”</i>");
 	//High bonus capacity or elasticity
 	else if(pc.vaginas[x].bonusCapacity >= 20 || pc.elasticity >= 2) output("\n\nV-Ko licks her lips as she examines your entrance. <i>“You have such a wonderfully elastic pussy; it could rival the synth-cunts of pleasure-droids! I’ll be sure to give it a thorough working over until you’re dripping every little bit of tension into my mouth.”</i>");
 	//Really wet

@@ -130,7 +130,7 @@ public function barBackRoomBonus():Boolean
 {
 	if((hours >= 17 || hours < 6))
 	{
-		if(flags["KELLY_MET"] == 1) kellyAtTheBar();
+		if(flags["KELLY_MET"] != undefined) kellyAtTheBar();
 		else output("\n\nA bunny-girl is back here with another patron, too busy to pay any attention to you.")
 	}
 	if (zilTwinsAtBar()) zilTwinsBarBonus();

@@ -43,7 +43,9 @@ public function kellyAppearance():void {
 	clearOutput();
 	showKelly();
 	author("Quiet Browser & LD");
-	output("Louise “Kelly” Epona, though if you dare call her <i>Louise</i> she’d be pretty mad at you, is a gene-modded laquine you met on the planet Mhen’gha in the town of Esbeth.");
+	if(flags["KELLY_MET"] < 2) output("Kelly");
+	else output("Louise “Kelly” Epona, though if you dare call her <i>Louise</i> she’d be pretty mad at you,");
+	output(" is a gene-modded laquine you met on the planet Mhen’gha in the town of Esbeth.");
 	output("\n\nStanding five feet and nine inches tall with a buxom, curvy body strongly resembling a humanoid rabbit, she stares at you through amber eyes with a confident smile. Her rabbit-like ears fall down the back of her skull from the top of her head to her shoulders in an iconic “Floppy-eared bunny” look. A rabbit-like tail flashes above her bum, and her bare feet extend into rabbit-like appendages, her legs jointed in an odd fashion that lets her stand on both the balls of her feet, making them digitigrade, or on the heels of her feet, making them look plantigrade, like a human’s.");
 	output("\n\nHer face is unquestionably rabbit-like, with a short muzzle. However, you note that her features are possessed of soft, feminine curves that make her quite attractive. Her lips in particular are full and enticing, naturally kissable and prone to a seemingly unconscious pout that amplifies the sexiness of her smile. Her whole body");
 	//if not sexed:
@@ -773,6 +775,9 @@ public function talkToKelly():void
 	output("\n\n<i>“Now, I know what you’re probably thinking - I’m a modder as well as a staff member, right? This gorgeous furry coat and these sweet ears and all the rest of it, it all came out of a bio-sculptor’s toolkit, yeah?”</i> she smirks at you and then shakes her head, floppy ears swishing through the air from the motions. <i>“Well, you’d be partly right. I do have a couple of mods in my system, and I’m very happy with them. However, the most obvious things about me? All natural, I assure you. See, I’m not one of those ‘furries’ that you humans have, who mod themselves to look more animal-like - though we do have one of those here in Esbeth; you met Penny yet? She’s our chief of security, really nice girl, sure you’d like her,”</i> she interjects into her own conversation. <i>“Now, where was I? Ah, yes, I’m not a human at all. I’m a laquine.”</i>");
 	output("\n\nJust as suddenly as she began, she stops herself, smiling at you and wagging a finger. <i>“And I think that’s enough about me for now.”</i> She rests her chin in her hands, giving you a coy look. <i>“If you wanna know more, you’re going to have to pry the information.... From. My. Lips.”</i> Her eyes hood themselves in a seductive smoulder, her lips pouting invitingly.");
 	processTime(3);
+	
+	if(flags["KELLY_MET"] < 2) flags["KELLY_MET"] = 2;
+	
 	pc.lust(2);
 	//[KissHer][DoNothing]
 	clearMenu();

@@ -584,13 +584,14 @@ public function yomaSexGiveOral():void
 	else output("onto your head");
 	output(" as he’s caught off guard by the sudden doubling of your efforts. You take his swollen clit into your [pc.mouthFull], sucking it gently at first, but soon, emboldened by the cries of pleasure he’s letting out, you step up the intensity.");
 	output("\n\nVoid, he’s absolutely gushing.");
-	output("\n\nAll of this is affecting you too, it’s hard not to be swept up in the moment with a cute android moaning out your name like this. You can feel ");
-	if (pc.hasCock()) {
-		output("your [pc.multiCockDescript] stiffening");
-		if (pc.hasVagina()) output(" and ");
+	output("\n\nAll of this is affecting you too, it’s hard not to be swept up in the moment with a cute android moaning out your name like this. You can feel");
+	if(pc.hasGenitals())
+	{
+		if (pc.hasCock()) output(" your [pc.multiCockDescript] stiffening");
+		if (pc.isHerm()) output(" and");
+		if (pc.hasVagina()) output(" your [pc.vaginas] starting to leak");
 	}
-	if (pc.hasVagina()) output("your [pc.vaginas] starting to leak");
-	else output("a warmth rush to the empty expanse between your legs");
+	else output(" a warmth rush to the empty expanse between your legs");
 	output(". At this rate, Yoma isn’t the only one who’s going to get off here, you’re close to cumming");
 	if (!pc.isNude()) output(" in your own [pc.lowerGarments]");
 	output("!");

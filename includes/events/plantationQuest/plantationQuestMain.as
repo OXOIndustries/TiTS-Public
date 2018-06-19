@@ -74,7 +74,7 @@ public function showQuinn(nude:Boolean = false):void
 public function showLah(nude:Boolean = false):void
 {
 	var nudeSuffix:String = "";
-	if(nude) nudeSuffix += "_NUDE";
+	//if(nude) nudeSuffix += "_NUDE";
 	showBust("LAH" + nudeSuffix);
 	showName("\nRK LAH");
 }
@@ -296,6 +296,14 @@ public function tharePlantationFieldsBonusRedux():Boolean
 	}
 	else
 	{
+		// Darnock’s Rewards
+		if(plantationQuestComplete() && flags["PQ_REWARDS_TIMESTAMP"] == undefined)
+		{
+			if(flags["PQ_PEACE_TIMESTAMP"] != undefined) flags["PQ_REWARDS_TIMESTAMP"] = flags["PQ_PEACE_TIMESTAMP"];
+			else if(flags["PQ_TRIBE_WREKT_TIMER"] != undefined) flags["PQ_REWARDS_TIMESTAMP"] = flags["PQ_TRIBE_WREKT_TIMER"];
+			else flags["PQ_REWARDS_TIMESTAMP"] = GetGameTimestamp();
+		}
+		
 		var msg:String = "";
 		var fullTime:int = ((hours * 60) + minutes);
 		
@@ -2804,6 +2812,7 @@ public function lahTurnInPartDeusEx():void
 	pc.removeKeyItem("RK Lah - Captured");
 	output("\n(<b>Key Item Removed: </b>RK Lah - Captured)");
 	flags["PQ_SECURED_LAH"] = 2;
+	flags["LAH_TO_GASTIGOTH"] = GetGameTimestamp();
 	pc.XP(10000);
 	processTime(2);
 	//[Rest] [Finish]
@@ -2990,9 +2999,18 @@ public function noGiveMeMens():void
 }
 
 //Sex
-//Requires dick < 12”</i> and/or vagina
+//Requires dick < 12" and/or vagina
 public function sexWithQuinnOmnigenderWHYYYY():void
 {
+	// Handmaiden Threesome
+	if(	(pc.hasCock() && pc.smallestCockLength() < 12.5)
+	&&	pc.libido() >= 30
+	&&	flags["QUINN_EVERY_HOLED"] != undefined || GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440)
+	{
+		quinnHandmaidenThreesome(["intro"]);
+		return;
+	}
+	
 	clearOutput();
 	showQuinn(true);
 	author("Nonesuch");
@@ -3021,16 +3039,23 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 	//[Zil on top] [Every hole] [Scizzor]
 	clearMenu();
 	var dickFits:Boolean = (pc.cockThatFits(quinnVaginalCapacity()) >= 0);
+	
 	if(dickFits && pc.hasCock()) addButton(0,"Zil on Top",zilOnTopOfPC);
 	else addDisabledButton(0,"Zil on Top","Zil on Top","You need a penis that fits inside her for this.");
+	
 	if(pc.libido() >= 70 || pc.hasStatusEffect("Blue Balls")) 
 	{
 		if(dickFits && pc.hasCock()) addButton(1,"Every Hole",putItInAllThreeOfQuinnHoles);
 		else addDisabledButton(1,"Every Hole","Every Hole","You need a penis that will fit inside her holes for this.");
 	}
 	else addDisabledButton(1,"Every Hole","Every Hole","You need to be very randy for this - or very pent up.");
+	
 	if(pc.hasVagina()) addButton(2,"Scissor",vagScizzorWithQuinnsLizardGizzard);
 	else addDisabledButton(2,"Scissor","Scissor","You need a vagina for this.");
+	
+	if(pc.hasHardLightEquipped()) addButton(3, "Hardlight", quinnHardlightFun, ["intro"]);
+	else addDisabledButton(3, "Hardlight", "Hard Light Fun", "You need to be wearing a hardlight strap-on for this.");
+	
 	if(!pc.hasVagina() && !dickFits) addButton(14,"Back",noEligibleRetreat);
 }
 
@@ -3154,6 +3179,7 @@ public function queenie3HoleNumbah3(x:int):void
 	processTime(20);
 	pc.orgasm();
 	IncrementFlag("SEXED_QUINN");
+	flags["QUINN_EVERY_HOLED"] = GetGameTimestamp();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

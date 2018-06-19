@@ -763,7 +763,7 @@ public function annoTalkMenu():void
 		}
 		else
 		{
-			addDisabledButton(5, "Gray Goo", "Gray Goo", "Maybe you could ask Anno about the Gray Goo Menace local to Tarkus if you had a sample of their microbots to hand.");
+			addDisabledButton(5, "Gray Goo", "Gray Goo", "Maybe you could ask Anno about the Gray Goo Menace local to Tarkus if you had a sample or two of their microbots to hand.");
 		}
 	}
 
@@ -1603,7 +1603,8 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 	clearMenu();
 	
 	// I'm implying that Anno left the sample you gave her loaded into the thing
-	addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
+	if(pc.hasItemByClass(GrayMicrobots)) addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
+	else addDisabledButton(0, "Try on Anno", "Try on Anno", "You don’t have an extra gray goo vial to try this weapon!");
 	addButton(14, "Leave", mainGameMenu);
 }
 

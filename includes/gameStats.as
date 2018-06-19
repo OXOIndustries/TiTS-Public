@@ -586,6 +586,7 @@ public function statisticsScreen(showID:String = "All"):void
 					switch(pData.pregnancyType)
 					{
 						case "HumanPregnancy": output2(" Human"); break;
+						case "AusarPregnancy": output2(" Ausar"); break;
 						case "VenusPitcherSeedCarrier": output2(" Venus Pitcher, Seed"); break;
 						case "VenusPitcherFertilizedSeedCarrier": output2(" Venus Pitcher, Seed, Fertilized"); break;
 						case "NyreaEggPregnancy": output2(" Nyrean Huntress, Eggs"); break;
@@ -613,6 +614,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "RaskvelPregnancy": output2(" Raskvel, Eggs"); break;
 						case "ShekkaPregnancy": output2(" Shekka, Eggs"); break;
 						case "FrostwyrmPregnancy": output2(" [frostwyrm.name], Eggs"); break;
+						case "LahPregnancy": output2(" Lah"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1037,6 +1039,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, [frostwyrm.name]’s Eggs:</b> " + StatTracking.getStat("pregnancy/frostwyrm eggs laid"));
 				if(StatTracking.getStat("pregnancy/korgonne births") > 0)
 					output2("\n<b>* Births, Korgonne Young:</b> " + StatTracking.getStat("pregnancy/korgonne births"));
+				if(StatTracking.getStat("pregnancy/lah kids") > 0)
+					output2("\n<b>* Births, Lah’s Children:</b> " + StatTracking.getStat("pregnancy/lah kids"));
 				if(StatTracking.getStat("pregnancy/lapinara eggs") > 0)
 					output2("\n<b>* Births, Lapinara Eggs:</b> " + StatTracking.getStat("pregnancy/lapinara eggs"));
 				if(StatTracking.getStat("pregnancy/milodan births") > 0)
@@ -2270,7 +2274,7 @@ public function displayQuestLog(showID:String = "All"):void
 						case 2: output2(", Declared peace with the zil village"); break;
 						case -1: output2(", Overthrew the zil village"); break;
 					}
-					if(flags["PQ_P_BURNED"] != undefined) output2(", Burned down zil village");
+					if(flags["PQ_P_BURNED"] != undefined) output2(", Burned down plantation");
 					switch(flags["PQ_SECURED_LAH"])
 					{
 						case 1: output2(", Taken Lah, <i>Return to Darnock...</i>"); break;
@@ -2318,7 +2322,6 @@ public function displayQuestLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Quinn:</b> Met her");
 					if(flags["PQ_LET_QUINN_GO"] != undefined) output2(", Let her go");
-					if(flags["SEXED_QUINN"] != undefined) output2("\n<b>* Quinn, Times Sexed:</b> " + flags["SEXED_QUINN"]);
 				}
 				if(flags["PQ_NALEENED"] != undefined) output2("\n<b>* Naleen Mating Ball, Times Encountered:</b> " + flags["PQ_NALEENED"]);
 				
@@ -4907,6 +4910,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			// Zil Village
+			if(flags["PQ_RESOLUTION"] != undefined)
+			{
+				output2("\n<b><u>Zil Village</u></b>");
+				output2("\n<b>* Quinn:</b> Met her");
+				if(flags["SEXED_QUINN"] != undefined) output2("\n<b>* Quinn, Times Sexed:</b> " + flags["SEXED_QUINN"]);
+				if(flags["QUINN_MAIDENS_MET"] == undefined)output2("\n<b>* Fetch and Carry:</b> Met them");
+				if(flags["QUINN_MAIDENS_SEXED"] != undefined) output2("\n<b>* Fetch and Carry, Times Sexed:</b> " + flags["QUINN_MAIDENS_SEXED"]);
+				variousCount++;
+			}
 			// Jungles
 			if(flags["MET_CUNT_SNAKE"] != undefined || flags["ENCOUNTERED_MIMBRANE"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined || flags["TIMES_MET_VENUS_PITCHER"] != undefined || flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] != undefined || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined || flags["MET_KEROKORAS"] != undefined || flags["DRYAD_MET"] != undefined || flags["PRAI_MET"] != undefined)
 			{
@@ -6895,7 +6908,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Inmates
-			if(flags["TAMTAM_PRISONED"] != undefined || flags["KASKA_PRISONED"] != undefined || flags["KHORGAN_PRISONED"] != undefined || flags["SAM_PRISONED"] != undefined)
+			if(flags["TAMTAM_PRISONED"] != undefined || flags["KASKA_PRISONED"] != undefined || flags["KHORGAN_PRISONED"] != undefined || flags["SAM_PRISONED"] != undefined || flags["LAH_PRISONED"] != undefined)
 			{
 				output2("\n<b><u>Inmate Visitations</u></b>");
 				if(flags["TAMTAM_PRISONED"] != undefined) output2("\n<b>* Tam, Times Sexed:</b> " + flags["TAMTAM_PRISONED"]);
@@ -6908,6 +6921,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["SAM_PRISONED"] != undefined) output2("\n<b>* Sam, Times Sexed:</b> " + flags["SAM_PRISONED"]);
 				if(flags["SAM_GAST_PREG_TIMER"] != undefined) output2("\n<b>* Sam, Days Pregnant:</b> " + flags["SAM_GAST_PREG_TIMER"]);
 				if(flags["SAM_TOTAL_KIDS"] > 0) output2("\n<b>* Sam, Total Kids:</b> " + flags["SAM_TOTAL_KIDS"]);
+				if(flags["LAH_PRISONED"] != undefined) output2("\n<b>* Lah, Times Sexed:</b> " + flags["LAH_PRISONED"]);
+				if(flags["LAH_TOTAL_KIDS"] > 0) output2("\n<b>* Lah, Total Kids:</b> " + flags["LAH_TOTAL_KIDS"]);
 				variousCount++;
 			}
 		}

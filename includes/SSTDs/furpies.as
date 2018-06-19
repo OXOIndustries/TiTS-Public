@@ -35,7 +35,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 	else targetType = GLOBAL.TYPE_CANINE;
 
 	//Day 2 - Temporary Genital Swelling
-	if(effect.value4 == 0 && effect.minutesLeft < (17280 - 48*60))
+	if(effect.value4 < 2 && effect.minutesLeft < (17280 - 2*24*60))
 	{
 		effect.value4 = 2;
 		if(pc.hasFur())
@@ -112,7 +112,7 @@ public function furpiesProcsGoooo(deltaT:uint, maxEffectLength:uint, doOut:Boole
 		}
 	}
 	//[Day 3] Codex Identifies
-	else if(effect.value4 < 3 && effect.minutesLeft < (17280 - 72*60))
+	else if(effect.value4 < 3 && effect.minutesLeft < (17280 - 3*24*60))
 	{
 		effect.value4 = 3;
 		textBuff += "<i>BEEP!</i> An irritating tone from your Codex interrupts your thoughts. <i>“Alert! Infection detected! Preliminary scans identify a variant of Furpies Simplex ";

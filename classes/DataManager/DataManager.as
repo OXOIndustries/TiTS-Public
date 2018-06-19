@@ -1534,7 +1534,8 @@
 			
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
-			dataFile.saveLocation 	= kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText;
+			//dataFile.saveLocation 	= kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText;
+			dataFile.saveLocation 	= kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet + ", " + kGAMECLASS.rooms[kGAMECLASS.currentLocation].system;
 			
 			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")

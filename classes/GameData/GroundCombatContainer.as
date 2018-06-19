@@ -2471,17 +2471,21 @@ package classes.GameData
 			
 			// Milk Squirt
 			if (pc.canMilkSquirt())
-				teaseList.push(["Milk Squirt", teaseSquirt, target, "Milk Squirt", "Spray the enemy with your [pc.milk], arousing them."]);
+				teaseList.push(["Milk Squirt", teaseSquirt, target, "Milk Squirt", "Spray the enemy with your [pc.milk], arousing " + target.getCombatPronoun("o") + "."]);
 			else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) || pc.isMilkTank())
 				teaseList.push(["Milk Squirt", null, null, "Milk Squirt", "You do not currently have enough [pc.milkNoun] available to squirt any."]);
 			
 			// Dick Slap
-			if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex()))
-			teaseList.push(["Dick Slap", dickslap, target, "Dick Slap", "Slap the enemy with your aphrodisiac-coated dick."]);
+			if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex())) {
+				if(!pc.hasFlightEffects() && target.hasFlightEffects()) teaseList.push(["Dick Slap", null, null, "Dick Slap", "Your enemy is flying and you cannot reach " + target.getCombatPronoun("o") + " for a slap."]);
+				else teaseList.push(["Dick Slap", dickslap, target, "Dick Slap", "Slap the enemy with your aphrodisiac-coated dick."]);
+			}
 			
 			// Myr Venom
-			if (pc.hasPerk("Myr Venom") && target.isLustImmune == false)
-			teaseList.push(["Myr Venom", myrVenomBite, target, "Myr Venom Bite", "Bite the enemy and inject them with your red myr venom."]);
+			if (pc.hasPerk("Myr Venom") && target.isLustImmune == false) {
+				if(!pc.hasFlightEffects() && target.hasFlightEffects()) teaseList.push(["Myr Venom", null, null, "Myr Venom Bite", "Your enemy is flying and you cannot reach " + target.getCombatPronoun("o") + " for a bite."]);
+				else teaseList.push(["Myr Venom", myrVenomBite, target, "Myr Venom Bite", "Bite the enemy and inject " + target.getCombatPronoun("o") + " with your red myr venom."]);
+			}
 			
 			clearMenu();
 			for(i = 0; i < teaseList.length; i++)

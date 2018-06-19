@@ -975,7 +975,7 @@ public function saenAndSeraMet():void
 	
 	output("\n\nSaen blushes. <i>“Hey!”</i>");
 	
-	output("\n\n<i>“Aww, it’s okay, furball,”</i> Sera teases, squeezing Saendra’s breast until she winces. <i>“They turned out pretty nice. You might just get to use them on me... if you’re lucky”</i>");
+	output("\n\n<i>“Aww, it’s okay, furball,”</i> Sera teases, squeezing Saendra’s breast until she winces. <i>“They turned out pretty nice. You might just get to use them on me... if you’re lucky.”</i>");
 	
 	output("\n\nTurning to you, Saen whimpers, <i>“I-it was just once! One cup size, honest!”</i>");
 	

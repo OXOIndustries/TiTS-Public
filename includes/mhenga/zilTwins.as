@@ -170,6 +170,7 @@ public function zilTwinsInitialD():void //GEEEEEEEEEET IIIIIIIIIIIIIIIT
 	output(". After an alien adventure like that, you’re very much looking forward to getting on with your journey... and possibly meeting Tetra and Mica again.");
 	
 	pc.orgasm();
+	if(InPublicSpace()) pc.exhibitionism(1);
 	flags["ZILTWINS_MET"] = 1;
 	
 	addButton(0, "Next", mainGameMenu);
@@ -481,7 +482,7 @@ public function zilTwinsFuckMicaMentally():void
 	output("\n\nResting one hand on his flat, chitinous chest, Mica reaches the other down to his exposed zil dick, already stiffening from the attention it’s getting.");
 	output(" It’s hard to tear yourself from the girly bee’s long, monstrously-thick tool as it pulses to hardness, and you think that may have something to do with his potent pheromones being closer to you than before.");
 	output(" Mica starts to jerk himself off without hesitation, stroking his tool from tip to base and pulling back his stretchy foreskin until he’s quivering in his spot, letting out quiet moans that send shivers down your spine.");
-	output(" Soon enough, a dollop of sweet, golden pre forms on his cockhead, and that has both you and tetra licking your lips.");
+	output(" Soon enough, a dollop of sweet, golden pre forms on his cockhead, and that has both you and Tetra licking your lips.");
 	output("\n\nThough, after a few more moments of Mica stroking himself, you realize this isn’t exactly a dance, and the zil’s twin notices as well.");
 	output("\n\n<i>“Come on, Mica,”</i> Tetra chides, reclining in her seat and taking up a very regal pose, <i>“Our friend here didn’t come all the way here to watch my brother play with himself. I know for a fact you can do <i>much</i> better.”</i>");
 	output("\n\nMica gets a bit flustered at that, the once smooth rhythm of his wrist becoming a bit off-tempo. <i>“I-I’m sorry, sister,”</i> the poor femboy stutters, <i>“I’ll try to do better.”</i>");
@@ -585,7 +586,7 @@ public function zilTwinsFuckMicaForRealsies(zilTwinsMicaVol:int):void
 		output(" of cockmeat hanging between your legs");
 	}
 	else output(", his yellow-black face turning a bright red as he eyes up your package.");
-	if (!pc.isNude()) output("By the time you’re good and nude, Mica is walking around to the head of the table, and you join him there, standing behind him with a grin as he goes to bend himself over the table.");
+	if (!pc.isNude()) output(" By the time you’re good and nude, Mica is walking around to the head of the table, and you join him there, standing behind him with a grin as he goes to bend himself over the table.");
 
 	output("\n\nIt takes a while for the zil to get himself comfortable, his hips wiggling enticingly while he settles in, setting his hefty balls wobbling. When he’s finally got himself well in place, Mica looks over his shoulder at you with a shy, but pleased smile, obviously eager to get things going.");
 
@@ -687,10 +688,10 @@ public function zilTwinsFuckTetra(zilTwinsTetraMinVol:int):void
 	output("\n\nThough, before you can get to the good stuff, Tetra turns her gaze from you to her brother, who’s seeming a little bit dejected, even with his zil-cock slowly stiffening as the scene before him unfolds.");
 	output("\n\n<i>“Come on, Mica,”</i> the alien beauty chides, <i>“I said there’s enough room up here for all of us, now get up here so I can make sure you aren’t touching yourself.”</i>");
 	output("\n\nMica is quick to respond with a subservient <i>“Yes, sister”</i> before climbing up on the table and kneeling down with his arms held submissively at his sides, fists held tightly.");
-	output("\n\n<i>“That’s more like it,”</i> his sister coos, turning her attention back to you,");
-
-	if (flags["ZILTWINS_TETRA_FUCKED"] == undefined) output(" Alright, [pc.name], why don’t you try and show me how you offworlders mate?”</i>");
-	else output(" I hope this is as good as last time, [pc.name].”</i>");
+	output("\n\n<i>“That’s more like it,”</i> his sister coos, turning her attention back to you, <i>“");
+	if (flags["ZILTWINS_TETRA_FUCKED"] == undefined) output("Alright, [pc.name], why don’t you try and show me how you offworlders mate?");
+	else output("I hope this is as good as last time, [pc.name].");
+	output("”</i>");
 	output("\n\nFinding yourself grinning and blushing at her words, you know you’ll endeavour to do your best to please this alien woman. So, you give your hips a little lurch forward, lining up");
 	if (doubletrouble) output(" your [pc.cocks] with both her slightly-stretched slit and her narrow pucker, ready to give her some double-penetrative loving.");
 	else output(" your [pc.cockBiggest] with Tetra’s slightly-stretched and honey-leaking slit, ready for you to fill it.");
@@ -719,7 +720,7 @@ public function zilTwinsFuckTetra(zilTwinsTetraMinVol:int):void
 		output(" from her brother’s monster-cock with your own package sliding into her so easily.");
 	}
 	
-	output(" Still, though, Tetra’s honey-glazed inner walls hug at your throbbing shaft{s} when you bottom out inside her, feeling her tummy hardening and tightening against yours as she works all her muscles to clench down around your [pc.cocks].");
+	output(" Still, though, Tetra’s honey-glazed inner walls hug at your throbbing shaft" + (!doubletrouble ? "" : "s") + " when you bottom out inside her, feeling her tummy hardening and tightening against yours as she works all her muscles to clench down around your [pc.cocks].");
 	output("\n\nThat tightness leaves you groaning pleasurably, much to the dommy wasp’s delight. Before you can even think about pulling back, though, Tetra starts to roll her hips against yours, getting squeezing inner walls to rub against your cockflesh, setting your [pc.hips] twitching and tearing a pleasured whimper from your lips.");
 	output("\n\n<i>“Come on, [pc.name],”</i> she breathes, cupping your cheek so you’re looking into her big black" + (silly ? " and soulless" : "") + " eyes, <i>“I want to see how offworlders treat their women.”</i>");
 	output("\n\nIf you weren’t already feeling compelled to start moving your hips before, you are now, and quickly go to pull your [pc.hips] back,");
