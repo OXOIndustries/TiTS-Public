@@ -126,12 +126,12 @@ package classes.Characters
 		{
 			return Math.max(super.lustMin(), (combatMode == 2 ? 50 : 0));
 		}
-		
+		/* Fen cut dis because it's super inelegant and confusing as to why it still shows damage but does nothing.
 		override public function lust(arg:Number = 0, apply:Boolean = false):Number
 		{
 			if (combatMode == 1) return super.lust();
 			else return super.lust(arg, apply);
-		}
+		}*/
 		
 		//AI vars
 		private var combatMode:int = 0;
@@ -166,6 +166,7 @@ package classes.Characters
 					output("\n\nShe stares at you with renewed focus, retaking her fighting stance.");
 				}
 				combatMode = 1;
+				isLustImmune = true;
 				return;
 			}
 			else if (lust() > 50 && combatMode == 0)
@@ -211,7 +212,7 @@ package classes.Characters
 			else
 			{
 				output(" The surge hits you like a truck, making you feel extra crispy.");
-				if (this.physique()/2 + rand(20) + 1 > target.physique()/2 + 10){
+				if (this.aim()/2 + rand(20) + 1 > target.physique()/2 + 10){
 					CombatAttacks.applyStun(target,1);
 					output(" Every part of your body is tingling with electricity, making it hard to move. <b>You are stunned!</b>");
 				}
@@ -403,6 +404,7 @@ package classes.Characters
 			maxOutEnergy();
 			combatMode = 0;
 			thunderCountdown = 0;
+			isLustImmune = false;
 			lust(35, true);
 		}
 	}
