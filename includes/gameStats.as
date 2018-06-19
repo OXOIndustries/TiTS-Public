@@ -1143,6 +1143,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Sired, Sam’s Children:</b> " + StatTracking.getStat("pregnancy/sam sired"));
 				if(StatTracking.getStat("pregnancy/sera sired") > 0)
 					output2("\n<b>* Sired, Sera’s Children:</b> " + StatTracking.getStat("pregnancy/sera sired"));
+				if(StatTracking.getStat("pregnancy/Stella children sired/total") > 0)
+					output2("\n<b>* Sired, Stella’s Children:</b> " + StatTracking.getStat("pregnancy/Stella children sired/total"));	
 				if(StatTracking.getStat("pregnancy/tam sired") > 0)
 					output2("\n<b>* Sired, Tam’s Children:</b> " + StatTracking.getStat("pregnancy/tam sired"));
 				if(StatTracking.getStat("pregnancy/ula sired") > 0)
@@ -5145,8 +5147,25 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SEXED_VERUSHA"] != undefined) output2("\n<b>* Verusha, Times Sexed:</b> " + flags["SEXED_VERUSHA"]);
 					if(flags["VERUSHA_ORALED"] != undefined) output2("\n<b>* Verusha, Times You Sucked Her Cock:</b> " + flags["VERUSHA_ORALED"]);
 				}
+								
 				// Unknown waitress
-				if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
+				if (flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
+				// Tessa
+				if(flags["TESSA_MET"] != undefined)
+				{
+					output2("\n<b><u>Tessa,the White Woman</u></b>");
+					output2("\n<b>* Tessa:</b> Met her");
+					if(flags["TESSA_TRUST"] != undefined) output2("\n<b>* Tessa, Trust:</b> " + flags["TESSA_TRUST"] + " %");
+					if(flags["TESSA_SENSEPLAY"] != undefined) output2("\n<b>* Tessa, Times Experienced Senseplay:</b> " + flags["TESSA_SENSEPLAY"]);
+					if(flags["TESSA_FJ_MALE"] != undefined) output2("\n<b>* Tessa, Times Experienced Male Footjob:</b> " + flags["TESSA_FJ_MALE"]);
+					if(flags["TESSA_FJ_FEMALE"] != undefined) output2("\n<b>* Tessa, Times Experienced Female Footjob:</b> " + flags["TESSA_FJ_FEMALE"]);
+					if(flags["TESSA_GONEDOWN"] != undefined) output2("\n<b>* Tessa, Times You've Gone Down on Tessa:</b> " + flags["TESSA_GONEDOWN"]);
+					if(flags["TESSA_BJS"] != undefined) output2("\n<b>* Tessa, Times She Sucked You Off:</b> " + flags["TESSA_BJS"]);
+					if(flags["TESSA_LICKS"] != undefined) output2("\n<b>* Tessa, Times She Licked You Off :</b> " + flags["TESSA_LICKS"]);
+					if(flags["TESSA_BREASTPLAY"] != undefined) output2("\n<b>* Tessa, Times She Played With Your Breasts:</b> " + flags["TESSA_BREASTPLAY"]);
+					if(flags["TESSA_SHOWER"] != undefined) output2("\n<b>* Tessa, Times You Showered With Tessa:</b> " + flags["TESSA_SHOWER"]);
+				}
+				
 				variousCount++;
 			}
 			// Anno
