@@ -2,8 +2,8 @@ package classes.Characters
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Melee.Fists;
-	import classes.Items.Guns.HammerPistol;
+	import classes.Items.Melee.ShockBlade;
+	import classes.Items.Guns.MagnumPistol;
 	import classes.Items.Protection.BasicShield;
 	import classes.Items.Protection.JoyCoPremiumShield;
 	import classes.Items.Accessories.FlashGoggles;
@@ -36,18 +36,11 @@ package classes.Characters
 			this.long = "";
 //			this.customDodge = "Somehow, the robot manages to move out of the way of your fire.";
 //			this.customBlock = "The hardened exterior of the robot absorbs your attack.";
-			this.isPlural = true;
+			this.isPlural = false;
 			isLustImmune = true;
 			
-			this.meleeWeapon = new Fists();
-			this.rangedWeapon.longName = "machinegun";
-			this.rangedWeapon.attack = 0;
-			rangedWeapon.baseDamage.electric.damageValue = 1;
-			rangedWeapon.baseDamage.burning.damageValue = 1;
-			rangedWeapon.addFlag(DamageFlag.LASER);
-			this.rangedWeapon.attackVerb = "shoot";
-			this.rangedWeapon.attackNoun = "laser beam";
-			this.rangedWeapon.hasRandomProperties = true;
+			this.meleeWeapon = new ShockBlade();
+			this.rangedWeapon = new MagnumPistol();
 			
 			this.armor.longName = "steel plates";
 			this.armor.defense = 3;

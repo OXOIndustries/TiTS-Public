@@ -34,17 +34,47 @@ import classes.Characters.Torra;
  * SYRIQUEST_SIEGWULFE_NAME				name of the Siegwulfe you gave to Valden
 */
 
-//Ask Savin about:
-/* syriTalksAboutAnno scene
- * Mhenga Landig pad scene with syri
- * Should CuntSleve be aviable even if Valden died?
- * Subtuner und Bioanehole Content aktivieren?
- * Requires Meeting anno and Talk about Syris past?
+
+/*
+***************************************************************************
+So far, the quest works and can be played start to finish, the only thing missing is the combat and fixing an annoying bug.
+There seems to be a bit of Subtuner and Bioanehole content that requires Syri quest - ask Fen if that should be activated.
+
+The bug: There are a couple of instances during the quest (basicly the quest endings) where Syri gets added to the second room in the Uveto bar, but for some reason the map isnt showing the NPC icon for the room.
+
+Security Robots:
+syriQuestAkkadiBaseSecurityRobotsEncounter
+There is a bug with this NPC as there are no damage indicators during combat. And since I never did much on this NPC, I suggest scrapping this one and starting from scratch.
+It also might be a good idea to reduce the number of enemies in this fight as it might be harder than one of the bossfight later otherwise.
+
+Torra:
+syriQuestTorraFight
+Finished so far aside from one attack (needs a modifier to weaken the PC), might need a bit balance testing.
+
+Dr. Calnor
+syriQuestCalnorFight & syriQuestCalnorFight2
+The basic class for this NPC exists, but its using copy pasted place holder attacks. Second fight is basicly the same, should just be a bit more HP and shields.
+
+Valden
+syriQuestAkkadiBaseValdenFight
+Never got around to code that, so no work was done.
+
+Team Up
+syriQuestCalnorTalkTeamUp
+Team up with Calnor vs. a swarm of bots. Not much work to do if both NPCs have been coded.
+
+Dropship
+syriQuestAkkadiBaseEscape
+Coded, but might need a lot of balancing testing. Pretty sure it is way to hard atm.
+
+Schora
+syriQuestSchoraFight
+Basic class exits, but no work on the attacks was done.
+
 */
- 
+
 //When the PC hits Level 9 and meets all other reqs., remove Syri from Mhen'ga. The next time the PC enters the transit hub on Uveto (and has access to at least one travel point), play this scene.");
 //Reqs: Level 9. Must be fuckbuddies with Syri and have gotten Syri's panties.");
-
 public function syriQuestRunning():Boolean
 {
 	if (syriQuestComplete()) return false;
@@ -95,7 +125,7 @@ public function showSchora(nude:Boolean = false):void
 //Schoras Dropship
 public function showDropship():void
 {
-	showName("AKKADI\nDROPSHIP");
+	showName("\nDROPSHIP");
 	showBust("DROPSHIP");
 }
 
@@ -130,10 +160,9 @@ public function showCalnor(nude:Boolean = false):void
 }
 
 //Torra, Assistant Researcher
-public function torraaBustDisplay(nude:Boolean = false):String
+public function torraBustDisplay(nude:Boolean = false):String
 {
 	var sBust:String = "TORRA";
-	var sBust:String = "CARRIE";
 	if(nude) sBust += "_NUDE";
 	return sBust;
 }
@@ -141,8 +170,8 @@ public function torraaBustDisplay(nude:Boolean = false):String
 public function showTorra(nude:Boolean = false):void
 {
 //	showName("\nTORRA");
-	showName("ASSISTANT\nRESEARCHER");
-	showBust(torraaBustDisplay(nude));
+	showName("MILODAN\nRESEARCHER");
+	showBust(torraBustDisplay(nude));
 }
 
 public function showAkkadiSecBots():void
@@ -479,6 +508,7 @@ public function syriQuestTalkSyrisPlanStillRefuse():void {
 
 	flags["SYRIQUEST_STATE"] = -1;
 	rooms["UVI H34"].addFlag(GLOBAL.NPC);
+	generateMap();
 	processTime(5);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -957,12 +987,12 @@ public function syriQuestAkkadiBaseSecurityRobotsEncounter():void
 	var hostiles:Array = [];
 	for (var i:int = 0; i < numEnemies; i++)
 	{
-		hostiles.push(new AkkadiSecurityRobots());
+		hostiles.push(new KQ2BlackVoidGrunt());
 	}
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(hostiles);
-	CombatManager.displayLocation("SECURITY ROBOTS");
+	CombatManager.displayLocation("SECURITY");
 	CombatManager.victoryScene(syriQuestAkkadiBaseSecurityRobotsVictory);
 	CombatManager.lossScene(syriQuestAkkadiBaseSecurityRobotsDefeat);
 	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseSecurityRobotsFightText);
@@ -1262,7 +1292,7 @@ public function syriQuestTorraFight():void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(new Torra());
-	CombatManager.displayLocation("ASSISTANT\nRESEARCHER");
+	CombatManager.displayLocation("RESEARCHER");
 	CombatManager.victoryScene(syriQuestTorraVictory);
 	CombatManager.lossScene(syriQuestTorraDefeat);
 	CombatManager.encounterTextGenerator(syriQuestTorraFightText);
@@ -1272,8 +1302,8 @@ public function syriQuestTorraFight():void
 public function syriQuestTorraFightText():String
 {
 	var eText:String = "";
-	eText += "You're fighting the Milodan Researcher!";
-	eText += "\n\nShe's a tall furry woman with the ears and colors of a snow leopard. Her figure is the very definition of fertile: she has broad hips, thick thighs, and a thin waist. And her breasts, well, they're <i>beyond</i> fertile: the huge, succulent mounds sit high and heavy on her chest, each capped with a prominent black teat. She's well beyond an H-cup, if they even make bras big enough to contain such mammalian magnificence. She's unarmed, save for the razor-like feline claws protruding from her digits, and the meaty black vibrater lodged inside her. That's a kind of weapon, right?";
+//	eText += "You're fighting the Milodan Researcher!";
+	eText += "She's a tall furry woman with the ears and colors of a snow leopard. Her figure is the very definition of fertile: she has broad hips, thick thighs, and a thin waist. And her breasts, well, they're <i>beyond</i> fertile: the huge, succulent mounds sit high and heavy on her chest, each capped with a prominent black teat. She's well beyond an H-cup, if they even make bras big enough to contain such mammalian magnificence. She's unarmed, save for the razor-like feline claws protruding from her digits, and the meaty black vibrater lodged inside her. That's a kind of weapon, right?";
 	
 	return eText;
 }
@@ -1492,7 +1522,7 @@ public function syriQuestCalnorFightBadEnd():void
 
 public function syriQuestAkkadiBaseValdenFight():void
 {
-	//@Fen this is a placeholder as I have absolutly no idea how to code that combat
+	//@Coder this is a placeholder as I have absolutly no idea how to code that combat
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(new Torra());
@@ -1607,6 +1637,8 @@ public function syriQuestSyriDidntFindHimII():void
 	output("\n\nOh, Syri...");
 	processTime(10);
 	flags["SYRIQUEST_STATE"] = 21;
+	rooms["UVI H34"].addFlag(GLOBAL.NPC);
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1671,6 +1703,8 @@ public function syriQuestSyriTellHerIV():void
 	output("\n\nOh, Syri...");
 	processTime(10);
 	flags["SYRIQUEST_STATE"] = 22;
+	rooms["UVI H34"].addFlag(GLOBAL.NPC);
+	generateMap();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1935,7 +1969,7 @@ public function syriQuestCalnorTalkTeamUp():void
 	processTime(3);
 	clearMenu();
 	CombatManager.newGroundCombat();
-	//@Fen
+	//@Coder: Should be pretty simple IF Calnor and the droids are coded.
 	//PC vs. as many security bots as you can fit on screen. Should be a pretty meaty fight. Recycle stats and abilities from the random encounter. If the PC drops, go to the Brought Before Valden bad end.");
 	CombatManager.setFriendlyActors([pc, new DrCalnor()]);
 	CombatManager.setHostileActors([new AkkadiSecurityRobots(), new AkkadiSecurityRobots(), new AkkadiSecurityRobots(), new AkkadiSecurityRobots(), new AkkadiSecurityRobots()]);
@@ -2249,7 +2283,7 @@ public function syriQuestSchoraFightBadEnd():void
 	processTime(3);
 	output("You crumple to the ground, gasping for breath and writhing in pain. Schora stalks up to you, couching her rifle under her arm, and takes a knee over you.");
 	//"Schora was hit by at least 1 lust attack or fucked rough earlier"
-	// @Fen no idea what the right condition would be for getting teased
+	//@Coder no idea what the right condition would be for getting teased in combat
 //	 if (flags["MET_SCHORA"] >= 3 || ??? ) {
 	if (flags["MET_SCHORA"] >= 3) {
 		output("\n\n<i>“Alright, cassy-nova, you wanna flaunt your stuff, huh? Think you can get outta your punishment just cuz you " + (flags["MET_SCHORA"] >= 3 ? "can make me cream myself better than any man on this gods-forsaken moon" : "can wiggle some meat real good" ) + "? Well... you're </i>almost<i> right.”</i>");
@@ -2550,6 +2584,8 @@ public function syriQuestWrapUp():void
 	}
 	processTime(30);
 	flags["SYRIQUEST_STATE"] = 23;
+	rooms["UVI H34"].addFlag(GLOBAL.NPC);
+	generateMap();
 }
 
 public function syriQuestWrapUpII():void

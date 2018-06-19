@@ -2,14 +2,12 @@ package classes.Characters
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Protection.BasicShield;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.Engine.Utility.weightedRand;
 	import classes.GameData.CodexManager;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
-	
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.*;
 	import classes.GameData.CombatAttacks;
@@ -19,9 +17,7 @@ package classes.Characters
 
 	public class AkkadiDropship extends Creature
 	{
-		//@Fen
-		//is there any way to make this immune to Siegewulfe/Tamwolf and meele weapons? Its flying after all
-		//also needs a boosted shield and armor and a way to kill it once the shield is down
+		//Boss has ultra-heavy shields and LOADS of Health -- like, way more than the PC could ever reasonably chew through at Level 10. She also has high Energy DPS via a pair of Vulcan laser cannons, which make a flurry of low-damage attacks each round. While in the gunship, Schora is immune to Lust (has 0, can't gain it) and cannot be Stunned or Knocked Prone.
 		public function AkkadiDropship() 
 		{
 			this._latestVersion = 1;
@@ -32,7 +28,7 @@ package classes.Characters
 			this.originalRace = "aircraft";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "";
+			this.long = "rhue3z3 353egh334";
 			this.isPlural = false;
 			isLustImmune = true;
 			
@@ -57,7 +53,7 @@ package classes.Characters
 
 			this.physiqueRaw = 50;
 			this.reflexesRaw = 20;
-			this.aimRaw = 40;
+			this.aimRaw = 20;
 			this.intelligenceRaw = 30;
 			this.willpowerRaw = 25;
 			this.libidoRaw = 0;
@@ -88,29 +84,6 @@ package classes.Characters
 			return "DROPSHIP";
 		}
 		
-			
-/*		
-Boss has ultra-heavy shields and LOADS of Health -- like, way more than the PC could ever reasonably chew through at Level 10. She also has high Energy DPS via a pair of Vulcan laser cannons, which make a flurry of low-damage attacks each round. While in the gunship, Schora is immune to Lust (has 0, can't gain it) and cannot be Stunned or Knocked Prone.
-
-Vulcan Cannon
-//Used every turn, on top of any other ability. Makes six low-accuracy, low-damage attacks.
-The twin cannons under the dropship cockpit keep spinning, hurling an endless barrage of laser bolts your way!
-
-Evasive Maneuvers!
-//Rare. Increases Evasion by 25% for 3 turns.
-The dropship starts moving faster, ducking and weaving around the helipad. With its engines roaring at full blast, snow kicks up and whirls around it, making the ship damn hard to see.
-
-
-Strafing Run
-//Reduces the PC's evasion, deals moderate energy damage. Chance to blind if the PC fails a Reflex save.
-
-The dropship comes in low, running its cannons hot as laser beams kick up all around you, leaving you nowhere to run{blind: and blasting up so much snow and mist that it's impossible to see}!
-
-Concussion Launcher
-//Rare. Does massive Kinetic damage. Physique save for half damage.
-
-A pair of cannons under the dropship's wings glow for a moment before unleashing a shockwave of concussive force, blasting you like a solid wall of bricks and knocking snow-dust up all around you. 
-*/
 		override public function isDefeated():Boolean
 		{
 			//kill the ship if the shields go down
@@ -124,21 +97,23 @@ A pair of cannons under the dropship's wings glow for a moment before unleashing
 			if (target == null) return;
 
 			var enemyAttacks:Array = [];
-			enemyAttacks.push( { v: akkadiDropshipVulcanCannon, w: 25 } );
-			if (!hasStatusEffect("Evasion Cooldown")) enemyAttacks.push( { v: akkadiDropshipEvasiveManeuvers, w: 5 } );
-			if (energy() >= 10) enemyAttacks.push( { v: akkadiDropshipStrafingRun, w: 10 } );
-			if (energy() >= 15) enemyAttacks.push( { v: akkadiDropshipConcussionLauncher, w: 15 } );
+			enemyAttacks.push( { v: vulcanCannons, w: 25 } );
+			if (!hasStatusEffect("Evasion Cooldown")) enemyAttacks.push( { v: evasiveManeuvers, w: 5 } );
+			if (energy() >= 10) enemyAttacks.push( { v: strafingRun, w: 15 } );
+			if (energy() >= 15) enemyAttacks.push( { v: concussionLauncher, w: 5 } );
 
 			//if the PC is low on health, just try to finish them with heavy attacks
-			if (target.shields() <= 0 && (target.HP() / target.HPMax() <= 0.1 || target.HP() <= 100) && energy() >= 15 && rand(2) == 0) akkadiDropshipConcussionLauncher(target);
+			if (target.shields() <= 0 && (target.HP() / target.HPMax() <= 0.1 || target.HP() <= 100) && energy() >= 15 && rand(2) == 0) concussionLauncher(target);
+			//if the PC is in cover, try to kill it
+			else if (target.hasStatusEffect("Taking Cover") && energy() >= 10 && rand(2) == 0) strafingRun(target);
 			// if the ship is low on shields or run out of energy, evade
-			else if (!hasStatusEffect("Evasion Cooldown") && ((this.shields() / this.shieldsMax() <= 0.5) || (energy() <= 20))) akkadiDropshipEvasiveManeuvers(target);
+			else if (!hasStatusEffect("Evasion Cooldown") && ((this.shields() / this.shieldsMax() <= 0.5) || (energy() <= 20))) evasiveManeuvers(target);
 			//otherwise just use the attacks at random
 			else weightedRand(enemyAttacks)(target);
 		}
 		
 		//Used every turn, on top of any other ability. Makes six low-accuracy, low-damage attacks.
-		private function akkadiDropshipVulcanCannon(target:Creature):void
+		private function vulcanCannons(target:Creature):void
 		{
 			output("The twin cannons under the dropship cockpit keep spinning, hurling an endless barrage of laser bolts your way!");
 			output("\n");
@@ -151,9 +126,9 @@ A pair of cannons under the dropship's wings glow for a moment before unleashing
 		}
 
 		//Rare. Increases Evasion by 25% for 3 turns.
-		private function akkadiDropshipEvasiveManeuvers(target:Creature):void
+		private function evasiveManeuvers(target:Creature):void
 		{
-			akkadiDropshipVulcanCannon(target);
+			vulcanCannons(target);
 			output("\n\nThe dropship starts moving faster, ducking and weaving around the helipad. With its engines roaring at full blast, snow kicks up and whirls around it, making the ship damn hard to see.");
 			createStatusEffect("Evasion Cooldown", 5);
 			createStatusEffect("Evasion Boost",30,0,0,0,false,"Icon_DefUp","+30% Evasion!",true,3);
@@ -161,16 +136,20 @@ A pair of cannons under the dropship's wings glow for a moment before unleashing
 		}
 
 		//Reduces the PC's evasion, deals moderate energy damage. Chance to blind if the PC fails a Reflex save.
-		private function akkadiDropshipStrafingRun(target:Creature):void
+		private function strafingRun(target:Creature):void
 		{
-			output("The dropship comes in low, running its cannons hot as laser beams kick up all around you, leaving you nowhere to run");
-			if (!target.hasBlindImmunity() && !target.hasStatusEffect("Blinded") && target.RQ() < 50) {
-				CombatAttacks.applyBlind(target, 3);
-				output("and blasting up so much snow and mist that it's impossible to see");
+			output("The dropship comes in low, running its cannons hot as laser beams kick up all around you, ");
+			//kill the cover
+			if (statusEffectv1("Taking Cover") >= 1) {
+				output("reducing your cover" )
+				target.addStatusValue("Taking Cover", 1, -1);
 			}
-			else target.createStatusEffect("Smoke Grenade", 999, 0, 0, 0, false, "Blind", "Ranged attacks are far more likely to miss.", true, 5);
-//			target.createStatusEffect("Evasion Reduction", 20, 0, 0, 0, true, "Icon_DefDown", "-20% Evasion", true, 5);
-			output("!");
+			else output("leaving you nowhere to run");
+			if (!target.hasBlindImmunity() && !target.hasStatusEffect("Blinded") && rand(99) >= target.RQ()) {
+				CombatAttacks.applyBlind(target, 3);
+				output(" and blasting up so much snow and mist that it's impossible to see");
+			}
+			output("!\n");
 			//lets kick up some dust by faking the default attack and making the last 4 shoots always miss
 			for (var i:int = 0; i < 2; i++)
 			{
@@ -186,17 +165,17 @@ A pair of cannons under the dropship's wings glow for a moment before unleashing
 		}
 
 		//Rare. Does massive Kinetic damage. Physique save for half damage.
-		private function akkadiDropshipConcussionLauncher(target:Creature):void
+		private function concussionLauncher(target:Creature):void
 		{
-			akkadiDropshipVulcanCannon(target);
+			vulcanCannons(target);
 			output("\n\nA pair of cannons under the dropship's wings glow for a moment before unleashing a shockwave of concussive force, blasting you like a solid wall of bricks and knocking snow-dust up all around you.");
 			var damage:int;
-			if (target.PQ() < 75) damage = 48;
+			if (rand(50) * 2 >= target.PQ()) damage = 48;
 			else damage = 36;
 			applyDamage(damageRand(new TypeCollection( { kinetic: damage }, DamageFlag.BYPASS_SHIELD), Math.round(damage / 2)), this, target, "minimal");
 			if (rand(2) == 0) {
 				output("<b> You’ve been staggered!</b>");
-				CombatAttacks.applyStagger(target, 2);
+				CombatAttacks.applyStagger(target, 3);
 			}
 			energy(-15);
 		}

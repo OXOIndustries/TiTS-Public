@@ -1,96 +1,4 @@
 
-/*
-The only one of her old talk scenes that seems like it'd carry over might be her Books talk; the rest are all invalidated by the quest.
-The Anno talk can come forward too; would just need to change "when I get off work later" to like "when I'm done talkin' with you"
-Good catch
-*/
-public function SQDEBUG():void
-{
-	clearOutput();
-	output("SYRIQUEST_STATE: " + flags["SYRIQUEST_STATE"])
-	output("\n\nSYRIQUEST_LOCK_BYPASS: " + flags["SYRIQUEST_LOCK_BYPASS"])
-	output("\n\nSYRIQUEST_POWER_STATE: " + flags["SYRIQUEST_POWER_STATE"])
-	output("\n\nSYRIQUEST_ELEVATOR_STATE: " + flags["SYRIQUEST_ELEVATOR_STATE"])
-	output("\n\nSYRIQUEST_VALDEN_BODY_CHOICE: " + flags["SYRIQUEST_VALDEN_BODY_CHOICE"])
-	output("\n\nMET_SCHORA: " + flags["MET_SCHORA"])
-	output("\n\nMET_TORRA: " + flags["MET_TORRA"])
-	output("\n\nSYRIQUEST_SIEGWULFE_NAME: " + flags["SYRIQUEST_SIEGWULFE_NAME"])
-	clearMenu();
-	addButton(0,"AKD K31",SQDEBUGAKDK31);
-	addButton(1,"AKD C15",SQDEBUGAKDC15);
-	addButton(2,"AKD K15",SQDEBUGAKDK15);
-	addButton(6,"Dropship Fight",syriQuestAkkadiBaseEscape);
-	addButton(7,"Escape",SQDEBUGEscape);
-	addButton(8,"Escape",SQDEBUGEscapeSiegWulfe);
-	addButton(9,"BotFight1vs1",SQDEBUGBotFight1vs1);
-}
-
-public function SQDEBUGAKDK31():void
-{
-//	currentLocation = "AKD K31";
-//	generateMap();
-//	showLocationName();
-	moveTo("AKD K31");
-	mainGameMenu();
-}
-
-public function SQDEBUGAKDC15():void
-{
-//	currentLocation = "AKD C15";
-//	generateMap();
-//	showLocationName();
-//	flags["MET_SCHORA"] = 0;
-//	flags["SYRIQUEST_STATE"] = 0;
-	moveTo("AKD C15");
-	mainGameMenu();
-}
-
-public function SQDEBUGAKDK15():void
-{
-//	currentLocation = "AKD K15";
-//	generateMap();
-//	showLocationName();
-//	flags["SYRIQUEST_STATE"] = 3;
-	moveTo("AKD K15");
-	mainGameMenu();
-}
-
-public function SQDEBUGEscape():void
-{
-	flags["SYRIQUEST_VALDEN_BODY_CHOICE"] = 1;
-//	syriQuestEscape();
-}
-
-public function SQDEBUGEscapeSiegWulfe():void
-{
-	flags["SYRIQUEST_VALDEN_BODY_CHOICE"] = 2;
-//	syriQuestEscape();
-}
-
-public function SQDebugValues():void
-{
-	output(chars["SYRI"].analCapacity() + "\n\n");
-	output(pc.cockVolume(0) + "\n\n");
-	output(pc.cockVolume(1) + "\n\n");
-	output(pc.cockVolume(2) + "\n\n");
-	output(pc.cockVolume(3) + "\n\n");
-	output(pc.cockThatFits(2) + "\n\n");
-}
-
-public function SQDEBUGBotFight1vs1():void
-{
-	CombatManager.newGroundCombat();
-	CombatManager.setFriendlyActors(pc);
-	CombatManager.setHostileActors(new AkkadiSecurityRobots());
-	CombatManager.displayLocation("SECURITY ROBOTS");
-	CombatManager.victoryScene(syriQuestAkkadiBaseSecurityRobotsVictory);
-	CombatManager.lossScene(syriQuestAkkadiBaseSecurityRobotsDefeat);
-	CombatManager.encounterTextGenerator(syriQuestAkkadiBaseSecurityRobotsFightText);
-
-	clearMenu();
-	addButton(0, "Fight!", CombatManager.beginCombat);
-}
-
 public function syriAtFreeezer():Boolean
 {
 	if ((syriQuestRunning() && flags["SYRIQUEST_STATE"] == 1) || syriQuestComplete()) return true;
@@ -124,8 +32,6 @@ public function syriFreezerMenu(outputs:Boolean = true):void
 	if(flags["UNLOCK_SYRI_ANNO_TALK"] != undefined) addButton(3,"Anno",syriTalksAboutAnno);
 	addButton(4,"Kiss Her",syriFreezerKissHer,undefined,"Kiss Her",silly ? "Give your favorite pooch a smooch." : "Give Syri a smooch.");
 	addButton(14,"Leave",mainGameMenu);
-
-	addButton(5,"DEBUG",SQDEBUG);
 }
 
 public function syriFreezerKissHer():void
@@ -161,8 +67,8 @@ public function syriFreezerTalkMenu(outputs:Boolean = true):void
 	if (flags["SYRIQUEST_STATE"] >= 23) addButton(0,"Valden",syriFreezerTalkValden,undefined,"Valden","How's Valden doing? Is Syri keeping up with him at all?");
 	else addDisabledButton(0,"Locked");
 	addButton(1,"What's Next?",syriFreezerTalkWhatsNext,undefined,"What's Next?","What's next for Syri Dorna?");
-	//output("\n\n//One time only");
-	if (flags["SYRIQUEST_POST_GAME_TALK_LOVE"] == undefined) addButton(2,"Love?",syriFreezerTalkLove,undefined,"Love?","Syri dropped a very particular word at the end of your mission to save Valden. Press her on it.");
+	//dont activate this if the quest got refused
+	if (flags["SYRIQUEST_STATE"] >= 21 && flags["SYRIQUEST_POST_GAME_TALK_LOVE"] == undefined) addButton(2,"Love?",syriFreezerTalkLove,undefined,"Love?","Syri dropped a very particular word at the end of your mission to save Valden. Press her on it.");
 	else addDisabledButton(2,"Love?");
 	if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 1) addButton(3,"Penis",syriFreezerTalkPenis,undefined,"Penis","So now that Valden's the living dead, what's Syri gonna do about her dick?");
 	else addDisabledButton(3,"Locked");

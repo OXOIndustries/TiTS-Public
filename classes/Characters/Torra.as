@@ -3,7 +3,7 @@
 	import classes.Creature;
 	import classes.GameData.SingleCombatAttack;
 	import classes.GLOBAL;
-	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
+	import classes.Items.Protection.ArcticWarfareBelt;
 	import classes.StorageClass;
 	import classes.VaginaClass;
 	//import classes.Items.Guns.*
@@ -28,26 +28,25 @@
 			this.version = _latestVersion;
 			this._neverSerialize = true;
 			
-			this.short = "Assistent";
+			this.short = "Milodan Researcher";
 			this.originalRace = "milodan";
 			this.a = "the ";
 			this.capitalA = "The ";
-			this.long = "Assistent Researcher";
+			this.long = "";
 			this.isPlural = false;
 			
 			this.meleeWeapon.attack = 4;
 			this.meleeWeapon.baseDamage.kinetic.damageValue = 6;
-			this.meleeWeapon.longName = "staff";
-			this.meleeWeapon.description = "";
-			this.meleeWeapon.attackVerb = "swing";
-			this.meleeWeapon.attackNoun = "smash";
+			this.meleeWeapon.attackVerb = "claw";
+			this.meleeWeapon.attackNoun = "claw";
+			this.meleeWeapon.longName = "claws";
 			this.meleeWeapon.hasRandomProperties = true;
 
 			this.armor.longName = "thick hide";
 			this.armor.defense = 4;
 			this.armor.hasRandomProperties = true;
 			
-			shield = new ReaperArmamentsMarkIIShield();
+			shield = new ArcticWarfareBelt();
 			shield.resistances.tease.resistanceValue = 25.0;
 			shield.resistances.drug.resistanceValue = 25.0;
 			shield.resistances.psionic.resistanceValue = 25.0;
@@ -194,8 +193,11 @@
 			this.ass.loosenessRaw = 2;
 			this.ass.bonusCapacity += 75;
 			
+			this.createStatusEffect("Disarm Immune");
+			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+
 			isUniqueInFight = true;
-			btnTargetText = "Assistent";
+			btnTargetText = "Researcher";
 			
 			sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS, GLOBAL.REALLY_LIKES_SEXPREF);
 			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, GLOBAL.REALLY_LIKES_SEXPREF);
@@ -210,161 +212,103 @@
 		{
 			return "TORRA";
 		}
-		
-		override public function downedViaLust():String
-		{
-			return "<b>The Fertility Priestess is lying face-down, ass-up on the floor of the cavern and moaning with lust.</b>";
-		}
-		
-		override public function downedViaHP():String
-		{
-			return "<b>The Fertility Priestess is lying face-down, ass-up on the floor of the cavern and moaning with pain.</b>";
-		}
-		
-		private var _malesRan:Boolean = false;
-		public function get malesRan():Boolean { return _malesRan; }
-		
+	
+		// mindBlast, implantedImagery & psychicLeech are taken from the Fertility Priestess and are the same aside from sligtly different texts and energy requirements
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
-			
-			var ewCD:StorageClass = getStatusEffect("Empowering Word CD");
-			var ew:StorageClass = getStatusEffect("Empowering Word");
-			
-			var numMales:int = 0;
-			for (var i:int = 0; i < alliedCreatures.length; i++)
-			{
-				var tC:Creature = alliedCreatures[i] as Creature;
-				if (tC is MilodanMaleGroup && !tC.isDefeated())
-				{
-					numMales++;
-				}
-			}
-			
-			if (numMales > 0)
-			{
-				// Change to use Empowering Word if the CD isn't active
-				if (!hasStatusEffect("Disarmed") && ewCD == null && rand(3) == 0)
-				{
-					empoweringWord(alliedCreatures);
-					return;
-				}
-				// If the CD is active and the buff isn't active, reduce the CD
-				else if (ewCD != null && ew == null)
-				{
-					ewCD.value1 -= 1;
-					if (ewCD.value1 <= 0)
-					{
-						removeStatusByRef(ewCD);
-					}
-				}
-				// Remove the buff length tracking from this character-- mirrored to save requesting across
-				// creatures.
-				else if (ew != null)
-				{
-					ew.value1 -= 1;
-					if (ew.value1 <= 0)
-					{
-						removeStatusByRef(ew);
-					}
-				}
-			}
-			else if (_malesRan == false && alliedCreatures.length > 1)
-			{
-				malesRunAway(alliedCreatures);
-			}
-			
+					
 			var attacks:Array = [];
-			if (!hasStatusEffect("Disarmed")) attacks.push( { v: staffBonk, w: 15 } );
-			if (!hasStatusEffect("Mind Blast Cooldown") && !target.hasStatusEffect("Stunned")) attacks.push( { v: mindBlast, w: 5 } );
-			if (!hasStatusEffect("Disarmed")) attacks.push( { v: implantedImagery, w: 5 } );
-			if (!hasStatusEffect("Used Leech")) attacks.push( { v: psychicLeech, w: 5 } );
-			attacks.push( { v: tease, w: 10 } );
+			attacks.push( { v: lustfulPawing, w: 5 } );
+			//@Coder: Might want to add the status here
+		//	if (!target.hasStatusEffect("Increased Lust Damage")) attacks.push( { v: begForIt, w: 5 } );
+			if (energy() >= 10 && !target.hasStatusEffect("Stunned")) attacks.push( { v: mindBlast, w: 5 } );
+			if (energy() >= 15) attacks.push( { v: implantedImagery, w: 5 } );
+			if (energy() >= 20) attacks.push( { v: psychicLeech, w: 5 } );
 			
+			// heal if nearly dead
+			if (HP() <= HPMax() * 0.25 && !usedRecover) milkySuckle(target);
+			//get some energy
+			else if (energy() <= 10 ) pushitDeeper(target);
 			weightedRand(attacks)(target);
 		}
-		
-		private function staffBonk(target:Creature):void
+
+		//Basic Lust attack. Does extra damage to PC with huge tits (over H cup) or dicks (over 2 ft.).
+		private function lustfulPawing(target:Creature):void
 		{
-			//Moderate crush damage.
-			output("The priestess swings her glowing staff up and brings it down hard towards your head!");
+			//Basic Lust attack. 
+			output("The lust-addled catgirl mewls with desperate desire, grabbing at you with her fluffy hands. She paws hungrily at your crotch, chest, ass -- anything she can get her hands on to try and stimulate you into fucking her.");
 			
-			if (combatMiss(this, target))
+			if (target.lust() * (target.LQ() / 100) < rand(target.lustMax()))
 			{
-				output(" You deftly dodge out of the way!");
+				output(" You grit your teeth and force yourself to look away -- no way you’re letting a little T&A get the better of you!");
 			}
 			else
 			{
-				output(" The dark halo around the gemstone cracks against your head, sending you reeling!");
-				applyDamage(damageRand(meleeDamage(), 15), this, target, "melee");
+				var damage:int = 10;
+				if (target.longestCockLength() >= 24 || target.biggestTitSize() >= 20) damage = 14;
+				output(" A burning in your loins signifies just how ready for that your body is...");
+				applyDamage(damageRand(new TypeCollection( { tease: damage * (target.LQ() / 100) } ), Math.round(damage * 1.5)), this, target, "tease");
 			}
 		}
-		
-		private function empoweringWord(alliedCreatures:Array):void
+
+		//Lust attack. Deals less damage, but lowers the PC's Lust Resistance for several turns.
+		//@Coder: Still needs a way to lower PCs resistance
+		private function begForIt(target:Creature):void
 		{
-			//Causes the males to do more damage for 2-3 rounds
+			output("<i>“Please,”</i> the kitty whines, staring at you with those big, slitted eyes of hers. <i>“Please please please fuck me! I need it so bad! I feel like I'm in heat but a thousand times over! I need dick, pussy, anything! Give it to me!”</i>");
+			output("\n\nShe moans, rubbing her fluffy fingers through the lips of her soaked quim and groping her tits until milk beads from her black nipples. <i>“I don't even know who you are, but I'll be your slut! Your bitch! Push me down and fuck me, do whatever you want!”</i>");
 			
-			// Add Empowering Word to the males
-			// > v1 = duration remaining
-			// > v2 = damage multiplier
-			
-			createStatusEffect("Empowering Word CD", 3);
-			
-			var duration:int = 2 + rand(2);
-			createStatusEffect("Empowering Word", duration);
-			
-			var numAdded:int = 0;
-			
-			for (var i:int = 0; i < alliedCreatures.length; i++)
+			if (target.lust() * (target.LQ() / 100) < rand(target.lustMax()))
 			{
-				var tC:Creature = alliedCreatures[i];
-				if (tC is MilodanMaleGroup && !tC.isDefeated())
-				{
-					numAdded++;
-					tC.createStatusEffect("Empowering Word", duration, 1.25, 0, 0, false, "OffenseUp", "The priestess has riled the milodan up!", true, 0, 0xFFFFFF);
-				}
+				output(" You grit your teeth and force yourself to look away -- no way you’re letting a little T&A get the better of you!");
 			}
-			
-			if (numAdded > 0)
+			else
 			{
-				output("The priestess raises her staff and utters a word your translators don’t quite catch before slamming the shaft down upon the ice. Suddenly, the male milodan");
-				if (numAdded == 1) output("’s");
-				else output("s’");
-				output(" eyes go wide, and begin to glow. The cavern fills with the sounds of snarling cats, enraged by some unseen force. Uh-oh...");
+				output(" A burning in your loins signifies just how ready for that your body is...");
+				applyDamage(damageRand(new TypeCollection( { tease: 5 * (target.LQ() / 100) } ), 7), this, target, "tease");
 			}
 		}
-		
+
+		private var usedRecover:Boolean=false;
+		//Recover some Health and boosts her Defense for a few turns. 1/encounter.
+		private function milkySuckle(target:Creature):void
+		{
+			output("The sex-crazed catgirl growls, staggering back in the wake of your recent assault. <i>“Why can't you just help me?”</i> she hisses, grabbing her tits in both hands. <i>“Don't you aliens love these?”</i>");
+			output("\n\nAs if to accentuate the point, she hefts up one of her massive mammaries and stuffs her coal-black teat into her mouth, sucking hard enough to make her cheeks compress. When she pops off, creamy white runs down her chin, pitter-pattering onto the tops of her tits and the cold floor beneath her. She looks hale and heartier than ever before -- it's gonna take a lot more work to bring her down now!");
+			usedRecover=true;
+			HP(HPMax() * 0.5);
+		}
+
+		//Spend a turn restoring energy so she can make more Psychic attacks. Only if her ENG reaches lower than her cheapest power's cost.
+		private function pushitDeeper(target:Creature):void
+		{
+			output("<i>“Fuck! I need it... I need it so bad,”</i> the milodan whines, stumbling back and moaning like a bitch in heat -- damn close to what she is, the way she's flushed and dripping. Rather than look to you for relief, however, the horny kitty reaches between her legs and takes hold of the black vibrator lodged in her ass, pushing it deeper into her hungry hole.");
+			output("\n\nHer body goes rigid -- as much as one so lush with bouncy curves can, anyway -- and a low growl escapes her dusky lips. When she finally lets the dildo go, her eyes lock onto yours with a renewed, fiery focus!");
+			energy(+25);
+		}
+
 		private function mindBlast(target:Creature):void
-		{
-			//	Psychic stun attack, resisted by Willpower. Has a long cooldown.
-			
-			output("The milodan priestess puts a hand to the side of her head and narrows her eyes at you, as if concentrating. You glance around, waiting for something to happen...");
-			
+		{		
+			output("The milodan puts a hand to the side of her head and narrows her eyes at you, as if concentrating. You glance around, waiting for something to happen... ");
 			if (willpower() + rand(100) < target.WQ())
 			{
-				output(" but nothing does. The cat-girl scowls and scratches at her head, seeming as confused by that outcome as you are.");
+				output("but nothing does. The cat-girl whines and scratches at her head, seeming as confused by that outcome as you are.");
 			}
 			else
 			{
-				output(" and you suddenly feel very bored. Slowly, you blink and yawn, stretching out, unable to help yourself despite the imminent danger. <b>You simply can’t bring yourself to act!</b>");
-				
-				//target.createStatusEffect("Stunned",2,1,0,0,false,"Stun","You are stunned and cannot move until you recover!",true,0,0xFF0000);
+				output(" and you suddenly feel very bored. Slowly, you blink and yawn, stretching out, unable to help yourself despite the imminent danger. <b>You simply can't bring yourself to act!</b>");
 				CombatAttacks.applyStun(target, 2);
 			}
+			energy(-10);
 		}
-		
+
 		private function implantedImagery(target:Creature):void
 		{
-			//Psychic lust attack. 
-
-			output("Grinning wickedly, the milodan woman cups one of her breasts, pinching the bone piercing in her nipple between two fingers. At first you think she’s trying to tease you, as so many wild aliens seem to try to, but a flash of her staff’s crystal tells another story. You feel a sudden pressure in your skull, like it’s inside a vice. When you blink, your vision is overwhelmed by images, flashing through your eyes -- images of");
-			if (target.hasCock()) output(" you rutting with the priestess, bending her over on the ice and filling her with your seed again and again.");
+			output("Moaning with rampant desire, the milodan woman cups one of her breasts, pinching the piercing in her nipple between two fingers. At first you think she's trying to tease you, but sudden pressure in your skull tells you otherwise; it soon feels like your mind is inside a vice. When you blink, your vision is overwhelmed by images, flashing through your eyes -- images of ");
+			if (target.hasCock()) output(" you rutting with the cat-woman, bending her over on the desk and filling her with your seed again and again.");
 			else output(" the priestess throwing you onto your back and riding your face, engulfing all your senses in sweet, black quim for hours on end!");
-			
-			// I don't actually know what we're going to be doing for psionics (which this would fall under w/rt missing etc, so
-			// I'm gonna base this on willpower for now.
-
 			if (willpower() + rand(100) >= target.WQ())
 			{
 				output(" You find yourself flushing with arousal, succumbing to the mental influence of these lustful thoughts...");
@@ -374,75 +318,25 @@
 			{
 				output(" You shudder and blink hard, trying to clear your mind of this unwanted intrusion.");
 			}
+			energy(-15);
 		}
-		
+
 		private function psychicLeech(target:Creature):void
 		{
-			//	Temporarily lowers the PC's Physique and Reflexes, and boosts her Evasion. Resisted by Willpower. Effects lasts for 3-5 turns. 1/encounter.
-
-			output("The priestess extends a hand towards you");
-			if(!hasStatusEffect("Disarmed")) output(", the other gripping her staff and cracking in on the ground between you");
-			output(". A second later, you feel a pressure in your chest, like her hand is somehow reaching out and grabbing at your heart.");
+			output("The priestess extends a hand towards you while the other is busy savagely groping her tits. A second later, you feel a pressure in your chest, like her hand is somehow reaching out and grabbing at your heart. ");
 			if (willpower() + rand(100) < target.WQ() * 0.75)
 			{
-				output(" You steel yourself and do resist, throwing all your willpower against the priestess’s invasion of your body.");
+				output("You steel yourself and do resist, throwing all your willpower against the catgirl's invasion of your body.");
 			}
 			else
 			{
-				output(" Your limbs begin to feel leaden, way too heavy... like all the strength’s just drained out of you. And the world seems to be moving so much faster all around you. <b>Some psychic force has weakened you!</b>");
+				output("Your limbs begin to feel leaden, way too heavy... like all the strength's just drained out of you. And the world seems to be moving so much faster all around you. <b>Some psychic force has weakened you!</b>");
 				
 				var duration:int = 3 + rand(3);
 				createStatusEffect("Leech Empowerment", duration, 0, 0, 0, false, "DefenseUp", "The priestess has been bolstered by draining your energy!", true, 0, 0xFFFFFF);
 				target.createStatusEffect("Psychic Leech", duration, 0, 0, 0, false, "DefenseDown", "Your strength has been drained by the priestess!", true, 0, 0xFFFFFF);
 			}
-		}
-		
-		private function tease(target:Creature):void
-		{
-			//Basic Lust attack. 
-
-			output("The priestess");
-			if(!hasStatusEffect("Disarmed")) output(" sets her staff into the ice and");
-			output(" grabs her melons in both hands, squeezing her supple flesh so that her fingers sink into the lush snowy fur coating her body. Her pierced nipples jut out between her digits, charcoal promontories just begging to be sucked and played with... and the way she moves her hands, eyes lowered and staring shamelessly at your groin... she’s all but inviting you to just surrender into her arms and do just that.");
-			
-			if (target.lust() * (target.LQ() / 100) < rand(target.lustMax()))
-			{
-				output(" You grit your teeth and force yourself to look away -- no way you’re letting a little T&A get the better of you!");
-			}
-			else
-			{
-				output(" A burning in your loins signifies just how ready for that your body is...");
-				applyDamage(damageRand(new TypeCollection( { tease: 10 * (target.LQ() / 100) } ), 15), this, target, "tease");
-			}
-		}
-		
-		private function malesRunAway(alliedCreatures:Array):void
-		{
-			_malesRan = true;
-			
-			output("The pair of males guarding the priestess are both looking worse for wear, panting up a steaming mist that clings to the air around them. Glancing between each other and then back at you, one of them yells, <i>“We’ll, uh, go get help!”</i>");
-
-			output("\n\nThey start running, shoving past you and each other before dashing into the tunnel.");
-
-			output("\n\n<i>“Cowards!”</i> the priestess shouts after them, snarling like a feral beast. The males don’t so much as look over their shoulders, but disappear into the ice with their tails between their legs.");
-
-			output("\n\nShe grunts");
-			if(!hasStatusEffect("Disarmed")) output(" and stamps her staff on the ice");
-			output(", returning her attention fully to you. <i>“Fine! Then it’s just you and me, as it should be. I’ll show you the might of the spirits all on my own!”</i>");
-
-			output("\n\nThe priestess bears her fangs");
-			if(!hasStatusEffect("Disarmed")) output(" and swings her staff around");
-			output(", levelling the glowing green tip at your [pc.chest].\n\n");
-			
-			for (var i:int = 0; i < alliedCreatures.length; i++)
-			{
-				var tC:Creature = alliedCreatures[i] as Creature;
-				if (tC is MilodanMaleGroup)
-				{
-					CombatManager.removeHostileActor(tC);
-					i--;
-				}
-			}
+			energy(-20);
 		}
 	}
 }
