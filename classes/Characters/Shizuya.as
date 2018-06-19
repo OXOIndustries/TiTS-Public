@@ -190,7 +190,7 @@ package classes.Characters
 			if (target.hasStatusEffect("Grappled")) return grapple(target);
 			++thunderCountdown;
 			if (hasStatusEffect("SHIZUYA COUNTER")) return;
-			if (thunderCountdown >= 3) return thunderBreak(target);
+			if (thunderCountdown >= 4) return thunderBreak(target);
 			switch(rand(6))
 			{
 				case 0: return countercats();
@@ -211,8 +211,8 @@ package classes.Characters
 			else
 			{
 				output(" The surge hits you like a truck, making you feel extra crispy.");
-				if (rand(3) == 0){
-					CombatAttacks.applyStun(target);
+				if (this.physique()/2 + rand(20) + 1 > target.physique()/2 + 10){
+					CombatAttacks.applyStun(target,1);
 					output(" Every part of your body is tingling with electricity, making it hard to move. <b>You are stunned!</b>");
 				}
 				else output(" Your whole body is tingling, but you manage to fight through it.");
