@@ -54,7 +54,7 @@ package classes.Items.Transformatives
 			var y:int = 0;
 			var choices:Array;
 			kGAMECLASS.clearOutput();
-			author("Shadefalcon");
+			author("ShadeFalcon");
 			
 			if (target is PlayerCharacter)
 			{	
