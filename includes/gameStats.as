@@ -1774,7 +1774,6 @@ public function questLogMenu(currentFunc:Function):Boolean
 		if(showID == "Zheng Shi") { output2(header("<u>Zhèng Shi Station</u>", false)); addDisabledGhostButton(4, "ZhengShi"); }
 		else addGhostButton(4, "ZhengShi", currentFunc, "Zheng Shi");
 	}
-	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 	// New Texas
 	if(flags["NEW_TEXAS_COORDINATES_GAINED"] != undefined)
 	{
