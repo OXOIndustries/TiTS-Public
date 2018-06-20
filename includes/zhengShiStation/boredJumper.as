@@ -118,8 +118,13 @@ public function winVsBoredJumper():void
 	if(!pc.hasCock()) addDisabledButton(7,"Cowgirl","Cowgirl","You’ll need a cock to fuck the tricksy rabbit with.");
 	else if(pc.cockThatFits(enemy.vaginalCapacity(0)) < 0) addDisabledButton(7,"Cowgirl","Cowgirl","You would split her in half!");
 	else addButton(7,"Cowgirl",boredJumperCowgirlWinByWilliam,undefined,"Cowgirl","Use the lewd leporine’s steamy mouth to get yourself ready before bouncing her on your lap and then some.");
-	if(pc.hasItemByClass(BreedersBliss,2) && pc.hasVagina()) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
-	else if(pc.hasVagina()) addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need some ‘breeding inducers’ to get ruined with the lusty laquine. Two Breeder’s Bliss ought to do...");
+	if(pc.hasVagina()) 
+	{
+		if(pc.hasItemByClass(BreedersBliss,2)) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
+		else if(pc.inHeat() && pc.hasItemByClass(BreedersBliss,1)) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
+		else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need some ‘breeding inducers’ to get ruined with the lusty laquine. " + (pc.inHeat() ? "One":"Two") + " Breeder’s Bliss ought to do...");
+	}
+	else if(pc.hasVagina()) addDisabledButton(8,"Heat Sex","Heat Sex","You'll need a vagina for this.");
 	else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need a vagina for this.");
 	addButton(14,"Leave",leaveTheBoredJumperAfterWinning);
 }
@@ -2426,46 +2431,72 @@ public function heatSexLaquineJumper():void
 	clearOutput();
 	showBoredJumper(true);
 	author("William");
+	if(!pc.inHeat())
+	{
+		output("Looking down at the defeated rabbit, you briefly consider the situation. A hot, horny bunny all to yourself to use as you see fit... But maybe there’s something more you can do? Something... unique. You fold your arms as she furiously masturbates herself, still looking up to you with pleading [enemy.eyeColor] eyes. The laquine’s a fully capable breeder, able to take and give at a moment’s notice, how could you make this all the better?");
+		output("\n\nAch, it’s fucking hot down here, and yet she looks just fine and dandy even in that sexy jumpsuit of hers. Wait... it’s hot... That’s it! You look into your bag and dig out a set of colorless pills - two very special capsules rest in your palm as you regard her with a devious mind. Before you continue, the question ‘why’ comes to mind, like your body or some foreign entity is telling you to <i>really</i> consider what you’re doing. Why <i>are</i> you thinking of this? Giving a lust-addled hermaphroditic laquine an extremely potent fertility pill and taking one yourself? You must be crazy. <b>Sex crazy.</b> Purposely inflicting breeding season on yourself and someone from a race of gifted breeders, what are they gonna say about you? Wait, who’s they?");
+		output("\n\nNevermind. Whatever doubts you have wash away with the next emerging layer of sweat as you tell her to get up and hold out her hand. Warmth and pheromones both pour from every part of your body as you simply imagine the mind-blowing sex to come. Just how will the both of you end up when all’s fucked and bred in this dark, miserably hot cave? This... Oh <i>this</i> oughta be fun.");
+		output("\n\nThe somewhat delirious rabbit eyes your madly blushing face curiously, then the pills in your [pc.hand], wondering what you’re up to. She says nothing, only able to guess at what lewd thoughts swim behind your [pc.eyes]. You take one pill between your thumb and finger and hold it out to her. Still confused, the stewing slut takes it, but seems... worried now.");
 
-	output("Looking down at the defeated rabbit, you briefly consider the situation. A hot, horny bunny all to yourself to use as you see fit... But maybe there’s something more you can do? Something... unique. You fold your arms as she furiously masturbates herself, still looking up to you with pleading [enemy.eyeColor] eyes. The laquine’s a fully capable breeder, able to take and give at a moment’s notice, how could you make this all the better?");
-	output("\n\nAch, it’s fucking hot down here, and yet she looks just fine and dandy even in that sexy jumpsuit of hers. Wait... it’s hot... That’s it! You look into your bag and dig out a set of colorless pills - two very special capsules rest in your palm as you regard her with a devious mind. Before you continue, the question ‘why’ comes to mind, like your body or some foreign entity is telling you to <i>really</i> consider what you’re doing. Why <i>are</i> you thinking of this? Giving a lust-addled hermaphroditic laquine an extremely potent fertility pill and taking one yourself? You must be crazy. <b>Sex crazy.</b> Purposely inflicting breeding season on yourself and someone from a race of gifted breeders, what are they gonna say about you? Wait, who’s they?");
-	output("\n\nNevermind. Whatever doubts you have wash away with the next emerging layer of sweat as you tell her to get up and hold out her hand. Warmth and pheromones both pour from every part of your body as you simply imagine the mind-blowing sex to come. Just how will the both of you end up when all’s fucked and bred in this dark, miserably hot cave? This... Oh <i>this</i> oughta be fun.");
-	output("\n\nThe somewhat delirious rabbit eyes your madly blushing face curiously, then the pills in your [pc.hand], wondering what you’re up to. She says nothing, only able to guess at what lewd thoughts swim behind your [pc.eyes]. You take one pill between your thumb and finger and hold it out to her. Still confused, the stewing slut takes it, but seems... worried now.");
+		// PC Bimbo
+		if(pc.isBimbo()) output("\n\n<i>“Don’t fret, it’s all part of the plan. You wanna get reaaaallly hot don’t you..?”</i> You all but sing with a sexy undertone, giving her a celebrity class smile. <i>“Let’s both have a kind of fun nobody else ever will!”</i>");
+		// PC Kind
+		else if(pc.isNice()) output("\n\nYou flash the laquine a disarming smile. <i>“A fertility pill. We’ll both get really hot... So what do you say? Think you can handle a little extra heat while you give us both what we want?”</i>");
+		// PC Misch
+		else if(pc.isMischievous()) output("\n\n<i>“With this, you’ll fuck me so hard there’s no way I won’t get pregnant. How does that sound?”</i> You omit the part where she’ll probably become a real horndog for the next few weeks but what’s that got to do with pounding you into the next galaxy?");
+		// PC Hard
+		else output("\n\n<i>“Fertility agent, we’ll both take one. Think you can handle this much?”</i> You smirk, rolling yours between your digits suggestively.");
+		// Merge
+		output("\n\n<i>“You wanna breed with me that badly? I can do that normally, you know.”</i> The jumper grins. <i>“But! If you put like that, how can I say no?”</i> She happily drops the pill into her mouth, swallowing at exactly the moment you do.");
 
-	// PC Bimbo
-	if(pc.isBimbo()) output("\n\n<i>“Don’t fret, it’s all part of the plan. You wanna get reaaaallly hot don’t you..?”</i> You all but sing with a sexy undertone, giving her a celebrity class smile. <i>“Let’s both have a kind of fun nobody else ever will!”</i>");
-	// PC Kind
-	else if(pc.isNice()) output("\n\nYou flash the laquine a disarming smile. <i>“A fertility pill. We’ll both get really hot... So what do you say? Think you can handle a little extra heat while you give us both what we want?”</i>");
-	// PC Misch
-	else if(pc.isMischievous()) output("\n\n<i>“With this, you’ll fuck me so hard there’s no way I won’t get pregnant. How does that sound?”</i> You omit the part where she’ll probably become a real horndog for the next few weeks but what’s that got to do with pounding you into the next galaxy?");
-	// PC Hard
-	else output("\n\n<i>“Fertility agent, we’ll both take one. Think you can handle this much?”</i> You smirk, rolling yours between your digits suggestively.");
-	// Merge
-	output("\n\n<i>“You wanna breed with me that badly? I can do that normally, you know.”</i> The jumper grins. <i>“But! If you put like that, how can I say no?”</i> She happily drops the pill into her mouth, swallowing at exactly the moment you do.");
+		output("\n\nFor a hot minute, nothing happens. You both size each other up waiting for the effects of this pill to kick in. And kick... Oh shit, <b>kick</b> they do. The laquine clutches her stomach and paws furiously at the squeaky latex, her fingers gliding right off every time they try to set down roots. You, on the other hand, gasp painfully, feeling an <i>itchy</i> tingling warmth on the back of your neck that dives down to your [pc.crotch]. Your breath comes out so hot that it turns to visible fog in your husky huffs. An animalistic scream breaks the low volume as your laquine assailant clutches her neck and desperately tries to <i>tear</i> that zipper off. Your codex mechanically intones that you’ve gone into heat just before you discard it.");
 
-	output("\n\nFor a hot minute, nothing happens. You both size each other up waiting for the effects of this pill to kick in. And kick... Oh shit, <b>kick</b> they do. The laquine clutches her stomach and paws furiously at the squeaky latex, her fingers gliding right off every time they try to set down roots. You, on the other hand, gasp painfully, feeling an <i>itchy</i> tingling warmth on the back of your neck that dives down to your [pc.crotch]. Your breath comes out so hot that it turns to visible fog in your husky huffs. An animalistic scream breaks the low volume as your laquine assailant clutches her neck and desperately tries to <i>tear</i> that zipper off. Your codex mechanically intones that you’ve gone into heat just before you discard it.");
+		// PC Not Naked
+		if(!pc.isNude()) output("\n\nBetween your torturous throes, you hurriedly shuck your equipment, knowing you won’t be needing it for the fuckoning to come.");
+		// Merge
+		output("\n\nYou shudder painfully, your balance eroding from the intensity of fertility mode. Lewd imaginings overtake any rational thought that might have been floating in your mind; Vivid dreams of taking in an ocean of cum, sucking a field of cocks, and being rewarded with a never-ending supply of creampies let you know, full well, that you are now a waiting cumdump in desperate need of a mate or five. Your womb’s evolutionary instinct, fully unlocked and uninhibited, prepares your body to sire an army from the tiniest amount of seed. The swampy moistness in your nethers is unmistakable, undeniable - you have to fuck <i>now</i>, you won’t be satisfied with anything less than a ");
+		if(silly) output("thousand rounds without pulling out.");
+		else output("hundred orgasms spilling your liquefied brain on to the floor.");
+		output("\n\nAs for that randy pirate, she hasn’t succeeded in her goal of ripping that jumpsuit off, only managing to expose her tits and stomach. Instead, her dick, veins rippling and hard as diamonds, has thrust right through the sealed zipper line, rending it apart and making her look very silly... and very horny. She’s positively <i>frothing</i> at the fuzzy mouth, her face twisting in something between existential dread and mind-numbing bliss. If you thought her [enemy.cock] would have been wet before, the entire shaft is utterly lubricated in a ludicrous amount of pre. The sweat and strands of premature ejaculation splattering everywhere notwithstanding.");
+		output("\n\nWails that are surely carrying to the higher levels of this station reverberate through the mines as the laquine falls to her knees and clasps both furry hands around her rigid rod, her entire body wracked with what look to be uncomfortable aches and shakes. <i>“Fff-fffffffffff...”</i> She tries to speak, <i>“Fuck!!! Fuckfuckfuck oh goooooooood I wasnnntttt....”</i> She hoarsely screams, <i>“I wasn’t ready for that...! Urghh... Well, cutie, you’re not gonna... leave me like this are you?”</i>");
+		output("\n\nIt’s far too late to back out, and your evolutionary impulses will <b>absolutely not</b> let you walk away from a dick that raw and ready. You think you can even hear your ovaries <i>crying</i> out for cum. You don’t even realize that your posture has changed - you instinctively raise your bare [pc.ass] into the air as you fall to your knees in front of her twitching tool");
+		if(pc.tailCount > 0) output(", [pc.tails] wagging to a blur as you prepare to fellate her");
+		output(". There was a distinctive scent about this laquine before, a spicy musk mixed with a brew of sweat and feminine quim. But now, that scent has turned into a literal haze of horniness that’s effectively brainwashed you as you can’t bear, for even a split second, to take your eyes off that magnificent [enemy.cock]. Even when this is over, you’ll be thinking about that smell for hours, maybe days... maybe weeks...");
+		output("\n\nThe rutting rabbit, as well, can’t possibly shake the ultra-fertile scent of the ripe bitch in heat who fed her such a powerful pill in the first place. And you wouldn’t have it any other way.");
+		//Add the "Heat" status, status duration 1 week or until pregnant in all wombs.
+		//Yay, heat!
+		//v1 - fertility boon
+		//v2 - minimum lust boost
+		//v3 - libido boost
+		//v4 - tease bonus!
+		pc.createStatusEffect("Heat",5,25,10,3,false,"LustUp","Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+500% Fertility\n+25 Minimum Lust\n+10 Libido\n+3 Tease Damage",false,28800,0xB793C4);
+		pc.libido(1);
+		pc.destroyItemByClass(BreedersBliss,2);
+	}
+	else
+	{
+		// PC in Heat
+		output("A... fully capable breeder... That’s it! You dig into your bag quickly, your body only now realizing how close it is to a potentially perfect mate. Smiling deviously with a <i>very</i> special capsule in hand, you eye the rabbit’s delicious bulge as you think about inflicting breeding season on her. You’ll be filled in every hole so many times! First you’ll be ruined for marriage, then you’ll be ruined with her cum and then you’ll be weighed down by so many children you’ll need assistance to even stand up again holy shit why isn’t she fucking you right now wait what’s this pill-");
+		output("\n\nShaking your head, drool flying onto hers, you order the laquine to her feet. You hand her the featureless pill without delay, struggling to resist the urge to shove her down and ride her until the wheels fall off. Although she can no doubt sense the need to fuck and breed in your thick scent alone, she seems understandably worried about accepting candy from strangers.");
 
-	// PC Not Naked
-	if(!pc.isNude()) output("\n\nBetween your torturous throes, you hurriedly shuck your equipment, knowing you won’t be needing it for the fuckoning to come.");
-	// Merge
-	output("\n\nYou shudder painfully, your balance eroding from the intensity of fertility mode. Lewd imaginings overtake any rational thought that might have been floating in your mind; Vivid dreams of taking in an ocean of cum, sucking a field of cocks, and being rewarded with a never-ending supply of creampies let you know, full well, that you are now a waiting cumdump in desperate need of a mate or five. Your womb’s evolutionary instinct, fully unlocked and uninhibited, prepares your body to sire an army from the tiniest amount of seed. The swampy moistness in your nethers is unmistakable, undeniable - you have to fuck <i>now</i>, you won’t be satisfied with anything less than a ");
-	if(silly) output("thousand rounds without pulling out.");
-	else output("hundred orgasms spilling your liquefied brain on to the floor.");
-	output("\n\nAs for that randy pirate, she hasn’t succeeded in her goal of ripping that jumpsuit off, only managing to expose her tits and stomach. Instead, her dick, veins rippling and hard as diamonds, has thrust right through the sealed zipper line, rending it apart and making her look very silly... and very horny. She’s positively <i>frothing</i> at the fuzzy mouth, her face twisting in something between existential dread and mind-numbing bliss. If you thought her [enemy.cock] would have been wet before, the entire shaft is utterly lubricated in a ludicrous amount of pre. The sweat and strands of premature ejaculation splattering everywhere notwithstanding.");
-	output("\n\nWails that are surely carrying to the higher levels of this station reverberate through the mines as the laquine falls to her knees and clasps both furry hands around her rigid rod, her entire body wracked with what look to be uncomfortable aches and shakes. <i>“Fff-fffffffffff...”</i> She tries to speak, <i>“Fuck!!! Fuckfuckfuck oh goooooooood I wasnnntttt....”</i> She hoarsely screams, <i>“I wasn’t ready for that...! Urghh... Well, cutie, you’re not gonna... leave me like this are you?”</i>");
-	output("\n\nIt’s far too late to back out, and your evolutionary impulses will <b>absolutely not</b> let you walk away from a dick that raw and ready. You think you can even hear your ovaries <i>crying</i> out for cum. You don’t even realize that your posture has changed - you instinctively raise your bare [pc.ass] into the air as you fall to your knees in front of her twitching tool");
-	if(pc.tailCount > 0) output(", [pc.tails] wagging to a blur as you prepare to fellate her");
-	output(". There was a distinctive scent about this laquine before, a spicy musk mixed with a brew of sweat and feminine quim. But now, that scent has turned into a literal haze of horniness that’s effectively brainwashed you as you can’t bear, for even a split second, to take your eyes off that magnificent [enemy.cock]. Even when this is over, you’ll be thinking about that smell for hours, maybe days... maybe weeks...");
-	output("\n\nThe rutting rabbit, as well, can’t possibly shake the ultra-fertile scent of the ripe bitch in heat who fed her such a powerful pill in the first place. And you wouldn’t have it any other way.");
-	//Add the "Heat" status, status duration 1 week or until pregnant in all wombs.
-	//Yay, heat!
-	//v1 - fertility boon
-	//v2 - minimum lust boost
-	//v3 - libido boost
-	//v4 - tease bonus!
-	pc.createStatusEffect("Heat",5,25,10,3,false,"LustUp","Your body is begging for impregnation, increasing your libido and fertility but also your ability to tease.\n\n+500% Fertility\n+25 Minimum Lust\n+10 Libido\n+3 Tease Damage",false,28800,0xB793C4);
-	pc.libido(1);
-	pc.destroyItemByClass(BreedersBliss,2);
+		// PC Bimbo
+		if(pc.isBimbo()) output("\n\n<i>“C’mooonnn”</i> You groan, <i>“It’s just a fertility pill... You know... So you can knock me up with all the kids you want!”</i>");
+		// PC Kind
+		else if(pc.isNice()) output("\n\nBlushing madly, you smile as innocently as you can at the laquine. <i>“It’s a fertility pill... And I’m already in heat. Think of the sex we’ll have if we’re both in breeding season.”</i>");
+		// PC Misch
+		else if(pc.isMischievous()) output("\n\n<i>“It’s a...”</i> You trail off, furiously masturbating already, <i>“It’s a fertility pill! Wanna go at it like a couple’a rabbits... and breed like ‘em?”</i>");
+		// PC Hard
+		else output("\n\nExhaling sharply, you hurriedly explain while self-servicing, <i>“Fertility agent. Take it, if you want to be able to handle me like this.”</i>");
+		// Merge
+		output("\n\n<i>“You wanna breed with me?”</i> She wears a face of genuine surprise that gives way to a lascivious grin. <i>“Feels like we could do it just fine right now... But, then again, you must be a real slut to be wandering around caves looking for mean pirates to fuck you full’a kids! So desperate to get knocked up you’re handing this out!”</i>");
+		output("\n\nGroaning, you ask if she’ll take it or not, suggesting you won’t let her sate herself if she’s not game. That does the trick, as you see her pop the pill immediately.");
+		output("\n\nFor a hot minute, nothing happens. Until you see her suffer the same kick you did. The laquine clutches her stomach and paws furiously at the squeaky latex, her fingers gliding right off every time they try to set down roots. An animalistic scream breaks the low volume as your laquine assailant clutches her neck and desperately tries to <i>tear</i> that zipper off. Panting all the while, she begins to shudder and collapse into an oversexualized wreck.");
+		output("\n\nYou dive into her crotch, unable to contain yourself any longer, and help her undo that damn suit, yanking the zipper off until her [enemy.cock] busts free of its musk pocket. She’s positively <i>frothing</i> at the fuzzy mouth, her face twisting in something between existential dread and mind-numbing bliss. If you thought her [enemy.cock] would have been wet before, the entire shaft is utterly lubricated in a ludicrous amount of pre. The sweat and strands of premature ejaculation splattering everywhere notwithstanding.");
+		output("\n\nWails that are surely carrying to the higher levels of this station reverberate through the mines as the laquine falls to her knees and clasps both furry hands around her rigid rod, her entire body wracked with what look to be uncomfortable aches and shakes. <i>“Fff-fffffffffff...”</i> She tries to speak, <i>“Fuck!!! Fuckfuckfuck oh goooooooood I wasnnntttt....”</i> She hoarsely screams, <i>“I wasn’t ready for that...! Urghh... Well, cutie, you’re not gonna... leave me like this are you?”</i>");
+		output("\n\nIt’s far too late to back out, and your evolutionary impulses will <b>absolutely not</b> let you walk away from a dick that raw and ready. You think you can even hear your ovaries <i>crying</i> out for cum. You don’t even realize that your posture has changed - you instinctively raise your bare [pc.ass] into the air as you fall to your knees in front of her twitching tool{, [pc.tails] wagging to a blur as you prepare to fellate her}. There was a distinctive scent about this laquine before, a spicy musk mixed with a brew of sweat and feminine quim. But now, that scent has turned into a literal haze of horniness that’s effectively brainwashed you as you can’t bear, for even a split second, to take your eyes off that magnificent [enemy.cock]. Even when this is over, you’ll be thinking about that smell for hours, maybe days... maybe weeks...");
+		output("\n\nThe rutting rabbit, as well, can’t possibly shake the ultra-fertile scent of the ripe bitch in heat who fed her such a powerful pill in the first place. And you wouldn’t have it any other way.");
+		pc.destroyItemByClass(BreedersBliss,1);
+	}
 	processTime(15);
 	pc.lust(100);
 	clearMenu();
