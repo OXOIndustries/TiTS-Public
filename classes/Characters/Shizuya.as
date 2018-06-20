@@ -98,13 +98,13 @@ package classes.Characters
 					eText = "Shizuya certainly cuts an imposing figure. She's eleven feet tall, easily towering over most people. Her breasts are tied down with bandages to keep them from moving while she fights. She's wearing a bright yellow jacket, with black stripes along the sleeves and sides. The jacket is so small on her that you doubt she could zip it up if she wanted to. Like the jacket, her pants are bright yellow and look <b>very</b> small on her, almost painted on. Her torso, aside from her massive K-Cup tits, is what you'd call athletic. Her arms are svelte, but with highly visible muscle, and her waist is tight with pronounced six-pack abs. Her legs, by contrast, are massive. Her thighs are almost wider than her torso, and her ass looks like it could deflect a torpedo with how much padding it has. Her skintight pants do a horrible job of hiding how much muscle is packed into her legs, not to mention the massive bulge that looks like it's about to rip her pants open. She's coming at you with a manic look on her face. She has thick, black gauntlets and greaves that let off large crackles every few seconds.";
 					if (HPQ() < 75) eText += "\n\nShe's coated in sweat and looking very winded.";
 					if (lustQ() > 30) eText += "\n\nShe's looking very flustered. The bulge in her pants is starting to twitch and flex.";
-					if (hasStatusEffect("SHIZUYA COUNTER")) eText += "\n\nHer eyes are focused intently on you, she's not even blinking! <b>It might not be a good idea to attack her head-on or give her an opening.</b>";
+					if (hasStatusEffect("Counters Melee")) eText += "\n\nHer eyes are focused intently on you, she's not even blinking! <b>It might not be a good idea to attack her head-on or give her an opening.</b>";
 					if (kGAMECLASS.pc.hasStatusEffect("Grappled")) eText += "\n\n<b>She has you held tightly in her arm.</b>";
 					break;
 				case 1:
 					eText = "Outwardly, not much about Shizuya has changed. If anything she looks less intimidating at a passing glance, her crazed expression replaced with a straighter, more focused scowl. But, despite her calm expression, her slitted eyes pierce you like daggers, staying locked onto you, reading every move you make. Her movements carry an extra weight to them, making her exude an aura of menace with every step. Even her gauntlets are more composed, the random crackling replaced with a soft, constant glow that seems to spread to her whole body.";
 					if (HPQ() < 25) eText += "\n\nDespite all the injuries she's taken, her expression never shifts, her focus never leaving you. It looks like she's going to push herself until her body completely gives out!";
-					if (hasStatusEffect("SHIZUYA COUNTER")) eText += "\n\nHer eyes are focused even more intently on you, she's not even blinking! <b>It might not be a good idea to attack her head-on or give her an opening.</b>";
+					if (hasStatusEffect("Counters Melee")) eText += "\n\nHer eyes are focused even more intently on you, she's not even blinking! <b>It might not be a good idea to attack her head-on or give her an opening.</b>";
 					if (kGAMECLASS.pc.hasStatusEffect("Grappled")) eText += "\n\n<b>She has you held tightly in her arm.</b>";
 					break;
 				case 2:
@@ -143,10 +143,11 @@ package classes.Characters
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
 			var i:int;
-			if (hasStatusEffect("SHIZUYA COUNTER"))
+			if (hasStatusEffect("Counters Melee"))
 			{
-				i = statusEffectv1("SHIZUYA COUNTER");
-				removeStatusEffect("SHIZUYA COUNTER");
+				i = statusEffectv1("Counters Melee") + statusEffectv1("Counters Ranged");
+				removeStatusEffect("Counters Melee");
+				removeStatusEffect("Counters Ranged");
 				if (i == 0) return output("Shizuya shrugs as you refuse to attack, retaking a more proper combat stance.");
 			}
 			
@@ -194,7 +195,7 @@ package classes.Characters
 		{
 			if (target.hasStatusEffect("Grappled")) return grapple(target);
 			++thunderCountdown;
-			if (hasStatusEffect("SHIZUYA COUNTER")) return;
+			if (hasStatusEffect("Counters Melee")) return;
 			if (thunderCountdown >= 4) return thunderBreak(target);
 			switch(rand(6))
 			{
@@ -340,8 +341,9 @@ package classes.Characters
 		
 		private function countercats():void
 		{
-			output(" Shizuya doesn't attack, and instead stares at you intently.");
-			createStatusEffect("SHIZUYA COUNTER",0,0,0,0,true,"","",true);
+			output("Shizuya doesn't attack, and instead stares at you intently.");
+			createStatusEffect("Counters Melee",0,0,0,0,true,"","",true);
+			createStatusEffect("Counters Ranged",0,0,0,0,true,"","",true);
 		}
 		
 		public function counterAttack(target:Creature, melee:Boolean = false):void
@@ -350,7 +352,8 @@ package classes.Characters
 			else output("In the split-second it takes you to aim, she's already on you. Delivering a swift punch to the gut before kicking your feet from under you. You get up, still winded from her attack.");
 			output("\n\n<b>You are staggered!</b>");
 			applyDamage(damageRand(meleeDamage(), 20), this, target, "minimal");
-			setStatusValue("SHIZUYA COUNTER", 1, 1);
+			if(melee) setStatusValue("Counters Melee", 1, 1);
+			else setStatusValue("Counters Ranged", 1, 1);
 			CombatAttacks.applyStagger(target);
 		}
 		
