@@ -1,6 +1,6 @@
 import classes.Characters.JumperBored;
 //Random sweaty bunnygirl in a latex jumpsuit with a real craving for some hot, sweaty sex. Part of the “Jumper” gang.
-	//Pert and perky: C-cups
+	//Shapely! E-cups!
 	//13" Human Cock, sometimes horsecock. Figure they got a dong designer stashed up top, of course the mooks make use of it for funsies.
 	//Big fat cuntlips that ache for a plowing.
 	//Lop-eared in those hot hot mines.
@@ -26,11 +26,17 @@ output("\n\nThe ambient warmth looks to be affecting her more than you, slicking
 public function showBoredJumper(nude:Boolean = false):void
 {
 	showName("BORED\nJUMPER");
-	showBust("BORED_JUMPER_EQUINE" + (nude ? "_NUDE" : ""));
+	if(enemy.hasCock(GLOBAL.TYPE_EQUINE)) showBust("BORED_JUMPER_EQUINE" + (nude ? "_NUDE" : ""));
+	else if(enemy.hasCock(GLOBAL.TYPE_FELINE)) showBust("BORED_JUMPER_FELINE" + (nude ? "_NUDE" : ""));
+	else if(enemy.hasCock(GLOBAL.TYPE_CANINE)) showBust("BORED_JUMPER_CANINE" + (nude ? "_NUDE" : ""));
+	else showBust("BORED_JUMPER_TERRAN" + (nude ? "_NUDE" : ""));
 }
+
 //Approach Proc Texts:
 public function boredJumperAttackProc():Boolean
 {
+	var tEnemy:JumperBored = new JumperBored();
+	setEnemy(tEnemy);
 	showBoredJumper();
 	//First time
 	if(flags["BORED_JUMPER_JUMPED"] == undefined)
@@ -57,10 +63,10 @@ public function boredJumperAttackProc():Boolean
 	IncrementFlag("BORED_JUMPER_JUMPED");
 	output("\n\nYou’ll have to fight!");
 	//fight proc
-	var tEnemy:JumperBored = new JumperBored();
+
 	CombatManager.newGroundCombat();
+	CombatManager.setHostileActors(tEnemy);	
 	CombatManager.setFriendlyActors(pc);
-	CombatManager.setHostileActors(tEnemy);
 	CombatManager.victoryScene(winVsBoredJumper);
 	CombatManager.lossScene(loseToBoredJumperRouting);
 	CombatManager.displayLocation("BORED JUMPER");
@@ -730,7 +736,7 @@ public function bunslutBigPussyBunFucking():void
 
 	output("\n\n<i>“Then come and unwrap your present!”</i> The bunny slut reaches back and pulls her cheeks apart before releasing them, letting the bountiful, muscular globes bounce against each other as her hips continue to slide along her engorged outer lips. It’s an offer that’s too good to turn down and you strut up to the laquine whore, grab her by the jiggling bunny butt, and kneel down to get a nice closeup of her lower lips. Being this close makes the sheer tightness of her suit even more obvious. If you didn’t know any better, you’d say that this was actually her skin. A close inspection of her honeypot even reveals that the latex is so tight that it extends a few inches into her pussy!");
 
-	output("\n\nShe takes you by the hand and guides you to the zipper of her suit. From there she leaves you to undress her. You do so with gusto, practically ripping her zipper off as you pass over her perky tits. A wave of heat bellows out as you release the seal of her suit. Hours, maybe even days of built up heat and sweat are finally released as the bunslut lets out a hearty sigh.");
+	output("\n\nShe takes you by the hand and guides you to the zipper of her suit. From there she leaves you to undress her. You do so with gusto, practically ripping her zipper off as you pass over her weighty tits. A wave of heat bellows out as you release the seal of her suit. Hours, maybe even days of built up heat and sweat are finally released as the bunslut lets out a hearty sigh.");
 
 	output("\n\n<i>“Aaaah, that’s the good stuff. Feels almost as good to let it all out as it does to let it sit.”</i> You ignore it for now, even as your hand starts to sweat harder just from being close to her. The real obstacle comes with her [enemy.cock]. It’s fully, throbingly erect, and the suit is so tight against it that you have no end of trouble getting the zipper up and over it. She groans and huffs as you try, and the fact that she’s enjoying the struggle is painfully obvious as her [enemy.cockNoun] throbs shamelessly.");
 
@@ -1618,7 +1624,7 @@ public function fillErUpBBY():void
 	else if(pc.hasVagina()) output("[pc.vaginas]");
 	else output("bare groin");
 	output(" into her face. She reciprocates by lavishing you with her tongue as you rear back, getting a crotch full of slick spit and boiling-hot breath. The extra stimulation is like coals onto the already raging fire of your desires, merely stoking the flames with nowhere near enough power to influence them either way.");
-	output("\n\nYou take your first thrust into her suit, feeling the material stretch around you, but never feel like you’re even coming close to pushing its limits. Meanwhile her hot, perky tits rub along the underside of your member, pressed so tightly against your [pc.cock " + x + "] that she’s almost giving you a hands-free titjob with each thrust.");
+	output("\n\nYou take your first thrust into her suit, feeling the material stretch around you, but never feel like you’re even coming close to pushing its limits. Meanwhile her luscious tits rub along the underside of your member, pressed so tightly against your [pc.cock " + x + "] that she’s almost giving you a hands-free titjob with each thrust.");
 	if(pc.cockTotal() > 1) 
 	{
 		output(" Your other cock");

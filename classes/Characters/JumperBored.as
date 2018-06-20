@@ -179,7 +179,7 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 
-			this.breastRows[0].breastRatingRaw = 3;
+			this.breastRows[0].breastRatingRaw = 7;
 			this.nippleColor = "pink";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;
@@ -204,9 +204,7 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_SWEAT, GLOBAL.REALLY_LIKES_SEXPREF);
 
 			tallness = 60 + rand(13);
-			this.furColor = "brown";
-			this.hairColor = "pink";
-			this.eyeColor = "blue";
+			
 
 			vaginas[0].loosenessRaw = 1+rand(4);
 			vaginas[0].wetnessRaw = 2+rand(4);
@@ -218,31 +216,47 @@
 				this.cocks[0].cLengthRaw = 14;
 				this.shiftCock(0,GLOBAL.TYPE_EQUINE);
 				this.cocks[0].cockColor = "chocolate";
+
+				this.furColor = "gray";
+				this.hairColor = "pink";
+				this.eyeColor = "purple";
 			}
 			else if(rand(3) == 0)
 			{
 				this.cocks[0].cLengthRaw = 12;
 				this.shiftCock(0,GLOBAL.TYPE_CANINE);
 				this.cocks[0].cockColor = "red";
+
+				this.furColor = "white";
+				this.hairColor = "purple";
+				this.eyeColor = "amber";
 			}
 			else if(rand(2) == 0)
 			{
 				this.cocks[0].cLengthRaw = 13;
 				this.shiftCock(0,GLOBAL.TYPE_FELINE);
 				this.cocks[0].cockColor = "pink";
+
+				this.furColor = "tawny";
+				this.hairColor = "orange";
+				this.eyeColor = "amber";
 			}
 			else
 			{
 				this.cocks[0].cLengthRaw = 12;
 				this.shiftCock(0,GLOBAL.TYPE_HUMAN);
 				this.cocks[0].cockColor = "pink";
+
+				this.furColor = "smoky";
+				this.hairColor = "pink";
+				this.eyeColor = "purple";
 			}
 			this.long = "This bored laquine’s pirate affiliation is as plain as the glowing red letters on her glossy black zipsuit: they spell “Jumper” down the side. Beneath the lettering, a powerfully muscled thigh flexes with idle energy. Her wide hips and bubbly butt hint at her prowess as both a leaper and a breeder, but it’s the sizeable ";
 			if(this.cocks[0].cType == GLOBAL.TYPE_EQUINE) this.long += "equine";
 			else if(this.cocks[0].cType == GLOBAL.TYPE_CANINE) this.long += "canine";
 			else if(this.cocks[0].cType == GLOBAL.TYPE_FELINE) this.long += "feline";
 			else this.long += "terran-shaped";
-			this.long += " bulge in the crotch that proudly declares what she’s here to get. You can drag your eyes up higher to take in her horny smile, but the outline of her turgid dick and perky, C-cup tits lingers behind.\n\nThe ambient warmth looks to be affecting her more than you, slicking her fur down until it shines just like her latex suit. It must be a sauna under that slick, creaking material. Her ears are droopy from the heat, oozing over her shoulders like half-melted wax, but she shows no sign of minding. This bored Jumper likes the heat!";
+			this.long += " bulge in the crotch that proudly declares what she’s here to get. You can drag your eyes up higher to take in her horny smile, but the outline of her turgid dick and luscious, E-cup tits lingers behind.\n\nThe ambient warmth looks to be affecting her more than you, slicking her fur down until it shines just like her latex suit. It must be a sauna under that slick, creaking material. Her ears are droopy from the heat, oozing over her shoulders like half-melted wax, but she shows no sign of minding. This bored Jumper likes the heat!";
 			credits = 350+rand(150);
 			if(rand(4) == 0) this.inventory.push(new LaquineEars());
 			else if(rand(4) == 0) this.inventory.push(new Throbb());
@@ -250,7 +264,10 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "BORED_JUMPER_EQUINE";
+			if(this.hasCock(GLOBAL.TYPE_HUMAN)) return "BORED_JUMPER_TERRAN";
+			else if(this.hasCock(GLOBAL.TYPE_CANINE)) return "BORED_JUMPER_CANINE";
+			else if(this.hasCock(GLOBAL.TYPE_FELINE)) return "BORED_JUMPER_FELINE";
+			else return "BORED_JUMPER_EQUINE";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
