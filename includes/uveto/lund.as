@@ -3057,8 +3057,8 @@ public function lundSpecialSubmission2():void
 public function lundBreakHim():void
 {
 	if (flags["LUND_BROKEN"] == undefined) lundBreakHimA();
-	if (flags["LUND_BROKEN"] == 1) lundBreakHimB();
-	if (flags["LUND_BROKEN"] == 2) lundBreakHimC();
+	else if (flags["LUND_BROKEN"] == 1) lundBreakHimB();
+	else if (flags["LUND_BROKEN"] == 2) lundBreakHimC();
 	else lundBreakHimD();
 }
 
