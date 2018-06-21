@@ -641,7 +641,7 @@
 					default: break;
 					case SSET_NATIVE: break; // do nothing
 					case SSET_CHROMEREMOTE: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_remote"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
-					case SSET_CHROMELOCAL:  copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
+					case SSET_CHROMELOCAL: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
 					case SSET_PROJECTOR: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/projector"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
 				}
 				
