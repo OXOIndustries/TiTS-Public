@@ -541,7 +541,7 @@ public function statisticsScreen(showID:String = "All"):void
 		{
 			output2("\n<b><u>Ovipositor Organs</u></b>");
 			output2("\n<b>* Total Count:</b> " + pc.totalOvipositors());
-			if(pc.statusEffectv1("Nyrea Eggs") > 0&&pc.cumType==GLOBAL.FLUID_TYPE_NYREA_CUM) output2("\n<b>* Fertility, Nyrean Eggs, Total:</b> " + pc.statusEffectv1("Nyrea Eggs"));
+			if(pc.hasStatusEffect("Nyrea Eggs")&&pc.cumType==GLOBAL.FLUID_TYPE_NYREA_CUM) output2("\n<b>* Fertility, Nyrean Eggs, Total:</b> " + pc.statusEffectv1("Nyrea Eggs"));
 			else
 			{
 				if(pc.eggCount() > 0) output2("\n<b>* Fertility, Ovipositor Eggs, Total:</b> " + pc.eggCount());
