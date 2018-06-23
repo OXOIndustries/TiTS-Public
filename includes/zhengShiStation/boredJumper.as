@@ -90,11 +90,19 @@ public function winVsBoredJumper():void
 	}
 	//Merge
 	//Now enough lust.
-	if(pc.lust() <= 33) output("\n\nUnfortunately for her, you’re far too sated to give a shit about giving her the struggle-cuddles she so desires.");
+	if(pc.lust() <= 33)
+	{
+		output("\n\nUnfortunately for her, you’re far too sated to give a shit about giving her the struggle-cuddles she so desires.");
+		
+		clearMenu();
+		addButton(0,"Next",leaveTheBoredJumperAfterWinning);
+		return;
+	}
 	//Enough
 	else output("\n\nYou aren’t sure why, but she seems more than into the idea of being your personal fuck-puppet for a few hours. What do you want to do with her?");
+	
 	clearMenu();
-	addDisabledButton(1,"Sex","Sex","These scenes haven’t been written yet. Sorry!");
+	//addDisabledButton(1,"Sex","Sex","These scenes haven’t been written yet. Sorry!");
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(0,"FuckHerPussy",bunslutBigPussyBunFucking,undefined,"Fuck Her Pussy","You know what this is...");
@@ -107,7 +115,7 @@ public function winVsBoredJumper():void
 	else addDisabledButton(2,"Suit Burster","Suit Burster","You need genitals for this scene.");
 	if(pc.hasVagina()) addButton(3,"Get Licked",facePussyFuckJumper,undefined,"Get Licked","Put her mouth to work on your [pc.vaginas].");
 	else addDisabledButton(3,"Get Licked","Get Licked","You need a vagina for this.");
-
+	
 	if(pc.hasCock())
 	{
 		if(pc.cumQ() >= 1000) addButton(4,"Fill ‘Er Up",fillErUpBBY,undefined,"Fill ‘Er Up","Open up her suit and give her a cream filling.");
@@ -120,18 +128,21 @@ public function winVsBoredJumper():void
 		addDisabledButton(4,"Fill ‘Er Up","Fill ‘Er Up","You need a dick to do this.");
 		addDisabledButton(5,"Facefuck","Facefuck","You need a dick to do this.");
 	}
+	
 	addButton(6,"TakeHerDick",takeTheBunnyDick,undefined,"TakeHerDick","The slut-bunny has powerful legs. More importantly, she has a big, juicy, gorgeous cock. You could get that furry futa ready and give her the perfect chance and place to use those assets.");
+	
 	if(!pc.hasCock()) addDisabledButton(7,"Cowgirl","Cowgirl","You’ll need a cock to fuck the tricksy rabbit with.");
 	else if(pc.cockThatFits(enemy.vaginalCapacity(0)) < 0) addDisabledButton(7,"Cowgirl","Cowgirl","You would split her in half!");
 	else addButton(7,"Cowgirl",boredJumperCowgirlWinByWilliam,undefined,"Cowgirl","Use the lewd leporine’s steamy mouth to get yourself ready before bouncing her on your lap and then some.");
+	
 	if(pc.hasVagina()) 
 	{
 		if(pc.hasItemByClass(BreedersBliss,2)) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
 		else if(pc.inHeat() && pc.hasItemByClass(BreedersBliss,1)) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
 		else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need some ‘breeding inducers’ to get ruined with the lusty laquine. " + (pc.inHeat() ? "One":"Two") + " Breeder’s Bliss ought to do...");
 	}
-	else if(pc.hasVagina()) addDisabledButton(8,"Heat Sex","Heat Sex","You'll need a vagina for this.");
 	else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need a vagina for this.");
+	
 	addButton(14,"Leave",leaveTheBoredJumperAfterWinning);
 }
 

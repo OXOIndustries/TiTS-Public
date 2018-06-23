@@ -625,6 +625,7 @@ public function yammisMenu():void
 	//Cunt Snake
 	//Get from shizuya
 	if (flags["SHIZZY_CUNT_SNAKE_RECIPE"] == 1) addButton(9, "F.S.CuntSnake", shizzyCuntSnakeEat, "Fried And Stuffed Cunt Snake", "A meal made from the invasive Cunt Snakes of Mhen'ga. The head and 'tail' are removed, and the middle stuffed with a mixture of fruits and vegetables, all imported from Mhen'ga for an authentic taste. The meat is then coated in a special mixture, and fried in fruit oil.");
+	
 	addButton(14,"Back",yammiInTheKitchen);
 }
 

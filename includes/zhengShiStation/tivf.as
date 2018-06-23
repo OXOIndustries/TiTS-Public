@@ -128,10 +128,9 @@ public function maikeRestOverride():void
 	if(9999 == 0)
 	{
 		output("\n\nYou quickly fall asleep, confident that nobody’s going to bother you after all the chaos you’ve unleashed to keep the pirates busy...");
-		eventBufferXP();
-		sleepHeal();
+		
 		clearMenu();
-		addButton(0,"Next",timeShiftMainMenu,7*60);
+		addButton(0,"Next",tivfSleepTime,7*60);
 	}
 	//Slaves not free:
 	else
@@ -152,11 +151,10 @@ public function noThanksTivf():void
 	showTivf();
 	output("You shake you head and tell Tivf you’d like to relax alone. He just shrugs and rolls over, facing away from you.");
 	output("\n\nYou quickly fall asleep, content to let the wasp-boy go unused.");
-	eventBufferXP();
-	sleepHeal();
 	processTime(3);
+	
 	clearMenu();
-	addButton(0,"Next",timeShiftMainMenu,7*60);
+	addButton(0,"Next",tivfSleepTime,7*60);
 }
 
 //[Sure, Tivf]
@@ -183,11 +181,10 @@ public function stayChasteWithTivf():void
 	showTivf();
 	output("You stay silent, ignoring Tivf’s mounting arousal. Whether he’s used to that treatment or not, he continues his work without complaint. After perhaps fifteen more minutes of vigorous massaging, Tivf rests his palms on your shoulders and says, <i>“There, that should do it. Now rest, and let healing flow through you...”</i>");
 	output("\n\nYou were already half asleep from the constant caresses, and when he finally gets off of you, it’s only a few moments more before you succumb to the sweet embrace of slumber.");
-	eventBufferXP();
 	processTime(3);
-	sleepHeal();
+	
 	clearMenu();
-	addButton(0,"Next",timeShiftMainMenu,7*60);
+	addButton(0,"Next",tivfSleepTime,7*60);
 }
 
 //[Lewd it Up]
@@ -214,26 +211,20 @@ public function lewdItUpWithTivf():void
 	pc.lust(25);
 	processTime(20);
 	output("\n\nYou’re almost asleep already...");
+	
 	clearMenu();
-	eventBufferXP();
-	sleepHeal();
-	clearMenu();
-	addButton(0,"Next",timeShiftMainMenu,7*60);
+	addButton(0,"Next",tivfSleepTime,7*60);
 }
 
-public function timeShiftMainMenu(minutes:Number = 5):void
+public function tivfSleepTime(minPass:Number = 5):void
 {
-	//Secretly pass the time AFTER the scene.
-	if(minutes != 0) processTime(minutes);
-	//Show any events that procced
-	if(processEventBuffer()) return;
-	if(eventQueue.length > 0) {
-		//Do the most recent:
-		eventQueue[0]();
-		//Strip out the most recent:
-		eventQueue.splice(0,1);
-		return;
-	}
-	//Otherwise, main menu time!
-	mainGameMenu();
+	clearOutput();
+	showBust("");
+	
+	output("... You sleep for about " + num2Text(Math.round(minPass/60)) + " hours...");
+	
+	genericSleep(minPass);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

@@ -12,8 +12,8 @@ public function initGreatMajinRooms():void
 	majinRoomNames.push("MAJIN HANGAR");
 	
 	rooms["MAJIN OFFICERS QUARTERS"] = new RoomClass(this);
-	rooms["MAJIN OFFICERS QUARTERS"].roomName = "OFFICER'S\nQUARTERS";
-	rooms["MAJIN OFFICERS QUARTERS"].description = "You step into the hallway of the fourth residential deck. This one is a bit more decorated than the other floors. Instead of the standard lights present on the other decks you've been to, there are ornate lighting fixtures that dot the walls. The light they give off is a warmer tone than the others, giving the deck a more homey feeling. The quarters of the ship's commanders are well spaced on one side of the deck, each clearly labeled.";
+	rooms["MAJIN OFFICERS QUARTERS"].roomName = "OFFICER’S\nQUARTERS";
+	rooms["MAJIN OFFICERS QUARTERS"].description = "You step into the hallway of the fourth residential deck. This one is a bit more decorated than the other floors. Instead of the standard lights present on the other decks you’ve been to, there are ornate lighting fixtures that dot the walls. The light they give off is a warmer tone than the others, giving the deck a more homey feeling. The quarters of the ship’s commanders are well spaced on one side of the deck, each clearly labeled.";
 	rooms["MAJIN OFFICERS QUARTERS"].moveMinutes = 1;
 	rooms["MAJIN OFFICERS QUARTERS"].addFlag(GLOBAL.INDOOR);
 	rooms["MAJIN OFFICERS QUARTERS"].addFlag(GLOBAL.PRIVATE);
@@ -45,7 +45,7 @@ public function initGreatMajinRooms():void
 	
 	rooms["MAJIN MESS HALL"] = new RoomClass(this);
 	rooms["MAJIN MESS HALL"].roomName = "\nMESS HALL";
-	rooms["MAJIN MESS HALL"].description = "The Mess Hall is as you remember it from your first visit; very spacious, high ceilings, lots of seating room. Thankfully, the kitchen area is free of burns, soot, or any other remnants of the odd explosion. There's an android working the kitchen, regardless of the time or if anyone is even ordering anything.";
+	rooms["MAJIN MESS HALL"].description = "The Mess Hall is as you remember it from your first visit; very spacious, high ceilings, lots of seating room. Thankfully, the kitchen area is free of burns, soot, or any other remnants of the odd explosion. There’s an android working the kitchen, regardless of the time or if anyone is even ordering anything.";
 	rooms["MAJIN MESS HALL"].moveMinutes = 1;
 	rooms["MAJIN MESS HALL"].addFlag(GLOBAL.INDOOR);
 	rooms["MAJIN MESS HALL"].addFlag(GLOBAL.PRIVATE);
@@ -57,7 +57,7 @@ public function initGreatMajinRooms():void
 	
 	rooms["MAJIN RES 2"] = new RoomClass(this);
 	rooms["MAJIN RES 2"].roomName = "THE\nEMERALD BAR";
-	rooms["MAJIN RES 2"].description = "The first thing you notice, walking into the bar, is how frighteningly well-stocked it is. An entire wall has been converted into a massive drink display, with a robotic rig set up to grab them at the bartender's request. The room is fairly classically styled, otherwise. The bar is a polished wood with a line of padded stools in front of it. The bar is colored in greens and rich browns, the walls lined with pictures and trophies. The pictures range from celebrities, to members of the crew and their families, to a sobering memorial wall full of memorabilia to fallen crew members. The tables and booths around the bar are surprisingly well tended for how many people must frequent this place.";
+	rooms["MAJIN RES 2"].description = "The first thing you notice, walking into the bar, is how frighteningly well-stocked it is. An entire wall has been converted into a massive drink display, with a robotic rig set up to grab them at the bartender’s request. The room is fairly classically styled, otherwise. The bar is a polished wood with a line of padded stools in front of it. The bar is colored in greens and rich browns, the walls lined with pictures and trophies. The pictures range from celebrities, to members of the crew and their families, to a sobering memorial wall full of memorabilia to fallen crew members. The tables and booths around the bar are surprisingly well tended for how many people must frequent this place.";
 	rooms["MAJIN RES 2"].moveMinutes = 1;
 	rooms["MAJIN RES 2"].addFlag(GLOBAL.INDOOR);
 	rooms["MAJIN RES 2"].addFlag(GLOBAL.PRIVATE);
@@ -78,7 +78,7 @@ public function initGreatMajinRooms():void
 	
 	rooms["MAJIN GYM"] = new RoomClass(this);
 	rooms["MAJIN GYM"].roomName = "\nTHE GYM";
-	rooms["MAJIN GYM"].description = "The ship's gym is fairly extensive. Dozens of machines line the walls, tiered and sectioned off for people of different strength and skill levels, shapes and sizes, and even race. There are inspirational posters covered in amazons and beefcakes";
+	rooms["MAJIN GYM"].description = "The ship’s gym is fairly extensive. Dozens of machines line the walls, tiered and sectioned off for people of different strength and skill levels, shapes and sizes, and even race. There are inspirational posters covered in amazons and beefcakes";
 	rooms["MAJIN GYM"].moveMinutes = 1;
 	rooms["MAJIN GYM"].addFlag(GLOBAL.INDOOR);
 	rooms["MAJIN GYM"].addFlag(GLOBAL.PRIVATE);
