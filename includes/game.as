@@ -2979,6 +2979,9 @@ public function variableRoomUpdateCheck():void
 	// Visited Thare Plantation
 	if(flags["THARE_MANOR_ENTERED"] != undefined && flags["PQ_P_BURNED"] == undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["THARE MANOR"].removeFlag(GLOBAL.OBJECTIVE);
+	// Waterfall Taxi
+	if(flags["WATERFALL_TAXI_RELAY"] != undefined) rooms["2. WATERFALL POOL"].removeFlag(GLOBAL.TAXI);
+	else rooms["2. WATERFALL POOL"].removeFlag(GLOBAL.TAXI);
 	// Pyrite Satellite Quest
 	if(pyriteSatelliteLocationUnlocked())
 	{

@@ -166,7 +166,7 @@ public function mhengaScoutAuthority():void
 		return;
 	}
 	
-	if(flags["SALVAGED VANAE CAMP"] != 2) 
+	if(flags["SALVAGED VANAE CAMP"] != 2 && flags["PQUEST_WATERFALLED"] == undefined) 
 	{
 		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you an apologetic grin. <i>“Sorry, friend, we’re just getting set up here on Mhen’ga. Jungle’s a little too dense for the scout drones to map and plan landing zones, so there’s no transports going out yet.”</i>");
 		output("\n\n<i>“Ah. Sorry to bother you,”</i> you say, turning to leave.");
@@ -175,7 +175,7 @@ public function mhengaScoutAuthority():void
 		clearMenu();
 
 		addButton(0, "Next", mainGameMenu);
-		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(1, "Bow Training", tanisBowTraining);
+		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(5, "Bow Training", tanisBowTraining);
 		
 		flags["TANIS_APPROACHED"] = 1;
 	}
@@ -183,12 +183,27 @@ public function mhengaScoutAuthority():void
 	else
 	{
 		output("When you step up to " + (hasMetTanis() ? "Tanis" : "the leithan man") + ", he looks up from his work on a holoscreen and gives you a big grin. <i>“Hey there! Welcome to the Scout Authority base. We’re running light transports out into the jungle now that comm arrays are coming online. So, where can we take you, " + pc.mf("sir","ma’am") + "?”</i>");
+		
 		processTime(1);
 		clearMenu();
-		if(pc.credits >= 40) addButton(0,"XenogenCamp",mhengaTaxiToXenogen,undefined,"Xenogen Camp","This taxi will take you to the abandoned camp you found in the jungle. It costs 40 credits.");
-		else addDisabledButton(0,"XenogenCamp","Xenogen Camp","You don’t have enough credits to ride there.");
-
-		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(1, "Bow Training", tanisBowTraining);
+		
+		if(flags["SALVAGED VANAE CAMP"] == 2)
+		{
+			if(pc.credits >= 40) addButton(0, "XenogenCamp", mhengaTaxiToXenogen,undefined, "Xenogen Camp", "This taxi will take you to the abandoned camp you found in the jungle. It costs 40 credits.");
+			else addDisabledButton(0, "XenogenCamp", "Xenogen Camp", "You don’t have enough credits to ride there.");
+		}
+		if(flags["PQUEST_WATERFALLED"] != undefined)
+		{
+			if(flags["WATERFALL_TAXI_RELAY"] == undefined)
+			{
+				if(pc.hasKeyItem("Mhen'ga Comms Relay")) addDisabledButton(1, "Waterfall", "Waterfall", "You will need to set the relay on the site to be able to travel there!");
+				else addButton(1, "Waterfall?", mhengaTaxiToWaterfall, "ask", "Waterfall?", "Ask him if he’d be up for setting up a taxi route to the waterfall in the northern jungle.");
+			}
+			else if(pc.credits >= 40) addButton(1, "Waterfall", mhengaTaxiToWaterfall, "waterfall", "Waterfall", "This taxi will take you to the comms relay you place near the jungle waterfall. It costs 40 credits.");
+			else addDisabledButton(1, "Waterfall", "Waterfall", "You don’t have enough credits to ride there.");
+		}
+		
+		if (hasMetTanis() && pc.hasBowWeaponAvailable()) addButton(5, "Bow Training", tanisBowTraining);
 
 		addButton(14, "Back", mainGameMenu);
 		
@@ -209,6 +224,84 @@ public function mhengaTaxiToXenogen():void
 	processTime(15);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
+}
+
+public function mhengaTaxiToWaterfall(response:String = ""):void
+{
+	clearOutput();
+	author("Nonesuch");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "ask":
+			showBust("TANIS");
+			
+			output("<i>“I... could?”</i> Tanis frowns at your question. <i>“Can’t say I know where you’re talking about, it can’t be a popular destination. On the other hand, if it’s a fair distance from the Xenogen camp, there’d be some sense in it. Tell you what - if you stump up 750 credits for a comms relay and set it up at this waterfall of yours, I’ll mark it on the map for our drivers.”</i>");
+			
+			processTime(2);
+			
+			if(pc.credits >= 750) addButton(0, "Buy", mhengaTaxiToWaterfall, "buy");
+			else addDisabledButton(0, "Buy", "Buy", "You cannot afford this!\n\nRequires 750 credits.");
+			addButton(1, "Nah", mainGameMenu);
+			break;
+		case "buy":
+			showBust("TANIS");
+			
+			output("You hand him a chit, and after a rummage around in the back the leithan returns with a bulky  drone-like device.");
+			output("\n\n<i>“Stick it in the ground and press the button on the bottom once you’ve got it where you want it,”</i> Tanis says. <i>“You should be able to summon taxis straight away. We’re that good!”</i>");
+			output("\n\n<b>You have attained a Mhen’ga Comms Relay.</b>");
+			
+			processTime(2);
+			
+			pc.credits -= 750;
+			pc.createKeyItem("Mhen'ga Comms Relay", 0, 0, 0, 0, "The comms relay the U.G.C. Scout Authority on Mhen’ga gave you. As long as you set it up in the right place, it’ll act as a beacon for taxis.");
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "use":
+			showBust("");
+			showName("RELAY\nSETUP...");
+			
+			output("It’s the work of a moment to set the comms relay up on the plateau, a short distance away from the waterfall pool; it’s idiot proof by design");
+			if(pc.isBimbo() || pc.isBro() || pc.IQ() < 20) output(" luckily for you");
+			output(". The metal tube-like device winks green at the top once you’ve turned it on. <b>Assuming you’ve got the credits, you may now call taxis here.</b>");
+			output("\n\n<b>You have used the Mhen’ga Comms Relay.</b>");
+			
+			processTime(12);
+			
+			pc.removeKeyItem("Mhen'ga Comms Relay");
+			flags["WATERFALL_TAXI_RELAY"] = 1;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "taxi":
+			showBust("");
+			
+			output("You squat down next to the bulky comm array and punch in the number of the local U.G.C. Scout base. A quick credit transfer later, and you’ve got a hover car racing toward you for pickup. A few minutes later it arrives, puttering down onto the small plateau with doors open. The drone pilot waves you in, and soon whisks you away back to Esbeth.");
+			
+			pc.credits -= 40;
+			processTime(15);
+			currentLocation = "ESBETH TRAVEL AUTHORITY";
+			generateMapForLocation(currentLocation);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "waterfall":
+			showBust("TANIS");
+			
+			output("<i>“Alright. I’ll upload the coordinates to one of the transports. Just swipe your credit stick here and head out back.”</i>");
+			output("\n\nYou do so, transferring your payment to the Scout Authority and walking out into the back lot behind the structure. Several small hover-cars are arrayed there, all jungle-patterned and manned by simplistic drone pilots. One of them hails you with a wave of its mechanical arm. You slip into the car, and a moment later you’re on your way, zipping across the jungle of Mhen’ga.");
+			output("\n\nNot long after, you arrive at the crashing roar of the waterfall, and disembark at the foot of it. The hover-car zips away a minute later, leaving you behind.");
+			
+			pc.credits -= 40;
+			processTime(15);
+			currentLocation = "2. WATERFALL POOL";
+			generateMapForLocation(currentLocation);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
 }
 
 public function jungleEncounterChances():Boolean {

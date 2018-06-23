@@ -589,7 +589,7 @@ public function waterfallPoolBonusSchtuff():Boolean
 		return true;
 	}
 	//Repeat if Kane not defeated
-	else if(flags["KANE_DEFEATED"] == undefined)
+	if(flags["KANE_DEFEATED"] == undefined)
 	{
 		output("You are on the open, mossy plateau at the bottom of the waterfall. It comes thundering down from many feet above into a deep pool. The vast, ceaseless power of it throws up writhing veils of white vapor that breathe blessings on your hot [pc.skinFurScales]. It is shouldered by sheer, red rock cliffs that climb out of the jungle both to the east and west. The more you take it in the more daunting the prospect is - without going many miles out of your way, the only method of getting at the highlands above that you can immediately see is to clamber up the layered, multitudinous rock face beside the waterfall.");
 		output("\n\n<i>“You return!”</i> says a harsh, buzzing voice from behind you. Kane is in his tree, leg dangling, watching you with an insouciant sneer.");
@@ -607,8 +607,9 @@ public function waterfallPoolBonusSchtuff():Boolean
 		addButton(0, "Next", CombatManager.beginCombat);
 		return true;
 	}
+	
 	//Repeat if zil camp not opened
-	else if(flags["PQ_RESOLUTION"] == undefined)
+	if(flags["PQ_RESOLUTION"] == undefined)
 	{
 		output("You are on the open, mossy plateau at the bottom of the waterfall. It comes thundering down from many feet above into a deep pool. The vast, ceaseless power of it throws up writhing veils of white vapor that breathe blessings on your hot [pc.skinFurScales]. It is shouldered by sheer, red rock cliffs that climb out of the jungle both to the east and west. The more you take it in the more daunting the prospect is - without going many miles out of your way, the only method of getting at the highlands above that you can immediately see is to clamber up the layered, multitudinous rock face beside the waterfall.");
 		output("\n\nBehind you, the pool empties out into a wide brook, which leads steeply downwards to the south.");
@@ -627,6 +628,21 @@ public function waterfallPoolBonusSchtuff():Boolean
 		output("\n\nBehind you, the pool empties out into a wide brook, which leads steeply downwards to the south.");
 		if(flags["PQ_RESOLUTION"] != -1) addButton(0,"Go Up",goUpZeWaterfall,undefined,"Go Up","Or are you interested in practising your rock climbing?");
 	}
+	
+	if(flags["WATERFALL_TAXI_RELAY"] != undefined)
+	{
+		output("\n\nAn erect comms beacon stands nearby, its light pulsing slowly. You can use it to call a taxi if you need to.");
+		
+		if(pc.credits >= 40) addButton(1, "Call Taxi", mhengaTaxiToWaterfall, "taxi", "Call Taxi", "Pay 40 credits to get taken back to Esbeth.");
+		else addDisabledButton(1, "Call Taxi", "Call Taxi", "You don’t have enough credits to ride there.");
+	}
+	else if(pc.hasKeyItem("Mhen'ga Comms Relay"))
+	{
+		output("\n\n<b>This looks like a good spot to place the comms relay device!</b>");
+		
+		addButton(1, "Use Relay", mhengaTaxiToWaterfall, "use", "Use Relay", "Set up the relay so you can summon taxis here.");
+	}
+	
 	return false;
 }
 
