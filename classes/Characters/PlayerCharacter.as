@@ -615,7 +615,7 @@ package classes.Characters
 					fecundFigure(totalDays);
 				}
 				
-				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor())
+				if (hasStatusEffect("Nyrea Eggs") && fertility() > 0 && hasOvipositor()&&cumType == GLOBAL.FLUID_TYPE_NYREA_CUM)
 				{
 					nyreaEggStuff(totalDays);
 				}
@@ -1165,7 +1165,7 @@ package classes.Characters
 					removeStatusEffect("Nyrea Eggs");
 				}
 			}
-			else if(hasPerk("Nyrea Eggs") && hasOvipositor())
+			else if(hasPerk("Nyrea Eggs") && hasOvipositor()&&cumType == GLOBAL.FLUID_TYPE_NYREA_CUM)
 			{
 				// Regain permanent effect if has perk.
 				AddLogEvent(ParseText("You feel a familiar bloating in your body and discover that your [pc.cumNoun] has started producing nyrean eggs again!"), "passive", deltaT);
