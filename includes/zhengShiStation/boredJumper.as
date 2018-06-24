@@ -1620,7 +1620,7 @@ public function fillErUpBBY():void
 	else if(pc.hasVagina()) output("[pc.vaginas]");
 	else output("groin");
 	output(". Not worrying too much about her for now, you grab your [pc.cockNounSimple " + x + "] with one hand and her suit with the other. ");
-	if(pc.cockVolume(x) < 500) output("You thread your " + pc.mf("","wo") + "manhood into her suit and then zip it up as far as it will go, encasing your member between her suit and body.");
+	if(pc.cockVolume(x) < 500) output("You thread your manhood into her suit and then zip it up as far as it will go, encasing your member between her suit and body.");
 	else 
 	{
 		output("Her suit bulges heavily at the sheer size of your cock. You keep going though, determined to shove as much of your member in as possible. The laquine groans under you as the pressure mounts but that only serves to egg you on as she softly vibrates your ");
@@ -1629,7 +1629,7 @@ public function fillErUpBBY():void
 		else output("loins");
 		output(". You sigh in satisfaction as you cram as much of yourself in as she’ll hold, feeling yourself sandwiched between her body and the slick suit.");
 	}
-	output("\n\nIt’s boiling in there! Between the heat and sweat on the suit itself and her own overheated boy you feel like you just stuck your [pc.cock " + x + "] in a sauna.You’re tempted to take it out to check if your skin singed, but the sheer pleasure you’re getting from having it in there makes stopping an impossible proposition. The heat and lust pours into you like a jug under a waterfall, filling your ardor to such oversaturation that you can’t help but act on it.");
+	output("\n\nIt’s boiling in there! Between the heat and sweat on the suit itself and her own overheated body you feel like you just stuck your [pc.cock " + x + "] in a sauna.You’re tempted to take it out to check if your skin singed, but the sheer pleasure you’re getting from having it in there makes stopping an impossible proposition. The heat and lust pours into you like a jug under a waterfall, filling your ardor to such oversaturation that you can’t help but act on it.");
 	output("\n\nYou pull back your [pc.hips], making sure to really rub your ");
 	if(pc.balls > 0) output("[pc.balls]");
 	else if(pc.hasVagina()) output("[pc.vaginas]");
@@ -1658,7 +1658,7 @@ public function fillErUpBBY():void
 
 	output("\n\nYou have to admire the flexibility of her suit. No matter how violently you distend it, it always seems to bounce back into place right before you stretch it out again. A pocket of pre starts forming around her crotch, filled in equal parts from both of you as the tension ratchets up. Her feet dig into the ground as she humps the air in time with your thrusts, egging you on by showing you just how much she’s into this.");
 
-	if(pc.balls > 1) output("\n\n{You feel your [pc.balls] start to tighten in the bunslut’s mouth, getting ready to unload their well-coaxed load into her suit.");
+	if(pc.balls > 1) output("\n\nYou feel your [pc.balls] start to tighten in the bunslut’s mouth, getting ready to unload their well-coaxed load into her suit.");
 	else if(pc.hasVagina()) output("\n\nYou finally reach your limit. Her incessant tongue is determined to push you over the edge, and it’s succeeding!");
 	else output("\n\nYou feel the familiar tightness in your gut of an approaching orgasm. It’s strange to think that getting your groin nibbled at would feel so good but this girl seems to know how to make it work.");
 	output(" She seems right at her peak too. Her hands are blurs around her encased [enemy.cock] and throbbing bunny balls. The laquine slut moans shamelessly under you. Whether she’s doing it out of pleasure, to egg you on with the vibration, or a bit of both is beyond you at this point. Right now all you can think of is the wave of [pc.cum] rushing up your urethra.");

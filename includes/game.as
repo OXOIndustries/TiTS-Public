@@ -350,6 +350,10 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		if (!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", move, "SHIP INTERIOR");
 		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
+	if (rooms[currentLocation].hasFlag(GLOBAL.SHIPHANGAR))
+	{
+		shipHangarButton(7);
+	}
 	
 	// Dynamic room functions after enter
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
@@ -364,6 +368,91 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	// Show the minimap too!
 	userInterface.showMinimap();
 	userInterface.perkDisplayButton.Activate();
+}
+
+public function shipHangarButton(btnSlot:int = 7):void
+{
+	var ships:Array = shipHangarShips(currentLocation);
+	if(ships.length > 0) addButton(7, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
+}
+// Trafficked by spacers
+public function publicHangars(dock:String = ""):Array
+{
+	var publicHangars:Array = [];
+	
+	publicHangars.push("TAVROS HANGAR"); // Tavros Station
+	publicHangars.push("SHIP HANGAR"); // Mhen'ga
+	publicHangars.push("201"); // Tarkus
+	publicHangars.push("500"); // New Texas
+	publicHangars.push("600"); // Myrellion
+	publicHangars.push("UVS F15"); // Uveto
+	publicHangars.push("CANADA1"); // Canadia Station
+	
+	return publicHangars;
+}
+// Need exclusive access
+public function privateHangars(dock:String = ""):Array
+{
+	var privateHangars:Array = [];
+	
+	privateHangars.push("2I7"); // Myrellion (Caves)
+	privateHangars.push("ZS L50"); // Zheng Shi Station
+	privateHangars.push("POESPACE"); // Poe A
+	privateHangars.push("K16_DOCK"); // Gastigoth
+	privateHangars.push("BREEDWELL_HANGAR"); // Breedwell Centre
+	
+	return privateHangars;
+}
+public function shipHangarShips(dock:String = ""):Array
+{
+	var ships:Array = [];
+	var publicHangars:Array = publicHangars();
+	var privateHangars:Array = privateHangars();
+	
+	// ships.push(["Ship Name", null]);
+	// functionBonusName or null for no bonus function
+	if(dock == "TAVROS HANGAR")
+	{
+		if(flags["FALL OF THE PHOENIX STATUS"] == 1) ships.push(["The Phoenix", thePhoenixShipBonus]);
+	}
+	if(InCollection(dock, publicHangars))
+	{
+		if(majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
+	}
+	
+	return ships;
+}
+public function shipHangarMenu(ships:Array):void
+{
+	clearOutput();
+	showBust("");
+	showName("DOCKED\nSHIPS");
+	output("You find yourself in the hangar.");
+	clearMenu();
+	
+	var btnSlot:int = 0;
+	var i:int = 0;
+	
+	for(i = 0; i < ships.length; i++)
+	{
+		if(btnSlot > 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
+		}
+		
+		if(ships[i].length > 1 && ships[i][1] != undefined && ships[i][1] != null)
+		{
+			ships[i][1](btnSlot);
+			btnSlot++;
+		}
+	}
+	if(btnSlot > 14)
+	{
+		while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
+		addButton(btnSlot, "Back", mainGameMenu);
+	}
+	addButton(14, "Back", mainGameMenu);
 }
 
 public function generateMap():void

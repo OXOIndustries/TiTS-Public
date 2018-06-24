@@ -1,7 +1,12 @@
 public function majinLocation(newLoc:String = "read"):String
 {
 	if (flags["SHIZZY_TRAP_ENCOUNTERED"] == undefined) return null;
-	if (newLoc != "read") chars["SHIZUYA"].majinLocation = newLoc;
+	if (newLoc != "read")
+	{
+		// Excluded locations
+		if(InCollection(newLoc, privateHangars())) return null;
+		chars["SHIZUYA"].majinLocation = newLoc;
+	}
 	return chars["SHIZUYA"].majinLocation;
 }
 
@@ -81,10 +86,8 @@ public function majinUpdate(force:Boolean, forceship:Boolean = false):void
 	}
 }
 
-public function shizzyGreatMajinBonus(slot:int):Boolean
+public function shizzyGreatMajinBonus(slot:int):void
 {
-	if (!majinHere()) return false;
-	
 	if (flags["MAJIN_MET"] == undefined)
 	{
 		output("\n\nYou see a large, black colored ship, with heavy, gold accents docked near your own. It looks to be some sort of large ausar carrier. You wouldn’t normally be paying much attention to it, but you recognize some of the people working around it, and realize that it must be the ship of that kaithrit bounty hunter you met before. You could go over and visit; she did say you were always welcome.");
@@ -95,8 +98,6 @@ public function shizzyGreatMajinBonus(slot:int):Boolean
 		output("\n\nYou see Shizuya’s ship, The Great Majin, docked near your own. You could go over and visit, if you wanted to.");
 		addButton(slot, "Great Majin", majinEnter);
 	}
-	
-	return false;
 }
 
 public function shizzyGreatMajinIntro():void

@@ -346,7 +346,7 @@ package classes.Items.Transformatives
 			if(target.hasCock())
 			{
 				output("\n\nYour [pc.cock] twitches and tenses on its own accord, the surface and inner muscle tissue hardening, but not with arousal! The consistent sense of mass-loss is present but thankfully, you can tell that it’s not in length and width. Instead, <b>you’ve now got a semi-hollow, solid and flexible mothipositor!</b> It softens and retracts, returning to a shrunken state.");
-				if(target.cocks.length == 2) output(" Not only that, but your other cock follows suit and transfomrs into a similar shape!");
+				if(target.cocks.length == 2) output(" Not only that, but your other cock follows suit and transforms into a similar shape!");
 				else if(target.cocks.length > 1) output(" Not only that, but the rest of your cocks follow suit, each one transforming similarly!");
 				
 				for(var cIdx:int = 0; cIdx < target.cocks.length; cIdx++)

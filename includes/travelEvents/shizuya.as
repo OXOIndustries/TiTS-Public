@@ -1260,7 +1260,7 @@ public function shizzyIntroductionEpilouge(destination:String):void
 	clearOutput();
 	author("QuestyRobo");
 	showBust("SHIZUYA", (annoIsCrew() ? annoBustDisplay() : ""));
-	showName((annoIsCrew() ? "SHIZUYA\nANNO" : "SHIZUYA"));
+	showName((annoIsCrew() ? "SHIZUYA &\nANNO" : "SHIZUYA"));
 	
 	output("The rest of the day is filled with food, drinks, and getting to know a few of the " + (silly ? "memebers" : "members") + " of the crew. It’s an odd bunch to say the least, filled with people of almost every race you can think of. It feels like you could learn a lot about a ton of different cultures just from being here; that is, assuming both of you aren’t too drunk to talk coherently, because the drinks, right now at least, flow like water around here, and they’re <i>strong</i>. They’re the kind of drinks that would knock most people out, and even stuff that would put the unconditioned in the hospital.");
 	output("\n\nYou eventually settle into a large lounge, where you" + (annoIsCrew() ? ", Anno" : "") + ", Shizuya, and pals take some time to just shoot the shit, and by the time you decide it’s time to part ways, it’s already been several hours.");

@@ -15,7 +15,6 @@ public function flyToCanadia():void
 public function canadiaLandingPadBonus():Boolean
 {
 	kiroKallyCanadiaLPBonus();
-	shizzyGreatMajinBonus(0);
 	
 	return false;
 }

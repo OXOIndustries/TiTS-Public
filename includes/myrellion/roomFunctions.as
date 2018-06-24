@@ -94,8 +94,6 @@ public function myrellionHangarBonus():Boolean
 		return true;
 	}
 	
-	shizzyGreatMajinBonus(0);
-	
 	return false;
 }
 

@@ -99,7 +99,6 @@ public function whiteWomanTessa():void
 	//Tessa not met
 	if (flags["TESSA_MET"] == undefined)
 	{
-			
 		output("You walk over to the pale woman in the corner sitting alone. As you draw closer, her gaze turns to you and you see her striking red reptilian eyes. You slow a moment, a little off balance due to their stark contrast to the rest of her. The break in your step causes her to shift, suck her teeth dismissively, then avert her gaze back to her drink.");
 		output("\n\nYou reach her and introduce yourself. <i>“Hey there, name’s-”</i>");
 		output("\n\nThe white woman cuts you off. <i>“Would you mind just walking away? I’m really not in the mood and I don’t have time for your rehearsed icebreakers.”</i>"); 
@@ -114,8 +113,7 @@ public function whiteWomanTessa():void
 		else if(pc.isMischievous()) output("<i>“I’m not an expert, but if I had to guess you can’t be much older than me. In fact, I might even be older than you.”</i>");
 		//Hard
 		else output("<i>“Who exactly are you calling a kid?”</i>");
-	
-	
+
 		//Merge
 		output("\n\nThe woman turns her head slightly, regarding you again for the first time since her initial look. Dark black slits in her red orbs shift around slowly taking you in. <i>“Ah. My mistake. I thought you were... Nevermind... Just keep walking please " + pc.mf("Mr.", "Ms.") + " Steele, I’m not interested.”</i>");
 		output("\n\nSensing a marginally lighter tone after her mistake, you turn back on the Steele charm for another quick pass. Maybe she’ll be more receptive now that the ice is broken? "); 
@@ -136,6 +134,8 @@ public function whiteWomanTessa():void
 		output("\n\nThe woman frowns. <i>“It’s Tessa. Now leave " + pc.mf("Mr.","Ms.") + " Steele.”</i>");
 		output("\n\nYou nod your head slightly and move away from the table, leaving the white woman alone with her drink and gun.");
 		
+		processTime(3);
+		
 		//Set flag level
 		flags["TESSA_MET"] = 0;
 		
@@ -144,19 +144,18 @@ public function whiteWomanTessa():void
 	}
 	//Tessa met but no random scene encountered yet
 	else if (flags["TESSA_MET"] == 0)
-	{	
-			
+	{
 		output("You decide to try your luck with Tessa again. She spots you a few paces away from her and takes a big gulp from her drink. You also can’t help but notice her right hand drops below the table. When you reach the table she looks over at you, her red eyes boring a hole into your skull.");
 		output("\n\n<i>“Are you being serious right now?”</i> Her tone is calm, with no hint of rage. <i>“Didn’t we already go over this?”</i>");
 		output("\n\nYou shift your weight a bit, <i>“I figured...”</i> You cut yourself off and take a step back. <i>“I’m sorry, I’ll leave you be.”</i> You turn to leave, hearing Tessa mutter something under her breath as you leave earshot.");
+		processTime(1);
 		
 		//Buttons
-		addButton(14,"Leave",lonelyLizardTessa);
+		addButton(14,"Leave", mainGameMenu);
 	}
 	//Tessa met and random scene encountered
 	else if (flags["TESSA_MET"] == 1)
-	{	
-				
+	{
 		output("You decide to try your luck with Tessa again. She spots you a few paces away from her and takes a big gulp from her drink. You also can’t help but notice her right hand dropped below the table. When you reach the table she looks over at you, her red eyes boring a hole into your skull.");
  		output("\n\n<i>“Are you being serious right now?”</i> Her tone is calm, with no hint of rage. <i>“Didn’t we already go over this?”</i>");
 		output("\n\nYou slowly raise your hands and move to the opposite side of the table. <i>“Relax, I’m not here to hit on you.”</i>");
@@ -184,6 +183,8 @@ public function whiteWomanTessa():void
 		//PC is a bum
 		else output("Realizing your broke, you take a quick look around and spot an unattended glass waiting to be sent out. After a quick look around, you grab the glass and make your way back to Tessa, trying to look casual.");
 		output("She takes the drink and takes a small sip. <i>“Okay Steele, you win. I’ll let you stay until this drink is done.”</i>");
+		
+		processTime(5);
 		
 		//Set flag level
 		flags["TESSA_MET"] = 2;
@@ -216,6 +217,8 @@ public function whiteWomanTessa():void
  		output("\n\nYou sigh to yourself as you watch the drunken ovir stagger over to her ship, waving as she walks away. She shouts back at you, <i>“let’s pretend this didn’t happen, okay?”</i>");
 		output("\n\nYou call back saying you’d like that. You’re not sure if she heard.");
 		
+		processTime(6);
+		
 		//Reset flags to zero cause we aren't exiting like normal.
 		flags["TESSA_HERSELF"] = 0;
 		flags["TESSA_SPECIES"] = 0;
@@ -225,7 +228,6 @@ public function whiteWomanTessa():void
 		addButton(0,"Next",mainGameMenu);
 		currentLocation = shipLocation;
 	}
-	
 	//Heart2Heart1
 	else if ((flags["TESSA_LICKS"]!=undefined||flags["TESSA_BJS"]!= undefined) && tessaTrust() == 100 && rand(5) == 0)
 	{
@@ -249,13 +251,14 @@ public function whiteWomanTessa():void
 		output("\n\nYou roll your eyes and nod again.");
 		output("\n\nTessa smiles at you, a weight seemingly lifted off her shoulders. <i>“Awesome.”</i> She finishes her beer. <i>“Now excuse me. I’ve got to go and take a shower, gonna try to wash all this sap off me”</i>");
 		output("\n\nWithout any goodbye, Tessa rises from her seat and walks off, her tail wagging behind her.");
+		
+		processTime(5);
 	
 		flags["TESSA_H2H1"]=1;
 		
 		//Buttons
 		addButton(0,"Next",mainGameMenu);
 	}
-	
 	//Heart2Heart2
 	else if ((flags["TESSA_SHOWER"]!=undefined||flags["TESSA_BREASTPLAY"]!= undefined)&& tessaTrust() == 100 && rand(5) == 0 && pantyFapCount() > 5)
 	{
@@ -278,18 +281,20 @@ public function whiteWomanTessa():void
 		output("\n\nTessa glares at you, her red eyes burning so hot you can’t help but shrink back. <i>“You do remember I’m literally killing somebody in like 20 minutes right?”</i> Tessa brings her drink to her lips and finishes her beer, then pulls herself to her feet. <i>“Look. Play your cards right and I’ll make out with you, sleep with you, and even let you raid my panty drawer. Real highschool level shit. Just remember: I’m not looking for a somebody to bring home to Sunday dinner to meet the folks. I’m looking for somebody to have fun with. Got it?”</i>");
 		output("\n\n<i>“Got it.”</i> You smile at Tessa, understanding exactly what she was getting at. The ovir’s sour expression relaxes, and she smiles back. <i>“But seriously, you have a diary?”</i>");
 		output("\n\nThe white woman punches you in the shoulder then brushes past you on her way to the door. <i>“See ya later Asshole.”</i> She says as you turn to watch her leave, noticing her tail sway back and forth on its own.");
+		
+		processTime(8);
 
 		flags["TESSA_H2H2"]=1;
 		
-	
 		//Buttons
 		addButton(0,"Next",mainGameMenu);	
-	}	
-	
+	}
 	else
 	{
 		output("You stalk on over to Tessa’s corner of the room and take a seat across from your ovir friend.");
 		output("\n\nHer drink is about half down, and you can tell she’s been nursing it at her normal pace. She doesn’t regard you at first, instead examining her claw-like fingernails. After a few long moments of silence, her red eyes look up at you. <i>“This is starting to become a habit of yours.”</i>");
+		
+		processTime(1);
 		
 		//Buttons
 		addButton(0,"Appearance",lookAtDatSexyTessa,undefined,"Appearance","Get a good look at her.");
@@ -335,6 +340,8 @@ public function lonelyLizardTessa():void
 	output("\n\nShe looks at you and sighs. <i>“Thank God, all this talking is making my throat dry.”</i> Her red eyes shift down to her drink, and she resumes her loner behavior.");
 	output("\n\nWalking away, you hear her take a long, loud sip from her beer.");
 	
+	processTime(1);
+	
 	if (flags["TESSA_HERSELF"] != undefined) flags["TESSA_HERSELF"] = 0;
 	if (flags["TESSA_SPECIES"] != undefined) flags["TESSA_SPECIES"] = 0;
 	if (flags["TESSA_ALONE"] != undefined) flags["TESSA_ALONE"] = 0;
@@ -352,7 +359,6 @@ public function talkWifDatLizTessa():void
 	showTessa();
 	
 	output("What will you ask her about?");
-	
 	
 	addButton(0,"Herself",askAboutDatSexyTessa,undefined,"Herself","Ask her about herself.");
 	if (flags["TESSA_HERSELF"]!= undefined)	addButton(1,"Species",tessaSpecies,undefined,"Species","Ask her about her species.");
@@ -400,6 +406,8 @@ public function askAboutDatSexyTessa():void
 	output("\n\nYou stare at her, frowning a bit at her evasiveness. <i>“There has to be more than just that..”</i>");
  	output("\n\nTessa shrugs. <i>“Just because we are doing...<b>this</b>...Doesn’t mean I’m going to tell you my life story. I’m a private person and if you don’t like that....”</i> Her red eyes narrow in. <i>“Then we’re done here.”</i>");
 	
+	processTime(3);
+	
 	//+5 Trust each visit first time talked about
 	if (tessaTrust() < 70 && flags["TESSA_HERSELF"]!=1)
 	{
@@ -430,6 +438,7 @@ public function tessaSpecies():void
 	output("\n\nYou can’t help but laugh");
 	if(pc.hasTail()) output(", and you give your own a bit of a wag. <i>“Oh trust me. I know.”</i> You smirk and wiggle it again at Tessa");
 	
+	processTime(3);
 	
 	//Nice
 	if(pc.isNice()) output(". <i>“See? You did teach me something about ovir. I didn’t know they wagged their tails like Ausar when flattered.”</i>");
@@ -472,6 +481,8 @@ public function whySoLonelyTessa():void
 	output("\n\nThe white woman sighs and taps her glass. <i>“Have you been paying attention? Beer. Well I did at least. I was a kid, so they gave me the lightest stuff they could. All the kids had to drink it. For some reason, the crap in the water couldn’t survive in alcohol, which I suppose makes sense.”</i> Tessa lifts her beer up off the table and starts to swirl the liquid. <i>“The whole thing maybe last a few months. But when you drink nothing but beer for that long, you develop a taste.”</i>");
  	output("\n\nShe takes another sip and sets the glass down. <i>“By the time I was fourteen I had a hookup who could get me tons for cheap. Just had to have the cash, and money was never really an issue for me.”</i> The ovir went silent a moment and sighed again. <i>“So there, that’s why I drink beer. End of discussion.”</i>");
 	
+	processTime(5);
+	
 	//+5 Trust each visit first time talked about
 	if (tessaTrust() < 70 && flags["TESSA_ALONE"]!=1)
 	{
@@ -506,6 +517,8 @@ public function didYouJustAssumeTessaGender():void
 		output("\n\nThe white woman reaches for and draws her knife, slamming it into the table, the force of which spills her beer. <i>“You don’t get to tell me if I’m too feminine or masculine or anything like that, you got it asshole?”</i> Her eyes were pure rage and hurt. You notice the ovir’s hand on the knife tremble, her knuckles going red. A long moment passes and she stands up straight, leaving the knife in the table. Using her tail, she scoops up her chair and set it upright then sits down, her gaze falling downward into her lap. <i>“Leave me alone.”</i> Her voice was calm, and low. But she wasn’t asking.");
 		output("\n\nWithout hesitation, you stand up and leave the trembling ovir alone.");
 		
+		processTime(3);
+		
 		//Reset flags to zero cause we aren't exiting like normal.
 		flags["TESSA_HERSELF"] = 0;
 		flags["TESSA_SPECIES"] = 0;
@@ -514,7 +527,7 @@ public function didYouJustAssumeTessaGender():void
 		//Set Flag for Special Opening Scene
 		flags["TESSA_GENDER"]= 1;
 		tessaTrust(-10);
-				
+		
 		//Buttons
 		addButton(0,"Next",mainGameMenu);
 	}
@@ -548,18 +561,20 @@ public function didYouJustAssumeTessaGender():void
 		output("\n\nShe sighs and rubs her temples. <i>“He asked me... Well, he asked me why I wasn’t into him. I was confused, I wanted him. <b>Badly</b>. I... Fucking hell. I said I was, and he asked why I hadn’t let it <b>out</b>... He... Well. When I told him I was a female he laughed at me...”</i> Tessa’s red eyes shifted off into the distance. <i>“He was a gay ovir who thought I was a dude. My white scales... Well females are not usually white. We’re supposed to be bland, dull colors... And my chest... I guess you could say I’m stacked for a girl....”</i> She went quite a moment. <i>“And I guess... female ovir don’t get horny... well they do, just not often. But... that’s not me... I... I’m... Never mind. I want that drink now.”</i>");
 		output("\n\nYou head back over to the bar and retrieve a fresh beer for your friend. She takes it, but stays silent. <i>“So, he laughed and left. Said I needed to learn how to... How to act my sex... He was an asshole. I know not all ovir are like him but... All my life I was something else. Something other. Everybody around me... Not everybody accepted me at first because I was different. Most of them changed over time, but they still were not the same as me. I was a lizard in a den of mammals. So why is it the first other ovir I met treated me like I was... something else....”</i>");
 		output("\n\nYou reach across the table and place your hand on Tessa’s. She looks over at you, regarding you with her red orbs. She smiles. <i>“I was raised like a human girl. I grew up with human girls... My appearance... I was a freak to the humans and then a freak to the ovir.”</i>");
-		output("\n\n<i>“No. You’re not.”</i> You grip her hand. <i>“You are... You. ");
-		
+		output("\n\n<i>“No. You’re not.”</i> You grip her hand. <i>“You are... You.");
 		//Nice
-		if(pc.isNice()) output("<i>“You are so much more because of it all. It helped you become an amazing person.”</i>");
+		if(pc.isNice()) output(" You are so much more because of it all. It helped you become an amazing person.");
 		//Mischievous
-		else if(pc.isMischievous()) output("<i>“You said it before, when you... well when you had your knife out.”</i>");
+		else if(pc.isMischievous()) output(" You said it before, when you... well when you had your knife out.");
 		//Hard
-		else output(". <i>“So to hell with everybody else. If they want you to change then they aren’t worth thinking about.”</i>");
+		else output(" So to hell with everybody else. If they want you to change then they aren’t worth thinking about.");
+		output("”</i>");
 		
 		//Merge
 		output("\n\nThe white woman can’t help but laugh at that. <i>“You’re right. I know, it’s... it’s just me. God, I feel silly. Starting to well all emotional because the first ovir I met didn’t think I was who I should have been....”</i> She sighs and takes another sip from her drink. <i>“Thanks [pc.name}, for listening.”</i> She runs her thumb along the side of your hand, still placed on hers. <i>“Now stop touching me before I cut that hand off.”</i>");
 		output("\n\nLaughing, you pull your hand away, not sure if she’s serious or not. She couldn’t be. Right?");
+		
+		processTime(11);
 		
 		if (tessaTrust() < 70)
 		{
@@ -597,7 +612,9 @@ public function whatSexyTessaDo():void
 		output("\n\nThat brings a chuckle from the woman, and her tail making a bit of movement behind her. <i>“Oh, that’s good. Very good. Here I am letting you into my little world based completely off of a guess. Well cheers to you!”</i> She goes for her glass, but doesn’t take it, her hand stopping just before it.");
 		output("\n\nYou stare at her a moment, watching her hesitation. You’ve never known her to turn down a good sip.");
 		output("\n\n<i>“How much would it take to change the subject?”</i> She says after a long moment. She stares at you hard, her eyes focused. There is no annoyance, or rage, or murderous intent in her stare. Just focus.");
-	
+		
+		processTime(1);
+		
 		addButton(0,"Back Off",talkWifDatLizTessa,undefined,"Back Off","Discretion is the better part of wisdom they say.");
 		addButton(1,"Push the Issue",tessaNothingPersonalKid,undefined,"Push the issue","Don’t let her off THAT easy.");
 	}
@@ -615,7 +632,9 @@ public function whatSexyTessaDo():void
  		output("\n\nShe laughs a bit and waves her hand. <i>“Very. Well, in some places. Others not so much. Trick is knowing what’s illegal where.”</i> She stares at you a moment then sighs. <i>“Look, I didn’t want to bring it up. But it’s out there now. I’m a murderess. I’ve killed, and I’ll kill again. But it’s a tough galaxy and a girl’s gotta do what a girl’s gotta do.”</i> She runs her hand through her hair and flips it a bit. <i>“Judge away, if you want.”</i>");
 		output("\n\n<i>“What kind of people do you kill?”</i> You feel like asking this is important, a clue to figuring out exactly who she is.");
 		output("\n\nTessa leans back and thinks a moment. <i>“People worse than me. I don’t kill people who are innocent, Steele. I promise you that. These are people who the law can’t get, and even if they did the punishment they receive is nothing compared to the shit they deserve.”</i> Her eyes go narrow and serious. <i>“I’ve seen real monsters. I’ve killed them. The kind of monsters who die reminiscing about the things they did rather than regretting them.”</i> She takes another sip from her drink. <i>“Maybe I’ll tell you about them. One day.”</i>");
-				
+		
+		processTime(2);
+		
 		addButton(0,"Next",talkWifDatLizTessa);
 	}
 		
@@ -638,7 +657,7 @@ public function tessaNothingPersonalKid():void
 	output("\n\nUnsure of what she means, you take her hand and follow her. She leads you outside of the bar and takes you a bit of a ways away, towards the hangar you believe. Walking behind her, you can’t help but notice her tail wags lightly behind her as she walks, the tip of it brushing against you gently. Is she... Is this?");
 	output("\n\nShe comes to a stop and a small alley, gives a look around and releases your hand. <i>“Come on in... If you want a taste....”</i> She slips into the shadows, giving a small giggle. "); 
 	if(pc.hasCock()||pc.hasVagina())
-	{	
+	{
 		output("Feeling a sudden");
 		if(pc.hasCock())output(" tightness");
 		else if(pc.hasVagina())output(" heat");
@@ -653,6 +672,9 @@ public function tessaNothingPersonalKid():void
  	output("\n\nShe moves her face close to yours and gives you a small lick on the cheek. <i>“You thought I was just a Bounty Hunter. You’re not far off. I’m actually...”</i> She twists the blade a bit, the razor edge pressing tight against your throat. <i>“An Assassin.”</i>");
 	output("\n\nThen, just as quickly as she attacked, the blade and the blaster are removed. You spin around ready to fight, but see she is gone. You dart your eyes around. How did she do that? How did she disappear? You hear a call from the end of the alley.");
 	output("\n\n<i>“I’ll be at the bar if you want to talk.”</i> You turn the opposite direction and see her at the far end, putting her jacket back on. Your eyes fall to where it was laying and see she had somehow scooped it up. The white woman laughs and blows you a kiss, then turns to leave while you sit there dumbfounded.");
+	
+	processTime(2);
+	
 	currentLocation = "213";
 	generateMap();
 	//Buttons
@@ -686,7 +708,9 @@ public function flirtWithTessa():void
 		output("\n\nTessa groans at that. <i>“Holy fuck Steele. Shut up and listen.”</i> The ovir woman runs her fingers through her hair. <i>“We’ve clearly had a bit of a miscommunication. Let’s try this again.”</i> She takes a sip of her beer, then sets the glass down on the table. <i>“I think we should play. However, if we’re going to do that, we’re going to do it my way.”</i> A sly grin creeps across her face and she gives you a lascivious wink.");
 		output("\n\nYou stare at her a moment. While the odd flirtatious remark wasn’t out of character for the ovir, this kind of forward behavior was a first. Well almost a first. <i>“We’re not going to have a repeat of the alley are we?”</i>");
 		output("\n\nThe white woman groans again, louder than before. <i>“God damn Steele. No. I’m serious.”</i> She leans forward in her chair, keeping her legs crossed. <i>“Didn’t you just say something about enjoying the now like a minute ago? I’m bored and you want to get naughty, right? So this just makes sense, or am I mistaken in thinking you want to have some fun?”</i> Tessa points a sharp nail and you. <i>“Last chance. Are we doing this or not?”</i>");
-	
+		
+		processTime(3);
+		
 		addButton(0,"DrinkTheBeer",tessaDrinkBeer,undefined,"Drink the Beer","Sure, why the fuck not?");
 		addButton(1,"Another Time",tessaAnotherTime,undefined,"Another Time","Oh second thought...");
 	}
@@ -697,7 +721,9 @@ public function flirtWithTessa():void
 		output("\n\nThe two of you make your way back to the Ebony, her tail wagging back and forth the whole way. Despite her cool demeanor, you can tell she’s excited. The two of you enter her vessel and she removes her jacket and looks you over.");
 		
 		output("\n\n<i>“Alright Steele. You know what’s on the menu. What’ll it be?”</i>");
-
+		
+		processTime(1);
+		
 		addButton(0,"Sense Play",tessaCleverGirl1,undefined,"Sense Play","Go back into the cargo hold and let her play.");
 		if(tessaTrust() >= 80) addButton(1,"New Idea",tessaNewIdea,undefined,"New Idea","See what else you two can do.");
 		else addDisabledButton(1,"New Idea","New Idea","She still doesn’t quite trust you enough for that.");
@@ -714,7 +740,7 @@ public function flirtWithTessa():void
 			
 		}
 		else if (flags["TESSA_PCNEEDS"]!= undefined) addDisabledButton(5,"Get Eaten","Get Eaten","You need a vagina and must be a biped");
-		if (flags["TESSA_BREAST"]!= undefined && (pc.hasCock()||pc.hasVagina()) && pc.breastRows[pc.biggestTitRow()].breastRatingRaw > 4&&pc.isBiped())
+		if (flags["TESSA_BREAST"]!= undefined && (pc.hasCock() || pc.hasVagina()) && pc.biggestTitSize() > 4 && pc.isBiped())
 		{
 			addButton(6,"Breast Play",tessaPcBreastPlayIntro,undefined,"Breast Play","Let her play with your tits.");
 			flags["TESSA_SHOWER_BREAST"] = 0;
@@ -806,6 +832,8 @@ public function tessaDrinkBeer():void
 	output("\n\n<i>“This wasn’t exactly what I had in mind....”</i> You tug at the rope a bit, noticing it wasn’t very taut, but you can’t lower your arms. While you are looking up at you arms, Tessa moves back to you and puts the blindfold over your eyes. <i>“Hey! Wait-”</i>");
 	output("\n\n<i>“Shut up. God damn.”</i> You hear her heels clicking, moving away from you. <i>“I understand this is a little bit <b>rape dungeon</b>-y, but I swear this is super mellow, you’ll love it.”</i> You hear two zipper pulls and the sounds of something hitting the floor. <i>“Relax, it’s just my shoes.”</i>");
 	
+	processTime(3);
+	
 	currentLocation = shipLocation;
 	addButton(0,"Next",tessaCleverGirl2);
 	pc.imbibeAlcohol(25);
@@ -825,6 +853,9 @@ public function tessaCleverGirl1():void
 	output("\n\nStepping into place, Tessa slips the binders onto your wrists and starts to secure them to the ropes. <i>“If we keep doing this you’re going to have to start providing your own rope.”</i> She gives to a suggestive wink, finishing up binding you into place. <i>“You know I really think you enjoy this more that I do.”</i> She lightly treads back over to the box and produces the blindfold. <i>“Am I wrong?”</i>");
 	output("\n\nYou offer a shrug. <i>“Can’t say for sure. Sadists like you are hard to understand.”</i> Tessa rolls her eyes at that and moves in close to you, placing the blindfold over your face.");
 	output("\n\n<i>“Sadist? Sounds like a challenge.”</i> You hear Tessa take a few steps backwards from you, then her footsteps vanish. A few long heartbeats later, you hear her behind you. <i>“Get ready, love muffin. This is going to be fun.”</i> All that follows is silence....");
+	
+	processTime(1);
+	
 	addButton(0,"Next",tessaCleverGirl2);
 }
 
@@ -860,7 +891,7 @@ public function tessaCleverGirl2():void
 	
 	flags["TESSA_FLIRT"] = 1;
 	IncrementFlag("TESSA_SENSEPLAY");
-		
+	
 	tessaTrust(5);
 	pc.lust(25);
 	processTime(60);
@@ -1203,7 +1234,7 @@ public function tessaPcOral ():void
 	}
 	else
 	{
-		output("Tessa looks over at you a shifts her weight around. <i>“You know, if you get on your back...”</i> She cuts herself off and clears her throat. <i>“You should get on your back.”</i>");
+		output("Tessa looks over at you and shifts her weight around. <i>“You know, if you get on your back...”</i> She cuts herself off and clears her throat. <i>“You should get on your back.”</i>");
 		output("\n\nYou shrug a bit and reposition yourself on the couch, laying down with your head on the arm rest. Tessa moves in close and sits on the other end of the couch, looking over your body. She runs her fingers along the [pc.skinFurScalesNoun] on your legs, seemingly exploring you. Slowly, she repositions herself on the couch, while simultaneously spreading your legs apart.");
 		output("\n\n<i>“Already a little wet, huh? Well that’s good, nobody likes dry pussy.”</i> Tessa smirks, examining your [pc.vagina]. <i>“Well, I think I can handle this.”</i> Her eyes shift up, looking you in the eye. <i>“As long as a cock doesn’t come sliding out at least.”</i> Tessa’s gaze drops back down and she leans in close.");
 		output("\n\nYou can’t help but jump as Tessa touches you, her warm tongue gently licking your folds. You hear her chuckle from down between your legs. <i>“Sensitive, or just that horny? Whatever, I’m going to try to finish this fast.”</i> You then feel the ovir’s tongue press in a bit, touching her hidden silver stud against you as she goes right for your [pc.clit].");

@@ -26,8 +26,6 @@ public function mhengaShipHangarFunc():Boolean
 		return true;
 	}
 	
-	shizzyGreatMajinBonus(0);
-	
 	return false;
 }
 public function xenogenOutsideBlurb():Boolean
