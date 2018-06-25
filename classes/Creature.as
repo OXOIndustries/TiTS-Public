@@ -21489,6 +21489,30 @@
 			if(accessory is KordiiakLeash || accessory is GrunchLeash || accessory is NogwichLeash) return true;
 			return false;
 		}
+		
+		// Silicone
+		public function siliconeRating(sType:String):Number
+		{
+			var nRating:Number = 0;
+			
+			switch(sType)
+			{
+				case "hips":
+					nRating += statusEffectv1("Nym-Foe Injections");
+					break;
+				case "butt":
+					nRating += statusEffectv2("Nym-Foe Injections");
+					break;
+				case "tits":
+					nRating += statusEffectv3("Nym-Foe Injections");
+					break;
+				case "lips":
+					nRating += statusEffectv4("Nym-Foe Injections");
+					break;
+			}
+			
+			return nRating;
+		}
 	}
 }
 

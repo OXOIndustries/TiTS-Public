@@ -145,7 +145,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.nosePierced != 0) output2("\n<b>* Nose Piercing:</b> " + pc.nosePierced + " " + StringUtil.toDisplayCase(pc.nosePShort));
 		output2("\n<b>* Lips:</b> " + showCharLipRating("PC"));
 		if(pc.lipColor != "") output2(", " + StringUtil.toDisplayCase(pc.lipColor));
-		if(pc.lipMod != 0 && pc.statusEffectv4("Nym-Foe Injections") != 0) output2("\n<b>* Lips, Silicone Size Rating:</b> " + formatFloat(pc.statusEffectv4("Nym-Foe Injections"), 3));
+		if(pc.lipMod != 0 && pc.siliconeRating("lips") != 0) output2("\n<b>* Lips, Silicone Size Rating:</b> " + formatFloat(pc.siliconeRating("lips"), 3));
 		if(pc.lipPierced != 0 || flags["MIMBRANE_FACE_APPEARANCE"] == 1 || flags["MIMBRANE_FACE_APPEARANCE"] == 2)
 		{
 			output2("\n<b>* Lip Accent:</b>");
@@ -323,7 +323,8 @@ public function statisticsScreen(showID:String = "All"):void
 						output2("\n<b>* Breast, Size:</b> " + StringUtil.toTitleCase(pc.breastCup(x)));
 						if(pc.breastRows[x].breasts != 1) output2("s");
 						if(pc.breastRows[x].breastRating() >= 200) output2(" (" + formatFloat(pc.breastRows[x].breastRating(), 3) + ")");
-						if(pc.breastRows[x].breastRatingMod != 0 && pc.statusEffectv3("Nym-Foe Injections") != 0) output2("\n<b>* Breast, Silicone Size Rating:</b> " + formatFloat(pc.statusEffectv3("Nym-Foe Injections"), 3));
+						if(pc.breastRows[x].breastRatingMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.breastRows[x].breastRatingMod, 3)) + ")");
+						if(pc.breastRows[x].breastRatingMod != 0 && pc.siliconeRating("tits") != 0) output2("\n<b>* Breast, Silicone Size Rating:</b> " + formatFloat(pc.siliconeRating("tits"), 3));
 						if(pc.breastRows[x].breastRatingHoneypotMod != 0) output2("\n<b>* Breast, Honeypot Size Rating:</b> " + formatFloat(pc.breastRows[x].breastRatingHoneypotMod, 3));
 						if(pc.breastRows[x].breastRatingLactationMod != 0) output2("\n<b>* Breast, Lactation Size Rating:</b> " + formatFloat(pc.breastRows[x].breastRatingLactationMod, 3));
 						output2("\n<b>* Breast Row, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("breast", x)));
@@ -641,10 +642,10 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n<b><u>Ass</u></b>");
 		output2("\n<b>* Hip, Size Rating:</b> " + formatFloat(pc.hipRating(), 3));
 		if(pc.hipRatingMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.hipRatingMod, 3)) + ")");
-		if(pc.hipRatingMod != 0 && pc.statusEffectv1("Nym-Foe Injections") != 0) output2("\n<b>* Hip, Silicone Size Rating:</b> " + formatFloat(pc.statusEffectv1("Nym-Foe Injections"), 3));
+		if(pc.hipRatingMod != 0 && pc.siliconeRating("hips") != 0) output2("\n<b>* Hip, Silicone Size Rating:</b> " + formatFloat(pc.siliconeRating("hips"), 3));
 		output2("\n<b>* Butt, Size Rating:</b> " + formatFloat(pc.buttRating(), 3));
 		if(pc.buttRatingMod != 0) output2(" (" + StringUtil.printPlusMinus(formatFloat(pc.buttRatingMod, 3)) + ")");
-		if(pc.buttRatingMod != 0 && pc.statusEffectv2("Nym-Foe Injections") != 0) output2("\n<b>* Butt, Silicone Size Rating:</b> " + formatFloat(pc.statusEffectv2("Nym-Foe Injections"), 3));
+		if(pc.buttRatingMod != 0 && pc.siliconeRating("butt") != 0) output2("\n<b>* Butt, Silicone Size Rating:</b> " + formatFloat(pc.siliconeRating("butt"), 3));
 		output2("\n<b>* Butt, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("butt")));
 		if(pc.weightQ("butt") > 0) output2(" (" + pc.weightQ("butt") + " %)");
 		output2("\n<b>* Anus:</b> 1,");
