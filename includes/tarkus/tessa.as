@@ -413,8 +413,8 @@ public function askAboutDatSexyTessa():void
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
-		flags["TESSA_HERSELF"] = 1;
 	}
+	if(flags["TESSA_HERSELF"] != 1) flags["TESSA_HERSELF"] = 1;
 	//Buttons
 	addButton(0,"Next",talkWifDatLizTessa);
 }
@@ -455,8 +455,8 @@ public function tessaSpecies():void
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
-		flags["TESSA_SPECIES"] = 1;
 	}
+	if(flags["TESSA_SPECIES"] != 1) flags["TESSA_SPECIES"] = 1;
 	//Buttons
 	addButton(0,"Next",talkWifDatLizTessa);
 }
@@ -488,8 +488,8 @@ public function whySoLonelyTessa():void
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
-		flags["TESSA_ALONE"] = 1;
 	}
+	if(flags["TESSA_ALONE"] != 1) flags["TESSA_ALONE"] = 1;
 	//Buttons
 	addButton(0,"Next",talkWifDatLizTessa);
 }	
@@ -588,7 +588,6 @@ public function didYouJustAssumeTessaGender():void
 		}
 		//Buttons
 		addButton(0,"Next",talkWifDatLizTessa);
-	
 	}
 }
 
@@ -642,8 +641,8 @@ public function whatSexyTessaDo():void
 	{
 		tessaTrust(10);
 		if (tessaTrust() > 70) flags["TESSA_TRUST"] = 70;
-		flags["TESSA_JOB"] = 1;
 	}
+	if(flags["TESSA_JOB"] != 1) flags["TESSA_JOB"] = 1;
 }
 
 public function tessaNothingPersonalKid():void
@@ -914,8 +913,8 @@ public function tessaNewIdea():void
 	else if (flags["TESSA_PCNEEDS"] == undefined) addDisabledButton(2,"My Turn","My Turn");
 	if (flags["TESSA_H2H1"]!= undefined && pc.biggestTitSize() > 4 && CodexManager.entryViewed("Ovir") && chars["JADE"].hasTentacleNipples() && flags["TESSA_BREAST"] == undefined) addButton(3,"Her Breasts",tessaBreasts,undefined,"Her Breasts","Who doesn’t love boobs?");
 	else if (flags["TESSA_BREAST"] == undefined) addDisabledButton(3,"Her Breasts","Her Breasts","You’ll need to know somebody who has gotten new nipples for their breasts as well as have read the Ovir Codex entry for this. Pretty complicated, but Tessa is a complicated girl!");
-	if (flags["TESSA_H2H1"]!= undefined && pc.hasItemByClass(HoneyWine)&& StatTracking.getStat("contests/kiro drinkoff wins") >0 && flags["TESSA_DRINK"] == undefined) addButton(4,"Drink Together",tessaDrinkOff,undefined,"Drink Together","Can she say no to a drink?");
-	else if (flags["TESSA_DRINK"] == undefined) addDisabledButton(4,"Drink Together","Drink Together","Maybe you should get some wine or prove you can hold your drink.");
+	if (flags["TESSA_H2H1"]!= undefined && pc.hasItemByClass(HoneyWine)&& StatTracking.getStat("contests/kiro drinkoff wins") >0 && flags["TESSA_DRINK"] == undefined) addButton(4,"Drink",tessaDrinkOff,undefined,"Drink Together","Can she say no to a drink?");
+	else if (flags["TESSA_DRINK"] == undefined) addDisabledButton(4,"Drink","Drink Together","Maybe you should get some wine or prove you can hold your drink.");
 	addButton(14,"Back",flirtWithTessa,undefined,"Back","Maybe not.");
 }	
 		

@@ -5091,7 +5091,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// The Mess!
-			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["EDAN_MET"] != undefined || flags["MET_VERUSHA"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
+			if(flags["SHEKKA_TALKED_THE_MESS"] != undefined || metBeth() || flags["MET_DEL"] != undefined || flags["EDAN_MET"] != undefined || flags["TESSA_MET"] != undefined || flags["MET_VERUSHA"] != undefined || flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined)
 			{
 				output2("\n<b><u>The Mess</u></b>");
 				// Rumors
@@ -5139,21 +5139,10 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Edan:</b> Met him");
 					if(flags["EDAN_FUCKED"] != undefined) output2("\n<b>* Edan, Times Sexed:</b> " + flags["EDAN_FUCKED"]);
 				}
-				// Verusha
-				if(flags["MET_VERUSHA"] != undefined)
-				{
-					output2("\n<b>* Verusha:</b> Met her");
-					if(flags["VERUSHA_GROPED"] != undefined) output2(", Groped her");
-					if(flags["SEXED_VERUSHA"] != undefined) output2("\n<b>* Verusha, Times Sexed:</b> " + flags["SEXED_VERUSHA"]);
-					if(flags["VERUSHA_ORALED"] != undefined) output2("\n<b>* Verusha, Times You Sucked Her Cock:</b> " + flags["VERUSHA_ORALED"]);
-				}
-								
-				// Unknown waitress
-				if (flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
 				// Tessa
 				if(flags["TESSA_MET"] != undefined)
 				{
-					output2("\n<b><u>Tessa,the White Woman</u></b>");
+					//output2("\n<b><u>Tessa, the White Woman</u></b>");
 					output2("\n<b>* Tessa:</b> Met her");
 					if(flags["TESSA_TRUST"] != undefined) output2("\n<b>* Tessa, Trust:</b> " + flags["TESSA_TRUST"] + " %");
 					if(flags["TESSA_SENSEPLAY"] != undefined) output2("\n<b>* Tessa, Times Experienced Senseplay:</b> " + flags["TESSA_SENSEPLAY"]);
@@ -5165,6 +5154,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TESSA_BREASTPLAY"] != undefined) output2("\n<b>* Tessa, Times She Played With Your Breasts:</b> " + flags["TESSA_BREASTPLAY"]);
 					if(flags["TESSA_SHOWER"] != undefined) output2("\n<b>* Tessa, Times You Showered With Tessa:</b> " + flags["TESSA_SHOWER"]);
 				}
+				// Verusha
+				if(flags["MET_VERUSHA"] != undefined)
+				{
+					output2("\n<b>* Verusha:</b> Met her");
+					if(flags["VERUSHA_GROPED"] != undefined) output2(", Groped her");
+					if(flags["SEXED_VERUSHA"] != undefined) output2("\n<b>* Verusha, Times Sexed:</b> " + flags["SEXED_VERUSHA"]);
+					if(flags["VERUSHA_ORALED"] != undefined) output2("\n<b>* Verusha, Times You Sucked Her Cock:</b> " + flags["VERUSHA_ORALED"]);
+				}
+				// Unknown waitress
+				if (flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
 				
 				variousCount++;
 			}
