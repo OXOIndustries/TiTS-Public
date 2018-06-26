@@ -1758,8 +1758,7 @@ public function flyMenu():void
 	
 	if(zhengCoordinatesUnlocked())
 	{
-		if (shipLocation != "ZS L50")addButton(4,"ZhengShi",flyTo,"ZhengShi");
-		else addDisabledButton(4,"ZhengShi","ZhengShi", "You're already here.");
+		addButton(4,"ZhengShi",flyTo,"ZhengShi");
 	}
 	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 
