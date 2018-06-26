@@ -1152,6 +1152,7 @@ public function saurmorianCodexEntry():void
 	outputCodex("\n\nAfter the devastation their forces suffered, effectively disabling any and all martial, following first contact, the saurmorians attempted to reconstruct what was lost in a bid to keep their people calm. When it became clear the shattered forces couldn’t be salvaged, an infamous saurmorian mercenary company, known then as the ‘Morian Bulwark, sought to take advantage of this chance and offered their services until a solid military could be constructed. Instead, they grew so efficient and effective at not only servicing their own people, but assisting allies in other systems and worlds, that they have become the official saurmorian military. Their guns-for-hire past hardly a concern, the risen Saurmorian Bulwark Command managed to keep themselves separate from the central government; the hope being that having the political and martial powers separate and equal will prevent a repeat of the past.\n\n");
 	outputCodex(blockHeader("Technology"));
 	outputCodex("Saurmorian tech has a three word criteria that needs to be met in order for them to use something; it needs to be effective, heavy, and loud. As a result, saurmorians can be seen using a wide variety of equipment, but usually prefer the heavier and clunkier technology throughout the galaxy at the cost of efficiency. Their ships, especially, are known for being very slow but incredibly durable and powerful.\n");
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Saurmorians");
 }
 public function simiiCodex():void
@@ -1442,7 +1443,7 @@ public function vildariiCodexEntry():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Religion"));
 	outputCodex("Vildarii have a native religious order called ‘Followers of the Infinite Aspect’. They believe a single entity exists that represents all things, able to take the face and empathize with every species and being in the universe. They believe being able to comprehend such a being is nigh-impossible, but adherents strive to emulate the Infinite Aspect by living their lives in other people’s shoes and trying to see the universe from as many aspects as possible.");
-	
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Vildarii");
 }
 public function vulkrimiCodexEntry():void 
@@ -1498,7 +1499,7 @@ public function vulkrimiCodexEntry():void
 	outputCodex("The females of this species chose to breed with males with exceptional libidos so that subsequent generations would be easier to control. Once a male vulkrim hits sexual maturity, at around sixteen terran years of age, their libido starts to go into overdrive, increasing exponentially as they grow older. Since then several custom gene-mods have been designed to maintain their libido at reasonable levels, but they are costly and require yearly intakes. If they don’t take any at all, by the time they reach their forties the barest touch in any of their erogenous zones can send them into a rut.");
 	outputCodex("\n\nVulkrim personalities change a lot depending on whether they are or aren’t sexually satisfied. If kept from having sex for a long time, they will grow dominant and unruly and often try to force themselves on others. If on the other hand they are consistently satisfied, they will be obedient and submissive, going to great lengths to prove their loyalty to their lovers, family and friends.");
 	outputCodex("\n\nThese characteristics are some of the many reasons why the vulkrimi are so inclined toward criminal activity and have a reputation for being sexual slavers. When the females died they left behind an impressive armada of ships that were stolen during the collapse of society and used for piracy. The descendants of many of those pirates still exist to this day and make their living raiding ships throughout the more vulnerable regions of the U.G.C.");
-	
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Vulkrimi");
 }
 public function varmintCodex():void
