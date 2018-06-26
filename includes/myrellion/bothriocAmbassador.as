@@ -754,7 +754,8 @@ public function araKeiFlirt():void
 	}
 	else if (bothriocAddiction() <= 24)
 	{
-		output("<i>“Don’t be tiresome, Steele,”</i> says Ara Kei sharply, antennae twitching, before you even open your mouth. <i>“I have zero interest in weekending farlanders looking for an exotic screw. When you have gained a little more insight into my people - then we’ll see.”</i>");
+		if(bothriocQuestComplete()) output("<i>“I’m still not interested, Steele,”</i> says Ara Kei with a wry smile, before you even open your mouth. <i>“I know, after all you’ve done for us, and all that you have learned! But your knowledge of us is all in your brain, not in your soul. Not sunken into your skin. There are other ways of learning than merely observing, and still you do not submit to them. Until you have - no. I am far too busy, anyway.”</i>");
+		else output("<i>“Don’t be tiresome, Steele,”</i> says Ara Kei sharply, antennae twitching, before you even open your mouth. <i>“I have zero interest in weekending farlanders looking for an exotic screw. When you have gained a little more insight into my people - then we’ll see.”</i>");
 		araKeiMenu(araKeiFlirt);
 		processTime(1);
 		return;
