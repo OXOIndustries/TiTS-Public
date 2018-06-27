@@ -1416,6 +1416,7 @@ public function restHeal():void
 			pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
 		}
 	}
+	else AddLogEvent("The slave collar's punishing shocks keep your rest from doing much.")
 	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1);
 }
 
@@ -1634,6 +1635,7 @@ public function sleepHeal():void
 	{
 		if (pc.HPRaw < pc.HPMax()) pc.HPRaw = pc.HPMax();
 	}
+	else AddLogEvent("The slave collar's punishing shocks keep your rest from doing much.")
 	// Fecund Figure shape loss (Lose only after sore/working out)
 	if(pc.hasPerk("Fecund Figure") && pc.isSore())
 	{
