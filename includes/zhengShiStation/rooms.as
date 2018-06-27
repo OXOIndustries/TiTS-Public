@@ -795,8 +795,8 @@ public function initZhengRooms():void
 	rooms["ZSM I10"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSM S4"] = new RoomClass(this);
-	rooms["ZSM S4"].roomName = "\nPLACEHOLDER";
-	rooms["ZSM S4"].description = "";
+	rooms["ZSM S4"].roomName = "SPARKLING\nRICHES";
+	rooms["ZSM S4"].description = "Untapped riches of every type and color cast a disco-like rainbow of dancing luminance over this section of the mine. Not yet mined out, Zheng Shi's mineral wealth is laid bare. A skilled mining crew could make a tidy profit with a few days in this locale. No doubt the pirates are intent on doing the same. West of here, the mineshaft is far more thoroughly excavated. More precious stones lie to the east.";
 	rooms["ZSM S4"].planet = "ZHENG SHI STATION";
 	rooms["ZSM S4"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM S4"].northExit = "";
@@ -809,8 +809,8 @@ public function initZhengRooms():void
 	rooms["ZSM S4"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSM U4"] = new RoomClass(this);
-	rooms["ZSM U4"].roomName = "\nPLACEHOLDER";
-	rooms["ZSM U4"].description = "";
+	rooms["ZSM U4"].roomName = "GLIMMERING\nCORNER";
+	rooms["ZSM U4"].description = "The tunnel takes a sharp corner to the north and west, blazing a trail through hot black stone and shining gems alike. You can see reflections from the glare of harsh floodlights ahead, but the illumination here is no less striking. Buzzing flourescent lamps set the half-buried gemstones into blazing, multicolored coronas. It'd be a hell of a place for a rave.";
 	rooms["ZSM U4"].planet = "ZHENG SHI STATION";
 	rooms["ZSM U4"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM U4"].northExit = "ZSM U2";

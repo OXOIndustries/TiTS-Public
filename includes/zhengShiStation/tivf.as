@@ -126,7 +126,7 @@ public function maikeRestOverride():void
 	clearOutput();
 	output("Since the overseer isn’t around, her quarters seem like a perfectly safe place to catch your breath. You saunter over to her huge bed and help yourself to its many pillows and silken sheets.");
 	//if slaves freed:
-	if(9999 == 0)
+	if(flags["MAIKE_SLAVES_RELEASED"] == 1)
 	{
 		output("\n\nYou quickly fall asleep, confident that nobody’s going to bother you after all the chaos you’ve unleashed to keep the pirates busy...");
 		
