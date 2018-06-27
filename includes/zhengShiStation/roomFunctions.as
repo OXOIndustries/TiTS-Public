@@ -171,7 +171,7 @@ public function maikesOfficeBonus():Boolean
 		output("You try to open the door to Overseer Maike’s quarters, but find the door locked down tight. There’s a security lock in place next to it with a card reader in place. Looks like the Overseer values her privacy.");
 		clearMenu();
 		//[Use Card] [Bypass]
-		if(9999 == 0) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
+		if(pc.hasItemByClass(MaikesKeycard)) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
 		else addDisabledButton(0,"Use Card","Use Card","You’d need the overseer’s card for that!");
 		addButton(1,"Bypass",bypassMaikesRoomieroomHackerman,undefined,"Bypass","Embrace your inner Hackerman.");
 		return true;
