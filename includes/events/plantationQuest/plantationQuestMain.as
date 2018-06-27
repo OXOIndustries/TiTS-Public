@@ -2470,11 +2470,16 @@ public function leaveZeLovelyQuinnBeeeeeehind():void
 	author("Nonesuch");
 	output("<i>“I should, uh...”</i>");
 	output("\n\n<i>“As you wish.”</i> Quinn");
-	if(rand(2) == 0) output(" sighs. She");
-	output(" gestures in the direction of the waterfall. <i>“You have easily done enough to be treated as an honored guest in our village. ");
-	if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
-	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
-	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising " + (rand(2) == 0 ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
+	if(inCombat()) output(" sighs. She");
+	output(" gestures in the direction of the waterfall.");
+	if(inCombat())
+	{
+		output(" <i>“You have easily done enough to be treated as an honored guest in our village. ");
+		if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
+		else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
+		output("”</i>");
+	}
+	output(" She takes you in from tip to tail with those heavy-lidded, appraising " + (inCombat() ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
 	processTime(2);
 	
 	quinnFinishExit();
