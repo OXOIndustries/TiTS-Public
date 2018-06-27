@@ -54,9 +54,10 @@ public function maikeMyDayTivf():void
 {
 	clearOutput();
 	showTivf();
+	flags["TIVF_MAIKE_TALK"] = 1;
 	output("<i>“Tell me about your mistress,”</i> you prompt the zil boy.");
 	output("\n\n<i>“What’s there to tell?”</i> he laughs airily. <i>“She’s a slaver. A starfarer like you. She’s large, has horns, but also wings and a stinger like a zil. Though her stinger ejects something <b>very</b> different than one of my sisters’ would...”</i>");
-	output("\n\nTivf sniggers at some hidden meaning. <i>“Sorry. She’s... exactly what I was told to expect from starfarers: she is cruel and sadistic, loves to take advantage of every slave she can get her wicked hands on. Nothing is too sacred to violate, nor too taboo to indulge in. If she sees someone as attractive as you, I know she’d go for you in a heartbeat! If she does, try and struggle: she likes it most when she has to work for her play.”</i>");
+	output("\n\nTivf sniggers at some hidden meaning. <i>“Sorry. She’s... exactly what I was told to expect from starfarers: she is cruel and sadistic, loves to take advantage of every slave she can get her wicked hands on. Nothing is too sacred to violate, nor too taboo to indulge in. If she sees someone as attractive as you, I know she’d go for you in a heartbeat! If she does, don't struggle: she likes it most when she has to work for her play.”</i>");
 	output("\n\nThat’s distressing... but also maybe something you could use to your advantage. <i>“And where is she right now?”</i>");
 	output("\n\nThe zil shrugs. <i>“Somewhere in the mine, I guess? She’s been ‘working’ so much lately, sometimes for days at a time. She usually works in the deepest parts - at least, that’s what she says, while making me explore </i>hers<i>. If you want to find her, and I can’t imagine why you would, you’re on your own exploring the mines. I’ve never been down there, and from what Mistress Maike tells me, I don’t want to.”</i>");
 	output("\n\nYeah, a delicate boy like him would probably get eaten alive down there... or worse, get some callouses.");

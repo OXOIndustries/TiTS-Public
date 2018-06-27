@@ -12,6 +12,23 @@ public function zhengElevatorF1Bonus():void
 	else output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
 }
 
+public function slavesuitRoomOfZhengShiMines():Boolean
+{
+	if(flags["ZHENG_SHI_JUMPSUITED"] == undefined)
+	{
+		output("\n\nAn old slave jumpsuit is discarded here.");
+		addButton(0,"Jumpsuit",takeZhengShiJumpsuit);
+	}
+	return zhengMinesEncounterBonus();
+}
+
+public function takeZhengShiJumpsuit():void
+{
+	clearOutput();
+	flags["ZHENG_SHI_JUMPSUITED"] = 1;
+	quickLoot(new Slavesuit());
+}
+
 public function zhengMinesEncounterBonus():Boolean
 {
 	IncrementFlag("ZS_MINE_STEP");
@@ -35,7 +52,7 @@ public function zhengMinesEncounterBonus():Boolean
 public function slavePensBonus():Boolean
 {
 	//Hasn't freed slaves:
-	if(9999 == 9999) 
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1) 
 	{
 		output("\n\nIndeed, you can see several dozen shadowy figures shuffling around inside, trying to avoid your sight.");
 		output("\n\nYou can’t get inside thanks to a massive metal bar running across the door. It’s electronically locked and hardened against hacking; you can’t even see a seam or a plug to abuse. You’ll have to find the right keycard for this one.");
@@ -165,7 +182,7 @@ public function maikesOfficeBonus():Boolean
 		return true;
 	}
 	//Hasn't freed slaves:
-	if(9999 == 9999)
+	if(flags["MAIKE_SLAVES_RELEASED"] != undefined)
 	{
 		output("Tivf is lounging on the bed, and perks up at your approach.");
 		//[Tivf]

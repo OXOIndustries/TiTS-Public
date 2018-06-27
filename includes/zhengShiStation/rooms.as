@@ -437,7 +437,7 @@ public function initZhengRooms():void
 	rooms["ZSM A18"].southExit = "";
 	rooms["ZSM A18"].westExit = "";
 	rooms["ZSM A18"].moveMinutes = 3;
-	rooms["ZSM A18"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM A18"].runOnEnter = slavesuitRoomOfZhengShiMines;
 	rooms["ZSM A18"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSM A18"].addFlag(GLOBAL.HAZARD);
 
@@ -619,7 +619,7 @@ public function initZhengRooms():void
 	rooms["ZSM Q4"].planet = "ZHENG SHI STATION";
 	rooms["ZSM Q4"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM Q4"].northExit = "";
-	rooms["ZSM Q4"].eastExit = "";//"KSM S4";
+	rooms["ZSM Q4"].eastExit = "ZSM S4";
 	rooms["ZSM Q4"].southExit = "ZSM Q6";
 	rooms["ZSM Q4"].westExit = "ZSM O4";
 	rooms["ZSM Q4"].moveMinutes = 3;
@@ -793,6 +793,49 @@ public function initZhengRooms():void
 	rooms["ZSM I10"].runOnEnter = zhengMinesEncounterBonus;
 	rooms["ZSM I10"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSM I10"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSM S4"] = new RoomClass(this);
+	rooms["ZSM S4"].roomName = "\nPLACEHOLDER";
+	rooms["ZSM S4"].description = "";
+	rooms["ZSM S4"].planet = "ZHENG SHI STATION";
+	rooms["ZSM S4"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM S4"].northExit = "";
+	rooms["ZSM S4"].eastExit = "ZSM U4";
+	rooms["ZSM S4"].southExit = "";
+	rooms["ZSM S4"].westExit = "ZSM Q4";
+	rooms["ZSM S4"].moveMinutes = 3;
+	rooms["ZSM S4"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM S4"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM S4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSM U4"] = new RoomClass(this);
+	rooms["ZSM U4"].roomName = "\nPLACEHOLDER";
+	rooms["ZSM U4"].description = "";
+	rooms["ZSM U4"].planet = "ZHENG SHI STATION";
+	rooms["ZSM U4"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM U4"].northExit = "ZSM U2";
+	rooms["ZSM U4"].eastExit = "";
+	rooms["ZSM U4"].southExit = "";
+	rooms["ZSM U4"].westExit = "ZSM S4";
+	rooms["ZSM U4"].moveMinutes = 3;
+	rooms["ZSM U4"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM U4"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM U4"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSM U2"] = new RoomClass(this);
+	rooms["ZSM U2"].roomName = "THE\nPIT";
+	rooms["ZSM U2"].description = "";
+	rooms["ZSM U2"].planet = "ZHENG SHI STATION";
+	rooms["ZSM U2"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM U2"].northExit = "";
+	rooms["ZSM U2"].eastExit = "";
+	rooms["ZSM U2"].southExit = "ZSM U4";
+	rooms["ZSM U2"].westExit = "";
+	rooms["ZSM U2"].moveMinutes = 3;
+	rooms["ZSM U2"].runOnEnter = maikeEncounterFun;
+	rooms["ZSM U2"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM U2"].addFlag(GLOBAL.HAZARD);
+
 
 	rooms["ZSM PLACEHOLDER"] = new RoomClass(this);
 	rooms["ZSM PLACEHOLDER"].roomName = "\n";

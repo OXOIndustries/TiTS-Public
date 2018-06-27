@@ -1890,6 +1890,9 @@ package classes.GameData
 				(target as Anno).grappleStruggle();
 			}
 			
+			//Track if struggled for Maike
+			if(hasEnemyOfClass(Maike)) pc.createStatusEffect("MaikeStruggled", 0, 0, 0, 0, true, "", "", true);
+
 			if (hasEnemyOfClass(Cockvine) && target is PlayerCharacter)
 			{
 				// TODO pull this in!
@@ -2085,6 +2088,7 @@ package classes.GameData
 						target.removeStatusEffect("Grappled");
 					}
 				}
+
 				
 				// Failure to escape grapple
 				if(target.hasStatusEffect("Grappled"))

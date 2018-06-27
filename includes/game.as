@@ -1404,14 +1404,17 @@ public function rest(deltaT:int = -1):void {
 }
 public function restHeal():void
 {
-	var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
-	if(pc.HPRaw < pc.HPMax()) {
-		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax()));
-		else 
-		pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
-	}
-	if(pc.energyRaw < pc.energyMax()) {
-		pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
+	if(!(pc.accessory is MaikesCollar))
+	{
+		var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
+		if(pc.HPRaw < pc.HPMax()) {
+			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax()));
+			else 
+			pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
+		}
+		if(pc.energyRaw < pc.energyMax()) {
+			pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
+		}
 	}
 	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1);
 }
@@ -1627,8 +1630,10 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 
 public function sleepHeal():void
 {
-	if (pc.HPRaw < pc.HPMax()) pc.HPRaw = pc.HPMax();
-	
+	if(!(pc.accessory is MaikesCollar))
+	{
+		if (pc.HPRaw < pc.HPMax()) pc.HPRaw = pc.HPMax();
+	}
 	// Fecund Figure shape loss (Lose only after sore/working out)
 	if(pc.hasPerk("Fecund Figure") && pc.isSore())
 	{
@@ -3409,7 +3414,12 @@ public function variableRoomUpdateCheck():void
 		rooms["LIEVE BUNKER"].addFlag(GLOBAL.NPC);
 		rooms["803"].removeFlag(GLOBAL.OBJECTIVE);
 	}
-	
+
+	/* ZHENG SHI */
+
+	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
+	else if(!rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] == undefined) rooms["ZSM U2"].addFlag(GLOBAL.NPC);
+	 
 	/* UVETO */
 	
 	// Huskar Bimbos
@@ -3621,7 +3631,6 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 
 	//Queue up dumbfuck procs
 	if(pc.hasStatusEffect("Dumbfuck")) processDumbfuckEvents();
-	
 	var sendMails:Boolean = true;
 	
 	// Don't send mails to the player whilst aboard the kashima
