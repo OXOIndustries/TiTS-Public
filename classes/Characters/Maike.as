@@ -6,6 +6,7 @@
 	import classes.Items.Protection.ProtoShield;
 	import classes.Items.Transformatives.Illumorphene;
 	import classes.Items.Guns.SlutRay;
+	import classes.Items.Miscellaneous.MaikesKeycard;
 	import classes.ItemSlotClass;
 	import classes.kGAMECLASS;
 	import classes.Util.RandomInCollection;
@@ -247,6 +248,7 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE,	GLOBAL.REALLY_DISLIKES_SEXPREF);
 			
 			inventory.push(new Illumorphene());
+			inventory.push(new MaikesKeycard());
 			
 			updateMaikeLong();
 			
