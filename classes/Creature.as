@@ -2234,6 +2234,9 @@
 				case "cockOrStraponHead":
 					buffer = cockOrStraponHead(arg2);
 					break;
+				case "cockOrVag":
+					buffer = cockOrVag();
+					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
 					break;
@@ -17508,6 +17511,13 @@
 			return cockOrStrapon(idxOverride,-1);
 		}
 
+		public function cockOrVag(): String {
+			if(hasCock()) return cocksDescriptLight();
+			else if (hasVagina()) return vaginasDescriptLight();
+			// Error, return something though!
+			else return ("thigh");
+		}
+		
 		//Check if the pc has a cock, strapon, or massive clit to do some sexin'
 		public function hasCockOrStrapOrClit(countTailCock: Boolean = false):Boolean {
 			if (hasCock()) return true;
