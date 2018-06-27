@@ -24,6 +24,7 @@ public function maikeEncounterFun():Boolean
 		return true;
 	}
 	clearOutput();
+	author("SoAndSo");
 	output("Out from the twisting gloom of the mineshafts and twinkling minerals, a grand pit comes into your view. ‘Grand’ doesn’t quite do it justice: it must be at least 60 feet in diameter but what takes you back is the depth. " + (silly ? "It’s even deeper than all the fanfiction in the world." : "Starting from the walkway you’re planted on, a wide path twists around the inside of the pit and presumably to the bottom."));
 	output("\n\nThere’s enough nearby artificial lighting to help you make out where to go: bluish white lamps and lights that cover the walkway and freshly chartered ore veins show you where you would go... but not where you’d go <i>to</i>.");
 	if(flags["MAIKE_SLAVES_RELEASED"]  != 1) 
@@ -63,6 +64,7 @@ public function ohShitEncounterMaike():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	output("Two heavy metal bolts hammer into the ground near your [pc.feet], the sheer heft of the impact almost enough to crumble the ground!");
 
 	//pcNoSlaveOutfit:
@@ -108,6 +110,7 @@ public function maikeAppearance():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	flags["MAIKE_APPEARANCED"] = 1;
 	output("Presumably " + (flags["TIVF_MAIKE_TALK"] == 1 ? "Overseer Maike" : "one of the head slavers in the mine") + ", this towering insectoid woman has you pinned to the ground.");
 	output("\n\nShe stands at 6’7’’ with a graceful, subtly sexy posture. " + (pc.tallness > 6*12+7 ? " If you were side-by-side, her height wouldn’t mean so much but since you’re on the ground..." : "") + " What adds to this is the sheer size of her moth-like wings. Six thick wings flicker and waft in the warm air of the mine, bathed in a gentle orange-red glow as light passes through the patterned, translucent membranes. What’s left creates an ominous shadow that covers your prone form.");
@@ -137,6 +140,7 @@ public function bluffMaike():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	output("Let’s hope this disguise works!");
 	output("\n\n<i>“I’m just a slave. I got lost! I couldn’t see where I was going!”</i> you blurt out as you try to wriggle into a more comfortable breathing position. Damn claws are pressing on your chest!");
 	output("\n\n<i>“A wriggler, like... bait on a hook. Oo, should I, shouldn’t I?”</i> she says out loud, seeming to disregard your answer. Her clawed foot slides ever closer to your exposed neck while her tail snakes above your gaze. The smooth, pale-green plates jitter and flap like perverse petals caught in unseen winds, and you can’t help but jerk your head from side to side as it ‘nips’ at your cheek and chin.");
@@ -158,6 +162,7 @@ public function myCollarBrokeMaike():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	flags["MAIKE_BLUFF_BROKE"] = 1;
 	output("<i>“It broke! I-I got lost looking for engineering! I really wanted to put it on but it wouldn’t fit!”</i> you force out in a high pitched voice, the strain on your throat relaxing as you sputter.");
 	output("\n\n<i>“Damnable Urbolg, him and his... ‘prototypes’,”</i> she growls, a deep and animalistic secondary tone vibrating through her body like a true apex creature. <i>“And yet all of your middling brain matter led you here. How am I to ease my doubt of your claim, slave?”</i>");
@@ -202,6 +207,7 @@ public function unprocessedSlaveryForMePlease():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	flags["MAIKE_BLUFF_UNPROCESSED"] = 1;
 	output("You slipped through the cracks, that’s all!");
 	output("\n\n<i>“I never made it through processing! Caught up in the queue! I don’t know how I ended up here!”</i> you blurt out. You hope your watery eyes show enough sincerity, even if most of it is from lack of air.");
@@ -220,6 +226,7 @@ public function unprocessedPenMaikeAttempt():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	flags["MAIKE_BLUFF_PEN"] = 1;
 	output("<i>“I was told to go to the pen after the shift, the collar popped off before I could reach it! I didn’t know what to do!”</i> you blurt out automatically, hoping that it sounds convincing.");
 	output("\n\n<i>“Hrmmmjust can’t get the. Fucking. STAFF!”</i> growls the slaver. In a flash, she smacks the ground with her powered whip and a visceral <i>snap</i> pierces through. You clutch at your [pc.ears] as the sharp pain makes your [pc.hair] raise. <i>“Janky, broken, flimsy garbage! If he were on my planet, we’d have skinned him alive as a charlatan!”</i>");
@@ -237,7 +244,8 @@ public function unprocessedPenMaikeAttempt():void
 public function fuckUpWithMaikeAnGetForceyed():void
 {
 	clearOutput();
-	showMaike();
+	showMaike(true);
+	author("SoAndSo");
 	flags["MAIKE_SLAVEFUCKED_YOU"] = 1;
 	var maike:Creature = new Maike();
 	output("<i>“Dare I take you here and now? By the neck and off of that walkway? What’s that fitting Terran tale of Icarus flying too high?”</i> mocks the slaver as she holds her coiled whip under your chin. You keep silent through sheer will..." + (pc.WQ() < 60 ? " even if you’re trembling to the bone on the inside.":""));
@@ -349,7 +357,8 @@ public function fuckUpWithMaikeAnGetForceyed():void
 public function maikeFucksYaUpPart2():void
 {
 	clearOutput();
-	showMaike();
+	showMaike(true);
+	author("SoAndSo");
 	output("Without a thought for you, Maike takes a step to the side and hauls your body to a desired stand with a quick flutter of her wings and surprisingly hefty yank.");
 	if(pc.hasCock()) output(" You’re so packed up with seed that it takes a burst from her repulsors to get you in place.");
 	output("\n\nIn a flash, she slaps a semi-circle of metal to your throat and the ring snaps into its full shape. The collar beeps and blurts out something in a synthetic voice: <i>“Signal Received. Collar Configured. Owner: Excavator Overseer Maike Erisu. Addendum: We Hope You Enjoy Your Stay At Zheng Shi Mines! We’re All A Part Of The Plan!”</i>");
@@ -408,6 +417,7 @@ public function getMarched2ZePen():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	eventQueue.push(bonusCollarAndHelmetHandouts);
 	if(flags["MAIKE_BLUFF_PEN"] != undefined)
 	{
@@ -464,6 +474,7 @@ public function fuckYouMaike():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	output("You’ve got a more expedient idea to get what you want." + (flags["ZHENG_SHI_PASSWORDED"] == 1 ? " Hey, if it worked for the front door!":""));
 	output("\n\n<i>“Ey, FUCK YOU!”</i>");
 
@@ -504,6 +515,7 @@ public function fuckYouMaike():void
 public function victoryAgainstMaike():void
 {
 	showMaike();
+	author("SoAndSo");
 	//CombatVictory:
 	if(enemy.HP() <= 1) output("The battered up moth-domme crash lands into the rough stone walkway, naught but a tumble of askew wings and defeat.");
 	//LustVictory:
@@ -532,6 +544,7 @@ public function releaseTheSlaves():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	flags["MAIKE_SLAVES_RELEASED"] = 1;
 	output("Well, the lives of many before the few. Without a second thought, you press the big red button that looks like it shouldn’t be pressed.");
 	output("\n\nAlthough subtle, there’s a chorus of disbelief echoing from the mine shafts and the sounds of metal clinking against rock. The slaves of the pit quickly scamper to some unknown, unseen exit below and all that clinking metal from before falls silent.");
@@ -542,6 +555,7 @@ public function leaveSlavesAlone():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	flags["MAIKE_SLAVES_RELEASED"] = -1;
 	output("Noble as it might be, it’s no good making rash tactical decisions like that. Or something. You simply toss the baton away, far out of the reach of the downed and flailing slaver.");
 	continueMaikeVictoryChoices();
@@ -576,7 +590,8 @@ public function continueMaikeVictoryChoices():void
 public function quickMaikeAnal(x:int):void
 {
 	clearOutput();
-	showMaike();
+	showMaike(true);
+	author("SoAndSo");
 	output("You’ve seen that bountiful behind of hers and have a sneaking suspicion it might be related to her constant cumming. Not just that but ass is <i>ass</i>. A big, pale-blue booty that’s extra sensitive. No way you’re passing <i>that</i> conquest up.");
 	output("\n\n<i>“I have a feeling you’d have done this to me in another timeline,”</i> you smirk as rest your [pc.foot] on her back. <i>“So give me a show with that whore’s ass of yours and maybe I’ll help you out.”</i>");
 	output("\n\nThe slaver sighs as if finally coming to terms with her acceptance. She sinks against the ground and presses her soft, lovely chest against it. Then she pulls her legs inward to rest on her knees thus forcing her plush derriere into the air. Her tail coils up and hangs at her side, still spewing trickles and strings of her alien seed into the ground. With a <I>shwihpp</i> sound, the faux-thong covering her feminine nethers snaps into her corset armor and exposes a blue-lipped cunt dripping with needy juice. Above is the tight ring of her tailhole and it flexes for your viewing pleasure. Maike wiggles this shameless display of her needy holes from side to side, her wings spread wide and lax from her sides. Now that’s what you want to see.");
@@ -664,7 +679,8 @@ public function quickMaikeAnal(x:int):void
 public function spankDatMaike():void
 {
 	clearOutput();
-	showMaike();
+	showMaike(true);
+	author("SoAndSo");
 	output("You rub your hands together in glee: perhaps to most, a spanking would be nothing so special but to a beaten domme with <i>quite</i> the sensitive behind? One so desperate to get off? You can’t pass that up.");
 	output("\n\n<i>“Sure, I’ll help. If your body works the way I think it does, that is. Keep those hands where I can see them,”</i> you instruct to your defeated foe. She’s quick to comply: the Overseer folds her arms under her chin and stretches herself out along her front. Her wings splay out to the sides and lie motionless while her snaking tail stretches out to the right. The plated cock-tip wilts against the ground and trickles of fluid continue to spool in strings. The moth-domme says nothing all the while, as if ready to accept whatever it is you have in mind.");
 	output("\n\n<i>“What’s all this? Where’s the proud warrior spirit gone? Now you’re just turning over at the slightest push,”</i> you taunt, kneeling by the spread out slaver.");
@@ -718,7 +734,8 @@ public function spankDatMaike():void
 public function tailFeedMaike():void
 {
 	clearOutput();
-	showMaike();
+	showMaike(true);
+	author("SoAndSo");
 	output("<i>“‘Sup, girl?”</i> you say out loud as your [pc.tailCunt] swings around hungrily. There has to be something it senses from the grounded moth-domme and - with a little inner intuition - you’re quite sure it’s the slaver’s tail cock. Now wouldn’t that be a twist: dominate her by <i>receiving</i> her. <i>“We’re on the same wavelength, eh?”</i>");
 	output("\n\nYou step over Maike and ");
 	if(pc.isNaga()) output("balance yourself over her with your naga body");
@@ -768,6 +785,7 @@ public function leaveDatMaikeBehind():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	output("You probably could do something to her but the satisfaction you’d gain wouldn’t even be worth the energy used to take it from her. Just a scummy slaver after all.");
 	output("\n\n<i>“Nah, not even worth it,”</i> you say with a shake of your head.");
 	output("\n\n<i>“Ngggnooo! Help meeeee, I cah... can’t even think!”</i> is all Maike can repeat. Her wilting tail snakes around to her mouth and the spirit of desperation talks hold of her as she kisses, licks and sucks at her own tail tip.");
@@ -783,6 +801,8 @@ public function leaveDatMaikeBehind():void
 public function maikeNextThing():void
 {
 	clearOutput();
+	showName("THE\nSPOILS");
+	author("SoAndSo");
 	output("Dusting yourself down, you do a quick recon of the area. It’s all quiet aside the gentle hum of a dozen light generators. The closest one is not even ten feet away and there’s... ooo, something on it: a small box");
 	//pcReturnInteraction:
 	if(flags["MAIKE_HELMET_TAKEN"] == undefined) 
@@ -826,6 +846,7 @@ public function maikeNextThing():void
 //Bad End.
 public function pcLosesToMaike():void
 {
+	author("SoAndSo");
 	output("It’s no use: despite your skill and bodily ability, the power and ability of the Overseer has left your body a quivering mess of sexual lust. You think nothing of her immediate response as you collapse on the ground: you’re just <i>so horny</i> that your focus fades to a surreal, muted world of bright colors and rather fuzzy hands...");
 	output("\n\nThe hands pull at your limp wrists and clamp them together in grav-cuffs. You’re yanked up by the forearms and casually slung over the shoulder of the increasingly blurry Overseer with minimal effort. Something sharp jabs your [pc.skinFurScales] and numbers the area. All the while, epithets and calls of ‘pathetic slave bodies’ echo around as your sex-addled mind is overwhelmed with your own biological urges. You can barely move and thinking... is...");
 	//output("\n\n[Uh... Next]");
@@ -836,7 +857,8 @@ public function pcLosesToMaike():void
 public function losingToMaikeHereWeGo():void
 {
 	clearOutput();
-	showMaike();
+	showMaike(true);
+	author("SoAndSo");
 	output("Faces of all kinds.");
 	output("\n\nMasks, collars, voice comms.");
 	output("\n\nBlack and red outfits, silver suits, robotic limbs, generic uniforms.");
@@ -858,7 +880,8 @@ public function losingToMaikeHereWeGo():void
 public function losingToMaikeHereWeGo2():void
 {
 	clearOutput();
-	showMaike();
+	showMaike(true);
+	author("SoAndSo");
 	output("You’re not quite sure of what happens afterwards. It’s a blur of hands massaging, dabbing and poking various parts of your perpetually grinning face. It’s all cold and vaguely wet, as if something was using your face for some slapdash, abstract art piece.");
 	output("\n\nAt some points, an overhead light is shone into your [pc.face] and overwhelms your vision for a few seconds. Harder, pinpoint lines trace across various parts of your face as if the artist had switched drawing medium halfway through the artwork. You’re just too giggly to care, taken by an unnatural euphoria that fuels your ambient horniness. You just want to fuck something so bad, or get fucked, either, <b>no, both</b>. Anything just to feel like this for longer or even forever.");
 	output("\n\nYou’re briefly brought into the real world with a harsh slap the cheek.");
@@ -904,7 +927,8 @@ public function losingToMaikeHereWeGo2():void
 public function badEndingWithMaikePartWhatever():void
 {
 	clearOutput();
-	showMaike();
+	showMaike(true);
+	author("SoAndSo");
 	output("You’re pulled down by the waist as an entire body clambers over your [pc.belly]. You sink under this new weight and it very quickly... gets... heavy!");
 	output("\n\nYour air flow quicks and thins as the moth-domme quickly gets settle with you as her new seat. With a mouthful of boy butt and a whole moth-woman holding you down, your mind ramps from gentle pleasure to a fight for breath!");
 	output("\n\nSomething long and snake-like wraps itself around your [pc.legOrLegs] and brushes its smooth, scaly exterior over your [pc.ass]. In seconds, the thick appendage roots out your [pc.asshole] and pushes against it with an even thicker head. Your body tenses up on instinct but it’s not enough to stop the intruder from spreading your ill-prepared pucker from such a quick penetration.");
@@ -934,7 +958,8 @@ public function badEndingWithMaikePartWhatever():void
 public function badEndingWithMaikePartWhatever2():void
 {
 	clearOutput();
-	showMaike();
+	showMaike(true);
+	author("SoAndSo");
 	output("You’re not sure of what happens next. Your arm goes numb as if you were lanced with multiple injections and shots but your sense of being, self, awareness... it all fades until all you can think of is... pleasing, heat, wetness, <b>hardness</b>, cum, lots of it!");
 	output("\n\nYou come to from this numbed vision to find yourself in a pit, a row of figures in uniforms all standing to attention.");
 	output("\n\nSomeone gives a command.");
@@ -961,6 +986,7 @@ public function cumBack2Maike():void
 {
 	clearOutput();
 	showMaike();
+	author("SoAndSo");
 	output("Aha, you’re back at the big dig pit. Exactly what you’re doing here is your own guess but you can’t help but dwell on some vague, bubbly reason you can’t qui-");
 	output("\n\n<i><b>THNK, THNKK</b></i>");
 	output("\n\nOh crap.");
@@ -978,6 +1004,7 @@ public function ohShitMoreMaike():void
 	clearOutput();
 	showMaike();
 	output("Ah Shit!");
+	author("SoAndSo");
 	//pcWearingSlaveOutfit:
 	if(pcHasSlaveOutfit()) 
 	{
