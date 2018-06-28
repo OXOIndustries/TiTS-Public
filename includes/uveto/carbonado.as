@@ -212,7 +212,7 @@ public function uvetoCarbonadoFirstTime():void
 	if (pc.humanScore() <= 2) output(" You don’t look human, but there must be some in your genes.");
 	output("”</i> she says, attempting to push the determined saleswoman away from the counter. Her efforts are impeded by the latter’s batting arms.");
 
-	output("\n\n<i>“It’s okay Eemee, it’s really not a really bad one this time. I can still run the ship. Now, what can I help for you today, "+pc.mf("sir", "ma’am") +",”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
+	output("\n\n<i>“It’s okay Eemee, it’s really not a really bad one this time. I can still run the shop. Now, what can I help for you today, "+pc.mf("sir", "ma’am") +",”</i> she asks, much to the ausar hybrid’s chagrin. The expression on her face looks anything but levelheaded, but you decide to humor her.");
 
 	clearMenu();
 	addButton(0, "Talk", uvetoCarbonadoIntroTalk);

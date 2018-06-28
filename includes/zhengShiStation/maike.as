@@ -27,7 +27,7 @@ public function maikeEncounterFun():Boolean
 	author("SoAndSo");
 	output("Out from the twisting gloom of the mineshafts and twinkling minerals, a grand pit comes into your view. ‘Grand’ doesn’t quite do it justice: it must be at least 60 feet in diameter but what takes you back is the depth. " + (silly ? "It’s even deeper than all the fanfiction in the world." : "Starting from the walkway you’re planted on, a wide path twists around the inside of the pit and presumably to the bottom."));
 	output("\n\nThere’s enough nearby artificial lighting to help you make out where to go: bluish white lamps and lights that cover the walkway and freshly chartered ore veins show you where you would go... but not where you’d go <i>to</i>.");
-	if(flags["MAIKE_SLAVES_RELEASED"]  != 1) 
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1) 
 	{
 		output("\n\nThere’s a constant <i>tnk-tnk</i> coming from below, a whole chorus of metal-on-rock that resonates upwards. You can barely make out hunched over slaves and machines hacking and grinding away at the rock along the lower pathways. With a cautious [pc.walk], you get close to the edge of the walkway and peer into the near-black below...");
 		output("\n\nYep, that’s deep.");
@@ -91,7 +91,7 @@ public function ohShitEncounterMaike():void
 	output("\n\nThink fast!");
 	if(CodexManager.entryUnlocked("Cylirians"))
 	{
-		output("\n\nMeanwhile, your Codex uselessly bleeps to alert you that it has unlocked an article on your captor's race. Real useful.");
+		output("\n\nMeanwhile, your Codex uselessly bleeps to alert you that it has unlocked an article on your captor’s race. Real useful.");
 		output(" <b>(New Codex entry unlocked: Cylirians.)</b>");
 		CodexManager.unlockEntry("Cylirians");
 	}
@@ -126,7 +126,7 @@ public function maikeAppearance():void
 	output("\n\nUhh, uhhh!");
 	processTime(2);
 	clearMenu();
-	addDisabledButton(0,"Appearance","Appearance","You're already doing that!");
+	addDisabledButton(0,"Appearance","Appearance","You’re already doing that!");
 	//[Fuck You] [Bluff]
 	addButton(1,"Fuck You",fuckYouMaike,undefined,"You’re gonna kick her ass! Or attempt to at least!");
 	if(pcHasSlaveOutfit()) addButton(2,"Bluff",bluffMaike,undefined,"Bluff","You’re dressed the part, all you have to do is sound vaguely convincing. It’s not soooo hard, right? Right.");
@@ -424,13 +424,13 @@ public function getMarched2ZePen():void
 		currentLocation = "ZS H40";
 		generateMap();
 		output("The march to the pen is quite the effort.");
-		output("\n\nYour movements are rigid and alert, constantly wary of the Overseer's whimsical ‘course corrections’ whenever she lifts her whip. You pass entire chaingangs being held in place or led to other parts of the mine by more pirates, noting that all pay a nod or salute to Maike as you walk past.");
+		output("\n\nYour movements are rigid and alert, constantly wary of the Overseer’s whimsical ‘course corrections’ whenever she lifts her whip. You pass entire chaingangs being held in place or led to other parts of the mine by more pirates, noting that all pay a nod or salute to Maike as you walk past.");
 		output("\n\n<i>“A runner?”</i> asks one, a snake-like slaver in a silver-green bodysuit.");
 		output("\n\n<i>“Nooo, a little lamb who lost its way. Continue your duties, I’ve got this,”</i> she replies with a sigh, never once looking in the saluting slavers direction. The Overseer keeps your own distracted gaze in line with more and more whip cracks although you’re never actually hit by the coruscating energy lash.");
 		output("\n\nAll the while, the collar ebbs and pulses a mild ache across your body. When you pass a zone of heavy activity, it relents and settles a little more comfortably against your skin. At all other times, it bites deep into your nerves and even makes [pc.walking] about a different struggle of its own.");
 		output("\n\nYou stay strong but it’s not merely your body under assault as leering, envious eyes of ‘fellow’ slaves look at you with primal hunger. If you weren’t in the same boat as them, it wouldn’t be too far to think that they’d be on you like wolves. Maike sees this too, offering nought but a quick lash from her whip to the chancers amongst the chained slaves.");
 		output("\n\nEventually, you come to familiar tunnels: somewhere near the exit at least.");
-		output("\n\nYou’re walked by the Overseer's office but the Overseer takes a moment to pause. She stares wistfully at the doors as if she were pining for something inside. You stand to attention as she does, mindful to at least appear focused as a timid slave should be. You might be getting <i>too</i> into this role says your nagging conscious.");
+		output("\n\nYou’re walked by the Overseer’s office but the Overseer takes a moment to pause. She stares wistfully at the doors as if she were pining for something inside. You stand to attention as she does, mindful to at least appear focused as a timid slave should be. You might be getting <i>too</i> into this role says your nagging conscious.");
 		output("\n\nA short march later and the two of you come up to the large door that blocks access to a holding camp. Maike holds a firm grip to your shoulder as she swipes the card around in the air. Unseen sensors beep and make light pleasantries as they address her as ‘Excavator Overseer Maike’. The door slides apart in no time at all and as soon as there’s enough room, the slaver pushes you straight into the gloom.");
 		output("\n\nThe doors close behind.");
 		output("\n\nWelp. Now what?");
@@ -448,7 +448,7 @@ public function bonusCollarAndHelmetHandouts():void
 {
 	clearOutput();
 	showName("\nSUCCESS!");
-	output("The collar placed around your neck tingles dangerously. <b>You'll be unable to recover HP or energy from resting so long as it is equipped, owing to the <i>motivating</i> shocks.</b>");
+	output("The collar placed around your neck tingles dangerously. <b>You’ll be unable to recover HP or energy from resting so long as it is equipped, owing to the <i>motivating</i> shocks.</b>");
 	if(!(pc.accessory is EmptySlot)) output(" Your old accessory is unequipped.");
 	output("\n\n");
 	if(!(pc.accessory is EmptySlot)) 
@@ -481,20 +481,29 @@ public function fuckYouMaike():void
 	//pcMerc:
 	if(pc.characterClass == GLOBAL.CLASS_MERCENARY) 
 	{
-		output("\n\nYou aim your fist at the slaver's exposed ankle, catch it as the limb weakens from the impact and yank your target to the ground. The unawares moth-alien crumples into a mess of wings and scaled limbs, caught off guard by your dirty play. It hasn’t quite taken her out though for in seconds, she’s already taken flight and hovers several feet above you.");
-		output("\n\nWith keen combat reflex, you quickly get to your [pc.footOrFeet] and draw your cleverly stowed [pc.weapon]. It’s amazing the space you can find in a slave’s uniform for this kind of gear!");
+		output("\n\nYou aim your fist at the slaver’s exposed ankle, catch it as the limb weakens from the impact and yank your target to the ground. The unawares moth-alien crumples into a mess of wings and scaled limbs, caught off guard by your dirty play. It hasn’t quite taken her out though for in seconds, she’s already taken flight and hovers several feet above you.");
+		output("\n\nWith keen combat reflex, you quickly get to your [pc.footOrFeet] and draw your");
+		if(pcHasSlaveOutfit()) output(" cleverly stowed");
+		output(" [pc.weapon].");
+		if(pcHasSlaveOutfit()) output(" It’s amazing the space you can find in a slave’s uniform for this kind of gear!");
 	}
 	//pcSmuggler:
 	else if(pc.characterClass == GLOBAL.CLASS_SMUGGLER)
 	{
-		output("\n\nWith a shimmy of your wrist and fingers, you toss a miniature flashbang towards the slaver's middle. Although her perception is sharp, her reflexes fail to knock the grenade away and with a quick push, she twists away from the near-instant flash! In seconds, she’s already taken flight and hovers several feet above you with malevolent intent.");
-		output("\n\nYou’re already rolling out of the way and with quick, dexterous skill, you get to your [pc.footOrFeet] and draw your cleverly stowed [pc.weapon]. It’s amazing the space you can find in a slave’s uniform for this kind of gear!");
+		output("\n\nWith a shimmy of your wrist and fingers, you toss a miniature flashbang towards the slaver’s middle. Although her perception is sharp, her reflexes fail to knock the grenade away and with a quick push, she twists away from the near-instant flash! In seconds, she’s already taken flight and hovers several feet above you with malevolent intent.");
+		output("\n\nYou’re already rolling out of the way and with quick, dexterous skill, you get to your [pc.footOrFeet] and draw your");
+		if(pcHasSlaveOutfit()) output(" cleverly stowed");
+		output(" [pc.weapon].");
+		if(pcHasSlaveOutfit()) output(" It’s amazing the space you can find in a slave’s uniform for this kind of gear!");
 	}
-	///pcTech:
-	else
+	//pcTech:
+	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER)
 	{
 		output("\n\nHitting a panic button on your codex, your shield crackles with a kinetic pulse and the unawares slaver is knocked several feet into the air! She very quickly manages to gain stability mid-flight and hovers high above you.");
-		output("\n\nYou quickly get to your feet and draw your cleverly stowed [pc.weapon]. It’s amazing the space you can find in a slave’s uniform for this kind of gear!");
+		output("\n\nYou quickly get to your feet and draw your");
+		if(pcHasSlaveOutfit()) output(" cleverly stowed");
+		output(" [pc.weapon].");
+		if(pcHasSlaveOutfit()) output(" It’s amazing the space you can find in a slave’s uniform for this kind of gear!");
 	}
 	output("\n\n<i>“So you’re going to struggle? Oh how I do love a <b>struggle</b>. You’ll fall to me and I’ll break you in mind <b>and</b> body!”</i> shouts the slaver as she readies herself up. Her whip re-ignites in hateful, purple energy and she draws a strange, double-barrelled hand cannon for her other hand.");
 	output("\n\nOh you’ll give her something to struggle over alright.");
@@ -525,7 +534,7 @@ public function victoryAgainstMaike():void
 		output("\n\n<i>“Nooo, nooo, not noooow, why body whyyyyy,”</i> she whines into her arms as her failing self-control takes its toll and more of her cum dribbles into the dirt.");
 	}
 	output("\n\nNot that it wasn’t hard fought for you too. With a purposeful [pc.walk], you casually knock away the broken Overseer’s weapons from out of her shaking hands. You hold your [pc.weapon] out and point it right at her temple, stoic in the face of her glassy, defeated eyes. Those suns don’t shine much anymore...");
-	output("\n\n<i>“I know this goes... predator becomes prey. I’m done! A mess! You’ve ruined it all!”</i> she bites, only to bury her head in her hands. ");
+	output("\n\n<i>“I know how this goes... predator becomes prey. I’m done! A mess! You’ve ruined it all!”</i> she bites, only to bury her head in her hands. ");
 	if(enemy.HP() <= 1) output("<i>“Now you’ll enact some... ‘vengeance’ and take everything from me...”</i>");
 	else output("<i>“I can’t even... think! Fuck, being pent up for so looong....”</i>");
 
@@ -573,7 +582,7 @@ public function continueMaikeVictoryChoices():void
 	//Quick Anal
 	if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Quick Anal",penisRouter,[quickMaikeAnal,enemy.analCapacity(),true,0],"Quick Anal","Hey, if she’s that pent up, you’ve got the solution <i>riiiight</i> here. Here being your " + ((pc.hasHardLightEquipped() && !pc.hasCock()) ? "fake-":"") + "junk.");
 	else if(pc.hasCock()) addDisabledButton(0,"Quick Anal","Quick Anal","Actually, it looks like what you got couldn’t fit in that ass. Shit.");
-	else addDisabledButton(0,"Quick Anal","Quick Anal","Actually, You'll need a crotch-mounted penetrator for this.");
+	else addDisabledButton(0,"Quick Anal","Quick Anal","Actually, You’ll need a crotch-mounted penetrator for this.");
 
 	//Spank Her
 	addButton(1,"Spank Her",spankDatMaike,undefined,"Spank Her","Cruel poetic irony. Why not break her in spirit too? She’s already been beaten in body and worn out in mind.");
@@ -1032,7 +1041,7 @@ public function ohShitMoreMaike():void
 
 		clearMenu();
 		addButton(0,"Fuck You",fuckYouMaike,undefined,"You’re gonna kick her ass! Or attempt to at least!");
-		addButton(1,"Ah... Shit",losingToMaikeHereWeGo,undefined,"Giving up probably isn't the best idea.");
+		addButton(1,"Ah... Shit",losingToMaikeHereWeGo,undefined,"Giving up probably isn’t the best idea.");
 	}
 }
 

@@ -23,7 +23,7 @@
 			this.shortName = "M.Key";
 			
 			//Regular name
-			this.longName = "Maike's Key Card";
+			this.longName = "Maike’s Key Card";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
@@ -31,7 +31,7 @@
 			this.description = "a key card belonging to overseer Maike";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This shining, plasticized card must be used to unlock a door somewhere on Zheng Shi.";
+			this.tooltip = "This shining, plasticized card must be used to unlock a door somewhere on Zhèng Shi.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

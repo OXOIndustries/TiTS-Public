@@ -1598,6 +1598,7 @@ public function PKTSKC(args:Array):void
 	output("\n\nYour senses are bombarded with the occasional fleeting vision of Kiro splitting Paige in half with her horsecock when it isn’t obscured by her testicles; the smell of a bitch getting fucked and a stud fucking her as hard as they can; and the taste of a furry set of bouncing, tensing balls as they prepare to unload. Your masturbation kicks up a notch as you work Kiro over as best you can with what you have.");
 	output("\n\nAnd your efforts apparently have their intended effect: it isn’t long before you hear Kiro grunt, her voice coming up high and settling, announcing to the room in a primeval, monosyllabic way that she’s about to orgasm. The skin on her balls clench and bunch up all around her, pulling towards her groin, as her cum pumps and bubbles upward. And Paige: she’s been relatively quiet the whole time, but as soon as Kiro’s orgasm began to approach, she began to whine like a needy, horny puppy, wordlessly asking for her every drop.");
 	output("\n\nIt’s only a few more thrusts before she gets what she wants. You keep your eyes peeled on them both: you wouldn’t want to miss this show for the world.");
+	
 	processTime(20);
 	pc.lust(100);
 	clearMenu();
@@ -1615,7 +1616,7 @@ public function PKTSKGF(args:Array):void
 	clearOutput();
 	showPaigeAndKiro(true);
 	author("B!");
-	args.push("PKTSKC");
+	args.push("PKTSKGF");
 	
 	// continue here if coming from PKTSKLU and Kiro is fucking Paige
 	if(InCollection("PKTSKLU", args) && pc.hasStatusEffect("KIRO_FUCKING_PAIGE"))
@@ -1770,43 +1771,53 @@ public function PKTSKE(args:Array):void
 	args.push("PKTSKE");
 	output("All three of you are wet (in more ways than one); bruised; exhausted; and you’re sure you’re awfully musky; but none of you are done yet. That’s going to change in just a few more thrusts: your orgasm is building up and up, and you know that Paige and Kiro won’t last much longer either. In just a few more heavy thrusts, all three of you make it there.");
 
-	output("\n\nKiro, the star of the show between you three and an artisan of her craft, isn’t able to handle the sensory intake and cums first. Her body stiffens tight, and if you focus, you can hear the gurgle of her nutsack as her copious cum jets up her shaft and into its new, warm home, ");
+	output("\n\nKiro, the star of the show between you three and an artisan of her craft, isn’t able to handle the sensory intake and cums first. Her body stiffens tight, and if you focus, you can hear the gurgle of her nutsack as her copious cum jets up her shaft");
 	//if {PKTSKGF, and Kiro is fucking the PC}
-	if(InCollection("PKTSKGF", args) && pc.hasStatusEffect("KIRO_FUCKING_PC"))
+	if(pc.hasStatusEffect("KIRO_FUCKING_PC"))
 	{
-		output("straight into your [pc.vagOrAss]. You count each load by the times your hole tightens around her shaft with how her dick bloats with her seed; you get to five full-bodied, thick shots of Kui-Tan cream before you’re too horny to keep track. Kiro’s nuts bunch up against her body and against your [pc.legOrLegs] and the flare of her horse cock inside your body pinches at your already-taxed body in just the right ways, prodding at your sensitive bits with each fresh, new gush. Your [pc.belly] begins to swell and round out with her load, and yet she keeps going – even when you hear a wet splash from behind you when your body can’t take any more and her cum backwashes out from you");
+		output(" and into its new, warm home, straight into your [pc.vagOrAss]. You count each load by the times your hole tightens around her shaft with how her dick bloats with her seed; you get to five full-bodied, thick shots of Kui-Tan cream before you’re too horny to keep track. Kiro’s nuts bunch up against her body and against your [pc.legOrLegs] and the flare of her horse cock inside your body pinches at your already-taxed body in just the right ways, prodding at your sensitive bits with each fresh, new gush. Your [pc.belly] begins to swell and round out with her load, and yet she keeps going – even when you hear a wet splash from behind you when your body can’t take any more and her cum backwashes out from you");
 	}
-	else 
+	if(pc.hasStatusEffect("KIRO_FUCKING_PAIGE")) 
 	{
-		output("straight into Paige’s cunt. You’re treated to a stage-side seat to the show that is Kiro’s dick inflating rhythmically, in time with the scrunching and bunching of her leathery sack against her legs, as she seeds her hole. Paige squeals in delight at the sensation, barely muffled by whatever she could possibly get into her mouth to stem the noise. With rapt, awed attention, you witness her belly, normally toned and defined with a visible six-pack even beneath her fur, round out with Kiro’s seed as her womb packs to bursting");
-		//if {PKSTKC}
-		if(InCollection("PKSTKC", args)) 
+		output(" and into its new, warm home, straight into Paige’s cunt. You’re treated to a stage-side seat to the show that is Kiro’s dick inflating rhythmically, in time with the scrunching and bunching of her leathery sack against her legs, as she seeds her hole. Paige squeals in delight at the sensation, barely muffled by whatever she could possibly get into her mouth to stem the noise. With rapt, awed attention, you witness her belly, normally toned and defined with a visible six-pack even beneath her fur, round out with Kiro’s seed as her womb packs to bursting");
+		//if {PKTSKC}
+		if(InCollection("PKTSKC", args)) 
 		{
 			output(" – which it does. You were so lost in the sight of those two magnificent bodies copulating just inches from you that you couldn’t react in time to the sudden backwash of cum that washes from Paige’s body, and all over your face and hands");
 			pc.applyCumSoaked();
 		}
-		output(".");
 	}
+	output(".");
 	output("\n\nPaige isn’t too much further behind");
 	//if {PKTSKGF, and Kiro is fucking the PC}
-	if(InCollection("PKTSKGF", args) && pc.hasStatusEffect("KIRO_FUCKING_PC")) output(", and knowing, and hearing, that Kiro is cumming into your tight body just a few inches beneath her sets her over the edge. She loudly squeals into the room, her tight legs clamping around Kiro’s face, as her cunt clenches and milks at Kiro’s tongue, her ladycum squirting from her and straight into Kiro’s mouth. Her body shakes with concentrated effort, until a second, body-wracking orgasm shudders through her, robbing her arms of their strength, and she crashes into you on the bed. The motion not only does nothing to impede her rapid-fire orgasms, but it somehow gives her more, now that Kiro’s bending at the neck to suck at her cunt from a different angle");
-	else output(", emphasized by how her body squeezes and shivers, and her voice shrieks in pleasure, as Kiro unloads into her again and again. She does her best to stifle her own voice, to little avail: every time Kiro’s dick bloats and shoots another thick glob of seed inside her, she’s wracked with anywhere between one orgasm and three. Her lady-Ausar-jizz squirts from her hole, soaking up to her own belly and spraying back onto Kiro, lubing that amazing horse cock so it can slide ever deeper and give her ever more cum. No matter how much cum Paige takes into herself, it’s never enough, and she won’t be satisfied until every last drop of Kiro’s seed is emptied from her hefty nuts. So, they’ll probably be there for a while");
+	if(pc.hasStatusEffect("KIRO_FUCKING_PC")) output(", and knowing, and hearing, that Kiro is cumming into your tight body just a few inches beneath her sets her over the edge. She loudly squeals into the room, her tight legs clamping around Kiro’s face, as her cunt clenches and milks at Kiro’s tongue, her ladycum squirting from her and straight into Kiro’s mouth. Her body shakes with concentrated effort, until a second, body-wracking orgasm shudders through her, robbing her arms of their strength, and she crashes into you on the bed. The motion not only does nothing to impede her rapid-fire orgasms, but it somehow gives her more, now that Kiro’s bending at the neck to suck at her cunt from a different angle");
+	if(pc.hasStatusEffect("KIRO_FUCKING_PAIGE")) output(", emphasized by how her body squeezes and shivers, and her voice shrieks in pleasure, as Kiro unloads into her again and again. She does her best to stifle her own voice, to little avail: every time Kiro’s dick bloats and shoots another thick glob of seed inside her, she’s wracked with anywhere between one orgasm and three. Her lady-Ausar-jizz squirts from her hole, soaking up to her own belly and spraying back onto Kiro, lubing that amazing horse cock so it can slide ever deeper and give her ever more cum. No matter how much cum Paige takes into herself, it’s never enough, and she won’t be satisfied until every last drop of Kiro’s seed is emptied from her hefty nuts. So, they’ll probably be there for a while");
 	output(".");
 
 	output("\n\nAnd that just leaves you. Surrounded on one side by an orgasming Ausar and on another by an orgasming Kui-Tan with a massive cock, a borderline instinctive response is trigged in some part of your brain, and the orgasm that was building inside you finally unleashes everything it has. ");
-	//if {PKSTKC}
-	if(InCollection("PKSTKC", args)) 
+	//if {PKTSKC}
+	if(InCollection("PKTSKC", args)) 
 	{
 		output("Y");
-		if(pc.hasCock()) output("our [pc.cock], unable to sit idly by as you watch, and veritably bathe in the seed of, another shaking cock as it unloads into a fertile pussy, blasts your own load eagerly into the air. Your hands do nothing to stimulate yourself further as your [pc.cum] coats Kiro’s legs, as high up as her knees, uselessly soaking into her fur and slickening the floor when it comes crashing back down");
+		if(pc.hasCock())
+		{
+			output("our [pc.cock], unable to sit idly by as you watch, and veritably bathe in the seed of another shaking cock as it unloads");
+			if(pc.hasStatusEffect("KIRO_FUCKING_PAIGE")) output(" into a fertile pussy");
+			output(", blasts your own load eagerly into the air. Your hands do nothing to stimulate yourself further as your [pc.cum] coats Kiro’s legs, as high up as her knees, uselessly soaking into her fur and slickening the floor when it comes crashing back down");
+		}
 		if(pc.isHerm()) output(". And, at the same time, y");
-		if(pc.hasVagina()) output("our [pc.vagina] clenches and milks the air, your [pc.girlCum] gushing from beneath you in powerful squirts, spraying and coating the floor beneath you as far back as your [pc.feet]. You can’t help but fantasize yourself in Paige’s position: to be in Kiro’s arms, with that magnificent cock pumping load after load after load into you and giving your neglected pussy the attention it so desperately craves. Using the fantasy as fuel, you urge out more and more orgasms from yourself, until you’re cross-eyed and dazed.");
+		if(pc.hasVagina())
+		{
+			output("our [pc.vagina] clenches and milks the air, your [pc.girlCum] gushing from beneath you in powerful squirts, spraying and coating the floor beneath you as far back as your [pc.feet]. Y");
+			if(pc.hasStatusEffect("KIRO_FUCKING_PAIGE")) output("ou can’t help but fantasize yourself in Paige’s position: to be in Kiro’s arms, with that magnificent cock pumping load after load after load into you and giving your neglected pussy the attention it so desperately craves. Using the fantasy as fuel, y");
+			output("ou urge out more and more orgasms from yourself, until you’re cross-eyed and dazed.");
+		}
 	}
 	//if {PKTSKGF, and Kiro is fucking the PC}
 	if(InCollection("PKTSKGF", args) && pc.hasStatusEffect("KIRO_FUCKING_PC"))
 	{
-		if(!pc.hasVagina()) output("\n\nYour body squeezes involuntarily as your orgasm rips through you, from your abused-yet-delighted [pc.asshole], up to your head, back to your [pc.cock], and back up to your head again, repeating again and again, and each time it hits your dick, you spray another load of [pc.cum] into your bedsheet. You feel muscles you didn’t realize you had tense around Kiro’s shaft, rippling around her, coaxing her for more and more; your [pc.belly] presses harshly against the bed, overfilled and heavy with her offering, and yet you couldn’t possibly imagine stopping for anything.");
-		else output("\n\nYour body squeezes involuntarily as your orgasm rips through you, from your abused-yet-delighted [pc.vagina], up to your head, back to your [pc.clit], and back up to your head again, repeating again and again, and each time it hits your pussy, you spray another blast of [pc.girlCum] back onto Kiro’s shaft. You feel muscles you didn’t realize you had tense around Kiro’s shaft, rippling around her, coaxing her for more and more; your [pc.belly] presses harshly against the bed, overfilled and heavy with her offering, until your womb just couldn’t possibly take another drop, and it all backwashes onto Kiro. And yet, you need more....");
+		if(!pc.hasVagina() && pc.hasCock()) output("\n\nYour body squeezes involuntarily as your orgasm rips through you, from your abused-yet-delighted [pc.asshole], up to your head, back to your [pc.cock], and back up to your head again, repeating again and again, and each time it hits your dick, you spray another load of [pc.cum] into your bedsheet. You feel muscles you didn’t realize you had tense around Kiro’s shaft, rippling around her, coaxing her for more and more; your [pc.belly] presses harshly against the bed, overfilled and heavy with her offering, and yet you couldn’t possibly imagine stopping for anything.");
+		else if(pc.hasVagina()) output("\n\nYour body squeezes involuntarily as your orgasm rips through you, from your abused-yet-delighted [pc.vagina], up to your head, back to your [pc.clit], and back up to your head again, repeating again and again, and each time it hits your pussy, you spray another blast of [pc.girlCum] back onto Kiro’s shaft. You feel muscles you didn’t realize you had tense around Kiro’s shaft, rippling around her, coaxing her for more and more; your [pc.belly] presses harshly against the bed, overfilled and heavy with her offering, until your womb just couldn’t possibly take another drop, and it all backwashes onto Kiro. And yet, you need more....");
 	}
 	//if {PKTSKR}
 	if(InCollection("PKTSKR", args))

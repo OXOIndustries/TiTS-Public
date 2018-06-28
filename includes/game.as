@@ -1404,19 +1404,25 @@ public function rest(deltaT:int = -1):void {
 }
 public function restHeal():void
 {
-	if(!(pc.accessory is MaikesCollar))
+	var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
+	
+	if(pc.accessory is MaikesCollar)
 	{
-		var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
+		bonusMult = 0;
+		AddLogEvent("The slave collar’s punishing shocks keep your rest from doing much.");
+	}
+	
+	if(bonusMult != 0)
+	{
 		if(pc.HPRaw < pc.HPMax()) {
-			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax()));
-			else 
-			pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
+			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax() * bonusMult));
+			else pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
 		}
 		if(pc.energyRaw < pc.energyMax()) {
 			pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
 		}
 	}
-	else AddLogEvent("The slave collar's punishing shocks keep your rest from doing much.")
+	
 	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1);
 }
 
@@ -1631,11 +1637,20 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 
 public function sleepHeal():void
 {
-	if(!(pc.accessory is MaikesCollar))
+	var bonusMult:Number = 1;
+	
+	if(pc.accessory is MaikesCollar)
 	{
-		if (pc.HPRaw < pc.HPMax()) pc.HPRaw = pc.HPMax();
+		bonusMult = 0;
+		AddLogEvent("The slave collar’s punishing shocks keep your rest from doing much.");
 	}
-	else AddLogEvent("The slave collar's punishing shocks keep your rest from doing much.")
+	
+	if(bonusMult != 0)
+	{
+		if(pc.HPRaw < pc.HPMax()) pc.HPRaw = Math.round(pc.HPMax() * bonusMult);
+		if(pc.energyRaw < pc.energyMax()) pc.energyRaw = Math.round(pc.energyMax() * bonusMult);
+	}
+	
 	// Fecund Figure shape loss (Lose only after sore/working out)
 	if(pc.hasPerk("Fecund Figure") && pc.isSore())
 	{
@@ -1663,8 +1678,6 @@ public function sleepHeal():void
 	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3);
 	pc.removeStatusEffect("Jaded");
 	pc.removeStatusEffect("Roshan Blue");
-	
-	if (pc.energyRaw < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
 
 public function genericSleep(baseTime:int = 480, bufferXP:Boolean = true):void
