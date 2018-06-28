@@ -1801,9 +1801,9 @@ public function PKTSKE(args:Array):void
 		output("Y");
 		if(pc.hasCock())
 		{
-			output("our [pc.cock], unable to sit idly by as you watch, and veritably bathe in the seed of another shaking cock as it unloads");
+			output("our [pc.cock], unable to sit idly by as you watch, and veritably bathe in the seed of, another shaking cock as it unloads");
 			if(pc.hasStatusEffect("KIRO_FUCKING_PAIGE")) output(" into a fertile pussy");
-			output(", blasts your own load eagerly into the air. Your hands do nothing to stimulate yourself further as your [pc.cum] coats Kiro’s legs, as high up as her knees, uselessly soaking into her fur and slickening the floor when it comes crashing back down");
+			output("--you blasting your own load eagerly into the air. Your hands do nothing to stimulate yourself further as your [pc.cum] coats Kiro’s legs, as high up as her knees, uselessly soaking into her fur and slickening the floor when it comes crashing back down");
 		}
 		if(pc.isHerm()) output(". And, at the same time, y");
 		if(pc.hasVagina())
