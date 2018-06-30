@@ -1963,7 +1963,8 @@ public function flyMenu():void
 	
 	if(zhengCoordinatesUnlocked())
 	{
-		addButton(4,"ZhengShi",flyTo,"ZhengShi");
+		if (shipLocation != "ZS L50") addButton(4, "ZhengShi", flyTo, "ZhengShi");
+		else addDisabledButton(4, "ZhengShi", "Zhèng Shi Station", "You’re already here.");
 	}
 	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 
@@ -1999,10 +2000,10 @@ public function flyMenu():void
 	//Gastigoth
 	if(MailManager.isEntryViewed("gastigoth_unlock"))
 	{
-		if(shipLocation == "K16_DOCK") addDisabledButton(9,"Gastigoth","Gastigoth","You’re already here!");
-		else addButton(9,"Gastigoth",flyTo,"Gastigoth");
+		if(shipLocation != "K16_DOCK") addButton(9, "Gastigoth", flyTo, "Gastigoth");
+		else addDisabledButton(9, "Gastigoth", "Gastigoth Station", "You’re already here!");
 	}
-	else addDisabledButton(9,"Locked","Locked","You have not learned of this location’s coordinates yet.");
+	else addDisabledButton(9, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
 	//Breedwell
 	if(MailManager.isEntryViewed("breedwell_unlock"))
 	{
