@@ -648,9 +648,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/roz.png", mimeType = "image/png")]
 		public var Bust_ROZ:Class;
 		/*[Embed(source = "../../../assets/images/npcs/adjatha/roz_armor.png", mimeType = "image/png")]
-		public var Bust_ROZ_ARMOR:Class;
+		public var Bust_ROZ_ARMOR:Class;*/
 		[Embed(source = "../../../assets/images/npcs/adjatha/roz_nude.png", mimeType = "image/png")]
-		public var Bust_ROZ_NUDE:Class;*/
+		public var Bust_ROZ_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith.png", mimeType = "image/png")]
 		public var Bust_SEMITH:Class;
@@ -1447,9 +1447,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roz.png", mimeType = "image/png")]
 			public var Full_ROZ:Class;
 			/*[Embed(source = "../../../assets/images/npcs/adjatha/hr/roz_armor.png", mimeType = "image/png")]
-			public var Full_ROZ_ARMOR:Class;
+			public var Full_ROZ_ARMOR:Class;*/
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roz_nude.png", mimeType = "image/png")]
-			public var Full_ROZ_NUDE:Class;*/
+			public var Full_ROZ_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith.png", mimeType = "image/png")]
 			public var Full_SEMITH:Class;
