@@ -840,9 +840,14 @@ public function maikeNextThing():void
 		output("\n\nHang on, you’ve seen this before: it’s Illumorpheme. A moth transformative... but the slaver didn’t look like any true moth you’ve seen. A gift for Tivf, hmmm?");
 		output("\n\nWell, this stuff is pricey so... might as well take it!");
 	}
-	output("\n\nHowever, that’s not all the treasure there...");
+	output("\n\nHowever, that’s not all. The Overseer’s keycard is laying at your feet. Dislodged during the fight. It’s all yours.");
+	output(" (<b>Key Item Gained:</b> Maike’s Keycard!)");
+	pc.createKeyItem("Maike’s Keycard");
+
+	/*output("\n\nHowever, that’s not all the treasure there...");
 	output("\n\nUnder a dirty cleaning rag is the outline of some sort of device. You lift it up and find a strange gauntlet-type weapon that could easily wrap around your wrist. It has a circular plate that could fit into your hand and seems to be some sort of repulsor. Kind of like the Overseers jets... hmm.");
-	output("\n\nWelp, doesn’t hurt in taking it!\n\n");
+	output("\n\nWelp, doesn’t hurt in taking it!\n\n");*/
+	output("\n\n");
 	if(flags["MAIKE_HELMET_TAKEN"] == undefined) enemy.inventory.push(new SpacesuitHelmet());
 
 	//[Exit]*

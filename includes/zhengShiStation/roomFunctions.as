@@ -39,7 +39,7 @@ public function zhengMinesEncounterBonus():Boolean
 		flags["ZS_MINE_STEP"] = 0;
 		IncrementFlag("ZS_MINE_ENCOUNTERS");
 
-		if(flags["ZS_MINE_ENCOUNTERS"] > 10) encounters.push(encounterRoz);
+		if(flags["ZS_MINE_ENCOUNTERS"] > 7 && !pc.hasStatusEffect("DisabledRoz")) encounters.push(encounterRoz);
 		encounters.push(miningRobotAttack);
 		encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);
@@ -173,7 +173,7 @@ public function maikesOfficeBonus():Boolean
 		output("You try to open the door to Overseer Maike’s quarters, but find the door locked down tight. There’s a security lock in place next to it with a card reader in place. Looks like the Overseer values her privacy.");
 		clearMenu();
 		//[Use Card] [Bypass]
-		if(pc.hasItemByClass(MaikesKeycard)) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
+		if(pc.hasKeyItem("Maike’s Keycard")) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
 		else addDisabledButton(0,"Use Card","Use Card","You’d need the overseer’s card for that!");
 		addButton(1,"Bypass",bypassMaikesRoomieroomHackerman,undefined,"Bypass","Embrace your inner Hackerman.");
 		return true;

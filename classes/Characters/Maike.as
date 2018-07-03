@@ -178,7 +178,7 @@
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 1;
 			this.minutesSinceCum = 9000;
 			*/
 			this.timesCum = 122;
@@ -248,7 +248,8 @@
 			sexualPreferences.setPref(GLOBAL.SEXPREF_EXOTIC_BODYSHAPE,	GLOBAL.REALLY_DISLIKES_SEXPREF);
 			
 			inventory.push(new Illumorphene());
-			inventory.push(new MaikesKeycard());
+			//inventory.push(new MaikesKeycard());
+			//Replaced it with a key item.
 			
 			updateMaikeLong();
 			
@@ -258,7 +259,7 @@
 		{
 			var buffer:String = "";
 			//ifInTheRaftersTriggered: 
-			if(9999) buffer += "Jumping and flying from every crevice and cranny";
+			if(this.hasStatusEffect("Flying")) buffer += "Jumping and flying from every crevice and cranny";
 			else buffer += "Hovering in the open space";
 			buffer += " of the pit is the shadow-casting form of Overseer Maike, the head slaver of the mines and general queen bee. Or demon-moth-scorpion, whichever.";
 
