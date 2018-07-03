@@ -37,7 +37,9 @@ public function zhengMinesEncounterBonus():Boolean
 	if(flags["ZS_MINE_STEP"]-4 > rand(16))
 	{
 		flags["ZS_MINE_STEP"] = 0;
-		
+		IncrementFlag("ZS_MINE_ENCOUNTERS");
+
+		if(flags["ZS_MINE_ENCOUNTERS"] > 10) encounters.push(encounterRoz);
 		encounters.push(miningRobotAttack);
 		encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);

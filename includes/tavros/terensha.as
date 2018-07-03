@@ -1098,7 +1098,7 @@ public function tellMeYourStoryRen():void
 	clearOutput();
 	showTerensha();
 	pc.credits -= 10;
-
+	flags["TERENSHA_SUIT_TALKED"] = 1;
 	output("You nod and slip out of the booth, heading over to the bar. Doing your best to guess Ren’s preferences, you drop a few credits on a bottle of something green and gryvain-made, and turn back in time to see the catsuited whore walking towards the door down. You catch up easily enough, and soon find a sinuous tail coiling around your [pc.hips], guiding you downstairs alongside her.");
 
 	output("\n\nRen stops at the door with her name in glowing holographics and punches a code into the credit pad next to it, overriding it. The doors hisses, sliding aside. The halfbreed beckons you inside, purloining the bottle as you pass and following you in. When the door seals shut again, she takes a deep breath and plops down on the side of the bed, taking a long swig from the bottle. You " + (pc.isTaur() ? "plant yourself on your bestial behind" : "pull up a chair") + " facing her, waiting for her to speak.");

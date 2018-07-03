@@ -4590,6 +4590,12 @@ package classes.GameData
 				{
 					// noop, this is handled as part of updateStatusEffectsFor()
 				}
+				//Lock ended
+				else if(target.hasStatusEffect("Target Lock") && (target.hasStatusEffect("Stunned") || target.isBlind())) 
+				{
+					output("\n\nYour attack seems to short out Roz’s sensors for a moment - <b>the target lock is broken!</b>");
+					target.removeStatusEffect("Target Lock");
+				}
 				else if (target.hasStatusEffect("Grappled"))
 				{
 					output("\n\n");
