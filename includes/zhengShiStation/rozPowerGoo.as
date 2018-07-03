@@ -102,8 +102,8 @@ public function startPhase2():void
 	tEnemy.shieldsRaw = 0;
 	tEnemy.HPRaw = tEnemy.HPMax();
 	tEnemy.energyRaw = 100;
-	tEnemy.lustRaw = 35;
-	if(lustWin) tEnemy.lustRaw = 50;
+	tEnemy.lustRaw = enemy.lustRaw;
+	tEnemy.createPerk("Inhuman Desire",150,0,0,0);
 	
 	tEnemy.baseHPResistances.kinetic.damageValue = 50.0;
 	tEnemy.baseHPResistances.electric.damageValue = 50.0;
@@ -114,7 +114,7 @@ public function startPhase2():void
 	tEnemy.baseHPResistances.psionic.damageValue = 0.0;
 	tEnemy.baseHPResistances.drug.damageValue = 0.0;
 	tEnemy.baseHPResistances.pheromone.damageValue = -25.0;
-	tEnemy.baseHPResistances.tease.damageValue = -40.0;
+	tEnemy.baseHPResistances.tease.damageValue = -25.0;
 	tEnemy.short = "Roz";
 
 	CombatManager.newGroundCombat();
@@ -124,7 +124,7 @@ public function startPhase2():void
 	CombatManager.lossScene(loseToRozzyPoo);
 	CombatManager.displayLocation("ROZ");
 	showBust("ROZ");
-	
+
 	output("With a shudder, the armored suit slumps down to one knee and pops its top. Roz comes tumbling out, landing on hands and knees with a ");
 	if(!lustWin) output("disoriented groan. <i>“My suit!”</i> she hisses accusingly, picking herself up and staring you down. <i>“Oh that... boy does that turn me on something fierce! You’re gonna pay for that... in cum!");
 	else output("lusty moan, already groping at herself. <i>“Oh! Okay, to heck with the suit: I need you in me, on me, over me... right now, you hear!?");
@@ -163,7 +163,8 @@ public function pcBeatsRozForGoodies():void
 	if(pc.biggestCockLength() >= 40) addButton(3,"Hyper Fuck",hyperBodyCondomRozAnne,undefined,"Hyper Fuck","With a dick this big, only a goo could take you.");
 	else addDisabledButton(3,"Hyper Fuck","Hyper Fuck","You need an enormous penis for this.");
 
-	if(pc.IQ() >= 50) addButton(5,"Steal Core",coreJack,undefined,"Steal Core","Roz might be obsessing over your body now, but she seems to have her shit together more than your average galotian. She’s gotta have a core under that suit... give it a tug.");
+	//Disabled for nau.
+	if(pc.IQ() >= 50 || pc.isGoo()) addButton(5,"Steal Core",coreJack,undefined,"Steal Core","Roz might be obsessing over your body now, but she seems to have her shit together more than your average galotian. She’s gotta have a core under that suit... give it a tug.");
 	else addDisabledButton(5,"Locked","Locked","You aren't smart enough for this.");
 
 	addButton(14,"Leave",leaveRozAfterWinning);
@@ -220,7 +221,7 @@ public function keepRozsGooCore():void
 	pc.addHard(3);
 	processTime(1);
 	flags["ROZ_CORED_4_GUD"] = 1;
-	//9999 add core to enemy inventory
+	enemy.inventory.push(new GooCore());
 	CombatManager.genericVictory();
 }
 
@@ -882,7 +883,9 @@ public function inflateRozesBoobalages():void
 		processTime(30);
 		pc.orgasm();
 		output("\n\n");
-		//9999 disable roz for a day?
+		//disable roz for a day?
+		pc.createStatusEffect("DisabledRoz");
+		pc.setStatusMinutes("DisabledRoz",60*24);
 		CombatManager.genericVictory();
 		return;
 	}

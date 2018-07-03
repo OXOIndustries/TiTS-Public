@@ -195,6 +195,17 @@
 			isUniqueInFight = true;
 			btnTargetText = "Roz";
 			this._isLoading = false;
+
+			//Tease Stats
+			sexualPreferences.setPref(GLOBAL.SEXPREF_CUMMY,			GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_LACTATION,		GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_BREASTS,	GLOBAL.KINDA_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_GAPE,			GLOBAL.KINDA_LIKES_SEXPREF);
+			
+			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS,			GLOBAL.REALLY_LIKES_SEXPREF);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS,			GLOBAL.REALLY_LIKES_SEXPREF);
+
+			sexualPreferences.setPref(GLOBAL.SEXPREF_NARROW_HIPS,	GLOBAL.REALLY_DISLIKES_SEXPREF);
 		}	
 		private var _round:Number = 0;
 		

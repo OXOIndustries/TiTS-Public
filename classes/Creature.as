@@ -4708,6 +4708,7 @@
 			var bonus:Number = 0;
 			bonus -= statusEffectv1("Adorahol");
 			bonus += statusEffectv3("Cum High");
+			if(accessory is GooCore && isGoo()) bonus += 20;
 
 			var currInt:int = intelligenceRaw + intelligenceMod + bonus;
 			
@@ -4761,6 +4762,7 @@
 
 			var bonus:Number = 0;
 			if(accessory is BeatricesScarf) bonus += 3;
+			if(accessory is GooCore && isGoo()) bonus += 20;
 			bonus += statusEffectv4("Cum High");
 
 			var currWill:int = willpowerRaw + willpowerMod + bonus;
