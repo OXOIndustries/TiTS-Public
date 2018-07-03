@@ -715,7 +715,8 @@ public function lundSexMenu():void
 	clearMenu();
 	//[Doggystyle] [DickHimDown] [Ride him] [Leave]
 	addButton(0,"Doggystyle",lundDoggyStyle,undefined,"Doggystyle","Get railed by the korgonne the way he knows best.");
-	if(pc.hasCock() && pc.cockThatFits(500) >= 0 && !pc.isBimbo() && flags["LUND_MADE_U_SUBMIT"] == undefined && !pc.hasStatusEffect("LUND_DICKED_CD") && flags["LUND_COVERED_4"] != -1) addButton(1,"DickHimDown",penisRouter,[dickLundDown,500,false],"Dick Him Down","Teach the arrogant korgonne a thing or two about where he belongs.");
+	if(flags["LUND_BROKEN"] != undefined) addDisabledButton(1,"DickHimDown","Dick Him Down","There is no point in turning the tables on him if he is already your bitch!");
+	else if(pc.hasCock() && pc.cockThatFits(500) >= 0 && !pc.isBimbo() && flags["LUND_MADE_U_SUBMIT"] == undefined && !pc.hasStatusEffect("LUND_DICKED_CD") && flags["LUND_COVERED_4"] != -1) addButton(1,"DickHimDown",penisRouter,[dickLundDown,500,false],"Dick Him Down","Teach the arrogant korgonne a thing or two about where he belongs.");
 	else if(pc.isBimbo()) addDisabledButton(1,"DickHimDown","Dick Him Down","He’s wayyy too much of a stud for you to even think about dicking down a notch!");
 	else if(flags["LUND_MADE_U_SUBMIT"] != undefined) addDisabledButton(1,"DickHimDown","Dick Him Down","After how he fucked you, you can’t even begin to imagine turning the tables on him!");
 	else if(flags["LUND_COVERED_4"] == -1) addDisabledButton(1,"DickHimDown","Dick Him Down","After your bragging, you don’t think he’ll ever agree to this again.");
@@ -754,7 +755,7 @@ public function lundDoggyStyle():void
 		return;
 	}
 	//If you’ve selected [Submit], you get a different scene the next time you pick Doggystyle:
-	else if(flags["LUND_MADE_U_SUBMIT"] != undefined)
+	else if(flags["LUND_MADE_U_SUBMIT"] != undefined && flags["LUND_BROKEN"] == undefined)
 	{
 		//Just use a generic room with no exits :3
 		currentLocation = "MYRNAS CAVE";
@@ -1763,20 +1764,19 @@ public function rideLundWheeee(x:int):void
 	if(!pc.isCrotchExposed()) output("yourself and ");
 	output("the korgonne undressed and ready in moments, pressing against his fur and reaching down between his legs to coax his oversized length from its sheath. Kissing Lund as you bear him to the bed, you lay him down and straddle him with a wide smile.");
 	output("\n\n<i>“Hope you’re ready for this, Lund,”</i> you tell him, feeling his cock swell and harden against your [pc.ass]. <i>“I dunno if you’re man enough to take it.”</i>");
-	output("\n\n<i>“Hmph,”</i> Lund grunts, reaching up to spread his hands across your [pc.chest]. <i>“");
+	output("\n\n<i>“Hmph,”</i> Lund grunts, reaching up to spread his hands across your [pc.chest].");
 
 	if (flags["LUND_BROKEN"] == undefined)
 	{
+		output(" <i>“");
 		if(!korgiTranslate()) output("You not bait Lund to do all work.");
 		else output("You won’t bait me into doing all the work.");
 		output("”</i>");
-
 		output("\n\nSatisfied you’ve convinced him to let you take the lead, you settle back and let the thought of teasing him fade from your mind. You really just want for the both of you to have a good time, and assuaging Lund’s machismo tendencies is probably the easiest way.");
 	}
 	else
 	{
-		output("“Fine.”");
-
+		output(" <i>“Fine.”</i>");
 		output("\n\nSatisfied he’s settling into his role, you lean back and let the thought of teasing him fade from your mind. You really just want for the both of you to have a good time.");
 	}
 
@@ -3486,7 +3486,7 @@ public function lundBreakHimC():void
 	
 	output("\n\n<i>“Looking good, Lund,”</i> you say, a grin on your face. <i>“You look more and more like my anal slut every day.”</i>");
 	
-	output("\n\nHe’s still whining a little. <i>“[pc.Master], please... <i>“");
+	output("\n\nHe’s still whining a little. <i>“[pc.Master], please...”</i>");
 	
 	output("\n\nWell, it’s not uncommon for transformatives to have a ‘breaking in’ phase. He’s evidently feeling pretty needy right now owing to the cream, and the way he’s raising his butt off the bed not only gives you a nice look at his newly upholstered asshole but puts a few lusty thoughts in your head. You firmly push it back down.");
 	
@@ -3636,7 +3636,7 @@ public function lundBreakHimD():void
 	
 	output("\n\nHe shivers at that, and you grin. He’s grown to love being belittled, almost bullied, about how much of a fucking slut he is for you to the exclusion of everything else. It’s true, too, that he might be better at getting fucked in the ass than he is at hunting. The actuality doesn’t matter - only that he believes it.");
 	
-	output("\n\nHe stands up for a moment, letting the steamy water cascade down his lithe body while your cock slowly springs upwards under the clear surface of the water. Then, without even checking to see if anyone is around, he sinks down on your [pc.cockBiggestHead] with a quiet moan.");
+	output("\n\nHe stands up for a moment, letting the steamy water cascade down his lithe body while your cock slowly springs upwards under the clear surface of the water. Then, without even checking to see if anyone is around, he sinks down on your [pc.cockHeadBiggest] with a quiet moan.");
 	
 	output("\n\n<i>“Good boy,”</i> you murmur to him, reaching up to scratch his chest fur as he struggles to sit back down in your lap. <i>“Keep going and I’ll give you a treat.”</i>");
 	

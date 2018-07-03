@@ -1618,7 +1618,7 @@ public function doneWivGlassesChatGuvnah():void
 	//If PC.likespeen
 	if(flags["EMBRY_TOLD_YOU_LIKE_COCK"] != undefined)
 	{
-		output("\n\nYou ask [embry.name] if she’s planning on getting rid of her simii cock, and she shakes her head. <i>“Um... no. I’ve actually decided to keep it. I mean, you like it, and when I’m with you... y-you make feel like a woman, you know--? And just because I’ve got one, doesn’t mean I’m not one.”</i>");
+		output("\n\nYou ask [embry.name] if she’s planning on getting rid of her simii cock, and she shakes her head. <i>“Um... no. I’ve actually decided to keep it. I mean, you like it, and when I’m with you... y-you make me feel like a woman, you know--? And just because I’ve got one, doesn’t mean I’m not one.”</i>");
 		output("\n\n<i>“I-I requested they give me a special dose, one that won’t get rid of my penis. I was surprised to hear other simii girls ask for that... I’m glad I’m not the only one.”</i>");
 	}
 	// if PC.doesnotlikedick

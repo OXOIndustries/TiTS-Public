@@ -452,7 +452,7 @@ public function zilTwinsFuckmenu():void
 	
 	addButton(0, "Tease Mica", zilTwinsFuckMicaMentally , undefined, "Tease Mica", "Have Mica dance around the table for you and his sister. There’s probably going to be a lot of teasing... and blowjobs.");
 	
-	if (pc.hasHardLightStrapOn() || (pc.hasCock() && pc.cocks[pc.biggestCockIndex()].effectiveVolume() <= zilTwinsMicaVol))
+	if (pc.hasCock() && pc.cocks[pc.biggestCockIndex()].effectiveVolume() <= zilTwinsMicaVol)
 		addButton(1, "Fuck Mica", zilTwinsFuckMicaForRealsies , zilTwinsMicaVol, "Fuck Mica", "Bend Mica over and fuck his cute butt while Tetra watches!");
 	else
 		addDisabledButton(1, "Fuck Mica");

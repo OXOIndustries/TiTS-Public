@@ -374,6 +374,7 @@ public function deepCleanDatDirtyAusar():void
 	output("\n\n You share a few more pleasant moments with Anno before returning to the locker room."); 
 	pc.orgasm();
 	processTime(30);
+	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -412,6 +413,7 @@ public function runTrainOnAnno():void
 	output("\n\nYou take the time to give your tuckered pup a thorough cleansing, taking care to wash behind her ears, comb clumps of jizz out of her tail, and dry her off with a towel. As you haul her back to the ship to recover from her exercise session, she wakes briefly, just long enough to give you a whispered, <i>“Thank you,”</i> snuggles into your chest and falls fast asleep."); 
 	pc.orgasm();
 	processTime(30);
+	pc.exhibitionism(2);
 	clearMenu(); 
 	addButton(0, "Next", mainGameMenu);
 }
@@ -506,6 +508,7 @@ public function annoWorkoutGimmeDatBootySweat():void
 	output("\n\nIt certainly doesn’t sound like a bad idea.");
 	pc.orgasm();
 	processTime(30);
+	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

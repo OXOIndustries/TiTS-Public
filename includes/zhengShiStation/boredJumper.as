@@ -1784,7 +1784,7 @@ public function faceFuckTheLaquineJumperooni(x:int):void
 by William */
 
 //Instantly liked this NPC when I first read about it and I want to add three scenes to the Bored Jumper when the PC wins. Not sure if variants of these have already been added (I’m not a backer) as Fen’s doc has no such win scenes reflected.
-///Three scenes: TakeHerDick (PC can choose to catch Doggystyle Anal or Vaginal Missionary), Cowgirl (Bunny bouncing on you), and Heat Sex (Jumper & PC take Breeder’s Bliss and go at it like horny bunnies, must have a vagina. If PC is Herm, then the bunny gets filled too).
+//Three scenes: TakeHerDick (PC can choose to catch Doggystyle Anal or Vaginal Missionary), Cowgirl (Bunny bouncing on you), and Heat Sex (Jumper & PC take Breeder’s Bliss and go at it like horny bunnies, must have a vagina. If PC is Herm, then the bunny gets filled too).
 //There’s not too many places or ways to get sweaty in this game. I feel like wandering around the mines, as oppressively hot as they’re described, should cause it overtime. Especially if you rest. Therefore, after any of these scenes, the PC will end up Sweaty!
 
 
@@ -1795,7 +1795,7 @@ by William */
 public function takeTheBunnyDick():void
 {
 	clearOutput();
-	showBoredJumper();
+	showBoredJumper(true);
 	author("William");
 
 	// PC Bimbo

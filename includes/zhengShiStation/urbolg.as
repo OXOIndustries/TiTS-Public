@@ -42,7 +42,7 @@ public function zhengShiHangerFloorBonus():Boolean
 			addDisabledButton(0,"Urbolg","Urbolg","Urbolg is still cleaning.");
 			return false;
 		}
-		else if(pc.accessory is MaikesCollar) output("\n\nUrbolg the korgonne mechanic is cussing at a piece of machinery. <b>Maybe he'll help you get this collar off?</b>");
+		else if(pc.accessory is MaikesCollar) output("\n\nUrbolg the korgonne mechanic is cussing at a piece of machinery. <b>Maybe he’ll help you get this collar off?</b>");
 		//Defeated Urbolg by lust or ever fucked him:
 		else if(flags["URBOLG_LUSTED"] != undefined || flags["SEXED_URBOLG"] != undefined) output("\n\nUrbolg the korgonne mechanic busily works to repair a scrap engine hanging from a lift, but he keeps casting sly glances in your direction with his robotic eye. The fluffy little devil seems to have taken a liking to you!");
 		//Normal Urbolg
@@ -313,7 +313,7 @@ public function urbolgMenu():void
 	addButton(4,"PB Cookie",urbolgPBCookiesBYOUMADMAN,undefined,"PB Cookie","You often see Urbolg when he’s hard at work. Maybe he’d like to have a nice treat to relax after some hard work.");
 	if(pc.accessory is MaikesCollar)
 	{
-		addDisabledButton(5,"Slave Collar","Slave Collar","You're in no position to trade one slave collar for another!");
+		addDisabledButton(5,"Slave Collar","Slave Collar","You’re in no position to trade one slave collar for another!");
 		addButton(6,"Remove Collar",askUrbolgToRemoveYourCollar,undefined,"Remove Collar","See what Urbolg wants in exchange for getting this hunk of junk off you.");
 	}
 	else if(flags["URBY_COLLAR_FUN"] != undefined) addButton(5,"Slave Collar",urbyCollarBadEndByWsan,undefined,"Slave Collar","It’s so tempting. You could have it all again if you just put it on... just once more should be fine.");
@@ -339,7 +339,7 @@ public function askUrbolgToRemoveYourCollar():void
 	output("\n\nThe scruffy-looking mechanic folds his metal arm over his biological one. <i>“Well, seeing as how I’m damn near the only one on this whole blasted station who’s soft enough on ye to lend a hand... I figure five thousand credits ought to do the job.”</i> He looks you over from head to toe. <i>“But I could always use a helping hand in my forge, if ye don’t mind getting a bit of mess on yer face. It’s a small price to pay, ain’t it?”</i>");
 	clearMenu();
 	if(pc.credits >= 5000) addButton(0,"Pay 5k",payUrbolgCreditsForCollar,undefined,"Pay 5k","Pay Urbolg in credits for help with the collar.");
-	else addDisabledButton(0,"Pay 5k","Pay 5k","You can't afford that.");
+	else addDisabledButton(0,"Pay 5k","Pay 5k","You can’t afford that.");
 	addButton(1,"Pay Facial",payUrbolgFacial,undefined,"Pay Facial","Pay him in sexual favors, resulting in a face-full of korgonne cum.");
 	addButton(14,"Leave",peacefulApproachUrbolg,true);
 }
