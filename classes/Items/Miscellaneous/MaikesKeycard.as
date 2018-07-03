@@ -10,6 +10,8 @@
 	
 	public class MaikesKeycard extends ItemSlotClass
 	{
+		/* FEN NOTE: DEPRECIATED. CONVERTED TO KEY ITEM.*/
+		
 		//constructor
 		public function MaikesKeycard()
 		{
