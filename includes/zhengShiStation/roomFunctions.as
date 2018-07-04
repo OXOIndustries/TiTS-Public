@@ -1,4 +1,5 @@
 //import classes.Characters.MiningRobot;
+import classes.Items.Miscellaneous.MaikesKeycard;
 
 public function zhengCoordinatesUnlocked():Boolean
 {
