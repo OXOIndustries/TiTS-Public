@@ -144,9 +144,10 @@ public function syriFreezerTalkLoveLoveHerToo():void
 	syriFreezerTalkMenu(false);
 	output("You tell Syri she's all of that and more -- and yeah, you love her too.");
 	output("\n\nShe grins and squeezes you tight. <i>“Of course you do. You and me make a great team, Steele. I knew it from the moment you walked through that door back on Mhen'ga the very first time.”</i>");
-	output("\n\nOf course she did. Syri grins and gives you a peck on the cheek. <i>“Now then, this is the party where you invite me to adjourn to your ship so we can consummate our love.”</i>");
+	output("\n\nOf course she did. Syri grins and gives you a peck on the cheek. <i>“Now then, this is the part where you invite me to adjourn to your ship so we can consummate our love.”</i>");
 	output("\n\n");
 	flags["SYRIQUEST_POST_GAME_TALK_LOVE"] = 2;
+	clearMenu();
 	addButton(0,"Next",syriSexMenu);
 }
 

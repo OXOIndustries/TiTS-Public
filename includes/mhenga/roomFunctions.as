@@ -26,6 +26,15 @@ public function mhengaShipHangarFunc():Boolean
 		return true;
 	}
 	
+	//SyriQuest Debug
+	addButton(0, "SecBots", syriQuestAkkadiBaseSecurityRobotsEncounter);
+	addButton(1, "Torra", syriQuestTorraFight);
+	addButton(2, "DrCalnor", syriQuestCalnorFight);
+	addButton(3, "Valden", syriQuestAkkadiBaseValdenFight);
+	addButton(4, "Dropship", syriQuestAkkadiBaseEscape);
+	addButton(6, "CmdrSchora", syriQuestSchoraFight);
+	addButton(10, "BadassDr", syriQuestCalnorFight, true);
+	
 	return false;
 }
 public function xenogenOutsideBlurb():Boolean

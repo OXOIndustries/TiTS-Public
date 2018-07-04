@@ -375,6 +375,8 @@
 				r.add(-10);//TEST
 			}
 			
+			if (hasStatusEffect("Torra Lust Weakness")) r.tease.damageValue -= statusEffectv2("Torra Lust Weakness");
+			
 			return r;
 		}
 		
@@ -5231,6 +5233,10 @@
 			else if (hasPerk("Calm Aim") && (HP() > (HPMax() / 2))) temp += 1;
 			//Lieve Buff
 			if(hasStatusEffect("Lieve Buff")) temp += 2;
+			//Akkadi Bot Buffs
+			if(hasStatusEffect("Target Link")) temp += statusEffectv2("Target Link");
+			if(hasStatusEffect("Tracer Rounds")) temp += statusEffectv2("Tracer Rounds");
+			if(hasStatusEffect("Chaff Grenade")) return 0;
 			temp += armor.attack + upperUndergarment.attack + lowerUndergarment.attack + accessory.attack + shield.attack;
 			return temp;
 		}
@@ -5288,6 +5294,7 @@
 			
 			//Add bonus to both melee and ranged attacks
 			if (hasStatusEffect("Lightning Moves")) modifiedDamage.multiply(1.05);
+			if (hasStatusEffect("Valden-Possessed")) modifiedDamage.multiply(1.75);
 			
 			return modifiedDamage;
 		}
@@ -5341,6 +5348,7 @@
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
 			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) temp += (3 * level);
+			if (hasStatusEffect("Valden-Possessed")) temp *= 1.4;
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);

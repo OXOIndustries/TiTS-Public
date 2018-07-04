@@ -41,10 +41,7 @@ public function syriQuestAkkadiBaseElevatorAccess():void
 	output("\n\nIt's a clever setup they have here. During a lockdown, only one secure floor can be opened at a time: all other are remotely sealed from here in the security office. ");
 	output("\n\nYou tap the button for the mysterious floor, way down in heart of the glacier. A little symbol pops up, confirming that floor is unlocked. Alright, time to go!");
 	flags["SYRIQUEST_STATE"] = 5;
-	rooms["AKD M27"].removeFlag(GLOBAL.OBJECTIVE);
-	rooms["AKD K25"].removeFlag(GLOBAL.LIFTUP);
-	rooms["AKD K25"].addFlag(GLOBAL.LIFTDOWN);
-	generateMap();
+	processTime(5);
 
 //	clearMenu();
 	addDisabledButton(0,"Cameras");
@@ -235,6 +232,8 @@ public function syriQuestBackupGeneratorsSuccess():void
 	output("\n\nWhen you get back to the main level, you're greeted with exactly what you expected: dim red lights illuminating the halls, and emergency seals starting to come undone... on critical entrances and exits, anyway. That's all you need to get access to the elevators, though!");
 
 	flags["SYRIQUEST_POWER_STATE"] = 1;
+	generateMap();
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -262,20 +261,16 @@ public function syriQuestBackupGeneratorsSuccessOverload():void
 	rooms["AKD M13"].addFlag(GLOBAL.HAZARD);
 	rooms["AKD O13"].addFlag(GLOBAL.HAZARD);
 	rooms["AKD Q15"].addFlag(GLOBAL.HAZARD);	*/
-	rooms["AKD M23"].removeFlag(GLOBAL.OBJECTIVE);
-	rooms["AKD M27"].addFlag(GLOBAL.OBJECTIVE);
 	generateMap();
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
 
-public var syriQuestBackupShowerLocked:Boolean = false;
-
 public function syriQuestAkkadiBaseStaffRoom():void
 {
 		author("Savin");
-		if (syriQuestBackupShowerLocked) {
+		if (flags["MET_SCHORA"] == 2) {
 			setNavDisabled(NAV_NORTH_DISABLE);
 		}
 }
@@ -284,9 +279,9 @@ public function syriQuestAkkadiBaseShowers():Boolean
 {
 	clearOutput();
 	author("Savin");
-	if (flags["MET_SCHORA"] >= 2 || flags["SYRIQUEST_STATE"] >= 8) {
+	if (flags["MET_SCHORA"] >= 3 || flags["SYRIQUEST_STATE"] >= 8) {
 		output("The Akkadi facility's showers are a small affair, with a half dozen tile cubicles each sealed off by nothing more than a sheer, largely transparent curtain. It's much better lit than the rest of the facility has been, thanks to all the aromatic candles that have been arranged around the perimeter. A light smell of roses and wine permeates the air");
-		if (flags["MET_SCHORA"] >= 3) output(", mixed with the linger scent of sex and cum");
+		if (flags["MET_SCHORA"] >= 4) output(", mixed with the linger scent of sex and cum");
 		output(".");
 		return false;
 	}
@@ -375,15 +370,13 @@ public function syriQuestAkkadiBaseCheckPoint():Boolean
 	}
 }
 
-public var syriQuestOpenedWarpLab:Boolean = false;
-
 public function syriQuestAkkadiBaseResearchDeptPlaza():Boolean
 {
 	clearOutput();
 	author("Savin");
 	output("You're in the beating heart of Akkadi's Uvetan laboratories. There are three major labs branching off of this plaza, like spokes from a wheel -- one whose hub is a huge, fake palm tree. Guess they were trying to warm the place up a little.");
 	output("\n\nTo the west is a door labeled BioMed; to the east, one labelled Starship Lab. And to the south is a seriously heavy-duty metal door with the words 'Warp Field Lab' printed above it.");
-	if (!syriQuestOpenedWarpLab) output(" If you had to take a guess, that's where you need to go.")
+	if (flags["SYRIQUEST_STATE"] < 9) output(" If you had to take a guess, that's where you need to go.")
 	syriQuestAkkadiBaseSecurityRobotsTrigger();
 	return false;
 }
@@ -393,11 +386,11 @@ public function syriQuestAkkadiBaseWarpLab():Boolean
 	clearOutput();
 	author("Savin");
 	clearMenu();
-	if (!syriQuestOpenedWarpLab) {
-		if (flags["SYRIQUEST_STATE"] >= 8) {
+	if (flags["SYRIQUEST_STATE"] < 9) {
+		if (flags["SYRIQUEST_STATE"] == 8) {
 			output("The door to the Warp Field Lab remains steadfastly closed, but the panel beside it beeps and crackles. After a moment, you hear Commander Valden's voice. He speaks quickly, barely pausing between words. <i>“There you are ! Good... good ! Come inside; I'll release the locks.”</i>");
 			output("\n\nThe panel beeps again, and you hear the seal on the door releasing. Okay... this is it!");
-			syriQuestOpenedWarpLab = true;
+			flags["SYRIQUEST_STATE"] = 9;
 			addButton(0, "Next", mainGameMenu);
 		}
 		else {

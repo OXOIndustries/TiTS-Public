@@ -46,9 +46,10 @@ package classes.Items.Melee
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 		}
-		
+		private buffed:Boolean = false;
 		public function staffBuff(activate:Boolean = false):void
 		{
+			if (buffed == activate) return;
 			if (activate) baseDamage.addFlag(DamageFlag.DRAINING);
 			else baseDamage.removeFlag(DamageFlag.DRAINING);
 			baseDamage.electric.damageValue += 25*(activate ? 1 : -1);

@@ -70,7 +70,7 @@
 			this.libidoRaw = 40;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 25;
+			this.lustRaw = 60;
 			
 			this.level = 8;
 			this.XPRaw = normalXP();
@@ -215,14 +215,13 @@
 	
 		// mindBlast, implantedImagery & psychicLeech are taken from the Fertility Priestess and are the same aside from sligtly different texts and energy requirements
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
-		{
+		{		
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 					
 			var attacks:Array = [];
 			attacks.push( { v: lustfulPawing, w: 5 } );
-			//@Coder: Might want to add the status here
-		//	if (!target.hasStatusEffect("Increased Lust Damage")) attacks.push( { v: begForIt, w: 5 } );
+			attacks.push( { v: begForIt, w: 5 } );
 			if (energy() >= 10 && !target.hasStatusEffect("Stunned")) attacks.push( { v: mindBlast, w: 5 } );
 			if (energy() >= 15) attacks.push( { v: implantedImagery, w: 5 } );
 			if (energy() >= 20) attacks.push( { v: psychicLeech, w: 5 } );
@@ -230,7 +229,7 @@
 			// heal if nearly dead
 			if (HP() <= HPMax() * 0.25 && !usedRecover) milkySuckle(target);
 			//get some energy
-			else if (energy() <= 10 ) pushitDeeper(target);
+			else if (energy() <= 10) pushitDeeper(target);
 			weightedRand(attacks)(target);
 		}
 
@@ -254,13 +253,12 @@
 		}
 
 		//Lust attack. Deals less damage, but lowers the PC's Lust Resistance for several turns.
-		//@Coder: Still needs a way to lower PCs resistance
 		private function begForIt(target:Creature):void
 		{
 			output("<i>“Please,”</i> the kitty whines, staring at you with those big, slitted eyes of hers. <i>“Please please please fuck me! I need it so bad! I feel like I'm in heat but a thousand times over! I need dick, pussy, anything! Give it to me!”</i>");
 			output("\n\nShe moans, rubbing her fluffy fingers through the lips of her soaked quim and groping her tits until milk beads from her black nipples. <i>“I don't even know who you are, but I'll be your slut! Your bitch! Push me down and fuck me, do whatever you want!”</i>");
 			
-			if (target.lust() * (target.LQ() / 100) < rand(target.lustMax()))
+			if (target.lust() * (0.25 + 0.75*target.LQ()) < rand(target.lustMax()))
 			{
 				output(" You grit your teeth and force yourself to look away -- no way you’re letting a little T&A get the better of you!");
 			}
@@ -268,10 +266,13 @@
 			{
 				output(" A burning in your loins signifies just how ready for that your body is...");
 				applyDamage(damageRand(new TypeCollection( { tease: 5 * (target.LQ() / 100) } ), 7), this, target, "tease");
+				if (target.hasStatusEffect("Torra Lust Weakness")) target.setStatusValue("Torra Lust Weakness",1,5);
+				else target.createStatusEffect("Torra Lust Weakness",5,20,0,0,true,"","",true);
 			}
 		}
 
 		private var usedRecover:Boolean=false;
+		private var usedOrgasm:Boolean=false;
 		//Recover some Health and boosts her Defense for a few turns. 1/encounter.
 		private function milkySuckle(target:Creature):void
 		{
@@ -337,6 +338,35 @@
 				target.createStatusEffect("Psychic Leech", duration, 0, 0, 0, false, "DefenseDown", "Your strength has been drained by the priestess!", true, 0, 0xFFFFFF);
 			}
 			energy(-20);
+		}
+		
+		//100 lust? 'Tain't nothin'
+		override public function isDefeated():Boolean
+		{
+			//Exception when losing by lust
+			if (lust() >= lustMax() && !usedOrgasm)
+			{
+				//set lust to no and see if the kitty can still go on
+				lust(0, true);
+				if (super.isDefeated())
+				{
+					//Set lust back to full for no wonky ui behaviour
+					lust(lustMax());
+					return true;
+				}
+				else 
+				{
+					lust(lustMax());
+					orgasm();
+					usedOrgasm = true;
+					output("\n\n<i>\"Oh, no! No no no!\"</i> the ice-kitty whines, breathing hard. <i>\"I can't... take it... any... more!\"</i>");
+					output("\n\nShe squeals, thrusting her fingers into her twat and pushing against the knotty dildo lodged in her ass. The woman's already desperately horny, enough that she's lost all restraint and decency; your continued teasing just pushes over over the edge. She cries out, throwing her head back and thrusting her chest out, screaming in pleasure. Milk squirts in creamy arcs from her dark teats, and juices flood down her thighs from her quivering quim.");
+					output("\n\nThe woman slumps to the floor, shivering as orgasm rocks her jiggly, curvy body. When it passes, though, she leaps to her feet with claws bared and a feral look in her eyes.");
+					output("\n\n<i>\"I need... MORE!\"</i> she shouts, lunging at you!");
+					return false
+				}
+			}
+			else return super.isDefeated();
 		}
 	}
 }

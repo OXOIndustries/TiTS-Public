@@ -2,9 +2,9 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Melee.ShockBlade;
+	import classes.Items.Melee.ElectroSheepstick;
 	import classes.Items.Guns.HammerPistol;
-	import classes.Items.Protection.DecentShield;
+	import classes.Items.Protection.DBGShield;
 	import classes.kGAMECLASS;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
@@ -15,7 +15,7 @@
 	public class DrCalnor extends Creature
 	{	
 		//constructor
-		public function DrCalnor()
+		public function DrCalnor(badassmode:Boolean = false)
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
@@ -25,13 +25,13 @@
 			this.originalRace = "ausar";
 			this.a = "";
 			this.capitalA = "";
-			this.long = "Dane stands tall; he's nearly eight feet of powerful, corded muscle. His most obvious feature is his quartet of arms. Evidently, the ausar has turned to genetic modifications for his enhanced stature. His fur is so white it practically glows, and his ivory hair is tied back in a short ponytail. His eyes are red too, marking him as an albino. In his upper arms, Dane wields a pair of electrified cutlasses, and in his lower ones, he's gripping a matched set of powder pistols. A lightweight set of high-tech armor guards his chest and thighs.";
+			this.long = "Calnor is a tall, strong ausar male with a long, well-kept beard and a mohawk of white hair, both of which accentuate stern, determined features. Though the doctor has a labcoat and company jumpsuit on, the old hound's swinging an electrified shock staff with alarming proficiency.";
+	
 			this.customDodge = "Dr. Calnor casually sidesteps out of the way.";
-			this.customBlock = "Obvious placeholder is obvious.";
+			//this.customBlock = "Obvious placeholder is obvious.";
 			this.isPlural = false;
 			
-			this.meleeWeapon = new ShockBlade();
-			this.meleeWeapon.hasRandomProperties = true;
+			this.meleeWeapon = new ElectroSheepstick();
 			
 			meleeWeapon.baseDamage.electric.damageValue = 3;
 			
@@ -45,16 +45,16 @@
 			this.armor.longName = "armor";
 			this.armor.defense = 3;
 			this.armor.hasRandomProperties = true;
-			this.shield = new DecentShield();
+			this.shield = new DBGShield();
 			
-			this.level = 3;
-			this.physiqueRaw = 8;
-			this.reflexesRaw = 12;
-			this.aimRaw = 6;
-			this.intelligenceRaw = 11;
-			this.willpowerRaw = 9;
+			this.level = 9;
+			this.physiqueRaw = 40;
+			this.reflexesRaw = 35;
+			this.aimRaw = 20;
+			this.intelligenceRaw = 45;
+			this.willpowerRaw = 30;
 			this.libidoRaw = 35;
-			this.HPMod = 0;
+			if (badassmode) this.HPMod = 50;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
@@ -187,116 +187,131 @@
 			return "CALNOR";
 		}
 		
+		private var nextMove:Function = null;
+		private var staffDischargeRound:int = -1;
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
+			if (CombatManager.getRoundCount() >= staffDischargeRound) (meleeWeapon as ElectroSheepstick).staffBuff(false);
+			if (hasStatusEffect("Evasion Reduction")) removeStatusEffect("Evasion Reduction");
+		
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
-			if(target.hasStatusEffect("Grappled"))
+			// 'Nades only. Disarming's not always a good idea, I guess...
+			if (hasStatusEffect("Disarmed"))
 			{
-				if(target.statusEffectv3("Grappled") == 0) daneCrotchSmother(target);
-				else daneLickitongue(target);
+				nextMove = null;
+				if (shieldChargableInRound == CombatManager.getRoundCount() && rand(3) != 0) chargeShield();
+				else burnination(target);
 			}
-			//Headbutt - every fifth round until out of energy
-			else if(CombatManager.getRoundCount() % 5 == 0 && energy() >= 25)
-			{
-				//As the PC attack
-				CombatAttacks.HeadbuttImpl(alliedCreatures, hostileCreatures, this, target);
-				energy( -25);
-			}
-			else if(CombatManager.getRoundCount() % 7 == 0)
-			{
-				daneGrappleAttack(target);
-			}
-			else if(rand(2) == 0 && energy() >= 25)
-			{
-				daneCrossSlashAttack(target);
-				energy(-25);
-			}
-			else daneQuadStrike(target);
-		}
-		
-		private function daneCrossSlashAttack(target:Creature):void
-		{
-			output("Dane reaches high with both swords and brings them down crossways simultaneously!");
-			//Miss
-			if(combatMiss(this, target)) output("\nYou duck under the swings.");
-			//Hit
+			//Combo Attack :D
+			else if (nextMove != null && target.hasStatusEffect("Tripped")) nextMove(target);
+			//Lame regular thing
 			else
 			{
-				output("\nThe blades hit you while crossed in a perfect 'x'!");
-				var damage:TypeCollection = meleeDamage();
-				damage.multiply(3);
-				damageRand(damage, 15);
-				applyDamage(damage, this, target);
+				nextMove = null;
+				if (shieldChargableInRound == CombatManager.getRoundCount() && rand(3) == 0) chargeShield();
+				else if (rand(3) == 0) hammerBlow(target);
+				else if (rand(2) == 0 && !target.hasStatusEffect("Tripped")) stormLance(target);
+				else if (staffDischargeRound == -1) voidCharge();
+				else burnination(target);
 			}
 		}
-		
-		private function daneLickitongue(target:Creature):void
+
+		private var shieldCharged:Boolean = false;
+		private var shieldChargableInRound:int = -1;
+		private function chargeShield():void
 		{
-			if(target.hasAirtightSuit())
+			shield.defense += 5;
+			shieldCharged = true;
+			shieldChargableInRound = -1;
+			output("Calnor staggers back and puts a hand to his hip, fiddling with the controls on his shield belt. A moment later and you see a visible sheen of energy form around him -- <b>his shields are hardened.</b>");
+		}
+		public function counterHook(target:Creature, special:String):void
+		{
+			if (shieldCharged)
 			{
-				output("You feel something warm and wet rub and press against your [pc.crotch]. Dane's tongue tries to get at your nethers but your airtight [pc.armor] prevents that from happening.");
+				output("\nThe moment your blow connects with Calnor's shields, you're hit by a sudden, overwhelming flash of light that leaves you seeing stars... and not much else. <b>You're blind!</b>");
+				CombatAttacks.applyBlind(target, 1+rand(4));
+				shieldCharged = false;
+				shield.defense -= 5;
 			}
+			else shieldChargableInRound = CombatManager.getRoundCount();
+		}
+		
+		private function hammerBlow(target:Creature):void
+		{
+			output("Calnor stalks forward with the confidence of a wolf on the hunt, swinging his electrostaff to bear. Only when he's almost on top of you does he break into a sprint, dodging to the side and swinging his staff in a wide arc");
+			if (combatMiss(this, target) || blindMiss(this, target, true)) output(" that you barely avoid.");
 			else
 			{
-				output("You feel something warm and wet ");
-				if(!target.isNude()) output("worm past your [pc.lowerGarments] to ");
-				output("lick your [pc.crotch]. It flutters around expertly, ");
-				var choices:Array = new Array();
-			
-				if(target.hasCock()) choices[choices.length] = 0;
-				if(target.hasVagina()) choices[choices.length] = 1;
-				if(target.balls > 0) choices[choices.length] = 2;
-				if(choices.length == 0) choices[choices.length] = 3;
-			
-				var select:int = choices[rand(choices.length)];
-				if(select == 0) output("paying special attention to [pc.oneCock]. It loops about it, tugging and sliding, forcing you to feel incredible pleasure.");
-				else if(select == 1) output("diving right into [pc.oneVagina]. Thrusting in and out, it slides and licks across every inner fold, driving you wild with desire.");
-				else if(select == 2) output("lovingly polishing your [pc.balls] before sliding over your taint to your [pc.asshole]. There, it busily rims you, sometimes even sliding an inch inside your asshole.");
-				else output("diving right into rimming your asshole. The thick intruder feels so wet and lewd that you can't help but offer up hot little pants of encouragement.");
-				output(" Dane's tongue feels amazing.");
-				target.lust(20+rand(10));
-				if(target.lust() >= target.lustMax()) output("\n\nYou start begging him to fuck you, unable to hold back. Withdrawing that wonderful slab of flesh from your crotch, Dane drops you, laughing heartily. <i>\"So be it.\"</i>");
+				output(" that crashes into you with bone-rattling force!");
+				applyDamage(damageRand(meleeDamage(), 25), this, target, "minimal");
+				if (target.willpower() + rand(100) < 60)
+				{
+					output("\n\n<b>You're left reeling by the blow!</b>");
+					CombatAttacks.applyStagger(target, 2+rand(4));
+				}
 			}
 		}
 		
-		private function daneCrotchSmother(target:Creature):void
+		private function voidCharge():void
 		{
-			output("Dane takes advantage of the grapple to flip you around, suspending you upside down at crotch level. One of his hands pulls open the bottom of his armor to expose his crotch; you can't tell which, he seems like he's all hands from your current position. A hard, red dog-cock is there, sticking out of a narrow slit. Meanwhile his hands roam over your body, busily fondling and rubbing. It feels and smells better than it has any right to.");
-			output("\n\n<i>\"Ready to give in yet? I've got something special to show you.\"</i>");
-			target.lust(5+rand(7));
-			if(target.lust() >= target.lustMax()) output("\n\nYou nod, moaning in overwhelming lust.\n\nDane drops you. <i>\"Good " + target.mfn("boy","girl","pet") + ".\"</i>");
-			target.addStatusValue("Grappled",3,1);
+			//3 rounds, plus this one
+			staffDischargeRound = CombatManager.getRoundCount() + 3 + 1;
+			output("Calnor cranks up the gauge on the side of his staff, causing lightning to crackle violently around the head. It looks like it's gonna hurt a whole lot more now!");
+			(meleeWeapon as ElectroSheepstick).staffBuff(true);
 		}
 		
-		private function daneGrappleAttack(target:Creature):void
+		private function stormLance(target:Creature):void
 		{
-			output("Charging forward, Dane sheaths his weapons simultaneously. His arms come open, open-palmed and grabbing for you!");
-			//Miss
-			if(combatMiss(this, target)) output("\nYou twist out of the way of his four-armed grapple in the nick of time. The buff Ausar snickers, pulling his weapons once more. <i>\"Speed alone cannot win a fight.\"</i>");
-			//Hit
+			output("The doctor digs his feet in and couches his staff under an arm, holding it so the electrified crook is behind him. You question what he's doing only for a moment before he launches himself at you!");
+			createStatusEffect("Evasion Reduction", 25);
+			if (combatMiss(this, target, (target.hasStatusEffect("Staggered") ? attack() : attack() + 8)) 
+				|| blindMiss(this, target)) output(" You step aside just in time, letting his momentum carry him past you and leaving him reeling.");
 			else
 			{
-				output("\nYou try to twist out of the way, but there's just so many hands grabbing for you at once. Your arms are pinned to your [pc.hips] by one pair while the other bear hugs you against his broad, armored chest.");
-				output("\n<b>You are grappled!</b>");
-				CombatAttacks.applyGrapple(target, 35);
-			}
-		}
-		
-		private function daneQuadStrike(target:Creature):void
-		{
-			for (var i:int = 0; i < 2; i++)
-			{
-				CombatAttacks.SingleRangedAttackImpl(this, target, true);
-				output("\n");
+				output(" The staff hits you with dizzying force, choking the wind out of you -- the crook's caught around your neck. You gasp as you're slammed to the ground!");
+				applyDamage(damageRand(meleeDamage().multiply(1.75), 35), this, target, "minimal");
+				CombatAttacks.applyTrip(target);	
 			}
 			
-			for (i = 0; i < 2; i++)
+			nextMove = forearmSmashWellJackalsElbowButILoveBudgie;
+		}
+		private function forearmSmashWellJackalsElbowButILoveBudgie(target:Creature):void
+		{
+			output("Before you're able to regain your footing, Calnor leaps backwards in the air -- and comes down on you like");
+			if (kGAMECLASS.silly || kGAMECLASS.pc.isBimbo())output(" the gravteam captain on prom night!");
+			else output(" a sack of bricks!");
+			output(" You gasp in pain as the old hound's elbow slams right into your ");
+			if (target.isPregnant()) output("sternum");
+			else output(target.bellyDescript());
+			output(", knocking the wind straight out of you. When he finally rolls off of you, you're left squirming on the ground clutching at your sore body.");
+
+			var damage:TypeCollection = new TypeCollection();
+			damage.kinetic.damageValue = meleeDamage().getTotal()*1.75;
+			damage.addFlag(DamageFlag.BYPASS_SHIELD);
+			applyDamage(damageRand(damage, 25), this, target, "minimal");
+			
+			nextMove = burnination;
+		}
+		private function burnination(target:Creature):void
+		{
+			output("Calnor steps back and reaches into his lab coat. In one quick motion he draws a detonator from his pocket and hucks it at you, tumbling back into cover as he does so. The detonator explodes, sending waves of flashfire all around!");
+			
+			if (target.reflexes() + rand(80) < 70 || target.hasStatusEffect("Tripped")) 
 			{
-				CombatAttacks.SingleMeleeAttackImpl(this, target, true);
-				output("\n");
+				output(" You yelp and tumble back, smoking!");
+				if (rand(3) == 0) CombatAttacks.applyBurn(target, 2+rand(3));
+					
+				var damage:TypeCollection = new TypeCollection();
+				damage.burning.damageValue = 85;
+				damage.addFlag(DamageFlag.ENERGY_WEAPON);
+				applyDamage(damageRand(damage, 20), this, target, "minimal");
 			}
+			else output(" You manage to find cover just in time!");
+			
+			nextMove = null;
 		}
 	}
 }
