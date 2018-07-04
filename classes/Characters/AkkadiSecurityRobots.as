@@ -461,6 +461,7 @@ Target Link
 			return desirability;
 		}
 		//Returns true if we could jump and used the turn
+		public static var valdenShieldBuffMult = 0.4;
 		private static function tryJump(oldHost:Creature):Boolean
 		{
 			//One jump per round, jumpy lad
@@ -498,7 +499,7 @@ Target Link
 				output(" drone's speakers. <i>\"Come on! I'm a damn computer, fucking unkillable! Keep trying, and see where this gets you!\"</i>");
 			}
 			target.removeStatusEffect("Valden-Possessed");
-			target.shields(-target.shields()*0.4);
+			target.shields(-target.shields()*valdenShieldBuffMult);
 			if (newValden != null) valdenize(newValden, loud);
 		}
 		public static function valdenize(target:Creature, loud:Boolean = true):void
@@ -512,7 +513,7 @@ Target Link
 			else target.createStatusEffect("Valden-Possessed", CombatManager.getRoundCount())
 			//-1 shield just to force a redraw. if anyone knows a better way to do it, pls fix.
 			target.shields(-1);
-			target.shields(target.shields()*0.4+1);
+			target.shields(target.shields()*valdenShieldBuffMult+1);
 			CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, target);
 		}
 	}

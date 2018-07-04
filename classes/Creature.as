@@ -5348,7 +5348,7 @@
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
 			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) temp += (3 * level);
-			if (hasStatusEffect("Valden-Possessed")) temp *= 1.4;
+			if (hasStatusEffect("Valden-Possessed")) temp *= 1 + AkkadiSecurityRobots.valdenShieldBuffMult;
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
