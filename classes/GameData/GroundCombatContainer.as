@@ -1236,17 +1236,19 @@ package classes.GameData
 				}
 			}
 			
-			if (target.hasStatusEffect("Tracer Rounds"))
+			genericStatusEffectUpdate("Tracer Rounds");
+			genericStatusEffectUpdate("Torra Lust Weakness");
+			genericStatusEffectUpdate("Chaff Grenade");
+		}
+		
+		//Lowers v1 by 1 and removes the status if it's value is 0 afterwards, hope there wasn't a function to do this already
+		public function genericStatusEffectUpdate(statusName:String)
+		{
+			if (target.hasStatusEffect(statusName))
 			{
-				target.addStatusValue("Tracer Rounds", 1, -1);
-				if (target.statusEffectv1("Tracer Rounds") == 0) target.removeStatusEffect("Tracer Rounds");
-			}
-			
-			if (target.hasStatusEffect("Torra Lust Weakness"))
-			{
-				target.addStatusValue("Torra Lust Weakness", 1, -1);
-				if (target.statusEffectv1("Torra Lust Weakness") <= 0) target.removeStatusEffect("Torra Lust Weakness");
-			}
+				target.addStatusValue(statusName, 1, -1);
+				if (target.statusEffectv1(statusName) <= 0) target.removeStatusEffect(statusName);
+			} 
 		}
 		
 		public function updateStatusEffects(collection:Array):void
