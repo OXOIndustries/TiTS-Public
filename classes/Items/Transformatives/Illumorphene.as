@@ -32,6 +32,7 @@ package classes.Items.Transformatives
 	import classes.Util.RandomInCollection;
 	import classes.Engine.Map.InShipInterior;
 	import classes.Engine.Utility.indefiniteArticle;
+	import classes.Engine.Utility.IncrementFlag;
 	
 	public class Illumorphene extends ItemSlotClass
 	{
@@ -75,9 +76,12 @@ package classes.Items.Transformatives
 					output("\n\n");
 					
 					if (!kGAMECLASS.infiniteItems()) kGAMECLASS.itemCollect([new Illumorphene()]);
+					
+					return true;
 				}
 				else
 				{
+					IncrementFlag("USED_ILLUMORPHENE");
 					output("You open the anodyne black box of Illumorpheme. Bearing the warning label in mind, you go to the captain’s cabin so this can be done safely.");
 					output("\n\nAlong the way, you look over the contents inside. Ooh, choices!");
 					output("\n\nSetting yourself down on your bed, you give it all a thorough inspection. There’s a singular slot for a vial, so It seems you’re limited to only one selection. Which do you go for?");
@@ -344,7 +348,7 @@ package classes.Items.Transformatives
 			if(target.hasCock())
 			{
 				output("\n\nYour [pc.cock] twitches and tenses on its own accord, the surface and inner muscle tissue hardening, but not with arousal! The consistent sense of mass-loss is present but thankfully, you can tell that it’s not in length and width. Instead, <b>you’ve now got a semi-hollow, solid and flexible mothipositor!</b> It softens and retracts, returning to a shrunken state.");
-				if(target.cocks.length == 2) output(" Not only that, but your other cock follows suit and transfomrs into a similar shape!");
+				if(target.cocks.length == 2) output(" Not only that, but your other cock follows suit and transforms into a similar shape!");
 				else if(target.cocks.length > 1) output(" Not only that, but the rest of your cocks follow suit, each one transforming similarly!");
 				
 				for(var cIdx:int = 0; cIdx < target.cocks.length; cIdx++)

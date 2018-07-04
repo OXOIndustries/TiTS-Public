@@ -1098,7 +1098,7 @@ public function tellMeYourStoryRen():void
 	clearOutput();
 	showTerensha();
 	pc.credits -= 10;
-
+	flags["TERENSHA_SUIT_TALKED"] = 1;
 	output("You nod and slip out of the booth, heading over to the bar. Doing your best to guess Ren’s preferences, you drop a few credits on a bottle of something green and gryvain-made, and turn back in time to see the catsuited whore walking towards the door down. You catch up easily enough, and soon find a sinuous tail coiling around your [pc.hips], guiding you downstairs alongside her.");
 
 	output("\n\nRen stops at the door with her name in glowing holographics and punches a code into the credit pad next to it, overriding it. The doors hisses, sliding aside. The halfbreed beckons you inside, purloining the bottle as you pass and following you in. When the door seals shut again, she takes a deep breath and plops down on the side of the bed, taking a long swig from the bottle. You " + (pc.isTaur() ? "plant yourself on your bestial behind" : "pull up a chair") + " facing her, waiting for her to speak.");
@@ -1467,7 +1467,7 @@ public function dubbleDagron():void
 	output("\n\nShe never skips a beat on Reaha while she’s teasing you, fucking the lusty cow-girl and thumbing your hungry hole. Ren scoops up a little of the excess cum spilling from Reaha’s pussy and slathers up her thumbs, pressing one into your [pc.vagOrAss " + x + "]. You gasp, squeezing down around the probing digit, letting Ren smear her seed around your shallow depths like lube. Of course, she plays with you while she works: teasing out your sensitive spots, seeing where a little pressure can make you gasp and moan.");
 	if(y >= 0) 
 	{
-		output("\n\n<i>“Switch places, babe,”</i> Ren murmurs, popping her finger out of you and tracing the slippery latex tip down your [pc.cock " + y + "]’s half-hard length. You blink, confused, until Ren’s hand wraps around your shaft and presses your crown to the lips of the cow-girl’s pussy. Ren’s latex-wrapped shaft pulls out, and you’re guided into the vacant, cum-drooling hole. Your [pc.cockNoun " + y + "] is submerged in cum-filled cow-pussy, squeezed and kneaded by her well-trained muscles,, drawing you deep inside.");
+		output("\n\n<i>“Switch places, babe,”</i> Ren murmurs, popping her finger out of you and tracing the slippery latex tip down your [pc.cock " + y + "]’s half-hard length. You blink, confused, until Ren’s hand wraps around your shaft and presses your crown to the lips of the cow-girl’s pussy. Ren’s latex-wrapped shaft pulls out, and you’re guided into the vacant, cum-drooling hole. Your [pc.cockNoun " + y + "] is submerged in cum-filled cow-pussy, squeezed and kneaded by her well-trained muscles, drawing you deep inside.");
 		pc.cockChange();
 	}
 	else output("\n\nRen pulls out of Reaha at the nadir of a thrust, yanking her dick out and thrusting it into the cleavage of your ass. You gasp, feeling a squirt of wet heat across your back before her bare, tapered tip finds the entrance to your [pc.vagOrAss " + x + "].");

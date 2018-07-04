@@ -21,7 +21,7 @@
 //Starts the Akane event chain, for PCs level 7 and above
 public function shukuchiFoxBonus():Boolean
 {
-	if(pc.level >= 7 && hours >= 21 && flags["SHUKUCHI_TAVROS_ENCOUNTER"] == undefined)
+	if(pc.level >= 7 && hours >= 16 && flags["SHUKUCHI_TAVROS_ENCOUNTER"] == undefined)
 	{
 		output("\n\nThere appears to be a couple of hooded humanoids in a shadowed corner of a badly lit, closed up shop front. With their backs turned and wide postures, you can’t say for sure what it is they’re doing. Could just be idle conversation for all you know.");
 		output("\nBut wait, is there someone in between them...? They - no, he - appears distressed. Some sort of fox-morph.");
@@ -178,7 +178,7 @@ public function shukuchiReturnFromFoxman():void
 //Space jungle japanese crime syndicates
 public function shukuchiMhengaBonus():Boolean
 {
-	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined && flags["SHUKUCHI_MHENGA_ENCOUNTER"] == undefined && hours == 3 && minutes <= 30)
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined && flags["SHUKUCHI_MHENGA_ENCOUNTER"] == undefined)
 	{
 		output("\n\nThere’s a hooded, diminutive humanoid hanging around outside the space port. At a glance, you’d say a particularly bushy ausar male: a glossy tri-color of white, black, and toffee brown, lean and piston-like in his build. He has sleeveless body armor, all in black, with a short cape and hood. A smooth, featureless orb of a mask covers his features, a lot like...");
 		output("\n\nWait a second.");
@@ -303,7 +303,7 @@ public function shukuchiMhengaMerge():void
 
 public function shukuchiUvetoBonus():Boolean
 {
-	if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined && flags["SHUKUCHI_UVETO7_ENCOUNTER"] == undefined && 19 <= hours && hours < 21)
+	if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined && flags["SHUKUCHI_UVETO7_ENCOUNTER"] == undefined)
 	{
 		output("\n\nIn the icy streets of Irestead, under a dimly lit lamp, stands a nervous-looking human. He couldn’t be more than 18 or 19, layered in an oversized coat and snow wear with a black hood covering most of his head. He seems to be trying to warm himself, waiting for someone perhaps.");
 		output("\n\nYou don’t think much of it: it’s quite literally some guy.");

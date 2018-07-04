@@ -62,7 +62,12 @@ package classes.Engine.Combat
 				damageResult.wasCrit = true;
 				baseHPDamage.multiply(target.statusEffectv3("Deep Freeze"));
 			}
-			
+			if(target.evasion() < 0)
+			{
+				//So, -1 evasion = mult by 1.03
+				//-5 = mult by 1.15
+				baseHPDamage.multiply(target.evasion() * -4 / 100 + 1);
+			}
 			if (special == "melee")
 			{
 				// Melee crit

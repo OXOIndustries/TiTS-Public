@@ -1,4 +1,5 @@
 //import classes.Characters.MiningRobot;
+import classes.Items.Miscellaneous.MaikesKeycard;
 
 public function zhengCoordinatesUnlocked():Boolean
 {
@@ -12,6 +13,23 @@ public function zhengElevatorF1Bonus():void
 	else output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
 }
 
+public function slavesuitRoomOfZhengShiMines():Boolean
+{
+	if(flags["ZHENG_SHI_JUMPSUITED"] == undefined)
+	{
+		output("\n\nAn old slave jumpsuit is discarded here.");
+		addButton(0,"Jumpsuit",takeZhengShiJumpsuit);
+	}
+	return zhengMinesEncounterBonus();
+}
+
+public function takeZhengShiJumpsuit():void
+{
+	clearOutput();
+	flags["ZHENG_SHI_JUMPSUITED"] = 1;
+	quickLoot(new Slavesuit());
+}
+
 public function zhengMinesEncounterBonus():Boolean
 {
 	IncrementFlag("ZS_MINE_STEP");
@@ -20,8 +38,12 @@ public function zhengMinesEncounterBonus():Boolean
 	if(flags["ZS_MINE_STEP"]-4 > rand(16))
 	{
 		flags["ZS_MINE_STEP"] = 0;
-		
+		IncrementFlag("ZS_MINE_ENCOUNTERS");
+
+		if(flags["ZS_MINE_ENCOUNTERS"] > 7 && !pc.hasStatusEffect("DisabledRoz")) encounters.push(encounterRoz);
 		encounters.push(miningRobotAttack);
+		encounters.push(boredJumperAttackProc);
+		encounters.push(boredJumperAttackProc);
 	}
 	if(encounters.length > 0) 
 	{
@@ -33,7 +55,7 @@ public function zhengMinesEncounterBonus():Boolean
 public function slavePensBonus():Boolean
 {
 	//Hasn't freed slaves:
-	if(9999 == 9999) 
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1) 
 	{
 		output("\n\nIndeed, you can see several dozen shadowy figures shuffling around inside, trying to avoid your sight.");
 		output("\n\nYou can’t get inside thanks to a massive metal bar running across the door. It’s electronically locked and hardened against hacking; you can’t even see a seam or a plug to abuse. You’ll have to find the right keycard for this one.");
@@ -152,7 +174,7 @@ public function maikesOfficeBonus():Boolean
 		output("You try to open the door to Overseer Maike’s quarters, but find the door locked down tight. There’s a security lock in place next to it with a card reader in place. Looks like the Overseer values her privacy.");
 		clearMenu();
 		//[Use Card] [Bypass]
-		if(9999 == 0) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
+		if(pc.hasKeyItem("Maike’s Keycard") || pc.hasItemByClass(MaikesKeycard)) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
 		else addDisabledButton(0,"Use Card","Use Card","You’d need the overseer’s card for that!");
 		addButton(1,"Bypass",bypassMaikesRoomieroomHackerman,undefined,"Bypass","Embrace your inner Hackerman.");
 		return true;
@@ -163,7 +185,7 @@ public function maikesOfficeBonus():Boolean
 		return true;
 	}
 	//Hasn't freed slaves:
-	if(9999 == 9999)
+	if(flags["MAIKE_SLAVES_RELEASED"] != undefined)
 	{
 		output("Tivf is lounging on the bed, and perks up at your approach.");
 		//[Tivf]
@@ -460,7 +482,7 @@ public function fuckThisShit():void
 	flags["ZHENG_SHI_PASSWORDED"] = -1;
 	processTime(5);
 	clearMenu();
-	addButton(0, "Next", flyTo, "Tarkus");
+	addButton(0, "Next", flyToWrapper, "Tarkus");
 }
 
 public function submitThePiratePassword():void

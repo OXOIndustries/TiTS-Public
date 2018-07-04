@@ -611,8 +611,8 @@ public function FFWO():void
 		if(pc.hasVagina()) output("r labia");
 		output(", staying there momentarily and soaking her tastebuds with your essence; without a word, she takes a long, lazy lick, ");
 		if(pc.hasVagina()) output("from bottom to your [pc.clit]");
-		else output("from taint (or your crotch ends and that begins");
-		output(" to your [pc.belly]], then backing away to start again. You quiver in pleasure as she goes");
+		else output("from the taint where your crotch ends and that begins");
+		output(" to your [pc.belly], then backing away to start again. You quiver in pleasure as she goes");
 		if(pc.hasVagina()) output(", noting how she’s avoiding penetrating you until you give the word");
 		output(".");
 

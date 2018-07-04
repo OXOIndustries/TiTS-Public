@@ -45,7 +45,7 @@ public function processGastigothEvents():void
 	if(flags["TARKUS_BOMB_TIMER"] == 0) prisonerSent += 3; // Pirates of Tarasque: Khorgan, Kaska and Tam
 	//if(flags["DR_BADGER_TURNED_IN"] == 0) prisonerSent += 1; // Dr. Badger
 	//if(flags["ICEQUEEN COMPLETE"] == 2) prisonerSent += 1; // Zaalt
-	//if(flags["PQ_SECURED_LAH"] == 2) prisonerSent += 1; // R.K.Lah
+	if(flags["PLANTATION_LAH_TALK"] != undefined) prisonerSent += 1; // R.K.Lah
 	if(samImprisoned()) prisonerSent += 1;
 
 	if(prisonerSent <= 0) return;
@@ -1119,6 +1119,11 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 		output("\n\\\[Pirate\\\] Sam");
 		addButton(button++,"Sam",prisonerStatline,"Sam","Sam","Pay a visit to Sam.");
 	}
+	if(flags["PQ_SECURED_LAH"] == 2 && flags["LAH_TO_GASTIGOTH"] != undefined && (GetGameTimestamp() - flags["LAH_TO_GASTIGOTH"]) > 4320)
+	{
+		output("\n\\\[Convict\\\] R.K.Lah");
+		addButton(button++,"R.K.Lah",prisonerStatline,"Lah","R.K.Lah","Pay a visit to Lah.");
+	}
 	/*
 	if(flags["DR_BADGER_TURNED_IN"] == 0)
 	{
@@ -1129,11 +1134,6 @@ public function sexHaverTerminalTime(fromBack:Boolean = false):void
 	{
 		output("\n\\\[Smuggler\\\] Zaalt");
 		addButton(button++,"Zaalt",prisonerStatline,"Zaalt","Captain Zaalt","9999");
-	}
-	if(flags["PQ_SECURED_LAH"] == 2)
-	{
-		output("\n\\\[Convict\\\] R.K.Lah");
-		addButton(button++,"R.K.Lah",prisonerStatline,"Lah","R.K.Lah","9999");
 	}
 	*/
 	
@@ -1227,11 +1227,11 @@ public function prisonerStatline(prisonerName:String):void
 		case "Lah":
 			showLah();
 			output("<b>Name:</b> Remi-Kellen Lah");
-			output("\n<b>Age:</b> ??");
+			output("\n<b>Age:</b> 28");
 			output("\n<b>Sex:</b> Male");
 			output("\n<b>Race:</b> Ausar");
-			output("\n\nConvicted of: Arson, Eco-Terrorism and Failure To Serve a 5-Year Sentence.");
-			addButton(0,"Visit",visitAPrisoner,"Lah","R.K.Lah","9999.\n\n<b>Cost:</b> 1,000 credits");
+			output("\n\nConvicted of: First degree arson; battery; prison escape; incitement and conspiracy to violence; incitement and conspiracy to pervert the course of justice; treason.");
+			addButton(0,"Visit",visitAPrisoner,"Lah","R.K.Lah","Visit Lah.\n\n<b>Cost:</b> 1,000 credits");
 			break;
 	}
 	showName("CLICK\nCLACK");
@@ -1269,14 +1269,24 @@ public function prisonerTimes(prisonerName:String):void
 		case "Khorgan": capnKhorganPrisonVisit(); return; break;
 		case "Badger": /* 9999 return; */ break;
 		case "Zaalt": /* 9999 return; */ break;
-		case "Lah": /* 9999 return; */ break;
+		case "Lah": lahPrisonRoom(); return; break;
 		case "Sam": samsPrisonRoom(); return; break;
 	}
 	clearOutput();
 	clearBust();
 	output("<b>ERROR: Prisoner not found.</b> Please try again!");
 	clearMenu();
-	addButton(0, "Next", sexHaverTerminalTime, true);
+	addButton(0, "Next", backOuttaPrisonVisit, true);
+}
+
+public function backOuttaPrisonVisit():void
+{
+	clearOutput();
+	showName("\nNEVERMIND");
+	output("You wave the prisoner away and leave. This just isn’t going to work out. The prison is quick to refund your money. Maybe a different prisoner will be more to your tastes?");
+	pc.credits += 1000;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Tam Tam
@@ -1587,14 +1597,5 @@ public function kaskaSlammer():void
 		addDisabledButton(0,"Dick Fuck","Dick Fuck","You are not aroused enough for this act.");
 		addDisabledButton(1,"Cunnilingus","Cunnilingus","You are not aroused enough for this act.");
 	}
-	addButton(14,"Nevermind",backOuttaKaska);
-}
-public function backOuttaKaska():void
-{
-	clearOutput();
-	showName("\nNEVERMIND");
-	output("You wave her away and leave. This just isn’t going to work out. The prison is quick to refund your money. Maybe a different prisoner will be more to your tastes?");
-	pc.credits += 1000;
-	clearMenu();
-	addButton(0,"Next",mainGameMenu);
+	addButton(14,"Nevermind",backOuttaPrisonVisit);
 }

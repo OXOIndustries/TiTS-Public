@@ -71,6 +71,8 @@ public function samsPrisonRoom(impregnate:Boolean = false):void
 	output("\n\n");
 	if(flags["MET_SAM"] != undefined) output("It doesn’t seem like she recognizes you, or if she does, she doesn’t care.");
 	
+	clearMenu();
+	
 	if(impregnate)
 	{
 		addButton(0, "Next", samPrisonStuff, [true, true]);
@@ -84,7 +86,7 @@ public function samsPrisonRoom(impregnate:Boolean = false):void
 	if(pc.hasHardLightEquipped()) addButton(1,"Use Strap-on",samPrisonStuff,[false, false],"Use Strap-on","Give her an approximation of what she wants. A hardlight dick is still a dick, right?");
 	else addDisabledButton(1,"Use Strap-on","Use Strap-on","You don’t have a strap-on to use!");
 
-	addButton(14,"Nevermind",backOuttaKaska);
+	addButton(14,"Nevermind",backOuttaPrisonVisit);
 }
 
 public function samPrisonStuff(args:Array):void
