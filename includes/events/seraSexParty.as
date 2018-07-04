@@ -992,6 +992,7 @@ public function seraSexPartyStage3(response:String = "none"):void
 				pc.lust(15);
 				pc.loadInMouth(sera);
 				pc.loadInMouth(sera);
+				sera.orgasm();
 				pc.exhibitionism(1);
 				IncrementFlag("SERA_PARTY_FUCKED");
 				flags["SERA_PARTY_STAGE3"] = response;

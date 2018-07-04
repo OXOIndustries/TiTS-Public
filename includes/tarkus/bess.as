@@ -11652,7 +11652,7 @@ public function bessGiveDoggySelected(bTargetVag:Boolean = false):void
 			output("\n\nNot all of it? What, does [bess.heShe] mean... lick your [pc.cum] out from inside of [bess.himHer] as well?");
 			
 			output("\n\nBurning with embarrassment, you slide your [pc.tongue] inside [bess.hisHer] cum-lined hole");
-			if (!bTargetVag) output(" - at least [bess.heShe]’s an android, so [bess.heShe] doesn’t use it for </i>that<i>");
+			if (!bTargetVag) output(" - at least [bess.heShe]’s an android, so [bess.heShe] doesn’t use it for <i>that</i>");
 			output(". You lap and dart inside of [bess.himHer], scooping up the last of your semen with great effort. Once you’re done, you’re sure it’s as clean as can be.");
 			
 			output("\n\n<i>“Now, swallow.”</i>");
@@ -12621,8 +12621,8 @@ public function bessMilkers(opts:Array = null):void
 	{
 		flags["BESS_MILKERS_TIMES"]++;
 		output("\n\nA blush dusts the synthetics cheeks, recalling [bess.hisHer] previous encounter with the milking machine.");
-		if (bess.isChestGarbed()) output("[bess.name] slips off [bess.hisHer] [bess.UpperGarments]. [bess.HeShe] then");
-		else output(" [bess.heShe]");
+		if (bess.isChestGarbed()) output(" [bess.name] slips off [bess.hisHer] [bess.UpperGarments]. [bess.HeShe] then");
+		else output(" [bess.HeShe]");
 		output(" gets on all fours on a nearby bench, positioning [bess.himHer]self to be the perfect height for you. [bess.HisHer] [bess.breasts] dangle below [bess.himHer].");
 	}
 

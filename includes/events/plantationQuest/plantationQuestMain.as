@@ -74,7 +74,7 @@ public function showQuinn(nude:Boolean = false):void
 public function showLah(nude:Boolean = false):void
 {
 	var nudeSuffix:String = "";
-	if(nude) nudeSuffix += "_NUDE";
+	//if(nude) nudeSuffix += "_NUDE";
 	showBust("LAH" + nudeSuffix);
 	showName("\nRK LAH");
 }
@@ -296,6 +296,14 @@ public function tharePlantationFieldsBonusRedux():Boolean
 	}
 	else
 	{
+		// Darnock’s Rewards
+		if(plantationQuestComplete() && flags["PQ_REWARDS_TIMESTAMP"] == undefined)
+		{
+			if(flags["PQ_PEACE_TIMESTAMP"] != undefined) flags["PQ_REWARDS_TIMESTAMP"] = flags["PQ_PEACE_TIMESTAMP"];
+			else if(flags["PQ_TRIBE_WREKT_TIMER"] != undefined) flags["PQ_REWARDS_TIMESTAMP"] = flags["PQ_TRIBE_WREKT_TIMER"];
+			else flags["PQ_REWARDS_TIMESTAMP"] = GetGameTimestamp();
+		}
+		
 		var msg:String = "";
 		var fullTime:int = ((hours * 60) + minutes);
 		
@@ -581,7 +589,7 @@ public function waterfallPoolBonusSchtuff():Boolean
 		return true;
 	}
 	//Repeat if Kane not defeated
-	else if(flags["KANE_DEFEATED"] == undefined)
+	if(flags["KANE_DEFEATED"] == undefined)
 	{
 		output("You are on the open, mossy plateau at the bottom of the waterfall. It comes thundering down from many feet above into a deep pool. The vast, ceaseless power of it throws up writhing veils of white vapor that breathe blessings on your hot [pc.skinFurScales]. It is shouldered by sheer, red rock cliffs that climb out of the jungle both to the east and west. The more you take it in the more daunting the prospect is - without going many miles out of your way, the only method of getting at the highlands above that you can immediately see is to clamber up the layered, multitudinous rock face beside the waterfall.");
 		output("\n\n<i>“You return!”</i> says a harsh, buzzing voice from behind you. Kane is in his tree, leg dangling, watching you with an insouciant sneer.");
@@ -599,8 +607,9 @@ public function waterfallPoolBonusSchtuff():Boolean
 		addButton(0, "Next", CombatManager.beginCombat);
 		return true;
 	}
+	
 	//Repeat if zil camp not opened
-	else if(flags["PQ_RESOLUTION"] == undefined)
+	if(flags["PQ_RESOLUTION"] == undefined)
 	{
 		output("You are on the open, mossy plateau at the bottom of the waterfall. It comes thundering down from many feet above into a deep pool. The vast, ceaseless power of it throws up writhing veils of white vapor that breathe blessings on your hot [pc.skinFurScales]. It is shouldered by sheer, red rock cliffs that climb out of the jungle both to the east and west. The more you take it in the more daunting the prospect is - without going many miles out of your way, the only method of getting at the highlands above that you can immediately see is to clamber up the layered, multitudinous rock face beside the waterfall.");
 		output("\n\nBehind you, the pool empties out into a wide brook, which leads steeply downwards to the south.");
@@ -619,6 +628,21 @@ public function waterfallPoolBonusSchtuff():Boolean
 		output("\n\nBehind you, the pool empties out into a wide brook, which leads steeply downwards to the south.");
 		if(flags["PQ_RESOLUTION"] != -1) addButton(0,"Go Up",goUpZeWaterfall,undefined,"Go Up","Or are you interested in practising your rock climbing?");
 	}
+	
+	if(flags["WATERFALL_TAXI_RELAY"] != undefined)
+	{
+		output("\n\nAn erect comms beacon stands nearby, its light pulsing slowly. You can use it to call a taxi if you need to.");
+		
+		if(pc.credits >= 40) addButton(1, "Call Taxi", mhengaTaxiToWaterfall, "taxi", "Call Taxi", "Pay 40 credits to get taken back to Esbeth.");
+		else addDisabledButton(1, "Call Taxi", "Call Taxi", "You don’t have enough credits to ride there.");
+	}
+	else if(pc.hasKeyItem("Mhen'ga Comms Relay"))
+	{
+		output("\n\n<b>This looks like a good spot to place the comms relay device!</b>");
+		
+		addButton(1, "Use Relay", mhengaTaxiToWaterfall, "use", "Use Relay", "Set up the relay so you can summon taxis here.");
+	}
+	
 	return false;
 }
 
@@ -2446,11 +2470,16 @@ public function leaveZeLovelyQuinnBeeeeeehind():void
 	author("Nonesuch");
 	output("<i>“I should, uh...”</i>");
 	output("\n\n<i>“As you wish.”</i> Quinn");
-	if(rand(2) == 0) output(" sighs. She");
-	output(" gestures in the direction of the waterfall. <i>“You have easily done enough to be treated as an honored guest in our village. ");
-	if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
-	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
-	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising " + (rand(2) == 0 ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
+	if(inCombat()) output(" sighs. She");
+	output(" gestures in the direction of the waterfall.");
+	if(inCombat())
+	{
+		output(" <i>“You have easily done enough to be treated as an honored guest in our village. ");
+		if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
+		else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
+		output("”</i>");
+	}
+	output(" She takes you in from tip to tail with those heavy-lidded, appraising " + (inCombat() ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
 	processTime(2);
 	
 	quinnFinishExit();
@@ -2804,6 +2833,7 @@ public function lahTurnInPartDeusEx():void
 	pc.removeKeyItem("RK Lah - Captured");
 	output("\n(<b>Key Item Removed: </b>RK Lah - Captured)");
 	flags["PQ_SECURED_LAH"] = 2;
+	flags["LAH_TO_GASTIGOTH"] = GetGameTimestamp();
 	pc.XP(10000);
 	processTime(2);
 	//[Rest] [Finish]
@@ -2990,9 +3020,18 @@ public function noGiveMeMens():void
 }
 
 //Sex
-//Requires dick < 12”</i> and/or vagina
+//Requires dick < 12" and/or vagina
 public function sexWithQuinnOmnigenderWHYYYY():void
 {
+	// Handmaiden Threesome
+	if(	(pc.hasCock() && pc.smallestCockLength() < 12.5)
+	&&	pc.libido() >= 30
+	&&	flags["QUINN_EVERY_HOLED"] != undefined || GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440)
+	{
+		quinnHandmaidenThreesome(["intro"]);
+		return;
+	}
+	
 	clearOutput();
 	showQuinn(true);
 	author("Nonesuch");
@@ -3021,16 +3060,23 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 	//[Zil on top] [Every hole] [Scizzor]
 	clearMenu();
 	var dickFits:Boolean = (pc.cockThatFits(quinnVaginalCapacity()) >= 0);
+	
 	if(dickFits && pc.hasCock()) addButton(0,"Zil on Top",zilOnTopOfPC);
 	else addDisabledButton(0,"Zil on Top","Zil on Top","You need a penis that fits inside her for this.");
+	
 	if(pc.libido() >= 70 || pc.hasStatusEffect("Blue Balls")) 
 	{
 		if(dickFits && pc.hasCock()) addButton(1,"Every Hole",putItInAllThreeOfQuinnHoles);
 		else addDisabledButton(1,"Every Hole","Every Hole","You need a penis that will fit inside her holes for this.");
 	}
 	else addDisabledButton(1,"Every Hole","Every Hole","You need to be very randy for this - or very pent up.");
+	
 	if(pc.hasVagina()) addButton(2,"Scissor",vagScizzorWithQuinnsLizardGizzard);
 	else addDisabledButton(2,"Scissor","Scissor","You need a vagina for this.");
+	
+	if(pc.hasHardLightEquipped()) addButton(3, "Hardlight", quinnHardlightFun, ["intro"]);
+	else addDisabledButton(3, "Hardlight", "Hard Light Fun", "You need to be wearing a hardlight strap-on for this.");
+	
 	if(!pc.hasVagina() && !dickFits) addButton(14,"Back",noEligibleRetreat);
 }
 
@@ -3154,6 +3200,7 @@ public function queenie3HoleNumbah3(x:int):void
 	processTime(20);
 	pc.orgasm();
 	IncrementFlag("SEXED_QUINN");
+	flags["QUINN_EVERY_HOLED"] = GetGameTimestamp();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

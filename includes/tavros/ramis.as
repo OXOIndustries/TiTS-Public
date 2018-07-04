@@ -121,9 +121,9 @@ public function getRamisPregContainer():PregnancyPlaceholder
 	ppRamis.breastRows[0].breastRatingRaw = 6;
 	if(!ppRamis.hasVagina()) ppRamis.createVagina();
 	ppRamis.shiftVagina(0, GLOBAL.TYPE_FELINE);
-	ppRamis.vaginas[0].wetnessRaw = 3;
+	//ppRamis.vaginas[0].wetnessRaw = 3;
 	ppRamis.vaginas[0].loosenessRaw = 1;
-	ppRamis.vaginas[0].bonusCapacity += 400;
+	ppRamis.vaginas[0].bonusCapacity += 100;
 	return ppRamis;
 }
 
@@ -606,8 +606,8 @@ public function ramisFuck(response:String = "none"):void
 	
 	var ppRamis:PregnancyPlaceholder = getRamisPregContainer();
 	var x:int = -1;
-	//x = pc.cockThatFits(ppRamis.vaginalCapacity(0));
-	x = pc.cockThatFits(11, "length");
+	x = pc.cockThatFits(ppRamis.vaginalCapacity(0));
+	//x = pc.cockThatFits(11, "length");
 	var purrfectFit:Boolean = false;
 	var hasUndies:Boolean = (!(pc.lowerUndergarment is EmptySlot) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_FULL) && !pc.lowerUndergarment.hasFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN));
 	

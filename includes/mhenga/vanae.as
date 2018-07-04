@@ -1937,9 +1937,8 @@ public function vanaeHuntressPCDefeatMilkbath():void
 
 		processTime(45+rand(15));
 	}
-
-	if (flags["VANAE_MILKBATH_TIMES"] == undefined) flags["VANAE_MILKBATH_TIMES"] = 0;
-	flags["VANAE_MILKBATH_TIMES"]++;
+	
+	IncrementFlag("VANAE_MILKBATH_TIMES");
 	output("\n\n");
 	CombatManager.genericLoss();
 }

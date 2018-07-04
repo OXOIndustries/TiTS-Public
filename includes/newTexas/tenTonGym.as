@@ -374,6 +374,7 @@ public function deepCleanDatDirtyAusar():void
 	output("\n\n You share a few more pleasant moments with Anno before returning to the locker room."); 
 	pc.orgasm();
 	processTime(30);
+	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -412,6 +413,7 @@ public function runTrainOnAnno():void
 	output("\n\nYou take the time to give your tuckered pup a thorough cleansing, taking care to wash behind her ears, comb clumps of jizz out of her tail, and dry her off with a towel. As you haul her back to the ship to recover from her exercise session, she wakes briefly, just long enough to give you a whispered, <i>“Thank you,”</i> snuggles into your chest and falls fast asleep."); 
 	pc.orgasm();
 	processTime(30);
+	pc.exhibitionism(2);
 	clearMenu(); 
 	addButton(0, "Next", mainGameMenu);
 }
@@ -439,7 +441,7 @@ public function annoWorkoutGimmeDatBootySweat():void
 	currentLocation = "572";
 	generateMap();
 	output("You let Anno know that you happen to like her sweat.");
-	output("\n\nAnno cocks an eyebrow at that. <i>Are you saying you want to exercise a little more? I think I’d be up for that. If you’re not too tired, that is.”</i> She tucks her thumbs into the front of her waistband and runs them around to the back. <i>“What did you have in mind?”</i>");
+	output("\n\nAnno cocks an eyebrow at that. <i>“Are you saying you want to exercise a little more? I think I’d be up for that. If you’re not too tired, that is.”</i> She tucks her thumbs into the front of her waistband and runs them around to the back. <i>“What did you have in mind?”</i>");
 	output("\n\nYou suggest the weight room. She gives you a dubious look, thinking you might have actually been serious about continuing your work out. You make your way over to the weight room and soon find what you were looking for: a machine with overhead hand grips. You set the weights on the machine to 1500 lbs and take a seat. As Anno watches with a bemused expression, you pull futilely on the grips, fighting the insurmountable weight you set. After a minute or two, she asks if you would like a little help.");
 	output("\n\nAnno plops down before you on the seat, legs spread wide to either side of it and her bottom rubbing against your [pc.crotch]. She raises her arms and intertwines her fingers with yours."); 
 	output("\n\n<i>“Ready?”</i> your cheeky pup asks as she gives her [anno.butt] a little shake on your manhood.");
@@ -506,6 +508,7 @@ public function annoWorkoutGimmeDatBootySweat():void
 	output("\n\nIt certainly doesn’t sound like a bad idea.");
 	pc.orgasm();
 	processTime(30);
+	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -582,7 +585,7 @@ public function annoWorkoutShipSexyFunTimes():void
 	//Herms with fitty dickies get either.
 	if(pc.isHerm()) sceneChoice = rand(2);
 	//Dudes just the dicking.
-	else sceneChoice = 1;
+	else if(pc.hasCock()) sceneChoice = 1;
 
 	//Dick scene!
 	if (sceneChoice == 1)

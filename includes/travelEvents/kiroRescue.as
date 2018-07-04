@@ -388,7 +388,7 @@ public function kirosShipChubnookiUpDaButt():void
 
 	output("\n\n<i>“Fuckfuckfuck,”</i> she moans, her voice crescendoing into a scream as your [pc.feet] touch down on the deck, her balls now small enough to let you stand. She falls forward onto all fours, taking you with her. You collapse onto her back, and that just pushes her back down until her face is smeared into the sea of sperm under her, matting her fur white. <i>“Gods yeeeessssss!”</i>");
 
-	output("\n\nWell, she seems to like that! With her ass still hiked in the air by her over-sized sack, you grab her hips again and start to go full force, finally battering her prostrate out of the way so you can sink the full length of your [pc.cock " + selCock + "] into the tanuki’s tight little ass. She groans in response, reaching back to spread herself out for you, letting you sink your hips right into her cheeks");
+	output("\n\nWell, she seems to like that! With her ass still hiked in the air by her over-sized sack, you grab her hips again and start to go full force, finally battering her prostate out of the way so you can sink the full length of your [pc.cock " + selCock + "] into the tanuki’s tight little ass. She groans in response, reaching back to spread herself out for you, letting you sink your hips right into her cheeks");
 	if (pc.cockVolume(selCock) >= 10 * 2) output(", her stomach bulging with the size of your huge prick distending her innards");
 	output(". <i>“Gonna... gonna cum so haaaarrrdddd,”</i> she pants, tongue flopping into her own spunk as she struggles to speak.");
 

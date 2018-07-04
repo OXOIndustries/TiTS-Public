@@ -327,6 +327,7 @@ public function processExhibitionismStrip(totalDays:uint):void
 	ultraExhib.value2 += totalDays;
 	
 	if(rooms[currentLocation].hasFlag(GLOBAL.NOFAP) || rooms[currentLocation].hasFlag(GLOBAL.FAPPING_ILLEGAL)) return;
+	if(rooms[currentLocation].hasFlag(GLOBAL.PRIVATE) || !rooms[currentLocation].hasFlag(GLOBAL.PUBLIC)) return;
 	
 	if(ultraExhib.value2 >= 7 && !pc.isNude())
 	{

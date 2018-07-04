@@ -15,7 +15,12 @@ public function celiseIsFollower():Boolean {
 public function showCelise():void
 {
 	showName("\nCELISE");
-	showBust("CELISE");
+	showBust(celiseBustDisplay());
+}
+public function celiseBustDisplay():String
+{
+	if(flags["GIGACELISE"] != undefined) return "CELISE";
+	return "CELISE";
 }
 
 

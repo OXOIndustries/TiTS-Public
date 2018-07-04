@@ -20,6 +20,7 @@
 		public static var ADJATHA:Object = new AdjathaBusts();
 		public static var AKI:Object = new AkiBusts();
 		public static var ALDER:Object = new AlderBusts();
+		public static var BER00:Object = new Ber00Busts();
 		public static var BNG:Object = new BNGBusts();
 		public static var BUSTEDRADIO:Object = new BustedRadioBusts();
 		public static var CHESHIRE:Object = new CheshireBusts();

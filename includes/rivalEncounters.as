@@ -36,8 +36,13 @@ public function rivalBustDisplay(nude:Boolean = false):String
 public function showDane(nude:Boolean = false):void
 {
 	showName("\nDANE");
-	if (!nude) showBust("DANE");
-	else showBust("DANE_NUDE");
+	showBust(daneBustDisplay(nude));
+}
+public function daneBustDisplay(nude:Boolean = false):String
+{
+	var sBust:String = "DANE";
+	if(nude) sBust += "_NUDE";
+	return sBust;
 }
 
 //Approach

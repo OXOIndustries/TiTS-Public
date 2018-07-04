@@ -1760,7 +1760,7 @@ public function tribCrewVibeyVibe():void
 	pc.orgasm();
 	chars["SHEKKA"].orgasm();
 	clearMenu();
-	addButton(0,"Next",shekkaGrindsFinish);
+	addButton(0,"Next",shekkaCrewGrindsFinish);
 }
 
 
@@ -1783,7 +1783,6 @@ public function shekkaCrewGrindsFinish():void
 	//Never had vibrations before
 	if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] == undefined)
 	{
-		flags["TIMES_TAILVIBED_WITH_SHEKKA"] = 0;
 		output("\n\nShekka beams. <i>“Subdermal vibrator implant.”</i>");
 		output("\n\nThere’s no hiding your surprise.");
 		output("\n\n<i>“What? You don’t have those back home?”</i>");
@@ -1804,7 +1803,7 @@ public function shekkaCrewGrindsFinish():void
 	output("\n\n<i>“Fuck... well, okay [pc.name] I’m going to wrap up a few things here, and strongly consider a nap.”</i>");
 	//Pass 70-80 minutes
 	//Orgasm + shekka orgasm
-	flags["TIMES_TAILVIBED_WITH_SHEKKA"]++;
+	IncrementFlag("TIMES_TAILVIBED_WITH_SHEKKA");
 	fuckedShekka();
 	//Pass 70-80 minutes
 	processTime(30+rand(5));
@@ -1936,7 +1935,6 @@ public function shekkaCrewFutaGrindsFinish():void
 	//Never had vibrations before
 	if(flags["TIMES_TAILVIBED_WITH_SHEKKA"] == undefined)
 	{
-		flags["TIMES_TAILVIBED_WITH_SHEKKA"] = 0;
 		output("\n\nShekka beams. <i>“Subdermal vibrator implant.”</i>");
 		output("\n\nThere’s no hiding your surprise.");
 		output("\n\n<i>“What? You don’t have those back home?”</i>");
@@ -1957,7 +1955,7 @@ public function shekkaCrewFutaGrindsFinish():void
 	output("\n\n<i>“Fuck... well, okay [pc.name] I’m going to wrap up a few things here, and strongly consider a nap.”</i>");
 	//Pass 70-80 minutes
 	//Orgasm + shekka orgasm
-	flags["TIMES_TAILVIBED_WITH_SHEKKA"]++;
+	IncrementFlag("TIMES_TAILVIBED_WITH_SHEKKA");
 	fuckedShekka();
 	//Pass 70-80 minutes
 	processTime(30+rand(5));

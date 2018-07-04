@@ -766,7 +766,7 @@ public function barbariannaCosplay():void
 
 	output("\n\n<i>“Where you going, babe?”</i> you grin, licking your lips and grabbing the ausar girl in your other arm. She yelps, tail flicking against your [pc.leg]... but she doesn’t exactly put up a fight, at least not against your overpowering strength. Both of them wriggle a little, until you’ve got each of their heads pressed against a big, heavy tit. <i>“Your boyfriend and I were just getting to know each other. You should join us.”</i>");
 
-	output("\n\nShe blinks, eyes wide. The crowd of revelers gets a little thicker around you, murmuring and watching with interest - and a few tented trousers - as you squeeze the mis-matched couple tight enough to make them squirm. You take the tiny pressure of the kaithrit’s boy-cock pressing into your shin as your answer from him, but the ausar girl... well, she’s got a lot less to show for herself, you take the initiative, grabbing her ass through the seat of her skin-tight bellbottoms, squeezing so hard she jumps in your grasp. Her tail starts swishing hard, but she forcefully looks away from you, grabbing her boy-toy’s hand and trying to pull him back.");
+	output("\n\nShe blinks, eyes wide. The crowd of revelers gets a little thicker around you, murmuring and watching with interest - and a few tented trousers - as you squeeze the mis-matched couple tight enough to make them squirm. You take the tiny pressure of the kaithrit’s boy-cock pressing into your shin as your answer from him, but the ausar girl... well, she’s got a lot less to show for herself, you take the initiative, grabbing her ass through the seat of her skin-tight bell-bottoms, squeezing so hard she jumps in your grasp. Her tail starts swishing hard, but she forcefully looks away from you, grabbing her boy-toy’s hand and trying to pull him back.");
 
 	output("\n\n<i>“Stop being a spoil-sport, babe,”</i> you growl, shifting your grip on her ass to grab her crotch, feeling right through her pants into her damp little mound. Oh, she’s <b>wet</b> all right. Hot damn, she must be smuggling a swamp in her pants. She squeals, pulling hard at her boyfriend’s hand until they both manage to pull out of your grasp; you let them go with a laugh.");
 
@@ -1403,7 +1403,7 @@ public function ladyTaursFuckDane():void
 {
 	clearOutput();
 	showName("DANE\n& HOLIDAY");
-	showBust("DANE_NUDE","HOLIDAY_HORSE");
+	showBust(daneBustDisplay(true),"HOLIDAY_HORSE");
 	output("That sounds like consent to you. You wiggle your rump, smearing long lines of glistering horse-lube across the loincloth dividing you and the four-armed ausar, marinating his wriggling phallus in slippery pheromones. A big boy like him is going to need lots of lube to help carry all his sperm into your womb. Your achingly empty crevasse clenches, hollow and needy. Grinding harder against him, you pin Dane between a rock and a wet place.");
 	output("\n\nFour powerful hands press back against your straining haunches, shifting your bulk enough to give the musclebound merc some breathing room - breathing room he’s all too happy to spend yanking the silk curtain from between your bodies. The slimy garment lands on a cheering human’s head, momentarily muffling her jubilation, but you pay it no mind. Without the condom-tight fabric stretched between Dane’s cock and your gushing nethers, his phallus is free to plunge into your waiting gates, spearing through the entrance with the force of a striking snake.");
 	//CuntChange
@@ -2043,6 +2043,7 @@ public function saurmorianTimes2():void
 		pc.skinType = GLOBAL.SKIN_TYPE_SCALES;
 		pc.scaleColor = "silver";
 		pc.earType = GLOBAL.TYPE_LIZAN;
+		pc.eyeType = GLOBAL.TYPE_NAGA;
 		pc.tongueType = GLOBAL.TYPE_CANINE;
 		pc.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_SQUISHY];
 		pc.armType = GLOBAL.TYPE_LEITHAN;
