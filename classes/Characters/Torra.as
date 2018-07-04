@@ -47,25 +47,23 @@
 			this.armor.hasRandomProperties = true;
 			
 			shield = new ArcticWarfareBelt();
-			shield.resistances.tease.resistanceValue = 25.0;
-			shield.resistances.drug.resistanceValue = 25.0;
-			shield.resistances.psionic.resistanceValue = 25.0;
-			shield.resistances.pheromone.resistanceValue = 25.0;
-			shield.hasRandomProperties = true;
 
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.freezing.damageValue = 90.0;
-			baseHPResistances.tease.damageValue = 30.0;
-			baseHPResistances.drug.damageValue = 40.0;
 			baseHPResistances.pheromone.damageValue = -25.0;
-			baseHPResistances.burning.damageValue = -25.0;
+			baseHPResistances.burning.damageValue = 25.0;
+			baseHPResistances.kinetic.damageValue = 65;
+			baseHPResistances.electric.damageValue = 50;
+			baseHPResistances.corrosive.damageValue = 40;
+			baseHPResistances.tease.damageValue = -30;
 			
 			//this.shield = new ImprovisedShield();
 
-			this.physiqueRaw = 25;
+			this.physiqueRaw = 42;
 			this.reflexesRaw = 37;
 			this.aimRaw = 25;
-			this.intelligenceRaw = 15;
+			//She a sciencecat yo
+			this.intelligenceRaw = 45;
 			this.willpowerRaw = 50;
 			this.libidoRaw = 40;
 			this.shieldsRaw = 0;

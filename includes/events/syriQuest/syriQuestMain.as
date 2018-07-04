@@ -60,6 +60,8 @@ Finished so far aside from one attack (needs a modifier to weaken the PC), might
 -update:
 modifier is in
 Needs resistances added
+-update:
+resistin'
 
 Dr. Calnor
 syriQuestCalnorFight & syriQuestCalnorFight2
@@ -67,6 +69,8 @@ The basic class for this NPC exists, but its using copy pasted place holder atta
 -update:
 Attacks are done
 Uber mode, lust resistance and balancing still not done
+-update 2:
+stat increase, lust immunity are in
 
 Valden
 syriQuestAkkadiBaseValdenFight
@@ -2228,7 +2232,6 @@ public function syriQuestSchoraFight():void
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(new CommanderSchora());
-	CombatManager.displayLocation("SHORA");
 	CombatManager.victoryScene(syriQuestSchoraFightVictory);
 	CombatManager.lossScene(syriQuestSchoraFightBadEnd);
 	CombatManager.encounterTextGenerator(syriQuestSchoraFightText);

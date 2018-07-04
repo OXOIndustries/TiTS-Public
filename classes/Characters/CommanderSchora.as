@@ -2,11 +2,10 @@
 {
 	import classes.Creature;
 	import classes.GLOBAL;
-	import classes.Items.Apparel.UGCUniform;
+	import classes.Items.Apparel.TSTArmorMkII;
 	import classes.Items.Melee.Tonfas;
 	import classes.Items.Guns.AegisLightMG;
-	import classes.Items.Protection.BasicShield;
-	import classes.Items.Protection.JoyCoPremiumShield;
+	import classes.Items.Protection.ReaperArmamentsMarkIShield;
 	import classes.Items.Accessories.FlashGoggles;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
@@ -41,9 +40,9 @@
 			this.meleeWeapon = new Tonfas();
 			this.rangedWeapon = new AegisLightMG();
 			this.inventory.push(new AegisLightMG());
-			this.armor = new UGCUniform();
+			this.armor = new TSTArmorMkII();
 			
-			this.shield = new JoyCoPremiumShield();
+			this.shield = new ReaperArmamentsMarkIShield();
 
 			this.physiqueRaw = 36;
 			this.reflexesRaw = 37;
@@ -54,6 +53,12 @@
 			this.energyRaw = 100;
 			this.lustRaw = 25;
 			this.shieldsRaw = shieldsMax();
+			
+			//Where do these come out of? My ass.
+			baseHPResistances.tease.damageValue = -30;
+			baseHPResistances.drug.damageValue = -20;
+			baseHPResistances.pheromone.damageValue = -45;
+			
 			
 			this.level = 10;
 			this.XPRaw = normalXP();

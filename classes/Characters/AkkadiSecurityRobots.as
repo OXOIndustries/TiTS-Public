@@ -181,10 +181,14 @@ package classes.Characters
 				|| (lives < 0 && rand(3) != 0))
 			{
 				if (hasStatusEffect("DefeatChecked")) setStatusValue("DefeatChecked", 1, CombatManager.getRoundCount());
+				//Should only check once per round
 				createStatusEffect("DefeatChecked", CombatManager.getRoundCount());
 				return true;
 			}
+			--lives;
 			createStatusEffect("BotRevivinBlues")
+			for each (var ally:Creature in CombatManager.getHostileActors())
+				if (ally is AkkadiSecurityRobots) (ally as AkkadiSecurityRobots).lives = lives;
 			return false;
 		}
 		public function botHeal():void
@@ -210,12 +214,9 @@ package classes.Characters
 			if (hasStatusEffect("BotRevivinBlues"))
 				{
 					output("<b>One of the " + (lives > 0 ? "remaining" : "numerous") + " drones in the rear takes " + possessive(StringUtil.toTitleCase(getCombatName())) + " place!</b>");
-					--lives;
 					removeStatuses();
 					HP(HPMax());
 					shields(shieldsMax());
-					for each (var ally:Creature in alliedCreatures)
-						if (ally is AkkadiSecurityRobots) (ally as AkkadiSecurityRobots).lives = lives;
 					return;
 				}
 		

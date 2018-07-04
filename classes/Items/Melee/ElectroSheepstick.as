@@ -46,7 +46,7 @@ package classes.Items.Melee
 			baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
 			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 		}
-		private buffed:Boolean = false;
+		private var buffed:Boolean = false;
 		public function staffBuff(activate:Boolean = false):void
 		{
 			if (buffed == activate) return;

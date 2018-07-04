@@ -4,7 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Melee.ElectroSheepstick;
 	import classes.Items.Guns.HammerPistol;
-	import classes.Items.Protection.DBGShield;
+	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.kGAMECLASS;
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
@@ -45,16 +45,29 @@
 			this.armor.longName = "armor";
 			this.armor.defense = 3;
 			this.armor.hasRandomProperties = true;
-			this.shield = new DBGShield();
+			this.shield = new ReaperArmamentsMarkIIShield();
 			
 			this.level = 9;
-			this.physiqueRaw = 40;
-			this.reflexesRaw = 35;
-			this.aimRaw = 20;
-			this.intelligenceRaw = 45;
-			this.willpowerRaw = 30;
+			if (badassmode)
+			{
+				this.physiqueRaw = 50;
+				this.reflexesRaw = 45;
+				this.aimRaw = 25;
+				this.intelligenceRaw = 50;
+				this.willpowerRaw = 40;
+				this.HPMod = 75;
+				this.shield.shields = 450;
+			}
+			else
+			{
+				this.physiqueRaw = 40;
+				this.reflexesRaw = 35;
+				this.aimRaw = 20;
+				this.intelligenceRaw = 45;
+				this.willpowerRaw = 30;
+				this.shield.shields = 250;
+			}
 			this.libidoRaw = 35;
-			if (badassmode) this.HPMod = 50;
 			this.shieldsRaw = this.shieldsMax();
 			this.HPRaw = this.HPMax();
 			this.energyRaw = 100;
@@ -175,6 +188,8 @@
 			this.ass.loosenessRaw = 1;
 
 			this.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+			//The doc says just high resistance, but this fits the scenes better IMHO -lighter
+			isLustImmune = true;
 			
 			isUniqueInFight = true;
 			btnTargetText = "Dr. Calnor";
