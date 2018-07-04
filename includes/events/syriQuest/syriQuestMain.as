@@ -62,6 +62,7 @@ modifier is in
 Needs resistances added
 -update:
 resistin'
+DONE
 
 Dr. Calnor
 syriQuestCalnorFight & syriQuestCalnorFight2

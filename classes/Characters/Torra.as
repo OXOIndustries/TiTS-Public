@@ -55,7 +55,7 @@
 			baseHPResistances.kinetic.damageValue = 65;
 			baseHPResistances.electric.damageValue = 50;
 			baseHPResistances.corrosive.damageValue = 40;
-			baseHPResistances.tease.damageValue = -30;
+			baseHPResistances.tease.damageValue = -10;
 			
 			//this.shield = new ImprovisedShield();
 
@@ -68,13 +68,14 @@
 			this.libidoRaw = 40;
 			this.shieldsRaw = 0;
 			this.energyRaw = 100;
-			this.lustRaw = 60;
+			this.lustRaw = 65;
 			
 			this.level = 8;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 100;
+			this.HPMod = 150;
 			this.HPRaw = this.HPMax();
+			this.shield.shields = 200;
 			this.shieldsRaw = this.shieldsMax();
 
 			this.femininity = 90;

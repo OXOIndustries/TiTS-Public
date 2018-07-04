@@ -55,9 +55,9 @@
 			this.shieldsRaw = shieldsMax();
 			
 			//Where do these come out of? My ass.
-			baseHPResistances.tease.damageValue = -30;
-			baseHPResistances.drug.damageValue = -20;
-			baseHPResistances.pheromone.damageValue = -45;
+			baseHPResistances.tease.damageValue = -15;
+			baseHPResistances.drug.damageValue = -10;
+			baseHPResistances.pheromone.damageValue = -25;
 			
 			
 			this.level = 10;
