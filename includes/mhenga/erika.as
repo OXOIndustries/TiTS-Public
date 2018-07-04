@@ -293,6 +293,7 @@ public function erikaTalkSister():void
 
 	output("You happen to know a kaithrit by the name Lerris, it could be coincidence but it never hurts to ask. <i>“Does your sister happen to work at the TamaniCorp shop on Tavros?”</i>");
 	output("\n\nHer attention picks up when you mention Lerris <i>“You know her? Man, I wonder how is she doing, it’s been ages since I last saw her.”</i>");
+	output("\n\n");
 	if (flags["FUCKED_LERRIS"] == undefined)
 	{
 		if (pc.isNice()) output("<i>“Yeah, she seems like a nice sister to have,”</i> you say, thinking back to the few times you spoke with Lerris.");
@@ -484,7 +485,7 @@ public function erikaPublicSexDick():void
 	if (pc.cumQ() <= 500)
 	{
 		output("\n\nYou’re starting to get really close to the edge of your orgasm, with one last thrust into her mouth, you shoot most of your load down her throat and then pull back to shoot a few last ropes of your [pc.cum] into her mouth before withdrawing completely. She looks up at you with puppy eyes, swirling her tongue inside her mouth and getting a good taste of your cum. With a gulp she swallows down your load. ");
-		if (InCollection(pc.cumType, [GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK,, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM, GLOBAL.FLUID_TYPE_EGGNOG])) output("<i>“Mmm, tasty,”</i> she says as she licks her lips, sucking the last drop of your [pc.cum] from your tip.");
+		if (InCollection(pc.cumType, [GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM, GLOBAL.FLUID_TYPE_EGGNOG])) output("<i>“Mmm, tasty,”</i> she says as she licks her lips, sucking the last drop of your [pc.cum] from your tip.");
 		else output("<i>“Bleh,”</i> she says as she sticks out her tongue, but she still licks the last drop of your [pc.cum] from your tip.");
 		output("\n\nShe climbs up next to you from underneath the table. As she sits down, you notice a modestly sized wet spot between her legs. ");
 		if (pc.isBimbo()) output("<i>“Babe, like I think we both enjoyed this.”</i>");
@@ -494,7 +495,7 @@ public function erikaPublicSexDick():void
 	else if (pc.cumQ() <= 1000)
 	{
 		output("You push her further onto your cock with one hand before pumping your ample load down her throat. She groans around your [pc.cock] but you keep her head pressed against your crotch as you continue pumping your load into her stomach. As you feel the tide of cum tapering down, you pull out from her throat. You squeeze the few last drops of your [pc.cum] on her tongue. She obediently swallows down the last of your offering. ");
-		if (InCollection(pc.cumType, [GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK,, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM, GLOBAL.FLUID_TYPE_EGGNOG])) output("<i>“Mmm, tasty,”</i> she says as she licks her lips. ");
+		if (InCollection(pc.cumType, [GLOBAL.FLUID_TYPE_CHOCOLATE_MILK, GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_STRAWBERRY_MILK, GLOBAL.FLUID_TYPE_NECTAR, GLOBAL.FLUID_TYPE_VANILLA, GLOBAL.FLUID_TYPE_CHOCOLATE_CUM, GLOBAL.FLUID_TYPE_BLUEBERRY_YOGURT, GLOBAL.FLUID_TYPE_FRUIT_CUM, GLOBAL.FLUID_TYPE_FRUIT_GIRLCUM, GLOBAL.FLUID_TYPE_EGGNOG])) output("<i>“Mmm, tasty,”</i> she says as she licks her lips. ");
 		else output("<i>“Bleh,”</i> she says as she sticks out her tongue. ");
 		output("She slowly climbs out from underneath the table. <i>“Ugh, I’m so full.”</i> You can see that she is holding her stuffed stomach with her hands. <i>“I guess I don’t need to eat tonight.”</i> she smirks. You notice there is a wet stain between her legs.");
 		if (pc.isBimbo()) output("\n\n<i>“You might want to, Like get some clean clothes, unless you want everyone to know how much fun you had.”</i> ");

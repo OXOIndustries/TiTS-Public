@@ -62,7 +62,7 @@ public function shadeIsHome():Boolean
 }
 public function astraIsHome():Boolean
 {
-	if(9999 == 9999) return false;
+	if(9999 == 0) return true;
 	return false;
 }
 // Enemy / Not Friend / Friend / Lover. If Shade was never interacted with in a positive way (ie, you fought her in KaraQuest 1), she's an Enemy. If the player betrayed Shade in KQ2 and didn't make a good case to her afterwards, she's Not Friend. If you've been buddy-buddy with her so far (Helped her out in KQ1 or didn't do KQ2), she'll be your Friend. And of course, if you've fucked before and would otherwise be Friends, she's a Lover.
@@ -647,7 +647,11 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	if(!shadeIsActive() || flags["SHADE_ON_UVETO"] < 2) return;
 	// Add [Buzzer] to the outside of Shade's house, starting at 16:00 each night.
 	if(flags["SHADE_ON_UVETO"] == 2 && shadeIsLover() && (shadeIsSiblings() || hours >= 16)) { /* Exception, only for lovers! */ }
-	else if(!shadeIsHome()) return;
+	else if(!shadeIsHome() && !astraIsHome())
+	{
+		addDisabledButton(btnSlot, "Buzzer", "Buzzer", "No one is home at the moment!");
+		return;
+	}
 	
 	var response:String = "";
 	var tooltip:String = "";
@@ -661,13 +665,18 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 			tooltip = "This is Shade’s house. Time for some holiday cheer!";
 		}
 		
-		/* 9999 - Repeat events. Nothing planned yet? */
-		
 		//if(flags["SHADE_IS_YER_SIS"] != -1) flags["NAV_DISABLED"] = undefined;
-		if(flags["SHADE_IS_YER_SIS"] == 0)
+		else if(flags["SHADE_IS_YER_SIS"] == 0)
 		{
 			response = "lover sibling decision";
 			tooltip = "This is Shade’s house. Time to make a decision about where you want the pair of you to go.";
+		}
+		
+		/* 9999 - Repeat events. Nothing planned yet? */
+		else
+		{
+			response = "disabled";
+			tooltip = "There is currently nothing you can do at Shade’s residence at this time.";
 		}
 	}
 	// Lover Shade (Sibling Unrevealed)
@@ -684,7 +693,11 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	}
 	
 	// [Buzzer]
-	if(response != "") addButton(btnSlot, "Buzzer", approachShadeAtHouse, response, "Buzzer", tooltip);
+	if(response != "")
+	{
+		if(response == "disabled") addDisabledButton(btnSlot, "Buzzer", "Buzzer", tooltip);
+		else addButton(btnSlot, "Buzzer", approachShadeAtHouse, response, "Buzzer", tooltip);
+	}
 }
 public function approachShadeAtHouse(response:String = "intro"):void
 {

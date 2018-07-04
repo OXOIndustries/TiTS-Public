@@ -175,7 +175,7 @@ public function TLCForChaurmineOnUveto():void
 	processTime(10);
 	pc.lust(5);
 	//[Cuddle] Stop the lewds, and just enjoy each other’s’ warmth. // Go to Cuddle
-	addButton(0,"Cuddle",cuddelWithCharmineAfterBeatDown,undefined,"Cuddle","Stop the lewds, and just enjoy each other’s’ warmth.");
+	addButton(0,"Cuddle",cuddelWithCharmineAfterBeatDown,undefined,"Cuddle","Stop the lewds, and just enjoy each other’s warmth.");
 	//[Get Fucked] Chaurmine takes the reigns. He’ll probably get quite rough, though... // Go to Get Fucked
 	addButton(1,"Get Fucked",getFuckedByChaurmine,undefined,"Get Fucked","Chaurmine takes the reigns. He’ll probably get quite rough, though...");
 }

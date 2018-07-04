@@ -89,24 +89,20 @@ public function pippaKickedOffShip():Boolean
 // Handle displaying Pippa’s name and bust
 public function showPippa(naked:Boolean = false, oiled:Boolean = false):void
 {
-	if (!metPippa())
-	{
-		showName("\nPIG GIRL");
-	}
-	else
-	{
-		showName("\nPIPPA");
-	}
-	
-	// if naked false, show normal, clothed bust
-	if (!naked && !oiled) showBust("PIPPA");
-	// else if naked true and oiled false, show normal, naked bust
-	else if (naked && !oiled) showBust("PIPPA_NUDE");
-	// else if oiled true, show oiled, naked bust
-	else if (naked && oiled) showBust("PIPPA_NUDE");
-	else showBust("PIPPA_OILED");
-	
+	showName("\n" + (!metPippa() ? "PIG GIRL" : "PIPPA" ));
+	showBust(pippaBustDisplay(naked, oiled));
 	author("Ascent");
+}
+public function pippaBustDisplay(naked:Boolean = false, oiled:Boolean = false):String
+{
+	// if naked false, show normal, clothed bust
+	if (!naked && !oiled) return "PIPPA";
+	// else if naked true and oiled false, show normal, naked bust
+	if (naked && !oiled) return "PIPPA_NUDE";
+	// else if oiled true, show oiled, naked bust
+	if (naked && oiled) return "PIPPA_NUDE";
+	
+	return "PIPPA_OILED";
 }
 
 public const PIPPA_AFFECTION_MIN:int = 0;

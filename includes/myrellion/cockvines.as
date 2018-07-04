@@ -307,7 +307,7 @@ public function adultCockvineConsentacles():void
 	else
 	{
 		output("\n\nYou grind against the throbbing mass of warm plant flesh beneath you needily, eager to be filled. You rotate your head, running your tongue and cheeks across the bulging cockvine stuffing your mouth, trying to goad it on, and your attention is rewarded moments later when a particularly large cockvine penetrates your [pc.asshole], its head spreading your sensitive sphincter wide before the deliciously thick, firm shaft ploughs deep into your tunnel.");
-		if (pc.hasCock()) output(" It thoughtlessly mashes over your prostrate, your helplessly hard [pc.cocksNounSimple] flexing and bulging to the pump of the questing, oily, sugared plant dick.");
+		if (pc.hasCock()) output(" It thoughtlessly mashes over your prostate, your helplessly hard [pc.cocksNounSimple] flexing and bulging to the pump of the questing, oily, sugared plant dick.");
 	}
 
 	if (pc.hasCuntTail())

@@ -31,6 +31,7 @@
 	import classes.GameData.CombatManager;
 	import classes.GameData.ChildManager;
 	import classes.Engine.Interfaces.*;
+	import classes.Engine.Map.*;
 	import flash.system.Capabilities;
 	
 	/**
@@ -640,7 +641,7 @@
 					default: break;
 					case SSET_NATIVE: break; // do nothing
 					case SSET_CHROMEREMOTE: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_remote"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
-					case SSET_CHROMELOCAL:  copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
+					case SSET_CHROMELOCAL: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/chrome_local"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
 					case SSET_PROJECTOR: copyFolderContents(File.applicationStorageDirectory.resolvePath("#SharedObjects/projector"), File.applicationStorageDirectory.resolvePath("#SharedObjects")); break;
 				}
 				
@@ -1534,7 +1535,8 @@
 			
 			// We're going to extract some things from the player object and dump it in here for "preview" views into the file
 			dataFile.saveName 		= kGAMECLASS.chars["PC"].short;
-			dataFile.saveLocation 	= kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText;
+			//dataFile.saveLocation 	= kGAMECLASS.userInterface.planetText + ", " + kGAMECLASS.userInterface.systemText;
+			dataFile.saveLocation	= (InShipInterior() ? (kGAMECLASS.rooms[kGAMECLASS.shipLocation].planet + ", " + kGAMECLASS.rooms[kGAMECLASS.shipLocation].system) : (kGAMECLASS.rooms[kGAMECLASS.currentLocation].planet + ", " + kGAMECLASS.rooms[kGAMECLASS.currentLocation].system));
 			
 			// Blank entries get cleared notes!
 			if (kGAMECLASS.userInterface.currentPCNotes == null || kGAMECLASS.userInterface.currentPCNotes.length == 0 || kGAMECLASS.userInterface.currentPCNotes == "")

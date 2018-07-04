@@ -132,26 +132,46 @@ public function tharePlantationManorApproach(response:String = "none"):void
 				showBust("DARNOCK", "ABLE");
 				
 				output("You press the button on the comms unit, and a moment later the thrum of approaching zil wings comes from the manor. Able" + pc.mf(" bows politely", " smiles at you shyly") + " as he opens the gate for you.");
+				
+				if(flags["THARE_MANOR_ENTERED"] >= 3 || (flags["PQ_REWARDS_TIMESTAMP"] != undefined && (GetGameTimestamp() - flags["PQ_REWARDS_TIMESTAMP"]) >= 7200))
+				{
+					thareManorPQApproach();
+					return;
+				}
+				
 				output("\n\n<i>“Our young friend returns!”</i> beams Professor Darnock, coming down the steps as you approach the palatial grandeur of the manor. <i>“Come, come. I shall have some");
 				if(fullTime >= (7 * 60) && fullTime < (11 * 60)) output(" breakfast");
 				else if(fullTime >= (11 * 60) && fullTime < (16 * 60)) output(" tiffin");
 				else output(" supper");
 				output(" rung up out on the terrace.”</i>");
-				output("\n\nYou are led through a hall of synth-marble to the sheltered, elevated terrace at the back of the manor. You look out over the lush, manicured fields as a strange but satisfying meal is laid out in front of you.");
-				output("\n\n<i>“Able is assigned to you, as ever, " + pc.mf("Master", "Miss") + " Steele,”</i> smiles Darnock, leaning back into his favourite leather armchair. Honeyed pheromones slip easily into your lungs as the zil fans out your napkin. <i>“Make any demand of him that crosses your mind. Now - what have you been getting up to, since we last spoke?”</i>");
-				output("\n\nYou give him some heavily edited accounts of your recent adventures as you eat, pondering as you do if there’s anything you want to direct at the affable old aristocrat.");
 				
-				processTime(20 + rand(16));
-				
-				// Restore 25% Energy, + Lust
-				pc.energy(pc.energyMax()/4);
-				pc.lust(5 + rand (6));
-				
-				// [Appearance] [Me] [Plantation] [Zil] [Workers] [Finish]
-				thareManorMenu();
+				thareManorMeal(false);
 			}
 			break;
 	}
+}
+public function thareManorMeal(newPage:Boolean = true):void 
+{
+	if(newPage)
+	{
+		clearOutput();
+		author("Nonesuch");
+		showDarnock(true);
+	}
+	else output("\n\n");
+	
+	output("You are led through a hall of synth-marble to the sheltered, elevated terrace at the back of the manor. You look out over the lush, manicured fields as a strange but satisfying meal is laid out in front of you.");
+	output("\n\n<i>“Able is assigned to you, as ever, " + pc.mf("Master", "Miss") + " Steele,”</i> smiles Darnock, leaning back into his favourite leather armchair. Honeyed pheromones slip easily into your lungs as the zil fans out your napkin. <i>“Make any demand of him that crosses your mind. Now - what have you been getting up to, since we last spoke?”</i>");
+	output("\n\nYou give him some heavily edited accounts of your recent adventures as you eat, pondering as you do if there’s anything you want to direct at the affable old aristocrat.");
+	
+	processTime(20 + rand(16));
+	
+	// Restore 25% Energy, + Lust
+	pc.energy(pc.energyMax()/4);
+	pc.lust(5 + rand (6));
+	
+	// [Appearance] [Me] [Plantation] [Zil] [Workers] [Finish]
+	thareManorMenu();
 }
 
 public function thareManorMenu(done:Boolean = false):void 
@@ -164,6 +184,7 @@ public function thareManorMenu(done:Boolean = false):void
 		addButton(2, "Plantation", thareManorResponse, "plantation", "Plantation", "Ask him what this plantation is all about.");
 		addButton(3, "Zil", thareManorResponse, "zil", "Zil", "Ask why there only seems to be one zil working here.");
 		if(flags["THARE_MANOR_ENTERED"] >= 2) addButton(4, "Workers", thareManorResponse, "workers", "Workers", "Ask where the workers come from.");
+		if(flags["THARE_MANOR_ENTERED"] >= 3 && flags["PQ_SECURED_LAH"] == 2) addButton(9, "Lah?", thareManorResponse, "lah", "Lah?", "Ask what’s happened with the ausar firebrand since you captured him.");
 		addButton(14, "Finish", thareManorResponse, "finish", "Finish", "Finish the meal and conversation.");
 	}
 	else
@@ -240,7 +261,7 @@ public function thareManorResponse(response:String = "none"):void
 			IncrementFlag("PLANTATION_ZIL_TALK");
 			pc.lust(2 + rand (2));
 			
-			// Unlocks <i>“Workers”</i> option
+			// Unlocks “Workers” option
 			if(flags["THARE_MANOR_ENTERED"] < 2)
 			{
 				flags["THARE_MANOR_ENTERED"] = 2;
@@ -255,8 +276,28 @@ public function thareManorResponse(response:String = "none"):void
 			output("\n\n<i>“They didn’t get a choice, dear [pc.name],”</i> says Darnock, considering the distant workers with a fond, paternal smile. <i>“And they must understand their posting not as an imposition, but a grand opportunity: to prove they are capable of obedience and a hard, honest day’s work to future employers. Snugglé works closely with the U.G.C. legal system to secure laborers for out-of-the-way installations like this, where locals cannot be sourced for whatever reason. It’s a win-win for all concerned: the burden on our over-taxed prisons is eased, Snugglé gets access to near-free labor, and the prisoners themselves receive valuable experience and a commendation on their CV for when they are released.”</i>");
 			output("\n\nThe professor gets up and strolls over to the terrace, water glass in hand.");
 			output("\n\n<i>“The security concerns are trifling - we barely need the turrets you saw coming in, at least not where the workforce are concerned. The jungle is several times more effective than any wall or fence in deterring prospective runaways. And, of course - what is the next best audience for proselytizing, after native savages? Fertile soil for the One, " + pc.mf("Master", "Miss") + " Steele. Fertile soil!”</i>");
-			IncrementFlag("PLANTATION_WORKERS_TALK");
+			
 			processTime(3);
+			IncrementFlag("PLANTATION_WORKERS_TALK");
+			
+			addDisabledButton(4, "Workers");
+			break;
+		case "lah":
+			showDarnock();
+			
+			output("<i>“Ah,”</i> says Darnock, dabbing his lips with his napkin, looking rather discomfited by your question. <i>“Yes. Well, that was all rather unfortunate. As I said before and after you brought Remi back into the fold, it was very much my intention to keep him on here at Thare, bend every effort towards reforming him. He is not stupid, or evil, in my estimation - just horribly misguided. Think of the good he could do if his relentless energies and intelligence was turned to higher purpose!”</i>");
+			output("\n\n<i>“However. The U.G.C. legal system did not see eye to eye with me on the matter, once I’d filed my report. They take a very thin view of prisoners who not only attempt escape at minimum security facilities, but then incite violent revolt against it. So he was taken off my hands and moved to an, ahem, decidedly not minimum security facility. Many years added on to his sentence as well, of course.”</i>");
+			output("\n\nThe white-haired human broods, swirling around the water in his glass.");
+			output("\n\n<i>“I suppose it has set an example to all the other inmates. You cannot have the carrot of redemption without the stick of harsher punishment. But I must say the whole affair has made me rather gloomy, and set our mission here in a starker light. I regard Lah as my own failure, and that sacrifice makes it all the more imperative that Mhen’ga be brought into the light!”</i>");
+			
+			processTime(3);
+			
+			if(flags["LAH_TO_GASTIGOTH"] == undefined)
+			{
+				if(flags["PQ_PEACE_TIMESTAMP"] != undefined) flags["LAH_TO_GASTIGOTH"] = flags["PQ_PEACE_TIMESTAMP"];
+				else if(flags["PQ_TRIBE_WREKT_TIMER"] != undefined) flags["LAH_TO_GASTIGOTH"] = flags["PQ_TRIBE_WREKT_TIMER"];
+				else flags["LAH_TO_GASTIGOTH"] = GetGameTimestamp();
+			}
 			
 			addDisabledButton(4, "Workers");
 			break;
@@ -619,7 +660,6 @@ public function thareSexResponse(response:String = "none"):void
 			else
 			{
 				output("\n\nThe opportunity to tease the sensitive, submissive zil some more is far too good to pass up. You slide your hand between his slim, armored thighs and catch hold of his hot prick. His apprehensive murmur turns into a full-throated gasp when you begin to firmly jerk him, at the same time as firmly meeting his cute, upturned ass with your [pc.hips]. Honey oozes and spurts freely from the tip of his cock, bulging and flexing up in your kneading grip. The syrupy smell saturating your nostrils compels you to swiftly change hands, bringing your fingers to your mouth so you can suck them clean.");
-				
 			}
 			// {merge}
 			output("\n\nThe sweet, horny taste of bee-seed");
@@ -672,7 +712,7 @@ public function thareSexResponse(response:String = "none"):void
 			}
 			else
 			{
-				pc.loadInMouth(ppAble);
+				//pc.loadInMouth(ppAble);
 			}
 			pc.orgasm();
 			IncrementFlag("ABLE_BUTTSEXED");

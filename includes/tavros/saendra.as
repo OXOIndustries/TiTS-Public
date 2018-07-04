@@ -47,6 +47,14 @@ public function phoenixLocationSetter():Boolean
 	return false;
 }
 
+public function thePhoenixShipBonus(btnSlot:int):void
+{
+	output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
+	
+	if (flags["SAENDRA PHOENIX AVAILABLE"] != undefined) addButton(btnSlot, "The Phoenix", move, "PHOENIX RECROOM");
+	else addDisabledButton(btnSlot, "The Phoenix", "The Phoenix", "This ship is locked and cannot be entered.");
+}
+
 public function saendraBarAddendum(slot:int = 7):Boolean
 {
 	if (saendraAtBar())
@@ -975,7 +983,7 @@ public function saenAndSeraMet():void
 	
 	output("\n\nSaen blushes. <i>“Hey!”</i>");
 	
-	output("\n\n<i>“Aww, it’s okay, furball,”</i> Sera teases, squeezing Saendra’s breast until she winces. <i>“They turned out pretty nice. You might just get to use them on me... if you’re lucky”</i>");
+	output("\n\n<i>“Aww, it’s okay, furball,”</i> Sera teases, squeezing Saendra’s breast until she winces. <i>“They turned out pretty nice. You might just get to use them on me... if you’re lucky.”</i>");
 	
 	output("\n\nTurning to you, Saen whimpers, <i>“I-it was just once! One cup size, honest!”</i>");
 	
