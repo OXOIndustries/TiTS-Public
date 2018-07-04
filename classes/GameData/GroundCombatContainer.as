@@ -1236,13 +1236,13 @@ package classes.GameData
 				}
 			}
 			
-			genericStatusEffectUpdate("Tracer Rounds");
-			genericStatusEffectUpdate("Torra Lust Weakness");
-			genericStatusEffectUpdate("Chaff Grenade");
+			genericStatusEffectUpdate(target, "Tracer Rounds");
+			genericStatusEffectUpdate(target, "Torra Lust Weakness");
+			genericStatusEffectUpdate(target, "Chaff Grenade");
 		}
 		
 		//Lowers v1 by 1 and removes the status if it's value is 0 afterwards, hope there wasn't a function to do this already
-		public function genericStatusEffectUpdate(statusName:String)
+		public function genericStatusEffectUpdate(target:Creature, statusName:String)
 		{
 			if (target.hasStatusEffect(statusName))
 			{
