@@ -1511,7 +1511,7 @@ public function giveUrbolgBlowies():void
 	}
 	output("\n\n<i>“Aye, a’reckon I can spare some time for ye,”</i> Urbolg nods, dropping a wrench onto a nearby crate. <i>“Not in my workspace, mind. Be better to teach you with some space, and ‘sides,”</i> he says, eyeing you meaningfully, <i>“yer gonna need somewhere comfortable to lay.”</i>");
 	if(pc.isBimbo()) output("\n\n<i>“Let’s go play in my ship then,”</i> you say, clapping your hands together and smiling as you head towards your ship. <i>“I can’t wait");
-	else output("<i>“Oh, not keen to take me over a crate?”</i> you say over your shoulder, already walking towards your ship. <i>“I thought worse of you");
+	else output("<i>“Oh, not keen to take me over a crate?”</i> you say over your shoulder, already [pc.walking] towards your ship. <i>“I thought worse of you");
 	output("!”</i>");
 
 	if(pc.isBimbo()) output("\n\n<i>“Hnh,”</i> Urbolg grunts, walking up the ramp behind you. <i>“Nice view");
