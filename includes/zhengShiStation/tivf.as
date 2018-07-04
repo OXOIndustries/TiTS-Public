@@ -54,9 +54,10 @@ public function maikeMyDayTivf():void
 {
 	clearOutput();
 	showTivf();
+	flags["TIVF_MAIKE_TALK"] = 1;
 	output("<i>“Tell me about your mistress,”</i> you prompt the zil boy.");
 	output("\n\n<i>“What’s there to tell?”</i> he laughs airily. <i>“She’s a slaver. A starfarer like you. She’s large, has horns, but also wings and a stinger like a zil. Though her stinger ejects something <b>very</b> different than one of my sisters’ would...”</i>");
-	output("\n\nTivf sniggers at some hidden meaning. <i>“Sorry. She’s... exactly what I was told to expect from starfarers: she is cruel and sadistic, loves to take advantage of every slave she can get her wicked hands on. Nothing is too sacred to violate, nor too taboo to indulge in. If she sees someone as attractive as you, I know she’d go for you in a heartbeat! If she does, try and struggle: she likes it most when she has to work for her play.”</i>");
+	output("\n\nTivf sniggers at some hidden meaning. <i>“Sorry. She’s... exactly what I was told to expect from starfarers: she is cruel and sadistic, loves to take advantage of every slave she can get her wicked hands on. Nothing is too sacred to violate, nor too taboo to indulge in. If she sees someone as attractive as you, I know she’d go for you in a heartbeat! If she does, don't struggle: she likes it most when she has to work for her play.”</i>");
 	output("\n\nThat’s distressing... but also maybe something you could use to your advantage. <i>“And where is she right now?”</i>");
 	output("\n\nThe zil shrugs. <i>“Somewhere in the mine, I guess? She’s been ‘working’ so much lately, sometimes for days at a time. She usually works in the deepest parts - at least, that’s what she says, while making me explore </i>hers<i>. If you want to find her, and I can’t imagine why you would, you’re on your own exploring the mines. I’ve never been down there, and from what Mistress Maike tells me, I don’t want to.”</i>");
 	output("\n\nYeah, a delicate boy like him would probably get eaten alive down there... or worse, get some callouses.");
@@ -125,13 +126,12 @@ public function maikeRestOverride():void
 	clearOutput();
 	output("Since the overseer isn’t around, her quarters seem like a perfectly safe place to catch your breath. You saunter over to her huge bed and help yourself to its many pillows and silken sheets.");
 	//if slaves freed:
-	if(9999 == 0)
+	if(flags["MAIKE_SLAVES_RELEASED"] == 1)
 	{
 		output("\n\nYou quickly fall asleep, confident that nobody’s going to bother you after all the chaos you’ve unleashed to keep the pirates busy...");
-		eventBufferXP();
-		sleepHeal();
+		
 		clearMenu();
-		addButton(0,"Next",timeShiftMainMenu,7*60);
+		addButton(0,"Next",tivfSleepTime,7*60);
 	}
 	//Slaves not free:
 	else
@@ -152,11 +152,10 @@ public function noThanksTivf():void
 	showTivf();
 	output("You shake you head and tell Tivf you’d like to relax alone. He just shrugs and rolls over, facing away from you.");
 	output("\n\nYou quickly fall asleep, content to let the wasp-boy go unused.");
-	eventBufferXP();
-	sleepHeal();
 	processTime(3);
+	
 	clearMenu();
-	addButton(0,"Next",timeShiftMainMenu,7*60);
+	addButton(0,"Next",tivfSleepTime,7*60);
 }
 
 //[Sure, Tivf]
@@ -183,11 +182,10 @@ public function stayChasteWithTivf():void
 	showTivf();
 	output("You stay silent, ignoring Tivf’s mounting arousal. Whether he’s used to that treatment or not, he continues his work without complaint. After perhaps fifteen more minutes of vigorous massaging, Tivf rests his palms on your shoulders and says, <i>“There, that should do it. Now rest, and let healing flow through you...”</i>");
 	output("\n\nYou were already half asleep from the constant caresses, and when he finally gets off of you, it’s only a few moments more before you succumb to the sweet embrace of slumber.");
-	eventBufferXP();
 	processTime(3);
-	sleepHeal();
+	
 	clearMenu();
-	addButton(0,"Next",timeShiftMainMenu,7*60);
+	addButton(0,"Next",tivfSleepTime,7*60);
 }
 
 //[Lewd it Up]
@@ -214,26 +212,20 @@ public function lewdItUpWithTivf():void
 	pc.lust(25);
 	processTime(20);
 	output("\n\nYou’re almost asleep already...");
+	
 	clearMenu();
-	eventBufferXP();
-	sleepHeal();
-	clearMenu();
-	addButton(0,"Next",timeShiftMainMenu,7*60);
+	addButton(0,"Next",tivfSleepTime,7*60);
 }
 
-public function timeShiftMainMenu(minutes:Number = 5):void
+public function tivfSleepTime(minPass:Number = 5):void
 {
-	//Secretly pass the time AFTER the scene.
-	if(minutes != 0) processTime(minutes);
-	//Show any events that procced
-	if(processEventBuffer()) return;
-	if(eventQueue.length > 0) {
-		//Do the most recent:
-		eventQueue[0]();
-		//Strip out the most recent:
-		eventQueue.splice(0,1);
-		return;
-	}
-	//Otherwise, main menu time!
-	mainGameMenu();
+	clearOutput();
+	showBust("");
+	
+	output("... You sleep for about " + num2Text(Math.round(minPass/60)) + " hours...");
+	
+	genericSleep(minPass);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

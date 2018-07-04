@@ -1212,6 +1212,12 @@ package classes.GameData
 					target.removeStatusEffect("Petra overcharge");
 				}
 			}
+			
+			if (target.hasStatusEffect("SHIZZY CUM"))
+			{
+				output("\n\n<b>She reeks so strongly of pheromones that it's starting to get to you.</b>");
+				applyDamage(damageRand(new TypeCollection({pheromone:target.statusEffectv1("SHIZZY CUM")}), 20), null, target, "minimal");
+			}
 		}
 		
 		public function updateStatusEffects(collection:Array):void
@@ -1427,6 +1433,10 @@ package classes.GameData
 			{
 				// trip
 				addButton(14, "Stand Up", standupRound, undefined, "Stand Up", "Stand up, getting rid of the “Trip” status effect. This will consume your offensive action for this turn.");
+			}
+			else if (_hostiles.length == 1 && _hostiles[0] is Shizuya)
+			{
+				addDisabledButton(14, "Run", "Run", "You agreed to this, no turning back now.");
 			}
 			else
 			{
@@ -1880,6 +1890,9 @@ package classes.GameData
 				(target as Anno).grappleStruggle();
 			}
 			
+			//Track if struggled for Maike
+			if(hasEnemyOfClass(Maike)) pc.createStatusEffect("MaikeStruggled", 0, 0, 0, 0, true, "", "", true);
+
 			if (hasEnemyOfClass(Cockvine) && target is PlayerCharacter)
 			{
 				// TODO pull this in!
@@ -2075,6 +2088,7 @@ package classes.GameData
 						target.removeStatusEffect("Grappled");
 					}
 				}
+
 				
 				// Failure to escape grapple
 				if(target.hasStatusEffect("Grappled"))
@@ -2471,17 +2485,21 @@ package classes.GameData
 			
 			// Milk Squirt
 			if (pc.canMilkSquirt())
-				teaseList.push(["Milk Squirt", teaseSquirt, target, "Milk Squirt", "Spray the enemy with your [pc.milk], arousing them."]);
+				teaseList.push(["Milk Squirt", teaseSquirt, target, "Milk Squirt", "Spray the enemy with your [pc.milk], arousing " + target.getCombatPronoun("o") + "."]);
 			else if (InCollection(pc.milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK) || pc.isMilkTank())
 				teaseList.push(["Milk Squirt", null, null, "Milk Squirt", "You do not currently have enough [pc.milkNoun] available to squirt any."]);
 			
 			// Dick Slap
-			if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex()))
-			teaseList.push(["Dick Slap", dickslap, target, "Dick Slap", "Slap the enemy with your aphrodisiac-coated dick."]);
+			if(pc.biggestCockLength() >= 12 && pc.hasCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED, pc.biggestCockIndex())) {
+				if(!pc.hasFlightEffects() && target.hasFlightEffects()) teaseList.push(["Dick Slap", null, null, "Dick Slap", "Your enemy is flying and you cannot reach " + target.getCombatPronoun("o") + " for a slap."]);
+				else teaseList.push(["Dick Slap", dickslap, target, "Dick Slap", "Slap the enemy with your aphrodisiac-coated dick."]);
+			}
 			
 			// Myr Venom
-			if (pc.hasPerk("Myr Venom") && target.isLustImmune == false)
-			teaseList.push(["Myr Venom", myrVenomBite, target, "Myr Venom Bite", "Bite the enemy and inject them with your red myr venom."]);
+			if (pc.hasPerk("Myr Venom") && target.isLustImmune == false) {
+				if(!pc.hasFlightEffects() && target.hasFlightEffects()) teaseList.push(["Myr Venom", null, null, "Myr Venom Bite", "Your enemy is flying and you cannot reach " + target.getCombatPronoun("o") + " for a bite."]);
+				else teaseList.push(["Myr Venom", myrVenomBite, target, "Myr Venom Bite", "Bite the enemy and inject " + target.getCombatPronoun("o") + " with your red myr venom."]);
+			}
 			
 			clearMenu();
 			for(i = 0; i < teaseList.length; i++)
@@ -4571,6 +4589,12 @@ package classes.GameData
 				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
 				{
 					// noop, this is handled as part of updateStatusEffectsFor()
+				}
+				//Lock ended
+				else if(target.hasStatusEffect("Target Lock") && (target.hasStatusEffect("Stunned") || target.isBlind())) 
+				{
+					output("\n\nYour attack seems to short out Roz’s sensors for a moment - <b>the target lock is broken!</b>");
+					target.removeStatusEffect("Target Lock");
 				}
 				else if (target.hasStatusEffect("Grappled"))
 				{

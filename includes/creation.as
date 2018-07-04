@@ -32,6 +32,7 @@ public function hasIllegalInput(sText:String = ""):Boolean
 			case "mitzi": cheatFunc = Cheats.MitziUnlock; break;
 			case "88mph": cheatFunc = Cheats.TimeSkip; break;
 			case "tistheseason": cheatFunc = Cheats.toggleSeasons; break;
+			case "anofferyoucantrefuse": cheatFunc = Cheats.YakuzaUnlock; break;
 			
 			// Treatment
 			case "bimbo": cheatFunc = Cheats.TryTreatmentHaxCowGirl; break;

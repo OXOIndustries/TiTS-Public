@@ -53,6 +53,7 @@ public function lundHangoutBonus():Boolean
 		meetLund();
 		return true;
 	}
+
 	//GOODBYE, LUND!
 	else if(flags["LUND_FUCKED_OFF"] == 1) {}
 	else
@@ -67,10 +68,35 @@ public function lundHangoutBonus():Boolean
 		{
 			if(pc.hasGenitals()) 
 			{
-				if(pc.breastRows[0].piercing is LundsRings) addButton(1,"Submit2Lund",lundSubmissionThing,undefined,"Lund already owns you. You may as well enjoy it.");
+				if(pc.breastRows[0].piercing is LundsRings) addButton(1,"Submit2Lund",lundSubmissionThing,undefined, "Submit to Lund", "Lund already owns you. You may as well enjoy it.");
 				else addDisabledButton(1,"Submit2Lund","Submit2Lund","How can you properly submit without your rings?");
 			}
 			else addDisabledButton(1,"Submit2Lund","Submit2Lund","Lund has no use for a slave with no genitals.");
+		}
+		if (flags["LUND_MADE_U_SUBMIT"] == undefined && flags["LUND_DICKED_DOWN"] != undefined)
+		{
+			if (flags["LUND_BROKEN"] == undefined)
+			{
+				if (!pc.hasCock()) addDisabledButton(2, "Break Him", "Break Him", "You need a dick to start breaking Lund in.");
+				else if (!pc.hasItemByClass(Thong)) addDisabledButton(2, "Break Him", "Break Him", "You need a Thong to start breaking Lund in. You can purhcase a Thong on Tavros.");
+				else addButton(2, "Break Him", lundBreakHim, undefined, "Break Him", "Start breaking your puppyboy in.");
+			}
+			else if (flags["LUND_BROKEN"] == 1)
+			{
+				if (!pc.hasCock()) addDisabledButton(2, "Break Him", "Break Him", "You need a dick to continue breaking Lund in.");
+				else addButton(2, "Break Him", lundBreakHim, undefined, "Break Him", "Continue breaking your puppyboy in.");
+			}
+			else if (flags["LUND_BROKEN"] == 2)
+			{
+				if (!pc.hasCock()) addDisabledButton(2, "Break Him", "Break Him", "You need a dick to continue breaking Lund in.");
+				else if (!pc.hasItemByClass(Anusoft)) addDisabledButton(2, "Break Him", "Break Him", "You need some Anusoft to continue breaking Lund in. You can purchase Anusoft Cream on Tavros.");
+				else addButton(2, "Break Him", lundBreakHim, undefined, "Break Him", "Continue breaking your slutty puppyboy in.");
+			}
+			else if (flags["LUND_BROKEN"] == 3)
+			{
+				if (!pc.hasCock()) addDisabledButton(2, "Break Him", "Break Him", "You need a dick to continue breaking Lund in.");
+				else addButton(2, "Break Him", lundBreakHim, undefined, "Break Him", "Go check up on your pet dogboy.");
+			}
 		}
 	}
 	return false;
@@ -307,6 +333,17 @@ public function approachLund(back:Boolean = false):void
 			output("\n\nOh... maybe you should wait a little while before asking him for another ride.");
 		}
 	}
+	else if (flags["LUND_BROKEN"] != undefined)
+	{
+		output("\n\n<i>“Hey there, cutey,”</i> you say, smiling at him. <i>“You sure look hot in all those clothes you’ve got on.”</i>");
+		
+		output("\n\n<i>“M-[pc.master],”</i> he pants, putting his hands out to touch you before realizing you’re the one who decides that. <i>“Welcome back!”</i>");
+		
+		output("\n\n<i>“Aww, thanks,”</i> you murmur, stepping closer and letting your hands run free through his thick fur as you pull him into a hug against your body. <i>“Always nice to see my favorite pet.”</i>");
+		
+		output("\n\nYou can hear his tail thumping against the wall behind him.");
+
+	}
 	//Defaults
 	else
 	{
@@ -363,13 +400,27 @@ public function lundAppearance():void
 {
 	clearOutput();
 	showLund();
-	output("Lund stands at a very proud 5\' 4\", covered in pale blue fur. Though his coat is quite shaggy and thick, you can still see the musculature underneath. He’s not particularly big, but he is a very well-built biped in a compact package. Wearing nothing across his torso, you can see his well-defined pectoral muscles and multiple rows of abdominals. He has a brown cloth belt around his waist with two short hunting swords sheathed there, lustrous and clearly created with some care.");
-	output("\n\nAround his wrists, he has some furry armlets that you suppose he wears to stay warm. You wonder how much good it’s doing him what with the bare chest and exposed skin, but he’s evidently managing. He at least has a sort of short, fluffy kilt covering his thighs, and furry anklets to match the ones around his wrists.");
-	output("\n\n<i>“Don’t you get cold?”</i> you ask him. He only shrugs.");
-
-	if(flags["SEXED_LUND"] != undefined) output("\n\nYou know from prior experience that though it’s hidden by his clothing and a sheath right now, Lund has a huge 10”</i> cock totally at odds with his relatively tiny frame. No wonder he’s so proud of himself. When he cums, a fat knot forms at the base of it, bulging with virility and ensuring his partner is going to be taking in - or swallowing - every shot of jizz he has to give.");
-	//Dicked him:
-	if(flags["LUND_DICKED_DOWN"] != undefined) output(" You also know, through intimate discovery, that he has a tight, sensitive asshole between his taut, firm buttcheeks that feels amazing to be inside.");
+	if (flags["LUND_BROKEN"] == undefined || flags["LUND_BROKEN"] == 1)
+	{
+		output("Lund stands at a very proud 5\' 4\", covered in pale blue fur. Though his coat is quite shaggy and thick, you can still see the musculature underneath. He’s not particularly big, but he is a very well-built biped in a compact package. Wearing nothing across his torso, you can see his well-defined pectoral muscles and multiple rows of abdominals. He has a brown cloth belt around his waist with two short hunting swords sheathed there, lustrous and clearly created with some care.");
+		output("\n\nAround his wrists, he has some furry armlets that you suppose he wears to stay warm. You wonder how much good it’s doing him what with the bare chest and exposed skin, but he’s evidently managing. He at least has a sort of short, fluffy kilt covering his thighs, and furry anklets to match the ones around his wrists.");
+		output("\n\n<i>“Don’t you get cold?”</i> you ask him. He only shrugs.");
+		if(flags["SEXED_LUND"] != undefined) output("\n\nYou know from prior experience that though it’s hidden by his clothing and a sheath right now, Lund has a huge 10\" cock totally at odds with his relatively tiny frame. No wonder he’s so proud of himself. When he cums, a fat knot forms at the base of it, bulging with virility and ensuring his partner is going to be taking in - or swallowing - every shot of jizz he has to give.");
+		//Dicked him:
+		if(flags["LUND_DICKED_DOWN"] != undefined) output(" You also know, through intimate discovery, that he has a tight, sensitive asshole between his taut, firm buttcheeks that feels amazing to be inside.");
+	}
+	else
+	{
+		output("\n\nLund stands at a very proud 5\' 4\", covered in pale blue fur. Though his coat is quite shaggy and thick, you can still see the musculature underneath. He’s not particularly big, but he is a very well-built biped in a compact package. Wearing nothing across his torso, you can see his well-defined pectoral muscles and multiple rows of abdominals. He has a brown cloth belt around his waist with two short hunting swords sheathed there, lustrous and clearly created with some care.");
+		output("\n\nAround his wrists, he has some furry armlets that you suppose he wears to combat the cold. You wonder how much good it’s doing him what with the bare chest and exposed skin, but he’s evidently managing. He’s got a cute little thong on below the belt, the only garment you’ve allowed him to wear. It does almost nothing to conceal what it’s meant to, but it looks sexy as hell on him.");
+		output("\n\n<i>“Looking good, Lund,”</i> you murmur to him, putting your hand on his stomach and stroking him. He looks");
+		if (pc.tallness >= 64) output(" up");
+		output(" at you with a shy smile, lust in his eyes.");
+		output("\n\nYou know from prior experience that though it’s just barely hidden by his thong and a sheath right now, Lund has a huge 10\" cock totally at odds with his relatively tiny frame. It’s amusing and more than a little hot to see just how much he cums from it when you fuck him in the ass, which has proven to be extremely sensitive.");
+		if (flags["LUND_ANUSOFT"] == undefined) {}
+		else if (flags["LUND_ANUSOFT"] == 1) output(" And that was <i>before</i> you used the Anusoft on him.");
+		else output(" Now he has a lewd fuckhole back there totally unhidden by the line of the thong, just begging for you to slam your cock in and fuck it.");
+	}
 	clearMenu();
 	addButton(0,"Next",approachLund,true);
 }
@@ -664,7 +715,8 @@ public function lundSexMenu():void
 	clearMenu();
 	//[Doggystyle] [DickHimDown] [Ride him] [Leave]
 	addButton(0,"Doggystyle",lundDoggyStyle,undefined,"Doggystyle","Get railed by the korgonne the way he knows best.");
-	if(pc.hasCock() && pc.cockThatFits(500) >= 0 && !pc.isBimbo() && flags["LUND_MADE_U_SUBMIT"] == undefined && !pc.hasStatusEffect("LUND_DICKED_CD") && flags["LUND_COVERED_4"] != -1) addButton(1,"DickHimDown",penisRouter,[dickLundDown,500,false],"Dick Him Down","Teach the arrogant korgonne a thing or two about where he belongs.");
+	if(flags["LUND_BROKEN"] != undefined) addDisabledButton(1,"DickHimDown","Dick Him Down","There is no point in turning the tables on him if he is already your bitch!");
+	else if(pc.hasCock() && pc.cockThatFits(500) >= 0 && !pc.isBimbo() && flags["LUND_MADE_U_SUBMIT"] == undefined && !pc.hasStatusEffect("LUND_DICKED_CD") && flags["LUND_COVERED_4"] != -1) addButton(1,"DickHimDown",penisRouter,[dickLundDown,500,false],"Dick Him Down","Teach the arrogant korgonne a thing or two about where he belongs.");
 	else if(pc.isBimbo()) addDisabledButton(1,"DickHimDown","Dick Him Down","He’s wayyy too much of a stud for you to even think about dicking down a notch!");
 	else if(flags["LUND_MADE_U_SUBMIT"] != undefined) addDisabledButton(1,"DickHimDown","Dick Him Down","After how he fucked you, you can’t even begin to imagine turning the tables on him!");
 	else if(flags["LUND_COVERED_4"] == -1) addDisabledButton(1,"DickHimDown","Dick Him Down","After your bragging, you don’t think he’ll ever agree to this again.");
@@ -686,7 +738,7 @@ public function lundDoggyStyle():void
 	var lundipoo:PregnancyPlaceholder = lundCumPlaceholder();
 	
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
-	if(pc.isBimbo()) 
+	if(pc.isBimbo() && flags["LUND_BROKEN"] == undefined) 
 	{
 		output("<i>“So like, how do you wanna fuck?”</i> you say, tilting your head and putting some serious thought into it. <i>“I wanna-”</i>");
 		output("\n\n<i>“");
@@ -703,7 +755,7 @@ public function lundDoggyStyle():void
 		return;
 	}
 	//If you’ve selected [Submit], you get a different scene the next time you pick Doggystyle:
-	else if(flags["LUND_MADE_U_SUBMIT"] != undefined)
+	else if(flags["LUND_MADE_U_SUBMIT"] != undefined && flags["LUND_BROKEN"] == undefined)
 	{
 		//Just use a generic room with no exits :3
 		currentLocation = "MYRNAS CAVE";
@@ -884,24 +936,40 @@ public function lundDoggyStyle():void
 			if(x <= 0) x = rand(pc.totalVaginas());
 		}
 		moveToLundsHouse();
-		output("<i>“So you wanna take me doggy, then?”</i> you say, smirking ");
-		if(pc.tallness > 5*12+4) output("down ");
-		output("at Lund. <i>“Try and take this");
-		if(pc.tallness > 5*12*4) output("big, ");
-		output(" dumb alien down a notch?”</i>");
 
-		output("\n\n<i>“");
-		if(!korgiTranslate()) output("You asking for it,");
-		else output("You’re asking for it,");
-		output("”</i> Lund warns you. <i>“");
-		if(!korgiTranslate()) output("Lund going to fuck alien so hard you forget name.");
-		else output("I’m going to fuck you so hard you’ll forget your name.");
-		output("”</i>");
+		if (flags["LUND_BROKEN"] == undefined)
+		{
+			output("<i>“So you wanna take me doggy, then?”</i> you say, smirking ");
+			if(pc.tallness > 5*12+4) output("down ");
+			output("at Lund. <i>“Try and take this");
+			if(pc.tallness > 5*12*4) output("big, ");
+			output(" dumb alien down a notch?”</i>");
 
-		if(pc.tallness >= 12*6) output("\n\n<i>“Wouldn’t expect anything less from my little man,”</i> you say, bending at the knees to look him in the eyes demeaningly.");
-		else output("\n\n<i>“I don’t know if you’ve got the size for that, champ,”</i> you say, smirking at him. <i>“You might be a big boy here, but out among the aliens you come up a little... short.”</i>");
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("You asking for it,");
+			else output("You’re asking for it,");
+			output("”</i> Lund warns you. <i>“");
+			if(!korgiTranslate()) output("Lund going to fuck alien so hard you forget name.");
+			else output("I’m going to fuck you so hard you’ll forget your name.");
+			output("”</i>");
 
-		output("\n\nHis eyes flash with a fiery anger, and you can hardly stifle your laughter. You’ve <i>really</i> riled Lund up now. This is looking like it’ll be one of the hardest fucks you’ve ever had, and you can scarcely bear the waiting. You let him walk you to his room, a playful smile lingering unseen on your face.");
+			if(pc.tallness >= 12*6) output("\n\n<i>“Wouldn’t expect anything less from my little man,”</i> you say, bending at the knees to look him in the eyes demeaningly.");
+			else output("\n\n<i>“I don’t know if you’ve got the size for that, champ,”</i> you say, smirking at him. <i>“You might be a big boy here, but out among the aliens you come up a little... short.”</i>");
+
+			output("\n\nHis eyes flash with a fiery anger, and you can hardly stifle your laughter. You’ve <i>really</i> riled Lund up now. This is looking like it’ll be one of the hardest fucks you’ve ever had, and you can scarcely bear the waiting. You let him walk you to his room, a playful smile lingering unseen on your face.");
+		}
+		else
+		{
+			output("<i>“Do you think you can handle fucking me, Lund?”</i> you ask him, fluttering your eyelashes at him. <i>“A nice reward for my little doggy pet, don’t you think?”</i>");
+			
+			output("\n\n<i>“F-fuck "+ (!korgiTranslate() ? "[pc.master]" : "you") +"?”</i> he says, gulping. <i>“"+ (!korgiTranslate() ? "Lund not know if... if okay" : "I don’t know if... is that okay") +"?”</i>");
+			
+			output("\n\n<i>“Of course it’s okay, silly pup,”</i> you reprimand him, flicking his snout lightly. <i>“I’m the one telling you to do it.”</i>");
+			
+			output("\n\n<i>“Oh, well,”</i> Lund says, nodding and rubbing his nose. <i>“Okay, [pc.master].”</i>");
+			
+			output("\n\nYou let him walk you to his room, a playful smile on your face. It should be fun to see how he handles getting unrestricted access to his master.");
+		}
 
 		if(!pc.isExposed()) output("\n\nThe way he strips you off is forceful, lusty, and one of the most erotic things you’ve ever had the pleasure of experiencing. His sheer desire, his raw lust for your body is palpable. " + pc.mf("You grunt in pleasure and slide your hands down his muscular back to his ass while he rubs your nipples with his thumbs, biting your neck and grinding against you","You cry out and wrap your arms around his muscular back when he bites a [pc.nipple] just hard enough to hurt") + ".");
 		output("\n\nYou respond in kind, sliding your hands up and down his lower back, fingers creating furrows in his thick fur, roughly pulling the ");
@@ -974,10 +1042,19 @@ public function lundDoggyStyle():void
 		output(". Picturesque you aren’t, but right now you couldn’t possibly care less. The way you’re fucking rippling around his knot feels <i>so</i> goddamn good, and if his loud groans are any indication, he’s feeling it too");
 		output("\n\nWhen he finally finishes, he leaves his knot inside you and plops down on your back with a grunt. You both take a deep inhale and groan, the exertion of the past half an hour washing over you in spades. Lund stretches atop you, limbs splaying to either side.");
 		output("\n\n<i>“Guess they weren’t kidding it being about the size of fight in the dog,”</i> you mumble, reaching back to rub his neck scruff. <i>“That was... satisfying.”</i>");
-		output("\n\n<i>“Satisfying? That it?”</i> he says abruptly, sitting back up and putting his hands on your back. <i>“");
-		if(!korgiTranslate()) output("Lund go again.");
-		else output("I’m going again.");
-		output("”</i>");
+
+		if (flags["LUND_BROKEN"] == undefined)
+		{
+			output("\n\n<i>“Satisfying? That it?”</i> he says abruptly, sitting back up and putting his hands on your back. <i>“");
+			if(!korgiTranslate()) output("Lund go again.");
+			else output("I’m going again.");
+			output("”</i>");
+		}
+		else
+		{
+			output("\n\n<i>“"+ (!korgiTranslate() ? "Lund not stop there" : "I don’t want to stop there") +",”</i> he pants, sliding his hands back into place. <i>“[pc.master]! [pc.master]!”</i>");
+		}
+
 		output("\n\n<i>“Huh- Oh!”</i> you begin, before Lund cuts you off with a well-placed thrust. <i>“I- nngh! Hhhn!”</i>");
 		output("\n\n<i>Fuck it,</i> you think, tongue lolling from your mouth. If he wants to show off his endurance and give you multiple orgasms during the act, he’s welcome to. Besides, the way he’s using that <i>goddamn</i> knot of his to fuck you now, you don’t really want him to stop anyway. Post-orgasm sensitivity betraying you in the worst way in your war for dominance, you’re forcefully brought to a groaning orgasm while Lund fucks your ");
 		if(x >= 0) output("[pc.pussy]");
@@ -991,14 +1068,28 @@ public function lundDoggyStyle():void
 
 		output("\n\nBy the time he <i>does</i> cum again, it’s on the heels of your third shuddering, moaning orgasm. The squeezing is just too much for him to hold out against, and he groans loudly as he paints your insides with creamy spunk all over again, adding to the jizz he’s already offloaded in you. Finally, his knot slips free and he sits back on his haunches, panting hard.");
 		output("\n\nYou’re left huffing and covered in a sheen of shimmering sweat, heat rising from your bodies with visible steam, and you’ve probably gotten some bruises across your ass. But <i>fuck</i> if that wasn’t one of the most satisfying fucks you’ve ever gotten. The way your [pc.vagOrAss " + x + "] aches is incredibly satisfying, matched only by the warm, slow drool of Lund’s cum running down your backside.");
-		output("\n\n<i>“Alright, we can call this a draw,”</i> you moan, pushing yourself up with shaky arms. <i>“I think you’ve proven you fuck as well as you talk shit.”</i>");
-		output("\n\n<i>“");
-		if(!korgiTranslate()) output("Some respect for alien,");
-		else output("I have some respect for you,");
-		output("”</i> Lund admits, leaning backwards and stretching. <i>“Could go again, though.”</i>");
-		output("\n\nYou turn and eye him. Really, after that, he can keep going? Part of you wants to make him prove it, ");
-		if(pc.isAmazon(false) || pc.isTreatedBull() || pc.PQ() >= 70) output("knowing that due to your exceptional strength you should be able to keep up.");
-		else output("but you’re really not sure if you can keep up with him and you know for sure that if you show him weakness, he’ll take full advantage of it - and you.");
+
+		if (flags["LUND_BROKEN"] == undefined)
+		{
+			output("\n\n<i>“Alright, we can call this a draw,”</i> you moan, pushing yourself up with shaky arms. <i>“I think you’ve proven you fuck as well as you talk shit.”</i>");
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("Some respect for alien,");
+			else output("I have some respect for you,");
+			output("”</i> Lund admits, leaning backwards and stretching. <i>“Could go again, though.”</i>");
+			output("\n\nYou turn and eye him. Really, after that, he can keep going? Part of you wants to make him prove it, ");
+			if(pc.isAmazon(false) || pc.isTreatedBull() || pc.PQ() >= 70) output("knowing that due to your exceptional strength you should be able to keep up.");
+			else output("but you’re really not sure if you can keep up with him and you know for sure that if you show him weakness, he’ll take full advantage of it - and you.");
+		}
+		else
+		{
+			output("\n\n<i>“Good boy, Lund,”</i> you pant, rolling over onto your front and beckoning him towards you. He flops on top of you, and you scratch his head while his cum pools beneath you. <i>“Good boy. See, you can do it if you try.”</i>");
+			
+			output("\n\n<i>“"+ (!korgiTranslate() ? "Lund thank [pc.master]" : "Thank you, [pc.master]") +"”</i>, he moans, hugging you and relaxing against your body. <i>“So nice...”</i>");
+			
+			output("\n\n<i>“Mmm,”</i> you agree, thinking back on your little journey with Lund. You have to admit, it’s a nice perk to have his big, fat cock all to yourself. Not to mention he’s only too eager to fuck you any time you want it. Really, you have to congratulate yourself for your ingenuity.");
+			
+			output("\n\nYou give Lund a kiss on the snout before you leave, setting his tail wagging as he sits on the bed and watches you go.");
+		}
 		pc.orgasm();
 		pc.orgasm();
 		if(x >= 0)
@@ -1343,7 +1434,7 @@ public function dickLundDown(x:int):void
 	else output(" <i>“You should be able to handle it, big guy like you");
 	output(".”</i>");
 
-	if(flags["LUND_DICKED_DOWN"] == undefined) 
+	if(flags["LUND_DICKED_DOWN"] == undefined && flags["LUND_BROKEN"] == undefined) 
 	{
 		output("\n\n<i>“");
 		if(!korgiTranslate()) output("You want Lund to-");
@@ -1438,20 +1529,36 @@ public function dickLundDown(x:int):void
 	}
 	else
 	{
-		//Need dick, can’t be bimbo. Can’t have submitted.
-		output("\n\n<i>“Fine, but only this once. No more,”</i> he warns, looking from side to side.");
-		output("\n\n<i>“Awww, don’t worry,”</i> you murmur, getting closer to the bashful korgonne and running a hand through his hair. <i>“No-one will ever know how much you enjoy being my little </i>bitch<i>. Or what you sound like when my cock slides between your legs,”</i> you continue, moving your hand lower to rub his chest. <i>“That’s just for me and you, cutie.”</i>");
-		output("\n\n<i>“Alright, alright,”</i> he mumbles, defeated and with a growing bulge beneath his loincloth. <i>“Come to ");
-		if(korgiTranslate()) output("my ");
-		output("room.”</i>");
-		output("\n\nYou stride behind him with a smile across your face, feeling like a trillion bucks. Being guided to his own room by the adorable Korgii male you’ve bent to your will, so that you can get him on his back and make him cum all over himself while he moans your name? Yeah. You could <i>definitely</i> get used to this.");
-		output("\n\nWhen you get to his room, you shut the door behind you and wait, standing there with a smirk. Lund turns to face you, confused.");
-		output("\n\n<i>“");
-		if(!korgiTranslate()) output("What alien doing?");
-		else output("What are you doing?");
-		output("”</i> he asks, already somewhat uncertain.");
-		output("\n\n<i>“I’d just like you to get me ready to fuck you,”</i> you say innocently, gesturing at your crotch. He takes a step towards you and you stop him, pointing at his snout. <i>“With your mouth.”</i>");
-		output("\n\nFor a moment, you can see him fighting this. His pride and dignity against your overbearing will and the fact he really, really wants to feel your [pc.cock " + x + "] inside him again. It doesn’t take long for the battle to be decided, and he drops to his knees in front of your grinning visage. He’s really yours now, and he knows it.");
+		if (flags["LUND_BROKEN"] != undefined)
+		{
+			output("\n\n<i>“Not that you’ll need much convincing </i>now<i>, but I’d like to fuck that tight little ass of yours, Lund,”</i> you tell him, rubbing under his snout. <i>“Would you like that?”</i>");
+			
+			output("\n\nHe looks starstruck. <i>“Uh huh.”</i>");
+			
+			output("\n\nYou chuckle. <i>“Thought so.”</i>");
+			
+			output("\n\nYou follow behind him with a smile, watching the way his ass moves in that thong you got him. It’s hypnotizing, swaying from side to side while the back rides up between his cheeks");
+			if (flags["LUND_ANUSOFT"] != undefined) output(", doing nothing to cover the donut ring he has going on in the back");
+			output(". Really, it might have been your best use of credits ever.");
+			
+			output("\n\nWhen you get to his room, you shut the door behind you and wait. As broken in as he is, Lund is quick to acquiesce and kneel before you. He’s all too eager and ready to prep you to assfuck him, and by now he has it down to an art.");
+		}
+		else
+		{
+			output("\n\n<i>“Fine, but only this once. No more,”</i> he warns, looking from side to side.");
+			output("\n\n<i>“Awww, don’t worry,”</i> you murmur, getting closer to the bashful korgonne and running a hand through his hair. <i>“No-one will ever know how much you enjoy being my little </i>bitch<i>. Or what you sound like when my cock slides between your legs,”</i> you continue, moving your hand lower to rub his chest. <i>“That’s just for me and you, cutie.”</i>");
+			output("\n\n<i>“Alright, alright,”</i> he mumbles, defeated and with a growing bulge beneath his loincloth. <i>“Come to ");
+			if(korgiTranslate()) output("my ");
+			output("room.”</i>");
+			output("\n\nYou stride behind him with a smile across your face, feeling like a trillion bucks. Being guided to his own room by the adorable Korgii male you’ve bent to your will, so that you can get him on his back and make him cum all over himself while he moans your name? Yeah. You could <i>definitely</i> get used to this.");
+			output("\n\nWhen you get to his room, you shut the door behind you and wait, standing there with a smirk. Lund turns to face you, confused.");
+			output("\n\n<i>“");
+			if(!korgiTranslate()) output("What alien doing?");
+			else output("What are you doing?");
+			output("”</i> he asks, already somewhat uncertain.");
+			output("\n\n<i>“I’d just like you to get me ready to fuck you,”</i> you say innocently, gesturing at your crotch. He takes a step towards you and you stop him, pointing at his snout. <i>“With your mouth.”</i>");
+			output("\n\nFor a moment, you can see him fighting this. His pride and dignity against your overbearing will and the fact he really, really wants to feel your [pc.cock " + x + "] inside him again. It doesn’t take long for the battle to be decided, and he drops to his knees in front of your grinning visage. He’s really yours now, and he knows it.");
+		}
 		output("\n\n<i>“Good boy,”</i> you tell him, ruffling his hair. <i>“Just do what comes natural, okay?”</i>");
 		if(!pc.isCrotchExposedByArmor() && !pc.isCrotchExposedByLowerUndergarment()) 
 		{
@@ -1484,7 +1591,10 @@ public function dickLundDown(x:int):void
 		output("\n\nWith silent understanding, he mounts his bed on all fours, shaking his hips to one side to get the loincloth out of the way. The lines of his boyish bubble-butt create a perfect route for your eyes to follow right down to his tight little asshole, and you relish the sight for just a moment with your cock in hand.");
 		output("\n\n<i>“Good boy,”</i> you whisper, gently stroking his lower back before running your hand down to his cheeks and getting a nice handful of athletic ass. <i>“Just relax now, Lund.”</i>");
 		output("\n\nYou gently let the tip of your cock prod Lund’s asshole and to his credit, he doesn’t recoil or stiffen. He’s ready to be fucked, waiting for it even. His asshole would give way with ease if you pushed, accepting your entire length, but you hold off for now and let your pre-cum wet his ring. You want him to have the best time he can so he comes back next time wanting more. Feeling him getting antsy beneath you, you give him a light spank just to let him know who’s in charge. You can see his cock erect between his legs and steadily drooling pre-cum and finally, you can’t resist it any longer.");
-		output("\n\nTaking his ass in both hands you gently lean into him, inexorably teasing him apart until finally, the head pops inside and he groans and bows his head. He’s so tight that you can barely make headway, having to pull the korgonne towards you as he moans in pleasure. After a few seconds of trying to trying to keep it slow, you give up; he’s going to respond best to getting it hard, and besides... you get the feeling that’s what he’s waiting for. Pulling his cheeks apart roughly, you begin to buck your hips enough to get an inch or two deeper with every movement, all while Lund’s moans get higher in pitch until it sounds like you’re doggying a girl for her first time.");
+		output("\n\nTaking his ass in both hands you gently lean into him, inexorably teasing him apart until finally, the head pops inside and he groans and bows his head. He’s so tight that you can barely make headway, having to pull the korgonne towards you as he moans in pleasure. After a few seconds of trying to trying to keep it slow,");
+		if (flags["LUND_BROKEN"] == undefined) output(" you give up; he’s going to respond best to getting it hard, and besides... you get the feeling that’s what he’s waiting for.");
+		else output(" you’re satisfied you’ve eased the well-practiced boy into it: it’s time for what both of you are really waiting for.");
+		output(" Pulling his cheeks apart roughly, you begin to buck your hips enough to get an inch or two deeper with every movement, all while Lund’s moans get higher in pitch until it sounds like you’re doggying a girl for her first time.");
 		
 		if(pc.cocks[x].cLength() < 12) 
 		{
@@ -1518,15 +1628,23 @@ public function dickLundDown(x:int):void
 
 		output("\n\nWith a shuddering groan, Lund’s back arches and a droplet of spunk hits the bed. Then another, and the next moment you’re tightening your grip on his hands and fucking the rest out of him with hard grunts of effort. He breaks into a howl instinctively but keeps it quiet, the stimulation of his asshole and prostate driving his orgasm onwards even as ropes of seed spurt from the end of his half-erect cock. You don’t stop pounding him throughout the entire process, and by the end of it he’s slumped beneath you with his snout in the sheets just moaning like a bitch.");
 		output("\n\n<i>“Good boy,”</i> you pant, halting for just a moment. <i>“Do you wanna cum again, Lund? Say you want me to make you cum again.”</i>");
-		output("\n\n<i>“Please,”</i> Lund moans, trying to thrust back into you. <i>“");
-		if(!korgiTranslate()) output("Alien make Lund cum!");
-		else output("Alien, make me cum!");
-		output("”</i>");
-		output("\n\n<i>“It’s not </i>alien<i>,”</i> you say, punctuating the word with a particularly rough thrust. <i>“It’s [pc.name]. Say it!”</i>");
-		output("\n\n<i>“[pc.name]! [pc.name] make ");
-		if(!korgiTranslate()) output("Lund");
-		else output("me");
-		output(" cum!”</i> he cries, fingers digging into his sheets.");
+
+		if (flags["LUND_BROKEN"] == undefined)
+		{
+			output("\n\n<i>“Please,”</i> Lund moans, trying to thrust back into you. <i>“");
+			if(!korgiTranslate()) output("Alien make Lund cum!");
+			else output("Alien, make me cum!");
+			output("”</i>");
+			output("\n\n<i>“It’s not </i>alien<i>,”</i> you say, punctuating the word with a particularly rough thrust. <i>“It’s [pc.name]. Say it!”</i>");
+			output("\n\n<i>“[pc.name]! [pc.name] make ");
+			if(!korgiTranslate()) output("Lund");
+			else output("me");
+			output(" cum!”</i> he cries, fingers digging into his sheets.");
+		}
+		else
+		{
+			output("\n\n<i>“Please,”</i> Lund moans, trying to thrust back into you while his fingers dig into the sheets. <i>“Please, [pc.master]!”</i>");
+		}
 		output("\n\n<i>“Good boy,”</i> you tell him, and resume slamming your cock into his tight little asshole.");
 		output("\n\nThe way he moves and cries out underneath you, you’re pretty sure you’ve got him cumming almost nonstop. By the time you’re ready to bust a nut inside him, he’s only too ready to receive it, moaning in ecstasy while his fingers rake the mattress with every thrust. You don’t bother to warn him, just pumping him harder until finally, the tingling sensation at the base of your cock coalesces into pure pleasure and you let out a loud groan of release.");
 
@@ -1598,7 +1716,15 @@ public function rideLundWheeee(x:int):void
 {
 	clearOutput();
 	showLund(true);
-	if(pc.isBimbo()) 
+	if (flags["LUND_BROKEN"] != undefined)
+	{
+		output("<i>“Lund, do you remember back before I took you as my pet?”</i> you ask him, curling your hand around his head. <i>“Well, you’re nothing like that now, but I’d like you to play the part. Can you do that for me?”</i>");
+		
+		output("\n\nHe hesitates. <i>“"+ (!korgiTranslate() ? "Lund" : "I’ll") +" try, but...”</i>");
+		
+		output("\n\n<i>“It’s okay,”</i> you say, smiling. <i>“Just do your best.”</i>");
+	}
+	else if(pc.isBimbo()) 
 	{
 		output("<i>“So like, how do you wanna fuck?”</i> you say, tilting your head and putting some serious thought into it. <i>“I wanna-”</i>");
 		output("\n\n<i>“");
@@ -1638,11 +1764,23 @@ public function rideLundWheeee(x:int):void
 	if(!pc.isCrotchExposed()) output("yourself and ");
 	output("the korgonne undressed and ready in moments, pressing against his fur and reaching down between his legs to coax his oversized length from its sheath. Kissing Lund as you bear him to the bed, you lay him down and straddle him with a wide smile.");
 	output("\n\n<i>“Hope you’re ready for this, Lund,”</i> you tell him, feeling his cock swell and harden against your [pc.ass]. <i>“I dunno if you’re man enough to take it.”</i>");
-	output("\n\n<i>“Hmph,”</i> Lund grunts, reaching up to spread his hands across your [pc.chest]. <i>“");
-	if(!korgiTranslate()) output("You not bait Lund to do all work.");
-	else output("You won’t bait me into doing all the work.");
-	output("”</i>");
-	output("\n\nSatisfied you’ve convinced him to let you take the lead, you settle back and let the thought of teasing him fade from your mind. You really just want for the both of you to have a good time, and assuaging Lund’s machismo tendencies is probably the easiest way. Reaching back, you lightly take ahold of his canine prick and align it with your [pc.vagOrAss " + x + "]. You groan in pleasure as you slowly slide backwards onto it, using your hips to take it inside. Lund grunts, chewing his lip while the crown of his dick spreads you apart.");
+	output("\n\n<i>“Hmph,”</i> Lund grunts, reaching up to spread his hands across your [pc.chest].");
+
+	if (flags["LUND_BROKEN"] == undefined)
+	{
+		output(" <i>“");
+		if(!korgiTranslate()) output("You not bait Lund to do all work.");
+		else output("You won’t bait me into doing all the work.");
+		output("”</i>");
+		output("\n\nSatisfied you’ve convinced him to let you take the lead, you settle back and let the thought of teasing him fade from your mind. You really just want for the both of you to have a good time, and assuaging Lund’s machismo tendencies is probably the easiest way.");
+	}
+	else
+	{
+		output(" <i>“Fine.”</i>");
+		output("\n\nSatisfied he’s settling into his role, you lean back and let the thought of teasing him fade from your mind. You really just want for the both of you to have a good time.");
+	}
+
+	output(" Reaching back, you lightly take ahold of his canine prick and align it with your [pc.vagOrAss " + x + "]. You groan in pleasure as you slowly slide backwards onto it, using your hips to take it inside. Lund grunts, chewing his lip while the crown of his dick spreads you apart.");
 	
 	var lundipoo:PregnancyPlaceholder = lundCumPlaceholder();
 	
@@ -1703,11 +1841,26 @@ public function rideLundWheeee(x:int):void
 
 	output("\n\nSure enough, you come to another massive orgasm atop Lund, this one even harder than the last. You tense so hard you can scarcely inhale, forgoing air in favor of the breathless ecstasy of cumming your brains out. Your eyelids flutter several times a second as you shake and shudder, Lund finally grabbing your hips and pulling you down on top of his huge knot to let his third and final orgasm explode inside you.");
 
-	output("\n\nBiting your lip hard enough that it bleeds, you watch him grunt and flex in pleasure as a sideshow to your main event. Watching him writhe underneath you, his knot spreading you apart as he cums inside, your own orgasm leaving you content... yes, you could <i>definitely</i> get used to this.");
+	output("\n\nBiting your lip hard enough that it bleeds, you watch him grunt and flex in pleasure as a sideshow to your main event. Watching him writhe underneath you, his knot spreading you apart as he cums inside, your own orgasm leaving you content...");
+	if (flags["LUND_BROKEN"] == undefined)
+	{
+		output(" yes, you could <i>definitely</i> get used to this.");
 
-	output("\n\nAfter you’re both finished, you lie on top of him with a hand scratching his chest fluff for a job well done. Extricating yourself from the tangle, you clean yourself off and get your things.");
-	output("\n\n<i>“Wow, you are </i>quite<i> the catch,”</i> you sigh at length, wiping off your forehead. <i>“Good work, cutie. I’ll be expecting the same performance next time.”</i>");
-	output("\n\nHis ears perk up slightly at the words ‘next time’, but he doesn’t say anything, just pants. You bend down to kiss him on the snout and take your leave with a predatory grin.");
+		output("\n\nAfter you’re both finished, you lie on top of him with a hand scratching his chest fluff for a job well done. Extricating yourself from the tangle, you clean yourself off and get your things.");
+		output("\n\n<i>“Wow, you are </i>quite<i> the catch,”</i> you sigh at length, wiping off your forehead. <i>“Good work, cutie. I’ll be expecting the same performance next time.”</i>");
+		output("\n\nHis ears perk up slightly at the words ‘next time’, but he doesn’t say anything, just pants. You bend down to kiss him on the snout and take your leave with a predatory grin.");
+	}
+	else
+	{
+		output(" yeah, sometimes this is nice too.");
+		
+		output("\n\nAfter you’re both finished, you lie on top of him with a hand scratching his chest fluff for a job well done. Extricating yourself from the tangle, you clean yourself off and get your things.");
+		
+		output("\n\n<i>“Good work, cutie,”</i> you tell him, giving him a kiss on the snout. <i>“See, you can do it if you try.”</i>");
+		
+		output("\n\nYou can hear the muffled sound of his tail trying to wag underneath him as you leave.");
+
+	}
 
 	processTime(30);
 	if(x >= 0) pc.loadInCunt(lundipoo,x);
@@ -2499,9 +2652,9 @@ public function lundSubmissionThing():void
 		output(". Make sure to remember it.”</i>");
 
 		output("\n\nAs horny and willing as you are, the opportunity to suck Lund is a blessing. You don’t think you’ve ever been so");
-		if(pc.hasVagina() && !pc.hasCock()) output("wet");
-		else if(pc.isHerm()) output("wet and hard");
-		else output("hard");
+		if(pc.hasVagina() && !pc.hasCock()) output(" wet");
+		else if(pc.isHerm()) output(" wet and hard");
+		else output(" hard");
 		output(" in your entire <i>life</i>, and you’re only too eager to repay the favor. You don’t even bother to taste his delicious precum, passing up the opportunity to please your master by taking him right into your throat. Looking up at him with hooded eyes and the faint impression of a smile on your [pc.lips] wrapped around his engorged cock, you’re treated to the sight of him grunting in approval at your decision and the feeling of your master’s hand on the back of your head.");
 
 		output("\n\nNot even needing to be urged, you suck him deeper, feeling his swollen dick sink into your body inches at a time, your desperation to please him on your knees almost palpable. You’re <i>begging</i> him with your eyes, bobbing up and down on his massive cock with wet, lurid noises in the hopes of him putting that heavenly load of his right in your stomach. Your");
@@ -2509,7 +2662,7 @@ public function lundSubmissionThing():void
 		{
 			if(pc.totalVaginas() == 1) output(" [pc.pussy] is dripping with anticipation");
 			else output(" [pc.vaginas] are dripping with anticipation");
-			output(", clenching between your thighs every time you suck down to his base as if he were inside you");
+			output(", clenching between your thighs every time you suck down to his base as");
 		}
 		else if(pc.isHerm()) 
 		{
@@ -2614,7 +2767,7 @@ public function lundSubmissionThing():void
 		//Second time.
 		output("<i>“Hello, master,”</i> you say, meeting Lund’s gaze and smiling at him. <i>“Would you like me to serve you today?”</i>");
 		output("\n\n<i>“");
-		if(!korgiTranslate()) output("I want you to serve me");
+		if(korgiTranslate()) output("I want you to serve me");
 		else output("Lund want slave to serve");
 		output(" </i>every<i> day, pet,”</i> Lund says, looking you up and down and leaning off the wall. <i>“Come. ");
 		if(!korgiTranslate()) output("Need outfit");
@@ -2651,8 +2804,8 @@ public function lundSubmissionThing():void
 		if(!pc.isTaur())
 		{
 			output(" licks your");
-			if(pc.tallness >= 8*12) output("back");
-			else output("neck");
+			if(pc.tallness >= 8*12) output(" back");
+			else output(" neck");
 		}
 		else
 		{
@@ -2820,7 +2973,7 @@ public function lundSpecialSubmission2():void
 		output("\n\n<i>“Thuh-thank you, master,”</i> you stutter before realizing");
 		if(!pc.isTaur()) output(" where his fingers are going");
 		else output(" he’s walking behind you, his fingers sliding along your [pc.butt]");
-		output(". <i>“Oh! Oh, Lund!”</i>}");
+		output(". <i>“Oh! Oh, Lund!”</i>");
 
 		output("\n\n<i>“Master,”</i> he reminds you, curling his fingers slightly in your [pc.vagOrAss]. <i>“Now come with ");
 		if(!korgiTranslate()) output("Lund");
@@ -2899,4 +3052,635 @@ public function lundSpecialSubmission2():void
 		addButton(0,"Next",mainGameMenu);
 	}
 	IncrementFlag("LUND_ADVANCED_SUBMISSION");
+}
+
+public function lundBreakHim():void
+{
+	if (flags["LUND_BROKEN"] == undefined) lundBreakHimA();
+	else if (flags["LUND_BROKEN"] == 1) lundBreakHimB();
+	else if (flags["LUND_BROKEN"] == 2) lundBreakHimC();
+	else lundBreakHimD();
+}
+
+public function lundBreakHimA():void
+{
+	clearOutput();
+	showLund();
+
+	output("<i>“Hey boy,”</i> you call out, walking over to Lund with a smile. He looks somewhat uncomfortable with how you’re addressing him out in public, but doesn’t protest. You put an elbow against the wall behind his head and lean easily, grinning at Lund while you scratch him under the chin with your other hand. <i>“Been missing me, pup?”</i>");
+	
+	output("\n\n<i>" + (!korgiTranslate() ? "“Not miss alien" : "I didn’t miss you") +",”</i> Lund whines, sulking and averting his gaze before you use your hand to direct his eyes back to your own.");
+	
+	output("\n\n<i>“Don’t lie to your [pc.master], pup,”</i> you murmur to him, your hand slipping down his chest and below his loincloth, where you find his cock already protruding. You can’t help but grin. He’s just so predictable. <i>“It sure </i>feels<i> like you missed me.”</i>");
+	
+	output("\n\n<i>“No no," + (!korgiTranslate() ? " Lund not" : " I swear") +"- nnnnm,”</i> he starts, breaking into an incredibly girly, slutty moan as you run your fingers along his shaft. <i>“Nooo...”</i>");
+	
+	output("\n\nYou smile at him victoriously. He can bluster in your face all he likes. But when it comes down to it, he can’t betray the instinct to submit to you, to be - <i>“My little bitch,”</i> you murmur, rubbing his hot, rising cock. <i>“Come on. Let’s go to your room, Lund. I think it’s time for the next step in your </i>education<i>.”</i>");
+	
+	output("\n\nYou let him reposition his loincloth so he doesn’t have to walk around with his dick tenting it, a smile on your face the whole time. The public embrace of his newly-found submissive tendencies can come later, when he’s good and ready. For now... you’ll just ease him into it. With your present for him balled up and hidden in your hands, you follow the horny korgonne to his room humming happily the whole way.");
+
+	processTime(8+rand(3));
+
+	clearMenu();
+	addButton(0, "Next", lundBreakHimA2);
+}
+
+public function lundBreakHimA2():void
+{
+	clearOutput();
+	showLund(true);
+
+	currentLocation = "KORGII L10";
+	generateMap();
+
+	output("<i>“Okay,”</i> Lund says as he turns to you, eyes rife with suspicion. <i>“What" + (!korgiTranslate() ? " [pc.master] wan" : "’re you pla") +"-”</i>");
+	
+	output("\n\nYou cut him off by roughly kissing him, pressing yourself into him and feeling his body quiver as he opens up and accepts you. Grinding your thigh into his plump balls you can feel him acquiescing to your actions, gradually shrinking until you’ve got him wrapped around your finger. By the time you pull back, you could probably ask him to fan you with a feather for an hour and he’d do it without question.");
+	
+	output("\n\n<i>“There you go,”</i> you say lightly, sashaying past him and alighting upon his bed. <i>“Don’t think so hard, cutie. Just do what comes naturally. Oh, and I have a present for you! Take your clothes off.”</i>");
+	
+	output("\n\nStanding before you, Lund slowly undoes his loincloth and lets it fall to the floor a soft flutter, leaving him to shift uncomfortably under your admiring gaze, your eyes raking his body from top to bottom. His thick, fuzzy fur obscures some of the details of his physique, but he really is such a nicely-built boy. He could");
+	if (pc.tallness < 72) output(" bench press you until he was bored and not even break a sweat");
+	else if (pc.tallness < 96) output(" probably bench press you upwards of thirty times without stopping for a break");
+	else output(" easily bench press you for a few sets");
+	output(", but here he is in front of you, his toes turned slightly inwards and shifting his weight from one leg to the other like an awkward teenager.");
+	
+	output("\n\n<i>“You are so </i>cute<i>,”</i> you tell him, enjoying the faint red hue of his cheeks and the way his cock flexes at your words. <i>“But you’ll be even cuter in this. Here, catch.”</i>");
+	
+	output("\n\nYou toss him what you’ve been hiding in your hand and he snatches it out of the air lighting fast, his hunting reflexes coming to the fore. Leaning back on the bed and relaxing, you watch his reaction as he unfurls it.");
+	
+	output("\n\n<i>“What...”</i> Lund begins, before realization lights up his face and dismay follows. His tail droops behind him. <i>“" + (!korgiTranslate() ? "[pc.Master] want Lund to wear" : "You want me to wear") +" </i>this<i>?”</i>");
+
+	pc.destroyItemByClass(Thong);
+	
+	output("\n\nHolding out the thong and looking at it, he turns it back and forth, inspecting the thin line of fabric that’ll be running up his ass and the minimal amount of coverage in the front. You get up from the bed and approach him, stepping around to his back and wrapping your arms around his waist.");
+	
+	output("\n\n<i>“They’ll look so sexy on you, Lund,”</i> you murmur in his ear, grinding into him from behind. He can feel your cock against his ass and back, a soft moan escaping his lips. He still looks torn, but you know he’d do anything for you even if he wouldn’t admit it. <i>“Here,”</i> you whisper, taking them from his nervous hands. <i>“I’ll help. Lift your leg, cutie.”</i>");
+	
+	output("\n\nYou help him into it, sliding the smooth cloth up his furry legs and fitting it snugly into his groin. For a finishing touch, you pull the back of it and let it slap against his hips, grinning deviously as you take a step backwards. <i>“Turn around and lemme see.”</i>");
+	
+	output("\n\nHe does so, his gaze directed at the floor and his cheeks burning red. You pay no heed to his obvious shame and embarrassment, instead running your hands through his chest fur. You can feel his heart hammering in his chest. The poor boy is a bundle of nerves, but you’ll help him get over it.");
+	
+	output("\n\n<i>“Oh yeah,”</i> you nod approvingly, putting one finger on the underside of his protruding cock, <i>“that’s fucking hot.”</i>");
+	
+	output("\n\n<i>“It" + (!korgiTranslate() ? " not" : " doesn’t") +" fit,”</i> he whines quietly, turning his head away.");
+	
+	output("\n\nYou break out in laughter at his dissatisfaction. <i>“Hahaha! Just don’t get hard, silly boy. It’ll fit fine over your sheath and it looks </i>great<i> on a little bitch like you. Oh, and if I catch you </i>not<i> wearing it...”</i> you add, winking at the korgonne, <i>“I’ll punish you. Here, turn around.”</i>");
+	
+	output("\n\nDisgruntled, he turns around, following your orders even in the midst of his disapproval. You have to admit - his athletic, muscular build has given him a fucking amazing ass. The way the back of the thong disappears between his bubbly asscheeks is mesmerizing. The longer you look the harder you get until you see Lund himself is looking back at you, transfixed by the sight of your [pc.cockBiggest] hardening, surging with blood until you reach full erection.");
+	
+	output("\n\n<i>“Alright,”</i> you say, taking a step forward with a smile. <i>“I guess I should reward you for being such a good puppy and wearing the right clothes.”</i>");
+	
+	output("\n\n<i>“Ah ah,”</i> you say, stopping him from pulling his newly acquired underwear down. <i>“Don’t take it off. Just pull it to the side like my good little slut.”</i>");
+	
+	output("\n\nWith some difficulty owing to its tight fit over his cock and balls, he reaches back and pulls the thong’s string to the side, allowing you access to his warm, inviting asshole.");
+	
+	output("\n\n<i>“Good boy,”</i> you purr, standing behind him with your cock in hand. <i>“Gooood boy... now spread your legs a little and bend over at the waist, pup. Keep your back straight.”</i>");
+	
+	output("\n\nFollowing your instructions to a T, he spreads his legs for you and bends over, putting his arms out on the dresser next to his bed. You don’t bother with foreplay - he’s too eager, and truth be told so are you. Seeing your furry fucktoy lewdly debasing himself in a tight little thong has you rock hard, precum already running from your tip. Aligning yourself with the smooth, soft skin of his asshole, you push your [pc.cockHeadBiggest] inside, forcing a needy whine from Lund’s mouth.");
+	pc.cockChange();
+	
+	output("\n\n<i>“Aaah, fuck...”</i> you sigh happily, luxuriating in the way his asshole eagerly grips and squeezes you, practically begging for you to go deeper. <i>“Good boy, Lund...”</i>");
+	
+	output("\n\nHis needy whine very quickly morphs into a long, whorish moan of utter ecstasy as you sink yourself deeper with a confident grin, one hand on Lund’s waist and another on his lower back, keeping him nice and straight.");
+
+	if (pc.biggestCockLength() < 25)
+	{
+		output(" You get yourself sheathed entirely within his tailhole with a grunt of pleasure,");
+		if (pc.biggestCockLength() >= 14) output(" though not easily. Sliding your hand from his waist to his stomach, you can easily feel your own massive dick’s bulge protruding from his tummy");
+		else output(" your dick getting a full-body massage from Lund’s sensitive walls");
+	}
+	else output(" You can’t get yourself sheathed entirely, but the first two feet of your behemoth cock fit inside his tight little ass, swelling his tummy. Shifting your hand from his waist to his belly, you grin when you feel a gigantic bulge protruding from it.");
+	
+	output("\n\n<i>“Oh, you </i>like<i>");
+	if (pc.biggestCockLength() < 25) output(" taking all of");
+	output(" that, don’t you doggy?”</i> you murmur, patting him on the back as you very slowly withdraw yourself from his extremely fuckable hole. He’s having too much of a good time to even answer you, and you don’t begrudge him for it. After all, a pet slut should love their "+ (pc.mf("master’s", "mistress’")) + " hard cock in their asshole too much to speak. That’s not going to stop you from teasing him, though. <i>“What’s the matter, pup? Is my big, hard cock in your tight little hole too good for you to speak?”</i>");
+	
+	output("\n\nThat gets him to open his mouth, but the only thing that comes out is a loud, deep groan of contentment, an admittal of assent. His cock is half-limp now, flopping every time you push inside him and drooling a never ending stream of clear, slick precum. You smile - he’s going to be <i>perfect</i> when you’re done with him. Leaning over to lie on his back, you overlay your hands with his, intertwining your fingers and using only the motion of your hips to deeply fuck the moaning korgonne boy while you whisper slutty promises in his ear.");
+	
+	output("\n\nHe cums first. If it wasn’t for the sudden, intense squeezing, you’d hardly even notice. His half-hard dogdick just keeps leaking but you notice that every time you thrust yourself");
+	if (pc.biggestCockLength() < 25)
+	{
+		if (pc.balls > 0) output(" balls-deep");
+		else output(" to the hilt");
+	}
+	else output(" as deep as you can");
+	output(" he grunts gruffly, almost a bark, and his next spurt of cum is a thick, creamy white. He’s obviously getting off from having you as deep as possible inside him,");
+	if (pc.biggestCockLength() < 14) output(" your cumvein rubbing across his prostate inducing a strong shiver with every thrust.");
+	else output(" your giant length displacing his insides and practically making him into your fucktoy.");
+	
+	output("\n\n<i>“Too good to resist, huh?”</i> you pant, grinning fiercely. <i>“Knew you had it in you, Lund. Now brace yourself on that dresser, boy.”</i>");
+	
+	output("\n\nPressing yourself right up against Lund’s ass you begin to fuck him so roughly he cries out every time you");
+	if (pc.biggestCockLength() < 25) output(" hilt yourself");
+	else output(" bottom out");
+	output(", his cock now completely limp and flopping so hard it slaps into his stomach with every savage thrust. After a minute of having his hot, slick asshole abused, he suddenly raises himself onto his tiptoes and lets out a long high-pitched whine, transparent cum spurting everywhere. His prostate tenses up so hard you can actually feel it against your [pc.cockBiggest], and he cums all over his flexed");
+	if (pc.biggestCockLength() > 13) output(", distended");
+	output(" stomach and shaking legs, a small pool of his drippy jizz pooling between his feet.");
+	
+	output("\n\n<i>“Good - boy,”</i> you grunt, praising him for his submissive sluttiness, not letting up at all. You rail him as hard as you fucking can through his entire prostate orgasm, forcing the pleasure of submitting upon him. He loves having your dick inside him, you can feel it. The way he keeps squeezing down on you while he’s cumming all over himself is irresistible. You push forward so hard Lund loses his balance atop braced feet and the next moment you have him bent over the dresser, cumming in his incredibly tight asshole as deep as you possibly can.");
+	
+	output("\n\n<i>“Unnnh, fuck,”</i> you groan, timing your persistent thrusts with every eruption of seed from the tip of your dick to ensure he feels your warmth right in his core. <i>“Take it all, my little whore!”</i>");
+	
+	output("\n\nPressed up against the wall and whining in pleasure not only does he follow your instructions admirably but he cums again while doing so, this time even harder. Ropes of his seed splatter across his belongings even as your own spouts into his asshole, your sticky jizz warming his insides sure to be of great comfort when you’ve left. When you’ve thoroughly drained yourself of everything you have to give, you pull out of his hot, grippy hole with a comfortable sigh.");
+	
+	output("\n\nLund stays laid out on the dresser, still moaning in pleasure and giving you a fantastic view of his fucked-hard and stretched out asshole. Your [pc.cum]");
+	if (pc.cumQ() < 10000) output(" slowly drips");
+	else if (pc.cumQ() < 20000) output(" steadily flows");
+	else output(" noisily fountains");
+	output(" out of it, running down his underside and splattering on the floor.");
+	
+	output("\n\n<i>“That’s a good look on you,”</i> you tell him, rearing back and giving his butt a nice smack. He yips, then goes back to moaning when you seize a handful of it and squeeze. <i>“Good boy.”</i>");
+	
+	output("\n\n<i>“Yikes. You’re gonna need to wash this,”</i> you murmur, looking down at Lund’s thoroughly cum-soaked thong. You suppose that was a foregone conclusion when you chose to fuck his ass while he was wearing it.");
+	
+	output("\n\nWhen he rouses himself from his slutfucked stupor, you sit him down on the bed and explain to him he’ll be the one taking the next step in your relationship. You can keep dicking him down, but he’ll never be anything more than a casual fuckbuddy if he doesn’t take action himself.");
+	
+	output("\n\n<i>“So you want" + (!korgiTranslate() ? " Lund to wear new thing" : " me to wear something else") +"?”</i> he asks, looking unsure. <i>“" + (!korgiTranslate() ? "Ali- [pc.name] make" : "Are you the one making") +" it?”</i>");
+	
+	output("\n\n<i>“Nope,”</i> you say, leaning in and grinning. <i>“You’re going to make it yourself.”</i>");
+	
+	output("\n\nYou know the korgonne are an industrious people, taking pride in their craftsmanship. Lund is guaranteed to know at least one person who can handle the request and help him out, and if he really, <i>really</i> wants to keep this going... he’ll find them. He whines and complains, but in the end, you cajole him into it by convincing him it’ll feel so much better to get fucked when he feels well and truly owned. You give him a reassuring kiss on his snout to make him feel better, then make to leave so he can clean himself up.");
+	
+	output("\n\nYou grin as you walk out, already completely sure of how this will play out.");
+
+	pc.orgasm();
+
+	processTime(60+rand(30));
+	currentLocation = "KORGII J10";
+
+	flags["LUND_BROKEN"] = 1;
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lundBreakHimB():void
+{
+	clearOutput();
+	showLund();
+
+	output("He’s not wearing the thong. You knew he wouldn’t wear it on his own. He no doubt took it off to wash and then, being too embarrassed to do it alone without your urging, never put it back on. That’s okay, and it’s exactly why you told him you’d punish him when it happened. You grin.");
+	
+	output("\n\n<i>“Heya, boy! Were you good while I was away?”</i> you call out, crossing over to him with a wide smile. <i>“No run-ins with other domineering aliens who wanna fuck your ass and call you a little slut, I hope. C’mon,”</i> you continue, pressing yourself up against his athletic body and taking two handfuls of his fit asscheeks. <i>“Straight to your room, pup. I’m gonna pound you until you howl.”</i>");
+	
+	output("\n\nYou walk alongside him all the way there with your right hand firmly planted on Lund’s butt just below his tail and a grin on your face. A few korgonne give you and he curious glances, but most just smile and wave at the familiar hunter and his alien friend, especially the women.");
+	
+	output("\n\n<i>“I wonder how many of these hot, fertile women you bedded before deciding you preferred xeno-cock up your tight little asshole, Lund,”</i> you murmur to him, giving him a fierce squeeze for emphasis. <i>“Do you think they’ll mind their favorite stud being otherwise occupied?”</i>");
+	
+	output("\n\n<i>“" + (!korgiTranslate() ? "No... Lund think" : "I don’t think so") +",”</i> he says, his uncertainty palpable. His ears flick this way and that, tempting you to scratch his head. <i>“" + (!korgiTranslate() ? "Korgonne not care about partners" : "We don’t care much about whether other partners are in the picture") +".”</i>");
+	
+	output("\n\n<i>“Oh, good,”</i> you reply, nodding. <i>“That’ll make this less harsh.”</i>");
+	
+	output("\n\nHe looks");
+	if (pc.tallness >= 78) output(" up");
+	output(" at you questioningly, but you say nothing more.");
+
+	currentLocation = "KORGII L10"
+
+	processTime(8+rand(2));
+
+	clearMenu();
+	addButton(0, "Next", lundBreakHimB2);
+}
+
+public function lundBreakHimB2():void
+{
+	clearOutput();
+	showLund();
+
+	output("When you get to his room, the first thing you do is inquire about your demand from last time. As expected, even though he couldn’t wear the thong around, he still managed to muster up the courage to get his suit made. You can’t resist asking.");
+	
+	output("\n\n<i>“Did you tell him it was for you?”</i> you ask, a curious smile on your lips. <i>“I bet you didn’t, did you?”</i>");
+	
+	output("\n\n<i>“" + (!korgiTranslate() ? "Lund" : "I") +" didn’t,”</i> he mumbles, turning red and looking downwards.");
+	
+	output("\n\n<i>“Awww,”</i> you moan in mock disappointment, leaning closer. <i>“Is the little doggy afraid of having his secret found out? That he likes the alien’s");
+	if (pc.biggestCockLength() > 12) output(" big");
+	else output(" nice");
+	output(", fat cock?”</i> You scoot closer still. He’s sweating and eyeing you nervously. <i>“That you just </i>love<i> to get on all fours, like you’re a bitch, and then get your asshole fucking slammed until you can’t help but cum all over yourself?”</i>");
+	
+	output("\n\n<i>“Well,”</i> you continue after a moment’s pause, leaning back. Lund is left panting, clutching at his bedsheets and wearing an expression of conflicted desire. <i>“I guess I can see why you’d be reluctant. But too bad,”</i> you say, turning to smile at him, <i>“‘cause today we’re doing something special.”</i>");
+	
+	output("\n\n<i>“" + (!korgiTranslate() ? "[pc.Master]... punish Lund" : "Are you punishing me, [pc.master]") +"?”</i> he asks, looking crestfallen.");
+	
+	output("\n\nNo need to beat around the bush. <i>“Yes, I am.”</i>");
+	
+	output("\n\n<i>“" + (!korgiTranslate() ? "Lund... Lund will wear it" : "I-I’ll wear the thong") +", so...”</i> he trails off, looking at you hopefully. <i>“" + (!korgiTranslate() ? "No punish" : "[pc.Master] won’t need to punish me") +"?”</i>");
+	
+	output("\n\n<i>“Awww, you’re fucking adorable, Lund,”</i> you say, standing and looking down at him with a grin. His doggycock is stiffly erect, and has been since the moment he started thinking about punishment. You wonder if he even notices it himself. <i>“But that’s not good enough. You’re not doing me a </i>favor<i>, I </i>expect<i> you to wear the thong. Always. That’s why I have to punish you.”</i>");
+	
+	output("\n\nYou pick up the clothing he had made, inspecting it thoroughly. Whoever he went to for this, you really have to commend them for their work. Not only is it extremely well-made, but it fits the specifications perfectly. Now all that’s left is to dress your subservient, already-erect dogboy up in it and fuck him sideways.");
+	
+	output("\n\n<i>“Alright Lund,”</i> you say, motioning for him to get up. <i>“Let’s get you all dressed up.”</i>");
+	
+	output("\n\nAccepting his fate, he acquiesces to your request and gets up, letting you help him out of his by-now-redundant loincloth and freeing his dick from underneath it. You give it a cursory stroke, running your fingers from base to tapered tip. He trembles under your touch, precum bubbling over and running down his shaft. With a grin, you collect all of it with a finger and at last, bring it up to his lips.");
+
+	output("\n\nHe opens his mouth and slowly, gently licks it clean, careful to avoid your finger with his teeth. You withdraw it from his muzzle and scratch him under his furry chin.");
+	
+	output("\n\n<i>“Very good,”</i> you murmur approvingly.");
+	
+	output("\n\nAfter that, Lund turns around and you stand behind him, once again helping him put his thong on. When he’s done, you hug him tight around his trim waist and grind yourself against his ass, whispering into his ear.");
+	
+	output("\n\n<i>“Nnngh, I can’t </i>wait<i> to sink my cock");
+	if (pc.balls > 0) output(" balls-deep");
+	output(" inside your asshole, Lund,”</i> you groan, overflowing with need. <i>“All you have to do is put on that little outfit of yours and we can start.”</i>");
+	
+	output("\n\nIf he wasn’t certain before, he is now. Breaking free of your embrace, he practically throws the outfit on, straps and belts and all, and resolutely holds his arms behind his back so you can bind them. You watch the entire process with a grin, pleased with his progress. There’s nothing holding him back now.");
+	
+	output("\n\nYou do up his bindings one by one taking care that they don’t pinch or catch on his fluffy fur, noting with amusement that his overactive tail is wagging the whole time.");
+	
+	output("\n\n<i>“You just can’t wait, can you boy?”</i> you ask, stroking his tummy fur. <i>“For me to be all up in that tight little ass of yours.”</i>");
+	
+	output("\n\n<i>“[pc.Master]...”</i> Lund whines, restrained by his outfit and unable to do much but roll his hips up and down, rubbing against your [pc.biggestCock]");
+	if (pc.isCrotchGarbed()) output(", your [pc.lowerGarments] somehow having gone missing during the fun");
+	output(".");
+	
+	output("\n\n<i>“Ooh, you’re all ready to cum, aren’t you?”</i> you whisper, lovingly caressing his front. <i>“But what a waste that would be, to just cum all on your own. Don’t you want to feel me inside you before you pop?”</i>");
+	
+	output("\n\n<i>“Yes! [pc.Master], please!”</i> Lund whines, desperately straining in his bindings. <i>“" + (!korgiTranslate() ? "Lund": "I’ll") +" do anything! Just fuck" + (korgiTranslate() ? " me" : "") +"!”</i>");
+	
+	output("\n\n<i>“Anything at all?”</i> you say, grinning.");
+	
+	output("\n\n<i>“Yes! Yes!”</i> Lund insists.");
+
+	output("\n\n<i>“Here,”</i> you murmur, pulling his thong to the side and sliding yourself");
+	if (pc.balls > 0) output(" balls-deep");
+	else output(" to the hilt");
+	output(" in one swift, smooth motion. Lund’s movement ceases immediately and he moans as you draw your hips back, pulling your [pc.cockHeadBiggest] back to his entrance and spreading him wide once more.");
+	
+	output("\n\nHe cums immediately, a low groan escaping his lips that gradually grows in volume with every thrust until, finally, he gives in and howls. He was so worked up that his cum comes out in an almost never ending flow, spurting and spraying from the tip of his jerking cock while you fuck his ass. His doggy dick is like a plentiful fountain, one that lets loose a massive rope of jizz every time you bottom out inside him.");
+	
+	output("\n\n<i>“Oooohhhh! Oooooohhh! [pc.Master]! [pc.Master]!”</i> Lund cries, looking down at himself cumming in amazement. <i>“Ca-can’t stop!”</i>");
+	
+	output("\n\n<i>“Good boy,”</i> you whisper to him, and that just sets him off even more. He squeezes down on your dick so hard you’re forced to stop for a second before you roughly grind your hips into him, penetrating his body’s token resistance.");
+	
+	output("\n\nTaking a firm hold of his bindings and bending him over, you begin to fuck him harder, so hard he’s forced to take a step just to keep himself steady and cumming. Then another. Kept off-kilter by your rhythm, you have no problem herding him towards the door. He doesn’t even notice what you’re doing until he’s in the hallway outside bent over in front of a trio of women, cumming his brains out as the leader of the group regards him curiously.");
+	
+	output("\n\n<i>“" + (!korgiTranslate() ? "Lund, that you" : "Lund, is that you") +"?”</i> the girl asks, leaning forward to look him in the eye. She gives his shaking snout an appraising lick. <i>“" + (!korgiTranslate() ? "Is Lund" : "That’s Lund, alright") +".”</i>");
+	
+	output("\n\nLund opens his mouth to say something, but all he manages is a grunt of release followed by a long, pleasured moan.");
+	
+	output("\n\n<i>“Don’t mind him too much,”</i> you say. <i>“He’s a little occupied.”</i>");
+	
+	output("\n\n<i>“" + (!korgiTranslate() ? "Lund happy boy" : "Well, he looks happy to me") +",”</i> she says, shrugging indifferently. <i>“" + (!korgiTranslate() ? "Alien keep Lund happy" : "Planning to keep him happy") +"?”</i>");
+	
+	output("\n\n<i>“Oh, he’s gonna be happy as long as he’s with me,”</i> you promise with a smile, right as Lund groans and shakes, cumming so hard his spunk shoots up his front. <i>“Got my - </i>nnngh<i> - word on that one.”</i>");
+	
+	output("\n\nThe girls leave you and Lund without saying much more, though one keeps glancing back at Lund with interest before being pulled along by the leader.");
+	
+	output("\n\n<i>“See? No need to be ashamed,”</i> you murmur to him, pulling him back up into earshot. <i>“Let’s make the rounds, okay pup?”</i>");
+	
+	output("\n\nOf course, not everyone is so generous. A few tease him. One girl tugs on his ear while she gives him a few whispered sentences as he whines, but nobody is overtly mean. The males don’t seem to care at all, save for a few. One in particular can’t keep his eyes off you, and he quickly looks away with the most intense blush you’ve ever seen through fur when you give him a knowing grin.");
+	
+	output("\n\nWhat really catches your attention, though, is what happens when a group of women Lund clearly knows show up. They ask him, not impolitely, who you are to him, clearly curious about the manner of your relationship. This is a test for him. If he doesn’t say ‘[pc.master]’...");
+	
+	output("\n\nBut what he groans isn’t <i>“[pc.Master]”</i>. That’s what the translator tells you he says, but it’s not - you know it. You’ve seen him say it enough to know. The way the korgonnes react, with wide eyes and gasps, tells you as much regardless. Then they’re huddling around him and scratching behind his ears giggling even as you fuck him over a table, his head laid out on the wood for them to pet. It’s a curious sight, and the girls disperse almost as quickly as they showed up, leaving the two of you alone.");
+	
+	output("\n\nPressing him roughly up against a wall, you give it to him so hard his breaths come out in loud, shuddering gasps, his muzzle hanging open while drool flies from his lips. Hammering your hips into his behind, you grunt in pleasure when you cum standing, your spunk dripping and spraying back from his overfilled hole.");
+	
+	output("\n\n<i>“Take it all, pet,”</i> you grunt, hilting yourself in Lund’s hindquarters as he loses his breath and cums again, his overtaxed dick spurting all over the wall. <i>“Good boy.”</i>");
+
+	processTime(30+rand(15));
+
+	clearMenu();
+	addButton(0, "Next", lundBreakHimB3);
+}
+
+public function lundBreakHimB3():void
+{
+	clearOutput();
+	showLund(true);
+
+	output("Overall, you’re surprised and pleased. Given how reluctant Lund had been about this you weren’t sure how the reception of his new status would be but there was nothing to worry about after all. He’ll no doubt be a lot more open to public displays of his utter submission in the future. You have him back in his room paying you your dues, on his knees between your legs after you fucked him so well.");
+	
+	output("\n\n<i>“So?”</i> you ask, gazing down at the dog boy slowly lapping at your [pc.biggestCock], cleaning every inch of it to a spitshine. <i>“What did you say to those girls, Lund? I’m curious.”</i>");
+	
+	output("\n\n<i>“It-”</i> he begins, then hesitates. <i>“"+ (!korgiTranslate() ? "No proper word in [pc.master] language, Lund think. To do with sex role and partnership" : "I don’t think there’s an equivalent word in your language, [pc.master]. It’s to do with our roles in sex and partnership") +".”</i>");
+	
+	output("\n\n<i>“Hmm,”</i> you say, considering his words. Maybe just a fancy word for owner, then, but that doesn’t seem to make sense given their reactions.");
+	
+	output("\n\n<i>“" + (korgiTranslate() ? "There’s m" : "M") +"ore than one meaning" + (korgiTranslate() ? ", too" : "") +",”</i> Lund adds after a few seconds.");
+	
+	output("\n\n<i>“Oh? What’s the second meaning?”</i>");
+	
+	output("\n\n<i>“‘One who makes me happy’,”</i> Lund mumbles, his cheeks turning a slight pink. He busies himself in the task of sucking your dick rather than face having to talk about this more. You break into a grin.");
+	
+	output("\n\n<i>“Awww, that’s so sweet!”</i> you exclaim, looking down at the boy hard at work wrapping his tongue around your dick. <i>“I would have been extremely displeased if you’d lied to them, but it seems like you went above and beyond, huh? What a good pet.”</i> You stand up from his bed, placing your hands on the back of his head. <i>“Let me show you how much I approve, Lund.”</i>");
+	
+	output("\n\nHard to believe there’s a language more nuanced than Terran when it comes to sex, you muse while you steadily fuck his face. Every race has their own words for it, sure, but you don’t think you’ve ever run into a completely unfamiliar term before. You sigh in satisfaction, feeling your orgasm approaching as you begin to facefuck Lund at full strength, your hips bucking against his snout. You’ll have to ask him to write it down later for reference.");
+	
+	output("\n\nHis ears laid back against his head and his tail wagging furiously, Lund half-closes his eyes as you explode right down his throat, swallowing your seed in eager servitude. You run your hands through his hair with shuddering breath, feeling the way his tongue curls around you. <i>Fuck</i>, Lund is getting good at doing that... he’s almost jerking you off with it while you cum down his throat. Seems he has a real aptitude for this, maybe born out of necessity - he just really, really wants to make you feel good.");
+	
+	output("\n\nYou gently withdraw yourself from his mouth when you’re done, setting yourself back down on the bed and leaving Lund with");
+	if (pc.cumQ() >= 5000 && pc.cumQ() < 15000) output(" a swollen tummy,");
+	else if (pc.cumQ() >= 15000) output(" a tummy so swollen with jizz he looks like he’s pregnant,");
+	output(" sticky cheeks and seed dripping from his muzzle. You give him a nice, thorough scratch behind the ears as he immediately begins to clean you off again, starting from the base.");
+	
+	output("\n\nFunnily enough, you actually don’t want to leave just yet. Maybe you’re just particularly horny, maybe Lund’s just really good with his mouth or maybe it’s the fact he more or less told you he loved you in his native tongue, but you still want to fuck him regardless. You stand up once more when he’s done cleaning.");
+	
+	output("\n\n<i>“" + (!korgiTranslate() ? "[pc.Master]" : "Are you") +" leaving?”</i> Lund asks, curious. <i>“Or...”</i>");
+	
+	output("\n\nYou smirk. <i>“Or. Now get your fuzzy butt on the bed, pet. On all fours.”</i>");
+	
+	output("\n\n<i>“Yes, [pc.master],”</i> Lund says, eagerly clambering up onto the bed and positioning himself. He has his soft, fuckable ass in the air, his back arched and his tail pointing straight up before you can even start to correct his posture with your hands.");
+	
+	output("\n\n<i>“Very good,”</i> you murmur, joining him and placing your hand on his lower back. <i>“Now breathe deep, bitch.”</i>");
+	
+	output("\n\nBy the time you leave him, it feels like his entire room is covered in spunk, both his and yours. You kiss Lund on the snout and whisper a warm goodbye to the still-cumming dogboy, leaving him to cleaning and skipping out with");
+	if (pc.balls > 0) output(" your balls drained");
+	else output(" your urges somewhat sated");
+	output(" and your mind clear. You’ll have to come back and visit Lund again soon, that’s for sure. He’s just too much fun to fuck.");
+
+	processTime(30+rand(15));
+	pc.orgasm();
+
+	flags["LUND_BROKEN"] = 2;
+	currentLocation = "KORGII J10";
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lundBreakHimC():void
+{
+	clearOutput();
+	showLund(true);
+
+	output("You approach Lund with a grin. He looks like a shy teenage girl waiting for his date, hands behind his back and casting nervous glances from side to side. He looks so <i>pretty</i> in his cute little thong, your furry athletic boytoy. The sight of him so uncertain yet so bold, so nervous and yet confident, arouses you to the point of erection before you’ve even reached him.");
+	
+	output("\n\nWhen he finally sees you his lips have barely begun to curl into a smile before you roughly push him back against the wall, his eyes going wide as you passionately kiss him and suck his tongue. After a couple of blissful seconds they flutter closed and you take the opportunity to press forward, grabbing a handful of his ass and lifting one of his legs to let it rest around your [pc.hips].");
+	if (pc.isCrotchExposed())
+	{
+		output(" Your [pc.biggestCock] resting against his sheath");
+		if (!pc.isNude()) output(" through your [pc.lowerGarments]");
+		output(", y");
+	}
+	else output(" Y");
+	output("ou give him a gaze so lustful you can feel him shiver in your embrace.");
+	
+	output("\n\n<i>“Your room, Lund. Now,”</i> you growl.");
+	
+	output("\n\nBy the time you reach it neither of you are in the mood for waiting. Already panting with desire, Lund pulls his thong to the side before you even reach the bed and you sink yourself");
+	if (pc.biggestCockLength() <= 6) output(" to the hilt/");
+	else output(" six inches deep");
+	output(" with a groan of pleasure, feeling the way Lund’s tight asshole eagerly grips and sucks at your [pc.cockHeadBiggest]. Both of you standing in the middle of the room, you rut your slutty pup with a commanding hand at his neck and another on his washboard stomach.");
+	
+	output("\n\n<i>“[pc.Master], [pc.master],”</i> Lund whines, losing himself in your motions. With your head over his");
+	if (pc.tallness >= 60 && pc.tallness <= 68) output(" shoulder");
+	else output(" you can see his dick is already drooling while you roughly pump upwards into him, right on the edge of a submissive orgasm. He has his hands over your own, caressing your fingers with love as you");
+	if (pc.biggestCockLength() >= 12) output("r cock ruts deep enough inside his asshole to make a bulge under your fingertips");
+	else
+	{
+		output(" thrust,");
+		if (pc.balls > 0) output(" your [pc.balls] slapping against his furred taint");
+		else output(" moaning all the while");
+	}
+	output(". <i>“Gonna cum! I’m gonna cum, [pc.master]!”</i>");
+
+	output("\n\n<i>“Good,”</i> you grunt, tightening your grip on the korgonne boy as you push him over the edge.");
+	
+	output("\n\n<i>“Ohhhh, yeeesss,”</i> Lund moans, his hands gently squeezing your own with each contraction of his asshole and following ejaculation. <i>“Oh, " + pc.mf("masterrrr", "mistresssss") +"...”</i>");
+	
+	output("\n\nYou can see how much he was looking forward to this. He cums all over his room, seed spurting from the end of his oversized cock in long, thick ropes that splatter all over the floor. By the time he’s done cumming and sags back against you, gasping, there’s a creamy puddle of doggy jizz pooled in front of him.");
+	
+	output("\n\n<i>“You’re lucky I don’t make you clean that up with your tongue, Lund,”</i> you tease, pushing him forward. <i>“Now get on the bed so I can fuck you properly.”</i>");
+	
+	output("\n\n<i>“Yes,”</i> he whines, still needy even in the afterglow of his orgasm. His sexual appetite is almost insatiable, making him the perfect fucktoy. He’s on the bed in a flash, but not so fast that he breaks free of your grip. He’s incapable of doing so, even if he has the strength. By now, the shackles of your dominion are coiled around his mind rather than his body. He’s addicted to you.");
+
+	output("\n\nThe sex is quick, messy, and animalistic. You pound Lund’s asshole hard enough to make his bed creak and slam against the wall, his hands splayed against it to brace himself against your pushing. The sound of your");
+	if (pc.balls > 0) output(" [pc.balls]");
+	else output(" [pc.hips]");
+	output(" slapping against his curvy butt resounds through the room, the impacts getting wetter and wetter as both of you cum hard. Groaning in pleasure, you let your hands snake upwards from his hips to caress his chest, gently squeezing his nipples and lifting him upwards as you come down from the high of orgasm.");
+	
+	output("\n\n<i>“Ohhhh, ohh, [pc.master]...”</i> Lund moans, relaxing in your hands as he wraps his own around your forearms. <i>“" + (!korgiTranslate() ? "Lund good pet" : "Was I a good boy") +"?”</i>");
+	
+	output("\n\n<i>“Hmmm,”</i> you murmur, feeling up his physique from behind. <i>“I know what would make you a really good boy, Lund. I’ve got something that’ll make getting you ass plowed feel even better.”</i>");
+	
+	output("\n\nPulling out and pushing him down on the bed, you rifle through your belongings until you find it. A tube of Anusoft cream you bought specifically for this purpose. You turn back around to find Lund still lying on his stomach, legs spread slightly and his head turned to see what you’re doing.");
+	
+	output("\n\n<i>“" + (!korgiTranslate() ? "What that, [pc.master]? Toy" : "What’s that, [pc.master]? A toy") +"?”</i> he says, tilting his head curiously.");
+	
+	output("\n\n<i>“Uh uh,”</i> you say, shaking your head. <i>“It’s a transformative. It’s gonna make your tight little butt even nicer for me to fuck. Any objections?”</i>");
+	
+	output("\n\nHe shakes his head. Nope, none. You hadn’t expected any in the first place. By now, Lund trusts you with his body and mind enough you could probably get him to take anything you wanted. The thought of doing so briefly crosses your mind before you shake your head. One thing at a time.");
+	
+	output("\n\n<i>“Okay, spread those legs Lund,”</i> you murmur to him, patting his butt. <i>“Good boy...”</i>");
+	
+	output("\n\nHis asshole is still");
+	if (pc.biggestCockLength() > 12) output(" gaping open and dripping with your cum, but that only makes your job all the easier");
+	else output(" dribbling your cum, but you’re sure a little of it mixing in with the Anusoft won’t hurt anything");
+	output(". You push his legs outward until you realize after some seconds you’ve got him sitting in a split position.");
+	
+	output("\n\n<i>“Jeez, Lund,”</i> you say, shaking your head in admiration. Your [pc.cockBiggest] stirs yet again, the sight of Lund’s buttcheeks all bunched up and his legs stretched out truly a sight to behold. <i>“You shoulda shown me this earlier. Well, anyway, hold still.”</i>");
+	
+	output("\n\nUncapping the tube, you carefully place some of the cream on your hand and use your other to hold his asscheeks apart. He yips in surprise when it touches his asshole.");
+	
+	output("\n\n<i>“Cold!”</i> he gasps.");
+
+	output("\n\n<i>“Shhh,”</i> you comfort him, petting his butt. <i>“It’ll be fine.”</i>");
+	
+	output("\n\nYou apply the cream in a ring around the hole you just fucked, rubbing it in until it begins to disappear into his soft, supple skin. You know it’s working when he starts to whine again.");
+	
+	output("\n\n<i>“Hot,”</i> Lund moans, shaking his ass a little. It’s a little enchanting to watch, then the magic starts to happen. Lund begins to moan and thrust against the bed as a soft, ridged surface begins to appear around his asshole, the skin rising to form a small ring around his hole. You pull his thong back into place and let it slide between his cheeks, watching its descent until it’s tightly secured over his newly pumped asshole. It just <i>barely</i> covers the plumped up skin, some of it visible from the sides.");
+	
+	output("\n\n<i>“Looking good, Lund,”</i> you say, a grin on your face. <i>“You look more and more like my anal slut every day.”</i>");
+	
+	output("\n\nHe’s still whining a little. <i>“[pc.Master], please...”</i>");
+	
+	output("\n\nWell, it’s not uncommon for transformatives to have a ‘breaking in’ phase. He’s evidently feeling pretty needy right now owing to the cream, and the way he’s raising his butt off the bed not only gives you a nice look at his newly upholstered asshole but puts a few lusty thoughts in your head. You firmly push it back down.");
+	
+	output("\n\n<i>“Okay, relax, I’ll give you what you need,”</i> you tell him, getting back into position. <i>“You’re such a little slut, Lund.”</i>");
+	
+	output("\n\nWith your [pc.cockHeadBiggest] at his entrance, you can already feel the difference. It’s like you’re being sucked inside, a welcoming mat at your favorite hole to fuck, like his ass is trying to suck your cock, and you’re more than willing to let him try it. You slide in <i>slowly</i>, letting him savor the feel of his [pc.master] indulging his need and enjoying his loud, pleasured moans. He shivers underneath you in joy and you can’t help but smile. You’ve still got more than half the cream left in the tube.");
+	
+	output("\n\nYou take Lund at a nice and gentle pace, rocking back and forth on top of him and keeping him in the splits. It’s a cute look, but more importantly you’ve got a nice view of the way his asshole’s ridged donut sucks at you, gripping you on your outstroke as if he’s begging you not to leave. His tail lolls from side to side whenever you enter him, his mind too involved in the process of enjoying the sex to properly wag it.");
+	
+	output("\n\n<i>“Fuck, you feel great,”</i> you sigh, pulling his ass back on top of your cock and holding it there for a second. <i>“You’re a hell of a good fuck, Lund.”</i>");
+	
+	output("\n\n<i>“Uh!" + (!korgiTranslate() ? " T-thanks [pc.master]" : " Thank you, [pc.master]") +"!”</i> Lund moans, twitching as he feels you");
+	if (pc.balls > 0) output(" balls-deep inside");
+	else output("r dick hilted in");
+	output(" his lewd asshole. <i>“" + (!korgiTranslate() ? "Want to be best fuck for [pc.master]" : "I want to be your best fuck, [pc.master]") +"!”</i>");
+	
+	output("\n\n<i>“Got a little way to go for that, but I think I know what might help,”</i> you say, eyeing the mostly-full tube. <i>“But for now, I’m gonna fuck you full of spunk again.”</i>");
+	
+	output("\n\n<i>“Yes, yes!”</i> he whines, pushing his ass back into you.");
+
+	output("\n\nHolding him down against the bed, you start fucking him a little harder, experimenting with different angles and speeds before finally giving up and just pounding him like the panting little slut he is. That’s always been how he’s loved it best and all your experimentation amounted to finding out it feels great to fuck him, something that was true even before the cream. Still, though, you have to admit he <i>does</i> suck and grip at you in a way he didn’t before... you can only imagine what he’ll be like with the full dose.");
+	
+	output("\n\nPumping him faster and faster, you suddenly pull him upwards into your lap and loop your arms around his shoulders from behind, trapping him there while you cum. You groan into his ear with the pleasure of it, enjoying his sultry, panting moans while his fat cock begins to spurt upwards into the air. So tightly pressed against each other, you can feel his strong, lively heartbeat with your chest pressed against his back. It’s a nice reminder that Lund is a hunter-gatherer, a warrior, and that beyond that he’s all yours. Your obedient little bitch.");
+	
+	output("\n\nYou leave your dick inside him after cumming, lightly kissing his neck in the afterglow of your shared orgasm.");
+	if (pc.canineScore() >= 4) output(" Letting your instincts run a little wild, you even give him some light bites that he seems to love");
+	output(". His furry tail can hardly move in the space between the two of you, but you can feel it wagging all the same.");
+	
+	output("\n\n<i>“Alright, get on all fours for a second, Lund,”</i> you tell him, his ears cocking towards you. <i>“I wanna see your butt.”</i>");
+	
+	output("\n\nPulling out with a grunt - his ring <i>really</i> doesn’t want to let go of your [pc.cockHeadBiggest] - you sigh and settle back as Lund gets up on all fours and looks back at you, a little embarrassed.");
+	
+	output("\n\n<i>“Is this good?”</i> he asks, sweaty and still panting after the exertion.");
+
+	output("\n\nYou’re not really paying attention to his breathing, though. You’re more intently focused on the curvature of his ass and his cheeks leading inwards to a tight, winking asshole. You’re momentarily entranced by the way your [pc.cum] is dripping from it to run down his freshly-emptied balls. Your eyes flick back up to his butt. Okay, the Anusoft was definitely a good idea. You can actually see your cum pooling slightly on the edge of the ring before it runs down his skin in a rivulet.");
+	
+	output("\n\n<i>“[pc.Master]?”</i> Lund asks, not quite getting it.");
+	
+	output("\n\n<i>“Never mind,”</i> you say, shaking your head. <i>“Good boy, you can go wash up. Actually,”</i> you say, suddenly realizing something. <i>“Where do you wash up, Lund?”</i>");
+	
+	output("\n\n<i>“Where?”</i> he says, confusedly tilting his head sideways. <i>“At "+ (korgiTranslate() ? "the" : "") +" pool, [pc.master].”</i>");
+	
+	output("\n\n<i>“The pool...”</i> you echo, looking at him and beginning to smile. <i>“So you just walk over there in your thong, my cum dripping down your legs all the way? That’s hot. So everyone knows when I’ve come visiting you, huh?”</i>");
+	
+	output("\n\nHe turns red, looking down at his hands as he talks. <i>“"+ (!korgiTranslate() ? "Lund usually go right after" : "I usually go right after we’re done") +", so...”</i>");
+	
+	output("\n\n<i>“So?”</i> you prod him.");
+	
+	output("\n\n<i>“So "+ (!korgiTranslate() ? "Lund doesn’t" : "I don’t" ) +" get hard at the feeling of it,”</i> he confesses.");
+	
+	output("\n\n<i>“Ohooo,”</i> you say, grinning. <i>“So the reason you go wash up immediately is because otherwise the thought of it would make you too turned on to hide, huh? Well,”</i> you continue, drawing closer to him on the bed. <i>“Let’s settle in until you do get hard, lover boy.”</i>");
+
+	processTime(30+rand(15));
+	pc.orgasm();
+
+	clearMenu();
+	addButton(0, "Next", lundBreakHimC2);
+}
+
+public function lundBreakHimC2():void
+{
+	clearOutput();
+	showLund(true);
+
+	output("A few minutes later, you send him out with an affectionate pat on the butt and a loving caress of his cock. He whines about it, but obeys. The sight of him walking out of his room with a giant erection and wearing his thong is really something, and you have to admire the way his new ridged asshole dimples under the back of it. No doubt he’ll get a couple of stares from passersby.");
+	
+	output("\n\n<i>“See you soon, Lund!”</i> you call after him, " + pc.mf("trying not to chuckle", "stifling a giggle") +".");
+	
+	output("\n\nYou leave the tube of Anusoft on his bed, along with application instructions. You depart his room in high spirits, humming a tune and already looking forward to your next meeting with your depraved doggyboy slut.");
+
+	flags["LUND_BROKEN"] = 3;
+	flags["LUND_ANUSOFT"] = 1;
+
+	pc.destroyItemByClass(Anusoft);
+	currentLocation = "KORGII J10";
+
+	processTime(3+rand(2));
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function lundBreakHimD():void
+{
+	clearOutput();
+	showLund(true);
+
+	output("The closer you get to Lund, the more curious you get. What <i>is</i> that thing he’s holding? There’s a line running from it to his... ooh. Aww! He put his leash on waiting for his [pc.master] and now he’s looking for you to play with him. That’s just adorable. Walking up to him, you give him a wave and a smile.");
+	
+	output("\n\n<i>“Hey there, boy. Miss me?”</i>");
+	
+	output("\n\nHe practically jumps for joy when you approach, a happy smile lighting up his face. <i>“Hi [pc.master]! "+ (!korgiTranslate() ? "Lund" : "I") +" always miss you.”</i>");
+	
+	output("\n\nWell, that tugs at the heartstrings a little. What does he do when you’re not around, lie about and look forlorn? You’re almost afraid to ask.");
+	
+	output("\n\n<i>“Did you use the rest of it?”</i> you say instead, pressing yourself against him and grabbing a handful of his butt. You could swear this is bigger than when you first met. <i>“Have you... been working out?”</i>");
+
+	output("\n\n<i>“Work out?”</i> Lund says, tilting his head and flopping one of his ears.");
+	
+	output("\n\nYou shake your head. <i>“No, don’t worry about it.”</i> Of course, the tribal hunter society probably doesn’t have much in the way of gym knowledge - their physiques are obtained through hard work, not running on a treadmill and lifting barbells. Well, except for this bit...");
+	
+	output("\n\n<i>“Oho. So you </i>did<i> use the rest of it,”</i> you murmur, grinning. Unabashedly feeling him up, Lund moans a little as you run your fingers down the line of his thong. You can feel the line of his ridged asshole, protruding significantly when you sink your fingers between his buttcheeks. <i>“Good </i>boy<i>, Lund,”</i> you whisper to him, spanking his ass softly. It jiggles slightly at the impact, though his muscle holds it firm. <i>“You look like a gigantic anal slut.”</i>");
+	
+	output("\n\n<i>“Just doing what [pc.master] said...”</i> he whines quietly, leaning against you as his tail slowly wags. <i>“"+ (!korgiTranslate() ? "Lund" : "I") +" always do what [pc.master] says.”</i>");
+	
+	output("\n\n<i>“And that’s why you’re the perfect fucktoy, you little boywhore,”</i> you say, drawing back a little to look him right in the eye as you sink two fingers into his asshole without any warning. <i>“I bet you’ve been getting yourself off with this slutty, sensitive </i>fuckhole<i> of yours since you used the cream.”</i>");
+	
+	output("\n\n<i>“Ah... aaah!”</i> Lund moans in a high-pitched voice, eyes going wide. <i>“M-[pc.master]!”</i>");
+	
+	output("\n\n<i>“So?”</i> you challenge him, grinning cockily while you fingerfuck him. You can feel his large dogdick hardening against your [pc.stomach] as you press him against the wall, starting to stand up straight in response to your sexual ministrations. <i>“How many times did you get yourself off?”</i>");
+
+	output("\n\n<i>“"+ (!korgiTranslate() ? "L-Lund" : "I-I") +" didn’t!”</i> he gasps, panting and flexing his calves while you fingerfuck his tight, slick asshole.");
+	
+	output("\n\n<i>“You didn’t cum even once?”</i> you say, bemused. <i>“You wouldn’t lie to your master, would you, Lund?”</i>");
+	
+	output("\n\n<i>“No!”</i> Lund insists, looking at you desperately as precum begins to leak from his pointed tip. <i>“"+ (!korgiTranslate() ? "N-not cum be-because! It not [pc.master]" : "I d-didn’t cum beca-uh! Because it wasn’t you") +"!”</i>");
+	
+	output("\n\n<i>“Because it’s... not me?”</i> you say, comprehension dawning on you slowly. <i>“You can’t cum unless I’m doing it to you?”</i>");
+	
+	output("\n\n<i>“Yes! Yes! Yes!”</i> Lund moans, bucking his hips into you. His ass is so sensitive now that just having you fingerfuck him and talk is enough to bring him to orgasm. You’re too surprised to even react to the warmth blossoming between the two of you, his cock spurting jizz up both of your torsos and all over your stomachs. He looks you in the eye submissively while he cums, daring to lean forward and sneak a kiss on your [pc.lipsChaste].");
+	
+	output("\n\n<i>“Sorry, [pc.master]...”</i> Lund whines quietly, putting an affectionate hand on your [pc.chest].");
+	
+	output("\n\n<i>“No, it’s okay,”</i> you say, scratching his ear idly. Getting cum all over your midriff is a small price to pay to find <i>that</i> information out. How adorably needy of him. <i>“Do you have baths inside? Somewhere to wash up?”</i>");
+	
+	output("\n\nThere’s a lot you don’t know about Kor’gii Hold, really. You wonder for a moment how many rooms you don’t know about exist; there’s surely plenty of space, after all.");
+	
+	output("\n\n<i>“"+ (!korgiTranslate() ? "Lund will" : "I’ll") +" take you to"+ (korgiTranslate() ? " the " : " ") +"baths,”</i> he says, nodding and turning away before he remembers something. Turning back, he hands you his leash wordlessly.");
+
+	output("\n\n<i>“Oh, good boy,”</i> you murmur approvingly, taking it from him and following him along with it in hand. You straighten the line once or twice just to tug him around a bit for fun, reminding him who’s in charge. It’s a winding path to the baths, descending deeper into the hold, whereupon you discover to your surprise and delight that the baths are really more like volcanic hot springs.");
+	
+	output("\n\nDug out of the rock and carefully shaped, there are a bunch of sauna and spa-like pools occupied by korgonne and empty alike. Naturally, you choose one of the most out of the way pools and sink into it");
+	if (!pc.isNude()) output(", leaving your stained equipment with an attendant");
+	output(". Lund joins you in the heated water, leaving his thong poolside. You beckon him over and soon have the warm, furry boy seated in your lap.");
+	
+	output("\n\n<i>“Should do this more often,”</i> you sigh, leaning back and relaxing as you run a hand through Lund’s thick stomach fur. <i>“Eh, pet?”</i>");
+	
+	output("\n\n<i>“Mmmn,”</i> he sighs, leaning into the contact as he works his way further into your lap. <i>“Feels nice, [pc.master].”</i>");
+	
+	output("\n\n<i>“I know what would feel nicer,”</i> you groan quietly, letting him feel your [pc.biggestCock] rising. <i>“Having this inside that tight fucking ass of yours.”</i>");
+	
+	output("\n\nThough he doesn’t say anything, you can see - and feel - the redirection of his interest from snuggling to fucking. Not that Lund is very hard for you to manipulate these days, but it’s always nice to see how ready he is to jump on your cock. He shifts in your lap, looking back at you.");
+
+	output("\n\n<i>“"+ (!korgiTranslate() ? "Does [pc.master] want Lund to take it" : "Do you want me to take it, [pc.master]") +"?”</i> Lund whispers.");
+	
+	output("\n\n<i>“Of course,”</i> you reply, nodding easily. <i>“It’s what you’re best at, after all.”</i>");
+	
+	output("\n\nHe shivers at that, and you grin. He’s grown to love being belittled, almost bullied, about how much of a fucking slut he is for you to the exclusion of everything else. It’s true, too, that he might be better at getting fucked in the ass than he is at hunting. The actuality doesn’t matter - only that he believes it.");
+	
+	output("\n\nHe stands up for a moment, letting the steamy water cascade down his lithe body while your cock slowly springs upwards under the clear surface of the water. Then, without even checking to see if anyone is around, he sinks down on your [pc.cockHeadBiggest] with a quiet moan.");
+	
+	output("\n\n<i>“Good boy,”</i> you murmur to him, reaching up to scratch his chest fur as he struggles to sit back down in your lap. <i>“Keep going and I’ll give you a treat.”</i>");
+	
+	output("\n\nOrdinarily having him sit down on your erect cock without lube would be a trial but the Anusoft has long since seen to that. Lund’s asshole is a sexual toy without peer, effortlessly swallowing your tip and sucking down more of you with its grippy walls. He’s so tight and and warm inside that it’s almost like he’s giving you a blowjob, taking you deeper by the second.");
+	
+	output("\n\nWhen his ass touches your [pc.thighs] once more, he gives a loud, deep groan of satisfaction. You’re tempted to join him; the way he’s squeezing on you is insanely erotic, not to mention pleasurable. He’s <i>well</i> practiced by now, clearly having paid attention to what makes you feel good during all your hot, sweaty sex sessions. You can feel him trying to milk you now, squeezing his tailhole to massage you from base to tip, and fuck if that doesn’t feel great.");
+	
+	output("\n\n<i>“Here, Lund, see if you can keep that up while I fuck you,”</i> you mutter, holding him firmly around the waist.");
+	
+	output("\n\nYou start rolling your hips inside him, sending gentle waves across the surface of the water. He does his best to keep the titillating squeezing up, his soft, drawn-out sighs slowly morphing into long, hard pants as he feels both of you getting closer and starts to ride a little harder.");
+
+	output("\n\n<i>“[pc.master], [pc.master], "+ (!korgiTranslate() ? "Lund" : "I’m") +" gonna cum,”</i> Lund moans, biting his lip. You can feel him tightening up around you. <i>“[pc.master]-!”</i>");
+	
+	output("\n\nThere’s a couple of urgent splashes and then nothing but labored silence as the two of you shake, teeth grit as you cum together in the pool. Lund’s throbbing cock creates tiny currents in the water as it twitches up and down, spurting creamy seed that dissolves in the hot water immediately. All of your own spunk ends up inside Lund, your warmth tightly sealed in his depths.");
+	if (pc.cumQ() >= 3000) output(" He ends up with a fair bulge to his tummy by the time you’re done.}");
+	
+	output("\n\nSlowly, gripping Lund’s hips and letting out a long sigh, you release the tension in your body and lean back against the side of the pool. Lund’s done a fantastic job of milking you and keeping it all inside, and you idly scratch him between the ears for doing so.");
+	
+	output("\n\n<i>“Good work, pup,”</i> you sigh, spreading your arms along the edge as he relaxes in your lap. Damn, you really <i>should</i> do this more often - having him just sit on your cock and work you with his ass is a different experience altogether, and you don’t even have to do anything except recline. Making him work for your orgasm is nice, too, especially when you know how badly he wants it to happen.");
+	
+	output("\n\nYou let Lund get out first, his fur dripping wet. He takes a moment to roughly shake himself off, showering you with droplets and reminding you he’s a korgonne after all. At least he makes for a cute pup, you reflect, and mentally congratulate yourself for not getting out yet. Now you only have to dry yourself off once.");
+	
+	output("\n\nGetting out of the pool");
+	if (!pc.isNude()) output(" and getting your things back from the attendant");
+	output(", you towel off and make to leave. Lund dutifully waits for you, already wearing his thong again. Looking at him standing there with his hands clasped behind his back gives you an idea.");
+	
+	output("\n\n<i>“Hey Lund, let’s go back to your room and hang out for a bit,”</i> you tell him.");
+	
+	output("\n\n<i>“Okay!”</i> he replies cheerfully, just happy to be around his [pc.master].");
+	
+	output("\n\nYou have him noisily");
+	if (pc.balls > 0) output(" licking your [pc.balls] and");
+	output(" sucking your [pc.biggestCock] a few minutes later, lying on his bed with your arms behind your head. You were right; this <i>is</i> a good idea. You should be getting him to come out of his shell a little, take matters into his own hands. Now that you’ve broken him down, you can build him back up if you so desire.");
+	
+	output("\n\nThe possibilities whirl around your head, but you take a moment to quash them as you grunt and cum hard into his throat. Sighing in satisfaction, you let him lick and suckle your cock as he greedily swallows down every drop you have to give him.");
+	if (pc.cumQ() >= 3000) output(" Well, nearly every drop - some of it spurts from his snout as he struggles to cope with your voluminous flow, but he gets most of it.");
+	
+	output("\n\nYou wave him goodbye and set out before he’s even finished cleaning himself off, his lips still dribbling seed. He gives you a little wave, but chokes on your jizz before he can get his words out. You close the door on him taking a few deep, hard swallows.");
+
+	processTime(30+rand(15));
+	pc.orgasm();
+
+	currentLocation = "KORGII J10";
+
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }

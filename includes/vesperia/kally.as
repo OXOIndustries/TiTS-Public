@@ -1600,10 +1600,7 @@ public function askAbootOtherKiroSisters():void
 		else output("Her bluster is just a poor attempt to cover for her own insecurities. <i>“Kiro, I’m not going to try and fuck my way through your family.”</i> You pause, then add in the name of honesty, <i>“Unless they </i>really<i> want a piece.”</i>");
 		output("\n\nKiro ");
 		if(!pc.isBimbo() && pc.isNice()) output("awkwardly circles her fingers along the whorls of the table’s grain, babbling, <i>“That’s um... yeah. You’re too nice.”</i> She sucks in a breath of air, steadying herself. <i>“Too nice for a girl like me.”</i> The pirate shakes her head, dismissing whatever thoughts lurked beneath that admission.");
-		else output("slaps a hand against the table, laughing. The effect is somewhat diminished by how the cushiony pads on her paw dampen the sound of the impact. Mock-wiping a tear from the corner of her eye, she answers, <i>“Not at all, but it is nice to have a ");
-		if(flags["KIRO_GF"] != undefined) output("[pc.boyGirl]friend");
-		else output("drinking buddy");
-		output(" just as full of shit as I am.”</i> She coughs to clear her throat.");
+		else output("slaps a hand against the table, laughing. The effect is somewhat diminished by how the cushiony pads on her paw dampen the sound of the impact. Mock-wiping a tear from the corner of her eye, she answers, <i>“Not at all, but it is nice to have a " + (flags["KIRO_GF"] != undefined ? "[pc.boyGirl]friend" : "drinking buddy") + " just as full of shit as I am.”</i> She coughs to clear her throat.");
 	}
 	//Merge, no new PG
 	output("\n\n<i>“Honestly though, it’s just me and my sister. Our line isn’t exactly known for being the most fertile, if you can believe it. Naturally horny, sure, but heat doesn’t really hit us as strongly as most kui-tan.”</i> She takes a swig from her glass and pats her balls. <i>“You can imagine why I saw the appeal in Throbb.”</i>");
@@ -4270,7 +4267,7 @@ public function kallyHotdogNFuck():void
 	output("\n\n<i>“Come on, sugar, you can’t even g-give me a minute to calm down here.”</i>");
 
 	if(pc.isBro()) output("\n\nYou grunt as you continue to plow her. Why should <i>you</i> wait for her?");
-	else output("<i>“Nope,”</i> you say playfully as you continue to fuck her.");
+	else output("\n\n<i>“Nope,”</i> you say playfully as you continue to fuck her.");
 	output(" Kally’s eyes start to cross as she barrels into another orgasm, just as her first one was trailing off. Her balls pulse again, eager to expel more of their creamy load, even after shrinking a good amount after her first orgasm. Her pussy squeezes down on your [pc.cock " + x + "], begging for you to cum already.");
 
 	output("\n\nYou push through her resistance, telling her through action that you’ll cum at your own pace. Of course you’re already pretty close, but that’s not the point! You fuck her as hard as possible, feeling your orgasm start to loom over you. If you’re going down then you’re taking her with you! You can already feel her hurtling towards a third climax. Almost there.");

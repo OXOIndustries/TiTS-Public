@@ -499,7 +499,7 @@
 					output("\n\nA pressure hits your");
 					if(target.balls > 0) output(" [pc.balls]");
 					else output(" gut");
-					output(" as " + (target.balls <= 0 ? "it fills" : "they fill") + " with more and more nyrea eggs...");
+					output(" as " + (target.balls <= 1 ? "it fills" : "they fill") + " with more and more nyrea eggs...");
 					
 					// Increase multiplier
 					if(target.statusEffectv2("Nyrea Eggs") < 10 && (target.hasPerk("Nyrea Eggs") || rand(5) != 0))

@@ -8,7 +8,8 @@ public function stellaCapacity():Number
 public function showStella(nude:Boolean = false):void
 {
 	showName("\nSTELLA");
-	showBust("STELLA" + (nude ? "_NUDE" : ""));
+	if(stellaPregnantShowing()) showBust("STELLA_PREG" + (nude ? "_NUDE" : ""));
+	else showBust("STELLA" + (nude ? "_NUDE" : ""));
 }
 
 public function showAlex(nude:Boolean = false):void

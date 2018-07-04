@@ -63,10 +63,9 @@ public function initMhengaRooms():void
 	rooms["NORTHWEST ESBETH"].southExit = "WEST ESBETH 1";
 	rooms["NORTHWEST ESBETH"].eastExit = "ESBETH'S NORTH PATH";
 	rooms["NORTHWEST ESBETH"].moveMinutes = 2;
-	rooms["NORTHWEST ESBETH"].runOnEnter = zilTwinsEsbethBonus;
+	rooms["NORTHWEST ESBETH"].runOnEnter = function():Boolean {if (shukuchiMhengaBonus()) return true; else return zilTwinsEsbethBonus()};
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.OUTDOOR);
 	rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.PUBLIC);
-	rooms["NORTHWEST ESBETH"].runOnEnter = shukuchiMhengaBonus;
 
 	//5. Esbeth’s Western Path
 	rooms["WEST ESBETH 1"] = new RoomClass(this);

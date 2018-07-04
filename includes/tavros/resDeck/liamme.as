@@ -507,7 +507,7 @@ public function buttfuckLiamme():void
 	if(pc.cumQ() >= 1500) output("swollen ");
 	output("tummy. Liamme quickly settles into your embrace, giving you a smirk over his shoulder before blue eyes flutter shut, ready to sleep ");
 	if(pc.hasKnot(x)) output("off your knot");
-	else output("off the afterglow of his orgams");
+	else output("off the afterglow of his orgasms");
 	output(", and you feel ready to do the same.");
 	processTime(35);
 	pc.orgasm();

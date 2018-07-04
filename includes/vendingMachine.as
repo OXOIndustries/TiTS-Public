@@ -161,6 +161,7 @@ public function approachItemVendingMachine(machine:String = "none"):void
 			chars["VENDINGMACHINE"].inventory.push(new StrawberryShortcake());
 			chars["VENDINGMACHINE"].inventory.push(new ManDown());
 			chars["VENDINGMACHINE"].inventory.push(new ChillPill());
+			chars["VENDINGMACHINE"].inventory.push(new DrySpell());
 			
 			chars["VENDINGMACHINE"].sellMarkup = 1.00;
 			chars["VENDINGMACHINE"].buyMarkdown = 0.1;

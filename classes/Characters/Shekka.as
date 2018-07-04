@@ -18,7 +18,7 @@
 		//constructor
 		public function Shekka()
 		{
-			this._latestVersion = 4;
+			this._latestVersion = 5;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			
@@ -153,6 +153,7 @@
 			this.createVagina();
 			this.girlCumType = GLOBAL.FLUID_TYPE_GIRLCUM;
 			this.vaginalVirgin = false;
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].bonusCapacity = 12;
@@ -211,6 +212,11 @@
 			se.storageName = "Sterile";
 			dataObject.perks.push(se.getSaveObject());
 			dataObject.perks.sortOn("storageName", Array.CASEINSENSITIVE);
+		}
+		public function UpgradeVersion4(dataObject:Object):void
+		{
+			dataObject.vaginas[0].hymen = false;
+			dataObject.analVirgin = false;
 		}
 		override public function onLeaveBuyMenu():void
 		{

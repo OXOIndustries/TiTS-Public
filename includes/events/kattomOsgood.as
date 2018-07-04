@@ -18,6 +18,7 @@ public function pattonIsHere():Boolean
 		||	rooms[currentLocation].hasFlag(GLOBAL.SPIDER_WEB)
 		||	rooms[currentLocation].hasFlag(GLOBAL.PRIVATE)
 		||	shipLocation == "500" // Can't smuggle weapons on New Texas!
+		||	shipLocation == "ZS L50" // Zheng Shi Station
 		)
 		{
 			flags["KATTOM_LOCATION"] = undefined;

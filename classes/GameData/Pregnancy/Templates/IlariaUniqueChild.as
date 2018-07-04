@@ -17,7 +17,7 @@ package classes.GameData.Pregnancy.Templates
 			originalRace = "ausar";
 			skinTone = "fair";
 			lipColor = "red";
-			nippleColor = "light pikn";
+			nippleColor = "light pink";
 			eyeColor = "red";
 			hairColor = "white";
 			furColor = "white";

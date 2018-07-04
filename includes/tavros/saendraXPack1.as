@@ -1463,7 +1463,7 @@ public function zilCallGirlSexed(count:Boolean = false):int
 public function zilCallGirlKnockUp(nVirility:Number = 0):void
 {
 	// Already visibly pregnant? Early return
-	if (flags["ZIL_CALLGIRL_EGG_COUNT"] != undefined)
+	if (flags["ZIL_CALLGIRL_EGG_COUNT"] != undefined || (flags["ZIL_CALLGIRL_PREG"] != undefined && flags["ZIL_CALLGIRL_GESTATION"] != undefined))
 	{
 		trace("Already preggers");
 		return;

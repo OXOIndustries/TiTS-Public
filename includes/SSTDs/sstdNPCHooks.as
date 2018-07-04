@@ -80,6 +80,15 @@ public function myrellionSSTDChance(arg:Creature):void
 	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
 }
 
+public function zhengShiSSTDChance(arg:Creature):void
+{
+	var sstdList:Array = [];
+	if(rand(40) == 0) sstdList.push("Undetected Furpies");
+	//if((arg.originalRace == "raskvel" || arg.raceShort() == "raskvel") && rand(30) == 0) sstdList.push("Undetected Locofever");
+	if(rand(30) == 0) sstdList.push("Undetected Sneezing Tits");
+	if(sstdList.length > 0) arg.createStatusEffect(sstdList[rand(sstdList.length)]);
+}
+
 // Test stuff
 public function induceSSTD():void
 {
