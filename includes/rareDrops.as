@@ -47,13 +47,11 @@ public function genericRareDrops(loot:Array):Array
 				break;
 		}
 		//Universal rare drops~
-		if(tempLoot.length == 0) 
-		{
-			/* Nothing yet */
-		}
+		
 	}
 	//Easter special!
 	if(isEaster() && rand(100) <= threshold+1) tempLoot.push(eggSelect());
+	if(isNearlyJulyFourth() && rand(100) <= threshold+2) tempLoot.push(new RedRocket());
 	//Bonus special TF items 15% of the time.
 	if(planet == "tarkus" && rand(100) <= 15)
 	{
