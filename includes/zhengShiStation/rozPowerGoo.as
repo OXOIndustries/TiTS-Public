@@ -103,7 +103,7 @@ public function startPhase2():void
 	tEnemy.HPRaw = tEnemy.HPMax();
 	tEnemy.energyRaw = 100;
 	tEnemy.lustRaw = enemy.lustRaw;
-	tEnemy.createPerk("Inhuman Desire",150,0,0,0);
+	tEnemy.createPerk("Inhuman Desire",100,0,0,0);
 	
 	tEnemy.baseHPResistances.kinetic.damageValue = 50.0;
 	tEnemy.baseHPResistances.electric.damageValue = 50.0;
@@ -150,6 +150,10 @@ public function pcBeatsRozForGoodies():void
 	else output("lusting after");
 	output(" you with her eyes, panting with every simulated breath... and each breath seems to add a little more mass to her immense chest, threatening to rip her suit open and squirt her all over you if she isn’t sated!");
 	processTime(2);
+	rozCombatVictoryMenu();
+}
+public function rozCombatVictoryMenu():void
+{
 	clearMenu();
 	addButton(0,"Goofuck",rozGetsGoofukked,undefined,"Goofuck","Fuck the noisy googirl until she’s satisfied, or at the very least quiet.");
 	addButton(1,"Wear Her",wearRozLikeAnEdgarSuit,undefined,"Wear Her","Wear Roz over your entire body, letting her get at every erogenous zone you have all at once.");
@@ -166,6 +170,8 @@ public function pcBeatsRozForGoodies():void
 	//Disabled for nau.
 	if(pc.IQ() >= 50 || pc.isGoo()) addButton(5,"Steal Core",coreJack,undefined,"Steal Core","Roz might be obsessing over your body now, but she seems to have her shit together more than your average galotian. She’s gotta have a core under that suit... give it a tug.");
 	else addDisabledButton(5,"Locked","Locked","You aren't smart enough for this.");
+	if(pc.legCount == 2) addButton(6,"Hijack Armor",hijackRozArmor,undefined,"Hijack Armor","Steal Roz's ramshackle power armor for yourself. She will probably never recover from this sleight -- at least not for the rest of the planet rush.");
+	else addDisabledButton(6,"Hijack Armor","Hijack Armor","You need to be a biped to operate this!");
 
 	addButton(14,"Leave",leaveRozAfterWinning);
 }
@@ -178,6 +184,57 @@ public function leaveRozAfterWinning():void
 	output("<i>“W-wha!?”</i> Roz howls as you turn to go. <i>“C-c’mon, now, that ain’t funny! You can’t just leave a galotian hungry like that; I burned off all that biomass fightin’ ya... and then you had the indecency to go and get me all kinds of turned on! Come onnnn, don’t make me beg.”</i>");
 	output("\n\nYou wave and turn, heading off the way you were going before encountering her.");
 	output("\n\n<i>“I can’t masturbate myself more biomass!”</i> Roz whines as you leave.\n\n");
+	CombatManager.genericVictory();
+}
+
+//[Hijack Armor]
+//Only available for bipedal PCs. Fuck you taurs/nagas you literally cannot possibly fit into this thing.
+//TT: Steal Roz's ramshackle power armor for yourself. She will probably never recover from this sleight -- at least not for the rest of the planet rush.
+public function hijackRozArmor():void
+{
+	clearOutput();
+	showRoz(true);
+	output("While Roz is busy begging for a fuck, your eyes turn to a more material prize: the suit of powered armor she was wearing. The front hatch is sitting open, almost like a siren’s call to your inner lust for a giant suit of armor. Sure, it might be a bit ramshackle, patched together from parts around an old powered lifter suit, but... hell, Roz proved it’s pretty damn effective. You’re half sure the only thing that actually made her get out of it was her own rampant lusts more than anything you actually did to it.");
+	output("\n\n<i>“Hey, the tits and booty are over here!”</i> Roz drawls, wiggling her expansive assets at you. <i>“C’mon already, stop ogling the hardware and plow me!”</i>");
+	output("\n\nYeah, fucking a jiggling goo-girl would be nice and all, but... <i>power armor</i>, man. You stow your [pc.weapon] and push past the grasping goo’s hands, sauntering up to the suit’s hatch. You run a hand appreciatively over the ultra-hardened outer shell, smooth as a cowgirl’s rump and harder than " + (pc.hasCock() ? "you are right now":"anything this side of truly military grade tech") + ". It’s not pretty, but it’s real functional.");
+	output("\n\nRoz wiggles up behind you, a bit of worry on her slimy face. <i>“Hey, wait, don’t you go gettin’ any ideas now. I weren’t gonna steal your [pc.weapon] or the clothes off yer back, you keep your paws off my armor!”</i>");
+	output("\n\nWell, she shouldn’t have attacked you if she didn’t want to risk her precious armor.");
+	output("\n\n<i>“Aw come on. Please don’t. I worked so hard makin’ that - with my own two hands! Bought every part myself, I did. Took me years!”</i>");
+	output("\n\nRoz gives you a pouty, almost pleading look, puffing up her black lips and making her eyes look all teary. <i>“Come on, don’t be a jerk about it...”</i>");
+	output("\n\nShe seems sincere...");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Take It",takeRozArmor,undefined,"Take It","Fuck her and her pleas; take the armor, even if it means never seeing this goo-girl again.");;
+	addButton(1,"Leave It",leaveRozsArmor,undefined,"Leave It","Oh okay... Roz can keep her power armor.");
+}
+
+//[Leave It]
+//Oh okay... Roz can keep her power armor.
+public function leaveRozsArmor():void
+{
+	clearOutput();
+	showRoz(true);
+	output("<i>“Okay, okay,”</i> you say, taking a step back. <i>“Keep it.”</i>");
+	output("\n\nRoz beams. <i>“Thanks, sugar. Now about that victory lap you’re gonna take with me...”</i>");
+	//display Roz’s victory menu as normal.
+	rozCombatVictoryMenu();
+}
+
+//[Take It]
+//Fuck her and her pleas; take the armor, even if it means never seeing this goo-girl again.
+public function takeRozArmor():void
+{
+	clearOutput();
+	showRoz(true);
+	output("You shove Roz off you and, while she’s busy peeling herself off the stone, you clamber up into the armor’s hatch and lock yourself in. There’s a pneumatic hiss as the armor seals up around you, and the padding inside tightens around your arms and legs. A holographic HUD lights up, displaying ammunition and shielding status, atmospheric data, and a thousand other datapoints that swirl around your eyes.");
+	output("\n\n<i>“Heeeyyy!”</i> Roz shouts, splatting a fist on the chest plate. <i>“Gimme that back ya jerk! Get out and... I dunno just get out!”</i>");
+	output("\n\nThere’s a lot of incoherent angry shrieking after that, but it’s easy to ignore while you do a systems check and get accustomed to the controls. After a couple minutes, you’re pretty sure you’re ready to go - and to get this angry goo out of your way.");
+	output("\n\n<i>“You ain’t gettin’ past me!”</i> Roz shrieks, moments before getting stepped on by her own power armor as you blithely trudge through her. An exceptionally irate smear on the ground shouts after you, <i>“Ow! Hey! You can’t just ignore me!!! I’ll find you someday, I swear it!”</i>");
+	output("\n\nAnd she can pry this armor off you in twenty years or so when she’s saved up enough to buy a new suit. In the meantime, you have probes to collect.");
+	enemy.inventory.push(new RozPowerArmor());
+	processTime(1);
+	flags["ROZ_ARMOR_STOLEN"] = 1;
+	output("\n\n");
 	CombatManager.genericVictory();
 }
 
