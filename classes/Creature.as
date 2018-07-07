@@ -3548,7 +3548,7 @@
 						}
 						kGAMECLASS.nutStatusCleanup();
 					}
-					if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor())
+					if(statusEffectv1("Nyrea Eggs") > 0 && hasOvipositor()&&cumType==GLOBAL.FLUID_TYPE_NYREA_CUM)
 					{
 						var nyreaEggs:Number = Math.round((6 + rand(5)) * statusEffectv2("Nyrea Eggs"));
 						if ((statusEffectv1("Nyrea Eggs") - nyreaEggs) < 0) nyreaEggs = statusEffectv1("Nyrea Eggs");
