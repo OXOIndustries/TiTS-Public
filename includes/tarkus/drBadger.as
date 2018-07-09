@@ -80,7 +80,10 @@ public function drBadgerBuyMenu():void
 	{
 		chars["DRBADGER"].inventory.push(new SiegwulfeItem());
 	}
-	
+	if(isNearlyJulyFourth())
+	{
+		chars["DRBADGER"].inventory.push(new RedRocket());
+	}
 	shopkeep = chars["DRBADGER"];
 	
 	//Unlock dumbfuck codex

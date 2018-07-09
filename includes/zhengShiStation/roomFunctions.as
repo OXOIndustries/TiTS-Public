@@ -40,7 +40,7 @@ public function zhengMinesEncounterBonus():Boolean
 		flags["ZS_MINE_STEP"] = 0;
 		IncrementFlag("ZS_MINE_ENCOUNTERS");
 
-		if(flags["ZS_MINE_ENCOUNTERS"] > 7 && !pc.hasStatusEffect("DisabledRoz")) encounters.push(encounterRoz);
+		if(flags["ZS_MINE_ENCOUNTERS"] > 7 && !pc.hasStatusEffect("DisabledRoz") && flags["ROZ_ARMOR_STOLEN"] == undefined && flags["ROZ_CORED_4_GUD"] == undefined) encounters.push(encounterRoz);
 		encounters.push(miningRobotAttack);
 		encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);
