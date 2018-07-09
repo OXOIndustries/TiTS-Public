@@ -229,7 +229,7 @@ public function whiteWomanTessa():void
 		currentLocation = shipLocation;
 	}
 	//Heart2Heart1
-	else if ((flags["TESSA_LICKS"]!=undefined||flags["TESSA_BJS"]!= undefined) && tessaTrust() == 100 && rand(5) == 0)
+	else if ((flags["TESSA_LICKS"]!=undefined||flags["TESSA_BJS"]!= undefined) && flags["TESSA_H2H1"]==undefined && tessaTrust() == 100 && rand(5) == 0)
 	{
 		output("You approach Tessa and take your normal seat. Tessa sighs at you and sips her beer, barely acknowledging you. <i>“Hey [pc.name], here to spoil the silence again?”</i> She stares off into the distance, her chin in her hand.");
 		output("\n\nYou shift a bit in your seat. She doesn’t call you by your first name often, and almost never <i>before</i> you two have played. <i>“Something up? You seem... Bitchy...er.”</i>");
@@ -260,7 +260,7 @@ public function whiteWomanTessa():void
 		addButton(0,"Next",mainGameMenu);
 	}
 	//Heart2Heart2
-	else if ((flags["TESSA_SHOWER"]!=undefined||flags["TESSA_BREASTPLAY"]!= undefined)&& tessaTrust() == 100 && rand(5) == 0 && pantyFapCount() > 5)
+	else if ((flags["TESSA_SHOWER"]!=undefined||flags["TESSA_BREASTPLAY"]!= undefined) && flags["TESSA_H2H2"]==undefined && tessaTrust() == 100 && rand(5) == 0 && pantyFapCount() > 5)
 	{
 		output("You take your normal seat across from Tessa, the ovir woman glancing over at you and sighing. <i>“Won’t be able to stay long Steele. I’ve got business to take care of.”</i>");
 		output("\n\nYou can’t help but frown at that, considering how little the white woman did on a daily basis aside from drink. <i>“What sort of business?”</i>");
@@ -556,7 +556,7 @@ public function didYouJustAssumeTessaGender():void
 		else output("steal");
 		output(" a fresh beer for your alabaster friend. She takes it from your hand and sighs. <i>“I didn’t know anything about ovirs. Nothing. Aside from stuff I knew because it was happening to me. I was just a girl, a lizard girl in a sea of filthy monkey children, but a girl all the same.”</i> She takes a sip of her new drink. <i>“First ovir I met thought I was a guy. How you spend your whole life around ovirs and get the sexes confused is beyond me, but... Well he was... Hurtful. And not in the way the children were.”</i>");
 		output("\n\nSensing the story is about to get heavy, you say she can stop if she wants, but she shakes her head and sips her beer, holding it in both hands.");
-		output("\n\n<i>“No. I started this crap, I might as well finish. He saw me first... And he liked what he saw... I mean can you blame him? He was charming... And sweet. I knew he was a he, or she was a he, or however the damn pronouns work... We went back to my place... I...”</i> She gulps her beer, still with both hands. <i>“I was curious. We stripped naked and his... it was out it had been out a good chunk of the night. It’s how I knew....”</i> She laughs and finishes her drink in a mighty chug.");
+		output("\n\n<i>“No. I started this crap, I might as well finish. He saw me first... And he liked what he saw... I mean can you blame him? He was charming... And sweet. I knew he was a he, or she was a he, or however the damn pronouns work... We went back to my place... I...”</i> She gulps her beer, still with both hands. <i>“I was curious. We stripped naked and his... was out, it had been out a good chunk of the night. It’s how I knew....”</i> She laughs and finishes her drink in a mighty chug.");
 		output("\n\nKnowing how this normally goes, you stand and offer to get another for her, but he waves you off. <i>“No. No. Let me finish.”</i>");
 		output("\n\nShe sighs and rubs her temples. <i>“He asked me... Well, he asked me why I wasn’t into him. I was confused, I wanted him. <b>Badly</b>. I... Fucking hell. I said I was, and he asked why I hadn’t let it <b>out</b>... He... Well. When I told him I was a female he laughed at me...”</i> Tessa’s red eyes shifted off into the distance. <i>“He was a gay ovir who thought I was a dude. My white scales... Well females are not usually white. We’re supposed to be bland, dull colors... And my chest... I guess you could say I’m stacked for a girl....”</i> She went quite a moment. <i>“And I guess... female ovir don’t get horny... well they do, just not often. But... that’s not me... I... I’m... Never mind. I want that drink now.”</i>");
 		output("\n\nYou head back over to the bar and retrieve a fresh beer for your friend. She takes it, but stays silent. <i>“So, he laughed and left. Said I needed to learn how to... How to act my sex... He was an asshole. I know not all ovir are like him but... All my life I was something else. Something other. Everybody around me... Not everybody accepted me at first because I was different. Most of them changed over time, but they still were not the same as me. I was a lizard in a den of mammals. So why is it the first other ovir I met treated me like I was... something else....”</i>");
@@ -732,25 +732,25 @@ public function flirtWithTessa():void
 		{	
 			addButton(4,"Blowjob",tessaPcOralIntroBJ,undefined,"Blowjob","Let her suck you off.");
 		}
-		else if (flags["TESSA_PCNEEDS"]!= undefined) addDisabledButton(4,"Blowjob","Blowjob","Get a dick or at least a smaller one.");
+		else if (flags["TESSA_PCNEEDS"]!= undefined) addDisabledButton(4,"Blowjob","Blowjob","Get a dick or at least a smaller one. Must be biped.");
 		if (flags["TESSA_PCNEEDS"]!= undefined && pc.hasVagina()&&pc.isBiped())
 		{
 			addButton(5,"Get Eaten",tessaPcOralIntroCunny,undefined,"Get Eaten","Let her eat you out.");
 			
 		}
-		else if (flags["TESSA_PCNEEDS"]!= undefined) addDisabledButton(5,"Get Eaten","Get Eaten","You need a vagina and must be a biped");
-		if (flags["TESSA_BREAST"]!= undefined && (pc.hasCock() || pc.hasVagina()) && pc.biggestTitSize() > 4 && pc.isBiped())
+		else if (flags["TESSA_PCNEEDS"]!= undefined) addDisabledButton(5,"Get Eaten","Get Eaten","Requires a vagina. Must be biped.");
+		if (flags["TESSA_BREAST"]!= undefined && (pc.hasCock() || pc.hasVagina()) && pc.biggestTitSize() > 3 && pc.isBiped())
 		{
 			addButton(6,"Breast Play",tessaPcBreastPlayIntro,undefined,"Breast Play","Let her play with your tits.");
 			flags["TESSA_SHOWER_BREAST"] = 0;
 		}
-		else if (flags["TESSA_BREAST"]!= undefined) addDisabledButton(6,"Breast Play","Breast Play","You need genitalia, to be a biped or have bigger breasts.");
+		else if (flags["TESSA_BREAST"]!= undefined) addDisabledButton(6,"Breast Play","Breast Play","Requires genitalia, D-cup breasts and a biped PC.");
 		if (flags["TESSA_DRINK"]!= undefined && (pc.hasCock()||pc.hasVagina())&&pc.isBiped()) 
 		{
 			addButton(7,"Take a Shower",showerTimeIntroTessa,undefined,"Take a Shower","Get clean and dirty together.");
 			flags["TESSA_SHOWER_BREAST"] = 1;
 		}
-		else if (flags["TESSA_DRINK"]!= undefined) addDisabledButton(7,"Breast Play","Breast Play","You need genitalia or to be a biped.");
+		else if (flags["TESSA_DRINK"]!= undefined) addDisabledButton(7,"Breast Play","Breast Play","You need genitalia and must be a biped.");
 		
 		addButton(14,"Leave",tessaLeaveShip,undefined,"Leave","You’ve changed your mind.");
 		currentLocation = shipLocation;
