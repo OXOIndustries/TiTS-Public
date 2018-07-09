@@ -57,7 +57,7 @@ public function chrissyAtTheFreezer(btnSlot:int = 0):void
 	}
 	else
 	{
-		output("\n\nChrissy is at her usual spot, alone in her booth, either here to just relax or waiting for someone to make a move on her. She notices you walk in and takes a break from her drink to smile and wave your way.");
+		output("\n\nChrissy is at her usual spot, alone in her booth, either here to just relax or waiting for someone to make a move on her. She notices you [pc.walk] in and takes a break from her drink to smile and wave your way.");
 		
 		addButton(btnSlot, "Chrissy", approachChrissy);
 	}
@@ -209,7 +209,7 @@ public function talkChrissyUveto():void
 	output("\n\n<i>“And I don’t know if I mentioned this,”</i> Chrissy says, placing her arms back on the table, though, now her sleeves are falling over her hands, a sure sign that sweater is a couple sizes too-big, <i>“but, uh... I like huskar, a lot. I don’t want to sound like an airhead or anything when I say this, but they’re so fluffy and warm-looking. Every time I see one I just want them to give me a big hug and take me home and... well, you know... uh, sorry if I got carried away.”</i>");
 	output("\n\nLeaning forward with a smirk on your face, you tell Chrissy that it sounds like she has a few more reasons than just drinks to come to the bar.");
 	output("\n\n<i>“Well...”</i> she’s says with more than a hint of tentativeness, <i>“Not really... I’m not very good at asking people out or stuff like that. So I just sort’ve... do whatever, and sometimes people come up to me, which is nice, but I don’t go out of my way for sex... even if I did, I wouldn’t be very good at it because I just get so nervous when I have to go up to someone, which is weird because I’m perfectly fine when someone comes up to me. It’s just weird.”</i>");
-	output("\n\nWell, looks like you made the right move by making the first move and walking up to Chrissy’s booth" + (silly ? ", what a smoothy." : "."));
+	output("\n\nWell, looks like you made the right move by making the first move and [pc.walking] up to Chrissy’s booth" + (silly ? ", what a smoothy." : "."));
 	
 	processTime(10 + rand(3));
 	
