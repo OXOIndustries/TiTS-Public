@@ -709,7 +709,7 @@ public function rahnSuppository():void {
 	
 	output("\n\nShe giggles, laughing so hard that her huge tits bounce on her chest");
 	if(pc.hasCock() && pc.cumQ() > 2) output(", flicking a bit of your seed off onto the floor");
-	output(". You groan in agony at your stomach and her joke, rolling off the desk and leaking everywhere as you search around for your gear. Flahne gives you a little wave as you stagger back, even blowing you a kiss - arms squeeze her boobs enticingly, almost begging you to come back soon and fuck her.");
+	output(". You groan in agony at your stomach and her joke, rolling off the desk and leaking everywhere as you search around for your gear. Flahne gives you a little wave as you stagger back, even blowing you a kiss - arms squeezing her boobs enticingly, almost begging you to come back soon and fuck her.");
 	processTime(20 + rand(5));
 	pc.orgasm();
 	pc.loadInAss(flahne);
