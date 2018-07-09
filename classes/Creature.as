@@ -1135,6 +1135,49 @@
 		public var nosePShort: String = "";
 		public var nosePLong: String = "";
 		
+		public function hasPiercingOfClass(ref:Class):Boolean
+		{
+			if(earPiercing is ref) return true;
+			if(eyebrowPiercing is ref) return true;
+			if(nosePiercing is ref) return true;
+			if(lipPiercing is ref) return true;
+			if(tonguePiercing is ref) return true;
+			if(bellyPiercing is ref) return true;
+			//Nipple.
+			var x:int = 0;
+			if(bRows() > 0)
+			{
+				for(x = 0; x < breastRows.length; x++)
+				{
+					if(breastRows[x].piercing is ref) return true;
+				}
+			}
+			//Vag.
+			if(totalVaginas() > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					if(vaginas[x].piercing is ref) return true;
+				}
+			}
+			//Clit.
+			if(totalVaginas() > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					if(vaginas[x].clitPiercing is ref) return true;
+				}
+			}
+			//Cock
+			if(totalCocks() > 0)
+			{
+				for(x = 0; x < cocks.length; x++)
+				{
+					if(cocks[x].clitPiercing is ref) return true;
+				}
+			}
+			return false;
+		}
 		public function hasPiercing():Boolean
 		{
 			return (hasEarPiercing() || hasEyebrowPiercing() || hasNosePiercing() || hasLipPiercing() || hasTonguePiercing() || hasBellyPiercing() || hasNipplePiercing() || hasCockPiercing() || hasVaginaPiercing() || hasClitPiercing());
@@ -1231,7 +1274,6 @@
 			}
 			return (!(vaginas[idx].clitPiercing is EmptySlot));
 		}
-		
 		// Cock-socks
 		public function hasCocksock(idx:int = -1):Boolean
 		{
@@ -3897,7 +3939,7 @@
 		
 		public function inPowerArmor():Boolean
 		{
-			// 9999
+			if(armor.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR)) return true;
 			return false;
 		}
 		public function hasPowerArmorItem():Boolean
