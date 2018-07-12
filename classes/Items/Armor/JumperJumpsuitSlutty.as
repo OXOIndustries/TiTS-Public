@@ -51,6 +51,9 @@
 			resistances.electric.resistanceValue = 15.0;
 			resistances.burning.resistanceValue = 5.0;
 			
+			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
+			itemFlags.push(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
+			
 			this.version = _latestVersion;
 		}
 	}
