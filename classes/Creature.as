@@ -1173,7 +1173,7 @@
 			{
 				for(x = 0; x < cocks.length; x++)
 				{
-					if(cocks[x].clitPiercing is ref) return true;
+					if(cocks[x].piercing is ref) return true;
 				}
 			}
 			return false;
