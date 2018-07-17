@@ -1061,6 +1061,20 @@ public function initZhengRooms():void
 	rooms["ZSM S14"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSM S14"].addFlag(GLOBAL.HAZARD);
 
+	rooms["ZSM SPACE"] = new RoomClass(this);
+	rooms["ZSM SPACE"].roomName = "\nSPACE!";
+	rooms["ZSM SPACE"].description = "";
+	rooms["ZSM SPACE"].planet = "ZHENG SHI STATION";
+	rooms["ZSM SPACE"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM SPACE"].northExit = "";
+	rooms["ZSM SPACE"].eastExit = "";
+	rooms["ZSM SPACE"].southExit = "";
+	rooms["ZSM SPACE"].westExit = "";
+	rooms["ZSM SPACE"].moveMinutes = 3;
+	rooms["ZSM SPACE"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM SPACE"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM SPACE"].addFlag(GLOBAL.HAZARD);
+
 	rooms["ZSM PLACEHOLDER"] = new RoomClass(this);
 	rooms["ZSM PLACEHOLDER"].roomName = "\n";
 	rooms["ZSM PLACEHOLDER"].description = "";

@@ -1082,7 +1082,7 @@ output("\n\nUnfortunately, this particular suit has rather loose zippers across 
 public function slavesuitOptionsDisplay():void
 {
 	clearOutput2();
-	if(pc.isChestExposedByArmor() && pc.isCrotchExposedByArmor() && pc.isAssExposedByArmor()) output2("Your chest, pelvic and butt zippers are undone, exposing all your [pc.ass], [pc.chest] and loins have to the world.");
+	if(pc.isChestExposedByArmor() && pc.isCrotchExposedByArmor() && pc.isAssExposedByArmor()) output2("Your chest, pelvic and butt zippers are undone, exposing your [pc.ass], [pc.chest] and loins have to the world.");
 	else if(pc.isChestExposedByArmor() && pc.isCrotchExposedByArmor()) output2("Your chest and pelvic zippers are undone, exposing your [pc.chest] and [pc.crotch] to the world.");
 	else if(pc.isChestExposedByArmor() && pc.isAssExposedByArmor()) output2("Your chest and butt zippers are undone, exposing your [pc.chest] and loins to the world.");
 	else if(pc.isCrotchExposedByArmor() && pc.isAssExposedByArmor()) output2("Your pelvic and butt zippers are undone, exposing your crotch and [pc.ass] to the world.");

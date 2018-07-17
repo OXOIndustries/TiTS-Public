@@ -77,20 +77,24 @@ public function zsmyy18AirlockBonus():Boolean
 		return false;
 	}
 	else output("\n\nThe racks for storing spacesuits are empty... and have been ever since you grabbed the last one.");
-	if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
+	if(flags["ZHENG_SPACEWALKED"] == undefined)
 	{
-		output("\n\nWhile your current choice of armor is airtight, without magnetic boots or thrusters, you'll be helpless in the void.");
-		addDisabledButton(0,"Spacewalk","Spacewalk","Bad idea.");
+		if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
+		{
+			output("\n\nWhile your current choice of armor is airtight, without magnetic boots or thrusters, you'll be helpless in the void.");
+			addDisabledButton(0,"Spacewalk","Spacewalk","Bad idea.");
+		}
+		else if(pc.armor is SpacesuitComplete) 
+		{
+			output("\n\n<b>You're all ready to go for a spacewalk!</b>");
+			addButton(0,"Spacewalk",spacewalkGoooo,undefined,"Spacewalk","Take a walk on the surface of the asteroid.");
+		}
+		else
+		{	
+			addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren't feeling particularly suicidal today.");
+		}
 	}
-	else if(pc.armor is SpacesuitComplete) 
-	{
-		output("\n\n<b>You're all ready to go for a spacewalk!</b>");
-		addDisabledButton(0,"Spacewalk","Spacewalk","Fen's still coding this! 9999");
-	}
-	else
-	{	
-		addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren't feeling particularly suicidal today.");
-	}
+	else output(" <b>Good thing you've already repaired the power outside. There's no reason for a spacewalk any longer.</b>");
 	return false;
 }
 
