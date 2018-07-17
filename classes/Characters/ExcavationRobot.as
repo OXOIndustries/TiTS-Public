@@ -59,7 +59,7 @@
 			//baseHPResistances.kinetic.damageValue = 50.0;
 			baseHPResistances.electric.damageValue = -100.0;
 			
-			this.physiqueRaw = 50;
+			this.physiqueRaw = 45;
 			this.reflexesRaw = 1;
 			this.aimRaw = 30;
 			this.intelligenceRaw = 10;
@@ -242,7 +242,7 @@
 			if(target.reflexes()/2 + rand(20) + 1 >= this.aim()/2 + 10) output("\nYou safely avoid the fire!");
 			else
 			{
-				var damage:TypeCollection = new TypeCollection({ burning: 60 });
+				var damage:TypeCollection = new TypeCollection({ burning: 70 });
 				applyDamage( damage , this, target, "minimal");
 			}
 		}
@@ -261,6 +261,11 @@
 				meleeWeapon.baseDamage.removeFlag(DamageFlag.CRUSHING);
 				applyDamage(meleeDamage(), this, target, "minimal");
 
+				if(!target.hasStatusEffect("Tripped")) 
+				{
+					CombatAttacks.applyTrip(target);
+					output(" <b>You're prone (tripped)!</b>");
+				}
 				if(target.intelligence()/2 + rand(20) + 1 > 20) output("\n\nYou manage to keep your wits about you and direct the suit’s auto-repair to full bore on your faceplate, preventing too much oxygen from bleeding out. It doesn't make your injuries hurt any less!");
 				else 
 				{
@@ -274,11 +279,11 @@
 		public function eyebiteNom(target:Creature):void
 		{
 			output("The robot plants its many feet, slamming them into the stone and the catwalk to brace itself as the bright glow of its eyes increases exponentially. The light erupts into a beam of searing red light, lancing across the deck and right towards you!");
-			if(!rangedCombatMiss(this, target)) output(" Your lucky there’s heat shields on this suit, otherwise you’d have just gotten cut in half!");
+			if(rangedCombatMiss(this, target)) output(" You throw yourself onto the deck, barely dodging the blast!");
 			else 
 			{
-				output(" You throw yourself onto the deck, barely dodging the blast!");
-				rangedWeapon.baseDamage.burning.damageValue = 100;
+				output(" Your lucky there’s heat shields on this suit, otherwise you’d have just gotten cut in half!");
+				rangedWeapon.baseDamage.burning.damageValue = 70;
 				rangedWeapon.baseDamage.addFlag(DamageFlag.LASER);
 				applyDamage(rangedDamage(), this, target, "minimal");
 			}
