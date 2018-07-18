@@ -246,7 +246,7 @@ public function apologizeToDzaanMan():void
 public function okayApologySexItIs():void
 {
 	clearOutput();
-	showForgehound();
+	showForgehound(true);
 	output("<i>“And then I walk free, right?”</i> you ask.");
 	output("\n\n<i>“</i>God<i>, yes,”</i> the leithan replies. <i>“With any luck I’ll never see you again in my life. But then again,”</i> he continues, laughing a little and tapping the keratin protrusions on his head, <i>“I’ve got a funny feeling you’ll be back. Now " + (pc.isTaur() ? "turn around":"kneel") + ", bitch.”</i>");
 	output("\n\n<i>“Hey, you don’t need to be rude,”</i> you mutter, " + (pc.isTaur() ? "turning around and looking back":"kneeling down in front of him, noting how muscular his forelegs are from up close") + ". <i>“Like this?”</i>");
@@ -360,320 +360,383 @@ public function okayApologySexItIs():void
 
 		output("\n\n<i>“Now get the fuck out and only come back when you’re ready to submit completely. Oh, and hold the rest in your mouth.”</i>");
 
-		output("\n\nThat’s the last thing you remember from the encounter. When you open your eyes again, you’re back at the entrance. What the hell just happened? You look down at yourself and see your belly, still swollen with a baby bump of jizz, then notice there’s something on your lips. You wipe your hand across your mouth and check what it is: thick, sticky cum. Before you can stop yourself or even think, you instinctively swallow the rest of the load in your mouth.");
+		output("\n\nThat’s the last thing you remember from the encounter. When you open your eyes again, you’re alone again. What the hell just happened? You look down at yourself and see your belly, still swollen with a baby bump of jizz, then notice there’s something on your lips. You wipe your hand across your mouth and check what it is: thick, sticky cum. Before you can stop yourself or even think, you instinctively swallow the rest of the load in your mouth.");
 
 		output("\n\nYou immediately groan in disgust and spit. You can <i>feel</i> it travelling down your abused throat to join the rest, its heat massaging your sore insides. That man is dangerous. He’s done something to you, gotten inside your head somehow. You ache just thinking about him, wanting to walk back inside and offer all of your ho- no! Damn, this is what he meant by you coming back to him. You have to find out exactly what it was he did.}");
-		
-
-output("\n\n//merge");
-
-output("\n\nMaybe you’ll ask him about it when you go back and see h- no! Fuck! You’re going to go back and <i>fight</i> him, not fuck him! You shake your head and look down at yourself, steeling your resolve. Yes... you’ll go back and settle this once and for all.");
-output("\n\n//maingamemenu");
-
-output("\n\n[No]");
-output("\n\n//tooltip: But you don’t want to do that.");
-
-output("\n\n<i>“I don’t wanna do that, though,”</i> you say.");
-
-output("\n\n<i>“Alright. This’ll be a mercy killing, then,”</i> the leithan says, looking at your forehead. You can see the gatling gun swivelling slightly to zero in. <i>“You’re far too stupid to live.”</i>");
-
-output("\n\n<b>It’s a fight!</b>");
-output("\n\n[Submit]");
-output("\n\n//Different variants for having apologized or not.");
-output("\n\n//tooltip: Give in. The large, domineering man is just too intimidating and hot for you to fight him.");
-output("\n\n{No apology sex: <i>“I got your reason right here, big boy,”</i> you murmur, letting your weapons fall to the ground and kneeling before him{clothed:, stripping out of your clothes}. His surprised expression quickly shifts to a smug smirk.");
-
-output("\n\n<i>“I see. You just had to come see what the big deal was, huh?”</i> he says, approaching you. <i>“Then you ran into me. Lucky you. I’ve been looking for a fucktoy to have to myself lately.”</i>");
-
-output("\n\n<i>“You can </i>make<i> me that fucktoy, you big fucking stud,”</i> you breathe, looking up at him with flushed cheeks{clothed: as you shed your last piece of gear}. Your [pc.nipples] stand out on your chest, erect as they can be{lactating: and leaking milk}.  <i>“Wear me as a fucking sheath, you sexy fucking beast!”</i>");
-
-output("\n\n<i>“I like the words coming outta your mouth,”</i> the leithan man says, chuckling to himself. <i>“Don’t think it’s gonna be hard to break </i>you<i> in. You seem like the type to take to it pretty quick.”</i>");
-
-output("\n\nAs he draws closer, you finally get to see what he’s wielding between his legs. It’s a monstrously large canine cock, swollen, red, and already leaking precum - and it is the most amazing thing you have ever laid your eyes upon. Every instinct inside screams to submit, to offer yourself to it, your mouth automatically opening just in case he should choose to thrust it between your [pc.lips].");
-
-output("\n\n<i>“Go on,”</i> he grunts, flexing his mighty cock. <i>“Pay your respects.”</i>");
-
-output("\n\nLeaning forward, you plant a gentle kiss on the pointed tip before you take it inside. It’s delightfully smooth and suckable despite having such intimidating veins running through it, and when the first drop of precum reaches your lips it tastes like utter bliss. You moan into his cock, bringing your hands up to start stroking it with reverence.");
-
-output("\n\n<i>“Like the taste, huh?”</i> the leithan notes in a casual manner. <i>“Bet you do. Take it deeper, slut.”</i>");
-
-output("\n\nHe’s right - if you’re going to be his fucktoy cumdump, you’re going to have to meet <i>all</i> his needs. That includes deepthroating as much of his cock as physically possible. You’re going to love the heat of his seed exploding directly into your stomach, you’re sure of it. You straighten your back and lean forward, grabbing onto his middle set of legs when you feel him shifting above you, getting ready to thrust.");
-
-output("\n\n<i>“Nnnh!”</i> he grunts, shoving what must be over a foot of swollen, throbbing dogcock down your throat. The rest of it won’t fit, owing to his insane size, but you think you’ve done pretty well. <i>“Not bad for a rookie cumdump,”</i> he says, shifting his footing again. <i>“We’ll get you some mods later so you can take me, don’t you worry. I know some people.”</i>");
-
-output("\n\nA second later and you’re being taken, almost literally, for the ride of your life. He <i>hammers</i> your face, his gigantic cock slipping in and out of your throat as you gag, cough, and blow bubbles of spit around it. You’re in love. You cum not even twenty seconds into it, completely unnoticed by the man above you. Your senses are in overdrive, the sensation of him sliding into your tight, wet fuckhole of a mouth just too much to bear. Serving this big, strong, dominant man is its own reward in itself.");
-
-output("\n\n<i>“Haaa, fuck!”</i> he grunts in approval, starting to thrust more violently. <i>“Swallow all of it down if you know what’s good for you, bitch.”</i>");
-
-output("\n\nIs he gonna cum? He’s gonna cum! He must be about to cum! Your eyes widen, pupils dilated in your euphoria, and you relax your throat as much as you can. You’re soon rewarded with a giant, neck-swelling load of thick leithan seed that travels down his cock and jets down your throat. Still thrusting, he gets most of the next load in your mouth, fucking it right down your gullet with his cock. Your eyes roll back into your head in pleasure, most of your body limp in utter subservience except the two arms that grasp his legs to keep you in place.");
-
-output("\n\n<i>“Grrrr... nnngh,”</i> he growls, sinking himself as deep as he can get into your face to ride out the rest of his amazing orgasm. You can’t look down right now, but you can <i>feel</i> your stomach swelling, bloated with his thick, swirling jizz. You’re down there long enough that, eventually, you can feel it{taur: pressing against your folded-up legs/else: touching the ground beneath you}.");
-
-output("\n\nFinally, he kicks your hands away and steps back, pulling out of your abused throat. You immediately seal your lips, eyes widening in urgency as the cum he left behind swells up and threatens to leak. It takes you several long, laborious seconds of swallowing it again - it’s so thick and sticky you can hardly get it down - but the taste it leaves in your mouth is well worth the effort. You cum again while he watches, ignoring your ecstasy completely.");
-
-output("\n\n<i>“Fuck... pretty good, but not as good as when I get it all in,”</i> he muses, looking down at you. <i>“Have to go aftermarket to fix that. Well, get up.”</i>");
-
-output("\n\nYou slowly, gingerly rise to your feet,{taur: your legs somewhat awkwardly splayed around your sloshing, semen-filled/else: cradling your pregnant} stomach. It’s swollen obscenely after you faithfully followed his instructions, not letting a single drop leak.");
-
-output("\n\n<i>“Now walk,”</i> he says, grinning. <i>“We’re going back to my quarters, and we’re going to have a </i>lot<i> of fun when we get there.”</i>");
-
-output("\n\n/Apologized:");
-
-output("\n\n<i>“... and fuck me, you stud,”</i> you pant, dropping your weapons. <i>“Oh god, I need it so bad! Please! Please f-”</i>");
-
-output("\n\n<i>“Sshhh,”</i> the man says, quieting you down immediately. You watch him approach as your lips part instinctively, your breath coming out in hot gasps. <i>“Just relax, my little beta.”</i>");
-
-output("\n\n<i>“Uuuuhhhh,”</i> you moan,{taur: bowing your forelegs a little/nontaur: your knees pressing together}. It feels so <i>good</i> when he calls you that, to give voice to the concept of his complete and utter dominion over you. <i>“Yes, alpha...”</i>");
-
-output("\n\n<i>“I like my bitches quiet and obedient,”</i> he murmurs, looking into your face. <i>“Can you be a quiet, obedient bitch?”</i>");
-
-output("\n\nYou say nothing, biting your lip and just nodding. He’s so close..! You could reach out and touch him, but you don’t dare.");
-
-output("\n\n<i>“Smart,”</i> he notes, nodding once. <i>“As a reward, I’ll let you lick my cock. You’re not allowed to touch it with anything but your tongue, bitch.”</i>");
-
-output("\n\nYou nod eagerly, almost bouncing in excitement. He’s gonna let you lick his fucking cock! You can barely contain yourself,{puss&cock: both your [pc.pussies] and [pc.cocks] dripping in anticipation}. You’re scarcely able to resist cumming the moment you lay your eyes on it as he steps over you, sheltering you under his body while you pant in lust. You <i>need</i> it.");
-
-output("\n\nLeaning forward, you almost take it into your hands before remembering what he instructed you to do. Nothing but tongue. Your [pc.tongue] lolls from your mouth, sliding up the underside of his cockhead to get at all of the precum dripping from his tip. Oh, god, fuck <i>yes</i>. This is what you’re here for. Getting more of <i>this</i>. You moan loudly into his cock, cumming all over yourself as you lick and swallow down his pre.");
-
-output("\n\nYou can hear him chuckling above you. <i>“Couldn’t hold on, huh?”</i> he grunts, amused. <i>“What a whore. I thought you would fight back a little, at least. Where’d the strong-willed bitch from the first time go, huh?”</i>");
-
-output("\n\nHe’s right - but if this makes you a whore, you’ll <i>be</i> his whore. For the rest of your life, even. His cum is just so good; you don’t want anything more than just getting his cock in one of your holes, being fucked over and over and pumped full of his thick spunk. You’re on the verge of cumming again when he tells you to stop.");
-
-output("\n\n<i>“Alright, playtime’s over. Lie on the ground,”</i> he grunts, shifting above you. <i>“And tighten your asshole.”</i>");
-
-output("\n\nYou scream he enters you, not in pain but in pure, blissful joy. You cum immediately, not even having the slightest chance of resisting it. The throbbing of his cock and slick precum that follows with it has your head in the clouds, lying down with an expression of ecstasy while he ravages your gaped-wide asshole.");
-
-output("\n\nYou can’t stop cumming, a new orgasm rolling on top of the previous with every single thrust of his amazing cock, your mouth open in a silent scream of joy. Drool runs from the corner of your mouth as your eyes roll up into your head, your mind fighting desperately to stay conscious, not to survive but to ensure you experience every single agonizingly pleasurable second of his dick inside you.");
-
-output("\n\nBy the time he cums, you’ve already lost your voice. Nothing but gasps and silent moans emanate from your throat as he impales you as deeply as he can,{taur: thrusting himself so far in you can feel his enormous balls pulsing against your shaking hindquarters/else: fucking you so hard you can scarcely breathe}.");
-
-output("\n\n<i>“Nnnngghhh... fuck,”</i> he growls in satisfaction, leaving his stupendous cock bulging inside you while he empties himself. <i>“You’re gonna make a great cumdump.”</i>");
-
-output("\n\nThe words set your mind alight with desire, and you’d giggle with happiness if you were capable. The thought that your master’s going to enjoy you is so enticing and rewarding that you cum again without touching yourself. He’s just so <i>good</i>...");
-
-output("\n\n<i>“Now get up and come to my quarters, bitch,”</i> he says, grinning as he pulls out of your ruined asshole. Seed pours{taur: down your [pc.ass], soaking your underside/else: from the gaping orifice, forming a pool between your [pc.thighs]. <i>“There’ll be more time for fun when you get there.”</i>");
-
-output("\n\nMotivated by his promise of more attention, you shakily rise to your feet.}");
-
-output("\n\n[Next]");
-output("\n\n//To Bad End");
-
-
-output("\n\nPC wins");
-output("\n\nWin by lust");
-output("\n\nThe monster-sized leithan collapses to his knees, keeling over and panting in lust. You give a winning smile as you walk over to him, watching him buck his hips. The pheromones are pouring off him - he needs it <i>bad</i>. Between his legs, you can see his massive canine cock throbbing with desire.");
-
-output("\n\n{Had apology sex: <i>“S-shoe’s on the other foot now,”</i> you pant, your mind swimming in his musk. It would be <i>so</i> easy to take advantage of him right now and just sit on his cock, bouncing until he came again. Hell, he’s enough of a stud that he can probably go more than once - you’d never want for sex again.");
-
-output("\n\n<i>“Great work, you fuckin’ moron,”</i> he grunts, glaring at you. <i>“Now I’m all worked up and desperate. And who’s in front of me? My beta. You can’t resist this.”</i>");
-
-output("\n\nYou struggle internally, gritting your teeth. Are you really going to try and walk away from this? This is an almost once in a lifetime opportunity for happiness, and all it would cost is your free will.");
-
-output("\n\n<i>“Just give in,”</i> he cajoles you, flexing his cock to make it stand proud and erect. <i>“Nobody has the kind of willpower you’d need to say no. Just make it easier on yourself.”</i>");
-
-output("\n\n[Give in] [Resist]");
-
-output("\n\n/no apology sex: <i>“You don’t look so big lying on the ground with your dick out like that,”</i> you muse. <i>“Poor puppy.”</i>");
-
-output("\n\n<i>“F-fffuck you,”</i> he pants, cheeks flushed a dark red under his gray skin. <i>“You’ll regret insulting me later!”</i>}");
-
-output("\n\n<i>“Alright, spill it,”</i> you say, bending down to look him in the eye. <i>“There’s something going on with you, something you’re hiding. It’s too obvious. What is it?”</i>");
-
-output("\n\nHe says nothing, and you sigh theatrically as you get back up. <i>“Guess I’m wasting my time. I’ll just leave you here with that giant, painful-looking erection.”</i>");
-
-output("\n\n<i>“Fuck,”</i> he spits, then looks up at you. <i>“Fine. I’m a d’zaan alpha, I have addictive cum.”</i>");
-
-output("\n\n<i>“Ohooo, I see,”</i> you say, raising an eyebrow. <i>“Then I won’t be doing anything with your dick after all.”</i>");
-
-output("\n\n<i>“Wait wait wait,”</i> he begs, imploring you. <i>“You can still jack me off, or- or something! Come on!”</i>");
-
-output("\n\n[IfYouBeg] [Nah]}");
-
-output("\n\n[IfYouBeg]");
-
-output("\n\n<i>“Sure, I’ll get you off,”</i> you say, grinning. <i>“If you beg.”</i>");
-
-output("\n\nThough sullen, he performs the act immediately. <i>“Please get me off.”</i>");
-
-output("\n\n<i>“No no no no, that’s not nearly good enough,”</i> you sigh, shaking your head in disappointment. <i>“Like a dog. Put your front legs out and ask your master if I can give you a treat.”</i>");
-
-output("\n\nHe glares at you with murder in his eyes. If looks could kill, you would surely be writhing in agony right now. But they can’t, so instead you smile sweetly at him. <i>“Can you do a trick?”</i>");
-
-output("\n\n<i>“I swear to god I’m going to find you and kill you some day,”</i> he mutters, raising his forelegs. <i>“Can you give me a treat,”</i> he says, monotone.");
-
-output("\n\n<i>“Put some heart into it,”</i> you insist, gesturing with your hands. <i>“Like this!”</i>");
-
-output("\n\n<i>“God damn, fine!”</i> he snarls, raising his forelegs further. You watch in utter delight as he softens his expression. <i>“Master, would you please give me a treat?”</i>");
-
-output("\n\n<i>“Hahahahahaha!”</i> you crack up in his face, smacking the ground. <i>“You actually did it!”</i>");
-
-output("\n\n<i>“You fucking asshole,”</i> he growls, face flushing with embarrassment. <i>“</i>Now<i> can you get me off? I can’t do it myself...”</i>");
-
-output("\n\n[Yes] [No]");
-output("\n\n[Yes]");
-
-output("\n\n<i>“Hahahaha, I guess it would be pretty shitty if I didn’t,”</i> you gasp, trying to control your laughter. <i>“Okay puppy, here’s your reward. Can you roll over too?”</i>");
-
-output("\n\n<i>“Fuck off!”</i> he snarls angrily.");
-
-output("\n\n<i>“Aww, fine,”</i> you say, reaching forward and taking his cock in hand. <i>“Here you go, good boy.”</i>");
-
-output("\n\n<i>“Nnnh,”</i> he moans, the tension fading from his body as you begin to rub his massive length up and down. <i>“Finally...”</i>");
-
-output("\n\n<i>“Yeah, guess I made you jump through a few hoops first,”</i> you agree, squeezing his tip a little. Some precum runs down his underside, coating it in slick lubrication. <i>“You’d make a great circus dog actually, you’ve already got the tricks part down.”</i>");
-
-output("\n\nHe chooses not to respond to that, but you don’t stop there. <i>“Heaps of people would pay to see you. ‘The biggest puppy you’ve ever seen!’ would be a crowd-pleaser for sure,”</i> you mention, jacking him harder. He was already so close to cumming, you’ve got him right on the edge. <i>“You sure you don’t want to go into business with me?”</i>");
-
-output("\n\n<i>“I f-fuh, fucking hate you!”</i> he pants, his hips starting to move, bucking in slow motion. <i>“Ffffuuuck..!”</i>");
-
-output("\n\nWith a very loud, deep groan, he finally begins to cum. Massive ropes of seed spurt from his throbbing canine cock, splattering all over the ground while you follow through on your promise and make him cum as hard as you can with your hands. He goes <i>everywhere</i>, strands of his narcotic spunk flying several feet as he flexes and moans. When he’s finished he’s shaking all over and breathing hard, his eyes fluttering closed in relief.");
-
-output("\n\n<i>“Is the big bad puppy all tuckered out now? Wanna sleep in your cage?”</i> you ask him.");
-
-output("\n\n<i>“Uuuuuugh,”</i> he groans, turning over to face away from you. <i>“Just please fuck off. Go. I don’t want to ever see you again.”</i>");
-
-output("\n\n<i>“Aw, fine,”</i> you sigh. <i>“Here, I’ll scratch my extranet mail on the ground. Hit me if you want to start a circus.”</i>");
-
-output("\n\nYou can’t tell if he’s sobbing or shaking in rage, but either way your job here is done. You leave with a spring in your step.");
-
-output("\n\n[No]");
-
-output("\n\n<i>“Nope,”</i> you say, flashing him your teeth in a brilliant smile. <i>“But thanks for the recording. I dunno if there’s a market for embarrassment porn, but if there is this has </i>gotta<i> be a record-breaker.”</i>");
-
-output("\n\nYou get up and leave, the leithan’s apoplectic rage following you like a thunderstorm. As you get further away he begins to beg, then goes back to yelling angrily as you make it clear you’re not coming back. Eventually, silence falls. You don’t bother checking on him.");
-
-output("\n\n[Nah]");
-
-output("\n\n<i>“Not interested,”</i> you say, shrugging. <i>“You big dumb{fem/herm: boys/else: aggressive types} are just too easy to take advantage of with a bit of sex appeal.”</i>");
-
-output("\n\n<i>“Fuckin’... Goddamnit!”</i> he rages as you walk away. <i>“I’m gonna find you again and fuck you unconscious! Gonna fuck you in half, bitch!”</i>");
-
-output("\n\n<i>“Whatever you say, chump,”</i> you call out over your shoulder, ignoring the rest of his angry ranting. You roll your eyes. The least a loser could do is shut up about it.");
-
-output("\n\n[Give in]");
-
-output("\n\n<i>“Oh fuck, just let me at it!”</i> you cry out, rushing towards the leithan’s side.{Clothed: You’re stripped out of your [pc.gear] in seconds.} You get on your knees immediately, sucking the tip hard enough to make him groan in relief before you begin to take it inside, choking yourself in your eagerness.");
-
-output("\n\n<i>“That’s more like it,”</i> he sighs, relaxing on the ground. <i>“Work yourself for my cum, [pc.boyGirl]. Suck it until I get back up.”</i>");
-
-output("\n\nAs it turns out, he doesn’t want to get back up for quite some time. You successfully make him cum, his thick, narcotic seed shooting from his cock so fiercely that some of it pours from your nostrils while you’re desperately trying to swallow it all. Immediately after that you get back to work earning more of his seed, gulping the excess down even as you suck and lick at him. Gradually, as the leithan regains his strength after venting his frustrations into you a few times, he pushes you away and stands once more, towering above your prostrate form.");
-
-output("\n\n<i>“There we go,”</i> he grunts, stretching out and flexing. You watch his muscles bulge, admiring him from below while his thick seed drips down your chin. It would be disingenuous to say he’s finally broken you in - you and he both know that he broke you in the first time you met, turned you into his needy little cockslut before you ever fought him. God, he’s like sex incarnate, and you... you’re just happy to bask in his presence.");
-
-output("\n\n<i>“My little cocksock,”</i> he chuckles, looking down on you. <i>“Present yourself, bitch.”</i>");
-
-output("\n\nYou immediately turn over and raise your [pc.ass],{taur: hindlegs elevated as far as they’ll go/else: reaching back to pull your cheeks apart}.");
-
-output("\n\n<i>“Is this good enough?”</i> you ask him.");
-
-output("\n\n<i>“Yeah,”</i> he says, settling into position. <i>“Now shut up and keep yourself tight.”</i>");
-
-output("\n\nYou let out a slutty moan of ecstasy as your [pc.chest] rubs against the ground, borne forward as your strong, dominant lover - no, your <i>master</i> - enters your [pc.vagOrAss]. The feeling is divine, like you’ve been waiting for this your whole life. It’s hard to imagine anything better, and he hasn’t even cum yet.");
-
-output("\n\nHe keeps you writhing in ecstasy, ignoring your moans of praise while he pumps you with strong, rough strokes that force you to grip onto his legs to avoid being shunted along the ground. It’s apparent that he thinks nothing more of you than a warm cumdump, but this is by far the best you’ve ever felt. You’re more than willing to spread yourself for him and get fucked like a whore every night if that’s what he desires, just for another feel of that heavenly cum inside you.");
-
-output("\n\nWhen he finally cums, you almost pass out from the strength of the orgasm you endure. Your entire body is aflame with need, eyelids fluttering as your eyes roll back into your head in pleasure. Your muscles flex and shake, trying hard to contextualize the feeling of bliss and failing - nothing has ever felt this good. You would die for this feeling without a second thought.");
-
-output("\n\nBy the time he pulls out, you’re scarcely more than a well-used fucktoy. Leaking cum from both ends, you lie on the ground panting and groaning in the afterglow of so many orgasms in a row. Your newfound master gives you a light kick.");
-
-output("\n\n<i>“Get up,”</i> he grunts. <i>“You’re coming back to my quarters for another fuck.”</i>");
-
-output("\n\nDespite yourself - despite the treatment, despite clearly meaning nothing more to your master than a pet to amuse himself with - you unsteadily clamber to your [pc.feet] to follow his orders. Your head swims with the fantasy of being taken again and again, fucked nightly like you’re this fantastic man’s concubine, just another conquered bitch in the wake of his dominance. And that’s all you could ever want.");
-output("\n\n//to bad end");
-
-output("\n\n[Resist]");
-
-output("\n\nNnnnnngh-”</i> you groan, squeezing your eyes shut and trying, willing yourself with all your might, to resist. You’re almost doubled over in pain trying to get the words out. Sweat breaks out on your forehead as you struggle for survival. <i>“Nnnuh-no!”</i>");
-
-output("\n\n<i>“What?”</i> he says, shocked. <i>“Fuck me, you idiot! Jump on my dick!”</i>");
-
-output("\n\n<i>“No,”</i> you say, more decisively now as you slowly stand back up. <i>“Fuck you.”</i>");
-
-output("\n\n<i>“Th-that’s impossible,”</i> he mumbles, staring at you. <i>“Nobody... nobody could resist that.”</i>");
-
-output("\n\n[Ignore] [Execute] [Assfuck] [Fist him]");
-
-output("\n\n[Ignore]");
-
-output("\n\n<i>“W-wait, where are you going?”</i> he says, watching you begin to walk away. <i>“Come back! Uh, serve your alpha!”</i>");
-
-output("\n\nYou say nothing, continuing past him and onwards.");
-
-output("\n\n<i>“You can’t do this! You can’t just leave!”</i> he howls in desperation, raking his claws against the ground. <i>“You... you can’t,”</i> he trails off into a whisper.");
-
-output("\n\nYou think you hear him calling out to stop, but you can’t be sure. You don’t bother looking back.");
-output("\n\n[Execute]");
-output("\n\n//This can be cut if desired");
-output("\n\n<i>“Looks like you should’ve thought about the consequences of fucking with me before they smacked you upside the head,”</i> you say, throwing his words back in his face. He gapes in open-mouthed disbelief as you raise your [pc.rangedWeapon] with a grim expression, aiming right between his eyes. <i>“Goodbye, you lowlife scum.”</i>");
-
-output("\n\n-");
-
-output("\n\nYou regard his body with disdain before your eyes sweep over the gatling gun. Unfortunately, it’s too big to carry and the mounting apparatus looks like it took quite some setup.{No PA: If only you had some power armor you might be able to lug it around/else: Even in the power armor, you would have to put a lot of work in to get it operational}. Some other time, maybe. You step away, continuing onwards.");
-
-output("\n\n[Assfuck]");
-output("\n\n//Requires cock");
-
-output("\n\n<i>“Yeah, well, I know what I’m not gonna resist,”</i> you say, smirking. <i>“See, I’ve got a bit of a kink for fucking big, strong, dominant men until they break down and learn their place. And you seem to fit the bill.”</i>");
-
-output("\n\n<i>“You- you can’t fuck </i>me<i>,”</i> he says, incredulous. You’ll- you’ll get addicted!”</i>");
-
-output("\n\n<i>“Yeeeah, that’s not how that works,”</i> you say, already{clothed: removing your [pc.gear] and} lifting his tail. Sweaty and glistening, his asshole reminds you of a delicious donut, protruding just enough to look like you’re being invited. <i>“Oh, looks like someone left the backdoor open.”</i>");
-
-output("\n\n<i>“Wait wait wait,”</i> he says, panicking when he sees your [pc.cockBiggest]. <i>“I don’t- I’ve never- oh! Fuck!”</i>");
-
-output("\n\nYou sink your [pc.cockBiggestHead] into his velvet soft ring, spreading him around you. The groan he makes is exquisite.");
-
-output("\n\n<i>“Oooh, for someone who’s supposedly an anal virgin you sure are welcoming,”</i> you murmur, rubbing his muscular flank. <i>“I think you’ve got the makings of a real anal slut.”</i>");
-
-output("\n\n<i>“F-fuck you,”</i> he pants, gripping the ground. <i>“Uuugh!”</i>");
-
-output("\n\nYou get another few inches inside him, and suddenly you find yourself{cocksize<12: railing him with reckless abandon, your{balls: [pc.balls]/else: [pc.groin] smacking against his large tauric behind while you pummel him/12+: a foot deep inside him, exploring his massive backside with your stiffly erect cock. You really do believe he was a virgin back here, but being as big as he is has some hidden drawbacks - like the fact you can fuck his cute asshole with no preptime}. You can feel his prostate, large enough for you to feel it when you rub him. If you pay enough attention to it, it should be relatively effortless to make him have an anal orgasm. Fortunately for him, that’s exactly what you had planned.");
-
-output("\n\n<i>“Come on, you little whore,”</i> you taunt him,{cocksize<12: ramming him repeatedly/else: drawing back and slowly pushing back in} while he makes muffled grunts up ahead. <i>“Let me hear that sweet singing voice.”</i>");
-
-output("\n\n<i>“Wuh, what the fff- fuck are you doing to me,”</i> he gasps, so overcome with lust he can’t deny your control of him. <i>“Nnnngh! Grrgh!”</i>");
-
-output("\n\n<i>“Aw, you gonna cum?”</i> you ask, teasing him. <i>“Never had your prostate stimulated before, big boy? You’re missing out.”</i>");
-
-output("\n\n<i>“Uh! Uuuhh,”</i> he moans, losing strength. <i>“S-stop, I’m- I’m gonna-”</i>");
-
-output("\n\nYou coo in approval while he groans in defeat, the precum that was dribbling from his cock suddenly giving away to a much more strong, thick mixture of narcotic cum that spurts and sprays from his tip. It comes out in a steady stream, pumping from his oversized balls and splashing to the ground underneath him. His inexperienced asshole clamps down on you desperately, trying to arrest your motion while he’s cumming, but you’re determined both not to cum yet and to run him completely dry.");
-
-output("\n\n<i>“Good boy, good booooyyy,”</i> you murmur, keeping up the steady rhythm while he grunts and groans in exertion. <i>“Stop thinking so hard and just cum.”</i>");
-
-output("\n\nWhether or not he’s embracing his role as an anal slut mentally, he’s definitely got the look down. His ass continues to squeeze you while his legs shake, seed still coming from his tip in giant, sticky loads. There’s a pool of his essence forming underneath his body, seeping away from him through grooves in the ground. You can even feel him pressing back slightly,{cocksize<12: instinctively seeking more pleasure/else: trying to get you deeper. You decide, in your generosity, to indulge him}.");
-
-output("\n\n<i>“Guuuuhhh!”</i> he groans loudly, arching his humanoid back. <i>“Fuck, fuuuck!”</i>");
-
-output("\n\nHe’s cumming a <i>second</i> time before he’s even done with his first! Oh, this guy has a gift. You were right to call him a slut from the outset. You’d taunt him, but another round of frantic flexing and squeezing around your cock has you right on the edge yourself.");
-
-output("\n\n<i>“Open wide, you slut,”</i> you grunt, getting as deep as you can in his tight, warm asshole. <i>“Here’s your reward!”</i>");
-
-output("\n\nYour [pc.cum] jets inside him{cumvolume<25k:, spurting into his tauric behind and coating his insides with your mark/25k+: deep enough to make his underbelly swell with it, his groans spurring you onwards. You’re well and truly leaving your mark on and inside this leithan, inviting him to be a subby slut}. Your jizz might not be narcotic, but you have a feeling he’s going to be addicted all the same. He’s clearly never cum like this before, and his reactions are so sweet and juicy.");
-
-output("\n\nWhen you finish cumming, you keep yourself hilted just for fun. Moaning and panting, the leithan whore has long since laid down in exhaustion to ride it out. Seed continues to spill from his cocktip, running freely like it’s a leaky faucet. He’s loosened up a little, his ass only flexing around you once every few seconds while he empties his wasted spunk onto the ground. You wait for him to finally finish before you lean forward and murmur to him.");
-
-output("\n\n<i>“Bet you’d love to come with me and get some more of that, right big guy?”</i>");
-
-output("\n\n<i>“I... never want to see you again,”</i> he mutters sullenly, balling his hands into fists.");
-
-output("\n\n<i>“Yeah, right,”</i> you say, smiling as you pull out. <i>“I think you’ll be seeing a lot of me at night when you’re alone. Remember, if you want to cry it out - the name’s Steele.”</i>");
-
-output("\n\n<i>“Ugh!”</i> he moans as your [pc.cockBiggestHead] slips free, [pc.cumColor] spunk starting to run down his gray backside. It’s a beautiful contrast, you have to say. <i>“Fuck off...”</i>");
-
-output("\n\n<i>“Just about to, unless you want me to go another round,”</i> you say, standing and looking down at him in faux interest.");
-
-output("\n\nHe panics and starts trying to crawl away, exhaustion betraying him. <i>“Nono! I already came!”</i>");
-
-output("\n\n<i>“Twice, too, you insatiable whore,”</i> you murmur fondly, turning away. <i>“Hopefully we run into each other again! Wouldn’t mind a round two with that fat ass of yours. See you!”</i>");
-
-output("\n\nWith that, you depart, leaving him on the ground with your seed trickling down his hindquarters.");
-
-output("\n\n//set a flag for this, might try and crowdfund an expansion where he shows up again in trap form wanting to get fucked.");
-
-output("\n\n[Fist him]");
-
-output("\n\n<i>“Well, now that we’ve established I’ve beaten you, I’ll take a little pity on you and get you off,”</i> you say, walking around to his muscular hindquarters and seating yourself next to his flank. <i>“I don’t want to touch your dirty cock, though. You don’t deserve it.”</i>");
+	}
+	//merge
+	output("\n\nMaybe you’ll ask him about it when you go back and see h-no! Fuck! You’re going to go back and <i>fight</i> him, not fuck him! You shake your head and look down at yourself, steeling your resolve. Yes... you’ll go back and settle this once and for all.");
+	output("\n\n");
+	flags["FORGEHOUND_APOLIFUCKED"] = 1;
+	processTime(80);
+	pc.orgasm();
+	pc.orgasm();
+	var tempE:ForgeHound = new ForgeHound();
+	if(!pc.isTaur()) pc.loadInMouth(tempE);
+	else
+	{
+		if(pc.hasVagina()) pc.loadInCunt(tempE,0);
+		else pc.loadInAss(tempE);
+	}
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[No]
+//tooltip: But you don’t want to do that.
+public function noYouArentApolifucking():void
+{
+	clearOutput();
+	showForgehound();
+	output("<i>“I don’t wanna do that, though,”</i> you say.");
+	output("\n\n<i>“Alright. This’ll be a mercy killing, then,”</i> the leithan says, looking at your forehead. You can see the gatling gun swivelling slightly to zero in. <i>“You’re far too stupid to live.”</i>");
+	output("\n\n<b>It’s a fight!</b>");
+
+	//9999
+}
+
+//[Submit]
+//Different variants for having apologized or not.
+//tooltip: Give in. The large, domineering man is just too intimidating and hot for you to fight him.
+public function submitToForgehound():void
+{
+	clearOutput();
+	showForgehound(true);
+	var forgy:ForgeHound = new ForgeHound();
+	if(flags["FORGEHOUND_APOLIFUCKED"] == undefined) 
+	{
+		output("<i>“I got your reason right here, big boy,”</i> you murmur, letting your weapons fall to the ground and kneeling before him");
+		if(!pc.isChestExposed() && !pc.isCrotchExposed()) output(", stripping out of your clothes");
+		output(". His surprised expression quickly shifts to a smug smirk.");
+
+		output("\n\n<i>“I see. You just had to come see what the big deal was, huh?”</i> he says, approaching you. <i>“Then you ran into me. Lucky you. I’ve been looking for a fucktoy to have to myself lately.”</i>");
+
+		output("\n\n<i>“You can </i>make<i> me that fucktoy, you big fucking stud,”</i> you breathe, looking up at him with flushed cheeks{clothed: as you shed your last piece of gear}. Your [pc.nipples] stand out on your chest, erect as they can be");
+		if(pc.canMilkSquirt()) output(" and leaking milk");
+		output(". <i>“Wear me as a fucking sheath, you sexy fucking beast!”</i>");
+
+		output("\n\n<i>“I like the words coming outta your mouth,”</i> the leithan man says, chuckling to himself. <i>“Don’t think it’s gonna be hard to break </i>you<i> in. You seem like the type to take to it pretty quick.”</i>");
+
+		output("\n\nAs he draws closer, you finally get to see what he’s wielding between his legs. It’s a monstrously large canine cock, swollen, red, and already leaking precum - and it is the most amazing thing you have ever laid your eyes upon. Every instinct inside screams to submit, to offer yourself to it, your mouth automatically opening just in case he should choose to thrust it between your [pc.lips].");
+
+		output("\n\n<i>“Go on,”</i> he grunts, flexing his mighty cock. <i>“Pay your respects.”</i>");
+
+		output("\n\nLeaning forward, you plant a gentle kiss on the pointed tip before you take it inside. It’s delightfully smooth and suckable despite having such intimidating veins running through it, and when the first drop of precum reaches your lips it tastes like utter bliss. You moan into his cock, bringing your hands up to start stroking it with reverence.");
+
+		output("\n\n<i>“Like the taste, huh?”</i> the leithan notes in a casual manner. <i>“Bet you do. Take it deeper, slut.”</i>");
+
+		output("\n\nHe’s right - if you’re going to be his fucktoy cumdump, you’re going to have to meet <i>all</i> his needs. That includes deepthroating as much of his cock as physically possible. You’re going to love the heat of his seed exploding directly into your stomach, you’re sure of it. You straighten your back and lean forward, grabbing onto his middle set of legs when you feel him shifting above you, getting ready to thrust.");
+
+		output("\n\n<i>“Nnnh!”</i> he grunts, shoving what must be over a foot of swollen, throbbing dogcock down your throat. The rest of it won’t fit, owing to his insane size, but you think you’ve done pretty well. <i>“Not bad for a rookie cumdump,”</i> he says, shifting his footing again. <i>“We’ll get you some mods later so you can take me, don’t you worry. I know some people.”</i>");
+
+		output("\n\nA second later and you’re being taken, almost literally, for the ride of your life. He <i>hammers</i> your face, his gigantic cock slipping in and out of your throat as you gag, cough, and blow bubbles of spit around it. You’re in love. You cum not even twenty seconds into it, completely unnoticed by the man above you. Your senses are in overdrive, the sensation of him sliding into your tight, wet fuckhole of a mouth just too much to bear. Serving this big, strong, dominant man is its own reward in itself.");
+
+		output("\n\n<i>“Haaa, fuck!”</i> he grunts in approval, starting to thrust more violently. <i>“Swallow all of it down if you know what’s good for you, bitch.”</i>");
+
+		output("\n\nIs he gonna cum? He’s gonna cum! He must be about to cum! Your eyes widen, pupils dilated in your euphoria, and you relax your throat as much as you can. You’re soon rewarded with a giant, neck-swelling load of thick leithan seed that travels down his cock and jets down your throat. Still thrusting, he gets most of the next load in your mouth, fucking it right down your gullet with his cock. Your eyes roll back into your head in pleasure, most of your body limp in utter subservience except the two arms that grasp his legs to keep you in place.");
+
+		output("\n\n<i>“Grrrr... nnngh,”</i> he growls, sinking himself as deep as he can get into your face to ride out the rest of his amazing orgasm. You can’t look down right now, but you can <i>feel</i> your stomach swelling, bloated with his thick, swirling jizz. You’re down there long enough that, eventually, you can feel it " + (pc.isTaur() ? "pressing against your folded-up legs":"touching the ground beneath you") + ".");
+		output("\n\nFinally, he kicks your hands away and steps back, pulling out of your abused throat. You immediately seal your lips, eyes widening in urgency as the cum he left behind swells up and threatens to leak. It takes you several long, laborious seconds of swallowing it again - it’s so thick and sticky you can hardly get it down - but the taste it leaves in your mouth is well worth the effort. You cum again while he watches, ignoring your ecstasy completely.");
+		output("\n\n<i>“Fuck... pretty good, but not as good as when I get it all in,”</i> he muses, looking down at you. <i>“Have to go aftermarket to fix that. Well, get up.”</i>");
+		output("\n\nYou slowly, gingerly rise to your feet, " + (pc.isTaur() ? "your legs somewhat awkwardly splayed around your sloshing, semen-filled":"cradling your pregnant") + " stomach. It’s swollen obscenely after you faithfully followed his instructions, not letting a single drop leak.");
+		output("\n\n<i>“Now walk,”</i> he says, grinning. <i>“We’re going back to my quarters, and we’re going to have a </i>lot<i> of fun when we get there.”</i>");
+		processTime(15);
+	}
+	//Apologized:
+	else
+	{
+		output("<i>“... and fuck me, you stud,”</i> you pant, dropping your weapons. <i>“Oh god, I need it so bad! Please! Please f-”</i>");
+		output("\n\n<i>“Sshhh,”</i> the man says, quieting you down immediately. You watch him approach as your lips part instinctively, your breath coming out in hot gasps. <i>“Just relax, my little beta.”</i>");
+		output("\n\n<i>“Uuuuhhhh,”</i> you moan, " + (pc.isTaur() ? "bowing your forelegs a little":"your knees pressing together") + ". It feels so <i>good</i> when he calls you that, to give voice to the concept of his complete and utter dominion over you. <i>“Yes, alpha...”</i>");
+		output("\n\n<i>“I like my bitches quiet and obedient,”</i> he murmurs, looking into your face. <i>“Can you be a quiet, obedient bitch?”</i>");
+		output("\n\nYou say nothing, biting your lip and just nodding. He’s so close..! You could reach out and touch him, but you don’t dare.");
+		output("\n\n<i>“Smart,”</i> he notes, nodding once. <i>“As a reward, I’ll let you lick my cock. You’re not allowed to touch it with anything but your tongue, bitch.”</i>");
+		output("\n\nYou nod eagerly, almost bouncing in excitement. He’s gonna let you lick his fucking cock! You can barely contain yourself, ");
+		if(pc.isHerm()) output("both your [pc.pussies] and [pc.cocks] dripping in anticipation");
+		else if(pc.hasCock()) output("your [pc.cocks] dripping in anticipation");
+		else output("your [pc.vaginas] dripping in anticipation");
+		output(". You’re scarcely able to resist cumming the moment you lay your eyes on it as he steps over you, sheltering you under his body while you pant in lust. You <i>need</i> it.");
+		output("\n\nLeaning forward, you almost take it into your hands before remembering what he instructed you to do. Nothing but tongue. Your [pc.tongue] lolls from your mouth, sliding up the underside of his cockhead to get at all of the precum dripping from his tip. Oh, god, fuck <i>yes</i>. This is what you’re here for. Getting more of <i>this</i>. You moan loudly into his cock, cumming all over yourself as you lick and swallow down his pre.");
+		output("\n\nYou can hear him chuckling above you. <i>“Couldn’t hold on, huh?”</i> he grunts, amused. <i>“What a whore. I thought you would fight back a little, at least. Where’d the strong-willed bitch from the first time go, huh?”</i>");
+		output("\n\nHe’s right - but if this makes you a whore, you’ll <i>be</i> his whore. For the rest of your life, even. His cum is just so good; you don’t want anything more than just getting his cock in one of your holes, being fucked over and over and pumped full of his thick spunk. You’re on the verge of cumming again when he tells you to stop.");
+		output("\n\n<i>“Alright, playtime’s over. Lie on the ground,”</i> he grunts, shifting above you. <i>“And tighten your asshole.”</i>");
+		pc.buttChange(forgy.cockVolume(0));
+		output("\n\nYou scream he enters you, not in pain but in pure, blissful joy. You cum immediately, not even having the slightest chance of resisting it. The throbbing of his cock and slick precum that follows with it has your head in the clouds, lying down with an expression of ecstasy while he ravages your gaped-wide asshole.");
+		output("\n\nYou can’t stop cumming, a new orgasm rolling on top of the previous with every single thrust of his amazing cock, your mouth open in a silent scream of joy. Drool runs from the corner of your mouth as your eyes roll up into your head, your mind fighting desperately to stay conscious, not to survive but to ensure you experience every single agonizingly pleasurable second of his dick inside you.");
+		output("\n\nBy the time he cums, you’ve already lost your voice. Nothing but gasps and silent moans emanate from your throat as he impales you as deeply as he can, ");
+		if(pc.isTaur()) output("thrusting himself so far in you can feel his enormous balls pulsing against your shaking hindquarters.");
+		else output("fucking you so hard you can scarcely breathe.");
+
+		output("\n\n<i>“Nnnngghhh... fuck,”</i> he growls in satisfaction, leaving his stupendous cock bulging inside you while he empties himself. <i>“You’re gonna make a great cumdump.”</i>");
+		output("\n\nThe words set your mind alight with desire, and you’d giggle with happiness if you were capable. The thought that your master’s going to enjoy you is so enticing and rewarding that you cum again without touching yourself. He’s just so <i>good</i>...");
+		output("\n\n<i>“Now get up and come to my quarters, bitch,”</i> he says, grinning as he pulls out of your ruined asshole. Seed pours " + (pc.isTaur() ? "down your [pc.ass], soaking your underside":"from the gaping orifice, forming a pool between your [pc.thighs]. <i>“There’ll be more time for fun when you get there.”</i>\n\nMotivated by his promise of more attention, you shakily rise to your feet."));
+		processTime(15);
+		for(var y:int = 0; y < 5; y++) { pc.orgasm(); }
+		pc.loadInAss(forgy);
+	}
+	pc.loadInMouth(forgy);
+	clearMenu();
+	addButton(0,"Next",badEndToForgy);
+}
+
+public function badEndToForgy():void
+{
+	clearOutput();
+	showForgehound(true);
+	//9999 bad end?
+}
+
+//PC wins
+public function defeatForgy():void
+{
+	//Win by lust
+	if(enemy.lust() >= enemy.lustMax()) 
+	{
+		output("The monster-sized leithan collapses to his knees, keeling over and panting in lust. You give a winning smile as you walk over to him, watching him buck his hips. The pheromones are pouring off him - he needs it <i>bad</i>. Between his legs, you can see his massive canine cock throbbing with desire.");
+		if(flags["FORGEHOUND_APOLIFUCKED"] != undefined)
+		{
+			output("\n\n<i>“S-shoe’s on the other foot now,”</i> you pant, your mind swimming in his musk. It would be <i>so</i> easy to take advantage of him right now and just sit on his cock, bouncing until he came again. Hell, he’s enough of a stud that he can probably go more than once - you’d never want for sex again.");
+			output("\n\n<i>“Great work, you fuckin’ moron,”</i> he grunts, glaring at you. <i>“Now I’m all worked up and desperate. And who’s in front of me? My beta. You can’t resist this.”</i>");
+			output("\n\nYou struggle internally, gritting your teeth. Are you really going to try and walk away from this? This is an almost once in a lifetime opportunity for happiness, and all it would cost is your free will.");
+			output("\n\n<i>“Just give in,”</i> he cajoles you, flexing his cock to make it stand proud and erect. <i>“Nobody has the kind of willpower you’d need to say no. Just make it easier on yourself.”</i>");
+			processTime(3);
+			clearMenu();
+			addButton(0,"Give In",,undefined,"Give In","");
+			addButton(1,"Resist",,undefined,"Resist","");
+		}
+		else
+		{
+			output("\n\n<i>“You don’t look so big lying on the ground with your dick out like that,”</i> you muse. <i>“Poor puppy.”</i>");
+			output("\n\n<i>“F-fffuck you,”</i> he pants, cheeks flushed a dark red under his gray skin. <i>“You’ll regret insulting me later!”</i>}");
+			output("\n\n<i>“Alright, spill it,”</i> you say, bending down to look him in the eye. <i>“There’s something going on with you, something you’re hiding. It’s too obvious. What is it?”</i>");
+			output("\n\nHe says nothing, and you sigh theatrically as you get back up. <i>“Guess I’m wasting my time. I’ll just leave you here with that giant, painful-looking erection.”</i>");
+			output("\n\n<i>“Fuck,”</i> he spits, then looks up at you. <i>“Fine. I’m a d’zaan alpha, I have addictive cum.”</i>");
+			output("\n\n<i>“Ohooo, I see,”</i> you say, raising an eyebrow. <i>“Then I won’t be doing anything with your dick after all.”</i>");
+			output("\n\n<i>“Wait wait wait,”</i> he begs, imploring you. <i>“You can still jack me off, or- or something! Come on!”</i>");
+			clearMenu();
+			addButton(0,"If You Beg",,undefined,"If You Beg","");
+			addButton(1,"Nah",,undefined,"Nah","");
+		}
+	}
+}
+
+//[IfYouBeg]
+public function ifYouBegForgy():void
+{
+	clearOutput();
+	showForgehound(true);
+	pc.addMischievous(1);
+	output("<i>“Sure, I’ll get you off,”</i> you say, grinning. <i>“If you beg.”</i>");
+	output("\n\nThough sullen, he performs the act immediately. <i>“Please get me off.”</i>");
+	output("\n\n<i>“No no no no, that’s not nearly good enough,”</i> you sigh, shaking your head in disappointment. <i>“Like a dog. Put your front legs out and ask your master if I can give you a treat.”</i>");
+	output("\n\nHe glares at you with murder in his eyes. If looks could kill, you would surely be writhing in agony right now. But they can’t, so instead you smile sweetly at him. <i>“Can you do a trick?”</i>");
+	output("\n\n<i>“I swear to god I’m going to find you and kill you some day,”</i> he mutters, raising his forelegs. <i>“Can you give me a treat,”</i> he says, monotone.");
+	output("\n\n<i>“Put some heart into it,”</i> you insist, gesturing with your hands. <i>“Like this!”</i>");
+	output("\n\n<i>“God damn, fine!”</i> he snarls, raising his forelegs further. You watch in utter delight as he softens his expression. <i>“Master, would you please give me a treat?”</i>");
+	output("\n\n<i>“Hahahahahaha!”</i> you crack up in his face, smacking the ground. <i>“You actually did it!”</i>");
+	output("\n\n<i>“You fucking asshole,”</i> he growls, face flushing with embarrassment. <i>“</i>Now<i> can you get me off? I can’t do it myself...”</i>");
+	processTime(4);
+	//[Yes] [No]
+	clearMenu();
+	addButton(0,"Yes",,undefined,"Yes","");
+	addButton(1,"No",,undefined,"No","");
+}
+
+public function yesIllMakeYouCumForgy():void
+{
+	clearOutput();
+	showForgehound(true);
+	output("<i>“Hahahaha, I guess it would be pretty shitty if I didn’t,”</i> you gasp, trying to control your laughter. <i>“Okay puppy, here’s your reward. Can you roll over too?”</i>");
+	output("\n\n<i>“Fuck off!”</i> he snarls angrily.");
+	output("\n\n<i>“Aww, fine,”</i> you say, reaching forward and taking his cock in hand. <i>“Here you go, good boy.”</i>");
+	output("\n\n<i>“Nnnh,”</i> he moans, the tension fading from his body as you begin to rub his massive length up and down. <i>“Finally...”</i>");
+	output("\n\n<i>“Yeah, guess I made you jump through a few hoops first,”</i> you agree, squeezing his tip a little. Some precum runs down his underside, coating it in slick lubrication. <i>“You’d make a great circus dog actually, you’ve already got the tricks part down.”</i>");
+	output("\n\nHe chooses not to respond to that, but you don’t stop there. <i>“Heaps of people would pay to see you. ‘The biggest puppy you’ve ever seen!’ would be a crowd-pleaser for sure,”</i> you mention, jacking him harder. He was already so close to cumming, you’ve got him right on the edge. <i>“You sure you don’t want to go into business with me?”</i>");
+	output("\n\n<i>“I f-fuh, fucking hate you!”</i> he pants, his hips starting to move, bucking in slow motion. <i>“Ffffuuuck..!”</i>");
+
+	output("\n\nWith a very loud, deep groan, he finally begins to cum. Massive ropes of seed spurt from his throbbing canine cock, splattering all over the ground while you follow through on your promise and make him cum as hard as you can with your hands. He goes <i>everywhere</i>, strands of his narcotic spunk flying several feet as he flexes and moans. When he’s finished he’s shaking all over and breathing hard, his eyes fluttering closed in relief.");
+	output("\n\n<i>“Is the big bad puppy all tuckered out now? Wanna sleep in your cage?”</i> you ask him.");
+	output("\n\n<i>“Uuuuuugh,”</i> he groans, turning over to face away from you. <i>“Just please fuck off. Go. I don’t want to ever see you again.”</i>");
+	output("\n\n<i>“Aw, fine,”</i> you sigh. <i>“Here, I’ll scratch my extranet mail on the ground. Hit me if you want to start a circus.”</i>");
+	output("\n\nYou can’t tell if he’s sobbing or shaking in rage, but either way your job here is done. You leave with a spring in your step.");
+	processTime(10);
+	pc.lust(5);
+	output("\n\n");
+	CombatManager.genericVictory();
+}
+
+//[No]
+public function noIWontGetYouOff():void
+{
+	clearOutput();
+	showForgehound();
+	output("<i>“Nope,”</i> you say, flashing him your teeth in a brilliant smile. <i>“But thanks for the recording. I dunno if there’s a market for embarrassment porn, but if there is this has </i>gotta<i> be a record-breaker.”</i>");
+	output("\n\nYou get up and leave, the leithan’s apoplectic rage following you like a thunderstorm. As you get further away he begins to beg, then goes back to yelling angrily as you make it clear you’re not coming back. Eventually, silence falls. You don’t bother checking on him.");
+	pc.addHard(1);
+	output("\n\n");
+	processTime(2);
+	CombatManager.genericVictory();
+}
+
+//[Nah]
+public function nahIWontGetYouOffPuppu():void
+{
+	clearOutput();
+	showForgehound();
+	output("<i>“Not interested,”</i> you say, shrugging. <i>“You big dumb ");
+	if(pc.mf("","f") ==  "f") output("boys");
+	else output("aggressive types");
+	output(" are just too easy to take advantage of with a bit of sex appeal.”</i>");
+	output("\n\n<i>“Fuckin’... Goddamnit!”</i> he rages as you walk away. <i>“I’m gonna find you again and fuck you unconscious! Gonna fuck you in half, bitch!”</i>");
+	output("\n\n<i>“Whatever you say, chump,”</i> you call out over your shoulder, ignoring the rest of his angry ranting. You roll your eyes. The least a loser could do is shut up about it.\n\n");
+	processTime(2);
+	CombatManager.genericVictory();
+}
+
+//[Give in]
+public function giveInToForgehoundFunsies():void
+{
+	clearOutput();
+	showForgehound();
+	output("<i>“Oh fuck, just let me at it!”</i> you cry out, rushing towards the leithan’s side. ");
+	if(!pc.isChestExposed() && !pc.isAssExposed()) output(" You’re stripped out of your [pc.gear] in seconds.");
+	output(" You get on " + (pc.hasKnees() ? "your knees":"the ground") + " immediately, sucking the tip hard enough to make him groan in relief before you begin to take it inside, choking yourself in your eagerness.");
+	output("\n\n<i>“That’s more like it,”</i> he sighs, relaxing on the ground. <i>“Work yourself for my cum, [pc.boyGirl]. Suck it until I get back up.”</i>");
+	output("\n\nAs it turns out, he doesn’t want to get back up for quite some time. You successfully make him cum, his thick, narcotic seed shooting from his cock so fiercely that some of it pours from your nostrils while you’re desperately trying to swallow it all. Immediately after that you get back to work earning more of his seed, gulping the excess down even as you suck and lick at him. Gradually, as the leithan regains his strength after venting his frustrations into you a few times, he pushes you away and stands once more, towering above your prostrate form.");
+	output("\n\n<i>“There we go,”</i> he grunts, stretching out and flexing. You watch his muscles bulge, admiring him from below while his thick seed drips down your chin. It would be disingenuous to say he’s finally broken you in - you and he both know that he broke you in the first time you met, turned you into his needy little cockslut before you ever fought him. God, he’s like sex incarnate, and you... you’re just happy to bask in his presence.");
+	output("\n\n<i>“My little cocksock,”</i> he chuckles, looking down on you. <i>“Present yourself, bitch.”</i>");
+	output("\n\nYou immediately turn over and raise your [pc.ass], " + (pc.isTaur() ? "hindlegs elevated as far as they’ll go":"reaching back to pull your cheeks apart") + ".");
+	output("\n\n<i>“Is this good enough?”</i> you ask him.");
+	output("\n\n<i>“Yeah,”</i> he says, settling into position. <i>“Now shut up and keep yourself tight.”</i>");
+	output("\n\nYou let out a slutty moan of ecstasy as your [pc.chest] rubs against the ground, borne forward as your strong, dominant lover - no, your <i>master</i> - enters your [pc.vagOrAss]. The feeling is divine, like you’ve been waiting for this your whole life. It’s hard to imagine anything better, and he hasn’t even cum yet.");
+
+	if(pc.hasVagina()) pc.cuntChange(0,enemy.cockVolume(0));
+	else pc.buttChange(enemy.cockVolume(0));
+
+	output("\n\nHe keeps you writhing in ecstasy, ignoring your moans of praise while he pumps you with strong, rough strokes that force you to grip onto his legs to avoid being shunted along the ground. It’s apparent that he thinks nothing more of you than a warm cumdump, but this is by far the best you’ve ever felt. You’re more than willing to spread yourself for him and get fucked like a whore every night if that’s what he desires, just for another feel of that heavenly cum inside you.");
+
+	output("\n\nWhen he finally cums, you almost pass out from the strength of the orgasm you endure. Your entire body is aflame with need, eyelids fluttering as your eyes roll back into your head in pleasure. Your muscles flex and shake, trying hard to contextualize the feeling of bliss and failing - nothing has ever felt this good. You would die for this feeling without a second thought.");
+	output("\n\nBy the time he pulls out, you’re scarcely more than a well-used fucktoy. Leaking cum from both ends, you lie on the ground panting and groaning in the afterglow of so many orgasms in a row. Your newfound master gives you a light kick.");
+	output("\n\n<i>“Get up,”</i> he grunts. <i>“You’re coming back to my quarters for another fuck.”</i>");
+	output("\n\nDespite yourself - despite the treatment, despite clearly meaning nothing more to your master than a pet to amuse himself with - you unsteadily clamber to your [pc.feet] to follow his orders. Your head swims with the fantasy of being taken again and again, fucked nightly like you’re this fantastic man’s concubine, just another conquered bitch in the wake of his dominance. And that’s all you could ever want.");
+
+	//to bad end
+	processTime(30);
+	pc.orgasm();
+	if(pc.hasVagina()) pc.loadInCunt(enemy,0);
+	else pc.loadInAss(enemy);
+	clearMenu();
+	addButton(0,"Next",);
+}
+
+//[Resist]
+public function resistDisHomeboy():void
+{
+	clearOutput();
+	showForgehound();
+	output("Nnnnnngh-”</i> you groan, squeezing your eyes shut and trying, willing yourself with all your might, to resist. You’re almost doubled over in pain trying to get the words out. Sweat breaks out on your forehead as you struggle for survival. <i>“Nnnuh-no!”</i>");
+	output("\n\n<i>“What?”</i> he says, shocked. <i>“Fuck me, you idiot! Jump on my dick!”</i>");
+	output("\n\n<i>“No,”</i> you say, more decisively now as you slowly stand back up. <i>“Fuck you.”</i>");
+	output("\n\n<i>“Th-that’s impossible,”</i> he mumbles, staring at you. <i>“Nobody... nobody could resist that.”</i>");
+	processTime(3);
+	clearMenu();
+	//[Ignore] [Execute] [Assfuck] [Fist him]
+	addButton(0,"Ignore",,undefined,"Ignore","");
+	addButton(1,"Execute",,undefined,"Execute","");
+	addButton(2,"Assfuck",,undefined,"Assfuck","");
+	addButton(3,"Fist Him",,undefined,"Fist Him","");
+
+}
+
+//[Ignore]
+public function ignoreTheDumboTaurboi():void
+{
+	clearOutput();
+	showForgehound();
+	output("<i>“W-wait, where are you going?”</i> he says, watching you begin to walk away. <i>“Come back! Uh, serve your alpha!”</i>");
+	output("\n\nYou say nothing, continuing past him and onwards.");
+	output("\n\n<i>“You can’t do this! You can’t just leave!”</i> he howls in desperation, raking his claws against the ground. <i>“You... you can’t,”</i> he trails off into a whisper.");
+	output("\n\nYou think you hear him calling out to stop, but you can’t be sure. You don’t bother looking back.\n\n");
+	CombatManager.genericVictory();
+}
+
+//[Execute]
+//This can be cut if desired
+public function executeDumbTaurboy():void
+{
+	clearOutput();
+	showForgehound();
+	output("<i>“Looks like you should’ve thought about the consequences of fucking with me before they smacked you upside the head,”</i> you say, throwing his words back in his face. He gapes in open-mouthed disbelief as you raise your [pc.rangedWeapon] with a grim expression, aiming right between his eyes. <i>“Goodbye, you lowlife scum.”</i>");
+	//output("\n\n-");
+	//output("\n\nYou regard his body with disdain before your eyes sweep over the gatling gun. Unfortunately, it’s too big to carry and the mounting apparatus looks like it took quite some setup.{No PA: If only you had some power armor you might be able to lug it around/else: Even in the power armor, you would have to put a lot of work in to get it operational}. Some other time, maybe. You step away, continuing onwards.");
+	output("\n\n");
+	CombatManager.genericVictory();
+}
+
+//[Assfuck]
+//Requires cock
+public function assfuckDatHo(x:int):void
+{
+	clearOutput();
+	showForgehound();
+	output("<i>“Yeah, well, I know what I’m not gonna resist,”</i> you say, smirking. <i>“See, I’ve got a bit of a kink for fucking big, strong, dominant men until they break down and learn their place. And you seem to fit the bill.”</i>");
+	output("\n\n<i>“You- you can’t fuck </i>me<i>,”</i> he says, incredulous. You’ll- you’ll get addicted!”</i>");
+	output("\n\n<i>“Yeeeah, that’s not how that works,”</i> you say, already");
+	if(!pc.isCrotchExposed()) output(" removing your [pc.crotchCovers] and");
+	output(" lifting his tail. Sweaty and glistening, his asshole reminds you of a delicious donut, protruding just enough to look like you’re being invited. <i>“Oh, looks like someone left the backdoor open.”</i>");
+
+	output("\n\n<i>“Wait wait wait,”</i> he says, panicking when he sees your [pc.cockBiggest]. <i>“I don’t- I’ve never- oh! Fuck!”</i>");
+	output("\n\nYou sink your [pc.cockHeadBiggest] into his velvet soft ring, spreading him around you. The groan he makes is exquisite.");
+	pc.cockChange();
+	output("\n\n<i>“Oooh, for someone who’s supposedly an anal virgin you sure are welcoming,”</i> you murmur, rubbing his muscular flank. <i>“I think you’ve got the makings of a real anal slut.”</i>");
+	output("\n\n<i>“F-fuck you,”</i> he pants, gripping the ground. <i>“Uuugh!”</i>");
+
+	output("\n\nYou get another few inches inside him, and suddenly you find yourself ");
+	if(pc.cocks[x].cLength() < 12) 
+	{
+		output("railing him with reckless abandon, your " + (pc.balls > 0 ? "[pc.balls]":"loins") + " smacking against his large tauric behind while you pummel him");
+	}
+	else output("a foot deep inside him, exploring his massive backside with your stiffly erect cock. You really do believe he was a virgin back here, but being as big as he is has some hidden drawbacks - like the fact you can fuck his cute asshole with no preptime");
+	output(". You can feel his prostate, large enough for you to prod it when you rub him. If you pay enough attention to it, it should be relatively effortless to make him have an anal orgasm. Fortunately for him, that’s exactly what you had planned.");
+
+	output("\n\n<i>“Come on, you little whore,”</i> you taunt him, " + (pc.cocks[x].cLength() < 12 ? "ramming him repeatedly":"drawing back and slowly pushing back in") + " while he makes muffled grunts up ahead. <i>“Let me hear that sweet singing voice.”</i>");
+
+	output("\n\n<i>“Wuh, what the fff- fuck are you doing to me,”</i> he gasps, so overcome with lust he can’t deny your control of him. <i>“Nnnngh! Grrgh!”</i>");
+	output("\n\n<i>“Aw, you gonna cum?”</i> you ask, teasing him. <i>“Never had your prostate stimulated before, big boy? You’re missing out.”</i>");
+	output("\n\n<i>“Uh! Uuuhh,”</i> he moans, losing strength. <i>“S-stop, I’m- I’m gonna-”</i>");
+	output("\n\nYou coo in approval while he groans in defeat, the precum that was dribbling from his cock suddenly giving away to a much more strong, thick mixture of narcotic cum that spurts and sprays from his tip. It comes out in a steady stream, pumping from his oversized balls and splashing to the ground underneath him. His inexperienced asshole clamps down on you desperately, trying to arrest your motion while he’s cumming, but you’re determined both not to cum yet and to run him completely dry.");
+	output("\n\n<i>“Good boy, good booooyyy,”</i> you murmur, keeping up the steady rhythm while he grunts and groans in exertion. <i>“Stop thinking so hard and just cum.”</i>");
+	output("\n\nWhether or not he’s embracing his role as an anal slut mentally, he’s definitely got the look down. His ass continues to squeeze you while his legs shake, seed still coming from his tip in giant, sticky loads. There’s a pool of his essence forming underneath his body, seeping away from him through grooves in the ground. You can even feel him pressing back slightly, ");
+	if(pc.cocks[x].cLength() < 12) output("instinctively seeking more pleasure.");
+	else output("trying to get you deeper. You decide, in your generosity, to indulge him.");
+
+	output("\n\n<i>“Guuuuhhh!”</i> he groans loudly, arching his humanoid back. <i>“Fuck, fuuuck!”</i>");
+	output("\n\nHe’s cumming a <i>second</i> time before he’s even done with his first! Oh, this guy has a gift. You were right to call him a slut from the outset. You’d taunt him, but another round of frantic flexing and squeezing around your cock has you right on the edge yourself.");
+	output("\n\n<i>“Open wide, you slut,”</i> you grunt, getting as deep as you can in his tight, warm asshole. <i>“Here’s your reward!”</i>");
+	output("\n\nYour [pc.cum] jets inside him " + (pc.cumQ() < 25000 ? ", spurting into his tauric behind and coating his insides with your mark":"deep enough to make his underbelly swell with it, his groans spurring you onwards. You’re well and truly leaving your mark on and inside this leithan, inviting him to be a subby slut") + ". Your jizz might not be narcotic, but you have a feeling he’s going to be addicted all the same. He’s clearly never cum like this before, and his reactions are so sweet and juicy.");
+	output("\n\nWhen you finish cumming, you keep yourself hilted just for fun. Moaning and panting, the leithan whore has long since laid down in exhaustion to ride it out. Seed continues to spill from his cocktip, running freely like it’s a leaky faucet. He’s loosened up a little, his ass only flexing around you once every few seconds while he empties his wasted spunk onto the ground. You wait for him to finally finish before you lean forward and murmur to him.");
+	output("\n\n<i>“Bet you’d love to come with me and get some more of that, right big guy?”</i>");
+	output("\n\n<i>“I... never want to see you again,”</i> he mutters sullenly, balling his hands into fists.");
+	output("\n\n<i>“Yeah, right,”</i> you say, smiling as you pull out. <i>“I think you’ll be seeing a lot of me at night when you’re alone. Remember, if you want to cry it out - the name’s Steele.”</i>");
+	output("\n\n<i>“Ugh!”</i> he moans as your [pc.cockHeadBiggest] slips free, [pc.cumColor] spunk starting to run down his gray backside. It’s a beautiful contrast, you have to say. <i>“Fuck off...”</i>");
+	output("\n\n<i>“Just about to, unless you want me to go another round,”</i> you say, standing and looking down at him in faux interest.");
+	output("\n\nHe panics and starts trying to crawl away, exhaustion betraying him. <i>“Nono! I already came!”</i>");
+	output("\n\n<i>“Twice, too, you insatiable whore,”</i> you murmur fondly, turning away. <i>“Hopefully we run into each other again! Wouldn’t mind a round two with that fat ass of yours. See you!”</i>");
+	output("\n\nWith that, you depart, leaving him on the ground with your seed trickling down his hindquarters.\n\n");
+	//set a flag for this, might try and crowdfund an expansion where he shows up again in trap form wanting to get fucked.
+	IncrementFlag("FORGEHOUND_PEGGED");
+	processTime(30);
+	enemy.loadInAss(pc);
+	pc.orgasm();
+	CombatManager.genericVictory();
+}
+
+//[Fist him]
+public function fistDatTaurBoi():void
+{
+	clearOutput();
+	showForgehound(true);
+	output("<i>“Well, now that we’ve established I’ve beaten you, I’ll take a little pity on you and get you off,”</i> you say, walking around to his muscular hindquarters and seating yourself next to his flank. <i>“I don’t want to touch your dirty cock, though. You don’t deserve it.”</i>");
 
 output("\n\n<i>“How the fuck else am I going to get off?”</i> he says, confused. <i>“Men cum with their dicks, dumbshit.”</i>");
 
@@ -740,7 +803,7 @@ output("\n\nYou thrust between his lips and he gags almost immediately, trying t
 
 output("\n\n<i>“Oooh, this is gonna get </i>messy<i>,”</i> you moan, already{taur: feeling/else: seeing} him drool around your length. <i>“Let’s see if we can plug that leak a little, huh?”</i>");
 
-output("\n\nYou press your [pc.hips] forward,{cocksize<8: grinding against his face as your [pc.cockBiggestHead] slides into his throat/else: feeding him several inches of your dick straight down his throat}. Indeed, he swiftly goes silent, his eyes widening in distress. You pull back to let him take a grateful breath, then slip back in. You get yourself into a nice pattern of sorts, allowing him half a second to gasp before you plunder his throat again.");
+output("\n\nYou press your [pc.hips] forward,{cocksize<8: grinding against his face as your [pc.cockHeadBiggest] slides into his throat/else: feeding him several inches of your dick straight down his throat}. Indeed, he swiftly goes silent, his eyes widening in distress. You pull back to let him take a grateful breath, then slip back in. You get yourself into a nice pattern of sorts, allowing him half a second to gasp before you plunder his throat again.");
 
 output("\n\n<i>“Mmmm, you are a natural at this, big boy,”</i> you sigh, shuddering in pleasure with a grin on your face. <i>“If your crew knew you sucked cock this good you’d never get a break from it.”</i>");
 
@@ -779,7 +842,7 @@ output("\n\n<i>“Maybe not, but I think you’ll be surprised with yourself all
 
 output("\n\n<i>“Aw fuck is right,”</i> you nod}, bending down and angling your hips to meet his soft, plush asshole. <i>“Open wide, cutie.”</i>");
 
-output("\n\nHe grits his teeth and moans as{flared or equine: your flare starts to cave his asshole inwards, pressing into him until at least, you feel your cockhead sink into him and let out a groan of pleasure/else: your [pc.cockBiggestHead] sinks into his assole, eliciting a groan of pleasure from your lips}. Just feeling him wrapped around you, tight and squeezing, is enough to confirm what you’d suspected when you saw him lying on his side: he’s going to be an <i>amazing</i> fuck.");
+output("\n\nHe grits his teeth and moans as{flared or equine: your flare starts to cave his asshole inwards, pressing into him until at least, you feel your cockhead sink into him and let out a groan of pleasure/else: your [pc.cockHeadBiggest] sinks into his assole, eliciting a groan of pleasure from your lips}. Just feeling him wrapped around you, tight and squeezing, is enough to confirm what you’d suspected when you saw him lying on his side: he’s going to be an <i>amazing</i> fuck.");
 
 output("\n\n<i>“Mmmm, you’re not quite used to this, are you, big boy?”</i> you tease him gently, letting him get used to the feeling of having you inside for a moment. <i>“I can feel your inexperience. It’s cute.”</i>");
 
@@ -834,7 +897,7 @@ output("\n\nThe leithan starts in surprise as you slowly lay your [pc.cockBigges
 
 output("\n\n<i>“You’re just fuckable all over, aren’t you big guy?”</i> you mutter, mostly to yourself. <i>“Let me just...”</i>");
 
-output("\n\nPlacing your hands under his round, plump nuts, you gently press them against your cock from either side. Your [pc.cockBiggestHead]{cocksize<10inch: is completely covered up, wrapped in his soft, warm embrace/10-20inch: peeks out from the warm embrace to rub against his large behind, but that’s fine - you’ll just blow your load all over his ass/21+: extends so far beyond the warm embrace of his balls that you’re rubbing against his hindquarters, but that works for you. When you cum, you’ll cover his back in your seed}. You start slowly rolling your [pc.hips], rubbing yourself into the leithan’s giant cumtanks. He grunts from up front, unable to see what you’re doing but no doubt feeling it.");
+output("\n\nPlacing your hands under his round, plump nuts, you gently press them against your cock from either side. Your [pc.cockHeadBiggest]{cocksize<10inch: is completely covered up, wrapped in his soft, warm embrace/10-20inch: peeks out from the warm embrace to rub against his large behind, but that’s fine - you’ll just blow your load all over his ass/21+: extends so far beyond the warm embrace of his balls that you’re rubbing against his hindquarters, but that works for you. When you cum, you’ll cover his back in your seed}. You start slowly rolling your [pc.hips], rubbing yourself into the leithan’s giant cumtanks. He grunts from up front, unable to see what you’re doing but no doubt feeling it.");
 
 output("\n\n<i>“W-what the fuck are you doing,”</i> he moans.");
 
@@ -868,7 +931,7 @@ output("\n\n[Inside] [On him]");
 
 output("\n\n[Inside]");
 
-output("\n\nLetting his nuts swing free, you grab his hindquarters and unceremoniously spread his asshole apart with your hands as you jab your [pc.cockBiggestHead] inside. He’s a fucking tight fit, owing to probably being formerly anally virginal, but he feels great. You get two lackadaisical thrusts that have the leithan moaning like a whore in before [pc.cum] begins to splurt into his asshole, your dick flexing inside him.");
+output("\n\nLetting his nuts swing free, you grab his hindquarters and unceremoniously spread his asshole apart with your hands as you jab your [pc.cockHeadBiggest] inside. He’s a fucking tight fit, owing to probably being formerly anally virginal, but he feels great. You get two lackadaisical thrusts that have the leithan moaning like a whore in before [pc.cum] begins to splurt into his asshole, your dick flexing inside him.");
 
 output("\n\nUnable to help himself after being edged for so long with the ballplay, the added prostate stimulation sends the leithan careening over the edge. He lets out a loud, staggering groan of despair as thick, white cum begins to fountain from the end of his cock. Right on time, you feel his warm, inviting asshole begin to squeeze down on you, all but milking you for your seed. You’re only too happy to provide in spades, moaning in release and slapping the leithan’s muscular ass while you pump him full of jizz.");
 
