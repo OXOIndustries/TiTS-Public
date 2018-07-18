@@ -1146,6 +1146,7 @@ package classes.Characters
 			}
 			if(hasStatusEffect("Nyrea Eggs"))
 			{
+				if(!hasPerk("Nyrea Eggs") && statusEffectv4("Nyrea Eggs") != 0) setStatusValue("Nyrea Eggs", 4, 0);
 				if(statusEffectv4("Nyrea Eggs") != 1 && nyreaScore() < 3)
 				{
 					AddLogEvent("You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.", "passive", deltaT);

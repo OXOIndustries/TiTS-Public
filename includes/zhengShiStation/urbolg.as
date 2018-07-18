@@ -42,6 +42,7 @@ public function zhengShiHangerFloorBonus():Boolean
 			addDisabledButton(0,"Urbolg","Urbolg","Urbolg is still cleaning.");
 			return false;
 		}
+		else if(pc.accessory is MaikesCollar) output("\n\nUrbolg the korgonne mechanic is cussing at a piece of machinery. <b>Maybe he’ll help you get this collar off?</b>");
 		//Defeated Urbolg by lust or ever fucked him:
 		else if(flags["URBOLG_LUSTED"] != undefined || flags["SEXED_URBOLG"] != undefined) output("\n\nUrbolg the korgonne mechanic busily works to repair a scrap engine hanging from a lift, but he keeps casting sly glances in your direction with his robotic eye. The fluffy little devil seems to have taken a liking to you!");
 		//Normal Urbolg
@@ -280,6 +281,11 @@ public function peacefulApproachUrbolg(back:Boolean = false):void
 	clearOutput();
 	showUrbolg();
 	if(back) output("Is there something else you need from Urbolg?");
+	//Special collar stuff.
+	else if(pc.accessory is MaikesCollar)
+	{
+		output("<i>“Ho ho! What a fine mess you’ve gotten yerself into, eh?”</i> Urbolg shakes his head, barely suppressing a giggle. <i>“I thought ye were good enough to stay out of slavery, but I guess I can’t be right about everything. Still...”</i> He strokes his chin. <i>“...I suppose it’s a mark in yer favor that you’re fighting off the shocks to come see me about it. Might even be able to get it off ye, if ye make it worth me while.”</i>");
+	}
 	//Lust defeated or fucked
 	else if(flags["URBOLG_LUSTED"] != undefined || flags["SEXED_URBOLG"] != undefined) output("<i>“Oi, if it isn’t the new [pc.guyGirl]. Been wondering when ye were planning ta stop by and pay ol’ Urbolg a visit. What can I do for ye?”</i> The korgonne puts his hands on his hips and flashes a fanged smile at you.");
 	//Regular
@@ -305,10 +311,137 @@ public function urbolgMenu():void
 	}
 	else addDisabledButton(3,"Flirt","Flirt","You’re not really in the mood for that right now.");
 	addButton(4,"PB Cookie",urbolgPBCookiesBYOUMADMAN,undefined,"PB Cookie","You often see Urbolg when he’s hard at work. Maybe he’d like to have a nice treat to relax after some hard work.");
-	if(flags["URBY_COLLAR_FUN"] != undefined) addButton(5,"Slave Collar",urbyCollarBadEndByWsan,undefined,"Slave Collar","It’s so tempting. You could have it all again if you just put it on... just once more should be fine.");
+	if(pc.accessory is MaikesCollar)
+	{
+		addDisabledButton(5,"Slave Collar","Slave Collar","You’re in no position to trade one slave collar for another!");
+		addButton(6,"Remove Collar",askUrbolgToRemoveYourCollar,undefined,"Remove Collar","See what Urbolg wants in exchange for getting this hunk of junk off you.");
+	}
+	else if(flags["URBY_COLLAR_FUN"] != undefined) addButton(5,"Slave Collar",urbyCollarBadEndByWsan,undefined,"Slave Collar","It’s so tempting. You could have it all again if you just put it on... just once more should be fine.");
 	else addButton(5,"Collar",urbyCollarFunByWsan,undefined,"Collar","There’s a collar sitting out on his workstation. Ask him about it.");
+
 	addButton(14,"Leave",mainGameMenu);
 }
+
+public function askUrbolgToRemoveYourCollar():void
+{
+	clearOutput();
+	showUrbolg();
+	author("Fenoxo");
+	if(pc.isBimbo()) output("<i>“Sooo... like, can you pleeeeease get this collar off? It hurts!”</i>");
+	else if(pc.isBro()) output("You point at your collar and grunt, <i>“Off.”</i>");
+	else
+	{
+		output("You tug at the collar’s cold metal. ");
+		if(pc.isNice()) output("<i>“I’m sure a nice guy like you wouldn’t overcharge me for a little help. Right?”</i>");
+		else if(pc.isMischievous()) output("<i>“Seeing as how this ain’t really my style, I suppose I could work something out with you. What’s it going to cost?”</i>");
+		else output("<i>“Get this shit off of me!”</i>");
+	}
+	output("\n\nThe scruffy-looking mechanic folds his metal arm over his biological one. <i>“Well, seeing as how I’m damn near the only one on this whole blasted station who’s soft enough on ye to lend a hand... I figure five thousand credits ought to do the job.”</i> He looks you over from head to toe. <i>“But I could always use a helping hand in my forge, if ye don’t mind getting a bit of mess on yer face. It’s a small price to pay, ain’t it?”</i>");
+	clearMenu();
+	if(pc.credits >= 5000) addButton(0,"Pay 5k",payUrbolgCreditsForCollar,undefined,"Pay 5k","Pay Urbolg in credits for help with the collar.");
+	else addDisabledButton(0,"Pay 5k","Pay 5k","You can’t afford that.");
+	addButton(1,"Pay Facial",payUrbolgFacial,undefined,"Pay Facial","Pay him in sexual favors, resulting in a face-full of korgonne cum.");
+	addButton(14,"Leave",peacefulApproachUrbolg,true);
+}
+
+public function payUrbolgCreditsForCollar():void
+{
+	clearOutput();
+	showUrbolg();
+	author("Fenoxo");
+	output("You trnsfer the credits to Urbolg.");
+	output("\n\n<i>“Atta [pc.boyGirl]. Hold still a tick.”</i> He grabs you roughly around the neck, metal fingers clicking against the collar’s smooth surface. There’s a few uncomfortable seconds followed by a ‘click’. Relief at last.");
+	output("\n\n<i>“You find yourself in any more of these little beasties, and I’ll take care of it fer ye. Same rate.”</i>");
+	output("\n\nYeah, sure.");
+	pc.accessory = new EmptySlot();
+	processTime(3);
+	clearMenu();
+	addButton(0,"Next",peacefulApproachUrbolg,true);
+}
+
+public function payUrbolgFacial():void
+{
+	clearOutput();
+	showUrbolg(true);
+	author("Fenoxo");
+
+	output("You tell Urbolg that you don’t mind a bit of mess in exchange for some help with the collar.");
+	output("\n\n<i>“On ");
+	if(!pc.hasKnees()) output("the ground");
+	else output("yer knees");
+	output(" then.”</i> Urbolg points at the floor in front of him with one hand and tugs the laces to his apron free with the other. <i>“Fekkin’ Star Vipers thought it’d be funny te hit my office with a bit of aphrogas. Feels like I been carrying this load of cum fer days.”</i> A dick-shaped distention appears through the thick fabric, growing by the minute.");
+	output("\n\nYou ");
+	if(pc.isBimbo() || pc.libido() >= 90) output("eagerly ");
+	output("sink to ");
+	if(pc.hasKnees()) output("your knees");
+	else output("the ground");
+	output(" as you were bid");
+	if(pc.isBimbo()) output(", licking your [pc.lipsChaste] with obvious dick-thirst");
+	output(".");
+
+	output("\n\n<i>“Be a real shame to let it go to waste, but I reckon a bit of face-painting’s as good a use as any.”</i> The dog-man throws his apron over his shoulder with a flourish, revealing the bright blue mast between his legs. A heavily inflated, practically balloonish knot bobbles above his sheath, swollen with his thick canine load. <i>“’Sides, a nice thick layer of cum might even get those stimmed up Jumper bitches te leave off ye for a bit. Not real big on sharing, those ones. A cum-covered slave is a claimed slave.”</i> He pats your head affectionately. <i>“Are you ready to get messy?”</i>");
+	if(pc.isBimbo())
+	{
+		output("\n\nYou vigorously nod, opening your mouth wide and rolling your tongue out like a welcome mat.");
+		if(pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output(" The lengthy organ wiggles further and further until it’s tickling his ball-fur, begging him to smother your tastebuds in his salty love.");
+	}
+	else
+	{
+		output("\n\nYou ");
+		if(pc.libido() >= 66) output("eagerly nod.");
+		else if(pc.libido() >= 33) output("nod, excited by unsure.");
+		else output("hesitantly nod.");
+	}
+	output("\n\nUrbolg wraps his biological hand around the base with surprising gentleness. <i>“Good.”</i> He looks like he’s trying damned hard not to give it a squeeze. <i>“See, when I’m this backed up, it actually sorta hurts.”</i> The furred alien winces slightly as pre-cum dribbles from his tip. <i>“Just gotta give the ol’ knot a squeeze and milk it out. Don’t even care if I cum at this point. Emptying this fat, fucking knot’ll be good ‘nuff, and your face...”</i> His robotic hand strokes your cheek affectionately, pulling you underneath his dick.");
+	output("\n\nA droplet of musky juice falls on your upturned nose.");
+	output("\n\n<i>“Yer face’ll look prettier than the thirsty galotian’s.”</i> A tremor ripples through the korgonne’s fingers, squeezing his taut knob.");
+	output("\n\nFrom where you’re sitting, you have a front row seat to the sight of his urethra bulging with a heavy load of cum, sliding up all eleven inches of proud dog-cock pour out onto your [pc.face]. It doesn’t spurt. He’s not squeezing hard enough for that. The cum gently streams out, softly splattering across your cheeks and nose. Gobs drip over your [pc.lipChaste] and tongue. ");
+	if(pc.hasFur() || pc.hasFaceFlag(GLOBAL.FLAG_FURRED)) output("Your [pc.skinFurScales] is soon slick with it, soaking it up sponge-like. If you put a hand to your cheek, Urbolg’s jizz would squish out.");
+	else output("A stray runnel of pearly goo hangs from your chin, threatening to break free the moment another ounce of fluid finds its way onto you.");
+	output("\n\nThe burly male grunts, <i>“Ahhh... shit yeah. Didn’t even mean to start, but I ain’t stopping now.”</i> His hand squeezes harder, fingers sinking into the springy flesh, forcing an even bigger load into his dick.");
+	output("\n\nYou look up in time to see the wave of ivory spunk crest from his cocktip. You can scarcely believe the quantity or how fully it fills your vision. As it falls, you reflexively blink your eyes, shielding them from the ensuing splatter. It cascades over your forehead");
+	if(pc.hasHair()) output(" and into your [pc.hair]");
+	else output(" and across the top");
+	output(". The weight of it puddles over your eyes, forcing you to hold them shut. Even if you wanted to open them, the thick breeding material is all but glueing them shut. Breathing itself is a challenge. Every exhalation produces wobbling bubbles of spooge.");
+
+	//bimbo
+	if(pc.isBimbo()) output("\n\nYou adore it. Shoveling as much into your mouth as possible, you take huge swallows of Urby’s delicious cum. Again and again, you swallow as much of his load as possible. When you hear him grunt once more, you surge forward with whorish hunger, sealing your lips around his trembling tip. You won’t let a single drop escape. It doesn’t matter if your cheeks bulge and you can’t swallow fast enough. You just ignore any sort of gag reflex and let it pump directly into your belly, reveling in the salty, spunky taste when it slides across your [pc.tongue]!\n\nYum!");
+	//furry
+	else if(pc.hasFur()) output("\n\nYou’re an absolute mess. Every inch of fur from the shoulders up is saturated in Urbolg’s jizz. It makes you feel like some sort of cum-sponge. The clingy breeding goo hangs in webs from your ears, and he’s still going. Fresh splatters slide down your slick, matted fur to dribble from your chin. Swallowing some is inevitable. You’ve got to gulp at it just to make room for air, and then another fat globule of musky goo is bathing your tongue, forcing you to swallow again! You barely notice when he grabs you by the scruff of the neck and commences smearing his cum across you with his dick, pumping fresh wads deep to impregnate your fur.");
+	//Nonfur nonbimbo
+	else output("\n\nYou can’t help but wind up swallowing his jizz. It’s everywhere, and when you open your mouth to breathe, some inevitably sloughs in. You drink it down only to wind up with a fresh dollop poured in, but after swallowing that, you’re finally free to gasp for oxygen. Of course, Urbolg is pressing his cock into your cheek now, using it to smear the puddling goo across your [pc.face] to produce an even coat. He glazes you with cum, then bathes you in a fresh load. No matter how much he pours onto you or how heavy the dribbling webs that hang from your chin, there’s almost more. Always heavier, muskier loads to pour on your face.");
+	//Merge
+	output("\n\nThe korgonne uses you and degrades you, but if you’re going to be honest, ");
+	if(pc.isBimbo()) output("you love it");
+	else output("it feels kind of nice");
+	output(". As an added bonus, the collar isn’t even tingling anymore. You suppose to these libidinous pirates, getting fucked is probably about as good as working, and if being a cum-dump gets you a little relief from the stinging around your neck, you’re more than happy to comply. Besides, he’s going to take it off after he finishes dispensing your spunkbath, right?");
+	output("\n\nYou open your mouth to ask, only to have him stuff his tip");
+	if(pc.isBimbo()) output(" deeper");
+	output(" inside.");
+	output("\n\n<i>“Swallow the rest, then we’ll get that collar off ye.”</i>");
+	output("\n\n");
+	if(pc.isBimbo()) output("Oh stars yes!");
+	else output("You can manage that.");
+	output(" Sucking with cheek hollowing force, you help Urbolg drain another superhuman rope of spunk into your maw. This time, he’s squeezing hard enough that it bursts out with tonsil-drenching power. You briefly sputter, eyes watering, and swallow down the stuff. The sperm-infused fluid is so thick it’s almost chunky, clinging to your teeth. No matter how many times you gulp, you can still taste it on your tongue and smell it on your breath.");
+	output("\n\nUrbolg gasps, <i>“One more!”</i> and then unloads, spraying hot, virile juice into your sluttily suckling mouth. His cum bulges your cheeks and trickles down your [pc.lips] as his hips make half-restrained thrusts, burying a bit more bone inside. Your senses are entirely filled with the taste, scent, and texture of his cum. It’s all you’re aware of and all you can think about, even after he pulls out to watch you slowly imbibe his final offering.");
+	if(pc.isBimbo()) output("\n\nYou orgasm powerfully, body automatically rewarding you in kind of the pleasure you’ve offered. You love sucking cock and cumming your brains out just from the feeling of it sloshing in your belly. Yay!");
+	else if(pc.libido() < 33) output("\n\nThat was... actually sort of fun.");
+	else if(pc.libido() < 66) output("\n\nYou flush hotly, more turned on than you care to admit.");
+	else output("\n\nYou groan in raw passion, so turned on from the one-man bukkake that you’re ready for round two.");
+	output("\n\n<b>You’re absolutely drenched in cum, but Urbolg pops the collar off while you’re wiping it out of your eyes.</b> Yes!");
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	pc.applyCumSoaked();
+	processTime(24);
+	if(pc.isBimbo()) pc.orgasm();
+	else pc.lust(20*pc.libido()/100+10);
+	pc.loadInMouth(chars["URBOLG"]);
+	pc.accessory = new EmptySlot();
+	IncrementFlag("SEXED_URBOLG");
+	clearMenu();
+	addButton(0,"Next",peacefulApproachUrbolg,true);
+}
+
 //Appearance
 public function urbolgAppearance():void
 {

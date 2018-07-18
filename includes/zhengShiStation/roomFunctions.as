@@ -1,4 +1,5 @@
 //import classes.Characters.MiningRobot;
+import classes.Items.Miscellaneous.MaikesKeycard;
 
 public function zhengCoordinatesUnlocked():Boolean
 {
@@ -7,9 +8,36 @@ public function zhengCoordinatesUnlocked():Boolean
 
 public function zhengElevatorF1Bonus():void
 {
+	variableRoomUpdateCheck();
 	//Power Out: 
-	if(9999 == 9999) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
-	else output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
+	if(flags["ZHENG_SPACEWALKED"] == undefined) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
+	else 
+	{
+		output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
+	}
+}
+
+public function slavesuitRoomOfZhengShiMines():Boolean
+{
+	if(flags["ZHENG_SHI_JUMPSUITED"] == undefined)
+	{
+		output("\n\nAn old slave jumpsuit is discarded here.");
+		addButton(0,"Jumpsuit",takeZhengShiJumpsuit);
+	}
+	return zhengMinesEncounterBonus();
+}
+
+public function takeZhengShiJumpsuit():void
+{
+	clearOutput();
+	flags["ZHENG_SHI_JUMPSUITED"] = 1;
+	quickLoot(new Slavesuit());
+}
+public function takeZhengShiSpacesuit():void
+{
+	clearOutput();
+	flags["ZHENG_SPACESUIT_TAKEN"] = 1;
+	quickLoot(new SpacesuitIncomplete())
 }
 
 public function zhengMinesEncounterBonus():Boolean
@@ -20,7 +48,9 @@ public function zhengMinesEncounterBonus():Boolean
 	if(flags["ZS_MINE_STEP"]-4 > rand(16))
 	{
 		flags["ZS_MINE_STEP"] = 0;
-		
+		IncrementFlag("ZS_MINE_ENCOUNTERS");
+
+		if(flags["ZS_MINE_ENCOUNTERS"] > 7 && !pc.hasStatusEffect("DisabledRoz") && flags["ROZ_ARMOR_STOLEN"] == undefined && flags["ROZ_CORED_4_GUD"] == undefined) encounters.push(encounterRoz);
 		encounters.push(miningRobotAttack);
 		encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);
@@ -32,10 +62,59 @@ public function zhengMinesEncounterBonus():Boolean
 	return false;
 }
 
+public function zsmw8Bonus():Boolean
+{
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1) output("Slaves chip away at the bountiful wealth of Zheng Shi, held in place by chains hooked to collars and waists alike. Robotic loaders follow behind them to gather the samples they deposit and whisk them away to be refined. They spare no time to look at you or react in any way, leaving you with the distinct impression that they’re completely broken. You could cut them out of their collars, and they’d probably just keep digging...");
+	else output("Robotic miners chip away at the bountiful wealth of Zheng Shi, striding over dozens of discarded tools and empty slave collars. They spare no time to react to your presence. These ‘bots are utterly fixated on the simple task of extracting minerals.");
+	output(" Exposed gems with promise to the west, while a red-tinted tunnel worms south through the station.");
+	return zhengMinesEncounterBonus();
+}
+public function zsmyy18AirlockBonus():Boolean
+{
+	//Haven't found replacement helmet:
+	if(flags["ZHENG_SPACESUIT_TAKEN"] == undefined)
+	{
+		output("\n\nThere's a bulky black space suit next to you, the only one hanging up on the racks. Somebody's stenciled in a white skull and crossbones on the shoulders, and a smiley face smoking a cigar on the chest.");
+		if(!pc.hasItemByClass(SpacesuitHelmet)) output(" Unfortunately for you, the helmet hanging on the peg next to the space suit has a great big hole smashed through the glass bubble. Looks like somebody had a headbutt contest with a rocket hammer and lost.");
+		else output(" You've got a replacement helmet for the broken one hanging on the peg; nothing would stop you from combining the two and taking a walk in the black, were you so inclined.");
+		addButton(0,"Take Suit",takeZhengShiSpacesuit);
+		return false;
+	}
+	else output("\n\nThe racks for storing spacesuits are empty... and have been ever since you grabbed the last one.");
+	if(flags["ZHENG_SPACEWALKED"] == undefined)
+	{
+		if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
+		{
+			output("\n\nWhile your current choice of armor is airtight, without magnetic boots or thrusters, you'll be helpless in the void.");
+			addDisabledButton(0,"Spacewalk","Spacewalk","Bad idea.");
+		}
+		else if(pc.armor is SpacesuitComplete) 
+		{
+			output("\n\n<b>You're all ready to go for a spacewalk!</b>");
+			addButton(0,"Spacewalk",spacewalkGoooo,undefined,"Spacewalk","Take a walk on the surface of the asteroid.");
+		}
+		else
+		{	
+			addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren't feeling particularly suicidal today.");
+		}
+	}
+	else output(" <b>Good thing you've already repaired the power outside. There's no reason for a spacewalk any longer.</b>");
+	return false;
+}
+
+public function zsms14Bonus():Boolean
+{
+	output("Stepping around a support column, you’re confronted by a serious mining effort. ");
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1) output("Dozens of slaves in plain jumpsuits and metallic obedience collars work at the walls with sweat-soaked determination while");
+	else output("Dozens of crude robots, hastily assembled to replace the rebelling slave workers, toil endlessly at the walls while");
+	output(" a bigger, rumbling device bores straight into the eastern wall, spraying fist-sized chunks of stone of ore into a cart tethered behind. The reddish stone must be rich in geddanium - a material prized for both jewelry and the alloys used for starship armor.");
+	return zhengMinesEncounterBonus();
+}
+
 public function slavePensBonus():Boolean
 {
 	//Hasn't freed slaves:
-	if(9999 == 9999) 
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1) 
 	{
 		output("\n\nIndeed, you can see several dozen shadowy figures shuffling around inside, trying to avoid your sight.");
 		output("\n\nYou can’t get inside thanks to a massive metal bar running across the door. It’s electronically locked and hardened against hacking; you can’t even see a seam or a plug to abuse. You’ll have to find the right keycard for this one.");
@@ -154,7 +233,7 @@ public function maikesOfficeBonus():Boolean
 		output("You try to open the door to Overseer Maike’s quarters, but find the door locked down tight. There’s a security lock in place next to it with a card reader in place. Looks like the Overseer values her privacy.");
 		clearMenu();
 		//[Use Card] [Bypass]
-		if(9999 == 0) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
+		if(pc.hasKeyItem("Maike’s Keycard") || pc.hasItemByClass(MaikesKeycard)) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
 		else addDisabledButton(0,"Use Card","Use Card","You’d need the overseer’s card for that!");
 		addButton(1,"Bypass",bypassMaikesRoomieroomHackerman,undefined,"Bypass","Embrace your inner Hackerman.");
 		return true;
@@ -165,7 +244,7 @@ public function maikesOfficeBonus():Boolean
 		return true;
 	}
 	//Hasn't freed slaves:
-	if(9999 == 9999)
+	if(flags["MAIKE_SLAVES_RELEASED"] != undefined)
 	{
 		output("Tivf is lounging on the bed, and perks up at your approach.");
 		//[Tivf]

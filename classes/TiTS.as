@@ -400,8 +400,11 @@
 
 		//FIFTH PLANET: ZHENG SHI
 		include "../includes/zhengShiStation/boredJumper.as";
+		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
+		include "../includes/zhengShiStation/rozPowerGoo.as";
+		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		
@@ -574,7 +577,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.185";
+			version = "0.7.191";
 
 			//temporary nonsense variables.
 			temp = 0;

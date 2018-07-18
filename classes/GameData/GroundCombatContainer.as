@@ -1935,6 +1935,9 @@ package classes.GameData
 				(target as Anno).grappleStruggle();
 			}
 			
+			//Track if struggled for Maike
+			if(hasEnemyOfClass(Maike)) pc.createStatusEffect("MaikeStruggled", 0, 0, 0, 0, true, "", "", true);
+
 			if (hasEnemyOfClass(Cockvine) && target is PlayerCharacter)
 			{
 				// TODO pull this in!
@@ -2131,6 +2134,7 @@ package classes.GameData
 						target.removeStatusEffect("Grappled");
 					}
 				}
+
 				
 				// Failure to escape grapple
 				if(target.hasStatusEffect("Grappled"))
@@ -4646,6 +4650,12 @@ package classes.GameData
 				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
 				{
 					// noop, this is handled as part of updateStatusEffectsFor()
+				}
+				//Lock ended
+				else if(target.hasStatusEffect("Target Lock") && (target.hasStatusEffect("Stunned") || target.isBlind())) 
+				{
+					output("\n\nYour attack seems to short out Roz’s sensors for a moment - <b>the target lock is broken!</b>");
+					target.removeStatusEffect("Target Lock");
 				}
 				else if (target.hasStatusEffect("Grappled"))
 				{

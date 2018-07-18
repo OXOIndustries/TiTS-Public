@@ -170,18 +170,8 @@ public function tavrosHangarStuff():Boolean
 			addButton(btnSlot++,"Mitzi",mitziLurkingApproach);
 		}
 	}
-	shizzyGreatMajinBonus(btnSlot++);
 	
 	// Ships
-	if (flags["FALL OF THE PHOENIX STATUS"] == 1)
-	{
-		output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
-		
-		if (flags["SAENDRA PHOENIX AVAILABLE"] != undefined)
-			addButton(7, "The Phoenix", move, "PHOENIX RECROOM");
-		else
-			addDisabledButton(7, "The Phoenix", "The Phoenix", "This ship is locked and cannot be entered.");
-	}
 	
 	return false;
 }

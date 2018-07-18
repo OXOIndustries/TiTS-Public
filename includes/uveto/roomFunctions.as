@@ -131,9 +131,7 @@ public function uvetoShipDock():Boolean
 	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined))
 	{
 		chaurmineUvetoStationBonus();
-		shizzyGreatMajinBonus(1);
 	}
-	else shizzyGreatMajinBonus(0);
 
 	return false;
 }

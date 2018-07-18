@@ -2104,7 +2104,7 @@ package classes.GameData
 			if (attacker is PlayerCharacter)
 			{
 				output("You activate your stealth field generator, fading into nigh-invisibility.");
-				rounds = 3;
+				rounds = 4;
 			}
 			else
 			{

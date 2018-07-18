@@ -645,6 +645,13 @@ package classes.Resources.Busts
 		public var Bust_RED_HEAVY_NUDE:Class;
 		public function get Bounds_RED_HEAVY_NUDE():Rectangle { return Bounds_RED_HEAVY; }
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/roz.png", mimeType = "image/png")]
+		public var Bust_ROZ:Class;
+		/*[Embed(source = "../../../assets/images/npcs/adjatha/roz_armor.png", mimeType = "image/png")]
+		public var Bust_ROZ_ARMOR:Class;*/
+		[Embed(source = "../../../assets/images/npcs/adjatha/roz_nude.png", mimeType = "image/png")]
+		public var Bust_ROZ_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith.png", mimeType = "image/png")]
 		public var Bust_SEMITH:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/semith_nude.png", mimeType = "image/png")]
@@ -691,6 +698,10 @@ package classes.Resources.Busts
 		public var Bust_STELLA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/stella_nude.png", mimeType = "image/png")]
 		public var Bust_STELLA_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/stella_preg.png", mimeType = "image/png")]
+		public var Bust_STELLA_PREG:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/stella_preg_nude.png", mimeType = "image/png")]
+		public var Bust_STELLA_PREG_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/steph.png", mimeType = "image/png")]
 		public var Bust_STEPH:Class;
@@ -1433,6 +1444,13 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/red_heavy_nude.png", mimeType = "image/png")]
 			public var Full_RED_HEAVY_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roz.png", mimeType = "image/png")]
+			public var Full_ROZ:Class;
+			/*[Embed(source = "../../../assets/images/npcs/adjatha/hr/roz_armor.png", mimeType = "image/png")]
+			public var Full_ROZ_ARMOR:Class;*/
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/roz_nude.png", mimeType = "image/png")]
+			public var Full_ROZ_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith.png", mimeType = "image/png")]
 			public var Full_SEMITH:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/semith_nude.png", mimeType = "image/png")]
@@ -1473,6 +1491,10 @@ package classes.Resources.Busts
 			public var Full_STELLA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella_nude.png", mimeType = "image/png")]
 			public var Full_STELLA_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella_preg.png", mimeType = "image/png")]
+			public var Full_STELLA_PREG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella_preg_nude.png", mimeType = "image/png")]
+			public var Full_STELLA_PREG_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/steph.png", mimeType = "image/png")]
 			public var Full_STEPH:Class;

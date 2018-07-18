@@ -90,11 +90,19 @@ public function winVsBoredJumper():void
 	}
 	//Merge
 	//Now enough lust.
-	if(pc.lust() <= 33) output("\n\nUnfortunately for her, you’re far too sated to give a shit about giving her the struggle-cuddles she so desires.");
+	if(pc.lust() <= 33)
+	{
+		output("\n\nUnfortunately for her, you’re far too sated to give a shit about giving her the struggle-cuddles she so desires.");
+		
+		clearMenu();
+		addButton(0,"Next",leaveTheBoredJumperAfterWinning);
+		return;
+	}
 	//Enough
 	else output("\n\nYou aren’t sure why, but she seems more than into the idea of being your personal fuck-puppet for a few hours. What do you want to do with her?");
+	
 	clearMenu();
-	addDisabledButton(1,"Sex","Sex","These scenes haven’t been written yet. Sorry!");
+	//addDisabledButton(1,"Sex","Sex","These scenes haven’t been written yet. Sorry!");
 	if(pc.hasCock())
 	{
 		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(0,"FuckHerPussy",bunslutBigPussyBunFucking,undefined,"Fuck Her Pussy","You know what this is...");
@@ -107,7 +115,7 @@ public function winVsBoredJumper():void
 	else addDisabledButton(2,"Suit Burster","Suit Burster","You need genitals for this scene.");
 	if(pc.hasVagina()) addButton(3,"Get Licked",facePussyFuckJumper,undefined,"Get Licked","Put her mouth to work on your [pc.vaginas].");
 	else addDisabledButton(3,"Get Licked","Get Licked","You need a vagina for this.");
-
+	
 	if(pc.hasCock())
 	{
 		if(pc.cumQ() >= 1000) addButton(4,"Fill ‘Er Up",fillErUpBBY,undefined,"Fill ‘Er Up","Open up her suit and give her a cream filling.");
@@ -120,18 +128,21 @@ public function winVsBoredJumper():void
 		addDisabledButton(4,"Fill ‘Er Up","Fill ‘Er Up","You need a dick to do this.");
 		addDisabledButton(5,"Facefuck","Facefuck","You need a dick to do this.");
 	}
+	
 	addButton(6,"TakeHerDick",takeTheBunnyDick,undefined,"TakeHerDick","The slut-bunny has powerful legs. More importantly, she has a big, juicy, gorgeous cock. You could get that furry futa ready and give her the perfect chance and place to use those assets.");
+	
 	if(!pc.hasCock()) addDisabledButton(7,"Cowgirl","Cowgirl","You’ll need a cock to fuck the tricksy rabbit with.");
 	else if(pc.cockThatFits(enemy.vaginalCapacity(0)) < 0) addDisabledButton(7,"Cowgirl","Cowgirl","You would split her in half!");
 	else addButton(7,"Cowgirl",boredJumperCowgirlWinByWilliam,undefined,"Cowgirl","Use the lewd leporine’s steamy mouth to get yourself ready before bouncing her on your lap and then some.");
+	
 	if(pc.hasVagina()) 
 	{
 		if(pc.hasItemByClass(BreedersBliss,2)) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
 		else if(pc.inHeat() && pc.hasItemByClass(BreedersBliss,1)) addButton(8,"Heat Sex",heatSexLaquineJumper,undefined,"Heat Sex","It’s as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...");
 		else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need some ‘breeding inducers’ to get ruined with the lusty laquine. " + (pc.inHeat() ? "One":"Two") + " Breeder’s Bliss ought to do...");
 	}
-	else if(pc.hasVagina()) addDisabledButton(8,"Heat Sex","Heat Sex","You'll need a vagina for this.");
 	else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need a vagina for this.");
+	
 	addButton(14,"Leave",leaveTheBoredJumperAfterWinning);
 }
 
@@ -1609,7 +1620,7 @@ public function fillErUpBBY():void
 	else if(pc.hasVagina()) output("[pc.vaginas]");
 	else output("groin");
 	output(". Not worrying too much about her for now, you grab your [pc.cockNounSimple " + x + "] with one hand and her suit with the other. ");
-	if(pc.cockVolume(x) < 500) output("You thread your " + pc.mf("","wo") + "manhood into her suit and then zip it up as far as it will go, encasing your member between her suit and body.");
+	if(pc.cockVolume(x) < 500) output("You thread your manhood into her suit and then zip it up as far as it will go, encasing your member between her suit and body.");
 	else 
 	{
 		output("Her suit bulges heavily at the sheer size of your cock. You keep going though, determined to shove as much of your member in as possible. The laquine groans under you as the pressure mounts but that only serves to egg you on as she softly vibrates your ");
@@ -1618,7 +1629,7 @@ public function fillErUpBBY():void
 		else output("loins");
 		output(". You sigh in satisfaction as you cram as much of yourself in as she’ll hold, feeling yourself sandwiched between her body and the slick suit.");
 	}
-	output("\n\nIt’s boiling in there! Between the heat and sweat on the suit itself and her own overheated boy you feel like you just stuck your [pc.cock " + x + "] in a sauna.You’re tempted to take it out to check if your skin singed, but the sheer pleasure you’re getting from having it in there makes stopping an impossible proposition. The heat and lust pours into you like a jug under a waterfall, filling your ardor to such oversaturation that you can’t help but act on it.");
+	output("\n\nIt’s boiling in there! Between the heat and sweat on the suit itself and her own overheated body you feel like you just stuck your [pc.cock " + x + "] in a sauna.You’re tempted to take it out to check if your skin singed, but the sheer pleasure you’re getting from having it in there makes stopping an impossible proposition. The heat and lust pours into you like a jug under a waterfall, filling your ardor to such oversaturation that you can’t help but act on it.");
 	output("\n\nYou pull back your [pc.hips], making sure to really rub your ");
 	if(pc.balls > 0) output("[pc.balls]");
 	else if(pc.hasVagina()) output("[pc.vaginas]");
@@ -1647,7 +1658,7 @@ public function fillErUpBBY():void
 
 	output("\n\nYou have to admire the flexibility of her suit. No matter how violently you distend it, it always seems to bounce back into place right before you stretch it out again. A pocket of pre starts forming around her crotch, filled in equal parts from both of you as the tension ratchets up. Her feet dig into the ground as she humps the air in time with your thrusts, egging you on by showing you just how much she’s into this.");
 
-	if(pc.balls > 1) output("\n\n{You feel your [pc.balls] start to tighten in the bunslut’s mouth, getting ready to unload their well-coaxed load into her suit.");
+	if(pc.balls > 1) output("\n\nYou feel your [pc.balls] start to tighten in the bunslut’s mouth, getting ready to unload their well-coaxed load into her suit.");
 	else if(pc.hasVagina()) output("\n\nYou finally reach your limit. Her incessant tongue is determined to push you over the edge, and it’s succeeding!");
 	else output("\n\nYou feel the familiar tightness in your gut of an approaching orgasm. It’s strange to think that getting your groin nibbled at would feel so good but this girl seems to know how to make it work.");
 	output(" She seems right at her peak too. Her hands are blurs around her encased [enemy.cock] and throbbing bunny balls. The laquine slut moans shamelessly under you. Whether she’s doing it out of pleasure, to egg you on with the vibration, or a bit of both is beyond you at this point. Right now all you can think of is the wave of [pc.cum] rushing up your urethra.");
@@ -1773,7 +1784,7 @@ public function faceFuckTheLaquineJumperooni(x:int):void
 by William */
 
 //Instantly liked this NPC when I first read about it and I want to add three scenes to the Bored Jumper when the PC wins. Not sure if variants of these have already been added (I’m not a backer) as Fen’s doc has no such win scenes reflected.
-///Three scenes: TakeHerDick (PC can choose to catch Doggystyle Anal or Vaginal Missionary), Cowgirl (Bunny bouncing on you), and Heat Sex (Jumper & PC take Breeder’s Bliss and go at it like horny bunnies, must have a vagina. If PC is Herm, then the bunny gets filled too).
+//Three scenes: TakeHerDick (PC can choose to catch Doggystyle Anal or Vaginal Missionary), Cowgirl (Bunny bouncing on you), and Heat Sex (Jumper & PC take Breeder’s Bliss and go at it like horny bunnies, must have a vagina. If PC is Herm, then the bunny gets filled too).
 //There’s not too many places or ways to get sweaty in this game. I feel like wandering around the mines, as oppressively hot as they’re described, should cause it overtime. Especially if you rest. Therefore, after any of these scenes, the PC will end up Sweaty!
 
 
@@ -1784,7 +1795,7 @@ by William */
 public function takeTheBunnyDick():void
 {
 	clearOutput();
-	showBoredJumper();
+	showBoredJumper(true);
 	author("William");
 
 	// PC Bimbo

@@ -1456,7 +1456,7 @@ public function nymFoeInjection(target:Number = 0,amount:Number = 0):void
 		else 
 		{
 			//Softcap dat shit at 5.
-			if(pc.lipMod < 5) 
+			if(pc.lipMod < 5 && amount > 0) 
 			{
 				if(pc.lipMod + amount > 5) amount = 5 - pc.lipMod;
 			}

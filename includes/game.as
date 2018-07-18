@@ -352,6 +352,10 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 		if (!isNavDisabled(NAV_IN_DISABLE)) addButton(5, "Enter Ship", move, "SHIP INTERIOR");
 		else addDisabledButton(5, "Enter Ship", rooms[currentLocation].inText, "You can’t enter your ship here!");
 	}
+	if (rooms[currentLocation].hasFlag(GLOBAL.SHIPHANGAR))
+	{
+		shipHangarButton(7);
+	}
 	
 	// Dynamic room functions after enter
 	if (rooms[currentLocation].runAfterEnter != null) rooms[currentLocation].runAfterEnter();
@@ -366,6 +370,91 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 	// Show the minimap too!
 	userInterface.showMinimap();
 	userInterface.perkDisplayButton.Activate();
+}
+
+public function shipHangarButton(btnSlot:int = 7):void
+{
+	var ships:Array = shipHangarShips(currentLocation);
+	if(ships.length > 0) addButton(7, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
+}
+// Trafficked by spacers
+public function publicHangars(dock:String = ""):Array
+{
+	var publicHangars:Array = [];
+	
+	publicHangars.push("TAVROS HANGAR"); // Tavros Station
+	publicHangars.push("SHIP HANGAR"); // Mhen'ga
+	publicHangars.push("201"); // Tarkus
+	publicHangars.push("500"); // New Texas
+	publicHangars.push("600"); // Myrellion
+	publicHangars.push("UVS F15"); // Uveto
+	publicHangars.push("CANADA1"); // Canadia Station
+	
+	return publicHangars;
+}
+// Need exclusive access
+public function privateHangars(dock:String = ""):Array
+{
+	var privateHangars:Array = [];
+	
+	privateHangars.push("2I7"); // Myrellion (Caves)
+	privateHangars.push("ZS L50"); // Zheng Shi Station
+	privateHangars.push("POESPACE"); // Poe A
+	privateHangars.push("K16_DOCK"); // Gastigoth
+	privateHangars.push("BREEDWELL_HANGAR"); // Breedwell Centre
+	
+	return privateHangars;
+}
+public function shipHangarShips(dock:String = ""):Array
+{
+	var ships:Array = [];
+	var publicHangars:Array = publicHangars();
+	var privateHangars:Array = privateHangars();
+	
+	// ships.push(["Ship Name", null]);
+	// functionBonusName or null for no bonus function
+	if(dock == "TAVROS HANGAR")
+	{
+		if(flags["FALL OF THE PHOENIX STATUS"] == 1) ships.push(["The Phoenix", thePhoenixShipBonus]);
+	}
+	if(InCollection(dock, publicHangars))
+	{
+		if(majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
+	}
+	
+	return ships;
+}
+public function shipHangarMenu(ships:Array):void
+{
+	clearOutput();
+	showBust("");
+	showName("DOCKED\nSHIPS");
+	output("You find yourself in the hangar.");
+	clearMenu();
+	
+	var btnSlot:int = 0;
+	var i:int = 0;
+	
+	for(i = 0; i < ships.length; i++)
+	{
+		if(btnSlot > 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", mainGameMenu);
+			btnSlot++;
+		}
+		
+		if(ships[i].length > 1 && ships[i][1] != undefined && ships[i][1] != null)
+		{
+			ships[i][1](btnSlot);
+			btnSlot++;
+		}
+	}
+	if(btnSlot > 14)
+	{
+		while((btnSlot < 59) && ((btnSlot + 1) % 15 != 0)) { btnSlot++; }
+		addButton(btnSlot, "Back", mainGameMenu);
+	}
+	addButton(14, "Back", mainGameMenu);
 }
 
 public function generateMap():void
@@ -1318,14 +1407,24 @@ public function rest(deltaT:int = -1):void {
 public function restHeal():void
 {
 	var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
-	if(pc.HPRaw < pc.HPMax()) {
-		if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax()));
-		else 
-		pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
+	
+	if(pc.accessory is MaikesCollar)
+	{
+		bonusMult = 0;
+		AddLogEvent("The slave collar’s punishing shocks keep your rest from doing much.");
 	}
-	if(pc.energyRaw < pc.energyMax()) {
-		pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
+	
+	if(bonusMult != 0)
+	{
+		if(pc.HPRaw < pc.HPMax()) {
+			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax() * bonusMult));
+			else pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
+		}
+		if(pc.energyRaw < pc.energyMax()) {
+			pc.energy(Math.round(pc.energyMax() * .33 * bonusMult));
+		}
 	}
+	
 	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1);
 }
 
@@ -1540,7 +1639,19 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 
 public function sleepHeal():void
 {
-	if (pc.HPRaw < pc.HPMax()) pc.HPRaw = pc.HPMax();
+	var bonusMult:Number = 1;
+	
+	if(pc.accessory is MaikesCollar)
+	{
+		bonusMult = 0;
+		AddLogEvent("The slave collar’s punishing shocks keep your rest from doing much.");
+	}
+	
+	if(bonusMult != 0)
+	{
+		if(pc.HPRaw < pc.HPMax()) pc.HPRaw = Math.round(pc.HPMax() * bonusMult);
+		if(pc.energyRaw < pc.energyMax()) pc.energyRaw = Math.round(pc.energyMax() * bonusMult);
+	}
 	
 	// Fecund Figure shape loss (Lose only after sore/working out)
 	if(pc.hasPerk("Fecund Figure") && pc.isSore())
@@ -1569,8 +1680,6 @@ public function sleepHeal():void
 	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3);
 	pc.removeStatusEffect("Jaded");
 	pc.removeStatusEffect("Roshan Blue");
-	
-	if (pc.energyRaw < pc.energyMax()) pc.energyRaw = pc.energyMax();
 }
 
 public function genericSleep(baseTime:int = 480, bufferXP:Boolean = true):void
@@ -1856,7 +1965,8 @@ public function flyMenu():void
 	
 	if(zhengCoordinatesUnlocked())
 	{
-		addButton(4,"ZhengShi",flyTo,"ZhengShi");
+		if (shipLocation != "ZS L50") addButton(4, "ZhengShi", flyTo, "ZhengShi");
+		else addDisabledButton(4, "ZhengShi", "Zhèng Shi Station", "You’re already here.");
 	}
 	else addDisabledButton(4, "Locked", "Locked", "You need to find one of your father’s probes to access this location’s coordinates.");
 
@@ -1892,10 +2002,10 @@ public function flyMenu():void
 	//Gastigoth
 	if(MailManager.isEntryViewed("gastigoth_unlock"))
 	{
-		if(shipLocation == "K16_DOCK") addDisabledButton(9,"Gastigoth","Gastigoth","You’re already here!");
-		else addButton(9,"Gastigoth",flyTo,"Gastigoth");
+		if(shipLocation != "K16_DOCK") addButton(9, "Gastigoth", flyTo, "Gastigoth");
+		else addDisabledButton(9, "Gastigoth", "Gastigoth Station", "You’re already here!");
 	}
-	else addDisabledButton(9,"Locked","Locked","You have not learned of this location’s coordinates yet.");
+	else addDisabledButton(9, "Locked", "Locked", "You have not learned of this location’s coordinates yet.");
 	//Breedwell
 	if(MailManager.isEntryViewed("breedwell_unlock"))
 	{
@@ -2981,6 +3091,9 @@ public function variableRoomUpdateCheck():void
 	// Visited Thare Plantation
 	if(flags["THARE_MANOR_ENTERED"] != undefined && flags["PQ_P_BURNED"] == undefined) rooms["THARE MANOR"].addFlag(GLOBAL.OBJECTIVE);
 	else rooms["THARE MANOR"].removeFlag(GLOBAL.OBJECTIVE);
+	// Waterfall Taxi
+	if(flags["WATERFALL_TAXI_RELAY"] != undefined) rooms["2. WATERFALL POOL"].removeFlag(GLOBAL.TAXI);
+	else rooms["2. WATERFALL POOL"].removeFlag(GLOBAL.TAXI);
 	// Pyrite Satellite Quest
 	if(pyriteSatelliteLocationUnlocked())
 	{
@@ -3319,7 +3432,15 @@ public function variableRoomUpdateCheck():void
 		rooms["LIEVE BUNKER"].addFlag(GLOBAL.NPC);
 		rooms["803"].removeFlag(GLOBAL.OBJECTIVE);
 	}
-	
+
+	/* ZHENG SHI */
+
+	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
+	else if(!rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] == undefined) rooms["ZSM U2"].addFlag(GLOBAL.NPC);
+
+	if(flags["ZHENG_SPACEWALKED"] != undefined) rooms["ZS N46"].inExit = "ZSF I16";
+	else rooms["ZS N46"].inExit = "";
+	 
 	/* UVETO */
 	
 	// Huskar Bimbos
@@ -3563,7 +3684,6 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 
 	//Queue up dumbfuck procs
 	if(pc.hasStatusEffect("Dumbfuck")) processDumbfuckEvents();
-	
 	var sendMails:Boolean = true;
 	
 	// Don't send mails to the player whilst aboard the kashima

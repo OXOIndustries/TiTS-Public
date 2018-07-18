@@ -436,7 +436,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			showName("\nQUINN");
 			
 			output("<i>“Again?”</i> Quinn arches an eyebrow at you, something between exasperation and amusement pulling at the corner of her mouth. <i>“How are you not spent after how it went last time? No, it will not do,”</i> she goes on, chin up, lips thinned. <i>“A Quinn cannot be spending all her time seeing to your unnatural, star-born lusts. It’s unseemly, not to mention exhausting.”</i>");
-			output("\n\nYour spirits sink... right up until Quinn claps once, and calls <i>“Handmaidens! See to my champion, will you? [pc.he] is being restless.”</i>");
+			output("\n\nYour spirits sink... right up until Quinn claps once, and calls <i>“Handmaidens! See to my champion, will you? [pc.He] is being restless.”</i>");
 			output("\n\nThe leader’s two young maids hurry over; they eye you up smirkingly, whispering in each other’s ears.");
 			output("\n\n<i>“We were going to bathe you, our Quinn,”</i> says one saucily. <i>“Are we to do this instead?”</i>");
 			output("\n\n<i>“Yes, yes,”</i> the zil leader says, putting her hands on your shoulders and pushing you towards them. <i>“Don’t come back until you’ve thoroughly exhausted [pc.him]. And, warrior...”</i> Her sweet scent tickles your nose as she breathes into your ear. <i>“...kindle them if you can, won’t you? They grow restless themselves. Restless handmaidens mean rebellion. Handmaidens with round bellies: not so restless. You will help your Quinn.”</i>");
@@ -980,12 +980,32 @@ public function quinnHardlightFun(args:Array):void
 	}
 }
 
+
+// Part 4: The Pollen Dance
+// Activates if PC has had sex with her, PC has genitals, has used all talk options, Quest fully resolved (i.e. now trading with Esbeth or PC has seen plantation burnt down), and PC uses Talk again.
+public function quinnTalkPollenDance(response:String = ""):void
+{
+	clearOutput();
+	author("Nonesuch");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "":
+			showQuinn();
+			
+			output("");
+			output("\n\n");
+			output("\n\n");
+			
+			processTime(3);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+
 /*
-
-Part 4: The Pollen Dance
-
-//Activates if PC has had sex with her, PC has genitals, has used all talk options, Quest fully resolved (i.e. now trading with Esbeth or PC has seen plantation burnt down), and PC uses Talk again.
-
 
 <i>“Talk,”</i> says Quinn, absently. Her golden irises rest upon you for a silent couple of moments. <i>“Yes, talk. We should do that, Steele. Come closer.”</i>
 
@@ -1156,6 +1176,9 @@ Tooltip: Kicking a bunch of bee boi butts beforehand will only make your dick ha
 An excited murmur thrums around the circle, and the rather leisured atmosphere of the zil village becomes noticeably more purposeful.
 
 //Boot PC back to Chieftain’s Circle square. Add [Festival] to Quinn’s main options
+
+
+
 
 [Festival]
 

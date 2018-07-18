@@ -2905,7 +2905,7 @@ public function mitziFirstTimeCuntnosisII():void
 	output("\n\nThe distracting heat boiling below keeps interrupting your thoughts, twisting them around when you to focus. Mitzi’s face is there through it all, smiling and beautiful, the picture of wantonness. You can’t see any problems with her gleaming mouth, still moist from your [pc.vaginas], but that must have been it. <i>“Yeah... that sounds right.”</i>");
 	output("\n\n<i>“Okay! Mitzi will put this one on super-dooper thick just for you [pc.Master]!”</i> She uncaps the tube once more, twirling dial at the bottom to push more jellied makeup out. Pink, heart-shaped eyes stare seductively up at you as Mitzi languidly presses the gloss against her lower lip and slowly begins to roll it across the taut, reflective surface. She blinks, layering it on nice and heavy, just like you asked. The way she flips it around to bring it to bear on her upper lip is almost hypnotic, and the application of her enchanting mouth-polish leaves you shudderingly, gaspingly aroused. <i>“There!”</i>");
 	output("\n\n<i>“Please, my puss");
-	if(pc.cockTotal() == 1) output("y");
+	if(pc.totalVaginas() == 1) output("y");
 	else output("ies");
 	output(".”</i> You grab her by the pigtail, more for something to hold onto than with any intent of forcing her. Satisfying your budding desire by yourself seems a foreign concept.");
 	output("\n\n<i>“Mitzi will,”</i> the pretty bimbo purrs. <i>“You trust her, right? You trust Mitzi.”</i>");
