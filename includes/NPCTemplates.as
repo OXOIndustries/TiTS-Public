@@ -159,6 +159,10 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "MITZI", Mitzi);
 	prepChar(justUpdate, "URBOLG", Urbolg);
 	prepChar(justUpdate, "FROSTWYRM", Frostwyrm);
+	prepChar(justUpdate, "SECURITY_ROBOTS", AkkadiSecurityRobots);
+	prepChar(justUpdate, "SCHORA", CommanderSchora);
+	prepChar(justUpdate, "TORRA", Torra);
+	prepChar(justUpdate, "DRCALNOR", DrCalnor);
 	prepChar(justUpdate, "THAREDRONE", ThareDrone);
 	prepChar(justUpdate, "LAH", RKLah);
 	prepChar(justUpdate, "SHIZUYA", Shizuya);

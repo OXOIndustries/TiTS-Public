@@ -126,7 +126,9 @@ public function disableExploreEvents():Boolean
 	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
 	// Federation Quest
 	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST"] < 3) return true;
-	
+	// Syri Quest
+	if (flags["SYRIQUEST_STATE"] >= 4 && flags["SYRIQUEST_STATE"] < 20) return true;
+
 	return false;
 }
 
@@ -2124,7 +2126,7 @@ public function landingEventCheck(arg:String = ""):Boolean
 	
 	if(arg == "Mhen'ga")
 	{
-		if(((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew()) && syriIsAFuckbuddy() && rand(5) == 0)
+		if(((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew()) && syriAtBurts() && syriIsAFuckbuddy() && rand(5) == 0)
 		{
 			currentLocation = "SHIP INTERIOR";
 			gettingSyrisPanties();
@@ -3349,6 +3351,11 @@ public function variableRoomUpdateCheck():void
 	// Steele Med
 	if(steeleBiomedBusinessHours()) rooms["UVI H36"].addFlag(GLOBAL.NPC);
 	else rooms["UVI H36"].removeFlag(GLOBAL.NPC);
+	//Syri at Freezer and H34
+	if (syriAtFreeezer()) rooms["UVI R32"].addFlag(GLOBAL.NPC);
+	else rooms["UVI R32"].removeFlag(GLOBAL.NPC);
+	if (flags["SYRIQUEST_STATE"] == 3) rooms["UVI H34"].addFlag(GLOBAL.NPC);
+	else rooms["UVI H34"].removeFlag(GLOBAL.NPC);
 	// Pippa's house
 	if (flags["PIPPA_RECRUITED"] == 1)
 	{
@@ -3427,6 +3434,33 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["KI-E23"].addFlag(GLOBAL.LIFTDOWN);
 		rooms["KI-E23"].removeFlag(GLOBAL.HAZARD);
+	}
+	//Akkadi Lab from SyriQuest
+	if (flags["SYRIQUEST_STATE"] != undefined)
+	{
+		if (flags["SYRIQUEST_POWER_STATE"] >= 2) rooms["AKD M23"].removeFlag(GLOBAL.OBJECTIVE);
+		else rooms["AKD M23"].addFlag(GLOBAL.OBJECTIVE);
+		if (flags["MET_SCHORA"] >= 3 || rooms["SYRIQUEST_STATE"] >= 8) rooms["AKD E9"].removeFlag(GLOBAL.NPC);
+		else rooms["AKD E9"].addFlag(GLOBAL.NPC);
+		if (flags["SYRIQUEST_CALNOR_ICON"] == 1 && flags["SYRIQUEST_VALDEN_BODY_CHOICE"] != 1) rooms["AKD S17"].addFlag(GLOBAL.NPC);
+		else rooms["AKD S17"].removeFlag(GLOBAL.NPC);
+		if (flags["SYRIQUEST_STATE"] == 5)
+		{
+			rooms["AKD S15"].addFlag(GLOBAL.OBJECTIVE);
+			rooms["AKD M27"].removeFlag(GLOBAL.OBJECTIVE);
+			rooms["AKD K25"].removeFlag(GLOBAL.LIFTUP);
+			rooms["AKD K25"].addFlag(GLOBAL.LIFTDOWN);
+		}
+		else
+		{
+			rooms["AKD S15"].removeFlag(GLOBAL.OBJECTIVE);
+			rooms["AKD M27"].addFlag(GLOBAL.OBJECTIVE);
+			rooms["AKD K25"].addFlag(GLOBAL.LIFTUP);
+			rooms["AKD K25"].removeFlag(GLOBAL.LIFTDOWN);
+		}
+		if (flags["SYRIQUEST_STATE"] == 8 || flags["SYRIQUEST_STATE"] == 9) rooms["AKD Q17"].addFlag(GLOBAL.NPC);
+		else rooms["AKD Q17"].removeFlag(GLOBAL.NPC);
+			
 	}
 }
 

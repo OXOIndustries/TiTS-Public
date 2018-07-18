@@ -311,6 +311,12 @@ public function initUvetoRooms():void
 	rooms["UVI H34"].southExit = "UVI H36";
 	rooms["UVI H34"].westExit = "UVI F34";
 	rooms["UVI H34"].moveMinutes = 1;
+	rooms["UVI H34"].runOnEnter = function():void{
+		if (syriQuestRunning() && flags["SYRIQUEST_STATE"] == 3) {
+			output("\n\nYou see Syri hanging around here, impatiently pacing back and forth. Looks like she's waiting for you.");
+			addButton(0,"Syri",syriQuestMeetOutsideElevator);
+		}
+	};
 	rooms["UVI H34"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI H34"].addFlag(GLOBAL.INDOOR);
 	
@@ -674,12 +680,9 @@ public function initUvetoRooms():void
 	rooms["UVI R32"].southExit = "UVI R34";
 	rooms["UVI R32"].westExit = "UVI P32"; // 9999 TEMP CHECK THIS
 	rooms["UVI R32"].moveMinutes = 1;
+	rooms["UVI R32"].runOnEnter = uvetoBarFirePitBonus;
 	rooms["UVI R32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI R32"].addFlag(GLOBAL.PUBLIC);
-	rooms["UVI R32"].runOnEnter = function():Boolean {
-		setNavDisabled(NAV_SOUTH_DISABLE);
-		return false;
-	}
 
 	/* Back Room */
 	rooms["UVI R34"] = new RoomClass(this);

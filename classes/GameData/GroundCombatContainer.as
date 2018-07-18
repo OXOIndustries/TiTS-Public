@@ -34,6 +34,7 @@ package classes.GameData
 	import flash.utils.getDefinitionByName;
 	import classes.Util.InCollection;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.UIComponents.UIStyleSettings;
 	
 	public class GroundCombatContainer extends CombatContainer 
 	{		
@@ -354,6 +355,12 @@ package classes.GameData
 		 */
 		private function updateStatusEffectsFor(target:Creature):void
 		{
+			//SyriQuest bots don't need to be alive to be awesome
+			if (target is AkkadiSecurityRobots)
+			{
+				(target as AkkadiSecurityRobots).botHeal();
+			}
+			
 			if (target.isDefeated()) return;
 			
 			var ew:StorageClass = target.getStatusEffect("Empowering Word");
@@ -735,7 +742,11 @@ package classes.GameData
 				if (target.statusEffectv1("Blinded") <= 0) 
 				{
 					target.removeStatusEffect("Blinded");
-					if (target is PlayerCharacter) output("\n\n<b>You can see again!</b>");
+					if (target is PlayerCharacter)
+					{
+						if (CombatManager.hasEnemyOfClass(DrCalnor)) output("\n\nYou finally blink out the rest of the stars swimming in your vision, regaining your sight!");
+						else output("\n\n<b>You can see again!</b>");
+					}
 					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " are no longer blinded!</b>");
 					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is no longer blind!</b>");
 				}
@@ -1213,11 +1224,37 @@ package classes.GameData
 				}
 			}
 			
+			if (target.hasStatusEffect("Target Link") && target.statusEffectv1("Target Link") != 0)
+			{
+				target.addStatusValue("Target Link", 1, -1);
+				//Interrupt effect
+				if (target.isImmobilized() || target.hasStatusEffect("Tripped") || target.statusEffectv1("Target Link") == 0)
+				{
+					if (target is AkkadiSecurityRobots) (target as AkkadiSecurityRobots).endTargetLink();
+					//Should never happen since non-akkadibots shouldn't get it at all
+					else target.removeStatusEffect("Target Link");
+				}
+			}
+			
+			genericStatusEffectUpdate(target, "Tracer Rounds");
+			genericStatusEffectUpdate(target, "Torra Lust Weakness");
+			genericStatusEffectUpdate(target, "Chaff Grenade");
+			
 			if (target.hasStatusEffect("SHIZZY CUM"))
 			{
 				output("\n\n<b>She reeks so strongly of pheromones that it's starting to get to you.</b>");
 				applyDamage(damageRand(new TypeCollection({pheromone:target.statusEffectv1("SHIZZY CUM")}), 20), null, target, "minimal");
 			}
+		}
+		
+		//Lowers v1 by 1 and removes the status if it's value is 0 afterwards, hope there wasn't a function to do this already
+		public function genericStatusEffectUpdate(target:Creature, statusName:String)
+		{
+			if (target.hasStatusEffect(statusName))
+			{
+				target.addStatusValue(statusName, 1, -1);
+				if (target.statusEffectv1(statusName) <= 0) target.removeStatusEffect(statusName);
+			} 
 		}
 		
 		public function updateStatusEffects(collection:Array):void
@@ -1764,10 +1801,17 @@ package classes.GameData
 		{
 			clearOutput();
 			pc.energy(-5);
-			output("You release a discharge of electricity, momentarily weakening your ");
-			if(_hostiles[0].isPlural || enemiesAlive() > 1) output("foes’");
-			else output("foe’s");
-			output(" grip on you!");
+			if (hasEnemyOfClass(AkkadiSecurityRobots))
+			{
+				output("You send a burst of electricity back along the grappling line, right into the offending security bot.");
+			}
+			else
+			{
+				output("You release a discharge of electricity, momentarily weakening your ");
+				if(_hostiles[0].isPlural || enemiesAlive() > 1) output("foes’");
+				else output("foe’s");
+				output(" grip on you!");
+			}
 			if (pc.hasStatusEffect("Naleen Coiled"))
 			{
 				pc.removeStatusEffect("Naleen Coiled");
@@ -1781,7 +1825,8 @@ package classes.GameData
 			if(pc.hasStatusEffect("Grappled"))
 			{
 				pc.removeStatusEffect("Grappled");
-				output("\nYou slip free of the grapple.");
+				if (hasEnemyOfClass(AkkadiSecurityRobots)) output("\nIt lurches backward and squeals, disconnecting the grappling line. The magnets deactivate, releasing you from the robot's grasp.");
+				else output("\nYou slip free of the grapple.");
 			}
 			if (pc.hasStatusEffect("Cockvine Grip"))
 			{
@@ -2076,6 +2121,7 @@ package classes.GameData
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the tight web.");
 						}
 						else if (hasEnemyOfClass(RKLah)) output("You pull him to one side, before delivering a sucker punch hard and low from the other. Lah gasps in pain, and you manage to rip out of his grasp.");
+						else if (hasEnemyOfClass(AkkadiSecurityRobots)) output("You finally manage to tear your way out of the net!");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
 						{
@@ -4367,6 +4413,9 @@ package classes.GameData
 				if(!pc.hasStatusEffect("Varmint Buddy")) return;
 			}
 			
+			//Chaff stahps roboty drones
+			if(droneUser.hasStatusEffect("Chaff Grenade") && droneUser.hasCombatDrone(true)) return;
+			
 			//TAMWULF DOESNT NEED POWAAAAAHHHHH
 			if (droneUser.hasCombatDrone(true) && !droneUser.hasStatusEffect("Varmint Buddy"))
 			{
@@ -4581,6 +4630,18 @@ package classes.GameData
 				var target:Creature = _hostiles[i];
 				
 				if (target.isDefeated()) continue;
+				
+				//Valdey gets to act always, even if just to jump around.
+				//@future generations: please add any status effects that get their section below (like Paralyzed)
+				//to AkkadiSecurityRobots.mustJumpNames or valden will happily ignore them, the cheating bastard
+				if (target.hasStatusEffect("Valden-Possessed"))
+				{
+					if (AkkadiSecurityRobots.ValdenAI(target, _hostiles, _friendlies))
+					{
+						doCombatDrone(target);
+						continue;
+					}
+				}
 				
 				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
 				{
