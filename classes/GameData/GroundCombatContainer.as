@@ -1248,7 +1248,7 @@ package classes.GameData
 		}
 		
 		//Lowers v1 by 1 and removes the status if it's value is 0 afterwards, hope there wasn't a function to do this already
-		public function genericStatusEffectUpdate(target:Creature, statusName:String)
+		public function genericStatusEffectUpdate(target:Creature, statusName:String):void
 		{
 			if (target.hasStatusEffect(statusName))
 			{

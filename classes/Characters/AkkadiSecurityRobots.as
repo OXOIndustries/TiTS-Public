@@ -461,7 +461,7 @@ Target Link
 			return desirability;
 		}
 		//Returns true if we could jump and used the turn
-		public static var valdenShieldBuffMult = 0.4;
+		public static var valdenShieldBuffMult:Number = 0.4;
 		private static function tryJump(oldHost:Creature):Boolean
 		{
 			//One jump per round, jumpy lad
