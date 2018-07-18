@@ -74,8 +74,9 @@ public function beatBotFixWire():void
 {
 	clearOutput();
 	showName("JOB'S\nDONE");
-	output("With your job done, you turn around and stomp back towards the airlock...");
+	output("With your job done, you turn around. Do you stomp back into the airlock... or walk around into the hangar you landed in?");
 
 	clearMenu();
-	addButton(0,"Next",move,"ZSM YY18");
+	addButton(0,"Airlock",move,"ZSM YY18");
+	addButton(1,"Hangar",move,"ZS L50");
 }

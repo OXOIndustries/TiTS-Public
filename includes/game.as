@@ -3435,6 +3435,9 @@ public function variableRoomUpdateCheck():void
 
 	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
 	else if(!rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] == undefined) rooms["ZSM U2"].addFlag(GLOBAL.NPC);
+
+	if(flags["ZHENG_SPACEWALKED"] != undefined) rooms["ZS N46"].inExit = "ZSF I16";
+	else rooms["ZS N46"].inExit = "";
 	 
 	/* UVETO */
 	
