@@ -3250,6 +3250,24 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			//Syri Quest
+			if(flags["SYRIQUEST_STATE"] != undefined)
+			{
+				output2("\n<b><u>SyriQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				if (flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
+				else if (flags["SYRIQUEST_STATE"] < 21) output2(" Accepted");
+				else output2(" Completed");
+				if(flags["SYRIQUEST_STATE"] == 21) output2(", Killed Valden, Lied to Syri");
+				if(flags["SYRIQUEST_STATE"] == 22) output2(", Killed Valden, Told Syri");
+				if(flags["SYRIQUEST_STATE"] == 23) {
+					output2(", Freed Valden, He took ");
+					if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 1) output2("Dr. Calnor's body");
+					else if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 2) output2("the body of your Bimbo Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]);
+					else if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 3) output2("the body of your Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]);
+				}
+				sideCount++;
+			}
 		}
 		
 		if(showID == "Canadia" || showID == "All")

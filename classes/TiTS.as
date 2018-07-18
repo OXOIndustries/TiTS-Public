@@ -163,6 +163,9 @@
 		include "../includes/events/plantationQuest/plantationQuestXPack1.as";
 		include "../includes/events/spaceYakuza/spaceYakuza.as";
 		include "../includes/events/spaceYakuza/akaneQuest.as";
+		include "../includes/events/syriQuest/syriQuestMain.as";
+		include "../includes/events/syriQuest/rooms.as";
+		include "../includes/events/syriQuest/roomFunctions.as";
 
 		//Misc content
 		include "../includes/masturbation.as";
@@ -458,6 +461,7 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
+		include "../includes/uveto/syri.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
 		include "../includes/uveto/ula.as";
@@ -628,6 +632,7 @@
 			initVesperiaRoom();
 			initBreedwellRooms();
 			fqInitRooms();
+			syriQuestInitRooms();
 			initGreatMajinRooms();
 			
 			mapper = new Mapper(this.rooms)
