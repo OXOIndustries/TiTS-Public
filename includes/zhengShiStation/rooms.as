@@ -1116,7 +1116,7 @@ public function initZhengRooms():void
 	rooms["ZSF G16"].southExit = "ZSF G18";
 	rooms["ZSF G16"].westExit = "";
 	rooms["ZSF G16"].moveMinutes = 3;
-	rooms["ZSF G16"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSF G16"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF G16"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF G16"].addFlag(GLOBAL.HAZARD);
 
@@ -1130,7 +1130,7 @@ public function initZhengRooms():void
 	rooms["ZSF G18"].southExit = "ZSF G20";
 	rooms["ZSF G18"].westExit = "";
 	rooms["ZSF G18"].moveMinutes = 3;
-	rooms["ZSF G18"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSF G18"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF G18"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF G18"].addFlag(GLOBAL.HAZARD);
 
@@ -1144,7 +1144,7 @@ public function initZhengRooms():void
 	rooms["ZSF G20"].southExit = "";
 	rooms["ZSF G20"].westExit = "";
 	rooms["ZSF G20"].moveMinutes = 3;
-	rooms["ZSF G20"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSF G20"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF G20"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF G20"].addFlag(GLOBAL.HAZARD);
 
@@ -1158,13 +1158,13 @@ public function initZhengRooms():void
 	rooms["ZSF I20"].southExit = "ZSF I22";
 	rooms["ZSF I20"].westExit = "ZSF G20";
 	rooms["ZSF I20"].moveMinutes = 3;
-	rooms["ZSF I20"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSF I20"].runOnEnter = zhengFoundryF1EncounterBonus;
 	rooms["ZSF I20"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF I22"] = new RoomClass(this);
 	rooms["ZSF I22"].roomName = "BREAK\nROOM";
-	rooms["ZSF I22"].description = "Yo, there be sloots here.";
+	rooms["ZSF I22"].description = "You're standing in a lounge off of the main floor of the pirates' foundry. A wetbar dominates one wall, opposite a large couch covered in plush cushions. It would almost be nice, if it weren't for the constant sounds of machines pounding away outside";
 	rooms["ZSF I22"].planet = "ZHENG SHI STATION";
 	rooms["ZSF I22"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF I22"].northExit = "ZSF I20";
@@ -1172,9 +1172,9 @@ public function initZhengRooms():void
 	rooms["ZSF I22"].southExit = "";
 	rooms["ZSF I22"].westExit = "";
 	rooms["ZSF I22"].moveMinutes = 3;
-	rooms["ZSF I22"].runOnEnter = undefined;
+	rooms["ZSF I22"].runOnEnter = breakroomBarBonus;
 	rooms["ZSF I22"].addFlag(GLOBAL.INDOOR);
-	//rooms["ZSF I22"].addFlag(GLOBAL.HAZARD);
+	rooms["ZSF I22"].addFlag(GLOBAL.NPC);
 
 	rooms["ZSF PLACEHOLDER"] = new RoomClass(this);
 	rooms["ZSF PLACEHOLDER"].roomName = "\n";

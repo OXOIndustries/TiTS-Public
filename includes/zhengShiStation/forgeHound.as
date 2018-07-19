@@ -6,8 +6,9 @@ public function showForgehound(nude:Boolean = false):void
 }
 
 //Meeting
-public function forgehoundEncounter():void
+public function forgehoundEncounter():Boolean
 {
+	showForgehound();
 	if(flags["FORGEHOUND_APOLIFUCKED"] == undefined) 
 	{
 		output("\n\n<i>“You! You’re not meant to be here!”</i> a deep voice barks from your side. You turn to see a large leithan man approaching you, glaring accusingly. <i>“You’d better have a good fucking reason for me not to shoot you on the spot.”</i>");
@@ -63,6 +64,7 @@ public function forgehoundEncounter():void
 		addButton(0,"Fight",forgehoundFightSetup,true);
 		addButton(1,"Submit",submitToForgehound,undefined,"Submit","Give in. The large, domineering man is just too intimidating and hot for you to fight him.");
 	}
+	return true;
 }
 
 //For delayed fite setup

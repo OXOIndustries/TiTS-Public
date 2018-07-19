@@ -62,6 +62,33 @@ public function zhengMinesEncounterBonus():Boolean
 	return false;
 }
 
+public function zhengFoundryF1EncounterBonus():Boolean
+{
+	IncrementFlag("ZS_FOUNDRY_STEP");
+	var encounters:Array = [];
+	//First 3 times are gimmes, then increasing odds till step 15 or so.
+	if(flags["ZS_FOUNDRY_STEP"]-4 > rand(16))
+	{
+		flags["ZS_FOUNDRY_STEP"] = 0;
+		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
+
+		encounters.push(forgehoundEncounter);
+		/*encounters.push(boredJumperAttackProc);
+		encounters.push(boredJumperAttackProc);*/
+	}
+	if(encounters.length > 0) 
+	{
+		return encounters[rand(encounters.length)]();
+	}
+	return false;
+}
+
+public function breakroomBarBonus():void
+{
+	if(9999 == 0) output(", and the big, burly thraggen technician you've tied up to one of the bar stools.\n\nArdia is sitting on the stool over him, enjoying some of pirates' most expensive whiskey. Her lengthy ears perk up at your approach, followed by a shy little smile on her cyan lips.");
+	else output(".");
+}
+
 public function zsmw8Bonus():Boolean
 {
 	if(flags["MAIKE_SLAVES_RELEASED"] != 1) output("Slaves chip away at the bountiful wealth of Zheng Shi, held in place by chains hooked to collars and waists alike. Robotic loaders follow behind them to gather the samples they deposit and whisk them away to be refined. They spare no time to look at you or react in any way, leaving you with the distinct impression that they’re completely broken. You could cut them out of their collars, and they’d probably just keep digging...");
