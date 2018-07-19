@@ -407,11 +407,11 @@ public function syriQuestGoNow():void {
 	else if(pc.isMischievous()) output("<i>“I'm dying of suspense here. What's up?”</i>");
 	else output("<i>“Come on, out with it already! You've been pent up about this since we left Uveto.”</i>");
 	output("\n\n<i>“I...”</i> she starts, pausing to think for a moment. <i>“I didn't </i>just<i> come to Uveto for the tournament. I mean, I'm here for that too because otherwise I really am gonna be flat out broke and have to move back in with my parents and that's going to be real fucking embarrassing but </i>also<i> more importantly...”</i>");
-	output("\n\nSyri stops for breath, shifting her weight on her ass. <i>“I got some information from someone in Akkadi. The company that cause my little accident? I don't know who it's from or if it's even legit, but it looks like it is, and... and it says that Valden is alive.”</i>");
+	output("\n\nSyri stops for breath, shifting her weight on her ass. <i>“I got some information from someone in Akkadi. The company that caused my little accident? I don't know who it's from or if it's even legit, but it looks like it is, and... and it says that Valden is alive.”</i>");
 	output("\n\n<i>“Valden? The guy whose dick you have now?”</i>");
 	output("\n\nSyri nods. <i>“Yeah. He went through the transporter with me but never came back out. The Akkadi brains behind the project said they had no idea where he'd gone, that he was probably dead, too. But the report I have says he's been here at their complex on Uveto since the accident! They've been lying to me since day one!”</i>");
 	output("\n\nAssuming this leak is legit, anyway.");
-	output("\n\n<i>“I know it's a big assumption, but if Valden's really alive... and behind held by Akkadi; experiment on... then I can't just leave him here! I've got to save him. I know he'd do the same for me.”</i>");
+	output("\n\n<i>“I know it's a big assumption, but if Valden's really alive... and being held by Akkadi; experiment on... then I can't just leave him here! I've got to save him. I know he'd do the same for me.”</i>");
 	output("\n\n<i>“So what do you need from me?”</i> you ask her.");
 	output("\n\nThe raven-haired ausar grimaces. <i>“And that's the awkward part. I can't be the one that breaks into an Akkadi research base. After the accident, the company has my picture, clawprints, DNA, everything on file... there's no way I could get away with it. No more medical benefits, probably go to jail... probably get some naval intelligence spook shooting me in the back one night.”</i>");
 	output("\n\nYou blink. <i>“So you want me to");
@@ -575,7 +575,7 @@ public function syriQuestMeetOutsideElevator():void {
 	output("\n\nThis can only end well. You tell Syri to lead on, falling in behind her sweeping tail as she guides you out into the searing cold of the planet's surface. It's a blessedly short walk through the narrow, snow-swept alleys between the squat Irestead homes and businesses west of the government building. Whether it's for warmth or just companionship, Syri wraps an arm around your waist and pulls you against herself. She gives you a little smile, and you feel her tail curling around your [pc.leg].");
 	output("\n\nThe contractor's office is only a few blocks away, but ");
 	if (pc.hasHeatBelt()) output("even with your heat belt ");
-	output("you're shivering all the same by the time you arrive at the steps leading up to a square, one-floor office. A flickering holographic sign reading '<i>Hakon's Industrial Innovations, LLC</i>' sits above the door, alongside an animated image of a flexing, bearded huskar male with a hardhat and a toolbox in both hands.");
+	output("you're shivering all the same by the time you arrive at the steps leading up to a square, one-floor office. A flickering holographic sign reading '<i>Haskarn's Industrial Innovations, LLC</i>' sits above the door, alongside an animated image of a flexing, bearded huskar male with a hardhat and a toolbox in both hands.");
 	output("\n\n Syri swipes an ID card across a reader next to the sliding glass-pane doors and ushers the both of you inside.");
 
 	moveTo("AKD C21");
@@ -593,7 +593,7 @@ public function syriQuestJobInterview():void {
 	output("\n\n<i>“C'mon, sapient resources is just over here,”</i> Syri says, leading you down a hall off of the main entrance. At the end is another glass door, this time frosted over so that only vague shapes and shadows are visible on the other side.");
 	output("\n\nYour beautiful guide raps her fluffy knuckles on the metal frame, and is quickly answered by a voice from inside: <i>“Come in!”</i>");
 	output("\n\nSyri slides the door open and gives you a gentle push into a small, warmly decorated little office with a comfortable-looking stuffed couch facing a desk that covered in little toys, smiling dolls, and a big bowl of candy. Sitting behind it is a particularly husky huskar woman, all plump curves and soft, plush pale flesh wrapped up in a white shirt that's been buttoned down almost halfway to make room for the massive rack of cleavage all but spilling out. A bright pink tie plunges down into the abyss between her breasts, drawing your attention up to a mane of silver-grey fur around her neck, beneath a rosy-cheeked face that's smiling wide at you.");
-	output("\n\n<i>“Hello Ms. Dorna!”</i> the huskar chirps cheerfully, deactivating a small holoterminal and folding her hands on her desk. <i>“And you must be [pc.name]. Welcome to Hakon's Industrial Innovations. I'm Myrra, and I heard you were looking for a job.”</i>");
+	output("\n\n<i>“Hello Ms. Dorna!”</i> the huskar chirps cheerfully, deactivating a small holoterminal and folding her hands on her desk. <i>“And you must be [pc.name]. Welcome to Haskarn's Industrial Innovations. I'm Myrra, and I heard you were looking for a job.”</i>");
 	if (pc.isMischievous() || pc.isBimbo()) output("\n\n<i>“Uh, yeah, sure. Why not?");
 	else if (pc.isAss() || pc.isBro()) output("\n\n<i>“Sure, whatever,");
 	else output("\n\n<i>“Yes ma'am,");
@@ -611,7 +611,7 @@ public function syriQuestJobInterview():void {
 	if (pc.isBimbo()) output("\n\n<i>“Oh, I like risky business!”</i> you giggle.");
 	else if (pc.isBro()) output("\n\n<i>“I've got <b>plenty</b> of experience, baby.”</i>");
 	else output("\n\nYou spend a moment describing some of the places you've had to adventure so far -- that might not be construction experience, but you've been in all sorts of conditions.");
-	output("\n\nMyrra nods, typing. <i>“Okay, that's good to hear. Um, let's see, I guess we'll give you a pass on the qualifications. Now let's talk about your career here at Hakon's!”</i>");
+	output("\n\nMyrra nods, typing. <i>“Okay, that's good to hear. Um, let's see, I guess we'll give you a pass on the qualifications. Now let's talk about your career here at Haskarn's!”</i>");
 	output("\n\nThe perky huksar scoots forward in her chair, a gesture that makes those massive sweater-puppies quake her her blouse. She must have caught your inevitable glances that way, because she smiles demurely and wags her tail. <i>“So... where do you see yourself in 5 years, [pc.name]?”</i>");
 	if (pc.isBro() || pc.LQ() >= 75) output("\n\nWith your face between those tits would sure be nice...");
 	else output("\n\nThere's some places you'd like to be...");
@@ -1015,11 +1015,11 @@ public function syriQuestAkkadiBaseSecurityRobotsEncounter():void
 	output("\n\nAnd they settle on you!");
 	output("\n\n<i>“INTRUDER! CEASE RESISTANCE, DISARM, AND LAY FLAT ON THE GROUND.”</i>");
 	
-	var numEnemies:int = 3+rand(3);
+	var numEnemies:int = 3+rand(2);
 	var hostiles:Array = [];
 	for (var i:int = 0; i < Math.min(4, numEnemies); i++)
 	{
-		hostiles.push(new AkkadiSecurityRobots(Math.max(0, numEnemies-4)));
+		hostiles.push(new AkkadiSecurityRobots());
 	}
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
@@ -1950,7 +1950,7 @@ public function syriQuestCalnorTalkTeamUp():void
 	//@Coder: Should be pretty simple IF Calnor and the droids are coded.
 	//PC vs. as many security bots as you can fit on screen. Should be a pretty meaty fight. Recycle stats and abilities from the random encounter. If the PC drops, go to the Brought Before Valden bad end.");
 	CombatManager.setFriendlyActors(pc);
-	CombatManager.setHostileActors([new AkkadiSecurityRobots(4), new AkkadiSecurityRobots(4), new AkkadiSecurityRobots(4), new AkkadiSecurityRobots(4)]);
+	CombatManager.setHostileActors([new AkkadiSecurityRobots(3), new AkkadiSecurityRobots(3), new AkkadiSecurityRobots(2), new AkkadiSecurityRobots(2)]);
 	CombatManager.displayLocation("TEAM UP!");
 	CombatManager.victoryScene(syriQuestCalnorTeamUpVictory);
 	CombatManager.lossScene(syriQuestAkkadiBaseValdenFightBadEnd);
@@ -2243,7 +2243,7 @@ public function syriQuestSchoraFightText():String
 {
 	var eText:String = "";
 	eText += "You're fighting Commander Schora, the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship.";
-	eText += "\n\nShe's a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station's security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she's wearing. She's currently wielding a bulty machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger..";
+	eText += "\n\nShe's a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station's security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she's wearing. She's currently wielding a bulky machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger..";
 	
 	return eText;
 }
@@ -2253,13 +2253,12 @@ public function syriQuestSchoraFightBadEnd():void
 	clearOutput();
 	showSchora();
 	author("Savin");
-	CombatManager.genericLoss();
 	processTime(3);
 	output("You crumple to the ground, gasping for breath and writhing in pain. Schora stalks up to you, couching her rifle under her arm, and takes a knee over you.");
 	//"Schora was hit by at least 1 lust attack or fucked rough earlier"
 	//@Coder no idea what the right condition would be for getting teased in combat
 	//Let's just check if her current lust is higher than her starting lust and call it a day -lighter
-//	 if (flags["MET_SCHORA"] >= 3 || ??? ) {
+	// if (flags["MET_SCHORA"] >= 3 || ??? ) {
 	if (flags["MET_SCHORA"] >= 4 || enemy.lust() > 25) {
 		output("\n\n<i>“Alright, cassy-nova, you wanna flaunt your stuff, huh? Think you can get outta your punishment just cuz you " + (flags["MET_SCHORA"] >= 4 ? "can make me cream myself better than any man on this gods-forsaken moon" : "can wiggle some meat real good" ) + "? Well... you're </i>almost<i> right.”</i>");
 		output("\n\nShe grins and rolls you onto your face, cuffing your hands together. <i>“I'm gonna go get Valden, but first... I'm gonna put you somewhere I can get you later. Your friend's the one that matters to Calnor... so we can treat your body as repayment for breaking my gunship. Better than becoming the doc's next experiment. Trust me.”</i>");
