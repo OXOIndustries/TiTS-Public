@@ -226,7 +226,7 @@ public function syriQuestBurtsBlubt():void {
 	userInterface.showName("\nBURT");
 	userInterface.showBust("BURT");
 	author("Savin");
-	output("As you enter Burts, you quickly realize there's something missing from the familiar halls of the tavern. Or some<i>one</i>, more accurately. The gaming setup has been almost entirely pulled down from the walls, and there no sign of your raven-haired player two anywhere at all. Odd, considering Syri's near-constant occupation of the meadhall -- indeed, she's here so frequently that you always had a hard time believing she actually had a job.");
+	output("As you enter Burt's, you quickly realize there's something missing from the familiar halls of the tavern. Or some<i>one</i>, more accurately. The gaming setup has been almost entirely pulled down from the walls, and there no sign of your raven-haired player two anywhere at all. Odd, considering Syri's near-constant occupation of the meadhall -- indeed, she's here so frequently that you always had a hard time believing she actually had a job.");
 	output("\n\n<i>“Oh, [pc.name],”</i> Burt says, waving you over. <i>“C'mere a second.”</i>");
 	output("\n\nYou saunter over to the bar in time for Burt to finish cleaning the stein he was working on and flick his rag up over his arm. <i>“Guess you're lookin' for somebody, right?”</i>");
 	output("\n\nYou nod.");

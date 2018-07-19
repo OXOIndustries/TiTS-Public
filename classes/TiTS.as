@@ -400,6 +400,7 @@
 
 		//FIFTH PLANET: ZHENG SHI
 		include "../includes/zhengShiStation/boredJumper.as";
+		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
