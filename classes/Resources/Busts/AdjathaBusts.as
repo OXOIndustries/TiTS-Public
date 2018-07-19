@@ -23,6 +23,10 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/aina_nude.png", mimeType = "image/png")]
 		public var Bust_AINA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/akkadirobots.png", mimeType = "image/png")]
+		public var Bust_AKKADIROBOTS:Class;
+		public var Bounds_AKKADIROBOTS:Rectangle = new Rectangle(105, 15, 115, 115);
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/angel.png", mimeType = "image/png")]
 		public var Bust_ANGEL:Class;
 		
@@ -678,6 +682,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/sally.png", mimeType = "image/png")]
 		public var Bust_SALLY:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/schora.png", mimeType = "image/png")]
+		public var Bust_SCHORA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/schora_nude.png", mimeType = "image/png")]
+		public var Bust_SCHORA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/shelly.png", mimeType = "image/png")]
 		public var Bust_SHELLY:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/shelly_nude.png", mimeType = "image/png")]
@@ -891,6 +900,9 @@ package classes.Resources.Busts
 			public var Full_AINA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/aina_nude.png", mimeType = "image/png")]
 			public var Full_AINA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/akkadirobots.png", mimeType = "image/png")]
+			public var Full_AKKADIROBOTS:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/angel.png", mimeType = "image/png")]
 			public var Full_ANGEL:Class;
@@ -1487,6 +1499,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/sally.png", mimeType = "image/png")]
 			public var Full_SALLY:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/schora.png", mimeType = "image/png")]
+			public var Full_SCHORA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/schora_nude.png", mimeType = "image/png")]
+			public var Full_SCHORA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly.png", mimeType = "image/png")]
 			public var Full_SHELLY:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/shelly_nude.png", mimeType = "image/png")]
