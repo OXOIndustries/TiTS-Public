@@ -493,6 +493,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/maja_nude.png", mimeType = "image/png")]
 		public var Bust_MAJA_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/maike.png", mimeType = "image/png")]
+		public var Bust_MAIKE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/maike_nude.png", mimeType = "image/png")]
+		public var Bust_MAIKE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/merc.png", mimeType = "image/png")]
 		public var Bust_MERCGUARD:Class;
 		
@@ -787,6 +792,12 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/tlako.png", mimeType = "image/png")]
 		public var Bust_TLAKO:Class;
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/torra_nude.png", mimeType = "image/png")]
+		public var Bust_TORRA_NUDE:Class;
+		public function get Bust_TORRA():Class { return Bust_TORRA_NUDE; }
+		//[Embed(source = "../../../assets/images/npcs/adjatha/torra.png", mimeType = "image/png")]
+		//public var Bust_TORRA:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/rocket_pods.png", mimeType = "image/png")]
 		public var Bust_TURRET:Class;
 		public var Bounds_TURRET:Rectangle = new Rectangle(70, 3, 80, 80);
@@ -814,7 +825,10 @@ package classes.Resources.Busts
 		public var Bust_VAHN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/vahn_nude.png", mimeType = "image/png")]
 		public var Bust_VAHN_NUDE:Class;
-		
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/valden.png", mimeType = "image/png")]
+		public var Bust_VALDEN:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/verusha.png", mimeType = "image/png")]
 		public var Bust_VERUSHA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/verusha_nude.png", mimeType = "image/png")]
@@ -1305,6 +1319,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/maja_nude.png", mimeType = "image/png")]
 			public var Full_MAJA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/maike.png", mimeType = "image/png")]
+			public var Full_MAIKE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/maike_nude.png", mimeType = "image/png")]
+			public var Full_MAIKE_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/merc.png", mimeType = "image/png")]
 			public var Full_MERCGUARD:Class;
 			
@@ -1580,6 +1599,12 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tlako.png", mimeType = "image/png")]
 			public var Full_TLAKO:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/torra_nude.png", mimeType = "image/png")]
+			public var Full_TORRA_NUDE:Class;
+			public function get Full_TORRA():Class { return Bust_TORRA_NUDE; }
+			//[Embed(source = "../../../assets/images/npcs/adjatha/hr/torra.png", mimeType = "image/png")]
+			//public var Full_TORRA:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/rocket_pods.png", mimeType = "image/png")]
 			public var Full_TURRET:Class;
 
@@ -1606,6 +1631,9 @@ package classes.Resources.Busts
 			public var Full_VAHN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/vahn_nude.png", mimeType = "image/png")]
 			public var Full_VAHN_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/valden.png", mimeType = "image/png")]
+			public var Full_VALDEN:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/verusha.png", mimeType = "image/png")]
 			public var Full_VERUSHA:Class;
