@@ -1083,7 +1083,7 @@ public function initZhengRooms():void
 	rooms["ZSM S14"].southExit = "ZSM S16";
 	rooms["ZSM S14"].westExit = "";
 	rooms["ZSM S14"].moveMinutes = 3;
-	rooms["ZSM S14"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM S14"].runOnEnter = zsms14Bonus;
 	rooms["ZSM S14"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSM S14"].addFlag(GLOBAL.HAZARD);
 

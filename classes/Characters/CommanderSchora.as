@@ -245,15 +245,14 @@ With a wicked grin, Schora taps a button on the side of her gun. The muzzle glow
 			else
 			{
 				output(" You're raked by impacts from the gun!");
-				applyDamage(damageRand(rangedDamage().multiply(1.5), 50), this, target, "minimal");
+				applyDamage(rangedDamage(), this, target, "minimal");
 			}
 		}
-		
 		
 		private function shottyDakka(target:Creature):void
 		{
 			output("Schora pumps a shotgun slung under her machinegun's barrel and squeezes a secondary trigger, sending a blast of metal pellets at you!");
-			applyDamage(damageRand(rangedDamage().multiply(3), 20), this, target, "minimal");
+			applyDamage(damageRand(rangedDamage().multiply(1.5), 10), this, target, "minimal");
 			if (target.hasArmor() && target.shields() <= 0 && !target.hasStatusEffect("Sundered")){
 				output("\n\nThe blast rips into your armor, tearing it apart! <b>It's Sundered!</b>");
 				CombatAttacks.applySunder(target);
@@ -269,7 +268,11 @@ With a wicked grin, Schora taps a button on the side of her gun. The muzzle glow
 				output(" The rounds splatter against you like some infernal jelly, smearing across your " + (target.hasArmor() ? target.armor.longName : target.skinFurScales()) + " with a sizzling agony!");
 				var damage:TypeCollection = new TypeCollection({burning:rangedDamage()});
 				applyDamage(damage, this, target, "minimal");
-				if (target.physique() < rand(60)) CombatAttacks.applyBurn(target);
+				if (target.physique()/2 + rand(20) + 1 < this.aim()/2+10) 
+				{
+					CombatAttacks.applyBurn(target);
+					output(" <b>You are burning!</b>");
+				}
 			}
 		}
 		
@@ -277,7 +280,7 @@ With a wicked grin, Schora taps a button on the side of her gun. The muzzle glow
 		{
 			output("Schora pulls a small blue sphere off her belt, knocks it against on her horns, and throws it at your feet. You jump back, expecting an explosion -- instead, the grenade lets out a little spark and what feels like a wave of static electricity in the air.");
 			if (target.hasStatusEffect("Chaff Grenade")) target.setStatusValue("Chaff Grenade", 1, 3);
-			else target.createStatusEffect("Chaff Grenade",3,0,0,0,false,"Icon_Paralysis","All attack bonuses disabled.",true,0,UIStyleSettings.gShieldColour);
+			else target.createStatusEffect("Chaff Grenade",3,0,0,0,false,"Icon_Paralysis","Removes all bonuses to accuracy!",true,0,UIStyleSettings.gShieldColour);
 		}
 	}
 }

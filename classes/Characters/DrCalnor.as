@@ -196,6 +196,7 @@
 			//kGAMECLASS.mhengaSSTDChance(this);
 			_isLoading = false;
 		}
+		private var _round:Number = 0;
 		
 		override public function get bustDisplay():String
 		{
@@ -206,6 +207,7 @@
 		private var staffDischargeRound:int = -1;
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
 		{
+			_round++;
 			if (CombatManager.getRoundCount() >= staffDischargeRound) (meleeWeapon as ElectroSheepstick).staffBuff(false);
 			if (hasStatusEffect("Evasion Reduction")) removeStatusEffect("Evasion Reduction");
 		
@@ -226,8 +228,8 @@
 			{
 				nextMove = null;
 				if (shieldChargableInRound == CombatManager.getRoundCount() && rand(3) == 0) chargeShield();
+				else if (_round % 5 && !target.hasStatusEffect("Tripped")) stormLance(target);
 				else if (rand(3) == 0) hammerBlow(target);
-				else if (rand(2) == 0 && !target.hasStatusEffect("Tripped")) stormLance(target);
 				else if (staffDischargeRound == -1) voidCharge();
 				else burnination(target);
 			}
@@ -246,8 +248,12 @@
 		{
 			if (shieldCharged)
 			{
-				output("\nThe moment your blow connects with Calnor's shields, you're hit by a sudden, overwhelming flash of light that leaves you seeing stars... and not much else. <b>You're blind!</b>");
-				CombatAttacks.applyBlind(target, 1+rand(4));
+				output("\nThe moment your blow connects with Calnor's shields, you're hit by a sudden, overwhelming flash of light that leaves you seeing stars... and not much else.");
+				if(!target.isBlind()) 
+				{
+					output(" <b>You're blind!</b>");
+					CombatAttacks.applyBlind(target, 1+rand(2));
+				}
 				shieldCharged = false;
 				shield.defense -= 5;
 			}
@@ -286,7 +292,7 @@
 				|| blindMiss(this, target)) output(" You step aside just in time, letting his momentum carry him past you and leaving him reeling.");
 			else
 			{
-				output(" The staff hits you with dizzying force, choking the wind out of you -- the crook's caught around your neck. You gasp as you're slammed to the ground!");
+				output(" The staff hits you with dizzying force, choking the wind out of you -- the crook's caught around your neck. You gasp as <b>you're slammed to the ground!</b>");
 				applyDamage(damageRand(meleeDamage().multiply(1.75), 35), this, target, "minimal");
 				CombatAttacks.applyTrip(target);	
 			}
