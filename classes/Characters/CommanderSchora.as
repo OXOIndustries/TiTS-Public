@@ -204,7 +204,7 @@ Like Kaska, "Low Blow" deals hella bonus damage to her.
 The PC picks up an Aegis LMG from her as loot.
 -dun
 
-You're fighting Commander Schora, the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship. She's a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station's security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she's wearing. She's currently wielding a bulty machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger.
+You're fighting Commander Schora, the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship. She's a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station's security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she's wearing. She's currently wielding a bulky machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger.
 
 
 Machinegun Burst
