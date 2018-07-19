@@ -3244,6 +3244,14 @@ public function SSTE1(args:Array):void
 	//[=Afterglow=]
 	// end scene (scene: SSTE1); go to (SSTAG)
 	clearMenu();
+    //paigecuddles exception
+    if (InCollection("PCSE3", args)
+        || InCollection("PCSE4", args)
+        || InCollection("PCSES", args))
+    {        
+        flags["PAIGE_WAKEY_FLAGS"] = args.concat();
+        return sleep(false);
+    }
 	addButton(0,"Next",SSTAG,args);
 }
 
@@ -3286,6 +3294,14 @@ public function SSTE2(args:Array):void
 	//[=Afterglow=]
 	// end scene (scene: SSTE2); go to (SSTAG)
 	clearMenu();
+    //paigecuddles exception
+    if (InCollection("PCSE3", args)
+        || InCollection("PCSE4", args)
+        || InCollection("PCSES", args))
+    {        
+        flags["PAIGE_WAKEY_FLAGS"] = args.concat();
+        return sleep(false);
+    }
 	addButton(0,"Next",SSTAG,args);
 }
 
@@ -3348,6 +3364,14 @@ public function SSTE3(args:Array):void
 	pc.orgasm();
 	args.push("SSTE3");
 	clearMenu();
+    //paigecuddles exception
+    if (InCollection("PCSE3", args)
+        || InCollection("PCSE4", args)
+        || InCollection("PCSES", args))
+    {        
+        flags["PAIGE_WAKEY_FLAGS"] = args.concat();
+        return sleep(false);
+    }
 	addButton(0,"Next",SSTAG,args);
 }
 
@@ -3381,6 +3405,14 @@ public function SSTE4(args:Array):void
 	pc.orgasm();
 	args.push("SSTE4");
 	clearMenu();
+    //paigecuddles exception
+    if (InCollection("PCSE3", args)
+        || InCollection("PCSE4", args)
+        || InCollection("PCSES", args))
+    {        
+        flags["PAIGE_WAKEY_FLAGS"] = args.concat();
+        return sleep(false);
+    }
 	addButton(0,"Next",SSTAG,args);
 }
 
@@ -3412,6 +3444,14 @@ public function SSTE5(args:Array):void
 	for(var i:int = 0; i < 4; i++) { pc.orgasm(); }
 	args.push("SSTE5");
 	clearMenu();
+    //paigecuddles exception
+    if (InCollection("PCSE3", args)
+        || InCollection("PCSE4", args)
+        || InCollection("PCSES", args))
+    {        
+        flags["PAIGE_WAKEY_FLAGS"] = args.concat();
+        return sleep(false);
+    }
 	addButton(0,"Next",SSTAG,args);
 }
 
