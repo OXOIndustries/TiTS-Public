@@ -41,7 +41,7 @@ public function syriQuestInitRooms():void
 	
 	//dummy rooms for intro
 	rooms["AKD C21"] = new RoomClass(this);
-	rooms["AKD C21"].roomName = "HAKON\nOFFICES";
+	rooms["AKD C21"].roomName = "HASKARN\nOFFICES";
 	//rooms["AKD C21"].description = "desc";
 	rooms["AKD C21"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD C21"].planet = planetName;
@@ -51,7 +51,7 @@ public function syriQuestInitRooms():void
 	rooms["AKD C21"].addFlag(GLOBAL.NPC);
 
 	rooms["AKD C23"] = new RoomClass(this);
-	rooms["AKD C23"].roomName = "HAKON\nOFFICES";
+	rooms["AKD C23"].roomName = "HASKARN\nOFFICES";
 	//rooms["AKD C23"].description = "desc";
 	rooms["AKD C23"].runOnEnter = function():void{author("Savin")};
 	rooms["AKD C23"].planet = planetName;
