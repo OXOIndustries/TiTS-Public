@@ -164,6 +164,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/bronco.png", mimeType = "image/png")]
 		public var Bust_BRONCO:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/calnor.png", mimeType = "image/png")]
+		public var Bust_CALNOR:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/calnor_nude.png", mimeType = "image/png")]
+		public var Bust_CALNOR_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/khorgan.png", mimeType = "image/png")]
 		public var Bust_CAPTAIN_KHORGAN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/khorgan_nude.png", mimeType = "image/png")]
@@ -1025,6 +1030,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/bronco.png", mimeType = "image/png")]
 			public var Full_BRONCO:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/calnor.png", mimeType = "image/png")]
+			public var Full_CALNOR:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/calnor_nude.png", mimeType = "image/png")]
+			public var Full_CALNOR_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan.png", mimeType = "image/png")]
 			public var Full_CAPTAIN_KHORGAN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/khorgan_nude.png", mimeType = "image/png")]
