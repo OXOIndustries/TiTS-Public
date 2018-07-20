@@ -1560,13 +1560,13 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 						}
 					}
 					break;
-                case "PAIGE":
-                    if (paigeIsCrew() && hours >= 22 || hours < 5)
-                    {
-                        paigeSleepNodeOne();
-                        interrupt = true;
-                    }
-                    break;
+				case "PAIGE":
+					if (paigeIsCrew() && hours >= 22 || hours < 5)
+					{
+						paigeSleepNodeOne();
+						interrupt = true;
+					}
+					break;
 				// No partner selected.
 				default:
 					// SERA IMPREGNATIONS
@@ -1624,7 +1624,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (tryProcDommyReahaTime(minPass - rand(301))) wakeEvents.push(reahaDommyFuxTime);
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [annoMorningRouter];
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
-        if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
+		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
 		
 		if (wakeEvents.length > 0)
 		{
