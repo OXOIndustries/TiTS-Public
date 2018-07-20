@@ -63,6 +63,19 @@ public function paigeJumpToSexFlowchart(args:Array):void
     }
 }
 
+public function paigePostCuddles(args:Array):Boolean
+{
+    if (InCollection("PCSE3", args)
+        || InCollection("PCSE4", args)
+        || InCollection("PCSES", args))
+    {        
+        flags["PAIGE_WAKEY_FLAGS"] = args.concat();
+        sleep(false);
+        return true;
+    }
+    return false;
+}
+
 //PCSI
 public function paigeSleepNodeOne():void
 {
@@ -378,7 +391,7 @@ public function paigeJustShagAlreadyJeez():void
     pc.lust(30);
     
     output("‘We always wants what we can’t have,’ she says. Well, she hasn’t met someone like you – someone daring enough to take what it is they want.");
-    output("\n\nWith some quick, forceful movements, you wrap your arms around Paige, getting a surprised huff from her lungs are you bear-hug her, and you roll onto your back, bringing her atop you, pressing you both chest-to-chest. You explain that there are few things in this universe that you can’t have if you want it – and right now, you want your sexy yogi on top of you, and her ass in your hands.");
+    output("\n\nWith some quick, forceful movements, you wrap your arms around Paige, getting a surprised huff from her lungs as you bear-hug her, and you roll onto your back, bringing her atop you, pressing you both chest-to-chest. You explain that there are few things in this universe that you can’t have if you want it – and right now, you want your sexy yogi on top of you, and her ass in your hands.");
     output("\n\nPaige whimpers giddily as your busy hands go to work, massaging and pulling and squeezing and pulling and pushing at her glutes, taking as much pleasure from them, from every angle and avenue of attack as they can. Your fingers search and delve into the cleavage of her butt; your palm flatly grinds and presses against the hills of each cheek; your thumbs each quest upward, towards the underside of the base of her tail, knowing that that’s her weak spot.");
     output("\n\nAnd, proving your point, Paige lets you. She gets quite into it, herself: her hips rock into your hands, then they thrust forward, humping wetly against your");
     if (pc.hasCock()) output(" [pc.cock].");
