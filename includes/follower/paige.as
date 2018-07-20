@@ -828,6 +828,13 @@ public function paigeMenu():void
 		else addButton(13, "Dismiss", paigeCrewToggle, false, "Dismiss", "Dismiss Paige from your ship.");
 	}
 	
+	if (currentLocation == "SHIP INTERIOR")
+	{
+		if (flags["CREWMEMBER_SLEEP_WITH"] == "PAIGE") addButton(9, "Sleep Alone", paigeRegardingTheBed);
+		else if (flags["CREWMEMBER_SLEEP_WITH"] == undefined) addButton(9, "Sleep With", paigeRegardingTheBed, false, "Sleep With Paige", "Ask Paige if she’d be willing to spend the nights with you. In a purely non-sexual way, of course. Purely.");
+		else addDisabledButton(9, "Sleep With", "Sleep With Paige", "You promised someone else that they could share your bed with you! Go and break it off with them first if you want Paige warming your bed at night.");
+	}
+	
 	addButton(14,"Leave",leavePaige);
 }
 public function paigeCrewToggle(recruit:Boolean = true):void
