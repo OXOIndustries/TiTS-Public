@@ -79,14 +79,14 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_FUR;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pink";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_VULPINE;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
 			this.lipMod = 1;
-			this.earType = GLOBAL.TYPE_VULPINE;
+			this.earType = GLOBAL.TYPE_HUMAN;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
