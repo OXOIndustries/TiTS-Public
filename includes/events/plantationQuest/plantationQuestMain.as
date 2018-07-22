@@ -3026,7 +3026,7 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 	// Handmaiden Threesome
 	if(	(pc.hasCock() && pc.smallestCockLength() < 12.5)
 	&&	pc.libido() >= 30
-	&&	flags["QUINN_EVERY_HOLED"] != undefined || GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440)
+	&&	flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440)
 	{
 		quinnHandmaidenThreesome(["intro"]);
 		return;
