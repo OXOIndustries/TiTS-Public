@@ -11386,6 +11386,34 @@
 			if (!hasVagina()) return male;
 			return female;
 		}
+		public function cockAndVagina(cockString:String, vaginaString:String, connector:String = " and"):String
+		{
+			var finalString:String = "";
+			if (hasCock()) 					finalString += cockString;
+			if (hasVagina() && hasCock()) 	finalString += connector;
+			if (hasVagina()) 				finalString += vaginaString;
+			return finalString;
+		}
+		public function vaginaAndCock(vaginaString:String, cockString:String, connector:String = " and"):String
+		{
+			var finalString:String = "";
+			if (hasVagina()) 				finalString += vaginaString;
+			if (hasVagina() && hasCock()) 	finalString += connector;
+			if (hasCock()) 					finalString += cockString;
+			return finalString;
+		}
+		public function cockXorVagina(cockString:String, vaginaString:String):String
+		{
+			if (hasCock()) return cockString;
+			if (hasVagina()) return vaginaString;
+			return "";
+		}
+		public function vaginaXorCock(vaginaString:String, cockString:String):String
+		{
+			if (hasVagina()) return vaginaString;
+			if (hasCock()) return cockString;
+			return "";
+		}
 		//Create a cock
 		public function createCock(clength: Number = 5.5, cthickness: Number = 1): Boolean {
 			if (cocks.length >= 10) return false;
