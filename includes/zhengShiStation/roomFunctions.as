@@ -14,6 +14,7 @@ public function zhengElevatorF1Bonus():void
 	else 
 	{
 		output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
+		addButton(5,"Up",move,"ZSF I16");
 	}
 }
 

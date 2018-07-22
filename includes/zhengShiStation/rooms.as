@@ -82,6 +82,7 @@ public function initZhengRooms():void
 	rooms["ZS N46"].runOnEnter = zhengElevatorF1Bonus;
 	rooms["ZS N46"].addFlag(GLOBAL.INDOOR);
 	rooms["ZS N46"].addFlag(GLOBAL.PUBLIC);
+	rooms["ZS N46"].addFlag(GLOBAL.LIFTUP);
 
 	rooms["ZSF I16"] = new RoomClass(this);
 	rooms["ZSF I16"].roomName = "CARGO\nELEVATOR";
