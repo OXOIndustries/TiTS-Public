@@ -718,6 +718,7 @@ public function kaneDefeated():void
 	showKane();
 	author("Nonesuch");
 	flags["KANE_DEFEATED"] = 1;
+	if (flags["LOST_TO_KANE"] == undefined) flags["LOST_TO_KANE"] = 0;
 	showName("VICTORY:\nKANE");
 	output("Kane collapses in a yellow and black heap, beside the waterfall pool.");
 	output("\n\n<i>“No...”</i> he groans, wings twitching fitfully, attempting to clamber to his hands and knees. <i>“I obeyed the words... I am strong... I must protect...”</i>");
@@ -753,6 +754,7 @@ public function missionaryPositionWithKane():void
 	clearOutput();
 	showKane(true);
 	author("Nonesuch");
+	IncrementFlag("KANE_SEXED");
 	var x:int = rand(pc.totalVaginas());
 	output("So much energy and boyish vigor, wasted upon angrily batting into you like a wasp against a window. With the wonderful sugary pheromones singing in your veins, sinking roots of hot arousal into your [pc.groin], you know exactly how the zil’s aggression should really be channelled.");
 	output("\n\nKane watches you from the ground, still scowling, as you ");
@@ -816,6 +818,7 @@ public function frotWithKaneYaBugger():void
 	clearOutput();
 	showKane(true);
 	author("Nonesuch");
+	IncrementFlag("KANE_SEXED");
 	output("<i>“Pants down, fly boy,”</i> you growl, the sugary pheromones singing in your veins, hot arousal rooting into your [pc.groin]. <i>“Let’s see the goods.”</i>");
 	output("\n\nKneeling on his side, Kane sullenly does as you ask, retracting his chest and groin plate so that his stiff, six inch fore-skinned prick springs into the open air. The smell of horny honey intensifies and you breath it in gladly; the arousal inside you swells from nagging to uncontainable and you have your [pc.gear] off before you’ve even thought about it, [pc.eachCock] throbbing with need and pointing at the warrior zil accusingly, all of your attention on his gently oozing cock.");
 	output("\n\nYou lower yourself down onto the mossy ground and take hold of his firm, compact frame, allowing your [pc.chest] to brush over his small, black nipples, firmly pressing the hot meat of your [pc.cock] against the shiny, latex-like protrusion of his own. He turns his head away with a flick of brown hair, an expression of disdain writ large on his overcast features.");
@@ -863,6 +866,9 @@ public function loseToKane():void
 	showKane();
 	author("Nonesuch");
 	showName("DEFEAT:\nKANE");
+	IncrementFlag("LOST_TO_KANE");
+	IncrementFlag("KANE_SEXED");
+	IncrementFlag("KANE_BLOWN");
 	if(pc.HP() <= 1) output("The strength departs your [pc.legOrLegs] and you collapse, hands sinking into soft moss. You shake your head urgently and throw your [pc.weapon] down when you hear the deadly whirr of the stone approaching. <i>Anything</i> but getting hit by that again.");
 	else output("Your head swims. Everything seems to drip with honey, you can practically taste and feel it on your [pc.lips] and [pc.tongue], and oh Void the thought of being touched and roughly used when you’re in this state... you barely notice your [pc.weapon] tumbling out of your hand. It’s no longer of any importance.");
 	output("\n\nKane walks across to you slowly, only letting his weapon softly thump down into the moss when it’s completely obvious you aren’t bluffing; when he’s almost on top of you, and the smell of him is billowing thickly over your senses.");
@@ -1581,7 +1587,7 @@ public function zilVillageOutskirts():void
 		output("\n\n<i>“Quinn will speak with you,”</i> he says. <i>“You can rest here first, if you wish. I would.”</i> He disappears further into the woods without another word.");
 	}
 	//Quest resolved, zil defeated:
-	else if(plantationQuestComplete() && flags["PQ_RESOLUTION"] == -1) 
+	else if(flags["PQ_RESOLUTION"] == -1) 
 	{
 		output("\n\nThis place is empty now, the wind blowing nothing but memories. Somehow it gives you the creeps a lot more than when it was packed with watching zil.");
 	}
@@ -1593,6 +1599,11 @@ public function zilVillageOutskirts():void
 		//“RK Lah” appears in Key Items if PC picks him up either here or through the violent resolution
 		output("\n\n(<b>Key Item Gained:</b> RK Lah - Captured)");
 		pc.createKeyItem("RK Lah - Captured");
+	}
+	if (hours >= 7 && hours < 18 && plantationQuestComplete()) 
+	{
+		output("\n\nIn the foliage of a tree at the very edge of the settlement, you can just about make out a single, dangling black boot. The sort that might be attached to a big male zil, perhaps.");
+		addButton(0, "Kane", kaneApproach);
 	}
 }
 
