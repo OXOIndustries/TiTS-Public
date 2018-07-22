@@ -72,8 +72,9 @@ public function syriFreezerTalkMenu(outputs:Boolean = true):void
 	else addDisabledButton(2,"Love?");
 	if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 1) addButton(3,"Penis",syriFreezerTalkPenis,undefined,"Penis","So now that Valden's the living dead, what's Syri gonna do about her dick?");
 	else addDisabledButton(3,"Locked");
-	if (flags["SYRIQUEST_SYRI_ONAHOLE"] >= 1 && flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2) addButton(4, "Cunt Sleeve", syriFreezerTalkCuntSleeve, undefined, "Cunt Sleeve", "Since Syri's not interested in a new pussy, maybe she'd be interested in seeing what happened to the old model...");
+	if (flags["SYRIQUEST_SYRI_ONAHOLE"] == 1 && flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2) addButton(4, "Cunt Sleeve", syriFreezerTalkCuntSleeve, undefined, "Cunt Sleeve", "Since Syri's not interested in a new pussy, maybe she'd be interested in seeing what happened to the old model...");
 	else addDisabledButton(4,"Locked");
+
 	addButton(5,"Books",syriTalkThree,undefined,"Books","What is she reading these days?");
 	addButton(14,"Back",syriFreezerMenu);
 }

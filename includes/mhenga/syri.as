@@ -655,6 +655,12 @@ public function approachSyriIntheMorning():void {
 
 public function syriMorningMenu():void
 {
+	//On Uveto? Go back to Syri's Uveto menu instead.
+	if(currentLocation == "UVI R32" && syriAtFreeezer()) 
+	{
+		syriFreezerMenu();
+		return;
+	}
 	clearMenu();
 	addButton(0,"Talk",talkToSyriRouter);
 	if(syriIsAFuckbuddy()) {

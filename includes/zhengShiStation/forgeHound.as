@@ -235,14 +235,21 @@ public function okayApologySexItIs():void
 	output("\n\n<i>“</i>God<i>, yes,”</i> the leithan replies. <i>“With any luck I’ll never see you again in my life. But then again,”</i> he continues, laughing a little and tapping the keratin protrusions on his head, <i>“I’ve got a funny feeling you’ll be back. Now " + (pc.isTaur() ? "turn around":"kneel") + ", bitch.”</i>");
 	output("\n\n<i>“Hey, you don’t need to be rude,”</i> you mutter, " + (pc.isTaur() ? "turning around and looking back":"kneeling down in front of him, noting how muscular his forelegs are from up close") + ". <i>“Like this?”</i>");
 	output("\n\n<i>“That’s right. So you </i>can<i> follow an instruction if I keep it simple enough,”</i> the man says, letting out a breath of relief. <i>“Good [pc.boyGirl].”</i>");
-	output("\n\nYou giggle a bit at that. Yeah, you might not be the <i>brightest</i> bulb, but you’re definitely the goodest. ");
+	if(pc.isBimbo()) output("\n\nYou giggle a bit at that. Yeah, you might not be the <i>brightest</i> bulb, but you’re definitely the goodest.");
 	if(pc.isTaur())
 	{
-		output(" You wiggle your [pc.ass] a little, waiting for your stud.");
+		if(pc.isBimbo()) output(" ");
+		else output("\n\n");
+		output("You wiggle your [pc.ass] a little, waiting for your stud.");
 		if(!pc.isCrotchExposed()) output(" He’s quick to remove your [pc.crotchCovers], letting your coverings slide down your hindlegs to the ground.");
 		output(" He’s on top of you not even a second later, scrabbling around your sides to get a proper grip - fuck, he’s big! And not even his cock! You’re having trouble just staying upright with such a gigantic leithan on top of you.");
 	}
-	else output(" You stick out your [pc.tongue] at the leithan, provoking him just a bit. He steps over you, what’s hanging between his hindlegs drawing closer. Oooh, his balls are <i>fat</i>! His cock is apparently still in its sheath, but there’s more than enough to keep you entertained here.");
+	else 
+	{
+		if(pc.isBimbo()) output(" ");
+		else output("\n\n");
+		output(" You stick out your [pc.tongue] at the leithan, provoking him just a bit. He steps over you, what’s hanging between his hindlegs drawing closer. Oooh, his balls are <i>fat</i>! His cock is apparently still in its sheath, but there’s more than enough to keep you entertained here.");
+	}
 
 	if(pc.isTaur()) 
 	{
@@ -346,7 +353,7 @@ public function okayApologySexItIs():void
 
 		output("\n\nThat’s the last thing you remember from the encounter. When you open your eyes again, you’re alone again. What the hell just happened? You look down at yourself and see your belly, still swollen with a baby bump of jizz, then notice there’s something on your lips. You wipe your hand across your mouth and check what it is: thick, sticky cum. Before you can stop yourself or even think, you instinctively swallow the rest of the load in your mouth.");
 
-		output("\n\nYou immediately groan in disgust and spit. You can <i>feel</i> it travelling down your abused throat to join the rest, its heat massaging your sore insides. That man is dangerous. He’s done something to you, gotten inside your head somehow. You ache just thinking about him, wanting to walk back inside and offer all of your ho- no! Damn, this is what he meant by you coming back to him. You have to find out exactly what it was he did.}");
+		output("\n\nYou immediately groan in disgust and spit. You can <i>feel</i> it travelling down your abused throat to join the rest, its heat massaging your sore insides. That man is dangerous. He’s done something to you, gotten inside your head somehow. You ache just thinking about him, wanting to walk back inside and offer all of your ho- no! Damn, this is what he meant by you coming back to him. You have to find out exactly what it was he did.");
 	}
 	//merge
 	output("\n\nMaybe you’ll ask him about it when you go back and see h-no! Fuck! You’re going to go back and <i>fight</i> him, not fuck him! You shake your head and look down at yourself, steeling your resolve. Yes... you’ll go back and settle this once and for all.");
@@ -453,7 +460,7 @@ public function submitToForgehound():void
 
 		output("\n\n<i>“Nnnngghhh... fuck,”</i> he growls in satisfaction, leaving his stupendous cock bulging inside you while he empties himself. <i>“You’re gonna make a great cumdump.”</i>");
 		output("\n\nThe words set your mind alight with desire, and you’d giggle with happiness if you were capable. The thought that your master’s going to enjoy you is so enticing and rewarding that you cum again without touching yourself. He’s just so <i>good</i>...");
-		output("\n\n<i>“Now get up and come to my quarters, bitch,”</i> he says, grinning as he pulls out of your ruined asshole. Seed pours " + (pc.isTaur() ? "down your [pc.ass], soaking your underside":"from the gaping orifice, forming a pool between your [pc.thighs]. <i>“There’ll be more time for fun when you get there.”</i>\n\nMotivated by his promise of more attention, you shakily rise to your feet."));
+		output("\n\n<i>“Now get up and come to my quarters, bitch,”</i> he says, grinning as he pulls out of your ruined asshole. Seed pours " + (pc.isTaur() ? "down your [pc.ass], soaking your underside":"from the gaping orifice, forming a pool between your [pc.thighs]") + ". <i>“There’ll be more time for fun when you get there.”</i>\n\nMotivated by his promise of more attention, you shakily rise to your [pc.footOrFeet].");
 		processTime(15);
 		for(var y:int = 0; y < 5; y++) { pc.orgasm(); }
 		pc.loadInAss(forgy);
@@ -484,7 +491,7 @@ public function defeatForgy():void
 		else
 		{
 			output("\n\n<i>“You don’t look so big lying on the ground with your dick out like that,”</i> you muse. <i>“Poor puppy.”</i>");
-			output("\n\n<i>“F-fffuck you,”</i> he pants, cheeks flushed a dark red under his gray skin. <i>“You’ll regret insulting me later!”</i>}");
+			output("\n\n<i>“F-fffuck you,”</i> he pants, cheeks flushed a dark red under his gray skin. <i>“You’ll regret insulting me later!”</i>");
 			output("\n\n<i>“Alright, spill it,”</i> you say, bending down to look him in the eye. <i>“There’s something going on with you, something you’re hiding. It’s too obvious. What is it?”</i>");
 			output("\n\nHe says nothing, and you sigh theatrically as you get back up. <i>“Guess I’m wasting my time. I’ll just leave you here with that giant, painful-looking erection.”</i>");
 			output("\n\n<i>“Fuck,”</i> he spits, then looks up at you. <i>“Fine. I’m a d’zaan alpha, I have addictive cum.”</i>");
@@ -669,11 +676,10 @@ public function resistDisHomeboy():void
 	//[Ignore] [Execute] [Assfuck] [Fist him]
 	addButton(0,"Ignore",ignoreTheDumboTaurboi,undefined,"Ignore","Forget him. You can overcome this!");
 	//addButton(1,"Execute",,undefined,"Execute","");
-	if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(1,"Assfuck",assfuckDatHo,undefined,"Assfuck","Take his donut for a ride!");
+	if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(1,"Assfuck",cockSelect,[assfuckDatHo,enemy.analCapacity(),false,0],"Assfuck","Take his donut for a ride!");
 	else if(pc.hasCock()) addDisabledButton(1,"Assfuck","Assfuck","You're way too big to fit in his asshole, capacious though it may be.");
 	else addDisabledButton(1,"Assfuck","Assfuck","You need a penis for this.");
 	addButton(2,"Fist Him",fistDatTaurBoi,undefined,"Fist Him","Introduce the big guy to a five-finger prostate punch of anal pleasure.");
-
 }
 
 //[Ignore]
@@ -996,7 +1002,8 @@ public function leaveForgyBehind():void
 	clearOutput();
 	showForgehound();
 	output("<i>“Eh. Guess I’ll just leave you here,”</i> you say, shrugging disinterestedly. <i>“You’re not worth my time." + (silly ? " Smell ya later, loser.":"") + "”</i>");
-	output("\n\nYou leave him lying there, bruised and coughing in the wake of his utter defeat. You don’t think you’ll be seeing him again; the huge, egotistical types tend to fade away after being shamed.\n\n");
+	output("\n\nYou leave him lying there, bruised and coughing in the wake of his utter defeat.\n\n");
+	//Cut dis now that he's not 1x only: You don’t think you’ll be seeing him again; the huge, egotistical types tend to fade away after being shamed.
 	CombatManager.genericVictory();
 }
 
@@ -1141,7 +1148,7 @@ public function moreBadEndingToForgy():void
 		output("\n\nYour dick throbs with the intensity, growing several inches in the span of a few seconds as thick cum begins to froth and pour from your swollen head. Throwing your head back, you let out an orgasmic scream, your hips jerking in the air while your cock flops back and forth, spurting creamy cum everywhere. Your master watches you debase yourself, a smirk on his face.");
 		output("\n\n<i>“Nice,”</i> he grunts in approval. You try and meet his gaze but your dick lands on your stomach and spurts straight upwards, ropes of cum covering your torso, and you find yourself too engrossed in the pleasure to find his face. When the changes finally come to an end, you’re lying on your side and panting, sweat running down your face. That took a lot out of you. Your cock begins to soften, but even as it begins to go limp you can see it’s over a foot long.");
 		output("\n\n<i>“Th-thank you, Master,”</i> you moan. <i>“I’m so happy...”</i>");
-		output("\n\n<i>“Oh, don’t thank me just yet,”</i> he says, drawing two more needles from a satchel. <i>“You’re not even done.”</i>}");
+		output("\n\n<i>“Oh, don’t thank me just yet,”</i> he says, drawing two more needles from a satchel. <i>“You’re not even done.”</i>");
 	}
 	else
 	{
