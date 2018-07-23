@@ -45,6 +45,11 @@ package classes.Resources.Busts
 		public var Bust_ANZHELA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/anzhela_nude.png", mimeType = "image/png")]
 		public var Bust_ANZHELA_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/ardia.png", mimeType = "image/png")]
+		public var Bust_ARDIA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/ardia_nude.png", mimeType = "image/png")]
+		public var Bust_ARDIA_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha.png", mimeType = "image/png")]
 		public var Bust_ATHA:Class;
@@ -926,6 +931,11 @@ package classes.Resources.Busts
 			public var Full_ANZHELA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anzhela_nude.png", mimeType = "image/png")]
 			public var Full_ANZHELA_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/ardia.png", mimeType = "image/png")]
+			public var Full_ARDIA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/ardia_nude.png", mimeType = "image/png")]
+			public var Full_ARDIA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha.png", mimeType = "image/png")]
 			public var Full_ATHA:Class;

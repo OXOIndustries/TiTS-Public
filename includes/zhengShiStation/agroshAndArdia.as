@@ -271,6 +271,7 @@ public function turnTheSlaveryTables():void
 	output("\n\nAnd how are you supposed to sate these cravings?");
 	output("\n\nArdia just chuckles nervously and pats her thigh, next to her cum-sheened cock and apple-sized nuts. Oh, of course.");
 	output("\n\nFor now, though, what do you want to do?");
+	IncrementFlag("SEXED_ARDIA");
 
 	processTime(20);
 	//9999pc.loadInMouth(Ardia);
@@ -420,78 +421,109 @@ public function foundryLoungeBonus():Boolean
 {
 	if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["AGROSH_WHUPPED"] != undefined) output(", and the big, burly thraggen technician you've tied up to one of the bar stools");
 	output(".");
-	if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["AGROSH_WHUPPED"] != undefined) output("\n\nArdia is sitting on the stool over him, enjoying some of pirates’ most expensive whiskey. Her lengthy ears perk up at your approach, followed by a shy little smile on her cyan lips.");
+	if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["AGROSH_WHUPPED"] != undefined) 
+	{
+		output("\n\nArdia is sitting on the stool over him, enjoying some of pirates’ most expensive whiskey. Her lengthy ears perk up at your approach, followed by a shy little smile on her cyan lips.");
+		addButton(0,"Ardia",ardiaApproach,undefined,"Ardia","Go talk to the freed dzaan.");
+	}
 	return slaveLoungeAgroshProc();
 }
 
 //[Ardia]
 //Go talk to the freed dzaan.
+public function ardiaApproach(back:Boolean = false):void
+{
+	clearOutput();
+	showArdia();
+	if(back) output("Is there anything else you'd like to do with Ardia instead?");
+	else output("<i>“Hey, [pc.name]!”</i> Ardia says as you [pc.walk] over to the bar. She shifts in her seat, resting a leg on the insensate forge-master’s head. <i>“All’s quiet here. How are you doing; any closer to taking these slavers out?”</i>");
+	processTime(1);
+	clearMenu();
+	addButton(0,"Talk",talkToArdia,undefined,"Talk","Swap some words with the liberated pleasure slave.");
+	//addButton(1,"Relax...",,undefined,"Relax...","");
+	addDisabledButton(1,"Relax...","Relax...","Coming soon!");
+	addButton(14,"Leave",mainGameMenu);
+}
+
+//Talk
+//Swap some words with the liberated pleasure slave.
+public function talkToArdia(back:Boolean = false):void
+{
+	clearOutput();
+	showArdia();
+	if(back) output("Ardia smiles at you as you consider your options.");
+	else
+	{
+		output("You take a seat at the bar next to Ardia and ask if she wouldn’t mind talking for a bit.");
+		output("\n\nShe smiles, leaning on the faux-wood. <i>“Well, doesn’t look like we have a bunch of randy pirates breathing down our throats, so... sure! What’s on your mind, [pc.name]?”</i>");
+	}
+	processTime(2);
+	clearMenu();
+	addButton(0,"Her Story",ardiasStory,undefined,"Her Story","How’d Ardia end up here?");
+	addButton(1,"Other Slaves",otherSlavesInTheBase,undefined,"Other Slaves","What can she tell you about the other slaves here in the base?");
+	addButton(2,"Pirate Info",pirateInfoDumpFromArdia,undefined,"Pirate Info","Ask about the pirate gangs working on Zheng Shi.");
+	addButton(14,"Back",ardiaApproach,true);
+}
+
+//Her Story
+//How’d Ardia end up here?
+public function ardiasStory():void
+{
+	clearOutput();
+	showArdia();
+	output("<i>“How did you end up here?”</i> you ask her. <i>“Did the pirates kidnap you?”</i>");
+	output("\n\nArdia nods slowly. <i>“Yeah, right off my homeworld. The part of Hauâ Mai I grew up on is basically one island-wide resort, a real magnet  for wealthy tourists looking for a beaches and jungle getaway. I thought I’d be safe from this kinda thing, until I made the mistake of joining a mission trip to one of the, uh, less civilized part of the planet. I’d heard slavers target the dzaan tribes that still choose to live out in the jungles like they’re still on the homeworld, but we had a bodyguard at our camp and took as many safety precautions as we could. Wasn’t enough, I guess! Middle of the night, a ship comes in and orbits the village we were staying with. Lots of screaming, blinding lights, pirates flying down on jetpacks and grabbing people. Most of the missionaries got out okay, but I guess I was just the slowest tillabeast in the herd. Some big bastard in orange armor came out of the sky, grabbed me by hips, and jump-jetted me away to his ship.”</i>");
+	output("\n\n<i>“I wish I could say I’d gone back to try and save some little kid, or put out a fire or something... but honestly, I just tripped and fell on my dumb face. Shoulda listened to my mom and stayed in shape, but instead I spent my formative years focusing on the softer kinda figure-building,”</i> Ardia half-laughs, patting a hand on her soft belly, just beneath the full mounds of her F-cup tits. <i>“Besides, dzaan legs just weren’t made for running.”</i>");
+	output("\n\nShe wiggles her toes on top of Agrosh’s head, drawing your attention to the balls-down build of her feet. It’s like she’s perpetually wearing stilettos, but with nothing to support her heels. Yeah, it’s hard to imagine any dzaan marathon runners built like that.");
+	output("\n\nArdia laughs, <i>“Yeah, there’s a reason we came up as a pleasure-oriented culture instead of like, warriors or science-based or whatever... and I guess every pirate gang in the galaxy figures we must be real <b>good</b> at the whole pleasure thing. Buncha racists!”</i>");
+	if(flags["SEXED_ARDIA"] == undefined) output("\n\nTo be fair, she is <i>really</i> good at fuckin’. The comment just earns a little grin from her cyan lips. <i>“I didn’t say they were wrong...”</i>");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",talkToArdia,true);
+}
+
+//Other Slaves
+//What can she tell you about the other slaves here in the base?
+public function otherSlavesInTheBase():void
+{
+	clearOutput();
+	showArdia();
+	output("<i>“What do you know about the other slaves here on the base?”</i>");
+	output("\n\nArdia’s first response is a helpless shrug. <i>“Not much. They kept me up near a ship bay, in a rocky chamber with a few dozen other slaves, until they moved me and a bunch of other, ech, ‘pleasure slaves’ down towards the core. We were supposed to be going down through that huge ship outside to the leaders of this place, until Agrosh here picked " + (flags["ZHENG_SHI_SLAVE_SNUCK"] == undefined ? "me":"the two of us") + " out of the line... so I guess there’s another bunch of slaves being held in the command levels.”</i>");
+	output("\n\n<i>“We’re treated like dirt here, like we’re not even people. The labor slaves have it worse, of course, but being a pleasure slave has to be its own kind of hell... I’m so thankful you saved me before Agrosh could really do anything to me! Just thinking about what would have been my life here makes me shudder!”</i>");
+
+	if(flags["MAIKE_SLAVES_RELEASED"] == 1 || flags["MAIKE_SLAVES_RELEASED"] == 2)
+	{
+		output("\n\n<i>“Don’t worry, I freed the mine slaves,”</i> you tell her.");
+		if(flags["MAIKE_SLAVES_RELEASED"] == 2) output(" <i>“The pleasure slaves up top are all free too.”</i>");
+		if(flags["MAIKE_SLAVES_RELEASED"] != 2) output("\n\nArdia beams. <i>“That’s great! The more slaves you free, the better! Make these evil bastards really feel it, [pc.name].”</i>");
+		else output("\n\nThe dzaan sighs with relief and leans back against the bar. <i>“I think that’s both major blocks of slaves freed, then! Those pirate bastards are gonna be feeling that hit for a long time! So, what’s our next move?”</i>");
+	}
+	processTime(7);
+	clearMenu();
+	addButton(0,"Next",talkToArdia,true);
+}
+
+//Pirate Info
+//Ask about the pirate gangs working on Zheng Shi.
+public function pirateInfoDumpFromArdia():void
+{
+	clearOutput();
+	showArdia();
+	output("<i>“You’ve been here longer than me. Learned anything interesting about the pirates?”</i>");
+	output("\n\nArdia thinks for a moment. <i>“Well, there’s lots of gangs here. This place is like some sort of pirate haven, a neutral ground for a bunch of different groups. I got captured by the Star Vipers, a bunch of real nasty pieces of work that love their drugs and poisons. I must have gotten stuck with twenty needles before you found me! They’re the ones that take the most pleasure slaves, from what I heard. Then there’s the Cyber Punks, real original guys that love their cybernetic augments and limbs. Rat's Raiders are probably the least evil, they’re just thieves... though they try and make themselves look altruistic, I don’t buy it. The Corona Lords are psychos that love radiation and plasma... I can’t believe they don’t all kill themselves with the getups they run around in.”</i>");
+	output("\n\n<i>“The leaders of the bunch are the Jumpers. They’re laquine bushwackers that love themselves some latex and bondage gear... and jump jets. I think some of them were working with the Vipers that kidnapped me, since I got picked up by a guy with a jetpack.”</i>");
+	output("\n\nArdia scowls, rubbing at her hip-hugging uniform. <i>“I can’t believe so many different groups are working together as well as they are. Enough to start building that new starship outside... who would have thought pirates could build their own ships! That’s a whole new danger I’d never have thought about before... I figured pirate ships were all stolen.”</i>");
+	if(pc.isMischievous()) output("\n\n<i>“Well, they had to start somewhere I guess.");
+	else output("\n\n<i>“Not anymore.");
+	output(" Anyway, learn anything about their leadership?”</i>");
+	output("\n\n<i>“No,”</i> Ardia admits. <i>“Everybody’s ‘boss this’ and ‘chief that.’ Heck, I don’t know if half the pirates even know who they work for. I know the Jumpers are the top gang, so whoever is in charge of them is probably the king of douche mountain here. And he’s on the other side of the new ship there... somewhere.”</i>");
+	processTime(10);
+	clearMenu();
+	addButton(0,"Next",talkToArdia,true);
+}
+
 /*
-
-output("\n\nArdia Post-Slave Interactions");
-
-output("\n\nPC can go to Ardia for some lust relief, and use the lounge as a safe place to rest and refuel.");
-
-output("\n\n<i>“Hey, [pc.name]!”</i> Ardia says as you [pc.walk] over to the bar. She shifts in her seat, resting a leg on the insensate forge-master’s head. <i>“All’s quiet here. How are you doing; any closer to taking these slavers out?”</i>");
-
-output("\n\n[Talk] [Relax...] [Leave]");
-
-output("\n\nTalk");
-output("\n\n//Swap some words with the liberated pleasure slave.");
-
-output("\n\nYou take a seat at the bar next to Ardia and ask if she wouldn’t mind talking for a bit.");
-
-output("\n\nShe smiles, leaning on the faux-wood. <i>“Well, doesn’t look like we have a bunch of randy pirates breathing down our throats, so... sure! What’s on your mind, [pc.name]?”</i>");
-
-
-output("\n\n[Her Story] [Other Slaves] [Pirate Info]");
-
-output("\n\nHer Story");
-output("\n\n//How’d Ardia end up here?");
-
-output("\n\n<i>“How did you end up here?”</i> you ask her. <i>“Did the pirates kidnap you?”</i>");
-
-output("\n\nArdia nods slowly. <i>“Yeah, right off my homeworld. The part of Hauâ Mai I grew up on is basically one island-wide resort, a real magnet  for wealthy tourists looking for a beaches and jungle getaway. I thought I’d be safe from this kinda thing, until I made the mistake of joining a mission trip to one of the, uh, less civilized part of the planet. I’d heard slavers target the dzaan tribes that still choose to live out in the jungles like they’re still on the homeworld, but we had a bodyguard at our camp and took as many safety precautions as we could. Wasn’t enough, I guess! Middle of the night, a ship comes in and orbits the village we were staying with. Lots of screaming, blinding lights, pirates flying down on jetpacks and grabbing people. Most of the missionaries got out okay, but I guess I was just the slowest tillabeast in the herd. Some big bastard in orange armor came out of the sky, grabbed me by hips, and jump-jetted me away to his ship.”</i>");
-
-output("\n\n<i>“I wish I could say I’d gone back to try and save some little kid, or put out a fire or something... but honestly, I just tripped and fell on my dumb face. Shoulda listened to my mom and stayed in shape, but instead I spent my formative years focusing on the softer kinda figure-building,”</i> Ardia half-laughs, patting a hand on her soft belly, just beneath the full mounds of her F-cup tits. <i>“Besides, dzaan legs just weren’t made for running.”</i>");
-
-output("\n\nShe wiggles her toes on top of Agrosh’s head, drawing your attention to the balls-down build of her feet. It’s like she’s perpetually wearing stilettos, but with nothing to support her heels. Yeah, it’s hard to imagine any dzaan marathon runners built like that.");
-
-output("\n\nArdia laughs, <i>“Yeah, there’s a reason we came up as a pleasure-oriented culture instead of like, warriors or science-based or whatever... and I guess every pirate gang in the galaxy figures we must be real <b>good</b> at the whole pleasure thing. Buncha racists!”</i>");
-
-output("\n\n{Has fucked Ardia/Fucked Agrosh w/ her: To be fair, she is <i>really</i> good at fuckin’. The comment just earns a little grin from her cyan lips. <i>“I didn’t say they were wrong...”</i>}");
-
-output("\n\nOther Slaves");
-output("\n\n//What can she tell you about the other slaves here in the base?");
-
-output("\n\n<i>“What do you know about the other slaves here on the base?”</i>");
-
-output("\n\nArdia’s first response is a helpless shrug. <i>“Not much. They kept me up near a ship bay, in a rocky chamber with a few dozen other slaves, until they moved me and a bunch of other, ech, ‘pleasure slaves’ down towards the core. We were supposed to be going down through that huge ship outside to the leaders of this place, until Agrosh here picked {me // the two of us} out of the line... so I guess there’s another bunch of slaves being held in the command levels.”</i>");
-
-output("\n\n<i>“We’re treated like dirt here, like we’re not even people. The labor slaves have it worse, of course, but being a pleasure slave has to be its own kind of hell... I’m so thankful you saved me before Agrosh could really do anything to me! Just thinking about what would have been my life here makes me shudder!”</i>");
-
-output("\n\n{PC freed labor slaves: <i>“Don’t worry, I freed the mine slaves,”</i> you tell her.");
-output("\n\n{PC freed pleasure slaves. <i>“The pleasure slaves up top are all free {too}.”</i>");
-
-output("\n\n{either: Ardia beams. <i>“That’s great! The more slaves you free, the better! Make these evil bastards really feel it, [pc.name].”</i>}");
-
-output("\n\n{Both freed: The dzaan sighs with relief and leans back against the bar. <i>“I think that’s both major blocks of slaves freed, then! Those pirate bastards are gonna be feeling that hit for a long time! So, what’s our next move?”</i>}");
-
-output("\n\nPirate Info");
-output("\n\n//Ask about the pirate gangs working on Zheng Shi.");
-
-output("\n\n<i>“You’ve been here longer than me. Learned anything interesting about the pirates?”</i>");
-
-output("\n\nArdia thinks for a moment. <i>“Well, there’s lots of gangs here. This place is like some sort of pirate haven, a neutral ground for a bunch of different groups. I got captured by the Star Vipers, a bunch of real nasty pieces of work that love their drugs and poisons. I must have gotten stuck with twenty needles before you found me! They’re the ones that take the most pleasure slaves, from what I heard. Then there’s the Cyber Punks, real original guys that love their cybernetic augments and limbs. Rats Raiders are probably the least evil, they’re just thieves... though they try and make themselves look altruistic, I don’t buy it. The Corona Lords are psychos that love radiation and plasma... I can’t believe they don’t all kill themselves with the getups they run around in.”</i>");
-
-output("\n\n<i>“The leaders of the bunch are the Jumpers. They’re laquine bushwackers that love themselves some latex and bondage gear... and jump jets. I think some of them were working with the Vipers that kidnapped me, since I got picked up by a guy with a jetpack.”</i>");
-
-output("\n\nArdia scowls, rubbing at her hip-hugging uniform. <i>“I can’t believe so many different groups are working together as well as they are. Enough to start building that new starship outside... who would have thought pirates could build their own ships! That’s a whole new danger I’d never have thought about before... I figured pirate ships were all stolen.”</i>");
-
-output("\n\n{Misch: <i>“Well, they had to start somewhere I guess. //else: <i>“Not anymore.} Anyway, learn anything about their leadership?”</i>");
-
-output("\n\n<i>“No,”</i> Ardia admits. <i>“Everybody’s ‘boss this’ and ‘chief that.’ Heck, I don’t know if half the pirates even know who they work for. I know the Jumpers are the top gang, so whoever is in charge of them is probably the king of douche mountain here. And he’s on the other side of the new ship there... somewhere.”</i>");
-
 output("\n\nRelax...");
 output("\n\n//The lounge is here for relaxation, right? Take a break for your adventures with Ardia.");
 
