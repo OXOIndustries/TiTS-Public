@@ -9,6 +9,7 @@ public function showForgehound(nude:Boolean = false):void
 public function forgehoundEncounter():Boolean
 {
 	showForgehound();
+	author("Wsan");
 	if(flags["FORGEHOUND_APOLIFUCKED"] == undefined) 
 	{
 		output("\n\n<i>“You! You’re not meant to be here!”</i> a deep voice barks from your side. You turn to see a large leithan man approaching you, glaring accusingly. <i>“You’d better have a good fucking reason for me not to shoot you on the spot.”</i>");
@@ -88,6 +89,7 @@ public function forgehoundFightSetup(immediate:Boolean = false):void
 public function addictionTurnWaster():void
 {
 	clearOutput();
+	author("Wsan");
 	output("You watch him, waiting for an opening so you can throw yourself at the muscular bulwark of his chest and just beg him to take you. To fuck you like he did before. To <i>use</i> you until he’s satisfied. When he notices you standing still and staring at him raptly, he stops and turns around, letting you admire his gigantic balls.");
 	output("\n\n<i>“Just give up and you can suck all the spunk you like outta these,”</i> he says, taunting you.");
 	output("\n\nThe cruel jibe brings you back to your sensibilities - mostly, at least.");
@@ -101,6 +103,7 @@ public function addictionTurnWaster():void
 public function sprintToSafetyBois():void
 {
 	clearOutput();
+	author("Wsan");
 	output("You immediately break into a sprint, running faster than you ever have in your life. Plasma flies through the air where you just standing, more following in your footsteps! You realize, suddenly, the most crucial thing is to stay ahead of his eye and be unpredictable. There’s a slight delay between his target acquisition and the firing, along with the projectile actually reaching you. If you can just maintain this speed...");
 	pc.energy(-10);
 	clearMenu();
@@ -111,6 +114,7 @@ public function sprintToSafetyBois():void
 public function sprintToSafetyBois2():void
 {
 	clearOutput();
+	author("Wsan");
 	output("You’re panting and sweating, your athletic ability the only thing between you and the increasingly close hail of plasma fire superheating the air behind you. You can only keep this up for so long! There’s a weakness here you can exploit if you can just survive long enough to see it!");
 	output("\n\n<i>“Why won’t you fucking die?!”</i> the leithan screams in rage.");
 	pc.energy(-10);
@@ -121,6 +125,7 @@ public function sprintToSafetyBois2():void
 public function sprintToSafetyBois3():void
 {
 	clearOutput();
+	author("Wsan");
 	output("You put your head down and run. You can <i>feel</i> the heat behind you, encroaching upon not only your body but your mind. His threat of burning in hellfire seems very real right now. In the last moments you have, you find yourself fixated on a particular memory of your childhood. Strange, you’d always thought it was meant to be your entire life that flashed by.");
 	output("\n\nYou’re running down the track, behind the guy in first. Sometimes you don’t win. That’s sports, really. Even if you were to run your absolute hardest, you probably wouldn’t be able to catch up. Limits are just that - limits. They were never meant to be surpassed. Then you hear a voice, loud and clear, as if it were right in your ear. It’s your dad, on the sidelines.");
 	output("\n\n<i>“Come on, [pc.name]!”</i> he shouts, hands cupped to his mouth. <i>“You can do it! I believe in you!”</i>");
@@ -139,6 +144,7 @@ public function sprintToSafetyBois3():void
 public function holdGroundBois():void
 {
 	clearOutput();
+	author("Wsan");
 	output("You’re not going to run. You’re going to stand right here and plant your feet. ");
 	if(pc.rangedWeapon is AegisLightMG) output("The LMG chatters in your armored fist, shell casings flying from it in a cascading rainbow of brass");
 	else if(pc.rangedWeapon is Chaingun) output("Your chaingun screams in your armored fist, hundreds of spent shells flying from it as you keep it trained on the leithan");
@@ -152,6 +158,7 @@ public function holdGroundBois():void
 public function holdGroundVictory():void
 {
 	clearOutput();
+	author("Wsan");
 	output("It never comes to that. The leithan staggers backwards clutching his chest, the gatling’s arc of fire jolting upwards before clicking to a stop as the servo fails. The continuous fire was too much for a plasma weapon to take. You finally stop firing, watching as he starts to fall.");
 	enemy.HP(-400);
 	CombatManager.continueCombat();
@@ -164,6 +171,7 @@ public function talkToForgehound():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“What are you?”</i> you ask, despite yourself.");
 	output("\n\n<i>“The forgehound,”</i> he growls menacingly, eyes narrowing. <i>“And you’re in my territory.”</i>");
 	processTime(2);
@@ -182,6 +190,7 @@ public function insultDatFireBoi():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“Oh no, don’t hurt me, mister forge puppy,”</i> you mock him. <i>“You just look so menacing with your wittle doggy ears and nubby horns!”</i>");
 	output("\n\n<i>“I’m gonna beat the </i>fuck<i> out of you before I show you exactly why those are there, you " + pc.mf("dumbfuck","stupid cunt") + ",”</i> he hisses viciously, tensing up as he prepares to leap forward.");
 	output("\n\nLooks like that pissed him off a little. <b>It’s a fight!</b>");
@@ -197,6 +206,7 @@ public function keratinChunksHound():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	flags["FORGEHOUND_KERATIN_TALK"] = 1;
 	output("<i>“What’re the horns on your head for?”</i> you inquire.");
 	output("\n\nHe can’t resist rolling his eyes. <i>“God damn, you’re a special breed of stupid. Have you ever seen what a gatling plasma cannon does to a person? I bet you haven’t.”</i>");
@@ -215,6 +225,7 @@ public function apologizeToDzaanMan():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“Sorry, I didn’t mean to annoy you,”</i> you say, shrugging and spreading your arms. <i>“I don’t know why you’re so angry with me.”</i>");
 	output("\n\nThe leithan stares at you dully for a few seconds, expressions flickering across his face before he finally settles on ‘resignation’. He heaves another sigh.");
 	output("\n\n<i>“If you really want to apologize," + (pc.isTaur() ? " turn around and I’ll mount you to blow off some steam":" get on your knees and suck my cock") + ",”</i> he says.");
@@ -231,6 +242,7 @@ public function okayApologySexItIs():void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	output("<i>“And then I walk free, right?”</i> you ask.");
 	output("\n\n<i>“</i>God<i>, yes,”</i> the leithan replies. <i>“With any luck I’ll never see you again in my life. But then again,”</i> he continues, laughing a little and tapping the keratin protrusions on his head, <i>“I’ve got a funny feeling you’ll be back. Now " + (pc.isTaur() ? "turn around":"kneel") + ", bitch.”</i>");
 	output("\n\n<i>“Hey, you don’t need to be rude,”</i> you mutter, " + (pc.isTaur() ? "turning around and looking back":"kneeling down in front of him, noting how muscular his forelegs are from up close") + ". <i>“Like this?”</i>");
@@ -379,6 +391,7 @@ public function noYouArentApolifucking():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“I don’t wanna do that, though,”</i> you say.");
 	output("\n\n<i>“Alright. This’ll be a mercy killing, then,”</i> the leithan says, looking at your forehead. You can see the gatling gun swivelling slightly to zero in. <i>“You’re far too stupid to live.”</i>");
 	output("\n\n<b>It’s a fight!</b>");
@@ -393,6 +406,7 @@ public function submitToForgehound():void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	var forgy:ForgeHound = new ForgeHound();
 	if(flags["FORGEHOUND_APOLIFUCKED"] == undefined) 
 	{
@@ -473,6 +487,7 @@ public function submitToForgehound():void
 //PC wins
 public function defeatForgy():void
 {
+	author("Wsan");
 	//Win by lust
 	if(enemy.lust() >= enemy.lustMax()) 
 	{
@@ -558,6 +573,7 @@ public function ifYouBegForgy():void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	pc.addMischievous(1);
 	output("<i>“Sure, I’ll get you off,”</i> you say, grinning. <i>“If you beg.”</i>");
 	output("\n\nThough sullen, he performs the act immediately. <i>“Please get me off.”</i>");
@@ -579,6 +595,7 @@ public function yesIllMakeYouCumForgy():void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	output("<i>“Hahahaha, I guess it would be pretty shitty if I didn’t,”</i> you gasp, trying to control your laughter. <i>“Okay puppy, here’s your reward. Can you roll over too?”</i>");
 	output("\n\n<i>“Fuck off!”</i> he snarls angrily.");
 	output("\n\n<i>“Aww, fine,”</i> you say, reaching forward and taking his cock in hand. <i>“Here you go, good boy.”</i>");
@@ -603,6 +620,7 @@ public function noIWontGetYouOff():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“Nope,”</i> you say, flashing him your teeth in a brilliant smile. <i>“But thanks for the recording. I dunno if there’s a market for embarrassment porn, but if there is this has </i>gotta<i> be a record-breaker.”</i>");
 	output("\n\nYou get up and leave, the leithan’s apoplectic rage following you like a thunderstorm. As you get further away he begins to beg, then goes back to yelling angrily as you make it clear you’re not coming back. Eventually, silence falls. You don’t bother checking on him.");
 	pc.addHard(1);
@@ -616,6 +634,7 @@ public function nahIWontGetYouOffPuppu():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“Not interested,”</i> you say, shrugging. <i>“You big dumb ");
 	if(pc.mf("","f") ==  "f") output("boys");
 	else output("aggressive types");
@@ -631,6 +650,7 @@ public function giveInToForgehoundFunsies():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“Oh fuck, just let me at it!”</i> you cry out, rushing towards the leithan’s side. ");
 	if(!pc.isChestExposed() && !pc.isAssExposed()) output(" You’re stripped out of your [pc.gear] in seconds.");
 	output(" You get on " + (pc.hasKnees() ? "your knees":"the ground") + " immediately, sucking the tip hard enough to make him groan in relief before you begin to take it inside, choking yourself in your eagerness.");
@@ -667,6 +687,7 @@ public function resistDisHomeboy():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("Nnnnnngh-”</i> you groan, squeezing your eyes shut and trying, willing yourself with all your might, to resist. You’re almost doubled over in pain trying to get the words out. Sweat breaks out on your forehead as you struggle for survival. <i>“Nnnuh-no!”</i>");
 	output("\n\n<i>“What?”</i> he says, shocked. <i>“Fuck me, you idiot! Jump on my dick!”</i>");
 	output("\n\n<i>“No,”</i> you say, more decisively now as you slowly stand back up. <i>“Fuck you.”</i>");
@@ -687,6 +708,7 @@ public function ignoreTheDumboTaurboi():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“W-wait, where are you going?”</i> he says, watching you begin to walk away. <i>“Come back! Uh, serve your alpha!”</i>");
 	output("\n\nYou say nothing, continuing past him and onwards.");
 	output("\n\n<i>“You can’t do this! You can’t just leave!”</i> he howls in desperation, raking his claws against the ground. <i>“You... you can’t,”</i> he trails off into a whisper.");
@@ -700,6 +722,7 @@ public function executeDumbTaurboy():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“Looks like you should’ve thought about the consequences of fucking with me before they smacked you upside the head,”</i> you say, throwing his words back in his face. He gapes in open-mouthed disbelief as you raise your [pc.rangedWeapon] with a grim expression, aiming right between his eyes. <i>“Goodbye, you lowlife scum.”</i>");
 	//output("\n\n-");
 	//output("\n\nYou regard his body with disdain before your eyes sweep over the gatling gun. Unfortunately, it’s too big to carry and the mounting apparatus looks like it took quite some setup.{No PA: If only you had some power armor you might be able to lug it around/else: Even in the power armor, you would have to put a lot of work in to get it operational}. Some other time, maybe. You step away, continuing onwards.");
@@ -713,6 +736,7 @@ public function assfuckDatHo(x:int):void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“Yeah, well, I know what I’m not gonna resist,”</i> you say, smirking. <i>“See, I’ve got a bit of a kink for fucking big, strong, dominant men until they break down and learn their place. And you seem to fit the bill.”</i>");
 	output("\n\n<i>“You- you can’t fuck </i>me<i>,”</i> he says, incredulous. You’ll- you’ll get addicted!”</i>");
 	output("\n\n<i>“Yeeeah, that’s not how that works,”</i> you say, already");
@@ -770,6 +794,7 @@ public function fistDatTaurBoi():void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	output("<i>“Well, now that we’ve established I’ve beaten you, I’ll take a little pity on you and get you off,”</i> you say, walking around to his muscular hindquarters and seating yourself next to his flank. <i>“I don’t want to touch your dirty cock, though. You don’t deserve it.”</i>");
 	output("\n\n<i>“How the fuck else am I going to get off?”</i> he says, confused. <i>“Men cum with their dicks, dumbshit.”</i>");
 	output("\n\n<i>“Is that so?”</i> you ask sweetly, stroking his behind and lifting his tail up out of the way. <i>“‘Cuz I think I know another way.”</i>");
@@ -803,6 +828,7 @@ public function facefuckForgy(x:int):void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	output("<i>“Alright, open wide, big boy,”</i> you say, walking to his front. <i>“I’ve got a second bitter pill for you to swallow after the crushing defeat.”</i>");
 	output("\n\nHe eyes your [pc.cock " + x + "]" + (!pc.isCrotchExposed() ? " as you pull your [pc.crotchCovers] down":"") + ", groaning in despair. <i>“Goddamnit.”</i>");
 	output("\n\n<i>“That’s right, get angry,”</i> you murmur, " + (pc.isTaur() ? "cock bulging as you stand over him, looking down at":"cock in hand as you kneel in front of") + " the stationary leithan. <i>“But trust me, it’s better than the alternative.”</i>");
@@ -857,6 +883,7 @@ public function mountNRut(x:int):void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	output("<i>“Only one thing I know to do with a big, panting, sweaty taur,”</i> you say, grinning as you stand over him" + (pc.legCount > 1 ? " and splay your [pc.legs] to either side of his body":"") + ". <i>“Fuck ‘em ‘till they can’t stand. Though I guess in your case it’s a little different.”</i>");
 	output("\n\n<i>“Ugh,”</i> he groans in despair, looking back. Your [pc.cock " + x + "] grows harder by the second, wavering until it stiffens to its full length under your tummy." + (pc.cocks[x].cLength() < 16 ? " <i>“At least you’re not that big for a taur.”</i>\n\n<i>“Maybe not, but I think you’ll be surprised with yourself all the same,”</i> you reply":" <i>“Aw fuck!”</i>\n\n<i>“Aw fuck is right,”</i> you nod") + ", bending down and angling your hips to meet his soft, plush asshole. <i>“Open wide, cutie.”</i>");
 
@@ -899,6 +926,7 @@ public function forgyBalljobby(x:int):void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	output("<i>“Mmmm, those are some big, juicy balls hanging between your legs, stud,”</i> you murmur, eyeing his oversized endowments" + (!pc.isCrotchExposed() ? " as you pull your [pc.lowerGarments] off":"") + ". <i>“You don’t mind if I play with them a little, do you?”</i>");
 	output("\n\n<i>“Wh-what are you doing back there,”</i> he says nervously, trying to crane his neck to look. <i>“Don’t- nn!”</i>");
 	output("\n\n<i>“Ohoo, wooow,”</i> you breathe, lustily taking in the sight and feel of the heavy, round orbs in your hands. They’re warm to the touch, somewhat sweaty, and the musk rising from them permeates your nostrils like varnished wood. Juicy was the right word - they’re <i>full</i> of cum, positively ripe with it, ready to pump thick, virile seed into a mate. Only they’re not going to get to do that.");
@@ -937,6 +965,7 @@ public function jizzInBallBoiForgysBHole(x:int):void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("Letting his nuts swing free, you grab his hindquarters and unceremoniously spread his asshole apart with your hands as you jab your [pc.cockHead " + x + "] inside. He’s a fucking tight fit, owing to probably being formerly anally virginal, but he feels great. You get two lackadaisical thrusts that have the leithan moaning like a whore in before [pc.cum] begins to splurt into his asshole, your dick flexing inside him.");
 	pc.cockChange();
 	output("\n\nUnable to help himself after being edged for so long with the ballplay, the added prostate stimulation sends the leithan careening over the edge. He lets out a loud, staggering groan of despair as thick, white cum begins to fountain from the end of his cock. Right on time, you feel his warm, inviting asshole begin to squeeze down on you, all but milking you for your seed. You’re only too happy to provide in spades, moaning in release and slapping the leithan’s muscular ass while you pump him full of jizz.");
@@ -969,6 +998,7 @@ public function cumOnForgySpewspew(x:int):void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	output("You reach a heady climax just fucking his balls, practically jacking yourself off with them by the time your orgasm hits. The increased pace sets him off too, his back arching as he moans. The clear precum dribbling from his dick abruptly gives way to thick, white loads of jizz as you begin to cum ");
 	if(pc.cocks[x].cLength() < 10) output("all over his jiggly, swaying sack. You can feel it pumping and pulsing in your hands while he empties himself all over the ground, spurting wasted loads everywhere");
 	else if(pc.cocks[x].cLength() < 20) output("with your tip pressed against his muscular ass, [pc.cum] shooting up his rear and coating it in [pc.cumColor] spunk. His balls throb in your hands, the gentle squeezing encouraging them to expel their heavy burden from the end of the leithan’s cock");
@@ -1001,6 +1031,7 @@ public function leaveForgyBehind():void
 {
 	clearOutput();
 	showForgehound();
+	author("Wsan");
 	output("<i>“Eh. Guess I’ll just leave you here,”</i> you say, shrugging disinterestedly. <i>“You’re not worth my time." + (silly ? " Smell ya later, loser.":"") + "”</i>");
 	output("\n\nYou leave him lying there, bruised and coughing in the wake of his utter defeat.\n\n");
 	//Cut dis now that he's not 1x only: You don’t think you’ll be seeing him again; the huge, egotistical types tend to fade away after being shamed.
@@ -1010,6 +1041,7 @@ public function leaveForgyBehind():void
 //PC loses
 public function loseToForgehound():void
 {
+	author("Wsan");
 	//Insulted
 	if(flags["FORGEHOUND_INSULTED"] != undefined) output("<i>“Well then,”</i> he grunts, striding towards you as you fall to your knees. <i>“Time to show you why you don’t talk shit to your betters.”</i>");
 	else output("<i>“About time,”</i> he says, walking towards you. <i>“I don’t know why you even bothered, as weak as you are.”</i>");
@@ -1048,6 +1080,7 @@ public function loseToForgehound():void
 public function badEndToForgy():void
 {
 	clearOutput();
+	author("Wsan");
 	showForgehound(true);
 	if(!pc.isTaur() && pc.hasCock() && !pc.hasVagina())
 	{
@@ -1137,6 +1170,7 @@ public function moreBadEndingToForgy():void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	if(!pc.isTaur() && pc.hasCock() && !pc.hasVagina())
 	{
 		output("Having negotiated with the merchant, Master watches with amusement as you jab the needle into your own arm. The effects take place before it’s even empty and you find yourself moaning in discomfort as your body begins to heat up, shivering with the intensity of the sensation.");
@@ -1181,6 +1215,7 @@ public function finishBadEndingToForgyYaDumbCunt():void
 {
 	clearOutput();
 	showForgehound(true);
+	author("Wsan");
 	if(!pc.isTaur() && pc.hasCock() && !pc.hasVagina()) 
 	{
 		output("You cry out in desperate, hungering joy even as you cum with your ass, unable to ever fully sate your needs. Master’s cock is wonderful, the divine implement of a god, but he’s changed you. Cum jets from the end of your useless, oversized cock, your virile balls tightening against your groin again and again, but it’s never enough. You always have more to give, more pointless seed to spill, thrusting needily into Master’s dogdick while he stands still and lets you debase yourself.");
