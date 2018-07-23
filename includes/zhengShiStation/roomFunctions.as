@@ -104,11 +104,7 @@ public function zsmyy18AirlockBonus():Boolean
 	}
 	else output("\n\nThe racks for storing spacesuits are empty... and have been ever since you grabbed the last one.");
 	
-	if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined)
-	{
-		output("\n\n<b>With the elevator getting power again, there's not much reason for you to take a single step into the void.</b>");
-	}
-	else if(flags["ZHENG_SPACEWALKED"] == undefined)
+	if(flags["ZHENG_SPACEWALKED"] == undefined && flags["ZHENG_SHI_SLAVE_SNUCK"] == undefined)
 	{
 		if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
 		{
@@ -125,9 +121,50 @@ public function zsmyy18AirlockBonus():Boolean
 			addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren't feeling particularly suicidal today.");
 		}
 	}
-	else output(" <b>Good thing you've already repaired the power outside. There's no reason for a spacewalk any longer.</b>");
+	else 
+	{
+		if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined) output(" <b>With the elevator getting power again, you have no need to perform a repair out in the void.</b>");
+		else output(" <b>Good thing you've already repaired the power outside.</b>");
+		if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
+		{
+			output(" While your current choice of armor is airtight, without magnetic boots or thrusters, you'll be helpless in the void.");
+			addDisabledButton(0,"Spacewalk","Spacewalk","Bad idea.");
+		}
+		else if(pc.armor is SpacesuitComplete) 
+		{
+			output(" You could walk around the outside of the station to get back to the hangar without enemy interference....");
+			addButton(0,"Spacewalk",fastSpacewalkToHangar,undefined,"Spacewalk","Take a jaunt in the vacuum back to the hangar.");
+		}
+		else
+		{	
+			addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren't feeling particularly suicidal today.");
+		}
+	}
 	return false;
 }
+
+public function fastSpacewalkToHangar():void
+{
+	clearOutput();
+	showName("\nSPAAAAACE!");
+	output("Walking along the outside of Zheng Shi is beautiful but slow. Fortunately, there's nobody around to bother a lone astronaut going for a stroll. Ships float by, loaded with illicit cargo and inattentive crews. You may as well not exist.\n\nThere's the hangar! And you have plenty of oxygen to spare.");
+	processTime(30);
+	clearMenu();
+	currentLocation = "ZS L50";
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function fastSpacewalkToAirlock():void
+{
+	clearOutput();
+	showName("\nSPAAAAAACE");
+	output("The trip back into the raw void should be fraught with peril... but it's safer than bumbling around in the mines. You walk carefully for what feels like a half hour until you reach the airlock door. The trip barely put a dent in your oxygen reserves!");
+	processTime(30);
+	clearMenu();
+	currentLocation = "ZSM YY18";
+	addButton(0,"Next",mainGameMenu);
+}
+
 
 public function zsms14Bonus():Boolean
 {

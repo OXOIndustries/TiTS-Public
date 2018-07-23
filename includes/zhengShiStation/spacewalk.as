@@ -78,5 +78,5 @@ public function beatBotFixWire():void
 
 	clearMenu();
 	addButton(0,"Airlock",move,"ZSM YY18");
-	addButton(1,"Hangar",move,"ZS L50");
+	addButton(1,"Hangar",fastSpacewalkToHangar);
 }
