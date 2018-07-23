@@ -932,9 +932,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/anzhela_nude.png", mimeType = "image/png")]
 			public var Full_ANZHELA_NUDE:Class;
 
-			[Embed(source = "../../../assets/images/npcs/adjatha/ardia.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ardia.png", mimeType = "image/png")]
 			public var Full_ARDIA:Class;
-			[Embed(source = "../../../assets/images/npcs/adjatha/ardia_nude.png", mimeType = "image/png")]
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ardia_nude.png", mimeType = "image/png")]
 			public var Full_ARDIA_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha.png", mimeType = "image/png")]
