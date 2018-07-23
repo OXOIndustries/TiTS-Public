@@ -50,7 +50,8 @@
 			this.armor.defense = 2;
 			this.armor.hasRandomProperties = true;
 
-			baseHPResistances.kinetic.damageValue = 25.0;
+			baseHPResistances.kinetic.damageValue = 10.0;
+			baseHPResistances.burning.damageValue = 90.0;
 			baseHPResistances.corrosive.damageValue = 60.0;
 
 			this.shield = new ReaperArmamentsMarkIIShield();
