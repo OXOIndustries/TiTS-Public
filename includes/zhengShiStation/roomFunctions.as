@@ -10,7 +10,7 @@ public function zhengElevatorF1Bonus():void
 {
 	variableRoomUpdateCheck();
 	//Power Out: 
-	if(flags["ZHENG_SPACEWALKED"] == undefined) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
+	if(flags["ZHENG_SPACEWALKED"] == undefined && flags["ZHENG_SHI_SLAVE_SNUCK"] == undefined) output("However, a big red sign has been hung up off a valve next to the elevator that reads <b>OUT OF ORDER</b>. The console that controls the elevator is powered down, and a couple of pokes doesn’t change that. Looks like the power’s been cut somewhere...");
 	else 
 	{
 		output("The power has been restored to the elevator, and the console is flashing dimly with control instructions.");
@@ -84,15 +84,9 @@ public function zhengFoundryF1EncounterBonus():Boolean
 	return false;
 }
 
-public function breakroomBarBonus():void
-{
-	if(9999 == 0) output(", and the big, burly thraggen technician you've tied up to one of the bar stools.\n\nArdia is sitting on the stool over him, enjoying some of pirates' most expensive whiskey. Her lengthy ears perk up at your approach, followed by a shy little smile on her cyan lips.");
-	else output(".");
-}
-
 public function zsmw8Bonus():Boolean
 {
-	if(flags["MAIKE_SLAVES_RELEASED"] != 1) output("Slaves chip away at the bountiful wealth of Zheng Shi, held in place by chains hooked to collars and waists alike. Robotic loaders follow behind them to gather the samples they deposit and whisk them away to be refined. They spare no time to look at you or react in any way, leaving you with the distinct impression that they’re completely broken. You could cut them out of their collars, and they’d probably just keep digging...");
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1 && flags["MAIKE_SLAVES_RELEASED"] != 2) output("Slaves chip away at the bountiful wealth of Zheng Shi, held in place by chains hooked to collars and waists alike. Robotic loaders follow behind them to gather the samples they deposit and whisk them away to be refined. They spare no time to look at you or react in any way, leaving you with the distinct impression that they’re completely broken. You could cut them out of their collars, and they’d probably just keep digging...");
 	else output("Robotic miners chip away at the bountiful wealth of Zheng Shi, striding over dozens of discarded tools and empty slave collars. They spare no time to react to your presence. These ‘bots are utterly fixated on the simple task of extracting minerals.");
 	output(" Exposed gems with promise to the west, while a red-tinted tunnel worms south through the station.");
 	return zhengMinesEncounterBonus();
@@ -109,7 +103,12 @@ public function zsmyy18AirlockBonus():Boolean
 		return false;
 	}
 	else output("\n\nThe racks for storing spacesuits are empty... and have been ever since you grabbed the last one.");
-	if(flags["ZHENG_SPACEWALKED"] == undefined)
+	
+	if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined)
+	{
+		output("\n\n<b>With the elevator getting power again, there's not much reason for you to take a single step into the void.</b>");
+	}
+	else if(flags["ZHENG_SPACEWALKED"] == undefined)
 	{
 		if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
 		{
@@ -133,19 +132,26 @@ public function zsmyy18AirlockBonus():Boolean
 public function zsms14Bonus():Boolean
 {
 	output("Stepping around a support column, you’re confronted by a serious mining effort. ");
-	if(flags["MAIKE_SLAVES_RELEASED"] != 1) output("Dozens of slaves in plain jumpsuits and metallic obedience collars work at the walls with sweat-soaked determination while");
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1 && flags["MAIKE_SLAVES_RELEASED"] != 2) output("Dozens of slaves in plain jumpsuits and metallic obedience collars work at the walls with sweat-soaked determination while");
 	else output("Dozens of crude robots, hastily assembled to replace the rebelling slave workers, toil endlessly at the walls while");
 	output(" a bigger, rumbling device bores straight into the eastern wall, spraying fist-sized chunks of stone of ore into a cart tethered behind. The reddish stone must be rich in geddanium - a material prized for both jewelry and the alloys used for starship armor.");
 	return zhengMinesEncounterBonus();
 }
 
+public function tIntersectionSlaveFunProcChance():Boolean
+{
+	return slavePretenderooo();
+}
+
 public function slavePensBonus():Boolean
 {
 	//Hasn't freed slaves:
-	if(flags["MAIKE_SLAVES_RELEASED"] != 1) 
+	if(flags["MAIKE_SLAVES_RELEASED"] != 2) 
 	{
 		output("\n\nIndeed, you can see several dozen shadowy figures shuffling around inside, trying to avoid your sight.");
 		output("\n\nYou can’t get inside thanks to a massive metal bar running across the door. It’s electronically locked and hardened against hacking; you can’t even see a seam or a plug to abuse. You’ll have to find the right keycard for this one.");
+		if(pc.hasKeyItem("Maike’s Keycard") || pc.hasItemByClass(MaikesKeycard)) addButton(0,"Free Slaves",unlockTheSlavePen,undefined,"Free Slaves","Throw open the doors and let loose the men and women held captive by the pirates. Cry havoc, and let loose the slaves of... a giant rebellion!");
+		else addDisabledButton(0,"Free Slaves","Free Slaves","You don't have any way to get the door open right now.");
 	}
 	else
 	{

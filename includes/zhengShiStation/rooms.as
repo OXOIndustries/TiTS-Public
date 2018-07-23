@@ -14,8 +14,19 @@ public function initZhengRooms():void
 	rooms[""].moveMinutes = 1;
 	*/
 
-	/** UVETO STATION --------------------------------------------------------------- */
-	/** ----------------------------------------------------------------------------- */
+	rooms["ZSM SPACE"] = new RoomClass(this);
+	rooms["ZSM SPACE"].roomName = "\nSPACE!";
+	rooms["ZSM SPACE"].description = "";
+	rooms["ZSM SPACE"].planet = "ZHENG SHI STATION";
+	rooms["ZSM SPACE"].system = "SYSTEM: HERISIOD";
+	rooms["ZSM SPACE"].northExit = "";
+	rooms["ZSM SPACE"].eastExit = "";
+	rooms["ZSM SPACE"].southExit = "";
+	rooms["ZSM SPACE"].westExit = "";
+	rooms["ZSM SPACE"].moveMinutes = 3;
+	rooms["ZSM SPACE"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSM SPACE"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM SPACE"].addFlag(GLOBAL.HAZARD);
 	
 	/* Ship Docking */
 	rooms["ZS L50"] = new RoomClass(this);
@@ -155,7 +166,7 @@ public function initZhengRooms():void
 	rooms["ZS H44"].southExit = "";
 	rooms["ZS H44"].westExit = "ZS F44";
 	rooms["ZS H44"].moveMinutes = 1;
-	rooms["ZS H44"].runOnEnter = undefined;
+	rooms["ZS H44"].runOnEnter = tIntersectionSlaveFunProcChance;
 	rooms["ZS H44"].addFlag(GLOBAL.INDOOR);
 	rooms["ZS H44"].addFlag(GLOBAL.PUBLIC);
 
@@ -1088,20 +1099,6 @@ public function initZhengRooms():void
 	rooms["ZSM S14"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSM S14"].addFlag(GLOBAL.HAZARD);
 
-	rooms["ZSM SPACE"] = new RoomClass(this);
-	rooms["ZSM SPACE"].roomName = "\nSPACE!";
-	rooms["ZSM SPACE"].description = "";
-	rooms["ZSM SPACE"].planet = "ZHENG SHI STATION";
-	rooms["ZSM SPACE"].system = "SYSTEM: HERISIOD";
-	rooms["ZSM SPACE"].northExit = "";
-	rooms["ZSM SPACE"].eastExit = "";
-	rooms["ZSM SPACE"].southExit = "";
-	rooms["ZSM SPACE"].westExit = "";
-	rooms["ZSM SPACE"].moveMinutes = 3;
-	rooms["ZSM SPACE"].runOnEnter = zhengMinesEncounterBonus;
-	rooms["ZSM SPACE"].addFlag(GLOBAL.INDOOR);
-	rooms["ZSM SPACE"].addFlag(GLOBAL.HAZARD);
-
 	/* FOUNDRY LEVEL */
 	/* FOUNDRY LEVEL */
 	/* FOUNDRY LEVEL */
@@ -1173,7 +1170,7 @@ public function initZhengRooms():void
 	rooms["ZSF I22"].southExit = "";
 	rooms["ZSF I22"].westExit = "";
 	rooms["ZSF I22"].moveMinutes = 3;
-	rooms["ZSF I22"].runOnEnter = breakroomBarBonus;
+	rooms["ZSF I22"].runOnEnter = foundryLoungeBonus;
 	rooms["ZSF I22"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I22"].addFlag(GLOBAL.NPC);
 
