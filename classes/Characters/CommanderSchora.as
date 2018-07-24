@@ -79,14 +79,14 @@
 			this.hairType = 0;
 			this.beardLength = 0;
 			this.beardStyle = 0;
-			this.skinType = GLOBAL.SKIN_TYPE_FUR;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
 			this.skinTone = "pink";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_VULPINE;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = 0;
 			this.lipMod = 1;
-			this.earType = GLOBAL.TYPE_VULPINE;
+			this.earType = GLOBAL.TYPE_HUMAN;
 			this.antennae = 0;
 			this.antennaeType = 0;
 			this.horns = 0;
@@ -204,7 +204,7 @@ Like Kaska, "Low Blow" deals hella bonus damage to her.
 The PC picks up an Aegis LMG from her as loot.
 -dun
 
-You're fighting Commander Schora, the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship. She's a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station's security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she's wearing. She's currently wielding a bulty machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger.
+You're fighting Commander Schora, the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship. She's a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station's security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she's wearing. She's currently wielding a bulky machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger.
 
 
 Machinegun Burst
@@ -245,15 +245,14 @@ With a wicked grin, Schora taps a button on the side of her gun. The muzzle glow
 			else
 			{
 				output(" You're raked by impacts from the gun!");
-				applyDamage(damageRand(rangedDamage().multiply(1.5), 50), this, target, "minimal");
+				applyDamage(rangedDamage(), this, target, "minimal");
 			}
 		}
-		
 		
 		private function shottyDakka(target:Creature):void
 		{
 			output("Schora pumps a shotgun slung under her machinegun's barrel and squeezes a secondary trigger, sending a blast of metal pellets at you!");
-			applyDamage(damageRand(rangedDamage().multiply(3), 20), this, target, "minimal");
+			applyDamage(damageRand(rangedDamage().multiply(1.5), 10), this, target, "minimal");
 			if (target.hasArmor() && target.shields() <= 0 && !target.hasStatusEffect("Sundered")){
 				output("\n\nThe blast rips into your armor, tearing it apart! <b>It's Sundered!</b>");
 				CombatAttacks.applySunder(target);
@@ -269,7 +268,11 @@ With a wicked grin, Schora taps a button on the side of her gun. The muzzle glow
 				output(" The rounds splatter against you like some infernal jelly, smearing across your " + (target.hasArmor() ? target.armor.longName : target.skinFurScales()) + " with a sizzling agony!");
 				var damage:TypeCollection = new TypeCollection({burning:rangedDamage()});
 				applyDamage(damage, this, target, "minimal");
-				if (target.physique() < rand(60)) CombatAttacks.applyBurn(target);
+				if (target.physique()/2 + rand(20) + 1 < this.aim()/2+10) 
+				{
+					CombatAttacks.applyBurn(target);
+					output(" <b>You are burning!</b>");
+				}
 			}
 		}
 		
@@ -277,7 +280,7 @@ With a wicked grin, Schora taps a button on the side of her gun. The muzzle glow
 		{
 			output("Schora pulls a small blue sphere off her belt, knocks it against on her horns, and throws it at your feet. You jump back, expecting an explosion -- instead, the grenade lets out a little spark and what feels like a wave of static electricity in the air.");
 			if (target.hasStatusEffect("Chaff Grenade")) target.setStatusValue("Chaff Grenade", 1, 3);
-			else target.createStatusEffect("Chaff Grenade",3,0,0,0,false,"Icon_Paralysis","All attack bonuses disabled.",true,0,UIStyleSettings.gShieldColour);
+			else target.createStatusEffect("Chaff Grenade",3,0,0,0,false,"Icon_Paralysis","Removes all bonuses to accuracy!",true,0,UIStyleSettings.gShieldColour);
 		}
 	}
 }

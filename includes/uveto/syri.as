@@ -72,8 +72,9 @@ public function syriFreezerTalkMenu(outputs:Boolean = true):void
 	else addDisabledButton(2,"Love?");
 	if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 1) addButton(3,"Penis",syriFreezerTalkPenis,undefined,"Penis","So now that Valden's the living dead, what's Syri gonna do about her dick?");
 	else addDisabledButton(3,"Locked");
-	if (flags["SYRIQUEST_SYRI_ONAHOLE"] >= 1 && flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2) addButton(4, "Cunt Sleeve", syriFreezerTalkCuntSleeve, undefined, "Cunt Sleeve", "Since Syri's not interested in a new pussy, maybe she'd be interested in seeing what happened to the old model...");
+	if (flags["SYRIQUEST_SYRI_ONAHOLE"] == 1 && flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2) addButton(4, "Cunt Sleeve", syriFreezerTalkCuntSleeve, undefined, "Cunt Sleeve", "Since Syri's not interested in a new pussy, maybe she'd be interested in seeing what happened to the old model...");
 	else addDisabledButton(4,"Locked");
+
 	addButton(5,"Books",syriTalkThree,undefined,"Books","What is she reading these days?");
 	addButton(14,"Back",syriFreezerMenu);
 }
@@ -169,7 +170,7 @@ public function syriFreezerTalkPenis():void
 	showSyri();
 	author("Savin");
 	output("<i>“So, considering there's no point holding onto Valden's dick for him anymore...”</i>");
-	output("\n\n<i>“Or half his organs,”</i> Syri grunts. <i>“Well, maybe not half, but there's buncha his stuff riding around inside. I kept the dick for sentimental reasons; the rest cuz the navy wouldn't pay for me to get vat-grown replacements. At least they gave me the meds I need to stay alive like this, the bastards. Anyway, considering you're pantsing me with your eyes, I can guess what you're thinking: 'Well, Syri, Valden's gone soooo when are you getting rid of the dick, huh?{PC has cock: When do I get to fuck a litter of pups into you and we can live happily ever after now that I fixed you?}'”</i>");
+	output("\n\n<i>“Or half his organs,”</i> Syri grunts. <i>“Well, maybe not half, but there's buncha his stuff riding around inside. I kept the dick for sentimental reasons; the rest cuz the navy wouldn't pay for me to get vat-grown replacements. At least they gave me the meds I need to stay alive like this, the bastards. Anyway, considering you're pantsing me with your eyes, I can guess what you're thinking: 'Well, Syri, Valden's gone soooo when are you getting rid of the dick, huh?" + (pc.hasCock() ? " When do I get to fuck a litter of pups into you and we can live happily ever after now that I fixed you?":"") + "'”</i>");
 	output("\n\nSyri snickers. <i>“Sorry, I'm being a bitch again. But look, after the last few years of not having a puss... I kinda don't miss it. Don't have to worry about getting knocked up, or feelin' all weepy and hormonal in heat. Getting railed in the ass feels just as good as normal fucking ever did since I've gotten a dick, plus I never have to worry about bringing a strapon. It's just a good fit for me. I'm keeping it.”</i>");
 	output("\n\n<i>“You sure?”</i>");
 	output("\n\nYour lover nods, patting herself on the crotch. <i>“Yep. Might as well, considering that I've gotta take meds to keep my internal organs working, so an </i>external<i> one isn't a big deal. Maybe I'll get some mod work done on it, who knows. Regardless, considering Valden... well, it's my dick now!”</i>");

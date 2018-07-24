@@ -27,7 +27,7 @@ public function maikeEncounterFun():Boolean
 	author("SoAndSo");
 	output("Out from the twisting gloom of the mineshafts and twinkling minerals, a grand pit comes into your view. ‘Grand’ doesn’t quite do it justice: it must be at least 60 feet in diameter but what takes you back is the depth. " + (silly ? "It’s even deeper than all the fanfiction in the world." : "Starting from the walkway you’re planted on, a wide path twists around the inside of the pit and presumably to the bottom."));
 	output("\n\nThere’s enough nearby artificial lighting to help you make out where to go: bluish white lamps and lights that cover the walkway and freshly chartered ore veins show you where you would go... but not where you’d go <i>to</i>.");
-	if(flags["MAIKE_SLAVES_RELEASED"] != 1) 
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1 && flags["MAIKE_SLAVES_RELEASED"] != 2) 
 	{
 		output("\n\nThere’s a constant <i>tnk-tnk</i> coming from below, a whole chorus of metal-on-rock that resonates upwards. You can barely make out hunched over slaves and machines hacking and grinding away at the rock along the lower pathways. With a cautious [pc.walk], you get close to the edge of the walkway and peer into the near-black below...");
 		output("\n\nYep, that’s deep.");

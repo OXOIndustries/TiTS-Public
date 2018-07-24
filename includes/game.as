@@ -375,7 +375,12 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 public function shipHangarButton(btnSlot:int = 7):void
 {
 	var ships:Array = shipHangarShips(currentLocation);
-	if(ships.length > 0) addButton(7, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
+	if(ships.length > 0) 
+	{
+		//Mhenga uses button "7" for going down. Thus an exception!
+		if(shipLocation == "SHIP HANGAR") addButton(0, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
+		else addButton(7, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
+	}
 }
 // Trafficked by spacers
 public function publicHangars(dock:String = ""):Array
@@ -3445,9 +3450,6 @@ public function variableRoomUpdateCheck():void
 
 	if(rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] != undefined) rooms["ZSM U2"].removeFlag(GLOBAL.NPC);
 	else if(!rooms["ZSM U2"].hasFlag(GLOBAL.NPC) && flags["MAIKE_SLAVES_RELEASED"] == undefined) rooms["ZSM U2"].addFlag(GLOBAL.NPC);
-
-	if(flags["ZHENG_SPACEWALKED"] != undefined) rooms["ZS N46"].inExit = "ZSF I16";
-	else rooms["ZS N46"].inExit = "";
 	 
 	/* UVETO */
 	

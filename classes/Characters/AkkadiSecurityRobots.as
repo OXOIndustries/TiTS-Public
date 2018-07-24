@@ -174,11 +174,11 @@ package classes.Characters
 		private var lives:int;
 		override public function isDefeated():Boolean
 		{
-			if (!super.isDefeated() || hasStatusEffect("BotRevivinBlues")) return false;
+			if (!super.isDefeated() || (hasStatusEffect("BotRevivinBlues"))) return false;
 			if (hasStatusEffect("Valden-Possessed")
 				|| (hasStatusEffect("DefeatChecked") && statusEffectv1("DefeatChecked") == CombatManager.getRoundCount()) 
 				|| lives == 0
-				|| (lives < 0 && rand(3) != 0))
+				|| (lives < 0))
 			{
 				if (hasStatusEffect("DefeatChecked")) setStatusValue("DefeatChecked", 1, CombatManager.getRoundCount());
 				//Should only check once per round

@@ -114,6 +114,18 @@ package classes.GameData
 		 */ 
 		private function postHostileTurnActions():Boolean
 		{
+			if (pc.hasStatusEffect("leithanUnloading"))
+			{
+				var f:ForgeHound = _hostiles[0];
+				if(!f.hasStatusEffect("Overheated"))
+				{
+					clearMenu();
+					if(pc.inPowerArmor()) addButton(0,"Hold Ground",kGAMECLASS.holdGroundBois,undefined,"Hold Ground","Stand and fire!");
+					else addDisabledButton(0,"Hold Ground","Hold Ground","That's suicide!");
+					addButton(1,"Sprint!",kGAMECLASS.sprintToSafetyBois,undefined,"Sprint!","Run for it!");
+					return true;
+				}
+			}
 			// seductionChance()
 			if (pc.hasStatusEffect("Attempt Seduction"))
 			{
@@ -1398,6 +1410,13 @@ package classes.GameData
 			if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
 			{
 				addButton(10, "Retreat", kGAMECLASS.bothriocQuestBetaNyreaRetreat, undefined, "Retreat", "Retreat slowly in the direction of the Quadomme Bothrioc.");
+			}
+
+			if (hasEnemyOfClass(ForgeHound) && flags["FORGEHOUND_APOLIFUCKED"] != undefined && rand(12) == 0)
+			{
+				output("\n\n<b>It's so hard not to daydream around him...</b>");
+				addButton(0,"Daydream",kGAMECLASS.addictionTurnWaster);
+				return;
 			}
 			
 			//Combat Notes :
@@ -4662,7 +4681,7 @@ package classes.GameData
 					output("\n\n");
 					doStruggleRecover(target);
 				}
-				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg))
+				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg) && !(target is Agrosh))
 				{
 					output("\n\n");
 					doStunRecover(target);

@@ -2,6 +2,7 @@ package classes.Engine.Combat
 {
 	import classes.kGAMECLASS;
 	import classes.Creature;
+	import classes.Items.Piercings.GeddaniumRingPiercing;
 	import classes.Characters.*;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;

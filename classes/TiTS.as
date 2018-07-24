@@ -400,7 +400,9 @@
 		include "../includes/myrellion/xenogenbiotech.as";
 
 		//FIFTH PLANET: ZHENG SHI
+		include "../includes/zhengShiStation/agroshAndArdia.as";
 		include "../includes/zhengShiStation/boredJumper.as";
+		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
@@ -578,7 +580,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.191";
+			version = "0.7.195";
 
 			//temporary nonsense variables.
 			temp = 0;
