@@ -21,6 +21,19 @@ public function showArdiaAndAgrosh(nude:Boolean = false):void
 	showName("ARDIA\n& AGROSH");
 	showBust("ARDIA" + (nude ? "_NUDE":""),"AGROSH" + (nude ? "_NUDE":""));
 }
+public function addictedToArdia():Boolean
+{
+	return (pc.hasStatusEffect("Dzaan Addicted"));
+}
+
+public function drinkArdiasCum():void
+{
+	IncrementFlag("ARDIA_CUMSHOTS_SWALLOWED");
+	pc.createStatusEffect("Dzaan Addicted");
+	//1 week. Creates "Dzaan Withdrawal" after. Reduces all lust damage taken by 2.
+	if(!pc.hasStatusEffect("Beta's Satisfaction")) pc.createStatusEffect("Beta's Satisfaction",2,0,0,0,false,"Icon_Charmed","You've recently sated your desire for your alpha's cum, and can think only of her. You take less damage from lust-damaging attacks.", false, 0, 0xFF69B4);
+	pc.setStatusMinutes("Beta's Satisfaction",7*24*60);
+}
 
 public function unlockTheSlavePen():void
 {
@@ -274,8 +287,7 @@ public function turnTheSlaveryTables():void
 	IncrementFlag("SEXED_ARDIA");
 
 	processTime(20);
-	//9999pc.loadInMouth(Ardia);
-	//9999 addiction mechanics TBD?
+	pc.loadInMouth(ardia);
 	flags["ARDIA_WHACKED_OFF_AGROSH"] = 1;
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -440,8 +452,7 @@ public function ardiaApproach(back:Boolean = false):void
 	processTime(1);
 	clearMenu();
 	addButton(0,"Talk",talkToArdia,undefined,"Talk","Swap some words with the liberated pleasure slave.");
-	//addButton(1,"Relax...",,undefined,"Relax...","");
-	addDisabledButton(1,"Relax...","Relax...","Coming soon!");
+	addButton(1,"Relax...",relaxWithArdia,undefined,"Relax...","The lounge is here for relaxation, right? Take a break for your adventures with Ardia.");
 	addButton(14,"Leave",mainGameMenu);
 }
 
@@ -523,163 +534,247 @@ public function pirateInfoDumpFromArdia():void
 	addButton(0,"Next",talkToArdia,true);
 }
 
-/*
-output("\n\nRelax...");
-output("\n\n//The lounge is here for relaxation, right? Take a break for your adventures with Ardia.");
-
-output("\n\nYou lean against the faux-wooden bar, eying up the pretty young dzaan in her skin-tight latex. With a little grin, you tell her that after all you’ve been through here, it’s about time you took a break for some relaxation. That’s what this lounge is for, isn’t it?");
-
-output("\n\n<i>“You certainly deserve it,”</i> Ardia smirks. She leans over the bar in such a way that has her big breasts spill out across it, picking out a pair of mugs and sets them between you. <i>“So, what’s your poison, [pc.name]? Just about anything you can dream up is on tap...”</i>");
-
-output("\n\n[Her]");
-output("\n\n//also add Ausar Chaser, Mini Rahn, and Honey Mead drinks.");
-
-output("\n\n//Any Drink Chosen");
-output("\n\n<i>“Coming right up!”</i> Ardia sings, bouncing over to the liquor rack and selecting the ingredients. <i>“I grew up on a spacer resort, y’know. My mom was a bartender, so this is like second nature to me. Gimme just a sec.”</i>");
-
-output("\n\nThe dusky dzaan spends a few moments mixing your drink before pouring it into both your mugs and returning to her stool. Agrosh grunts as one of her legs props up on top of his head, and Ardia raises her mug to you. <i>“Cheers, [pc.name].”</i>");
-
-output("\n\n<i>“Cheers.”</i>");
-
-output("\n\nYour mugs click together, and soon you’re both draining them dry. When she’s finished her drink, Ardia sighs with contentment and sets the empty mug aside, watching you as you quaff down the last of your drink. Her sky-blue eyes dance over you for a moment, but as soon as your mug hits the bar, her cheeks flush a bit and she looks away, suddenly very interested in some trophy hung on the wall.");
-
-output("\n\nHer");
-output("\n\n//You’ve got your eyes on the prettiest drink in this place...");
-
-output("\n\n<i>“Anything?”</i> you ask her, a lustful smile playing across your [pc.lipsChaste].");
-
-output("\n\n<i>“For you?”</i> Ardia answers, leaning in. Her breasts heave forward, swaying pendulously under her uniform’s tight embrace. <i>“Anything at all...”</i>");
-
-output("\n\nSounds like Ardia’s on tap today. You close the distance between you, cupping the dzaan girl’s bronzed-brown cheek and brushing a lock of cyan hair from her visage with your thumb. She smiles softly, nuzzling against your hand until you lean in and kiss those baby blue lips of hers. Your tongue plays across them, and Ardia’s hand meets yours, slowly guiding it down from her cheek to something even softer, a double-handful of tender flesh encased in tight latex that lets you feel the peak of her nipple stiffening up. You give her boob a gentle squeeze, then a rougher one, enough to make Ardia moan into your mouth and admit your [pc.tongue].");
-
-output("\n\nWhile you kiss and grope her, your hands find their ways to the zippers over her breasts, pulling them down to let her mountainous F-cups spill free and into your grasp. There’s a little gasp, and then Ardia’s hands are on you as well, tearing away your gear as you peel the lush dzaan out of her latex uniform. When her top is off, peeled down around her waist, Ardia slips back off the stool - and out of your grasp. She pivots on the ball of an arched foot, presenting her lush posterior to you, all bound up in that sinfully tight orange-and-blue that stretches and strains around her plush behind.");
-
-output("\n\nArdia wiggles her hips and squeezes a handful of butt, spreading herself out so much that you can see the outline of her labia and asshole through the latex. That’s all the teasing you can stand - you lunge forward, hooking your fingers through the hips of the buxom dzaan’s uniform and yanking it down around her ankles. You’re instantly rewarded with a face-full of brown bottom pushing back against you, followed by a fleshy slap of the alpha-girl’s balls on your chin. Her keratin-nubbed member dangles between her thick thighs, already crowned with a murky white bead.");
-
-output("\n\nWith another shake of her hips, Ardia kicks off her uniform and grips the edge of the bar with her ass thrust back to you. <i>“Eat up,”</i> she purrs.");
-
-output("\n\n[Eat Her Out]");
-output("\n\n//Munch on Ardia’s proverbial rug.");
-
-output("\n\nYou plant your hands on the dzaan’s presented cheeks, spreading them apart. Your fingers sink deep into her lush bronzed flesh, squeezing until the lush dark lips of her pussy wink for you, glistening with her growing arousal. A lick across her plump mons is enough to earn a throaty moan from Ardia and a clench of her lower lips, squeezing out a thick trickle of her juices that you’re quick to lap up, letting it guide you from her mound to her entrance, and into the pink folds between them.");
-
-output("\n\n<i>“Oh!”</i> Ardia gasps, knuckles going white as your tongue explores her pussy. <i>“Oh, that’s good...”</i>");
-
-output("\n\nHer hips push back against your [pc.face], urging more and more of your [pc.tongue] into her while your face is buried beneath her dusky cheeks. Her plush ass bears down on you, letting you feel all the jiggly weight of it overwhelming you. It’s a struggle to stay on your [pc.feet], like the dzaan’s trying to push you down on the deck with just her ass. Instead, you push back, shoving Ardia against her erstwhile seat and letting your hands wander from rump to balls, cupping the pair of plump orbs hanging from just above her quim.");
-
-output("\n\nArdia’s balls are bigger than any normal human’s could ever be, a pair of apple-sized spheres full of churning aphrodisiac seed hanging low beneath her stiff dick. Yet despite their size, they feel so <i>soft</i>, like all that cum inside is free-floating inside her, letting you sink your fingers in and knead her sack between them. The alpha’s voice sings with pleasure, a chorus of moans as her pussy clenches around your [pc.tongue]. You can’t see her cock from where you are, lodged between Ardia’s asscheeks as you are, but you can sure <i>feel</i> it starting to jump and throb as your hands work her nads over.");
-
-output("\n\n<i>“I can’t tell which I like more,”</i> Ardia moans, reaching down and wrapping her hands around her shaft. <i>“Getting eaten out, or feeling you loving on my alpha side... mm, help me make a decision, [pc.name]?”</i>");
-
-output("\n\nWell, you can sure tell which of her genitals <i>you</i>’re most interested in...");
-
-output("\n\n[Her Pussy] [Her Balls]");
-
-output("\n\n[Her Pussy]");
-output("\n\n//Keep worshipping Ardia’s pussy until the curvy alpha cums all over herself.");
-
-output("\n\nYou shift your hands off her balls, letting them rest under their own hefty weight; your attentions find their way to her pussy, rubbing at the bud of Ardia’s clit and pushing a pair of fingers inside to accompany your wiggling tongue. You’re able to start really spreading her open now, using your fingers to stretch her lips and let loose another trickle of pent-up lubrication. Ardia’s thighs are getting messy now, slicked with precum from both her sexes.");
-
-output("\n\nIt isn’t long before those alien legs of hers start trembling, followed by a crack in her voice. Her pussy’s muscles squeeze your fingers and tongue with desperate need as if she could wring an orgasm out of you through force alone. Her poor balls tremble with swelling seed, now languishing without your caressing touch. Ardia strokes herself off as fast as she can now, her huge chest heaving with her quickening breath.");
-
-output("\n\nAll you need to do is keep licking, lavishing every inch of juicy dzaan cunny with oral love, enjoying your liberated lover’s exotic taste until she’s ready to burst... which isn’t very long at all. Ardia tenses, squeezing down hard on your [pc.tongue] as her juices flow freely around you. A second later and there’s a lurid, wet sound from around the bergs of Ardia’s ass, and you’re assailed by the potent smell of wasted cum spilling down onto the floor between her feet. Ardia shudders and moans weakly as your tongue and fingers (and her own jacking hand) milk the cum from her virile balls.");
-
-output("\n\n<i>“Whew, I needed that!”</i> Ardia moans, arching her back at an inhuman angle. Her plush rump jiggles as you slowly extract yourself from her ass, cheeks and chin smeared with her juices. The curvy dzaan pivots on a heel and sits herself back down pegs spread to show her cum-soaked thighs and glistening cockhead. Her balls look just as full as ever, though, and with a husky whisper, Ardia says, <i>“But I don’t think that’s all you wanted, was it?”</i>");
-
-output("\n\nNot even close...");
-
-output("\n\n[Fuck Her] [Suck Her]");
-
-output("\n\n[Her Balls]");
-output("\n\n//Worship those fat balls hanging low under Ardia’s cock.");
-
-output("\n\nYou can just catch glimpses of her dick, sandwiched between Ardia’s asscheeks as you are, but stars above that nine-inch keratin-nubbed cock looks tasty. You force yourself out of the intoxicating folds of Ardia’s pussy and transition your [pc.lips] to suckling on the weighty mountains of the dzaan’s balls.");
-
-output("\n\n<i>“Ah, there’s the beta instinct!”</i> Ardia giggles, stroking her cock slowly while you kiss and suck on her sack. <i>“Or am I just intoxicatingly alpha? That’s what my sire used to say to all her harem girls... cuz she owned a bar, see? It was - ah! - f-funny!”</i>");
-
-output("\n\nYou’d laugh if you weren’t so busy worshipping the fleshy apples hanging beneath Ardia’s dick. Instead, you wrap your [pc.tongue] under her sack, trying to lift them up but failing due to the sheer weight of her masculinity; all you manage to do is divide her two orbs, letting them sway on either side of your tongue while you massage the taut skin between them. Ardia moans and grinds her hips back against your face, urging you to work faster lest you suffocate in her massive ass.");
-
-output("\n\nWith a little urging, you get the lustful dzaan to bend over more, exposing more ballsflesh and dick for you to work with. Your hand wraps around the base of her shaft, letting your fingers run across the smooth bulbs of keratin all along her throbbing length as you start to stroke her off. Slowly, your mouth works its way from balls to cock, kissing the prominent vein on her underside and letting your [pc.tongue] run down to her dark crown. Her pussy lips drag along the tip of your nose, smearing your [pc.skinFurScales] with her fragrant juices. The sexual smell overwhelms your senses for a moment, leaving you a beast of mindless lust until Ardia’s own moans remind you of your task - you’re working for her pleasure before your own here.");
-
-output("\n\nAnd you’re clearly having an effect. Ardia’s breath comes in shuddering gasps, making her butt jiggle and you can hear her tits slapping her dusky flesh from above. She’s so deliciously think that every gasp and moan sends ripples through her gropable body, coming faster and faster as you worship the liberated libertine’s dick from stem to crown until finally you feel it tensing. Her pussylips squeeze around your nose and her balls clench hard, presaging the oncoming eruption. A final gasp heralds it, a heartbeat before you hear the wet squirt of cum splattering on the deck, and then smell the rich masculine scent of wasted seed. Thick streaks of it paint Ardia’s thighs, joining with the rich nectar of her womanhood as the orgasm rocks straight through her soft body.");
-
-output("\n\n<i>“Whew, I needed that!”</i> Ardia moans, arching her back at an inhuman angle. Her plush rump jiggles as you slowly extract yourself from between her legs, cheeks and chin smeared with her juices. The curvy dzaan pivots on a heel and sits herself back down pegs spread to show her cum-soaked thighs and glistening cockhead. Her balls look just as full as ever, though, and with a husky whisper, Ardia says, <i>“But I don’t think that’s all you wanted, was it?”</i>");
-
-output("\n\n[Suck Her] [Ride Her]");
-
-output("\n\n	[Suck Her]");
-output("\n\n	//Go down on Ardia’s cum-drooling tool and get a fad load of her jizz.");
-
-output("\n\nYou lower yourself down on your [pc.knees] and plant your hands on Ardia’s thick thighs, spreading them apart to give yourself a perfect view of her fat balls and slowly-softening cock both framed by cum-soaked bronzed flesh.");
-
-output("\n\n<i>“Good beta,”</i> Ardia laughs, winking down at you. {if PC is addicted: <i>“Come get your reward.”</i> //else: <i>“Don’t swallow too much, or you might just get addicted to me...”</i>}");
-
-output("\n\nYou can already taste her seed, sweet with just a hint of bitterness, and as your [pc.tongue] wraps around it a faint warmth starts to spread through your cheeks... and straight down to your loins. Mmm, and that’s just the leftovers of her last orgasm! Already, your mind races with the hunger for more - the desire to milk those meaty balls of hers dry and take all that precious cum for yourself.");
-
-output("\n\n{Not addicted: You shake yourself off - what are you thinking? That’s just her drugged-up sperm talking, not you... right?");
-output("\n\n{Addicted: You don’t even care that you’re a dirty cum-fiend in that moment: all your brain can process is your carnal desires!}");
-
-output("\n\nYour [pc.lips] flicks across Ardia’s dark crown, teasing her cumslit with your tongue as you start to take her length. Her cock’s not particularly long, at least compared to the other swinging dicks on offer around here, but damn it’s sweet... and attached to a real sweetheart who looks down at you with a warm smile, {stroking your cheek // running a hand through your hair} as you make your way down. Every one of her keratin nubs that passes your lips feels like a victory, a step closer to your just dessert.");
-
-output("\n\n{Addicted: <i>“Oh, look at you,”</i> Ardia murmurs, leaning back in her seat. <i>“God, you look beautiful down between my legs. I don’t even mind taking responsibility for you... my first beta. You’re so goooood, unf.”</i>");
-output("\n\n{Not addicted: <i>“That’s a good look for you,”</i> Ardia laughs, leaning back in her seat. <i>“Nestled down between my legs like a good beta. Don’t try <b>too</b> hard not to get hooked on my cum. I could really get used to this kinda treatment.”</i>}");
-
-output("\n\nYour lover moans softly, and her thick thighs wrap around your shoulders and her legs cross behind your back, utterly enveloping your head in her lush flesh and smooth latex. Nowhere you’d rather be... especially with her twitching, leaking cock snugly in your mouth, getting ready to spill her sweet narcotics down your throat.");
-
-output("\n\n{Not addicted: Wait, getting ready to... shouldn’t you, like, pull her out first?}");
-
-output("\n\n[Swallow] [Jerk Her]");
-
-output("\n\n	[Swallow]");
-output("\n\n	//Tag a gut-full of Ardia’s drugged-up spunk.");
-output("\n\n	//Addicts always swallow.");
-
-output("\n\nYou just close your eyes and let your mouth follow your overpowering instincts: to suck cock. You work your tongue along her underside, teasing the tender hard nubs and letting your lips apply just the right amount of suction to drive your alpha wild. Her hips start moving before long, shoving herself deeper down your throat while her full balls rub against your chin. You can almost hear her seed sloshing around in there, ready to shoot deep in your belly if only you can coax it out.");
-
-output("\n\nShe’s as eager to have done with it as you are, pumping against your [pc.lips] with growing ardor. You could just sit back and take it at this rate, but you’re much too invested now to even think about it... or much at all, really. It’s hard to think about anything but Ardia’s cum, and how hungry for it you are now.");
-
-output("\n\n<i>“L-last chance...”</i> Ardia gasps, gritting her teeth. <i>“Gonna cum...”</i>");
-
-output("\n\nThe thought of pulling back never even occurs to you, especially as the first thick globs of dzaan spunk loll down your throat. Ardia gasps softly, clenching her legs around your shoulder as she cums. Her seed sends a wave of heat and excitement through you, a rush of energy that makes you cum just from tasting her{, squirting your [pc.cum] all over your [pc.legs]}.");
-
-output("\n\nOh, stars.... That’s the stuff. Lethargy settles over you, a sleepy weight that makes you want to just curl up in your lover’s arms and suckle from her nubbed shaft all night long. Ardia has other plans, though, and gently pushes you off her cock; streamers of spittle and her spunk bridge your [pc.lips] to her crown, keeping you connected for just a moment longer before Ardia wipes her thumb across your lips, cleaning you off as her leglock eases off your shoulders.");
-
-output("\n\n{Addict: <i>“There you go... you needed that, huh?”</i> Ardia murmurs, lifting you up. She gives you a tender kiss, licking the last of her cum from you. <i>“Feeling better?”</i>");
-
-output("\n\nYou can only sigh contentedly, relishing the taste of your alpha’s addictive seed coursing through you once again.");
-output("\n\n{Not Addict: <i>“Oh, I wish you hadn’t done that. I told you we dzaan are addictive, didn’t I?”</i> Ardia huffs. Nevertheless, she lifts you up and holds you close, letting you lean on her as her drugged-up spunk sinks in. <i>“Tsk. What am I gonna do with you if you get hooked on me?”</i>");
-
-output("\n\nYou don’t know... but you’d love to find out.}");
-
-output("\n\n[Jerk Her]");
-output("\n\n//Use your hands, and let Ardia cum on your chest.");
-
-output("\n\nOkay, pull it together, Steele... and more importantly, pull it out! There’s a part of your brain that screams for you to swallow every drop of Ardia’s sweet, narcotic seed, but you force that thought down and pull your head back, letting Ardia’s dick drag down your chin. Your hands wrap around it instead, using the sheen of spit you’ve left on it as lube to glide up and down your lover’s length.");
-
-output("\n\n{PC has D+ cup tits: Considering you’re denying the dzaan the pleasure of your throat, you figure the least you can do is put your [pc.boobs] to work for her. You rise up on your [pc.knees] and let her cock flop down into the valley of your cleavage. Pressing your shoulders in, you cup your own tits and lift them up, squeezing the full mounds around Ardia’s throbbing dick.");
-
-output("\n\nYou start moving your body up and down, dragging her dick through your soft rack until the dusky dzaan is squealing with pleasure.} A few minutes of that treatment and you can feel the cum swelling inside her, rushing to the surface amidst a chorus of lewd moans and gasps. You reach down and cup her balls, giving the massive orbs a squeeze - exactly what she needs to push her over the edge.");
-
-output("\n\nReflexively, you recoil as the first thick wads of steamy seed squirt across your chin and [pc.chest]. Most of her load, though, ends up streaked across your neck in musky, pearly ropes.");
-
-output("\n\n<i>“Pearl necklace!”</i> Ardia declares, giggling. <i>“Ah, you look so pretty with it on. Gonna wear that all day for me?”</i>");
-
-output("\n\n{Bimbo: Maybe you will! Make all the other girls jealous of your alp- your dick-totin’ girlfriend here. //High exhibitionist: Fuck yeah you will. You’re gonna leave that on so every slut you see knows that Ardia’s made you hers... wait... more that you and Ardia had a fling. Yeah, that. You’re not hers... yet. //else: Maybe that’s not the best idea, but at least while the two of you are together... maybe you can leave it on for a few minutes.}");
-
-output("\n\nArdia grins and pulls you up onto her lap, hooking two hands into your [pc.butt] as she does. <i>“Great... because it’s <b>such</b> a good look for you.”</i>");
-
-output("\n\nYour lover plants a kiss right on your lips before you can conjure up an answer, leaving you to melt in the dzaan’s arms as the last of her orgasm drools down your [pc.skinFurScales].");
-
-output("\n\n[Ride Her]");
-output("\n\n	// Climb into Ardia’s lap and ride that intoxicating cock of hers.");
-
-output("\n\nYou’ve had your eyes on that exotic dick of hers since the moment you laid eyes on it, and now... now your body is screaming for it. You feel that lurid desire spreading through your loins, centering around your [pc.vagOrAss] and the needy depths beyond. You push Ardia back in her seat and hook a [pc.leg] around her, straddling the plump dickgirl as you peel off your [pc.gear].");
-
-output("\n\nShe’s already hardening again, just drinking in your naked body. Her hands run up your flanks, gripping your [pc.hips] as you settle into her lap. The throbbing cock you’re so keen on presses into your [pc.belly], smearing the cum still clinging to it across your [pc.skinFurScales]. Ardia’s breath quickens as your body rubs against her over-tender shaft, making her huge tits quake hypnotically until you can’t keep yourself from grabbing those saucer-sized chocolate teats and giving them a good squeezing. She moans, back arching into your hands as her little nipples tent against your palms, and her broad areola get nice and rigid, perfect for pinching and tweaking.");
-
-output("\n\n<i>“Hey there, good lookin’,”</i> Ardia murmurs, shifting her hands around to grab your [pc.butt].");
-
-output("\n\n<i>“Hey yourself,”</i> you answer, slowly working a hand down from one of Ardia’s boobs to her dick. You don’t grab it this time, though the temptation’s there - instead, you just give it a push back, down your thigh and into line with your [pc.vagOrAss]. A wiggle of your hips and her chocolate-hued crown is pressing itself {between your pussylips // into the ring of your ass}, and you slowly start sinking down.");
-
-output("\n\nOh yeah, that’s what you needed. You bite your lip and roll your eyes back, revelling in the sensation of the first bulb of keratin slipping inside you. It protrudes just enough to grind against your inner walls with every");
-*/
+//Relax...
+//The lounge is here for relaxation, right? Take a break for your adventures with Ardia.
+public function relaxWithArdia():void
+{
+	clearOutput();
+	showArdia();
+	output("You lean against the faux-wooden bar, eying up the pretty young dzaan in her skin-tight latex. With a little grin, you tell her that after all you’ve been through here, it’s about time you took a break for some relaxation. That’s what this lounge is for, isn’t it?");
+	output("\n\n<i>“You certainly deserve it,”</i> Ardia smirks. She leans over the bar in such a way that has her big breasts spill out across it, picking out a pair of mugs and sets them between you. <i>“So, what’s your poison, [pc.name]? Just about anything you can dream up is on tap...”</i>");
+	processTime(4);
+	clearMenu();
+	addButton(0,"Ausar Chaser",chooseAnArdiaDrink,"Ausar Chaser","Ausar Chaser","A favorite of Ausars, galaxy-wide!");
+	addButton(1,"Mini Rahn",chooseAnArdiaDrink,"Mini Rahn","Mini Rahn","A jello shot! No gel or goo creatures were harmed making this delicious, sweet drink.");
+	addButton(2,"Honey Mead",chooseAnArdiaDrink,"Honey Mead","Honey Mead","Honey-based mead.");
+	addButton(3,"Her",chooseAnArdiaDrink,"Her","Her","You’ve got your eyes on the prettiest drink in this place...");
+}
+
+//[Her]
+//also add Ausar Chaser, Mini Rahn, and Honey Mead drinks.
+public function chooseAnArdiaDrink(drink:String = ""):void
+{
+	clearOutput();
+	showArdia();
+	if(drink != "Her")
+	{
+		output("<i>“Coming right up!”</i> Ardia sings, bouncing over to the liquor rack and selecting the ingredients. <i>“I grew up on a spacer resort, y’know. My mom was a bartender, so this is like second nature to me. Gimme just a sec.”</i>");
+		output("\n\nThe dusky dzaan spends a few moments mixing your drink before pouring it into both your mugs and returning to her stool. Agrosh grunts as one of her legs props up on top of his head, and Ardia raises her mug to you. <i>“Cheers, [pc.name].”</i>");
+		output("\n\n<i>“Cheers.”</i>");
+		output("\n\nYour mugs click together, and soon you’re both draining them dry. When she’s finished her drink, Ardia sighs with contentment and sets the empty mug aside, watching you as you quaff down the last of your drink. Her sky-blue eyes dance over you for a moment, but as soon as your mug hits the bar, her cheeks flush a bit and she looks away, suddenly very interested in some trophy hung on the wall.");
+		if(drink == "Ausar Chaser")
+		{
+			pc.imbibeAlcohol(15);
+			if(pc.isAusar()) pc.energy(5);
+		}
+		else if(drink == "Mini Rahn")
+		{
+			pc.imbibeAlcohol(13);	
+		}
+		else if(drink == "Honey Mead")
+		{
+			if(pc.hasStatusEffect("Mead"))
+			{
+				if(pc.statusEffectv2("Mead") < 7) {
+					pc.addStatusValue("Mead",2,1);
+					pc.physiqueMod++;
+					pc.aimMod-= .5;
+					pc.reflexesMod-= .5;
+					pc.intelligenceMod-= .5;
+					pc.willpowerMod-= .5;
+					pc.lust(5);
+				}
+				else output("\n\nYou’ve gotten as much from the mead as you’re going to get.");
+			}
+			else 
+			{
+				pc.createStatusEffect("Mead",0,1,0,0,false,"Icon_DizzyDrunk","Alcohol isn’t good for you, but you do feel a little stronger and more confident.",false,180);
+				pc.physiqueMod++;
+				pc.reflexesMod-= .5;
+				pc.aimMod-= .5;
+				pc.intelligenceMod-= .5;
+				pc.willpowerMod-= .5;
+				pc.lust(5);
+			}
+			pc.imbibeAlcohol(10);
+		}
+		processTime(10);
+		clearMenu();
+		addButton(0,"Next",relaxWithArdia);
+	}
+	//Her
+	//You’ve got your eyes on the prettiest drink in this place...
+	else
+	{
+		showArdia(true);
+		output("<i>“Anything?”</i> you ask her, a lustful smile playing across your [pc.lipsChaste].");
+		output("\n\n<i>“For you?”</i> Ardia answers, leaning in. Her breasts heave forward, swaying pendulously under her uniform’s tight embrace. <i>“Anything at all...”</i>");
+		output("\n\nSounds like Ardia’s on tap today. You close the distance between you, cupping the dzaan girl’s bronzed-brown cheek and brushing a lock of cyan hair from her visage with your thumb. She smiles softly, nuzzling against your hand until you lean in and kiss those baby blue lips of hers. Your tongue plays across them, and Ardia’s hand meets yours, slowly guiding it down from her cheek to something even softer, a double-handful of tender flesh encased in tight latex that lets you feel the peak of her nipple stiffening up. You give her boob a gentle squeeze, then a rougher one, enough to make Ardia moan into your mouth and admit your [pc.tongue].");
+		output("\n\nWhile you kiss and grope her, your hands find their ways to the zippers over her breasts, pulling them down to let her mountainous F-cups spill free and into your grasp. There’s a little gasp, and then Ardia’s hands are on you as well, tearing away your gear as you peel the lush dzaan out of her latex uniform. When her top is off, peeled down around her waist, Ardia slips back off the stool - and out of your grasp. She pivots on the ball of an arched foot, presenting her lush posterior to you, all bound up in that sinfully tight orange-and-blue that stretches and strains around her plush behind.");
+		output("\n\nArdia wiggles her hips and squeezes a handful of butt, spreading herself out so much that you can see the outline of her labia and asshole through the latex. That’s all the teasing you can stand - you lunge forward, hooking your fingers through the hips of the buxom dzaan’s uniform and yanking it down around her ankles. You’re instantly rewarded with a face-full of brown bottom pushing back against you, followed by a fleshy slap of the alpha-girl’s balls on your chin. Her keratin-nubbed member dangles between her thick thighs, already crowned with a murky white bead.");
+		output("\n\nWith another shake of her hips, Ardia kicks off her uniform and grips the edge of the bar with her ass thrust back to you. <i>“Eat up,”</i> she purrs.");
+		processTime(10);
+		pc.lust(15);
+		clearMenu();
+		addButton(0,"Eat Her Out",eatOutArdia,undefined,"Eat Her Out","Munch on Ardia's proverbial rug.");
+	}
+}
+
+//[Eat Her Out]
+//Munch on Ardia’s proverbial rug.
+public function eatOutArdia():void
+{
+	clearOutput();
+	showArdia(true);
+	output("You plant your hands on the dzaan’s presented cheeks, spreading them apart. Your fingers sink deep into her lush bronzed flesh, squeezing until the lush dark lips of her pussy wink for you, glistening with her growing arousal. A lick across her plump mons is enough to earn a throaty moan from Ardia and a clench of her lower lips, squeezing out a thick trickle of her juices that you’re quick to lap up, letting it guide you from her mound to her entrance, and into the pink folds between them.");
+	output("\n\n<i>“Oh!”</i> Ardia gasps, knuckles going white as your tongue explores her pussy. <i>“Oh, that’s good...”</i>");
+	output("\n\nHer hips push back against your [pc.face], urging more and more of your [pc.tongue] into her while your face is buried beneath her dusky cheeks. Her plush ass bears down on you, letting you feel all the jiggly weight of it overwhelming you. It’s a struggle to stay on your [pc.footOrFeet], like the dzaan’s trying to push you down on the deck with just her ass. Instead, you push back, shoving Ardia against her erstwhile seat and letting your hands wander from rump to balls, cupping the pair of plump orbs hanging from just above her quim.");
+	output("\n\nArdia’s balls are bigger than any normal human’s could ever be, a pair of apple-sized spheres full of churning aphrodisiac seed hanging low beneath her stiff dick. Yet despite their size, they feel so <i>soft</i>, like all that cum inside is free-floating inside her, letting you sink your fingers in and knead her sack between them. The alpha’s voice sings with pleasure, a chorus of moans as her pussy clenches around your [pc.tongue]. You can’t see her cock from where you are, lodged between Ardia’s asscheeks as you are, but you can sure <i>feel</i> it starting to jump and throb as your hands work her nads over.");
+	output("\n\n<i>“I can’t tell which I like more,”</i> Ardia moans, reaching down and wrapping her hands around her shaft. <i>“Getting eaten out, or feeling you loving on my alpha side... mm, help me make a decision, [pc.name]?”</i>");
+	output("\n\nWell, you can sure tell which of her genitals <i>you</i>’re most interested in...");
+	processTime(10);
+	pc.lust(15);
+	pc.girlCumInMouth(ardia);
+	clearMenu();
+	//[Her Pussy] [Her Balls]
+	addButton(0,"Her Pussy",worshipArdiasSilkyCunny,undefined,"Her Pussy","Keep worshipping Ardia’s pussy until the curvy alpha cums all over herself.");
+	addButton(1,"Her Balls",worshipArdiasBalls,undefined,"Her Balls","Worship those fat balls hanging low under Ardia’s cock.");
+}
+
+//[Her Pussy]
+//Keep worshipping Ardia’s pussy until the curvy alpha cums all over herself.
+public function worshipArdiasSilkyCunny():void
+{
+	clearOutput();
+	showArdia(true);
+	output("You shift your hands off her balls, letting them rest under their own hefty weight; your attentions find their way to her pussy, rubbing at the bud of Ardia’s clit and pushing a pair of fingers inside to accompany your wiggling tongue. You’re able to start really spreading her open now, using your fingers to stretch her lips and let loose another trickle of pent-up lubrication. Ardia’s thighs are getting messy now, slicked with precum from both her sexes.");
+	output("\n\nIt isn’t long before those alien legs of hers start trembling, followed by a crack in her voice. Her pussy’s muscles squeeze your fingers and tongue with desperate need as if she could wring an orgasm out of you through force alone. Her poor balls tremble with swelling seed, now languishing without your caressing touch. Ardia strokes herself off as fast as she can now, her huge chest heaving with her quickening breath.");
+	output("\n\nAll you need to do is keep licking, lavishing every inch of juicy dzaan cunny with oral love, enjoying your liberated lover’s exotic taste until she’s ready to burst... which isn’t very long at all. Ardia tenses, squeezing down hard on your [pc.tongue] as her juices flow freely around you. A second later and there’s a lurid, wet sound from around the bergs of Ardia’s ass, and you’re assailed by the potent smell of wasted cum spilling down onto the floor between her feet. Ardia shudders and moans weakly as your tongue and fingers (and her own jacking hand) milk the cum from her virile balls.");
+	output("\n\n<i>“Whew, I needed that!”</i> Ardia moans, arching her back at an inhuman angle. Her plush rump jiggles as you slowly extract yourself from her ass, cheeks and chin smeared with her juices. The curvy dzaan pivots on a heel and sits herself back down pegs spread to show her cum-soaked thighs and glistening " + ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "equine ":"" + "cockhead. Her balls look just as full as ever, though, and with a husky whisper, Ardia says, <i>“But I don’t think that’s all you wanted, was it?”</i>");
+	output("\n\nNot even close...");
+	pc.girlCumInMouth(ardia);
+	processTime(15);
+	pc.lust(15);
+	clearMenu();
+	//addButton(0,"Fuck Her",,undefined,"Fuck Her","");
+	addDisabledButton(0,"Fuck Her","Fuck Her","Savin hasn't written this yet.");
+	addButton(1,"Suck Her",suckArdiaDownSloot,undefined,"Suck Her","Go down on Ardia’s cum-drooling tool and get a fad load of her jizz.");
+}
+
+//[Her Balls]
+//Worship those fat balls hanging low under Ardia’s cock.
+public function worshipArdiasBalls():void
+{
+	clearOutput();
+	showArdia(true);
+	output("You can just catch glimpses of her dick, sandwiched between Ardia’s asscheeks as you are, but stars above, that " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "eighteen inch spire of equine majesty":"nine-inch keratin-nubbed cock") + " looks tasty. You force yourself out of the intoxicating folds of Ardia’s pussy and transition your [pc.lips] to suckling on the weighty mountains of the dzaan’s balls.");
+	output("\n\n<i>“Ah, there’s the beta instinct!”</i> Ardia giggles, stroking her cock slowly while you kiss and suck on her sack. <i>“Or am I just intoxicatingly alpha? That’s what my sire used to say to all her harem girls... cuz she owned a bar, see? It was - ah! - f-funny!”</i>");
+	output("\n\nYou’d laugh if you weren’t so busy worshipping the fleshy apples hanging beneath Ardia’s dick. Instead, you wrap your [pc.tongue] under her sack, trying to lift them up but failing due to the sheer weight of her masculinity; all you manage to do is divide her two orbs, letting them sway on either side of your tongue while you massage the taut skin between them. Ardia moans and grinds her hips back against your face, urging you to work faster lest you suffocate in her massive ass.");
+	output("\n\nWith a little urging, you get the lustful dzaan to bend over more, exposing more ballsflesh and dick for you to work with. Your hand wraps around the base of her shaft, letting your fingers run across the " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "rigid, bestial veins":"smooth bulbs of keratin") + " all along her throbbing length as you start to stroke her off. Slowly, your mouth works its way from balls to cock, kissing the prominent " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "medial ring":"vein") + " on her underside and letting your [pc.tongue] run down to her " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "slick flare":"dark crown") + ". Her pussy lips drag along the tip of your nose, smearing your [pc.skinFurScales] with her fragrant juices. The sexual smell overwhelms your senses for a moment, leaving you a beast of mindless lust until Ardia’s own moans remind you of your task - you’re working for her pleasure before your own here.");
+	output("\n\nAnd you’re clearly having an effect. Ardia’s breath comes in shuddering gasps, making her butt jiggle and you can hear her tits slapping her dusky flesh from above. She’s so deliciously think that every gasp and moan sends ripples through her gropable body, coming faster and faster as you worship the liberated libertine’s dick from stem to crown until finally you feel it tensing. Her pussylips squeeze around your nose and her balls clench hard, presaging the oncoming eruption. A final gasp heralds it, a heartbeat before you hear the wet squirt of cum splattering on the deck, and then smell the rich masculine scent of wasted seed. Thick streaks of it paint Ardia’s thighs, joining with the rich nectar of her womanhood as the orgasm rocks straight through her soft body.");
+	output("\n\n<i>“Whew, I needed that!”</i> Ardia moans, arching her back at an inhuman angle. Her plush rump jiggles as you slowly extract yourself from between her legs, cheeks and chin smeared with her juices. The curvy dzaan pivots on a heel and sits herself back down pegs spread to show her cum-soaked thighs and glistening " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "blunt ":"") + "cockhead. Her balls look just as full as ever, though, and with a husky whisper, Ardia says, <i>“But I don’t think that’s all you wanted, was it?”</i>");
+	processTime(30);
+	pc.lust(15);
+	clearMenu();
+	addButton(0,"Suck Her",suckArdiaDownSloot,undefined,"Suck Her","Go down on Ardia’s cum-drooling tool and get a fad load of her jizz.");
+	//addButton(1,"Ride Her",,undefined,"Ride Her","");
+	addDisabledButton(1,"Ride Her","Ride Her","Savin hasn't written this yet!");
+}
+
+//[Suck Her]
+//Go down on Ardia’s cum-drooling tool and get a fad load of her jizz.
+public function suckArdiaDownSloot():void
+{
+	clearOutput();
+	showArdia(true);
+	output("You lower yourself down " + (pc.hasKnees() ? "on your [pc.knees]":"to the ground") + " and plant your hands on Ardia’s thick thighs, spreading them apart to give yourself a perfect view of her fat balls and slowly-softening cock both framed by cum-soaked bronzed flesh.");
+	output("\n\n<i>“Good beta,”</i> Ardia laughs, winking down at you." + (addictedToArdia() ? " <i>“Come get your reward.”</i>":" <i>“Don’t swallow too much, or you might just get addicted to me...”</i>"));
+
+	output("\n\nYou can already taste her seed, sweet with just a hint of bitterness, and as your [pc.tongue] wraps around it a faint warmth starts to spread through your cheeks... and straight down to your loins. Mmm, and that’s just the leftovers of her last orgasm! Already, your mind races with the hunger for more - the desire to milk those meaty balls of hers dry and take all that precious cum for yourself.");
+
+	if(!addictedToArdia()) output("\n\nYou shake yourself off - what are you thinking? That’s just her drugged-up sperm talking, not you... right?");
+	else output("\n\nYou don’t even care that you’re a dirty cum-fiend in that moment: all your brain can process is your carnal desires!");
+
+	output("\n\nYour [pc.lips] flicks across Ardia’s " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "blunt, animalistic tip":"dark crown") + ", teasing her cumslit with your tongue as you start to take her length. " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "Her horse-cock's nice and long, nicely matched to all the other big swinging dicks this station has to offer, but":"Her cock’s not particularly long, at least compared to the other swinging dicks on offer around here, but") + " damn it’s sweet... and attached to a real sweetheart who looks down at you with a warm smile, " + (!pc.hasHair() ? "stroking your cheek":"running a hand through your [pc.hairNoun]") + " as you make your way down. " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "Every inch that passes your lips feels like a victory, a step closer to becoming the girth-strained, cum-drunk cock-sock that you very much want to be.":"Every one of her keratin nubs that passes your lips feels like a victory, a step closer to your just dessert."));
+	if(addictedToArdia()) output("\n\n<i>“Oh, look at you,”</i> Ardia murmurs, leaning back in her seat. <i>“God, you look beautiful down between my legs. I don’t even mind taking responsibility for you... my first beta. You’re so goooood, unf.”</i>");
+	else output("\n\n<i>“That’s a good look for you,”</i> Ardia laughs, leaning back in her seat. <i>“Nestled down between my legs like a good beta. Don’t try <b>too</b> hard not to get hooked on my cum. I could really get used to this kinda treatment.”</i>");
+
+	output("\n\nYour lover moans softly, and her thick thighs wrap around your shoulders and her legs cross behind your back, utterly enveloping your head in her lush flesh and smooth latex. Nowhere you’d rather be... especially with her twitching, leaking cock snugly in your mouth, getting ready to spill her sweet narcotics down your throat.");
+
+	if(!addictedToArdia()) output("\n\nWait, getting ready to... shouldn’t you, like, pull her out first?");
+	processTime(15);
+	pc.lust(15);
+	clearMenu();
+	//[Swallow] [Jerk Her]
+	if(addictedToArdia())
+	{
+		addButton(0,"Swallow",swallowArdiasYummyCumCummies,undefined,"Swallow","Addicts always swallow.");
+		addDisabledButton(1,"Jerk Her","Jerk Her","Addicts always swallow.");
+	}
+	else
+	{
+		addButton(0,"Swallow",swallowArdiasYummyCumCummies,undefined,"Swallow","Tag a gut-full of Ardia’s drugged-up spunk.");
+		addButton(1,"Jerk Her",jerkArdiaYaSlut,undefined,"Jerk Her","Use your hands, and let Ardia cum on your chest.");
+	}
+}
+
+//[Swallow]
+//Tag a gut-full of Ardia’s drugged-up spunk.
+//Addicts always swallow.
+public function swallowArdiasYummyCumCummies():void
+{
+	clearOutput();
+	showArdia(true);
+	output("You just close your eyes and let your mouth follow your overpowering instincts: to suck cock. You work your tongue along her underside, teasing the " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "tender folds of her sheath":"tender hard nubs") + " and letting your lips apply just the right amount of suction to drive your alpha wild. Her hips start moving before long, shoving herself deeper down your throat while her full balls rub against your chin. You can almost hear her seed sloshing around in there, ready to shoot deep in your belly if only you can coax it out.");
+	output("\n\nShe’s as eager to have done with it as you are, pumping against your [pc.lips] with growing ardor. You could just sit back and take it at this rate, but you’re much too invested now to even think about it... or much at all, really. It’s hard to think about anything but Ardia’s cum, and how hungry for it you are now.");
+	output("\n\n<i>“L-last chance...”</i> Ardia gasps, gritting her teeth. <i>“Gonna cum...”</i>");
+	output("\n\nThe thought of pulling back never even occurs to you, especially as the first thick globs of dzaan spunk loll down your throat. Ardia gasps softly, clenching her legs around your shoulder as she cums. Her seed sends a wave of heat and excitement through you, a rush of energy that makes you cum just from tasting her" + (pc.hasCock() ? ", squirting your [pc.cum] all over your [pc.legs]":"") + ".");
+	output("\n\nOh, stars.... That’s the stuff. Lethargy settles over you, a sleepy weight that makes you want to just curl up in your lover’s arms and suckle from her nubbed shaft all night long. Ardia has other plans, though, and gently pushes you off her cock; streamers of spittle and her spunk bridge your [pc.lips] to her crown, keeping you connected for just a moment longer before Ardia wipes her thumb across your lips, cleaning you off as her leglock eases off your shoulders.");
+	if(addictedToArdia()) 
+	{
+		output("\n\n<i>“There you go... you needed that, huh?”</i> Ardia murmurs, lifting you up. She gives you a tender kiss, licking the last of her cum from you. <i>“Feeling better?”</i>");
+		output("\n\nYou can only sigh contentedly, relishing the taste of your alpha’s addictive seed coursing through you once again.");
+	}
+	else
+	{
+		output("\n\n<i>“Oh, I wish you hadn’t done that. I told you we dzaan are addictive, didn’t I?”</i> Ardia huffs. Nevertheless, she lifts you up and holds you close, letting you lean on her as her drugged-up spunk sinks in. <i>“Tsk. What am I gonna do with you if you get hooked on me?”</i>");
+		output("\n\nYou don’t know... but you’d love to find out.");
+	}
+	processTime(15);
+	pc.loadInMouth(ardia);
+	pc.orgasm();
+	IncrementFlag("SEXED_ARDIA");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Jerk Her]
+//Use your hands, and let Ardia cum on your chest.
+public function jerkArdiaYaSlut():void
+{
+	clearOutput();
+	showArdia(true);
+	output("Okay, pull it together, Steele... and more importantly, pull it out! There’s a part of your brain that screams for you to swallow every drop of Ardia’s sweet, narcotic seed, but you force that thought down and pull your head back, letting Ardia’s dick drag down your chin. Your hands wrap around it instead, using the sheen of spit you’ve left on it as lube to glide up and down your lover’s " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "impressive ":"") + "length.");
+	if(pc.biggestTitSize() >= 4) 
+	{
+		output("\n\nConsidering you’re denying the dzaan the pleasure of your throat, you figure the least you can do is put your [pc.boobs] to work for her. You rise up on your [pc.knees] and let her cock flop down into the valley of your cleavage. Pressing your shoulders in, you cup your own tits and lift them up, squeezing the full mounds around Ardia’s throbbing dick.");
+		output("\n\nYou start moving your body up and down, dragging her dick through your soft rack until the dusky dzaan is squealing with pleasure.");
+	}
+	output(" A few minutes of that treatment and you can feel the cum swelling inside her, rushing to the surface amidst a chorus of lewd moans and gasps. You reach down and cup her " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "horse-sized ":"") + "balls, giving the massive orbs a squeeze - exactly what she needs to push her over the edge.");
+	if(!ardia.hasCock(GLOBAL.TYPE_EQUINE)) output("\n\nReflexively, you recoil as the first thick wads of steamy seed squirt across your chin and [pc.chest]. Most of her load, though, ends up streaked across your neck in musky, pearly ropes.");
+	else output("\n\nReflexively, you recoil as the first enormous eruption of dzaan-and-animal hybridized seed splatters across your chin and [pc.chest], heavy enough to knock you back from the weighty impact. She’s just getting started. The musky length you all-but-bolted to her loins won’t be satisfied with a single paltry rope. It pumps huge gushes of musky, mind-altering spunk, plastering to your [pc.skinFurScalesNoun" + (pc.hasHair() ? " and slicking back your hair":"") + ". She bathes you in semen with a rapturous expression, careful to lay most of it down in a neck-ringing moat.");
+
+	output("\n\n<i>“Pearl necklace!”</i> Ardia declares, giggling. <i>“Ah, you look so pretty with it on. Gonna wear that all day for me?”</i>");
+
+	if(pc.isBimbo()) output("\n\nMaybe you will! Make all the other girls jealous of your alp- your dick-totin’ girlfriend here.");
+	else if(pc.exhibitionism() >= 66) output("\n\nFuck yeah you will. You’re gonna leave that on so every slut you see knows that Ardia’s made you hers... wait... more that you and Ardia had a fling. Yeah, that. You’re not hers... yet.");
+	else output("\n\nMaybe that’s not the best idea, but at least while the two of you are together... maybe you can leave it on for a few minutes.");
+	output("\n\nArdia grins and pulls you up onto her lap, hooking two hands into your [pc.butt] as she does. <i>“Great... because it’s <b>such</b> a good look for you.”</i>");
+	output("\n\nYour lover plants a kiss right on your lips before you can conjure up an answer, leaving you to melt in the dzaan’s arms as the last of her orgasm drools down your [pc.skinFurScales].");
+	processTime(15);
+	//pc.orgasm();
+	pc.applyCumSoaked();
+	IncrementFlag("SEXED_ARDIA");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}

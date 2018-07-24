@@ -166,6 +166,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "THAREDRONE", ThareDrone);
 	prepChar(justUpdate, "LAH", RKLah);
 	prepChar(justUpdate, "SHIZUYA", Shizuya);
+	prepChar(justUpdate, "ARDIA", Ardia);
 	
 	
 	// Check all characters have version information set

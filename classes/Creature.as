@@ -20542,6 +20542,7 @@
 				if (hasItemByClass(Savicite)) prodFactor *= (1.2 * numberOfItemByClass(Savicite));
 				if (hasPerk("Ice Cold")) prodFactor /= 2;
 				if (hasStatusEffect("Oil Numbed")) prodFactor /= 1.2;
+				if (hasStatusEffect("Dzaan Withdrawal")) prodFactor *= 1.5;
 				
 				var producedLust:Number = deltaT * prodFactor;
 				if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
@@ -21194,6 +21195,27 @@
 							{
 								thisStatus.minutesLeft = 0;
 								requiresRemoval = false;
+							}
+						}
+						break;
+					case "Beta's Satisfaction":
+						if(this is PlayerCharacter)
+						{
+							if(requiresRemoval)
+							{
+								AddLogEvent(ParseText("The lingering satisfaction from serving your alpha has disappointed, leaving nothing but a disturbing thirst for more of her spunk in its wake. <b>You are in withdrawal!</b>"), "passive", maxEffectLength);
+								//"Dzaan Withdrawal" -50% rest healing & +50% lust gain over time
+								createStatusEffect("Dzaan Withdrawal",0,0,0,0,false,"Icon_Charmed","You crave your alpha's cum, gaining Lust more quickly over time, and you find recovering during rest difficult with such distracted thoughts.", false, 24*28*60, 0xFF0000);
+							}
+						}
+						break;
+					case "Dzaan Withdrawal":
+						if(this is PlayerCharacter)
+						{
+							if(requiresRemoval)
+							{
+								AddLogEvent(ParseText("The constant craving to serve at Ardia's feet has finally faded. <b>You're no longer addicted to her!</b>"), "passive", maxEffectLength);
+								setStatusMinutes("Dzaan Addicted",1);
 							}
 						}
 						break;

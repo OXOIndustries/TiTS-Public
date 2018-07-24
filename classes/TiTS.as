@@ -1644,6 +1644,10 @@
 		{
 			return chars["LAH"];
 		}
+		public function get ardia():Ardia
+		{
+			return chars["ARDIA"];
+		}
 
 		public function testShipCombat():void
 		{
