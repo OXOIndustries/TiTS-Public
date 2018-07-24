@@ -1,7 +1,7 @@
 /*
  * flags:
  * KANE_STATUS:
- * -1 for beaten, 2 for in charge, undefined for unresolved
+ * -set to 1 for beaten, 2 for in charge, 3 for marked, undefined for unresolved
  * KANE_DOMINANCE:
  * -what it says on the tin, undefined until first approach
  * KANE_BLOWN, KANE_SEXED
@@ -28,6 +28,7 @@ public function kaneDominance(value:int = 0, apply:Boolean = false):int
 public function kaneApproach():void
 {
 	if (kaneDominance() == -1) return kaneFirstApproach();
+	else if (kaneDominance() == 100) return kaneBadEnd();
 	switch (flags["KANE_STATUS"])
 	{
 		case undefined: return kaneUnresolvedApproach();
@@ -207,16 +208,6 @@ public function kaneFuckThis(flirty:Boolean):void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function kaneWrestlingStart():void
-{
-	clearMenu();
-	clearOutput();
-	showKane();
-	addButton(0, "Win", kanePCWinsTheBelt);
-	addButton(1, "Lust", kanePCGetsManhandled, true);
-	addButton(2, "Points", kanePCGetsManhandled, false);
-}
-
 public function kaneInChargeApproach():void
 {
 	clearOutput();
@@ -302,7 +293,8 @@ public function kaneMenu(disableAppearance:Boolean = false, fight:Boolean = fals
 		if (disableAppearance) addDisabledButton(currentSlot++, "Appearance");
 		else addButton(currentSlot++, "Appearance", kaneAppearance);
 		addButton(currentSlot++, "Talk", kaneTalkMenu);
-		if (pc.tallness <= 6*12 && !pc.isTaur()) addButton(currentSlot++, "Sex", kaneFookMeh);
+		if ((flags["KANE_STATUS"] == 1) || (pc.tallness <= 6*12 && !pc.isTaur()))
+			addButton(currentSlot++, "Sex", (flags["KANE_STATUS"] == 1 ? kaneOldSex : kaneFookMeh));
 		else addDisabledButton(currentSlot++, "Sex", "Sex", "You’re a bit too " + (pc.isTaur() ? "tauric" : "big") + " for Kane to do you.");
 		if (flags["KANE_STATUS"] == 1 && kaneDominance() == 0) addButton(currentSlot++, "Mark", kaneFuckOffForReal, undefined, "Mark", "Give him a permanent reminder of your domination of him. You doubt you’ll be able to interact with him again, at least not peacefully, if you choose to do this.");
 	}
@@ -473,10 +465,10 @@ public function kaneTalkFuture():void
 	{
 		output("\n\n<i>“You got what you wanted. The plantation is destroyed,”</i> you say. <i>“Surely what Quinn is doing pleases you.”</i>");
 		output("\n\n<i>“As I said. For now,”</i> Kane replies. <i>“The Word-Wolf has plans to bring more of his kind to our world, and I see that path being filled with danger. If they are not happy to obey,");
-		if (9999) output(" like you,");
+		if (kaneDominance() > 50) output(" like you,");
 		output(" they shall spread discord and lies, and I worry that");
-		if (9999) output(" now Quinn has her child");
-		else if (9999) output(" now Quinn is with child");
+		if (!9999) output(" now Quinn has her child");
+		else if (!9999) output(" now Quinn is with child");
 		else output(" once Quinn has the child she so desires");
 		output(" she will no longer have the ability to instill discipline.”</i>");
 		output("\n\nIs he planning on doing something about it?");
@@ -594,7 +586,7 @@ public function kaneHellYeahBeeBlowjob():void
 		output("\n\nIt drives you onwards, that neediness and happiness burning together, pushing you on to knead Kane’s prick with ever more intent thrusts and gulps, until with an almighty shiver and lusty bark, he takes a firm grip of your head and takes charge. Obscene, sloppy sounds reverberate off the trees as he face fucks you with adamant thrusts of his athletic hips, the stream of drool and honey running down your chin splashed in repeatedly by his balls, slapping into you again and again. You obediently keep your hands on the tops of your [pc.hips] as ordered.");
 		output("\n\n<i>“Zpirits, fuck everything, that’s so good,”</i> he moan-buzzes, head and mane of hair thrown back, wings flickering reactively. <i>“You’ve no fucking idea how good it feels to turn the landstealer’s proud champion into my personal face-cunt, knelt and dutifully swallowing it down from those [pc.he] was sworn to destroy. I knew there was a softness beneath it all, but no idea how candied an alien’s mouth could be...”</i>");
 		output("\n\nYou’re concentrating on keeping your [pc.lips] and cheeks as firm and tight an ‘o’ for him as possible, salivating for the big load of sweet, sweet honey seed you know is coming, but his words worm their way into your head, setting off intense fizzes of submissive delight and suddenly you’re cumming with almost explosive force,");
-		if (pc.hasCock()) output(" [pc.cum] " + (pc.cumQ() > 2000 ? "coursing down your shivering [pc.cock]" : "shot into the air in foot long ropes by your overjuiced [pc.cockNoun]"));
+		if (pc.hasCock()) output(" [pc.cum] " + (pc.cumQ() > 750 ? "coursing down your shivering [pc.cock]" : "shot into the air in foot long ropes by your overjuiced [pc.cockNoun]"));
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
 		if (pc.hasVagina()) output(" [pc.eachVagina] quivering and seizing up in delirium, " + (pc.wettestVaginalWetness() > 5 ? "[pc.femcum] dribbling down your [pc.thighs]" : "a great gush of [pc.femcum] warming your [pc.thighs] and watering the grass below") + ", almost beside " + (pc.hasVaginas() ? "themselves" : "itself") + " that your mouth is being blessed with thrusts of thick sugar cock and " + (pc.hasVagina() ? "they aren’t" : "it isn’t"));
 		output(".\n\nThe feeling of his penis vigorously claiming your mouth again and again, glossy hardness sliding back and forth between your opened [pc.lips], only makes the orgasm more intense, breathing muffled moans into his sweet meat. Kane’s mouth is open and is eyes are closed as he fucks you, his handsome, scarred face thrown back… and then he hilts himself into your face and cums himself with a shout of abandon, a great gout of syrupy cum deposited all across the back of your mouth. You orgasm again, hard on the heels of the last,");
@@ -611,7 +603,9 @@ public function kaneHellYeahBeeBlowjob():void
 		output("\n\n<i>“Speak, if you wish,”</i> Kane prompts, looking at you with knowing smirk. <i>“Or do you wish to feel more of your master’s love?”</i>");
 	}
 	
-	pc.loadInMouth(chars["ZIL_MALE"]);
+	pc.loadInMouth(new Kane());
+	pc.orgasm();
+	pc.orgasm();
 	kaneDominance(10);
 	IncrementFlag("KANE_BLOWN");
 	flags["KANE_LAST_BLOWJOB"] = GetGameTimestamp();
@@ -638,6 +632,8 @@ public function kaneRefuseBlowjobs():void
 		output("\n\n<i>“Zpirits. Where has this coyness spring from?”</i> murmurs Kane. His groinplate closes with a brusque snap. <i>“Clearly your training hasn’t been hard enough. Come - we shall go to the glade. There I’ll gladly put you back in your place.”</i>");
 	}
 	
+	flags["KANE_STATUS"] = undefined;
+	
 	addButton(0, "Fight", kaneWrestlingStart);
 	addButton(1, "Leave", kaneNoBlowjobNoWrestlingNoFun);
 }
@@ -652,19 +648,17 @@ public function kaneNoBlowjobNoWrestlingNoFun():void
 	
 	output("<i>“Come back when you’re ready to swallow your pride - and my dick,”</i> sneers Kane. <i>“Or you find the guts to challenge me. I have nothing to say to you otherwise, starwalker, you should know that by now.”</i>");
 	output("\n\nHe opens his wings and flits back into his tree without another word.");
-
-	flags["KANE_STATUS"] = undefined;
 	
 	addButton(0, "Next", mainGameMenu);
 }
 
 public function kaneFookMeh():void
 {
+	clearMenu();
 	clearOutput();
 	showKane(true);
 	author("Nonesuch");
 	processTime(1);
-	
 
 	output("<i>“Feeling needy, are we?”</i> smirks Kane, lithe, armored fist on thigh, beetle-black eyes flicking up and down your body.");
 	if (pc.isPregnant()) output(" <i>“Despite being thick with child already?”</i> He moves behind you, hard plates pressing into your back as he strokes your [pc.belly]. <i>“I’d be happy to feed that with the same sweetness I do you, if that’s what you wish,”</i> he growls in your ear.");
@@ -696,68 +690,215 @@ public function kaneFookMeh():void
 	if (pc.hasVagina()) output(" easily opening up your slick, parted cunt and driving his way into your sweltering insides.");
 	else output(" forcing your [pc.anus] open with your own weight, pushing his bulbous head past your tight entrance and spearing his length inside. Your arousal is such that you buck against him in delight, just wanting to feel that smooth, thick cock inside of you.");
 
-output("\n\nHe sighs with delight as he takes you all the way down to the base, his tight balls pressing against your [pc.butt], his shaft burying deep inside of you. You writhe your body against him, [pc.chest] {pillowing / slapping} against his beetle-like armor, working that thing in your pheromone-inflamed, twitching {cunt / tunnel}; you can’t help it, his overpowering scent arouses you too much not to use that bitch breaker of his to fuck yourself in desparate search of orgasm’s relief. He lets you do it, wedged securely into the tree and drinking in the moaning, writhing, uninhibited show you’re putting on with a leisured smile, mouth opening as you knead him within yourself with forceful thrusts of your [pc.thighs].");
-He grunts with pleasure as you clench up around him, back arching against the smooth bark as
-{[pc.vagina shivers ecstatically, {sluicing [pc.femcum] around his hot prick, dripping down your
-[pc.thighs] / spraying [pc.femcum] in a gratuitous explosion of wet, female joy around his hot
-prick. / [pc.eachCock] twitch{es} and gout{s} [pc.cum], spattering against his jet thighs or
-showering down towards the ground. You’re swamped with enough pheromones that you don’t
-need the slightest bit of stimulation to do it, just the feeling of his dick inside of you. Void… just
-the thought and texture of it against your walls is enough to make you writhe and flex another
-[pc.cumVisc], [pc.cumFlav] load down your deliciously aching shaft.}
-	/*
-It’s only when you’re blissfully coming down from it that Kane begins to do the work himself,
-pushing his hard, armored hips into you, parting your {lips / asshole}, rubbing those tender,
-tingling, inner walls, sending little spasms of sensation into your core. You feel little doses of
-warm, syrupy pre being squirted into you, making his passage all the smoother, enabling him to
-dig into you more and more demandingly.
-You moan woozily as your pleasure begins to mount again, and it’s interrupted by his hot, hard
-mouth, clamping around your [pc.lips] so he can invade you with his long, tubular tongue. He
-tastes your mouth and your skin and your most sensitive places, flicking and fastening it onto
-your [pc.nipples], {pulling at them intently enough to pull {a few drips / a generous gush} of
-[pc.milk] into his mouth, } focused upon sampling as much of his prize as possible.
-Planted high in this tree upon thick, pulsing dick, a thirsty proboscis flickering over your face,
-leaking {[pc.cum] / [pc.femcum]} {and [pc.milk]}, you feel as if you’ve melded into the jungle, are
-just a nectar-dripping bloom or fruit that has attracted a wonderful, strong insect, now engaged
-in ravishing you. {Plant-morph: Actually <i>being</i> a plant, feeling all the things a plant does,
-only makes this sensation all the more intense.} It makes your mind melt into a warm, honeyed
-bliss, happy to give and give to your pollinator, moan as you’re steadily brought to another
-pulsating high by his rub and thrust of his delicious cock…
-Kane’s harsh voice rises, his strong, agile body tensing up as his lust gets too much for him,
-only after you’ve been brought to another exquisite orgasm, your body utterly softened and
-lolling by how much {cum / femcum} has been forced out of you by a combination of the sugary
-mind-fuck that is the smell of a zil alpha male in rut, and his cock claiming your {cunt / ass}
-again, and again, and again.
-You can only manage a woozy, slutty moan as he hilts himself, his chest and hard thighs
-twitching, groans mightily, and then shoots a gooey torrent of honey jizz into your {depths /
-pussy}. It feels amazing enough for you to clench up, eager for more, and he duly obliges, his
-wings flickering as he smacks your back and [pc.butt] back into the wood repeatedly, emptying
-his shiny black sack into you until your {intestines / womb} {is/are} wonderfully full of thick,
-sugary, fertile zil seed.
-When he parts from you with a gratified sigh, his bulbous penis slowly sliding out of your
-tenderized [pc.vagOrAss], a great flow of honey spews outwards, like you’re a punctured
-beehive.
-“Now,” the big zil murmurs. The shifting sound in your ears is his boots, sliding down the bark
-until he finds a sturdy branch to throw his hip over, his wings flickering as he places you on it.
-“Shall I leave you here for a bit?” he teases, touching your [pc.lips] and squeezing your [pc.butt],
-admiring his well-fucked trophy. “Sugar you properly and store you away for the winter? Come
-back and sample you, whenever I feel the need?”
-He fondles you some more, hands brushing over your [pc.chest] and sliding down the crack of
-your [pc.butt], lazily enjoying you, and you’re more than happy to let him, still lost in that
-sensation of just being part of the tropical glory all around you, serving the energetic male that
-has claimed you.
-Eventually though, that restlessness that never really leaves Kane takes charge again. He hoiks
-you back into his arms, and with a great thrum of insect wings he carries you back down to the
-ground.
-“I’m growing very fond of you, trophy,” he says. “So sweet, and pliant, and enjoyable to use.
-Beginning to think I shouldn’t be letting you out of my sight.”
-	*/
-	
+	output("\n\nHe sighs with delight as he takes you all the way down to the base, his tight balls pressing against your [pc.butt], his shaft burying deep inside of you. You writhe your body against him, [pc.chest] " + (pc.biggestTitSize() > 6 ? "pillowing" : "slapping") + " against his beetle-like armor, working that thing in your pheromone-inflamed, twitching " + (pc.hasVagina() ? "cunt" : "tunnel") + "; you can’t help it, his overpowering scent arouses you too much not to use that bitch breaker of his to fuck yourself in desparate search of orgasm’s relief. He lets you do it, wedged securely into the tree and drinking in the moaning, writhing, uninhibited show you’re putting on with a leisured smile, mouth opening as you knead him within yourself with forceful thrusts of your [pc.thighs].");
+	output("\n\nHe grunts with pleasure as you clench up around him, back arching against the smooth bark as");
+	if (pc.hasVagina())
+	{
+		output(" [pc.vagina shivers ecstatically,");
+		if (pc.wettestVaginalWetness() < 3) output(" sluicing [pc.femcum] around his hot prick, dripping down your [pc.thighs].");
+		else output(" spraying [pc.femcum] in a gratuitous explosion of wet, female joy around his hot prick.");
+	}
+	else if (pc.hasCock()) output(" [pc.eachCock] twitch" + (pc.hasCocks() ? " and gout" : "es and gouts") + " [pc.cum], spattering against his jet thighs or showering down towards the ground. You’re swamped with enough pheromones that you don’t need the slightest bit of stimulation to do it, just the feeling of his dick inside of you. Void... just the thought and texture of it against your walls is enough to make you writhe and flex another [pc.cumVisc], [pc.cumFlav] load down your deliciously aching shaft.");
+
+	output("\n\nIt’s only when you’re blissfully coming down from it that Kane begins to do the work himself, pushing his hard, armored hips into you, parting your " + (pc.hasVagina() ? "lips" : "asshole") + ", rubbing those tender, tingling, inner walls, sending little spasms of sensation into your core. You feel little doses of warm, syrupy pre being squirted into you, making his passage all the smoother, enabling him to dig into you more and more demandingly.");
+	output("\n\nYou moan woozily as your pleasure begins to mount again, and it’s interrupted by his hot, hard mouth, clamping around your [pc.lips] so he can invade you with his long, tubular tongue. He tastes your mouth and your skin and your most sensitive places, flicking and fastening it onto your [pc.nipples],");
+	if (pc.isLactating()) output(" pulling at them intently enough to pull " + (pc.canMilkSquirt() ? "a generous gush" : "a few drips") + " of [pc.milk] into his mouth,");
+	output(" focused upon sampling as much of his prize as possible.");
+
+	output("\n\nPlanted high in this tree upon thick, pulsing dick, a thirsty proboscis flickering over your face");
+
+	//Overcomplicated? Nah
+	var leakFluid:String = ", leaking";
+	if (pc.hasCock()) leakFluid += " [pc.cum]";
+	if (pc.hasVagina()) 
+	{
+		if (leakFluid != ", leaking") leakFluid += ",";
+		leakFluid += " [pc.femcum]";
+	}
+	if (pc.isLactating())
+	{
+		if (leakFluid != ", leaking") leakFluid += " and";
+		leakFluid += " [pc.milk]";
+	}
+	if (leakFluid != ", leaking") output(leakFluid);
+
+	output(", you feel as if you’ve melded into the jungle, are just a nectar-dripping bloom or fruit that has attracted a wonderful, strong insect, now engaged in ravishing you.");
+	if (pc.plantScore() >= 5) output(" Actually <i>being</i> a plant, feeling all the things a plant does, only makes this sensation all the more intense.");
+	output(" It makes your mind melt into a warm, honeyed bliss, happy to give and give to your pollinator, moan as you’re steadily brought to another pulsating high by his rub and thrust of his delicious cock...");
+
+	output("\n\nKane’s harsh voice rises, his strong, agile body tensing up as his lust gets too much for him, only after you’ve been brought to another exquisite orgasm, your body utterly softened and lolling by how much " + (pc.hasVagina() ? "femcum" : "cum") + " has been forced out of you by a combination of the sugary mind-fuck that is the smell of a zil alpha male in rut, and his cock claiming your " + (pc.hasVagina() ? "cunt" : "ass") + " again, and again, and again.");
+	output("\n\nYou can only manage a woozy, slutty moan as he hilts himself, his chest and hard thighs twitching, groans mightily, and then shoots a gooey torrent of honey jizz into your " + (pc.hasVagina() ? "pussy." : "depths.") + " It feels amazing enough for you to clench up, eager for more, and he duly obliges, his wings flickering as he smacks your back and [pc.butt] back into the wood repeatedly, emptying his shiny black sack into you until your " + (pc.hasVagina() ? "womb is" : "intestines are") + " wonderfully full of thick, sugary, fertile zil seed.");
+	output("\n\nWhen he parts from you with a gratified sigh, his bulbous penis slowly sliding out of your tenderized [pc.vagOrAss], a great flow of honey spews outwards, like you’re a punctured beehive.");
+
+	output("\n\n<i>“Now,”</i> the big zil murmurs. The shifting sound in your ears is his boots, sliding down the bark until he finds a sturdy branch to throw his hip over, his wings flickering as he places you on it. <i>“Shall I leave you here for a bit?”</i> he teases, touching your [pc.lips] and squeezing your [pc.butt], admiring his well-fucked trophy. <i>“Sugar you properly and store you away for the winter? Come back and sample you, whenever I feel the need?”</i>");
+	output("\n\nHe fondles you some more, hands brushing over your [pc.chest] and sliding down the crack of your [pc.butt], lazily enjoying you, and you’re more than happy to let him, still lost in that sensation of just being part of the tropical glory all around you, serving the energetic male that has claimed you.");
+	output("\n\nEventually though, that restlessness that never really leaves Kane takes charge again. He hoiks you back into his arms, and with a great thrum of insect wings he carries you back down to the ground.");
+	output("\n\n<i>“I’m growing very fond of you, trophy,”</i> he says. <i>“So sweet, and pliant, and enjoyable to use. Beginning to think I shouldn’t be letting you out of my sight.”</i>");
+
 	pc.orgasm();
-	pc.loadInPussy();
+	pc.loadInCunt(new Kane());
 	kaneDominance(10);
 	
 	addButton(0, "Next", mainGameMenu);
+}
+
+public function kaneOldSex():void
+{
+	clearMenu();
+	showKane();
+	if(pc.hasCock()) addButton(0,"Frot",frotWithKaneYaBugger,undefined,"Frot","What better use to put a glossy honey-soaked dick to, after all.");
+	else addDisabledButton(0,"Frot","Frot","You need a penis for this.");
+	if(pc.hasVagina()) addButton(1,"Missionary",missionaryPositionWithKane,undefined,"Missionary","I don’t wanna leave the jungle, oh no no no...");
+	else addDisabledButton(1,"Missionary","Missionary","You need a vagina for this.");
+	addButton(14, "Back", kaneMenu);
+}
+
+public function kaneWrestlingStart():void
+{
+	clearMenu();
+	clearOutput();
+	showKane();
+	author("Nonesuch");
+	
+	pc.armor.onRemove(pc);
+	flags["KANE_ARMOR_HOLDER"] = pc.armor;
+	pc.armor = new EmptySlot();
+
+	output("You follow the tall, rangy zil away from the village, further into the lavender-scented, cedar-like trees until you emerge into a secluded, grassy clearing.");
+	
+	if (flags["KANE_WRESTLED"] == undefined)
+	{
+		output(" You don’t notice any other signs of zil activity; this must be a place only Kane visits.");
+		output("\n\n<i>“Take your things off, put them to one side,”</i> he growls, loosening his muscles with a wriggle of his shoulders. <i>“No invincible shields, no captive zpirits helping. Just me and you.”</i>");
+		output("\n\nYou undo your [pc.gear], baring your [pc.skinFurScales] to a warm sun and cool breeze of the upper jungle");
+		if (!pc.isNude()) output(", until you’re standing there in only your [pc.underGarments]");
+		output(". You do feel undeniably vulnerable without the comforting presence of the codex on your wrist. Perhaps Kane senses this: he is grinning, clapping his hands together and striding around the glade, whatever anger he expressed at your insolence ripening into fierce excitement.");
+	}
+	else
+	{
+		output(" The only signs of activity are the tears of turf and marks in the ground left by your previous bout");
+		if (flags["KANE_WRESTLED"] == 1) output("; the tale of a frantic, angry dance");
+		else output("s; the tale of a series of frantic, angry dances");
+		output(", written into the dirt.");
+		output("\n\nYou don’t need any instructions to undo your [pc.gear], bare your [pc.skinFurScales] to a warm sun and cool breeze of the upper jungle");
+		if (!pc.isNude()) output(", until you’re standing there in only your [pc.underGarments]");
+		output(". Kane watches you, loosening his muscles with liquid movements of his upper body and impatient stamps of his shiny black boot-feet. Whatever anger he might have felt about making him do this has, once again, reconfigured into fierce excitement.");
+	}
+	
+	output("\n\n<i>“Now.”</i> Your hands meet his. You feel the compact, wiry strength behind them. The scent of deep, sexual honey invades your nose. <i>“Put me on the ground, starwalker. If you can!”</i>");
+
+	processTime(5);
+	IncrementFlag("KANE_WRESTLED");
+	addButton(0, "Fight!", kaneWrestlingPlayerTurn, [0, 0, rand(3)]);
+}
+
+public function kaneWrestlingPlayerTurn(vars:Array):void
+{
+	clearMenu();
+	clearOutput();
+	showKane();
+	author("Nonesuch");
+	
+	var pcPoints:int = vars[0];
+	var kanePoints:int = vars[1];
+	var kaneMove:int = vars[2];
+	
+	output("You throw your weight against the big, athletic zil, struggling and straining against him, the two of you spidering around the clearing, your [pc.feet] digging into the dirt, back and forth.");
+	if (pc.tallness > 7*12) output(" He may be considerably smaller than you, but that doesn’t seem to deter him one bit; he’s stronger than his size suggests and is constantly shifting his grip and hold, refusing to let you use your bulk to overwhelm him.");
+	else if (pc.tallness > 5*12) output(" The two of you are well matched in size, roughly equal in terms of range and weight, and within a few moments you know you won’t win based on those attributes alone.");
+	else output(" You have to throw every sinew into stopping the considerably bigger creature from simply overwhelming you. This will be a tough, tough battle for someone of your diminutive size, something Kane was probably counting on.");
+	
+	if (kanePoints == 1) output(" Your eyes sting with sweat and your muscles burn with exertion. You can’t take much more of this...");
+	if (pcPoints == 2) output(" The grin on Kane’s face has been wiped from his face and he is now wrestling you with everything he’s got left in the tank, his long, strong limbs quivering with effort.");
+	
+	output(kaneMoveTexts[kaneMove][0]);
+	if (pc.IQ() > 97) output(kaneMoveTexts[kaneMove][1]);
+	else output(kaneMoveTexts[kaneMove][2]);
+	
+	for (var i:int = 0; i < 3; ++i)
+		addButton(i, ["Arm Grab", "Push", "Trip"][i], kaneWrestlingEvalRound, vars.concat([i]));
+}
+
+public var kaneMoveTexts:Array = [
+	[	"\n\nThe zil falls back under your pressure, slowly retreating towards the edge of the clearing.",
+		" You suspect he’s preparing to try corkscrewing you. You could counter that by grabbing his arm...",
+		" You could shove him completely out of the clearing with one final heave..."],
+	[	"\n\nThe zil pressures you assiduously, first with one arm and then the other, grunting with the effort of forcing you where he may.",
+		" He’s exerting himself pretty hard doing that - this might be the opportunity to press the offensive...",
+		" It’s tough as fuck keeping yourself upright against this assault. Perhaps a trick would make him stop..."],
+	[	"\n\nThe zil equals your own pressure, side-stepping back and forth shoulder to shoulder with you, growling and chuckling harshly in your ear.",
+		" This is surely a prelude to him trying to trip you. If you watched out for that, it would be a plum chance to trip him back...",
+		" Maybe if you suddenly heaved his arm, you’d unbalance him..."]];
+public var kaneCorrectTexts:Array = [
+	[	"Kane flexes his muscles… and in the same instant you switch both hands to his arm, hauling him completely off balance as he tries to turn you the other way. You heave him off of his feet!",
+		" You slam him into the ground with a punishing, chitin-cracking thump. No way he’s getting back up after that.",
+		" He manages to recover, snarling as he swings back around to grab at your shoulder, but you can see in his face he’s shook by that sudden reverse."],
+	[	"You suddenly shove forward, and after only a couple moments of heated, snarling resistance, Kane caves!",
+		" You follow through, pedalling him backwards until he trips and you tackle him to the ground. He’s down.",
+		" He manages to recover after an exhilarating back pedal, digging his heels into the ground and stopping your forward momentum with a throaty, defiant growl, but you can see in the shiver of his arms that you’ve burned through a lot of his energy doing that."],
+	[	"Kane flicks his leg at you… and you easily sidestep it, whipping your [pc.leg] at his standing leg at the same time.",
+		" He emits a surprised, rough squawk as you take him out cleanly. You smack him to the grass as cleanly as any martial arts master. This contest is over!",
+		" The armored limb buckles, and for a moment you think you’ll be able to clean him out entirely… but he recovers in the next instant, surging back into your arms with a defiant cry. Still, you definitely spooked him, and his knee is still probably feeling that."]];
+public var kaneStallTexts:Array = [
+	[	"Kane flexes his muscles… and in the same instant you switch both hands to his arm, hauling him completely off balance as he tries to turn you the other way. You don’t quite have the panache to turn it into a real reverse - he almost immediately swings back around, grabbing your shoulder hard in order to regain balance - but at least you blocked his move.","",""],
+	[	"You suddenly shove forward, and after only a couple moments of heated, snarling resistance, Kane caves! He manages to recover after an exhilarating back pedal, digging his heels into the ground and stopping your forward momentum with a throaty, defiant growl. Still, you stopped him from overpowering you.","",""],
+	[	"Kane flicks his leg at you… and you easily sidestep it, whipping your [pc.leg] at his standing leg at the same time. Unfortunately, you don’t have the strength to carry the move out cleanly - your [pc.leg] merely tangles with his, and after a clumsy scuffle you both regain balance. Still, the main thing is you stopped him from tripping you.","",""]];
+public var kaneWrongTexts:Array = [
+	[	"You prepare to really put the hurt on him… and then suddenly he’s swinging nimbly to one side, hauling you forwards with a frightening strong surge, sending you flying into a tree trunk!",
+		" Your forehead makes firm contact with the wood, and the whole world shudders, turns upside down with pain. You try and regain your balance, and collapse to the turf instead with a nauseous groan.",
+		" You smack the side of your head against the wood, a star-flecked wave of pain crashing into you. You stagger back around woozily, manage to regain a hold on Kane before he can finish you… but you doubt you can take another blow like that again."],
+	[	"You try and counter him… and he easily steps through it, batting away your attempt to stop his charge. Your heart leaps into your throat as you feel yourself being powerfully borne backwards.",
+		" You stumble, then trip backwards, and with a howl of triumph, Kane forcibly bears you to the ground with a winding thump. You try and wriggle your way out of his iron grip and find you can’t do it - not anymore.",
+		" You manage to recover before he manages to carry you to the ground, gritting your teeth and digging great clumps of grass out of the ground with your [pc.feet]. But boy oh boy, you doubt you can weather another charge like that."],
+	[	"You put your weight down, preparing to put a stop to his antics… and he neatly steps forward and swipes your [pc.legs] from under you!",
+		" The world turns upside down, and you land on the turf with a winding thud. Kane is immediately on top of you, pushing your wrists to the ground, and you find you simply don’t have the strength to push him off. It’s over.",
+		" You go sprawling, but just about manage to regain your [pc.feet] before he can bear you to the ground. Your nerves are shot, though - your muscles are shivering. You really hope he doesn’t pull that off again."]];
+
+public function kaneWrestlingEvalRound(vars:Array):void
+{
+	clearMenu();
+	clearOutput();
+	showKane();
+	author("Nonesuch");
+	
+	var kaneMove:int = vars[2];
+	var playerMove:int = vars[3];
+
+	//is this win, loss or draw
+	var textArray:Array = kaneStallTexts;
+	if (kaneMove != playerMove) textArray = kaneWrongTexts;
+	else if (pc.PQ() + rand(100) > 110 && pc.WQ() + rand(100) > 110 && 9999) textArray = kaneCorrectTexts;
+	
+	//gib points
+	if (textArray == kaneCorrectTexts) vars[0] += 1;
+	if (textArray == kaneWrongTexts) vars[1] += 1;
+	
+	//gib text
+	output(textArray[kaneMove][0]);
+	//output win text or regular text
+	if ((textArray == kaneWrongTexts && vars[1] == 2)
+		|| textArray == kaneCorrectTexts && vars[0] == 3)
+			output(textArray[kaneMove][1]);
+	else output(textArray[kaneMove][2]);
+	
+	//pick kane's next thing and remove the player's last choice
+	vars[2] = rand(3);
+	vars.pop();
+	
+	//bootons!
+	addDisabledButton(0, "Whoops", "Kane Machine Broke", "We're so sorry about this. Please report.");
+	if (vars[0] >= 3) addButton(0, "Next", kanePCWinsTheBelt);
+	else if (vars[1] >= 2) addButton(0, "Next", kanePCGetsManhandled, false);
+	else
+	{
+		applyDamage(damageRand(new TypeCollection({pheromone:25}), 30),
+					undefined, pc, "suppress");
+		output("\n\nThe intense smell of him - wild honey, sexual and demanding - is overwhelming when he’s got you clinched like this, practically trying to rut you into submission. The sugary, suggestive smell pokes your deepest impulses, begging you to give in and let the lovely-smelling creature do with you as he may.");
+		if (pc.lust() >= pc.lustMax()) addButton(0, "Next", kanePCGetsManhandled, true);
+		else addButton(0, "Next", kaneWrestlingPlayerTurn, vars);
+	}
+	
+	processTime(1);
 }
 
 public function kanePCWinsTheBelt():void
@@ -765,6 +906,8 @@ public function kanePCWinsTheBelt():void
 	clearOutput();
 	showKane();
 	author("Nonesuch");
+	pc.armor = flags["KANE_ARMOR_HOLDER"];
+	flags["KANE_ARMOR_HOLDER"] = undefined;
 	processTime(1);
 	
 	output("You stand over the strong, wiry insect boy, chest heaving and wings quivering in the dirt, ready at the first sign of resistance to hand out another whupping. When he does finally look up at you, though, you see the expression of a beaten dog, resentful and fearful. You relax.");
@@ -782,14 +925,16 @@ public function kanePCGetsManhandled(lostByLust:Boolean):void
 	clearOutput();
 	showKane();
 	author("Nonesuch");
+	pc.armor = flags["KANE_ARMOR_HOLDER"];
+	flags["KANE_ARMOR_HOLDER"] = undefined;
 	processTime(2);
 
 	if (lostByLust)
 	{
 		output("Your body is ablaze with sweet, pheromonal need, you can’t think of anything but how much your [pc.groin] needs some manual relief... and suddenly it’s all you can do. Your hands tremble out of Kane’s, dive down to your groin, and a moment later you’re squatted on the grass, shamelessly moaning as you masturbate furiously, desperate to get the sugary heat out of you.");
 		output("\n\nThe zil simply watches, smirkingly enjoying the fruits of his victory.");
-		processTime(5);
 		pc.lust(-pc.lustMax()/2);
+		processTime(5);
 	}
 	else
 	{
@@ -799,23 +944,118 @@ public function kanePCGetsManhandled(lostByLust:Boolean):void
 		output("\n\n<i>“Good.”</i>");
 	}
 
-	if (kaneDominance() < 51)
-	{
-		output("\n\nHe lets you get back up" + (lostByLust ? " once you’re done," : ",") + " leans back on a tree, relaxing now that he has established his dominance. For all that you’re feeling the burn of shame and over-exertion, it’s difficult not to feel a certain shared happiness - the release of tension, the soothing sensation of being made the submissive, is indeed blissful.");
-		output("\n\n<i>“Now we’ve got that out of the way - was there something you wanted, starwalker?”</i>");
-	}
+	if (kaneDominance() < 51) output("\n\nHe lets you get back up" + (lostByLust ? " once you’re done," : ",") + " leans back on a tree, relaxing now that he has established his dominance. For all that you’re feeling the burn of shame and over-exertion, it’s difficult not to feel a certain shared happiness - the release of tension, the soothing sensation of being made the submissive, is indeed blissful.");
 	else
 	{
 		output("\n\nHe kneels before you" + (lostByLust ? " once you’re done," : ",") + " gripping you beneath your [pc.hair] carefully but firmly, fingering the nape of your neck.");
 		output("\n\n<i>“I don’t mind you acting out, from time to time,”</i> he murmurs. He extends a finger, tracing your [pc.lips]. You can’t stop him - you don’t want to stop him. <i>“It challenges me, I enjoy that. Just so long as you always remember your rightful place. At my knee.”</i>");
 		output("\n\nHe releases you, lets you get back up, relaxing back on a tree. There is a primal thrill to being beaten down by such a forceful creature and then being made to serve him, as much as might try to deny it - and increasingly, you think, you don’t want to deny it.");
-		output("\n\n<i>“Now we’ve got that out of the way - was there something you wanted, starwalker?”</i>");
 	}
 		
+	output("\n\n<i>“Now we’ve got that out of the way - was there something you wanted, starwalker?”</i>");
+	
 	kaneDominance(10);
 	kaneMenu();
 }
 
 public function kaneFuckOffForReal():void
 {
+	clearMenu();
+	clearOutput();
+	showKane();
+	author("Nonesuch");
+	processTime(1);
+
+	output("You’re so sick and tired of having to go through this every time. Of running up against this scowling, embittered asshole’s inability to just accept that you’re better than him, time and time again. Now you’ve discovered just how intractable and unpleasant he is, you completely understand why Able wound up hitting him.");
+	output("\n\nA sharp piece of flint, half-buried in the dirt, catches your eye. Instinctively, driven by your contempt, you pluck it out of the ground, heft it. Half-crouching, Kane’s eyes narrow, and then widen as you approach.");
+	output("\n\n<i>“What are you - ”</i>");
+	output("\n\nYou swipe the sharp end of the flint up his face hard, deliberately targeting the unblemished left side. He jerks backwards and gasps, the high, startled sounded of a wounded animal, clutching his face.");
+	output("\n\n<i>“There,”</i> you say, standing over him. <i>“It happened again, didn’t it? After you swore it never would. Maybe it’s because you’re weak. Or maybe it’s some other part of you, that will make it keep on happening until either you change, or it kills you. Go on. Get out of my sight, and think on it well.”</i>");
+	output("\n\nStill holding his face, Kane slowly picks himself up and staggers towards the edge of the clearing. He glances over his shoulder once before he leaves though: long enough to see the bleeding, mirrored scar you’ve given him, and the look of concentrated hatred in his eyes.");
+	output("\n\nYou very much doubt you’ll see him again.");
+	
+	output("\n\n\n\n<b>(+1000XP!)</b>");
+	pc.addHard(5);
+	pc.XP(1000);
+	
+	flags["KANE_STATUS"] = 3;
+	
+	addButton(0, "Next", mainGameMenu);
+}
+
+public function kaneBadEnd():void
+{
+	clearMenu();
+	clearOutput();
+	showKane();
+	author("Nonesuch");
+
+	output("You practically sprint over to Kane’s tree, ignoring the curious glances you draw from passing zil. Where has he gone? You stop at its trunk, stare up at its empty branches, unable to shrug off the sense of loss and creeping panic you feel at the absence of a certain insouciant individual up there, his athletic limbs strung in the branches, his black, hungry eyes fastened on you. You realise the way the tough zil has come to assert himself over you across the past month or so... the way he fills your head and mouth, <i>oh Void</i>... has become a comfort, a way of living that fills you with profound joy and satisfaction. The thought that you won’t experience that sweet, melting sensation again fills you with anxious despair.");
+	output("\n\nYou jerk your head as you hear a rustle in the bushes, and your heart lifts like a seabird on the breeze when you see Kane stride out from the undergrowth, his strong, lean arms wrapped in fibre baggage.");
+	output("\n\n<i>“I’m leaving,”</i> he says to you abruptly. He flings one of the packages down into the dirt with a single, curt gesture. <i>“I’ve had as enough as I can take. Quinn leads this tribe to ruin. What can one male do, seeing their leader plan pure folly, but strike out and forge their own path? I shall found a new tribe. I shall gather zil that desire the same things I do: honesty, honor, and dominance. The starwalkers who dare come to our lands may share them - but they shall do so as our servants.”</i>");
+	output("\n\nHe pauses before you, wings flickering and eyes livid, energized by what he’s saying. You sigh, feeling his scent on your tongue and in your nostrils, that delicious, honeyed smell that washes away all unhelpful thoughts. You’re so glad he’s here, making everything clear, words rippling into the warm puddle of your mind.");
+	output("\n\n<i>“Yes…”</i> he growls. <i>“Exquisitely crafted starwalkers, who shed their silly exoskeletons and kneel before us. They who run and fly through the jungle in their natural state like we do, and learn to suck a cock and say thank you after swallowing? They can stay. The rest shall be driven before us, like dust on the wind.”</i>");
+	output("\n\n<i>“Do you really think others will join you?”</i> you ask, excitement and worry turning over in your gut.");
+	output("\n\n<i>“Of course.”</i> He reaches out and grips your face, looking you lustily in the eyes. Warmth pours down to your groin,");
+	if (pc.hasVagina()) output(" [pc.eachVagina] drooling arousal");
+	if (pc.hasVagina() && pc.hasCock()) output(" and");
+	if (pc.hasCock()) output(" [pc.eachCock] hardening up fiercely");
+	output(" as concentrated, sexual honey pours into your mind. <i>“Because I will have my trophy. The proud landstealer champion, now " + pc.mf("my docile, bootlicking pet boy", "my sweet, well-trained slut-wife"));
+	if (pc.hasVagina()) output((pc.isPregnant() ? ", belly swollen" : " soon to have his belly swollen") + " with my children");
+	output(".\n\nOnce others see how well I’ve domesticated you, they shall know that my path is the true one.”</i> He bites his lip, eyes trailing down your [pc.chest]. <i>“Take off your");
+	if (pc.isNude()) output(" wrist zpirit. You don’t need it anymore.”</i>");
+	else output(" clothes . You don’t need them anymore.”</i>");
+	output("\n\nHeart fluttering, you obey him, casting aside your [pc.gear] for the last time, bearing your [pc.skinFurScales] to the heat of the Mhen’ga sun and your Master’s gaze. It doesn’t even occur to you to say no; it feels unspeakably wonderful to be naked for him, to do exactly as he tells you, now and forever.");
+	output("\n\n<i>“We should leave...”</i> Kane husks. Instinctively though he steps forward, grasping your [pc.butt] and pulling you into a hungry kiss, fondling you with greedy pulls and clasps of his hands as he curls his tube-tongue around your own. <i>“Turn around, put your hands on that tree, and raise that ass,”</i> he growls. <i>“Let me take a good look at what I own.”</i>");
+	output("\n\nA minute later you’re clutching at the bark, crying out with slutty glee again and again as Kane drives his thick, honey-beading cock into your [pc.vagOrAss] with tireless thrusts of his hips, sending quakes of flesh down your frame");
+	if (pc.hasBreasts()) output(", your [pc.boobs] swinging freely");
+	output(". The very thought that this is the rest of your life, right here, makes you orgasm on the spot,");
+	if (pc.hasCock())
+	{
+		if (pc.cumQ() < 500) output(" [pc.eachCock] spurting [pc.cum] into thin air");
+		else output(" [pc.eachCock] painting glorious lines of [pc.cum] into the dirt");
+	}
+	if (pc.hasVagina() && pc.hasCock()) output(" and");
+	if (pc.hasVagina()) output(" your [pc.vagina] clenching up and milking that delicious prick with one stunning spasm after another, dribbling [pc.femcum] freely down your [pc.thighs]");
+	output(". Kane gives you it ceaselessly throughout, digging that firm cock-flesh into your sensitive innards repeatedly, merely emitting a satisfied grunt and giving you a firm slap to the [pc.butt] when you whimper with joy. Void, you love him, you love his wonderful cock, you love serving him, you love the scent and taste of honey… it’s all you ever want to know.");
+
+	addButton(0, "Next", kaneBadEndTwo);
+}
+
+public function kaneBadEndTwo():void
+{
+	clearMenu();
+	clearOutput();
+	showKane();
+	author("Nonesuch");
+	currentLocation = "GAME OVER";
+	processTime(60*24*(20+rand(50)));
+
+	output("The young human explorer checked the holo-map emitted by her codex, before carefully peeking over the boulder, peering down the steaming, thickly vegetated valley again. She knew she had to be careful: she was on her own, many miles out from Esbeth in uncharted territory,");
+	if (flags["PQ_P_BURNED"] != undefined) output(" and since the terrible incident at that plantation a couple of years or so ago, it was well known these jungles had become a lot more hostile.");
+	else output(" and although the shaky accord between the colonists and the local tribe of zil had held over the last couple of years or so, out here there was no telling what she would run into.");
+	output("\n\nSo she advanced down the slope cautiously, and froze the moment she heard the noise - a rhythmic sort of clapping, seemingly coming from up ahead. What was that? Certainly not an animal cry, and too quick, surely, for something’s step. Nervous, but too curious to turn back, she pressed on.");
+	output("\n\nIt was only when she had stepped almost into the clearing that the clapping resolved itself into the sound of flesh slapping briskly into itself, and she began to hear the uninhibited cries and moans of pleasure. Her eyes widened as she stepped beyond the massive ferns and beheld the two figures on top of the fallen tree, too taken aback to try and conceal herself.");
+	output("\n\nThe tall, rugged, male zil had the naked [pc.race] bent over");
+	if (pc.hasHair()) output(", [pc.his] hair bunched in his jet-black hand");
+	output(", railing [pc.him]. And fuck was the zil really going for it, one powerful, almost violent thrust of his athletic, armored thighs into the [pc.race]’s [pc.skinColor] ass after another, making the reddened flesh there ripple with every fresh blow. His partner’s face was a paroxysm of delight, sweat rolling down [pc.his] brow, eyes rolled up and moaning with transported ecstasy, the bark beneath them");
+	if (pc.hasCock()) output(" sticky with the wasted [pc.cum] [pc.he] seemed to be leaking constantly in response to the thrust of the zil’s cock deep into [pc.his] backside.");
+	else if (pc.hasVagina()) output(" wettened with gratuitous amounts of spilt [pc.femcum], drooling it seemingly constantly in response to the thrust of the zil’s cock deep into [pc.his] pussy.");
+	if (pc.hasVagina())
+	{
+		output("\n\nThe explorer could see even from where she was that the [pc.race] was quite pregnant, [pc.his] midriff swollen");
+		if (pc.hasBreasts()) output(" and [pc.his] [pc.boobs] dripping [pc.milk]");
+	}
+	output(".\n\nThe whole glade stank of zil honey, oozing, sugary and sexual, and the explorer could not help feel a glow of arousal, a flush climbing onto her skin, despite herself. With a gratified growl and an obscene ‘schlorp’ sound the zil relieved himself, heavy amounts of orange goo leaking down onto the ground as he filled his alien pet’s " + (pc.hasVagina() ? "womb" : "bowels") + " with honey seed. The [pc.race]’s [pc.eyes] closed, [pc.tongue] tracing [pc.his] [pc.lips], clearly savoring the sensation.");
+	output("\n\n<i>“This is my tribe’s territory, starwalker,”</i> the big zil said in a harsh voice, detaching himself from his bottom, oozing, six inch cock swinging freely. The explorer jumped slightly. She suddenly realized, looking around, that she was actually surrounded by zil in the trees; hard-faced males and females, at least a dozen and all glaring at her, armed with spears and bows. She never even heard them approaching - although she realized she certainly had smelt them. Her eyes swam a bit, more heat and wetness pulsing down towards her lady bits.");
+	output("\n\n<i>“Starwalkers have two simple choices, if they come here,”</i> the leader went on, smirking at her. His hand was " + (pc.hasHair() ? "in" : "on") + " the [pc.race]’s [pc.hair], stroking [pc.him] as [pc.he] knelt between [pc.his] zil owner’s legs, cleaning his sugar-leaking cock and sweat-soaked pouch with wet, worshipful little laps and suckles. <i>“They can leave immediately, swear on pain of death to never enter our lands again. Or they can stay with us. Learn our ways.”</i>");
+	output("\n\n<i>“What have you done to [pc.him]?”</i> shot back the explorer, pleased at the dignified, indignant tone she managed to strike. Her plain white panties were not wet through right now, no sirree.");
+	output("\n\n<i>“" + pc.mf("Him", "Her") + "?”</i> replied the tall male, looking puzzled by her question. <i>“[pc.he] came of [pc.his] own free will. Learned our ways. Now [pc.he] is perfectly happy " + (pc.hasVagina() ? "bearing [pc.his] master’s children" : "warming [pc.his] master’s bed") + " and tending to his every wish. [pc.he] wants for nothing - except cum. If you’re good you get it in the mouth and if you’re bad you get it up the ass, isn’t that right, my " + pc.mf("trophy", "wife") + "?”</i>");
+	output("\n\n<i>“I’m always good, maaasterrrr,”</i> replied the [pc.race] clutching his leg, in a happy, dozy kind of whine. The zil leader " + (pc.hasHair() ? "ruffled [pc.his] hair" : "stroked [pc.his] bald head") + " one last time, then slapped [pc.him] on the [pc.butt].");
+	output("\n\n<i>“We’ll see about that later. You run along and " + (pc.hasVagina() ? "see to the children" : "tidy my yurt") + ".”</i>");
+	output("\n\nMouth slightly ajar, the human explorer watched the zil’s slave happily slide off the tree and disappear into the jungle, leaving a trickling trail of orange behind them. She should be feeling shocked, outraged, formulating a plan to rescue this brainwashed unfortunate, trying to recall reports of missing civilians on Mhen’ga - hadn’t there been a pretty famous one, a while back? - but instead, she found herself enticed. Mingle for a little while with this fierce band of natives, why not? There probably was a lot she could learn from them, much unique knowledge she could carry back to the university. She would have time to think of a way to save the captive [pc.race] whilst she was amongst them. And if their scent made her a bit horny and her brain feel pleasantly melted, well, that could be overcome, couldn’t it? It merely required a bit of mental discipline. She was a post doctorate, for goodness sake.");
+	output("\n\n<i>“Alright then,”</i> she said, straightening her back. <i>“Your offer is - kind. I shall stay with you. For a short while.”</i>");
+	output("\n\n<i>“Of course, starwalker,”</i> Kane husked, finger tracing his scar, black eyes half-lidded as they ate her up. <i>“This is all going exactly as I imagined.”</i>");
+
+	badEnd("THE END.");
 }
