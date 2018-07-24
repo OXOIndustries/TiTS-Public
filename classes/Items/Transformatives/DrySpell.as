@@ -384,6 +384,22 @@ package classes.Items.Transformatives
 			//if wetness is 2+ or have lubricated or sticky flag
 			if (target.ass.wetness() > 1 || target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED) || target.ass.hasFlag(GLOBAL.FLAG_STICKY)) 
 			{
+				//enter here if wet but no flags
+				if (!target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED) && !target.ass.hasFlag(GLOBAL.FLAG_STICKY))
+				{
+					//25% chance to fail
+					if (rand(4) == 0)
+					{
+						kGAMECLASS.output("\n\nYou’re about to leave it at that when your intruding digits are suddenly greeted by a rush of lube. As if a dam has been broken, your pucker starts to gush out oily secretions at a rapid pace. It doesn’t take long before the torrent calms down, however, and soon enough your fluids begin to drip at their usual pace. <b>Looks like your biology ensures that your slick orifice is always lubricated. Maybe it’ll run dry if you insert more Dry Spell?</b>");
+						
+					}
+					else
+					{
+						kGAMECLASS.output("\n\nUsually, you’d have secreted a whole lot of slick fluids by now. It appears that your once seemingly endless reservoir of lube has dried up some.");
+						lesswet = true;
+					}
+				}
+				//Flags here, boss!
 				if (target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED))
 				{
 					//25% chance to fail to remove lube flag
@@ -608,7 +624,26 @@ package classes.Items.Transformatives
 			{
 				kGAMECLASS.output(" However, afterwards you feel a bit parched down there. Gingerly you prod a few digits inside your [pc.vagina " + i + "], and after fingering yourself for a bit, you confirm it; <b>your vagina is not as");
 				//the above text output is finished inside one of the below conditions
-					
+				//enter here if wet but no flags
+				if (!target.vaginas[i].hasFlag(GLOBAL.FLAG_LUBRICATED) && !target.vaginas[i].hasFlag(GLOBAL.FLAG_STICKY))
+				{
+				    //25% chance to fail
+					if (rand(4) == 0)
+					{
+						kGAMECLASS.output(" wet anymore.</b>");
+						kGAMECLASS.output("\n\nYou’re about to leave it at that when your intruding digits are suddenly greeted by a rush of [pc.girlCum]. Like a dam that’s been broken, your vaginal secretions start gushing out of your [pc.cuntNoun " + i + "]. It doesn’t take long before the torrent calms down, however, and your fluids begin to drip at their usual pace before long. <b>Looks like your biology ensures that your soggy snatch always stays dripping");
+						if (kGAMECLASS.silly) kGAMECLASS.output(" like a broken fridge.");
+						else kGAMECLASS.output(" wet.");
+						
+						kGAMECLASS.output(" Maybe it’ll run dry if you insert more Dry Spell?</b>");						
+					}
+					else
+					{
+						kGAMECLASS.output(" wet anymore.</b>");
+						lesswet = true;						
+					}
+				}
+
 				if (target.vaginas[i].hasFlag(GLOBAL.FLAG_LUBRICATED))
 				{
 					//25% chance to fail to remove lube flag
