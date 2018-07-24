@@ -1732,6 +1732,7 @@ public function SSVE1(args:Array):void
 	// end scene (scene: SSVE1); go to (scene: SSVAG)
 	args.push("SSVE1");
 	clearMenu();
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSVAG,args);
 }
 
@@ -1763,6 +1764,7 @@ public function SSVE2(args:Array):void
 	// end scene (scene: SSVE2); go to (scene: SSVAG)
 	args.push("SSVE2");
 	clearMenu();
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSVAG,args);
 }
 
@@ -1807,6 +1809,7 @@ public function SSVE3(args:Array):void
 	pc.orgasm();
 	args.push("SSVE3");
 	clearMenu();
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSVAG,args);
 }
 
@@ -1861,6 +1864,7 @@ public function SSVE4(args:Array):void
 	pc.orgasm();
 	args.push("SSVE4");
 	clearMenu();
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSVAG,args);
 }
 
@@ -1891,6 +1895,7 @@ public function SSVE5(args:Array):void
 	pc.orgasm();
 	args.push("SSVE5");
 	clearMenu();
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSVAG,args);
 }
 
@@ -3244,6 +3249,8 @@ public function SSTE1(args:Array):void
 	//[=Afterglow=]
 	// end scene (scene: SSTE1); go to (SSTAG)
 	clearMenu();
+	//paigecuddles exception
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSTAG,args);
 }
 
@@ -3286,6 +3293,8 @@ public function SSTE2(args:Array):void
 	//[=Afterglow=]
 	// end scene (scene: SSTE2); go to (SSTAG)
 	clearMenu();
+	//paigecuddles exception
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSTAG,args);
 }
 
@@ -3348,6 +3357,8 @@ public function SSTE3(args:Array):void
 	pc.orgasm();
 	args.push("SSTE3");
 	clearMenu();
+	//paigecuddles exception
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSTAG,args);
 }
 
@@ -3381,6 +3392,8 @@ public function SSTE4(args:Array):void
 	pc.orgasm();
 	args.push("SSTE4");
 	clearMenu();
+	//paigecuddles exception
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSTAG,args);
 }
 
@@ -3412,6 +3425,8 @@ public function SSTE5(args:Array):void
 	for(var i:int = 0; i < 4; i++) { pc.orgasm(); }
 	args.push("SSTE5");
 	clearMenu();
+	//paigecuddles exception
+	if (paigePostCuddles(args)) return;
 	addButton(0,"Next",SSTAG,args);
 }
 
