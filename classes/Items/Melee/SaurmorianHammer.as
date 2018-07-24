@@ -35,7 +35,7 @@ package classes.Items.Melee
 			
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "Essentially an enormous bushing hammer - with spiked heads capable of extremely high vibration frequencies - this weapon was designed specifically to crush and break through the thick, heavy scales of an unruly saurmorian; making this spiked maul a favorite among law enforcement of locations with saurmorian populations.";
-			this.attackVerb = "smash";
+			attackVerb = "swing";
 			attackNoun = "smash";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
