@@ -1257,6 +1257,23 @@ package classes.GameData
 				output("\n\n<b>She reeks so strongly of pheromones that it's starting to get to you.</b>");
 				applyDamage(damageRand(new TypeCollection({pheromone:target.statusEffectv1("SHIZZY CUM")}), 20), null, target, "minimal");
 			}
+			
+			// Zweet Breeze
+			// Pheromonal lust damage after all attacks are resolved. Starts strong, incrementally decreases as each of them is KO’d.
+			if (target.statusEffectv1("Zweet Breeze") > 0)
+			{
+				var totalZil:Number = target.statusEffectv1("Zweet Breeze");
+				
+				if (target is PlayerCharacter)
+				{
+					output("\n\nAs the zil move" + (totalZil != 1 ? "" : "s") + " around you, wings out and weapon" + (totalZil != 1 ? "s" : "") + " at the ready, " + (totalZil != 1 ? "they fan their" : "he fans his") + " sweet smell towards you, the undeniably horny smell of fit, aroused zil males. The claws of lust sink themselves deeper and deeper into you...");
+					if(totalZil < 3) output(" It’s undeniably not as strong, though, since you put " + (totalZil == 1 ? "two" : "one") + " of them out of commission.");
+					else output(" Maybe if you took one or two of them out, it wouldn’t be so overpowering.");
+				}
+				
+				var damage:TypeCollection = new TypeCollection( { pheromone: 5 + rand(4) } );
+				applyDamage(damage.multiply(totalZil), null, target, "minimal");
+			}
 		}
 		
 		//Lowers v1 by 1 and removes the status if it's value is 0 afterwards, hope there wasn't a function to do this already

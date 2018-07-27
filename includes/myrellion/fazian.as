@@ -2119,6 +2119,7 @@ public function fazianQuestEhstraffeLoss():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	showBust("EHSTRAFFE","MYR_RED_GUARD_MASK","MYR_RED_GUARD_MASK","MYR_RED_GUARD_MASK");
 	author("Nonesuch");
@@ -2280,6 +2281,7 @@ public function fazianQuestEhstraffeVictory():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	showBust("GOLDMYR","GOLDMYR","GOLDMYR");
 	showName("VICTORY:\nEHSTRAFFE");
@@ -2314,6 +2316,7 @@ public function fazianQuestEhstraffeVictoryII():void
 	userInterface.mainButtonsReset();
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	moveTo("805");
 	processTime(120+rand(15));

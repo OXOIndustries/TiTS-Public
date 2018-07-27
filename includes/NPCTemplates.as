@@ -165,6 +165,7 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "DRCALNOR", DrCalnor);
 	prepChar(justUpdate, "THAREDRONE", ThareDrone);
 	prepChar(justUpdate, "LAH", RKLah);
+	prepChar(justUpdate, "KANE", Kane);
 	prepChar(justUpdate, "SHIZUYA", Shizuya);
 	prepChar(justUpdate, "ARDIA", Ardia);
 	

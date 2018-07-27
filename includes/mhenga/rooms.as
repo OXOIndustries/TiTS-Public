@@ -1448,6 +1448,25 @@ public function initMhengaRooms():void
 	rooms["12. Zil Village Winnar"].addFlag(GLOBAL.OUTDOOR);
 	rooms["12. Zil Village Winnar"].addFlag(GLOBAL.FOREST);
 	rooms["12. Zil Village Winnar"].runOnEnter = chieftansCircleBonusFuckery;
+	
+	rooms["ZIL FESTIVAL VILLAGE"] = new RoomClass(this);
+	rooms["ZIL FESTIVAL VILLAGE"].roomName = "VILLAGE\nFESTIVAL";
+	rooms["ZIL FESTIVAL VILLAGE"].planet = "PLANET: MHEN'GA";
+	rooms["ZIL FESTIVAL VILLAGE"].system = "SYSTEM: ARA ARA";
+	rooms["ZIL FESTIVAL VILLAGE"].description = "";
+	rooms["ZIL FESTIVAL VILLAGE"].southExit = "12. Zil Village Winnar";
+	rooms["ZIL FESTIVAL VILLAGE"].northExit = "ZIL FESTIVAL YURT";
+	rooms["ZIL FESTIVAL VILLAGE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["ZIL FESTIVAL VILLAGE"].addFlag(GLOBAL.FOREST);
+
+	rooms["ZIL FESTIVAL YURT"] = new RoomClass(this);
+	rooms["ZIL FESTIVAL YURT"].roomName = "VILLAGE\nYURT";
+	rooms["ZIL FESTIVAL YURT"].planet = "PLANET: MHEN'GA";
+	rooms["ZIL FESTIVAL YURT"].system = "SYSTEM: ARA ARA";
+	rooms["ZIL FESTIVAL YURT"].description = "";
+	rooms["ZIL FESTIVAL YURT"].southExit = "ZIL FESTIVAL VILLAGE";
+	rooms["ZIL FESTIVAL YURT"].addFlag(GLOBAL.INDOOR);
+	rooms["ZIL FESTIVAL YURT"].addFlag(GLOBAL.FOREST);
 
 
 	// Vanae map additions

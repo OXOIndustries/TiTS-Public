@@ -362,6 +362,7 @@ public function loseToThatIcyBimbo():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust("KRYM_NUDE");
@@ -573,6 +574,7 @@ public function combatVictoryWithKrymm():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust("KRYM");
