@@ -403,10 +403,10 @@ public function buttStretchDelsAnus():void
 	if(flags["TOOK_DELILAHS_BUTTGINITY"] == undefined && chars["DELILAH"].analVirgin) output("\n\n<b>You have taken Del’s anal virginity!</b>");
 	stretchDelilahsButt(true);
 	
+	processTime(30+rand(5));
+	pc.exhibitionism(1);
 	pc.orgasm();
 	timesDelilahSexed(1);
-	pc.exhibitionism(1);
-	processTime(30+rand(5));
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -578,6 +578,9 @@ public function stephIrsonEpisodeTwoDashTwo():void
 
 	output("\n\nBack on screen, the gray goo encasing Steph Irson has rolled onto her back, spreading her legs for the camera, fingers delving into poor Steph’s gaping cunt, thumb teasing the bud of her clitty. The goo herself is giving the audience a playful grin, clearly enjoying the galactic attention - or at least that of the drone as it buzzes around her, always searching for the best angle. Giving a little gasp of pleasure, her slimy fingers slip into Steph’s folds, spreading her cunt out for its closeup. The drone dutifully flies in, giving you a perfect High-Def view of Steph Irson’s pussy gaped around the googirl’s hand as she starts to jill off.");
 	output("\n\n<i>“Are you getting close, galaxy?”</i> the goo grins, fingers moving faster and faster through Steph’s exposed groin. Mimicking Steph’s own accent, she continues, <i>“Well, I sure am! Let’s finish together, everyone!”</i>");
+	
+	processTime(19);
+	
 	//If PC is fucking TrapCL: 
 	if(delAtTheMess() && timesDelilahSexed() > 0 && (pc.hasCock() || pc.hasVagina()))
 	{
@@ -594,7 +597,6 @@ public function stephIrsonEpisodeTwoDashTwo():void
 	
 	watchStephEpisodeBroadcast("STEPH_GOOED");
 	
-	processTime(19);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -682,9 +684,11 @@ public function delilahSlutTraining():void
 	output("\n\nYou reward your ardent lover with a high, girly whine of pleasure as he fills you with a thick wad of man-goo, joining the lake already backed up in your [pc.asshole], and finally let yourself cum. As soon as your relax yourself, you feel your [pc.cum] welling up from within as your prostate finally surrenders, meekly and discreetly leaking out of your [pc.cocks] and down the side of the bar as the cum’s fucked out of you from behind. Moaning like the whore you are, you ride out the orgasm to the beat of the buttfucking, smearing your thighs and the wood of the bar with your messy orgasm, enjoying every moment of cumming like a proper girl.");
 	output("\n\nYou give a self-pleasured shudder as the last cock pulls slowly out of your cum-stuffed backdoor, letting spooge leak out like a waterfall as your still-twitching muscles work out all that backlogged spunk. You collapse atop the bar, barely sensate, just keeping your eyes open long enough to watch Del’s belly suddenly swell as the horse-girl blows her load deep in the dusky trap’s ass, leaving her looking nine months pregnant before she pulls out with gusto, letting a flood of horse-cream flow out onto the floor....");
 	if(pc.isAss()) output(" Gonna have to make Del clean all this up after. Maybe with her mouth.");
-	pc.orgasm();
-	pc.orgasm();
+	
 	processTime(60+rand(5));
+	
+	pc.orgasm();
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",delSlutTraining2);
 	//Pass ~1 hr
