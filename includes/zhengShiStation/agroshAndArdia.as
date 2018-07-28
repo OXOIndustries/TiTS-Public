@@ -30,8 +30,8 @@ public function drinkArdiasCum():void
 {
 	IncrementFlag("ARDIA_CUMSHOTS_SWALLOWED");
 	pc.createStatusEffect("Dzaan Addicted");
-	while(pc.hasStatusEffect("Dzaan Withdrawal") { pc.removeStatusEffect("Dzaan Withdrawal"); }
-	//1 week. Creates "Dzaan Withdrawal" after. Reduces all lust damage taken by 2.
+	while(pc.hasStatusEffect("Dzaan Withdrawal")) { pc.removeStatusEffect("Dzaan Withdrawal"); }
+	// 1 week. Creates "Dzaan Withdrawal" after. Reduces all lust damage taken by 2.
 	if(!pc.hasStatusEffect("Beta's Satisfaction")) pc.createStatusEffect("Beta's Satisfaction",2,0,0,0,false,"Icon_Charmed","You've recently sated your desire for your alpha's cum, and can think only of her. You take less damage from lust-damaging attacks.", false, 0, 0xFF69B4);
 	pc.setStatusMinutes("Beta's Satisfaction",7*24*60);
 }
