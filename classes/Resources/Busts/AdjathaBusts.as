@@ -50,6 +50,14 @@ package classes.Resources.Busts
 		public var Bust_ARDIA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/ardia_nude.png", mimeType = "image/png")]
 		public var Bust_ARDIA_NUDE:Class;
+		public function get Bust_ARDIA_HORSE():Class { return Bust_ARDIA; }
+		[Embed(source = "../../../assets/images/npcs/adjatha/ardia_horse_nude.png", mimeType = "image/png")]
+		public var Bust_ARDIA_HORSE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/argosh.png", mimeType = "image/png")]
+		public var Bust_ARGOSH:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/argosh_nude.png", mimeType = "image/png")]
+		public var Bust_ARGOSH_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha.png", mimeType = "image/png")]
 		public var Bust_ATHA:Class;
@@ -936,6 +944,14 @@ package classes.Resources.Busts
 			public var Full_ARDIA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ardia_nude.png", mimeType = "image/png")]
 			public var Full_ARDIA_NUDE:Class;
+			public function get Full_ARDIA_HORSE():Class { return Full_ARDIA; }
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ardia_horse_nude.png", mimeType = "image/png")]
+			public var Full_ARDIA_HORSE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/argosh.png", mimeType = "image/png")]
+			public var Full_ARGOSH:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/argosh_nude.png", mimeType = "image/png")]
+			public var Full_ARGOSH_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha.png", mimeType = "image/png")]
 			public var Full_ATHA:Class;
