@@ -2060,7 +2060,7 @@ public function zephyrDoubleBetWin():void
 
 	output("\n\n<i>“Ohohohohoooo, reeeaaaaaaaaally?”</i> you gloat, bending your [pc.hips] back and pulling yourself down a bit to align with her closed lips. You rub the head on them and shiver in anticipation. This is going to be <i>fun</i>. No need to go easy on her.");
 	
-	output("\n\nWith your [pc.cockBiggestHead] lined up, you");
+	output("\n\nWith your [pc.biggestCockhead] lined up, you");
 	if (pc.biggestCockLength() <= 24)
 	{
 		output(" sink yourself past her pouting lips in one thrust, hollowing out her throat");
