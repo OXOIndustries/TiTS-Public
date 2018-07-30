@@ -81,6 +81,7 @@ package classes.Characters
 			}
 			if (cumFrom != null)
 			{
+				if(cumFrom is Ardia) kGAMECLASS.drinkArdiasCum();
 				if(!cumFrom.hasStatusEffect("Ovilium Effect") && hasStatusEffect("Ovilium"))
 				{
 					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
@@ -127,6 +128,7 @@ package classes.Characters
 			// Cumflation
 			if (cumFrom != null)
 			{
+				if(cumFrom is Ardia) kGAMECLASS.drinkArdiasCum();
 				if(cumFrom is Kally) imbibeAlcohol(100);
 				sstdChecks(cumFrom,"ass");
 				if(cumflationEnabled() && cumFrom.cumType != GLOBAL.FLUID_TYPE_CUNDARIAN_SEED) cumflationHappens(cumFrom,3);
