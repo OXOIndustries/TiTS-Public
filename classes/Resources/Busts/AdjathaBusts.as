@@ -1474,13 +1474,13 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_male.png", mimeType = "image/png")]
 			
-			public var Bust_RASKVEL_MALE:Class;
+			public var Full_RASKVEL_MALE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_male_nude.png", mimeType = "image/png")]
-			public var Bust_RASKVEL_MALE_NUDE:Class;
+			public var Full_RASKVEL_MALE_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_gang.png", mimeType = "image/png")]
-			public var Bust_RASKVEL_GANG:Class;
+			public var Full_RASKVEL_GANG:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_gang_nude.png", mimeType = "image/png")]
-			public var Bust_RASKVEL_GANG_NUDE:Class;
+			public var Full_RASKVEL_GANG_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/reaha_anusoft.png", mimeType = "image/png")]
 			public var Full_REAHA_ANUSOFT:Class;
