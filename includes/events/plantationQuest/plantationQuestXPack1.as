@@ -2570,7 +2570,7 @@ public function askQuinnAboutHerbs(response:String = "intro"):void
 			break;
 	}
 }
-function pregQuinnApproach(pregDays:int = 0):Boolean
+public function pregQuinnApproach(pregDays:int = 0):Boolean
 {
 	// >30 days, activates once when approached
 	if(pregDays > 30 && pregDays <= 60 && (flags["QUINN_PREG_APPROACH"] == undefined || flags["QUINN_PREG_APPROACH"] < 1))
@@ -2616,7 +2616,7 @@ function pregQuinnApproach(pregDays:int = 0):Boolean
 	return false;
 }
 // If PC chooses [Sex] during this period
-function pregQuinnSexNo():void
+public function pregQuinnSexNo():void
 {
 	var pregDays:int = quinnPregDays();
 	
@@ -2841,7 +2841,7 @@ public function askQuinnAboutPregnancy():void
 	addButton(0, "Next", talkToQuinnStuffGogogogogogogogogogo);
 }
 
-function pregQuinnBirthed():void
+public function pregQuinnBirthed():void
 {
 	clearOutput();
 	showQuinn();
@@ -2925,7 +2925,7 @@ public function quinnBabyActive():Boolean
 	return (hours >= 11 && hours <= 18);
 }
 
-function mommyQuinnApproach():Boolean
+public function mommyQuinnApproach():Boolean
 {
 	if(flags["QUINN_KID_AGE"] == undefined) return false;
 	
