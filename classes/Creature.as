@@ -6095,6 +6095,7 @@
 			{
 				if (descripted > 0) description += ", ";
 				description += tongueNoun(false,true);
+				descripted++;
 			}
 			
 			//Pick type
