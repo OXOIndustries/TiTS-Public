@@ -2064,7 +2064,7 @@ public function zephyrDoubleBetWin():void
 	if (pc.biggestCockLength() <= 24)
 	{
 		output(" sink yourself past her pouting lips in one thrust, hollowing out her throat");
-		if (pc.balls > 0 && pc.ballDiameter() <= 4) output(" and squishing your [pc.balls] against her nose");
+		if (pc.balls > 0 && pc.ballDiameter() <= 4) output(" and squishing your [pc.balls] against her nose.");
 		else output(" and slapping your [pc.balls] against her nose.");
 	}
 	else
