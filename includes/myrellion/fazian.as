@@ -177,11 +177,9 @@ public function nozzlePerformanceParadise():void
 
 	processTime(55+rand(10));
 
-	if (!pc.hasStatusEffect("Paradise!"))
-	{
-		pc.createStatusEffect("Paradise!", 0, 0, 0, 0, false, "LustUp", "Fazian’s Paradise performance has left a fire in your loins!\nMinimum lust increased by 20.", false, 480, 0xFFFFFF);
-	}
-	else pc.setStatusMinutes("Paradise!", 480);
+	
+	pc.createStatusEffect("Paradise!", 0, 0, 0, 0, false, "LustUp", "Fazian’s Paradise performance has left a fire in your loins!\nMinimum lust increased by 20.", false, 480, 0xFFFFFF);
+	pc.setStatusMinutes("Paradise!", 480);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -220,11 +218,8 @@ public function nozzlePerformanceShrike():void
 	//+ 1 hour, +20% experience gained for next 8 hours
 	processTime(55+rand(10));
 
-	if (!pc.hasStatusEffect("Shrike!"))
-	{
-		pc.createStatusEffect("Shrike!", 0, 0, 0, 0, false, "Icon_Haste", "Fazian’s Shrike performance has inspired you!\nExperience gains increased by 20%.", false, 480, 0xFFFFFF);
-	}
-	else pc.setStatusMinutes("Shrike!", 480);
+	pc.createStatusEffect("Shrike!", 0, 0, 0, 0, false, "Icon_Haste", "Fazian’s Shrike performance has inspired you!\nExperience gains increased by 20%.", false, 480, 0xFFFFFF);
+	pc.setStatusMinutes("Shrike!", 480);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
@@ -268,11 +263,8 @@ public function nozzlePerformanceQuaramarta():void
 	//+ 1 hour, + 15% crits for next 8 hours
 	processTime(55+rand(10));
 
-	if (!pc.hasStatusEffect("Quaramarta!"))
-	{
-		pc.createStatusEffect("Quaramarta!", 0, 0, 0, 0, false, "OffenseUp", "Fazian’s Quaramarta performance has sharpened your senses!\nCritical chance increased by 15%.", false, 480, 0xFFFFFF);
-	}
-	else pc.setStatusMinutes("Quaramarta!", 480);
+	pc.createStatusEffect("Quaramarta!", 0, 0, 0, 0, false, "OffenseUp", "Fazian’s Quaramarta performance has sharpened your senses!\n\nCritical chance increased by 15%.", false, 480, 0xFFFFFF);
+	pc.setStatusMinutes("Quaramarta!", 480);
 
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

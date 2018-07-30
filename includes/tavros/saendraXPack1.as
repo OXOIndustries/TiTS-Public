@@ -2202,6 +2202,7 @@ public function zilCallGirlSuckleHoney(doClear:Boolean = true):void
 	}
 }
 
+/*
 public function zilCallGirlPregScene(isBirthing:Boolean = false):void
 {
 	clearOutput();
@@ -2259,6 +2260,7 @@ public function zilCallGirlPregScene(isBirthing:Boolean = false):void
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
+*/
 
 public function resDeck16Func():Boolean
 {
@@ -2461,7 +2463,8 @@ public function zilCallGirlBirthMessage():String
 {
 	var cs:String;
 
-	if (_tempZilGirlChildRef == null || (_tempZilGirlChildRef.NumMale == 1 && _tempZilGirlChildRef.NumFemale == 0)) cs = "Our staff has taken her in and delivered a healthy son. She and your child";
+	if (_tempZilGirlChildRef == null || _tempZilGirlChildRef.Quantity <= 0) cs = "Our staff has taken her in and delivered the young. She and your offspring";
+	else if (_tempZilGirlChildRef.NumMale == 1 && _tempZilGirlChildRef.NumFemale == 0) cs = "Our staff has taken her in and delivered a healthy son. She and your child";
 	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 0) cs = "Our staff has taken her in and delivered a healthy daughter. She and your child";
 	else if (_tempZilGirlChildRef.NumFemale == 1 && _tempZilGirlChildRef.NumMale == 1) cs = "Our staff has taken her in and delivered a healthy son and daughter. She and your children";
 	else cs = "Our staff has taken her in and delivered " + num2Text(_tempZilGirlChildRef.Quantity) + " healthy children. She and your offspring";
