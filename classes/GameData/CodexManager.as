@@ -208,7 +208,7 @@ package classes.GameData
 			}
 			
 			base[entryName] = CodexManager.CODEXCONTENTFUNCTORS[entryName];
-			CodexManager.CODEXCONTENTFUNCTORS[entryName].parent = base[entryName];
+			//CodexManager.CODEXCONTENTFUNCTORS[entryName].parent = base[entryName];
 		}
 		
 	}

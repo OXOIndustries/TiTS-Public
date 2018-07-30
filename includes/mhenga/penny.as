@@ -3013,7 +3013,8 @@ public function teasePenny():void
 	pc.lust(20+rand(10));
 	
 	//[Add some a-hole points]
-	pc.addHard(20);
+	if(flags["PENNY_FUTA_TEASE"] == undefined) pc.addHard(20);
+	IncrementFlag("PENNY_FUTA_TEASE");
 	
 	//[Let them join in] [Let them watch] [Hide her actions]
 	clearMenu();
@@ -3141,7 +3142,8 @@ public function useYourCocksOnCumSluttyPenny():void {
 	output("\n\nYou turn to leave while she’s still pleasantly self-absorbed, her eager slurping noises following you as you step out of her office. You imagine that her new predilections will make doing her job considerably harder, but, you add to yourself with a grin, considerably more enjoyable for all involved.");
 	processTime(5+rand(10));
 	pc.orgasm();
-	pc.addHard(5);
+	if(flags["PENNY_CUMSLUT_JOIN_IN"] == undefined) pc.addHard(5);
+	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
 	//move to the room outside of Penny's
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
@@ -3159,7 +3161,8 @@ public function makeUseOfPennysCumSlutCock():void {
 	//[Add a considerable amount of a-hole points]
 	processTime(5+rand(10));
 	pc.lust(20+rand(10));
-	pc.addHard(5);
+	if(flags["PENNY_CUMSLUT_JOIN_IN"] == undefined) pc.addHard(5);
+	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
 	//move to the room outside of Penny's
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
@@ -3178,7 +3181,8 @@ public function findSomeonePublicToHelpPennyCumslut():void {
 	//[Add a considerable amount of a-hole points]
 	processTime(5+rand(10));
 	pc.lust(20+rand(10));
-	pc.addHard(5);
+	if(flags["PENNY_CUMSLUT_JOIN_IN"] == undefined) pc.addHard(5);
+	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
 	//move to the room outside of Penny's
 	addButton(0,"Next",move,"SOUTH ESBETH 3");

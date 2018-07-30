@@ -3477,6 +3477,12 @@
 			removeStatusEffect("Oil Numbed");
 			removeStatusEffect("Oil Aroused");
 			removeStatusEffect("Oil Slicked");
+			if(hasStatusEffect("Painted Penis") || hasStatusEffect("Body Paint"))
+			{
+				if(this is PlayerCharacter) AddLogEvent("Washing yourself has cleaned off any and all paint that had been covering your body.");
+				if(hasStatusEffect("Painted Penis")) clearPaintedPenisEffect();
+				removeStatusEffect("Body Paint");
+			}
 			if(pluggedVaginas() > 0 || isPlugged(-1))
 			{
 				if(isPlugged(-1)) ass.delFlag(GLOBAL.FLAG_PLUGGED);
@@ -3487,7 +3493,7 @@
 				removeStatusEffect("Pussy Plugged");
 				if(this is PlayerCharacter)
 				{
-					AddLogEvent(ParseText("<b>After the cleaning, you’re delighted to find that the hardened substance plugging you up has dissolved away!</b>"));
+					AddLogEvent("<b>After the cleaning, you’re delighted to find that the hardened substance plugging you up has dissolved away!</b>");
 					flags["SHOWERED_OUT_PLUG"] = 1;
 				}
 			}
@@ -4595,6 +4601,8 @@
 			if (hasStatusEffect("Tripped")) currPhys -= 4;
 			if (hasStatusEffect("Crunched")) currPhys -= 8;
 			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
+			if (hasStatusEffect("Full Stomach")) currPhys *= 0.9;
+			if (hasStatusEffect("Pumped!")) currPhys *= 1.15;
 
 			if (currPhys > physiqueMax()) 
 			{
@@ -4646,6 +4654,7 @@
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
+			if (hasStatusEffect("Full Stomach")) currReflexes *= 0.9;
 			if (hasStatusEffect("Bulky Belly")) currReflexes *= statusEffectv1("Bulky Belly");
 
 			if (currReflexes > reflexesMax())
@@ -4683,6 +4692,7 @@
 			
 			if (hasStatusEffect("Staggered")) currAim *= 0.8;
 			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
+			if (hasStatusEffect("Pumped!")) currAim *= 1.15;
 			
 			if (currAim > aimMax())
 			{
@@ -20352,7 +20362,7 @@
 		public function itemSlotUnlocked(slot:Number):Boolean
 		{
 			if
-			(	(InCollection(slot, GLOBAL.CLOTHING, GLOBAL.ARMOR) && (hasStatusEffect("Armor Slot Disabled") || armor.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
+			(	(InCollection(slot, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) && (hasStatusEffect("Armor Slot Disabled") || armor.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE) || hasStatusEffect("Body Paint")))
 			||	(slot == GLOBAL.MELEE_WEAPON && (hasStatusEffect("Melee Weapon Slot Disabled") || meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
 			||	(slot == GLOBAL.RANGED_WEAPON && (hasStatusEffect("Ranged Weapon Slot Disabled") || rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
 			||	(slot == GLOBAL.SHIELD && (hasStatusEffect("Shield Slot Disabled") || shield.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
@@ -20833,14 +20843,32 @@
 					case "Painted Penis":
 						if(requiresRemoval)
 						{
-							if(this is PlayerCharacter) AddLogEvent("The paint on your phallus flakes away, leaving you bare and unadorned once more.","passive", maxEffectLength);
+							if(this is PlayerCharacter) AddLogEvent("The paint on your phallus flakes away, leaving you bare and unadorned once more.", "passive", maxEffectLength);
 							libidoMod -= thisStatus.value4;
 						}
 						break;
 					case "Priapism":
 						if(requiresRemoval)
 						{
-							if(this is PlayerCharacter && hasCock()) AddLogEvent("The constant pressure on [pc.eachCock] subsides... You sigh in relief as you feel your maleness able to soften once more. <b>It looks like your case of priapism has finally passed!</b>","passive", maxEffectLength);
+							if(this is PlayerCharacter && hasCock()) AddLogEvent("The constant pressure on [pc.eachCock] subsides... You sigh in relief as you feel your maleness able to soften once more. <b>It looks like your case of priapism has finally passed!</b>", "passive", maxEffectLength);
+						}
+						break;
+					case "Body Paint":
+						if(this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent("The paint that was covering your body has dried up and faded away.","passive", maxEffectLength);
+						}
+						break;
+					case "Full Stomach":
+						if(this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent(ParseText("Your [pc.belly] gives off a slight rumble and you feel a bit more... comfortable? It seems your stomach has digested the vast amounts of food within it, returning your physique and reflexes back to more normal levels."), "passive", maxEffectLength);
+						}
+						break;
+					case "Pumped!":
+						if(this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent(ParseText("The boost of adrenaline pumping through your veins has subsided, returning your physique and aim back to more normal levels."), "passive", maxEffectLength);
 						}
 						break;
 					case "IQBGoneTimer":

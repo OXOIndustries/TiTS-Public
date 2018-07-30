@@ -415,6 +415,10 @@ public function showQuinnMaidens():void
 	showBust("FETCH", "CARRY");
 	showName("FETCH &\nCARRY");
 }
+public function quinnHandmaidenThreesomeAvailable():Boolean
+{
+	return ( (pc.hasCock() && pc.smallestCockLength() < 12.5) && pc.libido() >= 30 && (flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440) );
+}
 public function quinnHandmaidenThreesome(args:Array):void
 {
 	clearOutput();
@@ -447,6 +451,21 @@ public function quinnHandmaidenThreesome(args:Array):void
 			// +Lust
 			pc.lust(35);
 			
+			addButton(0, "Next", quinnHandmaidenThreesome, ["next"]);
+			break;
+		case "mommy":
+			showBust("QUINN", "FETCH", "CARRY");
+			showName("\nQUINN");
+			
+			output("Quinn beckons to one of her handmaidens, who hastens over to take " + quinnBabyName() + " out of her hands. She then rises and silently heads up the hill, her bobbing abdomen and bottom beckoning you to follow.");
+			
+			output("\n\n");
+			
+			processTime(3);
+			// +Lust
+			pc.lust(35);
+			
+			// Sex proceeds as normal from here
 			addButton(0, "Next", quinnHandmaidenThreesome, ["next"]);
 			break;
 		case "next":
@@ -983,1337 +1002,2116 @@ public function quinnHardlightFun(args:Array):void
 
 // Part 4: The Pollen Dance
 // Activates if PC has had sex with her, PC has genitals, has used all talk options, Quest fully resolved (i.e. now trading with Esbeth or PC has seen plantation burnt down), and PC uses Talk again.
-public function quinnTalkPollenDance(response:String = ""):void
+public function canQuinnTalkPollenDance():Boolean {
+	if(flags["QUINNFEST_COMPLETE"] != undefined) return false;
+	if(flags["QUINNFEST_TALKED"] != undefined) return false;
+	return ( flags["SEXED_QUINN"] != undefined && pc.hasGenitals()
+		&&	flags["QUINN_TALK_HERSELF"] != undefined && flags["QUINN_TALK_ESBETH"] != undefined && flags["QUINN_TALK_NALEEN"] != undefined
+		&&	flags["PQ_RESOLUTION"] > 0
+	);
+}
+public function quinnTalkPollenDanceMenu(response:String = "intro"):void
+{
+	// [Why Group?] {[Kane n Lah] / [Kane]} [Spectate] [Hell Yeah]
+	clearMenu();
+	if(response == "why group") addDisabledButton(0, "Why Group?", "Why Group?", "You’ve just discussed this!");
+	else addButton(0, "Why Group?", quinnTalkPollenDance, "why group", "Why Group?", "Ask why it has to be a gangbang.");
+	if(rkLahIsFree())
+	{
+		if(response == "kane") addDisabledButton(1, "Kane & Lah", "Kane and Lah", "You’ve just discussed this!");
+		else addButton(1, "Kane & Lah", quinnTalkPollenDance, "kane", "Kane and Lah", "There must be a reason why those two seem to be excluded from the equation here...");
+	}
+	else
+	{
+		if(response == "kane") addDisabledButton(1, "Kane", "Kane", "You’ve just discussed this!");
+		else addButton(1, "Kane", quinnTalkPollenDance, "kane", "Kane", "You think you know who the strongest male zil in the tribe is. But the implication seems to be that the big, scowling lug will be absent?");
+	}
+	if(response == "spectate") addDisabledButton(13, "Spectate", "Spectate", "You’ve just discussed this!");
+	else addButton(13, "Spectate", quinnTalkPollenDance, "spectate", "Spectate", "A big zil gangbang does not appeal. Say you’d rather sit this one out.");
+	if(response == "hell yeah") addDisabledButton(14, "Hell Yeah", "Hell Yeah", "You’ve just discussed this!");
+	else addButton(14, "Hell Yeah", quinnTalkPollenDance, "hell yeah", "Hell Yeah", "A big zil gangbang? Where do you sign?");
+	
+	// Appears after PC uses [Why Group?]
+	if(pc.hasCock() && flags["QUINNFEST_TALK_WHY_GROUP"] != undefined)
+	{
+		if(response == "just me") addDisabledButton(10, "Just Me", "Just Me", "You’ve just discussed this!");
+		else if(flags["QUINNFEST_TALK_JUST_ME"] != undefined) addDisabledButton(10, "Just Me", "Just Me", "You already decided against that!");
+		else addButton(10, "Just Me", quinnTalkPollenDance, "just me", "Just Me", "You have no intention of sharing your Quinn around. You’re virile enough to knock her up on your own!");
+	}
+}
+public function quinnTalkPollenDance(response:String = "intro"):void
 {
 	clearOutput();
 	author("Nonesuch");
-	clearMenu();
 	
 	switch(response)
 	{
-		case "":
+		case "intro":
 			showQuinn();
 			
-			output("");
-			output("\n\n");
+			output("<i>“Talk,”</i> says Quinn, absently. Her golden irises rest upon you for a silent couple of moments. <i>“Yes, talk. We should do that, Steele. Come closer.”</i>");
+			output("\n\nYou move close enough to her carved throne to lean on one of the armrests. Quinn’s body language is as relaxed and poised as ever, but when she speaks next it is low and serious. Her sweet, cloying perfume coils into your nostrils as she speaks.");
+			output("\n\n<i>“The Pollen Festival is almost upon us, when we celebrate the fruit and suns and breezes which allow us to produce the golden sweetness: the source of all our joy and strength. We have much to celebrate this cycle, with");
+			if(flags["PQ_RESOLUTION"] == 2) output(" our glorious victory over the landstealers");
+			else output(" the interesting peace you have brought upon us");
+			output(". It is a blessed time to plant babies. I want a baby.”</i> She pauses again, eyes upon the to-ing and fro-ing of her tribe. <i>“This is important to me, Steele. My mother only had one child - one that lived. I do not come from fertile stock. Zil leaders that do not produce children, do not last long. I must do all I can to have a child. So we shall perform the Droning Ball. I want you to take part.”</i>");
 			output("\n\n");
 			
 			processTime(3);
 			
+			clearMenu();
+			addButton(0, "Next", quinnTalkPollenDance, "next");
+			break;
+		case "next":
+			showQuinn();
+			
+			if(pc.isFemale())
+			{
+				output("<i>“Um...”</i> How to put this. <i>“I don’t know if you’ve noticed, Quinn, but I can’t...”</i>");
+				output("\n\nA wry smile reappears on the zil’s face.");
+				output("\n\n<i>“Put a baby in my belly? Perhaps not literally, Steele. But you are a good omen to my tribe. Your coming");
+				if(flags["PQ_RESOLUTION"] == 1) output(" dispelled the lying magic of the word wolf, and began our peace with the starwalkers of the white hives");
+				else output(" heralded our victory over the terrible landstealers, and showed we need fear no-one");
+				output(". Also, you are <i>very</i> exciting. My drones will outperform themselves if you are involved. Also...”</i> She puts her hand on yours, on the armrest. <i>“If I were in your place, I would ask: Why should Quinn be blessed with a baby, and not me? If you want that, my champion, it shall be yours.”</i>");
+				output("\n\nYou ask what the Droning Ball entails.");
+			}
+			else if(pc.isMale() || pc.isHerm())
+			{
+				output("<i>“You... want me to be the father?”</i>");
+				output("\n\n<i>“One of the fathers,”</i> Quinn corrects with a smile. <i>“Ordinarily I would have you compete with the others for the honor of pollinating your Quinn. But you are a good omen to my tribe. Your coming");
+				if(flags["PQ_RESOLUTION"] == 1) output(" dispelled the lying magic of the word wolf, and heralded the beginning our peace with the starwalkers of the white hives");
+				else output(" heralded our victory over the terrible landstealers, and showed we need fear no-one");
+				output(". Also, you are <i>very</i> exciting. My drones will outperform themselves if you are involved.”</i> She puts her hand on yours on the carved armrest, squeezes it. <i>“I want you to be involved, Steele. You have demonstrated your great strength and cleverness already. Your place in the Ball is assured.”</i>");
+				output("\n\nYou ask what it entails.");
+			}
+			output("\n\n<i>“There shall be a grand feast. Much dancing and merrymaking. Then all the menfolk who wish to sire my heir shall compete.”</i> She points at the circle of stones, in front of her throne. <i>“It is a test of will and cunning as much as strength, for in order to succeed you must not have over-indulged beforehand, you see?”</i> She squeezes your hand. <i>“Then we shall choose the most gallant, the most fetching, the most virile, you and I - two, three, maybe even five? - and then we shall... ball. All night. If you like.”</i>");
+			output("\n\nQuinn’s eyes have grown slightly distant.");
+			output("\n\n");
+			
+			processTime(3);
+			
+			quinnTalkPollenDanceMenu();
+			break;
+		case "why group":
+			showQuinn();
+			
+			if(pc.isFemale())
+			{
+				output("<i>“Why does there need to be more than one male?”</i> you ask. <i>“Couldn’t you just choose the best?”</i>");
+			}
+			else if(pc.isMale() || pc.isHerm())
+			{
+				output("<i>“Why does there need to be more than one male?”</i> you ask, thrusting out your [pc.chest] as subtly as you can.");
+			}
+			output("\n\n<i>“I want the best chance I can possibly create,”</i> replies Quinn. Her eyes are on her tribe, but she again speaks low and serious, so that only you can hear. <i>“Perhaps one does not have strong enough seed, but another... you see? Your presence, at the time of the Pollen Festival, and the Droning Ball... all of these things, yes. I am Quinn, and I am the daughter of my mother. I cannot leave it to fate. Also <b>I</b> want an heir. If there are many fathers, it shall belong to the whole tribe, and no one male can claim a stake to my throne.”</i>");
+			output("\n\n");
+			
+			processTime(1);
+			flags["QUINNFEST_TALK_WHY_GROUP"] = 1;
+			
+			quinnTalkPollenDanceMenu(response);
+			break;
+		case "kane":
+			showQuinn();
+			
+			if(pc.isFemale())
+			{
+				if(rkLahIsFree()) {
+					output("You would’ve thought if she were aiming to make a baby out of the strongest and smartest material in the village you know who her two candidates would be, and you say as much.");
+					output("\n\n<i>“The word wolf?”</i> She laughs, a single musical note. <i>“No. I believe his tastes run naturally in a different direction.”</i> She points discretely; the rangy ausar is at this moment chatting animatedly with a young male zil, who judging by his blush and toeing of the dirt is rather flustered by the attention.");
+					output("\n\n<i>“As for Kane: An excellent male to have, in times of war. In times of peace? He chafes under my rule. He is proud enough to disdain being one of the fathers of his Quinn’s child. No, he has his sights set on... loftier ambitions, I think.”</i> She gazes at you steadily.");
+				}
+				else {
+					output("You would’ve thought if she were aiming to make a baby out of the strongest material in the village you know who the candidate would be, and you say as much.");
+					output("\n\n<i>“Kane? An excellent male to have, in times of war. In times of peace? He chafes under my rule. He is proud enough to disdain being one of the fathers of his Quinn’s child. No, he has his eyes set on... loftier ambitions, I think.”</i> She gazes at you steadily.");
+				}
+			}
+			else if(pc.isMale() || pc.isHerm())
+			{
+				if(rkLahIsFree()) {
+					output("You would’ve thought if she were aiming to make a baby out of the strongest and smartest material in the village you know who her two candidates would be, and you say as much.");
+					output("\n\n<i>“The word wolf?”</i> She laughs, a single musical note. <i>“No. I believe his tastes run naturally in a different direction.”</i> She points discretely; the rangy ausar is at this moment chatting animatedly with a young male zil, who judging by his blush and toeing of the dirt is rather flustered by the attention.");
+					output("\n\n<i>“As for Kane: An excellent male to have, in times of war. In times of peace? He chafes under my rule. He is proud enough to disdain being one of the fathers of his Quinn’s child. No, he has his sights set on... other things, I think.”</i> She gazes at you steadily.");
+				}
+				else {
+					output("You would’ve thought if she were aiming to make a baby out of the strongest material in the village you know who the candidate would be, and you say as much.");
+					output("\n\n<i>“Kane? An excellent male to have, in times of war. In times of peace? He chafes under my rule. He is proud enough to disdain being one of the fathers of his Quinn’s child. No, he has... loftier ambitions, I think.”</i> She gazes at you steadily.");
+				}
+			}
+			output("\n\n");
+			
+			processTime(1);
+			
+			quinnTalkPollenDanceMenu(response);
+			break;
+		case "spectate":
+			showQuinn();
+			
+			if(pc.isFemale())
+			{
+				output("As gracefully as you can, you say you’d be honored to be present at their festival - but you’d sooner not get impregnated by half-a-dozen zil guys.");
+				output("\n\n<i>“I understand. The presence of my good omen at my chair shall be enough,”</i> Quinn replies. She eyes you knowingly. <i>“And perhaps a nice boy will take you to his hearth instead, hmm? It is an exciting time of the cycle.”</i>");
+			}
+			else if(pc.isMale() || pc.isHerm())
+			{
+				output("As gracefully as you can, you say you’d be honored to be present at their festival - but you’d sooner not be one dick in a parade of them.");
+				output("\n\n<i>“I understand. The presence of my good omen at my chair shall be enough,”</i> Quinn replies. She eyes you knowingly. <i>“And perhaps a nice girl will take you to her hearth instead, hmm? It is an exciting time of the cycle.”</i>");
+			}
+			output("\n\n");
+			
+			processTime(1);
+			flags["QUINNFEST_TALKED"] = -1;
+			
+			clearMenu();
+			addButton(0, "Next", quinnTalkPollenDance, "finish");
+			break;
+		case "hell yeah":
+			showQuinn();
+			
+			if(pc.isFemale())
+			{
+				output("The prospect of several zil doing you every which way until dawn is already firing off neurons in your brain, and you tell Quinn you’ll happily participate.");
+			}
+			else if(pc.isMale() || pc.isHerm())
+			{
+				output("The prospect of doing Quinn with one or two overexcited zil bois every which way until dawn is already firing off neurons in your brain, and you tell her you’ll happily participate.");
+			}
+			output("\n\n<i>“I am very pleased to hear that.”</i> She squeezes your hand again, and smiles at you happily. <i>“My good omen.”</i>");
+			output("\n\n");
+			
+			processTime(1);
+			flags["QUINNFEST_TALKED"] = 1;
+			
+			clearMenu();
+			addButton(0, "Next", quinnTalkPollenDance, "finish");
+			break;
+		case "just me":
+			showQuinn();
+			
+			output("<i>“You don’t need a ball of random guys to put a baby in you.”</i> You squeeze her hand back, looking her in the eye with all the smolder you can muster. <i>“I will do it. On my own. If the father is me, you don’t have to worry about claims to your throne: you know I have the birthright to be a... " + pc.mf("Ken", "Quinn") + " of a... tribe... regardless.”</i>");
+			output("\n\nQuinn stares back at you, spots of tangerine appearing in her cheeks and a strange smile trembling on her lips. You think, for the very first time you’ve known her, she’s flustered. A moment later, the tremble is swallowed by trademark composure.");
+			output("\n\n<i>“You wish to claim sole right to me, Steele?”</i> she breathes. <i>“How very bold of you. How very... daring.”</i> She wriggles on her perch a bit, evidently enjoying herself. <i>“I can guarantee your place in the Ball, but if you would dare declare yourself the only drone suitable to mate with Quinn, then you would have to stave off every other male who would challenge you. On your own. By the rules of the circle.”</i>");
+			output("\n\n");
+			
+			processTime(2);
+			
+			clearMenu();
+			addButton(0, "Yes", quinnTalkPollenDance, "just me yes", "Yes", "Kicking a bunch of bee boi butts beforehand will only make your dick harder.");
+			addButton(1, "No", quinnTalkPollenDance, "just me no", "No", "Maybe not the best idea.");
+			break;
+		case "just me no":
+			showQuinn();
+			
+			output("<i>“I admire your smartness as much as your strength, Steele,”</i> Quinn says, with an affectionate pat on the hand. <i>“The Droning Ball will be wonderful - set aside your inhibitions and you will enjoy yourself. You’ll see.”</i>");
+			output("\n\n");
+			
+			processTime(1);
+			flags["QUINNFEST_TALK_JUST_ME"] = -1;
+			
+			quinnTalkPollenDanceMenu("just me");
+			break;
+		case "just me yes":
+			showQuinn();
+			
+			output("<i>“Well, then.”</i> Quinn touches your [pc.chest] lightly, trails her thin, black fingers down your " + (pc.isChestCovered() ? "[pc.upperGarmentOuter]" : "[pc.skinFurScales]") + ", fire guttering beneath her calm, cool expression. <i>“I look forward to seeing your performance in the ring. My champion.”</i>");
+			output("\n\n");
+			
+			processTime(1);
+			flags["QUINNFEST_TALKED"] = 1;
+			flags["QUINNFEST_TALK_JUST_ME"] = 1;
+			
+			clearMenu();
+			addButton(0, "Next", quinnTalkPollenDance, "finish");
+			break;
+		case "finish":
+			showQuinn();
+			
+			output("<i>“Come back when the suns are beginning to set.”</i> Quinn dismisses you with a cool wave of her hand, and in a voice clear enough to resonate around the open space below her throne and. <i>“We shall begin the Pollen Festival as soon as my most honored guest is present.”</i>");
+			output("\n\nAn excited murmur thrums around the circle, and the rather leisured atmosphere of the zil village becomes noticeably more purposeful.");
+			output("\n\n");
+			
+			processTime(5);
+			
+			// Boot PC back to Chieftain’s Circle square. Add [Festival] to Quinn’s main options
+			currentLocation = "12. Zil Village Winnar";
+			
+			clearMenu();
 			addButton(0, "Next", mainGameMenu);
 			break;
 	}
 }
 
-/*
+public function quinnFestivalActiveHours():Boolean
+{
+	return ((hours == 16 && minutes >= 45) || (hours > 16 && hours <= 19));
+}
+public function quinnFestivalButton(btnSlot:int = 4):void
+{
+	if(flags["QUINNFEST_COMPLETE"] == undefined && flags["QUINNFEST_TALKED"] != undefined)
+	{
+		// Ghost out unless time is 16:45-19:00
+		if(!quinnFestivalActiveHours()) addDisabledButton(btnSlot, "Festival", "Festival", "You don’t think it’s the right time yet. Quinn indicated the early evening.");
+		else addButton(btnSlot, "Festival", quinnFestival, undefined, "Festival", "Tell Quinn you’re ready for the Pollen Festival to begin.");
+	}
+}
+public function quinnFestivalCircleMenu():void
+{
+	// Remove each option as it’s used, except the village/circle interchange. Action is moved on once PC uses [Dance].
+	// [Eat] [Drink] [Paint] [Village]
+	clearMenu();
+	if(flags["QUINNFEST_FEAST"] != undefined) addDisabledButton(0, "Eat", "Eat", "You’ve just done that!");
+	else addButton(0, "Eat", quinnFestival, "eat", "Eat", "Stuff your face with whatever passes for zil delicacies.");
+	if(flags["QUINNFEST_DRINK"] != undefined) addDisabledButton(1, "Drink", "Drink", "You’ve just done that!");
+	else addButton(1, "Drink", quinnFestival, "drink", "Drink", "They’ve discovered alcohol, right?");
+	if(flags["QUINNFEST_PAINT"] != undefined) addDisabledButton(2, "Paint", "Paint", "You’ve just done that!");
+	else if(pc.hasArmor())
+	{
+		if(!pc.canDropItem(pc.armor)) addDisabledButton(2, "Paint", "Paint", "You can’t remove your [pc.armor] in order to do that!");
+		else if(pc.inventory.length >= pc.inventorySlots()) addDisabledButton(2, "Paint", "Paint", "You don’t have enough space in your inventory (to place your [pc.armor]) in order to do that!");
+		else addButton(2, "Paint", quinnFestival, "paint", "Paint", "Getting some body paint going on sounds like a pretty good time. (This will have you remove your [pc.armor] however.)");
+	}
+	else addButton(2, "Paint", quinnFestival, "paint", "Paint", "Getting some body paint going on sounds like a pretty good time.");
+	
+	addButton(4, "Village", quinnFestival, "village", "Go To Village", "Go down to the village and join in the festivities there.");
+}
+public function quinnFestivalVillageMenu():void
+{
+	// [Dance] [Fortune] [Circle]
+	// [Dance] [Rope Jump] [Circle]
+	clearMenu();
+	addButton(0, "Dance", quinnFestival, "dance", "Dance", "Throw some shapes with the crowd. You can always say it’s starwalker custom to have no sense of rhythm.");
+	if(flags["QUINNFEST_ROPE_JUMP"] != undefined) addDisabledButton(1, "Rope Jump", "Rope Jump", "You’ve just done that!");
+	else addButton(1, "Rope Jump", quinnFestival, "rope jump", "Rope Jump", "There’s some rambunctious activity going on by the riverside. Could be fun...");
+	
+	addButton(3, "Circle", quinnFestival, "circle", "Go To Circle", "Head back up to the feast and drink.");
+}
+public function quinnFestival(response:String = "intro"):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	switch(response)
+	{
+		case "intro":
+			rooms["12. Zil Village Winnar"].northExit = "ZIL FESTIVAL VILLAGE";
+			moveTo("12. Zil Village Winnar");
+			
+			showQuinn();
+			showName("\nFESTIVAL!");
+			
+			output("<i>“Excellent.”</i> The zil leader smiles down at you serenely. <i>“Your place at the tables is to the right of mine. Eat, drink, be merry, do as you may - The Pollen Festival is a celebration of the freedom the life our people lead offers. Except don’t step into the circle. That is for later.”</i>");
+			output("\n\nWith that she rises, and strides off towards her yurt. " + (flags["QUINN_MAIDENS_MET"] == undefined ? "Her two handmaidens" : "Fetch and Carry") + " hurry after her.");
+			output("\n\nIronwood logs with shaven, flat tops - they must have been painstakingly cut down and then hoisted up the waterfall from the lower jungle - have been positioned around the chieftain’s circle. Onto them a smorgasbord of food is being ferried from the cooking fires, which are busy blazing away in the peripheries of the village. Stone urns filled with golden fluid hang from the cedar-like trees.");
+			output("\n\nThe tribal zil are everywhere, either chatting with one another in groups, sweating over the fires, settling themselves down in front of the feast, or thronging excitedly in the village below. There seems to be way more of them than usual, most of them either painted or in the process of being painted in sticky, garish dyes. The hubbub is the low, ululating buzz of a swarm of drunken wasps. Are other tribes present here, or is it simply that, in the normal course of events, most of them are usually in the jungle below?");
+			output("\n\nWhatever. You should follow Quinn’s advice and go have some fun.");
+			output("\n\n");
+			
+			processTime(3);
+			
+			quinnFestivalCircleMenu();
+			break;
+		case "eat":
+			showBust("");
+			showName("\nFEAST");
+			
+			output("You sidle your way through the crowd to the chair next to the big, carved one. There are bowls filled with alien fruit, made stranger by the dim, flickering light, and roasts of things you can’t even begin to imagine would have looked like before they were hunted down, butchered, slathered in honey, and stuck over a fire for an hour. As discretely as you can, you check your codex. It doesn’t <i>seem</i> to be flashing a red alert about any nearby toxins...");
+			output("\n\n<i>“Here, starwalker,”</i> coos the female zil sitting next to you, dangling a thin vine covered in bloated, oblong fruits. Going off her unfocused eyes, she’s already pretty drunk. <i>“Open wide...”</i> You let her lean over you, breathing in her fermented honey scent as she feeds you the fruits - watery, fizzy, citrusy. Those are - those are pretty nice! She giggles as, enthused, you reach out and tear off a leg of dark green meat. What do you know: It tastes like chicken.");
+			output("\n\nYou rise from the table maybe an hour later, mouth greasy, gut full. You’ve got all the calories you’ll need to keep you going through the night, but... oof... you hope nobody’s going to ask you to move fast anytime soon.");
+			output("\n\n");
+			
+			// +1 hour, -10% Reflexes -10% Physique for 10 hours, +100 energy
+			processTime(64);
+			eatHomeCooking(100);
+			pc.createStatusEffect("Full Stomach", 0, 0, 0, 0, false, "Icon_Slow", "You are currently stuffed with food, dropping your physique and reflexes by 10%, each.", false, 600);
+			
+			flags["QUINNFEST_FEAST"] = 1;
+			
+			quinnFestivalCircleMenu();
+			break;
+		case "drink":
+			showBust("");
+			showName("\nDRINK");
+			
+			output("The lean male slaps away your hand when you tentatively reach for one of the stone jugs hanging from a nearby tree.");
+			output("\n\n<i>“No. Unless you want blindness. Not properly brewed yet. Here.”</i> He picks up another, virtually identical jug, and pours out two cups, thrusting one into your hand. <i>“To the pollen! To our Quinn!”</i> You swallow it back with him. It’s mead, basically - mead, with its intense fire buried low under the crashing sweetness of honey.");
+			output("\n\n<i>“All good things come from the sweetness,”</i> the male says, grinning as he watches you blink a couple of times. <i>“Come! Drink again! I insist. To the breezes! To our Quinn!”</i>");
+			output("\n\nYeah! To the breezes! To the... thingie. You stagger through the crowd a bit later, cup still in hand, feeling much warmer, relaxed and friendly about all the nice, yellow and black people you’re spending this evening with.");
+			output("\n\n");
+			
+			// +1 hour, +80% alcohol
+			processTime(16);
+			pc.imbibeAlcohol(20);
+			processTime(16);
+			pc.imbibeAlcohol(20);
+			processTime(16);
+			pc.imbibeAlcohol(20);
+			processTime(16);
+			pc.imbibeAlcohol(20);
+			
+			flags["QUINNFEST_DRINK"] = 1;
+			
+			quinnFestivalCircleMenu();
+			break;
+		case "paint":
+			showBust("");
+			showName("\nPAINT");
+			
+			output("The thin old female with the pots of dye twinkles as she watches you roll up to where she’s sat.");
+			var hasArmor:Boolean = pc.hasArmor();
+			if(hasArmor)
+			{
+				output("\n\n<i>“You’ll have to take your soft plates off first, starwalker.”</i> You");
+				if(pc.hasLowerGarment())
+				{
+					output(" elect to keep your [pc.lowerUndergarment]");
+					if(pc.hasUpperGarment()) output(" and [pc.upperUndergarment]");
+					output(" on, but otherwise");
+				}
+				output(" bare your [pc.skinFurScales] to the cool, evening air, and the waiting brush of the artist.");
+			}
+			output("\n\n<i>“I see you as... a firebird. Yeeess,”</i> she breathes, painting cold stripes of orange and red dye onto your arms and face. You try not to flinch as she works. <i>“From the sky you come in your fiery silver bird, and you burn amongst us, changing everything and catching the eye with your rebirth. Yes!”</i> She plops her brushes back into her pots, beaming proudly at the wide patterns of fiery colors she’s painted onto you. <i>“Now go and dance, firebird. Shake your feathers!”</i>");
+			output("\n\nYou’re slightly self-conscious of it as you mingle back amongst the crowd, but the stuff quickly dries, sinking into your [pc.skin], so that it’s only when you wave your arms around that you remember you look like you’ve had a serious accident with a sun tan bed.");
+			output("\n\n");
+			
+			processTime(16);
+			
+			// Remove upper garments if present, +15% tease damage for 10 hours
+			if(hasArmor)
+			{
+				var wornArmor:ItemSlotClass = pc.armor;
+				wornArmor.onRemove(pc);
+				pc.armor = new EmptySlot();
+				itemCollect([wornArmor]);
+			}
+			pc.createStatusEffect("Body Paint", 0, 0, 0, 0, false, "Icon_LustUp", "Your face and body are painted with an alluring design, slightly amplifying your ability to tease.", false, 600);
+			
+			flags["QUINNFEST_PAINT"] = 1;
+			
+			quinnFestivalCircleMenu();
+			break;
+		case "village":
+			moveTo("ZIL FESTIVAL VILLAGE");
+			
+			showBust("");
+			showName("\nVILLAGE");
+			
+			output("You skirt around the feasting logs, and [pc.move] down the wooden ramp towards the wax hive-homes and the throngs of zil down there.");
+			output("\n\n");
+			
+			processTime(2);
+			
+			// Only shows IF Lah still present OR PC is submissive to Kane
+			if((rkLahIsFree() || submissiveToKane()) && flags["QUINNFEST_INTERLUDE"] == undefined)
+			{
+				clearMenu();
+				addButton(0, "Next", quinnFestival, "village interlude");
+			}
+			// If else simply display options
+			else quinnFestivalVillageMenu();
+			break;
+		case "village interlude":
+			// If Lah Still Present, not submissive to Kane
+			if(rkLahIsFree() && !submissiveToKane())
+			{
+				showLah();
+				
+				output("You stumble into Lah at the bottom of the ramp. The ausar’s got a dangerously full stone jar in his hand, and he’s substituted his fur stole for a head-dress of white feathers.");
+				output("\n\n<i>“Hear you’re taking part in - in Quinn’s big ritual later,”</i> he grins. <i>“That’s cool. If I’m honest I - I’ve never been big into these sexual dynamics all of these native races are into. Performo...performing... nervousness, I guess. It’s good you’re here to take on that kind of thing.”</i>");
+				output("\n\nHe swills his mead around, standing with you and gazing over the swirling crowd of zil.");
+				output("\n\n<i>“But it’s great, isn’t it?”</i> he slurs. <i>“Seeing all of these rituals of theirs. In... proteiny state. Centuries from now they’ll be carved in stone, unquestionable, but now, they’re still - still forming. And we’re part of that, me ‘n you.”</i> He slaps you on the shoulder, squeezes you into his lean side. <i>“We’re part of that - that slosh. Changing it for the better. Changing it for the... ooh I’m sloshed. S’cuse me, Steele...”</i>");
+				output("\n\nHe staggers off towards the bushes. Shaking your head, you consider your options.");
+				output("\n\n");
+				
+				processTime(5);
+				
+				flags["QUINNFEST_INTERLUDE"] = 1;
+			}
+			// PC 51% or more submissive to Kane
+			// This is for content that is going to appear later
+			else
+			{
+				showKane();
+				
+				output("<i>“So.”</i> Kane appears out of the gloom at the bottom of the ramp so suddenly and silently you gasp. And, of course, that fills your mouth and head with his scent. So intoxicating and powerful... black, horny memories bloom in your head, and your [pc.knees] turn to water.");
+				output("\n\n<i>“You’re taking part in our Quinn’s little ritual,”</i> he says, pupil-less eyes trailing up and down your body. The driest of smiles twitches the corner of his mouth. <i>“As her champion.”</i>");
+				output("\n\n<i>“Yes.”</i> You couldn’t lie to him even if it wasn’t pointless to; nor could you step away when he strides forward and takes you into his lean, strong arms, hands possessively roaming down your body, coming to rest on your [pc.ass] to give it a good, hard squeeze.");
+				output("\n\n<i>“I do not mind,”</i> he growls. <i>“Relax.”</i> Instantly you do, relief washing through you. <i>“Let her have her fun, use you as");
+				if(!pc.hasCock()) output(" her plaything");
+				else output(" her packet of seeds");
+				output(". I do not begrudge a female’s wish to have a child. It doesn’t matter to me.”</i> He pauses to lift his fingers, tracing your [pc.lips] with a rough index finger, sinking it into your unresisting mouth. <i>“Because I know who you really belong to, [pc.name].”</i>");
+				output("\n\nThe tall zil withdraws his hands the next moment and is gone, disappearing back into the shadows as swiftly and silently as he appeared. As if he were nothing more than a sudden, horny apparition conjured up by your own mind. Trying to shake a little sense into yourself, you take stock of your options.");
+				output("\n\n");
+				
+				processTime(5);
+				// +Lust
+				pc.lust(35);
+				
+				flags["QUINNFEST_INTERLUDE"] = 2;
+			}
+			quinnFestivalVillageMenu();
+			break;
+		case "dance":
+			showBust("");
+			showName("\nDANCE");
+			
+			output("Some leather drums are being enthusiastically thumped, along with wooden instruments rather like glockenspiels. The main sound moving the stamping, gyrating crowd though is the vocals, which every zil is joining in with - that wordless, soaring, buzzing sound, which builds and subsides, builds and subsides, seemingly mimicking the way dancers join and leave the central centrifuge of bodies.");
+			output("\n\nIt’s a rhythm that makes it easy to wait for a dip and then join in, bouncing your [pc.hips] against countless carapace-clad counterparts, join hands, spin partners and be spun yourself, find the heady, suffocating centre and then be flung back out to the periphery. Build... then subside. Build... then subside. You do your best to mimic the sound, your partners laughing goodnaturedly at your clumsy attempts at it.");
+			output("\n\nYour " + (!pc.hasArmor() ? "hand" : "[pc.armor]") + " is being tugged insistently. You turn to find yourself faced by an anxious looking young male.");
+			output("\n\n<i>“Please, starwalker,”</i> he says. <i>“You must come.”</i>");
+			output("\n\nBlinking and looking around, you realize many of the zil are filing their way up towards the chieftain’s circle. Where has the time gone? You were just getting warmed up. Shrugging, you make your way back towards the ramp.");
+			output("\n\n");
+			
+			// +2 Hours, go to part 2
+			processTime(122);
+			
+			clearMenu();
+			addButton(0, "Next", quinnFestivalPart2, ["intro"]);
+			break;
+		case "rope jump":
+			showBust("");
+			showName("\nROPE JUMP");
+			
+			output("The eyes of the predominantly male revellers light up when they see you hove into view. You watch as one of them pulls on the fibrous, tightly-secured vine and then launches himself with it over the river... almost making it to the other side before falling with a bellow and a crash into the water below.");
+			output("\n\n<i>“The starwalker!”</i> cheers one. <i>“[pc.He] conquered the cliff. Surely [pc.he] can conquer the river!”</i>");
+			output("\n\nThe vine is pushed into your hands amongst shouts, laughter and swigs of honey liquor. You pull at it experimentally, consider the looming drop into the cold, swift water. Oh, what the hell. There’s no backing down in front of drunken teenagers.");
+			// Reflexes test
+			var success:Boolean = (pc.RQ() >= 75);
+			// Fail
+			if(!success)
+			{
+				output("\n\nYou firmly grab hold, run backwards a bit, and then launch yourself into thin air. Your heart races as you’re flung way out into the open air. You’re doing it! You’re doing it! You’re... not doing it. Oh One no, that is way too far to jump.");
+				if(pc.hasWings() && pc.canFly()) output(" For a fleeting moment you consider opening your [pc.wings] and letting them do the rest, but then reflect that all of the winged males took their own dunkings fair and square.");
+				output(" You let go and cannonball into the cold, deep water below. Refreshing is one word for it.");
+				output("\n\nThe zil are laughing fit to burst as they haul you back onto the bank, but it’s pretty good-natured. A jar of warming mead is shoved into your hand, and the pleasant evening air quickly dries your [pc.skinFurScales]");
+				if(pc.hasStatusEffect("Body Paint")) output(" - although your fiery body paint is ruined");
+				output(".");
+				output("\n\n<i>“I will conquer the river, and then I will be the champion!”</i> the cry goes up. You give the next valiant challenger a cheer, and then fade back into the throng.");
+				
+				processTime(3);
+				
+				// - Body Paint Buff if present, +10% alcohol
+				pc.shower();
+				pc.imbibeAlcohol(10);
+				processTime(5);
+			}
+			// Succeed
+			else
+			{
+				output("\n\nYou firmly grab hold, run backwards a bit, and then launch yourself into thin air. Your heart races as you’re flung way out into the open air. You fix your eye on the opposite shore. You aren’t going to have enough momentum to reach it... or worse, you’ll come down on the awkwardly on the lip... no, no, you’ve got this, you’ve got this! You let go at the apex of the swing, do a reasonable Tarzan impression as you fly through the air, and land in a cloud of sand, following it up with a perfect forward roll.");
+				output("\n\nThe mob of male zil howl and cheer with amazement on the opposite side, and you allow yourself a couple of bows in their direction. STAR-WALK-ER! STAR-WALK-ER! Is still reverberating across the river as you swagger back towards the main party. Void, you feel so pumped after doing that!");
+				
+				processTime(3);
+				
+				// +Pumped buff for 10 hours: +15% Physique, +15% Aim
+				pc.createStatusEffect("Pumped!", 0, 0, 0, 0, false, "Icon_OffUp", "You are feeling amped up! The temporary sensation increases your physique and aim by 15%, each.", false, 600);
+			}
+			output("\n\n");
+			
+			flags["QUINNFEST_ROPE_JUMP"] = 1;
+			
+			quinnFestivalVillageMenu();
+			break;
+		case "circle":
+			moveTo("12. Zil Village Winnar");
+			
+			showBust("");
+			showName("\nCIRCLE");
+			
+			output("Maybe you’ll party with the joes a bit later. You clamber back up the ramp towards the flickering fires.");
+			output("\n\nIronwood logs with shaven, flat tops - they must have been painstakingly cut down and then hoisted up the waterfall from the lower jungle - have been positioned around the chieftain’s circle. Onto them a smorgasbord of food is being ferried from the cooking fires, which are busy blazing away in the peripheries of the village. Stone urns filled with golden fluid hang from the cedar-like trees.");
+			output("\n\nThe tribal zil are everywhere, either chatting with one another in groups, sweating over the fires, settling themselves down in front of the feast, or thronging excitedly in the village below. There seems to be way more of them than usual, most of them either painted or in the process of being painted in sticky, garish dyes. The hubbub is the low, ululating buzz of a swarm of drunken wasps. Are other tribes present here, or is it simply that, in the normal course of events, most of them are usually in the jungle below?");
+			output("\n\n");
+			
+			processTime(2);
+			
+			quinnFestivalCircleMenu();
+			break;
+	}
+}
+public function quinnFestivalPart2(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	var response:String = (arg.length > 0 ? arg[0] : "intro");
+	var vIdx:int = (arg.length > 1 ? arg[1] : -1);
+	
+	switch(response)
+	{
+		case "intro":
+			showBust("");
+			showName("THE\nMAIN EVENT");
+			
+			output("The suns have set entirely, and the mood is more serious and tense when you emerge back at the top of the village. The zil seated around the circle of logs are still talking to one another, but in a low murmur, and most of the food and drink has been cleared away.");
+			output("\n\nA drum begins to thump, slow and precise, and the chatter dies entirely. Quinn appears in the torch-light, sedately making her way to her place, at the opposite end of the circle. She’s covered in bright blue dye, wavy patterns of it that subtly frame her small boobs and crotch plate, and her carapace is studded with pieces of amber that catch the light of the flames. On her head is a headdress which must be the skull of a creature with very impressive horns, beads and feathers swaying from its branches. Through the eye sockets, her golden eyes catch the flicker of the firelight.");
+			// PC chose to fight
+			if(flags["QUINNFEST_TALK_JUST_ME"] >= 1 && pc.hasCock())
+			{
+				output("\n\nYou realize your chair, that once stood next to hers, is no longer there. Oh... right. You allow the zil male that fetched you to lead you over to a table");
+				
+				var itemList:Array = [];
+				if(pc.hasArmor()) itemList.push(pc.armor.longName);
+				if(pc.hasMeleeWeapon()) itemList.push(pc.meleeWeapon.longName);
+				if(pc.hasRangedWeapon()) itemList.push(pc.rangedWeapon.longName);
+				if(itemList.length > 0)
+				{
+					output(", where you first take off all of your gear:");
+					for(var i:int = 0; i < itemList.length; i++)
+					{
+						if(i > 0)
+						{
+							if((i + 1) == itemList.length) output(" and");
+							else output(",");
+						}
+						output(" " + itemList[i]);
+					}
+				}
+				output(". On the wooden surface are laid several short spears and bows. You have a choice to make.");
+				output("\n\n");
+				
+				processTime(3);
+				
+				// [Spear] [Bow]
+				clearMenu();
+				addItemButton(0, new ZilSpear(), quinnFestivalPart2, ["fight spear"]);
+				addItemButton(1, new ZilBow(), quinnFestivalPart2, ["fight bow"]);
+			}
+			else
+			{
+				output("\n\nThe seat to her right is empty. You don’t need any prompts from the runner to [pc.move] across and settle yourself down there. Quinn’s expression doesn’t waver; she looks carved, like some ancient deity that has stepped out of the night, a vision somewhere between life and death.");
+				if(rkLahIsFree() || submissiveToKane())
+				{
+					if(rkLahIsFree() && !submissiveToKane()) output(" Lah is already in place to her left, resplendent in his white feathered headdress. He looks uncomfortable, but plentiful amounts of mead seem to have stilled his twitchiness for now.");
+					else output(" Kane is already in place to her left. The rugged zil has made no particular effort to dress up for the occasion, and is slumped scowling in his chair. He can’t hide a certain amount of interest flickering on his face, though, as the drums begin to pick up.");
+				}
+				output("\n\n<i>“The time for the Droning Ball is upon us,”</i> Quinn intones. She rises and forms a U with her arms above her head, framing the skull crown. <i>“The zpirits demand I produce, for my tribe. To make use of this hallowed, fertile time and usher in the beginnings a new cycle. I have, on my side, one half of the new whole; my starwalker champion that has brought us");
+				if(flags["PQ_RESOLUTION"] == 2) output(" glorious victory");
+				else output(" unimagined prosperity");
+				output(". Now, I require the other half. Draw, from the ancient stock of my people, the best, the brightest. Who would dare call themselves such?”</i>");
+				output("\n\n<i>“Yes, my Quinn, I would.”</i> A tall, lean male steps into the ring, sinking his assegai into the sand.");
+				output("\n\n<i>“Yes, Quinn, I would!”</i> A shorter, more boyish male strides forward, bow clutched in his hand.");
+				output("\n\n<i>“Aye, Quinn, me, I would.”</i> Another pushes forward, chin thrust out, assegai leant over his shoulder.");
+				output("\n\nOn and on it goes, more of the nimble, elven, boyish wasp males stepping forward into the firelight, war-painted, faces set, clutching weapons. Eventually, there are 15 of them, arranged in a semicircle in front of Quinn.");
+				if(flags["PQ_RESOLUTION"] == 2) output(" You notice quite a few of them are armored in the battered white remnants of plasteel Snugglé turrets.");
+				output("\n\n<i>“We who are about to dance, salute you Quinn!”</i> they chorus. The last word is echoed all around the circle, a thundering sound that draws the drumbeat to an end. The fighters fan out so that they are an equal distance between each other, and then with a bloodcurdling, buzzing cry, join battle.");
+				output("\n\n");
+				
+				processTime(4);
+				
+				if(pc.hasVagina())
+				{
+					vIdx = pc.findEmptyPregnancySlot(1);
+					if(vIdx < 0) vIdx = rand(pc.vaginas.length);
+				}
+				
+				clearMenu();
+				addButton(0, "Next", quinnFestivalPart2, ["ball next", vIdx]);
+			}
+			break;
+		case "fight spear":
+		case "fight bow":
+			// Remove all gear, add Champion Assegai/Champion Short Bow, as in the Lah fight
+			var bow:Boolean = (response == "fight bow");
+			
+			showBust("QUINN", "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showName("VIRILE\nCOMBAT!");
+			
+			output("<i>“The starwalker champion has staked his claim.”</i> Quinn’s cool tones ring out over the assembly as you pick your chosen weapon, test it a few times. <i>“[pc.He] would be the father of my child, forge the future of our tribe, solely by way of [pc.his] own flesh.”</i> ");
+			output("\n\nShe’s silent, allowing you time to step into the ring of stones. The cool air touches your naked [pc.skinFurScales]. The flicker of countless pupil-less eyes reflect back at you.");
+			output("\n\n<i>“Is there any that would challenge that claim?”</i> Quinn’s voice carries out over the treetops.");
+			output("\n\n<i>“Yes, my Quinn, I would.”</i> A tall, lean male steps into the ring, sinking his assegai into the sand.");
+			output("\n\n<i>“Yes, Quinn, I would!”</i> A shorter, more boyish male strides forward, bow clutched in his hand.");
+			output("\n\n<i>“Aye, Quinn, me, I would.”</i> Another pushes forward, chin thrust out, assegai leant over his shoulder.");
+			output("\n\n<i>“Very well.”</i> Quinn raises her hand and the drum starts again, quicker this time. The hum from the crowd begins to build. <i>“You shall fight my champion, warriors. You have stepped forward together and so shall settle your claim together, should you triumph.”</i> You look over to her and see a soft, anticipatory smile spreading across the pretty mouth beneath the skull. <i>“Begin.”</i>");
+			output("\n\nThe three males spread out, the two spear-wielders ahead of the archer. You clutch your weapon. You have to be the only one capable of walking out of the circle, if it’s you that’s going to claim the prize.");
+			output("\n\n");
+			
+			processTime(3);
+			
+			// Fight
+			quinnFestivalPrepFight(bow);
+			break;
+		case "ball next":
+			showBust("QUINN", "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showName("VIRILE\nCOMBAT");
+			
+			// ++Lust
+			pc.lust(100);
+			
+			output("A few go down immediately; overconfident, overreaching, sent tumbling to the sand by a single, telling blow from a spear or club. You see what Quinn was saying about it being something of a test of cunning and stamina as well as strength. The biggest male overwhelms two others in a rhinoceros-like rampage, and then is simply taken out with a deft stab to the knee by another who was clearly just waiting for an opening to do so.");
+			output("\n\nThe sweet, heady scent of horny zil boys rises up into the still, cool air. They are fighting, rutting really, to establish sexual dominance in the way of all zil, only instead of over each other, it’s for Quinn - and you. Stealing a look at the proud, skull-crowned monarch, you see that her mouth is slightly ajar, color in her cheeks, and she is squirming ever so slightly in her throne as she watches this display of male savagery.");
+			output("\n\nYou’d be lying if it wasn’t having an effect on you also, the smell alone is... overwhelming. The lavender-like musk fills your lungs as you gaze at lean boy butts and slim chest clench and shudder as their blows thud into each other;");
+			if(pc.hasGenitals())
+			{
+				if(pc.hasCock()) output(" [pc.eachCock] fill" + (pc.cocks.length == 1 ? "s" : "") + " with hard heat");
+				if(pc.isHerm()) output(" and");
+				if(pc.hasVagina()) output(" [pc.eachVagina] drip" + (pc.vaginas.length == 1 ? "s" : "") + " with primal excitement");
+			}
+			else output(" your [pc.asshole] pulses with primal excitement");
+			output(" as you enter a kind of erotic trance, insect wings flickering and flint weapon flashing. It <i>is</i> a dance, kind of; male drones struggling and thronging together for the glory of their queen.");
+			output("\n\n<i>“Well done, my warriors,”</i> says Quinn, rising. You blink, coming to slightly. There are three male zil still left standing, two clutching spears and the other a bow; battered, scratched, sweaty and chests heaving, they nonetheless look elated beyond words. Looking around, you can see that the ritual battle has had a similar effect on many as it had on you - the black-eyed faces you can see are entranced with lust, and you think you can already hear the sigh of crotch and breast- plates slithering to one side in the darkness. There’s going to be more than one baby planted tonight... if not a full-blown orgy breaking out.");
+			output("\n\n<i>“All who fought today showed honor and bravery,”</i> Quinn continues. <i>“But it is your victory today that shall be spoken of for many moons to come. Step forward, you three. You have earned the chance to prove yourself in... other ways.”</i>");
+			
+			clearMenu();
+			addButton(0, "Next", quinnFestivalPart2, ["ball to yurt", vIdx]);
+			break;
+		case "ball to yurt":
+			moveTo("ZIL FESTIVAL YURT");
+			
+			showBust("");
+			showName("DRONING\nBALL");
+			
+			// PC chose to spectate
+			if(flags["QUINNFEST_TALKED"] < 0 || !pc.hasGenitals())
+			{
+				output("You watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and sting-laden abdomen bobbing an invitation that the three victorious warriors gladly accept, scars and all. It’s a safe guess that you won’t see them again until sunrise at the very earliest. The spell of their skull-crowned deity broken, the rest of the tribal zil are now getting very involved with one another; the warriors who fell are having their wounds tended to, whilst hands are slipping into hands and groups of two or three are gliding into the darkness.");
+				// PC is submissive to Kane
+				if(submissiveToKane())
+				{
+					output("\n\n<i>“I misjudged you,”</i> a familiar voice growls into your ear. You start, and it breaks into harsh laughter.");
+					output("\n\n<i>“I thought Quinn had you completely twisted around her little finger,”</i> Kane says from behind your chair. You close your eyes as you feel his hand reach down, pawing roughly at your [pc.chest], subsuming yourself once again in his scent and the sweet sensation of submission. <i>“But you chose not to be part of her whorish little romp, didn’t you? Loyalty. Dedication. That’s what I call that.”</i> His voice deepens and lowers, white-hot arousal gleaming through his words. <i>“I think it calls for a reward. More celebrations. I’ve got some ropes... and a desire to fuck every single one of those tight, loyal holes of yours. Come.”</i>");
+					output("\n\nIn a daze you get up and follow your waspish master down the ramp, towards the waiting darkness of his yurt, head filled with nothing but aching horniness and a desire to please. Within ten minutes your hands are tied behind your back, your [pc.ass] is in the air and his thick, glossy dick is plunging into your [pc.vagOrass " + vIdx + "] deep, rutting you roughly. And it’s so good, so good to forget your name and for every other thought to be washed away by orgasm after orgasm, and for you to become an empty, slutty vessel for his seed, all night long...");
+					
+					if(vIdx >= 0) pc.cuntChange(vIdx, chars["KANE"].cockVolume(0));
+					else pc.buttChange(chars["KANE"].cockVolume(0));
+					
+					processTime(11);
+				}
+				// PC has fucked Fetch and Carry
+				else if(flags["QUINN_MAIDENS_SEXED"] != undefined)
+				{
+					output("\n\n<i>“Heeeeyyyyy,”</i> somebody croons into your ear. You start, and to the other side of you somebody giggles.");
+					output("\n\n<i>“You’re looking a little lonely, sat up here,”</i> says Fetch, leaning down close enough for you to smell the sugary waves of mead and pheromones coming off of her. <i>“Did Quinn take all of those boys for herself and just leave you here?”</i>");
+					output("\n\n<i>“She’s so greedy,”</i> pouts Carry, on the opposite side. Her hand slides " + (!pc.hasHair() ? "over" : "through") + " your [pc.hair]. <i>“Why don’t you come home with us, champion? We’ve got room, you know. You could show us the stars again...”</i>");
+					output("\n\nYeah. That sounds like a very good idea indeed. You get up and clinch the two drunken handmaidens into your side, their armored hips meeting your [pc.hips], making them laugh and squeal, and the three of you make your meandering, tipsy way to their yurt.");
+					
+					processTime(10);
+				}
+				// If Else
+				else
+				{
+					output("\n\nAn elfin male passing by your chair, hand-in-hand with a slightly taller female, catches your eye, and silently proffers you his hand. In the dreamy, sensual atmosphere at play here, there is no need for words. You lock fingers with those thin black digits, and the three of you make your meandering, tipsy way down towards the village and the waiting darkness of a yurt.");
+					
+					processTime(7);
+				}
+				output("\n\n");
+				
+				clearMenu();
+				addButton(0, "Next", quinnFestivalPart2, ["ball spectate", vIdx]);
+			}
+			// PC chose to participate
+			else
+			{
+				output("She rises, then pauses, waiting for you to follow suit. You know your role here as if it had been drilled into you; there’s an incredible erotic frisson at work here, a dark thrill that worms its way into your heart as you gaze at the lithe, sweaty bodies of the victorious male zil, that makes your breath come quick and fast.");
+				output("\n\nYou and Quinn make your stately way back to her yurt, leading the three of them upwards, well aware their eyes are fixed upon her bobbing, sting-laden abdomen and your [pc.ass]. The spell of their skull-crowned deity broken, you can hear the rest of the tribal zil now getting very involved with one another; the lavender-scented woods are alive with the sounds of sighs, gasps, the hum of insect wings and low voices. Clearly this is a night they all look forward to.");
+				output("\n\n");
+				
+				// Go to sexings
+				clearMenu();
+				addButton(0, "Next", quinnFestivalSexingsRouter);
+			}
+			break;
+		case "ball spectate":
+			showBust("");
+			showName("DRONING\nBALL");
+			
+			output("You emerge from the yurt into the heat of the Mhen’gan middle of the day, yawning and stretching. You had a thoroughly enjoyable, if strenuous night");
+			if(submissiveToKane() || flags["QUINN_MAIDENS_SEXED"] != undefined) output(" - the festival certainly put " + (submissiveToKane() ? "Kane" : "those two") + " in the mood, as if zil weren’t always in the mood");
+			output(". You leave " + ((submissiveToKane() || flags["QUINN_MAIDENS_SEXED"] == undefined) ? "him" : "them") + " slumbering off the excesses of the festival, quietly putting on your [pc.gear], your [pc.groin] throbbing mightily and the taste of honey juices in your mouth.");
+			output("\n\nYou find Quinn already stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing transpired last night - except, perhaps, for a slightly wider smile stretched across her round face, and maybe a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went according to plan.");
+			output("\n\n<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. Thank you for being present, [pc.name]. As I told you, you are a blessing upon this tribe, and if I cannot be gotten with child even if I have you by my side... then I shall know it was never meant to be. I hope you found our festival entertaining.”</i> She eyes you knowingly. <i>“I think you did.”</i>");
+			output("\n\n");
+			
+			// +8 hours, -Lust, +Sweaty
+			genericSleep((8 * 60) + 5);
+			pc.orgasm();
+			sweatyDebuff(1);
+			
+			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
+			tryKnockUpQuinn(true);
+			rooms["12. Zil Village Winnar"].northExit = "";
+			currentLocation = "12. Zil Village Winnar";
+			flags["QUINNFEST_COMPLETE"] = -1;
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+// Fight
+public function quinnFestivalPrepFight(bow:Boolean = false):void
+{
+	var zilDrones:Array = [new ZilChampionSpear(), new ZilChampionBow(), new ZilChampionSpear()];
+	
+	// No run away!
+	zilDrones[0].createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+	// Take player weapons and armor and set new weapon based on choice.
+	zilDrones[0].inventory.push(pc.meleeWeapon);
+	zilDrones[0].inventory.push(pc.rangedWeapon);
+	pc.meleeWeapon.onRemove(pc);
+	pc.rangedWeapon.onRemove(pc);
+	if(pc.hasArmor())
+	{
+		zilDrones[0].inventory.push(pc.armor);
+		pc.armor.onRemove(pc);
+		pc.armor = new EmptySlot();
+	}
+	if(bow)
+	{
+		pc.rangedWeapon = new ZilBow();
+		pc.meleeWeapon = new Rock();
+	}
+	else
+	{
+		pc.meleeWeapon = new ZilSpear();
+		pc.rangedWeapon = new Rock();
+	}
+	
+	// Lock slots to prevent item switching from inventory!
+	pc.lockItemSlot(GLOBAL.ARMOR, "<b>It is not of zil custom to change outfits while already in honorable combat!</b>");
+	pc.lockItemSlot(GLOBAL.MELEE_WEAPON, "<b>You are unable to wield a different weapon right now--where is your honor?!</b>");
+	pc.lockItemSlot(GLOBAL.RANGED_WEAPON, "<b>You can’t arm yourself with different weapons--you agreed to an honorable battle, remember?</b>");
+	
+	// Add passive effect
+	pc.createStatusEffect("Zweet Breeze", 3, 0, 0, 0, false, "Icon_LustUp", "A pheromonal lust cloud looms over the area, affecting your arousal.", true, 0, 0xB793C4);
+	
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(zilDrones);
+	CombatManager.victoryScene(quinnFestivalFightWin);
+	CombatManager.lossScene(quinnFestivalFightLose);
+	CombatManager.displayLocation("ZIL TRIO");
+	CombatManager.encounterText("You are fighting the trio of male zil who have chosen to contest your claim to Quinn. Generally speaking, they are typical lads for their species - equipped with hoverboard-sized insect wings, clad in sturdy black chitin everywhere except their yellow faces, antennae bobbing above their shaggy brown hair. They are all slathered in arresting, garish war paint. The two wielding short spears are 5\' 10\" and wiry, athletic and tall, jut-jawed and determined. The other is maybe 5\' 8\", equipped with a bow and is more effeminate: slim, full thighs and a cute, heart-shaped, yellow face bobbing around in the dusky light.");
+	
+	// go to fight
+	clearMenu();
+	addButton(0, "Next", CombatManager.beginCombat);
+}
+public function quinnFestivalEndFight():void
+{
+	var zilDrones:Array = CombatManager.getHostileActors();
+	setEnemy(zilDrones[0]);
+	
+	//Give PC back gear.
+	for(var i:int = 0; i < enemy.inventory.length; i++)
+	{
+		switch(enemy.inventory[i].type)
+		{
+			case GLOBAL.RANGED_WEAPON:
+				pc.rangedWeapon = enemy.inventory[i];
+				pc.rangedWeapon.onEquip(pc);
+				break;
+			case GLOBAL.MELEE_WEAPON:
+				pc.meleeWeapon = enemy.inventory[i];
+				pc.meleeWeapon.onEquip(pc);
+				break;
+			case GLOBAL.ARMOR:
+			case GLOBAL.CLOTHING:
+				pc.armor = enemy.inventory[i];
+				pc.armor.onEquip(pc);
+				break;
+		}
+	}
+	enemy.inventory = [];
+	
+	//If neither PC or enemy has champion kit, set it up.
+	if(!(pc.meleeWeapon is ZilSpear) && !pc.hasItemByClass(ZilSpear))
+	{
+		if(!enemy.hasItemByClass(ZilSpear)) enemy.inventory.push(new ZilSpear());
+	}
+	if(!(pc.rangedWeapon is ZilBow) && !pc.hasItemByClass(ZilBow))
+	{
+		if(!enemy.hasItemByClass(ZilBow)) enemy.inventory.push(new ZilBow());
+	}
+	
+	// Unlock locked inventory slots!
+	pc.unlockItemSlot(GLOBAL.ARMOR);
+	pc.unlockItemSlot(GLOBAL.MELEE_WEAPON);
+	pc.unlockItemSlot(GLOBAL.RANGED_WEAPON);
+}
+public function quinnFestivalFightLose(response:String = "intro"):void
+{
+	clearOutput();
+	author("Nonesuch");
+	
+	switch(response)
+	{
+		case "intro":
+			userInterface.hideNPCStats();
+			userInterface.leftBarDefaults();
+			generateMap();
+			
+			showBust("ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showName("DEFEAT:\nZIL TRIO");
+			
+			var zilDrones:Array = CombatManager.getHostileActors();
+			var numZilAwake:int = 0;
+			for(var i:int = 0; i < zilDrones.length; i++)
+			{
+				if(!zilDrones[i].isDefeated()) numZilAwake++;
+			}
+			
+			output("You’re desperate to fight on, but");
+			if(pc.HP() <= 0) output(" you simply cannot force your exhausted body on any further");
+			else output(" you simply cannot ignore the arousal that’s been forced upon your overloaded senses any further");
+			output(". You collapse into the sand and put your arms to signal your defeat.");
+			output("\n\nThe");
+			if(numZilAwake < zilDrones.length) output(" remaining");
+			output(" zil warrior" + (numZilAwake == 1 ? " sighs" : "s sigh") + ", barely able to believe it, and then buzz" + (numZilAwake == 1 ? "es" : "") + " a harsh cheer into the night sky,");
+			if(numZilAwake < zilDrones.length)
+			{
+				output(" hauling up " + (numZilAwake == 1 ? "his" : "their") + " fallen comrade" + (zilDrones.length - numZilAwake == 1 ? "" : "s") + " so that they can huddle");
+			}
+			else output(" huddling");
+			output(" into a fierce group hug before turning their expectant, exultant faces back to Quinn.");
+			output("\n\n<i>“All who fought today showed honor and bravery,”</i> Quinn says, calm and composed as a statue. <i>“But it is your victory today that shall be spoken of for many moons to come. Step forward, you three. You have earned the chance to prove yourself in... other ways.”</i>");
+			output("\n\nYou watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and sting-laden abdomen bobbing an invitation that the three victorious warriors gladly accept, scars and all. They offer hands and hasty commiserations to you as they go, but that does little to salve the burn of humiliation.");
+			output("\n\nIt’s a safe guess that you won’t see them again until sunrise at the very earliest. The spell of their skull-crowned deity broken, the rest of the tribal zil are now getting very involved with one another; hands are slipping into hands and groups of two or three are gliding into the darkness. Little attention is paid to you, about which you’re reasonably grateful. You");
+			output(" wrap up your wounds");
+			if(pc.HP() > 0) output(" give yourself some much needed manual relief");
+			else output(", find a dark space beneath the boughs of a tree, and slip into blissful slumber.");
+			output("\n\n");
+			
+			processTime(3);
+			
+			clearMenu();
+			addButton(0, "Next", quinnFestivalFightLose, "next");
+			break;
+		case "next":
+			showQuinn();
+			
+			output("You awake in the heat of the Mhen’gan middle of the day, yawning and stretching, and after a quick wash in the river make your back up to the circle. You find Quinn already stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing had transpired last night - except, perhaps, for a slightly wider smile stretching her round face, maybe a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went according to plan.");
+			output("\n\n<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. I’m sorry you weren’t able to overcome my warriors, [pc.name]. But you fought honorably, and I believe the zpirits were pleased. As I told you, you are a blessing upon this tribe, and if I cannot be gotten with child even if I have you by my side... then I shall know it was never meant to be.”</i> She eyes you teasingly. <i>“And perhaps you learnt something about being content with just a slice of the fruit treat, rather than fight and get none, hmm?”</i>");
+			output("\n\n");
+			
+			// +8 hours, -Lust, Health to 100%
+			genericSleep((8 * 60) + 5);
+			pc.orgasm();
+			
+			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
+			tryKnockUpQuinn(true);
+			rooms["12. Zil Village Winnar"].northExit = "";
+			currentLocation = "12. Zil Village Winnar";
+			flags["QUINNFEST_COMPLETE"] = -2;
+			
+			quinnFestivalEndFight();
+			CombatManager.genericLoss();
+			break;
+	}
+}
+public function quinnFestivalFightWin():void
+{
+	userInterface.hideNPCStats();
+	userInterface.leftBarDefaults();
+	generateMap();
+	
+	clearOutput();
+	showBust("ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+	showName("VICTORY:\nZIL TRIO");
+	author("Nonesuch");
+	
+	output("The last of the zil challengers collapses into the sand, unable to continue. This one uses the last of his energy to lift his head and look you in the eye.");
+	output("\n\n<i>“You... have become one with our ways, and have bettered us all,”</i> he grunts. <i>“You deserve her.”</i>");
+	output("\n\n<i>“All who fought today showed honor and bravery,”</i> Quinn says, calm and stately as a graven idol. <i>“But it is your victory today that shall be spoken of for many moons to come. Step forward, my champion. You have earned the right to claim me as your own.”</i>");
+	output("\n\nExultation fills your breast as you watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and sting-laden abdomen bobbing an invitation that you readily accept. The intoxicating, savage primacy of what you’ve done here - fought off three");
+	if(flags["PQ_FOUGHT_TRIBE"] != undefined) output(" other");
+	output(" young males in order to be the one and only mate of the swarm’s alpha bitch - becomes even more euphoric as the drum picks up again, and the word <i>“Zteele! Zteele! Zteele!”</i> rings out over the roaring fires in tones of awe, envy and naked lust.");
+	output("\n\nYou follow Quinn upwards into the darkness. The spell of their skull-crowned deity broken, you can hear the rest of the tribal zil now getting very involved with one another behind you; the lavender-scented woods are alive with the sounds of sighs, gasps, the hum of insect wings and low voices. Clearly this is a night they all look forward to.");
+	output("\n\n");
+	
+	processTime(3);
+	
+	// Go to sexings
+	eventQueue.push(quinnFestivalSexingsDroneAlone);
+	
+	quinnFestivalEndFight();
+	CombatManager.genericVictory();
+}
+// Sexings
+public function quinnFestivalSexingsRouter():void
+{
+	if(flags["QUINNFEST_TALKED"] > 0)
+	{
+		if(pc.isHerm())
+		{
+			clearOutput();
+			showBust("");
+			showName("CHOOSE\nROLE");
+			
+			output("It looks like you have two kinds of genitals. Which role would you like to participate as? (In either instance, your vagina will still be used.)");
+			
+			clearMenu();
+			addButton(0, "Cock", quinnFestivalSexingsOneSausage, [0], "Use Your Cock", "Add another sausage to the party.");
+			addButton(1, "Cunt", quinnFestivalSexingsPairOfQueens, [0], "Use Your Cunt", "Be treated like a queen alongside Quinn.");
+			return;
+		}
+		if(pc.hasCock())
+		{
+			quinnFestivalSexingsOneSausage([0]);
+			return;
+		}
+		if(pc.hasVagina())
+		{
+			quinnFestivalSexingsPairOfQueens([0]);
+			return;
+		}
+	}
+	
+	clearOutput();
+	showBust("");
+	showName("\nERROR!");
+	
+	output("You shouldn’t be here as you didn’t choose to participate in the gangbang with Quinn!");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+// One Sausage at the Fest
+// If PC chose to participate and has a dick
+public function quinnFestivalSexingsOneSausage(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	clearMenu();
+	
+	var page:int = (arg.length > 0 ? arg[0] : 0);
+	var cIdx:int = (arg.length > 1 ? arg[1] : -1);
+	var vIdx:int = (arg.length > 2 ? arg[2] : -1);
+	var zilDrones:Array = (arg.length > 3 ? arg[3] : [new ZilChampionSpear(), new ZilChampionBow(), new ZilChampionSpear()]);
+	var i:int = 0;
+	
+	switch(page)
+	{
+		case 0:
+			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showName("\nQUINN");
+			
+			cIdx = pc.cockThatFits(zilDrones[1].analCapacity());
+			if(cIdx < 0) cIdx = pc.smallestCockIndex();
+			
+			if(pc.hasVagina())
+			{
+				vIdx = pc.findEmptyPregnancySlot(1);
+				if(vIdx < 0) vIdx = rand(pc.vaginas.length);
+			}
+			
+			output("Quinn takes off her skull crown as she enters her yurt, laying it on a primitive table, her striped hair a beckoning, liquid motion down her back. Several clusters of candles have been lit inside, constellations in the darkness that contribute to the hot, close, dreamy atmosphere in here. It occurs to you that when the chosen warriors get in here, it’s going to get...");
+			output("\n\nThe three of them pile in through the coarse tent flap, and instantly the space fills with their smell; sweet, intensely aroused zil, underlain by the musky salt of sweat, utterly overpowering, pulling the desire for sex up out of the deep currents of your mind and sending it crashing over every other thought you have. You exhale, long and low, as you feel heat power its way into [pc.eachCock]");
+			if(pc.hasLowerGarment()) output(", tenting your [pc.lowerUndergarment] something fierce,");
+			if(pc.hasVagina()) output(" and lavish amounts of [pc.femcum] drooling down your inner walls in rich anticipation");
+			output(". A glance at those fey, lean insect males tells you that, for all that they themselves are producing the scent, they share a mind with you; you are all pure, sexual beings, horny, single-minded drones, who expended every effort to get here and at last copulate with your glorious queen.");
+			output("\n\nQuinn sits herself back on her grand, fur-piled bed, one long, slim leg bent upwards, smiling that faint, familiar smile of hers, eyes flitting over the four of you. Her mouth opens slightly as, oh so slowly, her breastplate slithers apart, the soft, vulnerable yellow of her breasts swelling into view. Four pairs of eyes burn into her, unable to look away.");
+			output("\n\n<i>“My drones,”</i> she sighs, warmth, affection and slyness coloring her husky tones. <i>“Why don’t you two come over here, and... [pc.name]... you see to my smallest.”</i>");
+			output("\n\nThe shorter one, the archer boi, with his enjoyably full-looking hips and cute, heart-shaped face, looks up at you demurely; you are immediately put in mind of Able. Lust pumps through your veins as you take hold of him and forcibly lay him out at the bottom of the bed, climbing on top of him, tracing the shape of his slim, supple body beneath his hard, beetle-like carapace. He gasps slightly in response, and with an audible pop his groin-plate comes loose, his small, thick, foreskinned cock no longer willing to be caged. The sweet, horny smell intensifies... your head swims... and oh Void you could just eat him up! His thighs tremble as you grip that boi erection of his, a buzzing, thrilling moan escaping his lips as you begin to jerk him, hard and rough, drops of liquid gold adhering to your hand.");
+			output("\n\nQuinn watches, entranced lust on her face, as the two males she’s laden herself with feast upon her body. They sandwich her, one lapping at her small, black nipples, the other peeling back her own groinplate so he can thirstily thrust his angular, elfen face deep between her thighs, putting that long tube tongue to the purpose it was surely made for.");
+			output("\n\n<i>“Yeessss,”</i> she groans, hand gripping and relaxing in the boob-worshipper’s hair. <i>“Now do him. Do him like men do...”</i>");
+			output("\n\nA great shiver runs right through the small zil’s body, his stubby little boi dick pulsates under your tight grip, and you laugh slightly in surprise as he squirts golden syrup all over your hand and arm. My word, the little guy must have been quite pent up! So pent up, indeed, that though he’s leaking seed copiously down his shaft and tight, trappy balls, he’s still firm as ever beneath your grip. He watches blearily as you reach down, smear your [pc.cock " + cIdx + "] in warm, glutinous zil seed; he murmurs, a sound somewhere between trepidation and lust as you flip him over, getting him on his knees so that he’s presenting those round, jet-black buttocks of his, with that soft, inviting pucker buried like a treasure between them. A mighty throb reverberates up your burningly erect cock at the sight.");
+			output("\n\n<i>“Is... is this what you desire, my Quinn?”</i> he whispers, facing her as you press your honey-slathered head against his anus.");
+			output("\n\n<i>“Yes, my good boy, my loyal, hard fighter,”</i> she groans, favoring him with a smile. One of the others has risen up, his own long, black penis exposed and pointing demandingly at her face. She pauses to give it a lick, teasing off the single drop of pre at the tip, making its owner shiver with joy. <i>“Put on a good display for your Quinn. Let your worries go... she is bountiful, and generous, and all shall know that before the night is done.”</i>");
+			output("\n\nHe grips the furs and tenses up as you sink slowly inwards, opening him up gradually with your [pc.cockHead " + cIdx + "] and then spearing inside, pleasure volting up your honeyed shaft as it’s enveloped in warm, sheath-like tightness. You grip him by the hips and saw into him tenderly, letting the little guy get used to the feeling of being stretched out and filled by your [pc.cock " + cIdx + "], pushing more and more into his clenching heat with each steady push of your [pc.hips].");
+			
+			pc.cockChange();
+			
+			output("\n\nIt’s very difficult to keep your lust under control, not go hog wild on your groaning, tensing bottom, facing as you are the sight of what the other two are doing with Quinn. Black fingers dig into the softness of her inner thighs as the first feasts hungrily on the nectar-laden blossom nestled between them; the other’s mouth is open, eyes closed, knelt across her neck and receiving what is evidently a truly regal blowjob. Your [pc.hips] start pumping harder almost automatically, reaching your [pc.cock " + cIdx + "] into the zil boi’s tight asshole as you watch slender thighs shiver, Quinn’s fingers grip buttocks and a glorying, buzzing groan is drawn from thin, proud lips.");
+			output("\n\nShe impels the lad to lie down beside her, orange seed leaking down her chin, her animated eyes immediately fixing themselves upon you. Her long legs wrap themselves around the head of the boy still tongue deep in her cunt, fixing him there whilst she watches you slap a fleshy rhythm into the partner she alloted you. His gasps and cries, in that magical cadence between discomfort and ecstasy, fill your head, and you’re suddenly cascading over the edge, gouting hot loads of [pc.cum] into the taut sweetness of his behind, your body whiplashing with unbearably pleasurable release.");
+			if(pc.cumQ() >= 1200) output(" You’re trying to not overcommit here - there’s a long night ahead - but the sugar-laden air has had an inescapable effect on your souped up system, and [pc.cum] spurts like a burst pipe around your girth, the bee boi whimpering as you plump out his intestines with at least a liter of [pc.cumVisc], [pc.cumColor] seed.");
+			output("\n\nQuinn’s mouth is open, and her eyelids flutter as the sight of you pounding the dickens out of one of her cute little warriors transports her, waves of motion rippling down the soft parts of her body, gleaming black legs gripping tightly around the devoted cunnilinguist, musical, wordless sounds of delight escaping her lips.");
+			output("\n\n");
+			
+			processTime(7);
+			// 1/2 Lust down
+			pc.lust((-0.5 * pc.lustRaw));
+			
+			addButton(0, "Next", quinnFestivalSexingsOneSausage, [1, cIdx, vIdx, zilDrones]);
+			break;
+		case 1:
+			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showName("\nQUINN");
+			
+			cIdx = pc.cockThatFits(quinnAnalCapacity());
+			if(cIdx < 0) cIdx = pc.smallestCockIndex();
+			
+			output("<i>“Now then,”</i> she says, once she’s come down, shooing away the male making oral love to her. <i>“You, my good boy... you lie down here. Yeeessss, that’s it,”</i> she whispers, as she slides herself over to the smallest zil, his narrow chest heaving, stubby dick stood to attention. His backside still gaped and leaking [pc.cum], he watches entranced, barely able to breathe, as the hands of Quinn advance up his frame, sparing caresses for his chest and chin. Instinctively he reaches out, grips her shoulders - and then immediately lets go, shocked at his own impropriety. His fresh, young face softens into delight when she takes his hands and tenderly places them back where they were.");
+			output("\n\n<i>“Your Quinn is generous, your Quinn is true,”</i> she says, positioning her opened, gooey pussy over his jet-black erection. <i>“The last shall come first in her domain.”</i> She beckons the rest of you to move into her as she lowers herself down; the little guy moans, quivering, as her butt meets his thighs with a squelch. Her eyes are half-lidded as she reaches out and grips a foreskinned zil dick in each hand; deep in the otherworldly fantasy she’s spun around her, a sex goddess who needs only to extend a hand to find the ready erection of a worshipper.");
+			output("\n\n<i>“You don’t need help, do you?”</i> she sighs over her shoulder at you, her abdomen and bare, peachy ass arched towards you, her stinger grazing over your [pc.chest].");
+			if(pc.libido() < 33) output(" You grip your honey-slathered [pc.cockNoun " + cIdx + "] prospectively. Well, maybe just a bit... your hesitancy is all the reply Quinn needs. The inch-long barb sinks into your [pc.skin], the biting pain of the sting preceded by purest lust flooding into your veins, inflaming your senses and powering molten steel into [pc.eachCock]. You gasp, and groan as even more pheromones fill your lungs. Fuck, these bees... <b>fuck</b> these bees! Feverishly you reach forward and grip her by the tits, sinking your fingers into their softness as you trample over the zil boi’s legs in order to press your tautening erection against the orange ring of her anus, drawing a delighted cry out of her.");
+			else output(" Of course you don’t. You answer her by glowering at her, clutching your dripping, [pc.cockNoun " + cIdx + "], drinking in her rich, slim body, and your barely caged libido reacts, powerful heat swelling up your semi-erect penis. She bites her lip as she stares at it, and she cries out delightedly as you sink your fingers into her tits, holding her steady as you press the head against the orange ring of her anus.");
+			
+			pc.cockChange();
+			
+			output("\n\nThe zil boys in front watch, hypnotized, as she pleasures their cocks with masterful shifts and coils of her hands, her soulful, golden eyes on them as she writhes her body, stirring the little guy within her pussy at the same as she gives back to you, working your [pc.cock " + cIdx + "] past her tight, hot entrance, her supple buttocks quivering. It’s the second ass you’ve been inside of tonight, and nope, you aren’t getting tired of that sensation even slightly; the fierce tightness, the slowly realized gratification as more and more of your throbbing cock is gloved by it, the way your lust is pumped up harder and harder until you’re all but forced to grip Quinn’s graceful body and hump into her, small explosions of pleasure going off in your mind as you slide out of her opened hole only to pummel yourself back in, spreading her deep...");
+			if(flags["QUINN_EVERY_HOLED"] != undefined) output(" The fact it’s all down to you, carefully introducing her to the hitherto unknown pleasures of anal, only makes the pushing into her well-trained asshole all the more glorious.");
+			output("\n\nShe shivers and sighs, and at last moans full-throated, affixed upon two dicks, all the while she lavishes two more with strokes and kisses and licks, eventually working the two taller lads into such a lather that they press themselves inwards, armored thighs catching the candlelight as they cram their glossy dicks into her mouth at the same time, rubbing against each other as they bathe in the wet, silky majesty of their ruler’s mouth, thrusting their athletic, boyish thighs into her face. The primmest matriarch in the galaxy couldn’t sound proper with that going on, and the sloppy, muffled smacks and saliva-flecked gulps fill your ears as you pump into her backside, her buttocks reverberating to the rhythm your [pc.thighs] beat upon them, intense lust now thrumming up your shaft and swelling your " + (pc.balls > 0 ? "[pc.balls]" : "ardor") + ".");
+			output("\n\nThe little guy beneath her cries out, a sonorous, buzzing hymn to abandon as he shivers in orgasm, humping upwards into Quinn’s golden snatch with desperate heaves of his plump thighs. She rocks on top of him, dressed in gripping, fondling hands, pleasuring all four of her honor guard at the same time. How is one average-sized zil maiden doing it? You don’t care; right now she’s a fertility goddess, and you are extremely glad to be doing up the her ass. Your [pc.cock " + cIdx + "] bulges up, you groan mightily, and you are leaping over the edge again, channelling [pc.cumVisc] [pc.cumNoun] into her clenching, rubbing heat in a guttering torrent, ecstasy lighting up your nerves and making you thrash into the polished curve of her back, driven to push out every drop you have into her until it’s spurting richily out around it, drooling down her butt-cheeks in fat droplets.");
+			
+			pc.orgasm();
+			
+			output("\n\nYou relax backwards, sighing at the distinctive pleasure of drawing your spent cock up and out a cum-slathered colon, and watch her go, intently suckling on one male whilst juddering her hand up and down the other. A jet of orange spatters across her collarbone and breasts; the guy mired in her mouth shivers and cries out for joy, reactively gripping her hair and pumping forwards, a long string of honey-seed lolling down from her mouth.");
+			output("\n\n<i>“Mmm,”</i> she coos at last, breaking away to spoon into you and the smallest, breasts against you, favoring you all with that characteristic, faint smile of hers, cheeks glowing, utterly undiminished by the fact she is now spattered with cum. <i>“That was pleasing. But we are barely started, are we, my brave warriors?”</i> She wriggles her body, hard boots touching your [pc.legs]; her arms snake around your shoulders, mischievously plucking at your alien [pc.skinFurScales]. You allow a long sigh to flume out of your nostrils. She can’t want more, can she?");
+			output("\n\nYes. Yes she can. The two bigger zil boys watch, still deep under the pagan witchery she’s cast over the evening, as she spreads her legs, spreading her cum-and-honey oozing pussy for them.");
+			output("\n\n<i>“Quinn is bountiful, Quinn is generous,”</i> she repeats, gazing up at them coquettishly. <i>“All who have proven themselves shall have their way with her. Yeeessszzzz...”</i> She groans, as one of the boys seizes the initiative, almost stumbling into her waiting embrace. It only takes a few strokes of his trembling hand for his six-inch jet dick to become firm again, and for him to sink it home into her thoroughly lubricated cunt. <i>“Love me like you danced. Love me like I love all of you! Yes!”</i>");
+			output("\n\nCan you keep it up? Sexual honey wafts through your airways in sugared waves, blowing you onwards. The other tall zil advances on you, dark, helpless arousal on his face, beetle-black eyes on your [pc.chest], and the closer his wagging, gleaming erection gets, the more intense the smell gets, the harder it is to deny. You smile at him beatifically, position yourself on your side, letting him get a glance of your [pc.vagOrAss " + vIdx + "]. Eventually, you’ll have your turn in the all-loving embrace of Quinn. In the meantime... you will please her, and her other drones, the best way you know how.");
+			output("\n\n");
+			
+			processTime(15);
+			pc.lust((0.5 * pc.lustMax()));
+			
+			addButton(0, "Next", quinnFestivalSexingsOneSausage, [2, cIdx, vIdx, zilDrones]);
+			break;
+		case 2:
+			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showName("\nQUINN");
+			
+			output("It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, that you get your chance. You are Quinn’s most treasured champion, after all, and the first shall come last.");
+			output("\n\n[pc.EachCock] is aching by now, driven to pulsating orgasms that you’ve long since lost count of; but you are determinedly hard for her, clinched in her arms and sliding in and out of her widened honeypot, sensation fizzing up your shaft as you perform your dronely duty. You are being kindly aided in this by one of the tall zil boys; his strong fingers clutch your shoulders as his hard, strapping thighs slap against your [pc.ass], driving his dick into your [pc.vagOrAss " + vIdx + "] with gratified gasps and grunts. ");
+			
+			if(vIdx >= 0) pc.cuntChange(vIdx, zilDrones[0].cockVolume(0));
+			else pc.buttChange(zilDrones[0].cockVolume(0));
+			
+			output("\n\nEvery fresh dip of that thick, smooth fuck-truncheon deep into your " + (vIdx >= 0 ? "pussy walls" : "colon") + " sends an almost electric surge through your body, driving your own penetration on in an almost helpless, frenzied manner. Laid back on her furs, Quinn watches it all in open-mouthed delight, golden eyes shining, emitting little squeaks and buzzes of pleasure as she simultaneously takes yet another good, hard breeding whilst acting the voyeur.");
+			output("\n\nThe zil-boy pauses for a moment, positioning himself afresh, and then determinedly drills into you from a fresh angle. This time it’s nerve-janglingly, thrillingly telling, that honey-slathered blunt head of his butting into your " + (vIdx >= 0 ? "g-spot" : "prostate") + ". You can’t help yourself; you " + pc.mf("shout out", "wail") + " in wordless delight and cum for... who knows. The sixth time this night, maybe? You wouldn’t think there’d be a drop left in your poor, overworked " + (pc.balls > 0 ? "[pc.balls]" : "penile gland") + ", but that was before you got ");
+			if(vIdx >= 0) output(" your [pc.vagina " + vIdx + "] pounded simultaneously by an overexcited insect stud");
+			else output(" your prostate brutally milked by an overexcited insect stud");
+			output(", your inward sex stretched and pummeled to its limit. The [pc.cum] is practically forced out of your [pc.cock " + cIdx + "], mired deep in Quinn’s gloopy, leaking pudding of a cunt, joining the many, many swimmers already in there, her womb utterly choked in fertile seed.");
+			output("\n\n<i>“That’s it, all of it! All of it! Aallll,”</i> she groans, seemingly directing the instruction at both of you, her hot, sweaty belly and breasts molding into your [pc.skin]. Your cock is still throbbing dryly in her cum-soaked channel, every last drop of [pc.cum] kneaded out of it, as you feel your other amorous partner give a final, ecstatic shudder, draw himself out of your thoroughly gaped " + (vIdx >= 0 ? "pussy" : "backside") + " and spurt sweet gloopiness up your back. You can’t muster anything more than a woozy groan to this, so spent are you. A pair of lips press into your brow; a kind, motherly kiss.");
+			output("\n\n<i>“Quinn was bountiful, Quinn was generous,”</i> she murmurs. She raises herself up, admiring the split, leaking, ravished sight between her legs. It looks like... well, it looks like " + (vIdx >= 0 ? "three guys and a shemale" : "four guys") + " went to town on it for the entire night. <i>“My loyal warriors proved their worth doubly. Sleep now, my strong drones. Sleep, knowing your duty is fulfilled.”</i>");
+			output("\n\nThe other two obeyed that order some time ago by the looks of things; eyes closed and mouths open, chitinous legs entangled on the other side of the bed. Exhaustion pulling at your limbs and your [pc.groin] throbbing like you don’t think you’ve ever felt before, you are powerless to do anything but follow suit. You collapse into the sweat and honey-spattered furs and are deep asleep within moments.");
+			output("\n\n");
+			
+			// Set time to 06:30, Lust to 0, -1 Libido
+			processTimeToClock(6, 30);
+			for(i = 0; i < 3; i++) { pc.orgasm(); }
+			sweatyDebuff(2);
+			pc.libido(-1);
+			
+			addButton(0, "Next", quinnFestivalSexingsOneSausage, [3, cIdx, vIdx, zilDrones]);
+			break;
+		case 3:
+			showBust("QUINN_NUDE");
+			showName("\nQUINN");
+			
+			output("You awake in stages, the heat of the Mhen’gan day eventually making the close interior of the yurt intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. You may have only been part of the tag team but good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night. You are sticky with honey cum both male and female, and right now you doubt the taste of it will ever leave you.");
+			output("\n\nPicking up your scattered [pc.gear] and leaving two zil boys still slumbering behind you, you tenderly make your way back down to the circle. Quinn is already there, stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing out of the ordinary transpired last night - except, perhaps, for a slightly wider smile stretched across her round face, and maybe a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went according to plan.");
+			output("\n\n<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. Thank you for being part of it, [pc.name]. As I told you, you are a blessing upon this tribe, and if I cannot be gotten with child even if I have you by my side... then I shall know it was never meant to be. I hope you found the ritual entertaining.”</i> She eyes you knowingly. <i>“I think you did. Perhaps visit the river, though.”</i>");
+			output("\n\n");
+			
+			// +6 hours, female juices stat, load in backside, load in cunt, generic zil preg chance if applicable
+			genericSleep((60 * 6) + 3);
+			pc.applyPussyDrenched();
+			pc.applyPussyDrenched();
+			if(vIdx >= 0)
+			{
+				pc.loadInCunt(zilDrones[0], vIdx);
+				pc.loadInCunt(zilDrones[0], vIdx);
+			}
+			else
+			{
+				pc.loadInAss(zilDrones[0]);
+				pc.loadInAss(zilDrones[0]);
+			}
+			
+			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
+			tryKnockUpQuinn(true);
+			rooms["12. Zil Village Winnar"].northExit = "";
+			currentLocation = "12. Zil Village Winnar";
+			flags["QUINNFEST_COMPLETE"] = 1;
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+// Pair of Queens
+// If femPC chose to participate
+public function quinnFestivalSexingsPairOfQueens(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	clearMenu();
+	
+	var page:int = (arg.length > 0 ? arg[0] : 0);
+	var cIdx:int = (arg.length > 1 ? arg[1] : -1);
+	var vIdx:int = (arg.length > 2 ? arg[2] : -1);
+	var zilDrones:Array = (arg.length > 3 ? arg[3] : [new ZilChampionSpear(), new ZilChampionBow(), new ZilChampionSpear()]);
+	var i:int = 0;
+	
+	switch(page)
+	{
+		case 0:
+			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showName("\nQUINN");
+			
+			if(pc.hasCock())
+			{
+				cIdx = rand(pc.cocks.length);
+			}
+			
+			vIdx = pc.findEmptyPregnancySlot(1);
+			if(vIdx < 0) vIdx = rand(pc.vaginas.length);
+			
+			output("Quinn takes off her skull crown as she enters her yurt, laying it on a primitive table, her striped hair a beckoning, liquid motion down her back. Several clusters of candles have been lit inside, constellations in the darkness that contribute to the hot, close, dreamy atmosphere in here. It occurs to you that when the chosen warriors get in here, it’s going to get...");
+			output("\n\nThe three of them pile in through the coarse tent flap, and instantly the space fills with their smell; sweet, intensely aroused zil, underlain by the musky salt of sweat, utterly overpowering, pulling the desire for sex up out of the deep currents of your mind and sending it crashing over every other thought you have. You exhale, long and low, as you feel [pc.eachVagina] melt, lavish amounts of [pc.femcum] drooling down your inner walls in rich anticipation. A glance at those fey, lean insect males tells you that, for all that they are the ones producing the scent, they are themselves transformed into pure, sexual beings, horny, single-minded drones, who expended every effort to get here and at last copulate with their glorious queen.");
+			output("\n\nOr queens. The lust-filled stares, the wing twitches, are not for Quinn alone. You feel their avid, pupil-less eyes crawl up your [pc.legs], your [pc.ass], your [pc.chest]. From her lounging position on the bed, the zil matriarch bobs her head almost imperceptibly, and you follow the signal. You give the trio bedroom eyes over your shoulder as you");
+			if(!pc.isNude())
+			{
+				output(" peel off your [pc.gear]");
+				if(pc.hasArmor() && (pc.hasUpperGarment() || pc.hasLowerGarment())) output(", piece by piece");
+				if(pc.hasLowerGarment() && (pc.hasUpperGarment() || pc.hasArmor())) output(", leaving your [pc.lowerUndergarment] for last");
+			}
+			else output(" sashay over to the bed, letting your bare rump bounce ever-so-gently");
+			output(".");
+			output("\n\nYou join Quinn on her grand, fur-piled bed, one long, slim leg bent upwards, that familiar, faint smile written on her lips. You knit a hand with her and share the view, the three slim, fit males drinking in everything, slaves to their lust as, oh so slowly, her breastplate slithers apart, the soft, vulnerable yellow of her breasts swelling into view. You cheekily reach across with your other hand to caress one, sliding your hand under its beautiful curve and sinking your fingers into it, receiving an ostentatious, buzzing sigh in response. You’re not sure if it comes from her or the boys.");
+			output("\n\n<i>“Yes, my good, loyal, warriors,”</i> she sighs, <i>“all of this is yours... for the entire night. Your Quinn is bountiful. Your Quinn is generous.”</i> She points languidly at the smallest. <i>“Come here, my little one. You two... there is the starwalker champion.”</i> Her hand dips between your [pc.thighs], warm finger sliding between the lips of your [pc.vagina " + vIdx + "], holding them up to the flickering light. <i>“See how ready [pc.he] is? Waste no more time.”</i>");
+			output("\n\nThe shorter one, the archer boi, with his enjoyably full-looking hips and cute, heart-shaped face (you’re put in mind of Able), stumbles onto the bed in a kind of a trance. His groin-plate comes loose with a click and a gasp, his stubby, foreskinned erection no longer willing to be caged, as he watches his ruler prowl forwards, tenderly caressing his arms and chin... and then your view is blocked out by slim, athletic, jet-black hips, and strong, insectile hands grasp you by the waist.");
+			output("\n\nThe two bigger males pull you onto your hands and [pc.knees], made feverish by their arousal, their curious hands questing over your alien flesh, stroking your [pc.skinFurScales] and gripping your [pc.thighs] and " + (pc.hasTail() ? "[pc.tail]" : "[pc.butt]") + ", searching for anchorage and your most erogenous of zones. The groin-plate of the one in front flicks away like a beetle’s carapace, and instantly the air is fogged with sexual sugar, the smell of the thick, glossy, six-inch zil cock that flops out arrowing into your body like a hyperderm of Dumbfuck. [pc.EachVagina] " + (!pc.isSquirter() ? "drips" : "drools") + " [pc.femcum] in response, wet with anticipation, and your whole body feels incredibly sensitized, desperate to be touched, stroked, grasped.");
+			output("\n\nGazing upwards coquettishly, you lap the very end of his cock, chasing the little bud of pre of the very end, the sweet, horny taste fills your mouth, and you coo with delight as the one behind takes a firm grasp of your [pc.hips], hands moving up and down your flanks as he lines himself up. The boy in front watches, awe and sensual delight on his elfin face, as you lick and fondle his obdurate length of jet, lavishing and teasing it with kisses and rolls of your [pc.tongue], simmering in the sexual daze you’re feeling; then you squeal as you are roughly entered, hard, glossy meat sliding past the entrance of your [pc.vagina " + vIdx + "] and spreading your wet, tender insides. You reach forward with your mouth at the same time, enveloping that delicious zil cock in your mouth, practically cumming on the spot as a sea of pheromones and tactile sensation overwhelm you, making you moan in lewd delight.");
+			output("\n\n<i>“That’s it, my strong warriors,”</i> husks Quinn, from somewhere. The bed creaks, and you hear the little guy she has annexed for herself cry out, pure, boyish sexual abandon. <i>“Give it to [pc.him] good. You deserve it. [pc.He] deserves it. Your Quinn... oh... deserves to watch.”</i>");
+			output("\n\n");
+			
+			processTime(8);
+			// Set Lust to 100%
+			pc.maxOutLust();
+			
+			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [1, cIdx, vIdx, zilDrones]);
+			break;
+		case 1:
+			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showName("\nQUINN");
+			
+			output("The boys are too excited to pace themselves. The one at your back judders into you, hard, athletic hips slapping a frenetic rhythm against your [pc.ass] as the other takes a firm grip of your head and thrusts his hard sweet meat past your [pc.lips], slathering a steady drip of honey-pre across your tongue and inner cheeks, filling your head with oozing, summery delight. Your [pc.vagina " + vIdx + "] is being filled and rubbed at a startling rhythm, digging in to that particular spot again and again, and you’re quickly forced to orgasm, your over-stimulated body clenching itself up and letting go brilliantly repeatedly, fingers digging into the soft furs beneath you and emitting muffled squeals of delight as your [pc.vagina " + vIdx + "] " + (!pc.isSquirter() ? "dribbles" : "spurts") + " [pc.femcum] in a wet, glorious rush.");
+			
+			pc.cuntChange(vIdx, zilDrones[0].cockVolume(0));
+			
+			output("\n\nThe giddy spit-roasting lasts a little while longer - the sighs and groans of Quinn and her partner fill your ears as readily as thick, sweet dick fills your holes, pulsing arousal through your core and making you shiver with pleasure - before the boys are pushed over the edge. They groan and cry out in harsh, buzzing tones as they fountain hot, gloopy honey seed into you, thrusting themselves into your mouth and pussy as deep as they can to bury it within. You coax them onwards with tight, loving draws of your lips and clenches of your vaginal muscles, vacuuming their delicious semen into your hungry, lusty body.");
+			output("\n\nYou collapse onto your side when they finally withdraw, curling yourself into the arms of one of the boys, enjoying the press and heat of his tautly muscular body. By the way he strokes and clasps you, returning your fondling with interest, you can tell he is of a mind as you - only mildly satisfied, cuddle convalescing until you’re ready to fuck like horny teenagers again.");
+			if(pc.isLactating())
+			{
+				output(" Your [pc.boobs] began to bead freely during the frenetic sex, and seeing this he descends to fasten his hard, smooth lips around one and take long, thirsty drags on them, drawing [pc.milk] into his mouth, humming to the " + (!InCollection(pc.milkType, [GLOBAL.FLUID_TYPE_HONEY, GLOBAL.FLUID_TYPE_MILKSAP, GLOBAL.FLUID_TYPE_NECTAR]) ? "tantalizing taste of alien milk" : "familiar taste of mother honey") + ". You coo as profound pleasure radiates through your breast, and you cradle his sweaty head as he drains you.");
+				pc.milked(150, true);
+			}
+			output("\n\nYou watch as Quinn rides the small male, her hips locked around him and their jouncing as firm and loving as a mother’s discipline. Your arousal continues to grow, pulsing within your cum-slathered pussy as you watch the drone shiver and cry out, holding onto her carapace-clad hips as he pumps into her reactively, a husky laugh and feminine sigh brushing the dark air as he paints her walls with boy sugar.");
+			output("\n\n<i>“The last shall come first, in my domain,”</i> she murmurs, planting a kiss on the cute little guy’s sweaty brow. He looks up at her, bleary and hypnotized, snared in the spell she’s cast over this evening. It’s the same for the other two; even though the insect stud in your arms is becoming lustier, groping your [pc.ass] and rubbing his drooling, six-inch dick to hardness again against your [pc.belly], his eyes are fixed upon Quinn. She crawls across the bed like a prowling feline, grasping the other male’s outstretched knob. He exhales slowly as she wrings him briskly, gooey orange adhering to her hand.");
+			output("\n\n<i>“Your Quinn is generous, your Quinn is bountiful,”</i> she repeats, curling the fingers of her other hand at the one in your arms. Hypnotized, he disengages from you, kneeling in front of her and watches in reverent delight as she masturbates them both at the same time, their leaking, foreskinned dicks inches away from her calm, pretty face. You are put out by this blatant piece of boy-stealing only for a moment - there are more of them here than there are of you, after all. A wink, a gentle smile, and a spreading of your [pc.thighs] is all it requires to attract the trappy wasp boy, discarded on the furs like you, over to your fragrant petals. His delicate fingers find purchase around your thighs, and his brilliant yellow tongue dabs of your oozing [pc.vaginaNoun " + vIdx + "], alighting on your [pc.clit " + vIdx + "], drawing an encouraging coo out of you as that sucking tip sends delicious tingles shivering into your core.");
+			output("\n\nThe zil boi licks you, drawing away the sweet remains his fellow left inside you, whilst you watch Quinn lavish the other two with strokes and kisses and licks, eventually working them into such a lather that they press themselves inwards, armored thighs catching the candlelight as they cram their glossy dicks into her mouth at the same time, rubbing against each other as they bathe in the wet, silky majesty of their ruler’s mouth, thrusting their athletic, boyish thighs into her face. The most reserved matriarch in the galaxy couldn’t sound proper with that going on, and the sloppy, muffled smacks and saliva-flecked gulps fill your ears as another, shimmering orgasm begins to hove into view, driven on by the skilful flicks, sucks and curls of that lovely, long, warm tube-tongue inside you.");
+			output("\n\nCan you keep it up? Sexual honey wafts through your airways in sugared waves, blowing you onwards. You feel utterly immersed in your role as a queen, providing mind-blowing sex to your faithful ball of drones, each one taking it in turns to wrap their strong, thin limbs around you and pounding you silly, lining your orifices with giddying liquid gold.");
+			output("\n\n");
+			
+			processTime(12);
+			// Lust down 50%, load in vagina
+			pc.lust((-0.5 * pc.lustRaw));
+			pc.loadInCunt(zilDrones[0], vIdx);
+			pc.loadInMouth(zilDrones[2]);
+			
+			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [2, cIdx, vIdx, zilDrones]);
+			break;
+		case 2:
+			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showName("\nQUINN");
+			
+			output("It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, things simmer down to a slow burn. The archer twink clasps your [pc.chest], his fat, stubby cock stretching the sensitive ring of your [pc.anus]; the one below has you sat on his sturdy, longer length, wedged deep within your [pc.vagina " + vIdx + "]. They fuck you slowly but surely now, little jerks and rises of their hips, their energies almost spent but driven on by a determination to use every inch of the intoxicating alien queen, their fuck truncheons pressing into each other through your tender walls sending little jolts of pleasure up your spine and making [pc.eachVagina] shiver and course with [pc.femcum].");
+			
+			pc.buttChange(zilDrones[1].cockVolume(0));
+			pc.cuntChange(vIdx, zilDrones[0].cockVolume(0));
+			
+			output("\n\nThis position lets you watch Quinn, her slim hips locked around the last boy, making sure he performs his dronely duty. She bites her lips and hums encouragement, mouth opening as his perky, chitinous buttocks clench and he picks up the pace, the impact of his thrusts sending shivers of motion through her pretty breasts.");
+			output("\n\n<i>“That’s it, all of it! All of it! Aallll,”</i> she groans, seemingly directing the instruction at all of you, throwing her head back as orgasm overcomes her. The boy behind you sets his teeth into your shoulder, hot breath hissing over your [pc.skinFurScales] as he spreads your back passage as deep as he can and fills it with gloopy, warm sperm, surely the last his tight little balls have to offer. You coo and moan, upping the tempo of the bouncing of your own [pc.ass], stirring both dicks within your heavily honey-cummed walls, inspiring the one you’re riding to grasp your [pc.hips] hard and, with a harsh, almost pained groan, also squeeze out the very last he has to offer.");
+			output("\n\nYou wheeze with exhausted delight; you feel glutted, stuffed with sweet seed, the stuff oozing from every hole you own. It’s all you can taste. You don’t care. In a daze you flop onto your side, watching as the zil goddess of fertility slowly allows the last drone to fall from her arms.");
+			output("\n\n<i>“Quinn was bountiful, Quinn was generous,”</i> she murmurs. She raises herself up, admiring the split, leaking, ravished sight between her legs. It looks like... well, it looks like " + (!pc.hasCock() ? "three guys" : "three guys and a shemale") + " went to town on it for the entire night. <i>“My loyal warriors proved their worth doubly. Sleep now, my strong drones. Sleep, knowing your duty is fulfilled.”</i>");
+			output("\n\nExhaustion pulling at your limbs and your [pc.groin] throbbing like you don’t think you’ve ever felt before, you are powerless to do anything but obey. You collapse into the sweat and honey-spattered furs and are deep asleep within moments.");
+			output("\n\n");
+			
+			processTimeToClock(6, 30);
+			for(i = 0; i < 3; i++) { pc.orgasm(); }
+			sweatyDebuff(2);
+			pc.libido(-1);
+			
+			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [3, cIdx, vIdx, zilDrones]);
+			break;
+		case 3:
+			showBust("QUINN_NUDE");
+			showName("\nQUINN");
+			
+			output("You awake in stages, the heat of the Mhen’gan day eventually making the close interior of the yurt intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. Good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night; " + (pc.libido() > 66 ? "even as fuck-hungry a being as you" : "you") + " feel like you were caught up and washed out in her wake. You are sticky with honey cum both male and female, and right now you doubt the taste of it will ever leave you.");
+			output("\n\nPicking up your scattered [pc.gear] and leaving two zil boys still slumbering behind you, you tenderly make your way back down to the circle. Quinn is already there, stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing out of the ordinary transpired last night - except, perhaps, for a slightly wider smile stretched across her round face, and a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went according to plan.");
+			output("\n\n<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. Thank you for being part of it, [pc.name]. You are a blessing upon this tribe, and if I cannot be gotten with child even if I have you by my side... then I shall know it was never meant to be. I hope you found the ritual entertaining.”</i> She eyes you knowingly. <i>“I think you did. Perhaps visit the river, though.”</i>");
+			output("\n\n");
+			
+			// +6 hours, load in backside, load in mouth, very high generic zil preg chance if applicable
+			genericSleep((60 * 6) + 3);
+			pc.applyPussyDrenched();
+			pc.applyPussyDrenched();
+			pc.loadInCunt(zilDrones[0], vIdx);
+			pc.loadInCunt(zilDrones[0], vIdx);
+			pc.loadInAss(zilDrones[1]);
+			pc.loadInAss(zilDrones[1]);
+			pc.loadInMouth(zilDrones[2]);
+			pc.loadInMouth(zilDrones[2]);
+			
+			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
+			tryKnockUpQuinn(true);
+			rooms["12. Zil Village Winnar"].northExit = "";
+			currentLocation = "12. Zil Village Winnar";
+			flags["QUINNFEST_COMPLETE"] = 0;
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+// Drone Alone
+// If PC won the fight
+public function quinnFestivalSexingsDroneAlone(arg:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	clearMenu();
+	
+	var page:int = (arg.length > 0 ? arg[0] : 0);
+	var cIdx:int = (arg.length > 1 ? arg[1] : -1);
+	var cIdx2:int = (arg.length > 2 ? arg[2] : -1);
+	var i:int = 0;
+	
+	switch(page)
+	{
+		case 0:
+			showBust("QUINN_NUDE");
+			showName("\nQUINN");
+			
+			var cocksList:Array = [];
+			
+			for(i = 0; i < pc.cocks.length; i++)
+			{
+				if(pc.cocks[i].cLength() < 7) cocksList.push(i);
+			}
+			if(cocksList.length > 0) cIdx = cocksList[rand(cocksList.length)];
+			if(cIdx < 0) cIdx = pc.smallestCockIndex();
+			
+			if(pc.cocks.length > 1)
+			{
+				cocksList.length = 0;
+				for(i = 0; i < pc.cocks.length; i++)
+				{
+					if(i != cIdx) cocksList.push(i);
+				}
+				if(cocksList.length > 0) cIdx2 = cocksList[rand(cocksList.length)];
+			}
+			
+			output("Several clusters of candles have been lit inside Quinn’s yurt, constellations in the darkness that contribute to the hot dreamy atmosphere that envelopes you as the tent-flap brushes against your " + (pc.hasTail() ? "[pc.tail]" : "[pc.butt]") + ". She moves to take off her skull crown... and reflexively you stop her, pressing the strange, pale headpiece back down over her brow. She freezes, the candlelight catching her golden eyes behind those empty sockets, and you eat her with your eyes, the deadly aspect of her teardrop abdomen and the horned skull framing the slim womanliness of her body, beneath the stern carapace of which finally lie her soft, tender, delectable parts. Parts you now have sole claim to.");
+			output("\n\nYou want it all.");
+			if(flags["SEXED_QUINN"] != undefined) output(" You’ve fucked Quinn before, after all - you haven’t fucked the primal death-fertility goddess she has assumed the mantle of tonight.");
+			else output(" Quinn, the primal death-fertility goddess she has assumed the mantle of tonight - all.");
+			output(" You lower your hand from the crown, sweep it down the arc of her back, taking her into your arms so you can explore every black, gleaming curve of her body, rock hard but offering the tiniest, tantalizing give when you squeeze.");
+			output("\n\nShe pulls away, sitting herself down on her bed, spreading her legs as she scooches further and further back on the furs. Of course with that thing on her head it’s impossible to catch her expression, but you think you see the gold of both understanding and excitement gleaming deep in the gloom of those eye sockets.");
+			output("\n\n<i>“You proclaimed yourself the only champion worthy of claiming me,”</i> she says, in those same cool, certain intonations with which she presided over the duel. As she speaks her groin and breastplate slowly peel back, beetle wings splaying to reveal sweet yellow fields of plenty. Your heart begins to thump, intense arousal pulsing into your [pc.groin], as you gaze at the rise of her petite, pretty breasts and the long, plump lips of her pussy. They are gently parted, strings of honey hanging between them. She’s aroused. <i>“What’s more, you proved that you are. So now, my champion, my only champion...”</i> She trails off in a luxurious, husky drone, her long fingers dipping between her legs, sampling herself. <i>“You will have to do the work of three drones.”</i> Her tone thickens into one of urgent, lusty demand. <i>“Make me carry your child.”</i>");
+			output("\n\nYou tear off your [pc.gear] in an impetuous hurry and clamber onto the bed. [pc.EachCock] is semi-erect already, and all it takes for " + (pc.cocks.length == 1 ? "it" : "them") + " to become taut with burning heat is to breath Quinn in - that sweet, intoxicating smell pouring off her oozing pussy, wiring from your nostrils to seize at your maleness, her body reaching out with the same needy directive her voice did.");
+			output("\n\nShe gasps as you clasp her, pushing your [pc.chest] against the lovely suppleness of her breasts, and then coos as you grip one bare yellow buttock and give it a rough squeeze, reacting readily to your savageness, twining her long legs around your [pc.legs] with barely concealed need. It’s the work of a moment to line yourself up and penetrate her, spreading her slickened labia around yourself and then in to the silky, sweltering dream that is her cunt.");
+			
+			pc.cockChange();
+			
+			output("\n\n");
+			if(pc.cocks[cIdx].cLength() < 7) output("She could have been designed for you, so perfectly do her tight walls glove you. You could get addicted to the sensual perfection of that glide inwards, the buzzing sound her breath makes when it catches in her throat, the stern smoothness of her chitinous limbs contrasting to the softness of her innards. Perhaps you already are.");
+			else output("Your massive cock is too big really for a petite insect girl like her, but she’s utterly determined; emitting little grunts, buzzes and moans as she pushes her long, svelte hips into you, stretching herself out so she can sample more and more of your [pc.cock " + cIdx + "]. You’re ruining her for any of her own race, and in your current, bestial mindset, that’s perfect. And you share that determination - this is your conquest, after all. You let her do the work, opening your [pc.thighs] slowly but surely to sink more and more of your thick girth into tight honey until you feel your [pc.cockHead " + cIdx + "] bump gently against her cervix.");
+			output(" You’re far too turned on to give her respite once you’ve found your limit - you draw yourself back out, feeling the honey dripping down your naked shaft, only to piston yourself back in with a stern push of your [pc.hips], inundating her bare breasts and slim neck with wolfish licks, nibbles and kisses as you fuck her ardently.");
+			output("\n\nThe sight of the horned skull in front of you is alarming, strange, disguising her whole face aside from her mouth - but that hangs open, emitting little huffs, buzzes and moans as you saw into her that are music to your ears. It’s enticing, like a mask, turning the person you’re fucking into the ground into a strange creature from the underworld. You think you feel her cum - sleek tightness rippling around you, honey coruscating off your [pc.cock " + cIdx + "], hips and taut stomach urgently flapping back into you - and you just keep on going, intent on turning that sopping little fuck-pocket of hers into a mold of your cock for all time.");
+			output("\n\nWhen your own orgasm beats down the door, you seize her beneath the knees and lift her legs up, her heels tapping against your back as you screw her into the bed, livid with pheremonally-charged lust. When your [pc.cockHead " + cIdx + "] engorges and [pc.cum] surges up your shaft, it comes out in champagne-like flurries, giddy surges that you pump into her until it’s " + (!pc.cumQ() < 500 ? "dribbling" : "squirting") + " out around your girth. Quinn’s mouth is drawn up in a delighted, tautened sneer as you do it - a terrifying, exhilarating accompaniment to the skull - and husky, wordless sounds of delight are pushed out of her with every juicy pump, until she finally relaxes into a meandering, satisfied moan when you slow, release her legs, and gather her lithe frame into your arms again.");
+			output("\n\n");
+			
+			processTime(11);
+			pc.orgasm();
+			
+			addButton(0, "Next", quinnFestivalSexingsDroneAlone, [1, cIdx, cIdx2]);
+			break;
+		case 1:
+			showBust("QUINN_NUDE");
+			showName("\nQUINN");
+			
+			output("<i>“But you aren’t done yet, are you?”</i> she murmurs in your ear, long, clever fingers trailing down your ear, scratching lightly at your [pc.chest]. <i>“My chosen. My champion. Remember - you undertook the duties of three.”</i> Those smooth digits wrap themselves around your " + (cIdx2 < 0 ? "[pc.cock " + cIdx + "]" : "[pc.cock " + cIdx2 + "]") + ", gently tugging, coaxing sensual intent");
+			if(cIdx2 < 0) output(" back into your throbbing, honey-slickened knob.");
+			else output(" into it. Void, she knows exactly what she’s doing, picking on " + (pc.cocks.length == 1 ? "a" : "the") + " dick which didn’t get to sample the slick, tight give of her sex...");
+			output(" You stiffen slightly as you feel something pointed scrape up the [pc.skin] of your [pc.legs]. <i>“Are you going to need help?”</i> whispers the skull goddess, her lethal three inch stinger pricking you with gentle, teasing intent, her poison-bloated insect abdomen rising and falling.");
+			output("\n\n");
+			if(pc.libido() < 33) output("You consider your semi-erect [pc.cockNoun " + cIdx + "] prospectively. Well, maybe just a bit... your hesitancy is all the reply Quinn needs. The barb sinks into your [pc.skin], the biting pain of the sting preceded by purest lust flooding into your veins, inflaming your senses and powering molten steel into [pc.eachCock]. You gasp, and groan as even more pheromones fill your lungs. Fuck, these bees... <b>fuck</b> these bees!");
+			else output("Of course you don’t. You answer her by glowering at her, drinking in her rich, slim body, and your barely caged libido reacts, powerful heat swelling up the semi-erect penis in her hand. She bites her lip as she stares at it, and then cries out delightedly as you sink your fingers into her tits, holding her steady as you muffle her cries with your mouth, snogging her lasciviously.");
+			output("\n\nFeverish with arousal, drunk on the role of alpha-drone, you roll her over, position her on her hands and knees, and push the [pc.cockHead " + cIdx + "] of your regained erection against her opened, leaking cunt; she rears her abdomen");
+			if(pc.libido() < 33) output(" (her stinger dripping with your blood)");
+			output(" and angles her pert bum up eagerly. Oozing a sorbet of honey and [pc.cum] and softened by the battering you just gave it you’d have no problem at all slipping yourself back in, but you take your time, dipping your bulging head in softly and then retracting, just enough to open her lips, reaching down to finger her exposed clit, enjoying the feeling subsuming your cockhead, teasing her with knowing strokes until she’s huffing, impatiently bucking backwards and leaking liquid sugar down her prim, pretty thighs.");
+			output("\n\n<i>“Fuck me, make me feel it deep!”</i> the goddess snarls over her shoulder, sunken golden eyes flashing at you. <i>“I demand it!”</i> Those horns rearing up over her head catch your attention, and it is with deep satisfaction that you seize them and do as she orders, pressing yourself home into deep honey with a wondering groan, sheerest pleasure pulsing up your [pc.cockNoun " + cIdx + "].");
+			output("\n\nVoid, maybe you are addicted to this, the Queen’s sweet pheromones overriding every impulse you have, a drone hand-picked to be her captive breeding slave until she has a hive packed with her children. If so, it’s the best fate of all, to buck your [pc.hips] into her soft backside, slap your " + (pc.balls > 0 ? "[pc.balls]" : "groin") + " into the small waterfall of honey and your own spent seed running down her thighs, to grip her sacred horns and lose yourself in the give and heft of the plush wetness running up and down your cock, rippling and clenching you intermittently, willing you on, bringing your arousal to another brilliant point.");
+			output("\n\nYou’d pull out and shower her with [pc.cum] this time, demonstrate the virility of the Chosen Drone in the crudest, most glorious way possible... but no, you have a duty here, and it won’t be fulfilled until her womb is utterly packed with your thick, teeming cum. You groan mightily as orgasm overcomes you again, your muscles locking and forcing out great gobbets of [pc.cum], and you make sure every last drop of it is buried deep in Quinn’s pussy.");
+			if(pc.cumQ() >= 1500) output(" You absolutely <i>can</i> do the duty of three sissy zil guys, and since she demanded it you give her it, unloading the entirety of your backed-up reserves into her. She gasps and then cries out in shock as her stomach pouches out with the vast amount your ejaculating into her; you hold her steady, one hand gripping a horn and the other on her shoulder, even as [pc.cumColor] fluid feeds back and squirts out in every direction. You don’t stop until " + (pc.balls >= 2 ? "your [pc.balls]" : "[pc.eachCock]") + " ache and the zil matriarch has her barely-believing hands upon what looks like a third trimester pregnancy.");
+			output(" The woozy, gratified ‘mmm’ you draw from her by the end, as you finally withdraw your dripping cock from her cum-choked hole, is pure poetry.");
+			output("\n\n<i>“Sleep now, my champion,”</i> she whispers, once you’ve collapsed your sweat-streaked form into the welcoming embrace of the furs. You feel the plushness of her breasts press against your [pc.chest], her lithe arms spreading themselves around you. <i>“Regain your strength. You I will require more of you - in the morning.”</i>");
+			output("\n\n");
+			
+			processTime(14);
+			// -50% lust
+			pc.lust((-0.5 * pc.lustRaw));
+			
+			addButton(0, "Next", quinnFestivalSexingsDroneAlone, [2, cIdx, cIdx2]);
+			break;
+		case 2:
+			showBust("QUINN_NUDE");
+			showName("\nQUINN");
+			
+			output("Your last waking thoughts before you descend into a deep, deep sleep is that maybe she’s exaggerating. But, no, she wants that baby, and you are very much expected to do the work of three. You are awoken at dawn by alluring whispers in your ears, guileful touches and squeezes, a hand on [pc.eachCock] stroking you to hardness, leading you lovingly but firmly back into deepest, lustiest heat.");
+			output("\n\nShe mounts you once you’ve fully awoken and are completely under her spell, sliding her slickness down the shaft of your [pc.cock " + cIdx + "]; she must have put the skull to one side whilst she herself slept, but has put it back on now, fully aware of the effect it’s had on you. You stare up at it, charms shaking and catching the candlelight as her small, perfectly proportioned butt clenches and subsides, her hands gripping you by the shoulders, briskly kneading your hot, tender fuck-pole with the walls of her cunt, little ‘wuff’ noises puffing out of her mouth, naked and lonely underneath the forbidding bone facade.");
+			output("\n\nIt’s a beautiful, bizarre dream to be fucked like this and you are subsumed by it, gripping her buttocks, arms and breasts as you are coiled and coaxed upwards into one final, brilliant orgasm. You reach up and kiss her deeply as you reach it, [pc.tongue] dancing with her brilliant yellow proboscis as you go off like a firework, fountaining a fresh load of glorious [pc.cum] up into her waiting womb, willing the clenches on with little thrusts of your [pc.thighs]. Your [pc.cock " + cIdx + "] feels somewhat like a shrivelled piece of dried fish by the time it flops, aching, out of her cum-stuffed pussy, but it’s sheerest pride and gratification that throbs through the rest of you, particularly when she falls onto your [pc.chest] and [pc.belly], sighing and fondling the " + (pc.tone > 30 || pc.thickness < 30 ? "defined muscles" : "meaty suppleness") + " of her champion admiringly.");
+			output("\n\nYou return to a well-earned doze after that, awakening a couple hours later in the full heat of the Mhen’gan day, the close interior of the yurt made intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. Good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night. It’s difficult to believe the taste and smell of honey pussy will ever leave you.");
+			output("\n\nPicking up your scattered [pc.gear], you tenderly make your way back down to the circle. A crown-less Quinn is already there, stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing out of the ordinary transpired last night - except, perhaps, for a slightly wider smile stretched across her round face, and maybe a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went as she hoped.");
+			output("\n\n<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. Thank you for being part of it, [pc.name]. As I told you, you are a blessing upon this tribe, and if I cannot be gotten with child even by you... then I shall know it was never meant to be. I hope you found the ritual entertaining.”</i> She eyes you knowingly. <i>“I think you did. Perhaps visit the river, though.”</i>");
+			output("\n\n");
+			
+			// -0 Lust, -2 Libido, female juices stat, + 8 hours
+			genericSleep((60 * 8) + 3);
+			pc.applyPussyDrenched();
+			pc.applyPussyDrenched();
+			for(i = 0; i < 3; i++) { pc.orgasm(); }
+			sweatyDebuff(2);
+			pc.libido(-2);
+			
+			// End. Boot to Chieftain’s Circle. Set Quinn to Steele preg
+			tryKnockUpQuinn();
+			rooms["12. Zil Village Winnar"].northExit = "";
+			currentLocation = "12. Zil Village Winnar";
+			flags["QUINNFEST_COMPLETE"] = 2;
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+
+// Quinn stuff
+public function tryKnockUpQuinn(gangbanged:Boolean = false):Boolean
+{
+	if(!gangbanged && (pc.virility() <= 0 || flags["QUINN_PREG_TIMER"] != undefined)) return false;
+	
+	// succesful impregnation
+	if(gangbanged || pc.virility() > 0)
+	{
+		flags["QUINN_PREG_TIMER"] = 0;
+		if(!gangbanged)
+		{
+			flags["QUINN_SIRED_KID"] = 1;
+			pc.clearRut();
+		}
+		
+		// Output <b>You should check in on Quinn every month or so, see how she’s doing.</b> at the end regardless of which scene was generated
+		AddLogEvent("<b>You should check in on Quinn every month or so, see how she’s doing.</b>", "good");
+		
+		return true;
+	}
+	else return false;
+}
+public function processQuinnPregEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
+{
+	if(flags["QUINN_PREG_TIMER"] != undefined)
+	{
+		flags["QUINN_PREG_TIMER"] += totalDays;
+		
+		if(flags["QUINN_PREG_TIMER"] > 245)
+		{
+			var birthTimestamp:int = (GetGameTimestamp() + deltaT - (flags["QUINN_PREG_TIMER"] * 24 * 60) + (246 * 24 * 60));
+			quinnBirth(birthTimestamp);
+		}
+	}
+}
+public function quinnBirth(birthTimestamp:int = -1):Boolean
+{
+	if(birthTimestamp < 0) birthTimestamp = GetGameTimestamp();
+	
+	var numKids:int = 1;
+	
+	if(flags["QUINN_KID_AGE"] == undefined || flags["QUINN_KID_SEX"] == undefined)
+	{
+		// Age
+		flags["QUINN_KID_AGE"] = birthTimestamp;
+		// Sex: 0 is Female, 1 is Male
+		flags["QUINN_KID_SEX"] = (rand(2));
+	}
+	
+	if(flags["QUINN_SIRED_KID"] != undefined)
+	{
+		StatTracking.track("pregnancy/quinn sired", numKids);
+		StatTracking.track("pregnancy/total sired", numKids);
+		
+		flags["QUINN_SIRED_KID"] = undefined;
+	}
+	
+	if(flags["QUINN_TOTAL_KIDS"] == undefined) flags["QUINN_TOTAL_KIDS"] = 0;
+	flags["QUINN_TOTAL_KIDS"] += numKids;
+	flags["QUINN_PREG_TIMER"] = undefined;
+	
+	return (flags["QUINN_KID_SEX"] == 1);
+}
+public function quinnPregDays():int
+{
+	if(flags["QUINN_PREG_TIMER"] == undefined) return 0;
+	return flags["QUINN_PREG_TIMER"];
+}
+// Pregnant Quinn Texts
+// Gestation time is 6-7 months
+// Point about droning ball is that it stops the usual ‘scent-link’ that happens to pregnant zil from happening. If PC just fucked her solo she tries to stop it happening another way. PC choices determine how she regards and names the brat.
+// Throw some comments in if PC is simultaneously zil-preg.
+public function quinnAppearancePreg():String
+{
+	var pregDays:int = quinnPregDays();
+	var msg:String = "";
+	
+	// Pregnancy 30-80 days
+	if(pregDays <= 80) {
+		msg += "From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is a bit taller than the zil average, as well as more svelte - underneath the sheer armor of her chest her breasts look to be maybe C cups, and the slimness of her thighs make her gleaming, armored legs look long and rather strict. Still, the presence of a tear-shaped abdomen and complete absence of clothes means she doesn’t stand out much from her fellows in purely physical terms. It’s the sense of control, the sedateness and the manner of someone used to getting their own way which do that.";
+		msg += "\n\nShe’s not quite as lithe as she once was, though - her belly has started to take on a bit of a curve. Her hand strays down to her baby bump every once in a while.";
+		msg += "\n\nHer pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.";
+		msg += "\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as an extremely tight, orange back door between her cute, supple rump.";
+	}
+	// Pregnancy 81-130 days
+	else if(pregDays <= 130) {
+		msg += "From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is a bit taller than the zil average, but now she is well into her pregnancy she has started to fill out her frame a bit more, her C cup breasts swelling against her sheer armor and her thighs thickening a little more, weight piling on there to support her soccer-ball sized belly bump. Still, she retains that controlled calmness that you know her so well for.";
+		msg += "\n\nHer pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.";
+		msg += "\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as a tight, orange back door between her supple, widening rump.";
+	}
+	// Pregnancy 131-179 days
+	else {
+		msg += "From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is late in her pregnancy now - honey-swollen, D cup breasts sit atop her watermelon-like belly, and her black armor creaks occasionally with the strain of it. Her hips have definitely widened as well - baby’s got back now. Her air of calm control seems to have mellowed into a kind of dreamy serenity now, her legs spread and leant back on her throne.";
+		msg += "\n\nHer pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.";
+		msg += "\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil. It must be quite plump and spread these days. Between her increasingly pillowy rump she retains a tight, orange anus.";
+	}
+	return msg;
+}
+public function askQuinnAboutHerbs(response:String = "intro"):void
+{
+	clearOutput();
+	showQuinn();
+	author("Nonesuch");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "intro":
+			output("<i>“Potent nature magic, handpicked and enchanted by my trusted wise-zil,”</i> she replies loudly, straight-backed. <i>“It shall nourish my body, ensure the health of my child.”</i> She drops her voice a little, looking at you sidelong. <i>“Do you know of the scent-link, [pc.name]? When my people make a baby together the female usually produces a smell that the father can immediately recognise. Yes, and the mother becomes... soft towards him. I do not wish this.");
+			if(flags["QUINN_SIRED_KID"] == undefined) output(" The drone ball is meant to prevent it from happening, but these herbs are also meant to dampen the effect.");
+			else output(" I wish the baby to mine and mine alone, and I do not wish to spend all day pining for you. These herbs dampen the effect.");
+			output("”</i>");
+			output("\n\nHer eye remains steady on you as she transfers another wad of greens from the bowl to her mouth.");
+			output("\n\n<i>“Do you approve of what I am doing, starwalker?”</i> she asks, after she’s swallowed again.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// [Yes] [No] [You Do You]
+			addButton(0, "Yes", askQuinnAboutHerbs, "yes");
+			addButton(1, "No", askQuinnAboutHerbs, "no");
+			addButton(2, "You Do You", askQuinnAboutHerbs, "whatever");
+			break;
+		case "yes":
+			if(flags["QUINN_SIRED_KID"] == undefined)
+			{
+				output("You think she’s made a sensible decision, not complicating matters by including a definitive father in her plans. It’s also pretty smart, in terms of consolidating her power over the tribe. You tell her as much.");
+				output("\n\n<i>“Good. I value your opinion, my champion - you speak wisdom born of the stars,”</i> the statuesque zil replies, slumping slightly in her throne. <i>“I do sometimes wonder... but no. The path of power and responsibility is a lonely one, and I must be strong enough to walk it alone.”</i> She munches on another handful of herbs determinedly.");
+			}
+			else
+			{
+				output("It was her decision all along to have a kid - you just provided the seed and the red hot fucking. If she doesn’t want to be bonded to you and have a father involved, fine. You can see why she’d want that in terms of consolidating her power over the tribe. You tell her this.");
+				output("\n\n<i>“Good. I value your opinion, my great champion - you speak wisdom born of the stars,”</i> the statuesque zil replies, slumping slightly in her throne. <i>“I do sometimes wonder... but no. The path of power and responsibility is a lonely one, and I must be strong enough to walk it alone.”</i> She munches on another handful of herbs determinedly.");
+			}
+			output("\n\n");
+			
+			processTime(1);
+			
+			// +1 Nice point
+			pc.addNice(1);
+			flags["QUINN_TALK_HERBS"] = 1;
+			
+			addButton(0, "Next", talkToQuinnStuffGogogogogogogogogogo);
+			break;
+		case "no":
+			if(flags["QUINN_SIRED_KID"] == undefined) output("Implicitly y");
+			else output("Y");
+			output("ou know you’ve been asked to speak frankly, so you do. You tell her you think she’s being unfair to");
+			if(flags["QUINN_SIRED_KID"] == undefined)
+			{
+				output(" whoever the father is");
+				if(flags["QUINNFEST_COMPLETE"] > 0) output(" - which may well be you, of course - ");
+			}
+			else output(" you");
+			output(" and that she’s cutting herself off from emotional support that she will need, for no real reason. You throw in that, from personal experience, it kinda sucks to not have a dad.");
+			output("\n\n<i>“I needed to hear that,”</i> the statuesque zil replies with a");
+			if(flags["QUINN_SIRED_KID"] != undefined) output(" slow");
+			output(" nod. <i>“None of my other subjects are brave enough to say such things.”</i> She’s silent for a time, chewing over your words, chewing on her herbal cud. <i>“It is a lonely path I have set myself upon, I know that. But it is the path of power, and responsibility. Once I admit that I need another to lean on, I can no longer call myself Quinn. I value your honesty");
+			if(flags["QUINN_SIRED_KID"] != undefined) output(" and passion");
+			output(", my champion. But you are not Quinn, and you are not a zil");
+			if(pc.zilScore() >= 6) output(" as much as you have made yourself look like one");
+			output(". You cannot fully understand why I do the things I do.”</i> She munches on another handful of herbs determinedly.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// -1 Nice point
+			pc.addHard(1);
+			// flag dis for later check
+			flags["QUINN_TALK_HERBS"] = -1;
+			
+			addButton(0, "Next", talkToQuinnStuffGogogogogogogogogogo);
+			break;
+		case "whatever":
+			output("You wouldn’t presume to question the motives of an alien queen - clearly your outlook on motherhood is very different from hers. It would be foolish of you to plaster your own opinions onto her situation, and you tell her as much.");
+			output("\n\n<i>“You have been to many different stars, haven’t you, my champion?”</i> the statuesque zil says, with a dry rise of an eyebrow. <i>“I can see you saying such words to all sorts of different people, being very polite about all the strangeness you");
+			if(flags["QUINN_SIRED_KID"] == undefined) output(" see");
+			else output("’ve seen - and sired");
+			output(". I do wonder what really is going through your mind, sometimes.”</i> She’s silent for a time, chasing bits of fibrous vegetable around her mouth. <i>“You value pragmatism, so I think you can understand my decision, as difficult as it was to make. That is good enough for me.”</i> She munches on another handful of herbs determinedly.");
+			output("\n\n");
+			
+			processTime(1);
+			
+			flags["QUINN_TALK_HERBS"] = 0;
+			
+			addButton(0, "Next", talkToQuinnStuffGogogogogogogogogogo);
+			break;
+	}
+}
+public function pregQuinnApproach(pregDays:int = 0):Boolean
+{
+	// >30 days, activates once when approached
+	if(pregDays > 30 && pregDays <= 60 && (flags["QUINN_PREG_APPROACH"] == undefined || flags["QUINN_PREG_APPROACH"] < 1))
+	{
+		clearOutput();
+		showQuinn();
+		author("Nonesuch");
+		
+		output("Quinn is positively radiant, mouth curved into a proud smile. It’s not hard to guess why; underneath the harsh black veneer of her armor, her belly has taken on a slight curve.");
+		output("\n\n<i>“Do you see, my champion?”</i> She grabs your hand, lays it onto that bump, insists you feel it. <i>“My call to the zpirits has been answered. Quinn has kindled! She was generous, and she is bountiful!”</i> Her face is alive with a wild joy you’ve never seen before; it’s tamped down on when you withdraw your hand, her characteristic composure reasserting itself. Still, you don’t think you’ve ever seen her so happy and proud, the very picture of a munificent matriarch.");
+		output("\n\n<i>“What does my honored warrior wish of [pc.his] Quinn?”</i>");
+		output("\n\n");
+		
+		flags["QUINN_PREG_APPROACH"] = 1;
+		
+		processTime(2);
+		
+		peacefulQuinnMenu();
+		return true;
+	}
+	// >60 days, activates once when approached
+	if(pregDays > 60 && pregDays <= 80 && (flags["QUINN_PREG_APPROACH"] == undefined || flags["QUINN_PREG_APPROACH"] < 2))
+	{
+		clearOutput();
+		showQuinn();
+		author("Nonesuch");
+		
+		output("Quinn barely registers your approach. She looks surly, lips pursed, her golden eyes focused on the middle distance. One thin hand is placed protectively over her baby bulge; the other fiddles with the empty bowl on her arm-rest.");
+		output("\n\n<i>“What do you want, starwalker?”</i> she says with an irritated sigh.");
+		output("\n\nYou ask if anything is wrong.");
+		output("\n\n<i>“Nothing!”</i> she replies loudly. <i>“Everything is fine. My wise-zil has provided me with a remedy, and assured me there is nothing to worry about. Quinn was generous. Quinn is bountiful!”</i>");
+		output("\n\nShe glares at you, as if daring you to suggest otherwise.");
+		output("\n\n");
+		
+		flags["QUINN_PREG_APPROACH"] = 2;
+		
+		processTime(2);
+		
+		peacefulQuinnMenu();
+		return true;
+	}
+	
+	return false;
+}
+// If PC chooses [Sex] during this period
+public function pregQuinnSexNo():void
+{
+	var pregDays:int = quinnPregDays();
+	
+	clearOutput();
+	showQuinn();
+	author("Nonesuch");
+	
+	var canHandMaiden:Boolean = (flags["QUINN_MAIDENS_SEXED"] != undefined || quinnHandmaidenThreesomeAvailable());
+	
+	if(pregDays <= 130)
+	{
+		output("<i>“No,”</i> Quinn replies curtly. <i>“I need - I need to be careful. " + (canHandMaiden ? "Go bother my handmaidens if you want that." : "Go into the lower forests and find the hunters if you want that.") + "”</i>");
+	}
+	else
+	{
+		if(flags["QUINN_SIRED_KID"] == undefined)
+		{
+			output("<i>“It’s sweet of you to persist,”</i> Quinn replies, regarding you with twinkling golden eyes, <i>“But I still need to be careful. With you, getting rough - the temptation is always there. " + (canHandMaiden ? "My handmaidens will attend you." : "Go into the lower forests and find the hunters if you want that.") + "”</i>");
+		}
+		else
+		{
+			output("" + (canHandMaiden ? "" : "") + "");
+		}
+	}
+	output("\n\n");
+	
+	clearMenu();
+	//Handmaiden orgy option here if unlocked.
+	if(canHandMaiden)
+	{
+		addButton(0, "Handmaidens", quinnHandmaidenThreesome, ["next"]);
+		addButton(14, "Back", goBackToQuinnMain);
+	}
+	else addButton(0, "Next", goBackToQuinnMain);
+}
+// Revised Chieftain’s Circle blurb
+public function chieftansCircleBonusQuinnPreg():Boolean
+{
+	var pregDays:int = quinnPregDays();
+	
+	author("Nonesuch");
+	showBust("");
+	
+	output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair. It’s empty.");
+	if(pregDays > 0 && pregDays <= 180) output(" Where is Quinn?");
+	output("\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.");
+	
+	if(pregDays > 0 && !pc.hasStatusEffect("Quinn Post-Pregnancy"))
+	{
+		// Remove [Quinn], Add [Quinn?] option 
+		clearMenu();
+		addButton(0, "Quinn?", whereIsPregQuinn, pregDays, "Quinn?", "Ask where the zil leader’s got to.");
+		
+		return true;
+	}
+	return false;
+}
+public function whereIsPregQuinn(pregDays:int = 0):void
+{
+	var lahIsHere:Boolean = (flags["PQ_RESOLUTION"] == 2);
+	
+	clearOutput();
+	if(lahIsHere) showBust("LAH");
+	else showBust("FETCH", "CARRY");
+	author("Nonesuch");
+	clearMenu();
+	
+	if(pregDays <= 180)
+	{
+		output("<i>“She refused to come out this morning,”</i> says " + (lahIsHere ? "Lah" : "the handmaiden") + ", when you approach and ask. " + (lahIsHere ? "He" : "She") + " looks very discomfited, as you now realize most of the zil around you do. <i>“Shouts at anyone who tries and goes to see her.”</i> The " + (lahIsHere ? "ausar" : "zil") + " looks at you hopefully. <i>“Maybe if you went...? She trusts you more than anyone.”</i>");
+		output("\n\n");
+		
+		processTime(1);
+		
+		addButton(0, "Visit Quinn", pregQuinnVisit);
+	}
+	// Babby = Popped
+	// Plays when PC visits after 180 days have passed
+	else
+	{
+		output("<i>“She asked to see you, as soon as you arrived,”</i> says " + (lahIsHere ? "Lah" : "the handmaiden") + " when you approach. " + (lahIsHere ? "He" : "She") + " is impressively poker-faced. <i>“Go on up.”</i>");
+		output("\n\n");
+		
+		processTime(1);
+		
+		addButton(0, "Visit Quinn", pregQuinnBirthed);
+	}
+}
+public function pregQuinnVisit(response:String = "intro"):void
+{
+	clearOutput();
+	showQuinn();
+	author("Nonesuch");
+	clearMenu();
+	
+	switch(response)
+	{
+		case "intro":
+			output("You [pc.move] back around the throne and up the hill towards Quinn’s yurt with a certain amount of trepidation. You flick at the heavy, woven entrance flap and ask if it’s alright to come in.");
+			output("\n\n<i>“I told you to leave me alone! I am Q... Starwalker? Oh, starwalker...”</i> the figure on the bed moans, flopping back down into a nest of fur. It’s neither an invitation nor a demand to leave; you decide to step inside. With your eyes adjusting to the gloom, you can see Quinn is curled up in a fetal position, her abdomen and shoulders quivering with gentle sobs.");
+			output("\n\n<i>“Starwalker...”</i> She turns her eyes to you, awash in golden misery. <i>“My child pains me. It drags downwards, it wants no part of me, because Quinn is just like her mother. She is not generous, and she will not be bountiful!”</i> Her words ascend into a terrible wail. <i>“I do not have her strength. I cannot do that - six and seven stillborn for the sake of a single child. The zpirits know that Quinn is a cruel woman, yes, and cruelty is all they can answer her with. All she can bring into this world is death!”</i> She buries her head back into the furs, heaving with buzzing sobs.");
+			output("\n\n");
+			
+			processTime(2);
+			
+			// [Comfort] [Chastise] [Medical?]
+			addButton(0, "Comfort", pregQuinnVisit, "comfort", "Comfort", "Soothe her, and bring the cuddles.");
+			addButton(1, "Chastise", pregQuinnVisit, "chatise", "Chastise", "If you have the measure of Quinn, some tough love is called for here.");
+			addButton(2, "Medical?", pregQuinnVisit, "medical", "Medical?", "You <i>do</i> own a state-of-the-art nursery on one of those stars. Might that not be of help?");
+			break;
+		case "medical":
+			output("Quinn listens, blinking back her tears, as you describe the Nursery you own on Tavros. You could definitely transport her there and get her checked out, maybe in as little time as a day.");
+			output("\n\nShe’s still and silent for a time, hand on her belly.");
+			output("\n\n<i>“No...”</i> she says doubtfully, and then more firmly. <i>“No. I cannot run from this, flee into the soft arms of starwalker magic. I would no longer be able to call myself Quinn - yes, I would shed that name and become your servant, if I were to entreat the things that are <i>your</i> zpirits. I must stay here and accept this judgment, as terrible as it may be.”</i>");
+			if(flags["QUINN_SIRED_KID"] == undefined) output("\n\nYou have calmed her down a bit just by talking sensibly, although she still looks utterly miserable.");
+			else output("\n\nYou have soothed her a bit just by talking calmly, although she still looks utterly miserable.");
+			output("\n\n");
+			
+			processTime(5);
+			currentLocation = "12. Zil Village Winnar";
+			flags["QUINN_TALK_PREG"] = 0;
+			flags["QUINN_PREG_APPROACH"] = 3;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "chatise":
+			output("You pull up a crude wooden stool by her bed, take her hand, and then lay down some home truths to her. That if her baby is showing, it’s fairly unlikely to miscarry. That she’s probably just suffering some common-or-garden stomach cramps like any pregnant mother, and is throwing histrionics over it. That she <i>chose<i> to be a mother alone, and so can hardly throw a wobbler about not having a shoulder to cry on");
+			if(flags["QUINN_SIRED_KID"] != undefined) output(" now");
+			output(". That, finally, she is Quinn, and this whole scheme she cooked up in order to secure her rule is getting more undermined the longer she mopes around in bed");
+			if(flags["QUINN_SIRED_KID"] != undefined) output(" and leaves her people doubting her");
+			output(".");
+			output("\n\nQuinn frowns, and then her expression freezes as you go on, as if she were drawing more and more into herself, frost forming over her pretty features. She is silent for a few moments afterwards, mouthing a few words back to herself.");
+			output("\n\n<i>“You are right,”</i> she says, and you’re relieved to hear her familiarly calm tones. She sits herself up and brusquely wipes her drying tears away. <i>“I thought through and carried out my own decisions every step of the way. If I cannot look my judgment firmly in the face, what does that say of me? That I am not Quinn. And I am. I am!”</i> she grits determinedly. <i>“My child shall feel my determination! It will fight!”</i>");
+			output("\n\nYou give her an encouraging squeeze, and then leave her to pick herself up. She emerges into the Chieftain’s Circle a few minutes later, a picture of regal indifference, and receives the clamor of anxious, curious zil with cool explanations and directions.");
+			output("\n\n");
+			
+			processTime(7);
+			// -4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
+			pc.addHard(4);
+			currentLocation = "12. Zil Village Winnar";
+			flags["QUINN_TALK_PREG"] = -1;
+			flags["QUINN_PREG_APPROACH"] = 3;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case "comfort":
+			output("Silently you get into her bed, spoon into Quinn from behind (zil abdomens are not helpful when it comes to this, but you manage) and for a little while just hold her, rubbing her swollen belly. She’s tense at first, but slowly relaxes in your grip, her sobs slowly trailing off into snotty sniffs.");
+			if(flags["QUINN_SIRED_KID"] != undefined) output(" Do you smell something different about her? A particular, horny fragrance, different from the usual zil pheromones, that maybe are only for you? You think perhaps you can.");
+			output("\n\nWhen you think she’s calmed down enough, you begin to talk softly into her ear. You tell her if she’s showing, she’s pretty unlikely to miscarry. That she’s probably suffering from stomach cramps, which is entirely normal, as is the anxiety. That there’s nothing weak about reaching out for emotional support, and that maybe the reason she feels this way now is because she’s been deliberately cutting herself off from it.");
+			output("\n\nBy the time you’re done her sniffles have entirely run their course, and you think she might even have drifted off in your arms.");
+			output("\n\n<i>“Thank you, [pc.name],”</i> she says, lowly. You’re relieved to hear her familiar cool tones returning. <i>“I was... silly. And perhaps I would not have made some of the decisions that I have, if I knew then what I know now.”</i> She draws herself out of your arms, straight-backed and solemn against the bone headboard. <i>“I am Quinn. I will look my judgment in the face, whatever it may be. I will be strong, because... because I know I can rely upon you.”</i>");
+			output("\n\nYou give her another encouraging squeeze, and then leave her to pick herself up. She emerges into the Chieftain’s Circle a few minutes later, a picture of regal indifference, and receives the clamor of anxious, curious zil with cool explanations and directions.");
+			output("\n\n");
+			
+			processTime(8);
+			// +4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
+			pc.addNice(4);
+			currentLocation = "12. Zil Village Winnar";
+			flags["QUINN_TALK_PREG"] = 1;
+			flags["QUINN_PREG_APPROACH"] = 3;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+public function askQuinnAboutPregnancy():void
+{
+	var pregDays:int = quinnPregDays();
+	var numChildren:int = ChildManager.numChildrenAtNursery();
+	
+	clearOutput();
+	showQuinn();
+	author("Nonesuch");
+	clearMenu();
+	
+	// This talk option changes to this after she’s given birth
+	if(pregDays <= 0 && flags["QUINN_KID_AGE"] != undefined)
+	{
+		var babyMale:Boolean = (flags["QUINN_KID_SEX"] == 1);
+		
+		output("You ask if she’s considered having any more children.");
+		output("\n\n<i>“Absolutely not,”</i> Quinn replies with tranquil certainty, when you ask if she’d ever consider trying for another pregnancy. <i>“The way was painful and sometimes terrible. I asked much of the zpirits, granting me a single healthy child, and I know better to demand more. I shall pour my love into " + quinnBabyName() + ", and lead " + (babyMale ? "him" : "her") + " down the path of honor and cunning - as I do my own people.”</i> She smiles at you munificently. <i>“Sex is now for the joy of it, and to renew my bonds with my most favored. About that, I am relieved.”</i>");
+		output("\n\n");
+	}
+	// 81-130 Days
+	else if(pregDays <= 130)
+	{
+		output("You ask how it’s going.");
+		output("\n\n<i>“It goes,”</i> she responds serenely to your question, as if you’d asked after the weather. She does give you a warm look, though. <i>“Would you like to feel?”</i>");
+		output("\n\nYou know you’re being granted a favor to do this in public, so you do it with as much grace and ceremony as you can muster, showering her with remarks of how well she looks as you fondle and admire her swelling baby bump");
+		if(flags["QUINN_SIRED_KID"] == undefined) output(", until she snorts with laughter and shoos you off.");
+		else output(". You also inhale deeply, drawing the scent of her skin into your lungs, enjoying the feeling a radiant, protective arousal spreading through you. She may have done her best to dampen the effect of the ‘scent-link’, but her body knows who the father of her child is, and going off the soft, dilated expression she’s turned to you you wonder to what extent she’d deny it anyway.");
+		output("\n\n<i>“Sometimes there is pain. Sometimes there is vomiting,”</i> the zil monarch says, leaning into you to speak quietly. <i>“Particularly in the morning, when the world is at its most quiet. Do you know what I do then?”</i> She touches your cheek. <i>“I think of your words, and then I am strong again. My lucky charm.”</i>");
+		// If PC also zil preg:
+		if(pc.hasPregnancyOfType("ZilPregnancy") && pc.bellyRating() >= 10)
+		{
+			output("\n\n<i>“And how are you? The zpirits chose to bless you, too.”</i> Quinn smiles at your [pc.belly]. <i>“Do you know what you are going to name it? Where will it be raised? Shall it become a wanderer of the stars, like you?”</i> She fires lots of these types of questions at you, and your answers draw a small crowd of zil women, who listen in rapt attention to your descriptions of your nursery, the droids and nurses that work there");
+			if(numChildren > 0) output(", " + (flags["QUINN_SIRED_KID"] == undefined ? "and" : "as well as") + " your other children");
+			output(".");
+			output("\n\n<i>“They will grow up to be hardly zil at all,”</i> one of them murmurs, somewhere between awe and disquiet.");
+			output("\n\n<i>“They will have a strong and wise mother,”</i> Quinn retorts, with supreme confidence. <i>“That " + (flags["QUINN_SIRED_KID"] == undefined ? "is" : "will be") + " enough.”</i>");
+		}
+		output("\n\n");
+	}
+	// 131-179 Days
+	else
+	{
+		output("You ask how it’s going.");
+		output("\n\n<i>“It is very irksome,”</i> she scowls, gesturing at her bulging midriff and increasingly bloated breasts. <i>“How am I meant to get anything done? How do I check my subjects are not being lazy when it takes me five minutes just to get down to the village? They are taking advantage of my current state, I am sure.”</i>");
+		output("\n\nYou can tell she’s proud fit to burst really though. She doesn’t stop you when you approach her from the side, place your hand on that warm, rotund beachball of hers. She buzzes quietly in pleasure, deep in her throat as you rub her.");
+		if(flags["QUINN_SIRED_KID"] != undefined) output(" That horny, particular smell - like regular zil sweetness but deeper, muskier - that only you can pick up is undeniable now, and you can tell ‘mine and mine alone’ is the furthest thought from her mind right now.");
+		output("\n\n<i>“There is no pain anymore,”</i> she goes on, in the quiet tone she uses when she only wants you to hear. <i>“Just... warmth. And movement, sometimes. I think I will be bountiful. I believe the zpirits have judged me generous.”</i>");
+		// If PC also zil preg:
+		if(pc.hasPregnancyOfType("ZilPregnancy") && pc.bellyRating() >= 10)
+		{
+			output("\n\n<i>“And how are you? The zpirits chose to bless you, too.”</i> Quinn smiles at your [pc.belly]. <i>“Do you know what you are going to name it? Where will it be raised? Shall it become a wanderer of the stars, like you?”</i> She fires a lot of these types of questions at you, but asks in a confidential tone, keeping your answers all to herself, listening to them contentedly with half-closed eyes.");
+			output("\n\n<i>“And you do not form the scent-link? Interesting,”</i> she drones. She strokes your belly ruminatively. <i>“You know, [pc.name], for all the wonders that you have seen, and the riches at your disposal - I think you would be most happy finding a kind, strong warrior-husband here, and building a home together. A zil boy who can fill your arms with children.”</i>");
+		}
+		output("\n\n");
+	}
+	
+	addButton(0, "Next", talkToQuinnStuffGogogogogogogogogogo);
+}
+
+public function pregQuinnBirthed():void
+{
+	clearOutput();
+	showQuinn();
+	author("Nonesuch");
+	
+	var isSire:Boolean = flags["QUINN_SIRED_KID"];
+	var isMale:Boolean = quinnBirth();
+	
+	output("Beyond the flap of the leader’s yurt you find Quinn, deep in her bed furs, looking both utterly exhausted and extremely satisfied. In her arms, nursing at one of her opened breasts, is the tiniest zil you ever did see");
+	if(StatTracking.getStat("pregnancy/zil birthed") > 0) output(" - at least, not since you gave birth to one, anyway");
+	output(". Her tiny smile broadens when you enter, and she extends an arm to you. You sit yourself down next to her and take her hand into yours.");
+	output("\n\n<i>“This was the hardest thing I have ever done,”</i> she says, quietly but clearly. <i>“Harder than winning the right to be Quinn. Harder than");
+	if(flags["PQ_RESOLUTION"] == 1 ) output(" making peace with the starwalkers");
+	else output(" waging war against the land-stealers");
+	output(". But look - look at the result.”</i> She gently pulls the child off her teat, presents it to " + (flags["QUINN_SIRED_KID"] == undefined ? "her greatest warrior" : "the father") + ". You examine the little fetcher, blinking at you with golden eyes and grasping the air with tiny, chitinous fingers. Zil make it pretty easy to work out whether they’re male or female, even at a very young age.");
+	
+	if(isMale) output(" You stroke his gently twitching wings admiringly.");
+	else output(" You stroke her tear-shaped abdomen admiringly.");
+	output("\n\n<i>“See " + (isMale ? "his" : "her") + " perfect hands?”</i> Quinn crows raspily. <i>“See " + (isMale ? "his" : "her") + " wandering eyes, " + (isMale ? "his" : "her") + " straight back and beautiful " + (isMale ? "wings" : "sting") + "? Quinn was generous, Quinn was bountiful! My child! " + (isMale ? "He" : "She") + " shall be the greatest leader my kind have ever known!”</i>");
+	// If Steele impregnated her + PC used [No] and [Comfort] options in previous preg scenes:
+	if(flags["QUINN_SIRED_KID"] != undefined && flags["QUINN_TALK_HERBS"] == -1 && flags["QUINN_TALK_PREG"] == 1)
+	{
+		output("\n\n<i>“Our child,”</i> you say, looking her in the eye. The zil leader pauses for a long moment, and then smiles again.");
+		output("\n\n<i>“Our child,”</i> she agrees, taking the warm, black and yellow bundle back into her waiting arms.");
+	}
+	// If Else:
+	else
+	{
+		output("\n\nYou feel a warm glow at seeing her so happy, particularly given the depths of misery she came to dwell in during the pregnancy. Perhaps it’s strange that she stuck so firmly to the task of denying the child a father, but could one ask for a more loving, competent, powerfully-placed mother? Probably not on this planet. You hand the warm, black and yellow bundle back into her waiting arms.");
+	}
+	output("\n\nYou spend a little more time with Quinn and her baby, before tiredness sags at her eyes, and a handmaiden slips in to take the child away. You leave her, hair still tangled and sweaty, sleeping peacefully, and [pc.move] back down to the Chieftain’s Circle. She’ll be back on her feet and ordering her minions around in a couple of days, you wouldn’t doubt.");
+	
+	processTime(76);
+	
+	// Remove [Quinn?], re-add [Quinn] after 40 hours
+	pc.createStatusEffect("Quinn Post-Pregnancy");
+	pc.setStatusMinutes("Quinn Post-Pregnancy", (60 * 40));
+	
+	currentLocation = "12. Zil Village Winnar";
+	flags["QUINN_PREG_APPROACH"] = 4;
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Yummy Mummy Quinn
+// Appearance
+public function quinnAppearanceMommy():String
+{
+	var msg:String = "";
+	
+	msg += "From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She has kept a little of the thickness of her pregnancy on: although her stomach is slim once again her boobs are somewhere between C and D cups these days";
+	// If kid < 300 days young:
+	if(quinnBabyAge() < 300) msg += " heavy and sticky-teated with the honey she feeds her young " + (flags["QUINN_KID_SEX"] == 1 ? "son" : "daughter");
+	msg += ".";
+	msg += "\n\nHer hips are wider than they were, and all-round she looks much more maternal than the slim, lithe wasp you once knew.";
+	msg += "\n\nHer pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.";
+	msg += "\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil. It is a plump and easily-spread treat these days, perfect for";
+	if(StatTracking.getStat("pregnancy/quinn sired") > 0 && pc.hasCock()) msg += " a big, thick daddy cock";
+	else msg += " a busy tongue to explore";
+	msg += ". Between her round, soft rump she retains a tight, orange anus.";
+	msg += "\n\n";
+	
+	return msg;
+}
+// Baby's age in days
+public function quinnBabyAge():int
+{
+	if(flags["QUINN_KID_AGE"] == undefined) return 0;
+	return Math.min(Math.floor((((GetGameTimestamp() - flags["QUINN_KID_AGE"]) / 60) / 24)), 1825);
+}
+public function quinnBabyName():String
+{
+	if(flags["QUINN_KID_NAME"] == undefined) return "the zil child";
+	return flags["QUINN_KID_NAME"];
+}
+// 11:00-18:00 kid is with her, absent otherwise
+public function quinnBabyActive():Boolean
+{
+	if(flags["QUINN_KID_AGE"] == undefined) return false;
+	return (hours >= 11 && hours <= 18);
+}
+
+public function mommyQuinnApproach():Boolean
+{
+	if(flags["QUINN_KID_AGE"] == undefined) return false;
+	
+	var isSire:Boolean = (StatTracking.getStat("pregnancy/quinn sired") > 0);
+	var babyAge:int = quinnBabyAge();
+	var babyMale:Boolean = (flags["QUINN_KID_SEX"] == 1);
+	
+	clearOutput();
+	showQuinn();
+	author("Nonesuch");
+	
+	// Quinn Baby (0-365 Days Old)
+	if(babyAge < 365 || flags["QUINN_KID_NAME"] == undefined)
+	{
+		// First [Quinn] after birth
+		if(flags["QUINN_KID_NAME"] == undefined)
+		{
+			output("Quinn is cradling her child, and she presents it to you when you approach.");
+			output("\n\n<i>“Look who’s come to visit!”</i> she coos. <i>“");
+			if(!isSire) output("My smartest, fiercest warrior.");
+			else output("Your daddy.");
+			output(" [pc.He]’s probably come to tell us about the enemies [pc.he]’s slain and skulls [pc.he]’s piled high in our honor. Say hello to [pc.him]!”</i>");
+			output("\n\n");
+			output("\n\nThe kid does nothing of the sort, of course; " + (babyMale ? "he" : "she") + " is still very young. " + (babyMale ? "He" : "She") + " simply gazes at you with a frown, those golden eyes taking in your deeply curious form, antennae twitching, toothless mouth forming inchoate shapes and expressions. Then " + (babyMale ? "he" : "she") + "’s whisked back into " + (babyMale ? "his" : "her") + " adoring mother’s arms.");
+			output("\n\n<i>“Have you given " + (babyMale ? "him" : "her") + " a name?”</i> you ask.");
+			output("\n\n<i>“Zil are not given names. Not unless they are slaves,”</i> Quinn tells you in a chiding, you-should-know-this tone. <i>“They earn them. For now though I own my child, so I call " + (babyMale ? "him" : "her") + "...");
+			if(isSire)
+			{
+				output("  Owers.”</i> She smiles at you broadly, as " + (babyMale ? "he" : "she") + " paws intently at her chitin breastplate.");
+				flags["QUINN_KID_NAME"] = "Owers";
+			}
+			else
+			{
+				output(" Myne.”</i> She smiles down broadly at " + (babyMale ? "him" : "her") + ", pawing intently at her chitin breastplate.");
+				flags["QUINN_KID_NAME"] = "Myne";
+			}
+		}
+		// Repeat
+		// If kid present
+		else if(quinnBabyActive())
+		{
+			output("Quinn is cradling " + quinnBabyName() + ", and she presents " + (babyMale ? "him" : "her") + " to you when you approach.");
+			output("\n\n<i>“Look who’s come to visit!”</i> she coos. <i>“");
+			if(!isSire) output("My smartest, fiercest warrior.");
+			else output("Your daddy.");
+			output(" [pc.he]’s probably come to tell us about the enemies [pc.he]’s slain and skulls [pc.he]’s piled high in our honor. Say hello to [pc.him]!”</i>");
+			output("\n\nThe kid does nothing of the sort, of course; " + (babyMale ? "he" : "she") + " is still very young. " + (babyMale ? "He" : "She") + " simply gazes at you with a frown, those golden eyes taking in your deeply curious form, antennae twitching, toothless mouth forming inchoate shapes and expressions. You bounce " + (babyMale ? "him" : "her") + " around a little bit, blow a raspberry on " + (babyMale ? "his" : "her") + " chubby chitin-coated belly, and draw some wriggles and buzzing giggles out of " + (babyMale ? "him" : "her") + ", before handing " + (babyMale ? "him" : "her") + " back.");
+			output("\n\n<i>“Did you come just to see " + quinnBabyName() + "?”</i> Quinn asks, with a familiarly arch raise of an eyebrow. <i>“Or was there something else you wish for?”</i>");
+		}
+		// If kid not present
+		else
+		{
+			output("Quinn’s arms are empty.");
+			output("\n\n<i>“" + quinnBabyName() + " is sleeping,”</i> she says, answering your question before you can ask it. <i>“Or making my handmaidens’ lives a living hell. I am Quinn. I do need time away from that.”</i> She considers you with her small, calm smile. <i>“What is it that");
+			if(!isSire) output(" my great warrior");
+			else output(" the father of my child");
+			output(" desires?”</i>");
+			
+			// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
+		}
+		output("\n\n");
+		
+		processTime(2);
+		
+		// Display standard options
+		peacefulQuinnMenu();
+	}
+	// Quinn Toddler (>365 days)
+	// Again it’s never going to be older than 5 no it isn’t so shut up
+	else
+	{
+		
+	}
+	return true;
+}
+// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
+public function quinnMomSexButton(btnSlot:int = 2):void
+{
+	if(pc.lust() < 33) addDisabledButton(btnSlot, "Sex", "Sex", "You aren’t aroused enough for this.");
+	else if(quinnBabyAge() < 365)
+	{
+		// Non-handmaiden [Sex] chosen whilst kid present
+		if(quinnBabyActive()) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
+		// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
+		else addDisabledButton(btnSlot, "Sex", "Sex", "You’ve worn out Quinn, and Fetch and Carry are otherwise occupied. No more bonking. Aren’t babies a bitch?");
+	}
+	else
+	{
+		if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
+		else if(!pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
+		else addButton(btnSlot, "Sex", sexWithQuinnOmnigenderWHYYYY);
+	}
+}
+
+// Revised Chieftain’s Circle Blurb
+public function chieftansCircleBonusQuinnMomText():String
+{
+	var msg:String = "";
+	var babyMale:Boolean = (flags["QUINN_KID_SEX"] == 1);
+	
+	msg += "You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair. Quinn is there, observing you cannily as usual.";
+	msg += "\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. One of these little guys is " + quinnBabyName() + "; " + (babyMale ? "he" : "she") + " stays at the back, watching you with silent shyness.";
+	msg += "\n\nThe place otherwise has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.";
+	
+	return msg;
+}
+
+// [Myne / Owers]
+public function approachQuinnBaby():void
+{
+	var isSire:Boolean = (StatTracking.getStat("pregnancy/quinn sired") > 0);
+	var babyAge:int = quinnBabyAge();
+	var babyMale:Boolean = (flags["QUINN_KID_SEX"] == 1);
+	var numChildren:int = ChildManager.numChildrenAtNursery();
+	
+	clearOutput();
+	showQuinn();
+	author("Nonesuch");
+	
+	output("<i>“" + quinnBabyName() + "!”</i> Quinn calls stridently, striking the armrest of her throne. <i>“Come greet");
+	if(isSire) output(" your father");
+	else output(" my most honored warrior");
+	output(".”</i>");
+	output("\n\nThe tiny zil toddles across from where " + (babyMale ? "he" : "she") + " was playing with the other village children. " + (babyMale ? "He" : "She") + " comes hesitantly, eyeing you shyly. You wonder what Quinn has told " + (babyMale ? "him" : "her") + " about you. Well, honestly, even if it were a couple of throwaway half-truths it’d be enough for a native Mhen’gan toddler to be overawed.");
+	output("\n\nYou ask " + (babyMale ? "him" : "her") + " what game " + (babyMale ? "he" : "she") + "’s playing, what " + (babyMale ? "his" : "her") + " favorite color and animal is and quickly manage to loosen the kid up. Although " + quinnBabyName() + " never stops gazing at you with a certain shyness, " + (babyMale ? "he" : "she") + " is quite the chatterbox. You learn where their dens are, where the best mangoes in the jungle are to be found, and how to escape a naleen. You learn about the zil version of soccer, in which boys and girls have strictly regulated roles - but " + (babyMale ? "boys" : "girls") + " never follow, " + (babyMale ? "he" : "she") + " explains despairingly, because everyone knows " + (babyMale ? "boys" : "girls") + " always cheat.");
+	output("\n\nAfter that you have a decent game of hide and seek, which all the kids love since you don’t know where all of their hiding places are");
+	if(flags["QUINN_KID_PLAYS"] >= 5) output(" despite doing this a number of times now");
+	output(", followed by a couple of sessions of horsie (which they call ‘pinser’ for reasons which sound faintly alarming).");
+	output("\n\n<i>“You have a way with children, [pc.name],”</i> observes Quinn, when you finally say goodbye to " + quinnBabyName() + " with a hug and return to her throne, brushing the dust off of your [pc.armor]. <i>“Do you have many of your own?”</i>");
+	// 0 nursery children:
+	if(numChildren <= 0)
+	{
+		output("\n\nYou shrug and say you have");
+		if(!isSire) output(" none");
+		else output(" no others");
+		output(" that you know of - perhaps that’s why you enjoy playing with them so much.");
+		output("\n\n<i>“That’s very sad");
+		if(pc.hasCock()) output(", particularly considering that vigorous manhood of yours");
+		else if(pc.hipRating() >= 15) output(", particularly when you look at those child-bearing hips of yours");
+		output(",”</i> Quinn replies, tapping her arm-rest. <i>“A " + pc.mf("Ken", "Quinn") + " in-waiting should have an heir, because if [pc.he] doesn’t, who shall take up [pc.his] baton should [pc.he] fall?”</i>");
+	}
+	// 1-20 nursery children:
+	else if(numChildren <= 20)
+	{
+		output("\n\nYou have");
+		if(numChildren == 1) output(" one");
+		else if(numChildren == 2) output(" a couple");
+		else output(" a few");
+		output(", you assure her. You describe the nursery your father bequeathed you, and");
+		if(numChildren == 1) output(" the kid ");
+		else if(numChildren < 10) output(" the small brood");
+		else output(" the unruly brood");
+		output(" that is being taken care of there.");
+		output("\n\n<i>“What a generous male your father was!”</i> Quinn remarks, tapping her arm-rest. <i>“Why, if a zil could have as many children as they chose, and still be free to set their strength and mind against the world...”</i> Her eyes gleam like hidden treasure. <i>“...the things she could do!”</i>");
+	}
+	// 21+:
+	else
+	{
+		output("\n\nQuinn’s face pales as you describe the army of kiddywinks you have personally bred, all taken care of by the nursery your father bequeathed you.");
+		output("\n\n<i>“Zpirits,”</i> she mutters. <i>“But will that not cause you unspeakable problems when it becomes time to decide on your own heir? What do you intend to do with all of them - conquer a star?”</i> She shakes her head, disturbed. <i>“The ways of aliens are truly beyond our ken. I shall be more than content with just one.”</i>");
+	}
+	output("\n\n");
+	
+	processTime(11);
+	IncrementFlag("QUINN_KID_PLAYS");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Kane stuff
+public function submissiveToKane():Boolean
+{
+	return (kaneSubmission() > 50);
+}
+public function kaneSubmission(arg:int = 0):Number
+{
+	if(flags["KANE_SUBMISSION"] == undefined) flags["KANE_SUBMISSION"] = 0;
+	
+	if(arg != 0)
+	{
+		flags["KANE_SUBMISSION"] += arg;
+		if(flags["KANE_SUBMISSION"] < 0) flags["KANE_SUBMISSION"] = 0;
+		if(flags["KANE_SUBMISSION"] > 100) flags["KANE_SUBMISSION"] = 100;
+	}
+	
+	return flags["KANE_SUBMISSION"];
+}
 
-<i>“Talk,”</i> says Quinn, absently. Her golden irises rest upon you for a silent couple of moments. <i>“Yes, talk. We should do that, Steele. Come closer.”</i>
-
-You move close enough to her carved throne to lean on one of the armrests. Quinn’s body language is as relaxed and poised as ever, but when she speaks next it is low and serious. Her sweet, cloying perfume coils into your nostrils as she speaks.
-
-<i>“The Pollen Festival is almost upon us, when we celebrate the fruit and suns and breezes which allow us to produce the golden sweetness: the source of all our joy and strength. We have much to celebrate this cycle, with {our glorious victory over the landstealers / the interesting peace you have brought upon us}. It is a blessed time to plant babies. I want a baby.”</i> She pauses again, eyes upon the to-ing and fro-ing of her tribe. <i>“This is important to me, Steele. My mother only had one child - one that lived. I do not come from fertile stock. Zil leaders that do not produce children, do not last long. I must do all I can to have a child. So we shall perform the Droning Ball. I want you to take part.”</i>
-
-[Next]
-
-PC is female
-
-<i>“Um...”</i> How to put this. <i>“I don’t know if you’ve noticed, Quinn, but I can’t...”</i>
-
-A wry smile reappears on the zil’s face.
-
-<i>“Put a baby in my belly? Perhaps not literally, Steele. But you are a good omen to my tribe. Your coming {dispelled the lying magic of the word wolf, and began our peace with the starwalkers of the white hives. / heralded our victory over the terrible landstealers, and showed we need fear no-one}. Also, you are <i>very</i> exciting. My drones will outperform themselves if you are involved. Also...”</i> She puts her hand on yours, on the armrest. <i>“If I were in your place, I would ask: Why should Quinn be blessed with a baby, and not me? If you want that, my champion, it shall be yours.”</i>
-
-You ask what the Droning Ball entails.
-
-<i>“There shall be a grand feast. Much dancing and merrymaking. Then all the menfolk who wish to sire my heir shall compete.”</i> She points at the circle of stones, in front of her throne. <i>“It is a test of will and cunning as much as strength, for in order to succeed you must not have over-indulged beforehand, you see?”</i> She squeezes your hand. <i>“Then we shall choose the most gallant, the most fetching, the most virile, you and I - two, three, maybe even five? - and then we shall... ball. All night. If you like.”</i> 
-
-Quinn’s eyes have grown slightly distant.
-
-[Why Group?] {[Kane n Lah] / [Kane]} [Spectate] [Hell Yeah]
-
-Why Group?
-
-Tooltip: Ask why it has to be a gangbang.
-
-<i>“Why does there need to be more than one male?”</i> you ask. <i>“Couldn’t you just choose the best?”</i>
-
-<i>“I want the best chance I can possibly create,”</i> replies Quinn. Her eyes are on her tribe, but she again speaks low and serious, so that only you can hear. <i>“Perhaps one does not have strong enough seed, but another... you see? Your presence, at the time of the Pollen Festival, and the Droning Ball... all of these things, yes. I am Quinn, and I am the daughter of my mother. I cannot leave it to fate. Also <b>I</b> want an heir. If there are many fathers, it shall belong to the whole tribe, and no one male can claim a stake to my throne.”</i>
-
-//redisplay choices
-
-{[Kane n Lah] / [Kane]}
-
-Tooltip: {There must be a reason why those two seem to be excluded from the equation here...} / {You think you know who the strongest male zil in the tribe is. But the implication seems to be that the big, scowling lug will be absent?}
-
-Lah still around
-
-You would’ve thought if she were aiming to make a baby out of the strongest and smartest material in the village you know who her two candidates would be, and you say as much.
-
-<i>“The word wolf?”</i> She laughs, a single musical note. <i>“No. I believe his tastes run naturally in a different direction.”</i> She points discretely; the rangy ausar is at this moment chatting animatedly with a young male zil, who judging by his blush and toeing of the dirt is rather flustered by the attention.
-
-<i>“As for Kane: An excellent male to have, in times of war. In times of peace? He chafes under my rule. He is proud enough to disdain being one of the fathers of his Quinn’s child. No, he has his sights set on... loftier ambitions, I think.”</i> She gazes at you steadily.
-
-//redisplay choices
-
-If Else
-
-You would’ve thought if she were aiming to make a baby out of the strongest material in the village you know who the candidate would be, and you say as much.
-
-<i>“Kane? An excellent male to have, in times of war. In times of peace? He chafes under my rule. He is proud enough to disdain being one of the fathers of his Quinn’s child. No, he has his eyes set on... loftier ambitions, I think.”</i> She gazes at you steadily.
-
-//redisplay choices
-
-Spectate
-
-Tooltip: A big zil gangbang does not appeal. Say you’d rather sit this one out.
-
-As gracefully as you can, you say you’d be honored to be present at their festival - but you’d sooner not get impregnated by half-a-dozen zil guys.
-
-<i>“I understand. The presence of my good omen at my chair shall be enough,”</i> Quinn replies. She eyes you knowingly. <i>“And perhaps a nice girl will take you to her hearth instead, hmm? It is an exciting time of the cycle.”</i>
-
-Hell Yeah
-
-Tooltip: A big zil gangbang? Where do you sign?
-
-The prospect of several zil doing you every which way until dawn is already firing off neurons in your brain, and you tell Quinn you’ll happily participate. 
-
-<i>“I am very pleased to hear that.”</i> She squeezes your hand again, and smiles at you happily. <i>“My good omen.”</i>
-
-PC is herm/male
-
-<i>“You... want me to be the father?”</i>
-
-<i>“One of the fathers,”</i> Quinn corrects with a smile. <i>“Ordinarily I would have you compete with the others for the honor of pollinating your Quinn. But you are a good omen to my tribe. Your coming {dispelled the lying magic of the word wolf, and heralded the beginning our peace with the starwalkers of the white hives. / heralded our victory over the terrible landstealers, and showed we need fear no-one}. Also, you are <i>very</i> exciting. My drones will outperform themselves if you are involved.”</i> She puts her hand on yours on the carved armrest, squeezes it. <i>“I want you to be involved, Steele. You have demonstrated your great strength and cleverness already. Your place in the Ball is assured.”</i>
-
-You ask what it entails.
-
-<i>“There shall be a grand feast. Much dancing and merrymaking. Then all the menfolk who wish to sire my heir shall compete.”</i> She points at the circle of stones, in front of her throne. <i>“It is a test of will and cunning as much as strength, for in order to succeed you must not have over-indulged beforehand, you see?”</i> She squeezes your hand. <i>“Then we shall choose the most gallant, the most fetching, the most virile, you and I - two, three, maybe even five? - and then we shall... ball. All night. If you like.”</i>
-
-Quinn’s eyes have grown slightly distant.
-
-[Why Group?] {[Kane n Lah] / [Kane]} [Spectate] [Hell Yeah] [Just Me.]
-
-Why Group?
-
-Tooltip: Ask why it has to be a gangbang.
-
-<i>“Why does there need to be more than one male?”</i> you ask, thrusting out your [pc.chest] as subtly as you can.
-
-<i>“I want the best chance I can possibly create,”</i> replies Quinn. Her eyes are on her tribe, but she again speaks low and serious, so that only you can hear. <i>“Perhaps one does not have strong enough seed, but another... you see? Your presence, at the time of the Pollen Festival, and the Droning Ball... all of these things, yes. I am Quinn, and I am the daughter of my mother. I cannot leave it to fate. Also <b>I</b> want an heir. If there are many fathers, it shall belong to the whole tribe, and no one male can claim a stake to my throne.”</i>
-
-//redisplay choices
-
-{[Kane n Lah] / [Kane]}
-
-Tooltip: {There must be a reason why those two seem to be excluded from the equation here...} / {You think you know who the strongest male zil in the tribe is. But the implication seems to be that he’ll be absent?}
-
-Lah still around
-
-You would’ve thought if she were aiming to make a baby out of the strongest and smartest material in the village you know who her two candidates would be, and you say as much.
-
-<i>“The word wolf?”</i> She laughs, a single musical note. <i>“No. I believe his tastes run naturally in a different direction.”</i> She points discretely; the rangy ausar is at this moment chatting animatedly with a young male zil, who judging by his blush and toeing of the dirt is rather flustered by the attention.
-
-<i>“As for Kane: An excellent male to have, in times of war. In times of peace? He chafes under my rule. He is proud enough to disdain being one of the fathers of his Quinn’s child. No, he has his sights set on... other things, I think.”</i> She gazes at you steadily.
-
-//redisplay choices
-
-If Else
-
-You would’ve thought if she were aiming to make a baby out of the strongest material in the village you know who the candidate would be, and you say as much.
-
-<i>“Kane? An excellent male to have, in times of war. In times of peace? He chafes under my rule. He is proud enough to disdain being one of the fathers of his Quinn’s child. No, he has... loftier ambitions, I think.”</i> She gazes at you steadily.
-
-//redisplay choices
-
-Spectate
-
-Tooltip: A big zil gangbang does not appeal. Say you’d rather sit this one out.
-
-As gracefully as you can, you say you’d be honored to be present at their festival - but you’d sooner not be one dick in a parade of them.
-
-<i>“I understand. The presence of my good omen at my chair shall be enough,”</i> Quinn replies. She eyes you knowingly. <i>“And perhaps a nice boy will take you to his hearth instead, hmm? It is an exciting time of the cycle.”</i>
-
-Hell Yeah
-
-Tooltip: A big zil gangbang? Where do you sign?
-
-The prospect of doing Quinn with one or two overexcited zil bois every which way until dawn is already firing off neurons in your brain, and you tell her you’ll happily participate. 
-
-<i>“I am very pleased to hear that.”</i> She squeezes your hand again, and smiles at you happily. <i>“My good omen.”</i>
-
-Just Me
-
-//Appears after PC uses [Why Group?]
-
-Tooltip: You have no intention of sharing your Quinn around. You’re virile enough to knock her up on your own!
-
-<i>“You don’t need a ball of random guys to put a baby in you.”</i> You squeeze her hand back, looking her in the eye with all the smolder you can muster. <i>“I will do it. On my own. If the father is me, you don’t have to worry about claims to your throne: you know I have the birthright to be a... {Quinn/Ken} of a... tribe... regardless.”</i>
-
-Quinn stares back at you, spots of tangerine appearing in her cheeks and a strange smile trembling on her lips. You think, for the very first time you’ve known her, she’s flustered. A moment later, the tremble is swallowed by trademark composure.
-
-<i>“You wish to claim sole right to me, Steele?”</i> she breathes. <i>“How very bold of you. How very... daring.”</i> She wriggles on her perch a bit, evidently enjoying herself. <i>“I can guarantee your place in the Ball, but if you would dare declare yourself the only drone suitable to mate with Quinn, then you would have to stave off every other male who would challenge you. On your own. By the rules of the circle.”</i>
-
-[Yes] [No]
-
-[No]
-
-Tooltip: Maybe not the best idea.
-
-<i>“I admire your smartness as much as your strength, Steele,”</i> Quinn says, with an affectionate pat on the hand. <i>“The Droning Ball will be wonderful - set aside your inhibitions and you will enjoy yourself. You’ll see.”</i>
-
-[Yes]
-
-Tooltip: Kicking a bunch of bee boi butts beforehand will only make your dick harder.
-
-<i>“Well, then.”</i> Quinn touches your [pc.chest] lightly, trails her thin, black fingers down your {[pc.upperGarment] / [pc.skinFurScales]}, fire guttering beneath her calm, cool expression. <i>“I look forward to seeing your performance in the ring. My champion.”</i>
-
-{merge all}
-
-[Next]
-
-<i>“Come back when the suns are beginning to set.”</i> Quinn dismisses you with a cool wave of her hand, and in a voice clear enough to resonate around the open space below her throne and. <i>“We shall begin the Pollen Festival as soon as my most honored guest is present.”</i>
-
-An excited murmur thrums around the circle, and the rather leisured atmosphere of the zil village becomes noticeably more purposeful.
-
-//Boot PC back to Chieftain’s Circle square. Add [Festival] to Quinn’s main options
-
-
-
-
-[Festival]
-
-//Ghost out unless time is 16:45-19:00
-
-GO Tooltip: You don’t think it’s the right time yet. Quinn indicated the early evening.
-
-Tooltip: Tell Quinn you’re ready for the Pollen Festival to begin.
-
-<i>“Excellent.”</i> The zil leader smiles down at you serenely. <i>“Your place at the tables is to the right of mine. Eat, drink, be merry, do as you may - The Pollen Festival is a celebration of the freedom the life our people lead offers. Except don’t step into the circle. That is for later.”</i>
-
-With that she rises, and strides off towards her yurt. {Her two handmaidens / Fetch and Carry} hurry after her.
-
-Ironwood logs with shaven, flat tops - they must have been painstakingly cut down and then hoisted up the waterfall from the lower jungle - have been positioned around the chieftain’s circle. Onto them a smorgasbord of food is being ferried from the cooking fires, which are busy blazing away in the peripheries of the village. Stone urns filled with golden fluid hang from the cedar-like trees. 
-
-The tribal zil are everywhere, either chatting with one another in groups, sweating over the fires, settling themselves down in front of the feast, or thronging excitedly in the village below. There seems to be way more of them than usual, most of them either painted or in the process of being painted in sticky, garish dyes. The hubbub is the low, ululating buzz of a swarm of drunken wasps. Are other tribes present here, or is it simply that, in the normal course of events, most of them are usually in the jungle below?
-
-Whatever. You should follow Quinn’s advice and go have some fun.
-
-//Remove each option as it’s used, except the village/circle interchange. Action is moved on once PC uses [Dance].
-
-[Eat] [Drink] [Paint] [Village]
-
-Eat
-
-Tooltip: Stuff your face with whatever passes for zil delicacies.
-
-You sidle your way through the crowd to the chair next to the big, carved one. There are bowls filled with alien fruit, made stranger by the dim, flickering light, and roasts of things you can’t even begin to imagine would have looked like before they were hunted down, butchered, slathered in honey, and stuck over a fire for an hour. As discretely as you can, you check your codex. It doesn’t <i>seem</i> to be flashing a red alert about any nearby toxins...
-
-<i>“Here, starwalker,”</i> coos the female zil sitting next to you, dangling a thin vine covered in bloated, oblong fruits. Going off her unfocused eyes, she’s already pretty drunk. <i>“Open wide...”</i> You let her lean over you, breathing in her fermented honey scent as she feeds you the fruits - watery, fizzy, citrusy. Those are - those are pretty nice! She giggles as, enthused, you reach out and tear off a leg of dark green meat. What do you know: It tastes like chicken.
-
-You rise from the table maybe an hour later, mouth greasy, gut full. You’ve got all the calories you’ll need to keep you going through the night, but... oof... you hope nobody’s going to ask you to move fast anytime soon.
-
-// +1 hour, -10% Reflexes -10% Physique for 10 hours, +100 energy
-
-Drink
-
-Tooltip: They’ve discovered alcohol, right?
-
-The lean male slaps away your hand when you tentatively reach for one of the stone jugs hanging from a nearby tree.
-
-<i>“No. Unless you want blindness. Not properly brewed yet. Here.”</i> He picks up another, virtually identical jug, and pours out two cups, thrusting one into your hand. <i>“To the pollen! To our Quinn!”</i> You swallow it back with him. It’s mead, basically - mead, with its intense fire buried low under the crashing sweetness of honey.
-
-<i>“All good things come from the sweetness,”</i> the male says, grinning as he watches you blink a couple of times. <i>“Come! Drink again! I insist. To the breezes! To our Quinn!”</i>
-
-Yeah! To the breezes! To the... thingie. You stagger through the crowd a bit later, cup still in hand, feeling much warmer, relaxed and friendly about all the nice, yellow and black people you’re spending this evening with.
-
-// +1 hour, +80% alcohol
-
-Paint
-
-Tooltip: Getting some body paint going on sounds like a pretty good time.
-
-The thin old female with the pots of dye twinkles as she watches you roll up to where she’s sat.
-
-{<i>“You’ll have to take your soft plates off first, starwalker.”</i> You elect to keep your [pc.underGarment] {and [pc.upperGarment]} on, but otherwise bare your [pc.skinFurScales] to the cool, evening air, and the waiting brush of the artist.}
-
-<i>“I see you as... a firebird. Yeeess,”</i> she breathes, painting cold stripes of orange and red dye onto your arms and face. You try not to flinch as she works. <i>“From the sky you come in your fiery silver bird, and you burn amongst us, changing everything and catching the eye with your rebirth. Yes!”</i> She plops her brushes back into her pots, beaming proudly at the wide patterns of fiery colors she’s painted onto you. <i>“Now go and dance, firebird. Shake your feathers!”</i>
-
-You’re slightly self-conscious of it as you mingle back amongst the crowd, but the stuff quickly dries, sinking into your [pc.skin], so that it’s only when you wave your arms around that you remember you look like you’ve had a serious accident with a sun tan bed. 
-
-// Remove upper garments if present, +15% tease damage for 10 hours
-
-Village
-
-Tooltip: Go down to the village and join in the festivities there.
-
-You skirt around the feasting logs, and [pc.move] down the wooden ramp towards the wax hive-homes and the throngs of zil down there.
-
-Interlude
-
-//Only shows IF Lah still present OR PC is submissive to Kane
-
-If Lah Still Present, not submissive to Kane
-
-You stumble into Lah at the bottom of the ramp. The ausar’s got a dangerously full stone jar in his hand, and he’s substituted his fur stole for a head-dress of white feathers.
-
-<i>“Hear you’re taking part in - in Quinn’s big ritual later,”</i> he grins. <i>“That’s cool. If I’m honest I - I’ve never been big into these sexual dynamics all of these native races are into. Performo...performing... nervousness, I guess. It’s good you’re here to take on that kind of thing.”</i>
-
-He swills his mead around, standing with you and gazing over the swirling crowd of zil.
-
-<i>“But it’s great, isn’t it?”</i> he slurs. <i>“Seeing all of these rituals of theirs. In... proteiny state. Centuries from now they’ll be carved in stone, unquestionable, but now, they’re still - still forming. And we’re part of that, me ‘n you.”</i> He slaps you on the shoulder, squeezes you into his lean side. <i>“We’re part of that - that slosh. Changing it for the better. Changing it for the... ooh I’m sloshed. S’cuse me, Steele...”</i>
-
-He staggers off towards the bushes. Shaking your head, you consider your options.
-
-[Dance] [Fortune] [Circle]
-
-PC 51% or more submissive to Kane
-
-//This is for content that is going to appear later
-
-<i>“So.”</i> Kane appears out of the gloom at the bottom of the ramp so suddenly and silently you gasp. And, of course, that fills your mouth and head with his scent. So intoxicating and powerful... black, horny memories bloom in your head, and your [pc.knees] turn to water.
-
-<i>“You’re taking part in our Quinn’s little ritual,”</i> he says, pupil-less eyes trailing up and down your body. The driest of smiles twitches the corner of his mouth. <i>“As her champion.”</i>
- 
-<i>“Yes.”</i> You couldn’t lie to him even if it wasn’t pointless to; nor could you step away when he strides forward and takes you into his lean, strong arms, hands possessively roaming down your body, coming to rest on your [pc.ass] to give it a good, hard squeeze.
- 
-<i>“I do not mind,”</i> he growls. <i>“Relax.”</i> Instantly you do, relief washing through you. <i>“Let her have her fun, use you as {her plaything / her packet of seeds}. I do not begrudge a female’s wish to have a child. It doesn’t matter to me.”</i> He pauses to lift his fingers, tracing your [pc.lips] with a rough index finger, sinking it into your unresisting mouth. <i>“Because I know who you really belong to, [pc.name].”</i>
- 
-The tall zil withdraws his hands the next moment and is gone, disappearing back into the shadows as swiftly and silently as he appeared. As if he were nothing more than a sudden, horny apparition conjured up by your own mind. Trying to shake a little sense into yourself, you take stock of your options.
-
-// +Lust
-
-[Dance] [Rope Jump] [Circle]
-
-//If else simply display options
-
-Dance
-
-Tooltip: Throw some shapes with the crowd. You can always say it’s starwalker custom to have no sense of rhythm.
-
-Some leather drums are being enthusiastically thumped, along with wooden instruments rather like glockenspiels. The main sound moving the stamping, gyrating crowd though is the vocals, which every zil is joining in with - that wordless, soaring, buzzing sound, which builds and subsides, builds and subsides, seemingly mimicking the way dancers join and leave the central centrifuge of bodies.
-
-It’s a rhythm that makes it easy to wait for a dip and then join in, bouncing your [pc.hips] against countless carapace-clad counterparts, join hands, spin partners and be spun yourself, find the heady, suffocating centre and then be flung back out to the periphery. Build... then subside. Build... then subside. You do your best to mimic the sound, your partners laughing goodnaturedly at your clumsy attempts at it.
-
-Your {hand / [pc.armor]} is being tugged insistently. You turn to find yourself faced by an anxious looking young male.
-
-<i>“Please, starwalker,”</i> he says. <i>“You must come.”</i>
-
-Blinking and looking around, you realise many of the zil are filing their way up towards the chieftain’s circle. Where has the time gone? You were just getting warmed up. Shrugging, you make your way back towards the ramp.
-
-// +2 Hours, go to part 2
-
-Rope Jump
-
-Tooltip: There’s some rambunctious activity going on by the riverside. Could be fun...
-
-The eyes of the predominantly male revellers light up when they see you hove into view. You watch as one of them pulls on the fibrous, tightly-secured vine and then launches himself with it over the river... almost making it to the other side before falling with a bellow and a crash into the water below.
-
-<i>“The starwalker!”</i> cheers one. <i>“[pc.He] conquered the cliff. Surely [pc.he] can conquer the river!”</i> 
-
-The vine is pushed into your hands amongst shouts, laughter and swigs of honey liquor. You pull at it experimentally, consider the looming drop into the cold, swift water. Oh, what the hell. There’s no backing down in front of drunken teenagers.
-
-//Reflexes test
-
-Fail
-
-You firmly grab hold, run backwards a bit, and then launch yourself into thin air. Your heart races as you’re flung way out into the open air. You’re doing it! You’re doing it! You’re... not doing it. Oh One no, that is way too far to jump. {Wings: For a fleeting moment you consider opening your [pc.wings] and letting them do the rest, but then reflect that all of the winged males took their own dunkings fair and square.} You let go and cannonball into the cold, deep water below. Refreshing is one word for it.
-
-The zil are laughing fit to burst as they haul you back onto the bank, but it’s pretty good-natured. A jar of warming mead is shoved into your hand, and the pleasant evening air quickly dries your [pc.skinFurScales]{ - although your fiery body paint is ruined}.
-
-<i>“I will conquer the river, and then I will be the champion!”</i> the cry goes up. You give the next valiant challenger a cheer, and then fade back into the throng.
-
-// - Body Paint Buff if present, +10% alcohol
-
-[Dance] [Circle]
-
-Succeed
-
-You firmly grab hold, run backwards a bit, and then launch yourself into thin air. Your heart races as you’re flung way out into the open air. You fix your eye on the opposite shore. You aren’t going to have enough momentum to reach it... or worse, you’ll come down on the awkwardly on the lip... no, no, you’ve got this, you’ve got this! You let go at the apex of the swing, do a reasonable Tarzan impression as you fly through the air, and land in a cloud of sand, following it up with a perfect forward roll. 
-
-The mob of male zil howl and cheer with amazement on the opposite side, and you allow yourself a couple of bows in their direction. STAR-WALK-ER! STAR-WALK-ER! Is still reverberating across the river as you swagger back towards the main party. Void, you feel so pumped after doing that!
-
-// +Pumped buff for 10 hours: +15% Physique, +15% Aim
-
-Circle
-
-Tooltip: Head back up to the feast and drink.
-
-Maybe you’ll party with the joes a bit later. You clamber back up the ramp towards the flickering fires.
-
-Ironwood logs with shaven, flat tops - they must have been painstakingly cut down and then hoisted up the waterfall from the lower jungle - have been positioned around the chieftain’s circle. Onto them a smorgasbord of food is being ferried from the cooking fires, which are busy blazing away in the peripheries of the village. Stone urns filled with golden fluid hang from the cedar-like trees. 
-
-The tribal zil are everywhere, either chatting with one another in groups, sweating over the fires, settling themselves down in front of the feast, or thronging excitedly in the village below. There seems to be way more of them than usual, most of them either painted or in the process of being painted in sticky, garish dyes. The hubbub is the low, ululating buzz of a swarm of drunken wasps. Are other tribes present here, or is it simply that, in the normal course of events, most of them are usually in the jungle below?
-
-[Eat] [Drink] [Paint] [Village]
-
-
-Part 2
-
-
-The suns have set entirely, and the mood is more serious and tense when you emerge back at the top of the village. The zil seated around the circle of logs are still talking to one another, but in a low murmur, and most of the food and drink has been cleared away. 
-
-A drum begins to thump, slow and precise, and the chatter dies entirely. Quinn appears in the torch-light, sedately making her way to her place, at the opposite end of the circle. She’s covered in bright blue dye, wavy patterns of it that subtly frame her small boobs and crotch plate, and her carapace is studded with pieces of amber that catch the light of the flames. On her head is a headdress which must be the skull of a creature with very impressive horns, beads and feathers swaying from its branches. Through the eye sockets, her golden eyes catch the flicker of the firelight.
-
-PC chose to fight
-
-You realize your chair, that once stood next to hers, is no longer there. Oh... right. You allow the zil male that fetched you to lead you over to a table{, where you first take off all of your [pc.gear]}. On the wooden surface are laid several short spears and bows. You have a choice to make.
-
-[Spear] [Bow]
-
-//Remove all gear, add Champion Assegai/Champion Short Bow, as in the Lah fight
-
-<i>“The starwalker champion has staked his claim.”</i> Quinn’s cool tones ring out over the assembly as you pick your chosen weapon, test it a few times. <i>“[pc.He] would be the father of my child, forge the future of our tribe, solely by way of [pc.his] own flesh.”</i> 
-
-She’s silent, allowing you time to step into the ring of stones. The cool air touches your naked [pc.skinFurScales]. The flicker of countless pupil-less eyes reflect back at you.
-
-<i>“Is there any that would challenge that claim?”</i> Quinn’s voice carries out over the treetops.
-
-<i>“Yes, my Quinn, I would.”</i> A tall, lean male steps into the ring, sinking his assegai into the sand.
-
-<i>“Yes, Quinn, I would!”</i> A shorter, more boyish male strides forward, bow clutched in his hand.
-
-<i>“Aye, Quinn, me, I would.”</i> Another pushes forward, chin thrust out, assegai leant over his shoulder.
-
-<i>“Very well.”</i> Quinn raises her hand and the drum starts again, quicker this time. The hum from the crowd begins to build. <i>“You shall fight my champion, warriors. You have stepped forward together and so shall settle your claim together, should you triumph.”</i> You look over to her and see a soft, anticipatory smile spreading across the pretty mouth beneath the skull. <i>“Begin.”</i>
-
-The three males spread out, the two spear-wielders ahead of the archer. You clutch your weapon. You have to be the only one capable of walking out of the circle, if it’s you that’s going to claim the prize.
-
-//go to fight
-
-If Else
-
-The seat to her right is empty. You don’t need any prompts from the runner to [pc.move] across and settle yourself down there. Quinn’s expression doesn’t waver; she looks carved, like some ancient deity that has stepped out of the night, a vision somewhere between life and death. {Lah is already in place to her left, resplendent in his white feathered headdress. He looks uncomfortable, but plentiful amounts of mead seem to have stilled his twitchiness for now. / Kane is already in place to her left. The rugged zil has made no particular effort to dress up for the occasion, and is slumped scowling in his chair. He can’t hide a certain amount of interest flickering on his face, though, as the drums begin to pick up.}
-
-<i>“The time for the Droning Ball is upon us,”</i> Quinn intones. She rises and forms a U with her arms above her head, framing the skull crown. <i>“The zpirits demand I produce, for my tribe. To make use of this hallowed, fertile time and usher in the beginnings a new cycle. I have, on my side, one half of the new whole; my starwalker champion that has brought us {glorious victory / unimagined prosperity}. Now, I require the other half. Draw, from the ancient stock of my people, the best, the brightest. Who would dare call themselves such?”</i>
-
-<i>“Yes, my Quinn, I would.”</i> A tall, lean male steps into the ring, sinking his assegai into the sand.
-
-<i>“Yes, Quinn, I would!”</i> A shorter, more boyish male strides forward, bow clutched in his hand.
-
-<i>“Aye, Quinn, me, I would.”</i> Another pushes forward, chin thrust out, assegai leant over his shoulder.
-
-On and on it goes, more of the nimble, elven, boyish wasp males stepping forward into the firelight, war-painted, faces set, clutching weapons. Eventually, there are 15 of them, arranged in a semicircle in front of Quinn. {You notice quite a few of them are armored in the battered white remnants of plasteel Snugglé turrets.}
-
-<i>“We who are about to dance, salute you Quinn!”</i> they chorus. The last word is echoed all around the circle, a thundering sound that draws the drumbeat to an end. The fighters fan out so that they are an equal distance between each other, and then with a bloodcurdling, buzzing cry, join battle.
-
-[Next]
-
-++Lust
-
-A few go down immediately; overconfident, overreaching, sent tumbling to the sand by a single, telling blow from a spear or club. You see what Quinn was saying about it being something of a test of cunning and stamina as well as strength. The biggest male overwhelms two others in a rhinoceros-like rampage, and then is simply taken out with a deft stab to the knee by another who was clearly just waiting for an opening to do so.
-
-The sweet, heady scent of horny zil boys rises up into the still, cool air. They are fighting, rutting really, to establish sexual dominance in the way of all zil, only instead of over each other, it’s for Quinn - and you. Stealing a look at the proud, skull-crowned monarch, you see that her mouth is slightly ajar, color in her cheeks, and she is squirming ever so slightly in her throne as she watches this display of male savagery. 
-
-You’d be lying if it wasn’t having an effect on you also, the smell alone is... overwhelming. The lavender-like musk fills your lungs as you gaze at lean boy butts and slim chest clench and shudder as their blows thud into each other; {[pc.eachCock] fill{s} with hard heat} {and} {[pc.eachVagina] drip{s} with primal excitement} as you enter a kind of erotic trance, insect wings flickering and flint weapon flashing. It <i>is</i> a dance, kind of; male drones struggling and thronging together for the glory of their queen.
-
-<i>“Well done, my warriors,”</i> says Quinn, rising. You blink, coming to slightly. There are three male zil still left standing, two clutching spears and the other a bow; battered, scratched, sweaty and chests heaving, they nonetheless look elated beyond words. Looking around, you can see that the ritual battle has had a similar effect on many as it had on you - the black-eyed faces you can see are entranced with lust, and you think you can already hear the sigh of crotch and breast- plates slithering to one side in the darkness. There’s going to be more than one baby planted tonight... if not a full-blown orgy breaking out.
-
-<i>“All who fought today showed honor and bravery,”</i> Quinn continues. <i>“But it is your victory today that shall be spoken of for many moons to come. Step forward, you three. You have earned the chance to prove yourself in... other ways.”</i>
-
-PC chose to spectate
-
-You watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and sting-laden abdomen bobbing an invitation that the three victorious warriors gladly accept, scars and all. It’s a safe guess that you won’t see them again until sunrise at the very earliest. The spell of their skull-crowned deity broken, the rest of the tribal zil are now getting very involved with one another; the warriors who fell are having their wounds tended to, whilst hands are slipping into hands and groups of two or three are gliding into the darkness.
-
-PC has fucked Fetch and Carry
-
-<i>“Heeeeyyyyy,”</i> somebody croons into your ear. You start, and to the other side of you somebody giggles. 
-
-<i>“You’re looking a little lonely, sat up here,”</i> says Fetch, leaning down close enough for you to smell the sugary waves of mead and pheromones coming off of her. <i>“Did Quinn take all of those boys for herself and just leave you here?”</i>
-
-<i>“She’s so greedy,”</i> pouts Carry, on the opposite side. Her hand slides {over / through} your [pc.hair]. <i>“Why don’t you come home with us, champion? We’ve got room, you know. You could show us the stars again...”</i>
-
-Yeah. That sounds like a very good idea indeed. You get up and clinch the two drunken handmaidens into your side, their armored hips meeting your [pc.hips], making them laugh and squeal, and the three of you make your meandering, tipsy way to their yurt.
-
-PC is submissive to Kane
-
-<i>“I misjudged you,”</i> a familiar voice growls into your ear. You start, and it breaks into harsh laughter.
-
-<i>“I thought Quinn had you completely twisted around her little finger,”</i> Kane says from behind your chair. You close your eyes as you feel his hand reach down, pawing roughly at your [pc.chest], subsuming yourself once again in his scent and the sweet sensation of submission. <i>“But you chose not to be part of her whorish little romp, didn’t you? Loyalty. Dedication. That’s what I call that.”</i> His voice deepens and lowers, white-hot arousal gleaming through his words. <i>“I think it calls for a reward. More celebrations. I’ve got some ropes... and a desire to fuck every single one of those tight, loyal holes of yours. Come.”</i>
-
-In a daze you get up and follow your waspish master down the ramp, towards the waiting darkness of his yurt, head filled with nothing but aching horniness and a desire to please. Within ten minutes your hands are tied behind your back, your [pc.ass] is in the air and his thick, glossy dick is plunging into your [pc.vagOrass " + vIdx + "] deep, rutting you roughly. And it’s so good, so good to forget your name and for every other thought to be washed away by orgasm after orgasm, and for you to become an empty, slutty vessel for his seed, all night long...
-
-If Else
-
-An elfin male passing by your chair, hand-in-hand with a slightly taller female, catches your eye, and silently proffers you his hand. In the dreamy, sensual atmosphere at play here, there is no need for words. You lock fingers with those thin black digits, and the three of you make your meandering, tipsy way down towards the village and the waiting darkness of a yurt.
-
-{merge all}
-
-[Next]
-
-// +8 hours, -Lust, +Sweaty
-
-You emerge from the yurt into the heat of the Mhen’gan middle of the day, yawning and stretching. You had a thoroughly enjoyable, if strenuous night - {the festival certainly put {those two / Kane} in the mood, as if zil weren’t always in the mood.} You leave {him / them} slumbering off the excesses of the festival, quietly putting on your [pc.gear], your [pc.groin] throbbing mightily and the taste of honey juices in your mouth.
-
-You find Quinn already stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing transpired last night - except, perhaps, for a slightly wider smile stretched across her round face, and maybe a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went according to plan.
-
-<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. Thank you for being present, [pc.name]. As I told you, you are a blessing upon this tribe, and if I cannot be gotten with child even if I have you by my side... then I shall know it was never meant to be. I hope you found our festival entertaining.”</i> She eyes you knowingly. <i>“I think you did.”</i>
-
-//End. Boot to Chieftain’s Circle. Set Quinn to general preg
-
-PC chose to participate
-
-She rises, then pauses, waiting for you to follow suit. You know your role here as if it had been drilled into you; there’s an incredible erotic frisson at work here, a dark thrill that worms its way into your heart as you gaze at the lithe, sweaty bodies of the victorious male zil, that makes your breath come quick and fast. 
-
-You and Quinn make your stately way back to her yurt, leading the three of them upwards, well aware their eyes are fixed upon her bobbing, sting-laden abdomen and your [pc.ass]. The spell of their skull-crowned deity broken, you can hear the rest of the tribal zil now getting very involved with one another; the lavender-scented woods are alive with the sounds of sighs, gasps, the hum of insect wings and low voices. Clearly this is a night they all look forward to.
-
-//Go to sexings 
-
-
-Fight
-
-Description
-
-You are fighting the trio of male zil who have chosen to contest your claim to Quinn. Generally speaking, they are typical lads for their species - equipped with hoverboard-sized insect wings, clad in sturdy black chitin everywhere except their yellow faces, antennae bobbing above their shaggy brown hair. They are all slathered in arresting, garish war paint. The two wielding short spears are 5’10 and wiry, athletic and tall, jut-jawed and determined. The other is maybe 5\' 8\", equipped with a bow and is more effeminate: slim, full thighs and a cute, heart-shaped, yellow face bobbing around in the dusky light. 
-
-Zil Challenger #1 and #2
-
-HP: 90
-Initial Lust: 30
-Armor: 20
-Dodge: +10%
-
-Attacks
-
-Spear Jab
-
-//Kinetic piercing. Pure damaging.
-
-One of the spear-wielding zil darts inwards, sharply thrusting his spear at your torso.
-
-Trip
-
-//Each may only use once every three rounds. Fells PC if successful.
-
-One of the spear-wielders circles around you{, waiting for one of the others to distract you}, and then hooks his weapon into your [pc.legs] before twisting fiercely, aiming to topple you into the sand.
-
-Thump
-
-//Kinetic bludgeoning. Each may only use once every four rounds. Does double damage vs. shield, chance to stun if shield not present.
-
-One of the spear-wielders goes for the direct approach, riding your own efforts to step inwards and deal a hefty blow towards your head with the butt of his spear.
-
-Zil Challenger #3
-
-HP: 70
-Initial Lust: 30
-Armor: 20
-Dodge: +30%
-Attacks
-
-Snipe
-
-//Kinetic piercing. Accurate, pure damage
-
-The archer takes steady aim {whilst the spearzil keep{s} you occupied}, and then fires a dart-like arrow straight at you.
-
-Volley
-
-//Can only use once every three turns. Kinetic piercing, hits 3-5 times.
-
-The archer stows his bow for a moment, instead taking a handful of his short arrows from his quiver. He nips this way and that, simply slinging the sharp little missiles at you as fast as he can!
-
-War Cry
-
-//Uses only once, on the fourth round. PC can therefore stop him by defeating him before then. Greatly increases the damage of all three for the rest of the fight.
-
-The archer pauses, seemingly distracted. You think perhaps he’s too overcome by something to continue, but then you see his chest swell, and a mighty, buzzing roar escapes his mouth, some savage appeal to a native warrior’s zpirits that you’d never imagine emanating from such a cute little guy. {If spear-wielders still going: You see fresh fire and resolve appear in the faces of the spear-wielder{s}...}
-
-Passive
-
-Zweet Breeze
-
-//Pheromonal lust damage after all attacks are resolved. Starts strong, incrementally decreases as each of them is KO’d.
-
-As {they move / he moves} around you, wings out and weapon{s} at the ready, {he / they} fan{s} {his / their} sweet smell towards you, the undeniably horny smell of fit, aroused zil males. The claws of lust sink themselves deeper and deeper into you... {Maybe if you took one or two of them out, it wouldn’t be so overpowering. / It’s undeniably not as strong, though, since you put {one / two} of them out of commission.}
-
-
-PC loses
-
-You’re desperate to fight on, but {you simply cannot force your exhausted body on any further / you simply cannot ignore the arousal that’s been forced upon your overloaded senses any further}. You collapse into the sand and put your arms to signal your defeat.
-
-The {remaining} zil warrior{s} sigh, barely able to believe it, and then buzz a harsh cheer into the night sky,{ hauling up their fallen comrade{s}} so that they can huddle / huddling} into a fierce group hug before turning their expectant, exultant faces back to Quinn.
-
-<i>“All who fought today showed honor and bravery,”</i> Quinn says, calm and composed as a statue. <i>“But it is your victory today that shall be spoken of for many moons to come. Step forward, you three. You have earned the chance to prove yourself in... other ways.”</i>
-
-You watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and sting-laden abdomen bobbing an invitation that the three victorious warriors gladly accept, scars and all. They offer hands and hasty commiserations to you as they go, but that does little to salve the burn of humiliation. 
-
-It’s a safe guess that you won’t see them again until sunrise at the very earliest. The spell of their skull-crowned deity broken, the rest of the tribal zil are now getting very involved with one another; hands are slipping into hands and groups of two or three are gliding into the darkness. Little attention is paid to you, about which you’re reasonably grateful. You {wrap up your wounds / give yourself some much needed manual relief}, find a dark space beneath the boughs of a tree, and slip into blissful slumber.
-
-[Next]
-
-// +8 hours, -Lust, Health to 100%
-
-You awake in the heat of the Mhen’gan middle of the day, yawning and stretching, and after a quick wash in the river make your back up to the circle. You find Quinn already stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing had transpired last night - except, perhaps, for a slightly wider smile stretching her round face, maybe a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went according to plan.
-
-<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. I’m sorry you weren’t able to overcome my warriors, [pc.name]. But you fought honorably, and I believe the zpirits were pleased. As I told you, you are a blessing upon this tribe, and if I cannot be gotten with child even if I have you by my side... then I shall know it was never meant to be.”</i> She eyes you teasingly. <i>“And perhaps you learnt something about being content with just a slice of the fruit treat, rather than fight and get none, hmm?”</i>
-
-//End. Boot to Chieftain’s Circle. Set Quinn to general preg
-
-PC Wins
-
-The last of the zil challengers collapses into the sand, unable to continue. This one uses the last of his energy to lift his head and look you in the eye.
-
-<i>“You... have become one with our ways, and have bettered us all,”</i> he grunts. <i>“You deserve her.”</i>
-
-<i>“All who fought today showed honor and bravery,”</i> Quinn says, calm and stately as a graven idol. <i>“But it is your victory today that shall be spoken of for many moons to come. Step forward, my champion. You have earned the right to claim me as your own.”</i>
-
-Exultation fills your breast as you watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and sting-laden abdomen bobbing an invitation that you readily accept. The intoxicating, savage primacy of what you’ve done here - fought off three {other} young males in order to be the one and only mate of the swarm’s alpha bitch - becomes even more euphoric as the drum picks up again, and the word <i>“Zteele! Zteele! Zteele!”</i> rings out over the roaring fires in tones of awe, envy and naked lust.
-
-You follow Quinn upwards into the darkness. The spell of their skull-crowned deity broken, you can hear the rest of the tribal zil now getting very involved with one another behind you; the lavender-scented woods are alive with the sounds of sighs, gasps, the hum of insect wings and low voices. Clearly this is a night they all look forward to.
-
-//Go to sexings
-
-
-Sexings
-
-One Sausage at the Fest
-
-//If PC chose to participate and has a dick
-
-Quinn takes off her skull crown as she enters her yurt, laying it on a primitive table, her striped hair a beckoning, liquid motion down her back. Several clusters of candles have been lit inside, constellations in the darkness that contribute to the hot, close, dreamy atmosphere in here. It occurs to you that when the chosen warriors get in here, it’s going to get...
-
-The three of them pile in through the coarse tent flap, and instantly the space fills with their smell; sweet, intensely aroused zil, underlain by the musky salt of sweat, utterly overpowering, pulling the desire for sex up out of the deep currents of your mind and sending it crashing over every other thought you have. You exhale, long and low, as you feel heat power its way into [pc.eachCock]{, tenting your [pc.lowerUndergarment] something fierce,}{and lavish amounts of [pc.femcum] drooling down your inner walls in rich anticipation}. A glance at those fey, lean insect males tells you that, for all that they themselves are producing the scent, they share a mind with you; you are all pure, sexual beings, horny, single-minded drones, who expended every effort to get here and at last copulate with your glorious queen.
-
-Quinn sits herself back on her grand, fur-piled bed, one long, slim leg bent upwards, smiling that faint, familiar smile of hers, eyes flitting over the four of you. Her mouth opens slightly as, oh so slowly, her breastplate slithers apart, the soft, vulnerable yellow of her breasts swelling into view. Four pairs of eyes burn into her, unable to look away.
-
-<i>“My drones,”</i> she sighs, warmth, affection and slyness colouring her husky tones. <i>“Why don’t you two come over here, and... [pc.name]... you see to my smallest.”</i>
-
-The shorter one, the archer boi, with his enjoyably full-looking hips and cute, heart-shaped face, looks up at you demurely; you are immediately put in mind of Able. Lust pumps through your veins as you take hold of him and forcibly lay him out at the bottom of the bed, climbing on top of him, tracing the shape of his slim, supple body beneath his hard, beetle-like carapace. He gasps slightly in response, and with an audible pop his groin-plate comes loose, his small, thick, foreskinned cock no longer willing to be caged. The sweet, horny smell intensifies... your head swims... and oh Void you could just eat him up! His thighs tremble as you grip that boi erection of his, a buzzing, thrilling moan escaping his lips as you begin to jerk him, hard and rough, drops of liquid gold adhering to your hand.
-
-Quinn watches, entranced lust on her face, as the two males she’s laden herself with feast upon her body. They sandwich her, one lapping at her small, black nipples, the other peeling back her own groinplate so he can thirstily thrust his angular, elfen face deep between her thighs, putting that long tube tongue to the purpose it was surely made for.
-
-<i>“Yeessss,”</i> she groans, hand gripping and relaxing in the boob-worshipper’s hair. <i>“Now do him. Do him like men do...”</i>
-
-A great shiver runs right through the small zil’s body, his stubby little boi dick pulsates under your tight grip, and you laugh slightly in surprise as he squirts golden syrup all over your hand and arm. My word, the little guy must have been quite pent up! So pent up, indeed, that though he’s leaking seed copiously down his shaft and tight, trappy balls, he’s still firm as ever beneath your grip. He watches blearily as you reach down, smear your [pc.cock " + cIdx + "] in warm, glutinous zil seed; he murmurs, a sound somewhere between trepidation and lust as you flip him over, getting him on his knees so that he’s presenting those round, jet-black buttocks of his, with that soft, inviting pucker buried like a treasure between them. A mighty throb reverberates up your burningly erect cock at the sight. 
-
-<i>“Is... is this what you desire, my Quinn?”</i> he whispers, facing her as you press your honey-slathered head against his anus.
-
-<i>“Yes, my good boy, my loyal, hard fighter,”</i> she groans, favouring him with a smile. One of the others has risen up, his own long, black penis exposed and pointing demandingly at her face. She pauses to give it a lick, teasing off the single drop of pre at the tip, making its owner shiver with joy. <i>“Put on a good display for your Quinn. Let your worries go... she is bountiful, and generous, and all shall know that before the night is done.”</i>
-
-He grips the furs and tenses up as you sink slowly inwards, opening him up gradually with your [pc.cockHead " + cIdx + "] and then spearing inside, pleasure volting up your honeyed shaft as it’s enveloped in warm, sheath-like tightness. You grip him by the hips and saw into him tenderly, letting the little guy get used to the feeling of being stretched out and filled by your [pc.cock " + cIdx + "], pushing more and more into his clenching heat with each steady push of your [pc.hips]. 
-
-It’s very difficult to keep your lust under control, not go hog wild on your groaning, tensing bottom, facing as you are the sight of what the other two are doing with Quinn. Black fingers dig into the softness of her inner thighs as the first feasts hungrily on the nectar-laden blossom nestled between them; the other’s mouth is open, eyes closed, knelt across her neck and receiving what is evidently a truly regal blowjob. Your [pc.hips] start pumping harder almost automatically, reaching your [pc.cock " + cIdx + "] into the zil boi’s tight asshole as you watch slender thighs shiver, Quinn’s fingers grip buttocks and a glorying, buzzing groan is drawn from thin, proud lips.
-
-She impels the lad to lie down beside her, orange seed leaking down her chin, her animated eyes immediately fixing themselves upon you. Her long legs wrap themselves around the head of the boy still tongue deep in her cunt, fixing him there whilst she watches you slap a fleshy rhythm into the partner she alloted you. His gasps and cries, in that magical cadence between discomfort and ecstasy, fill your head, and you’re suddenly cascading over the edge, gouting hot loads of [pc.cum] into the taut sweetness of his behind, your body whiplashing with unbearably pleasurable release. {You’re trying to not overcommit here - there’s a long night ahead - but the sugar-laden air has had an inescapable effect on your souped up system, and [pc.cum] spurts like a burst pipe around your girth, the bee boi whimpering as you plump out his intestines with at least a litre of [pc.cumVisc], [pc.cumColor] seed.}
-
-Quinn’s mouth is open, and her eyelids flutter as the sight of you pounding the dickens out of one of her cute little warriors transports her, waves of motion rippling down the soft parts of her body, gleaming black legs gripping tightly around the devoted cunnilinguist, musical, wordless sounds of delight escaping her lips
-
-//1/2 Lust down
-
-[Next]
-
-<i>“Now then,”</i> she says, once she’s come down, shooing away the male making oral love to her. <i>“You, my good boy... you lie down here. Yeeessss, that’s it,”</i> she whispers, as she slides herself over to the smallest zil, his narrow chest heaving, stubby dick stood to attention. His backside still gaped and leaking [pc.cum], he watches entranced, barely able to breathe, as the hands of Quinn advance up his frame, sparing caresses for his chest and chin. Instinctively he reaches out, grips her shoulders - and then immediately lets go, shocked at his own impropriety. His fresh, young face softens into delight when she takes his hands and tenderly places them back where they were.
-
-<i>“Your Quinn is generous, your Quinn is true,”</i> she says, positioning her opened, gooey pussy over his jet-black erection. <i>“The last shall come first in her domain.”</i> She beckons the rest of you to move into her as she lowers herself down; the little guy moans, quivering, as her butt meets his thighs with a squelch. Her eyes are half-lidded as she reaches out and grips a foreskinned zil dick in each hand; deep in the otherworldly fantasy she’s spun around her, a sex goddess who needs only to extend a hand to find the ready erection of a worshipper. 
-
-<i>“You don’t need help, do you?”</i> she sighs over her shoulder at you, her abdomen and bare, peachy ass arched towards you, her stinger grazing over your [pc.chest]. {Libido < 31: You grip your honey-slathered [pc.cockNoun " + cIdx + "] prospectively. Well, maybe just a bit... your hesitancy is all the reply Quinn needs. The inch-long barb sinks into your [pc.skin], the biting pain of the sting preceded by purest lust flooding into your veins, inflaming your senses and powering molten steel into [pc.eachCock]. You gasp, and groan as even more pheromones fill your lungs. Fuck, these bees... <b>fuck</b> these bees! Feverishly you reach forward and grip her by the tits, sinking your fingers into their softness as you trample over the zil boi’s legs in order to press your tautening erection against the orange ring of her anus, drawing a delighted cry out of her.} {Libido > 30: Of course you don’t. You answer her by glowering at her, clutching your dripping, [pc.cockNoun " + cIdx + "], drinking in her rich, slim body, and your barely caged libido reacts, powerful heat swelling up your semi-erect penis. She bites her lip as she stares at it, and she cries out delightedly as you sink your fingers into her tits, holding her steady as you press the head against the orange ring of her anus.}
-
-The zil boys in front watch, hypnotised, as she pleasures their cocks with masterful shifts and coils of her hands, her soulful, golden eyes on them as she writhes her body, stirring the little guy within her pussy at the same as she gives back to you, working your [pc.cock " + cIdx + "] past her tight, hot entrance, her supple buttocks quivering. It’s the second ass you’ve been inside of tonight, and nope, you aren’t getting tired of that sensation even slightly; the fierce tightness, the slowly realised gratification as more and more of your throbbing cock is gloved by it, the way your lust is pumped up harder and harder until you’re all but forced to grip Quinn’s graceful body and hump into her, small explosions of pleasure going off in your mind as you slide out of her opened hole only to pummel yourself back in, spreading her deep... {If PC has done Every Hole scene: The fact it’s all down to you, carefully introducing her to the hitherto unknown pleasures of anal, only makes the pushing into her well-trained asshole all the more glorious.}
-
-She shivers and sighs, and at last moans full-throated, affixed upon two dicks, all the while she lavishes two more with strokes and kisses and licks, eventually working the two taller lads into such a lather that they press themselves inwards, armored thighs catching the candlelight as they cram their glossy dicks into her mouth at the same time, rubbing against each other as they bathe in the wet, silky majesty of their ruler’s mouth, thrusting their athletic, boyish thighs into her face. The primmest matriarch in the galaxy couldn’t sound proper with that going on, and the sloppy, muffled smacks and saliva-flecked gulps fill your ears as you pump into her backside, her buttocks reverberating to the rhythm your [pc.thighs] beat upon them, intense lust now thrumming up your shaft and swelling your {[pc.balls] / ardor}. 
-
-The little guy beneath her cries out, a sonorous, buzzing hymn to abandon as he shivers in orgasm, humping upwards into Quinn’s golden snatch with desperate heaves of his plump thighs. She rocks on top of him, dressed in gripping, fondling hands, pleasuring all four of her honor guard at the same time. How is one average-sized zil maiden doing it? You don’t care; right now she’s a fertility goddess, and you are extremely glad to be doing up the her ass. Your [pc.cock " + cIdx + "] bulges up, you groan mightily, and you are leaping over the edge again, channelling [pc.cumVisc] [pc.cumNoun] into her clenching, rubbing heat in a guttering torrent, ecstasy lighting up your nerves and making you thrash into the polished curve of her back, driven to push out every drop you have into her until it’s spurting richily out around it, drooling down her butt-cheeks in fat droplets.
-
-You relax backwards, sighing at the distinctive pleasure of drawing your spent cock up and out a cum-slathered colon, and watch her go, intently suckling on one male whilst juddering her hand up and down the other. A jet of orange spatters across her collarbone and breasts; the guy mired in her mouth shivers and cries out for joy, reactively gripping her hair and pumping forwards, a long string of honey-seed lolling down from her mouth.
-
-<i>“Mmm,”</i> she coos at last, breaking away to spoon into you and the smallest, breasts against you, favoring you all with that characteristic, faint smile of hers, cheeks glowing, utterly undiminished by the fact she is now spattered with cum. <i>“That was pleasing. But we are barely started, are we, my brave warriors?”</i> She wriggles her body, hard boots touching your [pc.legs]; her arms snake around your shoulders, mischievously plucking at your alien [pc.skinFurScales]. You allow a long sigh to flume out of your nostrils. She can’t want more, can she? 
-
-Yes. Yes she can. The two bigger zil boys watch, still deep under the pagan witchery she’s cast over the evening, as she spreads her legs, spreading her cum-and-honey oozing pussy for them. 
-
-<i>“Quinn is bountiful, Quinn is generous,”</i> she repeats, gazing up at them coquettishly. <i>“All who have proven themselves shall have their way with her. Yeeessszzzz...”</i> She groans, as one of the boys seizes the initiative, almost stumbling into her waiting embrace. It only takes a few strokes of his trembling hand for his six-inch jet dick to become firm again, and for him to sink it home into her thoroughly lubricated cunt. <i>“Love me like you danced. Love me like I love all of you! Yes!”</i> 
-
-Can you keep it up? Sexual honey wafts through your airways in sugared waves, blowing you onwards. The other tall zil advances on you, dark, helpless arousal on his face, beetle-black eyes on your [pc.chest], and the closer his wagging, gleaming erection gets, the more intense the smell gets, the harder it is to deny. You smile at him beatifically, position yourself on your side, letting him get a glance of your [pc.vagOrAss " + vIdx + "]. Eventually, you’ll have your turn in the all-loving embrace of Quinn. In the meantime... you will please her, and her other drones, the best way you know how.
-
-[Next]
-
-// Set time to 06:30, Lust to 0, -1 Libido 
-
-It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, that you get your chance. You are Quinn’s most treasured champion, after all, and the first shall come last.
-
-[pc.eachCock] is aching by now, driven to pulsating orgasms that you’ve long since lost count of; but you are determinedly hard for her, clinched in her arms and sliding in and out of her widened honeypot, sensation fizzing up your shaft as you perform your dronely duty. You are being kindly aided in this by one of the tall zil boys; his strong fingers clutch your shoulders as his hard, strapping thighs slap against your [pc.ass], driving his dick into your [pc.vagOrAss " + vIdx + "] with gratified gasps and grunts. 
-
-Every fresh dip of that thick, smooth fuck-truncheon deep into your {colon / pussy walls} sends an almost electric surge through your body, driving your own penetration on in an almost helpless, frenzied manner. Laid back on her furs, Quinn watches it all in open-mouthed delight, golden eyes shining, emitting little squeaks and buzzes of pleasure as she simultaneously takes yet another good, hard breeding whilst acting the voyeur. 
-
-The zil-boy pauses for a moment, positioning himself afresh, and then determinedly drills into you from a fresh angle. This time it’s nerve-janglingly, thrillingly telling, that honey-slathered blunt head of his butting into your {prostate / g-spot}. You can’t help yourself; you {wail / shout out} in wordless delight and cum for... who knows. The sixth time this night, maybe? You wouldn’t think there’d be a drop left in your poor, overworked {[pc.balls] / penile gland}, but that was before you got {your prostate brutally milked by an overexcited insect stud / your [pc.vagina " + vIdx + "] pounded simultaneously by an overexcited insect stud}, your inward sex stretched and pummeled to its limit. The [pc.cum] is practically forced out of your [pc.cock " + cIdx + "], mired deep in Quinn’s gloopy, leaking pudding of a cunt, joining the many, many swimmers already in there, her womb utterly choked in fertile seed.
-
-<i>“That’s it, all of it! All of it! Aallll,”</i> she groans, seemingly directing the instruction at both of you, her hot, sweaty belly and breasts molding into your [pc.skin]. Your cock is still throbbing dryly in her cum-soaked channel, every last drop of [pc.cum] kneaded out of it, as you feel your other amorous partner give a final, ecstatic shudder, draw himself out of your thoroughly gaped {backside / pussy} and spurt sweet gloopiness up your back. You can’t muster anything more than a woozy groan to this, so spent are you. A pair of lips press into your brow; a kind, motherly kiss.
-
-<i>“Quinn was bountiful, Quinn was generous,”</i> she murmurs. She raises herself up, admiring the split, leaking, ravished sight between her legs. It looks like... well, it looks like {four guys / three guys and a shemale} went to town on it for the entire night. <i>“My loyal warriors proved their worth doubly. Sleep now, my strong drones. Sleep, knowing your duty is fulfilled.”</i>
-
-The other two obeyed that order some time ago by the looks of things; eyes closed and mouths open, chitinous legs entangled on the other side of the bed. Exhaustion pulling at your limbs and your [pc.groin] throbbing like you don’t think you’ve ever felt before, you are powerless to do anything but follow suit. You collapse into the sweat and honey-spattered furs and are deep asleep within moments.
-
-[Next]
-
-//+6 hours, female juices stat, load in backside, load in cunt, generic zil preg chance if applicable
-
-You awake in stages, the heat of the Mhen’gan day eventually making the close interior of the yurt intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. You may have only been part of the tag team but good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night. You are sticky with honey cum both male and female, and right now you doubt the taste of it will ever leave you.
-
-Picking up your scattered [pc.gear] and leaving two zil boys still slumbering behind you, you tenderly make your way back down to the circle. Quinn is already there, stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing out of the ordinary transpired last night - except, perhaps, for a slightly wider smile stretched across her round face, and maybe a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went according to plan.
-
-<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. Thank you for being part of it, [pc.name]. As I told you, you are a blessing upon this tribe, and if I cannot be gotten with child even if I have you by my side... then I shall know it was never meant to be. I hope you found the ritual entertaining.”</i> She eyes you knowingly. <i>“I think you did. Perhaps visit the river, though.”</i>
-
-//End. Boot to Chieftain’s Circle. Set Quinn to general preg
-
-
-Pair of Queens
-
-//If femPC chose to participate
-
-Quinn takes off her skull crown as she enters her yurt, laying it on a primitive table, her striped hair a beckoning, liquid motion down her back. Several clusters of candles have been lit inside, constellations in the darkness that contribute to the hot, close, dreamy atmosphere in here. It occurs to you that when the chosen warriors get in here, it’s going to get...
-
-The three of them pile in through the coarse tent flap, and instantly the space fills with their smell; sweet, intensely aroused zil, underlain by the musky salt of sweat, utterly overpowering, pulling the desire for sex up out of the deep currents of your mind and sending it crashing over every other thought you have. You exhale, long and low, as you feel [pc.eachVagina] melt, lavish amounts of [pc.femcum] drooling down your inner walls in rich anticipation. A glance at those fey, lean insect males tells you that, for all that they are the ones producing the scent, they are themselves transformed into pure, sexual beings, horny, single-minded drones, who expended every effort to get here and at last copulate with their glorious queen.
-
-Or queens. The lust-filled stares, the wing twitches, are not for Quinn alone. You feel their avid, pupil-less eyes crawl up your [pc.legs], your [pc.ass], your [pc.chest]. From her lounging position on the bed, the zil matriarch bobs her head almost imperceptibly, and you follow the signal. You give the trio bedroom eyes over your shoulder as {you peel off your [pc.gear], piece by piece, leaving your [pc.lowerUndergarment] for last. / you sashay over to the bed, letting your bare rump bounce ever-so-gently.} 
-
-You join Quinn on her grand, fur-piled bed, one long, slim leg bent upwards, that familiar, faint smile written on her lips. You knit a hand with her and share the view, the three slim, fit males drinking in everything, slaves to their lust as, oh so slowly, her breastplate slithers apart, the soft, vulnerable yellow of her breasts swelling into view. You cheekily reach across with your other hand to caress one, sliding your hand under its beautiful curve and sinking your fingers into it, receiving an ostentatious, buzzing sigh in response. You’re not sure if it comes from her or the boys.
-
-<i>“Yes, my good, loyal, warriors,”</i> she sighs, <i>“all of this is yours... for the entire night. Your Quinn is bountiful. Your Quinn is generous.”</i> She points languidly at the smallest. <i>“Come here, my little one. You two... there is the starwalker champion.”</i> Her hand dips between your [pc.thighs], warm finger sliding between the lips of your [pc.vagina " + vIdx + "], holding them up to the flickering light. <i>“See how ready [pc.he] is? Waste no more time.”</i>
-
-The shorter one, the archer boi, with his enjoyably full-looking hips and cute, heart-shaped face (you’re put in mind of Able), stumbles onto the bed in a kind of a trance. His groin-plate comes loose with a click and a gasp, his stubby, foreskinned erection no longer willing to be caged, as he watches his ruler prowl forwards, tenderly caressing his arms and chin... and then your view is blocked out by slim, athletic, jet-black hips, and strong, insectile hands grasp you by the waist. 
-
-The two bigger males pull you onto your hands and [pc.knees], made feverish by their arousal, their curious hands questing over your alien flesh, stroking your [pc.skinFurScales] and gripping your [pc.thighs] and {[pc.tail] / [pc.butt]}, searching for anchorage and your most erogenous of zones. The groin-plate of the one in front flicks away like a beetle’s carapace, and instantly the air is fogged with sexual sugar, the smell of the thick, glossy, six-inch zil cock that flops out arrowing into your body like a hyperderm of Dumbfuck. [pc.EachVagina] {drips / drools} [pc.femcum] in response, wet with anticipation, and your whole body feels incredibly sensitized, desperate to be touched, stroked, grasped.
-
-Gazing upwards coquettishly, you lap the very end of his cock, chasing the little bud of pre of the very end, the sweet, horny taste fills your mouth, and you coo with delight as the one behind takes a firm grasp of your [pc.hips], hands moving up and down your flanks as he lines himself up. The boy in front watches, awe and sensual delight on his elfin face, as you lick and fondle his obdurate length of jet, lavishing and teasing it with kisses and rolls of your [pc.tongue], simmering in the sexual daze you’re feeling; then you squeal as you are roughly entered, hard, glossy meat sliding past the entrance of your [pc.vagina " + vIdx + "] and spreading your wet, tender insides. You reach forward with your mouth at the same time, enveloping that delicious zil cock in your mouth, practically cumming on the spot as a sea of pheromones and tactile sensation overwhelm you, making you moan in lewd delight.
-
-<i>“That’s it, my strong warriors,”</i> husks Quinn, from somewhere. The bed creaks, and you hear the little guy she has annexed for herself cry out, pure, boyish sexual abandon. <i>“Give it to [pc.him] good. You deserve it. [pc.He] deserves it. Your Quinn... oh... deserves to watch.”</i>
-
-//Set Lust to 100%
-
-[Next]
-
-The boys are too excited to pace themselves. The one at your back judders into you, hard, athletic hips slapping a frenetic rhythm against your [pc.ass] as the other takes a firm grip of your head and thrusts his hard sweet meat past your [pc.lips], slathering a steady drip of honey-pre across your tongue and inner cheeks, filling your head with oozing, summery delight. Your [pc.vagina " + vIdx + "] is being filled and rubbed at a startling rhythm, digging in to that particular spot again and again, and you’re quickly forced to orgasm, your over-stimulated body clenching itself up and letting go brilliantly repeatedly, fingers digging into the soft furs beneath you and emitting muffled squeals of delight as your [pc.vagina " + vIdx + "] {dribbles / spurts} [pc.femcum] in a wet, glorious rush. 
-
-The giddy spit-roasting lasts a little while longer - the sighs and groans of Quinn and her partner fill your ears as readily as thick, sweet dick fills your holes, pulsing arousal through your core and making you shiver with pleasure - before the boys are pushed over the edge. They groan and cry out in harsh, buzzing tones as they fountain hot, gloopy honey seed into you, thrusting themselves into your mouth and pussy as deep as they can to bury it within. You coax them onwards with tight, loving draws of your lips and clenches of your vaginal muscles, vacuuming their delicious semen into your hungry, lusty body.
-
-You collapse onto your side when they finally withdraw, curling yourself into the arms of one of the boys, enjoying the press and heat of his tautly muscular body. By the way he strokes and clasps you, returning your fondling with interest, you can tell he is of a mind as you - only mildly satisfied, cuddle convalescing until you’re ready to fuck like horny teenagers again. {Lactation: Your [pc.boobs] began to bead freely during the frenetic sex, and seeing this he descends to fasten his hard, smooth lips around one and take long, thirsty drags on them, drawing [pc.milk] into his mouth, humming to the {tantalising taste of alien milk / familiar taste of mother honey}. You coo as profound pleasure radiates through your breast, and you cradle his sweaty head as he drains you.}
-
-You watch as Quinn rides the small male, her hips locked around him and their jouncing as firm and loving as a mother’s discipline. Your arousal continues to grow, pulsing within your cum-slathered pussy as you watch the drone shiver and cry out, holding onto her carapace-clad hips as he pumps into her reactively, a husky laugh and feminine sigh brushing the dark air as he paints her walls with boy sugar.
-
-<i>“The last shall come first, in my domain,”</i> she murmurs, planting a kiss on the cute little guy’s sweaty brow. He looks up at her, bleary and hypnotised, snared in the spell she’s cast over this evening. It’s the same for the other two; even though the insect stud in your arms is becoming lustier, groping your [pc.ass] and rubbing his drooling, six-inch dick to hardness again against your [pc.belly], his eyes are fixed upon Quinn. She crawls across the bed like a prowling feline, grasping the other male’s outstretched knob. He exhales slowly as she wrings him briskly, gooey orange adhering to her hand.
-
-<i>“Your Quinn is generous, your Quinn is bountiful,”</i> she repeats, curling the fingers of her other hand at the one in your arms. Hypnotised, he disengages from you, kneeling in front of her and watches in reverent delight as she masturbates them both at the same time, their leaking, foreskinned dicks inches away from her calm, pretty face. You are put out by this blatant piece of boy-stealing only for a moment - there are more of them here than there are of you, after all. A wink, a gentle smile, and a spreading of your [pc.thighs] is all it requires to attract the trappy wasp boy, discarded on the furs like you, over to your fragrant petals. His delicate fingers find purchase around your thighs, and his brilliant yellow tongue dabs of your oozing [pc.vaginaNoun " + vIdx + "], alighting on your [pc.clit " + vIdx + "], drawing an encouraging coo out of you as that sucking tip sends delicious tingles shivering into your core. 
-
-The zil boi licks you, drawing away the sweet remains his fellow left inside you, whilst you watch Quinn lavish the other two with strokes and kisses and licks, eventually working them into such a lather that they press themselves inwards, armored thighs catching the candlelight as they cram their glossy dicks into her mouth at the same time, rubbing against each other as they bathe in the wet, silky majesty of their ruler’s mouth, thrusting their athletic, boyish thighs into her face. The most reserved matriarch in the galaxy couldn’t sound proper with that going on, and the sloppy, muffled smacks and saliva-flecked gulps fill your ears as another, shimmering orgasm begins to hove into view, driven on by the skilful flicks, sucks and curls of that lovely, long, warm tube-tongue inside you.
-
-//Lust down 50%, load in vagina
-
-[Next]
-
-Can you keep it up? Sexual honey wafts through your airways in sugared waves, blowing you onwards. You feel utterly immersed in your role as a queen, providing mind-blowing sex to your faithful ball of drones, each one taking it in turns to wrap their strong, thin limbs around you and pounding you silly, lining your orifices with giddying liquid gold. 
-
-It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, things simmer down to a slow burn. The archer twink clasps your [pc.chest], his fat, stubby cock stretching the sensitive ring of your [pc.anus]; the one below has you sat on his sturdy, longer length, wedged deep within your [pc.vagina " + vIdx + "]. They fuck you slowly but surely now, little jerks and rises of their hips, their energies almost spent but driven on by a determination to use every inch of the intoxicating alien queen, their fuck truncheons pressing into each other through your tender walls sending little jolts of pleasure up your spine and making [pc.eachVagina] shiver and course with [pc.femcum].
-
-This position lets you watch Quinn, her slim hips locked around the last boy, making sure he performs his dronely duty. She bites her lips and hums encouragement, mouth opening as his perky, chitinous buttocks clench and he picks up the pace, the impact of his thrusts sending shivers of motion through her pretty breasts.
-
-
-
-<i>“That’s it, all of it! All of it! Aallll,”</i> she groans, seemingly directing the instruction at all of you, throwing her head back as orgasm overcomes her. The boy behind you sets his teeth into your shoulder, hot breath hissing over your [pc.skinFurScales] as he spreads your back passage as deep as he can and fills it with gloopy, warm sperm, surely the last his tight little balls have to offer. You coo and moan, upping the tempo of the bouncing of your own [pc.ass], stirring both dicks within your heavily honey-cummed walls, inspiring the one you’re riding to grasp your [pc.hips] hard and, with a harsh, almost pained groan, also squeeze out the very last he has to offer. 
-
-You wheeze with exhausted delight; you feel glutted, stuffed with sweet seed, the stuff oozing from every hole you own. It’s all you can taste. You don’t care. In a daze you flop onto your side, watching as the zil goddess of fertility slowly allows the last drone to fall from her arms.
-
-<i>“Quinn was bountiful, Quinn was generous,”</i> she murmurs. She raises herself up, admiring the split, leaking, ravished sight between her legs. It looks like... well, it looks like {three guys / three guys and a shemale} went to town on it for the entire night. <i>“My loyal warriors proved their worth doubly. Sleep now, my strong drones. Sleep, knowing your duty is fulfilled.”</i>
-
-Exhaustion pulling at your limbs and your [pc.groin] throbbing like you don’t think you’ve ever felt before, you are powerless to do anything but obey. You collapse into the sweat and honey-spattered furs and are deep asleep within moments.
-
-[Next]
-
-//+6 hours, load in backside, load in mouth, very high generic zil preg chance if applicable
-
-You awake in stages, the heat of the Mhen’gan day eventually making the close interior of the yurt intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. Good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night; {even as fuck-hungry a being as you / you} feel like you were caught up and washed out in her wake. You are sticky with honey cum both male and female, and right now you doubt the taste of it will ever leave you.
-
-Picking up your scattered [pc.gear] and leaving two zil boys still slumbering behind you, you tenderly make your way back down to the circle. Quinn is already there, stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing out of the ordinary transpired last night - except, perhaps, for a slightly wider smile stretched across her round face, and a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went according to plan.
-
-<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. Thank you for being part of it, [pc.name]. You are a blessing upon this tribe, and if I cannot be gotten with child even if I have you by my side... then I shall know it was never meant to be. I hope you found the ritual entertaining.”</i> She eyes you knowingly. <i>“I think you did. Perhaps visit the river, though.”</i>
-
-//End. Boot to Chieftain’s Circle. Set Quinn to general preg
-
-
-Drone Alone
-
-//If PC won the fight
-
-Several clusters of candles have been lit inside Quinn’s yurt, constellations in the darkness that contribute to the hot dreamy atmosphere that envelopes you as the tent-flap brushes against your {[pc.tail] / [pc.butt]}. She moves to take off her skull crown... and reflexively you stop her, pressing the strange, pale headpiece back down over her brow. She freezes, the candlelight catching her golden eyes behind those empty sockets, and you eat her with your eyes, the deadly aspect of her teardrop abdomen and the horned skull framing the slim womanliness of her body, beneath the stern carapace of which finally lie her soft, tender, delectable parts. Parts you now have sole claim to.
-
-You want it all. {You’ve fucked Quinn before, after all - you haven’t fucked the primal death-fertility goddess she has assumed the mantle of tonight. / Quinn, the primal death-fertility goddess she has assumed the mantle of tonight - all.} You lower your hand from the crown, sweep it down the arc of her back, taking her into your arms so you can explore every black, gleaming curve of her body, rock hard but offering the tiniest, tantalising give when you squeeze. 
-
-She pulls away, sitting herself down on her bed, spreading her legs as she scooches further and further back on the furs. Of course with that thing on her head it’s impossible to catch her expression, but you think you see the gold of both understanding and excitement gleaming deep in the gloom of those eye sockets.
-
-<i>“You proclaimed yourself the only champion worthy of claiming me,”</i> she says, in those same cool, certain intonations with which she presided over the duel. As she speaks her groin and breastplate slowly peel back, beetle wings splaying to reveal sweet yellow fields of plenty. Your heart begins to thump, intense arousal pulsing into your [pc.groin], as you gaze at the rise of her petite, pretty breasts and the long, plump lips of her pussy. They are gently parted, strings of honey hanging between them. She’s aroused. <i>“What’s more, you proved that you are. So now, my champion, my only champion...”</i> She trails off in a luxurious, husky drone, her long fingers dipping between her legs, sampling herself. <i>“You will have to do the work of three drones.”</i> Her tone thickens into one of urgent, lusty demand. <i>“Make me carry your child.”</i>
-
-You tear off your [pc.gear] in an impetuous hurry and clamber onto the bed. [pc.EachCock] is semi-erect already, and all it takes for {it / them} to become taut with burning heat is to breath Quinn in - that sweet, intoxicating smell pouring off her oozing pussy, wiring from your nostrils to seize at your maleness, her body reaching out with the same needy directive her voice did. 
-
-She gasps as you clasp her, pushing your [pc.chest] against the lovely suppleness of her breasts, and then coos as you grip one bare yellow buttock and give it a rough squeeze, reacting readily to your savageness, twining her long legs around your [pc.legs] with barely concealed need. It’s the work of a moment to line yourself up and penetrate her, spreading her slickened labia around yourself and then in to the silky, sweltering dream that is her cunt.
-
-{PC cock < 7 inches: She could have been designed for you, so perfectly do her tight walls glove you. You could get addicted to the sensual perfection of that glide inwards, the buzzing sound her breath makes when it catches in her throat, the stern smoothness of her chitinous limbs contrasting to the softness of her innards. Perhaps you already are.} {Otherwise: Your massive cock is too big really for a petite insect girl like her, but she’s utterly determined; emitting little grunts, buzzes and moans as she pushes her long, svelte hips into you, stretching herself out so she can sample more and more of your [pc.cock " + cIdx + "]. You’re ruining her for any of her own race, and in your current, bestial mindset, that’s perfect. And you share that determination - this is your conquest, after all. You let her do the work, opening your [pc.thighs] slowly but surely to sink more and more of your thick girth into tight honey until you feel your [pc.cockHead " + cIdx + "] bump gently against her cervix.} You’re far too turned on to give her respite once you’ve found your limit - you draw yourself back out, feeling the honey dripping down your naked shaft, only to piston yourself back in with a stern push of your [pc.hips], inundating her bare breasts and slim neck with wolfish licks, nibbles and kisses as you fuck her ardently. 
-
-The sight of the horned skull in front of you is alarming, strange, disguising her whole face aside from her mouth - but that hangs open, emitting little huffs, buzzes and moans as you saw into her that are music to your ears. It’s enticing, like a mask, turning the person you’re fucking into the ground into a strange creature from the underworld. You think you feel her cum - sleek tightness rippling around you, honey coruscating off your [pc.cock " + cIdx + "], hips and taut stomach urgently flapping back into you - and you just keep on going, intent on turning that sopping little fuck-pocket of hers into a mold of your cock for all time. 
-
-When your own orgasm beats down the door, you seize her beneath the knees and lift her legs up, her heels tapping against your back as you screw her into the bed, livid with pheremonally-charged lust. When your [pc.cockHead " + cIdx + "] engorges and [pc.cum] surges up your shaft, it comes out in champagne-like flurries, giddy surges that you pump into her until it’s {dribbling / squirting} out around your girth. Quinn’s mouth is drawn up in a delighted, tautened sneer as you do it - a terrifying, exhilarating accompaniment to the skull - and husky, wordless sounds of delight are pushed out of her with every juicy pump, until she finally relaxes into a meandering, satisfied moan when you slow, release her legs, and gather her lithe frame into your arms again.
-
-[Next]
-
-// -50% lust
-
-<i>“But you aren’t done yet, are you?”</i> she murmurs in your ear, long, clever fingers trailing down your ear, scratching lightly at your [pc.chest]. <i>“My chosen. My champion. Remember - you undertook the duties of three.”</i> Those smooth digits wrap themselves around {[pc.cock " + cIdx + "] / [pc.cock " + cIdx2 + "]}, gently tugging, coaxing sensual intent {back into your throbbing, honey-slickened knob. / into it. Void, she knows exactly what she’s doing, picking on {a / the} dick which didn’t get to sample the slick, tight give of her sex... } You stiffen slightly as you feel something pointed scrape up the [pc.skin] of your [pc.legs]. <i>“Are you going to need help?”</i> whispers the skull goddess, her lethal three inch stinger pricking you with gentle, teasing intent, her poison-bloated insect abdomen rising and falling.
-
-{Libido < 31: You consider your semi-erect [pc.cockNoun " + cIdx + "] prospectively. Well, maybe just a bit... your hesitancy is all the reply Quinn needs. The barb sinks into your [pc.skin], the biting pain of the sting preceded by purest lust flooding into your veins, inflaming your senses and powering molten steel into [pc.eachCock]. You gasp, and groan as even more pheromones fill your lungs. Fuck, these bees... <b>fuck</b> these bees!} {Libido > 30: Of course you don’t. You answer her by glowering at her, drinking in her rich, slim body, and your barely caged libido reacts, powerful heat swelling up the semi-erect penis in her hand. She bites her lip as she stares at it, and then cries out delightedly as you sink your fingers into her tits, holding her steady as you muffle her cries with your mouth, snogging her lasciviously.}
-
-{merge}
-
-Feverish with arousal, drunk on the role of alpha-drone, you roll her over, position her on her hands and knees, and push the [pc.cockHead " + cIdx + "] of your regained erection against her opened, leaking cunt; she rears her abdomen {(her stinger dripping with your blood}) and angles her pert bum up eagerly. Oozing a sorbet of honey and [pc.cum] and softened by the battering you just gave it you’d have no problem at all slipping yourself back in, but you take your time, dipping your bulging head in softly and then retracting, just enough to open her lips, reaching down to finger her exposed clit, enjoying the feeling subsuming your cockhead, teasing her with knowing strokes until she’s huffing, impatiently bucking backwards and leaking liquid sugar down her prim, pretty thighs.
-
-<i>“Fuck me, make me feel it deep!”</i> the goddess snarls over her shoulder, sunken golden eyes flashing at you. <i>“I demand it!”</i> Those horns rearing up over her head catch your attention, and it is with deep satisfaction that you seize them and do as she orders, pressing yourself home into deep honey with a wondering groan, sheerest pleasure pulsing up your [pc.cockNoun " + cIdx + "]. 
-
-Void, maybe you are addicted to this, the Queen’s sweet pheromones overriding every impulse you have, a drone hand-picked to be her captive breeding slave until she has a hive packed with her children. If so, it’s the best fate of all, to buck your [pc.hips] into her soft backside, slap your {groin / [pc.balls]} into the small waterfall of honey and your own spent seed running down her thighs, to grip her sacred horns and lose yourself in the give and heft of the plush wetness running up and down your cock, rippling and clenching you intermittently, willing you on, bringing your arousal to another brilliant point.
-
-You’d pull out and shower her with [pc.cum] this time, demonstrate the virility of the Chosen Drone in the crudest, most glorious way possible... but no, you have a duty here, and it won’t be fulfilled until her womb is utterly packed with your thick, teeming cum. You groan mightily as orgasm overcomes you again, your muscles locking and forcing out great gobbets of [pc.cum], and you make sure every last drop of it is buried deep in Quinn’s pussy. {You absolutely <i>can</i> do the duty of three sissy zil guys, and since she demanded it you give her it, unloading the entirety of your backed-up reserves into her. She gasps and then cries out in shock as her stomach pouches out with the vast amount your ejaculating into her; you hold her steady, one hand gripping a horn and the other on her shoulder, even as [pc.cumColor] fluid feeds back and squirts out in every direction. You don’t stop until your {[pc.balls] /[pc.eachCock]} ache and the zil matriarch has her barely-believing hands upon what looks like a third trimester pregnancy.} The woozy, gratified ‘mmm’ you draw from her by the end, as you finally withdraw your dripping cock from her cum-choked hole, is pure poetry.
-
-<i>“Sleep now, my champion,”</i> she whispers, once you’ve collapsed your sweat-streaked form into the welcoming embrace of the furs. You feel the plushness of her breasts press against your [pc.chest], her lithe arms spreading themselves around you. <i>“Regain your strength. You I will require more of you - in the morning.”</i>
-
-[Next]
-
-// -0 Lust, -2 Libido, female juices stat, + 8 hours
-
-Your last waking thoughts before you descend into a deep, deep sleep is that maybe she’s exaggerating. But, no, she wants that baby, and you are very much expected to do the work of three. You are awoken at dawn by alluring whispers in your ears, guileful touches and squeezes, a hand on [pc.eachCock] stroking you to hardness, leading you lovingly but firmly back into deepest, lustiest heat.
-
-She mounts you once you’ve fully awoken and are completely under her spell, sliding her slickness down the shaft of your [pc.cock " + cIdx + "]; she must have put the skull to one side whilst she herself slept, but has put it back on now, fully aware of the effect it’s had on you. You stare up at it, charms shaking and catching the candlelight as her small, perfectly proportioned butt clenches and subsides, her hands gripping you by the shoulders, briskly kneading your hot, tender fuck-pole with the walls of her cunt, little ‘wuff’ noises puffing out of her mouth, naked and lonely underneath the forbidding bone facade. 
-
-It’s a beautiful, bizarre dream to be fucked like this and you are subsumed by it, gripping her buttocks, arms and breasts as you are coiled and coaxed upwards into one final, brilliant orgasm. You reach up and kiss her deeply as you reach it, [pc.tongue] dancing with her brilliant yellow proboscis as you go off like a firework, fountaining a fresh load of glorious [pc.cum] up into her waiting womb, willing the clenches on with little thrusts of your [pc.thighs]. Your [pc.cock " + cIdx + "] feels somewhat like a shrivelled piece of dried fish by the time it flops, aching, out of her cum-stuffed pussy, but it’s sheerest pride and gratification that throbs through the rest of you, particularly when she falls onto your [pc.chest] and [pc.belly], sighing and fondling the {defined muscles / meaty suppleness} of her champion admiringly.
-
-You return to a well-earned doze after that, awakening a couple hours later in the full heat of the Mhen’gan day, the close interior of the yurt made intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. Good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night. It’s difficult to believe the taste and smell of honey pussy will ever leave you.
-
-Picking up your scattered [pc.gear], you tenderly make your way back down to the circle. A crown-less Quinn is already there, stationed back on her grand, carved chair. She looks unperturbed, glossy and clean, as if nothing out of the ordinary transpired last night - except, perhaps, for a slightly wider smile stretched across her round face, and maybe a certain far-away gleam in her golden eyes. As tactfully as you can, you ask if everything went as she hoped.
-
-<i>“We shall see in the moons to come, won’t we?”</i> comes the cool response. She taps a thoughtful finger on her knee. <i>“But I believe the zpirits were pleased. Thank you for being part of it, [pc.name]. As I told you, you are a blessing upon this tribe, and if I cannot be gotten with child even by you... then I shall know it was never meant to be. I hope you found the ritual entertaining.”</i> She eyes you knowingly. <i>“I think you did. Perhaps visit the river, though.”</i>
-
-//End. Boot to Chieftain’s Circle. Set Quinn to Steele preg
-
-//Output <b>You should check in on Quinn every month or so, see how she’s doing.</b> at the end regardless of which scene was generated
-
-
-Pregnant Quinn Texts
-
-Gestation time is 6-7 months
-Point about droning ball is that it stops the usual ‘scent-link’ that happens to pregnant zil from happening. If PC just fucked her solo she tries to stop it happening another way. PC choices determine how she regards and names the brat.
-Throw some comments in if PC is simultaneously zil-preg.
-
-
-Appearance
- 
-Pregnancy 30-80 days
-
-From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is a bit taller than the zil average, as well as more svelte - underneath the sheer armor of her chest her breasts look to be maybe C cups, and the slimness of her thighs make her gleaming, armored legs look long and rather strict. Still, the presence of a tear-shaped abdomen and complete absence of clothes means she doesn’t stand out much from her fellows in purely physical terms. It’s the sense of control, the sedateness and the manner of someone used to getting their own way which do that. 
-
-She’s not quite as lithe as she once was, though - her belly has started to take on a bit of a curve. Her hand strays down to her baby bump every once in a while.
-
-Her pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.
-
-Underneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as an extremely tight, orange back door between her cute, supple rump.
-
-Pregnancy 81-130 days
-
-From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is a bit taller than the zil average, but now she is well into her pregnancy she has started to fill out her frame a bit more, her C cup breasts swelling against her sheer armor and her thighs thickening a little more, weight piling on there to support her soccer-ball sized belly bump. Still, she retains that controlled calmness that you know her so well for.
-
-Her pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.
-
-Underneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as a tight, orange back door between her supple, widening rump.
-
-Pregnancy 131-179 days
-
-From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is late in her pregnancy now - honey-swollen, D cup breasts sit atop her watermelon-like belly, and her black armor creaks occasionally with the strain of it. Her hips have definitely widened as well - baby’s got back now. Her air of calm control seems to have mellowed into a kind of dreamy serenity now, her legs spread and leant back on her throne.
-
-Her pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.
-
-Underneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil. It must be quite plump and spread these days. Between her increasingly pillowy rump she retains a tight, orange anus.
-
-
-General Preg
-
-
->7 days, PC uses [Talk]
-
-Quinn’s jaw is working; there’s a small bowl of dried herbage on her throne’s armrest. She swallows volubly.
-
-<i>“My honored warrior returns,”</i> she greets you, rather thickly. <i>“What does [pc.he] wish of his Quinn?”</i>
-
-//Add [Herbs?] to talk options
-
-[Herbs?]
-
-Tooltip: Ask what she’s eating.
-
-<i>“Potent nature magic, handpicked and enchanted by my trusted wise-zil,”</i> she replies loudly, straight-backed. <i>“It shall nourish my body, ensure the health of my child.”</i> She drops her voice a little, looking at you sidelong. <i>“Do you know of the scent-link, [pc.name]? When my people make a baby together the female usually produces a smell that the father can immediately recognise. Yes, and the mother becomes... soft towards him. I do not wish this. The drone ball is meant to prevent it from happening, but these herbs are also meant to dampen the effect.”</i> 
-
-Her eye remains steady on you as she transfers another wad of greens from the bowl to her mouth.
-
-<i>“Do you approve of what I am doing, starwalker?”</i> she asks, after she’s swallowed again.
-
-[Yes] [No] [You Do You]
-
-Yes
-
-You think she’s made a sensible decision, not complicating matters by including a definitive father in her plans. It’s also pretty smart, in terms of consolidating her power over the tribe. You tell her as much.
-
-<i>“Good. I value your opinion, my champion - you speak wisdom born of the stars,”</i> the statuesque zil replies, slumping slightly in her throne. <i>“I do sometimes wonder... but no. The path of power and responsibility is a lonely one, and I must be strong enough to walk it alone.”</i> She munches on another handful of herbs determinedly.
-
-// +1 Nice point
-
-No
-
-Implicitly you know you’ve been asked to speak frankly, so you do. You tell her you think she’s being unfair to whoever the father is { - which may well be you, of course - }and that she’s cutting herself off from emotional support that she will need, for no real reason. You throw in that, from personal experience, it kinda sucks to not have a dad.
-
-<i>“I needed to hear that,”</i> the statuesque zil replies with a nod. <i>“None of my other subjects are brave enough to say such things.”</i> She’s silent for a time, chewing over your words, chewing on her herbal cud. <i>“It is a lonely path I have set myself upon, I know that. But it is the path of power, and responsibility. Once I admit that I need another to lean on, I can no longer call myself Quinn. I value your honesty, my champion. But you are not Quinn, and you are not a zil {as much as you have made yourself look like one}. You cannot fully understand why I do the things I do.”</i> She munches on another handful of herbs determinedly.
-
-// -1 Nice point
-
-You Do You
-
-You wouldn’t presume to question the motives of an alien queen - clearly your outlook on motherhood is very different from hers. It would be foolish of you to plaster your own opinions onto her situation, and you tell her as much. 
-
-<i>“You have been to many different stars, haven’t you, my champion?”</i> the statuesque zil says, with a dry rise of an eyebrow. <i>“I can see you saying such words to all sorts of different people, being very polite about all the strangeness you see. I do wonder what really is going through your mind, sometimes.”</i> She’s silent for a time, chasing bits of fibrous vegetable around her mouth. <i>“You value pragmatism, so I think you can understand my decision, as difficult as it was to make. That is good enough for me.”</i> She munches on another handful of herbs determinedly.
-
-//Remove [Herbs?] option once used
-
-
->30 days, activates once when approached
-
-Quinn is positively radiant, mouth curved into a proud smile. It’s not hard to guess why; underneath the harsh black veneer of her armor, her belly has taken on a slight curve.
-
-<i>“Do you see, my champion?”</i> She grabs your hand, lays it onto that bump, insists you feel it. <i>“My call to the zpirits has been answered. Quinn has kindled! She was generous, and she is bountiful!”</i> Her face is alive with a wild joy you’ve never seen before; it’s tamped down on when you withdraw your hand, her characteristic composure reasserting itself. Still, you don’t think you’ve ever seen her so happy and proud, the very picture of a munificent matriarch.
-
-<i>“What does my honored warrior wish of [pc.his] Quinn?”</i>
-
->60 days, activates once when approached
-
-Quinn barely registers your approach. She looks surly, lips pursed, her golden eyes focused on the middle distance. One thin hand is placed protectively over her baby bulge; the other fiddles with the empty bowl on her arm-rest.
-
-<i>“What do you want, starwalker?”</i> she says with an irritated sigh.
-
-You ask if anything is wrong.
-
-<i>“Nothing!”</i> she replies loudly. <i>“Everything is fine. My wise-zil has provided me with a remedy, and assured me there is nothing to worry about. Quinn was generous. Quinn is bountiful!”</i>
-
-She glares at you, as if daring you to suggest otherwise.
-
-If PC chooses [Sex] during this period
-
-<i>“No,”</i> Quinn replies curtly. <i>“I need - I need to be careful. {Go bother my handmaidens if you want that. / Go into the lower forests and find the hunters if you want that.}”</i>
-
-//Handmaiden orgy option here if unlocked.
-
->80 days
-
-Revised Chieftain’s Circle blurb
-
-You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair. It’s empty. Where is Quinn?
-
-Several small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle. 
-//Remove [Quinn], Add [Quinn?] option 
-
-[Quinn?]
-
-Tooltip: Ask where the zil leader’s got to.
-
-<i>“She refused to come out this morning,”</i> says {Lah / the handmaiden}, when you approach and ask. {He / She} looks very discomfited, as you now realize most of the zil around you do. <i>“Shouts at anyone who tries and goes to see her.”</i> The {ausar / zil} looks at you hopefully. <i>“Maybe if you went...? She trusts you more than anyone.”</i>
-
-//Add [Visit Quinn] option
-
-Visit Quinn
-
-You [pc.move] back around the throne and up the hill towards Quinn’s yurt with a certain amount of trepidation. You flick at the heavy, woven entrance flap and ask if it’s alright to come in.
-
-<i>“I told you to leave me alone! I am Q... Starwalker? Oh, starwalker...”</i> the figure on the bed moans, flopping back down into a nest of fur. It’s neither an invitation nor a demand to leave; you decide to step inside. With your eyes adjusting to the gloom, you can see Quinn is curled up in a fetal position, her abdomen and shoulders quivering with gentle sobs.
-
-<i>“Starwalker...”</i> She turns her eyes to you, awash in golden misery. <i>“My child pains me. It drags downwards, it wants no part of me, because Quinn is just like her mother. She is not generous, and she will not be bountiful!”</i> Her words ascend into a terrible wail. <i>“I do not have her strength. I cannot do that - six and seven stillborn for the sake of a single child. The zpirits know that Quinn is a cruel woman, yes, and cruelty is all they can answer her with. All she can bring into this world is death!”</i> She buries her head back into the furs, heaving with buzzing sobs.
-
-[Comfort] [Chastise] [Medical?]
-
-Medical?
-
-Tooltip: You <i>do</i> own a state-of-the-art nursery on one of those stars. Might that not be of help?
-
-Quinn listens, blinking back her tears, as you describe the Nursery you own on Tavros. You could definitely transport her there and get her checked out, maybe in as little time as a day. 
-
-She’s still and silent for a time, hand on her belly.
-
-<i>“No...”</i> she says doubtfully, and then more firmly. <i>“No. I cannot run from this, flee into the soft arms of starwalker magic. I would no longer be able to call myself Quinn - yes, I would shed that name and become your servant, if I were to entreat the things that are <i>your</i> zpirits. I must stay here and accept this judgment, as terrible as it may be.”</i>
-
-You have calmed her down a bit just by talking sensibly, although she still looks utterly miserable.
-
-Chastise
-
-Tooltip: If you have the measure of Quinn, some tough love is called for here.
-
-You pull up a crude wooden stool by her bed, take her hand, and then lay down some home truths to her. That if her baby is showing, it’s fairly unlikely to miscarry. That she’s probably just suffering some common-or-garden stomach cramps like any pregnant mother, and is throwing histrionics over it. That she <i>chose<i> to be a mother alone, and so can hardly throw a wobbler about not having a shoulder to cry on. That, finally, she is Quinn, and this whole scheme she cooked up in order to secure her rule is getting more undermined the longer she mopes around in bed.
-
-Quinn frowns, and then her expression freezes as you go on, as if she were drawing more and more into herself, frost forming over her pretty features. She is silent for a few moments afterwards, mouthing a few words back to herself.
-
-<i>“You are right,”</i> she says, and you’re relieved to hear her familiarly calm tones. She sits herself up and brusquely wipes her drying tears away. <i>“I thought through and carried out my own decisions every step of the way. If I cannot look my judgment firmly in the face, what does that say of me? That I am not Quinn. And I am. I am!”</i> she grits determinedly. <i>“My child shall feel my determination! It will fight!”</i>
-
-You give her an encouraging squeeze, and then leave her to pick herself up. She emerges into the Chieftain’s Circle a few minutes later, a picture of regal indifference, and receives the clamor of anxious, curious zil with cool explanations and directions. 
-
-// -4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
-
-Comfort
-
-Tooltip: Soothe her, and bring the cuddles.
-
-Silently you get into her bed, spoon into Quinn from behind (zil abdomens are not helpful when it comes to this, but you manage) and for a little while just hold her, rubbing her swollen belly. She’s tense at first, but slowly relaxes in your grip, her sobs slowly trailing off into snotty sniffs.
-
-When you think she’s calmed down enough, you begin to talk softly into her ear. You tell her if she’s showing, she’s pretty unlikely to miscarry. That she’s probably suffering from stomach cramps, which is entirely normal, as is the anxiety. That there’s nothing weak about reaching out for emotional support, and that maybe the reason she feels this way now is because she’s been deliberately cutting herself off from it.
-
-By the time you’re done her sniffles have entirely run their course, and you think she might even have drifted off in your arms.
-
-<i>“Thank you, [pc.name],”</i> she says, lowly. You’re relieved to hear her familiar cool tones returning. <i>“I was... silly. And perhaps I would not have made some of the decisions that I have, if I knew then what I know now.”</i> She draws herself out of your arms, straight-backed and solemn against the bone headboard. <i>“I am Quinn. I will look my judgment in the face, whatever it may be. I will be strong, because... because I know I can rely upon you.”</i>
-
-You give her another encouraging squeeze, and then leave her to pick herself up. She emerges into the Chieftain’s Circle a few minutes later, a picture of regal indifference, and receives the clamor of anxious, curious zil with cool explanations and directions. 
-
-// +4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
-
-[Pregnancy?]
-
-Tooltip: Ask how it’s going.
-
-81-130 Days
-
-<i>“It goes,”</i> she responds serenely to your question, as if you’d asked after the weather. She does give you a warm look, though. <i>“Would you like to feel?”</i>
-
-You know you’re being granted a favour to do this in public, so you do it with as much grace and ceremony as you can muster, showering her with remarks of how well she looks as you fondle and admire her swelling baby bump, until she snorts with laughter and shoos you off.
-
-<i>“Sometimes there is pain. Sometimes there is vomiting,”</i> the zil monarch says, leaning into you to speak quietly. <i>“Particularly in the morning, when the world is at its most quiet. Do you know what I do then?”</i> She touches your cheek. <i>“I think of your words, and then I am strong again. My lucky charm.”</i>
-
-If PC also zil preg: <i>“And how are you? The zpirits chose to bless you, too.”</i> Quinn smiles at your [pc.belly]. <i>“Do you know what you are going to name it? Where will it be raised? Shall it become a wanderer of the stars, like you?”</i> She fires lots of these types of questions at you, and your answers draw a small crowd of zil women, who listen in rapt attention to your descriptions of your nursery, the droids and nurses that work there{, and your other children}.
-
-<i>“They will grow up to be hardly zil at all,”</i> one of them murmurs, somewhere between awe and disquiet.
-
-<i>“They will have a strong and wise mother,”</i> Quinn retorts, with supreme confidence. <i>“That is enough.”</i>}
-
-131-179 Days
-
-<i>“It is very irksome,”</i> she scowls, gesturing at her bulging midriff and increasingly bloated breasts. <i>“How am I meant to get anything done? How do I check my subjects are not being lazy when it takes me five minutes just to get down to the village? They are taking advantage of my current state, I am sure.”</i>
-
-You can tell she’s proud fit to burst really though. She doesn’t stop you when you approach her from the side, place your hand on that warm, rotund beachball of hers. She buzzes quietly in pleasure, deep in her throat as you rub her.
-
-<i>“There is no pain anymore,”</i> she goes on, in the quiet tone she uses when she only wants you to hear. <i>“Just... warmth. And movement, sometimes. I think I will be bountiful. I believe the zpirits have judged me generous.”</i>
-
-If PC also zil preg: <i>“And how are you? The zpirits chose to bless you, too.”</i> Quinn smiles at your [pc.belly]. <i>“Do you know what you are going to name it? Where will it be raised? Shall it become a wanderer of the stars, like you?”</i> She fires a lot of these types of questions at you, but asks in a confidential tone, keeping your answers all to herself, listening to them contentedly with half-closed eyes.
-
-<i>“And you do not form the scent-link? Interesting,”</i> she drones. She strokes your belly ruminatively. <i>“You know, [pc.name], for all the wonders that you have seen, and the riches at your disposal - I think you would be most happy finding a kind, strong warrior-husband here, and building a home together. A zil boy who can fill your arms with children.”</i>}
-If PC chooses [Sex] during this period
-
-<i>“It’s sweet of you to persist,”</i> Quinn replies, regarding you with twinkling golden eyes, <i>“But I still need to be careful. With you, getting rough - the temptation is always there. {My handmaidens will attend you. / Go into the lower forests and find the hunters if you want that.}”</i>
-
-//Handmaiden orgy option here if unlocked.
-
-Steele Preg
-
->7 days, PC uses [Talk]
-
-Quinn’s jaw is working; there’s a small bowl of dried herbage on her throne’s armrest. She swallows volubly.
-
-<i>“My most honored warrior returns,”</i> she greets you, rather thickly. <i>“What does [pc.he] wish of his Quinn?”</i>
-
-//Add [Herbs?] to talk options
-
-[Herbs?]
-
-Tooltip: Ask what she’s eating.
-
-<i>“Potent nature magic, handpicked and enchanted by my trusted wise-zil,”</i> she replies loudly, straight-backed. <i>“It shall nourish my body, ensure the health of my child.”</i> She drops her voice a little, looking at you sidelong. <i>“Do you know of the scent-link, [pc.name]? When my people make a baby together the female usually produces a smell that the father can immediately recognise. Yes, and the mother becomes... soft towards him. I do not wish this. I wish the baby to mine and mine alone, and I do not wish to spend all day pining for you. These herbs dampen the effect.”</i>
-
-Her eye remains steady on you as she transfers another wad of greens from the bowl to her mouth.
-
-<i>“Do you approve of what I am doing, starwalker?”</i> she asks, after she’s swallowed again.
-
-[Yes] [No] [You Do You]
-
-Yes
-
-It was her decision all along to have a kid - you just provided the seed and the red hot fucking. If she doesn’t want to be bonded to you and have a father involved, fine. You can see why she’d want that in terms of consolidating her power over the tribe. You tell her this.
-
-<i>“Good. I value your opinion, my great champion - you speak wisdom born of the stars,”</i> the statuesque zil replies, slumping slightly in her throne. <i>“I do sometimes wonder... but no. The path of power and responsibility is a lonely one, and I must be strong enough to walk it alone.”</i> She munches on another handful of herbs determinedly.
-
-// +1 Nice point
-
-No
-
-//flag dis for later check
-
-You know you’ve been asked to speak frankly, so you do. You tell her you think she’s being unfair to you and that she’s cutting herself off from emotional support, for no real reason. You throw in that, from personal experience, it kinda sucks to not have a dad.
-
-<i>“I needed to hear that,”</i> the statuesque zil replies with a slow nod. <i>“None of my other subjects are brave enough to say such things.”</i> She’s silent for a time, chewing over your words, chewing on her herbal cud. <i>“It is a lonely path I have set myself upon, I know that. But it is the path of power, and responsibility. Once I admit that I need another to lean on, I can no longer call myself Quinn. I value your honesty and passion, my champion. But you are not Quinn, and you are not a zil {as much as you have made yourself look like one}. You cannot fully understand why I do the things I do.”</i> 
-
-She munches on another handful of herbs determinedly.
-
-// -1 Nice point
-
-You Do You
-
-You wouldn’t presume to question the motives of an alien queen - clearly your outlook on motherhood is very different from hers. It would be foolish of you to plaster your own opinions onto her situation, and you tell her as much. 
-
-<i>“You have been to many different stars, haven’t you, my champion?”</i> the statuesque zil says, with a dry rise of an eyebrow. <i>“I can see you saying such words to all sorts of different people, being very polite about all the strangeness you’ve seen - and sired. I do wonder what really is going through your mind, sometimes.”</i> She’s silent for a time, chasing bits of fibrous vegetable around her mouth. <i>“You value pragmatism, so I think you can understand my decision, as difficult as it was to make. That is good enough for me.”</i> She munches on another handful of herbs determinedly.
-
-//Remove [Herbs?] option once used whichever answer used
-
->60 days, activates once when approached
-
-Quinn barely registers your approach. She looks surly, lips pursed, her golden eyes focused on the middle distance. One thin hand is placed protectively over her baby bulge; the other fiddles with the empty bowl on her arm-rest.
-
-<i>“What do you want, starwalker?”</i> she says with an irritated sigh.
-
-You ask if anything is wrong.
-
-<i>“Nothing!”</i> she replies loudly. <i>“Everything is fine. My wise-zil has provided me with a remedy, and assured me there is nothing to worry about. Quinn was generous. Quinn is bountiful!”</i>
-
-She glares at you, as if daring you to suggest otherwise.
-
-If PC chooses [Sex] during this period
-
-<i>“No,”</i> Quinn replies curtly. <i>“I need - I need to be careful. {Go bother my handmaidens if you want that. / Go into the lower forests and find the hunters if you want that.}”</i>
-
-//Handmaiden orgy option here if unlocked.
-
->80 days
-
-Revised Chieftain’s Circle blurb
-
-You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair. It’s empty. Where is Quinn?
-
-Several small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle. 
-//Remove [Quinn], Add [Quinn?] option 
-
-[Quinn?]
-
-Tooltip: Ask where the zil leader’s got to.
-
-<i>“She refused to come out this morning,”</i> says {Lah / the handmaiden}, when you approach and ask. {He / She} looks very discomfited, as you now realize most of the zil around you do. <i>“Shouts at anyone who tries and goes to see her.”</i> The {ausar / zil} looks at you hopefully. <i>“Maybe if you went...? She trusts you more than anyone.”</i>
-
-//Add [Visit Quinn] option
-
-Visit Quinn
-
-You [pc.move] back around the throne and up the hill towards Quinn’s yurt with a certain amount of trepidation. You flick at the heavy, woven entrance flap and ask if it’s alright to come in.
-
-<i>“I told you to leave me alone! I am Q... Starwalker? Oh, starwalker...”</i> the figure on the bed moans, flopping back down into a nest of fur. It’s neither an invitation nor a demand to leave; you decide to step inside. With your eyes adjusting to the gloom, you can see Quinn is curled up in a fetal position, her abdomen and shoulders quivering with gentle sobs.
-
-<i>“Starwalker...”</i> She turns her eyes to you, awash in golden misery. <i>“My child pains me. It drags downwards, it wants no part of me, because Quinn is just like her mother. She is not generous, and she will not be bountiful!”</i> Her words ascend into a terrible wail. <i>“I do not have her strength. I cannot do that - six and seven stillborn for the sake of a single child. The zpirits know that Quinn is a cruel woman, yes, and cruelty is all they can answer her with. All she can bring into this world is death!”</i> She buries her head back into the furs, heaving with buzzing sobs.
-
-[Comfort] [Chastise] [Medical?]
-
-Medical?
-
-Tooltip: You <i>do</i> own a state-of-the-art nursery on one of those stars. Might that not be of help?
-
-Quinn listens, blinking back her tears, as you describe the Nursery you own on Tavros. You could definitely transport her there and get her checked out, maybe in as little time as a day. She’s still and silent for a time, hand on her belly.
-
-<i>“No...”</i> she says doubtfully, and then more firmly. <i>“No. I cannot run from this, flee into the soft arms of starwalker magic. I would no longer be able to call myself Quinn - yes, I would shed that name and become your servant, if I were to entreat the things that are <i>your</i> zpirits. I must stay here and accept this judgment, as terrible as it may be.”</i>
-
-You have soothed her a bit just by talking calmly, although she still looks utterly miserable.
-
-Chastise
-
-Tooltip: If you have the measure of Quinn, some tough love is called for here.
-
-You pull up a crude wooden stool by her bed, take her hand, and then lay down some home truths to her. That if her baby is showing, it’s fairly unlikely to miscarry. That she’s probably just suffering some common-or-garden stomach cramps like any pregnant mother, and is throwing histrionics over it. That she <i>chose<i> to be a mother alone, and so can hardly throw a wobbler about not having a shoulder to cry on now. That, finally, she is Quinn, and this whole scheme she cooked up in order to secure her rule is getting more undermined the longer she mopes around in bed and leaves her people doubting her.
-
-Quinn frowns, and then her expression freezes as you go on, as if she were drawing more and more into herself, frost forming over her pretty features. She is silent for a few moments afterwards, mouthing a few words back to herself.
-
-<i>“You are right,”</i> she says, and you’re relieved to hear her familiarly calm tones. She sits herself up and brusquely wipes her drying tears away. <i>“I thought through and carried out my own decisions every step of the way. If I cannot look my judgment firmly in the face, what does that say of me? That I am not Quinn. And I am. I am!”</i> she grits determinedly. <i>“My child shall feel my determination! It will fight!”</i>
-
-You give her an encouraging squeeze, and then leave her to pick herself up. She emerges into the Chieftain’s Circle a few minutes later, a picture of regal indifference, and receives the clamor of anxious, curious zil with cool explanations and directions. 
-
-// -4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
-
-Comfort
-
-//also flag dis
-
-Tooltip: Soothe her, and bring the cuddles.
-
-Silently you get into the bed, spoon into Quinn from behind (zil abdomens are not helpful when it comes to this, but you manage) and for a little while just hold her, rubbing her swollen belly. She’s tense at first, but slowly relaxes in your grip, her sobs slowly trailing off into snotty sniffs. Do you smell something different about her? A particular, horny fragrance, different from the usual zil pheromones, that maybe are only for you? You think perhaps you can.
-
-When you think she’s calmed down enough, you begin to talk softly into her ear. You tell her if she’s showing, she’s pretty unlikely to miscarry. That she’s probably suffering from stomach cramps, which is entirely normal, as is the anxiety. That there’s nothing weak about reaching out for emotional support, and that maybe the reason she feels this way now is because she’s been deliberately cutting herself off from it.
-
-By the time you’re done her sniffles have entirely run their course, and you think she might even have drifted off in your arms.
-
-<i>“Thank you, [pc.name],”</i> she says, lowly. You’re relieved to hear her familiar cool tones returning. <i>“I was... silly. And perhaps I would not have made some of the decisions that I have, if I knew then what I know now.”</i> She draws herself out of your arms, straight-backed and solemn against the bone headboard. <i>“I am Quinn. I will look my judgment in the face, whatever it may be. I will be strong, because... because I know I can rely upon you.”</i>
-
-You give her another encouraging squeeze, and then leave her to pick herself up. She emerges into the Chieftain’s Circle a few minutes later, a picture of regal indifference, and receives the clamor of anxious, curious zil with cool explanations and directions. 
-
-// +4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
-
-[Pregnancy?]
-
-Tooltip: Ask how it’s going.
-
-81-130 Days
-
-<i>“It goes,”</i> she responds serenely to your question, as if you’d asked after the weather. She does give you a warm look, though. <i>“Would you like to feel?”</i>
-
-You know you’re being granted a favour to do this in public, so you do it with as much grace and ceremony as you can muster, showering her with remarks of how well she looks as you fondle and admire her swelling baby bump. You also inhale deeply, drawing the scent of her skin into your lungs, enjoying the feeling a radiant, protective arousal spreading through you. She may have done her best to dampen the effect of the ‘scent-link’, but her body knows who the father of her child is, and going off the soft, dilated expression she’s turned to you you wonder to what extent she’d deny it anyway.
-
-<i>“Sometimes there is pain. Sometimes there is vomiting,”</i> the zil monarch says, leaning into you to speak quietly. <i>“Particularly in the morning, when the world is at its most quiet. Do you know what I do then?”</i> She touches your cheek. <i>“I think of your words, and then I am strong again. My lucky charm.”</i>
-
-If PC also zil preg: <i>“And how are you? The zpirits chose to bless you, too.”</i> Quinn smiles at your [pc.belly]. <i>“Do you know what you are going to name it? Where will it be raised? Shall it become a wanderer of the stars, like you?”</i> She fires lots of these types of questions at you, and your answers draw a small crowd of zil women, who listen in rapt attention to your descriptions of your nursery, the droids and nurses that work there{, as well as your other children}.
-
-<i>“They will grow up to be hardly zil at all,”</i> one of them murmurs, somewhere between awe and disquiet.
-
-<i>“They will have a strong and wise mother,”</i> Quinn retorts, with supreme confidence. <i>“That will be enough.”</i>}
-
-// +Lust
-
-131-179 Days
-
-<i>“It is very irksome,”</i> she scowls, gesturing at her bulging midriff and increasingly bloated breasts. <i>“How am I meant to get anything done? How do I check my subjects are not being lazy when it takes me five minutes just to get down to the village? They are taking advantage of my current state, I am sure.”</i>
-
-You can tell she’s proud fit to burst really though. She doesn’t stop you when you approach her from the side, place your hand on that warm, rotund beachball of hers. She buzzes quietly in pleasure, deep in her throat as you rub her. That horny, particular smell - like regular zil sweetness but deeper, muskier - that only you can pick up is undeniable now, and you can tell ‘mine and mine alone’ is the furthest thought from her mind right now.
-
-<i>“There is no pain anymore,”</i> she goes on, in the quiet tone she uses when she only wants you to hear. <i>“Just... warmth. And movement, sometimes. I think I will be bountiful. I believe the zpirits have judged me generous.”</i>
-
-If PC also zil preg: <i>“And how are you? The zpirits chose to bless you, too.”</i> Quinn smiles at your [pc.belly]. <i>“Do you know what you are going to name it? Where will it be raised? Shall it become a wanderer of the stars, like you?”</i> She fires a lot of these types of questions at you, but asks in a confidential tone, keeping your answers all to herself, listening to them contentedly with half-closed eyes.
-
-<i>“And you do not form the scent-link? Interesting,”</i> she drones. She strokes your belly ruminatively. <i>“You know, [pc.name], for all the wonders that you have seen, and the riches at your disposal - I think you would be most happy finding a kind, strong warrior-husband here, and building a home together. A zil boy who can fill your arms with children.”</i>}
-
-Babby = Popped
-
-//Plays when PC visits after 180 days have passed
-
-You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair. It’s empty. 
-
-Several small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle. 
-
-//Remove [Quinn], Add [Quinn?] option 
-
-[Quinn?]
-
-Tooltip: Ask where the zil leader’s got to.
-
-<i>“She asked to see you, as soon as you arrived,”</i> says {Lah / the handmaiden that you approach. {He / She} is impressively poker-faced. <i>“Go on up.”</i>
-
-Beyond the flap of the leader’s yurt you find Quinn, deep in her bed furs, looking both utterly exhausted and extremely satisfied. In her arms, nursing at one of her opened breasts, is the tiniest zil you ever did see{ - at least, not since you gave birth to one, anyway}. Her tiny smile broadens when you enter, and she extends an arm to you. You sit yourself down next to her and take her hand into yours.
-
-<i>“This was the hardest thing I have ever done,”</i> she says, quietly but clearly. <i>“Harder than winning the right to be Quinn. Harder than {waging war against the land-stealers / making peace with the starwalkers}. But look - look at the result.”</i> She gently pulls the child off her teat, presents it to {her greatest warrior / the father}. You examine the little fetcher, blinking at you with golden eyes and grasping the air with tiny, chitinous fingers. Zil make it pretty easy to work out whether they’re male or female, even at a very young age. {You stroke her tear-shaped abdomen admiringly. / You stroke his gently twitching wings admiringly}.
-
-<i>“See {his / her} perfect hands?”</i> Quinn crows raspily. <i>“See {his / her} wandering eyes, {his / her} straight back and beautiful {wings / sting}? Quinn was generous, Quinn was bountiful! My child! {He / She} shall be the greatest leader my kind have ever known!”</i>
-
-If Steele impregnated her + PC used [No] and [Comfort] options in previous preg scenes: <i>“Our child,”</i> you say, looking her in the eye. The zil leader pauses for a long moment, and then smiles again.
-
-<i>“Our child,”</i> she agrees, taking the warm, black and yellow bundle back into her waiting arms.
-
-If Else: You feel a warm glow at seeing her so happy, particularly given the depths of misery she came to dwell in during the pregnancy. Perhaps it’s strange that she stuck so firmly to the task of denying the child a father, but could one ask for a more loving, competent, powerfully-placed mother? Probably not on this planet. You hand the warm, black and yellow bundle back into her waiting arms.
-
-{merge}
-
-You spend a little more time with Quinn and her baby, before tiredness sags at her eyes, and a handmaiden slips in to take the child away. You leave her, hair still tangled and sweaty, sleeping peacefully, and [pc.move] back down to the Chieftain’s Circle. She’ll be back on her feet and ordering her minions around in a couple of days, you wouldn’t doubt.
-
-//Remove [Quinn?], re-add [Quinn] after 40 hours
-
-
-
-
-Yummy Mummy Quinn
-
-Appearance
-
-From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She has kept a little of the thickness of her pregnancy on: although her stomach is slim once again her boobs are somewhere between C and D cups these days{If kid < 300 days young: heavy and sticky-teated with the honey she feeds her young {son / daughter}. 
-Her hips are wider than they were, and all-round she looks much more maternal than the slim, lithe wasp you once knew.
-
-Her pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.
-
-Underneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil. It is a plump and easily-spread treat these days, perfect for {a busy tongue to explore / a big, thick daddy cock}. Between her round, soft rump she retains a tight, orange anus.
-
-Quinn Baby (0-365 Days Old)
-
-First [Quinn] after birth
-
-Quinn is cradling her child, and she presents it to you when you approach.
-
-<i>“Look who’s come to visit!”</i> she coos. <i>“{My smartest, fiercest warrior. / Your daddy.} [pc.he]’s probably come to tell us about the enemies [pc.he]’s slain and skulls [pc.he]’s piled high in our honor. Say hello to [pc.him]!”</i>
-
-The kid does nothing of the sort, of course; [qk.he] is still very young. [qk.He] simply gazes at you with a frown, those golden eyes taking in your deeply curious form, antennae twitching, toothless mouth forming inchoate shapes and expressions. Then [qk.he]’s whisked back into [qk.his] adoring mother’s arms.
-
-<i>“Have you given [qk.him] a name?”</i> you ask.
-
-<i>“Zil are not given names. Not unless they are slaves,”</i> Quinn tells you in a chiding, you-should-know-this tone. <i>“They earn them. For now though I own my child, so I call [qk.him]... {Myne.”</i> She smiles down broadly at [qk.him], pawing intently at her chitin breastplate. / Owers.”</i> She smiles at you broadly, as [qk.he] paws intently at her chitin breastplate.}
-
-//Display standard options
-
-Repeat
-
-//11:00-18:00 kid is with her, absent otherwise
-
-If kid present
-
-Quinn is cradling {Myne / Owers}, and she presents [qk.him] to you when you approach.
-
-<i>“Look who’s come to visit!”</i> she coos. <i>“{My smartest, fiercest warrior. / Your daddy.} [pc.he]’s probably come to tell us about the enemies [pc.he]’s slain and skulls [pc.he]’s piled high in our honor. Say hello to [pc.him]!”</i>
-
-The kid does nothing of the sort, of course; [qk.he] is still very young. [qk.He] simply gazes at you with a frown, those golden eyes taking in your deeply curious form, antennae twitching, toothless mouth forming inchoate shapes and expressions. You bounce [qk.him] around a little bit, blow a raspberry on [qk.his] chubby chitin-coated belly, and draw some wriggles and buzzing giggles out of [qk.him], before handing [qk.him] back.
-
-<i>“Did you come just to see {Myne / Owers}?”</i> Quinn asks, with a familiarly arch raise of an eyebrow. <i>“Or was there something else you wish for?”</i>
-
-Non-handmaiden [Sex] chosen whilst kid present
-
-Quinn beckons to one of her handmaidens, who hastens over to take {Myne / Owers} out of her hands. She then rises and silently heads up the hill, her bobbing abdomen and bottom beckoning you to follow.
-
-{Sex proceeds as normal from here}
-
-If kid not present
-
-Quinn’s arms are empty.
-
-<i>“{Myne / Owers} is sleeping,”</i> she says, answering your question before you can ask it. <i>“Or making my handmaidens’ lives a living hell. I am Quinn. I do need time away from that.”</i> She considers you with her small, calm smile. <i>“What is it that {my great warrior / the father of my child} desires?”</i>
-
-//Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
-
-GO Tooltip: You’ve worn out Quinn, and Fetch and Carry are otherwise occupied. No more bonking. Aren’t babies a bitch?
-
-
-Quinn Toddler (>365 days)
-
-//Again it’s never going to be older than 5 no it isn’t so shut up
-
-Revised Chieftain’s Circle Blurb
-
-You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair. Quinn is there, observing you cannily as usual. 
-
-Several small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. One of these little guys is {Myne / Owers}; [qk.he] stays at the back, watching you with silent shyness.
-
-The place otherwise has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle. 
-
-//Add {Myne / Owers} option to [Quinn] main menu
-
-[Myne / Owers]
-
-<i>“{Myne / Owers}!”</i> Quinn calls stridently, striking the armrest of her throne. <i>“Come greet {your father / my most honored warrior}.”</i>
-
-The tiny zil toddles across from where [qk.he] was playing with the other village children. [qk.He] comes hesitantly, eyeing you shyly. You wonder what Quinn has told [qk.him] about you. Well, honestly, even if it were a couple of throwaway half-truths it’d be enough for a native Mhen’gan toddler to be overawed.
-
-You ask [qk.him] what game [qk.he]’s playing, what [qk.his] favorite color and animal is and quickly manage to loosen the kid up. Although {Myne / Owers} never stops gazing at you with a certain shyness, [qk.he] is quite the chatterbox. You learn where their dens are, where the best mangoes in the jungle are to be found, and how to escape a naleen. You learn about the zil version of soccer, in which boys and girls have strictly regulated roles - but {boys / girls} never follow, [qk.he] explains despairingly, because everyone knows {boys / girls} always cheat.
-
-After that you have a decent game of hide and seek, which all the kids love since you don’t know where all of their hiding places are {despite doing this a number of times now}, followed by a couple of sessions of horsie (which they call ‘pinser’ for reasons which sound faintly alarming).
-
-<i>“You have a way with children, [pc.name],”</i> observes Quinn, when you finally say goodbye to {Myne / Owers} with a hug and return to her throne, brushing the dust off of your [pc.armor]. <i>“Do you have many of your own?”</i>
-
-0 nursery children: You shrug and say you have {none / no others} that you know of - perhaps that’s why you enjoy playing with them so much.
-
-<i>“That’s very sad{, particularly when you look at those child-bearing hips of yours / particularly considering that vigorous manhood of yours},”</i> Quinn replies, tapping her arm-rest. <i>“A {Ken / Quinn} in-waiting should have an heir, because if [pc.he] doesn’t, who shall take up [pc.his] baton should [pc.he] fall?”</i>
-
-1-20 nursery children: You have {one / a few}, you assure her. You describe the nursery your father bequeathed you, and {the kid / the small brood / the unruly brood} that {is / are} being taken care of there.
-
-<i>“What a generous male your father was!”</i> Quinn remarks, tapping her arm-rest. <i>“Why, if a zil could have as many children as they chose, and still be free to set their strength and mind against the world...”</i> Her eyes gleam like hidden treasure. <i>“...the things she could do!”</i>
-
-21+: Quinn’s face pales as you describe the army of kiddywinks you have personally bred, all taken care of by the nursery your father bequeathed you.
-
-<i>“Zpirits,”</i> she mutters. <i>“But will that not cause you unspeakable problems when it becomes time to decide on your own heir? What do you intend to do with all of them - conquer a star?”</i> She shakes her head, disturbed. <i>“The ways of aliens are truly beyond our ken. I shall be more than content with just one.”</i>
-
-[Pregnancy?]
-
-//This talk option changes to this after she’s given birth
-
-Tooltip: Ask if she’s considered having any more children.
-
-<i>“Absolutely not,”</i> Quinn replies with tranquil certainty, when you ask if she’d ever consider trying for another pregnancy. <i>“The way was painful and sometimes terrible. I asked much of the zpirits, granting me a single healthy child, and I know better to demand more. I shall pour my love into [qk.him], and lead [qk.him] down the path of honor and cunning - as I do my own people.”</i> She smiles at you munificently. <i>“Sex is now for the joy of it, and to renew my bonds with my most favored. About that, I am relieved.”</i>
-
-
-*/

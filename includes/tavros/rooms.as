@@ -1073,8 +1073,8 @@ public function initTavrosRooms():void
 
 	rooms["NURSERYE4"] = new RoomClass(this);
 	rooms["NURSERYE4"].roomName = "NURSERY:\nMILKING STATION";
-	rooms["NURSERYE4"].description = "";
-	rooms["NURSERYE4"].runOnEnter = undefined;
+	rooms["NURSERYE4"].description = "The milking room feels so soft and comfortable, entirely designed to be as relaxing and soothing as possible for long, stress-free hours spent producing sustenance for the nursery’s charges. Soft, warm light floods the room; bright enough to comfortably illuminate the room, but completely unlike the harsh flourescent lighting used throughout the rest of the station, with a soft, inviting couch tucked against one of the walls. Far more homely than anywhere else around Tavros.";
+	rooms["NURSERYE4"].runOnEnter = nurseryMilkingRoomFunc;
 	rooms["NURSERYE4"].southExit = "NURSERYE6";
 	rooms["NURSERYE4"].planet = "TAVROS STATION";
 	rooms["NURSERYE4"].system = "SYSTEM: KALAS";

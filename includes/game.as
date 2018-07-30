@@ -1701,9 +1701,9 @@ public function genericSleep(baseTime:int = 480, bufferXP:Boolean = true):void
 {
 	var totalTime:int = baseTime + (rand(baseTime / 3) - (baseTime / 6));
 	
-	if(bufferXP) eventBufferXP();
-	sleepHeal();
 	processTime(totalTime);
+	sleepHeal();
+	if(bufferXP) eventBufferXP();
 }
 
 public function dailyAutoSleep(nMin:int = 0, bufferXP:Boolean = true):void
@@ -3674,6 +3674,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processElliePregEvents(deltaT, doOut, totalDays);
 		processIlariaPregEvents(deltaT, doOut, totalDays);
 		processFZilPregEvents(deltaT, doOut, totalDays);
+		processQuinnPregEvents(deltaT, doOut, totalDays);
 		processUlaPregEvents(deltaT, doOut, totalDays);
 		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
@@ -3747,6 +3748,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if(!MailManager.isEntryUnlocked("kiroandkallyholomail") && flags["KIRO_3SOME_REACTION"] != -1 && flags["KIRO_3SOME_REACTION"] != undefined && kiroKallyThreesomes() > 0 && flags["KIRO_KALLY_EMAIL"] != undefined && flags["KIRO_KALLY_EMAIL"] + 5*60 < GetGameTimestamp()) { goMailGet("kiroandkallyholomail"); }
 		
 		trySendStephMail();
+		trySendZephyrKidsMail();
 		
 		//Jade muff-ins
 		if (!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
@@ -3857,6 +3859,33 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	days += Math.floor(hours / 24);
 	hours = hours % 24;
+}
+
+// Process time forward to certain time on the clock in (h, m).
+// Where h is particular hour and m is particular minute.
+public function processTimeToClock(h:int = 0, m:int = 0):void
+{
+	var numMin:int = 0;
+	var iHour:int = 0;
+	var iMins:int = 0;
+	iHour = hours;
+	if(iHour < 0 || iHour >= 24) iHour = 0;
+	while(iHour != h)
+	{
+		numMin++;
+		iMins++;
+		if(iMins >= 60) { iHour++; iMins = 0; }
+		if(iHour >= 24) { iHour = 0; }
+	}
+	iMins = minutes;
+	if(iMins < 0 || iMins >= 60) iMins = 0;
+	while(iMins != m)
+	{
+		numMin++;
+		iMins++;
+		if(iMins >= 60) { iMins = 0; }
+	}
+	processTime(numMin);
 }
 
 public function processHolidayoweenEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
