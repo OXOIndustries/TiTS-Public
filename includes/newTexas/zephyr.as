@@ -2030,12 +2030,12 @@ public function zephyrBetLossDoubleDown():void
 
 		output("\n\nThe two of you begin straining, pushing at each other as you pour incrementally more strength into your efforts until, with a loud grunt, the winner is found.");
 
-		addButton(0, "Next", ((pqResult == PQR_AUTOWIN || (pqResult == PQR_RAND && pqRand > 0)) ? zephyrDoubleBetWin : zephyrDoubleBetLoss), wrassleResult);
+		addButton(0, "Next", ((pqResult == PQR_AUTOWIN || (pqResult == PQR_RAND && pqRand > 0)) ? zephyrDoubleBetWin : zephyrDoubleBetLoss));
 		addButton(1, "Throw Bet", zephyrDoubleBetLoss);
 	}
 }
 
-public function zephyrDoubleBetWin(pqResult:Array):void
+public function zephyrDoubleBetWin():void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -2140,7 +2140,7 @@ public function zephyrDoubleBetWin(pqResult:Array):void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function zephyrDoubleBetLoss(pqResult:Array):void
+public function zephyrDoubleBetLoss():void
 {
 	clearOutput();
 	showZephyrDeets();
