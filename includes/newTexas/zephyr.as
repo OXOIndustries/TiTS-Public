@@ -1526,7 +1526,7 @@ public function zephyrBetLoss(pqResult:Array):void
 			
 			output("\n\nIn the aftermath of her massive orgasm Zephyr leans you over and with a hand on your lower back, draws herself from your gaped asshole. A deluge of spunk follows, running down your [pc.thighs] and splashing to the ground. You groan as she pops free and stay bent over the table, giving Zephyr a nice look at what she’s done to you.");
 			
-			output("\n\n<i>“Lookin’ good, Steele,”</i> she says with a grin, patting you on the butt. <i>“Wouldn’t mind seeing you like this more often.");
+			output("\n\n<i>“Lookin’ good, Steele,”</i> she says with a grin, patting you on the butt. <i>“Wouldn’t mind seeing you like this more often.”</i>");
 			
 			output("\n\nAn insensate moan of pleasure is your reply.");
 			
