@@ -850,7 +850,7 @@ public function rideArdiasDickYo():void
 
 	output("\n\nOh yeah, that’s what you needed. You bite your lip and roll your eyes back, revelling in the sensation of the " + (!ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "first bulb of keratin slipping inside you":"flared crown stretching your insides out with every inch") + ". It protrudes just enough to grind against your inner walls with each breath you take, making your whole body tremble with pleasure.");
 
-	output("\n\nYou can feel Ardia’s dick throb inside you, pulsing to her heartbeat as you start to move your hips. Feeling her girthy cock dragging back out of you is just as good as the first insertion, spurring you to start bouncing in your lover’s lap. Ardia’s hands wrap around your [pc.butt], hefting you up so you can slide back down her " (!ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "nubby":"titanic") + " girth. Feeling her [ardia.cockHead] batter against your ");
+	output("\n\nYou can feel Ardia’s dick throb inside you, pulsing to her heartbeat as you start to move your hips. Feeling her girthy cock dragging back out of you is just as good as the first insertion, spurring you to start bouncing in your lover’s lap. Ardia’s hands wrap around your [pc.butt], hefting you up so you can slide back down her " + (!ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "nubby":"titanic") + " girth. Feeling her [ardia.cockHead] batter against your ");
 	if(pc.hasCock() && !pc.hasVagina()) output("prostate");
 	else if(pc.hasVagina()) output("cervix");
 	else output("bowels");
