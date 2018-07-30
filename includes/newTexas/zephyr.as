@@ -1097,7 +1097,7 @@ public function zephyrTalkBets():void
 	
 	output("\n\nShe waves it off instead. <i>“Cool, won’t happen. And if I win?”</i>");
 	
-	output("\n\nYou get to fuck </i>me<i> in the ass... and a little prize, too,”</i> you say, holding up a syringe of Throbb. <i>“This.”</i>");
+	output("\n\n<i>“You get to fuck </i>me<i> in the ass... and a little prize, too,”</i> you say, holding up a syringe of Throbb. <i>“This.”</i>");
 	
 	output("\n\n<i>“Is that-”</i> Zephyr starts, half-standing from her desk and narrowing her eyes. <i>“Do you have any idea how illegal that is? Fuck, how did you even get it past customs?”</i> She shakes her head immediately. <i>“Never mind. The bimbo out the front probably keeps Ogram perfectly distracted.”</i>");
 	
@@ -1248,21 +1248,22 @@ public function zephyrButtBets():void
 
 	if (pqResult == PQR_AUTOLOSS)
 	{
-		output(" it’s over in a flash");
+		output(" it’s over in a flash.");
 
-		addButton(0, "Next", zephyrBetLoss);
+		addButton(0, "Next", zephyrBetLoss, wrassleResult);
 	}
 	else
 	{
 		output(" you offer just enough resistance to keep her in place and nothing more");
 		if (pqResult == PQR_AUTOWIN) output(", not wanting to tip your hand just yet");
+		output(".");
 
 		output("\n\n<i>“Ooh, got a bit of muscle to you, huh?”</i> Zephyr croons, clearly delighting in the competition. <i>“See how long that lasts.”</i>");
 
 		output("\n\nThe two of you begin straining, pushing at each other as you pour incrementally more strength into your efforts until, with a loud grunt, the winner is found.");
 
 		addButton(0, "Next", ((pqResult == PQR_AUTOWIN || (pqResult == PQR_RAND && pqRand > 0)) ? zephyrBetWin : zephyrBetLoss), wrassleResult);
-		addButton(1, "Throw Bet", zephyrBetLoss);
+		addButton(1, "Throw Bet", zephyrBetLoss, wrassleResult);
 	}
 }
 
@@ -1736,7 +1737,8 @@ public function zephyrBetLossMainScene(pqType:uint, pqRand:Number):void
 	output("\n\n<i>“That Throbb shit really doesn’t fuck around,”</i> Zephyr says, sliding one hand down to possessively rub your still-swelling stomach. <i>“I feel like I could keep you here all day if I really wanted...”</i> she teases you. She is teasing, right..?");
 	
 	output("\n\n<i>“Kidding,”</i> she murmurs after a second. <i>“You </i>are<i> a lot of fun to fuck, though. Not many can keep up");
-	if (pc.isBimbo()) output(", even if you are one of the bimbos.”</i>");
+	if (pc.isBimbo()) output(", even if you are one of the bimbos");
+	output(".”</i>");
 	
 	output("\n\nAll you can really do by way of reply is moan at length, sounding every bit like an unrepentant whore, just another New Texas slut, but Zephyr doesn’t seem to mind.");
 	
