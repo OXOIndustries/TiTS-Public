@@ -55,9 +55,9 @@ package classes.Resources.Busts
 		public var Bust_ARDIA_HORSE_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/argosh.png", mimeType = "image/png")]
-		public var Bust_ARGOSH:Class;
+		public var Bust_AGROSH:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/argosh_nude.png", mimeType = "image/png")]
-		public var Bust_ARGOSH_NUDE:Class;
+		public var Bust_AGROSH_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha.png", mimeType = "image/png")]
 		public var Bust_ATHA:Class;
@@ -949,9 +949,9 @@ package classes.Resources.Busts
 			public var Full_ARDIA_HORSE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/argosh.png", mimeType = "image/png")]
-			public var Full_ARGOSH:Class;
+			public var Full_AGROSH:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/argosh_nude.png", mimeType = "image/png")]
-			public var Full_ARGOSH_NUDE:Class;
+			public var Full_AGROSH_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha.png", mimeType = "image/png")]
 			public var Full_ATHA:Class;
