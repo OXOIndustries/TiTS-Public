@@ -1287,12 +1287,16 @@ public function zephyrBetLoss(pqResult:Array):void
 			output("She slams your hand down on the table immediately, having barely exerted any effort at all, and fixes you with a withering stare.");
 			
 			output("\n\n<i>“If you’d wanted to get fucked in the ass by a horny amazon on Throbb you could have just bent over and asked,”</i> she sighs, seemingly disappointed. <i>“Wasn’t even trying. Whatever, get your ass over here.”</i>");
+
+			output("\n\n");
 		}
 		else if (pqType == PQR_AUTOLOSS && flags["ZEPHYR_FUCKED_PC_PUSSY"] != undefined)
 		{
 			output("Hardly even trying, she casually whaps your hand to the table and holds on, grinning.");
 			
 			output("\n\n<i>“Looks like someone wants to skip the formalities and get right to business, huh?”</i>");
+
+			output("\n\n");
 		}
 		else if (pqType == PQR_RAND && flags["ZEPHYR_FUCKED_PC_PUSSY"] == undefined)
 		{
@@ -1301,12 +1305,16 @@ public function zephyrBetLoss(pqResult:Array):void
 			output("\n\n<i>“Fuck yeah! First [pc.name], next Big T! Now bend over, "+ pc.mf("fuckboy", "bitch") +".");
 			if (!pc.isNude()) output(" And take off your clothes.");
 			output("”</i> Zephyr says, pointing.");
+
+			output("\n\n");
 		}
 		else if (pqType == PQR_RAND && flags["ZEPHYR_FUCKED_PC_PUSSY"] != undefined)
 		{
 			output("With a strained grunt, she manages to get your hand onto the table and with a fierce grin, knocks your knuckles against it a few times for emphasis.");
 
 			output("\n\n<i>“God damn, making me work for another round, huh?”</i> Zephyr huffs. <i>“That’s fine, I don’t mind chasing my meat before I skewer it.”</i>");
+
+			output("\n\n");
 		}
 
 		if (pc.isPregnant() && !pc.hasPregnancyOfType("ZephyrPregnancy"))
@@ -1315,6 +1323,8 @@ public function zephyrBetLoss(pqResult:Array):void
 			if (flags["ZEPHYR_FUCKED_PC_PUSSY"] == undefined) output(" starting a family recently");
 			else output(" getting more kids out of you");
 			output(". Oh well, maybe next time.”</i>}");
+
+			output("\n\n");
 		}
 		else if (!pc.hasVagina())
 		{
@@ -1323,11 +1333,13 @@ public function zephyrBetLoss(pqResult:Array):void
 			else if (pc.biggestCockLength() <= 7) output(" undersized");
 			else if (pc.biggestCockLength() >= 12) output(" oversized");
 			output(" cock of yours for a nice tight little womb for me to put a baby or four in. What good is this when your true place is laying back and getting fucked?”</i> She says, putting a hand on your [pc.cock] and bouncing it up and down. <i>“Oh well, I’m still gonna get off hard.”</i>");
+
+			output("\n\n");
 		}
 		
 		if ((pc.isPregnant() && !pc.hasPregnancyOfType("ZephyrPregnancy")) || !pc.hasVagina())
 		{
-			output("\n\nShe all but");
+			output("She all but");
 			if (!pc.isNude()) output(" rips your clothes off and");
 			output(" tosses you like a sack of potatoes over her desk, face up. You land with a thud and a clatter, knocking a bunch of her belongings off the side as the wild amazon advances on you, her oversized dogcock already fiercely erect and pointing north of her belly button. You get a good, thorough look at it as she holds your legs up and spread them apart and lays the base of her cock against");
 			if (pc.hasVagina())
@@ -1433,7 +1445,7 @@ public function zephyrBetLoss(pqResult:Array):void
 		}
 		else if (pc.isPregnant() && pc.hasPregnancyOfType("ZephyrPregnancy"))
 		{
-			output("\n\n<i>“Oh?”</i> Zephyr hums, circling you and touching wherever she pleases. Stomach, lower back, ass, stroking your spine... <i>“Guess we’ll be going a little gentler today.”</i>");
+			output("<i>“Oh?”</i> Zephyr hums, circling you and touching wherever she pleases. Stomach, lower back, ass, stroking your spine... <i>“Guess we’ll be going a little gentler today.”</i>");
 
 			output("\n\n<i>“Why’s that?”</i> you ask.");
 			
@@ -1537,7 +1549,7 @@ public function zephyrBetLoss(pqResult:Array):void
 		{
 			IncrementFlag("ZEPHYR_RAWDOGGED_PUSS");
 
-			output("\n\nMidway through, she stops you with a hand around your arm, oddly tight and sweaty.");
+			output("Midway through, she stops you with a hand around your arm, oddly tight and sweaty.");
 
 			output("\n\n<i>“Actually,”</i> she says, a gleam in her eye. <i>“How about we raise the stakes?”</i>");
 
@@ -1568,15 +1580,18 @@ public function zephyrBetLoss(pqResult:Array):void
 				addButton(1, "Don't", zephyrBetLossDont);
 			}
 		}
-		else if (!pc.isPregnant() && flags["ZEPHYR_RAWDOGGED_PUSS"] != undefined)
+		else
 		{
-			output("\n\n<i>“So you’ve lost, and you remember what happened the first time,”</i> Zephyr murmurs, getting closer and circling you, embracing you from behind. She puts a hand on your lower stomach, fingers edging closer to your [pc.pussy] and sliding across your [pc.clit]. <i>“I know I do.”</i>");
+			output("<i>“So you’ve lost, and you remember what happened the first time,”</i> Zephyr murmurs, getting closer and circling you, embracing you from behind. She puts a hand on your lower stomach, fingers edging closer to your [pc.pussy] and sliding across your [pc.clit]. <i>“I know I do.”</i>");
 
 			output("\n\n<i>“Aah,”</i> you moan, reflexively rolling your hips at her touch, to which she responds by holding you in place and slowly rubbing your clit");
 			if (pc.vaginas.length > 1) output("s");
 			output(".");
 
-			output("\n\n<i>“So, you want to bet for another addition to our family?”</i> Zephyr whispers in your ear, letting you hover at the edge of orgasmic excitement. <i>“I’ll even let you have the illusion it’s your choice.”</i>");
+			if (zephKnowsAboutKids())
+			{
+				output("\n\n<i>“So, you want to bet for another addition to our family?”</i> Zephyr whispers in your ear, letting you hover at the edge of orgasmic excitement. <i>“I’ll even let you have the illusion it’s your choice.”</i>");
+			}
 
 			processTime(5+rand(5));
 
@@ -2020,7 +2035,7 @@ public function zephyrBetLossDoubleDown():void
 	}
 }
 
-public function zephyrDoubleBetWin():void
+public function zephyrDoubleBetWin(pqResult:Array):void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -2125,7 +2140,7 @@ public function zephyrDoubleBetWin():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function zephyrDoubleBetLoss():void
+public function zephyrDoubleBetLoss(pqResult:Array):void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -2133,7 +2148,7 @@ public function zephyrDoubleBetLoss():void
 
 	output("Zephyr doesn’t even wait.");
 	if (flags["ZEPHYR_RAWDOGGED_PUSS"] == undefined) output(" You finally understand");
-	else output(" Zephyr shows you");
+	else output(" She shows you");
 	output(" what a real <i>“bull charge”</i> is as you’re borne to the ground, the tiniest hint of restraint being shown as she catches you before you slam down to the floor, but that’s all it is. Your pussy already exposed and glistening, Zephyr <i>rams</i> her entire cock right between your lips and all the way up to your cervix in one massive thrust, then immediately begins fucking you in a mating press. Your face pressed right into her massive, milky breasts as she rails your spasming cunt, you only find your voice after a few seconds and let loose a shriek of pleasure before one of Zephyr’s hands clamps over your mouth.");
 	
 	output("\n\n<i>“Aaaaahhhhaannnnn-!!”</i>");
