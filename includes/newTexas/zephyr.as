@@ -1596,6 +1596,8 @@ public function zephyrBetLossMainScene(pqType:uint, pqRand:Number):void
 		output("She slams your hand down on the table, having barely exerted any effort at all, and fixes you with a withering stare.");
 		
 		output("\n\n<i>“If you’d wanted to get fucked in the ass by a horny amazon on Throbb you could have just given me the medipen,”</i> she sighs, seemingly disappointed. <i>“Wasn’t even trying. Whatever, hand it over.”</i>");
+
+		output("\n\n");
 	}
 	else if (pqType != PQR_DOUBLELOSS)
 	{
@@ -1604,9 +1606,11 @@ public function zephyrBetLossMainScene(pqType:uint, pqRand:Number):void
 		output("\n\n<i>“Fuck yeah! First [pc.name], next Big T! Now hand over the medipen, " + pc.mf("fuckboy", "bitch") +".");
 		if (!pc.isNude()) output(" And take off your clothes.");
 		output("”</i> Zephyr says, holding out her hand.");
+
+		output("\n\n");
 	}
 
-	output("\n\nYour dominant arm still smarting a bit after your loss, you have to give her the medipen with the other hand. She snatches it away and immediately pulls down her skirt, giving you a nice view of what’s to come.");
+	output("Your dominant arm still smarting a bit after your loss, you have to give her the medipen with the other hand. She snatches it away and immediately pulls down her skirt, giving you a nice view of what’s to come.");
 	if (!pc.isNude()) output(" Struggling out of your clothes with one arm that’s half-useless, you disrobe");
 	else output(" Already as ready as you’ll ever be thanks to being a nudist, you take your Codex off");
 	output(" and watch Zephyr apply the Throbb. The results are pretty much immediate.");
@@ -1776,7 +1780,7 @@ public function zephyrBetLossMainScene(pqType:uint, pqRand:Number):void
 	addButton(0, "Next", mainGameMenu);
 }
 
-public function zephyrBetWin():void
+public function zephyrBetWin(pqResult:Array):void
 {
 	clearOutput();
 	showZephyrDeets();
@@ -2005,6 +2009,7 @@ public function zephyrBetLossDoubleDown():void
 	{
 		output(" you offer just enough resistance to keep her in place and nothing more");
 		if (pqResult == PQR_AUTOWIN) output(", not wanting to tip your hand just yet");
+		output(".");
 
 		output("\n\n<i>“Ooh, got a bit of muscle to you, huh?”</i> Zephyr croons, clearly delighting in the competition. <i>“See how long that lasts.”</i>");
 
