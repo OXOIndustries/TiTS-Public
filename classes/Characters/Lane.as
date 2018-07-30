@@ -107,7 +107,7 @@ package classes.Characters
 			this.ballSizeRaw = 2;
 			this.ballFullness = 100;
 			this.ballEfficiency = 15;
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 65;
 			this.timesCum = 9001;
 			this.cockVirgin = false;
@@ -189,7 +189,7 @@ package classes.Characters
 			this.ballSizeRaw = 2;
 			this.ballFullness = 100;
 			this.ballEfficiency = 15;
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 65;
 			this.timesCum = 9001;
 			this.cockVirgin = false;

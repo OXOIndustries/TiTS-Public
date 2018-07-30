@@ -147,6 +147,7 @@
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
+		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
@@ -163,6 +164,9 @@
 		include "../includes/events/plantationQuest/plantationQuestXPack1.as";
 		include "../includes/events/spaceYakuza/spaceYakuza.as";
 		include "../includes/events/spaceYakuza/akaneQuest.as";
+		include "../includes/events/syriQuest/syriQuestMain.as";
+		include "../includes/events/syriQuest/rooms.as";
+		include "../includes/events/syriQuest/roomFunctions.as";
 
 		//Misc content
 		include "../includes/masturbation.as";
@@ -396,9 +400,14 @@
 		include "../includes/myrellion/xenogenbiotech.as";
 
 		//FIFTH PLANET: ZHENG SHI
+		include "../includes/zhengShiStation/agroshAndArdia.as";
 		include "../includes/zhengShiStation/boredJumper.as";
+		include "../includes/zhengShiStation/forgehound.as";
+		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
+		include "../includes/zhengShiStation/rozPowerGoo.as";
+		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		
@@ -455,6 +464,7 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
+		include "../includes/uveto/syri.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
 		include "../includes/uveto/ula.as";
@@ -570,7 +580,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.185";
+			version = "0.7.196";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -625,6 +635,7 @@
 			initVesperiaRoom();
 			initBreedwellRooms();
 			fqInitRooms();
+			syriQuestInitRooms();
 			initGreatMajinRooms();
 			
 			mapper = new Mapper(this.rooms)
@@ -1632,6 +1643,10 @@
 		public function get lah():RKLah
 		{
 			return chars["LAH"];
+		}
+		public function get ardia():Ardia
+		{
+			return chars["ARDIA"];
 		}
 
 		public function testShipCombat():void

@@ -94,6 +94,11 @@ public function quinnVaginalCapacity():Number
 	//return (new ZilFemale().vaginalCapacity(0));
 	return 200;
 }
+public function quinnAnalCapacity():Number
+{
+	//return (new ZilFemale().analCapacity(0));
+	return 150;
+}
 public function fuckedQuinn():Boolean
 {
 	return (flags["SEXED_QUINN"] != undefined);
@@ -589,7 +594,7 @@ public function waterfallPoolBonusSchtuff():Boolean
 		return true;
 	}
 	//Repeat if Kane not defeated
-	else if(flags["KANE_DEFEATED"] == undefined)
+	if(flags["KANE_DEFEATED"] == undefined)
 	{
 		output("You are on the open, mossy plateau at the bottom of the waterfall. It comes thundering down from many feet above into a deep pool. The vast, ceaseless power of it throws up writhing veils of white vapor that breathe blessings on your hot [pc.skinFurScales]. It is shouldered by sheer, red rock cliffs that climb out of the jungle both to the east and west. The more you take it in the more daunting the prospect is - without going many miles out of your way, the only method of getting at the highlands above that you can immediately see is to clamber up the layered, multitudinous rock face beside the waterfall.");
 		output("\n\n<i>“You return!”</i> says a harsh, buzzing voice from behind you. Kane is in his tree, leg dangling, watching you with an insouciant sneer.");
@@ -607,8 +612,9 @@ public function waterfallPoolBonusSchtuff():Boolean
 		addButton(0, "Next", CombatManager.beginCombat);
 		return true;
 	}
+	
 	//Repeat if zil camp not opened
-	else if(flags["PQ_RESOLUTION"] == undefined)
+	if(flags["PQ_RESOLUTION"] == undefined)
 	{
 		output("You are on the open, mossy plateau at the bottom of the waterfall. It comes thundering down from many feet above into a deep pool. The vast, ceaseless power of it throws up writhing veils of white vapor that breathe blessings on your hot [pc.skinFurScales]. It is shouldered by sheer, red rock cliffs that climb out of the jungle both to the east and west. The more you take it in the more daunting the prospect is - without going many miles out of your way, the only method of getting at the highlands above that you can immediately see is to clamber up the layered, multitudinous rock face beside the waterfall.");
 		output("\n\nBehind you, the pool empties out into a wide brook, which leads steeply downwards to the south.");
@@ -627,6 +633,21 @@ public function waterfallPoolBonusSchtuff():Boolean
 		output("\n\nBehind you, the pool empties out into a wide brook, which leads steeply downwards to the south.");
 		if(flags["PQ_RESOLUTION"] != -1) addButton(0,"Go Up",goUpZeWaterfall,undefined,"Go Up","Or are you interested in practising your rock climbing?");
 	}
+	
+	if(flags["WATERFALL_TAXI_RELAY"] != undefined)
+	{
+		output("\n\nAn erect comms beacon stands nearby, its light pulsing slowly. You can use it to call a taxi if you need to.");
+		
+		if(pc.credits >= 40) addButton(1, "Call Taxi", mhengaTaxiToWaterfall, "taxi", "Call Taxi", "Pay 40 credits to get taken back to Esbeth.");
+		else addDisabledButton(1, "Call Taxi", "Call Taxi", "You don’t have enough credits to ride there.");
+	}
+	else if(pc.hasKeyItem("Mhen'ga Comms Relay"))
+	{
+		output("\n\n<b>This looks like a good spot to place the comms relay device!</b>");
+		
+		addButton(1, "Use Relay", mhengaTaxiToWaterfall, "use", "Use Relay", "Set up the relay so you can summon taxis here.");
+	}
+	
 	return false;
 }
 
@@ -931,6 +952,9 @@ public function loseToKane():void
 	currentLocation = rooms[currentLocation].southExit;
 	//Move PC to Upper Brook square, zil pheromones effect
 	CombatManager.genericLoss();
+	
+	IncrementFlag("LOST_TO_KANE");
+	//if(kaneSubmission() < 50) kaneSubmission(2);
 }
 
 //FOOT OF THE CLIFF
@@ -1559,7 +1583,6 @@ public function zilVillageOutskirts():void
 	if(!plantationQuestComplete()) 
 	{
 		showKane();
-		showBust("KANE");
 		output("\n\nYou approached this literal nest of wasps as carefully as you could - however the few zil you see hang off you, watching your approach from doorways and trees with surly, wary black eyes.");
 		output("\n\nYou recognize the male on the nearest platform by his size and scar. Kane gazes down at you, boot dangling, po-faced. Possibly you’re imagining it, but you think you detect the slightest hint of grudging admiration underneath that overhang of hair.");
 		output("\n\n<i>“Quinn will speak with you,”</i> he says. <i>“You can rest here first, if you wish. I would.”</i> He disappears further into the woods without another word.");
@@ -1583,6 +1606,8 @@ public function zilVillageOutskirts():void
 //Zil Chieftain’s Circle
 public function chieftansCircleBonusFuckery():Boolean
 {
+	var pregDays:int = quinnPregDays();
+	
 	author("Nonesuch");
 	//First
 	if(flags["PQ_RESOLUTION"] == undefined) 
@@ -1615,6 +1640,11 @@ public function chieftansCircleBonusFuckery():Boolean
 		addButton(0,"Next",move,rooms[currentLocation].southExit);
 		return true;
 	}
+	// Preg Quinn
+	else if((pregDays > 80 && (flags["QUINN_PREG_APPROACH"] == undefined || flags["QUINN_PREG_APPROACH"] < 3)) || pregDays > 180 || pc.hasStatusEffect("Quinn Post-Pregnancy"))
+	{
+		return chieftansCircleBonusQuinnPreg();
+	}
 	//Zil Chieftain’s Circle Blurbs
 	//PC sided with Lah, has not visited Plantation since
 	else if(flags["PQ_RESOLUTION"] == 2)
@@ -1632,8 +1662,16 @@ public function chieftansCircleBonusFuckery():Boolean
 		//PC sided with Lah, has visited Plantation since
 		else
 		{
-			output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair, upon which Quinn lounges. She arches her eyebrows in response to your gaze. Stood beside it is RK Lah, who grins wolfishly in turn.");
-			output("\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has a bustle to it; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.");
+			// Quinn Mom
+			if(flags["QUINN_KID_NAME"] != undefined && quinnBabyAge() >= 365)
+			{
+				output(chieftansCircleBonusQuinnMomText());
+			}
+			else
+			{
+				output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair, upon which Quinn lounges. She arches her eyebrows in response to your gaze. Stood beside it is RK Lah, who grins wolfishly in turn.");
+				output("\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has a bustle to it; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.");
+			}
 			//[Quinn] [Lah]
 			addButton(0,"Quinn",approachQuinn,undefined,"Quinn","Approach the reclining Queen.");
 			addButton(1,"Lah",lahPeaceApproach,undefined,"Lah","The ausar activist’s angry agitation appears adequately abated.");
@@ -1643,8 +1681,16 @@ public function chieftansCircleBonusFuckery():Boolean
 	else if(flags["PQ_RESOLUTION"] == 1)
 	{
 		showBust("QUINN");
-		output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair, upon which Quinn lounges. She arches her eyebrows in response to your gaze.");
-		output("\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.");
+		// Quinn Mom
+		if(flags["QUINN_KID_NAME"] != undefined && quinnBabyAge() >= 365)
+		{
+			output(chieftansCircleBonusQuinnMomText());
+		}
+		else
+		{
+			output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair, upon which Quinn lounges. She arches her eyebrows in response to your gaze.");
+			output("\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.");
+		}
 		//[Quinn]
 		//Ghosted out until PC reports back to Darnock
 		if(flags["PQ_PEACE_TIMESTAMP"] == undefined) addDisabledButton(0,"Quinn","Quinn","Maybe go back and explain what’s happened at the Plantation before speaking to Quinn again.");
@@ -1971,7 +2017,7 @@ public function losesToRKLah():void
 	output("\n\nAt least that is a sign that is universally understood. The zil cheer, a joyous, buzzing ululation rising and receding over the crowd. Thin chest heaving, Lah raises his hands to it, wordless for the moment in exhausted triumph.");
 	output("\n\n<i>“You have shown again why you are the word-wolf,”</i> Quinn says with calm pleasure, once the cacophony has died down a bit. <i>“Strong in word and deed.”</i> The ausar bows deeply.");
 	output("\n\n<i>“What do you want doing with the land-stealer pawn?”</i> growls Kane, hand on spear.");
-	output("\n\n<i>“[pc.HeShe] challenged and fought honorably,”</i> the female zil pronounces, shimmering eyes on you. <i>“And vanquished the cliffs besides. If [pc.HeShe] accepts the word-wolf’s truths are stronger than [pc.hisHer], [pc.heShe] is free to pledge their allegiance to me, and can go in peace.”</i>");
+	output("\n\n<i>“[pc.HeShe] challenged and fought honorably,”</i> the female zil pronounces, shimmering eyes on you. <i>“And vanquished the cliffs besides. If [pc.heShe] accepts the word-wolf’s truths are stronger than [pc.hisHer], [pc.heShe] is free to pledge their allegiance to me, and can go in peace.”</i>");
 	processTime(4);
 	flags["PQ_BEAT_LAH"] = -1;
 	
@@ -2403,6 +2449,7 @@ public function pcReignsAsDiplomancerSupreme():void
 
 //Let Him Go
 //Tooltip: Relent and let the doggie go.
+public function rkLahIsFree():Boolean { return (flags["PQ_SECURED_LAH"] == -1); }
 public function letRkLahFuckOff():void
 {
 	clearOutput();
@@ -2454,11 +2501,16 @@ public function leaveZeLovelyQuinnBeeeeeehind():void
 	author("Nonesuch");
 	output("<i>“I should, uh...”</i>");
 	output("\n\n<i>“As you wish.”</i> Quinn");
-	if(rand(2) == 0) output(" sighs. She");
-	output(" gestures in the direction of the waterfall. <i>“You have easily done enough to be treated as an honored guest in our village. ");
-	if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
-	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
-	output("”</i> She takes you in from tip to tail with those heavy-lidded, appraising " + (rand(2) == 0 ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
+	if(inCombat()) output(" sighs. She");
+	output(" gestures in the direction of the waterfall.");
+	if(inCombat())
+	{
+		output(" <i>“You have easily done enough to be treated as an honored guest in our village. ");
+		if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
+		else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
+		output("”</i>");
+	}
+	output(" She takes you in from tip to tail with those heavy-lidded, appraising " + (inCombat() ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
 	processTime(2);
 	
 	quinnFinishExit();
@@ -2470,10 +2522,20 @@ public function quinnAppearance():void
 	clearOutput();
 	showQuinn();
 	author("Nonesuch");
-	output("From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is a bit taller than the zil average, as well as more svelte - underneath the sheer armor of her chest her breasts look to be maybe C cups, and the slimness of her thighs make her gleaming, armored legs look long and rather strict. Still, the presence of a tear-shaped abdomen and complete absence of clothes means she doesn’t stand out much from her fellows in purely physical terms. It’s the sense of control, the sedateness and the manner of someone used to getting their own way which do that.");
-	output("\n\nHer pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.");
-	if(!fuckedQuinn()) output("\n\nYou’d readily assume, going off the rest of her, that underneath that implacable armor Quinn is just as stickily and headily zil as the rest of her female subjects; she certainly doesn’t display it outwardly, though.");
-	else output("\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as an extremely tight, orange back door between her cute, supple rump.");
+	
+	var pregDays:int = quinnPregDays();
+	
+	if(flags["QUINN_TOTAL_KIDS"] > 0) output(quinnAppearanceMommy());
+	else if(pregDays > 30) output(quinnAppearancePreg());
+	else
+	{
+		output("From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is a bit taller than the zil average, as well as more svelte - underneath the sheer armor of her chest her breasts look to be maybe C cups, and the slimness of her thighs make her gleaming, armored legs look long and rather strict. Still, the presence of a tear-shaped abdomen and complete absence of clothes means she doesn’t stand out much from her fellows in purely physical terms. It’s the sense of control, the sedateness and the manner of someone used to getting their own way which do that.");
+		output("\n\nHer pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.");
+		if(!fuckedQuinn()) output("\n\nYou’d readily assume, going off the rest of her, that underneath that implacable armor Quinn is just as stickily and headily zil as the rest of her female subjects; she certainly doesn’t display it outwardly, though.");
+		else output("\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as an extremely tight, orange back door between her cute, supple rump.");
+	}
+	output("\n\n");
+	
 	clearMenu();
 	peacefulQuinnMenu();
 	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
@@ -2486,7 +2548,8 @@ public function peacefulQuinnMenu():void
 	addButton(1,"Appearance",quinnAppearance);
 	if(flags["MET_QUINN"] != undefined) 
 	{
-		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) 
+		if(flags["QUINN_KID_AGE"] != undefined) quinnMomSexButton(2);
+		else if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0)
 		{
 			if(pc.lust() >= 33) addButton(2,"Sex",sexWithQuinnOmnigenderWHYYYY);
 			else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
@@ -2495,6 +2558,12 @@ public function peacefulQuinnMenu():void
 		else addDisabledButton(2,"Sex","Sex","You have no suitable endowments for sex with her.");
 	}
 	else addDisabledButton(2,"Sex","Sex","You might want to hold your horses, buckaroo.");
+	
+	quinnFestivalButton(4);
+	
+	// Add [Myne / Owers] option to [Quinn] main menu
+	if(flags["QUINN_KID_NAME"] != undefined && quinnBabyAge() >= 365) addButton(5, quinnBabyName(), approachQuinnBaby);
+	
 	addButton(14,"Leave",leaveZeLovelyQuinnBeeeeeehind);
 }
 
@@ -2974,6 +3043,10 @@ public function approachQuinn():void
 	//Repeat
 	else
 	{
+		if(mommyQuinnApproach()) return;
+		
+		if(pregQuinnApproach(quinnPregDays())) return;
+		
 		output("<i>“My ");
 		if(flags["PQ_BEAT_LAH"] == 1 && flags["PQ_RESOLUTION"] == 1) output("most honored ");
 		output("warrior returns,”</i> the female chieftain says, leant back in her chair, one hand rested on a slim thigh. She favors you with a serene smile. <i>“What does [pc.he] wish of [pc.his] Quinn?”</i>");
@@ -3002,10 +3075,16 @@ public function noGiveMeMens():void
 //Requires dick < 12" and/or vagina
 public function sexWithQuinnOmnigenderWHYYYY():void
 {
+	var pregDays:int = quinnPregDays();
+	
+	if(pregDays > 60)
+	{
+		pregQuinnSexNo();
+		return;
+	}
+	
 	// Handmaiden Threesome
-	if(	(pc.hasCock() && pc.smallestCockLength() < 12.5)
-	&&	pc.libido() >= 30
-	&&	flags["QUINN_EVERY_HOLED"] != undefined || GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440)
+	if(quinnHandmaidenThreesomeAvailable())
 	{
 		quinnHandmaidenThreesome(["intro"]);
 		return;
@@ -3382,6 +3461,9 @@ public function talkToQuinnAboutHerself():void
 		output(" Although I know now that it was a form of deceit he used to control me, I hold onto it.”</i> She pauses slightly in thought. <i>“To my people, it continues to hold a ring of power; it makes their leader unique and modern, and they are proud to serve me. To me though - it speaks of humility. Of being too eager to grasp power to properly question where it came from. This is an important thing for me to remember. I will let it shape me.”</i>");
 	}
 	processTime(4);
+	
+	flags["QUINN_TALK_HERSELF"] = 1;
+	
 	clearMenu();
 	addButton(0,"Next",talkToQuinnStuffGogogogogogogogogogo);
 }
@@ -3413,6 +3495,9 @@ public function quinnsEsbethTalk():void
 		output("\n\n<i>“Yes,”</i> agrees the zil coolly. <i>“We will.”</i>");
 	}
 	processTime(3);
+	
+	flags["QUINN_TALK_ESBETH"] = 1;
+	
 	clearMenu();
 	addButton(0,"Next",talkToQuinnStuffGogogogogogogogogogo);
 }
@@ -3441,17 +3526,39 @@ public function askQuinnAboutTheNaleen():void
 	output("\n\nShe pats the tuft down.");
 	output("\n\n<i>“If you are that interested in them, feel free to go down there and experience the naleen mating ritual for yourself. Every tribute contributes to the accord we all enjoy, after all...”</i>");
 	processTime(5);
+	
+	flags["QUINN_TALK_NALEEN"] = 1;
+	
 	clearMenu();
 	addButton(0,"Next",talkToQuinnStuffGogogogogogogogogogo);
 }
 
 public function talkToQuinnStuffGogogogogogogogogogo():void
 {
+	if(canQuinnTalkPollenDance())
+	{
+		quinnTalkPollenDance("intro");
+		return;
+	}
+	
+	var pregDays:int = quinnPregDays();
+	
 	clearOutput();
 	showQuinn();
 	author("Nonesuch");
-	output("What will you ask Quinn about?");
+	
+	if(pregDays > 7)
+	{
+		output("Quinn’s jaw is working; there’s a small bowl of dried herbage on her throne’s armrest. She swallows volubly.");
+		output("\n\n<i>“My");
+		if(flags["QUINN_SIRED_KID"] != undefined) output(" most");
+		output(" honored warrior returns,”</i> she greets you, rather thickly. <i>“What does [pc.he] wish of his Quinn?”</i>");
+	}
+	else output("What will you ask Quinn about?");
+	output("\n\n");
+	
 	clearMenu();
+	
 	//Esbeth
 	//Greyed out for 24 hours after peaceful resolution
 	if((flags["PQ_RESOLUTION"] == 1))
@@ -3468,6 +3575,13 @@ public function talkToQuinnStuffGogogogogogogogogogo():void
 
 	if(flags["PQ_NALEENED"] == undefined) addButton(2,"Naleen",askQuinnAboutTheNaleen,undefined,"Naleen","Ask about the naleen you were unfortunate enough to encounter beneath the falls.");
 	else addButton(2,"Naleen",askQuinnAboutTheNaleen,undefined,"Naleen","Ask about the hissing you heard underneath the falls.");
+	
+	// Add [Herbs?] to talk options
+	// Remove [Herbs?] option once used
+	if(pregDays > 7 && flags["QUINN_TALK_HERBS"] == undefined) addButton(5, "Herbs?", askQuinnAboutHerbs, undefined, "Herbs?", "Ask what she’s eating.");
+	
+	if(flags["QUINN_PREG_APPROACH"] >= 3) addButton(6, "Pregnancy?", askQuinnAboutPregnancy, undefined, "Pregnancy?", (StatTracking.getStat("pregnancy/quinn sired") <= 0 ? "Ask how it’s going." : "Ask if she’s considered having any more children."));
+	
 	addButton(14,"Back",goBackToQuinnMain);
 }
 public function goBackToQuinnMain():void

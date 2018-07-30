@@ -55,12 +55,12 @@ public function investigateSlashShelly():void
 	{
 		if(flags["KNOW_SHELLYS_NAME"] != undefined) 
 		{
-			output("You walk up to Shelly, and she waves happily when she sees you coming.");
+			output("You [pc.walk] up to Shelly, and she waves happily when she sees you coming.");
 			output("\n\n<i>“Hey [pc.name], you need anything?”</i>");
 		}
 		else 
 		{
-			output("You walk up to the bunny woman, and she locks you with a hopeful look when she sees you approaching.");
+			output("You [pc.walk] up to the bunny woman, and she locks you with a hopeful look when she sees you approaching.");
 			output("\n\n<i>“Hello again. You need something?”</i>");
 		}
 		output(" she asks with a warm grin.");

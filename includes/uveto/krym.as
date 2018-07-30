@@ -90,7 +90,7 @@ public function approachKrym():void
 	author("Savin");
 	if(flags["MET_KRYM"] == undefined)
 	{
-		output("You walk over to the armored woman, raising a hand in greeting. She turns to you, lips in a hard line and both hands on her spear. <i>“Who goes there?”</i> she shouts, <i>“Not expecting any researchers.”</i>");
+		output("You [pc.walk] over to the armored woman, raising a hand in greeting. She turns to you, lips in a hard line and both hands on her spear. <i>“Who goes there?”</i> she shouts, <i>“Not expecting any researchers.”</i>");
 		output("\n\nYou call back your name, saying that you’re an explorer of sorts. If she wasn’t expecting you, you sure weren’t expecting to find a fortified base out here in the middle of nowhere.");
 		output("\n\nShe lowers her spear after a moment, A head of blond hair whips in the wind, shaved on one side and swept over near her shoulder on the other, revealing an ear full of glistening holo-rings and a pierced nostril. She pushes a pair of blue-tinted goggles, matching blue eyes, up on her forehead. <i>“Fair enough. This is a Stormguard outpost. We keep it safe for Iresteaders that wander too far afield, or scientists coming through to study the Rift. ‘Course, they all pay a premium to use the place. You, though...”</i>");
 		output("\n\nThe woman taps a button on a wrist-mounted device and waves her arm in your direction. <i>“You’re lucky you’re loaded down with nanomachines. Otherwise the turrets woulda ripped you a new one when you got inside a hundred meters. But, you’re still not supposed to be here. So.”</i>");
@@ -362,6 +362,7 @@ public function loseToThatIcyBimbo():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust("KRYM_NUDE");
@@ -573,6 +574,7 @@ public function combatVictoryWithKrymm():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust("KRYM");

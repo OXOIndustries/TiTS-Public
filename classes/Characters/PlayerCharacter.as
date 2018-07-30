@@ -61,7 +61,9 @@ package classes.Characters
 		
 		override public function lustDef():Number
 		{
-			return willpower()/5;
+			var bonus:Number = 0;
+			bonus += statusEffectv1("Beta's Satisfaction")
+			return willpower()/5 + bonus;
 		}
 		
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
@@ -274,6 +276,7 @@ package classes.Characters
 					break;
 				case "cum":
 					if(fluidFrom is Kally) imbibeAlcohol(100);
+					if(fluidFrom is Ardia) kGAMECLASS.drinkArdiasCum();
 					if(hasPerk("Autofellatio Queen") && fluidFrom is PlayerCharacter) energy(35 * fxMult);
 					break;
 				case "girl-cum":
@@ -1146,6 +1149,7 @@ package classes.Characters
 			}
 			if(hasStatusEffect("Nyrea Eggs"))
 			{
+				if(!hasPerk("Nyrea Eggs") && statusEffectv4("Nyrea Eggs") != 0) setStatusValue("Nyrea Eggs", 4, 0);
 				if(statusEffectv4("Nyrea Eggs") != 1 && nyreaScore() < 3)
 				{
 					AddLogEvent("You are interrupted by a shifting in your insides as a bubbling sensation fills your loins, and then... nothing.", "passive", deltaT);

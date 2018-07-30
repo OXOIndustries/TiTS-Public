@@ -624,7 +624,8 @@ public function yammisMenu():void
 	if (reahaIsCrew()) addButton(8, "N.T.Milkshake", newTexasMilkshake, undefined, "N.T.Milkshake", "New Texan Milkshake, made with all-natural New Texan cow-girl milk and refined into a delicious treat. Absolutely does not infringe on any Iced Teats copyrights.");
 	//Cunt Snake
 	//Get from shizuya
-	if (flags["SHIZZY_CUNT_SNAKE_RECIPE"] == 1) addButton(9, "F.S.CuntSnake", shizzyCuntSnakeEat, "Fried And Stuffed Cunt Snake", "A meal made from the invasive Cunt Snakes of Mhen'ga. The head and 'tail' are removed, and the middle stuffed with a mixture of fruits and vegetables, all imported from Mhen'ga for an authentic taste. The meat is then coated in a special mixture, and fried in fruit oil.");
+	if (flags["SHIZZY_CUNT_SNAKE_RECIPE"] == 1) addButton(9, "F.S.CuntSnake", shizzyCuntSnakeEat, undefined, "Fried and Stuffed Cunt Snake", "A meal made from the invasive Cunt Snakes of Mhen'ga. The head and 'tail' are removed, and the middle stuffed with a mixture of fruits and vegetables, all imported from Mhen'ga for an authentic taste. The meat is then coated in a special mixture, and fried in fruit oil.");
+	
 	addButton(14,"Back",yammiInTheKitchen);
 }
 

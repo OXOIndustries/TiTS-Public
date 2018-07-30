@@ -196,7 +196,7 @@ public function aWildJoggingAnno():void
 	showName("ANNO");
 	showBust(annoBustDisplay());
 	output("As she comes by on the track, you wave and call to her. Her ears perk up at your voice and she rushes over.");
-	output("\n\n<i>“Hey, boss! Came to get a little exercise, too? There are so many tasty treats on New Texas, I have to burn some calories just to stay in shape.”</i> You have to wonder which tasty treats she means exactly.Anno puts in a lot of effort to take care of herself. Her choice of dress reflects her confidence; a snug black tank top and white shorts advertising an almost indecent amount of her lower body.");
+	output("\n\n<i>“Hey, boss! Came to get a little exercise, too? There are so many tasty treats on New Texas, I have to burn some calories just to stay in shape.”</i> You have to wonder which tasty treats she means exactly. Anno puts in a lot of effort to take care of herself. Her choice of dress reflects her confidence; a snug black tank top and white shorts advertising an almost indecent amount of her lower body.");
 	if(flags["ANNO_HUSKARRED"] != undefined)
 	{
 		output(" It must have been some time since she last updated her exercise wear, though. Her sporty shorts and tank top are straining to contain her abundant assets. You can also clearly see she isn’t wearing a sports bra. Whether by choice or lack thereof, you cannot say.");
@@ -374,6 +374,7 @@ public function deepCleanDatDirtyAusar():void
 	output("\n\n You share a few more pleasant moments with Anno before returning to the locker room."); 
 	pc.orgasm();
 	processTime(30);
+	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -412,6 +413,7 @@ public function runTrainOnAnno():void
 	output("\n\nYou take the time to give your tuckered pup a thorough cleansing, taking care to wash behind her ears, comb clumps of jizz out of her tail, and dry her off with a towel. As you haul her back to the ship to recover from her exercise session, she wakes briefly, just long enough to give you a whispered, <i>“Thank you,”</i> snuggles into your chest and falls fast asleep."); 
 	pc.orgasm();
 	processTime(30);
+	pc.exhibitionism(2);
 	clearMenu(); 
 	addButton(0, "Next", mainGameMenu);
 }
@@ -506,6 +508,7 @@ public function annoWorkoutGimmeDatBootySweat():void
 	output("\n\nIt certainly doesn’t sound like a bad idea.");
 	pc.orgasm();
 	processTime(30);
+	pc.exhibitionism(2);
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

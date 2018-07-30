@@ -343,6 +343,7 @@ public function vaginaRouterDesc(vIdx:int = -1, fullDesc:Boolean = false):String
 //Args[1] = max size.
 //Args[2] = boolean for if strapon allowed
 //Args[3] = min size
+public function cockSelect(args:Array):void { penisRouter(args); }
 public function penisRouter(args:Array):void
 {
 	var scene:Function = args[0];

@@ -1123,7 +1123,7 @@ public function saurmorianCodexEntry():void
 	outputCodex("\n<b>Genders:</b> Male and female");
 	outputCodex("\n<b>Height:</b> Females average 6\' to 8\', males average 7\' to 9\'");
 	outputCodex("\n<b>Weight:</b> Females average 250 - 300lbs, males average 600-750lbs");
-	outputCodex("\n<b>Eyes:</b> A slitted pupil on a solid colored sclera varying between yellows, greens, browns, and some very rare reds or blues, saurmorian eyes are often compared to terran reptile eyes, especially that of a crocodile.");
+	outputCodex("\n<b>Eyes:</b> Saurmorian eyes have a solidly colored sclera that vary between shades of yellow, green, brown, and some very rare reds or blues. Slim, similarly colored irises envelop their vertically slitted pupils, though they are virtually indistinguishable from the surrounding tissue.");
 	outputCodex("\n<b>Scales:</b> Saurmorians have organic metal scales that grow from their bodies. These hard scales are highly resistant to heat and corrosion, and with a metallic-silver color, they are often compared to the elements platinum and titanium. The layering and formation of these scales give the impression of ancient terran style armor, akin to heavy platemail. Though generally identical in appearance, females’ scales are much lighter.\n\n");
 	outputCodex(blockHeader("Appearance"));
 	outputCodex("Male saurmorians are tall, incredibly stout reptilian humanoids with a barrel-chested body. Pulled taut over their bulging muscles is a tough, thick reptilian hide in varying shades of grays, browns, greens, reds, and blacks, though usually quite hard to see under their scales. On top of their hide, males are encased from head to toe in dense, massive metal scales. They are especially dense along the male’s vicious snout, up their skull, broad shoulders, and down the spine to end at the tip of their thick tails. The groin though consists of smaller and much finer scales. The weight of all these scales forces them to have a fairly hunched posture, and for their bulky plantigrade legs to tend toward a constant bend at the knee.");
@@ -1151,7 +1151,8 @@ public function saurmorianCodexEntry():void
 	outputCodex("\n\nStill maintaining a matriarchy, the saurmorians encourage their matrons to keep their own harems of the more virile males. To keep the blood fresh, males are chosen equally from both high and low-born families; a double edged sword, especially with the lower families, as those connected to a male chosen for a matron’s harem are well cared for. Male hatchlings that are indicated to have this genetic advantage usually become seen as future offerings for a matron.");
 	outputCodex("\n\nAfter the devastation their forces suffered, effectively disabling any and all martial, following first contact, the saurmorians attempted to reconstruct what was lost in a bid to keep their people calm. When it became clear the shattered forces couldn’t be salvaged, an infamous saurmorian mercenary company, known then as the ‘Morian Bulwark, sought to take advantage of this chance and offered their services until a solid military could be constructed. Instead, they grew so efficient and effective at not only servicing their own people, but assisting allies in other systems and worlds, that they have become the official saurmorian military. Their guns-for-hire past hardly a concern, the risen Saurmorian Bulwark Command managed to keep themselves separate from the central government; the hope being that having the political and martial powers separate and equal will prevent a repeat of the past.\n\n");
 	outputCodex(blockHeader("Technology"));
-	outputCodex("Saurmorian tech has a three word criteria that needs to be met in order for them to use something; it needs to be effective, heavy, and loud. As a result, saurmorians can be seen using a wide variety of equipment, but usually prefer the heavier and clunkier technology throughout the galaxy at the cost of efficiency. Their ships, especially, are known for being very slow but incredibly durable and powerful.\n");
+	outputCodex("Saurmorian tech has a three word criteria that needs to be met in order for them to use something; it needs to be effective, heavy, and loud. As a result, saurmorians can be seen using a wide variety of equipment, but usually prefer the heavier and clunkier technology throughout the galaxy at the cost of efficiency. Their ships, especially, are known for being very slow but incredibly durable and powerful.");
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Saurmorians");
 }
 public function simiiCodex():void
@@ -1442,7 +1443,7 @@ public function vildariiCodexEntry():void
 	outputCodex("\n\n");
 	outputCodex(blockHeader("Religion"));
 	outputCodex("Vildarii have a native religious order called ‘Followers of the Infinite Aspect’. They believe a single entity exists that represents all things, able to take the face and empathize with every species and being in the universe. They believe being able to comprehend such a being is nigh-impossible, but adherents strive to emulate the Infinite Aspect by living their lives in other people’s shoes and trying to see the universe from as many aspects as possible.");
-	
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Vildarii");
 }
 public function vulkrimiCodexEntry():void 
@@ -1498,7 +1499,7 @@ public function vulkrimiCodexEntry():void
 	outputCodex("The females of this species chose to breed with males with exceptional libidos so that subsequent generations would be easier to control. Once a male vulkrim hits sexual maturity, at around sixteen terran years of age, their libido starts to go into overdrive, increasing exponentially as they grow older. Since then several custom gene-mods have been designed to maintain their libido at reasonable levels, but they are costly and require yearly intakes. If they don’t take any at all, by the time they reach their forties the barest touch in any of their erogenous zones can send them into a rut.");
 	outputCodex("\n\nVulkrim personalities change a lot depending on whether they are or aren’t sexually satisfied. If kept from having sex for a long time, they will grow dominant and unruly and often try to force themselves on others. If on the other hand they are consistently satisfied, they will be obedient and submissive, going to great lengths to prove their loyalty to their lovers, family and friends.");
 	outputCodex("\n\nThese characteristics are some of the many reasons why the vulkrimi are so inclined toward criminal activity and have a reputation for being sexual slavers. When the females died they left behind an impressive armada of ships that were stolen during the collapse of society and used for piracy. The descendants of many of those pirates still exist to this day and make their living raiding ships throughout the more vulnerable regions of the U.G.C.");
-	
+	outputCodex("\n\n");
 	CodexManager.viewedEntry("Vulkrimi");
 }
 public function varmintCodex():void
@@ -3828,4 +3829,3 @@ public function taintCodexEntry():void
 	outputCodex("\n\nVictor Steele notably survived near record levels of taint, though cutting-edge medical treatments helped him to keep his symptoms to a minimum after his early successes in the 13th Galactic Rush. Many well-to-do galactic citizens (including Victor’s heir apparent) have procured next-gen immune system enhancements, capable of altering genetic code on the fly to resist disease, poison, and hazardous conditions. Doing so comes at a cost: small amounts of genetic taint. Fortunately, most of these systems come with automatic repair subroutines, capable of reversing minor damage with sufficient time.\n\nMany street drugs, back-alley doctors, and supposed “salons” are prime sources of taint. The U.G.C. health commission recommends only using vendors backed by well-known mega-corps.\n\nThis particular Codex’s sensor package is capable of detecting your current taint level.\n\t<b>Current Taint:</b> " + Math.round(pc.taint()*10)/10 + " %\n");
 	CodexManager.viewedEntry("Taint");
 }
-
