@@ -20,7 +20,7 @@ public function zephAtNursery():Boolean
 
 public function zephKnowsAboutKids():Boolean
 {
-	return flags["ZEPHYR_KIDS_KNOWN"] != undefined;
+	return flags["ZEPHYR_KIDS_KNOWN"] != undefined || ChildManager.numOfUniqueType(ZephyrUniqueChild) > 0;
 }
 
 //New Room Desc
