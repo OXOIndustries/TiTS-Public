@@ -34,8 +34,8 @@ public function zephyrRoomBonus():Boolean
 		if (flags["ZEPHYR_PICSWTHEKIDS"] != undefined) output(" With a smile, you can see Zephyr has the pictures you sent her from the Nursery proudly displayed on her desk, turned to face inwards.");
 		return false;
 	}
+	
 	//showBust("ZEPHYR");
-
 
 	//Room Blurb
 	//Not introduced
@@ -792,16 +792,17 @@ public function talkToZephyrAbootZeTreatmentEh():void
 	else output("W");
 	output("hat’s that mean?”</i>");
 
-	if (!zephKnowsAboutKids())
+	if (zephKnowsAboutKids())
+	{
+		output("\n\n<i>“Heck, you can probably figure it out with our history,”</i> she says with a grin. <i>“So, anything else?”</i>");
+	}
+	else
 	{
 		output("\n\nZephyr leans back and glances at her work. <i>“It’s a story for another time. Why don’t you make yourself scarce so I can get something done.”</i> She mutters, <i>“If I have to work this job, I might as well do it right.”</i>");
 		output("\n\nYou nod.");
 		output("\n\n<i>“Are you still here? Get out.”</i>");
 	}
-	else
-	{
-		output("\n\n<i>“Heck, you can probably figure it out with our history,”</i> she says with a grin. <i>“So, anything else?”</i>");
-	}
+
 	processTime(30);
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -819,14 +820,16 @@ public function zephyrsShittasticJobstory():void
 	output("\n\n<i>“Big T!”</i> Zephyr growls. <i>“That fucker cheated me.”</i> She stands up out of her chair and paces back and forth. <i>“Okay, he didn’t exactly cheat me, but it’s his fault I’m stuck here. I’ve known that big dolt for years. We were actually drinking buddies at the time.”</i>");
 	output("\n\nShe was drinking buddies with the governor? <i>“How’d you pull that off?”</i>");
 
-	if (!zephKnowsAboutKids())
-	{
-		output("\n\nZephyr laughs at that, her smile warm and genuine for once. <i>“Its pretty easy when your families are already close and you’re the only one that can match him drink for drink. Besides, I’m the only girl around that he can carry on a conversation with. The others wind up sucking his dick mid-sentence, and Gianna’s a little naive to discuss politics with.”</i>");
-	}
-	else
+	if (zephKnowsAboutKids())
 	{
 		output("\n\nZephyr laughs at that, her smile warm and genuine. <i>“Its pretty easy when your families are already close and you’re the only one that can match him drink for drink. Besides, I’m the only girl around that he can carry on a conversation with. The others wind up sucking his dick mid-sentence, and Gianna’s a little naive to discuss politics with.”</i>");
 	}
+	else
+	{
+		output("\n\nZephyr laughs at that, her smile warm and genuine for once. <i>“Its pretty easy when your families are already close and you’re the only one that can match him drink for drink. Besides, I’m the only girl around that he can carry on a conversation with. The others wind up sucking his dick mid-sentence, and Gianna’s a little naive to discuss politics with.”</i>");
+	}
+
+	
 	//Not met Gianna
 	if(flags["MET_GIANNA"] == undefined) output("\n\n<i>“Who’s Gianna?”</i> you ask.\n\n<i>“Some sexbot tramp he’s adopted. It doesn’t matter.”</i>");
 	//Met her
@@ -862,7 +865,7 @@ public function zephyrsShittasticJobstory():void
 		output("\n\n<i>“Fuck off, bimbo!”</i>");
 		output("\n\nThe scent of sex fills the air as the woman passes by, blowing you and Zephyr a set of matching kisses. <i>“I love you too!”</i>");
 
-		if (!zephKnowsAboutKids())
+		if (zephKnowsAboutKids() == false)
 		{
 			output("\n\nZephyr sighs, then looks back up at you. <i>“Get out of here before I wind up throwing you over the desk and raping your ass. That bitch’s pheromones always drive me crazy.”</i>");
 		}
@@ -878,7 +881,7 @@ public function zephyrsShittasticJobstory():void
 		output("\n\n<i>“Fuck off, bimbo!”</i>");
 		output("\n\nEllie prances by, her tail waving happily, leaving a cloud of sex-scented musk in her wake. <i>“Kay, I love you both! Later!”</i> The door slams closed behind her.");
 
-		if (!zephKnowsAboutKids())
+		if (zephKnowsAboutKids() == false)
 		{
 			output("\n\nZephyr sighs, then looks back up at you. <i>“Get out of here before I wind up throwing you over the desk and raping your ass. That bitch’s pheromones always drive me crazy.”</i>");
 		}
@@ -2633,7 +2636,7 @@ public function zephTalkAtNursery():void
 
 	output("Since Zephyr’s here, you could spend some time with her. You harbor absolutely no illusions about what that entails, though - you’re going to be having sex, and it’ll probably be long, rough, and hard.");
 
-	output("\n\nYou’ve barely even sidled up to her, it’s decidedly unsubtle. She has you squirreled away to the guest room with a grin on her face within moments.");
+	output("\n\nYou’ve barely even sidled up to her, your hushed verbal exchange is decidedly unsubtle. She has you squirreled away to the guest room with a grin on her face within moments.");
 
 	currentLocation = "NURSERYI6";
 	generateMap();
@@ -2665,7 +2668,7 @@ public function zephNurseryBJ():void
 	output("\n\nIt never does. You have your lips securely wrapped around her cockhead and your cheeks hollowed before she can even tell you to do so, your favorite amazon running her hands");
 	if (pc.hasHair()) output(" through your hair");
 	else output(" over your head");
-	output(" and moaning encouragingly. The noise gives you motivation, driving you onwards in finding exactly what feels best for </i>her<i>, what makes Zephyr want to grab your face and cum inside it.");
+	output(" and moaning encouragingly. The noise gives you motivation, driving you onwards in finding exactly what feels best for <i>her</i>, what makes Zephyr want to grab your face and cum inside it.");
 
 	if (pc.hasHair()) output("\n\nSweeping your hair out of your face, y");
 	else output("\n\nY");
@@ -2812,7 +2815,7 @@ public function zephNurseryButtfuck():void
 		}
 		else
 		{
-			output("\n\n<i>“Such a big cock for such a subby little bitch,”</i> she muses, running a finger down your prominent cumvein. <i>“I can’t wait to see you plaster yourself in cum when I fuck your brains out”</i>");
+			output("\n\n<i>“Such a big cock for such a subby little bitch,”</i> she muses, running a finger down your prominent cumvein. <i>“I can’t wait to see you plaster yourself in cum when I fuck your brains out.”</i>");
 		}
 	}
 	
@@ -2874,7 +2877,7 @@ public function zephNurseryButtfuck():void
 	output("\n\n<i>“Oh, I’m gonna pound you so fucking hard,”</i> Zephyr purrs, a predatory gleam in her eyes. <i>“You won’t be able to walk for a week.”</i>");
 
 	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	addButton(0, "Next", zephNurseryButtfuckII);
 }
 
 public function zephNurseryButtfuckII():void
