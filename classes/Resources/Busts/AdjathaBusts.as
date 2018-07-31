@@ -50,6 +50,14 @@ package classes.Resources.Busts
 		public var Bust_ARDIA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/ardia_nude.png", mimeType = "image/png")]
 		public var Bust_ARDIA_NUDE:Class;
+		public function get Bust_ARDIA_HORSE():Class { return Bust_ARDIA; }
+		[Embed(source = "../../../assets/images/npcs/adjatha/ardia_horse_nude.png", mimeType = "image/png")]
+		public var Bust_ARDIA_HORSE_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/argosh.png", mimeType = "image/png")]
+		public var Bust_AGROSH:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/argosh_nude.png", mimeType = "image/png")]
+		public var Bust_AGROSH_NUDE:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/atha.png", mimeType = "image/png")]
 		public var Bust_ATHA:Class;
@@ -936,6 +944,14 @@ package classes.Resources.Busts
 			public var Full_ARDIA:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ardia_nude.png", mimeType = "image/png")]
 			public var Full_ARDIA_NUDE:Class;
+			public function get Full_ARDIA_HORSE():Class { return Full_ARDIA; }
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/ardia_horse_nude.png", mimeType = "image/png")]
+			public var Full_ARDIA_HORSE_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/argosh.png", mimeType = "image/png")]
+			public var Full_AGROSH:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/argosh_nude.png", mimeType = "image/png")]
+			public var Full_AGROSH_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/atha.png", mimeType = "image/png")]
 			public var Full_ATHA:Class;
@@ -1474,13 +1490,13 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_male.png", mimeType = "image/png")]
 			
-			public var Bust_RASKVEL_MALE:Class;
+			public var Full_RASKVEL_MALE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_male_nude.png", mimeType = "image/png")]
-			public var Bust_RASKVEL_MALE_NUDE:Class;
+			public var Full_RASKVEL_MALE_NUDE:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_gang.png", mimeType = "image/png")]
-			public var Bust_RASKVEL_GANG:Class;
+			public var Full_RASKVEL_GANG:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_gang_nude.png", mimeType = "image/png")]
-			public var Bust_RASKVEL_GANG_NUDE:Class;
+			public var Full_RASKVEL_GANG_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/reaha_anusoft.png", mimeType = "image/png")]
 			public var Full_REAHA_ANUSOFT:Class;
