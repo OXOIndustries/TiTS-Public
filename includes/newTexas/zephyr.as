@@ -2515,7 +2515,7 @@ public function milkedByZephYes():void
 	}
 	else
 	{
-		output("\n\n“</i>Please! Let me feel your cum in my womb again, Zephyr!”</i>");
+		output("\n\n<i>“Please! Let me feel your cum in my womb again, Zephyr!”</i>");
 	}
 	output(" You cry out, freely admitting just how much you love what she does to you.");
 	
@@ -2636,7 +2636,7 @@ public function zephTalkAtNursery():void
 
 	output("Since Zephyr’s here, you could spend some time with her. You harbor absolutely no illusions about what that entails, though - you’re going to be having sex, and it’ll probably be long, rough, and hard.");
 
-	output("\n\nYou’ve barely even sidled up to her, your hushed verbal exchange is decidedly unsubtle. She has you squirreled away to the guest room with a grin on her face within moments.");
+	output("\n\nSidling up to her, you have a decidedly unsubtle hushed verbal exchange. She has you squirreled away to the guest room with a grin on her face within moments.");
 
 	currentLocation = "NURSERYI6";
 	generateMap();
@@ -3035,7 +3035,7 @@ public function talkToZephAboutHerselfII():void
 	showZephyrDeets();
 	author("Wsan");
 
-	output("\n\nYou exit Zephyr’s office roughly an hour later, your asshole a little wider and your throat a little slicker. She didn’t get much work done, you recall with a cheeky grin, but you’re pretty sure she won’t mind. You lick your lips and swallow down the last remnants of her giant load, letting it join the rest of the liquid warmth in your slightly swollen tummy. No need to walk around with her cum on your face, not that you’d care on New Texas.");
+	output("You exit Zephyr’s office roughly an hour later, your asshole a little wider and your throat a little slicker. She didn’t get much work done, you recall with a cheeky grin, but you’re pretty sure she won’t mind. You lick your lips and swallow down the last remnants of her giant load, letting it join the rest of the liquid warmth in your slightly swollen tummy. No need to walk around with her cum on your face, not that you’d care on New Texas.");
 
 	processTime(50+rand(20));
 	pc.loadInMouth(getZephyrPregContainer());
