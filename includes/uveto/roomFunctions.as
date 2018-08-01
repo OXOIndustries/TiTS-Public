@@ -822,6 +822,9 @@ public function uvetoBarBonus():Boolean
 	if(isChristmas()) candyRahnBonus(5);
 	else roamingBarEncounter(5);
 	
+	//Devil Waitress
+	willowBonus(6);
+	
 	// More random Freezer encounters
 	NPCs.length = 0;
 	//Chrissy

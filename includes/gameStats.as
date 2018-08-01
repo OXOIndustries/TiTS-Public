@@ -6418,7 +6418,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 			}
 			// The Freezer
-			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined || flags["CHRISSY_MET"] != undefined || flags["MET_CANDY"] != undefined)
+			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined ||flags["WILLOW_MET"] != undefined|| flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined || flags["CHRISSY_MET"] != undefined || flags["MET_CANDY"] != undefined)
 			{
 				output2("\n<b><u>The Freezer</u></b>");
 				// Hanananana, hawt MILF
@@ -6491,6 +6491,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["CHRISSY_VAG"] != undefined) output2("\n<b>* Chrissy, Times Fucked Her Vagina:</b> " + flags["CHRISSY_VAG"]);
 					if(flags["CHRISSY_RIDDEN"] != undefined) output2("\n<b>* Chrissy, Times You Rode Her Cock:</b> " + flags["CHRISSY_RIDDEN"]);
 					if(flags["CHRISSY_GETFKD"] != undefined) output2("\n<b>* Chrissy, Times She Fucked You:</b> " + flags["CHRISSY_GETFKD"]);
+				}
+				// Willow
+				if(flags["WILLOW_MET"] != undefined)
+				{
+					output2("\n<b>* Willow:</b> Met her");
+					if(flags["WILLOW_AFFECTION"] != undefined) output2("\n<b>* Willow, Affection:</b> " + flags["WILLOW_AFFECTION"] + " %");
+					if(flags["WILLOW_VAG_SEXED"] != undefined) output2("\n<b>* Willow, Times Fucked Her Vagina:</b> " + flags["WILLOW_VAG_SEXED"]);
+					if(flags["WILLOW_BUTT_SEXED"] != undefined) output2("\n<b>* Willow, Times Fucked Her Butt:</b> " + flags["WILLOW_BUTT_SEXED"]);
+					if(flags["WILLOW_DBLPEN"] != undefined) output2("\n<b>* Willow, Times Double Penetrated:</b> " + flags["WILLOW_DBLPEN"]);
+					if(flags["WILLOW_DBLPEN_VAG"] != undefined) output2("\n<b>* Willow, Times Double Stuffed Her Vagina:</b> " + flags["WILLOW_DBLPEN_VAG"]);
+					if(flags["WILLOW_TRPVAG"] != undefined) output2("\n<b>* Willow, Times Triple Stuffed Her Vagina:</b> " + flags["WILLOW_TRPVAG"]);
 				}
 				variousCount++;
 			}
