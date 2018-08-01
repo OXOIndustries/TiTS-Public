@@ -1250,7 +1250,7 @@ public function quinnFestivalButton(btnSlot:int = 4):void
 	if(flags["QUINNFEST_COMPLETE"] == undefined && flags["QUINNFEST_TALKED"] != undefined)
 	{
 		// Ghost out unless time is 16:45-19:00
-		if(!quinnFestivalActiveHours()) addDisabledButton(btnSlot, "Festival", "Festival", "You don’t think it’s the right time yet. Quinn indicated the early evening.");
+		if(!quinnFestivalActiveHours()) addDisabledButton(btnSlot, "Festival", "Festival", "You don’t think it’s the right time yet. Quinn indicated the early evening. Try checking back between 16:45 - 19:00.");
 		else addButton(btnSlot, "Festival", quinnFestival, undefined, "Festival", "Tell Quinn you’re ready for the Pollen Festival to begin.");
 	}
 }
@@ -1922,10 +1922,14 @@ public function quinnFestivalFightWin():void
 	processTime(3);
 	
 	// Go to sexings
-	eventQueue.push(quinnFestivalSexingsDroneAlone);
+	eventQueue.push(quinnFestivalFightWinNext);
 	
 	quinnFestivalEndFight();
 	CombatManager.genericVictory();
+}
+public function quinnFestivalFightWinNext():void
+{
+	quinnFestivalSexingsDroneAlone([0]);
 }
 // Sexings
 public function quinnFestivalSexingsRouter():void
