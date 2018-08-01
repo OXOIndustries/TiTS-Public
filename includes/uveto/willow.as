@@ -1,9 +1,4 @@
 /*
-
-Fix fem missing reqs
-Some single pen scenes don't work with strapon
-Trip pen button missing somehow
-
 Coded by Maye
 
 Flags
