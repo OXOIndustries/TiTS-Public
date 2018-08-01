@@ -5018,6 +5018,19 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
+			//Post-Quest Kane
+			if(kaneDominance() != -1)
+			{
+				output2("\n<b>* Kane:</b> Met him peacefully");
+				switch(flags["KANE_STATUS"])
+				{
+					case 1: output2(", Fighting for dominance"); break;
+					case 2: output2(", He's in charge"); break;
+					case 3: output2(", Marked him"); break;
+				}
+				if (flags["KANE_STATUS"] != undefined && flags["KANE_STATUS"] != 3) output2("\n<b>* Kane, Dominance Over You:</b> " + String(kaneDominance() + "/100"));
+				variousCount++;
+			}
 			// Jungles
 			if(flags["MET_CUNT_SNAKE"] != undefined || flags["ENCOUNTERED_MIMBRANE"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined || flags["TIMES_MET_VENUS_PITCHER"] != undefined || flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] != undefined || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined || flags["MET_KEROKORAS"] != undefined || flags["DRYAD_MET"] != undefined || flags["PRAI_MET"] != undefined)
 			{
