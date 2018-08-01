@@ -98,8 +98,10 @@ public function willowIntro():void
 		output("\n\nShe eventually makes her way over to you and greets you with a smile. <i>“Hey there! Welcome back. Can I get you anything?”</i> She asks, smiling."); 	
 	}
 	addButton(0,"Order",willowFood);
-	if (pc.hasCock() || pc.hasHardLightStrapOn()) addButton(1, "Flirt", willowFlirt);
+	if ((pc.hasCock() || pc.hasHardLightStrapOn())&&!pc.isTaur()) addButton(1, "Flirt", willowFlirt);
+	else if (pc.isTaur()) addDisabledButton(1,"Flirt","Flirt","Willow doesn't seem interested in taurs.");
 	else addDisabledButton(1,"Flirt","Flirt","You should get a cock or a strapon before you do this.");
+	
 	addButton(14,"Leave",willowLeave,0);
 	processTime(5);
 }
@@ -186,7 +188,8 @@ public function willowDrink():void
 	{
 		output("<i>“Right away, [pc.sir]!”</i> She says, pulling out a tablet, her fingers poised over the screen and looking at you expectantly.");
 		output("You decide to order a nice grilled cheese sandwich. It arrives quickly and you enjoy the gooey cheese with every bite as you watch the waitress run around serving people.");	
-		if (flags["WILLOW_FLIRT"] != 0 && (pc.hasCock() || pc.hasHardLightStrapOn())) addButton(1, "Flirt", willowFlirt);// Can still flirt with Willow if you never have this encounter.
+		if (flags["WILLOW_FLIRT"] != 0 && (pc.hasCock() || pc.hasHardLightStrapOn())&&!pc.isTaur()) addButton(1, "Flirt", willowFlirt);// Can still flirt with Willow if you never have this encounter.
+		else if (pc.isTaur()) addDisabledButton(1,"Flirt","Flirt","Willow doesn't seem interested in taurs.");
 		else if(flags["WILLOW_FLIRT"] != 0) addDisabledButton(1,"Flirt","Flirt","You should get a cock or a strapon before you do this.");
 		addButton(14,"Leave",willowLeave,0);
 	}	
@@ -384,7 +387,8 @@ public function willowHerPlace(sceneChoice:int):void
 	}	
 	output("Willow looks at you expectantly.");
 	
-	addButton(0,"Sex",willowSexMenu);
+	if (!pc.isTaur()) addButton(0,"Sex",willowSexMenu);
+	else if (pc.isTaur()) addDisabledButton(1,"Sex","Sex","Willow's room is way too small to have sex with a taur.");
 	addButton(1,"Wear Clothes",willowWearClothes,0);
 	addButton(14,"Leave",willowLeave,1);
 }
@@ -1149,7 +1153,7 @@ public function willowSexScenes(sceneChoice:int):void
 		else output("[pc.cock] and [pc.tailCock]");
 		output(" feel so good inside me!”</i> Willow screams, bucking her hips against you, her already tight pussy clamping down even harder.");
 		output("\n\nYou groan and start fucking her even harder, your hips a blur of motion as you piston into her vagina. Her legs lock around your [pc.hips], keeping you there as you rut your little beta like an animal. Your hand goes down from her other wrist and grabs at her breast, squeezing it and flicking the nipple. Your other hand is still hard at work, roughly thrusting three fingers into her ass. Her moans hit a higher pitch and you feel her body start to tense up in preparation for a massive orgasm. You help it along of course, by bending your head down and kissing her, your tongue worming its way into her mouth.");
-		output("\n\nAs you predicted, this pushes her over the edge and she explodes into another orgasm, her eyes rolling back into her head as she screams in pleasure, squirting her cum all over your legs, her pussy tightening up even further as it wrings your ");
+		output("\n\nAs you predicted, this pushes her over the edge and she explodes into another orgasm, her eyes rolling back into her head as she screams in pleasure, squirting her cum all over your [pc.legs], her pussy tightening up even further as it wrings your ");
 		if (pc.hasCocks())output("[pc.cocks]");
 		else output("[pc.cock] and [pc.tailCock]");
 		output(" for their cum. You growl in pleasure at the almost painful tightness and slam into her a few more times before blowing your load, deep. She moans loudly and creams herself again as she feels your [pc.cumType] flow into her womb. "); 
