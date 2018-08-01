@@ -992,7 +992,6 @@ public function loseToKane():void
 	CombatManager.genericLoss();
 	
 	IncrementFlag("LOST_TO_KANE");
-	//if(kaneSubmission() < 50) kaneSubmission(2);
 }
 
 //FOOT OF THE CLIFF

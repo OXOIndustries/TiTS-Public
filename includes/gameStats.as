@@ -5014,21 +5014,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["PQUEST_WATERFALLED"] != undefined)
 				{
 					output2("\n<b>* Kane:</b> Met him");
-					if(kaneSubmission() > 0) output2("\n<b>* Kane, Dominance:</b> " + formatFloat(kaneSubmission(), 1) + " %");
+					//Post-Quest Kane
+					if(kaneDominance() != -1 && flags["KANE_STATUS"] != undefined)
+					{
+						switch(flags["KANE_STATUS"])
+						{
+							case 1: output2(", Fighting for dominance"); break;
+							case 2: output2(", He’s in charge"); break;
+							case 3: output2(", Marked him"); break;
+						}
+					}
+					if(kaneDominance() > 0) output2("\n<b>* Kane, Dominance:</b> " + formatFloat(kaneDominance(), 1) + " %");
 				}
-				variousCount++;
-			}
-			//Post-Quest Kane
-			if(kaneDominance() != -1)
-			{
-				output2("\n<b>* Kane:</b> Met him peacefully");
-				switch(flags["KANE_STATUS"])
-				{
-					case 1: output2(", Fighting for dominance"); break;
-					case 2: output2(", He's in charge"); break;
-					case 3: output2(", Marked him"); break;
-				}
-				if (flags["KANE_STATUS"] != undefined && flags["KANE_STATUS"] != 3) output2("\n<b>* Kane, Dominance Over You:</b> " + String(kaneDominance() + "/100"));
 				variousCount++;
 			}
 			// Jungles

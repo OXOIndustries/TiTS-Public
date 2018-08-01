@@ -24,6 +24,10 @@ public function kaneDominance(value:int = 0, apply:Boolean = false):int
 	if (flags["KANE_DOMINANCE"] < 0) flags["KANE_DOMINANCE"] = 0;
 	return flags["KANE_DOMINANCE"];
 }
+public function submissiveToKane():Boolean
+{
+	return (kaneDominance() > 50);
+}
 	
 public function kaneApproach():void
 {
@@ -53,7 +57,7 @@ public function kaneBattleAmnesia(tries:int = -1):void
 	showKane();
 	author("Nonesuch");
 	
-	output("For some reason, you can't remember your first encounter with Kane well. Did you defeat him on your first try, or did it take more?");
+	output("For some reason, you can’t remember your first encounter with Kane well. Did you defeat him on your first try, or did it take more?");
 	
 	addButton(0, "First Try", kaneBattleAmnesia, 0);
 	addButton(1, "Several", kaneBattleAmnesia, 1);
@@ -210,7 +214,7 @@ public function kaneDontSubmit(flirty:Boolean = false):void
 	output("\n\n<i>“Yeah,”</i> Kane growls, anger clouding his scarred face. <i>“You did beat me. With all of your star-forged toys, with that trapped zpirit in your bracelet that tells you everything you need to know, versus my rock, you beat me. How proud you must have been.”</i> He steps back, tapping his chest with both hands. <i>“You want things your way? I’m fine with that. Take off your stuff, forbid your zpirit slave to talk. We’ll wrestle as equals. Beat me then, and I will truly respect you.”</i>");
 	output("\n\n<i>“It is not recommended that you switch me off on an uncharted planet at the suggestion of a local,”</i> your codex chimes in, unhelpfully.");
 
-	addButton(0, "You're On", kaneWrestlingStart);
+	addButton(0, "You’re On", kaneWrestlingStart);
 	addButton(1, "Nah", kaneFuckThis, flirty);
 }
 
@@ -349,7 +353,7 @@ public function kaneAppearance():void
 	showKane();
 	author("Nonesuch");
 	
-	output("Although not heavily built by any means, the 5'11\" zil known as Kane is more muscular than most of his brethren, compact muscle rounding the shiny black carapace on his limbs and chest, his ass long and athletic. He carries it well, moving with an easy, assured athleticism which changes to sudden, insectile jerkiness when he’s angry. His opaque, skateboard-sized wings allow him to sweep into the sky - and from tree to tree, in the dense Mhen’gan jungle - with ease.");
+	output("Although not heavily built by any means, the 5\' 11\" zil known as Kane is more muscular than most of his brethren, compact muscle rounding the shiny black carapace on his limbs and chest, his ass long and athletic. He carries it well, moving with an easy, assured athleticism which changes to sudden, insectile jerkiness when he’s angry. His opaque, skateboard-sized wings allow him to sweep into the sky - and from tree to tree, in the dense Mhen’gan jungle - with ease.");
 	output("\n\nHis shoulder length dark brown hair is shaggy, hanging over his long, thoughtful face, a scar tapering down across one eye. Floppy antennae and scowling, pupil-less black eyes complete the impression of a restless, brooding individual, quite unlike the carefree other male zil you’ve met.");
 	output("\n\nThe other aspect to this veritable Bee-thcliff that’s impossible to ignore is his pheromonal scent - the same sex-soaked honey that emanates off of all male zil, but clearly more powerful. It’s difficult to put together thoughts when he’s close, except how warm you feel, how nice it would be to give in to your urges and descend into steaming sex in the sultry, tropical splendour of Mhen’ga.");
 	if (flags["KANE_SEXED"] == undefined) output(" With his hard, black groinplate securely in place, however, the effect isn’t too overwhelming.");
@@ -568,7 +572,7 @@ public function kaneHellYeahBeeBlowjob():void
 		if (pc.hasBreasts()) output(", or presenting your tits,");
 		output(" or placed politely on your thighs whilst I face fuck you. But...”</i> he trails off in a groan, reactively bucking his long, powerful hips into you, as you curl your [pc.tongue] around his smooth head. <i>“ ...zpirits yeah. What a fine trophy in the making...”</i>");
 		output("\n\nYou keep your [pc.lips] and cheeks clamped as intently around him as you can as it thickens, tightening towards an orgasm heralded by Kane’s increasingly delighted exclamations and growls. You want that sweet, sweet honey seed, all of your pheremonally addled senses cry out for it, and when it comes, it’s no let down. You shiver as he hilts himself in your face, his tight jet balls pressing themselves against your chin, and a great gout of syrupy cum is deposited all across the back of your mouth. Your tastebuds tingle, and horny warmth blooms in your [pc.belly] when you instinctively swallow, and you practically moan at how <i>good</i> it all feels. ");
-		if (pc.hasVagina()) output(StringUtil.capitalize(pc.eachVagina()) + (pc.wettestVaginalWetness() > 3 ? "drool" : "drip") +  (pc.hasVaginas() ? "" : "s") + " excitement, practically begging for a filling");
+		if (pc.hasVagina()) output(StringUtil.capitalize(pc.eachVagina()) + (pc.wettestVaginalWetness() > 3 ? "drool" : "drip") + (pc.hasVaginas() ? "" : "s") + " excitement, practically begging for a filling");
 		if (pc.hasCock()) output((pc.hasVagina() ? " and [pc.eachCock]" : StringUtil.capitalize(pc.eachCock())) + (pc.hasCocks() ? " bat" : " bats") + " against your gut, they’re that erect, without even a hint of manual stimulation");
 		output(". If there’s any frustration, it’s that you don’t cum. Maybe if you keep drinking...");
 		output("\n\nYou keep yourself limpeted to him, hands gripping the bunched-up muscles of his thighs, drawing one gloopy, orange load into you after another, not stopping even when the stuff drools out of your mouth. You don’t orgasm, but Void, One, fuck, it does just feel so warm and sunny and good to be a zil’s cumslut. You’re beaming, blissed out, when Kane draws his thick cock outwards with his hand and sprays the last he has to offer across your face, a rich warm splattering of cum that doesn’t even make you start. He sighs when he’s done, gazing down and holding your face upwards, admiring his handiwork.");
@@ -916,7 +920,7 @@ public function kaneWrestlingEvalRound(vars:Array):void
 	vars.pop();
 	
 	//bootons!
-	addDisabledButton(0, "Whoops", "Kane Machine Broke", "We're so sorry about this. Please report.");
+	addDisabledButton(0, "Whoops", "Kane Machine Broke", "We’re so sorry about this. Please report.");
 	if (vars[0] >= 3) addButton(0, "Next", kanePCWinsTheBelt);
 	else if (vars[1] >= 2) addButton(0, "Next", kanePCGetsManhandled, false);
 	else
