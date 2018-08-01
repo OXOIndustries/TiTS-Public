@@ -1495,6 +1495,11 @@
 			//trace("hideBust called");
 			_leftSideBar.locationBlock.hideBust();
 		}
+		
+		public function hideBustWindows():void
+		{
+			_leftSideBar.locationBlock.hideBustWindows();
+		}
 
 		//2. DISPLAY STUFF
 		//EXAMPLE: setupStatBar(monsterSex,"SEX","Genderless");

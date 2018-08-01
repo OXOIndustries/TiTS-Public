@@ -65,7 +65,7 @@
 		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
-			if(dataObject.cocks[0].cType == GLOBAL.TYPE_EQUINE)
+			if(dataObject.cocks.length > 0 && dataObject.cocks[0].cType == GLOBAL.TYPE_EQUINE)
 			{
 				dataObject.cocks[0].cLengthRaw = 16;
 			}

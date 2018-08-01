@@ -505,6 +505,16 @@ package classes.UIComponents.SideBarComponents
 			stage.addChild(o);
 		}
 		
+		public function hideBustWindows():void
+		{
+			if (stage.getChildByName("bustSelector")) stage.removeChild(stage.getChildByName("bustSelector"));
+			
+			CONFIG::IMAGEPACK
+			{
+				if (stage.getChildByName("bigImage")) stage.removeChild(stage.getChildByName("bigImage"));
+			}
+		}
+		
 		private function swapBustConfig(e:Event):void
 		{
 			// Initialise busts
@@ -623,6 +633,8 @@ package classes.UIComponents.SideBarComponents
 						_npcBusts.visible = true;
 						_bustBackground.visible = true;
 						_roomText.filters = [UIStyleSettings.gRoomLocationTextBustGlow];
+						
+						hideBustWindows();
 						return;
 					}
 					// Otherwise, clear busts
@@ -716,6 +728,8 @@ package classes.UIComponents.SideBarComponents
 				_npcBusts.visible = true;
 				_bustBackground.visible = true;
 				_roomText.filters = [UIStyleSettings.gRoomLocationTextBustGlow];
+				
+				hideBustWindows();
 				return;
 			}
 			
@@ -746,6 +760,8 @@ package classes.UIComponents.SideBarComponents
 			_npcBusts.visible = true;
 			_bustBackground.visible = true;
 			_roomText.filters = [UIStyleSettings.gRoomLocationTextBustGlow];
+			
+			hideBustWindows();
 		}
 		
 		private function removeCurrentBusts():void
@@ -765,6 +781,8 @@ package classes.UIComponents.SideBarComponents
 			_npcBusts.visible = false;
 			_bustBackground.visible = false;
 			_roomText.filters = [UIStyleSettings.gRoomLocationTextGlow];
+			
+			hideBustWindows();
 		}
 		
 		public function bringLastBustToTop():void
