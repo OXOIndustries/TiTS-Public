@@ -850,7 +850,7 @@ public function acceptHorseplowDelPlayButtStuffCunnyPlowWhatAmIEvenWritingAnymor
 	author("Savin");
 
 	output("<i>“I think we can work with that,”</i> you say, patting Del’s thigh. <i>“Let’s get you attached to your new horsey friend here.”</i>");
-	output("\n\nDel hops out of your lap and takes your hand. <i>“’Kay! Let’s go to the baths and try it on. Um, miss Kally! I’m gonna go on break for a minute!”</i>");
+	output("\n\nDel hops out of your lap and takes your hand. <i>“‘Kay! Let’s go to the baths and try it on. Um, miss Kally! I’m gonna go on break for a minute!”</i>");
 	output("\n\nThe kui-tan babe behind the bar gives an exaggerated roll of her eyes and waves Del off. Squeezing your hand tight, Del leads you into the onsen behind the lodge’s main room, which seems empty for the moment. Perfect for what Del intends to do, you figure");
 	if(pc.exhibitionism() >= 66) output("... as much fun as a whole crowd watching Del destroy your [pc.vagOrAss] might be");
 	output(". You take the synthetic horsecock out of your pack and set it on one of the benches, then help Del to disrobe. You’re give yourself leave to play with her body as you do so, pressing your [pc.chest] into her back and groping at her breasts, flicking her nipple-rings cupping the huge, heavy mounds of boobflesh spilling out of her shirt. Del just moans and wiggles out of her clothes, content to let you play with her, right until your hands wander down to her ass.");

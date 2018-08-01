@@ -396,7 +396,7 @@ public function payUrbolgFacial():void
 	if(pc.isBimbo()) output(", licking your [pc.lipsChaste] with obvious dick-thirst");
 	output(".");
 
-	output("\n\n<i>“Be a real shame to let it go to waste, but I reckon a bit of face-painting’s as good a use as any.”</i> The dog-man throws his apron over his shoulder with a flourish, revealing the bright blue mast between his legs. A heavily inflated, practically balloonish knot bobbles above his sheath, swollen with his thick canine load. <i>“’Sides, a nice thick layer of cum might even get those stimmed up Jumper bitches te leave off ye for a bit. Not real big on sharing, those ones. A cum-covered slave is a claimed slave.”</i> He pats your head affectionately. <i>“Are you ready to get messy?”</i>");
+	output("\n\n<i>“Be a real shame to let it go to waste, but I reckon a bit of face-painting’s as good a use as any.”</i> The dog-man throws his apron over his shoulder with a flourish, revealing the bright blue mast between his legs. A heavily inflated, practically balloonish knot bobbles above his sheath, swollen with his thick canine load. <i>“‘Sides, a nice thick layer of cum might even get those stimmed up Jumper bitches te leave off ye for a bit. Not real big on sharing, those ones. A cum-covered slave is a claimed slave.”</i> He pats your head affectionately. <i>“Are you ready to get messy?”</i>");
 	if(pc.isBimbo())
 	{
 		output("\n\nYou vigorously nod, opening your mouth wide and rolling your tongue out like a welcome mat.");
@@ -530,7 +530,7 @@ public function yesSwigUrbolg():void
 
 public function urbolgHistoryContinue():void
 {
-	output(" He strokes at the longish fur of his chin. <i>“Doesn’t seem so long ago now, but I guess it must have been... what, thirty terran years back? ‘Round then I was a little upstart on Uveto. Not sure if you’ve ever been there, but the place is a frozen hellhole populated by shut-ins and assholes. I was one of the former.”</i> He pounds his metal fist into his chest. <i>“’Cept I was young and stupid. Figured I could take on the whole of the tundra by meself. Nothing but stolen coats, a spear, and the determination to come back with a bloodied Kor’diiak hide.”</i>");
+	output(" He strokes at the longish fur of his chin. <i>“Doesn’t seem so long ago now, but I guess it must have been... what, thirty terran years back? ‘Round then I was a little upstart on Uveto. Not sure if you’ve ever been there, but the place is a frozen hellhole populated by shut-ins and assholes. I was one of the former.”</i> He pounds his metal fist into his chest. <i>“‘Cept I was young and stupid. Figured I could take on the whole of the tundra by meself. Nothing but stolen coats, a spear, and the determination to come back with a bloodied Kor’diiak hide.”</i>");
 	output("\n\nYou ask if he did.");
 	output("\n\n<i>“Fek no. I never stood a chance. Managed to track one of the beasts, ye, even stuck her pretty good with my spear.”</i> He mimics a violent, downward stabbing motion. <i>“Course when yer face ta face with something ten times your size, your spear might as well be a toothpick. I never managed to pull it out for another strike. The beast threw me a good ten or fifteen feet with a shrug. Landed in a snowdrift.”</i> Urbolg holds up his metal arm, flexing the whirring servos in anger. <i>“She was on me in seconds, all teeth and claws. I was fucked, and I knew it.”</i>");
 	output("\n\nListening attentively, you ask how he survived.");

@@ -625,7 +625,7 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	showPenny();
 	if(outputT) {
 		clearOutput();
-		output("Penny turns back up at you, greeting, <i>“’Sup, crazy? Need a hand for anything? I still owe you, you know.”</i> Her voice carries a playful undertone, like she’d rather not be working. Perhaps you could offer her a welcome distraction.");
+		output("Penny turns back up at you, greeting, <i>“‘Sup, crazy? Need a hand for anything? I still owe you, you know.”</i> Her voice carries a playful undertone, like she’d rather not be working. Perhaps you could offer her a welcome distraction.");
 	}
 	clearMenu();
 	addButton(14,"Back",mainGameMenu);

@@ -3096,22 +3096,3 @@ public function approachQuinnBaby():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-// Kane stuff
-public function submissiveToKane():Boolean
-{
-	return (kaneSubmission() > 50);
-}
-public function kaneSubmission(arg:int = 0):Number
-{
-	if(flags["KANE_SUBMISSION"] == undefined) flags["KANE_SUBMISSION"] = 0;
-	
-	if(arg != 0)
-	{
-		flags["KANE_SUBMISSION"] += arg;
-		if(flags["KANE_SUBMISSION"] < 0) flags["KANE_SUBMISSION"] = 0;
-		if(flags["KANE_SUBMISSION"] > 100) flags["KANE_SUBMISSION"] = 100;
-	}
-	
-	return flags["KANE_SUBMISSION"];
-}
-

@@ -153,6 +153,11 @@ package classes.GameData.Pregnancy.Handlers
 			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
 			if (kGAMECLASS.flags["ZEPHYR_KIDS_DAYCOUNTER"] == undefined) kGAMECLASS.flags["ZEPHYR_KIDS_DAYCOUNTER"] = kGAMECLASS.days;
 			
+			if (kGAMECLASS.flags["ZEPHYR_KIDS_KNOWN"] == undefined)
+			{
+				kGAMECLASS.flags["ZEPHYR_KIDS_KNOWN"] = 1;
+			}
+			
 			pData.reset();
 			
 			return c;
