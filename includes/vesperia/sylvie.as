@@ -1139,7 +1139,7 @@ public function syvlieBuzzedStories(drunklevelChange:Number = 1,newPage:Boolean 
 		output("\n\n<i>“I don’t know!”</i> Sylvie admits. <i>“I sort of lost count after a while. It sort of gets tough to tell after you have seven or eight in rapid succession. There’s basically nothing left to do but orgasm and babble nonsense. I can’t even accurately remember how good it felt. I just know that thinking about it too hard makes my knees wobble and my cleft twinge. One thing I do remember is what it felt like to wake up in a mattress soaked in my own sexjuice. Ugh. Amazing how much you love the smell during sex and just how badly you want to wash it off afterward. Talk about a shower of shame.”</i>");
 		output("\n\n<i>“They left you like that?”</i> you ask.");
 		output("\n\nSylvie polishes off a beer, then pours another. <i>“Yep. Fucked me until I passed out, then made tracks. Didn’t even bother to leave me a number.”</i> She bats her eyelashes at you. <i>“You wouldn’t run off on me, I bet.”</i>");
-		if(pc.isBimbo()) output("\n\n<i>“’Course not!”</i> you blithely promise. <i>“I’d be way too busy fucking you to leave!”</i>");
+		if(pc.isBimbo()) output("\n\n<i>“‘Course not!”</i> you blithely promise. <i>“I’d be way too busy fucking you to leave!”</i>");
 		else if(pc.isBro()) output("\n\n<i>“Nope. I’d be too tired from pounding your pussy to go anywhere.”</i> You reach back and give her ass a rough slap. She smiles.");
 		else if(pc.isNice()) output("\n\n<i>“No way,”</i> you promise, smiling. <i>“I’d be lucky just to be there.”</i>");
 		else if(pc.isMischievous()) output("\n\n<i>“I’m not sure how I’d manage to run away with a crushed pelvis,”</i> you say. <i>“It’d be worth it.”</i>");
