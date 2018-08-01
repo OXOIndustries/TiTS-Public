@@ -388,7 +388,7 @@ public function willowHerPlace(sceneChoice:int):void
 	output("Willow looks at you expectantly.");
 	
 	if (!pc.isTaur()) addButton(0,"Sex",willowSexMenu);
-	else if (pc.isTaur()) addDisabledButton(1,"Sex","Sex","Willow's room is way too small to have sex with a taur.");
+	else if (pc.isTaur()) addDisabledButton(0,"Sex","Sex","Willow's room is way too small to have sex with a taur.");
 	addButton(1,"Wear Clothes",willowWearClothes,0);
 	addButton(14,"Leave",willowLeave,1);
 }
