@@ -275,7 +275,12 @@ public function flirtySlutPCsTellPennyFlirts():void {
 public function getSpitRoastedForPenny():void {
 	clearOutput();
 	this.userInterface.showBust("ZIL", "ZIL");
-	output("<i>“Alright, I hope you weren’t attached to your virginity,”</i> Penny remarks dryly as she steps out from behind the desk, giving you a good look at her lower body. Her legs are digitigrade, meaning they bend twice, like some earth animals’. Those limbs end with fluffy, sandy, fur-covered paws, unhindered by any kind of footwear. Her pants are baggy around the calves and bottoms to accommodate her unique physiology but tighten up noticeably around her pert bottom. The fennec fox-girl’s tail emerges from a hole cut just under the waistline, and it sways enticingly as you follow her into the holding area.");
+	output("<i>“Alright, ");
+	if(pc.hasVirginVagina() || pc.analVirgin) output("I hope you weren’t attached to your virginity");
+	else if(pc.legCount > 1) output("I hope you don't mind getting fucked bow-legged");
+	else if(pc.hasVagina()) output("I hope you're on birth control");
+	else output("I hope you know what you're doing");
+	output(",”</i> Penny remarks dryly as she steps out from behind the desk, giving you a good look at her lower body. Her legs are digitigrade, meaning they bend twice, like some earth animals’. Those limbs end with fluffy, sandy, fur-covered paws, unhindered by any kind of footwear. Her pants are baggy around the calves and bottoms to accommodate her unique physiology but tighten up noticeably around her pert bottom. The fennec fox-girl’s tail emerges from a hole cut just under the waistline, and it sways enticingly as you follow her into the holding area.");
 	output("\n\nPenny grabs a breathing apparatus off the wall. The device looks like a clear faceplate with a cluster of tubes attached to a number of filters that dangle low. A single black band loops around the back of the head, and a foam and rubber seal is there to fit it to just about any humanoid face. The fox-girl fits it over her muzzle, then opens the door. The musk that rolls out from the cells hits you with all the subtlety of a hammer. You cast a baleful look in Penny’s direction for not offering you any protection, but you’ve already breathed in a deep lungful of the sweet yet musky aroma. Slowly, the musk becomes less noticeable to you, while the sweet notes remain. You can feel your heartbeat in your ears and your ");
 	if(pc.hasCock() || pc.hasVagina()) output("genitals engorge with heat, puffy and sensitive");
 	else output("[pc.asshole] tingles, becoming more sensitive");
@@ -620,7 +625,7 @@ public function approachFriendPenny(outputT:Boolean = true):void {
 	showPenny();
 	if(outputT) {
 		clearOutput();
-		output("Penny turns back up at you, greeting, <i>“’Sup, crazy? Need a hand for anything? I still owe you, you know.”</i> Her voice carries a playful undertone, like she’d rather not be working. Perhaps you could offer her a welcome distraction.");
+		output("Penny turns back up at you, greeting, <i>“‘Sup, crazy? Need a hand for anything? I still owe you, you know.”</i> Her voice carries a playful undertone, like she’d rather not be working. Perhaps you could offer her a welcome distraction.");
 	}
 	clearMenu();
 	addButton(14,"Back",mainGameMenu);
@@ -3008,7 +3013,8 @@ public function teasePenny():void
 	pc.lust(20+rand(10));
 	
 	//[Add some a-hole points]
-	pc.addHard(20);
+	if(flags["PENNY_FUTA_TEASE"] == undefined) pc.addHard(20);
+	IncrementFlag("PENNY_FUTA_TEASE");
 	
 	//[Let them join in] [Let them watch] [Hide her actions]
 	clearMenu();
@@ -3136,7 +3142,8 @@ public function useYourCocksOnCumSluttyPenny():void {
 	output("\n\nYou turn to leave while she’s still pleasantly self-absorbed, her eager slurping noises following you as you step out of her office. You imagine that her new predilections will make doing her job considerably harder, but, you add to yourself with a grin, considerably more enjoyable for all involved.");
 	processTime(5+rand(10));
 	pc.orgasm();
-	pc.addHard(5);
+	if(flags["PENNY_CUMSLUT_JOIN_IN"] == undefined) pc.addHard(5);
+	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
 	//move to the room outside of Penny's
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
@@ -3154,7 +3161,8 @@ public function makeUseOfPennysCumSlutCock():void {
 	//[Add a considerable amount of a-hole points]
 	processTime(5+rand(10));
 	pc.lust(20+rand(10));
-	pc.addHard(5);
+	if(flags["PENNY_CUMSLUT_JOIN_IN"] == undefined) pc.addHard(5);
+	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
 	//move to the room outside of Penny's
 	addButton(0,"Next",move,"SOUTH ESBETH 3");
@@ -3173,7 +3181,8 @@ public function findSomeonePublicToHelpPennyCumslut():void {
 	//[Add a considerable amount of a-hole points]
 	processTime(5+rand(10));
 	pc.lust(20+rand(10));
-	pc.addHard(5);
+	if(flags["PENNY_CUMSLUT_JOIN_IN"] == undefined) pc.addHard(5);
+	IncrementFlag("PENNY_CUMSLUT_JOIN_IN");
 	clearMenu();
 	//move to the room outside of Penny's
 	addButton(0,"Next",move,"SOUTH ESBETH 3");

@@ -3648,7 +3648,7 @@ public function lundBreakHimD():void
 	
 	output("\n\nYou start rolling your hips inside him, sending gentle waves across the surface of the water. He does his best to keep the titillating squeezing up, his soft, drawn-out sighs slowly morphing into long, hard pants as he feels both of you getting closer and starts to ride a little harder.");
 
-	output("\n\n<i>“[pc.master], [pc.master], "+ (!korgiTranslate() ? "Lund" : "I’m") +" gonna cum,”</i> Lund moans, biting his lip. You can feel him tightening up around you. <i>“[pc.master]-!”</i>");
+	output("\n\n<i>“[pc.Master], [pc.master], "+ (!korgiTranslate() ? "Lund" : "I’m") +" gonna cum,”</i> Lund moans, biting his lip. You can feel him tightening up around you. <i>“[pc.master]-!”</i>");
 	
 	output("\n\nThere’s a couple of urgent splashes and then nothing but labored silence as the two of you shake, teeth grit as you cum together in the pool. Lund’s throbbing cock creates tiny currents in the water as it twitches up and down, spurting creamy seed that dissolves in the hot water immediately. All of your own spunk ends up inside Lund, your warmth tightly sealed in his depths.");
 	if (pc.cumQ() >= 3000) output(" He ends up with a fair bulge to his tummy by the time you’re done.}");

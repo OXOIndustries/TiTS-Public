@@ -2970,7 +2970,7 @@ public function carrieCockTailSneakyDeaky():void
 	else output("<i>“You’re looking worn out, Carrie. Have they been working you hard?”</i> you ask.");
 
 	output("\n\nCarrie smiles patiently. <i>“I could use a gap and stretch for sure,”</i> she answers. <i>“I been cooped up in here a while.”</i>");
-	if(pc.isBro()) output("\n\n<i>“’How about starting me and taking off?”</i>");
+	if(pc.isBro()) output("\n\n<i>“‘How about starting me and taking off?”</i>");
 	else
 	{
 		output("\n\n<i>“So");

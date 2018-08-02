@@ -162,7 +162,7 @@ public function brandyRepeatApproaches():void
 	}
 	else
 	{
-		output("You begin to walk towards Brandy; the jingling of her bell grows ever louder as you close in, her tail swaying as she toils away at her work. She notices you eventually, looking over her shoulder once and doing a double take when she realizes who it is. The cowgirl turns around and offers a shy smile and a wave.");
+		output("You begin to [pc.walk] towards Brandy; the jingling of her bell grows ever louder as you close in, her tail swaying as she toils away at her work. She notices you eventually, looking over her shoulder once and doing a double take when she realizes who it is. The cowgirl turns around and offers a shy smile and a wave.");
 	}
 	//clear Brandy hug flag for gaining affection
 	flags["BRANDY_AFFECT_HUG"] = 0;
@@ -865,7 +865,7 @@ public function takeBrandyToAStallDate():void
 	//decentCumAmount:
 	if(pc.cumQ() >= 25) output("\n\nYour [pc.cum] begins to dribble out of the Brandy’s sex as your orgasm continues. The cowgirl under you is limp at this point, panting and mooing softly as you pump her full of cum.");
 	output("\n\nYour climax finally comes to an end as the last few spurts of [pc.cumNoun] empty into the bovine broad’s supple slit, leaving the both of you breathing heavily. You have to use all your remaining strength to take a couple steps back and pull yourself out of Brandy, who lets out a little <i>“m-moooo”</i> at the sudden emptiness, cum leaking out of her spread hole and onto the floor of the stall. The exhausted bovine looks over her shoulder at you, and manages to give you a soft smile and a <i>“moo~”</i> before sitting her cum-soaked ass on the ground, ready for a nap.");
-	output("\n\nYou smile and walk over to her and bring your bottom half to lie down on the spunk-covered floor, beckoning Brandy over. The cowgirl slides herself over to you. You give the side of your tauric body a pat. She seems to get the idea and brings her head down to rest on your body, her eyes quickly closing as her breathing steadies. You bring your upper half to lie down on the floor with the rest of you; not exactly a post-coital snuggle, you think, but it’ll do just fine.");
+	output("\n\nYou smile and [pc.walk] over to her and bring your bottom half to lie down on the spunk-covered floor, beckoning Brandy over. The cowgirl slides herself over to you. You give the side of your tauric body a pat. She seems to get the idea and brings her head down to rest on your body, her eyes quickly closing as her breathing steadies. You bring your upper half to lie down on the floor with the rest of you; not exactly a post-coital snuggle, you think, but it’ll do just fine.");
 	processTime(24);
 	//increase affection +5
 	brandyAffection(5);
@@ -890,7 +890,7 @@ public function takeBrandyToMiscreantManor():void
 	output("<i>“Hey, Brandy.”</i> you say, drawing the cowgirl’s attention, <i>“This place is nice and all, but I think I know somewhere better we could go.”</i>");
 	output("\n\nYou smile down at the girl, bringing your hand down to her shoulder.");
 	output("\n\nShe looks up at you and emits a nervous little <i>“Moo?”</i>");
-	output("\n\nReaching your hand further down, you grab Brandy’s dainty hand, and after giving her arm a little tug, she’s quick to follow you as you walk out of the Milk Barn. You walk for quite some time, Brandy’s bell jingling in your ear all the way, until, finally, you come to a stop as you reach your destination, though your bovine buddy tries to keep walking, like she’s hoping this isn’t the place you were talking about.");
+	output("\n\nReaching your hand further down, you grab Brandy’s dainty hand, and after giving her arm a little tug, she’s quick to follow you as you [pc.walk] out of the Milk Barn. You walk for quite some time, Brandy’s bell jingling in your ear all the way, until, finally, you come to a stop as you reach your destination, though your bovine buddy tries to keep walking, like she’s hoping this isn’t the place you were talking about.");
 	output("\n\nHer walking is halted as you give her arm another gentle tug, and the two of you bring your gaze to the crude wooden platforms and olde-timey stocks of Miscreant Manor.");
 	output("\n\nThe minty-haired gal brings herself close to your [pc.ear] and gives you a clearly distressed moo.");
 	output("\n\n<i>“Aww, c’mon Brandy,”</i> you respond as you begin to saunter your way up to the stocks. <i>“It’ll be fun, I promise.”</i>");

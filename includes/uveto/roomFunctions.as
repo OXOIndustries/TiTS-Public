@@ -837,6 +837,14 @@ public function uvetoBarBonus():Boolean
 	return false;
 }
 
+public function uvetoBarFirePitBonus():Boolean
+{
+	if (syriAtFreeezer()) syriAtFreezerFirePitBonus(0);
+
+	setNavDisabled(NAV_SOUTH_DISABLE);
+	return false;
+}
+
 //CUSTOM OFFBEATR SCENE!
 //An extremely-sized hyperfur male fox/horse hybrid. His cock would be very long and he would have a harem of helpers/handlers who would serve him, yiff him, and help him walk. Walking and yiffing are a team effort. Sexually he’s open but prefers females. You can tie it into the story any way you like - Fields on this survey are limited, so ask if you need clarification. The only thing to point out is that when walking, his harem would have a harness system strapped to their hips. A pair of girls every few feet of his length would hoist him and walk with him as if they were all one.
 //Xenofoxx
@@ -1062,11 +1070,14 @@ public function uvetoSheriffsOfficeBonus():Boolean
 public function uvetoMaglevStation():Boolean
 {
 	//removeUvetoColdBonus();
-	
-	addButton(0, "Transit", useUvetoTransportMenu);
+	if (syriQuestRunning() && (flags["SYRIQUEST_STATE"] == undefined || flags["SYRIQUEST_STATE"] == 0)) {
+		syriQuestInitialEncounter();
+		return true;
+	}
+	else addButton(0, "Transit", useUvetoTransportMenu);
 	return false;
 }
-
+		
 public function uvetoCrashedProbe():Boolean {
 	if (flags["UVIP_R10_PROBE_ACTIVE"] == undefined)
 	{

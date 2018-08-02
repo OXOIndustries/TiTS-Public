@@ -27,7 +27,7 @@ public function maikeEncounterFun():Boolean
 	author("SoAndSo");
 	output("Out from the twisting gloom of the mineshafts and twinkling minerals, a grand pit comes into your view. ‘Grand’ doesn’t quite do it justice: it must be at least 60 feet in diameter but what takes you back is the depth. " + (silly ? "It’s even deeper than all the fanfiction in the world." : "Starting from the walkway you’re planted on, a wide path twists around the inside of the pit and presumably to the bottom."));
 	output("\n\nThere’s enough nearby artificial lighting to help you make out where to go: bluish white lamps and lights that cover the walkway and freshly chartered ore veins show you where you would go... but not where you’d go <i>to</i>.");
-	if(flags["MAIKE_SLAVES_RELEASED"] != 1) 
+	if(flags["MAIKE_SLAVES_RELEASED"] != 1 && flags["MAIKE_SLAVES_RELEASED"] != 2) 
 	{
 		output("\n\nThere’s a constant <i>tnk-tnk</i> coming from below, a whole chorus of metal-on-rock that resonates upwards. You can barely make out hunched over slaves and machines hacking and grinding away at the rock along the lower pathways. With a cautious [pc.walk], you get close to the edge of the walkway and peer into the near-black below...");
 		output("\n\nYep, that’s deep.");
@@ -1076,23 +1076,90 @@ output("\n\nWhile it’s true that slavery is rife with suffering and brutality,
 
 output("\n\nUnfortunately, this particular suit has rather loose zippers across the chest, pelvis and rear end, adding an incentive for the more ‘hands-on’ slavers.");
 
-output("\n\nAppearance Description:");
-output("\n\nThe zippers on your slaves uniform are currently done up.");
+*/
 
-output("\n\nYour chest zipper is undone, exposing your [pc.chest] to the world.");
+//Appearance Description:
+public function slavesuitOptionsDisplay():void
+{
+	clearOutput2();
+	if(pc.isChestExposedByArmor() && pc.isCrotchExposedByArmor() && pc.isAssExposedByArmor()) output2("Your chest, pelvic and butt zippers are undone, exposing your [pc.ass], [pc.chest] and loins have to the world.");
+	else if(pc.isChestExposedByArmor() && pc.isCrotchExposedByArmor()) output2("Your chest and pelvic zippers are undone, exposing your [pc.chest] and [pc.crotch] to the world.");
+	else if(pc.isChestExposedByArmor() && pc.isAssExposedByArmor()) output2("Your chest and butt zippers are undone, exposing your [pc.chest] and loins to the world.");
+	else if(pc.isCrotchExposedByArmor() && pc.isAssExposedByArmor()) output2("Your pelvic and butt zippers are undone, exposing your crotch and [pc.ass] to the world.");
+	else if(pc.isChestExposedByArmor()) output2("Your chest zipper is undone, exposing your [pc.chest] to the world.");
+	else if(pc.isCrotchExposedByArmor()) output2("Your pelvic zipper is undone, exposing your [pc.crotch] to the world.");
+	else if(pc.isAssExposedByArmor()) output2("Your butt zipper is undone, exposing your [pc.ass] to the world.");
+	else output2("The zippers on your slave uniform are currently done up.");
+	output2("\n\n<b>Current Sexiness Bonus: </b>" + pc.armor.sexiness);
+	clearGhostMenu();
+	if(pc.isChestExposedByArmor()) addGhostButton(0,"Zip Chest",zipSlavesuit,"chest");
+	else addGhostButton(0,"Unzip Chest",unzipSlavesuit,"chest");
+	if(pc.isCrotchExposedByArmor()) addGhostButton(1,"Zip Crotch",zipSlavesuit,"crotch");
+	else addGhostButton(1,"Unzip Crotch",unzipSlavesuit,"crotch");
+	if(pc.isAssExposedByArmor()) addGhostButton(2,"Zip Butt",zipSlavesuit,"ass");
+	else addGhostButton(2,"Unzip Butt",unzipSlavesuit,"ass");
+	addGhostButton(14,"Back",appearance,pc)
+}
 
-output("\n\nYour pelvic zipper is undone, exposing your [pc.crotch] to the world.");
+public function unzipSlavesuit(area:String = "chest"):void
+{
+	clearOutput2();
+	if(area == "chest")
+	{
+		output2("You pull open the top zippers open to expose your [pc.chest]");
+		if(!pc.isChestExposedByUpperUndergarment()) output2(", though you'll have to do something about your undergarments if you really want to show off.");
+		else output2(", letting your [pc.nipples] free.");
+		pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
+		pc.armor.sexiness++;
+	}
+	else if(area == "crotch")
+	{
+		output2("You pull open the crotch's long zipper to expose your loins,");
+		if(!pc.isCrotchExposedByLowerUndergarment()) output2(" though you won't be showing off much so long as you've got underwear on! It'll probably still with teasing your foes, though.");
+		else output2(", letting your [pc.crotch] free in a display of brazen sexuality.");
+		pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
+		pc.armor.sexiness++;
+	}
+	else
+	{
+		output2("You unzip the back of your jumpsuit to display your [pc.ass]");
+		if(!pc.isAssExposedByLowerUndergarment()) output2(", but with the underwear you're wearing, you won't be offering easy access to your [pc.asshole] just yet.");
+		else output2(" and [pc.asshole] to the world. Whatever mischief you get into, you'll be ready for a quick anal pounding!");
+		pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
+		pc.armor.sexiness++;
+	}
+	pc.armor.hasRandomProperties = true;
+	clearGhostMenu();
+	addGhostButton(0,"Next",slavesuitOptionsDisplay);
+}
+public function zipSlavesuit(area:String = "chest"):void
+{
+	clearOutput2();
+	if(area == "chest")
+	{
+		output2("You zip up the chest of your slave uniform.");
+		pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
+		pc.armor.sexiness--;
+	}
+	else if(area == "crotch")
+	{
+		output2("You zip up the crotch of your slave uniform.");
+		pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
+		pc.armor.sexiness--;
+	}
+	else
+	{
+		output2("You zip up the ass half of your slave uniform. Probably shouldn't leave that hanging out where anyone can grab it, right?");
+		if(pc.isBimbo()) output2(" Well, you totes should, but sometimes you gotta wrap a present before you like, open it up!");
+		pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
+		pc.armor.sexiness--;
+	}
+	pc.armor.hasRandomProperties = true;
+	clearGhostMenu();
+	addGhostButton(0,"Next",slavesuitOptionsDisplay);
+}
 
-output("\n\nYour butt zipper is undone, exposing your [pc.ass] to the world.");
-
-output("\n\nYour chest, pelvic and butt zippers are undone, exposing all your [pc.ass], [pc.chest] and [pc.crotch] have to the world.");
-
-output("\n\nYour chest and pelvic zippers are undone, exposing your [pc.chest] and [pc.crotch] to the world.");
-
-output("\n\nYour chest and butt zippers are undone, exposing your [pc.chest] and [pc.crotch] to the world.");
-
-output("\n\nYour pelvic and butt zippers are undone, exposing your [pc.crotch] and [pc.ass] to the world.");
-
+/*
 output("\n\nGeneral Idea:");
 output("\n\nBasically add an [Interact] menu to the outfit when wearing it to expose the stated bits of the body. Adds exhibitionism when worn as such, etc, follows the same rules/flags. I don’t know anything about balancing exhibitionism numbers. ");
 output("\n\nHand Repulsor");

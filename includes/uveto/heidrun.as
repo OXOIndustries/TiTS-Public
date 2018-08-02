@@ -62,7 +62,7 @@ public function approachHeidrun():void
 {
 	clearOutput();
 	showHeidrun();
-	output("You’re greeted by a wagging tail and a warm smile from Heidrun as you walk into the cozy cave of the aptly named Warm Crusts. ");
+	output("You’re greeted by a wagging tail and a warm smile from Heidrun as you [pc.walk] into the cozy cave of the aptly named Warm Crusts. ");
 	if(!korgiTranslate()) output("<i>“Alien welcomed back. Alien here for buy something, yes?”</i>");
 	else output("<i>“Welcome back, outsider. Are you here to buy something?”</i>");
 	output(" She gestures at the multiple clothing racks lining up the wall of the store, while keeping her own sizable rack perfectly on display.");
@@ -326,7 +326,7 @@ public function boneHeidrun(x:int):void
 	output(". She shoves her fingers into her cunt, stirring her slit. She pulls her fingers out of her muff, sticking them into her mouth she tastes your cum. ");
 	if(!korgiTranslate()) output("<i>“Mmm, alien tasty. Alien give more other time?”</i>");
 	else output("<i>“Mmm, you taste good. Come back and give me some more.”</i>");
-	output(" You stand up, stretching your limbs you grab your equipment before walking back to the storeroom.");
+	output(" You stand up, stretching your limbs you grab your equipment before [pc.walking] back to the storeroom.");
 	output("\n\nA moment later Heidrun walks out of the backroom, cum still leaking down her thighs. She licks your neck affectionately before ushering you out of the store.");
 	IncrementFlag("SEXED_HEIDRUN");
 	processTime(20);

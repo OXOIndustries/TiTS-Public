@@ -6,6 +6,7 @@ package classes.Engine.Combat
 	import classes.Engine.Interfaces.output;
 	import classes.Engine.Utility.rand;
 	import classes.Characters.PlayerCharacter;
+	import classes.Items.Piercings.GeddaniumRingPiercing;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	import classes.kGAMECLASS;
 	
@@ -59,7 +60,7 @@ package classes.Engine.Combat
 		}
 
 		//25% dam multiplier
-		if (lustDamage.tease.damageValue > 0 && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25; 
+		if (lustDamage.tease.damageValue > 0 && target.hasStatusEffect("Red Myr Venom")) lustDamage.tease.damageValue *= 1.25;
 
 		// Apply any defensive modifiers
 		var damMulti:Number = 1;
@@ -67,6 +68,8 @@ package classes.Engine.Combat
 		if (target.hasStatusEffect("Sex On a Meteor")) damMulti += 0.5;
 		if (target.hasStatusEffect("\"Rutting\"")) damMulti += 0.5;
 		if (target.hasStatusEffect("Tallavarian Tingler")) damMulti += 0.5;
+		if (lustDamage.tease.damageValue > 0 && target.hasPiercingOfClass(GeddaniumRingPiercing) && attacker.hasScales()) lustDamage.tease.damageValue *= 1.3;
+
 		//New status: "Red Myr Venom" replaces this.
 		//if (target.hasStatusEffect("Myr Venom")) damMulti += 0.25;
 		if (target.hasPerk("Easy")) damMulti += 0.2;

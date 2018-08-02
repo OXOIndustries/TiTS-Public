@@ -373,7 +373,7 @@ public function sweatBunHyperCockDock2(x:int):void
 	if(pc.isBimbo()) output("Ooooh please! Fuck my fucking dick already, pleasepleaseplease!");
 	else output("Fuck fuck fuck... just make me cum! I can’t take it!");
 	output("”</i>");
-	output("\n\n<i>“’Kay!”</i> the bunny-girl chirps. She springs up, floppy ears twirling around her, flinging arcs of sweat at the walls as she rotates around into a better position. Her tail, the one bit of fluff her suit exposes, twitches happily. <i>“Now to just...”</i> She cups your bulging urethra in one hand and pumps it, redoubling the pressure. <i>“...pop the cork.”</i> A twist of the pirate’s wrist spins her dick-impaling finger wetly around. Pre chases it when she yanks it out, puddling prettily on her palm to display just how <i>slicked</i> the inside of your dick is for the sweaty bunny’s use.");
+	output("\n\n<i>“‘Kay!”</i> the bunny-girl chirps. She springs up, floppy ears twirling around her, flinging arcs of sweat at the walls as she rotates around into a better position. Her tail, the one bit of fluff her suit exposes, twitches happily. <i>“Now to just...”</i> She cups your bulging urethra in one hand and pumps it, redoubling the pressure. <i>“...pop the cork.”</i> A twist of the pirate’s wrist spins her dick-impaling finger wetly around. Pre chases it when she yanks it out, puddling prettily on her palm to display just how <i>slicked</i> the inside of your dick is for the sweaty bunny’s use.");
 	output("\n\nYou sigh in equal parts relief in arousal. The feeling of so much backed-up fluid flowing out of you is nearly orgasmic, and venting all that penile pressure produces the strangest kind of satisfaction. It’s almost a shame that your dick-hole is hanging open a little bit, dribbling an inviting curtain of goo, like it’s given up and decided to enjoy the idea of being fucked full of alien bunny-cock.");
 	output("\n\nThe mechanical purr of a zipper’s rapid descent draws your eye upward just in time to see the Jumper’s [enemy.cockNoun] spill out of the metal teeth, so sweaty that it’s nearly as shiny as the latex it’s being pulled out of. It bounces heavily, dribbling pre onto your well-slimed [pc.cockHead " + x + "]. The hefty orbs underneath actually arrest the zipper’s progress for a moment, tugging the seam so tightly that the fastener becomes bound up in friction, but a grunt and a hard yank allow the apple-sized globes to pop free.");
 	output("\n\nThey look so much larger now that there’s nothing to constrain them, and they sway with such heavy inertia that you can’t even begin to imagine how densely packed with cum they must be, how backed up the increasingly turgid, lop-eared dick-girl must be to come down here looking for a slave to fuck.");
@@ -1487,7 +1487,7 @@ public function facePussyFuckJumper():void
 	showBoredJumper(true);
 	author("Fenoxo");
 	//Bimbo
-	if(pc.isBimbo()) output("<i>“’Kay!”</i> you cheer, wiggling your hips with a friendly smile. <i>“But I hope you like, really like pussy!”</i>");
+	if(pc.isBimbo()) output("<i>“‘Kay!”</i> you cheer, wiggling your hips with a friendly smile. <i>“But I hope you like, really like pussy!”</i>");
 	//Bro
 	else if(pc.isBro()) output("You smirk self-assuredly. <i>“Hope you like puss.”</i> Of course she likes pussy.");
 	//Nice

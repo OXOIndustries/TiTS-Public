@@ -279,6 +279,9 @@ public function configureMails():void
 	//Akane emails
 	MailManager.addMailEntry("shukuchi_veritas", shukuchiKFineUSawSomethingMail, function():String{ return pc.mf("Mr", "Miss") + " Steele! A wonderful offer!"; }, "Celeritas Veritas LTD.", "no-reply@celeritasveritas.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("akanequest_email", akaneHasAnExclamationMarkOverHerHeadEmail, "You Are Needed", "gg45645yrtyy", "gg45645yrtyy@no-reply-arid.net", quickPCTo, quickPCToAddress);
+	
+	//Zephyr going to the nursery to visit kids on the reg
+	MailManager.addMailEntry("zephyr_visiting_the_nursery", zephyrMailAboutNursery, "Got some time off...", "Zephyr", "Zephyr@NewTexas.gov", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

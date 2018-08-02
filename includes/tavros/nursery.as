@@ -94,6 +94,12 @@ public function visitedNursery():Boolean
 
 public function nurseryFoyerFunc():Boolean
 {
+	if (pc.hasStatusEffect("Pregnancy Pending") && pc.hasPregnancyOfType("ZephyrPregnancy"))
+	{
+		zephyrPregnancyEnds();
+		return false;
+	}
+
 	if(flags["ELLIE_PREG_TIMER"] == 70 && flags["ELLIE_OPERATION"] == 3) return ellieEggsHatching();
 	else if(isHalloweenish() && havePumpkinCarvingScenes() && flags["CARVED_W_KIDDOS"] == undefined) return doPumpkinCarving();
 	else if(!isHalloweenish()) flags["CARVED_W_KIDDOS"] = undefined;
@@ -129,6 +135,35 @@ public function nurseryFoyerFunc():Boolean
 	if(flags["NURSERY_VISITED"] == undefined) flags["NURSERY_VISITED"] =1;
 
 	return false;
+}
+
+public function zephyrKidsOption(btnSlot:Number):Number
+{
+	var numZephKids:int = ChildManager.numOfUniqueType(ZephyrUniqueChild);
+
+	if (numZephKids > 0)
+	{
+		if (hours > 6 && hours < 22)
+		{
+			output("\n\nYour kids fathered by Zephyr look like they're growing up fast; undoutedly entirely human, something of a rarity in your nursery, but mightily energetic. Probably little troublemakers in waiting for you and the nursery staff!");
+
+			addButton(btnSlot, "ZephyrKids", playWithZephKids, undefined, "Zephyr Kids", "Play with your kids.");
+			btnSlot++;
+		}
+		else if (zephAtNursery())
+		{
+			output("\n\nYour kids fathered by Zephyr are fast asleep, tuckered out from a long day of activity. Zephyr herself has fallen victim to her exhaustion too, sound asleep amongst your children.");
+
+			addButton(btnSlot, "ZephyrPics", picsWithZephKids, undefined, "Zephyr Pics", "Take some pictures of your kids’ proud second mommy.");
+			btnSlot++;
+		}
+		else
+		{
+			output("\n\nYour kids fathered by Zephyr are fast asleep, tuckered out from a long day of activity.");
+		}
+	}
+	
+	return btnSlot;
 }
 
 public function zilBabyBonus(btnSlot:Number):Number
@@ -450,18 +485,26 @@ public function nurseryZilCallgirlRandomEvents():Boolean
 public function nurseryI14Func():Boolean
 {
 	nurseryZilCallgirlRandomEvents();
-	
 
 	return false;
 }
 
 public function nurseryCommonAreaFunc():Boolean
 {
+	var btnIdx:int = 0;
+
 	if(ChildManager.numChildrenAtNursery() > 0 && flags["ELLIE_PREG_TIMER"] < 70 && flags["ELLIE_AT_NURSERY"] != undefined)
 	{
 		output("\n\nYou find Ellie, happily playing with your other kids, singing to them in a lilting tone and waving her hands from side to side.");
 		addButton(0, "Ellie", ellieAtNurseryPreHatch, undefined, "", "");
 		return true;
+	}
+
+	if (zephAtNursery())
+	{
+		output("\n\nZephyr is here, idly rifling through a stack of computer tablets. Seems as though even if she leaves work, work doesn't leave her!");
+		addButton(btnIdx, "Zephyr", zephTalkAtNursery, undefined, "Go talk to Zephyr. She'll probably want to fuck!");
+		btnIdx++;
 	}
 	
 	nurseryZilCallgirlRandomEvents();
@@ -530,6 +573,7 @@ public function nurseryKidsDormsFunc():Boolean
 	button = milodanPlayOptions(button);
 	button = ellieKidVisits(button);
 	button = samBabiesVisitOptions(button);
+	button = zephyrKidsOption(button);
 
 	return false;
 }
@@ -664,7 +708,7 @@ public function nurseryC6Func():Boolean
 
 public function nurseryE6Func():Boolean
 {
-	flags["NAV_DISABLED"] = NAV_NORTH_DISABLE | NAV_SOUTH_DISABLE;
+	flags["NAV_DISABLED"] = NAV_SOUTH_DISABLE;
 	return false;
 }
 
@@ -2325,3 +2369,20 @@ public function pregAverageLoadSizes():void
 	nurseryComputerMenu(pregAverageLoadSizes);
 }
 
+public function nurseryMilkingRoomFunc():Boolean
+{
+	if (zephAtNursery() && pc.isLactating() && pc.hasVagina() && !pc.isPregnant() && pc.hasItemByClass(MagicMilker))
+	{
+		addButton(0, "ZephMilking", milkedByZeph, undefined, "Zephyr Milking", "Take some time to milk yourself and perhaps a little more time with Zephyr too...");
+	}
+	else
+	{
+		if (!zephAtNursery()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr isn't at the nursery to lend a hand.");
+		else if (!pc.isLactating()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need to be lactating to milk yourself!");
+		else if (!pc.hasVagina()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a pussy for Zephyr to assist in your endeavours!");
+		else if (pc.isPregnant()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr won't want to be too rough on her pregnant lover...");
+		else if (!pc.hasItemByClass(MagicMilker)) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a MagicMilker to hand.");
+	}
+
+	return false;
+}

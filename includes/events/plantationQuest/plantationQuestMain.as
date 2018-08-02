@@ -94,6 +94,11 @@ public function quinnVaginalCapacity():Number
 	//return (new ZilFemale().vaginalCapacity(0));
 	return 200;
 }
+public function quinnAnalCapacity():Number
+{
+	//return (new ZilFemale().analCapacity(0));
+	return 150;
+}
 public function fuckedQuinn():Boolean
 {
 	return (flags["SEXED_QUINN"] != undefined);
@@ -718,6 +723,7 @@ public function kaneDefeated():void
 	showKane();
 	author("Nonesuch");
 	flags["KANE_DEFEATED"] = 1;
+	if (flags["LOST_TO_KANE"] == undefined) flags["LOST_TO_KANE"] = 0;
 	showName("VICTORY:\nKANE");
 	output("Kane collapses in a yellow and black heap, beside the waterfall pool.");
 	output("\n\n<i>“No...”</i> he groans, wings twitching fitfully, attempting to clamber to his hands and knees. <i>“I obeyed the words... I am strong... I must protect...”</i>");
@@ -753,17 +759,21 @@ public function missionaryPositionWithKane():void
 	clearOutput();
 	showKane(true);
 	author("Nonesuch");
+	IncrementFlag("KANE_SEXED");
+	var enemy:Creature = (kaneDominance() == -1 ? enemy : new Kane());
 	var x:int = rand(pc.totalVaginas());
 	output("So much energy and boyish vigor, wasted upon angrily batting into you like a wasp against a window. With the wonderful sugary pheromones singing in your veins, sinking roots of hot arousal into your [pc.groin], you know exactly how the zil’s aggression should really be channelled.");
 	output("\n\nKane watches you from the ground, still scowling, as you ");
 	if(!pc.isCrotchExposed()) output("slide out of your [pc.gear], calmly displaying");
 	else output("calmly display");
 	output(" your bare [pc.chest] to him before placing your [pc.butt] down on a tuffet of soft moss.");
-	output("\n\n<i>“What are you doing?”</i>");
-	if(!pc.isBimbo()) output("\n\n<i>“Collecting my rightful reward,”</i> you reply archly, splaying your [pc.thighs] and exposing [pc.eachVagina] to the warm, moist air. <i>“You’ve got way too much anger going on and I need a fuck. So get over here, and we’ll solve both issues.”</i>");
+	if (kaneDominance() == -1) output("\n\n<i>“What are you doing?”</i>");
+	else output("\n\n<i>“You want sex, I take it,”</i> he growls.");
+	if(!pc.isBimbo()) output("\n\n<i>“" + (kaneDominance() == -1 ? "Collecting" : "It's") + " my rightful reward,”</i> you reply archly, splaying your [pc.thighs] and exposing [pc.eachVagina] to the warm, moist air. <i>“You’ve got way too much anger going on and I need a fuck. So get over here, and we’ll solve both issues.”</i>");
 	else output("\n\n<i>“Fighting time is over, so now it’s bouncy time!”</i> you say brightly, splaying your [pc.thighs] and exposing [pc.eachVagina] to the warm, moist air. <i>“C’mon fly boy - you aren’t always buzzing around being angry, are you?”</i>");
 
 	output("\n\nHis black eyes focused on your twat, the zil warrior attempts to form contemptuous words once, twice - then sighing in exasperated defeat, he rises and strides over to you, retracting his groin and chest plate as he comes. The smell of horn-honey intensifies as his stiff, six inch foreskinned prick springs into view, and you breath it in gladly, the heavy sweetness radiating arousal down to your crotch, your [pc.vagina " + x + "] moistening and spreading readily. You stroke him mockingly on the cheek when he takes you into his smooth, hard arms, his bare chest and muscular legs rubbing over your [pc.chest] and [pc.thighs].");
+	if (kaneDominance() != -1) output("<i>“You love this really, don’t you grumpy bum?”</i> you tease.");
 	output("\n\n<i>“Don’t... patronize me, land-stealer,”</i> he grunts through gritted teeth. You coo as he pushes his bulbous head beyond the labia of your [pc.vagina " + x + "], opening you up. <i>“I do this because... honor dictates it.”</i>");
 	output("\n\n<i>“And you aren’t interested in sexing me at all, are you,”</i> you smirk at him. You gasp as he responds by fiercely thrusting home, swelling your wet walls outwards with most of his cock. ");
 	if(pc.vaginas[x].looseness() < 4) output("He’s thicker as well as bigger than most zil, too - perfect.");
@@ -793,20 +803,32 @@ public function missionaryPositionWithKane():void
 	else 
 	{
 		output("\n\n<i>“Wouldn’t it have been nicer if we’d skipped all the roughhousing and got to this bit straight away?”</i> you ask coyly, fingering his antennae.");
-		output("\n\n<i>“We are fighting for our land, you - slattern!”</i> he cries, outraged. His hips pump into your drooling hole of their own accord, shivers of delightful sensation reaching into your heat. <i>“We lived just fine until you - I can’t believe you’d - oh, fuck you! Fuck you! Fuck you!”</i> he enunciates it with a fierce thrust of his hips");
+		if (kaneDominance() != -1) output("\n\n<i>Why do you find it necessary to patronize me?”</i> he snarls."); 
+		else output("\n\n<i>“We are fighting for our land, you - slattern!”</i> he cries, outraged.");
+		output(" His hips pump into your drooling hole of their own accord, shivers of delightful sensation reaching into your heat. <i>“We lived just fine until you - I can’t believe you’d - oh, fuck you! Fuck you! Fuck you!”</i> he enunciates it with a fierce thrust of his hips");
 		if(pc.legCount > 1) output(", pulling your [pc.legs] up in his ropey arms so he can go at you even harder");
 		output(".");
 		output("\n\n<i>“Yes! That’s it! Fuck me! Oh, you’re so sweet when you’re all worked up!”</i> you laugh delightedly, clutching up big handfuls of moss. He can’t help it; simultaneously furious with and enraptured by your sex, he is incapable of doing anything but hump away, pushing and stroking more and more sensuous delight into your [pc.vagina " + x + "]. When another orgasm lights up your senses, you make sure to tighten your [pc.hips] around his tight, jackhammering waist this time; you are rewarded by a harsh, buzzing groan and sweet, viscous warmth pulsating into your womb. You squeeze his compact, wiry form into your [pc.chest] and rut into him back, riding the gorgeous, sugary pulses, both of you setting aside your ulterior purposes to fuck each other silly.");
 	}
-	output("\n\nYou rest for a moment, glued together by a gratuitous load of honey seed, the afterglow opening up your senses. You run your fingers through Kane’s brown mop half-mockingly, half-comfortingly, and that rouses him. He parts from you without a word, his dangling cock trailing golden cum from your snatch and staggers to his feet. After one or two false starts he manages to thrum his wings into action and rises into the air. You close your [pc.hips] and, leaning on your side, watch him go.");
-	output("\n\n<i>“There’s no way you’re getting up the waters,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>");
+	output("\n\nYou rest for a moment, glued together by a gratuitous load of honey seed, the afterglow opening up your senses. You run your fingers through Kane’s brown mop half-mockingly, half-comfortingly, and that rouses him. He parts from you without a word, his dangling cock trailing golden cum from your snatch and staggers to his feet.");
+	if (kaneDominance() == -1)
+	{
+		output(" After one or two false starts he manages to thrum his wings into action and rises into the air. You close your [pc.hips] and, leaning on your side, watch him go.");
+		output("\n\n<i>“There’s no way you’re getting up the waters,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>");
+	}
+	else
+	{
+		output(" You lie on your side and gaze up at him. The upstart zil may try and deny it all he wants, but the sidelong glances he gives you tells you all you need to know about how deep his supposed aversion to you goes.");
+		output("\n\n<i>“Do you want anything else, starwalker?”</i> he mutters.");
+	}
 	processTime(20);
 	if(pc.totalVaginas() > 1) pc.loadInCunt(enemy,y);
 	else pc.loadInCunt(enemy,x);
 	pc.orgasm();
 	pc.orgasm();
 	output("\n\n");
-	CombatManager.genericVictory();
+	if (kaneDominance() == -1) CombatManager.genericVictory();
+	else kaneMenu();
 }
 
 //Frot
@@ -816,13 +838,15 @@ public function frotWithKaneYaBugger():void
 	clearOutput();
 	showKane(true);
 	author("Nonesuch");
+	IncrementFlag("KANE_SEXED");
+	var enemy:Creature = (kaneDominance() == -1 ? enemy : new Kane());
 	output("<i>“Pants down, fly boy,”</i> you growl, the sugary pheromones singing in your veins, hot arousal rooting into your [pc.groin]. <i>“Let’s see the goods.”</i>");
 	output("\n\nKneeling on his side, Kane sullenly does as you ask, retracting his chest and groin plate so that his stiff, six inch fore-skinned prick springs into the open air. The smell of horny honey intensifies and you breath it in gladly; the arousal inside you swells from nagging to uncontainable and you have your [pc.gear] off before you’ve even thought about it, [pc.eachCock] throbbing with need and pointing at the warrior zil accusingly, all of your attention on his gently oozing cock.");
 	output("\n\nYou lower yourself down onto the mossy ground and take hold of his firm, compact frame, allowing your [pc.chest] to brush over his small, black nipples, firmly pressing the hot meat of your [pc.cock] against the shiny, latex-like protrusion of his own. He turns his head away with a flick of brown hair, an expression of disdain writ large on his overcast features.");
 	output("\n\n<i>“As if you weren’t going to do similar if </i>you<i> had won,”</i> you scoff. You thrust your hips, pleasure sharply jagging down your erection as it rubs over the zil’s glossiness, making your partner shiver in response.");
 	output("\n\n<i>“I allow this because honor dictates it,”</i> he snaps. <i>“Gloat if you must");
 	if(pc.cocks[0].cLength() < 5.5) output(", although I wouldn’t if it were me who were hung like a child.");
-	else if(pc.cocks[0].cLength() < 7) output(". It won’t change the fact the touch of a land-stealer puppet fills me with revulsion.");
+	else if(pc.cocks[0].cLength() < 7) output(". It won’t change the fact " + (kaneDominance() == -1 ? "the touch of a land-stealer puppet fills me with revulsion." : "things’d be very different were I in charge."));
 	else output(". It won’t change the fact your grotesquely-sized beast-penis fills me with revulsion.");
 	output("”</i>");
 
@@ -847,13 +871,29 @@ public function frotWithKaneYaBugger():void
 	output(". He pouts and barks his displeasure, but he’s too wrapped up in the intense pleasure you’ve pressured on him to do anything but jack-hammer his narrow hips up to his own high, syrupy gold melding with your [pc.cumColor] [pc.cumNoun]. You keep a close grip on his tight, heaving frame, thrusting against his pulsing dick, the pheromone-thick goo enveloping your cock only intensifying your release and deep need to pump out every last drop of your cum. ");
 	if(pc.cumQ() < 100) output("Both you and him are pretty damn sticky by the time your blood has finally cooled.");
 	else output("You’ve managed to cover him from his mop of hair down to his shiny boots in your glory by the time your blood has finally cooled.");
-	output("\n\nYou rest for a moment, scissoring with your defeated opponent, before fully taking in the fact that you’re lying next to a massive, natural wash basin. You disentangle yourself from Kane - still lying there with his eyes closed, wiry chest heaving - and head into the cool waters.");
-	output("\n\nThere’s a thrum of wings whilst you’re still enjoying a skin-tingling clean. You turn and watch Kane slowly ascend.");
-	output("\n\n<i>“Enjoy the waters while you can - they will be your undoing,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>");
-	output("\n\n");
+	output("\n\nYou rest for a moment, scissoring with your defeated opponent,");
+	if (kaneDominance() == -1) output(" before fully taking in the fact that you’re lying next to a massive, natural wash basin. You");
+	else output(" enjoying the little aftershocks trembling through you, and the soothing, physical peace that follows. Finally, you");
+	output(" disentangle yourself from Kane - still lying there with his eyes closed, wiry chest heaving - and");
+	if (kaneDominance() == -1) output(" head into the cool waters.");
+	else output(" clean yourself off.");
+
+	if (kaneDominance() == -1)
+	{
+		output("\n\nThere’s a thrum of wings whilst you’re still enjoying a skin-tingling clean. You turn and watch Kane slowly ascend.");
+		output("\n\n<i>“Enjoy the waters while you can - they will be your undoing,”</i> is his parting shot. <i>“They are the true protector of the word-wolf!”</i>");
+		output("\n\n");
+	}
+	else
+	{
+		output("\n\nHis chitinous armor is as tight as a drum by the time you’re done and turn back to him, that trademark scowl being directed at you from beneath his brown mop of hair.");
+		output("\n\n<i>“You have your satisfaction,”</i> he growls, with a jerk of his head. <i>“Is there anything else you want from me?”</i>");
+	}
+
 	processTime(15);
 	pc.orgasm();
-	CombatManager.genericVictory();
+	if (kaneDominance() == -1) CombatManager.genericVictory();
+	else kaneMenu();
 }
 
 //PC Loses
@@ -863,6 +903,9 @@ public function loseToKane():void
 	showKane();
 	author("Nonesuch");
 	showName("DEFEAT:\nKANE");
+	IncrementFlag("LOST_TO_KANE");
+	IncrementFlag("KANE_SEXED");
+	IncrementFlag("KANE_BLOWN");
 	if(pc.HP() <= 1) output("The strength departs your [pc.legOrLegs] and you collapse, hands sinking into soft moss. You shake your head urgently and throw your [pc.weapon] down when you hear the deadly whirr of the stone approaching. <i>Anything</i> but getting hit by that again.");
 	else output("Your head swims. Everything seems to drip with honey, you can practically taste and feel it on your [pc.lips] and [pc.tongue], and oh Void the thought of being touched and roughly used when you’re in this state... you barely notice your [pc.weapon] tumbling out of your hand. It’s no longer of any importance.");
 	output("\n\nKane walks across to you slowly, only letting his weapon softly thump down into the moss when it’s completely obvious you aren’t bluffing; when he’s almost on top of you, and the smell of him is billowing thickly over your senses.");
@@ -947,6 +990,8 @@ public function loseToKane():void
 	currentLocation = rooms[currentLocation].southExit;
 	//Move PC to Upper Brook square, zil pheromones effect
 	CombatManager.genericLoss();
+	
+	IncrementFlag("LOST_TO_KANE");
 }
 
 //FOOT OF THE CLIFF
@@ -1575,13 +1620,12 @@ public function zilVillageOutskirts():void
 	if(!plantationQuestComplete()) 
 	{
 		showKane();
-		showBust("KANE");
 		output("\n\nYou approached this literal nest of wasps as carefully as you could - however the few zil you see hang off you, watching your approach from doorways and trees with surly, wary black eyes.");
 		output("\n\nYou recognize the male on the nearest platform by his size and scar. Kane gazes down at you, boot dangling, po-faced. Possibly you’re imagining it, but you think you detect the slightest hint of grudging admiration underneath that overhang of hair.");
 		output("\n\n<i>“Quinn will speak with you,”</i> he says. <i>“You can rest here first, if you wish. I would.”</i> He disappears further into the woods without another word.");
 	}
 	//Quest resolved, zil defeated:
-	else if(plantationQuestComplete() && flags["PQ_RESOLUTION"] == -1) 
+	else if(flags["PQ_RESOLUTION"] == -1) 
 	{
 		output("\n\nThis place is empty now, the wind blowing nothing but memories. Somehow it gives you the creeps a lot more than when it was packed with watching zil.");
 	}
@@ -1594,11 +1638,19 @@ public function zilVillageOutskirts():void
 		output("\n\n(<b>Key Item Gained:</b> RK Lah - Captured)");
 		pc.createKeyItem("RK Lah - Captured");
 	}
+	if (hours >= 7 && hours < 18 && plantationQuestComplete() && flags["KANE_STATUS"] != 3) 
+	{
+		if (kaneDominance() == 100) output("\n\nYou blink. You can’t see anything in that particular tree at the edge of the settlement that you’ve come to know so very well. Where has Kane gone?");
+		else output("\n\nIn the foliage of a tree at the very edge of the settlement, you can just about make out a single, dangling black boot. The sort that might be attached to a big male zil, perhaps.");
+		addButton(0, "Kane", kaneApproach);
+	}
 }
 
 //Zil Chieftain’s Circle
 public function chieftansCircleBonusFuckery():Boolean
 {
+	var pregDays:int = quinnPregDays();
+	
 	author("Nonesuch");
 	//First
 	if(flags["PQ_RESOLUTION"] == undefined) 
@@ -1631,6 +1683,11 @@ public function chieftansCircleBonusFuckery():Boolean
 		addButton(0,"Next",move,rooms[currentLocation].southExit);
 		return true;
 	}
+	// Preg Quinn
+	else if((pregDays > 80 && (flags["QUINN_PREG_APPROACH"] == undefined || flags["QUINN_PREG_APPROACH"] < 3)) || pregDays > 180 || pc.hasStatusEffect("Quinn Post-Pregnancy"))
+	{
+		return chieftansCircleBonusQuinnPreg();
+	}
 	//Zil Chieftain’s Circle Blurbs
 	//PC sided with Lah, has not visited Plantation since
 	else if(flags["PQ_RESOLUTION"] == 2)
@@ -1648,8 +1705,16 @@ public function chieftansCircleBonusFuckery():Boolean
 		//PC sided with Lah, has visited Plantation since
 		else
 		{
-			output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair, upon which Quinn lounges. She arches her eyebrows in response to your gaze. Stood beside it is RK Lah, who grins wolfishly in turn.");
-			output("\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has a bustle to it; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.");
+			// Quinn Mom
+			if(flags["QUINN_KID_NAME"] != undefined && quinnBabyAge() >= 365)
+			{
+				output(chieftansCircleBonusQuinnMomText());
+			}
+			else
+			{
+				output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair, upon which Quinn lounges. She arches her eyebrows in response to your gaze. Stood beside it is RK Lah, who grins wolfishly in turn.");
+				output("\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has a bustle to it; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.");
+			}
 			//[Quinn] [Lah]
 			addButton(0,"Quinn",approachQuinn,undefined,"Quinn","Approach the reclining Queen.");
 			addButton(1,"Lah",lahPeaceApproach,undefined,"Lah","The ausar activist’s angry agitation appears adequately abated.");
@@ -1659,8 +1724,16 @@ public function chieftansCircleBonusFuckery():Boolean
 	else if(flags["PQ_RESOLUTION"] == 1)
 	{
 		showBust("QUINN");
-		output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair, upon which Quinn lounges. She arches her eyebrows in response to your gaze.");
-		output("\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.");
+		// Quinn Mom
+		if(flags["QUINN_KID_NAME"] != undefined && quinnBabyAge() >= 365)
+		{
+			output(chieftansCircleBonusQuinnMomText());
+		}
+		else
+		{
+			output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair, upon which Quinn lounges. She arches her eyebrows in response to your gaze.");
+			output("\n\nSeveral small zil children run over at your approach, eager to stare at, ask questions of and most importantly play with the honored star-person guest. The place has plenty of bustle; male zil flicker in and out of the air carrying tools, cooking fires are lit, weapons are honed and conversation buzzes. It’s all around the edges, though. Nobody walks through the circle.");
+		}
 		//[Quinn]
 		//Ghosted out until PC reports back to Darnock
 		if(flags["PQ_PEACE_TIMESTAMP"] == undefined) addDisabledButton(0,"Quinn","Quinn","Maybe go back and explain what’s happened at the Plantation before speaking to Quinn again.");
@@ -1987,7 +2060,7 @@ public function losesToRKLah():void
 	output("\n\nAt least that is a sign that is universally understood. The zil cheer, a joyous, buzzing ululation rising and receding over the crowd. Thin chest heaving, Lah raises his hands to it, wordless for the moment in exhausted triumph.");
 	output("\n\n<i>“You have shown again why you are the word-wolf,”</i> Quinn says with calm pleasure, once the cacophony has died down a bit. <i>“Strong in word and deed.”</i> The ausar bows deeply.");
 	output("\n\n<i>“What do you want doing with the land-stealer pawn?”</i> growls Kane, hand on spear.");
-	output("\n\n<i>“[pc.HeShe] challenged and fought honorably,”</i> the female zil pronounces, shimmering eyes on you. <i>“And vanquished the cliffs besides. If [pc.HeShe] accepts the word-wolf’s truths are stronger than [pc.hisHer], [pc.heShe] is free to pledge their allegiance to me, and can go in peace.”</i>");
+	output("\n\n<i>“[pc.HeShe] challenged and fought honorably,”</i> the female zil pronounces, shimmering eyes on you. <i>“And vanquished the cliffs besides. If [pc.heShe] accepts the word-wolf’s truths are stronger than [pc.hisHer], [pc.heShe] is free to pledge their allegiance to me, and can go in peace.”</i>");
 	processTime(4);
 	flags["PQ_BEAT_LAH"] = -1;
 	
@@ -2419,6 +2492,7 @@ public function pcReignsAsDiplomancerSupreme():void
 
 //Let Him Go
 //Tooltip: Relent and let the doggie go.
+public function rkLahIsFree():Boolean { return (flags["PQ_SECURED_LAH"] == -1); }
 public function letRkLahFuckOff():void
 {
 	clearOutput();
@@ -2491,10 +2565,20 @@ public function quinnAppearance():void
 	clearOutput();
 	showQuinn();
 	author("Nonesuch");
-	output("From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is a bit taller than the zil average, as well as more svelte - underneath the sheer armor of her chest her breasts look to be maybe C cups, and the slimness of her thighs make her gleaming, armored legs look long and rather strict. Still, the presence of a tear-shaped abdomen and complete absence of clothes means she doesn’t stand out much from her fellows in purely physical terms. It’s the sense of control, the sedateness and the manner of someone used to getting their own way which do that.");
-	output("\n\nHer pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.");
-	if(!fuckedQuinn()) output("\n\nYou’d readily assume, going off the rest of her, that underneath that implacable armor Quinn is just as stickily and headily zil as the rest of her female subjects; she certainly doesn’t display it outwardly, though.");
-	else output("\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as an extremely tight, orange back door between her cute, supple rump.");
+	
+	var pregDays:int = quinnPregDays();
+	
+	if(flags["QUINN_TOTAL_KIDS"] > 0) output(quinnAppearanceMommy());
+	else if(pregDays > 30) output(quinnAppearancePreg());
+	else
+	{
+		output("From the top of her striped fuzzy hair to the tip of her black boots, the female zil who calls herself Quinn is about 5\' 8\". She is a bit taller than the zil average, as well as more svelte - underneath the sheer armor of her chest her breasts look to be maybe C cups, and the slimness of her thighs make her gleaming, armored legs look long and rather strict. Still, the presence of a tear-shaped abdomen and complete absence of clothes means she doesn’t stand out much from her fellows in purely physical terms. It’s the sense of control, the sedateness and the manner of someone used to getting their own way which do that.");
+		output("\n\nHer pale, yellow face is quite round, with arching black eyebrows above her striking, golden-irised eyes; the smiles or frowns that appear on her mouth seem to touch only the barest corners of it. Her frizzy chestnut-and-platinum blonde hair falls freely down to the small of her back, pierced by the two bobbing antennae that all zil share.");
+		if(!fuckedQuinn()) output("\n\nYou’d readily assume, going off the rest of her, that underneath that implacable armor Quinn is just as stickily and headily zil as the rest of her female subjects; she certainly doesn’t display it outwardly, though.");
+		else output("\n\nUnderneath that implacable armor of hers you know that Quinn has the intoxicating, oozing honey cunt common to all female zil, as well as an extremely tight, orange back door between her cute, supple rump.");
+	}
+	output("\n\n");
+	
 	clearMenu();
 	peacefulQuinnMenu();
 	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
@@ -2507,7 +2591,8 @@ public function peacefulQuinnMenu():void
 	addButton(1,"Appearance",quinnAppearance);
 	if(flags["MET_QUINN"] != undefined) 
 	{
-		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) 
+		if(flags["QUINN_KID_AGE"] != undefined) quinnMomSexButton(2);
+		else if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0)
 		{
 			if(pc.lust() >= 33) addButton(2,"Sex",sexWithQuinnOmnigenderWHYYYY);
 			else addDisabledButton(2,"Sex","Sex","You aren’t aroused enough for this.");
@@ -2516,6 +2601,12 @@ public function peacefulQuinnMenu():void
 		else addDisabledButton(2,"Sex","Sex","You have no suitable endowments for sex with her.");
 	}
 	else addDisabledButton(2,"Sex","Sex","You might want to hold your horses, buckaroo.");
+	
+	quinnFestivalButton(4);
+	
+	// Add [Myne / Owers] option to [Quinn] main menu
+	if(flags["QUINN_KID_NAME"] != undefined && quinnBabyAge() >= 365) addButton(5, quinnBabyName(), approachQuinnBaby);
+	
 	addButton(14,"Leave",leaveZeLovelyQuinnBeeeeeehind);
 }
 
@@ -2995,6 +3086,10 @@ public function approachQuinn():void
 	//Repeat
 	else
 	{
+		if(mommyQuinnApproach()) return;
+		
+		if(pregQuinnApproach(quinnPregDays())) return;
+		
 		output("<i>“My ");
 		if(flags["PQ_BEAT_LAH"] == 1 && flags["PQ_RESOLUTION"] == 1) output("most honored ");
 		output("warrior returns,”</i> the female chieftain says, leant back in her chair, one hand rested on a slim thigh. She favors you with a serene smile. <i>“What does [pc.he] wish of [pc.his] Quinn?”</i>");
@@ -3023,10 +3118,16 @@ public function noGiveMeMens():void
 //Requires dick < 12" and/or vagina
 public function sexWithQuinnOmnigenderWHYYYY():void
 {
+	var pregDays:int = quinnPregDays();
+	
+	if(pregDays > 60)
+	{
+		pregQuinnSexNo();
+		return;
+	}
+	
 	// Handmaiden Threesome
-	if(	(pc.hasCock() && pc.smallestCockLength() < 12.5)
-	&&	pc.libido() >= 30
-	&&	flags["QUINN_EVERY_HOLED"] != undefined || GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440)
+	if(quinnHandmaidenThreesomeAvailable())
 	{
 		quinnHandmaidenThreesome(["intro"]);
 		return;
@@ -3403,6 +3504,9 @@ public function talkToQuinnAboutHerself():void
 		output(" Although I know now that it was a form of deceit he used to control me, I hold onto it.”</i> She pauses slightly in thought. <i>“To my people, it continues to hold a ring of power; it makes their leader unique and modern, and they are proud to serve me. To me though - it speaks of humility. Of being too eager to grasp power to properly question where it came from. This is an important thing for me to remember. I will let it shape me.”</i>");
 	}
 	processTime(4);
+	
+	flags["QUINN_TALK_HERSELF"] = 1;
+	
 	clearMenu();
 	addButton(0,"Next",talkToQuinnStuffGogogogogogogogogogo);
 }
@@ -3434,6 +3538,9 @@ public function quinnsEsbethTalk():void
 		output("\n\n<i>“Yes,”</i> agrees the zil coolly. <i>“We will.”</i>");
 	}
 	processTime(3);
+	
+	flags["QUINN_TALK_ESBETH"] = 1;
+	
 	clearMenu();
 	addButton(0,"Next",talkToQuinnStuffGogogogogogogogogogo);
 }
@@ -3462,17 +3569,39 @@ public function askQuinnAboutTheNaleen():void
 	output("\n\nShe pats the tuft down.");
 	output("\n\n<i>“If you are that interested in them, feel free to go down there and experience the naleen mating ritual for yourself. Every tribute contributes to the accord we all enjoy, after all...”</i>");
 	processTime(5);
+	
+	flags["QUINN_TALK_NALEEN"] = 1;
+	
 	clearMenu();
 	addButton(0,"Next",talkToQuinnStuffGogogogogogogogogogo);
 }
 
 public function talkToQuinnStuffGogogogogogogogogogo():void
 {
+	if(canQuinnTalkPollenDance())
+	{
+		quinnTalkPollenDance("intro");
+		return;
+	}
+	
+	var pregDays:int = quinnPregDays();
+	
 	clearOutput();
 	showQuinn();
 	author("Nonesuch");
-	output("What will you ask Quinn about?");
+	
+	if(pregDays > 7)
+	{
+		output("Quinn’s jaw is working; there’s a small bowl of dried herbage on her throne’s armrest. She swallows volubly.");
+		output("\n\n<i>“My");
+		if(flags["QUINN_SIRED_KID"] != undefined) output(" most");
+		output(" honored warrior returns,”</i> she greets you, rather thickly. <i>“What does [pc.he] wish of his Quinn?”</i>");
+	}
+	else output("What will you ask Quinn about?");
+	output("\n\n");
+	
 	clearMenu();
+	
 	//Esbeth
 	//Greyed out for 24 hours after peaceful resolution
 	if((flags["PQ_RESOLUTION"] == 1))
@@ -3489,6 +3618,13 @@ public function talkToQuinnStuffGogogogogogogogogogo():void
 
 	if(flags["PQ_NALEENED"] == undefined) addButton(2,"Naleen",askQuinnAboutTheNaleen,undefined,"Naleen","Ask about the naleen you were unfortunate enough to encounter beneath the falls.");
 	else addButton(2,"Naleen",askQuinnAboutTheNaleen,undefined,"Naleen","Ask about the hissing you heard underneath the falls.");
+	
+	// Add [Herbs?] to talk options
+	// Remove [Herbs?] option once used
+	if(pregDays > 7 && flags["QUINN_TALK_HERBS"] == undefined) addButton(5, "Herbs?", askQuinnAboutHerbs, undefined, "Herbs?", "Ask what she’s eating.");
+	
+	if(flags["QUINN_PREG_APPROACH"] >= 3) addButton(6, "Pregnancy?", askQuinnAboutPregnancy, undefined, "Pregnancy?", (StatTracking.getStat("pregnancy/quinn sired") <= 0 ? "Ask how it’s going." : "Ask if she’s considered having any more children."));
+	
 	addButton(14,"Back",goBackToQuinnMain);
 }
 public function goBackToQuinnMain():void

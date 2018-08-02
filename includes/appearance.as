@@ -1255,7 +1255,7 @@ public function appearance(forTarget:Creature):void
 			case GLOBAL.TYPE_DOVE:
 				if(target.wingCount == 2) output2(" a pair of");
 				else output2(" " + num2Text(int(target.wingCount)));
-				if(target.wingCount < 4) output2(" " + target.furColor + " wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
+				if(target.wingCount < 4) output2(" " + target.wingColor() + " wings adorn your back, feathered like a dove’s and big enough to be worn like a cloak when folded over your body. They’re strong enough to glide with, but nice and soft to the touch.");
 				else if(target.wingCount < 6) output2(" wings sprout from your back, each covered in wonderfully soft " + target.wingColor() + " feathers and big enough to be worn like a robe when all " + num2Text(int(target.wingCount)) + " are folded over your body. They’re arranged so they don’t get in each other’s way when spread, thus you can still glide with them.");
 				else output2(" wings sprout from your back, each covered in wonderfully soft " + target.wingColor() + " feathers and big enough to be worn like a luxurious ceremonial robe when all " + num2Text(int(target.wingCount)) + " are folded over your body, which you often find yourself doing to help with getting through tight spaces. Despite their sheer bulk, you can still glide with them.");
 				break;
@@ -2815,7 +2815,11 @@ public function appearance(forTarget:Creature):void
 		if(kGAMECLASS.canSaveAtCurrentLocation) addGhostButton(btnIndex++, "Laquine Ears", LaquineEars.laquineEarsRemove, target, "Remove Laquine Ears", "The Laquine Ears have probably been used up by now, should you remove them?");
 		else addDisabledGhostButton(btnIndex++, "Laquine Ears", "Remove Laquine Ears", "You cannot do this at this time.");
 	}
-	
+	if (target.armor is Slavesuit) 
+	{
+		output2("\n\n<b>You can zip or unzip the zippers on your slavesuit at will.</b>.. Or you could just check and see how you have it set up right now.");
+		addGhostButton(btnIndex++,"Slavesuit",slavesuitOptionsDisplay,undefined,"Slavesuit","Check the status of you slave uniform.");
+	}	
 	// Immobilization help
 	if (immobilizationList().length > 0) addGhostButton(btnIndex++, "ImmobileHelp", immobilizationHelp, undefined, "Immobilization Help", "You can’t move--Call for help to fix your immobilized state!");
 	

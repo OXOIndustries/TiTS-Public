@@ -55,7 +55,7 @@
 			this.ballEfficiency = 60;
 
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 25;
 			this.timesCum = 2508;
 			this.cockVirgin = false;

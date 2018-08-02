@@ -23,6 +23,11 @@ public function burtsBarFunc():Boolean {
 		}
 		syriAtBurtsBonus(2);
 	}
+	//Syri has left the building
+	else if (syriQuestRunning() && flags["SYRIQUEST_STATE"] == undefined) {
+		syriQuestBurtsBlubt();
+		return true;
+	}
 	roamingBarEncounter(3);
 	if(debug) addButton(4,"Oil Cheat",oilyButt);
 	else vendingMachineButton(4, "XXX");

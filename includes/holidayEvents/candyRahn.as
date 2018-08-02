@@ -59,7 +59,7 @@ public function drinkSomeNog():void
 	clearOutput();
 	showCandyRahn();
 	output("Your eyes are drawn once more to her breasts. And why not? Aside from her massive fuck-stick, it’s her most salient asset. She catches your eyes and grins, giving her striped teat a little squeeze, sending a creamy bead oozing from her nipple. There’s a distinct scent of liquor from her milk, and you find yourself licking your lips with anticipation.");
-	output("\n\n<i>“’Tis the season to be jolly,”</i> she giggles.");
+	output("\n\n<i>“‘Tis the season to be jolly,”</i> she giggles.");
 	output("\n\nWell, hard to argue with that. You move forward and latch onto her breast. She gasps, clutching your head as your suckle her teat. A moan escapes you at the taste. Her skin actually tastes like a candy cane, and her milk like eggnog! The two flavours swirl in your mouth as you suck her cream and taste her plump nipples.");
 	output("\n\n<i>“Oh yes,”</i> she murmurs, stroking your hair, pulling you deeper into the soft, malleable girth of her tits. <i>“Drink it all up.”</i>");
 	output("\n\nYou’ll hardly say no. In fact, you wonder if you can. Her cream warms your stomach and makes your head spin from the intoxicating flavour. You mash her breasts in your hands, and she gasps as you find her other nipple, rolling the firm bud between your fingers.");

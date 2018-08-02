@@ -75,6 +75,7 @@ public function approachCrewShekka(back:Boolean = false):void
 		else output("evenin’");
 		output(" [pc.name]. Is there anything I can do you for?”</i>");
 	}
+	if(pc.accessory is MaikesCollar) output("\n\n<b>You should ask Shekka for help removing your collar!</b>");
 	shekkaCrewMenu();
 }
 
@@ -119,6 +120,8 @@ public function shekkaCrewMenu():void
 		//		Oral
 		//		Vagoo
 	*/
+	if(pc.accessory is MaikesCollar) addButton(4,"Slave Collar",shekkaRemovesCollar,undefined,"Slave Collar","Get Shekka to cut you out of this blasted collar!");
+
 	addButton(5,"Buy", shekkaShop);
 	addButton(6,"Sell", shekkaShop, true);
 	if(pc.hasStatusEffect("Rusted Emitters")) addButton(7,"Fix Emit.",fixMyEmittersShekka,undefined,"Fix Emit.","See if Shekka can possibly fix your sydian-damaged shield emitters.");
@@ -127,6 +130,30 @@ public function shekkaCrewMenu():void
 	else addDisabledButton(8,"Sell Prize","Sell Prize","You haven’t found any special salvage to sell.");
 	addButton(14,"Back",crew);
 }
+
+//[Shekka remove collar]
+public function shekkaRemovesCollar():void
+{
+	clearOutput();
+	showShekka();
+	author("Fenoxo");
+	output("<i>“Hey Shekka, you think you could...?”</i> You fall silent as the tingling irritation rises to a muscle-twitching sting. Instead of talking anymore, you sharply gesture to the painful collar. <i>“Help.”</i>");
+	output("\n\n<i>“Oooh, you got yourself in a real bind! Never thought you’d be the type to get yourself locked into an obedience collar. Harder to handle by yourself than a cracked crankshaft, but lucky for you, you’ve got the galaxy’s top fixer and mechanic at your beck and call. Hold tight, Cap’n!”</i> The raskvel launches into her tools face first, climbing out a moment later with a lit plasma cutter and a pair of sparking, needle-sharp pliers. <i>“Hold still, and it’ll hurt a little bit!”</i>");
+	output("\n\nYou immediately recoil.");
+	output("\n\nShekka scowls. <i>“Let me rephrase that: hold still if you don’t want third degree burns.”</i> She advances slowly");
+	if(pc.tallness >= 12*6) output(", climbing onto a nearby bench to help stretch out toward your neck");
+	output(".");
+	output("\n\nYou do your best, but the little junker lied. It doesn’t hurt at all. There’s a slight prickle as she deactivates the battery and a flash of heat when she cracks the collar’s casing, but nothing that hurts in the slightest.");
+	output("\n\nThe useless metal bangs heavily on the deck below.");
+	output("\n\n<i>“All done. So what now? Got anything else I can take care of?”</i> ");
+	if(shekka.hasCock()) output(" Shekka adjusts a growing bulge meaningfully.");
+	else output(" Shekka smiles coyly, stroking an ear with a single finger. The heavy piercings jingle.");
+	processTime(10);
+	pc.accessory = new EmptySlot();
+	flags["SHEKKA_REMOVED_COLLAR"] = 1;
+	shekkaCrewMenu();
+}
+
 
 //Appearance
 public function crewShekkaAppearance():void

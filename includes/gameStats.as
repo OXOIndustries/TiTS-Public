@@ -1136,6 +1136,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Sired, Ilaria’s Children:</b> " + StatTracking.getStat("pregnancy/ilaria sired"));
 				if(StatTracking.getStat("pregnancy/khorgan sired") > 0)
 					output2("\n<b>* Sired, Khorgan’s Children:</b> " + StatTracking.getStat("pregnancy/khorgan sired"));
+				if(StatTracking.getStat("pregnancy/quinn sired") > 0)
+					output2("\n<b>* Sired, Quinn’s Children:</b> " + StatTracking.getStat("pregnancy/quinn sired"));
 				if(StatTracking.getStat("pregnancy/raskvel sired/total") > 0)
 					output2("\n<b>* Sired, Raskvel Eggs:</b> " + StatTracking.getStat("pregnancy/raskvel sired/total"));
 				if(StatTracking.getStat("pregnancy/raskvel sired/day care") > 0)
@@ -2312,6 +2314,12 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["PQUEST_WATERFALLED"] != undefined)
 				{
 					output2("\n<b>* Kane:</b> Met him");
+					if(flags["LOST_TO_KANE"] != undefined)
+					{
+						output2(", Lost to him");
+						if(flags["LOST_TO_KANE"] != 1) output2(flags["LOST_TO_KANE"] + " times");
+						else output2(" once");
+					}
 					if(flags["KANE_DEFEATED"] != undefined) output2(", Defeated him");
 				}
 				if(flags["PQ_SECURED_LAH"] || flags["PQ_BEAT_LAH"] != undefined)
@@ -2326,6 +2334,68 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["PQ_LET_QUINN_GO"] != undefined) output2(", Let her go");
 				}
 				if(flags["PQ_NALEENED"] != undefined) output2("\n<b>* Naleen Mating Ball, Times Encountered:</b> " + flags["PQ_NALEENED"]);
+				
+				sideCount++;
+			}
+			// The Pollen Dance
+			if(flags["QUINNFEST_COMPLETE"] != undefined || flags["QUINNFEST_TALKED"] != undefined)
+			{
+				output2("\n<b><u>The Pollen Dance</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["QUINNFEST_TALK_WHY_GROUP"] != undefined) output2(" Asked about gangbang,");
+				switch(flags["QUINNFEST_TALKED"])
+				{
+					case -1: output2(" Accepted, Decided to spectate"); break;
+					case 1: output2(" Accepted, Decided to participate"); break;
+				}
+				if(flags["QUINNFEST_COMPLETE"] != undefined)
+				{
+					switch(flags["QUINNFEST_COMPLETE"])
+					{
+						case -2: output2(", Challenge for top drone, Lost against warriors in combat"); break;
+						case -1: output2(", Watched Droning Ball"); break;
+						case 0: output2(", Fucked along Quinn in Droning Ball"); break;
+						case 1: output2(", Fucked along drones in Droning Ball"); break;
+						case 2: output2(", Challenge for top drone, Defeated warriors in combat"); break;
+					}
+					output2(", Completed");
+				}
+				else
+				{
+					if(!quinnFestivalActiveHours()) output2(", <i>Visit the village between 16:45 to 19:00</i>");
+					else output2(", <i>In progress...</i>");
+				}
+				if(flags["QUINN_PREG_TIMER"] != undefined)
+				{
+					output2("\n<b>* Quinn, Pregnancy:</b> Success, " + flags["QUINN_PREG_TIMER"] + " Days Active");
+					if(flags["QUINN_SIRED_KID"] != undefined) output2(", <i>You are the father!</i>");
+					if(flags["QUINN_PREG_TIMER"] > 180) output2(", <i>Hurry and give her a visit!</i>");
+				}
+				else if(flags["QUINN_KID_AGE"] != undefined)
+				{
+					output2("\n<b>* Quinn, Pregnancy:</b> She has " + indefiniteArticle(num2Text(quinnBabyAge())) + "-day old " + (flags["QUINN_KID_SEX"] == 1 ? "son" : "daughter"));
+					if(flags["QUINN_KID_NAME"] != undefined) output2(", " + quinnBabyName());
+				}
+				if(flags["QUINN_TALK_HERBS"] != undefined)
+				{
+					output2("\n<b>* Quinn, Talk, Herbs:</b>");
+					switch(flags["QUINN_TALK_HERBS"])
+					{
+						case -1: output2(" You accepted her decision to use the herbs."); break;
+						case 0: output2(" You don’t have any strong feelings about it."); break;
+						case 1: output2(" You don’t like the idea of her using the herbs."); break;
+					}
+				}
+				if(flags["QUINN_TALK_PREG"] != undefined)
+				{
+					output2("\n<b>* Quinn, Talk, Struggles:</b>");
+					switch(flags["QUINN_TALK_PREG"])
+					{
+						case -1: output2(" You chatised her for showing weakness while in power."); break;
+						case 0: output2(" You suggested using medical equipment to help, but she refused."); break;
+						case 1: output2(" You comforted her with some much needed emotional support."); break;
+					}
+				}
 				
 				sideCount++;
 			}
@@ -3247,6 +3317,24 @@ public function displayQuestLog(showID:String = "All"):void
 				{
 					output2(" Saved Tuuva");
 					if(flags["TUUVA_SAVED"] >= 2) output2(", Completed");
+				}
+				sideCount++;
+			}
+			//Syri Quest
+			if(flags["SYRIQUEST_STATE"] != undefined)
+			{
+				output2("\n<b><u>SyriQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				if (flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
+				else if (flags["SYRIQUEST_STATE"] < 21) output2(" Accepted");
+				else output2(" Completed");
+				if(flags["SYRIQUEST_STATE"] == 21) output2(", Killed Valden, Lied to Syri");
+				if(flags["SYRIQUEST_STATE"] == 22) output2(", Killed Valden, Told Syri");
+				if(flags["SYRIQUEST_STATE"] == 23) {
+					output2(", Freed Valden, He took ");
+					if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 1) output2("Dr. Calnor's body");
+					else if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 2) output2("the body of your Bimbo Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]);
+					else if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 3) output2("the body of your Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]);
 				}
 				sideCount++;
 			}
@@ -4917,9 +5005,27 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Zil Village</u></b>");
 				output2("\n<b>* Quinn:</b> Met her");
+				if(flags["QUINN_PREG_TIMER"] != undefined) output2("\n<b>* Quinn, Days Pregnant:</b> " + flags["QUINN_PREG_TIMER"]);
+				if(flags["QUINN_TOTAL_KIDS"] > 0) output2("\n<b>* Quinn, Total Kids:</b> " + flags["QUINN_TOTAL_KIDS"]);
 				if(flags["SEXED_QUINN"] != undefined) output2("\n<b>* Quinn, Times Sexed:</b> " + flags["SEXED_QUINN"]);
-				if(flags["QUINN_MAIDENS_MET"] == undefined)output2("\n<b>* Fetch and Carry:</b> Met them");
+				if(flags["QUINN_KID_PLAYS"] != undefined) output2("\n<b>* " + quinnBabyName() + ", Times Played With:</b> " + flags["QUINN_KID_PLAYS"]);
+				if(flags["QUINN_MAIDENS_MET"] != undefined) output2("\n<b>* Fetch and Carry:</b> Met them");
 				if(flags["QUINN_MAIDENS_SEXED"] != undefined) output2("\n<b>* Fetch and Carry, Times Sexed:</b> " + flags["QUINN_MAIDENS_SEXED"]);
+				if(flags["PQUEST_WATERFALLED"] != undefined)
+				{
+					output2("\n<b>* Kane:</b> Met him");
+					//Post-Quest Kane
+					if(kaneDominance() != -1 && flags["KANE_STATUS"] != undefined)
+					{
+						switch(flags["KANE_STATUS"])
+						{
+							case 1: output2(", Fighting for dominance"); break;
+							case 2: output2(", He’s in charge"); break;
+							case 3: output2(", Marked him"); break;
+						}
+					}
+					if(kaneDominance() > 0) output2("\n<b>* Kane, Dominance:</b> " + formatFloat(kaneDominance(), 1) + " %");
+				}
 				variousCount++;
 			}
 			// Jungles
@@ -7399,7 +7505,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Super rare and weird TF items/sex toys - regular rare items/armor/weapons can be omitted
-		if(flags["BUTTSLUTINATOR"] != undefined || flags["PURCHASED_AMAZONA"] != undefined || flags["OMNISUITED"] != undefined || flags["ORGASMENDER"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined || flags["OMEGA_OILED"] != undefined || flags["MINDWASH_VISOR_INSTALLED"] != undefined)
+		if(flags["BUTTSLUTINATOR"] != undefined || flags["PURCHASED_AMAZONA"] != undefined || flags["OMNISUITED"] != undefined || flags["ORGASMENDER"] != undefined || flags["SYNTHSHEATH_ACQUIRED"] != undefined || flags["SYNTHSHEATH_TWO_FOUND"] != undefined || flags["LOOTED_COCKBOX"] != undefined || flags["ZODEE_GALOQUEST"] != undefined || flags["OMEGA_OILED"] != undefined || flags["MINDWASH_VISOR_INSTALLED"] != undefined || (flags["STRANGE_EGG_SOLD"] != undefined || pc.hasItemByClass(StrangeEgg) || pc.hasItemInStorageByClass(StrangeEgg) || pc.hasPregnancyOfType("PsychicTentacles") || StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0))
 		{
 			output2("\n<b><u>Suspicious Items</u></b>");
 			// Buttslutinator Mark 2
@@ -7495,6 +7601,21 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Mindwash Visor:</b> Installed");
 				if(flags["BADGER_MINDWASH"] != undefined) output2("\n<b>* Mindwash Visor, Times Used:</b> " + flags["BADGER_MINDWASH"]);
 				if(flags["CELISE_MINDWASHED"] != undefined) output2("\n<b>* Mindwash Visor, Times Used By Celise:</b> " + flags["CELISE_MINDWASHED"]);
+			}
+			// Psychic Tentacle Beast
+			if(flags["STRANGE_EGG_SOLD"] != undefined || pc.hasItemByClass(StrangeEgg) || pc.hasItemInStorageByClass(StrangeEgg) || pc.hasPregnancyOfType("PsychicTentacles") || StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0)
+			{
+				output2("\n<b>* UHS-1045 Egg:</b> Found");
+				if(pc.hasItemByClass(StrangeEgg)) output2(", In inventory");
+				if(pc.hasItemInStorageByClass(StrangeEgg)) output2(", In storage");
+				if(pc.hasPregnancyOfType("PsychicTentacles") || StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0)
+				{
+					output2(", Impregnated by");
+					if(pc.hasPregnancyOfType("PsychicTentacles")) output2(", Carrying young");
+					if(StatTracking.getStat("pregnancy/psychic tentacle beast birthed") > 0) output2(", Birthed young");
+				}
+				if(flags["STRANGE_EGG_SOLD"] != undefined) output2(", Sold to vendor");
+				output2("\n<b>* UHS-1045 Egg, Advisory:</b> <i>Danger, handle with caution. A living egg can fetch a high price on the market.</i>");
 			}
 			miscCount++;
 		}

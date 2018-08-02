@@ -213,7 +213,7 @@
 			this.cockVirgin = false;
 			createStatusEffect("Force Fem Gender");
 			createPerk("Fixed CumQ",20000,0,0,0);
-			//TOO STRONK: createPerk("Inhuman Desire",50,0,0,0);
+			createPerk("Inhuman Desire",25,0,0,0);
 			createPerk("Agility",0,0,0,0);
 			createPerk("Improved Agility",0,0,0,0);
 			createPerk("Juggernaut",0,0,0,0);
