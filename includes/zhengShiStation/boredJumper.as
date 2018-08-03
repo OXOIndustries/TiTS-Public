@@ -662,7 +662,9 @@ public function sweatBunSlickyslickTitbang2():void
 	output("\n\nYou smell her cum too, the musky odor filling your nostrils");
 	if(pc.isBimbo()) output(" - too-yummy!");
 	else output(".");
-	output(" It’s everywhere, sliding into your hair, spurting onto your face while the playful laquine teasingly pulls your tits wide to shoot a rope onto your [pc.lips]. Pearly goo sloughs into your simmering crotch, mixing with sweat on its way down to your [pc.legOrLegs].");
+	output(" It’s everywhere");
+	if(pc.hasHair()) output(", sliding into your hair");
+	output(", spurting onto your face while the playful laquine teasingly pulls your tits wide to shoot a rope onto your [pc.lips]. Pearly goo sloughs into your simmering crotch, mixing with sweat on its way down to your [pc.legOrLegs].");
 	if(pc.hasDickNipples() || pc.hasFuckableNipples() || pc.isLactating()) output(" And you don’t care in the slightest. Your tit-based climax makes it all worth it. You’d let her fuck her way to another orgasm if she wanted to, so long as she could make your boobs glow with molten bliss like this once more.");
 	else if(pc.isBimbo()) output(" And you don’t care in the slightest. You love cum! You’d take a bath in if you could, let her fuck you in a tub until bunny-spunk is sloughing over the edge.");
 	else 

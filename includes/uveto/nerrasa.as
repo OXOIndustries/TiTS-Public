@@ -48,7 +48,7 @@ public function uvetoApproachNerrasaRepeat():void
 	}
 	else
 	{
-		output("<i>“Welcome back, "+ pc.mf("boy", "girl") +",”</i> Nerrasa coos as you approach, reaching across the counter to stroke your hair. <i>“Ready for your walkies? Or did you just wanna buy something?”</i>");
+		output("<i>“Welcome back, "+ pc.mf("boy", "girl") +",”</i> Nerrasa coos as you approach, reaching across the counter to " + (pc.hasHair() ? "stroke your hair" : "pats your head") + ". <i>“Ready for your walkies? Or did you just wanna buy something?”</i>");
 	}
 
 	uvetoNerrasaMenu();

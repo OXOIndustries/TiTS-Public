@@ -67,7 +67,9 @@ public function FTEH1(args:Array):void
 	output("Your arms lift up and wrap around her back gently, holding her close. You can’t get enough of the way her tongue so eloquently dances with yours and explores your cheeks, or the way her hips grind so teasingly against yours, or the way her hard nipples dig and button into your");
 	if(pc.biggestTitSize() <= 5) output("s, the energy between them conducive and <i>real</i>.");
 	else output(" [pc.chest], the meat between your upper bodies cushioning you both.");
-	output("\n\nPaige moans into you, enjoying the sensation between you as much as you are her. Her eyes have closed blissfully as she absorbs your every facet. Her left hand goes to your head, caressing your cheek and playing with your hair. When she finally pulls away, her eyes are open and locked onto yours");
+	output("\n\nPaige moans into you, enjoying the sensation between you as much as you are her. Her eyes have closed blissfully as she absorbs your every facet. Her left hand goes to your head, caressing your cheek");
+	if(pc.hasHair()) output(" and playing with your hair");
+	output(". When she finally pulls away, her eyes are open and locked onto yours");
 	if(paigeBlind()) output(" (generally)");
 	output(".");
 

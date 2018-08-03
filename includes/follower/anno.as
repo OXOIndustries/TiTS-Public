@@ -2720,7 +2720,7 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 	output("\n\nYou grit your teeth as Anno starts shifting her hips forward, slowly pressing her " + chars["ANNO"].cockNoun2(annoDick, true) + " into your [pc.vagOrAss]. Your fingers claw into the edge of the table, desperately trying to keep you steady as you feel the thick, lengthy shaft of her strapon spreading your hole wide. Her " + chars["ANNO"].cockNoun2(annoDick, false) + " sends shocks of tingling pleasure through your ");
 	if(!pc.hasVagina()) output("clenching ass");
 	else output("quivering cunt");
-	output(", an electric sensation that sets your hair on end. You groan, back arching as you take inch after inch of rigid energy-dick. Anno plants a hand in the small of your back, gently urging you to lay flat on your chest");
+	output(", an electric sensation that " + (pc.hasHair() ? "sets your hair on end" : "lights your head up") + ". You groan, back arching as you take inch after inch of rigid energy-dick. Anno plants a hand in the small of your back, gently urging you to lay flat on your chest");
 	if(pc.biggestTitSize() >= 10) output(", or as flat as you can given your enormous bosom");
 	output(". Her hands slip down once you’re situated, furry fingers digging into your [pc.hips] as she starts to move her hips faster.");
 	//STRETCHIN'

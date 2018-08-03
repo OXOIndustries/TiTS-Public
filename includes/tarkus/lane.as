@@ -2038,7 +2038,9 @@ public function fuckedByFemLane():void
 
 	output("Lane roughly shoves you in your chest, knocking you off your [pc.feet] and onto your ass onto her bed. Before you can rub the sore spot she had hit, she has your [pc.hair] in her hand, gripping you tight enough to pay attention. <i>“We’re going to have some fun,”</i> she says. That makes you shiver. <i>“Before we begin, I need some... encouragement. Show me how enthusiastic you are for me.”</i>");
 
-	output("\n\nShe pulls you forward by your hair, until your nose presses hard against the scales of her lower belly. The glowing underneath her thicker skin is less pronounced, but so close, you can practically taste her with her scent. She tilts your head until your lips are pressed against her soft, pliable, sensitive (and more than a little tasty) Daynarian cunt. She’s clearly aroused enough, but she wants you to excite her, so that’s what you want too.");
+	output("\n\nShe pulls you forward");
+	if(pc.hasHair()) output(" by your hair,");
+	output(" until your nose presses hard against the scales of her lower belly. The glowing underneath her thicker skin is less pronounced, but so close, you can practically taste her with her scent. She tilts your head until your lips are pressed against her soft, pliable, sensitive (and more than a little tasty) Daynarian cunt. She’s clearly aroused enough, but she wants you to excite her, so that’s what you want too.");
 
 	output("\n\nShe moans out once you pucker your [pc.lips] and slide them over her own. She sways and swings her hips, putting on a bit of a dance for you as you go down on her. You tentatively raise your hands to grope onto her hips, but she swats both of them away with her free hand. <i>“Just your mouth, pet. I want to feel what you’re capable of.”</i> You moan out and acquiesce.");
 

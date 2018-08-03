@@ -888,7 +888,7 @@ public function ramisCockFuck(arg:Array):void
 	{
 		// Sleep
 		case "trap sleep":
-			output("Ramis ruffles your hair fondly.");
+			output("Ramis " + (pc.hasHair() ? "ruffles your hair" : "strokes your head") + " fondly.");
 			output("\n\n<i>“Alright, I don’t mind,”</i> she says, laboriously climbing off your erect, needy cock, hiccupping as she settles herself down besides you. <i>“I know how fragial boyos are...”</i>");
 			output("\n\nShe’s rumbling the bed with her snores in moments.");
 			

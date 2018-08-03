@@ -360,7 +360,7 @@ public function letsFuckeySuckeyStella():void
 		}
 		else
 		{
-			output("\n\n<i>“Nnnn,”</i> Stella moans happily, gently grinding against your face while she runs a hand through your hair. <i>“Reward me for being a good girl...”</i>");
+			output("\n\n<i>“Nnnn,”</i> Stella moans happily, gently grinding against your face while she runs a hand " + (pc.hasHair() ? "through your hair" : "across your scalp") + ". <i>“Reward me for being a good girl...”</i>");
 			output("\n\n<i>“I’m the one who decides that,”</i> you remind her, lifting your lips off her clit and kissing her stomach. Instead, you slide two fingers into her dripping pussy and begin stroking upwards, almost like you’re beckoning her towards you while you gently rub her clit with your thumb.");
 			output("\n\n<i>“Ooh,”</i> she gasps, suddenly growing a lot more involved in the process. <i>“Oh, gosh! I-I think! Nnnn I think I’m cumming!”</i>");
 			output("\n\nWith a restrained jerk of her hips, Stella cums hard on your fingers, femcum squirting down your hand while she moans. She’s nice and easy to please, and the way she shudders instinctively and squeezes down on your fingers, seems like she’d be an amazing fuck. You can’t wait to find out.");

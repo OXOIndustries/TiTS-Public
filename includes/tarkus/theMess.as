@@ -230,7 +230,9 @@ public function quiveringQuasar():void
 	author("Savin");
 	output("<i>“Let’s try one of those Quasars.”</i>");
 	output("\n\n<i>“Careful, it kicks like a mule,”</i> the bartender warns you as she mixes you a brightly-colored, almost glowing, drink which bubbles in its glass as she slides it on over. You pick the glass up, and recoil a bit at the ozone smell emanating off of it; giggling, the bartender adds, <i>“It’s electrifying, huh?”</i>");
-	output("\n\nUh-huh. Well, bottoms up. You knock back your Quasar, shivering as it rushes down your throat, leaving your hair standing on end. You suddenly feel <i>strong</i>, like you could take on a pack of cyborg grizzly bears head-on!");
+	output("\n\nUh-huh. Well, bottoms up. You knock back your Quasar, shivering as it rushes down your throat");
+	if(pc.hasHair()) output(", leaving your hair standing on end");
+	output(". You suddenly feel <i>strong</i>, like you could take on a pack of cyborg grizzly bears head-on!");
 	pc.credits -= 10;
 	if(pc.hasStatusEffect("Quivering Quasar")) {
 		if(pc.statusEffectv2("Quivering Quasar") < 10) {

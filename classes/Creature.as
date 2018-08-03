@@ -14202,6 +14202,12 @@
 		}
 		public function hairNoun():String
 		{
+			if (hairLength <= 0) {
+				if (hasFur()) return "furry head";
+				if (hasFeathers()) return "feathered head";
+				return "head";
+			}
+			
 			var descript:String = "";
 			//Mane special stuff.
 			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0) {
@@ -14228,6 +14234,12 @@
 		}
 		public function hairsNoun():String
 		{
+			if (hairLength <= 0) {
+				if (hasFur()) return "head fur";
+				if (hasFeathers()) return "head feathers";
+				return "head";
+			}
+			
 			var descript:String = "";
 			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";

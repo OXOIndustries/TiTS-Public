@@ -766,7 +766,9 @@ public function kallyDrinkPurchase(drink:String):void
 		//Adoradrunk
 		if(pc.isBuzzed())
 		{
-			output("\n\nKally looks like she’s breathing sort of heavily, but she studiously turns away while you drink, instead looking over the bar. She swings back with an impish smile. <i>“I guess nobody else needs anything. Wanna have a chat while you savor that flavor?”</i> She bends over to lean on the bar. You can see straight down hear low-hanging cleavage. She doesn’t even stop you when you look, just tousles your hair. <i>“You’re sweet, but why not speak up while you enjoy the view?”</i>");
+			output("\n\nKally looks like she’s breathing sort of heavily, but she studiously turns away while you drink, instead looking over the bar. She swings back with an impish smile. <i>“I guess nobody else needs anything. Wanna have a chat while you savor that flavor?”</i> She bends over to lean on the bar. You can see straight down hear low-hanging cleavage. She doesn’t even stop you when you look");
+			if(pc.hasHair() && pc.hairLength > 2) output(", just tousles your hair");
+			output(". <i>“You’re sweet, but why not speak up while you enjoy the view?”</i>");
 		}
 		//Drunk
 		else

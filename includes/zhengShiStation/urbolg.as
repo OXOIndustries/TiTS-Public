@@ -1275,7 +1275,7 @@ public function urbolgToysPartIII(x:int):void
 	//Cumslut of any kind.
 	if(pc.isDependant(2) || pc.isBimbo() || pc.isCumSlut())	
 	{
-		output("Your eyes cross to take in the puddle of creamy goo on your chest. The salty, musky aroma wafts up to your nostrils, and your mouth can’t help but water. Your cock can’t help but throb. You can’t help but lick your lips and prepare yourself for a mighty thrust. Of course you want more of his cum! You want to milk it out in long loving strokes until you’re bathing in it. You want it slicking back your hair and danging from your eyelashes. You want it bubbling around a glowing, cum-drunk smile.");
+		output("Your eyes cross to take in the puddle of creamy goo on your chest. The salty, musky aroma wafts up to your nostrils, and your mouth can’t help but water. Your cock can’t help but throb. You can’t help but lick your lips and prepare yourself for a mighty thrust. Of course you want more of his cum! You want to milk it out in long loving strokes until you’re bathing in it. You want it " + (pc.hasHair() ? "slicking back your hair" : "coating your head") + " and danging from your eyelashes. You want it bubbling around a glowing, cum-drunk smile.");
 	}
 	//Not cumslut, sub 50 libido
 	else if(pc.libido() < 50) 

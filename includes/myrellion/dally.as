@@ -509,7 +509,7 @@ public function makeDallyBlowALoadOnYerFaceYeSloot():void
 	output("\n\nHe’s smothering you with his hot, sticky release. The smell is so thick to you that it’s almost cloying, musky and sweet at the same time. You can’t help but let your tongue slide out of your mouth to try a little. It’s ");
 	if(pc.isBimbo()) output("divine");
 	else output("better than it smells, honestly");
-	output(". There must be some of his nectar mixing in with it. Some splashes down in your hair, and you shudder, listening to the myr girls collect around you, cooing in excitement.");
+	output(". There must be some of his nectar mixing in with it. Some splashes down " + (pc.hasHair() ? "in your hair" : "on your head") + ", and you shudder, listening to the myr girls collect around you, cooing in excitement.");
 	output("\n\nDally’s still going too. The deliciously warm ropes hitting you aren’t as big as the first ones, but there’s enough on you at this point that it must look like a solid mask to your audience. You wind up letting go of him at some point, but he keeps pumping, shooting more ");
 	if(!pc.hasHair()) output("over the top of your head");
 	else output("into your [pc.hair]");
