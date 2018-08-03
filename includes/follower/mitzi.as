@@ -1139,7 +1139,7 @@ public function mitziMorningSuccOrWhatever():void
 
 		output("\n\n<i>“Morning, [pc.Master]!”</i>");
 		output("\n\nYou sit up onto your elbows and greet Mitzi");
-		//{, like always}
+		//output(", like always");
 		output(". <i>“Morning, ");
 		if(pc.isBimbo()) output("hottie!");
 		else if(pc.isBro()) output("slut.");

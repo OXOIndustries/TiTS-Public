@@ -94,6 +94,10 @@ public function getFrostwyrmlingPregContainer():PregnancyPlaceholder
 //Encounter Text
 public function encounterFrostwyrm():void
 {
+	// Gender-assignment hotfix
+	frostwyrm.createStatusEffect("Force It Gender");
+	frostwyrm.removeStatusEffect("Force Fem Gender");
+	
 	clearOutput();
 	frostWyrmHeader();
 	
@@ -515,6 +519,10 @@ public function frostwyrmEpilogueAccept():void
 
 public function frostwyrmPickMeUpBaby():void
 {
+	// Gender-assignment hotfix
+	frostwyrm.removeStatusEffect("Force It Gender");
+	frostwyrm.createStatusEffect("Force Fem Gender");
+	
 	clearOutput();
 	frostWyrmHeader();
 	author("B");
@@ -619,6 +627,9 @@ public function nameThatFrostwyrm():void
 	frostwyrm.capitalA = "";
 	frostwyrm.short = userInterface.textInput.text;
 	
+	frostwyrm.removeStatusEffect("Force It Gender");
+	frostwyrm.createStatusEffect("Force Fem Gender");
+	
 	this.removeInput();
 	
 	nameThatFrostwyrm1();
@@ -679,10 +690,10 @@ public function frostwyrmCanWeFuckYet():void
 	output("\n\n<i>My kind have a sort of ritual we perform with prospective mates,</i> [frostwyrm.name] says. You feel her curious, questing grip on your mind as she studies you and your culture’s approach to mating. <i>Similar to what you call ‘foreplay,’ although... oh, my... certainly, less direct and to-the-point.</i>");
 	output("\n\nHer wide maw slips open and her long, fat, draconian tongue slips from her, drawing languidly across her snout. The probing in your mind does not stop. <i>Goodness. I had no idea your kind could be so... inquisitive with each other’s forms.</i> She continues, scouring your memories for information. <i>What is a ‘kink?’</i> she asks, mostly to herself. <i>Oh. Oh. That is a ‘kink.’ Interesting.</i>");
 	output("\n\nYou smile at her as you remove your effects, baring yourself to the chill of [frostwyrm.name]’s lair. Despite being in a place as cold as Uveto, the dome’s glassy walls naturally capture heat quite well; you wouldn’t call it warm, but it’s bearable. You bare your naked body to [frostwyrm.name], displaying to her what you both have to work with. The effects of her earlier demonstration are still apparent on you, but you nonetheless ask her if she’s willing to... do it again.");
-	output("\n\nIn response, she approaches you and, like she did on the coastline, huffs a warm breath onto your body. The effects are immediate: you feel a sharp sting spread across your body, making your every cell, digit, and limb alight, electrifying you in pleasure. Then, it all surges towards ");
-	if (pc.hasCock()) output("[pc.eachCock]; the flagging erection from earlier springs to life, stiff and hard as could be, engorged in rampant blood and excitement");
+	output("\n\nIn response, she approaches you and, like she did on the coastline, huffs a warm breath onto your body. The effects are immediate: you feel a sharp sting spread across your body, making your every cell, digit, and limb alight, electrifying you in pleasure. Then, it all surges towards");
+	if (pc.hasCock()) output(" [pc.eachCock]; the flagging erection from earlier springs to life, stiff and hard as could be, engorged in rampant blood and excitement");
 	if (pc.isHerm()) output(". Then, the surge continues to");
-	if (pc.hasVagina()) output("your [pc.vagina]; you’ve slowly become placid since then, but just like that, you feel like you could shove a fist inside you and it wouldn’t be enough");
+	if (pc.hasVagina()) output(" your [pc.vagina]; you’ve slowly become placid since then, but just like that, you feel like you could shove a fist inside you and it wouldn’t be enough");
 	output(". Yet, despite how horny you suddenly are, [frostwyrm.name] has left a subliminal instruction in your mind: if you want to feel more, you need only to touch her. ");
 	output("\n\n<i>I have longed for the touch of another,</i> she confides in you, her four red eyes steadfast on yours. You feel her ply gently at your mind as she searches for the right way to describe her thoughts. <i>These manipulations I have on your mind – what you call ‘psionics’ – have no bearing on the self. I’ve suffered listlessly through innumerable heats and ruts, with no other to quench me.</i>");
 	output("\n\n[frostwyrm.name] steps towards you, thundering her footsteps, imposing her bulk upon you. <i>I could have killed you,</i> she says, her fiery red eyes locked tightly to yours. You feel your knees buckle and the energy drain from your chest, and yet, her manipulation on your [pc.crotch] does not stop. Nothing would satisfy you right now: not yourself; not some other person or creature; nothing, but [frostwyrm.name]. You realize that her pleasure is yours, and if you want to cum, you’re going to have to do something for her.");
@@ -1410,7 +1421,7 @@ public function frostwyrmRidersMustBeOver4FeetToContinue():void
 	}
 	
 	output("You look underneath the barrel of her stomach as you travel along her serpentine form. She’s breathing harder, unable to contain her excitement at finally having someone or something touch her masculinity. You spy her draconian dick, its thick, blunted tip pressing crudely against the icy floor of her lair and bloating fatter and longer with her every heartbeat.");
-	output("\n\nShe notices you stare, and you feel her pluck at your head gently. You lick your [pc.lips] as you stare at her cock and you find yourself feeling all sorts of thoughts about it: how it would feel <i>against</i> you and <i>inside</i> you. How it could hurt you, and ruin you for anyone else – how nobody else could pleasure you again if you were to take [frostwyrm.name] inside you. [frostwyrm.name]’s testicles, each easily large enough that you could curl into one, bounce in excitement, in time with the thumping and growing of her already massive erection, excited for the opportunity to breed you");
+	output("\n\nShe notices you stare, and you feel her pluck at your head gently. You lick your [pc.lips] as you stare at her cock and you find yourself feeling all sorts of thoughts about it: how it would feel <i>against</i> you and <i>inside</i> you. How it could hurt you, and ruin you for anyone else – how nobody else could pleasure you again if you were to take [frostwyrm.name] inside you. [frostwyrm.name]’s testicles, each easily large enough that you could curl into one, bounce in excitement, in time with the thumping and growing of her already massive erection, excited for the opportunity to breed you.");
 	output("\n\nYou’re not entirely sure that every one of those thoughts were yours");
 	if (pc.isBimbo()) output("– you have so few original ones nowadays,");
 	output(" but you nonetheless agree with each of them. <i>Prostrate yourself beneath your mate, [pc.name],</i> [frostwyrm.name] commands, knowing that her authority is absolute within her lair – and that you’d do it regardless. <i>It is time you share your burden. I will <b>swell</b> you with my seed.</i>");
@@ -3078,10 +3089,10 @@ public function frostwyrmlingBathing():void
 	output("\n\nYou don’t answer, knowing that she isn’t looking for one. She pinches your [pc.nipple] with her lips and pulls back, stretching your breast as she pulls back, and watches it snap into place when she opens her mouth with a quiet ‘pop.’ <i>But then again, a bath isn’t quite as personal as it is with Frostwyrms, is it?</i> she asks you, her " + (pc.tallness < 60 ? "leg" : "foot") + " continuing their motions. <i>Goodness, my Qal, is this making you feel... comfortable?</i> She resumes her bathing your [pc.chest], swiveling her head to get as much flesh as she can in as few passes. <i>Try and hold on, or else you’ll make a bigger mess for us to clean up. And we wouldn’t want that, would we?</i>");
 	output("\n\nThere isn’t much sensory feedback between you and your daughters: you’re the one receiving all the pleasure. But your lust is obvious through the simultaneous link you have with each of them, and it’s no secret what they’re accomplishing by ‘bathing’ you. Every little kiss your second - oldest makes on your back, tickling your spine as she runs her flat tongue along it; every little pull the other two make on your chest");
 	if(pc.hasGenitals()) {
-		output("; you’re ");
-		if (pc.hasCock()) output("hard as diamonds");
-		if (pc.isHerm()) output("and you’re ");
-		if (pc.hasVagina()) output("wet as could be");
+		output("; you’re");
+		if (pc.hasCock()) output(" hard as diamonds");
+		if (pc.isHerm()) output(" and you’re");
+		if (pc.hasVagina()) output(" wet as could be");
 		output(", and you’re all aware of how this bath is going to end");
 	}
 	output(".");

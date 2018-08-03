@@ -611,9 +611,9 @@ public function stellaPussyFuck():void
 	processTime(30);
 	pc.orgasm();
 	IncrementFlag("STELLA_FUCKED");
-	clearMenu();
-	//[Nah] [Keep going]
 	stellaSexFatigue(1);
+	//[Nah] [Keep going]
+	clearMenu();
 	if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but the body is worn out.");
 	addButton(0,"Nah",genericNoMoreSexStella);
@@ -963,9 +963,9 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		
 		processTime(30);
 		pc.orgasm();
+		stellaSexFatigue(1);
 		//[Nah] [Keep going]
 		clearMenu();
-		stellaSexFatigue(1);
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but the body is worn out.");
 		addButton(0,"Nah",nahDickSuckPup);
@@ -1014,8 +1014,8 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		output("\n\nYou can’t say you’re surprised. Propped up on your elbow and looking down at the divine doggirl, you start feeling that familiar sensation of lust from between your somewhat shaky thighs. You could go for another round if you really wanted...");
 		processTime(30);
 		pc.orgasm();
-		//[Nah] [Keep going]
 		stellaSexFatigue(1);
+		//[Nah] [Keep going]
 		clearMenu();
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but the body is worn out.");
@@ -1305,8 +1305,8 @@ public function walkiesAndPetPlayStuff():void
 		pc.exhibitionism(2);
 		pc.orgasm();
 		IncrementFlag("STELLA_PETPLAYED");
-		clearMenu();
 		stellaSexFatigue(1);
+		clearMenu();
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
 		addButton(0,"That’s It",genericNoMoreSexStella);
@@ -1334,6 +1334,7 @@ public function walkiesAndPetPlayStuff():void
 		pc.orgasm();
 		IncrementFlag("STELLA_PETPLAYED");
 		stellaSexFatigue(1);
+		clearMenu();
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
 		addButton(0,"That’s It",genericNoMoreSexStella);
@@ -1523,6 +1524,7 @@ public function moreStellaPetPlayPostCollarShop2():void
 	output("\n\nAfterwards, you head back up to her room and casually settle in.");
 	IncrementFlag("STELLA_PETPLAYED");
 	stellaSexFatigue(1);
+	clearMenu();
 	if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
 	addButton(0,"That’s It",genericNoMoreSexStella);
@@ -1587,9 +1589,9 @@ public function stellaPreggoSex():void
 	processTime(25);
 	pc.orgasm();
 	pc.milkInMouth();
-	clearMenu();
 	IncrementFlag("STELLA_PREG_FUCKED");
 	stellaSexFatigue(1);
+	clearMenu();
 	if(moreStellaSexAvailable()) addButton(1,"Again",keepFuckingStella);
 	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
 	addButton(0,"Nah",stellaPregbangEpilogue);
@@ -1665,6 +1667,7 @@ public function stellaKidTalkScene():void
 {
 	var kiddos:Number = flags["STELLA_PREGNANCY_NOTIFIER"];
 	flags["STELLA_PREGNANCY_NOTIFIER"] = undefined;
+	
 	output("<i>“Hey, so, I’ve got a surprise for you this time!”</i> Stella says as you come up the stairs, her tail wagging. <i>“Come in and see!”</i>");
 	output("\n\nSomething’s different about her... oh, she’s not pregnant! Her tummy is back to fit, flat and flawless. She looks more radiant and beautiful than before, if such a thing is even possible.");
 	output("\n\n<i>“So what’s the surprise?”</i> you say as Stella turns to you, a smile playing across her face.");

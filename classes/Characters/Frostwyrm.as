@@ -39,8 +39,6 @@ package classes.Characters
 			this.isPlural = false;
 			isLustImmune = true;
 			
-			
-			
 			baseHPResistances = new TypeCollection();
 			baseHPResistances.psionic.resistanceValue = 45.0;
 			baseHPResistances.kinetic.damageValue = 15.0;
@@ -188,6 +186,7 @@ package classes.Characters
 			
 			createStatusEffect("Disarm Immune");
 			createStatusEffect("Stun Immune");
+			createStatusEffect("Force It Gender");
 			
 			isUniqueInFight = true;
 			btnTargetText = "Frostwyrm";
