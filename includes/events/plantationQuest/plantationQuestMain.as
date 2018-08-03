@@ -3505,6 +3505,7 @@ public function talkToQuinnAboutHerself():void
 	}
 	processTime(4);
 	
+	talkedToQuinn();
 	flags["QUINN_TALK_HERSELF"] = 1;
 	
 	clearMenu();
@@ -3539,6 +3540,7 @@ public function quinnsEsbethTalk():void
 	}
 	processTime(3);
 	
+	talkedToQuinn();
 	flags["QUINN_TALK_ESBETH"] = 1;
 	
 	clearMenu();
@@ -3570,12 +3572,18 @@ public function askQuinnAboutTheNaleen():void
 	output("\n\n<i>“If you are that interested in them, feel free to go down there and experience the naleen mating ritual for yourself. Every tribute contributes to the accord we all enjoy, after all...”</i>");
 	processTime(5);
 	
+	talkedToQuinn();
 	flags["QUINN_TALK_NALEEN"] = 1;
 	
 	clearMenu();
 	addButton(0,"Next",talkToQuinnStuffGogogogogogogogogogo);
 }
 
+public function talkedToQuinn():void
+{
+	pc.createStatusEffect("Quinn Talk Cooldown", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.setStatusMinutes("Quinn Talk Cooldown", 1440);
+}
 public function talkToQuinnStuffGogogogogogogogogogo():void
 {
 	if(canQuinnTalkPollenDance())

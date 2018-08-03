@@ -1005,6 +1005,7 @@ public function quinnHardlightFun(args:Array):void
 public function canQuinnTalkPollenDance():Boolean {
 	if(flags["QUINNFEST_COMPLETE"] != undefined) return false;
 	if(flags["QUINNFEST_TALKED"] != undefined) return false;
+	if(pc.hasStatusEffect("Quinn Talk Cooldown")) return false;
 	return ( flags["SEXED_QUINN"] != undefined && pc.hasGenitals()
 		&&	flags["QUINN_TALK_HERSELF"] != undefined && flags["QUINN_TALK_ESBETH"] != undefined && flags["QUINN_TALK_NALEEN"] != undefined
 		&&	flags["PQ_RESOLUTION"] > 0
@@ -2523,6 +2524,7 @@ public function askQuinnAboutHerbs(response:String = "intro"):void
 			
 			processTime(1);
 			
+			talkedToQuinn();
 			// +1 Nice point
 			pc.addNice(1);
 			flags["QUINN_TALK_HERBS"] = 1;
@@ -2551,6 +2553,7 @@ public function askQuinnAboutHerbs(response:String = "intro"):void
 			
 			processTime(1);
 			
+			talkedToQuinn();
 			// -1 Nice point
 			pc.addHard(1);
 			// flag dis for later check
@@ -2568,6 +2571,7 @@ public function askQuinnAboutHerbs(response:String = "intro"):void
 			
 			processTime(1);
 			
+			talkedToQuinn();
 			flags["QUINN_TALK_HERBS"] = 0;
 			
 			addButton(0, "Next", talkToQuinnStuffGogogogogogogogogogo);
@@ -2740,6 +2744,7 @@ public function pregQuinnVisit(response:String = "intro"):void
 			output("\n\n");
 			
 			processTime(5);
+			talkedToQuinn();
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINN_TALK_PREG"] = 0;
 			flags["QUINN_PREG_APPROACH"] = 3;
@@ -2760,6 +2765,7 @@ public function pregQuinnVisit(response:String = "intro"):void
 			processTime(7);
 			// -4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
 			pc.addHard(4);
+			talkedToQuinn();
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINN_TALK_PREG"] = -1;
 			flags["QUINN_PREG_APPROACH"] = 3;
@@ -2778,6 +2784,7 @@ public function pregQuinnVisit(response:String = "intro"):void
 			processTime(8);
 			// +4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
 			pc.addNice(4);
+			talkedToQuinn();
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINN_TALK_PREG"] = 1;
 			flags["QUINN_PREG_APPROACH"] = 3;
