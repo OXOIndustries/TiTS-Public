@@ -21225,6 +21225,27 @@
 							ThiccNShake.effectEnds(maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
+					case "Beta's Satisfaction":
+						if(this is PlayerCharacter)
+						{
+							if(requiresRemoval && !hasStatusEffect("Dzaan Withdrawal"))
+							{
+								AddLogEvent(ParseText("The lingering satisfaction from serving your alpha has dissipated, leaving nothing but a disturbing thirst for more of her spunk in its wake. <b>You are in withdrawal!</b>"), "passive", maxEffectLength);
+								//"Dzaan Withdrawal" -50% rest healing & +50% lust gain over time
+								createStatusEffect("Dzaan Withdrawal",0,0,0,0,false,"Icon_Charmed","You crave your alpha’s cum, gaining Lust more quickly over time, and you find recovering during rest difficult with such distracted thoughts.", false, 24*28*60, 0xFF0000);
+							}
+						}
+						break;
+					case "Dzaan Withdrawal":
+						if(this is PlayerCharacter)
+						{
+							if(requiresRemoval)
+							{
+								AddLogEvent(ParseText("The constant craving to serve at Ardia’s feet has finally faded. <b>You’re no longer addicted to her!</b>"), "passive", maxEffectLength);
+								setStatusMinutes("Dzaan Addicted",1);
+							}
+						}
+						break;
 					case "Undetected Furpies":
 					case "Furpies Simplex H":
 					case "Furpies Simplex C":
@@ -21236,27 +21257,6 @@
 							{
 								thisStatus.minutesLeft = 0;
 								requiresRemoval = false;
-							}
-						}
-						break;
-					case "Beta's Satisfaction":
-						if(this is PlayerCharacter)
-						{
-							if(requiresRemoval)
-							{
-								AddLogEvent(ParseText("The lingering satisfaction from serving your alpha has disappointed, leaving nothing but a disturbing thirst for more of her spunk in its wake. <b>You are in withdrawal!</b>"), "passive", maxEffectLength);
-								//"Dzaan Withdrawal" -50% rest healing & +50% lust gain over time
-								createStatusEffect("Dzaan Withdrawal",0,0,0,0,false,"Icon_Charmed","You crave your alpha's cum, gaining Lust more quickly over time, and you find recovering during rest difficult with such distracted thoughts.", false, 24*28*60, 0xFF0000);
-							}
-						}
-						break;
-					case "Dzaan Withdrawal":
-						if(this is PlayerCharacter)
-						{
-							if(requiresRemoval)
-							{
-								AddLogEvent(ParseText("The constant craving to serve at Ardia's feet has finally faded. <b>You're no longer addicted to her!</b>"), "passive", maxEffectLength);
-								setStatusMinutes("Dzaan Addicted",1);
 							}
 						}
 						break;

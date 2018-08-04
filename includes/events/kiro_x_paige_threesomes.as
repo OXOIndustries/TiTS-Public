@@ -734,7 +734,7 @@ public function PKTSYLT(args:Array):void
 		if(pc.hasVagina()) pc.cuntChange(0,kiro.cockVolume(0));
 		else pc.buttChange(kiro.cockVolume(0));
 		output("\n\nPaige, after a time, leans forward, wrapping her arms around your both, her own perky tits kissing against your [pc.chest] and against Kiro’s hands, surrounding them with boob. Your upper body is sandwiched into a wonderfully warm, active massage of fur and titflesh, while your lower body is relentlessly pounded and extoled for their pleasure.");
-		output("\n\nWith the aggressive pounding your [pc.vagOrAss] is taking, and with the rough ride Paige is taking your [pc.cock], you don’t last as long as you’d have liked. You’ll be sore when it’s over, but it’s the type of soreness that you wish could last forever.");
+		output("\n\nWith the aggressive pounding your [pc.vagOrAss] is taking, and with the rough ride Paige is taking on your [pc.cock], you don’t last as long as you’d have liked. You’ll be sore when it’s over, but it’s the type of soreness that you wish could last forever.");
 	}
 	// Continue here if the PC does not have a penis
 	else

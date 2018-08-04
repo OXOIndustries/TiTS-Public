@@ -88,7 +88,10 @@ package classes.Engine.Combat
 		
 		// Lust ARMOOOOOR
 		var lustDef:Number = target.lustDef();
-		damageAfterResistances -= target.lustDef();
+		
+		if (target.hasPerk("Akane's Painslut")) lustDef -= Math.round(((target.HPMax() - target.HP()) / target.HPMax()) * 5 * target.level);
+		
+		damageAfterResistances -= lustDef;
 		damageAfterResistances = Math.round(damageAfterResistances);
 		
 		// Clamp damage done to 1 > Damage > DamageToCap

@@ -765,7 +765,7 @@ public function bunslutPussFuck2():void
 	clearOutput();
 	showBoredJumper(true);
 	var x:int = pc.cockThatFits(enemy.vaginalCapacity(0) * 2);
-	if(x < 0) pc.smallestCockIndex();
+	if(x < 0) x = pc.smallestCockIndex();
 	author("QuestyRobo");
 	output("You press your face between her beefy bun thighs, barely an inch from her entrance. Stars, you thought it was hot before; just being this close to her overheated form is like going into a sauna! You swear the juices coating her lips are actually steaming, but that’s far down your list of priorities.");
 	output("\n\nYou stick your [pc.tongue] into her cunt, recoiling slightly at first as the almost inhuman temperature near-singes your tongue. Once you’ve battered through the heat you dive as far into her as possible");
@@ -2636,8 +2636,8 @@ public function boredJumperHeatSexV():void
 		output("\n\nOpening your [pc.eyes] with some serious effort, you see the furry futa lowering herself over your tenting [pc.cock " + x + "], twitching out of unfulfilled need just beneath her fat cuntlips. The feeling of her ambrosial honey drizzling from her horse-pussy invigorates you just in time as she brings the [pc.cockHead " + x + "] to her puffy vulva, ready to impale herself on you and return the favor.");
 		output("\n\nUnlike her, you still have air left in your lungs for displaying pleasure, albeit exhausted pleasure. Your hips soon unite, and she bounces up and down wordlessly with a slack smile on her face. Even after your previous sexcapades, you admit it’s rather nice to see her attending to your unmet need. There’s no way she’s going to be standing after getting filled with [pc.cum].");
 		output("\n\nOne would think in your listless state you were incapable of enjoying this, but you manage to sit up and touch her. Although you don’t have much strength in your hands, you caress her thighs as her sweat-drenched legs carry her weight up and down your [pc.cock " + x + "]. In much the same way you felt her inside of you, you can feel your [pc.cockHead " + x + "] brushing against the rabbit’s womb and drowning in a downpour of laquine femlube.");
-		output("\n\nShe idly jerks her sore, spent [enemy.cock] whilst riding you, soon bringing herself to one final climax ");
-		if(pc.cockTotal() > 1 && pc.biggestCockIndex() != 0) output("by rubbing it against your [pc.cock " + x + "]");
+		output("\n\nShe idly jerks her sore, spent [enemy.cock] whilst riding you, soon bringing herself to one final climax");
+		if(pc.cockTotal() > 1 && pc.biggestCockIndex() != 0) output(" by rubbing it against your [pc.cock " + x + "]");
 		output(". Her orgasm contains more water than protein, but you on the other hand have plenty left. She moans in a gruff voice, her nails digging into your [pc.skinFurScales], as you cum inside her");
 		if(pc.cockTotal() > 1) output(" and deposit yet another load of [pc.cum] on each other");
 		output(". The jumper rocks her hips back and forth, bending your rod like it’s a mere dildo.");

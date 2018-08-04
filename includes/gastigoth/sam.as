@@ -16,12 +16,16 @@ public function showSam(nude:Boolean = false):void
 public function samBustString(nude:Boolean = false):String
 {
 	var bustString:String = "";
-	var nudeS:String = "";
-	if(nude) nudeS = "_NUDE";
 	//Pregnant
-	if(flags["SAM_GAST_PREG_TIMER"] >= 80) bustString += "TECHGUARD_JAIL_PREG";
-	else bustString += "TECHGUARD_JAIL";
-	bustString += nudeS;
+	if(flags["SAM_GAST_PREG_TIMER"] >= 80)
+	{
+		bustString += "TECHGUARD_JAIL_PREG";
+	}
+	else
+	{
+		bustString += "TECHGUARD_JAIL";
+		if(nude) bustString += "_NUDE";
+	}
 	return bustString;
 }
 

@@ -378,8 +378,9 @@ public function shipHangarButton(btnSlot:int = 7):void
 	if(ships.length > 0) 
 	{
 		//Mhenga uses button "7" for going down. Thus an exception!
-		if(shipLocation == "SHIP HANGAR") addButton(0, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
-		else addButton(7, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
+		if(shipLocation == "SHIP HANGAR") btnSlot = 0;
+		
+		addButton(btnSlot, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
 	}
 }
 // Trafficked by spacers

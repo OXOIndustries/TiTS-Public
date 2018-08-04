@@ -580,7 +580,7 @@ public function continueMaikeVictoryChoices():void
 	//[Quick Anal] [Spank Her] [Get Bloated] [Leave]
 	clearMenu();
 	//Quick Anal
-	if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Quick Anal",penisRouter,[quickMaikeAnal,enemy.analCapacity(),true,0],"Quick Anal","Hey, if she’s that pent up, you’ve got the solution <i>riiiight</i> here. Here being your " + ((pc.hasHardLightEquipped() && !pc.hasCock()) ? "fake-":"") + "junk.");
+	if(pc.cockThatFits(enemy.analCapacity() * 1.5) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Quick Anal",penisRouter,[quickMaikeAnal,(enemy.analCapacity() * 1.5),true,0],"Quick Anal","Hey, if she’s that pent up, you’ve got the solution <i>riiiight</i> here. Here being your " + ((pc.hasHardLightEquipped() && !pc.hasCock()) ? "fake-":"") + "junk.");
 	else if(pc.hasCock()) addDisabledButton(0,"Quick Anal","Quick Anal","Actually, it looks like what you got couldn’t fit in that ass. Shit.");
 	else addDisabledButton(0,"Quick Anal","Quick Anal","Actually, You’ll need a crotch-mounted penetrator for this.");
 
