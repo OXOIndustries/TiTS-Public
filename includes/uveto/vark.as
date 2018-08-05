@@ -48,13 +48,19 @@ public function varkCaveBonus():void
 	if (varkGotCollar() && pc.getKeyItem("Vark's Collar") != getWornCollar())
 	{
 		output("\n\nYour master wouldn't be happy to see you without your collar.");
+		setNavDisabled(NAV_SOUTH_DISABLE);
 	}
 }
 
 public function varkMenu():Boolean
 {
 	//sneaky buggers
-	if (varkGotCollar() && pc.getKeyItem("Vark's Collar") != getWornCollar()) moveTo(rooms[currentLocation].northExit);
+	if (!pc.hasGenitals() || pc.isTaur() || (varkGotCollar() && pc.getKeyItem("Vark's Collar") != getWornCollar()))
+	{
+		moveTo(rooms[currentLocation].northExit);
+		addButton(0, "Next", mainGameMenu);
+		return true;
+	}
 
 	clearMenu();
 	clearOutput();

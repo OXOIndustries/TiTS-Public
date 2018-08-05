@@ -3537,7 +3537,7 @@ public function variableRoomUpdateCheck():void
 	rooms[varkCaveRoom].removeFlag(GLOBAL.NPC);
 	rooms[varkCaveRoom].removeFlag(GLOBAL.OBJECTIVE);
 	rooms["UVIP T44"].southExit = varkCaveRoom;
-	if (pc.isTaur()	|| !pc.hasGenitals() ||(varkGotCollar() && pc.getKeyItem("Vark's Collar") != getWornCollar()))
+	if (pc.isTaur() || !pc.hasGenitals())
 		rooms["UVIP T44"].southExit = undefined;
 	if (flags["MET_VARK"] == undefined) rooms[varkCaveRoom].addFlag(GLOBAL.OBJECTIVE);
 	else if (flags["MET_VARK"] == 1) rooms[varkCaveRoom].addFlag(GLOBAL.NPC);
