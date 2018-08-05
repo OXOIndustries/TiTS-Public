@@ -984,6 +984,15 @@ public function initUvetoRooms():void
 	rooms["UVIP T44"].addFlag(GLOBAL.HAZARD);
 	rooms["UVIP T44"].runOnEnter = myrnaEncounterBonus;
 
+	rooms["UVIP T46"] = new RoomClass(this);
+	rooms["UVIP T46"].roomName = "";
+	rooms["UVIP T46"].description = "";
+	rooms["UVIP T46"].planet = "PLANET: UVETO VII";
+	rooms["UVIP T46"].system = "SYSTEM: SIRETTA";
+	rooms["UVIP T46"].northExit = "UVIP T44";
+	rooms["UVIP T46"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP T46"].runOnEnter = varkMenu;
+	
 	rooms["UVIP T42"] = new RoomClass(this);
 	rooms["UVIP T42"].roomName = "WINDING\nPATHS";
 	rooms["UVIP T42"].description = "The path here is a slow, steady incline to the north, heading back up towards the lakeshore. The sides of the snowy path are a little more narrow here, barely wide enough for you to squeeze through in some places. In others, you have to move fast to avoid tumbling flurries of snow blown off the tops and into the path.";

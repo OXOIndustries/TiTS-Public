@@ -1945,6 +1945,7 @@
 					buffer = skinNoun(true);
 					break;
 				case "skinFurScalesNoun":
+				case "skinScalesFurNoun":
 					buffer = skinNoun(false);
 					break;
 				case "skinNounSimple":

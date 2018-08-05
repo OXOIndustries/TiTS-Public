@@ -469,6 +469,7 @@
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
 		include "../includes/uveto/ula.as";
+		include "../includes/uveto/vark.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
 		
