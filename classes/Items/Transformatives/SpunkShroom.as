@@ -382,7 +382,7 @@ package classes.Items.Transformatives {
 				}
 			}
 			else {	
-				kGAMECLASS.output(target.capitalA + target.short + " consumes the spunkshroom to no effect.");
+				output(target.capitalA + target.short + " consumes the spunkshroom to no effect.");
 			}
 			return false;
 		}

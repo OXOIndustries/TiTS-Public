@@ -1041,14 +1041,16 @@ public function worshipArdiasButtYouSluuuut(x:int):void
 	if(!ardia.hasPlumpAsshole()) output("dark star quivers from the orgasm you just gave it");
 	else output("plush butthole winks back at you, clenching and unclenching as her orgasm runs from tender tush to throbbing erection");
 	output(". It’s so cute you can’t help but want to fuck it... not like you weren’t going to. You press the ");
-	if(x < 0) output("[pc.cockHead " + x + "] of your [pc.cock " + x + "]");
+	if(x >= 0) output("[pc.cockHead " + x + "] of your [pc.cock " + x + "]");
 	else output("rounded tip of your hardlight strapon");
 	output(" against the dzaan’s spasming anal entrance.");
 
-	output("\n\nAll you get is a wordless groan of orgasmic ecstasy as you slowly thrust your [pc.hips] forward, sinking your dick into her cock-craving asshole. Inch by inch, you feed her your [pc.cockOrStrapon " + x + "], watching with perverse delight as her asshole winks and squeezes... and oh, does it feel <i>good</i>. When you bottom out, Ardia’s back arches like the anal whore you’ve made her, and you can feel her cock wagging back and forth between her legs, slapping wetly against your [pc.leg] as your lover keeps cumming her brains out. And her continued orgasm does wonderful things for you, too, making her clench and squeeze wildly all along your length.");
+	output("\n\nAll you get is a wordless groan of orgasmic ecstasy as you slowly thrust your [pc.hips] forward, sinking your " + (x >= 0 ? "dick" : "dildo") + " into her cock-craving asshole. Inch by inch, you feed her your [pc.cockOrStrapon " + x + "], watching with perverse delight as her asshole winks and squeezes... and oh, does it feel <i>good</i>. When you bottom out, Ardia’s back arches like the anal whore you’ve made her, and you can feel her cock wagging back and forth between her legs, slapping wetly against your [pc.leg] as your lover keeps cumming her brains out. And her continued orgasm does wonderful things for you, too, making her clench and squeeze wildly all along your length.");
+	
 	if(x >= 0) pc.cockChange();
+	
 	output("\n\nWhile it lasts, you figure it’s time to really <i>fuck</i> this wanna-be-alpha’s slutty ass. You give her a good spank across her jiggling asscheeks, making her squeeze down harder than ever before as you pull your hips back. She just about squeezes you out, but you’re able to rally at the last moment and slam your [pc.cockOrStrapon " + x + "] right back in. Ardia shrieks, and another massive wave of spooge shoots straight down from her [ardia.cock] and into the growing puddle on the deck. You’re pretty sure she cries out something like <i>“Oh my God!”</i> but it just sounds like a cum-drunk moan, especially as she starts thrusting her hips back against you.");
-	output("\n\nGood girl! You reach down and grab the dzaan’s arms, hefting her up off the chair and making her stand while she receives your dick. Her hands cup her boobs, but that’s all the action Ardia can manage outside of her sexual muscles. Her [ardia.cock] juts straight in front of her, sending thick ropes of cum all over her seat and the room behind it.");
+	output("\n\nGood girl! You reach down and grab the dzaan’s arms, hefting her up off the chair and making her stand while she receives your " + (x >= 0 ? "dick" : "hardlight strapon") + ". Her hands cup her boobs, but that’s all the action Ardia can manage outside of her sexual muscles. Her [ardia.cock] juts straight in front of her, sending thick ropes of cum all over her seat and the room behind it.");
 	output("\n\n<i>“Yes!”</i> she screams, the first cogent word you’ve heard in a while. <i>“Oh [pc.name] it feels so good! Fuck me harder, please... please!”</i>");
 	output("\n\nIf she insists.");
 	

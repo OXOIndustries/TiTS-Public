@@ -2420,7 +2420,7 @@ public function SSAE1(args:Array):void
 	else 
 	{
 		output("blasting your [pc.cum] into her body. Your impressive load pools within her, y");
-		if(pc.balls > 0) output("our [pc.balls] flexing like pumps to deposit every drop they have into your fleshy, furry comdom. Y");
+		if(pc.balls > 0) output("our [pc.balls] flexing like pumps to deposit every drop they have into your fleshy, furry condom. Y");
 		output("our ");
 		if(pc.balls > 0) output("struggling shaft fights to");
 		else output("shaft struggling to");
@@ -2590,7 +2590,7 @@ public function SSAAG(args:Array):void
 	//if {SSAKH}
 	else if(InCollection("SSAKH", args)) output("She’s still on top of you, her breasts pressed to your [pc.chest] and her breath washing against your neck in stutters");
 	else output("You’re both well-worn and exhausted from one of your more exciting trysts");
-	output(", proof of your satisfaction with one-another. You already know this probably won’t be a one-time thing, if you don’t want.");
+	output(", proof of your satisfaction with one-another. You already know this probably isn’t a one-time thing, that is if you don’t want it to be.");
 	output("\n\n<i>“Goddamn,”</i> Paige whispers finally, her strength returning to her. <i>“");
 	//if {First time}
 	if(flags["PAIGE_ANAL"] == 1) output("I’ve never had anything up my ass before, [pc.name].”</i> She giggles. <i>“And I can already tell you, if every time is going to feel that... exotic, it won’t be the last either.");

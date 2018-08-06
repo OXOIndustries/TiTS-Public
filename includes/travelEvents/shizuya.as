@@ -647,7 +647,7 @@ public function shizzyMikaNomNomNom(args:*):void
 		else output("fuck-huge");
 		output(" cock?”</i> You both go faster. <i>“You want me to scream your name in pleasure while I’m cumming my brains out around you?”</i> Faster. <i>“Your [pc.balls] tightening up from the sensation, brewing up a big, fat, fertile load at the thought of knocking up a curvy, Treated slut.”</i> Oh stars, you’re so close! And so’s she.");
 		output("\n\nYour tongue is shooting in and out of her like a piston, drawing out fat splatters of girlcum with each thrust. It’s like eating a warm, ripe watermelon, so delicious and juicy that it’s worth having your face soaked in it, and soaked it is. You feel like you’re laying under a small, pulsing waterfall, each splash soaking your face and sense in a wash of pheromone-laced ambrosia. The runoff pools below you, soaking into your [pc.hair] and back, ensuring that you’ll reek of her cunt for at least the rest of the day.");
-		output("\n\n<i>“Mmmh, feel how wet I am? Fuck, I’m just crying out to be bred! And you’d love to do it. You’d love to fill me with fertile cum, to watch my belly swell up with your cum, knocking me up withyour little brats.”</i> FUCK, you can’t take it anymore! <i>“Cum, breeding slut!”</i> Mika lifts off of you in a flash, leaving your tongue slurping at empty air. Before you can react, she’s already on your [pc.oneCock], pressing it down against your [pc.belly] with her foot.");
+		output("\n\n<i>“Mmmh, feel how wet I am? Fuck, I’m just crying out to be bred! And you’d love to do it. You’d love to fill me with fertile cum, to watch my belly swell up with your cum, knocking me up with your little brats.”</i> FUCK, you can’t take it anymore! <i>“Cum, breeding slut!”</i> Mika lifts off of you in a flash, leaving your tongue slurping at empty air. Before you can react, she’s already on your [pc.oneCock], pressing it down against your [pc.belly] with her foot.");
 		output("\n\n<i>“Cum!”</i>");
 
 		if (pc.cumQ() < 8000) output("\n\nYou moan out loud as you unload on yourself, splattering streaks of [pc.cumColor] across your front. An errant drop hits your tongue, giving you a taste of your own [pc.cumFlavor] [pc.cumNoun].");
@@ -793,7 +793,7 @@ public function shizzyIntroductionPartForParting(destination:String):void
 		output("\n\nA few minutes pass before you and Anno recover. Mika, however, seems completely unaffected by all of it. <i>“Yeah, Shizuya can be a bit of a walking biohazard sometimes. If I didn’t get an implant that let me turn off my sense of smell, I’d probably be her cocksleeve most of the time... Not that I’d mind that, but, ya know...”</i> She blushes hard at that last admission. <i>“A-anyway, I carry around some strong smelling salts to diffuse these sorts of situations. Impromptu orgies are nice, but productivity and shit is more important.”</i>");
 		output("\n\nAnno stares at you, wordlessly, wide-eyed, silently apologizing for getting so carried away. You pat your pup on the head, and Mika joins you. The pats give way to some light ear scritching, followed by heavier ear scritching, until she’s nothing but a pile of content floof in your hands.");
 		output("\n\n<i>“Hmm, you’ve a well trained pet here, Steele. Glad she’s not one of those ausar who get really uptight about the pet stuff. That means we can have a </i>lot<i> of fun together.”</i> Anno perks up at that.");
-		if (flags["ANNO_PETPLAYED"] != undefined) output(" She does love her pet play, after all.");
+		if (annoHasPetplayed()) output(" She does love her pet play, after all.");
 		else output(" You didn’t know she was into that kind of thing. Maybe you should follow up on that?");
 		output(" <i>“Anyway, back to work, guys.”</i>");
 	}
@@ -963,7 +963,7 @@ public function shizzyIntroductionDinner(destination:String):void
 	output("\n\n<i>“Miss Tamaran and crew are actin’ under a UGC assignment. As such, an active duty officer of Lieutenant rank or higher is required to be present in order to enforce regulations and make regular progress reports.”</i>");
 	output("\n\n<i>“Okay, why come up to me, though?”</i>");
 	output("\n\n<i>“What you did on Tarkus turned a few heads, including mine.");
-	if (completedStellarTetherGood()) output(" Ya did good kid:Single-handedly taking out a group of entrenched, heavily armed pirates by yourself. That’s the kind of thing that gets people promoted, sometimes more than once. I should know.”</i>");
+	if (completedStellarTetherGood()) output(" Ya did good kid: Single-handedly taking out a group of entrenched, heavily armed pirates by yourself. That’s the kind of thing that gets people promoted, sometimes more than once. I should know.”</i>");
 	else output(" You may not ‘ave been successful, but your bravery, and the fact that you survived at all is impressive. That’s worth at least a commendation, a promotion or two if you had succeeded; I know that bit from experience.”</i>");
 	output("\n\nShe points toward the pips on her shirt. <i>“See that red one? That’s the Republic Medal of Valor. I’d recount ya the tale, but it looks like the men don’t wanna wait any longer, ey?”</i> Cheers erupt from behind you, calling for you to get on with the food serving.");
 	output("\n\nYou do so with gusto, setting it up buffet style with large plates of food in the middle of one of the larger tables on one side of the room, and setting out enough plates and silverware for everyone. The crew sieges the food table, tearing down the walls of food, and taking the fruits of their conquest to their tables. Thankfully, Shizuya prepared more than enough, and you’re able to serve yourself a hearty portion.");
@@ -972,7 +972,14 @@ public function shizzyIntroductionDinner(destination:String):void
 	else output("\n\nYou dig in and start chowing down. " + (ate ? "You’ve barely" : "You haven’t") + " had a bite to eat since this whole thing started, and you’re going to get your fill, damn it! Shizuya watches as you gorge yourself, outpacing you, despite having to deal with her much larger portion. It almost becomes a silent competition between you and her, seeing whose appetite is stronger. You both finish at around the same time, though, ending whatever perceived bout the two of you were in, in a draw.\n\n<i>“Love that enthusiasm, it’s infectious. Suppose that means the food was good?”</i>");
 	output("\n\n<i>“Definitely.”</i>");
 	output("\n\nYou recline back in your seat, content to ride out the food coma until the end of this, when you suddenly feel something brush against your leg. You’re about to look under the table and see when suddenly");
-	if (pc.isCrotchGarbed()) output(" you feel your " + (pc.hasLowerGarment() ? "[pc.lowerGarments]" : "[pc.armor]") + " being yanked down, and a small object placed inside your [pc.anus].");
+	if (!pc.isAssExposed())
+	{
+		output(" you feel your");
+		if(!pc.isAssExposedByArmor()) output(" [pc.armor]");
+		if(!pc.isAssExposedByArmor() && !pc.isAssExposedByLowerUndergarment()) output(" and");
+		if(!pc.isAssExposedByLowerUndergarment()) output(" [pc.lowerUndergarment]");
+		output(" being yanked down, and a small object placed inside your [pc.anus].");
+	}
 	else output(" you feel a small object being pushed into your [pc.anus].");
 	output(" You jump a bit and quietly yelp, getting immediately shushed by whoever is under the table.");
 	output("\n\n<i>“Initiation time, meat.”</i> The voice starts speaking softly, and of course it’s Mika.\n\nWait, “initiation?”");
@@ -1030,7 +1037,7 @@ public function shizzyIntroductionHazing(args:*):void
 	if (pc.isTreatedBull() || pc.isAmazon()) output("So, the little girl wants to " + (mode == 1 ? "suck your cock" : "eat you out" ) + " huh? Well, who are you to say no to a little after-dinner action. It’s a Treated tradition after all, probably.");
 	else output("<i>“Bring it on.”</i>");
 	output(" Mika chuckles happily as she");
-	if (pc.hasLowerGarment()) output(" finishes removing your [pc.lowerGarments].");
+	if (pc.hasLowerGarment()) output(" finishes removing your [pc.lowerUndergarment].");
 	else output(" turns her attention to your [pc.crotch].");
 
 	if (mode == 1)
@@ -1265,7 +1272,7 @@ public function shizzyIntroductionEpilouge(destination:String):void
 	output("The rest of the day is filled with food, drinks, and getting to know a few of the " + (silly ? "memebers" : "members") + " of the crew. It’s an odd bunch to say the least, filled with people of almost every race you can think of. It feels like you could learn a lot about a ton of different cultures just from being here; that is, assuming both of you aren’t too drunk to talk coherently, because the drinks, right now at least, flow like water around here, and they’re <i>strong</i>. They’re the kind of drinks that would knock most people out, and even stuff that would put the unconditioned in the hospital.");
 	output("\n\nYou eventually settle into a large lounge, where you" + (annoIsCrew() ? ", Anno" : "") + ", Shizuya, and pals take some time to just shoot the shit, and by the time you decide it’s time to part ways, it’s already been several hours.");
 	output("\n\n<i>“Well, shit, has it been that long? Alright, guess we better get movin’ on here. Addy, you been watching the coms?”</i>");
-	output("\n\n<i>“Of course, someone has to have been working this whole time. Judau hasn’t been seen in... Wait, we might have something. One of our moles just got contacted, Leda-squad is moving in, and is requesting back-up.\</i>");
+	output("\n\n<i>“Of course, someone has to have been working this whole time. Judau hasn’t been seen in... Wait, we might have something. One of our moles just got contacted, Leda-squad is moving in, and is requesting back-up.”</i>");
 	output("\n\n<i>“Fuck yeah!”</i> Everyone hops up immediately, and excitedly. <i>“Um, yeah, gotta deal with this. But, uh, you know, if you see us around, ya can stop by anytime.");
 	if (annoIsCrew()) output(" You too, Anno. Sorry we couldn’t, uh, ya know, today. Offer’s still open, ‘specially if you bring your friend along.”</i>\n\nAnno blows Shizuya a quick kiss, before turning to you. <i>“Looking forward to it. Both of us, I hope.”</i> ");
 	else output("”</i>\n\n");

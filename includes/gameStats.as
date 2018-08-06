@@ -2121,14 +2121,14 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				
 				output2("\n<b>* Tavros:</b> " + (flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 3 ? "Chased" : "Didn’t chase") + " culprits");
-				if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] >= 2) output2(", Talked to the victim");
+				if(flags["SHUKUCHI_TAVROS_ENCOUNTER"] >= 2) output2(", Talked to the victim");
 				
-				if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined)
+				if(flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined)
 				{
 					output2("\n<b>* Mhenga:</b> " + (flags["SHUKUCHI_MHENGA_ENCOUNTER"] ? "Defeated agent on Mhenga" : "Lost to agent on Mhenga"));
 				}
 				
-				if (flags["SHUKUCHI_UVETO7_ENCOUNTER"] != undefined)
+				if(flags["SHUKUCHI_UVETO7_ENCOUNTER"] != undefined)
 				{
 					output2("\n<b>* Uveto:</b> " + (flags["SHUKUCHI_UVETO7_ENCOUNTER"] ? "Defeated agents on Uveto" : "Lost to agents on Uveto"));
 				}
@@ -2136,15 +2136,15 @@ public function displayQuestLog(showID:String = "All"):void
 				sideCount++;
 			}
 			//AkaneQuest
-			if (MailManager.isEntryViewed("akanequest_email"))
+			if(MailManager.isEntryViewed("akanequest_email"))
 			{
 				output2("\n<b><u>AkaneQuest</u></b>");
 				output2("\n<b>* Status:</b> Read Email");
-				if (flags["AKANEQUEST_STAGE"] == 0) output2(", Raid Planned");
-				else if (flags["AKANEQUEST_STAGE"] > 0)
+				if(flags["AKANEQUEST_STAGE"] == 0) output2(", Raid Planned");
+				else if(flags["AKANEQUEST_STAGE"] > 0)
 				{
 					output2(", Raid Succesful");
-					if (flags["AKANEQUEST_STAGE"] == 1) output2(", Rewarded with gun");
+					if(flags["AKANEQUEST_STAGE"] == 1) output2(", Rewarded with gun");
 					else output2(", Rewarded with sword");
 				}
 				
@@ -3326,16 +3326,20 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>SyriQuest</u></b>");
 				output2("\n<b>* Status:</b>");
-				if (flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
-				else if (flags["SYRIQUEST_STATE"] < 21) output2(" Accepted");
+				if(flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
+				else if(flags["SYRIQUEST_STATE"] < 21) output2(" Accepted");
 				else output2(" Completed");
 				if(flags["SYRIQUEST_STATE"] == 21) output2(", Killed Valden, Lied to Syri");
 				if(flags["SYRIQUEST_STATE"] == 22) output2(", Killed Valden, Told Syri");
-				if(flags["SYRIQUEST_STATE"] == 23) {
+				if(flags["SYRIQUEST_STATE"] == 23)
+				{
 					output2(", Freed Valden, He took ");
-					if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 1) output2("Dr. Calnor's body");
-					else if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 2) output2("the body of your Bimbo Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]);
-					else if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 3) output2("the body of your Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]);
+					switch(flags["SYRIQUEST_VALDEN_BODY_CHOICE"])
+					{
+						case 1: output2("Dr. Calnor’s body"); break;
+						case 2: output2("the body of your Bimbo Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]); break;
+						case 3: output2("the body of your Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]); break;
+					}
 				}
 				sideCount++;
 			}
@@ -4172,32 +4176,32 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Akane
-			if (flags["AKANE_VISITS"] != undefined)
+			if(flags["AKANE_VISITS"] != undefined)
 			{
 				output2("\n<b><u>Host Shukuchi</u></b>");
 				output2("\n<b>* Akane:</b> Met her")
-				if (pcIsPainslut()) output2(", Became her <i>Painslut</i>");
-				if (flags["AKANE_FUN_VISITS"])
+				if(pcIsPainslut()) output2(", Became her <i>Painslut</i>");
+				if(flags["AKANE_FUN_VISITS"])
 				{
 					output2("\n<b>* Akane, Times Sexed:</b> " + flags["AKANE_FUN_VISITS"]);
-					if (flags["AKANE_TIMES_SHOCKED"]) output2("\n<b>* Akane, Times Stimmed:</b> " + flags["AKANE_TIMES_SHOCKED"]);
-					if (flags["AKANE_TIMES_WHIPPED"]) output2("\n<b>* Akane, Times Whipped:</b> " + flags["AKANE_TIMES_WHIPPED"]);
-					if (flags["AKANE_TIMES_FORCED"]) output2("\n<b>* Akane, Times Forced Orgasm Sessions:</b> " + flags["AKANE_TIMES_FORCED"]);
-					if (flags["AKANE_TIMES_RIDDEN"]) output2("\n<b>* Akane, Times Ridden:</b> " + flags["AKANE_TIMES_RIDDEN"]);
-					if (flags["AKANE_TIMES_LICKED"]) output2("\n<b>* Akane, Times Eaten Out:</b> " + flags["AKANE_TIMES_LICKED"]);
+					if(flags["AKANE_TIMES_SHOCKED"]) output2("\n<b>* Akane, Times Stimmed:</b> " + flags["AKANE_TIMES_SHOCKED"]);
+					if(flags["AKANE_TIMES_WHIPPED"]) output2("\n<b>* Akane, Times Whipped:</b> " + flags["AKANE_TIMES_WHIPPED"]);
+					if(flags["AKANE_TIMES_FORCED"]) output2("\n<b>* Akane, Times Forced Orgasm Sessions:</b> " + flags["AKANE_TIMES_FORCED"]);
+					if(flags["AKANE_TIMES_RIDDEN"]) output2("\n<b>* Akane, Times Ridden:</b> " + flags["AKANE_TIMES_RIDDEN"]);
+					if(flags["AKANE_TIMES_LICKED"]) output2("\n<b>* Akane, Times Eaten Out:</b> " + flags["AKANE_TIMES_LICKED"]);
 				}
-				if (flags["AKANE_TIMES_TALKED"])
+				if(flags["AKANE_TIMES_TALKED"])
 				{
 					output2("\n<b>* Akane, Times Talked:</b> " + flags["AKANE_TIMES_TALKED"]);
 					output2("\n<b>* Akane, Talked About:</b> ");
 					var akaneTopics:Array = new Array();
-					if (flags["AKANE_TIMES_TALKED_HER"]) akaneTopics.push("Her");
-					if (flags["AKANE_TIMES_TALKED_YOU"]) akaneTopics.push("You");
-					if (flags["AKANE_TIMES_TALKED_MODS"]) akaneTopics.push("Her Mods");
-					if (flags["AKANE_TIMES_TALKED_HOST"]) akaneTopics.push("The Host");
-					if (flags["AKANE_TIMES_TALKED_RIVALS"]) akaneTopics.push("Her Rivals");
-					if (flags["AKANE_TIMES_TALKED_HISTORY"]) akaneTopics.push("Her History");
-					if (flags["AKANE_TIMES_TALKED_US"]) akaneTopics.push("Us");
+					if(flags["AKANE_TIMES_TALKED_HER"]) akaneTopics.push("Her");
+					if(flags["AKANE_TIMES_TALKED_YOU"]) akaneTopics.push("You");
+					if(flags["AKANE_TIMES_TALKED_MODS"]) akaneTopics.push("Her Mods");
+					if(flags["AKANE_TIMES_TALKED_HOST"]) akaneTopics.push("The Host");
+					if(flags["AKANE_TIMES_TALKED_RIVALS"]) akaneTopics.push("Her Rivals");
+					if(flags["AKANE_TIMES_TALKED_HISTORY"]) akaneTopics.push("Her History");
+					if(flags["AKANE_TIMES_TALKED_US"]) akaneTopics.push("Us");
 					output2(akaneTopics.join(", "));
 				}
 				variousCount++;
@@ -4852,10 +4856,12 @@ public function displayEncounterLog(showID:String = "All"):void
 					else output2(" Met her");
 					if(flags["SYRI_SEEN_PCS_SHIP_CABIN"] != undefined) output2(", She’s seen your ship’s cabin");
 					if(flags["ANNOxSYRI_WINCEST"] != undefined) output2(", Sexed her with Anno")
-					if(9999 == 0)
+					if(syriRecruited())
 					{
 						output2(", Crew member");
 						if(syriIsCrew()) output2(" (Onboard Ship)");
+						else if(flags["SYRI_CREWMEMBER"] == 0) output2(" (At Mhen’ga)");
+						else if(flags["SYRI_CREWMEMBER"] == 2) output2(" (At Uveto)");
 					}
 					//if(flags["SEEN_SYRI_IN_THE_MORNING"] != undefined) output2("\n<b>* Syri, Times Seen Her in the Morning:</b> " + flags["SEEN_SYRI_IN_THE_MORNING"]);
 					if(flags["BET_AGAINST_SYRI"] != undefined)
@@ -4885,14 +4891,14 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ERIKA_SEXED"] != undefined) output2("\n<b>* Erika, Times Sexed:</b> " + flags["ERIKA_SEXED"]);
 				}
 				//Tetra & Mica The Zil Twins
-				if (flags["ZILTWINS_MET"] != undefined)
+				if(flags["ZILTWINS_MET"] != undefined)
 				{
 					output2("\n<b>* Tetra & Mica:</b> Met them");
-					if (flags["ZILTWINS_MET"]) output2(", Let Mica sample you");
-					if (flags["ZILTWINS_MICA_TEASED"] != undefined) output2(", Saw Mica dance");
-					if (flags["ZILTWINS_MICA_BUTTFUCKED"] != undefined) output2(", Fucked Mica");
-					if (flags["ZILTWINS_TETRA_FUCKED"] != undefined) output2(", Fucked Tetra");
-					if (flags["ZILTWINS_BOTH_FUCKED"] != undefined) output2(", Got spitroasted");
+					if(flags["ZILTWINS_MET"]) output2(", Let Mica sample you");
+					if(flags["ZILTWINS_MICA_TEASED"] != undefined) output2(", Saw Mica dance");
+					if(flags["ZILTWINS_MICA_BUTTFUCKED"] != undefined) output2(", Fucked Mica");
+					if(flags["ZILTWINS_TETRA_FUCKED"] != undefined) output2(", Fucked Tetra");
+					if(flags["ZILTWINS_BOTH_FUCKED"] != undefined) output2(", Got spitroasted");
 				}
 				variousCount++;
 			}
@@ -5255,7 +5261,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["TESSA_SENSEPLAY"] != undefined) output2("\n<b>* Tessa, Times Experienced Senseplay:</b> " + flags["TESSA_SENSEPLAY"]);
 					if(flags["TESSA_FJ_MALE"] != undefined) output2("\n<b>* Tessa, Times Experienced Male Footjob:</b> " + flags["TESSA_FJ_MALE"]);
 					if(flags["TESSA_FJ_FEMALE"] != undefined) output2("\n<b>* Tessa, Times Experienced Female Footjob:</b> " + flags["TESSA_FJ_FEMALE"]);
-					if(flags["TESSA_GONEDOWN"] != undefined) output2("\n<b>* Tessa, Times You've Gone Down on Tessa:</b> " + flags["TESSA_GONEDOWN"]);
+					if(flags["TESSA_GONEDOWN"] != undefined) output2("\n<b>* Tessa, Times You’ve Gone Down on Tessa:</b> " + flags["TESSA_GONEDOWN"]);
 					if(flags["TESSA_BJS"] != undefined) output2("\n<b>* Tessa, Times She Sucked You Off:</b> " + flags["TESSA_BJS"]);
 					if(flags["TESSA_LICKS"] != undefined) output2("\n<b>* Tessa, Times She Licked You Off :</b> " + flags["TESSA_LICKS"]);
 					if(flags["TESSA_BREASTPLAY"] != undefined) output2("\n<b>* Tessa, Times She Played With Your Breasts:</b> " + flags["TESSA_BREASTPLAY"]);
@@ -5270,7 +5276,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["VERUSHA_ORALED"] != undefined) output2("\n<b>* Verusha, Times You Sucked Her Cock:</b> " + flags["VERUSHA_ORALED"]);
 				}
 				// Unknown waitress
-				if (flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
+				if(flags["HAS_ORDERED_FOOD_AT_THE_MESS"] != undefined) output2("\n<b>* Waitress:</b> Ordered food from her, Food never received");
 				
 				variousCount++;
 			}
@@ -6769,7 +6775,11 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["SEXED_LUND"] != undefined) output2("\n<b>* Lund, Times Sexed:</b> " + flags["SEXED_LUND"]);
 					if(flags["LUND_DICKED_DOWN"] != undefined) output2(", Dicked him down");
 					if(flags["LUND_RIDE_HIMMED"] != undefined) output2("\n<b>* Lund, Times Rode Him:</b> " + flags["LUND_RIDE_HIMMED"]);
-					if(flags["LUND_PB"] != undefined) output2("\n<b>* Lund, Times Given Him Peanut Butter Cookies:</b> " + flags["LUND_PB"]);
+					if(flags["LUND_PB"] != undefined)
+					{
+						output2("\n<b>* Lund, Times Given Him Peanut Butter Cookies:</b> " + flags["LUND_PB"]);
+						if(flags["LUND_PB_DISABLED"] != undefined) output2(", He doesn’t want anymore!");
+					}
 					variousCount++;
 				}
 				variousCount++;
@@ -6904,9 +6914,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_JESSE"] != undefined)
 				{
 					output2("\n<b>* Jesse:</b> Met her");
-					if (flags["JESSE_PC_TITLE"] != undefined) output2("\n<b>* Jesse, Preferred Name, She Calls You:</b> " + jessePCTitle());
-					if (flags["JESSE_PC_TITLE_SEX"] != undefined) output2("\n<b>* Jesse, Preferred Sex Name, She Calls You:</b> " + jessePCTitleSex());
-					if (flags["JESSE_TIMES_SEXED"] != undefined) output2("\n<b>* Jesse, Times Sexed:</b> " + flags["JESSE_TIMES_SEXED"]);
+					if(flags["JESSE_PC_TITLE"] != undefined) output2("\n<b>* Jesse, Preferred Name, She Calls You:</b> " + jessePCTitle());
+					if(flags["JESSE_PC_TITLE_SEX"] != undefined) output2("\n<b>* Jesse, Preferred Sex Name, She Calls You:</b> " + jessePCTitleSex());
+					if(flags["JESSE_TIMES_SEXED"] != undefined) output2("\n<b>* Jesse, Times Sexed:</b> " + flags["JESSE_TIMES_SEXED"]);
 				}
 				// Kally
 				if(flags["MET_KALLY"] != undefined)
@@ -7432,20 +7442,20 @@ public function displayEncounterLog(showID:String = "All"):void
 			roamCount++;
 		}
 		// Shizuya
-		if (flags["SHIZZY_TRAP_ENCOUNTERED"] != undefined)
+		if(flags["SHIZZY_TRAP_ENCOUNTERED"] != undefined)
 		{
-			if (shizzyTrapAvailable()) output2("\n<b>* Distress Signal:</b> Encountered");
-			else if (flags["SHIZZY_MET"] == undefined) output2("\n<b>* Distress Signal:</b> Dismissed");
+			if(shizzyTrapAvailable()) output2("\n<b>* Distress Signal:</b> Encountered");
+			else if(flags["SHIZZY_MET"] == undefined) output2("\n<b>* Distress Signal:</b> Dismissed");
 			else 
 			{
 				output2("\n<b>* Shizuya:</b> Met her");
-				if (flags["SHIZZY_SEXED"] != undefined) output2(", Sexed her");
-				if (flags["SHIZZY_BEEN_ROUGH"] != undefined) output2(", Sexed you <i>hard</i>");
-				if (flags["SHIZZY_OUTFIT_STATE"] != undefined){
+				if(flags["SHIZZY_SEXED"] != undefined) output2(", Sexed her");
+				if(flags["SHIZZY_BEEN_ROUGH"] != undefined) output2(", Sexed you <i>hard</i>");
+				if(flags["SHIZZY_OUTFIT_STATE"] != undefined){
 					output2("\n<b>* Shizuya, Sparring:</b>");
-					if (flags["SHIZZY_OUTFIT_STATE"] < 2) output2(" Sparred with her");
+					if(flags["SHIZZY_OUTFIT_STATE"] < 2) output2(" Sparred with her");
 					else output2(" Beat her");
-					if (flags["SHIZZY_OUTFIT_STATE"] == 4) output2(", Got prize");
+					if(flags["SHIZZY_OUTFIT_STATE"] == 4) output2(", Got prize");
 				}
 			}
 			roamCount++;

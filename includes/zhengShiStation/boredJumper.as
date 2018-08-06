@@ -780,7 +780,7 @@ public function bunslutPussFuck2():void
 	output("\n\n<i>“Fuuuuuuuuck, do that again!”</i> You do so, grabbing the base of your member and mightily slapping her womanhood. There’s so much padding from her outer lips that it feels like beating your meat against a lavish pillow rather than a slut’s pelvis. You go and go until she screaming out in pleasure, her voice echoing off the walls as you pound on her. Eventually you tire of the teasing and rear back to start fucking her in ernest.");
 	output("\n\n<i>“Hell yeah hot stuff! Don’t even think about that slow shit, we laquines like it <b>rough</b>!”</i>");
 	if(pc.cockVolume(x) > enemy.vaginalCapacity(0)) output(" You get the feeling she <i>might</i> not know exactly what she’s getting into here, but you press on anyway.");
-	else output("That’s an invitation if you ever heard one, and you press on!");
+	else output(" That’s an invitation if you ever heard one, and you press on!");
 
 	if(pc.cockVolume(x) > enemy.vaginalCapacity(0) * 1.5) 
 	{
@@ -1312,7 +1312,7 @@ public function frottageVictoryVsBoredJumperByB():void
 			if(pc.hasVagina()) output(". Still, from the way your own [pc.vagina] clenches sympathetically to the laquine’s, you’re not sure your cunt will ever forgive you for refusing to give another one what it wants");
 			output(".");
 		}
-		output("\n\nYou respond that, the next time she loses the fight, she can decide how you to fuck. You’re taking your prize the way you want it, and if that means she doesn’t get a cock in a pussy, then she doesn’t get a cock in her pussy.");
+		output("\n\nYou respond that, the next time she wins the fight, she can decide how to fuck you. You’re taking your prize the way you want it, and if that means she doesn’t get a cock in a pussy, then she doesn’t get a cock in her pussy.");
 		output("\n\nShe grunts in defeat and lies there, face-down in the dirt, one hand masturbating her turgid length and her hips moving and pressing against yours to eke out whatever pleasure she can from you. You decide to throw her a bone (but not the bone she wants).");
 		output("\n\nYour hands roam over the meaty globes of her ass, your fingers coursing through the wet, sweaty fur. Whenever you squeeze down, you can hear the sweat audibly squish and collect between your fingers, soaking the fluid into your palms. One hand stays on the fat of her butt, groping and squeezing for your mutual pleasure, while the other reaches inward, your thumb finding the star of her anus and pressing in swiftly.");
 		output("\n\nShe ‘eep!’s in surprise and her body straightens and stiffens, but then relaxes after a few cursory pumps into her anus. She starts to mouth something at you, but gives up and submits to the pleasures she’s feeling: a thumb in her ass; her own hand on her dick; and a stranger’s dick teasing her cunt relentlessly and refusing to give her the satisfaction of some penetration.");
@@ -1352,7 +1352,7 @@ public function frottageVictoryVsBoredJumperByB():void
 		}
 		output("\n\nYou glance beneath the bunny’s body, and you see that the hand on her cock has kept still");
 		if(enemy.hasKnot(0)) output(", wrapped around her beating knot");
-		output("); her legs shiver and strain, and there’s a growing pool of white beneath her pelvis, an obvious sign that she enjoyed the time between you two more than she’d apparently like to admit. Her bouncing balls have bunched up against her, squirting out every drop she has into a growing puddle.");
+		output(" her legs shiver and strain, and there’s a growing pool of white beneath her pelvis, an obvious sign that she enjoyed the time between you two more than she’d apparently like to admit. Her bouncing balls have bunched up against her, squirting out every drop she has into a growing puddle.");
 	}
 	// Merge here
 	output("\n\nIt takes you both a moment to wind down, between the animalistic rutting and the constant, sweaty musk the laquine is giving off threatening to make you rowdy for a round two. By the time you’ve caught your breath and you’ve remembered where you are and what you were doing before you ran into this lady in a latex jumpsuit, you’ve mostly come down from your lust-addled high.");
@@ -1448,14 +1448,12 @@ public function meanHandySuitBurster():void
 		output("body, equipped with everything you might need to sate a crossed-up hermaphrodite like yourself. You feel the heat of her cock pound against your palm and its cum splash onto your hand, and you can pick out the familiar tang of a fertile, willing cunt clenching in orgasm mingling with the masculine musk of a proper cock shooting its load. Your body clenches and flinches at the sensory overload, and it takes everything you have to not roll over the laquine and start properly fucking it with everything you have: to plough that cute, hungry cunt and, when you’re done, you pop a squat of your own on that rock-hard piece of delectable meat");
 	}
 	output(".");
-
-
-	output("\n\n");
+	
 	var cummies:Boolean = false;
 	if(pc.lust() >= 50) 
 	{
 		cummies = true;
-		output("The fantasies start to get a little carried away, and you struggle with yourself to remain in control of not just yourself, but the both of you: you’re both in a pretty vulnerable position, and one slip-up could mean that the roles would be reversed between you. Nonetheless, you can’t help but grind your body against hers throughout it all, and ultimately, you bring yourself to your own wet, sticky orgasm, ");
+		output("\n\nThe fantasies start to get a little carried away, and you struggle with yourself to remain in control of not just yourself, but the both of you: you’re both in a pretty vulnerable position, and one slip-up could mean that the roles would be reversed between you. Nonetheless, you can’t help but grind your body against hers throughout it all, and ultimately, you bring yourself to your own wet, sticky orgasm, ");
 		if(pc.hasCock()) output("[pc.eachCock] flexing and billowing against the laquine’s thigh as you soak her body from the stomach down");
 		if(pc.isHerm()) output(", followed by ");
 		if(pc.hasVagina()) 

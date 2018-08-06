@@ -10,6 +10,7 @@
 // SYRI_BETTING_STORAGE			: Stores credit bet or 9001 if ass betting.
 // SYRI_TALKS 					: Stores what talk scene to display next in the sequence. Scene 1 never repeats. YAY!
 // SYRI_GIFT_PANTY
+// SYRI_CREWMEMBER				: undefined not recruited, 0 at Burts, 1 onboard ship, 2 at Freezer
 
 public function showSyri(nude:Boolean = false):void
 {
@@ -24,9 +25,17 @@ public function syriBustDisplay(nude:Boolean = false):String
 	return sBust;
 }
 
-public function syriIsCrew():Boolean {
+public function syriRecruited():Boolean
+{
+	if (flags["SYRI_CREWMEMBER"] != undefined) return true;
 	return false;
 }
+public function syriIsCrew():Boolean
+{
+	if (flags["SYRI_CREWMEMBER"] == 1) return true;
+	return false;
+}
+
 public function syriIsAFuckbuddy():Boolean
 {
 	if(syriFriendsWithBenefits()) return true;
@@ -36,7 +45,8 @@ public function syriIsAFuckbuddy():Boolean
 // Is Syri actually at Burt's bar?
 public function syriAtBurts():Boolean
 {
-	if (syriQuestRunning() || syriQuestComplete()) return false;
+	if (flags["SYRI_CREWMEMBER"] == 0) return true;
+	if (syriIsCrew() || syriQuestRunning() || syriQuestComplete()) return false;
 	return true;
 }
 
@@ -949,7 +959,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 			output("\n\nA quick bustle through the blustering Uvetan winds, holding each other tight for warmth, and you’re in the elevator heading spaceward. The doors have barely closed before the lusty slut grabs your arms, pulling you into a sudden kiss, her lips sucking on yours, tongue demanding entrance before you can recover. With a primal groan, Syri shoves you up against the wall, hands running all over you without the slightest concern for who might see you. ");
 			output("\n\nIt takes all your willpower to pull her off before the elevator gets sent back down again, and the two of you make a quick run from the station center back to your docking arm. The airlock barely has a chance to cycle before Syri starts to pull your gear off,  a furry leg hooking around your hip to lock her chest tight to yours. She moves in rhythmic undulations, grinding her crotch against yours, ");
 			if(pc.hasCock()) output("your [pc.cock] stiffens as her knotty prick brushes up against it.");
-			else output("your [pc.cunt] burns with desire as Syri's dick rubs against it."); 
+			else output("your [pc.cunt] burns with desire as Syri’s dick rubs against it."); 
 			output("\n\nAs soon as you pass the airlock, clothes start flying. Syri sweeps you up off your feet, pulling you into a fierce kiss as she stumbles toward your quarters, shedding clothes and gear behind you as her prick presses into your [pc.belly], growing steadily until her pants are gone, letting the rigid red rod prod your thigh. Your door slides open, and you and Syri go tumbling into the bed. A moment later, and the canid beauty is straddling you, gently pumping her pecker as she growls, “Your call, [pc.name]. How do we do this?”");
 		}
 	}

@@ -302,6 +302,7 @@ public function maikesOfficeBonus():Boolean
 		generateMap();
 		//Maike's door has a lock puzzle the PC must bypass to enter, or have her access card.
 		output("You try to open the door to Overseer Maike’s quarters, but find the door locked down tight. There’s a security lock in place next to it with a card reader in place. Looks like the Overseer values her privacy.");
+		
 		clearMenu();
 		//[Use Card] [Bypass]
 		if(pc.hasKeyItem("Maike’s Keycard") || pc.hasItemByClass(MaikesKeycard)) addButton(0,"Use Card",useMaikesCard,undefined,"Use Card","You already have the overseer’s access card. Go ahead and use it.");
@@ -317,7 +318,7 @@ public function maikesOfficeBonus():Boolean
 	//Hasn't freed slaves:
 	if(flags["MAIKE_SLAVES_RELEASED"] != undefined)
 	{
-		output("Tivf is lounging on the bed, and perks up at your approach.");
+		output("\n\nTivf is lounging on the bed, and perks up at your approach.");
 		//[Tivf]
 		//Go talk to the zil boy slave.
 		//Slaves must not have been freed.

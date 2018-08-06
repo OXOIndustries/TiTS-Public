@@ -88,6 +88,13 @@ public function annoThreeWayed():Boolean
 	return false;
 }
 
+public function annoHasPetplayed():Boolean
+{
+	if (flags["ANNO_PETPLAYED"] != undefined) return true;
+	if (flags["ANNO_X_ERRA_INTRODUCED"] != undefined) return true;
+	return false;
+}
+
 public function annoIsHuskar():Boolean
 {
 	return (flags["ANNO_HUSKAR_COMPLETE"] != undefined);
@@ -4757,7 +4764,7 @@ public function annoxErraIntro():void
 	if (flags["ANNO_X_ERRA_INTRODUCED"] != undefined)
 	{
 		output("\n\nAnno turns to you with a red, lust-ridden face and starts to talk, her chest heaving a bit between her words. <i>“Oh... hey, boss,”</i> she breathes, sitting up on her knees and letting Erra’s leash slack, <i>“Sorry we keep taking your room like this, but this little puppy’s really insistent on being on your bed... uh, Erra being the little puppy, not me, </i>definitely<i> not me.”</i> Her voice goes quiet for a moment as she mumbles, <i>“Sure doesn’t smell nice in here or anything...”</i>");
-		output("\n\nYou cock an eyebrow at the ausar before she speaks up again, <i>“But, now that you’re here... wanna join in?”</i> Looking back at your lustfully, Anno bites her lip and tightens her grip on Erra’s leash, the dark-skinned doggy looking out from behind her new mistress with a similar expression.");
+		output("\n\nYou cock an eyebrow at the ausar before she speaks up again, <i>“But, now that you’re here... wanna join in?”</i> Looking back at you lustfully, Anno bites her lip and tightens her grip on Erra’s leash, the dark-skinned doggy looking out from behind her new mistress with a similar expression.");
 	}
 	else
 	{
