@@ -499,8 +499,8 @@ public function kaneTalkFuture():void
 		output("\n\n<i>“As I said. For now,”</i> Kane replies. <i>“The Word-Wolf has plans to bring more of his kind to our world, and I see that path being filled with danger. If they are not happy to obey,");
 		if (kaneDominance() > 50) output(" like you,");
 		output(" they shall spread discord and lies, and I worry that");
-		if (!9999) output(" now Quinn has her child");
-		else if (!9999) output(" now Quinn is with child");
+		if (flags["QUINN_KID_AGE"] != undefined) output(" now Quinn has her child");
+		else if (flags["QUINN_PREG_TIMER"] != undefined) output(" now Quinn is with child");
 		else output(" once Quinn has the child she so desires");
 		output(" she will no longer have the ability to instill discipline.”</i>");
 		output("\n\nIs he planning on doing something about it?");
