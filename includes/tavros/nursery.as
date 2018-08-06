@@ -145,7 +145,7 @@ public function zephyrKidsOption(btnSlot:Number):Number
 	{
 		if (hours > 6 && hours < 22)
 		{
-			output("\n\nYour kids fathered by Zephyr look like they're growing up fast; undoutedly entirely human, something of a rarity in your nursery, but mightily energetic. Probably little troublemakers in waiting for you and the nursery staff!");
+			output("\n\nYour kids fathered by Zephyr look like they’re growing up fast; undoutedly entirely human, something of a rarity in your nursery, but mightily energetic. Probably little troublemakers in waiting for you and the nursery staff!");
 
 			addButton(btnSlot, "ZephyrKids", playWithZephKids, undefined, "Zephyr Kids", "Play with your kids.");
 			btnSlot++;
@@ -502,8 +502,8 @@ public function nurseryCommonAreaFunc():Boolean
 
 	if (zephAtNursery())
 	{
-		output("\n\nZephyr is here, idly rifling through a stack of computer tablets. Seems as though even if she leaves work, work doesn't leave her!");
-		addButton(btnIdx, "Zephyr", zephTalkAtNursery, undefined, "Go talk to Zephyr. She'll probably want to fuck!");
+		output("\n\nZephyr is here, idly rifling through a stack of computer tablets. Seems as though even if she leaves work, work doesn’t leave her!");
+		addButton(btnIdx, "Zephyr", zephTalkAtNursery, undefined, "Go talk to Zephyr. She’ll probably want to fuck!");
 		btnIdx++;
 	}
 	
@@ -2352,11 +2352,16 @@ public function pregAverageLoadSizes():void
 	output("\n\n<b><u>ZaaltPregnancy</u></b>: " + (new ZaaltPregnancyHandler()).definedAverageLoadSize + " mLs");
 	output("\n* <b>Zaalt:</b> " + (new Zaalt()).cumQ() + " mLs");
 	
+	output("\n\n<b><u>ZephyrPregnancy</u></b>: " + (new ZephyrPregnancyHandler()).definedAverageLoadSize + " mLs");
+	output("\n* <b>Zephyr:</b> " + getZephyrPregContainer().cumQ() + " mLs");
+	
 	output("\n\n<b><u>ZilPregnancy</u></b>: " + (new ZilPregnancyHandler()).definedAverageLoadSize + " mLs");
 	output("\n* <b>Zil Male:</b> " + (new ZilMale()).cumQ() + " mLs");
 	output("\n* <b>Zil Male (Pack):</b> " + (new ZilPack()).cumQ() + " mLs");
 	output("\n* <b>Zil Hover Fly:</b> " + (new ZilHoverFly()).cumQ() + " mLs");
 	output("\n* <b>Zil Tribe:</b> " + (new ZilTribe()).cumQ() + " mLs");
+	output("\n* <b>Zil Champion Bow:</b> " + (new ZilChampionBow()).cumQ() + " mLs");
+	output("\n* <b>Zil Champion Spear:</b> " + (new ZilChampionSpear()).cumQ() + " mLs");
 	
 	/*
 	
@@ -2377,10 +2382,10 @@ public function nurseryMilkingRoomFunc():Boolean
 	}
 	else
 	{
-		if (!zephAtNursery()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr isn't at the nursery to lend a hand.");
+		if (!zephAtNursery()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr isn’t at the nursery to lend a hand.");
 		else if (!pc.isLactating()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need to be lactating to milk yourself!");
 		else if (!pc.hasVagina()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a pussy for Zephyr to assist in your endeavours!");
-		else if (pc.isPregnant()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr won't want to be too rough on her pregnant lover...");
+		else if (pc.isPregnant()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr won’t want to be too rough on her pregnant lover...");
 		else if (!pc.hasItemByClass(MagicMilker)) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a MagicMilker to hand.");
 	}
 

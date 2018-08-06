@@ -581,6 +581,7 @@ public function relaxWithArdia():void
 	addButton(1,"Mini Rahn",chooseAnArdiaDrink,"Mini Rahn","Mini Rahn","A jello shot! No gel or goo creatures were harmed making this delicious, sweet drink.");
 	addButton(2,"Honey Mead",chooseAnArdiaDrink,"Honey Mead","Honey Mead","Honey-based mead.");
 	addButton(3,"Her",chooseAnArdiaDrink,"Her","Her","You’ve got your eyes on the prettiest drink in this place...");
+	addButton(14,"Back",ardiaApproach,true);
 }
 
 //[Her]

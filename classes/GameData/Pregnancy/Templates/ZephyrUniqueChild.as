@@ -22,7 +22,7 @@ package classes.GameData.Pregnancy.Templates
 			hairColor = "NOT SET";
 			furColor = "NOT SET";
 			scaleColor = "NOT SET";
-			chitinColor = "red";
+			chitinColor = "NOT SET";
 			featherColor = "NOT SET";
 		}
 	}

@@ -99,7 +99,7 @@ package classes.GameData.Pregnancy.Handlers
 				kGAMECLASS.pc.bellyRatingMod += (10 * pData.pregnancyQuantity);
 				pData.pregnancyBellyRatingContribution += (10 * pData.pregnancyQuantity);
 
-				kGAMECLASS.pc.createStatusEffect("Pregnancy Pending", 0, 0, 0, 0, false, "Icon_Belly_Pregnant", "Your pregnancy is ready to deliver! Head to the nursery as soon as you can!", false, -1, 0xFFFFFF);
+				kGAMECLASS.pc.createStatusEffect("Pregnancy Pending", 0, 0, 0, 0, false, "Icon_Belly_Pregnant", "Your pregnancy is ready to deliver! Head to the nursery as soon as you can!", false, 0, 0xFFFFFF);
 				
 			}, true);
 		}
@@ -113,7 +113,7 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			// We're not actually doing anything on the end of the timer here, we're just
 			// going to ask the player to go to the nursery. This should alert them once an hour, every hour, until they go
-			if (mother.hasStatusEffect("Zephyr Preg Alert"))
+			if (!mother.hasStatusEffect("Zephyr Preg Alert"))
 			{
 				AddLogEvent(ParseText("Your codex beeps, notifying you of progress in your pregnancy. You should make it to the Nursery as soon as you can!"), "passive");
 				mother.createStatusEffect("Zephyr Preg Alert", 0, 0, 0, 0, true, "Icon_Belly_Pregnant", "", false, 60, 0xFFFFFF);
@@ -122,8 +122,8 @@ package classes.GameData.Pregnancy.Handlers
 
 		override public function nurseryEndPregnancy(mother:Creature, pregSlot:int, useBornTimestamp:uint):Child
 		{
-			if (mother.hasStatusEffect("Zephyr Preg Alert")) mother.removeStatusEffect("Zephyr Preg Alert");
-			if (mother.hasStatusEffect("Pregnancy Pending")) mother.removeStatusEffect("Pregnancy Pending");
+			mother.removeStatusEffect("Zephyr Preg Alert");
+			mother.removeStatusEffect("Pregnancy Pending");
 
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			
@@ -151,6 +151,7 @@ package classes.GameData.Pregnancy.Handlers
 			StatTracking.track("pregnancy/zephyr births", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total births", pData.pregnancyQuantity);
 			StatTracking.track("pregnancy/total day care", pData.pregnancyQuantity);
+			
 			if (kGAMECLASS.flags["ZEPHYR_KIDS_DAYCOUNTER"] == undefined) kGAMECLASS.flags["ZEPHYR_KIDS_DAYCOUNTER"] = kGAMECLASS.days;
 			
 			if (kGAMECLASS.flags["ZEPHYR_KIDS_KNOWN"] == undefined)

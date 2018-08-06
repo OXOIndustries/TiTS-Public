@@ -458,7 +458,6 @@ public function quinnHandmaidenThreesome(args:Array):void
 			showName("\nQUINN");
 			
 			output("Quinn beckons to one of her handmaidens, who hastens over to take " + quinnBabyName() + " out of her hands. She then rises and silently heads up the hill, her bobbing abdomen and bottom beckoning you to follow.");
-			
 			output("\n\n");
 			
 			processTime(3);
@@ -466,7 +465,21 @@ public function quinnHandmaidenThreesome(args:Array):void
 			pc.lust(35);
 			
 			// Sex proceeds as normal from here
-			addButton(0, "Next", quinnHandmaidenThreesome, ["next"]);
+			addButton(0, "Next", sexWithQuinnOmnigenderWHYYYY);
+			break;
+		case "maiden":
+			showBust("QUINN", "FETCH", "CARRY");
+			showName("\nQUINN");
+			
+			output("<i>“No,”</i> Quinn replies, regarding you with tired golden eyes, <i>“I need - I need to rest. My handmaidens will attend you.”</i>");
+			output("\n\n");
+			
+			processTime(3);
+			// +Lust
+			pc.lust(35);
+			
+			addButton(0, "Handmaidens", quinnHandmaidenThreesome, ["next"]);
+			addButton(14, "Back", goBackToQuinnMain);
 			break;
 		case "next":
 			showQuinnMaidens();
@@ -482,6 +495,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			if(flags["QUINN_MAIDENS_MET"] == undefined) flags["QUINN_MAIDENS_MET"] = 1;
 			
 			// If PC meets multiple requirements, select at random
+			var scene:String = "error";
 			var sceneList:Array = [];
 			var cocksThatFit:Array = [];
 			
@@ -511,8 +525,9 @@ public function quinnHandmaidenThreesome(args:Array):void
 			if(cIdx >= 0 && cIdx2 < 0) sceneList.push("cock");
 			if(cIdx >= 0 && cIdx2 >= 0) sceneList.push("cocks");
 			if(vIdx >= 0) sceneList.push("vagina");
+			if(sceneList.length > 0) scene = sceneList[rand(sceneList.length)];
 			
-			addButton(0, "Next", quinnHandmaidenThreesome, [sceneList[rand(sceneList.length)], cIdx, vIdx, cIdx2, cIdx3, cumQ]);
+			addButton(0, "Next", quinnHandmaidenThreesome, [scene, cIdx, vIdx, cIdx2, cIdx3, cumQ]);
 			break;
 		// 1 < cocks less than 12.5 inches
 		case "cocks":
@@ -780,6 +795,14 @@ public function quinnHandmaidenThreesome(args:Array):void
 			sweatyDebuff(2);
 			
 			IncrementFlag("QUINN_MAIDENS_SEXED");
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		default:
+			showQuinnMaidens();
+			
+			output("ERROR! No scene available...");
+			output("\n\n");
 			
 			addButton(0, "Next", mainGameMenu);
 			break;
@@ -2634,20 +2657,13 @@ public function pregQuinnSexNo():void
 	
 	var canHandMaiden:Boolean = (flags["QUINN_MAIDENS_SEXED"] != undefined || quinnHandmaidenThreesomeAvailable());
 	
-	if(pregDays <= 130)
+	if(flags["QUINN_SIRED_KID"] == undefined)
 	{
 		output("<i>“No,”</i> Quinn replies curtly. <i>“I need - I need to be careful. " + (canHandMaiden ? "Go bother my handmaidens if you want that." : "Go into the lower forests and find the hunters if you want that.") + "”</i>");
 	}
 	else
 	{
-		if(flags["QUINN_SIRED_KID"] == undefined)
-		{
-			output("<i>“It’s sweet of you to persist,”</i> Quinn replies, regarding you with twinkling golden eyes, <i>“But I still need to be careful. With you, getting rough - the temptation is always there. " + (canHandMaiden ? "My handmaidens will attend you." : "Go into the lower forests and find the hunters if you want that.") + "”</i>");
-		}
-		else
-		{
-			output("" + (canHandMaiden ? "" : "") + "");
-		}
+		output("<i>“It’s sweet of you to persist,”</i> Quinn replies, regarding you with twinkling golden eyes, <i>“But I still need to be careful. With you, getting rough - the temptation is always there. " + (canHandMaiden ? "My handmaidens will attend you." : "Go into the lower forests and find the hunters if you want that.") + "”</i>");
 	}
 	output("\n\n");
 	
@@ -2959,13 +2975,12 @@ public function mommyQuinnApproach():Boolean
 			if(!isSire) output("My smartest, fiercest warrior.");
 			else output("Your daddy.");
 			output(" [pc.He]’s probably come to tell us about the enemies [pc.he]’s slain and skulls [pc.he]’s piled high in our honor. Say hello to [pc.him]!”</i>");
-			output("\n\n");
 			output("\n\nThe kid does nothing of the sort, of course; " + (babyMale ? "he" : "she") + " is still very young. " + (babyMale ? "He" : "She") + " simply gazes at you with a frown, those golden eyes taking in your deeply curious form, antennae twitching, toothless mouth forming inchoate shapes and expressions. Then " + (babyMale ? "he" : "she") + "’s whisked back into " + (babyMale ? "his" : "her") + " adoring mother’s arms.");
 			output("\n\n<i>“Have you given " + (babyMale ? "him" : "her") + " a name?”</i> you ask.");
 			output("\n\n<i>“Zil are not given names. Not unless they are slaves,”</i> Quinn tells you in a chiding, you-should-know-this tone. <i>“They earn them. For now though I own my child, so I call " + (babyMale ? "him" : "her") + "...");
 			if(isSire)
 			{
-				output("  Owers.”</i> She smiles at you broadly, as " + (babyMale ? "he" : "she") + " paws intently at her chitin breastplate.");
+				output(" Owers.”</i> She smiles at you broadly, as " + (babyMale ? "he" : "she") + " paws intently at her chitin breastplate.");
 				flags["QUINN_KID_NAME"] = "Owers";
 			}
 			else
@@ -3008,25 +3023,48 @@ public function mommyQuinnApproach():Boolean
 	// Again it’s never going to be older than 5 no it isn’t so shut up
 	else
 	{
+		output("<i>“My");
+		if(isSire) output(" most virile");
+		else if(flags["PQ_BEAT_LAH"] == 1 && flags["PQ_RESOLUTION"] == 1) output(" most honored");
+		else output(" smartest, fiercest");
+		output(" warrior returns,”</i> the motherly chieftain says, leaning back in her chair, one hand rested on a cushy thigh. She favors you with a serene and seductive smile. <i>“What does [pc.he] wish of [pc.his] Quinn?”</i>");
 		
+		if(quinnBabyActive())
+		{
+			output("\n\nSounds of " + (isSire ? "your" : "her") + " child playing in the back echos nearby.");
+		}
+		
+		processTime(1);
+		
+		peacefulQuinnMenu();
 	}
 	return true;
 }
-// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
+
 public function quinnMomSexButton(btnSlot:int = 2):void
 {
 	if(pc.lust() < 33) addDisabledButton(btnSlot, "Sex", "Sex", "You aren’t aroused enough for this.");
 	else if(quinnBabyAge() < 365)
 	{
 		// Non-handmaiden [Sex] chosen whilst kid present
-		if(quinnBabyActive()) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
+		if(quinnBabyActive())
+		{
+			if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
+			else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
+			else addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
+		}
 		// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
-		else addDisabledButton(btnSlot, "Sex", "Sex", "You’ve worn out Quinn, and Fetch and Carry are otherwise occupied. No more bonking. Aren’t babies a bitch?");
+		else
+		{
+			if(!pc.hasGenitals()) addDisabledButton(btnSlot, "Sex", "Sex", "You need genitals to do that!");
+			else if(quinnHandmaidenThreesomeAvailable()) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["maiden"]);
+			else addDisabledButton(btnSlot, "Sex", "Sex", "You’ve worn out Quinn, and Fetch and Carry are otherwise occupied. No more bonking. Aren’t babies a bitch?");
+		}
 	}
 	else
 	{
 		if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
-		else if(!pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
+		else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
 		else addButton(btnSlot, "Sex", sexWithQuinnOmnigenderWHYYYY);
 	}
 }
@@ -3047,12 +3085,26 @@ public function chieftansCircleBonusQuinnMomText():String
 // [Myne / Owers]
 public function approachQuinnBaby():void
 {
+	
 	var isSire:Boolean = (StatTracking.getStat("pregnancy/quinn sired") > 0);
 	var babyAge:int = quinnBabyAge();
 	var babyMale:Boolean = (flags["QUINN_KID_SEX"] == 1);
 	var numChildren:int = ChildManager.numChildrenAtNursery();
 	
 	clearOutput();
+	
+	if(!quinnBabyActive())
+	{
+		showBust("");
+		showName("\nMAYBE NOT...");
+		
+		output((isSire ? "Your" : "Quinn’s") + " child is most likely sleeping at this time. Best not disturb " + (babyMale ? "him" : "her") + ".");
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	showQuinn();
 	author("Nonesuch");
 	

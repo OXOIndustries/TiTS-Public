@@ -254,8 +254,8 @@
 		//Lust attack. Deals less damage, but lowers the PC's Lust Resistance for several turns.
 		private function begForIt(target:Creature):void
 		{
-			output("<i>“Please,”</i> the kitty whines, staring at you with those big, slitted eyes of hers. <i>“Please please please fuck me! I need it so bad! I feel like I'm in heat but a thousand times over! I need dick, pussy, anything! Give it to me!”</i>");
-			output("\n\nShe moans, rubbing her fluffy fingers through the lips of her soaked quim and groping her tits until milk beads from her black nipples. <i>“I don't even know who you are, but I'll be your slut! Your bitch! Push me down and fuck me, do whatever you want!”</i>");
+			output("<i>“Please,”</i> the kitty whines, staring at you with those big, slitted eyes of hers. <i>“Please please please fuck me! I need it so bad! I feel like I’m in heat but a thousand times over! I need dick, pussy, anything! Give it to me!”</i>");
+			output("\n\nShe moans, rubbing her fluffy fingers through the lips of her soaked quim and groping her tits until milk beads from her black nipples. <i>“I don’t even know who you are, but I’ll be your slut! Your bitch! Push me down and fuck me, do whatever you want!”</i>");
 			
 			if (target.lust() * (0.25 + 0.75*target.LQ()) < rand(target.lustMax()))
 			{
@@ -275,8 +275,8 @@
 		//Recover some Health and boosts her Defense for a few turns. 1/encounter.
 		private function milkySuckle(target:Creature):void
 		{
-			output("The sex-crazed catgirl growls, staggering back in the wake of your recent assault. <i>“Why can't you just help me?”</i> she hisses, grabbing her tits in both hands. <i>“Don't you aliens love these?”</i>");
-			output("\n\nAs if to accentuate the point, she hefts up one of her massive mammaries and stuffs her coal-black teat into her mouth, sucking hard enough to make her cheeks compress. When she pops off, creamy white runs down her chin, pitter-pattering onto the tops of her tits and the cold floor beneath her. She looks hale and heartier than ever before -- it's gonna take a lot more work to bring her down now!");
+			output("The sex-crazed catgirl growls, staggering back in the wake of your recent assault. <i>“Why can’t you just help me?”</i> she hisses, grabbing her tits in both hands. <i>“Don’t you aliens love these?”</i>");
+			output("\n\nAs if to accentuate the point, she hefts up one of her massive mammaries and stuffs her coal-black teat into her mouth, sucking hard enough to make her cheeks compress. When she pops off, creamy white runs down her chin, pitter-pattering onto the tops of her tits and the cold floor beneath her. She looks hale and heartier than ever before -- it’s gonna take a lot more work to bring her down now!");
 			usedRecover=true;
 			HP(HPMax() * 0.5);
 		}
@@ -284,7 +284,7 @@
 		//Spend a turn restoring energy so she can make more Psychic attacks. Only if her ENG reaches lower than her cheapest power's cost.
 		private function pushitDeeper(target:Creature):void
 		{
-			output("<i>“Fuck! I need it... I need it so bad,”</i> the milodan whines, stumbling back and moaning like a bitch in heat -- damn close to what she is, the way she's flushed and dripping. Rather than look to you for relief, however, the horny kitty reaches between her legs and takes hold of the black vibrator lodged in her ass, pushing it deeper into her hungry hole.");
+			output("<i>“Fuck! I need it... I need it so bad,”</i> the milodan whines, stumbling back and moaning like a bitch in heat -- damn close to what she is, the way she’s flushed and dripping. Rather than look to you for relief, however, the horny kitty reaches between her legs and takes hold of the black vibrator lodged in her ass, pushing it deeper into her hungry hole.");
 			output("\n\nHer body goes rigid -- as much as one so lush with bouncy curves can, anyway -- and a low growl escapes her dusky lips. When she finally lets the dildo go, her eyes lock onto yours with a renewed, fiery focus!");
 			energy(+25);
 		}
@@ -298,7 +298,7 @@
 			}
 			else
 			{
-				output(" and you suddenly feel very bored. Slowly, you blink and yawn, stretching out, unable to help yourself despite the imminent danger. <b>You simply can't bring yourself to act!</b>");
+				output(" and you suddenly feel very bored. Slowly, you blink and yawn, stretching out, unable to help yourself despite the imminent danger. <b>You simply can’t bring yourself to act!</b>");
 				CombatAttacks.applyStun(target, 2);
 			}
 			energy(-10);
@@ -306,7 +306,7 @@
 
 		private function implantedImagery(target:Creature):void
 		{
-			output("Moaning with rampant desire, the milodan woman cups one of her breasts, pinching the piercing in her nipple between two fingers. At first you think she's trying to tease you, but sudden pressure in your skull tells you otherwise; it soon feels like your mind is inside a vice. When you blink, your vision is overwhelmed by images, flashing through your eyes -- images of ");
+			output("Moaning with rampant desire, the milodan woman cups one of her breasts, pinching the piercing in her nipple between two fingers. At first you think she’s trying to tease you, but sudden pressure in your skull tells you otherwise; it soon feels like your mind is inside a vice. When you blink, your vision is overwhelmed by images, flashing through your eyes -- images of ");
 			if (target.hasCock()) output(" you rutting with the cat-woman, bending her over on the desk and filling her with your seed again and again.");
 			else output(" the priestess throwing you onto your back and riding your face, engulfing all your senses in sweet, black quim for hours on end!");
 			if (willpower() + rand(100) >= target.WQ())
@@ -326,11 +326,11 @@
 			output("The priestess extends a hand towards you while the other is busy savagely groping her tits. A second later, you feel a pressure in your chest, like her hand is somehow reaching out and grabbing at your heart. ");
 			if (willpower() + rand(100) < target.WQ() * 0.75)
 			{
-				output("You steel yourself and do resist, throwing all your willpower against the catgirl's invasion of your body.");
+				output("You steel yourself and do resist, throwing all your willpower against the catgirl’s invasion of your body.");
 			}
 			else
 			{
-				output("Your limbs begin to feel leaden, way too heavy... like all the strength's just drained out of you. And the world seems to be moving so much faster all around you. <b>Some psychic force has weakened you!</b>");
+				output("Your limbs begin to feel leaden, way too heavy... like all the strength’s just drained out of you. And the world seems to be moving so much faster all around you. <b>Some psychic force has weakened you!</b>");
 				
 				var duration:int = 3 + rand(3);
 				createStatusEffect("Leech Empowerment", duration, 0, 0, 0, false, "DefenseUp", "The priestess has been bolstered by draining your energy!", true, 0, 0xFFFFFF);
@@ -358,10 +358,10 @@
 					lust(lustMax());
 					orgasm();
 					usedOrgasm = true;
-					output("\n\n<i>\"Oh, no! No no no!\"</i> the ice-kitty whines, breathing hard. <i>\"I can't... take it... any... more!\"</i>");
-					output("\n\nShe squeals, thrusting her fingers into her twat and pushing against the knotty dildo lodged in her ass. The woman's already desperately horny, enough that she's lost all restraint and decency; your continued teasing just pushes over over the edge. She cries out, throwing her head back and thrusting her chest out, screaming in pleasure. Milk squirts in creamy arcs from her dark teats, and juices flood down her thighs from her quivering quim.");
+					output("\n\n<i>“Oh, no! No no no!”</i> the ice-kitty whines, breathing hard. <i>“I can’t... take it... any... more!”</i>");
+					output("\n\nShe squeals, thrusting her fingers into her twat and pushing against the knotty dildo lodged in her ass. The woman’s already desperately horny, enough that she’s lost all restraint and decency; your continued teasing just pushes over over the edge. She cries out, throwing her head back and thrusting her chest out, screaming in pleasure. Milk squirts in creamy arcs from her dark teats, and juices flood down her thighs from her quivering quim.");
 					output("\n\nThe woman slumps to the floor, shivering as orgasm rocks her jiggly, curvy body. When it passes, though, she leaps to her feet with claws bared and a feral look in her eyes.");
-					output("\n\n<i>\"I need... MORE!\"</i> she shouts, lunging at you!");
+					output("\n\n<i>“I need... MORE!”</i> she shouts, lunging at you!");
 					return false
 				}
 			}

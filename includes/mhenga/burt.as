@@ -1379,6 +1379,8 @@ public function stephIrsonEpisodeOnePartTwo():void
 	clearOutput();
 	stephHeader(1, true);
 	
+	var bSyri:Boolean = (syriAtBurts() && flags["SYRI_TALKS"] != undefined);
+	
 	output("<i>“Ugh, mah head!”</i> Steph drawls, rubbing her temples as the naleen plants her at the edge of the pit. <i>“Crickey! Looks like she’s dragged me back to her nest! Oh, but look here! Before she eats me, I’m getting to witness the ultimate alien curiosity: the naleen mating ball!”</i> The camera cranes down to the pit, highlighting dozens - hundreds, even - of writhing bodies intertwined, cocks and breasts bouncing everywhere, no hole left unfucked as kitty-nagas bend and twist to accommodate several mates of either sex at once.");
 
 	output("\n\nWith a chuckle, the naleen gives Steph a little push, sending the New Brisbaner tumbling down the slope and into the heart of the pit... and right into the waiting arms of a particularly well-endowed male naleen whose two cocks are still dripping with juices from his last partner. Steph gives a shrill scream as her clothes are torn away, revealing the clean snatch between her long legs and her bouncing breasts, both quickly gripped by the male as she’s bent over the backs of an entwined couple, ass raised in the air for his inspection. He doesn’t waste a moment before lunging in, cocks ramming into her defenseless pussy and ass - and in glorious HD, all over galactic television.");
@@ -1397,7 +1399,7 @@ public function stephIrsonEpisodeOnePartTwo():void
 	output("\n\nA giddy female, less busty that the first but with an almost inhumanly wide set of hips and a jiggling ass, slithers in under Steph’s ass, slender reptilian tongue lapping up the alien spunk dripping from her cunt as another male lines up his shot, sliding in with the last’s cum as lube. Powerful thrusts send Steph’s bubble butt jiggling as the kitty-naga hammers her holes, squirting the last’s cum out with each mighty blow, right onto the waiting face of the female. The bustier huntress gives an orgasmic cry as the male finishes in her ass, pushing Steph’s face as hard into her groin as she can before tumbling aside, pushed down by another horny male who immediately crams his dual cocks into Steph’s fem-cum slathered gob.");
 	
 	//If Friend!Syri:
-	if(flags["SYRI_TALKS"] != undefined) output("\n\nAs you’re watching the orgy unfold, you feel a pair of familiar hands on your shoulder, and a pair of big, soft tits resting on your head. <i>“Holy shit, Steele, watching a porno in public? Ballsy!”</i> Syri chuckles, hopping over the back of the couch to watch. You try to tell her it’s a nature show, but she just rolls her eyes and shamelessly unzips her pants. <i>“If you do mine, I’ll do yours!”</i> she says with a slight giggle, a hand drifting to your crotch.");
+	if(bSyri) output("\n\nAs you’re watching the orgy unfold, you feel a pair of familiar hands on your shoulder, and a pair of big, soft tits resting on your head. <i>“Holy shit, Steele, watching a porno in public? Ballsy!”</i> Syri chuckles, hopping over the back of the couch to watch. You try to tell her it’s a nature show, but she just rolls her eyes and shamelessly unzips her pants. <i>“If you do mine, I’ll do yours!”</i> she says with a slight giggle, a hand drifting to your crotch.");
 	
 	output("\n\nMales and females both takes turns force-fucking the half-conscious hostess, smearing her with gallons of alien spunk until her gaping holes are a constant waterfall of creamy spooge, glowing in the camera’s eye. The show’s runtime is almost up by the time the huge naleen orgy is winding down; a final male has pulled Steph into his lap, both cocks shoved up her ass as the busty naleen that brought her idly fingers the human girl’s pussy, cooing, <i>“Was it everything you hoped it would be, dear?”</i>");
 	
@@ -1408,7 +1410,7 @@ public function stephIrsonEpisodeOnePartTwo():void
 	watchStephEpisodeBroadcast("STEPH_NYAN");
 	
 	processTime(30);
-	if(flags["SYRI_TALKS"] != undefined) pc.orgasm();
+	if(bSyri) pc.orgasm();
 	else pc.lust(33);
 	this.clearMenu();
 	addButton(0,"Next",mainGameMenu);

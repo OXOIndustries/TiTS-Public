@@ -631,7 +631,7 @@ public function waterfallPoolBonusSchtuff():Boolean
 	{
 		output("You are on the open, mossy plateau at the bottom of the waterfall. It comes thundering down from many feet above into a deep pool. The vast, ceaseless power of it throws up writhing veils of white vapor that breathe blessings on your hot [pc.skinFurScales]. It is shouldered by sheer, red rock cliffs that climb out of the jungle both to the east and west. It is certainly a daunting prospect - but you can, of course, get some help up to the top with a shout.");
 		output("\n\nBehind you, the pool empties out into a wide brook, which leads steeply downwards to the south.");
-		if(flags["PQ_RESOLUTION"] != -1) addButton(0,"Go Up",goUpZeWaterfall,undefined,"Go Up","Or are you interested in practising your rock climbing?");
+		if(flags["PQ_RESOLUTION"] != -1) addButton(0,"Go Up",goUpZeWaterfall,undefined,"Go Up","Or are you interested in practicing your rock climbing?");
 	}
 	
 	if(flags["WATERFALL_TAXI_RELAY"] != undefined)
@@ -903,9 +903,7 @@ public function loseToKane():void
 	showKane();
 	author("Nonesuch");
 	showName("DEFEAT:\nKANE");
-	IncrementFlag("LOST_TO_KANE");
-	IncrementFlag("KANE_SEXED");
-	IncrementFlag("KANE_BLOWN");
+	
 	if(pc.HP() <= 1) output("The strength departs your [pc.legOrLegs] and you collapse, hands sinking into soft moss. You shake your head urgently and throw your [pc.weapon] down when you hear the deadly whirr of the stone approaching. <i>Anything</i> but getting hit by that again.");
 	else output("Your head swims. Everything seems to drip with honey, you can practically taste and feel it on your [pc.lips] and [pc.tongue], and oh Void the thought of being touched and roughly used when you’re in this state... you barely notice your [pc.weapon] tumbling out of your hand. It’s no longer of any importance.");
 	output("\n\nKane walks across to you slowly, only letting his weapon softly thump down into the moss when it’s completely obvious you aren’t bluffing; when he’s almost on top of you, and the smell of him is billowing thickly over your senses.");
@@ -992,6 +990,8 @@ public function loseToKane():void
 	CombatManager.genericLoss();
 	
 	IncrementFlag("LOST_TO_KANE");
+	IncrementFlag("KANE_SEXED");
+	IncrementFlag("KANE_BLOWN");
 }
 
 //FOOT OF THE CLIFF
@@ -1095,7 +1095,7 @@ public function topOfTheCliffBonus():Boolean
 	if(silly) output("A flock of bird creatures fly by, conveniently providing a sense of scale. ");
 	output("You think you can make out the gleaming white of Esbeth in the distance - and the gleaming reflection of spacecraft taking off and coming in. You are standing on the bare banks of the river which forms the waterfall. The rapids gurgle and chunter as it hurls itself off the outcropping rocks to make the distant thunder at least a hundred feet down.");
 	output("\n\nAhead, arranged around the river in the squat, lime, cedar-like trees that grow up here, are zil buildings - pale yellow and disc-shaped, almost like giant fungi growing out of the forest.");
-	if(flags["PQ_RESOLUTION"] >= 1) addButton(0,"Go Down",goDownZeCliff,undefined,"Go Down","Or are you interested in practising your rock climbing?");
+	if(flags["PQ_RESOLUTION"] >= 1) addButton(0,"Go Down",goDownZeCliff,undefined,"Go Down","Or are you interested in practicing your rock climbing?");
 	return false;
 }
 
@@ -2579,8 +2579,8 @@ public function quinnAppearance():void
 	}
 	output("\n\n");
 	
-	clearMenu();
-	peacefulQuinnMenu();
+	//clearMenu();
+	//peacefulQuinnMenu();
 	addDisabledButton(1,"Appearance","Appearance","You’re looking at her right now.");
 }
 
@@ -3078,10 +3078,10 @@ public function approachQuinn():void
 		flags["MET_QUINN"] = 1;
 		//[Sex] [No] [Appearance]
 		clearMenu();
-		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(0,"Sex",sexWithQuinnOmnigenderWHYYYY);
-		else addDisabledButton(0,"Sex","Sex","You are not suitably endowed for sex with Quinn.");
 		addButton(1,"Appearance",quinnAppearance);
-		addButton(2,"No",noGiveMeMens);
+		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(2,"Sex",sexWithQuinnOmnigenderWHYYYY);
+		else addDisabledButton(2,"Sex","Sex","You are not suitably endowed for sex with Quinn.");
+		addButton(3,"No",noGiveMeMens);
 	}
 	//Repeat
 	else
@@ -3127,7 +3127,7 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 	}
 	
 	// Handmaiden Threesome
-	if(quinnHandmaidenThreesomeAvailable())
+	if((flags["QUINN_KID_AGE"] == undefined || quinnBabyAge() >= 365) && quinnHandmaidenThreesomeAvailable())
 	{
 		quinnHandmaidenThreesome(["intro"]);
 		return;

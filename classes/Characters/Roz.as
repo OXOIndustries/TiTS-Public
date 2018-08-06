@@ -86,7 +86,7 @@
 			this.thickness = 60;
 			this.tone = 50;
 			this.hairColor = "black";
-		    this.scaleColor = "blue";
+			this.scaleColor = "blue";
 			this.furColor = "blue";
 			this.hairLength = 12;
 			this.hairType = 0;
@@ -339,14 +339,14 @@
 		public function boobTeaseAttack(target:Creature):void
 		{
 			output("Roz thrusts her chest out, adding to its already impressive size - adding so much, in fact, that even with her bodysuit’s help, the two massive goo-boobs start to sag under their own massive weight. <i>“C’mon, fill these babies up!”</i> Roz urges you, swinging her shoulders from side to side. <i>“I promise I don’t bite... don’t have the teeth for it!”</i>");
-			if(target.willpower()/2 + rand(20) + 1 >= 30) output("\nYou shrug off the galotian's advances!"); 
+			if(target.willpower()/2 + rand(20) + 1 >= 30) output("\nYou shrug off the galotian’s advances!"); 
 			else applyDamage(new TypeCollection( { tease: 16 } ), this, target, "minimal");
 		}
 		//Butt Tease
 		public function buttTeaseAttack(target:Creature):void
 		{
 			output("Roz swivels on a heel and presents her thick posterior, bending over to make her already-tight bodysuit really squeeze her gooey cheeks. <i>“Don’t tell me you don’t want it!”</i> she snickers, reaching back and grabbing a full cheek in each hand. She spreads ‘em apart, only to let them snap back together with an audible <i>crack</i>! <i>“I could just smother you in there all day long!”</i>");
-			if(target.willpower()/2 + rand(20) + 1 >= 30) output("\nYou shrug off the galotian's advances!"); 
+			if(target.willpower()/2 + rand(20) + 1 >= 30) output("\nYou shrug off the galotian’s advances!"); 
 			else applyDamage(new TypeCollection( { tease: 18 } ), this, target, "minimal");
 		}
 		//Crotch Tease
@@ -354,7 +354,7 @@
 		{
 			output("The goo-girl spreads her legs and leans back against one of the nearby walls. A hand snakes its way down between her lush thighs, and two fingers disappear - pushing straight through her suit and into her gooey body. <i>“Oooh! This is how you do it, right?”</i> she teases, pumping her fingers hard into where a less galotian pilot might put her twat. <i>“My whole body’s just one big pussy... but the suit makes this place feel extra good! Wanna come try for yourself?”</i>");
 			output("\n\nShe gives you a wink and slips her hand out. The suit knits itself back together a moment later.");
-			if(target.willpower()/2 + rand(20) + 1 >= 30) output("\nYou shrug off the galotian's advances!"); 
+			if(target.willpower()/2 + rand(20) + 1 >= 30) output("\nYou shrug off the galotian’s advances!"); 
 			else applyDamage(new TypeCollection( { tease: 20 } ), this, target, "minimal");
 		}
 	}

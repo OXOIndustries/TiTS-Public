@@ -36,6 +36,8 @@ public function syriIsCrew():Boolean
 	return false;
 }
 
+public function syriVaginalCapacity():Number { return 350; }
+
 public function syriIsAFuckbuddy():Boolean
 {
 	if(syriFriendsWithBenefits()) return true;
@@ -935,7 +937,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 				if(pc.hasCock()) output(", your [pc.cocks] stiffening as her knotty prick brushes up against you.");
 				else output(", and you can feel her knotty cock hardening through her pants, a tantalizing taste of what’s to come."); 
 
-				output("\n\nShe breaks the kiss as the elevator locks into place at the top, just outside your airlock. Breathlessly, she whispers, <i>“how about a tour of the captain’s cabin first...”</i>");
+				output("\n\nShe breaks the kiss as the elevator locks into place at the top, just outside your airlock. Breathlessly, she whispers, <i>“How about a tour of the captain’s cabin first...”</i>");
 
 				output("\n\nYou give her the abridged version of the tour: the one where you’re running through the access corridors, teasing, kissing and caressing as clothes and gear tumble to the floor, leaving a trail of armaments and underwear leading right up to your cabin door. You seal it behind you, and a moment later you’re on your back, Syri straddling you, bare-breasted and panting right in your ear as her cock presses into your thigh, tip slick with her excitement. <i>“Nice digs. Now, how do you want me, captain?”</i>");
 			}
@@ -960,7 +962,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 			output("\n\nIt takes all your willpower to pull her off before the elevator gets sent back down again, and the two of you make a quick run from the station center back to your docking arm. The airlock barely has a chance to cycle before Syri starts to pull your gear off,  a furry leg hooking around your hip to lock her chest tight to yours. She moves in rhythmic undulations, grinding her crotch against yours, ");
 			if(pc.hasCock()) output("your [pc.cock] stiffens as her knotty prick brushes up against it.");
 			else output("your [pc.cunt] burns with desire as Syri’s dick rubs against it."); 
-			output("\n\nAs soon as you pass the airlock, clothes start flying. Syri sweeps you up off your feet, pulling you into a fierce kiss as she stumbles toward your quarters, shedding clothes and gear behind you as her prick presses into your [pc.belly], growing steadily until her pants are gone, letting the rigid red rod prod your thigh. Your door slides open, and you and Syri go tumbling into the bed. A moment later, and the canid beauty is straddling you, gently pumping her pecker as she growls, “Your call, [pc.name]. How do we do this?”");
+			output("\n\nAs soon as you pass the airlock, clothes start flying. Syri sweeps you up off your feet, pulling you into a fierce kiss as she stumbles toward your quarters, shedding clothes and gear behind you as her prick presses into your [pc.belly], growing steadily until her pants are gone, letting the rigid red rod prod your thigh. Your door slides open, and you and Syri go tumbling into the bed. A moment later, and the canid beauty is straddling you, gently pumping her pecker as she growls, <i>“Your call, [pc.name]. How do we do this?”</i>");
 		}
 	}
 	//Sex Options @ Ship:
@@ -972,7 +974,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 			addButton(1,"Missionary",missionaryWithTheDogDickedSlutSyri);
 		}
 		else {
-			if(outputs) output("\n\nYou’re too big to fuck her with it.");
+			if(outputs) output("\n\nYou’re too big to fuck her with your cock.");
 			addDisabledButton(0,"Cowgirl");
 			addDisabledButton(1,"Missionary");
 		}
@@ -997,8 +999,14 @@ public function syriSexMenu(outputs:Boolean = true):void {
 	if (pc.hasCock() && pc.hasTailCock()) addButton(5, "Tailcock", bangSyriWithTailcock, undefined, "Tailcock","Use your tailcock on Syri’s ass while she sucks you off.");
 	else if (!pc.hasCock()) addDisabledButton(5,"Tailcock","Tailcock","You also need a cock for this!");
 	else addDisabledButton(5,"Tailcock","Tailcock","You don’t have a tailcock, silly!");
+	
+	if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 2)
+	{
+		if(pc.hasCock() && pc.cockThatFits(syriVaginalCapacity())) addButton(6, "Bionahole", bionaHoleSyri, undefined, "Bionahole", "Ask Syri if you can borrow her perfectly packaged pussy for a little playtime.");
+		else if(pc.hasCock()) addDisabledButton(6, "Bionahole", "Bionahole", "You are too big to fuck her perfectly packaged pussy!");
+		else addDisabledButton(6, "Bionahole", "Bionahole", "You will need a cock to fuck her perfectly packaged pussy!");
+	}
 }
-
 
 //Reverse Cowgirl
 public function syriReverseCowgirlConsensualization():void {

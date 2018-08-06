@@ -7293,12 +7293,13 @@
 					break;
 			}
 			
-			if (!nounOnly && rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
+			if (!nounOnly && rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives);
 			if (!nounOnly && wingColor() != "" && rand(2) == 0)
 			{
 				if(description != "") description += ", ";
-				description += wingColor() + " ";
+				description += wingColor();
 			}
+			if(description != "") description += " ";
 			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wing");
 			return description;
 		}
@@ -10398,7 +10399,7 @@
 			return quantity;
 		}
 		//Can hold about three average shots worth, since this is fantasy.
-		public function maxCum(): Number {
+		public function maxCum(raw:Boolean = false): Number {
 			if (!hasCock()) return 0;
 			var quantity: Number = 0;
 			//Base value is ballsize*ballQ*cumefficiency by a factor of 2.
@@ -10411,12 +10412,15 @@
 			else quantity = Math.round(ballSize() * ballSize() * balls * 2 * ballEfficiency);
 
 			//Overriiiide for stuff
-			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
-			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
-			if(hasOpalRingCock()) 
+			if(!raw)
 			{
-				quantity *= 2;
-				quantity += 3000;
+				if(statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
+				if(statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
+				if(hasOpalRingCock()) 
+				{
+					quantity *= 2;
+					quantity += 3000;
+				}
 			}
 			return quantity;
 		}

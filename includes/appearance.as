@@ -626,9 +626,11 @@ public function appearance(forTarget:Creature):void
 				else output2(" A pair of");
 				if(isFloppyEars) output2(" floppy");
 				else output2(" alert");
-				output2(" rabbit ears stick up from the top of your " + headNoun + ",");
+				output2(" rabbit ears stick up");
+				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches");
+				output2(" from the top of your " + headNoun + ",");
 				if(target.earLength > target.tallness) output2(" dragging on the floor");
-				if(target.earLength > target.tallness/2) output2(" swaying about");
+				else if(target.earLength > target.tallness/2) output2(" swaying about");
 				else if(isFloppyEars || rand(2) == 0) output2(" bouncing around");
 				else output2(" swaying and darting");
 				output2(" as you [target.walk].");
@@ -791,9 +793,11 @@ public function appearance(forTarget:Creature):void
 				else output2(" A pair of");
 				if(isFloppyEars) output2(" floppy");
 				else output2(" alert");
-				output2(" rabbit ears stick up out of your " + target.hairDescript(true,true) + ",");
+				output2(" rabbit ears stick up");
+				if(target.earLength > 1) output2(" " + num2Text(target.earLength) + " inches");
+				output2(" out of your " + target.hairDescript(true,true) + ",");
 				if(target.earLength > target.tallness) output2(" dragging on the floor");
-				if(target.earLength > target.tallness/2) output2(" swaying about");
+				else if(target.earLength > target.tallness/2) output2(" swaying about");
 				else if(isFloppyEars || rand(2) == 0) output2(" bouncing around");
 				else output2(" swaying and darting");
 				output2(" as you [target.walk].");

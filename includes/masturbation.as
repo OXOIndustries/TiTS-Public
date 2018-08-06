@@ -3193,9 +3193,14 @@ public function bionaholeUse(arg:String = "Nivas"):void
 		bionaHoleInstructionalBullshit();
 		return;
 	}
-	else if(arg == "Tamani" && flags["TAMANI_HOLED"] == undefined)
+	if(arg == "Tamani" && flags["TAMANI_HOLED"] == undefined)
 	{
 		tamaniBionaholeInstruction();
+		return;
+	}
+	if(arg == "Syri")
+	{
+		bionaHoleSyri();
 		return;
 	}
 	clearOutput();
@@ -3459,7 +3464,6 @@ public function bionaHoleInstructionalBullshit():void
 }
 
 
-/*
 // Using Syri’s BionaHole
 // Must have follower Syri, have gotten her twat-in-a-box. PC must have a cock that can fit.
 // Add [BionaHole] to Syri’s menu.
@@ -3470,7 +3474,7 @@ public function bionaHoleSyri():void
 	author("Savin");
 	showSyri(true);
 	
-	var x:int = pc.cockThatFits(350);
+	var x:int = pc.cockThatFits(syriVaginalCapacity());
 	if (x < 0) x = pc.smallestCockIndex();
 	
 	output("You take a step towards your ausar lover, slipping one hand around Syri’s supple waist... and the other around behind her, to the hefty black pipe sitting on her desk. <i>“Mind if I borrow this?”</i> you ask with a coy smile, showing the randy pup what you’ve got in mind.");
@@ -3567,7 +3571,6 @@ public function bionaHoleSyri():void
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
-*/
 
 // Shower Fappings
 public function shipShowerFaps(genButtons:Boolean = false):Number

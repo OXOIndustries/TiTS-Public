@@ -370,7 +370,7 @@
 		//If has this status "MaikeStruggled"
 		public function maikeStruggleReaction(target:Creature):void
 		{
-			output("<i>“Ahaha, yes, yes! Squirm away, my little fly!”</i> swoons the Overseer as she charges her whip with nervous energy! Your body can’t help but shiver in the whip's coils!");
+			output("<i>“Ahaha, yes, yes! Squirm away, my little fly!”</i> swoons the Overseer as she charges her whip with nervous energy! Your body can’t help but shiver in the whip’s coils!");
 			applyDamage(meleeDamage(), this, target, "minimal");
 		}
 		public function maikeDoNothingReaction(target:Creature):void
@@ -383,11 +383,11 @@
 		public function maikeHasSexyGas(target:Creature):void
 		{
 			this.energy(-25);
-			output("<i>“Ordinance One, Single Dose!”</i> At those words, a small and unnervingly fast disc shoots out from a port in the Overseer's shoulder armor and lands right at your feet! In a near instant, the ground fills up with cloying, thick pink gas!");
+			output("<i>“Ordinance One, Single Dose!”</i> At those words, a small and unnervingly fast disc shoots out from a port in the Overseer’s shoulder armor and lands right at your feet! In a near instant, the ground fills up with cloying, thick pink gas!");
 			//Damage.
 			if(target.hasAirtightSuit())
 			{
-				output("\n<b>Good thing you're safely inside an airtight suit.</b>");
+				output("\n<b>Good thing you’re safely inside an airtight suit.</b>");
 			}
 			else if(target.reflexes()/2 + rand(20)+1 >= this.aim()/2+10 && !target.isBlind())
 			{
@@ -461,7 +461,7 @@
 		public function raftersBiiiiiiitches(target:Creature):void
 		{
 			output("The Overseer flies up to a jutting rock some distance away and uses the cover and the shadows to hunker down. You can spy her here and there but landing a shot might be hard...");
-			output("\n\nWith a new shimmer to her shield, she starts using the shadowed ceiling as cover while jumping erratically from spot to spot! <b>Melee attacks are out of the question while she's flying that high!</b>");
+			output("\n\nWith a new shimmer to her shield, she starts using the shadowed ceiling as cover while jumping erratically from spot to spot! <b>Melee attacks are out of the question while she’s flying that high!</b>");
 			this.shields(this.shieldsMax());
 			this.lust(-30);
 			this.energy(45);

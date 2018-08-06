@@ -617,6 +617,7 @@ public function statisticsScreen(showID:String = "All"):void
 						case "ShekkaPregnancy": output2(" Shekka, Eggs"); break;
 						case "FrostwyrmPregnancy": output2(" [frostwyrm.name], Eggs"); break;
 						case "LahPregnancy": output2(" Lah"); break;
+						case "ZephyrPregnancy": output2(" Zephyr"); break;
 						default: output2(" <i>Unknown</i>"); break;
 					}
 					if(pData.pregnancyIncubation > -1)
@@ -1097,6 +1098,8 @@ public function statisticsScreen(showID:String = "All"):void
 					output2("\n<b>* Births, Water Queen Young:</b> " + StatTracking.getStat("pregnancy/queen of the deep eggs"));
 				if(StatTracking.getStat("pregnancy/zaalt kids") > 0)
 					output2("\n<b>* Births, Zaalt’s Children:</b> " + StatTracking.getStat("pregnancy/zaalt kids"));
+				if(StatTracking.getStat("pregnancy/zephyr births") > 0)
+					output2("\n<b>* Births, Zephyr’s Children:</b> " + StatTracking.getStat("pregnancy/zephyr births"));
 				if(StatTracking.getStat("pregnancy/zil birthed") > 0)
 					output2("\n<b>* Births, Zil Young:</b> " + StatTracking.getStat("pregnancy/zil birthed"));
 				// Father
@@ -3327,8 +3330,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>SyriQuest</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
-				else if(flags["SYRIQUEST_STATE"] < 21) output2(" Accepted");
-				else output2(" Completed");
+				else output2(" Accepted");
 				if(flags["SYRIQUEST_STATE"] == 21) output2(", Killed Valden, Lied to Syri");
 				if(flags["SYRIQUEST_STATE"] == 22) output2(", Killed Valden, Told Syri");
 				if(flags["SYRIQUEST_STATE"] == 23)
@@ -3341,6 +3343,41 @@ public function displayQuestLog(showID:String = "All"):void
 						case 3: output2("the body of your Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]); break;
 					}
 				}
+				if(flags["SYRIQUEST_STATE"] >= 21) output2(", Completed");
+				if(flags["SYRIQUEST_LOCK_BYPASS"] != undefined)
+				{
+					output2("\n<b>* Living Onahole:</b> Taken");
+					if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 2) output2(", Given to Syri");
+				}
+				if(flags["SYRIQUEST_SYRI_ONAHOLE"] != undefined)
+				{
+					output2("\n<b>* Living Onahole:</b> Taken");
+					if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 2) output2(", Given to Syri");
+				}
+				if(flags["MET_SCHORA"] != undefined)
+				{
+					var schoraName:String = "";
+					if(flags["MET_SCHORA"] > 3)
+					{
+						if(flags["SYRIQUEST_LOCK_BYPASS"] >= 1) schoraName += "Commander ";
+						schoraName += "Schora";
+					}
+					else
+					{
+						schoraName += "Showering Dzaan";
+						if(flags["MET_SCHORA"] > 1 && flags["SYRIQUEST_LOCK_BYPASS"] >= 1) schoraName += " Commander";
+					}
+					output2("\n<b>* " + schoraName +  ":</b>");
+					switch(flags["MET_SCHORA"])
+					{
+						case 1: output2(" Seen her"); break;
+						case 2: output2(" Watched her"); break;
+						case 3: output2(" Met her"); break;
+						case 4: output2(" Met her, Sexed her nicely"); break;
+						case 5: output2(" Met her, Sexed her roughly"); break;
+					}
+				}
+				if(flags["MET_TORRA"] != undefined) output2("\n<b>* Torra:</b> Met and sexed her");
 				sideCount++;
 			}
 		}
@@ -4320,6 +4357,10 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Nursery</u></b>");
 				if(flags["USED_NURSERY_COMPUTER"] != undefined) output2("\n<b>* Computer:</b> Used");
+				if(StatTracking.getStat("nursery/milk milked") > 0)
+				{
+					output2("\n<b>* Milking Room, Fluid Milked:</b> " + Math.round(StatTracking.getStat("nursery/milk milked")) + " mLs");
+				}
 				if(flags["BRIGET_MET"] != undefined)
 				{
 					output2("\n<b>* Briget:</b> Met her");
@@ -4383,6 +4424,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["ZEPHYR_PISSED"] != undefined) output2(", Pissed off");
 					if(flags["SEXED_ZEPHYR"] != undefined) output2(", Sexed her");
 					if(flags["ZEPHYR_FUCKED_PC"] != undefined) output2(", She fucked you");
+					if(flags["ZEPHYR_THROBBED"] != undefined) output2(", She used Throbb");
 				}
 				variousCount++;
 			}
@@ -6339,6 +6381,18 @@ public function displayEncounterLog(showID:String = "All"):void
 					case 2: output2(" Unlocked by hacking"); break;
 					default: output2(" <i>Unknown</i>"); break;
 				}
+				if(flags["MAIKE_SLAVES_RELEASED"] != undefined)
+				{
+					output2("\n<b>* Slaves:</b> Seen");
+					switch(flags["MAIKE_SLAVES_RELEASED"])
+					{
+						case -1: output2(", Enslaved"); break;
+						case 1: output2(", Released"); break;
+						case 2: output2(", Freed, Inciting rebellion"); break;
+						default: output2(" <i>Unknown</i>"); break;
+					}
+				}
+				if(flags[""] != undefined) output2("\n<b>* Maike:</b> Met her");
 				if(flags["MET_TIVF"] != undefined) output2("\n<b>* Tivf:</b> Met him");
 				variousCount++;
 			}
@@ -7631,7 +7685,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		// Illegal items... Penny's gonna getcha!
-		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined)
+		if(CodexManager.entryViewed("Dumbfuck") || CodexManager.entryViewed("Gush") || CodexManager.entryViewed("The Treatment") || flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined)
 		{
 			output2("\n<b><u>Illegal Items</u></b>");
 			// Dumbfuck
@@ -7657,7 +7711,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["USED_GUSH"] != undefined) output2(", Used");
 			}
 			// Throbb
-			if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined)
+			if(flags["PENNY_THROBB_PURCHASE_UNLOCKED"] != undefined || flags["PENNY_THROBB_USES"] != undefined || flags["TIMES_THROBB_USED"] != undefined || flags["ZEPHYR_THROBBED"] != undefined)
 			{
 				output2("\n<b>* Throbb:</b> Known");
 				if(flags["TIMES_THROBB_USED"] != undefined)

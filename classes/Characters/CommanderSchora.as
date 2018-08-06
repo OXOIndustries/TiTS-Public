@@ -204,11 +204,11 @@ Like Kaska, "Low Blow" deals hella bonus damage to her.
 The PC picks up an Aegis LMG from her as loot.
 -dun
 
-You're fighting Commander Schora, the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship. She's a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station's security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she's wearing. She's currently wielding a bulky machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger.
+You’re fighting Commander Schora, the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship. She’s a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station’s security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she’s wearing. She’s currently wielding a bulky machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger.
 
 
 Machinegun Burst
-Schora advances, quick and precise, squeezing the trigger on her gun as she does so. The weapon barks loudly, streaming bursts of red-hot lead with every step its owner takes. {You're raked by impacts from the gun! //else: Several shots impact all around you!}
+Schora advances, quick and precise, squeezing the trigger on her gun as she does so. The weapon barks loudly, streaming bursts of red-hot lead with every step its owner takes. {You’re raked by impacts from the gun! //else: Several shots impact all around you!}
 
 Chaff Grenade
 //Rare. Sets PC's Accuracy bonus to 0 for 3 turns. AIM is unaffected. Any drone the PC has is shut down for the duration.
@@ -216,7 +216,7 @@ Scora pulls a small blue sphere off her belt, knocks it against on her horns, an
 
 Underslung Shotgun
 //Uncommon. Can't miss. Inflicts heavy Kinetic damage. Sunders the PC's armor if their Shields are down.
-Schora pumps a shotgun slung under her machinegun's barrel and squeezes a secondary trigger, sending a blast of metal pellets at you! {has Armor, can be Sundered: The blast rips into your armor, tearing it apart! <b>It's Sundered!</b>}
+Schora pumps a shotgun slung under her machinegun’s barrel and squeezes a secondary trigger, sending a blast of metal pellets at you! {has Armor, can be Sundered: The blast rips into your armor, tearing it apart! <b>It’s Sundered!</b>}
 
 Incendiary Rounds
 //Rare. Deals Thermal damage, causes Burning if the PC fails a PHYS save.
@@ -244,17 +244,17 @@ With a wicked grin, Schora taps a button on the side of her gun. The muzzle glow
 			if (rangedCombatMiss(this, target) || blindMiss(this, target)) output(" Several shots impact all around you!");
 			else
 			{
-				output(" You're raked by impacts from the gun!");
+				output(" You’re raked by impacts from the gun!");
 				applyDamage(rangedDamage(), this, target, "minimal");
 			}
 		}
 		
 		private function shottyDakka(target:Creature):void
 		{
-			output("Schora pumps a shotgun slung under her machinegun's barrel and squeezes a secondary trigger, sending a blast of metal pellets at you!");
+			output("Schora pumps a shotgun slung under her machinegun’s barrel and squeezes a secondary trigger, sending a blast of metal pellets at you!");
 			applyDamage(damageRand(rangedDamage().multiply(1.5), 10), this, target, "minimal");
 			if (target.hasArmor() && target.shields() <= 0 && !target.hasStatusEffect("Sundered")){
-				output("\n\nThe blast rips into your armor, tearing it apart! <b>It's Sundered!</b>");
+				output("\n\nThe blast rips into your armor, tearing it apart! <b>It’s Sundered!</b>");
 				CombatAttacks.applySunder(target);
 			}
 		}
