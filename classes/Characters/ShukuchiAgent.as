@@ -110,7 +110,7 @@ package classes.Characters
 			else
 			{
 				output("The blade swings past your face, dazzling your senses! In that moment, follow up rib punches rock your side, pushing you back!");
-				for (var i:int = 0; i < 2; ++i) applyDamage(meleeDamage(), this, target, "minimal");
+				for (var i:int = 0; i < 2; ++i) applyDamage(damageRand(meleeDamage(), 10), this, target, "minimal");
 			}
 		}		
 		protected function punchyFlurry(target:Creature):void
@@ -120,7 +120,7 @@ package classes.Characters
 			else
 			{
 				output(" His fist makes a hefty impact against your sternum, battering through any defense you have! A kick to the calves, a gut punch and a knife-hilt to the face follow!");
-				for (var i:int = 0; i < 4; ++i) applyDamage(meleeDamage(), this, target, "minimal");
+				for (var i:int = 0; i < 4; ++i) applyDamage(damageRand(meleeDamage(), 10), this, target, "minimal");
 			}
 		}
 		private function punchyFlashy(target:Creature):void

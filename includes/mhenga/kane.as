@@ -335,10 +335,12 @@ public function kaneTalkMenu(disableSlot:int = -1):void
 {
 	clearMenu();
 	showKane();
+	
 	addButton(14, "Back", kaneMenu);
 	if (disableSlot == 0) addDisabledButton(0, "Kane");
 	else addButton(0, "Kane", kaneTalkKane, undefined, "Kane", "Ask how he got the name.");
 	if (disableSlot == 1) addDisabledButton(1, "The Scar");
+	else if (flags["KANE_LAST_ASKED_SCAR"] != undefined && flags["KANE_LAST_ASKED_SCAR"] + 60 > GetGameTimestamp()) addDisabledButton(1, "The Scar", "The Scar", "You just asked him about that. Let it rest for a while.");
 	else addButton(1, "The Scar", kaneTalkScar, undefined, "The Scar", "Ask how he got it.");
 	if (disableSlot == 2) addDisabledButton(2, "Quinn");
 	else addButton(2, "Quinn", kaneTalkQuinn, undefined, "Quinn", "Ask his opinion of the zil tribe’s leader.");
@@ -396,6 +398,7 @@ public function kaneTalkScar():void
 	author("Nonesuch");
 	processTime(5);
 	
+	flags["KANE_LAST_ASKED_SCAR"] = GetGameTimestamp();
 	if (flags["KANE_STORIES_TOLD"] == undefined) flags["KANE_STORIES_TOLD"] = 0;
 	
 	if (flags["KANE_STORIES_TOLD"] == 15 && kaneDominance() == 0)
@@ -488,7 +491,7 @@ public function kaneTalkFuture():void
 		if (kaneDominance() > 50) output(" That is why I make you get on your knees for me. There are no lies between us, because I am in charge, I control what is and isn’t said.");
 		output(" So no, I don’t believe any rosy friendship with these settlers will last. Eventually they will want what we cannot give, and then the white stings will come out again.”</i>");
 		output("\n\nIs he planning on doing something about it?");
-		output("\n\n<i>“I’m not intending on attacking Quinn, if that’s what you think,”</i> the big zil says. <i>“She has this tribe by right, it would be dishonorable. But, if she will not see sense on this... I shall leave. Found my own tribe. It shall be a difficult thing to do, but... <i>“ He smiles at you fiercely. <i>“ ...If I did not relish the challenge of being an outsider, then I could not call myself Kane, could I?”</i>");
+		output("\n\n<i>“I’m not intending on attacking Quinn, if that’s what you think,”</i> the big zil says. <i>“She has this tribe by right, it would be dishonorable. But, if she will not see sense on this... I shall leave. Found my own tribe. It shall be a difficult thing to do, but...”</i> He smiles at you fiercely. <i>“ ...If I did not relish the challenge of being an outsider, then I could not call myself Kane, could I?”</i>");
 	}
 	else
 	{
@@ -501,7 +504,7 @@ public function kaneTalkFuture():void
 		else output(" once Quinn has the child she so desires");
 		output(" she will no longer have the ability to instill discipline.”</i>");
 		output("\n\nIs he planning on doing something about it?");
-		output("\n\n<i>“I’m not intending on attacking Quinn, if that’s what you think,”</i> the big zil says. <i>“She has this tribe by right, it would be dishonorable. But, I think eventually... I shall leave. Found my own tribe. It shall be a difficult thing to do, but... <i>“ He smiles at you fiercely. <i>“ ...If I did not relish the challenge of being an outsider, then I could not call myself Kane, could I?”</i>");
+		output("\n\n<i>“I’m not intending on attacking Quinn, if that’s what you think,”</i> the big zil says. <i>“She has this tribe by right, it would be dishonorable. But, I think eventually... I shall leave. Found my own tribe. It shall be a difficult thing to do, but...”</i> He smiles at you fiercely. <i>“ ...If I did not relish the challenge of being an outsider, then I could not call myself Kane, could I?”</i>");
 	}
 	
 	kaneTalkMenu(3);
@@ -901,7 +904,7 @@ public function kaneWrestlingEvalRound(vars:Array):void
 	//is this win, loss or draw
 	var textArray:Array = kaneStallTexts;
 	if (kaneMove != playerMove) textArray = kaneWrongTexts;
-	else if (pc.PQ() + rand(100) > 110 && pc.WQ() + rand(100) > 110 && 9999) textArray = kaneCorrectTexts;
+	else if (pc.PQ() + rand(65) > 75 && pc.WQ() + rand(65) > 75 && 9999) textArray = kaneCorrectTexts;
 	
 	//gib points
 	if (textArray == kaneCorrectTexts) vars[0] += 1;
@@ -949,6 +952,7 @@ public function kanePCWinsTheBelt():void
 
 	kaneDominance(-10);
 	flags["KANE_STATUS"] = 1;
+	pc.willpower(2);
 	
 	kaneMenu();
 }
@@ -989,6 +993,8 @@ public function kanePCGetsManhandled(lostByLust:Boolean):void
 	output("\n\n<i>“Now we’ve got that out of the way - was there something you wanted, starwalker?”</i>");
 	
 	kaneDominance(10);
+	flags["KANE_STATUS"] = 2;
+	
 	kaneMenu();
 }
 
