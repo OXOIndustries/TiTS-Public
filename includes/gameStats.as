@@ -6392,7 +6392,7 @@ public function displayEncounterLog(showID:String = "All"):void
 						default: output2(" <i>Unknown</i>"); break;
 					}
 				}
-				if(flags[""] != undefined) output2("\n<b>* Maike:</b> Met her");
+				if(maikeEncountered()) output2("\n<b>* " + (flags["TIVF_MAIKE_TALK"] == 1 ? "Overseer Maike" : "Overseer") + ":</b> Met her");
 				if(flags["MET_TIVF"] != undefined) output2("\n<b>* Tivf:</b> Met him");
 				variousCount++;
 			}

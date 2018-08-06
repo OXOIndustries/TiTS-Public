@@ -15,6 +15,11 @@ public function showMaike(nude:Boolean = false):void
 	showBust("MAIKE" + nude ? "_NUDE":"");
 }
 
+public function maikeEncountered():Boolean
+{
+	return (flags["MAIKE_APPEARANCED"] != undefined || flags["MAIKE_SLAVES_RELEASED"] != undefined || flags["MAIKE_BLUFF_BROKE"] != undefined || flags["MAIKE_BLUFF_PEN"] != undefined || flags["MAIKE_BLUFF_UNPROCESSED"] != undefined);
+}
+
 //Plays if PC hasn’t defeated Maike yet, otherwise resume normal tile functions. Maike is a one-off boss: you either fight and win, bluff past (for a one-off repeat encounter) or lose and game over.
 public function maikeEncounterFun():Boolean 
 {
@@ -113,7 +118,7 @@ public function maikeAppearance():void
 	author("SoAndSo");
 	flags["MAIKE_APPEARANCED"] = 1;
 	output("Presumably " + (flags["TIVF_MAIKE_TALK"] == 1 ? "Overseer Maike" : "one of the head slavers in the mine") + ", this towering insectoid woman has you pinned to the ground.");
-	output("\n\nShe stands at 6’7’’ with a graceful, subtly sexy posture. " + (pc.tallness > 6*12+7 ? " If you were side-by-side, her height wouldn’t mean so much but since you’re on the ground..." : "") + " What adds to this is the sheer size of her moth-like wings. Six thick wings flicker and waft in the warm air of the mine, bathed in a gentle orange-red glow as light passes through the patterned, translucent membranes. What’s left creates an ominous shadow that covers your prone form.");
+	output("\n\nShe stands at 6\' 7\" with a graceful, subtly sexy posture. " + (pc.tallness > 6*12+7 ? " If you were side-by-side, her height wouldn’t mean so much but since you’re on the ground..." : "") + " What adds to this is the sheer size of her moth-like wings. Six thick wings flicker and waft in the warm air of the mine, bathed in a gentle orange-red glow as light passes through the patterned, translucent membranes. What’s left creates an ominous shadow that covers your prone form.");
 
 	output("\n\nThe " + (flags["TIVF_MAIKE_TALK"] == 1 ? "Overseer’s":"slaver’s") + " body could only be described as athletic and wiry, an overt litheness to her limbs belying her raw physical strength and dexterity. She was able to plummet from heights unseen and handily knock you to the ground after all. " + (pc.PQ() >= 80 ? "Even with your strength, she took you to town. ":"") + "That said, she is clearly a bombshell: a toned hourglass shape with curvy hips, a bouncy, grabbable ass and a soft set of healthy, bare E-cup breasts on full display. An array of symmetrical silver piercings make artwork of her near-flat nipples, reflecting the light to become dozens of tiny twinkling dots in the darkness.");
 	output("\n\nWhat takes away from her attention to the aesthetic are the chitinous plates that cover her insectoid frame. The sides of her hips, legs and arms are covered in bony, pale-green plates that glisten under the lights. Said plates are intermingled with softer, smooth-looking scales that blend from pale-green to purple and then to a sensuous blue. You think that there’s some serious mod-work going on: these plates look unnaturally strong. Her feet and hands could be interchanged if not for details: five digits a-piece with the appendages crested with more scales, tapering off into vicious claws. With one splayed foot planted flat against you, you don’t need to guess at its manual dexterity.");
