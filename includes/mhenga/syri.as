@@ -83,7 +83,6 @@ public function syriAtBurtsBonus(btnSlot:int = 2):void
 			//[Syri]
 			addButton(btnSlot,"Syri",approachSyriIntheMorning);
 		}
-
 	}
 }
 
@@ -1427,7 +1426,9 @@ public function syriSexOutro():void {
 	{
 		if (!pc.hasLowerGarment()) addDisabledButton(3, "GivePanties", "Give Undergarments","You need to be wearing undergarments to give them to someone!");
 		else if (pc.lowerUndergarment.sexiness < 0) addDisabledButton(3, "GivePanties", "Give Undergarments","Your undergarments probably aren’t the type to give as a gift.");
-		else addButton(3, "GivePanties", syriGivePanties, undefined, "Give Undergarments", "Give Syri your [pc.lowerUndergarment] for her masturbatory pleasure. ");
+		else if (!pc.itemSlotUnlocked(GLOBAL.LOWER_UNDERGARMENT)) addDisabledButton(3, "GivePanties", "Give Undergarments","Your undergarment slot is currently locked!");
+		else if (pc.canDropItem(pc.lowerUndergarment)) addDisabledButton(3, "GivePanties", "Give Undergarments","You cannot drop your sexy undergarments!");
+		else addButton(3, "GivePanties", syriGivePanties, undefined, "Give Undergarments", "Give Syri your [pc.lowerUndergarment] for her masturbatory pleasure.");
 	}
 }
 

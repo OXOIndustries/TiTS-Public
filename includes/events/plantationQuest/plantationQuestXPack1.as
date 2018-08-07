@@ -2874,7 +2874,7 @@ public function pregQuinnBirthed():void
 	showQuinn();
 	author("Nonesuch");
 	
-	var isSire:Boolean = flags["QUINN_SIRED_KID"];
+	var isSire:Boolean = (flags["QUINN_SIRED_KID"] != undefined);
 	var isMale:Boolean = quinnBirth();
 	
 	output("Beyond the flap of the leader’s yurt you find Quinn, deep in her bed furs, looking both utterly exhausted and extremely satisfied. In her arms, nursing at one of her opened breasts, is the tiniest zil you ever did see");
@@ -2883,13 +2883,13 @@ public function pregQuinnBirthed():void
 	output("\n\n<i>“This was the hardest thing I have ever done,”</i> she says, quietly but clearly. <i>“Harder than winning the right to be Quinn. Harder than");
 	if(flags["PQ_RESOLUTION"] == 1 ) output(" making peace with the starwalkers");
 	else output(" waging war against the land-stealers");
-	output(". But look - look at the result.”</i> She gently pulls the child off her teat, presents it to " + (flags["QUINN_SIRED_KID"] == undefined ? "her greatest warrior" : "the father") + ". You examine the little fetcher, blinking at you with golden eyes and grasping the air with tiny, chitinous fingers. Zil make it pretty easy to work out whether they’re male or female, even at a very young age.");
+	output(". But look - look at the result.”</i> She gently pulls the child off her teat, presents it to " + (!isSire ? "her greatest warrior" : "the father") + ". You examine the little fetcher, blinking at you with golden eyes and grasping the air with tiny, chitinous fingers. Zil make it pretty easy to work out whether they’re male or female, even at a very young age.");
 	
 	if(isMale) output(" You stroke his gently twitching wings admiringly.");
 	else output(" You stroke her tear-shaped abdomen admiringly.");
 	output("\n\n<i>“See " + (isMale ? "his" : "her") + " perfect hands?”</i> Quinn crows raspily. <i>“See " + (isMale ? "his" : "her") + " wandering eyes, " + (isMale ? "his" : "her") + " straight back and beautiful " + (isMale ? "wings" : "sting") + "? Quinn was generous, Quinn was bountiful! My child! " + (isMale ? "He" : "She") + " shall be the greatest leader my kind have ever known!”</i>");
 	// If Steele impregnated her + PC used [No] and [Comfort] options in previous preg scenes:
-	if(flags["QUINN_SIRED_KID"] != undefined && flags["QUINN_TALK_HERBS"] == -1 && flags["QUINN_TALK_PREG"] == 1)
+	if(isSire && flags["QUINN_TALK_HERBS"] == -1 && flags["QUINN_TALK_PREG"] == 1)
 	{
 		output("\n\n<i>“Our child,”</i> you say, looking her in the eye. The zil leader pauses for a long moment, and then smiles again.");
 		output("\n\n<i>“Our child,”</i> she agrees, taking the warm, black and yellow bundle back into her waiting arms.");

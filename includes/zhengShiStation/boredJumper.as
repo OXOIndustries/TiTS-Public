@@ -2174,6 +2174,7 @@ public function getTheBunnyPirateToTakeYourBootyByWilliam():void
 
 	processTime(40);
 	for(var y:int = 0; y < 3 ; y++) { pc.orgasm(); }
+	pc.loadInAss(enemy);
 	clearMenu();
 	addButton(0,"Next",winAndGetButtPoundedByBunEpilogue);
 }
@@ -2535,7 +2536,7 @@ public function boredJumperHeatSexII():void
 	if(pc.hasCock()) output(", even stimulating your [pc.cocks] to add their own to the air");
 	output(". Your [pc.hips] grind together, your erect [pc.clitNoun] afflicting you with an inch only your hands can tend. You brazenly finger yourself, a task made all to easy by the torrential downpour of syrup oozing from your hot and ready cunt, moaning all over the bunny’s cock you suck so diligently.");
 	
-	output(". Your [pc.hips] grind together, your erect [pc.clit] afflicting you with an itch only your hands can tend. You brazenly finger yourself, a task made all to easy by the torrential downpour of syrup oozing from your hot and ready cunt, moaning all over the bunny's cock you suck so diligently.");
+	output(". Your [pc.hips] grind together, your erect [pc.clit] afflicting you with an itch only your hands can tend. You brazenly finger yourself, a task made all to easy by the torrential downpour of syrup oozing from your hot and ready cunt, moaning all over the bunny’s cock you suck so diligently.");
 	
 	output("\n\n<i>“D-damn...”</i> The laquine grabs your head. <i>“I feel so hard I bet my dick could replace the mining bots down here..! Just what do you think I’m gonna do to you for this?”</i> She half-taunts. In all honesty, you can’t quite tell where her tone of voice is, all that matters is that she’s going to ravish, no, <b>ruin</b> you with her gorgeous [enemy.cock], that she’s going to do her very best to impregnate you with every ounce of cum churning in her fuzzy nuts.");
 	output("\n\nShe yanks you down all the way on her cock so hard that tears form at the edges of your [pc.eyes], but you aren’t in pain. No, you understand, this is where you <i>need</i> to be right now, taking care of this studly specimen, your rightful mate. She uses your mouth like an onahole, and you’re all too happy to reciprocate, squeezing your cheeks around her shaft and lashing her mast with your [pc.tongue]. You coil around her [enemy.cockHead] and suck at her cumslit directly, hoping you’ll get a fresh batch before too long.");

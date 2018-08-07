@@ -3330,24 +3330,21 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>SyriQuest</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
-				else output2(" Accepted");
+				else if(flags["SYRIQUEST_STATE"] >= 3) output2(" Accepted");
+				else output2(" <i>In progress...</i>");
 				if(flags["SYRIQUEST_STATE"] == 21) output2(", Killed Valden, Lied to Syri");
 				if(flags["SYRIQUEST_STATE"] == 22) output2(", Killed Valden, Told Syri");
-				if(flags["SYRIQUEST_STATE"] == 23)
-				{
-					output2(", Freed Valden, He took ");
-					switch(flags["SYRIQUEST_VALDEN_BODY_CHOICE"])
-					{
-						case 1: output2("Dr. Calnor’s body"); break;
-						case 2: output2("the body of your Bimbo Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]); break;
-						case 3: output2("the body of your Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]); break;
-					}
-				}
+				if(flags["SYRIQUEST_STATE"] == 23) output2(", Freed Valden");
 				if(flags["SYRIQUEST_STATE"] >= 21) output2(", Completed");
 				if(flags["SYRIQUEST_LOCK_BYPASS"] != undefined)
 				{
-					output2("\n<b>* Living Onahole:</b> Taken");
-					if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 2) output2(", Given to Syri");
+					output2("\n<b>* Cargo Hovercraft:</b>");
+					switch(flags["SYRIQUEST_LOCK_BYPASS"])
+					{
+						case -1: output2(" Failed to open locks"); break;
+						case 1: output2(" Bypassed locks to sneak inside"); break;
+						case 2: output2(" Used stealth generator to sneak inside"); break;
+					}
 				}
 				if(flags["SYRIQUEST_SYRI_ONAHOLE"] != undefined)
 				{
@@ -3357,15 +3354,14 @@ public function displayQuestLog(showID:String = "All"):void
 				if(flags["MET_SCHORA"] != undefined)
 				{
 					var schoraName:String = "";
-					if(flags["MET_SCHORA"] > 3)
+					if(flags["MET_SCHORA"] > 3 || flags["SYRIQUEST_STATE"] >= 21)
 					{
-						if(flags["SYRIQUEST_LOCK_BYPASS"] >= 1) schoraName += "Commander ";
-						schoraName += "Schora";
+						schoraName += (flags["SYRIQUEST_LOCK_BYPASS"] >= 1 ? "Commander" : "Alyru") + " Schora";
 					}
 					else
 					{
-						schoraName += "Showering Dzaan";
-						if(flags["MET_SCHORA"] > 1 && flags["SYRIQUEST_LOCK_BYPASS"] >= 1) schoraName += " Commander";
+						schoraName += "Horned Woman";
+						if(flags["MET_SCHORA"] > 1 || flags["SYRIQUEST_LOCK_BYPASS"] >= 1) schoraName += " Commander";
 					}
 					output2("\n<b>* " + schoraName +  ":</b>");
 					switch(flags["MET_SCHORA"])
@@ -3377,7 +3373,31 @@ public function displayQuestLog(showID:String = "All"):void
 						case 5: output2(" Met her, Sexed her roughly"); break;
 					}
 				}
-				if(flags["MET_TORRA"] != undefined) output2("\n<b>* Torra:</b> Met and sexed her");
+				if(flags["MET_TORRA"] != undefined)
+				{
+					output2("\n<b>* Researcher:</b> Met and sexed her");
+				}
+				if(flags["SYRIQUEST_STATE"] >= 8)
+				{
+					output2("\n<b>* Dr.Calnor:</b> Met him");
+				}
+				if(flags["SYRIQUEST_STATE"] >= 10)
+				{
+					output2("\n<b>* Valden:</b> Met him");
+					if(flags["SYRIQUEST_STATE"] == 21) output2(", Killed him");
+					if(flags["SYRIQUEST_STATE"] == 22) output2(", Killed him");
+					if(flags["SYRIQUEST_STATE"] == 23) output2(", Freed him");
+					if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"])
+					{
+						output2(", He took ");
+						switch(flags["SYRIQUEST_VALDEN_BODY_CHOICE"])
+						{
+							case 1: output2("Dr. Calnor’s body"); break;
+							case 2: output2("the body of your Bimbo Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]); break;
+							case 3: output2("the body of your Siegwulfe " + flags["SYRIQUEST_SIEGWULFE_NAME"]); break;
+						}
+					}
+				}
 				sideCount++;
 			}
 		}

@@ -903,7 +903,7 @@ public function syriQuestLockBypassFailure():void {
 	output("\n\n<i>“Welcome aboard,”</i> your supervisor continues. <i>“We’ve still got a few minutes before we dust off. Why don’t I give you the grand tour of our facilities here?”</i>");
 	output("\n\nYou try and bluff up some excuses, but the man won’t take no for an answer. You end up spending this next twenty or so minutes being led around the hangar, being shown the various high-tech equipment Haskarn’s has on hand, and having to try your hand at using more than a few of them. Syri is always a few paces behind, never getting involved but never letting you out of her sight, either. Guess she’s trying to play it cool.");
 	output("\n\n<i>“So, Syri says you’re lookin’ to start on Monday, eh?”</i> the man says as he turns off a huge steel-rending machine you were just cajoled into using. <i>“Too bad, you’ve got a knack for this kind of work. Well, why don’t I walk you out?”</i>");
-	output("\n\nUh oh. Time to improvise! ");
+	output("\n\nUh oh. Time to improvise!");
 	if (pc.isBimbo()) {
 		output("\n\n<i>“Oh, what a gentleman!”</i> you purr, running a finger around the huskar’s chest carpet. He grins and puts a big, strong hand on your back, ready to guide you out. Well, you know one good way to keep a man distracted...");
 		output("\n\nBefore he gets you outside, you get him into the bathroom and thrust your head down on his cock, slurping up red ausar cockflesh with lusty gusto. The huskar man is big and strong, but you know how to handle him; he’s a whimpering puppy in your hands before too long, blowing load after load down your throat. By the time you’re done with the bearded viking hound, he’s slumped back on a toilet with his chest heaving, body slicked with sweat.");
@@ -1052,7 +1052,7 @@ public function syriQuestAkkadiBaseSecurityRobotsDefeat():void
 	output("\n\n<i>“SECURITY PERSONNEL ARE PREOCCUPIED. WE WILL LET YOU OFF WITH A FINE THIS TIME.”</i>");
 	output("\n\nUh, okay. The guard-bot’s gun is still tracking you, and you really don’t want to get shot by more beanbags... so when a little screen pops out of its flank, you just swipe your Codex and be done with it. ");
 	//-1000 Credits; -1000 more per guard bot defeated
-	var moneyFine:int = 1000 + (CombatManager.enemiesAlive() * 1000);
+	var moneyFine:int = Math.round(1000 + (CombatManager.enemiesAlive() * 1000));
 	pc.credits -= moneyFine;
 	if (pc.credits <= 0) output("The fact that you’re broke doesn’t seem to bother the guard bot. It just beeps at you and then takes its pack and retreats into the side panels from whence it came.");
 	else output("The robot siphons off some credits and beeps approvingly before leading its pack back into the wall alcoves and disappearing.");
@@ -1367,7 +1367,6 @@ public function syriQuestTorraFight():void
 public function syriQuestTorraFightText():String
 {
 	var eText:String = "";
-//	eText += "You’re fighting the Milodan Researcher!";
 	eText += "She’s a tall furry woman with the ears and colors of a snow leopard. Her figure is the very definition of fertile: she has broad hips, thick thighs, and a thin waist. And her breasts, well, they’re <i>beyond</i> fertile: the huge, succulent mounds sit high and heavy on her chest, each capped with a prominent black teat. She’s well beyond an H-cup, if they even make bras big enough to contain such mammalian magnificence. She’s unarmed, save for the razor-like feline claws protruding from her digits, and the meaty black vibrater lodged inside her. That’s a kind of weapon, right?";
 	
 	return eText;
@@ -1378,7 +1377,6 @@ public function syriQuestTorraDefeat():void
 	var x:int = -1;
 	if (pc.hasCock()) x = pc.cockThatFits(chars["TORRA"].vaginalCapacity(0));
 	syriQuestTorraFuck(x);
-	CombatManager.genericLoss();
 }
 
 public function syriQuestTorraFuck(x:int):void
@@ -1440,8 +1438,16 @@ public function syriQuestTorraFuck(x:int):void
 	}
 	pc.orgasm();
 	chars["TORRA"].orgasm();
-	clearMenu();
-	addButton(0, "Next", mainGameMenu);
+	
+	if(inCombat())
+	{
+		CombatManager.genericLoss();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 public function syriQuestTorraVictory():void
@@ -1493,7 +1499,16 @@ public function syriQuestTorraPoundPuss(x:int):void
 	//chars["TORRA"].loadInCunt(pc, 0);
 	pc.orgasm();
 	chars["TORRA"].orgasm();
-	CombatManager.genericVictory();
+	
+	if(inCombat())
+	{
+		CombatManager.genericVictory();
+	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+	}
 }
 
 public function syriQuestTorraLeave():void
@@ -1775,7 +1790,7 @@ public function syriQuestAproachValdenPeacefully(showText:Boolean = true):void
 		output("\n\n<i>“Listen, when the power outage struck, I was able to force down the facility’s digital security. I’ve got control of cameras, drones, defenses, everything... but there’s no way out. It’s a sealed system. I have to <b>walk</b> out of here, in some kind of body.”</i>");
 		output("\n\n<i>“You said you had control of security drones...”</i>");
 		output("\n\nHe shakes his head. <i>“Not happening. As much as I’d love to be a metal armadillo with a laser for a face, their mental storage is nowhere near enough to hold a person. I’d need a highly advanced android... or a person with cybernetic implants. Somebody like Doctor Calnor...”</i>");
-	processTime(3);
+		processTime(3);
 	}
 	clearMenu();
 	addButton(0, "Calnor", syriQuestValdenSuggestCalnor, undefined, "Calnor", "He could escape inside Dr. Calnor? Well, the way the doctor acted, it’s only a matter of time before he shows up here anyway...");
@@ -1891,11 +1906,11 @@ public function syriQuestCalnorFightVictory():void
 		output("\n\nYou reel back and cover your face, an act of primal instinct in response to unexpected danger. By the time you regain your wits and the smoke clears, Calnor’s gone -- as is some device that had been lying nearby, about the size of your arm.");
 		output("\n\n<i>“Damn!”</i> Valden growls over the intercom. <i>“Ah, we’ll get him. Whoever you are, come on up to the Warp Field lab. I’ll drop the security override.”</i>");
 		output("\n\nWell, guess it’s time to go meet Valden...\n\n");
-			flags["SYRIQUEST_STATE"] = 8;
-			//Not ideal
-			flags["SYRIQUEST_CALNOR_ICON"] = 1;
-			processTime(3);
-			CombatManager.genericVictory();
+		flags["SYRIQUEST_STATE"] = 8;
+		//Not ideal
+		flags["SYRIQUEST_CALNOR_ICON"] = 1;
+		processTime(3);
+		CombatManager.genericVictory();
 	}
 	else 
 	{
@@ -2213,7 +2228,7 @@ public function syriQuestAkkadiBaseEscape():void
 public function syriQuestDropshipFightText():String
 {
 	var eText:String = "";
-	eText += "You’re fighting an Akkadi dropship, strapped with laser cannons and god knows what else!";
+	eText += "An Akkadi dropship strapped with laser cannons and god knows what else!";
 	eText += "\n\nThe sleek blue hovercraft is swaying in the blizzard, melting through the continual snowfall with a pair of vulcan lasers that never seem to stop firing. The craft’s shields are still up, flickering constantly as the screaming wind of the Uvetan pole blasts it, threatening to bear the ship down at any moment.";
 	
 	return eText;
@@ -2246,14 +2261,14 @@ public function syriQuestDropshipFightVictory():void
 	if (flags["MET_SCHORA"] >= 4) {
 		output("\n\nSuddenly, she pauses, as if she’s recognizing you for the first time.");
 		output("\n\n<i>“You! You’re... no way!”</i> she growls, shouldering her gun and fixing you in its sights. <i>“<b>You</b>’re the cunt that caused the lockdown? ");
-			if (flags["MET_SCHORA"] == 4) {
-				output(" I knew you were too good to be true. I knew it! Nobody makes a fool out of me, you sick fuck!”</i>");
-				output("\n\nUh-oh. Looks like taking a gentle hand with the commander here is paying off...\n\n");
-			}
-			else {
-				output("\"</i>\n\nDespite her words, there’s an unmistakable a twitch in Schora’s loins. Looks like she’s happy to see you... or at least, she’s got some pleasant memories from you treating her like a living fucktoy. That’s how she liked it, wasn’t it?");
-				output("\n\nMaybe you could apply some of that Steele charm here...\n\n");
-			}
+		if (flags["MET_SCHORA"] == 4) {
+			output(" I knew you were too good to be true. I knew it! Nobody makes a fool out of me, you sick fuck!”</i>");
+			output("\n\nUh-oh. Looks like taking a gentle hand with the commander here is paying off...\n\n");
+		}
+		else {
+			output("\"</i>\n\nDespite her words, there’s an unmistakable a twitch in Schora’s loins. Looks like she’s happy to see you... or at least, she’s got some pleasant memories from you treating her like a living fucktoy. That’s how she liked it, wasn’t it?");
+			output("\n\nMaybe you could apply some of that Steele charm here...\n\n");
+		}
 	}
 	else {
 		output("\n\n<i>“Whoever you are, you fucked with the wrong corporation,”</i> she growls, shouldering her gun. <i>“I am going to make mincemeat of your ass, motherfucker!”</i>");
@@ -2315,7 +2330,7 @@ public function syriQuestSchoraFight():void
 public function syriQuestSchoraFightText():String
 {
 	var eText:String = "";
-	eText += "You’re fighting Commander Schora, the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship.";
+	eText += "She is the woman in charge of security here at the Akkadi facility, and previously the pilot of the shielded dropship.";
 	eText += "\n\nShe’s a tall, curvy dzaan that flaunts her hermaphroditism under her skin-tight jumpsuit pants, hugging her plump balls and thick dick. The ballistic vest that marks her as part of the station’s security detachment must have been heavily altered to accommodate her prodigious bust, barely held back by all the bullet-proof material she’s wearing. She’s currently wielding a bulky machine gun, pressed tight to her shoulder and ready to sling lead with a tap of the trigger..";
 	
 	return eText;
