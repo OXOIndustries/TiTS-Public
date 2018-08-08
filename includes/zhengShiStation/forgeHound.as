@@ -65,6 +65,7 @@ public function forgehoundEncounter():Boolean
 		addButton(0,"Fight",forgehoundFightSetup,true);
 		addButton(1,"Submit",submitToForgehound,undefined,"Submit","Give in. The large, domineering man is just too intimidating and hot for you to fight him.");
 	}
+	IncrementFlag("FORGEHOUND_ENCOUNTERED");
 	return true;
 }
 

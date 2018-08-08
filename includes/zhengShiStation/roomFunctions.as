@@ -96,9 +96,9 @@ public function zsmyy18AirlockBonus():Boolean
 	//Haven't found replacement helmet:
 	if(flags["ZHENG_SPACESUIT_TAKEN"] == undefined)
 	{
-		output("\n\nThere's a bulky black space suit next to you, the only one hanging up on the racks. Somebody's stenciled in a white skull and crossbones on the shoulders, and a smiley face smoking a cigar on the chest.");
+		output("\n\nThere’s a bulky black space suit next to you, the only one hanging up on the racks. Somebody’s stenciled in a white skull and crossbones on the shoulders, and a smiley face smoking a cigar on the chest.");
 		if(!pc.hasItemByClass(SpacesuitHelmet)) output(" Unfortunately for you, the helmet hanging on the peg next to the space suit has a great big hole smashed through the glass bubble. Looks like somebody had a headbutt contest with a rocket hammer and lost.");
-		else output(" You've got a replacement helmet for the broken one hanging on the peg; nothing would stop you from combining the two and taking a walk in the black, were you so inclined.");
+		else output(" You’ve got a replacement helmet for the broken one hanging on the peg; nothing would stop you from combining the two and taking a walk in the black, were you so inclined.");
 		addButton(0,"Take Suit",takeZhengShiSpacesuit);
 		return false;
 	}
@@ -108,26 +108,26 @@ public function zsmyy18AirlockBonus():Boolean
 	{
 		if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
 		{
-			output("\n\nWhile your current choice of armor is airtight, without magnetic boots or thrusters, you'll be helpless in the void.");
+			output("\n\nWhile your current choice of armor is airtight, without magnetic boots or thrusters, you’ll be helpless in the void.");
 			addDisabledButton(0,"Spacewalk","Spacewalk","Bad idea.");
 		}
 		else if(pc.armor is SpacesuitComplete) 
 		{
-			output("\n\n<b>You're all ready to go for a spacewalk!</b>");
+			output("\n\n<b>You’re all ready to go for a spacewalk!</b>");
 			addButton(0,"Spacewalk",spacewalkGoooo,undefined,"Spacewalk","Take a walk on the surface of the asteroid.");
 		}
 		else
 		{	
-			addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren't feeling particularly suicidal today.");
+			addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren’t feeling particularly suicidal today.");
 		}
 	}
 	else 
 	{
 		if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined) output(" <b>With the elevator getting power again, you have no need to perform a repair out in the void.</b>");
-		else output(" <b>Good thing you've already repaired the power outside.</b>");
+		else output(" <b>Good thing you’ve already repaired the power outside.</b>");
 		if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
 		{
-			output(" While your current choice of armor is airtight, without magnetic boots or thrusters, you'll be helpless in the void.");
+			output(" While your current choice of armor is airtight, without magnetic boots or thrusters, you’ll be helpless in the void.");
 			addDisabledButton(0,"Spacewalk","Spacewalk","Bad idea.");
 		}
 		else if(pc.armor is SpacesuitComplete) 
@@ -137,7 +137,7 @@ public function zsmyy18AirlockBonus():Boolean
 		}
 		else
 		{	
-			addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren't feeling particularly suicidal today.");
+			addDisabledButton(0,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren’t feeling particularly suicidal today.");
 		}
 	}
 	return false;
@@ -147,7 +147,7 @@ public function fastSpacewalkToHangar():void
 {
 	clearOutput();
 	showName("\nSPAAAAACE!");
-	output("Walking along the outside of Zheng Shi is beautiful but slow. Fortunately, there's nobody around to bother a lone astronaut going for a stroll. Ships float by, loaded with illicit cargo and inattentive crews. You may as well not exist.\n\nThere's the hangar! And you have plenty of oxygen to spare.");
+	output("Walking along the outside of Zheng Shi is beautiful but slow. Fortunately, there’s nobody around to bother a lone astronaut going for a stroll. Ships float by, loaded with illicit cargo and inattentive crews. You may as well not exist.\n\nThere’s the hangar! And you have plenty of oxygen to spare.");
 	processTime(30);
 	clearMenu();
 	currentLocation = "ZS L50";
@@ -158,7 +158,7 @@ public function fastSpacewalkToAirlock():void
 {
 	clearOutput();
 	showName("\nSPAAAAAACE");
-	output("The trip back into the raw void should be fraught with peril... but it's safer than bumbling around in the mines. You walk carefully for what feels like a half hour until you reach the airlock door. The trip barely put a dent in your oxygen reserves!");
+	output("The trip back into the raw void should be fraught with peril... but it’s safer than bumbling around in the mines. You walk carefully for what feels like a half hour until you reach the airlock door. The trip barely put a dent in your oxygen reserves!");
 	processTime(30);
 	clearMenu();
 	currentLocation = "ZSM YY18";
@@ -188,7 +188,7 @@ public function slavePensBonus():Boolean
 		output("\n\nIndeed, you can see several dozen shadowy figures shuffling around inside, trying to avoid your sight.");
 		output("\n\nYou can’t get inside thanks to a massive metal bar running across the door. It’s electronically locked and hardened against hacking; you can’t even see a seam or a plug to abuse. You’ll have to find the right keycard for this one.");
 		if(pc.hasKeyItem("Maike’s Keycard") || pc.hasItemByClass(MaikesKeycard)) addButton(0,"Free Slaves",unlockTheSlavePen,undefined,"Free Slaves","Throw open the doors and let loose the men and women held captive by the pirates. Cry havoc, and let loose the slaves of... a giant rebellion!");
-		else addDisabledButton(0,"Free Slaves","Free Slaves","You don't have any way to get the door open right now.");
+		else addDisabledButton(0,"Free Slaves","Free Slaves","You don’t have any way to get the door open right now.");
 	}
 	else
 	{

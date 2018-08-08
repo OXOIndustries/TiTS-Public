@@ -33,7 +33,6 @@ public function encounterRoz():Boolean
 	//First Encounter:
 	if(flags["MET_ROZ"] == undefined)
 	{
-		flags["MET_ROZ"] = 1;
 		output("As you make your way through the cavernous maze of the mines, you start hearing voices echoing from just ahead. You advance cautiously, poking your head around a corner to see a group of slaves - men, all of them, of various races in tattered work uniforms and big metal collars - huddled up together at the end of the passage.");
 		output("\n\nAt first, you think they might be escaped slaves, maybe hiding from their masters... but as you draw closer, you realize that all of the men have their pants down around their ankles, hips jerking and bucking inwards to the center of their little group. Somebody’s in the middle of them, on her knees and gleefully sucking their dicks. You can just catch glimpses of ashen-blue skin and coal-black hair between the men’s legs.");
 		output("\n\nBefore you can decide what to do about your discovery, a couple of the men grunt and thrust forward, cumming. The gangbang’s subject lets rip a throaty moan and sways drunkenly from side to side, enjoying all the cum splattering over her face and chest. And then one of the spent men staggers back, opening up a clear line of sight between you and the woman.");
@@ -61,6 +60,7 @@ public function encounterRoz():Boolean
 		output("\n\n<i>“You again!”</i> her mechanized voice booms. <i>“I thought I told you to stay, like, way the heck out of here! You must be dumber than a coreless galotian if you’re gonna keep coming back! Guess I’ll just have to treat ya like one and screw you silly after I whoop ya!”</i>");
 		output("\n\nRoz laughs uproariously and hefts the rail cannon up. The thrumming sound of it charging up echoes down the cavern!");
 	}
+	IncrementFlag("MET_ROZ");
 	clearMenu();
 	addButton(0,"Next",startRozFight);
 	return true;
@@ -560,11 +560,12 @@ public function wsanWinsAgainstRoz():void
 	output("\n\n<i>“It’s good, right?”</i> you hear in your mind, and even through telepathy you can tell there’s a ring of smugness to her words. <i>“Aww yeah, this </i>is<i> good!”</i>");
 
 	output("\n\nYour balls have swollen to");
-	if(pc.ballDiameter() < 5) output(" more than ten");
-	else if(pc.ballDiameter() < 6) output(" close to eight");
-	else if(pc.ballDiameter() < 8) output(" almost seven");
-	else if(pc.ballDiameter() < 10) output(" about five");
-	else if(pc.ballDiameter() < 15) output(" three or four");
+	var ballDiameter:Number = pc.ballDiameter();
+	if(ballDiameter < 5) output(" more than ten");
+	else if(ballDiameter < 6) output(" close to eight");
+	else if(ballDiameter < 8) output(" almost seven");
+	else if(ballDiameter < 10) output(" about five");
+	else if(ballDiameter < 15) output(" three or four");
 	else output(" more than two");
 	output(" times their original size with the galotian girl inside you, and the feeling when she stimulates you from the inside to make you cum is unlike anything you’ve ever experienced.");
 	if(flags["TIMES_CELISE_IN_BALLS"] != undefined) output(" Not even Celise, your ship’s patron goo-girl, did this so roughly or suddenly.");
@@ -1020,6 +1021,8 @@ public function loseToRozzyPoo():void
 //PCs with dicks variant. Random chance? Follows on from the ‘//Combine’ blurb.
 public function wsanLossScene():void
 {
+	author("Wsan");
+	
 	output("\n\n<i>“Oooh, </i>just<i> what I was looking for,”</i> Roz drawls, wrapping her gooey hand around your [pc.biggestCock].");
 	if(pc.balls > 0)
 	{
@@ -1122,7 +1125,7 @@ public function rozsCumReceptacleEnd():void
 	{
 		x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 	}
-	output("<i>“Alright, I can work with this,”</i> Roz drawls,");
+	output("\n\n<i>“Alright, I can work with this,”</i> Roz drawls,");
 	if(pc.isHerm()) output(" rubbing a pair of fingers through your twat before gripping your cock between her gooey digits. <i>“Couple hundred years ago, when I was just a little young thing, I used to love making my own member and plowing pretty girls with with... preferably with a couple dozen men servicing me while I worked. Isn’t it just the best, bein’ a little bit of both? How’s about I show you how I used to live when I was a wild thing, living like a cum-dumpster on two legs?”</i>");
 	else if(pc.hasVagina()) output(" rubbing at your [pc.cunt " + x + "]. <i>“Nice lil’ puss you’ve got here. I’ve always been a little envious of havin’ a real one... a nice lil’ baby maker between my legs, begging for any man to come and plow it. Maybe a dozen of ‘em in rapid succession, all trying to be the lucky man to breed me. Instead I gotta wait for hundreds of men to pump their seed in me, bloat me up enough that I can split myself in two. Not that I don’t enjoy the process... in fact, maybe you could help me out with that!”</i>");
 	else if(pc.hasCock() && pc.biggestCockLength() < 6) 

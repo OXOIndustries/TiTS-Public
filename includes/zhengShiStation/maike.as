@@ -850,7 +850,11 @@ public function maikeNextThing():void
 	output("\n\nUnder a dirty cleaning rag is the outline of some sort of device. You lift it up and find a strange gauntlet-type weapon that could easily wrap around your wrist. It has a circular plate that could fit into your hand and seems to be some sort of repulsor. Kind of like the Overseers jets... hmm.");
 	output("\n\nWelp, doesn’t hurt in taking it!\n\n");*/
 	output("\n\n");
-	if(flags["MAIKE_HELMET_TAKEN"] == undefined) enemy.inventory.push(new SpacesuitHelmet());
+	if(flags["MAIKE_HELMET_TAKEN"] == undefined)
+	{
+		flags["MAIKE_HELMET_TAKEN"] = 0;
+		enemy.inventory.push(new SpacesuitHelmet());
+	}
 
 	//[Exit]*
 	//*PC gains x1 Space Helmet (if not recieved before), x1 Hand Repulsor and x1 Illumorpheme.

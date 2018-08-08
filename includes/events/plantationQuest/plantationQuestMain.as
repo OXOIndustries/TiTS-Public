@@ -2605,7 +2605,11 @@ public function peacefulQuinnMenu():void
 	quinnFestivalButton(4);
 	
 	// Add [Myne / Owers] option to [Quinn] main menu
-	if(flags["QUINN_KID_NAME"] != undefined && quinnBabyAge() >= 365) addButton(5, quinnBabyName(), approachQuinnBaby);
+	if(flags["QUINN_KID_NAME"] != undefined && quinnBabyAge() >= 365)
+	{
+		if(flags["QUINN_KID_PLAY_DAY"] == days) addDisabledButton(5, quinnBabyName(), ("Play with" + quinnBabyName()), "You’ve already played with Quinn’s kid today!");
+		else addButton(5, quinnBabyName(), approachQuinnBaby, undefined, ("Play with" + quinnBabyName()), "Spend some time with Quinn’s kid.");
+	}
 	
 	addButton(14,"Leave",leaveZeLovelyQuinnBeeeeeehind);
 }

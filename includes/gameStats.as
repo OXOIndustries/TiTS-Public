@@ -3959,7 +3959,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["STELLA_COLLAR_GIFT"] != undefined) output2("\n<b>* Stella, Collar, Gift:</b> " + StringUtil.toDisplayCase(flags["STELLA_COLLAR_GIFT"]));
 				if(pc.hasStatusEffect("STELLA_PREGNANT")) output2("\n<b>* Stella, Days Pregnant:</b> " + Math.floor(((60*24*30*3) - pc.getStatusMinutes("STELLA_PREGNANT"))/(60*24)));
 				if(flags["STELLA_FUCKED"] != undefined) output2("\n<b>* Stella, Times Sexed:</b> " + flags["STELLA_FUCKED"]);
-				if(flags["STELLA_BUTTFUCKED"] != undefined) output2("\n<b>* Stella, Times You Buttfucked Her:</b> " + flags["STELLA_BUTTFUCKED"]);
+				if(flags["STELLA_BUTTFUCKED"] != undefined) output2("\n<b>* Stella, Times Fucked Her Ass:</b> " + flags["STELLA_BUTTFUCKED"]);
 				if(flags["STELLA_GAVE_ORAL"] != undefined) output2("\n<b>* Stella, Times She She Gave You Oral:</b> " + flags["STELLA_GAVE_ORAL"]);
 				if(flags["STELLA_BALLWORSHIPPED"] != undefined) output2("\n<b>* Stella, Times She Worshipped Your Balls:</b> " + flags["STELLA_BALLWORSHIPPED"]);
 				if(flags["STELLA_BREEDINGS"] != undefined) output2("\n<b>* Stella, Times Bred Her:</b> " + flags["STELLA_BREEDINGS"]);
@@ -4987,7 +4987,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				output2("\n<b>* Professor Darnock:</b> Met him");
 				output2("\n<b>* Able:</b> Met him");
 				if(flags["ABLE_BATHS"] != undefined) output2("\n<b>* Able, Times Bathed By:</b> " + flags["ABLE_BATHS"]);
-				if(flags["ABLE_BUTTSEXED"] != undefined) output2("\n<b>* Able, Times Buttfucked Him:</b> " + flags["ABLE_BUTTSEXED"]);
+				if(flags["ABLE_BUTTSEXED"] != undefined) output2("\n<b>* Able, Times Fucked His Ass:</b> " + flags["ABLE_BUTTSEXED"]);
 				if(flags["ABLE_LICKNFUCKED"] != undefined) output2("\n<b>* Able, Times Licked By and Rode Him:</b> " + flags["ABLE_LICKNFUCKED"]);
 				if(flags["ABLE_BOTHWAYS"] != undefined) output2("\n<b>* Able, Times Rode and Buttfucked Him:</b> " + flags["ABLE_BOTHWAYS"]);
 				variousCount++;
@@ -6401,6 +6401,37 @@ public function displayEncounterLog(showID:String = "All"):void
 					case 2: output2(" Unlocked by hacking"); break;
 					default: output2(" <i>Unknown</i>"); break;
 				}
+				if(flags["MET_TIVF"] != undefined) output2("\n<b>* Tivf:</b> Met him");
+				variousCount++;
+			}
+			if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["AGROSH_WHUPPED"] != undefined)
+			{
+				output2("\n<b><u>Break Room</u></b>");
+				output2("\n<b>* Agrosh:</b> Met him");
+				if(flags["AGROSH_WHUPPED"] != undefined) output2(", Defeated him in combat");
+				if(flags["ARDIA_WHACKED_OFF_AGROSH"] != undefined) output2(", Sexed him with Ardia");
+				output2("\n<b>* Ardia:</b> Met her");
+				if(flags["SEXED_ARDIA"] != undefined) output2("\n<b>* Ardia, Times Sexed:</b> " + flags["SEXED_ARDIA"]);
+				if(flags["ARDIA_BUTTLOVED"] != undefined) output2("\n<b>* Ardia, Times Fucked Her Ass:</b> " + flags["ARDIA_BUTTLOVED"]);
+				variousCount++;
+			}
+			if(flags["ZHENG_SHI_JUMPSUITED"] != undefined)
+			{
+				output2("\n<b><u>Dead End</u></b>");
+				output2("\n<b>* Jumpsuit:</b> Taken");
+				variousCount++;
+			}
+			if(flags["ZHENG_SPACESUIT_TAKEN"] != undefined || flags["ZHENG_SPACEWALKED"] != undefined)
+			{
+				output2("\n<b><u>Emergency Airlock</u></b>");
+				if(flags["ZHENG_SPACESUIT_TAKEN"] != undefined) output2("\n<b>* Spacesuit:</b> Taken");
+				if(flags["ZHENG_SPACEWALKED"] != undefined) output2("\n<b>* Spacewalk:</b> Used");
+				variousCount++;
+			}
+			if(maikeEncountered() || flags["MAIKE_SLAVES_RELEASED"] != undefined)
+			{
+				output2("\n<b><u>The Pit</u></b>");
+				if(maikeEncountered()) output2("\n<b>* " + (flags["TIVF_MAIKE_TALK"] == 1 ? "Overseer Maike" : "Overseer") + ":</b> Met her");
 				if(flags["MAIKE_SLAVES_RELEASED"] != undefined)
 				{
 					output2("\n<b>* Slaves:</b> Seen");
@@ -6412,11 +6443,10 @@ public function displayEncounterLog(showID:String = "All"):void
 						default: output2(" <i>Unknown</i>"); break;
 					}
 				}
-				if(maikeEncountered()) output2("\n<b>* " + (flags["TIVF_MAIKE_TALK"] == 1 ? "Overseer Maike" : "Overseer") + ":</b> Met her");
-				if(flags["MET_TIVF"] != undefined) output2("\n<b>* Tivf:</b> Met him");
+				if(flags["MAIKE_HELMET_TAKEN"] != undefined) output2("\n<b>* Spacesuit Helmet:</b> Taken");
 				variousCount++;
 			}
-			if(flags["BORED_JUMPER_JUMPED"] != undefined)
+			if(flags["BORED_JUMPER_JUMPED"] != undefined || flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined || flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["MET_ROZ"] != undefined)
 			{
 				output2("\n<b><u>Mineshaft</u></b>");
 				// Jumper
@@ -6424,6 +6454,38 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Bored Jumper, Times Encountered:</b> " + flags["BORED_JUMPER_JUMPED"]);
 					if(flags["JUMPER_DOCKED"] != undefined) output2("\n<b>* Bored Jumper, Times Docked By:</b> " + flags["JUMPER_DOCKED"]);
+				}
+				// Pleasure Slaves
+				if(flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined || flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined)
+				{
+					output2("\n<b>* Pleasure Slaves:</b> Encountered");
+					if(flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined) output2(", Ignored");
+					if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined) output2(", Blended in");
+				}
+				// Roz
+				if(flags["MET_ROZ"] != undefined)
+				{
+					output2("\n<b>* Rozenn, Times Encountered:</b> " + flags["MET_ROZ"]);
+					if(flags["ROZ_GOOFUKKED_WNO_DIK"] != undefined)  output2("\n<b>* Rozenn, Times She Fucked You with Her Dick:</b> " + flags["ROZ_GOOFUKKED_WNO_DIK"]);
+					if(flags["ROZ_INTERNAL_FUCKED"] != undefined) output2("\n<b>* Rozenn, Internal Fuck, Times Opted to Jack Her Out:</b> " + flags["ROZ_INTERNAL_FUCKED"]);
+					if(flags["ROZ_INTERNAL_FUCKED_SUBMITTED"] != undefined)  output2("\n<b>* Rozenn, Internal Fuck, Times Opted to Give Up:</b> " + flags["ROZ_INTERNAL_FUCKED_SUBMITTED"]);
+				}
+				variousCount++;
+			}
+			if(flags["FORGEHOUND_ENCOUNTERED"] != undefined)
+			{
+				output2("\n<b><u>Foundry</u></b>");
+				// Forgehound
+				if(flags["FORGEHOUND_ENCOUNTERED"] != undefined)
+				{
+					output2("\n<b>* Forgehound, Times Encountered:</b> " + flags["FORGEHOUND_ENCOUNTERED"]);
+					if(flags["FORGEHOUND_INSULTED"] != undefined) output2(", Insulted him");
+					if(flags["FORGEHOUND_APOLIFUCKED"] != undefined) output2(", Sexed him as an apology");
+					if(flags["FORGEHOUND_FACEFUCKED"] != undefined) output2("\n<b>* Forgehound, Times Face Fucked Him:</b> " + flags["FORGEHOUND_FACEFUCKED"]);
+					if(flags["FORGEHOUND_PEGGED"] != undefined) output2("\n<b>* Forgehound, Times Ass Fucked Him:</b> " + flags["FORGEHOUND_PEGGED"]);
+					if(flags["FORGEHOUND_MOUNTEDRUTTED"] != undefined) output2("\n<b>* Forgehound, Times Mounted Him:</b> " + flags["FORGEHOUND_MOUNTEDRUTTED"]);
+					if(flags["FORGEHOUND_FISTED"] != undefined) output2("\n<b>* Forgehound, Times Fisted Him:</b> " + flags["FORGEHOUND_FISTED"]);
+					if(flags["FORGEHOUND_BUKKAKED"] != undefined) output2("\n<b>* Forgehound, Times Ejaculated On Him:</b> " + flags["FORGEHOUND_BUKKAKED"]);
 				}
 				variousCount++;
 			}

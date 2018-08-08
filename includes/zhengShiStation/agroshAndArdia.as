@@ -84,7 +84,7 @@ public function slavePretenderooo():Boolean
 		else output("press yourself up against the nearest wall and stick the end of your Codex around the corner, viewing the events from as much stealth as you can on short notice");
 		output(".");
 
-		output("\n\nThere’s a group of slaves in the hallway, being escorted out of the pens in a line of frightened forms. They’re all wearing the same tight, form-hugging orange and blue bodysuits that you’ve encountered before, <i>“easy access”</i> zippers included. Unlike the mine slaves, though, these ones are pristine - well-kept, clean, unblemished by hard work in the dusty mines. Pleasure slaves.");
+		output("\n\nThere’s a group of slaves in the hallway, being escorted out of the pens in a line of frightened forms. They’re all wearing the same tight, form-hugging orange and blue bodysuits that you’ve encountered before, “easy access” zippers included. Unlike the mine slaves, though, these ones are pristine - well-kept, clean, unblemished by hard work in the dusty mines. Pleasure slaves.");
 		output("\n\nA pirate in a suit of masked combat armor is directing the herd in your direction, shoving and cajoling the unwilling men and women towards their fate. A couple of robotic wolves hound their feet, keeping the back of the column moving forward in their master’s wake. Looks like they’re being led to somewhere else in the facility... this might be your chance to skip ahead a bit, if you’re willing to degrade yourself at least.");
 		clearMenu();
 		//[Sneak In] [No Way]
@@ -332,7 +332,7 @@ public function slaveLoungeAgroshProc():Boolean
 		clearOutput();
 		showAgroshAndArdia();
 		author("Savin");
-		output("As you step through the door marked <i>“Officer’s Lounge,”</i> you’re greeted by a sudden blast of cool air - a welcome reprieve from the oppressive heat of the foundry. However, on its heels comes an overpowering, musky odor and the sound of flesh slamming flesh. Your eyes are quickly drawn past a wet bar to a large cushioned sofa, where a huge, burly thraggen man is sitting with legs and arms spread while a bronze-skinned, blue-haired girl goes down on his girthy rod.");
+		output("As you step through the door marked “Officer’s Lounge,” you’re greeted by a sudden blast of cool air - a welcome reprieve from the oppressive heat of the foundry. However, on its heels comes an overpowering, musky odor and the sound of flesh slamming flesh. Your eyes are quickly drawn past a wet bar to a large cushioned sofa, where a huge, burly thraggen man is sitting with legs and arms spread while a bronze-skinned, blue-haired girl goes down on his girthy rod.");
 		output("\n\n<i>“Hey! Close the - who the fuck are you!?”</i> the thraggen growls, shoving the dzaan off his cock. She crumples to the floor with a shrill cry of fear, scrambling behind the bar while her master rises, cracking his knuckles. <i>“Don’t matter. I don’t know your face, which means you don’t belong in Agrosh’s foundry. Kiss your freedom goodbye!”</i>");
 		output("\n\nWith a feral roar, the huge thraggen comes charging right at you!");
 		//start fite

@@ -56,7 +56,7 @@ package classes.Items.Treasures
 			}
 			if(target.armor is SpacesuitIncomplete)
 			{
-				kGAMECLASS.output("You snap the helmet onto the incomplete spacesuit to make an airtight garment capable of protecting you from the harsh vacuum of space. Good thing you were already wearing it! <b>Now you have a complete spacesuit, and you're dressed for vacuum!</b>");
+				kGAMECLASS.output("You snap the helmet onto the incomplete spacesuit to make an airtight garment capable of protecting you from the harsh vacuum of space. Good thing you were already wearing it! <b>Now you have a complete spacesuit, and you’re dressed for vacuum!</b>");
 				target.armor = new SpacesuitComplete();
 				target.destroyItemByClass(SpacesuitHelmet);
 				return false;
