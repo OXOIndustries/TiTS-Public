@@ -41,6 +41,15 @@ public function takeZhengShiSpacesuit():void
 	quickLoot(new SpacesuitIncomplete())
 }
 
+public function zhengMinesSpaceBonus():Boolean
+{
+	// Stranded load Hotfix
+	addButton(0,"Airlock",move,"ZSM YY18");
+	addButton(1,"Hangar",fastSpacewalkToHangar);
+	
+	return zhengMinesEncounterBonus();
+}
+
 public function zhengMinesEncounterBonus():Boolean
 {
 	IncrementFlag("ZS_MINE_STEP");

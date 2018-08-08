@@ -86,6 +86,7 @@ public function initializeRooms():void
 	rooms["SPACE"].moveMinutes = 1;
 	rooms["SPACE"].runOnEnter = puntToShip;
 	rooms["SPACE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["SPACE"].addFlag(GLOBAL.LOW_GRAVITY);
 
 	rooms["POESPACE"] = new RoomClass(this);
 	rooms["POESPACE"].roomName = "\nSPACE";
@@ -95,6 +96,7 @@ public function initializeRooms():void
 	rooms["POESPACE"].moveMinutes = 1;
 	rooms["POESPACE"].runOnEnter = puntToShip;
 	rooms["POESPACE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["POESPACE"].addFlag(GLOBAL.LOW_GRAVITY);
 
 	rooms["GAME OVER"] = new RoomClass(this);
 	rooms["GAME OVER"].roomName = "";
