@@ -17,6 +17,31 @@ import classes.RoomClass;
 	rooms[""].addFlag(GLOBAL.HAZARD);
 	*/
 
+public function buildRooms():void
+{
+	//if(rooms != null || rooms.length > 0) rooms.length = 0;
+	
+	initializeRooms();
+	initTavrosRooms();
+	initMhengaRooms();
+	initTarkusRooms();
+	initNewTexasRooms();
+	initializeMyrellionRooms();
+	kquest2InitRooms();
+	initUvetoRooms();
+	initUvetoRoomsII();
+	initZhengRooms();
+	initGastigothRooms();
+	kiInitRooms();
+	initVesperiaRoom();
+	initBreedwellRooms();
+	fqInitRooms();
+	syriQuestInitRooms();
+	initGreatMajinRooms();
+	
+	mapper = new Mapper(rooms);
+}
+
 public function initializeRooms():void 
 {
 

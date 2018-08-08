@@ -620,27 +620,10 @@
 			parser = new ParseEngine(this, TiTS_Settings);
 
 			flags = new Dictionary();
-
-			initializeRooms();
-			initTavrosRooms();
-			initMhengaRooms();
-			initTarkusRooms();
-			initNewTexasRooms();
-			initializeMyrellionRooms();
-			kquest2InitRooms();
-			initUvetoRooms();
-			initUvetoRoomsII();
-			initZhengRooms();
-			initGastigothRooms();
-			kiInitRooms();
-			initVesperiaRoom();
-			initBreedwellRooms();
-			fqInitRooms();
-			syriQuestInitRooms();
-			initGreatMajinRooms();
 			
-			mapper = new Mapper(this.rooms)
-
+			// Make the rooms, build the map
+			buildRooms();
+			
 			var tPC:PlayerCharacter = new PlayerCharacter();
 			chars["PC"] = tPC;
 			charDict[tPC] = "PC";

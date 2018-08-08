@@ -1318,7 +1318,8 @@ public function quinnFestival(response:String = "intro"):void
 	{
 		case "intro":
 			rooms["12. Zil Village Winnar"].northExit = "ZIL FESTIVAL VILLAGE";
-			moveTo("12. Zil Village Winnar");
+			generateMapForLocation("12. Zil Village Winnar");
+			rooms["12. Zil Village Winnar"].northExit = null;
 			
 			showQuinn();
 			showName("\nFESTIVAL!");
@@ -1414,7 +1415,9 @@ public function quinnFestival(response:String = "intro"):void
 			quinnFestivalCircleMenu();
 			break;
 		case "village":
-			moveTo("ZIL FESTIVAL VILLAGE");
+			rooms["12. Zil Village Winnar"].northExit = "ZIL FESTIVAL VILLAGE";
+			generateMapForLocation("ZIL FESTIVAL VILLAGE");
+			rooms["12. Zil Village Winnar"].northExit = null;
 			
 			showBust("");
 			showName("\nVILLAGE");
@@ -1536,7 +1539,9 @@ public function quinnFestival(response:String = "intro"):void
 			quinnFestivalVillageMenu();
 			break;
 		case "circle":
-			moveTo("12. Zil Village Winnar");
+			rooms["12. Zil Village Winnar"].northExit = "ZIL FESTIVAL VILLAGE";
+			generateMapForLocation("12. Zil Village Winnar");
+			rooms["12. Zil Village Winnar"].northExit = null;
 			
 			showBust("");
 			showName("\nCIRCLE");
@@ -1680,7 +1685,9 @@ public function quinnFestivalPart2(arg:Array):void
 			addButton(0, "Next", quinnFestivalPart2, ["ball to yurt", vIdx]);
 			break;
 		case "ball to yurt":
-			moveTo("ZIL FESTIVAL YURT");
+			rooms["12. Zil Village Winnar"].northExit = "ZIL FESTIVAL VILLAGE";
+			generateMapForLocation("ZIL FESTIVAL YURT");
+			rooms["12. Zil Village Winnar"].northExit = null;
 			
 			showBust("");
 			showName("DRONING\nBALL");
@@ -1753,7 +1760,6 @@ public function quinnFestivalPart2(arg:Array):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
 			tryKnockUpQuinn(true);
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = -1;
 			
@@ -1914,7 +1920,6 @@ public function quinnFestivalFightLose(response:String = "intro"):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
 			tryKnockUpQuinn(true);
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = -2;
 			
@@ -2140,7 +2145,6 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
 			tryKnockUpQuinn(true);
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = 1;
 			
@@ -2277,7 +2281,6 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
 			tryKnockUpQuinn(true);
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = 0;
 			
@@ -2399,7 +2402,6 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to Steele preg
 			tryKnockUpQuinn();
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = 2;
 			

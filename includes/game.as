@@ -3557,6 +3557,8 @@ public function variableRoomUpdateCheck():void
 	
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
+	// Phoenix Location
+	phoenixSetMapState();
 	// Phoenix's Rec Room
 	phoenixRecRoomUpdate();
 	// Shizuya's Great Majin
