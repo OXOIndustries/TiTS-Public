@@ -3387,7 +3387,7 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["SYRIQUEST_STATE"] == 21) output2(", Killed him");
 					if(flags["SYRIQUEST_STATE"] == 22) output2(", Killed him");
 					if(flags["SYRIQUEST_STATE"] == 23) output2(", Freed him");
-					if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"])
+					if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] != undefined)
 					{
 						output2(", He took ");
 						switch(flags["SYRIQUEST_VALDEN_BODY_CHOICE"])
@@ -4924,6 +4924,16 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(syriIsCrew()) output2(" (Onboard Ship)");
 						else if(flags["SYRI_CREWMEMBER"] == 0) output2(" (At Mhen’ga)");
 						else if(flags["SYRI_CREWMEMBER"] == 2) output2(" (At Uveto)");
+					}
+					if(flags["SYRIQUEST_POST_GAME_TALK_LOVE"] != undefined)
+					{
+						output2("\n<b>* Syri, Relationship:</b>");
+						switch(flags["SYRIQUEST_POST_GAME_TALK_LOVE"])
+						{
+							case 1: output2(" Lovers"); break;
+							case 2: output2(" Friends"); break;
+							default: output2(" Strangers"); break;
+						}
 					}
 					//if(flags["SEEN_SYRI_IN_THE_MORNING"] != undefined) output2("\n<b>* Syri, Times Seen Her in the Morning:</b> " + flags["SEEN_SYRI_IN_THE_MORNING"]);
 					if(flags["BET_AGAINST_SYRI"] != undefined)

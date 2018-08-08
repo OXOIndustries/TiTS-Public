@@ -1,6 +1,7 @@
 
 public function syriAtFreeezer():Boolean
 {
+	if (flags["SYRI_CREWMEMBER"] == 2) return true;
 	if ((syriQuestRunning() && flags["SYRIQUEST_STATE"] == 1) || syriQuestComplete()) return true;
 	return false;
 }
@@ -63,24 +64,32 @@ public function syriFreezerTalkMenu(outputs:Boolean = true):void
 		output("\n\n<i>“For you... I can make time,”</i> Syri grins. <i>“What’s on your mind?”</i>");
 	}
 	clearMenu();
-	//output("\n\n//Only if PC saved Valden, naturally.");
-	if (flags["SYRIQUEST_STATE"] >= 23) addButton(0,"Valden",syriFreezerTalkValden,undefined,"Valden","How’s Valden doing? Is Syri keeping up with him at all?");
-	else addDisabledButton(0,"Locked");
+	//Only if PC saved Valden, naturally.
+	if (flags["SYRIQUEST_STATE"] >= 23)
+	{
+		if(flags["SYRIQUEST_VALDEN_BODY_CHOICE"] != undefined) addButton(0,"Valden",syriFreezerTalkValden,undefined,"Valden","How’s Valden doing? Is Syri keeping up with him at all?");
+		else addDisabledButton(0,"Locked");
+	}
 	addButton(1,"What’s Next?",syriFreezerTalkWhatsNext,undefined,"What’s Next?","What’s next for Syri Dorna?");
 	//dont activate this if the quest got refused
-	if (flags["SYRIQUEST_STATE"] >= 21 && flags["SYRIQUEST_POST_GAME_TALK_LOVE"] == undefined) addButton(2,"Love?",syriFreezerTalkLove,undefined,"Love?","Syri dropped a very particular word at the end of your mission to save Valden. Press her on it.");
-	else addDisabledButton(2,"Love?");
-	if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 1) addButton(3,"Penis",syriFreezerTalkPenis,undefined,"Penis","So now that Valden’s the living dead, what’s Syri gonna do about her dick?");
-	else addDisabledButton(3,"Locked");
-	if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2)
+	if (flags["SYRIQUEST_STATE"] >= 21)
 	{
-		if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 1) addButton(4, "Cunt Sleeve", syriFreezerTalkCuntSleeve, undefined, "Cunt Sleeve", "Since Syri’s not interested in a new pussy, maybe she’d be interested in seeing what happened to the old model...");
-		else addDisabledButton(4, "Cunt Sleeve", "Cunt Sleeve", "Since Syri’s not interested in a new pussy, maybe she’d be interested in seeing what happened to the old model...");
+		if(flags["SYRIQUEST_POST_GAME_TALK_LOVE"] == undefined) addButton(2,"Love?",syriFreezerTalkLove,undefined,"Love?","Syri dropped a very particular word at the end of your mission to save Valden. Press her on it.");
+		else addDisabledButton(2,"Love?");
 	}
-	else addDisabledButton(4,"Locked");
-
+	if (flags["SYRIQUEST_STATE"] >= 23)
+	{
+		if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 1) addButton(3,"Penis",syriFreezerTalkPenis,undefined,"Penis","So now that Valden’s the living dead, what’s Syri gonna do about her dick?");
+		else addDisabledButton(3,"Locked");
+		if (flags["SYRIQUEST_POST_GAME_TALK_PENIS"] >= 2)
+		{
+			if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 1) addButton(4, "Cunt Sleeve", syriFreezerTalkCuntSleeve, undefined, "Cunt Sleeve", "Since Syri’s not interested in a new pussy, maybe she’d be interested in seeing what happened to the old model...");
+			else addDisabledButton(4, "Cunt Sleeve", "Cunt Sleeve", "Since Syri’s not interested in a new pussy, maybe she’d be interested in seeing what happened to the old model...");
+		}
+		else addDisabledButton(4,"Locked");
+	}
 	addButton(5,"Books",syriTalkThree,undefined,"Books","What is she reading these days?");
-	addButton(14,"Back",syriFreezerMenu);
+	addButton(14,"Back",syriFreezerMenu,false);
 }
 
 //Only if PC saved Valden, naturally.
@@ -95,7 +104,7 @@ public function syriFreezerTalkValden():void
 	output("\n\nSyri nods and leans back, shoving her hands into her coat pockets. <i>“It’s weird... being so worried for so long. Having all that hope and fear and then it’s all... over. I guess I’m still worried about him, considering he’s technically dead <b>and</b> A.W.O.L. now, so I can only imagine the kind of legal trouble he’s in. Assuming some naval intelligence spook doesn’t shoot him in the back in some dark alley. They really don’t like their little secrets getting out.”</i>");
 	output("\n\nIf that’s the case, shouldn’t you and Syri be worried about that? After all, she spilled the beans to you without much concern.");
 	output("\n\n<i>“Yeah but we’re awesome,”</i> Syri laughs. <i>“If they were keeping an eye on me, Akkadi and the navy would never have let us anywhere near Uveto. I musta slipped through the cracks a while ago. Kinda liberating, actually.”</i>");
-	flags["SYRIQUEST_POST_GAME_TALK_PENIS"] = 1;
+	if(flags["SYRIQUEST_POST_GAME_TALK_PENIS"] == undefined || flags["SYRIQUEST_POST_GAME_TALK_PENIS"] < 1) flags["SYRIQUEST_POST_GAME_TALK_PENIS"] = 1;
 	syriFreezerTalkMenu(false);
 	addDisabledButton(0,"Valden");
 }
@@ -146,12 +155,11 @@ public function syriFreezerTalkLoveLoveHerToo():void
 	clearOutput();
 	showSyri();
 	author("Savin");
-	syriFreezerTalkMenu(false);
 	output("You tell Syri she’s all of that and more -- and yeah, you love her too.");
 	output("\n\nShe grins and squeezes you tight. <i>“Of course you do. You and me make a great team, Steele. I knew it from the moment you walked through that door back on Mhen’ga the very first time.”</i>");
 	output("\n\nOf course she did. Syri grins and gives you a peck on the cheek. <i>“Now then, this is the part where you invite me to adjourn to your ship so we can consummate our love.”</i>");
 	output("\n\n");
-	flags["SYRIQUEST_POST_GAME_TALK_LOVE"] = 2;
+	flags["SYRIQUEST_POST_GAME_TALK_LOVE"] = 1;
 	clearMenu();
 	addButton(0,"Next",syriSexMenu);
 }
@@ -165,7 +173,8 @@ public function syriFreezerTalkLoveHoldOnThere():void
 	output("\n\n<i>“Of course you don’t,”</i> your lover says, not skipping a beat. <i>“High-society space dilettante like you, lovin’ a random bar pickup like me? Didn’t expect that, still don’t. Doesn’t change how I feel about you, though. But damned if I’m not gonna work to change your mind. You know I’m too stubborn for that shit. So you just hold onto your ass until I’m the best and most famous gamer in the galaxy, and we’ll see where you stand then! This tourney coming up is just the first step on my road to be somebody you can be proud of... and in love with.”</i>");
 	output("\n\nShe grins and squeezes your butt. <i>“So fine, I can settle for being friends with benefits for now. But we’ll see how you feel when this quest of yours is done... and if I haven’t changed your mind, at least I’ll be rich and successful while I cry myself all the way to the bank. Now let’s buy some drinks so I can pretend the whole bar’s not starin’ at us now.”</i>");
 	flags["SYRIQUEST_POST_GAME_TALK_LOVE"] = 2;
-	syriFreezerTalkMenu(false);
+	clearMenu();
+	addButton(0,"Next",syriFreezerMenu,false);
 }
 
 public function syriFreezerTalkPenis():void
@@ -180,7 +189,7 @@ public function syriFreezerTalkPenis():void
 	output("\n\nYour lover nods, patting herself on the crotch. <i>“Yep. Might as well, considering that I’ve gotta take meds to keep my internal organs working, so an </i>external<i> one isn’t a big deal. Maybe I’ll get some mod work done on it, who knows. Regardless, considering Valden... well, it’s my dick now!”</i>");
 	output("\n\n<i>“And no plans to get a pussy to go with it?”</i>");
 	output("\n\n<i>“Nope!”</i> Syri smirks. <i>“What you see is what you get! Hope you’re not too heartbroken, but I’ve made up my mind.”</i>");
-	flags["SYRIQUEST_POST_GAME_TALK_PENIS"] = 2;
+	if(flags["SYRIQUEST_POST_GAME_TALK_PENIS"] == undefined || flags["SYRIQUEST_POST_GAME_TALK_PENIS"] < 2) flags["SYRIQUEST_POST_GAME_TALK_PENIS"] = 2;
 	syriFreezerTalkMenu(false);
 	addDisabledButton(3,"Penis");
 }

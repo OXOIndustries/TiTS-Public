@@ -2718,12 +2718,10 @@ public function zephNurseryBJ():void
 	
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 	
-	if (pc.isBimbo())
-	{
-		output("<i>“Umm,”</i> you start, gazing at Zephyr’s skirt and imagining the delicious contents contained within. <i>“Can I suck your cock?”</i>/else: <i>“Zephyr, would you like some ah...”</i> you start, pointedly staring at the amazon’s skirt, <i>“oral attention?”</i>\n\n");
-	}
+	if (pc.isBimbo()) output("<i>“Umm,”</i> you start, gazing at Zephyr’s skirt and imagining the delicious contents contained within. <i>“Can I suck your cock?”</i>");
+	else output("<i>“Zephyr, would you like some ah...”</i> you start, pointedly staring at the amazon’s skirt, <i>“oral attention?”</i>");
 
-	output("<i>“Hell yes,”</i> Zephyr replies, looping an arm around your lower back and eagerly escorting you to the bed. She has her skirt off in an instant, her giant, Throbb-enhanced cock surging to full erection within seconds. As if to provoke you into action, a bead of precum forms right at her pointed tip, threatening to drip to the floor.");
+	output("\n\n<i>“Hell yes,”</i> Zephyr replies, looping an arm around your lower back and eagerly escorting you to the bed. She has her skirt off in an instant, her giant, Throbb-enhanced cock surging to full erection within seconds. As if to provoke you into action, a bead of precum forms right at her pointed tip, threatening to drip to the floor.");
 
 	output("\n\nIt never does. You have your lips securely wrapped around her cockhead and your cheeks hollowed before she can even tell you to do so, your favorite amazon running her hands");
 	if (pc.hasHair()) output(" through your hair");
