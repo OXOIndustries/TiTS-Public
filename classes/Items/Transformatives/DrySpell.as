@@ -399,8 +399,7 @@ package classes.Items.Transformatives
 						lesswet = true;
 					}
 				}
-				
-				
+				//Flags here, boss!
 				if (target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED))
 				{
 					//25% chance to fail to remove lube flag
@@ -625,7 +624,6 @@ package classes.Items.Transformatives
 			{
 				kGAMECLASS.output(" However, afterwards you feel a bit parched down there. Gingerly you prod a few digits inside your [pc.vagina " + i + "], and after fingering yourself for a bit, you confirm it; <b>your vagina is not as");
 				//the above text output is finished inside one of the below conditions
-				
 				//enter here if wet but no flags
 				if (!target.vaginas[i].hasFlag(GLOBAL.FLAG_LUBRICATED) && !target.vaginas[i].hasFlag(GLOBAL.FLAG_STICKY))
 				{
@@ -645,7 +643,7 @@ package classes.Items.Transformatives
 						lesswet = true;						
 					}
 				}
-					
+
 				if (target.vaginas[i].hasFlag(GLOBAL.FLAG_LUBRICATED))
 				{
 					//25% chance to fail to remove lube flag
