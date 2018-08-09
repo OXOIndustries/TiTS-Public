@@ -24,9 +24,10 @@ public function initZhengRooms():void
 	rooms["ZSM SPACE"].southExit = "";
 	rooms["ZSM SPACE"].westExit = "";
 	rooms["ZSM SPACE"].moveMinutes = 3;
-	rooms["ZSM SPACE"].runOnEnter = zhengMinesEncounterBonus;
-	rooms["ZSM SPACE"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM SPACE"].runOnEnter = zhengMinesSpaceBonus;
+	rooms["ZSM SPACE"].addFlag(GLOBAL.OUTDOOR);
 	rooms["ZSM SPACE"].addFlag(GLOBAL.HAZARD);
+	rooms["ZSM SPACE"].addFlag(GLOBAL.LOW_GRAVITY);
 	
 	/* Ship Docking */
 	rooms["ZS L50"] = new RoomClass(this);

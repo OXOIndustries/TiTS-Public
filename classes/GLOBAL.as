@@ -1047,6 +1047,7 @@
 		public static const POOL:int									= 28;
 		public static const WATERFALL:int								= 29;
 		public static const SPIDER_WEB:int								= 30;
+		public static const LOW_GRAVITY:int								= 31;
 		
 		// Temp flag alias whilst the asset gets introduced
 		public static const LIFT:int = OBJECTIVE;

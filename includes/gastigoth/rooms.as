@@ -28,6 +28,8 @@ public function initGastigothRooms():void
 	//rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.INDOOR);
 	//rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.PUBLIC);
 	//rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.SHIPHANGAR);
+	rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.LOW_GRAVITY);
 
 	rooms["K16_DOCK"] = new RoomClass(this);
 	rooms["K16_DOCK"].roomName = "K16\nDOCK";
