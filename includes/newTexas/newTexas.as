@@ -239,18 +239,16 @@ public function repeatOgramApproach():void
 
 	//[Talk] [Sex] [Rearm] [Disarm]
 	clearMenu();
-	addButton(0,"Talk",talkToOggy,true);
-	if(pc.lust() >= 33) addButton(1,"Sex",askOggyForSex,undefined,"Sex","See if the big bull is up for sex.");
-	else addDisabledButton(1,"Sex","Sex","You aren’t quite aroused enough for sex.");
 	if(pc.hasStatusEffect("Disarmed")) {
-		addButton(3,"Rearm",rearmAtOgram,undefined,"Rearm","Get your weapons back.");
-		addDisabledButton(4,"Disarm","Disarm","You’ve already been disarmed.");
+		addButton(0,"Rearm",rearmAtOgram,undefined,"Rearm","Get your weapons back.");
 	}
 	else 
 	{
-		addDisabledButton(3,"Rearm","Rearm","You can’t pick up any weapons here - they don’t have yours.");
-		addButton(4,"Disarm",getDisarmedRepeat,undefined,"Get disarmed so that you can explore the planet.");
+		addButton(0,"Disarm",getDisarmedRepeat,undefined,"Get disarmed so that you can explore the planet.");
 	}
+	addButton(1,"Talk",talkToOggy,true);
+	if(pc.lust() >= 33) addButton(2,"Sex",askOggyForSex,undefined,"Sex","See if the big bull is up for sex.");
+	else addDisabledButton(2,"Sex","Sex","You aren’t quite aroused enough for sex.");
 	addButton(14,"Leave",mainGameMenu);
 
 }
