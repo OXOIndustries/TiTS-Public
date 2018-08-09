@@ -128,9 +128,11 @@ public function uvetoShipDock():Boolean
 	
 	if (tryProcKaedeUvetoEncounter()) return true;
 	
+	var btnSlot:int = 0;
+	
 	if(chaurmineOnUveto() && (flags["MET_CHAURMINE"] >= 2 || flags["CHAURMINE_WINS"] != undefined))
 	{
-		chaurmineUvetoStationBonus();
+		chaurmineUvetoStationBonus(btnSlot++);
 	}
 
 	return false;
@@ -320,7 +322,7 @@ public function rideSpaceElevatorDown():void
 
 public function uvetoUnlocked():Boolean
 {
-	return flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords"));
+	return (flags["UVETO_UNLOCKED"] != undefined || reclaimedProbeMyrellion() || (flags["KQ2_MYRELLION_STATE"] == 1 && MailManager.isEntryUnlocked("danemyrellioncoords")));
 }
 
 public function flyToUveto():void

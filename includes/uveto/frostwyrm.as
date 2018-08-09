@@ -2657,11 +2657,11 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 	output("”</i>, but the Qim doesn’t have any. Her face is a lot longer than ours, too, and she doesn’t have these puffy things around our mouths.");
 	if (pc.biggestTitSize() < 6) output("\n\nYou grit your teeth at your daughter reminding you that your boobs are smaller than hers, and tell yourself that she meant nothing by it.");
 	output("\n\nYou respond to most of her questions at once by saying that everyone is born a little different: some people have more than others; some are born taller, or with bigger assets. But you remind her that not always is bigger, better, and that she should judge others by their personality and their merits rather than their physical appearance.");
-	output("\n\n<i>“And these?”</i> she asks, groping and squeezing at her tits. You tell her that those are called ‘breasts, ’ and that their primary function is to nurse young with – but they have lots of other feel - good uses, too. ");
+	output("\n\n<i>“And these?”</i> she asks, groping and squeezing at her tits. You tell her that those are called ‘breasts,’ and that their primary function is to nurse young with – but they have lots of other feel - good uses, too. ");
 	if (pc.isLactating()){
 		output("\n\n<i>“How do you ‘nurse’ young with these? That doesn’t make any sense to me.”</i>");
 		output("\n\nYou reply that she’s asking at a lucky time: you gently grip your boob just beneath the nipple and give it a squeeze. Your [pc.milk] sprays from your [pc.nipple] in thin streams, going every which way.");
-		output("\n\nYou daughter gasps in surprise at the sight, then a giddy grin crosses her face. This liquid, called ‘milk, ’ is what the young of your kind sustain on until they’re older for other, solid foods.");
+		output("\n\nYou daughter gasps in surprise at the sight, then a giddy grin crosses her face. This liquid, called ‘milk,’ is what the young of your kind sustain on until they’re older for other, solid foods.");
 		if (flags["FROSTWYRM_INCEST_OPTION"] == 0) output("\n\n<i>“May I have some?”</i> she asks. You reply that she’s... a little above being breastfed at her age, and you lower your [pc.nipple] away from her. She pouts, but respects your decision.");
 		else{
 			output("\n\n<i>“Like this?”</i> she asks, then leans forward and clamps her lips onto your right nipple. You shudder in surprise as her cheeks compress, suckling the milk straight from your breast, and you melt on the spot; this is unsolicited, but the relief you feel from releasing the pent up pressure and weight on your boob is enough to blank your mind momentarily.");

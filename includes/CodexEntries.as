@@ -873,7 +873,7 @@ public function rahnCodexEntry():void
 	clearOutputCodex();
 	var randBust:Array = ["FLAHNE", "ZODEE", "VAANDE", "JARDI"];
 	showBust(randBust[rand(randBust.length)]);
-	outputCodex(header("Fuu’Rahn and ’Rahn"));
+	outputCodex(header("Fuu’Rahn and ‘Rahn"));
 	outputCodex("<i>They may just be one cell, but really they’re all heart.</i>\n\n");
 	outputCodex("<b>Name (Singular & Plural):</b> Rahn");
 	outputCodex("\n<b>Sexes:</b> Monogendered, usually considered “Female”");

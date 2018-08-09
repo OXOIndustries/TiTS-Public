@@ -380,14 +380,14 @@ public function pcLosesToChaurmine():void
 //Unlocks after Uveto Event is completed
 //Add to Uveto Hangar
 //Room description
-public function chaurmineUvetoStationBonus():void
+public function chaurmineUvetoStationBonus(btnSlot:int = 0):void
 {
-	showChaurmine();
-	author("Aullama");
+	//showChaurmine();
+	//author("Aullama");
 	output("\n\nIn the distance, you see the familiar sight of metallic silver scales covering a tall and bulky frame. Chaurmine lounges around the entrance to the umbilical connected to his large ship.");
 
 	//[Chaurmine] // Go to Visiting Chaurmine
-	addButton(0,"Chaurmine",approachCharmine);
+	addButton(btnSlot,"Chaurmine",approachCharmine);
 }
 
 // Visiting Chaurmine
