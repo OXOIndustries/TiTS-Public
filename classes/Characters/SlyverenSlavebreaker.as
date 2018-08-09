@@ -7,6 +7,7 @@
 	import classes.Items.Guns.SlutRay;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.Items.Miscellaneous.Throbb;
+	import classes.Items.Armor.StarViperSlutwear;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.StringUtil;
@@ -50,9 +51,9 @@
 			this.rangedWeapon.baseDamage.tease.damageValue = 1;
 			this.rangedWeapon.hasRandomProperties = true;
 			
-			this.armor.longName = "scales";
-			this.armor.defense = 5;
-			this.armor.hasRandomProperties = true;
+			this.armor = new StarViperSlutwear();
+			//this.armor.defense = 5;
+			//this.armor.hasRandomProperties = true;
 
 			this.shield = new ReaperArmamentsMarkIIShield();
 			this.shield.shields = 300;
@@ -229,6 +230,7 @@
 				//Nothing needs changed :3
 				this.long = "The sea of her glittering black scales would swallow your gaze up whole were it not for the bioluminescent gold patterns that twist and twirl around her curvaceous body. You almost wish you could see beneath the cups of her revealing, pink-dyed leather top to see how they frame the jiggling mounds upon which they dwell. A bit further down, her tattoos spiral around her tail until they converge in a bioluminescent singularity of eye-trapping amber. Equally golden (though no less enchanting) orbs leer back at you from beneath an enormous cobra hood, so heavy it droops slightly on one side. She licks her glistening ebony lips and winks at you, a not-so-subtle reminder that she likes to break her slaves with pleasure rather than pain.";
 			}
+			if(rand(10) == 0) this.inventory.push(new StarViperSlutwear());
 			if(rand(3) <= 2)
 			{
 				this.inventory.push(new Throbb());
