@@ -46,6 +46,7 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	if (MailManager.isEntryViewed("syri_video") && InShipInterior()) possibleFuncs.push( { t: "Syri", th: "Syri", tb: "Take a good look at that very private video Syri sent you.", f: syriJackVid, ar: undefined } );
 	if(flags["KHORGAN_PREGSTURBATE"] != undefined && InShipInterior()) possibleFuncs.push({ t: "Khorgan", th: "Khorgan", tb: "Witness an incredibly pregnant and horny Thraggen woman masturbate to the thought of you.", f: khorganPregsturbate, ar: undefined } );
 	if(MailManager.isEntryViewed("kiroandkallyholomail")) possibleFuncs.push({ t: "KiroXXXKally", th: "Kiro XXX Kally", tb: "Witness a little show Kiro and Kally recorded for you.", f: kiroXKallyEmailShow, ar: undefined } );
+	if(MailManager.isEntryViewed("extrameet_invite_email")) possibleFuncs.push({ t: "ExtraMeet", th: "ExtraMeet", tb: "Login to ExtraMeet", f: extrameetStartPage, ar: undefined } );
 	clearMenu();
 	
 	for (var i:int = 0; i < possibleFuncs.length; i++)
