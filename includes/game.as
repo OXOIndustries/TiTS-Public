@@ -4597,6 +4597,8 @@ public function emailRoulette(deltaT:uint):void
 		mailList.push("fuckinggooslootsII");
 	if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
 		mailList.push("cuzfuckball");
+	if (!MailManager.isEntryUnlocked("extrameet_invite_email") && extrameetSmutAvail())
+		mailList.push("extrameet_invite_email");
 	
 	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
 	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined)
