@@ -3051,9 +3051,9 @@ public function quinnMomSexButton(btnSlot:int = 2):void
 		// Non-handmaiden [Sex] chosen whilst kid present
 		if(quinnBabyActive())
 		{
-			if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
+			if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
 			else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
-			else addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
+			else addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
 		}
 		// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
 		else
@@ -3065,9 +3065,9 @@ public function quinnMomSexButton(btnSlot:int = 2):void
 	}
 	else
 	{
-		if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
+		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(btnSlot, "Sex", sexWithQuinnOmnigenderWHYYYY);
 		else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
-		else addButton(btnSlot, "Sex", sexWithQuinnOmnigenderWHYYYY);
+		else addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
 	}
 }
 

@@ -1106,7 +1106,7 @@ public function zephyrTalkBets():void
 	
 	output("\n\n<i>“I haven’t even done anything,”</i> comes the slightly confused reply through the door.");
 	
-	output("\n\nZephyr sighs angrily, then fixes you with a glare. <i>“Look. Armwrestling got me </i>into<i> this dumb bullshit. I really don’t want anything to do with more dumb bullshit. Get it?”</i>");
+	output("\n\nZephyr sighs angrily, then fixes you with a glare. <i>“Look. Arm wrestling got me </i>into<i> this dumb bullshit. I really don’t want anything to do with more dumb bullshit. Get it?”</i>");
 	
 	output("\n\n<i>“You haven’t even heard the stakes yet,”</i> you inform her, smiling.");
 	
@@ -1126,13 +1126,13 @@ public function zephyrTalkBets():void
 	
 	output("\n\n<i>“So is it... real?”</i> she asks, eyeing the syringe.");
 	
-	output("\n\n<i>“Oh, it’s the real deal,”</i> you assure her. <i>“It’ll add inches length </i>and<i> widthwise. Not to mention your libido shooting through the roof. Ah, not that you really need any help with that.”</i>");
+	output("\n\n<i>“Oh, it’s the real deal,”</i> you assure her. <i>“It’ll add inches length- </i>and<i> width-wise. Not to mention your libido shooting through the roof. Ah, not that you really need any help with that.”</i>");
 	
 	output("\n\n<i>“Hmm,”</i> she mutters, still staring at the medical applicator. <i>“I </i>have<i> been thinking about going bigger... seems like fucking everyone has a three foot horsecock nowadays.”</i>");
 	
 	output("\n\n<i>“Should be easy then, right?”</i> you say, not even hiding that you’re goading her on. <i>“All you have to do is beat me.”</i>");
 	
-	output("\n\n<i>“I am going to fucking destroy your asshole when I win,”</i> she says, pointing rudely at your chest. <i>“You won’t even be able to fucking sit down without thinking of my cock. But fine,”</i> she continues, shrugging as she turns away and heads back to her desk. <i>“We can armwrestle any time. Just let me know when you want me to fuck your ass, I guess.”</i>");
+	output("\n\n<i>“I am going to fucking destroy your asshole when I win,”</i> she says, pointing rudely at your chest. <i>“You won’t even be able to fucking sit down without thinking of my cock. But fine,”</i> she continues, shrugging as she turns away and heads back to her desk. <i>“We can arm wrestle any time. Just let me know when you want me to fuck your ass, I guess.”</i>");
 
 	flags["ZEPHYR_TALKED_BETS"] = 1;
 
@@ -1699,11 +1699,16 @@ public function zephyrBetLossMainScene(pqType:uint, pqRand:Number):void
 
 	output("\n\n<i>“Yeah, whatever. Fucking brace yourself, slut. Nnnnngggh!”</i> she grunts, forcing herself into you. <i>“Come on [pc.name], open wide!”</i>");
 
-	output("\n\nFuck, she didn’t even wait to lube you or anything! You bite your bottom lip and try not to scream as the tapered tip of her newly enlarged penis slides into your [pc.asshole], dragging along the sensitive skin.");
+	output("\n\nFuck,");
+	if(pc.ass.wetness() >= 2) output(" even with your lubed asshole, you feel your are not quite prepared");
+	else output(" she didn’t even wait to lube you or anything");
+	output("! You bite your bottom lip and try not to scream as the tapered tip of her newly enlarged penis slides into your [pc.asshole], dragging along the sensitive skin.");
 	
 	pc.buttChange(ppZephyr.biggestCockVolume());
 	
-	output(" Your body squeezes down on her out of instinct, trying to arrest her progress, and thankfully manages to eke a squirt of precum from her tip for lube. What you discover a few seconds later, though, when she thrusts into you so hard your [pc.feet] momentarily come off the ground, is that being lubed enough for her to penetrate you isn’t necessarily a good thing.");
+	output(" Your body squeezes down on her out of instinct, trying to arrest her progress, and thankfully manages to eke a squirt of precum from her tip for");
+	if(pc.ass.wetness() >= 2) output(" extra");
+	output(" lube. What you discover a few seconds later, though, when she thrusts into you so hard your [pc.feet] momentarily come off the ground, is that being lubed enough for her to penetrate you isn’t necessarily a good thing.");
 	
 	output("\n\n<i>“Oh, fffuck!”</i> you cry out, scattering papers off her desk as you scrabble for grip. <i>“Nnnnhhhh!”</i>");
 	
@@ -2352,7 +2357,7 @@ public function zephyrDoubleBetLoss():void
 	
 	output("\n\nOutside her office");
 	if (!pc.isNude()) output(" and fully clothed");
-	output(", you breathe a little sigh of relief. You’re pretty sure your hips would have disintegrated if you’d immediately gone for another round of being bred, and besides, this has left you pretty gravid already. You can still feel yourself leaking cum, too, though here on New Texas that’s not so far out of the ordinary. Still, a not insignificant part of you wants to immediately walk back in and skip the armwrestling completely...");
+	output(", you breathe a little sigh of relief. You’re pretty sure your hips would have disintegrated if you’d immediately gone for another round of being bred, and besides, this has left you pretty gravid already. You can still feel yourself leaking cum, too, though here on New Texas that’s not so far out of the ordinary. Still, a not insignificant part of you wants to immediately walk back in and skip the arm wrestling completely...");
 
 	processTime(45+rand(15));
 	pc.loadInCunt(ppZephyr,  vIdx);
