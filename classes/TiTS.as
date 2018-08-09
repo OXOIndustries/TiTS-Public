@@ -197,6 +197,8 @@
 		include "../includes/events/federationQuest/federationQuest.as";
 		include "../includes/events/federationQuest/rooms.as";
 		include "../includes/events/federationQuest/roomFunctions.as";
+		include "../includes/events/extrameet/extrameet.as";
+		include "../includes/events/extrameet/extrameetProfiles.as";
 		
 		// Travel Events
 		include "../includes/travelEvents.as";
@@ -1632,6 +1634,38 @@
 		public function get ardia():Ardia
 		{
 			return chars["ARDIA"];
+		}
+		public function get emmrfox():EMMrFox
+		{
+			return chars["MRFOX"];
+		}
+		public function get emredd():EMRedd
+		{
+			return chars["REDD"];
+		}
+		public function get emponyluver():EMPonyLuver
+		{
+			return chars["PONYLUVER"];
+		}
+		public function get emsexyydaddyy():EMSexyyDaddyy
+		{
+			return chars["SEXYYDADDYY"];
+		}
+		public function get embountifulbotany():EMBountifulBotany
+		{
+			return chars["BOUNTIFULBOTANY"];
+		}
+		public function get emsneakysnek():EMSneakySnek
+		{
+			return chars["SNEAKYSNEK"];
+		}
+		public function get emripped4yourpleasure():EMRipped4YourPleasure
+		{
+			return chars["RIPPED4YOURPLEASURE"];
+		}
+		public function get emstormdragon():EMStormDragon
+		{
+			return chars["STORMDRAGON"];
 		}
 
 		public function testShipCombat():void
