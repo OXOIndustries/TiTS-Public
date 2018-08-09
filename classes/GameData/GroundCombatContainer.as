@@ -1251,6 +1251,8 @@ package classes.GameData
 			genericStatusEffectUpdate(target, "Tracer Rounds");
 			genericStatusEffectUpdate(target, "Torra Lust Weakness");
 			genericStatusEffectUpdate(target, "Chaff Grenade");
+			genericStatusEffectUpdate(target, "Weapon Lock");
+			genericStatusEffectUpdate(target, "Special Lock");
 			
 			if (target.hasStatusEffect("SHIZZY CUM"))
 			{
@@ -1460,13 +1462,15 @@ package classes.GameData
 			else
 			{
 				var af:Function = pc.meleeWeapon.attackImplementor == null ? CombatAttacks.MeleeAttack : pc.meleeWeapon.attackImplementor;
-				if(pc.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, "Attack", "Melee Attack", "Your melee weapon is too heavy to lift and use!");
+				if(pc.hasStatusEffect("Weapon Lock")) addDisabledButton(0, "Attack", "Melee Attack", "You can't bring yourself to resort to using a weapon right now!");
+				else if(pc.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(0, "Attack", "Melee Attack", "Your melee weapon is too heavy to lift and use!");
 				else addButton(0, "Attack", selectSimpleAttack, { func: af, isMelee: true }, "Melee Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
 			}
 			
 			// shoot
 			var sf:Function = pc.rangedWeapon.attackImplementor == null ? CombatAttacks.RangedAttack : pc.rangedWeapon.attackImplementor;
-			if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "Your ranged weapon is too heavy to lift and use!");
+			if(pc.hasStatusEffect("Weapon Lock")) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "You can't bring yourself to resort to using a weapon right now!");
+			else if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "Your ranged weapon is too heavy to lift and use!");
 			else if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_HIGH_PHYSIQUE) && !pc.canUsePowerArmorWeapon() && pc.PQ() < 66) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "You lack the physique necessary to use such a weapon! You need at least " + Math.ceil(pc.physiqueMax() * 66/100) + " physique to use it.");
 			else addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, { func: sf, isRanged: true }, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
 			
@@ -1474,7 +1478,9 @@ package classes.GameData
 			// inventory
 			addButton(3, "Inventory", kGAMECLASS.inventory, undefined, "Inventory", "Use items in combat.");
 			// specials
-			addButton(4, "Specials", generateSpecialsMenu, undefined, "Specials", "The special attacks you have available to you are listed in this menu.");
+
+			if(pc.hasStatusEffect("Special Lock")) addDisabledButton(4,"Specials","Specials","You can't remember how to use your special abilities right now...");
+			else addButton(4, "Specials", generateSpecialsMenu, undefined, "Specials", "The special attacks you have available to you are listed in this menu.");
 			
 			// tease
 			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(5, "Tease", "Tease", "Without the venom, teasing just seems... fruitless.");

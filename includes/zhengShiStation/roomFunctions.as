@@ -64,7 +64,11 @@ public function zhengMinesEncounterBonus():Boolean
 		encounters.push(miningRobotAttack);
 		encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);
-		//if(flags["MAIKE_SLAVES_RELEASED"] == 1 || flags["MAIKE_SLAVES_RELEASED"] == 2) encounters.push(encounterSlyverenSlavebreaker);
+		if(flags["MAIKE_SLAVES_RELEASED"] == 1 || flags["MAIKE_SLAVES_RELEASED"] == 2) 
+		{
+			encounters.push(encounterSlyverenSlavebreaker);
+			encounters.push(encounterSlyverenSlavebreaker);
+		}
 	}
 	if(encounters.length > 0) 
 	{
