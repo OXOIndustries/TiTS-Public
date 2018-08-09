@@ -6,22 +6,22 @@
 
 //Slavebreaker OXO Edition:
 //Black with bioluminescent gold tattoos. The tip of her tail is a solid, glowing gold. For hypno pendulum, of course.
-//6’6”</i>, huge cobra hood. (http://www.furaffinity.net/view/20318855/ )
+//6' 6", huge cobra hood. (http://www.furaffinity.net/view/20318855/ )
 //Glossy cocksucking lips.
 //Eyes: Vertically slit with gold sclera
-//22”</i> tongue that’s fat on the edges with a ‘v’ shaped groove in the middle to channel cum.
-//Retractable fangs, 2”</i> long. Needle-like so don’t hurt much at all.
-//Strong Telepath. Able to project voice into your head and even mimic your own internal voice. Can mildly enhance or deaden sensations and <i>“help”</i> the PC come to certain conclusions.
+//22" tongue that’s fat on the edges with a ‘v’ shaped groove in the middle to channel cum.
+//Retractable fangs, 2" long. Needle-like so don’t hurt much at all.
+//Strong Telepath. Able to project voice into your head and even mimic your own internal voice. Can mildly enhance or deaden sensations and “help” the PC come to certain conclusions.
 //Vagina is basically human-standard.
 //Personality: Love dom. Knows she’s consigning slaves to a shitty life and wants to make them enjoy it as much as possible. Extra nice the bigger your dick is.
 //Quirks: Very kissy. Likes to slither up and whisper in your ear.
 
 
 //Slavebreaker Wsan Edition:
-//Purple with pink highlights. Just enough pink to make you go <i>“oh I see”</i> when she acts like a bimbo.
+//Purple with pink highlights. Just enough pink to make you go “oh I see” when she acts like a bimbo.
 //Eyes: Vertically slit with bronze sclera
-//Retractable fangs, 2”</i> long. Needle-like so don’t hurt much at all.
-//Strong Telepath. Able to project voice into your head and even mimic your own internal voice. Can mildly enhance or deaden sensations and <i>“help”</i> the PC come to certain conclusions.
+//Retractable fangs, 2" long. Needle-like so don’t hurt much at all.
+//Strong Telepath. Able to project voice into your head and even mimic your own internal voice. Can mildly enhance or deaden sensations and “help” the PC come to certain conclusions.
 //Radiates lust telepathically. Manifests as the PC raring to go the moment she holds dominion over them, but juxtaposed with their utter servility. Huge erect cocks/leaking pussies but ignoring them to follow her orders.
 //Personality: Always in control, except...
 //Quirks: Fucking loves big dicks and balls. Goes a bit bimbo-ey if you’re over 30 inches or have huge balls.
@@ -37,7 +37,7 @@
 //Regular shot
 //Overcharge Slut-shot (special texts since slut ray)
 //Shield Siphon - restores lost shields by stealing the PCs
-//Mental Lock - Prevent usage of attack/shoot/specials. <i>“Do no harm”</i> for two turns.
+//Mental Lock - Prevent usage of attack/shoot/specials. “Do no harm” for two turns.
 
 public function showSlavebreaker(nude:Boolean = false):void
 {
@@ -70,19 +70,22 @@ public function slyverenCockSuckGrowthCheck(x:int = 0,outputDisp:Boolean = true)
 	//Make sure cock exists to grow:
 	if(!pc.hasCock()) return;
 	if(x >= pc.cockTotal()) return;
+	
+	var cLength:Number = pc.cocks[x].cLength();
+	
 	//Don't waste time if growth is disabled for some reason
-	if(!pc.cockLengthUnlocked(x, (pc.cocks[x].cLength()+growthAmount))) return;
+	if(!pc.cockLengthUnlocked(x, (cLength+growthAmount))) return;
 	
 
 	var growthAmount:Number = 0;
 	//Increasingly rare growth events above 16"
-	if(pc.cocks[x].cLength() <= 16) growthAmount = (30+rand(16))/100;
-	else if(pc.cocks[x].cLength() < 20 && rand(3) <= 1) growthAmount = (20+rand(16))/100;
-	else if(pc.cocks[x].cLength() < 24 && rand(3) <= 0) growthAmount = (10+rand(16))/100;
-	else if(pc.cocks[x].cLength() < 28 && rand(4) <= 0) growthAmount = (10+rand(16))/100;
-	else if(pc.cocks[x].cLength() < 32 && rand(5) <= 0) growthAmount = (10+rand(16))/100;
-	else if(pc.cocks[x].cLength() < 36 && rand(6) <= 0) growthAmount = (10+rand(16))/100;
-	else if(pc.cocks[x].cLength() < 40 && rand(8) <= 0) growthAmount = (10+rand(16))/100;
+	if(cLength <= 16) growthAmount = (30+rand(16))/100;
+	else if(cLength < 20 && rand(3) <= 1) growthAmount = (20+rand(16))/100;
+	else if(cLength < 24 && rand(3) <= 0) growthAmount = (10+rand(16))/100;
+	else if(cLength < 28 && rand(4) <= 0) growthAmount = (10+rand(16))/100;
+	else if(cLength < 32 && rand(5) <= 0) growthAmount = (10+rand(16))/100;
+	else if(cLength < 36 && rand(6) <= 0) growthAmount = (10+rand(16))/100;
+	else if(cLength < 40 && rand(8) <= 0) growthAmount = (10+rand(16))/100;
 
 	//Stop if no gro
 	if(growthAmount == 0) return;
@@ -93,7 +96,7 @@ public function slyverenCockSuckGrowthCheck(x:int = 0,outputDisp:Boolean = true)
 
 	//Actually apply & output:
 	pc.cocks[x].cLengthRaw += growthAmount;
-	if(outputDisp) output("Between the venom and all the sucking, <b>your [pc.cockNoun " + x + "] wound up with a little bit of additional length:</b> " + Math.round(growthAmount*100)/100 + " inches, according to your Codex's scanner.\n\n");
+	if(outputDisp) output("Between the venom and all the sucking, <b>your [pc.cockNoun " + x + "] wound up with a little bit of additional length:</b> " + Math.round(growthAmount*100)/100 + " inches, according to your Codex’s scanner.\n\n");
 }
 
 //Combat Stuff!
@@ -117,7 +120,7 @@ public function encounterSlyverenSlavebreaker():Boolean
 		output("\n\nYou turn around to see a bipedal, [enemy.scaleColor]-scaled snake-woman striding out of the darkness. <i>“You’re fighting pirates, right?”</i>");
 		output("\n\nYou start to consider your reply, but she takes the silence as answer enough. <i>“Knew it! You’re another escaped slave! Don’t worry, just because I’m a slavebreaker doesn’t mean I have to be, you know, mean about it.”</i> She draws a heavy-duty pistol... with an antenna for a barrel? <i>“Trust me. Submission has never felt so good.”</i>");
 
-			if(!CodexManager.entryUnlocked("Dzaan"))
+		if(!CodexManager.entryUnlocked("Dzaan"))
 		{
 			output("\n\n<b>(New Codex entry unlocked: Dzaan.)</b>");
 			CodexManager.unlockEntry("Dzaan");
@@ -139,6 +142,7 @@ public function encounterSlyverenSlavebreaker():Boolean
 		output("”</i> Spinning the gun on one finger, she skips closer, her snake-like tongue licking along her lips. <i>“You look awful tasty... for a slave.”</i>");
 		output("\n\n<b>You’re going to have to fight!</b>");
 	}
+	IncrementFlag("MET_SLAVEBREAKERS");
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
 	return true;
@@ -154,7 +158,7 @@ public function loseToSlyverenSlavebreaker():void
 	}
 	var scenes:Array = [];
 	if(pc.hasCock() && pc.cumQ() >= 20000) scenes.push(cumHarvestingGoodboi);
-	//For dicks up to 35”</i> inches long. allowing for all for nau
+	//For dicks up to 35" inches long. allowing for all for nau
 	if(pc.hasCock() && (pc.cumQ() < 20000 || rand(2) == 0)) scenes.push(suckledIntoSubmissionLost);
 	//Size Training:
 	if(pc.smallestCockLength() < 7 && pc.hasCock()) scenes.push(sizeTrainingLoss);
@@ -174,6 +178,7 @@ public function loseToSlyverenSlavebreaker():void
 		flags["TEMPLOOT"] = enemy.inventory;
 		eventQueue.push(collectEquipmentPostSlyvLoss);
 	}*/
+	queueReturnAllItems(false, true);
 }
 
 /* Find a way to wire this up later.
@@ -346,6 +351,7 @@ public function suckledIntoSubmissionLost():void
 	author("Fenoxo");
 	var x:int = pc.cockThatFits(900);
 	if(x < 0) x = pc.smallestCockIndex();
+	var cumQ:Number = pc.cumQ();
 	//Covered
 	if(!pc.isCrotchExposed()) output("Your crotch-girding garments are dispatched with the kind of ease that speaks to a lifetime of practice" + (pc.isErect() ? ", allowing your [pc.cocks] to spring out, completely erect.":", allowing your [pc.cocks] to flop out into the air."));
 	//Uncovered flaccid
@@ -373,7 +379,7 @@ public function suckledIntoSubmissionLost():void
 		output("\n\n<i>“There we go.”</i> The snake-woman rotates her head and sinks down, slapping her heavy, " + (enemy.lipColor == "black" ? "ink-black":"bubblegum-pink") + " lips against " + (pc.cockTotal() > 1 ? "one":"your") + " flaccid member. Your face flushes at the contact, and a lurid, too-eager moan bursts from your mouth. When you relax a second later, that’s when she surprises you with a bite that doesn’t feel like a bite.");
 		output("\n\nIt’s more like a pinch. It happens quick, both fangs piercing your [pc.cock " + x + "] at the exact same moment, accompanied by a microsecond of pain that fades as fast as it arrives. You feel like it should be agonizing, yet none comes - just a sensation of slow, seeping warmth that radiates down to the root of your length. The slyveren’s wetly smacking lips kiss against your dickskin while she releases her venom, drooling spit down down the sides.");
 		output("\n\n<i>Good [pc.boyGirl]...</i> her voice purrs, despite her maw’s cock-locked state.");
-		output("\n\nMomentarily distracted by the words flowing into your mind, you nearly forget about the venom seeping into your crotch, at least until the ensuing heat puddles thickly enough for it to seep out into your arms and [pc.legOrLegs], filling them wonder a wonderful infusion of relaxing, strength-sapping contentment. Blushing in arousal, you’re aware of your [pc.cock " + x + "] throbbing in excitement... or with venom. It’s increasingly difficult to distinguish the two and even harder to care.");
+		output("\n\nMomentarily distracted by the words flowing into your mind, you nearly forget about the venom seeping into your crotch, at least until the ensuing heat puddles thickly enough for it to seep out into your arms and [pc.legOrLegs], filling them with a wonderful infusion of relaxing, strength-sapping contentment. Blushing in arousal, you’re aware of your [pc.cock " + x + "] throbbing in excitement... or with venom. It’s increasingly difficult to distinguish the two and even harder to care.");
 	}
 	//Merge
 	output("\n\n<i>That’s better isn’t it?</i>");
@@ -421,16 +427,16 @@ public function suckledIntoSubmissionLost():void
 	output("\n\n<i>Obey... and cum!</i>");
 	output("\n\nEverything goes white as your eyes roll back and your [pc.cock " + x + "] strains. Pressure builds, mounting higher and higher, the knowledge that you’re <i>so blissfully compliant</i> an undercurrent that tickles your [pc.balls] and coaxes you to the explosive, spurting peak.");
 	//Low Cum, no new pg.
-	if(pc.cumQ() < 5) output(" Of course, you barely shoot anything into her, but neither do you care. You came on command. You came to her words and her lips, and if you’ve already cum yourself dry beforehand, that’s okay, so long as you obey.");
+	if(cumQ < 5) output(" Of course, you barely shoot anything into her, but neither do you care. You came on command. You came to her words and her lips, and if you’ve already cum yourself dry beforehand, that’s okay, so long as you obey.");
 	//Regular cum
-	else if(pc.cumQ() < 50) output("\n\nThe hard-pumping [pc.cumNoun] sprays " + (pc.cocks[x].cLength() < 8 ? "onto her tongue":"into her belly") + " in worshipful offerings, every spurt an abulation in observance of your new, obedience-focused religion. If she asked, you’d offer her your very soul, but you’ll settle for every drop of [pc.cumNoun] in your body.");
+	else if(cumQ < 50) output("\n\nThe hard-pumping [pc.cumNoun] sprays " + (pc.cocks[x].cLength() < 8 ? "onto her tongue":"into her belly") + " in worshipful offerings, every spurt an abulation in observance of your new, obedience-focused religion. If she asked, you’d offer her your very soul, but you’ll settle for every drop of [pc.cumNoun] in your body.");
 	//Big cummies
-	else if(pc.cumQ() < 1000)
+	else if(cumQ < 1000)
 	{
 		output("\n\nHow fortunate that you have a big, thick load to offer her! How delightful that you have so much semen that you can feel it straining your urethra as it pours " + (pc.cocks[x].cLength() < 8 ? "out onto the slyveren’s tongue":"directly into the slyveren’s belly") + "! In pure bliss, you spurt and spurt... and spurt... until your delightfully enslaved prick is straining to deliver the last precious drops in your body. Not only did you cum on command, but you gave your mistress everything.");
 	}
 	//Huge load
-	else if(pc.cumQ() < 10000)
+	else if(cumQ < 10000)
 	{
 		output("\n\nWhat feels like gallons of [pc.cumNoun] flood your urethra and rush " + (pc.cocks[x].cLength() < 8 ? "onto the slyveren’s tongue, pouring down her throat in a waterfall of obedient release":"into the slyveren’s belly in a waterfall of obedient release") + ". How perfect that you can cum on command <i>and</i> provide a thoroughly filling meal for your mistress! " + (pc.cocks[x].cLength() < 8 ? "Instead of gurgling and trying to swallow, she simply relaxes, opening wide to let you pump it directly to its destination":"Instead of pumping her tongue, she lets her lips draw tight, coaxing your breeding instincts into overdrive") + ". She doesn’t speak to you, but powerful psychic pleasure squeezes into your unresisting mind alongside your own climax, helping you to unload every drop buried in your body. Feeding mistress is better than cumming. It’s everything.");
 	}
@@ -443,7 +449,7 @@ public function suckledIntoSubmissionLost():void
 	}
 	//Merge
 	//Higher cum amounts
-	if(pc.cumQ() >= 1000)
+	if(cumQ >= 1000)
 	{
 		output("\n\n<i>Mmmm... very good, pet. You’re a good slave but an ever better feeder. Rest now and sleep. When you wake, we’ll squeeze all that nasty independance out of you for good, and then we can decide the best way to make you serve.</i>");
 	}
@@ -589,6 +595,9 @@ public function sizeTrainingLoss5(x:int):void
 	clearOutput();
 	showSlavebreaker(true);
 	author("Fenoxo");
+	
+	var cumQ:Number = pc.cumQ();
+	
 	output("<i>“Yeah.”</i> Her tongue slithers down to lick your shaft from " + (pc.balls > 0 ? "[pc.balls]":"[pc.sheathOrKnot " + x + "]") + " to tip. <i>“You want a big, dumb dick, and I want to give it to you. And suck it. Like this.”</i>");
 	output("\n\nShining, shapely lips descend onto your [pc.cockHead " + x + "], the tongue still feathering your underside with slow undulations. When they spread to take your masculine apex, you throb hard and angrily, your whole cock flexing, yet the slyveren only quirks a smile as she descends. She sucks your cock deep, but it may as well be your entire soul for how the wondrous pleasure consumes you. There are no teeth to distract you, only supple, soft caresses of tongues and cheek, the pulsating, swelling delight of her gentle suckling causing you to expand and slide deeper along the grooved surface of her tongue.");
 	output("\n\n<i>Verrry good, cumslave.</i> Her voice fills you more fully than your meager cock can her maw. It vibrates across errant thoughts and smoothes them down under its weight. <i>Obedience fills you with pleasure.</i> She sucks you so sweetly. The tug of her wanton blowjob forces you pulsate deliriously at <i>obedience</i> and <i>pleasure</i>.");
@@ -597,9 +606,9 @@ public function sizeTrainingLoss5(x:int):void
 	output("\n\nShe’s a psychic... and your [pc.cock " + x + "] is growing. Now that she’s drawn your attention to it, you can’t think of anything else: only the sensuous ecstasy of expanding toward the back of her throat. Your slave-mistress doesn’t bob back and forth as a lesser slut might. She holds you " + (pc.balls > 1 ? "balls-deep":"deep") + ", her plush black cocksuckers smushed into your [pc.belly] while her tongue fondles and caresses you from inside. Rhythmic sucks stretch your springy dick deeper, then let it bounce back, a little heavier and more engorged than it was before. You accept her into your mind as you strain toward the back of her throat, dribbling pre-cum in ecstasy.");
 	output("\n\nTwo more pinches hit you, but you scarcely react. Vacantly watching the slyveren’s cock-hypnotizing lips, you drool and moan complacently. You don’t want to miss the sensation of obediently growing!");
 	output("\n\n<i>Sooooo gooood. You’re going to be amazing cum-slave. I can tell. ");
-	if(pc.cumQ() < 50) output("The little bits of pre you’ve offered have been delectable.");
-	else if(pc.cumQ() < 250) output("The pre you’re dripping is scrumptious.");
-	else if(pc.cumQ() < 1000) output("You pre is so thick I could almost feed on it alone.");
+	if(cumQ < 50) output("The little bits of pre you’ve offered have been delectable.");
+	else if(cumQ < 250) output("The pre you’re dripping is scrumptious.");
+	else if(cumQ < 1000) output("You pre is so thick I could almost feed on it alone.");
 	else output("The pre you’re gushing into my throat is delectable... almost as filling as the real thing.");
 	output(" You didn’t even mind that I topped off your venom.</i>");
 	output("\n\nA long, sultry suck makes your eyes cross and your prick rub at the back of the scaled cock-tamer’s throat. How could you mind anything right now? You sigh in bliss and let her... do whatever she wants, because you’re <i>obeying</i>, exactly like you want to.");
@@ -625,14 +634,14 @@ public function sizeTrainingLoss5(x:int):void
 	output("\n\nA long, wet suck savages you.");
 	output("\n\n<i>Cum.</i>");
 	//Empty balls
-	if(pc.cumQ() < 5)
+	if(cumQ < 5)
 	{
 		output("\n\nThe rhythmic bliss of ejaculation washes over you, paired with the slyveren slavebreaker’s plush-lipped suckles.");
 		output("\n\n<i>More.</i>");
 		output("\n\nYou strain with the effort and the pleasure of giving her what she wants, of shooting out everything she wants. You empty the entire, spermy contents of your loins into her mouth, but it’s not enough. It’s never enough. She psychicly cajoles you to cum... and cum... and cum. Yet it doesn’t matter. Your body is drained. You can only pay her in meager dribbles for the blessing she has given.");
 	}
 	//Regular cummies
-	else if(pc.cumQ() < 1000)
+	else if(cumQ < 1000)
 	{
 		output("\n\nThe rhythmic bliss of ejaculation washes over you, timed exactly to the tempo of the slyveren slavebreaker’s plush-lipped suckles. Your spurts fire directly into her belly at first, but as climax drags on, she slides back. Her tongue unspools to rest against your [pc.cumNoun]-fattened urethra, catching your shots as they fire out in order to save the fresh taste of your release.");
 		output("\n\n<i>More</i>");
@@ -645,26 +654,26 @@ public function sizeTrainingLoss5(x:int):void
 		output("\n\nThe rhythmic bliss of ejaculation washes over you, timed precisely to the tempo of the slyveren slavebreaker’s plush-lipped suckles. The first shot splashes heavily into her belly. You may not have arrived with much in the way of maleness, but your diminutive size belied the true, liquid bounty you carried within.");
 		output("\n\n<i>Mmmm, so thick!</i>");
 		output("\n\nThe snake-woman’s pleasure manifests in the form of brain-tickling, telepathic purring. It vibrates through your psyche, better than any sextoy and infinitely more intimate. The passive ecstasy that she’s trained you to enjoy lays thick over you like a smothering blanket. Your eyes unfocus, but your [pc.cock " + x + "] continues to dispense its [pc.cumVisc] spunk, firing ");
-		if(pc.cumQ() < 2000) output("shot-glasses");
-		else if(pc.cumQ() < 5000) output("cup-loads");
-		else if(pc.cumQ() < 10000) output("tall glasses");
+		if(cumQ < 2000) output("shot-glasses");
+		else if(cumQ < 5000) output("cup-loads");
+		else if(cumQ < 10000) output("tall glasses");
 		else output("bucket-loads");
 		output(" worth of seed into the snake’s gulping gullet. Obeying never felt so good.");
 		output("\n\n<i>More!</i>");
-		output("\n\nLike a hand around your [pc.balls], the brain-tickling command squeezes the [pc.cumNoun] right out of you. Your flagging orgasm redoubles, and spooge spurts and pumps. Your sensuous mistress actually pulls back at this point, cradling her gurgling belly, and allows you to bathe her tongue in your offerings. It bulges her cheeks" + (pc.cumQ() >= 5000 ? " and squirts from the corners of her lips, pouring out in waterfalls of [pc.cumColor]":"") + ".");
+		output("\n\nLike a hand around your [pc.balls], the brain-tickling command squeezes the [pc.cumNoun] right out of you. Your flagging orgasm redoubles, and spooge spurts and pumps. Your sensuous mistress actually pulls back at this point, cradling her gurgling belly, and allows you to bathe her tongue in your offerings. It bulges her cheeks" + (cumQ >= 5000 ? " and squirts from the corners of her lips, pouring out in waterfalls of [pc.cumColor]":"") + ".");
 		output("\n\nUnlike a normal orgasm, it does not ebb. So long as there is [pc.cumNoun] inside you, you’re kept on the peak, forced into the blissful bondage of forced climax. You are a spurting pipeline for [pc.cumGem] spunk. The complete draining of your [pc.balls] is an exhausting affair. A dull ache grows in your middle, but it’s nothing next to the satisfaction that comes from obedience.");
 		output("\n\nYou cum yourself into complete compliance.");
 		//Huge cumshots - chain off previous
-		if(pc.cumQ() >= 30000)
+		if(cumQ >= 30000)
 		{
 			output("\n\nOf course, the snake-girl is forced to pull back before long, gasping for breath, but she slips a condom over your spurting [pc.cockHeadNoun " + x + "] just in time to catch the next fountainous release. She watches you fill it in a single spurt. Mistress’s happy, hooded eyes watch in a rapture as she swaps it out for another, and then her hands get back to work, milking a wondrously potent shot of semen into the straining cum-balloon.");
 			output("\n\n<i>Such a perfect cum-pet. Give me more. Give me all of it.</i>");
 			//<50k
-			if(pc.cumQ() < 50000) output("\n\nBy the time your outsized ejaculations transform into feeble dribbles, you’ve over twenty such balloons - enough that the slyveren slavebreaker has stopped storing them in her pack and started them rolling them to the side in a small mound.");
+			if(cumQ < 50000) output("\n\nBy the time your outsized ejaculations transform into feeble dribbles, you’ve over twenty such balloons - enough that the slyveren slavebreaker has stopped storing them in her pack and started them rolling them to the side in a small mound.");
 			//<100k
-			else if(pc.cumQ() < 100000) output("\n\nBy the time your one-[pc.manWoman] geyser relents, you’ve already filled well over fifty such balloons. More than enough for for your mistress to amass a small mountain of them along the wall. More than enough to leave her with a bulging, sloshing packful of your freshest, tastiest samples.");
+			else if(cumQ < 100000) output("\n\nBy the time your one-[pc.manWoman] geyser relents, you’ve already filled well over fifty such balloons. More than enough for for your mistress to amass a small mountain of them along the wall. More than enough to leave her with a bulging, sloshing packful of your freshest, tastiest samples.");
 			//<250k
-			else if(pc.cumQ() < 250000) output("\n\nBy the time your one-[pc.manWoman] eruption fades into thick dribbles, you’ve filled the hundred condoms your mistress brought with her. A sloshing mountain of the things is piled behind her, and her pack bulges with the virile weight of your best samples. The rest of your load is expelled onto the floor, forming a thick puddle of your submissive release.");
+			else if(cumQ < 250000) output("\n\nBy the time your one-[pc.manWoman] eruption fades into thick dribbles, you’ve filled the hundred condoms your mistress brought with her. A sloshing mountain of the things is piled behind her, and her pack bulges with the virile weight of your best samples. The rest of your load is expelled onto the floor, forming a thick puddle of your submissive release.");
 			//Else
 			else 
 			{
@@ -786,6 +795,8 @@ public function lossSceneForTaurs():void
 
 	if(pc.hasCock())
 	{
+		var cumQ:Number = pc.cumQ();
+		
 		output("\n\n<i>“Oh, my, yes,”</i> you hear her sigh, discovering your erect and leaking [pc.cocks]. <i>“I do </i>so<i> love you centaurs sometimes.");
 		if(pc.cocks[x].cLength() < 15) output(" Even if you aren’t quite as well-built as some of your brethren.");
 		else if(pc.cocks[x].cLength() < 20) output(" You have such... sturdy bodies.");
@@ -868,7 +879,7 @@ public function lossSceneForTaurs():void
 				output(" as deep as you can possibly get" + (pc.balls > 1 ? " while your balls churn and quiver":""));
 			}
 			output(". Pleasure shoots through your entire body as you groan, [pc.cum] surging from the end of your massive cock to jet inside the all-too-willing slyveren.");
-			if(pc.cumQ() < 4000) 
+			if(cumQ < 4000) 
 			{
 				output("\n\n<i>“Cum harder,”</i> she giggles in your mind, inciting you to obey. <i>“More, more!”</i>");
 				output("\n\nYou grunt upon realizing the incredible strength of the compulsion and then your mind is wiped free of anything but the impulse to obey. You provide for your eager mistress in spades, massive loads of spunk welling up inside you to be violently deposited into her stomach. Thrusting your hips instinctively, you let out a moan of joy - it feels like this will never end, and as long as it never ends you’re obeying her instruction!");
@@ -882,7 +893,7 @@ public function lossSceneForTaurs():void
 				output("\n\n<i>“Hopefully the next time we meet you find yourself a little more inclined towards generosity,”</i> the slavebreaker murmurs, smiling wide. Her elegant manner has resurfaced in the aftermath of losing herself in sucking your cock, but the way her lipstick is smeared says it all. <i>“Come along, pet. It’s time for sleep. We can do this again after you get your work done... I hope you’re looking forward to it.”</i>");
 				output("\n\n<i>Oh...</i> a voice swims in the murky, swirling waters of your mind, <i>I’m going to bite you until you can’t move, pet...</i>");
 			}
-			else if(pc.cumQ() < 10000)
+			else if(cumQ < 10000)
 			{
 				output("\n\n<i>“Oh, </i>yes<i>,”</i> the slavebreaker exults in your mind, raising an arm to pat your side affectionately. <i>“Yes, yes, good [pc.boyGirl]...”</i>");
 				output("\n\nGrunting, you tense up and let loose with the largest loads you’ve ever ejaculated, psychic encouragement driving you onwards like a jockey on your back. A stream of spunk travels down your throbbing shaft, spurting into the waiting slyveren’s stomach as she coos in your head. Cumming is the only thing you can think of, the only thing you <i>need</i> to think of, and you deliver over and over.");
@@ -890,7 +901,7 @@ public function lossSceneForTaurs():void
 				output("\n\nWhen she withdraws from your sopping wet, still half-hard cock, it’s with a long, drawn-out sigh of indulgence. She’s sucked you absolutely dry for now, not a single errant drip to be found on your hanging, half-hard dick. Washing her well-used tongue over her plump lower lip, she regards you with a smile.");
 				output("\n\n<i>“Well done, slave [pc.boyGirl],”</i> she says, stroking your side while she guides you down from the platform. <i>“Now let’s take a walk so you can get some much needed rest...”</i>");
 			}
-			else if(pc.cumQ() < 25000)
+			else if(cumQ < 25000)
 			{
 				output("\n\n<i>“Oh, so much!”</i> the slavebreaker moans in your mind, her throat rippling down your cock to milk you. <i>“Give it all to me, you stud!”</i>");
 				output("\n\nStraining to meet her demands, you grunt and groan through what might be the most powerful, hair-raising orgasm you’ve ever had. A veritable <i>torrent</i> of seed gushes from the end of your cock into the waiting slyveren’s stomach, swelling it until it’s stretched taut just to contain your thick spunk. You don’t stop there, the mental encouragement pushing you well past your natural limits. It’s impossible to resist her, to do anything but cum harder and fill her up with jizz.");
@@ -1031,11 +1042,13 @@ public function defeatTheSlavebreaker():void
 	{
 		if(CodexManager.entryUnlocked("Throbb"))
 		{
-			output("\n\nYour Codex identifies an injector she's carrying as Throbb - an illegal drug that causes phallic growth in its users. Perhaps she'd be a bit more amenable if you used it on her? (<b>Codex Entry Unlocked!</b>)");
+			output("\n\nYour Codex identifies an injector she’s carrying as Throbb - an illegal drug that causes phallic growth in its users. Perhaps she’d be a bit more amenable if you used it on her? (<b>Codex Entry Unlocked!</b>)");
 			CodexManager.unlockEntry("Throbb");
 		}
-		else output("\n\nShe's packing some Throbb. It might be fun to give this tease a dose of her own medicine.");
+		else output("\n\nShe’s packing some Throbb. It might be fun to give this tease a dose of her own medicine.");
 	}
+	
+	queueReturnAllItems(false, true);
 	
 	clearMenu();
 	if(pc.lust() >= 33)
@@ -1044,7 +1057,7 @@ public function defeatTheSlavebreaker():void
 		{
 			addButton(0,"Facefuck",faceFuckThatSlyveren,undefined,"Facefuck","Get your cock in that throat.");
 			if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(1,"Cuntfuck",cockSelect,[fuckTheSlavebreakersPussy,enemy.vaginalCapacity(0),false,0],"Cuntfuck","Put her pussy to the test.");
-			else addDisabledButton(1,"Cuntfuck","Cuntfuck","You'd split her in half!");
+			else addDisabledButton(1,"Cuntfuck","Cuntfuck","You’d split her in half!");
 		}
 		else
 		{
@@ -1056,9 +1069,9 @@ public function defeatTheSlavebreaker():void
 	}
 	else
 	{
-		addDisabledButton(0,"Facefuck","Facefuck","You aren't aroused enough for this.");
-		addDisabledButton(1,"Cuntfuck","Cuntfuck","You aren't aroused enough for this.");
-		addDisabledButton(2,"Get Licked","Get Licked","You aren't aroused enough for this.");
+		addDisabledButton(0,"Facefuck","Facefuck","You aren’t aroused enough for this.");
+		addDisabledButton(1,"Cuntfuck","Cuntfuck","You aren’t aroused enough for this.");
+		addDisabledButton(2,"Get Licked","Get Licked","You aren’t aroused enough for this.");
 	}
 	
 	if(enemy.hasItemByClass(Throbb)) addButton(3,"Give Throbb",giveThrobToSlyveren,undefined,"Give Throbb","Maybe slapping a dick on her will make her a little easier to deal with...");
@@ -1067,7 +1080,7 @@ public function defeatTheSlavebreaker():void
 	if(pc.hasStatusEffect("SlyverenFacefuckForce") && pc.hasCock())
 	{
 		clearMenu();
-		output("\n\nThere's something about her lips. Something at the back of your mind that demands you <b>fuck her face...</b>");
+		output("\n\nThere’s something about her lips. Something at the back of your mind that demands you <b>fuck her face...</b>");
 		pc.lust(33);
 		addButton(0,"Facefuck",faceFuckThatSlyveren,undefined,"Facefuck","Get your cock in that throat.");
 		pc.removeStatusEffect("SlyverenFacefuckForce");
@@ -1125,7 +1138,7 @@ public function fuckTheSlavebreakersPussy(x:int):void
 	}
 	//Merge
 	output("\n\nThe flavor sends her train of thought crashing off the rails. Jaw slowly rocking back and forth, the slutted-up snake sucks on her lip and stares at your [pc.cock " + x + "] with a look of pure, carnal desire. <i>“Your pheromones!”</i> Nuzzling closer, the slyveren licks again, her eyes drifting closed to savor your flavor. <i>“Sho good! Just fuck my face already.”</i> Drinking in your musk, she begs, <i>“Fuck my throat raw!”</i>");
-	output("\n\nYou shove the gape-mouthed slyveren back before she can wrap those juicy lips around you and suck-start " + (pc.balls < 1 ? "an instantaneous orgasm":"your [pc.balls] to instantaneous orgasm") + ".  She hits the ground, her pornstar-grade tits jiggling obscenely. You look on with a smile, eyes glued to the darker-hued slit just between her quivering thighs. <i>“I have something else in mind.”</i>");
+	output("\n\nYou shove the gape-mouthed slyveren back before she can wrap those juicy lips around you and suck-start " + (pc.balls < 1 ? "an instantaneous orgasm":"your [pc.balls] to instantaneous orgasm") + ". She hits the ground, her pornstar-grade tits jiggling obscenely. You look on with a smile, eyes glued to the darker-hued slit just between her quivering thighs. <i>“I have something else in mind.”</i>");
 	output("\n\nThe claiming of her pussy proceeds in business-like fashion. One moment, the slavebreaker lies there, dumbfounded by your proclamation, the next you’re on top of her and pressing your [pc.cockHead " + x + "] against her silky netherlips, reveling in the sensuous slide into her clutching depths. She’s absolutely drenched, and whatever her species lubricates with feels even slicker than you could’ve imagined.");
 	if(pc.balls > 0) output(" Your [pc.sack] claps against her taint with authority.");
 	else if(pc.hasKnot(x)) output(" Your [pc.knot " + x + "], not fully engorged, pops in with ease.");
@@ -1179,22 +1192,25 @@ public function victoryBangTheSlyveren3(x:int):void
 	clearOutput();
 	showSlavebreaker(true);
 	author("Fenoxo");
+	
+	var cumQ:Number = pc.cumQ();
+	
 	output("The slyveren slavebreaker’s orgasm hits you like a physical object. It’s like being struck broadside by an ocean wave. One moment, you’re fucking and desperate to bring her off, the next, you’re abruptly riding a high of secondary satisfaction that makes your [pc.cock " + x + "] twitch. Pleasure radiates out of the gorgeous snake-girl like the universe’s most potent radiation. It piles on top of your own ecstasy, heavier and heavier, weighing you down until you’re straining and grunting." + (pc.balls > 1 ? " Your [pc.balls] gurgle.":""));
 	output("\n\nThen your [pc.cock " + x + "] is seized in a vice and <i>milked</i>. There’s no other way to describe the vigorous, hyper-intense feeling her cunt provides. It tugs and squeezes with such force that when the first spurt of your gloriously impregnating climax surges free without a single iota of effort. You unload directly into her womb without a second thought, blinded by your eyes rolling back.");
-	if(pc.cumQ() >= 80)
+	if(cumQ >= 80)
 	{
 		output("\n\nA few enormous spurts go a long way toward equalizing the vaginal pressure. A few after that feel more normal; you strain and flex and thrust fresh jizz into the slyveren’s uterus, the fresher sperm force the old to flow back out in ");
-		if(pc.cumQ() < 150) output("[pc.cumVisc] dribbles");
-		else if(pc.cumQ() < 1000) output("a [pc.cumVisc] river");
+		if(cumQ < 150) output("[pc.cumVisc] dribbles");
+		else if(cumQ < 1000) output("a [pc.cumVisc] river");
 		else output("a [pc.cumVisc] tide");
 		output(".");
 	}
-	if(pc.cumQ() >= 1000)
+	if(cumQ >= 1000)
 	{
 		if(pc.hasKnot(x)) output(" Unconcerned with how the [pc.cumNoun] flows around your [pc.knot " + x + "]");
 		else output("Unconcerned");
 		output(", you release what feels like gallons of seed into her. The scales on the snake-woman’s middle click audibly as they strain and lift around a swelling, gravid bulb");
-		if(pc.cumQ() >= 20000) output(", but you keep cumming. You give her everything she could want and more: a cum-pregnancy that you’re sure will grow into the real thing if she doesn’t squeeze it all out right away");
+		if(cumQ >= 20000) output(", but you keep cumming. You give her everything she could want and more: a cum-pregnancy that you’re sure will grow into the real thing if she doesn’t squeeze it all out right away");
 		output(".");
 	}
 	output("\n\nAnd even after you finish cumming, you’re still kissing her, because lips that good <i>deserve</i> to be kissed. You keep rubbing her clit, hilted inside, hardly minding at all when you’re guided to suckle her tits or curl up for a snuggle...");
@@ -1298,10 +1314,12 @@ public function getEatenOutBySlyverenVicotory():void
 	//Cock
 	if(pc.hasCock()) 
 	{
+		var cumQ:Number = pc.cumQ();
+		
 		output("\n\nWho are you to stop her from sliding back to wrap her lips around [pc.oneCock] at the last moment? Just a silly, climax-addled [pc.boyGirl] who’s too blissed out to mind in the slightest. Besides, you love the tight seal the slyveren’s lips create around your [pc.cockHead " + x + "]. You love the way her cheeks hollow and the knowledge that you’re making her happier with every ");
-		if(pc.cumQ() < 150) output("squirt and pulse");
-		else if(pc.cumQ() < 1000) output("belly-filling rope");
-		else if(pc.cumQ() < 10000) output("throad-straining eruption");
+		if(cumQ < 150) output("squirt and pulse");
+		else if(cumQ < 1000) output("belly-filling rope");
+		else if(cumQ < 10000) output("throad-straining eruption");
 		else output("belly-inflating torrent");
 		output("!");
 	}
@@ -1350,9 +1368,9 @@ public function giveThrobToSlyveren():void
 	processTime(10);
 	pc.lust(5);
 	clearMenu();
-	if(pc.hasItemByClass(Throbb)) addButton(0,"UseYourThrobb",giveMoreThrobbToSlyveren,undefined,"Use Your Throbb","Give her some more Throbb - the stuff you're carrying.\n\n<b>Warning:</b> This will use up to three vials of carried Throbb.");
+	if(pc.hasItemByClass(Throbb)) addButton(0,"UseYourThrobb",giveMoreThrobbToSlyveren,undefined,"Use Your Throbb","Give her some more Throbb - the stuff you’re carrying.\n\n<b>Warning:</b> This will use up to three vials of carried Throbb.");
 	else addDisabledButton(0,"UseYourThrobb","Use Your Throbb","You need some of your own Throbb for this.");
-	addButton(1,"Don't",dontGiveExtraThrobbToSlyveren,undefined,"Don't","Maybe giving the newly-endowed snakewoman even more Throbb is a bad idea.");
+	addButton(1,"Don’t",dontGiveExtraThrobbToSlyveren,undefined,"Don’t","Maybe giving the newly-endowed snakewoman even more Throbb is a bad idea.");
 }
 
 //[Give more]
@@ -1536,6 +1554,7 @@ public function faceFuckThatSlyveren():void
 	showSlavebreaker(true);
 	author("Wsan");
 	var x:int = pc.biggestCockIndex();
+	var cumQ:Number = pc.cumQ();
 	//Nontaur:
 	if(!pc.isTaur())
 	{
@@ -1570,9 +1589,9 @@ public function faceFuckThatSlyveren():void
 			output("\n\nWith a last, final thrust and a deep groan of release, you shove her into your crotch and hold her there while your cock begins to throb. Not content to take a passive role, the slyveren puckers her lips and hollows her cheeks, sucking you off as hard as she can as [pc.cum] begins to shoot across her tongue. Though busy revelling the haze of victory and orgasm, you can’t help but notice the way her tongue furls around you.");
 			output("\n\n<i>“Holy shit,”</i> you mutter, half in pleasure and half in recognition. You hadn’t realized it previously, but her tongue is almost divided in half like the main vein of a leaf’s underside splits it in two. There’s a depression, a <i>channel</i> that’s collecting your seed, letting it run down the length of her prehensile endowment to slip down the sides of her throat. She manages to give you a sexy wink, the action only enhanced by the ruined makeup smeared across her face.");
 			output("\n\nIt’s like her body is custom made for sucking cock, all of it designed to further enhance the experience. You can feel her throat working while she sucks down all of your spunk, ");
-			if(pc.cumQ() >= 5000) output("leaving her stomach swollen and bloated");
+			if(cumQ >= 5000) output("leaving her stomach swollen and bloated");
 			else output("carrying it all down to her waiting stomach");
-			output("." + (pc.cumQ() >= 16000 ? " Some of it bursts from her nostrils such is your virility, but she pays it no heed even as ropes of it spatter down her face, caking her features.":""));
+			output("." + (cumQ >= 16000 ? " Some of it bursts from her nostrils such is your virility, but she pays it no heed even as ropes of it spatter down her face, caking her features.":""));
 			output("\n\nWhat catches you offguard is the sudden sinking of her formerly retracted fangs into your cock and the sudden employment of her eyes capturing your gaze while she holds you against her, wrapping her arms around your [pc.legOrLegs].");
 			output("\n\n<i>“Oh, darling,”</i> her voice resounds in your mind. <i>“You gave me more than enough time to recover with your cock only being the size it is... had you been bigger, I might have been too distracted. But don’t worry,”</i> she adds, smiling around your length, <i>“I can fix that.”</i>");
 			output("\n\nSinking to your knees as her venom pours into your bloodstream, you groan in oversensitive pleasure. She’s already working her tongue across your [pc.cockHead " + x + "], licking off the last remnants of cum and enticing you to produce more.");
@@ -1594,8 +1613,8 @@ public function faceFuckThatSlyveren():void
 			output("\n\n<i>“Mmmhm! Mmmm,”</i> the snakewoman gurgles in eagerness, looking up at you with eyes lidded as if to dare you to cum right down her throat, to shoot it all into her tummy. There’s nothing you or her want more right now.");
 			output("\n\nYou can feel the pleasure building in your groin as you slam her face into your crotch over and over, pounding her mouth like she’s little more than a pathetic toy for you to vent your lusts in. Finally, you can take the sensation of fucking her throat no longer. With a long, loud groan, you hilt yourself in her face and step over her shoulders, squeezing your [pc.thighs] together to keep her head in place while you cum.");
 			output("\n\nSeed bursts from the end of your throbbing cock, splattering the walls of her throat. Grunting, you can feel her tongue massaging the underside of your length, stroking your cumvein as if to coax even more out of you. You’re only too happy to oblige, your" + (pc.balls > 1 ? " balls tightening against your body":" stomach tightening with the effort") + " while you empty yourself into her willing throat.");
-			if(pc.cumQ() < 5000) output("\n\nYou stay inside her even when you’ve finished, enjoying the sultry post-orgasm cock massage she’s giving you to match the expression she’s wearing on her face. That’s the look of a sated, happy partner if you’ve ever seen it. She got exactly what she wanted out of this deal, and so did you.");
-			else output("\n\nHer stomach quickly swells with your seed, " + (pc.cumQ() < 10000 ? "a few ropes of seed spurting from her nostrils to drip down her face and ruin her makeup":"some of your seed spraying from her nostrils to cake her face in it, ruining her makeup and pouring down her chin") + ". She looks absolutely thrilled with what you’ve given her, smiling around your length in satisfaction. Neither of you could be happier with the result.}");
+			if(cumQ < 5000) output("\n\nYou stay inside her even when you’ve finished, enjoying the sultry post-orgasm cock massage she’s giving you to match the expression she’s wearing on her face. That’s the look of a sated, happy partner if you’ve ever seen it. She got exactly what she wanted out of this deal, and so did you.");
+			else output("\n\nHer stomach quickly swells with your seed, " + (cumQ < 10000 ? "a few ropes of seed spurting from her nostrils to drip down her face and ruin her makeup":"some of your seed spraying from her nostrils to cake her face in it, ruining her makeup and pouring down her chin") + ". She looks absolutely thrilled with what you’ve given her, smiling around your length in satisfaction. Neither of you could be happier with the result.");
 			output("\n\n<i>“Haaah, fuck,”</i> you groan, slowly withdrawing from her mouth. She seems reluctant to let you go, her plush, succulent lips being pulled along with your cock as she sucks you off as hard as she can, but eventually she acquiesces and you come free with a pop. <i>“Good work, snakeslut.”</i>");
 			output("\n\n<i>“Mmmm, good work, " + pc.mf("","she-") + "stud,”</i> she says, licking a finger suggestively. <i>“Do come back and find me again, will you? I still have to get you all back to work, after all...”</i>");
 			output("\n\n<i>“Oh, I’ll find you alright,”</i> you reply with a grin, waving her off and turning to leave" + (!pc.isCrotchExposed() ? " after having reclothed your lower half":"") + ". <i>“When I need my" + (pc.balls > 1 ? " balls drained":" cock sucked") + " again. So see you soon, probably.”</i>");
@@ -1614,8 +1633,8 @@ public function faceFuckThatSlyveren():void
 			output("\n\nYou can feel her throat tightening as you get deeper inside it, pressing at your [pc.cockHead " + x + "] almost like she’s suckling at you. The resistance when you pull out is noticeable, the friction enough to make you shudder in pleasure. She’s slick enough inside that you can thrust yourself to the hilt in one go with no issue, but the way she closes up around you on your way out is so deliberate and erotic you find yourself rushing to orgasm.");
 			output("\n\n<i>“Nnnnngh, fuck,”</i> you grunt through grit teeth, slamming her face into your groin. You can feel the pleasure rising, welling within you as" + (pc.balls > 1 ? " your balls tighten and pull closer to your body":" your stomach tightens, flexing with effort") + ". <i>“Come on, you slut, get ready to swallow!”</i>");
 			output("\n\nPounding yourself into her face with savage bucks of your hips, you finally come to the blessed release you so seek. Groaning loudly, you step over her shoulders and hold her in place, head tilted back and throat open to your use. Streams of [pc.cum] gush forth from your cockhead, painting her insides [pc.cumColor] as your seed rushes towards her stomach.");
-			if(pc.cumQ() < 5000) output("\n\nYou can feel - and hear - her efforts to swallow down your cum, taking large, throat-swelling gulps of jizz with every passing second as she gazes up at you with hooded eyes. You can read her expression even as distorted by cock and covered in ruined makeup as her face is; that’s the look of a slut that got what she deserved. You pull out with a satisfied sigh, letting her slowly suck every inch of you clean on the way out.");
-			else output("\n\nYour monumental loads swell her stomach outwards, " + (pc.cumQ() < 10000 ? "some spilling from her nostrils":"gushing from her nose") + " as you pump her full. Lifting your hands away, you confirm your suspicions - she nuzzles against your crotch all on her own, greedily pressing her face into your groin. You can almost feel her smile against your [pc.skinFurScales] as your massive cock throbs across her tongue, expelling load after thick load right down her throat and into her stomach.");
+			if(cumQ < 5000) output("\n\nYou can feel - and hear - her efforts to swallow down your cum, taking large, throat-swelling gulps of jizz with every passing second as she gazes up at you with hooded eyes. You can read her expression even as distorted by cock and covered in ruined makeup as her face is; that’s the look of a slut that got what she deserved. You pull out with a satisfied sigh, letting her slowly suck every inch of you clean on the way out.");
+			else output("\n\nYour monumental loads swell her stomach outwards, " + (cumQ < 10000 ? "some spilling from her nostrils":"gushing from her nose") + " as you pump her full. Lifting your hands away, you confirm your suspicions - she nuzzles against your crotch all on her own, greedily pressing her face into your groin. You can almost feel her smile against your [pc.skinFurScales] as your massive cock throbs across her tongue, expelling load after thick load right down her throat and into her stomach.");
 			output("\n\n<i>“Slut,”</i> you say, smiling when you’re done. She only licks her lips suggestively, dragging a finger across her chin just to collect any errant strands you’ve left behind. <i>“You don’t seem like much of a slavebreaker from where I’m standing.”</i>");
 			output("\n\n<i>“Most slaves don’t have quite the, ah... ‘fight’ in them that you do, darling,”</i> she responds breathily, still eyeing your cock. <i>“But perhaps we’ll find out more next time, hm?”</i>");
 			output("\n\n<i>“Next time, ha!”</i> you hoot, grinning in mirth" + (!pc.isCrotchExposed() ? " as you get your clothes back on":"") + ". <i>“I’ll come and see you </i>next time<i> I need my cock sucked and my seed swallowed. So, soon, probably. See ya.”</i>");
@@ -1637,17 +1656,17 @@ public function faceFuckThatSlyveren():void
 			output("\n\nDrawing yourself out with meticulous care, you ram yourself back home violently enough to make the woman lying underneath you sputter. That was the first sign of discomfort you’ve seen from her, and some impulse drives you to keep going. You want to see her run ragged before she swallows down your seed, sweating and bucking, and besides - you can see for yourself she’s loving it.");
 			output("\n\nYou pound your cock into her throat with enough force that femcum begins to squirt from her pussy, your own orgasm rising in the background as you grunt and groan, rutting her face. Even in the face of such overwhelming pleasure and treatment, you can still feel her trying to retain control with her throat, but it falls to the wayside as she moans into your cock and starts to have her own strong, explosive orgasm.");
 			output("\n\nThe sight of her cumming so hard only sets you off all the harder and you curse through grit teeth while [pc.cum] begins to erupt from your oversized length, gushing right down the short remaining length of her throat and straight into her waiting stomach.");
-			if(pc.cumQ() < 5000)
+			if(cumQ < 5000)
 			{
 				output(" Completely placid and accepting, she holds herself open for your use until you’re done, cumming the whole time you do. It’s only when you begin to pull out that she takes any action, desperately sucking every inch of your prick to clean you off. You leave the tip inside her cheek for a few seconds just to let her enjoy it, then free yourself once more");
 			}
 			else
 			{
 				output(" Your loads swell her outwards, each one further filling her until she looks");
-				if(pc.cumQ() < 10000) output(" pregnant");
-				else if(pc.cumQ() < 15000) output(" like she’s carrying your twins");
-				else if(pc.cumQ() < 20000) output(" like she’s about to give birth");
-				else if(pc.cumQ() < 25000) output(" so taut you’re not sure you could fit any more inside her");
+				if(cumQ < 10000) output(" pregnant");
+				else if(cumQ < 15000) output(" like she’s carrying your twins");
+				else if(cumQ < 20000) output(" like she’s about to give birth");
+				else if(cumQ < 25000) output(" so taut you’re not sure you could fit any more inside her");
 				else output(" like a blimp, so full of your roiling seed that you doubt she’ll be able to move for hours");
 			}
 			output(".");
@@ -1665,10 +1684,10 @@ public function faceFuckThatSlyveren():void
 			output("\n\nYou continue fucking her face like that for a while, noting with some amusement that your sheer brute, unapologetic treatment of her has the snakewoman literally quivering at the knees, her inner thighs a slick mess of heated arousal. The harder you fuck her, the more she seems to get off on it. It only takes you a couple of minutes before you’re bringing your hips down on her face with loud, heavy smacks" + (pc.balls > 1 ? "as your [pc.balls] slap against her forehead":"") + ", rutting her throat like an animal.");
 			output("\n\nYour shaft is so thick and heavy you can actually see it moving in her body, threatening to partially lift her off the ground with every deep thrust. Each time you bottom out inside her femcum spurts unceremoniously from between her thighs and spatters onto the ground, almost like you’ve forced her to cum. On a long, hard thrust that sees her lips pressed so tightly against your groin they actually stick for half a second before being pulled back, her wide thighs suddenly pull together as she groans into your cock.");
 			output("\n\nFemcum squirts from her spasming pussy while you buffet her with your cock, her back unable to arch thanks to your rock solid length keeping her in place. She tries, though, leaning up towards you while you fuck her throat like a stallion. Ignoring her feeble attempts, you find yourself right on the brink of orgasm; it builds and builds, welling within you until at last, you can’t hold yourself back.");
-			output("\n\nWith a long, luxurious groan of release you sheathe yourself in her snug, warm throat and cum explosively, so worked up by the effort that" + (pc.cumQ() < 5000 ? " your whole body shakes with the effort":" her stomach swells with your seed almost as soon as you’ve started") + ". Grunting, you drain yourself to the last drop into her tummy");
-			if(pc.cumQ() < 5000) output(" without missing a beat. Everything you have to give lies safely inside her, an outcome evidently both of you are pleased with");
-			else if(pc.cumQ() < 10000) output(", some of it running from her nose when there proves to be no more room. There’s a noticeable weight to her stomach when you’re done");
-			else if(pc.cumQ() < 20000) output(", the excess streaming forth from her nostrils and running down her cheeks. Given the way she’s excitedly rubbing her cum-swollen stomach, you don’t think she minds");
+			output("\n\nWith a long, luxurious groan of release you sheathe yourself in her snug, warm throat and cum explosively, so worked up by the effort that" + (cumQ < 5000 ? " your whole body shakes with the effort":" her stomach swells with your seed almost as soon as you’ve started") + ". Grunting, you drain yourself to the last drop into her tummy");
+			if(cumQ < 5000) output(" without missing a beat. Everything you have to give lies safely inside her, an outcome evidently both of you are pleased with");
+			else if(cumQ < 10000) output(", some of it running from her nose when there proves to be no more room. There’s a noticeable weight to her stomach when you’re done");
+			else if(cumQ < 20000) output(", the excess streaming forth from her nostrils and running down her cheeks. Given the way she’s excitedly rubbing her cum-swollen stomach, you don’t think she minds");
 			else output(", but when there’s no room left the excess spurts from her nostrils, splashing down her face. Somehow, between the orgasm and the lusty rubbing of her stomach, you don’t think she minds");
 			output(".");
 			output("\n\nShe has enough presence of mind to suck you off hard as you remove your staggering cock from her cocksheath of a throat, but not much more. She stays on the ground with her legs spread, hands on her stomach" + (!pc.isCrotchExposed() ? " while you clothe yourself":"") + ". By the time you leave, she’s hardly shifted. You expect it’ll be a little while before the notion even occurs to her.");
@@ -1694,25 +1713,25 @@ public function faceFuckThatSlyveren():void
 			output("\n\n<i>“Knew you could do it,”</i> you tell her, drawing your hips back. <i>“Now for the fun part.”</i>");
 			output("\n\nAs far as exclusive experiences go, this one might top them all. You’ve never felt so many feet of your cock penetrating someone’s mouth, the tapering tightness of her throat massaging your entire length before the head pops into the spacious expanse of her stomach to say hello to her inner walls. You can feel her shuddering around you and see a sticky liquid pooling beneath her, femcum dripping from between her soaked thighs. She’s getting off on being used like this <i>hard</i>.");
 			output("\n\nYou hammer your monstrous cock into her, using her like little more than a warm masturbation sleeve in your animalistic fervor, bringing yourself closer to the peak by the second. Grunting and straining, you at last cross the threshold with a groan of mixed relief and pleasure. [pc.cum] pours from the tip of your cock, splashing against the walls of the slyveren slut’s stomach.");
-			if(pc.cumQ() < 5000)
+			if(cumQ < 5000)
 			{
 				output("\n\n");
-				if(pc.cumQ() < 3000) output("It’s not enough to swell her stomach, but she feels it all the same");
+				if(cumQ < 3000) output("It’s not enough to swell her stomach, but she feels it all the same");
 				else output("Gifting her tummy enough cum to make it swell, you’re certain this’ll be the orgasm she remembers for the rest of her life");
 				output(". There’s no doubt in your mind that you’ve left an impression on her both physical and mental, this cock-craving slut giving up her stomach as just more room for your hulking dick to fuck. She’s already looking up at you with eyes that seem to be begging for more.");
 			}
-			else if(pc.cumQ() < 15000) 
+			else if(cumQ < 15000) 
 			{
 				output("\n\nHer stomach bloats with seed, her scaled skin drawing taut as it rapidly expands outward. You can hear the gurgling of your jizz inside her, unable to escape as you fill her cumtank. By the time you finish emptying yourself inside her, she’s already gazing up at you asking for more with her glittering eyes and pregnant tummy.");
 			}
-			else if(pc.cumQ() < 25000) output("\n\nHer belly takes on so much liquid weight it immediately begins to sag, swelling outwards before drooping with the sheer mass contained within. Her scaled skin drawn tight, she gazes at you with reverence in her eyes as you pump her full. By the time you’ve finished with her, you don’t think she’ll even be able to move - or eat for a week.");
+			else if(cumQ < 25000) output("\n\nHer belly takes on so much liquid weight it immediately begins to sag, swelling outwards before drooping with the sheer mass contained within. Her scaled skin drawn tight, she gazes at you with reverence in her eyes as you pump her full. By the time you’ve finished with her, you don’t think she’ll even be able to move - or eat for a week.");
 			else 
 			{
 				output("\n\nYou fill her stomach up so fast and so forcefully that she looks pregnant in a couple of seconds, and in a few seconds more like she’s carrying a baseball team’s worth of young. She seems to be undergoing some kind of torpor as you fill her up to the brim, her eyes dazed and unfocused as her cumflated belly touches the ground.");
 				output("\n\nPulling out of her before the poor woman springs a leak, you get a front row seat to what ensues - finally having an available exit, the cum you jam-packed so tightly into her tummy gushes forth from her throat like a fountain. Her head dips for a moment as she sprays herself all down her front with your seed, thick [pc.cumColor] jizz splattering down her heaving tits and belly.");
 				output("\n\nShe doesn’t stop for what feels like minutes, great gouts of spunk spouting forth from her lips eventually slowing to a dribble, then stopping. She’s absolutely coated in your essence, her makeup is beyond repair, and every so often a trickle of seed leaks from the corner of her mouth. It’s safe to say you have ruined this slyveren for future partners. Nobody will ever fuck her like this again - unless, of course, you happen to run into her once more.");
 			}
-			output("\n\nYou wipe your length off on her face, rubbing a fresh coat of cum across her features. " + (pc.cumQ() < 25000 ? "Her tongue lazily snakes out from between her lips to help, gleaning the last few remnants of your cum and depositing them into her mouth where she lets it run down her throat with a smile":"She’s too vacant to do anything about it, her mental faculties having temporarily departed in the wake of such overwhelming sex") + ".");
+			output("\n\nYou wipe your length off on her face, rubbing a fresh coat of cum across her features. " + (cumQ < 25000 ? "Her tongue lazily snakes out from between her lips to help, gleaning the last few remnants of your cum and depositing them into her mouth where she lets it run down her throat with a smile":"She’s too vacant to do anything about it, her mental faculties having temporarily departed in the wake of such overwhelming sex") + ".");
 			output("\n\nShe stays silent even as you" + (!pc.isCrotchExposed() ? " reclothe yourself and":"") + " depart, but you know she’ll be waiting for you next time. No doubt with her mouth wide open.");
 		}
 		else
@@ -1725,25 +1744,25 @@ public function faceFuckThatSlyveren():void
 			output(" deform her tummy. The feeling of her body wrapped around your cock is divine, almost like you’re wearing a living condom. You’ve turned this formerly strong, dominant woman, this ‘slavebreaker’, into nothing more than a quivering sex toy.");
 			output("\n\nYou shift your grip down to her bulging neck, grinning down at the slyveren woman. <i>“Relax. You were already gonna let me fuck your throat, right? No harm in a little extra.”</i>");
 			output("\n\nKeeping her on her knees you withdraw your meaty length before thrusting it back inside her, bottoming out so hard that her stomach bulges. You can see and feel her shakily putting her hands on it, feeling the tip of your cock from the outside of her stomach. Only a couple of inches of your worn condom separate you from her dainty fingers, the thought of it so erotic a stream of precum escapes from your end.");
-			output("\n\nDespite being as stuffed full as she is, you can still feel her gasp in surprise at the sudden warmth. Her fingers squeeze your [pc.cockHead " + x + "] and earn another" + (pc.cumQ() < 5000 ? " spurt":" gout") + " of liquid warmth right in her belly, and after shuddering into your cock she pulls her hands away and brings them up to your shaft.");
+			output("\n\nDespite being as stuffed full as she is, you can still feel her gasp in surprise at the sudden warmth. Her fingers squeeze your [pc.cockHead " + x + "] and earn another" + (cumQ < 5000 ? " spurt":" gout") + " of liquid warmth right in her belly, and after shuddering into your cock she pulls her hands away and brings them up to your shaft.");
 			output("\n\n<i>“Not hard to tell what you want, huh?”</i> you murmur. <i>“Fine.”</i>");
 			output("\n\nWith the snakewoman jacking you off into her own stomach, it’s an impossible offer to resist. Grunting, you thrust yourself into her face over and over, hammering her guts and sliding through her tight, fuck-slick throat to leave precum right in her belly. You can feel her shaking around you, femcum squirting from between her thighs as you pound your length into her plush, fuckable lips. Even though her entire body swells with your indomitable size, you can tell all she cares for is to make you cum.");
 			output("\n\n<i>“Nnnh, fuck,”</i> you grunt, feeling her throat tighten around your cockhead whenever you plunge it back in, <i>“hope you’re ready for this, slut!”</i>");
-			output("\n\nYou thrust into her so deeply that several inches of your cock stretch her stomach out, then groan in blissful release as you feel yourself start to cum. It takes a couple of seconds for your " + (pc.balls > 0 ? "[pc.balls] to pump your loads":"loads to travel") + " from one end to the other, but the effect is well worth it. The slavebreaker screams in dull, muted ecstasy as she feels [pc.cum] gush into her stomach, splattering her walls" + (pc.cumQ() >= 5000 ? " before starting to force them outwards":"") + ".");
+			output("\n\nYou thrust into her so deeply that several inches of your cock stretch her stomach out, then groan in blissful release as you feel yourself start to cum. It takes a couple of seconds for your " + (pc.balls > 0 ? "[pc.balls] to pump your loads":"loads to travel") + " from one end to the other, but the effect is well worth it. The slavebreaker screams in dull, muted ecstasy as she feels [pc.cum] gush into her stomach, splattering her walls" + (cumQ >= 5000 ? " before starting to force them outwards":"") + ".");
 			output("\n\n<i>“Grrrgh,”</i> you strain, throwing your head back and shoving forward hard enough to drag her along the ground a few inches. She’s like a living puppet on the end of your throbbing cock, bent to your will and subject to your desires. <i>“That’s right, swallow it all...”</i>");
-			if(pc.cumQ() < 5000) output("\n\nRope upon rope of seed spurts into the slyveren slut, leaving her with a stomach full of liquid love and without a single scrap of dignity. Her upturned eyes water at the familiar sensation and you’d swear she was begging you for more. You pull out of her body with a long, slow slide, revelling in the feeling of slipping yourself free. Her oral fuckhole finally free, she splats on the ground like a puppet with its strings cut.");
-			else if(pc.cumQ() < 10000) output("\n\nYou fill her with load after load of seed, her tummy swelling with your sheer virility. You’ve never seen such a willing bitch in your life. Her upturned, watering eyes are practically begging you for more even as you pump it directly into her stomach like it’s the tip of a condom. When you pull out, she lives up to the role by splattering on the ground and letting a stream of spunk out of her mouth.");
-			else if(pc.cumQ() < 20000) 
+			if(cumQ < 5000) output("\n\nRope upon rope of seed spurts into the slyveren slut, leaving her with a stomach full of liquid love and without a single scrap of dignity. Her upturned eyes water at the familiar sensation and you’d swear she was begging you for more. You pull out of her body with a long, slow slide, revelling in the feeling of slipping yourself free. Her oral fuckhole finally free, she splats on the ground like a puppet with its strings cut.");
+			else if(cumQ < 10000) output("\n\nYou fill her with load after load of seed, her tummy swelling with your sheer virility. You’ve never seen such a willing bitch in your life. Her upturned, watering eyes are practically begging you for more even as you pump it directly into her stomach like it’s the tip of a condom. When you pull out, she lives up to the role by splattering on the ground and letting a stream of spunk out of her mouth.");
+			else if(cumQ < 20000) 
 			{
 				output("\n\nShe’s clearly never dealt with a being possessing such insane virility before. With eyes wide, she gurgles into your cock while it throbs deep inside her tummy. Hot, stomach-swelling loads pour into her one after the other, having nowhere to go but in.");
 				output("\n\nYou can see her belly protruding below you, each pulse of your gigantic cock corresponding to another round of growth. Her breasts are sitting atop her overwhelmed stomach by the time you pull out, the slyveren slut looking every bit like a pregnant wife. She collapses onto the ground immediately following your withdrawal, like you were the only pillar supporting her.");
 			}
-			else if(pc.cumQ() < 30000)
+			else if(cumQ < 30000)
 			{
 				output("\n\nThough her capacity to suck on your gigantic, throbbing cock is unparalleled, the slyveren doesn’t quite have the space to fit all your cum in her relatively tiny tummy. Instead, it swells outrageously as it takes on gallon after gallon of liquid weight until her generous tits are sitting atop it and she looks fit to faint.");
 				output("\n\nBy the time you pull out, her stomach is touching the floor and protrudes so far out in front of her it looks like she’ll be waddling awkwardly for a few days. The moment you slip free of her tight, succulent lips she passes out, her mouth still hanging open and drooling cum like the broken-in seed receptacle she is.");
 			}
-			else if(pc.cumQ() < 60000)
+			else if(cumQ < 60000)
 			{
 				output("\n\nYour insane virility imposes such hefty demand upon the slyveren slut’s body that she gives up completely, her eyes rolling in her head. You hose down her stomach with truly mindboggling loads, swelling her formerly tiny tummy outwards so fast that soon enough she’s carrying enough cum to live on for weeks. It doesn’t stop there, either, her curvaceous breasts sitting atop her bloated tummy while you endlessly pour seed into your cumdump.");
 				output("\n\nSomething’s got to give - and it does. Despite your massive, throbbing cock being lodged so thoroughly in her throat, you feel it warming up as your jizz begins to travel back up her overtaxed neck." + (pc.hasKnot(x) ? " Thanks to your [pc.knot " + x + "]":" Unable to find any alternative exit") + ", cum begins to spray from her nostrils all over her shaking tits in neverending streams. She repaints her front from top to bottom, cumming herself unconscious.");
@@ -1790,13 +1809,13 @@ public function faceFuckThatSlyveren():void
 		else output(" as deep as you can get it");
 		output(" right before you explode in her throat. You can feel her dull, gurgling scream of orgasm around your length but pay it no heed, only groaning in animal satisfaction while you empty yourself inside her.");
 
-		if(pc.cumQ() < 5000) output("\n\nRopes of [pc.cum] spurt from your cock down her squeezing throat, right into her waiting stomach. Though you can’t see her face, you can imagine it; pure, adoring bliss while she gets her belly pumped with cum. Though she doesn’t know it yet, she’s about to suck down a whole lot more of what you’ve got to give.");
-		else if(pc.cumQ() < 10000) output("\n\nWith your prey pressed to the ground and your cock so snugly lodged inside her throat, the massive loads that spurt from the end of your cock spray into her stomach with enough force that you can hear them splatter. The noise softens then vanishes completely as you fill her with liquid, enough seed to make her belly swell with faux pregnancy. Hopefully she’s having fun, because she’s about to get a healthy second helping.");
-		else if(pc.cumQ() < 250000) output("\n\nGallons of your seed jets down the snakeslut’s squeezing throat and into her defenseless stomach, swelling it outwards with your virility. You can feel it bulge upwards into your underside as you pump her full load by load, your cock straining to keep up with your production. Gurgling emanates from both her throat and her stomach, both full to the brim with thick, sticky seed. Hopefully she’s got enough room in that slutty belly of hers for a second helping.");
+		if(cumQ < 5000) output("\n\nRopes of [pc.cum] spurt from your cock down her squeezing throat, right into her waiting stomach. Though you can’t see her face, you can imagine it; pure, adoring bliss while she gets her belly pumped with cum. Though she doesn’t know it yet, she’s about to suck down a whole lot more of what you’ve got to give.");
+		else if(cumQ < 10000) output("\n\nWith your prey pressed to the ground and your cock so snugly lodged inside her throat, the massive loads that spurt from the end of your cock spray into her stomach with enough force that you can hear them splatter. The noise softens then vanishes completely as you fill her with liquid, enough seed to make her belly swell with faux pregnancy. Hopefully she’s having fun, because she’s about to get a healthy second helping.");
+		else if(cumQ < 250000) output("\n\nGallons of your seed jets down the snakeslut’s squeezing throat and into her defenseless stomach, swelling it outwards with your virility. You can feel it bulge upwards into your underside as you pump her full load by load, your cock straining to keep up with your production. Gurgling emanates from both her throat and her stomach, both full to the brim with thick, sticky seed. Hopefully she’s got enough room in that slutty belly of hers for a second helping.");
 		else output("\n\nThere’s far too much of you to contain. Her stomach swells outward in an absurd rendition of pregnancy, but even that is too little. Your jizz spurts from her nostrils in streams, spattering your underside and running between the crevice of her cleavage. You hold her in place until her stomach is so bloated and full of your churning seed that you’re sure she can’t take any more - yet - and pull out, letting the rest of your seed rain upon her visage.");
-		output("\n\n<i>“Mmmm... having fun, whore?”</i> you sigh in satisfaction, still hard enough to go another round. She’s definitely noticed, too, if the way she’s " + (pc.cumQ() < 25000 ? "rapidly tightening up on you":"moaning in joy") + " is any indication. The snakewoman is all but directly asking you for more. <i>“Here’s round two then!”</i>");
+		output("\n\n<i>“Mmmm... having fun, whore?”</i> you sigh in satisfaction, still hard enough to go another round. She’s definitely noticed, too, if the way she’s " + (cumQ < 25000 ? "rapidly tightening up on you":"moaning in joy") + " is any indication. The snakewoman is all but directly asking you for more. <i>“Here’s round two then!”</i>");
 
-		if(pc.cumQ() < 25000) output("\n\nYou slide out of the slick, warm passage and");
+		if(cumQ < 25000) output("\n\nYou slide out of the slick, warm passage and");
 		else output("\n\nRealigning your overproductive cock, you");
 		output(" shove yourself back in with no regard for her; she responds with intense, loving gratefulness, by squeezing your cock as hard as she possibly can. She <i>wants</i> this, to be treated like your breeding toy, and you’re more than happy to deliver.");
 		output("\n\nYou slam into her face even harder, losing control of yourself and forgetting to reign in your mating instincts. Nothing less than utterly rutting this woman will satisfy you, pounding her soft lips so roughly you force her to gag on your length. A few seconds of <i>that</i> treatment and you feel her cum, so utterly debased by your actions that she has no choice but to submit.");

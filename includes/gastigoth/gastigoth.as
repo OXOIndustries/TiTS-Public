@@ -352,7 +352,7 @@ public function brandtMenu(disable:String = ""):void
 {
 	clearMenu();
 	if(!pc.hasStatusEffect("Disarmed")) addButton(0,"Disarm",disarmOrRearmLikeABoss,undefined,"Disarm","Get your weapons checked in.");
-	else addButton(0,"Rearm",disarmOrRearmLikeABoss,undefined,"Rearm","Get your weapons checked out.")
+	else addButton(0,"Rearm",disarmOrRearmLikeABoss,undefined,"Rearm","Get your weapons checked out.");
 
 	addButton(1,"Appearance",brandtAppearance);
 	
@@ -513,6 +513,9 @@ public function flirtWivBrandt():void
 	if(!pc.hasStatusEffect("Disarmed"))
 	{
 		output(", and quickly disarm yourself before one of the surprisingly-supportive faceless minions in the background shield-bashes you over it");
+		
+		pc.takeMeleeWeapon();
+		pc.takeRangedWeapon();
 		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at Gastigoth’s security checkpoint.",false,0,0xFF0000);
 	}
 	output(".");
@@ -604,6 +607,9 @@ public function disarmOrRearmLikeABoss():void
 		output("\n\n<i>“Clear. You’re free to proceed, captain.”</i>");
 		output("\n\nIn you go, then.");
 		//[Next]
+		
+		pc.takeMeleeWeapon();
+		pc.takeRangedWeapon();
 		//Apply Disarmed Condition, same as New Texas.
 		pc.createStatusEffect("Disarmed",4,0,0,0,false,"Blocked","You’ve checked all forms of weaponry at Gastigoth’s security checkpoint.",false,0,0xFF0000);
 	}
@@ -616,6 +622,8 @@ public function disarmOrRearmLikeABoss():void
 		else output("\n\n<i>“Have a safe journey, captain,”</i> the security commander says, giving you a slight nod. <i>“Please return to your ship and we will guide you out of the security zone.”</i>");
 		output("\n\nYou nod and turn to leave.");
 		//[Next]
+		
+		returnAllItems(true);
 		//Remove Disarmed Condition
 		pc.removeStatusEffect("Disarmed");
 	}

@@ -1331,7 +1331,7 @@ public function unequipMenu(inCombat:Boolean = false):void
 	}
 	else addDisabledButton(5, "Underwear", "Underwear", "You are not wearing anything in this slot.");
 	
-	if (pc.meleeWeapon.shortName != "Rock")
+	if (pc.meleeWeapon.shortName != "" && pc.meleeWeapon.shortName != "Rock")
 	{
 		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, pc.meleeWeapon);
 	}
@@ -1344,7 +1344,7 @@ public function unequipMenu(inCombat:Boolean = false):void
 	}
 	else addDisabledButton(6, "Armor", "Armor", "You are not wearing anything in this slot.");
 	
-	if (pc.rangedWeapon.shortName != "Rock")
+	if (pc.rangedWeapon.shortName != "" && pc.rangedWeapon.shortName != "Rock")
 	{
 		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, pc.rangedWeapon);
 	}
@@ -3004,3 +3004,112 @@ public function doInventoryReplace(args:Array):void
 	if(invItem is GooArmor) output("\n\n" + gooArmorInStorageBlurb(false));
 	if(tarItem is GooArmor) output("\n\n" + gooArmorInStorageBlurb());
 }
+
+/* Hidden storage stuff */
+public function displayHiddenInventory():void
+{
+	showBust("");
+	showName("HIDDEN\nSTORAGE");
+	
+	clearOutput();
+	output("<b><u>Equipment:</u></b>\n");
+	output("<b>Melee Weapon:</b> " + StringUtil.toDisplayCase(pc.hiddenMeleeWeapon.longName) + "\n");
+	output("<b>Ranged Weapon:</b> " + StringUtil.toDisplayCase(pc.hiddenRangedWeapon.longName) + "\n");
+	output("<b>Armor:</b> " + StringUtil.toDisplayCase(pc.hiddenArmor.longName) + "\n");
+	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.hiddenShield.longName) + "\n");
+	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.hiddenAccessory.longName) + "\n");
+	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.hiddenLowerUndergarment.longName) + "\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.hiddenUpperUndergarment.longName) + "\n\n");
+	
+	output("<b><u>Inventory:</u></b>");
+	if(pc.hiddenInventory.length > 0)
+	{
+		for(var i:int = 0; i < pc.hiddenInventory.length; i++)
+		{
+			var item:ItemSlotClass = pc.hiddenInventory[i];
+			output("\n");
+			if (item.stackSize > 1) output(item.quantity + "x ");
+			output(StringUtil.toDisplayCase(item.longName));
+		}
+	}
+	else output("\n<i>Empty</i>");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+// Take all the things (mainly for testing, really)
+public function takeAllItems():void 
+{
+	pc.takeMeleeWeapon();
+	pc.takeRangedWeapon();
+	pc.takeArmor();
+	pc.takeUpperUndergarment();
+	pc.takeLowerUndergarment();
+	pc.takeAccessory();
+	pc.takeShield();
+	pc.takeInventory();
+}
+// Return and requip all stored items, if any.
+public function returnAllItems(autoEquip:Boolean = false, clearScreen:Boolean = false):void 
+{
+	// Silently auto-equip slots, if possible
+	if(autoEquip)
+	{
+		pc.giveMeleeWeapon();
+		pc.giveRangedWeapon();
+		pc.giveArmor();
+		pc.giveUpperUndergarment();
+		pc.giveLowerUndergarment();
+		pc.giveAccessory();
+		pc.giveShield();
+	}
+	// Dump all slots to inventory to collect
+	else
+	{
+		pc.moveSlotsToInventory();
+	}
+	
+	// If the item list was filled, collect them to the inventory.
+	returnInventoryItems(clearScreen);
+}
+// Actually collect the items, if any
+public function returnInventoryItems(clearScreen:Boolean = false):void 
+{
+	var itemList:Array = pc.returnInventoryItems();
+	
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	if(itemList.length > 0)
+	{
+		itemCollect(itemList, clearScreen);
+	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", lootScreen);
+	}
+}
+// Auto-queue event if necessary
+public function queueReturnAllItems(autoEquip:Boolean = false, clearScreen:Boolean = false):void 
+{
+	// If any of the hidden sluts are filled or thots anything in the hidden inventory, queue function to return all items.
+	// Otherwise, nothing happens.
+	if(	!(pc.hiddenMeleeWeapon is EmptySlot)
+	||	!(pc.hiddenRangedWeapon is EmptySlot)
+	||	!(pc.hiddenArmor is EmptySlot)
+	||	!(pc.hiddenUpperUndergarment is EmptySlot)
+	||	!(pc.hiddenLowerUndergarment is EmptySlot)
+	||	!(pc.hiddenAccessory is EmptySlot)
+	||	!(pc.hiddenShield is EmptySlot)
+	||	pc.hiddenInventory.length > 0
+	) {
+		eventQueue.push( function():void {
+			if(!clearScreen) output("\n\n");
+			returnAllItems(autoEquip, clearScreen);
+		} );
+	}
+}
+

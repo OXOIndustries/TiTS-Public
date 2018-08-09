@@ -197,7 +197,7 @@
 			//this.createStatusEffect("Disarm Immune");
 			createStatusEffect("Force Fem Gender");
 
-			//this.inventory.push(new HeavyLaser());
+			inventory = [];
 
 			var lossLoot:Array = [];
 			
@@ -230,12 +230,12 @@
 				//Nothing needs changed :3
 				this.long = "The sea of her glittering black scales would swallow your gaze up whole were it not for the bioluminescent gold patterns that twist and twirl around her curvaceous body. You almost wish you could see beneath the cups of her revealing, pink-dyed leather top to see how they frame the jiggling mounds upon which they dwell. A bit further down, her tattoos spiral around her tail until they converge in a bioluminescent singularity of eye-trapping amber. Equally golden (though no less enchanting) orbs leer back at you from beneath an enormous cobra hood, so heavy it droops slightly on one side. She licks her glistening ebony lips and winks at you, a not-so-subtle reminder that she likes to break her slaves with pleasure rather than pain.";
 			}
-			if(rand(10) == 0) this.inventory.push(new StarViperSlutwear());
 			if(rand(3) <= 2)
 			{
 				this.inventory.push(new Throbb());
 				if(rand(2) == 0) this.inventory[0].quantity++;
 			}
+			if(rand(10) == 0) this.inventory.push(new StarViperSlutwear());
 		}
 		override public function get bustDisplay():String
 		{
@@ -248,10 +248,12 @@
 			var target:Creature = selectTarget(hostileCreatures);
 			if (target == null) return;
 			
+			var canSiphonShields:Boolean = (target.hasShields() && target.shields() > 0);
+			
 			if(this.hasStatusEffect("Disarmed")) 
 			{
 				if(target.hasStatusEffect("Grappled")) slyverenGrappleEffects(target);
-				else if(this.energy() >= 33 && this.shields()/this.shieldsMax() < 0.5) shieldSiphon(target);
+				else if(this.energy() >= 33 && this.shields()/this.shieldsMax() < 0.5 && canSiphonShields) shieldSiphon(target);
 				else if(!this.hasStatusEffect("Optic Blur")) bonusEvadeGo(target);
 				else if(!target.hasStatusEffect("Weapon Lock") && !target.hasStatusEffect("Special Lock") && this.energy() >= 33 && rand(2) == 0) mentalLockAttack(target);
 				else if(rand(3) <= 1) 
@@ -264,9 +266,9 @@
 			else if(target.hasStatusEffect("Grappled")) slyverenGrappleEffects(target);
 			else if(target.aim() >= 30 && !this.hasStatusEffect("Optic Blur")) bonusEvadeGo(target);
 			//Chance of siphon below 75%.
-			else if(this.energy() >= 33 && this.shields()/this.shieldsMax() < 0.75 && rand(2) == 0) shieldSiphon(target);
+			else if(this.energy() >= 33 && this.shields()/this.shieldsMax() < 0.75 && rand(2) == 0 && canSiphonShields) shieldSiphon(target);
 			//Always try at 0.
-			else if(this.energy() >= 33 && this.shields() <= 0) shieldSiphon(target);
+			else if(this.energy() >= 33 && this.shields() <= 0 && canSiphonShields) shieldSiphon(target);
 			//Overcharge after 50 lust sometimes, energy permitting
 			else if(this.lust() >= 50 && this.energy() >= 20 && rand(4) == 0) overchargedSlootRay(target);
 			//20% chance of using a lock attack.
@@ -351,8 +353,8 @@
 				//Special Lock
 				else
 				{
-					output("\n\nYou try to block it out, but you can't close your eyes. It takes every ounce of will to keep yourself from dropping to the ground. Forgetting how to use your special abilities seems a small price to pay for staying in the fight!");
-					target.createStatusEffect("Special Lock", 5, 0, 0, 0, false, "Icon_Confused", "You can't remember how to use your special abilities!", true, 0, 0xFF0000);
+					output("\n\nYou try to block it out, but you can’t close your eyes. It takes every ounce of will to keep yourself from dropping to the ground. Forgetting how to use your special abilities seems a small price to pay for staying in the fight!");
+					target.createStatusEffect("Special Lock", 5, 0, 0, 0, false, "Icon_Confused", "You can’t remember how to use your special abilities!", true, 0, 0xFF0000);
 				}
 			}
 		}
@@ -368,7 +370,7 @@
 			//damage.multiply(0.5);
 			//output("\nTEST DATA: " + damage.getTotal());
 			this.shields(Math.round(damage.getTotal()));
-			output(" <b>She sapped your shields!</b>");
+			output("\n<b>She sapped your shields!</b>");
 		}
 		//Grapple
 		public function snakeSnekGrapple(target:Creature):void
@@ -390,11 +392,14 @@
 			{
 				this.createStatusEffect("SLYVEREN_HAZ_UR_LOOT");
 				output("With a none-too-innocent giggle, the slyveren’s fingers burrow into your equipment. <b>She pops you out of your [pc.armor]</b> faster than a galotian on stims. <i>“Slaves don’t need this, silly!”</i> The equipment lands nearby.");
-				if(target.willpower()/2+rand(20)+1 >= 35) output("\n\tYou resist her attempts to arouse you, even if you're much more exposed.");
+				if(target.willpower()/2+rand(20)+1 >= 35) output("\n\tYou resist her attempts to arouse you, even if you’re much more exposed.");
 				else applyDamage(new TypeCollection( { tease: 6 } ), target, this,"minimal");
+				/*
 				var temp:ItemSlotClass = target.armor;
 				this.inventory.push(temp);
 				target.armor = new EmptySlot();
+				*/
+				if(target is PlayerCharacter) (target as PlayerCharacter).takeArmor();
 			}
 			//Grappled but underwear covered
 			else if(!target.isCrotchExposedByLowerUndergarment())
@@ -405,11 +410,14 @@
 				else if(target.hasVagina()) output("Oooh, so that’s what you were hiding.");
 				else output("Huh.");
 				output("”</i>");
-				if(target.willpower()/2+rand(20)+1 >= 35) output("\n\tYou resist her attempts to arouse you, even if you're completely exposed.");
+				if(target.willpower()/2+rand(20)+1 >= 35) output("\n\tYou resist her attempts to arouse you, even if you’re completely exposed.");
 				else applyDamage(new TypeCollection( { tease: 6 } ), target, this,"minimal");
+				/*
 				var temp2:ItemSlotClass = target.lowerUndergarment;
 				this.inventory.push(temp2);
 				target.lowerUndergarment = new EmptySlot();
+				*/
+				if(target is PlayerCharacter) (target as PlayerCharacter).takeLowerUndergarment();
 			}
 			//Grappled, no genitals
 			else if(!target.hasGenitals())
