@@ -1001,7 +1001,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 	
 	if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 2)
 	{
-		if(pc.hasCock() && pc.cockThatFits(syriVaginalCapacity())) addButton(6, "Bionahole", bionaHoleSyri, undefined, "Bionahole", "Ask Syri if you can borrow her perfectly packaged pussy for a little playtime.");
+		if(pc.hasCock() && pc.cockThatFits(syriVaginalCapacity()) >= 0) addButton(6, "Bionahole", bionaHoleSyri, undefined, "Bionahole", "Ask Syri if you can borrow her perfectly packaged pussy for a little playtime.");
 		else if(pc.hasCock()) addDisabledButton(6, "Bionahole", "Bionahole", "You are too big to fuck her perfectly packaged pussy!");
 		else addDisabledButton(6, "Bionahole", "Bionahole", "You will need a cock to fuck her perfectly packaged pussy!");
 	}
