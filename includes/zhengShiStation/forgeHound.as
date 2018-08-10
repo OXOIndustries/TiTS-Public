@@ -65,6 +65,7 @@ public function forgehoundEncounter():Boolean
 		addButton(0,"Fight",forgehoundFightSetup,true);
 		addButton(1,"Submit",submitToForgehound,undefined,"Submit","Give in. The large, domineering man is just too intimidating and hot for you to fight him.");
 	}
+	IncrementFlag("FORGEHOUND_ENCOUNTERED");
 	return true;
 }
 
@@ -178,7 +179,7 @@ public function talkToForgehound():void
 	clearMenu();
 	//[Insult] [Keratin?] [Apologize]
 	if(flags["FORGEHOUND_INSULTED"] == undefined) addButton(0,"Insult",insultDatFireBoi,undefined,"Insult","Mock him for fun.");
-	else addDisabledButton(0,"Insult","Insult","You already did that. It didn't accomplish much.");
+	else addDisabledButton(0,"Insult","Insult","You already did that. It didn’t accomplish much.");
 	if(flags["FORGEHOUND_KERATIN_TALK"] == undefined) addButton(1,"Keratin?",keratinChunksHound,undefined,"Keratin?","Ask him about the odd features atop his head.");
 	else addDisabledButton(1,"Keratin?","Keratin?","He already told you. It came from his gene mods.");
 	addButton(2,"Apologize",apologizeToDzaanMan,undefined,"Apologize","You’re just pissing this guy off even more. Apologize to try and get in his favor.");
@@ -312,7 +313,7 @@ public function okayApologySexItIs():void
 		output("\n\nThe next moment, everything is dashed on the rocks. Everything - your mind, your hopes, and even the little voice that was keeping you afloat. All of the things that make you ‘you’ dissipate in a pool of slick, warm seed that jets from the leithan’s cock into your " + (pc.hasVagina() ? "[pc.womb]":"guts") + " and drowns your mind in a thick, white haze. You stand stock-still, completely accepting of what he has to give. You drink down every load he delivers, obediently squeezing his cock just to give him moral encouragement.");
 		output("\n\nYou hardly even notice that he chooses not to knot you, instead pulling out and letting his massive loads begin to run down your ass and underside. Your eyes are completely vacant and glossy, and you don’t even register the hard spank to your flank from your beloved.");
 		output("\n\n<i>“Now get the fuck out and come back when you’re ready to submit completely,”</i> he says.");
-		output("\n\nThat’s the last thing you remember from the encounter. When you open your eyes again, you're alone. What... what <i>was</i> that? It seemed almost like hypnosis or some kind of psychic power, but you’ve never heard of such sudden control. Even now, you can feel an ache inside you, reminding you that you yearn for the man’s touch... and more of that sensational spunk. God, if you could live the rest of your life just getting to drink it - no! Damn it, this is what he was talking about. There’s something addictive about him.");
+		output("\n\nThat’s the last thing you remember from the encounter. When you open your eyes again, you’re alone. What... what <i>was</i> that? It seemed almost like hypnosis or some kind of psychic power, but you’ve never heard of such sudden control. Even now, you can feel an ache inside you, reminding you that you yearn for the man’s touch... and more of that sensational spunk. God, if you could live the rest of your life just getting to drink it - no! Damn it, this is what he was talking about. There’s something addictive about him.");
 	}
 	else
 	{
@@ -513,25 +514,25 @@ public function defeatForgy():void
 			output("\n\n<i>“Ohooo, I see,”</i> you say, raising an eyebrow. <i>“Then I won’t be doing anything with your dick after all.”</i>");
 			output("\n\n<i>“Wait wait wait,”</i> he begs, imploring you. <i>“You can still jack me off, or- or something! Come on!”</i>");
 			clearMenu();
-			addButton(0,"If You Beg",ifYouBegForgy,undefined,"If You Beg","After what he's put you through? He needs to beg.");
-			addButton(1,"Nah",nahIWontGetYouOffPuppu,undefined,"Nah","He's on his own.");
+			addButton(0,"If You Beg",ifYouBegForgy,undefined,"If You Beg","After what he’s put you through? He needs to beg.");
+			addButton(1,"Nah",nahIWontGetYouOffPuppu,undefined,"Nah","He’s on his own.");
 
 			if(pc.hasCock()) addButton(5,"Facefuck",cockSelect,[facefuckForgy,9998888,false,0],"Facefuck","Teach the so-called forgehound a lesson in manners - orally.");
 			else addDisabledButton(5,"Facefuck","Facefuck","You need a penis for this.");
 
 			if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(6,"Assfuck",cockSelect,[assfuckDatHo,enemy.analCapacity(),false,0],"Assfuck","Take his donut for a ride!");
-			else if(pc.hasCock()) addDisabledButton(6,"Assfuck","Assfuck","You're way too big to fit in his asshole, capacious though it may be.");
+			else if(pc.hasCock()) addDisabledButton(6,"Assfuck","Assfuck","You’re way too big to fit in his asshole, capacious though it may be.");
 			else addDisabledButton(6,"Assfuck","Assfuck","You need a penis for this.");
 
 			if(pc.isTaur())
 			{
 				if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(7,"MountNRut",cockSelect,[mountNRut,enemy.analCapacity(),false,0],"MountNRut","");
-				else if(pc.hasCock()) addDisabledButton(7,"MountNRut","MountNRut","You'd never fit inside?");
+				else if(pc.hasCock()) addDisabledButton(7,"MountNRut","MountNRut","You’d never fit inside?");
 				else addDisabledButton(7,"MountNRut","MountNRut","You need a penis for this.");
 			}
 			else addDisabledButton(7,"MountNRut","MountNRut","You need to be a centaur to do this.");
 
-			if(pc.hasCock()) addButton(8,"Balljob",cockSelect,[forgyBalljobby,9998888,false,0],"Balljob","He's got big balls - big enough you could slide in between them and squeeze yourself to climax.");
+			if(pc.hasCock()) addButton(8,"Balljob",cockSelect,[forgyBalljobby,9998888,false,0],"Balljob","He’s got big balls - big enough you could slide in between them and squeeze yourself to climax.");
 			else addDisabledButton(8,"Balljob","Balljob","You need a penis for this.");
 
 			addButton(9,"Fist Him",fistDatTaurBoi,undefined,"Fist Him","Introduce the big guy to a five-finger prostate punch of anal pleasure.");
@@ -549,18 +550,18 @@ public function defeatForgy():void
 		else addDisabledButton(0,"Facefuck","Facefuck","You need a penis for this.");
 
 		if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(1,"Assfuck",cockSelect,[assfuckDatHo,enemy.analCapacity(),false,0],"Assfuck","Take his donut for a ride!");
-		else if(pc.hasCock()) addDisabledButton(1,"Assfuck","Assfuck","You're way too big to fit in his asshole, capacious though it may be.");
+		else if(pc.hasCock()) addDisabledButton(1,"Assfuck","Assfuck","You’re way too big to fit in his asshole, capacious though it may be.");
 		else addDisabledButton(1,"Assfuck","Assfuck","You need a penis for this.");
 
 		if(pc.isTaur())
 		{
 			if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(2,"MountNRut",cockSelect,[mountNRut,enemy.analCapacity(),false,0],"MountNRut","");
-			else if(pc.hasCock()) addDisabledButton(2,"MountNRut","MountNRut","You'd never fit inside?");
+			else if(pc.hasCock()) addDisabledButton(2,"MountNRut","MountNRut","You’d never fit inside?");
 			else addDisabledButton(2,"MountNRut","MountNRut","You need a penis for this.");
 		}
 		else addDisabledButton(2,"MountNRut","MountNRut","You need to be a centaur to do this.");
 
-		if(pc.hasCock()) addButton(3,"Balljob",cockSelect,[forgyBalljobby,9998888,false,0],"Balljob","He's got big balls - big enough you could slide in between them and squeeze yourself to climax.");
+		if(pc.hasCock()) addButton(3,"Balljob",cockSelect,[forgyBalljobby,9998888,false,0],"Balljob","He’s got big balls - big enough you could slide in between them and squeeze yourself to climax.");
 		else addDisabledButton(3,"Balljob","Balljob","You need a penis for this.");
 
 		addButton(4,"Fist Him",fistDatTaurBoi,undefined,"Fist Him","Introduce the big guy to a five-finger prostate punch of anal pleasure.");
@@ -636,7 +637,7 @@ public function nahIWontGetYouOffPuppu():void
 	showForgehound();
 	author("Wsan");
 	output("<i>“Not interested,”</i> you say, shrugging. <i>“You big dumb ");
-	if(pc.mf("","f") ==  "f") output("boys");
+	if(pc.mf("","f") == "f") output("boys");
 	else output("aggressive types");
 	output(" are just too easy to take advantage of with a bit of sex appeal.”</i>");
 	output("\n\n<i>“Fuckin’... Goddamnit!”</i> he rages as you walk away. <i>“I’m gonna find you again and fuck you unconscious! Gonna fuck you in half, bitch!”</i>");
@@ -698,7 +699,7 @@ public function resistDisHomeboy():void
 	addButton(0,"Ignore",ignoreTheDumboTaurboi,undefined,"Ignore","Forget him. You can overcome this!");
 	//addButton(1,"Execute",,undefined,"Execute","");
 	if(pc.hasCock() && pc.cockThatFits(enemy.analCapacity()) >= 0) addButton(1,"Assfuck",cockSelect,[assfuckDatHo,enemy.analCapacity(),false,0],"Assfuck","Take his donut for a ride!");
-	else if(pc.hasCock()) addDisabledButton(1,"Assfuck","Assfuck","You're way too big to fit in his asshole, capacious though it may be.");
+	else if(pc.hasCock()) addDisabledButton(1,"Assfuck","Assfuck","You’re way too big to fit in his asshole, capacious though it may be.");
 	else addDisabledButton(1,"Assfuck","Assfuck","You need a penis for this.");
 	addButton(2,"Fist Him",fistDatTaurBoi,undefined,"Fist Him","Introduce the big guy to a five-finger prostate punch of anal pleasure.");
 }
@@ -957,7 +958,7 @@ public function forgyBalljobby(x:int):void
 	//[Inside] [On him]
 	clearMenu();
 	addButton(0,"Inside",jizzInBallBoiForgysBHole,x,"Inside","Cream-filled leithan is a delicacy!");
-	addButton(1,"On Him",cumOnForgySpewspew,x,"On Him","Nothing like a little frosting to complete the taur's look.");
+	addButton(1,"On Him",cumOnForgySpewspew,x,"On Him","Nothing like a little frosting to complete the taur’s look.");
 }
 
 //[Inside]

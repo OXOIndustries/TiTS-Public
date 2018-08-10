@@ -378,8 +378,9 @@ public function shipHangarButton(btnSlot:int = 7):void
 	if(ships.length > 0) 
 	{
 		//Mhenga uses button "7" for going down. Thus an exception!
-		if(shipLocation == "SHIP HANGAR") addButton(0, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
-		else addButton(7, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
+		if(shipLocation == "SHIP HANGAR") btnSlot = 0;
+		
+		addButton(btnSlot, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
 	}
 }
 // Trafficked by spacers
@@ -708,13 +709,15 @@ public const CREW_AZRA:int = 12;
 public const CREW_PAIGE:int = 13;
 public const CREW_KASE:int = 14;
 public const CREW_SHEKKA:int = 15;
+public const CREW_SYRI:int = 16;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
 	var crewMembers:Array = new Array();
 	
 	// Actual crew members
-	if (!annoNotRecruited()) crewMembers.push(CREW_ANNO);
+	if (annoRecruited()) crewMembers.push(CREW_ANNO);
+	if (syriRecruited()) crewMembers.push(CREW_SYRI);
 	if (azraIsCrew()) crewMembers.push(CREW_AZRA);
 	if (bessIsFollower()) crewMembers.push(CREW_BESS);
 	if (flags["RECRUITED_CELISE"] > 0) crewMembers.push(CREW_CELISE);
@@ -809,6 +812,7 @@ public function getCrewOnShip():Array
 {
 	var c:Array = [];
 	if (annoIsCrew()) c.push(anno);
+	if (syriIsCrew()) c.push(syri);
 	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
 	//if (azraIsCrew()) c.push(azra);
 	//if (paigeIsCrew()) c.push(paige);
@@ -3553,6 +3557,8 @@ public function variableRoomUpdateCheck():void
 	
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
+	// Phoenix Location
+	phoenixSetMapState();
 	// Phoenix's Rec Room
 	phoenixRecRoomUpdate();
 	// Shizuya's Great Majin

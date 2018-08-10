@@ -313,7 +313,7 @@ public function initUvetoRooms():void
 	rooms["UVI H34"].moveMinutes = 1;
 	rooms["UVI H34"].runOnEnter = function():void{
 		if (syriQuestRunning() && flags["SYRIQUEST_STATE"] == 3) {
-			output("\n\nYou see Syri hanging around here, impatiently pacing back and forth. Looks like she's waiting for you.");
+			output("\n\nYou see Syri hanging around here, impatiently pacing back and forth. Looks like she’s waiting for you.");
 			addButton(0,"Syri",syriQuestMeetOutsideElevator);
 		}
 	};
@@ -1090,6 +1090,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R36"].eastExit = "UVIP T36";
 	rooms["UVIP R36"].moveMinutes = 1;
 	rooms["UVIP R36"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP R36"].addFlag(GLOBAL.INDOOR);
 	rooms["UVIP R36"].addFlag(GLOBAL.BED);
 	rooms["UVIP R36"].runOnEnter = ulaBonus;
 
@@ -1327,6 +1328,7 @@ public function initUvetoRooms():void
 	rooms["UVIP D22"].eastExit = "UVIP F22";
 	rooms["UVIP D22"].moveMinutes = 1;
 	rooms["UVIP D22"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP D22"].addFlag(GLOBAL.INDOOR);
 	rooms["UVIP D22"].addFlag(GLOBAL.BED);
 	rooms["UVIP D22"].runOnEnter = ulaBonus;
 
@@ -1364,6 +1366,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J20"].westExit = "UVIP H20";
 	rooms["UVIP J20"].moveMinutes = 1;
 	rooms["UVIP J20"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP J20"].addFlag(GLOBAL.INDOOR);
 	rooms["UVIP J20"].addFlag(GLOBAL.BED);
 	//rooms["UVIP J20"].addFlag(GLOBAL.HAZARD);
 	//rooms["UVIP J20"].runOnEnter = TundraEncounterBonus;
@@ -1376,6 +1379,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J18"].southExit = "UVIP J20";
 	rooms["UVIP J18"].moveMinutes = 1;
 	rooms["UVIP J18"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP J18"].addFlag(GLOBAL.INDOOR);
 	rooms["UVIP J18"].addFlag(GLOBAL.BED);
 	rooms["UVIP J18"].runOnEnter = ulaBonus;
 
@@ -2007,6 +2011,7 @@ public function initUvetoRooms():void
 	rooms["UVGR I26"].southExit = "UVGR I28";
 	rooms["UVGR I26"].moveMinutes = 1;
 	rooms["UVGR I26"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR I26"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR I26"].addFlag(GLOBAL.COMMERCE);
 	rooms["UVGR I26"].runOnEnter = GlacialRiftLonesomeTent;
 
@@ -2140,6 +2145,7 @@ public function initUvetoRooms():void
 	rooms["UVGR K20"].northExit = "UVGR K18";
 	rooms["UVGR K20"].moveMinutes = 1;
 	rooms["UVGR K20"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR K20"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR K20"].addFlag(GLOBAL.BED);
 	rooms["UVGR K20"].runOnEnter = ulaBonus;
 
@@ -2664,6 +2670,7 @@ public function initUvetoRoomsII():void
 	rooms["UVGR Q40"].eastExit = "UVGR S40";
 	rooms["UVGR Q40"].moveMinutes = 1;
 	rooms["UVGR Q40"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR Q40"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR Q40"].runOnEnter = GlacialRiftQ40;
 
 	/* Artifact Thinger */
@@ -2676,6 +2683,7 @@ public function initUvetoRoomsII():void
 	rooms["UVGR O42"].southExit = "UVGR O44";
 	rooms["UVGR O42"].moveMinutes = 1;
 	rooms["UVGR O42"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR O42"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR O42"].runOnEnter = GlacialRiftO42;
 
 	rooms["UVGR O44"] = new RoomClass(this);
@@ -2687,6 +2695,7 @@ public function initUvetoRoomsII():void
 	rooms["UVGR O44"].westExit = "UVGR M44";
 	rooms["UVGR O44"].moveMinutes = 1;
 	rooms["UVGR O44"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR O44"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR O44"].runOnEnter = GlacialRiftO44;
 
 	rooms["UVGR M44"] = new RoomClass(this);
@@ -2697,6 +2706,7 @@ public function initUvetoRoomsII():void
 	rooms["UVGR M44"].eastExit = "UVGR O44";
 	rooms["UVGR M44"].moveMinutes = 1;
 	rooms["UVGR M44"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR M44"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR M44"].runOnEnter = GlacialRiftM44;
 
 	rooms["KORGII B14"] = new RoomClass(this);

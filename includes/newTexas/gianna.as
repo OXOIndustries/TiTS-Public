@@ -3021,7 +3021,7 @@ public function girlyTongueVibeEpilogue(clitSucked:Boolean = false):void
 		output("\n\n<i>“An hour!?”</i> Your disbelief is evident.");
 		output("\n\nThe alabaster woman nods");
 		if(gianna.biggestTitSize() >= 15) output(", setting her breasts swaying");
-		output(". <i>“Yeah. You should have seen all the cute expressions you made while you came.”</i> She runs a delicate hand through your hair. <i>“If we keep this up, I’ll get you addicted to my mouth in no time. You’d better pace yourself, [pc.name]!”</i>");
+		output(". <i>“Yeah. You should have seen all the cute expressions you made while you came.”</i> She runs a delicate hand " + (pc.hasHair() ? "through your hair" : "across your head") + ". <i>“If we keep this up, I’ll get you addicted to my mouth in no time. You’d better pace yourself, [pc.name]!”</i>");
 		output("\n\nYou assure her that you will, and make your way out into the barn’s main corridor, the smiling android just behind you.");
 	}
 	//Normal

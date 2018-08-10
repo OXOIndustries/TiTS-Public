@@ -2218,7 +2218,8 @@ public function knockUpRedBitchChance():void
 {
 	if(enemy is MyrRedFemaleDeserter && !enemy.isPregnant())
 	{
-		var bonusChance:int = pc.cumQ()/ 50 + 10;
+		/*
+		var bonusChance:int = (pc.cumQ()/ 50) + 10;
 		if(bonusChance > 25) bonusChance = 25;
 		bonusChance *= pc.virility();
 		if(bonusChance > 75) bonusChance = 75;
@@ -2228,6 +2229,24 @@ public function knockUpRedBitchChance():void
 			//Track hair/eye color for first shitbabies.
 			if(flags["RED_MYR_BIRTHS"] == undefined) flags["BRIHA_SPAWN_1_DEETS"] = [pc.hairColor,pc.eyeColor];
 			else if(flags["RED_MYR_BIRTHS"] == 1) flags["BRIHA_SPAWN_2_DEETS"] = [pc.hairColor,pc.eyeColor];
+			//Set incubation timer
+			flags["BRIHA_INCUBATION_TIMER"] = 0;
+			pc.clearRut();
+			trace("RED MYR KNOCKED UP!");
+		}
+		*/
+		
+		if(chars["PC"].virility() <= 0 || chars["RED_DESERTER"].fertility() <= 0) return;
+		var x:Number = (chars["PC"].virility() + chars["RED_DESERTER"].fertility())/2;
+		var score:Number = (1 - Math.exp(-0.38*x))*10000;
+		
+		if(rand(10000) <= score)
+		{
+			var traitChar:Creature = ((chars["PC_BABY"].eyeColor != "NOT SET" && chars["PC_BABY"].hairColor != "NOT SET") ? chars["PC_BABY"] : chars["PC"]);
+			
+			//Track hair/eye color for first shitbabies.
+			if(flags["RED_MYR_BIRTHS"] == undefined) flags["BRIHA_SPAWN_1_DEETS"] = [traitChar.hairColor, traitChar.eyeColor];
+			else if(flags["RED_MYR_BIRTHS"] == 1) flags["BRIHA_SPAWN_2_DEETS"] = [traitChar.hairColor, traitChar.eyeColor];
 			//Set incubation timer
 			flags["BRIHA_INCUBATION_TIMER"] = 0;
 			pc.clearRut();

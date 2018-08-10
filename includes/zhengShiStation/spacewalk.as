@@ -35,6 +35,8 @@ public function spacewalkSuccess():void
 	processTime(2);
 	
 	var tEnemy:ExcavationRobot = new ExcavationRobot();
+	tEnemy.createStatusEffect("Flee Disabled", 0, 0, 0, 0, true, "", "", false, 0);
+	
 	CombatManager.newGroundCombat();
 	CombatManager.setFriendlyActors(pc);
 	CombatManager.setHostileActors(tEnemy);
@@ -73,7 +75,7 @@ public function pcIsVictoriousVsMiningBottle():void
 public function beatBotFixWire():void
 {
 	clearOutput();
-	showName("JOB'S\nDONE");
+	showName("JOB’S\nDONE");
 	output("With your job done, you turn around. Do you stomp back into the airlock... or walk around into the hangar you landed in?");
 
 	clearMenu();

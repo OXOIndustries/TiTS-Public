@@ -15,10 +15,15 @@ public function showMaike(nude:Boolean = false):void
 	showBust("MAIKE" + nude ? "_NUDE":"");
 }
 
+public function maikeEncountered():Boolean
+{
+	return (flags["MAIKE_APPEARANCED"] != undefined || flags["MAIKE_SLAVES_RELEASED"] != undefined || flags["MAIKE_BLUFF_BROKE"] != undefined || flags["MAIKE_BLUFF_PEN"] != undefined || flags["MAIKE_BLUFF_UNPROCESSED"] != undefined);
+}
+
 //Plays if PC hasn’t defeated Maike yet, otherwise resume normal tile functions. Maike is a one-off boss: you either fight and win, bluff past (for a one-off repeat encounter) or lose and game over.
 public function maikeEncounterFun():Boolean 
 {
-	if(flags["MAIKE_BLUFF_BROKE"] != undefined || flags["MAIKE_BLUFF_PEN"] != undefined || flags["MAIKE_BLUFF_UNPROCESSED"] != undefined)
+	if(flags["MAIKE_SLAVES_RELEASED"] == undefined && (flags["MAIKE_BLUFF_BROKE"] != undefined || flags["MAIKE_BLUFF_PEN"] != undefined || flags["MAIKE_BLUFF_UNPROCESSED"] != undefined))
 	{
 		cumBack2Maike();
 		return true;
@@ -113,7 +118,7 @@ public function maikeAppearance():void
 	author("SoAndSo");
 	flags["MAIKE_APPEARANCED"] = 1;
 	output("Presumably " + (flags["TIVF_MAIKE_TALK"] == 1 ? "Overseer Maike" : "one of the head slavers in the mine") + ", this towering insectoid woman has you pinned to the ground.");
-	output("\n\nShe stands at 6’7’’ with a graceful, subtly sexy posture. " + (pc.tallness > 6*12+7 ? " If you were side-by-side, her height wouldn’t mean so much but since you’re on the ground..." : "") + " What adds to this is the sheer size of her moth-like wings. Six thick wings flicker and waft in the warm air of the mine, bathed in a gentle orange-red glow as light passes through the patterned, translucent membranes. What’s left creates an ominous shadow that covers your prone form.");
+	output("\n\nShe stands at 6\' 7\" with a graceful, subtly sexy posture. " + (pc.tallness > 6*12+7 ? " If you were side-by-side, her height wouldn’t mean so much but since you’re on the ground..." : "") + " What adds to this is the sheer size of her moth-like wings. Six thick wings flicker and waft in the warm air of the mine, bathed in a gentle orange-red glow as light passes through the patterned, translucent membranes. What’s left creates an ominous shadow that covers your prone form.");
 
 	output("\n\nThe " + (flags["TIVF_MAIKE_TALK"] == 1 ? "Overseer’s":"slaver’s") + " body could only be described as athletic and wiry, an overt litheness to her limbs belying her raw physical strength and dexterity. She was able to plummet from heights unseen and handily knock you to the ground after all. " + (pc.PQ() >= 80 ? "Even with your strength, she took you to town. ":"") + "That said, she is clearly a bombshell: a toned hourglass shape with curvy hips, a bouncy, grabbable ass and a soft set of healthy, bare E-cup breasts on full display. An array of symmetrical silver piercings make artwork of her near-flat nipples, reflecting the light to become dozens of tiny twinkling dots in the darkness.");
 	output("\n\nWhat takes away from her attention to the aesthetic are the chitinous plates that cover her insectoid frame. The sides of her hips, legs and arms are covered in bony, pale-green plates that glisten under the lights. Said plates are intermingled with softer, smooth-looking scales that blend from pale-green to purple and then to a sensuous blue. You think that there’s some serious mod-work going on: these plates look unnaturally strong. Her feet and hands could be interchanged if not for details: five digits a-piece with the appendages crested with more scales, tapering off into vicious claws. With one splayed foot planted flat against you, you don’t need to guess at its manual dexterity.");
@@ -125,12 +130,8 @@ public function maikeAppearance():void
 	output("\n\nAnother whip-strike cracks by your ear.");
 	output("\n\nUhh, uhhh!");
 	processTime(2);
-	clearMenu();
+	
 	addDisabledButton(0,"Appearance","Appearance","You’re already doing that!");
-	//[Fuck You] [Bluff]
-	addButton(1,"Fuck You",fuckYouMaike,undefined,"You’re gonna kick her ass! Or attempt to at least!");
-	if(pcHasSlaveOutfit()) addButton(2,"Bluff",bluffMaike,undefined,"Bluff","You’re dressed the part, all you have to do is sound vaguely convincing. It’s not soooo hard, right? Right.");
-	else addDisabledButton(2,"Bluff","Bluff","You need to be dressed the part for this.");
 }
 
 //Bluff
@@ -580,7 +581,7 @@ public function continueMaikeVictoryChoices():void
 	//[Quick Anal] [Spank Her] [Get Bloated] [Leave]
 	clearMenu();
 	//Quick Anal
-	if(pc.cockThatFits(enemy.analCapacity()) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Quick Anal",penisRouter,[quickMaikeAnal,enemy.analCapacity(),true,0],"Quick Anal","Hey, if she’s that pent up, you’ve got the solution <i>riiiight</i> here. Here being your " + ((pc.hasHardLightEquipped() && !pc.hasCock()) ? "fake-":"") + "junk.");
+	if(pc.cockThatFits(enemy.analCapacity() * 1.5) >= 0 || pc.hasHardLightEquipped()) addButton(0,"Quick Anal",penisRouter,[quickMaikeAnal,(enemy.analCapacity() * 1.5),true,0],"Quick Anal","Hey, if she’s that pent up, you’ve got the solution <i>riiiight</i> here. Here being your " + ((pc.hasHardLightEquipped() && !pc.hasCock()) ? "fake-":"") + "junk.");
 	else if(pc.hasCock()) addDisabledButton(0,"Quick Anal","Quick Anal","Actually, it looks like what you got couldn’t fit in that ass. Shit.");
 	else addDisabledButton(0,"Quick Anal","Quick Anal","Actually, You’ll need a crotch-mounted penetrator for this.");
 
@@ -615,7 +616,7 @@ public function quickMaikeAnal(x:int):void
 	if(pc.isTaur()) output("\n\nYou [pc.walk] around her to get into the proper mounting position for your tauric body, admiring the view of the blue moth-domme now crouched under your massive form.");
 	//else:
 	else output("\n\nYou [pc.walk] on your [pc.knees] to get into a more intimate position behind her and line yourself up with her jiggling behind, eager to fill her and feel her clench around your [pc.cockOrStrapon " + x + "].");
-	output("\n\nYou lay your [pc.cock " + x + "] against her taint and grind it across her asshole, smiling to yourself as her warm skin teases your mast. ");
+	output("\n\nYou lay your [pc.cockOrStrapon " + x + "] against her taint and grind it across her asshole, smiling to yourself as her warm skin teases your mast. ");
 	var cLength:Number = 9;
 	if(x >= 0) cLength = pc.cocks[x].cLength();
 	if(x == -1) output("<i>“Hardlight...? Needs must, I guess,”</i>");
@@ -624,7 +625,8 @@ public function quickMaikeAnal(x:int):void
 	else if(cLength < 13) output("<i>“Ooo, packing back there. I hope you know how to go <b>deep</b> and not just hard,”</i>");
 	else output("<i>“Oh fucking... why is every spacer packing so much meat these days? You better be... nice...”</i>");
 	output(" groans the slaver as she gets a feel for your length. <i>“You know what, make it easier for us both. Ever bred a Cylirian before...?”</i>");
-	pc.cockChange();
+	
+	if(x >= 0) pc.cockChange();
 
 	output("\n\nYou can’t say that you have and shake your head. The slaver takes the initiative and leans forward enough so that your [pc.cockOrStrapon " + x + "] slips between her legs and rubs against her wettened gash. Immediately, tension and deep heat spread throughout your tool as if you were already close to orgasm! There’s no sensation of climax though, just the reaction from your shaft... interesting!");
 
@@ -654,21 +656,21 @@ public function quickMaikeAnal(x:int):void
 	else output("\n\nYou rise to a squat with your [pc.cockOrStrapon " + x + "] still buried within her. Then, you lean your weight forward and plant your palms onto the ground just before her shoulders. Your bodyweight lays on top of the hapless moth-domme and presses her further into the ground. The compromised Overseer whines under the physical pressure and digs her claws into the ground.");
 
 	output("\n\nNow in the right position - hilted deep within her booty and with your body pressed on her - you recapture the deep rhythm you began with in seconds and use her physical resistance to force as much of her juice out of her as possible. Although that natural lube she slathered your shaft with has mostly worn off, you’re still intent on giving her the ‘Bred By Steele’ brand. You mumble all kinds of slurs and dirty thoughts about ‘breeding ass’ and cumbuckets as you plow away, your heart racing with adrenaline and energy as you pound this once-proud domme into the ground. Fuck, you’re getting pretty close!");
-	output("\n\nIn a miss-matched chorus of your rough grunts and Maike’s delirious moans, your orgasm bubbles up from deep within! " + (pc.hasKnot(x) ? "With one last hump, you bury your [pc.knot " + x + "] into her and give in to the moment!" : "With one final hump, you press your body against her as you give in to the moment!"));
+	output("\n\nIn a miss-matched chorus of your rough grunts and Maike’s delirious moans, your orgasm bubbles up from deep within! " + ((x >= 0 && pc.hasKnot(x)) ? "With one last hump, you bury your [pc.knot " + x + "] into her and give in to the moment!" : "With one final hump, you press your body against her as you give in to the moment!"));
 
-	///pcHasCock:
-	if(pc.hasCock()) 
+	//pcHasCock:
+	if(x >= 0) 
 	{
-		output("\n\n[pc.Cum] erupts from the [pc.cockOrStraponHead " + x + "]: hot pulses of overwhelming sensation thump across your body as you bless her with your seed! ");
-		if(pc.cumQ() >= 300) output("The tight confines fill out all-too-quickly and it’s only a moment before your shaft is bathed in your own sauce.");
-		else output("It pools against the tight confines and warms your [pc.cockOrStraponHead " + x + "] in sensuous, liquid heat.");
-
-		if(pc.cumQ() >= 4000) output(" Of course, you’re a special case. Your juicy orgasm continues as you just keep filling her up with more and <i>more</i>, adding genuine weight and shape to her ground-kissed belly.");
+		var cumQ:Number = pc.cumQ();
+		output("\n\n[pc.Cum] erupts from the [pc.cockHead " + x + "]: hot pulses of overwhelming sensation thump across your body as you bless her with your seed! ");
+		if(cumQ >= 300) output("The tight confines fill out all-too-quickly and it’s only a moment before your shaft is bathed in your own sauce.");
+		else output("It pools against the tight confines and warms your [pc.cockHead " + x + "] in sensuous, liquid heat.");
+		if(cumQ >= 4000) output(" Of course, you’re a special case. Your juicy orgasm continues as you just keep filling her up with more and <i>more</i>, adding genuine weight and shape to her ground-kissed belly.");
 	}
 	//pcStrapon:
 	else output("\n\nThe hardlight sends wave after wave of sensuous feedback up your spine, forcing your mind and body into a heady convulsion that buckles you over.");
 
-	output("\n\nMaike’s tailcock jerks limply on the ground by both of your sides, nothing left to give after that last hump forced a genuine pool of the syrupy breeding juice out of the wilting tip. As to Maike herself, she simply gasps in exhaustion underneath with her eyes rolling back into her head, both completely spent and completely filled" + (pc.hasCock() ? " by your [pc.cum]":"") + ".");
+	output("\n\nMaike’s tailcock jerks limply on the ground by both of your sides, nothing left to give after that last hump forced a genuine pool of the syrupy breeding juice out of the wilting tip. As to Maike herself, she simply gasps in exhaustion underneath with her eyes rolling back into her head, both completely spent and completely filled" + (x >= 0 ? " by your [pc.cum]":"") + ".");
 
 	output("\n\nYou hold yourself against her as the heady, post-coital wash slackens your bodies. Your [pc.face] is in a constant smile as your combined bodyheat spreads through your tender nerves like a gentle balm. And to think that you were at each other’s throats not so long ago.");
 
@@ -848,7 +850,11 @@ public function maikeNextThing():void
 	output("\n\nUnder a dirty cleaning rag is the outline of some sort of device. You lift it up and find a strange gauntlet-type weapon that could easily wrap around your wrist. It has a circular plate that could fit into your hand and seems to be some sort of repulsor. Kind of like the Overseers jets... hmm.");
 	output("\n\nWelp, doesn’t hurt in taking it!\n\n");*/
 	output("\n\n");
-	if(flags["MAIKE_HELMET_TAKEN"] == undefined) enemy.inventory.push(new SpacesuitHelmet());
+	if(flags["MAIKE_HELMET_TAKEN"] == undefined)
+	{
+		flags["MAIKE_HELMET_TAKEN"] = 0;
+		enemy.inventory.push(new SpacesuitHelmet());
+	}
 
 	//[Exit]*
 	//*PC gains x1 Space Helmet (if not recieved before), x1 Hand Repulsor and x1 Illumorpheme.
@@ -990,8 +996,7 @@ public function badEndingWithMaikePartWhatever2():void
 	output("\n\nSuhhh....");
 	output("\n\nFuh...");
 	output("\n\n.....");
-	output("\n\n<b>(Game Over!)</b>");
-	badEnd();
+	badEnd("(Game Over!)");
 }
 
 //PC comes back to the boss tile
@@ -1107,15 +1112,15 @@ public function unzipSlavesuit(area:String = "chest"):void
 	if(area == "chest")
 	{
 		output2("You pull open the top zippers open to expose your [pc.chest]");
-		if(!pc.isChestExposedByUpperUndergarment()) output2(", though you'll have to do something about your undergarments if you really want to show off.");
+		if(!pc.isChestExposedByUpperUndergarment()) output2(", though you’ll have to do something about your undergarments if you really want to show off.");
 		else output2(", letting your [pc.nipples] free.");
 		pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_CHEST);
 		pc.armor.sexiness++;
 	}
 	else if(area == "crotch")
 	{
-		output2("You pull open the crotch's long zipper to expose your loins,");
-		if(!pc.isCrotchExposedByLowerUndergarment()) output2(" though you won't be showing off much so long as you've got underwear on! It'll probably still with teasing your foes, though.");
+		output2("You pull open the crotch’s long zipper to expose your loins,");
+		if(!pc.isCrotchExposedByLowerUndergarment()) output2(" though you won’t be showing off much so long as you’ve got underwear on! It’ll probably still with teasing your foes, though.");
 		else output2(", letting your [pc.crotch] free in a display of brazen sexuality.");
 		pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_GROIN);
 		pc.armor.sexiness++;
@@ -1123,8 +1128,8 @@ public function unzipSlavesuit(area:String = "chest"):void
 	else
 	{
 		output2("You unzip the back of your jumpsuit to display your [pc.ass]");
-		if(!pc.isAssExposedByLowerUndergarment()) output2(", but with the underwear you're wearing, you won't be offering easy access to your [pc.asshole] just yet.");
-		else output2(" and [pc.asshole] to the world. Whatever mischief you get into, you'll be ready for a quick anal pounding!");
+		if(!pc.isAssExposedByLowerUndergarment()) output2(", but with the underwear you’re wearing, you won’t be offering easy access to your [pc.asshole] just yet.");
+		else output2(" and [pc.asshole] to the world. Whatever mischief you get into, you’ll be ready for a quick anal pounding!");
 		pc.armor.addFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
 		pc.armor.sexiness++;
 	}
@@ -1149,7 +1154,7 @@ public function zipSlavesuit(area:String = "chest"):void
 	}
 	else
 	{
-		output2("You zip up the ass half of your slave uniform. Probably shouldn't leave that hanging out where anyone can grab it, right?");
+		output2("You zip up the ass half of your slave uniform. Probably shouldn’t leave that hanging out where anyone can grab it, right?");
 		if(pc.isBimbo()) output2(" Well, you totes should, but sometimes you gotta wrap a present before you like, open it up!");
 		pc.armor.deleteFlag(GLOBAL.ITEM_FLAG_EXPOSE_ASS);
 		pc.armor.sexiness--;

@@ -37,7 +37,7 @@ public function tessaBonus(button:Number):void
 	if(flags["TESSA_MET"] == undefined)
 	{
 		output("\n\nIn a dark corner of the bar you spot a white haired woman drinking alone. She’s dressed in a long black jacket and is facing down into her drink. From what little you can see, she is clearly not human, as she has a thick white tail resting on the ground behind her. Oddly, her complexion and hair are completely white. A closer look might reveal more.");
-		addButton(button,"White Woman",whiteWomanTessa);
+		addButton(button,"WhiteWoman",whiteWomanTessa);
 	}
 	//[Tessa] (Scene description after talking to her)
 	else if (rand(2) == 0)

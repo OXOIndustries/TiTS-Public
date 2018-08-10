@@ -626,7 +626,7 @@ public function hanaFiresideRecovery():void
 	output("\n\nHuh? Blanket? Oh... you’re naked in the middle of the bar, a blanket is probably good. Though all this heat is getting pretty uncomfortable. Tempering your worked up arousal, you shift to make yourself passingly decent while looking up to Hana in a mixture of thanks and desire.");
 
 	output("\n\n<i>“Get dressed.");
-	if (syriAtTheFreezer()) output(" Your friend was rather concerned about you, you know.");
+	if (syriAtFreeezer()) output(" Your friend was rather concerned about you, you know.");
 	output(" Don’t let this happen again.");
 	if (flags["UVETO_FROZEN_RESCUE_TO_BAR"] != undefined) output(" <b>Again.</b>");
 	output("”</i> With that Hana wanders away, presumably to go back to her bar duties. As if she hadn’t just done anything at all - although the smile on her lips and whisk of her hips say otherwise. Ugh...");

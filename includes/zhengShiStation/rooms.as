@@ -24,9 +24,10 @@ public function initZhengRooms():void
 	rooms["ZSM SPACE"].southExit = "";
 	rooms["ZSM SPACE"].westExit = "";
 	rooms["ZSM SPACE"].moveMinutes = 3;
-	rooms["ZSM SPACE"].runOnEnter = zhengMinesEncounterBonus;
-	rooms["ZSM SPACE"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSM SPACE"].runOnEnter = zhengMinesSpaceBonus;
+	rooms["ZSM SPACE"].addFlag(GLOBAL.OUTDOOR);
 	rooms["ZSM SPACE"].addFlag(GLOBAL.HAZARD);
+	rooms["ZSM SPACE"].addFlag(GLOBAL.LOW_GRAVITY);
 	
 	/* Ship Docking */
 	rooms["ZS L50"] = new RoomClass(this);
@@ -904,7 +905,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM W10"] = new RoomClass(this);
 	rooms["ZSM W10"].roomName = "GEDDANIUM\nMINE";
-	rooms["ZSM W10"].description = "Veins of rich geddanium web the walls, reflecting the cheap light's amber illumination and lending the entire area a crimson cast. Dozens of chains dangle from hooks embedded in the ceiling and supporting arches, forcing you to stop repeatedly in order to brush them out of your way. You kick aside a bit of loose gravel and consider your options: a bend to the north or chasing this red-hued shaft south.";
+	rooms["ZSM W10"].description = "Veins of rich geddanium web the walls, reflecting the cheap light’s amber illumination and lending the entire area a crimson cast. Dozens of chains dangle from hooks embedded in the ceiling and supporting arches, forcing you to stop repeatedly in order to brush them out of your way. You kick aside a bit of loose gravel and consider your options: a bend to the north or chasing this red-hued shaft south.";
 	rooms["ZSM W10"].planet = "ZHENG SHI STATION";
 	rooms["ZSM W10"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM W10"].northExit = "ZSM W8";
@@ -932,7 +933,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM W14"] = new RoomClass(this);
 	rooms["ZSM W14"].roomName = "GEDDANIUM\nMINE";
-	rooms["ZSM W14"].description = "Massive cracks ruin what would otherwise be a pristine deposit of gem-quality geddanium. The rock surrounding it is similarly splintered. By the look of it, this section was opened up by crude blasting rather than more careful tunneling. The smaller pieces don't appear worth the effort it'd take to pry them loose. You can move on to the north or south.";
+	rooms["ZSM W14"].description = "Massive cracks ruin what would otherwise be a pristine deposit of gem-quality geddanium. The rock surrounding it is similarly splintered. By the look of it, this section was opened up by crude blasting rather than more careful tunneling. The smaller pieces don’t appear worth the effort it’d take to pry them loose. You can move on to the north or south.";
 	rooms["ZSM W14"].planet = "ZHENG SHI STATION";
 	rooms["ZSM W14"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM W14"].northExit = "ZSM W12";
@@ -946,7 +947,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM W16"] = new RoomClass(this);
 	rooms["ZSM W16"].roomName = "GEDDANIUM\nMINE";
-	rooms["ZSM W16"].description = "The tunnel zigs and zags back and forth around red-hued pillars of geddanium-dense rocks. Apparently it was easier to tunnel around than try to break through directly. Considering the stuff is an essential part of military grade starship armor, you're not surprised. The pirates will probably be back for it later, once they've finished grabbing the more easily extracted pieces.";
+	rooms["ZSM W16"].description = "The tunnel zigs and zags back and forth around red-hued pillars of geddanium-dense rocks. Apparently it was easier to tunnel around than try to break through directly. Considering the stuff is an essential part of military grade starship armor, you’re not surprised. The pirates will probably be back for it later, once they’ve finished grabbing the more easily extracted pieces.";
 	rooms["ZSM W16"].planet = "ZHENG SHI STATION";
 	rooms["ZSM W16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM W16"].northExit = "ZSM W14";
@@ -960,7 +961,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM W18"] = new RoomClass(this);
 	rooms["ZSM W18"].roomName = "GEDDANIUM\nCORNER";
-	rooms["ZSM W18"].description = "Swinging a sharp north-and-east corner, the mineshaft writhes through the dense, planet-cracked stone of Zheng Shi. You bat away a dangling chain, glad you won't be tied to the end of it any time soon (you hope!) and consider your options. The tunnel works north through heavy geddanium deposits and east toward the firm, comforting metal of an airlock.";
+	rooms["ZSM W18"].description = "Swinging a sharp north-and-east corner, the mineshaft writhes through the dense, planet-cracked stone of Zheng Shi. You bat away a dangling chain, glad you won’t be tied to the end of it any time soon (you hope!) and consider your options. The tunnel works north through heavy geddanium deposits and east toward the firm, comforting metal of an airlock.";
 	rooms["ZSM W18"].planet = "ZHENG SHI STATION";
 	rooms["ZSM W18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM W18"].northExit = "ZSM W16";
@@ -974,7 +975,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM Y18"] = new RoomClass(this);
 	rooms["ZSM Y18"].roomName = "MINESHAFT\nAIRLOCK";
-	rooms["ZSM Y18"].description = "The gleaming metal of an airlock replaces the eastern wall here. Instead of solid stone, there's hard, black, vac-sealing foam to plug any gaps and starship-grade titanium. A transparent aluminum window offers a look inside, but it's mostly empty. There are some old spacesuits hanging from racks, and the outer door is currently sealed. You should be able to walk right in, if you wish.";
+	rooms["ZSM Y18"].description = "The gleaming metal of an airlock replaces the eastern wall here. Instead of solid stone, there’s hard, black, vac-sealing foam to plug any gaps and starship-grade titanium. A transparent aluminum window offers a look inside, but it’s mostly empty. There are some old spacesuits hanging from racks, and the outer door is currently sealed. You should be able to walk right in, if you wish.";
 	rooms["ZSM Y18"].planet = "ZHENG SHI STATION";
 	rooms["ZSM Y18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM Y18"].northExit = "";
@@ -988,7 +989,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM YY18"] = new RoomClass(this);
 	rooms["ZSM YY18"].roomName = "EMERGENCY\nAIRLOCK";
-	rooms["ZSM YY18"].description = "You're standing in the body of a large, all-metal airlock. It looks like it's hundreds of years old -- probably salvaged from an old free trader ship, if you had to guess -- but the doors are solid enough, and only seal and open from the inside. No chance of getting trapped in here, at least. Out the small window set into the east door, you can see the endless expanse of space dotted white by stars without number; you can also just make out a metal walkway bolted onto the side of the asteroid, hugging the craggy rock face.";
+	rooms["ZSM YY18"].description = "You’re standing in the body of a large, all-metal airlock. It looks like it’s hundreds of years old -- probably salvaged from an old free trader ship, if you had to guess -- but the doors are solid enough, and only seal and open from the inside. No chance of getting trapped in here, at least. Out the small window set into the east door, you can see the endless expanse of space dotted white by stars without number; you can also just make out a metal walkway bolted onto the side of the asteroid, hugging the craggy rock face.";
 	rooms["ZSM YY18"].planet = "ZHENG SHI STATION";
 	rooms["ZSM YY18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM YY18"].northExit = "";
@@ -1017,7 +1018,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM W20"] = new RoomClass(this);
 	rooms["ZSM W20"].roomName = "GEDDANIUM\nMINE";
-	rooms["ZSM W20"].description = "Dozens of potholes in the floor force you to move carefully through this section of the mine. Chips and cracks in the cratered stone indicate these aren't natural occurrences. Someone or something dug up something here - probably geddanium, if the scarlet traceries in the walls are any indication. The tunnel bends to the east and continues straight to the west.";
+	rooms["ZSM W20"].description = "Dozens of potholes in the floor force you to move carefully through this section of the mine. Chips and cracks in the cratered stone indicate these aren’t natural occurrences. Someone or something dug up something here - probably geddanium, if the scarlet traceries in the walls are any indication. The tunnel bends to the east and continues straight to the west.";
 	rooms["ZSM W20"].planet = "ZHENG SHI STATION";
 	rooms["ZSM W20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM W20"].northExit = "";
@@ -1045,7 +1046,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM S20"] = new RoomClass(this);
 	rooms["ZSM S20"].roomName = "GEDDANIUM\nCORNER";
-	rooms["ZSM S20"].description = "The tunnel's bend is sharp, and more importantly, cut through unstable rock. Five metal braces have been erected just to keep it from collapsing, yet the dribbles of dust that routinely trickle down from the ceiling leave you feeling less than confident. It might be best to strike off to the north or east in a hurry. No wonder the walls are untouched by pick and torch alike!";
+	rooms["ZSM S20"].description = "The tunnel’s bend is sharp, and more importantly, cut through unstable rock. Five metal braces have been erected just to keep it from collapsing, yet the dribbles of dust that routinely trickle down from the ceiling leave you feeling less than confident. It might be best to strike off to the north or east in a hurry. No wonder the walls are untouched by pick and torch alike!";
 	rooms["ZSM S20"].planet = "ZHENG SHI STATION";
 	rooms["ZSM S20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM S20"].northExit = "ZSM S18";
@@ -1073,7 +1074,7 @@ public function initZhengRooms():void
 
 	rooms["ZSM S16"] = new RoomClass(this);
 	rooms["ZSM S16"].roomName = "GEDDANIUM\nMINE";
-	rooms["ZSM S16"].description = "A reflection on the surface of a puddle catches your eye just before you can step into it, and with a single glance you identify it for what it is: puddled, liquid sex. More than one sexual tryst has occurred here, and the results collected into the chamber's lowest point. Whether slaves were sneaking off to blow off steam or cruel overseers taking advantage, you aren't sure. One thing you do know is that there's active mining to the north and quite a few glittering gems to the south.";
+	rooms["ZSM S16"].description = "A reflection on the surface of a puddle catches your eye just before you can step into it, and with a single glance you identify it for what it is: puddled, liquid sex. More than one sexual tryst has occurred here, and the results collected into the chamber’s lowest point. Whether slaves were sneaking off to blow off steam or cruel overseers taking advantage, you aren’t sure. One thing you do know is that there’s active mining to the north and quite a few glittering gems to the south.";
 	rooms["ZSM S16"].planet = "ZHENG SHI STATION";
 	rooms["ZSM S16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSM S16"].northExit = "ZSM S14";
@@ -1162,7 +1163,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF I22"] = new RoomClass(this);
 	rooms["ZSF I22"].roomName = "BREAK\nROOM";
-	rooms["ZSF I22"].description = "You're standing in a lounge off of the main floor of the pirates' foundry. A wetbar dominates one wall, opposite a large couch covered in plush cushions. It would almost be nice, if it weren't for the constant sounds of machines pounding away outside";
+	rooms["ZSF I22"].description = "You’re standing in a lounge off of the main floor of the pirates’ foundry. A wetbar dominates one wall, opposite a large couch covered in plush cushions. It would almost be nice, if it weren’t for the constant sounds of machines pounding away outside";
 	rooms["ZSF I22"].planet = "ZHENG SHI STATION";
 	rooms["ZSF I22"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF I22"].northExit = "ZSF I20";

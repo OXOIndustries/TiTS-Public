@@ -33,7 +33,6 @@ public function encounterRoz():Boolean
 	//First Encounter:
 	if(flags["MET_ROZ"] == undefined)
 	{
-		flags["MET_ROZ"] = 1;
 		output("As you make your way through the cavernous maze of the mines, you start hearing voices echoing from just ahead. You advance cautiously, poking your head around a corner to see a group of slaves - men, all of them, of various races in tattered work uniforms and big metal collars - huddled up together at the end of the passage.");
 		output("\n\nAt first, you think they might be escaped slaves, maybe hiding from their masters... but as you draw closer, you realize that all of the men have their pants down around their ankles, hips jerking and bucking inwards to the center of their little group. Somebody’s in the middle of them, on her knees and gleefully sucking their dicks. You can just catch glimpses of ashen-blue skin and coal-black hair between the men’s legs.");
 		output("\n\nBefore you can decide what to do about your discovery, a couple of the men grunt and thrust forward, cumming. The gangbang’s subject lets rip a throaty moan and sways drunkenly from side to side, enjoying all the cum splattering over her face and chest. And then one of the spent men staggers back, opening up a clear line of sight between you and the woman.");
@@ -61,6 +60,7 @@ public function encounterRoz():Boolean
 		output("\n\n<i>“You again!”</i> her mechanized voice booms. <i>“I thought I told you to stay, like, way the heck out of here! You must be dumber than a coreless galotian if you’re gonna keep coming back! Guess I’ll just have to treat ya like one and screw you silly after I whoop ya!”</i>");
 		output("\n\nRoz laughs uproariously and hefts the rail cannon up. The thrumming sound of it charging up echoes down the cavern!");
 	}
+	IncrementFlag("MET_ROZ");
 	clearMenu();
 	addButton(0,"Next",startRozFight);
 	return true;
@@ -146,7 +146,7 @@ public function pcBeatsRozForGoodies():void
 	author("Savin");
 	output("<i>“Aw gosh,”</i> Roz drawls, slumping to her knees in front of you. <i>“Okay, okay, you can be on top! Just get down here and gimme that sweet cum of yours, will ya? I’m goin’ crazy thinkin’ about our fight... and now your body, too!”</i>");
 	output("\n\nShe’s blatantly ");
-	if(!pc.isCrotchExposed())  output("undressing");
+	if(!pc.isCrotchExposed()) output("undressing");
 	else output("lusting after");
 	output(" you with her eyes, panting with every simulated breath... and each breath seems to add a little more mass to her immense chest, threatening to rip her suit open and squirt her all over you if she isn’t sated!");
 	processTime(2);
@@ -169,9 +169,9 @@ public function rozCombatVictoryMenu():void
 
 	//Disabled for nau.
 	if(pc.IQ() >= 50 || pc.isGoo()) addButton(5,"Steal Core",coreJack,undefined,"Steal Core","Roz might be obsessing over your body now, but she seems to have her shit together more than your average galotian. She’s gotta have a core under that suit... give it a tug.");
-	else addDisabledButton(5,"Locked","Locked","You aren't smart enough for this.");
-	if(pc.legCount == 2) addButton(6,"Hijack Armor",hijackRozArmor,undefined,"Hijack Armor","Steal Roz's ramshackle power armor for yourself. She will probably never recover from this sleight -- at least not for the rest of the planet rush.");
-	else addDisabledButton(6,"Hijack Armor","Hijack Armor","You need to be a biped to operate this!");
+	else addDisabledButton(5,"Locked","Locked","You aren’t smart enough for this.");
+	if(pc.legCount == 2 || pc.hasLegFlag(GLOBAL.FLAG_AMORPHOUS)) addButton(6,"Hijack Armor",hijackRozArmor,undefined,"Hijack Armor","Steal Roz’s ramshackle power armor for yourself. She will probably never recover from this sleight -- at least not for the rest of the planet rush.");
+	else addDisabledButton(6,"Hijack Armor","Hijack Armor","You need to be a biped or otherwise have an amorphous lower body to operate this!");
 
 	addButton(14,"Leave",leaveRozAfterWinning);
 }
@@ -261,7 +261,7 @@ public function coreJack():void
 	processTime(10);
 	pc.lust(10);
 	clearMenu();
-	addButton(0,"Keep It",keepRozsGooCore,undefined,"Keep It","Keep Roz’s Picardine core. By the way she’s acting, Roz will probably leave to go find a new one if you steal it. You probably won't see her again!");
+	addButton(0,"Keep It",keepRozsGooCore,undefined,"Keep It","Keep Roz’s Picardine core. By the way she’s acting, Roz will probably leave to go find a new one if you steal it. You probably won’t see her again!");
 	addButton(1,"Work 4 It",workForItRoz,undefined,"Work 4 It","Make Roz earn her core back - with oral, of course.");
 }
 
@@ -307,7 +307,7 @@ public function workForItRoz():void
 	}
 	else if(pc.hasVagina() && !pc.hasCock()) output("\n\nShe stares at your crotch for a long moment. <i>“Aww, just a puss? Guess I’ll just hafta make do!”</i>");
 	else output("\n\nThe goo beams as you let your [pc.cock] bob in front of her nose. <i>“Aww yeah, finally time for some dick!”</i> she cheers, licking her lips.");
-	output(" Driven by the promise of her gemstone’s return, Roz lunges at your crotch with gusto, licking all over your [pc.crotch]. Her tongue leaves a trail if sticky slime all along your thighs and lower belly, rubbing her whole face across your loins in a way that leaves every inch of [pc.skin] tingling with pleasure.");
+	output(" Driven by the promise of her gemstone’s return, Roz lunges at your crotch with gusto, licking all over your [pc.crotch]. Her tongue leaves a trail of sticky slime all along your thighs and lower belly, rubbing her whole face across your loins in a way that leaves every inch of [pc.skin] tingling with pleasure.");
 
 	//PC has a dick vers.
 	if(pc.hasCock())
@@ -330,9 +330,11 @@ public function workForItRoz():void
 		output("\n\nBefore long, Roz isn’t content to just rub her gooey body on your loins anymore; she makes a hungry noise and then she’s <i>inside</i> you, pushing tendrils of thick blue slime into your [pc.vagOrAss " + x + "]. Your hole tingles from entrance to depths, every inch of tender flesh assailed by writhing galotian goo. The shock of her sudden assault makes you double over, flailing for purchase as more and more of Roz squirms inside you. You eventually manage to grab hold of the cave wall, grimacing as the hot rock seethes between your fingers and goo lashing the inside of your [pc.vagOrAss " + x + "].");
 		output("\n\n<i>“Ain’tcha ever had a goo in ya before?”</i> Roz teases from... somewhere. Her mouth - most of her head, really - has squeezed itself inside you, but her voice seems to come from her body rather than her lips now. <i>“Oh, I just wanna crawl up in here till ya look all pregnant and stuff... stuffed! Gonna wear you like a new suit of armor!”</i>");
 		output("\n\nYou try to shout <i>“Wait!”</i> but your voice just comes out as a ragged gasp, drawn out as more and more of Roz forces its way inside you. Your [pc.belly] distends, stretching around the swelling mass of goo inside you. Commensurately, the azure pile of giddy goo-girl in front of you withers, funneling herself into your [pc.vagOrAss " + x + "] with all the exuberance of a hungry kid reaching in the cookie jar. Hell, she even <i>feels</i> like a giant fist exploring your " + (x >= 0 ? "womb":"bowels") + "... and it’s <i>good</i>.");
+		
 		//Virgin checks!
 		if(x >= 0) pc.cuntChange(x, 1000);
-		if(pc.hasVagina()) pc.buttChange(1000);
+		else pc.buttChange(1000);
+		
 		output("\n\nAn orgasm hits you like a brick, knocking you off your [pc.footOrFeet] with a howl of pleasure. You go sprawling back on the rocky floor of the cavern, " + (pc.legCount > 1 ? "[pc.legs] spreading":"[pc.leg] stretching") + " - which only makes it easier for the fuck-hungry blue goo to squirm the rest of the way up your [pc.vagOrAss " + x + "]. You put your hands around your goo-bloated belly, feeling the [pc.skin] rise and fall with Roz’s squirming. The last of her body disappears into you with a slurping sound, and your strained hole is finally able to close.");
 		output("\n\nIt takes a moment to catch your breath and adjust to the massive weight pinning you to the ground. Roz squirms, sloshing herself around inside you with a giggle that reverberates through your belly. <i>“Oh, this is cozy!”</i> she titters. <i>“I could totally move right in!”</i>");
 		output("\n\nFrom where you’re laying, it sure seems like she has already. With a groan, you sit yourself up and put your hands around your stretched-out gut, feeling your [pc.skin] push in and bounce back with any amount of pressure.");
@@ -360,7 +362,7 @@ public function wearRozLikeAnEdgarSuit():void
 	showRoz(true);
 	author("Savin");
 	output("You kneel down over the defeated goo-girl and lift her chin up, grinning as a couple of your fingers sink into her azure “skin.” She glances up at you with lust-addled eyes, swimming with desire; her tits heave under her bodysuit, swelling and shrinking to simulating husky breath.");
-	if(!pc.isNude()) output("\n\nOf course if you're going to wear her, you'll need to strip down. You toss your equipment aside.");
+	if(!pc.isNude()) output("\n\nOf course if you’re going to wear her, you’ll need to strip down. You toss your equipment aside.");
 	output("\n\n<i>“I’m gonna give you what you want,”</i> you assure her, slipping your hand down to the zipper of her bodysuit. You pull it down, letting her mammoth tits spill out, then her broad hips, almost pulling the suit off of her.");
 	output("\n\nAnd then you step into it, ");
 	if(pc.isTaur()) output("backing your hind legs into the suit’s leg holes");
@@ -400,8 +402,9 @@ public function wearRozLikeAnEdgarSuit():void
 	//PC has a tighter/non-donut butthole:
 	else output("\n\nRoz’s slender tendrils squirm deeper into your [pc.asshole], exploring your clenching hole with relentless force. More and more goo shoots inside you, following the slender tentacle’s path and pooling in your bowels like a thick knot. She’s stretching you, slowly widening the width of her goo-dick, but slow enough as not to break you.");
 	pc.buttChange(400);
-	output("\n\nEven when she’s working inside you, whatever techno-magic woven into Roz’s bodysuit stimulates you inside and out. Her every motion feels like you’re being assailed by fifty massive dick, assaulting your every orifice");
-	if(pc.hasCock()) output(" while a legion of sluts worship your dick " + (pc.cockTotal() > 1 ? "s":"") + ". Your breath quickly becomes haggard and strained, struggling to keep up with the pleasure pounding through your body. Keeping your mind focused on anything else is becoming harder... almost impossible. The rising threat or orgasm commands all of your attention, demanding that you focus on your [pc.vagOrAss]" + (pc.hasCock() ? " and [pc.cocks]":"") + ". You have little choice but to obey, running you hands up and down your body between Roz’s sensuous assaults. Every tweak of your [pc.nipples] and grope of your [pc.butt] is an orgasm in its own right, turning your [pc.legOrLegs] to jelly.");
+	output("\n\nEven when she’s working inside you, whatever techno-magic woven into Roz’s bodysuit stimulates you inside and out. Her every motion feels like you’re being assailed by fifty massive dicks, assaulting your every orifice");
+	if(pc.hasCock()) output(" while a legion of sluts worship your dick" + (pc.cockTotal() > 1 ? "s":"") + ". Your breath quickly becomes haggard and strained, struggling to keep up with the pleasure pounding through your body. Keeping your mind focused on anything else is becoming harder... almost impossible. The rising threat of orgasm commands all of your attention, demanding that you focus on your [pc.vagOrAss]" + (pc.hasCock() ? " and [pc.cocks]":"") + ". You have little choice but to obey, running you hands up and down your body between Roz’s sensuous assaults. Every tweak of your [pc.nipples] and grope of your [pc.butt] is an orgasm in its own right, turning your [pc.legOrLegs] to jelly");
+	output(".");
 	output("\n\nYour body gives in, but you don’t fall; Roz stiffens all around you, acting like an extra layer of muscle to keep you on your [pc.footOrFeet]. Even if you wanted to move, you’re the one being worn now! Roz tightens her grip around your [pc.legOrLegs] and arms, holding you still as a statue while she fucks you. There’s no way you can even try to struggle with the suit’s sensory receptors so thoroughly overloaded" + (flags["TERENSHA_SUIT_TALKED"] != undefined ? " - how the hell does Terensha even function with one of these on!?":"") + "!");
 	output("\n\nRoz’s thrusting builds up to a feverish pace, hammering your hole");
 	if(pc.hasVagina()) output("s");
@@ -557,11 +560,12 @@ public function wsanWinsAgainstRoz():void
 	output("\n\n<i>“It’s good, right?”</i> you hear in your mind, and even through telepathy you can tell there’s a ring of smugness to her words. <i>“Aww yeah, this </i>is<i> good!”</i>");
 
 	output("\n\nYour balls have swollen to");
-	if(pc.ballDiameter() < 5) output(" more than ten");
-	else if(pc.ballDiameter() < 6) output(" close to eight");
-	else if(pc.ballDiameter() < 8) output(" almost seven");
-	else if(pc.ballDiameter() < 10) output(" about five");
-	else if(pc.ballDiameter() < 15) output(" three or four");
+	var ballDiameter:Number = pc.ballDiameter();
+	if(ballDiameter < 5) output(" more than ten");
+	else if(ballDiameter < 6) output(" close to eight");
+	else if(ballDiameter < 8) output(" almost seven");
+	else if(ballDiameter < 10) output(" about five");
+	else if(ballDiameter < 15) output(" three or four");
 	else output(" more than two");
 	output(" times their original size with the galotian girl inside you, and the feeling when she stimulates you from the inside to make you cum is unlike anything you’ve ever experienced.");
 	if(flags["TIMES_CELISE_IN_BALLS"] != undefined) output(" Not even Celise, your ship’s patron goo-girl, did this so roughly or suddenly.");
@@ -588,7 +592,7 @@ public function wsanWinsAgainstRoz():void
 	pc.lust(100);
 	clearMenu();
 	addButton(0,"Jack Her Out",jackDatRozBitchOut,undefined,"Jack Her Out","Get her out of there.");
-	//addDisabledButton(0,"Jack Her Out","Jack Her Out","You can't reach!");
+	//addDisabledButton(0,"Jack Her Out","Jack Her Out","You can’t reach!");
 	addButton(1,"Give Up",giveUpToRozBallFilling,undefined,"Give Up","Sit back and just let Roz run rampant, draining you completely dry.");
 
 }
@@ -599,8 +603,8 @@ public function jackDatRozBitchOut():void
 	clearOutput();
 	showRoz(true);
 	author("Wsan");
-	output("Yeah, fuck this - you have places to be that aren’t “weighed down to the point of immobility by a barely-sentient amorphous goo.” You begin vigorously" + (!pc.isTaur() ? " jacking yourself off":" smacking your erect cock against your underbelly") + ", ignoring the mind-wilting amount of pleasure emanating from your rod. Spurred on by both the urgency of getting her out and the mental assurance this is going to be the hardest you’ve cum in your life, it doesn’t take long.");
-	output("\n\n<i>“Hey! Aww, he-”</i> Roz moans before being cut off as you" + (!pc.isTaur() ? "  double over, [pc.legOrLegs] turning inwards while you sink to the ground, gasping":" grit your teeth and thrust your hips forward, rubbing yourself off while you try to stay standing") + ".");
+	output("Yeah, fuck this - you have places to be that aren’t... weighed down to the point of immobility by a barely-sentient amorphous goo. You begin vigorously " + (!pc.isTaur() ? "jacking yourself off":"smacking your erect cock against your underbelly") + ", ignoring the mind-wilting amount of pleasure emanating from your rod. Spurred on by both the urgency of getting her out and the mental assurance this is going to be the hardest you’ve cum in your life, it doesn’t take long.");
+	output("\n\n<i>“Hey! Aww, he-”</i> Roz moans before being cut off as you" + (!pc.isTaur() ? " double over, [pc.legOrLegs] turning inwards while you sink to the ground, gasping":" grit your teeth and thrust your hips forward, rubbing yourself off while you try to stay standing") + ".");
 	output("\n\nIt pays off. With a dull, muted groan that grows in volume you begin to cum, <i>hard</i>. Your [pc.biggestCock] starts to swell from the base, doubling in girth as the flow of seed and goo travels upwards before it finally begins to spout from the tip. The thigh-quaking, teeth-gritting pleasure is seemingly unending, blobs of goo spattering to the floor before being drenched in impossibly thick seed. Panting, you manage to expel the last of your enormous load and collapse, chest heaving.");
 
 	output("\n\nThanks to the efforts of Roz riling you up and putting your spunk production in overdrive, the mine has suffered a little.");
@@ -1017,6 +1021,8 @@ public function loseToRozzyPoo():void
 //PCs with dicks variant. Random chance? Follows on from the ‘//Combine’ blurb.
 public function wsanLossScene():void
 {
+	author("Wsan");
+	
 	output("\n\n<i>“Oooh, </i>just<i> what I was looking for,”</i> Roz drawls, wrapping her gooey hand around your [pc.biggestCock].");
 	if(pc.balls > 0)
 	{
@@ -1119,7 +1125,7 @@ public function rozsCumReceptacleEnd():void
 	{
 		x = pc.findEmptyPregnancySlot(Creature.PREGSLOT_VAG);
 	}
-	output("<i>“Alright, I can work with this,”</i> Roz drawls,");
+	output("\n\n<i>“Alright, I can work with this,”</i> Roz drawls,");
 	if(pc.isHerm()) output(" rubbing a pair of fingers through your twat before gripping your cock between her gooey digits. <i>“Couple hundred years ago, when I was just a little young thing, I used to love making my own member and plowing pretty girls with with... preferably with a couple dozen men servicing me while I worked. Isn’t it just the best, bein’ a little bit of both? How’s about I show you how I used to live when I was a wild thing, living like a cum-dumpster on two legs?”</i>");
 	else if(pc.hasVagina()) output(" rubbing at your [pc.cunt " + x + "]. <i>“Nice lil’ puss you’ve got here. I’ve always been a little envious of havin’ a real one... a nice lil’ baby maker between my legs, begging for any man to come and plow it. Maybe a dozen of ‘em in rapid succession, all trying to be the lucky man to breed me. Instead I gotta wait for hundreds of men to pump their seed in me, bloat me up enough that I can split myself in two. Not that I don’t enjoy the process... in fact, maybe you could help me out with that!”</i>");
 	else if(pc.hasCock() && pc.biggestCockLength() < 6) 
@@ -1160,7 +1166,7 @@ public function girlyRozLoss2(x:int):void
 	output("And just like your passenger predicted, there’s a new ship docked just a little ways from your own - a small patrol boat maybe ten times the size of Dad’s old Z14, loaded down with guns and grapplers and painted up in brilliant golden colors and a paint job at the front made to look like a great big viper’s fangs. Roz walks you over towards it just as the gangplank is coming down, allowing the first of the crewmen to come jumping down.");
 	output("\n\nShe’s a tall, buxom specimen; a woman with a full figure and a pair of feathery golden wings lunging out from behind her back, through a pair of slits in her silver-and-black armored corset. Plated breeches and gauntlets leave only a bit of thigh and most of her upper chest bare from the tops of her breasts up to a shark-like face with a grin of razor fangs. A suula!");
 	output("\n\n<i>“Oh, what’ve we got here?”</i> she laughs. Several more figures in similar armor slide down behind her. You recognize several more suula, gryvain, and ");
-	if(flags["MAIKE_SLAVES_RELEASED"] != undefined) output("members of the overseer's race, ");
+	if(flags["MAIKE_SLAVES_RELEASED"] != undefined) output("members of the overseer’s race, ");
 	output("cylirians, among them; no humans or other more core-ward races. <i>“And [pc.heShe]’s so pregnant... or at least, so stuffed full of goo! Is that you in there, Rozenn?”</i>");
 	if(!CodexManager.entryUnlocked("Suulas"))
 	{
@@ -1202,12 +1208,14 @@ public function girlyRozLoss2(x:int):void
 	output(", your whole body feels aflame with desire.");
 	output("\n\n<i>“I live for this!”</i> Roz giggles inside you, slurping up the suula’s cumshot. <i>“Gimme that sweet biomass, baby. Gimme more!”</i>");
 	output("\n\nLike you’re in control of that anymore!");
-	output("\n\nOne of the girls getting a handy from you grunts, bringing your attention back to your shameful work by busting her nut across your [pc.face] and [pc.chest]. The other dickgirl, though, shoves her way into fucking your mouth, just long enough to make you cum from having her rock-hard cock pounding your lips before she joins you, spilling her seed into your goo-bloated belly while your {cock leaks [pc.cum] across your thighs and your} [pc.vagOrAss " + x + "] squeezes hard around whatever dick’s spearing it now. A pair of hands grab your hips and shove it in deeper, lifting you partway off the floor on her dick.");
+	output("\n\nOne of the girls getting a handy from you grunts, bringing your attention back to your shameful work by busting her nut across your [pc.face] and [pc.chest]. The other dickgirl, though, shoves her way into fucking your mouth, just long enough to make you cum from having her rock-hard cock pounding your lips before she joins you, spilling her seed into your goo-bloated belly while your");
+	if(pc.hasCock()) output(" cock leaks [pc.cum] across your thighs and your");
+	output(" [pc.vagOrAss " + x + "] squeezes hard around whatever dick’s spearing it now. A pair of hands grab your hips and shove it in deeper, lifting you partway off the floor on her dick.");
 	output("\n\nRather than release you when she cums, the girl taking your " + (x < 0 ? "ass":"pussy") + " hands you off to a pair of big, strong hands that grip you firmly, pulling you up until your [pc.vagOrAss " + x + "] is pressed to a cockhead with wriggling tentacles slapping you with venom.");
 	output("\n\n<i>“Time to finish off my captain’s log,”</i> the suula pirate growls in your ear, running her shark-like teeth across your vulnerable [pc.skin].");
 	output("\n\nShe pushes you down hard, impaling you on her cock. Crewmens’ cum squirts from your abused hole, raping another screaming orgasm through your body. Her arms settle under your [pc.legs], spreading them wide and presenting you to the remaining members of her crew still sporting hardons.");
 	output("\n\n<i>“Alright, ladies, who’s with me?”</i>");
-	output("\n\nOne of the cylerians steps forward rubbing her dick. You vaguely remember sucking on it, but honestly, you’ve kind of lost track by now. The moth-like beauty just gives you a wink and puts her hands on the captain’s, holding you steady while her cock lines up with your [pc.vagOrAss " + x + "]. She shoves herself in beside the captain, making you scream with the stretching as the two dickgirls start fucking you - and the captain’s tendrils start squirting more aphrodisiacs, coating your entrance... and the other pirate’s prick.");
+	output("\n\nOne of the cylirians steps forward rubbing her dick. You vaguely remember sucking on it, but honestly, you’ve kind of lost track by now. The moth-like beauty just gives you a wink and puts her hands on the captain’s, holding you steady while her cock lines up with your [pc.vagOrAss " + x + "]. She shoves herself in beside the captain, making you scream with the stretching as the two dickgirls start fucking you - and the captain’s tendrils start squirting more aphrodisiacs, coating your entrance... and the other pirate’s prick.");
 	output("\n\nYour hands don’t get a pass just because you’re being double-penetrated... nor does your mouth. A gryvain takes wing, positioning her dick on level with your lips while your fingers find a pair of her ground-walking comrades’ cocks.");
 	output("\n\n<i>“There ya go! Get the whole crew in on it!”</i> the captain laughs.");
 	output("\n\nRoz cheers inside you, sloshing excitedly. <i>“God I love this captain! If I had a mind to be a pirate, I’d join her crew just for the spooge. Ohh, what am I saying... silly Roz, all obsessive without my core... and now I’m getting cum-drunk!”</i>");

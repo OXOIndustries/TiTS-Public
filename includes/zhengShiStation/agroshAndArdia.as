@@ -32,7 +32,7 @@ public function drinkArdiasCum():void
 	pc.createStatusEffect("Dzaan Addicted");
 	while (pc.hasStatusEffect("Dzaan Withdrawal")) { pc.removeStatusEffect("Dzaan Withdrawal"); }
 	//1 week. Creates "Dzaan Withdrawal" after. Reduces all lust damage taken by 2.
-	if(!pc.hasStatusEffect("Beta's Satisfaction")) pc.createStatusEffect("Beta's Satisfaction",2,0,0,0,false,"Icon_Charmed","You've recently sated your desire for your alpha's cum, and can think only of her. You take less damage from lust-damaging attacks.", false, 0, 0xFF69B4);
+	if(!pc.hasStatusEffect("Beta's Satisfaction")) pc.createStatusEffect("Beta's Satisfaction",2,0,0,0,false,"Icon_Charmed","You’ve recently sated your desire for your alpha’s cum, and can think only of her. You take less damage from lust-damaging attacks.", false, 0, 0xFF69B4);
 	pc.setStatusMinutes("Beta's Satisfaction",7*24*60);
 }
 
@@ -76,7 +76,7 @@ public function unlockTheSlavePen():void
 //If the PC has a slave uniform, play when entering the T intersection at the end of the hall with the slave pens. Slaves can’t have been freed, and PC can’t have gone to the Foundry level already.
 public function slavePretenderooo():Boolean
 {
-	if(flags["ZHENG_SPACEWALKED"] == undefined && flags["ZHENG_SHI_SLAVE_SNUCK"] == undefined && (pc.hasItemByClass(Slavesuit) || pc.armor is Slavesuit) && flags["MAIKE_SLAVES_RELEASED"] != 1 &&  flags["MAIKE_SLAVES_RELEASED"] != 2 && flags["ZHENG_SLAVE_SNEAK_DISABLED"] == undefined)
+	if(flags["ZHENG_SPACEWALKED"] == undefined && flags["ZHENG_SHI_SLAVE_SNUCK"] == undefined && (pc.hasItemByClass(Slavesuit) || pc.armor is Slavesuit) && flags["MAIKE_SLAVES_RELEASED"] != 1 && flags["MAIKE_SLAVES_RELEASED"] != 2 && flags["ZHENG_SLAVE_SNEAK_DISABLED"] == undefined)
 	{
 		author("Savin");
 		output("\n\nAs you make your way through the hall, your attention is caught by a sudden cry of pain from nearby. Thinking fast, you ");
@@ -84,7 +84,7 @@ public function slavePretenderooo():Boolean
 		else output("press yourself up against the nearest wall and stick the end of your Codex around the corner, viewing the events from as much stealth as you can on short notice");
 		output(".");
 
-		output("\n\nThere’s a group of slaves in the hallway, being escorted out of the pens in a line of frightened forms. They’re all wearing the same tight, form-hugging orange and blue bodysuits that you’ve encountered before, <i>“easy access”</i> zippers included. Unlike the mine slaves, though, these ones are pristine - well-kept, clean, unblemished by hard work in the dusty mines. Pleasure slaves.");
+		output("\n\nThere’s a group of slaves in the hallway, being escorted out of the pens in a line of frightened forms. They’re all wearing the same tight, form-hugging orange and blue bodysuits that you’ve encountered before, “easy access” zippers included. Unlike the mine slaves, though, these ones are pristine - well-kept, clean, unblemished by hard work in the dusty mines. Pleasure slaves.");
 		output("\n\nA pirate in a suit of masked combat armor is directing the herd in your direction, shoving and cajoling the unwilling men and women towards their fate. A couple of robotic wolves hound their feet, keeping the back of the column moving forward in their master’s wake. Looks like they’re being led to somewhere else in the facility... this might be your chance to skip ahead a bit, if you’re willing to degrade yourself at least.");
 		clearMenu();
 		//[Sneak In] [No Way]
@@ -117,7 +117,9 @@ public function sneakIntoTheSlaveChainGang():void
 	author("Savin");
 	output("Okay, this is your shot to get deeper into the facility. You " + (!(pc.armor is Slavesuit) ? "stuff yourself hastily into your slave outfit and ":"") + "wait in the shadows as long as you can, letting the armored pirate and the first few slaves pass by your hiding place. Before the mechanical rear guard can turn the corner, in that brief moment when there’s no eyes on the middle of the convoy, you slip out of the shadows and into the midst of the group. The slaves are all downcast and afraid to look at anything too closely; you don’t get so much as a look as you slip into their ranks.");
 	output("\n\nAs long as nobody looks too closely at you" + (!(pc.accessory is MaikesCollar) ? " and your lack of collar":"") + ", everything should be fine...");
-	output("\n\nYou’d guess there’s about a dozen slaves with you, all attractive and in their prime. Real prizes to scum like this(bimbo: , though obviously you take the cake}. You squeeze your way into the middle of the slave group, trying to look like just another piece of fuck-meat going to meet [pc.hisHer] lurid fate.");
+	output("\n\nYou’d guess there’s about a dozen slaves with you, all attractive and in their prime. Real prizes to scum like this");
+	if(pc.isBimbo()) output(", though obviously you take the cake");
+	output(". You squeeze your way into the middle of the slave group, trying to look like just another piece of fuck-meat going to meet [pc.hisHer] lurid fate.");
 	output("\n\nIt must work, because before long you’re being herded onto a small shuttle parked in the hangar, not that far from your own vessel. It’s a tight squeeze, packed together like sardines while the pirate and a pilot climb aboard, watching you all beneath their opaque masks... though you can easily imagine the lust on their faces, looking over your nubile bodies. The shuttle door seals shut, and the engines rumble, sending a shudder through the deck under your [pc.feet].");
 	output("\n\n<i>“Hold onto something,”</i> one of the slaves whispers to you as the shuttle takes off. You’re too packed in to even <i>hope</i> to reach one of the hand holds on the sides of the cabin, no matter how hard you reach.");
 	//set location to generic empty square and refresh map!
@@ -166,13 +168,15 @@ public function beingADisguisedSlavePt3():void
 	output("\n\nWhich is exactly what it’s doing. Your entrance to the spacedock grants you a long-panning view of a heavy corvette in the last stages of construction, covered in scaffolding and workers welding on exterior armor or lavishing the hull with dark orange paint.");
 	output("\n\n<i>“Woah,”</i> Ardia breathes, staring out the window. <i>“They’re making a whole ship in here!”</i>");
 	output("\n\nYour eyes are soon drawn downwards, to a sprawling fabrication facility underneath the pirate vessel. They’ve got everything they need to process the materials for their vessels, with dozens of technicians and engineers maneuvering between the vast rows of semi-automated machines printing out plates of metal armor and interior hardware. Several other slaves make less-subtle gasps of awe, earning a harsh <i>“Quiet down!”</i> from the guard.");
-	output("\n\nThe shuttle lands a short ways in, settling down on the main deck with another shuddering <i>thunk</i> that makes you glad for Arida’s meaty shock absorbers. The door opens with a hiss, and the pirate starts shouting for everyone to get the fuck off. You end up bodily pushed out of the shuttle and onto the deck, sticking to the middle of the pack again.");
+	output("\n\nThe shuttle lands a short ways in, settling down on the main deck with another shuddering <i>thunk</i> that makes you glad for Ardia’s meaty shock absorbers. The door opens with a hiss, and the pirate starts shouting for everyone to get the fuck off. You end up bodily pushed out of the shuttle and onto the deck, sticking to the middle of the pack again.");
 	output("\n\n<i>“Lucky you,”</i> your guard says, having to half-shout over the foundry’s ambient roar. <i>“You scum get a walk through the boss’s shiny new toy on your way up to meet him and all the fancy dicks you’re gonna be sucking. Should be honored!”</i>");
 	output("\n\nWhat’s that? The guy in charge of this place is <b>somewhere through the drydocked ship?</b> Good to know for after you make your escape.");
 	output("\n\nYour thoughts are interrupted by a rough hand grabbing your shoulder, pulling you out from the pack.");
 	output("\n\n<i>“This one!”</i> a large, heavyset pirate in a welder’s smock shouts. He’s a thraggen, a towering slab of scarred green skin wrapped over hard muscle. <i>“You owe me two replacements, ya scallywag.”</i>");
-	output("\n\nYour guard grunts and stops the convoy. <i>“Who the fuck says ‘scallywag?’ ‘Sides, these ones are meant for the boss. Sorry Agrosh!”</i>");
-	output("\n\n<i>“You owe me two!”</i> the bigger man growls, shaking you like a toy{ despite your much greater size}. <i>“Or do you want your little accident gettin’ reported up top?”</i>");
+	output("\n\nYour guard grunts and stops the convoy. <i>“Who the fuck says ‘scallywag’? ‘Sides, these ones are meant for the boss. Sorry Agrosh!”</i>");
+	output("\n\n<i>“You owe me two!”</i> the bigger man growls, shaking you like a toy");
+	if(pc.tallness > 90) output(" despite your much greater size");
+	output(". <i>“Or do you want your little accident gettin’ reported up top?”</i>");
 	output("\n\nThe guard sighs and pulls a datapad out of his belt, fiddling with it for a moment. <i>“Oops, guess I brought two more slaves than the requisition order. Take your pick, old man.”</i>");
 	output("\n\n<i>“That’s more like it,”</i> the thraggen says, nodding. You get shoved backwards, pressed up against a wall by one of his big, leathery hands. <i>“This one, and... you!”</i>");
 	output("\n\nArdia gives a shrill little cry as she’s pulled out of the pack. The guard just shrugs in response to the kidnapping. <i>“You know I don’t just keep the best ones in the middle, right? Eh whatever, your pick’s your pick. Just don’t go saying I don’t do no favors for the engineers.”</i>");
@@ -221,7 +225,7 @@ public function serviceAgroshYaSloot():void
 	output("\n\nHer punishment only last for a few seconds before the chief pushes her back to the crown. <i>“Get busy on the shaft,”</i> he growls at you, using his other hand to direct your mouth to his veiny girth. Your [pc.lips] lock around him, letting your tongue play up and down Agrosh’s knob. It’s almost human-like, save for its coloration - so dark green that it’s almost black in places, and its tip has the same mushroom shape as a human’s, though it’s buried in Ardia’s mouth now. The slave-girl locks eyes with you a moment and tries to smile reassuringly, though it ends up looking more like a grimace around her mouthful of thraggen meat.");
 	output("\n\nHard to blame her. The smell alone is almost overpowering, to say nothing of the bitter, salty taste you’re experiencing. Agrosh seems to revel in Ardia’s dismay, pumping her head up and down the few inches at his tip with little concern for her ability to breathe. You suppose you got the better end of this, only responsible for his lower half, but your cheeks are soon flicked with Ardia’s spittle and errant drops of pre that don’t quite stay on her blue lips.");
 	output("\n\nA couple more minutes of this, though, and you can feel Agrosh’s heart racing. His cock stiffens, throbbing hungrily as he forces more and more into Ardia’s mouth with every thrust. Finally, you’re fully pushed off his cock as the brawny forge chief pushes Ardia’s plush lips all the way down and grunts as his seed spills down her throat.");
-	output("\n\n<i>“Fuck!”</i> Agrosh huffs, shoving Ardia down on the floor. Cum drools down her chin amidst little coughs and splutters. His dick’s as shiny as chrome, though, polished raw by the dickgirl’s dutiful lips. A few droplets of seed leak down from his dark crown, splattering on the ground as he turns his attention to you. <i>“Decent warmpup. Now you...”</i>");
+	output("\n\n<i>“Fuck!”</i> Agrosh huffs, shoving Ardia down on the floor. Cum drools down her chin amidst little coughs and splutters. His dick’s as shiny as chrome, though, polished raw by the dickgirl’s dutiful lips. A few droplets of seed leak down from his dark crown, splattering on the ground as he turns his attention to you. <i>“Decent warm-up. Now you...”</i>");
 	output("\n\nAgrosh saunters over and picks you up by the arm, shoving you over to the nearby couch. You go tumbling face-first and ass-up, a situation the thraggen quickly takes advantage of. He yanks down your slave uniform’s zippers, exposing your [pc.butt] and what lies between its cheeks. A sharp spank makes you gasp, but its the two spit-soaked fingers ramming themselves up your [pc.vagOrAss] that makes you <i>scream</i>. Your assailant swirls his fingers around, smearing your clenching inner walls with just enough spit to make sure he’ll get the tip in without any trouble.");
 	var x:int = -1;
 	if(pc.hasVagina()) x = rand(pc.totalVaginas());
@@ -328,7 +332,7 @@ public function slaveLoungeAgroshProc():Boolean
 		clearOutput();
 		showAgroshAndArdia();
 		author("Savin");
-		output("As you step through the door marked <i>“Officer’s Lounge,”</i> you’re greeted by a sudden blast of cool air - a welcome reprieve from the oppressive heat of the foundry. However, on its heels comes an overpowering, musky odor and the sound of flesh slamming flesh. Your eyes are quickly drawn past a wet bar to a large cushioned sofa, where a huge, burly thraggen man is sitting with legs and arms spread while a bronze-skinned, blue-haired girl goes down on his girthy rod.");
+		output("As you step through the door marked “Officer’s Lounge,” you’re greeted by a sudden blast of cool air - a welcome reprieve from the oppressive heat of the foundry. However, on its heels comes an overpowering, musky odor and the sound of flesh slamming flesh. Your eyes are quickly drawn past a wet bar to a large cushioned sofa, where a huge, burly thraggen man is sitting with legs and arms spread while a bronze-skinned, blue-haired girl goes down on his girthy rod.");
 		output("\n\n<i>“Hey! Close the - who the fuck are you!?”</i> the thraggen growls, shoving the dzaan off his cock. She crumples to the floor with a shrill cry of fear, scrambling behind the bar while her master rises, cracking his knuckles. <i>“Don’t matter. I don’t know your face, which means you don’t belong in Agrosh’s foundry. Kiss your freedom goodbye!”</i>");
 		output("\n\nWith a feral roar, the huge thraggen comes charging right at you!");
 		//start fite
@@ -447,7 +451,7 @@ public function badEndToAgrosh3():void
 //Interactions in the Bar
 public function foundryLoungeBonus():Boolean
 {
-	if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["AGROSH_WHUPPED"] != undefined) output(", and the big, burly thraggen technician you've tied up to one of the bar stools");
+	if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["AGROSH_WHUPPED"] != undefined) output(", and the big, burly thraggen technician you’ve tied up to one of the bar stools");
 	output(".");
 	if(flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["AGROSH_WHUPPED"] != undefined) 
 	{
@@ -464,7 +468,7 @@ public function ardiaApproach(back:Boolean = false):void
 	clearOutput();
 	showArdia();
 	author("Savin");
-	if(back) output("Is there anything else you'd like to do with Ardia instead?");
+	if(back) output("Is there anything else you’d like to do with Ardia instead?");
 	else output("<i>“Hey, [pc.name]!”</i> Ardia says as you [pc.walk] over to the bar. She shifts in her seat, resting a leg on the insensate forge-master’s head. <i>“All’s quiet here. How are you doing; any closer to taking these slavers out?”</i>");
 	processTime(1);
 	ardiaMenu();
@@ -509,7 +513,7 @@ public function ardiasStory():void
 	showArdia();
 	author("Savin");
 	output("<i>“How did you end up here?”</i> you ask her. <i>“Did the pirates kidnap you?”</i>");
-	output("\n\nArdia nods slowly. <i>“Yeah, right off my homeworld. The part of Hauâ Mai I grew up on is basically one island-wide resort, a real magnet  for wealthy tourists looking for a beaches and jungle getaway. I thought I’d be safe from this kinda thing, until I made the mistake of joining a mission trip to one of the, uh, less civilized part of the planet. I’d heard slavers target the dzaan tribes that still choose to live out in the jungles like they’re still on the homeworld, but we had a bodyguard at our camp and took as many safety precautions as we could. Wasn’t enough, I guess! Middle of the night, a ship comes in and orbits the village we were staying with. Lots of screaming, blinding lights, pirates flying down on jetpacks and grabbing people. Most of the missionaries got out okay, but I guess I was just the slowest tillabeast in the herd. Some big bastard in orange armor came out of the sky, grabbed me by hips, and jump-jetted me away to his ship.”</i>");
+	output("\n\nArdia nods slowly. <i>“Yeah, right off my homeworld. The part of Hauâ Mai I grew up on is basically one island-wide resort, a real magnet for wealthy tourists looking for a beaches and jungle getaway. I thought I’d be safe from this kinda thing, until I made the mistake of joining a mission trip to one of the, uh, less civilized part of the planet. I’d heard slavers target the dzaan tribes that still choose to live out in the jungles like they’re still on the homeworld, but we had a bodyguard at our camp and took as many safety precautions as we could. Wasn’t enough, I guess! Middle of the night, a ship comes in and orbits the village we were staying with. Lots of screaming, blinding lights, pirates flying down on jetpacks and grabbing people. Most of the missionaries got out okay, but I guess I was just the slowest tillabeast in the herd. Some big bastard in orange armor came out of the sky, grabbed me by hips, and jump-jetted me away to his ship.”</i>");
 	output("\n\n<i>“I wish I could say I’d gone back to try and save some little kid, or put out a fire or something... but honestly, I just tripped and fell on my dumb face. Shoulda listened to my mom and stayed in shape, but instead I spent my formative years focusing on the softer kinda figure-building,”</i> Ardia half-laughs, patting a hand on her soft belly, just beneath the full mounds of her F-cup tits. <i>“Besides, dzaan legs just weren’t made for running.”</i>");
 	output("\n\nShe wiggles her toes on top of Agrosh’s head, drawing your attention to the balls-down build of her feet. It’s like she’s perpetually wearing stilettos, but with nothing to support her heels. Yeah, it’s hard to imagine any dzaan marathon runners built like that.");
 	output("\n\nArdia laughs, <i>“Yeah, there’s a reason we came up as a pleasure-oriented culture instead of like, warriors or science-based or whatever... and I guess every pirate gang in the galaxy figures we must be real <b>good</b> at the whole pleasure thing. Buncha racists!”</i>");
@@ -550,7 +554,7 @@ public function pirateInfoDumpFromArdia():void
 	showArdia();
 	author("Savin");
 	output("<i>“You’ve been here longer than me. Learned anything interesting about the pirates?”</i>");
-	output("\n\nArdia thinks for a moment. <i>“Well, there’s lots of gangs here. This place is like some sort of pirate haven, a neutral ground for a bunch of different groups. I got captured by the Star Vipers, a bunch of real nasty pieces of work that love their drugs and poisons. I must have gotten stuck with twenty needles before you found me! They’re the ones that take the most pleasure slaves, from what I heard. Then there’s the Cyber Punks, real original guys that love their cybernetic augments and limbs. Rat's Raiders are probably the least evil, they’re just thieves... though they try and make themselves look altruistic, I don’t buy it. The Corona Lords are psychos that love radiation and plasma... I can’t believe they don’t all kill themselves with the getups they run around in.”</i>");
+	output("\n\nArdia thinks for a moment. <i>“Well, there’s lots of gangs here. This place is like some sort of pirate haven, a neutral ground for a bunch of different groups. I got captured by the Star Vipers, a bunch of real nasty pieces of work that love their drugs and poisons. I must have gotten stuck with twenty needles before you found me! They’re the ones that take the most pleasure slaves, from what I heard. Then there’s the Cyber Punks, real original guys that love their cybernetic augments and limbs. Rat’s Raiders are probably the least evil, they’re just thieves... though they try and make themselves look altruistic, I don’t buy it. The Corona Lords are psychos that love radiation and plasma... I can’t believe they don’t all kill themselves with the getups they run around in.”</i>");
 	output("\n\n<i>“The leaders of the bunch are the Jumpers. They’re laquine bushwackers that love themselves some latex and bondage gear... and jump jets. I think some of them were working with the Vipers that kidnapped me, since I got picked up by a guy with a jetpack.”</i>");
 	output("\n\nArdia scowls, rubbing at her hip-hugging uniform. <i>“I can’t believe so many different groups are working together as well as they are. Enough to start building that new starship outside... who would have thought pirates could build their own ships! That’s a whole new danger I’d never have thought about before... I figured pirate ships were all stolen.”</i>");
 	if(pc.isMischievous()) output("\n\n<i>“Well, they had to start somewhere I guess.");
@@ -577,6 +581,7 @@ public function relaxWithArdia():void
 	addButton(1,"Mini Rahn",chooseAnArdiaDrink,"Mini Rahn","Mini Rahn","A jello shot! No gel or goo creatures were harmed making this delicious, sweet drink.");
 	addButton(2,"Honey Mead",chooseAnArdiaDrink,"Honey Mead","Honey Mead","Honey-based mead.");
 	addButton(3,"Her",chooseAnArdiaDrink,"Her","Her","You’ve got your eyes on the prettiest drink in this place...");
+	addButton(14,"Back",ardiaApproach,true);
 }
 
 //[Her]
@@ -646,7 +651,7 @@ public function chooseAnArdiaDrink(drink:String = ""):void
 		processTime(10);
 		pc.lust(15);
 		clearMenu();
-		addButton(0,"Eat Her Out",eatOutArdia,undefined,"Eat Her Out","Munch on Ardia's proverbial rug.");
+		addButton(0,"Eat Her Out",eatOutArdia,undefined,"Eat Her Out","Munch on Ardia’s proverbial rug.");
 	}
 }
 
@@ -670,7 +675,7 @@ public function eatOutArdia():void
 	//[Her Pussy] [Her Balls]
 	addButton(0,"Her Pussy",worshipArdiasSilkyCunny,undefined,"Her Pussy","Keep worshipping Ardia’s pussy until the curvy alpha cums all over herself.");
 	addButton(1,"Her Balls",worshipArdiasBalls,undefined,"Her Balls","Worship those fat balls hanging low under Ardia’s cock.");
-	if(flags["SEXED_ARDIA"] == undefined || (flags["SEXED_ARDIA"] != undefined && flags["SEXED_ARDIA"] < 3)) addDisabledButton(2,"Her Butt","Her Butt","You're not quite ready to leap tongue-deep into her ass. Maybe once you've played with Ardia more.");
+	if(flags["SEXED_ARDIA"] == undefined || (flags["SEXED_ARDIA"] != undefined && flags["SEXED_ARDIA"] < 3)) addDisabledButton(2,"Her Butt","Her Butt","You’re not quite ready to leap tongue-deep into her ass. Maybe once you’ve played with Ardia more.");
 	else
 	{
 		//[Her Butt]
@@ -693,7 +698,7 @@ public function worshipArdiasSilkyCunny():void
 	output("You shift your hands off her balls, letting them rest under their own hefty weight; your attentions find their way to her pussy, rubbing at the bud of Ardia’s clit and pushing a pair of fingers inside to accompany your wiggling tongue. You’re able to start really spreading her open now, using your fingers to stretch her lips and let loose another trickle of pent-up lubrication. Ardia’s thighs are getting messy now, slicked with precum from both her sexes.");
 	output("\n\nIt isn’t long before those alien legs of hers start trembling, followed by a crack in her voice. Her pussy’s muscles squeeze your fingers and tongue with desperate need as if she could wring an orgasm out of you through force alone. Her poor balls tremble with swelling seed, now languishing without your caressing touch. Ardia strokes herself off as fast as she can now, her huge chest heaving with her quickening breath.");
 	output("\n\nAll you need to do is keep licking, lavishing every inch of juicy dzaan cunny with oral love, enjoying your liberated lover’s exotic taste until she’s ready to burst... which isn’t very long at all. Ardia tenses, squeezing down hard on your [pc.tongue] as her juices flow freely around you. A second later and there’s a lurid, wet sound from around the bergs of Ardia’s ass, and you’re assailed by the potent smell of wasted cum spilling down onto the floor between her feet. Ardia shudders and moans weakly as your tongue and fingers (and her own jacking hand) milk the cum from her virile balls.");
-	output("\n\n<i>“Whew, I needed that!”</i> Ardia moans, arching her back at an inhuman angle. Her plush rump jiggles as you slowly extract yourself from her ass, cheeks and chin smeared with her juices. The curvy dzaan pivots on a heel and sits herself back down with legs spread to show her cum-soaked thighs and glistening " + ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "equine ":"" + "cockhead. Her balls look just as full as ever, though, and with a husky whisper, Ardia says, <i>“But I don’t think that’s all you wanted, was it?”</i>");
+	output("\n\n<i>“Whew, I needed that!”</i> Ardia moans, arching her back at an inhuman angle. Her plush rump jiggles as you slowly extract yourself from her ass, cheeks and chin smeared with her juices. The curvy dzaan pivots on a heel and sits herself back down with legs spread to show her cum-soaked thighs and glistening " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "equine ":"") + "cockhead. Her balls look just as full as ever, though, and with a husky whisper, Ardia says, <i>“But I don’t think that’s all you wanted, was it?”</i>");
 	output("\n\nNot even close...");
 	pc.girlCumInMouth(ardia);
 	processTime(15);
@@ -725,7 +730,7 @@ public function worshipArdiasBalls():void
 	pc.lust(15);
 	clearMenu();
 	addButton(0,"Suck Her",suckArdiaDownSloot,undefined,"Suck Her","Go down on Ardia’s cum-drooling tool and get a fad load of her jizz.");
-	addButton(1,"Ride Her",rideArdiasDickYo,undefined,"Ride Her","Climb into Ardia's lap and ride that intoxicating cock of hers.");
+	addButton(1,"Ride Her",rideArdiasDickYo,undefined,"Ride Her","Climb into Ardia’s lap and ride that intoxicating cock of hers.");
 }
 
 //[Suck Her]
@@ -736,14 +741,14 @@ public function suckArdiaDownSloot():void
 	showArdia(true);
 	author("Savin");
 	output("You lower yourself down " + (pc.hasKnees() ? "on your [pc.knees]":"to the ground") + " and plant your hands on Ardia’s thick thighs, spreading them apart to give yourself a perfect view of her fat balls and slowly-softening cock both framed by cum-soaked bronzed flesh.");
-	output("\n\n<i>“Good beta,”</i> Ardia laughs, winking down at you." + (addictedToArdia() ? " <i>“Come get your reward.”</i>":" <i>“Don’t swallow too much, or you might just get addicted to me...”</i>"));
+	output("\n\n<i>“Good beta,”</i> Ardia laughs, winking down at you. <i>“" + (addictedToArdia() ? "Come get your reward.":"Don’t swallow too much, or you might just get addicted to me...") + "”</i>");
 
 	output("\n\nYou can already taste her seed, sweet with just a hint of bitterness, and as your [pc.tongue] wraps around it a faint warmth starts to spread through your cheeks... and straight down to your loins. Mmm, and that’s just the leftovers of her last orgasm! Already, your mind races with the hunger for more - the desire to milk those meaty balls of hers dry and take all that precious cum for yourself.");
 
 	if(!addictedToArdia()) output("\n\nYou shake yourself off - what are you thinking? That’s just her drugged-up sperm talking, not you... right?");
 	else output("\n\nYou don’t even care that you’re a dirty cum-fiend in that moment: all your brain can process is your carnal desires!");
 
-	output("\n\nYour [pc.lips] flicks across Ardia’s " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "blunt, animalistic tip":"dark crown") + ", teasing her cumslit with your tongue as you start to take her length. " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "Her horse-cock's nice and long, nicely matched to all the other big swinging dicks this station has to offer, but":"Her cock’s not particularly long, at least compared to the other swinging dicks on offer around here, but") + " damn it’s sweet... and attached to a real sweetheart who looks down at you with a warm smile, " + (!pc.hasHair() ? "stroking your cheek":"running a hand through your [pc.hairNoun]") + " as you make your way down. " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "Every inch that passes your lips feels like a victory, a step closer to becoming the girth-strained, cum-drunk cock-sock that you very much want to be.":"Every one of her keratin nubs that passes your lips feels like a victory, a step closer to your just dessert."));
+	output("\n\nYour [pc.lips] flicks across Ardia’s " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "blunt, animalistic tip":"dark crown") + ", teasing her cumslit with your tongue as you start to take her length. " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "Her horse-cock’s nice and long, nicely matched to all the other big swinging dicks this station has to offer, but":"Her cock’s not particularly long, at least compared to the other swinging dicks on offer around here, but") + " damn it’s sweet... and attached to a real sweetheart who looks down at you with a warm smile, " + (!pc.hasHair() ? "stroking your cheek":"running a hand through your [pc.hairNoun]") + " as you make your way down. " + (ardia.hasCock(GLOBAL.TYPE_EQUINE) ? "Every inch that passes your lips feels like a victory, a step closer to becoming the girth-strained, cum-drunk cock-sock that you very much want to be.":"Every one of her keratin nubs that passes your lips feels like a victory, a step closer to your just dessert."));
 	if(addictedToArdia()) output("\n\n<i>“Oh, look at you,”</i> Ardia murmurs, leaning back in her seat. <i>“God, you look beautiful down between my legs. I don’t even mind taking responsibility for you... my first beta. You’re so goooood, unf.”</i>");
 	else output("\n\n<i>“That’s a good look for you,”</i> Ardia laughs, leaning back in her seat. <i>“Nestled down between my legs like a good beta. Don’t try <b>too</b> hard not to get hooked on my cum. I could really get used to this kinda treatment.”</i>");
 
@@ -1037,14 +1042,16 @@ public function worshipArdiasButtYouSluuuut(x:int):void
 	if(!ardia.hasPlumpAsshole()) output("dark star quivers from the orgasm you just gave it");
 	else output("plush butthole winks back at you, clenching and unclenching as her orgasm runs from tender tush to throbbing erection");
 	output(". It’s so cute you can’t help but want to fuck it... not like you weren’t going to. You press the ");
-	if(x < 0) output("[pc.cockHead " + x + "] of your [pc.cock " + x + "]");
+	if(x >= 0) output("[pc.cockHead " + x + "] of your [pc.cock " + x + "]");
 	else output("rounded tip of your hardlight strapon");
 	output(" against the dzaan’s spasming anal entrance.");
 
-	output("\n\nAll you get is a wordless groan of orgasmic ecstasy as you slowly thrust your [pc.hips] forward, sinking your dick into her cock-craving asshole. Inch by inch, you feed her your [pc.cockOrStrapon " + x + "], watching with perverse delight as her asshole winks and squeezes... and oh, does it feel <i>good</i>. When you bottom out, Ardia’s back arches like the anal whore you’ve made her, and you can feel her cock wagging back and forth between her legs, slapping wetly against your [pc.leg] as your lover keeps cumming her brains out. And her continued orgasm does wonderful things for you, too, making her clench and squeeze wildly all along your length.");
+	output("\n\nAll you get is a wordless groan of orgasmic ecstasy as you slowly thrust your [pc.hips] forward, sinking your " + (x >= 0 ? "dick" : "dildo") + " into her cock-craving asshole. Inch by inch, you feed her your [pc.cockOrStrapon " + x + "], watching with perverse delight as her asshole winks and squeezes... and oh, does it feel <i>good</i>. When you bottom out, Ardia’s back arches like the anal whore you’ve made her, and you can feel her cock wagging back and forth between her legs, slapping wetly against your [pc.leg] as your lover keeps cumming her brains out. And her continued orgasm does wonderful things for you, too, making her clench and squeeze wildly all along your length.");
+	
 	if(x >= 0) pc.cockChange();
+	
 	output("\n\nWhile it lasts, you figure it’s time to really <i>fuck</i> this wanna-be-alpha’s slutty ass. You give her a good spank across her jiggling asscheeks, making her squeeze down harder than ever before as you pull your hips back. She just about squeezes you out, but you’re able to rally at the last moment and slam your [pc.cockOrStrapon " + x + "] right back in. Ardia shrieks, and another massive wave of spooge shoots straight down from her [ardia.cock] and into the growing puddle on the deck. You’re pretty sure she cries out something like <i>“Oh my God!”</i> but it just sounds like a cum-drunk moan, especially as she starts thrusting her hips back against you.");
-	output("\n\nGood girl! You reach down and grab the dzaan’s arms, hefting her up off the chair and making her stand while she receives your dick. Her hands cup her boobs, but that’s all the action Ardia can manage outside of her sexual muscles. Her [ardia.cock] juts straight in front of her, sending thick ropes of cum all over her seat and the room behind it.");
+	output("\n\nGood girl! You reach down and grab the dzaan’s arms, hefting her up off the chair and making her stand while she receives your " + (x >= 0 ? "dick" : "hardlight strapon") + ". Her hands cup her boobs, but that’s all the action Ardia can manage outside of her sexual muscles. Her [ardia.cock] juts straight in front of her, sending thick ropes of cum all over her seat and the room behind it.");
 	output("\n\n<i>“Yes!”</i> she screams, the first cogent word you’ve heard in a while. <i>“Oh [pc.name] it feels so good! Fuck me harder, please... please!”</i>");
 	output("\n\nIf she insists.");
 	
@@ -1201,8 +1208,8 @@ public function giveArdiaAMod():void
 	output("What mod do you want to give Ardia?");
 	clearMenu();
 	if(ardia.hasPlumpAsshole()) addDisabledButton(0,"Anusoft","Anusoft","She already has a big, fat donut-asshole!");
-	else if(flags["ARDIA_BUTTLOVED"] == undefined) addDisabledButton(0,"Anusoft","Anusoft","You'll need to have claimed her ass at least once before playing god with it, you madman!");
-	else if(!pc.hasItemByClass(Anusoft)) addDisabledButton(0,"Anusoft","Anusoft","You don't have any of these to give her!");
+	else if(flags["ARDIA_BUTTLOVED"] == undefined) addDisabledButton(0,"Anusoft","Anusoft","You’ll need to have claimed her ass at least once before playing god with it, you madman!");
+	else if(!pc.hasItemByClass(Anusoft)) addDisabledButton(0,"Anusoft","Anusoft","You don’t have any of these to give her!");
 	else
 	{
 		//[Her Butt]
@@ -1215,8 +1222,8 @@ public function giveArdiaAMod():void
 	}
 	if(ardia.hasCock(GLOBAL.TYPE_EQUINE)) addDisabledButton(1,"HorseCock","HorseCock","She already has a horse-cock!");
 	else if(flags["SEXED_ARDIA"] == undefined) addDisabledButton(1,"HorseCock","HorseCock","You should probably have fucked the girl at least once before you try to slap an enormous beast-cock onto her.");
-	else if(flags["SEXED_ARDIA"] < 3) addDisabledButton(1,"HorseCock","HorseCock","You've barely even slept with her once! Third time's the charm..."); 
-	else if(!CodexManager.entryUnlocked("SynthSheath")) addDisabledButton(1,"HorseCock","HorseCock","You haven't discovered the mod you'd need to use for this.");
+	else if(flags["SEXED_ARDIA"] < 3) addDisabledButton(1,"HorseCock","HorseCock","You’ve barely even slept with her once! Third time’s the charm..."); 
+	else if(!CodexManager.entryUnlocked("SynthSheath")) addDisabledButton(1,"HorseCock","HorseCock","You haven’t discovered the mod you’d need to use for this.");
 	else if(!pc.hasItemByClass(HorseCock)) addDisabledButton(1,"HorseCock","HorseCock","You need to have found some kind of horse-dick-gifting toy in order to slap it onto her.");
 	else addButton(1,"HorseCock",giveArdiaAHossCock,undefined,"HorseCock","You can never have too much of a good thing.");
 	addButton(14,"Back",ardiaApproach,true);

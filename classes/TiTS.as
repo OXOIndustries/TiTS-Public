@@ -408,6 +408,7 @@
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/rozPowerGoo.as";
+		//include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/urbolg.as";
@@ -581,7 +582,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.198";
+			version = "0.7.200";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -620,27 +621,10 @@
 			parser = new ParseEngine(this, TiTS_Settings);
 
 			flags = new Dictionary();
-
-			initializeRooms();
-			initTavrosRooms();
-			initMhengaRooms();
-			initTarkusRooms();
-			initNewTexasRooms();
-			initializeMyrellionRooms();
-			kquest2InitRooms();
-			initUvetoRooms();
-			initUvetoRoomsII();
-			initZhengRooms();
-			initGastigothRooms();
-			kiInitRooms();
-			initVesperiaRoom();
-			initBreedwellRooms();
-			fqInitRooms();
-			syriQuestInitRooms();
-			initGreatMajinRooms();
 			
-			mapper = new Mapper(this.rooms)
-
+			// Make the rooms, build the map
+			buildRooms();
+			
 			var tPC:PlayerCharacter = new PlayerCharacter();
 			chars["PC"] = tPC;
 			charDict[tPC] = "PC";

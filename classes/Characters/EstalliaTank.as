@@ -426,11 +426,9 @@ package classes.Characters
 				}
 				coverRemaining = flags["KHORGAN_RIGHT_COVER"]
 			}
-			//if(display)
-			//{
-				if(coverNuked) output(" <b>(Cover gone!)</b>");
-				else output(" (-" + damage/2 + "% Cover)");
-			//}
+			
+			if(coverNuked) output(" <b>(Cover gone!)</b>");
+			else output(" (-" + damage/2 + "% Cover)");
 		}
 	}
 }

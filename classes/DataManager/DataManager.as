@@ -220,10 +220,11 @@
 			
 			kGAMECLASS.userInterface.mainButtonsOnly();
 			kGAMECLASS.userInterface.clearGhostMenu();
+			
 			kGAMECLASS.addGhostButton(0, "Load", this.loadGameMenu, undefined, "Load Game", "Load game data.");
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(1, "Save", this.saveGameMenu, undefined, "Save Game", "Save game data.");
 			else kGAMECLASS.addDisabledGhostButton(1, "Save", "Save Game", "You can’t save in your current location.");
-			kGAMECLASS.addGhostButton(2, "Delete", this.deleteSaveMenu, undefined, "Delete Save", "Delete a save game slot."); // Added for parity with AIR, because it kinda has to be there...
+			kGAMECLASS.addGhostButton(3, "Delete", this.deleteSaveMenu, undefined, "Delete Save", "Delete a save game slot."); // Added for parity with AIR, because it kinda has to be there...
 			
 			kGAMECLASS.addGhostButton(5, "Load File", this.loadFromFile, undefined, "Load from File", "Load game data from a specific file.");
 			if (kGAMECLASS.canSaveAtCurrentLocation) kGAMECLASS.addGhostButton(6, "Save File", this.saveToFile, undefined, "Save to File", "Save game data to a specific file.");
@@ -2016,7 +2017,6 @@
 			kGAMECLASS.userInterface.showPrimaryOutput();
 			
 			// *throws up in mouth a little*
-			kGAMECLASS.phoenixSetMapState();
 			kGAMECLASS.variableRoomUpdateCheck();
 			
 			// Trigger an attempt to update display font size

@@ -7293,12 +7293,13 @@
 					break;
 			}
 			
-			if (!nounOnly && rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
+			if (!nounOnly && rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives);
 			if (!nounOnly && wingColor() != "" && rand(2) == 0)
 			{
 				if(description != "") description += ", ";
-				description += wingColor() + " ";
+				description += wingColor();
 			}
+			if(description != "") description += " ";
 			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wing");
 			return description;
 		}
@@ -10398,7 +10399,7 @@
 			return quantity;
 		}
 		//Can hold about three average shots worth, since this is fantasy.
-		public function maxCum(): Number {
+		public function maxCum(raw:Boolean = false): Number {
 			if (!hasCock()) return 0;
 			var quantity: Number = 0;
 			//Base value is ballsize*ballQ*cumefficiency by a factor of 2.
@@ -10411,12 +10412,15 @@
 			else quantity = Math.round(ballSize() * ballSize() * balls * 2 * ballEfficiency);
 
 			//Overriiiide for stuff
-			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
-			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
-			if(hasOpalRingCock()) 
+			if(!raw)
 			{
-				quantity *= 2;
-				quantity += 3000;
+				if(statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
+				if(statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
+				if(hasOpalRingCock()) 
+				{
+					quantity *= 2;
+					quantity += 3000;
+				}
 			}
 			return quantity;
 		}
@@ -11119,7 +11123,7 @@
 					cocks[slot].knotMultiplier = 1;
 					cocks[slot].cockColor = "pink";
 					if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
-					if(cocks[slot].cThicknessRatioRaw < 3) cocks[slot].cThicknessRatioRaw = 3;
+					if(cocks[slot].cThicknessRatioRaw < 2) cocks[slot].cThicknessRatioRaw = 2;
 					break;
 				case GLOBAL.TYPE_SYNTHETIC:
 					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
@@ -14202,6 +14206,12 @@
 		}
 		public function hairNoun():String
 		{
+			if (hairLength <= 0) {
+				if (hasFur()) return "furry head";
+				if (hasFeathers()) return "feathered head";
+				return "head";
+			}
+			
 			var descript:String = "";
 			//Mane special stuff.
 			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0) {
@@ -14228,6 +14238,12 @@
 		}
 		public function hairsNoun():String
 		{
+			if (hairLength <= 0) {
+				if (hasFur()) return "head fur";
+				if (hasFeathers()) return "head feathers";
+				return "head";
+			}
+			
 			var descript:String = "";
 			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
@@ -21213,6 +21229,27 @@
 							ThiccNShake.effectEnds(maxEffectLength, doOut, this, thisStatus);
 						}
 						break;
+					case "Beta's Satisfaction":
+						if(this is PlayerCharacter)
+						{
+							if(requiresRemoval && !hasStatusEffect("Dzaan Withdrawal"))
+							{
+								AddLogEvent(ParseText("The lingering satisfaction from serving your alpha has dissipated, leaving nothing but a disturbing thirst for more of her spunk in its wake. <b>You are in withdrawal!</b>"), "passive", maxEffectLength);
+								//"Dzaan Withdrawal" -50% rest healing & +50% lust gain over time
+								createStatusEffect("Dzaan Withdrawal",0,0,0,0,false,"Icon_Charmed","You crave your alpha’s cum, gaining Lust more quickly over time, and you find recovering during rest difficult with such distracted thoughts.", false, 24*28*60, 0xFF0000);
+							}
+						}
+						break;
+					case "Dzaan Withdrawal":
+						if(this is PlayerCharacter)
+						{
+							if(requiresRemoval)
+							{
+								AddLogEvent(ParseText("The constant craving to serve at Ardia’s feet has finally faded. <b>You’re no longer addicted to her!</b>"), "passive", maxEffectLength);
+								setStatusMinutes("Dzaan Addicted",1);
+							}
+						}
+						break;
 					case "Undetected Furpies":
 					case "Furpies Simplex H":
 					case "Furpies Simplex C":
@@ -21224,27 +21261,6 @@
 							{
 								thisStatus.minutesLeft = 0;
 								requiresRemoval = false;
-							}
-						}
-						break;
-					case "Beta's Satisfaction":
-						if(this is PlayerCharacter)
-						{
-							if(requiresRemoval)
-							{
-								AddLogEvent(ParseText("The lingering satisfaction from serving your alpha has disappointed, leaving nothing but a disturbing thirst for more of her spunk in its wake. <b>You are in withdrawal!</b>"), "passive", maxEffectLength);
-								//"Dzaan Withdrawal" -50% rest healing & +50% lust gain over time
-								createStatusEffect("Dzaan Withdrawal",0,0,0,0,false,"Icon_Charmed","You crave your alpha's cum, gaining Lust more quickly over time, and you find recovering during rest difficult with such distracted thoughts.", false, 24*28*60, 0xFF0000);
-							}
-						}
-						break;
-					case "Dzaan Withdrawal":
-						if(this is PlayerCharacter)
-						{
-							if(requiresRemoval)
-							{
-								AddLogEvent(ParseText("The constant craving to serve at Ardia's feet has finally faded. <b>You're no longer addicted to her!</b>"), "passive", maxEffectLength);
-								setStatusMinutes("Dzaan Addicted",1);
 							}
 						}
 						break;

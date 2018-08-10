@@ -1290,11 +1290,47 @@ public function paigeSexPrologue2():void
 	}
 	else output("Which you’d know if you hadn’t been skipping classes to buy me Honey Wine. But that’s okay. I’ll make sure we make up for lost time tonight.");
 	output("”</i>\n\n");
-
-	if(!pc.isChestExposed()) output("You finish removing your [pc.upperGarments], exposing your [pc.chest] and [pc.belly] to the warm air of her bedroom, just as ");
+	
+	var i:int = 0;
+	var upperClothesList:Array = [];
+	var lowerClothesList:Array = [];
+	
+	if(!pc.isChestExposedByArmor()) upperClothesList.push(pc.armor.longName);
+	if(!pc.isChestExposedByUpperUndergarment()) upperClothesList.push(pc.upperUndergarment.longName);
+	
+	if(upperClothesList.indexOf(pc.armor.longName) == -1 && (!pc.isCrotchExposedByArmor() || !pc.isAssExposedByArmor())) lowerClothesList.push(pc.armor.longName);
+	if(!pc.isCrotchExposedByLowerUndergarment() || !pc.isAssExposedByLowerUndergarment()) lowerClothesList.push(pc.lowerUndergarment.longName);
+	
+	if(upperClothesList.length > 0)
+	{
+		output("You finish removing your");
+		for(i = 0; i < upperClothesList.length; i++)
+		{
+			if(i > 0)
+			{
+				if(i + 1 == upperClothesList.length) output(" and");
+				else output(",");
+			}
+			output(" " + upperClothesList[i]);
+		}
+		output(", exposing your [pc.chest] and [pc.belly] to the warm air of her bedroom, just as ");
+	}
 	output("Paige is ");
 	//if {the PC is wearing lower garments}
-	if(!pc.isCrotchExposed() || !pc.isAssExposed()) output("done removing your [pc.crotchCovers], revealing your naked [pc.crotch] to her. She’s ");
+	if(lowerClothesList.length > 0)
+	{
+		output("done removing your");
+		for(i = 0; i < lowerClothesList.length; i++)
+		{
+			if(i > 0)
+			{
+				if(i + 1 == lowerClothesList.length) output(" and");
+				else output(",");
+			}
+			output(" " + lowerClothesList[i]);
+		}
+		output(", revealing your naked [pc.crotch] to her. She’s ");
+	}
 	output("finished talking – knowing there’s nothing between her and all of you, she stalks her way forward to claim you for herself.");
 
 	processTime(20);

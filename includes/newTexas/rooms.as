@@ -228,7 +228,7 @@ public function initNewTexasRooms():void
 	rooms["STRAPS"].addFlag(GLOBAL.INDOOR);
 	rooms["STRAPS"].addFlag(GLOBAL.PUBLIC);
 	rooms["STRAPS"].addFlag(GLOBAL.COMMERCE);
-	rooms["STRAPS"].addFlag(GLOBAL.NOFAP);
+	//rooms["STRAPS"].addFlag(GLOBAL.NOFAP);
 	
 	//509
 	//Just south of SW barn corner

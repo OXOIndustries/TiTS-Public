@@ -67,7 +67,9 @@ public function FTEH1(args:Array):void
 	output("Your arms lift up and wrap around her back gently, holding her close. You can’t get enough of the way her tongue so eloquently dances with yours and explores your cheeks, or the way her hips grind so teasingly against yours, or the way her hard nipples dig and button into your");
 	if(pc.biggestTitSize() <= 5) output("s, the energy between them conducive and <i>real</i>.");
 	else output(" [pc.chest], the meat between your upper bodies cushioning you both.");
-	output("\n\nPaige moans into you, enjoying the sensation between you as much as you are her. Her eyes have closed blissfully as she absorbs your every facet. Her left hand goes to your head, caressing your cheek and playing with your hair. When she finally pulls away, her eyes are open and locked onto yours");
+	output("\n\nPaige moans into you, enjoying the sensation between you as much as you are her. Her eyes have closed blissfully as she absorbs your every facet. Her left hand goes to your head, caressing your cheek");
+	if(pc.hasHair()) output(" and playing with your hair");
+	output(". When she finally pulls away, her eyes are open and locked onto yours");
 	if(paigeBlind()) output(" (generally)");
 	output(".");
 
@@ -1427,7 +1429,7 @@ public function SSVKH(args:Array):void
 	output("You reach up and cup Paige’s cheek with your hand. She leans into it affectionately, and you boldly lean forward, placing your lips on hers. She doesn’t push you away or even hum in surprise like she usually does; instead, she melts some more and opens her mouth, letting her tongue out to play.");
 	output("\n\nThough the sex is fairly casual, you both make it intimate: your hands explore each other, pressing and tickling at the spots you both know you’re weakest at. You both do half the hip movement so that one isn’t working too hard and you both massage each other’s tongues and count each other’s teeth in long, languid strokes. It’s not strenuous; it’s not exhausting; but it’s passionate, and something about it being Paige makes the experience all the more special.");
 	output("\n\nShe pulls away and makes a show of licking her lips to enjoy your taste. She sits up, squatting her hips down onto yours, all the way to your base. <i>“You’re a good kisser,”</i> she congratulates breathlessly as she rotates her hips, nudging your [pc.cock] against every vein and bump inside her. <i>“We’ll see about putting that tongue to other use later.”</i>");
-	output("\n\nPaiges begins to bounce, her breath shallow and getting shallower every time you bottom out. She raises her arms above and behind her head, thrusting out her tits for you. <i>“Touch me,”</i> she asks. <i>“I like it when you do. I cum harder when you appreciate me and my form.”</i>");
+	output("\n\nPaige begins to bounce, her breath shallow and getting shallower every time you bottom out. She raises her arms above and behind her head, thrusting out her tits for you. <i>“Touch me,”</i> she asks. <i>“I like it when you do. I cum harder when you appreciate me and my form.”</i>");
 	output("\n\nWell, it <i>is</i> a pretty sexy form. You watch her as she flouts her body and her nipples as they draw oblong circles with her bouncing. You wouldn’t leave her waiting, would you?");
 
 	//[=Caress=][=Manhandle=]
@@ -2418,7 +2420,7 @@ public function SSAE1(args:Array):void
 	else 
 	{
 		output("blasting your [pc.cum] into her body. Your impressive load pools within her, y");
-		if(pc.balls > 0) output("our [pc.balls] flexing like pumps to deposit every drop they have into your fleshy, furry comdom. Y");
+		if(pc.balls > 0) output("our [pc.balls] flexing like pumps to deposit every drop they have into your fleshy, furry condom. Y");
 		output("our ");
 		if(pc.balls > 0) output("struggling shaft fights to");
 		else output("shaft struggling to");
@@ -2588,7 +2590,7 @@ public function SSAAG(args:Array):void
 	//if {SSAKH}
 	else if(InCollection("SSAKH", args)) output("She’s still on top of you, her breasts pressed to your [pc.chest] and her breath washing against your neck in stutters");
 	else output("You’re both well-worn and exhausted from one of your more exciting trysts");
-	output(", proof of your satisfaction with one-another. You already know this probably won’t be a one-time thing, if you don’t want.");
+	output(", proof of your satisfaction with one-another. You already know this probably isn’t a one-time thing, that is if you don’t want it to be.");
 	output("\n\n<i>“Goddamn,”</i> Paige whispers finally, her strength returning to her. <i>“");
 	//if {First time}
 	if(flags["PAIGE_ANAL"] == 1) output("I’ve never had anything up my ass before, [pc.name].”</i> She giggles. <i>“And I can already tell you, if every time is going to feel that... exotic, it won’t be the last either.");

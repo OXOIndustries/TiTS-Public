@@ -147,7 +147,7 @@ package classes.Characters
 			else output("leaving you nowhere to run");
 			if (!target.hasBlindImmunity() && !target.hasStatusEffect("Blinded") && rand(99) >= target.RQ()) {
 				CombatAttacks.applyBlind(target, 3);
-				output(" and blasting up so much snow and mist that it's impossible to see");
+				output(" and blasting up so much snow and mist that it’s impossible to see");
 			}
 			output("!\n");
 			//lets kick up some dust by faking the default attack and making the last 4 shoots always miss
@@ -168,7 +168,7 @@ package classes.Characters
 		private function concussionLauncher(target:Creature):void
 		{
 			vulcanCannons(target);
-			output("\n\nA pair of cannons under the dropship's wings glow for a moment before unleashing a shockwave of concussive force, blasting you like a solid wall of bricks and knocking snow-dust up all around you.");
+			output("\n\nA pair of cannons under the dropship’s wings glow for a moment before unleashing a shockwave of concussive force, blasting you like a solid wall of bricks and knocking snow-dust up all around you.");
 			var damage:int;
 			if (rand(50) * 2 >= target.PQ()) damage = 48;
 			else damage = 36;

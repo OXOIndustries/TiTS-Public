@@ -360,7 +360,7 @@ public function letsFuckeySuckeyStella():void
 		}
 		else
 		{
-			output("\n\n<i>“Nnnn,”</i> Stella moans happily, gently grinding against your face while she runs a hand through your hair. <i>“Reward me for being a good girl...”</i>");
+			output("\n\n<i>“Nnnn,”</i> Stella moans happily, gently grinding against your face while she runs a hand " + (pc.hasHair() ? "through your hair" : "across your scalp") + ". <i>“Reward me for being a good girl...”</i>");
 			output("\n\n<i>“I’m the one who decides that,”</i> you remind her, lifting your lips off her clit and kissing her stomach. Instead, you slide two fingers into her dripping pussy and begin stroking upwards, almost like you’re beckoning her towards you while you gently rub her clit with your thumb.");
 			output("\n\n<i>“Ooh,”</i> she gasps, suddenly growing a lot more involved in the process. <i>“Oh, gosh! I-I think! Nnnn I think I’m cumming!”</i>");
 			output("\n\nWith a restrained jerk of her hips, Stella cums hard on your fingers, femcum squirting down your hand while she moans. She’s nice and easy to please, and the way she shudders instinctively and squeezes down on your fingers, seems like she’d be an amazing fuck. You can’t wait to find out.");
@@ -611,9 +611,9 @@ public function stellaPussyFuck():void
 	processTime(30);
 	pc.orgasm();
 	IncrementFlag("STELLA_FUCKED");
-	clearMenu();
-	//[Nah] [Keep going]
 	stellaSexFatigue(1);
+	//[Nah] [Keep going]
+	clearMenu();
 	if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but the body is worn out.");
 	addButton(0,"Nah",genericNoMoreSexStella);
@@ -963,9 +963,9 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		
 		processTime(30);
 		pc.orgasm();
+		stellaSexFatigue(1);
 		//[Nah] [Keep going]
 		clearMenu();
-		stellaSexFatigue(1);
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but the body is worn out.");
 		addButton(0,"Nah",nahDickSuckPup);
@@ -1000,7 +1000,7 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 		output("\n\n<i>“Here,”</i> you say, raising your [pc.hips] and positioning yourself right above her pretty little face. <i>“Eat up, doggy.”</i>");
 		output("\n\nYou drop your [pc.pussy] right on her lips, grabbing her ever-so-classy platinum blonde hair for grip and gyrating on her mouth, moaning as she opens up and lets you slide up and down her tongue. Grinding to a halt, you switch from moving on your own to just pressing her face into your wet, needy cunt and letting her tonguefuck you at her own desperate, frenzied pace.");
 		output("\n\n<i>“Uh, god,”</i> you pant, looking down to see Stella focused wholly on your pussy. <i>“Good girl, there’s a good girl...”</i>");
-		output("\n\nHonestly you can’t tell if she’s hearing you at all she’s so absorbed in eating you out, but what she’s doing feels so good you don’t really care either way. The way she switches between lapping at your lower lips, swirling her tongue around your clit and sucking it when she moan loud enough, and sticking her tongue inside you, you’re content to let her do whatever the fuck she wants down there.");
+		output("\n\nHonestly you can’t tell if she’s hearing you at all she’s so absorbed in eating you out, but what she’s doing feels so good you don’t really care either way. The way she switches between lapping at your lower lips, swirling her tongue around your clit and sucking it when she moans loud enough, and sticking her tongue inside you, you’re content to let her do whatever the fuck she wants down there.");
 		output("\n\nYou while away the time atop Stella’s face, your [pc.butt] clenching hard with every orgasm she gifts you, moaning louder with every one until you’re practically screaming her name and bouncing up and down on her bed. You can feel Stella’s grip on your [pc.thighs] tightening as her own hips begin to rise off the sheets, her tongue lashing at your pussy with sheer need, bringing you to a massive climax right as she reaches her own.");
 		output("\n\n<i>“Oh, Stella! Stella!”</i> you cry out, the muscle contractions hitting you so hard you practically double over on top of her, her massive butt rising completely off the bed as she cums her brains out. <i>“Nnnnngh! Nnnnnn, god!”</i>");
 		output("\n\nMadly humping the air while she squirts and squirts all over her sheets, the overexcited puppygirl sucks on your [pc.clit] so hard you let out a shrill scream of lust and ");
@@ -1009,13 +1009,13 @@ public function stellaOralStuff(forceVaginal:Boolean = false):void
 
 		output("\n\nGasping, you collapse on top of her and roll to the side, fighting the instinct to curl into a ball after such intense stimulation. Your muscles ache all over. You take a look at Stella and she’s just lying there, seemingly unbreathing. Did you-? Concerned, you get closer and look her in the face, whereupon her eyes spring open and she kisses you on the lips. You get a nice taste of yourself, but mostly of Stella. She pulls away after a second with a grin.");
 		output("\n\n<i>“Oh my god, you came like, SO hard!”</i> Stella laughs, her bushy tail wagging furiously. <i>“You should have seen the look on your face, it was totally hot.”</i>");
-		output("\n\nI would’ve thought you’d be too distracted to look at my O-face what with the way you were squirting all over your sheets,”</i> you joke, nudging her lightly in the ribs and setting her giggling besides you.");
+		output("\n\n<i>“I would’ve thought you’d be too distracted to look at my O-face what with the way you were squirting all over your sheets,”</i> you joke, nudging her lightly in the ribs and setting her giggling besides you.");
 		output("\n\n<i>“Aww, you just taste so good I can’t help it!”</i> Stella protests, her ears flitting about. <i>“Jeez, my tongue is tired.”</i>");
 		output("\n\nYou can’t say you’re surprised. Propped up on your elbow and looking down at the divine doggirl, you start feeling that familiar sensation of lust from between your somewhat shaky thighs. You could go for another round if you really wanted...");
 		processTime(30);
 		pc.orgasm();
-		//[Nah] [Keep going]
 		stellaSexFatigue(1);
+		//[Nah] [Keep going]
 		clearMenu();
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but the body is worn out.");
@@ -1305,8 +1305,8 @@ public function walkiesAndPetPlayStuff():void
 		pc.exhibitionism(2);
 		pc.orgasm();
 		IncrementFlag("STELLA_PETPLAYED");
-		clearMenu();
 		stellaSexFatigue(1);
+		clearMenu();
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
 		addButton(0,"That’s It",genericNoMoreSexStella);
@@ -1334,6 +1334,7 @@ public function walkiesAndPetPlayStuff():void
 		pc.orgasm();
 		IncrementFlag("STELLA_PETPLAYED");
 		stellaSexFatigue(1);
+		clearMenu();
 		if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 		else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
 		addButton(0,"That’s It",genericNoMoreSexStella);
@@ -1457,7 +1458,7 @@ public function moreStellaPetPlayPostCollarShop2():void
 	clearOutput();
 	showStella();
 	author("Wsan");
-	output("You wave at Alex when you re-enter the building, guiding Stella back to the beach. You take a seat on the sand near the ocean and let her run around a bit, enjoying the stress-free live of a pet dog before you call her over.");
+	output("You wave at Alex when you re-enter the building, guiding Stella back to the beach. You take a seat on the sand near the ocean and let her run around a bit, enjoying the stress-free life of a pet dog before you call her over.");
 	output("\n\n<i>“Hey Stella, c’mere for a moment. I’ve got a present for you,”</i> you call, and she bounds over on all fours, sniffing curiously.");
 	//Bought collar:
 	if(flags["STELLA_COLLAR_GIFT"] != undefined) 
@@ -1476,7 +1477,7 @@ public function moreStellaPetPlayPostCollarShop2():void
 		//Jewelled:
 		else if(flags["STELLA_COLLAR"] == "jeweled") output(" The sapphires are perfect, matching her eyes as she smiles up at you adoringly");
 		//Platinum:
-		else output(" It looks on amazing on her, your perfect pet wearing the jewelry someone of her status deserves. The sapphires match her eyes perfectly too, both of them reflecting the sunlight as she smiles up at you adoringly");
+		else output(" It looks amazing on her, your perfect pet wearing the jewelry someone of her status deserves. The sapphires match her eyes perfectly too, both of them reflecting the sunlight as she smiles up at you adoringly");
 		output(". The attached heart hangs below, reading ‘Property of [pc.name] Steele. If lost please mail " + quickPCToAddress() + "’.");
 
 		output("\n\nYou snap some pictures with the overjoyed bimbo clambering all over you, the best of them probably the one where you managed to get her to be still for 0.5 seconds as she smushed her face into yours and looked up for the photo. Both of you are wearing huge grins in it, and she’s tilting her head upwards to proudly show off the collar.");
@@ -1523,6 +1524,7 @@ public function moreStellaPetPlayPostCollarShop2():void
 	output("\n\nAfterwards, you head back up to her room and casually settle in.");
 	IncrementFlag("STELLA_PETPLAYED");
 	stellaSexFatigue(1);
+	clearMenu();
 	if(moreStellaSexAvailable()) addButton(1,"Keep Going",keepFuckingStella);
 	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
 	addButton(0,"That’s It",genericNoMoreSexStella);
@@ -1587,9 +1589,9 @@ public function stellaPreggoSex():void
 	processTime(25);
 	pc.orgasm();
 	pc.milkInMouth();
-	clearMenu();
 	IncrementFlag("STELLA_PREG_FUCKED");
 	stellaSexFatigue(1);
+	clearMenu();
 	if(moreStellaSexAvailable()) addButton(1,"Again",keepFuckingStella);
 	else addDisabledButton(1,"Keep Going","Keep Going","The spirit is willing, but your body is spent.");
 	addButton(0,"Nah",stellaPregbangEpilogue);
@@ -1665,6 +1667,7 @@ public function stellaKidTalkScene():void
 {
 	var kiddos:Number = flags["STELLA_PREGNANCY_NOTIFIER"];
 	flags["STELLA_PREGNANCY_NOTIFIER"] = undefined;
+	
 	output("<i>“Hey, so, I’ve got a surprise for you this time!”</i> Stella says as you come up the stairs, her tail wagging. <i>“Come in and see!”</i>");
 	output("\n\nSomething’s different about her... oh, she’s not pregnant! Her tummy is back to fit, flat and flawless. She looks more radiant and beautiful than before, if such a thing is even possible.");
 	output("\n\n<i>“So what’s the surprise?”</i> you say as Stella turns to you, a smile playing across her face.");

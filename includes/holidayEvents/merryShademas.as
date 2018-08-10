@@ -9,7 +9,7 @@
 
 public function shademasEmailString():String
 {
-	var buff:String = "Hey, kid, how’s tricks?\n\nDon’t know as much about your belief as I’d like, but us Uvetans have a pretty regular holiday around our planet’s winter solstice. Stormguard think the big lightning storm is the gods’ way of reminding us of their power. I just like the excuse to spend a day baking.\n\nSpeaking of which, I was talking to Astra and we decided that we’d be very happy to have you over for the holidays. I know you’re busy out there being a billionaire play-[pc.boyGirl] adventurer, but everybody needs a day off, right? Especially when it comes with some of your ";
+	var buff:String = "Hey, kid, how’s tricks?\n\nDon’t know as much about your beliefs as I’d like, but us Uvetans have a pretty regular holiday around our planet’s winter solstice. Stormguard think the big lightning storm is the gods’ way of reminding us of their power. I just like the excuse to spend a day baking.\n\nSpeaking of which, I was talking to Astra and we decided that we’d be very happy to have you over for the holidays. I know you’re busy out there being a billionaire play-[pc.boyGirl] adventurer, but everybody needs a day off, right? Especially when it comes with some of your ";
 	if(!shadeIsSiblings()) buff += "special friend";
 	else buff += "sister";
 	buff += "’s home cooking.\n\nLet me know~\n\nHugs and kisses,\n\t-Shade";

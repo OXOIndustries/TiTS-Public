@@ -454,42 +454,38 @@ public function fisiMainMenu(fromBack:Boolean = false):void
 	}
 	
 	//Xpack
-	if (pc.hasGooSkin()) {
-		if (flags["FISI_LOVER"] == undefined) addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-		else addDisabledButton(5, "Cuddle", "Cuddle", "The cuddles would be more effective with a more solid body type.");
-		if (flags["FISI_TIMES_MASSAGED"] == undefined) addDisabledButton(6, "Locked", "Locked", "Maybe you should relax with Fisi after a long workout...");
-		else addDisabledButton(6, "Massage", "Massage", "The massage would be more effective with a more solid body type.");
-		if (flags["FISI_HL_PANTIES"] == 1) addDisabledButton(13, "Give Panties", "Give Panties", "This would be more effective with a more solid body type.");
-	}
-	else if (pc.isTaur()) {
-		if (flags["FISI_LOVER"] == undefined) addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-		else addDisabledButton(5, "Cuddle", "Cuddle", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
-		if (flags["FISI_TIMES_MASSAGED"] == undefined) addDisabledButton(6, "Locked", "Locked", "Maybe you should relax with Fisi after a long workout...");
-		else addDisabledButton(6, "Massage", "Massage", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
-		if (flags["FISI_HL_PANTIES"] == 1) addDisabledButton(13, "Give Panties", "Give Panties", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");	
-	}
-	else {
-		if (flags["FISI_LOVER"] == undefined) addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-		else addButton(5, "Cuddle", cuddleFisi, undefined, "Cuddle", "Cuddle with the cute kitten for a while.");
+	if (flags["FISI_LOVER"] == undefined) addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
+	else addButton(5, "Cuddle", cuddleFisi, undefined, "Cuddle", "Cuddle with the cute kitten for a while.");
 
-		if (flags["FISI_TIMES_MASSAGED"] == undefined) addDisabledButton(6, "Locked", "Locked", "Maybe you should relax with Fisi after a long workout...");
-		else addButton(6, "Massage", massageFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
+	if (flags["FISI_TIMES_MASSAGED"] == undefined) addDisabledButton(6, "Locked", "Locked", "Maybe you should relax with Fisi after a long workout...");
+	else addButton(6, "Massage", massageFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
 
-		//Dont show button until the scene has played
-		if (flags["FISI_HL_PANTIES"] == 2) addDisabledButton(13, "Give Panties", "Give Panties", "You already gave her the panties.");
-		else if (flags["FISI_HL_PANTIES"] == 1) {
-			addDisabledButton(13, "Give Panties", "Give HL Panties", "You’ll need a pair a panties with a hardlight strap-on upgrade for this!");
-			var inventoryHardlights:int = 0;
-			for (var i:int = 0; i < pc.inventory.length; i++)
+	//Dont show button until the scene has played
+	if (flags["FISI_HL_PANTIES"] == 2) addDisabledButton(13, "Give Panties", "Give Panties", "You already gave her the panties.");
+	else if (flags["FISI_HL_PANTIES"] == 1) {
+		addDisabledButton(13, "Give Panties", "Give HL Panties", "You’ll need a pair a panties with a hardlight strap-on upgrade for this!");
+		for (var i:int = 0; i < pc.inventory.length; i++)
+		{
+			if (pc.inventory[i] is PlainPanties && pc.inventory[i].hardLightEquipped)
 			{
-				if (pc.inventory[i] is PlainPanties && pc.inventory[i].hardLightEquipped)
-				{
-					addButton(13, "Give Panties", givePantiesToFisi, i, "Give Panties", "Give her a pair of hardlight strap-on equipped panties as a present!");
-					break;
-				}
+				addButton(13, "Give Panties", givePantiesToFisi, i, "Give Panties", "Give her a pair of hardlight strap-on equipped panties as a present!");
+				break;
 			}
 		}
 	}
+	
+	// Override buttons for special cases
+	if (pc.hasGooSkin()) {
+		//if (flags["FISI_LOVER"] != undefined) addDisabledButton(5, "Cuddle", "Cuddle", "The cuddles would be more effective with a more solid body type.");
+		if (flags["FISI_TIMES_MASSAGED"] != undefined) addDisabledButton(6, "Massage", "Massage", "The massage would be more effective with a more solid body type.");
+		//if (flags["FISI_HL_PANTIES"] == 1) addDisabledButton(13, "Give Panties", "Give Panties", "This would be more effective with a more solid body type.");
+	}
+	if (pc.isTaur()) {
+		if (flags["FISI_LOVER"] != undefined) addDisabledButton(5, "Cuddle", "Cuddle", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
+		if (flags["FISI_TIMES_MASSAGED"] != undefined) addDisabledButton(6, "Massage", "Massage", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
+		if (flags["FISI_HL_PANTIES"] == 1) addDisabledButton(13, "Give Panties", "Give Panties", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");	
+	}
+	
 	addButton(14, "Leave", leaveFisi);
 }
 

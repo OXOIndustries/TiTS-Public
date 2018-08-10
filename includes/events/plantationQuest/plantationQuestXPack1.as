@@ -458,7 +458,6 @@ public function quinnHandmaidenThreesome(args:Array):void
 			showName("\nQUINN");
 			
 			output("Quinn beckons to one of her handmaidens, who hastens over to take " + quinnBabyName() + " out of her hands. She then rises and silently heads up the hill, her bobbing abdomen and bottom beckoning you to follow.");
-			
 			output("\n\n");
 			
 			processTime(3);
@@ -466,7 +465,21 @@ public function quinnHandmaidenThreesome(args:Array):void
 			pc.lust(35);
 			
 			// Sex proceeds as normal from here
-			addButton(0, "Next", quinnHandmaidenThreesome, ["next"]);
+			addButton(0, "Next", sexWithQuinnOmnigenderWHYYYY);
+			break;
+		case "maiden":
+			showBust("QUINN", "FETCH", "CARRY");
+			showName("\nQUINN");
+			
+			output("<i>“No,”</i> Quinn replies, regarding you with tired golden eyes, <i>“I need - I need to rest. My handmaidens will attend you.”</i>");
+			output("\n\n");
+			
+			processTime(3);
+			// +Lust
+			pc.lust(35);
+			
+			addButton(0, "Handmaidens", quinnHandmaidenThreesome, ["next"]);
+			addButton(14, "Back", goBackToQuinnMain);
 			break;
 		case "next":
 			showQuinnMaidens();
@@ -482,6 +495,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			if(flags["QUINN_MAIDENS_MET"] == undefined) flags["QUINN_MAIDENS_MET"] = 1;
 			
 			// If PC meets multiple requirements, select at random
+			var scene:String = "error";
 			var sceneList:Array = [];
 			var cocksThatFit:Array = [];
 			
@@ -511,8 +525,9 @@ public function quinnHandmaidenThreesome(args:Array):void
 			if(cIdx >= 0 && cIdx2 < 0) sceneList.push("cock");
 			if(cIdx >= 0 && cIdx2 >= 0) sceneList.push("cocks");
 			if(vIdx >= 0) sceneList.push("vagina");
+			if(sceneList.length > 0) scene = sceneList[rand(sceneList.length)];
 			
-			addButton(0, "Next", quinnHandmaidenThreesome, [sceneList[rand(sceneList.length)], cIdx, vIdx, cIdx2, cIdx3, cumQ]);
+			addButton(0, "Next", quinnHandmaidenThreesome, [scene, cIdx, vIdx, cIdx2, cIdx3, cumQ]);
 			break;
 		// 1 < cocks less than 12.5 inches
 		case "cocks":
@@ -557,7 +572,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			output("\n\n<i>“Aww,”</i> pouts Carry, watching Fetch slowly collapse down onto the woven blankets with an expression of pure bliss written on her features, your throbbing [pc.cock " + cIdx + "] flop free of her thoroughly creamed snatch. <i>“You done already? Oh well. It was fun while it last--”</i>");
 			output("\n\nYou interrupt her by gripping her by the wide thighs, swinging her around and positioning her on her hands and knees, big butt and plump insect abdomen in the air. You admire her cream-and-honey oozing pussy as you consider which dick you’re going to stick in there this time.");
 			if(cIdx3 >= 0) output(" Number three, definitely. Let it get some much-deserved action here. Carry buzzes with delight, hands sinking into the blankets as you line your [pc.cock " + cIdx3 + "] up and then dip it in, grunting with the sheer joy of slotting back into the groove, ardor still very much intact.");
-			else if(pc.hasTailCock()) output(" An insistent buzz of impulses tickles your mind, your [pc.cocktail] rearing around, tumescent and ready to go. Good idea, that tail. Carry buzzes with delight, hands sinking into the blankets as you line your [pc.cocktail] up and then dip it in, grunting with the sheer joy of slotting back into the groove, ardor still very much intact.");
+			else if(pc.hasTailCock()) output(" An insistent buzz of impulses tickles your mind, your [pc.cockTail] rearing around, tumescent and ready to go. Good idea, that tail. Carry buzzes with delight, hands sinking into the blankets as you line your [pc.cockTail] up and then dip it in, grunting with the sheer joy of slotting back into the groove, ardor still very much intact.");
 			else output(" Number one, you think. Let her experience a different flavor of you. Carry buzzes with delight, hands sinking into the blankets as you line your [pc.cock " + cIdx + "] up and then dip it in, grunting with the sheer joy of slotting back into the groove, ardor still very much intact.");
 			output("\n\n<i>“Oh wow,”</i> Carry cries, her voice wavering as surely as her buttocks do with every stern slap of your [pc.thighs] against them, <i>“Quinn wasn’t - fzzz - lying about you, was she? Yeah, that’s it, fuck me, champion! Oh fuck me like that! Give me more of your strong seed!”</i>");
 			output("\n\n<i>“Yeah,”</i> Fetch murmurs, lying on her side and watching the pair of you go. <i>“We didn’t even have to sting you.”</i> She catches your eye and sinks her hand between her thighs, biting her lip, fingering her [pc.cum] slickened folds as she watches you go at her partner. <i>“Hope you’ve got more when you’re done with her.”</i>");
@@ -704,7 +719,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 				output("; short, buxom Carry immediately takes over where her friend left off, squashing a yellow boob into your smoldering length, grinning toothily at you as she swaddles it in soft flesh and kneads it briskly. Concentrated pleasure veins its way into your core as you listen to the taller one’s teasing whisper... <i>“Most of the boys do. We don’t do it for them very often, though. We’d only do it for someone very special... a brave... virile... champion.”</i>");
 				output("\n\n<i>“Fetch, if you wanted to make out with me, you just had to say,”</i> sighs her partner.");
 				output("\n\nThe bed is big enough for Fetch and Carry to clamber up together, kneeling at your [pc.feet]. You clutch your [pc.cock " + cIdx + "] and watch as the pair of them slowly prize each other’s groin plates open, long, thin fingers stealing into yellow crevices as they press their curves into each other, harsh black plate trading with soft, supple, yellow flesh. To begin with the female zil are giggly and self-aware, slyly eyeing you as they fondle each other, particularly Fetch, who in a different aeon you’re sure would have been an impresario. As they go on though they get more and more into it, forgetting about their breathless audience to coil their fingers into each other’s pussies with increasing gusto, deeper color appearing in their faces as they wrap their long, flexible tongues around each other for long, impassioned frenching. Carry quivers and moans as she goes nerveless in Fetch’s arms, her thick hips trembling to the movements of the latter’s fingers, deep in her snatch; the latter buzzes softly with laughter, holding her by the waist, the tendons in her other arm standing out as she flicks and she flicks and she flicks, little drops of golden sugar landing on the furs.");
-				output("\n\nIt’s not just the sight of the two lissom wasp sluts fondling each other which is causing heavy lust to build like an approaching storm in your loins; the aroma coming off of them, good One, like an orchard of purest sex in the heat of summer. You are only hazily aware your hand is a blur around your [pc.cock " + cIdx + "]; the sight and smell is all. Fetch catches your eye, lusty and knowing, and suddenly you can’t hold yourself back; you leap forward and snatch the cooing, dazed Carry into your arms, hungry mouth seizing on a black, moist nipple as you lead her backwards, your insatiable erection digging into the softness of her inner thighs. She emits a husky, delighted buzz as your [pc.knot " + cIdx + "] bumps into her labia, already unfurled and gooey with honey from her partner’s effort; her abdomen twitches behind her, the sharp sting thankfully burying itself into the dried, velvety furs.");
+				output("\n\nIt’s not just the sight of the two lissom wasp sluts fondling each other which is causing heavy lust to build like an approaching storm in your loins; the aroma coming off of them, good One, like an orchard of purest sex in the heat of summer. You are only hazily aware your hand is a blur around your [pc.cock " + cIdx + "]; the sight and smell is all. Fetch catches your eye, lusty and knowing, and suddenly you can’t hold yourself back; you leap forward and snatch the cooing, dazed Carry into your arms, hungry mouth seizing on a black, moist nipple as you lead her backwards, your insatiable erection digging into the softness of her inner thighs. She emits a husky, delighted buzz as your [pc.knot " + cIdx + "] bumps into her labia, already unfurled and gooey with honey from her partner’s effort; her abdomen twitches behind her, the sharp stinger thankfully burying itself into the dried, velvety furs.");
 				output("\n\n<i>“That’s it,”</i> murmurs Fetch, lying on her side and watching. <i>“Let me see you go at her now...”</i> An approving, drunken-wasp-buzz of a sigh leaves her lips as you grip Carry’s waist and slot yourself home, sinking your [pc.cock " + cIdx + "] into the hot, honeyed magic of zil cunt. Void, it’s such a supremely enjoyable sensation you could just let yourself go right there and then... but you hold it back, determined to energetically thrust your [pc.hips] upwards into her instead, watching her bounce and squeal on top of you, D-cups rippling mesmerically as you pile-drive into that wonderful, honey-slathered pocket hard.");
 				
 				pc.cockChange();
@@ -780,6 +795,14 @@ public function quinnHandmaidenThreesome(args:Array):void
 			sweatyDebuff(2);
 			
 			IncrementFlag("QUINN_MAIDENS_SEXED");
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		default:
+			showQuinnMaidens();
+			
+			output("ERROR! No scene available...");
+			output("\n\n");
 			
 			addButton(0, "Next", mainGameMenu);
 			break;
@@ -968,7 +991,7 @@ public function quinnHardlightFun(args:Array):void
 			}
 			output("\n\n<i>“Bigger than my homegrown warriors,”</i> she remarks, a vein of husky excitement running through her tone. You groan softly as she moves her grip upwards, trails her fingertips over the glowing head, then slowly slinks them down again. <i>“You mustn’t show it to them. They will get very jealous.”</i>");
 			output("\n\nHer cool thigh slides down your [pc.hip] as she climbs on top of you, boobs and abdomen jouncing slightly as she leads the oozing warmth of her honey-cunt up the underside of your [pc.cockOrStrapon -1]. She still has her hand around the base of it, clutching it tightly, lining it up with assured movements like a prized, personal tool - which you suppose it is. Your mind is drowned in the deep, sweet smell of zil, leaving nothing but an open, sugary eagerness, a sunny will to do exactly as your sexy, assertive queen demands.");
-			output("\n\n<i>“That’s it,”</i> she sighs, other hand pressing down on your shoulder as she spreads her slick lips over your [pc.cockOrStraponHead -1]. <i>“You brought the tool. So now lie back and let me do with it as I will...”</i> You can’t help but groan and twitch as she slowly sits herself down. The silken feel of her narrow tunnel advancing down that glowing strap-on, drooling honey over the base, soaking into your [pc.lowerGarment] is so good you can feel the sweetness of Nirvana on your [pc.furSkinScales] and tongue. Instinctively you reach out and clasp her hourglass waist as she takes a good portion of the sturdy hard-light into her tight tunnel; you groan slightly as you feel syrup drip lazily down the rest of it. She strokes your hands fondly, before gently but firmly taking them off, leading them back and planting them on the thick, wide femurs of the bone trophy behind you.");
+			output("\n\n<i>“That’s it,”</i> she sighs, other hand pressing down on your shoulder as she spreads her slick lips over your [pc.cockOrStraponHead -1]. <i>“You brought the tool. So now lie back and let me do with it as I will...”</i> You can’t help but groan and twitch as she slowly sits herself down. The silken feel of her narrow tunnel advancing down that glowing strap-on, drooling honey over the base, soaking into your [pc.lowerGarment] is so good you can feel the sweetness of Nirvana on your [pc.skinFurScales] and tongue. Instinctively you reach out and clasp her hourglass waist as she takes a good portion of the sturdy hard-light into her tight tunnel; you groan slightly as you feel syrup drip lazily down the rest of it. She strokes your hands fondly, before gently but firmly taking them off, leading them back and planting them on the thick, wide femurs of the bone trophy behind you.");
 			output("\n\n<i>“Keep them there,”</i> Quinn murmurs. The pheromone fug seems to intensify, blood reaching up to your [pc.skin], and another wordless sound of pained joy escapes your [pc.lips] as she begins to move her hips, stirring you within her oozing, limber warmth. All your attention is upon how wonderful it feels when she finds her rhythm and begins to briskly ride you, tightening her strong athletic thighs around your waist, locking herself into you enthusiastically.");
 			output("\n\n<i>“Such a strange, unnatural tool,”</i> she husks, fingers hooked around your shoulders. <i>“And yet it feels so right, so... yes!”</i> She throws her head towards the ceiling and emits a savage howl, bucking around you ferociously, petite tits jouncing up and down. The strap-on throbs in response, intense feedback pulsing into your groin, making you writhe beneath you. For several, ecstatic moments you thrash together gleefully, until finally the zil calms down enough for her to find words again.");
 			output("\n\n<i>“And it doesn’t... you don’t reach the great joy?”</i> she asks, looking down at you, orange-cheeked and panting slightly, still firmly embedded on you. It takes you a few dazed moments for you to realize what she means.");
@@ -1005,6 +1028,7 @@ public function quinnHardlightFun(args:Array):void
 public function canQuinnTalkPollenDance():Boolean {
 	if(flags["QUINNFEST_COMPLETE"] != undefined) return false;
 	if(flags["QUINNFEST_TALKED"] != undefined) return false;
+	if(pc.hasStatusEffect("Quinn Talk Cooldown")) return false;
 	return ( flags["SEXED_QUINN"] != undefined && pc.hasGenitals()
 		&&	flags["QUINN_TALK_HERSELF"] != undefined && flags["QUINN_TALK_ESBETH"] != undefined && flags["QUINN_TALK_NALEEN"] != undefined
 		&&	flags["PQ_RESOLUTION"] > 0
@@ -1250,7 +1274,7 @@ public function quinnFestivalButton(btnSlot:int = 4):void
 	if(flags["QUINNFEST_COMPLETE"] == undefined && flags["QUINNFEST_TALKED"] != undefined)
 	{
 		// Ghost out unless time is 16:45-19:00
-		if(!quinnFestivalActiveHours()) addDisabledButton(btnSlot, "Festival", "Festival", "You don’t think it’s the right time yet. Quinn indicated the early evening.");
+		if(!quinnFestivalActiveHours()) addDisabledButton(btnSlot, "Festival", "Festival", "You don’t think it’s the right time yet. Quinn indicated the early evening. Try checking back between 16:45 - 19:00.");
 		else addButton(btnSlot, "Festival", quinnFestival, undefined, "Festival", "Tell Quinn you’re ready for the Pollen Festival to begin.");
 	}
 }
@@ -1294,7 +1318,8 @@ public function quinnFestival(response:String = "intro"):void
 	{
 		case "intro":
 			rooms["12. Zil Village Winnar"].northExit = "ZIL FESTIVAL VILLAGE";
-			moveTo("12. Zil Village Winnar");
+			generateMapForLocation("12. Zil Village Winnar");
+			rooms["12. Zil Village Winnar"].northExit = null;
 			
 			showQuinn();
 			showName("\nFESTIVAL!");
@@ -1390,7 +1415,9 @@ public function quinnFestival(response:String = "intro"):void
 			quinnFestivalCircleMenu();
 			break;
 		case "village":
-			moveTo("ZIL FESTIVAL VILLAGE");
+			rooms["12. Zil Village Winnar"].northExit = "ZIL FESTIVAL VILLAGE";
+			generateMapForLocation("ZIL FESTIVAL VILLAGE");
+			rooms["12. Zil Village Winnar"].northExit = null;
 			
 			showBust("");
 			showName("\nVILLAGE");
@@ -1512,7 +1539,9 @@ public function quinnFestival(response:String = "intro"):void
 			quinnFestivalVillageMenu();
 			break;
 		case "circle":
-			moveTo("12. Zil Village Winnar");
+			rooms["12. Zil Village Winnar"].northExit = "ZIL FESTIVAL VILLAGE";
+			generateMapForLocation("12. Zil Village Winnar");
+			rooms["12. Zil Village Winnar"].northExit = null;
 			
 			showBust("");
 			showName("\nCIRCLE");
@@ -1656,7 +1685,9 @@ public function quinnFestivalPart2(arg:Array):void
 			addButton(0, "Next", quinnFestivalPart2, ["ball to yurt", vIdx]);
 			break;
 		case "ball to yurt":
-			moveTo("ZIL FESTIVAL YURT");
+			rooms["12. Zil Village Winnar"].northExit = "ZIL FESTIVAL VILLAGE";
+			generateMapForLocation("ZIL FESTIVAL YURT");
+			rooms["12. Zil Village Winnar"].northExit = null;
 			
 			showBust("");
 			showName("DRONING\nBALL");
@@ -1664,7 +1695,7 @@ public function quinnFestivalPart2(arg:Array):void
 			// PC chose to spectate
 			if(flags["QUINNFEST_TALKED"] < 0 || !pc.hasGenitals())
 			{
-				output("You watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and sting-laden abdomen bobbing an invitation that the three victorious warriors gladly accept, scars and all. It’s a safe guess that you won’t see them again until sunrise at the very earliest. The spell of their skull-crowned deity broken, the rest of the tribal zil are now getting very involved with one another; the warriors who fell are having their wounds tended to, whilst hands are slipping into hands and groups of two or three are gliding into the darkness.");
+				output("You watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and stinger-laden abdomen bobbing an invitation that the three victorious warriors gladly accept, scars and all. It’s a safe guess that you won’t see them again until sunrise at the very earliest. The spell of their skull-crowned deity broken, the rest of the tribal zil are now getting very involved with one another; the warriors who fell are having their wounds tended to, whilst hands are slipping into hands and groups of two or three are gliding into the darkness.");
 				// PC is submissive to Kane
 				if(submissiveToKane())
 				{
@@ -1703,7 +1734,7 @@ public function quinnFestivalPart2(arg:Array):void
 			else
 			{
 				output("She rises, then pauses, waiting for you to follow suit. You know your role here as if it had been drilled into you; there’s an incredible erotic frisson at work here, a dark thrill that worms its way into your heart as you gaze at the lithe, sweaty bodies of the victorious male zil, that makes your breath come quick and fast.");
-				output("\n\nYou and Quinn make your stately way back to her yurt, leading the three of them upwards, well aware their eyes are fixed upon her bobbing, sting-laden abdomen and your [pc.ass]. The spell of their skull-crowned deity broken, you can hear the rest of the tribal zil now getting very involved with one another; the lavender-scented woods are alive with the sounds of sighs, gasps, the hum of insect wings and low voices. Clearly this is a night they all look forward to.");
+				output("\n\nYou and Quinn make your stately way back to her yurt, leading the three of them upwards, well aware their eyes are fixed upon her bobbing, stinger-laden abdomen and your [pc.ass]. The spell of their skull-crowned deity broken, you can hear the rest of the tribal zil now getting very involved with one another; the lavender-scented woods are alive with the sounds of sighs, gasps, the hum of insect wings and low voices. Clearly this is a night they all look forward to.");
 				output("\n\n");
 				
 				// Go to sexings
@@ -1729,7 +1760,6 @@ public function quinnFestivalPart2(arg:Array):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
 			tryKnockUpQuinn(true);
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = -1;
 			
@@ -1865,7 +1895,7 @@ public function quinnFestivalFightLose(response:String = "intro"):void
 			else output(" huddling");
 			output(" into a fierce group hug before turning their expectant, exultant faces back to Quinn.");
 			output("\n\n<i>“All who fought today showed honor and bravery,”</i> Quinn says, calm and composed as a statue. <i>“But it is your victory today that shall be spoken of for many moons to come. Step forward, you three. You have earned the chance to prove yourself in... other ways.”</i>");
-			output("\n\nYou watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and sting-laden abdomen bobbing an invitation that the three victorious warriors gladly accept, scars and all. They offer hands and hasty commiserations to you as they go, but that does little to salve the burn of humiliation.");
+			output("\n\nYou watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and stinger-laden abdomen bobbing an invitation that the three victorious warriors gladly accept, scars and all. They offer hands and hasty commiserations to you as they go, but that does little to salve the burn of humiliation.");
 			output("\n\nIt’s a safe guess that you won’t see them again until sunrise at the very earliest. The spell of their skull-crowned deity broken, the rest of the tribal zil are now getting very involved with one another; hands are slipping into hands and groups of two or three are gliding into the darkness. Little attention is paid to you, about which you’re reasonably grateful. You");
 			output(" wrap up your wounds");
 			if(pc.HP() > 0) output(" give yourself some much needed manual relief");
@@ -1890,7 +1920,6 @@ public function quinnFestivalFightLose(response:String = "intro"):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
 			tryKnockUpQuinn(true);
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = -2;
 			
@@ -1913,7 +1942,7 @@ public function quinnFestivalFightWin():void
 	output("The last of the zil challengers collapses into the sand, unable to continue. This one uses the last of his energy to lift his head and look you in the eye.");
 	output("\n\n<i>“You... have become one with our ways, and have bettered us all,”</i> he grunts. <i>“You deserve her.”</i>");
 	output("\n\n<i>“All who fought today showed honor and bravery,”</i> Quinn says, calm and stately as a graven idol. <i>“But it is your victory today that shall be spoken of for many moons to come. Step forward, my champion. You have earned the right to claim me as your own.”</i>");
-	output("\n\nExultation fills your breast as you watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and sting-laden abdomen bobbing an invitation that you readily accept. The intoxicating, savage primacy of what you’ve done here - fought off three");
+	output("\n\nExultation fills your breast as you watch her rise and make her stately way towards the chieftain’s yurt, her pert ass and stinger-laden abdomen bobbing an invitation that you readily accept. The intoxicating, savage primacy of what you’ve done here - fought off three");
 	if(flags["PQ_FOUGHT_TRIBE"] != undefined) output(" other");
 	output(" young males in order to be the one and only mate of the swarm’s alpha bitch - becomes even more euphoric as the drum picks up again, and the word <i>“Zteele! Zteele! Zteele!”</i> rings out over the roaring fires in tones of awe, envy and naked lust.");
 	output("\n\nYou follow Quinn upwards into the darkness. The spell of their skull-crowned deity broken, you can hear the rest of the tribal zil now getting very involved with one another behind you; the lavender-scented woods are alive with the sounds of sighs, gasps, the hum of insect wings and low voices. Clearly this is a night they all look forward to.");
@@ -1922,10 +1951,14 @@ public function quinnFestivalFightWin():void
 	processTime(3);
 	
 	// Go to sexings
-	eventQueue.push(quinnFestivalSexingsDroneAlone);
+	eventQueue.push(quinnFestivalFightWinNext);
 	
 	quinnFestivalEndFight();
 	CombatManager.genericVictory();
+}
+public function quinnFestivalFightWinNext():void
+{
+	quinnFestivalSexingsDroneAlone([0]);
 }
 // Sexings
 public function quinnFestivalSexingsRouter():void
@@ -2112,7 +2145,6 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
 			tryKnockUpQuinn(true);
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = 1;
 			
@@ -2249,7 +2281,6 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to general preg
 			tryKnockUpQuinn(true);
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = 0;
 			
@@ -2371,7 +2402,6 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			
 			// End. Boot to Chieftain’s Circle. Set Quinn to Steele preg
 			tryKnockUpQuinn();
-			rooms["12. Zil Village Winnar"].northExit = "";
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINNFEST_COMPLETE"] = 2;
 			
@@ -2519,6 +2549,7 @@ public function askQuinnAboutHerbs(response:String = "intro"):void
 			
 			processTime(1);
 			
+			talkedToQuinn();
 			// +1 Nice point
 			pc.addNice(1);
 			flags["QUINN_TALK_HERBS"] = 1;
@@ -2547,6 +2578,7 @@ public function askQuinnAboutHerbs(response:String = "intro"):void
 			
 			processTime(1);
 			
+			talkedToQuinn();
 			// -1 Nice point
 			pc.addHard(1);
 			// flag dis for later check
@@ -2564,6 +2596,7 @@ public function askQuinnAboutHerbs(response:String = "intro"):void
 			
 			processTime(1);
 			
+			talkedToQuinn();
 			flags["QUINN_TALK_HERBS"] = 0;
 			
 			addButton(0, "Next", talkToQuinnStuffGogogogogogogogogogo);
@@ -2626,20 +2659,13 @@ public function pregQuinnSexNo():void
 	
 	var canHandMaiden:Boolean = (flags["QUINN_MAIDENS_SEXED"] != undefined || quinnHandmaidenThreesomeAvailable());
 	
-	if(pregDays <= 130)
+	if(flags["QUINN_SIRED_KID"] == undefined)
 	{
 		output("<i>“No,”</i> Quinn replies curtly. <i>“I need - I need to be careful. " + (canHandMaiden ? "Go bother my handmaidens if you want that." : "Go into the lower forests and find the hunters if you want that.") + "”</i>");
 	}
 	else
 	{
-		if(flags["QUINN_SIRED_KID"] == undefined)
-		{
-			output("<i>“It’s sweet of you to persist,”</i> Quinn replies, regarding you with twinkling golden eyes, <i>“But I still need to be careful. With you, getting rough - the temptation is always there. " + (canHandMaiden ? "My handmaidens will attend you." : "Go into the lower forests and find the hunters if you want that.") + "”</i>");
-		}
-		else
-		{
-			output("" + (canHandMaiden ? "" : "") + "");
-		}
+		output("<i>“It’s sweet of you to persist,”</i> Quinn replies, regarding you with twinkling golden eyes, <i>“But I still need to be careful. With you, getting rough - the temptation is always there. " + (canHandMaiden ? "My handmaidens will attend you." : "Go into the lower forests and find the hunters if you want that.") + "”</i>");
 	}
 	output("\n\n");
 	
@@ -2736,6 +2762,7 @@ public function pregQuinnVisit(response:String = "intro"):void
 			output("\n\n");
 			
 			processTime(5);
+			talkedToQuinn();
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINN_TALK_PREG"] = 0;
 			flags["QUINN_PREG_APPROACH"] = 3;
@@ -2756,6 +2783,7 @@ public function pregQuinnVisit(response:String = "intro"):void
 			processTime(7);
 			// -4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
 			pc.addHard(4);
+			talkedToQuinn();
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINN_TALK_PREG"] = -1;
 			flags["QUINN_PREG_APPROACH"] = 3;
@@ -2774,6 +2802,7 @@ public function pregQuinnVisit(response:String = "intro"):void
 			processTime(8);
 			// +4 Nice Points, Re-add [Quinn], add [Pregnancy?] to Quinn talks
 			pc.addNice(4);
+			talkedToQuinn();
 			currentLocation = "12. Zil Village Winnar";
 			flags["QUINN_TALK_PREG"] = 1;
 			flags["QUINN_PREG_APPROACH"] = 3;
@@ -2826,8 +2855,8 @@ public function askQuinnAboutPregnancy():void
 	{
 		output("You ask how it’s going.");
 		output("\n\n<i>“It is very irksome,”</i> she scowls, gesturing at her bulging midriff and increasingly bloated breasts. <i>“How am I meant to get anything done? How do I check my subjects are not being lazy when it takes me five minutes just to get down to the village? They are taking advantage of my current state, I am sure.”</i>");
-		output("\n\nYou can tell she’s proud fit to burst really though. She doesn’t stop you when you approach her from the side, place your hand on that warm, rotund beachball of hers. She buzzes quietly in pleasure, deep in her throat as you rub her.");
-		if(flags["QUINN_SIRED_KID"] != undefined) output(" That horny, particular smell - like regular zil sweetness but deeper, muskier - that only you can pick up is undeniable now, and you can tell ‘mine and mine alone’ is the furthest thought from her mind right now.");
+		output("\n\nYou can tell she’s really proud to be fit to burst though. She doesn’t stop you when you approach her from the side, place your hand on that warm, rotund beachball of hers. She buzzes quietly in pleasure, deep in her throat as you rub her.");
+		if(flags["QUINN_SIRED_KID"] != undefined) output(" That horny, particular smell - like regular zil sweetness but deeper and muskier - that only you can pick up is undeniable now, and you can tell ‘mine and mine alone’ is the furthest thought from her mind right now.");
 		output("\n\n<i>“There is no pain anymore,”</i> she goes on, in the quiet tone she uses when she only wants you to hear. <i>“Just... warmth. And movement, sometimes. I think I will be bountiful. I believe the zpirits have judged me generous.”</i>");
 		// If PC also zil preg:
 		if(pc.hasPregnancyOfType("ZilPregnancy") && pc.bellyRating() >= 10)
@@ -2847,7 +2876,7 @@ public function pregQuinnBirthed():void
 	showQuinn();
 	author("Nonesuch");
 	
-	var isSire:Boolean = flags["QUINN_SIRED_KID"];
+	var isSire:Boolean = (flags["QUINN_SIRED_KID"] != undefined);
 	var isMale:Boolean = quinnBirth();
 	
 	output("Beyond the flap of the leader’s yurt you find Quinn, deep in her bed furs, looking both utterly exhausted and extremely satisfied. In her arms, nursing at one of her opened breasts, is the tiniest zil you ever did see");
@@ -2856,13 +2885,13 @@ public function pregQuinnBirthed():void
 	output("\n\n<i>“This was the hardest thing I have ever done,”</i> she says, quietly but clearly. <i>“Harder than winning the right to be Quinn. Harder than");
 	if(flags["PQ_RESOLUTION"] == 1 ) output(" making peace with the starwalkers");
 	else output(" waging war against the land-stealers");
-	output(". But look - look at the result.”</i> She gently pulls the child off her teat, presents it to " + (flags["QUINN_SIRED_KID"] == undefined ? "her greatest warrior" : "the father") + ". You examine the little fetcher, blinking at you with golden eyes and grasping the air with tiny, chitinous fingers. Zil make it pretty easy to work out whether they’re male or female, even at a very young age.");
+	output(". But look - look at the result.”</i> She gently pulls the child off her teat, presents it to " + (!isSire ? "her greatest warrior" : "the father") + ". You examine the little fetcher, blinking at you with golden eyes and grasping the air with tiny, chitinous fingers. Zil make it pretty easy to work out whether they’re male or female, even at a very young age.");
 	
 	if(isMale) output(" You stroke his gently twitching wings admiringly.");
 	else output(" You stroke her tear-shaped abdomen admiringly.");
-	output("\n\n<i>“See " + (isMale ? "his" : "her") + " perfect hands?”</i> Quinn crows raspily. <i>“See " + (isMale ? "his" : "her") + " wandering eyes, " + (isMale ? "his" : "her") + " straight back and beautiful " + (isMale ? "wings" : "sting") + "? Quinn was generous, Quinn was bountiful! My child! " + (isMale ? "He" : "She") + " shall be the greatest leader my kind have ever known!”</i>");
+	output("\n\n<i>“See " + (isMale ? "his" : "her") + " perfect hands?”</i> Quinn crows raspily. <i>“See " + (isMale ? "his" : "her") + " wandering eyes, " + (isMale ? "his" : "her") + " straight back and beautiful " + (isMale ? "wings" : "stinger") + "? Quinn was generous, Quinn was bountiful! My child! " + (isMale ? "He" : "She") + " shall be the greatest leader my kind have ever known!”</i>");
 	// If Steele impregnated her + PC used [No] and [Comfort] options in previous preg scenes:
-	if(flags["QUINN_SIRED_KID"] != undefined && flags["QUINN_TALK_HERBS"] == -1 && flags["QUINN_TALK_PREG"] == 1)
+	if(isSire && flags["QUINN_TALK_HERBS"] == -1 && flags["QUINN_TALK_PREG"] == 1)
 	{
 		output("\n\n<i>“Our child,”</i> you say, looking her in the eye. The zil leader pauses for a long moment, and then smiles again.");
 		output("\n\n<i>“Our child,”</i> she agrees, taking the warm, black and yellow bundle back into her waiting arms.");
@@ -2948,13 +2977,12 @@ public function mommyQuinnApproach():Boolean
 			if(!isSire) output("My smartest, fiercest warrior.");
 			else output("Your daddy.");
 			output(" [pc.He]’s probably come to tell us about the enemies [pc.he]’s slain and skulls [pc.he]’s piled high in our honor. Say hello to [pc.him]!”</i>");
-			output("\n\n");
 			output("\n\nThe kid does nothing of the sort, of course; " + (babyMale ? "he" : "she") + " is still very young. " + (babyMale ? "He" : "She") + " simply gazes at you with a frown, those golden eyes taking in your deeply curious form, antennae twitching, toothless mouth forming inchoate shapes and expressions. Then " + (babyMale ? "he" : "she") + "’s whisked back into " + (babyMale ? "his" : "her") + " adoring mother’s arms.");
 			output("\n\n<i>“Have you given " + (babyMale ? "him" : "her") + " a name?”</i> you ask.");
 			output("\n\n<i>“Zil are not given names. Not unless they are slaves,”</i> Quinn tells you in a chiding, you-should-know-this tone. <i>“They earn them. For now though I own my child, so I call " + (babyMale ? "him" : "her") + "...");
 			if(isSire)
 			{
-				output("  Owers.”</i> She smiles at you broadly, as " + (babyMale ? "he" : "she") + " paws intently at her chitin breastplate.");
+				output(" Owers.”</i> She smiles at you broadly, as " + (babyMale ? "he" : "she") + " paws intently at her chitin breastplate.");
 				flags["QUINN_KID_NAME"] = "Owers";
 			}
 			else
@@ -2997,25 +3025,48 @@ public function mommyQuinnApproach():Boolean
 	// Again it’s never going to be older than 5 no it isn’t so shut up
 	else
 	{
+		output("<i>“My");
+		if(isSire) output(" most virile");
+		else if(flags["PQ_BEAT_LAH"] == 1 && flags["PQ_RESOLUTION"] == 1) output(" most honored");
+		else output(" smartest, fiercest");
+		output(" warrior returns,”</i> the motherly chieftain says, leaning back in her chair, one hand rested on a cushy thigh. She favors you with a serene and seductive smile. <i>“What does [pc.he] wish of [pc.his] Quinn?”</i>");
 		
+		if(quinnBabyActive())
+		{
+			output("\n\nSounds of " + (isSire ? "your" : "her") + " child playing in the back echos nearby.");
+		}
+		
+		processTime(1);
+		
+		peacefulQuinnMenu();
 	}
 	return true;
 }
-// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
+
 public function quinnMomSexButton(btnSlot:int = 2):void
 {
 	if(pc.lust() < 33) addDisabledButton(btnSlot, "Sex", "Sex", "You aren’t aroused enough for this.");
 	else if(quinnBabyAge() < 365)
 	{
 		// Non-handmaiden [Sex] chosen whilst kid present
-		if(quinnBabyActive()) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
+		if(quinnBabyActive())
+		{
+			if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
+			else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
+			else addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
+		}
 		// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
-		else addDisabledButton(btnSlot, "Sex", "Sex", "You’ve worn out Quinn, and Fetch and Carry are otherwise occupied. No more bonking. Aren’t babies a bitch?");
+		else
+		{
+			if(!pc.hasGenitals()) addDisabledButton(btnSlot, "Sex", "Sex", "You need genitals to do that!");
+			else if(quinnHandmaidenThreesomeAvailable()) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["maiden"]);
+			else addDisabledButton(btnSlot, "Sex", "Sex", "You’ve worn out Quinn, and Fetch and Carry are otherwise occupied. No more bonking. Aren’t babies a bitch?");
+		}
 	}
 	else
 	{
 		if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
-		else if(!pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
+		else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
 		else addButton(btnSlot, "Sex", sexWithQuinnOmnigenderWHYYYY);
 	}
 }
@@ -3036,12 +3087,26 @@ public function chieftansCircleBonusQuinnMomText():String
 // [Myne / Owers]
 public function approachQuinnBaby():void
 {
+	
 	var isSire:Boolean = (StatTracking.getStat("pregnancy/quinn sired") > 0);
 	var babyAge:int = quinnBabyAge();
 	var babyMale:Boolean = (flags["QUINN_KID_SEX"] == 1);
 	var numChildren:int = ChildManager.numChildrenAtNursery();
 	
 	clearOutput();
+	
+	if(!quinnBabyActive())
+	{
+		showBust("");
+		showName("\nMAYBE NOT...");
+		
+		output((isSire ? "Your" : "Quinn’s") + " child is most likely sleeping at this time. Best not disturb " + (babyMale ? "him" : "her") + ".");
+		
+		clearMenu();
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
 	showQuinn();
 	author("Nonesuch");
 	
@@ -3050,7 +3115,7 @@ public function approachQuinnBaby():void
 	else output(" my most honored warrior");
 	output(".”</i>");
 	output("\n\nThe tiny zil toddles across from where " + (babyMale ? "he" : "she") + " was playing with the other village children. " + (babyMale ? "He" : "She") + " comes hesitantly, eyeing you shyly. You wonder what Quinn has told " + (babyMale ? "him" : "her") + " about you. Well, honestly, even if it were a couple of throwaway half-truths it’d be enough for a native Mhen’gan toddler to be overawed.");
-	output("\n\nYou ask " + (babyMale ? "him" : "her") + " what game " + (babyMale ? "he" : "she") + "’s playing, what " + (babyMale ? "his" : "her") + " favorite color and animal is and quickly manage to loosen the kid up. Although " + quinnBabyName() + " never stops gazing at you with a certain shyness, " + (babyMale ? "he" : "she") + " is quite the chatterbox. You learn where their dens are, where the best mangoes in the jungle are to be found, and how to escape a naleen. You learn about the zil version of soccer, in which boys and girls have strictly regulated roles - but " + (babyMale ? "boys" : "girls") + " never follow, " + (babyMale ? "he" : "she") + " explains despairingly, because everyone knows " + (babyMale ? "boys" : "girls") + " always cheat.");
+	output("\n\nYou ask " + (babyMale ? "him" : "her") + " what game " + (babyMale ? "he" : "she") + "’s playing, what " + (babyMale ? "his" : "her") + " favorite color and animal is and quickly manage to loosen the kid up. Although " + quinnBabyName() + " never stops gazing at you with a certain shyness, " + (babyMale ? "he" : "she") + " is quite the chatterbox. You learn where their dens are, where the best mangoes in the jungle are to be found, and how to escape a naleen. You learn about the zil version of soccer, in which boys and girls have strictly regulated roles - but " + (babyMale ? "girls" : "boys") + " never follow, " + (babyMale ? "he" : "she") + " explains despairingly, because everyone knows " + (babyMale ? "girls" : "boys") + " always cheat.");
 	output("\n\nAfter that you have a decent game of hide and seek, which all the kids love since you don’t know where all of their hiding places are");
 	if(flags["QUINN_KID_PLAYS"] >= 5) output(" despite doing this a number of times now");
 	output(", followed by a couple of sessions of horsie (which they call ‘pinser’ for reasons which sound faintly alarming).");
@@ -3089,8 +3154,9 @@ public function approachQuinnBaby():void
 	}
 	output("\n\n");
 	
-	processTime(11);
+	processTime(51);
 	IncrementFlag("QUINN_KID_PLAYS");
+	flags["QUINN_KID_PLAY_DAY"] = days;
 	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);

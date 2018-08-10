@@ -61,7 +61,9 @@ public function drinkSomeNog():void
 	output("Your eyes are drawn once more to her breasts. And why not? Aside from her massive fuck-stick, it’s her most salient asset. She catches your eyes and grins, giving her striped teat a little squeeze, sending a creamy bead oozing from her nipple. There’s a distinct scent of liquor from her milk, and you find yourself licking your lips with anticipation.");
 	output("\n\n<i>“‘Tis the season to be jolly,”</i> she giggles.");
 	output("\n\nWell, hard to argue with that. You move forward and latch onto her breast. She gasps, clutching your head as your suckle her teat. A moan escapes you at the taste. Her skin actually tastes like a candy cane, and her milk like eggnog! The two flavours swirl in your mouth as you suck her cream and taste her plump nipples.");
-	output("\n\n<i>“Oh yes,”</i> she murmurs, stroking your hair, pulling you deeper into the soft, malleable girth of her tits. <i>“Drink it all up.”</i>");
+	output("\n\n<i>“Oh yes,”</i> she murmurs");
+	if(pc.hasHair()) output(", stroking your hair");
+	output(", pulling you deeper into the soft, malleable girth of her tits. <i>“Drink it all up.”</i>");
 	output("\n\nYou’ll hardly say no. In fact, you wonder if you can. Her cream warms your stomach and makes your head spin from the intoxicating flavour. You mash her breasts in your hands, and she gasps as you find her other nipple, rolling the firm bud between your fingers.");
 	output("\n\n<i>“Mnnnn. Merry X-mas to me,”</i> she purrs. Soon enough she pulls your face from her breast, transferring you to the second where you eagerly resume suckling. The striped Rahn undulates, rubbing her ovipositor against your legs wantonly, moaning softly with desire.");
 	output("\n\nFinally, gasping, you pull free. Your head spins with the beginning of intoxication and your stomach is warm from the festive nog.");
@@ -92,7 +94,7 @@ public function suckCandysCane():void
 	output("\n\nYou don’t need her to tell you. You adjust your stance and open your mouth wide, taking the head of her ovipositor in your lips. She moans, tossing back her head, her spiky hair scraping against the mirror as you swallow her. The sweet taste coats your mouth and throat as you take her, never hurrying. After all, half the fun of a candy cane is polishing it, and you intend to thoroughly enjoy this holiday treat.");
 	output("\n\nAnd you’re not the only one. Candy’s legs swing up, wrapping around your head and pulling you down on her shaft. She’s gripping the sink so hard you can hear the porcelain creak as you bob your head, sucking her off. Giving someone a blowjob has never tasted so sweet!");
 	output("\n\n<i>“That’s it,”</i> she moans. <i>“Suck it good. Your...mmm... Special surprise is very close. ‘tis the season of... mmmn... giving, after all.”</i>");
-	output("\n\nOh that does sound tasty! You hollow your cheeks for better suction, your tongue writhing up and down her shaft as you work her. She gasps, moaning. Her firm, multicolored thighs squeeze your head as you suck. She grabs your hair, holding on tight as she fucks your face. Your tongue is fairly numb with the sweet flavour of her cock.");
+	output("\n\nOh that does sound tasty! You hollow your cheeks for better suction, your tongue writhing up and down her shaft as you work her. She gasps, moaning. Her firm, multicolored thighs squeeze your head as you suck. She grabs your [pc.hair], holding on tight as she fucks your face. Your tongue is fairly numb with the sweet flavour of her cock.");
 	output("\n\n<i>“Oh the Candy Rahn can,”</i> your lover moans as you feel her ovipositor pulse in your throat. <i>“The Candy... Rahn... Can!”</i>");
 	output("\n\nShe bucks, burying her cock in your mouth, and cums. The sharp, dusky taste of chocolate shocks your palate. You moan, swishing her cum in your mouth even as you swallow; the warm, smooth taste of chocolate washing down the sweet taste of candy cane.");
 	output("\n\nGasping, Candy finally releases your head. You pull back, panting, licking your lips for the lingering sweetness of her cock and cream. Candy gives you a beaming smile and strokes your cheek.");
@@ -120,7 +122,9 @@ public function naughtyStuffWithCandy():void
 	addTopBust("CHUPACABRO");
 	showName("\nKRAMPUS!");
 	
-	output("Oh you’ve been very naughty, you inform her. She smiles those lovely, plump, dick sucking lips of hers and slides the candy cane back into her mouth. <i>“Well,”</i> she says, twirling her finger in your hair, <i>“I’m afraid I’m only for good boys and girls. Naughty children get the... Krampus.”</i>");
+	output("Oh you’ve been very naughty, you inform her. She smiles those lovely, plump, dick sucking lips of hers and slides the candy cane back into her mouth. <i>“Well,”</i> she says");
+	if(pc.hasHair()) output(", twirling her finger in your hair");
+	output(", <i>“I’m afraid I’m only for good boys and girls. Naughty children get the... Krampus.”</i>");
 	output("\n\nKrampus?");
 	output("\n\n<i>“Krampus!”</i>");
 	output("\n\nYou swing around in shock as a horned figure looms out of the crowd. Fur covers his arms and legs, feet ending in cloven hooves. Horns curve back from a leering gaze, a long forked tongue flicking at the air. His cock, a meaty flat tipped thing like a horse, swings near his knees and in one hand he wields a heavy looking paddle.");

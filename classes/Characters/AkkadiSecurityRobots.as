@@ -162,10 +162,10 @@ package classes.Characters
 
 		public static function encounterTextGen():String
 		{
-			var enctext:String = "You're fighting Akkadi security bots!";
-			enctext += "\n\nEach bot is a mechanical biped, more lizard-like than canid, with a squat body covered in sleek armor plates. Rather than a head, they have angled blast shields that face you, parted around the barrel of a gun and a laser sight that ceaselessly tracks your movements. There's still ";
+			var enctext:String = "You’re fighting Akkadi security bots!";
+			enctext += "\n\nEach bot is a mechanical biped, more lizard-like than canid, with a squat body covered in sleek armor plates. Rather than a head, they have angled blast shields that face you, parted around the barrel of a gun and a laser sight that ceaselessly tracks your movements. There’s still ";
 			if (CombatManager.enemiesAlive() == 1) enctext += "one standing!";
-			else if (CombatManager.enemiesAlive() == 1) enctext += "two standing!";
+			else if (CombatManager.enemiesAlive() == 2) enctext += "two standing!";
 			else enctext += "several robots in the fray!";
 			return enctext;
 		}
@@ -295,21 +295,21 @@ package classes.Characters
 					if (!ally.hasStatusEffect("Target Link"))
 					{
 						if (ally != this) comradesInArms = true;
-						ally.createStatusEffect("Target Link", 3, 8, 0, 0, false, "Icon_RadioSignal", "The robot's accuracy is increased. Better get its aim off you!", true, 0, UIStyleSettings.gStatusGoodColour);
+						ally.createStatusEffect("Target Link", 3, 8, 0, 0, false, "Icon_RadioSignal", "The robot’s accuracy is increased. Better get its aim off you!", true, 0, UIStyleSettings.gStatusGoodColour);
 					}
 				}
 			}
 			
 			if (isLoneBot) output("The remaining bot");
 			else output("One of the robots");
-			output(" raises up on its legs and focuses its targeting laser on you. You hear a whirring sound from the robot's gun-head, and then it beeps ominously.");
+			output(" raises up on its legs and focuses its targeting laser on you. You hear a whirring sound from the robot’s gun-head, and then it beeps ominously.");
 			if (comradesInArms) output(" All the robots beep in unison after that, apparently sharing some sort of linked targeting!");
 		}
 		public function endTargetLink():void
 		{
 			if (!hasStatusEffect("Target Link")) return;
 			setStatusValue("Target Link", 2, 0);
-			setStatusTooltip("Target Link", "The link won't work again during this fight.");
+			setStatusTooltip("Target Link", "The link won’t work again during this fight.");
 			setStatusIconShade("Target Link", UIStyleSettings.gStatusBadColour);
 		}
 /*
@@ -361,8 +361,8 @@ Target Link
 
 		public static function akkadiBaseValdenFightText():String
 		{
-			var eText:String = "You're fighting a horde of security droids, controlled directly by Commander Valden.";
-			eText += "\n\nThe man you tried to save may be nothing more than a digital echo of his consciousness, but he's more than capable of bringing all his military experience to bear against you. ";
+			var eText:String = "You’re fighting a horde of security droids, controlled directly by Commander Valden.";
+			eText += "\n\nThe man you tried to save may be nothing more than a digital echo of his consciousness, but he’s more than capable of bringing all his military experience to bear against you. ";
 			for each (var drone:Creature in CombatManager.getHostileActors()) if (drone.hasStatusEffect("Valden-Possessed")) eText += StringUtil.toTitleCase(drone.uniqueName);
 			eText += " has brilliant red sensors covering you, seeming to direct its kin to fight harder. The others march to its tune, firing their lasers in a hail of red streaks amid their inexorable advance.";
 			
@@ -414,7 +414,7 @@ Target Link
 		
 		private static function valdenHeal(hostCreature:Creature):void
 		{
-			output("The drone Valden is inhabiting takes a moment to plant its feet and turtle up behind the heavy metal bulwark that replaces its face. You watch with annoyance as its energy shields thrum, recharging from the damage you've inflicted. Damn!");
+			output("The drone Valden is inhabiting takes a moment to plant its feet and turtle up behind the heavy metal bulwark that replaces its face. You watch with annoyance as its energy shields thrum, recharging from the damage you’ve inflicted. Damn!");
 			var healing:int = Math.min(	Math.round((15 + rand(18) + rand(17))*hostCreature.shieldsMax()/100),
 										hostCreature.shieldsMax() - hostCreature.shields());
 			output(" <b>(S: +<span class='shield'>" + healing + "</span>)</b>")
@@ -492,11 +492,11 @@ Target Link
 		{
 			if (loud)
 			{
-				output("\n\n<i>\"Damn!\"</i> Valden spits from the");
+				output("\n\n<i>“Damn!”</i> Valden spits from the");
 				if (target.HPQ() < 33) output(" damaged");
 				else if (target.hasStatusEffect("Blinded")) output(" blind");
 				else output (" afflicted");
-				output(" drone's speakers. <i>\"Come on! I'm a damn computer, fucking unkillable! Keep trying, and see where this gets you!\"</i>");
+				output(" drone’s speakers. <i>“Come on! I’m a damn computer, fucking unkillable! Keep trying, and see where this gets you!”</i>");
 			}
 			target.removeStatusEffect("Valden-Possessed");
 			target.shields(-target.shields()*valdenShieldBuffMult);
@@ -506,8 +506,8 @@ Target Link
 		{
 			if (loud)
 			{
-				output("\n\nBefore you can blink, the drone's sensors fade back down to the same tone as all the others... except for " + StringUtil.toTitleCase(target.uniqueName) + ", which flares with a sudden inflict of energy.");
-				output("\n\n<i>\"There we go! I'm back in the game, good as new! How about you?\"</i> " + StringUtil.toTitleCase(target.uniqueName) + " bellows in Valden's voice. <i>\"Let's dance!\"</i>");
+				output("\n\nBefore you can blink, the drone’s sensors fade back down to the same tone as all the others... except for " + StringUtil.toTitleCase(target.uniqueName) + ", which flares with a sudden inflict of energy.");
+				output("\n\n<i>“There we go! I’m back in the game, good as new! How about you?”</i> " + StringUtil.toTitleCase(target.uniqueName) + " bellows in Valden’s voice. <i>“Let’s dance!”</i>");
 			}
 			if (target.hasStatusEffect("Valden-Possessed")) target.setStatusValue("Valden-Possessed", 1, CombatManager.getRoundCount());
 			else target.createStatusEffect("Valden-Possessed", CombatManager.getRoundCount())

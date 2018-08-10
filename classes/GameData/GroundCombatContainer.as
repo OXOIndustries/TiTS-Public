@@ -1666,170 +1666,198 @@ package classes.GameData
 				return;
 			}
 			if(CombatManager.multipleEnemies()) output("s");
-			output("! ")
+			output("! ");
 			//Autofail conditions first!
 			if(pc.isImmobilized()) {
 				output("You cannot run while you are " + (pc.isGrappled() ? "in the enemy’s grip" : "immobilized") + "!");
 				processCombat();
+				return;
 			}
-			else if (isFleeDisabled()) {
+			if (isFleeDisabled()) {
 				output("<b>You cannot escape from this fight!</b>");
 				processCombat();
+				return;
 			}
-			else if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
+			if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
 			{
 				output("<b>");
 				if(pc.hasStatusEffect("Flushed")) output("The warmth in your lower body");
 				else output("The Fuck Fever");
 				output(" won’t let you get away from a potential dicking!</b>");
 				processCombat();
+				return;
 			}
-			else if (kGAMECLASS.debug)
+			if (kGAMECLASS.debug)
 			{
 				output("You escape on wings of debug!");
 				CombatManager.abortCombat();
+				return;
 			}
-			else if (hasEnemyOfClass(Frostwyrm))
+			if (hasEnemyOfClass(Frostwyrm))
 			{
 				output("The frostwyrm doesn’t give chase, letting you escape.");
 				CombatManager.abortCombat();
-			}			
-			else 
+				return;
+			}
+			// TODO rework this somehow
+			
+			var numActiveHostiles:int = 0;
+			var hostilesLevel:Number = 0;
+			var hostileReflexes:Number = 0;
+			var hostilesFlying:int = 0;
+			var hostilesImmobile:int = 0;
+			var hostilesBlind:int = 0;
+			for(var i:int = 0; i < _hostiles.length; i++)
 			{
-				// TODO rework this somehow
-				
-				var x:int = 0;
-				//determine difficulty class based on reflexes vs reflexes comparison, easy, low, medium, hard, or very hard
-				var difficulty:int = 0;
-				//easy = succeed 75%
-				//low = succeed 50%
-				//medium = succeed 35%
-				//hard = succeed 20;
-				//very hard = succeed 10%
-				//Easy: PC has twice the reflexes
-				if(pc.reflexes() >= _hostiles[0].reflexes() * 2) difficulty = 0;
-				//Low: PC has more than +33% more reflexes
-				else if(pc.reflexes() >= _hostiles[0].reflexes() * 1.333) difficulty = 1;
-				//Medium: PC has more than -33% reflexes
-				else if(pc.reflexes() >= _hostiles[0].reflexes() * .6666) difficulty = 2;
-				//Hard: PC pretty slow
-				else if(pc.reflexes() >= _hostiles[0].reflexes() * .3333) difficulty = 3;
-				//Very hard: PC IS FUCKING SLOW
-				else difficulty = 4;
-
-				//Multiple NPCs? Raise difficulty class for each one!
-				difficulty += _hostiles.length - 1;
-				
-				// Endowment penalty
-				if(pc.hasStatusEffect("Egregiously Endowed")) difficulty++;
-
-				//Raise difficulty for having awkwardly huge genitalia/boobs sometime!
-				if(pc.energy() < (Math.round(pc.energyMax()/3)))
+				if(!_hostiles[i].isDefeated())
 				{
-					var desc: String = "";
-					//Get the info and adjust difficulty to match
-					// Breasts:
-					if(pc.isHeavy("boobs")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.boobs]";
+					if(hostilesLevel < _hostiles[i].level) hostilesLevel = _hostiles[i].level;
+					if(!_hostiles[i].isImmobilized())
+					{
+						if(hostileReflexes < _hostiles[i].reflexes()) hostileReflexes = _hostiles[i].reflexes();
+						if(_hostiles[i].canFly()) hostilesFlying++;
 					}
-					// Belly:
-					if(pc.isHeavy("belly")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.belly]";
-					}
-					// Butt: Big Booty Bitches! Oooooooooo!
-					if(pc.isHeavy("butt")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.butt]";
-					}
-					// Clitoris:
-					if(pc.isHeavy("clits")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.clits]";
-					}
-					// Penis:
-					if(pc.isHeavy("cocks")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.cocks]";
-					}
-					// Testicles:
-					if(pc.isHeavy("balls")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.balls]";
-					}
-					if(desc.length > 0) output("Though due to the weight of your" + desc + " and your low stamina, you are finding it a bit difficult to run... ");
+					else hostilesImmobile++;
+					if(_hostiles[i].isBlind()) hostilesBlind++;
+					numActiveHostiles++;
 				}
-				
-				//Cap it
-				if(difficulty > 5) difficulty = 5;
+			}
+			
+			var x:int = 0;
+			//determine difficulty class based on reflexes vs reflexes comparison, easy, low, medium, hard, or very hard
+			var difficulty:int = 0;
+			//easy = succeed 75%
+			//low = succeed 50%
+			//medium = succeed 35%
+			//hard = succeed 20;
+			//very hard = succeed 10%
+			//Easy: PC has twice the reflexes
+			if(pc.reflexes() >= hostileReflexes * 2) difficulty = 0;
+			//Low: PC has more than +33% more reflexes
+			else if(pc.reflexes() >= hostileReflexes * 1.333) difficulty = 1;
+			//Medium: PC has more than -33% reflexes
+			else if(pc.reflexes() >= hostileReflexes * .6666) difficulty = 2;
+			//Hard: PC pretty slow
+			else if(pc.reflexes() >= hostileReflexes * .3333) difficulty = 3;
+			//Very hard: PC IS FUCKING SLOW
+			else difficulty = 4;
 
-				//Lower difficulty for flight if enemy cant!
-				if(pc.canFly() && (!_hostiles[0].canFly() || _hostiles[0].isImmobilized())) difficulty--;
-				//Lower difficulty for immobilized foe
-				if(_hostiles[0].isImmobilized()) difficulty-=2;
-				//Easy mode is magic!
-				if(kGAMECLASS.easy)
+			//Multiple NPCs? Raise difficulty class for each one!
+			difficulty += (numActiveHostiles - 1);
+			
+			// Endowment penalty
+			if(pc.hasStatusEffect("Egregiously Endowed")) difficulty++;
+
+			//Raise difficulty for having awkwardly huge genitalia/boobs sometime!
+			if(pc.energy() < (Math.round(pc.energyMax()/3)))
+			{
+				var desc: String = "";
+				//Get the info and adjust difficulty to match
+				// Breasts:
+				if(pc.isHeavy("boobs")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.boobs]";
+				}
+				// Belly:
+				if(pc.isHeavy("belly")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.belly]";
+				}
+				// Butt: Big Booty Bitches! Oooooooooo!
+				if(pc.isHeavy("butt")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.butt]";
+				}
+				// Clitoris:
+				if(pc.isHeavy("clits")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.clits]";
+				}
+				// Penis:
+				if(pc.isHeavy("cocks")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.cocks]";
+				}
+				// Testicles:
+				if(pc.isHeavy("balls")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.balls]";
+				}
+				if(desc.length > 0) output("Though due to the weight of your" + desc + " and your low stamina, you are finding it a bit difficult to run... ");
+			}
+			
+			//Cap it
+			if(difficulty > 5) difficulty = 5;
+
+			//Lower difficulty for flight if enemy cant!
+			if(pc.canFly() && hostilesFlying <= 0) difficulty--;
+			//Lower difficulty for blind foe
+			if(hostilesBlind > 0) difficulty -= hostilesBlind;
+			//Lower difficulty for immobilized foe
+			if(hostilesImmobile > 0) difficulty -= (2 * hostilesImmobile);
+			//Easy mode is magic!
+			if(kGAMECLASS.easy)
+			{
+				if(difficulty > 0) difficulty--;
+				if(difficulty > 0) difficulty--;
+				if(difficulty > 0) difficulty--;
+			}
+			//Outlevel the enemy? Make easier
+			if(pc.level >= hostilesLevel + 2) difficulty--;
+			if(pc.level >= hostilesLevel + 3) difficulty--;
+			if(pc.level >= hostilesLevel + 4) difficulty--;
+			if(pc.level >= hostilesLevel + 5) difficulty--;
+
+			//Grunch makes easier!
+			if(pc.accessory is GrunchLeash) difficulty -= 2;
+
+			//Set threshold value and check!
+			if(difficulty < 0) difficulty = 100;
+			else if(difficulty == 0) difficulty = 75;
+			else if(difficulty == 1) difficulty = 50;
+			else if(difficulty == 2) difficulty = 35;
+			else if(difficulty == 3) difficulty = 20;
+			else if(difficulty == 4) difficulty = 10;
+			else difficulty = 5;
+			//Special succeeeeeesss!
+			if(pc.hasStatusEffect("Survivaled") || hostilesImmobile >= numActiveHostiles) difficulty = 110;
+			trace("Successful escape chance: " + difficulty + " %")
+			//Success!
+			if (rand(100) + 1 <= difficulty) {
+				if (hasEnemyOfClass(Cockvine))
 				{
-					if(difficulty > 0) difficulty--;
-					if(difficulty > 0) difficulty--;
-					if(difficulty > 0) difficulty--;
-				}
-				//Outlevel the enemy? Make easier
-				if(pc.level >= _hostiles[0].level + 2) difficulty--;
-				if(pc.level >= _hostiles[0].level + 3) difficulty--;
-				if(pc.level >= _hostiles[0].level + 4) difficulty--;
-				if(pc.level >= _hostiles[0].level + 5) difficulty--;
-
-				//Grunch makes easier!
-				if(pc.accessory is GrunchLeash) difficulty -= 2;
-
-				//Set threshold value and check!
-				if(difficulty < 0) difficulty = 100;
-				else if(difficulty == 0) difficulty = 75;
-				else if(difficulty == 1) difficulty = 50;
-				else if(difficulty == 2) difficulty = 35;
-				else if(difficulty == 3) difficulty = 20;
-				else if(difficulty == 4) difficulty = 10;
-				else difficulty = 5;
-				//Special succeeeeeesss!
-				if(pc.hasStatusEffect("Survivaled")) difficulty = 110;
-				trace("Successful escape chance: " + difficulty + " %")
-				//Success!
-				if (rand(100) + 1 <= difficulty) {
-					if (hasEnemyOfClass(Cockvine))
-					{
-						kGAMECLASS.adultCockvinePCEscapes();
-						CombatManager.abortCombat();
-						return;
-					}
-					if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
-					{
-						kGAMECLASS.bothriocQuestBetaNyreaMiniquestRun();
-						CombatManager.abortCombat();
-						return;
-					}
-					if (pc.canFly()) 
-					{
-						if (pc.legCount == 1) output("Your [pc.foot] leaves");
-						else output("Your [pc.feet] leave");
-						output(" the ground as you fly away, leaving the fight behind.");
-					}
-					else output("You manage to leave the fight behind you.")
-					kGAMECLASS.processTime(8);
-					
+					kGAMECLASS.adultCockvinePCEscapes();
 					CombatManager.abortCombat();
+					return;
 				}
-				else {
-					output("It doesn’t work!");
-					processCombat();
+				if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
+				{
+					kGAMECLASS.bothriocQuestBetaNyreaMiniquestRun();
+					CombatManager.abortCombat();
+					return;
 				}
+				if (pc.canFly()) 
+				{
+					if (pc.legCount == 1) output("Your [pc.foot] leaves");
+					else output("Your [pc.feet] leave");
+					output(" the ground as you fly away, leaving the fight behind.");
+				}
+				else output("You manage to leave the fight behind you.")
+				kGAMECLASS.processTime(8);
+				
+				CombatManager.abortCombat();
+				return;
+			}
+			else {
+				output("It doesn’t work!");
+				processCombat();
+				return;
 			}
 		}
 		

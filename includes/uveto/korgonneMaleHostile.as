@@ -567,12 +567,29 @@ public function pitchKorgAnal():void
 		clearOutput();
 		showKorgiMaleHostile();
 		output("What will you pitch with?");
+		
+		output("\n\n<b><u>Suitable:</u></b>");
 		clearMenu();
 		for(x = 0; x < targets.length; x++)
 		{
-			if(targets[x] == -2) addButton(x,"Hardlight",actualKorgAnalPitch,targets[x],"Hardlight","Fill the korgonne’s ass with your hardlight dildo.");
-			else if(targets[x] == -1) addButton(x,"Tailcock",actualKorgAnalPitch,targets[x],"Tailcock","Fill the korgonne’s ass with your tailcock.");
-			else addButton(x,"Dick #" + targets[x],actualKorgAnalPitch,targets[x],"Dick #" + targets[x],"Fill the korgonne’s ass with your cock.");
+			if(targets[x] == -2) {
+				output("\n<b>Hardlight Strap-On:</b> " + StringUtil.toDisplayCase(pc.lowerUndergarment.longName));
+				addButton(x,"Hardlight",actualKorgAnalPitch,targets[x],"Hardlight","Fill the korgonne’s ass with your hardlight dildo.");
+			}
+			else if(targets[x] == -1) {
+				output("\n<b>Tail-cock:</b> " + StringUtil.toDisplayCase(pc.oneTailGenitalDescript()));
+				addButton(x,"Tailcock",actualKorgAnalPitch,targets[x],"Tailcock","Fill the korgonne’s ass with your tailcock.");
+			}
+			else {
+				if(pc.cocks.length == 1) {
+					output("\n<b>Penis:</b>" + penisRouterCockDesc(targets[x]));
+					addButton(x,"Penis",actualKorgAnalPitch,targets[x],"Penis","Fill the korgonne’s ass with your cock.");
+				}
+				else {
+					output("\n<b>" + StringUtil.capitalize(num2Ordinal(targets[x] + 1)) + " Penis:</b>" + penisRouterCockDesc(targets[x]));
+					addButton(x,"Penis " + (targets[x] + 1),actualKorgAnalPitch,targets[x],StringUtil.capitalize(num2Ordinal(targets[x] + 1)) + " Penis","Fill the korgonne’s ass with your cock.");
+				}
+			}
 		}
 	}
 }
