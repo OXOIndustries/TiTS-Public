@@ -1091,11 +1091,11 @@
 			}
 		}
 		
-		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
+		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, stackSize:int = 1, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
 		{
 			try
 			{
-				_buttonTray.addItemButton(slot, cap, quantity, func, arg, ttHeader, ttBody, ttCompare);
+				_buttonTray.addItemButton(slot, cap, quantity, stackSize, func, arg, ttHeader, ttBody, ttCompare);
 			}
 			catch (e:*)
 			{
