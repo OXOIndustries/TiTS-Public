@@ -31,6 +31,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/fubMistress/gene.png", mimeType = "image/png")]
 		public var Bust_GENE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/fubMistress/quaddomme.png", mimeType = "image/png")]
+		public var Bust_BOTHRIOC_QUADOMME:Class;
+
 		[Embed(source = "../../../assets/images/npcs/fubMistress/quaelle.png", mimeType = "image/png")]
 		public var Bust_QUAELLE:Class;
 		public function get Bust_QUAELLE_F1():Class { return Bust_QUAELLE; }
@@ -61,6 +64,9 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/gene.png", mimeType = "image/png")]
 			public var Full_GENE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/quaddomme.png", mimeType = "image/png")]
+			public var Full_BOTHRIOC_QUADOMME:Class;
 
 			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/quaelle.png", mimeType = "image/png")]
 			public var Full_QUAELLE:Class;
