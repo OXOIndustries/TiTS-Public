@@ -1919,9 +1919,13 @@ public function zephyrBetWin(pqResult:Array):void
 	if (cIdx < 0) output(" be overcome by the strapon’s feedback and");
 	output(" cum before she does - too bad for her she’s just hastening her own orgasm. With how tight she’s holding you, it’s a cinch to roughly rub her prostate even as you get deeper than you thought possible into her ass.");
 	
-	output("\n\n<i>“Ohhh!”</i> Zephyr groans, looking down in dismay at her taut stomach as it bulges with the imprint of your cockhead. <i>“Fucking hell, Steele!”</i>");
+	output("\n\n<i>“Ohhh!”</i> Zephyr groans");
+	if (cIdx < 0 || pc.cLength(cIdx) >= 9) output(", looking down in dismay at her taut stomach as it bulges with the imprint of your cockhead");
+	output(". <i>“Fucking hell, Steele!”</i>");
 	
-	output("\n\n<i>“Oh right, you don’t mess around with the bulls, do you?”</i> you ask, casually angling yourself upwards to distort that pale, milky skin with your dick. <i>“Guess this’ll all be new to you, then. If it’s any consolation, you look really good on your back like this.”</i>");
+	output("\n\n<i>“Oh right, you don’t mess around with the bulls, do you?”</i> you ask");
+	if (cIdx < 0 || pc.cLength(cIdx) >= 9) output(", casually angling yourself upwards to distort that pale, milky skin with your dick");
+	output(". <i>“Guess this’ll all be new to you, then. If it’s any consolation, you look really good on your back like this.”</i>");
 
 	output("\n\nShe doesn’t respond, her expression somewhere halfway between astonishment at how deep inside her you are and anger that you’re defiling her body. Plus, you think, a little wonder and healthy curiosity. Taking advantage of her momentary fugue state, you start fucking her as hard as you can, [pc.skinFurScales] slapping against Zephyr’s spread thighs with every thrust. It doesn’t take long for her to be unable to resist the treatment, shaking underneath you.");
 	
