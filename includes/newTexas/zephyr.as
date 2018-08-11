@@ -2313,7 +2313,7 @@ public function zephyrDoubleBetLoss():void
 	
 	output("\n\nWithout warning, she shoves herself inside you so deeply that you gasp, instinctively raising your legs into the air whereupon Zephyr grabs them and forces them backwards, grinning like a shark as she does.");
 	
-	pc.cuntChange(ppZephyr.biggestCockVolume(),  vIdx);
+	pc.cuntChange(vIdx, ppZephyr.biggestCockVolume());
 	
 	output("\n\n<i>“Oh, that’s a good look for you,”</i> she says, clearly having fun with dominantly displaying her strength. <i>“As tempting as you are lovely.”</i>");
 	
@@ -2535,6 +2535,8 @@ public function milkedByZephYes():void
 	author("Wsan");
 	
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+	var vIdx:int = pc.findEmptyPregnancySlot(1);
+	if(vIdx < 0) vIdx = rand(pc.vaginas.length);
 	
 	output("<i>“I- err...”</i> you stumble over your words, thinking about the way she takes you. It’s exhausting, but that’s part of the fun. The way she puts her full body and mind into <i>fucking</i> you, and forces you to reciprocate. <i>“... Yes.”</i>");
 	
@@ -2543,14 +2545,14 @@ public function milkedByZephYes():void
 	output("\n\nLetting Zephyr gently raise you to your feet while being milked, you moan as she dials the intensity slightly higher with a grin. Then, with a powerful hand on your back, gently coaxes you into bending over for her. Her guiding hand feels like a heavy weight, reminding you of who wears the proverbial pants between the two of you.");
 	
 	output("\n\n<i>“I never get tired of this sight,”</i> she sighs happily, rubbing your back. You can feel her hardness pressing against your [pc.butt], her eagerness getting the best of her.");
-	if (!pc.isNude()) output(" She tugs your [pc.lowerGarments] down and bends down, getting a good look at your [pc.pussy] even as she casually sinks a finger into your ass.");
+	if (!pc.isNude()) output(" She tugs your [pc.lowerGarments] down and bends down, getting a good look at your [pc.pussy " + vIdx + "] even as she casually sinks a finger into your ass.");
 	
 	output("\n\n<i>“Aw, I love seeing you tighten up like that,”</i> she coos, moving her face closer to your [pc.thighs]. <i>“Just can’t help it, huh?”</i>");
 	
 	output("\n\nYou let out a surprised moan when you feel her tongue roll from her mouth and lick your pussy, sliding between your thighs and getting a good taste of your juices.");
 	if (pc.hasToes()) output(" Standing on your tiptoes, y");
 	else output(" Y");
-	output("ou bite your bottom lip while Zephyr takes her sweet time sampling your folds, dipping just once or twice deeper inside you. She’s so <i>warm</i>, and you can’t help but fantasize about her leaving some of that warmth inside your [pc.womb].");
+	output("ou bite your bottom lip while Zephyr takes her sweet time sampling your folds, dipping just once or twice deeper inside you. She’s so <i>warm</i>, and you can’t help but fantasize about her leaving some of that warmth inside your [pc.womb " + vIdx + "].");
 	
 	output("\n\n<i>“Mmmmn,”</i> Zephyr groans from between your legs before standing back up. <i>“Fuck, you taste so good, [pc.name]. Just feeling you out with my tongue makes me fucking raging hard. Look.”</i>");
 	
@@ -2564,7 +2566,7 @@ public function milkedByZephYes():void
 	if (pc.isSquirter()) output(" and squirting all down your legs");
 	output(" in submissive glee. She doesn’t stop or even slow down, encouraging you to keep up with steady rolls of her hips, each one knocking you off your feet and distending your [pc.tummy].");
 	
-	pc.cuntChange(0, ppZephyr.biggestCockVolume());
+	pc.cuntChange(vIdx, ppZephyr.biggestCockVolume());
 	
 	output("\n\nGrunting, she spreads her muscular legs and pulls your [pc.hips] in, beginning to rail you with all the vigor you’ve known and come to love from her, tearing cries and screams of pleasure from your throat.");
 	
@@ -2658,7 +2660,7 @@ public function milkedByZephYes():void
 
 	for (var i:int = 0; i < 3; i++)
 	{
-		pc.loadInCunt(ppZephyr, 0);
+		pc.loadInCunt(ppZephyr, vIdx);
 		pc.orgasm();
 	}
 
