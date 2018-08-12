@@ -2654,7 +2654,7 @@ public function milkedByZephYes():void
 	processTime(180+rand(60));
 
 	// something to track milk produced specifically for the nursery
-	// 9999 NURSERY_MILK_PRODUCTION
+	// NURSERY_MILK_PRODUCTION
 	var milkQ:Number = pc.milkQ();
 	StatTracking.track("nursery/milk milked", milkQ);
 
@@ -2996,6 +2996,8 @@ public function zephNurseryGentleFuck():void
 	author("Wsan");
 	
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+	var vIdx:int = pc.findEmptyPregnancySlot(1);
+	if(vIdx < 0) vIdx = rand(pc.vaginas.length);
 	
 	output("<i>“So,”</i> you murmur, reaching up behind you and softly tracing a couple of fingers along Zephyr’s cheek. <i>“Feel like taking your big, studly length and using it on your pregnant mate?”</i>");
 	
@@ -3046,9 +3048,9 @@ public function zephNurseryGentleFuck():void
 	
 	output("\n\n<i>“Put the tip in,”</i> you moan, begging her with your eyes. <i>“Please?”</i>");
 	
-	output("\n\n<i>“I’ll do better than that,”</i> she replies, a thumb on your [pc.clits]. You groan in pleasure, momentarily distracted, and then she’s inside you, stretching your pussy walls to their limit. You’re doing this for her as much as you are for yourself, if not more so. You could see how incredibly hard she’d been the whole time she was teasing you, and know how frustrating it is for her when she’s all pent up. Better to take it all now than force her to take care of herself later.");
+	output("\n\n<i>“I’ll do better than that,”</i> she replies, a thumb on your [pc.clits " + vIdx + "]. You groan in pleasure, momentarily distracted, and then she’s inside you, stretching your pussy walls to their limit. You’re doing this for her as much as you are for yourself, if not more so. You could see how incredibly hard she’d been the whole time she was teasing you, and know how frustrating it is for her when she’s all pent up. Better to take it all now than force her to take care of herself later.");
 	
-	pc.cuntChange(0, ppZephyr.biggestCockVolume());
+	pc.cuntChange(vIdx, ppZephyr.biggestCockVolume());
 	
 	output("\n\nAlready sensitive from being taken to orgasm twice by Zephyr’s roving fingers, you find yourself cumming in less than thirty seconds of her penetrating you with her giant prick, unable to resist the inexorable rolling motion of her wide, powerful hips.");
 	
@@ -3062,7 +3064,7 @@ public function zephNurseryGentleFuck():void
 	
 	output("\n\nPlanting her muscular arms on either side of your body and making a long, loud grunt of effort, you gaze up at her strained o-face as she explosively cums inside you. Hitting your sealed-off cervix, her massive gouts of cum immediately spurt back out of your pussy, splattering Zephyr’s groin and your sheets alike. She leaves the tip inside, shooting rope after rope of thick, warm seed and warming your pussy with another’s heat.");
 	
-	pc.loadInCunt(ppZephyr, 0);
+	pc.loadInCunt(ppZephyr, vIdx);
 	
 	output("\n\n<i>She’s so fucking hot when she’s cumming</i>. You can’t help but submissively cum underneath her once more, smiling as you do, your cute little gasps for air providing a nice contrast to Zephyr’s long, strained breaths through grit teeth. It’s the most wonderful sight you can imagine, and it’s all yours. She opens her eyes at the touch of your dainty hand on her cheek, breathing raggedly, and the tension in her body finally loosens up.");
 	

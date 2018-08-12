@@ -417,7 +417,7 @@ public function showQuinnMaidens():void
 }
 public function quinnHandmaidenThreesomeAvailable():Boolean
 {
-	return ( (pc.hasCock() && pc.smallestCockLength() < 12.5) && pc.libido() >= 30 && (flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440) );
+	return ( (pc.hasCock() && pc.smallestCockLength() < 12.5) && pc.libido() >= 30 && ((flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440) || flags["QUINN_MAIDENS_SEXED"] != undefined) );
 }
 public function quinnHandmaidenThreesome(args:Array):void
 {
@@ -2657,7 +2657,7 @@ public function pregQuinnSexNo():void
 	showQuinn();
 	author("Nonesuch");
 	
-	var canHandMaiden:Boolean = (flags["QUINN_MAIDENS_SEXED"] != undefined || quinnHandmaidenThreesomeAvailable());
+	var canHandMaiden:Boolean = quinnHandmaidenThreesomeAvailable();
 	
 	if(flags["QUINN_SIRED_KID"] == undefined)
 	{
