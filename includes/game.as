@@ -125,7 +125,7 @@ public function disableExploreEvents():Boolean
 	// Kashima Duration
 	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
 	// Federation Quest
-	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST"] < 3) return true;
+	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST_AMBUSH"] != undefined && flags["FEDERATION_QUEST"] < 3) return true;
 	// Syri Quest
 	if (flags["SYRIQUEST_STATE"] >= 4 && flags["SYRIQUEST_STATE"] < 20) return true;
 

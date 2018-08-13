@@ -2067,7 +2067,7 @@ public function leaveLundsSexMenu():void
 // Display this button in Lund’s main menu
 // Tooltip (first cookie): You wonder if Lund might enjoy having a peanut butter cookie.
 // Tooltip (after first cookie and PC has not submitted to Lund): You snicker as you wonder to yourself if Lund is in the mood for another cookie. He certainly seemed to enjoy the last one!
-// Tooltip (after first cookie and PC has submitted to Lund): You wonder if you could get Lund somewhere private so you can give him another cookie….
+// Tooltip (after first cookie and PC has submitted to Lund): You wonder if you could get Lund somewhere private so you can give him another cookie....
 // Continue from here the first time the PC gives Lund a cookie
 public function pbcookieForLund():void
 {
@@ -2498,7 +2498,7 @@ public function moreCookiesPleaseLund4():void
 	addButton(0,"Enough",enoughBeforeLundBadEnds);
 }
 
-//[=…Again=]
+//[=...Again=]
 // Be sure to flip the position of the buttons so that players don’t just click their way through to the Bad End accidentally
 // Tooltip: Why kid yourself? This is where you belong. Just let Lund take control, and you’ll never have to make another decision again.
 public function againLundAgainForeverAndEver():void

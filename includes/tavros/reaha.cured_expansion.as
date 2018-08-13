@@ -321,6 +321,11 @@ public function reahaFinishesPayingPC(credits:int = 0):void
 {
 	clearOutput();
 	reahaHeader();
+	
+	if(flags["REAHA_PC_PAY"] + credits > 5000) credits = (5000 - flags["REAHA_PC_PAY"]);
+	flags["REAHA_PC_PAY"] += credits;
+	pc.credits += credits;
+	
 	output("<i>“Hey, [pc.name],”</i> Reaha says, slinking up from behind you with an amount of sashay in her hips beyond even the sultry cow’s norm.");
 	output("\n\n<i>“I’ve got a present for you,”</i> she says with a smile, holding up a " + (isAprilFools() ? "dogecoin" : "credit chit") + ". <i>“Guess what this is?”</i>");
 	if(pc.isMischievous()) output("\n\n<i>“A " + (isAprilFools() ? "dogecoin" : "credit chit") + "?”</i> you say, returning her smile.");

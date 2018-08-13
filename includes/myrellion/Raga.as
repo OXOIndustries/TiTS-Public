@@ -22,7 +22,7 @@ public function showRaga(nude:Boolean = false):void
 
 /*Character/Race Profile
 
-Um … I'm shit at numerical things:
+Um ... I'm shit at numerical things:
 
 Height: 4'10"
 Skin: Gray-blue
@@ -171,7 +171,7 @@ public function greetRagaButt():void
 	else
 	{
 		output("\n\n<i>\"I don't think you're supposed to beat 'em unless they've got red hair,\"</i> you comment, pointing out the shock of white hair atop the smaller figure's head.");
-		output("\n\n<i>\"I'll… beat... YOU…\"</i> growls the little figure, flexing her arms wide. The surprised kui-tan loses his grip, dropping her to the floor. The girl lands with a pair of stomps - one planting her bare foot on the floor of the tavern, the other hammering down on the kui-tan's boot.");
+		output("\n\n<i>\"I'll... beat... YOU...\"</i> growls the little figure, flexing her arms wide. The surprised kui-tan loses his grip, dropping her to the floor. The girl lands with a pair of stomps - one planting her bare foot on the floor of the tavern, the other hammering down on the kui-tan's boot.");
 		output("\n\nShe spins, fists balled, glaring at you.");
 	}
 	//Merge
@@ -209,7 +209,7 @@ You ask her what she is, exactly.
 
 She rolls her eyes, a fairly normal gesture made a bit odd by the circular third eye on her forehead. 
 
-"I'm a nyom," she says. "Though … I can see why I'm probably the first one you've run into," she says grudgingly. "There's not too many of us out exploring."
+"I'm a nyom," she says. "Though ... I can see why I'm probably the first one you've run into," she says grudgingly. "There's not too many of us out exploring."
 
 "I come from Matri, that's our homeworld, and it sucks ass--a lifeless ball of jack shit. We've since relocated to a different planet, Repun, which somehow sucks even more ass. So most of us work on the relocation effort to find a planet that sucks as little ass as possible."
 
@@ -300,7 +300,7 @@ By the orange light of the creature's eyes, and the bioluminescence of the fungu
 
 She freezes, blinking at you, all three eyes flicking in the dark. "Oh, holy shit!" she remarks, lowering her rod. "You're the {pc.gender: guy/girl} from the bar! I thought you were some fucking monster. {if NOT Taunted or Hit On at the bar: Sorry! My eyes ain't so good in the dark!}" 
 
-She laughs, revealing a mouth full of black, pointed teeth. "Don't worry. I'm not here to fuck you up, unless …" she peers blearily at you in the half-light. "Oh hey, did you hear the rumors about power crystals down here, too? Well, fuck my ass, I do believe that makes you competition!" she finishes, hefting her black rod again.
+She laughs, revealing a mouth full of black, pointed teeth. "Don't worry. I'm not here to fuck you up, unless ..." she peers blearily at you in the half-light. "Oh hey, did you hear the rumors about power crystals down here, too? Well, fuck my ass, I do believe that makes you competition!" she finishes, hefting her black rod again.
 
 It looks like you're in for a fight!
 
@@ -338,7 +338,7 @@ As you relax, she slings her club over her shoulders, her muscles flexing beneat
 
 You raise an eyebrow, asking her why she'd want to go out of her way to fight you.
 
-"Oh shut up," she snaps. "You're a good sparring partner. That's all," she delivers the last two words with a little more volume than necessary. "But … I dunno … if you win, you could maybe … do stuff with me … you know--if you wanted," she says, blushing purple.
+"Oh shut up," she snaps. "You're a good sparring partner. That's all," she delivers the last two words with a little more volume than necessary. "But ... I dunno ... if you win, you could maybe ... do stuff with me ... you know--if you wanted," she says, blushing purple.
 
 It's an interesting offer. Do you want to spar with the nyom and possible get some sex out of it, or do you turn her down?
 
@@ -398,7 +398,7 @@ Miss: "Grah! Hold still, dammit!" she shouts. Raga raises her club high and brin
 Raga headbutt's the pc's head, aiming not to kill but to stun; a hit on the player reduces her accuracy for a round.
 
 Hit
-"{Random dialogue: Oh, fuck you! / Cut it out, dammit! / Dammit! Fight fair! / Stop it, you jackass!}" she snaps. She plants her club in the stone floor, then leaps upward. She arcs toward your face, and her small hands reach forward to grab you by {pc.clothes: the front of your pc.clothes() pc.nude: your shoulders}. All three of her eyes close as she smashes her head against yours. For a second, everything is pain, and you stagger back, trying to clear your head. Raga lands in a crouch, feeling for her club. She blinks hazily. It looks like her headbutt took its toll on her. "Uuuurgh …" she groans.
+"{Random dialogue: Oh, fuck you! / Cut it out, dammit! / Dammit! Fight fair! / Stop it, you jackass!}" she snaps. She plants her club in the stone floor, then leaps upward. She arcs toward your face, and her small hands reach forward to grab you by {pc.clothes: the front of your pc.clothes() pc.nude: your shoulders}. All three of her eyes close as she smashes her head against yours. For a second, everything is pain, and you stagger back, trying to clear your head. Raga lands in a crouch, feeling for her club. She blinks hazily. It looks like her headbutt took its toll on her. "Uuuurgh ..." she groans.
 
 Miss
 "{Random dialogue: Oh, fuck you! / Cut it out, dammit! / Dammit! Fight fair! / Stop it, you jackass!}" she snaps. She plants her club in the stone floor, then leaps upward. She arcs toward your face, and her small hands reach forward to grab you by {pc.clothes: the front of your pc.clothes() pc.nude: your shoulders}. You sidestep, and she collides into a stalagmite next to you. She stumbles back, shaking gravel and dust from her hair. "Fuck fuck fuck!" she snarls.
@@ -412,7 +412,7 @@ Raga's Basic Melee Attack
 /Misses: Her swing goes wide, and she blinks, confused. It looks like her eyesight isn't actually all that good.}.
 
 // Player takes a significant amount of damage. If the shield bonus is <40, it overloads completely and shuts down for the rest of the fight.
-<Your shield generator lets out a frantic beeping. The normally-invisible field around you lights up as a blue hexagonal grid, portions of it disappearing in large swathes. "Shields overloaded. Resetting … resetting …. resetting … ," hums your Codex. >
+<Your shield generator lets out a frantic beeping. The normally-invisible field around you lights up as a blue hexagonal grid, portions of it disappearing in large swathes. "Shields overloaded. Resetting ... resetting .... resetting ... ," hums your Codex. >
 
 Raga is Hit with ranged (Damage and energy Resistance)
 You land a direct hit on Raga, but it barely seems to slow her down. 
@@ -456,13 +456,13 @@ You wake up to an odd sound. Heavy breathing fills the cavern around you--short,
 
 You open your eyes, staring up at the stone ceiling above you. Something under your head cushions it--it feels like a satchel of some kind. The sounds are coming from your left. You turn your head to see Raga, sitting on the floor a couple of feet away from you.
 
-She's facing you, her legs spread wide, as she fingers herself. Her eyes are closed, and her voice spills from her lips in soft whimpers, "Hnn! Ahhh! [pc.name] …" she mutters. With her knees propped up, you can the blue-black of her pussy, spread wide and dripping her fluids onto the stone floor. One hand spreads her dusky lips, while the other plays with two nubs at the top of her midnight folds, bringing further whimpers of pleasure to her lips.
+She's facing you, her legs spread wide, as she fingers herself. Her eyes are closed, and her voice spills from her lips in soft whimpers, "Hnn! Ahhh! [pc.name] ..." she mutters. With her knees propped up, you can the blue-black of her pussy, spread wide and dripping her fluids onto the stone floor. One hand spreads her dusky lips, while the other plays with two nubs at the top of her midnight folds, bringing further whimpers of pleasure to her lips.
 
 As you watch her, a faint light spreads through the dark, as her third eye opens from the middle of her forehead. It stares at you, glowing rosy pink, heavy lidded as you watch. Raga shows no indication that she's seen you, save for softly biting her lower lip as she speeds up.
 
 Her heels dig into the floor, her toes curling and carving gouges in the stone, her whole body tensing. She switches gears, reaching under one of her toned thighs to plunge two fingers into herself as the other rubs rapidly up and down against the top of her dripping cunt.
 
-"[pc.name], [pc.name] …" she whimpers. Her whole body tenses as she curls in on herself, her heavy gasping stopping for a moment, before erupting into a high-pitched squeal of pleasure that echoes through the cave system. A spatter of pussy juices sprays out from between her thighs, hissing against the stone floor, raising chemical smoke from it.
+"[pc.name], [pc.name] ..." she whimpers. Her whole body tenses as she curls in on herself, her heavy gasping stopping for a moment, before erupting into a high-pitched squeal of pleasure that echoes through the cave system. A spatter of pussy juices sprays out from between her thighs, hissing against the stone floor, raising chemical smoke from it.
 
 She slows her movements, her heavy breathing calming. As her lower eyes flutter open, you see them gradually focus. She stares at you for a few moments, slowly working through her post-orgasmic haze. 
 
@@ -553,12 +553,12 @@ You let go of her wrists and slide your hands down her slim body. Her talons eas
 You begin to speed up, and she arches her back to and fro in time to your pumping, letting out small animalistic groans with each downstroke, and light whimpers with every pullback. Her blue pussy juices have a mint-like effect, and outside of her vagina, your dick feels cool in the cavern air. Inside her depths, though, she's delightfully hot and wet. 
 She’s watching you, her eyes slightly crossed, glowing a pinkish red through her tangle of white hair. Her whole body is rippling in a steady rhythm as you pump in and out of her. She's panting, and her thighs are squeezing almost painfully tight around your [pc.hips].
 "Almosssst there," she hisses. "C'mon - don't let me down!" It's a challenge and a plea at the same time, and you're a bit glad for it. Between her tightness and the hot/cold of her juices, you're nearly there yourself.
-You double your time, pumping in and out of the little nyom, and she bucks back and forth, her rhythm getting more than a little sloppy. "Mmmmore! More! Faster!" she growls, as you slam in and out of her tight pussy. "Almost … almost!"
+You double your time, pumping in and out of the little nyom, and she bucks back and forth, her rhythm getting more than a little sloppy. "Mmmmore! More! Faster!" she growls, as you slam in and out of her tight pussy. "Almost ... almost!"
 You slam into her one last time, [firing a small jet of cum deep inside the gray bruiser/unloading a thick jet of cum deep inside the tiny woman/flooding the gray bruiser with so much cum that it spurts out between her thighs]. At the same time, she lets out a roar like a jungle cat, much too large a sound for such a tiny creature. Her whole body - and you think the cavern itself - quakes. You hear a sharp crack from the wall as her handholds give way. You quickly grab her, taking her dense weight in your arms as she finishes her orgasm, riding your spurting cock, her arms draping loosely over your shoulders. 
-As you fire your last jet of cum into her oozing slit, she gurgles in your arms, her head slumped against your shoulder. You give her a light shake to make sure she's alright, and she draws her head back, blinking blearily. "Mbuh …" she mumbles.
+As you fire your last jet of cum into her oozing slit, she gurgles in your arms, her head slumped against your shoulder. You give her a light shake to make sure she's alright, and she draws her head back, blinking blearily. "Mbuh ..." she mumbles.
 She initially appears totally out of it, but after a moment or two, the glow in her eyes slowly shifts from pink back to orange. She makes a sneezing sound, her hair fluffing out to an even more impossible degree, and shakes her head, her eyes focusing on you.
-	"Oh man … that was fucking intense. Seriously," she says, patting your shoulder, indicating that she'd like you to let her down. You lift her up, and you catch a glimpse of a spaced-out wide grin on her face as your dick slides out of her body.
-You place her on the ground, where she wobbles and leans against the wall. "Woooooo, that was … heh, I mean … heh, well done, dude," she drawls, giving you a playful (but still too hard) punch on the shoulder.
+	"Oh man ... that was fucking intense. Seriously," she says, patting your shoulder, indicating that she'd like you to let her down. You lift her up, and you catch a glimpse of a spaced-out wide grin on her face as your dick slides out of her body.
+You place her on the ground, where she wobbles and leans against the wall. "Woooooo, that was ... heh, I mean ... heh, well done, dude," she drawls, giving you a playful (but still too hard) punch on the shoulder.
 "I'm sure you've got things to see and people to do. Don't let me stop you," she says, waving you off. "Oh, but I can give you some of these, if you like--that was a fucking that was worth it," she says. She reaches down into her pack and tosses you a small, blue gem.
 "They're crush crystals. I've been pounding them out of walls. You can crush it to boost your shields for a bit. A squishy like you probably needs it," she explains.
 You catch it and grin, bidding the nyom a farewell.
@@ -569,7 +569,7 @@ Raga Blow
 //Requirement: pc has cock[possible size limitations]
 
 	You point to your already-swelling hard-on, and raise your eyebrows suggestively at her.
-	"You mean you want me to … with my …" she asks, pointing to her lips.
+	"You mean you want me to ... with my ..." she asks, pointing to her lips.
 	You nod in confirmation and she rolls her eyes. "Well, alright, but it'd better be clean. I eat with this mouth, you know," she says, huffily.
 	She drops to her knees, and you hear gravel crunch. You wince for a second before you remember how resilient Raga is. Actually, given her strength and general toughness, you're starting to think that this might be a--
 	"Not getting cold feet are ya?" she smirks, looking up at you from under her thicket of white, wiry hair. 
@@ -589,12 +589,12 @@ It's incredibly hot in Raga's mouth, with her chemical saliva swirling around yo
 	You hear a similar moan from Raga as she grinds her own face against your cock, burying her nose at the base of your shaft. Through her hair, you catch a glimpse of her cheeks sucking in as she swallows your seed.
 	As you lean back against the cave wall with a sigh, she pulls back off your cock with a smack of her lips.
 {pc normal cum: 
-"Izzat … zinc? Did you just spooge zinc?" she asks, smacking her mouth open and closed. She opens her mouth and touches her tongue, examining her finger after. She looks up at you, all of her eyes wide. "That's … I mean, hey if you don't want it, I'm always happy to have a mouthful of [i]that[/i]." 
+"Izzat ... zinc? Did you just spooge zinc?" she asks, smacking her mouth open and closed. She opens her mouth and touches her tongue, examining her finger after. She looks up at you, all of her eyes wide. "That's ... I mean, hey if you don't want it, I'm always happy to have a mouthful of [i]that[/i]." 
 
 "Kinda sweet, but not bad otherwise," she adds.
 
 /Else pc honey cum: 
-"Oh … gross!" She makes a face as if she'd just bitten into a lemon. "That was like … [i]all[/i] sugars. Bleh! Who even … I mean … who would," she sticks her tongue out and makes a gagging noise.
+"Oh ... gross!" She makes a face as if she'd just bitten into a lemon. "That was like ... [i]all[/i] sugars. Bleh! Who even ... I mean ... who would," she sticks her tongue out and makes a gagging noise.
 		She looks up at you, smirking. "No offense, of course."
 }
 //Merge
@@ -608,7 +608,7 @@ Eat out Raga
 
 	You tell the little bruiser that you'd like her on top of you.
 	A wide, sharp-toothed grin spreads across her face, made all the more eerie by the brightening glow of her three eyes.
-	"Now [/i]that's[i] what [/i]I'm[i] talking about…" she growls hungrily.
+	"Now [/i]that's[i] what [/i]I'm[i] talking about..." she growls hungrily.
 	Her taloned hand runs up the front of your [pc.gear] and she quirks an eyebrow at you. You immediately take the hint and begin removing your [pc.gear]. She does the same, delicately removing her mesh halter and her loincloth, kicking them aside as you stand before her bare body, equally nude.
 	"Well then, down you go, dude. Why don't you help me warm up?" she growls. As you drop to your knees, you feel her small, but powerful hands on your head, guiding you to her mound. 
 	You extend your tongue, laying a long, luxurious lick up her smooth snatch, and you feel her body shiver against you. 
@@ -622,7 +622,7 @@ You push a finger inside her tight entrance and feel her muscles clamp down, nea
 	Her juices spurt against your mouth and chin, a hot syrup cascading down your skin as she climaxes loudly, her petite body thrashing. Her hands slam into the wall behind you, raining down gravel as her powerful hips grind firmly against your face. Her fluids all but sizzle against you, chemically hot, leaving no burns, as she rides out wave after wave of orgasm.
 	To your credit, you deal with the bruisingly-hard pounding from Raga's cool hips, her heated cum splashing everywhere. You close your eyes instinctively, and grasp her taut butt, digging your fingers in.
 	Eventually, she finishes, panting and gasping, turning from you and sliding down the wall into a sitting position. She sits there for a few minutes as you, too, compose yourself. Her fluids are still leaking, pooling silvery-blue in the dim lampglow from her eyes.
-	"Holy fucking shit, dude," she says at last. "I mean … fucking damn! Where did you learn all that?" she moans, her flat chest rising and falling as she runs her black-clawed fingers through her thicket of hair.
+	"Holy fucking shit, dude," she says at last. "I mean ... fucking damn! Where did you learn all that?" she moans, her flat chest rising and falling as she runs her black-clawed fingers through her thicket of hair.
 	You smile and clean yourself off as best you can, slipping your gear back on and finding, to your amusement, that Raga's fluids have mostly effervesced by now. That's handy! You run your fingers over your [Masculine/feminine/angled] jaw, and wince. It looks like she actually pounded you enough to injure you.
 	"Oh shit--sorry about that," she says. You look down and see her wincing as she looks up at your injured jaw. "I guess I got carried away," she says with an embarrassed grin. She leans over and rummages through her pack. "Here you go, dude," she chirps, tossing you a silver bottle and a small chip.
 	"This crystal will help boost up your shield, and these credits are for your troubles. It's not because I like you--I just want to make sure you're in tip top condition the next time I fight you," she explains, a faint purple tinge to her cheeks, hopping up and donning her minimal clothes. You notice that the fluids on her seem to have evaporated as well. "Catch ya later!" she says, waving back at you as she hefts her club and wanders off into the darkness.
@@ -632,7 +632,7 @@ Raga Eats Out
 //Requirement: pc has vag
 
 	You inform the nyom that she'll be eating out your pussy.
-	All three of her eyes blink incredulously. "That's … not really my thing," she says, running a taloned hand back through her thick hair. "I mean, I was thinking … well … I'm not sure what I was thinking, but not that. I mean, is there anything else you'd want?" she asks, her cheeks darkening a bit.
+	All three of her eyes blink incredulously. "That's ... not really my thing," she says, running a taloned hand back through her thick hair. "I mean, I was thinking ... well ... I'm not sure what I was thinking, but not that. I mean, is there anything else you'd want?" she asks, her cheeks darkening a bit.
 	You shake your head and Raga looks a bit troubled. You give the gray-skinned girl the time she needs, wondering a little how long you'll have to wait.
 	She claps her hands suddenly, the startling sound echoing through the caverns. "Y'know what? Yeah--I'm gonna do it! You beat me fair and square, and I'm gonna keep my word. Plus," she adds, "I haven't done it in a while--it might be fun to give it a shot."
 	Now it's your turn to have second thoughts, but before you say anything, she's on the stone floor of the cavern at your knees. You think for a moment how uncomfortable that must be, but, glancing down, you notice a spiderweb of cracks radiating out from beneath her legs. It looks like the floor took more damage than she did.
@@ -643,7 +643,7 @@ Raga Eats Out
 Now, your [pc.ass] is resting comfortably on Raga's crossed legs.The black talons of her hands trace up your thighs, to your sides. "Hands, please," she requests. Bemused, you give her first one hand, then the other, pushing yourself up off the cave floor. Her hands grip your arms tightly, holding you up. No part of you touches the floor--rather, your ass rests in her lap, while her prodigious strength holds you up.
 "Comfy?" she asks, and surprisingly, you are. She's carrying all of your weight, and the final sensation is something like being in a hammock.
 You nod and she smiles. "Matri's not the most hospitable planet. We have to learn to make do in odd places and positions sometimes. I figured your skin was kinda soft, so I wanted to get you off the ground."
-You voice your appreciation and she grins, her pointed, black teeth gleaming in the dim light of her eyes. "Well, don't thank me just yet …" she purrs.
+You voice your appreciation and she grins, her pointed, black teeth gleaming in the dim light of her eyes. "Well, don't thank me just yet ..." she purrs.
 You're about to ask her what she means when she dips her head down. You hadn't realized what the difference in Raga's stature would mean in this position, but her face is effectively on-level with your pussy. With her hands holding you up, she's got only her face and tongue to work with, but she seems to be doing well.
 You shiver as first her feathery hair trails up your [pc.pussy], followed by her nose along your slit, trailed behind by a sweep of her broad tongue, brushing over your whole mound. Her saliva-slick tongue is initially cool to the touch, but then heats up rapidly against your lips.
 You gasp, your fingers digging into the thick skin of her forearms.

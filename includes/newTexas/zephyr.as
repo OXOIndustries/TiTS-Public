@@ -471,13 +471,20 @@ public function getFuckedByZephyrII():void
 	output("\n\nZephyr grunts in raw, animal pleasure and stops in an effort to adjust to the touch of your tunnel, huffing excitedly. <i>“Damn, you got an ass on you. You ready for the rest of it?”</i>");
 	output("\n\nBetween reveling in the pulsing of her rod and trying to think, you lose track of her question halfway through. <i>“Huh?”</i>");
 	output("\n\nA hand crashes down on your reddened derriere like a meteor, shocking you out of your dick-induced haze. You swallow some escaping drool and grasp for the right answer. <i>“...Yes?”</i>");
-	output("\n\nZephyr shakes her head and resumes threading her rigid boner deeper into your [pc.vagOrAss]. <i>“Dunno why I bother even involving you in the conversation. ");
-	if(pc.isTreated() && pc.isBro()) output("How bulls like you wound up running this planet, I’ll never understand.");
-	else if(cow) output("Cows like you really got the short end of the Treatment stick.");
-	else if(pc.isTreated() && pc.hasCock() && pc.femininity > 50 && !pc.isBro()) output("You’re just a faux cow after all. If I had it my way, all the boys would be eager, anal sluts like you.");
-	else if(pc.isTreated() && pc.femininity > 50 && !pc.isBimbo()) output("You could’ve made something of yourself. Instead you’re bent over my desk and asking for more.");
-	else output("Tourists like you just aren’t built for a proper Texan breeding.");
-	output(" Just take it and moan. No sense straining yourself.”</i>");
+	if(zephKnowsAboutKids())
+	{
+		output("\n\nZephyr shakes her head fondly and resumes plowing your with her rigid dick. <i>“Alright, just focus on the breeding, lover. That’s what you’re good at, after all.”</i>");
+	}
+	else
+	{
+		output("\n\nZephyr shakes her head and resumes threading her rigid boner deeper into your [pc.vagOrAss]. <i>“Dunno why I bother even involving you in the conversation.");
+		if(pc.isTreated() && pc.isBro()) output(" How bulls like you wound up running this planet, I’ll never understand.");
+		else if(cow) output(" Cows like you really got the short end of the Treatment stick.");
+		else if(pc.isTreated() && pc.hasCock() && pc.femininity > 50 && !pc.isBro()) output(" You’re just a faux cow after all. If I had it my way, all the boys would be eager, anal sluts like you.");
+		else if(pc.isTreated() && pc.femininity > 50 && !pc.isBimbo()) output(" You could’ve made something of yourself. Instead you’re bent over my desk and asking for more.");
+		else output(" Tourists like you just aren’t built for a proper Texan breeding.");
+		output(" Just take it and moan. No sense straining yourself.”</i>");
+	}
 
 	output("\n\nYou briefly consider some kind of retort, but the ");
 	if(x < 0) output("butt");
@@ -665,7 +672,10 @@ public function cleanDatZephyrCawk():void
 	if(pc.hasVagina()) output(", sweat, and your own feminine fluids");
 	else output(" and sweat");
 	output(". You run your tongue over every sensitive vein, keeping her completely hard until you finally pull back, revealing a gleaming red, spit-shined dog-cock.");
-	output("\n\nZephyr gives you a pat on the head. <i>“Good [pc.boy]. Now get out of my office unless you’re wanting another go.”</i>");
+	output("\n\nZephyr gives you a pat on the head. <i>“Good [pc.boy].");
+	if(zephKnowsAboutKids()) output(" Come see me again when you want some more, [pc.name].");
+	else output(" Now get out of my office unless you’re wanting another go.");
+	output("”</i>");
 	processTime(2);
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 	pc.loadInMouth(ppZephyr);
@@ -679,9 +689,17 @@ public function dontEatZephyrCock():void
 {
 	clearOutput();
 	showZephyrDeets(true);
-	output("<i>“No.”</i>");
-	output("\n\nThunderclouds gather around Zephyr’s brows. Grabbing hold of herself just below the base, she swings it broadside into your face, splattering some of the leavings across your nose and cheek. <i>“Get the fuck out of my office, slut.”</i>");
-	output("\n\nShe smiles down at your cum-stained visage, still pleased in spite of your rebellion.");
+	if(zephKnowsAboutKids())
+	{
+		output("<i>“Sorry, Zeph, not in the mood,”</i> you tell her, shrugging.");
+		output("\n\nShe sighs and shrugs. <i>“Fine, then. Not gonna force the issue when you’ve already been so... accommodating.”</i> She flashes you a grin while she towels herself off. <i>“Maybe you’ll be a little more generous the next time you come in here begging for more.”</i>");
+	}
+	else
+	{
+		output("<i>“No.”</i>");
+		output("\n\nThunderclouds gather around Zephyr’s brows. Grabbing hold of herself just below the base, she swings it broadside into your face, splattering some of the leavings across your nose and cheek. <i>“Get the fuck out of my office, slut.”</i>");
+		output("\n\nShe smiles down at your cum-stained visage, still pleased in spite of your rebellion.");
+	}
 	//[Fight] [Leave]
 	clearMenu();
 	addButton(0,"Leave",leaveLikeABitchPC);
@@ -2654,7 +2672,7 @@ public function milkedByZephYes():void
 	processTime(180+rand(60));
 
 	// something to track milk produced specifically for the nursery
-	// 9999 NURSERY_MILK_PRODUCTION
+	// NURSERY_MILK_PRODUCTION
 	var milkQ:Number = pc.milkQ();
 	StatTracking.track("nursery/milk milked", milkQ);
 
@@ -2996,6 +3014,8 @@ public function zephNurseryGentleFuck():void
 	author("Wsan");
 	
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+	var vIdx:int = pc.findEmptyPregnancySlot(1);
+	if(vIdx < 0) vIdx = rand(pc.vaginas.length);
 	
 	output("<i>“So,”</i> you murmur, reaching up behind you and softly tracing a couple of fingers along Zephyr’s cheek. <i>“Feel like taking your big, studly length and using it on your pregnant mate?”</i>");
 	
@@ -3046,9 +3066,9 @@ public function zephNurseryGentleFuck():void
 	
 	output("\n\n<i>“Put the tip in,”</i> you moan, begging her with your eyes. <i>“Please?”</i>");
 	
-	output("\n\n<i>“I’ll do better than that,”</i> she replies, a thumb on your [pc.clits]. You groan in pleasure, momentarily distracted, and then she’s inside you, stretching your pussy walls to their limit. You’re doing this for her as much as you are for yourself, if not more so. You could see how incredibly hard she’d been the whole time she was teasing you, and know how frustrating it is for her when she’s all pent up. Better to take it all now than force her to take care of herself later.");
+	output("\n\n<i>“I’ll do better than that,”</i> she replies, a thumb on your [pc.clits " + vIdx + "]. You groan in pleasure, momentarily distracted, and then she’s inside you, stretching your pussy walls to their limit. You’re doing this for her as much as you are for yourself, if not more so. You could see how incredibly hard she’d been the whole time she was teasing you, and know how frustrating it is for her when she’s all pent up. Better to take it all now than force her to take care of herself later.");
 	
-	pc.cuntChange(0, ppZephyr.biggestCockVolume());
+	pc.cuntChange(vIdx, ppZephyr.biggestCockVolume());
 	
 	output("\n\nAlready sensitive from being taken to orgasm twice by Zephyr’s roving fingers, you find yourself cumming in less than thirty seconds of her penetrating you with her giant prick, unable to resist the inexorable rolling motion of her wide, powerful hips.");
 	
@@ -3062,7 +3082,7 @@ public function zephNurseryGentleFuck():void
 	
 	output("\n\nPlanting her muscular arms on either side of your body and making a long, loud grunt of effort, you gaze up at her strained o-face as she explosively cums inside you. Hitting your sealed-off cervix, her massive gouts of cum immediately spurt back out of your pussy, splattering Zephyr’s groin and your sheets alike. She leaves the tip inside, shooting rope after rope of thick, warm seed and warming your pussy with another’s heat.");
 	
-	pc.loadInCunt(ppZephyr, 0);
+	pc.loadInCunt(ppZephyr, vIdx);
 	
 	output("\n\n<i>She’s so fucking hot when she’s cumming</i>. You can’t help but submissively cum underneath her once more, smiling as you do, your cute little gasps for air providing a nice contrast to Zephyr’s long, strained breaths through grit teeth. It’s the most wonderful sight you can imagine, and it’s all yours. She opens her eyes at the touch of your dainty hand on her cheek, breathing raggedly, and the tension in her body finally loosens up.");
 	
@@ -3134,8 +3154,7 @@ public function trySendZephyrKidsMail():void
 
 	if (zephKnowsAboutKids() && (days - flags["ZEPHYR_KIDS_DAYCOUNTER"] >= 7))
 	{
-		MailManager.unlockEntry("zephyr_visiting_the_nursery", GetGameTimestamp());
-		AddLogEvent("<b>No Email from Zephyr (Zephyr@NewTexas.gov)!</b>", "passive");
+		goMailGet("zephyr_visiting_the_nursery");
 	}
 }
 
