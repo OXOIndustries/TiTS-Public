@@ -68,6 +68,7 @@ public function zhengMinesEncounterBonus():Boolean
 		{
 			encounters.push(encounterSlyverenSlavebreaker);
 			encounters.push(encounterSlyverenSlavebreaker);
+			encounters.push(boredJumperGangbangProc);
 		}
 	}
 	if(encounters.length > 0) 
