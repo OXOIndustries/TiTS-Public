@@ -64,8 +64,15 @@ public function boredJumperGangbangProc():Boolean
 	}
 	IncrementFlag("JUMPER_GANGBANGS");
 	clearMenu();
+
 	if(!pc.isTaur()) addButton(0,"Join",joinTheOrgyShit,undefined,"Join","Step in and take the Jumper to pound town!");
 	else addDisabledButton(0,"Join","Join","As a ‘taur, you can’t really interlock with these bipedal sluts.");
+
+	if(pc.cockThatFits(enemy.vaginalCapacity(0)) < 0 && !pc.hasHardLightEquipped()) addDisabledButton(1,"Take Over","Take Over","You need a penis that can fit inside one of the slaves or a hardlight-equipped pair of undies in order to do this.");
+	else addButton(1,"Take Over",takeOverTheGangbang,undefined,"Take Over","You’re going to be conducting this. Get on the Jumper and dole out the roles.");
+
+	addButton(2,"Watch",watchSomePirateGanguBanguSlanguWangu,undefined,"Watch","On a pirate station, you’re pretty sure voyeurism is <i>encouraged!</i>");
+	
 	addButton(14,"Leave",leaveDatOrgyBehind);
 	return true;
 }
@@ -328,8 +335,8 @@ public function dontLetHerOrgy():void
 	// PC not naga
 	if(!pc.isNaga()) 
 	{
-		if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("\n\nYou hide your [pc.asshole] with your [pc.tails], blocking her from going in. <i>“Not me, you’ve got two holes down there.”</i> You call out.");
-		else output("\n\nYou hurriedly thrust a hand to your [pc.ass] and cover your [pc.asshole]. <i>“Not me, you’ve got two holes down there.”</i> You call.");
+		if(pc.tailCount > 0 && pc.hasTailFlag(GLOBAL.FLAG_LONG)) output("You hide your [pc.asshole] with your [pc.tails], blocking her from going in. <i>“Not me, you’ve got two holes down there.”</i> You call out.");
+		else output("You hurriedly thrust a hand to your [pc.ass] and cover your [pc.asshole]. <i>“Not me, you’ve got two holes down there.”</i> You call.");
 		output(" Obviously disappointed, the gryvain realigns her first cock with the bunny’s pussy and the second with her obscured tailhole, ramming the laquine so hard that her inflating knots almost slip in.");
 		output("\n\n");
 	}
@@ -533,7 +540,7 @@ public function saeriPenGangbang2():void
 	addButton(0,"Next",mainGameMenu);
 }
 
-/*
+
 //[Take Over]
 // Tooltip: You’re going to be conducting this. Get on the Jumper and dole out the roles.
 // PC requires a penis or hardlight strapon.
@@ -543,242 +550,361 @@ public function takeOverTheGangbang():void
 	showJumpyGangbang();
 	output("Running a hand over your crotch, " + (pc.hasCock() ? "you jerk your [pc.cocks] to readiness,":"you flip on your holographic endowment,") + " thinking about a number of ways you can take over. The action continues in your brief inventiveness. Where could that saeri go? What about that dark-skinned redhead? You could get that rabbit all to yourself, or maybe fuck that thick-thighed hottie? Maybe let the saeri go at your fuckbunny-to-be with you?");
 	output("\n\n" + (pc.hasCock() ? "[pc.CocksLight] throbbing,":"Your groin tingling and lurching unbidden,") + " you inhale the mouth watering stench of unrestrained sex. The wavy, crotch kindling air around you seems to be mating as fiercely as the jumper services the slaves, now one to lust herself. Chest thumping as musk and pheromones settle in your sweat-caked pores, a sultry grin crests your [pc.face], knowing exactly what you’ll do.");
-	output("\n\nDropping behind the jumper, your [pc.arms] snake under hers. You grope her hot, wet chest, pinching those big, needy nipples for all their worth. She shoves her sweaty hip into your lap, grinding her tight, brown-furred butt into {[pc.eachCock] / your techno-strapon}. Sandwiched between her wide ass, you let a shaky hand fall to her [enemy.cock], fingers traveling down her foot long prong, around her fuzzy balls and past the puffy lips of her sopping mare-cunt.");
-
-output("\n\nWith both hands busy, all she can do is mewl around the saeri cock she fellates so fervently. You press your fingers against every side of her moist tunnel while she grinds against your lap.");
-
-output("\n\n[Bun’n’Fly] [Redhead]");
-
-output("\n\n[Bun’n’Fly]");
-output("\n\n// Tooltip: Fuck the jumper reverse cowgirl and let the saeri go at her pussy while the gryvain & redhead tend to each other.");
-
-output("\n\nYeah... that’ll work just fine. Making sure it sounds feasible in your head, you grin and look to the slaves before yanking the slut-bun up a few inches.");
-
-output("\n\n// PC Bimbo");
-output("\n\n<i>“Sorry girls, but I’ve got plans for this honey bunny!”</i> You announce, aligning your {[pc.cocks] / holocock} with the jumper’s leaky hole{s}.");
-output("\n\n// PC Bro");
-output("\n\n<i>“I’m afraid this rabbit belongs to me right now.”</i> You declare, positioning her drizzling hole{s} above your {[pc.cocks] / holocock}.");
-output("\n\n// PC Kind");
-output("\n\n<i>“Don’t mind me,”</i> you murmur, <i>“I’m going to take her for a ride.”</i> Moving the jumper’s cock out of the way, you line your {[pc.cocks / holocock} up with her leaky hole{s}.");
-output("\n\n// PC Misch");
-output("\n\n<i>“Alright, make some room, this jackrabbit’s about to go ‘jumping’!”</i> You grin, wasting no time in aligning your {[pc.cocks] / holocock]} with her wet, waiting hole{s}.");
-output("\n\n// PC Hard");
-output("\n\n<i>“This slut’s mine now.”</i> You stare coldly at the grimacing gryvain as you press your {[pc.cocks] / holocock} to her hole{s}.");
-output("\n\n// Merge");
-
-output("\n\nYou waste no time skewering your laquine fuckpuppet{, thrusting your {[pc.cockBiggest] / hardlight dong} all the way into her slick tailhole, making a short but exquisitely pleasurable trip through several inches of rabbit assflesh. A delightful squeal is forced out of your brown-furred bottom’s mouth - you push every inch of your member in until your groin presses into sweaty, damp laquine ass{, pcMultiCock: your extra [pc.cocksLight] prying her legs apart}.");
-
-output("\n\nClasping your hands around her waist, rubbing her erect [enemy.cockNounSimple] with your knuckles, you fall back with the warm bunny pirate on top of you. <i>“Wha-!”</i> Her pelvis crashes into yours with enough force to make you wince and nearly cum. <i>“Oh damn!”</i> The rabbit screams in surprise, tugging on the gryvain and saeri as she plunges. <i>“That’s exactly what I needed! Come on, harder harder!”</i> She praises, humping up and down on your {[pc.cocks] / glowing rod}.");
-
-output("\n\nYou quickly grab the slut’s arms{, pcMultiCock: quickly slipping your extra [pc.cockNounSimple] into her swampy nethers,} and pull her down over your [pc.chest]. She gasps and flounders for the gryvain’s dual dicks and her saeri lollipop, but she resigns herself to a ride on [pc.eachCock]. <i>“Ohh!”</i> She moans. <i>“This is soooo fucking hot!”</i> she reaches over and jerks her painfully erect [enemy.cockNounSimple], only able to get her fingertips around the crown. <i>“Don’t you dare go slow, or I’ll pound you instead, cutie!”</i>");
-
-output("\n\nKeeping her flaccid warning in a mental ditch where it belongs, you tell her you’d like to see her try with your {[pc.cockHeads] / bright dong glowing and} bulging against her tummy. All she can respond with is a pleasurable squeal that only excites you and the others to the next level. The gryvain and the dusky redhead, now without their slutty sex doll, fall next to you. The redhead crawls provocatively over the befuddled dragon-babe, frotting the jade lady’s knotty cocks with her glistening honey hole. You look to the effeminate saeri boy, jerking himself in silence, looking a little lonely.");
-
-output("\n\n<i>“Hey,”</i> you peer around your insensate slut-bun, <i>“Go ahead and use this...”</i> You murmur, [pc.hands] moving the jumper’s balls aside and revealing her {free / stuffed} horse twat to the trappy butterfly. <i>“Go ahead and get right in there!”</i>");
-
-output("\n\nThe jumper perks up at that. <i>“Oh yes!”</i> She screams more than a few times, powerful legs bouncing against your [pc.thighs]. <i>“Fuckmefuckme!”</i> She cranes her neck to the shy saeri, moving both trembling paws to her pussy as well. <i>“That’s the best idea I’ve heard all day!”</i> She exclaims, spreading her snatch wide, making a sexy face and moan to punctuate her desire for good dick.");
-
-output("\n\n<i>“Is that... is that okay?”</i> he asks, leaning forward all the same. You and your bun nod feverishly as he lines up his glossy cock with {her pussy / the pussy you pound as valuable time flies by}.");
-
-output("\n\n// PC one cock/hardlight");
-output("\n\nYou grip the jumper’s hips and slow her just long enough for the petite boy to move her heavy sack out of the way. He rubs his bright pink tip into her slit, getting himself ready on her sexual spillage. Out of what can only be described as respectful affection, he jerks the jumper’s precipitous length while pushing himself in slowly. She reaches a hand out that he gladly takes, and their fingers crisscross as his eyes shut in utter bliss, his alien rod plumbing close to her womb.");
-output("\n\n// PC multi cock");
-output("\n\nYou grip the laquine’s waist and hilt her on your rods just long enough for the petite butterfly to move her thick testes aside. With your [pc.cockType] shaft still filling her rippling canal, he pinches her clit. Unsure if it will work, he still makes the effort to slide in past the four hands spreading those swollen, aching lips for him. You catch your breath, soon shuddering and whimpering, feeling his segmented cock rubbing against your own, sliding up her pussy with remarkable ease. Her gut distends further, those spasming walls having to make room for two mismatched dicks now. Neither you nor your fuzzy bun would have it any other way.");
-output("\n\n// Merge");
-
-output("\n\n<i>“Fuck yeah, more more more!”</i> The horny bunny cries, jerking her hips - and your sensitive dong{s} - to enswathe the cute boy’s turgid rod in her creaming twat. {pcOneCock/Hardlight: The equine pussy spreading around the saeri’s cock eases his entrance and soon you feel his cock massaging yours in her pre-painted butt. When you pump your hips through her, the butterfly withdraws, and together you maintain a heavenly rhythm. /pcMultiCock: When you pump your hips through her, the butterfly withdraws, and you maintain a heavenly rhythm. His twilight cock and your [pc.cockNounSimple] mutually massage as they stretch her tunnel wide, even grinding against your first dick spurting [pc.cumColor] precum all through her vice-like ass.}");
-
-output("\n\nThe rabbit falls back, slipping an arm around the back of your head and drawing you into a cum-scented kiss, one jerking hand still working her hefty boner. As your tongues wrestle in a sloppy, disorganized manner, the gryvain hefts the redhead up above the both of you, their fragrant, oozing pussies raining love and honey down on you. The laquine licks what she can off your face with the salty sweat as the human girl is speared on two matching wyrm cocks, musk and pheromones both billowing out from her slick holes. They hold each other tightly, the dusky girl’s legs wrapped around the jade dragon’s waist and the emerald gryvain’s scaly mits clutching a curvaceous derriere.");
-
-output("\n\n<i>“Awesooome!”</i> The rabbit moans, still ramming her muscled butt into your crotch as the saeri leans down over her. The clashing of crotches above and the moans in front of you soon drown you in the rivers of lust. Every contraction in her holes is something to be relished: {pcOneCock/Holo: the tensing way it squeezes your [pc.cock]/techno dong /pcMultiCock: the tensing way they squeeze and slather your [pc.cocks]} is more than just her wanton body’s attempt to please its partners: every pulse in her passage makes you feel as though your cock grows with every impact.");
-
-output("\n\nAll in participation, yourself included, become nothing more than animals fucking away in mindless lust. The raw sexual emissions in the air, infecting every functioning brain cell with virulent hormones, can no longer be ignored. You and the gryvain growl loudly - she even bites her redheaded partner. The femmy saeri’s lungs only output hoarse, shrill screams that work well in tandem with the jumper’s, whose own sounds have become indecipherable howls. Heralding her impending orgasm, her sphincter and pussylips clamp down as her [enemy.cockNounSimple] is teased from base to tip by an elegant butterfly. When her clit is pinched, she inhales - that portentous limbo of silence foretold by deep, shuddering gasps tells your hyper aroused body just what it needs to do.");
-
-output("\n\n// PC one cock/hardlight");
-output("\n\nNerves afire, you lock both hands around the jumper’s waist to hold her steady, hilting inside her ass and bellowing in orgasm. Wet, sticky sounds tell of wasted, virile bunny cum flying up to the ceiling. What doesn’t hit falls with the cascade onto the members of this sweaty orgy, on your face, her face... It just goes on and on, much like her shivering groans and her violent orgasm. {pcCock: Your [pc.cockHead] swells with [pc.cum], spurting hard enough to dim your vision with every ribbon of cum painting the laquine’s colon [pc.cumColor]. /pcHardlight: Your legs shudder and your breaths are pained. Your hardlight strapon, transmitting only the strongest sensations of pleasure, brings you to explosive orgasm as the laquine’s ass attempts in vain to draw cum from your holocock. {pcVagina: Your [pc.pussy] squirts stream after stream of [pc.girlCum], landing only on the ground where it sizzles out, filling the air with the scintillating scent of [pc.girlCum].}}");
-output("\n\n// PC multicock");
-output("\n\nThe exotic pleasure of sharing a pussy with another dick, of two stimulating tips rubbing against one another, has been an experience unlike any other. When the twilight slave cums, you cum as well, flooding the rabbit’s ass and pussy with [pc.cum] that soon drizzles out from her gaping hole, mixed with even stickier saeri spooge. You watch her eyes roll back, her cute little face a complete mess right next to your own. Every eruption, the tremors magnified by her violent trembling and the saeri’s stiffening, brings you closer to unconsciousness. As you ride the wave of your own orgasm, the jumper’s [enemy.cock] spews obscenely thick ropes of cum straight up to the ceiling. What doesn’t hit the jagged rocks overhead drips down with what does, landing all around. {pcVagina: Your [pc.pussy] squirts stream after stream of [pc.girlCum], landing only on the ground where it sizzles out, filling the air with the scintillating scent of [pc.girlCumFlavor].}}");
-output("\n\n// Merge");
-
-output("\n\nGlobs of honey spill down from above like a heavenly rain. You catch some of it, reveling in the sinfully sweet taste of modded girl cum. The gryvain plugs both the redhead’s holes with a healthy dose of draconic cum, her huge tits clapping wetly against their bodies with every heave of her burning chest. The chocolatey terran girl goes limp and the gryvain falls to her knees next to you. The pirate slut’s voice is nothing but a series of mirthful hyperventilations, and the saeri only makes her yelp as he pulls free of her well used bitch hole.");
-
-output("\n\nYour vision soon clears up, and you feel stronger than ever. Breathing deeply, you slide the jumper off of you{, careful to keep your [pc.knots] from slipping in and locking you here for the next half hour}. Pulling free from her, you watch your cum dribble out from the jumper’s brown backside as the slaves collect themselves. The gryvain and redhead scamper off as soon as they can stand, stealing her equipment. The saeri gives you a meek wave and flees in another direction. Taking another breath, you sit up and hurriedly gather your things, paying one last glance to the naked pirate.");
-
-output("\n\nWhatever her punishment is, going back to her friends naked like that, is a mystery you kind of wish you could see...");
-
-
-
-
-output("\n\n[Redhead]");
-output("\n\n// Tooltip: Get the jumper on her back and sit the sexy redhead on her face, then fuck her.");
-
-output("\n\nThese slutty rabbits may be cute, and they may just want a good fuck, but you can’t get your [pc.eyes] off that sexy slave: a terran girl with short, sweaty red hair and a gifted, curvy body that looks criminally plush. A brainwashing scent wafts up from the minx’s pussy as she looms over yours and the jumper’s head, spreading her bare, supple, glistening pussy before your very eyes with a flustered expression. <i>“You know what to do”</i> she whispers. The laquine instinctively thrusts her face in that direction, dragging the girly {silly: boitterfly /else: butterfly} with her jaw.");
-
-output("\n\nMewling in lustful agony, the jumper swirls her tongue around the saeri’s bright pink tip, struggling with wanting to suck him off or getting her mouth on that dewy mound. There’s a better idea...");
-
-output("\n\nYou hop up to your feet, still squatting. Reaching your right [pc.hand] out to the redhead, you take her by the wrist and drag her forward as you bring the jumper down flat on her back. <i>“Woah! What the he-”</i> the husky-voiced girl sputters. The saeri and gryvain lurch as they’re both pulled by their cocks. Before the roiling rabbit can figure out what’s going on, you twirl the terran beauty and sit her directly on the jumper’s face, bending her over. It’s a powerfully erotic sight to see her rich, creamy, wobbly cheeks spread, her moist, swollen femininity exposed to you, begging for a tongue to swim through its soft undercurrents...");
-
-output("\n\nAnd the jumper hears its pleas, wrapping both paws around those enviable thighs and lunging forward, straining every muscle in her neck as she dives into the girl’s honeypot face-first. Her clit being teased, the redhead squeals loudly and looks about to cum already! Her hands are already trembling on the laquine’s belly; the bunny bitch’s [enemy.cock] wanting to caress her chin just above the [enemy.cockHead].");
-
-output("\n\n<i>“Mmm,”</i> the slut-bun moans, <i>“This ish good...”</i>");
-
-output("\n\nHer broad tongue works its way all around the terran’s slick pussylips, drinking up the salty sweat and honey-flavored juice with rabid need. In her [enemy.eyeColor] eyes, you can see nothing but gluttonous hunger for cunt and clit as she draws the girl’s crotch down so far that she’s submerged in mouthwatering twat. <i>“Sho gooooooddddd!”</i> She squeals. <i>“Sho sweet and tashty!”</i>");
-
-output("\n\n// PC Bimbo");
-output("\n\n<i>“Hope you’re ready for more than just pussy!”</i> You smile wide as you bring your {[pc.cocks]/hardlight strapon} closer to her mouth and the terran’s twitching thighs.");
-output("\n\n// PC Bro");
-output("\n\n<i>“Make some room, and get ready for a taste of me.”</i> You smirk, slapping the laquine with the flank of your {[pc.cockBiggest]/hardlight strapon}.");
-output("\n\n// PC Kind");
-output("\n\n<i>“You’re going to be working a lot harder than that. Now make some room...”</i> You say as you bring your {[pc.cocks]/hardlight strapon} closer to that pocket of sluttery.");
-output("\n\n// PC Misch");
-output("\n\n<i>“Hope you’ve got a similar taste for dick.”</i> You laugh, rubbing your {[pc.cockHeads]/hardlight strapon’s tip} into the rabbit’s face and furrowing nose.");
-output("\n\n// PC Hard");
-output("\n\n<i>“Move back, and get ready for more than a pussy.”</i> You order the jumper, moving your {[pc.cocks]/hardlight strapon} to to where lips and pussylips are connected by spit and girl juice.");
-output("\n\n// Merge");
-
-output("\n\nYou gingerly push your {[pc.cockNounSimple]/techno dong} between the jumper’s [enemy.lipColor] mouth and the redhead’s glossy honey hole. It’s hard not to inhale these strangling scents with every heady breath you take, shit, it smells like a ripe zil orgy! A growl-like exhalation later, you hear the redhead squeal, your cock being slathered in a fresh helping of modded cum. Saccharine, amber honey flows over your [pc.cockType] shaft like syrupy glaze, trickling down to the laquine’s wide open mouth.");
-
-output("\n\nHer tongue washes your fragrant {pcHardlight: techno} dong{s} like a sponge, absorbing every drop of her treat while lathering you up for the terran’s ready pussy {pcMulticock: and maybe for her mouth as well}. <i>“You gonna use {that/those} or what, cutie?”</i> The rabbit grins at you, her muzzle mostly obscured by sweaty skin. <i>“Don’t leave me out, c’monnn! Let me taste some more!”</i>");
-
-output("\n\n{<=2 Cocks: Too bad she’s not your target, no matter how much she begs and smiles. />3 Cocks: Yeah, you can spare a dick for her.} While you rub your [pc.cockHeads] against the redhead’s slit, lubing your {[pc.cocks]/hardlight strapon} up for penetration, the gryvain shuffles a little angrily to the laquine’s crotch, yanking her legs up and making her ‘eek!’ as her [enemy.cock] is pushed aside and her heavy, fuzzy balls are lifted up. The dragon girl wastes no time ramming her tapered, knotty wyrm cocks into the jumper’s ass and equine pussy both, meeting no resistance thanks to the natural lube of musky rabbit crotch.");
-
-output("\n\nYou grin seeing the not-so-bored rabbit’s tongue hanging out of her mouth as she mimes something silly{, >=3 Cocks: Well, she wanted a taste too! You quietly slip one right in as you get ready}.");
-
-output("\n\n<i>“H-hey... Hurry up!”</i> The scowling girl looks over her shoulder as she wiggles her butt at you, both round ass cheeks jiggling. A light pressure in your crotch makes you wince, the rosy shade on her face distracts you as she takes you to task, pushing her globes back and lancing herself on your {[pc.cockNounSimple]/holo cock} with a forceful thrust. Her blissful wails echo through the mines; you clench your [pc.hands] around her waist and focus on her, panting madly. Her wonderfully <i>hot</i> pussy hugs your {[pc.cockBiggest]/glowing dong}, thirsty for all the sticky cum you {can/sadly can’t} give. Your first few pumps in and out of her silky folds make you feel as though you sit upon a cloud of euphoria{, pcBalls: your [pc.sack] wetly slapping her thighs with every deep, uterus-touching thrust}.");
-
-output("\n\n// PC Multicock");
-output("\n\nBefore fucking her proper, you take your extra [pc.cockNounSimple] and wriggle yourself - and her - into proper position. There is no protest as you plant the [pc.cockHead] to her sphincter, her ass cheeks engulfing your pre-spurting rod. Her moans are so loud, as if conjured to draw others to this debauchery. Her bangs spray beads of vaporous sweat all around as her ass is spread by your [pc.cockColor] pillar of meat.");
-output("\n\n// Merge");
-
-output("\n\n// PC has balls");
-output("\n\nYour [pc.balls] hang over the jumper’s face, and as soon as she recovers from her double dicking, she seeks out the savory ballsflesh hovering above, desperate to do anything as she and her [enemy.cock] go unattended. You soon feel her thick, warm tongue drawing lewd shapes in the underside of your creasing cum sack, even reaching a furry paw over to knead your warm nads as she feverishly fondles the girl atop her.");
-output("\n\n// Merge");
-
-output("\n\nThe redhead’s pussy fills out like a glove every time you touch your cockslit to her womb. At your deepest, you grind your hips left and right, using her pussy to give your rod a series of erotically straining jerks. As her muscles spasm and she comes again, squirting honey on your [pc.thighs] {and down your [pc.sack}, her knees give out and she slumps belly first on a fuzzy jaw. The laquine’s hips buck upward even with her legs hiked over the jade gryvain’s shoulders. Interestingly, the saeri finally sets himself down in front of the redhead, presenting his moist cock to her.");
-
-output("\n\n<i>“P-please, if it’s no trouble...”</i> He asks gently, one shy hand over his blushing cobalt face and the other jerking his alien endowment. The terran girl, whether out of sheer lust or elsewise, spreads her lips across his tip and inhales his twilight phallus, arousing sounds carrying to every ear around.");
-
-output("\n\nThe bunny moves both mits to where the redhead’s crotch meets yours, aimlessly molesting her nethers and your {[pc.cocks]/hardlight strapon}, cooing everytime she makes you flinch. The saeri boy’s wails amplify the gryvain’s feral bellowing as they get closer to messy orgasm; the laquine’s [enemy.cock] humps between his petite ass with shockwave generating impacts.");
-
-output("\n\nThe dragon woman’s savage thrusting fuels the fire in your own loins, driving you to rail the sugary, spitroasted slave in your lap with unmatched speed. A few playful palm taps against your sensitive cock make your teeth clench and hands shake. A series of shudders and whines morph into hyperventilating pants that grow louder with each that worms its way up your throat. <i>You’ve got to keep thrusting!</i> There’s a beautiful girl there howling in the pleasure that you’re giving her, you can’t stop for anything!");
-
-output("\n\nA hand at your {[pc.balls] / [pc.cocks] / crotch} forces your eyes shut. Two squirming feet caress your [pc.legOrLegs], and a voice calls out for you to cum! Your saliva-coated tongue falls from your overheating mouth as you slam your hips into the redhead’s{, [pc.balls] planted firmly on the laquine’s muzzle}.");
-
-output("\n\n// PC one cock");
-output("\n\n[pc.Cum] fills your stretching cumtube, surging into the redhead’s pussy like a divine shot, smashing into her womb with the impact of an erupting volcano. The seconds-old loads are pushed out by the new{, spilling out around your [pc.knot]}. Your orgasm is made inexpressibly pleasurable, her constricting canal easing out every drop of jism with hard grips {pcVagina: that force you to drench the jumper’s face with spurts of [pc.girlCum]}.");
-output("\n\n// PC Hardlight");
-output("\n\nYour high tech strapon, surging into the redhead’s pussy, is smothered by tight, constricting walls that make your whole body feel as if it’s being pleasured by that syrupy quim. Orgasm bounces up and down your spine; your head arches back, and sweat flies off you like you’re a fully soaked towel.");
-output("\n\n// PC multicock");
-output("\n\nYour [pc.cocks] swell with cum, each urethra bulging with [pc.cum] that soon surges into the redhead’s pussy and ass like a divine shot. Her womb and colon are smashed with the impact of an erupting volcano, the seconds-old loads being pushed out by the new{, spilling out around your [pc.knots]}. She jerks violently in your grasp, dragging your still-cumming cocks in several directions, making your orgasm indescribably powerful. You last longer than most, too, as thick ribbons of cum are eased out by her shameless body’s spasms. {pcVagina: The vicious struggle to stay upright spreads the boiling pleasure to your [pc.pussy]. It soon drenches the laquine slut’s face with spurts of [pc.girlCum].}");
-output("\n\n// Merge");
-
-output("\n\nWhile your orgasm blurs the lurid details around you, the jumper and slaves also cum. A downpour of pearly jumper cum rains from above as her [enemy.cock] spews; the gryvain roars as she bloats the laquine’s guts. The saeri cums too, his ultra sticky goo connecting his spattered abdomen with the redhead’s messy chin.");
-
-output("\n\nAt the denouement of the orgy, as breathing eases and cum stops dripping from the mire above, you and the slaves all disentangle from the nude laquine whose body leaks as much sexual fluid as sweat. The gryvain appropriates the pirate slut’s gear before hurrying off. The saeri meekly waves, though the redhead sticks around longer, looking at you with a happy blush. When she too runs off, you note an odd snake-like figure hissing and chasing after her from another corner.");
-
-output("\n\nHurriedly, you gather your things and leave the unconscious jumper behind before that creature turns its sights on you. At least you had some fun!");
-
-
-
-output("\n\n[Watch]");
-output("\n\n// Tooltip: On a pirate station, you’re pretty sure voyeurism is <i>encouraged!</i>");
-output("\n\n// Two scenes, played sequentially");
-
-output("\n\nThinking it’s best to sit this {repeat: one} out, you find a closer, comfortable nook to peek out from behind{ and move your [pc.crotchCover] out of the way.} You can’t be too sure of the slaves intentions, they might try to take out their sexual frustrations on <i>you</i> if they’ve gone long enough without getting laid! Wearing an impish grin, you peer over a rock at eye length and watch as things get steamier.");
-
-output("\n\n// PC not taur");
-output("\n\n{pcCock: your adventurous [pc.hands] grasp for [pc.eachCock] /pcVagina: your adventurous [pc.hands] cup [pc.eachVagina] /pcNeuter: your adventurous [pc.hands] dart for your [pc.asshole] and caress your [pc.chest]}.");
-output("\n\n// PC taur");
-output("\n\nDue to your [pc.race] frame, you can’t quite reach your own genitals, but as your hindquarters buck and your body heats up, you don’t think it’ll be a problem.");
-output("\n\n// Merge");
-
-output("\n\n// Scene 1");
-output("\n\nThis close to the action, you make out the slave’s appearances better. The first slave, the one pounding the jumper’s warm pussy with strong, furred hands on her bubbly butt, is a tall kaithrit hermaphrodite. Long black hair sharpened by moisture and two tails flick aggressively behind her curvy, olive body. In the gap between her thighs you can see a heavy, swinging sack full of churning cum. Flanking the laquine are two others, one a blonde ausar girl who’s half the size of the others, and the third is a grimy looking gryvain positioned opposite the spitroasted rabbit, whose dark blue wyrm cock is straining in the desperate laquine’s mouth. The poor puppy seems a bit left out in this arrangement, but then you see her forcing a languid paw into her slavering slit.");
-
-output("\n\n<i>Girls only in this adult swim</i> you muse, watching with bated breath as big, sweaty boobs bounce in every possible direction. Perspirant flies like rain in the tit tornado, even from the ausar’s D-chest - the smallest of the bunch! The kaithrit woman’s keen figure and rapid movements capture your attention. She fucks that rabbit’s cunt with <i>purpose</i>! Even from here, you can see the muscles flexing in her deliciously thick thighs, sweat rolling over the outlines of bone and sinew as she thumps the pirate slut mercilessly. Her balance and technique leave even you a bit jealous, though you’re not sure if you’d like to do as she does, or <i>be done</i> by her...");
-
-output("\n\nThe gryvain herm, both scaly hands on the jumper’s soaking ears, claps weighty nuts with captivated chin as she unloads a thick load of dragon spunk into and onto the brown-furred bun’s mouth. She flops over the furry head of her leporine cocksleeve, pounding her jaw, uttering naught but a few high pitched moans before biting her lip. The sheer intensity of the gryvain’s climax; the volume and virility spewing out of those backed up balls makes you shudder, because she still looks hard enough to pierce steel! Large pools of cum easily form beneath the two of them. Her knot alone looks like it could permanently gape any hole spread by it!");
-
-output("\n\n<i>“This is crap..!”</i> The ausar grouses, groaning from the accumulated sweat and arousal. <i>“TURN HER OVER ALREADY, I’m fucking DYING here!”</i> She barks.");
-
-output("\n\n<i>“H-hold on!”</i> The kaithrit grunts. <i>“We’ve all been waiting long enough, just hold on a little longer, damn it!”</i>");
-
-output("\n\nBabbling with a mouthful of cum, the laquine giggles deliriously, <i>“Heeyyy, theresh e’nuff to go around, play naish now!”</i>");
-
-output("\n\nFor her efforts, she gets a light slap on the face from the gryvain and a mouth stuffed with messy dragon dick to the ausar’s growing annoyance. Your eyes are locked on the kaithrit, whose whole body flexes with sexual energy, fucking and fucking away so hard and yet she seems so far from orgasm! {pcLibidoMedHigh: You already feel like it’d be a good idea to join in just to get that kitty cock in you. You could show her a better time than that stupid, sexy rabbit!}");
-
-output("\n\nShe doesn’t have any horns next to her triangular ears, so she’s definitely not been Treated, but damn, she looks like she could fuck a New Texas bull into the ground! With increasingly lewd and incoherent screams of pleasure echoing down the passageways, you see the big kitty’s movements go from smooth to erratic in the passing minute. When her pink, nubby dick swells and hilts in the laquine’s horse-hole, you also see the bun’s [enemy.cock] uncork and spray the hot ground beneath her with a hotter load.");
-
-output("\n\n// PC not taur");
-output("\n\nThe smells and grumblings carry over to where you are, making you {pcCock: jerk your rock hard [pc.cocksLight] / finger your {pcVagina: [pc.pussy] /pcNeuter: finger your [pc.asshole]} faster. Your [pc.eyes] begin to squint as your arousal builds{, and your [pc.tails] wag to a blur}. You feel a sharp grip in {pcBalls: your [pc.balls] /pcVagina: your [pc.womb] /else: your chest} when the girls move their fuzzy prey, on all fours, into a new position. The pirate surrenders without a second thought to their whims as another hard breath flows over your parted lips.");
-output("\n\n// PC taur");
-output("\n\nThe ripe stench of bitches is carried on a pungent breeze to you, making {pcCock: [pc.eachCock] throb{s} painfully, in need of more physical stimulation. /pcVagina: [pc.eachVagina] thrum{s} and tingle{s}, crying out for direct contact. /pcBoth: your [pc.crotch] throb and tingle painfully, direly in need of penetration, of the touch of a partner. /pcNeuter: you squirm and slump, furiously groping yourself.} You focus your thoughts inward... You may not be getting any right now, but if you concentrate you may just get off...");
-output("\n\n// Merge");
-
-output("\n\nPulling her foot long cat dick from the jumper’s gaping pussy, the muscular kaithrit woman yanks a furry leg up and falls on to her side, aligning her dick with the bunny’s butthole. From your position, the hole she’s searching for is obscured by two sets of wide breeder’s hips. Her penetration is obvious though, and not gentle at all: the lusty laquine squeals in what can only be described as mindfucked joy.");
-
-output("\n\n<i>“FINALLY, FFFfffuCKING...!”</i> The perky ausar wails, quickly imprisoning the brown-furred muzzle between her lithe thighs. <i>“This is what you get for depriving me youuuUUU SLUT! You’ll only get to breathe when I cum! AND ONCE ISN’T ENOUGH!”</i> She shouts, already cumming once - she nearly collapses irate from the impact of orgasm. The bunny’s head is soon smothered by moist, randy dog.");
-
-output("\n\nYou see the gryvain shuffle over to the slut-bun’s splayed crotch and take her ever-erect [enemy.cock] in hand. What she does next widens your eyes: contorting her body into an awkward shape that leans her scaly legs over the kaithrit’s, she takes the bunny’s ballooning [enemy.cockType] shaft in hand. Wings spreading, she meanders the pirate’s [enemy.cockHead] under her leathery balls, aiming it at her dark blue pussy while she slips her cock in under the jumper’s dangling balls. You see the dragon slut’s weight shift, and she spears the rabbit and herself in one go. Did... did she really pull that off?! Folded like origami, a few of the tricksy rabbit’s muffled yet ecstatic moans reach your [pc.ears]. Were she not so fit and limber, she’d probably be bucking in pain right now. To your astonishment, she’s taking it like a champ!");
-
-output("\n\nThe threshing trio of former slaves go at their prey harder than before. The kaithrit humps and grinds in her ass, the gryvain merely swivels her hips while she’s helixed with the futa bunny, and the ausar... well, if she’s not spitting curses ineffective she’s raking her pussy with whiskered muzzle. One hand holds both lop ears together, the other guides the head they’re on, and her legs do the rest. As if she had a cock, she ruts against the thick tongue working overtime to get her off.");
-
-output("\n\nYou begin to shake and pant watching this brutal carnal display, briefly wondering how many credits you could make if you were to whip out your codex right now and start livestreaming it to some dishrag of a porn site.");
-
-output("\n\n<i>“You ff... You ffffFUCK!!!”</i> The ausar pants madly, stammering in pent up pain. <i>“Lucky for you, none of you bitches tried to stick mmeeeee with THROBB! I’d make you all choke on it if it’s the last thing I did! ALL OF IT, MORE!”</i> She howls, growling as if she were in heat. She must be, considering every toss and furious turn of her tail throws potent pussy juice and sweat in equal amounts, the scents traveling right to your nose.");
-
-output("\n\nTheir united groans carry loudly through the caves and you watch, hear, and practically <i>feel</i> them cumming again. You gasp and shutter your mouth when they detonate, the wet sounds and pheromones reaching you drive you straight into the wall of ruinous climax. {pcGenitals: [pc.EachCock] swell{s} with virile [pc.cum] and you can’t help but shower yourself and the rock beneath you in it. /pcVagina: [pc.EachVagina] constrict{s} {around your fingers} and you feel yourself squirting [pc.girlCum] {all over your [pc.hand] and} the cracked floor underfoot. /pcBoth: Your [pc.cocks] and [pc.eachVagina] tighten and blow, spurting and spurting and spurting ropes of [pc.cum] and [pc.girlCum]. /pcNeuter: Your [pc.asshole] clenches and you feel the electrical shock of orgasm coast down your spine into your crotch.}");
-
-output("\n\nThe three slaves rub themselves off in the laquine’s fur, using her like a towel to wipe their jizz off. The ausar sticks around just a bit longer to insult her further before stomping after the other two. Damn... For as spent as the jumper looks she sounds satisfied by what just happened! She rolls around in the afterglow, giggling to herself as cum drips from her abused holes, herself the star at the center of a homogenous puddle - her own rapturous galaxy.");
-
-output("\n\nNoticing an odd snake-like figure darting down a tunnel after the slaves, you vanish quickly. Your [pc.face] is red to the neck, but damn if that wasn’t a good diversion...");
-
-
-
-output("\n\n// Scene 2");
-output("\n\nThree slaves take advantage of the horny herm: two kui-tan males and a dzaan woman. A beta, by the looks of it, as there’s no pendulous cock swinging between her legs. The dusky woman kisses and gropes at the sweaty jumper, both of them on their knees, while the brown-furred rabbit gives the tawny men handjobs on either side. Her tiny, pretty paws must feel lovely around their shafts. {pcCock: A shame they’re not around yours right now...}");
-
-output("\n\nThe dzaan orally molests the lewd laquine’s mouth, both butt-groping hands being fanned by a wagging and sex-dripping tail. The jumper’s [enemy.cock] throbs between their taut tummies, rolling like a sausage between their guts. She doesn’t miss a beat with her kui-tan partners either: her small hands pump their rigids rods with hard, groin-rippling movements before switching to long, sensual rubs that end in a little glans teasing. The way they moan, the way the light reflects off her paw-pads ringing their moist tips, makes you moan like a helpless whore as well. You can almost feel some kind of phantom pleasure projected through time and space to affect you. {pcCockNotTaur: You mimic the laquine’s movements, rubbing yourself like she does the men, and nearly cum on the spot!} The shivers of near-orgasm run their course through you.");
-
-output("\n\n<i>“C’moooonnnn,”</i> you hear the jumper moan, <i>“I’m all for the touchy feely, but are ‘ya gonna mount me yet?”</i> She coyly asks.");
-
-output("\n\nWordlessly, the naked dzaan shoves the bunny bitch down and slithers over her, assailing the athletic bun with kisses up and down the sweaty fur, jerking the helpless pirate’s [enemy.cock] whilst grinding her glistening cunt against the shaft. She then leans forward and shifts her weight down, swiveling back on her knees, grinding that oversized [enemy.cockType] dick to its limits, teasing her urethra and fondling her balls at the same time. <i>“Oooh! Fuck!”</i> The rabbit squeaks with a buck of the hip, <i>“I’ll cummmmm!”</i>");
-
-output("\n\nOn cue, the dzaan plants one palm over the laquine’s [enemy.cockHead] and imprisons her girth in a vice grip, denying her orgasm while wiggling her thick tush in your direction. Mnf...");
-
-output("\n\nThe randy rabbit squirms and thrusts against the hand blocking her. <i>“Don’t edge meeeee come onnn! Heeeyy, we fucked a couple times, that’s worth something right? Right? I don’t cum just once!”</i> She makes a few more ‘innocent’ quips and bargains but the woman just giggles, keeping that silly slut down and desperate. The kui-tan kneel over the rabbit’s head and smear their sloppy cocks around her head and her ears. You can practically see the mischievous arc of lightning between their eyes as they glance down to their pirate fucktoy’s long, malleable ears.");
-
-output("\n\nGripping the lop ears of the moaning jumper, they each twirl the sensitive, sweat-soaked appendages around their throbbing, pre-beading cocks, using them as makeshift onaholes! The tips of their cocks rub against the softer skin of her ears. You can’t quite make out the laquine’s face from here, but you can definitely hear her passionate outcries: a mixed cocktail of pain and pleasure topped by barely cogent wails of happiness.");
-
-output("\n\nPre slips down to her eardrums as they both shift closer to her cute mouth. Her eager tongue lunges out for another taste of cum-packed kui-tan, soon engulfing both their cocks in her wet and soft maw as they jerk themselves with those handy auricles!");
-
-output("\n\nDrawing circles in her muscly torso, the dzaan exhales and crawls on top of the bunny again, yanking her legs up as she goes. The jumper’s [enemy.cock] stands tall like a ship’s mast, aligned perfectly with her slant-eared mistress’ oozing honeypot. The smog of lust, pheromone and musk together seeps down the connecting passages and especially toward you. The invisible cloud hits you like a suffocating wave of air, making you loudly gasp.");
-
-output("\n\n// PC not taur");
-output("\n\n{pcCock: You rub your [pc.cocks] against your stomach, staining your {[pc.armor] / [pc.skinFurScales]} with pre. /pcVagina: You stretch your [pc.vagina] with all fingers, furiously jilling yourself to the precipice of orgasmic delight. /pcBoth: You finger your [pc.vagina] and rub your [pc.cocks] against your stomach, staining your [pc.legOrLegs] and [pc.skinFurScales] with translucent goo. /pcNeuter: You hilt two fingers in your [pc.asshole] and cover your mouth as you violate your own butt.}");
-output("\n\n// PC taur");
-output("\n\nThe fierce, obscene sex on display makes you shudder and gasp. {pcCock: [pc.EachCock] throb{s}, twitching so hard they ram into your underbelly, ropes of pre and watery ejaculate bridging the gap between your [pc.cockHeads] and the jagged floor. /pcVagina: [pc.EachVagina] clinch{es} and ooze{s} with orgasmic slime, so ready for a dick, a dildo, even a fist that sadly isn’t coming. /pcBoth: your [pc.crotch] feels numb, you slump and and grind your diamond-hard [pc.cocksLight] against your own belly. Your shaky hindlegs are glazed by a waterfall of [pc.girlCum] your needy pussy.  /pcNeuter: you squirm and slump, furiously groping yourself as you concentrate on the smells to bring about a suitable orgasm.}");
-output("\n\n// Merge");
-
-output("\n\nYour [pc.eyes] can only focus on the dzaan, and the massive [enemy.cockNounSimple] sliding in and out of her slimy, silken folds. It’s like you’re watching a perfectly angled porn video, except in this instance you’re just a few feet away appreciating the view of a delicious, apple-shaped rump riding a pussy-gaping [enemy.cockNounSimple]. When her movements are just right, when the laquine’s legs flinch, you can see every tantalizing, {pcGenitals: cock milking / womb pinching / gut clenching} detail of velveteen sex. The elfin woman’s every rise and fall on the rabbit’s prodigious pole is punctuated by mouthwatering molds in her voluptuous frame.");
-
-output("\n\nThe dzaan moves passionately, almost sensually, controlling the jumper’s arousal with an inhuman grace. She pivots and tugs on furry feet when her back strains or the position becomes too boring, making sure her bottom doesn’t get used to anything. Casually hilting and sometimes teasing the [enemy.cockHead] around the entrance to her love canal, she swirls her gorgeous hips atop the pirate’s [enemy.cock]. Ringing moans announce her next body-fluttering orgasm, though the jumper’s is still far behind. A small price to pay for pleasing such a perfect mate. The shine of fresh girl cum polishes the bunny’s cock, giving her bulky balls an eye-catching gloss{ pcLibidoMedHigh: that seems to beckon you out of cover}.");
-
-output("\n\nYou gulp when the domme gives you room to see the kui-tan again, both plowing the laquine’s mouth in turns. Wrapped in lapine ear, one thrusts in, and on the backstroke, the other thrusts in, maintaining a rhythm that’d make lesser whores gag. You still can’t see the horny hare’s face, but you’re certain she’s in <i>love</i> with what’s going on based on the rich, sultry groans coming from the pile of sex. Those sounds get more intense, and your arousal magnifies with the volume of their lovemaking.");
-
-output("\n\nThe dzaan releases the jumper’s legs and gives up on the smooth ride. She plants both hands on the bunny’s abdomen before slamming her crotch on the rabbit’s. Those galvanizing thumps would grind down a weaker pelvis, no doubt! Furry legs dangle and stray around the ruling domme. Both kui-tan jam their dicks into an overstretched jaw, their tapered tips opening the way for a surge of ‘nuki cream. The rabbit jerks their cocks at the base, hopelessly groping their smooth, contracting balls to get more and more before she, too, achieves climax.");
-
-output("\n\nThey all scream in unison as their orgasms hit home. Yours nearly join theirs as {pcCock: your [pc.cocks] fire off painfully thick strands of [pc.cum] into the rocks just in front of you /pcVagina: [pc.eachVagina] clench{es} and squirt{s} a body-glazing batch of [pc.girlCum] onto you /pcBoth: [pc.eachCock] and [pc.eachVagina] swell and squirt thick loads of [pc.cum] and [pc.girlCum] /pcNeuter: you buck and squirm with nearly an entire knuckle in your [pc.asshole], a thunderous climax wracking your whole body}.");
-
-output("\n\nThe rabbit fills her <i>“beta’s”</i> womb with a voluminous load of bunny batter, the alien’s belly bloating to the state of early pregnancy. The kui tan smear her head and neck with what’s left of their orgasmic drip and the dzaan teases the rabbit until her rhythmic, cum-coaxing spasms come to an end. With a long, satisfied sigh, she stands up and disregards her lay entirely, like nothing ever happened even as cum drains from her cunt. The three saunter off, having had their fill of hot, sweaty rabbit.");
-
-output("\n\nAs for the jumper, she lays there, basking in the glory that was a good, hard fuck. Her ears and mouth drip with fresh cum that she’s too tired to lap up. Her idle arms tremble, and she giggles like a drunken sailor. What a slut!");
-
-output("\n\nWith an exasperated groan, you get yourself together and get going - you just heard another pair of voices that don’t sound much like a pair of pirates. Red to the neck, you wipe the sweat from your collar, still shivering from the orgy you just watched.");
-
-output("\n\nAnd there are those sounds again... That jumper’s already back at it!");
-
-*/
+	output("\n\nDropping behind the jumper, your [pc.arms] snake under hers. You grope her hot, wet chest, pinching those big, needy nipples for all their worth. She shoves her sweaty hip into your lap, grinding her tight, brown-furred butt into " + (pc.hasCock() ? "your [pc.cocks]":"your techno-strapon") + ". Sandwiched between her wide ass, you let a shaky hand fall to her [enemy.cock], fingers traveling down her foot long prong, around her fuzzy balls and past the puffy lips of her sopping mare-cunt.");
+	output("\n\nWith both hands busy, all she can do is mewl around the saeri cock she fellates so fervently. You press your fingers against every side of her moist tunnel while she grinds against your lap.");
+	processTime(5);
+	pc.lust(15);
+	clearMenu();
+
+	addButton(0,"Bun’n’Fly",cockSelect,[bunNFlyGangbangu,enemy.vaginalCapacity(0),true,0],"Bun’n’Fly","Fuck the jumper reverse cowgirl and let the saeri go at her pussy while the gryvain & redhead tend to each other.");
+	addButton(1,"Redhead",cockSelect,[redheadfuckiroodidoody,enemy.vaginalCapacity(0),true,0],"Redhead","Get the jumper on her back and sit the sexy redhead on her face, then fuck her.");
+}
+
+//[Bun’n’Fly]
+// Tooltip: Fuck the jumper reverse cowgirl and let the saeri go at her pussy while the gryvain & redhead tend to each other.
+public function bunNFlyGangbangu(x:int):void
+{
+	clearOutput();
+	showJumpyGangbang();
+	var y:int = -1;
+	if(pc.cockTotal() > 1)
+	{
+		for(var i:int = 0; i < pc.cockTotal(); i++)
+		{
+			//Dick that fits and isn't the main one? Lez do it.
+			if(y == -1 && pc.cockVolume(y) <= enemy.vaginalCapacity(0) && i != x) y = i;
+		}
+	}
+	output("Yeah... that’ll work just fine. Making sure it sounds feasible in your head, you grin and look to the slaves before yanking the slut-bun up a few inches.");
+	// PC Bimbo
+	if(pc.isBimbo()) output("\n\n<i>“Sorry girls, but I’ve got plans for this honey bunny!”</i> You announce, aligning your " + (x >= 0 ? "[pc.cocks]":"holocock") + " with the jumper’s leaky hole" + (x >= 0 && pc.cockTotal() > 1 ? "s":"") + ".");
+	// PC Bro
+	else if(pc.isBro()) output("\n\n<i>“I’m afraid this rabbit belongs to me right now.”</i> You declare, positioning her drizzling hole" + (x >= 0 && pc.cockTotal() > 1 ? "s":"") + " above your " + (x >= 0 ? "[pc.cocks]":"holocock") + ".");
+	// PC Kind
+	else if(pc.isNice()) output("\n\n<i>“Don’t mind me,”</i> you murmur, <i>“I’m going to take her for a ride.”</i> Moving the jumper’s cock out of the way, you line your " + (x >= 0 ? "[pc.cocks]":"holocock") + " up with her leaky hole" + (x >= 0 && pc.cockTotal() > 1 ? "s":"") + ".");
+	// PC Misch
+	else if(pc.isMischievous()) output("\n\n<i>“Alright, make some room! This jackrabbit’s about to go ‘jumping’!”</i> You grin, wasting no time in aligning your " + (x >= 0 ? "[pc.cocks]":"holocock") + " with her wet, waiting hole" + (x >= 0 && pc.cockTotal() > 1 ? "s":"") + ".");
+	// PC Hard
+	else output("\n\n<i>“This slut’s mine now.”</i> You stare coldly at the grimacing gryvain as you press your " + (x >= 0 ? "[pc.cocks]":"holocock") + " to her hole" + (x >= 0 && pc.cockTotal() > 1 ? "s":"") + ".");
+	// Merge
+	output("\n\nYou waste no time skewering your laquine fuckpuppet, thrusting your " + (x >= 0 ? "[pc.cock " + x + "]":"hardlight dong") + " all the way into her slick tailhole, making a short but exquisitely pleasurable trip through several inches of rabbit assflesh. A delightful squeal is forced out of your brown-furred bottom’s mouth - you push every inch of your member in until your groin presses into sweaty, damp laquine ass" + (y >= 0 ? ", your extra [pc.cockNoun " + y + "] prying her legs apart":"") + ".");
+	pc.cockChange();
+	output("\n\nClasping your hands around her waist, rubbing her erect [enemy.cockNounSimple] with your knuckles, you fall back with the warm bunny pirate on top of you. <i>“Wha-!”</i> Her pelvis crashes into yours with enough force to make you wince and nearly cum. <i>“Oh damn!”</i> The rabbit screams in surprise, tugging on the gryvain and saeri as she plunges. <i>“That’s exactly what I needed! Come on, harder harder!”</i> She praises, humping up and down on your " + (x >= 0 ? "[pc.cocks]":"glowing rod") + ".");
+
+	output("\n\nYou quickly grab the slut’s arms" + (y >= 0 ? ", quickly slipping your extra [pc.cockNounSimple " + y + "] into her swampy nethers,":"") + " and pull her down over your [pc.chest]. She gasps and flounders for the gryvain’s dual dicks and her saeri lollipop, but she resigns herself to a ride on ");
+	if(y >= 0) output("your double-penetrating lengths");
+	else if(x >= 0) output("your length");
+	else output("your glow-cock");
+	output(". <i>“Ohh!”</i> She moans. <i>“This is soooo fucking hot!”</i> she reaches over and jerks her painfully erect [enemy.cockNounSimple], only able to get her fingertips around the crown. <i>“Don’t you dare go slow, or I’ll pound you instead, cutie!”</i>");
+
+	output("\n\nKeeping her flaccid warning in a mental ditch where it belongs, you tell her you’d like to see her try with your ");
+	if(x >= 0) 
+	{
+		if(y >= 0) output("[pc.cockHeads]");
+		else output("[pc.cockHead " + x + "]");
+	}
+	else output("bright dong glowing and");
+	output(" bulging against her tummy. All she can respond with is a pleasurable squeal that only excites you and the others to the next level. The gryvain and the dusky redhead, now without their slutty sex doll, fall next to you. The redhead crawls provocatively over the befuddled dragon-babe, frotting the jade lady’s knotty cocks with her glistening honey hole. You look to the effeminate saeri boy, jerking himself in silence, looking a little lonely.");
+	output("\n\n<i>“Hey,”</i> you peer around your insensate slut-bun, <i>“Go ahead and use this...”</i> You murmur, [pc.hands] moving the jumper’s balls aside and revealing her " + (y < 0 ? "free":"stuffed") + " horse twat to the trappy butterfly. <i>“Go ahead and get right in there!”</i>");
+	output("\n\nThe jumper perks up at that. <i>“Oh yes!”</i> She screams more than a few times, powerful legs bouncing against your [pc.thighs]. <i>“Fuckmefuckme!”</i> She cranes her neck to the shy saeri, moving both trembling paws to her pussy as well. <i>“That’s the best idea I’ve heard all day!”</i> She exclaims, spreading her snatch wide, making a sexy face and moan to punctuate her desire for good dick.");
+	output("\n\n<i>“Is that... is that okay?”</i> he asks, leaning forward all the same. You and your bun nod feverishly as he lines up his glossy cock with " + (y < 0 ? "her pussy":"the pussy you pound as valuable time flies by") + ".");
+
+	// PC one cock/hardlight
+	if(y < 0)
+	{
+		output("\n\nYou grip the jumper’s hips and slow her just long enough for the petite boy to move her heavy sack out of the way. He rubs his bright pink tip into her slit, getting himself ready on her sexual spillage. Out of what can only be described as respectful affection, he jerks the jumper’s precipitous length while pushing himself in slowly. She reaches a hand out that he gladly takes, and their fingers crisscross as his eyes shut in utter bliss, his alien rod plumbing close to her womb.");
+	}
+	// PC multi cock
+	else
+	{
+		output("\n\nYou grip the laquine’s waist and hilt her on your rods just long enough for the petite butterfly to move her thick testes aside. With your ");
+		if(x < 0) output("artificial");
+		else output("[pc.cockType " + x + "]");
+		output(" shaft still filling her rippling canal, he pinches her clit. Unsure if it will work, he still makes the effort to slide in past the four hands spreading those swollen, aching lips for him. You catch your breath, soon shuddering and whimpering, feeling his segmented cock rubbing against your own, sliding up her pussy with remarkable ease. Her gut distends further, those spasming walls having to make room for two mismatched dicks now. Neither you nor your fuzzy bun would have it any other way.");
+	}
+	// Merge
+	output("\n\n<i>“Fuck yeah, more more more!”</i> The horny bunny cries, jerking her hips - and your sensitive dong");
+	if(y >= 0) output("s");
+	output(" - to enswathe the cute boy’s turgid rod in her creaming twat. ");
+	//pcOneCock/Hardlight:
+	if(y < 0) output("The equine pussy spreading around the saeri’s cock eases his entrance and soon you feel his cock massaging yours in her pre-painted butt. When you pump your hips through her, the butterfly withdraws, and together you maintain a heavenly rhythm.");
+	//pcMultiCock:
+	else output("When you pump your hips through her, the butterfly withdraws, and you maintain a heavenly rhythm. His twilight cock and your [pc.cockNounSimple " + x + "] mutually massage as they stretch her tunnel wide, even grinding against your first dick spurting [pc.cumColor] precum all through her vice-like ass.");
+
+	output("\n\nThe rabbit falls back, slipping an arm around the back of your head and drawing you into a cum-scented kiss, one jerking hand still working her hefty boner. As your tongues wrestle in a sloppy, disorganized manner, the gryvain hefts the redhead up above the both of you, their fragrant, oozing pussies raining love and honey down on you. The laquine licks what she can off your face with the salty sweat as the human girl is speared on two matching wyrm cocks, musk and pheromones both billowing out from her slick holes. They hold each other tightly, the dusky girl’s legs wrapped around the jade dragon’s waist and the emerald gryvain’s scaly mits clutching a curvaceous derriere.");
+
+	output("\n\n<i>“Awesooome!”</i> The rabbit moans, still ramming her muscled butt into your crotch as the saeri leans down over her. The clashing of crotches above and the moans in front of you soon drown you in the rivers of lust. Every contraction in her holes is something to be relished: ");
+	if(y < 0) output("the tensing way it squeezes your " + (x >= 0 ? "[pc.cock " + x + "]":"techno dong"));
+	else output("the tensing way they squeeze and slather your [pc.cocks]");
+	output(" is more than just her wanton body’s attempt to please its partners: every pulse in her passage makes you feel as though your cock grows with every impact.");
+	output("\n\nAll in participation, yourself included, become nothing more than animals fucking away in mindless lust. The raw sexual emissions in the air, infecting every functioning brain cell with virulent hormones, can no longer be ignored. You and the gryvain growl loudly - she even bites her redheaded partner. The femmy saeri’s lungs only output hoarse, shrill screams that work well in tandem with the jumper’s, whose own sounds have become indecipherable howls. Heralding her impending orgasm, her sphincter and pussylips clamp down as her [enemy.cockNounSimple] is teased from base to tip by an elegant butterfly. When her clit is pinched, she inhales - that portentous limbo of silence foretold by deep, shuddering gasps tells your hyper aroused body just what it needs to do.");
+
+	// PC one cock/hardlight
+	if(y < 0)
+	{
+		output("\n\nNerves afire, you lock both hands around the jumper’s waist to hold her steady, hilting inside her ass and bellowing in orgasm. Wet, sticky sounds tell of wasted, virile bunny cum flying up to the ceiling. What doesn’t hit falls with the cascade onto the members of this sweaty orgy, on your face, her face... It just goes on and on, much like her shivering groans and her violent orgasm. " + (x >= 0 ? "Your [pc.cockHead " + x + "] swells with [pc.cum], spurting hard enough to dim your vision with every ribbon of cum painting the laquine’s colon [pc.cumColor].":"Your legs shudder and your breaths are pained. Your hardlight strapon, transmitting only the strongest sensations of pleasure, brings you to explosive orgasm as the laquine’s ass attempts in vain to draw cum from your holocock.") + (pc.hasVagina() ? " Your [pc.pussy] squirts stream after stream of [pc.girlCum], landing only on the ground where it sizzles out, filling the air with the scintillating scent of [pc.girlCum].":""));
+	}
+	// PC multicock
+	else
+	{
+		output("\n\nThe exotic pleasure of sharing a pussy with another dick, of two stimulating tips rubbing against one another, has been an experience unlike any other. When the twilight slave cums, you cum as well, flooding the rabbit’s " + (x >= 0 ? "ass and ":"") + "pussy with [pc.cum] that soon drizzles out from her gaping hole, mixed with even stickier saeri spooge. You watch her eyes roll back, her cute little face a complete mess right next to your own. Every eruption, the tremors magnified by her violent trembling and the saeri’s stiffening, brings you closer to unconsciousness. As you ride the wave of your own orgasm, the jumper’s [enemy.cock] spews obscenely thick ropes of cum straight up to the ceiling. What doesn’t hit the jagged rocks overhead drips down with what does, landing all around." + (pc.hasVagina() ? " Your [pc.pussy] squirts stream after stream of [pc.girlCum], landing only on the ground where it sizzles out, filling the air with the scintillating scent of [pc.girlCumFlavor].":""));
+	}
+	output("\n\nGlobs of honey spill down from above like a heavenly rain. You catch some of it, reveling in the sinfully sweet taste of modded girl-cum. The gryvain plugs both the redhead’s holes with a healthy dose of draconic cum, her huge tits clapping wetly against their bodies with every heave of her burning chest. The chocolatey terran girl goes limp and the gryvain falls to her knees next to you. The pirate slut’s voice is nothing but a series of mirthful hyperventilations, and the saeri only makes her yelp as he pulls free of her well used bitch hole.");
+	output("\n\nYour vision soon clears up, and you feel stronger than ever. Breathing deeply, you slide the jumper off of you");
+	if(pc.hasKnot(x) || pc.hasKnot(y))
+	{
+		output(", careful to keep your ");
+		if(pc.hasKnot(x) && pc.hasKnot(y)) output("knots");
+		else if(pc.hasKnot(x)) output("[pc.knot " + x + "]");
+		else output("[pc.knot " + y + "]");
+		output(" from slipping in and locking you here for the next half hour")
+	}
+	output(". Pulling free from her, you watch your cum dribble out from the jumper’s brown backside as the slaves collect themselves. The gryvain and redhead scamper off as soon as they can stand, stealing her equipment. The saeri gives you a meek wave and flees in another direction. Taking another breath, you sit up and hurriedly gather your things, paying one last glance to the naked pirate.");
+	output("\n\nWhatever her punishment is, going back to her friends naked like that, is a mystery you kind of wish you could see...");
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Redhead]
+// Tooltip: Get the jumper on her back and sit the sexy redhead on her face, then fuck her.
+public function redheadfuckiroodidoody(x:int):void
+{
+	clearOutput();
+	showJumpyGangbang();
+	var y:int = -1;
+	var z:int = -1;
+	//Find an unused dick for DP!
+	for(var i:int = 0; i < pc.cockTotal(); i++)
+	{
+		//Dick that fits and isn't the main one? Lez do it.
+		if(y == -1 && pc.cockVolume(y) <= enemy.vaginalCapacity(0) && i != x) y = i;
+	}
+	if((x < 0 && pc.cockTotal() > 1) || pc.cockTotal() > 2)
+	{
+		for(i = 0; i < pc.cockTotal(); i++)
+		{
+			//Dick that fits and isn't the main one? Lez do it.
+			if(z == -1 && pc.cockVolume(z) <= enemy.vaginalCapacity(0) && i != y && i != x) z = i;
+		}
+	}
+	output("These slutty rabbits may be cute, and they may just want a good fuck, but you can’t get your [pc.eyes] off that sexy slave: a terran girl with short, sweaty red hair and a gifted, curvy body that looks criminally plush. A brainwashing scent wafts up from the minx’s pussy as she looms over yours and the jumper’s head, spreading her bare, supple, glistening pussy before your very eyes with a flustered expression. <i>“You know what to do”</i> she whispers. The laquine instinctively thrusts her face in that direction, dragging the girly butterfly with her jaw.");
+	output("\n\nMewling in lustful agony, the jumper swirls her tongue around the saeri’s bright pink tip, struggling with wanting to suck him off or getting her mouth on that dewy mound. There’s a better idea...");
+	output("\n\nYou hop up to your [pc.feetOrFoot], still squatting. Reaching your right [pc.hand] out to the redhead, you take her by the wrist and drag her forward as you bring the jumper down flat on her back. <i>“Woah! What the he-”</i> the husky-voiced girl sputters. The saeri and gryvain lurch as they’re both pulled by their cocks. Before the roiling rabbit can figure out what’s going on, you twirl the terran beauty and sit her directly on the jumper’s face, bending her over. It’s a powerfully erotic sight to see her rich, creamy, wobbly cheeks spread, her moist, swollen femininity exposed to you, begging for a tongue to swim through its soft undercurrents...");
+	output("\n\nAnd the jumper hears its pleas, wrapping both paws around those enviable thighs and lunging forward, straining every muscle in her neck as she dives into the girl’s honeypot face-first. Her clit being teased, the redhead squeals loudly and looks about to cum already! Her hands are already trembling on the laquine’s belly; the bunny bitch’s [enemy.cock] wanting to caress her chin just above the [enemy.cockHead].");
+	output("\n\n<i>“Mmm,”</i> the slut-bun moans, <i>“This ish good...”</i>");
+	output("\n\nHer broad tongue works its way all around the terran’s slick pussylips, drinking up the salty sweat and honey-flavored juice with rabid need. In her [enemy.eyeColor] eyes, you can see nothing but gluttonous hunger for cunt and clit as she draws the girl’s crotch down so far that she’s submerged in mouthwatering twat. <i>“Sho gooooooddddd!”</i> She squeals. <i>“Sho sweet and tashty!”</i>");
+	// PC Bimbo
+	if(pc.isBimbo()) output("\n\n<i>“Hope you’re ready for more than just pussy!”</i> You smile wide as you bring your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " closer to her mouth and the terran’s twitching thighs.");
+	// PC Bro
+	else if(pc.isBro()) output("\n\n<i>“Make some room, and get ready for a taste of me.”</i> You smirk, slapping the laquine with the flank of your " + (x >= 0 ? "[pc.cock " + x + "]":"hardlight strapon") + ".");
+	// PC Kind
+	else if(pc.isNice()) output("\n\n<i>“You’re going to be working a lot harder than that. Now make some room...”</i> You say as you bring your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " closer to that pocket of sluttery.");
+	// PC Misch
+	else if(pc.isMischievous()) output("\n\n<i>“Hope you’ve got a similar taste for dick.”</i> You laugh, rubbing your " + (x >= 0 ? "[pc.cockHeads]":"hardlight strapon’s tip") + " into the rabbit’s face and furrowing nose.");
+	// PC Hard
+	else output("\n\n<i>“Move back, and get ready for more than a pussy.”</i> You order the jumper, moving your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " to to where lips and pussylips are connected by spit and girl juice.");
+
+	// Merge
+	output("\n\nYou gingerly push your " + (x >= 0 ? "[pc.cockNounSimple " + x + "]":"techno dong") + " between the jumper’s [enemy.lipColor] mouth and the redhead’s glossy honey hole. It’s hard not to inhale these strangling scents with every heady breath you take, shit, it smells like a ripe zil orgy! A growl-like exhalation later, you hear the redhead squeal, your cock being slathered in a fresh helping of modded cum. Saccharine, amber honey flows over your [pc.cockType " + x + "] shaft like syrupy glaze, trickling down to the laquine’s wide open mouth.");
+	output("\n\nHer tongue washes your fragrant " + (x < 0 ? "techno ":"") + "dong" + (x >= 0 && y >= 0 ? "s":"") + " like a sponge, absorbing every drop of her treat while lathering you up for the terran’s ready pussy" + (y >= 0 ? " and maybe for her mouth as well":"") + ". <i>“You gonna use " + (y >= 0 ? "that":"those") + " or what, cutie?”</i> The rabbit grins at you, her muzzle mostly obscured by sweaty skin. <i>“Don’t leave me out, c’monnn! Let me taste some more!”</i>");
+	if(y < 0) output("\n\nToo bad she’s not your target, no matter how much she begs and smiles.");
+	else if(z >= 0) output("\n\nYeah, you can spare a dick for her.");
+	output(" While you rub your ");
+	output("[pc.cockHeads] against the redhead’s slit, lubing your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + " up for penetration, the gryvain shuffles a little angrily to the laquine’s crotch, yanking her legs up and making her ‘eek!’ as her [enemy.cock] is pushed aside and her heavy, fuzzy balls are lifted up. The dragon girl wastes no time ramming her tapered, knotty wyrm cocks into the jumper’s ass and equine pussy both, meeting no resistance thanks to the natural lube of musky rabbit crotch.");
+	output("\n\nYou grin seeing the not-so-bored rabbit’s tongue hanging out of her mouth as she mimes something silly" + (z >= 0 ? ". Well, she wanted a taste too! You quietly slip one right in as you get ready":"") + ".");
+
+	output("\n\n<i>“H-hey... Hurry up!”</i> The scowling girl looks over her shoulder as she wiggles her butt at you, both round ass cheeks jiggling. A light pressure in your crotch makes you wince, the rosy shade on her face distracts you as she takes you to task, pushing her globes back and lancing herself on your " + (x >= 0 ? "[pc.cockNounSimple " + x + "]":"holo cock") + " with a forceful thrust. Her blissful wails echo through the mines; you clench your [pc.hands] around her waist and focus on her, panting madly. Her wonderfully <i>hot</i> pussy hugs your " + (x >= 0 ? "[pc.cock " + x + "]":"glowing dong") + ", thirsty for all the sticky cum you " + (x >= 0 ? "can":"sadly can’t") + " give. Your first few pumps in and out of her silky folds make you feel as though you sit upon a cloud of euphoria" + (pc.balls > 0 ? ", your [pc.sack] wetly slapping her thighs with every deep, uterus-touching thrust":"") + ".");
+
+	// PC Multicock
+	if(y >= 0)
+	{
+		output("\n\nBefore fucking her proper, you take your extra [pc.cockNounSimple " + y + "] and wriggle yourself - and her - into proper position. There is no protest as you plant the [pc.cockHead " + y + "] to her sphincter, her ass cheeks engulfing your pre-spurting rod. Her moans are so loud, as if conjured to draw others to this debauchery. Her bangs spray beads of vaporous sweat all around as her ass is spread by your [pc.cockColor " + y + "] pillar of meat.");
+	}
+	// Merge
+	// PC has balls
+	if(pc.balls > 0)
+	{
+		output("\n\nYour [pc.balls] hang" + (pc.balls == 1 ? "s":"") + " over the jumper’s face, and as soon as she recovers from her double dicking, she seeks out the savory ballflesh hovering above, desperate to do anything as she and her [enemy.cock] go unattended. You soon feel her thick, warm tongue drawing lewd shapes in the underside of your creasing cum sack, even reaching a furry paw over to knead your warm nads as she feverishly fondles the girl atop her.");
+	}
+	// Merge
+	output("\n\nThe redhead’s pussy fills out like a glove every time you touch your cockslit to her womb. At your deepest, you grind your hips left and right, using her pussy to give your rod a series of erotically straining jerks. As her muscles spasm and she comes again, squirting honey on your [pc.thighs]" + (pc.balls > 0 ? " and down your [pc.sack":"") + ", her knees give out and she slumps belly first on a fuzzy jaw. The laquine’s hips buck upward even with her legs hiked over the jade gryvain’s shoulders. Interestingly, the saeri finally sets himself down in front of the redhead, presenting his moist cock to her.");
+	output("\n\n<i>“P-please, if it’s no trouble...”</i> He asks gently, one shy hand over his blushing cobalt face and the other jerking his alien endowment. The terran girl, whether out of sheer lust or elsewise, spreads her lips across his tip and inhales his twilight phallus, arousing sounds carrying to every ear around.");
+	output("\n\nThe bunny moves both mits to where the redhead’s crotch meets yours, aimlessly molesting her nethers and your " + (x >= 0 ? "[pc.cocks]":"hardlight strapon") + ", cooing everytime she makes you flinch. The saeri boy’s wails amplify the gryvain’s feral bellowing as they get closer to messy orgasm; the laquine’s [enemy.cock] humps between his petite ass with shockwave generating impacts.");
+	output("\n\nThe dragon woman’s savage thrusting fuels the fire in your own loins, driving you to rail the sugary, spitroasted slave in your lap with unmatched speed. A few playful palm taps against your sensitive cock make your teeth clench and hands shake. A series of shudders and whines morph into hyperventilating pants that grow louder with each that worms its way up your throat. <i>You’ve got to keep thrusting!</i> There’s a beautiful girl there howling in the pleasure that you’re giving her, you can’t stop for anything!");
+
+	output("\n\nA hand at your ");
+	if(pc.balls > 0) output("[pc.balls]");
+	else if(pc.hasCock()) output("[pc.cocks]");
+	else output("crotch");
+	output(" forces your eyes shut. Two squirming feet caress your [pc.legOrLegs], and a voice calls out for you to cum! Your saliva-coated tongue falls from your overheating mouth as you slam your hips into the redhead’s" + (pc.balls > 0 ? ", [pc.balls] planted firmly on the laquine’s muzzle":"") + ".");
+
+	// PC Hardlight
+	if(x < 0)
+	{
+		output("\n\nYour high tech strapon, surging into the redhead’s pussy, is smothered by tight, constricting walls that make your whole body feel as if it’s being pleasured by that syrupy quim. Orgasm bounces up and down your spine; your head arches back, and sweat flies off you like you’re a fully soaked towel.");
+	}
+	// PC one cock
+	else if(y < 0 && x >= 0) 
+	{
+		output("\n\n[pc.Cum] fills your stretching cumtube, surging into the redhead’s pussy like a divine shot, smashing into her womb with the impact of an erupting volcano. The seconds-old loads are pushed out by the new" + (pc.hasKnot(x) ? ", spilling out around your [pc.knot " + x + "]":"") + ". Your orgasm is made inexpressibly pleasurable, her constricting canal easing out every drop of jism with hard grips" + (pc.hasVagina() ? " that force you to drench the jumper’s face with spurts of [pc.girlCum]":"") + ".");
+	}
+	// PC multicock
+	else 
+	{
+		output("\n\nYour [pc.cocks] swell with cum, each urethra bulging with [pc.cum] that soon surges into the redhead’s pussy and ass like a divine shot. Her womb and colon are smashed with the impact of an erupting volcano, the seconds-old loads being pushed out by the new");
+		if(pc.hasKnot(x) || pc.hasKnot(y))
+		{
+			output(", spilling out around your ");
+			if(pc.hasKnot(x) && pc.hasKnot(y)) output("knots");
+			else if(pc.hasKnot(x)) output("[pc.knot " + x + "]");
+			else output("[pc.knot" + y + "]");
+		}
+		output(". She jerks violently in your grasp, dragging your still-cumming cocks in several directions, making your orgasm indescribably powerful. You last longer than most, too, as thick ribbons of cum are eased out by her shameless body’s spasms." + (pc.hasVagina() ? " The vicious struggle to stay upright spreads the boiling pleasure to your [pc.pussy]. It soon drenches the laquine slut’s face with spurts of [pc.girlCum].":""));
+	}
+	// Merge
+	output("\n\nWhile your orgasm blurs the lurid details around you, the jumper and slaves also cum. A downpour of pearly jumper cum rains from above as her [enemy.cock] spews; the gryvain roars as she bloats the laquine’s guts. The saeri cums too, his ultra sticky goo connecting his spattered abdomen with the redhead’s messy chin.");
+	output("\n\nAt the denouement of the orgy, as breathing eases and cum stops dripping from the mire above, you and the slaves all disentangle from the nude laquine whose body leaks as much sexual fluid as sweat. The gryvain appropriates the pirate slut’s gear before hurrying off. The saeri meekly waves, though the redhead sticks around longer, looking at you with a happy blush. When she too runs off, you note an odd snake-like figure hissing and chasing after her from another corner.");
+	output("\n\nHurriedly, you gather your things and leave the unconscious jumper behind before that creature turns its sights on you. At least you had some fun!");
+
+	processTime(30);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+//[Watch]
+// Tooltip: On a pirate station, you’re pretty sure voyeurism is <i>encouraged!</i>
+// Two scenes, played sequentially
+public function watchSomePirateGanguBanguSlanguWangu():void
+{
+	clearOutput();
+	showJumpyGangbang();
+	output("Thinking it’s best to sit this " + (flags["JUMPER_GANGBANG_WATCHES"] != undefined ? "one ":"") + "out, you find a closer, comfortable nook to peek out from behind" + (pc.isCrotchExposed() ? " and move your [pc.crotchCover] out of the way":"") + ". You can’t be too sure of the slaves intentions, they might try to take out their sexual frustrations on <i>you</i> if they’ve gone long enough without getting laid! Wearing an impish grin, you peer over a rock at eye length and watch as things get steamier.");
+
+	// PC not taur
+	if(!pc.isTaur())
+	{
+		if(pc.hasCock()) output("\n\nYour adventurous [pc.hands] grasp for [pc.eachCock].");
+		else if(pc.hasVagina()) output("\n\nYour adventurous [pc.hands] cup [pc.eachVagina].");
+		else output("Your adventurous [pc.hands] dart for your [pc.asshole] and caress your [pc.chest].");
+	}
+	// PC taur
+	else output("\n\nDue to your expansive frame, you can’t quite reach your own genitals, but as your hindquarters buck and your body heats up, you don’t think it’ll be a problem.");
+	// Merge
+	IncrementFlag("JUMPER_GANGBANG_WATCHES")
+
+	// Scene 1
+	if(flags["JUMPER_GANGBANG_WATCHES"] % 2 != 0)
+	{
+		output("\n\nThis close to the action, you make out the slave’s appearances better. The first slave, the one pounding the jumper’s warm pussy with strong, furred hands on her bubbly butt, is a tall kaithrit hermaphrodite. Long black hair sharpened by moisture and two tails flick aggressively behind her curvy, olive body. In the gap between her thighs you can see a heavy, swinging sack full of churning cum. Flanking the laquine are two others, one a blonde ausar girl who’s half the size of the others, and the third is a grimy looking gryvain positioned opposite the spitroasted rabbit, whose dark blue wyrm cock is straining in the desperate laquine’s mouth. The poor puppy seems a bit left out in this arrangement, but then you see her forcing a languid paw into her slavering slit.");
+		output("\n\n<i>Girls only" + (silly ? " in this adult swim":"") + ",</i> you muse, watching with bated breath as big, sweaty boobs bounce in every possible direction. Perspirant flies like rain in the tit tornado, even from the ausar’s D-chest - the smallest of the bunch! The kaithrit woman’s keen figure and rapid movements capture your attention. She fucks that rabbit’s cunt with <i>purpose</i>! Even from here, you can see the muscles flexing in her deliciously thick thighs, sweat rolling over the outlines of bone and sinew as she thumps the pirate slut mercilessly. Her balance and technique leave even you a bit jealous, though you’re not sure if you’d like to do as she does, or <i>be done</i> by her...");
+		output("\n\nThe gryvain herm, both scaly hands on the jumper’s soaking ears, claps weighty nuts with captivated chin as she unloads a thick load of dragon spunk into and onto the brown-furred bun’s mouth. She flops over the furry head of her leporine cocksleeve, pounding her jaw, uttering naught but a few high pitched moans before biting her lip. The sheer intensity of the gryvain’s climax; the volume and virility spewing out of those backed up balls makes you shudder, because she still looks hard enough to pierce steel! Large pools of cum easily form beneath the two of them. Her knot alone looks like it could permanently gape any hole spread by it!");
+		output("\n\n<i>“This is crap..!”</i> The ausar grouses, groaning from the accumulated sweat and arousal. <i>“TURN HER OVER ALREADY, I’m fucking DYING here!”</i> She barks.");
+		output("\n\n<i>“H-hold on!”</i> The kaithrit grunts. <i>“We’ve all been waiting long enough, just hold on a little longer, damn it!”</i>");
+		output("\n\nBabbling with a mouthful of cum, the laquine giggles deliriously, <i>“Heeyyy, theresh e’nuff to go around, play naish now!”</i>");
+		output("\n\nFor her efforts, she gets a light slap on the face from the gryvain and a mouth stuffed with messy dragon dick to the ausar’s growing annoyance. Your eyes are locked on the kaithrit, whose whole body flexes with sexual energy, fucking and fucking away so hard and yet she seems so far from orgasm!" + (pc.libido() >= 50 ? " You already feel like it’d be a good idea to join in just to get that kitty cock in you. You could show her a better time than that stupid, sexy rabbit!":""));
+		output("\n\nShe doesn’t have any horns next to her triangular ears, so she’s definitely not been Treated, but damn, she looks like she could fuck a New Texas bull into the ground! With increasingly lewd and incoherent screams of pleasure echoing down the passageways, you see the big kitty’s movements go from smooth to erratic in the passing minute. When her pink, nubby dick swells and hilts in the laquine’s horse-hole, you also see the bun’s [enemy.cock] uncork and spray the hot ground beneath her with a hotter load.");
+
+		// PC not taur
+		if(!pc.isTaur())
+		{
+			output("\n\nThe smells and grumblings carry over to where you are, making you ");
+			if(pc.hasCock()) output("jerk your rock hard [pc.cocksLight]");
+			else output("finger your " + (pc.hasVagina() ? "[pc.pussy]":"finger your [pc.asshole]"));
+			output(" faster. Your [pc.eyes] begin to squint as your arousal builds" + (pc.tailCount > 0 ? ", and your [pc.tails] wag to a blur":"") + ". You feel a sharp grip in ");
+			if(pc.balls > 0) output("your [pc.balls]");
+			else if(pc.hasVagina()) output("your [pc.womb]");
+			else output("your chest");
+			output(" when the girls move their fuzzy prey, on all fours, into a new position. The pirate surrenders without a second thought to their whims as another hard breath flows over your parted lips.");
+		}
+		// PC taur
+		else
+		{
+			output("\n\nThe ripe stench of bitches is carried on a pungent breeze to you, making ");
+			if(pc.isHerm()) output("your [pc.crotch] throb and tingle painfully, direly in need of penetration, of the touch of a partner.");
+			else if(pc.hasCock()) output("[pc.eachCock] throb painfully, in need of more physical stimulation.");
+			else if(pc.hasVagina()) output("[pc.eachVagina] thrums and tingles, crying out for direct contact.");
+			else output("you squirm and slump, furiously groping yourself.");
+			output(" You focus your thoughts inward... You may not be getting any right now, but if you concentrate you may just get off...");
+		}
+		// Merge
+		output("\n\nPulling her foot long cat dick from the jumper’s gaping pussy, the muscular kaithrit woman yanks a furry leg up and falls on to her side, aligning her dick with the bunny’s butthole. From your position, the hole she’s searching for is obscured by two sets of wide breeder’s hips. Her penetration is obvious though, and not gentle at all: the lusty laquine squeals in what can only be described as mindfucked joy.");
+		output("\n\n<i>“FINALLY, FFFfffuCKING...!”</i> The perky ausar wails, quickly imprisoning the brown-furred muzzle between her lithe thighs. <i>“This is what you get for depriving me youuuUUU SLUT! You’ll only get to breathe when I cum! AND ONCE ISN’T ENOUGH!”</i> She shouts, already cumming once - she nearly collapses irate from the impact of orgasm. The bunny’s head is soon smothered by moist, randy dog.");
+		output("\n\nYou see the gryvain shuffle over to the slut-bun’s splayed crotch and take her ever-erect [enemy.cock] in hand. What she does next widens your eyes: contorting her body into an awkward shape that leans her scaly legs over the kaithrit’s, she takes the bunny’s ballooning [enemy.cockType] shaft in hand. Wings spreading, she meanders the pirate’s [enemy.cockHead] under her leathery balls, aiming it at her dark blue pussy while she slips her cock in under the jumper’s dangling balls. You see the dragon slut’s weight shift, and she spears the rabbit and herself in one go. Did... did she really pull that off?! Folded like origami, a few of the tricksy rabbit’s muffled yet ecstatic moans reach your [pc.ears]. Were she not so fit and limber, she’d probably be bucking in pain right now. To your astonishment, she’s taking it like a champ!");
+		output("\n\nThe threshing trio of former slaves go at their prey harder than before. The kaithrit humps and grinds in her ass, the gryvain merely swivels her hips while she’s helixed with the futa bunny, and the ausar... well, if she’s not spitting curses ineffective she’s raking her pussy with whiskered muzzle. One hand holds both lop ears together, the other guides the head they’re on, and her legs do the rest. As if she had a cock, she ruts against the thick tongue working overtime to get her off.");
+		output("\n\nYou begin to shake and pant watching this brutal carnal display, briefly wondering how many credits you could make if you were to whip out your codex right now and start livestreaming it to some dishrag of a porn site.");
+		output("\n\n<i>“You ff... You ffffFUCK!!!”</i> The ausar pants madly, stammering in pent up pain. <i>“Lucky for you, none of you bitches tried to stick mmeeeee with THROBB! I’d make you all choke on it if it’s the last thing I did! ALL OF IT, MORE!”</i> She howls, growling as if she were in heat. She must be, considering every toss and furious turn of her tail throws potent pussy juice and sweat in equal amounts, the scents traveling right to your nose.");
+		output("\n\nTheir united groans carry loudly through the caves and you watch, hear, and practically <i>feel</i> them cumming again. You gasp and shutter your mouth when they detonate, the wet sounds and pheromones reaching you drive you straight into the wall of ruinous climax.");
+		if(pc.isHerm()) output("Your [pc.cocks] and [pc.vaginas] tighten and blow, spurting and spurting and spurting ropes of [pc.cum] and [pc.girlCum].");
+		else if(pc.hasCock()) output(" [pc.EachCock] swells with virile [pc.cum] and you can’t help but shower yourself and the rock beneath you in it.");
+		else if(pc.hasVagina()) output("[pc.EachVagina] constricts " + (!pc.isTaur() ? "around your fingers ":"") + "and you feel yourself squirting [pc.girlCum]" + (!pc.isTaur() ? " all over your [pc.hand] and":"") + " the cracked floor underfoot.");
+		else output("Your [pc.asshole] clenches and you feel the electrical shock of orgasm coast down your spine into your crotch.");
+
+		output("\n\nThe three slaves rub themselves off in the laquine’s fur, using her like a towel to wipe their jizz off. The ausar sticks around just a bit longer to insult her further before stomping after the other two. Damn... For as spent as the jumper looks she sounds satisfied by what just happened! She rolls around in the afterglow, giggling to herself as cum drips from her abused holes, herself the star at the center of a homogenous puddle - her own rapturous galaxy.");
+		output("\n\nNoticing an odd snake-like figure darting down a tunnel after the slaves, you vanish quickly. Your [pc.face] is red to the neck, but damn if that wasn’t a good diversion...");
+		processTime(30);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+	// Scene 2
+	else
+	{
+		output("\n\nThree slaves take advantage of the horny herm: two kui-tan males and a dzaan woman. A beta, by the looks of it, as there’s no pendulous cock swinging between her legs. The dusky woman kisses and gropes at the sweaty jumper, both of them on their knees, while the brown-furred rabbit gives the tawny men handjobs on either side. Her tiny, pretty paws must feel lovely around their shafts." + (pc.hasCock() ? " A shame they’re not around yours right now...":""));
+		output("\n\nThe dzaan orally molests the lewd laquine’s mouth, both butt-groping hands being fanned by a wagging and sex-dripping tail. The jumper’s [enemy.cock] throbs between their taut tummies, rolling like a sausage between their guts. She doesn’t miss a beat with her kui-tan partners either: her small hands pump their rigids rods with hard, groin-rippling movements before switching to long, sensual rubs that end in a little glans teasing. The way they moan, the way the light reflects off her paw-pads ringing their moist tips, makes you moan like a helpless whore as well. You can almost feel some kind of phantom pleasure projected through time and space to affect you." + (pc.hasCock() && !pc.isTaur() ? " You mimic the laquine’s movements, rubbing yourself like she does the men, and nearly cum on the spot!":"") + " The shivers of near-orgasm run their course through you.");
+		output("\n\n<i>“C’moooonnnn,”</i> you hear the jumper moan, <i>“I’m all for the touchy feely, but are ‘ya gonna mount me yet?”</i> She coyly asks.");
+		output("\n\nWordlessly, the naked dzaan shoves the bunny bitch down and slithers over her, assailing the athletic bun with kisses up and down the sweaty fur, jerking the helpless pirate’s [enemy.cock] whilst grinding her glistening cunt against the shaft. She then leans forward and shifts her weight down, swiveling back on her knees, grinding that oversized [enemy.cockType] dick to its limits, teasing her urethra and fondling her balls at the same time. <i>“Oooh! Fuck!”</i> The rabbit squeaks with a buck of the hip, <i>“I’ll cummmmm!”</i>");
+		output("\n\nOn cue, the dzaan plants one palm over the laquine’s [enemy.cockHead] and imprisons her girth in a vice grip, denying her orgasm while wiggling her thick tush in your direction. Mnf...");
+		output("\n\nThe randy rabbit squirms and thrusts against the hand blocking her. <i>“Don’t edge meeeee come onnn! Heeeyy, we fucked a couple times, that’s worth something right? Right? I don’t cum just once!”</i> She makes a few more ‘innocent’ quips and bargains but the woman just giggles, keeping that silly slut down and desperate. The kui-tan kneel over the rabbit’s head and smear their sloppy cocks around her head and her ears. You can practically see the mischievous arc of lightning between their eyes as they glance down to their pirate fucktoy’s long, malleable ears.");
+		output("\n\nGripping the lop ears of the moaning jumper, they each twirl the sensitive, sweat-soaked appendages around their throbbing, pre-beading cocks, using them as makeshift onaholes! The tips of their cocks rub against the softer skin of her ears. You can’t quite make out the laquine’s face from here, but you can definitely hear her passionate outcries: a mixed cocktail of pain and pleasure topped by barely cogent wails of happiness.");
+		output("\n\nPre slips down to her eardrums as they both shift closer to her cute mouth. Her eager tongue lunges out for another taste of cum-packed kui-tan, soon engulfing both their cocks in her wet and soft maw as they jerk themselves with those handy auricles!");
+		output("\n\nDrawing circles in her muscly torso, the dzaan exhales and crawls on top of the bunny again, yanking her legs up as she goes. The jumper’s [enemy.cock] stands tall like a ship’s mast, aligned perfectly with her slant-eared mistress’ oozing honeypot. The smog of lust, pheromone and musk together seeps down the connecting passages and especially toward you. The invisible cloud hits you like a suffocating wave of air, making you loudly gasp.");
+
+		// PC not taur
+		if(!pc.isTaur())
+		{
+			if(pc.isHerm()) output("\n\nYou finger your [pc.vagina] and rub your [pc.cocks] against your stomach, staining your [pc.legOrLegs] and [pc.skinFurScales] with translucent goo.");
+			else if(pc.hasCock()) output("\n\nYou rub your [pc.cocks] against your stomach, staining your " + (!(pc.armor is EmptySlot) ? "[pc.armor]":"[pc.skinFurScales]") + " with pre.");
+			else if(pc.hasVagina()) output(" You stretch your [pc.vagina] with all fingers, furiously jilling yourself to the precipice of orgasmic delight.");
+			else output(" You hilt two fingers in your [pc.asshole] and cover your mouth as you violate your own butt.");
+		}
+		// PC taur
+		else
+		{
+			output("\n\nThe fierce, obscene sex on display makes you shudder and gasp.");
+			if(pc.isHerm()) output(" Your crotch feels numb, you slump and and grind your diamond-hard [pc.cocksLight] against your own belly. Your shaky hindlegs are glazed by a waterfall of [pc.girlCum] your needy pussy.");
+			else if(pc.hasCock()) output(" [pc.EachCock] throbs, twitching so hard they ram into your underbelly, ropes of pre and watery ejaculate bridging the gap between your [pc.cockHeads] and the jagged floor.");
+			else if(pc.hasVagina()) output(" [pc.EachVagina] clinches and oozes with orgasmic slime, so ready for a dick, a dildo, even a fist that sadly isn’t coming.");
+			else output(" You squirm and slump, furiously groping yourself as you concentrate on the smells to bring about a suitable orgasm.");
+		}
+		// Merge
+		output("\n\nYour [pc.eyes] can only focus on the dzaan, and the massive [enemy.cockNounSimple] sliding in and out of her slimy, silken folds. It’s like you’re watching a perfectly angled porn video, except in this instance you’re just a few feet away appreciating the view of a delicious, apple-shaped rump riding a pussy-gaping [enemy.cockNounSimple]. When her movements are just right, when the laquine’s legs flinch, you can see every tantalizing, ");
+		if(pc.hasCock()) output("cock milking");
+		else if(pc.hasVagina()) output("womb pinching");
+		else output("gut clenching");
+		output(" detail of velveteen sex. The elfin woman’s every rise and fall on the rabbit’s prodigious pole is punctuated by mouthwatering molds in her voluptuous frame.");
+
+		output("\n\nThe dzaan moves passionately, almost sensually, controlling the jumper’s arousal with an inhuman grace. She pivots and tugs on furry feet when her back strains or the position becomes too boring, making sure her bottom doesn’t get used to anything. Casually hilting and sometimes teasing the [enemy.cockHead] around the entrance to her love canal, she swirls her gorgeous hips atop the pirate’s [enemy.cock]. Ringing moans announce her next body-fluttering orgasm, though the jumper’s is still far behind. A small price to pay for pleasing such a perfect mate. The shine of fresh girl cum polishes the bunny’s cock, giving her bulky balls an eye-catching gloss" + (pc.libido() >= 50 ? " that seems to beckon you out of cover":"") + ".");
+		output("\n\nYou gulp when the domme gives you room to see the kui-tan again, both plowing the laquine’s mouth in turns. Wrapped in lapine ear, one thrusts in, and on the backstroke, the other thrusts in, maintaining a rhythm that’d make lesser whores gag. You still can’t see the horny hare’s face, but you’re certain she’s in <i>love</i> with what’s going on based on the rich, sultry groans coming from the pile of sex. Those sounds get more intense, and your arousal magnifies with the volume of their lovemaking.");
+		output("\n\nThe dzaan releases the jumper’s legs and gives up on the smooth ride. She plants both hands on the bunny’s abdomen before slamming her crotch on the rabbit’s. Those galvanizing thumps would grind down a weaker pelvis, no doubt! Furry legs dangle and stray around the ruling domme. Both kui-tan jam their dicks into an overstretched jaw, their tapered tips opening the way for a surge of ‘nuki cream. The rabbit jerks their cocks at the base, hopelessly groping their smooth, contracting balls to get more and more before she, too, achieves climax.");
+		output("\n\nThey all scream in unison as their orgasms hit home. Yours nearly join theirs as ");
+		if(pc.isHerm()) output("Your [pc.cocks] and [pc.vaginas] swell and squirt thick loads of [pc.cum] and [pc.girlCum]");
+		else if(pc.hasCock()) output("your [pc.cocks] fire" + (pc.cockTotal() == 1 ? "s":"") + " off painfully thick strands of [pc.cum] into the rocks just in front of you");
+		else if(pc.hasVagina()) output("[pc.eachVagina] clenches and squirts a body-glazing batch of [pc.girlCum] onto you");
+		else output("You buck and squirm with nearly an entire knuckle in your [pc.asshole], a thunderous climax wracking your whole body");
+		output(".");
+		output("\n\nThe rabbit fills her <i>“beta’s”</i> womb with a voluminous load of bunny batter, the alien’s belly bloating to the state of early pregnancy. The kui tan smear her head and neck with what’s left of their orgasmic drip and the dzaan teases the rabbit until her rhythmic, cum-coaxing spasms come to an end. With a long, satisfied sigh, she stands up and disregards her lay entirely, like nothing ever happened even as cum drains from her cunt. The three saunter off, having had their fill of hot, sweaty rabbit.");
+		output("\n\nAs for the jumper, she lays there, basking in the glory that was a good, hard fuck. Her ears and mouth drip with fresh cum that she’s too tired to lap up. Her idle arms tremble, and she giggles like a drunken sailor. What a slut!");
+		output("\n\nWith an exasperated groan, you get yourself together and get going - you just heard another pair of voices that don’t sound much like a pair of pirates. Red to the neck, you wipe the sweat from your collar, still shivering from the orgy you just watched.");
+		output("\n\nAnd there are those sounds again... That jumper’s already back at it!");
+		processTime(30);
+		pc.orgasm();
+		clearMenu();
+		addButton(0,"Next",mainGameMenu);
+	}
+}
 
 //[Leave]
 // Tooltip: Nah, you’ve got better things to do right now.
