@@ -11529,7 +11529,7 @@
 				}
 			}
 			else if(raceSimple == "zil") shiftCock(arg,GLOBAL.TYPE_BEE);
-			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl"])) shiftCock(arg,GLOBAL.TYPE_NAGA);
+			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl", "slyveren"])) shiftCock(arg,GLOBAL.TYPE_NAGA);
 			else if(raceSimple == "raskvel") shiftCock(arg, GLOBAL.TYPE_RASKVEL);
 			else if(race.indexOf("dragonne") != -1 || InCollection(raceSimple, ["fanfir", "dragon"])) shiftCock(arg, GLOBAL.TYPE_DRACONIC);
 			else if(raceSimple == "demon") shiftCock(arg, GLOBAL.TYPE_DEMONIC);
@@ -11580,7 +11580,7 @@
 			
 			// Type changes
 			if(InCollection(raceSimple, ["equine", "pony", "laquine", "centaur"])) shiftVagina(arg, GLOBAL.TYPE_EQUINE);
-			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl"])) shiftVagina(arg, GLOBAL.TYPE_NAGA);
+			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl", "slyveren"])) shiftVagina(arg, GLOBAL.TYPE_NAGA);
 			else if(raceSimple == "zil") shiftVagina(arg, GLOBAL.TYPE_BEE);
 			else if(raceSimple == "leithan") shiftVagina(arg, GLOBAL.TYPE_LEITHAN);
 			else if(raceSimple == "vanae") shiftVagina(arg, GLOBAL.TYPE_VANAE);
