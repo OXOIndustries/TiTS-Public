@@ -61,7 +61,7 @@ public function slyverenSubmission(arg:Number = 0):Number
 
 public function slyverenBadEndCheck():Boolean
 {
-	return (slyverenSubmission(10) >= 100);
+	return (slyverenSubmission(25) >= 100);
 }
 
 //Blowjobs always result in very slight dick growth (Like 0.25") up to 16", then increasingly lower proc chances of growth.
