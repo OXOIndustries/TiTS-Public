@@ -4028,4 +4028,21 @@ public function initUvetoRoomsII():void
 	rooms["FROSTWYRM LAIR"].inText = "Up";
 	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.INDOOR);
 	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.PRIVATE);
+
+	rooms["WILLOWS ROOM"] = new RoomClass(this);
+	rooms["WILLOWS ROOM"].roomName = "WILLOW'S\nAPARTMENT";
+	rooms["WILLOWS ROOM"].description = "";
+	rooms["WILLOWS ROOM"].planet = "PLANET: UVETO VII";
+	rooms["WILLOWS ROOM"].system = "SYSTEM: SIRETTA";
+	rooms["WILLOWS ROOM"].moveMinutes = 1;
+	rooms["WILLOWS ROOM"].northExit = "";
+	rooms["WILLOWS ROOM"].eastExit = "UVI N32";
+	rooms["WILLOWS ROOM"].southExit = "";
+	rooms["WILLOWS ROOM"].westExit = "";
+	rooms["WILLOWS ROOM"].outExit = "";
+	rooms["WILLOWS ROOM"].outText = "Down";
+	rooms["WILLOWS ROOM"].inExit = "";
+	rooms["WILLOWS ROOM"].inText = "Up";
+	rooms["WILLOWS ROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["WILLOWS ROOM"].addFlag(GLOBAL.PRIVATE);
 }

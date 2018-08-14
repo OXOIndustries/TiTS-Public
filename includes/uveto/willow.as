@@ -378,6 +378,7 @@ public function willowHerPlace(sceneChoice:int):void
 	
 	if(sceneChoice==0)
 	{
+		moveTo("WILLOWS ROOM");
 		output("<i>“I’m feeling a little like… fucking my subby bitch. Got anything for that?”</i> You ask with a wink."); 
 		output("\n\nShe raises her eyebrows. <i>“Uh…. Well… I suppose I can get some free time off.”</i> She mumbles."); 
 		output("\n\n<i>“Well what are you waiting for? Go!”</i> You command, spanking her ass. She yelps and quickly runs to her boss, who raises an eyebrow when she sees her coming."); 
@@ -402,6 +403,7 @@ public function willowSexMenu():void
 
 	if (flags["WILLOW_MET"] != 1)
 	{
+		moveTo("WILLOWS ROOM");
 		output("<i>“Hooold it right there, [pc.misterMiss]!”</i> she says. You turn around and raise an eyebrow. <i>“ What kind of a lady would I be if I didn’t let the [pc.manWoman] who treated me so nicely walk away without a treat…?”</i> She says, beckoning to you with a finger. You grin and walk to her.");
 		output("\n\nShe turns and falls into step beside you, leading you to her apartment which is a somewhat short and ugly building, with brown walls and hardly any windows to speak of. She climbs the steps, her ass swaying from side, giving you something to fix your eyes on the whole way. She leads you right to the top of the building, where there’s a small, somewhat triangular door set into the wall. She unlocks the door, steps inside and holds the door open, grinning and beckoning for you to enter.");
 		output("\n\nYou step inside and look around the small room. It is sparsely decorated with wood walls and floors; lit by a single bulb hanging down from the ceiling which casts a warm yellow glow. The room is warm, heated from underneath by some unknown source. It’s evident Willow has tried to spruce the place up. A vase filled with blue flowers sits on a nightstand next to a double bed. The shelves of a bookcase on the left side of the room are filled with various books as well as one glittering green gem. In back there is a window overlooking the frozen settlement, its lights shining and sparkling in the darkness. In center of the room is a small round table with two chairs. A small stove and sink is placed in the corner with an unwashed pan in the sink. ");
@@ -499,10 +501,12 @@ public function willowSexScenes(sceneChoice:int):void
 	var cIdx3:int = pc.biggestCockIndex3(); //Returns 0 if pc doesn't have 3 cocks
 	
 	var cock1:String = "[pc.cock " + cIdx + "]";
-	if (cIdx2 == 0) var cock2:String = "[pc.tailCock]";
-	else var cock2:String = "[pc.cock " + cIdx2 + "]";
-	if (cIdx3 == 0) var cock3:String = "[pc.tailCock]";
-	else var cock3:String = "[pc.cock " + cIdx3 + "]";
+	var cock2:String = "";
+	var cock3:String = "";
+	if (cIdx2 == 0) cock2 = "[pc.tailCock]";
+	else cock2 = "[pc.cock " + cIdx2 + "]";
+	if (cIdx3 == 0) cock3 = "[pc.tailCock]";
+	else cock3 = "[pc.cock " + cIdx3 + "]";
 	
 	//Knot check shit
 	var knot:Boolean = false;
@@ -533,8 +537,7 @@ public function willowSexScenes(sceneChoice:int):void
 			
 	if ((sceneChoice!=1)&&(sceneChoice!=5))
 	{
-		addButton(0,"Leave",mainGameMenu);
-	
+		addButton(0,"Leave",move,rooms["WILLOWS ROOM"].eastExit);
 	}
 		
 		
