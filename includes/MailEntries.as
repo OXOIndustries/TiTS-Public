@@ -245,6 +245,9 @@ public function configureMails():void
 	MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
 	
+	//extrameet 	
+	MailManager.addMailEntry("extrameet_invite_email", extrameetInviteText, "Meet local singles on your planet today!", "ExtraMeet Team", "Consumer_Outreach@ExtraMeet.com", quickPCTo, quickPCToAddress);
+	
 	//Stubs so that the mail entries show up on a load - this is basically for emails that are repeatable and also have dynamic content
 	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("tamtam_preg1", preg1EmailTextTamTam, "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
