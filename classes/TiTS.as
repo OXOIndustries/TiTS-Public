@@ -473,6 +473,7 @@
 		include "../includes/uveto/vark.as";
 		include "../includes/uveto/vavaGroom.as";
 		include "../includes/uveto/walt.as";
+		include "../includes/uveto/willow.as";
 		
 		include "../includes/chargendata.as";
 		include "../includes/SSTDs/furpies.as";
