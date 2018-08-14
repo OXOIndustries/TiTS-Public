@@ -283,6 +283,9 @@ package classes.Resources.Busts
 		public var Bust_FLAHNE_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/flahne_nude_ovi.png", mimeType = "image/png")]
 		public var Bust_FLAHNE_OVI_NUDE:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/fetch_and_carry.png", mimeType = "image/png")]
+		public var Bust_FETCH_AND_CARRY:Class;
 		
 		[Embed(source = "../../../assets/images/npcs/adjatha/frostwyrm.png", mimeType = "image/png")]
 		public var Bust_FROSTWYRM:Class;
@@ -1145,6 +1148,9 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/flahne_nude_ovi.png", mimeType = "image/png")]
 			public var Full_FLAHNE_OVI_NUDE:Class;
 			
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/fetch_and_carry.png", mimeType = "image/png")]
+			public var Full_FETCH_AND_CARRY:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/frostwyrm.png", mimeType = "image/png")]
 			public var Full_FROSTWYRM:Class;
 			

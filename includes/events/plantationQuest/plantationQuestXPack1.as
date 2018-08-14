@@ -412,7 +412,8 @@ public function lahPregnancyEnds(babyList:Array):void
 // PC has done the ‘Every Hole’ scene with her in the last 24 hours, and chooses Sex again
 public function showQuinnMaidens():void
 {
-	showBust("FETCH", "CARRY");
+	//showBust("FETCH", "CARRY");
+	showBust("FETCH_AND_CARRY");
 	showName("FETCH &\nCARRY");
 }
 public function quinnHandmaidenThreesomeAvailable():Boolean
@@ -436,7 +437,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 	switch(response)
 	{
 		case "intro":
-			showBust("QUINN", "FETCH", "CARRY");
+			showBust("QUINN", "FETCH_AND_CARRY");
 			showName("\nQUINN");
 			
 			output("<i>“Again?”</i> Quinn arches an eyebrow at you, something between exasperation and amusement pulling at the corner of her mouth. <i>“How are you not spent after how it went last time? No, it will not do,”</i> she goes on, chin up, lips thinned. <i>“A Quinn cannot be spending all her time seeing to your unnatural, star-born lusts. It’s unseemly, not to mention exhausting.”</i>");
@@ -454,7 +455,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			addButton(0, "Next", quinnHandmaidenThreesome, ["next"]);
 			break;
 		case "mommy":
-			showBust("QUINN", "FETCH", "CARRY");
+			showBust("QUINN", "FETCH_AND_CARRY");
 			showName("\nQUINN");
 			
 			output("Quinn beckons to one of her handmaidens, who hastens over to take " + quinnBabyName() + " out of her hands. She then rises and silently heads up the hill, her bobbing abdomen and bottom beckoning you to follow.");
@@ -468,7 +469,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			addButton(0, "Next", sexWithQuinnOmnigenderWHYYYY);
 			break;
 		case "maiden":
-			showBust("QUINN", "FETCH", "CARRY");
+			showBust("QUINN", "FETCH_AND_CARRY");
 			showName("\nQUINN");
 			
 			output("<i>“No,”</i> Quinn replies, regarding you with tired golden eyes, <i>“I need - I need to rest. My handmaidens will attend you.”</i>");
@@ -2706,7 +2707,7 @@ public function whereIsPregQuinn(pregDays:int = 0):void
 	
 	clearOutput();
 	if(lahIsHere) showBust("LAH");
-	else showBust("FETCH", "CARRY");
+	else showBust("FETCH_AND_CARRY");
 	author("Nonesuch");
 	clearMenu();
 	
