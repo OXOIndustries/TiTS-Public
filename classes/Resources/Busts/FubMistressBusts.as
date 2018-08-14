@@ -28,6 +28,15 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/fubMistress/busky_aroused_nude.png", mimeType = "image/png")]
 		public var Bust_BUSKY_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/fubMistress/feian.png", mimeType = "image/png")]
+		public var Bust_FEIAN:Class;
+		[Embed(source = "../../../assets/images/npcs/fubMistress/feian_nude.png", mimeType = "image/png")]
+		public var Bust_FEIAN_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/fubMistress/feian_male_nude.png", mimeType = "image/png")]
+		public var Bust_FEIAN_MALE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/fubMistress/feian_female_nude.png", mimeType = "image/png")]
+		public var Bust_FEIAN_FEMALE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/fubMistress/gene.png", mimeType = "image/png")]
 		public var Bust_GENE:Class;
 
@@ -61,6 +70,15 @@ package classes.Resources.Busts
 			public var Full_BUSKY:Class;
 			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/busky_aroused_nude.png", mimeType = "image/png")]
 			public var Full_BUSKY_NUDE:Class;
+
+			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/feian.png", mimeType = "image/png")]
+			public var Full_FEIAN:Class;
+			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/feian_nude.png", mimeType = "image/png")]
+			public var Full_FEIAN_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/feian_male_nude.png", mimeType = "image/png")]
+			public var Full_FEIAN_MALE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/feian_female_nude.png", mimeType = "image/png")]
+			public var Full_FEIAN_FEMALE_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/fubMistress/hr/gene.png", mimeType = "image/png")]
 			public var Full_GENE:Class;

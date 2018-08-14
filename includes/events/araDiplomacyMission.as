@@ -848,13 +848,17 @@ public function feiAnStrozoBustDisplay(nude:Boolean = false):String
 {
 	var sBust:String = "FEIAN";
 	
-	if(flags["FEIAN_SEX"] != undefined)
+	if(flags["FEIAN_SEX"] != undefined && nude)
 	{
 		switch(flags["FEIAN_SEX"])
 		{
-			case FEIAN_SEX_HERM: sBust += "_HERM"; break;
-			case FEIAN_SEX_FEMALE: sBust += "_FEMALE"; break;
-			case FEIAN_SEX_MALE: sBust += "_MALE"; break;
+			case FEIAN_SEX_HERM:
+			case FEIAN_SEX_MALE:
+				sBust += "_MALE"; 
+				break;
+			case FEIAN_SEX_FEMALE: 
+				sBust += "_FEMALE"; 
+				break;
 		}
 	}
 	
