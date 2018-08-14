@@ -462,12 +462,12 @@ public function zilTwinsFuckmenu():void
 	
 	addButton(0, "Tease Mica", zilTwinsFuckMicaMentally, [zilTwinsMica, zilTwinsTetra], "Tease Mica", "Have Mica dance around the table for you and his sister. There’s probably going to be a lot of teasing... and blowjobs.");
 	
-	if (pc.hasCock() && pc.cockThatFits(micaVol) != -1)
-		addButton(1, "Fuck Mica", penisRouter, [zilTwinsFuckMicaForRealsies, micaVol, false], "Fuck Mica", "Bend Mica over and fuck his cute butt while Tetra watches!");
+	if (pc.hasCock() && pc.cockThatFits(zilTwinsMicaVol) != -1)
+		addButton(1, "Fuck Mica", penisRouter, [zilTwinsFuckMicaForRealsies, zilTwinsMicaVol, false], "Fuck Mica", "Bend Mica over and fuck his cute butt while Tetra watches!");
 	else
 		addDisabledButton(1, "Fuck Mica");
 		
-	if (pc.hasCock() && pc.cockThatFits(tetraMinVol) != -1)
+	if (pc.hasCock() && pc.cockThatFits(zilTwinsTetraMinVol) != -1)
 		addButton(2, "Fuck Tetra", zilTwinsFuckTetra, undefined, "Fuck Tetra", "Get a bit subby and get your dick in that honey-leaking zil pussy.");
 	else
 		addDisabledButton(2, "Fuck Tetra");
@@ -581,7 +581,7 @@ public function zilTwinsFuckMicaForRealsies(dickNumber:int):void
 
 	var dik:String = String(dickNumber);
 	var dikidick:CockClass = pc.cocks[dickNumber];
-	var micaVol:int = chars["ZIL"].analCapacity() * 1.15;
+	var zilTwinsMicaVol:int = chars["ZIL"].analCapacity() * 1.15;
 	
 	var cIdx:int = pc.cockThatFits(zilTwinsMicaVol);
 	if(cIdx < 0) cIdx = pc.smallestCockIndex();
@@ -691,7 +691,7 @@ public function zilTwinsFuckTetra():void
 
 	var tetraVol:int = chars["ZILFEMALE"].vaginalCapacity() * 1.1;
 	var tetraButtVol:int = chars["ZILFEMALE"].analCapacity() * 1.1;
-	var tetraMinVol:int = Math.min(tetraVol, tetraButtVol);
+	var zilTwinsTetraMinVol:int = Math.min(tetraVol, tetraButtVol);
 	
 	var cIdx:int = pc.cockThatFits(zilTwinsTetraMinVol);
 	var cIdx2:int = -1;
