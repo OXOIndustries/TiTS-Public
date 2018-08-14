@@ -67,7 +67,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("ExtraMeet");
+		showName("\nEXTRAMEET");
 		author("Fr0sty");
 		
 		//set planet timestamp and check for reset
@@ -100,7 +100,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("ExtraMeet");
+		showName("\nEXTRAMEET");
 		author("Fr0sty");
 		
 		output("You press sign up.");
@@ -120,7 +120,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("ExtraMeet");
+		showName("\nEXTRAMEET");
 		author("Fr0sty");
 		
 		var pospro:Array = [];  //possible profiles
@@ -151,7 +151,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("ExtraMeet");
+		showName("\nEXTRAMEET");
 		author("Fr0sty");
 		
 		var pospro:Array = [];  //possible profiles
@@ -193,7 +193,7 @@
 		{
 			clearOutput();
 			clearMenu();
-			showName("ExtraMeet");
+			showName("\nEXTRAMEET");
 			author("Fr0sty");
 			
 			flags[prof] = 2;
@@ -621,7 +621,7 @@
 		clearOutput();
 		clearMenu();
 		//set showName and author inside date scene
-		//showName("ExtraMeet");
+		//showName("\nEXTRAMEET");
 		//author("Fr0sty");
 		output("You log off and pull yourself to you feet. You’ve got a hot date now, so you get yourself ready and head out to the bar to meet your match.");
 		processTime(20 + rand(15));	
@@ -996,7 +996,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("ExtraMeet");
+		showName("\nEXTRAMEET");
 		author("Fr0sty");
 		output("You tell your date you just need to step away for a moment to get some fresh air. You get up and slowly walk away from the table. Once you are out of line of sight you start walking faster, exiting the bar and returning to your ship as quickly as possible.");
 		IncrementFlag("EXTRAMEET_BAIL");

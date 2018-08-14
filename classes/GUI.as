@@ -854,7 +854,7 @@
 			var btnArray:Array = _buttonTray.buttons;
 			
 			if (btnArray[0].buttonName == "Next" || btnArray[0].buttonName == "Leave" || btnArray[0].buttonName == "Back") kGAMECLASS.pressButton(0);
-			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back") kGAMECLASS.pressButton(14);
+			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back" || btnArray[14].buttonName == "Bail") kGAMECLASS.pressButton(14);
 			else if (btnArray[4].buttonName == "Back") kGAMECLASS.pressButton(4);
 		}
 		

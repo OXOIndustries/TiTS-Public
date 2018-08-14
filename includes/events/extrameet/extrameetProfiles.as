@@ -24,7 +24,7 @@
 	}
 	public function extrameetSavingGrace04Date():void
 	{
-		showName("Saving_Grace04");
+		showName("SAVING\nGRACE 04");
 		author("Fr0sty");
 		moveTo("ANON'S BAR AND BOARD");
 		output("  You arrive at Anon’s Bar and Board and scan the room, spotting your date sitting in the far back. As you make your way towards her you try to size her up. She is pure human for sure, and while you wouldn't say she is over dressed she is certainly the most covered up person in the whole bar. Her outfit consists of a long sleeved turtle neck and a skirt that comes all the way down to her ankles.");
@@ -62,7 +62,7 @@
 	}
 	public function extrameetMrFoxDate():void
 	{
-		showName("_Mr.Fox_");
+		showName("\n_MR.FOX_");
 		author("Fr0sty");
 		moveTo("ANON'S BAR AND BOARD");
 		output("  You arrive at Anon’s Bar and Board and immediately spot the familiar fox ears of your date in the back over the din of the busy bar. He is wearing a dark grey suit, fitting snugly against his frame, and you note a bushy bright red fox tail sticking out behind him. As you move in closer, he notices you and stands up from his seat, a wide smile on his face.");
@@ -86,7 +86,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("_Mr.Fox_");
+		showName("\n_MR.FOX_");
 		author("Fr0sty");
 		//find the vag he fucks
 		var vag:int = pc.cuntThatFits(chars["MRFOX"].cockVolume(0));
@@ -149,7 +149,7 @@
 	}
 	public function extrameetLadyGlamorDate():void
 	{
-		showName("LadyGlamor");
+		showName("LADY\nGLAMOR");
 		author("Fr0sty");
 		moveTo("ANON'S BAR AND BOARD");			
 		output("  You arrive at Anon’s Bar and Board and see your date sitting off in the corner, staring down at a device in her hands. Without the black and white filters you can see her hair and fur are reddish brown, and she is wearing a bit less makeup than in her picture. She’s wearing a low cut black top and a checkered skirt, along with a very expensive pair of shoes. You make your way over.");		
@@ -177,7 +177,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("LadyGlamor");
+		showName("LADY\nGLAMOR");
 		author("Fr0sty");
 		
 		var kok:int = rand(pc.cockTotal());
@@ -230,7 +230,7 @@
 	}
 	public function extrameetReddDate():void
 	{
-		showName("ReDD");
+		showName("\nREDD");
 		author("Fr0sty");
 		moveTo("ANON'S BAR AND BOARD");	
 		output("  You arrive at Anon’s Bar and Board and take a look around, not seeing your date anywhere. You move to an empty table and take a seat, positioning yourself in a spot where you can watch the door. A few short minutes later you spot your date walk in, and you feel your jaw loose and almost fall open.");
@@ -259,7 +259,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("ReDD");
+		showName("\nREDD");
 		author("Fr0sty");
 		
 		moveTo("LIFT: RESIDENTIAL DECK");
@@ -344,7 +344,7 @@
 	}
 	public function extrameetHawtstuffDate():void
 	{
-		showName("Hawtstuff");
+		showName("\nHAWTSTUFF");
 		author("Fr0sty");
 		moveTo("ANON'S BAR AND BOARD");	
 		output("  You arrive at Anon’s Bar and Board and take a look around the room. At first glance you don’t see your date, but on a second scan you notice the Leithan woman sitting down on the ground next to a table. Heading towards her you try to size her up, but have a hard time with your current angle. When you reach the table, she stands up and you notice for the first time that she is shorter than most Leithan women, which explains why she was hard to spot.");	
@@ -374,7 +374,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("Hawtstuff");
+		showName("\nHAWTSTUFF");
 		author("Fr0sty");
 		//find the cock to use 
 		var kok:int = pc.biggestCockIndex();
@@ -545,7 +545,7 @@
 	}
 	public function extrameetFrankMollyDate():void
 	{	
-		showName("Frank&Molly");
+		showName("FRANK\n& MOLLY");
 		author("Fr0sty");
 		moveTo("BUCKING BRONCO");
 		output("  You enter The Bucking Bronco and scan the room, not seeing the couple you are suppose to be meeting. You find an empty table and take a seat, finding an open one that gives you a decent view of the room.");	
@@ -590,7 +590,7 @@
 	}
 	public function extrameetPonyLuverDate():void
 	{	
-		showName("Pony_Luver");
+		showName("PONY\nLOVER");
 		author("Fr0sty");
 		moveTo("BUCKING BRONCO");
 		output("  You enter The Bucking Bronco and start to look around the bar for your date. As you move around the crowded Saloon your gaze returns to the doorway just as the tall man enters. He is indeed tall, standing over 7’ feet tall before his horns, which you guess bring him closer to 8’ when added in. He is wearing a simple red button up shirt and a very tight pair of jeans, showing off a bulge almost the size of his head. He scans the room and spots you almost instantly, smiling very widely.");	
@@ -610,7 +610,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("Pony_Luver");
+		showName("PONY\nLOVER");
 		author("Fr0sty");
 		//find the vag he fucks
 		var vag:int = pc.cuntThatFits(chars["PONYLUVER"].cockVolume(0));
@@ -659,7 +659,8 @@
 	}
 	public function extrameetMissyMayDate():void
 	{
-		showName("0MissyMay0");
+		showName("\nMISSY MAY");
+		//showName("0MissyMay0");
 		author("Fr0sty");	
 		moveTo("BUCKING BRONCO");
 		output("  You enter The Bucking Bronco and don’t immediately see your date. On reflection, you’re not really sure who you’re even looking for, and trying to identified somebody just by their large bust doesn't seem like a good idea. Especially on New Texas. You decide to take a seat and wait, hoping your date approaches you. You don’t wait long before a busty woman walks up to your table");
@@ -680,7 +681,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("0MissyMay0");
+		showName("\nMISSY MAY");
+		//showName("0MissyMay0");
 		author("Fr0sty");
 		
 		output("You tell the buxom woman you’re interested, and she gives you a wide sultry smile. Slowly, she reaches for a vacant chair next to her and pulls it closer to her. She gives the seat a pat, inviting you to move closer.");	
@@ -724,7 +726,7 @@
 	}
 	public function extrameetVKODate():void
 	{
-		showName("V-KO#1221341");
+		showName("\nV-KO#1221341");
 		author("Fr0sty");
 		moveTo("BUCKING BRONCO");
 		
@@ -754,7 +756,7 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("V-KO#1221341");
+		showName("\nV-KO#1221341");
 		author("Fr0sty");
 		
 		var kok:int = rand(pc.cockTotal());
@@ -812,7 +814,8 @@
 	}
 	public function extrameetSexyyDaddyyDate():void
 	{
-		showName("SexyyDaddyy");
+		//showName("SexyyDaddyy");
+		showName("SEXY DADDY");
 		author("Fr0sty");
 		moveTo("BUCKING BRONCO");
 		output("  You enter The Bucking Bronco and take a look around, seeing your very large date sitting in the back. He is much larger than his picture suggested, and you even wonder how he fit through the door. He spots you as you move towards his table, his red eyes fixated. When you reach the table he rises up and smiles at you.");		
@@ -842,7 +845,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("SexyyDaddyy");
+		//showName("SexyyDaddyy");
+		showName("SEXY DADDY");
 		author("Fr0sty");				
 		
 		output("You decide to go with it and see where this takes you. You start by leaning down and taking a quick peek under the table. Sure enough, a massive erection has both tented his pants and is causing the table to tilt. At a glance, you can tell the Thraggen is packing some serious meat down there, and you’re more than a little curious to see more.");	
@@ -1001,7 +1005,8 @@
 	}
 	public function extrameetHuggATreeDate():void
 	{
-		showName("HuggATree");
+		showName("\nHUG A TREE");
+		//showName("HuggATree");
 		author("Fr0sty");
 		moveTo("BURT'S MAIN HALL");		
 		output("  You enter Burt’s Meadhall and see your date sitting alone. You make your way over, catching her gaze as you walk across the room. She stands up as you approach, positioning her hands in front of her and giving you a slight bow. Well that’s nice.");	
@@ -1045,7 +1050,8 @@
 	
 	public function extrameetHoneypottDate():void
 	{
-		showName("The_Honeypott");
+		//showName("The_Honeypott");
+		showName("THE\nHONEYPOT");
 		author("Fr0sty");
 		moveTo("BURT'S MAIN HALL");		
 		output("  You enter Burt’s Meadhall and immediately spot your Zil date. She is seated alone in the back, closely examining a drink in front of her, almost as if suspicious of it. Like most Zil, she is not wearing proper clothing, instead only concealed by her natural chitin. You approach her and introduce yourself. She regards you for a moment silently, then motions for you to sit. You take your seat and ask for her name.");	
@@ -1073,7 +1079,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("The_Honeypott");
+		//showName("The_Honeypott");
+		showName("THE\nHONEYPOT");
 		author("Fr0sty");
 			
 		moveTo("JUNGLE EDGE");	
@@ -1136,7 +1143,8 @@
 	
 	public function extrameetBountifulBotanyDate():void
 	{
-		showName("Bountiful_Botany");
+		//showName("Bountiful_Botany");
+		showName("BOUNTIFUL\nBOTANY");
 		author("Fr0sty");
 		moveTo("BURT'S MAIN HALL");		
 		output("  You enter Burt’s Meadhall and spot a familiar mess of red hair. You move in closer, getting a better impression of the woman. The first thing you notice is that she’s wearing a long baggy coat which hides her figure, making it difficult to size her up. With closer inspection of her green skin you notice it has an odd translucent sheen to it. You reach the table and introduce yourself, taking a seat across from the plant woman.");	
@@ -1156,7 +1164,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("Bountiful_Botany");
+		//showName("Bountiful_Botany");
+		showName("BOUNTIFUL\nBOTANY");
 		author("Fr0sty");
 		//find the vag he fucks
 		var vnoun:String = "";  //used to track cunt or cunts noun
@@ -1236,7 +1245,8 @@
 	
 	public function extrameetSneakySnekDate():void
 	{
-		showName("SneakySnek");
+		//showName("SneakySnek");
+		showName("\nSNEAKY SNAKE");
 		author("Fr0sty");
 		moveTo("BURT'S MAIN HALL");	
 		output("  You enter Burt’s Meadhall and scan the room, not spotting your date right away. In the quiet back of the bar you spot a curious figure wearing a hood and a long jacket, seemingly standing next to a table. If you had to guess, that’s your man there. You make your way towards the back, the hooded figure seeming to notice you as you approach, when you reach the table the figure reaches up and lowers their hood, revealing a Naleen face.");	
@@ -1259,7 +1269,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("SneakySnek");
+		//showName("SneakySnek");
+		showName("\nSNEAKY SNAKE");
 		author("Fr0sty");
 		//find the vag he fucks
 		var vag:int = pc.cuntThatFits(chars["SNEAKYSNEK"].cockVolume(0));
@@ -1321,7 +1332,8 @@
 	
 	public function extrameetEnchantingFaeDate():void
 	{
-		showName("EnchantingFae");
+		//showName("EnchantingFae");
+		showName("ENCHANTING\nFAE");
 		author("Fr0sty");
 		moveTo("BURT'S MAIN HALL");	
 		output("You enter Burt’s Meadhall and take a good look around. You spot your date sitting off to the side of the room, but he isn't alone with a male patron standing next to the table talking to him. Awkwardly you make your way over, you do have a date with him after all. As you cross the room the Saeri spots you and waves you over, his wings fluttering slightly. The other patron looks over at you and scowls, clearly not happy with your presence. Before you reach the table, the male patron walks away in a huff, muttering something under his breath. Smiling at you, your date pops up to his feet standing maybe only a shade above five feet.");	
@@ -1350,7 +1362,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("EnchantingFae");
+		//showName("EnchantingFae");
+		showName("ENCHANTING\nFAE");
 		author("Fr0sty");
 		//find the cock to use 
 		var kok:int = pc.smallestCockIndex();		
@@ -1515,7 +1528,8 @@
 	
 	public function extrameetWantSumJunkDate():void
 	{
-		showName("WantSumJunk?");
+		showName("WANT\nSUM JUNK?");
+		//showName("WantSumJunk?");
 		author("Fr0sty");
 		moveTo("302");	
 		output("  You arrive at The Mess and spot your date stilling off to the side, fiddling with something in between his fingers. Walking towards him, you notice he is adorned with all sorts of knick-knacks stitched onto or otherwise fastened to his attire. Even his tail has a few weird looking items strapped to it. From what you can tell, it’s all garbage.");	
@@ -1561,7 +1575,8 @@
 	
 	public function extrameetXxThrasherCatxXDate():void
 	{
-		showName("XxThrasherCatxX");
+		//showName("XxThrasherCatxX");
+		showName("THRASHER\nCAT");
 		author("Fr0sty");
 		moveTo("302");	
 		output("  You arrive at The Mess and look around, not seeing your date. You decide to take a seat and wait. About 20 minutes later you notice the Kaithrit woman saunter into the bar. She is dressed in a tattered t-shirt, torn jeans, and knee high leather boots. She spots you and makes her way over to the table.");	
@@ -1594,7 +1609,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("XxThrasherCatxX");
+		//showName("XxThrasherCatxX");
+		showName("THRASHER\nCAT");
 		author("Fr0sty");
 		//find the cock to use 
 		var kok:int = pc.smallestCockIndex();
@@ -1663,7 +1679,8 @@
 	
 	public function extrameetSweetNLowDate():void
 	{
-		showName("Sweet_N’_Low");
+		//showName("Sweet_N’_Low");
+		showName("SWEET\nN’ LOW");
 		author("Fr0sty");
 		moveTo("302");	
 		output("  You arrive at The Mess and see your Gabilani date perched on a very high chair. Based on her height you’re unsure how she climbed up, and you peg her as being short by Gabilani standards, around 3 feet flat. As you move closer you also note while she is less curvy by Galilani standards, she still boasts ample hips and a large bust. She notices you as you move in closer, her eyes running you up and down. Her green lips crack into a wide smile as you come to a stop next to her and introduce yourself.");	
@@ -1686,7 +1703,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("Sweet_N’_Low");
+		//showName("Sweet_N’_Low");
+		showName("SWEET\nN’ LOW");
 		author("Fr0sty");
 		//find the cock to use 
 		var kok:int = pc.smallestCockIndex();
@@ -1738,7 +1756,8 @@
 	
 	public function extrameetMidnightXRoseDate():void
 	{
-		showName("MidnightXRose");
+		//showName("MidnightXRose");
+		showName("MIDNIGHT\nX ROSE");
 		author("Fr0sty");
 		moveTo("301");	
 		output("  You arrive at The Mess and take a look around, not spotting your date. You decide to take a seat and wait, opting for a table with a good view of the doorway. Once seated, you scan around the room again, just making sure you didn't miss your date seated somewhere. While you’re looking around a waitress comes up beside you. “Hey there.”");	
@@ -1763,7 +1782,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("MidnightXRose");
+		//showName("MidnightXRose");
+		showName("MIDNIGHT\nX ROSE");
 		author("Fr0sty");
 		
 		moveTo("212");	
@@ -1788,7 +1808,7 @@
 		output("\n\nYou fingers feel the warmth of her twat before you even touch her, and once they do make contact Dana quivers underneath you. Probing a bit further, your slide your fingers inward, discovering a sticky wetness between your date’s folds. Dana’s hands squeeze your cheeks in approval, and she pulls her lips away from yours to gasp for air. With your lips free you crack a devious smile, giving Dana’s wet cunt a bit of a rub. You feel her squirm underneath you, her modest chest heaving into your [pc.chest]. Her hands clench you tighter and tighter, the pain spurring you on into returning the punishment. Your teasing rub becomes aggressive, working at her twat and focusing on her clitty.");	
 		output("\n\nYour date doesn't leave you hanging for long. Keeping her left hand on your ass, she moves her right around and towards your front, slipping it in between the two of you.");
 		
-		if (pc.hasClit()) output("  A moment later you feel a rush of sharp pleasure as her fingers playfully touch your [pc.clit].");
+		if (pc.hasClit()) output("  A moment later you feel a rush of sharp pleasure as her fingers playfully touch [pc.oneClit].");
 		
 		output("  You stagger for a moment, Dana’s touch sending a shiver up your spine, but you quickly recover, giving her another kiss while your fingers tease her with new vigor. Dana leans into the kiss, roughly pushing herself against you and parting her lips for a more invasive lip lock.");	
 		output("\n\nOn your ass you feel Dana’s hand gliding around and to the side, and for a moment you think she might be aiming for your tight pucker. Instead she moves right past it, her fingertips reaching your now soaking wet cunt the long way round. She runs her fingers over your folds only a moment, before plunging two fingers into your eager pussy. You throw your head back, breaking the kiss once more as you shudder and gasp. Until her fingers slid into your cunt you had no idea how much you were aching for it. You take a few sharp breaths as she moves her fingers inside of you, still working at your pleasure button with her other hand.");	
@@ -1825,7 +1845,8 @@
 	
 	public function extrameetTruePower69Date():void
 	{
-		showName("True_Power69");
+		//showName("True_Power69");
+		showName("TRUE\nPOWER 69");
 		author("Fr0sty");
 		moveTo("302");	
 		output("  You arrive at The Mess and spot a lone Dzaan sitting off in the back, and you can only assume she is your date. As you make your way over you size her up, having only seen a picture of her below the belt at this point. She is large and muscular, with a bright pink mohawk contrasted against dark orange skin. She seems to spot you as you make your way over and remains seated when you reach the table.");	
@@ -1852,7 +1873,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("True_Power69");
+		//showName("True_Power69");
+		showName("TRUE\nPOWER 69");
 		author("Fr0sty");
 		//find the cock to use 
 		var kok:int = pc.biggestCockIndex();
@@ -2042,7 +2064,8 @@
 	
 	public function extrameetDoggeDate():void
 	{
-		showName("_Dogge_");
+		//showName("_Dogge_");
+		showName("\nDOGGE");
 		author("Fr0sty");
 		moveTo("606");	
 		output("  You enter The Golden Peak and take a long look around. You… think you see your date? An ausar of the right age and build is certainly present, but he’s face down on a table in the corner. You approach slowly, not sure if your date is deep in thought, taking a nap, or drunk off his tits.");	
@@ -2081,7 +2104,8 @@
 	
 	public function extrameetDaRegulatorDate():void
 	{
-		showName("DaRegulator");
+		//showName("DaRegulator");
+		showName("THE\nREGULATOR");
 		author("Fr0sty");
 		moveTo("609");	
 		output("  You enter The Golden Peak and immediately see your date. He is in uniform and sitting on his own, drinking what looks like a glass of water. He is shorter than you expected, maybe no taller than 5’8, but seems to be in fairly good shape. He spots you and flags you over to the table. You make your way over and have a seat, introducing yourself.");	
@@ -2103,7 +2127,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("DaRegulator");
+		//showName("DaRegulator");
+		showName("THE\nREGULATOR");
 		author("Fr0sty");
 		//find the cock to use 
 		var kok:int = rand(pc.cockTotal());	
@@ -2150,7 +2175,8 @@
 	
 	public function extrameetHuntressDate():void
 	{
-		showName("#1Huntress");
+		//showName("#1Huntress");
+		showName("\n#1 HUNTRESS");
 		author("Fr0sty");
 		moveTo("609");	
 		output("  You enter The Golden Peak and start to take a look around, not seeing your date. How a Nyrea on the surface doesn't stick out like a sore thumb is beyond you. You spot, in a dark corner of the bar, a tall hooded figure shying away from the light. You think you’ve found your woman. As you make your way over, the hooded figure turns slightly to regard you as you approach. She looks up enough for you to see part of her face, and know you have the right woman. You take a seat and introduce yourself.");	
@@ -2174,7 +2200,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("#1Huntress");
+		//showName("#1Huntress");
+		showName("\n#1 HUNTRESS");
 		author("Fr0sty");
 		
 		moveTo("606");		
@@ -2222,7 +2249,8 @@
 	
 	public function extrameetMistressVenomDate():void
 	{
-		showName("Mistress_Venom");
+		//showName("Mistress_Venom");
+		showName("MISTRESS\nVENOM");
 		author("Fr0sty");
 		moveTo("609");	
 		output("You enter The Golden Peak and take a look around. You spot your date seated off to the side of the bar dressed in her uniform. She spots your before you can make your way over and motions at you with her fingers, signaling to you. You make your approach slowly, trying to measure her before you reach the table. She doesn't look quite as scary as her profile picture, although she does look rather uptight and stern, giving off a very professional vibe.");	
@@ -2251,7 +2279,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("Mistress_Venom");
+		//showName("Mistress_Venom");
+		showName("MISTRESS\nVENOM");
 		author("Fr0sty");
 		//find the cock to use 
 		var kok:int = rand(pc.cockTotal());	
@@ -2311,7 +2340,8 @@
 	
 	public function extrameetRebel23Date():void
 	{
-		showName("Rebel23");
+		//showName("Rebel23");
+		showName("\nREBEL 23");
 		author("Fr0sty");
 		moveTo("609");	
 		output("  You enter The Golden Peak and immediately spot your date. Seated in the middle of the room, the bombshell of a woman is the center of attention and then some. She’s dressed in an overtly extravagant outfit, a low cut dress of shining silver against her dark purple skin. More than a few heads are turned her way but she only seems to see you, a smile arching on her painted lips.");	
@@ -2338,7 +2368,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("Rebel23");
+		//showName("Rebel23");
+		showName("\nREBEL 23");
 		author("Fr0sty");
 		//find the vag she fucks (use kaska since we just need to simulate a dzaan cock size)
 		var vag:int = pc.cuntThatFits(chars["KASKA"].cockVolume(0));
@@ -2504,7 +2535,8 @@
 	
 	public function extrameetTheProfessorDate():void
 	{
-		showName("TheProfessor");
+		//showName("TheProfessor");
+		showName("THE\nPROFESSOR");
 		author("Fr0sty");
 		moveTo("UVI P32");	
 		output("  You enter The Freezer and see your Kui-tan date sitting off to the side, sipping away at a drink. He doesn't seem to notice you as you make your way over just continuing to swirl his drink in his hand. Moving towards him you can see the fur on his face is styled into a goatee of sorts, along with something of a twirled moustache. If you had to guess, he must use some sort of strong wax to hold it together. On his head you also note that curious hat once more.");	
@@ -2549,7 +2581,8 @@
 	
 	public function extrameetFukaDate():void
 	{
-		showName("Fuka");
+		//showName("Fuka");
+		showName("\nFUKA");
 		author("Fr0sty");
 		moveTo("UVI P32");	
 		output("  You enter The Freezer and look around, seeing no sign of your date. You take a second to ponder who exactly you’re even supposed to be meeting. Based on what you can guess you’re looking for a korgonne but meeting up with one here seems almost unbelievable. You decide to take a seat and wait, seeing if anybody shows.");	
@@ -2577,7 +2610,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("Fuka");
+		//showName("Fuka");
+		showName("\nFUKA");
 		author("Fr0sty");			
 
 		moveTo("UVI N32");	
@@ -2625,7 +2659,8 @@
 	
 	public function extrameetScienceRulez41Date():void
 	{
-		showName("ScienceRulez41");
+		//showName("ScienceRulez41");
+		showName("SCIENCE\nRULES 41");
 		author("Fr0sty");	
 		moveTo("UVI P32");	
 		output("  You enter The Freezer and spot the familiar nerdy man sitting on his own, nervously looking around the bar. He spots you and throws up his arm to wave, signaling you over. As you make your way across the bar to him you size the man up, noticing he has combed his hair and is dressed in expensive and fancy clothing. You also see he is sporting what looks like a monkey’s tail, and his fingers appear to be webbed. You can’t help but wonder what else is different about this man.");	
@@ -2647,7 +2682,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("ScienceRulez41");
+		//showName("ScienceRulez41");
+		showName("SCIENCE\nRULES 41");
 		author("Fr0sty");		
 
 		output("You tell him you’re fine with him taking a look, causing the scientist to nearly bounce in his seat from joy. He gets up and drags his chair closer to you, sitting directly beside you now. The man holds out his scaly hands, smiling at you. You move your tail towards him, letting your extra appendage come to rest in his waiting palms.");	
@@ -2691,7 +2727,8 @@
 	
 	public function extrameetRipped4YourPleasureDate():void
 	{
-		showName("Ripped4YourPleasure");
+		//showName("Ripped4YourPleasure");
+		showName("RIPPED FOR\nYOUR PLEASURE");
 		author("Fr0sty");	
 		moveTo("UVI P32");	
 		output("  You enter The Freezer and take a quick look around for your date. He’s pretty hard to miss. The Huskar is certainly muscular, and he accentuates it by wearing a t-shirt you estimate to be at least two sizes to small. He seems to spot you, so you hurry on up and make your way over. As you reach the table he pops up to his feet, revealing himself to be of average height.");	
@@ -2712,7 +2749,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("Ripped4YourPleasure");
+		//showName("Ripped4YourPleasure");
+		showName("RIPPED FOR\nYOUR PLEASURE");
 		author("Fr0sty");
 		//find the vag he fucks
 		var vag:int = pc.cuntThatFits(chars["RIPPED4YOURPLEASURE"].cockVolume(0));
@@ -2768,7 +2806,8 @@
 	
 	public function extrameetStormDragonDate():void
 	{
-		showName("Storm_Dragon");
+		//showName("Storm_Dragon");
+		showName("STORM\nDRAGON");
 		author("Fr0sty");
 		moveTo("UVI P32");	
 		output("  You enter The Freezer and take a long look around. While you don’t see your date, you figure you’re early and take a seat. After waiting only a few minutes, your Gryvain date walks through the door. She’s tall, which you expected her to be, and quite curvy, with her gear hugging against her tightly and leaving little to the imagination. After a quick scan of the room she spots you and starts to make her way over with a flick of her long blue tail.");	
@@ -2807,7 +2846,8 @@
 	{
 		clearOutput();
 		clearMenu();
-		showName("Storm_Dragon");
+		//showName("Storm_Dragon");
+		showName("STORM\nDRAGON");
 		author("Fr0sty");
 		
 		var kok:int = rand(pc.cockTotal());	

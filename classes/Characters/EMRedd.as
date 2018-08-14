@@ -11,7 +11,7 @@ package classes.Characters
 		{
 			this._latestVersion = 1;
 			this.version = this._latestVersion;
-			this._neverSerialize = false;
+			this._neverSerialize = true;
 			
 			this.short = "ReDD";
 			this.originalRace = "loo'rahn";
