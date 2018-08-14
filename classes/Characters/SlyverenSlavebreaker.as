@@ -5,6 +5,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Guns.SlutRay;
+	import classes.Items.Guns.SlutRayHeavy;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Armor.StarViperSlutwear;
@@ -49,6 +50,7 @@
 
 			this.rangedWeapon = new SlutRay();
 			this.rangedWeapon.baseDamage.tease.damageValue = 1;
+			this.rangedWeapon.attackNoun = "beam of psychic, erotic energies";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor = new StarViperSlutwear();
@@ -236,6 +238,7 @@
 				if(rand(2) == 0) this.inventory[0].quantity++;
 			}
 			if(rand(10) == 0) this.inventory.push(new StarViperSlutwear());
+			else if(rand(10) == 0) this.inventory.push(new SlutRayHeavy());
 		}
 		override public function get bustDisplay():String
 		{

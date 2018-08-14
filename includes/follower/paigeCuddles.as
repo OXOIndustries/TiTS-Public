@@ -107,7 +107,7 @@ public function paigeSleepNodeOne():void
 	output("\n\nYou get into your bed with Paige, letting your head hit the pillow with a low ‘fwump.’ Paige joins you, mimicking your action almost motion-for-motion; you both reach for the same spot on the sheets, your hand accidentally gripping onto Paige’s, and you both whip the sheets back over you both.");
 	output("\n\nShe sighs deeply, her voice coming out as a light hum, as her torso presses against yours and her arms and legs drape around your body. You shuffle yourself a little closer to her, trying to get yourself more comfortable, and she does the same to you.");
 	output("\n\nYour own arms and [pc.legs] intermingle with hers, until you’re good and properly entangled in each other. You’re face-to-face, torso-to-torso, and nearly crotch-to-crotch, but neither of you have any particular designs on making this cuddle session any more intense than that.");
-	output("\n\nOf course… as your hand holds at her muscular back, then travels to her lower back, where her tail meets her spine… you could <i>introduce</i> some ‘variables’ into your snuggling, if you wanted.");
+	output("\n\nOf course... as your hand holds at her muscular back, then travels to her lower back, where her tail meets her spine... you could <i>introduce</i> some ‘variables’ into your snuggling, if you wanted.");
 
 	addButton(0, "Sleep", paigeSleepForRealsies, undefined, "Sleep", "Select this if you’re not interested in games and just want to catch some shut-eye.");
 	addButton(1, "Boop Nose", paigeBoopBoop);
@@ -186,7 +186,7 @@ public function paigeHoldOn():void
 	output("\n\nPaige’s body shifts, pulling away from you just enough so she can crook her head down, pressing her other ear against your chest. You’re more acutely aware than ever of your own heartbeat as it thump-thump-thump against your ribs; your every beat pulses throughout your body, practically bouncing Paige off of you.");
 	output("\n\nAnd although you can’t hear it from where you are, you can feel Paige’s own heart against your body, particularly your arms and hands as they clamp against Paige’s back. You’re a bit off-sync with each other – hers is beating slower than yours, which you attribute to her yoga giving her a lower resting beat-per-minute – but that just makes you cherish the few seconds when your heartbeat and hers line up just perfectly.");
 	output("\n\nWith a discerning hum, Paige pulls back, straightening her neck a bit. <i>“Hey, [pc.name],”</i> she says, nudging you with her nose to get your attention. When you open your eyes, you see her own, narrowed and focused on yours.");
-	output("\n\n<i>“Tell me you love me,”</i> she implores. She doesn’t hesitate with the statement, but she does with the follow-up, stuttering for a second before catching her own tongue. <i>“I mean, I don’t</i> need <i>to hear it. But I want to hear it. Or… for you to show me, or something. Sometimes, a girl just wants to</i> know, <i>you know?”</i>");
+	output("\n\n<i>“Tell me you love me,”</i> she implores. She doesn’t hesitate with the statement, but she does with the follow-up, stuttering for a second before catching her own tongue. <i>“I mean, I don’t</i> need <i>to hear it. But I want to hear it. Or... for you to show me, or something. Sometimes, a girl just wants to</i> know, <i>you know?”</i>");
 	output("\n\nHow will you express yourself to Paige?");
 
 	addButton(0, "Tell Her", paigeUWuvHer);
@@ -211,7 +211,7 @@ public function paigeTickleTime():void
 	output("\n\nIt was all you needed to hear. You cease your attack immediately, and flatten your palms against her body, soothingly rubbing at each spot you had attacked in succession. You can feel her skin spasm beneath your touch, still overloaded with your ticklish sensations, and her fur is still standing on its bristly ends, poking against your [pc.skinFurScales].");
 	output("\n\n<i>“Ahhhh,”</i> Paige sighs as you massage her, working your hands from her lower back, to her love-handles, to the underside of her ribs, exactly where you had tickled her. You’re careful not to resume your offense, and your touches are gentle as a lover’s should be.");
 	output("\n\nBy the end of it, your hands have found their way back around to Paige’s front, rubbing at her stomach. She can’t help but laugh occasionally, still coming down from her tickling high. She doesn’t resist when you pull on her, to bring her back to you and press her back against your front. Instead, she exhales once and pushes against you, her butt against your [pc.crotch] and her shoulders pressing into your [pc.chest].");
-	output("\n\nAs tired as you both are after a long, hard day, you can tell that you’re both still pretty awake after all that. You wonder to yourself: is it worth to keep the playing up, and maybe see if Paige is willing to take it somewhere a little more… <i>exciting</i>? Or do you simply lie there and spoon with your ausar lover, and try to wind down from the tickle attack and get some well-deserved shut-eye?");
+	output("\n\nAs tired as you both are after a long, hard day, you can tell that you’re both still pretty awake after all that. You wonder to yourself: is it worth to keep the playing up, and maybe see if Paige is willing to take it somewhere a little more... <i>exciting</i>? Or do you simply lie there and spoon with your ausar lover, and try to wind down from the tickle attack and get some well-deserved shut-eye?");
 	
 	addButton(0, "Spoon", paigeForkIMeanSpoonHer);
 	addButton(1, "Roll Over", paigeDoABarrelRoll);
@@ -227,12 +227,12 @@ public function paigeCaressDatAss():void
 
 	output("You tell Paige that you can’t just ‘grab’ a woman’s ass, especially not one as fine as hers.");
 	output("\n\nYou demonstrate by softly rolling your hands, palms down, grip firm but not tight, across each of her furry cheeks; you tell her that a booty this rare needs to be <i>appreciated,</i> and <i>savoured</i>, like a fine, aged wine.");
-	output("\n\n<i>“You calling my ass old?”</i> she jokes, pushing her lower end out and into your hands. You tell her that, if you’re calling her ass anything, it’s ‘venerable.’ Wine needs to age years and years before it can be truly appreciated, and you consider yourself very lucky to have a woman as… genetically gifted as Paige in your bed while you’re both still young and spry.");
+	output("\n\n<i>“You calling my ass old?”</i> she jokes, pushing her lower end out and into your hands. You tell her that, if you’re calling her ass anything, it’s ‘venerable.’ Wine needs to age years and years before it can be truly appreciated, and you consider yourself very lucky to have a woman as... genetically gifted as Paige in your bed while you’re both still young and spry.");
 	output("\n\nPaige hums, melting into you at your words, loving every single thing you tell her. You heft her butt, loving how taut, tight, and, well, <i>powerful</i> her glutes feel in your hands, and you tell her as much. The effort she had put into her body is apparent");
 	if (pc.PQ() < 75) output(" and enviable. You should do more yoga with her, if it means having a body as impeccable as hers.");
 	else output("; you can only hope your own ass can one day stand in the shadow of hers with some pride someday.");
-	output("\n\n<i>“Can I tell you something?”</i> she says lowly. You tell her, with all sincerity, that she can tell you anything. You’re very good at keeping secrets, especially for her. <i>“I love having an ass this nice.”</i> She wriggles her hips, and you keep your hands still, as her butt flexes and shifts in your grip. Your fingers cross the threshold of her butt’s cleavage with every particularly-wide wiggle. <i>“Every time I bend down and touch my toes in class… I love it when people ogle it and stare. I know they do, because my ass gets all hot when it knows it’s being admired.”</i>");
-	output("\n\nShe tilts her nose up, lining her mouth against your ear, to sultrily whisper into it. <i>“I have this fantasy,”</i> she says, her breath coming out sharply and warm. <i>“That, when I’m all exposed like that, someone gets their fingers into my yoga pants… gives ‘em a nice, hard yank… tears ‘em open… and then");
+	output("\n\n<i>“Can I tell you something?”</i> she says lowly. You tell her, with all sincerity, that she can tell you anything. You’re very good at keeping secrets, especially for her. <i>“I love having an ass this nice.”</i> She wriggles her hips, and you keep your hands still, as her butt flexes and shifts in your grip. Your fingers cross the threshold of her butt’s cleavage with every particularly-wide wiggle. <i>“Every time I bend down and touch my toes in class... I love it when people ogle it and stare. I know they do, because my ass gets all hot when it knows it’s being admired.”</i>");
+	output("\n\nShe tilts her nose up, lining her mouth against your ear, to sultrily whisper into it. <i>“I have this fantasy,”</i> she says, her breath coming out sharply and warm. <i>“That, when I’m all exposed like that, someone gets their fingers into my yoga pants... gives ‘em a nice, hard yank... tears ‘em open... and then");
 	if (pc.hasCock()) output(" fucks me like a feral, dumb animal");
 	else output(" eats me out like a thirsty, five-credit whore");
 	output(", right there in class.”</i>");
@@ -257,11 +257,11 @@ public function paigeGrabDatAss():void
 	output("\n\nWith Paige’s invitation, you reach down without any preamble or hesitation, and you greedily clamp your hands on her butt. You feel her body tense and flex against you when your hands meet the smooth, fine fur of her rear end; your fingers pinch down and you massage her witlessly, working your thumbs along the broad meat of her ass, getting as much as you can in a single, hearty grope.");
 	output("\n\n<i>“Yeah, that’s it,”</i> she implores, thrusting her rear end into your hands and encouraging you to really get two, thick handfuls. <i>“I’ve put a lot of effort into an ass like that, [pc.name]. Show me how much you like it.”</i>");
 	output("\n\nNot that she needed to ask, but you keep going. She wraps her legs around your [pc.belly], and pulls herself closer to you, her crotch against your own. Every time you pull and lift on her ass, she slides just a little closer into you; she makes no effort to hide or mask her grinding into your [pc.crotch], looking for a reaction. You breath hotly against her ear, and she giggles, almost sweetly, to herself, knowing that she’s on the right track.");
-	output("\n\n<i>“It makes me feel so…</i> powerful, <i>having a booty like this,”</i> she admits, whispering into your ear and hotly blowing on your neck as you manhandle her. <i>“I love it when I take a pose in class, and suddenly, the room gets all quiet. I know they’re all staring. It makes me feel like I’m in control of the room. It makes me feel like I’m in control of</i> you.<i>”</i>");
+	output("\n\n<i>“It makes me feel so...</i> powerful, <i>having a booty like this,”</i> she admits, whispering into your ear and hotly blowing on your neck as you manhandle her. <i>“I love it when I take a pose in class, and suddenly, the room gets all quiet. I know they’re all staring. It makes me feel like I’m in control of the room. It makes me feel like I’m in control of</i> you.<i>”</i>");
 	output("\n\nYou play along with her fantasy and ask her to give you another command. What would she have her cuddle-toy do next?");
 	output("\n\nShe hums deviously at your suggestion, and she chews her bottom lip in thought. Her thighs clench around your body, squeezing and grinding herself against you. <i>“Talk like that a bit more, [pc.name], and we’ll be doing a bit more than cuddling tonight,”</i> she cautions. <i>“But I get the feeling that you’re okay with that.”</i>");
 	output("\n\nYou reiterate that you’re available to do whatever she wants. Of course, you don’t stop your ministrations on her ass: you don’t dare stop your groping and massaging those powerful cheeks, surrendering yourself to their power.");
-	output("\n\n<i>“Well, I think I’ll leave that up to you, [pc.name],”</i> she says, her long, flat ausar tongue snaking out and licking across your [pc.lips]. <i>“I don’t know about you, but the longer, ooohhhh, that you keep this up, the less tired I’m getting. If you have any thoughts, I’m all ears, but if not….”</i>");
+	output("\n\n<i>“Well, I think I’ll leave that up to you, [pc.name],”</i> she says, her long, flat ausar tongue snaking out and licking across your [pc.lips]. <i>“I don’t know about you, but the longer, ooohhhh, that you keep this up, the less tired I’m getting. If you have any thoughts, I’m all ears, but if not....”</i>");
 	output("\n\nAs a matter of fact, the first thing that comes to mind is–");
 		
 	addButton(0, "Let Her Lead", paigeTakesPoint);
@@ -298,7 +298,7 @@ public function paigeKissHerYouFool():void
 	showPaige(true);
 	processTime(5);
 	
-	output("It’s easy to say that words are cheap. But the three, itty-bitty little words that Paige wants you to say… they simultaneously carry a ton of power behind them, and at the same time, they simply aren’t enough.");
+	output("It’s easy to say that words are cheap. But the three, itty-bitty little words that Paige wants you to say... they simultaneously carry a ton of power behind them, and at the same time, they simply aren’t enough.");
 	output("\n\nYou place your hand beneath Paige’s chin, tilting her gaze upward, towards yours. Her breath catches in her throat, and you can see the gleam of the room’s emergency lighting in her eyes. You can’t make out the finer details of her face in this light, but you can feel her heartbeat through her body, and you can see her lips quiver in nervousness. Hopefully you’re making the right move.");
 	output("\n\nYou lean in the few millimetres separating you, and you press your [pc.lipsChaste] to hers. You try and visualize how you want your lips to feel as you kiss her, and the first thing you think of is the velvety-soft feel of a rose’s petals. You try to mimic that texture: not too hard, and not too insistent–");
 	output("\n\nPaige leans into you, tilting her head to one side, as her lips move in sync with yours, kissing you back, and you realize that you’re overthinking it. There is no ‘secret’ or ‘technique’ to kissing your lover (at least, not when you aren’t trying to be sexy) – everything Paige needs to be shown or told is right there, on your lips, pressing against hers. You’re pouring your heart and feelings into this kiss, whether you realize it or not, and she’s matching your soul by the action.");
@@ -354,7 +354,7 @@ public function paigeDoABarrelRoll():void
 	output(". You coo in mock-arousal, knowing what response she was looking for.");
 	output("\n\n<i>“Mmm, [pc.name]?”</i> she begins, not bothering to turn her head back up to look at you. You say nothing, awaiting her next words. <i>“Tonight doesn’t have to end with some snugglin’, if you don’t want.”</i>");
 	output("\n\nKnowing full-well what she means, you ask her to go on.");
-	output("\n\n<i>“I’m saying, if you want to show me an even</i> better <i>time in bed… I mean, the only thing I’m wearing right now are some panties. I wouldn’t miss them if you wanted to cap tonight off with… a bang.”</i>");
+	output("\n\n<i>“I’m saying, if you want to show me an even</i> better <i>time in bed... I mean, the only thing I’m wearing right now are some panties. I wouldn’t miss them if you wanted to cap tonight off with... a bang.”</i>");
 	output("\n\nYou feel the familiar tingle in your [pc.crotch] as she spurs on your arousal. You aren’t horny <i>yet,</i> but that can change in a hurry if you wanted. But, on the other hand, Paige is giving you the option to back out, and you doubt she’d hold it against you if you said you wanted to save it until morning. Hell, the sex might even be <i>better</i> if you put it off until then.");
 
 	addButton(0, "Sex", paigeWhyNotShag, ["PCSRO"]);
@@ -371,7 +371,7 @@ public function paigeWonderBoutShagging():void
 	pc.lust(30);
 	
 	output("You tell her that that sounds like a really kinky fantasy, and you ask her which part of it is the sexiest for her.");
-	output("\n\nPaige hums gently, her head rocking from side to side as she thinks about it. <i>“I wanna say… it’s the part where I’m so irresistible that someone would lose all control of themselves and… dig themselves into my pants and have me, right there in the classroom.”</i>");
+	output("\n\nPaige hums gently, her head rocking from side to side as she thinks about it. <i>“I wanna say... it’s the part where I’m so irresistible that someone would lose all control of themselves and... dig themselves into my pants and have me, right there in the classroom.”</i>");
 	output("\n\nYour hand rubs slow, sensual circles on the fat of her asscheek as she explains. Her tone is whimsical, like she’s already dreaming, and her hips quake and lean into your hand with your every pass.");
 	output("\n\nYou egg her on. You tell her to imagine it: she’s on a yoga mat, in the center of the room, surrounded by her classmates. She starts doing some warm-up stretches, and she bends over and touches her toes–");
 	output("\n\nAs you speak, your hand travels down her thigh, starting at her knees, and then it makes its way back up, towards her butt. You continue the fantasy by saying that, suddenly, she feels a hand clap onto her ass, loud enough to echo off the walls. And, to add to the imagery, you launch your hand onto her butt, giving yourself a nice, huge grope on the taut, muscly buttock.");
@@ -381,7 +381,7 @@ public function paigeWonderBoutShagging():void
 	else if (pc.hasVagina()) (" They have their moist, sopping pussy out, their fingers jostling at their clit; drips of her juices slip down between their legs. She can smell them. They need their yogi to teach them something else.");
 	output("\n\nYour hand teasingly slips away from Paige’s ass, quickly trailing up her belly and the swell of her boobs, until your fingertips are against her nose. Paige takes a deep, thick sniff, smelling herself on your fingers; unquestioningly, she opens her mouth, and you slip your fingers in for her to suck clean.");
 	output("\n\nPaige is lost in her fantasy. You push her the last little bit: the tongue in her cunt withdraws, leaving her empty, but then she feels two hungry hands on her ass, and then a wanton, leaking dick frotting between her cheeks, its bloating knot bumping against the underside of her butt. The whole class has forgotten about yoga. They’ve all slipped off their pants, and they’re lining up in a circle around her. None of them can control themselves around their teacher.");
-	output("\n\n<i>“[pc.name],”</i> Paige moans, her tongue licking between your fingers one final time. <i>“I’m… I’m not going to last much longer, sweet thing. Either fuck me or don’t.”</i>");
+	output("\n\n<i>“[pc.name],”</i> Paige moans, her tongue licking between your fingers one final time. <i>“I’m... I’m not going to last much longer, sweet thing. Either fuck me or don’t.”</i>");
 	output("\n\nYou’ve gotten Paige all hot and bothered, but she’s still giving you an out, if all you want to do is catch some shut-eye. It might be a little cruel of you, of course, but who’s to say that a case of blue-balls wouldn’t just make the ‘good morning’ after all the better?");
 
 	addButton(0, "Sex", paigeWhyNotShag, ["PCSF"]);
@@ -594,7 +594,7 @@ public function paigeWakeyWakey():void
 		output("\n\n<i>“Fuck, last night was great,”</i> she says dreaily, rubbing her cheek on your shoulder. <i>“A girl could get used to her captain ‘privileging’ her every night, yes " + pc.mf("sir", "ma'am") + ".”</i>");
 		output("\n\nNow that she mentions it, you ask her if she’s awake and rowdy enough for a second round.");
 		if (pc.hasCock()) output(" You certainly are.");
-		output(" <i>“Mmmmm,”</i> she moans, <i>“maybe… give me ten minutes to wake up, maybe eat some breakfast.”</i> Impishly, you push your luck and suggest that she could get her breakfast in bed right here and now. <i>“Come on,”</i> she says, knowing you mean well, <i>“I’m not a morning person, [pc.name]… I need a minute.”</i>");
+		output(" <i>“Mmmmm,”</i> she moans, <i>“maybe... give me ten minutes to wake up, maybe eat some breakfast.”</i> Impishly, you push your luck and suggest that she could get her breakfast in bed right here and now. <i>“Come on,”</i> she says, knowing you mean well, <i>“I’m not a morning person, [pc.name]... I need a minute.”</i>");
 		output("\n\nYou acquiesce and don’t push it any further.");
 	}
 	else
@@ -606,7 +606,7 @@ public function paigeWakeyWakey():void
 		{
 			output("\n\nYou ask Paige if she’s still in the mood to take advantage of all that teasing from last night. After everything you two did to each other, you wouldn’t mind a throw while you’re still in the blankets");
 			if (pc.hasCock()) output(", especially with this wood you’re sporting");
-			output(". <i>“Mmmmm, tempting, sweet thing,”</i> Paige says with a smile, <i>“but… gimme a couple minutes. I need to wake up and I need something in my stomach.”</i>");
+			output(". <i>“Mmmmm, tempting, sweet thing,”</i> Paige says with a smile, <i>“but... gimme a couple minutes. I need to wake up and I need something in my stomach.”</i>");
 			output("\n\nImpishly, you push your luck and say that she can get some breakfast in bed right now if she wanted. <i>“Hah, I wouldn’t exactly call a load of " + (pc.hasCock() ? "jizz" : "ladyjizz") + " the breakfast of champions. Come on, I’m not a morning person, quit teasing me.”</i>");
 		}
 		else output("\n\nYou say nothing in response, and simply enjoy the morning with her, in the privacy of your quarters.");
@@ -616,9 +616,9 @@ public function paigeWakeyWakey():void
 	output(" You keep stealing glances towards Paige while she redresses, and");
 	if (!pc.isNude()) output(" when you reach for your own things,");
 	output(" you feel Paige’s eyes on you, returning the sneaky sentiment.");
-	output("\n\n<i>“So, hey,”</i> she says when you’re both halfway presentable and standing at the door to your quarters. <i>“Um… same time tonight?”</i>");
+	output("\n\n<i>“So, hey,”</i> she says when you’re both halfway presentable and standing at the door to your quarters. <i>“Um... same time tonight?”</i>");
 	output("\n\nYou tell her that you’ll be sure to keep your schedule open. She smiles, and leans in to peck your [pc.lipsChaste], before opening the lock to your door.");
-	if (InCollection("PCSES", args)) output(" <i>“You know where to find me, especially if you want to… make good on that offer later.”</i>");
+	if (InCollection("PCSES", args)) output(" <i>“You know where to find me, especially if you want to... make good on that offer later.”</i>");
 	else output(" <i>“You know where to find me.”</i>");
 	output("\n\nThen, she’s on the way to her own quarters, and you’re left alone to greet the new day.");
 	

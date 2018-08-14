@@ -61,7 +61,7 @@ public function slyverenSubmission(arg:Number = 0):Number
 
 public function slyverenBadEndCheck():Boolean
 {
-	return (slyverenSubmission(10) >= 100);
+	return (slyverenSubmission(25) >= 100);
 }
 
 //Blowjobs always result in very slight dick growth (Like 0.25") up to 16", then increasingly lower proc chances of growth.
@@ -709,7 +709,7 @@ public function suckledIntoSubmissionBigCummies2():void
 }
 
 
-//{Next if not from big cum variant}
+// {Next if not from big cum variant}
 public function suckledIntoSubmissionFinal(clearOut:Boolean = false):void
 {
 	pc.ballFullness = 0;
@@ -1354,8 +1354,10 @@ public function giveThrobToSlyveren():void
 	clearOutput();
 	showSlavebreaker(true);
 	author("Wsan");
+	
 	enemy.destroyItemByClass(Throbb);
 	enemy.destroyItemByClass(Throbb);
+	
 	output("<i>“I bet a big, lusty snake-woman like you has a cornucopia of drugs in here somewhere,”</i> you say, digging through the defeated slavebreaker’s stash. <i>“You’ve gotta have what I’m looking for... ah!”</i>");
 	output("\n\nSure enough, you manage to find the prize - an injector filled with transparent cyan liquid. It’s Throbb, a drug with a dubious reputation at best but one that does its job incredibly well. You withdraw it from the drug pouch with a triumphant smile, watching the snake-woman groan.");
 	output("\n\n<i>“Guess the next female slave you run into won’t be growing any dicks any time soon, huh?”</i> you taunt her. <i>“You’ll have to source your cum from elsewhere. Luckily for you, I think I’ve got a solution.”</i>");
@@ -1365,6 +1367,11 @@ public function giveThrobToSlyveren():void
 	output("\n\n<i>“Isn’t it so good to be on the receiving end for once?”</i> you murmur, letting her awkwardly masturbate herself through a strong, shuddering male orgasm. Ropes of seed spew from the end of her new cock, spattering across the ground while she bucks her hips. <i>“Looks like you’re a big fan.”</i>");
 	output("\n\n<i>“Uuuhhh,”</i> she moans, dazedly opening her eyes. <i>“It’s too much...”</i>");
 	output("\n\nIt’s true that having a giant, pulsating footlong reptile cock might be a bit of an overstimulating experience for someone not acquainted with the pleasures maleness can bring, but she probably should have thought of that before toting around some Throbb." + (pc.hasItemByClass(Throbb) ? " Speaking of which, you’ve still got some of your own...":""));
+	
+	if(!enemy.hasCock()) enemy.createCock();
+	enemy.shiftCock(0, GLOBAL.TYPE_SNAKE);
+	enemy.cocks[0].cLengthRaw = 8;
+	
 	processTime(10);
 	pc.lust(5);
 	clearMenu();
@@ -1379,7 +1386,9 @@ public function giveMoreThrobbToSlyveren():void
 	clearOutput();
 	showSlavebreaker(true);
 	author("Wsan");
-	var throbbCount:Number = pc.numberOfItemByClass(Throbb);
+	
+	var throbbCount:Number = Math.min(pc.numberOfItemByClass(Throbb), 3);
+	
 	output("Well, it’d be a waste if you didn’t use it. What else are you carrying it around for? You pick her arm back up and, producing");
 	if(throbbCount <= 1) output(" your extra needle");
 	else if(throbbCount <= 2) output(" two needles");
@@ -1389,8 +1398,23 @@ public function giveMoreThrobbToSlyveren():void
 	else output("them");
 	output(" into her arm and depress the injector. Thick, white cum begins to drip from her cock immediately, faster and faster until there’s an unending stream of fluid pumping down her underside.");
 	output("\n\nFor the first few seconds nothing seems to happen beyond the initial cumflow, and you’re somewhat disappointed. You were hoping for more of a fireworks show. Then, all at once, your desires come to fruition. Calling it growth would be an understatement - this is more like an explosion of change. Her cock thickens to the width of a soda can then peels away, a second penis sprouting from an attachment to the first.");
+	
 	pc.destroyItemByClass(Throbb,throbbCount);
-
+	// Duplicate cock
+	enemy.createCock();
+	enemy.copyCock(1, 0);
+	// Apply Throbb effects
+	for(var i:int = 0; i < throbbCount; i++)
+	{
+		enemy.cocks[0].cLengthRaw += 8 + (i * 2);
+		enemy.cocks[1].cLengthRaw += 8 + (i * 2);
+		enemy.ballEfficiency += 3 + rand(6);
+		enemy.cumMultiplierRaw += 2 + rand(3);
+		enemy.cumQualityRaw += 0.25;
+		enemy.refractoryRate++;
+	}
+	if(enemy.ballFullness < 100) pc.ballFullness = 100;
+	
 	if(throbbCount == 1) 
 	{
 		output("\n\nEach one grows even longer, throbbing violently while seed belches from the dual tips. Her exhaustion forgotten, the slyveren jackhammers her womanly hips into the air and utters a low scream of joy, back arched off the ground while her hands wrap around her twin shafts. Lost to the world, she thrusts herself upwards as she jacks herself off with an eagerness belying her usual sultry manner. There’s nothing elegant about her now, her tongue lolling from her mouth while she pants like a lust-crazed beast.");
@@ -1440,25 +1464,27 @@ public function getHammeredByThrobbSlyveren():void
 
 	if(!pc.isCrotchExposed()) output("\n\nRemoving your clothes, y");
 	else output("\n\nY");
-	output("ou kneel above her, sitting with" + (pc.hasCock() ? " your [pc.cocks] hanging in her face and":"") + " your [pc.asshole] ready to take her" + (pc.hasVagina() ? " along with your [pc.pussy " + x + "]":"") + ". You’re not sure that this is the greatest idea," + (flags["SLYVEREN_THROBB_FUCKED"] != undefined ? " but it worked so well the last time you give it a pass":" but handing your body over to a Throbb junkie might not be the most adventurous thing you’ve ever done") + ". Looking back over your shoulder doesn’t help, either - those things are beastly in more than one sense of the word.");
+	output("ou kneel above her, sitting with" + (pc.hasCock() ? " your [pc.cocks] hanging in her face and":"") + " your [pc.asshole] ready to take her" + (x >= 0 ? " along with your [pc.pussy " + x + "]":"") + ". You’re not sure that this is the greatest idea," + (flags["SLYVEREN_THROBB_FUCKED"] != undefined ? " but it worked so well the last time you give it a pass":" but handing your body over to a Throbb junkie might not be the most adventurous thing you’ve ever done") + ". Looking back over your shoulder doesn’t help, either - those things are beastly in more than one sense of the word.");
 
 	output("\n\nHer massive, shuddering hemipenes give you a welcoming gout of thick, sticky seed that splashes against your exposed [pc.ass] and splatters down onto the slyveren’s face. She promptly licks it off and swallows it by automatic reflex, eagerly lifting her hips to meet you. The topmost cock finds purchase in your ring first. Sliding wetly between your cheeks, it halts for the slightest of seconds as the tip catches on your asshole before the slavebreaker takes action. With a blissful scream, she <i>rams</i> herself inside you, sinking close to a foot of her gigantic, seed-spewing cock inside you. Coated in her own sperm as it is, lubrication isn’t an issue. The size, though - that’s something else altogether.");
 
 	//Convert all this to capacity
-	if(pc.analCapacity() < 500) output("\n\nYou let out a hoarse scream of your own as she frenziedly reshapes you, stretching you far past your ordinary limit with her initial penetration");
-	else if(pc.analCapacity() < 1000) output("\n\nYour previous anal escapades allow you to take her inside with only a lot of discomfort instead of a fuckton, but you’re still groaning loudly upon her initial penetration");
+	var analCapacity:Number = pc.analCapacity();
+	
+	if(analCapacity < 500) output("\n\nYou let out a hoarse scream of your own as she frenziedly reshapes you, stretching you far past your ordinary limit with her initial penetration");
+	else if(analCapacity < 1000) output("\n\nYour previous anal escapades allow you to take her inside with only a lot of discomfort instead of a fuckton, but you’re still groaning loudly upon her initial penetration");
 	else output("\n\nAs experienced as you are, it’s only a minor discomfort to let her inside you, but you’re still uttering a moan when she first penetrates you");
 	output(". She doesn’t stop there, either, doesn’t dare to let her remaining couple feet of cock rest outside your");
-	if(pc.analCapacity() < 500) output(" pressured confines");
-	else if(pc.analCapacity() < 1000) output(" tight, cushy hole");
+	if(analCapacity < 500) output(" pressured confines");
+	else if(analCapacity < 1000) output(" tight, cushy hole");
 	else output(" warm, luxurious fuckhole");
 	output(". Squeezing up against you immediately and hugging you tight enough to bruise, she begins jackhammering her hips upwards into you while she pants like an animal.");
 
 	output("\n\n<i>“F-fuck,”</i> you grunt, trying to steady yourself. This is quickly slipping out of your control, though you’d half-expected that anyway. <i>“S-slow down for one se- fuck!”</i>");
 
 	output("\n\nShe either doesn’t hear you, or does but doesn’t care. What with the way Throbb works, you also wouldn’t be surprised if she did but no longer understands. She’s not taking no for an answer, working more and more of herself inside you as she");
-	if(pc.analCapacity() < 500) output(" reshapes your formerly tight insides into something more her size");
-	else if(pc.analCapacity() < 1000) output(" expands your insides just enough to accommodate her");
+	if(analCapacity < 500) output(" reshapes your formerly tight insides into something more her size");
+	else if(analCapacity < 1000) output(" expands your insides just enough to accommodate her");
 	else output(" travels the contours of your loose, welcoming insides");
 	output(". There’s already a fat outline of her oversized prick visible through your [pc.stomach], though with the way it’s belching sperm the definition doesn’t stay there for long.");
 
@@ -1466,8 +1492,8 @@ public function getHammeredByThrobbSlyveren():void
 
 	output("\n\nThere’s still a question lurking at the back of your mind, though mostly forgotten what with the savage treatment as instinct takes over from civility. It only resurfaces when, after having so desperately worked for every inch she’s gained inside you as a foothold, she begins to slowly withdraw. What is she going to do with the second one?");
 
-	output("\n\nHer rut somewhat assuaged by the penetration and assurance you’re going to be available for her to crudely fuck and inflate with her cum, you assume she’s going to take it a little slower this time and get some fun out of it. Besides, what with the way she’s still throbbing and cumming inside you, she doesn’t need to go too hard. All of those expectations are betrayed when you feel her lower cocktip " + (pc.hasVagina() ? "catch on your pussylips and you momentarily tense, having already gotten a full helping of the experience with the first one":"at the bottom of your already stretched asshole") + ".");
-	if(pc.hasVagina())
+	output("\n\nHer rut somewhat assuaged by the penetration and assurance you’re going to be available for her to crudely fuck and inflate with her cum, you assume she’s going to take it a little slower this time and get some fun out of it. Besides, what with the way she’s still throbbing and cumming inside you, she doesn’t need to go too hard. All of those expectations are betrayed when you feel her lower cocktip " + (x >= 0 ? "catch on your pussylips and you momentarily tense, having already gotten a full helping of the experience with the first one":"at the bottom of your already stretched asshole") + ".");
+	if(x >= 0)
 	{
 		output("\n\n<i>“Aw f- fuuuck!”</i> you scream, her cock pounding inside you with all the force and subtlety of a powered fist. The slyveren herm immediately begins hammering <i>both</i> of your holes incessantly, panting and moaning in glee. Looking down while your whole body is violated, you can see she’s wearing a massive grin of euphoria. You can tell she’s having the time of her fucking life destroying your holes like you’re nothing more than a toy in a sex shop.");
 		pc.cuntChange(x,1000);
@@ -1478,13 +1504,14 @@ public function getHammeredByThrobbSlyveren():void
 		output("\n\nYou let out a wordless scream as she crams the second one inside you too, white spunk spurting back out from your overfull asshole as she wriggles against you. Held in her surprisingly strong and desperate grip, it’s all you can do just to stay conscious while she bites down on her lip and begins the journey of working herself inside you anew.");
 		pc.buttChange(2000);
 	}
-	output("\n\nYou don’t know how long you’ll have to endure this treatment but surely it can’t be much. You’re even louder than she is, letting out mindless screams as she burrows herself inside your orifice" + (pc.hasVagina() ? "s":"") + " with a need so primal you don’t think she cares about the consequences at all. The massive gush of seed inside you that happens every second turns out to be a blessing, as it’s the only reason you can not only stay awake but even eke some pleasure out of this.");
+	output("\n\nYou don’t know how long you’ll have to endure this treatment but surely it can’t be much. You’re even louder than she is, letting out mindless screams as she burrows herself inside your orifice" + (x >= 0 ? "s":"") + " with a need so primal you don’t think she cares about the consequences at all. The massive gush of seed inside you that happens every second turns out to be a blessing, as it’s the only reason you can not only stay awake but even eke some pleasure out of this.");
 
-	output("\n\nBeing so roughly " + (pc.hasVagina() ? "double penetrated":"assfucked") + " wasn’t what you had planned for the day, but it’s working out pretty staggeringly both in the sense that you’re not gonna be able to walk and in the sense you think you’re about to have the most explosive orgasm of your life. The way she so violently fucks your hole" + (pc.hasVagina() ? "s":"") + ", rubbing against herself inside you while she plunders your body for pleasure, has you poised right on the edge already. You can feel yourself contracting, tightening around her implacable dual cocks, but it does nothing to halt or even slow her advance inside you.");
+	output("\n\nBeing so roughly " + (x >= 0 ? "double penetrated":"assfucked") + " wasn’t what you had planned for the day, but it’s working out pretty staggeringly both in the sense that you’re not gonna be able to walk and in the sense you think you’re about to have the most explosive orgasm of your life. The way she so violently fucks your hole" + (x >= 0 ? "s":"") + ", rubbing against herself inside you while she plunders your body for pleasure, has you poised right on the edge already. You can feel yourself contracting, tightening around her implacable dual cocks, but it does nothing to halt or even slow her advance inside you.");
 
-	output("\n\nGrunting, you feel yourself lock tight around her hard enough that even the snakewoman takes notice, hissing in recognition while you lift your head and scream twice more. The first is instinctual, your entire body shaking as orgasm wracks you from head to toe. Pleasure radiates outwards so rapidly that it feels like you’re floating away before the sensation of her pulsing cocks inside you anchors you to the ground. The second is very much a conscious action, hollow and drawn-out, an admission of defeat to the slavebreaker currently plugged inside your hole" + (pc.hasVagina() ? "s":"") + " and pumping " + (pc.hasVagina() ? "them":"it") + " with cum.");
+	output("\n\nGrunting, you feel yourself lock tight around her hard enough that even the snakewoman takes notice, hissing in recognition while you lift your head and scream twice more. The first is instinctual, your entire body shaking as orgasm wracks you from head to toe. Pleasure radiates outwards so rapidly that it feels like you’re floating away before the sensation of her pulsing cocks inside you anchors you to the ground. The second is very much a conscious action, hollow and drawn-out, an admission of defeat to the slavebreaker currently plugged inside your hole" + (x >= 0 ? "s":"") + " and pumping " + (x >= 0 ? "them":"it") + " with cum.");
 	output("\n\nYou’re not sure if she cums after that or whether she was orgasming the whole time, but the moment your orgasm ends you flop on top of her, limp and unconscious. The slyveren woman doesn’t even care, seizing you around the hips and thrusting as hard as she possibly can, ejaculating as many times as she can inside your worn insides until she, too, succumbs to exhaustion and passes out.");
-	if(pc.hasVagina()) pc.loadInCunt(enemy,x);
+	
+	if(x >= 0) pc.loadInCunt(enemy,x);
 	else pc.loadInAss(enemy);
 	pc.loadInAss(enemy);
 	processTime(30);

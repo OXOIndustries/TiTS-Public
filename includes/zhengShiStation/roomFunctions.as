@@ -61,13 +61,23 @@ public function zhengMinesEncounterBonus():Boolean
 		IncrementFlag("ZS_MINE_ENCOUNTERS");
 
 		if(flags["ZS_MINE_ENCOUNTERS"] > 7 && !pc.hasStatusEffect("DisabledRoz") && flags["ROZ_ARMOR_STOLEN"] == undefined && flags["ROZ_CORED_4_GUD"] == undefined) encounters.push(encounterRoz);
-		encounters.push(miningRobotAttack);
-		encounters.push(boredJumperAttackProc);
-		encounters.push(boredJumperAttackProc);
+		
 		if(flags["MAIKE_SLAVES_RELEASED"] == 1 || flags["MAIKE_SLAVES_RELEASED"] == 2) 
 		{
 			encounters.push(encounterSlyverenSlavebreaker);
 			encounters.push(encounterSlyverenSlavebreaker);
+			encounters.push(boredJumperAttackProc);
+			encounters.push(boredJumperGangbangProc);
+			//Robots become a very rare encounter
+			if(rand(5) == 0) encounters.push(miningRobotAttack);
+		}
+		//No more robot
+		else
+		{
+			encounters.push(miningRobotAttack);
+			encounters.push(miningRobotAttack);
+			encounters.push(boredJumperAttackProc);
+			encounters.push(boredJumperAttackProc);
 		}
 	}
 	if(encounters.length > 0) 

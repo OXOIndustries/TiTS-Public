@@ -1273,7 +1273,7 @@ public function urbolgToysPartIII(x:int):void
 	clearOutput();
 	showUrbolg(true);
 	//Cumslut of any kind.
-	if(pc.isDependant(2) || pc.isBimbo() || pc.isCumSlut())	
+	if(pc.isBimbo() || pc.isCumSlut())	
 	{
 		output("Your eyes cross to take in the puddle of creamy goo on your chest. The salty, musky aroma wafts up to your nostrils, and your mouth can’t help but water. Your cock can’t help but throb. You can’t help but lick your lips and prepare yourself for a mighty thrust. Of course you want more of his cum! You want to milk it out in long loving strokes until you’re bathing in it. You want it " + (pc.hasHair() ? "slicking back your hair" : "coating your head") + " and danging from your eyelashes. You want it bubbling around a glowing, cum-drunk smile.");
 	}
@@ -1325,7 +1325,7 @@ public function urbolgToysPartIV(x:int):void
 
 	output("\n\nUrbolg is no better off. The stocky dog-man’s crotch is plastered with mixed sperm all the way down to his knees, and he’s panting like he just finished a marathon. He rolls off of you, cock still hard and drooling. His artificial eye is completely unfocused as he groans and twitches. Both his toys are still going strong, even as you peel your own off.");
 	output("\n\nWiping the seed from your eyes, you watch him for a bit. His cyan knot seems to be filling up quite rapidly, even if his brain is taking its sweet time to recover.");
-	if(pc.isDependant(2) || pc.isBimbo() || pc.isCumSlut())	
+	if(pc.isBimbo() || pc.isCumSlut())	
 	{
 		output(" You do him the favor of sealing your lips around his slippery tip and sucking. A hand around his knot soon has him spraying creamy delight into the back of your throat, something you’re all too happy to swallow down. There seems almost no end to his loads. One cheek-bulging deposit inevitably gives way to another, and another... and another. You just focus on sucking like the natural-born cock-sucker you are. Urbolg deserves to be <i>satisfied</i>.");
 		output("\n\nYour tummy gurgles and wobbles from fullness before the korgonne stops giving you musky treats, but at least the size of his squirts and the thickness of his load has diminished. What a productive doggy! You ease off his cock and brush off his toys before he can die from dehydration, though. The cum flavored burp you have while you wait for Urbolg to wake up is nature’s way of letting you know you did a good job. Yay!");
@@ -1348,7 +1348,7 @@ public function urbolgToysPartIV(x:int):void
 	output("\n\nThe korgonne heaves himself up and grabs his apron, perhaps the only thing in the immediate area to survive your bit of playtime un-spunked. <i>“I’ll be seeing ye outside. Lemme know if I can do anything for ye, or if ye want another go with me toys.”</i>");
 	output("\n\nYou definitely will.");
 	//Apply cumsoaked.
-	if(pc.isDependant(2) || pc.isBimbo() || pc.isCumSlut())	
+	if(pc.isBimbo() || pc.isCumSlut())	
 	{
 		processTime(30);
 		pc.loadInMouth(chars["URBOLG"]);

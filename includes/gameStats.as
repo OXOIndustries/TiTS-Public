@@ -2969,6 +2969,38 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			//Federation Quest
+			if(flags["FEDERATION_QUEST"] != undefined)
+			{
+				output2("\n<b><u>FederationQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["FEDERATION_QUEST"] <= 0) output2(" Refused");
+				else
+				{
+					output2(" Accepted");
+					if(flags["FEDERATION_QUEST_AMBUSH"] == 0) output2(", Lost to ambush");
+					if(flags["FEDERATION_QUEST_AMBUSH"] == 1) output2(", Defeated ambush");
+					switch(flags["FEDERATION_QUEST"])
+					{
+						case 1:
+							if(flags["FEDERATION_QUEST_AMBUSH"] != undefined) output2(", <i>Search for the Queen</i>");
+							else output2(", <i>Rendevous outside bunker</i>");
+							break;
+						case 2: output2(", Defeated Estallia, Radio’d Queen, <i>Prepare for confrontation</i>"); break;
+						case 3: output2(", Defeated Estallia, Captured Estallia"); break;
+						case 4: output2(", Defeated Estallia, Released Estallia"); break;
+						case 5: output2(", Estallia agreed to stop attacks"); break;
+						case 6: output2(", Remnants plan to assimilate with Kui-tan"); break;
+						case 7: output2(", Kara transporting Remnants to Mhen’ga"); break;
+						case 8: output2(", Agreed to transport Remnants to Mhen’ga"); break;
+						case 9: output2(", Paid to transport Remnants to Mhen’ga"); break;
+						case 10: output2(", Transported Remnants to Mhen’ga"); break;
+					}
+					if(flags["FEDERATION_QUEST"] >= 3) output2(", Completed");
+				}
+
+				sideCount++;
+			}
 			// IrelliaQuest
 			if(flags["IRELLIA_QUEST_STATUS"] != undefined)
 			{
@@ -2986,29 +3018,6 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["IRELLIA_QUEST_STATUS"] >= 5) output2(", Completed");
 				}
 				else output2(" <i>In progress...</i>");
-				sideCount++;
-			}
-			//Federation Quest
-			if(flags["FEDERATION_QUEST"] != undefined)
-			{
-				output2("\n<b><u>FederationQuest</u></b>");
-				output2("\n<b>* Status:</b>");
-				if(flags["FEDERATION_QUEST"] == 0) output2(" Refused");
-				else if(flags["FEDERATION_QUEST"] == 1) output2(" Accepted, <i>Rendevous outside bunker</i>");
-				else if(flags["FEDERATION_QUEST"] == 2) output2(" Radio’d Queen, <i>Prepare for confrontation</i>");
-				else if(flags["FEDERATION_QUEST"] >= 3)
-				{
-					output2(" Completed");
-					if(flags["FEDERATION_QUEST"] == 3) output2(", Defeated Estallia, Captured Estallia");
-					if(flags["FEDERATION_QUEST"] == 4) output2(", Defeated Estallia, Released Estallia");
-					if(flags["FEDERATION_QUEST"] == 5) output2(", Estallia agreed to stop attacks");
-					if(flags["FEDERATION_QUEST"] == 6) output2(", Remnants plan to assimilate with Kui-tan");
-					if(flags["FEDERATION_QUEST"] == 7) output2(", Kara transporting Remnants to Mhen’ga");
-					if(flags["FEDERATION_QUEST"] == 8) output2(", Agreed to transport Remnants to Mhen’ga");
-					if(flags["FEDERATION_QUEST"] == 9) output2(", Paid to transport Remnants to Mhen’ga");
-					if(flags["FEDERATION_QUEST"] == 10) output2(", Transported Remnants to Mhen’ga");
-				}
-
 				sideCount++;
 			}
 			// Kara's Big Adventure! - Pt.1
@@ -4003,6 +4012,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(reahaIsCrew()) output2(" (Onboard Ship)");
 						else if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
 						else if(flags["REAHA_IS_CREW"] == 3) output2(" (At New Texas)");
+						if(flags["REAHA_PAY_Q"] == 1) output2("\n<b>* Reaha, Credit Debt:</b> <i>Ready to pay!</i>");
+						if(flags["REAHA_PC_PAY"] != undefined) output2("\n<b>* Reaha, Credit Debt, Paid:</b> " + flags["REAHA_PC_PAY"] + " credits");
 						if(flags["REAHA_FAMILY_RESULT"] != undefined) output2("\n<b>* Reaha, Talk, Family:</b>");
 						if(flags["REAHA_FAMILY_RESULT"] == 1) output2(" Encouraged to contact her little sister");
 						if(flags["REAHA_FAMILY_RESULT"] == -1) output2(" Discouraged from contacting little sister");
@@ -4374,7 +4385,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Nursery!
-			if(flags["USED_NURSERY_COMPUTER"] != undefined || flags["BRIGET_MET"] != undefined)
+			if(flags["USED_NURSERY_COMPUTER"] != undefined || flags["BRIGET_MET"] != undefined || StatTracking.getStat("nursery/milk milked") > 0)
 			{
 				output2("\n<b><u>Nursery</u></b>");
 				if(flags["USED_NURSERY_COMPUTER"] != undefined) output2("\n<b>* Computer:</b> Used");
@@ -4442,6 +4453,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_ZEPHYR"] != undefined)
 				{
 					output2("\n<b>* Zephyr:</b> Met her");
+					if(zephAtNursery()) output2(" (At Tavros Station, In Nursery)");
 					if(flags["ZEPHYR_PISSED"] != undefined) output2(", Pissed off");
 					if(flags["SEXED_ZEPHYR"] != undefined) output2(", Sexed her");
 					if(flags["ZEPHYR_FUCKED_PC"] != undefined) output2(", She fucked you");
@@ -5088,6 +5100,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["QUINN_PREG_TIMER"] != undefined) output2("\n<b>* Quinn, Days Pregnant:</b> " + flags["QUINN_PREG_TIMER"]);
 				if(flags["QUINN_TOTAL_KIDS"] > 0) output2("\n<b>* Quinn, Total Kids:</b> " + flags["QUINN_TOTAL_KIDS"]);
 				if(flags["SEXED_QUINN"] != undefined) output2("\n<b>* Quinn, Times Sexed:</b> " + flags["SEXED_QUINN"]);
+				if(flags["QUINN_EVERY_HOLED"] != undefined) output2("\n<b>* Quinn, Time Since Last Sexed in Every Hole:</b> " + prettifyMinutes(GetGameTimestamp() - flags["QUINN_EVERY_HOLED"]));
 				if(flags["QUINN_KID_PLAYS"] != undefined) output2("\n<b>* " + quinnBabyName() + ", Times Played With:</b> " + flags["QUINN_KID_PLAYS"]);
 				if(flags["QUINN_MAIDENS_MET"] != undefined) output2("\n<b>* Fetch and Carry:</b> Met them");
 				if(flags["QUINN_MAIDENS_SEXED"] != undefined) output2("\n<b>* Fetch and Carry, Times Sexed:</b> " + flags["QUINN_MAIDENS_SEXED"]);

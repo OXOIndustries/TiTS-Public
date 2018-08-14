@@ -725,7 +725,7 @@ public function zilTwinsFuckTetra():void
 	output("\n\nFinding yourself grinning and blushing at her words, you know you’ll endeavour to do your best to please this alien woman. So, you give your hips a little lurch forward, lining up");
 	if (cIdx2 >= 0) output(" your [pc.cocks] with both her slightly-stretched slit and her narrow pucker, ready to give her some double-penetrative loving.");
 	else output(" your [pc.cock " + cIdx + "] with Tetra’s slightly-stretched and honey-leaking slit, ready for you to fill it.");
-	output(" Tetra bites her lips and tightens her legs behind you, attempting to pull your into her.");
+	output(" Tetra bites her lips and tightens her legs behind you, attempting to pull you into her.");
 	output("\n\nHer plan works, with your cockhead");
 	if (cIdx2 >= 0) output("s spreading her pussy and asshole quite easily, drawing little more than a pleasured gasp from the girl as her delicious nectars coat your upper-most tip before the golden honey drips down, generously lubing the cock pressed against her pucker.");
 	else output(" spreading her already-parted pussy, drawing little more than a pleasured gasp from the girl as she coats your [pc.cockhead " + cIdx + "] in her delicious nectars.");
@@ -799,7 +799,7 @@ public function zilTwinsFuckTetra():void
 	else
 	{
 		output(" until she’s full of your warm seed and");
-		if (pc.hasKnot(cIdx)) output(" her inner walls are painted [pc.cumcolor].");
+		if (pc.hasKnot(cIdx)) output(" her inner walls are painted [pc.cumColor].");
 		else output(" [pc.cum] is leaking out around your shaft.");
 	}
 	

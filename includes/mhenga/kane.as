@@ -620,7 +620,7 @@ public function kaneHellYeahBeeBlowjob():void
 		if (pc.hasCock()) output(" [pc.cum] " + (pc.cumQ() > 750 ? "coursing down your shivering [pc.cock]" : "shot into the air in foot long ropes by your overjuiced [pc.cockNoun]"));
 		if (pc.hasCock() && pc.hasVagina()) output(" and");
 		if (pc.hasVagina()) output(" [pc.eachVagina] quivering and seizing up in delirium, " + (pc.wettestVaginalWetness() > 5 ? "[pc.femcum] dribbling down your [pc.thighs]" : "a great gush of [pc.femcum] warming your [pc.thighs] and watering the grass below") + ", almost beside " + (pc.hasVaginas() ? "themselves" : "itself") + " that your mouth is being blessed with thrusts of thick sugar cock and " + (pc.hasVagina() ? "they aren’t" : "it isn’t"));
-		output(".\n\nThe feeling of his penis vigorously claiming your mouth again and again, glossy hardness sliding back and forth between your opened [pc.lips], only makes the orgasm more intense, breathing muffled moans into his sweet meat. Kane’s mouth is open and is eyes are closed as he fucks you, his handsome, scarred face thrown back… and then he hilts himself into your face and cums himself with a shout of abandon, a great gout of syrupy cum deposited all across the back of your mouth. You orgasm again, hard on the heels of the last,");
+		output(".\n\nThe feeling of his penis vigorously claiming your mouth again and again, glossy hardness sliding back and forth between your opened [pc.lips], only makes the orgasm more intense, breathing muffled moans into his sweet meat. Kane’s mouth is open and is eyes are closed as he fucks you, his handsome, scarred face thrown back... and then he hilts himself into your face and cums himself with a shout of abandon, a great gout of syrupy cum deposited all across the back of your mouth. You orgasm again, hard on the heels of the last,");
 		if (pc.hasVagina()) output(" your " + (pc.hasVaginas() ? "pussies" : "pussy") + " muscles bunching up to deliver another aching, mind-addling series of detonations within you");
 		if (pc.hasVagina() && pc.hasCock()) output(" and");
 		if (pc.hasCock()) output(" [pc.eachCock] batting furiously against your [pc.belly], painting it {and your [pc.legs] with another [pc.cumVisc] batch of wasted sperm");
@@ -867,27 +867,27 @@ public var kaneMoveTexts:Array = [
 		" This is surely a prelude to him trying to trip you. If you watched out for that, it would be a plum chance to trip him back...",
 		" Maybe if you suddenly heaved his arm, you’d unbalance him..."]];
 public var kaneCorrectTexts:Array = [
-	[	"Kane flexes his muscles… and in the same instant you switch both hands to his arm, hauling him completely off balance as he tries to turn you the other way. You heave him off of his feet!",
+	[	"Kane flexes his muscles... and in the same instant you switch both hands to his arm, hauling him completely off balance as he tries to turn you the other way. You heave him off of his feet!",
 		" You slam him into the ground with a punishing, chitin-cracking thump. No way he’s getting back up after that.",
 		" He manages to recover, snarling as he swings back around to grab at your shoulder, but you can see in his face he’s shook by that sudden reverse."],
 	[	"You suddenly shove forward, and after only a couple moments of heated, snarling resistance, Kane caves!",
 		" You follow through, pedalling him backwards until he trips and you tackle him to the ground. He’s down.",
 		" He manages to recover after an exhilarating back pedal, digging his heels into the ground and stopping your forward momentum with a throaty, defiant growl, but you can see in the shiver of his arms that you’ve burned through a lot of his energy doing that."],
-	[	"Kane flicks his leg at you… and you easily sidestep it, whipping your [pc.leg] at his standing leg at the same time.",
+	[	"Kane flicks his leg at you... and you easily sidestep it, whipping your [pc.leg] at his standing leg at the same time.",
 		" He emits a surprised, rough squawk as you take him out cleanly. You smack him to the grass as cleanly as any martial arts master. This contest is over!",
-		" The armored limb buckles, and for a moment you think you’ll be able to clean him out entirely… but he recovers in the next instant, surging back into your arms with a defiant cry. Still, you definitely spooked him, and his knee is still probably feeling that."]];
+		" The armored limb buckles, and for a moment you think you’ll be able to clean him out entirely... but he recovers in the next instant, surging back into your arms with a defiant cry. Still, you definitely spooked him, and his knee is still probably feeling that."]];
 public var kaneStallTexts:Array = [
-	[	"Kane flexes his muscles… and in the same instant you switch both hands to his arm, hauling him completely off balance as he tries to turn you the other way. You don’t quite have the panache to turn it into a real reverse - he almost immediately swings back around, grabbing your shoulder hard in order to regain balance - but at least you blocked his move.","",""],
+	[	"Kane flexes his muscles... and in the same instant you switch both hands to his arm, hauling him completely off balance as he tries to turn you the other way. You don’t quite have the panache to turn it into a real reverse - he almost immediately swings back around, grabbing your shoulder hard in order to regain balance - but at least you blocked his move.","",""],
 	[	"You suddenly shove forward, and after only a couple moments of heated, snarling resistance, Kane caves! He manages to recover after an exhilarating back pedal, digging his heels into the ground and stopping your forward momentum with a throaty, defiant growl. Still, you stopped him from overpowering you.","",""],
-	[	"Kane flicks his leg at you… and you easily sidestep it, whipping your [pc.leg] at his standing leg at the same time. Unfortunately, you don’t have the strength to carry the move out cleanly - your [pc.leg] merely tangles with his, and after a clumsy scuffle you both regain balance. Still, the main thing is you stopped him from tripping you.","",""]];
+	[	"Kane flicks his leg at you... and you easily sidestep it, whipping your [pc.leg] at his standing leg at the same time. Unfortunately, you don’t have the strength to carry the move out cleanly - your [pc.leg] merely tangles with his, and after a clumsy scuffle you both regain balance. Still, the main thing is you stopped him from tripping you.","",""]];
 public var kaneWrongTexts:Array = [
-	[	"You prepare to really put the hurt on him… and then suddenly he’s swinging nimbly to one side, hauling you forwards with a frightening strong surge, sending you flying into a tree trunk!",
+	[	"You prepare to really put the hurt on him... and then suddenly he’s swinging nimbly to one side, hauling you forwards with a frightening strong surge, sending you flying into a tree trunk!",
 		" Your forehead makes firm contact with the wood, and the whole world shudders, turns upside down with pain. You try and regain your balance, and collapse to the turf instead with a nauseous groan.",
-		" You smack the side of your head against the wood, a star-flecked wave of pain crashing into you. You stagger back around woozily, manage to regain a hold on Kane before he can finish you… but you doubt you can take another blow like that again."],
-	[	"You try and counter him… and he easily steps through it, batting away your attempt to stop his charge. Your heart leaps into your throat as you feel yourself being powerfully borne backwards.",
+		" You smack the side of your head against the wood, a star-flecked wave of pain crashing into you. You stagger back around woozily, manage to regain a hold on Kane before he can finish you... but you doubt you can take another blow like that again."],
+	[	"You try and counter him... and he easily steps through it, batting away your attempt to stop his charge. Your heart leaps into your throat as you feel yourself being powerfully borne backwards.",
 		" You stumble, then trip backwards, and with a howl of triumph, Kane forcibly bears you to the ground with a winding thump. You try and wriggle your way out of his iron grip and find you can’t do it - not anymore.",
 		" You manage to recover before he manages to carry you to the ground, gritting your teeth and digging great clumps of grass out of the ground with your [pc.feet]. But boy oh boy, you doubt you can weather another charge like that."],
-	[	"You put your weight down, preparing to put a stop to his antics… and he neatly steps forward and swipes your [pc.legs] from under you!",
+	[	"You put your weight down, preparing to put a stop to his antics... and he neatly steps forward and swipes your [pc.legs] from under you!",
 		" The world turns upside down, and you land on the turf with a winding thud. Kane is immediately on top of you, pushing your wrists to the ground, and you find you simply don’t have the strength to push him off. It’s over.",
 		" You go sprawling, but just about manage to regain your [pc.feet] before he can bear you to the ground. Your nerves are shot, though - your muscles are shivering. You really hope he doesn’t pull that off again."]];
 
@@ -1034,7 +1034,7 @@ public function kaneBadEnd():void
 	output("\n\nYou jerk your head as you hear a rustle in the bushes, and your heart lifts like a seabird on the breeze when you see Kane stride out from the undergrowth, his strong, lean arms wrapped in fibre baggage.");
 	output("\n\n<i>“I’m leaving,”</i> he says to you abruptly. He flings one of the packages down into the dirt with a single, curt gesture. <i>“I’ve had as enough as I can take. Quinn leads this tribe to ruin. What can one male do, seeing their leader plan pure folly, but strike out and forge their own path? I shall found a new tribe. I shall gather zil that desire the same things I do: honesty, honor, and dominance. The starwalkers who dare come to our lands may share them - but they shall do so as our servants.”</i>");
 	output("\n\nHe pauses before you, wings flickering and eyes livid, energized by what he’s saying. You sigh, feeling his scent on your tongue and in your nostrils, that delicious, honeyed smell that washes away all unhelpful thoughts. You’re so glad he’s here, making everything clear, words rippling into the warm puddle of your mind.");
-	output("\n\n<i>“Yes…”</i> he growls. <i>“Exquisitely crafted starwalkers, who shed their silly exoskeletons and kneel before us. They who run and fly through the jungle in their natural state like we do, and learn to suck a cock and say thank you after swallowing? They can stay. The rest shall be driven before us, like dust on the wind.”</i>");
+	output("\n\n<i>“Yes...”</i> he growls. <i>“Exquisitely crafted starwalkers, who shed their silly exoskeletons and kneel before us. They who run and fly through the jungle in their natural state like we do, and learn to suck a cock and say thank you after swallowing? They can stay. The rest shall be driven before us, like dust on the wind.”</i>");
 	output("\n\n<i>“Do you really think others will join you?”</i> you ask, excitement and worry turning over in your gut.");
 	output("\n\n<i>“Of course.”</i> He reaches out and grips your face, looking you lustily in the eyes. Warmth pours down to your groin,");
 	if (pc.hasVagina()) output(" [pc.eachVagina] drooling arousal");
@@ -1057,7 +1057,7 @@ public function kaneBadEnd():void
 	}
 	if (pc.hasVagina() && pc.hasCock()) output(" and");
 	if (pc.hasVagina()) output(" your [pc.vagina] clenching up and milking that delicious prick with one stunning spasm after another, dribbling [pc.femcum] freely down your [pc.thighs]");
-	output(". Kane gives you it ceaselessly throughout, digging that firm cock-flesh into your sensitive innards repeatedly, merely emitting a satisfied grunt and giving you a firm slap to the [pc.butt] when you whimper with joy. Void, you love him, you love his wonderful cock, you love serving him, you love the scent and taste of honey… it’s all you ever want to know.");
+	output(". Kane gives you it ceaselessly throughout, digging that firm cock-flesh into your sensitive innards repeatedly, merely emitting a satisfied grunt and giving you a firm slap to the [pc.butt] when you whimper with joy. Void, you love him, you love his wonderful cock, you love serving him, you love the scent and taste of honey... it’s all you ever want to know.");
 
 	addButton(0, "Next", kaneBadEndTwo);
 }

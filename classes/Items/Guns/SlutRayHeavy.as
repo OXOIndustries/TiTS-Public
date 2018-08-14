@@ -7,12 +7,12 @@ package classes.Items.Guns
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Combat.DamageTypes.DamageFlag;
 	
-	public class SlutRay extends ItemSlotClass
+	public class SlutRayHeavy extends ItemSlotClass
 	{
 		//Level 10 (Rare). Balance 2.0
 		//10% drop chance on SlyverenSlavebreaker.
 		//constructor
-		public function SlutRay()
+		public function SlutRayHeavy()
 		{
 			this._latestVersion = 1;
 
