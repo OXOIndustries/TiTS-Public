@@ -3537,6 +3537,15 @@ public function variableRoomUpdateCheck():void
 	}
 	//Remove marker after xmas
 	else if(rooms["UVIP T44"].hasFlag(GLOBAL.OBJECTIVE)) rooms["UVIP T44"].removeFlag(GLOBAL.OBJECTIVE);
+	//Vark's cave and stuff
+	rooms[varkCaveRoom].removeFlag(GLOBAL.NPC);
+	rooms[varkCaveRoom].removeFlag(GLOBAL.OBJECTIVE);
+	rooms["UVIP T44"].southExit = varkCaveRoom;
+	if (pc.isTaur() || !pc.hasGenitals())
+		rooms["UVIP T44"].southExit = undefined;
+	if (flags["MET_VARK"] == undefined) rooms[varkCaveRoom].addFlag(GLOBAL.OBJECTIVE);
+	else if (flags["MET_VARK"] == 1) rooms[varkCaveRoom].addFlag(GLOBAL.NPC);
+	else rooms["UVIP T44"].southExit = undefined;
 	
 	/* VESPERIA / CANADIA STATION */
 	/*

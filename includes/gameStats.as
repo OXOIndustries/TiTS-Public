@@ -6812,7 +6812,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Ice Plains
-			if(flags["MET_MYRNA"] != undefined || flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["MET_STORMGUARD"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
+			if(flags["MET_MYRNA"] != undefined || flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["MET_STORMGUARD"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined || flags["MET_VARK"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
 				if(flags["MET_STORMGUARD"] != undefined)
@@ -6858,6 +6858,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				// Abandoned Outpost
 				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");
+				if(flags["MET_VARK"] != undefined)
+				{
+					output2("\n<b>* Vark:</b> Met him");
+					if(varkGotCollar()) output2(", Got collar");
+					if(flags["VARK_SEXED"] != undefined) output2("\n<b>* Vark, Times Sexed:</b> " + flags["VARK_SEXED"]);
+				}
 				variousCount++;
 			}
 			//Frostwyrm
