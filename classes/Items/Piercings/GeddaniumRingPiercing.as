@@ -23,7 +23,7 @@
 			
 			this.description = "a geddanium ring";
 			
-			this.tooltip = "This ring-shaped piercing bears a bright red stone of hyper-concontrated geddanium, a gemstone favored by scaled creatures the galaxy over. While wearing any geddanium piercings, teasing scaly foes will be more effective - but you your scaled opponents' teasing will deal 30% more damage to you.";
+			this.tooltip = "This ring-shaped piercing bears a bright red stone of hyper-concontrated geddanium, a gemstone favored by scaled creatures the galaxy over. While wearing any geddanium piercings, teasing scaly foes will be more effective - but your scaled opponents’ teasing will deal 30% more damage to you.";
 
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
