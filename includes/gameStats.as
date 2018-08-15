@@ -3373,7 +3373,7 @@ public function displayQuestLog(showID:String = "All"):void
 						schoraName += "Horned Woman";
 						if(flags["MET_SCHORA"] > 1 || flags["SYRIQUEST_LOCK_BYPASS"] >= 1) schoraName += " Commander";
 					}
-					output2("\n<b>* " + schoraName +  ":</b>");
+					output2("\n<b>* " + schoraName + ":</b>");
 					switch(flags["MET_SCHORA"])
 					{
 						case 1: output2(" Seen her"); break;
@@ -6494,9 +6494,9 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_ROZ"] != undefined)
 				{
 					output2("\n<b>* Rozenn, Times Encountered:</b> " + flags["MET_ROZ"]);
-					if(flags["ROZ_GOOFUKKED_WNO_DIK"] != undefined)  output2("\n<b>* Rozenn, Times She Fucked You with Her Dick:</b> " + flags["ROZ_GOOFUKKED_WNO_DIK"]);
+					if(flags["ROZ_GOOFUKKED_WNO_DIK"] != undefined) output2("\n<b>* Rozenn, Times She Fucked You with Her Dick:</b> " + flags["ROZ_GOOFUKKED_WNO_DIK"]);
 					if(flags["ROZ_INTERNAL_FUCKED"] != undefined) output2("\n<b>* Rozenn, Internal Fuck, Times Opted to Jack Her Out:</b> " + flags["ROZ_INTERNAL_FUCKED"]);
-					if(flags["ROZ_INTERNAL_FUCKED_SUBMITTED"] != undefined)  output2("\n<b>* Rozenn, Internal Fuck, Times Opted to Give Up:</b> " + flags["ROZ_INTERNAL_FUCKED_SUBMITTED"]);
+					if(flags["ROZ_INTERNAL_FUCKED_SUBMITTED"] != undefined) output2("\n<b>* Rozenn, Internal Fuck, Times Opted to Give Up:</b> " + flags["ROZ_INTERNAL_FUCKED_SUBMITTED"]);
 				}
 				// Slavebreaker
 				if(flags["MET_SLAVEBREAKERS"] != undefined)

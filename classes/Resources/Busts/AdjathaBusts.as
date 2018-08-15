@@ -645,6 +645,22 @@ package classes.Resources.Busts
 		public var Bust_QUINN:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_nude.png", mimeType = "image/png")]
 		public var Bust_QUINN_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_preg.png", mimeType = "image/png")]
+		public var Bust_QUINN_PREG:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_preg_nude.png", mimeType = "image/png")]
+		public var Bust_QUINN_PREG_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_tits_preg.png", mimeType = "image/png")]
+		public var Bust_QUINN_PREG_TITS:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_tits_preg_nude.png", mimeType = "image/png")]
+		public var Bust_QUINN_PREG_TITS_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_huge.png", mimeType = "image/png")]
+		public var Bust_QUINN_PREG_HUGE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_huge_nude.png", mimeType = "image/png")]
+		public var Bust_QUINN_PREG_HUGE_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_tits.png", mimeType = "image/png")]
+		public var Bust_QUINN_MOMMY:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/quinn_tits_nude.png", mimeType = "image/png")]
+		public var Bust_QUINN_MOMMY_NUDE:Class;
 		
 		public function get Bust_RASK_TRAP():Class { return Bust_AZAPHEL; }
 		public function get Bust_RASK_TRAP_NUDE():Class { return Bust_AZAPHEL_NUDE; }
@@ -1493,6 +1509,22 @@ package classes.Resources.Busts
 			public var Full_QUINN:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_nude.png", mimeType = "image/png")]
 			public var Full_QUINN_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_preg.png", mimeType = "image/png")]
+			public var Full_QUINN_PREG:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_preg_nude.png", mimeType = "image/png")]
+			public var Full_QUINN_PREG_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_tits_preg.png", mimeType = "image/png")]
+			public var Full_QUINN_PREG_TITS:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_tits_preg_nude.png", mimeType = "image/png")]
+			public var Full_QUINN_PREG_TITS_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_huge.png", mimeType = "image/png")]
+			public var Full_QUINN_PREG_HUGE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_huge_nude.png", mimeType = "image/png")]
+			public var Full_QUINN_PREG_HUGE_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_tits.png", mimeType = "image/png")]
+			public var Full_QUINN_MOMMY:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/quinn_tits_nude.png", mimeType = "image/png")]
+			public var Full_QUINN_MOMMY_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/raskvel_male.png", mimeType = "image/png")]
 			
