@@ -92,6 +92,7 @@
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_SCALES;
 			this.skinTone = "ebony";
+			this.skinAccent = "gold";
 			this.skinFlags = [];
 			
 			this.faceType = GLOBAL.TYPE_SNAKE;
@@ -222,6 +223,7 @@
 				//She loves 'em big
 				sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, GLOBAL.REALLY_LIKES_SEXPREF);
 				this.scaleColor = "purple";
+				this.skinAccent = "pink";
 				this.lipColor = "pink";
 				this.eyeColor = "bronze";
 				this.nippleColor = "pink";

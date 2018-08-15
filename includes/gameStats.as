@@ -6409,7 +6409,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			if(flags["GOT_URBOLGS_SHIELD"] != undefined)
 			{
-				output2("\n<b><u>Artificer’s\nOffice</u></b>");
+				output2("\n<b><u>Artificer’s Office</u></b>");
 				output2("\n<b>* Urbolg’s Safe:</b>");
 				if(flags["GOT_URBOLGS_SHIELD"] >= 1) output2(" Found, Shield looted");
 				else output2(" Know about it, <i>Lock combination is 7-8-9</i>");
@@ -6417,7 +6417,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			if(flags["MAIKE_QUARTERS_UNLOCKED"] != undefined)
 			{
-				output2("\n<b><u>Maike’s\nQuarters</u></b>");
+				output2("\n<b><u>Maike’s Quarters</u></b>");
 				output2("\n<b>* Status:</b>");
 				switch(flags["MAIKE_QUARTERS_UNLOCKED"])
 				{

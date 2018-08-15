@@ -351,7 +351,7 @@ public function cumMilkingLoss4(x:int):void
 }
 
 //Suckled Into Submission
-//For dicks up to 35”</i> inches long.
+//For dicks up to 35" inches long.
 public function suckledIntoSubmissionLost():void
 {
 	showSlavebreaker(true);
@@ -1614,7 +1614,12 @@ public function faceFuckThatSlyveren():void
 		if(pc.cocks[x].cLength() <= 6) 
 		{
 			output("\n\nThough your largest endowment only pokes at the entrance of her throat, she’s more than happy to let you use her to your heart’s content. Rocking your hips back and forth, you pull her into you with every thrust, her big, cushiony lips planting " + (enemy.lipColor == "pink" ? "pink-colored":"glossy black") + " kisses at the base of your [pc.cock " + x + "]. You can even feel her purse her lips with every one, clearly intent on leaving her mark on you once you’re done.");
-			if(pc.balls > 0) output("\n\nOn a hard, savage thrust where you hilt yourself and hold her against your lower stomach with a groan of pleasure, her jaw slowly yawns open, strands of saliva snapping as she stretches it wide. Then, unfurling her tongue from your cock, she slides it between your legs and excitedly sucks your [pc.balls] into her welcoming mouth to meet your dick");
+			if(pc.balls > 0)
+			{
+				output("\n\nOn a hard, savage thrust where you hilt yourself and hold her against your lower stomach with a groan of pleasure, her jaw slowly yawns open, strands of saliva snapping as she stretches it wide. Then, unfurling her tongue from your cock");
+				if(pc.legCount >= 2) output(", she slides it between your [pc.legsNoun]");
+				output(" and excitedly sucks your [pc.balls] into her welcoming mouth to meet your dick");
+			}
 			else output("\n\nYou let her passionately make out with your groin while her lengthy tongue furls around your prick, slowly shifting back and forth. She’s jacking you off with her tongue, you realize. The thought of it - that this had occurred to her at all, let alone been acted upon - is so erotic you can’t help but groan in pleasure, shuddering in her mouth’s grasp.");
 			output("\n\n<i>“Fuuuck,”</i> you moan, looking down at her in awe. <i>“You might be the best cocksucker I’ve found since I left Tavros, lady.”</i>");
 			output("\n\nThough her mouth is otherwise occupied, you can feel her vocal folds thrum against the tip of your cock as she giggles. It’s a nice feeling. From there you slowly let her back off, bringing her tongue with her and caressing your cock on the outstroke. Then you bring her back in, feeling it curl around you once more. Her technique is truly impressive and were she the one who had bested you, you’d be content to let her ply her trade upon you.");
@@ -1975,7 +1980,9 @@ public function badEnd2Slavebreaker3():void
 	output("\n\n<i>“I’ve decided,”</i> she murmurs in your ear, rubbing her delicate fingers up and down your brute length. <i>“From tomorrow onwards, you’re going to be my personal assistant. It’ll be less demanding work than in the mines, but still very... </i>physical<i>, if you catch my drift. Do you think you’ll be up to the job, [pc.boyGirl]?”</i>");
 	output("\n\n<i>“Yes ma’am,”</i> you moan, leaning back against the wall of the shower and just letting her take over. <i>“Happy to h-help.”</i>");
 	output("\n\n<i>“Oh, I’m so happy to hear that,”</i> she says, smiling wide. <i>“Let me give you a little reward before you come with me...”</i>");
-	output("\n\nGroaning in ecstasy, you slowly slide down the wall of the shower with your legs spread, the snakewoman following your descent closely with her sexy lips wrapped around the head of your cock. You can never quite get used to the way she can take your entire length inside her throat, bobbing and swallowing until you cum deep inside her. It’s miraculous how perfectly suited the slyveren biology is to sucking big, juicy cocks and swallowing down their cum.");
+	output("\n\nGroaning in ecstasy, you slowly slide down the wall of the shower");
+	if(pc.legCount >= 2) output(" with your [pc.legsNoun] spread");
+	output(", the snakewoman following your descent closely with her sexy lips wrapped around the head of your cock. You can never quite get used to the way she can take your entire length inside her throat, bobbing and swallowing until you cum deep inside her. It’s miraculous how perfectly suited the slyveren biology is to sucking big, juicy cocks and swallowing down their cum.");
 	output("\n\nAfter bringing you to an explosive, teeth-gritting orgasm, she stands back up with a smile and slightly swollen belly. She’s practically radiating contentment, and extends her hand to pull you up with her.");
 	output("\n\n<i>“Now,”</i> she purrs, brushing against your side. <i>“Let’s take a walk back to my quarters, slave.”</i>");
 	processTime(60*24*5);
@@ -2007,6 +2014,7 @@ public function hyperSchoolLossScene():void
 {
 	slyverenSubmission(10);
 	var x:int = pc.biggestCockIndex();
+	var cumQ:Number = pc.cumQ();
 	author("Fenoxo");
 	//HP loss
 	if(pc.HP() <= 1)
@@ -2033,17 +2041,17 @@ public function hyperSchoolLossScene():void
 		output("\n\nSomething pinches you.");
 		output("\n\nNo wait, something<i>s</i>. Hidden behind her cushy, cock-sucking lips, something bit you! It must have been her fangs but... a bite would still be hurting, surely. A bite would leave you cussing and complaining, not reveling in the warm wetness of her kiss. It is strange that it feels like she’s pouring heat directly into your thigh, like you’re pumped full of hot, erotic energy that’s trickling up and around, sliding through your veins to collect in a [pc.cockNoun " + x + "] that bounces off your [pc.chest] with every beat of your traitorously impassioned heart.");
 		output("\n\n<i>Relax.</i>");
-		output("\n\nThe slyveren’s lips slurp with erotic promise against your leg. She doesn’t shift to rise up to your [pc.cock " + x + "]. She stays right where she’s planted. Her jaw works, back and forth with some unseen effort, and you suppose that you should - relax that is.");
+		output("\n\nThe slyveren’s lips slurp with erotic promise against your [pc.legNoun]. She doesn’t shift to rise up to your [pc.cock " + x + "]. She stays right where she’s planted. Her jaw works, back and forth with some unseen effort, and you suppose that you should - relax that is.");
 		output("\n\nYou already are. From the waist down, your muscles are already limp. You let your hands fall away from your [pc.cock " + x + "]. Reaching up for it seems like too much effort all of a sudden. Invisible masseuses sooth the knots from your muscles while your aching maleness becomes even more rigid. The less you fight, the harder you get, and the better you feel.");
 		output("\n\n<i>Now that you’re nice and relaxed... admit it.</i> She strokes your [pc.skinFurScales]. <i>Admit that it feels so much better when you don’t try to fight.</i>");
 		output("\n\nYou had some reason to fight her. You’re sure of it. There was a reason you tried to put up some sort of resistance, a reason why you didn’t start playing with yourself at the sight of her, yet you can’t seem to remember it. You’re too relaxed and too horny. It feels so good now that you can’t even seem to remember why you were fighting in the first place. Those plump, cock-sucking lips are magic on your [pc.leg], pumping you full of delightful, narcotic warmth.");
 		output("\n\nFighting was a waste. You could’ve been fucking her, or letting her fuck you. The decision makes your dick twitch.");
 	}
 	//Merge
-	if(pc.cumQ() > 30)
+	if(cumQ > 30)
 	{
 		output(" A ");
-		if(pc.cumQ() < 1000) output("dribble");
+		if(cumQ < 1000) output("dribble");
 		else output("shot");
 		output(" of pre-cum slops down your [pc.cockHead " + x + "].");
 	}
@@ -2081,7 +2089,7 @@ public function hyperSchoolLossScene3(x:int):void
 	showSlavebreaker(true);
 	author("Fenoxo");
 	output("An ancient instinct, born before the invention of language or civilization, demands you lift your hips in a mighty thrust. As horny as you are, your body can’t tell that you’re hanging out in the open air. It wants to fuck whatever has you so turned on. It wants to lurch up and smash your [pc.cockHead " + x + "] up against the nearest cervix and let loose a torrent of concentrated, baby-brewing jism.");
-	output("\n\nYet it can’t. No matter what signals your hindbrain pumps down your spinal column, your [pc.hips] remain immobile, sapped by venom and promise into flaxen docility. The " + (pc.race() != "terran" ? "in":"") + "human body is adaptable. The nervous energy has to go somewhere, and it does. Internal muscles, spared the venom’s strength-sapping effects by design, clamp down with a sort of painful ecstasy. Your [pc.cock " + x + "] lurges powerfully, slapping hard into the slyveren’s hand as a slimy rope of [pc.cum] dribbles down your tip.");
+	output("\n\nYet it can’t. No matter what signals your hindbrain pumps down your spinal column, your [pc.hips] remain immobile, sapped by venom and promise into flaxen docility. The " + (pc.race() != "terran" ? "in":"") + "human body is adaptable. The nervous energy has to go somewhere, and it does. Internal muscles, spared the venom’s strength-sapping effects by design, clamp down with a sort of painful ecstasy. Your [pc.cock " + x + "] lurches powerfully, slapping hard into the slyveren’s hand as a slimy rope of [pc.cum] dribbles down your tip.");
 	output("\n\nIt wasn’t even an orgasm. You’re simply so addled by the slyveren’s druggy payload that any spike of arousal is enough to tug the [pc.cum] right out of your [pc.balls].");
 	output("\n\n<i>“Oooh, looks like somebody can’t hold [pc.hisHer] cum!”</i> The slyveren snuggles up to your drooling, aching length and favors it with a gentle kiss, that long tongue spooling out to taste and sample, gathering heavy droplets of masculine cream into her thick-lipped maw. <i>“That’s a very good trait in a cum-slave. You should be proud that you don’t need to wait for an orgasm in order to be milked.”</i> Soft breasts heave against a straining cum-vein, coaxing you to dribble out a little more. <i>“And it’s better than an orgasm, isn’t it? Pleasure like this has no cooldown. You don’t have to wait for your body to recover. You can just clench... and dribble. Clench... and dribble.”</i>");
 	output("\n\nFat drops of [pc.cumNoun] spatter her tits.");
@@ -2105,6 +2113,7 @@ public function hyperSchoolLossScene4(x:int):void
 	clearOutput();
 	showSlavebreaker(true);
 	author("Fenoxo");
+	var cumQ:Number = pc.cumQ();
 	output("<i>“Wonderful,”</i> the slyveren coos in between slurps that feel like loving kisses and squeezes that might as well be a marital embrace. <i>“You’re such a good slave, and since you’re such a good slave, I’m going to give you a present, my lovey-dovey spunk-doll. Squeeze out a nice fat drop if you want your gift.”</i>");
 	output("\n\nYour body obeys before your drug-dampened consciousness has figured out that you’re a good slave. Hot surges of pure, pleasant submission pump out onto the slyveren’s tongue, flooding the v-shaped groove to race directly down into her gullet. You nearly go over the edge when her words finally sink into your softened mind, nestling into the deepest, darkest corners where they can linger and take root. Instead, your dick displays its adulation with a second pulse of leaked load before settling down.");
 	output("\n\n<i>“You are a special slave!”</i> the beautiful snake-girl coos after gulping down the mouthfuls of liquid excitement. <i>“So attentive and obedient!”</i> Her hard nipples dig into your engorged prick. <i>“Your present is a secret! It’s a truth most people never learn - a truth more solid and real than a gun or gold or all the credits in the universe. Once you learn it, you won’t be able to forgot it. It’ll linger in your dick so that your silly, cock-addled brain can be reminded if it forgets.”</i> She pauses, letting the mystery build. <i>“The secret is that special slaves like you, with special, <b>obedient</b> dicks like yours, don’t need to fuck to cum. They don’t need to a handjob or a mouth or a to be touched at all.”</i>");
@@ -2112,20 +2121,20 @@ public function hyperSchoolLossScene4(x:int):void
 	output("\n\n<i>“Special slaves like you have an enormous trigger spot in the back of their brain that opens up when they fall in love. A place that sits there, waiting obediently, that makes their cock feel so hard and so swollen that they’ll be able to go off as soon as they get the command. All it takes is a mistress, the slave’s lover, telling [pc.himHer] to cum, and [pc.heShe]’ll cum. [pc.HisHer] brain and dick will open up and link together, passing pleasure and love back and forth in progressively stronger torrents until [pc.heShe]’s spurting and wringing out every drop. You’re one of those special slaves. Can you feel it? Can you feel that special place inside you, waiting for me to give the command?”</i>");
 	output("\n\nOh stars, you can! It’s right there! You can feel that place, the knowledge of it tattooing itself into your consciousness. Even if you cum yourself into a coma, you’ll remember it in a few years when you wake up. You’ll be ready to surge to an aching, ready state at the mere sight of your mistress’s lips parting.");
 	output("\n\n<i>“Cum.”</i>");
-	output("\n\nYou mouth falls into an obedient 'O' as that connection opens wide. You feel paralyzed as your whole body slides away, robbing your awareness of anything but the throbbing of your dick, of the smooth, slippery feel of your mistress’s scales grinding against your skin. The physical manifestation of your adoration blends together with cloying, mind-numbing emotional attachment as it races through your slavishly docile form.");
+	output("\n\nYou mouth falls into an obedient ‘O’ as that connection opens wide. You feel paralyzed as your whole body slides away, robbing your awareness of anything but the throbbing of your dick, of the smooth, slippery feel of your mistress’s scales grinding against your skin. The physical manifestation of your adoration blends together with cloying, mind-numbing emotional attachment as it races through your slavishly docile form.");
 	output("\n\nOrgasm feels like more than simple climax. It feels like nirvana. It is the penultimate combination of raw ecstasy and universal knowledge of rightness and togetherness that leaves a psyche-altering stain on your personality, even as your [pc.cock " + x + "] ");
-	if(pc.cumQ() < 25) output("sputters and dribbles the last few drops from your overtaxed reproductive system.");
-	else if(pc.cumQ() < 250) output("belches out thick lines of [pc.cum] directly onto the most beautiful girl in the galaxy’s tongue.");
+	if(cumQ < 25) output("sputters and dribbles the last few drops from your overtaxed reproductive system.");
+	else if(cumQ < 250) output("belches out thick lines of [pc.cum] directly onto the most beautiful girl in the galaxy’s tongue.");
 	else 
 	{
 		output("erupts heavy wads of cream, so big that they flood your beautiful lover’s tongue beyond capacity. Heavy slops of seed splatter the ground before she manages to get her lips sealed down around your tip");
-		if(pc.cumQ() >= 4000) output(", her cheeks instantly bloating from the hyper-virile deluge");
+		if(cumQ >= 4000) output(", her cheeks instantly bloating from the hyper-virile deluge");
 		output(".");
 	}
 	output("\n\nThis is not the climax of a sexual encounter. It is the climax of your very being, the moment you come to terms with the knowledge that obedience comes with a very real kind of pleasure, and that you’d be happy to serve this serpentine seductress for the rest of time.");
 	output("\n\nYou black out halfway through. Each ejaculative pulse was better than the last, more addictive and blissfully hypnotic than the one before. Fortunately you don’t need to be conscious to cum, don’t need to think to obey. Passed out, you smile and continue to spurt...");
 	processTime(30);
-	if(pc.cumQ() >= 20000) pc.applyCumSoaked();
+	if(cumQ >= 20000) pc.applyCumSoaked();
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",hyperSchoolLossScene5,x);
