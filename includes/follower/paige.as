@@ -1670,6 +1670,7 @@ public function mediumModeEndingInApartment():void
 	output("\n\nYour muscles are still quaking from the exercise, and it takes a bit more effort to put your things back on. You’re in no rush anyway. Paige fills the air with talking about how well you’ve been doing and how excited she is for some future poses she could try with you, if you’re willing to push yourself a bit harder. <i>“We still have some time to kill, sweet thing,”</i> she says lovingly, wrapping her arms around your left one and hugging it tight. <i>“Anything else you want to do today?”</i>");
 	// end scene (scene: Medium Mode Ending 2); advance time by one hour; increase Physique by 2; increase Tone by 7; deduct 40 energy
 	processTime(50);
+	IncrementFlag("YOGA_MEDIUM");
 	yogaToning(7);
 	pc.energy(-40);
 	paigeMenu();

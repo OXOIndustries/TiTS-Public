@@ -39,11 +39,11 @@ public function HereBeDragonBonus():Boolean
 				output(".. that is, if you had the equipment useful for breeding...");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You need genitals to interact with the frostwyrm.");
 			}
-			else if((pc.hasCock() && pc.virility() <= 0) || (pc.hasVagina() && pc.fertility() <= 0)) {
+			else if((!pc.hasVagina() && pc.hasCock() && pc.virility() <= 0) || (!pc.hasCock() && pc.hasVagina() && pc.fertility() <= 0)) {
 				output(".. but being that breeding is the objective, maybe you should have more " + ((pc.hasCock() && pc.virility() <= 0) ? "virile" : "fertile") + " genitalia first?");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "Your genitalia are not fit for breeding--make sure you are fertile before summoning the dragon!");
 			}
-			else if(!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) {
+			else if(!pc.hasCock() && pc.hasVagina() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) {
 				output(".. though breeding while you are a carrying mother might not be the best idea. Perhaps you should return after you’ve given birth to your current pregnancy first?");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You already have a bun in the oven, so make sure you are clear of your current pregnancies before summoning the dragon!");
 			}
@@ -485,7 +485,7 @@ public function frostwyrmEpilogueAccept():void
 	frostWyrmHeader();
 	author("B");
 	
-	if (!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))
+	if (!pc.hasCock() && pc.hasVagina() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))
 	{
 		output("You’re humbled by the Frostwyrm’s offer – not so much for the opportunity to bear its offspring, but that it considers you such a valid option. You tell it that you consider its offer very flattering, and you’d love to help it, but, you rub at your belly as you tell it that you’re currently... occupied. You can’t exactly double-dip.");
 		output("\n\n<i>I understand,</i> it replies soothingly. <i>I will not ask more from you than you can provide. Return to this coast when your current child is reared and you’ve recovered, and think of me. I will respond to your summons.</i>");
@@ -1032,7 +1032,7 @@ public function frostwyrmIWantToBangTheLizard():void
 	if(pc.hasVagina())
 	{
 		if(pc.fertility() <= 0) addDisabledButton(0, "Get Bred", "Get Bred", "You are infertile and unable to be bred.");
-		else if(pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addDisabledButton(0, "Get Bred", "Get Bred", "You are unable to be bred while pregnant with different pregnancy types other than [frostwyrm.name]’s.");
+		else if(pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addDisabledButton(0, "Get Bred", "Get Bred", "You are unable to be bred while pregnant with different pregnancy types other than [frostwyrm.name]’s.");
 		else addButton(0, "Get Bred", (flags["FROSTWYRM_DICKED_YOU"] == undefined ? frostwyrmRidersMustBeOver4FeetToContinue : frostwyrmDickRepeat));
 	}
 	else addDisabledButton(0, "Get Bred", "Get Bred", "Requires a vagina.");

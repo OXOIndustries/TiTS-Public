@@ -1329,10 +1329,19 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	showUna();
 	clearMenu();
 	
+	var clothingCount:int = 0;
+	if(pc.hasArmor()) clothingCount++;
+	if(pc.hasUpperGarment()) clothingCount++;
+	if(pc.hasLowerGarment()) clothingCount++;
+	var inOnepiece:Boolean = (pc.hasArmor() && !pc.isChestExposedByArmor() && !pc.isCrotchExposedByArmor() && !pc.hasUpperGarment() && !pc.hasLowerGarment());
+	var inTwopiece:Boolean = ((pc.hasArmor() || pc.hasUpperGarment()) && !pc.isChestExposed() && pc.hasLowerGarment());
+	
 	output("This is near enough a free lunch, really.");
 	if (pc.exhibitionism() < 66) output(" Slightly self-consciously");
 	else output(" Shivering slightly with the shameful delight of baring your naked flesh");
-	output(", you begin to take off your [pc.gear], piece by piece.");
+	output(", you begin to take off your [pc.gear]");
+	if(clothingCount > 1) output(", piece by piece");
+	output(".");
 	
 	// PC has any non-exposed, non-swimwear lower undergarment:
 	if (pc.hasLowerGarment() && !pc.isCrotchExposed() && !isSwimsuit(pc.lowerUndergarment))
@@ -1369,7 +1378,10 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	// Male
 	if (sex == 1)
 	{
-		output(" <i>“Who’s Una’s good boy? Let’s see you shake that moneymaker of yours, you big dumb stallion.”</i> You turn and give your [pc.butt] a jounce whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment].");
+		output(" <i>“Who’s Una’s good boy? Let’s see you shake that moneymaker of yours, you big dumb stallion.”</i> You turn and give your [pc.butt] a jounce");
+		if(inOnepiece) output(" whilst displacing the top half of your [pc.armor] with a little flourish and keeping your bottom half dressed");
+		else if(inTwopiece) output(" whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment]");
+		output(".");
 		if (pc.exhibitionism() < 66) output(" You hope the way your cheeks are burning isn’t too obvious.");
 		else output(" Your [pc.cock] is hotly erect from stripping down in this manner.");
 		output("\n\n<i>“Now turn,”</i> the gabilani says. <i>“Let’s see the goods.”</i> You face her again, bare-chested,");
@@ -1383,7 +1395,10 @@ public function arbetzPoolJUSTDOIT(sex:int = 0):void
 	// Female
 	if (sex == 0)
 	{
-		output(" <i>“Who’s Una’s good girl? Let’s see you shake that mantrap of yours, you dumb bimbo.”</i> You turn and give your [pc.butt] a jounce whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment].");
+		output(" <i>“Who’s Una’s good girl? Let’s see you shake that mantrap of yours, you dumb bimbo.”</i> You turn and give your [pc.butt] a jounce");
+		if(inOnepiece) output(" whilst displacing the top half of your [pc.armor] with a little flourish and keeping your bottom half dressed");
+		else if(inTwopiece) output(" whilst discarding your [pc.upperGarment] with a little flourish, dressed now only in your [pc.lowerGarment]");
+		output(".");
 		if (pc.exhibitionism() < 66) output(" You hope the way your cheeks are burning isn’t too obvious.");
 		else output(" Your [pc.vagina] is flush with [pc.girlCum] from stripping down in this manner.");
 		output("\n\n<i>“Now turn,”</i> the gabilani says. <i>“Let’s see the goods.”</i> You face her again, bare-chested");

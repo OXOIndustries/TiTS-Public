@@ -425,7 +425,7 @@ public function shipHangarShips(dock:String = ""):Array
 	}
 	if(InCollection(dock, publicHangars))
 	{
-		if(majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
+		if(flags["SHIZZY_MET"] != undefined && majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
 	}
 	
 	return ships;
