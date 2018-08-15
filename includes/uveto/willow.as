@@ -130,7 +130,7 @@ public function willowLoverMenu(sceneChoice:int):void
 		output("\n\nWillow laughs and kisses your cheek again before standing and clearing her throat, trying to ignore the rest of the bar which happens to be giving the two of you knowing looks. <i>“So anyway, [pc.master], what did you want to order today?”</i> She asks, smiling.");
 	}			
 	else output("Willow looks at you expectantly.");
-	addButton(0,"Apperance",willowAppearance);
+	addButton(0,"Appearance",willowAppearance);
 	addButton(1,"Order Food",willowFood);
 	addButton(2,"Order Drink",willowDrink);
 	addButton(3,"Talk",willowTalk,0);
