@@ -97,15 +97,23 @@ public function willowIntro():void
 		output("You walk in and see the demonic waitress serving customers their orders. You take your seat and wait for her to approach.");
 		output("\n\nShe eventually makes her way over to you and greets you with a smile. <i>“Hey there! Welcome back. Can I get you anything?”</i> She asks, smiling."); 	
 	}
-	addButton(0,"Order",willowFood);
-	if ((pc.hasCock() || pc.hasHardLightStrapOn())&&!pc.isTaur()) addButton(1, "Flirt", willowFlirt);
-	else if (pc.isTaur()) addDisabledButton(1,"Flirt","Flirt","Willow doesn't seem interested in taurs.");
-	else addDisabledButton(1,"Flirt","Flirt","You should get a cock or a strapon before you do this.");
+	addButton(0,"Appearance",willowAppearance);
+	addButton(1,"Order",willowFood);
+	if ((pc.hasCock() || pc.hasHardLightStrapOn())&&!pc.isTaur()) addButton(2, "Flirt", willowFlirt);
+	else if (pc.isTaur()) addDisabledButton(2,"Flirt","Flirt","Willow doesn't seem interested in taurs.");
+	else addDisabledButton(2,"Flirt","Flirt","You should get a cock or a strapon before you do this.");
 	
 	addButton(14,"Leave",willowLeave,0);
 	processTime(5);
 }
-
+public function willowAppearance():void
+{
+	output("Willow is a formerly human demon morph, standing at five feet and eight inches tall. She has dark red skin from head to toe. She has wavy black hair framing a bright, beautiful, angular face with high cheekbones. Her eyes are a stunning combination of colours, with deep purple irises, red pupils, and black sclera. Curved black horns stick out of the sides of her forehead, curving back over her head. She has plump, kissable lips and a slender neck.");
+	output("\n\nHer body itself is rather curvy, with perky DD-cups resting on her chest and a round, toned heart shaped ass with a spaded tail swinging above it. Her most striking feature, however, is the quartet of wings on her back- large, leathery ones, easily able to lift her and another person into the air for a short distance.");
+	
+	if(flags["WILLOW_MET"] == 1) addButton(14,"Back", willowIntro);
+	else addButton(14,"Back", willowLoverMenu,1);
+}
 //Post Sex Encounter Menu
 public function willowLoverMenu(sceneChoice:int):void
 {
@@ -122,12 +130,12 @@ public function willowLoverMenu(sceneChoice:int):void
 		output("\n\nWillow laughs and kisses your cheek again before standing and clearing her throat, trying to ignore the rest of the bar which happens to be giving the two of you knowing looks. <i>“So anyway, [pc.master], what did you want to order today?”</i> She asks, smiling.");
 	}			
 	else output("Willow looks at you expectantly.");
-	
-	addButton(0,"Order Food",willowFood);
-	addButton(1,"Order Drink",willowDrink);
-	addButton(2,"Talk",willowTalk,0);
-	addButton(3,"Her Place",willowHerPlace,0);
-	addButton(4,"Gift",willowGiftIntro,0);
+	addButton(0,"Apperance",willowAppearance);
+	addButton(1,"Order Food",willowFood);
+	addButton(2,"Order Drink",willowDrink);
+	addButton(3,"Talk",willowTalk,0);
+	addButton(4,"Her Place",willowHerPlace,0);
+	addButton(5,"Gift",willowGiftIntro,0);
 	addButton(14,"Leave",willowLeave,0);
 }
 
