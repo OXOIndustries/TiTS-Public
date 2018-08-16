@@ -5593,6 +5593,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Male Sydian, Times Encountered:</b> " + flags["MET_SYDIAN_MALE"]);
 					if(flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"] != undefined) output2("\n<b>* Male Sydian, Times Cunt-Fucked By:</b> " + flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"]);
 				}
+				if(flags["SYDIAN_QUEEN_STAGE"]!=undefined)
+				{
+					if(flags["SYDIAN_QUEEN_STAGE"]==1)output2("\n<b>* Sydian Queen, Your Servile Status:</b> Willing");
+					if(flags["SYDIAN_QUEEN_STAGE"]==2)output2("\n<b>* Sydian Queen, Your Servile Status:</b> Eager");
+					if(flags["SYDIAN_QUEEN_STAGE"]==3)output2("\n<b>* Sydian Queen, Your Servile Status:</b> Devoted");
+					if(flags["SYDIAN_QUEEN_STAGE"]==4)output2("\n<b>* Sydian Queen, Your Servile Status:</b> Reluctant");
+					if(flags["SYDIAN_QUEEN_STAGE"]==5)output2("\n<b>* Sydian Queen, Your Servile Status:</b> Rejected Her");
+					
+					if(flags["RASKVEL_HAREM_SPITROAST"]!= undefined)output2("\n<b>* Sydian Queen, Times Spitroasted By Harem :</b> " + flags["RASKVEL_HAREM_SPITROAST"]);
+					if(flags["SYDIAN_QUEEN_LUBBIN"]!= undefined)output2("\n<b>* Sydian Queen, Times Fucked:</b> " + flags["SYDIAN_QUEEN_LUBBIN"]);
+				}	
 				variousCount++;
 			}
 			// Travel Points
