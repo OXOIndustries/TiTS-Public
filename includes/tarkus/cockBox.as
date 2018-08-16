@@ -119,6 +119,12 @@ public function cockBoxUninstallation():void
 	quickLoot(new DongDesigner());
 }
 
+public function cockCanFitCockBox(cIdx:int = 0):Boolean
+{
+	if(flags["COCKBOX_UPGRADE"] != undefined) return true;
+	return (pc.cocks[cIdx].thickness() <= 4 && pc.cocks[cIdx].cLength() <= 20);
+}
+
 //Use the Cock Box!
 public function useInstalledDickBox():void
 {
@@ -132,7 +138,7 @@ public function useInstalledDickBox():void
 	if(pc.totalCocks() == 1)
 	{
 		//Doesn’t fit
-		if(pc.cocks[0].thickness() > 4 || pc.cocks[0].cLength() > 20) 
+		if(!cockCanFitCockBox(0)) 
 		{
 			output("\n\nYou’re too big to cram into such an undersized hole.");
 		}
@@ -146,7 +152,7 @@ public function useInstalledDickBox():void
 		var noneFit:Boolean = true;
 		for(var x:int = 0; x < pc.totalCocks(); x++)
 		{
-			if(pc.cocks[x].thickness() <= 4 && pc.cocks[x].cLength() <= 20) noneFit = false;
+			if(cockCanFitCockBox(x)) noneFit = false;
 		}
 		//None fit
 		if(noneFit)
@@ -168,13 +174,13 @@ public function useInstalledDickBox():void
 	for(var y:int = 0; y < pc.totalCocks(); y++)
 	{
 		output("<b>#" + (y+1) + ":</b> " + formatFloat(pc.cLength(y),3) + " in long, " + pc.cocks[y].cockColor + " [pc.accurateCockName " + y + "]\n");
-		if(pc.cocks[y].thickness() <= 4 && pc.cocks[y].cLength() <= 20) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
+		if(cockCanFitCockBox(y)) addButton(y,"#" + (y+1),cockBoxUse,y,"#"+(y+1),"Stick your [pc.cockNoun " + y + "] in there.");
 		else addDisabledButton(y,"#" + (y+1),"#" + (y+1),"Your [pc.cockNoun " + y + "] is too big to fit in the hole.");
 	}
 	if(!pc.hasCock()) addDisabledButton(0,"No Penis","Use Dong Designer","You don’t have a penis to insert into the machine.");
 	if(pc.cockTotal() == 1)
 	{
-		if(pc.cocks[0].thickness() > 4 || pc.cocks[0].cLength() > 20) addDisabledButton(0,"Use","Use Dong Designer","Your [pc.cockNoun] is too big to fit in the hole.");
+		if(!cockCanFitCockBox(0)) addDisabledButton(0,"Use","Use Dong Designer","Your [pc.cockNoun] is too big to fit in the hole.");
 		else addButton(0,"Yes",cockBoxUse,0,"Use Dong Designer","Yes, you will stick your dick in that box.");
 	}
 	

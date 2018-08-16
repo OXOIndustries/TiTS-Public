@@ -3582,7 +3582,7 @@ public function knuttyNurseRodenianIII(choice:String):void
 		output("\n\n<i>“And all the love of cum and cocks that you’ve felt tonight - it’ll come out for that special person.”</i> You pull your thumb out and stuff it in her mouth, making her savor the taste of her own pussy. <i>“You’ll be a whore for them, a slut for them, or a pregnancy obsessed broodmother - whatever they want. You’ll cum from the taste of their cum. You’ll be intoxicated by their scent. And your pussies will soak themselves at the possibility of sex.”</i>");
 		output("\n\nNodding stupidly, Toy twists her aural passage about your fat, jizz-drooling cock, distracting the both of you with hellish pleasure.");
 		output("\n\n<i>“Because you’re Toy.”</i>");
-		output("\n\n<i>“’Cause I’m... Toy.”</i>");
+		output("\n\n<i>“‘Cause I’m... Toy.”</i>");
 		output("\n\nYou resume fingering her, shaking with how good it feels to dump ounce after ounce of canine cum into her so-fuckable ears. <i>“And because you’re a toy, you can turn that off. You’re only a slut when the situation calls for it. When the dick in your face belongs to someone you like and trust. If some asshole in a bar whips out his cock, you won’t even notice it. To you, his crotch will be a barren, humiliating wasteland.”</i> You rock your hips, feeling her lips strain about your bulb for a moment before you relent. <i>“Of course, if you love and trust someone... what will you be?”</i>");
 		output("\n\n<i>“A fucktoy.”</i> Toy sounds confident now.");
 		output("\n\nYou pet her affectionately, letting the last few ribbons of spunk drain into her fertile passage. <i>“Exactly. And in public or with someone else, what will you be?”</i>");

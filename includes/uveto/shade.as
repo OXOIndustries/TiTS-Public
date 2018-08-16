@@ -658,11 +658,18 @@ public function meetingShadeAtHouse(btnSlot:int = 1):void
 	
 	if(flags["SHADE_ON_UVETO"] >= 3)
 	{
-		if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas() && (flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < new Date().fullYear)))
-		{ 
+		var currDate:Date = new Date();
+		
+		if(MailManager.isEntryViewed("shade_xmas_invite") && isChristmas())
+		{
 			/* EXCEPTION FOR HOLIDAYS! */
-			response = "ho ho ho";
-			tooltip = "This is Shade’s house. Time for some holiday cheer!";
+			
+			//Never done before or first time this year!
+			if(flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < currDate.fullYear))
+			{
+				response = "ho ho ho";
+				tooltip = "This is Shade’s house. Time for some holiday cheer!";
+			}
 		}
 		
 		//if(flags["SHADE_IS_YER_SIS"] != -1) flags["NAV_DISABLED"] = undefined;
@@ -707,14 +714,8 @@ public function approachShadeAtHouse(response:String = "intro"):void
 	switch(response)
 	{
 		case "ho ho ho":
-			var currDate:Date = new Date();
-			//Never done before or first time this year!
-			if(flags["SHADE_XMAS"] == undefined || (flags["SHADE_XMAS"] != undefined && flags["SHADE_XMAS"] < currDate.fullYear))
-			{
-				shadeHolidayKnock();
-				return;
-			}
-			//No "break;" in case something is somehow fubar.
+			shadeHolidayKnock();
+			break;
 		case "lover friend intro":
 			showBust(shadeBustDisplay());
 			showName("\nSHADE");
@@ -739,12 +740,12 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			output("\n\nYou hear a snort from the other room. <i>“Get your head out of the gutter, kiddo. Can’t exactly control the way my heart goes... and besides, we’ve got a lot more in common than... that.”</i>");
 			output("\n\n<i>“Sorry,”</i> you laugh, glancing around the pictures of Astra on the walls. She is cute, that’s for sure. Glad you found out now, otherwise you might have ended up flirting with her had you ever met. Speaking of which, <i>“Where’s she now?”</i>");
 			// KQ2 done, beat Amara w/o seeing Shade:
-			if(flags["KQ2_QUEST_FINISHED"] != undefined && flags["KQ2_SHADE_ENCOUNTERED"] == undefined)
+			if(completedKQ2Good() && flags["KQ2_SHADE_ENCOUNTERED"] == undefined)
 			{
 				output("\n\n<i>“Uhh... She’s off in the Cielovia system, right now. Her sire got put in the hospital by some punks, apparently, so she’s off visiting for a bit. Should be home tomorrow, she said. I’ll introduce you, if you’re staying.”</i>");
 			}
 			// KQ2 done, beat Amara, saw Shade:
-			else if(flags["KQ2_QUEST_FINISHED"] != undefined)
+			else if(completedKQ2Good())
 			{
 				output("\n\n<i>“Well, her pop’s in the hospital after you got done with her. She’s recovering back in the Cielovia system, and Astra’s off visiting. Should be home tomorrow, I think. I’ll introduce you.”</i>");
 				output("\n\nYou grimace at the sneer Shade gives you when she mentions Amara, but otherwise she doesn’t bring up your... accidental altercation back on Myrellion.");
@@ -969,12 +970,12 @@ public function approachShadeAtHouse(response:String = "intro"):void
 			output("\n\nAny chance of you getting to meet your niece some time? The way she’s kitted up, Astra strikes the appearance of an adventurer like yourself. Considering how you and Shade hit it off, you’d probably get along.");
 			output("\n\nSilently, you add that you’re glad you found out now, otherwise you might have ended up flirting with her had you ever met.");
 			// KQ2 done, beat Amara w/o seeing Shade:
-			if(flags["KQ2_QUEST_FINISHED"] != undefined && flags["KQ2_SHADE_ENCOUNTERED"] == undefined)
+			if(completedKQ2Good() && flags["KQ2_SHADE_ENCOUNTERED"] == undefined)
 			{
 				output("\n\n<i>“Uhh... She’s off in the Cielovia system, right now. Her sire got put in the hospital by some punks, apparently, so she’s off visiting for a bit. Should be home tomorrow, she said. I’ll introduce you, if you’re staying.”</i>");
 			}
 			// KQ2 done, beat Amara, saw Shade:
-			else if(flags["KQ2_QUEST_FINISHED"] != undefined)
+			else if(completedKQ2Good())
 			{
 				output("\n\n<i>“Well, her pop’s in the hospital after you got done with her. She’s recovering back in the Cielovia system, and Astra’s off visiting. Should be home tomorrow, I think. I’ll introduce you.”</i>");
 				output("\n\nYou grimace at the sneer Shade gives you when she mentions Amara, but otherwise she doesn’t bring up your... accidental altercation back on Myrellion. You guess your sibling revelation has mollified her distrust of you, for now at least.");

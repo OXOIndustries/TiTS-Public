@@ -1546,7 +1546,7 @@ public function haleyEllieThreesome():void
 	if (pc.isBimbo()) output("\n\n<i>“What’s up with that anyway? NT is like, filled with horny bulls who’ll fuck any girl that asks,”</i> you point out. <i>“Can’t just ask one of them to fill your pussy up? They’d be queueing for days if they knew...”</i>");
 	else output("\n\n<i>“How did you even end up in this situation? You’re on the most sexually liberal planet in, possibly, the entire universe,”</i> you point out. <i>“You can’t just ask a bull to fuck your pussy?”</i>");
 	output("\n\n<i>“It’s not that simple for me,”</i> she starts, then sighs. <i>“I’ll tell you about it some other time. I just realized I should really take a shower sooner rather than later.”</i>");
-	if (pc.isBimbo()) output("\n\n<i>“’kay,”</i> you agree amiably, petting her flank before leaning over to give her a kiss on the cheek. <i>“I’ll come see you again soon!”</i>");
+	if (pc.isBimbo()) output("\n\n<i>“‘kay,”</i> you agree amiably, petting her flank before leaning over to give her a kiss on the cheek. <i>“I’ll come see you again soon!”</i>");
 	else output("\n\n<i>“Fair enough,”</i> you diplomatically agree, petting her flank before getting to your feet and leaning down to give her a kiss on the cheek. <i>“I’ll swing by to see you again, okay?”</i>");
 	output("\n\n<i>“Please,”</i> she replies with a smile. <i>“You’re a lot more fun than my milker is, that’s for sure.”</i>");
 	

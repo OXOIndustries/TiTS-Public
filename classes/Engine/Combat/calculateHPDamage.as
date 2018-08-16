@@ -36,11 +36,12 @@ package classes.Engine.Combat
 		// Apply other defensive stats
 		var defReduction:Number = target.defense();
 		
-		if (special == "ranged" && kGAMECLASS.pc.hasPerk("Armor Piercing") && !(target is PlayerCharacter))
+		if (special == "ranged" && attacker.hasPerk("Armor Piercing"))
 		{
-			if (defReduction > 0) defReduction -= (kGAMECLASS.pc.level + rand(3));
+			if (defReduction > 0) defReduction -= (attacker.level + rand(3));
 			if (defReduction < 0) defReduction = 0;
 		}
+		if (target.hasPerk("Akane's Painslut")) defReduction += Math.round(((target.HPMax() - target.HP()) / target.HPMax()) * 5 * target.level);
 		
 		damageAfterResistances -= defReduction;
 		damageAfterResistances = Math.round(damageAfterResistances);

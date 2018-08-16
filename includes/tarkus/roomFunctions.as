@@ -159,6 +159,7 @@ public function synthSheathsUsed():int
 	if(chars["SHEKKA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
 	if(sylvieHasCock()) synthUsed++;
 	if(chars["TUUVA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
+	if(chars["ARDIA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
 	
 	return synthUsed;
 }

@@ -34,6 +34,7 @@ package classes.GameData
 	import flash.utils.getDefinitionByName;
 	import classes.Util.InCollection;
 	import classes.Engine.Combat.DamageTypes.*;
+	import classes.UIComponents.UIStyleSettings;
 	
 	public class GroundCombatContainer extends CombatContainer 
 	{		
@@ -113,6 +114,18 @@ package classes.GameData
 		 */ 
 		private function postHostileTurnActions():Boolean
 		{
+			if (pc.hasStatusEffect("leithanUnloading"))
+			{
+				var f:ForgeHound = _hostiles[0];
+				if(!f.hasStatusEffect("Overheated"))
+				{
+					clearMenu();
+					if(pc.inPowerArmor()) addButton(0,"Hold Ground",kGAMECLASS.holdGroundBois,undefined,"Hold Ground","Stand and fire!");
+					else addDisabledButton(0,"Hold Ground","Hold Ground","That's suicide!");
+					addButton(1,"Sprint!",kGAMECLASS.sprintToSafetyBois,undefined,"Sprint!","Run for it!");
+					return true;
+				}
+			}
 			// seductionChance()
 			if (pc.hasStatusEffect("Attempt Seduction"))
 			{
@@ -354,6 +367,12 @@ package classes.GameData
 		 */
 		private function updateStatusEffectsFor(target:Creature):void
 		{
+			//SyriQuest bots don't need to be alive to be awesome
+			if (target is AkkadiSecurityRobots)
+			{
+				(target as AkkadiSecurityRobots).botHeal();
+			}
+			
 			if (target.isDefeated()) return;
 			
 			var ew:StorageClass = target.getStatusEffect("Empowering Word");
@@ -735,7 +754,11 @@ package classes.GameData
 				if (target.statusEffectv1("Blinded") <= 0) 
 				{
 					target.removeStatusEffect("Blinded");
-					if (target is PlayerCharacter) output("\n\n<b>You can see again!</b>");
+					if (target is PlayerCharacter)
+					{
+						if (CombatManager.hasEnemyOfClass(DrCalnor)) output("\n\nYou finally blink out the rest of the stars swimming in your vision, regaining your sight!");
+						else output("\n\n<b>You can see again!</b>");
+					}
 					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " are no longer blinded!</b>");
 					else output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " is no longer blind!</b>");
 				}
@@ -1213,11 +1236,54 @@ package classes.GameData
 				}
 			}
 			
+			if (target.hasStatusEffect("Target Link") && target.statusEffectv1("Target Link") != 0)
+			{
+				target.addStatusValue("Target Link", 1, -1);
+				//Interrupt effect
+				if (target.isImmobilized() || target.hasStatusEffect("Tripped") || target.statusEffectv1("Target Link") == 0)
+				{
+					if (target is AkkadiSecurityRobots) (target as AkkadiSecurityRobots).endTargetLink();
+					//Should never happen since non-akkadibots shouldn't get it at all
+					else target.removeStatusEffect("Target Link");
+				}
+			}
+			
+			genericStatusEffectUpdate(target, "Tracer Rounds");
+			genericStatusEffectUpdate(target, "Torra Lust Weakness");
+			genericStatusEffectUpdate(target, "Chaff Grenade");
+			
 			if (target.hasStatusEffect("SHIZZY CUM"))
 			{
 				output("\n\n<b>She reeks so strongly of pheromones that it's starting to get to you.</b>");
 				applyDamage(damageRand(new TypeCollection({pheromone:target.statusEffectv1("SHIZZY CUM")}), 20), null, target, "minimal");
 			}
+			
+			// Zweet Breeze
+			// Pheromonal lust damage after all attacks are resolved. Starts strong, incrementally decreases as each of them is KO’d.
+			if (target.statusEffectv1("Zweet Breeze") > 0)
+			{
+				var totalZil:Number = target.statusEffectv1("Zweet Breeze");
+				
+				if (target is PlayerCharacter)
+				{
+					output("\n\nAs the zil move" + (totalZil != 1 ? "" : "s") + " around you, wings out and weapon" + (totalZil != 1 ? "s" : "") + " at the ready, " + (totalZil != 1 ? "they fan their" : "he fans his") + " sweet smell towards you, the undeniably horny smell of fit, aroused zil males. The claws of lust sink themselves deeper and deeper into you...");
+					if(totalZil < 3) output(" It’s undeniably not as strong, though, since you put " + (totalZil == 1 ? "two" : "one") + " of them out of commission.");
+					else output(" Maybe if you took one or two of them out, it wouldn’t be so overpowering.");
+				}
+				
+				var damage:TypeCollection = new TypeCollection( { pheromone: 5 + rand(4) } );
+				applyDamage(damage.multiply(totalZil), null, target, "minimal");
+			}
+		}
+		
+		//Lowers v1 by 1 and removes the status if it's value is 0 afterwards, hope there wasn't a function to do this already
+		public function genericStatusEffectUpdate(target:Creature, statusName:String):void
+		{
+			if (target.hasStatusEffect(statusName))
+			{
+				target.addStatusValue(statusName, 1, -1);
+				if (target.statusEffectv1(statusName) <= 0) target.removeStatusEffect(statusName);
+			} 
 		}
 		
 		public function updateStatusEffects(collection:Array):void
@@ -1361,6 +1427,13 @@ package classes.GameData
 			if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
 			{
 				addButton(10, "Retreat", kGAMECLASS.bothriocQuestBetaNyreaRetreat, undefined, "Retreat", "Retreat slowly in the direction of the Quadomme Bothrioc.");
+			}
+
+			if (hasEnemyOfClass(ForgeHound) && flags["FORGEHOUND_APOLIFUCKED"] != undefined && rand(12) == 0)
+			{
+				output("\n\n<b>It's so hard not to daydream around him...</b>");
+				addButton(0,"Daydream",kGAMECLASS.addictionTurnWaster);
+				return;
 			}
 			
 			//Combat Notes :
@@ -1593,170 +1666,198 @@ package classes.GameData
 				return;
 			}
 			if(CombatManager.multipleEnemies()) output("s");
-			output("! ")
+			output("! ");
 			//Autofail conditions first!
 			if(pc.isImmobilized()) {
 				output("You cannot run while you are " + (pc.isGrappled() ? "in the enemy’s grip" : "immobilized") + "!");
 				processCombat();
+				return;
 			}
-			else if (isFleeDisabled()) {
+			if (isFleeDisabled()) {
 				output("<b>You cannot escape from this fight!</b>");
 				processCombat();
+				return;
 			}
-			else if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
+			if((pc.hasStatusEffect("Fuck Fever") || pc.hasStatusEffect("Flushed")) && hasDickedEnemy())
 			{
 				output("<b>");
 				if(pc.hasStatusEffect("Flushed")) output("The warmth in your lower body");
 				else output("The Fuck Fever");
 				output(" won’t let you get away from a potential dicking!</b>");
 				processCombat();
+				return;
 			}
-			else if (kGAMECLASS.debug)
+			if (kGAMECLASS.debug)
 			{
 				output("You escape on wings of debug!");
 				CombatManager.abortCombat();
+				return;
 			}
-			else if (hasEnemyOfClass(Frostwyrm))
+			if (hasEnemyOfClass(Frostwyrm))
 			{
 				output("The frostwyrm doesn’t give chase, letting you escape.");
 				CombatManager.abortCombat();
-			}			
-			else 
+				return;
+			}
+			// TODO rework this somehow
+			
+			var numActiveHostiles:int = 0;
+			var hostilesLevel:Number = 0;
+			var hostileReflexes:Number = 0;
+			var hostilesFlying:int = 0;
+			var hostilesImmobile:int = 0;
+			var hostilesBlind:int = 0;
+			for(var i:int = 0; i < _hostiles.length; i++)
 			{
-				// TODO rework this somehow
-				
-				var x:int = 0;
-				//determine difficulty class based on reflexes vs reflexes comparison, easy, low, medium, hard, or very hard
-				var difficulty:int = 0;
-				//easy = succeed 75%
-				//low = succeed 50%
-				//medium = succeed 35%
-				//hard = succeed 20;
-				//very hard = succeed 10%
-				//Easy: PC has twice the reflexes
-				if(pc.reflexes() >= _hostiles[0].reflexes() * 2) difficulty = 0;
-				//Low: PC has more than +33% more reflexes
-				else if(pc.reflexes() >= _hostiles[0].reflexes() * 1.333) difficulty = 1;
-				//Medium: PC has more than -33% reflexes
-				else if(pc.reflexes() >= _hostiles[0].reflexes() * .6666) difficulty = 2;
-				//Hard: PC pretty slow
-				else if(pc.reflexes() >= _hostiles[0].reflexes() * .3333) difficulty = 3;
-				//Very hard: PC IS FUCKING SLOW
-				else difficulty = 4;
-
-				//Multiple NPCs? Raise difficulty class for each one!
-				difficulty += _hostiles.length - 1;
-				
-				// Endowment penalty
-				if(pc.hasStatusEffect("Egregiously Endowed")) difficulty++;
-
-				//Raise difficulty for having awkwardly huge genitalia/boobs sometime!
-				if(pc.energy() < (Math.round(pc.energyMax()/3)))
+				if(!_hostiles[i].isDefeated())
 				{
-					var desc: String = "";
-					//Get the info and adjust difficulty to match
-					// Breasts:
-					if(pc.isHeavy("boobs")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.boobs]";
+					if(hostilesLevel < _hostiles[i].level) hostilesLevel = _hostiles[i].level;
+					if(!_hostiles[i].isImmobilized())
+					{
+						if(hostileReflexes < _hostiles[i].reflexes()) hostileReflexes = _hostiles[i].reflexes();
+						if(_hostiles[i].canFly()) hostilesFlying++;
 					}
-					// Belly:
-					if(pc.isHeavy("belly")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.belly]";
-					}
-					// Butt: Big Booty Bitches! Oooooooooo!
-					if(pc.isHeavy("butt")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.butt]";
-					}
-					// Clitoris:
-					if(pc.isHeavy("clits")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.clits]";
-					}
-					// Penis:
-					if(pc.isHeavy("cocks")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.cocks]";
-					}
-					// Testicles:
-					if(pc.isHeavy("balls")) {
-						difficulty++;
-						if(desc.length > 0) desc += ",";
-						desc += " [pc.balls]";
-					}
-					if(desc.length > 0) output("Though due to the weight of your" + desc + " and your low stamina, you are finding it a bit difficult to run... ");
+					else hostilesImmobile++;
+					if(_hostiles[i].isBlind()) hostilesBlind++;
+					numActiveHostiles++;
 				}
-				
-				//Cap it
-				if(difficulty > 5) difficulty = 5;
+			}
+			
+			var x:int = 0;
+			//determine difficulty class based on reflexes vs reflexes comparison, easy, low, medium, hard, or very hard
+			var difficulty:int = 0;
+			//easy = succeed 75%
+			//low = succeed 50%
+			//medium = succeed 35%
+			//hard = succeed 20;
+			//very hard = succeed 10%
+			//Easy: PC has twice the reflexes
+			if(pc.reflexes() >= hostileReflexes * 2) difficulty = 0;
+			//Low: PC has more than +33% more reflexes
+			else if(pc.reflexes() >= hostileReflexes * 1.333) difficulty = 1;
+			//Medium: PC has more than -33% reflexes
+			else if(pc.reflexes() >= hostileReflexes * .6666) difficulty = 2;
+			//Hard: PC pretty slow
+			else if(pc.reflexes() >= hostileReflexes * .3333) difficulty = 3;
+			//Very hard: PC IS FUCKING SLOW
+			else difficulty = 4;
 
-				//Lower difficulty for flight if enemy cant!
-				if(pc.canFly() && (!_hostiles[0].canFly() || _hostiles[0].isImmobilized())) difficulty--;
-				//Lower difficulty for immobilized foe
-				if(_hostiles[0].isImmobilized()) difficulty-=2;
-				//Easy mode is magic!
-				if(kGAMECLASS.easy)
+			//Multiple NPCs? Raise difficulty class for each one!
+			difficulty += (numActiveHostiles - 1);
+			
+			// Endowment penalty
+			if(pc.hasStatusEffect("Egregiously Endowed")) difficulty++;
+
+			//Raise difficulty for having awkwardly huge genitalia/boobs sometime!
+			if(pc.energy() < (Math.round(pc.energyMax()/3)))
+			{
+				var desc: String = "";
+				//Get the info and adjust difficulty to match
+				// Breasts:
+				if(pc.isHeavy("boobs")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.boobs]";
+				}
+				// Belly:
+				if(pc.isHeavy("belly")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.belly]";
+				}
+				// Butt: Big Booty Bitches! Oooooooooo!
+				if(pc.isHeavy("butt")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.butt]";
+				}
+				// Clitoris:
+				if(pc.isHeavy("clits")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.clits]";
+				}
+				// Penis:
+				if(pc.isHeavy("cocks")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.cocks]";
+				}
+				// Testicles:
+				if(pc.isHeavy("balls")) {
+					difficulty++;
+					if(desc.length > 0) desc += ",";
+					desc += " [pc.balls]";
+				}
+				if(desc.length > 0) output("Though due to the weight of your" + desc + " and your low stamina, you are finding it a bit difficult to run... ");
+			}
+			
+			//Cap it
+			if(difficulty > 5) difficulty = 5;
+
+			//Lower difficulty for flight if enemy cant!
+			if(pc.canFly() && hostilesFlying <= 0) difficulty--;
+			//Lower difficulty for blind foe
+			if(hostilesBlind > 0) difficulty -= hostilesBlind;
+			//Lower difficulty for immobilized foe
+			if(hostilesImmobile > 0) difficulty -= (2 * hostilesImmobile);
+			//Easy mode is magic!
+			if(kGAMECLASS.easy)
+			{
+				if(difficulty > 0) difficulty--;
+				if(difficulty > 0) difficulty--;
+				if(difficulty > 0) difficulty--;
+			}
+			//Outlevel the enemy? Make easier
+			if(pc.level >= hostilesLevel + 2) difficulty--;
+			if(pc.level >= hostilesLevel + 3) difficulty--;
+			if(pc.level >= hostilesLevel + 4) difficulty--;
+			if(pc.level >= hostilesLevel + 5) difficulty--;
+
+			//Grunch makes easier!
+			if(pc.accessory is GrunchLeash) difficulty -= 2;
+
+			//Set threshold value and check!
+			if(difficulty < 0) difficulty = 100;
+			else if(difficulty == 0) difficulty = 75;
+			else if(difficulty == 1) difficulty = 50;
+			else if(difficulty == 2) difficulty = 35;
+			else if(difficulty == 3) difficulty = 20;
+			else if(difficulty == 4) difficulty = 10;
+			else difficulty = 5;
+			//Special succeeeeeesss!
+			if(pc.hasStatusEffect("Survivaled") || hostilesImmobile >= numActiveHostiles) difficulty = 110;
+			trace("Successful escape chance: " + difficulty + " %")
+			//Success!
+			if (rand(100) + 1 <= difficulty) {
+				if (hasEnemyOfClass(Cockvine))
 				{
-					if(difficulty > 0) difficulty--;
-					if(difficulty > 0) difficulty--;
-					if(difficulty > 0) difficulty--;
-				}
-				//Outlevel the enemy? Make easier
-				if(pc.level >= _hostiles[0].level + 2) difficulty--;
-				if(pc.level >= _hostiles[0].level + 3) difficulty--;
-				if(pc.level >= _hostiles[0].level + 4) difficulty--;
-				if(pc.level >= _hostiles[0].level + 5) difficulty--;
-
-				//Grunch makes easier!
-				if(pc.accessory is GrunchLeash) difficulty -= 2;
-
-				//Set threshold value and check!
-				if(difficulty < 0) difficulty = 100;
-				else if(difficulty == 0) difficulty = 75;
-				else if(difficulty == 1) difficulty = 50;
-				else if(difficulty == 2) difficulty = 35;
-				else if(difficulty == 3) difficulty = 20;
-				else if(difficulty == 4) difficulty = 10;
-				else difficulty = 5;
-				//Special succeeeeeesss!
-				if(pc.hasStatusEffect("Survivaled")) difficulty = 110;
-				trace("Successful escape chance: " + difficulty + " %")
-				//Success!
-				if (rand(100) + 1 <= difficulty) {
-					if (hasEnemyOfClass(Cockvine))
-					{
-						kGAMECLASS.adultCockvinePCEscapes();
-						CombatManager.abortCombat();
-						return;
-					}
-					if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
-					{
-						kGAMECLASS.bothriocQuestBetaNyreaMiniquestRun();
-						CombatManager.abortCombat();
-						return;
-					}
-					if (pc.canFly()) 
-					{
-						if (pc.legCount == 1) output("Your [pc.foot] leaves");
-						else output("Your [pc.feet] leave");
-						output(" the ground as you fly away, leaving the fight behind.");
-					}
-					else output("You manage to leave the fight behind you.")
-					kGAMECLASS.processTime(8);
-					
+					kGAMECLASS.adultCockvinePCEscapes();
 					CombatManager.abortCombat();
+					return;
 				}
-				else {
-					output("It doesn’t work!");
-					processCombat();
+				if (hasEnemyOfClass(NyreaBeta) && kGAMECLASS.bothriocQuestBetaNyreaMiniquestActive())
+				{
+					kGAMECLASS.bothriocQuestBetaNyreaMiniquestRun();
+					CombatManager.abortCombat();
+					return;
 				}
+				if (pc.canFly()) 
+				{
+					if (pc.legCount == 1) output("Your [pc.foot] leaves");
+					else output("Your [pc.feet] leave");
+					output(" the ground as you fly away, leaving the fight behind.");
+				}
+				else output("You manage to leave the fight behind you.")
+				kGAMECLASS.processTime(8);
+				
+				CombatManager.abortCombat();
+				return;
+			}
+			else {
+				output("It doesn’t work!");
+				processCombat();
+				return;
 			}
 		}
 		
@@ -1764,10 +1865,17 @@ package classes.GameData
 		{
 			clearOutput();
 			pc.energy(-5);
-			output("You release a discharge of electricity, momentarily weakening your ");
-			if(_hostiles[0].isPlural || enemiesAlive() > 1) output("foes’");
-			else output("foe’s");
-			output(" grip on you!");
+			if (hasEnemyOfClass(AkkadiSecurityRobots))
+			{
+				output("You send a burst of electricity back along the grappling line, right into the offending security bot.");
+			}
+			else
+			{
+				output("You release a discharge of electricity, momentarily weakening your ");
+				if(_hostiles[0].isPlural || enemiesAlive() > 1) output("foes’");
+				else output("foe’s");
+				output(" grip on you!");
+			}
 			if (pc.hasStatusEffect("Naleen Coiled"))
 			{
 				pc.removeStatusEffect("Naleen Coiled");
@@ -1781,7 +1889,8 @@ package classes.GameData
 			if(pc.hasStatusEffect("Grappled"))
 			{
 				pc.removeStatusEffect("Grappled");
-				output("\nYou slip free of the grapple.");
+				if (hasEnemyOfClass(AkkadiSecurityRobots)) output("\nIt lurches backward and squeals, disconnecting the grappling line. The magnets deactivate, releasing you from the robot's grasp.");
+				else output("\nYou slip free of the grapple.");
 			}
 			if (pc.hasStatusEffect("Cockvine Grip"))
 			{
@@ -2079,6 +2188,7 @@ package classes.GameData
 							output("You struggle against the bindings, trying to shove your assailant off you so you can tear free. You heave the bothrioc off of you, granting you the time needed to extricate yourself from the tight web.");
 						}
 						else if (hasEnemyOfClass(RKLah)) output("You pull him to one side, before delivering a sucker punch hard and low from the other. Lah gasps in pain, and you manage to rip out of his grasp.");
+						else if (hasEnemyOfClass(AkkadiSecurityRobots)) output("You finally manage to tear your way out of the net!");
 						else output("With a mighty heave, you tear your way out of the grapple and onto your [pc.feet].");
 						if(panicJack)
 						{
@@ -4371,6 +4481,9 @@ package classes.GameData
 				if(!pc.hasStatusEffect("Varmint Buddy")) return;
 			}
 			
+			//Chaff stahps roboty drones
+			if(droneUser.hasStatusEffect("Chaff Grenade") && droneUser.hasCombatDrone(true)) return;
+			
 			//TAMWULF DOESNT NEED POWAAAAAHHHHH
 			if (droneUser.hasCombatDrone(true) && !droneUser.hasStatusEffect("Varmint Buddy"))
 			{
@@ -4586,6 +4699,18 @@ package classes.GameData
 				
 				if (target.isDefeated()) continue;
 				
+				//Valdey gets to act always, even if just to jump around.
+				//@future generations: please add any status effects that get their section below (like Paralyzed)
+				//to AkkadiSecurityRobots.mustJumpNames or valden will happily ignore them, the cheating bastard
+				if (target.hasStatusEffect("Valden-Possessed"))
+				{
+					if (AkkadiSecurityRobots.ValdenAI(target, _hostiles, _friendlies))
+					{
+						doCombatDrone(target);
+						continue;
+					}
+				}
+				
 				if (target.hasStatusEffect("Paralyzed") && !(target is Urbolg))
 				{
 					// noop, this is handled as part of updateStatusEffectsFor()
@@ -4601,7 +4726,7 @@ package classes.GameData
 					output("\n\n");
 					doStruggleRecover(target);
 				}
-				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg))
+				else if (target.hasStatusEffect("Stunned") && !(target is MilodanMale) && !(target is Urbolg) && !(target is Agrosh))
 				{
 					output("\n\n");
 					doStunRecover(target);

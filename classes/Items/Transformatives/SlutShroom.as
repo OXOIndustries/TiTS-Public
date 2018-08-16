@@ -367,7 +367,7 @@ package classes.Items.Transformatives {
 				}
 			}
 			else {	
-				kGAMECLASS.output(target.capitalA + target.short + " consumes the slutshroom to no effect.");
+				output(target.capitalA + target.short + " consumes the slutshroom to no effect.");
 			}
 			return false;
 		}

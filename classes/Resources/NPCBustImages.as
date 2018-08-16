@@ -188,6 +188,7 @@
 			var doNude:Boolean = false;
 			if (bustName.indexOf("_NUDE") != -1) doNude = true;
 			
+			/*
 			// If there's a configured bust for this ident, use it
 			// TODO: Make this use the same artist for nude/non-nude if one is configured but the other isn't
 			if (bustName in opts.configuredBustPreferences)
@@ -232,6 +233,23 @@
 					}
 				}
 			}
+			*/
+			
+			// Get bounds that match the saved artist
+			var tArtist:String = "";
+			
+			if (bustName in opts.configuredBustPreferences) {
+				tArtist = opts.configuredBustPreferences[bustName];
+			}
+			else if (("Bust_" + bustName) in NPCBustImages[opts.primaryBustArtist]) {
+				tArtist = opts.primaryBustArtist;
+			}
+			else if (("Bust_" + bustName) in NPCBustImages[opts.secondaryBustArtist]) {
+				tArtist = opts.secondaryBustArtist;
+			}
+			
+			if (tArtist != "") bounds = lookupBoundsInClass(bustName, NPCBustImages[tArtist], doNude);
+			if (bounds != null) return bounds;
 			
 			return null;
 		}

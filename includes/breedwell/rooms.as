@@ -24,6 +24,7 @@ public function initBreedwellRooms():void
 	rooms["BREEDWELL_SPACE"].moveMinutes = 1;
 	rooms["BREEDWELL_SPACE"].runOnEnter = puntToShip;
 	rooms["BREEDWELL_SPACE"].addFlag(GLOBAL.OUTDOOR);
+	rooms["BREEDWELL_SPACE"].addFlag(GLOBAL.LOW_GRAVITY);
 	
 	/* Breedwell Hangar */
 	rooms["BREEDWELL_HANGAR"] = new RoomClass(this);

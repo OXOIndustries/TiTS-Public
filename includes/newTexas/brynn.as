@@ -25,7 +25,7 @@ public function brynnRandomBarnEventFunc():Boolean
 		clearOutput();
 		brynnHeader();
 		
-		output("Whilst walking past one of the stalls,");
+		output("Whilst [pc.walking] past one of the stalls,");
 		
 		// Treated
 		if (pc.isTreated())
@@ -57,7 +57,7 @@ public function brynnRandomBarnEventFunc():Boolean
 			}
 			else
 			{
-				output(" you walk into a veritable cloud of sex; an unmistakable mix of juicy, needy cunt and virile male musk.");
+				output(" you [pc.walk] into a veritable cloud of sex; an unmistakable mix of juicy, needy cunt and virile male musk.");
 			}
 			
 			if (pc.hasCock())

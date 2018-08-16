@@ -1648,6 +1648,7 @@ public function seduceTheRaskvelAttackYaNerd():void
 
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	processTime(3);
 	//[Sneak away] [Stay]

@@ -1092,7 +1092,7 @@ public function soloMilkingUpgrade():void
 	if(!pc.isChestExposed()) output("you’ve got to free these [pc.milkNoun]-laden puppies. You wiggle out of your [pc.upperGarments] anxiously.");
 	else output("you’ve got to stop being distracted by the lewdness surrounding you and activate the machine, but it’s so hard!");
 	output(" The air here is warm and humid, almost moist, and it tickles so pleasantly across your [pc.nipples], filthy pheromones and an aura of hedonistic pleasure.");
-	output("\n\nYou walk up to the machine");
+	output("\n\nYou [pc.walk] up to the machine");
 	if(pc.biggestTitSize() >= 6) output(", moving carefully so as not to accidentally bump any buttons with your burdensome breasts or jutting teats");
 	output(", looking over the buttons, gauges and knobs uncertainly. Most of them aren’t even labeled. The circular gauge is definitely there to report the PSI of something, and the big green button with a cartoonish cow-face will obviously begin the milking cycle. You go ahead and press it, listening to the gentle whir of the motor revving up, but how do you control the intensity? How do you turn it off?");
 	output("\n\nThen you see it: a button <i>way</i> off to the side with a picture of a giant-sized milk-jug and the word “auto-e” printed below it. Perfect! An automatic milking is just what you need. You go ahead and slap it down, then reach for the quietly humming cups. They’re already faintly sucking, just waiting for you to hold them against a breast and allow them to seal around your [pc.nipples]. Grinning, you hold one up to your left breast and let it take hold, gasping when it forms a perfect seal and tugs the [pc.nipple] out");

@@ -77,9 +77,9 @@ package classes.Engine.Combat
 		// Apply other defensive modifiers
 		var defReduction:Number = target.shieldDefense();
 		
-		if (special == "ranged" && kGAMECLASS.pc.hasPerk("Armor Piercing") && !(target is PlayerCharacter))
+		if (special == "ranged" && attacker.hasPerk("Armor Piercing"))
 		{
-			if (defReduction > 0) defReduction -= (kGAMECLASS.pc.level + rand(3));
+			if (defReduction > 0) defReduction -= (attacker.level + rand(3));
 			if (defReduction < 0) defReduction = 0;
 		}
 		

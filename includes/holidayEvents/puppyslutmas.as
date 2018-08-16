@@ -1146,7 +1146,7 @@ public function puppyslutmasDanceWithSyri():void
 	}
 	else
 	{
-		output(" spinning you in her arms, catching you and pulling you in with your back to her. You shimmy in her grip, grinding back against your partner’s tight embrace until you can feed a lump forming in her pants, flush against your [pc.butt].");
+		output(" spinning you in her arms, catching you and pulling you in with your back to her. You shimmy in her grip, grinding back against your partner’s tight embrace until you can feel a lump forming in her pants, flush against your [pc.butt].");
 	} 
 	
 	output("\n\n<i>“I skipped most of ‘em, though,”</i> she continues, whispering in your ear. Her gaze drifts over to where her sister and Kaede are dancing, nice and slow in each other’s arms. <i>“My sister was always the princess of the family. These balls are all for her, you know. </i>I<i> never needed to know more than the basics...”</i>");

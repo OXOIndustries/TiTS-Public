@@ -116,7 +116,7 @@ public function akanePainslutTrigger():void
 	output("\n\nThe blindfold slips away from your eyes, the warm white light of the throne room taking over your senses.");
 	output("\n\n<i>“And nooow,”</i> she purrs, darting in front of you with her body pressed against yours. <i>“You’re coming with me, [pc.name].”</i>");
 	
-	pc.createPerk("Akane's Painslut", 0, 0, 0, 0, "Your body is attuned to Akane’s methods of pleasurable pain. You have a chance to gain bonus Defense every time you take HP damage which increases with lower health... but you’ll also take additional lust damage. With higher lust, you gain bonus defence!");
+	pc.createPerk("Akane's Painslut", 0, 0, 0, 0, "Your body is attuned to Akane’s methods of pleasurable pain. You have a chance to gain bonus Defense every time you take HP damage which increases with lower health... but you’ll also take additional lust damage. With higher lust, you gain bonus defense!");
 
 	addButton(0, "Uh...", akaneSexOptions);
 }

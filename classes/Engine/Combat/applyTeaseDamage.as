@@ -2,6 +2,7 @@ package classes.Engine.Combat
 {
 	import classes.kGAMECLASS;
 	import classes.Creature;
+	import classes.Items.Piercings.GeddaniumRingPiercing;
 	import classes.Characters.*;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
@@ -35,9 +36,11 @@ package classes.Engine.Combat
 		{
 			for (var i:int = 0; i < likeAdjustments.length; i++) factor *= likeAdjustments[i];
 		}
-		
+		//Free "really likes" for geddanium rang~
+		if (attacker.hasPiercingOfClass(GeddaniumRingPiercing) && target.hasScales()) factor *= 2;
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
-		if (attacker.hasStatusEffect("\"Rutting\"")) factor *= 1.5;		
+		if (attacker.hasStatusEffect("\"Rutting\"")) factor *= 1.5;
+		if (attacker.hasStatusEffect("Body Paint")) factor *= 1.15;
 		if (attacker.hasStatusEffect("Well-Groomed")) factor *= attacker.statusEffectv2("Well-Groomed");
 		if ((target.originalRace == "nyrea" && attacker.hasPerk("Nyrean Royal")) || attacker.hasStatusEffect("Oil Aroused")) factor *= 1.1;
 		if (attacker.hasFur())

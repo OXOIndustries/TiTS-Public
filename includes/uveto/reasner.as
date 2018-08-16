@@ -609,7 +609,7 @@ public function encounterMisterTrentReasner():void
 	output("\n\nYou’re sitting at just the right height to take a gander at the sizable bulge in his trousers; that is if you felt like looking away from his friendly, good-natured grin.");
 	output("\n\nHe wears a suit-like uniform that looks good on him but clashes with his roguish charm. You imagine he’d look more natural in a leather jacket and jeans. Three gold stripes decorate his shoulder boards, compared to " + flags["BEA_TITLE"] + "’s four.");
 	output("\n\n<i>“Please,”</i> " + flags["BEA_TITLE"] + " responds. You nod.");
-	output("\n\n<i>“I Should probably introduce myself,”</i> he says to you and offers his hand; only now do you notice a simple gold ring on his finger.");
+	output("\n\n<i>“I should probably introduce myself,”</i> he says to you and offers his hand; only now do you notice a simple gold ring on his finger.");
 	output("\n\n<i>“Sweetie,”</i> " + flags["BEA_TITLE"] + " politely says, <i>“I’d like you to meet my husband...”</i>");
 	output("\n\n<i>“Traven Reasner,”</i> you shake his hand and get a strong grip and a reassuring pat on the shoulder, <i>“glad to meet you, " + pc.mf("son","miss") + "! The missus had some nice things to say about a splendid young [pc.manWoman] she met here.”</i>");
 
@@ -636,7 +636,7 @@ public function encounterMisterTrentReasner():void
 	output("\n\nTraven taps the scar on his cheek. <i>“Really. Before we married, believe it or not, the missus was quite the hardass.”</i> He pauses and strokes his beard thoughtfully. <i>“Nah, that’s a bit too harsh. She was always a nice person, just way too serious and career focused. That made her a great officer, but she didn’t know how to relax.”</i> He crosses his arms as a fond expression spreads across his face. <i>“Just some of the many reasons I fell in love with her.”</i>");
 	output("\n\n" + flags["BEA_TITLE"] + " returns a minute later, glasses in hand. <i>“I have a sneaking suspicion that you were talking about me.”</i> She sets them down on the table: whiskey - neat - for her husband, brandy for herself, and whatever you ordered. <i>“I hope it was something pleasant, at least.”</i>");
 	output("\n\nThe three of you drink and shoot the breeze for the better part of an hour, talking adventures until Traven’s Codex starts beeping. He takes it out and checks.");
-	output("\n\n<i>“Looks like our little princess needs me.</i> He puts it away.");
+	output("\n\n<i>“Looks like our little princess needs me.”</i> He puts it away.");
 	output("\n\n<i>“My,”</i> " + flags["BEA_TITLE"] + " says, concerned, <i>“is everything alright?”</i>");
 	output("\n\n<i>“Yeah, I think she just wants me to read her report. I swear, that girl takes after you a little too much.”</i> He stands up and pushes his chair back in. <i>“She needs to get out and play more.”</i>");
 	output("\n\n<i>“I thinks she’s doing quite well.”</i>");

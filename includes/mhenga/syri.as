@@ -10,6 +10,7 @@
 // SYRI_BETTING_STORAGE			: Stores credit bet or 9001 if ass betting.
 // SYRI_TALKS 					: Stores what talk scene to display next in the sequence. Scene 1 never repeats. YAY!
 // SYRI_GIFT_PANTY
+// SYRI_CREWMEMBER				: undefined not recruited, 0 at Burts, 1 onboard ship, 2 at Freezer
 
 public function showSyri(nude:Boolean = false):void
 {
@@ -24,9 +25,19 @@ public function syriBustDisplay(nude:Boolean = false):String
 	return sBust;
 }
 
-public function syriIsCrew():Boolean {
+public function syriRecruited():Boolean
+{
+	if (flags["SYRI_CREWMEMBER"] != undefined) return true;
 	return false;
 }
+public function syriIsCrew():Boolean
+{
+	if (flags["SYRI_CREWMEMBER"] == 1) return true;
+	return false;
+}
+
+public function syriVaginalCapacity():Number { return 350; }
+
 public function syriIsAFuckbuddy():Boolean
 {
 	if(syriFriendsWithBenefits()) return true;
@@ -36,8 +47,11 @@ public function syriIsAFuckbuddy():Boolean
 // Is Syri actually at Burt's bar?
 public function syriAtBurts():Boolean
 {
+	if (flags["SYRI_CREWMEMBER"] == 0) return true;
+	if (syriIsCrew() || syriQuestRunning() || syriQuestComplete()) return false;
 	return true;
 }
+
 public function syriAtBurtsBonus(btnSlot:int = 2):void
 {
 	if(hours >= 12) {
@@ -69,7 +83,6 @@ public function syriAtBurtsBonus(btnSlot:int = 2):void
 			//[Syri]
 			addButton(btnSlot,"Syri",approachSyriIntheMorning);
 		}
-
 	}
 }
 
@@ -579,7 +592,7 @@ public function pcLosesToSyriBettingHisAss():void {
 	//If PC is uber-tight:
 	if(pc.ass.looseness() < 2) output("\n\n<i>“O-oh shit you’re tight... what were you doing, betting this little pucker, huh? Trying to suffocate my cock or something?”</i>");
 	// if mid-tight: 
-	else if(pc.ass.looseness() < 4) output("\n\n<i>“OH, yeah, that’s right. Take every inch, little bitch,”</i> the ausar girl pants, reaching up to stroke your hair.");
+	else if(pc.ass.looseness() < 4) output("\n\n<i>“OH, yeah, that’s right. Take every inch, little bitch,”</i> the ausar girl pants, reaching up to stroke your [pc.hair].");
 	// if supah-loose: 
 	else {
 		output("\n\n<i>“Hoooly shit, [pc.name], what do you shove up here - people? God damn, I’m </i>hung<i> and there’s enough room back here for two of me.”</i> She swats your behind, trying to get you to tighten up for her. Her attention, though, goes to some of the bystanders to your sexual submission: <i>“Hey, that wasn’t an invitation. This time. Avert your eyes.”</i> More quietly, just for you, she adds: <i>“You’re loose enough for a few guests, huh? Maybe next time we’ll wager you between all the regulars. That might just fill this [pc.asshole] of yours up, huh?”</i>");
@@ -653,6 +666,12 @@ public function approachSyriIntheMorning():void {
 
 public function syriMorningMenu():void
 {
+	//On Uveto? Go back to Syri's Uveto menu instead.
+	if(currentLocation == "UVI R32" && syriAtFreeezer()) 
+	{
+		syriFreezerMenu();
+		return;
+	}
 	clearMenu();
 	addButton(0,"Talk",talkToSyriRouter);
 	if(syriIsAFuckbuddy()) {
@@ -863,7 +882,8 @@ public function syriBookTalkEpilogue():void {
 	//[Tiny INT increase?]
 	pc.slowStatGain("intelligence",1);
 	clearMenu();
-	addButton(0,"Next",approachSyriIntheMorning);
+	if (syriQuestComplete()) addButton(0,"Next",syriFreezerMenu);
+	else addButton(0,"Next",approachSyriIntheMorning);
 }
 
 //Talk 4
@@ -899,36 +919,49 @@ public function talkToSyriNumber4():void {
 
 //[Sex] 
 public function syriSexMenu(outputs:Boolean = true):void {
+	moveTo("SHIP INTERIOR");
 	if(outputs) {
 		clearOutput();
 		showSyri(true);
 		author("Savin");
-		//(First Time Variant) 
-		if(flags["SYRI_SEEN_PCS_SHIP_CABIN"] == undefined) {
-			flags["SYRI_SEEN_PCS_SHIP_CABIN"] = 1;
-			output("Looking around at the mostly empty bar and then at the pretty ausar girl staring up at you, you ask if she’d like to get out of here.");
+		if (syriAtBurts()) {
+			//(First Time Variant) 
+			if(flags["SYRI_SEEN_PCS_SHIP_CABIN"] == undefined) {
+				flags["SYRI_SEEN_PCS_SHIP_CABIN"] = 1;
+				output("Looking around at the mostly empty bar and then at the pretty ausar girl staring up at you, you ask if she’d like to get out of here.");
 
-			output("\n\n<i>“Ooh, I thought you’d never ask, " + pc.mf("handsome","beautiful") + ",”</i> Syri says with a wink and a grin, gathering up her scattered belongings. <i>“My place is kind of a wreck, so... let’s head back to that ship of yours. You still owe me a tour of your ship after all, Captain...”</i>");
+				output("\n\n<i>“Ooh, I thought you’d never ask, " + pc.mf("handsome","beautiful") + ",”</i> Syri says with a wink and a grin, gathering up her scattered belongings. <i>“My place is kind of a wreck, so... let’s head back to that ship of yours. You still owe me a tour of your ship after all, Captain...”</i>");
 
-			output("\n\nSyri hooks her arm through yours, drawing close to you as you lead the way from Burt’s bar to the docks. Soon you’re walking in the shadow of your docked ship, heading up toward the elevator. Flahne, the rahn secretary, gives you a little wave - and a knowing wink - as you pass, and then you’re in the elevator. The doors have barely closed before the lusty ausar grabs your arms, pulling you into a sudden kiss, her lips sucking on yours, tongue demanding entrance before you can recover. With a primal groan, Syri shoves you up against the wall, starting to pull your gear off as a furry leg hooks around your hip, locking her chest tight to yours. She moves in rhythmic undulations, grinding her crotch against yours");
-			if(pc.hasCock()) output(", your [pc.cocks] stiffening as her knotty prick brushes up against you.");
-			else output(", and you can feel her knotty cock hardening through her pants, a tantalizing taste of what’s to come."); 
+				output("\n\nSyri hooks her arm through yours, drawing close to you as you lead the way from Burt’s bar to the docks. Soon you’re walking in the shadow of your docked ship, heading up toward the elevator. Flahne, the rahn secretary, gives you a little wave - and a knowing wink - as you pass, and then you’re in the elevator. The doors have barely closed before the lusty ausar grabs your arms, pulling you into a sudden kiss, her lips sucking on yours, tongue demanding entrance before you can recover. With a primal groan, Syri shoves you up against the wall, starting to pull your gear off as a furry leg hooks around your hip, locking her chest tight to yours. She moves in rhythmic undulations, grinding her crotch against yours");
+				if(pc.hasCock()) output(", your [pc.cocks] stiffening as her knotty prick brushes up against you.");
+				else output(", and you can feel her knotty cock hardening through her pants, a tantalizing taste of what’s to come."); 
 
-			output("\n\nShe breaks the kiss as the elevator locks into place at the top, just outside your airlock. Breathlessly, she whispers, <i>“how about a tour of the captain’s cabin first...”</i>");
+				output("\n\nShe breaks the kiss as the elevator locks into place at the top, just outside your airlock. Breathlessly, she whispers, <i>“How about a tour of the captain’s cabin first...”</i>");
 
-			output("\n\nYou give her the abridged version of the tour: the one where you’re running through the access corridors, teasing, kissing and caressing as clothes and gear tumble to the floor, leaving a trail of armaments and underwear leading right up to your cabin door. You seal it behind you, and a moment later you’re on your back, Syri straddling you, bare-breasted and panting right in your ear as her cock presses into your thigh, tip slick with her excitement. <i>“Nice digs. Now, how do you want me, captain?”</i>");
+				output("\n\nYou give her the abridged version of the tour: the one where you’re running through the access corridors, teasing, kissing and caressing as clothes and gear tumble to the floor, leaving a trail of armaments and underwear leading right up to your cabin door. You seal it behind you, and a moment later you’re on your back, Syri straddling you, bare-breasted and panting right in your ear as her cock presses into your thigh, tip slick with her excitement. <i>“Nice digs. Now, how do you want me, captain?”</i>");
+			}
+			//Sex (Repeat Intro)
+			else {
+				output("You flash the sexy ausar a grin and ask if she’d care to go back to your place for a little fun. She feigns mulling it over but the rising tent in her pants betrays her, and soon Syri’s gathered her bag and has her arm hook around your waist, letting you lead on toward the docks.");
+				output("\n\nFlahne, the rahn secretary, gives you a little wave as you pass by her office - along with a knowing wink - and then you’re in the elevator. The doors have barely closed before the lusty slut grabs your arms, pulling you into a sudden kiss, her lips sucking on yours, tongue demanding entrance before you can recover. With a primal groan, Syri shoves you up against the wall, starting to pull your gear off as a furry leg hooks around your hip, locking her chest tight to yours. She moves in rhythmic undulations, grinding her crotch against yours");
+				if(pc.hasCock()) output(", your [pc.cocks] stiffening as her knotty prick brushes up against you.");
+				else output(", and you can feel her knotty cock hardening through her pants, a tantalizing taste of what’s to come."); 
+
+				output("\n\nAs soon as you pass the airlock, clothes start flying. ");
+				if(pc.mf("man","") == "man") output("Syri leaps into your arms, legs wrapped around your waist and bare breasts pressed into your face, letting you stumble towards your cabin as she lavishes you in gropes and kisses.");
+				else output("Syri sweeps you up off your [pc.feet], pulling you into a fierce kiss as she stumbles toward your quarters, shedding clothes and gear behind you as her prick presses into your belly, growing steadily until her pants are gone, letting the rigid red rod prod your thigh.");
+				output(" Your door slides open, and you and Syri go tumbling into the bed. A moment later, and the alien beauty is straddling you, gently pumping her pecker as she growls, <i>“Your call, [pc.name]. How do we do this?”</i>");
+			}
 		}
-		//Sex (Repeat Intro)
-		else {
+		//on Uveto
+		else
+		{
 			output("You flash the sexy ausar a grin and ask if she’d care to go back to your place for a little fun. She feigns mulling it over but the rising tent in her pants betrays her, and soon Syri’s gathered her bag and has her arm hook around your waist, letting you lead on toward the docks.");
-			output("\n\nFlahne, the rahn secretary, gives you a little wave as you pass by her office - along with a knowing wink - and then you’re in the elevator. The doors have barely closed before the lusty slut grabs your arms, pulling you into a sudden kiss, her lips sucking on yours, tongue demanding entrance before you can recover. With a primal groan, Syri shoves you up against the wall, starting to pull your gear off as a furry leg hooks around your hip, locking her chest tight to yours. She moves in rhythmic undulations, grinding her crotch against yours");
-			if(pc.hasCock()) output(", your [pc.cocks] stiffening as her knotty prick brushes up against you.");
-			else output(", and you can feel her knotty cock hardening through her pants, a tantalizing taste of what’s to come."); 
-
-			output("\n\nAs soon as you pass the airlock, clothes start flying. ");
-			if(pc.mf("man","") == "man") output("Syri leaps into your arms, legs wrapped around your waist and bare breasts pressed into your face, letting you stumble towards your cabin as she lavishes you in gropes and kisses.");
-			else output("Syri sweeps you up off your [pc.feet], pulling you into a fierce kiss as she stumbles toward your quarters, shedding clothes and gear behind you as her prick presses into your belly, growing steadily until her pants are gone, letting the rigid red rod prod your thigh.");
-			output(" Your door slides open, and you and Syri go tumbling into the bed. A moment later, and the alien beauty is straddling you, gently pumping her pecker as she growls, <i>“Your call, [pc.name]. How do we do this?”</i>");
+			output("\n\nA quick bustle through the blustering Uvetan winds, holding each other tight for warmth, and you’re in the elevator heading spaceward. The doors have barely closed before the lusty slut grabs your arms, pulling you into a sudden kiss, her lips sucking on yours, tongue demanding entrance before you can recover. With a primal groan, Syri shoves you up against the wall, hands running all over you without the slightest concern for who might see you. ");
+			output("\n\nIt takes all your willpower to pull her off before the elevator gets sent back down again, and the two of you make a quick run from the station center back to your docking arm. The airlock barely has a chance to cycle before Syri starts to pull your gear off,  a furry leg hooking around your hip to lock her chest tight to yours. She moves in rhythmic undulations, grinding her crotch against yours, ");
+			if(pc.hasCock()) output("your [pc.cock] stiffens as her knotty prick brushes up against it.");
+			else output("your [pc.cunt] burns with desire as Syri’s dick rubs against it."); 
+			output("\n\nAs soon as you pass the airlock, clothes start flying. Syri sweeps you up off your feet, pulling you into a fierce kiss as she stumbles toward your quarters, shedding clothes and gear behind you as her prick presses into your [pc.belly], growing steadily until her pants are gone, letting the rigid red rod prod your thigh. Your door slides open, and you and Syri go tumbling into the bed. A moment later, and the canid beauty is straddling you, gently pumping her pecker as she growls, <i>“Your call, [pc.name]. How do we do this?”</i>");
 		}
 	}
 	//Sex Options @ Ship:
@@ -940,7 +973,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 			addButton(1,"Missionary",missionaryWithTheDogDickedSlutSyri);
 		}
 		else {
-			if(outputs) output("\n\nYou’re too big to fuck her with it.");
+			if(outputs) output("\n\nYou’re too big to fuck her with your cock.");
 			addDisabledButton(0,"Cowgirl");
 			addDisabledButton(1,"Missionary");
 		}
@@ -965,8 +998,14 @@ public function syriSexMenu(outputs:Boolean = true):void {
 	if (pc.hasCock() && pc.hasTailCock()) addButton(5, "Tailcock", bangSyriWithTailcock, undefined, "Tailcock","Use your tailcock on Syri’s ass while she sucks you off.");
 	else if (!pc.hasCock()) addDisabledButton(5,"Tailcock","Tailcock","You also need a cock for this!");
 	else addDisabledButton(5,"Tailcock","Tailcock","You don’t have a tailcock, silly!");
+	
+	if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 2)
+	{
+		if(pc.hasCock() && pc.cockThatFits(syriVaginalCapacity())) addButton(6, "Bionahole", bionaHoleSyri, undefined, "Bionahole", "Ask Syri if you can borrow her perfectly packaged pussy for a little playtime.");
+		else if(pc.hasCock()) addDisabledButton(6, "Bionahole", "Bionahole", "You are too big to fuck her perfectly packaged pussy!");
+		else addDisabledButton(6, "Bionahole", "Bionahole", "You will need a cock to fuck her perfectly packaged pussy!");
+	}
 }
-
 
 //Reverse Cowgirl
 public function syriReverseCowgirlConsensualization():void {
@@ -1078,7 +1117,7 @@ public function missionaryWithTheDogDickedSlutSyri():void {
 	if(pc.hasKnot(x)) output(", though your own knot, like hers, will take some time to come back out, tying you together for a time");
 	output(" as you curl up to sleep it off with your lover.");
 
-	output("\n\n<i>“I love... the feeling of you inside me, Steele,”</i> Syri purrs, stroking your hair. <i>“Gods, I’m so glad I met you... that we can be together.”</i>");
+	output("\n\n<i>“I love... the feeling of you inside me, Steele,”</i> Syri purrs, stroking your [pc.hair]. <i>“Gods, I’m so glad I met you... that we can be together.”</i>");
 
 	output("\n\nYou lean up and kiss her, telling the beautiful ausar that you couldn’t agree more.");
 	processTime(40+rand(15));
@@ -1108,7 +1147,9 @@ public function getVagFukkedBySyri():void {
 
 	output("\n\n<i>“K-knock it off, Steele,”</i> she growls, but you’ll have none of that. You give her a little push, and Syri tumbles into a nearby chair, cock aimed right at you. Much better. You slide down between Syri’s legs, pushing them apart so she’s nice and vulnerable, giving you ready access to her hot cock. She lets out a happy moan as you grab her prick again, steadily stroking it back to stiffness. <i>“Not what I had in mind, but... not gonna say no to a blowjob, am I?”</i>");
 
-	output("\n\nYou nuzzle Syri’s thigh as her fingers run through your hair, gently urging your head toward her rod. You let the ausar beauty guide you in, and your tongue rolls out of its own accord, tip brushing the very base of her cock, just below the crest of her knot. Syri visibly shivers as you drag your tongue from stem to stern, licking up her length before swallowing her cock at the apex, lips sliding right back down. You catch your gag reflex as her girthy cock pushes down your throat; you stop at her swelling knot, planting a kiss on the salty sphere around her dick before backing off again. You’re rewarded at the height of your motion as her trembling phallus looses a bitter drop of pre down your throat, adding her own creamy lubricant to the spit coating her cock.");
+	output("\n\nYou nuzzle Syri’s thigh");
+	if(pc.hasHair()) output(" as her fingers run through your hair");
+	output(", gently urging your head toward her rod. You let the ausar beauty guide you in, and your tongue rolls out of its own accord, tip brushing the very base of her cock, just below the crest of her knot. Syri visibly shivers as you drag your tongue from stem to stern, licking up her length before swallowing her cock at the apex, lips sliding right back down. You catch your gag reflex as her girthy cock pushes down your throat; you stop at her swelling knot, planting a kiss on the salty sphere around her dick before backing off again. You’re rewarded at the height of your motion as her trembling phallus looses a bitter drop of pre down your throat, adding her own creamy lubricant to the spit coating her cock.");
 
 	output("\n\nAs you steadily suck her off, you get your fingers in on the action: they slip in between bobs of your head, wrapping around Syri’s slick shaft to stroke her until she’s sighing and crying out at the ceaseless sexual stimulation. Once your digits are sufficiently slathered in a sheen of spit, you slip them down Syri’s shivering skin to the dark star of her ass, smiling up at the sexy ausar as you slide a finger into her. She yelps in surprise, sphincter squeezing mercilessly on your probing finger.");
 
@@ -1168,7 +1209,7 @@ public function catchAnalFromSyriIfYouDontUseACondom():void {
 	var x:int = -1;
 	if(pc.hasCock()) x = pc.biggestCockIndex();
 	
-	output("You spread your [pc.legOrLegs] around the ausar beauty’s hips, leaving your [pc.butt] perfectly vulnerable to her thick red prick. Syri grins as you move, her dark eyes drifting down your bare body and the tender flesh on offer, your ass lifted and eager for her. <i>“You’re just an insatiable slut, aren’t you, Steele?”</i> Syri laughs, giving you a sharp slap on the thigh. <i>“If you just wanted a good buttfucking, you coulda stayed at the bar and given Burt a show.”</i>");
+	output("You spread your [pc.legOrLegs] around the ausar beauty’s hips, leaving your [pc.butt] perfectly vulnerable to her thick red prick. Syri grins as you move, her dark eyes drifting down your bare body and the tender flesh on offer, your ass lifted and eager for her. <i>“You’re just an insatiable slut, aren’t you, Steele?”</i> Syri laughs, giving you a sharp slap on the thigh." + (syriAtBurts() ? " <i>“If you just wanted a good buttfucking, you coulda stayed at the bar and given Burt a show.”</i>":""));
 
 	output("\n\nYou start to answer, but she chuckles and winks, <i>“Yeah, yeah. I prefer you all to myself, anyway.”</i> Syri leans down, lips brushing along the nape of your neck as she trails kisses across your [pc.skin], culminating with a long tongue-tying embrace. It’s a long, pleasant moment before she breaks the kiss, bracing on her elbows an inch above your face, lips still bridged to yours with little ropes of crystal-clear saliva. Her soft, furry hand cups your cheek gently, thumb running just under your eye as your lover smiles prettily down at you, hips moving almost imperceptibly closer to your eager ass.");
 
@@ -1269,7 +1310,7 @@ public function blowSyriYouFukkinSlut(postScene:Function = null):void {
 		output("\n\nYou keep her going for a long minute, titfucking your ausar lover faster and faster until she’s panting and moaning, all veneer of restraint lost in her pleasure. ");
 	}
 	else output("\n\n");
-	output("As you caress her cock, you feel velvet-soft fingers slipping through your hair, guiding your pursed lips down onto the waiting point of her pre-leaking length. You keep your lips nice and tight as she pushes you down on her rod, making her work for every inch like she was fucking a virgin cunt. Your tongue slathers her underside as she pushes in, rubbing along her veiny length until you can feel a twitch and spurt of hot pre smearing onto the back of your throat.");
+	output("As you caress her cock, you feel velvet-soft fingers " + (pc.hasHair() ? "slipping through your hair" : "gliding across your head") + ", guiding your pursed lips down onto the waiting point of her pre-leaking length. You keep your lips nice and tight as she pushes you down on her rod, making her work for every inch like she was fucking a virgin cunt. Your tongue slathers her underside as she pushes in, rubbing along her veiny length until you can feel a twitch and spurt of hot pre smearing onto the back of your throat.");
 
 	output("\n\nYou swallow her sticky seed, already trying to coax more out of her. Syri cries out, back arching as she grabs one of her tits, squeezing and pinching her stiff nipple as you take her cock to the base, wrapping your lips around her engorged knot. You suck her knot like a sweet red candy, bobbing your head up and down on it as her pointy tip assaults your mouth, bulging your throat. With the way she’s twitching and squirting inside you, there’s not much longer until she blows her load right in you! Her knot is practically spasming between your [pc.lips], thumping the roof of your mouth in arhythmic spasms as pre leaks freely across your tongue, smearing across your cheeks. You bob your head down on her shaft, as far as you can go until you’ve completely swallowed up her knot.");
 
@@ -1385,7 +1426,9 @@ public function syriSexOutro():void {
 	{
 		if (!pc.hasLowerGarment()) addDisabledButton(3, "GivePanties", "Give Undergarments","You need to be wearing undergarments to give them to someone!");
 		else if (pc.lowerUndergarment.sexiness < 0) addDisabledButton(3, "GivePanties", "Give Undergarments","Your undergarments probably aren’t the type to give as a gift.");
-		else addButton(3, "GivePanties", syriGivePanties, undefined, "Give Undergarments", "Give Syri your [pc.lowerUndergarment] for her masturbatory pleasure. ");
+		else if (!pc.itemSlotUnlocked(GLOBAL.LOWER_UNDERGARMENT)) addDisabledButton(3, "GivePanties", "Give Undergarments","Your undergarment slot is currently locked!");
+		else if (pc.canDropItem(pc.lowerUndergarment)) addDisabledButton(3, "GivePanties", "Give Undergarments","You cannot drop your sexy undergarments!");
+		else addButton(3, "GivePanties", syriGivePanties, undefined, "Give Undergarments", "Give Syri your [pc.lowerUndergarment] for her masturbatory pleasure.");
 	}
 }
 
@@ -1428,7 +1471,8 @@ public function sureUseMyShowerAndClogTheDrainWithDogHair():void {
 	}
 	processTime(15+rand(10));
 	//Return PC to bar
-	currentLocation = "BURT'S MAIN HALL";
+	if (syriQuestComplete()) currentLocation = "UVI R32";
+	else currentLocation = "BURT'S MAIN HALL";
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1503,7 +1547,8 @@ public function syriShowerAdventures2():void
 	//[Next] //Should take the PC back to purt’s padbass pead ball.
 	processTime(15+rand(10));
 	//Return PC to bar
-	currentLocation = "BURT'S MAIN HALL";
+	if (syriQuestComplete()) currentLocation = "UVI R32";
+	else currentLocation = "BURT'S MAIN HALL";
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -1520,7 +1565,8 @@ public function syriAppearance():void {
 
 	output("\n\nA thick eight-inch knotty dog-cock rests between Syri’s legs where her cunt ought to be, hanging over a pair of cum-filled testicles, surrounded by a nicely trimmed bush of downy pubes. Opposite that, she has a nice, inviting little asshole between her firm cheeks, right where it belongs.");
 	clearMenu();
-	addButton(0,"Next",approachSyriIntheMorning);
+	if (syriQuestComplete()) addButton(0,"Next",syriFreezerMenu);
+	else addButton(0,"Next",approachSyriIntheMorning);
 }
 
 
@@ -2477,7 +2523,7 @@ public function syriPetPlayPCLostPart3():void
 	output("You spend the rest of your day being the submissive little puppy you told Syri you’d be, happily suckling on her cock, normally before she shoves it up your [pc.asshole]. Your time between reamings and blowjobs is spent curled up on your master’s lap, like an obedient pet; when you’re not knotted on Syri’s throbbing puppy-prick, that is. ");
 	if(pc.hasCock()) output("She’s even nice enough to give you a handjob at one point. ");
 	output("Time passes, though you don’t keep track, the scent of ausar cum in your ship growing ever more powerful with each passing orgasm of Syri’s. The two of you stop and rest for a while at some point, your master holding you close as you sleep.");
-	output("\n\nSyri’s hands brush along your [pc.hair] while you’re curled up on her lap, waiting for her to build up another load of alabaster spunk to shoot into whatever hole she chooses. Despite your aching bottom, you find yourself in bliss as the dommy-wolf caresses your hair. Alas, it seems your submissive little journey is to come to an end all too soon for you: <i>“Well, well, well, looks like time’s up,”</i> Syri announces as her raven-furred hand reaches down for your collar and takes it off, <i>“aren’t you just a lucky little bitch?”</i>");
+	output("\n\nSyri’s hands brush along your [pc.hair] while you’re curled up on her lap, waiting for her to build up another load of alabaster spunk to shoot into whatever hole she chooses. Despite your aching bottom, you find yourself in bliss as the dommy-wolf caresses your [pc.hair]. Alas, it seems your submissive little journey is to come to an end all too soon for you: <i>“Well, well, well, looks like time’s up,”</i> Syri announces as her raven-furred hand reaches down for your collar and takes it off, <i>“aren’t you just a lucky little bitch?”</i>");
 	//repeat: 
 	if(flags["SYRI_PETPLAY_LOST"] != undefined) output(" You can’t help but miss the feeling of it around your neck.");
 	output(" Sitting yourself up, Syri suggest that the two of you get cleaned up; you oblige and follow your former-owner to your ship’s shower, hardly able to believe it’s been a day already. There you wash a good day’s worth of cum off Syri and yourself while she comments on your performance, <i>“So, how’d you like being my little pet for the day? You seemed... pretty into it.”</i>");
@@ -2665,7 +2711,7 @@ public function voluntaryPetPlayAfterSyriWin3():void
 	if(pc.hasCock()) output(" She’s even nice enough to give you a handjob at one point.");
 	output(" Time passes, though you don’t keep track, the scent of ausar cum in your ship growing ever more powerful with each passing orgasm of Syri’s. The two of you stop and rest for a while at some point, your master holding you close as sleep.");
 
-	output("\n\nSyri’s hands brush along your [pc.hair] while you’re curled up on her lap, waiting for her to build up another load of creamy alabaster to shoot into whatever hole she chooses. Despite your aching bottom, you find yourself in bliss as the dommy-wolf caresses your hair. Alas, it seems your submissive little journey is to come to an end all too soon for you: <i>“Well, well, well, looks like time’s up,”</i> Syri announces as her raven-furred hand reaches down for your collar and takes it off, <i>“hope my good little puppy enjoyed " + pc.mf("himself","herself") + ".”</i> You can’t help but miss the feeling of it around your neck. Sitting yourself up, Syri suggest that the two of you get cleaned up; you oblige and follow your former-owner to your ship’s shower, hardly able to believe it’s been a day already. There you wash a good day’s worth of cum off Syri and yourself while she comments on your performance, <i>“So, you’re pretty into this kind of stuff, huh Steele?”</i>");
+	output("\n\nSyri’s hands brush along your [pc.hair] while you’re curled up on her lap, waiting for her to build up another load of creamy alabaster to shoot into whatever hole she chooses. Despite your aching bottom, you find yourself in bliss as the dommy-wolf caresses your [pc.hair]. Alas, it seems your submissive little journey is to come to an end all too soon for you: <i>“Well, well, well, looks like time’s up,”</i> Syri announces as her raven-furred hand reaches down for your collar and takes it off, <i>“hope my good little puppy enjoyed " + pc.mf("himself","herself") + ".”</i> You can’t help but miss the feeling of it around your neck. Sitting yourself up, Syri suggest that the two of you get cleaned up; you oblige and follow your former-owner to your ship’s shower, hardly able to believe it’s been a day already. There you wash a good day’s worth of cum off Syri and yourself while she comments on your performance, <i>“So, you’re pretty into this kind of stuff, huh Steele?”</i>");
 	output("\n\nYou tell her that you most certainly did enjoy it, finding yourself rubbing the back of your neck where your collar once was. Giving her a slap on the ass, you also tell her she should step up her game, or it’s going to be her ass in that collar next time. Syri chuckles in response.");
 
 	//[Next] //Should return the PC to their ship.
@@ -2863,12 +2909,13 @@ public function syriGivePanties():void
 	}
 	output("\n\nYou chuckle at Syri’s nonchalant attitude and point her to your bathroom. Then just like that, she’s gone, the distant sound of running water soon filling your ears.");
 	output("\n\nWhile the raven-haired beauty is away, you do your best to clean up your quarters, dressing yourself with somewhat unsullied clothing and replacing cum-stained sheets " + (celiseIsCrew() ? "hopefully leaving the rest to Celise" : "") + ". By the time Syri’s back, still drying all that fur of hers, things seem more or less like there wasn’t a libidinous ausar in your bed. She gives an approving nod and offers you a hand up, “Buy you a drink?”");
-	output("\n\nYou smile and follow the ausar out as she grabs her jacket, walking hand-in-hand back to Esbeth, raven tail wagging happily.");
+	output("\n\nYou smile and follow the ausar out as she grabs her jacket, walking hand-in-hand back to " + (syriAtBurts() ? "Esbeth":"Irestead") + ", raven tail wagging happily.");
 	
 	processTime(15 + rand(10));
 	flags["SYRI_GIFT_PANTY"] = pc.lowerUndergarment.longName;
 	pc.lowerUndergarment = new EmptySlot();
-	currentLocation = "BURT'S MAIN HALL";
+	if (syriQuestComplete()) currentLocation = "UVI R32";
+	else currentLocation = "BURT'S MAIN HALL";
 	
 	addButton(0, "Next", mainGameMenu);
 }

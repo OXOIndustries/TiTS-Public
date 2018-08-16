@@ -45,10 +45,10 @@ package classes.Items.Upgrades
 			
 			output("You open up the package and skim through the directions.");
 			if(target.hasHardLightEquipped()) output(" After a minute to familiarize yourself with the pieces, you’re able to attach a few control pieces to your hardlight-packing garments. This could make for some fun in the future!");
-			else output(" After a minute to familiarize yourself with the pieces, you realize they won’t do you much good if you don’t have hardlight-equipped undies. Maybe a vendor on Tavros could help you out with that? At least the pieces are small enough not to take up any space.")
+			else output(" After a minute to familiarize yourself with the pieces, you realize they won’t do you much good if you don’t have hardlight-equipped undies. Maybe a vendor on Tavros could help you out with that? At least the pieces are small enough not to take up any space.");
 			if(!target.hasKeyItem("Hardlight Strap-on Upgrades"))
 			{
-				output("\n\n(<b>Key Item Gained:</b> Hardlight Strap-on Upgrades!)");
+				output("\n\n(<b>Key Item Gained:</b> Hardlight Strap-on Upgrades! Used for underwear with a hardlight strap-on function.)");
 				target.createKeyItem("Hardlight Strap-on Upgrades");
 			}
 			return false;

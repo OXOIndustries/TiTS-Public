@@ -61,7 +61,9 @@ package classes.Characters
 		
 		override public function lustDef():Number
 		{
-			return willpower()/5;
+			var bonus:Number = 0;
+			bonus += statusEffectv1("Beta's Satisfaction")
+			return willpower()/5 + bonus;
 		}
 		
 		override public function loadInCunt(cumFrom:Creature = null, vagIndex:int = -1):Boolean
@@ -79,6 +81,7 @@ package classes.Characters
 			}
 			if (cumFrom != null)
 			{
+				if(cumFrom is Ardia) kGAMECLASS.drinkArdiasCum();
 				if(!cumFrom.hasStatusEffect("Ovilium Effect") && hasStatusEffect("Ovilium"))
 				{
 					kGAMECLASS.oviliumEggBump(cumFrom, vagIndex);
@@ -125,6 +128,7 @@ package classes.Characters
 			// Cumflation
 			if (cumFrom != null)
 			{
+				if(cumFrom is Ardia) kGAMECLASS.drinkArdiasCum();
 				if(cumFrom is Kally) imbibeAlcohol(100);
 				sstdChecks(cumFrom,"ass");
 				if(cumflationEnabled() && cumFrom.cumType != GLOBAL.FLUID_TYPE_CUNDARIAN_SEED) cumflationHappens(cumFrom,3);
@@ -274,6 +278,7 @@ package classes.Characters
 					break;
 				case "cum":
 					if(fluidFrom is Kally) imbibeAlcohol(100);
+					if(fluidFrom is Ardia) kGAMECLASS.drinkArdiasCum();
 					if(hasPerk("Autofellatio Queen") && fluidFrom is PlayerCharacter) energy(35 * fxMult);
 					break;
 				case "girl-cum":

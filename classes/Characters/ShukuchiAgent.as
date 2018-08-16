@@ -116,7 +116,7 @@ package classes.Characters
 		protected function punchyFlurry(target:Creature):void
 		{
 			output("The agent ducks low, throwing his fist towards your midsection!");
-			if (combatMiss(this, target) || blindMiss(this, target, true)) output(" You’re able to avoid this odd maneuver, the agent's follow-up punch failing to connect!");
+			if (combatMiss(this, target) || blindMiss(this, target, true)) output(" You’re able to avoid this odd maneuver, the agent’s follow-up punch failing to connect!");
 			else
 			{
 				output(" His fist makes a hefty impact against your sternum, battering through any defense you have! A kick to the calves, a gut punch and a knife-hilt to the face follow!");

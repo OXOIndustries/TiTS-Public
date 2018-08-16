@@ -146,14 +146,14 @@ package classes.GameData
 			lowTechSolutions.classLimit = GLOBAL.CLASS_MERCENARY;
 			lowTechSolutions.levelLimit = 6;
 			lowTechSolutions.perkName = "Low Tech Solutions";
-			lowTechSolutions.perkDescription = "Increases damage from Kinetic melee weapons by 20%.";
+			lowTechSolutions.perkDescription = "Increases damage from physical, non-energy-based melee weapons by 20%.";
 			insertPerkData(lowTechSolutions);
 
 			var heavyWeapons:PerkData = new PerkData();
 			heavyWeapons.classLimit = GLOBAL.CLASS_MERCENARY;
 			heavyWeapons.levelLimit = 6;
 			heavyWeapons.perkName = "Heavy Weapons";
-			heavyWeapons.perkDescription = "Increases damage from Kinetic ranged weapons by 20%.";
+			heavyWeapons.perkDescription = "Increases damage from physical, non-energy-based ranged weapons by 20%.";
 			insertPerkData(heavyWeapons);
 
 			//Level 7
