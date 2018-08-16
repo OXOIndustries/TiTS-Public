@@ -5593,7 +5593,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					output2("\n<b>* Male Sydian, Times Encountered:</b> " + flags["MET_SYDIAN_MALE"]);
 					if(flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"] != undefined) output2("\n<b>* Male Sydian, Times Cunt-Fucked By:</b> " + flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"]);
 				}
-				if((flags["SYDIAN_QUEEN_STAGE"]!=undefined)
+				if(flags["SYDIAN_QUEEN_STAGE"]!=undefined)
 				{
 					if(flags["SYDIAN_QUEEN_STAGE"]==1)output2("\n<b>* Sydian Queen, Your Servile Status:</b> Willing");
 					if(flags["SYDIAN_QUEEN_STAGE"]==2)output2("\n<b>* Sydian Queen, Your Servile Status:</b> Eager");

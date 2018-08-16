@@ -281,17 +281,18 @@ public function rustCoastEncounters():Boolean {
 public function rustRidgesEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
-	else if (!inCollection(currentLocation,["248","249","251","252"])) flags["RUST_STEP"]++;
+	else if (!InCollection(currentLocation,["248","249","251","252"])) flags["RUST_STEP"]++;
 	
 	var choices:Array = new Array();
 	
-	if (inCollection(currentLocation,["248","249","251","252"]))&& flags["SYDIAN_QUEEN_STAGE"]!=5 && rand(2)==0)
+	if (InCollection(currentLocation,["248","249","251","252"])&& flags["SYDIAN_QUEEN_STAGE"]!=5 && rand(2)==0)
 	{	
 		if(flags["QUEEN_STEP"] == undefined) flags["QUEEN_STEP"] = 0;
 		flags["QUEEN_STEP"]++
 		if(flags["QUEEN_STEP"] == 2)
 		{
 			eventQueue.push(sydianQueenIntroRedux);
+			flags["QUEEN_STEP"] = 0;
 		}
 		else flags["RUST_STEP"]++;
 	}

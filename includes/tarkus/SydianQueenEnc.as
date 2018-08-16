@@ -152,15 +152,14 @@ public function sydianQueenChoice(sceneChoice:int):void
 		output(", stranger,”</i> the sydian returns to you with a broad, proud smile. <i>“You are in my favor.”</i>");
 		//output("\n\nSomething warm and rubbery is being pushed into your hand. The raskvel boi is retreating back to his position by the time you look down at the "+ shrooms.quantity +" spunkshrooms you are now holding.");
 		output("\n\n<i>“Obedient servants get treats,”</i> the sydian says, with a swish of her feathers. <i>“And it is now treat time.”</i> She eyes you coyly. <i>“Are you coming? You would make an acceptable treat.”</i>");
-		
+		//output("\n\n");
 		flags["SYDIAN_QUEEN_STAGE"]=1;
 		
 		//itemScreen = sydianButtons;
 		//lootScreen = sydianButtons;
 		//useItemFunction = sydianButtons;
 		//itemCollect(shrooms);
-		
-		//quickLoot(shrooms);
+	
 		addButton(0,"Yes",sydianQueenChoice,5,"Serve","Serve your queen.");
 		addButton(1,"No",sydianQueenChoice,4,"No","Eh, not right now.");
 		
