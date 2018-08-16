@@ -284,8 +284,13 @@ public function rustRidgesEncounters():Boolean {
 	else flags["RUST_STEP"]++;
 	
 	var choices:Array = new Array();
+	
+	if ((currentLocation == "248" || "249" || "251" || "252")&&flags["SYDIAN_QUEEN_STAGE"]!=5&&rand(2)==0)
+	{
+		eventQueue.push(sydianQueenIntroRedux);		
+	}
 	//If walked far enough w/o an encounter
-	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
+	else if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter
 		flags["RUST_STEP"] = 0;
 		
