@@ -57,8 +57,15 @@ public function sydianQueenIntroRedux():void
 			addButton(1,"Not Today",sydianQueenChoice,7,"Today","Danger, Will Robinson!");
 		}
 	}
-	//flags["SYDIAN_QUEEN_SEXCOUNT"] = 0;
-}	
+}
+
+/*public function sydianButtons():void
+{
+	clearOutput();
+	clearMenu();
+	addButton(0,"Yes",sydianQueenChoice,5,"Serve","Serve your queen.");
+	addButton(1,"No",sydianQueenChoice,4,"No","Eh, not right now.");
+}	*/
 public function sydianQueenChoice(sceneChoice:int):void
 {
 	clearOutput();
@@ -143,14 +150,21 @@ public function sydianQueenChoice(sceneChoice:int):void
 		output("\n\n<i>“You have proven your fealty to me");
 		if (flags["SYDIAN_QUEEN_LUBBIN"]!= undefined||flags["RASKVEL_HAREM_SPITROAST"]!= undefined)output(" once again");
 		output(", stranger,”</i> the sydian returns to you with a broad, proud smile. <i>“You are in my favor.”</i>");
-		output("\n\nSomething warm and rubbery is being pushed into your hand. The raskvel boi is retreating back to his position by the time you look down at the "+ shrooms.quantity +" spunkshrooms you are now holding.");
+		//output("\n\nSomething warm and rubbery is being pushed into your hand. The raskvel boi is retreating back to his position by the time you look down at the "+ shrooms.quantity +" spunkshrooms you are now holding.");
 		output("\n\n<i>“Obedient servants get treats,”</i> the sydian says, with a swish of her feathers. <i>“And it is now treat time.”</i> She eyes you coyly. <i>“Are you coming? You would make an acceptable treat.”</i>");
 		
-		quickLoot(shrooms);
+		flags["SYDIAN_QUEEN_STAGE"]=1;
+		
+		//itemScreen = sydianButtons;
+		//lootScreen = sydianButtons;
+		//useItemFunction = sydianButtons;
+		//itemCollect(shrooms);
+		
+		//quickLoot(shrooms);
 		addButton(0,"Yes",sydianQueenChoice,5,"Serve","Serve your queen.");
 		addButton(1,"No",sydianQueenChoice,4,"No","Eh, not right now.");
 		
-		flags["SYDIAN_QUEEN_STAGE"]=1;
+		
 		
 	}
 	//Stage 4 No more lubbin
@@ -528,18 +542,13 @@ public function raskOrgyPart4Redux():void
 	showName("WAKE\nOF SHAME");
 	author("Nonesuch");
 	
-	//var spunkieCount:int = 3 + rand(3);
 	var shrooms:ItemSlotClass = new SpunkShroom();shrooms.quantity = 3 + rand(3);
 	output("You wake up with a start. You’re outside on the surface of Tarkus again, in the shadow of a rust spire. Your [pc.gear] has been piled roughly on top of you, and you seem to be have been given a rough towelling - although you still absolutely reek of cum. You stagger yourself upright and drag your stuff on. Oh <i>man</i> are you sore!");
 	output("\n\nIt’s only after you’re fully dressed again that you notice the other pile of "+ shrooms.quantity +" spunkshrooms, laid neatly next to you. Payment for services rendered? A come-again favor from an enamored queen? They’re obviously for you… whatever the exact intent of them is. You pick them up and carry on with whatever it was you were doing before you got so delightfully waylaid.");
 	processTime(20);
 	clearMenu();
 	
-	addButton(0, "Leave", quickLoot, shrooms);
-	
-	//addButton(0, "Leave", mainGameMenu);
-	//quickLoot(shrooms);
-	
+	addButton(0, "Leave", quickLoot, shrooms);	
 	
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] == 2) flags["SYDIAN_QUEEN_STAGE"] = 2;
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] >= 3) flags["SYDIAN_QUEEN_STAGE"]=3;
@@ -692,11 +701,7 @@ public function fuckTheSydianQueen3Redux():void
 	pc.orgasm();
 	clearMenu();
 	
-	
 	addButton(0, "Leave", quickLoot, shrooms);
-	//addButton(0, "Leave", mainGameMenu);
-	//quickLoot(shrooms);
-	
 	
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] == 2) flags["SYDIAN_QUEEN_STAGE"]=2;
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] >= 3) flags["SYDIAN_QUEEN_STAGE"]=3;
