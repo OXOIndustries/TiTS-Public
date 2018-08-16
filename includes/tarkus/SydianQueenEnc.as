@@ -200,7 +200,7 @@ public function sydianQueenChoice(sceneChoice:int):void
 	//Stage 3 
 	if (sceneChoice==7)
 	{
-		output("A feel a dragging, resentful reluctance turning her down, but you think it wise not to go off chasing feathery and/or reptilian tail right now.");
+		output("You feel a dragging, resentful reluctance turning her down, but you think it wise not to go off chasing feathery and/or reptilian tail right now.");
 		output("\n\n<i>“A refusal?”</i> Drooped feathers, pouted lips, frustrated tap of the sceptre: The Queen can really do disappointment. <i>“Perhaps you are not my most favored servant, as I imagined. Ah well… “</i> Her beetle-black gaze rolls over her raskvel consort. <i>“ ...there are plenty others who can vie for that honor. Go, then. And think on what you are missing out on well.”</i>");
 		output("\n\nYour body <i>is</i> thinking about it, and makes you feel miserable as you watch that seductive menace sashay away. But perhaps you made the sensible decision.");
 		flags["SYDIAN_QUEEN_STAGE"]=2;
@@ -544,6 +544,7 @@ public function raskOrgyPart4Redux():void
 	var shrooms:ItemSlotClass = new SpunkShroom();shrooms.quantity = 3 + rand(3);
 	output("You wake up with a start. You’re outside on the surface of Tarkus again, in the shadow of a rust spire. Your [pc.gear] has been piled roughly on top of you, and you seem to be have been given a rough towelling - although you still absolutely reek of cum. You stagger yourself upright and drag your stuff on. Oh <i>man</i> are you sore!");
 	output("\n\nIt’s only after you’re fully dressed again that you notice the other pile of "+ shrooms.quantity +" spunkshrooms, laid neatly next to you. Payment for services rendered? A come-again favor from an enamored queen? They’re obviously for you… whatever the exact intent of them is. You pick them up and carry on with whatever it was you were doing before you got so delightfully waylaid.");
+	output("\n\n");
 	processTime(20);
 	clearMenu();
 	
@@ -699,7 +700,7 @@ public function fuckTheSydianQueen3Redux():void
 	pc.orgasm();
 	pc.orgasm();
 	clearMenu();
-	
+	output("\n\n");
 	addButton(0, "Leave", quickLoot, shrooms);
 	
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] == 2) flags["SYDIAN_QUEEN_STAGE"]=2;
