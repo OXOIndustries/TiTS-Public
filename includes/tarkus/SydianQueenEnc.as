@@ -571,7 +571,7 @@ public function fuckTheSydianQueenRedux(x:int):void
 	
 	if(flags["SYDIAN_QUEEN_STAGE"]==1)	
 	{	
-		output("\n\n<i>“Brave intent,”</i> hisses Sydian Queen, black eyes hopscotching up and down your naked body. <i>“You fancy yourself prime enough to make a treat of <i>me</i>, do you?”</i>");
+		output("\n\n<i>“Brave intent,”</i> hisses the Sydian Queen, black eyes hopscotching up and down your naked body. <i>“You fancy yourself prime enough to make a treat of <i>me</i>, do you?”</i>");
 	}
 	else if(flags["SYDIAN_QUEEN_STAGE"]==2)	
 	{
@@ -612,7 +612,7 @@ public function fuckTheSydianQueenRedux(x:int):void
 	}
 	else output("despite your prestigious size.");
 
-	output("\n\n<i>“Yeeeesss,”</i> hisses Queen Sydian, black eyes alive with delight as she watches you saw back and forth into the prostate raskvel, gradually but relentlessly building up a rhythm which makes a glow of intense pleasure work its way right up your [pc.cock " + x + "] and up into your groin. She’s got Sessalai’s head pressed between her open thighs, long ears and tail twitching as he obediently eats her. <i>“This is what I lack! " + pc.mf("An alpha male","A shemale taskmaster") + " to keep my servants in check and give them regular milkings!”</i>");
+	output("\n\n<i>“Yeeeesss,”</i> hisses the Sydian Queen, black eyes alive with delight as she watches you saw back and forth into the prostate raskvel, gradually but relentlessly building up a rhythm which makes a glow of intense pleasure work its way right up your [pc.cock " + x + "] and up into your groin. She’s got Sessalai’s head pressed between her open thighs, long ears and tail twitching as he obediently eats her. <i>“This is what I lack! " + pc.mf("An alpha male","A shemale taskmaster") + " to keep my servants in check and give them regular milkings!”</i>");
 	output("\n\n<i>“No, my queen! I can be that for you, see!”</i> The third raskvel has got the fourth pinned beneath him; he’s giddily flapping his curvy thighs into his fellow’s behind, whose eyes are crossed. A gurgling, helpless moan and a gushing sound draws your attention back to your own bottom. A thick cum is oozing from Azaphel’s bright purple cock, forced out from his sheath by the unstoppable bludgeoning of your own fuck-pole on what is evidently an outsized and very sensitive prostate.");
 	output("\n\n<i>“That’s sweet of you, Meffilin,”</i> coos the sydian to the upstart raskvel, crossing her long legs around her designated muff-servicer, muscles shifting and tightening in her thighs. <i>“But you’ve never made one of my other guards cum like a girl in seconds, have you?”</i>");
 
