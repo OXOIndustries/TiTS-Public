@@ -673,7 +673,7 @@ public function fuckTheSydianQueen2Redux(x:int):void
 	else output("[pc.cock " + x + "]");
 	output(" are achingly, gratifyingly empty, and you can do nothing but flop back against the throne’s back, utterly spent.");
 
-	output("\n\n<i>“Done already?”</i> The sydian’s words come to you through a mist of exhausted bliss. You exhale slowly as she rises up, allowing your dick to flop out her extremely well-seeded hole. The giddy, ecstatic strains of raskvel at play continue unabated. 
+	output("\n\n<i>“Done already?”</i> The sydian’s words come to you through a mist of exhausted bliss. You exhale slowly as she rises up, allowing your dick to flop out her extremely well-seeded hole. The giddy, ecstatic strains of raskvel at play continue unabated. ");
 	if (flags["SYDIAN_QUEEN_STAGE"] != 3 && flags["SYDIAN_QUEEN_LUBBIN"] < 4)
 		{
 			output("<i>“Oh well - perhaps you’re not king material after all. ");
