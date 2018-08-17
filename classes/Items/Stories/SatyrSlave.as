@@ -17,7 +17,7 @@
 			this._latestVersion = 1;
 			
 			this.quantity = 1;
-			this.stackSize = 10;
+			this.stackSize = 1;
 			this.type = GLOBAL.GADGET;
 			
 			this.shortName = "Story:Satyr";

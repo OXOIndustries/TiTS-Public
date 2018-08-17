@@ -153,6 +153,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: I", bxbiChapter1Story);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "BXBI: II", bxbiChapter2Story);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Captured...", capturedByTheDemons);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Cow Stuff", cowStuffStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Diverting Jokes", DivertingTarkusJokesAndJests);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dildo Snakes", dildoSnakes, true);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Dragon’s Hoard", dragonsHordeCodexStory, true);
@@ -160,6 +161,7 @@ public function configureCodex():void
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Satyr Slave", satyrSlaveStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Stolen Goods", stolenGoodsStory);
 	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Tentacles & Tanukis", tentacleTroubleForTurnedOnTanukis);
+	CodexManager.addCodexEntry(CodexManager.CODEX_TYPE_STORY, "Fiction", "Tower of Trials",towerOfTrialsStory);
 }
 
 public function codexHomeFunction():void

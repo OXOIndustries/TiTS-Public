@@ -10,9 +10,9 @@
 	import classes.Engine.Combat.inCombat;
 	import classes.GameData.CodexManager;
 	
-	public class BecomingOneOfTheGirls extends ItemSlotClass
+	public class CowStuff extends ItemSlotClass
 	{
-		public function BecomingOneOfTheGirls()
+		public function CowStuff()
 		{
 			this._latestVersion = 1;
 			
@@ -20,14 +20,14 @@
 			this.stackSize = 1;
 			this.type = GLOBAL.GADGET;
 			
-			this.shortName = "Story:B.One";
-			this.longName = "code for “Becoming One...”";
+			this.shortName = "Story: Cow S.";
+			this.longName = "code for “Cow Stuff";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
-			this.description = "a story download code for “Becoming One of the Girls”";
+			this.description = "a story download code for “Cow Stuff”";
 			
-			this.tooltip = "Using this item will add the story “Becoming One of the Girls” to your Codex’s fiction section.";
+			this.tooltip = "Using this item will add the story “Cow Stuff” to your Codex’s fiction section.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
@@ -41,11 +41,11 @@
 			if(target is PlayerCharacter)
 			{
 				kGAMECLASS.clearOutput();
-				if(CodexManager.entryUnlocked("Becoming One...")) kGAMECLASS.output("You realize that you already have this story and toss out the useless code.");
+				if(CodexManager.entryUnlocked("Cow Stuff")) kGAMECLASS.output("You realize that you already have this story and toss out the useless code.");
 				else
 				{
-					kGAMECLASS.output("You scan the code with your Codex, unlocking “Becoming One of the Girls” in your Codex’s fiction section.");
-					CodexManager.unlockEntry("Becoming One...");
+					kGAMECLASS.output("You scan the code with your Codex, unlocking “Cow Stuff” in your Codex’s fiction section.");
+					CodexManager.unlockEntry("Cow Stuff");
 				}
 			}
 			else
