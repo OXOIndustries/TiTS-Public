@@ -19,6 +19,8 @@ public function sydianQueenIntroRedux():void
 		else addButton(0,"Yes",sydianQueenChoice,0,"Yes","Agree to serve her. You know it will be fun.");
 		addButton(1,"No",sydianQueenChoice,1,"No","Politely turn her down for now.");
 		addButton(2,"Never",sydianQueenChoice,2,"Never","Absolutely refuse to serve her.");
+		
+		if(flags["SYDIAN_QUEEN_STAGE"]==undefined)flags["SYDIAN_QUEEN_STAGE"]=1;
 	}
 	//Said no during first stage
 	else if(flags["SYDIAN_QUEEN_STAGE"]==4)
