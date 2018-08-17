@@ -61,7 +61,7 @@ public function initZhengRooms():void
 
 	rooms["ZS L46"] = new RoomClass(this);
 	rooms["ZS L46"].roomName = "ELEVATOR\nACCESS";
-	rooms["ZS L46"].description = "The corridor breaks into a T-intersection, with a large cargo elevator to the west of you. It’s loaded down with crates of starship parts and doubtlessly-stolen goods, but there’s still enough room for you by the looks of things. The hall continues north and south, back towards the hangar.";
+	rooms["ZS L46"].description = "The corridor breaks into a T-intersection, with a large cargo elevator to the east of you. It’s loaded down with crates of starship parts and doubtlessly-stolen goods, but there’s still enough room for you by the looks of things. The hall continues north and south, back towards the hangar.";
 	rooms["ZS L46"].planet = "ZHENG SHI STATION";
 	rooms["ZS L46"].system = "SYSTEM: HERISIOD";
 	rooms["ZS L46"].northExit = "ZS L44";
@@ -1106,8 +1106,8 @@ public function initZhengRooms():void
 	/* FOUNDRY LEVEL */
 
 	rooms["ZSF G16"] = new RoomClass(this);
-	rooms["ZSF G16"].roomName = "\n";
-	rooms["ZSF G16"].description = "";
+	rooms["ZSF G16"].roomName = "CARGO LIFT\nACCESS";
+	rooms["ZSF G16"].description = "You stand square in the center of the station’s foundry level, aptly named, judging by the red-glowing, steam-belching furnaces and auto-smithies to the north. The entire area is one massive cavern - with a gleaming ship dangling high over it, surrounded by heavy scaffolds and the flashing torches of busy work-slaves. Rusty steel beams and geddanium-braid cabling stretch all the way into the craggy ceiling above, marking out just how much higher the cargo elevator can climb. Prefab hallways and white-boxed workrooms sit just to the south, undoubtedly providing a locale for more cerebral talents to be employed, insulated from the cacophonous din. A tunnel in the western wall is tagged with cheap spraypaint: <i>“Shuttle Bay.”</i>";
 	rooms["ZSF G16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF G16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF G16"].northExit = "";
@@ -1120,8 +1120,8 @@ public function initZhengRooms():void
 	rooms["ZSF G16"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF G18"] = new RoomClass(this);
-	rooms["ZSF G18"].roomName = "\n";
-	rooms["ZSF G18"].description = "";
+	rooms["ZSF G18"].roomName = "PREFAB\nEDGE";
+	rooms["ZSF G18"].description = "You stand at the sharp edge between two styles of construction. One is all smooth white walls. It’s the sort of prefabricated hallway you’d expect to see in any quick-deployed colony or auto-assembled station. The other is all stone and powdered gravel, covered with cheap steel grating. The sharp scent of ionized metal and crude industry drifts in from that direction, to the north. A little ways into the civilized southern segment, you spot a T-intersection. Things open up a bit in the opposite direction.";
 	rooms["ZSF G18"].planet = "ZHENG SHI STATION";
 	rooms["ZSF G18"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF G18"].northExit = "ZSF G16";
@@ -1134,8 +1134,8 @@ public function initZhengRooms():void
 	rooms["ZSF G18"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF G20"] = new RoomClass(this);
-	rooms["ZSF G20"].roomName = "\n";
-	rooms["ZSF G20"].description = "";
+	rooms["ZSF G20"].roomName = "PREFAB\nINTERSECTION";
+	rooms["ZSF G20"].description = "Nearly identical tunnels stretch north, east, and west from here. The north one is the most distinct: it ends sharply, giving way to a natural cavern and the smoky glow of primitive industrial smelters. The other two passages are trickier. Both are lined with mass produced doorways into various research chambers and breakrooms, the only difference in the pattern of their positioning. Either direction seems equally fine.";
 	rooms["ZSF G20"].planet = "ZHENG SHI STATION";
 	rooms["ZSF G20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF G20"].northExit = "ZSF G18";
@@ -1148,12 +1148,12 @@ public function initZhengRooms():void
 	rooms["ZSF G20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF I20"] = new RoomClass(this);
-	rooms["ZSF I20"].roomName = "\n";
-	rooms["ZSF I20"].description = "";
+	rooms["ZSF I20"].roomName = "PREFAB\nHALLWAY";
+	rooms["ZSF I20"].description = "Cheap lights with too much blue to be convincingly natural bathe this whitish tunnel in their unceasing glare. Highlighted by the disconcerting luminance is a cheap nameplate on a dull-looking doorway to the south: Break Room. Just west of here, there’s a T-intersection that splits off to the north. There’s also a few more doors to the east.";
 	rooms["ZSF I20"].planet = "ZHENG SHI STATION";
 	rooms["ZSF I20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF I20"].northExit = "";
-	rooms["ZSF I20"].eastExit = "";
+	rooms["ZSF I20"].eastExit = "ZSF K20";
 	rooms["ZSF I20"].southExit = "ZSF I22";
 	rooms["ZSF I20"].westExit = "ZSF G20";
 	rooms["ZSF I20"].moveMinutes = 3;
@@ -1169,11 +1169,123 @@ public function initZhengRooms():void
 	rooms["ZSF I22"].northExit = "ZSF I20";
 	rooms["ZSF I22"].eastExit = "";
 	rooms["ZSF I22"].southExit = "";
-	rooms["ZSF I22"].westExit = "";
-	rooms["ZSF I22"].moveMinutes = 3;
+	rooms["ZSF I22"].westExit = "ZSF G22";
+	rooms["ZSF I22"].moveMinutes = 1;
 	rooms["ZSF I22"].runOnEnter = foundryLoungeBonus;
 	rooms["ZSF I22"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I22"].addFlag(GLOBAL.NPC);
+
+	rooms["ZSF G22"] = new RoomClass(this);
+	rooms["ZSF G22"].roomName = "BREAK\nROOM";
+	rooms["ZSF G22"].description = "";
+	rooms["ZSF G22"].planet = "ZHENG SHI STATION";
+	rooms["ZSF G22"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF G22"].northExit = "";
+	rooms["ZSF G22"].eastExit = "ZSF I22";
+	rooms["ZSF G22"].southExit = "";
+	rooms["ZSF G22"].westExit = "";
+	rooms["ZSF G22"].moveMinutes = 1;
+	rooms["ZSF G22"].runOnEnter = foundryLounge2Bonus;
+	rooms["ZSF G22"].addFlag(GLOBAL.INDOOR);
+	//rooms["ZSF G22"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF K20"] = new RoomClass(this);
+	rooms["ZSF K20"].roomName = "PREFAB\nHALLWAY";
+	rooms["ZSF K20"].description = "A clean, well-maintained doorway presents you with the opportunity to explore the pirate’s circuit lab. You know this because it’s written plainly on a designation plate. The lock is disabled at a hardware label such that anyone could stride right in. It speaks to the level of discipline - or fear - in the station that electronic equipment would be left so brazenly unguarded. You could check it out, if you’re quick. The hallway goes a bit farther east but much farther west.";
+	rooms["ZSF K20"].planet = "ZHENG SHI STATION";
+	rooms["ZSF K20"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF K20"].northExit = "";
+	rooms["ZSF K20"].eastExit = "ZSF M20";
+	rooms["ZSF K20"].southExit = "";
+	rooms["ZSF K20"].westExit = "ZSF I20";
+	rooms["ZSF K20"].moveMinutes = 2;
+	rooms["ZSF K20"].runOnEnter = foundryLounge2Bonus;
+	rooms["ZSF K20"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF K20"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF M20"] = new RoomClass(this);
+	rooms["ZSF M20"].roomName = "PREFAB\nHALLWAY";
+	rooms["ZSF M20"].description = "After landing in the chaotic industrial hangar and making your way up from the mining levels, this part of Zheng Shi delightfully civilized. The hallway is clean and well lit, if a bit antiseptic. Air scrubbers in the ceiling purge the worst industrial contaminants from your awareness, and the floor has a freshly-waxed feel to it. In either direction, there are doorways to different labs. The southwestern one says something about circuits, and you’re pretty sure you see <i>“robot”</i> on the northeastern placard.";
+	rooms["ZSF M20"].planet = "ZHENG SHI STATION";
+	rooms["ZSF M20"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF M20"].northExit = "";
+	rooms["ZSF M20"].eastExit = "ZSF O20";
+	rooms["ZSF M20"].southExit = "";
+	rooms["ZSF M20"].westExit = "ZSF K20";
+	rooms["ZSF M20"].moveMinutes = 2;
+	rooms["ZSF M20"].runOnEnter = foundryLounge2Bonus;
+	rooms["ZSF M20"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF M20"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF O20"] = new RoomClass(this);
+	rooms["ZSF O20"].roomName = "PREFAB\nDEAD END";
+	rooms["ZSF O20"].description = "";
+	rooms["ZSF O20"].planet = "ZHENG SHI STATION";
+	rooms["ZSF O20"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF O20"].northExit = "ZSF O18";
+	rooms["ZSF O20"].eastExit = "";
+	rooms["ZSF O20"].southExit = "";
+	rooms["ZSF O20"].westExit = "ZSF M20";
+	rooms["ZSF O20"].moveMinutes = 2;
+	rooms["ZSF O20"].runOnEnter = prefabDeadEndBonus;
+	rooms["ZSF O20"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF O20"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF O18"] = new RoomClass(this);
+	rooms["ZSF O18"].roomName = "ROBOTICS\nLAB";
+	rooms["ZSF O18"].description = "The inside of the robotics lab is an engineer’s wet dream. Everywhere you look, there’s innumerable high-tech robotics treasures. Diagnostic stations, sim rigs - you name it, and you can find it somewhere in this sprawling lab. The closest piece of mechanical gear is a high-grade assembly frame. Made from modularized titanium with adjustable armatures, it’s exactly what you would want handy if you were welding together a six-armed, four legged industrial mining machine. The lab stretches north and west, but you can duck out the door to the south.";
+	rooms["ZSF O18"].planet = "ZHENG SHI STATION";
+	rooms["ZSF O18"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF O18"].northExit = "ZSF O16";
+	rooms["ZSF O18"].eastExit = "";
+	rooms["ZSF O18"].southExit = "ZSF O20";
+	rooms["ZSF O18"].westExit = "ZSF M18";
+	rooms["ZSF O18"].moveMinutes = 1;
+	rooms["ZSF O18"].runOnEnter = foundryLounge2Bonus;
+	rooms["ZSF O18"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF O18"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF O16"] = new RoomClass(this);
+	rooms["ZSF O16"].roomName = "ROBOTICS\nLAB";
+	rooms["ZSF O16"].description = "An L-shaped desk supports four holo-screens linked up to a hardlight keypad. The information displays all seem to be diagnostic in nature: V.I. core crash dumps, maintenance logs, and the like. A spiderweb of cables dangles from the bottom. Every possible type of physical connector is represented: coaxial universal connection cables, flash umbilical cords, and hundreds of others. If there's a robot built in the last century, this workstation could connect to it. The robotics lab extends to the south and west.";
+	rooms["ZSF O16"].planet = "ZHENG SHI STATION";
+	rooms["ZSF O16"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF O16"].northExit = "";
+	rooms["ZSF O16"].eastExit = "";
+	rooms["ZSF O16"].southExit = "ZSF O18";
+	rooms["ZSF O16"].westExit = "ZSF M16";
+	rooms["ZSF O16"].moveMinutes = 1;
+	rooms["ZSF O16"].runOnEnter = foundryLounge2Bonus;
+	rooms["ZSF O16"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF O16"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF M16"] = new RoomClass(this);
+	rooms["ZSF M16"].roomName = "ROBOTICS\nLAB";
+	rooms["ZSF M16"].description = "Wall mounted cabinets hold robotic parts of every shape and size. A manipulator arm dangles from one. Heavy duty actuators fill up another. You could probably put together your own little mining ‘bot with everything here, if you had time to waste and a willingness to do so. Plasma torches and millimeter-specific self-adjusting wrenches dangle on cables overhead for easy access during work. The lab continues to the east and south.";
+	rooms["ZSF M16"].planet = "ZHENG SHI STATION";
+	rooms["ZSF M16"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF M16"].northExit = "";
+	rooms["ZSF M16"].eastExit = "ZSF O16";
+	rooms["ZSF M16"].southExit = "ZSF M18";
+	rooms["ZSF M16"].westExit = "";
+	rooms["ZSF M16"].moveMinutes = 1;
+	rooms["ZSF M16"].runOnEnter = foundryLounge2Bonus;
+	rooms["ZSF M16"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF M16"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF M18"] = new RoomClass(this);
+	rooms["ZSF M18"].roomName = "ROBOTICS\nLAB";
+	rooms["ZSF M18"].description = "This mess of cables and cobbled together workstations confuses you at first, but after a few minutes scanning the hardware, you manage to put together its purpose. This is a simulation rig. Cables can be jacked into a robot’s various inputs and outputs, replacing things like vision with computer-simulated falsities while locomotion is hijacked to route a into virtual control input. It’s the perfect way to test a robot’s programming without giving it a chance to damage anyone or anything. The lab continues to the north and east.";
+	rooms["ZSF M18"].planet = "ZHENG SHI STATION";
+	rooms["ZSF M18"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF M18"].northExit = "ZSF M16";
+	rooms["ZSF M18"].eastExit = "ZSF O18";
+	rooms["ZSF M18"].southExit = "";
+	rooms["ZSF M18"].westExit = "";
+	rooms["ZSF M18"].moveMinutes = 1;
+	rooms["ZSF M18"].runOnEnter = foundryLounge2Bonus;
+	rooms["ZSF M18"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF M18"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF PLACEHOLDER"] = new RoomClass(this);
 	rooms["ZSF PLACEHOLDER"].roomName = "\n";
@@ -1185,7 +1297,7 @@ public function initZhengRooms():void
 	rooms["ZSF PLACEHOLDER"].southExit = "";
 	rooms["ZSF PLACEHOLDER"].westExit = "";
 	rooms["ZSF PLACEHOLDER"].moveMinutes = 3;
-	rooms["ZSF PLACEHOLDER"].runOnEnter = zhengMinesEncounterBonus;
+	rooms["ZSF PLACEHOLDER"].runOnEnter = foundryLounge2Bonus;
 	rooms["ZSF PLACEHOLDER"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF PLACEHOLDER"].addFlag(GLOBAL.HAZARD);
 

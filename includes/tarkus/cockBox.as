@@ -18,6 +18,12 @@ public function cockBoxDiscoveryBlurb():Boolean
 	}
 	return (rustRidgesEncounters());
 }
+
+public function cockboxUpgraded(inShip:Boolean):Boolean
+{
+	if(!inShip) return true;
+	else return (flags["COCKBOX_UPGRADE"] != undefined);
+}
 //Investigate the Cock Box
 public function investigateTheCockBox():void
 {
@@ -132,7 +138,15 @@ public function useInstalledDickBox():void
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
 	showBust("DONG_DESIGNER");
-	output("The Dong Designer is still plugged in and working where you left it. The holographic display is as obscene as ever, offering you a bevy of different reproductive organs. The scrolling lettering indicates that you need to insert your penis into the pink-rimmed opening to begin. A nearby lever allows you to adjust the height for comfort.");
+	if(InShipInterior(pc))
+	{
+		output("The Dong Designer is still plugged in and working where you left it. The holographic display is as obscene as ever, offering you a bevy of different reproductive organs.");
+	}
+	else
+	{
+		output("The Dong Designer’s holographic display lights up when you get closer, displaying an obscene menagerie of various alien organs.");
+	}
+	output(" The scrolling lettering indicates that you need to insert your penis into the pink-rimmed opening to begin. A nearby lever allows you to adjust the height for comfort.");
 
 	//1 dick
 	if(pc.totalCocks() == 1)
@@ -236,7 +250,7 @@ public function cockBoxMenu(x:int):void
 	cockList.push([GLOBAL.TYPE_GRYVAIN, "Gryvain", "Gryvain", "Get a scaly knotted, ribbed penis, like that of a gryvain."]);
 	cockList.push([GLOBAL.TYPE_EQUINE, "Equine", "Equine", "Get a penis like that of a terran horse."]);
 	// Unlockables
-	if(flags["COCKBOX_UPGRADE"] != undefined)
+	if(cockboxUpgraded(InShipInterior()))
 	{
 		cockList.push([GLOBAL.TYPE_VULPINE, "Vulpine", "Vulpine", "Get a tapered and knotted vulpine penis."]);
 		cockList.push([GLOBAL.TYPE_SWINE, "Swine", "Swine", "Get a corkscrew-shaped pig dick."]);
@@ -273,7 +287,7 @@ public function dickBoxTFColorSelect(args:Array):void
 	var cIdx:int = args[0];
 	var cType:int = args[1];
 	
-	if(flags["COCKBOX_UPGRADE"] == undefined)
+	if(!cockboxUpgraded(InShipInterior()))
 	{
 		dickBoxTF([cIdx, cType]);
 		return;
@@ -358,7 +372,7 @@ public function dickBoxTF(args:Array):void
 		}
 	}
 	output("As soon as you");
-	if(flags["COCKBOX_UPGRADE"] != undefined) output(" select a color");
+	if(cockboxUpgraded(InShipInterior())) output(" select a color");
 	else output(" finalize your selection");
 	output(", the machine hums into action, vibrating vigorously around your [pc.cock " + args[0] + "]. ");
 	if(flags["USED_DONG_DESIGNER"] == undefined) output("It’s more intense than you expected.");
@@ -461,10 +475,15 @@ public function dickBoxTF(args:Array):void
 		output(" Turning red, the holographic panel displays a pouting, big-breasted kui-tan and a warning not to use the machine until a custodian has come by to clean up your mess.");
 		if(celiseIsCrew()) output(" Celise is in for a treat.");
 		output("\n\nOnce your body finishes attempting to impregnate the device, you slip your [pc.cumNoun]-soaked prick free. It looks exactly as promised minus the licentious paint job you’ve accidentally given it. Nothing a quick shower and a little time with a mop and bucket won’t fix...");
-		if(flags["DONG_DESIGNER_FLOODED"] != undefined) output("\n\nYou’re both disappointed and relieved that you didn’t wind up flooding the room this time - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility.");
+		if(flags["DONG_DESIGNER_FLOODED"] != undefined) 
+		{
+			output("\n\nYou’re both disappointed and relieved that you didn’t wind up flooding the room this time");
+			if(InShipInterior(pc)) output(" - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility");
+			output(".");
+		}
 		//Shower!
 		pc.applyCumSoaked();
-		pc.shower();
+		if(InShipInterior(pc)) pc.shower();
 		IncrementFlag("DONG_DESIGNER_BACKWASHED");
 	}
 	//Backblasted out
@@ -473,12 +492,15 @@ public function dickBoxTF(args:Array):void
 		output("\n\nIt never stood a chance. Your first few pulses rapidly overwhelmed the device’s capacity to handle cum, and each subsequent eruption further increases the internal pressure. Streamers of [pc.cumNoun] pour from the straining artificial lips. Part of you is worried that you’ll break the poor thing, but you’re cumming too hard to care. The drizzling spray of [pc.cumColor] fuckjuice intensifies until it’s taking everything you have just to hold yourself inside the velvety interior.");
 		output("\n\nThe console rips itself from your hands; holding out against such incredible overpressure was just too much. Your back slams hard into a bulkhead, thankfully numbed by the swarms of endorphins flooding your bloodstream as you continue to cum, painting your way from the machine to the ceiling to your own face. You grab hold of your newborn dick, slick with its pleasure-fluids of its birth, and stroke it wildly, pumping huge blasts of [pc.cum] into your mouth and anything else that looks like it could use a coat of [pc.cumColor].");
 		output("\n\nWhen you come down, you note the machine has a red hologram of a big-breasted kui-tan above it along with a warning not to use the device until it has been cleaned by a custodian. Fuck the machine - you’re going to need a shower.");
-		if(celiseIsCrew()) output(" Celise can handle this mess.");
+		if(InShipInterior(pc))
+		{
+			if(celiseIsCrew()) output(" Celise can handle this mess.");
+		}
 		else output(" You can take care of this mess after.");
 		pc.applyCumSoaked();
 		pc.applyCumSoaked();
 		pc.loadInMouth(pc);
-		pc.shower();
+		if(InShipInterior(pc)) pc.shower();
 		IncrementFlag("DONG_DESIGNER_FLOODED");
 	}
 	IncrementFlag("USED_DONG_DESIGNER");
@@ -506,7 +528,7 @@ public function cockBoxDickDoublingHijinx(args:Array):void
 	showBust("TAMANI");
 	pc.taint(4);
 	output("The moment you");
-	if(flags["COCKBOX_UPGRADE"] != undefined) output(" select a chosen color");
+	if(cockboxUpgraded(InShipInterior())) output(" select a chosen color");
 	else output(" finalize your selection");
 	output(", something goes wrong. A flashing orange and red notification appears above a crossed-out progress bar:\n\n\t<b>Warning: Multiple phalli detected. TamaniCorp can not be held responsible for any deviations in our advanced mutation protocols.</b>\n\t<b>Compensating...</b>\n\t<b>Error: Single phallus detected in multiple mode. Reverting to prevent damage to user. Please do not attempt to remove your penises from the device or irreversible genetic damage may occur.</b>");
 	if(flags["DONG_DESIGNER_MALFUNCTIONED"] == undefined) output("\n\nUh oh.");
