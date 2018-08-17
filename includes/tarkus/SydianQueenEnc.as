@@ -554,6 +554,9 @@ public function raskOrgyPart4Redux():void
 	
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] == 2) flags["SYDIAN_QUEEN_STAGE"] = 2;
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] >= 3) flags["SYDIAN_QUEEN_STAGE"]=3;
+	
+	pc.createStatusEffect("Sydian Queen Cooldown", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.setStatusMinutes("Sydian Queen Cooldown", 90);
 }
 
 //Lay Her
