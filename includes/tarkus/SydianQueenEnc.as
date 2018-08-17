@@ -15,7 +15,7 @@ public function sydianQueenIntroRedux():void
 		else output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She clicks her tongue, eyeing you up. <i>“Perhaps you’re here because you wish to serve, hmm? You would make an acceptable treat for my harem…”</i> There is a sharp intake of breath around her, and the persistent whispering gets even more excited. <i>“ ...or perhaps even for me.”</i> She smiles thinly. The sceptre taps a slow rhythm against the armored curve of her hip. <i>“What say you?”</i>");
 		
 		//Buttons
-		if (flags["SYDIAN_QUEEN_LUBBIN"]!= undefined||flags["RASKVEL_HAREM_SPITROAST"]!= undefined) addButton(0,"Yes",sydianQueenChoice,0,"No","Agree to serve her. It sounds like it could be fun.");
+		if (flags["SYDIAN_QUEEN_LUBBIN"]== undefined&&flags["RASKVEL_HAREM_SPITROAST"]== undefined) addButton(0,"Yes",sydianQueenChoice,0,"No","Agree to serve her. It sounds like it could be fun.");
 		else addButton(0,"Yes",sydianQueenChoice,0,"Yes","Agree to serve her. You know it will be fun.");
 		addButton(1,"No",sydianQueenChoice,1,"No","Politely turn her down for now.");
 		addButton(2,"Never",sydianQueenChoice,2,"Never","Absolutely refuse to serve her.");
