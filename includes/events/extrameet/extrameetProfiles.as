@@ -266,11 +266,11 @@ public function extrameetReddSex():void
 	output("You accept her offer, giving the red woman a small nod.");
 	output("\n\n<i>“Speak up.”</i> Her tone is harder, more serious. <i>“Answer when you’re spoken to.”</i>");
 	output("\n\n<i>“I accept...”</i> Your voice is shaky, nerves getting the better of you.");
-	output("\n\n<i>“Excellent.”</i> The red Rahn stands, her ovi-cock large and on display. <i>“Follow me then. We’re going to have so much fun.");
+	output("\n\n<i>“Excellent.”</i> The red Rahn stands, her ovi-cock large and on display. <i>“Follow me then. We’re going to have so much fun.”</i>");
 	output("\n\nThe two of you make your way out of the bar, turning almost every head in the place. The Rahn’s outfit and fully erect ovipositor attract most of the attention, but a few envious glances are shot your way. Once you leave the bar she leads you to a nearby elevator, stepping inside and beckoning you in.");
 	output("\n\n<i>“Nervous?”</i> She says it in a voice so sweet her teeth could rot.");
 	output("\n\n<i>“No.”</i> You lie. Badly, it seems.");
-	output("\n\nThe Rahn grabs your by the scruff of the neck and yanks your head back. <i>“Don’t lie to me.”</i> Her voice is still sweet, but now has a dangerous edge to it. <i>“I can smell it on you. Your anxiety. It’s intoxicating. The elevator pings and the door opens, the Rahn releasing you and stepping out. <i>“Keep up.”</i>");
+	output("\n\nThe Rahn grabs your by the scruff of the neck and yanks your head back. <i>“Don’t lie to me.”</i> Her voice is still sweet, but now has a dangerous edge to it. <i>“I can smell it on you. Your anxiety. It’s intoxicating.”</i> The elevator pings and the door opens, the Rahn releasing you and stepping out. <i>“Keep up.”</i>");
 	output("\n\nHer apartment is not far away, and she guides you in without delay. Her apartment seems normal enough at first glance. A couch, a TV, a sex swing, and a bookshelf. You double take back to the sex swing, seeing it hang from the ceiling right in the middle of the room. You feel yourself blush, having a feeling you might end up strapped in to it very shortly.");
 	output("\n\nThe red woman gives you a small shock, coming up behind you and clasping a hand hard on your backside. <i>“Hm. Looks like you already know where you are going.”</i> She gives your [pc.ass] a tight squeeze. <i>“And I know exactly where I’m going as well. Don’t move.”</i>");
 	output("\n\nYou stay perfectly still as she strips you down, removing your gear and weapons and setting them off to the side. Her fingers trail along your exposed [pc.skinFurScales], slowly exploring you. Her touch makes you quiver, the first movement you’ve made since she told you to stay still. You feel a sharp pain on your ass, as the red woman delivers a hard spank to your backside. <i>“I told you to stay still.”</i> Her voice is still light and bubbly, playful and seductive at the same time. <i>“Naughty naughty.”</i>");
@@ -358,7 +358,7 @@ public function extrameetHawtstuffDate():void
 	output("\n\nYou notice her shift around, and you can’t help but think you’ve made her uncomfortable. Trying to fix the situation, you ask her about herself.");
 	output("\n\n<i>“Oh, I’m just nobody really.”</i> Her gaze comes up to meet yours. <i>“I mean.. Wow, that came out really depressing. I meant to say I’m just sort of normal you know.”</i> She scratches her cheek. <i>“I mean, I only swiped right on you because you’re like me physically. I’m umm, sort of old fashioned like that. But now that we’ve talked a bit... I mean wow, you’re way out of my league.”</i>");
 	output("\n\nHer eyes fall off you again. Man the mood went south quick. You’re pretty sure you can salvage the night, but things might get a bit hot and heavy as a result. What to do...");
-			
+	
 	if(!CodexManager.entryUnlocked("Leithans")) 
 	{		
 		output("\n\nYour codex beeps to inform you it’s identified the Leithan race.");
@@ -917,7 +917,7 @@ public function extrameetBrattyKittenProfile():void
 	output("\n\nUsername: BrattyKitten");
 	output("\nSex: Female	Age: 22 Years	Race : Kaitrit	Planet: New Texas");
 	output("\n\nBio:");
-	output("\nOn planet for vacation. Looking to sample some of the local <i>“delicacies”</i>.");
+	output("\nOn planet for vacation. Looking to sample some of the local “delicacies”.");
 }
 
 //everythingdies
@@ -961,7 +961,7 @@ public function extrameetLaughingDragonProfile():void
 	output("\n\nUsername: LaughingDragon");
 	output("\nSex: Other		Age: 67 Years	Race : Gryvain	Planet: New Texas");
 	output("\n\nBio:");
-	output("\nLooking for some fun. On planet for one night only. Eager to drink <i>“from the tap”</i> if you know what I mean.");
+	output("\nLooking for some fun. On planet for one night only. Eager to drink “from the tap” if you know what I mean.");
 }
 
 //TheBiggestHorse
@@ -972,7 +972,7 @@ public function extrameetTheBiggestHorseProfile():void
 	output("\n\nUsername: TheBiggestHorse");
 	output("\nSex: Male		Age: 29 Years		Race : Human+	Planet: New Texas");
 	output("\n\nBio:");
-	output("\nHello! Recently single and ready to get back on the dating <i>“horse”</i>. Clearly I’m not that funny, but I make up for it in other areas.");
+	output("\nHello! Recently single and ready to get back on the dating “horse”. Clearly I’m not that funny, but I make up for it in other areas.");
 }
 
 //Cumsnuggle
@@ -1256,7 +1256,7 @@ public function extrameetSneakySnekDate():void
 	output("\n\n<i>“Alan, huh? So you really are human.”</i>");
 	output("\n\nYour date chuckles. <i>“Was might be a better term for it. My DNA might tell a different story, but I gave up on being human awhile ago.”</i>");
 	output("\n\nBased on what you’ve seen you know he is being honest. Making small talk, you ask him what made him decide to morph.");
-	output("\n\nAlan leans in against the table, planting down his elbow and holding his chin. <i>“Tough question.”</i> He thinks to himself a moment, tapping a finger against his mostly concealed face. <i>“When I first saw a Naleen I guess I sort of fell in love. Not with that particular Naleen mind you, just with the idea of them. It spoke to me. Honestly I’ve never been happier. Only problem is natural Naleen put a little scare into the locals and make this awkward”</i>");
+	output("\n\nAlan leans in against the table, planting down his elbow and holding his chin. <i>“Tough question.”</i> He thinks to himself a moment, tapping a finger against his mostly concealed face. <i>“When I first saw a Naleen I guess I sort of fell in love. Not with that particular Naleen mind you, just with the idea of them. It spoke to me. Honestly I’ve never been happier. Only problem is natural Naleen put a little scare into the locals and make this awkward.”</i>");
 	output("\n\nHis explanation makes sense, and you feel satisfied with his answer. The two of you end up chatting back and forth, with no real subject or direction. The conversation is refreshing and good natured, with both of you laughing and enjoying yourselves. After awhile Alan pulls back his hood again, revealing his cat like face.");
 	output("\n\n<i>“Hood itches my fur after awhile.”</i> He rubs his forehead with his index finger. <i>“Hey, this might be a bit forward, but would you be interested in coming back to my place?”</i> He drops his hand and smiles. <i>“I mean, I did mention in my profile I was looking for an open minded woman. I’d hoped the implication extended to... other things.”</i>");
 	output("\n\n<i>“Ah.”</i> You consider the offer for a moment in silence, giving Alan another look up and down. Being a full Naleen morph, you suspect he’s packing the full Naleen experience, and is likely going to want to use it to its fullest.");
@@ -1720,13 +1720,13 @@ public function extrameetSweetNLowSex():void
 	
 	output("\n\nYou lower the woman, dropping her downward, causing your cock to slide deeper into her wet cunt. The tiny woman lets out a loud lusty moan, her whole body shaking in your arms. You continue to drop her, all the way down until you feel yourself buried all the way to the end of her cunt, your cockhead pressing against her deep hidden womb. She gasps, clenching your arms tightly, her nails digging into you. On your cock you feel an odd tightness, her vagina starting to twist. You moan out at the unexpected development, feeling the gabilani cunt tighten on your [pc.cockShape " + kok + "] member, its unique properties causing it to twist and compress. The intense sensation on your sensitive cock flesh almost makes you drop the small woman, and suddenly she feels very heavy in your trembling arms.");
 	output("\n\nMuscling through it you grip Etta tighter, making sure you have a strong hold on her. You start to lift and drop the tiny woman, using her like a cocksleeve while you jerk yourself off with her body. Her tight and twisted cunt squeezes your throbbing cock, and as you force her up and down you feel it pulse and burn with rising pleasure. Your breathing becomes ragged and harsh, both from the physical effort of using the woman, and your intense arousal. The tiny green woman howls in animalistic pleasure, her tight cunt quivering around your meaty pole. You increase the speed you’re pumping her at, hoping to try and finish off quickly before you exhaust yourself, your arms already starting to go numb. A few short moments later the small woman moans and convulses in your arms, drool on her lips as an orgasm rocks her.");
-			
+	
 	output("\n\nNot long after, the burning in your crotch comes to a peak");
 	
 	if (pc.balls > 0) output(" and your feel your [pc.balls] start to churn");
 	
 	output(". With a loud groan your feel yourself explode inside the twisted cunt, hot sticky seed filling up the gabilani’s sex. You almost fall over but try your best not to drop the still shaking woman in your arms. Instead you take a few steps forward first and fall onto your bed, taking the green woman down with you in a near tumble. As you land you release Etta and at the same time her cunt untwists around you, releasing the pressure on your spent cock and causing much of your [pc.cumColor] cum to ooze from her twitching pussy. <i>“Wow.”</i> She says, breathing hard on the bed next to you. <i>“You really are strong.”</i>");
-			
+	
 	output("\n\nThe small woman doesn’t linger long, gathering her things and getting dressed. She barely pays you any mind, and just hums a tune you don’t recognize to herself while she gets ready to leave. Once she’s dressed, you walk her to the ship’s exit and the tiny woman gives you a devilish smile. <i>“I’ll see you around [pc.name]. Make sure you don’t skip arm day any time soon, yeah?”</i> She shoots you a knowing wink and turns to leave, exiting the ship and leaving you alone.");
 	
 	processTime(30 + rand(15));
@@ -1909,8 +1909,8 @@ public function extrameetTruePower69Sex():void
 	output("\n\nThankfully, you don’t have to wait long and Chell’s streams of cursing turns into a heavy moan of pleasure. Both of her sexes seem to climax at the same time, as you feel her womanhood tremble and clench around you while her cock fires off a massive load of white spunk up into the air in front of you. It falls down all over the prone woman, coating her stomach and chest. The smell and the sight of the cum drenched woman is all it takes for you to lose control and explode. You throw back your head as a strong wave of pleasure strikes throughout your body, the epicenter being your cock buried deep into the Dzaan’s twat.");
 	
 	if (pc.balls > 0) output(" You feel your [pc.balls] churn as you fire off your load, filling up what little space is left in her tight cunt with the excess already oozing out around your thick throbbing meat.");
-	else output(" You fire off your load, filling up what little space is left in her tight cunt with the excess already oozing out around your thick throbbing meat.")
-			
+	else output(" You fire off your load, filling up what little space is left in her tight cunt with the excess already oozing out around your thick throbbing meat.");
+	
 	output("\n\nWith a small grunt you pull yourself free from the tight Dzaan, your cock still hard but fading. Beneath you on the bed Chell props herself up, shaking with her chest covered in her own spunk and her crotch covered in yours. She takes a deep breath and stills herself. <i>“That wasn’t half bad.”</i> She pulls herself up into a sitting position, cum running down her body.");
 	
 	if (flags["TRUEPOWER69_VIRGINITY_TAKEN"] != 1)
@@ -2644,7 +2644,7 @@ public function extrameetFukaSex():void
 //[EXTRAMEET_SCIENCERULEZ41]
 public function extrameetScienceRulez41Profile():void
 {		
-	output("The profile picture on your screen is a full body picture of a rather nerdy looking human. His brown hair is quite unkept, and he is wearing thick round glasses. You note his arms seem to be covered in pinkish scales, and his eyes appear like reptilian slits. He is also wearing a T-shirt that reads ‘What’s the matter? EVERYTHING!”</i>");
+	output("The profile picture on your screen is a full body picture of a rather nerdy looking human. His brown hair is quite unkept, and he is wearing thick round glasses. You note his arms seem to be covered in pinkish scales, and his eyes appear like reptilian slits. He is also wearing a T-shirt that reads “What’s the matter? EVERYTHING!”");
 	output("\n\nUsername: ScienceRulez41");
 	output("\nSex: Male		Age: 35 Years		Race: Human+	Planet: Uveto");
 	output("\n\nBio:");

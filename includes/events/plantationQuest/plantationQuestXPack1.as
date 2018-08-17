@@ -416,9 +416,9 @@ public function showQuinnMaidens():void
 	showBust("FETCH_AND_CARRY");
 	showName("FETCH &\nCARRY");
 }
-public function quinnHandmaidenThreesomeAvailable():Boolean
+public function quinnHandmaidenThreesomeAvailable(mommy:Boolean = false):Boolean
 {
-	return ( (pc.hasCock() && pc.smallestCockLength() < 12.5) && pc.libido() >= 30 && ((flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440) || flags["QUINN_MAIDENS_SEXED"] != undefined) );
+	return ( (pc.hasCock() && pc.smallestCockLength() < 12.5) && pc.libido() >= 30 && ((flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440) || (mommy && flags["QUINN_MAIDENS_SEXED"] != undefined)) );
 }
 public function quinnHandmaidenThreesome(args:Array):void
 {
@@ -3060,7 +3060,7 @@ public function quinnMomSexButton(btnSlot:int = 2):void
 		else
 		{
 			if(!pc.hasGenitals()) addDisabledButton(btnSlot, "Sex", "Sex", "You need genitals to do that!");
-			else if(quinnHandmaidenThreesomeAvailable()) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["maiden"]);
+			else if(quinnHandmaidenThreesomeAvailable(true)) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["maiden"]);
 			else addDisabledButton(btnSlot, "Sex", "Sex", "You’ve worn out Quinn, and Fetch and Carry are otherwise occupied. No more bonking. Aren’t babies a bitch?");
 		}
 	}

@@ -472,7 +472,7 @@ public function zilTwinsFuckmenu():void
 	else
 		addDisabledButton(2, "Fuck Tetra");
 		
-	addButton(3, "BBQSpitroast", zilTwinsFuckThemAll, undefined, "Honey BBQ Spitroast", "Eat Tetra out while she has her brother plow your " + (pc.hasVagina() ? "pussy" : "ass"));
+	addButton(3, "BBQSpitroast", zilTwinsFuckThemAll, [zilTwinsMica, zilTwinsTetra], "Honey BBQ Spitroast", ("Eat Tetra out while she has her brother plow your " + (pc.hasVagina() ? "pussy" : "ass") + "."));
 }
 
 public function zilTwinsFuckMicaMentally(arg:Array):void

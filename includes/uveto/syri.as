@@ -15,7 +15,10 @@ public function syriAtFreezerFirePitBonus(btnSlot:int = 0):void
 
 public function syriFreezerMenu(outputs:Boolean = true):void
 {
-	if(outputs) {
+	if(outputs)
+	{
+		//9999 - TODO, Uveto variant! if(syriPuppyslutmasEntry()) return;
+		
 		clearOutput();
 		showSyri();
 		author("Savin");

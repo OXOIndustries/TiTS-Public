@@ -1311,10 +1311,10 @@ public function multiCockFap():void {
 		output("Your orgasm bursts right out of your [pc.cockHead] and into your mouth");
 		if(cum <= 5) output(", leaving a drop of [pc.cum] for you to savor as you ride out the culmination of your masturbation session.");
 		else if(cum <= 15) output(", leaving you with a few nicely-sized blobs of [pc.cum] to swallow as you ride out the culmination of your masturbation session.");
-		else if(cum <= 50) output("filling your cheeks with a hot load of liquid bliss for you to hurriedly gulp down.");
-		else if(cum <= 200) output("flooding your cheeks with so much that you have to hurriedly gulp to keep it from leaking out your [pc.lips].");
-		else if(cum <= 750) output("stuffing your cheeks with so much that even with you hurriedly gulping there’s still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
-		else output("flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you’re likely unrecognizable.");
+		else if(cum <= 50) output(" filling your cheeks with a hot load of liquid bliss for you to hurriedly gulp down.");
+		else if(cum <= 200) output(" flooding your cheeks with so much that you have to hurriedly gulp to keep it from leaking out your [pc.lips].");
+		else if(cum <= 750) output(" stuffing your cheeks with so much that even with you hurriedly gulping there’s still blobs of [pc.cumColor] squrting at leaking out of the corners of your mouth, making a mess of your face and your cock.");
+		else output(" flooding your cheeks so effectively with the first pulse that the second pushes your mouth clean off your [pc.cockHead], forcing you to get a head-drenching facial so thick that you’re likely unrecognizable.");
 		output(" ");
 	}
 	//Bits for nipplefucking
