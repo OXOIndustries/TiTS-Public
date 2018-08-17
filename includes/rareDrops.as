@@ -24,7 +24,7 @@ import classes.Items.Treasures.Savicite;
 
 public function genericRareDrops(loot:Array):Array
 {
-	var threshold:Number = 100;
+	var threshold:Number = 1;
 	var planet:String = getPlanetName().toLowerCase();
 	var tempLoot:Array = [];
 	if(rand(100) <= threshold)
