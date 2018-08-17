@@ -3,6 +3,7 @@ package classes.Engine.Combat
 	import classes.kGAMECLASS;
 	import classes.Creature;
 	import classes.Items.Piercings.GeddaniumRingPiercing;
+	import classes.Items.Piercings.UrtaniumRingPiercing;
 	import classes.Characters.*;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
@@ -38,6 +39,7 @@ package classes.Engine.Combat
 		}
 		//Free "really likes" for geddanium rang~
 		if (attacker.hasPiercingOfClass(GeddaniumRingPiercing) && target.hasScales()) factor *= 2;
+		if (attacker.hasPiercingOfClass(UrtaniumRingPiercing) && target.hasFur()) factor *= 2;
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
 		if (attacker.hasStatusEffect("\"Rutting\"")) factor *= 1.5;
 		if (attacker.hasStatusEffect("Body Paint")) factor *= 1.15;
