@@ -719,7 +719,7 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showName("IN\nTHE\nWAR\nROOM");
+	showName("IN THE\nWAR ROOM");
 	clearMenu();
 	
 	if (sceneChoice==0)
@@ -767,7 +767,7 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 {
 	clearOutput();
 	author("Nonesuch");
-	showName("A\nLIFE\nOF\nEGG\nBEARING");
+	showName("A LIFE OF\nEGG BEARING");
 	clearMenu();
 	
 	var randoKid:int = rand(2);
