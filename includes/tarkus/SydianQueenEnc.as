@@ -56,7 +56,7 @@ public function sydianQueenIntroRedux():void
 			if (pc.WQ() < 40)output("\n\nIt’s your instinct now to immediately obey, and it’s a struggle not to do so.");
 			else output("\n\nIt’s a test of your iron fortitude not to immediately obey. Is… is there perhaps some danger here you’re not seeing?");
 			addButton(0,"Smash",sydianQueenSexyTimes,undefined,"Smash","Serve your queen.");
-			addButton(1,"Not Today",sydianQueenChoice,7,"Today","Danger, Will Robinson!");
+			addButton(1,"Not Today",sydianQueenChoice,7,"Not Today","Danger, Will Robinson!");
 		}
 	}
 }
