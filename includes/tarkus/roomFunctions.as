@@ -282,7 +282,7 @@ public function rustRidgesEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
 	
-	if (InCollection(currentLocation,["241","242","243","244"])&& flags["SYDIAN_QUEEN_STAGE"]!=5 && rand(2)==0)
+	if (InCollection(currentLocation,["241","242","243","244"])&& flags["SYDIAN_QUEEN_STAGE"]!=5 && rand(2)==0&&!pc.hasStatusEffect("Sydian Queen Cooldown"))
 	{	
 			eventQueue.push(sydianQueenIntroRedux);
 	}

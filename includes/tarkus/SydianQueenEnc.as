@@ -673,11 +673,15 @@ public function fuckTheSydianQueen2Redux(x:int):void
 	else output("[pc.cock " + x + "]");
 	output(" are achingly, gratifyingly empty, and you can do nothing but flop back against the throne’s back, utterly spent.");
 
-	output("\n\n<i>“Done already?”</i> The sydian’s words come to you through a mist of exhausted bliss. You exhale slowly as she rises up, allowing your dick to flop out her extremely well-seeded hole. The giddy, ecstatic strains of raskvel at play continue unabated. <i>“Oh well - perhaps you’re not king material after all. ");
-	if(flags["SYDIAN_QUEEN_STAGE"]!=1)output("Not yet, anyway. Perhaps, eventually…");
-	else("B");
-	output("ut you have given me what I desired, and put on a good show, valiant, virile stranger - and I can finish up with my servants. Be at ease, and rest.”</i>");
-
+	output("\n\n<i>“Done already?”</i> The sydian’s words come to you through a mist of exhausted bliss. You exhale slowly as she rises up, allowing your dick to flop out her extremely well-seeded hole. The giddy, ecstatic strains of raskvel at play continue unabated. 
+	if (flags["SYDIAN_QUEEN_STAGE"] != 3 && flags["SYDIAN_QUEEN_LUBBIN"] < 4)
+		{
+			output("<i>“Oh well - perhaps you’re not king material after all. ");
+			if(flags["SYDIAN_QUEEN_STAGE"]!=1)output("Not yet, anyway. Perhaps, eventually… but y");
+			else("But y");
+		}
+	else output("<i>“Y");
+	output("ou have given me what I desired, and put on a good show, valiant, virile stranger - and I can finish up with my servants. Be at ease, and rest.”</i>");
 	output("\n\nYou’re more than happy to obey that, slumped in the cozy, albeit sticky, furs of the throne. Your last sight of the tall, regal insect woman is her stalking down towards the four raskvel, feathers swishing, leaving a trail of [pc.cum] behind her...");
 
 	processTime(60);
@@ -706,11 +710,16 @@ public function fuckTheSydianQueen3Redux():void
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] == 2) flags["SYDIAN_QUEEN_STAGE"]=2;
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] >= 3) flags["SYDIAN_QUEEN_STAGE"]=3;
 	
+	//Needs a 3 hour cooldown
+	pc.createStatusEffect("Sydian Queen Cooldown", 0, 0, 0, 0, true, "", "", false, 0);
+	pc.setStatusMinutes("Sydian Queen Cooldown", 90);
+	
 }
 public function raskOrgyBadEnd(sceneChoice:int):void
 {
 	clearOutput();
 	author("Nonesuch");
+	showName("IN\nTHE\nWAR\nROOM");
 	clearMenu();
 	
 	if (sceneChoice==0)
@@ -729,6 +738,7 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 	if (sceneChoice==1)
 	{
 		pc.willpower(-50);
+		pc.libido(100);
 		pc.lust(150);
 		output("You stroke the taut, bloated curve of your belly, huffing as concertina-like pressure assails your womb, [pc.femcum] dripping freely from your [pc.vagina]… but, nope. It’s not yet time. You return your attention to your Mistress’s armored boot, stroking it happily as she continues her consul with the sydian emissaries. ");
 		output("\n\nThe four male warriors keep shooting looks at you, which is understandable: you are Queen Sh’ziad’s most valuable asset, and are decorated as such. The chain that connects your collar to her throne glitters with malachite.");
@@ -757,6 +767,7 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 {
 	clearOutput();
 	author("Nonesuch");
+	showName("A\nLIFE\nOF\nEGG\nBEARING");
 	clearMenu();
 	
 	var randoKid:int = rand(2);
@@ -779,7 +790,8 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 //Willpower -80%, Lust +80%
 	if (sceneChoice==1)
 	{	
-		pc.willpower(pc.willpower() / 5, true)
+		pc.willpower(pc.willpower() / 5, true);
+		pc.libido(100);
 		pc.lust(80);
 		output("It’s many months later. As is normally the case these days, you’re hard at work in the War Room. You clap your [pc.hips] into the supple rump of the squealing raskvel femboy you’ve got bent over the table, finally driving your [pc.cock] into his delightfully tight back passage as far as you can before unloading great, thick gushes of [pc.cum] with one heavy, groaning throb after another; coaxed on by the wet suction and soft, liquid movements wrapped around your great testicles.");
 		output("\n\nNow that the deep, swimming lust that clouds your mind has dissipated, you can think clearly again - at least for a while. You dismiss your raskvel aide, and allow the female sydian under the desk to unfasten from your balls. She looks up at you with a touching mixture of adoration and fear, lips varnished with saliva and ball-sweat. This one is a slave, the once-haughty eldest daughter of a chieftain that dared to defy you. It took a little while to accommodate her to her new role in life, but you’ve gotten experienced at instilling obedience amongst Tarkus’s natives. You dismiss her too with a fondle of the feathers and a slap on the ass, leaving you alone with your thoughts.");
@@ -801,7 +813,7 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 		output(" scrap metal crib, looked after by a dozen adoring miniature femboy nurses.");
 		output("\n\nThe door opening to the War Room brings you out of your thoughts. It’s the Queen herself, Sh’ziad the Merciless, sashaying in with a teasing smile, avid black eyes fixed on you. Her hand passes over her belly plate, already beginning to stretch over your second child.");
 		output("\n\n<i>“You’re looking gloomy, my king,”</i> she proclaims, sweeping around your chair to place her clawed hands on your shoulders. <i>“What is troubling you?”</i>");
-		output("\n\n<i>“Just… the past,”</i> you grunt. It’s already becoming hard to remember. Your [pc.groin] throbs, your balls already busily refilling themselves, almost reacting to the presence of their true owner. <i>“What I… used to be… <i>“");
+		output("\n\n<i>“Just… the past,”</i> you grunt. It’s already becoming hard to remember. Your [pc.groin] throbs, your balls already busily refilling themselves, almost reacting to the presence of their true owner. <i>“What I… used to be… </i>“");
 		output("\n\n<i>“You know not to think about that,”</i> she tuts, massaging you in that particular way she has. <i>“Come to the bedroom. Embrace your Queen, make her feel fine. Afterwards we’ll have some slaves attend to us. Oil, fruit, whips… you’ll like that, won’t you?”</i>");
 		output("\n\nYou know she’s manipulating you, she’s being doing that from the off, but… you don’t care. You can’t care. A few minutes later you’re in bed deep between her thighs, and with every delicious thrust of your thick breeder cock into her simmering heat, every buzzing, delighted moan you draw out of your pregnant, lusty queen, a few more of your worries and memories slip away. Forgetting is the sheerest bliss.");
 		badEnd("THE END.");
