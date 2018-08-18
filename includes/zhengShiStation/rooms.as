@@ -1247,7 +1247,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF O16"] = new RoomClass(this);
 	rooms["ZSF O16"].roomName = "ROBOTICS\nLAB";
-	rooms["ZSF O16"].description = "An L-shaped desk supports four holo-screens linked up to a hardlight keypad. The information displays all seem to be diagnostic in nature: V.I. core crash dumps, maintenance logs, and the like. A spiderweb of cables dangles from the bottom. Every possible type of physical connector is represented: coaxial universal connection cables, flash umbilical cords, and hundreds of others. If there's a robot built in the last century, this workstation could connect to it. The robotics lab extends to the south and west.";
+	rooms["ZSF O16"].description = "An L-shaped desk supports four holo-screens linked up to a hardlight keypad. The information displays all seem to be diagnostic in nature: V.I. core crash dumps, maintenance logs, and the like. A spiderweb of cables dangles from the bottom. Every possible type of physical connector is represented: coaxial universal connection cables, flash umbilical cords, and hundreds of others. If there’s a robot built in the last century, this workstation could connect to it. The robotics lab extends to the south and west.";
 	rooms["ZSF O16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF O16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF O16"].northExit = "";

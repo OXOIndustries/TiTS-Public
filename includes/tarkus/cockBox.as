@@ -127,7 +127,7 @@ public function cockBoxUninstallation():void
 
 public function cockCanFitCockBox(cIdx:int = 0):Boolean
 {
-	if(flags["COCKBOX_UPGRADE"] != undefined) return true;
+	if(cockboxUpgraded(InShipInterior())) return true;
 	return (pc.cocks[cIdx].thickness() <= 4 && pc.cocks[cIdx].cLength() <= 20);
 }
 
@@ -138,7 +138,7 @@ public function useInstalledDickBox():void
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
 	showBust("DONG_DESIGNER");
-	if(InShipInterior(pc))
+	if(InShipInterior())
 	{
 		output("The Dong Designer is still plugged in and working where you left it. The holographic display is as obscene as ever, offering you a bevy of different reproductive organs.");
 	}
@@ -198,9 +198,11 @@ public function useInstalledDickBox():void
 		else addButton(0,"Yes",cockBoxUse,0,"Use Dong Designer","Yes, you will stick your dick in that box.");
 	}
 	
-	addButton(13, "Uninstall", cockBoxUninstallation, undefined, "Uninstall Device", "Unplug the machine and put it in your inventory.");
-	
-	if(InShipInterior()) addButton(14,"Back",shipStorageMenuRoot);
+	if(InShipInterior())
+	{
+		if(flags["DONG_DESIGNER_INSTALLED"] != undefined) addButton(13, "Uninstall", cockBoxUninstallation, undefined, "Uninstall Device", "Unplug the machine and put it in your inventory.");
+		addButton(14,"Back",shipStorageMenuRoot);
+	}
 	else addButton(14,"Leave",mainGameMenu);
 }
 
@@ -362,6 +364,9 @@ public function dickBoxTF(args:Array):void
 	clearOutput();
 	author("Fenoxo");
 	showName("DONG\nDESIGNER");
+	
+	var inShip:Boolean = InShipInterior();
+	
 	pc.taint(2);
 	if((rand(10) == 0 && flags["USED_DONG_DESIGNER"] != undefined) || (debug && rand(2) == 0))
 	{
@@ -372,7 +377,7 @@ public function dickBoxTF(args:Array):void
 		}
 	}
 	output("As soon as you");
-	if(cockboxUpgraded(InShipInterior())) output(" select a color");
+	if(cockboxUpgraded(inShip)) output(" select a color");
 	else output(" finalize your selection");
 	output(", the machine hums into action, vibrating vigorously around your [pc.cock " + args[0] + "]. ");
 	if(flags["USED_DONG_DESIGNER"] == undefined) output("It’s more intense than you expected.");
@@ -478,12 +483,12 @@ public function dickBoxTF(args:Array):void
 		if(flags["DONG_DESIGNER_FLOODED"] != undefined) 
 		{
 			output("\n\nYou’re both disappointed and relieved that you didn’t wind up flooding the room this time");
-			if(InShipInterior(pc)) output(" - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility");
+			if(inShip) output(" - relieved that your ship won’t smell like [pc.cum] for a day while it airs out and disappointed in your apparently weakened virility");
 			output(".");
 		}
 		//Shower!
 		pc.applyCumSoaked();
-		if(InShipInterior(pc)) pc.shower();
+		if(inShip) pc.shower();
 		IncrementFlag("DONG_DESIGNER_BACKWASHED");
 	}
 	//Backblasted out
@@ -492,7 +497,7 @@ public function dickBoxTF(args:Array):void
 		output("\n\nIt never stood a chance. Your first few pulses rapidly overwhelmed the device’s capacity to handle cum, and each subsequent eruption further increases the internal pressure. Streamers of [pc.cumNoun] pour from the straining artificial lips. Part of you is worried that you’ll break the poor thing, but you’re cumming too hard to care. The drizzling spray of [pc.cumColor] fuckjuice intensifies until it’s taking everything you have just to hold yourself inside the velvety interior.");
 		output("\n\nThe console rips itself from your hands; holding out against such incredible overpressure was just too much. Your back slams hard into a bulkhead, thankfully numbed by the swarms of endorphins flooding your bloodstream as you continue to cum, painting your way from the machine to the ceiling to your own face. You grab hold of your newborn dick, slick with its pleasure-fluids of its birth, and stroke it wildly, pumping huge blasts of [pc.cum] into your mouth and anything else that looks like it could use a coat of [pc.cumColor].");
 		output("\n\nWhen you come down, you note the machine has a red hologram of a big-breasted kui-tan above it along with a warning not to use the device until it has been cleaned by a custodian. Fuck the machine - you’re going to need a shower.");
-		if(InShipInterior(pc))
+		if(inShip)
 		{
 			if(celiseIsCrew()) output(" Celise can handle this mess.");
 		}
@@ -500,7 +505,7 @@ public function dickBoxTF(args:Array):void
 		pc.applyCumSoaked();
 		pc.applyCumSoaked();
 		pc.loadInMouth(pc);
-		if(InShipInterior(pc)) pc.shower();
+		if(inShip) pc.shower();
 		IncrementFlag("DONG_DESIGNER_FLOODED");
 	}
 	IncrementFlag("USED_DONG_DESIGNER");

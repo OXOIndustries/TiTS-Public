@@ -53,8 +53,8 @@ public function maikeEncounterFun():Boolean
 		}
 		if(flags["MAIKE_SLAVES_RELEASED"] == -1)
 		{
-			output("\n\n<b>Maike's remote is on the ground where you left it. You could still free the slaves, if you wished.</b>");
-			addButton(0,"Release Slaves",lateSlaveRelease,undefined,"Release Slaves","You can unlock the slaves' obedience collars. They'd certainly like it, but it might piss off some of the pirates. Then again, the extra trouble might keep them out of your hair.");
+			output("\n\n<b>Maike’s remote is on the ground where you left it. You could still free the slaves, if you wished.</b>");
+			addButton(0,"Release Slaves",lateSlaveRelease,undefined,"Release Slaves","You can unlock the slaves’ obedience collars. They’d certainly like it, but it might piss off some of the pirates. Then again, the extra trouble might keep them out of your hair.");
 		}
 	}
 	else
