@@ -106,11 +106,13 @@ public function gimmeBooks():void
 	tempLoot.push(new BXBIOne());
 	tempLoot.push(new BXBITwo());
 	tempLoot.push(new CapturedByTheDemons());
+	tempLoot.push(new CowStuff());
 	tempLoot.push(new EightClicks());
 	tempLoot.push(new FuckTheSystem());
 	tempLoot.push(new SatyrSlave());
 	tempLoot.push(new StolenGoods());
 	tempLoot.push(new TentaclesAndTanukis());
+	tempLoot.push(new TowerOfTrials());
 	
 	clearOutput();
 	output("Beep boop. All the codes are ready!");

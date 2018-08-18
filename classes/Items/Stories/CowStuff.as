@@ -21,7 +21,7 @@
 			this.type = GLOBAL.GADGET;
 			
 			this.shortName = "Story: Cow S.";
-			this.longName = "code for “Cow Stuff";
+			this.longName = "code for “Cow Stuff”";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

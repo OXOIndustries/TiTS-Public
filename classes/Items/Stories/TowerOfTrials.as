@@ -21,7 +21,7 @@
 			this.type = GLOBAL.GADGET;
 			
 			this.shortName = "Story: ToT";
-			this.longName = "code for “Tower of Trials";
+			this.longName = "code for “Tower of Trials”";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

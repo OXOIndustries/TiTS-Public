@@ -614,7 +614,7 @@ public function fuckTheSystem():void
 	
 	outputCodex("\n\nAnd then it was done. She fell back into the seat. Her head was cocked back, jaw slack, mind sparking and fizzling. Warm wetness trickled along her thighs. Her vision swam, then slowly resolved into shapes again. Opal’s head lolled back to life. She took deep, shivering breaths.");
 	
-	outputCodex("\n\nYori reached out and tipped up her chin so that Opal was looking up at her. <i>“So, if I asked you to <i>“eat my pussy”</i>, would you?”</i> she asked.");
+	outputCodex("\n\nYori reached out and tipped up her chin so that Opal was looking up at her. <i>“So, if I asked you to ‘eat my pussy’, would you?”</i> she asked.");
 	
 	outputCodex("\n\nOpal’s jaw slid shut and she bared her fangs weakly. She didn’t want to dignify that with a response.");
 	
@@ -2103,7 +2103,7 @@ public function dragonsHordeCodexStory():void
 	outputCodex("\n\nThe woman was stunning. Ivory skin growing from crimson limbs, perfectly smooth and soft, with just a faint trace of firm muscle beneath. A simple brown cloth hung to her hips, garbing her down to the knees, but like Lusina the woman went bare-chested, proudly displaying a pair of breasts every bit as big, soft, and succulent as Lusina’s own. The moth-girl felt a sudden rush of arousal boil through her loins, hammering in her heart in the same beat her fear and apprehension did.");
 	outputCodex("\n\n<i>“What,”</i> Lusina gulped, taking a defensive step back. <i>“What are...”</i>");
 	outputCodex("\n\nThe woman smiled, revealing a quartet of long incisors. Her thick tail swayed behind her, dragging along after her. <i>“I...”</i> she said, resting a scaled digit on the tip of Lusina’s claymore, <i>“am the dragon you just called out.”</i>");
-	outputCodex("\n\nLusina gasped and staggered back, out of the creature’s reach. The <i>“dragon”</i> tsked her tongue and followed her, backing the moth-girl up against the cavern wall. Lusina gasped as her back pressed against jagged, rough stone, leaving her nowhere to go. Opposite the dragon, the kobolds chittered and cheered, dancing around their spears as their mistress cornered their would-be attacker.");
+	outputCodex("\n\nLusina gasped and staggered back, out of the creature’s reach. The “dragon” tsked her tongue and followed her, backing the moth-girl up against the cavern wall. Lusina gasped as her back pressed against jagged, rough stone, leaving her nowhere to go. Opposite the dragon, the kobolds chittered and cheered, dancing around their spears as their mistress cornered their would-be attacker.");
 	outputCodex("\n\nSeeing the moth’s back against the wall, the dragon-girl took another confident stride forward, placing herself easily inside Lusina’s reach, seemingly without a care in the world. <i>“You may call me Eryxienne,”</i> she purred, punctuating the thought with a breath that burst into a ball of flame in her hand, roiling and lapping at the air inches from Lusina’s nose. <i>“Now, was there something you wanted, little moth?”</i>");
 	outputCodex("\n\nLusina stood transfixed, silent, eyes locked on the roiling flame held like a living thing in the dragon’s claws. It was a ball of rolling flame that seemed to dance between her fingers, drawing Lusina’s eyes back and forth, side to side. The dragon cooed after what might have been a moment or an eternity, tilting her horned head to the side.");
 	outputCodex("\n\n<i>“I guess what they say about moths is true,”</i> the dragon said with a smirk, curling her fingers around the flame until it was almost out of sight.");
@@ -2329,7 +2329,7 @@ public function DivertingTarkusJokesAndJests():void
 
 	outputCodex("\n\n-----------------------------------------------------------");
 
-	outputCodex("\n\nWhy can’t gabilani float in pools deeper than 4’5”</i>?");
+	outputCodex("\n\nWhy can’t gabilani float in pools deeper than 4\' 5\"?");
 	outputCodex("\n.");
 	outputCodex("\n.");
 	outputCodex("\n.");
@@ -2731,7 +2731,7 @@ public function tentacleTroubleForTurnedOnTanukis():void
 	outputCodex("\n\nA crowd gathered at Esbeth’s spaceport. Syri had just gotten off work and noticed the commotion. She worked her way through the crowd to see what was happening and nearly fell over in shock when she saw what was on the other side. Amaya and Kiro were there, and so were their mountainous genitals. What wasn’t there was Kiro’s ship, mysteriously gone along with the Trimilion. The two were creating their own rivers from the amount of cum that rolled out of them constantly. Poor Penny was trying her hardest to get their attention, but all she got was face-full after face-full of cum. Although the bulge in her pants gave away that it might not have been so accidental.");
 	outputCodex("\n\nSyri rushed up to Amaya and yelled out to her. The two kui-tan were almost completely insensate, but Syri’s calls managed to rouse Amaya from her sex-induced coma. <i>“Hey Syri, you were, like, so wrong about Kiro. This turned out aweeeeeeeeeeesome!”</i> she said as her hands started to work over her gargantuan shaft, giving Penny a fresh facial. <i>“See, even Penny thinks so.”</i> She pointed toward the flustered fennec, gleefully licking the cum off her face. Her look of bliss faded to one of embarrassment as she was found out.\n\n<i>“I’m, uh, I’ll, uh, go get some help. Yeah, help...”</i> The bulge in her pants throbbed so hard on her way out, that Syri thought they were going to rip right off.");
 	outputCodex("\n\nHelp did eventually arrive, and the two were shrunk down to the point where they could at least walk. Of course, such procedures don’t come cheap, and they got into pretty heavy debt. Lucky for them, Nivas Oxonef herself was passing through, shooting for her <i>“Randy in Rush Space”</i> series. She took a liking to the two and signed them on. With their minds still scrambled and thoroughly bimbofied from their encounter, it was the perfect fit for them, and they stayed long after their debt was paid off.");
-	outputCodex("\n\nIt wasn’t how Amaya had wanted to become famous, but at this point it was more than a good enough outcome for her. She was even able to get Syri in on the action. As apprehensive as she was, her role as <i>“person in Amaya’s ass #32”</i> turned out to be very enjoyable for both of them, and she became a regular on Amaya’s shoots and streams.");
+	outputCodex("\n\nIt wasn’t how Amaya had wanted to become famous, but at this point it was more than a good enough outcome for her. She was even able to get Syri in on the action. As apprehensive as she was, her role as “person in Amaya’s ass #32” turned out to be very enjoyable for both of them, and she became a regular on Amaya’s shoots and streams.");
 	outputCodex("\n\nKiro had her GalLink friends on as regulars, including a famous corporate heir. Their 24 hour fuckathons became the stuff of extranet legend, the most popular ultraporn streams around. She sometimes pondered going back to the pirate’s life, but when she thought about all the struggle and life-threatening stuff she had to go through for sex that wasn’t nearly as good as what she was getting now, she stopped caring.");
 	outputCodex("\n\nThis was the good life.");
 
@@ -2825,7 +2825,7 @@ public function towerOfTrialsStory():void
 	outputCodex("The struggle between man and demon was, in a word, eternal. From the very moment man had drawn his first breath, the intrinsic virtue within his breast found its distaff rival in the caricatured form of the demons set to prey upon him.");
 	outputCodex("\n\nNaturally, this meant that the two didn’t often get along.");
 	outputCodex("\n\nIt wasn’t that they didn’t try, mind you. Humans and demons had been the subject of some truly staggering epics, romantic, comedic, tragic, you name it. But their antipodal natures meant that the tragedies outweighed the comedies - certainly the romances.");
-	outputCodex("\n\nThat’s why you had groups like the Holy Church of the Indefatigable Spirit of Man and All His Creations. Virtue personified, the <i>“priests”</i> of the church were blessed, regardless of the myriad coats that they took on during their pilgrimages. Whether they skulked in the verdant underbrush of the forest, tromped about in the rust-red desert steppes, or tended to yet unexorcised dens of inequity that blighted the landscape, the warriors of the Holy Church of the Indefatigable Spirit of Man and All His Creations was dedicated to one thing and one thing only:");
+	outputCodex("\n\nThat’s why you had groups like the Holy Church of the Indefatigable Spirit of Man and All His Creations. Virtue personified, the “priests” of the church were blessed, regardless of the myriad coats that they took on during their pilgrimages. Whether they skulked in the verdant underbrush of the forest, tromped about in the rust-red desert steppes, or tended to yet unexorcised dens of inequity that blighted the landscape, the warriors of the Holy Church of the Indefatigable Spirit of Man and All His Creations was dedicated to one thing and one thing only:");
 
 	outputCodex("\n\nFucking demons into submission.");
 
@@ -2833,7 +2833,7 @@ public function towerOfTrialsStory():void
 
 	outputCodex("\n\nThe warriors of the Holy Church et cetera were, as previously mentioned, blessed. This meant that their fluids were quite literally anathema to the unholy and otherwise not very nice. Their blood sent vampires gagging. Their sweat may have felt gross to another human, but to a demon? It was honestly just revolting.");
 
-	outputCodex("\n\nAnd their seed? It was one of the only ways to permanently pacify a demon. But not just at a touch! No, one couldn’t simply blow their load on a pair of fat, eldritch tits and call it a day! To render such a change permanent, to indelibly render a demon safe, docile, and harmless, a warrior had to bottom out in their cunt, really hilt himself in her...and pump his consecrated load right into her womb. Only by flooding her sex with his seed could the taint of her demonic heritage be purged from its source, rendering her naught more than an exotic, sexually-insatiable <i>“human.”</i>");
+	outputCodex("\n\nAnd their seed? It was one of the only ways to permanently pacify a demon. But not just at a touch! No, one couldn’t simply blow their load on a pair of fat, eldritch tits and call it a day! To render such a change permanent, to indelibly render a demon safe, docile, and harmless, a warrior had to bottom out in their cunt, really hilt himself in her...and pump his consecrated load right into her womb. Only by flooding her sex with his seed could the taint of her demonic heritage be purged from its source, rendering her naught more than an exotic, sexually-insatiable “human.”");
 
 	outputCodex("\n\nThe horns didn’t really ever go away, but the wings and tail did. That’s not really what most of the priests were concerned with in their prospective brides, but when you ran an organization that hinged on men literally fucking women submissive, you tended to take what you could get. If that meant you had a mouth-breathing lout gawking at a succubus’ tits before they had a sex-duel to decide the fate of a village, so be it.");
 
@@ -2851,7 +2851,7 @@ public function towerOfTrialsStory():void
 
 	outputCodex("\n\nWhy, then, did they each hesitate before the gate? Was it the inky void that extended past its creaking doors? Was it the unfamiliar chill that poured from its depths, like ice in the midsummer’s heat?");
 
-	outputCodex("\n\nOr was it merely the fear that they would fail? That they wouldn’t be able to meet their demonic <i>“better”</i> half in combat, that they’d fall to the depths of depravity?");
+	outputCodex("\n\nOr was it merely the fear that they would fail? That they wouldn’t be able to meet their demonic “better” half in combat, that they’d fall to the depths of depravity?");
 
 	outputCodex("\n\nUstrik shook his head with a growl. His singular focus was, in this case, a blessing, for such qualms took little more than a grunt to push to the side. <i>“See you on the other side, boys!”</i> He bellowed, lifting his axe from his shoulder and charging into the gate. If the unknown was to be feared, then Ustrik would make it known...!");
 
@@ -2863,7 +2863,7 @@ public function towerOfTrialsStory():void
 
 	outputCodex("\n\nShe stepped out to the crowd’s vehement disgust, though why she was met with such disapproval confounded Ustrik. Buxom, wide-hipped, the pinnacle of the Amazon ideal, she drew his eyes like a magnet. Everything about her stoked his lusts hotter and hotter.");
 
-	outputCodex("\n\nShe was just barely shorter than him, and given that Ustrik towered over nearly all he met, man or woman, this was no mean feat. What’s more, her figure blended both feminine curves and raw, brute strength. Though her abs tensed as she adopted her stance, looking hard enough to rival stone, if not steel, her breasts wobbled with the same motion. Her thighs were thick enough - and well-muscled enough - to crack skulls between them if she chose, leading to hips that could only be described by Ustrik’s lust-addled hindbrain as <i>“child-bearing.”</i>");
+	outputCodex("\n\nShe was just barely shorter than him, and given that Ustrik towered over nearly all he met, man or woman, this was no mean feat. What’s more, her figure blended both feminine curves and raw, brute strength. Though her abs tensed as she adopted her stance, looking hard enough to rival stone, if not steel, her breasts wobbled with the same motion. Her thighs were thick enough - and well-muscled enough - to crack skulls between them if she chose, leading to hips that could only be described by Ustrik’s lust-addled hindbrain as “child-bearing.”");
 
 	outputCodex("\n\nEverything about her promised passion. Mad, furious passion, rutting, fucking, graceless, sweaty, animal. He was a man, she was a woman.");
 
@@ -2871,7 +2871,7 @@ public function towerOfTrialsStory():void
 
 	outputCodex("\n\nBut they would be joined in carnal matrimony, and he would find his place in the priesthood because of it. All he’d have to do is knock the gladius from her hand, strip her down from that scandalous attempt at an outfit - little more than two brass cups covering her nipples and a loincloth similarly obscuring her loins - and she would be as good as his! Like hell was he going to relieve the ache between his legs anywhere but between hers!");
 
-	outputCodex("\n\n<i>“Been a while since I had a proper man to test my mettle against,”</i> she sneered, the two of them beginning to circle each other. In a fight such as this, <i>“sizing up your opponent”</i> took on a very different meaning. <i>“Most of the deacons now are too weak to carry a proper weapon. But that strength will be your undoing, brute.”</i> She smiled, cold, cruel, thrusting out her chest for his greedy eyes. <i>“I know your type.”</i>");
+	outputCodex("\n\n<i>“Been a while since I had a proper man to test my mettle against,”</i> she sneered, the two of them beginning to circle each other. In a fight such as this, “sizing up your opponent” took on a very different meaning. <i>“Most of the deacons now are too weak to carry a proper weapon. But that strength will be your undoing, brute.”</i> She smiled, cold, cruel, thrusting out her chest for his greedy eyes. <i>“I know your type.”</i>");
 
 	outputCodex("\n\n<i>“You’re a beast. An animal. The second your cock’s s- Gah!!”</i>");
 
@@ -3183,7 +3183,7 @@ public function towerOfTrialsStory():void
 
 	outputCodex("\n\nA glance away from her face - smile turned irritatingly smug - showed that the supposed panacea was...the spaded tip of her tail.");
 
-	outputCodex("\n\nAt least, it had been spaded before. Now it had split down the middle to reveal a slippery, drooling maw. Toothless, it flexed and sucked, slurping out the venom and leaving Mikhail more or less cured. But the hydra of his wound had split in two at the revelation behind the supposed <i>“cure,”</i> and, stumbling back, he pointed his knife at her.");
+	outputCodex("\n\nAt least, it had been spaded before. Now it had split down the middle to reveal a slippery, drooling maw. Toothless, it flexed and sucked, slurping out the venom and leaving Mikhail more or less cured. But the hydra of his wound had split in two at the revelation behind the supposed “cure,” and, stumbling back, he pointed his knife at her.");
 
 	outputCodex("\n\n<i>“Devil! She-beast!”</i> He snarled. The sudden jerk back wrenched his foot from the tail-mouth, though he was left staggering from its separation. <i>“What kind of devilry is this?! Answer me!”</i> Such a fool, trusting a succubus brazen enough to approach him without a glamour. No, this whole thing was a trap of her sinister device, one designed to leave him ensorcelled!");
 
@@ -3291,7 +3291,7 @@ public function towerOfTrialsStory():void
 
 	outputCodex("\n\nEyes rolling back, Mikhail barely heard her. Her tone turned more than a little teasing at his slack-jawed delight, and soon the succubus was churning his swollen ballsack. <i>“I can practically feel how long you’ve waited for this. How’s it go lately? One month without ejaculation before you’re sent into the tower?”</i>");
 
-	outputCodex("\n\nShe gave him a peck on the forehead - with her <i>“real”</i> lips - and clicked her tongue. <i>“Poor baby. One whole month without getting to stroke that big, thick stiffy at all! You must be aching to empty those big, bloated balls into me!”</i> She hugged his side and nuzzled her face into the crook of his neck. Mikhail was all but limp now, the only movement he was capable of being the desperate thrust of his hips upwards.");
+	outputCodex("\n\nShe gave him a peck on the forehead - with her “real” lips - and clicked her tongue. <i>“Poor baby. One whole month without getting to stroke that big, thick stiffy at all! You must be aching to empty those big, bloated balls into me!”</i> She hugged his side and nuzzled her face into the crook of his neck. Mikhail was all but limp now, the only movement he was capable of being the desperate thrust of his hips upwards.");
 
 	outputCodex("\n\n<i>“You wanna cum, babe? You wanna cum real hard for me?”</i>");
 
@@ -3507,11 +3507,11 @@ public function cowStuffStory():void
 	outputCodex("\n\nVery quickly, Carrie revised what she considered to be Emily’s most notable feature.");
 	outputCodex("\n\nBefore she could think much more than that, Emily let out a desperate, animal cry, her body twitching and convulsing as she came voluminously onto Lucy’s back. Lucy sighed with contentment, giving a pleasant little wiggle as she shuddered with satisfaction. For her part, Emily seemed to be putting her all into her orgasm, having to lean forward and support herself with her own hoof-like hands as she grunted and panted incoherently while thick ropes of cum spattered against Lucy’s fur.");
 	outputCodex("\n\nIt took several seconds for Emily to appear to be completely finished, and even after that it was some time before either of them seemed to want to do anything other than catch their breath. Eventually though, Lucy broke the silence.");
-	outputCodex("\n\n<i>“Mmm, good mmmorning Mmiss Denning”</i>, she said slowly. Had her muzzle given her some sort of speech impediment, something that made her drag out her ‘m’s? <i>“Thank you for commming in on your Saturday on such short notice.”</i>");
+	outputCodex("\n\n<i>“Mmm, good mmmorning Mmiss Denning,”</i> she said slowly. Had her muzzle given her some sort of speech impediment, something that made her drag out her ‘m’s? <i>“Thank you for commming in on your Saturday on such short notice.”</i>");
 	outputCodex("\n\nAfter considerable effort, Carrie managed to respond. <i>“What... what is all of this? What happened?”</i>");
 	outputCodex("\n\nLucy closed her eyes briefly, taking a moment to play with her big full breasts. <i>“We had a... breakthrough,”</i> she said eventually.");
 	outputCodex("\n\nCarrie was incredulous. <i>“A breakthrough? We were researching fabric softener! What kind of breakthrough could go from that to this?!”</i>");
-	outputCodex("\n\n<i>“A really good one”</i>, Lucy answered with a grin.");
+	outputCodex("\n\n<i>“A really good one,”</i> Lucy answered with a grin.");
 	outputCodex("\n\nCarrie couldn’t even begin to respond, but before she could try Emily recovered herself enough to give out a short snorted laugh. <i>“Oh come now,”</i> she admonished, giving Lucy a playful slap on the rump, <i>“don’t tease the poor girl.”</i> Looking up, she added to Carrie directly, <i>“we had a visitor after you left last night. They said they had something that would help the research, but they neglected to mention that it wasn’t our research they were helping.”</i>");
 	outputCodex("\n\nCarrie blinked. <i>“That’s it? Someone else did this to you? And you’re not mad?”</i>");
 	outputCodex("\n\nLucy and Emily shared a quick look, then both laughed out loud. <i>“Uh, no,”</i> Emily answered eventually. <i>“We had more important things to do than get mad.”</i>");
