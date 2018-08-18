@@ -827,15 +827,17 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Resistance, Tease:</b> " + formatFloat(pc.getLustResistances().tease.resistanceValue, 3) + " %");
 		// Sexy Stuff
 		output2("\n<b>* Sexiness:</b> " + pc.sexiness());
-		var teases:Array = [-1, -1, -1, -1];
+		var teases:Array = [-1, -1, -1, -1, -1];
 		if(flags["TIMES_BUTT_TEASED"] != undefined) teases[0] = Math.min(flags["TIMES_BUTT_TEASED"], 100);
 		if(flags["TIMES_CHEST_TEASED"] != undefined) teases[1] = Math.min(flags["TIMES_CHEST_TEASED"], 100);
 		if(flags["TIMES_CROTCH_TEASED"] != undefined) teases[2] = Math.min(flags["TIMES_CROTCH_TEASED"], 100);
 		if(flags["TIMES_HIPS_TEASED"] != undefined) teases[3] = Math.min(flags["TIMES_HIPS_TEASED"], 100);
+		if(flags["TIMES_ORAL_TEASED"] != undefined) teases[4] = Math.min(flags["TIMES_ORAL_TEASED"], 100);
 		if(teases[0] >= 0) output2("\n<b>* Tease Skill, Ass:</b> " + teases[0] + "/100");
 		if(teases[1] >= 0) output2("\n<b>* Tease Skill, Chest:</b> " + teases[1] + "/100");
 		if(teases[2] >= 0) output2("\n<b>* Tease Skill, Crotch:</b> " + teases[2] + "/100");
 		if(teases[3] >= 0) output2("\n<b>* Tease Skill, Hips:</b> " + teases[3] + "/100");
+		if(teases[4] >= 0) output2("\n<b>* Tease Skill, Oral:</b> " + teases[4] + "/100");
 		// Performance
 		output2("\n<b><u>Combat Performance</u></b>");
 		output2("\n<b>* Combat, Losses:</b> " + StatTracking.getStat("combat/losses"));
@@ -844,6 +846,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["TIMES_CHEST_TEASED"] != undefined) output2("\n<b>* Tease, Times Used Chest:</b> " + flags["TIMES_CHEST_TEASED"]);
 		if(flags["TIMES_CROTCH_TEASED"] != undefined) output2("\n<b>* Tease, Times Used Crotch:</b> " + flags["TIMES_CROTCH_TEASED"]);
 		if(flags["TIMES_HIPS_TEASED"] != undefined) output2("\n<b>* Tease, Times Used Hips:</b> " + flags["TIMES_HIPS_TEASED"]);
+		if(flags["TIMES_ORAL_TEASED"] != undefined) output2("\n<b>* Tease, Times Used Oral:</b> " + flags["TIMES_ORAL_TEASED"]);
 		
 		//======NPC STATISTICS=====//
 		

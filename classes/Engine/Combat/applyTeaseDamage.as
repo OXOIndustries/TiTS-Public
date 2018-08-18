@@ -9,11 +9,11 @@ package classes.Engine.Combat
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.possessive;
 	import classes.StringUtil;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.teaseReactions;
-	import classes.Engine.Utility.possessive;
 	import classes.Util.InCollection;
 	/**
 	 * ...
@@ -237,9 +237,20 @@ package classes.Engine.Combat
 
 function teaseSkillUp(teaseType:String):void
 {
-	import classes.kGAMECLASS;
+	if(teaseType == null) return;
 	
-	if (teaseType == "SQUIRT") teaseType = "CHEST";
-	else if(teaseType == "DICK SLAP") teaseType = "CROTCH";
-	kGAMECLASS.flags["TIMES_" + teaseType + "_TEASED"]++; // the menu display handles wrapping this so w/e
+	import classes.kGAMECLASS;
+	import classes.Engine.Utility.IncrementFlag;
+	import classes.Util.InCollection;
+	
+	switch(teaseType)
+	{
+		case "SQUIRT": teaseType = "CHEST"; break;
+		case "DICK SLAP": teaseType = "CROTCH"; break;
+		case "MYR VENOM": teaseType = "ORAL"; break;
+	}
+	
+	if(InCollection(teaseType, ["BUTT", "CHEST", "CROTCH", "HIPS", "ORAL"]))
+		IncrementFlag("TIMES_" + teaseType + "_TEASED"); // the menu display handles wrapping this so w/e
 }
+
