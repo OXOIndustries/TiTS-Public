@@ -17,7 +17,7 @@ public function syriFreezerMenu(outputs:Boolean = true):void
 {
 	if(outputs)
 	{
-		//9999 - TODO, Uveto variant! if(syriPuppyslutmasEntry()) return;
+		if(syriPuppyslutmasEntryUveto()) return;
 		
 		clearOutput();
 		showSyri();
