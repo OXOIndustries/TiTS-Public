@@ -1107,7 +1107,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF G16"] = new RoomClass(this);
 	rooms["ZSF G16"].roomName = "CARGO LIFT\nACCESS";
-	rooms["ZSF G16"].description = "You stand square in the center of the station’s foundry level, aptly named, judging by the red-glowing, steam-belching furnaces and auto-smithies to the north. The entire area is one massive cavern - with a gleaming ship dangling high over it, surrounded by heavy scaffolds and the flashing torches of busy work-slaves. Rusty steel beams and geddanium-braid cabling stretch all the way into the craggy ceiling above, marking out just how much higher the cargo elevator can climb. Prefab hallways and white-boxed workrooms sit just to the south, undoubtedly providing a locale for more cerebral talents to be employed, insulated from the cacophonous din. A tunnel in the western wall is tagged with cheap spraypaint: <i>“Shuttle Bay.”</i>";
+	rooms["ZSF G16"].description = "You stand square in the center of the station’s foundry level, aptly named, judging by the red-glowing, steam-belching furnaces and auto-smithies to the north. The entire area is one massive cavern - with a gleaming ship dangling high over it, surrounded by heavy scaffolds and the flashing torches of busy work-slaves. Rusty steel beams and geddanium-braid cabling stretch all the way into the craggy ceiling above, marking out just how much higher the cargo elevator can climb. Prefab hallways and white-boxed workrooms sit just to the south, undoubtedly providing a locale for more cerebral talents to be employed, insulated from the cacophonous din. A tunnel in the western wall is tagged with cheap spraypaint: “Shuttle Bay.”";
 	rooms["ZSF G16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF G16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF G16"].northExit = "";
@@ -1199,13 +1199,13 @@ public function initZhengRooms():void
 	rooms["ZSF K20"].southExit = "";
 	rooms["ZSF K20"].westExit = "ZSF I20";
 	rooms["ZSF K20"].moveMinutes = 2;
-	rooms["ZSF K20"].runOnEnter = foundryLounge2Bonus;
+	//rooms["ZSF K20"].runOnEnter = null;
 	rooms["ZSF K20"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF K20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF M20"] = new RoomClass(this);
 	rooms["ZSF M20"].roomName = "PREFAB\nHALLWAY";
-	rooms["ZSF M20"].description = "After landing in the chaotic industrial hangar and making your way up from the mining levels, this part of Zheng Shi delightfully civilized. The hallway is clean and well lit, if a bit antiseptic. Air scrubbers in the ceiling purge the worst industrial contaminants from your awareness, and the floor has a freshly-waxed feel to it. In either direction, there are doorways to different labs. The southwestern one says something about circuits, and you’re pretty sure you see <i>“robot”</i> on the northeastern placard.";
+	rooms["ZSF M20"].description = "After landing in the chaotic industrial hangar and making your way up from the mining levels, this part of Zheng Shi delightfully civilized. The hallway is clean and well lit, if a bit antiseptic. Air scrubbers in the ceiling purge the worst industrial contaminants from your awareness, and the floor has a freshly-waxed feel to it. In either direction, there are doorways to different labs. The southwestern one says something about circuits, and you’re pretty sure you see “robot” on the northeastern placard.";
 	rooms["ZSF M20"].planet = "ZHENG SHI STATION";
 	rooms["ZSF M20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF M20"].northExit = "";
@@ -1213,7 +1213,7 @@ public function initZhengRooms():void
 	rooms["ZSF M20"].southExit = "";
 	rooms["ZSF M20"].westExit = "ZSF K20";
 	rooms["ZSF M20"].moveMinutes = 2;
-	rooms["ZSF M20"].runOnEnter = foundryLounge2Bonus;
+	//rooms["ZSF M20"].runOnEnter = null;
 	rooms["ZSF M20"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M20"].addFlag(GLOBAL.HAZARD);
 
@@ -1241,7 +1241,7 @@ public function initZhengRooms():void
 	rooms["ZSF O18"].southExit = "ZSF O20";
 	rooms["ZSF O18"].westExit = "ZSF M18";
 	rooms["ZSF O18"].moveMinutes = 1;
-	rooms["ZSF O18"].runOnEnter = foundryLounge2Bonus;
+	//rooms["ZSF O18"].runOnEnter = null;
 	rooms["ZSF O18"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF O18"].addFlag(GLOBAL.HAZARD);
 
@@ -1255,7 +1255,7 @@ public function initZhengRooms():void
 	rooms["ZSF O16"].southExit = "ZSF O18";
 	rooms["ZSF O16"].westExit = "ZSF M16";
 	rooms["ZSF O16"].moveMinutes = 1;
-	rooms["ZSF O16"].runOnEnter = foundryLounge2Bonus;
+	//rooms["ZSF O16"].runOnEnter = null;
 	rooms["ZSF O16"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF O16"].addFlag(GLOBAL.HAZARD);
 
@@ -1269,7 +1269,7 @@ public function initZhengRooms():void
 	rooms["ZSF M16"].southExit = "ZSF M18";
 	rooms["ZSF M16"].westExit = "";
 	rooms["ZSF M16"].moveMinutes = 1;
-	rooms["ZSF M16"].runOnEnter = foundryLounge2Bonus;
+	//rooms["ZSF M16"].runOnEnter = null;
 	rooms["ZSF M16"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M16"].addFlag(GLOBAL.HAZARD);
 
@@ -1283,7 +1283,7 @@ public function initZhengRooms():void
 	rooms["ZSF M18"].southExit = "";
 	rooms["ZSF M18"].westExit = "";
 	rooms["ZSF M18"].moveMinutes = 1;
-	rooms["ZSF M18"].runOnEnter = foundryLounge2Bonus;
+	//rooms["ZSF M18"].runOnEnter = null;
 	rooms["ZSF M18"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M18"].addFlag(GLOBAL.HAZARD);
 
@@ -1297,7 +1297,7 @@ public function initZhengRooms():void
 	rooms["ZSF PLACEHOLDER"].southExit = "";
 	rooms["ZSF PLACEHOLDER"].westExit = "";
 	rooms["ZSF PLACEHOLDER"].moveMinutes = 3;
-	rooms["ZSF PLACEHOLDER"].runOnEnter = foundryLounge2Bonus;
+	//rooms["ZSF PLACEHOLDER"].runOnEnter = null;
 	rooms["ZSF PLACEHOLDER"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF PLACEHOLDER"].addFlag(GLOBAL.HAZARD);
 

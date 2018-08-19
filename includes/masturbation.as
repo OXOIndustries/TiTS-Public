@@ -3505,7 +3505,8 @@ public function bionaHoleSyri():void
 	
 	output("\n\nEmboldened by the effect you’re having on your lover, you press ahead, aligning your [pc.cockhead] with the sodden lips of her twat. The heat’s almost unbearable - her lips are hotter than any human girl’s could be, burning with alien desire even disembodied as it is. You’ve thoroughly turned her BionaHole on, and its flush lips draw you imperiously onward to penetration. Your breath catches as your");
 	if (pc.cocks[x].hasFlag(GLOBAL.FLAG_FLARED)) output(" flared head presses against the pussylips, pushing in against them in demand of entrance");
-	else output(" crown brushes between the lips of her pussy, hovering on the brink}. A second later and you’re in, pushing the hard black sheath down the length of your shaft.");
+	else output(" crown brushes between the lips of her pussy, hovering on the brink");
+	output(". A second later and you’re in, pushing the hard black sheath down the length of your shaft.");
 	
 	output("\n\nGod damn, Syri was tight back in the day! Her cunt squeezes you");
 	if (flags["FUCKED_SYRI_COUNT"] != undefined) output(" as tight as Syri’s ass ever has");
