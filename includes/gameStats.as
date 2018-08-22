@@ -6874,7 +6874,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["FROSTWYRM_ANAL_PITCH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Fucked Your Ass:</b> " + flags["FROSTWYRM_ANAL_PITCH"]);
 				if(flags["FROSTWYRM_GAVE_BATH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Gave Tongue Bath:</b> " + flags["FROSTWYRM_GAVE_BATH"]);
 				if(flags["FROSTWYRM_GOT_BLOWN"] != undefined) output2("\n<b>* [frostwyrm.name], Times You Gave Her Oral:</b> " + flags["FROSTWYRM_GOT_BLOWN"]);
-				if(flags[""] != undefined) output2("\n<b>* [frostwyrm.name], Times :</b> " + flags[""]);
+				if (flags[""] != undefined) output2("\n<b>* [frostwyrm.name], Times :</b> " + flags[""]);
+				
+				if(flags["NYKKE_MET"] != undefined)
+				{
+					//nykke				
+					if(flags["NYKKE_FUCK_HER_CUNT"] != undefined) output2("\n<b>* Nykke, Times You Fucked Her Vagina:</b> " + flags["NYKKE_FUCK_HER_CUNT"]);
+					if(flags["NYKKE_FUCK_HER_ASS"] != undefined) output2("\n<b>* Nykke, Times You Fucked Her Ass:</b> " + flags["NYKKE_FUCK_HER_ASS"]);
+					if(flags["NYKKE_FUCK_YOUR_CUNT"] != undefined) output2("\n<b>* Nykke, Times She Fucked Your Vagina:</b> " + flags["NYKKE_FUCK_YOUR_CUNT"]);
+					if (flags["NYKKE_FUCK_YOUR_ASS"] != undefined) output2("\n<b>* Nykke, Times She Fucked Your Ass:</b> " + flags["NYKKE_FUCK_YOUR_ASS"]);
+				}
 				
 				variousCount++;
 			}
@@ -7940,6 +7949,27 @@ public function displayEncounterLog(showID:String = "All"):void
 			miscCount++;
 		}
 		
+		// ExtraMeet
+		if(flags["EXTRAMEET_DATE"] != undefined)
+		{
+			output2("\n<b><u>ExtraMeet</u></b>");
+			output2("\n<b>* ExtraMeet, Number of Dates:</b> " + flags["EXTRAMEET_DATE"]);
+			if(flags["EXTRAMEET_BAIL"] != undefined) output2("\n<b>* ExtraMeet, Times You Bailed on a Date:</b> " + flags["EXTRAMEET_BAIL"]);
+			if(flags["EXTRAMEET_DOH"] != undefined) output2("\n<b>* ExtraMeet, Times Your Date Bailed on You:</b> " + flags["EXTRAMEET_DOH"]);
+			if(flags["EXTRAMEET_SEX"] != undefined) output2("\n<b>* ExtraMeet, Times You had Sex on a Date:</b> " + flags["EXTRAMEET_SEX"]);
+			if(flags["EXTRAMEET_BOOBS_GIVE"] != undefined) output2("\n<b>* ExtraMeet, Times You Sucked some Titties on a Date:</b> " + flags["EXTRAMEET_BOOBS_GIVE"]);
+			if(flags["EXTRAMEET_BOOBS_RCVD"] != undefined) output2("\n<b>* ExtraMeet, Times Your Titties got Sucked on a Date:</b> " + flags["EXTRAMEET_BOOBS_RCVD"]);
+			if(flags["EXTRAMEET_FAP_GIVE"] != undefined) output2("\n<b>* ExtraMeet, Times You Fingered or gave Hand Job on a Date:</b> " + flags["EXTRAMEET_FAP_GIVE"]);
+			if(flags["EXTRAMEET_FAP_RCVD"] != undefined) output2("\n<b>* ExtraMeet, Times You were Fingered or given a Hand Job on a Date:</b> " + flags["EXTRAMEET_FAP_RCVD"]);
+			if(flags["EXTRAMEET_ORAL_GIVE"] != undefined) output2("\n<b>* ExtraMeet, Times You gave Oral on a Date:</b> " + flags["EXTRAMEET_ORAL_GIVE"]);
+			if(flags["EXTRAMEET_ORAL_RCVD"] != undefined) output2("\n<b>* ExtraMeet, Times You got Oral on a Date:</b> " + flags["EXTRAMEET_ORAL_RCVD"]);
+			if(flags["EXTRAMEET_CUNT_GIVE"] != undefined) output2("\n<b>* ExtraMeet, Times You Fucked a Pussy on a Date:</b> " + flags["EXTRAMEET_CUNT_GIVE"]);
+			if(flags["EXTRAMEET_CUNT_RCVD"] != undefined) output2("\n<b>* ExtraMeet, Times Your Pussy got Fucked on a Date:</b> " + flags["EXTRAMEET_CUNT_RCVD"]);
+			if(flags["EXTRAMEET_ASS_GIVE"] != undefined) output2("\n<b>* ExtraMeet, Times You Fucked an Ass on a Date:</b> " + flags["EXTRAMEET_ASS_GIVE"]);
+			if(flags["EXTRAMEET_ASS_RCVD"] != undefined) output2("\n<b>* ExtraMeet, Times Your Ass got Fucked on a Date:</b> " + flags["EXTRAMEET_ASS_RCVD"]);			
+			
+			miscCount++;
+		}
 		// Nothing recorded
 		if(miscCount == 0)
 		{
