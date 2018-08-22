@@ -11,8 +11,8 @@ public function sydianQueenIntroRedux():void
 	//Never sexed or Sexed only once
 	if((flags["SYDIAN_QUEEN_STAGE"]==undefined||flags["SYDIAN_QUEEN_STAGE"]==1))
 	{
-		if (flags["SYDIAN_QUEEN_LUBBIN"]!= undefined||flags["RASKVEL_HAREM_SPITROAST"]!= undefined)output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She smirks, eyeing you up. <i>“Perhaps you come because you enjoyed serving me, hmm? You were certainly an enjoyable treat last time.”</i> The sceptre taps a slow rhythm against the armored curve of her hip. <i>“I would allow you back in my court… for a little while. What say you?”</i>");
-		else output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She clicks her tongue, eyeing you up. <i>“Perhaps you’re here because you wish to serve, hmm? You would make an acceptable treat for my harem…”</i> There is a sharp intake of breath around her, and the persistent whispering gets even more excited. <i>“ ...or perhaps even for me.”</i> She smiles thinly. The sceptre taps a slow rhythm against the armored curve of her hip. <i>“What say you?”</i>");
+		if (flags["SYDIAN_QUEEN_LUBBIN"]!= undefined||flags["RASKVEL_HAREM_SPITROAST"]!= undefined)output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She smirks, eyeing you up. <i>“Perhaps you come because you enjoyed serving me, hmm? You were certainly an enjoyable treat last time.”</i> The sceptre taps a slow rhythm against the armored curve of her hip. <i>“I would allow you back in my court... for a little while. What say you?”</i>");
+		else output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She clicks her tongue, eyeing you up. <i>“Perhaps you’re here because you wish to serve, hmm? You would make an acceptable treat for my harem...”</i> There is a sharp intake of breath around her, and the persistent whispering gets even more excited. <i>“ ...or perhaps even for me.”</i> She smiles thinly. The sceptre taps a slow rhythm against the armored curve of her hip. <i>“What say you?”</i>");
 		
 		//Buttons
 		if (flags["SYDIAN_QUEEN_LUBBIN"]== undefined&&flags["RASKVEL_HAREM_SPITROAST"]== undefined) addButton(0,"Yes",sydianQueenChoice,0,"No","Agree to serve her. It sounds like it could be fun.");
@@ -25,7 +25,7 @@ public function sydianQueenIntroRedux():void
 	//Said no during first stage
 	else if(flags["SYDIAN_QUEEN_STAGE"]==4)
 	{
-		output("\n\n<i>“Again I find you trespassing, stranger from the sky,”</i> the Sydian Queen observes. There’s not even a flicker of humor on her face. <i>“This time, there shall be no coy refusals, no mischievous flicks of the skirt. You either leave and never come back, on pain of death, or… you serve one of my consort. If you do that, I shall consider your honor evened.”</i>");
+		output("\n\n<i>“Again I find you trespassing, stranger from the sky,”</i> the Sydian Queen observes. There’s not even a flicker of humor on her face. <i>“This time, there shall be no coy refusals, no mischievous flicks of the skirt. You either leave and never come back, on pain of death, or... you serve one of my consort. If you do that, I shall consider your honor evened.”</i>");
 		output("\n\nThere’s an immediate uptick in furious, excited whispering amongst the girly raskvel surrounding you.");
 
 		addButton(0,"Serve",sydianQueenChoice,3,"Serve","You suspect this will involve your mouth.");
@@ -54,7 +54,7 @@ public function sydianQueenIntroRedux():void
 		else
 		{
 			if (pc.WQ() < 40)output("\n\nIt’s your instinct now to immediately obey, and it’s a struggle not to do so.");
-			else output("\n\nIt’s a test of your iron fortitude not to immediately obey. Is… is there perhaps some danger here you’re not seeing?");
+			else output("\n\nIt’s a test of your iron fortitude not to immediately obey. Is... is there perhaps some danger here you’re not seeing?");
 			addButton(0,"Smash",sydianQueenSexyTimes,undefined,"Smash","Serve your queen.");
 			addButton(1,"Not Today",sydianQueenChoice,7,"Not Today","Danger, Will Robinson!");
 		}
@@ -80,7 +80,7 @@ public function sydianQueenChoice(sceneChoice:int):void
 	{
 		if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind")) output("You giggle and bounce a little to signal your assent.");
 		else output("You grin your assent.");
-		output(" Yeah, you’ll happily… serve.");
+		output(" Yeah, you’ll happily... serve.");
 		output("\n\n<i>“Excellent!”</i> replies the Sydian breezily. She waves her sceptre with practiced grandness. <i>“To the pleasure barrow, my consort!”</i>");
 		addButton(0, "Next", sydianQueenSexyTimes);
 		if(flags["SYDIAN_QUEEN_SEXCOUNT"]==undefined) flags["SYDIAN_QUEEN_SEXCOUNT"]= 0;
@@ -116,7 +116,7 @@ public function sydianQueenChoice(sceneChoice:int):void
 		}
 		else 
 		{	
-			output("If it’ll get them to stop waving their pistols at you whenever you come here… fine. Whatever.");
+			output("If it’ll get them to stop waving their pistols at you whenever you come here... fine. Whatever.");
 			output("<i>“Ok,”</i> you sigh, [pc.moving] forward. <i>“Let’s get this over with.”</i>");
 		}
 		
@@ -128,27 +128,27 @@ public function sydianQueenChoice(sceneChoice:int):void
 		if(pc.tallness <= 5*12+5) output("Fortunately you’re of a similar stature - you’re definitely better suited to doing this than Azra.");
 		else if(pc.tallness <= 7*12) output("It’s difficult cramping yourself up to get at the diminutive alien’s cock - but he’s excited enough to get up onto his splayed toes, anything to get closer to the heavenly relief of your mouth.");
 		else output("It’s practically impossible for a being of your size to get at the diminutive alien’s cock, humiliating. You have to lie down on one side, and even then he has to get up onto his splayed toes to be level with your mouth.");
-		output("\n\nHe rips off his cloth with a fluttering, impatient groan, revealing a gleaming, six inch purple erection straining out of its sheath. It’s a hefty dick on a boy bitch his size, but it’s like a splinter compared to the balls it’s flanked by; bulging testicles that practically drag on the ground, rising and falling impatiently in their over-stretched sack. You feel a little flair of sympathy for the raskvel and his fellows - those, paired with their natural libido, must make day-to-day life pretty unbearable. ");
+		output("\n\nHe rips off his cloth with a fluttering, impatient groan, revealing a gleaming, six inch purple erection straining out of its sheath. It’s a hefty dick on a boy bitch his size, but it’s like a splinter compared to the balls it’s flanked by; bulging testicles that practically drag on the ground, rising and falling impatiently in their over-stretched sack. You feel a little flair of sympathy for the raskvel and his fellows - those, paired with their natural libido, must make day-to-day life pretty unbearable.");
 		output("\n\nYou give him an encouraging grin and wrap your hand around the base of his shaft, giving the smooth, hard flesh a couple of brisk tugs before spreading your lips over the musky, pointed tip, suckling on it. The shudder and woozy, rapturous moan this alone draws out of him is pretty special. His hands find your shoulders, and his grip tightens as you advance your [pc.lips] further down his shaft, filling your mouth with the ");
 		if(!pc.isBimbo() && pc.libido() < 75) output("shamefully");
 		else output("transcendentally");
 		output("arousing taste and texture of cock.");
 		output("\n\n<i>“Thank you so much, my Queen!”</i> he cries out as you begin to find rhythm, bobbing your head up and down his shaft. You let out a muffled huff. Who here is sucking his dick, again?");
-		output("\n\n<i>“You are welcome, my trusted servant,”</i> comes the cool reply. You hear muttering and the frustrated shuffle of feet, followed by a hefty slap and gasp of pain. <i>“Silence! If you wanted relief then you should have proven yourself worthy, as Azaphel has.”</i> ");
+		output("\n\n<i>“You are welcome, my trusted servant,”</i> comes the cool reply. You hear muttering and the frustrated shuffle of feet, followed by a hefty slap and gasp of pain. <i>“Silence! If you wanted relief then you should have proven yourself worthy, as Azaphel has.”</i>");
 		if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind")) 
 		{
-			output("\n\nWell, if she’s too aloof to get on her knees and hollow her cheeks around some delicious cock that’s definitely her loss. You’re getting a wonderful, soft buzz that intensifies the feeling of Azaphel’s meat sliding between your lips, heat glowing between your [pc.thighs] that strengthens with every drop of pre you coax out of him with long, hungry drags of your mouth and tongue. ");
+			output("\n\nWell, if she’s too aloof to get on her knees and hollow her cheeks around some delicious cock that’s definitely her loss. You’re getting a wonderful, soft buzz that intensifies the feeling of Azaphel’s meat sliding between your lips, heat glowing between your [pc.thighs] that strengthens with every drop of pre you coax out of him with long, hungry drags of your mouth and tongue.");
 			output("\n\nYou let the raskvel boi know how much you enjoy servicing him with smacks of your lips and pleased, muffled hums, and you moan as you cause him to abandon all restraint, grab your head with feverish hands and fuck your mouth with athletic, juddering thrusts of his muscle-packed hips. The pointed end rams down your throat with each hard push, but you’re well-trained enough to take this without fuss, even enjoy the little bursts of stars behind your eyelids and the way your whole world becomes nothing but the wonderful hardness and taste of cock each time your windpipe is closed.");
 		}
 		else
 		{
-			output("\n\nOh, brother. You set your teeth against Brave Sir Azaphel’s dick - a little warning not to milk it too much - and then withdraw to energetically thrust your mouth up and down his cock, hollowing your cheeks around it stringently, eager to get him off as quickly as possible. ");
+			output("\n\nOh, brother. You set your teeth against Brave Sir Azaphel’s dick - a little warning not to milk it too much - and then withdraw to energetically thrust your mouth up and down his cock, hollowing your cheeks around it stringently, eager to get him off as quickly as possible.");
 			output("\n\nThe raskvel boi is evidently not one to look a gift suck in the mouth, and is quiet aside from his deepening, ragged breath as you blow him hard and fast, filling the hollow with slurps and smacks of your [pc.lips]. Eventually though, the pent-up trap can’t contain his excitement, and he grabs your head with feverish hands and gives back with athletic, juddering thrusts of his muscle-packed hips. You gag slightly as the pointed, pre-beading end sticks into your throat, but fortunately the thing is shaped so it’s much easier to take than it ordinarily would. You control yourself and let him face-fuck you, concentrating on keeping your mouth pliant and open for him, trying to ignore his giant balls slapping against your chin.");
 		}
-		output("\n\nWith a fluttering moan Azaphel mires himself into your mouth as deep as he can, his hands tighten on your [pc.hair], his giant testicles rise and tense, a fluttering moan is forced past his open lips, and a sudden cascade of cum warms your throat and gut. He’s forced back a bit by the sheer force of it, so that the next salty load swells your cheeks and squirts out around the seal of his girth and your lips… and then suddenly he’s pulled out entirely, his drooling, railing-like prick still sternly erect but no longer flexing. You blink. Was that it? With bollocks the size of his, you were expecting receipt of a meal and a half.");
-		output("\n\n<i>“Can…”</i> he gasps in his fluttering, androgynous voice. <i>“Can I not… ?”</i>");
+		output("\n\nWith a fluttering moan Azaphel mires himself into your mouth as deep as he can, his hands tighten on your [pc.hair], his giant testicles rise and tense, a fluttering moan is forced past his open lips, and a sudden cascade of cum warms your throat and gut. He’s forced back a bit by the sheer force of it, so that the next salty load swells your cheeks and squirts out around the seal of his girth and your lips... and then suddenly he’s pulled out entirely, his drooling, railing-like prick still sternly erect but no longer flexing. You blink. Was that it? With bollocks the size of his, you were expecting receipt of a meal and a half.");
+		output("\n\n<i>“Can...”</i> he gasps in his fluttering, androgynous voice. <i>“Can I not... ?”</i>");
 		output("\n\n<i>“No,”</i> the tall sydian replies coolly. <i>“You know the code: One orgasm per deed. Be gracious to your Majesty, and then get back in line.”</i>");
-		output("\n\n<i>“Thank you, my Queen…”</i> he jogs his cute butt back into formation around her, rearranging his loincloth as he goes. ");
+		output("\n\n<i>“Thank you, my Queen...”</i> he jogs his cute butt back into formation around her, rearranging his loincloth as he goes.");
 		output("\n\n<i>“You have proven your fealty to me");
 		if (flags["SYDIAN_QUEEN_LUBBIN"]!= undefined||flags["RASKVEL_HAREM_SPITROAST"]!= undefined)output(" once again");
 		output(", stranger,”</i> the sydian returns to you with a broad, proud smile. <i>“You are in my favor.”</i>");
@@ -203,7 +203,7 @@ public function sydianQueenChoice(sceneChoice:int):void
 	if (sceneChoice==7)
 	{
 		output("You feel a dragging, resentful reluctance turning her down, but you think it wise not to go off chasing feathery and/or reptilian tail right now.");
-		output("\n\n<i>“A refusal?”</i> Drooped feathers, pouted lips, frustrated tap of the sceptre: The Queen can really do disappointment. <i>“Perhaps you are not my most favored servant, as I imagined. Ah well… “</i> Her beetle-black gaze rolls over her raskvel consort. <i>“ ...there are plenty others who can vie for that honor. Go, then. And think on what you are missing out on well.”</i>");
+		output("\n\n<i>“A refusal?”</i> Drooped feathers, pouted lips, frustrated tap of the sceptre: The Queen can really do disappointment. <i>“Perhaps you are not my most favored servant, as I imagined. Ah well... “</i> Her beetle-black gaze rolls over her raskvel consort. <i>“ ...there are plenty others who can vie for that honor. Go, then. And think on what you are missing out on well.”</i>");
 		output("\n\nYour body <i>is</i> thinking about it, and makes you feel miserable as you watch that seductive menace sashay away. But perhaps you made the sensible decision.");
 		flags["SYDIAN_QUEEN_STAGE"]=2;
 		flags["SYDIAN_QUEEN_SEXCOUNT"]= 0;
@@ -241,7 +241,7 @@ public function sydianQueenSexyTimes():void
 	//Stage 1-2 Sex Intro
 	else 
 	{
-		output("You follow the sydian’s swishing tail, leading you to the huge, craning wreck of the spaceship, underneath which she has created her dusky, rust-speckled, softly furnished ‘court’. ");
+		output("You follow the sydian’s swishing tail, leading you to the huge, craning wreck of the spaceship, underneath which she has created her dusky, rust-speckled, softly furnished ‘court’.");
 		output("\n\nThe pent-up raskvel femboys watch breathlessly as she sinks back into her throne of scrap, and with a wriggle of her muscles and a grateful sigh she begins to peel her armor back, revealing the soft, smooth orange skin beneath. Tiny flakes of rust hang in the still air down here. You emit little puffs of bronze dust as her fine, firm breasts and protuberant nipples slide into view.");
 		output("\n\n<i>“Now then, my loyal, frisky servants,”</i> she husks, feathers waving and prideful desire inflaming her face, compound eyes unfocused as she mauls her own boob, fingers sinking deep into the softness there as she pulls at the nipple. She recrosses her legs, and you catch a glimpse of her pussy, as soft, pale and plump as her armor is hard, tanned and severe. <i>“How shall you amuse me today?”</i>");
 	}
@@ -301,7 +301,7 @@ public function spitRoastRaskvelTimesRedux():void
 	}
 	else
 	{
-		output("\n\n<i>“I’m beginning to think that might be wise,”</i> the sydian replies lowly. <i>“That fertile body… those powerful hips… yes. We should take possession of such an eager asset, before somebody else does.”</i>");
+		output("\n\n<i>“I’m beginning to think that might be wise,”</i> the sydian replies lowly. <i>“That fertile body... those powerful hips... yes. We should take possession of such an eager asset, before somebody else does.”</i>");
 	}
 	
 	output("\n\nAzaphel has his hands wrapped around her armored thighs, head deep between them. His tail flails and there’s a muffled whimper when she smacks her sceptre about his pert backside. “My clitoris is not a piece of gristle, you clod! No teeth, just tongue. Thaaat’s more like it. The rest of you, stop lolling around. I demand action!”");
@@ -481,12 +481,12 @@ public function raskOrgyPart3Redux(route:String):void
 	else output("I will have need of a healthy, eager breeder like you, if I am to swell the ranks of my raskvel army. ");
 	if(flags["SYDIAN_QUEEN_STAGE"]==3&&flags["RASKVEL_HAREM_SPITROAST"] >= 4)	
 	{ 
-		output("Yes… I think the time has come.”</i>"); 
+		output("Yes... I think the time has come.”</i>"); 
 		addButton(0,"Next",raskOrgyBadEnd,0);
 	}
 	else
 	{
-		output("Ah… but no. Not quite yet, anyway. This is a bird that still wishes to fly.”");
+		output("Ah... but no. Not quite yet, anyway. This is a bird that still wishes to fly.”");
 	
 		processTime(3*60);
 
@@ -545,7 +545,7 @@ public function raskOrgyPart4Redux():void
 	
 	var shrooms:ItemSlotClass = new SpunkShroom();shrooms.quantity = 3 + rand(3);
 	output("You wake up with a start. You’re outside on the surface of Tarkus again, in the shadow of a rust spire. Your [pc.gear] has been piled roughly on top of you, and you seem to be have been given a rough towelling - although you still absolutely reek of cum. You stagger yourself upright and drag your stuff on. Oh <i>man</i> are you sore!");
-	output("\n\nIt’s only after you’re fully dressed again that you notice the other pile of "+ shrooms.quantity +" spunkshrooms, laid neatly next to you. Payment for services rendered? A come-again favor from an enamored queen? They’re obviously for you… whatever the exact intent of them is. You pick them up and carry on with whatever it was you were doing before you got so delightfully waylaid.");
+	output("\n\nIt’s only after you’re fully dressed again that you notice the other pile of "+ shrooms.quantity +" spunkshrooms, laid neatly next to you. Payment for services rendered? A come-again favor from an enamored queen? They’re obviously for you... whatever the exact intent of them is. You pick them up and carry on with whatever it was you were doing before you got so delightfully waylaid.");
 	output("\n\n");
 	processTime(20);
 	clearMenu();
@@ -594,7 +594,7 @@ public function fuckTheSydianQueenRedux(x:int):void
 	}
 	else
 	{
-		output("\n\n<i>“Hmm,”</i> purrs your Queen, devouring you with her avid, pupil-less eyes. <i>“Perhaps you fancy yourself my King? Perhaps by displaying your boldness and energy enough, you hope to place yourself next to me. It’s not an entirely distasteful idea… ”</i>");
+		output("\n\n<i>“Hmm,”</i> purrs your Queen, devouring you with her avid, pupil-less eyes. <i>“Perhaps you fancy yourself my King? Perhaps by displaying your boldness and energy enough, you hope to place yourself next to me. It’s not an entirely distasteful idea...”</i>");
 	}
 	
 	output("”</i> Her tone is one of arch amusement, but there’s plenty of fire in that tan, oval face, and her long feathers ripple and quiver. Her thin tongue extends out of her mouth, dabs along a finger. <i>“");
@@ -678,14 +678,14 @@ public function fuckTheSydianQueen2Redux(x:int):void
 	else output("[pc.cock " + x + "]");
 	output(" are achingly, gratifyingly empty, and you can do nothing but flop back against the throne’s back, utterly spent.");
 
-	output("\n\n<i>“Done already?”</i> The sydian’s words come to you through a mist of exhausted bliss. You exhale slowly as she rises up, allowing your dick to flop out her extremely well-seeded hole. The giddy, ecstatic strains of raskvel at play continue unabated. ");
+	output("\n\n<i>“Done already?”</i> The sydian’s words come to you through a mist of exhausted bliss. You exhale slowly as she rises up, allowing your dick to flop out her extremely well-seeded hole. The giddy, ecstatic strains of raskvel at play continue unabated. <i>“");
 	if (flags["SYDIAN_QUEEN_STAGE"] != 3 && flags["SYDIAN_QUEEN_LUBBIN"] < 4)
-		{
-			output("<i>“Oh well - perhaps you’re not king material after all. ");
-			if(flags["SYDIAN_QUEEN_STAGE"]!=1)output("Not yet, anyway. Perhaps, eventually… but y");
-			else("But y");
-		}
-	else output("<i>“Y");
+	{
+		output("Oh well - perhaps you’re not king material after all.");
+		if(flags["SYDIAN_QUEEN_STAGE"]!=1)output(" Not yet, anyway. Perhaps, eventually... but y");
+		else(" But y");
+	}
+	else output("Y");
 	output("ou have given me what I desired, and put on a good show, valiant, virile stranger - and I can finish up with my servants. Be at ease, and rest.”</i>");
 	output("\n\nYou’re more than happy to obey that, slumped in the cozy, albeit sticky, furs of the throne. Your last sight of the tall, regal insect woman is her stalking down towards the four raskvel, feathers swishing, leaving a trail of [pc.cum] behind her...");
 
@@ -704,7 +704,7 @@ public function fuckTheSydianQueen3Redux():void
 	var shrooms:ItemSlotClass = new SpunkShroom(); shrooms.quantity = 3 + rand(3);
 
 	output("You wake up with a start. You’re outside on the surface of Tarkus again, in the shadow of a rust spire. Your [pc.gear] has been piled roughly on top of you, and you seem to be have been given a rough towelling - although you still absolutely reek of sex. You stagger yourself upright and drag your stuff on. You groan as an almighty throb emanating from your groin gives you another reminder of your utter wantonness.");
-	output("\n\nIt’s only after you’re fully dressed again that you notice the other pile of "+ shrooms.quantity +" spunkshrooms, laid neatly next to you. Payment for services rendered? A come-again favor from an enamored queen? They’re obviously for you… whatever the exact intent of them is. You pick them up and carry on with whatever it was you were doing before you got so delightfully waylaid.");
+	output("\n\nIt’s only after you’re fully dressed again that you notice the other pile of "+ shrooms.quantity +" spunkshrooms, laid neatly next to you. Payment for services rendered? A come-again favor from an enamored queen? They’re obviously for you... whatever the exact intent of them is. You pick them up and carry on with whatever it was you were doing before you got so delightfully waylaid.");
 	processTime(60);
 	pc.orgasm();
 	pc.orgasm();
@@ -729,12 +729,12 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 	
 	if (sceneChoice==0)
 	{
-		output("You wake up slowly and groggily, many hours later. Your subconscious clocks that things are different this time long before you’re fully aware of it: you are used to the warm, polluted air of Tarkus moving across your [pc.skinFurScales] waking you up after these little fuckfests. You’re still inside, it’s gloomy and… there’s something around your neck? You raise your head.");
+		output("You wake up slowly and groggily, many hours later. Your subconscious clocks that things are different this time long before you’re fully aware of it: you are used to the warm, polluted air of Tarkus moving across your [pc.skinFurScales] waking you up after these little fuckfests. You’re still inside, it’s gloomy and... there’s something around your neck? You raise your head.");
 		output("\n\nYou’re still beneath the great arc of the crashed spaceship, the bronze-glittering barrow of the Sydian Queen. Your [pc.gear] is nowhere to be seen, and you notice with a shock that even your codex is missing. You try to get up, and are immediately forced back down to the ground by a harsh tug to the back of your neck. Your fingers go up, touching the thick metal collar around your neck, the chunky chain that leads from it to the wall.");
 		output("\n\n<i>“You’re awake! Wonderful.”</i> The orange-plated matriarch herself stands over you, sceptre in hand, smiling with that implacable, imperious grace of hers. Two raskvel bois flank her; they gaze at you with a kind of nervous, frisky lust. <i>“I’ve decided that I can’t have such a valuable servant as yourself running around outside. This is a desperate world, star-child: Somebody else would have captured a succulent, fertile, obedient treat like you eventually. Somebody nowhere near as regal and munificent as me.”</i>");
-		output("\n\nFright bubbling up inside you, you open your mouth to beg, demand, scream that she let you go… but the words come out in an uncertain stutter. You’ve gotten so used to just doing whatever the sexy, tinpot tyrant wants that you cannot summon the authority.");
+		output("\n\nFright bubbling up inside you, you open your mouth to beg, demand, scream that she let you go... but the words come out in an uncertain stutter. You’ve gotten so used to just doing whatever the sexy, tinpot tyrant wants that you cannot summon the authority.");
 		output("\n\n<i>“What’s the matter?”</i> queries the Queen, angling her head to one side. <i>“Isn’t this what you wanted? You are serving your Queen, are you not? And serve you shall. I need a healthy breeder, you see. The raskvel cannot give me a child, but I am told you sky-treats make for excellent incubators.”</i> She taps her sceptre thoughtfully, considering you and her two pretty boys. They are waiting on her word practically on tiptoe, their ball pouches bulging. <i>“Oh, go on then, Azaphel and Sessalai. You haven’t really proven yourself worthy today, but we should give [pc.him] a pleasant introduction to [pc.his] new life, shouldn’t we?”</i>");
-		output("\n\nA minute later you’ve got your [pc.hips] wide open, taking thick, juddering raskvel cock in your [pc.vagina] whilst the other supports you from behind, his own hot dick pressuring into your [pc.ass], two pairs of scaly hips thudding into you from either side to a chorus of enthusiastic groans and coos. Void, you can’t deny how good it feels… maybe if you just go along with this for now, a chance to escape will present itself eventually?... you orgasm to the twin sensations with a shuddering cry.");
+		output("\n\nA minute later you’ve got your [pc.hips] wide open, taking thick, juddering raskvel cock in your [pc.vagina] whilst the other supports you from behind, his own hot dick pressuring into your [pc.ass], two pairs of scaly hips thudding into you from either side to a chorus of enthusiastic groans and coos. Void, you can’t deny how good it feels... maybe if you just go along with this for now, a chance to escape will present itself eventually?... you orgasm to the twin sensations with a shuddering cry.");
 		
 		pc.lust(150);
 		addButton(0,"Next",raskOrgyBadEnd,1);
@@ -745,19 +745,19 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 		pc.willpower(-50);
 		pc.libido(100);
 		pc.lust(150);
-		output("You stroke the taut, bloated curve of your belly, huffing as concertina-like pressure assails your womb, [pc.femcum] dripping freely from your [pc.vagina]… but, nope. It’s not yet time. You return your attention to your Mistress’s armored boot, stroking it happily as she continues her consul with the sydian emissaries. ");
+		output("You stroke the taut, bloated curve of your belly, huffing as concertina-like pressure assails your womb, [pc.femcum] dripping freely from your [pc.vagina]... but, nope. It’s not yet time. You return your attention to your Mistress’s armored boot, stroking it happily as she continues her consul with the sydian emissaries.");
 		output("\n\nThe four male warriors keep shooting looks at you, which is understandable: you are Queen Sh’ziad’s most valuable asset, and are decorated as such. The chain that connects your collar to her throne glitters with malachite.");
 		if(pc.hasHair()) output("Your [pc.hair] is piled high and tiered with masterfully crafted silicon; y");
 		else output("Y");
 		output("our [pc.ears] and nose are pierced with the eerie, enchanting silver of a sexbot’s entrails, your [pc.anus] held open by a buttplug topped by the largest diamond you’ve ever seen. You are naked aside from that of course, for all to see the curves of unearthly fertility that has gifted Sh’ziad the Merciless her army of loyal raskvel; the tiny, calligraphy tattoos down your bare back tallying the exact number of eggs that you have borne.");
 		output("\n\nYour mind drifts peacefully and sensually back over the last few months, happy to linger over the vast amounts of sex you’ve had, the number of delicious reptilian cocks you’ve taken in every wet, tender, hole, the heaps of raskvel boys you’ve left spent and happily dozing. The more you do, the more you want; even now, gravid as you are, your pussy aches for a hard, dripping filling. That’s the effect of all the motherhusk you embibe, sprinkled into your every morning bowl of warm, goopy cum.");
-		output("\n\nIt was difficult to accept at first that your quest for your father’s treasure was over and that you had become a breeding slave on a ruined planet, of course. The orgies you were in the middle of every day slowly changed how your mind worked, though, melting away anxieties and regrets, reordering your priorities towards serving and blissful submission. Part of that was the taint which worked its way into you as you imbibed more and more alien fluids, spent more and more time within the atmosphere of Tarkus. ");
-		if (pc.biggestTitSize() < 27)output("\n\nYour [pc.boobs] swelled outwards precipitously as your body came to understand its new role as a broodmother, wonderful, tender, heavy, swaying things perpetually filled with and often leaking [pc.milk]. ");
-		else output("\n\n");
-		output("Your nanobots reacted to the poor fare on this world by morphing your gastrointestinal system to extract almost all the nutrients you need from cum, and soon enough it’s all you really wanted. Whether sucked directly from a delightful, pent-up quivering reptile boy, lapped up from an overflowing puppy bowl, or simply licked off of your [pc.skinFurScales] after a massive bukkake, you don’t really care as long as you get to savour that wonderful, thick, musky sperm sliding down your throat, making you feel both satisfied and incredibly horny. ");
-		if(pc.totalVaginas() <3)output("You sprouted an additional pussy between your [pc.hips], fully functional and hungry to be used. ");
-		output("That array of wet, fertile holes of yours is what really alerted the Queen to your potential. You were fed as much motherhusk as her boi scouts could find, and you were soon pumping out healthy egg after egg after egg.");
-		if(pc.hasCock())output(" The Queen even allows you time with her new girl servants occasionally, squealing as they ride your [pc.cock] with their wet, double-clitted cunts, but she mostly keeps that type of treat for her most favoured bois.");
+		output("\n\nIt was difficult to accept at first that your quest for your father’s treasure was over and that you had become a breeding slave on a ruined planet, of course. The orgies you were in the middle of every day slowly changed how your mind worked, though, melting away anxieties and regrets, reordering your priorities towards serving and blissful submission. Part of that was the taint which worked its way into you as you imbibed more and more alien fluids, spent more and more time within the atmosphere of Tarkus.");
+		output("\n\n");
+		if (pc.biggestTitSize() < 27) output("Your [pc.boobs] swelled outwards precipitously as your body came to understand its new role as a broodmother, wonderful, tender, heavy, swaying things perpetually filled with and often leaking [pc.milk]. ");
+		output("Your nanobots reacted to the poor fare on this world by morphing your gastrointestinal system to extract almost all the nutrients you need from cum, and soon enough it’s all you really wanted. Whether sucked directly from a delightful, pent-up quivering reptile boy, lapped up from an overflowing puppy bowl, or simply licked off of your [pc.skinFurScales] after a massive bukkake, you don’t really care as long as you get to savour that wonderful, thick, musky sperm sliding down your throat, making you feel both satisfied and incredibly horny.");
+		if(pc.totalVaginas() <3) output(" You sprouted an additional pussy between your [pc.hips], fully functional and hungry to be used.");
+		output(" That array of wet, fertile holes of yours is what really alerted the Queen to your potential. You were fed as much motherhusk as her boi scouts could find, and you were soon pumping out healthy egg after egg after egg.");
+		if(pc.hasCock()) output(" The Queen even allows you time with her new girl servants occasionally, squealing as they ride your [pc.cock] with their wet, double-clitted cunts, but she mostly keeps that type of treat for her most favoured bois.");
 		output(" Her army swelled, and under her shrewd, merciless direction, took over a great portion of the surrounding lands. The pleasure barrow has changed, become a genuine underground palace festooned with curious, glittering artifacts, with raskvel servants darting in and out and all around. Thanks, in large part, to you.");
 		output("\n\nSo valuable did you become, that other sydians tried to steal you away! They almost succeeded, too. Hence your collar and chain, kept by your Mistress’s feet mostly where she can keep an eye on you... and so she can occasionally use you as a pussy munch, thanking her for this wonderful new life she’s bestowed upon you with one searching lap of your [pc.tongue] in her over-ripe tangerine sex after another. As for her enemies - well, this is what they do now. They come and pay their respects. They bargain and bring tribute. They have learned that resistance is futile.");
 		output("\n\n<i>“We shall consider your offer,”</i> Sh’ziad decrees, dismissing the emissaries with an imperious wave. You’re not paying attention; the waves of sensation are back, even more intense this time. You groan as your cervix dilates, dense weight swells down your pussy, and you orgasm tremendously as you bear the football-shaped egg, coming loose from your lips in a small explosion of juices. Void, it never stops feeling mindblowingly good.");
@@ -778,15 +778,15 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 	var randoKid:int = rand(2);
 	if (sceneChoice==0)
 	{
-		output("You wake up slowly and groggily, many hours later. Your subconscious clocks that things are different this time long before you’re fully aware of it: you are used to the warm, polluted air of Tarkus moving across your [pc.skinFurScales] waking you up after these little fuckfests. You’re still inside, it’s gloomy and… you’re slumped in some sort of chair?");
-		output("\n\nYou’re still beneath the great arc of the crashed spaceship, the bronze-glittering barrow of the Sydian Queen. Your [pc.gear] is nowhere to be seen, and you notice with a shock that even your codex is missing. You try to get up, and immediately a chitinous hand calmly presses your wrist back down to the armrest. ");
+		output("You wake up slowly and groggily, many hours later. Your subconscious clocks that things are different this time long before you’re fully aware of it: you are used to the warm, polluted air of Tarkus moving across your [pc.skinFurScales] waking you up after these little fuckfests. You’re still inside, it’s gloomy and... you’re slumped in some sort of chair?");
+		output("\n\nYou’re still beneath the great arc of the crashed spaceship, the bronze-glittering barrow of the Sydian Queen. Your [pc.gear] is nowhere to be seen, and you notice with a shock that even your codex is missing. You try to get up, and immediately a chitinous hand calmly presses your wrist back down to the armrest.");
 		output("\n\n<i>“You’re awake! Wonderful,”</i> The orange-plated matriarch herself is sat next to you in her throne, sceptre in hand, smiling at you with that implacable, imperious grace of hers. Her throne, set right next to your throne, now that you’ve had a chance to look at what you’re sitting on. Battered, recovered bronze and scrap metal, shaped into an imposing, regal, trash seat. Cold understanding seeps downwards as this all begins to process.");
 		output("\n\n<i>“I’ve decided that it doesn’t do for such an important servant as yourself to run around outside,”</i> the queen pronounces. She gestures breezily at the gaggle of raskvel femboys, who are running around the cavernous depression clutching weapons and equipment, balls practically bouncing along the floor. <i>“I need you here, commanding our subjects. Training them, with your star-borne knowledge. Ass-fucking them, when they get uppity. You are my task-master, my king, and you have great responsibility.”</i>");
-		output("\n\nThis is all getting out of hand… you open your mouth to demand, persuade, explain that you don’t intend to hang around here... but the words come out in an uncertain stutter. You’ve gotten so used to just doing whatever the sexy, tinpot tyrant wants that you cannot summon the authority. She smiles winningly, and slides from her chair over into yours. Her armor is a slithering whisper as it parts.");
+		output("\n\nThis is all getting out of hand... you open your mouth to demand, persuade, explain that you don’t intend to hang around here... but the words come out in an uncertain stutter. You’ve gotten so used to just doing whatever the sexy, tinpot tyrant wants that you cannot summon the authority. She smiles winningly, and slides from her chair over into yours. Her armor is a slithering whisper as it parts.");
 		output("\n\n<i>“Shh. Don’t worry your " + pc.mf("handsome", "pretty") + " head about anything - I know what I’m doing. And besides,”</i> she whispers, taking your hand and placing it on her pliant inner thigh, <i>“What you need to concentrate on is getting me with child. The raskvel can’t do it, but you? Raskvel and gabilani alike swear that sky-treats make for excellent studs. You, my strong, virile king, you’ll give me my dynasty, won’t you? You’ll stay, and raise your princes and princesses to inherit an empire.”</i>");
-		output("\n\nYour [pc.cock] has sprung into burning erection like a loyal pet in response to her words, and you are unresisting as you enter her flush, silken hole, her hips meeting yours and moving slowly on top of you, whispering little groans and words of encouragement into your ear, her sizable breasts pillowed against your [pc.chest]. When you cum, one spasm after another shaking your body as you expend yourself deep inside the sydian, it’s as if some of your thoughts go with it, lost in all that wonderful, sodden give. ");
-		output("\n\nWhen you come down, you find yourself slightly more relaxed about the situation. Alright, so you’ll hang around a bit, slay some wicked orange puss, order some girly boys around. It’s a pretty sweet deal, and as soon as you’re not feeling it anymore, you’ll just slip out one night, right? You grin up at your queen, and she smiles back, laying a maternal kiss on your brow. ");
-		output("\n\n<i>“I’m glad you understand,”</i> she husks, smooth, clawed hands sliding up and down your back. <i>“My good, strong king. Now… why don’t you go whip those raskvel into shape?”</i>");
+		output("\n\nYour [pc.cock] has sprung into burning erection like a loyal pet in response to her words, and you are unresisting as you enter her flush, silken hole, her hips meeting yours and moving slowly on top of you, whispering little groans and words of encouragement into your ear, her sizable breasts pillowed against your [pc.chest]. When you cum, one spasm after another shaking your body as you expend yourself deep inside the sydian, it’s as if some of your thoughts go with it, lost in all that wonderful, sodden give.");
+		output("\n\nWhen you come down, you find yourself slightly more relaxed about the situation. Alright, so you’ll hang around a bit, slay some wicked orange puss, order some girly boys around. It’s a pretty sweet deal, and as soon as you’re not feeling it anymore, you’ll just slip out one night, right? You grin up at your queen, and she smiles back, laying a maternal kiss on your brow.");
+		output("\n\n<i>“I’m glad you understand,”</i> she husks, smooth, clawed hands sliding up and down your back. <i>“My good, strong king. Now... why don’t you go whip those raskvel into shape?”</i>");
 		output("\n\nA little while later, a raskvel boi presents you with a steaming platter of a sort of muddy curry-like dish, garnished with spunkshrooms. It’s actually quite tasty.");
 		
 		addButton(0,"Next",sydianQueenBadEnd,1);
@@ -818,9 +818,9 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 		output(" scrap metal crib, looked after by a dozen adoring miniature femboy nurses.");
 		output("\n\nThe door opening to the War Room brings you out of your thoughts. It’s the Queen herself, Sh’ziad the Merciless, sashaying in with a teasing smile, avid black eyes fixed on you. Her hand passes over her belly plate, already beginning to stretch over your second child.");
 		output("\n\n<i>“You’re looking gloomy, my king,”</i> she proclaims, sweeping around your chair to place her clawed hands on your shoulders. <i>“What is troubling you?”</i>");
-		output("\n\n<i>“Just… the past,”</i> you grunt. It’s already becoming hard to remember. Your [pc.groin] throbs, your balls already busily refilling themselves, almost reacting to the presence of their true owner. <i>“What I… used to be… </i>“");
-		output("\n\n<i>“You know not to think about that,”</i> she tuts, massaging you in that particular way she has. <i>“Come to the bedroom. Embrace your Queen, make her feel fine. Afterwards we’ll have some slaves attend to us. Oil, fruit, whips… you’ll like that, won’t you?”</i>");
-		output("\n\nYou know she’s manipulating you, she’s being doing that from the off, but… you don’t care. You can’t care. A few minutes later you’re in bed deep between her thighs, and with every delicious thrust of your thick breeder cock into her simmering heat, every buzzing, delighted moan you draw out of your pregnant, lusty queen, a few more of your worries and memories slip away. Forgetting is the sheerest bliss.");
+		output("\n\n<i>“Just... the past,”</i> you grunt. It’s already becoming hard to remember. Your [pc.groin] throbs, your balls already busily refilling themselves, almost reacting to the presence of their true owner. <i>“What I... used to be... </i>“");
+		output("\n\n<i>“You know not to think about that,”</i> she tuts, massaging you in that particular way she has. <i>“Come to the bedroom. Embrace your Queen, make her feel fine. Afterwards we’ll have some slaves attend to us. Oil, fruit, whips... you’ll like that, won’t you?”</i>");
+		output("\n\nYou know she’s manipulating you, she’s being doing that from the off, but... you don’t care. You can’t care. A few minutes later you’re in bed deep between her thighs, and with every delicious thrust of your thick breeder cock into her simmering heat, every buzzing, delighted moan you draw out of your pregnant, lusty queen, a few more of your worries and memories slip away. Forgetting is the sheerest bliss.");
 		badEnd("THE END.");
 	}
 }
