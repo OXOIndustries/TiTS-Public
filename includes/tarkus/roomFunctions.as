@@ -281,9 +281,15 @@ public function rustCoastEncounters():Boolean {
 public function rustRidgesEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
-	else flags["RUST_STEP"]++;
 	
+	if (InCollection(currentLocation,["241","242","243","244"])&& flags["SYDIAN_QUEEN_STAGE"]!=5 && rand(2)==0&&!pc.hasStatusEffect("Sydian Queen Cooldown"))
+	{	
+			eventQueue.push(sydianQueenIntroRedux);
+	}
+	else flags["RUST_STEP"]++;
+
 	var choices:Array = new Array();
+
 	//If walked far enough w/o an encounter
 	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter

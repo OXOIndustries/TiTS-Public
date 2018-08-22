@@ -320,6 +320,7 @@
 		include "../includes/tarkus/stellarTether.as";
 		include "../includes/tarkus/sydianFemale.as";
 		include "../includes/tarkus/sydianMale.as";
+		include "../includes/tarkus/SydianQueenEnc.as";
 		include "../includes/tarkus/taxi.as";
 		include "../includes/tarkus/theMess.as";
 		include "../includes/tarkus/tessa.as";
