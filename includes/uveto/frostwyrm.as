@@ -535,7 +535,8 @@ public function frostwyrmPickMeUpBaby():void
 	
 	processTime(5);
 	clearMenu();
-	addButton(0, "Next", frostwyrmHomeAtLast, undefined);
+	if (flags["NYKKE_MET"] == undefined && nykkeIsMature()) addButton(0, "Next", nykkeIntro01, undefined);
+	else addButton(0, "Next", frostwyrmHomeAtLast, undefined);
 }
 public function frostyReadyToBang():void
 {
@@ -831,6 +832,9 @@ public function frostwyrmMainMenu(bOutput:Boolean = true):void
 	
 	//(9999 == 0) addButton(5, "Extract", frostwyrmQuestSample, undefined);
 	
+	
+	if(flags["NYKKE_MET"] != undefined) addButton(6, "Nykke", nykkeMainMenu, true, "Nykke","Spend some time with Nykke in her lair");
+	
 	if(flags["FROSTWYRM_YOUNG"] > 0) addButton(7, "Raise", frostwyrmRaiseHatchlings, undefined, (flags["FROSTWYRM_YOUNG"] == 1 ? "Raise Hatchling" : "Raise " + StringUtil.toDisplayCase(num2Text(flags["FROSTWYRM_YOUNG"])) + " Hatchlings"), (flags["FROSTWYRM_YOUNG"] == 1 ? "You currently have one hatchling waiting to bond with you and [frostwyrm.name] before it can mature. Choosing to remain here will have the hatchling bond with you, allowing it to mature!" : "You currently have " + num2Text(flags["FROSTWYRM_EGGS"]) + " hatchlings waiting to bond with you and [frostwyrm.name] before they can mature. Choosing to remain here will have the hatchlings bond with you, allowing them to mature!"));
 	
 	if(flags["FROSTWYRM_EGGS"] > 0) addButton(8, "Incubate", frostwyrmIncubateEggs, undefined, (flags["FROSTWYRM_EGGS"] == 1 ? "Incubate Egg" : "Incubate " + StringUtil.toDisplayCase(num2Text(flags["FROSTWYRM_EGGS"])) + " Eggs"), (flags["FROSTWYRM_EGGS"] == 1 ? "You currently have one egg waiting to bond with you and [frostwyrm.name] before it can hatch. Choosing to remain here will have the kip in the egg bond with you, allowing it to hatch!" : "You currently have " + num2Text(flags["FROSTWYRM_EGGS"]) + " eggs waiting to bond with you and [frostwyrm.name] before they can hatch. Choosing to remain here will have the kips in the eggs bond with you, allowing them to hatch!"));
@@ -934,7 +938,9 @@ public function frostwyrmPsionicsTalk():void
 	output("\n\nYou have one last question. When you speak, the distance you can be heard is limited to your voice and your lungs. Is there a maximum distance a Frostwyrm can communicate to others?");
 	output("\n\n<i>There is no ‘maximum distance,’</i> she answers, <i>but we must be familiar with whom we are communicating. Imagine being in a space occupied by others of your kind. Without a proper link between individuals, your ideas and words would be shared only with yourself, no matter how close in proximity you are to others. For my kind, imagine that space is as large as the world.</i>");
 	output("\n\n<i>“Sounds lonely,”</i> you say errantly.");
-	output("\n\n<i>It was.</i> [frostwyrm.name] bends at the neck, nuzzling you once again and drawing a long, loving lick across your cheek. <i>No longer.</i>");
+	output("\n\n<i>It was.</i> [frostwyrm.name] bends at the neck, nuzzling you once again and drawing a long, loving lick across your cheek. <i>No longer.</i>");	
+	
+	flags["FROSTWYRM_PSIONICS_TALK"] = 1; //used in nykke.as
 	
 	clearMenu();
 	processTime(10);
@@ -2430,6 +2436,7 @@ public function frostwyrmMatureYoung():void
 	if(flags["FROSTWYRM_KIP_COUNT"] == undefined) flags["FROSTWYRM_KIP_COUNT"] = 0;
 	flags["FROSTWYRM_KIP_COUNT"] += flags["FROSTWYRM_YOUNG"];
 	flags["FROSTWYRM_YOUNG"] = undefined;
+	if (flags["NYKKE_BORN"] == undefined) flags["NYKKE_BORN"] = GetGameTimestamp(); //set timestamp for eldest daughter Nykke
 }
 
 public function frostwyrmDoYouWantSumFuk(nKids:int = 0):void
