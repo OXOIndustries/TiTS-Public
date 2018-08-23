@@ -5,25 +5,26 @@ public function sydianQueenIntroRedux():void
 	clearMenu();
 	author("Nonesuch");
 	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showName("SYDIAN\nQUEEN");
 	
 	output("Once again you find yourself in the bizarre forest of gigantic rust pillars, relics of some grand industrial past slowly crumbling away in the breeze. You already know what to expect around here, and so remain relatively calm when you hear a plasma pistol being cocked behind you. The ball-swollen raskvel femboys that emerge out of the debris around you are still armed to the teeth, but they’re relaxed. They smirk at you and whisper in each other’s floppy ears until their orange, hourglass-figured leader sweeps grandly into view, feathers swishing.");
 	
 	//Never sexed or Sexed only once
-	if((flags["SYDIAN_QUEEN_STAGE"]==undefined||flags["SYDIAN_QUEEN_STAGE"]==1))
+	if((flags["SYDIAN_QUEEN_STAGE"]==undefined || flags["SYDIAN_QUEEN_STAGE"]==1))
 	{
-		if (flags["SYDIAN_QUEEN_LUBBIN"]!= undefined||flags["RASKVEL_HAREM_SPITROAST"]!= undefined)output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She smirks, eyeing you up. <i>“Perhaps you come because you enjoyed serving me, hmm? You were certainly an enjoyable treat last time.”</i> The sceptre taps a slow rhythm against the armored curve of her hip. <i>“I would allow you back in my court... for a little while. What say you?”</i>");
+		if (flags["SYDIAN_QUEEN_LUBBIN"] != undefined||flags["RASKVEL_HAREM_SPITROAST"] != undefined)output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She smirks, eyeing you up. <i>“Perhaps you come because you enjoyed serving me, hmm? You were certainly an enjoyable treat last time.”</i> The sceptre taps a slow rhythm against the armored curve of her hip. <i>“I would allow you back in my court... for a little while. What say you?”</i>");
 		else output("\n\n<i>“You again?”</i> the Sydian Queen asks coolly, sceptre tapping in her hand. <i>“What possible reason would you have to try my patience by trespassing in our territory once more? Especially without your giant fish friend this time.”</i> She clicks her tongue, eyeing you up. <i>“Perhaps you’re here because you wish to serve, hmm? You would make an acceptable treat for my harem...”</i> There is a sharp intake of breath around her, and the persistent whispering gets even more excited. <i>“ ...or perhaps even for me.”</i> She smiles thinly. The sceptre taps a slow rhythm against the armored curve of her hip. <i>“What say you?”</i>");
 		
 		//Buttons
-		if (flags["SYDIAN_QUEEN_LUBBIN"]== undefined&&flags["RASKVEL_HAREM_SPITROAST"]== undefined) addButton(0,"Yes",sydianQueenChoice,0,"No","Agree to serve her. It sounds like it could be fun.");
+		if (flags["SYDIAN_QUEEN_LUBBIN"] == undefined&&flags["RASKVEL_HAREM_SPITROAST"] == undefined) addButton(0,"Yes",sydianQueenChoice,0,"No","Agree to serve her. It sounds like it could be fun.");
 		else addButton(0,"Yes",sydianQueenChoice,0,"Yes","Agree to serve her. You know it will be fun.");
 		addButton(1,"No",sydianQueenChoice,1,"No","Politely turn her down for now.");
 		addButton(2,"Never",sydianQueenChoice,2,"Never","Absolutely refuse to serve her.");
 		
-		if(flags["SYDIAN_QUEEN_STAGE"]==undefined)flags["SYDIAN_QUEEN_STAGE"]=1;
+		if(flags["SYDIAN_QUEEN_STAGE"] == undefined)flags["SYDIAN_QUEEN_STAGE"] = 1;
 	}
 	//Said no during first stage
-	else if(flags["SYDIAN_QUEEN_STAGE"]==4)
+	else if(flags["SYDIAN_QUEEN_STAGE"] == 4)
 	{
 		output("\n\n<i>“Again I find you trespassing, stranger from the sky,”</i> the Sydian Queen observes. There’s not even a flicker of humor on her face. <i>“This time, there shall be no coy refusals, no mischievous flicks of the skirt. You either leave and never come back, on pain of death, or... you serve one of my consort. If you do that, I shall consider your honor evened.”</i>");
 		output("\n\nThere’s an immediate uptick in furious, excited whispering amongst the girly raskvel surrounding you.");
@@ -32,7 +33,7 @@ public function sydianQueenIntroRedux():void
 		addButton(1,"Never",sydianQueenChoice,2,"Never","Absolutely refuse to serve her.");
 	
 	}
-	else if(flags["SYDIAN_QUEEN_STAGE"]==2)	
+	else if(flags["SYDIAN_QUEEN_STAGE"] == 2)	
 	{	
 		output("\n\n<i>“Ah. My good servant from the sky,”</i> the Sydian Queen says with a buzzing lilt. She smiles at you with munificent pleasure. <i>“Have you come to present yourself as a treat? My court does enjoy your little visits so.”</i>");
 		output("\n\nThe raskvel bois await your response with baited breath.");
@@ -41,7 +42,7 @@ public function sydianQueenIntroRedux():void
 		addButton(1,"No",sydianQueenChoice,4,"No","Eh, not right now.");
 
 	}
-	else if(flags["SYDIAN_QUEEN_STAGE"]==3)	
+	else if(flags["SYDIAN_QUEEN_STAGE"] == 3)	
 	{
 		output("<i>“My most favored servant,”</i> the Sydian Queen says with a lovely, beaming smile when she catches sight of you, touching her armored breastplate. Stricken by a sudden impulse, you genuflect in front of her, directing your gaze to her immaculate, armored feet. Hell yeah it’s corny, but it also feels inescapably right, honoring your queen, particularly when it draws a buzzing purr of pleasure out of her.");
 		output("\n\n<i>“It is a treat to have you, and have you as a treat we shall,”</i> she pronounces, lust thickening her brisk tones. <i>“Come, servant. I desire to see your youthful, fertile flesh in action again.”</i>");
@@ -74,6 +75,7 @@ public function sydianQueenChoice(sceneChoice:int):void
 	clearMenu();
 	author("Nonesuch");
 	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showName("SYDIAN\nQUEEN");
 
 	//Stage 1 Yes
 	if (sceneChoice==0)
@@ -550,7 +552,7 @@ public function raskOrgyPart4Redux():void
 	processTime(20);
 	clearMenu();
 	
-	addButton(0, "Leave", quickLoot, shrooms);	
+	quickLoot(shrooms);
 	
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] == 2) flags["SYDIAN_QUEEN_STAGE"] = 2;
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] >= 3) flags["SYDIAN_QUEEN_STAGE"]=3;
@@ -568,7 +570,7 @@ public function raskOrgyPart4Redux():void
 public function fuckTheSydianQueenRedux(x:int):void
 {
 	clearOutput();
-	showName("LAY\nHER");
+	showName("SYDIAN\nQUEEN");
 	author("Nonesuch");
 	showBust("SYDIAN_QUEEN_NUDE", "RASK_TRAP_NUDE", "RASK_TRAP_NUDE", "RASK_TRAP_NUDE");
 	
@@ -647,7 +649,7 @@ public function fuckTheSydianQueenRedux(x:int):void
 public function fuckTheSydianQueen2Redux(x:int):void
 {
 	clearOutput();
-	showName("SYDIAN\n\"QUEEN\"");
+	showName("SYDIAN\nQUEEN");
 	author("Nonesuch");
 	showBust("SYDIAN_QUEEN_NUDE");
 	output("Pulse thudding in your temple, you [pc.move] across and mount her on her reconstructed throne, the smooth, unyielding back-plates against your arms contrasting to the suppleness of her breasts pooling into your [pc.chest]. It takes barely a second to line your [pc.cockHead " + x + "] up with her puffy, split tangerine of a cunt. Sliding into her is like slipping into a silky, sultry dream.");
@@ -702,6 +704,7 @@ public function fuckTheSydianQueen3Redux():void
 	clearOutput();
 	author("Nonesuch");
 	var shrooms:ItemSlotClass = new SpunkShroom(); shrooms.quantity = 3 + rand(3);
+	showName("WAKE\nOF SHAME");
 
 	output("You wake up with a start. You’re outside on the surface of Tarkus again, in the shadow of a rust spire. Your [pc.gear] has been piled roughly on top of you, and you seem to be have been given a rough towelling - although you still absolutely reek of sex. You stagger yourself upright and drag your stuff on. You groan as an almighty throb emanating from your groin gives you another reminder of your utter wantonness.");
 	output("\n\nIt’s only after you’re fully dressed again that you notice the other pile of "+ shrooms.quantity +" spunkshrooms, laid neatly next to you. Payment for services rendered? A come-again favor from an enamored queen? They’re obviously for you... whatever the exact intent of them is. You pick them up and carry on with whatever it was you were doing before you got so delightfully waylaid.");
@@ -710,7 +713,7 @@ public function fuckTheSydianQueen3Redux():void
 	pc.orgasm();
 	clearMenu();
 	output("\n\n");
-	addButton(0, "Leave", quickLoot, shrooms);
+	quickLoot(shrooms);
 	
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] == 2) flags["SYDIAN_QUEEN_STAGE"]=2;
 	if (flags["SYDIAN_QUEEN_SEXCOUNT"] >= 3) flags["SYDIAN_QUEEN_STAGE"]=3;
@@ -773,6 +776,7 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 	clearOutput();
 	author("Nonesuch");
 	showName("A LIFE OF\nEGG BEARING");
+	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
 	clearMenu();
 	
 	var randoKid:int = rand(2);
@@ -803,7 +807,7 @@ public function sydianQueenBadEnd(sceneChoice:int):void
 		output("\n\nThings happened rapidly after you chose to stay in the pleasure barrow that first time. Too rapidly, really, for your lust-steeped mind to properly process. Freed from the arduous task of looking after her femboy retinue, the Sydian Queen set about recruiting new servants and setting them to conquer the surrounding territory with a ruthless rapacity. You stayed, and trained, and fucked, and instructed, and then fucked some more. Slowly the raskvel became less of a barely obedient rabble and more of a tightly bonded, fearless company of warriors, who looked up to you as their Fuckmaster General.");
 		output("\n\nWhenever the thought intruded that you should really slip away from all this, get back to your ship and your quest, somehow Sh’ziad was always there - cooing in your ear, sliding her hand down your shoulder, flicking her feathers at you come-hither and leading you into your newly appointed bedroom, where you’d sink into that orange bliss between her legs and forget about anything for hours. The longer it went on, the harder it was to recall who you once were. Part of that was the taint, working its way into you as you imbibed more alien fluids, more alien food and spent more time in Tarkus’s atmosphere. Your mind reshaped itself, molding itself around the new priorities of your life.");
 		if (pc.balls==0)output("\n\nYou sprouted a pair of balls, as your nanobots sensed your new role as a stud. They swelled up over the weeks and months, eventually becoming mighty basketball-sized edifices, the pressure and impatient heat they sent pulsing upwards into you making it harder to think about anything but your libido and how to satiate it.");
-		else if (pc.ballDiameter() < 9) output("\n\nYour [pc.balls] swelled up, your nanobots sensing your new role as a stud, eventually becoming mighty basketball-sized edifices, the pressure and impatient heat they sent pulsing upwards into you making it harder to think about anything but your libido and how to satiate it."); 
+		else if (pc.ballDiameter() < 9) output("\n\nYour [pc.balls] swelled up, your nanobots sensing your new role as a stud, eventually becoming mighty basketball-sized edifices, the pressure and impatient heat they sent pulsing upwards into you making it harder to think about anything but your libido and how to satiate it.");
 		if (pc.biggestCockLength()< 13) output("Your [pc.cockBiggest] grew outwards at the same time, inch after inch of glorious dick-meat sprouting into being, becoming the thick, veiny, swinging, drooling club of a member befitting a savage king.");
 		output("\n\nBy the time Queen Sh’ziad no longer wished to conquer and destroy - for reasons of her midriff growing round and taut, her boobs swelling with milk, her nipples spreading - she had a willing replacement at the head of her small, hardened army in you. You led them on rampages across the continent of Arbetz, seizing loot and bringing villages of raskvel, lapinara and sydians under your vassalage. The pleasure barrow swiftly expanded into a full-blown underground palace, thronged with servants, warriors and slaves, festooned with the glittering spoils of war. The very mention of your name makes Novahome itself tremble.");
 		output("\n\nThe baby your Queen bore was human - orange, squalling and bizarrely human - but she loved ");
