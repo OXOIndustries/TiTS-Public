@@ -244,8 +244,8 @@
 		}
 		override public function get bustDisplay():String
 		{
-			if(this.scaleColor == "purple") return "SLYVEREN_SLAVEBREAKER_2";
-			else return "SLYVEREN_SLAVEBREAKER_1";
+			if(this.scaleColor == "purple") return "SLAVEBREAKER_2";
+			else return "SLAVEBREAKER_1";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

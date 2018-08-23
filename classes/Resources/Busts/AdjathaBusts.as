@@ -740,6 +740,15 @@ package classes.Resources.Busts
 		public function get Bust_SLUTGOO_R():Class { return Bust_SLUTGOO; }
 		public var Bounds_SLUTGOO_R:Rectangle = new Rectangle(59, 8, 62, 60);
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/slyveren_slavebreaker_1.png", mimeType = "image/png")]
+		public var Bust_SLAVEBREAKER_1:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/slyveren_slavebreaker_1_nude.png", mimeType = "image/png")]
+		public var Bust_SLAVEBREAKER_1_NUDE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/slyveren_slavebreaker_2.png", mimeType = "image/png")]
+		public var Bust_SLAVEBREAKER_2:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/slyveren_slavebreaker_2_nude.png", mimeType = "image/png")]
+		public var Bust_SLAVEBREAKER_2_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone.png", mimeType = "image/png")]
 		public var Bust_SIMONE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/simone_nude.png", mimeType = "image/png")]
@@ -1596,6 +1605,15 @@ package classes.Resources.Busts
 			public var Full_SLUTGOO:Class;
 			public function get Full_SLUTGOO_L():Class { return Full_SLUTGOO; }
 			public function get Full_SLUTGOO_R():Class { return Full_SLUTGOO; }
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/slyveren_slavebreaker_1.png", mimeType = "image/png")]
+			public var Full_SLAVEBREAKER_1:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/slyveren_slavebreaker_1_nude.png", mimeType = "image/png")]
+			public var Full_SLAVEBREAKER_1_NUDE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/slyveren_slavebreaker_2.png", mimeType = "image/png")]
+			public var Full_SLAVEBREAKER_2:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/slyveren_slavebreaker_2_nude.png", mimeType = "image/png")]
+			public var Full_SLAVEBREAKER_2_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/stella.png", mimeType = "image/png")]
 			public var Full_STELLA:Class;
