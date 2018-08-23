@@ -305,6 +305,7 @@
 		include "../includes/tarkus/drLash.as";
 		include "../includes/tarkus/dumbfuckBonus.as";
 		include "../includes/tarkus/edan.as";
+		include "../includes/tarkus/gabilani_LGBT.as";
 		include "../includes/tarkus/goblinPool.as";
 		include "../includes/tarkus/grayGoo.as";
 		include "../includes/tarkus/grayGooArmor.as";
