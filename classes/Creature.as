@@ -19213,6 +19213,10 @@
 			}
 			return (hasStatusEffect("Horn Bumps"));
 		}
+		public function hasLongHorns():Boolean
+		{
+			return (hasHorns() && hornLength > 3);
+		}
 		public function removeHorns():void
 		{
 			hornType = 0;
