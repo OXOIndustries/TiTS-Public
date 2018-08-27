@@ -223,11 +223,11 @@
 				//She loves 'em big
 				sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, GLOBAL.REALLY_LIKES_SEXPREF);
 				this.scaleColor = "purple";
-				this.skinAccent = "pink";
+				this.skinAccent = "neon blue";
 				this.lipColor = "pink";
-				this.eyeColor = "bronze";
+				this.eyeColor = "pink";
 				this.nippleColor = "pink";
-				this.long = "Eyeing you up is a beautiful, curvy snakewoman with scaled purple skin, highlighted with a bright pink you just somehow know is sexual in nature. Though her body is kept tautly contained in her leather top, she clearly has no problem showing it off to you. The way her clothing compresses her ample breasts creates a valley of cleavage for you to look at, a reminder of her fertility and wanton lust. Her glowing golden eyes seem to rove over you as if in search of answers, imploring you to reveal yourself.\n\nShe purses her large, pink lips and blows you a kiss, winking coquettishly. She wants this to end amicably, no doubt. It’s just a question of who comes out on top of the other.";
+				this.long = "Eyeing you up is a beautiful, curvy snakewoman with scaled purple skin, highlighted with a bright pink you just somehow know is sexual in nature. Though her body is kept tautly contained in her leather top, she clearly has no problem showing it off to you. The way her clothing compresses her ample breasts creates a valley of cleavage for you to look at, a reminder of her fertility and wanton lust. Her glowing pink eyes seem to rove over you as if in search of answers, imploring you to reveal yourself.\n\nShe purses her large, pink lips and blows you a kiss, winking coquettishly. She wants this to end amicably, no doubt. It’s just a question of who comes out on top of the other.";
 			}
 			else
 			{
