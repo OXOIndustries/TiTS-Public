@@ -127,6 +127,9 @@ package classes.Resources
 		[Embed(source = "../../assets/icons/statuseffects/poison.svg", mimeType = "image/svg")]
 		public static var Icon_Poison:Class;
 
+		[Embed(source = "../../assets/icons/statuseffects/rain-drops.svg", mimeType = "image/svg")]
+		public static var Icon_Rain_Drops:Class;
+
 		[Embed(source = "../../assets/icons/statuseffects/rotate.svg", mimeType = "image/svg")]
 		public static var Icon_Rotate:Class;
 		

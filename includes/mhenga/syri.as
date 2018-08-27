@@ -1001,7 +1001,7 @@ public function syriSexMenu(outputs:Boolean = true):void {
 	
 	if(flags["SYRIQUEST_SYRI_ONAHOLE"] == 2)
 	{
-		if(pc.hasCock() && pc.cockThatFits(syriVaginalCapacity())) addButton(6, "Bionahole", bionaHoleSyri, undefined, "Bionahole", "Ask Syri if you can borrow her perfectly packaged pussy for a little playtime.");
+		if(pc.hasCock() && pc.cockThatFits(syriVaginalCapacity()) >= 0) addButton(6, "Bionahole", bionaHoleSyri, undefined, "Bionahole", "Ask Syri if you can borrow her perfectly packaged pussy for a little playtime.");
 		else if(pc.hasCock()) addDisabledButton(6, "Bionahole", "Bionahole", "You are too big to fuck her perfectly packaged pussy!");
 		else addDisabledButton(6, "Bionahole", "Bionahole", "You will need a cock to fuck her perfectly packaged pussy!");
 	}
@@ -1427,7 +1427,7 @@ public function syriSexOutro():void {
 		if (!pc.hasLowerGarment()) addDisabledButton(3, "GivePanties", "Give Undergarments","You need to be wearing undergarments to give them to someone!");
 		else if (pc.lowerUndergarment.sexiness < 0) addDisabledButton(3, "GivePanties", "Give Undergarments","Your undergarments probably aren’t the type to give as a gift.");
 		else if (!pc.itemSlotUnlocked(GLOBAL.LOWER_UNDERGARMENT)) addDisabledButton(3, "GivePanties", "Give Undergarments","Your undergarment slot is currently locked!");
-		else if (pc.canDropItem(pc.lowerUndergarment)) addDisabledButton(3, "GivePanties", "Give Undergarments","You cannot drop your sexy undergarments!");
+		else if (!pc.canDropItem(pc.lowerUndergarment)) addDisabledButton(3, "GivePanties", "Give Undergarments","You cannot drop your sexy undergarments!");
 		else addButton(3, "GivePanties", syriGivePanties, undefined, "Give Undergarments", "Give Syri your [pc.lowerUndergarment] for her masturbatory pleasure.");
 	}
 }

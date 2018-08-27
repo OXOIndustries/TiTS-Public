@@ -848,13 +848,17 @@ public function feiAnStrozoBustDisplay(nude:Boolean = false):String
 {
 	var sBust:String = "FEIAN";
 	
-	if(flags["FEIAN_SEX"] != undefined)
+	if(flags["FEIAN_SEX"] != undefined && nude)
 	{
 		switch(flags["FEIAN_SEX"])
 		{
-			case FEIAN_SEX_HERM: sBust += "_HERM"; break;
-			case FEIAN_SEX_FEMALE: sBust += "_FEMALE"; break;
-			case FEIAN_SEX_MALE: sBust += "_MALE"; break;
+			case FEIAN_SEX_HERM:
+			case FEIAN_SEX_MALE:
+				sBust += "_MALE"; 
+				break;
+			case FEIAN_SEX_FEMALE: 
+				sBust += "_FEMALE"; 
+				break;
 		}
 	}
 	
@@ -1705,53 +1709,39 @@ public function bothriocQuestApproachAraKei():void
 	IncrementFlag("MET_ARAKEI");
 	
 	// Ara Kei First
-	if(flags["BOTHRIOC_QUEST_COMPLETE"] == undefined)
+	output("<i>“Steele!”</i>");
+	output("\n\nAra Kei instantly switches [ara.his] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
+	if(bothriocAddiction() < 50)
 	{
-		output("<i>“Steele!”</i>");
-		output("\n\nAra Kei instantly switches [ara.his] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
-		if(bothriocAddiction() < 50)
-		{
-			output("\n\n<i>“The returning hero. Do you like what you see?”</i> [ara.he] spread" + ara.mfn("s", "s", "") + " [ara.his] arms out to indicate the sprawling bustle around [ara.him], smiling grandly as [ara.he] do" + ara.mfn("es", "es", "") + ". <i>“Such are the resources warranted for a fully recognized sapient species within the U.G.C.’s jurisdiction. Such are the resources necessary to run a fledgling government.”</i> You don’t think you’ve ever heard that last word uttered with such relish.");
-			output("\n\n<i>“You’ve managed to get sapient status, then?”</i> you ask.");
-			output("\n\n<i>“Provisional.”</i> Ara places every syllable with a point of a finger. <i>“Provisional status. The gold myr aren’t happy about it, and are refusing to allow us to enter into any negotiations with the U.G.C. diplomat corps. But, ah, this is diplomacy! This is the endless back-and-forth of negotiations, from which compromise, that word which we all spit upon but from which all good things must flow, can be fashioned from.”</i> [ara.He] clasp" + ara.mfn("s", "s", "") + " all of [ara.his] hands together. <i>“We have our toe in the door. I shall ensure that it will become a foot, a leg, a shoulder, until we are fully sat at the table of Myrellion’s government, and it will be as if we were always there.”</i>");
-			output("\n\nAs the quadomme has orated, a pidemme has trotted up, carrying a long, lacquer case. Blushing and barely able to meet your eye, they hand it to you and quickly hurry off.");
-			output("\n\n<i>“I did tell you that any material reward I gave you would be symbolic,”</i> Ara says, as you open it. The blade lying on the felt inside is obsidian black, long and thin as a rapier, with a small organic jag near the hilt which curls around the handle to form a nest-like guard.");
-			output("\n\n<i>“I discovered it when I first explored Karachnarum, eight years ago.”</i> The squatting quadomme watches as you draw the rapier and carefully brandish it. It’s marvelously light, yet viciously pointed - and you can’t help but feel an incredibly dashing, ravishing air enveloping you as you swing it this way and that. <i>“After much testing and researching, I am all but certain it is Widow’s Kiss, the blade of Prince-Queen Shar Lot Ebb, Karachnarum’s forgotten ruler. May you wield it with the honor they once did - and remember always that history is written by the victor.”</i>");
-			output("\n\nAra watches as you put the blade back in its case, smiling faintly.");
-			output("\n\n<i>“There is much for me to do, Steele, but I always have time for you. Is there anything else you’d like to talk about?”</i>");
-		}
-		else
-		{
-			output("\n\nThe strength departs your [pc.legs] as [ara.he] approach" + ara.mfn("es", "es", "") + ", larger and larger in your eyes, and you sink downwards into subservient bliss.");
-			output("\n\n<i>“The returning hero. You like what you see, don’t you, little one?”</i> [ara.He] spread" + ara.mfn("s", "s", "") + " [ara.his] arms out to indicate the sprawling bustle around [ara.him], smiling grandly as [ara.he] do" + ara.mfn("es", "es", "") + ". <i>“Such are the resources warranted for a fully recognized sapient species within the U.G.C.’s jurisdiction. Such are the resources necessary to run a fledgling government.”</i> You don’t think you’ve ever seen that last word uttered with such relish. You feel a giddy elation about it too, coursing into you from the dominant’s own belief. Government! Hurray! Egg stuffings for everyone!");
-			output("\n\n<i>“You’ve managed to get sapient status then, " + ara.mfn("sir", "mistress", "egg-giver") + "?”</i> you ask.");
-			output("\n\n<i>“Provisional.”</i> Ara places a finger on your crown, pushing downwards so you’re staring at her boots. <i>“Provisional status. The gold myr aren’t happy about it, and are refusing to allow us to enter into any negotiations with the U.G.C. diplomat corps. But, ah, this is diplomacy! This is the endless back-and-forth of negotiations, from which compromise, that word which we all spit upon but from which all good things must flow, can be fashioned from.”</i> [ara.He] clasp" + ara.mfn("s", "s", "") + " all of [ara.his] hands together. <i>“We have our toe in the door. I shall ensure that it will become a foot, a leg, a shoulder, until we are fully sat at the table of Myrellion’s government, and it will be as if we were always there.”</i>");
-			output("\n\nAs the quadomme has orated, a pidemme has trotted up, carrying a long, lacquer case. Blushing and barely able to meet your eye, they hand it to you and quickly hurry off.");
-			output("\n\n<i>“Of course, you already have all the reward you will ever need. But a symbolic reward is necessary, yes,”</i> Ara goes on, as you open it. The blade lying on the felt inside is obsidian black, long and thin as a rapier, with a small organic jag near the hilt which curls around the handle to form a nest-like guard.");
-			output("\n\n<i>“I discovered it when I first explored Karachnarum, eight years ago.”</i> The squatting quadomme watches as you draw the rapier and carefully brandish it. It’s marvelously light, yet viciously pointed - and you can’t help but feel an incredibly dashing, ravishing air enveloping you as you swing it this way and that. <i>“After much testing and exploring, I am all but certain it is Widow’s Kiss, the blade of Prince Queen Shar Lot Ebb, Karachnarum’s forgotten ruler. May you wield it with the honor they once did - and remember always that history is written by the victor.”</i>");
-			output("\n\nAra watches as you put the blade back in its case, smiling faintly.");
-			output("\n\n<i>“There is much for me to do, little one, but I always have time for you. Is there anything else you’d like to talk about?”</i>");
-		}
-		output("\n\n");
-		
-		processTime(3);
-		
-		flags["BOTHRIOC_QUEST_SUMMIT_DATE"] = undefined;
-		flags["BOTHRIOC_QUEST_COMPLETE"] = 1;
-		
-		quickLoot(new WidowsKiss());
+		output("\n\n<i>“The returning hero. Do you like what you see?”</i> [ara.he] spread" + ara.mfn("s", "s", "") + " [ara.his] arms out to indicate the sprawling bustle around [ara.him], smiling grandly as [ara.he] do" + ara.mfn("es", "es", "") + ". <i>“Such are the resources warranted for a fully recognized sapient species within the U.G.C.’s jurisdiction. Such are the resources necessary to run a fledgling government.”</i> You don’t think you’ve ever heard that last word uttered with such relish.");
+		output("\n\n<i>“You’ve managed to get sapient status, then?”</i> you ask.");
+		output("\n\n<i>“Provisional.”</i> Ara places every syllable with a point of a finger. <i>“Provisional status. The gold myr aren’t happy about it, and are refusing to allow us to enter into any negotiations with the U.G.C. diplomat corps. But, ah, this is diplomacy! This is the endless back-and-forth of negotiations, from which compromise, that word which we all spit upon but from which all good things must flow, can be fashioned from.”</i> [ara.He] clasp" + ara.mfn("s", "s", "") + " all of [ara.his] hands together. <i>“We have our toe in the door. I shall ensure that it will become a foot, a leg, a shoulder, until we are fully sat at the table of Myrellion’s government, and it will be as if we were always there.”</i>");
+		output("\n\nAs the quadomme has orated, a pidemme has trotted up, carrying a long, lacquer case. Blushing and barely able to meet your eye, they hand it to you and quickly hurry off.");
+		output("\n\n<i>“I did tell you that any material reward I gave you would be symbolic,”</i> Ara says, as you open it. The blade lying on the felt inside is obsidian black, long and thin as a rapier, with a small organic jag near the hilt which curls around the handle to form a nest-like guard.");
+		output("\n\n<i>“I discovered it when I first explored Karachnarum, eight years ago.”</i> The squatting quadomme watches as you draw the rapier and carefully brandish it. It’s marvelously light, yet viciously pointed - and you can’t help but feel an incredibly dashing, ravishing air enveloping you as you swing it this way and that. <i>“After much testing and researching, I am all but certain it is Widow’s Kiss, the blade of Prince-Queen Shar Lot Ebb, Karachnarum’s forgotten ruler. May you wield it with the honor they once did - and remember always that history is written by the victor.”</i>");
+		output("\n\nAra watches as you put the blade back in its case, smiling faintly.");
+		output("\n\n<i>“There is much for me to do, Steele, but I always have time for you. Is there anything else you’d like to talk about?”</i>");
 	}
-	// Repeat
 	else
 	{
-		output("<i>“Steele!”</i>");
-		output("\n\nAra Kei instantly switches [ara.his] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
-		output("\n\n<i>“And what do we owe this pleasure to?”</i> the quadomme asks, smiling.");
-		
-		processTime(1);
-		
-		araKeiMenu();
+		output("\n\nThe strength departs your [pc.legs] as [ara.he] approach" + ara.mfn("es", "es", "") + ", larger and larger in your eyes, and you sink downwards into subservient bliss.");
+		output("\n\n<i>“The returning hero. You like what you see, don’t you, little one?”</i> [ara.He] spread" + ara.mfn("s", "s", "") + " [ara.his] arms out to indicate the sprawling bustle around [ara.him], smiling grandly as [ara.he] do" + ara.mfn("es", "es", "") + ". <i>“Such are the resources warranted for a fully recognized sapient species within the U.G.C.’s jurisdiction. Such are the resources necessary to run a fledgling government.”</i> You don’t think you’ve ever seen that last word uttered with such relish. You feel a giddy elation about it too, coursing into you from the dominant’s own belief. Government! Hurray! Egg stuffings for everyone!");
+		output("\n\n<i>“You’ve managed to get sapient status then, " + ara.mfn("sir", "mistress", "egg-giver") + "?”</i> you ask.");
+		output("\n\n<i>“Provisional.”</i> Ara places a finger on your crown, pushing downwards so you’re staring at her boots. <i>“Provisional status. The gold myr aren’t happy about it, and are refusing to allow us to enter into any negotiations with the U.G.C. diplomat corps. But, ah, this is diplomacy! This is the endless back-and-forth of negotiations, from which compromise, that word which we all spit upon but from which all good things must flow, can be fashioned from.”</i> [ara.He] clasp" + ara.mfn("s", "s", "") + " all of [ara.his] hands together. <i>“We have our toe in the door. I shall ensure that it will become a foot, a leg, a shoulder, until we are fully sat at the table of Myrellion’s government, and it will be as if we were always there.”</i>");
+		output("\n\nAs the quadomme has orated, a pidemme has trotted up, carrying a long, lacquer case. Blushing and barely able to meet your eye, they hand it to you and quickly hurry off.");
+		output("\n\n<i>“Of course, you already have all the reward you will ever need. But a symbolic reward is necessary, yes,”</i> Ara goes on, as you open it. The blade lying on the felt inside is obsidian black, long and thin as a rapier, with a small organic jag near the hilt which curls around the handle to form a nest-like guard.");
+		output("\n\n<i>“I discovered it when I first explored Karachnarum, eight years ago.”</i> The squatting quadomme watches as you draw the rapier and carefully brandish it. It’s marvelously light, yet viciously pointed - and you can’t help but feel an incredibly dashing, ravishing air enveloping you as you swing it this way and that. <i>“After much testing and exploring, I am all but certain it is Widow’s Kiss, the blade of Prince Queen Shar Lot Ebb, Karachnarum’s forgotten ruler. May you wield it with the honor they once did - and remember always that history is written by the victor.”</i>");
+		output("\n\nAra watches as you put the blade back in its case, smiling faintly.");
+		output("\n\n<i>“There is much for me to do, little one, but I always have time for you. Is there anything else you’d like to talk about?”</i>");
 	}
+	output("\n\n");
+	
+	processTime(3);
+	
+	flags["BOTHRIOC_QUEST_SUMMIT_DATE"] = undefined;
+	flags["BOTHRIOC_QUEST_COMPLETE"] = 1;
+	
+	quickLoot(new WidowsKiss());
 }
 // Revised Talk Scenes
 public function bothriocQuestTalkBlurbs(topic:String):void

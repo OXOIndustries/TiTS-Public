@@ -183,6 +183,7 @@
 			this.ass.bonusCapacity = 0;
 			
 			this.createStatusEffect("Disarm Immune");
+			this.createStatusEffect("Force It Gender");
 			
 			isUniqueInFight = true;
 			btnTargetText = "M.Rbt";

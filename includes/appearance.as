@@ -45,6 +45,7 @@ public function appearance(forTarget:Creature):void
 	
 	var rando:int = 0;
 	var feedVal:int;
+	var i:int = 0;
 	
 	// For the PC
 	if(target != pc) return;
@@ -1354,8 +1355,9 @@ public function appearance(forTarget:Creature):void
 	}
 	
 	// Cum Splattered!
-	if(target.hasStatusEffect("Cum Soaked") || target.hasStatusEffect("Pussy Drenched"))
+	if(target.hasStatusEffect("Cum Soaked") || target.hasStatusEffect("Pussy Drenched") || target.hasStatusEffect("Milk Bathed"))
 	{
+		var fluidList:Array = [];
 		var fluidDesc:String = "";
 		var fluidVisc:Array = [];
 		var fluidLayer:int = 0;
@@ -1367,11 +1369,7 @@ public function appearance(forTarget:Creature):void
 			fluidLayer = Math.ceil(target.statusEffectv1("Cum Soaked"));
 			if(fluidLayer > 3) fluidLayer = 3;
 			fluidVisc = ["cum", "spooge", "gooey semen" , "goopey spunk"];
-			fluidDesc += fluidVisc[fluidLayer];
-		}
-		if(target.hasStatusEffect("Cum Soaked") && target.hasStatusEffect("Pussy Drenched"))
-		{
-			fluidDesc += " and ";
+			fluidList.push(fluidVisc[fluidLayer]);
 		}
 		if(target.hasStatusEffect("Pussy Drenched"))
 		{
@@ -1379,7 +1377,24 @@ public function appearance(forTarget:Creature):void
 			fluidLayer = Math.ceil(target.statusEffectv1("Pussy Drenched"));
 			if(fluidLayer > 3) fluidLayer = 3;
 			fluidVisc = ["girl-lube", "girl-juice", "slimy girl-cum", "sloppy fem-cum"];
-			fluidDesc += fluidVisc[fluidLayer];
+			fluidList.push(fluidVisc[fluidLayer]);
+		}
+		if(target.hasStatusEffect("Milk Bathed"))
+		{
+			fluidLayers += target.statusEffectv1("Milk Bathed");
+			fluidLayer = Math.ceil(target.statusEffectv1("Milk Bathed"));
+			if(fluidLayer > 3) fluidLayer = 3;
+			fluidVisc = ["breastmilk", "tit-juice", "wet lactation", "sopping tit-milk"];
+			fluidList.push(fluidVisc[fluidLayer]);
+		}
+		for(i = 0; i < fluidList.length; i++)
+		{
+			if(i != 0)
+			{
+				if(i == fluidList.length - 1) fluidDesc += " and";
+				else fluidDesc += ", ";
+			}
+			fluidDesc += " " + fluidList[i];
 		}
 		
 		output2(" You are soaked");
@@ -2834,6 +2849,7 @@ private var COLLAR_LIST:Array = [
 	"Jerynn’s",
 	"Sera’s",
 	"Sub-Tuner",
+	"Vark's",
 ];
 
 public function hasCollars():Number
@@ -2874,6 +2890,10 @@ public function appearanceWornCollar():void
 			case "Sub-Tuner Collar":
 				output2(" Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled " + (flags["SUBTUNER_NAMED"] == 2 ? "“[pc.name]”" : "“Subject 69”") + ".");
 				break;
+			case "Vark's Collar":
+				output2(" Around your neck is a thick leather collar, fashioned by your master, Vark. It's laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you, reminding you of the big sexy cat you belong to.");
+				if (wornCollar.value2 == 1) output2(" You didn't know you wanted it at first, but you can't say you haven't come around to how good it feels.");
+				break;
 			default:
 				output2(" You are currently wearing " + wornCollar.storageName + " around your neck.");
 				break;
@@ -2898,6 +2918,9 @@ public function manageWornCollar():void
 				if(flags["SUBTUNER_NAMED"] == 2) output2("“[pc.name]”");
 				else output2("“Subject 69”");
 				output2(".");
+				break;
+			case "Vark's Collar":
+				output2("Around your neck is a thick leather collar, fashioned by your master, Vark. It's laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you.");
 				break;
 			default:
 				output2("You are currently wearing " + wornCollar.storageName + ".");

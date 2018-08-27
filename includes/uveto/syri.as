@@ -15,7 +15,10 @@ public function syriAtFreezerFirePitBonus(btnSlot:int = 0):void
 
 public function syriFreezerMenu(outputs:Boolean = true):void
 {
-	if(outputs) {
+	if(outputs)
+	{
+		if(syriPuppyslutmasEntryUveto()) return;
+		
 		clearOutput();
 		showSyri();
 		author("Savin");

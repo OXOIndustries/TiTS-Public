@@ -392,7 +392,7 @@ A smirk crosses the green boy’s face, and he strikes a pose.
 (female foe) <i>“Hey baby, want some of this hot action?”</i> he teases you.
 (how successful?)
 (male foe) <i>“Buddy, let me show you how great I am at pleasing all my partners...</i> he teases you.
-…
+...
 Stats
 Combat stats: Favors ranged combat and evasion (more so than the female goblin). Has a personal shield.
 

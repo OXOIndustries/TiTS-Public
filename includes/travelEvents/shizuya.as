@@ -78,7 +78,7 @@ public function shizzyStillInADream():void
 	output("\n\n<i>“I’d say so.”</i>");
 	output("\n\n<i>“Great! Just a heads up, these come with the aphrodisiac venom separate, so if you want that extra kick, just ask.”</i> You nod, realizing that you’ve been eating without thinking, and the plate is empty, save a few crumbs and splatters of juice.");
 	output("\n\nYammi chuckles. <i>“Alright, boss, anything else?”</i>");
-	output("\n\n<b>Yammi will now cook Fried and Stuffed Cunt Snake</b>");
+	output("\n\n<b>(Yammi will now cook Fried and Stuffed Cunt Snake.)</b>");
 	
 	processTime(30);
 	
@@ -332,7 +332,7 @@ public function shizzyIntroductionPartEins(destination:String):void
 	author("QuestyRobo");
 	
 	output("Here you are, face to face with the strange intruders. For people who must be professionals, given the hardware they have, they’re very... What’s a nice word for dysfunctional? Winston and Adelline are back at arguing. What they’re arguing about escapes you, and Shizuya too, apparently.");
-	if (silly) output(" She’s taken to squatting on the floor and cracking open a bottle of vodka. She takes a big sip before offering some to you.\n\n<i>“Cyka blyat.”</i> What? <i>“Want some?”</i>\n\n<i>“No thanks.”</i>\n\n<i>“Suit yourself, comrade.”</i>");
+	if (silly) output(" She’s taken to squatting on the floor and cracking open a bottle of vodka. She takes a big sip before offering some to you.\n\n<i>“Suka blyat.”</i> What? <i>“Want some?”</i>\n\n<i>“No thanks.”</i>\n\n<i>“Suit yourself, comrade.”</i>");
 	else output(" She’s taken to sitting on the floor and cracking open a soda. She takes a big sip before offering some to you.\n\n<i>“Want some?”</i>\n\n<i>“No thanks.”</i>\n\n<i>“Suit yourself.”</i>");	
 	output("\n\nA blonde gryvain woman interrupts the argument, dragging Adelline away, leaving Winston all by himself. Without anything else to do, he comes over to you and introduces himself.");
 	output("\n\n<i>“Winston Seabook, nice to meet you.”</i> He extends his hand out, and you meet his gesture, if only to not make this too awkward.");
@@ -561,7 +561,7 @@ public function shizzyIntroductionPartII(destination:String):void
 		if (flags["SHIZZY_ANNO_MENTIONED_AKKADI"]) output(", you probably know that already");
 		output(". I don’t know what happened after she left; she said she’d stay in touch, but this is the first time I’ve seen or heard from her since. I can see why, now.”</i>");
 		output("\n\nMika stops ahead of you and starts to examine some of the damage. <i>“Anno, I’m going to need you to fix the R218 and C902 circuits. Steele, you stay here and help me out with this.”</i> Anno nods before moving over to a distant circuit panel, leaving you alone with Mika.");
-		output("\n\nAt least you think Mika is here. You turn around after watching Anno turn a corner to see that the little twerp is nowhere in sight. You wonder where she went, only to realize all too late that she’s somehow managed to climb up into an open vent, and she jumps out as soon as you notice. There’s no way you could duck out of the way of such a large object before it connects with your face, and you’re send tumbling to the ground, Mika’s dusky ass cheeks blocking out everything else.");
+		output("\n\nAt least you think Mika is here. You turn around after watching Anno turn a corner to see that the little twerp is nowhere in sight. You wonder where she went, only to realize all too late that she’s somehow managed to climb up into an open vent, and she jumps out as soon as you notice. There’s no way you could duck out of the way of such a large object before it connects with your face, and you’re sent tumbling to the ground, Mika’s dusky ass cheeks blocking out everything else.");
 		output("\n\n<i>“Must be getting pretty hungry. How about we stop for a quick meal? Don’t worry about Anno, I prepared enough for both of you.”</i>");
 		output("\n\nHer fat, chocolate pussy is pressed right up against your nose, drooling obscene amounts of pheromone-laden girlcum down your face.");
 	}
@@ -608,7 +608,8 @@ public function shizzyMikaNomNomNom(args:*):void
 		{
 			output("Which of your bits do you want her to use?");
 			addButton(0, "Penis", shizzyMikaNomNomNom, [destination, 1]);
-			return addButton(1, "Vagina", shizzyMikaNomNomNom, [destination, 2]);
+			addButton(1, "Vagina", shizzyMikaNomNomNom, [destination, 2]);
+			return;
 		}
 		else if (pc.hasCock()) mode = 1;
 		else if (pc.hasVagina()) mode = 2;
@@ -617,6 +618,7 @@ public function shizzyMikaNomNomNom(args:*):void
 		{
 			output("<b>Something has gone very wrong. Please report this.</b>");
 			addButton(0, "Next", flyToWrapper, destination);
+			return;
 		}
 	}
 	
@@ -742,7 +744,7 @@ public function shizzyIntroductionPartSorf(args:Array):void
 	
 	output("\n\nYou finish your snack quickly, as does she. She gives herself a nice, long stretch, reaches into her bag, grabs a drink, and reclines back. <i>“Soooo, you’re Victor’s kid?”</i> She asks as she takes a big gulp of her drink.");
 	output("\n\n<i>“Yeah" + (pc.isAss() ? ", what’s it to you" : "") + "?”</i> Of course it’s not like dad was a nobody, but it’s still a weird thing to ask.");
-	output("\n\n<i>“Nah. I just saw him he had his little ‘meetings’ with my parents. And yeah, I mean exactly what you think I mean. You know, I could introduce you to at least two of your sisters. There’s probably more than that, that bitch never kept track of who belonged to who after a while.”</i>");
+	output("\n\n<i>“Nah. I just saw him. He had his little ‘meetings’ with my parents. And yeah, I mean exactly what you think I mean. You know, I could introduce you to at least two of your sisters. There’s probably more than that, that bitch never kept track of who belonged to who after a while.”</i>");
 	output("\n\nNot the most flattering way to talk about her mother, you comment.");
 	output("\n\n<i>“Yeah, it’s almost like there’s a reason for that, but you’re not my shrink.”</i>");
 	output("\n\nOkay, that’s going to a awkward place, time to change subjects.");
@@ -1022,7 +1024,8 @@ public function shizzyIntroductionHazing(args:*):void
 		{
 			output("Which of your bits do you want her to use?");
 			addButton(0, "Penis", shizzyIntroductionHazing, [destination, 1]);
-			return addButton(1, "Vagina", shizzyIntroductionHazing, [destination, 2]);
+			addButton(1, "Vagina", shizzyIntroductionHazing, [destination, 2]);
+			return;
 		}
 		else if (pc.hasCock()) mode = 1;
 		else if (pc.hasVagina()) mode = 2;
@@ -1031,6 +1034,7 @@ public function shizzyIntroductionHazing(args:*):void
 		{
 			output("<b>Something has gone very wrong. Please report this.</b>");
 			addButton(0, "Next", flyToWrapper, destination);
+			return;
 		}
 	}
 	
@@ -1073,7 +1077,8 @@ public function shizzyIntroductionHazing(args:*):void
 		output("\n\nContact your system code dragon or armchair forum coder for further assistance.");
 		output("</i>");
 		output("\n\nThe struggles of playing a porn game without genitals. At least CoC2 won’t have this bullshit. You find and hold down the power button, shutting it all down before rebooting. When everything comes back, you find yourself a few minutes after when you crashed, Mika sitting a few seats down, giving you a very disappointed look.");
-		return addButton(0, "Next", shizzyIntroductionEpilouge, destination);
+		addButton(0, "Next", shizzyIntroductionEpilouge, destination);
+		return;
 	}
 	
 	output("\n\nYou sit straight up in your seat, pushing yourself up closer to the table in order to avoid any wandering eyes. Of course, as you look around, the eyes are less wandering, and more following a detailed map to exactly where you are. Mika either told them ahead of time, or you’re just that unsubtle. Regardless, you have an audience for this" + (pc.exhibitionism() >= 50 ? ", sweet." : ".") + " Shizuya seems especially excited, giving you a big double thumbs-up from across the table.");
@@ -2603,7 +2608,7 @@ public function shizzyQualifyForDBLSTFF():Array
 	if (pc.analCapacity() > 2*chars["SHIZUYA"].biggestCockVolume()) butt = true;
 	if (pc.cuntThatFits(800) != -1) vag = true;
 
-	return [vag, butt]
+	return [vag, butt];
 }
 
 public function shizzyImNotATurkey(mode:int = -1):void

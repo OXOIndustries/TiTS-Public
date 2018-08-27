@@ -5,6 +5,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.EmptySlot;
 	import classes.Items.Guns.SlutRay;
+	import classes.Items.Guns.SlutRayHeavy;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Armor.StarViperSlutwear;
@@ -49,6 +50,7 @@
 
 			this.rangedWeapon = new SlutRay();
 			this.rangedWeapon.baseDamage.tease.damageValue = 1;
+			this.rangedWeapon.attackNoun = "beam of psychic, erotic energies";
 			this.rangedWeapon.hasRandomProperties = true;
 			
 			this.armor = new StarViperSlutwear();
@@ -90,6 +92,7 @@
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_SCALES;
 			this.skinTone = "ebony";
+			this.skinAccent = "gold";
 			this.skinFlags = [];
 			
 			this.faceType = GLOBAL.TYPE_SNAKE;
@@ -220,6 +223,7 @@
 				//She loves 'em big
 				sexualPreferences.setPref(GLOBAL.SEXPREF_BIG_MALEBITS, GLOBAL.REALLY_LIKES_SEXPREF);
 				this.scaleColor = "purple";
+				this.skinAccent = "pink";
 				this.lipColor = "pink";
 				this.eyeColor = "bronze";
 				this.nippleColor = "pink";
@@ -236,11 +240,12 @@
 				if(rand(2) == 0) this.inventory[0].quantity++;
 			}
 			if(rand(10) == 0) this.inventory.push(new StarViperSlutwear());
+			else if(rand(10) == 0) this.inventory.push(new SlutRayHeavy());
 		}
 		override public function get bustDisplay():String
 		{
-			if(this.scaleColor == "purple") return "SLYVEREN_SLAVEBREAKER_2";
-			else return "SLYVEREN_SLAVEBREAKER_1";
+			if(this.scaleColor == "purple") return "SLAVEBREAKER_2";
+			else return "SLAVEBREAKER_1";
 		}
 		
 		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void

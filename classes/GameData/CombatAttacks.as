@@ -952,7 +952,7 @@ package classes.GameData
 			}
 		}
 		
-		public static function myrVenomBite(attacker:Creature, target:Creature, fromMelee:Boolean = false):void
+		public static function myrVenomBite(attacker:Creature, target:Creature, fromMelee:Boolean = false):Boolean
 		{
 			// Airtight check
 			if(attacker.hasAirtightSuit())
@@ -963,7 +963,7 @@ package classes.GameData
 			}
 			if(target.hasStatusEffect("Counters Melee") && !target.isImmobilized())
 			{
-				if(meleeCounterResults(attacker,target)) return;
+				if(meleeCounterResults(attacker,target)) return false;
 			}
 			if (combatMiss(attacker, target))
 			{
@@ -981,8 +981,12 @@ package classes.GameData
 				}
 				else output(StringUtil.capitalize(target.getCombatName(), false) + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.getCombatName() + " clamps " + (attacker.isPlural ? "their" : attacker.getCombatPronoun("himher")) + " jaws around a limb!");
 				
-				applyDamage(new TypeCollection( { drug: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
+				if(!(attacker is PlayerCharacter)) applyDamage(new TypeCollection( { drug: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
+				else if(fromMelee) applyDamage(new TypeCollection( { drug: 3 + rand(3) } ), attacker, target, "minimal");
+				
+				return true;
 			}
+			return false;
 		}
 		
 		//{ region Item Attack Implementors

@@ -2563,28 +2563,21 @@ package classes.GameData
 	
 			clearOutput();
 			output("Which tease will you use?");
-			if (flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;
-			if (flags["TIMES_HIPS_TEASED"] == undefined) flags["TIMES_HIPS_TEASED"] = 0;
-			if (flags["TIMES_BUTT_TEASED"] == undefined) flags["TIMES_BUTT_TEASED"] = 0;
-			if (flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
 			
 			var teases:Array = [
-				flags["TIMES_BUTT_TEASED"],
-				flags["TIMES_CHEST_TEASED"],
-				flags["TIMES_CROTCH_TEASED"],
-				flags["TIMES_HIPS_TEASED"]
+				Math.min((flags["TIMES_BUTT_TEASED"] == undefined ? 0 : flags["TIMES_BUTT_TEASED"]), 100),
+				Math.min((flags["TIMES_CHEST_TEASED"] == undefined ? 0 : flags["TIMES_CHEST_TEASED"]), 100),
+				Math.min((flags["TIMES_CROTCH_TEASED"] == undefined ? 0 : flags["TIMES_CROTCH_TEASED"]), 100),
+				Math.min((flags["TIMES_HIPS_TEASED"] == undefined ? 0 : flags["TIMES_HIPS_TEASED"]), 100),
+				Math.min((flags["TIMES_ORAL_TEASED"] == undefined ? 0 : flags["TIMES_ORAL_TEASED"]), 100),
 			];
 			var i:int = 0;
-			
-			for(i = 0; i < teases.length; i++) 
-			{ 
-				if(teases[i] > 100) teases[i] = 100;
-			}
 			
 			output("\nAss tease skill: " + teases[0] + "/100");
 			output("\nChest tease skill: " + teases[1] + "/100");
 			output("\nCrotch tease skill: " + teases[2] + "/100");
 			output("\nHips tease skill: " + teases[3] + "/100");
+			output("\nOral tease skill: " + teases[4] + "/100");
 			
 			output("\n\nYour ability at a tease can increase both its success rate and total damage.");
 			
@@ -2598,6 +2591,7 @@ package classes.GameData
 			if (pc.hasGenitals()) teaseList.push(["Crotch", teaseCrotch, target, "Crotch Tease", "Use your [pc.crotch] to tease your enemy."]);
 			else teaseList.push(["Crotch", null, null, "Crotch Tease", "You’ll need crotch-based genitals to do this."]);
 			teaseList.push(["Hips", teaseHips, target, "Hips Tease", "Use your [pc.hips] to tease your enemy."]);
+			// 9999 teaseList.push(["Oral", teaseOral, target, "Oral Tease", "Use your [pc.lips] to tease your enemy."]);
 			
 			// Milk Squirt
 			if (pc.canMilkSquirt())
@@ -2667,15 +2661,14 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_CHITIN);
 			return likeAdjustments;
 		}
+		
 		private function teaseButt(target:Creature):void
 		{
 			var teaseCount:Number = 0;
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			if(flags["TIMES_BUTT_TEASED"] == undefined) flags["TIMES_BUTT_TEASED"] = 0;
-			teaseCount = flags["TIMES_BUTT_TEASED"];
-			if(teaseCount > 100) teaseCount = 100;
+			teaseCount = Math.min((flags["TIMES_BUTT_TEASED"] == undefined ? 0 : flags["TIMES_BUTT_TEASED"]), 100);
 			
 			if(pc.buttRating() >= 10 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BUTTS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BUTTS);
@@ -2708,7 +2701,6 @@ package classes.GameData
 			
 			processCombat();
 		}
-				
 		public function buttTeaseText(target:Creature):void 
 		{
 			var choices:Array = new Array();
@@ -2845,9 +2837,7 @@ package classes.GameData
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			if(flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;
-			teaseCount = flags["TIMES_CHEST_TEASED"];
-			if(teaseCount > 100) teaseCount = 100;
+			teaseCount = Math.min((flags["TIMES_CHEST_TEASED"] == undefined ? 0 : flags["TIMES_CHEST_TEASED"]), 100);
 			
 			if(pc.biggestTitSize() >= 5 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS);
@@ -2880,7 +2870,6 @@ package classes.GameData
 				
 			processCombat();
 		}
-		
 		public function chestTeaseText(target:Creature):void 
 		{
 			if (pc.biggestTitSize() < 1) 
@@ -3008,9 +2997,7 @@ package classes.GameData
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			if(flags["TIMES_HIPS_TEASED"] == undefined) flags["TIMES_HIPS_TEASED"] = 0;
-			teaseCount = flags["TIMES_HIPS_TEASED"];
-			if(teaseCount > 100) teaseCount = 100;
+			teaseCount = Math.min((flags["TIMES_HIPS_TEASED"] == undefined ? 0 : flags["TIMES_HIPS_TEASED"]), 100);
 			
 			if(pc.hipRating() >= 10 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_WIDE_HIPS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_WIDE_HIPS);
@@ -3037,7 +3024,6 @@ package classes.GameData
 
 			processCombat();
 		}
-		
 		public function hipsTeaseText(target:Creature):void 
 		{
 			var msg:String = "";
@@ -3089,7 +3075,6 @@ package classes.GameData
 				output(msg);
 			}
 			//Reqs: Hips skill 75+
-			//flags["TIMES_HIPS_TEASED"]
 			else if(select == 5)
 			{
 				//Clothed:
@@ -3118,15 +3103,14 @@ package classes.GameData
 			
 			if(pc.hasStatusEffect("Thicc&Shake")) output(ThiccNShake.teaseCheck(pc, true));
 		}
+		
 		private function teaseCrotch(target:Creature):void
 		{
 			var teaseCount:Number = 0;
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			if(flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
-			teaseCount = flags["TIMES_CROTCH_TEASED"];
-			if(teaseCount > 100) teaseCount = 100;
+			teaseCount = Math.min((flags["TIMES_CROTCH_TEASED"] == undefined ? 0 : flags["TIMES_CROTCH_TEASED"]), 100);
 			
 			if(pc.hasCock() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS);
@@ -3178,9 +3162,7 @@ package classes.GameData
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			if(flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
-			teaseCount = flags["TIMES_CROTCH_TEASED"];
-			if(teaseCount > 100) teaseCount = 100;
+			teaseCount = Math.min((flags["TIMES_CROTCH_TEASED"] == undefined ? 0 : flags["TIMES_CROTCH_TEASED"]), 100);
 			
 			if(pc.hasCock() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS);
@@ -3593,10 +3575,90 @@ package classes.GameData
 			}
 		}
 		
+		private function teaseOral(target:Creature):void
+		{
+			var teaseCount:Number = 0;
+			var likeAdjustments:Array = new Array();
+			
+			//Get tease count updated
+			teaseCount = Math.min((flags["TIMES_ORAL_TEASED"] == undefined ? 0 : flags["TIMES_ORAL_TEASED"]), 100);
+			
+				if((pc.lipRating() > 6) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
+					likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
+				//Global adjustments for things like fur, sweat, cum-covered, etc.
+				likeAdjustments.concat(globalTeaseAdjustments(target));
+
+			clearOutput();
+			
+			oralTeaseText(target);
+			applyTeaseDamage(pc, target, teaseCount, "ORAL", likeAdjustments);
+			
+			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
+			{
+				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
+			}
+			else if (target is CrystalGooT2 && (target as CrystalGooT2).ShouldIntercept( { isTease: true } ))
+			{
+				(target as CrystalGooT2).SpecialAction( { isTease: true } );
+			}
+			processCombat();
+		}
+		private function oralTeaseText(target:Creature):void 
+		{
+			var msg:String = "";
+			var temp:int = 0;
+			var choices:Array = new Array();
+			
+			choices.push(0);
+			choices.push(1);
+			choices.push(2);
+			choices.push(3);
+			
+			var select:int = choices[rand(choices.length)];
+			
+			// Airtight check
+			if(pc.hasAirtightSuit()) output("You swiftly remove your helmet to reveal your [pc.lips]... ");
+			
+			// 9999: Please write!
+			// Texts here
+			switch(select)
+			{
+				case 0:
+					output("");
+					break;
+				case 1:
+					output("");
+					break;
+				case 2:
+					output("");
+					break;
+				case 3:
+					output("");
+					break;
+			}
+			
+			
+			if(pc.hasAirtightSuit()) output(" You then redon your helmet.");
+		}
+		
 		private function myrVenomBite(target:Creature):void
 		{
 			clearOutput();
-			CombatAttacks.myrVenomBite(pc, target);
+			if(CombatAttacks.myrVenomBite(pc, target))
+			{
+				var teaseCount:Number = 0;
+				var likeAdjustments:Array = new Array();
+				
+				//Get tease count updated
+				teaseCount = Math.min((flags["TIMES_ORAL_TEASED"] == undefined ? 0 : flags["TIMES_ORAL_TEASED"]), 100);
+				
+				if((pc.lipRating() > 6) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
+					likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
+				//Global adjustments for things like fur, sweat, cum-covered, etc.
+				likeAdjustments.concat(globalTeaseAdjustments(target));
+				
+				applyTeaseDamage(pc, target, teaseCount, "MYR VENOM", likeAdjustments);
+			}
 			processCombat();
 		}
 		
@@ -3606,9 +3668,7 @@ package classes.GameData
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			if(flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;
-			teaseCount = flags["TIMES_CHEST_TEASED"];
-			if(teaseCount > 100) teaseCount = 100;
+			teaseCount = Math.min((flags["TIMES_CHEST_TEASED"] == undefined ? 0 : flags["TIMES_CHEST_TEASED"]), 100);
 			
 			if(pc.biggestTitSize() >= 5 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS);

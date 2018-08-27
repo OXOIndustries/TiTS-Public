@@ -638,6 +638,11 @@
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/teron_nude.png", mimeType = "image/png")]
 		public var Bust_TERON_NUDE:Class;
 
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/urbolg.png", mimeType = "image/png")]
+		public var Bust_URBOLG:Class;
+		[Embed(source = "../../../assets/images/npcs/shou_puppy/urbolg_nude.png", mimeType = "image/png")]
+		public var Bust_URBOLG_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/shou_puppy/ushamee.png", mimeType = "image/png")]
 		public var Bust_USHAMEE:Class;
 		public var Bounds_USHAMEE:Rectangle = new Rectangle(52, 22, 64, 64);
@@ -1296,6 +1301,11 @@
 			public var Full_TERON:Class;
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/teron_nude.png", mimeType = "image/png")]
 			public var Full_TERON_NUDE:Class;
+			
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/urbolg.png", mimeType = "image/png")]
+			public var Full_URBOLG:Class;
+			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/urbolg_nude.png", mimeType = "image/png")]
+			public var Full_URBOLG_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/shou_puppy/hr/ushamee.png", mimeType = "image/png")]
 			public var Full_USHAMEE:Class;

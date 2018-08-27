@@ -266,6 +266,8 @@ public function rustCoastEncounters():Boolean {
 		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
 		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
 
+		if(pc.level >= 5) e.push ( { v: encounterLGBT, w: 2 } );
+
 		//If not disabled.
 		if(chaurmineAtWastes()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
 	
@@ -281,9 +283,15 @@ public function rustCoastEncounters():Boolean {
 public function rustRidgesEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
-	else flags["RUST_STEP"]++;
 	
+	if (InCollection(currentLocation,["241","242","243","244"])&& flags["SYDIAN_QUEEN_STAGE"] != 5 && rand(2) == 0 && !pc.hasStatusEffect("Sydian Queen Cooldown"))
+	{	
+			eventQueue.push(sydianQueenIntroRedux);
+	}
+	else flags["RUST_STEP"]++;
+
 	var choices:Array = new Array();
+
 	//If walked far enough w/o an encounter
 	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter
