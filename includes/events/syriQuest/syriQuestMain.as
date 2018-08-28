@@ -276,6 +276,9 @@ public function syriQuestGetJiggly():void {
 	clearOutput();
 	showSyri();
 	author("Savin");
+	
+	removeUvetoCold();
+	
 	output("The nearest public restroom is mostly empty and cleaner than most, at least. Syri’s back impacts the side of the taur-accessible stall with enough force to make the whole row shudder -- and make her tits bounce delightfully as you yank her stained shirt up over her head. You stop just before the collar pops around her chin, leaving the lusty shemale panting and scrabbling blindly at your back, raking her short claws across your ");
 	if (pc.isNude()) output("[pc.skinFurScales]");
 	else output("[pc.armor]");
@@ -325,6 +328,9 @@ public function syriQuestGoLater():void {
 	generateMap();
 
 	processTime(3);
+	
+	addUvetoCold();
+	
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -371,15 +377,20 @@ public function syriQuestYes():void {
 	output("\n\nIt’s a bit of a walk, but that makes her more comfortable, you can’t see why not...");
 
 	generateMap();
-	syriQuestGoNow();
+	
+	clearMenu();
+	addButton(0,"Next",syriQuestGoNow);
 }
 
 public function syriQuestGoNow():void {
 	clearOutput();
 	showSyri();
 	author("Savin");
+	
+	removeUvetoCold();
 	currentLocation = "SHIP INTERIOR";
 	generateMap();
+	
 	output("You take Syri by the hand and tell her that you’re all ears for her. She smiles and puts a big, wet kiss on your [pc.lipsChaste], squeezing your hand in hers before she quickly gathers her things. A few minutes later and the two of you are trudging through the wailing winds and heavy snow of Irestead, making your way back to the city’s central hub, and then up through the dizzying heights of the space elevator.");
 	output("\n\nThe walk back to your ship is brief and quiet. Syri doesn’t talk much on the way; not at all, in fact, unless you prompt her. She keeps chewing her lower lip and scratching at her arm-fur, staring off into the vastness of space between short responses to whatever you try and talk about. Something’s got this puppy by the tail, but she won’t say what until she’s safe and sound aboard your ship.");
 	output("\n\nWhen the airlock finally cycles behind you, Syri lets out a sigh that seems to carry all the weight off her shoulders. She lets you guide her over to the couch in the common room and you both take a seat.");

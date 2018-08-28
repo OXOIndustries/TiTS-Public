@@ -423,9 +423,9 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/kaska.png", mimeType = "image/png")]
 		public var Bust_KASKA:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/kaska_nude.png", mimeType = "image/png")]
-		public var Bust_KASKA_NUDE:Class;
+		public var Bust_KASKA_JAIL_NUDE:Class;
 		[Embed(source = "../../../assets/images/npcs/adjatha/kaska_nude_cum.png", mimeType = "image/png")]
-		public var Bust_KASKA_CUM:Class;
+		public var Bust_KASKA_JAIL_CUM:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/kitsune-traders.png", mimeType = "image/png")]
 		public var Bust_KAZRA_AND_LORRE:Class;

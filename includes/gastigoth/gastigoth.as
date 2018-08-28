@@ -85,11 +85,11 @@ public function showKhorganPrison(preg:Boolean = false):void
 	if(flags["KHORGAN_GAST_PREG_TIMER"] >= 60) pregS = "_PREG";
 	showBust("CAPTAIN_KHORGAN_JAIL" + pregS);
 }
-public function showKaska(cum:Boolean = false):void
+public function showKaskaPrison(cum:Boolean = false):void
 {
 	showName("\nKASKA");
-	if(cum) showBust("KASKA_CUM");
-	else showBust("KASKA_NUDE");
+	if(cum) showBust("KASKA_JAIL_CUM");
+	else showBust("KASKA_JAIL_NUDE");
 }
 
 public function gastigothEmailText():String 
@@ -1193,7 +1193,7 @@ public function prisonerStatline(prisonerName:String):void
 			else addButton(1, "Impregnate", impregAPrisoner, "Tamtam", "Impregnate", "Let’s talk about breeding this particular inmate...");
 			break;
 		case "Kaska":
-			showKaska();
+			showKaskaPrison();
 			output("<b>Name:</b> Kaska");
 			output("\n<b>Age:</b> 24");
 			output("\n<b>Sex:</b> Hermaphrodite");
@@ -1573,7 +1573,7 @@ output("\n\nhttps://docs.google.com/document/d/19GGjJ4Xa1Xe4ROMt9mNLxMrdLNz58R4F
 public function kaskaSlammer():void
 {
 	clearOutput();
-	showKaska();
+	showKaskaPrison();
 	output("Inside the cell is the restrained form of Kaska Beamfury, the dick-girl pirate you defeated back on Tarkus. She looks much the same as you remember her: over seven feet tall with large, shapely breasts that heave with every breath and a punkish haircut you could pick out across a crowded room. The most telling difference is her expression. Gone is the fierce glare that seems like it could bore the hull of a battlecruiser. In its place is the lazy-eyed look of a woman who has lost all control of her life.");
 	output("\n\nTime in the slammer has not been kind to Kaska.");
 	output("\n\nOne other change presents itself at the sight of you: her dick. It’s at least three times as big as it ever was before, and swelling larger with every passing second, tumescent futa flesh slowly climbing up her middle to slap it into place between her tits, nestling into a menagerie of half-dried spunk-stains. Kaska’s eyes brighten with recognition or arousal, you aren’t sure which. Dark blushes form on her cheeks, and her rampantly erect monster-cock bobs and leaks, slapping wetly against her cleavage again and again, nearly grazing her chin each time.");

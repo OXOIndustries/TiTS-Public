@@ -4383,6 +4383,7 @@ public function cumCowCockvineSuck():void
 	processTime(22);
 	var pp:PregnancyPlaceholder = getParasiticPregContainer(pc.tailType);
 	pc.loadInMouth(pp);
+	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

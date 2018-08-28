@@ -42,6 +42,8 @@ package classes.Items.Melee
 			baseDamage.electric.damageValue = 10;
 			baseDamage.kinetic.damageValue = 20;
 			
+			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
+			
 			this.critBonus = 10;
 			this.evasion = -10;
 		}

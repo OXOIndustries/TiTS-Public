@@ -221,7 +221,7 @@ public function sydianQueenSexyTimes():void
 	
 	clearOutput();
 	clearMenu();
-	author("Nonesuch");	
+	author("Nonesuch");
 	
 	//First Time Sex Intro
 	if(flags["SYDIAN_QUEEN_SEXCOUNT"]==undefined)
@@ -310,7 +310,7 @@ public function spitRoastRaskvelTimesRedux():void
 	output("\n\nA slutty, voyeuristic thrill thrums through you at the thought of putting on a show for the proud, pompous, self-styled queen. You allow her bitch-boi harem to roll you over onto your hands and [pc.knees], opening your [pc.thighs] so that the one behind you ");
 	if(!pc.hasCock()) output("can continue to finger you, finding your [pc.clit] and rubbing it so fast it’s like a vibrator’s being applied to it.");
 	else output("can grip your [pc.cock] and jerk it until it’s straining hard against your [pc.belly].");
-	output(" You gaze up at the raskvel in front of you saucily and swirl your [pc.tongue] around the pointed head of his cock, retreating inside your mouth to savour his salty taste before reapplying it around the crown with relish. Meanwhile your hand cups his massive ball-sack and gives it a squeeze, delighting at the way it throbs beneath your touch - packed, liquid density. The trappy raskvel is far too worked up to take that kind of teasing for more than a few seconds; he grips your head and thrusts his stout erection past your [pc.lips], its shape and smoothness enabling him to holster himself in your wet, sucking maw with ease.");
+	output(" You gaze up at the raskvel in front of you saucily and swirl your [pc.tongue] around the pointed head of his cock, retreating inside your mouth to savor his salty taste before reapplying it around the crown with relish. Meanwhile your hand cups his massive ball-sack and gives it a squeeze, delighting at the way it throbs beneath your touch - packed, liquid density. The trappy raskvel is far too worked up to take that kind of teasing for more than a few seconds; he grips your head and thrusts his stout erection past your [pc.lips], its shape and smoothness enabling him to holster himself in your wet, sucking maw with ease.");
 	output("\n\nYou tense up and reactively grab his slim, girly hips when one of his peers grabs your [pc.hips] and slots his own pointed reptilian cum-faucet into your [pc.vagOrAss], the pointed head encountering zero difficulty opening your ");
 	if(pc.hasVagina()) output("slickened entrance");
 	else output("loosened asshole");
@@ -481,7 +481,7 @@ public function raskOrgyPart3Redux(route:String):void
 	output("\n\n<i>“Mmm,”</i> whispers the Sydian Queen, drinking you in, tongue trailing down a long, thin finger. Azaphel dozes at her feet. Your head thunks into the sweet softness of a wool-stuffed pillow. You’re not able to support it any longer. Your [pc.eyes] close, the insect woman’s words droning through your exhausted mind. <i>“What a pleasing treat time that was. Perhaps we should keep you? ");
 	if(!pc.hasVagina()) output("My future court shall always call for entertainment. ");
 	else output("I will have need of a healthy, eager breeder like you, if I am to swell the ranks of my raskvel army. ");
-	if(flags["SYDIAN_QUEEN_STAGE"]==3&&flags["RASKVEL_HAREM_SPITROAST"] >= 4)	
+	if(flags["SYDIAN_QUEEN_STAGE"] == 3 && flags["RASKVEL_HAREM_SPITROAST"] >= 4 && pc.hasVagina())	
 	{ 
 		output("Yes... I think the time has come.”</i>"); 
 		addButton(0,"Next",raskOrgyBadEnd,0);
@@ -739,6 +739,8 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 		output("\n\n<i>“What’s the matter?”</i> queries the Queen, angling her head to one side. <i>“Isn’t this what you wanted? You are serving your Queen, are you not? And serve you shall. I need a healthy breeder, you see. The raskvel cannot give me a child, but I am told you sky-treats make for excellent incubators.”</i> She taps her sceptre thoughtfully, considering you and her two pretty boys. They are waiting on her word practically on tiptoe, their ball pouches bulging. <i>“Oh, go on then, Azaphel and Sessalai. You haven’t really proven yourself worthy today, but we should give [pc.him] a pleasant introduction to [pc.his] new life, shouldn’t we?”</i>");
 		output("\n\nA minute later you’ve got your [pc.hips] wide open, taking thick, juddering raskvel cock in your [pc.vagina] whilst the other supports you from behind, his own hot dick pressuring into your [pc.ass], two pairs of scaly hips thudding into you from either side to a chorus of enthusiastic groans and coos. Void, you can’t deny how good it feels... maybe if you just go along with this for now, a chance to escape will present itself eventually?... you orgasm to the twin sensations with a shuddering cry.");
 		
+		processTime(5 * 61);
+		
 		pc.lust(150);
 		addButton(0,"Next",raskOrgyBadEnd,1);
 	}
@@ -748,6 +750,7 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 		pc.willpower(-50);
 		pc.libido(100);
 		pc.lust(150);
+		
 		output("You stroke the taut, bloated curve of your belly, huffing as concertina-like pressure assails your womb, [pc.femcum] dripping freely from your [pc.vagina]... but, nope. It’s not yet time. You return your attention to your Mistress’s armored boot, stroking it happily as she continues her consul with the sydian emissaries.");
 		output("\n\nThe four male warriors keep shooting looks at you, which is understandable: you are Queen Sh’ziad’s most valuable asset, and are decorated as such. The chain that connects your collar to her throne glitters with malachite.");
 		if(pc.hasHair()) output("Your [pc.hair] is piled high and tiered with masterfully crafted silicon; y");
@@ -756,11 +759,24 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 		output("\n\nYour mind drifts peacefully and sensually back over the last few months, happy to linger over the vast amounts of sex you’ve had, the number of delicious reptilian cocks you’ve taken in every wet, tender, hole, the heaps of raskvel boys you’ve left spent and happily dozing. The more you do, the more you want; even now, gravid as you are, your pussy aches for a hard, dripping filling. That’s the effect of all the motherhusk you embibe, sprinkled into your every morning bowl of warm, goopy cum.");
 		output("\n\nIt was difficult to accept at first that your quest for your father’s treasure was over and that you had become a breeding slave on a ruined planet, of course. The orgies you were in the middle of every day slowly changed how your mind worked, though, melting away anxieties and regrets, reordering your priorities towards serving and blissful submission. Part of that was the taint which worked its way into you as you imbibed more and more alien fluids, spent more and more time within the atmosphere of Tarkus.");
 		output("\n\n");
-		if (pc.biggestTitSize() < 27) output("Your [pc.boobs] swelled outwards precipitously as your body came to understand its new role as a broodmother, wonderful, tender, heavy, swaying things perpetually filled with and often leaking [pc.milk]. ");
-		output("Your nanobots reacted to the poor fare on this world by morphing your gastrointestinal system to extract almost all the nutrients you need from cum, and soon enough it’s all you really wanted. Whether sucked directly from a delightful, pent-up quivering reptile boy, lapped up from an overflowing puppy bowl, or simply licked off of your [pc.skinFurScales] after a massive bukkake, you don’t really care as long as you get to savour that wonderful, thick, musky sperm sliding down your throat, making you feel both satisfied and incredibly horny.");
-		if(pc.totalVaginas() <3) output(" You sprouted an additional pussy between your [pc.hips], fully functional and hungry to be used.");
+		if (pc.biggestTitSize() < 27)
+		{
+			output("Your [pc.boobs] swelled outwards precipitously as your body came to understand its new role as a broodmother, wonderful, tender, heavy, swaying things perpetually filled with and often leaking [pc.milk]. ");
+			for(var b:int = 0; b < pc.breastRows.length; b++)
+			{
+				if(pc.breastRows[b].breastRatingRaw <= 20) pc.breastRows[b].breastRatingRaw = 27;
+				else pc.breastRows[b].breastRatingRaw += 7;
+			}
+		}
+		output("Your nanobots reacted to the poor fare on this world by morphing your gastrointestinal system to extract almost all the nutrients you need from cum, and soon enough it’s all you really wanted. Whether sucked directly from a delightful, pent-up quivering reptile boy, lapped up from an overflowing puppy bowl, or simply licked off of your [pc.skinFurScales] after a massive bukkake, you don’t really care as long as you get to savor that wonderful, thick, musky sperm sliding down your throat, making you feel both satisfied and incredibly horny.");
+		if(pc.totalVaginas() <3)
+		{
+			output(" You sprouted an additional pussy between your [pc.hips], fully functional and hungry to be used.");
+			pc.createVagina();
+			pc.setNewVaginaValues(pc.vaginas.length - 1);
+		}
 		output(" That array of wet, fertile holes of yours is what really alerted the Queen to your potential. You were fed as much motherhusk as her boi scouts could find, and you were soon pumping out healthy egg after egg after egg.");
-		if(pc.hasCock()) output(" The Queen even allows you time with her new girl servants occasionally, squealing as they ride your [pc.cock] with their wet, double-clitted cunts, but she mostly keeps that type of treat for her most favoured bois.");
+		if(pc.hasCock()) output(" The Queen even allows you time with her new girl servants occasionally, squealing as they ride your [pc.cock] with their wet, double-clitted cunts, but she mostly keeps that type of treat for her most favored bois.");
 		output(" Her army swelled, and under her shrewd, merciless direction, took over a great portion of the surrounding lands. The pleasure barrow has changed, become a genuine underground palace festooned with curious, glittering artifacts, with raskvel servants darting in and out and all around. Thanks, in large part, to you.");
 		output("\n\nSo valuable did you become, that other sydians tried to steal you away! They almost succeeded, too. Hence your collar and chain, kept by your Mistress’s feet mostly where she can keep an eye on you... and so she can occasionally use you as a pussy munch, thanking her for this wonderful new life she’s bestowed upon you with one searching lap of your [pc.tongue] in her over-ripe tangerine sex after another. As for her enemies - well, this is what they do now. They come and pay their respects. They bargain and bring tribute. They have learned that resistance is futile.");
 		output("\n\n<i>“We shall consider your offer,”</i> Sh’ziad decrees, dismissing the emissaries with an imperious wave. You’re not paying attention; the waves of sensation are back, even more intense this time. You groan as your cervix dilates, dense weight swells down your pussy, and you orgasm tremendously as you bear the football-shaped egg, coming loose from your lips in a small explosion of juices. Void, it never stops feeling mindblowingly good.");
@@ -768,7 +784,10 @@ public function raskOrgyBadEnd(sceneChoice:int):void
 		output("\n\nYou bake in the wonderful twin sensation of exhausted birth and receiving your Mistress’s adoration, until she lets you go and claps briskly.");
 		output("\n\n<i>“My egg-giver has given [pc.his] last for this cycle,”</i> she proclaims. <i>“Take [pc.him] to the laying pit, clean [pc.him] up, oil and feed and pamper [pc.him]. Then I shall pick the males who have the honor of beginning the new cycle, enjoying [pc.his] company uninterrupted for a day and moon.”</i>");
 		output("\n\nA few hours later you are wedged between two raskvel boys, who use their thick, scaly hips to urgently thrust their smooth, pointed cocks into your mouth and [pc.vagina], all the while you fondle two others and allow another to rut his hot length between the slick, pillowy goodness of your oiled-up tits. There’s another mark on your back, and you’re energetically pumping your gleaming [pc.ass] backwards in search of many more. This is your whole life now, down here in the velvety darkness, orgasming again and again to the wonderful feeling of hard reptile dick swelling your pussy and throat, and it is the purest bliss.");
-		badEnd("THE END.");		
+		
+		processTime(723 * 24 * 62);
+		
+		badEnd("THE END.");
 	}
 }
 public function sydianQueenBadEnd(sceneChoice:int):void
