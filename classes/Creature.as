@@ -20195,7 +20195,7 @@
 								if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
 								break;
 							case "'Nuki Nuts":
-								cumCascaded = true;
+								cumCascaded = canCumCascade();
 								break;
 						}
 					}
@@ -20234,6 +20234,14 @@
 			return (statusEffectv1("Anally-Filled") + statusEffectv1("Vaginally-Filled") + statusEffectv1("Orally-Filled"));
 		}
 
+		public function canCumCascade(): Boolean 
+		{
+			if(!hasPerk("'Nuki Nuts")) return false;
+			if(hasStatusEffect("Cum Cascade Suppressant")) return false;
+			if(hasPerk("Cum Cascade")) return true;
+			if(nukiScore() >= 3) return true;
+			return false;
+		}
 		public function cumCascade(amount:Number, fluid:int = GLOBAL.FLUID_TYPE_CUM, timePassed:int = 0): void 
 		{
 			// Give Cum Cascade effect

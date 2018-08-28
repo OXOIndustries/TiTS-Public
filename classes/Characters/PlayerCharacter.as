@@ -1369,6 +1369,11 @@ package classes.Characters
 					removePerk("'Nuki Nuts");
 				}
 			}
+			if(hasPerk("Cum Cascade") && !hasPerk("'Nuki Nuts"))
+			{
+				AddLogEvent("(<b>Perk Lost: Cum Cascade</b> - You have lost the extra semen producing side effect of ‘Nuki Nuts.)");
+				removePerk("Cum Cascade");
+			}
 			if(hasPerk("Fecund Figure"))
 			{
 				if(!hasVagina())

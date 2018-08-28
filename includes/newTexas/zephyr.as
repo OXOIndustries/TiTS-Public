@@ -1,5 +1,5 @@
 //Old Room Desc (Replaced With Below)
-//output("<i>“At the top of the stairs is a small, cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. Behind is sits an abnormally flat-chest cow-girl, barely sporting D-cups, dressed much more conservatively than the scantily (if at all) clad cows on the ranch proper. <i>\"Are you here to see Mr. T.?”</i></i> she asks, looking up from her work, <i>\"He’d be happy to see you. Go on through.”</i>;");
+//output("At the top of the stairs is a small, cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. Behind is sits an abnormally flat-chest cow-girl, barely sporting D-cups, dressed much more conservatively than the scantily (if at all) clad cows on the ranch proper. <i>“Are you here to see Mr. T.?”</i> she asks, looking up from her work, <i>“He’d be happy to see you. Go on through.”</i>");
 
 // Preg flag doc
 /*
@@ -1221,6 +1221,8 @@ public function zephyrButtBets():void
 		output("<i>“Still up for that bet I told you about?”</i> you ask,");
 		if (!pc.isNude()) output(" indicating the silhouette of an applicator in your pocket.");
 		else output(" twirling a syringe between your fingers.");
+		
+		flags["ZEPHYR_TALKED_BETS"] = 2;
 	}
 	else
 	{
@@ -1260,7 +1262,7 @@ public function zephyrButtBets():void
 	output("\n\nWhen the match begins, neither of you make a real move, just holding your arms in place as if to test the other.");
 	if (pc.isLactating())
 	{
-		output(" Zephyr seems to be focused on something else entirely - your [pc.breasts].”</i>");
+		output(" Zephyr seems to be focused on something else entirely - your [pc.breasts].");
 
 		output("\n\n<i>“Oho, are you </i>lactating<i>, [pc.name]?”</i> she says with a smirk,");
 
@@ -1367,7 +1369,7 @@ public function zephyrBetLoss(pqResult:Array):void
 
 			output("\n\n");
 		}
-		else if (!pc.hasVagina())
+		else if (pc.hasCock() && !pc.hasVagina())
 		{
 			output("\n\n<i>“Pity you haven’t traded that");
 			if (pc.biggestCockLength() <= 3) output(" tiny");
@@ -2382,7 +2384,7 @@ public function zephyrDoubleBetLoss():void
 	output(", you breathe a little sigh of relief. You’re pretty sure your hips would have disintegrated if you’d immediately gone for another round of being bred, and besides, this has left you pretty gravid already. You can still feel yourself leaking cum, too, though here on New Texas that’s not so far out of the ordinary. Still, a not insignificant part of you wants to immediately walk back in and skip the arm wrestling completely...");
 
 	processTime(45+rand(15));
-	pc.loadInCunt(ppZephyr,  vIdx);
+	pc.loadInCunt(ppZephyr, vIdx);
 	for (var i:int = 0; i < 3; i++) pc.orgasm();
 
 	IncrementFlag("ZEPHYR_RAWDOGGED_PUSS");
