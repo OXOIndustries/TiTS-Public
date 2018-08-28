@@ -540,7 +540,7 @@ public function urbolgHistoryContinue():void
 	output("\n\n<i>“And?”</i>");
 	output("\n\nThe korgonne smirks at you. <i>“And she hauled my sorry ass in for medical treatment, I guess. Woke up in her ship with a stump below the elbow, one good eye, and a translator strapped around my neck. Tried to fight my way out once, before I passed out. If ye can believe it, I was a bit of a savage back then. Thought the core magics would corrupt me.”</i> He glances to his arm and sighs. <i>“Twas about half right about that, truth be told.”</i>");
 	output("\n\nYou ask him why he stayed instead of going home, if he was that worried about corruption.");
-	output("\n\n<i>“Didn’t have much choice.”</i> He barks out a bawdy laugh. <i>“When ye wake up in a pirate cruiser, ye can either chip in and earn a share or get sold off into slavery. Me? I chipped in, and I chipped in hard.”</i> He wiggles his fingers. <i>“Once they calmed me down and stuffed a new hand on me stump, I got put to work cleaning out under the engines, reactors, and anywhere else to small or dirty for a bigger pirate to bother with. It’s how I got me start, bein’ an artificer.”</i>");
+	output("\n\n<i>“Didn’t have much choice.”</i> He barks out a bawdy laugh. <i>“When ye wake up in a pirate cruiser, ye can either chip in and earn a share or get sold off into slavery. Me? I chipped in, and I chipped in hard.”</i> He wiggles his fingers. <i>“Once they calmed me down and stuffed a new hand on me stump, I got put to work cleaning out under the engines, reactors, and anywhere else too small or dirty for a bigger pirate to bother with. It’s how I got me start, bein’ an artificer.”</i>");
 	if(flags["URBOLG_ARTIFICER"] == undefined) flags["URBOLG_ARTIFICER"] = 0;
 	//[Continue] [Artificer?] (starts artificer talk)
 	processTime(8);
@@ -588,7 +588,7 @@ public function urbolgArtificerTalk():void
 	output("\n\n<i>“It isn’t.”</i>");
 	output("\n\n<i>“So yer saying it isn’t magic, but... isn’t magic just understanding those invisible forces that bind together our universe and whatnot, tweaking ‘em in just the right way to accomplish something miraculous?”</i> Urbolg seems to be holding back a giggle.");
 	output("\n\nConsidering how it functions in most fantasy holos, you admit that it seems an apt description.");
-	output("\n\n<i>“That description is just as apt for yer science boys and gals, spendin’ all day studying arcane formulae and physics to wring a few extra wats into a laser pistol. And don’t tell me that the warp gates that stitch this universe together ain’t the product of some black magic. Somebody musta traded their heart to a demon for the keys to that puzzle. Just ‘cause core magic’s a bit more finicky than the stuff of legend don’t make it not be magic.”</i>");
+	output("\n\n<i>“That description is just as apt for yer science boys and gals, spendin’ all day studying arcane formulae and physics to wring a few extra Watts into a laser pistol. And don’t tell me that the warp gates that stitch this universe together ain’t the product of some black magic. Somebody musta traded their heart to a demon for the keys to that puzzle. Just ‘cause core magic’s a bit more finicky than the stuff of legend don’t make it not be magic.”</i>");
 	output("\n\n<i>“That’s... ");
 	if(pc.isBimbo()) output("like, a super smart way to think about it!");
 	else output("a fair point.");

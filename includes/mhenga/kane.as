@@ -322,7 +322,7 @@ public function kaneMenu(disableAppearance:Boolean = false, fight:Boolean = fals
 		addButton(currentSlot++, "Talk", kaneTalkMenu);
 		if ((flags["KANE_STATUS"] == 1) || (pc.tallness <= 6*12 && !pc.isTaur()))
 			addButton(currentSlot++, "Sex", (flags["KANE_STATUS"] == 1 ? kaneOldSex : kaneFookMeh));
-		else addDisabledButton(currentSlot++, "Sex", "Sex", "You’re a bit too " + (pc.isTaur() ? "tauric" : "big") + " for Kane to do you.");
+		else addDisabledButton(currentSlot++, "Sex", "Sex", "You’re a bit too " + (pc.isTaur() ? "tauric" : "tall") + " for Kane to do you.");
 		if (flags["KANE_STATUS"] == 1 && kaneDominance() == 0) addButton(currentSlot++, "Mark", kaneFuckOffForReal, undefined, "Mark", "Give him a permanent reminder of your domination of him. You doubt you’ll be able to interact with him again, at least not peacefully, if you choose to do this.");
 	}
 	
