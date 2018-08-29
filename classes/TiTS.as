@@ -277,6 +277,7 @@
 		include "../includes/mhenga/mimbranes.as";
 		include "../includes/mhenga/naleen.as";
 		include "../includes/mhenga/naleenMale.as";
+		include "../includes/mhenga/naleenFuta.as";
 		include "../includes/mhenga/penny.as";
 		include "../includes/mhenga/penny_bimbo.as";
 		include "../includes/mhenga/prai.as";

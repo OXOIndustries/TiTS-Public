@@ -21145,6 +21145,14 @@
 							AddLogEvent(infertileMsg, "passive", maxEffectLength);
 						}
 						break;
+					case "Bottled Poison":
+						if (requiresRemoval)
+						{
+							physiqueMod += thisStatus.value1;
+							aimMod += thisStatus.value1;
+							reflexesMod += thisStatus.value1;
+						}
+						break;
 					case "Crabbst":
 						if (requiresRemoval)
 						{

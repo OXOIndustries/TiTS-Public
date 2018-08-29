@@ -1248,6 +1248,22 @@ package classes.GameData
 				}
 			}
 			
+			if (target.hasStatusEffect("Bottled Poison"))
+			{
+				//output("<b>Bottle Mins: </b>" + target.getStatusMinutes("Bottled Poison"));
+				target.addStatusMinutes("Bottled Poison",-1);
+				if(target.getStatusMinutes("Bottled Poison") <= 0)
+				{
+					//output("<b>Bottle REMOVEMINS: </b>" + target.getStatusMinutes("Bottled Poison"));
+					target.physiqueMod += target.statusEffectv1("Bottled Poison");
+					target.reflexesMod += target.statusEffectv1("Bottled Poison");
+					target.aimMod += target.statusEffectv1("Bottled Poison");
+					target.removeStatusEffect("Bottled Poison");
+					output("\n\n<b>The poison fades!</b>");
+				}
+				else output("\n\n<b>The bottled poison still courses through your system!</b>");
+			}
+
 			genericStatusEffectUpdate(target, "Tracer Rounds");
 			genericStatusEffectUpdate(target, "Torra Lust Weakness");
 			genericStatusEffectUpdate(target, "Chaff Grenade");

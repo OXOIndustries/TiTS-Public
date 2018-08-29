@@ -9,6 +9,7 @@ package classes.GameData
 	import classes.Characters.Kane;
 	import classes.Characters.Kaska;
 	import classes.Characters.NymFoe;
+	import classes.Characters.NaleenHerm;
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.RaskvelFemale;
 	import classes.Characters.RaskvelMale;
@@ -2621,6 +2622,16 @@ package classes.GameData
 				if (target.statusEffectv1("Counters Ranged") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
 				return true;
 			}
+			if(target is NaleenHerm)
+			{
+				target.addStatusValue("Counters Ranged",1,1);
+				target.setStatusValue("Counters Melee",1,0);
+				if(target.statusEffectv1("Counters Ranged") >= 3)
+				{
+					(target as NaleenHerm).rangedCounter(attacker);
+					return true;
+				}
+			}
 			return false;
 		}
 		public static function meleeCounterResults(attacker:Creature,target:Creature):Boolean
@@ -2629,6 +2640,16 @@ package classes.GameData
 			{
 				if (target.statusEffectv1("Counters Melee") == 0) kGAMECLASS.shizzyCounterAttack(attacker,true);
 				return true;
+			}
+			if(target is NaleenHerm)
+			{
+				target.addStatusValue("Counters Melee",1,1);
+				target.setStatusValue("Counters Ranged",1,0);
+				if(target.statusEffectv1("Counters Melee") >= 3)
+				{
+					(target as NaleenHerm).meleeCounter(attacker);
+					return true;
+				}
 			}
 			return false;
 		}
