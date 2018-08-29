@@ -1321,7 +1321,7 @@ public function tamtamStuffGo(impregnate:Boolean = false):void
 	//Else, first time:
 	else if(flags["TAMTAM_PRISONED"] == undefined)
 	{
-		output("\n\n<i>“It’s you!”</i> Tam-Tam yelps, squirming in her bonds. <i>“W-what’re you doin’ here? And why do I feel... unnnf, so hot and... and horny!");
+		output("\n\n<i>“It’s you!”</i> Tam-Tam yelps, squirming in her bonds. <i>“W-what’re you doin’ here? And why do I feel... unnnf, so hot and... and horny!”</i>");
 	}
 	//First time combine
 	if(flags["TAMTAM_PRISONED"] == undefined) output("\n\n<i>“Don’t worry, kitty,”</i> you tell her slowly approaching her defenseless rear. <i>“I’ll take good care of you.”</i>");
