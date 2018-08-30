@@ -1081,7 +1081,6 @@ public function oralFisi(fromMenu:Boolean = false):void
 		}
 		else {
 			output("\n\n<i>“Alright then, I think they would feel pretty nice on other pla-”</i> you start to say, but are cut off when you feel a soft paw already sliding towards your [pc.clit]. The rest of your words are replaced with a gasp of pleasure when she starts to strum your [pc.vaginaColor] pearl. You look down and see Fisianna smiling coyly, matching your gaze to hers. She kneels snuggly ");
-			output("\n\n<i>“Did you mean here, by chance?”</i> She smirks, breathing steadily heavier the closer she brings your phallus to her face. You would say something about her overt cheekiness, but you are too blissed out to care at the moment.");
 			if (pc.legType == GLOBAL.TYPE_SNAKE || (pc.legType == GLOBAL.TYPE_GOOEY && pc.hasLegFlag(GLOBAL.FLAG_PREHENSILE))) output("against");
 			else output("between");
 			output(" your [pc.legs], breathing heavily against your moist pussy.");
