@@ -701,6 +701,7 @@ public const CREW_AZRA:int = 12;
 public const CREW_PAIGE:int = 13;
 public const CREW_KASE:int = 14;
 public const CREW_SHEKKA:int = 15;
+public const CREW_RAMIS:int = 16;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -720,6 +721,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (paigeIsCrew()) crewMembers.push(CREW_PAIGE);
 	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
+    if (ramisRecruited()) crewMembers.push(CREW_RAMIS);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -792,6 +794,23 @@ public function multiCrewInteractions():Array
 			crewMessages += "\n\nPippa is giving Reaha a massage, paying special attenion to her back.";
 		}
 	}
+    if (InCollection(CREW_RAMIS))
+    {
+        if (ramisCrewBlurb(crewMembers, "KASE") != null)
+        {
+            crewMembers.splice(crewMembers.indexOf(CREW_RAMIS), 1);
+            crewMembers.splice(crewMembers.indexOf(CREW_KASE), 1);
+        
+            crewMessages += "\n\nOn the monitors, you can see Ramis and Kase are talking in the corridors. Or rather, Ramis has blocked Kase’s path with her arm and is leering down at him, whilst a blushing Kase is nervously playing with the tip of one of his tails. Impossible to imagine what’s going on there.";
+        }
+        else if (ramisCrewBlurb(crewMembers, "SHEKKA") != null)
+        {
+            crewMembers.splice(crewMembers.indexOf(CREW_RAMIS), 1);
+            crewMembers.splice(crewMembers.indexOf(CREW_SHEKKA), 1);
+        
+            crewMessages += "\n\nOn the monitors, you can see Ramis and Shekka are in the canteen, chatting frenetically. From the way they’re gesturing, and occasionally positioning glasses and cutlery on the table to make a point, you’d guess they’re talking about tech. Shekka has positioned a box on top of a chair so that she can talk to the kaithrit without straining her neck - and also to get at the bottle of whiskey Ramis has plonked onto the table. Gails of tipsy feminine laughter emanate from that part of the ship.";
+        }
+    }
 	
 	crewMembers.push(crewMessages);
 	return crewMembers;
@@ -873,6 +892,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 		case "Goo Armor": return novaBustDisplay(); break;
 		case "Paige": return getPaigeBustString(); break;
 		case "Pippa": return pippaBustDisplay(); break;
+        case "Ramis": return ramisBustDisplay(); break;
 		case "Reaha": return reahaBustDisplay(); break;
 		case "Sera": return seraBustDisplay(); break;
 		case "Shekka": return shekkaBustDisplay(); break;
@@ -916,6 +936,7 @@ public function getSleepingPartnerBustDisplay():String
 		case "KIRO": return kiroBustDisplay(); break;
 		case "PAIGE": return getPaigeBustString(); break;
 		case "PIPPA": return pippaBustDisplay(); break;
+        case "RAMIS": return ramisBustDisplay(); break;
 		case "REAHA": return reahaBustDisplay(); break;
 		case "SERA": return seraBustDisplay(); break;
 		case "SHEKKA": return shekkaBustDisplay(); break;
@@ -1074,6 +1095,16 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
+    if (ramisIsCrew())
+    {
+        count++;
+        if(!counter)
+        {
+            if (InCollection(CREW_RAMIS, crewMembers)) crewMessages += "\n\n" + ramisCrewBlurb();
+            addButton(btnSlot, "Ramis", ramisCrewMenu);
+            btnSlot = crewButtonAdjustments(btnSlot);
+        }
+    }
 	if (reahaIsCrew())
 	{
 		count++;

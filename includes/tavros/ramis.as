@@ -39,7 +39,7 @@ public function ramisIsCrew():Boolean
 public function ramisAtAnons():Boolean
 {
 	if(pc.hasStatusEffect("Ramis Away Time")) return false;
-    if(ramisIsCrew()) return false; 9999;
+    if(ramisIsCrew()) return false;
 	
 	if(flags["RAMIS_MET"] != undefined && pc.isFemboy() && looksFamiliarToRamis() && ramisFemboyHours()) return true;
 	// Regular hours
