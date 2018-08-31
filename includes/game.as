@@ -804,7 +804,7 @@ public function multiCrewInteractions():Array
 			crewMessages += "\n\nPippa is giving Reaha a massage, paying special attenion to her back.";
 		}
 	}
-    if (InCollection(CREW_RAMIS))
+    if (InCollection(CREW_RAMIS, crewMembers))
     {
         ramisValidateActivity(crewMembers);
         if (flags["RAMIS_ACTIVITY"] == "KASE")
@@ -860,6 +860,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
 	if (paigeIsCrew()) crewMembers.push("Paige");
 	if (pippaOnShip()) crewMembers.push("Pippa");
+    if (ramisIsCrew()) crewMembers.push("Ramis");
 	if (reahaIsCrew()) crewMembers.push("Reaha");
 	if (seraIsCrew()) crewMembers.push("Sera");
 	if (shekkaIsCrew()) crewMembers.push("Shekka");

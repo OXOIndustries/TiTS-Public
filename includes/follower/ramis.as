@@ -16,7 +16,7 @@ fix kase/shekka approaches when interacting with ramis (currently they pretend i
 
 public function ramisRecruited():Boolean
 {
-	return (flags["RAMIS_RECRUITED"] == 1);
+	return flags["RAMIS_RECRUITED"] == 1;
 }
 
 public function ramisfmt(femString:String, manString:String, trapString:String):String
@@ -31,17 +31,17 @@ public function ramisNickname():String
 }
 
 //Sorely needed, can't use global(-ish) var pc as default, so kludgy solution
-public function looksFemaleToRamis(target:Creature = null)
+public function looksFemaleToRamis(target:Creature = null):Boolean
 {
     if (!target) target = pc;
     return target.isFemale() || target.isFemHerm() || target.isSexless() || target.isShemale();
 }
-public function looksTrappyToRamis(target:Creature = null)
+public function looksTrappyToRamis(target:Creature = null):Boolean
 {
     if (!target) target = pc;
     return !looksFemaleToRamis(target) && target.isFemboy();
 }
-public function looksMaleToRamis(target:Creature = null)
+public function looksMaleToRamis(target:Creature = null):Boolean
 {
     if (!target) target = pc;
     return !looksFemaleToRamis(target) && !looksTrappyToRamis(target);
@@ -169,21 +169,21 @@ public function ramisRecruitDealShip():void
 
 public function ramisValidateActivity(crew:Array):void
 {
-    var valid:Boolean = true;
+    var outdated:Boolean = false;
 
-    if (flags["RAMIS_ACTIVITY"] == undefined) valid = false;
-    else if (flags["RAMIS_ACTIVITY_LAST_SET"] == undefined) valid = false;
-    else if (flags["RAMIS_ACTIVITY_LAST_SET"] + 4 < GetGameTimestamp()) valid = false;
-    else if (flags["RAMIS_ACTIVITY"] == "KASE" && !InCollection(CREW_KASE, crew)) valid = false;
-    else if (flags["RAMIS_ACTIVITY"] == "SHEKKA" && !InCollection(CREW_SHEKKA, crew)) valid = false;
-    else if (flags["RAMIS_ACTIVITY"] == "HORNY" && pc.hasStatusEffect("Ramis Sated")) valid = false;
+    if (flags["RAMIS_ACTIVITY"] == undefined) outdated = true;
+    else if (flags["RAMIS_ACTIVITY_LAST_SET"] == undefined) outdated = true;
+    else if (flags["RAMIS_ACTIVITY_LAST_SET"] + 4 < GetGameTimestamp()) outdated = true;
+    else if (flags["RAMIS_ACTIVITY"] == "KASE" && !InCollection(CREW_KASE, crew)) outdated = true;
+    else if (flags["RAMIS_ACTIVITY"] == "SHEKKA" && !InCollection(CREW_SHEKKA, crew)) outdated = true;
+    else if (flags["RAMIS_ACTIVITY"] == "HORNY" && pc.hasStatusEffect("Ramis Sated")) outdated = true;
     
-    if (!valid) ramisNewActivity(crew);
+    if (outdated) ramisNewActivity(crew);
 }
 
 public function ramisNewActivity(crew:Array):void
 {
-    var options = new Array();
+    var options:Array = new Array();
 
     for (var i:int = 0; i < ramisCrewBasicBlurbs.length; ++i) options.push(i);
     if (InCollection(CREW_KASE, crew)) options.push("KASE");
@@ -211,7 +211,7 @@ public function ramisCrewBlurb():String
             return "Ramis is dozing in her room, flat out on her bunk with her hands across her taut belly, purring snores periodically rising and falling from a drone to a rumble. On the monitors, the glow of a holo pad near to her bed catches your eye; zooming in reveals it to be ‘Johann’s Big and Burly Bear-annual III’. A couple of Ramis’s fingers gleam with moisture.";
         case "ERROR":
         default:
-            return "**Error setting Ramis's schedule.**";
+            return "<b>Error setting Ramis's schedule. " + String(flags["RAMIS_ACTIVITY"]) + "</b>";
     }
 }
 
@@ -321,7 +321,7 @@ public function ramisTalkBackground(RDAD:Array):void
 	clearMenu();
     processTime(15);
     
-    var ramisDrinks = RDAD[0];
+    var ramisDrinks:int = RDAD[0];
     
     output("You ask where she was born.");
 
@@ -348,7 +348,7 @@ public function ramisTalkLife(RDAD:Array):void
 	clearMenu();
     processTime(15);
     
-    var ramisDrinks = RDAD[0];
+    var ramisDrinks:int = RDAD[0];
     
     output("“Getten off Newydd Casnewydd was tough,” Ramis says. “Snugglé land you with a bunch of debt once you reach 16, the cost of your upbringing. It’s great bein’ a corporate orphan, you know: the prezzie you get when you become’n adult is a bank statement five figures in the red. It’s part of the whole graft - by that point you’re sort’ve a unique asset to them, somebody young on-site who knows all of their systems instinctively, they want you to stay. So they immediately offer you a job to work off the debt, ‘n then they’ll offer you some <i>more</i> debt so they can sponsor you through higher education… fuck that. Fuck ALL of that.” She bangs her glass down vehemently. “I didn’t care how dirty or dangerous it was, I wanted off that fucken sterile green rock so bad I cried until one of the staff drove me down to the spaceport and left me there. Like my mum, only in reverse.”");
 
@@ -383,7 +383,7 @@ public function ramisTalkWork(RDAD:Array):void
 	clearMenu();
     processTime(15);
     
-    var ramisDrinks = RDAD[0];
+    var ramisDrinks:int = RDAD[0];
     
     output("You ask about her mercenary career.");
     output("\n\n“You want to hear about some guts’n glory, do you?” Ramis laughs. She swirls her scotch, gazes into the roiling amber. “Hmm. Let me have a think…”");
@@ -458,7 +458,7 @@ public function ramisTalkHobbies(RDAD:Array):void
 	clearMenu();
     processTime(15);
     
-    var ramisDrinks = RDAD[0];
+    var ramisDrinks:int = RDAD[0];
     
     output("You ask what she enjoys doing the most.");
 
