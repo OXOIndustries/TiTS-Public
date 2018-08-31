@@ -796,14 +796,15 @@ public function multiCrewInteractions():Array
 	}
     if (InCollection(CREW_RAMIS))
     {
-        if (ramisCrewBlurb(crewMembers, "KASE") != null)
+        ramisValidateActivity(crewMembers);
+        if (flags["RAMIS_ACTIVITY"] == "KASE")
         {
             crewMembers.splice(crewMembers.indexOf(CREW_RAMIS), 1);
             crewMembers.splice(crewMembers.indexOf(CREW_KASE), 1);
         
             crewMessages += "\n\nOn the monitors, you can see Ramis and Kase are talking in the corridors. Or rather, Ramis has blocked Kase’s path with her arm and is leering down at him, whilst a blushing Kase is nervously playing with the tip of one of his tails. Impossible to imagine what’s going on there.";
         }
-        else if (ramisCrewBlurb(crewMembers, "SHEKKA") != null)
+        else if (flags["RAMIS_ACTIVITY"] == "SHEKKA")
         {
             crewMembers.splice(crewMembers.indexOf(CREW_RAMIS), 1);
             crewMembers.splice(crewMembers.indexOf(CREW_SHEKKA), 1);
@@ -1058,7 +1059,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter) 
 		{
-			crewMessages += kaseCrewBlurbs(btnSlot);
+            if (InCollection(CREW_KASE, crewMembers)) crewMessages += kaseCrewBlurbs(btnSlot);
+            else addButton(btnSlot, "Kase", kaseApproachCrew, 1); //9999 ramis stuff
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1101,7 +1103,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
         if(!counter)
         {
             if (InCollection(CREW_RAMIS, crewMembers)) crewMessages += "\n\n" + ramisCrewBlurb();
-            addButton(btnSlot, "Ramis", ramisCrewMenu);
+            addButton(btnSlot, "Ramis", ramisCrewApproach);
             btnSlot = crewButtonAdjustments(btnSlot);
         }
     }
@@ -1161,6 +1163,10 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
+            if (!InCollection(CREW_SHEKKA, crewMembers)) //9999 ramis stuff
+            {
+                addButton(btnSlot,"Shekka",approachCrewShekka);
+            }
 			if(pc.hasStatusEffect("Shekka_Cum_Playing"))
 			{
 				crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";

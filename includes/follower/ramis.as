@@ -5,10 +5,13 @@ RAMIS_ONBOARD
 RAMIS_RECRUITED
 RAMIS_TALKED_ABOUT_TALKING (that is, she mentioned having that booze-making thing)
 RAMIS_TALKED_SAGITOM (heard story 4)
+RAMIS_ACTIVITY: If integer, index of her current blurb. If string, special activity. See ramisValidateActivity
+RAMIS_ACTIVITY_LAST_SET: GetGameTimestamp() when RAMIS_ACTIVITY last changed.
 
 things to do (DO NOT PUSH IF THIS IS NOT EMPTY. THIS MEANS YOU, ME.):
-higher vag cap
-set ramis schedule and kase/shekka interaction
+higher vag cap <- set to 150, test
+set ramis schedule and kase/shekka interaction <- done-ish
+fix kase/shekka approaches when interacting with ramis (currently they pretend it never happened)
 */
 
 public function ramisRecruited():Boolean
@@ -164,23 +167,55 @@ public function ramisRecruitDealShip():void
     addButton(0, "Next", mainGameMenu);
 }
 
-public function ramisCrewBlurb(crew:Array, partner:String = "none"):String
+public function ramisValidateActivity(crew:Array):void
 {
-    var blurbs:Array = new Array();
+    var valid:Boolean = true;
 
-    blurbs.push("Ramis has decked her quarters out in an intimidating display of fitness equipment. On the monitors, you can see she’s on the mat in her spandex underwear, hands behind her head, doing full body sit-ups. Up comes that brown, determined face to one side of her raised knees… down. Up it comes to the other side of her knees… down. Didn’t you read somewhere that sit-ups were bad for your back? Perhaps that’s not a problem for as flexible a race as the kaithrit.");
-    blurbs.push("Ramis has decked her quarters out in an intimidating display of fitness equipment. On the monitors, you can see she’s put some fingerless gloves on and is pummeling her zero-grav punch bag. Her taut flesh glows with sweat as she ducks and weaves, laying down jabs so fast that you only see her arm withdrawing, and the bag swinging in response. The big kaithrit is laughing and talking breathlessly as she works out, although you can’t make out what she’s saying.");
-    blurbs.push("Ramis has decked her quarters out in an intimidating display of fitness equipment. On the monitors, you can see she’s in her spandex underwear, doing her daily squats. Hands clenching the barbell over her shoulders, she grits her teeth and stands herself up… then with a hefty exhalation, sinks slowly back down. You simultaneously envy and pity the material stretched across her hindquarters, painted over those giant, muscle-packed hills, swelling out mightily whenever she returns to the squatting position.");
-    blurbs.push("Ramis is in the battery. On the monitors, you watch her clamber over the bulky, internal components of your weapons, sonic wrench in hand: fiddling within circuitry compartments, rerouting energy cells, dismantling ammunition cylinders, before putting it all back together and summoning up the main holo menu at the front to perform checks. She’s wearing a rather grouchy expression, muttering to herself as she goes about it. You think you catch “...like it’s been calibrated by a bloody anatae”.");
-    blurbs.push("It seems to be Ramis’s downtime. On the monitors, you can see she’s at her desk with a flask of whiskey and her lappy holo-device, idly scrolling and tapping away at various social media and vid sites. Kait-Pop is blaring through the speakers. She’s nodding away happily to the nightmarishly manic, screechy racket.");
-    if (!pc.hasStatusEffect("Ramis Sated")) blurbs.push("Ramis is dozing in her room, flat out on her bunk with her hands across her taut belly, purring snores periodically rising and falling from a drone to a rumble. On the monitors, the glow of a holo pad near to her bed catches your eye; zooming in reveals it to be ‘Johann’s Big and Burly Bear-annual III’. A couple of Ramis’s fingers gleam with moisture.");
+    if (flags["RAMIS_ACTIVITY"] == undefined) valid = false;
+    else if (flags["RAMIS_ACTIVITY_LAST_SET"] == undefined) valid = false;
+    else if (flags["RAMIS_ACTIVITY_LAST_SET"] + 4 < GetGameTimestamp()) valid = false;
+    else if (flags["RAMIS_ACTIVITY"] == "KASE" && !InCollection(CREW_KASE, crew)) valid = false;
+    else if (flags["RAMIS_ACTIVITY"] == "SHEKKA" && !InCollection(CREW_SHEKKA, crew)) valid = false;
+    else if (flags["RAMIS_ACTIVITY"] == "HORNY" && pc.hasStatusEffect("Ramis Sated")) valid = false;
     
-    flag["RAMIS_ACTIVITY"] = rand(blurbs.length);
-    
-    return blurbs[variant];
+    if (!valid) ramisNewActivity(crew);
 }
+
+public function ramisNewActivity(crew:Array):void
+{
+    var options = new Array();
+
+    for (var i:int = 0; i < ramisCrewBasicBlurbs.length; ++i) options.push(i);
+    if (InCollection(CREW_KASE, crew)) options.push("KASE");
+    if (InCollection(CREW_SHEKKA, crew)) options.push("SHEKKA");
+    if (!pc.hasStatusEffect("Ramis Sated")) options.push("HORNY");
     
-public function ramisCrewMenu():void
+    flags["RAMIS_ACTIVITY_LAST_SET"] = GetGameTimestamp();
+    if (options.length <= 0) flags["RAMIS_ACTIVITY"] = "ERROR";
+    else flags["RAMIS_ACTIVITY"] = RandomInCollection(options);
+}
+
+public var ramisCrewBasicBlurbs:Array = ["Ramis has decked her quarters out in an intimidating display of fitness equipment. On the monitors, you can see she’s on the mat in her spandex underwear, hands behind her head, doing full body sit-ups. Up comes that brown, determined face to one side of her raised knees… down. Up it comes to the other side of her knees… down. Didn’t you read somewhere that sit-ups were bad for your back? Perhaps that’s not a problem for as flexible a race as the kaithrit.",
+    "Ramis has decked her quarters out in an intimidating display of fitness equipment. On the monitors, you can see she’s put some fingerless gloves on and is pummeling her zero-grav punch bag. Her taut flesh glows with sweat as she ducks and weaves, laying down jabs so fast that you only see her arm withdrawing, and the bag swinging in response. The big kaithrit is laughing and talking breathlessly as she works out, although you can’t make out what she’s saying.",
+    "Ramis has decked her quarters out in an intimidating display of fitness equipment. On the monitors, you can see she’s in her spandex underwear, doing her daily squats. Hands clenching the barbell over her shoulders, she grits her teeth and stands herself up… then with a hefty exhalation, sinks slowly back down. You simultaneously envy and pity the material stretched across her hindquarters, painted over those giant, muscle-packed hills, swelling out mightily whenever she returns to the squatting position.",
+    "Ramis is in the battery. On the monitors, you watch her clamber over the bulky, internal components of your weapons, sonic wrench in hand: fiddling within circuitry compartments, rerouting energy cells, dismantling ammunition cylinders, before putting it all back together and summoning up the main holo menu at the front to perform checks. She’s wearing a rather grouchy expression, muttering to herself as she goes about it. You think you catch “...like it’s been calibrated by a bloody anatae”.",
+    "It seems to be Ramis’s downtime. On the monitors, you can see she’s at her desk with a flask of whiskey and her lappy holo-device, idly scrolling and tapping away at various social media and vid sites. Kait-Pop is blaring through the speakers. She’s nodding away happily to the nightmarishly manic, screechy racket.",
+]
+
+public function ramisCrewBlurb():String
+{
+    if (flags["RAMIS_ACTIVITY"] is int) return ramisCrewBasicBlurbs[flags["RAMIS_ACTIVITY"]];
+    switch (flags["RAMIS_ACTIVITY"])
+    {
+        case "HORNY":
+            return "Ramis is dozing in her room, flat out on her bunk with her hands across her taut belly, purring snores periodically rising and falling from a drone to a rumble. On the monitors, the glow of a holo pad near to her bed catches your eye; zooming in reveals it to be ‘Johann’s Big and Burly Bear-annual III’. A couple of Ramis’s fingers gleam with moisture.";
+        case "ERROR":
+        default:
+            return "**Error setting Ramis's schedule.**";
+    }
+}
+
+public function ramisCrewApproach():void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -256,24 +291,25 @@ public function ramisCrewTalkStart():void
     ramisCrewTalkTopics();
 }
 
-public function ramisCrewTalkTopics(ramisDrinksAndDisable:Array = {-1, -1}):void
+public function ramisCrewTalkTopics(ramisDrinksAndDisable:Array = null):void
 {
+    if (ramisDrinksAndDisable == null) ramisDrinksAndDisable = [-1, -1];
 
     //Every time a talk scene ends, take a drink
     //ramisDrinks starts from -1 so the initial scene keeps the pc sober
     var ramisDrinks:int = ramisDrinksAndDisable[0] + 1;
-    if (ramisDrinks > 0) pc.imbibe(20);
+    if (ramisDrinks > 0) pc.imbibeAlcohol(20);
     //if (ramisDrinks > 4) mainGameMenu();? Gotta give the player alcohol poisoning somehow.
     
     var disable:int = ramisDrinksAndDisable[1];
     if (disable == 0) addDisabledButton(0, "Background");
-    else addButton(0, "Background", ramisTalkBackground, {ramisDrinks, 0}, "Background", "Ask where she came from.");
+    else addButton(0, "Background", ramisTalkBackground, [ramisDrinks, 0], "Background", "Ask where she came from.");
     if (disable == 1) addDisabledButton(1, "Adult Life");
-    else addButton(1, "Adult Life", ramisTalkLife, {ramisDrinks, 1}, "Adult Life", "Ask how she got onto the Frontier.");
+    else addButton(1, "Adult Life", ramisTalkLife, [ramisDrinks, 1], "Adult Life", "Ask how she got onto the Frontier.");
     if (disable == 2) addDisabledButton(2, "Mercing");
-    else addButton(2, "Mercing", ramisTalkWork, {ramisDrinks, 2}, "Mercing", "She could surely tell you a few hair-raising tales.");
+    else addButton(2, "Mercing", ramisTalkWork, [ramisDrinks, 2], "Mercing", "She could surely tell you a few hair-raising tales.");
     if (disable == 3) addDisabledButton(3, "Hobbies");
-    else addButton(3, "Hobbies", ramisTalkHobbies, {ramisDrinks, 3}, "Hobbies", "Which does she enjoy the most - clubbing, working out or doing boys?");
+    else addButton(3, "Hobbies", ramisTalkHobbies, [ramisDrinks, 3], "Hobbies", "Which does she enjoy the most - clubbing, working out or doing boys?");
     addButton(14, "Back", crew); //9999
 }
 
@@ -429,7 +465,7 @@ public function ramisTalkHobbies(RDAD:Array):void
     if (ramisDrinks > 1)
     {
         if (looksTrappyToRamis() && 9999 /* bottom */) output("\n\n“You, mostly,” she replies with a big grin. You roll your eyes; you should have seen that coming. “It’s great to be worken on a ship where I can get my teeth into a mincen little sissy whenever I want. And most home boyos only let me do it to them once! You’re the best boss I ever had, Steele.”");
-        else if (looksMaleToRamis() && 9999 /*toppo*/ output("\n\n“You, mostly,” she replies with a big grin. You roll your eyes; you should have seen that coming. “Most guys talk a good game, but’d rather hide in the bogs then take me on. So all I get are kui-tan girls tryen their luck, cuz they think they can shag anythen! You, though: you do it like you mean it. Then you’re just a mate afterwards. You’re the best boss I ever had, Steele.”");
+        else if (looksMaleToRamis() && 9999 /*toppo*/) output("\n\n“You, mostly,” she replies with a big grin. You roll your eyes; you should have seen that coming. “Most guys talk a good game, but’d rather hide in the bogs then take me on. So all I get are kui-tan girls tryen their luck, cuz they think they can shag anythen! You, though: you do it like you mean it. Then you’re just a mate afterwards. You’re the best boss I ever had, Steele.”");
     }
 
     output("\n\nShe sips her scotch and thinks about it for a bit.");
@@ -446,13 +482,12 @@ public function ramisTalkHobbies(RDAD:Array):void
     {
         output(" We’ve had a few now captain, so tell me honestly.” Wag wag goes the glass, narrowly avoiding a spill. “Do you really want to be in charge of Steele Tech, once all this is over?”");
 
-        addButton(0, "Yes", ramisCompanyReply, true);
-        addButton(1, "No", ramisCompanyReply, false);
+        addButton(0, "Yes", ramisCompanyReplyYes, RDAD);
+        addButton(1, "No", ramisCompanyReplyNo, RDAD);
     }
 }
 
-//'Cause I don't wanna make two functions. Sue me.
-public function ramisCompanyReply(wantit:Boolean):void
+public function ramisCompanyReplyNo(RDAD:Array):void
 {
 	clearOutput();
 	author("Nonesuch");
@@ -460,22 +495,26 @@ public function ramisCompanyReply(wantit:Boolean):void
 	clearMenu();
     processTime(5);
 
-    if (wantit)
-    {
-        output("The life of an itinerant frontiersperson has its moments, but you also know it isn’t exactly sustainable. You’ve seen enough out here to know you’re extremely lucky to have your inheritance, and you absolutely intend to take up the reigns of the family business as Victor wanted. It’s not as if you can’t still have fun, is it? As best you can with the amount of scotch currently circulating your system, you put all of that to Ramis.");
-        output("\n\n“Fair fucken points,” she replies slowly. “I guess I’ve never imagined having a goal like that in life - at least not once I paid off all of my debt.” She smiles at you. “I suppose it’s nice to have someone in charge who’s driven like that. We’re goen to get your dad’s silver, and no-one’s going to stand in your way, are they " + ramisNickname() + "? Here’s to you.”");
-        output("\n\nShe gives you a lusty salute with her glass, and this time the amber fluid <i>does</i> slop everywhere.");
-    }
-    else
-    {
-        output("You’ve known this quest was total nonsense, right from the start. What could surviving out here on the frontier possibly teach you about running a mega corporation like Steele Tech? Frankly, the only reason you’re doing it is to stop your rotten cousin from grabbing it - and to hang on to some of the most valuable assets Victor left you, like the incredible nursery and hangar on Tavros. Once you’ve succeeded, you fully intend to immediately step down as CEO, then carry on the exciting, fulfilling, sexy life you’ve found for yourself out here.");
-        output("\n\nAs best you can with the amount of scotch currently circulating your system, you put all of that to Ramis.");
-        output("\n\n“I knew it!” she cheers loudly. “You’re like ME " + ramisNickname() + ", liven in the moment rather than dreaming of fucken boardrooms, ‘n money you won’t even know what to do with. You’ll keep me on, once you <i>do</i> get off the company leash, right? Oh, we’re goen to have so much <i>fun</i>!”");
-        output("\n\nShe lustily bangs her glass into yours, and this time the amber fluid <i>does</i> slop everywhere.");
-    }
+    output("You’ve known this quest was total nonsense, right from the start. What could surviving out here on the frontier possibly teach you about running a mega corporation like Steele Tech? Frankly, the only reason you’re doing it is to stop your rotten cousin from grabbing it - and to hang on to some of the most valuable assets Victor left you, like the incredible nursery and hangar on Tavros. Once you’ve succeeded, you fully intend to immediately step down as CEO, then carry on the exciting, fulfilling, sexy life you’ve found for yourself out here.");
+    output("\n\nAs best you can with the amount of scotch currently circulating your system, you put all of that to Ramis.");
+    output("\n\n“I knew it!” she cheers loudly. “You’re like ME " + ramisNickname() + ", liven in the moment rather than dreaming of fucken boardrooms, ‘n money you won’t even know what to do with. You’ll keep me on, once you <i>do</i> get off the company leash, right? Oh, we’re goen to have so much <i>fun</i>!”");
+    output("\n\nShe lustily bangs her glass into yours, and this time the amber fluid <i>does</i> slop everywhere.");
     
     ramisCrewTalkTopics(RDAD);
 }
 
+public function ramisCompanyReplyYes(RDAD:Array):void
+{
+	clearOutput();
+	author("Nonesuch");
+	showRamis();
+	clearMenu();
+    processTime(5);
 
+    output("The life of an itinerant frontiersperson has its moments, but you also know it isn’t exactly sustainable. You’ve seen enough out here to know you’re extremely lucky to have your inheritance, and you absolutely intend to take up the reigns of the family business as Victor wanted. It’s not as if you can’t still have fun, is it? As best you can with the amount of scotch currently circulating your system, you put all of that to Ramis.");
+    output("\n\n“Fair fucken points,” she replies slowly. “I guess I’ve never imagined having a goal like that in life - at least not once I paid off all of my debt.” She smiles at you. “I suppose it’s nice to have someone in charge who’s driven like that. We’re goen to get your dad’s silver, and no-one’s going to stand in your way, are they " + ramisNickname() + "? Here’s to you.”");
+    output("\n\nShe gives you a lusty salute with her glass, and this time the amber fluid <i>does</i> slop everywhere.");
+    
+    ramisCrewTalkTopics(RDAD);
+}
 
