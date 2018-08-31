@@ -25,7 +25,7 @@ package classes.Items.Armor
 			
 			description = "an incomplete spacesuit";
 			
-			tooltip = "This is <i>most</i> of a spacesuit. It's missing a helmet. Somebody's stenciled in a white skull and crossbones on the shoulders, and a smiley face smoking a cigar on the chest. <b>If you find a helmet, you can use it to complete the suit.</b>";
+			tooltip = "This is <i>most</i> of a spacesuit. It’s missing a helmet. Somebody’s stenciled in a white skull and crossbones on the shoulders, and a smiley face smoking a cigar on the chest. <b>If you find a helmet, you can use it to complete the suit.</b>";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

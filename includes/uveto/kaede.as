@@ -71,7 +71,7 @@ public function uvetoKaedeSure():void
 
 	output("<i>“Sure,”</i> you say, releasing the half-ausar from your end of the hug. <i>“Lead the way.”</i>");
 	
-	output("\n\nKaede gives a little cheer and takes you by the hand, marching down the corridor with a cute little skip in her step. You follow at her side, letting her ginger tail swish against your [pc.leg] and her fingers wrap tightly between your own. As you walk towards the inner sanctum of the station, Kaede calls your attention to the viewports on the right, showing the curving ice plane of the Uvetan moon down below.");
+	output("\n\nKaede gives a little cheer and takes you by the hand, marching down the corridor with a cute little skip in her step. You follow at her side, letting her ginger tail swish against your [pc.leg] and her fingers wrap tightly between your own. As you [pc.walk] towards the inner sanctum of the station, Kaede calls your attention to the viewports on the right, showing the curving ice plane of the Uvetan moon down below.");
 	
 	output("\n\n<i>“Beautiful, isn’t it?”</i> she smiles, pausing to gaze out into the pale wastes. <i>“I barely ever go planetside, but Uveto really tempts me. Even though it’s so cold, I’ve seen the holovids of the ice plains and... wow. Even those coreward resort planets you see all the time don’t hold a candle to those snowy fields. They’re just so... so fake, you know? But this place, it’s still wild and untamed. A natural beauty.”</i>");
 	
@@ -716,7 +716,7 @@ public function uvetoKaedeFuckHerAss(arg:Array):void
 	
 	output("\n\nYou’re not far behind yourself, now that you think about it. The way Kaede’s tight little tail-hole squeezes and kneads your member with every thrust, milking you as eagerly as any cum-thirsty quim, is driving you ever more wild with lust. All you can do to sate yourself now, though, is grab two handfuls of Kaede’s plush behind and spread her wide, hammering yourself as deep in as you can possibly go until the pleasure finally overwhelms you - and your lover.");
 	
-	output("\n\n<i>“Gonna... gonna... ohfuck!”</i> Kaede cries a moment before you announce your own climax. She cries out in absolute bliss, throwing her head back and letting you ream her to orgasm. Thick streaks of white ausar cream shoot straight down from her untouched prick, splattering across her feet as you milk her much-abused prostate for everything it’s got. Her climax brings yours on as sure as sunrise, though, as her ass squeezes down so forcefully around your [pc.cock] that you can’t help but give the randy pup what her hole’s been craving all this time.");
+	output("\n\n<i>“Gonna... gonna... ohfuck!”</i> Kaede cries a moment before you announce your own climax. She cries out in absolute bliss, throwing her head back and letting you ream her to orgasm. Thick streaks of white ausar cream shoot straight down from her untouched prick, splattering across her feet as you milk her much-abused prostate for everything it’s got. Her climax brings yours on as sure as sunrise, though, as her ass squeezes down so forcefully around your [pc.cock "+cIdx+"] that you can’t help but give the randy pup what her hole’s been craving all this time.");
 
 	output("\n\nWith a grunt of climactic pleasure, you");
 	if (pc.cockVolume(cIdx) <= 250) output(" hilt yourself in Kaede’s ass");
@@ -765,7 +765,7 @@ public function uvetoKaedeGoodbye():void
 
 	output("You nod at her, giving Kaede’s tight behind an appreciative swat as she slinks past. She gasps and blushes, flicking her bushy red tail at you. <i>“Thanks for the fun, [pc.name]. That was... well, I hope that was half as good for you as it was for me.”</i>");
 	
-	output("\n\nDefinitely. You swing out of your seat and walk over to her, grabbing Kaede by the waist and spinning her around into a quick kiss. Her eyes are wide open, taken by surprise, but quickly flutter down into a sated lull.");
+	output("\n\nDefinitely. You swing out of your seat and [pc.walk] over to her, grabbing Kaede by the waist and spinning her around into a quick kiss. Her eyes are wide open, taken by surprise, but quickly flutter down into a sated lull.");
 	
 	output("\n\n<i>“I’ll take that as a yes,”</i> she smiles, wrapping her arms around you. <i>“I’m gonna see you again, right?”</i>");
 	

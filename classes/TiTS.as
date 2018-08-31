@@ -147,6 +147,7 @@
 		include "../includes/follower/mitzi.as";
 		include "../includes/follower/multi_interactions.as";
 		include "../includes/follower/paige.as";
+		include "../includes/follower/paigeCuddles.as";        
 		include "../includes/follower/paigeHalloweener.as";
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
@@ -164,6 +165,9 @@
 		include "../includes/events/plantationQuest/plantationQuestXPack1.as";
 		include "../includes/events/spaceYakuza/spaceYakuza.as";
 		include "../includes/events/spaceYakuza/akaneQuest.as";
+		include "../includes/events/syriQuest/syriQuestMain.as";
+		include "../includes/events/syriQuest/rooms.as";
+		include "../includes/events/syriQuest/roomFunctions.as";
 
 		//Misc content
 		include "../includes/masturbation.as";
@@ -266,6 +270,7 @@
 		include "../includes/mhenga/flahne.as";
 		include "../includes/mhenga/frogGirls.as";
 		include "../includes/mhenga/julianSHaswell.as";
+		include "../includes/mhenga/kane.as";
 		include "../includes/mhenga/kase.as";
 		include "../includes/mhenga/kelly.as";
 		include "../includes/mhenga/mimbranes.as";
@@ -397,11 +402,15 @@
 		include "../includes/myrellion/xenogenbiotech.as";
 
 		//FIFTH PLANET: ZHENG SHI
+		include "../includes/zhengShiStation/agroshAndArdia.as";
 		include "../includes/zhengShiStation/boredJumper.as";
+		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/maike.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/rozPowerGoo.as";
+		//include "../includes/zhengShiStation/slyverenSlavebreaker.as";
+		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/tivf.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		
@@ -458,6 +467,7 @@
 		include "../includes/uveto/shade.as";
 		include "../includes/uveto/stormguardMale.as";
 		include "../includes/uveto/subTuner.as";
+		include "../includes/uveto/syri.as";
 		include "../includes/uveto/tlako_and_xotchi.as";
 		include "../includes/uveto/tuuvaBlacksmith.as";
 		include "../includes/uveto/ula.as";
@@ -573,7 +583,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.189";
+			version = "0.7.200";
 
 			//temporary nonsense variables.
 			temp = 0;
@@ -612,26 +622,10 @@
 			parser = new ParseEngine(this, TiTS_Settings);
 
 			flags = new Dictionary();
-
-			initializeRooms();
-			initTavrosRooms();
-			initMhengaRooms();
-			initTarkusRooms();
-			initNewTexasRooms();
-			initializeMyrellionRooms();
-			kquest2InitRooms();
-			initUvetoRooms();
-			initUvetoRoomsII();
-			initZhengRooms();
-			initGastigothRooms();
-			kiInitRooms();
-			initVesperiaRoom();
-			initBreedwellRooms();
-			fqInitRooms();
-			initGreatMajinRooms();
 			
-			mapper = new Mapper(this.rooms)
-
+			// Make the rooms, build the map
+			buildRooms();
+			
 			var tPC:PlayerCharacter = new PlayerCharacter();
 			chars["PC"] = tPC;
 			charDict[tPC] = "PC";
@@ -1635,6 +1629,10 @@
 		public function get lah():RKLah
 		{
 			return chars["LAH"];
+		}
+		public function get ardia():Ardia
+		{
+			return chars["ARDIA"];
 		}
 
 		public function testShipCombat():void

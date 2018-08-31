@@ -766,7 +766,9 @@ public function kallyDrinkPurchase(drink:String):void
 		//Adoradrunk
 		if(pc.isBuzzed())
 		{
-			output("\n\nKally looks like she’s breathing sort of heavily, but she studiously turns away while you drink, instead looking over the bar. She swings back with an impish smile. <i>“I guess nobody else needs anything. Wanna have a chat while you savor that flavor?”</i> She bends over to lean on the bar. You can see straight down hear low-hanging cleavage. She doesn’t even stop you when you look, just tousles your hair. <i>“You’re sweet, but why not speak up while you enjoy the view?”</i>");
+			output("\n\nKally looks like she’s breathing sort of heavily, but she studiously turns away while you drink, instead looking over the bar. She swings back with an impish smile. <i>“I guess nobody else needs anything. Wanna have a chat while you savor that flavor?”</i> She bends over to lean on the bar. You can see straight down hear low-hanging cleavage. She doesn’t even stop you when you look");
+			if(pc.hasHair() && pc.hairLength > 2) output(", just tousles your hair");
+			output(". <i>“You’re sweet, but why not speak up while you enjoy the view?”</i>");
 		}
 		//Drunk
 		else
@@ -3871,7 +3873,7 @@ public function rahnMilkerFunTimes(arg:String):void
 	//merge
 	output("\n\nThe robotic fox fans herself while you finish up, reveling in the slurping wall-cunt’s incessant suckling upon your hyper-sensitized mast. <i>“Wow... thank you. Mistress Kally... uh...”</i> A silvery tongue licks its lips distractedly. <i>“Lovely... delicious... creamy... buhhh...”</i> Unable to stop herself, the vixen drops to her knees between Kally’s legs and laps at the leaking cream. <i>“So good. Mmmm... thank you so much for your generous contributions.”</i>");
 	output("\n\nKiro drags near two feet of swollen dick from the pheromonal cunt, still leaking jism. Her balls have shrunk down to the size of apples - no longer immobilizingly swollen but still enough to make a galotian’s mouth water. <i>“Yeahhh... this was a great idea Kally.”</i> She notices the robot polishing her sister’s nads and smearing the excess goo across her chassis. <i>“Oh! I see you made a friend.”</i>");
-	output("\n\n<i>“Mmmhmmm,”</i> Kally purrs, pulling her ass back onto Vixette’s sculpted face, slowly extricating her chubby prick from a pearlescent replica of Kiro’s cunt. <i>“She’s a real sweety. You guys want cleaned off? Vixette loves the taste of jizzy dick, doncha?”</i>");
+	output("\n\n<i>“Mmmhmmm,”</i> Kally purrs, pulling her ass back onto Vixette’s sculpted face, slowly extricating her chubby prick from a pearlescent replica of Kiro’s cunt. <i>“She’s a real sweety. You guys want to be cleaned off? Vixette loves the taste of jizzy dick, doncha?”</i>");
 	output("\n\nThe foxdroid answers by ducking around Kally’s freshly-emptied sack to suck her filthy, cum-drenched cock.");
 	output("\n\nKiro shrugs and glances at you sidelong. <i>“I guess I got a few minutes. What do you say, [pc.name]? Wanna see if we can get three dicks down this bitch’s throat at once?”</i>");
 	processTime(45);

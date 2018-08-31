@@ -126,7 +126,9 @@ public function disableExploreEvents():Boolean
 	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
 	// Federation Quest
 	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST"] < 3) return true;
-	
+	// Syri Quest
+	if (flags["SYRIQUEST_STATE"] >= 4 && flags["SYRIQUEST_STATE"] < 20) return true;
+
 	return false;
 }
 
@@ -373,7 +375,13 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 public function shipHangarButton(btnSlot:int = 7):void
 {
 	var ships:Array = shipHangarShips(currentLocation);
-	if(ships.length > 0) addButton(7, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
+	if(ships.length > 0) 
+	{
+		//Mhenga uses button "7" for going down. Thus an exception!
+		if(shipLocation == "SHIP HANGAR") btnSlot = 0;
+		
+		addButton(btnSlot, "Hangar", shipHangarMenu, ships, "Hangar Dock", "Explore other ships that are docked here.");
+	}
 }
 // Trafficked by spacers
 public function publicHangars(dock:String = ""):Array
@@ -701,14 +709,16 @@ public const CREW_AZRA:int = 12;
 public const CREW_PAIGE:int = 13;
 public const CREW_KASE:int = 14;
 public const CREW_SHEKKA:int = 15;
-public const CREW_RAMIS:int = 16;
+public const CREW_SYRI:int = 16;
+public const CREW_RAMIS:int = 17;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
 	var crewMembers:Array = new Array();
 	
 	// Actual crew members
-	if (!annoNotRecruited()) crewMembers.push(CREW_ANNO);
+	if (annoRecruited()) crewMembers.push(CREW_ANNO);
+	if (syriRecruited()) crewMembers.push(CREW_SYRI);
 	if (azraIsCrew()) crewMembers.push(CREW_AZRA);
 	if (bessIsFollower()) crewMembers.push(CREW_BESS);
 	if (flags["RECRUITED_CELISE"] > 0) crewMembers.push(CREW_CELISE);
@@ -822,6 +832,7 @@ public function getCrewOnShip():Array
 {
 	var c:Array = [];
 	if (annoIsCrew()) c.push(anno);
+	if (syriIsCrew()) c.push(syri);
 	//9999 - not sure what I need to set up for this. Probably just a creature link but none done yet:
 	//if (azraIsCrew()) c.push(azra);
 	//if (paigeIsCrew()) c.push(paige);
@@ -1448,9 +1459,10 @@ public function restHeal():void
 		bonusMult = 0;
 		AddLogEvent("The slave collar’s punishing shocks keep your rest from doing much.");
 	}
-	
+	else if(pc.hasStatusEffect("Dzaan Withdrawal")) bonusMult = 0.5;
 	if(bonusMult != 0)
 	{
+
 		if(pc.HPRaw < pc.HPMax()) {
 			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax() * bonusMult));
 			else pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));
@@ -1597,6 +1609,13 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 						}
 					}
 					break;
+				case "PAIGE":
+					if (paigeIsCrew() && hours >= 22 || hours < 5)
+					{
+						paigeSleepNodeOne();
+						interrupt = true;
+					}
+					break;
 				// No partner selected.
 				default:
 					// SERA IMPREGNATIONS
@@ -1654,6 +1673,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (tryProcDommyReahaTime(minPass - rand(301))) wakeEvents.push(reahaDommyFuxTime);
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [annoMorningRouter];
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
+		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
 		
 		if (wakeEvents.length > 0)
 		{
@@ -1681,6 +1701,7 @@ public function sleepHeal():void
 		bonusMult = 0;
 		AddLogEvent("The slave collar’s punishing shocks keep your rest from doing much.");
 	}
+	else if(pc.hasStatusEffect("Dzaan Withdrawal")) bonusMult = 0.5;
 	
 	if(bonusMult != 0)
 	{
@@ -1721,9 +1742,9 @@ public function genericSleep(baseTime:int = 480, bufferXP:Boolean = true):void
 {
 	var totalTime:int = baseTime + (rand(baseTime / 3) - (baseTime / 6));
 	
-	if(bufferXP) eventBufferXP();
-	sleepHeal();
 	processTime(totalTime);
+	sleepHeal();
+	if(bufferXP) eventBufferXP();
 }
 
 public function dailyAutoSleep(nMin:int = 0, bufferXP:Boolean = true):void
@@ -2271,7 +2292,7 @@ public function landingEventCheck(arg:String = ""):Boolean
 	
 	if(arg == "Mhen'ga")
 	{
-		if(((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew()) && syriIsAFuckbuddy() && rand(5) == 0)
+		if(((annoIsCrew() && flags["ANNOxSYRI_EVENT"] != undefined) || !annoIsCrew()) && syriAtBurts() && syriIsAFuckbuddy() && rand(5) == 0)
 		{
 			currentLocation = "SHIP INTERIOR";
 			gettingSyrisPanties();
@@ -3504,6 +3525,11 @@ public function variableRoomUpdateCheck():void
 	// Steele Med
 	if(steeleBiomedBusinessHours()) rooms["UVI H36"].addFlag(GLOBAL.NPC);
 	else rooms["UVI H36"].removeFlag(GLOBAL.NPC);
+	//Syri at Freezer and H34
+	if (syriAtFreeezer()) rooms["UVI R32"].addFlag(GLOBAL.NPC);
+	else rooms["UVI R32"].removeFlag(GLOBAL.NPC);
+	if (flags["SYRIQUEST_STATE"] == 3) rooms["UVI H34"].addFlag(GLOBAL.NPC);
+	else rooms["UVI H34"].removeFlag(GLOBAL.NPC);
 	// Pippa's house
 	if (flags["PIPPA_RECRUITED"] == 1)
 	{
@@ -3568,6 +3594,8 @@ public function variableRoomUpdateCheck():void
 	
 	// Kiro's Airlock
 	kirosShipAirlockUpdate();
+	// Phoenix Location
+	phoenixSetMapState();
 	// Phoenix's Rec Room
 	phoenixRecRoomUpdate();
 	// Shizuya's Great Majin
@@ -3582,6 +3610,33 @@ public function variableRoomUpdateCheck():void
 	{
 		rooms["KI-E23"].addFlag(GLOBAL.LIFTDOWN);
 		rooms["KI-E23"].removeFlag(GLOBAL.HAZARD);
+	}
+	//Akkadi Lab from SyriQuest
+	if (flags["SYRIQUEST_STATE"] != undefined)
+	{
+		if (flags["SYRIQUEST_POWER_STATE"] >= 2) rooms["AKD M23"].removeFlag(GLOBAL.OBJECTIVE);
+		else rooms["AKD M23"].addFlag(GLOBAL.OBJECTIVE);
+		if (flags["MET_SCHORA"] >= 3 || rooms["SYRIQUEST_STATE"] >= 8) rooms["AKD E9"].removeFlag(GLOBAL.NPC);
+		else rooms["AKD E9"].addFlag(GLOBAL.NPC);
+		if (flags["SYRIQUEST_CALNOR_ICON"] == 1 && flags["SYRIQUEST_VALDEN_BODY_CHOICE"] != 1) rooms["AKD S17"].addFlag(GLOBAL.NPC);
+		else rooms["AKD S17"].removeFlag(GLOBAL.NPC);
+		if (flags["SYRIQUEST_STATE"] == 5)
+		{
+			rooms["AKD S15"].addFlag(GLOBAL.OBJECTIVE);
+			rooms["AKD M27"].removeFlag(GLOBAL.OBJECTIVE);
+			rooms["AKD K25"].removeFlag(GLOBAL.LIFTUP);
+			rooms["AKD K25"].addFlag(GLOBAL.LIFTDOWN);
+		}
+		else
+		{
+			rooms["AKD S15"].removeFlag(GLOBAL.OBJECTIVE);
+			rooms["AKD M27"].addFlag(GLOBAL.OBJECTIVE);
+			rooms["AKD K25"].addFlag(GLOBAL.LIFTUP);
+			rooms["AKD K25"].removeFlag(GLOBAL.LIFTDOWN);
+		}
+		if (flags["SYRIQUEST_STATE"] == 8 || flags["SYRIQUEST_STATE"] == 9) rooms["AKD Q17"].addFlag(GLOBAL.NPC);
+		else rooms["AKD Q17"].removeFlag(GLOBAL.NPC);
+			
 	}
 }
 
@@ -3662,6 +3717,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		processElliePregEvents(deltaT, doOut, totalDays);
 		processIlariaPregEvents(deltaT, doOut, totalDays);
 		processFZilPregEvents(deltaT, doOut, totalDays);
+		processQuinnPregEvents(deltaT, doOut, totalDays);
 		processUlaPregEvents(deltaT, doOut, totalDays);
 		processBothriocQuadommeEvents(deltaT, doOut, totalDays);
 		//9999 processQuaellePregEvents(deltaT, doOut, totalDays);
@@ -3735,6 +3791,7 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 		if(!MailManager.isEntryUnlocked("kiroandkallyholomail") && flags["KIRO_3SOME_REACTION"] != -1 && flags["KIRO_3SOME_REACTION"] != undefined && kiroKallyThreesomes() > 0 && flags["KIRO_KALLY_EMAIL"] != undefined && flags["KIRO_KALLY_EMAIL"] + 5*60 < GetGameTimestamp()) { goMailGet("kiroandkallyholomail"); }
 		
 		trySendStephMail();
+		trySendZephyrKidsMail();
 		
 		//Jade muff-ins
 		if (!MailManager.isEntryUnlocked("jade_dumplings") && rooms[currentLocation].planet != "TAVROS STATION" && flags["GOTTEN_INTIMATE_WITH_JADE"] != undefined && flags["GOTTEN_INTIMATE_WITH_JADE"] >= 4 && rand(3) == 0) { goMailGet("jade_dumplings"); }
@@ -3845,6 +3902,33 @@ public function processTime(deltaT:uint, doOut:Boolean = true):void
 	
 	days += Math.floor(hours / 24);
 	hours = hours % 24;
+}
+
+// Process time forward to certain time on the clock in (h, m).
+// Where h is particular hour and m is particular minute.
+public function processTimeToClock(h:int = 0, m:int = 0):void
+{
+	var numMin:int = 0;
+	var iHour:int = 0;
+	var iMins:int = 0;
+	iHour = hours;
+	if(iHour < 0 || iHour >= 24) iHour = 0;
+	while(iHour != h)
+	{
+		numMin++;
+		iMins++;
+		if(iMins >= 60) { iHour++; iMins = 0; }
+		if(iHour >= 24) { iHour = 0; }
+	}
+	iMins = minutes;
+	if(iMins < 0 || iMins >= 60) iMins = 0;
+	while(iMins != m)
+	{
+		numMin++;
+		iMins++;
+		if(iMins >= 60) { iMins = 0; }
+	}
+	processTime(numMin);
 }
 
 public function processHolidayoweenEvents(deltaT:uint, doOut:Boolean, totalDays:uint):void
@@ -4670,4 +4754,3 @@ public function taintedLove():void
 	addButton(0, "Again", taintedLove);
 	addButton(14, "Back", mainGameMenu);
 }
-

@@ -90,7 +90,7 @@ public function approachKrym():void
 	author("Savin");
 	if(flags["MET_KRYM"] == undefined)
 	{
-		output("You walk over to the armored woman, raising a hand in greeting. She turns to you, lips in a hard line and both hands on her spear. <i>“Who goes there?”</i> she shouts, <i>“Not expecting any researchers.”</i>");
+		output("You [pc.walk] over to the armored woman, raising a hand in greeting. She turns to you, lips in a hard line and both hands on her spear. <i>“Who goes there?”</i> she shouts, <i>“Not expecting any researchers.”</i>");
 		output("\n\nYou call back your name, saying that you’re an explorer of sorts. If she wasn’t expecting you, you sure weren’t expecting to find a fortified base out here in the middle of nowhere.");
 		output("\n\nShe lowers her spear after a moment, A head of blond hair whips in the wind, shaved on one side and swept over near her shoulder on the other, revealing an ear full of glistening holo-rings and a pierced nostril. She pushes a pair of blue-tinted goggles, matching blue eyes, up on her forehead. <i>“Fair enough. This is a Stormguard outpost. We keep it safe for Iresteaders that wander too far afield, or scientists coming through to study the Rift. ‘Course, they all pay a premium to use the place. You, though...”</i>");
 		output("\n\nThe woman taps a button on a wrist-mounted device and waves her arm in your direction. <i>“You’re lucky you’re loaded down with nanomachines. Otherwise the turrets woulda ripped you a new one when you got inside a hundred meters. But, you’re still not supposed to be here. So.”</i>");
@@ -329,7 +329,11 @@ public function restOfKrym():void
 		//[Fuck Krym] [Not Now]
 		clearMenu();
 		addButton(1,"Not Now",noSexForKrym,undefined,"Not Now","Maybe next time, Krym...");
-		if(pc.lust() >= 33) addButton(0,"Fuck Krym",fuckKrym,undefined,"Fuck Krym","Take Krym up on her offer and bed the stormy valkyrie.");
+		if(pc.lust() >= 33)
+		{
+			if((!pc.hasCock() || pc.cockThatFits(krymhilde.analCapacity()) < 0) && (!pc.hasHardLightEquipped() && !pc.hasCock()) && (!pc.hasVagina() || pc.blockedVaginas() >= pc.totalVaginas())) addDisabledButton(0,"Fuck Krym","Fuck Krym","You need to have a penis or hardlight strap-on, or an unblocked vagina, in order to fuck her.");
+			else addButton(0,"Fuck Krym",fuckKrym,undefined,"Fuck Krym","Take Krym up on her offer and bed the stormy valkyrie.");
+		}
 		else addDisabledButton(0,"Fuck Krym","Fuck Krym","You aren’t aroused enough for this.");
 	}
 }
@@ -362,6 +366,7 @@ public function loseToThatIcyBimbo():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust("KRYM_NUDE");
@@ -573,6 +578,7 @@ public function combatVictoryWithKrymm():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust("KRYM");
@@ -589,7 +595,11 @@ public function combatVictoryWithKrymm():void
 
 	krymCombatTrack(true);
 	clearMenu();
-	if(pc.lust() >= 33) addButton(0,"Fuck Her",fuckKrym,undefined,"Fuck Her","Take Krym up on her offer and bed the stormy valkyrie.");
+	if(pc.lust() >= 33)
+	{
+		if((!pc.hasCock() || pc.cockThatFits(krymhilde.analCapacity()) < 0) && (!pc.hasHardLightEquipped() && !pc.hasCock()) && (!pc.hasVagina() || pc.blockedVaginas() >= pc.totalVaginas())) addDisabledButton(0,"Fuck Her","Fuck Her","You need to have a penis or hardlight strap-on, or an unblocked vagina, in order to fuck her.");
+		else addButton(0,"Fuck Her",fuckKrym,undefined,"Fuck Her","Take Krym up on her offer and bed the stormy valkyrie.");
+	}
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You aren’t aroused enough for this.");
 
 	addButton(1,"Rest",restOfKrym,undefined,"Rest","Take a rest in the safety of Krym’s camp.");
@@ -622,7 +632,8 @@ public function fuckKrym():void
 	if(pc.hasHardLightEquipped() || pc.hasCock()) addButton(1,"Pitch Vaginal",pitchVagimalKrym,undefined,"Pitch Vaginal","Take Krym to pound town.");
 	else if(pc.hasCock()) addDisabledButton(1,"Pitch Vaginal","Pitch Vaginal","Your dick is way too fat to fit in there.");
 	else addDisabledButton(1,"Pitch Vaginal","Pitch Vaginal","You need a penis or hardlight strap-on to give her pussy the pounding it so righteously deserves.");
-	if(pc.hasVagina() && pc.blockedVaginas() == 0) addButton(2,"Tribbing",consensualTribbingWithKrym,undefined,"Tribbing","Get down and dirty with Krym and rub pussies.");
+	
+	if(pc.hasVagina() && pc.blockedVaginas() < pc.totalVaginas()) addButton(2,"Tribbing",consensualTribbingWithKrym,undefined,"Tribbing","Get down and dirty with Krym and rub pussies.");
 	else if(pc.blockedVaginas() > 0) addDisabledButton(2,"Tribbing","Tribbing","You might want to get rid of whatever is blocking up your vagina before you do this.");
 	else addDisabledButton(2,"Tribbing","Tribbing","You need a vagina for this.");
 }

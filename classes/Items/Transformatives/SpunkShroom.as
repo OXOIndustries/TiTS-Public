@@ -44,11 +44,12 @@ package classes.Items.Transformatives {
 			else author("Fenoxo");
 			if ((target is PlayerCharacter)) {
 				var pc:Creature = target;
+				var i:int = 0;
 
 				//Consume one
 				output("You pop the mushroom into your mouth and wince at the flavor. It’s like chewing on salt-dusted rust. You chomp a few times to break it into smaller pieces, then swallow the whole mess down before you have to taste it any longer. Ugh! The taste won’t quite leave your mouth...");
 				//Poison
-				if(rand(8) == 0 || !pc.hasCock())
+				if(rand(8) == 0 || !pc.hasCock() || pc.ballSize() <= 0)
 				{
 					output("\n\nIt takes less than a minute for you to double over from the stabbing pain in your gut. Your stomach ties itself in knots while you drop to the ground and double over. An involuntary spasm squeezes your middle like a toothpaste tube, and everything you’ve eaten in the past few hours comes up in a wave of burning pain - including the mushroom.");
 					output("\n\nThat <b>hurt</b>! (-" + (Math.round(pc.HPMax()* 0.5)+1) + ")");
@@ -126,9 +127,11 @@ package classes.Items.Transformatives {
 						output(". At least the spunkshroom did <i>something</i>.");
 						//Max lust!
 						pc.lust(pc.lustMax());
-						while(pc.maxCum() < 150)
+						i = 0;
+						while(pc.maxCum(true) < 150 && i < 800)
 						{
 							pc.boostCum(2);
+							i++;
 						}
 					}
 					//MaxCum < 400 -> 500
@@ -175,9 +178,11 @@ package classes.Items.Transformatives {
 						output(" after having some strange mycological hallucinations. Still, you managed to produce enough [pc.cum] to fill a glass or two - upwards of a half liter for sure!");
 						//Orgasm
 						pc.orgasm();
-						while(pc.maxCum() < 500)
+						i = 0;
+						while(pc.maxCum(true) < 500 && i < 800)
 						{
 							pc.boostCum(4);
+							i++;
 						}
 					}
 					//MaxCum < 1000 -> 1100
@@ -205,9 +210,11 @@ package classes.Items.Transformatives {
 						//Gib blue balls status!
 						pc.lust(10);
 						pc.applyBlueBalls();
-						while(pc.maxCum() < 1100)
+						i = 0;
+						while(pc.maxCum(true) < 1100 && i < 800)
 						{
 							pc.boostCum(4);
+							i++;
 						}
 					}
 					//MaxCum < 1100 -> 2000
@@ -252,9 +259,11 @@ package classes.Items.Transformatives {
 						output("\n\nIt’s a mercy when you black out after the tenth imaginary cum-shot.");
 
 						pc.lust(pc.lustMax());
-						while(pc.maxCum() < 2000)
+						i = 0;
+						while(pc.maxCum(true) < 2000 && i < 800)
 						{
 							pc.boostCum(4);
+							i++;
 						}
 						//Max lust. Give blue balls.
 						pc.applyBlueBalls();
@@ -382,7 +391,7 @@ package classes.Items.Transformatives {
 				}
 			}
 			else {	
-				kGAMECLASS.output(target.capitalA + target.short + " consumes the spunkshroom to no effect.");
+				output(target.capitalA + target.short + " consumes the spunkshroom to no effect.");
 			}
 			return false;
 		}

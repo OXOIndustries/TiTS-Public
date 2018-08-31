@@ -627,7 +627,9 @@ public function tentacleMassageFunShit():void
 	if(pc.tone >= 50) output("run across your muscled physique, working out knots in a comfortable manner");
 	else output("run across your smooth body, pressing various relaxing points that help you loosen up from your day");
 	output(". You plunge into a chasm of unequaled repose until you feel totally relaxed under the emerald girl’s expert chirapsia. She continues upwards, spreading her reach to cover both of your arms. She massages your shoulders, rubbing deeply to release the tension. The action is repeated with your elbows, forearms, and wrists, ending when she locks fingers with you for a moment and leans down to kiss the nape of your neck. She presses her upper body lightly against yours and begins to vibrate lightly to give your whole back a comfortable massage.");
-	output("\n\nThis continues until you feel yourself drifting slowly out of consciousness. When you wake, Celise is using herself as your pillow while gently brushing your hair and looking at you lovingly... or perhaps hungrily. You stretch, noticing that you feel much better than before, and thank Celise for the wonderful massage. <i>“Any feeding time is fun with you, [pc.name],”</i> she says with a beaming smile. You stand, recovering your gear, and return to your adventures.");
+	output("\n\nThis continues until you feel yourself drifting slowly out of consciousness. When you wake, Celise is using herself as your pillow");
+	if(pc.hasHair()) output(" while gently brushing your hair");
+	output(" and looking at you lovingly... or perhaps hungrily. You stretch, noticing that you feel much better than before, and thank Celise for the wonderful massage. <i>“Any feeding time is fun with you, [pc.name],”</i> she says with a beaming smile. You stand, recovering your gear, and return to your adventures.");
 	//(pass 3 hours)(pc.orgasm)(restore health equal to rest option.)
 	restHeal();
 	processTime(160+rand(20));

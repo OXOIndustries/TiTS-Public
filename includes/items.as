@@ -1059,6 +1059,7 @@ public function sellItemGo(arg:ItemSlotClass):void {
 	// Special Events
 	if(arg is GooArmor) output("\n\n" + gooArmorInventoryBlurb(arg, "sell"));
 	if(arg is HorseCock) IncrementFlag("SYNTHSHEATH_LOST");
+	if(arg is StrangeEgg) IncrementFlag("STRANGE_EGG_SOLD");
 	
 	arg.quantity--;
 	if (arg.quantity <= 0 && pc.inventory.indexOf(arg) != -1)
@@ -2005,7 +2006,8 @@ public function itemDisabledMessage(slot:Number, clearScreen:Boolean = true):voi
 	{
 		case GLOBAL.CLOTHING:
 		case GLOBAL.ARMOR:
-			msg = pc.getStatusTooltip("Armor Slot Disabled");
+			if(pc.hasStatusEffect("Body Paint")) msg = "You can’t afford to put anything on without ruining the paint your body is covered in. You’ll have to wash the paint off or wait until it wears off before trying to wear anything on the item slot.";
+			else msg = pc.getStatusTooltip("Armor Slot Disabled");
 			break;
 		case GLOBAL.MELEE_WEAPON:
 			msg = pc.getStatusTooltip("Melee Weapon Slot Disabled");

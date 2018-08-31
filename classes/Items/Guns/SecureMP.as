@@ -20,7 +20,7 @@
 			this.type = GLOBAL.RANGED_WEAPON;
 			
 			//Used on inventory buttons
-			this.shortName = "secureMP";
+			this.shortName = "SecureMP";
 			
 			//Regular name
 			this.longName = "Secure MP";

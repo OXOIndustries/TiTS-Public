@@ -1261,7 +1261,7 @@ public function initializeMyrellionRooms():void
 	//Street L20
 	rooms["815"] = new RoomClass(this);
 	rooms["815"].roomName = "\nSTREET";
-	rooms["815"].description = "A four-way intersection leads south to the city gates, north to the Queen’s Solace city park, and east towards Kressia’s airfield. A large series of dirt-filled trenches decorate the corners just off the sidewalks, filled with some very pretty, pink-glowing funguses.";
+	rooms["815"].description = "A four-way intersection leads south to the city gates, north to the Queen’s Solace city park, and east towards Kressia’s airfield. A large series of dirt-filled trenches decorate the corners just off the sidewalks, filled with some very pretty, pink-glowing fungi.";
 	rooms["815"].system = "SYSTEM: SINDATHU";
 	rooms["815"].planet = "PLANET: MYRELLION";
 	rooms["815"].eastExit = "816";

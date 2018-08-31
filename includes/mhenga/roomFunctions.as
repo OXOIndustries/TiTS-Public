@@ -20,7 +20,7 @@ public function flyToMhenga():void
 
 public function mhengaShipHangarFunc():Boolean
 {
-	if (annoIsCrew() && !syriIsCrew() && flags["ANNOxSYRI_EVENT"] == undefined)
+	if (annoIsCrew() && syriAtBurts() && flags["ANNOxSYRI_EVENT"] == undefined)
 	{
 		annoFollowerFirstTimeOnMhenga();
 		return true;

@@ -7,12 +7,13 @@ import classes.Items.Stories.SatyrSlave;
 import classes.Items.Stories.CapturedByTheDemons;
 import classes.Items.Stories.TentaclesAndTanukis;
 import classes.Items.Stories.StolenGoods;
+import classes.Items.Piercings.GeddaniumRingPiercing;
 import classes.Items.Treasures.Savicite;
 
 
 public function genericRareDrops(loot:Array):Array
 {
-	var threshold:Number = 0;
+	var threshold:Number = 1;
 	var planet:String = getPlanetName().toLowerCase();
 	var tempLoot:Array = [];
 	if(rand(100) <= threshold)
@@ -43,17 +44,16 @@ public function genericRareDrops(loot:Array):Array
 			case "uveto vii":
 				tempLoot.push(new Savicite());
 				break;
+			case "zheng shi station":
+				tempLoot.push(new GeddaniumRingPiercing());
 			default:
 				break;
 		}
 		//Universal rare drops~
-		if(tempLoot.length == 0) 
-		{
-			/* Nothing yet */
-		}
 	}
 	//Easter special!
 	if(isEaster() && rand(100) <= threshold+1) tempLoot.push(eggSelect());
+	if(isNearlyJulyFourth() && rand(100) <= threshold+2) tempLoot.push(new RedRocket());
 	//Bonus special TF items 15% of the time.
 	if(planet == "tarkus" && rand(100) <= 15)
 	{

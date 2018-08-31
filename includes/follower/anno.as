@@ -88,6 +88,13 @@ public function annoThreeWayed():Boolean
 	return false;
 }
 
+public function annoHasPetplayed():Boolean
+{
+	if (flags["ANNO_PETPLAYED"] != undefined) return true;
+	if (flags["ANNO_X_ERRA_INTRODUCED"] != undefined) return true;
+	return false;
+}
+
 public function annoIsHuskar():Boolean
 {
 	return (flags["ANNO_HUSKAR_COMPLETE"] != undefined);
@@ -2720,7 +2727,7 @@ public function annoPegsYouWivStraponsPtII(annoDickType:int = 0):void
 	output("\n\nYou grit your teeth as Anno starts shifting her hips forward, slowly pressing her " + chars["ANNO"].cockNoun2(annoDick, true) + " into your [pc.vagOrAss]. Your fingers claw into the edge of the table, desperately trying to keep you steady as you feel the thick, lengthy shaft of her strapon spreading your hole wide. Her " + chars["ANNO"].cockNoun2(annoDick, false) + " sends shocks of tingling pleasure through your ");
 	if(!pc.hasVagina()) output("clenching ass");
 	else output("quivering cunt");
-	output(", an electric sensation that sets your hair on end. You groan, back arching as you take inch after inch of rigid energy-dick. Anno plants a hand in the small of your back, gently urging you to lay flat on your chest");
+	output(", an electric sensation that " + (pc.hasHair() ? "sets your hair on end" : "lights your head up") + ". You groan, back arching as you take inch after inch of rigid energy-dick. Anno plants a hand in the small of your back, gently urging you to lay flat on your chest");
 	if(pc.biggestTitSize() >= 10) output(", or as flat as you can given your enormous bosom");
 	output(". Her hands slip down once you’re situated, furry fingers digging into your [pc.hips] as she starts to move her hips faster.");
 	//STRETCHIN'
@@ -3268,7 +3275,7 @@ public function annoUvetoHuskarFoursomeSure():void
 	
 	output("<i>“Lead the way,”</i> you tell the pair, standing. They both grin and hop up, each taking one of your arms and angling you towards the Steele Tech branch. You feel Anno’s hand on your waist, loyally following along at the back of a trail of eagerly wagging tails and giggling husky-girls.");
 	
-	output("\n\nThe station’s small enough that walking from the cafe to the office block is a matter of moments, and soon your troupe is bustling into a brightly lit office bearing the name <i>“Dr. Galina Avorne, P.h.D.”</i> followed by several ausari intellectual titles. The suite is relatively cramped once the four of you are inside, crowding around a shiny metal desk dominated by a triple-screen holoprojector, a bowl of lolipops, and several sealed containers of minerals all about the size of your pinky. The walls are covered in various Steele-themed travel advertisements, mostly of pretty core-ward planets and space vistas. More than one have small holos embedded, making stars zip around or showing a repeating galaxyrise over an alien vista.");
+	output("\n\nThe station’s small enough that walking from the cafe to the office block is a matter of moments, and soon your troupe is bustling into a brightly lit office bearing the name <i>“Dr. Galina Avorne, Ph.D.”</i> followed by several ausari intellectual titles. The suite is relatively cramped once the four of you are inside, crowding around a shiny metal desk dominated by a triple-screen holoprojector, a bowl of lolipops, and several sealed containers of minerals all about the size of your pinky. The walls are covered in various Steele-themed travel advertisements, mostly of pretty core-ward planets and space vistas. More than one have small holos embedded, making stars zip around or showing a repeating galaxyrise over an alien vista.");
 	
 	output("\n\nSomeone’s got a little galactic wanderlust, by the looks of things!");
 	
@@ -4757,7 +4764,7 @@ public function annoxErraIntro():void
 	if (flags["ANNO_X_ERRA_INTRODUCED"] != undefined)
 	{
 		output("\n\nAnno turns to you with a red, lust-ridden face and starts to talk, her chest heaving a bit between her words. <i>“Oh... hey, boss,”</i> she breathes, sitting up on her knees and letting Erra’s leash slack, <i>“Sorry we keep taking your room like this, but this little puppy’s really insistent on being on your bed... uh, Erra being the little puppy, not me, </i>definitely<i> not me.”</i> Her voice goes quiet for a moment as she mumbles, <i>“Sure doesn’t smell nice in here or anything...”</i>");
-		output("\n\nYou cock an eyebrow at the ausar before she speaks up again, <i>“But, now that you’re here... wanna join in?”</i> Looking back at your lustfully, Anno bites her lip and tightens her grip on Erra’s leash, the dark-skinned doggy looking out from behind her new mistress with a similar expression.");
+		output("\n\nYou cock an eyebrow at the ausar before she speaks up again, <i>“But, now that you’re here... wanna join in?”</i> Looking back at you lustfully, Anno bites her lip and tightens her grip on Erra’s leash, the dark-skinned doggy looking out from behind her new mistress with a similar expression.");
 	}
 	else
 	{

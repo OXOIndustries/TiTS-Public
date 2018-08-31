@@ -1022,6 +1022,7 @@
 			}
 			
 			output("\n\nThat really didn’t seem like it was supposed to happen. <b>You should probably hold off on these if you don’t want that to happen again.</b>");
+			target.taint(1);
 			
 			drinkAmazona(target, canType);
 			

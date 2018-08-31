@@ -2638,7 +2638,7 @@ public function emmyCockSlobber():void
 
 	output("\n\nYou gulp and wriggle against her, and she squeals happily, enjoying fucking her way down your throat, leaking more into your mouth. At the first taste of her, you pause, and you gulp, your neck squeezing against the head of her tasty prong. You’re rewarded with a happy sigh from Emmy and a heavy spurt of fluid, thick enough to be the full orgasm of a lesser creature.");
 
-	output("\n\nShe releases her hold on your hair, and you slide back, just enough to get resituated, and swirl the tip of your tongue around the head of her cock. She gives your hair a gentle tug and you respond obediently, running your lips down her length, sucking noisily on her member. Once you reach the base, you get another happy gush of pre down the back of your throat. You slide back up, moaning around her shaft in hungry delight, while she does the same, alternating between fucking your face like it’s her own personal sex-toy and watching you service her meat.");
+	output("\n\nShe releases her hold on your " + (pc.hasHair() ? "hair" : "head") + ", and you slide back, just enough to get resituated, and swirl the tip of your tongue around the head of her cock. She gives your " + (pc.hasHair() ? "hair a gentle" : "head a tug") + " tug and you respond obediently, running your lips down her length, sucking noisily on her member. Once you reach the base, you get another happy gush of pre down the back of your throat. You slide back up, moaning around her shaft in hungry delight, while she does the same, alternating between fucking your face like it’s her own personal sex-toy and watching you service her meat.");
 
 	output("\n\nUp and down her shaft you go, encouraged by her sweet sounds of pleasure and bursts of pre that may as well be ejaculations, guided by her tugging hands. She’s in control, and you’re enjoying every minute of it, happy to give her the tender love and throat-fucking she so clearly needs. You place your hands on her spit and spunk-slicked balls and rub them softly as she draws you up, coaxing a low hum of pleasure from Emmy. She quickens her pace, tugging you down sooner each time, and you take the hint.");
 
@@ -2651,7 +2651,9 @@ public function emmyCockSlobber():void
 	{
 		output("Any restraint you may have scraped together evaporates, and you sympathetically cum, spasming in bliss to the feeling of cum pouring into your stomach. ");
 	}
-	output("And when she finally lets go of you, the ache in your jaw, your throat, your hair, are all drowned in the profound pleasure of a being so utterly stuffed with her warm cum.");
+	output("And when she finally lets go of you, the ache in your jaw, your throat");
+	if(pc.hasHair()) output(", your hair");
+	output(", are all drowned in the profound pleasure of a being so utterly stuffed with her warm cum.");
 
 	output("\n\nEmmy pulls out of your mouth, wincing when your teeth scrape past her swollen knot. Popping her thick dick out, she leaves a wet trail of her cum behind. Your aching jaw leaves you with your mouth feeling stretched and oddly slack, adding to the dazed look already on your face. She runs her hand gently over your head as a bead of cum rolls off your glazed lips and splashes down on your [pc.chest].");
 

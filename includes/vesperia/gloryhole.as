@@ -651,7 +651,7 @@ public function yesSuckSomeTruckerCawk():void
 		if(pc.libido() < 33) output(", inexperienced hands falling away. It doesn’t stop the orgasm, however.");
 		else if(pc.libido() < 66) output(", doing your best to hold onto the jerking rod as it unloads into your face.");
 		else output(", but not even that could stop you from properly stroking the jerking dick, milking it for the biggest load possible.");
-		output(" Cum pumps out in huge gouts, each big enough to fill a whiskey glass. It splashes over your hair and across your [pc.skinFurScales]. Sperm cascades down your shoulders");
+		output(" Cum pumps out in huge gouts, each big enough to fill a whiskey glass. It splashes over your " + (pc.hasHair() ? "hair" : "head") + " and across your [pc.skinFurScales]. Sperm cascades down your shoulders");
 		if(pc.biggestTitSize() >= 1) output(" and over the swells of your [pc.biggestBreastDescript]");
 		output(". It’s every bit as warm and sticky as it is sexy.");
 		
