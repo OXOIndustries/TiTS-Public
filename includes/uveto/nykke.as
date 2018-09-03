@@ -16,7 +16,7 @@
 public function nykkeIsMature():Boolean
 {
 	var days:int = 365; //number of days until nykke is mature enough for this xpac to trigger
-	var matTime:int = days * 1440;  //days * min in a day
+	var matTime:int = days * 1440; //days * min in a day
 	
 	//this will set the nykke born timer for those that already have kids with the frostwym before this xpac (normally set in frostwyrmMatureYoung in frostwyrm.as)
 	if (flags["NYKKE_BORN"] == undefined && flags["FROSTWYRM_KIP_COUNT"] != undefined && flags["FROSTWYRM_KIP_COUNT"] >= 1)
@@ -51,11 +51,11 @@ public function nykkeIntro01():void
 	clearMenu();
 	
 	output("You go through your typical ritual of removing your effects and setting them safely in the corner of the lair as [frostwyrm.name] makes her way towards her familiar, elevated ice platform. When your vision focuses on the lair and its whole, dome-shaped entirety, you can’t help but feel that… something is different. You can’t quite put your finger on it.");
-	output("\n\n<i>“Our first kip has proven rather… industrious, my Qal, in the time since you had last left us,”</i> [frostwyrm.name] says to you, sensing your unease and knowing what has your curiosity.  <i>“Perhaps a trait inherited from its Qal. My kind are not typically so assiduous with their lairs.”</i>");
+	output("\n\n<i>“Our first kip has proven rather… industrious, my Qal, in the time since you had last left us,”</i> [frostwyrm.name] says to you, sensing your unease and knowing what has your curiosity. <i>“Perhaps a trait inherited from its Qal. My kind are not typically so assiduous with their lairs.”</i>");
 	output("\n\nIn the far corner of the lair, you see a large opening that you hadn’t noticed before – if it was there to begin with. You eyeball the opening to be maybe fourteen feet in diameter: too small for [frostwyrm.name] to fit through, but just large enough for a Frostwyrmling.");
 	output("\n\n<i>“Our first toils within,”</i> [frostwyrm.name] says, motioning towards the cave. <i>“Our first is much too young yet to survey for its own nest, and yet, our first yearns for a dwelling all their own. It is unusual that any offspring would show such desires so early, though I would not aim to stifle their instincts. I have acquiesced to a personal dwelling within my own.”</i>");
 	output("\n\nYou hear the occasional chipping sound reverberate from within the cave; it sounds like a rock against another rock, followed by a loud clanging of ice breaking apart and falling to the floor of the lair. You ask [frostwyrm.name] if you’re allowed to go inside. <i>“It is not my nest, my Qal. That is not for me to decide,”</i> [frostwyrm.name] responds, with a particular lilt to her tone, as if she were daring you to go and invite yourself into your eldest kip’s abode without permission.");
-	output("\n\nWell, you decide, she might have a bedroom, but she’s still living in [frostwyrm.name]’s lair.  You approach the mouth of the cave.");
+	output("\n\nWell, you decide, she might have a bedroom, but she’s still living in [frostwyrm.name]’s lair. You approach the mouth of the cave.");
 	output("\n\n<i>“What is a ‘bedroom?’”</i> [frostwyrm.name] asks you curiously.");
 	output("\n\nYou tell her that you’ll explain later.");
 		
@@ -91,7 +91,7 @@ public function nykkeIntro02():void
 	if (pc.isAss()) output(" And, you think to yourself (careful to not broadcast it over your psionic links), a lifetime of abstinence has made your dragon a bit of a banshee in the sack. Repopulating a species has never been so much fun.");
 	
 	output("\n\n<i>“And, well, I’m looking forward to it, of course, but… our Qim is hoping to have hundreds of kips. If I’m going to be the eldest kip out of hundreds, I’d like to set myself apart. Having a nest of my own would be a good start, I thought.”</i>");
-	output("\n\nYou respond that Nykke is well and away the most unique of her sisters, and she doesn’t need her own dwelling to stand apart from the crowd.  You’re referring, of course, to the increased melanin in her scales, turning them black.");
+	output("\n\nYou respond that Nykke is well and away the most unique of her sisters, and she doesn’t need her own dwelling to stand apart from the crowd. You’re referring, of course, to the increased melanin in her scales, turning them black.");
 	output("\n\nShe, however, isn’t as ecstatic about her physical difference from her family as you apparently are; you feel an emotion similar to regret and frustration leak over your psionic link with your kip.");
 	output("\n\nIn an effort to rectify your mistake, you agree that it’s a good way to get a headstart on establishing her position within the lair and the clutch as the first and eldest kip. [frostwyrm.name] tells you that it’s peculiar that any kip would be so forward-thinking, but you’re proud to see that your first daughter is already taking such initiative. You can’t say you built your first room from scratch.");
 	output("\n\n<i>“Uh, yeah! What you said!”</i> your daughter chirps happily, satisfied that you’re agreeing with her in your own, non-Frostwyrm way.");
@@ -126,8 +126,8 @@ public function nykkeIntro03():void
 	output("\n\nIt takes a moment for your daughter to process your line of thinking. Perhaps you had worded it inadequately, but all the same, after the sentences sink into her, you can see the inspiration alight in her eyes. <i>“A name would set me apart,”</i> she says determinedly, standing back onto her feet. <i>“Would you name me, my Qal?”</i>");
 	output("\n\nYou could, if she wanted you to, but this is also her opportunity to name herself if she wanted. She’s already shown initiative in creating her own nest; what better way to truly make herself special as a Frostwyrm than to create her own identity?");
 	
-	if (silly) output("  You didn’t get a say in making your own name – some asshole named you and that was that – and you don’t want her to be stuck with the same fate.");
-	else output("  You sometimes wish you could have made your own name to go by.");
+	if (silly) output(" You didn’t get a say in making your own name – some asshole named you and that was that – and you don’t want her to be stuck with the same fate.");
+	else output(" You sometimes wish you could have made your own name to go by.");
 	
 	output("\n\nShe stands idly as she thinks, her eyes narrowed and focused, her four arms crossed. You can feel her psionic grip on your mind occasionally prod at you, and you let her; she’s likely looking for inspiration on what to name herself.");
 	output("\n\n<i>“I think,”</i> she says lowly, her head hanging on her neck as she considers it. <i>“I think… I like the name Nykke.”</i>");
@@ -137,14 +137,14 @@ public function nykkeIntro03():void
 	
 	if (frostwyrm.short.toLowerCase() == "nykke")
 	{
-		output("  It’s, uh… you hesitate to call your daughter unimaginative, but clearly she didn’t put as much effort into it as you were expecting.");
+		output(" It’s, uh… you hesitate to call your daughter unimaginative, but clearly she didn’t put as much effort into it as you were expecting.");
 		output("\n\n<i>“I like the name Nykke because it’s a beautiful name,”</i> she says simply. <i>“Giving it to our Qim was a good decision. If I took the name Nykke for myself, it would mean that my Qim and my Qal are never too far away from me.”</i>");
 		output("\n\nThis may get confusing for you later, but if your daughter really is set on the name Nykke, then who are you to stop her?");
 		output("\n\n<i>“Well, that, and,”</i> she says sheepishly, laughing a bit to herself, <i>“I don’t exactly… know any other names.”</i>");
 	}
 	else
 	{
-		output("  <i>“It sounds… unique. Special. I feel like, with a name like that, I can accomplish anything. It… feels like, if I were to ever leave my Qim’s lair, that the world would know that I belong to [frostwyrm.name] and to [pc.name].”</i>");
+		output(" <i>“It sounds… unique. Special. I feel like, with a name like that, I can accomplish anything. It… feels like, if I were to ever leave my Qim’s lair, that the world would know that I belong to [frostwyrm.name] and to [pc.name].”</i>");
 		output("\n\nIt’s a good name, you agree. And, once you and [frostwyrm.name] have those hundreds of kips, she can be confident that none of them will ever have the name Nykke. Your oldest daughter would be the only one with that name.");
 	}
 	
@@ -201,7 +201,7 @@ public function nykkeTalkMenu():void
 	
 	addButton(2,"Adventuring",nykkeAdventuringTalk, undefined,"Adventuring","You have a life outside of [frostwyrm.name]’s lair – one that’s rather adventurous, especially compared to the domestic life that Nykke has. Maybe she’d like to hear a few stories about your travels.");
 	addButton(3, "Incest", nykkeIncestTalk, undefined, "Incest", "Maybe it’s time you reconsider your stance on ‘inner circle coupling.’");
-	addButton(4,"Black Scales",nykkeBlackScalesTalk, undefined,"Black Scales","Ask Nykke about her unique melanin condition.  She clearly doesn’t like talking about it, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
+	addButton(4,"Black Scales",nykkeBlackScalesTalk, undefined,"Black Scales","Ask Nykke about her unique melanin condition. She clearly doesn’t like talking about it, but maybe, if you help her work through her frustrations with it, she’ll have an easier time accepting herself.");
 	
 	addButton(14, "Back", nykkeMainMenu, false);
 }
@@ -210,7 +210,7 @@ public function nykkeMatesTalk():void
 {
 	clearOutput();
 	nykkeHeader();
-	output("You ask Nykke if she’s put any thought into what sort of person she’d want in a mate.  There are all sorts of people in the world; if she gets a little lucky, she might find a mate that fulfills her every need and desire.");
+	output("You ask Nykke if she’s put any thought into what sort of person she’d want in a mate. There are all sorts of people in the world; if she gets a little lucky, she might find a mate that fulfills her every need and desire.");
 	output("\n\n<i>“Uh… I can’t say I have, I guess,”</i> she says, her two left index fingers tapping on her chin in thought. <i>“The only experience I have with mates are you and our Qim. So, I guess I’d want a mate that just gives me lots and lots of kips.”</i>");
 	output("\n\nThat’s kind of a blasé way of describing your relationship with [frostwyrm.name]. At the word, you feel Nykke’s psionics probe your mind – she isn’t quite as quick or refined on her skills, and it takes her a moment to understand the definition of the word ‘blasé.’ You tell her that you and [frostwyrm.name] having lots of offspring is just one of the many qualities you fulfill as her mate.");
 	output("\n\n<i>“How did our Qim decide for you to be her mate? Or… was it the other way around?”</i> she asks, inviting you to explain how [frostwyrm.name] decided that you would be her ideal mate.");
@@ -237,7 +237,7 @@ public function nykkeMatesTalk():void
 	if (flags["FROSTWYRM_INCEST_OPTION"] == 1)
 	{
 		output(" You implore her to continue: she has your undivided attention. What else should a good mate be?");
-		output("\n\n<i>“You,”</i> she whimpers, and you feel a number of emotions flood into you through her untrained psionic link with you. Happiness that you’re everything she could want in a partner;  lust for you and the offspring she wishes you could give her; but, curiously, there’s also regret and frustration that [frostwyrm.name] has already claimed you, and that she couldn’t have you all to herself.");
+		output("\n\n<i>“You,”</i> she whimpers, and you feel a number of emotions flood into you through her untrained psionic link with you. Happiness that you’re everything she could want in a partner; lust for you and the offspring she wishes you could give her; but, curiously, there’s also regret and frustration that [frostwyrm.name] has already claimed you, and that she couldn’t have you all to herself.");
 		output("\n\nYour hands trail down your daughter’s scaly, muscled, powerful back, tickling at the crease between her wings. You lean into her and kiss her on the lips, and you linger there far longer than what most would consider ‘parental.’ When you pull away, you tell her that, if she has any <i>other</i> fantasies as to what the perfect mate should be like, you’ll be here to listen.");
 		output("\n\nYou feel something hot, thick, and a little wet prod against your [pc.thigh] at your words, your message clear as could be to her. <i>“Okay, my Qal,”</i> she says breathlessly, barely able to contain her excitement.");
 		pc.lust(10);		
@@ -259,7 +259,7 @@ public function nykkePsionicsTalk():void
 	nykkeHeader();
 	output("You ask Nykke how her handle on her psionic strengths are coming along. She hasn’t had nearly the time or the training to handle it the way her Qim does, but with enough practice, she’ll get there.");
 	output("\n\nThe question is met with a quizzical pause. <i>“I’m… not sure what you’re asking me,”</i> she admits.");
-	output("\n\nYou recall that [frostwyrm.name] didn’t have the same approach to psionics as you did, either.  In her own words, what you call ‘psionics’ is the skill that Frostwyrms have that allow them to communicate without using words, like you are now.");
+	output("\n\nYou recall that [frostwyrm.name] didn’t have the same approach to psionics as you did, either. In her own words, what you call ‘psionics’ is the skill that Frostwyrms have that allow them to communicate without using words, like you are now.");
 	output("\n\n<i>“Oh, like this?”</i> Nykke asks, her voice projecting into your mind directly. You concur: exactly like that. [frostwyrm.name] also said that Frostwyrms don’t necessarily communicate in words: they communicate in ideas and emotions, and are able to project feelings directly into whoever they’re connected with.");
 	output("\n\nTaking that as a sort of challenge, Nykke focuses on you intently, attempting to channel her psionic skills into you. <i>“Are you feeling anything yet?”</i> she asks, and you laugh – you <i>can,</i> but all you’re getting is a bit of a headache, and if that’s what <i>you</i> are feeling, then she must be feeling it, too. You tell her to stop before she hurts herself.");
 	output("\n\n<i>“I guess that answers that question, then,”</i> Nykke says somberly. You tell her to not get her hopes down: when she was still inside her egg, she was communicating rather ‘verbosely,’ for lack of a better term, and she was already capable of projecting her emotions on a tremendous spectrum to you and [frostwyrm.name]. So, she has the skills and the strength; it’s just a matter of learning to use it correctly.");
@@ -280,9 +280,9 @@ public function nykkePsionicsTalk():void
 	
 	output(", but while you are able to receive any thought, idea, expression, or inspiration, it’s a one-way connection for you, and you aren’t able to communicate your own thoughts back across it. Whenever you have a thought, Nykke is able to pick up on it and understand it, but that’s not the same as you projecting it to her.");
 	output("\n\n<i>“Are there other kinds in the world that can communicate the way my kind can?”</i> Nykke asks, exasperated from an hour’s worth of diligence with nothing to show for it. You respond that, as far as you know, Frostwyrms are the only kind. Maybe it’s simply a uniquely-Frostwyrm trait.");
-	output("\n\n<i>“No, I don’t agree with that,”</i> Nykke says with some finality, leaning into you, her eyes narrowing determinedly on yours. <i>“I understand what our Qim meant: we’re equally equipped.  You<i> should </i>be able to communicate like I can. It’s just….”</i>");
+	output("\n\n<i>“No, I don’t agree with that,”</i> Nykke says with some finality, leaning into you, her eyes narrowing determinedly on yours. <i>“I understand what our Qim meant: we’re equally equipped. You<i> should </i>be able to communicate like I can. It’s just….”</i>");
 	output("\n\n<i>“It’s just that you can’t?”</i>");
-	output("\n\n<i>“I don’t know how to explain it. This is all very frustrating!”</i> she exclaims into her nest.  <i>“It’s not like it’s some secret among my kind. I understand what I’m doing; any of my kind would understand if I asked them. But being unable to explain it in a way another kind, like yourself, my Qal, could understand… I feel so powerless and conflicted!”</i>");
+	output("\n\n<i>“I don’t know how to explain it. This is all very frustrating!”</i> she exclaims into her nest. <i>“It’s not like it’s some secret among my kind. I understand what I’m doing; any of my kind would understand if I asked them. But being unable to explain it in a way another kind, like yourself, my Qal, could understand… I feel so powerless and conflicted!”</i>");
 	output("\n\nYou lean into your daughter, snuggling yourself against her enormous form. You thank her for going through the effort for you, and you understand that it’s not easy to do. You liken it to explaining what the color blue is to anyone that hasn’t seen it before.");
 	output("\n\nNykke probes your mind, in an effort to understand what you mean, but she isn’t in there for long. <i>“Yes! Exactly like that!”</i> she says, clapping herself on the leg, excited that she can at least vocalize her frustrations. <i>“How in the Grand Qim’s shadow do you explain something so fundamental to someone that cannot grasp it?”</i> She leans into you, reciprocating the snuggle as she tries to calm herself down. <i>“At least your kind knows how to communicate such frustrations, my Qal.”</i>");
 	output("\n\nYou stroke at her scalp, and the motion has a rather immediate effect: the tension you had felt over the link with your daughter dissipates immediately, and she leans into your scratching fingers affectionately. You two can try again later, if she’d like.");
@@ -307,16 +307,16 @@ public function nykkeAdventuringTalk():void
 	output(", you’re a [pc.race].");
 	//end placeholder
 		
-	output("  You ask her to guess how many of your kind exist. <i>“Hundreds?”</i> she asks, and you tell her there are more. <i>“Thousands?”</i> More than that. Her eyes squint in concentration.  <i>“Um….”</i>");	
+	output(" You ask her to guess how many of your kind exist. <i>“Hundreds?”</i> she asks, and you tell her there are more. <i>“Thousands?”</i> More than that. Her eyes squint in concentration. <i>“Um….”</i>");	
 	output("\n\nThere are more of your own kind than she might be able to properly envision: a number so large that she might not be able to understand the magnitude of how many exist.");
-	output("\n\nAnd, on top of there being so many of your own kind, there are other worlds out there.  Your kind have named the world as Nykke and [frostwyrm.name] know it as ‘Uveto;’ you’ve been to so many other planets and interacted with so many other kinds by now, that you’d have a hard time categorizing all of it.");
+	output("\n\nAnd, on top of there being so many of your own kind, there are other worlds out there. Your kind have named the world as Nykke and [frostwyrm.name] know it as ‘Uveto;’ you’ve been to so many other planets and interacted with so many other kinds by now, that you’d have a hard time categorizing all of it.");
 	output("\n\nYou start simple: you ask Nykke if she knows what it means to be warm. <i>“Yes!”</i> she says excitedly, happy that she’s catching up to your discussion. <i>“‘Warm’ is what we feel when we curl up with each other, my Qal. Although, and forgive me for saying, but… our Qim is much better at making us warm than you are.”</i>");
 	output("\n\nWith a laugh, you forgive her, and agree: [frostwyrm.name] is very good at keeping her clutch warm. But, to continue, you ask Nykke if she knows what it means to be ‘hot.’");
-	output("\n\nYou feel the same tugging at your mind, but ask her to answer in her own words.  <i>“Um…,”</i> she stutters. <i>“No.”</i> You teach her that, basically, ‘hot’ is what happens when you’re too warm. <i>“Too warm? Is there truly such a thing?”</i> There is, yes: when you’re too warm, it feels like you’re suffocating, and that you’re trapped in your own body. If the air around you is too warm, it hurts to breath; if the ground beneath you is too warm, it hurts to walk. When the warmth is all-pervasive, you can feel like there’s just… nothing you can do to escape it.");
+	output("\n\nYou feel the same tugging at your mind, but ask her to answer in her own words. <i>“Um…,”</i> she stutters. <i>“No.”</i> You teach her that, basically, ‘hot’ is what happens when you’re too warm. <i>“Too warm? Is there truly such a thing?”</i> There is, yes: when you’re too warm, it feels like you’re suffocating, and that you’re trapped in your own body. If the air around you is too warm, it hurts to breath; if the ground beneath you is too warm, it hurts to walk. When the warmth is all-pervasive, you can feel like there’s just… nothing you can do to escape it.");
 	output("\n\n<i>“But, my Qal, it can feel that way if we are too cold, as well,”</i> she notes. You’re proud that she’s thinking like that! And she’s right: if it’s too cold, then it can feel just as limiting and painful. Just as there are places like Uveto that are always very cold, there can be places that are always very hot.");
 	output("\n\n<i>“Is there any place that is neither?”</i> Nykke asks disdainfully; she’s finding it hard to believe that the world – or worlds – can be such difficult, unforgiving places to be. You answer that some places may be too warm, and some places may be too cold, but being able to overcome those obstacles and survive, and even thrive, in such environments is what makes kinds like your own so hardy. And, if your daughter is anything like you, she’ll have the strength and the knowledge to survive any environment, too.");
 	output("\n\nNow that you’ve properly gotten Nykke hooked on your stories, you continue enthusiastically; you start with your parentage and that you’re an heir to… well, it’d be a difficult to explain in a way she understands, but, in the very barest, lamest terms you can, you explain that your own parent had passed away some time ago, and you’re on a journey to reclaim his own lair for yourself.");
-	output("\n\n<i>“You did not stay with your Qim and your Qal until they were summoned?”</i> Nykke asks, and you confirm; your kind typically only stay with their parents until they’re fully matured, and then they set out on their own, to find their own lairs and their own mates. And, for reasons you’re not about to go into too much detail about, you never celebrated ‘inner circle coupling’  with your parents, either.");
+	output("\n\n<i>“You did not stay with your Qim and your Qal until they were summoned?”</i> Nykke asks, and you confirm; your kind typically only stay with their parents until they’re fully matured, and then they set out on their own, to find their own lairs and their own mates. And, for reasons you’re not about to go into too much detail about, you never celebrated ‘inner circle coupling’ with your parents, either.");
 	output("\n\nBut anyway, you’re getting a bit sidetracked. When your own father was, as Nykke would understand it, ‘summoned,’ you had set out on a mission to claim what was his for your own. That’s taken you to planets full of lush, dense, green jungle; planets of trashy, difficult, desert terrain and wasteland; deep into dark, rocky caves; and even to very small, man-made planets called ‘stations.’ Uveto is just one of the more recent stops in your mission to claim your inheritance.");
 	output("\n\nYou feel something pulling at your mind; a curious, probing sensation, rummaging through your memories, almost the same way that [frostwyrm.name] plucks at your head when you use a word she doesn’t understand. As interested as Nykke is on your stories, she doesn’t understand half the things you’re saying. She probably doesn’t even know what a ‘green’ is, never mind a ‘jungle.’");
 	output("\n\n<i>“Could any of us travel to any of these places as well?”</i> Nykke asks. You can feel her imagination running wild in your own head: she doesn’t like the idea of being somewhere that’s too hot, or someplace that’s somehow even colder than Uveto, but she nonetheless wants to explore them for her own. You tell her that she could – there’s nothing saying she couldn’t travel the stars with you, and visit all these new locations with you – but… well, one thing at a time.");
@@ -325,7 +325,7 @@ public function nykkeAdventuringTalk():void
 	if (flags["FROSTWYRM_INCEST_OPTION"] == 1)
 	{		
 		output(", when you two find a spot that isn’t too warm, or too cold, or too jungle or too cave, she finds the perfect lair, one as big as [frostwyrm.name]’s, where she and her mate can raise their own clutch.");
-		output("\n\nOf course, this imaginary mate of hers is unmistakably you: in Nykke’s personal, unbridled fantasies, it’s you that she settles down with and makes a clutch with. A <i>huge</i>  one. One that fills the jungles and the caves until they’re full of nothing but your clutch; you two would find a world that has no Frostwyrms in it, and you’d spread your kind until you are the dominant species.");
+		output("\n\nOf course, this imaginary mate of hers is unmistakably you: in Nykke’s personal, unbridled fantasies, it’s you that she settles down with and makes a clutch with. A <i>huge</i> one. One that fills the jungles and the caves until they’re full of nothing but your clutch; you two would find a world that has no Frostwyrms in it, and you’d spread your kind until you are the dominant species.");
 		output("\n\nYou let Nykke entertain herself and her fantasies, up until you feel something hard, hot, and squishy poke against your [pc.thigh]; her own legs grind wantonly against you, until she’s unquestionably humping you. At that, you clear your throat, and she stops everything immediately.");
 		output("\n\n<i>Sorry,</i> she says to you over your psionic connection.");
 		output("\n\nYou don’t chide her, but you remind her: one thing at a time.");
@@ -407,25 +407,25 @@ public function nykkeBlackScalesTalk():void
 	clearOutput();
 	nykkeHeader();
 	
-	output("Lying as you are next to Nykke, you snake your hand down one of her large, muscular arms, until your hand meets hers.  You intermingle your fingers with her claws, and give her hand an affectionate squeeze.  You feel Nykke probe your mind for a moment, likely trying to find the significance of the action – and when she finds it, she squeezes back.  A little too hard, at first, but then she eases up.");
-	output("\n\nYou tell Nykke that you’d like to talk to her about something, but she doesn’t need to answer if she isn’t ready.  You recognize that it’s a bit of a sensitive topic for her.");
-	output("\n\n<i>“It’s about my scales, isn’t it?”</i> she asks dejectedly.  You respond affirmatively.");
-	output("\n\nNykke says nothing further, and instead lets out a long, heavy sigh.  With the three arms you’re not holding, she lifts her hands to her eyes, so she can get a closer look at her own body.  Her onyx-black scales reflect the light of her lair with a brilliant dark sheen, making it easy to focus on her compared to the whites and off-blues of the rest of the lair.");
-	output("\n\n<i>“Sometimes, I think about how awkward our Qim must feel in her own lair,”</i> Nykke says suddenly, her tone still sombre.  You wait patiently for her to continue.  <i>“She has you, the most wonderful Qal in the world, and she has me");
+	output("Lying as you are next to Nykke, you snake your hand down one of her large, muscular arms, until your hand meets hers. You intermingle your fingers with her claws, and give her hand an affectionate squeeze. You feel Nykke probe your mind for a moment, likely trying to find the significance of the action – and when she finds it, she squeezes back. A little too hard, at first, but then she eases up.");
+	output("\n\nYou tell Nykke that you’d like to talk to her about something, but she doesn’t need to answer if she isn’t ready. You recognize that it’s a bit of a sensitive topic for her.");
+	output("\n\n<i>“It’s about my scales, isn’t it?”</i> she asks dejectedly. You respond affirmatively.");
+	output("\n\nNykke says nothing further, and instead lets out a long, heavy sigh. With the three arms you’re not holding, she lifts her hands to her eyes, so she can get a closer look at her own body. Her onyx-black scales reflect the light of her lair with a brilliant dark sheen, making it easy to focus on her compared to the whites and off-blues of the rest of the lair.");
+	output("\n\n<i>“Sometimes, I think about how awkward our Qim must feel in her own lair,”</i> Nykke says suddenly, her tone still sombre. You wait patiently for her to continue. <i>“She has you, the most wonderful Qal in the world, and she has me");
 	
 	if (flags["FROSTWYRM_KIP_COUNT"] > 1) output(", and she has the rest of her clutch");
 	
-	output("– but she’s the only pure-blooded of her kind in the lair.  I’d do anything for her, and I couldn’t imagine having anyone else as my Qim, but….”</i>");
-	output("\n\nInstead of finishing the thought, Nykke turns to you, to look into your eyes.  <i>“Do you think our Qim ever gets… I don’t know… lonely?  That there aren’t others of her pure-blooded kind here?”</i>");
-	output("\n\nYou respond, with all sincerity, that [frostwyrm.name] has never once wanted for company since she took you on as her mate, and she had you as her kip.  <i>“Even though we’re not");
+	output("– but she’s the only pure-blooded of her kind in the lair. I’d do anything for her, and I couldn’t imagine having anyone else as my Qim, but….”</i>");
+	output("\n\nInstead of finishing the thought, Nykke turns to you, to look into your eyes. <i>“Do you think our Qim ever gets… I don’t know… lonely? That there aren’t others of her pure-blooded kind here?”</i>");
+	output("\n\nYou respond, with all sincerity, that [frostwyrm.name] has never once wanted for company since she took you on as her mate, and she had you as her kip. <i>“Even though we’re not");
 	
 	//Placeholder: tf and race check for frostwym does not currently exist
 	//if (pc.isFrostwyrm()) output(" pure-blooded,");
 	//end placeholder
 	
 	output(" like her?”</i>");
-	output("\n\n[frostwyrm.name] sometimes likes to remind you that you weren’t her first choice in mate.  She had spent much of her life searching for another Frostwyrm like herself, but in all her searching, she couldn’t find one, and she had to ‘settle’ for you.");
-	output("\n\nBut, you continue, she <i>also</i> likes to remind you that she doesn’t regret her choice in the very least.  If she could go back in time, and she knew everything she knows now, and she found a pure-blooded Frostwyrm to mate with, she’d choose to mate with you, every single time.");
+	output("\n\n[frostwyrm.name] sometimes likes to remind you that you weren’t her first choice in mate. She had spent much of her life searching for another Frostwyrm like herself, but in all her searching, she couldn’t find one, and she had to ‘settle’ for you.");
+	output("\n\nBut, you continue, she <i>also</i> likes to remind you that she doesn’t regret her choice in the very least. If she could go back in time, and she knew everything she knows now, and she found a pure-blooded Frostwyrm to mate with, she’d choose to mate with you, every single time.");
 	output("\n\nYou tell Nykke that it doesn’t matter to [frostwyrm.name] that you’re different than her; you may not be a");
 	
 	//Placeholder: tf and race check for frostwym does not currently exist
@@ -438,29 +438,29 @@ public function nykkeBlackScalesTalk():void
 	else output(" kip");	
 	
 	output(", and you’ve filled the gap in her heart with your affection and attention as a doting mate.");
-	output("\n\nAnd, you say as you squeeze Nykke’s hand, it doesn’t matter what <i>she</i> looks like, either.  [frostwyrm.name] wanted a clutch, and she knew she was taking a risk committing herself to you – neither of you were sure you’d be able to make it work.  As far as you and [frostwyrm.name] are concerned, Nykke has given you two a miracle, and you wouldn’t dream of having your firstborn kip any other way.");
-	output("\n\nYou feel a light sensation seep through the connection between you – one that makes you relax in relief.  But, it’s slight: your words are having an effect on Nykke, but she’s not totally convinced.");
-	output("\n\n<i>“Still,”</i> she says forlornly, turning her hands over once in front of her.  <i>“I just… I can’t help but feel like I don’t really belong–”</i>");
-	output("\n\nYou cut her off from that destructive way of thinking.  You tell Nykke that she is <i>your kip.</i>  It doesn’t matter if her scales were white, or black, or green or purple or whatever; you’re not going to let something as small as the tone of her scales get in the way of letting you love your firstborn kip.  Her scales may not be white, and you may not be a");
+	output("\n\nAnd, you say as you squeeze Nykke’s hand, it doesn’t matter what <i>she</i> looks like, either. [frostwyrm.name] wanted a clutch, and she knew she was taking a risk committing herself to you – neither of you were sure you’d be able to make it work. As far as you and [frostwyrm.name] are concerned, Nykke has given you two a miracle, and you wouldn’t dream of having your firstborn kip any other way.");
+	output("\n\nYou feel a light sensation seep through the connection between you – one that makes you relax in relief. But, it’s slight: your words are having an effect on Nykke, but she’s not totally convinced.");
+	output("\n\n<i>“Still,”</i> she says forlornly, turning her hands over once in front of her. <i>“I just… I can’t help but feel like I don’t really belong–”</i>");
+	output("\n\nYou cut her off from that destructive way of thinking. You tell Nykke that she is <i>your kip.</i> It doesn’t matter if her scales were white, or black, or green or purple or whatever; you’re not going to let something as small as the tone of her scales get in the way of letting you love your firstborn kip. Her scales may not be white, and you may not be a");
 	
 	//Placeholder: tf and race check for frostwym does not currently exist
 	//if (pc.isFrostwyrm()) output(" pure-blooded");
 	//end placeholder
 	
 	output(" Frostwyrm, but none of that matters to you or to [frostwyrm.name] – [frostwyrm.name] threw ‘standards’ and ‘traditions’ to the wind when she opted to choose you as her mate, and, as far as you’re concerned, you’d much rather have [frostwyrm.name] as your mate and Nykke as your kip as they both are than to have all three of you be ‘normal’ just for the sake of being ‘normal.’");
-	output("\n\nWhat’s important to you and to [frostwyrm.name] is that Nykke is here, and that she is your kip, and that you are her Qal and that [frostwyrm.name] is her Qim.  You three are a clutch.  If you not being a");
+	output("\n\nWhat’s important to you and to [frostwyrm.name] is that Nykke is here, and that she is your kip, and that you are her Qal and that [frostwyrm.name] is her Qim. You three are a clutch. If you not being a");
 	
 	//Placeholder: tf and race check for frostwym does not currently exist
 	//if (pc.isFrostwyrm()) output(" pure-blooded");
 	//end placeholder
 	
 	output(" Frostwyrm doesn’t change that, then <i>nothing</i> will.");
-	output("\n\nThe sensation of relief comes through much more clearly, now that you’ve made your love for Nykke and for [frostwyrm.name] as clear as could be to her.  You can still sense just a tinge of apprehension, like a tick that refuses to let go, and you’re not certain if you’ll ever be able to get that out of her, but, apart from that, you can tell that Nykke is satisfied with your answer.");
+	output("\n\nThe sensation of relief comes through much more clearly, now that you’ve made your love for Nykke and for [frostwyrm.name] as clear as could be to her. You can still sense just a tinge of apprehension, like a tick that refuses to let go, and you’re not certain if you’ll ever be able to get that out of her, but, apart from that, you can tell that Nykke is satisfied with your answer.");
 	output("\n\n<i>“Thank you, my Qal,”</i> she says weakly, her hand squeezing yours once more.");
 
 	processTime(10);
 
-	addDisabledButton(4,"Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales… but now she knows that, to you and to [frostwyrm.name], it doesn’t matter what she looks like.  You’ll always be her kip.");	
+	addDisabledButton(4,"Black Scales","Black Scales","You aren’t sure if Nykke will ever <i>truly</i> be satisfied with the color of her scales… but now she knows that, to you and to [frostwyrm.name], it doesn’t matter what she looks like. You’ll always be her kip.");	
 }
 //[Sex]
 public function nykkeSexMenu():void
@@ -475,7 +475,7 @@ public function nykkeSexMenu():void
 	var ppFrostwyrmling:PregnancyPlaceholder = getFrostwyrmlingPregContainer();
 	
 	output("You regard Nykke, her body curled and cuddled up against you; your naked [pc.skinFurScales] rocks and breathes against her own, nude, powerful form. You admire her Amazonian muscles and the tightness of her body; your hand idly, platonically strokes at the muscles at her back, slowly making its way down to the base of her tail. When your fingers tickle at the wide base of her tail, it fidgets and curls, just slightly.");
-	output("\n\nYou feel something hot, wet, and squishy prod against your [pc.legNoun], and getting only hotter, harder, and wetter as time goes on. You’re thinking some decidedly un-parental thoughts about Nykke, and the fantasies openly flow through the psionic link between you two.  You wonder if you even need to ask.");
+	output("\n\nYou feel something hot, wet, and squishy prod against your [pc.legNoun], and getting only hotter, harder, and wetter as time goes on. You’re thinking some decidedly un-parental thoughts about Nykke, and the fantasies openly flow through the psionic link between you two. You wonder if you even need to ask.");
 	output("\n\n<i>“You don’t, my Qal,”</i> she says psionically; her body shifts against you, her massive, F-cup breasts drawing against you as she realigns herself atop your body. You’re face-to-face, her chest resting on your own, her pebbly blue nipples digging and pressing into yours.");
 	output("\n\nYour hands explore each other sensually: hers on your body reverently, and she’s shaking, almost imperceptibly – she’s so excited at getting some personal time with her Qal that she’s acting like a nervous, blushing virgin.");
 	output("\n\nHer Frostwyrm cock protrudes from her penile vent, weighing down heavily on your body as she gets harder and harder, her cock quickly snaking its way up your [pc.belly] with each of her draconic heart’s beat. Her tail droops down, pressed between her legs, and subtly masturbates her feminine genitals with its broad side.");
@@ -508,7 +508,7 @@ public function nykkeSexFuckHer():void
 	var kok:int = pc.biggestCockIndex();
 	var kokLen:int = pc.biggestCockLength();
 	
-	output("It’s a rather blasé, uninvolved way of mating, but you opt to lay there and do nothing.  You tell Nykke, over your psionic connection, that you want her instincts to take control; you want to see what her body says is the most natural thing for her to do.");
+	output("It’s a rather blasé, uninvolved way of mating, but you opt to lay there and do nothing. You tell Nykke, over your psionic connection, that you want her instincts to take control; you want to see what her body says is the most natural thing for her to do.");
 	output("\n\nShe’s hesitant, but needy: her four hands roam over your body, feeling you sensually along your ribs, your back, and your [pc.chest]. And her hips roll forward, driving her shaft, still bloating with herself, up across your [pc.belly]");
 	
 	if (kokLen >= 13) output(", fighting your own incredible tool for your attention, but no matter how erect she is or how erect she’ll get, she can’t compare to her Qal.");
@@ -516,7 +516,7 @@ public function nykkeSexFuckHer():void
 	else if (kokLen > 5) output(", she clearly takes after her Qim a little more than you do, overshadowing your own length by a couple inches.");
 	else output(", easily dwarfing your tool and sinking it into your [pc.skinFurScales] with its weight.");
 	
-	output("  You feel her massive testicles come to rest on your body, hefting themselves down on you, pent up and ready to seed a potential mate or two.");
+	output(" You feel her massive testicles come to rest on your body, hefting themselves down on you, pent up and ready to seed a potential mate or two.");
 	
 	output("\n\nShe tries her best to remain gentle as she explores you, although her giddiness is apparent, with how quickly she moves from one new spot on you to the next without lingering to enjoy what you have to offer. Despite you being her Qal, or perhaps because of it, she treats you gingerly, like you’re a priceless artefact and she’s the archaeologist that found you");
 	
@@ -553,16 +553,16 @@ public function nykkeSexFuckHer():void
 	output("\n\n<i>“Is it,”</i> she begs you, sentences forming and collapsing in her head over and over, unable to keep a straight thought in between all the pleasure you’re giving her as her Qal, <i>“is it wrong of me… to want you like this, my Qal?”</i>");
 	output("\n\nRather than answer directly, you opt to tease her a bit, and ask if it’s wrong to be on her back, her legs spread, so she can get <i>fucked</i> – you say, punctuating a thrust hard enough to ripple her tight muscles and her soft breasts – by her <i>Qal,</i> like she’s <i>clearly</i> wanted so <i>badly?</i> Is it <i>wrong</i> to <i>keep</i> you for her <i>self?</i>");
 	output("\n\nNykke’s head rolls to one side, and her massive (for her form) tongue lolls from her mouth, her eyes unfocused on the far wall of her room. Her cock flops about, fully erect and unhindered, spewing her precum all over herself and letting it splatter against the wall behind her. Her psionic imagery has all but vanished, leaving a fuzzy nothingness, although you can tell that, despite her blanking on you, she’s more susceptible to suggestion than ever.");
-	output("\n\nSo, you answer her, as her Qal, and not as her lover. No, it’s not wrong of her to want you – and, if she truly wants you so badly, she should consider herself blessed to be born a Frostwyrm – but, you still have duties to the rest of the clutch, and to your mate, [frostwyrm.name]. The <i>last</i> thing she wants is to be a greedy, selfish kip that only wants you for <i>herself.</i>  There’s a word for kips like that, in the Frostwyrm language.");
+	output("\n\nSo, you answer her, as her Qal, and not as her lover. No, it’s not wrong of her to want you – and, if she truly wants you so badly, she should consider herself blessed to be born a Frostwyrm – but, you still have duties to the rest of the clutch, and to your mate, [frostwyrm.name]. The <i>last</i> thing she wants is to be a greedy, selfish kip that only wants you for <i>herself.</i> There’s a word for kips like that, in the Frostwyrm language.");
 	output("\n\nHer eyes shift, locking onto yours. Her four arms lay limply at her sides; she’s resigned herself to the pleasures, the <i>masterful</i> pleasures of her Qal, and anything you decide to do to her.");
 	output("\n\nYou end the thought by saying that she has you here, right now, and alone; so it’s not so selfish to want to keep feeling this pleasure. It’s <i>okay</i> to <i>want</i> to be <i>bred</i> by the most <i>perfect mate</i> she <i>knows</i>.");	
-	output("\n\n<i>“My Qal,”</i> she says to you psionically, her thoughts interrupted with every thrust.  Her legs close behind your back, wrapping and locking just above your [pc.ass], keeping you close to her as you ream and pound her cunt. Now that you’ve established that it’s okay to want what she wants, she orgasms: her pussy clamps onto you, her Frostwyrm biology rippling around your [pc.cock " + kok + "], ushering forth whatever sperm you give her to seed her eggs. And, to cap that off, her cannon of a penis erupts in front of you, with enough ferocity to launch and splatter onto the ceiling above you both; her cum drips and rains back down onto you, soaking into her cleavage and across her tight stomach.");
+	output("\n\n<i>“My Qal,”</i> she says to you psionically, her thoughts interrupted with every thrust. Her legs close behind your back, wrapping and locking just above your [pc.ass], keeping you close to her as you ream and pound her cunt. Now that you’ve established that it’s okay to want what she wants, she orgasms: her pussy clamps onto you, her Frostwyrm biology rippling around your [pc.cock " + kok + "], ushering forth whatever sperm you give her to seed her eggs. And, to cap that off, her cannon of a penis erupts in front of you, with enough ferocity to launch and splatter onto the ceiling above you both; her cum drips and rains back down onto you, soaking into her cleavage and across her tight stomach.");
 	output("\n\nAnd neither of her orgasms stop, even as you continue: every time you push into her body, she ripples around you once more, and another splash of her feminine cum washes against your [pc.legs] while another wave of masculine cum erupts from her geyser of a cock. Even through the pounding you’re giving her, and the constant state of orgasm, her body is begging you to seed it, and it’s doing that the only way it knows how.");
 	output("\n\nYou don’t bother trying to hold off, and you satisfy yet another of Nykke’s fantasies by cumming inside her and giving her the seed she so desperately wants.");
 	
-	if (pc.cumQ() >= 900) output("  Your load is more than she was, or could possibly have been, prepared for: with just one load, she’s already so full that your [pc.cum] washes back against you, and you’re not even close to finished. Your emissions would leave any purebred Frostwyrm simultaneously envious of your production, and impatient for their turn. Her normally taut, muscled stomach evens out, then rounds with your seed, her body gluttonous for your every precious drop, regardless of whether any of it can take. Fantasies about having a clutch many times the size of [frostwyrm.name]’s pervade your mind over your connection, and with every fresh, hot load you put into Nykke, the already-fantastic size of your hypothetical clutch doubles on the spot.");
-	else if (pc.cumQ() >= 400) output("  Your load would satisfy even a purebred Frostwyrm (you should hope!), and Nykke is no exception: her lips curl into a lust-drunk smile when she feels you fill her body; her normally-taut stomach evens out underneath the pressure of your load, and your [pc.cum] washes back against you when her womb can take no more. Even though nothing will come of it, more fantasies of your hypothetical clutch come crashing into you over your psionic connection, and she orgasms yet once more.");
-	else output("  You can’t give her as much as a Frostwyrm could, but that doesn’t matter to her, in her state of mind: all she knows is that her Qal is coming inside her, and her Qal’s sperm will be with her eggs soon. It doesn’t matter that nothing will come of it; just knowing that she has it is more than enough.");
+	if (pc.cumQ() >= 900) output(" Your load is more than she was, or could possibly have been, prepared for: with just one load, she’s already so full that your [pc.cum] washes back against you, and you’re not even close to finished. Your emissions would leave any purebred Frostwyrm simultaneously envious of your production, and impatient for their turn. Her normally taut, muscled stomach evens out, then rounds with your seed, her body gluttonous for your every precious drop, regardless of whether any of it can take. Fantasies about having a clutch many times the size of [frostwyrm.name]’s pervade your mind over your connection, and with every fresh, hot load you put into Nykke, the already-fantastic size of your hypothetical clutch doubles on the spot.");
+	else if (pc.cumQ() >= 400) output(" Your load would satisfy even a purebred Frostwyrm (you should hope!), and Nykke is no exception: her lips curl into a lust-drunk smile when she feels you fill her body; her normally-taut stomach evens out underneath the pressure of your load, and your [pc.cum] washes back against you when her womb can take no more. Even though nothing will come of it, more fantasies of your hypothetical clutch come crashing into you over your psionic connection, and she orgasms yet once more.");
+	else output(" You can’t give her as much as a Frostwyrm could, but that doesn’t matter to her, in her state of mind: all she knows is that her Qal is coming inside her, and her Qal’s sperm will be with her eggs soon. It doesn’t matter that nothing will come of it; just knowing that she has it is more than enough.");
 	
 	output("\n\nEven when you’re done with your orgasm");
 	
@@ -603,7 +603,7 @@ public function nykkeSexInHerAss():void
 	output("\n\n<i>“Like this?”</i> she asks aloud. You tell her to raise her hips a bit; there’s no need to be uncomfortable. She follows your instruction, and with a loud ‘plap,’ her thick Frostwyrm cock slaps and bobs against the floor, freed from the pressures of her body. Every part of her is exposed to the air of her lair; you can tell, via your connection, that she finds the position somewhat natural, owing to the breeding instincts of her Frostwyrm heritage.");
 	output("\n\nYou pull yourself to your [pc.knees] and shuffle behind her, investigating her exposed rear-end. Her Frostwyrm dick is long enough that its head presses evenly against the icy floor, and is thick enough to be confused for a third leg; her heavy balls jostle and flinch in impatience, her sack flexing and relaxing, knowing that you’re inspecting them; her bluish-pink vagina winks at you, beads of her lust pooling along her taint and dripping down her curvaceous balls; and her puckered blue anus pulsates, unsure if it likes the way you’re looking at it….");
 	output("\n\nYou remind Nykke once again that, right now, you are her mate before her Qal. If she ever feels uncomfortable at any point, then she needs to tell you. You’re not going to rely on your psionic connection with her to know.");
-	output("\n\nNykke, though, is more focused on you calling yourself her mate. Her breath catches in her throat, and her heart skips a beat or two; it’s every fantasy involving you fulfilled, all at once.  If you could mean it in a more ‘permanent’ sense, she could die a satisfied Frostwyrmling right then and there.");
+	output("\n\nNykke, though, is more focused on you calling yourself her mate. Her breath catches in her throat, and her heart skips a beat or two; it’s every fantasy involving you fulfilled, all at once. If you could mean it in a more ‘permanent’ sense, she could die a satisfied Frostwyrmling right then and there.");
 	output("\n\n<i>“I trust you, my Qal,”</i> she says dreamily, her hips swaying for you, enticing you to pick something to pleasure her. With that set, you lean forward, your own [pc.cock " + kok + "] hard as can be, and you poke it at her asshole.");
 	output("\n\nShe flinches and freezes in place, instinctually understanding that this isn’t proper. You gentle shush her and stroke at her thighs as your [pc.cockHead " + kok + "] continues to prod at her, easing against her. This may not be how to properly mate, but having sex this way can be just as pleasurable as it can be ‘properly’ – maybe even moreso, if she’s one of the freakier types. She just needs to relax, and you’ll make sure she loves it.");
 	output("\n\n<i>“O-okay,”</i> she says, and does her best to relax her body and allow you into her. True to your word, you’re gentle, treating her body like it was made of brittle wax instead of the raw, unbridled Frostwyrm muscle she is; your [pc.cockHead " + kok + "] spears into her, and you stop, with just the tip inside her. When she acclimates to you, you push in, just another couple inches, and you repeat the stop-and-go process.");
@@ -613,9 +613,9 @@ public function nykkeSexInHerAss():void
 	output("\n\n<i>“T-this feels…”</i> she says, her four arms crossed and folded beneath her. She repeats the words every time you push a little further into her. She’s not telling you to stop, and her body isn’t fidgeting or tensing like she doesn’t like it, so, you don’t.");
 	output("\n\nYou’re around halfway down to your [pc.base " + kok + "] after the third push into her.");
 	
-	if (kokLen >= 10) output("  Frankly, you’re surprised she’s managed to take you this far without trying to back out: you’d think she’d have at least <i>some</i> experience with anal play, considering how little noise she’s making, but, just in case, you don’t say how much is left.  You don’t want to intimidate her.");
-	else if (kokLen >= 6) output("  She’s taking you like a champ, her body shuddering with every push and relaxing with every stop. You doubt she’d believe you if you told her that you still have a ways to go, considering her experience with anal play.");
-	else output("  It’s not very far, especially compared to how huge Nykke’s body is, but she’s tight as a vice, and, you’re sure, she’s thinking you’re as big as [frostwyrm.name] right now.");
+	if (kokLen >= 10) output(" Frankly, you’re surprised she’s managed to take you this far without trying to back out: you’d think she’d have at least <i>some</i> experience with anal play, considering how little noise she’s making, but, just in case, you don’t say how much is left. You don’t want to intimidate her.");
+	else if (kokLen >= 6) output(" She’s taking you like a champ, her body shuddering with every push and relaxing with every stop. You doubt she’d believe you if you told her that you still have a ways to go, considering her experience with anal play.");
+	else output(" It’s not very far, especially compared to how huge Nykke’s body is, but she’s tight as a vice, and, you’re sure, she’s thinking you’re as big as [frostwyrm.name] right now.");
 		
 	output("\n\nYou settle at that distance for now, and begin to pump against her, sawing your [pc.cock " + kok + "] halfway down, then back out. Her body remains still, and her breathing grows shallow and sharp; you hear an unpleasant screeching of her claws drawing against the hard ice as her hands clench in pleasure beneath you.");
 	output("\n\nRunning your hands over her expansive, tight ass as you slowly sink into it, you ask Nykke how she’s feeling, and the sensations she’s experiencing. You could just as easily feel it over your psionic connection, but you want her to enunciate it. You tell her to feel how it is to be bent over for her Qal; to be in such a vulnerable position, knowing that she can trust you; and, especially, how it feels to enjoy sex without mating, like you’re doing right now.");
@@ -644,9 +644,9 @@ public function nykkeSexInHerAss():void
 	output("\n\n<i>“Seed me,”</i> she whimpers, her voice weak from the pleasure. <i>“I need your seed, my Qal. Please! I don’t–”</i> She pauses, her voice no longer able to keep up with her body. Despite that, she continues psionically, knowing that you probably want to hear her say it as badly as she wants to say it. <i>“It doesn’t matter that it won’t be for my eggs. I need your seed, my Qal! I need to feel you, inside me, on me, with me! No matter when or where or how; I need to be your mate!”</i>");
 	output("\n\nYour body responds to her plight, and you join her, your world drowning in the pleasures and ecstasies that is Nykke’s huge, draconic ass.");
 	
-	if (pc.cumQ() >= 900) output("  In a stunning display of why you are the Qal and why [frostwyrm.name] has chosen you to foster her lineage, you absolutely <i>soak</i> her insides with your [pc.cum]. The first-of-many hefty loads bursts into her, and you can feel even her taut, powerful form bloat and flex just a bit in time with your seed; it pours down into her, rounding and even inflating her normally-taut stomach, and you still have yet more to give her. She gasps in pleasure, her eyes rolling into her skull, as she tries to remain conscious of her surroundings and the pleasures you’re giving her; she tries to clench her body, to keep any of your [pc.cum] from backwashing out of her asshole, but it’s no use, and your seed jets back against you when her body can simply hold no more.");
-	else if (pc.cumQ() >= 400) output("  You satisfy her thirst, and then some: your [pc.cock " + kok + "] bloats again and again, unloading thick gouts of your [pc.cum] directly into her body. She sighs deliriously, sinking into herself, as she feels your jizz pour down into her, cascading along her inner workings until she can’t feel it anymore. Greedily, she has the sense to keep herself clenched on your length, to prevent anything from slipping out between you.");
-	else output("  You might not be able to cum as much as a Frostwyrm, but as soon as your [pc.cum] soaks her insides, Nykke’s mind melts in satisfaction, knowing that her Qal has marked her. She can feel your jizz trickle down into her body, and that’s all she needs to know that her needs have been fully and totally met.");
+	if (pc.cumQ() >= 900) output(" In a stunning display of why you are the Qal and why [frostwyrm.name] has chosen you to foster her lineage, you absolutely <i>soak</i> her insides with your [pc.cum]. The first-of-many hefty loads bursts into her, and you can feel even her taut, powerful form bloat and flex just a bit in time with your seed; it pours down into her, rounding and even inflating her normally-taut stomach, and you still have yet more to give her. She gasps in pleasure, her eyes rolling into her skull, as she tries to remain conscious of her surroundings and the pleasures you’re giving her; she tries to clench her body, to keep any of your [pc.cum] from backwashing out of her asshole, but it’s no use, and your seed jets back against you when her body can simply hold no more.");
+	else if (pc.cumQ() >= 400) output(" You satisfy her thirst, and then some: your [pc.cock " + kok + "] bloats again and again, unloading thick gouts of your [pc.cum] directly into her body. She sighs deliriously, sinking into herself, as she feels your jizz pour down into her, cascading along her inner workings until she can’t feel it anymore. Greedily, she has the sense to keep herself clenched on your length, to prevent anything from slipping out between you.");
+	else output(" You might not be able to cum as much as a Frostwyrm, but as soon as your [pc.cum] soaks her insides, Nykke’s mind melts in satisfaction, knowing that her Qal has marked her. She can feel your jizz trickle down into her body, and that’s all she needs to know that her needs have been fully and totally met.");
 	
 	
 	output("\n\nWhen it’s over, and you’re all jizzed out, you withdraw from her greedy, gripping asshole with an elongated slurp, leaving Nykke face-down ass-up in her lair. She’s panting in exertion, a lazy smile on her face and her eyes unfocused on anything");
@@ -679,11 +679,11 @@ public function nykkeSexTakeHer(hole:int):void
 	output("\n\nYour other hand glides its way down your body, your fingers surfing over the line of pre Nykke’s put on your body; you bring it back to your mouth, while your other hand dips between you two, grasping at her cock, just beneath her wide, flat head. You look Nykke in her [pc.eyeColor] eyes as you lick your fingers clean and you give her dick a squeeze and a pull.");
 	output("\n\nNykke whimpers, and her body shudders again; the cock in your hand bloats, and another, less hesitant squirt of pre rockets up her and onto your [pc.skinFurScales] again. You can practically hear her dick getting hard: the slight peeling sound of her penile vent flexing and opening, and the blood rushing into her appendage to inflate it and ready her for a hot, willing hole to breed.");
 	
-	if (hole < 0 && pc.hasPerk("Buttslut")) output("  You can hardly contain yourself at the thought of having such a magnificent tool scratching that ever-persistent itch; it takes no small amount of focus to put your duties as Qal before your inner identity anal-hungry slut.");
+	if (hole < 0 && pc.hasPerk("Buttslut")) output(" You can hardly contain yourself at the thought of having such a magnificent tool scratching that ever-persistent itch; it takes no small amount of focus to put your duties as Qal before your inner identity anal-hungry slut.");
 	
 	output("\n\nStill, Nykke does little, even when she’s in such a ‘powerful’ position above you: her entire body straddling yours, two arms on either side of your body and her hips just a scant few inches from your own. She bites into her lower lip and hisses in lust, her eyes laser-focused on you and what you’ll do next. You could probably give her a handjob right now, and she’d blow her load in a matter of minutes (if that!), but you’re in the mood for something… meatier.");
 	output("\n\nYou instruct Nykke to get off you, and she does. With your new freedom of movement, you, somewhat laboriously (for her benefit, knowing that her eyes are on your every curve and motion), flip onto your front. Then, you bring your knees to your [pc.chest] and you raise your [pc.hips] in the air, displaying every last part of you to Nykke. In your position, you ask her what her instincts are telling her to do – and you punctuate it with an enticing wiggle of your ass.");
-	output("\n\nShe hesitates. You can feel the lust absolutely <i>pouring</i> from her, via your link with her, but her hands pace from her sides, to your [pc.ass], to her dick, back to her sides.  Despite your position, she apparently needs some further cajoling from her Qal, so, you instruct her that when a prospective mate, least of all her Qal, presents her their hindquarters, you either fuck them senseless, or you don’t. And you don’t think Nykke is going to pass up this opportunity.");
+	output("\n\nShe hesitates. You can feel the lust absolutely <i>pouring</i> from her, via your link with her, but her hands pace from her sides, to your [pc.ass], to her dick, back to her sides. Despite your position, she apparently needs some further cajoling from her Qal, so, you instruct her that when a prospective mate, least of all her Qal, presents her their hindquarters, you either fuck them senseless, or you don’t. And you don’t think Nykke is going to pass up this opportunity.");
 	
 	if (!pc.hasVagina())
 	{
@@ -701,13 +701,13 @@ public function nykkeSexTakeHer(hole:int):void
 
 	if (poeLooseness > 4)
 	{
-		if (hole < 0) output("  She finds your [pc.ass] easily enough and, despite the less-than-forgiving shape of her dick, your experience [pc.asshole] gapes and welcomes her warmly; with a quick, imperious thrust, Nykke slips into your body with little effort, and she’s already set and ready to give you the reaming you both want.");
-		else output("  She finds your [pc.vagina " + hole + "] easily enough and, with a thrust of her eager hips, she’s already sunk a handful of inches into you, just like that: your spacious and experienced [pc.vagina " + hole + "] has no problem splitting apart for a cock even as wide and unforgiving-in-shape as Nykke’s. The initial penetration is little more than a formality to either of you, and once she’s in, she’s set to breed you properly.");
+		if (hole < 0) output(" She finds your [pc.ass] easily enough and, despite the less-than-forgiving shape of her dick, your experience [pc.asshole] gapes and welcomes her warmly; with a quick, imperious thrust, Nykke slips into your body with little effort, and she’s already set and ready to give you the reaming you both want.");
+		else output(" She finds your [pc.vagina " + hole + "] easily enough and, with a thrust of her eager hips, she’s already sunk a handful of inches into you, just like that: your spacious and experienced [pc.vagina " + hole + "] has no problem splitting apart for a cock even as wide and unforgiving-in-shape as Nykke’s. The initial penetration is little more than a formality to either of you, and once she’s in, she’s set to breed you properly.");
 	}
 	else
 	{
-		if (hole < 0) output("  She finds your [pc.ass] easily enough but, despite following her instincts and thrusting as soon as she finds a viable hole, your body doesn’t yield immediately. You hiss in displeasure, and she stops immediately, but you assure her that it’s fine; she just needs to take it a bit slower, and to work her way into you.");	
-		else output("  She finds your [pc.vagina " + hole + "] easily enough, although she’s a little overeager when she does, and she batters her flat cockhead against your vulva, demanding entry into your body. You flinch in pain, and she stops immediately, but you tell her it’s fine; she just needs to work her way in slowly. She’s got a whole lot of cock, and you’re only one, small [pc.race].");
+		if (hole < 0) output(" She finds your [pc.ass] easily enough but, despite following her instincts and thrusting as soon as she finds a viable hole, your body doesn’t yield immediately. You hiss in displeasure, and she stops immediately, but you assure her that it’s fine; she just needs to take it a bit slower, and to work her way into you.");	
+		else output(" She finds your [pc.vagina " + hole + "] easily enough, although she’s a little overeager when she does, and she batters her flat cockhead against your vulva, demanding entry into your body. You flinch in pain, and she stops immediately, but you tell her it’s fine; she just needs to work her way in slowly. She’s got a whole lot of cock, and you’re only one, small [pc.race].");
 		
 		output("\n\nLike the excellent student she’s proving herself to be, she does as you say, and tries again, but slower and more deliberate. The bluntness of her head makes it a challenge to split you open and introduce herself into you appropriately, but you’re relaxed, and she’s determined; after a bit of pressure and some wriggling for good measure, her dick slips into your");
 		
@@ -729,7 +729,7 @@ public function nykkeSexTakeHer(hole:int):void
 	if (hole < 0) output(" [pc.ass]");
 	else output(" [pc.vagina " + hole + "]");	
 	
-	output(", and you feel her bloated testicles rest against your [pc.thighs].  Yet, despite having hit as deeply into you as she can for now");
+	output(", and you feel her bloated testicles rest against your [pc.thighs]. Yet, despite having hit as deeply into you as she can for now");
 	
 	if (hole < 0 && pc.hasPerk("Buttslut")) output(", to your own dismay");
 	
@@ -745,7 +745,7 @@ public function nykkeSexTakeHer(hole:int):void
 	output("\n\n<i>“My Qal,”</i> she says psionically; one of her hands presses onto your back, between your shoulderblades, dominantly ensuring that you don’t move so she can fuck you. <i>“I… I don’t think I’m entirely… in control. My body is… it’s mating you on its own.”</i>");
 	output("\n\nNot only do you not scold her, you <i>encourage</i> her. You ask her how it feels to have her Qal beneath her; how it feels to know that she’s about to bust a huge fucking nut into you; and that you <i>want</i> it. That you <i>want</i> to feel her seed you and mark you.");
 	
-	if (hole < 0 && pc.hasPerk("Buttslut")) output("  By the Gods, do you ever – she’s some of the best dick you’ve ever had.");
+	if (hole < 0 && pc.hasPerk("Buttslut")) output(" By the Gods, do you ever – she’s some of the best dick you’ve ever had.");
 	
 	output("\n\nThe claps of her body pounding into yours echo off the narrow walls of her lair. The far corner crawls its way ever closer, with every forceful push of her dick into your body, sliding you along the icy floor. Nykke’s panting has turned into rough, nasally snarling as her orgasm approaches.");
 	output("\n\n<i>“Our clutch… will be <b>magnificent!</b>”</i> she bellows into your mind. And, with one final push, her knot batters into your");
@@ -762,8 +762,8 @@ public function nykkeSexTakeHer(hole:int):void
 	
 	if (hole < 0)
 	{
-		output("  Your guts are already stuffed by her invading member, but her cum is what truly makes you feel full and inflated: by the third gush inside you, your [pc.belly] has rounded out with her seed, and, with balls like hers, she only has more to give.");
-		output("  You");
+		output(" Your guts are already stuffed by her invading member, but her cum is what truly makes you feel full and inflated: by the third gush inside you, your [pc.belly] has rounded out with her seed, and, with balls like hers, she only has more to give.");
+		output(" You");
 		
 		if (pc.hasPerk("Buttslut")) output(" rapturously");
 		else output(" greedily");
@@ -778,7 +778,7 @@ public function nykkeSexTakeHer(hole:int):void
 	}
 	else
 	{
-		output("  Your womb is packed to the brim by her second spurt, but Nykke’s balls, huge as they are, have oh-so-much more to give. You’re already split in half, and with her knot in place, her overabundant cum seeps from the seal in drips; your lower body fills out, somewhat uncomfortably, with her offering, and, if you two were compatible, you’d have no doubt in your mind that it would be taking several times over.");
+		output(" Your womb is packed to the brim by her second spurt, but Nykke’s balls, huge as they are, have oh-so-much more to give. You’re already split in half, and with her knot in place, her overabundant cum seeps from the seal in drips; your lower body fills out, somewhat uncomfortably, with her offering, and, if you two were compatible, you’d have no doubt in your mind that it would be taking several times over.");
 		output("\n\nYou were close before she erupted inside you, and as soon as her hot Frostwyrm cum slides into you, you can’t help but explode right alongside her: you clench down on her, your [pc.vagina " + hole + "] milking her cock and urging her for more cum, despite how stuffed you already are and how you could get pregnant four times over with the load you have already. But you don’t care: all your pussy wants is for more of this wonderful dick to give you more of what Nykke wants to give you.");
 	
 	}
@@ -789,11 +789,11 @@ public function nykkeSexTakeHer(hole:int):void
 		
 		if (pc.cumQ() >= 900)
 		{
-			output("  Perhaps spurned and inspired by Nykke’s performance, and her offering, you match her load for load and drop for drop, your [pc.cum] splashing another thick load and adding to the growing puddle beneath you both.");
+			output(" Perhaps spurned and inspired by Nykke’s performance, and her offering, you match her load for load and drop for drop, your [pc.cum] splashing another thick load and adding to the growing puddle beneath you both.");
 		}
 		else
 		{
-			output("  No matter how many times Nykke makes you cum by abusing your");
+			output(" No matter how many times Nykke makes you cum by abusing your");
 			
 			if (hole < 0) output(" [pc.ass]");
 			else output(" [pc.vagina " + hole + "]");
@@ -808,7 +808,7 @@ public function nykkeSexTakeHer(hole:int):void
 	if (hole < 0) output(" stomach.");
 	else output(" womb.");
 	
-	output("\n\nYou hear what might be purrs – or snores – coming from Nykke above you. She offers no resistance when you shuffle beneath her, righting yourself until you’re lying on your back.  Instinctually, Nykke’s six limbs wrap themselves around you once again, locking you to her.");
+	output("\n\nYou hear what might be purrs – or snores – coming from Nykke above you. She offers no resistance when you shuffle beneath her, righting yourself until you’re lying on your back. Instinctually, Nykke’s six limbs wrap themselves around you once again, locking you to her.");
 	output("\n\nNykke is capable of one <i>hell</i> of a round. You can’t help it – you’re already fantasizing about a round two.");
 	output("\n\nShe’d probably be all for it, if you really wanted.");
 	
