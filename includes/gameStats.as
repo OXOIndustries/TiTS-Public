@@ -22,6 +22,9 @@ public function statsScreenMenu(currentFunc:Function):Boolean
 	// Other
 	if(showID == "Other") addDisabledGhostButton(6, "Other");
 	else addGhostButton(6, "Other", currentFunc, "Other", "Other Statistics", "Show your other statistics.");
+	// Racial Scores
+	if(showID == "Other") addDisabledGhostButton(7, "Race");
+	else addGhostButton(7, "Race", currentFunc, "Race", "Racial Scores", "Show your categorized genetic makeup.");
 	// Everything
 	if(showID == "All") addDisabledGhostButton(13, "All");
 	else addGhostButton(13, "All", currentFunc, "All", "All Data", "Show the cumulative log.");
@@ -1177,7 +1180,100 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 	}
-	
+	// Racial scores
+	// It may be preferable for balance reasons to only allow this section to be visible if Easy Mode is on,
+	// or maybe only after unlocking it by talking to some doctor/geneticist (maybe Dr. McAllister on Myrmedion?)
+	if(showID == "Race" || showID == "All")
+	{
+		//======GENETIC MAKEUP=====//
+		output2("\n\n" + blockHeader("Genetic Makeup", false));
+		
+		if(humanScore() > 0)
+			output2("\n<b>* Human:</b> " + humanScore() + "/4 (max: 6)");
+		if(ausarScore() > 0)
+			output2("\n<b>* Ausar:</b> " + ausarScore() + "/4 (max: 5)");
+		if(huskarScore() > 0 && ausarScore() > 0)
+			output2("\n<b>* Huskar:</b> " + huskarScore() + "/3 (max: 5)");
+		if(kaithritScore() > 0)
+			output2("\n<b>* Kaithrit:</b> " + kaithritScore() + "/6 (max: 9)");
+		if(leithanScore() > 0)
+			output2("\n<b>* Leithan:</b> " + leithanScore() + "/6 (max: 9)");
+		if(nukiScore() > 0)
+			output2("\n<b>* Kui-tan:</b> " + nukiScore() + "/6 (max: 7)");
+		if(gooScore() > 0)
+			output2("\n<b>* Goo:</b> " + gooScore() + "/6 (max: 9)");
+		if(bovineScore() > 0)
+			output2("\n<b>* Bovine:</b> " + bovineScore() + "/3 (max: 6)");
+		if(cowScore() > 0 && bovineScore() > 0)
+			output2("\n<b>* Cow:</b> " + cowScore() + "/4 (max: 12)");
+		if(amazonScore() > 0)
+			output2("\n<b>* Amazon:</b> " + amazonScore() + "/4 (max: 5)");
+		if(avianScore() > 0)
+			output2("\n<b>* Avian:</b> " + avianScore() + "/4 (max: 7)");
+		if(badgerScore() > 0)
+			output2("\n<b>* Badger:</b> " + badgerScore() + "/4 (max: 4)");
+		if(bunnyScore() > 0)
+			output2("\n<b>* Bunny:</b> " + bunnyScore() + "/4 (max: 6)");
+		if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined) /*gotta know what it is before you know how much of one you are (just in case the score for a race would somehow be above 0 before even meeting a member of that race)*/
+		{
+			if(korgonneScore() > 0)
+				output2("\n<b>* Korgonne:</b> " + korgonneScore() + "/4 (max: 5)");
+		}
+		if(canineScore() > 0)
+			output2("\n<b>* Canine:</b> " + canineScore() + "/5 (max: 9)");
+		if(lupineScore() > 0)
+			output2("\n<b>* Lupine:</b> " + lupineScore() + "/5 (max: 5)");
+		if(deerScore() > 0)
+			output2("\n<b>* Deer:</b> " + deerScore() + "/4 (max: 5)");
+		if(demonScore() > 0)
+			output2("\n<b>* Demon:</b> " + demonScore() + "/5 (max: 8)");
+		if(dragonScore() > 0)
+			output2("\n<b>* Dragon:</b> " + dragonScore() + "/5 (max: 10)");
+		if(felineScore() > 0)
+			output2("\n<b>* Feline:</b> " + felineScore() + "/5 (max: 7)");
+		if(frogScore() > 0 && flags["MET_KEROKORAS"] != undefined)
+			output2("\n<b>* Kerokoras:</b> " + frogScore() + "/5 (max: 8)");
+		if(gabilaniScore() > 0)
+			output2("\n<b>* Gabilani:</b> " + gabilaniScore() + "/5 (max: 11)");
+		if(goatScore() > 0)
+			output2("\n<b>* Goat:</b> " + goatScore() + "/4 (max: 7)");
+		if(gryvainScore() > 0)
+			output2("\n<b>* Gryvain:</b> " + gryvainScore() + "/9 (max: 11)");
+		if(horseScore() > 0)
+			output2("\n<b>* Horse:</b> " + horseScore() + "/5 (max: 8)");
+		if(hradScore() > 0 && flags["LIRIEL_MET"] != undefined)
+			output2("\n<b>* Hrad:</b> " + hradScore() + "/4 (max: 8)");
+		if(laquineScore() > 0)
+			output2("\n<b>* Laquine:</b> " + laquineScore() + "/5 (max: 6)");
+		if(mothrineScore() > 0 && flags["SEER_MET"] != undefined)
+			output2("\n<b>* Mothrine:</b> " + mothrineScore() + "/5 (max: 10)");
+		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined)
+			output2("\n<b>* Myr:</b> " + myrScore() + "/4 (max: 6)");
+		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && redMyrScore() > 0)
+			output2("\n<b>* Red Myr:</b> " + redMyrScore() + "/8 (max: 12)");
+		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && goldMyrScore() > 0)
+			output2("\n<b>* Gold Myr:</b> " + goldMyrScore() + "/8 (max: 15)");
+		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && orangeMyrScore() > 0 && flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+			output2("\n<b>* Orange Myr:</b> " + orangeMyrScore() + "/9 (max: 16)");
+		if(flags["PQ_NALEENED"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined)
+		{
+			if(naleenScore() > 0)
+				output2("\n<b>* Naleen:</b> " + naleenScore() + "/5 (max: 10)");
+		}
+		if(flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || metTaivra() || flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"] != undefined)
+		{
+			if(nyreaScore() > 0)
+				output2("\n<b>* Nyrea:</b> " + nyreaScore() + "/5 (max: 7)");
+		}
+		/*if(flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined)
+		{ */
+		if(ovirScore() > 0)
+			output2("\n<b>* Ovir:</b> " + ovirScore() + "/5 (max: 9)");	
+		if(pandaScore() > 0)
+			output2("\n<b>* Panda:</b> " + pandaScore() + "/4 (max: 6)");
+		if(pigScore() > 0)
+			output2("\n<b>* Pig:</b> " + pigScore() + "/4 (max: 9)");
+		
 	// Medical
 	if(showID == "Medical" || showID == "All")
 	{
