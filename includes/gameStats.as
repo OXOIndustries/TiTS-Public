@@ -1250,11 +1250,11 @@ public function statisticsScreen(showID:String = "All"):void
 		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined)
 			output2("\n<b>* Myr:</b> " + myrScore() + "/4 (max: 6)");
 		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && redMyrScore() > 0)
-			output2("\n<b>* Red Myr:</b> " + redMyrScore() + "/8 (max: 12)");
+			output2("\n<b>* Red myr:</b> " + redMyrScore() + "/8 (max: 12)");
 		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && goldMyrScore() > 0)
-			output2("\n<b>* Gold Myr:</b> " + goldMyrScore() + "/8 (max: 15)");
+			output2("\n<b>* Gold myr:</b> " + goldMyrScore() + "/8 (max: 15)");
 		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && orangeMyrScore() > 0 && flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
-			output2("\n<b>* Orange Myr:</b> " + orangeMyrScore() + "/9 (max: 16)");
+			output2("\n<b>* Orange myr:</b> " + orangeMyrScore() + "/9 (max: 16)");
 		if(flags["PQ_NALEENED"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined)
 		{
 			if(naleenScore() > 0)
@@ -1273,7 +1273,46 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Panda:</b> " + pandaScore() + "/4 (max: 6)");
 		if(pigScore() > 0)
 			output2("\n<b>* Pig:</b> " + pigScore() + "/4 (max: 9)");
-		
+		if(plantScore() > 0)
+			output2("\n<b>* Plant:</b> " + plantScore() + "/5 (max: 9)");
+		if(flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined || flags["PREG_RASK_GUARD_RESULT"] != undefined) 
+		{
+			if(raskvelScore() > 0)
+				output2("\n<b>* Raskvel:</b> " + raskvelScore() + "/6 (max: 8)");
+		}
+		if(redPandaScore() > 0)
+			output2("\n<b>* Red panda:</b> " + redPandaScore() + "/4 (max: 8)");
+		if(saurmorianScore() > 0)
+			output2("\n<b>* Saurmorian:</b> " + saurmorianScore() + "/6 (max: 9)");
+		if(sharkScore() > 0)
+			output2("\n<b>* Shark:</b> " + sharkScore() + "/5 (max: 12)");
+		if(sheepScore() > 0)
+			output2("\n<b>* Sheep:</b> " + sheepScore() + "/5 (max: 9)");
+		if(simiiScore() > 0)
+			output2("\n<b>* Simii:</b> " + simiiScore() + "/4 (max: 5)");
+		if(suulaScore() > 0)
+			output2("\n<b>* Suula:</b> " + suulaScore() + "/6 (max: 10)");
+		if(tentacleScore() > 0)
+			output2("\n<b>* Tentacle:</b> " + tentacleScore() + "/15 (max: ??)");
+		if(pc.statusEffectv4("Vanae Markings") > 0 || flags["SALVAGED VANAE CAMP"] >= 2 || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined)
+		{
+			if(vanaeScore() > 0)
+				output2("\n<b>* Vanae:</b> " + vanaeScore() + "/6 (max: 10)");
+		}
+		if(vulpineScore() > 0)
+			output2("\n<b>* Vulpine:</b> " + vulpineScore() + "/4 (max: 9)");
+		if(vulpineScore() > 0 && kitsuneScore() > 0 && tailCount > 1)
+			output2("\n<b>* Kitsune:</b> " + kitsuneScore() + "/4 (max: 8)");
+		if(StatTracking.getStat("pregnancy/zil birthed") > 0 || zilCallGirlSexed() > 0 || flags["ZIL_CALLGIRL_NAME_KNOWN"] != undefined || StatTracking.getStat("pregnancy/zil sired") > 0 || flags["AVOID_9TAIL"] != undefined || flags["FOUGHT_9TAIL"] != undefined || flags["FED_9TAIL"] != undefined || flags["ZIL_PROBLEM_DEALT_WITH"] != undefined || flags["PQ_RESOLUTION"] != undefined || flags["PLANTATION_QUEST"] != undefined || MailManager.isEntryViewed("plantation_quest_start") || flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined || flags["ZILTWINS_MET"] != undefined || flags["BURT_ZIL_TALK"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined) /* what does "redundant" mean lol */
+		{
+			if(zilScore() > 0)
+				output2("\n<b>* Zil:</b> " + zilScore() + "/6 (max: 10)");
+		}
+		/* pls add cyborg stuff :(
+		if(cyborgScore() > 0)
+			output2("\n<b>* Cyborg:</b> " + cyborgScore() + "/1 (max: 4)");
+		*/
+	}	
 	// Medical
 	if(showID == "Medical" || showID == "All")
 	{
@@ -2591,7 +2630,7 @@ public function displayQuestLog(showID:String = "All"):void
 						else output2(" and turrets");
 					}
 					else output2(" Visited");
-					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped passed");
+					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped past");
 				}
 				if(flags["PREG_RASK_GUARD_RESULT"] != undefined)
 				{
