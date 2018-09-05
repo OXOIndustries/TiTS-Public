@@ -1703,7 +1703,7 @@ public function getPeggedByFisiI(fromMenu:Boolean = false):void
 	output("\n\nAfter bringing her paws from her breasts to her hips again, Fisianna unbuckles her jeans and shimmies out of them. Once she is in nothing but her panties, she slowly stalks towards you, flipping on her hardlight dildo along the way. As if on instinct, you turn yourself around on the bed and hike your [pc.butt] in the air, presenting your ");
 	if (pc.hasVagina()) output("[pc.vagina] and ");
 	output("pucker to the seductive kitty.");
-	if (pc.hasTails()) {
+	if (pc.hasTail()) {
 		output(" Your [pc.tails] wag");
 		if (pc.tailCount == 1) output("s");
 		output("excitedly back and forth in anticipation.");
