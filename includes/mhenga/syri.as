@@ -2247,12 +2247,18 @@ public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET():vo
 	showSyri(true);
 	author("HugsAlright");
 	output("\n\n<b>This is terrible.</b>");
-	output("\n\nThe ache you’re feeling for a good reaming is unbearable. The heat flushing your body is inescapable. Luckily, you’re in just the right place to find what you need to sate your desires, because right there, sitting at the bar is the answer to all your problems: Syri. ");
-	if(silly) output("Well, her pants hold the answer to all your problems, at least. ");
-	output("You take a deep breath and start to walk towards the wolfy shemale, time seeming to slow as thoughts of her fucking your ass for hours on end cloud your mind. Pulling yourself from your lust-induced trance, you find yourself but a few steps from Syri, rivulets of sweat tickling your [pc.skinFurScales].");
-	output("\n\nYou greet the ausar with a <i>“Hey”</i> and she’s quick to turn around, the gentle smile on her face letting you know she’s happy to see you. ");
+	output("\n\nThe ache you’re feeling for a good reaming is unbearable. The heat flushing your body is inescapable. Luckily, you’re in just the right place to find what you need to sate your desires, because right there, sitting");
+	if(syriAtFreeezer()) output(" in the common room");
+	else output(" at the bar");
+	output(" is the answer to all your problems: Syri.");
+	if(silly) output(" Well, her pants hold the answer to all your problems, at least.");
+	output(" You take a deep breath and start to walk towards the wolfy shemale, time seeming to slow as thoughts of her fucking your ass for hours on end cloud your mind. Pulling yourself from your lust-induced trance, you find yourself but a few steps from Syri, rivulets of sweat tickling your [pc.skinFurScales].");
+	output("\n\nYou greet the ausar with a <i>“Hey”</i> and she’s quick to turn around, the gentle smile on her face letting you know she’s happy to see you.");
 	output("\n\n<i>“What’s up, [pc.name]?”</i>");
-	output("\n\nYou grab her furry wrist and tell the butt-lover you need her help with something. She takes a good look at your flushed face and hungry gaze and grins. <i>“I don’t know, Steele,”</i> she begins, taking a drink, <i>“I’m pretty busy here, if you couldn’t tell.”</i> You roll your eyes and groan in response before giving Syri’s fuzzy arm a rough yank, pulling her up off her stool.");
+	output("\n\nYou grab her furry wrist and tell the butt-lover you need her help with something. She takes a good look at your flushed face and hungry gaze and grins. <i>“I don’t know, Steele,”</i> she begins, taking a drink, <i>“I’m pretty busy here, if you couldn’t tell.”</i> You roll your eyes and groan in response before giving Syri’s fuzzy arm a rough yank, pulling her up off her");
+	if(syriAtFreeezer()) output(" seat");
+	else output(" stool");
+	output(".");
 	if(pc.isAss()) output(" She’s coming with you, whether she and her knotty dick like it or not.");
 	output(" <i>“Hey, easy, [pc.name],”</i> the temptress protests, <i>“I was gonna go with you anyway.”</i> No time for small talk; you walk as fast as you can out the bar with Syri in tow.");
 	processTime(10);
@@ -2267,9 +2273,9 @@ public function syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET2():v
 	showSyri(true);
 	author("HugsAlright");
 	moveTo("SHIP INTERIOR");
-	output("All the way back to your ship, the burning desire to have Syri spread your pucker wide open, to feel her throbbing knot take you, pushes you to move fast. ");
-	if(pc.hasCock() && !pc.isCrotchExposed()) output("You can already feel your [pc.cocks] straining against your [pc.underGarment]. ");
-	output("Holy shit, when did it get so hot in this jungle? Your goal is so close, the sanctity of your bed just a minute away. Lustful thoughts continue to batter your mind as you make your way through the airlock, letting go of Syri’s wrist as you hurry over towards your bed. Holy hell, it’s even hotter on your own ship.");
+	output("All the way back to your ship, the burning desire to have Syri spread your pucker wide open, to feel her throbbing knot take you, pushes you to move fast.");
+	if(pc.hasCock() && !pc.isCrotchExposed()) output(" You can already feel your [pc.cocks] straining against your [pc.underGarment].");
+	output(" Holy shit, when did it get so hot in this jungle? Your goal is so close, the sanctity of your bed just a minute away. Lustful thoughts continue to batter your mind as you make your way through the airlock, letting go of Syri’s wrist as you hurry over towards your bed. Holy hell, it’s even hotter on your own ship.");
 	output("\n\n<i>“So, captain, now that you’ve got me, how do you want me?”</i> your ausar companion asks, her sultry voice causing you to turn around to face her. Her hip is cocked against a furry hand, a smirk on her face, clearly awaiting any proposal from you. You don’t really have an answer for her, all you can think about is this unbearable heat.");
 	//notNude:
 	if(!pc.isAssExposed()) output("\n\nBarely thinking, you start to pull your [pc.gear] off, Syri happily watching you while you do so, her tail wagging faster than it was when you got to the ship. As soon as you’re bare, you throw yourself onto the bed, putting your face into your pillows and sticking your [pc.ass] up in the air for your lover to see.");

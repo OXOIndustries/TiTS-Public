@@ -844,7 +844,15 @@ public function uvetoBarBonus():Boolean
 
 public function uvetoBarFirePitBonus():Boolean
 {
-	if (syriAtFreeezer()) syriAtFreezerFirePitBonus(0);
+	if (syriAtFreeezer())
+	{
+		if(pc.hasStatusEffect("Fuck Fever") && syriIsAFuckbuddy()) 
+		{
+			syriButtreamHeatButtPCButtsInTheButtWithAButtDIDISAYBUTTYET();
+			return true;
+		}
+		syriAtFreezerFirePitBonus(0);
+	}
 
 	setNavDisabled(NAV_SOUTH_DISABLE);
 	return false;
