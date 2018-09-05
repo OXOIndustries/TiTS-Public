@@ -731,7 +731,7 @@ public function willowSexScenes(sceneChoice:int):void
 			else output("[pc.hardlightCock]");
 			output(", ready to receive your cum."); 
 		}
-		//{If strapon: Even if you don’t have any to give.}
+		// {If strapon: Even if you don’t have any to give.}
 		//output("That’s the last straw. ");
 		if (cIdx >= 0)
 		{

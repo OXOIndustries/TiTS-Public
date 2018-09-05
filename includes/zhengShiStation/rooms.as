@@ -1429,7 +1429,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF C24"] = new RoomClass(this);
 	rooms["ZSF C24"].roomName = "SOFTWARE\nDEVELOPMENT";
-	rooms["ZSF C24"].description = "You pause on your way by one of the workstations, not because it displays some crucial piece of information but because of the sheer amount of homosexual male pornography logged on the user's desktop. The thumbnails alone are enough to draw you a mental picture of a gay coder with a serious thirst for muscled dudes and big fat cocks. No further investigations needed. Software Development terminals lie north and east.";
+	rooms["ZSF C24"].description = "You pause on your way by one of the workstations, not because it displays some crucial piece of information but because of the sheer amount of homosexual male pornography logged on the user’s desktop. The thumbnails alone are enough to draw you a mental picture of a gay coder with a serious thirst for muscled dudes and big fat cocks. No further investigations needed. Software Development terminals lie north and east.";
 	rooms["ZSF C24"].planet = "ZHENG SHI STATION";
 	rooms["ZSF C24"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF C24"].northExit = "ZSF C22";
@@ -1443,7 +1443,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF E24"] = new RoomClass(this);
 	rooms["ZSF E24"].roomName = "SOFTWARE\nDEVELOPMENT";
-	rooms["ZSF E24"].description = "One nearby computer displays a brazen and constantly shifting screensaver of two oiled-up lesbians, wrestling their way around every corner of the screen. Though long ago rendered pointless with modern-holoscreens, it would seem this station's owner enjoys the opportunity to reward his idleness with erotica. A dusty fedora rests on the desk next to it, put down and never picked back up. This guy really needs to get his shit together. The software development center stretches north and west.";
+	rooms["ZSF E24"].description = "One nearby computer displays a brazen and constantly shifting screensaver of two oiled-up lesbians, wrestling their way around every corner of the screen. Though long ago rendered pointless with modern-holoscreens, it would seem this station’s owner enjoys the opportunity to reward his idleness with erotica. A dusty fedora rests on the desk next to it, put down and never picked back up. This guy really needs to get his shit together. The software development center stretches north and west.";
 	rooms["ZSF E24"].planet = "ZHENG SHI STATION";
 	rooms["ZSF E24"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF E24"].northExit = "ZSF E22";

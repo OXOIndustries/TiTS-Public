@@ -1390,6 +1390,9 @@
 
 		public function ballSize(arg:Number = 0, apply:Boolean = false):Number
 		{
+			if(isNaN(ballSizeRaw)) ballSizeRaw = 1;
+			if(isNaN(ballSizeMod)) ballSizeMod = 1;
+			
 			if (apply)
 			{
 				ballSizeRaw = arg;

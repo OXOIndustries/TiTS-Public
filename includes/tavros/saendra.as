@@ -47,11 +47,16 @@ public function phoenixLocationSetter():Boolean
 	return false;
 }
 
+public function thePhoenixShipIsOpen():Boolean
+{
+	if(flags["SAENDRA GONNA GO GET A COCK"] == 2) return true;
+	return (flags["SAENDRA PHOENIX AVAILABLE"] != undefined);
+}
 public function thePhoenixShipBonus(btnSlot:int):void
 {
 	output("\n\n<i>The Phoenix</i> is nearby, only a stones-throw away from your own ship, docked in a much smaller neighboring hangar.");
 	
-	if (flags["SAENDRA PHOENIX AVAILABLE"] != undefined) addButton(btnSlot, "The Phoenix", move, "PHOENIX RECROOM");
+	if (thePhoenixShipIsOpen()) addButton(btnSlot, "The Phoenix", move, "PHOENIX RECROOM");
 	else addDisabledButton(btnSlot, "The Phoenix", "The Phoenix", "This ship is locked and cannot be entered.");
 }
 

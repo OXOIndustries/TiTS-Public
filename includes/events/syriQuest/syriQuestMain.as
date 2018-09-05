@@ -113,7 +113,7 @@ time fer balancin'
 //Reqs: Level 9. Must be fuckbuddies with Syri and have gotten Syri's panties.");
 public function syriQuestRunning():Boolean
 {
-	if (syriQuestComplete()) return false;
+	if(syriQuestComplete()) return false;
 	if(pc.level >= 9 && pc.hasKeyItem("Panties - Syri's - Sky blue, silky, and extra crotch room.") && syriIsAFuckbuddy()) return true;
 	return false;
 }
@@ -310,7 +310,7 @@ public function syriQuestGetJiggly():void {
 	//Give minor exhibitionism.
 	pc.exhibitionism(2);
 	pc.lust(33);
-	pc.loadInMouth(chars["SYRI"]);
+	//pc.loadInMouth(chars["SYRI"]);
 	chars["SYRI"].orgasm();
 	clearMenu();
 	addButton(0, "Go Now", syriQuestGoNow,undefined,"Go Now","Head back up to your ship and see what’s on the puppy’s mind.");
@@ -2203,7 +2203,7 @@ public function syriQuestAkkadiBaseEscape():void
 	showValden();
 	author("Savin");
 	moveTo("AKD K19");
-	output("<i>“Come on!”</i> Valden shouts, dashing hard down the corridor towards the elevator banks. I put up as many roadblocks as I could, but I don’t think Akkadi is going to let us go this easy. They’re like gigafaunts - they never let a sleight go!”</i>");
+	output("<i>“Come on!”</i> Valden shouts, dashing hard down the corridor towards the elevator banks. <i>“I put up as many roadblocks as I could, but I don’t think Akkadi is going to let us go this easy. They’re like gigafaunts - they never let a sleight go!”</i>");
 	output("\n\n<i>“Sure, but " + (flags["SYRIQUEST_VALDEN_BODY_CHOICE"] == 1 ? "isn’t Calnor out of the picture now" : "didn’t Calnor let us go") + "?”</i> you snap back, following in the renegade’s wake.");
 	output("\n\nValden just gives you a look over his shoulder and mashes the call button, again and again until the elevator doors slide open. <i>“You came in with that construction crew on the suspension bridge, right? Well, I’m takin’ you out of here in style. There’s a security dropship parked up on the roof. Either we take it, or Akkadi uses it to take us down, yeah?”</i>");
 	output("\n\nParanoid much?");
@@ -2277,7 +2277,7 @@ public function syriQuestDropshipFightVictory():void
 			output("\n\nUh-oh. Looks like taking a gentle hand with the commander here is paying off...\n\n");
 		}
 		else {
-			output("\"</i>\n\nDespite her words, there’s an unmistakable a twitch in Schora’s loins. Looks like she’s happy to see you... or at least, she’s got some pleasant memories from you treating her like a living fucktoy. That’s how she liked it, wasn’t it?");
+			output("”</i>\n\nDespite her words, there’s an unmistakable a twitch in Schora’s loins. Looks like she’s happy to see you... or at least, she’s got some pleasant memories from you treating her like a living fucktoy. That’s how she liked it, wasn’t it?");
 			output("\n\nMaybe you could apply some of that Steele charm here...\n\n");
 		}
 	}
@@ -2306,7 +2306,7 @@ public function syriQuestSchoraFlirt():void
 	output("\n\n<i>“Even when you know it’s the wrong thing to do?”</i>");
 	output("\n\nShe falters, finally lowering her weapon the rest of the way. <i>“What... what am I supposed to do, huh? They own me. They own this world!”</i>");
 	if (silly) output("\n\n<i>“There are other worlds than these,”</i> you answer solemnly.");
-	else output("\n\n<i>\"Come on... listen to your heart, Schora,”</i> you plead.");
+	else output("\n\n<i>“Come on... listen to your heart, Schora,”</i> you plead.");
 	if (flags["MET_SCHORA"] == 5 && flags["SYRIQUEST_VALDEN_BODY_CHOICE"] >= 2) {
 		output("\n\nThere’s a moment’s pause, and then Schora curses and lets her gun drop on its sling. <i>“Damn it, I don’t know if... nah, fuck it, getting laid by you was pretty worth it. Alright, go on. Get out of here before I change my mind.”</i>");
 		output("\n\nYou start to move immediately, following in Valden’s mechanical wake... before you grab Schora’s wrist and plant a kiss on the dusky dzaan’s lips. She all but melts in your arms, moaning softly as your lips meet and tongues entwine. But before you can get too excited, Schora pushes you off and retreats towards the wreck of her craft. <i>“Go! Take Valden and get out of here. I’ll... I’ll make up some excuse. But I better see you again someday. I need you all over me like that again.”</i>");

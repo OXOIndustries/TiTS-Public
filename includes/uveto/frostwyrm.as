@@ -661,8 +661,8 @@ public function nameThatFrostwyrm1():void
 	processTime(65+rand(3));
 	pc.lust(50);
 	
-	clearMenu();
 	processTime(5);
+	clearMenu();
 	addButton(0, "Next", frostwyrmJesusWeFinallyLanded,undefined);
 }
 public function frostwyrmJesusWeFinallyLanded():void
@@ -1750,11 +1750,11 @@ public function frostwyrmSteeleIsADirtyGirl():void
 	if (pc.hasCock()){
 		output("our [pc.cock] erupts its heavy load, spurting your cum right onto [frostwyrm.name]’s thirsty tongue. Your [pc.hips] jerk and thrust impiously, unable to contain themselves; with every load, you thrust forward involuntarily, painting the topside of her tongue with your seed");
 		if (pc.cumQ() > 300){
-			output("\n\n. Despite how large her tongue is, she couldn’t possibly catch every drop of your incredible load because of your positioning, and more than a little bit of it drools off the side, dripping off the sides of her appendage");
+			output(". Despite how large her tongue is, she couldn’t possibly catch every drop of your incredible load because of your positioning, and more than a little bit of it drools off the side, dripping off the sides of her appendage");
 			output(". She bloats and quivers her tongue against your body, massaging your endowments for your every drop to paint her pink tongue white");
 		}
 	}
-	if (pc.isHerm()) output("\n\nIn time with your erupting cock, y");
+	if (pc.isHerm()) output(".\n\nIn time with your erupting cock, y");
 	if (pc.hasVagina()) output("our [pc.vagina] explodes its feminine cum all over the flatter part of [frostwyrm.name]’s tongue. [frostwyrm.name] undulates it, flexing and bloating it, gently massaging it against your vulva and a little rougher against your [pc.clit], milking you for your pleasure as much as she can. Your [pc.femcum] coats her tastebuds, caking her smooth tongue in your flavor, and each time she moves it an inch or more, you shiver and gush out just a little bit extra for her.");
 	output("\n\nYou slump, your face resting against the warm, heaving scales of [frostwyrm.name]’s belly as you relax against her. She wiggles her tongue slightly, teasing you and being careful not to over-stimulate you. After a few moments, she slowly begins to withdraw, making you jump and ‘eek!’ in pleasure with every smooth inch she tickles you with on the way out. The tip makes one last ride up the crease of your [pc.ass] before [frostwyrm.name] pulls it into her mouth, with a bit of flourish.");
 	output("\n\nShe licks at her snout several times, showing to you that she’s appreciating your taste. <i>Exquisite,</i> she remarks, as though she were tasting a wine.");
@@ -1775,6 +1775,7 @@ public function frostwyrmSteeleIsADirtyGirl():void
 	pc.shower();
 	pc.orgasm();
 	IncrementFlag("FROSTWYRM_GAVE_BATH");
+	clearMenu();
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
 }
 public function frostwyrmAllowMeToReturnTheFavor():void
@@ -1872,6 +1873,7 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	pc.loadInMouth(frostwyrm);
 	processTime(60);
 	IncrementFlag("FROSTWYRM_GOT_BLOWN");
+	clearMenu();
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
 }
 public function frostwyrmGoodGodImHurt(vIdx:int = -1):void

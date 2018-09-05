@@ -2349,7 +2349,30 @@ public function zheniyaInAppt():void
 	else if (!pc.hasGenitals()) addDisabledButton(0, "Sex", "Sex", "You’d need some genitals to fully enjoy the experience...");
 	else addButton(0, "Sex", zheniyaApptSex, undefined, "Sex", "Fuck your zil lover.");
 	addButton(2, "Get Honey", zheniyaApptGetHoney, undefined, "Get Honey", "Ask Zheniya for a little of her sweet, sweet honey to go.");
+	
+	// Preg disable flag hotfix
+	if(zilCallGirlPregTime(true) >= 100 && flags["ZIL_CALLGIRL_DISABLED_TYPE"] == 4 && (flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] > GetGameTimestamp()) && flags["ZIL_CALLGIRL_BIRTH_MEETING_REQ"] == undefined)
+	{
+		output("\n\nYOU DONE FUCKED UP.");
+		addButton(13, "Fix Preg", zheniyaFixPreg, undefined, "Fix Zheniya’s Pregnancy", "There was a mistake... use this to fix it.");
+	}
+	
 	addButton(14, "Back", zheniyaApptBack);
+}
+
+public function zheniyaFixPreg():void
+{
+	clearOutput();
+	showBust("");
+	showName("PREGNANCY\nFIXED!");
+	author("Jacques00");
+	
+	output("Zheniya’s pregnancy has been fixed. <b>You may need to wait for up to a day or so until a message appears.</b>");
+	
+	flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] = GetGameTimestamp();
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 public function zheniyaApptSex():void
@@ -2449,7 +2472,7 @@ public function processZheniyaEvents(deltaT:uint, doOut:Boolean, totalDays:int):
 			if (flags["ZIL_CALLGIRL_PREGNANT_TOLD"] != undefined) zilCallGirlPregnancyEnds(deltaT);
 		}
 
-		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 360) < GetGameTimestamp() + deltaT)
+		if ((flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] + 360) < (GetGameTimestamp() + deltaT))
 		{
 			flags["ZIL_CALLGIRL_DISABLED_TYPE"] = undefined;
 			flags["ZIL_CALLGIRL_DISABLED_TIMESTAMP"] = undefined;
