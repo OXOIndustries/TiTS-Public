@@ -1042,7 +1042,7 @@ public function defeatTheSlavebreaker():void
 	//HP
 	if(enemy.HP() <= 1)
 	{
-		output("The slavebreaker wobbles once then falls. Fear flickers behind her eyes as she looks up from the ground, though her lips purse with a hint of intrigue. <i>“You’ve bested me. Either you aren’t a slave... or you do don’t deserve to me.”</i> Her " + (enemy.eyeColor == "gold" ? "golden":"pink") + " eyes widen imploringly. <i>“I bid you, treat me with tenderness. I would have done the same to you, were our situations reversed.”</i>");
+		output("The slavebreaker wobbles once then falls. Fear flickers behind her eyes as she looks up from the ground, though her lips purse with a hint of intrigue. <i>“You’ve bested me. Either you aren’t a slave... or you don’t deserve me.”</i> Her " + (enemy.eyeColor == "gold" ? "golden":"pink") + " eyes widen imploringly. <i>“I bid you, treat me with tenderness. I would have done the same to you, were our situations reversed.”</i>");
 	}
 	//Lust
 	else

@@ -2109,17 +2109,20 @@ public function zephyrDoubleBetWin():void
 	clearOutput();
 	showZephyrDeets();
 	author("Wsan");
-
+	
+	var cIdx:int = (pc.hasCock() ? pc.biggestCockIndex() : -1);
+	var cLength:Number = (cIdx >= 0 ? pc.cLength(cIdx) : 8);
+	
 	output("<i>“Fuck! God damn it,”</i> Zephyr curses, shaking her hand. <i>“There’s no way... were you just baiting me the whole time?”</i> She asks, suddenly suspicious, then shakes her head. <i>“Nah, fuck it. Doesn’t matter.”</i>");
 	
 	output("\n\n<i>“Not sure you’d want to hear the answer anyway, right?”</i> you say, smirking. Zephyr only grunts in disgust at her loss. <i>“Alright! Lie down on the desk with your head hanging off the edge.”</i>");
 	
 	output("\n\nShe does so in silence, glaring up at you standing over her.");
 	
-	output("\n\n<i>“You look good like that,”</i> you tell her, smiling with a hand on your [pc.cockOrStrapon].");
+	output("\n\n<i>“You look good like that,”</i> you tell her, smiling with a hand on your [pc.cockOrStrapon " + cIdx + "].");
 	
 	output("\n\n<i>“Please,”</i> she mutters, rolling her eyes downward. <i>“Just");
-	if ((pc.balls > 0 && pc.ballDiameter() > 4) || pc.biggestCockLength() > 36) output("- aw fuck,”</i> she groans in despair, looking up wide-eyed at your endowments, <i>“you’re one of those hyper losers");
+	if ((pc.balls > 0 && pc.ballDiameter() > 4) || cLength > 36) output("- aw fuck,”</i> she groans in despair, looking up wide-eyed at your endowments, <i>“you’re one of those hyper losers");
 	else output(" shut up and fuck me, you loser");
 	output(".”</i>");
 	
@@ -2129,8 +2132,8 @@ public function zephyrDoubleBetWin():void
 
 	output("\n\n<i>“Ohohohohoooo, reeeaaaaaaaaally?”</i> you gloat, bending your [pc.hips] back and pulling yourself down a bit to align with her closed lips. You rub the head on them and shiver in anticipation. This is going to be <i>fun</i>. No need to go easy on her.");
 	
-	output("\n\nWith your [pc.biggestCockhead] lined up, you");
-	if (pc.biggestCockLength() <= 24)
+	output("\n\nWith your [pc.cockOrStraponHead " + cIdx + "] lined up, you");
+	if (cLength <= 24)
 	{
 		output(" sink yourself past her pouting lips in one thrust, hollowing out her throat");
 		if (pc.balls > 0 && pc.ballDiameter() <= 4) output(" and squishing your [pc.balls] against her nose.");
@@ -2138,20 +2141,25 @@ public function zephyrDoubleBetWin():void
 	}
 	else
 	{
-		output(" sink the first two feet of your cock right down her throat, watching her neck bulge outwards ludicrously.");
+		output(" sink the first two feet of your [pc.cockOrStraponNoun " + cIdx + "] right down her throat");
+		if(cLength >= 6) {
+			output(", watching her neck bulge outwards");
+			if(cLength >= 18) output(" ludicrously");
+		}
+		output(".");
 		if (pc.balls > 0) output(" Your [pc.balls] swing pendulously beneath, threatening to slap her in the face.");
 	}
 	
 	output("\n\n<i>“Awww, fuck,”</i> you groan in satisfaction, looking down at Zephyr’s reactions. She has one hand balled up in a fist and another clutching her throat, which you promptly bat away to get a better look at how you’re swelling her outwards. To her credit, though, she really hasn’t gagged. <i>“You take it like a fucking champ, Zephyr,”</i> you tell her, grunting as you draw your hips back. <i>“See if you can keep pace.”</i>");
 	
-	if (pc.biggestCockLength() <= 24)
+	if (cLength <= 24)
 	{
 		output("\n\nLeaning over and taking hold of her massive breasts, you begin fucking her throat in earnest,");
 		if (pc.balls > 0) output(" balls bouncing off Zephyr’s face and no doubt irritating the fuck out of her");
 		else output(" Zephyr’s hands gripping the table in white-knuckled desperation");
 		output(". Seeing her forced to put up with your savage treatment is half the pleasure in this, though you have to admit the warm wetness of her throat is pretty amazing on its own. Your cock glides through her slick, constricting passage with just enough friction on all sides to make it feel like you’re in a regular NT girl’s pussy.");
 	}
-	else if (pc.biggestCockLength() <= 47)
+	else if (cLength <= 47)
 	{
 		output("\n\nYou’re too big to get fully inside most girls, but Zephyr is nine feet tall and built tough. She’ll be fine. You walk yourself forward slowly, pulling her head towards you as she makes increasingly desperate noises from her throat, but all it really accomplishes is a nice vibration against your cumvein. Finally, you get your entire length down her throat, impaling her from the top. Whether by instinct or recognition of your dominance, she’s powerless to resist.");
 		if (pc.balls > 0) output(" Your [pc.balls] rest snugly against her face, obscuring her vision and churning with need.");
@@ -2162,9 +2170,9 @@ public function zephyrDoubleBetWin():void
 	}
 	
 	output("\n\n<i>“I think I’ll cum down your throat once just to break you in,”</i> you tell her, luxuriating in the sensory overload of having your");
-	if (pc.biggestCockLength() <= 47) output(" entire");
+	if (cLength <= 47) output(" entire");
 	output(" length stuffed in Zephyr’s face. She doesn’t respond to your provocation other than to gurgle against your");
-	if (pc.biggestCockLength() > 24) output(" monstrous");
+	if (cLength > 24) output(" monstrous");
 	output(" shaft, though her neck bulges and recedes with your passage.");
 	
 	output("\n\nYou while away the minutes, enjoying the feeling of Zephyr wrapped almost literally around your cock, but something’s missing. This is just a bit too... civilized for a woman like her. With her inability to gag, there’s none of the roughness of the act you were hoping for - she lost, after all. This was a high-stakes game. Pushing her slightly down the desk, you clamber up onto it yourself, on your knees above her face.");
@@ -2172,15 +2180,16 @@ public function zephyrDoubleBetWin():void
 	output("\n\n<i>“That’s more like it,”</i> you grunt, getting a nice view of her eyes bulging in alarm as you start to dip your hips downward, fucking her throat. Maybe it’s just your imagination, but she feels even tighter now. It won’t take long at all to cum like this, and the closer you get the faster you fuck her face. Approaching the brink of orgasm, you put your hands on Zephyr’s mammoth breasts and squeeze her nipples to get a reaction, her subdued groan providing a nice backdrop for the first load you spurt right into her stomach.");
 	
 	output("\n\nThrowing your head back, you groan in pleasure as Zephyr chugs your cum through no will of her own. You can see your own cock flexing in her throat if you sit back and watch it, sliding it as deep as possible to ensure your seed ends up right in her core.");
-	if (pc.cumQ() <= 3000)
+	var cumQ:Number = pc.cumQ();
+	if (cumQ <= 3000)
 	{
 		output(" She takes it like a champ, swallowing your jizz while groaning quietly beneath you.");
 	}
-	else if (pc.cumQ() <= 10000)
+	else if (cumQ <= 10000)
 	{
 		output(" Sucking down your voluminous loads silently save for the loud swallows every couple of seconds, Zephyr manages to keep all of it down, albeit with a slight bump in her tummy.");
 	}
-	else if (pc.cumQ() <= 25000)
+	else if (cumQ <= 25000)
 	{
 		output(" Sucking down your voluminous loads silently save for the loud, frantic swallows three times a second, Zephyr manages to keep all of it down. Her tummy suffers for it, her taut abs giving way to a massive, sagging bump of sloshing jizz.");
 	}
@@ -2191,8 +2200,8 @@ public function zephyrDoubleBetWin():void
 	output(" When you withdraw, you notice <i>her</i> cock standing at attention and slowly pulsing, precum oozing from the tip. She’s <i>close</i>.");
 	
 	output("\n\nShe turns her head to the side and moans, spunk");
-	if (pc.cumQ() <= 3000) output(" dripping");
-	else if (pc.cumQ() <= 10000) output(" flowing");
+	if (cumQ <= 3000) output(" dripping");
+	else if (cumQ <= 10000) output(" flowing");
 	else output(" gushing");
 	output(" from her mouth onto the floor. Making to get up, she finds herself being pushed back down on the desk.");
 	
