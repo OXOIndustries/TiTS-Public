@@ -1139,7 +1139,7 @@ public function annoFollowerSexMenu():void
 	if(flags["ANNO_OWNS_LIGHT_STRAPON"] != undefined) addButton(6,"Take Strapon",getFuckedByAnnoStraponsSavinYouSlut,undefined,"Take Strapon","Have Anno use her strapon on you.");
 	//Fuck Anno WITH SCIENCE
 	//PC must be wearing a Hardlight Strapon. Add [Pitch Strapon] to sex menu
-	if(pc.lowerUndergarment.hardLightEquipped) addButton(7,"Pitch Strapon",fuckAnnoWithScienceYoFukkinLadyBoi,undefined,"Pitch Strapon","Use your hardlight strapon on Anno.");
+	if(pc.hasHardLightEquipped()) addButton(7,"Pitch Strapon",fuckAnnoWithScienceYoFukkinLadyBoi,undefined,"Pitch Strapon","Use your hardlight strapon on Anno.");
 	else addDisabledButton(7,"Pitch Strapon","Pitch Strapon","You need a pair of strapon-equipped undergarments to do this.");
 	
 	if(flags["ANNO_TRIBERATOR_USED"] == undefined) addButton(8,"Vibrator",annosTriberatorGatorMatorHater,undefined,"Vibrator","Is that an ausar vibrator over there? Maybe you can use it on her.");
@@ -4493,12 +4493,7 @@ public function annoXKaedeWalkinPetPlayIntro():void
 	
 	output("There’s normally nothing special about heading over to Anno’s cabin. She’s pretty much had an open-door policy with you since coming aboard; it’s not surprising when you find her door’s actually jammed open. The automatic slide is stuck on what is most certainly a bright pink bra, trying and failing to seal closed around one of the cups. A cup that looks a little too small to be one of Anno’s.");
 	output("\n\nAnd then you hear giggles, and a low little moan, drifting out from inside.");
-	output("\n\nCuriosity gets the better of you. You wander up to the door and press your eye into the crack, peering into the science ");
-	if (silly)
-		output(" doggo");
-	else 
-		output(" slut");
-	output("’s cabin. Inside, a very naked Anno is squatting on the deck, arms raised in front of her like paws and tongue lolling out of her mouth, panting heavily. Around her neck is a bit leather collar with a pink bone-shaped holotag, connected to a hardlight leash held by none other than than a certain ginger girlfriend, sitting on the edge of her bed.");
+	output("\n\nCuriosity gets the better of you. You wander up to the door and press your eye into the crack, peering into the science " + (silly ? "doggo" : "slut") + "’s cabin. Inside, a very naked Anno is squatting on the deck, arms raised in front of her like paws and tongue lolling out of her mouth, panting heavily. Around her neck is a bit leather collar with a pink bone-shaped holotag, connected to a hardlight leash held by none other than than a certain ginger girlfriend, sitting on the edge of her bed.");
 	output("\n\n<i>“Good girl!”</i> Kaede giggles, scratching Anno between the ears. <i>“Yes you are. The best girl!”</i>");
 	output("\n\nAnno barks happily, wagging her snowy tail and nuzzling against Kaede’s thigh.");
 	output("\n\n<i>“Uh, let’s see,”</i> Kaede hums, tapping her chin. <i>“Umm, why don’t you, uh, oh I know! Roll over, girl! Roll over!”</i>");
@@ -4701,7 +4696,7 @@ public function combineAndHaveAFinishAnnoXKaedeAccidentPetPlay():void {
 	output("\n\nLooks like you got yourself a breeding pair of bitches! At the rate they’re going, you might just end up with a litter of puppies. Wouldn’t that be something?");
 	output("\n\nWell, these doggies have been so good, you decide they deserve a ");
 	
-	if (pc.hasCock() || pc.lowerUndergarment.hardLightEquipped) 
+	if (pc.hasCock() || pc.hasHardLightEquipped()) 
 	{
 		output("bone.");
 		output("\n\nYou toss your gear aside and slide down onto your [pc.knees], presenting your [pc.cockOrStrapon] to Anno. The snowy slut pants, leaving her mouth open for you to exploit. Your dick slides forward, sliding over her oh-so-wet tongue and down her throat. She’s as dutiful as ever, lavishing your length with loving licks and squeezing your crown with her throat, milking you as surely as her pussy must be working Kaede behind her. Your hands find their way to Anno’s jackal-like ears, scratching that sweet spot between them until she’s moaning -- and dripping between her legs, though that’s just as much her stud’s doing as it is yours");

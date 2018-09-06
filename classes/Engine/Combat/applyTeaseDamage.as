@@ -3,16 +3,17 @@ package classes.Engine.Combat
 	import classes.kGAMECLASS;
 	import classes.Creature;
 	import classes.Items.Piercings.GeddaniumRingPiercing;
+	import classes.Items.Piercings.UrtaniumRingPiercing;
 	import classes.Characters.*;
 	import classes.Engine.Interfaces.*;
 	import classes.GameData.CombatManager;
 	import classes.GameData.CombatAttacks;
 	import classes.Engine.Utility.rand;
+	import classes.Engine.Utility.possessive;
 	import classes.StringUtil;
 	import classes.Engine.Combat.*;
 	import classes.Engine.Combat.DamageTypes.*;
 	import classes.Engine.Combat.teaseReactions;
-	import classes.Engine.Utility.possessive;
 	import classes.Util.InCollection;
 	/**
 	 * ...
@@ -38,6 +39,7 @@ package classes.Engine.Combat
 		}
 		//Free "really likes" for geddanium rang~
 		if (attacker.hasPiercingOfClass(GeddaniumRingPiercing) && target.hasScales()) factor *= 2;
+		if (attacker.hasPiercingOfClass(UrtaniumRingPiercing) && target.hasFur()) factor *= 2;
 		if (attacker.hasStatusEffect("Sex On a Meteor") || attacker.hasStatusEffect("Tallavarian Tingler")) factor *= 1.5;
 		if (attacker.hasStatusEffect("\"Rutting\"")) factor *= 1.5;
 		if (attacker.hasStatusEffect("Body Paint")) factor *= 1.15;
@@ -235,9 +237,20 @@ package classes.Engine.Combat
 
 function teaseSkillUp(teaseType:String):void
 {
-	import classes.kGAMECLASS;
+	if(teaseType == null) return;
 	
-	if (teaseType == "SQUIRT") teaseType = "CHEST";
-	else if(teaseType == "DICK SLAP") teaseType = "CROTCH";
-	kGAMECLASS.flags["TIMES_" + teaseType + "_TEASED"]++; // the menu display handles wrapping this so w/e
+	import classes.kGAMECLASS;
+	import classes.Engine.Utility.IncrementFlag;
+	import classes.Util.InCollection;
+	
+	switch(teaseType)
+	{
+		case "SQUIRT": teaseType = "CHEST"; break;
+		case "DICK SLAP": teaseType = "CROTCH"; break;
+		case "MYR VENOM": teaseType = "ORAL"; break;
+	}
+	
+	if(InCollection(teaseType, ["BUTT", "CHEST", "CROTCH", "HIPS", "ORAL"]))
+		IncrementFlag("TIMES_" + teaseType + "_TEASED"); // the menu display handles wrapping this so w/e
 }
+

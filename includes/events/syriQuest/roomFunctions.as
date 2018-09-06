@@ -361,7 +361,7 @@ public function syriQuestAkkadiBaseCheckPoint():Boolean
 		flags["MET_TORRA"] = 1;
 		addButton(0, "Fight", syriQuestTorraFight, undefined, "Fight", "You’ve got a bad feeling about submitting to this needy kitty.");
 		if (pc.hasCock() && pc.cockThatFits(chars["TORRA"].vaginalCapacity()) >= 0) addButton(1,"Fuck",penisRouter,[syriQuestTorraFuck,chars["TORRA"].vaginalCapacity(),false,0],"Fuck","Why bother fighting? You both wan’t the same thing anyway!");
-		else addButton(1,"Fuck",syriQuestTorraFuck,-1,"Fuck","Why bother fighting? You both wan’t the same thing anyway!");
+		else addButton(1,"Fuck",syriQuestTorraFuck,-1,"Fuck","Why bother fighting? You both want the same thing anyway!");
 		return true;
 	}
 	else {

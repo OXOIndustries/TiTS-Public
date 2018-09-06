@@ -11,7 +11,8 @@ package classes.Characters
 	import classes.GameData.CombatAttacks;
 	import classes.GameData.CombatManager;
 	import classes.Engine.Combat.blindMiss;
-	import classes.Engine.Combat.combatMiss;
+	import classes.Engine.Combat.damageRand;
+	import classes.Engine.Combat.rangedCombatMiss;
 	import classes.Engine.Combat.applyDamage;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Items.Protection.ReaperArmamentsMarkIShield;
@@ -116,14 +117,14 @@ package classes.Characters
 		private function shootMahShotgun(target:Creature):void
 		{
 			output("The slaver levels his shotgun at you and fires!");
-			if (combatMiss(this, target) || blindMiss(this, target))
+			if (rangedCombatMiss(this, target) || blindMiss(this, target))
 			{
 				output(" Somehow, the shot doesn’t land!");
 			}
 			else
 			{
 				output(" You’re hit with the full blast of the shotgun!");
-				applyDamage(rangedDamage(), this, target, "minimal");
+				applyDamage(damageRand(rangedDamage(), 20), this, target, "minimal");
 			}
 		}
 	}

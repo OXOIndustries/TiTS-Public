@@ -13,7 +13,7 @@ package classes.Items.Melee
 		
 		public function PetraMerc() 
 		{
-			this.tooltip += "\nIt seems ripe for modification and as a [pc.startingCareer], you’ve been able to ";
+			this.tooltip += "\n\nIt seems ripe for modification and as [pc.aStartingCareer], you’ve been able to ";
 			this.tooltip += "add some shielding to the hand-grip and mace tips to the end for knocking targets down.";
 			this.shortName = "PhasicWhipM"; 
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));

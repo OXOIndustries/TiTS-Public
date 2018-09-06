@@ -30,7 +30,7 @@ package classes.GameData.Pregnancy.Handlers
 			_ignoreInfertility = false;
 			_ignoreFatherInfertility = true;
 			_ignoreMotherInfertility = false;
-			_allowMultiplePregnancies = false;
+			_allowMultiplePregnancies = true;
 			_canImpregnateButt = false;
 			_canImpregnateVagina = true;
 			_canFertilizeEggs = false;
@@ -106,6 +106,10 @@ package classes.GameData.Pregnancy.Handlers
 		
 		public static function zephyrSuccessfulImpreg(father:Creature, mother:Creature, pregSlot:int, thisPtr:BasePregnancyHandler):void
 		{
+			// Can only support one of this type at a time!
+			// Return if mother already has pregnancy of this type.
+			if(mother.hasPregnancyOfType(thisPtr.handlesType)) return;
+			
 			BasePregnancyHandler.defaultOnSuccessfulImpregnation(father, mother, pregSlot, thisPtr, [1.0, 1.5, 0.5]);
 		}
 		

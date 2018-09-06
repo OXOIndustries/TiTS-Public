@@ -540,7 +540,7 @@ public function urbolgHistoryContinue():void
 	output("\n\n<i>“And?”</i>");
 	output("\n\nThe korgonne smirks at you. <i>“And she hauled my sorry ass in for medical treatment, I guess. Woke up in her ship with a stump below the elbow, one good eye, and a translator strapped around my neck. Tried to fight my way out once, before I passed out. If ye can believe it, I was a bit of a savage back then. Thought the core magics would corrupt me.”</i> He glances to his arm and sighs. <i>“Twas about half right about that, truth be told.”</i>");
 	output("\n\nYou ask him why he stayed instead of going home, if he was that worried about corruption.");
-	output("\n\n<i>“Didn’t have much choice.”</i> He barks out a bawdy laugh. <i>“When ye wake up in a pirate cruiser, ye can either chip in and earn a share or get sold off into slavery. Me? I chipped in, and I chipped in hard.”</i> He wiggles his fingers. <i>“Once they calmed me down and stuffed a new hand on me stump, I got put to work cleaning out under the engines, reactors, and anywhere else to small or dirty for a bigger pirate to bother with. It’s how I got me start, bein’ an artificer.”</i>");
+	output("\n\n<i>“Didn’t have much choice.”</i> He barks out a bawdy laugh. <i>“When ye wake up in a pirate cruiser, ye can either chip in and earn a share or get sold off into slavery. Me? I chipped in, and I chipped in hard.”</i> He wiggles his fingers. <i>“Once they calmed me down and stuffed a new hand on me stump, I got put to work cleaning out under the engines, reactors, and anywhere else too small or dirty for a bigger pirate to bother with. It’s how I got me start, bein’ an artificer.”</i>");
 	if(flags["URBOLG_ARTIFICER"] == undefined) flags["URBOLG_ARTIFICER"] = 0;
 	//[Continue] [Artificer?] (starts artificer talk)
 	processTime(8);
@@ -588,7 +588,7 @@ public function urbolgArtificerTalk():void
 	output("\n\n<i>“It isn’t.”</i>");
 	output("\n\n<i>“So yer saying it isn’t magic, but... isn’t magic just understanding those invisible forces that bind together our universe and whatnot, tweaking ‘em in just the right way to accomplish something miraculous?”</i> Urbolg seems to be holding back a giggle.");
 	output("\n\nConsidering how it functions in most fantasy holos, you admit that it seems an apt description.");
-	output("\n\n<i>“That description is just as apt for yer science boys and gals, spendin’ all day studying arcane formulae and physics to wring a few extra wats into a laser pistol. And don’t tell me that the warp gates that stitch this universe together ain’t the product of some black magic. Somebody musta traded their heart to a demon for the keys to that puzzle. Just ‘cause core magic’s a bit more finicky than the stuff of legend don’t make it not be magic.”</i>");
+	output("\n\n<i>“That description is just as apt for yer science boys and gals, spendin’ all day studying arcane formulae and physics to wring a few extra Watts into a laser pistol. And don’t tell me that the warp gates that stitch this universe together ain’t the product of some black magic. Somebody musta traded their heart to a demon for the keys to that puzzle. Just ‘cause core magic’s a bit more finicky than the stuff of legend don’t make it not be magic.”</i>");
 	output("\n\n<i>“That’s... ");
 	if(pc.isBimbo()) output("like, a super smart way to think about it!");
 	else output("a fair point.");
@@ -1273,7 +1273,7 @@ public function urbolgToysPartIII(x:int):void
 	clearOutput();
 	showUrbolg(true);
 	//Cumslut of any kind.
-	if(pc.isDependant(2) || pc.isBimbo() || pc.isCumSlut())	
+	if(pc.isBimbo() || pc.isCumSlut())	
 	{
 		output("Your eyes cross to take in the puddle of creamy goo on your chest. The salty, musky aroma wafts up to your nostrils, and your mouth can’t help but water. Your cock can’t help but throb. You can’t help but lick your lips and prepare yourself for a mighty thrust. Of course you want more of his cum! You want to milk it out in long loving strokes until you’re bathing in it. You want it " + (pc.hasHair() ? "slicking back your hair" : "coating your head") + " and danging from your eyelashes. You want it bubbling around a glowing, cum-drunk smile.");
 	}
@@ -1325,7 +1325,7 @@ public function urbolgToysPartIV(x:int):void
 
 	output("\n\nUrbolg is no better off. The stocky dog-man’s crotch is plastered with mixed sperm all the way down to his knees, and he’s panting like he just finished a marathon. He rolls off of you, cock still hard and drooling. His artificial eye is completely unfocused as he groans and twitches. Both his toys are still going strong, even as you peel your own off.");
 	output("\n\nWiping the seed from your eyes, you watch him for a bit. His cyan knot seems to be filling up quite rapidly, even if his brain is taking its sweet time to recover.");
-	if(pc.isDependant(2) || pc.isBimbo() || pc.isCumSlut())	
+	if(pc.isBimbo() || pc.isCumSlut())	
 	{
 		output(" You do him the favor of sealing your lips around his slippery tip and sucking. A hand around his knot soon has him spraying creamy delight into the back of your throat, something you’re all too happy to swallow down. There seems almost no end to his loads. One cheek-bulging deposit inevitably gives way to another, and another... and another. You just focus on sucking like the natural-born cock-sucker you are. Urbolg deserves to be <i>satisfied</i>.");
 		output("\n\nYour tummy gurgles and wobbles from fullness before the korgonne stops giving you musky treats, but at least the size of his squirts and the thickness of his load has diminished. What a productive doggy! You ease off his cock and brush off his toys before he can die from dehydration, though. The cum flavored burp you have while you wait for Urbolg to wake up is nature’s way of letting you know you did a good job. Yay!");
@@ -1348,7 +1348,7 @@ public function urbolgToysPartIV(x:int):void
 	output("\n\nThe korgonne heaves himself up and grabs his apron, perhaps the only thing in the immediate area to survive your bit of playtime un-spunked. <i>“I’ll be seeing ye outside. Lemme know if I can do anything for ye, or if ye want another go with me toys.”</i>");
 	output("\n\nYou definitely will.");
 	//Apply cumsoaked.
-	if(pc.isDependant(2) || pc.isBimbo() || pc.isCumSlut())	
+	if(pc.isBimbo() || pc.isCumSlut())	
 	{
 		processTime(30);
 		pc.loadInMouth(chars["URBOLG"]);
@@ -1416,7 +1416,7 @@ public function urbolgPBCookiesBYOUMADMAN():void
 		{
 			output("\n\nYou smirk; you’ve been caught and you know it. You ask Urbolg how he figured out what peanut butter does to Korgonne.");
 			output("\n\n<i>“We didn’ have nothin’ like peanut butter back in the hold,”</i> he explains. <i>“When I left Uveto, and I got integrated into new cultures and shit, I was told that a normal pick-me-up was somethin’ called a peanut-butter-and-jam sammich. So I gave ‘er a try.”</i>");
-			output("\n\nHe chuckles as he recalls the memory. <i>“Caught that fekkin’ nurse I was with for a loop, fer sure. ’Course, afterwerd, I wanted te know what part of the sammich could gimme such a reaction. For, uh, science, and junk. Long story short, that’s how I know.”</i>");
+			output("\n\nHe chuckles as he recalls the memory. <i>“Caught that fekkin’ nurse I was with for a loop, fer sure. ‘Course, afterwerd, I wanted te know what part of the sammich could gimme such a reaction. For, uh, science, and junk. Long story short, that’s how I know.”</i>");
 			output("\n\nYou tell Urbolg that he’s the first Korgonne you’ve met that knew what peanut-butter did to them beforehand. It was always a bit of a kick to feed a Korgonne such a plain, innocent cookie, and... be treated to a ‘show’ in return.");
 			output("\n\n<i>“Well, hell, " + pc.mf("lad","lass") + ", if that’s what yer after, I ain’t sayin’ no to some food and a good time,”</i> he offers.");
 			output("\n\nNow that you two are on the same page, you open up the baggie, letting the scent of your peanut-butter treats permeate the air. <i>“Thassa good [pc.boyGirl],”</i> Urbolg says as he hooks his arms beneath his apron and lifts it over his head, bearing his full, nude body to the air. <i>“Could go for some relief, an’ I’m a bit peckish, besides.”</i>");

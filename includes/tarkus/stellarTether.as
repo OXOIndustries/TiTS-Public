@@ -2009,7 +2009,7 @@ public function victoryKaskaDicksex(jail:Boolean = false):void
 		showBust(kaskaBustDisplay(true));
 		showName("\nKASKA");
 	}
-	else showKaska(true);
+	else showKaskaPrison(true);
 
 	var x:int = pc.cockThatFits(chars["KASKA"].vaginalCapacity(0));
 	if(x < 0) x = pc.smallestCockIndex();
@@ -2133,7 +2133,7 @@ public function makeKaskaSuchYerCoochLikeABaws(jail:Boolean = false):void
 		showBust(kaskaBustDisplay(true));
 		showName("\nKASKA");
 	}
-	else showKaska(true);
+	else showKaskaPrison(true);
 
 	if(!pc.isCrotchExposed()) output("You lazily open your [pc.lowerGarments],");
 	else output("You lazily step forward,");

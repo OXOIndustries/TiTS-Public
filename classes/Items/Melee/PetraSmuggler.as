@@ -12,7 +12,7 @@ package classes.Items.Melee
 		
 		public function PetraSmuggler() 
 		{
-			this.tooltip += "\nIt seems ripe for modification and as a [pc.startingCareer], you’ve been able to ";
+			this.tooltip += "\n\nIt seems ripe for modification and as [pc.aStartingCareer], you’ve been able to ";
 			this.tooltip += "strip down the model for a lighter, much more nimble build.";
 			this.shortName = "PhasicWhipS"; 
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));

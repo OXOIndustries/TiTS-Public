@@ -11,7 +11,7 @@ package classes.Items.Melee
 		
 		public function PetraTech() 
 		{
-			this.tooltip += "\nIt seems ripe for modification and as a [pc.startingCareer], you’ve been able to ";
+			this.tooltip += "\n\nIt seems ripe for modification and as [pc.aStartingCareer], you’ve been able to ";
 			this.tooltip += "overcharge the current for more power.";
 			this.shortName = "PhasicWhipT"; 
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));

@@ -559,8 +559,8 @@ public function bbFoodMenu():void
 	else addDisabledButton(0,"B&Gravy","Biscuits and Gravy","You cannot afford that.\n\nCost: 5 Credits");
 	if(pc.credits >= 10) addButton(1,"Country Ham",eatAtTheBB,"Country Ham","Country Ham","Pan-fried ham on a bed of grits and smothered in red-eye gravy. Served with a side of skillet-baked cornbread.\n\nCost: 10 Credits");
 	else addDisabledButton(1,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 10 Credits");
-	if(pc.credits >= 20) addButton(2,"CF Steak",eatAtTheBB,"CF Steak","Country Fried Steak","Not actually chicken but rather a cube steak soaked in milk, breaded with seasoned flour, and skillet-fried to perfection, slathered in a milk gravy. Served with a side of mashed potatoes.\n\nCost: 20 Credits");
-	else addDisabledButton(2,"Country Ham","Country Ham","You cannot afford that.\n\nCost: 20 Credits");
+	if(pc.credits >= 20) addButton(2,"CF Steak",eatAtTheBB,"CF Steak","Chicken Fried Steak","Not actually chicken but rather a cube steak soaked in milk, breaded with seasoned flour, and skillet-fried to perfection, slathered in a milk gravy. Served with a side of mashed potatoes.\n\nCost: 20 Credits");
+	else addDisabledButton(2,"CF Steak","Chicken Fried Steak","You cannot afford that.\n\nCost: 20 Credits");
 	if(pc.credits >= 50) addButton(3,"72oz Steak",eatAtTheBB,"72oz Steak","72 oz. Steak","Four and a half pounds of sirloin steak might seem insane on other planets, but for the massive, energetic residents of New Texas this is “just” a large steak. Popular with tourists who want the full “New Texas experience.”\n\nCost: 50 Credits");
 	else addDisabledButton(3,"72oz Steak","72 oz. Steak","You cannot afford that.\n\nCost: 50 Credits");
 	addButton(14,"Back",mainGameMenu);

@@ -55,7 +55,7 @@
 		}
 		public static function YakuzaUnlock():void
 		{
-			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0 || kGAMECLASS.flags["SHUKUCHI_FOURTH_ENCOUNTER"] == undefined)
+			if (kGAMECLASS.pc.short == "uncreated" || kGAMECLASS.pc.short.length == 0 || kGAMECLASS.flags["SHUKUCHI_FOURTH_ENCOUNTER"] != undefined)
 			{
 				return;
 			}

@@ -369,12 +369,11 @@ package classes.GameData.Pregnancy.Handlers
 				buffer += ParseText("<b>your milk production has increased</b> to its maximum for this pregnancy. You don’t mind a little soreness if it means you can feed your baby bunnies when the time comes. Besides, these [pc.breasts] of yours that are practically bursting with [pc.milk] might make finding a new lapinara easier.");
 				if(kGAMECLASS.pc.milkMultiplier < 100) kGAMECLASS.pc.milkMultiplier = 100;
 				kGAMECLASS.pc.milkFullness += 20;
-				if(kGAMECLASS.pc.wettestVaginalWetness() < 5)
+				var oIdx:int = (pregSlot != 3 ? pregSlot : -1);
+				if((oIdx >= 0 && kGAMECLASS.pc.vaginas[oIdx].wetnessRaw < 5) || (oIdx < 0 && kGAMECLASS.pc.ass.wetnessRaw < 5))
 				{
-					for(var f:int = 0; f < kGAMECLASS.pc.totalVaginas(); f++)
-					{
-						kGAMECLASS.pc.vaginas[f].wetnessRaw++;
-					}
+					if(oIdx >= 0) kGAMECLASS.pc.vaginas[oIdx].wetnessRaw++;
+					else kGAMECLASS.pc.ass.wetnessRaw++;
 					kGAMECLASS.pc.lust(33);
 					kGAMECLASS.pc.libido(1);
 					buffer += " <b>Your orifice has gotten wetter,</b> and your last thought was enough to start it dripping again... you feel like maybe you should do something about that.";

@@ -333,7 +333,7 @@ public function liammeExhibitionism():void
 
 	output("\n\nLiamme’s left panting after that, quietly, his fluffy tail swinging in an off-beat rhythm, trying to pull himself back together after emptying his tight, trappy sack all over his clothes and your hand. Speaking of which, you quickly retract your digits from the femboy’s cock and out from under his dress, still covered in his potent spunk. ");
 	var DEPENDANT_CUM:uint = 2;
-	if(pc.isNice() || pc.isBimbo() || pc.isDependant(DEPENDANT_CUM)) 
+	if(pc.isNice() || pc.isBimbo() || pc.isCumSlut()) 
 	{
 		output("Smiling and keeping eye contact with Liamme as he tries to conceal his softening erection, you bring your fingers to your [pc.lipsChaste] and let your [pc.tongue] trail along your fingers, licking them clean one by one, taking his seed into your mouth.");
 		//Syri seems like an appropriate stand-in...
