@@ -4263,7 +4263,6 @@
 			if (isTreated() && mf("m", "f") == "f") return true;
 			return false;
 		}
-		
 		public function isTreatedMale():Boolean
 		{
 			if (isTreated() && mf("m", "f") == "m") return true;

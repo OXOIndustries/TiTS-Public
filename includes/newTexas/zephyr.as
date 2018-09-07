@@ -326,6 +326,19 @@ public function overDeskButtCatch():void
 {
 	clearOutput();
 	showZephyrDeets(true);
+	
+	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
+	var x:int = -1;
+	if(pc.hasVagina())
+	{
+		x = pc.findEmptyPregnancySlot(1);
+		if(x < 0) x = rand(pc.totalVaginas());
+	}
+	var fits:Boolean = false;
+	if(x < 0) { if(pc.analCapacity() >= 600) fits = true; }
+	else { if(pc.vaginalCapacity(x) >= 600) fits = true; }
+	var cow:Boolean = (pc.isTreated() && pc.isBimbo());
+	var capacity:Number = (x >= 0 ? pc.vaginalCapacity() : pc.analCapacity());
 
 	output("You mention that she could bend you over the desk and take you right here.");
 	output("\n\nZephyr strides around the desk with a swiftness and grace belied by her imposing form. <i>“Now you’re speaking my language.”</i> Grabbing you by the neck with one hand, she pushes you down toward the top, her unoccupied fingers releasing the clasp at the side of her skirt. You turn your head to keep the eager amazon from breaking your nose and get a good look at her crotch in the process.");
@@ -348,11 +361,6 @@ public function overDeskButtCatch():void
 	output("\n\nThe bitch-breaking length between her legs is well past a foot long and rising with bobbing, upward jerks, the head oozing a clear droplet of pre-cum already.");
 	output("\n\n<i>“Either way, </i>I’m<i> going to enjoy it.”</i>");
 	output("\n\nYou nibble at your own lip and nod acceptingly. ");
-	var x:int = -1;
-	if(pc.hasVagina()) x = rand(pc.totalVaginas());
-	var fits:Boolean = false;
-	if(x < 0) if(pc.analCapacity() >= 600) fits = true;
-	else if(pc.vaginalCapacity(x) >= 600) fits = true;
 	if(!fits) output("You’re the one that suggested this; there’s no point in backing out now.");
 	else 
 	{
@@ -378,7 +386,6 @@ public function overDeskButtCatch():void
 		output(".");
 	}
 	output("\n\nThe amazon gives your [pc.butt] a friendly swat, letting her hand rest against your warming cheek. When she squeezes, the grip is firm and confident, kneading you encouragingly. <i>“");
-	var cow:Boolean = (pc.isTreated() && pc.isBimbo());
 	if(cow) output("Who’s a good cow?");
 	else output("Who’s a good little bitch?");
 	output("”</i>");
@@ -400,23 +407,23 @@ public function overDeskButtCatch():void
 	if(!cow) output("Good little bitches get a bone.");
 	else output("Good little cows get treated... to a nice, long fuck.");
 	output("”</i>");
+	
 	//[Next]
 	pc.lust(10);
 	processTime(5);
 	clearMenu();
-	addButton(0,"Next",getFuckedByZephyrII);
+	addButton(0,"Next",getFuckedByZephyrII, [ppZephyr, x, fits, cow, capacity]);
 }
 
-public function getFuckedByZephyrII():void
+public function getFuckedByZephyrII(args:Array):void
 {
 	clearOutput();
 	showZephyrDeets(true);
-	var x:int = -1;
-	if(pc.hasVagina()) x = rand(pc.totalVaginas());
-	var fits:Boolean = false;
-	if(x < 0) if(pc.analCapacity() >= 600) fits = true;
-	else if(pc.vaginalCapacity(x) >= 600) fits = true;
-	var cow:Boolean = (pc.isTreated() && pc.isBimbo());
+	var ppZephyr:PregnancyPlaceholder = args[0];
+	var x:int = args[1];
+	var fits:Boolean = args[2];
+	var cow:Boolean = args[3];
+	var capacity:Number = args[4];
 
 	output("You shiver at the declaration");
 	if(pc.hasVagina())
@@ -447,15 +454,12 @@ public function getFuckedByZephyrII():void
 	output("\n\n<i>“You’re gonna be a good cocksleeve.”</i> Zephyr thrusts in on the heels of that declaration, the firm push pressing your [pc.thighs] painfully against the edge of the desk. You barely register the discomfort; you’re too caught up in the feeling of that pointed tip ");
 
 	var stretched:Boolean = false;
-	if(x >= 0 && pc.looseness(x) >= 4) stretched = true;
-	else if(pc.ass.looseness() >= 4) stretched = true;
+	if(x >= 0) { if(pc.looseness(x) >= 4) stretched = true; }
+	else { if(pc.ass.looseness() >= 4) stretched = true; }
 	if(stretched) output("slipping into your well-stretched entrance");
 	else output("spreading you open");
 	output(". Your mouth gapes, too overwhelmed by the sensory cascade to function properly. A throaty moan slips out, unbounded by the likes of reason or good sense. You push back. What point is there in resisting?");
 	output("\n\nSlipping deeper and deeper, the amazon’s seemingly endless inches tickle nerves that have no business being so sensitive or eager.");
-	var capacity:Number = 0;
-	if(x >= 0) capacity = pc.vaginalCapacity();
-	else capacity = pc.analCapacity();
 	if(capacity < 550) output(" Her sheer size has you feeling stretched almost painfully tight, like a rubber band about to snap. Your sex-scattered neurons desperately scrape together a thought: what if she breaks you?");
 	else if(capacity < 800) output(" Her sheer size has you feeling stretched delightfully tight, like your body was designed to wrap around this one, perfect dick. Your sex-scattered neurons desperately scrape together a thought. How are you ever going to enjoy fucking anyone smaller than this again?");
 	else 
@@ -497,19 +501,18 @@ public function getFuckedByZephyrII():void
 	pc.lust(15);
 	processTime(9);
 	clearMenu();
-	addButton(0,"Next",getFuckedByZephyrIII);
+	addButton(0,"Next",getFuckedByZephyrIII, [ppZephyr, x, fits, cow, capacity]);
 }
 
-public function getFuckedByZephyrIII():void
+public function getFuckedByZephyrIII(args:Array):void
 {
 	clearOutput();
 	showZephyrDeets(true);
-	var x:int = -1;
-	if(pc.hasVagina()) x = rand(pc.totalVaginas());
-	var fits:Boolean = false;
-	if(x < 0) if(pc.analCapacity() >= 600) fits = true;
-	else if(pc.vaginalCapacity(x) >= 600) fits = true;
-	var cow:Boolean = (pc.isTreated() && pc.isBimbo());
+	var ppZephyr:PregnancyPlaceholder = args[0];
+	var x:int = args[1];
+	var fits:Boolean = args[2];
+	var cow:Boolean = args[3];
+	var capacity:Number = args[4];
 
 	output("The big-dicked cow, smiling down over you, pulls back, leaving you feeling achingly empty. After having such a large member inside you, being without leaves you longing for its return. The cool air of Zephyr’s office tickles at your stretched opening.");
 	output("\n\nYou look up at her, pleading with your eyes. You aren’t sure your mouth could coordinate a request, even one as simple as ‘please’.");
@@ -522,11 +525,9 @@ public function getFuckedByZephyrIII():void
 	output("’s face.”</i>");
 	output("\n\nThat red, canine spear pushes right back into you, gliding along on the curtain of lubricant it left behind, already pumping more hot globules of pre-seed into you. This is no slow, tender penetration. Zephyr is thrusting back into the hole she prepared, claiming and using it as she will. Her knot arrests her progress, but only for a few seconds. Despite her pre-orgasmic state, it’s still too big to ignore.");
 	output("\n\nYou squeeze down around the narrowness on the other side and wonder just how big she’s going to get when she finally cums inside. ");
-	var capacity:Number = 0;
-	if(x >= 0) capacity = pc.vaginalCapacity();
-	else capacity = pc.analCapacity();
 	if(capacity >= 800) output("Maybe she’ll get big enough to really give your [pc.vagOrAss] the filling it deserves.");
 	else output("Hopefully you’ll be able to handle it.");
+	
 	if(x >= 0) pc.cuntChange(x,600);
 	else pc.buttChange(600);
 
@@ -546,24 +547,18 @@ public function getFuckedByZephyrIII():void
 	pc.lust(10);
 	processTime(9);
 	clearMenu();
-	addButton(0,"Next",getFuckedByZephyrIV);
+	addButton(0,"Next",getFuckedByZephyrIV, [ppZephyr, x, fits, cow, capacity]);
 }
 
-public function getFuckedByZephyrIV():void
+public function getFuckedByZephyrIV(args:Array):void
 {
 	clearOutput();
 	showZephyrDeets(true);
-	var x:int = -1;
-	if(pc.hasVagina())
-	{
-		x = pc.findEmptyPregnancySlot(1);
-		if(x < 0) x = rand(pc.totalVaginas());
-	}
-	var capacity:Number = 0;
-	if(x >= 0) capacity = pc.vaginalCapacity();
-	else capacity = pc.analCapacity();
-	var fits:Boolean = (capacity >= 600)
-	var cow:Boolean = (pc.isTreated() && pc.isBimbo());
+	var ppZephyr:PregnancyPlaceholder = args[0];
+	var x:int = args[1];
+	var fits:Boolean = args[2];
+	var cow:Boolean = args[3];
+	var capacity:Number = args[4];
 
 	output("Zephyr is growling in the back of her throat now, each slap of her hips against your abused ass accompanied by a slight grunt. Beads of sweat stream down her face from the effort of giving you the fucking you deserve. You moan once more, encouragingly, squeezing your muscles around her, coaxing her to go ahead and drop a big, wet orgasm into your depths.");
 	output("\n\nYou’re dangerously close to cumming as it is. All you’d have to do");
@@ -591,8 +586,10 @@ public function getFuckedByZephyrIV():void
 		output(".");
 	}
 	output("\n\nShe obliges you in spades, but not before her knot swells. It puffs up with astonishing rapidity, stretching your [pc.vagOrAss] until it seems that the whole of your being is pulled taut around it, little more than a cum-hungry condom for the cow-girl.");
+	
 	if(x >= 0) pc.cuntChange(x,1000);
 	else pc.buttChange(1000);
+	
 	output("\n\nThen, the warm sensation of ejaculation greets your spasming folds. Zephyr’s thick goo washes over you in pulsating arhythmic bursts, splattering against your insides, bathing them in thick layer with the first few shots alone. But she doesn’t stop there. The climaxing cow’s knot may have finished growing, but she’s a long way from being done cumming. She keeps firing long, spermy lances into you well past the end of your own orgasm.");
 	output("\n\nYou tremble, overwhelmed by being so filled while still sensitive from the afterglow. Your knot-tied mate collapses on top of you. Her immense breasts cushion and distribute her weight to either side of you, making the position far more bearable than it would otherwise be. She breaths huskily in your ear. Sometimes, she even moans, shooting a slightly bigger, thicker eruption than before.");
 	output("\n\nYou cry out every time she does, enjoying the moment too much to care, even when your belly ");
@@ -604,7 +601,6 @@ public function getFuckedByZephyrIV():void
 	if(!pc.isTreated()) output(", promising that you can have her dick every day if you take the Treatment and immigrate, no matter what kind of " + pc.rawmfn("bull","cow","person") + " you come out as.");
 	else output(", promising to knot you until you’re addicted to her cock unable to cum without feeling her signature swelling down below.");
 	
-	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 	if(x >= 0)
 	{
 		pc.loadInCunt(ppZephyr, x);
@@ -622,20 +618,19 @@ public function getFuckedByZephyrIV():void
 	processTime(8);
 	pc.orgasm();
 	clearMenu();
-	addButton(0,"Next",getFuckedByZephyrV);
+	addButton(0,"Next",getFuckedByZephyrV, [ppZephyr, x, fits, cow, capacity]);
 }
 
-public function getFuckedByZephyrV():void
+public function getFuckedByZephyrV(args:Array):void
 {
 	clearOutput();
 	showZephyrDeets(true);
-	var x:int = -1;
-	if(pc.hasVagina()) x = rand(pc.totalVaginas());
-	var capacity:Number = 0;
-	if(x >= 0) capacity = pc.vaginalCapacity();
-	else capacity = pc.analCapacity();
-	var fits:Boolean = (capacity >= 600)
-	var cow:Boolean = (pc.isTreated() && pc.isBimbo());
+	var ppZephyr:PregnancyPlaceholder = args[0];
+	var x:int = args[1];
+	var fits:Boolean = args[2];
+	var cow:Boolean = args[3];
+	var capacity:Number = args[4];
+	
 	output("You’re roused by the feeling of Zephyr’s bloated knot being tugged out of you and further wakened by the cascade of salty seed that chases it out of your [pc.vagOrAsshole]. Grinning, the dick-toting cow-woman slaps your [pc.butt] one last time, remarking, <i>“Not bad.”</i>");
 	output("\n\nYou try to stand, but your [pc.legOrLegs] won’t cooperate, dumping you on the floor. Looking up for help, you’re confronted with the sight of a cum-covered dick.");
 	//Treated/Bimbo - no new PG
@@ -644,7 +639,6 @@ public function getFuckedByZephyrV():void
 		output("\n\nIt looks fucking delicious. You wrap your [pc.lips] around it and suck it like your life depends on it, shining it until its been spit-polished.");
 		output("\n\nZephyr pats you on the head and whispers, <i>“Good [pc.boy], now run along before I decide to keep you under my desk for the rest of the day.”</i> You practically glow from the praise, beaming as you lick the last droplets from your [pc.lips]. This planet rules!");
 		processTime(2);
-		var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 		pc.loadInMouth(ppZephyr);
 		pc.loadInMouth(ppZephyr);
 		clearMenu();
@@ -656,7 +650,7 @@ public function getFuckedByZephyrV():void
 		output("\n\n<i>“Clean it up.”</i>");
 		//[Clean It - You might as well. After all, she’s at work.] [Don’t - Fuck that. You got yours. She might not be real happy about it, though.]
 		clearMenu();
-		addButton(0,"Clean It",cleanDatZephyrCawk,undefined,"Clean It","You might as well. After all, she’s at work.");
+		addButton(0,"Clean It",cleanDatZephyrCawk,[ppZephyr, x, fits, cow, capacity],"Clean It","You might as well. After all, she’s at work.");
 		addButton(1,"Don’t",dontEatZephyrCock,undefined,"Don’t","Fuck that. You got yours. She might not be real happy about it, though.");
 	}
 	flags["SEXED_ZEPHYR"] = 1;
@@ -664,10 +658,12 @@ public function getFuckedByZephyrV():void
 }
 
 //[Clean it]
-public function cleanDatZephyrCawk():void
+public function cleanDatZephyrCawk(args:Array):void
 {
 	clearOutput();
 	showZephyrDeets(true);
+	var ppZephyr:PregnancyPlaceholder = args[0];
+	
 	output("You give the tall cow-woman a wink and open wide, letting her push herself into your maw. She tastes salty and a little tangy - a mix of cum");
 	if(pc.hasVagina()) output(", sweat, and your own feminine fluids");
 	else output(" and sweat");
@@ -677,7 +673,6 @@ public function cleanDatZephyrCawk():void
 	else output(" Now get out of my office unless you’re wanting another go.");
 	output("”</i>");
 	processTime(2);
-	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 	pc.loadInMouth(ppZephyr);
 	pc.loadInMouth(ppZephyr);
 	clearMenu();
