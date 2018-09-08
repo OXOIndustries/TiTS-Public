@@ -17833,15 +17833,15 @@
 			else if (val < 15) {
 				descript += RandomInCollection(["soccerball-sized", "generous", "jiggling"]);
 			}
-			//G -> HHH
-			else if (val < 24) {
+			//G -> large HHH
+			else if (val < 25) {
 				descript += RandomInCollection(["basketball-sized", "whorish", "cushiony", "wobbling"]);
 			}
-			//I -> KK
+			//I -> large K
 			else if (val < 35) {
 				descript += RandomInCollection(["massive motherly", "luscious", "smothering", "prodigious"]);
 			}
-			//K- > MMM+
+			//KK -> MMM+
 			else {
 				descript += RandomInCollection(["mountainous", "monumental", "back-breaking", "exercise-ball-sized", "immense"]);
 			}
