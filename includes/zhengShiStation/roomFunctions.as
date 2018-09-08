@@ -689,5 +689,5 @@ public function prefabDeadEndBonus():Boolean
 	if(flags["MINING_ROBOT_ENCOUNTERS"] != undefined) output(" This is probably where they put together those horrible mining robots you ran into down below.");
 	else output(" This is probably where they put together all the different kit-bashed robots they have all over the station.");
 	output(" Leave it to pirates to eschew the tried and true off-the-shelf models!");
-	return foundryLounge2Bonus();
+	return zhengFoundryF1EncounterBonus();
 }
