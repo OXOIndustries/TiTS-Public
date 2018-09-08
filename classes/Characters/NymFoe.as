@@ -40,7 +40,7 @@
 			this._neverSerialize = true; // Setting this will stop a given NPC class from ever being serialized.
 			
 			this.short = "Nym-Foe";
-			this.originalRace = "Automaton";
+			this.originalRace = "automaton";
 			this.a = "";
 			this.capitalA = "";
 			this.scaleColor = "";

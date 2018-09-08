@@ -13015,6 +13015,10 @@
 			if(cyborgScore() >= numParts) return true;
 			return false;
 		}
+		public function isRobot():Boolean
+		{
+			return (InCollection(originalRace, ["automaton", "conglomerate", "junker", "machine", "robot"]));
+		}
 		
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
 			if (balls <= 0) return "prostate";
