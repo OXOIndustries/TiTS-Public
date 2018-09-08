@@ -496,6 +496,7 @@ public function jungleDeepEncounters():Boolean {
 			choices[choices.length] = naleenMaleEncounter;
 			choices[choices.length] = naleenMaleEncounter;
 		}
+		if(!pc.hasStatusEffect("Naleen_Herm_Disabled") && pc.level >= 3) choices.push(encounterFutaNaleen);
 		choices[choices.length] = encounterMimbrane;
 		choices[choices.length] = encounterMimbrane;
 		if(dryadIsActive())

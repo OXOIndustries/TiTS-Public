@@ -1237,7 +1237,7 @@ public function hyperRaskFun():void
 	if(pc.cumQ() >= 50) output(" She licks stray pre from her lips, though the effect is more to smear it across the bottom one like lip gloss.");
 	else output(" She licks her lips");
 	output(" <i>“And I want to have your babies. After these.”</i> She lifts your dick with both hands, grunting with the effort, then feathers kisses along the underside of your shaft");
-	if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output(", sucking on the soft, feline \"barbs” one at a time");
+	if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output(", sucking on the soft, feline “barbs” one at a time");
 	output(". <i>“You’re the best daddy I’m ever going to meet.”</i>");
 
 	output("\n\nYou doubt you could stop her from gathering some if you wanted to.");
@@ -2183,7 +2183,7 @@ public function raskyRooOrgipoo():void
 	clearOutput();
 	author("Nonesuch");
 	showName("\nLEWD!");
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	if(pc.isBimbo() && flags["AZRA_RASK_PC_SUCKED"] != undefined) output("One blowie is absolutely not enough. You nod and grin your eager assent - triggering sharp intakes of breath and excited whispering amongst the raskvel bois - and follow the sydian’s swinging, feathery tail as she turns and sashays away into her territory.");
 	else output("You are pleased she made the overture - this was turning out to be a very dry encounter. Can you claim to have had successful negotiations if you didn’t all fuck at the end? You nod and grin your eager assent - trigger sharp intakes of breath and excited whispering amongst the raskvel bois - and follow the sydian’s swinging tail as she turns and sashays away into her territory.");
 	output("\n\n<i>“Are you wondering how I became a Queen, stranger?”</i> the tan creature asks. Even heavily clad in her armor it’s obvious she has a nice figure, slim and muscular but with hourglass swells that make the mouth water. She’s taken you to a steep hollow created by the bulwark of a half-buried spaceship, the heavily plated metal craning over a depression furnished with a large number of pillows and a spiky, welded together chair that obviously fancies itself as a throne. The sydian shoos her small charges down into it as she continues to speak.");
@@ -2207,7 +2207,7 @@ public function spitRoastRaskvelTimes():void
 	clearOutput();
 	showName("\nORGY");
 	author("Nonesuch");
-	showBust("RASK_TRAP","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	output("You signal your intentions by sidling into the nearest pink-skinned big-balled reptile [pc.butt] first, stroking his sensitive ears. He coos with delight and looks ");
 	if(pc.tallness >= 60) output("up ");
 	output("at you with barely contained lust, hands instinctively wrapping around your [pc.thigh].");
@@ -2308,7 +2308,7 @@ public function raskOrgyPart2(route:String):void
 	clearOutput();
 	showName("\nORGY");
 	author("Nonesuch");
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	output("The sensation of getting thoroughly gangbanged like this is overwhelming, and you are quickly forced to an orgasm which grips your entire body, ");
 	if(pc.hasVagina()) output("[pc.eachVagina] seizing up repeatedly and coating the raskvel’s groin in [pc.girlCum]");
 	if(pc.isHerm()) output(" and ");
@@ -2383,7 +2383,7 @@ public function raskOrgyPart2(route:String):void
 public function raskOrgyPart3(route:String):void
 {
 	clearOutput();
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	showName("AFTER\nORGY");
 	author("Nonesuch");
 	output("You’re not sure how much time passes, down there in the still, glittering air, before ");
@@ -2487,7 +2487,7 @@ public function fuckTheSydianQueen(x:int):void
 	clearOutput();
 	showName("LAY\nHER");
 	author("Nonesuch");
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 
 	output("The tall, armored demagogue can hardly have shaken that tail in front of you, flashed that orange bejazzle, and expected you to settle for anything less than first prize here. You return her gaze with all the unabashed smolder you can muster, ");
 	if(!pc.isCrotchExposed())
@@ -2549,9 +2549,9 @@ public function fuckTheSydianQueen(x:int):void
 public function fuckTheSydianQueen2(x:int):void
 {
 	clearOutput();
-	showName("SYDIAN\n\"QUEEN\"");
+	showName("SYDIAN\n“QUEEN”");
 	author("Nonesuch");
-	showBust("SYDIAN_QUEEN");
+	showBust("SYDIAN_QUEEN_NUDE");
 	output("Pulse thudding in your temple, you [pc.move] across and mount her on her reconstructed throne, the smooth, unyielding back-plates against your arms contrasting to the suppleness of her breasts pooling into your [pc.chest]. It takes barely a second to line your [pc.cockHead " + x + "] up with her puffy, split tangerine of a cunt. Sliding into her is like slipping into a silky, sultry dream.");
 	output("\n\n<i>“Yeeeessss,”</i> she hisses in delight, tightening her thin, armored fingers around your shoulders as you dip your [pc.cock " + x + "] into her spongy, sopping tunnel. You find her limit and slowly withdraw, and she tightens her athletic thighs around your waist, reaching down to snatch at your [pc.ass], impatient for the returning thrust. <i>“You! Servants! Rut each other for my pleasure! You have permission to cum as much as you waaaafnnnn.”</i> She trails off in an euphoric croon as you give it her, groaning yourself as you immerse your dick from ");
 	if(pc.cocks[x].cLength() <= 11) output("[pc.cockHead " + x + "] to [pc.sheath " + x + "]");

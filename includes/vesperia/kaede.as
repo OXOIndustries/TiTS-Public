@@ -367,6 +367,7 @@ public function maximumTeaseTheSloot():void
 		addButton(1, "Let Her Go", justMaximumTeaseTheSloot);
 	} else {
 		output("\n\nShe gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+		IncrementFlag("KAEDE_FUCKED");
 		addButton(0, "Next", mainGameMenu);
 	}
 }
@@ -378,6 +379,7 @@ public function justMaximumTeaseTheSloot():void
 	showKaede();
 	author("Savin");
 	output("She gives you a look, stands up, and wraps her tail around her sullied crotch before hurrying out towards her ship. You just laugh to yourself and enjoy the rest of your drink.");
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -419,7 +421,8 @@ public function ultraMaximumDeluxeTeaseTheSloot():void
 	output("\n\nAs if she's not already. You give Kaede a swat on the ass, pushing her up and out of your lap. “Better go get cleaned up,” you tell her. “And Kaede?”");
 	output("\n\n“Yeah,” she says, already halfway out the door.");
 	output("\n\n“Your fly's undone.”");
-
+	
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -441,15 +444,15 @@ public function getARoomWithKaede():void
 	clearMenu();
 	if((pc.hasCock() && pc.cockThatFits(370) >= 0) || pc.hasHardLightEquipped()) addButton(0,"Fuck Her Ass",fuckHerAssYouSlootAndByHerIMeanKaede,undefined,"Fuck Her Ass","Time to take this pretty puppy to pound-town.");
 	else addDisabledButton(0,"Fuck Her Ass","Fuck Her Ass","You need a penis that fits in her butt to do this - or panties with a hardlight phallus.");
-	addButton(1,"(A)Ride Rocket",rocketRideKaedesWangerDoodle,-1,"(A)Ride Rocket","Catch a ride on Kaede’s throbbing red rocket, anally.");
-	if(pc.hasVagina()) addButton(2,"(V)Ride Rocket",rocketRideKaedesWangerDoodle,0,"(V)Ride Rocket","Catch a ride on Kaede’s throbbing red rocket, vaginally.");
-	else addDisabledButton(2,"(V)Ride Rocket","(V)Ride Rocket","You need a vagina to do this.");
+	addButton(1,"(A)Ride Rocket",rocketRideKaedesWangerDoodle,-1,"Anal: Ride Rocket","Catch a ride on Kaede’s throbbing red rocket, anally.");
+	if(pc.hasVagina()) addButton(2,"(V)Ride Rocket",rocketRideKaedesWangerDoodle,0,"Vaginal: Ride Rocket","Catch a ride on Kaede’s throbbing red rocket, vaginally.");
+	else addDisabledButton(2,"(V)Ride Rocket","Vaginal: Ride Rocket","You need a vagina to do this.");
 
 	//Invite a Friend
 	//See if there’s someone you and Kaede could invite over for some group fun...
-	addButton(3,"InviteAFriend",inviteAFriend,undefined,"InviteAFriend","See if there’s someone you and Kaede could invite over for some group fun...");
+	addButton(3,"InviteAFriend",inviteAFriendForKaedePlays,undefined,"Invite A Friend","See if there’s someone you and Kaede could invite over for some group fun...");
 
-	if (pc.isLactating() && pc.biggestTitSize() >= 3) addButton(4, "Breastfeed Kaede", breastfeedKaede, undefined);
+	if (pc.isLactating() && pc.biggestTitSize() >= 3) addButton(4, "Breastf. Kaede", breastfeedKaede, undefined, "Breastfeed Kaede", "Feed Kaede with your milky breasts.");
 	else addDisabledButton(4, "Breastf. Kaede", "Breastfeed Kaede", "You need to have at least C-cup breasts and be lactating for this.");
 }
 
@@ -571,6 +574,7 @@ public function cumInsideKaedesBootyButt(x:int):void
 
 	processTime(15);
 	pc.orgasm();
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -589,6 +593,7 @@ public function facializeKaedeAfterBootyButting(x:int):void
 
 	processTime(15);
 	pc.orgasm();
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
@@ -680,13 +685,14 @@ public function rocketRideKaedesWangerDoodle(x:int):void
 	pc.orgasm();
 	if(x >= 0) pc.loadInCunt(ppKaede, x);
 	else pc.loadInAss(ppKaede);
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
 //Invite a Friend
 //See if there’s someone you and Kaede could invite over for some group fun...
-public function inviteAFriend():void
+public function inviteAFriendForKaedePlays():void
 {
 	clearOutput();
 	showKaede();
@@ -827,7 +833,8 @@ public function breastfeedKaede():void
 
 	pc.milked();
 	processTime(30+rand(10));
-
+	
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }
@@ -908,6 +915,8 @@ public function kaedePopsIntoZeGloryHole():void
 	IncrementFlag("GLORYHOLE_SERVER");
 	flags["GLORYHOLED_KAEDE"] = 1;
 	pc.lust(10);
+	
+	IncrementFlag("KAEDE_FUCKED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }

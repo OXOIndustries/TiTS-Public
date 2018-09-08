@@ -1046,7 +1046,7 @@ public function quentonPersonalTraining():void
 		// [Pitch] Go to Pitching Quenton {requires penis or strap-on}
 		// [Catch] Go to Catching Quenton
 		clearMenu();
-		if (pc.lowerUndergarment.hardLightEquipped || pc.hasCock()) addButton(0, "Pitch", quentonTrainingPitch, undefined, "Pitch", "Use your tool to take him from behind.");
+		if (pc.hasHardLightEquipped() || pc.hasCock()) addButton(0, "Pitch", quentonTrainingPitch, undefined, "Pitch", "Use your tool to take him from behind.");
 		else addDisabledButton(2, "Pitch", "Pitch", "You don’t have the proper equipment for this.");
 		addButton(1, "Catch", quentonTrainingCatch, "catch", "Catch", "Have him take you from behind.");
 	}
@@ -1082,7 +1082,7 @@ public function quentonTrainingPitch():void
 	pp.elasticity = 1.5;
 	
 	var x:int = -1;
-	if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = rand(pc.cocks.length);
+	if(!pc.hasHardLightEquipped() && pc.hasCock()) x = rand(pc.cocks.length);
 	
 	output("You tell Quenton you want to take him from behind. He puts his hands on his hips and nods");
 	if(!pc.isNude())
@@ -1768,12 +1768,12 @@ public function lolaPoolApproach():void
 		else
 		{
 			output("\n\n<i>“Soooo....”</i> Lola says, then looks back up at you, a blush spreading across her cheeks. She reaches out and rests one hand on your [pc.hip], and seems to be waiting for your permission to move her hand in closer to your crotch. <i>“You got anything under there for me?”</i>");
-			if(pc.lowerUndergarment.hardLightEquipped)
+			if(pc.hasHardLightEquipped())
 			{
 				if(pc.hasCock()) output("\n\nYou shake your head, and tell Lola that while you have a penis, you are not planning on using it at the moment.");
 				else output("\n\nYou shake your head, and tell Lola that you don’t have the dong she’s looking for.");
 				output("\n\n<i>“That’s too bad,”</i> she says, and gives your [pc.hip] a squeeze before pulling her hand away. <i>“And you look like you’d be fun, too. Darn.”</i>");
-				if(pc.lowerUndergarment.hardLightEquipped)
+				if(pc.hasHardLightEquipped())
 				{
 					output("\n\nYou mention that you’ve got a hardlight strapon back with your gear, and you can get it if she’s down for that.");
 					output("\n\nLola nods eagerly, her eyes lighting up. <i>“Ooh, those things are fun,”</i> she says. A blush spreads across her cheeks and down her chest, turning the skin on her breasts the palest pink. <i>“Can you go get that? Please?”</i>");
@@ -1786,7 +1786,7 @@ public function lolaPoolApproach():void
 			}
 		}
 		
-		if(!pc.lowerUndergarment.hardLightEquipped && !pc.hasCock())
+		if(!pc.hasHardLightEquipped() && !pc.hasCock())
 		{
 			output("\n\nYou ask if she’s still up for whatever you two can do together. Fingers and lips and tongues can do a lot.");
 			output("\n\n<i>“Oh, but it’s not the same,”</i> Lola says, pouting a little. <i>“And I really like to be, you know–”</i> She thrusts her voluminous hips in your direction, sending a small wave crashing against you. <i>“–penetrated. Sorry, [pc.name].”</i>");
@@ -1811,7 +1811,7 @@ public function lolaPoolApproach():void
 		// [Yep] Go to FloatFuck {requires penis or strap-on}
 		// [Nope] Go to NoFloatFuck
 		if (pc.lust() < 33) addDisabledButton(0, "Yep", "Yep", "You are not aroused enough for this.");
-		else if(pc.lowerUndergarment.hardLightEquipped || pc.hasCock()) addButton(0, "Yep", lolaPoolSex, "yep");
+		else if(pc.hasHardLightEquipped() || pc.hasCock()) addButton(0, "Yep", lolaPoolSex, "yep");
 		else addDisabledButton(0, "Yep", "Yep", "You don’t have the proper equipment to do this!");
 		addButton(1, "Nope", lolaPoolSex, "nope");
 	}
@@ -1829,7 +1829,7 @@ public function lolaPoolSex(response:String = ""):void
 		// FloatFuck
 		case "yep":
 			var x:int = -1;
-			if(!pc.lowerUndergarment.hardLightEquipped && pc.hasCock()) x = rand(pc.cocks.length);
+			if(!pc.hasHardLightEquipped() && pc.hasCock()) x = rand(pc.cocks.length);
 			
 			output("You tell Lola that you would, in fact, like to fuck her while she’s floating.");
 			if(x < 0) output(" You hurry out of the pool and don your [pc.lowerUndergarment], then return to Lola and activate the hardlight dildo.");
