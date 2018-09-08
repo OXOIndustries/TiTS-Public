@@ -8,7 +8,7 @@ public function removeImmobilized(deltaT:uint = 0):void
 
 // 4 levels, each to match the original ball growth stuff:
 // [0] Egregious, [1] Ludicrous, [2] Overwhelming, [3] Immobilized!
-// Length/Size Ratios: (for immobilization comparisons, average 5 ft person) Ex. - 5' person with M-cup for level 1 is [40/60] at position 0.
+// Length/Size Ratios: (for immobilization comparisons, average 5 ft person) Ex. - 5' person with large LL-cup for level 1 is [40/60] at position 0.
 private var lvlRatioBalls:Array = [(9/60), (15/60), (25/60), (40/60)];
 private var lvlRatioPenis:Array = [(9999/60), (9999/60), (9999/60), (9999/60)]; //[(16/60), (32/60), (64/60), (128/60)];
 private var lvlRatioClits:Array = [(9999/60), (9999/60), (9999/60), (9999/60)]; //[(16/60), (32/60), (64/60), (128/60)];
