@@ -790,7 +790,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		/*Warkonst Height: 1,75m
 		Hair: Short, Black
 		Sex: Futa with 35cm Horse cock and 15cm clit
-		Breasts: NN-Cup 10cm nipples
+		Breasts: large NN-Cup 10cm nipples
 		Body: Average
 		Skin Color: Demonic Red
 		Gift: Lots of Jizz
@@ -807,7 +807,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.shiftCock(0,GLOBAL.TYPE_EQUINE);
 			pc.cocks[0].cLengthRaw = 13.7;
 			pc.clitLength = 6;
-			pc.breastRows[0].breastRatingRaw = 49;
+			pc.breastRows[0].breastRatingRaw = 48;
 			pc.skinTone = "red";
 			pc.cumMultiplierRaw = 40;
 			pc.ballEfficiency = 150;
