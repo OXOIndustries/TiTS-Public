@@ -121,7 +121,7 @@ package classes.GameData
 				{
 					clearMenu();
 					if(pc.inPowerArmor()) addButton(0,"Hold Ground",kGAMECLASS.holdGroundBois,undefined,"Hold Ground","Stand and fire!");
-					else addDisabledButton(0,"Hold Ground","Hold Ground","That’s suicide!");
+					else addDisabledButton(0,"Hold Ground","Hold Ground","That's suicide!");
 					addButton(1,"Sprint!",kGAMECLASS.sprintToSafetyBois,undefined,"Sprint!","Run for it!");
 					return true;
 				}
@@ -1248,31 +1248,13 @@ package classes.GameData
 				}
 			}
 			
-			if (target.hasStatusEffect("Bottled Poison"))
-			{
-				//output("<b>Bottle Mins: </b>" + target.getStatusMinutes("Bottled Poison"));
-				target.addStatusMinutes("Bottled Poison",-1);
-				if(target.getStatusMinutes("Bottled Poison") <= 0)
-				{
-					//output("<b>Bottle REMOVEMINS: </b>" + target.getStatusMinutes("Bottled Poison"));
-					target.physiqueMod += target.statusEffectv1("Bottled Poison");
-					target.reflexesMod += target.statusEffectv1("Bottled Poison");
-					target.aimMod += target.statusEffectv1("Bottled Poison");
-					target.removeStatusEffect("Bottled Poison");
-					output("\n\n<b>The poison fades!</b>");
-				}
-				else output("\n\n<b>The bottled poison still courses through your system!</b>");
-			}
-
 			genericStatusEffectUpdate(target, "Tracer Rounds");
 			genericStatusEffectUpdate(target, "Torra Lust Weakness");
 			genericStatusEffectUpdate(target, "Chaff Grenade");
-			genericStatusEffectUpdate(target, "Weapon Lock");
-			genericStatusEffectUpdate(target, "Special Lock");
 			
 			if (target.hasStatusEffect("SHIZZY CUM"))
 			{
-				output("\n\n<b>She reeks so strongly of pheromones that it’s starting to get to you.</b>");
+				output("\n\n<b>She reeks so strongly of pheromones that it's starting to get to you.</b>");
 				applyDamage(damageRand(new TypeCollection({pheromone:target.statusEffectv1("SHIZZY CUM")}), 20), null, target, "minimal");
 			}
 			
@@ -1449,7 +1431,7 @@ package classes.GameData
 
 			if (hasEnemyOfClass(ForgeHound) && flags["FORGEHOUND_APOLIFUCKED"] != undefined && rand(12) == 0)
 			{
-				output("\n\n<b>It’s so hard not to daydream around him...</b>");
+				output("\n\n<b>It's so hard not to daydream around him...</b>");
 				addButton(0,"Daydream",kGAMECLASS.addictionTurnWaster);
 				return;
 			}
@@ -1478,15 +1460,13 @@ package classes.GameData
 			else
 			{
 				var af:Function = pc.meleeWeapon.attackImplementor == null ? CombatAttacks.MeleeAttack : pc.meleeWeapon.attackImplementor;
-				if(pc.hasStatusEffect("Weapon Lock")) addDisabledButton(0, "Attack", "Melee Attack", "You can’t bring yourself to resort to using a weapon right now!");
-				else if(pc.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(0, "Attack", "Melee Attack", "Your melee weapon is too heavy to lift and use!");
+				if(pc.meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, "Attack", "Melee Attack", "Your melee weapon is too heavy to lift and use!");
 				else addButton(0, "Attack", selectSimpleAttack, { func: af, isMelee: true }, "Melee Attack", "Attack a single enemy with a melee strike. Damage is based on physique.");
 			}
 			
 			// shoot
 			var sf:Function = pc.rangedWeapon.attackImplementor == null ? CombatAttacks.RangedAttack : pc.rangedWeapon.attackImplementor;
-			if(pc.hasStatusEffect("Weapon Lock")) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "You can’t bring yourself to resort to using a weapon right now!");
-			else if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "Your ranged weapon is too heavy to lift and use!");
+			if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon()) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "Your ranged weapon is too heavy to lift and use!");
 			else if(pc.rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_HIGH_PHYSIQUE) && !pc.canUsePowerArmorWeapon() && pc.PQ() < 66) addDisabledButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), "Ranged Attack", "You lack the physique necessary to use such a weapon! You need at least " + Math.ceil(pc.physiqueMax() * 66/100) + " physique to use it.");
 			else addButton(1, StringUtil.upperCase(pc.rangedWeapon.attackVerb), selectSimpleAttack, { func: sf, isRanged: true }, "Ranged Attack", "Attack a single enemy with a ranged weapon. Damage is based on aim.");
 			
@@ -1494,9 +1474,7 @@ package classes.GameData
 			// inventory
 			addButton(3, "Inventory", kGAMECLASS.inventory, undefined, "Inventory", "Use items in combat.");
 			// specials
-
-			if(pc.hasStatusEffect("Special Lock")) addDisabledButton(4,"Specials","Specials","You can’t remember how to use your special abilities right now...");
-			else addButton(4, "Specials", generateSpecialsMenu, undefined, "Specials", "The special attacks you have available to you are listed in this menu.");
+			addButton(4, "Specials", generateSpecialsMenu, undefined, "Specials", "The special attacks you have available to you are listed in this menu.");
 			
 			// tease
 			if (pc.hasStatusEffect("Myr Venom Withdrawal")) addDisabledButton(5, "Tease", "Tease", "Without the venom, teasing just seems... fruitless.");
@@ -1911,7 +1889,7 @@ package classes.GameData
 			if(pc.hasStatusEffect("Grappled"))
 			{
 				pc.removeStatusEffect("Grappled");
-				if (hasEnemyOfClass(AkkadiSecurityRobots)) output("\nIt lurches backward and squeals, disconnecting the grappling line. The magnets deactivate, releasing you from the robot’s grasp.");
+				if (hasEnemyOfClass(AkkadiSecurityRobots)) output("\nIt lurches backward and squeals, disconnecting the grappling line. The magnets deactivate, releasing you from the robot's grasp.");
 				else output("\nYou slip free of the grapple.");
 			}
 			if (pc.hasStatusEffect("Cockvine Grip"))
@@ -2579,21 +2557,28 @@ package classes.GameData
 	
 			clearOutput();
 			output("Which tease will you use?");
+			if (flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;
+			if (flags["TIMES_HIPS_TEASED"] == undefined) flags["TIMES_HIPS_TEASED"] = 0;
+			if (flags["TIMES_BUTT_TEASED"] == undefined) flags["TIMES_BUTT_TEASED"] = 0;
+			if (flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
 			
 			var teases:Array = [
-				Math.min((flags["TIMES_BUTT_TEASED"] == undefined ? 0 : flags["TIMES_BUTT_TEASED"]), 100),
-				Math.min((flags["TIMES_CHEST_TEASED"] == undefined ? 0 : flags["TIMES_CHEST_TEASED"]), 100),
-				Math.min((flags["TIMES_CROTCH_TEASED"] == undefined ? 0 : flags["TIMES_CROTCH_TEASED"]), 100),
-				Math.min((flags["TIMES_HIPS_TEASED"] == undefined ? 0 : flags["TIMES_HIPS_TEASED"]), 100),
-				Math.min((flags["TIMES_ORAL_TEASED"] == undefined ? 0 : flags["TIMES_ORAL_TEASED"]), 100),
+				flags["TIMES_BUTT_TEASED"],
+				flags["TIMES_CHEST_TEASED"],
+				flags["TIMES_CROTCH_TEASED"],
+				flags["TIMES_HIPS_TEASED"]
 			];
 			var i:int = 0;
+			
+			for(i = 0; i < teases.length; i++) 
+			{ 
+				if(teases[i] > 100) teases[i] = 100;
+			}
 			
 			output("\nAss tease skill: " + teases[0] + "/100");
 			output("\nChest tease skill: " + teases[1] + "/100");
 			output("\nCrotch tease skill: " + teases[2] + "/100");
 			output("\nHips tease skill: " + teases[3] + "/100");
-			output("\nOral tease skill: " + teases[4] + "/100");
 			
 			output("\n\nYour ability at a tease can increase both its success rate and total damage.");
 			
@@ -2607,7 +2592,6 @@ package classes.GameData
 			if (pc.hasGenitals()) teaseList.push(["Crotch", teaseCrotch, target, "Crotch Tease", "Use your [pc.crotch] to tease your enemy."]);
 			else teaseList.push(["Crotch", null, null, "Crotch Tease", "You’ll need crotch-based genitals to do this."]);
 			teaseList.push(["Hips", teaseHips, target, "Hips Tease", "Use your [pc.hips] to tease your enemy."]);
-			// 9999 teaseList.push(["Oral", teaseOral, target, "Oral Tease", "Use your [pc.lips] to tease your enemy."]);
 			
 			// Milk Squirt
 			if (pc.canMilkSquirt())
@@ -2677,14 +2661,15 @@ package classes.GameData
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_CHITIN);
 			return likeAdjustments;
 		}
-		
 		private function teaseButt(target:Creature):void
 		{
 			var teaseCount:Number = 0;
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			teaseCount = Math.min((flags["TIMES_BUTT_TEASED"] == undefined ? 0 : flags["TIMES_BUTT_TEASED"]), 100);
+			if(flags["TIMES_BUTT_TEASED"] == undefined) flags["TIMES_BUTT_TEASED"] = 0;
+			teaseCount = flags["TIMES_BUTT_TEASED"];
+			if(teaseCount > 100) teaseCount = 100;
 			
 			if(pc.buttRating() >= 10 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BUTTS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BUTTS);
@@ -2717,6 +2702,7 @@ package classes.GameData
 			
 			processCombat();
 		}
+				
 		public function buttTeaseText(target:Creature):void 
 		{
 			var choices:Array = new Array();
@@ -2853,7 +2839,9 @@ package classes.GameData
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			teaseCount = Math.min((flags["TIMES_CHEST_TEASED"] == undefined ? 0 : flags["TIMES_CHEST_TEASED"]), 100);
+			if(flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;
+			teaseCount = flags["TIMES_CHEST_TEASED"];
+			if(teaseCount > 100) teaseCount = 100;
 			
 			if(pc.biggestTitSize() >= 5 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS);
@@ -2886,6 +2874,7 @@ package classes.GameData
 				
 			processCombat();
 		}
+		
 		public function chestTeaseText(target:Creature):void 
 		{
 			if (pc.biggestTitSize() < 1) 
@@ -3013,7 +3002,9 @@ package classes.GameData
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			teaseCount = Math.min((flags["TIMES_HIPS_TEASED"] == undefined ? 0 : flags["TIMES_HIPS_TEASED"]), 100);
+			if(flags["TIMES_HIPS_TEASED"] == undefined) flags["TIMES_HIPS_TEASED"] = 0;
+			teaseCount = flags["TIMES_HIPS_TEASED"];
+			if(teaseCount > 100) teaseCount = 100;
 			
 			if(pc.hipRating() >= 10 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_WIDE_HIPS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_WIDE_HIPS);
@@ -3040,6 +3031,7 @@ package classes.GameData
 
 			processCombat();
 		}
+		
 		public function hipsTeaseText(target:Creature):void 
 		{
 			var msg:String = "";
@@ -3091,6 +3083,7 @@ package classes.GameData
 				output(msg);
 			}
 			//Reqs: Hips skill 75+
+			//flags["TIMES_HIPS_TEASED"]
 			else if(select == 5)
 			{
 				//Clothed:
@@ -3119,14 +3112,15 @@ package classes.GameData
 			
 			if(pc.hasStatusEffect("Thicc&Shake")) output(ThiccNShake.teaseCheck(pc, true));
 		}
-		
 		private function teaseCrotch(target:Creature):void
 		{
 			var teaseCount:Number = 0;
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			teaseCount = Math.min((flags["TIMES_CROTCH_TEASED"] == undefined ? 0 : flags["TIMES_CROTCH_TEASED"]), 100);
+			if(flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
+			teaseCount = flags["TIMES_CROTCH_TEASED"];
+			if(teaseCount > 100) teaseCount = 100;
 			
 			if(pc.hasCock() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS);
@@ -3178,7 +3172,9 @@ package classes.GameData
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			teaseCount = Math.min((flags["TIMES_CROTCH_TEASED"] == undefined ? 0 : flags["TIMES_CROTCH_TEASED"]), 100);
+			if(flags["TIMES_CROTCH_TEASED"] == undefined) flags["TIMES_CROTCH_TEASED"] = 0;
+			teaseCount = flags["TIMES_CROTCH_TEASED"];
+			if(teaseCount > 100) teaseCount = 100;
 			
 			if(pc.hasCock() && target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_COCKS);
@@ -3591,90 +3587,10 @@ package classes.GameData
 			}
 		}
 		
-		private function teaseOral(target:Creature):void
-		{
-			var teaseCount:Number = 0;
-			var likeAdjustments:Array = new Array();
-			
-			//Get tease count updated
-			teaseCount = Math.min((flags["TIMES_ORAL_TEASED"] == undefined ? 0 : flags["TIMES_ORAL_TEASED"]), 100);
-			
-				if((pc.lipRating() > 6) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
-					likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
-				//Global adjustments for things like fur, sweat, cum-covered, etc.
-				likeAdjustments.concat(globalTeaseAdjustments(target));
-
-			clearOutput();
-			
-			oralTeaseText(target);
-			applyTeaseDamage(pc, target, teaseCount, "ORAL", likeAdjustments);
-			
-			if (target is CrystalGooT1 && (target as CrystalGooT1).ShouldIntercept({ isTease: true }))
-			{
-				(target as CrystalGooT1).SneakSqueezeAttackReaction( { isTease: true } );
-			}
-			else if (target is CrystalGooT2 && (target as CrystalGooT2).ShouldIntercept( { isTease: true } ))
-			{
-				(target as CrystalGooT2).SpecialAction( { isTease: true } );
-			}
-			processCombat();
-		}
-		private function oralTeaseText(target:Creature):void 
-		{
-			var msg:String = "";
-			var temp:int = 0;
-			var choices:Array = new Array();
-			
-			choices.push(0);
-			choices.push(1);
-			choices.push(2);
-			choices.push(3);
-			
-			var select:int = choices[rand(choices.length)];
-			
-			// Airtight check
-			if(pc.hasAirtightSuit()) output("You swiftly remove your helmet to reveal your [pc.lips]... ");
-			
-			// 9999: Please write!
-			// Texts here
-			switch(select)
-			{
-				case 0:
-					output("");
-					break;
-				case 1:
-					output("");
-					break;
-				case 2:
-					output("");
-					break;
-				case 3:
-					output("");
-					break;
-			}
-			
-			
-			if(pc.hasAirtightSuit()) output(" You then redon your helmet.");
-		}
-		
 		private function myrVenomBite(target:Creature):void
 		{
 			clearOutput();
-			if(CombatAttacks.myrVenomBite(pc, target))
-			{
-				var teaseCount:Number = 0;
-				var likeAdjustments:Array = new Array();
-				
-				//Get tease count updated
-				teaseCount = Math.min((flags["TIMES_ORAL_TEASED"] == undefined ? 0 : flags["TIMES_ORAL_TEASED"]), 100);
-				
-				if((pc.lipRating() > 6) && target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER) > 0) 
-					likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_HYPER);
-				//Global adjustments for things like fur, sweat, cum-covered, etc.
-				likeAdjustments.concat(globalTeaseAdjustments(target));
-				
-				applyTeaseDamage(pc, target, teaseCount, "MYR VENOM", likeAdjustments);
-			}
+			CombatAttacks.myrVenomBite(pc, target);
 			processCombat();
 		}
 		
@@ -3684,7 +3600,9 @@ package classes.GameData
 			var likeAdjustments:Array = new Array();
 			
 			//Get tease count updated
-			teaseCount = Math.min((flags["TIMES_CHEST_TEASED"] == undefined ? 0 : flags["TIMES_CHEST_TEASED"]), 100);
+			if(flags["TIMES_CHEST_TEASED"] == undefined) flags["TIMES_CHEST_TEASED"] = 0;
+			teaseCount = flags["TIMES_CHEST_TEASED"];
+			if(teaseCount > 100) teaseCount = 100;
 			
 			if(pc.biggestTitSize() >= 5 && target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS) > 0)
 				likeAdjustments[likeAdjustments.length] = target.sexualPreferences.getPref(GLOBAL.SEXPREF_BIG_BREASTS);
@@ -4317,7 +4235,7 @@ package classes.GameData
 							//Foe is masculine furry
 							else if(_hostiles[i].mf("m","f") == "m")
 							{
-								output("\n\nHe’s got such sexy fur covering his body! You could just snuggle into it and let him have his way with you... <b>Better hope he doesn’t tease you or you’ll spread your legs like a " + ((pc.hasVaginaType(GLOBAL.TYPE_EQUINE) || pc.horseScore() >= 3) ? "mare" : "bitch") + " in heat!</b>");
+								output("\n\nHe’s got such sexy fur covering his body! You could just snuggle into it and let him have his way with you... <b>Better hope he doesn’t tease you or you’ll spread your legs like a " + ((pc.hasVaginaType(GLOBAL.TYPE_EQUINE) || pc.horseScore() >= 3)  ? "mare" : "bitch") + " in heat!</b>");
 							}
 							//Foe is feminine furry
 							else

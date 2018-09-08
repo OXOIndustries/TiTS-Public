@@ -66,27 +66,10 @@ public function showKane(nude:Boolean = false):void
 }
 public function showQuinn(nude:Boolean = false):void
 {
-	showBust(quinnBustDisplay());
+	var nudeSuffix:String = "";
+	if(nude) nudeSuffix += "_NUDE";
+	showBust("QUINN" + nudeSuffix);
 	showName("\nQUINN");
-}
-public function quinnBustDisplay(nude:Boolean = false):String
-{
-	var sBust:String = "QUINN";
-	var pregDays:int = quinnPregDays();
-	
-	if(pregDays > 30)
-	{
-		if(pregDays <= 80 && flags["QUINN_TOTAL_KIDS"] <= 0) sBust += "_PREG";
-		else if(pregDays <= 130) sBust += "_PREG_TITS";
-		else sBust += "_PREG_HUGE";
-	}
-	else if(flags["QUINN_TOTAL_KIDS"] > 0)
-	{
-		sBust += "_MOMMY";
-	}
-	if(nude) sBust += "_NUDE";
-	
-	return sBust;
 }
 public function showLah(nude:Boolean = false):void
 {
@@ -98,12 +81,12 @@ public function showLah(nude:Boolean = false):void
 public function showLahAndQuinn():void
 {
 	showName("RK LAH\n& QUINN");
-	showBust("LAH",quinnBustDisplay());
+	showBust("LAH","QUINN");
 }
 public function showQuinnAndLah():void
 {
 	showName("RK LAH\n& QUINN");
-	showBust("LAH",quinnBustDisplay());
+	showBust("LAH","QUINN");
 }
 
 public function quinnVaginalCapacity():Number
@@ -1709,7 +1692,7 @@ public function chieftansCircleBonusFuckery():Boolean
 	//PC sided with Lah, has not visited Plantation since
 	else if(flags["PQ_RESOLUTION"] == 2)
 	{
-		showBust(quinnBustDisplay(),"LAH");
+		showBust("QUINN","LAH");
 		if(flags["PQ_P_BURNED"] == undefined)
 		{
 			output("You are on the small plateau that stands at the head of the zil village. The top of the promontory is flat, sandy and round, surrounded by the fungus-shaped zil homes, and has a circle of stones in the middle. On the opposite side of the natural terrace there is the ornate, trophy-laden chieftain’s chair, upon which Quinn lounges. She arches her eyebrows in response to your gaze.");
@@ -1740,7 +1723,7 @@ public function chieftansCircleBonusFuckery():Boolean
 	//PC got peaceful resolution
 	else if(flags["PQ_RESOLUTION"] == 1)
 	{
-		showBust(quinnBustDisplay());
+		showBust("QUINN");
 		// Quinn Mom
 		if(flags["QUINN_KID_NAME"] != undefined && quinnBabyAge() >= 365)
 		{
@@ -1786,7 +1769,7 @@ public function fightTheWholeVillageYaMaroon():void
 {
 	clearOutput();
 	showQuinn();
-	showBust(quinnBustDisplay(),"ZIL_TRIBE");
+	showBust("QUINN","ZIL_TRIBE");
 	author("Nonesuch");
 	output("<i>“I came here to bring an escaped convict to justice,”</i> you say, drawing your [pc.weapon], <i>“and that’s exactly what I intend to do.”</i>");
 	output("\n\n<i>“Suffer our wrath then, land-stealer,”</i> Quinn replies coolly. The angry buzz grows into a throbbing snarl that presses upon you from every side, and the entire throng of warrior zil descends on you, torches and flint-blades flashing.");
@@ -2467,7 +2450,7 @@ public function acceptQuinnsJudgimentos():void
 public function insistOnBeingADickbag():void
 {
 	clearOutput();
-	showBust(quinnBustDisplay(),"ZIL_TRIBE");
+	showBust("QUINN","ZIL_TRIBE");
 	author("Nonesuch");
 	output("<i>“Sorry lady, that isn’t going to happen,”</i> you say, meaningfully reaching for your [pc.weapon]. <i>“Lah is coming with me.”</i>");
 	output("\n\n<i>“That’s a shame,”</i> replies Quinn coolly. <i>“I had formed quite a high opinion of you. But it turns out the word-wolf was right about another thing - you follow your orders mindlessly. And so you must die.”</i>");
@@ -3148,7 +3131,7 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 	}
 	
 	// Handmaiden Threesome
-	if((flags["QUINN_KID_AGE"] == undefined && quinnHandmaidenThreesomeAvailable()) || (flags["QUINN_KID_AGE"] != undefined && quinnBabyAge() >= 365 && quinnHandmaidenThreesomeAvailable(true)))
+	if((flags["QUINN_KID_AGE"] == undefined || quinnBabyAge() >= 365) && quinnHandmaidenThreesomeAvailable())
 	{
 		quinnHandmaidenThreesome(["intro"]);
 		return;

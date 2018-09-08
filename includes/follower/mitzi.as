@@ -1017,7 +1017,7 @@ public function mitziAppearance():void
 	//Can’t see, havent fucked it.
 	else if(flags["MITZI_FUCKED"] == undefined) output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you can only assume that the feminine treasure between is every bit as libidinous and willing as the rest of her.");
 	//Can’t see it, have fucked it
-	else output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you’ve spent too long getting up close and personal with it to simply forget about it. The vulva is eternally plump with lust, slicked by beads of clear arousal at any time of the day or night. Its lusty sheen begs the viewer to lean closer, and a hyper-developed clitoris stands proudly out of its hood in search of a finger or tongue willing to bless its super-charged nerves with the a touch.");
+	else output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you’ve spent too long up close and personal with it to forget about it. The vulva is eternally plump with lust, slicked by beads of clear arousal at any time of the day or night. Its lusty sheen begs the viewer to lean closer, and a hyper-developed clitoris stands proudly out of its hood in search of a finger or tongue willing to bless its super-charged nerves with the a touch.");
 	//Merge
 	output("\n\nA spaded tail whips out to press against your chest");
 	if(!pc.isChestExposed())

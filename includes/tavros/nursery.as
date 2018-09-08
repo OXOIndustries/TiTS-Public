@@ -2376,14 +2376,17 @@ public function pregAverageLoadSizes():void
 
 public function nurseryMilkingRoomFunc():Boolean
 {
-	if(flags["MET_ZEPHYR"] != undefined)
+	if (zephAtNursery() && pc.isLactating() && pc.hasVagina() && !pc.isPregnant() && pc.hasItemByClass(MagicMilker))
+	{
+		addButton(0, "ZephMilking", milkedByZeph, undefined, "Zephyr Milking", "Take some time to milk yourself and perhaps a little more time with Zephyr too...");
+	}
+	else
 	{
 		if (!zephAtNursery()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr isn’t at the nursery to lend a hand.");
 		else if (!pc.isLactating()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need to be lactating to milk yourself!");
 		else if (!pc.hasVagina()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a pussy for Zephyr to assist in your endeavours!");
 		else if (pc.isPregnant()) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "Zephyr won’t want to be too rough on her pregnant lover...");
 		else if (!pc.hasItemByClass(MagicMilker)) addDisabledButton(0, "ZephMilking", "Zephyr Milking", "You need a MagicMilker to hand.");
-		else addButton(0, "ZephMilking", milkedByZeph, undefined, "Zephyr Milking", "Take some time to milk yourself and perhaps a little more time with Zephyr too...");
 	}
 
 	return false;

@@ -78,7 +78,6 @@ public function boredJumperAttackProc():Boolean
 //Win to Bunny
 public function winVsBoredJumper():void
 {
-	flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] = 0;
 	//HP
 	if(enemy.HP() <= 1)
 	{
@@ -143,7 +142,7 @@ public function winVsBoredJumper():void
 		else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need some ‘breeding inducers’ to get ruined with the lusty laquine. " + (pc.inHeat() ? "One":"Two") + " Breeder’s Bliss ought to do...");
 	}
 	else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need a vagina for this.");
-	addButton(9,"Blow Her",blowZatJumpah,undefined,"Blow Her","he jumper’s cock is bulging so temptingly against the latex. You could teach the libidinous lapine a very <i>blue</i> lesson… or immerse yourself. She does smell good...");
+	
 	addButton(14,"Leave",leaveTheBoredJumperAfterWinning);
 }
 
@@ -160,15 +159,8 @@ public function leaveTheBoredJumperAfterWinning():void
 
 //Lose to Bunny
 public function loseToBoredJumperRouting():void
-{	IncrementFlag("BORED_JUMPER_CONSECUTIVE_LOSSES");
-	if(flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] == 3) loseToJumpersStartBadEndsByWill();
-	else if(flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] == 4) fourthLossToBoredJumperBadEndProggo();
-	else if(flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] >= 5) badEndToThatJumperFinally();
-	else if(pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")) 
-	{
-		cumCumCoverLossForSweatquine();
-		flags["BORED_JUMPER_CONSECUTIVE_LOSSES"]--;
-	}
+{	
+	if(pc.hasStatusEffect("Cum Soaked") || pc.hasStatusEffect("Pussy Drenched")) cumCumCoverLossForSweatquine();
 	else if(pc.isTaur()) taursLoseToSweatLaquineByWsan();
 	else if(pc.biggestTitSize() >= 11 && rand(2) == 0) sweatBunSlickyslickTitbang();
 	else if(pc.biggestCockLength() >= 36 && rand(3) <= 1) sweatBunHyperCockDock();
@@ -2443,8 +2435,8 @@ public function boredJumperCowgirlWinByWilliamIII(y:int):void
 }
 
 //[HeatSex]
-// Tooltip: It's as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away...
-// Tooltip, no B.Bliss: You'll need some 'evolutionary inducers' to get ruined with the lusty laquine. Two Breeder's Bliss ought to do...
+// Tooltip: It's as hot as any layer of Hell already, but you could really cook that bun until every sense but sex in her billowing brain melts away…
+// Tooltip, no B.Bliss: You'll need some 'evolutionary inducers' to get ruined with the lusty laquine. Two Breeder's Bliss ought to do…
 // Tooltip, no vagina: You'll need a vagina for this.
 // PC must be carrying two Breeder's Bliss pills.
 // PC must have a Vagina to initiate this scene.

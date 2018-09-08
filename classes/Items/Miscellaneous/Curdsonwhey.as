@@ -64,7 +64,14 @@
 			var initAddiction:Number = kGAMECLASS.bothriocAddiction();
 			
 			// Reduce addiction based on rolls^, but clamp to 50 if addiction has gone above 50
-			kGAMECLASS.bothriocAddiction((-1 * addictionReduction));
+			if (kGAMECLASS.bothriocAddiction() > 50 && kGAMECLASS.bothriocAddiction() - addictionReduction < 50)
+			{
+				kGAMECLASS.flags["BOTHRIOC_ADDICTION"] = 50;
+			}
+			else
+			{
+				kGAMECLASS.flags["BOTHRIOC_ADDICTION"] -= addictionReduction;
+			}
 			
 			// If addiction is present at all, chance for +Will
 			if (kGAMECLASS.bothriocAddiction() > 0 && rand(2) == 0)
@@ -73,7 +80,7 @@
 			}
 			
 			// Don't output if addiction didn't actually change
-			if (kGAMECLASS.flags["BOTHRIOC_ADDICTION"] == undefined || initAddiction == kGAMECLASS.flags["BOTHRIOC_ADDICTION"]) return;
+			if (initAddiction != kGAMECLASS.flags["BOTHRIOC_ADDICTION"]) return;
 			
 			// Calculate the time offset
 			var deltaShift:uint = initDuration - targetDelta;

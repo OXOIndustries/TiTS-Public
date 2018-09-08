@@ -321,11 +321,6 @@ public function reahaFinishesPayingPC(credits:int = 0):void
 {
 	clearOutput();
 	reahaHeader();
-	
-	if(flags["REAHA_PC_PAY"] + credits > 5000) credits = (5000 - flags["REAHA_PC_PAY"]);
-	flags["REAHA_PC_PAY"] += credits;
-	pc.credits += credits;
-	
 	output("<i>“Hey, [pc.name],”</i> Reaha says, slinking up from behind you with an amount of sashay in her hips beyond even the sultry cow’s norm.");
 	output("\n\n<i>“I’ve got a present for you,”</i> she says with a smile, holding up a " + (isAprilFools() ? "dogecoin" : "credit chit") + ". <i>“Guess what this is?”</i>");
 	if(pc.isMischievous()) output("\n\n<i>“A " + (isAprilFools() ? "dogecoin" : "credit chit") + "?”</i> you say, returning her smile.");
@@ -2167,8 +2162,7 @@ public function whatOutfitWillCuredReahaDestroy():void
 		if(
 			InCollection(reaha.inventory[x].shortName, [reaha.armor.shortName, reaha.lowerUndergarment.shortName, reaha.upperUndergarment.shortName])
 		) addDisabledButton(buttons, reaha.inventory[x].shortName, StringUtil.toDisplayCase(reaha.inventory[x].longName), "Reaha is already wearing one of these!");
-		//OLD: else addItemButton(buttons, reaha.inventory[x], destroyCuredReahaSelection, reaha.inventory[x]);
-		else addItemButton(buttons, reaha.inventory[x], reahaClothingDestroyConfirm, x);
+		else addItemButton(buttons, reaha.inventory[x], destroyCuredReahaSelection, reaha.inventory[x]);
 		buttons++;
 		
 		if(invLimit > 14 && (x + 1) == invLimit)
@@ -2180,20 +2174,6 @@ public function whatOutfitWillCuredReahaDestroy():void
 	
 	addButton(14, "Back", curedReahaApproach);
 }
-
-public function reahaClothingDestroyConfirm(x:int):void
-{
-	clearOutput();
-	reahaHeader();
-	output("Are you sure you want Reaha to throw away " + reaha.inventory[x].description + "?");
-	//Inventory options here. Pick 1. Confirm:
-	//Are you sure you want to give {item} to Reaha?
-	//Yes // No (Back to Inventory)
-	clearMenu();
-	addButton(1,"No",whatOutfitWillCuredReahaDestroy);
-	addButton(0,"Yes",destroyCuredReahaSelection,reaha.inventory[x],"Yes","Destroy the item!");
-}
-
 public function destroyCuredReahaSelection(item:ItemSlotClass):void
 {
 	clearOutput();

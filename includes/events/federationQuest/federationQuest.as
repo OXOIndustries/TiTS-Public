@@ -1505,14 +1505,14 @@ public function fedQuestRadioSet():void
 	clearMenu();
 	author("Savin");
 	
-	output("You step over to the primitive communications terminal and " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "push a few buttons, quickly figuring out how to active it" : "tell it to turn on. Nothing happens. You command it to activate. To broadcast. Nothing. Uh... how does this thing work? You grumble and start searching for an analog “on” button, but damn there’s a lot of buttons and dials and knobs on this thing, none of which have any obvious purpose. Half of them aren’t even labelled! Ugh. It takes you several minutes to finally make it do anything, and then there’s quite a bit more knob-fiddling before it seems to be working right again") + ".");
+	output("You step over to the primitive communications terminal and " + (pc.characterClass == GLOBAL.CLASS_ENGINEER ? "push a few buttons, quickly figuring out how to active it" : "tell it to turn on. Nothing happens. You command it to activate. To broadcast. Nothing. Uh... how does this thing work? You grumble and start searching for an analog <i>“on”</i> button, but damn there’s a lot of buttons and dials and knobs on this thing, none of which have any obvious purpose. Half of them aren’t even labelled! Ugh. It takes you several minutes to finally make it do anything, and then there’s quite a bit more knob-fiddling before it seems to be working right again") + ".");
 	output("\n\nSure that you have things settled the way they should be, you bring the headset up to your [pc.ear] and listen in.");
 	output("\n\nA woman is speaking over the radio, urgency in her voice:");
 	output("\n\n<i>“Ellira, come in! Ellira? Daughter, answer me!”</i>");
 	output("\n\nDaughter? That means... the queen! You’ve got her on radio!");
 	if(pc.isAss())
 	{
-		output("\n\nA victorious smirk on your lips, you hold down the “TALK” button and say, <i>“Sorry, queenie. Your daughter’s indisposed at the moment.”</i>");
+		output("\n\nA victorious smirk on your lips, you hold down the <i>“TALK”</i> button and say, <i>“Sorry, queenie. Your daughter’s indisposed at the moment.”</i>");
 		output("\n\n<i>“Who-?”</i> the voice comes back, scowl almost audible. <i>“You "+pc.mf("bastard","bitch")+"! I won’t let you red dogs get away with this!”</i>");
 		output("\n\n<i>“Then come and stop me,”</i> you taunt, and smash the radio. Hopefully, that’ll lure your quarry right to you...");
 		output("\n\nTurning to the window, you watch a big, bulky armored truck pull up outside. Must be the queen.");

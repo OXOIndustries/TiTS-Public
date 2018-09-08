@@ -55,8 +55,7 @@ package classes.Items.Guns
 			this.shieldDefense = 0;
 			this.shields = 0;
 			this.sexiness = 0;
-			//this.critBonus = 5;
-			this.critBonus = 0;
+			this.critBonus = 5;
 			this.evasion = -3;
 			this.fortification = 0;
 

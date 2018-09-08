@@ -9,19 +9,19 @@ public function bothriocAddiction(val:Number = 0):Number
 	// Don't bother if we're already at 100
 	if (val != 0 && s < 100)
 	{
-		var n:Number = (s + val);
+		var n:Number = s + val;
 
 		// If decreasing and already above 50, clamp to 50
-		if (n < s && s >= 50 && n < 50) n = 50;
+		if (n < s && s >= 50 && n < 50) flags["BOTHRIOC_ADDICTION"] = 50;
 		// If increasing clamp to 100
-		if (n > 100) n = 100;
+		else if (n > 100) flags["BOTHRIOC_ADDICTION"] = 100;
 		// If decreasing clamp to 0
-		if (n < 0) n = 0;
+		else if (n < 0) flags["BOTHRIOC_ADDICTION"] = 0;
 		// Otherwise set new value
-		flags["BOTHRIOC_ADDICTION"] = n;
+		else flags["BOTHRIOC_ADDICTION"] = n;
 	}
 
-	//trace("Bothrioc Addiction: " + flags["BOTHRIOC_ADDICTION"]);
+	trace("Bothrioc Addiction: " + flags["BOTHRIOC_ADDICTION"]);
 	return flags["BOTHRIOC_ADDICTION"];
 }
 
@@ -37,12 +37,11 @@ public function updateBothriocAddiction(totalDays:uint):void
 	var drop:Number = 0;
 	for (var i:int = 0; i < totalDays; i++)
 	{
-		drop -= (1 + rand(3));
+		drop += 1 + rand(3);
 	}
 	var s:Number = bothriocAddiction();
-	if(drop > s) drop = s;
 
-	bothriocAddiction(drop);
+	bothriocAddiction(0 - drop);
 
 	if (s > 0 && bothriocAddiction() == 0)
 	{

@@ -1422,7 +1422,7 @@ public function frostwyrmAwakening():void
 {
 	clearOutput();
 	showBust("");
-	showName("\nWAKING...");
+	showName("\nWaking");
 	author("B");
 	
 	output("Your eyes flutter open. You’re back in your bed.");

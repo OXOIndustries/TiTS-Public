@@ -188,7 +188,6 @@
 			this.ass.bonusCapacity = 0;
 			
 			this.createStatusEffect("Disarm Immune");
-			this.createStatusEffect("Force It Gender");
 			createStatusEffect("Sporebutt", 2, 1, 1, 1);
 			
 			isUniqueInFight = true;

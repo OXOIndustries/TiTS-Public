@@ -1519,7 +1519,7 @@ public function pippaFuckPussy(cockOrStraponIndex:int):void
 	output("Pippa places one hand between her legs, gently rubs her pussy through her tight yoga pants, and says, ");
 	
 	if (flags["PIPPA_ASS_FUCKED"] == 1) output("<i>“You know, " + pippaCallsSteele() + ", I love having my ass played with, but sometimes my pussy needs some love too. You think you can handle that?”</i>");
-	else output("<i>“You know, " + pippaCallsSteele() + ", I’d really love to feel your cock in my pussy. How ‘bout it?”</i>");
+	else output("<i>“You know, " + pippaCallsSteele() + ", I’d really love to feel your cock in my pussy. How ’bout it?”</i>");
 	
 	output("You respond by moving closer to her and placing your [pc.hand] over hers, teasing her [pippa.pussyNoun] with her through her pants. She lightly kisses you and whispers, <i>“Good.”</i> She grasps your hand, removing it from her crotch, and guides you to her bed. She quickly removes your ");
 	

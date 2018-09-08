@@ -9999,7 +9999,7 @@ public function bessEvent28ShipMerge():void
 
 	//[Of Course] [No Way]
 	clearMenu();
-	addButton(0, "Of Course", bessEvent28Stay);
+	addButton(0, "OfCourse", bessEvent28Stay);
 	addButton(1, "No Way", bessEvent28GoAway);
 }
 

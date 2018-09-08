@@ -9,7 +9,6 @@ package classes.GameData
 	import classes.Characters.Kane;
 	import classes.Characters.Kaska;
 	import classes.Characters.NymFoe;
-	import classes.Characters.NaleenHerm;
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.RaskvelFemale;
 	import classes.Characters.RaskvelMale;
@@ -953,7 +952,7 @@ package classes.GameData
 			}
 		}
 		
-		public static function myrVenomBite(attacker:Creature, target:Creature, fromMelee:Boolean = false):Boolean
+		public static function myrVenomBite(attacker:Creature, target:Creature, fromMelee:Boolean = false):void
 		{
 			// Airtight check
 			if(attacker.hasAirtightSuit())
@@ -964,7 +963,7 @@ package classes.GameData
 			}
 			if(target.hasStatusEffect("Counters Melee") && !target.isImmobilized())
 			{
-				if(meleeCounterResults(attacker,target)) return false;
+				if(meleeCounterResults(attacker,target)) return;
 			}
 			if (combatMiss(attacker, target))
 			{
@@ -982,12 +981,8 @@ package classes.GameData
 				}
 				else output(StringUtil.capitalize(target.getCombatName(), false) + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.getCombatName() + " clamps " + (attacker.isPlural ? "their" : attacker.getCombatPronoun("himher")) + " jaws around a limb!");
 				
-				if(!(attacker is PlayerCharacter)) applyDamage(new TypeCollection( { drug: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
-				else if(fromMelee) applyDamage(new TypeCollection( { drug: 3 + rand(3) } ), attacker, target, "minimal");
-				
-				return true;
+				applyDamage(new TypeCollection( { drug: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
 			}
-			return false;
 		}
 		
 		//{ region Item Attack Implementors
@@ -2622,16 +2617,6 @@ package classes.GameData
 				if (target.statusEffectv1("Counters Ranged") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
 				return true;
 			}
-			if(target is NaleenHerm)
-			{
-				target.addStatusValue("Counters Ranged",1,1);
-				target.setStatusValue("Counters Melee",1,0);
-				if(target.statusEffectv1("Counters Ranged") >= 3)
-				{
-					(target as NaleenHerm).rangedCounter(attacker);
-					return true;
-				}
-			}
 			return false;
 		}
 		public static function meleeCounterResults(attacker:Creature,target:Creature):Boolean
@@ -2640,16 +2625,6 @@ package classes.GameData
 			{
 				if (target.statusEffectv1("Counters Melee") == 0) kGAMECLASS.shizzyCounterAttack(attacker,true);
 				return true;
-			}
-			if(target is NaleenHerm)
-			{
-				target.addStatusValue("Counters Melee",1,1);
-				target.setStatusValue("Counters Ranged",1,0);
-				if(target.statusEffectv1("Counters Melee") >= 3)
-				{
-					(target as NaleenHerm).meleeCounter(attacker);
-					return true;
-				}
 			}
 			return false;
 		}

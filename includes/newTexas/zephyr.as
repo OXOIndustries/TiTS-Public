@@ -1,5 +1,5 @@
 //Old Room Desc (Replaced With Below)
-//output("At the top of the stairs is a small, cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. Behind is sits an abnormally flat-chest cow-girl, barely sporting D-cups, dressed much more conservatively than the scantily (if at all) clad cows on the ranch proper. <i>“Are you here to see Mr. T.?”</i> she asks, looking up from her work, <i>“He’d be happy to see you. Go on through.”</i>");
+//output("<i>“At the top of the stairs is a small, cozy room decorated with several hunting trophies, swords, old-earth guns, and a large wooden desk with a subtly built-in holoterminal. Behind is sits an abnormally flat-chest cow-girl, barely sporting D-cups, dressed much more conservatively than the scantily (if at all) clad cows on the ranch proper. <i>\"Are you here to see Mr. T.?”</i></i> she asks, looking up from her work, <i>\"He’d be happy to see you. Go on through.”</i>;");
 
 // Preg flag doc
 /*
@@ -471,20 +471,13 @@ public function getFuckedByZephyrII():void
 	output("\n\nZephyr grunts in raw, animal pleasure and stops in an effort to adjust to the touch of your tunnel, huffing excitedly. <i>“Damn, you got an ass on you. You ready for the rest of it?”</i>");
 	output("\n\nBetween reveling in the pulsing of her rod and trying to think, you lose track of her question halfway through. <i>“Huh?”</i>");
 	output("\n\nA hand crashes down on your reddened derriere like a meteor, shocking you out of your dick-induced haze. You swallow some escaping drool and grasp for the right answer. <i>“...Yes?”</i>");
-	if(zephKnowsAboutKids())
-	{
-		output("\n\nZephyr shakes her head fondly and resumes plowing your with her rigid dick. <i>“Alright, just focus on the breeding, lover. That’s what you’re good at, after all.”</i>");
-	}
-	else
-	{
-		output("\n\nZephyr shakes her head and resumes threading her rigid boner deeper into your [pc.vagOrAss]. <i>“Dunno why I bother even involving you in the conversation.");
-		if(pc.isTreated() && pc.isBro()) output(" How bulls like you wound up running this planet, I’ll never understand.");
-		else if(cow) output(" Cows like you really got the short end of the Treatment stick.");
-		else if(pc.isTreated() && pc.hasCock() && pc.femininity > 50 && !pc.isBro()) output(" You’re just a faux cow after all. If I had it my way, all the boys would be eager, anal sluts like you.");
-		else if(pc.isTreated() && pc.femininity > 50 && !pc.isBimbo()) output(" You could’ve made something of yourself. Instead you’re bent over my desk and asking for more.");
-		else output(" Tourists like you just aren’t built for a proper Texan breeding.");
-		output(" Just take it and moan. No sense straining yourself.”</i>");
-	}
+	output("\n\nZephyr shakes her head and resumes threading her rigid boner deeper into your [pc.vagOrAss]. <i>“Dunno why I bother even involving you in the conversation. ");
+	if(pc.isTreated() && pc.isBro()) output("How bulls like you wound up running this planet, I’ll never understand.");
+	else if(cow) output("Cows like you really got the short end of the Treatment stick.");
+	else if(pc.isTreated() && pc.hasCock() && pc.femininity > 50 && !pc.isBro()) output("You’re just a faux cow after all. If I had it my way, all the boys would be eager, anal sluts like you.");
+	else if(pc.isTreated() && pc.femininity > 50 && !pc.isBimbo()) output("You could’ve made something of yourself. Instead you’re bent over my desk and asking for more.");
+	else output("Tourists like you just aren’t built for a proper Texan breeding.");
+	output(" Just take it and moan. No sense straining yourself.”</i>");
 
 	output("\n\nYou briefly consider some kind of retort, but the ");
 	if(x < 0) output("butt");
@@ -672,10 +665,7 @@ public function cleanDatZephyrCawk():void
 	if(pc.hasVagina()) output(", sweat, and your own feminine fluids");
 	else output(" and sweat");
 	output(". You run your tongue over every sensitive vein, keeping her completely hard until you finally pull back, revealing a gleaming red, spit-shined dog-cock.");
-	output("\n\nZephyr gives you a pat on the head. <i>“Good [pc.boy].");
-	if(zephKnowsAboutKids()) output(" Come see me again when you want some more, [pc.name].");
-	else output(" Now get out of my office unless you’re wanting another go.");
-	output("”</i>");
+	output("\n\nZephyr gives you a pat on the head. <i>“Good [pc.boy]. Now get out of my office unless you’re wanting another go.”</i>");
 	processTime(2);
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 	pc.loadInMouth(ppZephyr);
@@ -689,17 +679,9 @@ public function dontEatZephyrCock():void
 {
 	clearOutput();
 	showZephyrDeets(true);
-	if(zephKnowsAboutKids())
-	{
-		output("<i>“Sorry, Zeph, not in the mood,”</i> you tell her, shrugging.");
-		output("\n\nShe sighs and shrugs. <i>“Fine, then. Not gonna force the issue when you’ve already been so... accommodating.”</i> She flashes you a grin while she towels herself off. <i>“Maybe you’ll be a little more generous the next time you come in here begging for more.”</i>");
-	}
-	else
-	{
-		output("<i>“No.”</i>");
-		output("\n\nThunderclouds gather around Zephyr’s brows. Grabbing hold of herself just below the base, she swings it broadside into your face, splattering some of the leavings across your nose and cheek. <i>“Get the fuck out of my office, slut.”</i>");
-		output("\n\nShe smiles down at your cum-stained visage, still pleased in spite of your rebellion.");
-	}
+	output("<i>“No.”</i>");
+	output("\n\nThunderclouds gather around Zephyr’s brows. Grabbing hold of herself just below the base, she swings it broadside into your face, splattering some of the leavings across your nose and cheek. <i>“Get the fuck out of my office, slut.”</i>");
+	output("\n\nShe smiles down at your cum-stained visage, still pleased in spite of your rebellion.");
 	//[Fight] [Leave]
 	clearMenu();
 	addButton(0,"Leave",leaveLikeABitchPC);
@@ -1124,7 +1106,7 @@ public function zephyrTalkBets():void
 	
 	output("\n\n<i>“I haven’t even done anything,”</i> comes the slightly confused reply through the door.");
 	
-	output("\n\nZephyr sighs angrily, then fixes you with a glare. <i>“Look. Arm wrestling got me </i>into<i> this dumb bullshit. I really don’t want anything to do with more dumb bullshit. Get it?”</i>");
+	output("\n\nZephyr sighs angrily, then fixes you with a glare. <i>“Look. Armwrestling got me </i>into<i> this dumb bullshit. I really don’t want anything to do with more dumb bullshit. Get it?”</i>");
 	
 	output("\n\n<i>“You haven’t even heard the stakes yet,”</i> you inform her, smiling.");
 	
@@ -1144,13 +1126,13 @@ public function zephyrTalkBets():void
 	
 	output("\n\n<i>“So is it... real?”</i> she asks, eyeing the syringe.");
 	
-	output("\n\n<i>“Oh, it’s the real deal,”</i> you assure her. <i>“It’ll add inches length- </i>and<i> width-wise. Not to mention your libido shooting through the roof. Ah, not that you really need any help with that.”</i>");
+	output("\n\n<i>“Oh, it’s the real deal,”</i> you assure her. <i>“It’ll add inches length </i>and<i> widthwise. Not to mention your libido shooting through the roof. Ah, not that you really need any help with that.”</i>");
 	
 	output("\n\n<i>“Hmm,”</i> she mutters, still staring at the medical applicator. <i>“I </i>have<i> been thinking about going bigger... seems like fucking everyone has a three foot horsecock nowadays.”</i>");
 	
 	output("\n\n<i>“Should be easy then, right?”</i> you say, not even hiding that you’re goading her on. <i>“All you have to do is beat me.”</i>");
 	
-	output("\n\n<i>“I am going to fucking destroy your asshole when I win,”</i> she says, pointing rudely at your chest. <i>“You won’t even be able to fucking sit down without thinking of my cock. But fine,”</i> she continues, shrugging as she turns away and heads back to her desk. <i>“We can arm wrestle any time. Just let me know when you want me to fuck your ass, I guess.”</i>");
+	output("\n\n<i>“I am going to fucking destroy your asshole when I win,”</i> she says, pointing rudely at your chest. <i>“You won’t even be able to fucking sit down without thinking of my cock. But fine,”</i> she continues, shrugging as she turns away and heads back to her desk. <i>“We can armwrestle any time. Just let me know when you want me to fuck your ass, I guess.”</i>");
 
 	flags["ZEPHYR_TALKED_BETS"] = 1;
 
@@ -1221,8 +1203,6 @@ public function zephyrButtBets():void
 		output("<i>“Still up for that bet I told you about?”</i> you ask,");
 		if (!pc.isNude()) output(" indicating the silhouette of an applicator in your pocket.");
 		else output(" twirling a syringe between your fingers.");
-		
-		flags["ZEPHYR_TALKED_BETS"] = 2;
 	}
 	else
 	{
@@ -1262,7 +1242,7 @@ public function zephyrButtBets():void
 	output("\n\nWhen the match begins, neither of you make a real move, just holding your arms in place as if to test the other.");
 	if (pc.isLactating())
 	{
-		output(" Zephyr seems to be focused on something else entirely - your [pc.breasts].");
+		output(" Zephyr seems to be focused on something else entirely - your [pc.breasts].”</i>");
 
 		output("\n\n<i>“Oho, are you </i>lactating<i>, [pc.name]?”</i> she says with a smirk,");
 
@@ -1369,7 +1349,7 @@ public function zephyrBetLoss(pqResult:Array):void
 
 			output("\n\n");
 		}
-		else if (pc.hasCock() && !pc.hasVagina())
+		else if (!pc.hasVagina())
 		{
 			output("\n\n<i>“Pity you haven’t traded that");
 			if (pc.biggestCockLength() <= 3) output(" tiny");
@@ -1719,16 +1699,11 @@ public function zephyrBetLossMainScene(pqType:uint, pqRand:Number):void
 
 	output("\n\n<i>“Yeah, whatever. Fucking brace yourself, slut. Nnnnngggh!”</i> she grunts, forcing herself into you. <i>“Come on [pc.name], open wide!”</i>");
 
-	output("\n\nFuck,");
-	if(pc.ass.wetness() >= 2) output(" even with your lubed asshole, you feel your are not quite prepared");
-	else output(" she didn’t even wait to lube you or anything");
-	output("! You bite your bottom lip and try not to scream as the tapered tip of her newly enlarged penis slides into your [pc.asshole], dragging along the sensitive skin.");
+	output("\n\nFuck, she didn’t even wait to lube you or anything! You bite your bottom lip and try not to scream as the tapered tip of her newly enlarged penis slides into your [pc.asshole], dragging along the sensitive skin.");
 	
 	pc.buttChange(ppZephyr.biggestCockVolume());
 	
-	output(" Your body squeezes down on her out of instinct, trying to arrest her progress, and thankfully manages to eke a squirt of precum from her tip for");
-	if(pc.ass.wetness() >= 2) output(" extra");
-	output(" lube. What you discover a few seconds later, though, when she thrusts into you so hard your [pc.feet] momentarily come off the ground, is that being lubed enough for her to penetrate you isn’t necessarily a good thing.");
+	output(" Your body squeezes down on her out of instinct, trying to arrest her progress, and thankfully manages to eke a squirt of precum from her tip for lube. What you discover a few seconds later, though, when she thrusts into you so hard your [pc.feet] momentarily come off the ground, is that being lubed enough for her to penetrate you isn’t necessarily a good thing.");
 	
 	output("\n\n<i>“Oh, fffuck!”</i> you cry out, scattering papers off her desk as you scrabble for grip. <i>“Nnnnhhhh!”</i>");
 	
@@ -1939,13 +1914,9 @@ public function zephyrBetWin(pqResult:Array):void
 	if (cIdx < 0) output(" be overcome by the strapon’s feedback and");
 	output(" cum before she does - too bad for her she’s just hastening her own orgasm. With how tight she’s holding you, it’s a cinch to roughly rub her prostate even as you get deeper than you thought possible into her ass.");
 	
-	output("\n\n<i>“Ohhh!”</i> Zephyr groans");
-	if (cIdx < 0 || pc.cLength(cIdx) >= 9) output(", looking down in dismay at her taut stomach as it bulges with the imprint of your cockhead");
-	output(". <i>“Fucking hell, Steele!”</i>");
+	output("\n\n<i>“Ohhh!”</i> Zephyr groans, looking down in dismay at her taut stomach as it bulges with the imprint of your cockhead. <i>“Fucking hell, Steele!”</i>");
 	
-	output("\n\n<i>“Oh right, you don’t mess around with the bulls, do you?”</i> you ask");
-	if (cIdx < 0 || pc.cLength(cIdx) >= 9) output(", casually angling yourself upwards to distort that pale, milky skin with your dick");
-	output(". <i>“Guess this’ll all be new to you, then. If it’s any consolation, you look really good on your back like this.”</i>");
+	output("\n\n<i>“Oh right, you don’t mess around with the bulls, do you?”</i> you ask, casually angling yourself upwards to distort that pale, milky skin with your dick. <i>“Guess this’ll all be new to you, then. If it’s any consolation, you look really good on your back like this.”</i>");
 
 	output("\n\nShe doesn’t respond, her expression somewhere halfway between astonishment at how deep inside her you are and anger that you’re defiling her body. Plus, you think, a little wonder and healthy curiosity. Taking advantage of her momentary fugue state, you start fucking her as hard as you can, [pc.skinFurScales] slapping against Zephyr’s spread thighs with every thrust. It doesn’t take long for her to be unable to resist the treatment, shaking underneath you.");
 	
@@ -2333,7 +2304,7 @@ public function zephyrDoubleBetLoss():void
 	
 	output("\n\nWithout warning, she shoves herself inside you so deeply that you gasp, instinctively raising your legs into the air whereupon Zephyr grabs them and forces them backwards, grinning like a shark as she does.");
 	
-	pc.cuntChange(vIdx, ppZephyr.biggestCockVolume());
+	pc.cuntChange(ppZephyr.biggestCockVolume(),  vIdx);
 	
 	output("\n\n<i>“Oh, that’s a good look for you,”</i> she says, clearly having fun with dominantly displaying her strength. <i>“As tempting as you are lovely.”</i>");
 	
@@ -2381,10 +2352,10 @@ public function zephyrDoubleBetLoss():void
 	
 	output("\n\nOutside her office");
 	if (!pc.isNude()) output(" and fully clothed");
-	output(", you breathe a little sigh of relief. You’re pretty sure your hips would have disintegrated if you’d immediately gone for another round of being bred, and besides, this has left you pretty gravid already. You can still feel yourself leaking cum, too, though here on New Texas that’s not so far out of the ordinary. Still, a not insignificant part of you wants to immediately walk back in and skip the arm wrestling completely...");
+	output(", you breathe a little sigh of relief. You’re pretty sure your hips would have disintegrated if you’d immediately gone for another round of being bred, and besides, this has left you pretty gravid already. You can still feel yourself leaking cum, too, though here on New Texas that’s not so far out of the ordinary. Still, a not insignificant part of you wants to immediately walk back in and skip the armwrestling completely...");
 
 	processTime(45+rand(15));
-	pc.loadInCunt(ppZephyr, vIdx);
+	pc.loadInCunt(ppZephyr,  vIdx);
 	for (var i:int = 0; i < 3; i++) pc.orgasm();
 
 	IncrementFlag("ZEPHYR_RAWDOGGED_PUSS");
@@ -2555,8 +2526,6 @@ public function milkedByZephYes():void
 	author("Wsan");
 	
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
-	var vIdx:int = pc.findEmptyPregnancySlot(1);
-	if(vIdx < 0) vIdx = rand(pc.vaginas.length);
 	
 	output("<i>“I- err...”</i> you stumble over your words, thinking about the way she takes you. It’s exhausting, but that’s part of the fun. The way she puts her full body and mind into <i>fucking</i> you, and forces you to reciprocate. <i>“... Yes.”</i>");
 	
@@ -2565,14 +2534,14 @@ public function milkedByZephYes():void
 	output("\n\nLetting Zephyr gently raise you to your feet while being milked, you moan as she dials the intensity slightly higher with a grin. Then, with a powerful hand on your back, gently coaxes you into bending over for her. Her guiding hand feels like a heavy weight, reminding you of who wears the proverbial pants between the two of you.");
 	
 	output("\n\n<i>“I never get tired of this sight,”</i> she sighs happily, rubbing your back. You can feel her hardness pressing against your [pc.butt], her eagerness getting the best of her.");
-	if (!pc.isNude()) output(" She tugs your [pc.lowerGarments] down and bends down, getting a good look at your [pc.pussy " + vIdx + "] even as she casually sinks a finger into your ass.");
+	if (!pc.isNude()) output(" She tugs your [pc.lowerGarments] down and bends down, getting a good look at your [pc.pussy] even as she casually sinks a finger into your ass.");
 	
 	output("\n\n<i>“Aw, I love seeing you tighten up like that,”</i> she coos, moving her face closer to your [pc.thighs]. <i>“Just can’t help it, huh?”</i>");
 	
 	output("\n\nYou let out a surprised moan when you feel her tongue roll from her mouth and lick your pussy, sliding between your thighs and getting a good taste of your juices.");
 	if (pc.hasToes()) output(" Standing on your tiptoes, y");
 	else output(" Y");
-	output("ou bite your bottom lip while Zephyr takes her sweet time sampling your folds, dipping just once or twice deeper inside you. She’s so <i>warm</i>, and you can’t help but fantasize about her leaving some of that warmth inside your [pc.womb " + vIdx + "].");
+	output("ou bite your bottom lip while Zephyr takes her sweet time sampling your folds, dipping just once or twice deeper inside you. She’s so <i>warm</i>, and you can’t help but fantasize about her leaving some of that warmth inside your [pc.womb].");
 	
 	output("\n\n<i>“Mmmmn,”</i> Zephyr groans from between your legs before standing back up. <i>“Fuck, you taste so good, [pc.name]. Just feeling you out with my tongue makes me fucking raging hard. Look.”</i>");
 	
@@ -2586,7 +2555,7 @@ public function milkedByZephYes():void
 	if (pc.isSquirter()) output(" and squirting all down your legs");
 	output(" in submissive glee. She doesn’t stop or even slow down, encouraging you to keep up with steady rolls of her hips, each one knocking you off your feet and distending your [pc.tummy].");
 	
-	pc.cuntChange(vIdx, ppZephyr.biggestCockVolume());
+	pc.cuntChange(0, ppZephyr.biggestCockVolume());
 	
 	output("\n\nGrunting, she spreads her muscular legs and pulls your [pc.hips] in, beginning to rail you with all the vigor you’ve known and come to love from her, tearing cries and screams of pleasure from your throat.");
 	
@@ -2674,13 +2643,13 @@ public function milkedByZephYes():void
 	processTime(180+rand(60));
 
 	// something to track milk produced specifically for the nursery
-	// NURSERY_MILK_PRODUCTION
+	// 9999 NURSERY_MILK_PRODUCTION
 	var milkQ:Number = pc.milkQ();
 	StatTracking.track("nursery/milk milked", milkQ);
 
 	for (var i:int = 0; i < 3; i++)
 	{
-		pc.loadInCunt(ppZephyr, vIdx);
+		pc.loadInCunt(ppZephyr, 0);
 		pc.orgasm();
 	}
 
@@ -3016,8 +2985,6 @@ public function zephNurseryGentleFuck():void
 	author("Wsan");
 	
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
-	var vIdx:int = pc.findEmptyPregnancySlot(1);
-	if(vIdx < 0) vIdx = rand(pc.vaginas.length);
 	
 	output("<i>“So,”</i> you murmur, reaching up behind you and softly tracing a couple of fingers along Zephyr’s cheek. <i>“Feel like taking your big, studly length and using it on your pregnant mate?”</i>");
 	
@@ -3068,9 +3035,9 @@ public function zephNurseryGentleFuck():void
 	
 	output("\n\n<i>“Put the tip in,”</i> you moan, begging her with your eyes. <i>“Please?”</i>");
 	
-	output("\n\n<i>“I’ll do better than that,”</i> she replies, a thumb on your [pc.clits " + vIdx + "]. You groan in pleasure, momentarily distracted, and then she’s inside you, stretching your pussy walls to their limit. You’re doing this for her as much as you are for yourself, if not more so. You could see how incredibly hard she’d been the whole time she was teasing you, and know how frustrating it is for her when she’s all pent up. Better to take it all now than force her to take care of herself later.");
+	output("\n\n<i>“I’ll do better than that,”</i> she replies, a thumb on your [pc.clits]. You groan in pleasure, momentarily distracted, and then she’s inside you, stretching your pussy walls to their limit. You’re doing this for her as much as you are for yourself, if not more so. You could see how incredibly hard she’d been the whole time she was teasing you, and know how frustrating it is for her when she’s all pent up. Better to take it all now than force her to take care of herself later.");
 	
-	pc.cuntChange(vIdx, ppZephyr.biggestCockVolume());
+	pc.cuntChange(0, ppZephyr.biggestCockVolume());
 	
 	output("\n\nAlready sensitive from being taken to orgasm twice by Zephyr’s roving fingers, you find yourself cumming in less than thirty seconds of her penetrating you with her giant prick, unable to resist the inexorable rolling motion of her wide, powerful hips.");
 	
@@ -3084,7 +3051,7 @@ public function zephNurseryGentleFuck():void
 	
 	output("\n\nPlanting her muscular arms on either side of your body and making a long, loud grunt of effort, you gaze up at her strained o-face as she explosively cums inside you. Hitting your sealed-off cervix, her massive gouts of cum immediately spurt back out of your pussy, splattering Zephyr’s groin and your sheets alike. She leaves the tip inside, shooting rope after rope of thick, warm seed and warming your pussy with another’s heat.");
 	
-	pc.loadInCunt(ppZephyr, vIdx);
+	pc.loadInCunt(ppZephyr, 0);
 	
 	output("\n\n<i>She’s so fucking hot when she’s cumming</i>. You can’t help but submissively cum underneath her once more, smiling as you do, your cute little gasps for air providing a nice contrast to Zephyr’s long, strained breaths through grit teeth. It’s the most wonderful sight you can imagine, and it’s all yours. She opens her eyes at the touch of your dainty hand on her cheek, breathing raggedly, and the tension in her body finally loosens up.");
 	
@@ -3156,7 +3123,8 @@ public function trySendZephyrKidsMail():void
 
 	if (zephKnowsAboutKids() && (days - flags["ZEPHYR_KIDS_DAYCOUNTER"] >= 7))
 	{
-		goMailGet("zephyr_visiting_the_nursery");
+		MailManager.unlockEntry("zephyr_visiting_the_nursery", GetGameTimestamp());
+		AddLogEvent("<b>No Email from Zephyr (Zephyr@NewTexas.gov)!</b>", "passive");
 	}
 }
 
