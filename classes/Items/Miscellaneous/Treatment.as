@@ -270,15 +270,15 @@ package classes.Items.Miscellaneous
 			//chicks
 			else if(arg == 0)
 			{
-				//v1 = boobs 9 to 30
+				//v1 = boobs 9 to 31
 				//v2 = horn size
 				//v3 lip bonus
 				//v4 = unused
 
 				//Sin gets max boobs
-				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,30);
+				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,31);
 				//Boobs from EE to JJ
-				else pc.setStatusValue("Treated",1,9 + rand(22));
+				else pc.setStatusValue("Treated",1,9 + rand(23));
 				//Horn size result - 1 to 3"
 				pc.setStatusValue("Treated",2,1 + rand(3));
 				//Lip Bonus 0-2
@@ -293,15 +293,15 @@ package classes.Items.Miscellaneous
 			//hermy autofellatio moos
 			else if(arg == 2)
 			{
-				//v1 = boobs 9 to 30
+				//v1 = boobs 9 to 31
 				//v2 = horn size
 				//v3 lip bonus
 				//v4 = unused
 
 				//Sin gets max boobs
-				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,30);
-				//Boobs from EE to JJ
-				else pc.setStatusValue("Treated",1,23 + rand(8));
+				if(pc.short == "Sinarra") pc.setStatusValue("Treated",1,31);
+				//Boobs from HHH to JJ
+				else pc.setStatusValue("Treated",1,23 + rand(9));
 				//Horn size result - 1 to 3"
 				pc.setStatusValue("Treated",2,1 + rand(3));
 				//Lip Bonus 0-2
