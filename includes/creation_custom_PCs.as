@@ -379,7 +379,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hairType = GLOBAL.HAIR_TYPE_GOO;
 			pc.femininity = 100;
 			pc.tongueType = GLOBAL.TYPE_DRACONIC;
-			pc.breastRows[0].breastRatingRaw = 29;
+			pc.breastRows[0].breastRatingRaw = 30;
 			pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_FUCKABLE;
 			if(!pc.hasCock()) pc.createCock();
 			pc.shiftCock(0, GLOBAL.TYPE_TENTACLE);
@@ -639,7 +639,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasCock()) pc.createCock();
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.tallness = 75;
-			pc.breastRows[0].breastRatingRaw = 22;
+			pc.breastRows[0].breastRatingRaw = 21;
 			pc.shiftCock(0, GLOBAL.TYPE_EQUINE);
 			pc.cocks[0].cLengthRaw = 20;
 			pc.balls = 2;
