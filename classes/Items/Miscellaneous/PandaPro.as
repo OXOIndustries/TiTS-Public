@@ -196,8 +196,8 @@
 				if(target.hasVagina())
 				{
 					//Large breast size gain to aforementioned cap
-					//Breasts grow proportionally to thickness, eventually capping at JJ cup for full-figured gals
-					//30 == JJ
+					//Breasts grow proportionally to thickness, eventually capping at large I-cup for full-figured gals
+					//26 == large I
 					//1 == A
 					if(target.thickness * .25 > target.breastRows[0].breastRatingRaw - 1)
 					{
