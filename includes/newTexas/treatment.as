@@ -2442,8 +2442,14 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						pc.lust(3);
 						pc.breastRows[0].breastRatingRaw++;
 					}
-					// big HHH -> I
+					// HHH -> large HHH 9999, deficient, TO DO
 					else if(pc.breastRows[0].breastRatingRaw < 24)
+					{
+						// AddLogEvent(">>This is the first 'large' cup size, so it should be a little special this time, I thought of something like setting the fullness to 100%, which makes the boobs even 'larger' than before... I don't know.<<", "passive", (i * 3) * 60);
+						pc.breastRows[0].breastRatingRaw++;
+					}
+					// large HHH -> I
+					else if(pc.breastRows[0].breastRatingRaw < 25)
 					{
 						AddLogEvent("Warmth burns through the nerves of your chest, heating your jiggling mounds to an incredibly pleasant simmer as they begin to swell. You grab them, mooing and moaning in equal parts, feeling them bulge out between your fingertips, marvelling at the weight of your expanding feminine flesh. Your tits are definitely I-cups now. The tingling heat fades, replaced by a desire for physical contact. You give them that and more. Your hands fly across your chest, mauling your boobs for what feels like hours. It isn’t until you cum from the incessant stimulation that your hands fall away", "passive", (i * 3) * 60);
 						if((pc.hasCock() && pc.cumQ() >= 100) || (pc.hasVagina() && pc.wettestVaginalWetness() >= 3) || (pc.isLactating() && pc.lactationQ() >= 200)) ExtendLogEvent(", leaving you sitting in a puddle of your own fluids and panting");
@@ -2452,30 +2458,30 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						pc.orgasm();
 						pc.breastRows[0].breastRatingRaw++;
 					}
-					// I -> big I
-					else if(pc.breastRows[0].breastRatingRaw < 25)
+					// I -> large I
+					else if(pc.breastRows[0].breastRatingRaw < 26)
 					{
 						AddLogEvent("A little extra wobble in your chest is all the notification you need to give yourself a quick grab ‘n’ squeeze. As expected, your tits are a little bigger than before. An I-cup bra would barely contain them! You sit there, petting them, hoping that it’ll encourage further growth. There’s no point in stopping when you’re this close to moving up a whole bra size, is there?", "passive", (i * 3) * 60);
 						pc.breastRows[0].breastRatingRaw++;
 					}
-					// big I -> II
-					else if(pc.breastRows[0].breastRatingRaw < 26)
+					// large I -> II
+					else if(pc.breastRows[0].breastRatingRaw < 27)
 					{
 						AddLogEvent("Teetering forward and nearly losing your balance is all the reminder you need to give your rack some much needed attention. Unashamedly whipping them out, you take hold of your growing tits and weigh them. It isn’t a very precise method of measuring growth, but it feels wonderful. You spend a few moments playing with them, squishing them together, and even bouncing them in place before you come to a decision. You have II-cup boobs for sure.", "passive", (i * 3) * 60);
 						// +2
 						pc.lust(2);
 						pc.breastRows[0].breastRatingRaw++;
 					}
-					// II -> big II
-					else if(pc.breastRows[0].breastRatingRaw < 27)
+					// II -> large II
+					else if(pc.breastRows[0].breastRatingRaw < 28)
 					{
-						AddLogEvent("Your chest has been supremely weighty for a while, but it seems a little heavier than before. You’d better check, just in case it got bigger... and more fuckable. Imagining it’s a dick sliding between your expanding knockers, you snake a hand through your cleavage, wrapping the crook of your arm around the bottom of it. It feels good, of course. Handling your breasts is an exercise in excitement for sure, but you do your best to keep your wits about you. It’s important to know how big your boobs are, after all. How else will you be able to brag about being almost too big for an II-cup bra?", "passive", (i * 3) * 60);
+						AddLogEvent("Your chest has been supremely weighty for a while, but it seems a little heavier than before. You’d better check, just in case it got bigger... and more fuckable. Imagining it’s a dick sliding between your expanding knockers, you snake a hand through your cleavage, wrapping the crook of your arm around the bottom of it. It feels good, of course. Handling your breasts is an exercise in excitement for sure, but you do your best to keep your wits about you. It’s important to know how big your boobs are, after all. How else will you be able to brag about being almost too large for an II-cup bra?", "passive", (i * 3) * 60);
 						// +7 lust
 						pc.lust(7);
 						pc.breastRows[0].breastRatingRaw++;
 					}
-					// big II -> J
-					else if(pc.breastRows[0].breastRatingRaw < 28)
+					// large II -> J
+					else if(pc.breastRows[0].breastRatingRaw < 29)
 					{
 						AddLogEvent("Every movement sends quakes of happy feelings through your mountainous melons, the feminine orbs entirely too delighted to bounce and jiggle for the whole world to see. And you can’t blame them either. They’re big, delicious tits. They deserve to be grabbed and squeezed and pulled until you’re whimpering and drooling all over them... just like now. You moo quietly under your breath and pull your hands away, trying not to cum. You’re pretty sure they’re at least J-cups by now, but it’s a far less pressing concern than the needy itch between your ", "passive", (i * 3) * 60);
 						if(pc.hasVagina()) ExtendLogEvent(ParseText("[pc.thighs]"));
@@ -2486,16 +2492,16 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						pc.lust(33);
 						pc.breastRows[0].breastRatingRaw++;
 					}
-					// J -> big J
-					else if(pc.breastRows[0].breastRatingRaw < 29)
+					// J -> large J
+					else if(pc.breastRows[0].breastRatingRaw < 30)
 					{
-						AddLogEvent("Looking down, you barely suppress a giggle. Your titties are just so gosh darned big! They’re all wobbly and completely obscure your " + pc.feet() + "; why, you’re pretty sure that without some serious effort you won’t be able to make out your own groin. It’s a good thing your fingers already know just where to go, but you’re pretty sure they’d be manhandling these delicious knockers. You start squeezing them together, letting your eyes drift closed, imagining that strong, calloused fingers are doing the work. Having such big J-cups is nice.", "passive", (i * 3) * 60);
+						AddLogEvent("Looking down, you barely suppress a giggle. Your titties are just so gosh darned big! They’re all wobbly and completely obscure your " + pc.feet() + "; why, you’re pretty sure that without some serious effort you won’t be able to make out your own groin. It’s a good thing your fingers already know just where to go, but you’re pretty sure they’d be manhandling these delicious knockers. You start squeezing them together, letting your eyes drift closed, imagining that strong, calloused fingers are doing the work. Having such large J-cups is nice.", "passive", (i * 3) * 60);
 						// +10 lust
 						pc.lust(10);
 						pc.breastRows[0].breastRatingRaw++;
 					}
-					// big J -> JJ
-					else if(pc.breastRows[0].breastRatingRaw < 30)
+					// large J -> JJ
+					else if(pc.breastRows[0].breastRatingRaw < 31)
 					{
 						AddLogEvent("Ooooh! A throaty moan rips through the air around you as you feel something come over your tits. It feels like a wave of tingling is hitting you. Your [pc.nipples] instantly ", "passive", (i * 3) * 60);
 						if(pc.hasFuckableNipples() || pc.isLactating()) ExtendLogEvent("leak in noticeable streams");
