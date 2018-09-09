@@ -2032,25 +2032,25 @@ public function itemDisabledMessage(slot:Number, clearScreen:Boolean = true):voi
 		case GLOBAL.CLOTHING:
 		case GLOBAL.ARMOR:
 			if(pc.hasStatusEffect("Body Paint")) msg = "You can’t afford to put anything on without ruining the paint your body is covered in. You’ll have to wash the paint off or wait until it wears off before trying to wear anything on the item slot.";
-			else msg = pc.getStatusTooltip("Armor Slot Disabled");
+			else msg = (pc.hasStatusEffect("Armor Slot Disabled") ? pc.getStatusTooltip("Armor Slot Disabled") : "");
 			break;
 		case GLOBAL.MELEE_WEAPON:
-			msg = pc.getStatusTooltip("Melee Weapon Slot Disabled");
+			msg = (pc.hasStatusEffect("Melee Weapon Slot Disabled") ? pc.getStatusTooltip("Melee Weapon Slot Disabled") : "");
 			break;
 		case GLOBAL.RANGED_WEAPON:
-			msg = pc.getStatusTooltip("Ranged Weapon Slot Disabled");
+			msg = (pc.hasStatusEffect("Ranged Weapon Slot Disabled") ? pc.getStatusTooltip("Ranged Weapon Slot Disabled") : "");
 			break;
 		case GLOBAL.SHIELD:
-			msg = pc.getStatusTooltip("Shield Slot Disabled");
+			msg = (pc.hasStatusEffect("Shield Slot Disabled") ? pc.getStatusTooltip("Shield Slot Disabled") : "");
 			break;
 		case GLOBAL.ACCESSORY:
-			msg = pc.getStatusTooltip("Accessory Slot Disabled");
+			msg = (pc.hasStatusEffect("Accessory Slot Disabled") ? pc.getStatusTooltip("Accessory Slot Disabled") : "");
 			break;
 		case GLOBAL.LOWER_UNDERGARMENT:
-			msg = pc.getStatusTooltip("Lower Garment Slot Disabled");
+			msg = (pc.hasStatusEffect("Lower Garment Slot Disabled") ? pc.getStatusTooltip("Lower Garment Slot Disabled") : "");
 			break;
 		case GLOBAL.UPPER_UNDERGARMENT:
-			msg = pc.getStatusTooltip("Upper Garment Slot Disabled");
+			msg = (pc.hasStatusEffect("Upper Garment Slot Disabled") ? pc.getStatusTooltip("Upper Garment Slot Disabled") : "");
 			break;
 	}
 	
