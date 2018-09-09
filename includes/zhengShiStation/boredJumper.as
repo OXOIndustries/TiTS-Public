@@ -568,7 +568,7 @@ public function sweatBunSlickyslickTitbang2():void
 	output(" <i>“Ah!”</i> Her hips settle onto your [pc.belly], wiggling in delight as she adjusts to the sudden, soft compression. <i>“Mmmmm, good as a pussy and twice as pretty.”</i>");
 
 	//Tits not I-cup or higher
-	if(pc.biggestTitSize() < 24) output("\n\nJutting out of your cleavage, the laquine’s [enemy.cock] throbs demandingly.");
+	if(pc.biggestTitSize() < 25) output("\n\nJutting out of your cleavage, the laquine’s [enemy.cock] throbs demandingly.");
 	//Else
 	else output("\n\nBuried deep in your cleavage, the laquine’s [enemy.cock] throbs demandingly against your [pc.skinFurScales].");
 	//Merge
