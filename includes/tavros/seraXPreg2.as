@@ -636,7 +636,7 @@ public function seraBitchImpregnateBedWake():void
 			pc.cockChange();
 			
 			output("\n\n<i>“No, no, [pc.master], I’ll do everything. Doesn’t this feel good?”</i> She moves her hip back and forth, and you groan woozily as her pussy tightens... then loosens, tightens... then loosens around your eagerly erect prick. <i>“Isn’t that wonderful?”</i> she purrs, " + (pc.hasHair() ? "running her claws through your [pc.hair]" : "stroking your pate with her claws") + " before firmly pushing your " + (pc.tallness > (chars["SERA"].tallness + 6) ? "head over shoulder" : ("head into her big, soft, " + (chars["SERA"].skinTone!= "bright pink" ? "purple" : "pink") + " cleavage")) + ". <i>“I modded every part of my body to be in control. To make my every bitc... lover powerless against me. Because doesn’t it feel good? For me to be in control?”</i>");
-			output("\n\nWith the barest of movement, the soaked tunnel of her pussy tightens up like a silken vice around you, and when she writhes her curves against you it <i>jerks </i> your [pc.cock] most sensitive zone so that you reflexively arch your back to it. Void yes... it does feel so good to let go and let her have you however she wants...");
+			output("\n\nWith the barest of movement, the soaked tunnel of her pussy tightens up like a silken vice around you, and when she writhes her curves against you it <i>jerks</i> your [pc.cock " + cIdx + "] most sensitive zone so that you reflexively arch your back to it. Void yes... it does feel so good to let go and let her have you however she wants...");
 			output("\n\n<i>“Thaaaat’s it,”</i> sniggers Sera. She exhales slowly into your ear as she sinks herself even further down your shaft,");
 			if(pc.cockVolume(cIdx) <= chars["SERA"].vaginalCapacity(0)) output(" enveloping the entirety of it in supple, wet magic");
 			else output(" enveloping even more of the long, ponderous fuck-stick in supple, wet magic");
@@ -662,7 +662,7 @@ public function seraBitchImpregnateBedWake():void
 			if(pc.tallness < chars["SERA"].tallness) output(", thrusting your face back between her breasts as she does");
 			output(".");
 			if(pc.cumQ() >= 500) output(" Abundant amounts of cum is soon spurting out around " + (pc.cocks[cIdx].hasFlag(GLOBAL.FLAG_KNOTTED) ? "your [pc.knot]" : "the base of your dick") + ", spattering all over your [pc.skinFurScales] and the bed, but the demon morph continues to clamp and ride you heedlessly.");
-			output("\n\nYour [pc.cock] is " + (pc.cumQ() < 500 ? "soon" : "eventually") + " shooting blanks, flexing dryly in her silky, kneading wetness");
+			output("\n\nYour [pc.cock " + cIdx + "] is " + (pc.cumQ() < 500 ? "soon" : "eventually") + " shooting blanks, flexing dryly in her silky, kneading wetness");
 			if(pc.balls > 0) output(", your [pc.balls] achingly spent");
 			output(", and yet Sera doesn’t stop milking you like you’re the last bull in the universe for a moment. It’s only when a groan in protest is forced past your lips that she eases up, her flexible sex blessedly loosening around your abused prick.");
 			output("\n\n<i>“You’ve done very well for me, [pc.boyGirl],”</i> she purrs, slowly peeling away from you to consider the heavy amounts of [pc.cum] trailing from your [pc.cock " + cIdx + "] and her snatch. <i>“I feel quite full up.");
