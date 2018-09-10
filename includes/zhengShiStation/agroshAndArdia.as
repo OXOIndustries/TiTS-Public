@@ -910,6 +910,7 @@ public function cumInMeArdia():void
 	processTime(15);
 	if(pc.hasVagina()) pc.loadInCunt(ardia,0);
 	else pc.loadInAss(ardia);
+	pc.orgasm();
 	IncrementFlag("SEXED_ARDIA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -932,6 +933,7 @@ public function takeArdiasLoadOnyerButt():void
 
 	processTime(15);
 	pc.applyCumSoaked();
+	pc.orgasm();
 	IncrementFlag("SEXED_ARDIA");
 	clearMenu();
 	clearMenu();
