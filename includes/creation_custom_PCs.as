@@ -379,7 +379,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hairType = GLOBAL.HAIR_TYPE_GOO;
 			pc.femininity = 100;
 			pc.tongueType = GLOBAL.TYPE_DRACONIC;
-			pc.breastRows[0].breastRatingRaw = 29;
+			pc.breastRows[0].breastRatingRaw = 30;
 			pc.breastRows[0].nippleType = GLOBAL.NIPPLE_TYPE_FUCKABLE;
 			if(!pc.hasCock()) pc.createCock();
 			pc.shiftCock(0, GLOBAL.TYPE_TENTACLE);
@@ -639,7 +639,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasCock()) pc.createCock();
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.tallness = 75;
-			pc.breastRows[0].breastRatingRaw = 22;
+			pc.breastRows[0].breastRatingRaw = 21;
 			pc.shiftCock(0, GLOBAL.TYPE_EQUINE);
 			pc.cocks[0].cLengthRaw = 20;
 			pc.balls = 2;
@@ -790,7 +790,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		/*Warkonst Height: 1,75m
 		Hair: Short, Black
 		Sex: Futa with 35cm Horse cock and 15cm clit
-		Breasts: NN-Cup 10cm nipples
+		Breasts: large NN-Cup 10cm nipples
 		Body: Average
 		Skin Color: Demonic Red
 		Gift: Lots of Jizz
@@ -807,7 +807,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.shiftCock(0,GLOBAL.TYPE_EQUINE);
 			pc.cocks[0].cLengthRaw = 13.7;
 			pc.clitLength = 6;
-			pc.breastRows[0].breastRatingRaw = 49;
+			pc.breastRows[0].breastRatingRaw = 48;
 			pc.skinTone = "red";
 			pc.cumMultiplierRaw = 40;
 			pc.ballEfficiency = 150;

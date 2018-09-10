@@ -157,7 +157,7 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 
-			this.breastRows[0].breastRatingRaw = 8;
+			this.breastRows[0].breastRatingRaw = 7;
 			this.nippleColor = "black";
 			this.milkMultiplier = 0;
 			this.milkType = GLOBAL.FLUID_TYPE_MILK;

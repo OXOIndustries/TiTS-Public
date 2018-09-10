@@ -641,11 +641,11 @@ public function giannaAppearance():void
 	//Each boob size comes with its own custom paragraph about it!
 	var tempTits:Number = gianna.biggestTitSize();
 	//C Cup
-	if(tempTits < 4) output("\n\nIt’d be impossible to look Gianna over without pausing to take in the sight of her chest. She’s reduced the amount of silicone in her chest since your first meeting, leaving her with two pear-shaped, approximately C-cup breasts. Of course, she never actually wears a bra, owing to her boobs’ seeming ability to support themselves while remaining perfectly pleasing and jiggly. Modest, ink-black areolae cap her well-formed peaks, gleaming in a way that gives the impression of having just been spit- or oil-shined. Her nipples are erect, just as you’d expect during arousal, protruding a half-inch forward, firm and a little pebbly.");
+	if(tempTits <= 3) output("\n\nIt’d be impossible to look Gianna over without pausing to take in the sight of her chest. She’s reduced the amount of silicone in her chest since your first meeting, leaving her with two pear-shaped, approximately C-cup breasts. Of course, she never actually wears a bra, owing to her boobs’ seeming ability to support themselves while remaining perfectly pleasing and jiggly. Modest, ink-black areolae cap her well-formed peaks, gleaming in a way that gives the impression of having just been spit- or oil-shined. Her nipples are erect, just as you’d expect during arousal, protruding a half-inch forward, firm and a little pebbly.");
 	//E Cup
-	else if(tempTits < 9) output("\n\nNo description of Gianna would be complete without mentioning her perfectly symmetrical, teardrop-shaped breasts. They’re positioned high on her torso and miraculously appear to support themselves, still jiggly but somehow supported well enough to keep from sagging awkwardly. If you had to guess, you’d judge they’d fit well into an E-cup bra. Large, ink-black areolae cap her impressive peaks, gleaming in a way that makes them appear to have been freshly oiled. Her nipples erect just as you would expect during arousal, sticking out three-quarters of an inch, firm and pebbly.");
+	else if(tempTits <= 7) output("\n\nNo description of Gianna would be complete without mentioning her perfectly symmetrical, teardrop-shaped breasts. They’re positioned high on her torso and miraculously appear to support themselves, still jiggly but somehow supported well enough to keep from sagging awkwardly. If you had to guess, you’d judge they’d fit well into an E-cup bra. Large, ink-black areolae cap her impressive peaks, gleaming in a way that makes them appear to have been freshly oiled. Her nipples erect just as you would expect during arousal, sticking out three-quarters of an inch, firm and pebbly.");
 	//GG Cup
-	else if(tempTits <= 18) 
+	else if(tempTits <= 17) 
 	{
 		output("\n\nGianna’s breasts are impossible to ignore. Originally teardrop-shaped E-cups, she’s shifted enough silicone into them to pump them up to round, GG-cup behemoths. Some quirk of her engineering keeps them from sagging, but they still dominate the top-half of her torso, jiggling with wild abandon every time the companion makes the slightest movement. They’re pillowy enough that you’re sure your fingers could vanish into them if you gave them a squeeze. Tits like that are made for fucking or admiring and little else.");
 		output("\n\nInk-black areolae the size of small plates crown the mountainous melons, gleaming in a way that makes them appear to have been freshly spit-shined or oiled. Their pebbly texture is visible at a distance, extending all the way to the tips of her prominent nipples. Just like most mammalian and similar species, her teats erect when stimulated or aroused, extending almost an inch forward, easily fatter than the biggest pencil erasers.");
@@ -1028,7 +1028,7 @@ public function talkToGiannaAbootHerBodyEh():void
 
 	output("\n\nGianna’s alabaster fingertips slide down to her cheeks, pausing there. <i>“Of course, my whole body is covered in synthskin. KihaCorp still uses the same stuff on its newest androids.”</i> She rubs her digits against the flawless dermis for effect. <i>“It doesn’t rot. It can’t get sick. It’s even two times more durable than actual skin. A secondary layer of embedded, flash-programmable microsurgeons allow it to be repaired in case of damage or adjusted in case it needs to be resized.”</i>");
 	//Not changed
-	if(gianna.lipMod == 0 && gianna.buttRating() == 9 && gianna.biggestTitSize() == 8)
+	if(gianna.lipMod == 0 && gianna.buttRating() == 9 && gianna.biggestTitSize() == 7)
 	{
 		output("\n\n<i>“Resized?”</i> you ask.");
 		output("\n\nGianna answers, <i>“Resized,”</i> as her [gianna.lips] abruptly begin to balloon, swelling into an awkward pucker before your eyes. Her resulting smile looks obscenely, almost cartoonishly slutty. To fuel the transformation, her chest and ass both narrow significantly. Thankfully, she reduces her mouth and body to normal, her point made. <i>“Ever since the class fives, we’ve come with filling ports just above our spine. Softer companions like myself will use silicone to allow us to alter the size and voluptuousness of our forms. For those who prefer harder companions, ones that are closer to human males, they use a proprietary blend than can be sculpted into quite convincing muscles.”</i>");
@@ -1256,7 +1256,7 @@ public function comfortGiannaSheAintNoThing():void
 	output("at you");
 	if(giannaPersonality() < 30) output(" uncertainly");
 	output(", Gianna hesitates before speaking. <i>“R-really?”</i> She puts her hand on your forearm as if to say something else and then abandons it entirely, pulling you into a ");
-	if(gianna.biggestTitSize() >= 8) output("boob-squishing ");
+	if(gianna.biggestTitSize() >= 7) output("boob-squishing ");
 	output("hug. Every now and then, her form quivers and shakes. Her quiet voice murmurs, <i>“Thank you,”</i> again and again, a mantra that only strengthens over time. After what feels like a solid minute of this, she pulls away and");
 	if(pc.tallness >= 85) output(" jumps up");
 	else if(pc.tallness >= 75) output(" stretches up");
@@ -1438,26 +1438,26 @@ public function giannaBodyModMenu(display:Boolean = true):void
 	addButton(3,"Distribution",giannaSiliconeDistributionDisplay,undefined,"Distribution","Check on her current silicone levels.");
 	if(gianna.biggestTitSize() <= 3)
 	{
-		if(giannaAvailableSilicone() >= 5) addButton(0,"IncreaseBoobs",increaseGiannaBoobs,5,"IncreaseBoobs","Make Gianna’s [gianna.chest] bigger.");
-		else addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You need at least 5 units of silicone to increase Gianna’s bust to the next tier.");
+		if(giannaAvailableSilicone() >= 4) addButton(0,"IncreaseBoobs",increaseGiannaBoobs,4,"IncreaseBoobs","Make Gianna’s [gianna.chest] bigger.");
+		else addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You need at least 4 units of silicone to increase Gianna’s bust to the next tier.");
 		addDisabledButton(5,"Shrink Breasts","Shrink Breasts","There’s no talking Gianna into making her boobs any smaller. C-cups will have to do.");
 	}
-	else if(gianna.biggestTitSize() <= 8)
+	else if(gianna.biggestTitSize() <= 7)
 	{
 		if(giannaAvailableSilicone() >= 10) addButton(0,"IncreaseBoobs",increaseGiannaBoobs,10,"IncreaseBoobs","Make Gianna’s [gianna.chest] bigger.");
 		else addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You need at least 10 units of silicone to increase Gianna’s bust to the next tier.");
-		addButton(5,"Shrink Breasts",decreaseGiannaBoobs,5,"Shrink Breasts","Shrinking Gianna’s [gianna.chest] will free up 5 units of silicone.");
+		addButton(5,"Shrink Breasts",decreaseGiannaBoobs,4,"Shrink Breasts","Shrinking Gianna’s [gianna.chest] will free up 4 units of silicone.");
 	}
-	else if(gianna.biggestTitSize() <= 18)
+	else if(gianna.biggestTitSize() <= 17)
 	{
-		if(giannaAvailableSilicone() >= 23) addButton(0,"IncreaseBoobs",increaseGiannaBoobs,23,"IncreaseBoobs","Make Gianna’s [gianna.chest] bigger.");
-		else addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You need at least 23 units of silicone to increase Gianna’s bust to the next tier.");
+		if(giannaAvailableSilicone() >= 24) addButton(0,"IncreaseBoobs",increaseGiannaBoobs,24,"IncreaseBoobs","Make Gianna’s [gianna.chest] bigger.");
+		else addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","You need at least 24 units of silicone to increase Gianna’s bust to the next tier.");
 		addButton(5,"Shrink Breasts",decreaseGiannaBoobs,10,"Shrink Breasts","Shrinking Gianna’s [gianna.chest] will free up 10 units of silicone.");
 	}
 	else
 	{
 		addDisabledButton(0,"IncreaseBoobs","IncreaseBoobs","Gianna’s mountainous mounds are as big as she’s willing to go with them. Any larger and they would interfere with her work.");
-		addButton(5,"Shrink Breasts",decreaseGiannaBoobs,23,"Shrink Breasts","Shrinking Gianna’s [gianna.chest] will free up 18 units of silicone.");
+		addButton(5,"Shrink Breasts",decreaseGiannaBoobs,24,"Shrink Breasts","Shrinking Gianna’s [gianna.chest] will free up 24 units of silicone.");
 	}
 
 	if(gianna.buttRating() <= 5) 
@@ -1609,10 +1609,10 @@ public function increaseGiannaBoobs(siliconeUsed:int):void
 		output("\n\nGiggling, Gianna plays with her new breasts, bouncing them up and down, smushing them together, even rubbing her thumbs in little circles around her nipples. Her eyes take on a glazed, far away look, and her blush is slowly spreading down her body, lending her newly-formed E-cups a rosy shine.");
 		output("\n\nYou quietly clear your throat.");
 		output("\n\n<i>“Oh, sorry,”</i> Gianna says a little breathlessly, pulling her hands away from her new, perfectly formed E-cups. <i>“I was just getting reacquainted with the girls is all. Did you want to adjust something else? Maybe see how I’d look with double G’s?”</i>");
-		gianna.breastRows[0].breastRatingRaw = 8;
+		gianna.breastRows[0].breastRatingRaw = 7;
 	}
 	//E->GG
-	else if(gianna.biggestTitSize() <= 8)
+	else if(gianna.biggestTitSize() <= 7)
 	{
 		output("<i>“Could you go a little bigger?”</i>");
 		output("\n\nGianna’s eyebrows shoot up in surprise, then drop into a low, sultry look. <i>“");
@@ -1636,7 +1636,7 @@ public function increaseGiannaBoobs(siliconeUsed:int):void
 		else if(giannaPersonality() >= 20) output("How was that? Toss me in a cow-print bikini and let me pigment my skin, and I’d easily pass for one of those treated bimbos. And how many of them can give you a show like I just did? Not many!");
 		else output("You... you’re a good master, you know that? It’s fun having these.");
 		output(" Now, do you want me to make them as big as I can, or something else? M-cup is as far as I can go.”</i>");
-		gianna.breastRows[0].breastRatingRaw = 18;
+		gianna.breastRows[0].breastRatingRaw = 17;
 	}
 	//GG->M
 	else
@@ -1721,10 +1721,10 @@ public function decreaseGiannaBoobs(siliconeReturned:int):void
 		else output("Please don’t");
 		output(" ignore me just because my breasts aren’t blown up to the size of houses any more.”</i> A look of supreme concentration crosses her face. Her internal motor starts up just after, siphoning silicone out through the tube in her back. She gently hefts her diminishing breasts, struggling at first to keep them stable as they shrink. There’s no signs of stretch marks or folds of unnecessary skin. Through it all, the slutty android’s dermis remains smooth and unblemished, as appealing as any living woman’s.");
 		output("\n\nThe saucer-sized nipples are the first thing to go. They’re barely as big as a small plate now, and the torso-blocking mammaries aren’t faring much better. They’ve already shrunk down to the size of beach balls, and though the rate is slowing, they’re still getting a little smaller. Gianna smiles sadly and shuts the motor off. <i>“Now those... those were </i>tits<i>.”</i> She looks your way a little sadly. <i>“What now?”</i>");
-		gianna.breastRows[0].breastRatingRaw = 18;
+		gianna.breastRows[0].breastRatingRaw = 17;
 	}
 	//GG->E
-	else if(gianna.biggestTitSize() >= 18)
+	else if(gianna.biggestTitSize() >= 17)
 	{
 		output("<i>“You were probably right with how you had them when we met. Could you make them like that again?”</i>");
 		//Dommy
@@ -1747,7 +1747,7 @@ public function decreaseGiannaBoobs(siliconeReturned:int):void
 		output("\n\nFrom time to time, Gianna groans with effort, something about adjusting her tactile resolution to match her new size’s native resolution. Then, the motor clicks off, leaving the companion holding two tremendous handfuls of tit. Just enough enough to produce eye watering amounts of cleavage without being bulky or overly obscene. <i>“Perfect,”</i> she chimes.");
 		output("\n\nThey really do look the same as when you first met. The girl’s got control, that’s for sure.");
 		output("\n\n<i>“Want to put all that silicone somewhere else?”</i>");
-		gianna.breastRows[0].breastRatingRaw = 8;
+		gianna.breastRows[0].breastRatingRaw = 7;
 	}
 	//E->C
 	else
@@ -3126,8 +3126,8 @@ public function girlySixtynineWithGianna():void
 		output("\n\nYou prop yourself up on your elbows and give Gianna your most welcoming smile, waiting for her to climb onboard.");
 	}
 	output("\n\nThe android grips the edge of the table and jumps, displaying a remarkable degree of strength as she lifts her ");
-	if(gianna.buttRating() <= 7 && gianna.biggestTitSize() <= 8) output("trim");
-	else if(gianna.buttRating() < 15 && gianna.biggestTitSize() < 15) output("over-sexed");
+	if(gianna.buttRating() <= 7 && gianna.biggestTitSize() <= 7) output("trim");
+	else if(gianna.buttRating() <= 15 && gianna.biggestTitSize() <= 17) output("over-sexed");
 	else output("silicone-pumped");
 	output(" form up and over. She drops her [gianna.butt] on top of your [pc.chest] with a furniture-rattling thump. Thankfully, she kept her weight on her knees instead of your torso, not that you could ignore the ");
 	if(flags["GIANNA_TEMP"] == 1) output("hot");

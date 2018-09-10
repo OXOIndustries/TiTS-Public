@@ -263,8 +263,8 @@
 					//Minor Vagina-dependant
 					if(target.hasVagina())
 					{
-						//Breasts grow proportionally to thickness, eventually capping at JJ cup for full-figured gals
-						//30 == JJ
+						//Breasts grow proportionally to thickness, eventually capping at large I-cup for full-figured gals
+						//26 == large I
 						//1 == A
 						if(target.thickness * .25 > target.breastRows[0].breastRatingRaw - 1 && target.breastRatingUnlocked(0, target.breastRows[0].breastRatingRaw + 1) && rand(3) == 0 && changes < changeLimit)
 						{
@@ -435,8 +435,8 @@
 					if(target.hasVagina())
 					{
 						//Large breast size gain to aforementioned cap
-						//Breasts grow proportionally to thickness, eventually capping at JJ cup for full-figured gals
-						//30 == JJ
+						//Breasts grow proportionally to thickness, eventually capping at large I-cup for full-figured gals
+						//26 == large I
 						//1 == A
 						if(target.thickness * .25 > target.breastRows[0].breastRatingRaw - 1 && target.breastRatingUnlocked(0, (target.thickness * 0.25) + 1) && rand(3) == 0 && changes < changeLimit)
 						{

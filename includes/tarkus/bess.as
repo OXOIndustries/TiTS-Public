@@ -2251,7 +2251,7 @@ public function talkToBessAboutBoobSize():void
 	else output(" the gargantuan tits you asked for? I’m guessing you want a reduction, because these can’t possibly get any bigger!");
 	output("”</i>");
 
-	var options:Array = [0, 1, 2, 3, 4, 7, 11, 15, 19, 24];
+	var options:Array = [0, 1, 2, 3, 4, 7, 11, 15, 19, 25];
 	var lbls:Array = 	["Flat", "A-Cup", "B-Cup", "C-Cup", "D-Cup", "E-Cup", "F-Cup", "G-Cup", "H-Cup", "I-Cup"];
 
 	var optSlot:int = -1;
