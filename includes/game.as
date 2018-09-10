@@ -1114,8 +1114,12 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
         count++;
         if(!counter)
         {
-            if (InCollection(CREW_RAMIS, crewMembers)) crewMessages += "\n\n" + ramisCrewBlurb();
-            addButton(btnSlot, "Ramis", ramisCrewApproach);
+            if (!pc.hasStatusEffect("Partying Ramis"))
+            {
+                if (InCollection(CREW_RAMIS, crewMembers)) crewMessages += "\n\n" + ramisCrewBlurb();
+                addButton(btnSlot, "Ramis", ramisCrewApproach);
+            }
+            else addDisabledButton(btnSlot, "Ramis", "Ramis", "The female kaithrit is out in Tavros, pulverizing the station’s drinking holes no doubt.\n\nShe’ll be back tomorrow.");
             btnSlot = crewButtonAdjustments(btnSlot);
         }
     }
