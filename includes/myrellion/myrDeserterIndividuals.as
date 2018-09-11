@@ -176,7 +176,7 @@ public function approachMyrDesertersCombatBlurb(gold:Boolean = false):void
 		if(gold) flags["MET_GOLD_DESERTER"] = 1;
 		else flags["MET_RED_DESERTER"] = 1;
 		output("\n\nAs you [pc.walk] through the desolate and war torn wasteland, the wind howls around you. It rages against its underground confines. Instinctively, you ");
-		if(pc.meleeWeapon is EmptySlot && pc.rangedWeapon is EmptySlot) output("grab a nearby rock.");
+		if(!pc.hasEquippedWeapon()) output("grab a nearby rock.");
 		else output("tighten your grip on your [pc.weapon].");
 
 		output("\n\nA deafening boom fills the air. The ground trembles, and dirt and stalactites fall from the cavern ceiling. Heart racing in your chest, you throw yourself to the ground.");

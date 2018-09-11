@@ -191,7 +191,7 @@ public function zilTwinsInitialDissapointment():void
 	output("\n\nShe frowns, still stroking her brother’s big, thick dick, and speaks up again, <i>“Aww, that’s too bad.”</i> The alien girl pauses to kiss at Mica’s neck for a moment,");
 	output(" <i>“I’m Tetra, by the way, and even though you aren’t feeling... up to it right now, I don’t think either of us wouldn’t mind seeing you again, right, Mica?”</i>");
 	output("\n\nThe femboy whimpers and trembles in his sister’s embrace, but nods hastily, <i>“Yes, sister.”</i>");
-	output("\n\nTetra smiles at that and wraps and arm around her brother’s shoulders, <i>“You should come visit us at Burt’s sometime... We like to hang out there from time to time, and could always use some company, especially from offworlders like yourself.”</i>");
+	output("\n\nTetra smiles at that and wraps an arm around her brother’s shoulders, <i>“You should come visit us at Burt’s sometime... We like to hang out there from time to time, and could always use some company, especially from offworlders like yourself.”</i>");
 	output("\n\nWith that, she releases Mica’s throbbing cock as a big glob of pre forms on his tip, leaving him to whine at the absence of his sister’s touch.");
 	output(" She winks at you and goes to wrap an arm around her brother’s svelte shoulders, and turns herself and Mica around to continue on their trip, pausing to look over her shoulder at you, <i>“Well, it seems I need to take care of my brother dearest now, until next time.”</i>");
 	output("\n\nLike that, the incestuous pair of zil are gone, leaving you alone again to continue your journey... and with an offer to “hang out” with some cute aliens.");

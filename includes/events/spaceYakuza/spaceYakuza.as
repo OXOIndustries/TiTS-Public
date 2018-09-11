@@ -430,7 +430,7 @@ public function shukuchiUvetoVictory():void
 {
 	author("SoAndSo");
 	
-	if (enemy.lust() >= 0)
+	if (enemy.lust() < enemy.lustMax())
 	{
 		flags["SHUKUCHI_UVETO7_ENCOUNTER"] = 1;
 		output("Both agents struggle to hold themselves up after a very physical tussle, using the confines of the alleyway for support. Knowing failure, they both hide their weapons away and push themselves onto one knee.");

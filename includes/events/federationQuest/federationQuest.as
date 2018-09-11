@@ -1264,7 +1264,7 @@ public function fedQuestOfficerFight():void
 	if(pc.isDependant(Creature.DEPENDANT_MYRVENOM)) output(" I can see it in your eyes: you’re hooked on their poison, aren’t you? Is that why you’re here -- so you can get your next fix? Disgusting.");
 	if(flags["KQ2_QUEST_FINISHED"] == 1) output(" And you’re to blame for ruining our operation out in the wastelands, too!");
 	output("”</i>");
-	output("\n\nShe thumbs the hammer on her pistol, and her amber lips curl into a wicked grin. <i>“Mother will be so pleased when learns I’ve captured the star-walker. Now be a good [pc.boyGirl] and surrender, and I’ll go easy on the interrogation...”</i>");
+	output("\n\nShe thumbs the hammer on her pistol, and her amber lips curl into a wicked grin. <i>“Mother will be so pleased when she learns I’ve captured the star-walker. Now be a good [pc.boyGirl] and surrender, and I’ll go easy on the interrogation...”</i>");
 	output("\n\nYeah, right.");
 	processTime(5+rand(3));
 	
@@ -1463,7 +1463,7 @@ public function fedQuestRadioFolder():void
 	clearMenu();
 	author("Savin");
 	
-	output("You pull the folder off the shelf and toss it onto the console. A quick look through the few dozen pages inside reveals nothing but gibberish. Page after page after page of absolute, unintelligible gibberish. At first you think that your translators are fucked, but a quick glance at the some of the other documents lying around shows that they’re still legible... so what gives?");
+	output("You pull the folder off the shelf and toss it onto the console. A quick look through the few dozen pages inside reveals nothing but gibberish. Page after page after page of absolute, unintelligible gibberish. At first you think that your translators are fucked, but a quick glance at some of the other documents lying around shows that they’re still legible... so what gives?");
 	if(pc.isBimbo() || pc.isBro() || pc.intelligence()/pc.intelligenceMax() < .33) output("\n\nHow weird!");
 	else output("\n\nOnly when you get to the last page in the folder does everything make sense: several lines of the gibberish are paired with identical-length phrases in the gold myr’s language... it’s a cipher! No doubt that the Federation would kill to have this.");
 	
@@ -1924,7 +1924,7 @@ public function fedQuestQueenFight():void
 	showBust("ESTALLIA");
 	author("Savin");
 	
-	output("Without another word, the towering War Queen lunges forward. You think she’s coming for you and duck down, taking covering behind the workbenches nearby. Her actual target is the tank in the middle of the assembly line, though: she lands atop it with a thunderous crunch of metal beneath her boots, shaking the mostly-finished armored behemoth. Several of her daughters scurry into the hatches after her, and a second later ");
+	output("Without another word, the towering War Queen lunges forward. You think she’s coming for you and duck down, taking cover behind the workbenches nearby. Her actual target is the tank in the middle of the assembly line, though: she lands atop it with a thunderous crunch of metal beneath her boots, shaking the mostly-finished armored behemoth. Several of her daughters scurry into the hatches after her, and a second later ");
 	if(flags["FEDERATION_QUEST_TANK"] == 1)
 	{
 		output("the tank engine sputters... and then a cloud of black, greasy gas starts fuming from under the armored turret. The crew screams and starts bailing out, followed by flames licking at their chitin. ");

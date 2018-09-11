@@ -851,8 +851,8 @@ package classes.GameData
 					if (target is PlayerCharacter) output("\n\n<b>You recover " + temp + " points of shielding.</b>");
 					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " recovers " + temp + " points of shielding!</b>");
 					target.shields(temp);
-					target.energy(10);
 				}
+				target.energy(10);
 				if(target.statusEffectv1("Deflector Regeneration") <= 0)
 				{
 					if (target is PlayerCharacter) output("\n\n<b>Your shields are no longer regenerating!</b>");
@@ -2263,7 +2263,7 @@ package classes.GameData
 				var atk:SingleCombatAttack = attacks[i] as SingleCombatAttack;
 				if (atk.IsAvailable(pc))
 				{
-					addButton(bOff, atk.ButtonName, selectAttack, atk, atk.TooltipTitle, atk.TooltipBody);
+					addButton(bOff, atk.ButtonName, selectAttack, atk, atk.TooltipTitle, atk.TooltipBody + (atk.EnergyCost > 0 ? "\n\n<b>Costs " + atk.EnergyCost + " energy to use.</b>" : "" ));
 				}
 				else
 				{

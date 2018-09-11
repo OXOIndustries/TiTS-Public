@@ -25,6 +25,7 @@ public function encounterAKorgonneFemaleHostile():void
 
 		output("\n\nRoughly five feet tall, your attacker appears to be a tan, short-furred, canine barbarian. She’s covered in a coat of stitched hides that has been dyed to blend in with the frozen tundra she stalks. Her chest bulges within it, her curves evident even under the fibrous wrap. The coat hangs down to her thighs, but she doesn’t seem to be wearing anything underneath; dense fur seems more than enough to keep her warm. A curled tail wags in agitation behind her, while her partially braided hair hangs like a mane around a plump, muzzled face. Both her lips and nose are blue, but that seems to be their natural coloration, rather than the result of exposure. Her huge, wide eyes are trained wholly on you; the strange, rectangular pupils within her emerald irises remind you of a goat’s.");
 		output("\n\nYour Codex chirps, to get your attention. <i>“Korgonne, female. Native to Uveto VII. Honorable but exceedingly libidinous. Usage of a breathing apparatus is recommended due to potent pheromones...</i>”");
+		if(!CodexManager.entryUnlocked("Korgonne")) CodexManager.unlockEntry("Korgonne");
 		output("\n\n<i>“Alien!”</i> she barks in accusation, the sharpness of her tone carrying even through the muffling silence of the hill-cracked snowy plains.");
 	}
 	//Repeat Encounter
