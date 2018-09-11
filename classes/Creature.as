@@ -11032,6 +11032,11 @@
 					vaginas[slot].vaginaColor = lipColor;
 					vaginas[slot].addFlag(GLOBAL.FLAG_TONGUE);
 					break;
+				case GLOBAL.TYPE_SWINE:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "pink";
+					vaginas[slot].addFlag(GLOBAL.FLAG_CORKSCREWED);
+					break;
 				case GLOBAL.TYPE_BOTHRIOC:
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].loosenessRaw = 3;

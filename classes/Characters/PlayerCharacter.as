@@ -1211,6 +1211,13 @@ package classes.Characters
 			}
 		}
 		
+		public function createHeatPerk(dayCycle:int = 7):void
+		{
+			return; // 9999 Pending writing before enabling.
+			createPerk("Heat Cycle", 0, 0, 0, 0, "");
+			setPerkValue("Heat Cycle", 2, dayCycle);
+			setPerkTooltip("Heat Cycle", "Your body will periodically cycle through the stages of heat every" + (dayCycle == 1 ? "day" : (" " + dayCycle + " days")) + ".");
+		}
 		private function updateHeatPerk(totalDays:uint):void
 		{
 			// Ignore if already pregnant or infertile
@@ -1272,6 +1279,14 @@ package classes.Characters
 			}
 			
 			if(msg.length > 0) AddLogEvent(msg, "passive", ((1440 - (GetGameTimestamp() % 1440)) + ((totalDays - 1) * 1440)));
+		}
+		
+		public function createRutPerk(dayCycle:int = 7):void
+		{
+			return; // 9999 Pending writing before enabling.
+			createPerk("Rut Cycle", 0, 0, 0, 0, "");
+			setPerkValue("Rut Cycle", 2, dayCycle);
+			setPerkTooltip("Rut Cycle", "Your body will periodically cycle through the stages of rut every" + (dayCycle == 1 ? "day" : (" " + dayCycle + " days")) + ".");
 		}
 		private function updateRutPerk(totalDays:uint):void
 		{
