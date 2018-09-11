@@ -136,7 +136,7 @@ public function pennyRoomDesc():void {
 		}
 		//Repeat Pre-Problem Encounter
 		else {
-			output("\n\nPenny is sitting behind her desk like normal. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
+			output("\n\nPenny is sitting behind her desk as usual. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
 		}
 		this.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
 	}

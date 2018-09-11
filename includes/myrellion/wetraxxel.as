@@ -465,7 +465,7 @@ public function wetraxxelBrawlerPCVictory():void
 	else addDisabledButton(2, "Vag Ride", "Ride Him - Vagina", "Ride the Wetraxxel’s massive cock with your cunt. (Requires a Vagina)");
 
 	if (flags["WETRAXXEL_SUBMISSION"] >= 4) addButton(3, "Wank Him", wetraxxelBrawlerPCVictoryWankHim, undefined, "Wank Him", "Jerk the brawler off.");
-	else addDisabledButton(3, "Wank Him", "Wank Him", "The table is currently too heavily weighted in the brawlers favor...");
+	else addDisabledButton(3, "Wank Him", "Wank Him", "You are not submissive enough towards the brawler to consider doing this to him...");
 
 	addButton(14,"Leave",CombatManager.genericVictory);
 }

@@ -1791,7 +1791,7 @@ public function letAzraTrapQueenTalk():void
 	output("\n\nThe Queen slaps the back of his head, silencing him. <i>“What Azaphel means is that a weapon would be sufficient. My army is ever in need of fresh weapons.”</i>");
 	output("\n\nAzra holds up her empty hands and looks to you. <i>“[pc.name], could you part with a weapon?”</i>");
 	output("\n\nOnce more, it falls to you to defuse the situation.");
-	if(!(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) || hasAWeapon())
+	if(pc.hasEquippedWeapon() || hasAWeapon())
 	{
 		output(" What will you give Azra?");
 		processTime(5);
@@ -1801,14 +1801,14 @@ public function letAzraTrapQueenTalk():void
 			if(!pc.canDropItem(pc.meleeWeapon)) addDisabledButton(button,"Melee Wpn","Melee Weapon","You cannot drop your " + pc.meleeWeapon.description + "!");
 			else addButton(button,"Melee Wpn",giveQueenAWeapon,-1,"Melee Weapon.","Give her your melee weapon: " + pc.meleeWeapon.description + ".");
 		}
-		else if(pc.meleeWeapon is Rock) addDisabledButton(button,"Melee Wpn","Melee Weapon","She has no interest in a rock.");
+		else if(!pc.hasMeleeWeapon()) addDisabledButton(button,"Melee Wpn","Melee Weapon","She has no interest in a rock.");
 		else addDisabledButton(button,"Melee Wpn","Melee Weapon","You do not have a melee weapon on hand.");
 		button++;
 		if(pc.hasRangedWeapon()) {
 			if(!pc.canDropItem(pc.rangedWeapon)) addDisabledButton(button,"Ranged Wpn","Ranged Weapon","You cannot drop your " + pc.rangedWeapon.description + "!");
 			else addButton(button,"Ranged Wpn",giveQueenAWeapon,-2,"Ranged Weapon.","Give her your ranged weapon: " + pc.rangedWeapon.description + ".");
 		}
-		else if(pc.rangedWeapon is Rock) addDisabledButton(button,"RangedWpn","Ranged Weapon","She has no interest in a rock.");
+		else if(!pc.hasRangedWeapon()) addDisabledButton(button,"RangedWpn","Ranged Weapon","She has no interest in a rock.");
 		else addDisabledButton(button,"RangedWpn","Ranged Weapon","You do not have a ranged weapon on hand.");
 		button++;
 		for(var i:int = 0; i < pc.inventory.length; i++)
