@@ -2193,7 +2193,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		SiegwulfeEquip();
 	}
 	// Power armor req
-	else if(arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
+	else if(!InCollection(arg, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
 	{
 		output("You are not strong enough to equip your " + arg.longName + "!\n\n");
 		removedItem = arg;
