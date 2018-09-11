@@ -1970,6 +1970,9 @@ public function vaginallyFilledByJumperWiNSceneByWilliam():void
 	// Merge
 	output("\n\n<i>“You got it!”</i> The bunny quips, and her [enemy.cockType] rod rams into your pussy with the speed of runner who just heard the starting gunshot. She batters the entrance to your womb in that sprinting thrust, already hilted in you before you can figure out what just happened. So shocked by the simultaneous ease and force of her skewering penetration, your [pc.vagina " + x + "] constricts around her invading member and floods her thick tool with fresh [pc.girlCum]. You, on the other hand, lose control of your [pc.legOrLegs] and howl emptily into the air as she watches your shaking body with an indulging expression.");
 
+	//if suula/aphrodisiac cunt
+	if (pc.vaginas[x].type == GLOBAL.TYPE_SIREN || pc.vaginas[x].type == GLOBAL.TYPE_ANEMONE) output("\n\nHaving lost control of your alien biology in the aftershock, the tentacles and venom-laced cilia in your [pc.vagina " + x + "] sting the jumper's cock, making her keel over with a surprised look on her face. <i>“Oh gosh, you've got <i>that</i> kind of pussy, huh? Bet I know why, you just want the hardest dick imaginable in 'ya !”</i> She smiles, righting herself with a ragged groan.");
+	
 	// PC Looseness 1-2
 	if(pc.vaginas[x].looseness() <= 2) output("\n\n<i>“Nice and tight, but that’ll change. I’m gonna make your pussy a cock sock just for me!”</i> The jumper declares, gripping your hips.");
 	// PC Looseness 3-5
@@ -1988,6 +1991,9 @@ public function vaginallyFilledByJumperWiNSceneByWilliam():void
 
 	output("\n\nYou quickly lose the ability to form meaningful vocabulary as the rabbit works her legs the way they were meant to be used, only able to act as she said: <i>“Harder, please!”</i> Soon, she’s humping you with the primal strength and speed of an oversexed animal, her [enemy.cock] filling every nook and cranny of your creaming cunny. All you hear now are her moans seasoned with the wet claps of her crotch and balls against your own. You grip at your her jumpsuit underneath you as she varies her movements, sometimes rubbing that huge dick of hers against your cervix, other times stopping short to fill you with copious amounts of pre that drizzle out with your [pc.girlCum].");
 
+	//Pheromone Sweat
+	if (pc.hasPerk("Pheromone Sweat")) output("\n\nThe jumper sniffs at the air purposely, her eyes unfocusing for a moment. <i>“Damn, how do you smell so fucking good?”</i> She leans down and licks at your glistening body, a gleeful moan following. <i>“You got modded sweat or something?! That's awesome, best taste ever!”</i> She licks a few more times just to get that flavor down. <i>“Wish everyone had that, but then… mmmm… Nobody else'd taste as good as you!”</i>");
+	
 	output("\n\nOne of her furry hands moves to your heaving chest, brazenly groping at your [pc.breasts], pinching the bulging [pc.nipples] on each of your ");
 	if(pc.biggestTitSize() >= 1)
 	{
@@ -2021,7 +2027,12 @@ public function vaginallyFilledByJumperWiNSceneByWilliam():void
 		else output("is stimulated to its boiling point");
 		output(", erupting all over your [pc.skinFurScales] and her [enemy.furColor] coat of fur.");
 	}
-	output("\n\n<i>“Ffffuckkk! Cumming!”</i> The rabbit screams. With one last mighty thrust of her hips, she pushes her dick as far as it will go into your [pc.vagina " + x + "] and lets your shameless body take it from there. Heat blossoms in your nethers and your body flushes; she’s slathered, squeezed, and caressed by your abused pussy, soon bellowing a near feral roar of dominance. Her backed up sperm smashes you like a club, your eyes roll back as she pins you under her weight and cums hard.");
+	output("\n\n<i>“Ffffuckkk! Cumming!”</i> The rabbit screams. With one last mighty thrust of her hips, she pushes her dick as far as it will go into your [pc.vagina " + x + "] and lets your shameless body take it from there.");
+	
+	//jumper dog
+	if (enemy.hasCock(GLOBAL.TYPE_CANINE)) output(" After an eye widening grind, the laquine slams her bulging knot into your cunt, dragging a pained moan from you as she buries her bone. <i>“Ah-ohh! There we go… Bet this is why you wanted my cock, you just wanted a chance to get impregnated by a pirate! Maybe you'll have twins!”</i> she moans, whipping her lop-ears in the shock of ejaculation.");
+	
+	output(" Heat blossoms in your nethers and your body flushes; she’s slathered, squeezed, and caressed by your abused pussy, soon bellowing a near feral roar of dominance. Her backed up sperm smashes you like a club, your eyes roll back as she pins you under her weight and cums hard.");
 	output("\n\nThe jumper’s smooth, rhythmic thrusts splatter and paint your canal white. Her voluminous load soon spills out, splattering all over your crotch with every repetition. You hold tight to her as her churning balls empty what must be a few day’s worth of seed into and around you. Hyperventilating now, you lose what little strength you had, your limbs slumping to the ground unmoving. The rabbit falls face first into your [pc.chest] just before you’re lulled into unconsciousness.");
 	processTime(45);
 	for(var y:int = 0; y < 3; y++) { pc.orgasm(); }
@@ -2169,11 +2180,20 @@ public function getTheBunnyPirateToTakeYourBootyByWilliam():void
 	output(", feeling her [enemy.cockHead] brushing softly against your sensitive walls. Just as she wanted, you squirm in the pirate’s grasp as her bestial member plumbs your depths, sparing no inviolable inch as your insides are painted white with overflowing pre. <i>“Unhh... I’m glad you worked me up, can’t tell you how <b>hard</b> it is to hold back screwing you like this. Are you the type of person who likes to pretend they’re in charge by fighting but you really just love getting pounded? Coulda skipped the fighting but, damn... feels good working out all my kinks in you.”</i>");
 	output("\n\nBlushing, you purse your lips at the question, staying silent as the horny herm picks up the pace, her [enemy.cock] jackhammering into your abused anus on those energetic leaper’s legs of hers. She babbles incoherently as her nuts clap against your skin, spraying cum and sweat every which way. Your whole body rocks in tune with hers, sometimes you involuntarily push back into her lap to magnify the mighty tremors that rattle your entire frame. You cum again, splattering whatever’s in the way with another ample helping of sexual effluence.");
 
+	//Pheromone Sweat
+	if (pc.hasPerk("Pheromone Sweat")) output("\n\nThe jumper sniffs the air purposely, her eyes unfocusing for a moment. <i>“Damn, how do you smell so fucking good?”</i> She leans down and licks at your glistening body, a gleeful moan following. <i>“You got modded sweat or something?! That's awesome, best taste ever!”</i> She licks a few more times just to get that flavor down. <i>“Wish everyone had that, but then… mmmm… Nobody else'd taste as good as you!”</i>");
+	
 	output("\n\nShe slaps you on the ass and you look back in half shock, seeing her ears dripping with a deluge of sweat as a result of her sexual workout. The jumper leans down until her tits are pressing into your shoulder blades, her upper half contouring to the curves of your back. Her whiskers tickle your skin as she nibbles and licks wherever her aimless tongue can travel, often on your [pc.face]. Her movements may have slowed down a bit in this position, but they’re no less simulating... It’s like everything is being rearranged down there...");
 	output("\n\n<i>“This is fun, but you really fucked me up, edging me earlier... I’m gonna need a little more outta ‘ya.”</i> The herm whispers in your [pc.ear], then suddenly hooks her arms under yours. Yelping in surprise, you find yourself yanked up, her [enemy.cock] still in your ass, and ushered to the nearest wall. Her hands firmly on your [pc.ass], she rails you with unparalleled speed until all your brain comprehends are the sounds of bitches moaning in overwhelming pleasure.");
 	output("\n\n<i>“Fuck yeah! This is what a butt slut is for!!”</i> The jumper cries, a relishing hand running through her soaking wet hair before grabbing your arm, <i>“Coming down here and sticking your butt out at the first girl with a dick, what’d ya think would happen?”</i> She eventually grabs both of your wrists together and holds them behind your back in one paw, her other slithering around to your [pc.breasts].");
 	output("\n\nShe doesn’t wait for an answer, she merely slams into you faster, scraping you against the rock wall, but not harmfully. She roughly squeezes your [pc.nipple], doing whatever she can to stimulate you further even as your body still recovers in the aftermath of another minor orgasm. You can feel her building you up to the big one, and thank goodness she is, because her incoherent moaning is sounding more like grieving sobs! You squeeze her paw and shout that you’re about to cum!");
-	output("\n\nHer [enemy.cock] pulls back only to spear you one last, powerful time. You shriek; your body implodes, fingers and toes spasming in the aftershock. Her slippery hands press on your ass, squeezing as much of you around her erupting rod as possible. And erupt she does, thick ropes of jism flow through your intestine, fast distending your belly. Each jet of cum forces out the previous all around her ejaculating dick. Every load is precluded by a noticeable churn of her furry balls against your butt, soon depositing what must have been a few day’s worth of pent up seed right where it belongs.");
+	output("\n\nHer [enemy.cock] pulls back only to spear you one last, powerful time. You shriek; your body implodes, fingers and toes spasming in the aftershock.");
+	
+	//jumper dog
+	if (enemy.hasCock(GLOBAL.TYPE_CANINE)) output(" Her swelling, lumpy knot grinds against your [pc.asshole], stars explode in your eyes when it rams in, ensuring no drop of cum is wasted. <i>“Here you go, all the cum you want!”</i> she cries, lop-ears whipping back and forth in the shock of her turgid ejaculation.");
+	
+	output(" Her slippery hands press on your ass, squeezing as much of you around her erupting rod as possible. And erupt she does, thick ropes of jism flow through your intestine, fast distending your belly. Each jet of cum forces out the previous all around her ejaculating dick. Every load is precluded by a noticeable churn of her furry balls against your butt, soon depositing what must have been a few day’s worth of pent up seed right where it belongs.");
+	
 	output("\n\nThe laquine thrusts in and out of you slowly, making sure you take every last drop one way or the other. You slump against the walls ");
 	if(pc.hasVagina() && pc.hasKnees()) output("when your pussy’s orgasmic contractions weaken your knees");
 	output(", your fingers slowly losing strength");
@@ -2257,6 +2277,10 @@ public function boredJumperCowgirlWinByWilliam():void
 	if(pc.cockTotal() > 1) output(" Despite being pinned, she manages to attend your extra " + (pc.cockTotal() > 2 ? "[pc.cocksLight]":"member") + ", jerking them with her free hands.");
 
 	output("\n\nYou’re sure you’ve heard a few people passing by down the passages, and you’re definitely sure they can hear the sounds of your dominant lovemaking. The jumper on your cock, if anything, is doing what she can to make sure the sounds of tongue and throat against dick are heard for as far as they’ll carry. For how she acted earlier, it makes you wonder why you even had to fight her. She must enjoy taking as much as giving, the slut!");
+	
+	//suula cock
+	if (pc.cocks[x].cType == GLOBAL.TYPE_SIREN || pc.cocks[x].cType == GLOBAL.TYPE_ANEMONE) output("\n\nThe alien tentacles lining the head and shaft of your cock brush against the horny jumper's throat and lips. You decide to let your venomous biology have its way there, stinging her sensitive face in and out with a healthy dose of chemical lust. She mewls and groans all around your [pc.cockNounSimple " + x + "], spittle flowing like a river from her maw. Guess she appreciated the gesture!");
+	
 	output("\n\nBending your knees and leaning over the laquine’s head, you let out a hot, tickling breath on her ears. You grab onto those floppy appendages of hers, bending them a bit to keep your grip in the swamp. You’re not even sure she would feel you scratching her ears! In response to your fondling, the cock-hungry pirate gives ");
 	if(pc.hasVagina()) output("your [pc.vagina] a little teasing, pinching " + (pc.totalClits() == 1 ? "your erect [pc.clitNoun]" : "[pc.oneClit]") + ".");
 	else if(pc.balls > 0) output("your [pc.balls] a little attention, squeezing the weighty orb" + (pc.balls > 1 ? "s":"") + " with a unique tenderness.");
@@ -2341,6 +2365,9 @@ public function boredJumperCowgirlWinByWilliamII():void
 	if(pc.cockTotal() > 1) output(" and your extra equipment");
 	output(", masturbating furiously as shriek-like moans escape her mouth. While her hands pump, her strong legs carry her athletic body up and down like a piston, and both of you are soon washed well away down the rivers of lust.");
 	pc.cockChange();
+	
+	//suula cock
+	if (pc.cocks[x].cType == GLOBAL.TYPE_SIREN || pc.cocks[x].cType == GLOBAL.TYPE_ANEMONE) output("\n\nYou can't hold back your venomous payload - the tentacles protruding from your alien dick sting at the jumper's horse cunt, forcing her to struggle with a fierce chemical rush the likes of which she was hardly prepared for. <i>“Holy ffffuck!”</i> she croaks. <i>“You've got that kind of dick? I need to get one of those, the machine doesn't output something like that!”</i>");
 
 	output("\n\nHer tongue lolling now, she uses your stomach as support for her thumping crotch, slamming into you with uncontained sexual aggression. <i>“Fuckmefuckme yessss!”</i> she moans, ");
 	if(pc.cocks[x].cLength() <= 12) output("your dick giving her wonderfully tight pocket the spreading it needs.");
