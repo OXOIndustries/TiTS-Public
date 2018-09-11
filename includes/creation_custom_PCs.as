@@ -115,8 +115,8 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.cocks[0].cLengthRaw = 19.5;
 			pc.cocks[0].cThicknessRatioRaw = 1.230769230769231;
 			pc.cocks[1].knotMultiplier = 1.333333;
-			pc.cocks[0].cLengthRaw = 20;
-			pc.cocks[0].cThicknessRatioRaw = 1.5;
+			pc.cocks[1].cLengthRaw = 20;
+			pc.cocks[1].cThicknessRatioRaw = 1.5;
 
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.vaginas[0].wetnessRaw = 2;
@@ -949,9 +949,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.createBreastRow();
 			pc.createBreastRow();
 			pc.breastRows[0].breastRatingRaw = 5;
-			pc.breastRows[0].breastRatingRaw = 3;
-			pc.breastRows[0].breastRatingRaw = 2;
-			pc.breastRows[0].breastRatingRaw = 1;
+			pc.breastRows[1].breastRatingRaw = 3;
+			pc.breastRows[2].breastRatingRaw = 2;
+			pc.breastRows[3].breastRatingRaw = 1;
 			pc.milkFullness = 100;
 			pc.milkStorageMultiplier = 2;
 			pc.milkMultiplier = 100;
