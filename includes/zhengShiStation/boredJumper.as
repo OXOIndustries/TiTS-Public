@@ -2272,6 +2272,8 @@ public function boredJumperCowgirlWinByWilliam():void
 	if(pc.cockTotal() > 1) output(" Despite being pinned, she manages to attend your extra " + (pc.cockTotal() > 2 ? "[pc.cocksLight]":"member") + ", jerking them with her free hands.");
 
 	output("\n\nYou’re sure you’ve heard a few people passing by down the passages, and you’re definitely sure they can hear the sounds of your dominant lovemaking. The jumper on your cock, if anything, is doing what she can to make sure the sounds of tongue and throat against dick are heard for as far as they’ll carry. For how she acted earlier, it makes you wonder why you even had to fight her. She must enjoy taking as much as giving, the slut!");
+	//suula cock
+	if (pc.cocks[x].cType == GLOBAL.TYPE_SIREN || pc.cocks[x].cType == GLOBAL.TYPE_ANEMONE) output("\n\nThe alien tentacles lining the head and shaft of your cock brush against the horny jumper's throat and lips. You decide to let your venomous biology have its way there, stinging her sensitive face in and out with a healthy dose of chemical lust. She mewls and groans all around your [pc.cockNounSimple " + x + "], spittle flowing like a river from her maw. Guess she appreciated the gesture!");
 	output("\n\nBending your knees and leaning over the laquine’s head, you let out a hot, tickling breath on her ears. You grab onto those floppy appendages of hers, bending them a bit to keep your grip in the swamp. You’re not even sure she would feel you scratching her ears! In response to your fondling, the cock-hungry pirate gives ");
 	if(pc.hasVagina()) output("your [pc.vagina] a little teasing, pinching " + (pc.totalClits() == 1 ? "your erect [pc.clitNoun]" : "[pc.oneClit]") + ".");
 	else if(pc.balls > 0) output("your [pc.balls] a little attention, squeezing the weighty orb" + (pc.balls > 1 ? "s":"") + " with a unique tenderness.");
@@ -2356,7 +2358,8 @@ public function boredJumperCowgirlWinByWilliamII():void
 	if(pc.cockTotal() > 1) output(" and your extra equipment");
 	output(", masturbating furiously as shriek-like moans escape her mouth. While her hands pump, her strong legs carry her athletic body up and down like a piston, and both of you are soon washed well away down the rivers of lust.");
 	pc.cockChange();
-
+	//suula cock
+	if (pc.cocks[x].cType == GLOBAL.TYPE_SIREN || pc.cocks[x].cType == GLOBAL.TYPE_ANEMONE) output("\n\nYou can't hold back your venomous payload - the tentacles protruding from your alien dick sting at the jumper's horse cunt, forcing her to struggle with a fierce chemical rush the likes of which she was hardly prepared for. <i>“Holy ffffuck!”</i> she croaks. <i>“You've got that kind of dick? I need to get one of those, the machine doesn't output something like that!”</i>");
 	output("\n\nHer tongue lolling now, she uses your stomach as support for her thumping crotch, slamming into you with uncontained sexual aggression. <i>“Fuckmefuckme yessss!”</i> she moans, ");
 	if(pc.cocks[x].cLength() <= 12) output("your dick giving her wonderfully tight pocket the spreading it needs.");
 	else output("your dick bulging noticeably through her abdomen just above her twirling [enemy.cock].");

@@ -31,11 +31,11 @@ public function nykkeIsMature():Boolean
 	else return false;	
 }
 
-public function nykkeHeader():void
+public function nykkeHeader(nude:Boolean = false):void
 {
 	author("B");
 	showName("\nNYKKE");
-	showBust("NYKKE");
+	showBust("NYKKE" + (nude ? "_NUDE":""));
 }
 //first meeting part 1
 public function nykkeIntro01():void
@@ -502,7 +502,7 @@ public function nykkeSexMenu():void
 public function nykkeSexFuckHer():void
 {
 	clearOutput();
-	nykkeHeader();
+	nykkeHeader(true);
 	clearMenu();	
 	//find the cock to use 
 	var kok:int = pc.biggestCockIndex();
@@ -586,7 +586,7 @@ public function nykkeSexFuckHer():void
 public function nykkeSexInHerAss():void
 {
 	clearOutput();
-	nykkeHeader();
+	nykkeHeader(true);
 	clearMenu();
 	//find the cock to use 
 	var kok:int = pc.biggestCockIndex();
@@ -669,7 +669,7 @@ public function nykkeSexInHerAss():void
 public function nykkeSexTakeHer(hole:int):void
 {
 	clearOutput();
-	nykkeHeader();
+	nykkeHeader(true);
 	clearMenu();
 	var poeLooseness:int;
 	var ppFrostwyrmling:PregnancyPlaceholder = getFrostwyrmlingPregContainer();	
