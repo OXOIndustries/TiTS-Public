@@ -465,6 +465,7 @@
 		include "../includes/uveto/nayna.as";
 		include "../includes/uveto/nenne.as";
 		include "../includes/uveto/nerrasa.as";
+		include "../includes/uveto/nykke.as";
 		include "../includes/uveto/pippa.as"
 		include "../includes/uveto/reasner.as";
 		include "../includes/uveto/rhenworld.as";
