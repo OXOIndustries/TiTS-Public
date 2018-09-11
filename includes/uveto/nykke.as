@@ -172,9 +172,9 @@ public function nykkeMainMenu(noskip:Boolean = true ):void
 		if (flags["FROSTWYRM_KIP_COUNT"] > 1) output(", and allows the vacancy between her front legs to be filled with your younger progeny");
 	
 		output(".");	
-		output("\n\nYou settle into the corner of Nykke’s little lair, resting on your rump; Nykke, your doting daughter, joins you, wrapping her large body around yours once again.");
+		output("\n\nYou settle into the corner of Nykke’s little lair, resting on your rump; Nykke, your doting daughter, joins you, wrapping her large body around yours once again.\n\n");
 	}
-	output("\n\nYou’re alone with Nykke in her smaller lair; you two won’t be disturbed by [frostwyrm.name]");
+	output("You’re alone with Nykke in her smaller lair; you two won’t be disturbed by [frostwyrm.name]");
 	
 	if (flags["FROSTWYRM_KIP_COUNT"] > 1) output(" or the rest of the clutch");
 	
