@@ -3148,7 +3148,7 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 	}
 	
 	// Handmaiden Threesome
-	if((flags["QUINN_KID_AGE"] == undefined && quinnHandmaidenThreesomeAvailable()) || (flags["QUINN_KID_AGE"] != undefined && quinnBabyAge() >= 365 && quinnHandmaidenThreesomeAvailable(true)))
+	if((flags["QUINN_KID_AGE"] == undefined && quinnHandmaidenThreesomeAvailable()) || (flags["QUINN_KID_AGE"] != undefined && quinnBabyAge() < 365 && quinnHandmaidenThreesomeAvailable(true)))
 	{
 		quinnHandmaidenThreesome(["intro"]);
 		return;
