@@ -22,6 +22,9 @@ public function statsScreenMenu(currentFunc:Function):Boolean
 	// Other
 	if(showID == "Other") addDisabledGhostButton(6, "Other");
 	else addGhostButton(6, "Other", currentFunc, "Other", "Other Statistics", "Show your other statistics.");
+	// Racial Scores
+	if(showID == "Other") addDisabledGhostButton(7, "Race");
+	else addGhostButton(7, "Race", currentFunc, "Race", "Racial Scores", "Show your categorized genetic makeup.");
 	// Everything
 	if(showID == "All") addDisabledGhostButton(13, "All");
 	else addGhostButton(13, "All", currentFunc, "All", "All Data", "Show the cumulative log.");
@@ -1183,7 +1186,139 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 	}
-	
+	// Racial scores
+	// It may be preferable for balance reasons to only allow this section to be visible if Easy Mode is on,
+	// or maybe only after unlocking it by talking to some doctor/geneticist (maybe Dr. McAllister on Myrmedion?)
+	if(showID == "Race" || showID == "All")
+	{
+		//======GENETIC MAKEUP=====//
+		output2("\n\n" + blockHeader("Genetic Makeup", false));
+		
+		if(humanScore() > 0)
+			output2("\n<b>* Human:</b> " + humanScore() + "/4 (max: 6)");
+		if(ausarScore() > 0)
+			output2("\n<b>* Ausar:</b> " + ausarScore() + "/4 (max: 5)");
+		if(huskarScore() > 0 && ausarScore() > 0)
+			output2("\n<b>* Huskar:</b> " + huskarScore() + "/3 (max: 5)");
+		if(kaithritScore() > 0)
+			output2("\n<b>* Kaithrit:</b> " + kaithritScore() + "/6 (max: 9)");
+		if(leithanScore() > 0)
+			output2("\n<b>* Leithan:</b> " + leithanScore() + "/6 (max: 9)");
+		if(nukiScore() > 0)
+			output2("\n<b>* Kui-tan:</b> " + nukiScore() + "/6 (max: 7)");
+		if(gooScore() > 0)
+			output2("\n<b>* Goo:</b> " + gooScore() + "/6 (max: 9)");
+		if(bovineScore() > 0)
+			output2("\n<b>* Bovine:</b> " + bovineScore() + "/3 (max: 6)");
+		if(cowScore() > 0 && bovineScore() > 0)
+			output2("\n<b>* Cow:</b> " + cowScore() + "/4 (max: 12)");
+		if(amazonScore() > 0)
+			output2("\n<b>* Amazon:</b> " + amazonScore() + "/4 (max: 5)");
+		if(avianScore() > 0)
+			output2("\n<b>* Avian:</b> " + avianScore() + "/4 (max: 7)");
+		if(badgerScore() > 0)
+			output2("\n<b>* Badger:</b> " + badgerScore() + "/4 (max: 4)");
+		if(bunnyScore() > 0)
+			output2("\n<b>* Bunny:</b> " + bunnyScore() + "/4 (max: 6)");
+		if(flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined) /*gotta know what it is before you know how much of one you are (just in case the score for a race would somehow be above 0 before even meeting a member of that race)*/
+		{
+			if(korgonneScore() > 0)
+				output2("\n<b>* Korgonne:</b> " + korgonneScore() + "/4 (max: 5)");
+		}
+		if(canineScore() > 0)
+			output2("\n<b>* Canine:</b> " + canineScore() + "/5 (max: 9)");
+		if(lupineScore() > 0)
+			output2("\n<b>* Lupine:</b> " + lupineScore() + "/5 (max: 5)");
+		if(deerScore() > 0)
+			output2("\n<b>* Deer:</b> " + deerScore() + "/4 (max: 5)");
+		if(demonScore() > 0)
+			output2("\n<b>* Demon:</b> " + demonScore() + "/5 (max: 8)");
+		if(dragonScore() > 0)
+			output2("\n<b>* Dragon:</b> " + dragonScore() + "/5 (max: 10)");
+		if(felineScore() > 0)
+			output2("\n<b>* Feline:</b> " + felineScore() + "/5 (max: 7)");
+		if(frogScore() > 0 && flags["MET_KEROKORAS"] != undefined)
+			output2("\n<b>* Kerokoras:</b> " + frogScore() + "/5 (max: 8)");
+		if(gabilaniScore() > 0)
+			output2("\n<b>* Gabilani:</b> " + gabilaniScore() + "/5 (max: 11)");
+		if(goatScore() > 0)
+			output2("\n<b>* Goat:</b> " + goatScore() + "/4 (max: 7)");
+		if(gryvainScore() > 0)
+			output2("\n<b>* Gryvain:</b> " + gryvainScore() + "/9 (max: 11)");
+		if(horseScore() > 0)
+			output2("\n<b>* Horse:</b> " + horseScore() + "/5 (max: 8)");
+		if(hradScore() > 0 && flags["LIRIEL_MET"] != undefined)
+			output2("\n<b>* Hrad:</b> " + hradScore() + "/4 (max: 8)");
+		if(laquineScore() > 0)
+			output2("\n<b>* Laquine:</b> " + laquineScore() + "/5 (max: 6)");
+		if(mothrineScore() > 0 && flags["SEER_MET"] != undefined)
+			output2("\n<b>* Mothrine:</b> " + mothrineScore() + "/5 (max: 10)");
+		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined)
+			output2("\n<b>* Myr:</b> " + myrScore() + "/4 (max: 6)");
+		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && redMyrScore() > 0)
+			output2("\n<b>* Red myr:</b> " + redMyrScore() + "/8 (max: 12)");
+		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && goldMyrScore() > 0)
+			output2("\n<b>* Gold myr:</b> " + goldMyrScore() + "/8 (max: 15)");
+		if(myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && orangeMyrScore() > 0 && flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+			output2("\n<b>* Orange myr:</b> " + orangeMyrScore() + "/9 (max: 16)");
+		if(flags["PQ_NALEENED"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined)
+		{
+			if(naleenScore() > 0)
+				output2("\n<b>* Naleen:</b> " + naleenScore() + "/5 (max: 10)");
+		}
+		if(flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || metTaivra() || flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"] != undefined)
+		{
+			if(nyreaScore() > 0)
+				output2("\n<b>* Nyrea:</b> " + nyreaScore() + "/5 (max: 7)");
+		}
+		/*if(flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined)
+		{ */
+		if(ovirScore() > 0)
+			output2("\n<b>* Ovir:</b> " + ovirScore() + "/5 (max: 9)");	
+		if(pandaScore() > 0)
+			output2("\n<b>* Panda:</b> " + pandaScore() + "/4 (max: 6)");
+		if(pigScore() > 0)
+			output2("\n<b>* Pig:</b> " + pigScore() + "/4 (max: 9)");
+		if(plantScore() > 0)
+			output2("\n<b>* Plant:</b> " + plantScore() + "/5 (max: 9)");
+		if(flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined || flags["PREG_RASK_GUARD_RESULT"] != undefined) 
+		{
+			if(raskvelScore() > 0)
+				output2("\n<b>* Raskvel:</b> " + raskvelScore() + "/6 (max: 8)");
+		}
+		if(redPandaScore() > 0)
+			output2("\n<b>* Red panda:</b> " + redPandaScore() + "/4 (max: 8)");
+		if(saurmorianScore() > 0)
+			output2("\n<b>* Saurmorian:</b> " + saurmorianScore() + "/6 (max: 9)");
+		if(sharkScore() > 0)
+			output2("\n<b>* Shark:</b> " + sharkScore() + "/5 (max: 12)");
+		if(sheepScore() > 0)
+			output2("\n<b>* Sheep:</b> " + sheepScore() + "/5 (max: 9)");
+		if(simiiScore() > 0)
+			output2("\n<b>* Simii:</b> " + simiiScore() + "/4 (max: 5)");
+		if(suulaScore() > 0)
+			output2("\n<b>* Suula:</b> " + suulaScore() + "/6 (max: 10)");
+		if(tentacleScore() > 0)
+			output2("\n<b>* Tentacle:</b> " + tentacleScore() + "/15 (max: ??)");
+		if(pc.statusEffectv4("Vanae Markings") > 0 || flags["SALVAGED VANAE CAMP"] >= 2 || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined)
+		{
+			if(vanaeScore() > 0)
+				output2("\n<b>* Vanae:</b> " + vanaeScore() + "/6 (max: 10)");
+		}
+		if(vulpineScore() > 0)
+			output2("\n<b>* Vulpine:</b> " + vulpineScore() + "/4 (max: 9)");
+		if(vulpineScore() > 0 && kitsuneScore() > 0 && tailCount > 1)
+			output2("\n<b>* Kitsune:</b> " + kitsuneScore() + "/4 (max: 8)");
+		if(StatTracking.getStat("pregnancy/zil birthed") > 0 || zilCallGirlSexed() > 0 || flags["ZIL_CALLGIRL_NAME_KNOWN"] != undefined || StatTracking.getStat("pregnancy/zil sired") > 0 || flags["AVOID_9TAIL"] != undefined || flags["FOUGHT_9TAIL"] != undefined || flags["FED_9TAIL"] != undefined || flags["ZIL_PROBLEM_DEALT_WITH"] != undefined || flags["PQ_RESOLUTION"] != undefined || flags["PLANTATION_QUEST"] != undefined || MailManager.isEntryViewed("plantation_quest_start") || flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined || flags["ZILTWINS_MET"] != undefined || flags["BURT_ZIL_TALK"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined) /* what does "redundant" mean lol */
+		{
+			if(zilScore() > 0)
+				output2("\n<b>* Zil:</b> " + zilScore() + "/6 (max: 10)");
+		}
+		/* pls add cyborg stuff :(
+		if(cyborgScore() > 0)
+			output2("\n<b>* Cyborg:</b> " + cyborgScore() + "/1 (max: 4)");
+		*/
+	}	
 	// Medical
 	if(showID == "Medical" || showID == "All")
 	{
@@ -2501,7 +2636,7 @@ public function displayQuestLog(showID:String = "All"):void
 						else output2(" and turrets");
 					}
 					else output2(" Visited");
-					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped passed");
+					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped past");
 				}
 				if(flags["PREG_RASK_GUARD_RESULT"] != undefined)
 				{
