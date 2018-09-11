@@ -133,7 +133,7 @@ package classes.Items.Transformatives
 			//check for stage 5 galomax and only lubricated skin, if so print message and get out
 			if (kGAMECLASS.flags["GALOMAX_DOSES"] >= 5 && target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED) && !target.hasSkinFlag(GLOBAL.FLAG_STICKY) && i == 1)
 			{
-				kGAMECLASS.output("\n\nConsidering the fact that most of your body is made out of a slick gooey mass, odds are that the Dry Spell won't affect it. You probably shouldn't risk trying either. This is a <b>Jéjune</b> product after all!");
+				kGAMECLASS.output("\n\nConsidering the fact that most of your body is made out of a slick gooey mass, odds are that the Dry Spell won’t affect it. You probably shouldn’t risk trying either. This is a <b>Jéjune</b> product after all!");
 				//item is not used so restore the quantity
 				if(!kGAMECLASS.infiniteItems()) quantity++;
 				kGAMECLASS.clearMenu();
@@ -153,7 +153,7 @@ package classes.Items.Transformatives
 			
 			if (kGAMECLASS.silly) kGAMECLASS.output(" You could swear eating three of these without drinking any water was a viral extranet challenge a while back.");
 			
-			kGAMECLASS.output(" After you've have fully consumed the white stick, you patiently wait for its effects to manifest.");
+			kGAMECLASS.output(" After you’ve have fully consumed the white stick, you patiently wait for its effects to manifest.");
 
 			//25% chance it is a dud or if no lube or sticky flags
 			if (rand(4) == 0 || (i == 0))
@@ -178,7 +178,7 @@ package classes.Items.Transformatives
 				{
 					kGAMECLASS.output("\n\nAs this desert-like drought continues to drain at your fluids, you start to feel almost electric, euphoric tingles in your skin and sparks of bliss in your crotch. You realize that the powder must’ve contained some form of aphrodisiac too");
 				
-					if (kGAMECLASS.silly) kGAMECLASS.output(" - because what doesn't these days?");
+					if (kGAMECLASS.silly) kGAMECLASS.output(" - because what doesn’t these days?");
 					else kGAMECLASS.output(".");
 				}
 				
@@ -489,7 +489,7 @@ package classes.Items.Transformatives
 				target.removeSkinFlag(GLOBAL.FLAG_STICKY);
 			}
 			
-			if (kGAMECLASS.flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined) kGAMECLASS.output("\n\nYou´re about to leave it at that when suddenly your skin is soaked in that familiar strawberry-scented oil your mimbrane{s} produce{s}. <b>You'll probably have to tell your mimbrane{s} to stop sweating if you want to stay dry!</b>");
+			if (kGAMECLASS.flags["PLAYER_MIMBRANE_SWEAT_ENABLED"] != undefined) kGAMECLASS.output("\n\nYou´re about to leave it at that when suddenly your skin is soaked in that familiar strawberry-scented oil your mimbrane{s} produce{s}. <b>You’ll probably have to tell your mimbrane{s} to stop sweating if you want to stay dry!</b>");
 		}
 		
 		private function tongueTF(target:Creature):void
@@ -527,9 +527,9 @@ package classes.Items.Transformatives
 		{
 			var x:int = 0; //lube or sticky
 			var i:int = 0; //iterator
-			var rn:int = 0;  //random number
-			var c:int = 0;  //random cock
-			var cockopt:Array = [];  //possible cocks
+			var rn:int = 0; //random number
+			var c:int = 0; //random cock
+			var cockopt:Array = []; //possible cocks
 			
 			x = selectLubeSticky(target, 2);
 			
@@ -622,15 +622,15 @@ package classes.Items.Transformatives
 			//if wetness is 2+ or have lubricated or sticky flag
 			if (target.vaginas[i].wetness() > 1 || target.vaginas[i].hasFlag(GLOBAL.FLAG_LUBRICATED) || target.vaginas[i].hasFlag(GLOBAL.FLAG_STICKY)) 
 			{
-				kGAMECLASS.output(" However, afterwards you feel a bit parched down there. Gingerly you prod a few digits inside your [pc.vagina " + i + "], and after fingering yourself for a bit, you confirm it; <b>your vagina is not as");
+				kGAMECLASS.output(" However, afterwards you feel a bit parched down there. Gingerly you prod a few digits inside your [pc.vagina " + i + "], and after fingering yourself for a bit, you confirm it;");
 				//the above text output is finished inside one of the below conditions
 				//enter here if wet but no flags
 				if (!target.vaginas[i].hasFlag(GLOBAL.FLAG_LUBRICATED) && !target.vaginas[i].hasFlag(GLOBAL.FLAG_STICKY))
 				{
-				    //25% chance to fail
+					//25% chance to fail
 					if (rand(4) == 0)
 					{
-						kGAMECLASS.output(" wet anymore.</b>");
+						kGAMECLASS.output(" <b>your vagina is not as wet anymore.</b>");
 						kGAMECLASS.output("\n\nYou’re about to leave it at that when your intruding digits are suddenly greeted by a rush of [pc.girlCum]. Like a dam that’s been broken, your vaginal secretions start gushing out of your [pc.cuntNoun " + i + "]. It doesn’t take long before the torrent calms down, however, and your fluids begin to drip at their usual pace before long. <b>Looks like your biology ensures that your soggy snatch always stays dripping");
 						if (kGAMECLASS.silly) kGAMECLASS.output(" like a broken fridge.");
 						else kGAMECLASS.output(" wet.");
@@ -639,7 +639,7 @@ package classes.Items.Transformatives
 					}
 					else
 					{
-						kGAMECLASS.output(" wet anymore.</b>");
+						kGAMECLASS.output(" <b>your vagina is not as wet anymore.</b>");
 						lesswet = true;						
 					}
 				}
@@ -649,7 +649,7 @@ package classes.Items.Transformatives
 					//25% chance to fail to remove lube flag
 					if (rand(4) == 0)
 					{
-						kGAMECLASS.output(" wet anymore.</b>");
+						kGAMECLASS.output(" <b>your vagina is not as wet anymore.</b>");
 						kGAMECLASS.output("\n\nYou’re about to leave it at that when your intruding digits are suddenly greeted by a rush of [pc.girlCum]. Like a dam that’s been broken, your vaginal secretions start gushing out of your [pc.cuntNoun " + i + "]. It doesn’t take long before the torrent calms down, however, and your fluids begin to drip at their usual pace before long. <b>Looks like your biology ensures that your soggy snatch always stays dripping");
 						if (kGAMECLASS.silly) kGAMECLASS.output(" like a broken fridge.");
 						else kGAMECLASS.output(" wet.");
@@ -668,7 +668,7 @@ package classes.Items.Transformatives
 						
 						if (remSticky < 1)
 						{
-							kGAMECLASS.output(" wet anymore.</b>");
+							kGAMECLASS.output(" <b>your vagina is not as wet anymore.</b>");
 							kGAMECLASS.output("\n\nUsually, even without being aroused you’d have secreted a whole lot of [pc.girlCum] by now. It appears that your once seemingly endless reservoir has dried up. <b>Looks like your vagina is no longer constantly wet.</b>");
 							target.vaginas[i].delFlag(GLOBAL.FLAG_LUBRICATED);
 							lesswet = true;
@@ -682,12 +682,12 @@ package classes.Items.Transformatives
 					//25% chance to fail to remove sticky flag but only if remSticky wasn't set to 1 above
 					if (rand(4) == 0 && remSticky < 1)
 					{
-						kGAMECLASS.output(" sticky anymore.</b>");
+						kGAMECLASS.output(" <b>your vagina is not as sticky anymore.</b>");
 						kGAMECLASS.output("\n\nYou’re about to leave it at that when your intruding digits are suddenly greeted by a thick, slow trickle of sticky fluids that spread around your entire tunnel. After a short while, your entire pussy is once again coated with adhesives, and every motion of your fingers is met with a hint of tackiness. <b>Looks like your biology ensures that you´ve always got a sticky muff. Maybe it’ll run dry if you insert more Dry Spell?</b>");
 					}
 					else
 					{
-						kGAMECLASS.output(" sticky anymore.</b>");
+						kGAMECLASS.output(" <b>your vagina is not as sticky anymore.</b>");
 						kGAMECLASS.output("\n\nUsually, your muff would be fully coated with adhesive-like fluids by now, but it seems like the Dry Spell has dried them up. Now, your fingers move swiftly and smoothly in and out of your pussy, without getting tacky, which feels rather good in its own right. <b>Looks like your vagina is no longer sticky.</b>");
 						target.vaginas[i].delFlag(GLOBAL.FLAG_STICKY);
 						lesswet = true;
