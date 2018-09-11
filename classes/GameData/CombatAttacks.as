@@ -3,10 +3,13 @@ package classes.GameData
 	import classes.Characters.BothriocQuadomme;
 	import classes.Characters.Celise;
 	import classes.Characters.Cockvine;
+	import classes.Characters.CommanderSchora;
 	import classes.Characters.GrayGoo;
+	import classes.Characters.DrCalnor;
 	import classes.Characters.Kane;
 	import classes.Characters.Kaska;
 	import classes.Characters.NymFoe;
+	import classes.Characters.NaleenHerm;
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.RaskvelFemale;
 	import classes.Characters.RaskvelMale;
@@ -793,6 +796,7 @@ package classes.GameData
 				target.removeStatusEffect("KANE RANGED PREP");
 				target.createStatusEffect("KANE MELEE PREP");
 			}
+			if (target is DrCalnor) (target as DrCalnor).counterHook(attacker, special);
 
 			return true;
 		}
@@ -949,7 +953,7 @@ package classes.GameData
 			}
 		}
 		
-		public static function myrVenomBite(attacker:Creature, target:Creature, fromMelee:Boolean = false):void
+		public static function myrVenomBite(attacker:Creature, target:Creature, fromMelee:Boolean = false):Boolean
 		{
 			// Airtight check
 			if(attacker.hasAirtightSuit())
@@ -960,7 +964,7 @@ package classes.GameData
 			}
 			if(target.hasStatusEffect("Counters Melee") && !target.isImmobilized())
 			{
-				if(meleeCounterResults(attacker,target)) return;
+				if(meleeCounterResults(attacker,target)) return false;
 			}
 			if (combatMiss(attacker, target))
 			{
@@ -978,8 +982,12 @@ package classes.GameData
 				}
 				else output(StringUtil.capitalize(target.getCombatName(), false) + " " + target.mfn("growls", "squeals", "grunts") + " aloud as " + attacker.getCombatName() + " clamps " + (attacker.isPlural ? "their" : attacker.getCombatPronoun("himher")) + " jaws around a limb!");
 				
-				applyDamage(new TypeCollection( { drug: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
+				if(!(attacker is PlayerCharacter)) applyDamage(new TypeCollection( { drug: 3 + (fromMelee ? 0 : Math.floor(attacker.level / 3)) + rand(3) } ), attacker, target, "minimal");
+				else if(fromMelee) applyDamage(new TypeCollection( { drug: 3 + rand(3) } ), attacker, target, "minimal");
+				
+				return true;
 			}
+			return false;
 		}
 		
 		//{ region Item Attack Implementors
@@ -2025,9 +2033,9 @@ package classes.GameData
 					if (attacker is PlayerCharacter) output("\nIt had little effect on your automated foe!");
 					else output("\nIt had little effect!");
 				}
-				else if (attacker is PlayerCharacter && target is Kaska)
+				else if (attacker is PlayerCharacter && (target is Kaska || target is CommanderSchora))
 				{
-					output("\nKaska’s eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She’s very, very stunned.</b>");
+					output("\n" + possessive(target.getCombatName()) + " eyes cross from the overwhelming pain. She sways back and forth like a drunken sailor before hitting the floor with all the grace of a felled tree. A high pitched squeak of pain rolls out of her plump lips. <b>She’s very, very stunned.</b>");
 					applyStun(target, 3 + rand(2), false, "Cannot act for a while. You hit her balls pretty hard!");
 				}
 				else if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune"))
@@ -2614,6 +2622,16 @@ package classes.GameData
 				if (target.statusEffectv1("Counters Ranged") == 0) kGAMECLASS.shizzyCounterAttack(attacker);
 				return true;
 			}
+			if(target is NaleenHerm)
+			{
+				target.addStatusValue("Counters Ranged",1,1);
+				target.setStatusValue("Counters Melee",1,0);
+				if(target.statusEffectv1("Counters Ranged") >= 3)
+				{
+					(target as NaleenHerm).rangedCounter(attacker);
+					return true;
+				}
+			}
 			return false;
 		}
 		public static function meleeCounterResults(attacker:Creature,target:Creature):Boolean
@@ -2622,6 +2640,16 @@ package classes.GameData
 			{
 				if (target.statusEffectv1("Counters Melee") == 0) kGAMECLASS.shizzyCounterAttack(attacker,true);
 				return true;
+			}
+			if(target is NaleenHerm)
+			{
+				target.addStatusValue("Counters Melee",1,1);
+				target.setStatusValue("Counters Ranged",1,0);
+				if(target.statusEffectv1("Counters Melee") >= 3)
+				{
+					(target as NaleenHerm).meleeCounter(attacker);
+					return true;
+				}
 			}
 			return false;
 		}

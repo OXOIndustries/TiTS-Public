@@ -1196,10 +1196,10 @@ public function redRidingRaskvel():void
 	var args:Array = [x,y];
 	//[Hard light peg] [Feed milk] [Pussy tail] [Cock tail]}
 	clearMenu();
-	if(!pc.hasCockTail() && !pc.hasCuntTail() && !pc.lowerUndergarment.hardLightEquipped) addButton(0,"Next",feedRaskGangMalk,args);
+	if(!pc.hasCockTail() && !pc.hasCuntTail() && !pc.hasHardLightEquipped()) addButton(0,"Next",feedRaskGangMalk,args);
 	else
 	{
-		if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"HardlightPeg",raskvelHardlightPegEdition,args,"Hardlight Peg","Peg one of them with the hardlight strap-on you’ve got.");
+		if(pc.hasHardLightEquipped()) addButton(0,"HardlightPeg",raskvelHardlightPegEdition,args,"Hardlight Peg","Peg one of them with the hardlight strap-on you’ve got.");
 		else addDisabledButton(0,"HardlightPeg","Hardlight Peg","You need a hardlight strap-on for this scene.");
 		addButton(1,"Tittysuckle",feedRaskGangMalk,args,"Tittysuckle","Invite him to suck on your [pc.nipple], whether or not you have any milk to give.");
 		if(pc.hasCuntTail()) addButton(2,"Tail Milk",cuntTailRaskPlay,args,"Tail Milk","Use your symbiotic tail to wring pleasure from the pint-sized alien.");
@@ -1648,6 +1648,7 @@ public function seduceTheRaskvelAttackYaNerd():void
 
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	processTime(3);
 	//[Sneak away] [Stay]

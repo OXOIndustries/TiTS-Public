@@ -6,6 +6,8 @@
 	import classes.Items.Miscellaneous.Throbb;
 	import classes.Items.Transformatives.LaquineEars;
 	import classes.Items.Protection.JumperShield;
+	import classes.Items.Armor.JumperJumpsuit;
+	import classes.Items.Armor.JumperJumpsuitSlutty;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.GameData.CodexManager;
@@ -156,7 +158,7 @@
 			this.vaginalVirgin = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 3;
-			this.vaginas[0].bonusCapacity = 20;
+			this.vaginas[0].bonusCapacity = 130;
 			this.vaginas[0].vaginaColor = "pink";
 			this.vaginas[0].type = GLOBAL.TYPE_LAPINE;
 			//balls
@@ -260,6 +262,8 @@
 			credits = 350+rand(150);
 			if(rand(4) == 0) this.inventory.push(new LaquineEars());
 			else if(rand(4) == 0) this.inventory.push(new Throbb());
+			else if(rand(13) == 0) this.inventory.push(new JumperJumpsuitSlutty());
+			else if(rand(12) == 0) this.inventory.push(new JumperJumpsuit());
 		}
 		
 		override public function get bustDisplay():String

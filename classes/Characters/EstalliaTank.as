@@ -149,7 +149,7 @@ package classes.Characters
 			//How many "normal" orgams worth of jizz your balls can hold.
 			this.ballEfficiency = 4;
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 635;
 			this.timesCum = 255;
 			this.cockVirgin = true;
@@ -426,11 +426,9 @@ package classes.Characters
 				}
 				coverRemaining = flags["KHORGAN_RIGHT_COVER"]
 			}
-			//if(display)
-			//{
-				if(coverNuked) output(" <b>(Cover gone!)</b>");
-				else output(" (-" + damage/2 + "% Cover)");
-			//}
+			
+			if(coverNuked) output(" <b>(Cover gone!)</b>");
+			else output(" (-" + damage/2 + "% Cover)");
 		}
 	}
 }

@@ -217,7 +217,9 @@ public function seraBitcheningImpregnate(response:String = "intro"):void
 		case "responsibility":
 			if(seraIsMerchant())
 			{
-				output("<i>“So you’re scared of responsibility, and have zero faith in your sugar " + pc.mf("daddy", "mommy") + ",”</i> you say, in the most contemptuous tones you can summon. <i>“Thought you wanted to be a bit more than a pathetic baby bitch for the rest of your life. Perhaps I should rescind my loan.”</i>");
+				output("<i>“So you’re scared of responsibility, and have zero faith in your sugar " + pc.mf("daddy", "mommy") + ",”</i> you say, in the most contemptuous tones you can summon. <i>“Thought you wanted to be a bit more than a pathetic baby bitch for the rest of your life.");
+				if(flags["SERA_REPAID_LOAN"] == undefined) output(" Perhaps I should rescind my loan.");
+				output("”</i>");
 				output("\n\nSera looks like you just slapped her, and not in the sexy way.");
 				output("\n\n<i>“What? No! I just--”</i>");
 				output("\n\n<i>“Think of it this way,”</i> you say, commandingly. <i>“Even if you don’t believe in me - and you should, I own your ass - kids are just another reason why you’ve got to make your career work. It’s obvious to me you work far better when you’ve got a focus, rather than flailing around on your own selfish terms. I’m gonna give you a downward reason, as well as an upward one. But I don’t know now...”</i> you gesture dismissively. <i>“Perhaps you aren’t as good at business as you think you are. Perhaps you’re pissing yourself for very good r--”</i>");

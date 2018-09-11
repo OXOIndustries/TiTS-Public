@@ -41,7 +41,7 @@ private function lvlBodyParts(lvl:int = 0):Array
 }
 public function immobilizedUpdate(count:Boolean = false, deltaT:uint = 0):Number
 {
-	if(!pc.hasStatusEffect("Endowment Immobilized")) return 0;
+	if(!pc.hasStatusEffect("Endowment Immobilized") || rooms[currentLocation].hasFlag(GLOBAL.LOW_GRAVITY)) return 0;
 	
 	var bodyPart:Array = lvlBodyParts(3);
 	

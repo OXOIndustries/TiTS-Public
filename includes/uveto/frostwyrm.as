@@ -39,11 +39,11 @@ public function HereBeDragonBonus():Boolean
 				output(".. that is, if you had the equipment useful for breeding...");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You need genitals to interact with the frostwyrm.");
 			}
-			else if((pc.hasCock() && pc.virility() <= 0) || (pc.hasVagina() && pc.fertility() <= 0)) {
+			else if((!pc.hasVagina() && pc.hasCock() && pc.virility() <= 0) || (!pc.hasCock() && pc.hasVagina() && pc.fertility() <= 0)) {
 				output(".. but being that breeding is the objective, maybe you should have more " + ((pc.hasCock() && pc.virility() <= 0) ? "virile" : "fertile") + " genitalia first?");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "Your genitalia are not fit for breeding--make sure you are fertile before summoning the dragon!");
 			}
-			else if(!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) {
+			else if(!pc.hasCock() && pc.hasVagina() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) {
 				output(".. though breeding while you are a carrying mother might not be the best idea. Perhaps you should return after you’ve given birth to your current pregnancy first?");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You already have a bun in the oven, so make sure you are clear of your current pregnancies before summoning the dragon!");
 			}
@@ -94,6 +94,10 @@ public function getFrostwyrmlingPregContainer():PregnancyPlaceholder
 //Encounter Text
 public function encounterFrostwyrm():void
 {
+	// Gender-assignment hotfix
+	frostwyrm.createStatusEffect("Force It Gender");
+	frostwyrm.removeStatusEffect("Force Fem Gender");
+	
 	clearOutput();
 	frostWyrmHeader();
 	
@@ -481,7 +485,7 @@ public function frostwyrmEpilogueAccept():void
 	frostWyrmHeader();
 	author("B");
 	
-	if (!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))
+	if (!pc.hasCock() && pc.hasVagina() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))
 	{
 		output("You’re humbled by the Frostwyrm’s offer – not so much for the opportunity to bear its offspring, but that it considers you such a valid option. You tell it that you consider its offer very flattering, and you’d love to help it, but, you rub at your belly as you tell it that you’re currently... occupied. You can’t exactly double-dip.");
 		output("\n\n<i>I understand,</i> it replies soothingly. <i>I will not ask more from you than you can provide. Return to this coast when your current child is reared and you’ve recovered, and think of me. I will respond to your summons.</i>");
@@ -515,6 +519,10 @@ public function frostwyrmEpilogueAccept():void
 
 public function frostwyrmPickMeUpBaby():void
 {
+	// Gender-assignment hotfix
+	frostwyrm.removeStatusEffect("Force It Gender");
+	frostwyrm.createStatusEffect("Force Fem Gender");
+	
 	clearOutput();
 	frostWyrmHeader();
 	author("B");
@@ -619,6 +627,9 @@ public function nameThatFrostwyrm():void
 	frostwyrm.capitalA = "";
 	frostwyrm.short = userInterface.textInput.text;
 	
+	frostwyrm.removeStatusEffect("Force It Gender");
+	frostwyrm.createStatusEffect("Force Fem Gender");
+	
 	this.removeInput();
 	
 	nameThatFrostwyrm1();
@@ -650,8 +661,8 @@ public function nameThatFrostwyrm1():void
 	processTime(65+rand(3));
 	pc.lust(50);
 	
-	clearMenu();
 	processTime(5);
+	clearMenu();
 	addButton(0, "Next", frostwyrmJesusWeFinallyLanded,undefined);
 }
 public function frostwyrmJesusWeFinallyLanded():void
@@ -679,10 +690,10 @@ public function frostwyrmCanWeFuckYet():void
 	output("\n\n<i>My kind have a sort of ritual we perform with prospective mates,</i> [frostwyrm.name] says. You feel her curious, questing grip on your mind as she studies you and your culture’s approach to mating. <i>Similar to what you call ‘foreplay,’ although... oh, my... certainly, less direct and to-the-point.</i>");
 	output("\n\nHer wide maw slips open and her long, fat, draconian tongue slips from her, drawing languidly across her snout. The probing in your mind does not stop. <i>Goodness. I had no idea your kind could be so... inquisitive with each other’s forms.</i> She continues, scouring your memories for information. <i>What is a ‘kink?’</i> she asks, mostly to herself. <i>Oh. Oh. That is a ‘kink.’ Interesting.</i>");
 	output("\n\nYou smile at her as you remove your effects, baring yourself to the chill of [frostwyrm.name]’s lair. Despite being in a place as cold as Uveto, the dome’s glassy walls naturally capture heat quite well; you wouldn’t call it warm, but it’s bearable. You bare your naked body to [frostwyrm.name], displaying to her what you both have to work with. The effects of her earlier demonstration are still apparent on you, but you nonetheless ask her if she’s willing to... do it again.");
-	output("\n\nIn response, she approaches you and, like she did on the coastline, huffs a warm breath onto your body. The effects are immediate: you feel a sharp sting spread across your body, making your every cell, digit, and limb alight, electrifying you in pleasure. Then, it all surges towards ");
-	if (pc.hasCock()) output("[pc.eachCock]; the flagging erection from earlier springs to life, stiff and hard as could be, engorged in rampant blood and excitement");
+	output("\n\nIn response, she approaches you and, like she did on the coastline, huffs a warm breath onto your body. The effects are immediate: you feel a sharp sting spread across your body, making your every cell, digit, and limb alight, electrifying you in pleasure. Then, it all surges towards");
+	if (pc.hasCock()) output(" [pc.eachCock]; the flagging erection from earlier springs to life, stiff and hard as could be, engorged in rampant blood and excitement");
 	if (pc.isHerm()) output(". Then, the surge continues to");
-	if (pc.hasVagina()) output("your [pc.vagina]; you’ve slowly become placid since then, but just like that, you feel like you could shove a fist inside you and it wouldn’t be enough");
+	if (pc.hasVagina()) output(" your [pc.vagina]; you’ve slowly become placid since then, but just like that, you feel like you could shove a fist inside you and it wouldn’t be enough");
 	output(". Yet, despite how horny you suddenly are, [frostwyrm.name] has left a subliminal instruction in your mind: if you want to feel more, you need only to touch her. ");
 	output("\n\n<i>I have longed for the touch of another,</i> she confides in you, her four red eyes steadfast on yours. You feel her ply gently at your mind as she searches for the right way to describe her thoughts. <i>These manipulations I have on your mind – what you call ‘psionics’ – have no bearing on the self. I’ve suffered listlessly through innumerable heats and ruts, with no other to quench me.</i>");
 	output("\n\n[frostwyrm.name] steps towards you, thundering her footsteps, imposing her bulk upon you. <i>I could have killed you,</i> she says, her fiery red eyes locked tightly to yours. You feel your knees buckle and the energy drain from your chest, and yet, her manipulation on your [pc.crotch] does not stop. Nothing would satisfy you right now: not yourself; not some other person or creature; nothing, but [frostwyrm.name]. You realize that her pleasure is yours, and if you want to cum, you’re going to have to do something for her.");
@@ -1021,7 +1032,7 @@ public function frostwyrmIWantToBangTheLizard():void
 	if(pc.hasVagina())
 	{
 		if(pc.fertility() <= 0) addDisabledButton(0, "Get Bred", "Get Bred", "You are infertile and unable to be bred.");
-		else if(pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addDisabledButton(0, "Get Bred", "Get Bred", "You are unable to be bred while pregnant with different pregnancy types other than [frostwyrm.name]’s.");
+		else if(pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addDisabledButton(0, "Get Bred", "Get Bred", "You are unable to be bred while pregnant with different pregnancy types other than [frostwyrm.name]’s.");
 		else addButton(0, "Get Bred", (flags["FROSTWYRM_DICKED_YOU"] == undefined ? frostwyrmRidersMustBeOver4FeetToContinue : frostwyrmDickRepeat));
 	}
 	else addDisabledButton(0, "Get Bred", "Get Bred", "Requires a vagina.");
@@ -1410,7 +1421,7 @@ public function frostwyrmRidersMustBeOver4FeetToContinue():void
 	}
 	
 	output("You look underneath the barrel of her stomach as you travel along her serpentine form. She’s breathing harder, unable to contain her excitement at finally having someone or something touch her masculinity. You spy her draconian dick, its thick, blunted tip pressing crudely against the icy floor of her lair and bloating fatter and longer with her every heartbeat.");
-	output("\n\nShe notices you stare, and you feel her pluck at your head gently. You lick your [pc.lips] as you stare at her cock and you find yourself feeling all sorts of thoughts about it: how it would feel <i>against</i> you and <i>inside</i> you. How it could hurt you, and ruin you for anyone else – how nobody else could pleasure you again if you were to take [frostwyrm.name] inside you. [frostwyrm.name]’s testicles, each easily large enough that you could curl into one, bounce in excitement, in time with the thumping and growing of her already massive erection, excited for the opportunity to breed you");
+	output("\n\nShe notices you stare, and you feel her pluck at your head gently. You lick your [pc.lips] as you stare at her cock and you find yourself feeling all sorts of thoughts about it: how it would feel <i>against</i> you and <i>inside</i> you. How it could hurt you, and ruin you for anyone else – how nobody else could pleasure you again if you were to take [frostwyrm.name] inside you. [frostwyrm.name]’s testicles, each easily large enough that you could curl into one, bounce in excitement, in time with the thumping and growing of her already massive erection, excited for the opportunity to breed you.");
 	output("\n\nYou’re not entirely sure that every one of those thoughts were yours");
 	if (pc.isBimbo()) output("– you have so few original ones nowadays,");
 	output(" but you nonetheless agree with each of them. <i>Prostrate yourself beneath your mate, [pc.name],</i> [frostwyrm.name] commands, knowing that her authority is absolute within her lair – and that you’d do it regardless. <i>It is time you share your burden. I will <b>swell</b> you with my seed.</i>");
@@ -1611,7 +1622,7 @@ public function frostwyrmAnalFunTimes():void
 	if (pc.isBimbo()) output("– you have so few original ones nowadays,");
 	output(" but you nonetheless agree with each of them. <i>It is time you tend to your mate once more, [pc.name],</i> [frostwyrm.name] says, awaiting your position beneath her. <i>My body hungers for yours, and I know yours thirsts for mine. I am a proper mate: I will quench you properly.</i>");
 	if (pc.hasPregnancyOfType("FrostwyrmPregnancy")) output("The kip inside you requires tending to. Repeated coupling will ensure a healthy shell; a satisfied mate will strengthen its bond with its Qim and Qal.</i> She straightens her spine as she awaits your position. <i>To say nothing of the bonds between two satisfied mates.</i>");
-	output("\n\nExcited yourself, you get onto all fours and crawl beneath [frostwyrm.name], face-to-head with her massive cock. It’s easily three feet long with a larger girth than your fist;the skin of her cock is so thick that it hides her pulsing veins and the shaft has several nubs and pricks along the underside of its length. It has a flat, mostly-featureless head, save from a rim of muscle around its glans, reminding you of a tree trunk. A bead of its musky, thick pre beads at the final nub on its very point, slowly drooping down to splash against the icy floor. And it’s getting <i>bigger.</i>");
+	output("\n\nExcited yourself, you get onto all fours and crawl beneath [frostwyrm.name], face-to-head with her massive cock. It’s easily three feet long with a larger girth than your fist; the skin of her cock is so thick that it hides her pulsing veins and the shaft has several nubs and pricks along the underside of its length. It has a flat, mostly-featureless head, save from a rim of muscle around its glans, reminding you of a tree trunk. A bead of its musky, thick pre beads at the final nub on its very point, slowly drooping down to splash against the icy floor. And it’s getting <i>bigger.</i>");
 	output("\n\n[frostwyrm.name] is quite patient for her part, grumbling wordlessly above you as she waits for you to do her work for her. You turn about, facing away from the red behemoth of a dick, then reach back to grasp it. She remains still, knowing from experience that you need a moment to line yourself up to properly take her. Still, the touch of your hand against her dick excites her: her cock flexes, and a long line of precum sprays across your upturned [pc.ass] and across your back.");
 	if (flags["FROSTWYRM_INCEST_OPTION"] == 1)
 	{
@@ -1739,11 +1750,11 @@ public function frostwyrmSteeleIsADirtyGirl():void
 	if (pc.hasCock()){
 		output("our [pc.cock] erupts its heavy load, spurting your cum right onto [frostwyrm.name]’s thirsty tongue. Your [pc.hips] jerk and thrust impiously, unable to contain themselves; with every load, you thrust forward involuntarily, painting the topside of her tongue with your seed");
 		if (pc.cumQ() > 300){
-			output("\n\n. Despite how large her tongue is, she couldn’t possibly catch every drop of your incredible load because of your positioning, and more than a little bit of it drools off the side, dripping off the sides of her appendage");
+			output(". Despite how large her tongue is, she couldn’t possibly catch every drop of your incredible load because of your positioning, and more than a little bit of it drools off the side, dripping off the sides of her appendage");
 			output(". She bloats and quivers her tongue against your body, massaging your endowments for your every drop to paint her pink tongue white");
 		}
 	}
-	if (pc.isHerm()) output("\n\nIn time with your erupting cock, y");
+	if (pc.isHerm()) output(".\n\nIn time with your erupting cock, y");
 	if (pc.hasVagina()) output("our [pc.vagina] explodes its feminine cum all over the flatter part of [frostwyrm.name]’s tongue. [frostwyrm.name] undulates it, flexing and bloating it, gently massaging it against your vulva and a little rougher against your [pc.clit], milking you for your pleasure as much as she can. Your [pc.femcum] coats her tastebuds, caking her smooth tongue in your flavor, and each time she moves it an inch or more, you shiver and gush out just a little bit extra for her.");
 	output("\n\nYou slump, your face resting against the warm, heaving scales of [frostwyrm.name]’s belly as you relax against her. She wiggles her tongue slightly, teasing you and being careful not to over-stimulate you. After a few moments, she slowly begins to withdraw, making you jump and ‘eek!’ in pleasure with every smooth inch she tickles you with on the way out. The tip makes one last ride up the crease of your [pc.ass] before [frostwyrm.name] pulls it into her mouth, with a bit of flourish.");
 	output("\n\nShe licks at her snout several times, showing to you that she’s appreciating your taste. <i>Exquisite,</i> she remarks, as though she were tasting a wine.");
@@ -1764,6 +1775,7 @@ public function frostwyrmSteeleIsADirtyGirl():void
 	pc.shower();
 	pc.orgasm();
 	IncrementFlag("FROSTWYRM_GAVE_BATH");
+	clearMenu();
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
 }
 public function frostwyrmAllowMeToReturnTheFavor():void
@@ -1826,7 +1838,9 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	output(", and you press your [pc.lips] against her urethra. You want every last drop to land in your mouth until you’re positively gravid and you’re blowing cum bubbles for the rest of the day, and when you inevitably lose control, you want the rest to cake your body in a thick layer of her draconic spooge.");
 	output("\n\n[frostwyrm.name] hears your every subconscious desire, and, apparently encouraged, stretches her body and awkwardly thrusts her hips into your body, slamming her head against your face. Her massive balls bunch up against her body, and you feel her load travel up her dick, making it even thicker all around as your liquid prize quickly makes its way to you. Her urethra bloats, and you remember to keep your [pc.lips] open and against it.");
 	output("\n\nYou... underestimated just how much [frostwyrm.name] could produce, and how intensely it’d be spraying from her. Her first load immediately overfills your mouth; your cheeks balloon obscenely with her white cream and your tongue writhes in the pool of semen now in your mouth. You struggle to swallow it down and you pull away before any more threatens to drown you. But, as soon as you do and you take a breath of air, you’re right back on her, thirsty for another mouthful.");
-	output("\n\nThe process repeats several times, of you taking a shot in the mouth, pulling away, swallowing, and returning. Each time you pull back, her cum sprays into the air and cascades back onto you, showering her from scalp to sole in her load. Her cum drips down your arms and onto your fingers, and travels in rivulets down your [pc.thighs]; it tangles into your hair, moisturizing it. It slides down your back and pools in the crease of your [pc.ass], sliding along your [pc.asshole] and towards your ");
+	output("\n\nThe process repeats several times, of you taking a shot in the mouth, pulling away, swallowing, and returning. Each time you pull back, her cum sprays into the air and cascades back onto you, showering her from scalp to sole in her load. Her cum drips down your arms and onto your fingers, and travels in rivulets down your [pc.thighs]");
+	if(pc.hasHair()) output("; it tangles into your hair, moisturizing it");
+	output(". It slides down your back and pools in the crease of your [pc.ass], sliding along your [pc.asshole] and towards your ");
 	if (pc.hasVagina()) output("[pc.vagina], where it desperately winks and flexes, trying to suck every drop it finds into itself");
 	else if (!pc.hasVagina() && pc.balls > 0) output("[pc.balls], shining your sack before dripping to the ice below");
 	else output("taint, where it pools and collects for a moment until it falls in drops to the ice below");
@@ -1847,7 +1861,7 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	output("\n\nYou sigh, the distinctive taste of [frostwyrm.name] on your breath. Perhaps you are.");
 	if (flags["FROSTWYRM_INCEST_OPTION"] == 1){
 		if (flags["FROSTWYRM_KIP_COUNT"] >= 2){
-			output("\n\nWhen you pull yourself up, peeling away from the new liquid coating on the floor, you hazily look out to the lair and spy your daughters. Inspired by the act their Qim and Qal had shamelessly put on for them, they’re locked into a tantalizing sizty-nine");
+			output("\n\nWhen you pull yourself up, peeling away from the new liquid coating on the floor, you hazily look out to the lair and spy your daughters. Inspired by the act their Qim and Qal had shamelessly put on for them, they’re locked into a tantalizing sixty-nine");
 			if (flags["FROSTWYRM_KIP_COUNT"] >= 9) output(", and others are assembled in a long, circular train");
 			output(", each of them eagerly fucking the mouth of their willing and ready sister, sawing their foot-long dick into the warm, wet maw of their sibling.");
 			output("\n\n<i>I do hope we have not created an... epidemic of sorts,</i> [frostwyrm.name] says amusedly, watching her daughters with some awe and a little bit of jealousy. <i>I should hope they remember to breed with their mates properly when the time comes.</i>");
@@ -1859,6 +1873,7 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	pc.loadInMouth(frostwyrm);
 	processTime(60);
 	IncrementFlag("FROSTWYRM_GOT_BLOWN");
+	clearMenu();
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
 }
 public function frostwyrmGoodGodImHurt(vIdx:int = -1):void
@@ -2644,11 +2659,11 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 	output("”</i>, but the Qim doesn’t have any. Her face is a lot longer than ours, too, and she doesn’t have these puffy things around our mouths.");
 	if (pc.biggestTitSize() < 6) output("\n\nYou grit your teeth at your daughter reminding you that your boobs are smaller than hers, and tell yourself that she meant nothing by it.");
 	output("\n\nYou respond to most of her questions at once by saying that everyone is born a little different: some people have more than others; some are born taller, or with bigger assets. But you remind her that not always is bigger, better, and that she should judge others by their personality and their merits rather than their physical appearance.");
-	output("\n\n<i>“And these?”</i> she asks, groping and squeezing at her tits. You tell her that those are called ‘breasts, ’ and that their primary function is to nurse young with – but they have lots of other feel - good uses, too. ");
+	output("\n\n<i>“And these?”</i> she asks, groping and squeezing at her tits. You tell her that those are called ‘breasts,’ and that their primary function is to nurse young with – but they have lots of other feel - good uses, too. ");
 	if (pc.isLactating()){
 		output("\n\n<i>“How do you ‘nurse’ young with these? That doesn’t make any sense to me.”</i>");
 		output("\n\nYou reply that she’s asking at a lucky time: you gently grip your boob just beneath the nipple and give it a squeeze. Your [pc.milk] sprays from your [pc.nipple] in thin streams, going every which way.");
-		output("\n\nYou daughter gasps in surprise at the sight, then a giddy grin crosses her face. This liquid, called ‘milk, ’ is what the young of your kind sustain on until they’re older for other, solid foods.");
+		output("\n\nYou daughter gasps in surprise at the sight, then a giddy grin crosses her face. This liquid, called ‘milk,’ is what the young of your kind sustain on until they’re older for other, solid foods.");
 		if (flags["FROSTWYRM_INCEST_OPTION"] == 0) output("\n\n<i>“May I have some?”</i> she asks. You reply that she’s... a little above being breastfed at her age, and you lower your [pc.nipple] away from her. She pouts, but respects your decision.");
 		else{
 			output("\n\n<i>“Like this?”</i> she asks, then leans forward and clamps her lips onto your right nipple. You shudder in surprise as her cheeks compress, suckling the milk straight from your breast, and you melt on the spot; this is unsolicited, but the relief you feel from releasing the pent up pressure and weight on your boob is enough to blank your mind momentarily.");
@@ -2888,7 +2903,7 @@ public function frostwyrmlingCatchGangbang():void
 	output("\n\nSuddenly, your body is invaded by the hot, thick, turgid flesh of your daughters: the one beneath you thrusts upward, burying herself to the ever-inflating knot of her dick; the one above you bends at the knees and tucks herself into your warmed-up mouth, thrusting deep enough to nudge at your soft palette; and your eldest daughter thrusts forward, her dick spearing into you, conforming you around herself. You fit her like a glove, like you were biologically designed for her and her alone, and the ride is only going to get better.");
 	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output(" Your other daughters stand in a circle around you four; many of them play with themselves, while the more charitable of your daughters assist the others, giving their siblings handjobs and some of them even getting on their knees to fluff their sisters in preparation for their turn.");
 	if (flags["FROSTWYRM_KIP_COUNT"] >= 11) output(" Even others, deciding that you’re going to be busy for some time and not wanting to add more to your plate, turn their attention to their Qim, tending to her and prepping her to properly mate her kips as well.");
-	output("\n\nThe daughter beneath you, drilling your [pc.ass], is far more gentle and methodical than her sisters; she knows how sensitive and tender a good reaming can make anyone, and takes her time, allowing your body to get used to her girth before pushing forward and forcing you to readjust, especially since she’s double-teaming you with her older sister, pushing your body to its limit. Whereas the daughter in your mouth is rather <i>enthusiastic:</i> her hands clamp onto either side of your head and fucks your mouth, not cruelly, but without much finesse or direction or thought for your own pleasure. Her dense balls clap you on the forehead every time she pushes in, and her big dick sometimes drives a little too deep, making you gag until her backswing.");
+	output("\n\nThe daughter beneath you, drilling your [pc.ass], is far more gentle and methodical than her sisters; she knows how sensitive and tender a good reaming can make anyone, and takes her time, allowing your body to get used to her girth before pushing forward and forcing you to readjust yourself, especially since she’s double-teaming you with her older sister, pushing your body to its limit. Whereas the daughter in your mouth is rather <i>enthusiastic:</i> her hands clamp onto either side of your head and fucks your mouth, not cruelly, but without much finesse or direction or thought for your own pleasure. Her dense balls clap you on the forehead every time she pushes in, and her big dick sometimes drives a little too deep, making you gag until her backswing.");
 	if (flags["FROSTWYRM_KIP_COUNT"] >= 4) output("\n\nGentle hands find yours, holding and squeezing them tenderly and lovingly, before they too are replaced with yet more cockflesh, their slimy textures greasing your fingers and their precum jetting from their tips and up your wrists. You gently close your hands, simulating a pocket for them to fuck, and your daughters start thrusting into your palms, taking your unspoken invitation gladly.");
 	output("\n\nThe most in-tune with your body, however, is your eldest daughter, currently pounding away at your [pc.vagina]. She occasionally grunts, sometimes coming out as a snort, whenever her thick knot presses against your vulva; she doesn’t try to push in deeper or harder, knowing that you’ll have her when you’re ready. She doesn’t take you too hard or soft; she doesn’t go too fast or slow, even if that means moving off-rhythm with her sister pounding your [pc.ass]. Your every subconscious feeling and desire is met with your loving daughter; to show your appreciation, you wrap your [pc.legs] around her waist, locking just above her massive, thick tail, and hold her close.");
 	output("\n\n<i>“Yeah, being the Qal of a clutch must be the best,”</i> she says, her voice stuttering with her rocking hips. <i>“It’s just you; the Qim; and all your kips, and every single one of them wants a piece of you all the time. I know I count down the Skylight until I can couple with you again, my Qal.”</i> She then raises her voice: <i>“What do you think, girls? How badly do you want to cum inside your Qal?”</i>");
@@ -2901,8 +2916,8 @@ public function frostwyrmlingCatchGangbang():void
 	pc.buttChange(ppFrostwyrmling.cockVolume(0));
 	
 	output("\n\nBetween the dick in your ass, the cock in your mouth, and the one fucking you properly, claiming your cunt for itself, the sensations build up quickly and your orgasm isn’t far off. But, as it builds, you feel the edge that it needs to cross to give you release back away; no matter how close you get, the tipping point continues to elude you.");
-	output("\n\n<i>It wouldn’t be right to cum before your daughters, don’t you think, my Qal?</i> you hear your oldest daughter say to your mind. You crane your head just enough to look her in the eye – a bit of a taxing effort, considering the dick in your mouth – and hers are already on yours, narrowed, her lips curling into a sassy smirk. <i>A good Qal would put the needs of the clutch before" + pc.mf ("himself","herself") + ". Don’t you want to be a</i> good <i>[pc.boyGirl] and make sure your daughters get what they</i> need</i> before you?</i> ");
-	if (pc.hasCock()) output("She gently palms at your [pc.cock], begging for some attention, <i>any</i> attention, but she doesn’t go any further than that. <i>Be a good enough Qal, and we can look into taking care of this juicy thing for you next time.");
+	output("\n\n<i>It wouldn’t be right to cum before your daughters, don’t you think, my Qal?</i> you hear your oldest daughter say to your mind. You crane your head just enough to look her in the eye – a bit of a taxing effort, considering the dick in your mouth – and hers are already on yours, narrowed, her lips curling into a sassy smirk. <i>A good Qal would put the needs of the clutch before" + pc.mf ("himself","herself") + ". Don’t you want to be a </i>good<i> [pc.boyGirl] and make sure your daughters get what they </i>need<i> before you?</i> ");
+	if (pc.hasCock()) output("She gently palms at your [pc.cock], begging for some attention, <i>any</i> attention, but she doesn’t go any further than that. <i>Be a good enough Qal, and we can look into taking care of this juicy thing for you next time.</i>");
 	if (flags["FROSTWYRM_KIP_COUNT"] >= 12){
 		output("\n\nShe looks upward, towards the icy platform that is [frostwyrm.name]’s resting place. You follow her gaze, between your daughter’s legs, and see the inverted image of three of your daughters tending to their Qim: one on her hands and knees, beneath [frostwyrm.name]’s belly, and the other two fondling her huge balls and guiding her titanic cock into their willing sister. <i>See? [frostwyrm.name] understands. The needs of her kips are what’s important. She’s going to fuck her daughter until she cums, and then another one of us is going to replace her until there’s nobody left for [frostwyrm.name] to breed. Don’t you want to be responsible like her?</i>");
 		if (!pc.isBimbo()) output("\n\nYou mentally scold your daughter. To her, [frostwyrm.name] is not [frostwyrm.name]; she is the Qim, and she should respect her Qim by referring to her as such.");
@@ -2992,7 +3007,7 @@ public function frostwyrmlingPitchGangbang():void
 	pc.cockChange();
 	
 	output("\n\nAnd that’s the rhythm that you settle into for the moment: you fuck your little girl into the ice while your oldest daughter stimulates you both, and each time you pull back to thrust again, your third daughter pushes deeper into you. ");
-	if (flags["FROSTWYRM_KIP_COUNT"] >= 3){
+	if (flags["FROSTWYRM_KIP_COUNT"] >= 4){
 		output("\n\nAt some point, a fourth daughter joins you three, crawling between your [pc.legs] and shoving her sniffling nose up to your [pc.crotch]; when she finds the base of your dick, she starts servicing you there");
 		if (pc.balls > 0) output(", taking your [pc.balls] into her mouth juggling them in there – being extra careful with her jagged teeth, of course");
 		output(". It’s difficult for her to stay in place, considering you thrusting forward and her sister bouncing back, but she’s dexterous, and she doesn’t mind at all. Her Qal’s pleasure is important to her, too.");
@@ -3078,10 +3093,10 @@ public function frostwyrmlingBathing():void
 	output("\n\nYou don’t answer, knowing that she isn’t looking for one. She pinches your [pc.nipple] with her lips and pulls back, stretching your breast as she pulls back, and watches it snap into place when she opens her mouth with a quiet ‘pop.’ <i>But then again, a bath isn’t quite as personal as it is with Frostwyrms, is it?</i> she asks you, her " + (pc.tallness < 60 ? "leg" : "foot") + " continuing their motions. <i>Goodness, my Qal, is this making you feel... comfortable?</i> She resumes her bathing your [pc.chest], swiveling her head to get as much flesh as she can in as few passes. <i>Try and hold on, or else you’ll make a bigger mess for us to clean up. And we wouldn’t want that, would we?</i>");
 	output("\n\nThere isn’t much sensory feedback between you and your daughters: you’re the one receiving all the pleasure. But your lust is obvious through the simultaneous link you have with each of them, and it’s no secret what they’re accomplishing by ‘bathing’ you. Every little kiss your second - oldest makes on your back, tickling your spine as she runs her flat tongue along it; every little pull the other two make on your chest");
 	if(pc.hasGenitals()) {
-		output("; you’re ");
-		if (pc.hasCock()) output("hard as diamonds");
-		if (pc.isHerm()) output("and you’re ");
-		if (pc.hasVagina()) output("wet as could be");
+		output("; you’re");
+		if (pc.hasCock()) output(" hard as diamonds");
+		if (pc.isHerm()) output(" and you’re");
+		if (pc.hasVagina()) output(" wet as could be");
 		output(", and you’re all aware of how this bath is going to end");
 	}
 	output(".");
@@ -3215,7 +3230,7 @@ public function frostwyrmGiveThemABath():void
 	if (pc.biggestTitSize() >= 4) output(". You nestle yourself forward, nestling your daughter’s thick dick warmly between your boobs, right where it belongs");
 	if (pc.isLactating()) output("; the pressure exuded on your milk - filled tits causes a bit to squirt out, coating your daughter’s legs from the knees and lubing up your hands with your nutritious ichor");
 	output(". She, using her hands, traces the blunt head of her tool around your [pc.lips], coating them with your pre – as if it were a lipstick, you close them and purse them, making sure that every millimeter is thoroughly colored with her pre-cream.");
-	output("\n\n<i>Our session isn’t going to be quite as long, my Qal,” she says as she guides herself into your willing maw. She moves with far more expertise and confidence than her sisters: she doesn’t fuck your face so much as she places herself inside it, and she casually pumps against you, at a comfortable pace you can both match. <i>Seeing you go down on your little girls like that – the way you sucked cock like a horny little beast and the way you ate pussy like you were thirsty – it’s all made me... ready.</i>");
+	output("\n\n<i>Our session isn’t going to be quite as long, my Qal,</i> she says as she guides herself into your willing maw. She moves with far more expertise and confidence than her sisters: she doesn’t fuck your face so much as she places herself inside it, and she casually pumps against you, at a comfortable pace you can both match. <i>Seeing you go down on your little girls like that – the way you sucked cock like a horny little beast and the way you ate pussy like you were thirsty – it’s all made me... ready.</i>");
 	output("\n\nHands reach out to your shoulders; you look to either side, and you see your second- and third-oldest daughters, each of them on either side, their rock-hard dicks pointed right at your face. They trail their hands down your arms, and they direct you to their hot cocks; you let go of your oldest-daughters ass to wrap your fingers around them, and they start to slowly fuck your hands, the blunt heads beading with precum and ready to blow.");
 	if (flags["FROSTWYRM_KIP_COUNT"] >= 5) output("\n\n<i>“Gather ‘round, girls!”</i> your daughter heeds, waving to the group watching you debase yourself for the benefit of your offspring. You don’t have a good view of the circle forming around you, but from both corners of your eyes, you see more huge, pink cocks with massive, bloated knots, each of them paired with hands frantically jerking themselves in your general direction. Things will probably get a little sticky by the end of this.");
 	output("\n\n<i>Aren’t you just the perfect Qal in the world,</i> your oldest says, smiling almost proudly down at you. <i>Look at you. On your hands and knees, doing absolutely everything you can to make sure your kips are satisfied. Everything, up to and including getting a couple hot loads all over your face. And you’d love to do everything for your kips, wouldn’t you?</i>");
@@ -3224,7 +3239,7 @@ public function frostwyrmGiveThemABath():void
 	if (pc.isHerm()) output(". And, on top of that, ");
 	if (pc.hasVagina()) output("your [pc.vagina] is soaked through, quivering and leaking like a dam about to burst, and all without any sort of stimulation whatsoever");
 	output(". You’re not sure what is directly responsible for your condition: the degrading act of being little more than a sex toy for your very own daughters, or the constant, unending feedback loop of lust being fed to you via your psionic link with your daughters, or whether you actually <i>were</i> getting touched and you were just too focused on your position to notice. Or any combination of the above.");
-	output("\n\nThe cock in your mouth begins to bloat, and a spurt of precum hits the back of your throat, a little more forcefully than all the other spurts so far. <i>You’d do this again in a heartbeat, wouldn’t you?</i> she asks you, her own hands on your head once again, trying to keep herself steady. <i>You’d love nothing more than to get on your knees and tend to your daughters when they say the word, wouldn’t you?</i> She moans out once, biting her lip as she does so. <i>By the Grand Qim, you’d do it for [frostwyrm.name] too, wouldn’t you? Mmm... the idea of you taking [frostwyrm.name] into your mouth is... fucking</i> hot. <i>She’s so much bigger than all of us!</i>");
+	output("\n\nThe cock in your mouth begins to bloat, and a spurt of precum hits the back of your throat, a little more forcefully than all the other spurts so far. <i>You’d do this again in a heartbeat, wouldn’t you?</i> she asks you, her own hands on your head once again, trying to keep herself steady. <i>You’d love nothing more than to get on your knees and tend to your daughters when they say the word, wouldn’t you?</i> She moans out once, biting her lip as she does so. <i>By the Grand Qim, you’d do it for [frostwyrm.name] too, wouldn’t you? Mmm... the idea of you taking [frostwyrm.name] into your mouth is... fucking </i>hot<i>. She’s so much bigger than all of us!</i>");
 	if (!pc.isBimbo()) output("\n\nAs hot as the entire scenario is, and as horny as you are and as willing as you are to go to your mate and blow her too when you’re done, you have the sense to scold your daughter. She can call you what she wants, you don’t mind – but [frostwyrm.name] always is and always will be the Qim to her, and she deserves to be addressed as such");
 	else output("\n\nWow, yeah, that <i>is</i> a good idea! Once you’re done blowing your baby girl and getting a hot facial from the others, maybe [frostwyrm.name] would like to make a deposit to her personal spunk-bank too! But, first things first: as much fun as everyone’s having, your daughter needs to remember to not call [frostwyrm.name] anything except the Qim of the clutch. She deserves that");
 	output(". <i>I’m... yeah, I’m sorry, but... you’d do it? You’d go to the Qim and do this to her too?</i>");

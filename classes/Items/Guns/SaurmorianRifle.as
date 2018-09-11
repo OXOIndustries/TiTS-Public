@@ -34,7 +34,7 @@ package classes.Items.Guns
 			this.description = "a custom saurmorian railgun";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This matte-black cannon, with its long and heavy barrel and dual drum-magazine, is a beloved weapon of freelancing saurmorians. Unable to be efficiently used by the military (to their utter chagrin) and never found whole, these manually constructed weapons almost always have some sentimental value to their wielders. Though you may not be able to hold one of these cumbersome things as easily as a saurmorian, you nonetheless may find yourself capable of using it as an effective weapon.";
+			this.tooltip = "This matte-black cannon, with its long and heavy barrel and dual drum-magazine, is a beloved weapon of freelancing saurmorians. Unable to be efficiently used by the military (to their utter chagrin) and never found whole, these manually constructed weapons almost always have some sentimental value to their wielders. Though properly using one of these cumbersome things is difficult, even for a saurmorian, you nonetheless may find yourself capable of using it as an effective weapon.";
 			this.attackVerb = "shoot";
 			attackNoun = "shot";
 			

@@ -2641,7 +2641,7 @@ public function payShekkaForFunding3():void
 	if(pc.biggestTitSize() < 1) output("pecs");
 	else if(pc.biggestTitSize() < 10) output("own");
 	else output("massive mammaries");
-	output(". She squeaks in surprise at being manhandled, but a nibble on the one of her ears turns that into a happy coo. <i>“Hey, behave. I don’t have the willpower to keep up with my libido right now. Give me a bit, okay?”</i> The look in her eyes is cheerful enough, but there is a tired edge that no amount of chemical stimulant can keep at bay entirely.");
+	output(". She squeaks in surprise at being manhandled, but a nibble on one of her ears turns that into a happy coo. <i>“Hey, behave. I don’t have the willpower to keep up with my libido right now. Give me a bit, okay?”</i> The look in her eyes is cheerful enough, but there is a tired edge that no amount of chemical stimulant can keep at bay entirely.");
 	output("\n\n...Not that it stops her giving your ");
 	if(pc.hasCock()) output("cock");
 	else output("ass");

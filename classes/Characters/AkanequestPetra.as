@@ -11,6 +11,7 @@ package classes.Characters
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.Engine.Combat.blindMiss;
 	import classes.Engine.Combat.combatMiss;
+	import classes.Engine.Combat.damageRand;
 	import classes.Engine.Combat.applyDamage;
 	import classes.Engine.Interfaces.output;
 	import classes.Items.Melee.PetraWhip;
@@ -147,7 +148,7 @@ package classes.Characters
 		private function tripleLash(target:Creature):void
 		{
 			output("The exec launches her electro-whip forward, swinging three imperceptibly fast tendrils straight at you!");
-			if (combatMiss(this, target) || blindMiss(this, target)) output(" You’re able to avoid the hit from the whip, if barely!");
+			if (combatMiss(this, target) || blindMiss(this, target, true)) output(" You’re able to avoid the hit from the whip, if barely!");
 			else
 			{
 				output(" The strike bites deep upon you with a shower of sparks!");
@@ -157,11 +158,11 @@ package classes.Characters
 		private function spiralDevastation(target:Creature):void
 		{
 			output("With a roar, Petra overcharges her whips cells and the blue glow almost overflows! She spins the resulting strand of energy right at you!");
-			if (combatMiss(this, target) || blindMiss(this, target)) output(" You just about avoid the whip, tangy ozone filling your nose!");
+			if (combatMiss(this, target) || blindMiss(this, target, true)) output(" You just about avoid the whip, tangy ozone filling your nose!");
 			else
 			{
 				output(" A flailing energy lash crashes against you in a shower of crackles and sparks!");
-				for (var i:int = 0; i < 5; ++i) applyDamage(meleeDamage(), this, target, "minimal");
+				for (var i:int = 0; i < 5; ++i) applyDamage(damageRand(meleeDamage(), 15), this, target, "minimal");
 				CombatAttacks.applyBurn(target, 3);
 			}
 		}
@@ -190,7 +191,7 @@ package classes.Characters
 		private function entangle(target:Creature):void
 		{
 			output("The slaver exec fiddles with her wrist mount and strikes broadly with the whip, aiming for your sides!");
-			if (combatMiss(this, target) || blindMiss(this, target)) output(" You’re able to avoid the hit from the whip, if barely!");
+			if (combatMiss(this, target) || blindMiss(this, target, true)) output(" You’re able to avoid the hit from the whip, if barely!");
 			else
 			{
 				output(" Oh no! You’re ensnared by the energized lashes! Gotta struggle to escape!");
@@ -205,7 +206,7 @@ package classes.Characters
 		private function shieldBash(target:Creature):void
 		{
 			output("Petra rushes forward and takes a massive under-swing at you with her human-sized shield!");
-			if (combatMiss(this, target) || blindMiss(this, target)) output(" The blow just about grazes your elbow but otherwise fails to make contact!");
+			if (combatMiss(this, target) || blindMiss(this, target, true)) output(" The blow just about grazes your elbow but otherwise fails to make contact!");
 			else
 			{
 				output(" You’re hit by the full force of the blow! You go flying to the floor,winded in the heat of battle!");
@@ -214,7 +215,7 @@ package classes.Characters
 					output(" <b>You’re stunned!</b>");
 					CombatAttacks.applyStun(target);
 				}
-				applyDamage(meleeDamage().multiply(3), this, target, "minimal");
+				applyDamage(damageRand(meleeDamage().multiply(3), 35), this, target, "minimal");
 			}
 		}
 		private function overchargeShield():void

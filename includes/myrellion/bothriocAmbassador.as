@@ -83,7 +83,7 @@ public function approachAraKei():void
 		bothriocQuestGreeting();
 		return;
 	}
-	if(bothriocQuestComplete())
+	if(bothriocQuestComplete() && flags["BOTHRIOC_QUEST_COMPLETE"] == undefined)
 	{
 		bothriocQuestApproachAraKei();
 		return;
@@ -105,9 +105,17 @@ public function approachAraKei():void
 	}
 	if (bothriocAddiction() <= 0 /*&& flags["ARAKEI_TALKED_OTHERBOTHRIOC"] != undefined*/)
 	{
-		output("<i>“You’re looking healthy and brimming with that distinct do-as-you-please attitude of yours,”</i> Ara Kei says with a dry, not unfriendly curl of the lip. You find yourself exhaling when [ara.his] big, black eyes move away from you back to the bustle all around [ara.him]. There is something slightly disconcerting about being the sole focus of the bothrioc ambassador’s attention.");
-
-		output("\n\n<i>“Here to know more about my race?”</i> [ara.he] "+ ara.mfn("goes", "goes", "go") +" on. <i>“I have always felt we are better experienced than studied, you know.”</i>");
+		if(bothriocQuestComplete())
+		{
+			output("<i>“Steele!”</i>");
+			output("\n\nAra Kei instantly switches [ara.his] attention to you and clacks across, leaving [ara.his] four submissives looking softly confused, the moment [ara.he] notice" + ara.mfn("s", "s", "") + " you.");
+			output("\n\n<i>“And what do we owe this pleasure to?”</i> the quadomme asks, smiling.");
+		}
+		else
+		{
+			output("<i>“You’re looking healthy and brimming with that distinct do-as-you-please attitude of yours,”</i> Ara Kei says with a dry, not unfriendly curl of the lip. You find yourself exhaling when [ara.his] big, black eyes move away from you back to the bustle all around [ara.him]. There is something slightly disconcerting about being the sole focus of the bothrioc ambassador’s attention.");
+			output("\n\n<i>“Here to know more about my race?”</i> [ara.he] "+ ara.mfn("goes", "goes", "go") +" on. <i>“I have always felt we are better experienced than studied, you know.”</i>");
+		}
 	}
 	else if (bothriocAddiction() <= 10 && flags["ARAKEI_ADDICTION_10"] == undefined)
 	{

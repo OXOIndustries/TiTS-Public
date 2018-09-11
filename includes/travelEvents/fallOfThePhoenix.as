@@ -438,6 +438,7 @@ public function loseToPhoenixPirates():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust("MIRIAN", "VOIDPIRATE", "VOIDPIRATE");
@@ -495,6 +496,7 @@ public function victoryOverPhoenixPirates():void
 {
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	clearOutput();
 	showBust(saendraBustDisplay(),"VALERIA");

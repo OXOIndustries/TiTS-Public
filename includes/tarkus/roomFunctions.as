@@ -159,6 +159,7 @@ public function synthSheathsUsed():int
 	if(chars["SHEKKA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
 	if(sylvieHasCock()) synthUsed++;
 	if(chars["TUUVA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
+	if(chars["ARDIA"].hasCock(GLOBAL.TYPE_EQUINE)) synthUsed++;
 	
 	return synthUsed;
 }
@@ -265,6 +266,8 @@ public function rustCoastEncounters():Boolean {
 		if (flags["ZODEE_GALOQUEST"] == undefined) e.push( { v: zodeeGivesFirstGalomax, w: 1 } );
 		if (flags["ZODEE_GALOQUEST"] == 1) e.push( { v: secondZodeeEncouonterForGaloMax, w: 1 } );
 
+		if(pc.level >= 5) e.push ( { v: encounterLGBT, w: 2 } );
+
 		//If not disabled.
 		if(chaurmineAtWastes()) e.push( { v: encounterChaurmine, w: 1 + rand(2) } );
 	
@@ -280,9 +283,15 @@ public function rustCoastEncounters():Boolean {
 public function rustRidgesEncounters():Boolean {
 	if(flags["ENCOUNTERS_DISABLED"] != undefined) return false;
 	if(flags["RUST_STEP"] == undefined) flags["RUST_STEP"] = 1;
-	else flags["RUST_STEP"]++;
 	
+	if(flags["AZRA_TARKUSED"] == 1 && flags["SYDIAN_QUEEN_STAGE"] != 5 && InCollection(currentLocation,["241","242","243","244"]) && !pc.hasStatusEffect("Sydian Queen Cooldown") && rand(2) == 0)
+	{
+		eventQueue.push(sydianQueenIntroRedux);
+	}
+	else flags["RUST_STEP"]++;
+
 	var choices:Array = new Array();
+
 	//If walked far enough w/o an encounter
 	if(flags["RUST_STEP"] >= 5 && rand(3) == 0) {
 		//Reset step counter

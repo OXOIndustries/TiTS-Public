@@ -769,7 +769,7 @@ public function mitziCrewBonus():String
 	//Milky Mitzi still recovering
 	if(pc.hasStatusEffect("Mitzi_Gushed_Out"))
 	{
-		if(rand(2) == 0) buff = "\n\nMitzi is in her bathroom, kneeling and the shower and tugging on her nipples. Soft, emphatic moos can be heard every now and then, accompanied by wet-sounding splats. You put your ear to the door and listen: <i>“Miss Moo is... Miss Moo? Noooo, wrong mooooo. Mmm, milking feels so gooood! [pc.Master] won’t fuck Moo if she doesn’t remember her name... Missy or Mimsy... MOOOO!”</i> You pull away and decide to <b>let her recover from that Gush dose in privacy.</b>";
+		if(rand(2) == 0) buff = "\n\nMitzi is in her bathroom, kneeling in the shower and tugging on her nipples. Soft, emphatic moos can be heard every now and then, accompanied by wet-sounding splats. You put your ear to the door and listen: <i>“Miss Moo is... Miss Moo? Noooo, wrong mooooo. Mmm, milking feels so gooood! [pc.Master] won’t fuck Moo if she doesn’t remember her name... Missy or Mimsy... MOOOO!”</i> You pull away and decide to <b>let her recover from that Gush dose in privacy.</b>";
 		//Repeat recovery
 		else buff = "\n\nMitzi is in her bedroom, milking her prodigious teats and mooing like a barnyard animal. Every now and then you hear an orgasmic screech and a liquid spattering followed by a high-pitched cry of, <i>“[pc.Master] so good to Moooo!”</i> <b>Mitzi still needs to recover from her recent bout with Gush.</b>";
 	}
@@ -1017,7 +1017,7 @@ public function mitziAppearance():void
 	//Can’t see, havent fucked it.
 	else if(flags["MITZI_FUCKED"] == undefined) output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you can only assume that the feminine treasure between is every bit as libidinous and willing as the rest of her.");
 	//Can’t see it, have fucked it
-	else output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you’ve spent too long up close and personal with it to forget about it. The vulva is eternally plump with lust, slicked by beads of clear arousal at any time of the day or night. Its lusty sheen begs the viewer to lean closer, and a hyper-developed clitoris stands proudly out of its hood in search of a finger or tongue willing to bless its super-charged nerves with the a touch.");
+	else output("\n\nWhile you can’t see between your fuck-slave’s thighs thanks to her current outfit, you’ve spent too long getting up close and personal with it to simply forget about it. The vulva is eternally plump with lust, slicked by beads of clear arousal at any time of the day or night. Its lusty sheen begs the viewer to lean closer, and a hyper-developed clitoris stands proudly out of its hood in search of a finger or tongue willing to bless its super-charged nerves with the a touch.");
 	//Merge
 	output("\n\nA spaded tail whips out to press against your chest");
 	if(!pc.isChestExposed())
@@ -1139,7 +1139,7 @@ public function mitziMorningSuccOrWhatever():void
 
 		output("\n\n<i>“Morning, [pc.Master]!”</i>");
 		output("\n\nYou sit up onto your elbows and greet Mitzi");
-		//{, like always}
+		//output(", like always");
 		output(". <i>“Morning, ");
 		if(pc.isBimbo()) output("hottie!");
 		else if(pc.isBro()) output("slut.");
@@ -1800,7 +1800,7 @@ public function giveMitziACumBubble4Real(arg:Class):void
 		if(!(arg == HugeCumBubble)) output("her tiny palms");
 		else output("her arms");
 		output(" in excitement. <i>“Omigawwwwd! Nobody ever gets Mitzi like, anything!”</i> She shakes it, listening to the sloshing. <i>“...It’s cum right? Please let it be cum.”</i>");
-		output("\n\nThe second you signal in the affirmative, Mitzi swoons and moans, <i>“My hero! You’re the best [pc.Master] a girl could get.”</i> She produces a syringe and sticks it into the bubble, casually extracting a sample to spray onto her waiting tongue. <i>“Mmmm, yummy too. Mitzi should really return the favor. Give you something like, just as awesome.”</i> The goblin extra another hit of seed and swallows it with an enormously satisfied sigh, <i>“Ohhhhh gaaaawwwwwwd. Yeah. Something better than goblin-sex. You have all of that you can want. Back in a dick-suckin’-second!”</i>");
+		output("\n\nThe second you signal in the affirmative, Mitzi swoons and moans, <i>“My hero! You’re the best [pc.Master] a girl could get.”</i> She produces a syringe and sticks it into the bubble, casually extracting a sample to spray onto her waiting tongue. <i>“Mmmm, yummy too. Mitzi should really return the favor. Give you something like, just as awesome.”</i> The goblin extracts another hit of seed and swallows it with an enormously satisfied sigh, <i>“Ohhhhh gaaaawwwwwwd. Yeah. Something better than goblin-sex. You have all of that you can want. Back in a dick-suckin’-second!”</i>");
 		output("\n\nPitter-pattering feet slap into the deck as the green-skinned cum-addict scampers off with her prize. You fold your arms and tap your foot, but she’s back before you know it, carrying in something gift-wrapped in neon condoms like wrapping paper. <i>“Here, [pc.Master].”</i> Mitzi’s lashes flutter adoringly above her pink, heart-shaped eyes.");
 		//Bimbo
 		if(pc.isBimbo()) output("\n\nYou’re blown away at such inventive use of condoms. And here you thought they were only good for like, storing snacks. You peel them off one at a time, sharing them with Mitzi in case either of you ever needs to bank up a little boy-batter.");
@@ -2781,7 +2781,7 @@ public function mitziLesboCuntnosis():void
 	if(pc.totalVaginas() > 1)
 	{
 		output(", spreading her digits out to caress its sister");
-		if(pc.totalVaginas() > 1) output("s");
+		if(pc.totalVaginas() > 2) output("s");
 	}
 	output(", extracting a strand of [pc.girlCumVisc] goo. <i>“And right now, it’s drenching itself at the sight of a cute girl, isn’t it?”</i>");
 	output("\n\nMitzi is so cute. Staring at her, you moan your assent and wiggle your fingers in her hair, so soft and feminine. <i>“Cute,”</i> you mumble.");

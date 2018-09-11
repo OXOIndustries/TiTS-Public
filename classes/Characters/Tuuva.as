@@ -55,7 +55,7 @@
 			this.ballEfficiency = 60;
 
 			//Scales from 0 (never produce more) to infinity.
-			this.refractoryRate = 9999;
+			this.refractoryRate = 9991;
 			this.minutesSinceCum = 25;
 			this.timesCum = 2508;
 			this.cockVirgin = false;
@@ -65,7 +65,7 @@
 		
 		public function UpgradeVersion1(dataObject:Object):void
 		{
-			if(dataObject.cocks[0].cType == GLOBAL.TYPE_EQUINE)
+			if(dataObject.cocks.length > 0 && dataObject.cocks[0].cType == GLOBAL.TYPE_EQUINE)
 			{
 				dataObject.cocks[0].cLengthRaw = 16;
 			}

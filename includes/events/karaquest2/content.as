@@ -61,7 +61,7 @@ SILENCE_RESCUED_CONNIE	-- 0/undefined, no
 
 public function completedKQ2Good():Boolean
 {
-	return flags["KQ2_QUEST_FINISHED"] != undefined && flags["KQ2_QUEST_FINISHED"] == 1;
+	return (flags["KQ2_QUEST_FINISHED"] == 1);
 }
 
 public function tryProcKQuest2Entry():Boolean
@@ -1308,6 +1308,7 @@ public function kq2KhanPCVictory():void
 
 	userInterface.hideNPCStats();
 	userInterface.leftBarDefaults();
+	generateMap();
 	
 	//[Talk: Gold Myr] [Talk: Khan] [Fuck Khan] [Loot Room] [Leave]
 	kq2KhanVictoryMenu();

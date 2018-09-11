@@ -159,9 +159,23 @@ public function initializeNPCs(justUpdate:Boolean = false):void
 	prepChar(justUpdate, "MITZI", Mitzi);
 	prepChar(justUpdate, "URBOLG", Urbolg);
 	prepChar(justUpdate, "FROSTWYRM", Frostwyrm);
+	prepChar(justUpdate, "SECURITY_ROBOTS", AkkadiSecurityRobots);
+	prepChar(justUpdate, "SCHORA", CommanderSchora);
+	prepChar(justUpdate, "TORRA", Torra);
+	prepChar(justUpdate, "DRCALNOR", DrCalnor);
 	prepChar(justUpdate, "THAREDRONE", ThareDrone);
 	prepChar(justUpdate, "LAH", RKLah);
+	prepChar(justUpdate, "KANE", Kane);
 	prepChar(justUpdate, "SHIZUYA", Shizuya);
+	prepChar(justUpdate, "ARDIA", Ardia);
+	prepChar(justUpdate, "MRFOX", EMMrFox);
+	prepChar(justUpdate, "REDD", EMRedd);
+	prepChar(justUpdate, "PONYLUVER", EMPonyLuver);
+	prepChar(justUpdate, "SEXYYDADDYY", EMSexyyDaddyy);
+	prepChar(justUpdate, "BOUNTIFULBOTANY", EMBountifulBotany);
+	prepChar(justUpdate, "SNEAKYSNEK", EMSneakySnek);
+	prepChar(justUpdate, "RIPPED4YOURPLEASURE", EMRipped4YourPleasure);
+	prepChar(justUpdate, "STORMDRAGON", EMStormDragon);
 	
 	
 	// Check all characters have version information set

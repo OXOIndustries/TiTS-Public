@@ -110,7 +110,7 @@ public function approachColenso():void
 	clearOutput();
 	showColenso();
 	author("Nonesuch");
-	output("<i>“’Ello [pc.name]. Come to prise some more information out of me, eh?”</i>");
+	output("<i>“‘Ello [pc.name]. Come to prise some more information out of me, eh?”</i>");
 	colensoMenu();
 }
 

@@ -108,7 +108,7 @@ public function repeatGilApproach():void
 	showGil();
 	author("Lashcharge");
 	output("You approach the hooded dog-morph and lean on the wall next to him.");
-	output("\n\nAfter a few moments of awkward silence, he says <i>“’Sup.”</i>");
+	output("\n\nAfter a few moments of awkward silence, he says <i>“‘Sup.”</i>");
 
 	//pc is nice:
 	if(pc.isNice()) output("\n\n<i>“Hello, Gil.”</i>");

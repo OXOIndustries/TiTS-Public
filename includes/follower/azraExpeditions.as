@@ -1237,7 +1237,7 @@ public function hyperRaskFun():void
 	if(pc.cumQ() >= 50) output(" She licks stray pre from her lips, though the effect is more to smear it across the bottom one like lip gloss.");
 	else output(" She licks her lips");
 	output(" <i>“And I want to have your babies. After these.”</i> She lifts your dick with both hands, grunting with the effort, then feathers kisses along the underside of your shaft");
-	if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output(", sucking on the soft, feline \"barbs” one at a time");
+	if(pc.cocks[x].cType == GLOBAL.TYPE_FELINE) output(", sucking on the soft, feline “barbs” one at a time");
 	output(". <i>“You’re the best daddy I’m ever going to meet.”</i>");
 
 	output("\n\nYou doubt you could stop her from gathering some if you wanted to.");
@@ -1951,7 +1951,7 @@ public function acceptPunishmentSucky():void
 
 	//Solo Blowjob
 	author("Nonesuch");
-	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind"))
+	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.isSubby())
 	{
 		output("The conversation has frankly been a bit of a blur for you ever since you caught sight of the raskvel boi’s heavily swollen sack, crying out for some caring someone to relieve it of all its delicious pressure. The fact that it’s in aid of allowing everyone present to leave happy is just the cherry on top.");
 		output("\n\n<i>“Come on then, sugar,”</i> you smile brightly, licking your [pc.lips] and [pc.moving] forward. <i>“Let me show you how my people say hello!”</i>");	
@@ -1979,7 +1979,7 @@ public function acceptPunishmentSucky():void
 	output("\n\n<i>“Thank you so much, my Queen!”</i> he cries out as you begin to find rhythm, bobbing your head up and down his shaft. You let out a muffled huff. Who here is sucking his dick, again?");
 	output("\n\n<i>“You are welcome, my trusted servant,”</i> comes the cool reply. You hear muttering and the frustrated shuffle of feet, followed by a hefty slap and gasp of pain. <i>“Silence! If you wanted relief then you should have proven yourself worthy, as Azaphel did.”</i>");
 
-	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind"))
+	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.isSubby())
 	{
 		output("\n\nWell, if she’s too aloof to get on her knees and hollow her cheeks around some delicious cock that’s definitely her loss. You’re getting a wonderful, soft buzz that intensifies the feeling of Azaphel’s meat sliding between your lips, heat glowing between your [pc.thighs] that strengthens with every drop of pre you coax out of him with long, hungry drags of your mouth and tongue.");
 		output("\n\nYou let the raskvel boi know how much you enjoy servicing him with smacks of your lips and pleased, muffled hums, and you moan as you cause him to abandon all restraint, grab your head with feverish hands and fuck your mouth with athletic, juddering thrusts of his muscle-packed hips. The pointed end rams down your throat with each hard push, but you’re well-trained enough to take this without fuss, even enjoy the little bursts of stars behind your eyelids and the way your whole world becomes nothing but the wonderful hardness and taste of cock each time your windpipe is closed.");
@@ -1999,7 +1999,7 @@ public function acceptPunishmentSucky():void
 	processTime(15);
 	pc.loadInMouth(new RaskvelMale());
 
-	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind"))
+	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.isSubby())
 	{
 		output("\n\nYou pout, feeling a deep sense of frustration. What a meanie-head that giant cockroach is being! You’d barely gotten started helping these frisky, deserving boys out with their delicious problems. Looking over at the pretty boy raskvel, their shifting feet and longing stares, you can tell they entirely share your sentiments.");
 		output("\n\n<i>“The tribute has been fairly met,”</i> the sydian matriarch goes on, turning her attention to you. She waves her sceptre airily. <i>“You may take your spunkshrooms and leave.”</i> She pauses as she notices you’re still kneeling, taps the sceptre in her hand thoughtfully. <i>“...You really enjoyed doing that, didn’t you? It is almost treat time. You can come along and be the treat, if you like. Save one some trouble.”</i>");
@@ -2045,7 +2045,7 @@ public function multiBalljobRaskTraps():void
 	else showName("RASKVEL\nSERVICE");
 	author("Nonesuch");
 
-	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind"))
+	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.isSubby())
 	{
 		output("Ever since you caught sight of the raskvel’s big, achingly packed balls your attention has been drifting back to them, and how much you’d like to relieve the cute little snack-boy of all that gloopy, delicious pressure.");
 		if(flags["SYDIAN_QUEEN_RESULT"] == 3) output(" So what if you’ve kinda messed things up. Maybe you wanted to mess up. Messes are fun.");
@@ -2065,7 +2065,7 @@ public function multiBalljobRaskTraps():void
 	output("\n\n<i>“Yeah,”</i> breathes Azaphel, mouth open and eyes slightly misty. He grips his brilliantly-colored cock and brandishes it upward. <i>“That. Now. Please.”</i>");
 	output("\n\n<i>“Right,”</i> sighs the suula. <i>“Well... [pc.name], if you get on the floor, I’ll...”</i>");
 
-	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind"))
+	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.isSubby())
 	{
 		output("\n\nYou’d much rather be the one on the hard, syrupy business end, but, well, even you have to admit Azra’s the one with the much larger mouth. And you’d hate to take the joy of cramming three delicious dicks into her mouth at once away from her. You happily clear a small space on the rust-coated ground and lie yourself down.");
 	}
@@ -2080,7 +2080,7 @@ public function multiBalljobRaskTraps():void
 		output("\n\n<i>“Those are nice,”</i> he says approvingly. <i>“Our women-folk never grow them as big as that...”</i>");
 	}
 	output(" He drags his heavy bollocks forward so their smooth warmth is rested upon your [pc.lips], wedged up against your nose, and your senses are enveloped in heady musk, sending an involuntary wriggle of lust through your groin. It’s difficult not to feel a slutty, submissive frisson about this - the more embarrassed you feel about the fact your lips are mashed into this lizard savage’s balls, the harder it becomes to deny. ");
-	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind")) output("You coo as that wonderful sensation easily overwhelms your faculties, leaving you nothing but a soft, sensitive slut who wants nothing but to serve. Happily you close your eyes and lavish the leathery, musky flesh with your [pc.tongue], shivering at the taste.");
+	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.isSubby()) output("You coo as that wonderful sensation easily overwhelms your faculties, leaving you nothing but a soft, sensitive slut who wants nothing but to serve. Happily you close your eyes and lavish the leathery, musky flesh with your [pc.tongue], shivering at the taste.");
 	else output("Probably the best strategy is not to think about it. You close your eyes and begin to lick the leathery, musky flesh.");
 
 	output("\n\n<i>“Oh yeah...”</i> groans Azaphel, shifting his weight and sliding his hand into your [pc.hair]. His balls clench and relax underneath your questing lips and [pc.tongue]. <i>“Kiss ‘em a bit. Yes!”</i> He practically sings when you open your mouth wide, form suction around one and french it lasciviously.<i>“Alright. Now you, big lady.”</i>");
@@ -2088,7 +2088,7 @@ public function multiBalljobRaskTraps():void
 	output("\n\nThe suula has to get way, way down in order to get anywhere near the raskvel’s dick. You get a worm’s eye view of her kneeling, and then almost kowtowing so that she can, at last, open her wide mouth around his purple, pointed bell-end. You don’t know if Azaphel deliberately positioned himself so he was facing his potentate and peers, but the fact Azra’s massive butt is now pointed up and flared submissively in their direction draws a chorus of approving murmurs and sighs from them. It also has the effect of pooling her similarly plus-sized boobs around your brow and ears, so your head is completely swaddled in sensitive, scaled erogeny.");
 
 	output("\n\nIn the tiny, cramped space between boobs and balls that you can still see through, you watch Azra rather awkwardly begin to bob her head up and down the raskvel’s straining shaft, doing her best with the uncomfortable position and size difference. ");
-	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind")) output("You contribute");
+	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.isSubby()) output("You contribute");
 	else output("You try and speed things along with");
 	output(" patient, attentive sucks and sweeps of your [pc.tongue] over his grapefruit-sized jewels, drawing the salt away into your mouth - as attentive and uncomplaining as the most groveling of ball-polishers - but really it’s up to Azra to get this up and running, and watching her half-heartedly suckle on the purple fuck-stick above like a popsicle the flavor of which she doesn’t particularly like gets frustrating. Azaphel’s sighs of enjoyment remain blissful rather than orgasmic.");
 	output("\n\n<i>“Are they doing the best they can, Azaphel?”</i> you hear the female sydian demand. <i>“It is not deemed sufficient unless they are.”</i>");
@@ -2129,7 +2129,7 @@ public function multiBalljobRaskTraps2():void
 
 	output("\n\n<i>“I can’t help it...”</i> come the groans of the fourth raskvel boi. <i>“Those curves... that size! I must breed it. Must must must!...”</i>");
 
-	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind")) output("\n\nOnce your surprise has died down a bit, you wonder if it might not be better to extract yourself and propose to do this on your own; this clearly isn’t your suula friend’s scene, and your body aches to take all four of the energetic girly boys at once. Make each of them groan and spurt their endorphin-inducing loads into your tight, thirsty holes, then get them to do it again. Wow, you’re drooling all over their balls at the thought! You subsume yourself back into the blissful, subby haze, resolving to use all this excess saliva to give them the polishing they deserve.");
+	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.isSubby()) output("\n\nOnce your surprise has died down a bit, you wonder if it might not be better to extract yourself and propose to do this on your own; this clearly isn’t your suula friend’s scene, and your body aches to take all four of the energetic girly boys at once. Make each of them groan and spurt their endorphin-inducing loads into your tight, thirsty holes, then get them to do it again. Wow, you’re drooling all over their balls at the thought! You subsume yourself back into the blissful, subby haze, resolving to use all this excess saliva to give them the polishing they deserve.");
 	else output("\n\nYou find yourself desperately hoping Azra will just roll with it; the thought of trying to satisfy these pent up, over-excited femboys on your own now is a daunting one.");
 	output(" You signal your intention to give this the old college try anyway by sucking vehemently on the rude boi who just stuffed your maw full of his testicles, opening your mouth as wide as you can so you can envelope it in shifting, wet mouth flesh, making him gasp sweetly with pleasure. A surge of thankfulness enters you as, after a moment, you see the suula’s chin descend and her huge predator’s jaw crane open, a dripping, fang-lined pit that’s easily big enough to swallow three raskvel dicks at once. If the trio feel the slightest pang of apprehension about this they certainly don’t show it; there’s an intake of excited breath, and three sensitive, shining purple fence-posts are brandished upwards.");
 
@@ -2167,7 +2167,7 @@ public function multiBalljobRaskTraps3():void
 	else output("<i>“We never talk of this. Agreed?”</i>");
 	output(" Azra says in a completely even voice, once she’s wobbled back to her feet and done some due diligence with a handful of tissues, first around her face and then between her wide hips. The way she looks at you when she says it, suggests that disagreeing will result in her doing something very different with that mouth of hers than what she just did with the raskvel.");
 
-	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.hasPerk("Peace of Mind")) output("\n\nYou blink, trying to banish thoughts of sleepwalking after the sydian’s entourage so you can romp with them some more. Is she saying she didn’t enjoy what just happened? Yes... wait... that’s right. Most other people don’t get as much joy out of being a gleeful spunk-receptacle as you do. You’d sigh and pout at your suula friend, but sensitive to her needs you smile and bob your head instead. You hurry away together with your sample of spunkshrooms.");
+	if(pc.isBimbo() || pc.hasPerk("Dumb4Cum") || pc.isSubby()) output("\n\nYou blink, trying to banish thoughts of sleepwalking after the sydian’s entourage so you can romp with them some more. Is she saying she didn’t enjoy what just happened? Yes... wait... that’s right. Most other people don’t get as much joy out of being a gleeful spunk-receptacle as you do. You’d sigh and pout at your suula friend, but sensitive to her needs you smile and bob your head instead. You hurry away together with your sample of spunkshrooms.");
 	else output("\n\nYou hastily nod, and you stride away together with your sample of spunkshrooms in silence.");
 	flags["AZRA_RASK_ORGIED"] = 1;
 	processTime(20);
@@ -2183,7 +2183,7 @@ public function raskyRooOrgipoo():void
 	clearOutput();
 	author("Nonesuch");
 	showName("\nLEWD!");
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	if(pc.isBimbo() && flags["AZRA_RASK_PC_SUCKED"] != undefined) output("One blowie is absolutely not enough. You nod and grin your eager assent - triggering sharp intakes of breath and excited whispering amongst the raskvel bois - and follow the sydian’s swinging, feathery tail as she turns and sashays away into her territory.");
 	else output("You are pleased she made the overture - this was turning out to be a very dry encounter. Can you claim to have had successful negotiations if you didn’t all fuck at the end? You nod and grin your eager assent - trigger sharp intakes of breath and excited whispering amongst the raskvel bois - and follow the sydian’s swinging tail as she turns and sashays away into her territory.");
 	output("\n\n<i>“Are you wondering how I became a Queen, stranger?”</i> the tan creature asks. Even heavily clad in her armor it’s obvious she has a nice figure, slim and muscular but with hourglass swells that make the mouth water. She’s taken you to a steep hollow created by the bulwark of a half-buried spaceship, the heavily plated metal craning over a depression furnished with a large number of pillows and a spiky, welded together chair that obviously fancies itself as a throne. The sydian shoos her small charges down into it as she continues to speak.");
@@ -2207,7 +2207,7 @@ public function spitRoastRaskvelTimes():void
 	clearOutput();
 	showName("\nORGY");
 	author("Nonesuch");
-	showBust("RASK_TRAP","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	output("You signal your intentions by sidling into the nearest pink-skinned big-balled reptile [pc.butt] first, stroking his sensitive ears. He coos with delight and looks ");
 	if(pc.tallness >= 60) output("up ");
 	output("at you with barely contained lust, hands instinctively wrapping around your [pc.thigh].");
@@ -2308,7 +2308,7 @@ public function raskOrgyPart2(route:String):void
 	clearOutput();
 	showName("\nORGY");
 	author("Nonesuch");
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	output("The sensation of getting thoroughly gangbanged like this is overwhelming, and you are quickly forced to an orgasm which grips your entire body, ");
 	if(pc.hasVagina()) output("[pc.eachVagina] seizing up repeatedly and coating the raskvel’s groin in [pc.girlCum]");
 	if(pc.isHerm()) output(" and ");
@@ -2383,7 +2383,7 @@ public function raskOrgyPart2(route:String):void
 public function raskOrgyPart3(route:String):void
 {
 	clearOutput();
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 	showName("AFTER\nORGY");
 	author("Nonesuch");
 	output("You’re not sure how much time passes, down there in the still, glittering air, before ");
@@ -2487,7 +2487,7 @@ public function fuckTheSydianQueen(x:int):void
 	clearOutput();
 	showName("LAY\nHER");
 	author("Nonesuch");
-	showBust("SYDIAN_QUEEN","RASK_TRAP","RASK_TRAP","RASK_TRAP");
+	showBust("SYDIAN_QUEEN_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE","RASK_TRAP_NUDE");
 
 	output("The tall, armored demagogue can hardly have shaken that tail in front of you, flashed that orange bejazzle, and expected you to settle for anything less than first prize here. You return her gaze with all the unabashed smolder you can muster, ");
 	if(!pc.isCrotchExposed())
@@ -2549,9 +2549,9 @@ public function fuckTheSydianQueen(x:int):void
 public function fuckTheSydianQueen2(x:int):void
 {
 	clearOutput();
-	showName("SYDIAN\n\"QUEEN\"");
+	showName("SYDIAN\n“QUEEN”");
 	author("Nonesuch");
-	showBust("SYDIAN_QUEEN");
+	showBust("SYDIAN_QUEEN_NUDE");
 	output("Pulse thudding in your temple, you [pc.move] across and mount her on her reconstructed throne, the smooth, unyielding back-plates against your arms contrasting to the suppleness of her breasts pooling into your [pc.chest]. It takes barely a second to line your [pc.cockHead " + x + "] up with her puffy, split tangerine of a cunt. Sliding into her is like slipping into a silky, sultry dream.");
 	output("\n\n<i>“Yeeeessss,”</i> she hisses in delight, tightening her thin, armored fingers around your shoulders as you dip your [pc.cock " + x + "] into her spongy, sopping tunnel. You find her limit and slowly withdraw, and she tightens her athletic thighs around your waist, reaching down to snatch at your [pc.ass], impatient for the returning thrust. <i>“You! Servants! Rut each other for my pleasure! You have permission to cum as much as you waaaafnnnn.”</i> She trails off in an euphoric croon as you give it her, groaning yourself as you immerse your dick from ");
 	if(pc.cocks[x].cLength() <= 11) output("[pc.cockHead " + x + "] to [pc.sheath " + x + "]");

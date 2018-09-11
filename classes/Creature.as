@@ -1,15 +1,15 @@
 ﻿package classes {
-	import classes.Characters.*
+	import classes.Characters.*;
 	import classes.CockClass;
 	import classes.DataManager.Errors.VersionUpgraderError;
 	import classes.Engine.Combat.DamageTypes.TypeCollection;
 	import classes.GameData.SingleCombatAttack;
 	import classes.Items.Accessories.*;
 	import classes.Items.Apparel.SavicitePanties;
-	import classes.Items.Armor.*
+	import classes.Items.Armor.*;
 	import classes.Items.Armor.Unique.Omnisuit;
 	import classes.Items.Guns.*;
-	import classes.Items.Melee.*
+	import classes.Items.Melee.*;
 	import classes.Items.Miscellaneous.*;
 	import classes.Items.Piercings.OpalRingPiercing;
 	import classes.Items.Transformatives.*;
@@ -20,20 +20,20 @@
 	import classes.BreastRowClass;
 	import classes.StorageClass;
 	import classes.ItemSlotClass;
-	import classes.DataManager.Serialization.*
+	import classes.DataManager.Serialization.*;
 	import flash.utils.describeType;
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getDefinitionByName;
 	import classes.GameData.StatTracking;
-	import classes.Engine.Utility.*
+	import classes.Engine.Utility.*;
 	import flash.utils.ByteArray;
 	import classes.GLOBAL;
 	import classes.GameData.Pregnancy.PregnancyManager;
-	import classes.Util.*
-	import classes.Engine.Combat.DamageTypes.*
+	import classes.Util.*;
+	import classes.Engine.Combat.DamageTypes.*;
 	import classes.GameData.CodexManager;
-	import classes.Engine.Interfaces.*
+	import classes.Engine.Interfaces.*;
 
 	/**
 	 * I cannot yet implement "smart" detection of which characters (or furthermore, what *properties* of which characters)
@@ -374,6 +374,8 @@
 			{
 				r.add(-10);//TEST
 			}
+			
+			if (hasStatusEffect("Torra Lust Weakness")) r.tease.damageValue -= statusEffectv2("Torra Lust Weakness");
 			
 			return r;
 		}
@@ -1135,6 +1137,49 @@
 		public var nosePShort: String = "";
 		public var nosePLong: String = "";
 		
+		public function hasPiercingOfClass(ref:Class):Boolean
+		{
+			if(earPiercing is ref) return true;
+			if(eyebrowPiercing is ref) return true;
+			if(nosePiercing is ref) return true;
+			if(lipPiercing is ref) return true;
+			if(tonguePiercing is ref) return true;
+			if(bellyPiercing is ref) return true;
+			//Nipple.
+			var x:int = 0;
+			if(bRows() > 0)
+			{
+				for(x = 0; x < breastRows.length; x++)
+				{
+					if(breastRows[x].piercing is ref) return true;
+				}
+			}
+			//Vag.
+			if(totalVaginas() > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					if(vaginas[x].piercing is ref) return true;
+				}
+			}
+			//Clit.
+			if(totalVaginas() > 0)
+			{
+				for(x = 0; x < vaginas.length; x++)
+				{
+					if(vaginas[x].clitPiercing is ref) return true;
+				}
+			}
+			//Cock
+			if(totalCocks() > 0)
+			{
+				for(x = 0; x < cocks.length; x++)
+				{
+					if(cocks[x].piercing is ref) return true;
+				}
+			}
+			return false;
+		}
 		public function hasPiercing():Boolean
 		{
 			return (hasEarPiercing() || hasEyebrowPiercing() || hasNosePiercing() || hasLipPiercing() || hasTonguePiercing() || hasBellyPiercing() || hasNipplePiercing() || hasCockPiercing() || hasVaginaPiercing() || hasClitPiercing());
@@ -1231,7 +1276,6 @@
 			}
 			return (!(vaginas[idx].clitPiercing is EmptySlot));
 		}
-		
 		// Cock-socks
 		public function hasCocksock(idx:int = -1):Boolean
 		{
@@ -1346,6 +1390,9 @@
 
 		public function ballSize(arg:Number = 0, apply:Boolean = false):Number
 		{
+			if(isNaN(ballSizeRaw)) ballSizeRaw = 1;
+			if(isNaN(ballSizeMod)) ballSizeMod = 1;
+			
 			if (apply)
 			{
 				ballSizeRaw = arg;
@@ -1882,17 +1929,26 @@
 				case "crotchCover":
 					buffer = crotchCover();
 					break;
+				case "crotchCoverUnder":
+					buffer = crotchCoverUnder();
+					break;
 				case "crotchCovers":
 					buffer = crotchCovers();
 					break;
 				case "assCover":
 					buffer = assCover();
 					break;
+				case "assCoverUnder":
+					buffer = assCoverUnder();
+					break;
 				case "assCovers":
 					buffer = assCovers();
 					break;
 				case "chestCover":
 					buffer = chestCover();
+					break;
+				case "chestCoverUnder":
+					buffer = chestCoverUnder();
 					break;
 				case "chestCovers":
 					buffer = chestCovers();
@@ -1901,6 +1957,7 @@
 					buffer = skinNoun(true);
 					break;
 				case "skinFurScalesNoun":
+				case "skinScalesFurNoun":
 					buffer = skinNoun(false);
 					break;
 				case "skinNounSimple":
@@ -2234,6 +2291,9 @@
 				case "cockOrStraponHead":
 					buffer = cockOrStraponHead(arg2);
 					break;
+				case "cockOrVag":
+					buffer = cockOrVag();
+					break;
 				case "nippleNoun":
 					buffer = nippleNoun(arg2);
 					break;
@@ -2248,10 +2308,12 @@
 					break;
 				case "nipple":
 				case "nippleDescript":
+				case "lipple":
 					buffer = nippleDescript(arg2);
 					break;
 				case "nipples":
 				case "nipplesDescript":
+				case "lipples":
 					buffer = nipplesDescript(arg2);
 					break;
 				case "milkyNipple":
@@ -3425,11 +3487,18 @@
 			removeStatusEffect("Mare Musk");
 			removeStatusEffect("Cum Soaked");
 			removeStatusEffect("Pussy Drenched");
+			removeStatusEffect("Milk Bathed");
 			removeStatusEffect("Oil Warmed");
 			removeStatusEffect("Oil Cooled");
 			removeStatusEffect("Oil Numbed");
 			removeStatusEffect("Oil Aroused");
 			removeStatusEffect("Oil Slicked");
+			if(hasStatusEffect("Painted Penis") || hasStatusEffect("Body Paint"))
+			{
+				if(this is PlayerCharacter) AddLogEvent("Washing yourself has cleaned off any and all paint that had been covering your body.");
+				if(hasStatusEffect("Painted Penis")) clearPaintedPenisEffect();
+				removeStatusEffect("Body Paint");
+			}
 			if(pluggedVaginas() > 0 || isPlugged(-1))
 			{
 				if(isPlugged(-1)) ass.delFlag(GLOBAL.FLAG_PLUGGED);
@@ -3440,7 +3509,7 @@
 				removeStatusEffect("Pussy Plugged");
 				if(this is PlayerCharacter)
 				{
-					AddLogEvent(ParseText("<b>After the cleaning, you’re delighted to find that the hardened substance plugging you up has dissolved away!</b>"));
+					AddLogEvent("<b>After the cleaning, you’re delighted to find that the hardened substance plugging you up has dissolved away!</b>");
 					flags["SHOWERED_OUT_PLUG"] = 1;
 				}
 			}
@@ -3897,7 +3966,7 @@
 		
 		public function inPowerArmor():Boolean
 		{
-			// 9999
+			if(armor.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR)) return true;
 			return false;
 		}
 		public function hasPowerArmorItem():Boolean
@@ -3952,13 +4021,13 @@
 			{
 				meleeWeapon.onRemove(this);
 				if(!canDropItem(meleeWeapon)) newItems.push(meleeWeapon);
-				meleeWeapon = new EmptySlot();
+				meleeWeapon = new Rock();
 			}
 			if(item == "all" || item == "weapons" || item == "rangedWeapon")
 			{
 				rangedWeapon.onRemove(this);
 				if(!canDropItem(rangedWeapon)) newItems.push(rangedWeapon);
-				rangedWeapon = new EmptySlot();
+				rangedWeapon = new Rock();
 			}
 			if(item == "all" || item == "accessory")
 			{
@@ -4548,6 +4617,8 @@
 			if (hasStatusEffect("Tripped")) currPhys -= 4;
 			if (hasStatusEffect("Crunched")) currPhys -= 8;
 			if (hasStatusEffect("Psychic Leech")) currPhys *= 0.85;
+			if (hasStatusEffect("Full Stomach")) currPhys *= 0.9;
+			if (hasStatusEffect("Pumped!")) currPhys *= 1.15;
 
 			if (currPhys > physiqueMax()) 
 			{
@@ -4599,6 +4670,7 @@
 			if (hasStatusEffect("Watered Down")) currReflexes *= 0.9;
 			if (hasStatusEffect("Pitch Black")) currReflexes *= 0.66;
 			if (hasStatusEffect("Psychic Leech")) currReflexes *= 0.85;
+			if (hasStatusEffect("Full Stomach")) currReflexes *= 0.9;
 			if (hasStatusEffect("Bulky Belly")) currReflexes *= statusEffectv1("Bulky Belly");
 
 			if (currReflexes > reflexesMax())
@@ -4636,6 +4708,7 @@
 			
 			if (hasStatusEffect("Staggered")) currAim *= 0.8;
 			if (hasStatusEffect("Pitch Black")) currAim *= 0.66;
+			if (hasStatusEffect("Pumped!")) currAim *= 1.15;
 			
 			if (currAim > aimMax())
 			{
@@ -5239,6 +5312,10 @@
 			else if (hasPerk("Calm Aim") && (HP() > (HPMax() / 2))) temp += 1;
 			//Lieve Buff
 			if(hasStatusEffect("Lieve Buff")) temp += 2;
+			//Akkadi Bot Buffs
+			if(hasStatusEffect("Target Link")) temp += statusEffectv2("Target Link");
+			if(hasStatusEffect("Tracer Rounds")) temp += statusEffectv2("Tracer Rounds");
+			if(hasStatusEffect("Chaff Grenade")) return 0;
 			temp += armor.attack + upperUndergarment.attack + lowerUndergarment.attack + accessory.attack + shield.attack;
 			return temp;
 		}
@@ -5296,6 +5373,7 @@
 			
 			//Add bonus to both melee and ranged attacks
 			if (hasStatusEffect("Lightning Moves")) modifiedDamage.multiply(1.05);
+			if (hasStatusEffect("Valden-Possessed")) modifiedDamage.multiply(1.75);
 			
 			return modifiedDamage;
 		}
@@ -5349,6 +5427,7 @@
 			if (hasPerk("Shield Tweaks")) temp += level * 2;
 			if (hasPerk("Shield Booster")) temp += level * 8;
 			if (hasPerk("Attack Drone") && hasActiveCombatDrone(true, true)) temp += (3 * level);
+			if (hasStatusEffect("Valden-Possessed")) temp *= 1 + AkkadiSecurityRobots.valdenShieldBuffMult;
 
 			//Debuffs!
 			if(hasStatusEffect("Rusted Emitters")) temp = Math.round(temp * 0.75);
@@ -6032,6 +6111,7 @@
 			{
 				if (descripted > 0) description += ", ";
 				description += tongueNoun(false,true);
+				descripted++;
 			}
 			
 			//Pick type
@@ -7229,12 +7309,13 @@
 					break;
 			}
 			
-			if (!nounOnly && rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives) + " ";
+			if (!nounOnly && rand(2) == 0 && adjectives.length > 0) description += RandomInCollection(adjectives);
 			if (!nounOnly && wingColor() != "" && rand(2) == 0)
 			{
 				if(description != "") description += ", ";
-				description += wingColor() + " ";
+				description += wingColor();
 			}
+			if(description != "") description += " ";
 			description += (nouns.length > 0 ? RandomInCollection(nouns) : "wing");
 			return description;
 		}
@@ -10334,7 +10415,7 @@
 			return quantity;
 		}
 		//Can hold about three average shots worth, since this is fantasy.
-		public function maxCum(): Number {
+		public function maxCum(raw:Boolean = false): Number {
 			if (!hasCock()) return 0;
 			var quantity: Number = 0;
 			//Base value is ballsize*ballQ*cumefficiency by a factor of 2.
@@ -10347,12 +10428,15 @@
 			else quantity = Math.round(ballSize() * ballSize() * balls * 2 * ballEfficiency);
 
 			//Overriiiide for stuff
-			if (statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
-			if (statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
-			if(hasOpalRingCock()) 
+			if(!raw)
 			{
-				quantity *= 2;
-				quantity += 3000;
+				if(statusEffectv3("Rut") > quantity) quantity = statusEffectv3("Rut");
+				if(statusEffectv3("Lagonic Rut") > quantity) quantity = statusEffectv3("Lagonic Rut");
+				if(hasOpalRingCock()) 
+				{
+					quantity *= 2;
+					quantity += 3000;
+				}
 			}
 			return quantity;
 		}
@@ -11055,7 +11139,7 @@
 					cocks[slot].knotMultiplier = 1;
 					cocks[slot].cockColor = "pink";
 					if(cocks[slot].cLengthRaw < 20) cocks[slot].cLengthRaw = 20;
-					if(cocks[slot].cThicknessRatioRaw < 3) cocks[slot].cThicknessRatioRaw = 3;
+					if(cocks[slot].cThicknessRatioRaw < 2) cocks[slot].cThicknessRatioRaw = 2;
 					break;
 				case GLOBAL.TYPE_SYNTHETIC:
 					cocks[slot].cockColor = RandomInCollection(["silver", "gray", "black"]);
@@ -11344,6 +11428,34 @@
 			if (!hasVagina()) return male;
 			return female;
 		}
+		public function cockAndVagina(cockString:String, vaginaString:String, connector:String = " and"):String
+		{
+			var finalString:String = "";
+			if (hasCock()) 					finalString += cockString;
+			if (hasVagina() && hasCock()) 	finalString += connector;
+			if (hasVagina()) 				finalString += vaginaString;
+			return finalString;
+		}
+		public function vaginaAndCock(vaginaString:String, cockString:String, connector:String = " and"):String
+		{
+			var finalString:String = "";
+			if (hasVagina()) 				finalString += vaginaString;
+			if (hasVagina() && hasCock()) 	finalString += connector;
+			if (hasCock()) 					finalString += cockString;
+			return finalString;
+		}
+		public function cockXorVagina(cockString:String, vaginaString:String):String
+		{
+			if (hasCock()) return cockString;
+			if (hasVagina()) return vaginaString;
+			return "";
+		}
+		public function vaginaXorCock(vaginaString:String, cockString:String):String
+		{
+			if (hasVagina()) return vaginaString;
+			if (hasCock()) return cockString;
+			return "";
+		}
 		//Create a cock
 		public function createCock(clength: Number = 5.5, cthickness: Number = 1): Boolean {
 			if (cocks.length >= 10) return false;
@@ -11430,7 +11542,7 @@
 				}
 			}
 			else if(raceSimple == "zil") shiftCock(arg,GLOBAL.TYPE_BEE);
-			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl"])) shiftCock(arg,GLOBAL.TYPE_NAGA);
+			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl", "slyveren"])) shiftCock(arg,GLOBAL.TYPE_NAGA);
 			else if(raceSimple == "raskvel") shiftCock(arg, GLOBAL.TYPE_RASKVEL);
 			else if(race.indexOf("dragonne") != -1 || InCollection(raceSimple, ["fanfir", "dragon"])) shiftCock(arg, GLOBAL.TYPE_DRACONIC);
 			else if(raceSimple == "demon") shiftCock(arg, GLOBAL.TYPE_DEMONIC);
@@ -11481,7 +11593,7 @@
 			
 			// Type changes
 			if(InCollection(raceSimple, ["equine", "pony", "laquine", "centaur"])) shiftVagina(arg, GLOBAL.TYPE_EQUINE);
-			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl"])) shiftVagina(arg, GLOBAL.TYPE_NAGA);
+			else if(InCollection(raceSimple, ["naleen", "naga", "quetzalcoatl", "slyveren"])) shiftVagina(arg, GLOBAL.TYPE_NAGA);
 			else if(raceSimple == "zil") shiftVagina(arg, GLOBAL.TYPE_BEE);
 			else if(raceSimple == "leithan") shiftVagina(arg, GLOBAL.TYPE_LEITHAN);
 			else if(raceSimple == "vanae") shiftVagina(arg, GLOBAL.TYPE_VANAE);
@@ -14110,6 +14222,12 @@
 		}
 		public function hairNoun():String
 		{
+			if (hairLength <= 0) {
+				if (hasFur()) return "furry head";
+				if (hasFeathers()) return "feathered head";
+				return "head";
+			}
+			
 			var descript:String = "";
 			//Mane special stuff.
 			if (hasPerk("Mane") && hairLength > 3 && rand(2) == 0) {
@@ -14136,6 +14254,12 @@
 		}
 		public function hairsNoun():String
 		{
+			if (hairLength <= 0) {
+				if (hasFur()) return "head fur";
+				if (hasFeathers()) return "head feathers";
+				return "head";
+			}
+			
 			var descript:String = "";
 			if (hairType == GLOBAL.HAIR_TYPE_TENTACLES || hairStyle == "tentacle") descript += "tentacles";
 			else if (hairType == GLOBAL.HAIR_TYPE_FEATHERS) descript += "feathers";
@@ -15564,6 +15688,12 @@
 			else if(!isCrotchExposedByLowerUndergarment()) return lowerUndergarment.longName;
 			return "nothing";
 		}
+		public function crotchCoverUnder(): String
+		{
+			if(!isCrotchExposedByLowerUndergarment()) return lowerUndergarment.longName;
+			else if(!isCrotchExposedByArmor()) return armor.longName;
+			return "nothing";
+		}
 		public function crotchCovers(): String
 		{
 			var desc:String = "";
@@ -15582,6 +15712,12 @@
 			else if(!isAssExposedByLowerUndergarment()) return lowerUndergarment.longName;
 			return "nothing";
 		}
+		public function assCoverUnder(): String
+		{
+			if(!isAssExposedByLowerUndergarment()) return lowerUndergarment.longName;
+			else if(!isAssExposedByArmor()) return armor.longName;
+			return "nothing";
+		}
 		public function assCovers(): String
 		{
 			var desc:String = "";
@@ -15598,6 +15734,12 @@
 		{
 			if(!isChestExposedByArmor()) return armor.longName;
 			else if(!isChestExposedByUpperUndergarment()) return upperUndergarment.longName;
+			return "nothing";
+		}
+		public function chestCoverUnder(): String
+		{
+			if(!isChestExposedByUpperUndergarment()) return upperUndergarment.longName;
+			else if(!isChestExposedByArmor()) return armor.longName;
 			return "nothing";
 		}
 		public function chestCovers(): String
@@ -17522,6 +17664,13 @@
 			return cockOrStrapon(idxOverride,-1);
 		}
 
+		public function cockOrVag(): String {
+			if(hasCock()) return cocksDescriptLight();
+			else if (hasVagina()) return vaginasDescriptLight();
+			// Error, return something though!
+			else return ("thigh");
+		}
+		
 		//Check if the pc has a cock, strapon, or massive clit to do some sexin'
 		public function hasCockOrStrapOrClit(countTailCock: Boolean = false):Boolean {
 			if (hasCock()) return true;
@@ -19098,6 +19247,10 @@
 			}
 			return (hasStatusEffect("Horn Bumps"));
 		}
+		public function hasLongHorns():Boolean
+		{
+			return (hasHorns() && hornLength > 3);
+		}
 		public function removeHorns():void
 		{
 			hornType = 0;
@@ -20045,7 +20198,7 @@
 								if(amountVented >= 2000) kGAMECLASS.honeyPotBump();
 								break;
 							case "'Nuki Nuts":
-								cumCascaded = true;
+								cumCascaded = canCumCascade();
 								break;
 						}
 					}
@@ -20084,6 +20237,14 @@
 			return (statusEffectv1("Anally-Filled") + statusEffectv1("Vaginally-Filled") + statusEffectv1("Orally-Filled"));
 		}
 
+		public function canCumCascade(): Boolean 
+		{
+			if(!hasPerk("'Nuki Nuts")) return false;
+			if(hasStatusEffect("Cum Cascade Suppressant")) return false;
+			if(hasPerk("Cum Cascade")) return true;
+			if(nukiScore() >= 3) return true;
+			return false;
+		}
 		public function cumCascade(amount:Number, fluid:int = GLOBAL.FLUID_TYPE_CUM, timePassed:int = 0): void 
 		{
 			// Give Cum Cascade effect
@@ -20264,7 +20425,7 @@
 		public function itemSlotUnlocked(slot:Number):Boolean
 		{
 			if
-			(	(InCollection(slot, GLOBAL.CLOTHING, GLOBAL.ARMOR) && (hasStatusEffect("Armor Slot Disabled") || armor.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
+			(	(InCollection(slot, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) && (hasStatusEffect("Armor Slot Disabled") || armor.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE) || hasStatusEffect("Body Paint")))
 			||	(slot == GLOBAL.MELEE_WEAPON && (hasStatusEffect("Melee Weapon Slot Disabled") || meleeWeapon.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
 			||	(slot == GLOBAL.RANGED_WEAPON && (hasStatusEffect("Ranged Weapon Slot Disabled") || rangedWeapon.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
 			||	(slot == GLOBAL.SHIELD && (hasStatusEffect("Shield Slot Disabled") || shield.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)))
@@ -20454,6 +20615,7 @@
 				if (hasItemByClass(Savicite)) prodFactor *= (1.2 * numberOfItemByClass(Savicite));
 				if (hasPerk("Ice Cold")) prodFactor /= 2;
 				if (hasStatusEffect("Oil Numbed")) prodFactor /= 1.2;
+				if (hasStatusEffect("Dzaan Withdrawal")) prodFactor *= 1.5;
 				
 				var producedLust:Number = deltaT * prodFactor;
 				if (perkv1("Ultra-Exhibitionist") > 0) producedLust += (0.5 * deltaT * exposureLevel(true));
@@ -20567,6 +20729,7 @@
 						break;
 					case "Cum Soaked":
 					case "Pussy Drenched":
+					case "Milk Bathed":
 						if(hasSkinFlag(GLOBAL.FLAG_ABSORBENT))
 						{
 							var cumScale:Number = Math.min((deltaT / 60), 1);
@@ -20744,14 +20907,32 @@
 					case "Painted Penis":
 						if(requiresRemoval)
 						{
-							if(this is PlayerCharacter) AddLogEvent("The paint on your phallus flakes away, leaving you bare and unadorned once more.","passive", maxEffectLength);
+							if(this is PlayerCharacter) AddLogEvent("The paint on your phallus flakes away, leaving you bare and unadorned once more.", "passive", maxEffectLength);
 							libidoMod -= thisStatus.value4;
 						}
 						break;
 					case "Priapism":
 						if(requiresRemoval)
 						{
-							if(this is PlayerCharacter && hasCock()) AddLogEvent("The constant pressure on [pc.eachCock] subsides... You sigh in relief as you feel your maleness able to soften once more. <b>It looks like your case of priapism has finally passed!</b>","passive", maxEffectLength);
+							if(this is PlayerCharacter && hasCock()) AddLogEvent("The constant pressure on [pc.eachCock] subsides... You sigh in relief as you feel your maleness able to soften once more. <b>It looks like your case of priapism has finally passed!</b>", "passive", maxEffectLength);
+						}
+						break;
+					case "Body Paint":
+						if(this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent("The paint that was covering your body has dried up and faded away.","passive", maxEffectLength);
+						}
+						break;
+					case "Full Stomach":
+						if(this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent(ParseText("Your [pc.belly] gives off a slight rumble and you feel a bit more... comfortable? It seems your stomach has digested the vast amounts of food within it, returning your physique and reflexes back to more normal levels."), "passive", maxEffectLength);
+						}
+						break;
+					case "Pumped!":
+						if(this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent(ParseText("The boost of adrenaline pumping through your veins has subsided, returning your physique and aim back to more normal levels."), "passive", maxEffectLength);
 						}
 						break;
 					case "IQBGoneTimer":
@@ -20967,6 +21148,14 @@
 							AddLogEvent(infertileMsg, "passive", maxEffectLength);
 						}
 						break;
+					case "Bottled Poison":
+						if (requiresRemoval)
+						{
+							physiqueMod += thisStatus.value1;
+							aimMod += thisStatus.value1;
+							reflexesMod += thisStatus.value1;
+						}
+						break;
 					case "Crabbst":
 						if (requiresRemoval)
 						{
@@ -21093,6 +21282,27 @@
 						if(this is PlayerCharacter && requiresRemoval)
 						{
 							ThiccNShake.effectEnds(maxEffectLength, doOut, this, thisStatus);
+						}
+						break;
+					case "Beta's Satisfaction":
+						if(this is PlayerCharacter)
+						{
+							if(requiresRemoval && !hasStatusEffect("Dzaan Withdrawal"))
+							{
+								AddLogEvent(ParseText("The lingering satisfaction from serving your alpha has dissipated, leaving nothing but a disturbing thirst for more of her spunk in its wake. <b>You are in withdrawal!</b>"), "passive", maxEffectLength);
+								//"Dzaan Withdrawal" -50% rest healing & +50% lust gain over time
+								createStatusEffect("Dzaan Withdrawal",0,0,0,0,false,"Icon_Charmed","You crave your alpha’s cum, gaining Lust more quickly over time, and you find recovering during rest difficult with such distracted thoughts.", false, 24*28*60, 0xFF0000);
+							}
+						}
+						break;
+					case "Dzaan Withdrawal":
+						if(this is PlayerCharacter)
+						{
+							if(requiresRemoval)
+							{
+								AddLogEvent(ParseText("The constant craving to serve at Ardia’s feet has finally faded. <b>You’re no longer addicted to her!</b>"), "passive", maxEffectLength);
+								setStatusMinutes("Dzaan Addicted",1);
+							}
 						}
 						break;
 					case "Undetected Furpies":
@@ -21446,7 +21656,7 @@
 			if(!this.hasStatusEffect("Cum Soaked"))
 			{
 				if(this is PlayerCharacter) desc = "You’re drenched in cum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-				else desc = this.capitalA + this.short + " is completely covered in cum!";
+				else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " completely covered in cum!";
 				this.createStatusEffect("Cum Soaked",1,0,0,0,false,"Icon_Splatter",desc,false,0,0xB793C4);
 			}
 			else this.addStatusValue("Cum Soaked",1,1);
@@ -21460,7 +21670,7 @@
 			if(!this.hasStatusEffect("Pussy Drenched"))
 			{
 				if(this is PlayerCharacter) desc = "You’re drenched in girlcum! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
-				else desc = this.capitalA + this.short + " is completely covered in girlcum!";
+				else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " completely covered in girlcum!";
 				this.createStatusEffect("Pussy Drenched",1,0,0,0,false,"Icon_Water_Drop",desc,false,0,0xB793C4);
 			}
 			else this.addStatusValue("Pussy Drenched",1,1);
@@ -21471,12 +21681,26 @@
 		{
 			applyPussyDrenched();
 		}
+		public function applyMilkBathed():void
+		{
+			var desc:String = "";
+			
+			if(!this.hasStatusEffect("Milk Bathed"))
+			{
+				if(this is PlayerCharacter) desc = "You’re drenched in breastmilk! Anyone can tell at a glance what sort of activities you’ve been engaging in!";
+				else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " completely covered in breastmilk!";
+				this.createStatusEffect("Milk Bathed",1,0,0,0,false,"Icon_Rain_Drops",desc,false,0,0xB793C4);
+			}
+			else this.addStatusValue("Milk Bathed",1,1);
+			
+			if(this is PlayerCharacter) kGAMECLASS.mimbraneFeed("all");
+		}
 		public function applyPriapism():void
 		{
 			var desc:String = "";
 			
 			if(this is PlayerCharacter) desc = "You are unnaturally hard and erect regardless of your arousal level. The added discomfort prevents you from covering up!";
-			else desc = this.capitalA + this.short + " is unnaturally erect regardless of arousal level!";
+			else desc = this.capitalA + this.short + " " + (!isPlural ? "is" : "are") + " unnaturally erect regardless of arousal level!";
 			
 			// Priapism
 			// Minimum lust raised to 33 if below :3

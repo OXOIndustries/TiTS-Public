@@ -116,7 +116,7 @@ public function akanePainslutTrigger():void
 	output("\n\nThe blindfold slips away from your eyes, the warm white light of the throne room taking over your senses.");
 	output("\n\n<i>“And nooow,”</i> she purrs, darting in front of you with her body pressed against yours. <i>“You’re coming with me, [pc.name].”</i>");
 	
-	pc.createPerk("Akane's Painslut", 0, 0, 0, 0, "Your body is attuned to Akane’s methods of pleasurable pain. You have a chance to gain bonus Defense every time you take HP damage which increases with lower health... but you’ll also take additional lust damage. With higher lust, you gain bonus defence!");
+	pc.createPerk("Akane's Painslut", 0, 0, 0, 0, "Your body is attuned to Akane’s methods of pleasurable pain. You have a chance to gain bonus Defense every time you take HP damage which increases with lower health... but you’ll also take additional lust damage. With higher lust, you gain bonus defense!");
 
 	addButton(0, "Uh...", akaneSexOptions);
 }
@@ -1485,8 +1485,11 @@ public function akaneOPIsASlowRideFoghat(usingDick:CockClass):void
 	else if (!usingDick || usingDick.cLengthRaw <= 10) output("<i>“A-almost, almost, just a little more...”</i> mumbles Akane, taking your length to within an inch or so of your [pc.knot]. You can feel the tightness of her pussy squeeze down as your " + (usingDick ? "[pc.cockHead]" : "hardlight head") + " hits the deepest parts. Apparently comfortable, she rests her palms on your [pc.belly] to use as support.");
 	else output("<i>“Fuh... why does there have to be so much...”</i> she murmurs, her eyes shutting and teeth clenching as she stops a few inches shy of your [pc.knot]. You can feel the tightness of her pussy squeeze down as your " + (usingDick ? "[pc.cockHead]" : "hardlight head") + " hits the deepest parts. Seemingly comfortably, she rests her palms on your [pc.belly] to use as support.");
 	if (usingDick && usingDick.thickness() > 2) output(" <i>“Juh... why do you have to be so thick...?”</i> she whines, her softened abs tensing and relaxing as she breathes. <i>“I can take it, I can take it, I can...”</i>");
+	
+	output("\n\n");
+	if (pc.cockChange(false)) output("\n\n");
 
-	output("\n\nYou place your hands around her waist, warm palms touching upon her cold skin. She sighs with a smile as you do so but still shivers on the spot as you make contact.\n");
+	output("You place your hands around her waist, warm palms touching upon her cold skin. She sighs with a smile as you do so but still shivers on the spot as you make contact.\n");
 	if (pc.isNaga()) output("Upon seeing this, you instinctively wrap your [pc.legs] around her middle for a loose tail hug with the hope of making her feel safe. <i>“Aw, [pc.name]...”</i> she croons, appreciatively patting your coiled tail.\n");
 	output("The breathy domme starts slow, her hips swaying and gyrating from side to side. Each movement forces your [pc.cockOrStrapon] to slip and slide around within her and the snug, warm confines of her cunt grip loosely with her wet arousal.");
 	output("\n\nShe’s quite stiff at first, as if getting used to your particular shape was a challenge. You go with her movements, massaging her hips with your palms as she rides your lap.");

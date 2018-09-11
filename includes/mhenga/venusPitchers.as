@@ -169,7 +169,7 @@ public function firstTimeVenusEntrance(tricked:Boolean = false):void {
 	// If tricked
 	if(tricked)
 	{
-		output("You walk up to her, intent on helping her. How unlucky she was to be stuck so close to a pitcher plant girl; it’s no wonder she’s been stuck here so long.");
+		output("You [pc.walk] up to her, intent on helping her. How unlucky she was to be stuck so close to a pitcher plant girl; it’s no wonder she’s been stuck here so long.");
 		output("\n\n<i>“Don’t worry, I got this,”</i> you quip reassuringly as you get close enough to admire her flawless skin tone, full lips and flaring hips. You sneeze, startling yourself from your lusty revelry; how long did you stand there staring? Shaking your head to clear it, you stumble up the rest of the way, watching her every motion until you’re just close enough to reach her. Then, the ground falls out from under you, plummeting you into darkness...");
 	}
 	// If voluntary

@@ -654,7 +654,7 @@ public function jerynnAllowRidden():void
 	if (pc.hasArmor() || pc.hasLowerGarment()) output(" somehow having lost your [pc.lowerGarments] in the process");
 	output(".");
 
-	output("\n\nA scaly red ass hovers inches away from your face, the taurs thick tail raised up high to reveal her plump pussy already glistening with arousal. You could swear it winks as at you as the raw scent of <i>need</i> hits your nose and burrows deep into your brain like a parasite, clamping on to your thoughts and steering them inexorably towards filling the taur with as much cock as possible. Your body responds exactly as required with hearty throbs, stiffening your [pc.cock "+cIdx+"] into an diamond-hard bar of literal need to <i>fuck</i> in seconds.");
+	output("\n\nA scaly blue ass hovers inches away from your face, the taurs thick tail raised up high to reveal her plump pussy already glistening with arousal. You could swear it winks as at you as the raw scent of <i>need</i> hits your nose and burrows deep into your brain like a parasite, clamping on to your thoughts and steering them inexorably towards filling the taur with as much cock as possible. Your body responds exactly as required with hearty throbs, stiffening your [pc.cock "+cIdx+"] into an diamond-hard bar of literal need to <i>fuck</i> in seconds.");
 
 	output("\n\n<i>“Be a good [pc.boy],”</i> she teases");
 	if (pc.biggestCockLength() >= 24) output(", taking a couple of steps away from you.");

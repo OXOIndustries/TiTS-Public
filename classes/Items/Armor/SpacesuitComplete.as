@@ -23,9 +23,9 @@ package classes.Items.Armor
 			
 			TooltipManager.addFullName(shortName, StringUtil.toTitleCase(longName));
 			
-			description = "a pirate's spacesuit";
+			description = "a pirate’s spacesuit";
 			
-			tooltip = "Somebody's stenciled in a white skull and crossbones on the shoulders, and a smiley face smoking a cigar on the chest. An old style bubble helmet provides high visibility in exchange for less than perfect durability, but it'll protect you from vacuum.";
+			tooltip = "Somebody’s stenciled in a white skull and crossbones on the shoulders, and a smiley face smoking a cigar on the chest. An old style bubble helmet provides high visibility in exchange for less than perfect durability, but it’ll protect you from vacuum.";
 			
 			TooltipManager.addTooltip(shortName, tooltip);
 			

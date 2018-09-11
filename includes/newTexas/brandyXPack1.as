@@ -256,7 +256,7 @@ public function getBrandysLetter():void
 	output("\n\nWith that he holds out the letter for you to take, and you reach a hand out to take it, thanking the bull for the delivery");
 	if (pc.isBimbo()) output(" with a kiss");
 	output(" as the letter comes free of his grasp."); 
-	output("\n\n<i>“No problem, " + pc.mf("sir","missy") + ",”</i> he says as you walk away, red envelope in hand. <b>You’ve got a letter from Brandy! Maybe you should open it!</b>");
+	output("\n\n<i>“No problem, " + pc.mf("sir","missy") + ",”</i> he says as you [pc.walk] away, red envelope in hand. <b>You’ve got a letter from Brandy! Maybe you should open it!</b>");
 	//give pc brandy letter key item and an inventory item they can read
 	output("\n\n");
 	quickLoot(new BrandyLetter());

@@ -454,42 +454,38 @@ public function fisiMainMenu(fromBack:Boolean = false):void
 	}
 	
 	//Xpack
-	if (pc.hasGooSkin()) {
-		if (flags["FISI_LOVER"] == undefined) addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-		else addDisabledButton(5, "Cuddle", "Cuddle", "The cuddles would be more effective with a more solid body type.");
-		if (flags["FISI_TIMES_MASSAGED"] == undefined) addDisabledButton(6, "Locked", "Locked", "Maybe you should relax with Fisi after a long workout...");
-		else addDisabledButton(6, "Massage", "Massage", "The massage would be more effective with a more solid body type.");
-		if (flags["FISI_HL_PANTIES"] == 1) addDisabledButton(13, "Give Panties", "Give Panties", "This would be more effective with a more solid body type.");
-	}
-	else if (pc.isTaur()) {
-		if (flags["FISI_LOVER"] == undefined) addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-		else addDisabledButton(5, "Cuddle", "Cuddle", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
-		if (flags["FISI_TIMES_MASSAGED"] == undefined) addDisabledButton(6, "Locked", "Locked", "Maybe you should relax with Fisi after a long workout...");
-		else addDisabledButton(6, "Massage", "Massage", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
-		if (flags["FISI_HL_PANTIES"] == 1) addDisabledButton(13, "Give Panties", "Give Panties", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");	
-	}
-	else {
-		if (flags["FISI_LOVER"] == undefined) addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
-		else addButton(5, "Cuddle", cuddleFisi, undefined, "Cuddle", "Cuddle with the cute kitten for a while.");
+	if (flags["FISI_LOVER"] == undefined) addDisabledButton(5, "Locked", "Locked", "You must be lovers with Fisianna in order to be able to do this.");
+	else addButton(5, "Cuddle", cuddleFisi, undefined, "Cuddle", "Cuddle with the cute kitten for a while.");
 
-		if (flags["FISI_TIMES_MASSAGED"] == undefined) addDisabledButton(6, "Locked", "Locked", "Maybe you should relax with Fisi after a long workout...");
-		else addButton(6, "Massage", massageFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
+	if (flags["FISI_TIMES_MASSAGED"] == undefined) addDisabledButton(6, "Locked", "Locked", "Maybe you should relax with Fisi after a long workout...");
+	else addButton(6, "Massage", massageFisi, undefined, "Massage", "Get a relaxing, and intimate rub-down from Fisianna.");
 
-		//Dont show button until the scene has played
-		if (flags["FISI_HL_PANTIES"] == 2) addDisabledButton(13, "Give Panties", "Give Panties", "You already gave her the panties.");
-		else if (flags["FISI_HL_PANTIES"] == 1) {
-			addDisabledButton(13, "Give Panties", "Give HL Panties", "You’ll need a pair a panties with a hardlight strap-on upgrade for this!");
-			var inventoryHardlights:int = 0;
-			for (var i:int = 0; i < pc.inventory.length; i++)
+	//Dont show button until the scene has played
+	if (flags["FISI_HL_PANTIES"] == 2) addDisabledButton(13, "Give Panties", "Give Panties", "You already gave her the panties.");
+	else if (flags["FISI_HL_PANTIES"] == 1) {
+		addDisabledButton(13, "Give Panties", "Give HL Panties", "You’ll need a pair a panties with a hardlight strap-on upgrade for this!");
+		for (var i:int = 0; i < pc.inventory.length; i++)
+		{
+			if (pc.inventory[i] is PlainPanties && pc.inventory[i].hardLightEquipped)
 			{
-				if (pc.inventory[i] is PlainPanties && pc.inventory[i].hardLightEquipped)
-				{
-					addButton(13, "Give Panties", givePantiesToFisi, i, "Give Panties", "Give her a pair of hardlight strap-on equipped panties as a present!");
-					break;
-				}
+				addButton(13, "Give Panties", givePantiesToFisi, i, "Give Panties", "Give her a pair of hardlight strap-on equipped panties as a present!");
+				break;
 			}
 		}
 	}
+	
+	// Override buttons for special cases
+	if (pc.hasGooSkin()) {
+		//if (flags["FISI_LOVER"] != undefined) addDisabledButton(5, "Cuddle", "Cuddle", "The cuddles would be more effective with a more solid body type.");
+		if (flags["FISI_TIMES_MASSAGED"] != undefined) addDisabledButton(6, "Massage", "Massage", "The massage would be more effective with a more solid body type.");
+		//if (flags["FISI_HL_PANTIES"] == 1) addDisabledButton(13, "Give Panties", "Give Panties", "This would be more effective with a more solid body type.");
+	}
+	if (pc.isTaur()) {
+		if (flags["FISI_LOVER"] != undefined) addDisabledButton(5, "Cuddle", "Cuddle", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
+		if (flags["FISI_TIMES_MASSAGED"] != undefined) addDisabledButton(6, "Massage", "Massage", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");
+		if (flags["FISI_HL_PANTIES"] == 1) addDisabledButton(13, "Give Panties", "Give Panties", "It doesn’t look like she is comfortable doing this with someone of your formidable anatomy.");	
+	}
+	
 	addButton(14, "Leave", leaveFisi);
 }
 
@@ -1817,7 +1813,7 @@ public function getPeggedByFisiII(nextScene:int = 0):void
 		output(" [pc.cumVisc] contents below you, making a fair mess of your [pc.chest] and the bedding.");
 	}
 	output("\n\n<i>“H-ooh... Nnngh!”</i> Your lover groans in the middle of your orgasm. In the next moment, a powerful wave of a feminine musk hits your senses when she joins you in orgasm. You can feel her already damp hips become wetter with a fresh layer of femcum spreading through her panties. Fisianna unconsciously thrusts into you a few more times while she trembles uncontrollably. When she finally settles down, she lets go of your hands. The next thing you feel are a pair of soft chest pillows on your back and a fuzzy arm wrap around you. You look up and are buffeted with a cascade of orange and white hair while the lustful kitten kisses your cheek.");
-	if (pc.hasCock()) output(" Her other hand snakes it’s way down to your faintly pulsing " + pc.simpleCockNoun(x) + ", milking the last of your [pc.cumNoun] out of it.");
+	if (pc.hasCock()) output(" Her other hand snakes it’s way down to your faintly pulsing " + pc.simpleCockNoun(0) + ", milking the last of your [pc.cumNoun] out of it.");
 	else if (pc.hasVagina()) output(" Her other hand snakes it’s way down to your faintly pulsing [pc.vaginaNoun] to stroke at your [pc.clits] while you ride out the rest of your orgasm.");
 	output("\n\n<i>“Haah... that was great. I can’t tell you enough how glad I am that you got these panties for me.”</i> Fisianna sighs dreamily while nibbling on your [pc.ear]. You reach up and gently stroke the side of her head. The neko purrs with delight at first contact and nuzzles into your hand in a show of affection.");
 	output("\n\n<i>“You know, before today... no, before we started having sex, I don’t think I would have <b>ever</b> imagined myself topping you... at all. I’m normally content with you calling the shots, leaving my body for you to ravish to your delight. It’s... an admittedly weird feeling to have the situation reversed.”</i> Fisianna laughs into your ear abashedly. <i>“Somehow... you just bring out another side of me I never knew I had sometimes. Honestly, I’m just happy to, well, be able to cut loose only in front of you, and I’m even more glad that you enjoy that side of me. Thank you, [pc.name].”</i> She kisses the nape of your neck and hugs you tighter, which sends more intense vibrations down your spine from her gentle purring.");

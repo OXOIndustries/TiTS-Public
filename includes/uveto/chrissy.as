@@ -9,7 +9,7 @@
  * CHRISSY_RIDDEN	1 if ridden Chrissy's dick, else undefined
  * CHRISSY_GETFKD	1 if let her pound you, else undefined
  * 
- * SQ_ACTIVE_9999		Placeholder flag for if SyriQuest is active, Replace when SyriQuest is implemented, assumed undefined == syriQuest not started, 0 = syriQuest over, 1 = syriQuest active
+ * SQ_ACTIVE_8888		Placeholder flag for if SyriQuest is active, Replace when SyriQuest is implemented, assumed undefined == syriQuest not started, 0 = syriQuest over, 1 = syriQuest active
  */
 
 public function showChrissy(nude:Boolean = false):void
@@ -40,7 +40,9 @@ public function getChrissyPregContainer():PregnancyPlaceholder
 
 public function chrissyAtBar():Boolean
 {
-	if (flags["SQ_ACTIVE_9999"] == 1) return false;
+	/* FEN NOTE: Disabled this. Having her disappear is dumb.
+	if (flags["SQ_ACTIVE_8888"] == 1) return false;
+	*/
 	return true;
 }
 
@@ -57,7 +59,7 @@ public function chrissyAtTheFreezer(btnSlot:int = 0):void
 	}
 	else
 	{
-		output("\n\nChrissy is at her usual spot, alone in her booth, either here to just relax or waiting for someone to make a move on her. She notices you walk in and takes a break from her drink to smile and wave your way.");
+		output("\n\nChrissy is at her usual spot, alone in her booth, either here to just relax or waiting for someone to make a move on her. She notices you [pc.walk] in and takes a break from her drink to smile and wave your way.");
 		
 		addButton(btnSlot, "Chrissy", approachChrissy);
 	}
@@ -79,11 +81,11 @@ public function approachChrissy():void
 		output("\n\nClosing in on the booth, your eyes are greeted by quite the bulge between the girl’s legs, leading you to the conclusion that she is most definitely a half kui-tan of some sort. You respond to the kui-girl’s query by telling the half-breed that you haven’t seen her around here either, finally taking a seat across from her at that table.");
 		output("\n\nShe gives you a giggle in return before speaking again, <i>“Yeah, I’m new here, moved in not too long ago, so I guess that means we’re both new.”</i> She gives you a big grin, filled with genuine happiness at her discovery of you, <i>“I’m Chrissy.”</i>");
 		output("\n\nGetting comfortable in your seat, you introduce yourself as “[pc.name]” and ask her why she moved out to this frozen moon.");
-		if (flags["SQ_ACTIVE_9999"] == undefined) output("\n\n<i>“Oh,”</i> Chrissy stutters, straightening herself before leaning forward on the table, <i>“Well, there’s supposed to be a big video game tournament here soon, and I’m supposed to be in it!”</i> She says that with a bit of pride in her voice before settling down, <i>“I- I’m not the best, but people are really looking forward to seeing me here, so I got here, uh, a couple months earlier because I thought I’d need time to adjust to the cold or something... and I just really wanted to get off Terra for a bit, but it turns out I really like it here, so I moved in! It’s nice and quiet, and all those big, fluffy huskar just make for the best cuddlers.”</i>");
+		if (!syriQuestComplete()) output("\n\n<i>“Oh,”</i> Chrissy stutters, straightening herself before leaning forward on the table, <i>“Well, there’s supposed to be a big video game tournament here soon, and I’m supposed to be in it!”</i> She says that with a bit of pride in her voice before settling down, <i>“I- I’m not the best, but people are really looking forward to seeing me here, so I got here, uh, a couple months earlier because I thought I’d need time to adjust to the cold or something... and I just really wanted to get off Terra for a bit, but it turns out I really like it here, so I moved in! It’s nice and quiet, and all those big, fluffy huskar just make for the best cuddlers.”</i>");
 		else output("\n\n<i>“Oh,”</i> Chrissy stutters, straightening herself before leaning forward on the table, <i>“You know that big video game tournament that happened here? I was in that.”</i> She says that with a bit of pride in her voice before settling down, and looking a bit disappointed, <i>“I- I didn’t win, but it was fun! That and it turns out I really like it here, so I moved in. It’s nice and quiet, and all those big, fluffy huskar just make for the best cuddlers.”</i>");
 		output("\n\nChrissy smiles, lost in her own thoughts for a moment before she turns her attention back to you, <i>“What about you, here for anything special?”</i> Finishing her question, she brings the straw in her brightly coloured drink between her dark lips and starts to suck, expecting you to answer.");
 		output("\n\n");
-		if (flags["SQ_ACTIVE_9999"] == 0) output("Leaning forward onto the table just like she is, you start to explain how you’re “friends” with one of the people who competed in that tournament she was in, causing the tanuki’s eyes to widen a bit before you continue your story. ");
+		if (syriQuestComplete()) output("Leaning forward onto the table just like she is, you start to explain how you’re “friends” with one of the people who competed in that tournament she was in, causing the tanuki’s eyes to widen a bit before you continue your story. ");
 		output("You tell her of your own personal journey, all those trials that brought you all the way out to this frozen moon, your ship, ");
 		if (crewRecruited().length > 0)output("and the crew you’ve assembled. ");
 		else output("and your solo flying adventures. ");
@@ -93,7 +95,7 @@ public function approachChrissy():void
 	else
 	{
 		output("Chrissy takes notice of your approach and her demeanor immediately becomes more than a bit bubbly, with a call of <i>“Hey, [pc.name]!”</i> to welcome you as you finally sit down across from her at the table.");
-		if (flags["SQ_ACTIVE_9999"] == undefined) output("\n\n<i>“Glad you came back,”</i> ");
+		if (!syriQuestComplete()) output("\n\n<i>“Glad you came back,”</i> ");
 		else output("\n\n<i>“I think I saw you out in the crowd during the tournament, hope I put on a good show!”</i> ");
 		output("the tanuki-girl says with a wide smiles on her face, <i>“So, wanna chat, or go back to my place for a round or two?”</i>");
 		output("\n\nYou cock an eyebrow at the clearly intended double-meaning of that last phrase, resulting in a playful giggle from the half kui-tan. She quickly settles down, resting her head in her hands and eagerly awaiting your answer.");
@@ -157,7 +159,7 @@ public function talkChrissyHer():void
 	output("\n\n<i>“O-oh,”</i> Chrissy stutters, shifting uncomfortably in her place, <i>“Guess I should’ve expected that, probably busy with more important stuff like... flying ships... and stuff to worry about video games, huh?”</i>");
 	output("\n\nThe girl looks a little down after that, her shoulders slumping and betraying her normally happy demeanor, prompting you to change the subject and ask her where she lived before her move to this frozen moon.");
 	output("\n\n<i>“I was born on Earth, and I like to move around every now and then. I’m not a spacer, but I enjoy going to new places. Then moved to Tavros for a bit. It was a little too noisy and busy for me, so I went back to Terra. ");
-	if (flags["SQ_ACTIVE_9999"] == undefined) output("Then I heard the tournament was gonna happen here so I came here early");
+	if (!syriQuestComplete()) output("Then I heard the tournament was gonna happen here so I came here early");
 	else output("Then the tournament here on Uveto happened");
 	output(", and after a few nights and a few huskar... I just really liked it here, so I moved in. Still likin’ it so far.”</i>");
 	output("\n\nOnce Chrissy finished her tale of how she got to this moon, she sighs and leans back in her seat, staring at her drink for a moment before she turns to you again, <i>“Like I said, there’s not much you don’t already know, and I hope I don’t sound weird by saying this, but I like to be held, ya know? Feeling someone’s arms around you... covered in blankets until the sound of their breathing makes you fall asleep.”</i> As she’s explaining herself, the half-breed seems lost in her own thoughts, a clear bit of blush appearing on her cheeks until she pulls herself back to reality, when her cheeks get even more red. <i>“That’s not a weird thing to tell someone, r- right?”</i>");
@@ -209,7 +211,7 @@ public function talkChrissyUveto():void
 	output("\n\n<i>“And I don’t know if I mentioned this,”</i> Chrissy says, placing her arms back on the table, though, now her sleeves are falling over her hands, a sure sign that sweater is a couple sizes too-big, <i>“but, uh... I like huskar, a lot. I don’t want to sound like an airhead or anything when I say this, but they’re so fluffy and warm-looking. Every time I see one I just want them to give me a big hug and take me home and... well, you know... uh, sorry if I got carried away.”</i>");
 	output("\n\nLeaning forward with a smirk on your face, you tell Chrissy that it sounds like she has a few more reasons than just drinks to come to the bar.");
 	output("\n\n<i>“Well...”</i> she’s says with more than a hint of tentativeness, <i>“Not really... I’m not very good at asking people out or stuff like that. So I just sort’ve... do whatever, and sometimes people come up to me, which is nice, but I don’t go out of my way for sex... even if I did, I wouldn’t be very good at it because I just get so nervous when I have to go up to someone, which is weird because I’m perfectly fine when someone comes up to me. It’s just weird.”</i>");
-	output("\n\nWell, looks like you made the right move by making the first move and walking up to Chrissy’s booth" + (silly ? ", what a smoothy." : "."));
+	output("\n\nWell, looks like you made the right move by making the first move and [pc.walking] up to Chrissy’s booth" + (silly ? ", what a smoothy." : "."));
 	
 	processTime(10 + rand(3));
 	

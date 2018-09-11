@@ -716,14 +716,11 @@ public function pippaStandardMassage():void
 	}
 	
 	output(" <i>“I’m going to go to another room and let you get");
-	
 	if (!pc.isNude()) output(" undressed and");
-	
 	output(" settled in. Just give me a call when you’re ready.”</i>");
 	
-	if (pippaSexed(0) > 0) output(" It seems weird, considering you’ve seen each other naked, to say the least, but it");
-	else output("It");
-	
+	output("It");
+	if (pippaSexed(0) > 0) output(" seems weird, considering you’ve seen each other naked, to say the least, but it");
 	output(" seems she was serious when she put <i>“Professional”</i> on her sign. With her now out of the room, you");
 	
 	if (!pc.isNude()) output(" strip completely nude and");
@@ -1522,7 +1519,7 @@ public function pippaFuckPussy(cockOrStraponIndex:int):void
 	output("Pippa places one hand between her legs, gently rubs her pussy through her tight yoga pants, and says, ");
 	
 	if (flags["PIPPA_ASS_FUCKED"] == 1) output("<i>“You know, " + pippaCallsSteele() + ", I love having my ass played with, but sometimes my pussy needs some love too. You think you can handle that?”</i>");
-	else output("<i>“You know, " + pippaCallsSteele() + ", I’d really love to feel your cock in my pussy. How ’bout it?”</i>");
+	else output("<i>“You know, " + pippaCallsSteele() + ", I’d really love to feel your cock in my pussy. How ‘bout it?”</i>");
 	
 	output("You respond by moving closer to her and placing your [pc.hand] over hers, teasing her [pippa.pussyNoun] with her through her pants. She lightly kisses you and whispers, <i>“Good.”</i> She grasps your hand, removing it from her crotch, and guides you to her bed. She quickly removes your ");
 	
@@ -2653,7 +2650,7 @@ public function pippaTalkMoney():void
 		if (pc.isBimbo() || pc.isBro()) output("<i>“So you fly all over the place and can’t give massages. How do you have money?”</i>");
 		else output("<i>“So you’ve a planet hopping lifestyle, and you’ve mentioned your lack of customers multiple times. Yet, you don’t seem too concerned with your financial situation.”</i>");
 		
-		output("\n\nPippa looks around like she doesn’t really want to talk about it. Maybe you shouldn’t have asked; money can be a sensitive topic. Finally, she sighs before speaking, <i>“Well, here’s the thing. She was no Victor Steele, but I had a grandmother who managed to make quite a bit of money during the last Planet Rush. I never met her, unfortunately, but she was very generous with her money.” She hardens her expression slightly and continues, “And to be clear, I’ve gotten plenty of customers on planets besides this one.”</i>");
+		output("\n\nPippa looks around like she doesn’t really want to talk about it. Maybe you shouldn’t have asked; money can be a sensitive topic. Finally, she sighs before speaking, <i>“Well, here’s the thing. She was no Victor Steele, but I had a grandmother who managed to make quite a bit of money during the last Planet Rush. I never met her, unfortunately, but she was very generous with her money.”</i> She hardens her expression slightly and continues, <i>“And to be clear, I’ve gotten plenty of customers on planets besides this one.”</i>");
 		
 		output("\n\nYou’re surprised to hear that. You wouldn’t guess she was a rich girl, but it does explain a lot. <i>“Is this grandmother anybody I’d recognize?”</i>");
 		

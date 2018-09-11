@@ -311,6 +311,12 @@ public function initUvetoRooms():void
 	rooms["UVI H34"].southExit = "UVI H36";
 	rooms["UVI H34"].westExit = "UVI F34";
 	rooms["UVI H34"].moveMinutes = 1;
+	rooms["UVI H34"].runOnEnter = function():void{
+		if (syriQuestRunning() && flags["SYRIQUEST_STATE"] == 3) {
+			output("\n\nYou see Syri hanging around here, impatiently pacing back and forth. Looks like she’s waiting for you.");
+			addButton(0,"Syri",syriQuestMeetOutsideElevator);
+		}
+	};
 	rooms["UVI H34"].addFlag(GLOBAL.PUBLIC);
 	rooms["UVI H34"].addFlag(GLOBAL.INDOOR);
 	
@@ -674,12 +680,9 @@ public function initUvetoRooms():void
 	rooms["UVI R32"].southExit = "UVI R34";
 	rooms["UVI R32"].westExit = "UVI P32"; // 9999 TEMP CHECK THIS
 	rooms["UVI R32"].moveMinutes = 1;
+	rooms["UVI R32"].runOnEnter = uvetoBarFirePitBonus;
 	rooms["UVI R32"].addFlag(GLOBAL.INDOOR);
 	rooms["UVI R32"].addFlag(GLOBAL.PUBLIC);
-	rooms["UVI R32"].runOnEnter = function():Boolean {
-		setNavDisabled(NAV_SOUTH_DISABLE);
-		return false;
-	}
 
 	/* Back Room */
 	rooms["UVI R34"] = new RoomClass(this);
@@ -981,6 +984,15 @@ public function initUvetoRooms():void
 	rooms["UVIP T44"].addFlag(GLOBAL.HAZARD);
 	rooms["UVIP T44"].runOnEnter = myrnaEncounterBonus;
 
+	rooms["UVIP T46"] = new RoomClass(this);
+	rooms["UVIP T46"].roomName = "";
+	rooms["UVIP T46"].description = "";
+	rooms["UVIP T46"].planet = "PLANET: UVETO VII";
+	rooms["UVIP T46"].system = "SYSTEM: SIRETTA";
+	rooms["UVIP T46"].northExit = "UVIP T44";
+	rooms["UVIP T46"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP T46"].runOnEnter = varkMenu;
+	
 	rooms["UVIP T42"] = new RoomClass(this);
 	rooms["UVIP T42"].roomName = "WINDING\nPATHS";
 	rooms["UVIP T42"].description = "The path here is a slow, steady incline to the north, heading back up towards the lakeshore. The sides of the snowy path are a little more narrow here, barely wide enough for you to squeeze through in some places. In others, you have to move fast to avoid tumbling flurries of snow blown off the tops and into the path.";
@@ -1087,6 +1099,7 @@ public function initUvetoRooms():void
 	rooms["UVIP R36"].eastExit = "UVIP T36";
 	rooms["UVIP R36"].moveMinutes = 1;
 	rooms["UVIP R36"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP R36"].addFlag(GLOBAL.INDOOR);
 	rooms["UVIP R36"].addFlag(GLOBAL.BED);
 	rooms["UVIP R36"].runOnEnter = ulaBonus;
 
@@ -1324,6 +1337,7 @@ public function initUvetoRooms():void
 	rooms["UVIP D22"].eastExit = "UVIP F22";
 	rooms["UVIP D22"].moveMinutes = 1;
 	rooms["UVIP D22"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP D22"].addFlag(GLOBAL.INDOOR);
 	rooms["UVIP D22"].addFlag(GLOBAL.BED);
 	rooms["UVIP D22"].runOnEnter = ulaBonus;
 
@@ -1361,6 +1375,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J20"].westExit = "UVIP H20";
 	rooms["UVIP J20"].moveMinutes = 1;
 	rooms["UVIP J20"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP J20"].addFlag(GLOBAL.INDOOR);
 	rooms["UVIP J20"].addFlag(GLOBAL.BED);
 	//rooms["UVIP J20"].addFlag(GLOBAL.HAZARD);
 	//rooms["UVIP J20"].runOnEnter = TundraEncounterBonus;
@@ -1373,6 +1388,7 @@ public function initUvetoRooms():void
 	rooms["UVIP J18"].southExit = "UVIP J20";
 	rooms["UVIP J18"].moveMinutes = 1;
 	rooms["UVIP J18"].addFlag(GLOBAL.CAVE);
+	rooms["UVIP J18"].addFlag(GLOBAL.INDOOR);
 	rooms["UVIP J18"].addFlag(GLOBAL.BED);
 	rooms["UVIP J18"].runOnEnter = ulaBonus;
 
@@ -2004,6 +2020,7 @@ public function initUvetoRooms():void
 	rooms["UVGR I26"].southExit = "UVGR I28";
 	rooms["UVGR I26"].moveMinutes = 1;
 	rooms["UVGR I26"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR I26"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR I26"].addFlag(GLOBAL.COMMERCE);
 	rooms["UVGR I26"].runOnEnter = GlacialRiftLonesomeTent;
 
@@ -2137,6 +2154,7 @@ public function initUvetoRooms():void
 	rooms["UVGR K20"].northExit = "UVGR K18";
 	rooms["UVGR K20"].moveMinutes = 1;
 	rooms["UVGR K20"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR K20"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR K20"].addFlag(GLOBAL.BED);
 	rooms["UVGR K20"].runOnEnter = ulaBonus;
 
@@ -2661,6 +2679,7 @@ public function initUvetoRoomsII():void
 	rooms["UVGR Q40"].eastExit = "UVGR S40";
 	rooms["UVGR Q40"].moveMinutes = 1;
 	rooms["UVGR Q40"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR Q40"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR Q40"].runOnEnter = GlacialRiftQ40;
 
 	/* Artifact Thinger */
@@ -2673,6 +2692,7 @@ public function initUvetoRoomsII():void
 	rooms["UVGR O42"].southExit = "UVGR O44";
 	rooms["UVGR O42"].moveMinutes = 1;
 	rooms["UVGR O42"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR O42"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR O42"].runOnEnter = GlacialRiftO42;
 
 	rooms["UVGR O44"] = new RoomClass(this);
@@ -2684,6 +2704,7 @@ public function initUvetoRoomsII():void
 	rooms["UVGR O44"].westExit = "UVGR M44";
 	rooms["UVGR O44"].moveMinutes = 1;
 	rooms["UVGR O44"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR O44"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR O44"].runOnEnter = GlacialRiftO44;
 
 	rooms["UVGR M44"] = new RoomClass(this);
@@ -2694,6 +2715,7 @@ public function initUvetoRoomsII():void
 	rooms["UVGR M44"].eastExit = "UVGR O44";
 	rooms["UVGR M44"].moveMinutes = 1;
 	rooms["UVGR M44"].addFlag(GLOBAL.CAVE);
+	rooms["UVGR M44"].addFlag(GLOBAL.INDOOR);
 	rooms["UVGR M44"].runOnEnter = GlacialRiftM44;
 
 	rooms["KORGII B14"] = new RoomClass(this);
@@ -4006,4 +4028,21 @@ public function initUvetoRoomsII():void
 	rooms["FROSTWYRM LAIR"].inText = "Up";
 	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.INDOOR);
 	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.PRIVATE);
+
+	rooms["WILLOWS ROOM"] = new RoomClass(this);
+	rooms["WILLOWS ROOM"].roomName = "WILLOW'S\nAPARTMENT";
+	rooms["WILLOWS ROOM"].description = "";
+	rooms["WILLOWS ROOM"].planet = "PLANET: UVETO VII";
+	rooms["WILLOWS ROOM"].system = "SYSTEM: SIRETTA";
+	rooms["WILLOWS ROOM"].moveMinutes = 1;
+	rooms["WILLOWS ROOM"].northExit = "";
+	rooms["WILLOWS ROOM"].eastExit = "UVI N32";
+	rooms["WILLOWS ROOM"].southExit = "";
+	rooms["WILLOWS ROOM"].westExit = "";
+	rooms["WILLOWS ROOM"].outExit = "";
+	rooms["WILLOWS ROOM"].outText = "Down";
+	rooms["WILLOWS ROOM"].inExit = "";
+	rooms["WILLOWS ROOM"].inText = "Up";
+	rooms["WILLOWS ROOM"].addFlag(GLOBAL.INDOOR);
+	rooms["WILLOWS ROOM"].addFlag(GLOBAL.PRIVATE);
 }

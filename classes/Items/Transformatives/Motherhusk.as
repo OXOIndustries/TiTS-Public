@@ -163,7 +163,7 @@ package classes.Items.Transformatives {
 				}
 			}
 			else {	
-				kGAMECLASS.output(target.capitalA + target.short + " consumes the motherhusk to no effect.");
+				output(target.capitalA + target.short + " consumes the motherhusk to no effect.");
 			}
 			return false;
 		}

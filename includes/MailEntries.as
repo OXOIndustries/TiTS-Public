@@ -245,6 +245,9 @@ public function configureMails():void
 	MailManager.addMailEntry("succucow_email", succucowEmailText, "Check out this weird cabin? Cash reward.", "Ciaran Eildean", "Warden_Eildean@NewTexas.gov", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("randy_claws_email", clawsEmailText, "Merry Christmas!", "New Texas Department of Wildlife", "NT_DoW@NewTexas.gov", quickPCTo, quickPCToAddress);
 	
+	//extrameet 	
+	MailManager.addMailEntry("extrameet_invite_email", extrameetInviteText, "Meet local singles on your planet today!", "ExtraMeet Team", "Consumer_Outreach@ExtraMeet.com", quickPCTo, quickPCToAddress);
+	
 	//Stubs so that the mail entries show up on a load - this is basically for emails that are repeatable and also have dynamic content
 	MailManager.addMailEntry("zil_callgirl_birth", zilCallGirlBirthMessage, "Zheniya", "Nurse Amanda Carter", "A_Carter@TavrosMedical.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("tamtam_preg1", preg1EmailTextTamTam, "Gastigoth Inmate Tam-Tam - Pregnancy Detected", "Dr. Arno Kramer", "DoNotReply@FaangnisCorrections.corp", quickPCTo, quickPCToAddress);
@@ -279,6 +282,9 @@ public function configureMails():void
 	//Akane emails
 	MailManager.addMailEntry("shukuchi_veritas", shukuchiKFineUSawSomethingMail, function():String{ return pc.mf("Mr", "Miss") + " Steele! A wonderful offer!"; }, "Celeritas Veritas LTD.", "no-reply@celeritasveritas.net", quickPCTo, quickPCToAddress);
 	MailManager.addMailEntry("akanequest_email", akaneHasAnExclamationMarkOverHerHeadEmail, "You Are Needed", "gg45645yrtyy", "gg45645yrtyy@no-reply-arid.net", quickPCTo, quickPCToAddress);
+	
+	//Zephyr going to the nursery to visit kids on the reg
+	MailManager.addMailEntry("zephyr_visiting_the_nursery", zephyrMailAboutNursery, "Got some time off...", "Zephyr", "Zephyr@NewTexas.gov", quickPCTo, quickPCToAddress);
 }
 
 public function kallyKiroMilkvite():String

@@ -20,7 +20,7 @@ public function flyToMhenga():void
 
 public function mhengaShipHangarFunc():Boolean
 {
-	if (annoIsCrew() && !syriIsCrew() && flags["ANNOxSYRI_EVENT"] == undefined)
+	if (annoIsCrew() && syriAtBurts() && flags["ANNOxSYRI_EVENT"] == undefined)
 	{
 		annoFollowerFirstTimeOnMhenga();
 		return true;
@@ -496,6 +496,7 @@ public function jungleDeepEncounters():Boolean {
 			choices[choices.length] = naleenMaleEncounter;
 			choices[choices.length] = naleenMaleEncounter;
 		}
+		if(!pc.hasStatusEffect("Naleen_Herm_Disabled") && pc.level >= 3) choices.push(encounterFutaNaleen);
 		choices[choices.length] = encounterMimbrane;
 		choices[choices.length] = encounterMimbrane;
 		if(dryadIsActive())

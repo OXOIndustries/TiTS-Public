@@ -15,7 +15,7 @@ package classes.Characters
 			this.short = "Ausar " + (kGAMECLASS.silly ? "ninja kinda Fucker" : "Agent");
 			this.originalRace = "ausar";
 			
-			this.long = "He’s constantly bouncing on the heels and balls of his feet, directing the way in which the two of you face up. As an ausar, he has fluffed arms and legs with a longish, bushy tail holding his balance. He seems to be somewhat of an atypical variant: his fur is a white, black and toffee brown palette. Although wearing tight-looking, black body armour, his arms and hands are exposed to reveal a chiseled gymnast's physique, the skin-covered parts of his arms adorned with tattoos.";
+			this.long = "He’s constantly bouncing on the heels and balls of his feet, directing the way in which the two of you face up. As an ausar, he has fluffed arms and legs with a longish, bushy tail holding his balance. He seems to be somewhat of an atypical variant: his fur is a white, black and toffee brown palette. Although wearing tight-looking, black body armour, his arms and hands are exposed to reveal a chiseled gymnast’s physique, the skin-covered parts of his arms adorned with tattoos.";
 			this.long += "\n\nA blank, black and ovaloid mask conceals his face and a hood covers the rest of his head, adding to the mystery of his identity.";
 			this.long += "\n\nIn his hand is a uniquely shaped hardlight dagger, the other repeatedly curling and uncurling from a fist to splayed fingers.";
 			

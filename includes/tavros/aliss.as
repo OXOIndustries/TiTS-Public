@@ -871,7 +871,7 @@ public function helpAlissWithSexyTiems():void
 		if(pc.cockThatFits(chars["ALISS"].analCapacity()) >= 0) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass.");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You’re a little too big to fuck Aliss in the ass.");
 	}
-	else if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
+	else if(pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a dick to fuck her.");
 	if(pc.hasVagina()) addButton(1,"Offer Pussy",offerPussyYouSloot,undefined,"Offer Pussy","Offer Aliss the use of a proper cocksheath - your pussy.");
 	else addDisabledButton(1,"Offer Pussy","Offer Pussy","You need a vagina to offer Aliss the use of it!");
@@ -916,7 +916,7 @@ public function fuckDatBitchesSluttyAss():void
 {
 	//Should go for the largest cock that will fit (we'll say... an area of 100? she's had some practice)
 	var x:int = pc.cockThatFits(chars["ALISS"].analCapacity());
-	if(x < 0 && !pc.lowerUndergarment.hardLightEquipped) x = pc.smallestCockIndex();
+	if(x < 0 && !pc.hasHardLightEquipped()) x = pc.smallestCockIndex();
 
 	//PC can also use a hardlight strapon that she sells, if it's worn and the PC has no applicable cocks.
 	clearOutput();
@@ -1548,7 +1548,7 @@ public function sexWithAlissFromMainMenu():void
 		if(pc.cockThatFits(chars["ALISS"].analCapacity()) >= 0) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass.");
 		else addDisabledButton(0,"Fuck Her","Fuck Her","You’re a little too big to fuck Aliss in the ass.");
 	}
-	else if(pc.lowerUndergarment.hardLightEquipped) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
+	else if(pc.hasHardLightEquipped()) addButton(0,"Fuck Her",fuckDatBitchesSluttyAss,undefined,"Fuck Her","Fuck Aliss in the ass with a hardlight strapon.");
 	else addDisabledButton(0,"Fuck Her","Fuck Her","You need a dick to fuck her.");
 	if(pc.hasVagina()) addButton(1,"Offer Pussy",offerPussyYouSloot,undefined,"Offer Pussy","Offer Aliss the use of a proper cocksheath - your pussy.");
 	else addDisabledButton(1,"Offer Pussy","Offer Pussy","You need a vagina to offer Aliss the use of it!");
