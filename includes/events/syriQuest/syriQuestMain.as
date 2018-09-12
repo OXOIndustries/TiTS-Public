@@ -2049,7 +2049,9 @@ public function syriQuestCalnorTalkTeamUp():void
 	//@Coder: Should be pretty simple IF Calnor and the droids are coded.
 	//PC vs. as many security bots as you can fit on screen. Should be a pretty meaty fight. Recycle stats and abilities from the random encounter. If the PC drops, go to the Brought Before Valden bad end.");
 	CombatManager.setFriendlyActors(pc);
-	CombatManager.setHostileActors([new AkkadiSecurityRobots(3), new AkkadiSecurityRobots(3), new AkkadiSecurityRobots(2), new AkkadiSecurityRobots(2)]);
+	var hostiles:Array = [new AkkadiSecurityRobots(-1), new AkkadiSecurityRobots(-1), new AkkadiSecurityRobots(-1), new AkkadiSecurityRobots(-1)];
+	AkkadiSecurityRobots.valdenize(hostiles[0], false);
+	CombatManager.setHostileActors(hostiles);
 	CombatManager.displayLocation("TEAM UP!");
 	CombatManager.victoryScene(syriQuestCalnorTeamUpVictory);
 	CombatManager.lossScene(syriQuestAkkadiBaseValdenFightBadEnd);
