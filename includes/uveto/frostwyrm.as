@@ -834,7 +834,7 @@ public function frostwyrmMainMenu(bOutput:Boolean = true):void
 	//(9999 == 0) addButton(5, "Extract", frostwyrmQuestSample, undefined);
 	
 	
-	if(flags["NYKKE_MET"] != undefined) addButton(6, "Nykke", nykkeMainMenu, true, "Nykke","Spend some time with Nykke in her lair");
+	if(flags["NYKKE_MET"] != undefined) addButton(6, "Nykke", nykkeMainMenu, true, "Nykke","Spend some time with Nykke in her lair.");
 	
 	if(flags["FROSTWYRM_YOUNG"] > 0) addButton(7, "Raise", frostwyrmRaiseHatchlings, undefined, (flags["FROSTWYRM_YOUNG"] == 1 ? "Raise Hatchling" : "Raise " + StringUtil.toDisplayCase(num2Text(flags["FROSTWYRM_YOUNG"])) + " Hatchlings"), (flags["FROSTWYRM_YOUNG"] == 1 ? "You currently have one hatchling waiting to bond with you and [frostwyrm.name] before it can mature. Choosing to remain here will have the hatchling bond with you, allowing it to mature!" : "You currently have " + num2Text(flags["FROSTWYRM_EGGS"]) + " hatchlings waiting to bond with you and [frostwyrm.name] before they can mature. Choosing to remain here will have the hatchlings bond with you, allowing them to mature!"));
 	
