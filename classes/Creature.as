@@ -6262,7 +6262,7 @@
 				if (mfn("m", "f", "n") == "n") faceo += " that would work on either a male or a female"
 				else faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
 				if (lipRating() > 1 && !hasBeak()) faceo += " with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
-				if (hasBeard()) faceo += " in addition to your " + beard();
+				if (hasBeard()) faceo += " in addition to " + (this is PlayerCharacter ? "your ":mf("his ","her ")) + beard();
 			}
 			//0-10
 			else if (femininity < 10) {
@@ -6297,34 +6297,34 @@
 			else if (femininity < 45)
 			{
 				faceo = "a pair of " + plural(lipDescript(true)) + faceLipMimbraneDescript() + " and the barest hint of masculinity in its structure";
-				if (hasBeard()) faceo += "--that is, if it weren’t for your " + beard();
+				if (hasBeard()) faceo += "--that is, if it weren’t for " + (this is PlayerCharacter ? "your":mf("his","her")) + " " + beard();
 			}
 			//45-55
 			else if (femininity <= 55)
 			{
 				faceo = "an androgynous set of features";
-				if (hasBeard()) faceo += ", except for your " + beard() + ",";
+				if (hasBeard()) faceo += ", except for " + (this is PlayerCharacter ? "your":mf("his","her")) + " " + beard() + ",";
 				faceo += " that would work on either a male or a female and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
 			//55+-65
 			else if (femininity <= 65)
 			{
 				faceo = "a tiny touch of femininity to it";
-				if (hasBeard()) faceo += ", if not for your " + beard();
+				if (hasBeard()) faceo += ", if not for " + (this is PlayerCharacter ? "your":mf("his","her")) + " " + beard();
 				faceo += ", with gentle curves and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
 			//65+-72
 			else if (femininity <= 72)
 			{
 				faceo = "a nice set of cheekbones";
-				if (hasBeard()) faceo += ", accompanied by your " + beard() + ",";
+				if (hasBeard()) faceo += ", accompanied by " + (this is PlayerCharacter ? "your":mf("his","her")) + " " + beard() + ",";
 				faceo += " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
 			//72+-80
 			else if (femininity <= 80)
 			{
 				faceo = "a beautiful, feminine shapeliness that’s sure to draw attention";
-				if (hasBeard()) faceo += ", despite your " + beard() + ",";
+				if (hasBeard()) faceo += ", despite " + (this is PlayerCharacter ? "your":mf("his","her")) + " " + beard() + ",";
 				faceo += " and " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 			}
 			//81-90
@@ -6333,7 +6333,7 @@
 				faceo = "a gorgeous profile with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 				if (bSmallNose) faceo += ", a button nose";
 				faceo += " and noticeable eyelashes";
-				if (hasBeard()) faceo += "--though contrasted by your " + beard();
+				if (hasBeard()) faceo += "--though contrasted by " + (this is PlayerCharacter ? "your":mf("his","her")) + " " + beard();
 			}
 			//91-100
 			else
@@ -6341,7 +6341,7 @@
 				faceo = "a jaw-droppingly feminine shape with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 				if (bSmallNose) faceo += ", an adorable nose";
 				faceo += " and long, beautiful eyelashes";
-				if (hasBeard()) faceo += "--in striking contrast to your " + beard();
+				if (hasBeard()) faceo += "--in striking contrast to " + (this is PlayerCharacter ? "your":mf("his","her")) + " " + beard();
 			}
 			return faceo;
 		}
