@@ -13,7 +13,7 @@ Added the Jumper's Red Beret as a potential drop from winning against them.
 // A firm, formal blowjob scene, forks for denying her or letting her get off with some extra bits.
 
 //[Blow Her]
-// Tooltip: The jumper's cock is bulging so temptingly against the latex. You could teach the libidinous lapine a very <i>blue</i> lesson… or immerse yourself. She does smell good...
+// Tooltip: The jumper's cock is bulging so temptingly against the latex. You could teach the libidinous lapine a very <i>blue</i> lesson... or immerse yourself. She does smell good...
 // PC will suck off the bored jumper.
 // Can choose to deny her, which can possibly tie into the ship scene for some discoverability & fun.
 // Can also choose to just indulge your subbiness.
