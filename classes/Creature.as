@@ -11677,6 +11677,10 @@
 		public function createBreastRow(): Boolean {
 			if (breastRows.length >= 10) return false;
 			var newBreastRow:BreastRowClass = new BreastRowClass();
+			
+			// Auto-insert silicone
+			if((this is PlayerCharacter) && statusEffectv3("Nym-Foe Injections") != 0) kGAMECLASS.autoFillNymFoeBoobjection(breastRows.length - 1);
+			
 			breastRows.push(newBreastRow);
 			return true;
 		}
@@ -12705,7 +12709,7 @@
 			}
 			if (hasGenitals() && hasStatusEffect("Genital Slit"))
 			{
-				counter++;
+				if (counter > 0) counter++;
 				if (hasCock(GLOBAL.TYPE_NAGA)) counter++;
 				if (hasVaginaType(GLOBAL.TYPE_NAGA)) counter++;
 			}
@@ -12765,9 +12769,9 @@
 			if (cockTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
 			if (vaginaTotal(GLOBAL.TYPE_SWINE) > 0) counter++;
 			if (tailType == GLOBAL.TYPE_SWINE) counter++;
-			if (thickness >= 80) counter++;
-			if (skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pink", "brown-pink", "red-pink", "white", "black", "gray", "brown")) counter++;
-			if (hasSheath(0)) counter++;
+			if (counter > 0 && thickness >= 80) counter++;
+			if (counter > 0 && skinType == GLOBAL.SKIN_TYPE_SKIN && InCollection(skinTone, "pink", "brown-pink", "red-pink", "white", "black", "gray", "brown")) counter++;
+			if (counter > 0 && hasCock() && hasSheath(0)) counter++;
 			
 			return counter;
 		}

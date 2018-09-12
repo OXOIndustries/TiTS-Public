@@ -13,7 +13,10 @@ public function extrameetSavingGrace04Profile():void
 {
 	output("The profile picture on your screen is of a young blonde woman with bright blue eyes. She appears completely human, and you can’t help but notice the sign of the church of the one god around her neck.");
 	output("\n\nUsername: Saving_Grace04");
-	output("\nSex: Female	Age: 20 Years	Race : Human	Planet: Tavros");
+	output("\nSex: Female");
+	output("\nAge: 20 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nYoung woman looking for a prayer partner in this dark and twisted place. My faith is the most important part of my life and I’m not interested in being tempted by the devils here. BYOB means bring your own bible!");
 }
@@ -49,7 +52,10 @@ public function extrameetMrFoxProfile():void
 {
 	output("The profile picture on your screen is a professional headshot of a rather handsome red haired man with what appears to be a set of fox ears on the top of his head. From what you can tell, the man seems clean cut and professional.");
 	output("\n\nUsername: _Mr.Fox_");
-	output("\nSex: Male		Age: 36 Years	Race : Human+	Planet: Tavros");
+	output("\nSex: Male");
+	output("\nAge: 36 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nRecent divorcee looking for an open minded companion. Hopeless romantic and classic gentleman. Younger woman preferred.");
 }
@@ -136,7 +142,10 @@ public function extrameetLadyGlamorProfile():void
 {
 	output("The profile picture on your screen is a heavily filtered selfie of a young Ausar. The young woman is giving the camera a pouty expression, and is wearing very well applied makeup. The picture is in black and white and looks edited in some way.");
 	output("\n\nUsername: LadyGlamor");
-	output("\nSex: Female	Age: 18 Years	Race : Ausar	Planet: Tavros");
+	output("\nSex: Female");
+	output("\nAge: 18 Years");
+	output("\nRace: Ausar");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nProfessional model. Career focused girl looking to build connections. Like minded individuals are welcomed. Willing to meet both for social and professional reasons.");
 }
@@ -219,7 +228,10 @@ public function extrameetReddProfile():void
 {
 	output("The profile picture on your screen is of a bright red Rahn, giving the camera a suggestive smirk. She seems to be wearing some sort of black leather outfit, but her body is mostly out of frame in favor of her face.");
 	output("\n\nUsername: ReDD");
-	output("\nSex: Female	Age: 23 Years	Race : Rahn		Planet: Tavros");
+	output("\nSex: Female");
+	output("\nAge: 23 Years");
+	output("\nRace: Rahn");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nLooking for fun in all the wrong places. Hoping to find somebody who doesn’t mind a bossy lady with a little extra. Anybody willing to play?");
 }
@@ -332,7 +344,10 @@ public function extrameetHawtstuffProfile():void
 {
 	output("The profile picture on your screen is a full body shot of a voluptuous Leithan woman. She seems to be posing for the camera, showing off her long tauric body and her well endowed chest.");
 	output("\n\nUsername: Hawtstuff");
-	output("\nSex: Female	Age: 28 Years	Race : Leithan	Planet: Tavros");
+	output("\nSex: Female");
+	output("\nAge: 28 Years");
+	output("\nRace: Leithan");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nFull bodied woman looking for a stud who can handle me. If you can hold a conversation that’s a plus, but not a requirement. If things go well I might think about getting serious. No bipeds or fuckboys.");
 }
@@ -422,7 +437,10 @@ public function extrameetThrobbin34Profile():void
 {
 	output("The profile picture on your screen is of a rather chubby looking ausar. You get the impression he doesn’t bathe much, as he has an overall greasy appearance.");
 	output("\n\nUsername: Throbbin34");
-	output("\nSex: Male		Age: 26 Years	Race : Ausar	Planet: Tavros");
+	output("\nSex: Male");
+	output("\nAge: 26 Years");
+	output("\nRace: Ausar");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nHello M’lady. Glad you stopped by. Care to swipe right and get to know one another?");
 }
@@ -433,7 +451,10 @@ public function extrameetMynameisjonProfile():void
 {
 	output("The profile picture on your screen is of an older looking human man. By the looks of his picture, he’s about ready to drop dead any minute.");
 	output("\n\nUsername: mynameisjon");
-	output("\nSex: Male		Age: 97 Years	Race : Human	Planet: Tavros");
+	output("\nSex: Male");
+	output("\nAge: 97 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nSingle. Ready to mingle. Looking for a nice young lady I can take out on the town. Must be a virgin.");
 }
@@ -444,7 +465,10 @@ public function extrameetCatBoobsProfile():void
 {
 	output("The profile picture on your screen is a high angle shot of a massive pair of tits with a face poking out over top. All you can tell is her tits are huge and she’s a Kaithrit. Nothing else.");
 	output("\n\nUsername: ( . )( . )");
-	output("\nSex: Female	Age: 31 Years	Race : Kaithrit		Planet: Tavros");
+	output("\nSex: Female");
+	output("\nAge: 31 Years");
+	output("\nRace: Kaithrit");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nOh hello down there :3");
 }
@@ -455,7 +479,10 @@ public function extrameetDarkAngel01Profile():void
 {
 	output("The profile picture on your screen is of an older looking woman with what appears to be spliced black bird wings. She seems very serious and downright unapproachable.");
 	output("\n\nUsername: DarkAngel01");
-	output("\nSex: Female	Age: 48 Years	Race : Human+	Planet: Tavros");
+	output("\nSex: Female");
+	output("\nAge: 48 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nMature woman looking for mature man. Creative individuals only, and I have a strong preference for those who like religious symbology.");
 }
@@ -466,7 +493,10 @@ public function extrameetBrazenBitchProfile():void
 {
 	output("The profile picture on your screen is of a very punky looking Ausar. Her hair is dyed a few different colors, and she’s got more metal in her face than anybody you’ve ever seen.");
 	output("\n\nUsername: BrazenBitch");
-	output("\nSex: Female	Age: 35 Years	Race : Ausar	Planet: Tavros");
+	output("\nSex: Female");
+	output("\nAge: 35 Years");
+	output("\nRace: Ausar");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nOn station for a week. Looking to score, in more than one way. Straight edge fuckers can go to hell.");
 }
@@ -477,7 +507,10 @@ public function extrameetCasualDProfile():void
 {
 	output("The profile picture on your screen is of a soft penis. Not sure why it’s soft...");
 	output("\n\nUsername: CasualD");
-	output("\nSex: Male		Age: 37 Years	Race : Human	Planet: Tavros");
+	output("\nSex: Male");
+	output("\nAge: 37 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nIf you take me at my worst, you’ll love me at my best.");
 }
@@ -488,7 +521,10 @@ public function extrameetLethalLadyProfile():void
 {
 	output("The profile picture on your screen is a headshot of a very beautiful Gryvain. While she doesnt look old by any means, you can tell she is far from young just by the way she carries herself.");
 	output("\n\nUsername: LethalLady");
-	output("\nSex: Other		Age: 150 Years	Race : Gryvain	Planet: Tavros");
+	output("\nSex: Other");
+	output("\nAge: 150 Years");
+	output("\nRace: Gryvain");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nYour ass. My cock. I don’t date.");
 }
@@ -499,7 +535,10 @@ public function extrameetRockhardforyouProfile():void
 {
 	output("The profile picture on your screen is of a nubby Kaithrit cock. It seems to be a decent sized member, but the picture doesn’t offer much of a sense of scale.");
 	output("\n\nUsername: rockhardforyou");
-	output("\nSex: Male		Age: 21 Years	Race : Kaithrit		Planet: Tavros");
+	output("\nSex: Male");
+	output("\nAge: 21 Years");
+	output("\nRace: Kaithrit");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nSwipe right and this can be all yours. ;)");
 }
@@ -510,7 +549,10 @@ public function extrameetMoonlessNightsProfile():void
 {
 	output("The profile picture on your screen is of a modestly dressed Ovir. At first glance you’d have though her a female, but knowing better you peg her as being male.");
 	output("\n\nUsername: MoonlessNights");
-	output("\nSex: Male		Age: 30 Years	Race : Ovir		Planet: Tavros");
+	output("\nSex: Male");
+	output("\nAge: 30 Years");
+	output("\nRace: Ovir");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nNew on station and looking to meet some friends. High preference towards Ovir, but I’ll make an exception if you seem cool. Not here for hookups.");
 }
@@ -521,7 +563,10 @@ public function extrameetAlphaWolfProfile():void
 {
 	output("The profile picture on your screen is of what appears to a fairly attractive male Ausar. Closer inspection of his features lead you to believe he isn’t a natural born ausar, and is really originally human.");
 	output("\n\nUsername: Alpha_Wolf");
-	output("\nSex: Male		Age: 28 Years	Race : Human+	Planet: Tavros");
+	output("\nSex: Male");
+	output("\nAge: 28 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Tavros");
 	output("\n\nBio:");
 	output("\nLone wolf looking for a bitch to breed. Only interested in Ausars, and only interested in ones willing to submit.");
 }
@@ -534,7 +579,10 @@ public function extrameetFrankMollyProfile():void
 {
 	output("The profile picture on your screen is of a pair of New Texans, a man and a woman. Both of them seem to be of standard New Texan stock, with horns, muscles, and curves.");
 	output("\n\nUsername: Frank&Molly");
-	output("\nSex: Other		Age: 38 Years	Race: Human+	Planet: New Texas");
+	output("\nSex: Other");
+	output("\nAge: 38 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nCouple looking for an interesting third to spice things up.");
 }
@@ -578,7 +626,10 @@ public function extrameetPonyLuverProfile():void
 {
 	output("The profile picture on your screen is a full body picture of a rather tall looking New Texan. Aside from his horns and height, the only notable thing about him is a rather impressive bulge in his pants.");
 	output("\n\nUsername: Pony_Luver");
-	output("\nSex: Male		Age: 24 Years	Race: Human+	Planet: New Texas");
+	output("\nSex: Male");
+	output("\nAge: 24 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nCowboy wanting to go for a ride. Bipeds need not apply. Any fillies interested should hurry on up and swipe right. 8========D");
 }
@@ -648,7 +699,10 @@ public function extrameetMissyMayProfile():void
 {
 	output("The profile picture on your screen is filled with the lower half of a woman’s face and a very large pair of breasts. The subject of the picture is chewing her bottom lip seductively, while her chest is covered only by a very hardworking red bra.");
 	output("\n\nUsername: 0MissyMay0");
-	output("\nSex: Female	Age: 29 Years	Race: Human		Planet: New Texas");
+	output("\nSex: Female");
+	output("\nAge: 29 Years");
+	output("\nRace: Human");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nTired of dealing with locals and looking for somebody fresh and new to go out for a drink with. You wanna taste?");
 }
@@ -714,7 +768,10 @@ public function extrameetVKOProfile():void
 {
 	output("The profile picture on your screen is a headshot of a standard issue JoyCo V-KO Nursedroid. What does not seem standard issue is the suggestive smirk she is giving in the photo.");
 	output("\n\nUsername: V-KO#1221341");
-	output("\nSex: Other		Age: 5 Years	Race: Automaton	Planet: New Texas");
+	output("\nSex: Other");
+	output("\nAge: 5 Years");
+	output("\nRace: Automaton");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\n01010111 01100001 01101110 01101110 01100001 00100000 01101000 01100001 01110110 01100101 00100000 01110011 01101111 01101101 01100101 00100000 01100110 01110101 01101110 00111111");
 }
@@ -802,7 +859,10 @@ public function extrameetSexyyDaddyyProfile():void
 {
 	output("The profile picture on your screen is a photo of a rather burly looking tusked man. His skin is dark green and his head is shaved bald. You think he’s trying to give a sexy smile, but it just looks awkward.");
 	output("\n\nUsername: SexyyDaddyy");
-	output("\nSex: Male		Age: 35 Years	Race:Thraggen 	Planet: New Texas");
+	output("\nSex: Male");
+	output("\nAge: 35 Years");
+	output("\nRace: Thraggen");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nHey sexy ladies. You want some dick? Cause I’ve got some some extra.");
 }
@@ -882,7 +942,10 @@ public function extrameetFunnyboi1Profile():void
 {		
 	output("The profile picture on your screen is of an equine penis... wearing a hat?");
 	output("\n\nUsername: Funnyboi1");
-	output("\nSex: Male		Age: 19 Years	Race : Human+	Planet: New Texas");
+	output("\nSex: Male");
+	output("\nAge: 19 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nIf the ladies don’t find you handsome, they should at least find you funny.");
 }
@@ -893,7 +956,10 @@ public function extrameetMylittlefunboxProfile():void
 {		
 	output("The profile picture on your screen is of a nude man holding a box over his crotch. Somehow, you get the feeling the box isn’t empty...");
 	output("\n\nUsername: Mylittlefunbox");
-	output("\nSex: Male		Age: 35 Years	Race : Human+	Planet: New Texas");
+	output("\nSex: Male");
+	output("\nAge: 35 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nYou won the prize! Swipe right to get a peek inside the box. ;)");
 }
@@ -904,7 +970,10 @@ public function extrameetYourMommyProfile():void
 {		
 	output("The profile picture on your screen is of a very busty cowgirl with her tits out. She’s giving the camera a very suggestive wink, and giving her ample chest a good grope.");
 	output("\n\nUsername: Your-Mommy");
-	output("\nSex:Female	Age: 40 Years	Race : Human+	Planet: New Texas");
+	output("\nSex: Female");
+	output("\nAge: 40 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nLooking for a momma’s boy. I’ll treat you right and take very good care of you. ;D");
 }
@@ -915,7 +984,10 @@ public function extrameetBrattyKittenProfile():void
 {		
 	output("The profile picture on your screen is a group photo of about 5 women. You assume the subject of the profile is the sole Kaithrit in the picture, but you can’t tell much about her other than her race.");
 	output("\n\nUsername: BrattyKitten");
-	output("\nSex: Female	Age: 22 Years	Race : Kaitrit	Planet: New Texas");
+	output("\nSex: Female");
+	output("\nAge: 22 Years");
+	output("\nRace: Kaitrit");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nOn planet for vacation. Looking to sample some of the local “delicacies”.");
 }
@@ -926,7 +998,10 @@ public function extrameetEverythingdiesProfile():void
 {		
 	output("The profile picture on your screen is of what looks like a clown wearing black... Closer inspection reveals it’s just somebody wearing far too much makeup and hair gel.");
 	output("\n\nUsername: everythingdies");
-	output("\nSex: Male		Age: 26 Years	Race : Human	Planet: New Texas");
+	output("\nSex: Male");
+	output("\nAge: 26 Years");
+	output("\nRace: Human");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nIf life is fair, why do roses have thorns? No fat chicks.");
 }
@@ -937,7 +1012,10 @@ public function extrameetThickLoadzProfile():void
 {		
 	output("The profile picture on your screen is of a huge dick and the largest set of balls you’ve ever seen. Although you don’t have a great sense of scale, they are easily as large as beach balls.");
 	output("\n\nUsername: ThickLoadz");
-	output("\nSex: Male		Age: 32 Years		Race : Human+	Planet: New Texas");
+	output("\nSex: Male");
+	output("\nAge: 32 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nPhoto is from after I came. Swipe right and I’ll show you the before.");
 }
@@ -948,7 +1026,10 @@ public function extrameetStroke4MeProfile():void
 {		
 	output("The profile picture on your screen is of a pair of doggy ears and a blonde mess of hair. All you can tell is the subject is an Ausar...");
 	output("\n\nUsername: Stroke4Me");
-	output("\nSex: Female	Age: 24 Years	Race : Ausar	Planet: New Texas");
+	output("\nSex: Female");
+	output("\nAge: 24 Years");
+	output("\nRace: Ausar");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nI like to watch.");
 }
@@ -959,7 +1040,10 @@ public function extrameetLaughingDragonProfile():void
 {		
 	output("The profile picture on your screen is of a very drunk Gryvain. You can tell she’s plastered out of her mind not only by her expression, but by the pile of empty bottles next to her in the picture.");
 	output("\n\nUsername: LaughingDragon");
-	output("\nSex: Other		Age: 67 Years	Race : Gryvain	Planet: New Texas");
+	output("\nSex: Other");
+	output("\nAge: 67 Years");
+	output("\nRace: Gryvain");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nLooking for some fun. On planet for one night only. Eager to drink “from the tap” if you know what I mean.");
 }
@@ -970,7 +1054,10 @@ public function extrameetTheBiggestHorseProfile():void
 {		
 	output("The profile picture on your screen is of a very tall tauric man standing next to a road sign. From what you can tell he was human at some point, and based on how he towers over the sign he’s massive.");
 	output("\n\nUsername: TheBiggestHorse");
-	output("\nSex: Male		Age: 29 Years		Race : Human+	Planet: New Texas");
+	output("\nSex: Male");
+	output("\nAge: 29 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nHello! Recently single and ready to get back on the dating “horse”. Clearly I’m not that funny, but I make up for it in other areas.");
 }
@@ -981,7 +1068,10 @@ public function extrameetCumsnuggleProfile():void
 {		
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: Cumsnuggle");
-	output("\nSex: Female	Age: 24 Years	Race : Human+	Planet: New Texas");
+	output("\nSex: Female");
+	output("\nAge: 24 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: New Texas");
 	output("\n\nBio:");
 	output("\nHow do I delete this?");
 }
@@ -994,7 +1084,10 @@ public function extrameetHuggATreeProfile():void
 {
 	output("The profile picture on your screen is of a very dirty looking Kaithrit woman. While she is certainly good looking, she seems to be covered in leaves and mud. At least you think it’s mud...");
 	output("\n\nUsername: HuggATree");
-	output("\nSex: Female	Age: 21 Years	Race: Kaithrit	Planet: Mhen’ga");
+	output("\nSex: Female");
+	output("\nAge: 21 Years");
+	output("\nRace: Kaithrit");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nSAVE THE TREES! Just a gal trying to make a difference. Looking for other like minded individuals to join the cause! Also I’m Vegan.");
 }
@@ -1038,7 +1131,10 @@ public function extrameetHoneypottProfile():void
 {		
 	output("The profile picture on your screen is a selfie of an above average looking dark haired Zil woman. The picture is only of her face, so you cannot tell anything further about her other than her species.");
 	output("\n\nUsername: The_Honeypott");
-	output("\nSex: Female	Age: 26 Years	Race: Zil	Planet: Mhen’ga");
+	output("\nSex: Female");
+	output("\nAge: 26 Years");
+	output("\nRace: Zil");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nCurious Zil seeking curious offworlder for sexual relations. Not very picky, but a willingness to submit is preferred. Must like the taste of Zil. Spicy meals prior to a potential meeting is discouraged.");
 }
@@ -1130,7 +1226,10 @@ public function extrameetBountifulBotanyProfile():void
 {		
 	output("The profile picture on your screen is a headshot of a young woman with thick rimmed glasses. Curiously, her skin is olive green and her red hair has what looks like leaves scattered through it.");
 	output("\n\nUsername: Bountiful_Botany");
-	output("\nSex: Female	Age: 24 Years	Race: Human+	Planet: Mhen’ga");
+	output("\nSex: Female");
+	output("\nAge: 24 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nGraduate student studying local plant life. On planet for the foreseeable future. Looking for adventurous companion who isn’t shy of a green thumb, or a little extra either.");
 }
@@ -1232,7 +1331,10 @@ public function extrameetSneakySnekProfile():void
 {		
 	output("The profile picture on your screen is a full body picture of what looks like a male Naleen. Based on his profile, you deduce he may just partake in more than his fair share of splices.");
 	output("\n\nUsername: SneakySnek");
-	output("\nSex: Male		Age: 28 Years		Race: Human+	Planet: Mhen’ga");
+	output("\nSex: Male");
+	output("\nAge: 28 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nAdventurous morph looking for a good time. Hoping to find an open minded woman who isn’t afraid of a little double trouble. Must like cats and snakes.");
 }
@@ -1319,7 +1421,10 @@ public function extrameetEnchantingFaeProfile():void
 {		
 	output("The profile picture on your screen is a selfie of an incredibly cute Saeri. She is posing for the picture, biting her lip seductively and giving the camera a longing gaze. Wait a minute.. Thats a guy?!");
 	output("\n\nUsername: EnchantingFae");
-	output("\nSex: Male		Age: 18 Years	Race: Saeri 	Planet: Mhen’ga");
+	output("\nSex: Male");
+	output("\nAge: 18 Years");
+	output("\nRace: Saeri");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nHello! New on planet and looking to meet some new friends! Hit me up if you wanna meet up for a chat! Or maybe something more ;)");
 }
@@ -1339,8 +1444,8 @@ public function extrameetEnchantingFaeDate():void
 	output("You enter Burt’s Meadhall and take a good look around. You spot your date sitting off to the side of the room, but he isn’t alone with a male patron standing next to the table talking to him. Awkwardly you make your way over, you do have a date with him after all. As you cross the room the Saeri spots you and waves you over, his wings fluttering slightly. The other patron looks over at you and scowls, clearly not happy with your presence. Before you reach the table, the male patron walks away in a huff, muttering something under his breath. Smiling at you, your date pops up to his feet standing maybe only a shade above five feet.");
 	output("\n\n<i>“Hiya!”</i> He moves forward and grasps your hand, his grip delicate and soft against you. He holds your hand but doesn’t shake it, though you notice his wings give a few excited fluttering flaps. <i>“I’m so happy you could make it. Sit!”</i> He releases you and takes his seat once more, crossing his legs and getting comfortable.");
 	output("\n\nYou slowly take your seat and give your date a look over. Everything about your date screams female. His face and body are definitely feminine and even his clothing, which is just a simple sundress, further supports it. However things are rarely as they seem in the galaxy, so all you can do is roll with it. A giggle knocks you back to attention. You didn’t realize it, but you were silent and staring for a long time. You shift in your seat, feeling more than a little awkward.");
-	output("\n\n<i>“Trying to figure out if I’m really a boy right?”</i> Your date gives you a mischievous smirk. <i>“Well, I am. Although I don’t think most can tell.”</i> He nods his head towards the male patron who he was talking to just before you arrived. <i>“He tried to pick me up. Thought I was a member of the fairer sex. Not that I corrected him mind you. You came in before I had the chance to tell him he was eye fucking a boy.”</i> You glance over at the patron, noticing him glaring over at you still. After a moment you return your gaze to your date, noticing him staring at you intently with his alien Saeri eyes expectantly. It takes a second, but you realize you haven’t introduced yourself yet. Feeling foolish, you give your date your name and ask for his.");
-	output("\n\n<i>“Oh well.”</i> The Saeri leans back and frowns. <i>“My name is something manly as hell and awkward to pronounce. Just call me Fae. Rolls of the tongue much better.”</i> He leans back in, his frown turning into another mischievous smirk. <i>“You know, I’m starting to think we might want to take this someplace else. Based on the hole being burned into the back of your skull.”</i>");
+	output("\n\n<i>“Trying to figure out if I’m really a boy right?”</i> Your date gives you a mischievous smirk. <i>“Well, I am. Although I don’t think most can tell.”</i> He nods his head towards the male patron who he was talking to just before you arrived. <i>“He tried to pick me up. Thought I was a member of the fairer sex. Not that I corrected him mind you. You came in before I had the chance to tell him he was eye-fucking a boy.”</i> You glance over at the patron, noticing him glaring over at you still. After a moment you return your gaze to your date, noticing him staring at you intently with his alien Saeri eyes expectantly. It takes a second, but you realize you haven’t introduced yourself yet. Feeling foolish, you give your date your name and ask for his.");
+	output("\n\n<i>“Oh, well.”</i> The Saeri leans back and frowns. <i>“My name is something manly as hell and awkward to pronounce. Just call me Fae. Rolls of the tongue much better.”</i> He leans back in, his frown turning into another mischievous smirk. <i>“You know, I’m starting to think we might want to take this someplace else. Based on the hole being burned into the back of your skull.”</i>");
 	output("\n\nYou don’t even need to look back to know what Fae is talking about. You ask the Saeri what he has in mind.");
 	output("\n\n<i>“Well. We can always go back to my place.”</i> He gives his wings another small flutter. <i>“If you’re interested in a little fun that is.”</i> Fae bite his lip and gives his brow a suggestive wiggle. Before you can think about it, Fae’s expression shifts. <i>“I... Should mention something though...”</i> He clears his throat and leans in, speaking in a hushed tone. <i>“I might have lied a bit on my profile...”</i>");
 	output("\n\n<i>“What?”</i> You give your date another look over. <i>“About what?”</i>");
@@ -1404,7 +1509,10 @@ public function extrameetBigDawgProfile():void
 {		
 	output("The profile picture on your screen is of a handsome looking ausar. His hair is jet black, and you can’t help but feel like he must have dyed it. He is giving the camera a serious expression, almost stern.");
 	output("\n\nUsername: BigDawg");
-	output("\nSex: Male		Age: 38 Years	Race : Ausar	Planet: Mhen’ga");
+	output("\nSex: Male");
+	output("\nAge: 38 Years");
+	output("\nRace: Ausar");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nRecently divorced. Looking for a lady who knows how to treat a man right. Willing to settle for girly boys.");
 }
@@ -1415,7 +1523,10 @@ public function extrameetBigDawgProfile():void
 {		
 	output("The profile picture on your screen is of a semi erect cock being held and shown off. Even half hard it seems fairly large.");
 	output("\n\nUsername: Nympho69");
-	output("\nSex: Other		Age: 65 Years	Race : Dzaan	Planet: Mhen’ga");
+	output("\nSex: Other");
+	output("\nAge: 65 Years");
+	output("\nRace: Dzaan");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nAlpha looking to claim some betas. Looking to rent not to keep. Must like karaoke and know how to make a goddamn seabreeze.");
 }
@@ -1426,7 +1537,10 @@ public function extrameetBigDawgProfile():void
 {		
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: ShowYours2Me");
-	output("\nSex: Male		Age: 45 Years	Race : Human	Planet: Mhen’ga");
+	output("\nSex: Male");
+	output("\nAge: 45 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nShow me yur vagine plz.");
 }
@@ -1437,7 +1551,10 @@ public function extrameetAwkwardSoulProfile():void
 {		
 	output("The profile picture on your screen is a black and white photo of a female Simii. The picture is heavily edited, and looks like it was done as part of a photography class or something.");
 	output("\n\nUsername: AwkwardSoul");
-	output("\nSex: Female		Age: 22 Years	Race : Simii	Planet: Mhen’ga");
+	output("\nSex: Female");
+	output("\nAge: 22 Years");
+	output("\nRace: Simii");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nWe live. We Survive. We die. Looking for somebody to help with the last two. I’ll read you my poems and bare my soul. Will you love me? Or cast me aside?");
 }
@@ -1448,7 +1565,10 @@ public function extrameetAwkwardSoulProfile():void
 {		
 	output("The profile picture on your screen is of an up close shot of an obnoxiously sparkling vagina. Is that real glitter?");
 	output("\n\nUsername: GlitterCunt");
-	output("\nSex: Female		Age: 18 Years	Race : Human	Planet: Mhen’ga");
+	output("\nSex: Female");
+	output("\nAge: 18 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nDon’t worry boys. It’s edible. ;O");
 }
@@ -1459,7 +1579,10 @@ public function extrameetAwkwardSoulProfile():void
 {		
 	output("The profile picture on your screen is of a man morphed to look like a pig. He seems to be well dressed, and aside from looking like a pig, fairly clean cut.");
 	output("\n\nUsername: Hogwash");
-	output("\nSex: Male		Age: 32 Years		Race : Human+	Planet: Mhen’ga");
+	output("\nSex: Male");
+	output("\nAge: 32 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nNovelist. Traveler. Lover of fine wine and great dining. Looking to meet locals and learn more about this grand planet and its secrets. And yes I bathe.");
 }
@@ -1470,7 +1593,10 @@ public function extrameetAwkwardSoulProfile():void
 {		
 	output("The profile picture on your screen is a selfie of a dull green naked Ovir. She looks fairly plain, despite her best efforts to show off.");
 	output("\n\nUsername: DirtyGurl14");
-	output("\nSex: Female		Age: 25 Years	Race : Ovir		Planet: Mhen’ga");
+	output("\nSex: Female");
+	output("\nAge: 25 Years");
+	output("\nRace: Ovir");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nReal woman here. If you like what you see swipe right. If I like what I see, so will I. ;)");
 }
@@ -1481,7 +1607,10 @@ public function extrameetAwkwardSoulProfile():void
 {		
 	output("The profile picture on your screen is of an ausar couple. They are holding each other close, while staring at the camera. He looks serious, while she looks playful.");
 	output("\n\nUsername: Looking4a3rd");
-	output("\nSex: Other		Age: 27 Years	Race : Ausar	Planet: Mhen’ga");
+	output("\nSex: Other");
+	output("\nAge: 27 Years");
+	output("\nRace: Ausar");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nWe are a clean and safe couple looking to have a good time with an open minded lady. No pressure for sex on the first date.");
 }
@@ -1492,7 +1621,10 @@ public function extrameetAwkwardSoulProfile():void
 {		
 	output("The profile picture on your screen is a giant penis. If you had to guess, it’s around two feet long, but that’s just a guess.");
 	output("\n\nUsername: DigBick");
-	output("\nSex: Male		Age: 20 Years		Race : Human	Planet: Mhen’ga");
+	output("\nSex: Male");
+	output("\nAge: 20 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nWanna go for a ride?");
 }
@@ -1503,7 +1635,10 @@ public function extrameetAwkwardSoulProfile():void
 {		
 	output("The profile picture on your screen is a very professional shot of a small pink female Tove. She’s posing for the picture in lingerie, and if you didn’t know any better you’d say it was ripped right out of a porno mag.");
 	output("\n\nUsername: Birdy");
-	output("\nSex: Female	Age: 29 Years	Race : Tove		Planet: Mhen’ga");
+	output("\nSex: Female");
+	output("\nAge: 29 Years");
+	output("\nRace: Tove");
+	output("\nPlanet: Mhen’ga");
 	output("\n\nBio:");
 	output("\nSemi professional model. Looking for a break. Swipe right if you want to collaborate.");
 }
@@ -1516,7 +1651,10 @@ public function extrameetWantSumJunkProfile():void
 {		
 	output("The profile picture on your screen is of a very out of focus image of a young dark red Raskvel. You can’t tell much from the picture, but he seems to trying to show off an unremarkable piece of junk in the photo.");
 	output("\n\nUsername: WantSumJunk?");
-	output("\nSex: Male		Age: 20 Years	Race: Raskvel 	Planet: Tarkus");
+	output("\nSex: Male");
+	output("\nAge: 20 Years");
+	output("\nRace: Raskvel");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nYou want junk? Well I’ve got junk! Come and see all the junk in my trunk!");
 }
@@ -1561,7 +1699,10 @@ public function extrameetXxThrasherCatxXProfile():void
 {		
 	output("The profile picture on your screen is a group photo of what looks like a heavy metal band. Centered in the picture, and the only one in focus, is a small purple haired Kaithrit woman covered in tattoos and piercings.");
 	output("\n\nUsername: XxThrasherCatxX");
-	output("\nSex: Female		Age: 20 Years	Race: Kaithrit	Planet: Tarkus");
+	output("\nSex: Female");
+	output("\nAge: 20 Years");
+	output("\nRace: Kaithrit");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nOn planet for a few days. Looking to party. Hard.\nDrugs <i>\{heart emoji\}\n</i>Booze <i>\{2 heart emojies\}\n</i>Dick <i>\{3 heart emojies\}</i>");
 	//output("\nOn planet for a few days. Looking to party. Hard. Drugs <3 Booze <33 Dick <333");
@@ -1666,7 +1807,10 @@ public function extrameetSweetNLowProfile():void
 {		
 	output("The profile picture on your screen is of a young Gabilani woman with thick black hair framing her face. She is posing for the picture, puckering her lips in a mock kiss and giving the camera a suggestive wink.");
 	output("\n\nUsername: Sweet_N’_Low");
-	output("\nSex: Female		Age: 19 Years	Race: Gabilani	Planet: Tarkus");
+	output("\nSex: Female");
+	output("\nAge: 19 Years");
+	output("\nRace: Gabilani");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nStuck on the surface for three weeks. Looking for my mister tall, dark and handsome to come and sweep me off my feet. Desired traits in that order. ;p");
 }
@@ -1743,7 +1887,10 @@ public function extrameetMidnightXRoseProfile():void
 {		
 	output("The profile picture on your screen is of a young black haired human woman. She seems by all accounts to be perfectly normal. So normal in fact you wonder why she would even be on world.");
 	output("\n\nUsername: MidnightXRose");
-	output("\nSex: Female		Age: 22 Years	Race: Human		Planet: Tarkus");
+	output("\nSex: Female");
+	output("\nAge: 22 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nGay as fuck. I’m here to do two things and two things only: Flirt and chew bubblegum. And I’m all out of bubblegum.");
 }
@@ -1832,7 +1979,10 @@ public function extrameetTruePower69Profile():void
 {		
 	output("The profile picture on your screen is of a very large cock. Although you can’t get a good sense of scale, you can tell it’s at least a foot long. The only other information you can tell is whomever it is connected to seems quite muscular and large.");
 	output("\n\nUsername: True_Power69");
-	output("\nSex: Other		Age: 40 Years	Race: Dzaan	Planet: Tarkus");
+	output("\nSex: Other");
+	output("\nAge: 40 Years");
+	output("\nRace: Dzaan");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nTired of limp dicks and Betas. Only swipe right if you can beat this.");
 }
@@ -1940,7 +2090,10 @@ public function extrameetR4X0121Profile():void
 {		
 	output("The profile picture on your screen is of a very dingy looking droid. Nothing like modern models, it almost looks like something ripped straight out of science fiction.");
 	output("\n\nUsername: R4-X0121");
-	output("\nSex: Other		Age: 345 Years	Race: Automaton		Planet: Tarkus");
+	output("\nSex: Other");
+	output("\nAge: 345 Years");
+	output("\nRace: Automaton");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nExperienced service unit looking for new home. My functions include cleaning, cooking, and back rubs");
 }
@@ -1951,7 +2104,10 @@ public function extrameetBeBopBossProfile():void
 {		
 	output("The profile picture on your screen is a headshot of an older looking Gabilani. His hair is grey, and one of his eyes is replaced with a prosthetic. Looking down at his age, you are surprised he isn’t far older.");
 	output("\n\nUsername: Be-Bop-Boss");
-	output("\nSex: Male		Age: 49 Years		Race: Gabilani		Planet: Tarkus");
+	output("\nSex: Male");
+	output("\nAge: 49 Years");
+	output("\nRace: Gabilani");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nLooking for young gabilani ladies willing to spend time with a real man. Not looking for off worlders or dudes wearing dresses.");
 }
@@ -1962,7 +2118,10 @@ public function extrameetSexplosiveProfile():void
 {		
 	output("The profile picture on your screen is a very poorly taken photo of a young raskvel woman. The picture is very out of focus, looking like it was taken on a broken camera. You can’t make out any other details.");
 	output("\n\nUsername: Sexplosive");
-	output("\nSex: Female		Age: 24 Years		Race: Raskvel 	Planet: Tarkus");
+	output("\nSex: Female");
+	output("\nAge: 24 Years");
+	output("\nRace: Raskvel");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nI don’t know what to put here, just come fuck me.");
 }
@@ -1973,7 +2132,10 @@ public function extrameetBiggyzProfile():void
 {		
 	output("The profile picture on your screen is of a cloud of smoke with a face. If you had to guess, the subject of the picture blew it out his mouth while taking the picture for some unknown reason. Trying to look cool maybe?");
 	output("\n\nUsername: Biggyz");
-	output("\nSex: Male		Age: 27 Years		Race: Human	 	Planet: Tarkus");
+	output("\nSex: Male");
+	output("\nAge: 27 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nLooking for a lady to ride or die with me. Must be respectful.");
 }
@@ -1984,7 +2146,10 @@ public function extrameetPowerLovers2Profile():void
 {		
 	output("The profile picture on your screen is of two gabilani, one male and one female. By the looks of them, they are an item, the male having his arm draped over the female.");
 	output("\n\nUsername: PowerLovers2");
-	output("\nSex: Other		Age: 32 Years	Race: Gabilani		Planet: Tarkus");
+	output("\nSex: Other");
+	output("\nAge: 32 Years");
+	output("\nRace: Gabilani");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nLooking for a third to spice things up. Not picky on gender. Hoping to find somebody exotic. No raskvel.");
 }
@@ -1995,7 +2160,10 @@ public function extrameetDirtyHabitzProfile():void
 {		
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: DirtyHabitz");
-	output("\nSex:Female	Age: 21 Years		Race: Human+	 Planet: Tarkus");
+	output("\nSex:Female");
+	output("\nAge: 21 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nNot on planet anymore. Will not respond.");
 }
@@ -2006,7 +2174,10 @@ public function extrameetAvarice56Profile():void
 {		
 	output("The profile picture on your screen is of a naked Gryvain woman with a massive cock in her mouth. She is fairly attractive, and it staring right at the camera while deepthroating the huge dong.");
 	output("\n\nUsername: Avarice56");
-	output("\nSex: Other		Age: 80 Years		Race: Gryvain	Planet: Tarkus");
+	output("\nSex: Other");
+	output("\nAge: 80 Years");
+	output("\nRace: Gryvain");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nOn planet for a few days, looking for somebody to show me a good time. Not necessarily single, so I hope that doesn’t bother you.");
 }
@@ -2017,7 +2188,10 @@ public function extrameetTwistedProfile():void
 {		
 	output("The profile picture on your screen is of a large blue eye. The picture was taken very close to the subjects face. At least it’s a pretty eye...");
 	output("\n\nUsername: _Twisted_");
-	output("\nSex: Female	Age: 30 Years	Race: Ausar		Planet: Tarkus");
+	output("\nSex: Female");
+	output("\nAge: 30 Years");
+	output("\nRace: Ausar");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nLooking to meet intellectuals willing to expand their horizons. Not interested in hooking up. No I will not send you nudes.");
 }
@@ -2028,7 +2202,10 @@ public function extrameetSlaveBoiProfile():void
 {		
 	output("The profile picture on your screen is shot of a very thin and hairless body wearing just underwear. The subject’s head is completely cut out of the shot.");
 	output("\n\nUsername: SlaveBoi");
-	output("\nSex: Male		Age: 21 Years		Race: Human		Planet: Tarkus");
+	output("\nSex: Male");
+	output("\nAge: 21 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nWilling to serve.");
 }
@@ -2039,7 +2216,10 @@ public function extrameetHawtShotProfile():void
 {		
 	output("The profile picture on your screen is of a massive dick. Seriously. It’s just a huge dick.");
 	output("\n\nUsername: HawtShot");
-	output("\nSex: Other		Age: 54 Years	Race: Gryvain	Planet: Tarkus");
+	output("\nSex: Other");
+	output("\nAge: 54 Years");
+	output("\nRace: Gryvain");
+	output("\nPlanet: Tarkus");
 	output("\n\nBio:");
 	output("\nI’m here to fuck and drink. And I’m not thirsty.");
 }
@@ -2052,7 +2232,10 @@ public function extrameetDoggeProfile():void
 {		
 	output("The profile picture on your screen is a selfie of an older looking ausar man. His black hair has small traces of grey, and his face is unshaven and scruffy. He is giving the camera a wry smile, and a longing gaze.");
 	output("\n\nUsername: _Dogge_");
-	output("\nSex: Male		Age: 40 Years	Race: Ausar		Planet: Myrellion");
+	output("\nSex: Male");
+	output("\nAge: 40 Years");
+	output("\nRace: Ausar");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nLonely and looking for a good time. Bit of a boozehound. If you can hold your liquor and aren’t afraid of a little fun swipe right.");
 }
@@ -2091,7 +2274,10 @@ public function extrameetDaRegulatorProfile():void
 {		
 	output("The profile picture on your screen is of a dark skinned man wearing a U.G.C. peacekeeper uniform. He looks quite handsome, and from what you can see he seems to be pure Human.");
 	output("\n\nUsername: DaRegulator");
-	output("\nSex: Male		Age: 25 Years	Race: Human		Planet: Myrellion");
+	output("\nSex: Male");
+	output("\nAge: 25 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nCurrently stationed on Myrellion and looking to meet interesting people. Hoping to find a cool guy to shoot the shit with and have a beer. If you’re looking for a game, I’m always down to play catch. Bonus points if you can make me laugh. Don’t bring up politics, or I’m out.");
 }
@@ -2163,7 +2349,10 @@ public function extrameetHuntressProfile():void
 {		
 	output("The profile picture on your screen is a close up of a black eyed woman’s face. From what you can gather she is a Nyrea. She looks quite beautiful, but you can tell she is a little bit past her prime.");
 	output("\n\nUsername: #1Huntress");
-	output("\nSex: Female	Age: 53 Years	Race: Nyrea		Planet: Myrellion");
+	output("\nSex: Female");
+	output("\nAge: 53 Years");
+	output("\nRace: Nyrea");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nExperienced huntress looking for prey. So long as I deem you worthy, all will be considered. Your submission will be swift and sweet.");
 }
@@ -2236,7 +2425,10 @@ public function extrameetMistressVenomProfile():void
 {		
 	output("The profile picture on your screen is a professional looking photo of a uniformed red Myr. She is quite beautiful, but has a stern expression giving off an almost cruel air about her. The fact she is wearing a military uniform only seems to make it worse.");
 	output("\n\nUsername: Mistress_Venom");
-	output("\nSex: Female	Age: 29 Years		Race: Myr		Planet: Myrellion");
+	output("\nSex: Female");
+	output("\nAge: 29 Years");
+	output("\nRace: Myr");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nLooking for some fresh meat to entertain myself with. High preference towards males, but any sorry shit with a prick with do. Not looking to keep, just to rent.");
 }
@@ -2327,7 +2519,10 @@ public function extrameetRebel23Profile():void
 {		
 	output("The profile picture on your screen is a selfie of a very feminine Dzaan. Her face is painted with makeup, expertly applied and accentuating her features. Although it’s difficult to get a sense of scale, you can tell she is shorter and slimmer than most of her race.");
 	output("\n\nUsername: Rebel23");
-	output("\nSex: Female	Age: 45 Years	Race: Dzaan		Planet: Myrellion");
+	output("\nSex: Female");
+	output("\nAge: 45 Years");
+	output("\nRace: Dzaan");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nLonely girl looking for some female companionship. Interested in trying new things and meeting different kinds of people. Would be willing to partake in some after hours fun if it promises to be adventurous. And yes, I have an idea what that means ;P");
 }
@@ -2350,7 +2545,7 @@ public function extrameetRebel23Date():void
 	output("\n\nYou take a seat, noticing that a few patrons seem to be watching you. Looking around a few heads seem to turn away, seemingly avoiding your gaze. Next to you, your date follows your gaze around the room.");
 	output("\n\n<i>“Seems we’ve got an audience.”</i> Shoana cups her chin in her hand. <i>“Let’s try to ignore them, shall we? So tell me about yourself, darling.”</i>");
 	output("\n\nTrying to take your date’s advice, you shift gears and start to tell your date about yourself and your quest for the probes and your inheritance. Shoana listens quite intently, asking a few questions as you speak, but without interrupting you. After awhile, you forget you’re in a public bar at all you’re so involved in speaking. Something about the Dzaan makes you feel like you can really open up, although your unsure why. Eventually, you run out of things to say, so you ask her about herself.");
-	output("\n\n<i>“Oh well.”</i> The Dzaan leans back. <i>“Oh well, let’s see... My life has been pretty lackluster all things considered.”</i> She gives you a shrug and a frown. <i>“Not much to say really.”</i>");
+	output("\n\n<i>“Oh, well.”</i> The Dzaan leans back. <i>“Oh well, let’s see... My life has been pretty lackluster all things considered.”</i> She gives you a shrug and a frown. <i>“Not much to say really.”</i>");
 	output("\n\nSomething tells you your date isn’t being completely honest. You can’t quite put your finger on why you feel it, but you know she’s got some sort of story to tell. Your suspicion must be painted on your face, as you notice the Dzaan seemingly grow slightly anxious.");
 	output("\n\n<i>“Tell you what. Come back to my ship and we can talk all about me.”</i> She scoots herself closer, droping her voice to just a hair over a whisper. <i>“Although, once we get there, talking might not be what you want to do.”</i> Her puffy lips crack into a lewd smirk, then she puckers them and offers a playful faux kiss to the air.");
 	
@@ -2411,7 +2606,10 @@ public function extrameetSweetheartProfile():void
 {		
 	output("The profile picture on your screen is of a very attractive, and busty, gold myr. Her tits take up most of the photo, barely held in place by an ornate and exotic looking bra.");
 	output("\n\nUsername: Sweetheart");
-	output("\nSex: Female	Age: 35 Years	Race: Myr		Planet: Myrellion");
+	output("\nSex: Female");
+	output("\nAge: 35 Years");
+	output("\nRace: Myr");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nLooking to meet interesting and attractive singles. Make me laugh and I might take you home with me.");
 }
@@ -2422,7 +2620,10 @@ public function extrameetRdy4plyProfile():void
 {		
 	output("The profile picture on your screen is of a rather shabby looking Kui-tan. Based on his attire, you think he’s a mechanic of some kind. Why he didn’t take a photo not covered in oil is beyond you.");
 	output("\n\nUsername: Rdy4ply");
-	output("\nSex: Male		Age: 42 Years	Race: Kui-tan	Planet: Myrellion");
+	output("\nSex: Male");
+	output("\nAge: 42 Years");
+	output("\nRace: Kui-tan");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nRecently single and looking to find something new and exciting. I work long hours, and find it hard to meet people, so I’m out here giving it a whirl. Very liberal, and willing to try anything once.");
 }
@@ -2433,7 +2634,10 @@ public function extrameetAlProfile():void
 {		
 	output("The profile picture on your screen is of a very pissed off looking woman. She has a shaved head, and several scars on her face. She almost looks like she’s in a gang or some other criminal group.");
 	output("\n\nUsername: Al");
-	output("\nSex: Female	Age: 42 Years	Race: Human		Planet: Myrellion");
+	output("\nSex: Female");
+	output("\nAge: 42 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nNames Al. Short for Allison. Not interested in men or women with dicks. Not on planet long, so don’t get attached.");
 }
@@ -2444,7 +2648,10 @@ public function extrameetDeviantSheepdogProfile():void
 {		
 	output("The profile picture on your screen is of what you first think is an ausar on first glance. He’s furry, very furry. So furry in fact you can’t tell anything about him.");
 	output("\n\nUsername: DeviantSheepdog");
-	output("\nSex: Male		Age: 23 Years	Race: Ausar+	Planet: Myrellion");
+	output("\nSex: Male");
+	output("\nAge: 23 Years");
+	output("\nRace: Ausar+");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nDirty boy who needs a good bath. Wanna help?");
 }
@@ -2455,7 +2662,10 @@ public function extrameetNaughty232Profile():void
 {		
 	output("The profile picture on your screen is a close up selfie of a red myr. You can’t tell much from her picture, other than her race and that’s she reasonably attractive.");
 	output("\n\nUsername: Naughty232");
-	output("\nSex: Female	Age: 22 Years	Race: Myr		Planet: Myrellion");
+	output("\nSex: Female");
+	output("\nAge: 22 Years");
+	output("\nRace: Myr");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nYou! Yes you! Wanna piece of this? Cause I wanna piece of that! Swipe right and we can mingle. Not looking for anything serious.");
 }
@@ -2466,7 +2676,10 @@ public function extrameetSirenSongProfile():void
 {		
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: Siren_Song");
-	output("\nSex: Other		Age: 102 Years	Race: Dzaan	Planet: Myrellion");
+	output("\nSex: Other");
+	output("\nAge: 102 Years");
+	output("\nRace: Dzaan");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nDoes anybody know how to upload pictures?");
 }
@@ -2477,7 +2690,10 @@ public function extrameetKinkDaddyProfile():void
 {		
 	output("The profile picture on your screen is of a slightly overweight man wearing a trench coat and brandishing a pair of knives. The weapons are very ornate, but not very functional.");
 	output("\n\nUsername: KinkDaddy");
-	output("\nSex: Male		Age: 22 Years	Race: Human		Planet: Myrellion");
+	output("\nSex: Male");
+	output("\nAge: 22 Years");
+	output("\nRace: Huma");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nLooking for my queen. I travel a lot for work so I don’t get to stay in one place for very long. I’d cross the whole galaxy for the one I love.");
 }
@@ -2488,7 +2704,10 @@ public function extrameetAllYours12Profile():void
 {		
 	output("The profile picture on your screen is of a modestly sized human dick stuck in some sort of a chastity toy.");
 	output("\n\nUsername: AllYours_12");
-	output("\nSex: Male		Age: 50 Years	Race: Human		Planet: Myrellion");
+	output("\nSex: Male");
+	output("\nAge: 50 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nLooking for somebody to take me home and make me theirs. Not into being butt fucked.");
 }
@@ -2497,9 +2716,12 @@ public function extrameetAllYours12Profile():void
 //[EXTRAMEET_PURPLEBOWTIE]
 public function extrameetPurpleBowtieProfile():void
 {		
-	output("The profile picture on your screen is of fairly attractive Kui-tan with a bright purple bowtie in her hair. The picture is very modest, and you don’t really get a sense of her shape or size.");
+	output("The profile picture on your screen is of a fairly attractive Kui-tan with a bright purple bowtie in her hair. The picture is very modest, and you don’t really get a sense of her shape or size.");
 	output("\n\nUsername: PurpleBowtie");
-	output("\nSex:Other		Age: 32 Years	Race: Kui-tan	Planet: Myrellion");
+	output("\nSex:Other");
+	output("\nAge: 32 Years");
+	output("\nRace: Kui-tan");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nNot sure what to put here. I’m interested in meeting new people, local or foreign. Not interested in sex, just conversation and fun times.");
 }
@@ -2510,7 +2732,10 @@ public function extrameetLemmeSmashProfile():void
 {		
 	output("The profile picture on your screen is a full body nude of an Ovir with his cock out. It’s certainly an impressive dick, and his figure is quite stunning as well.");
 	output("\n\nUsername: LemmeSmash");
-	output("\nSex: Male		Age: 29 Years	Race: Ovir		Planet: Myrellion");
+	output("\nSex: Male");
+	output("\nAge: 29 Years");
+	output("\nRace: Ovir");
+	output("\nPlanet: Myrellion");
 	output("\n\nBio:");
 	output("\nTraveling the galaxy to find myself. Fucking a lucky lady on each planet I visit. Will that be you?");
 }
@@ -2523,7 +2748,10 @@ public function extrameetTheProfessorProfile():void
 {		
 	output("The profile picture on your screen is of a rather dashing looking Kui-tan. He seems to be well dressed, and the fur on his face curiously styled. He’s also wearing a funny hat you think you’ve seen somewhere before...");
 	output("\n\nUsername: TheProfessor");
-	output("\nSex: Male		Age: 30 Years	Race: Kui-tan 	Planet: Uveto");
+	output("\nSex: Male");
+	output("\nAge: 30 Years");
+	output("\nRace: Kui-tan");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nLonely intellectual. Looking for somebody who can hold up a conversation. My interests include ancient cultures, dead languages, and dry whiskey.");
 }
@@ -2569,7 +2797,10 @@ public function extrameetFukaProfile():void
 {		
 	output("The profile picture on your screen is of a giant green eye with a rectangular pupil surrounded by pale white fur. By the looks of it, whomever took the picture didn’t know where the camera was.");
 	output("\n\nUsername: Fuka");
-	output("\nSex:???		Age:???		Race:???		Planet: Uveto");
+	output("\nSex: ???");
+	output("\nAge: ???");
+	output("\nRace: ???");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nKokeku votu. Daagu Fuka. Masa veshi go nikki toto. Masa yootu ExtraMeet profile fana go tushi. Yorrada rada, Why not try and make a connection?");
 }
@@ -2646,7 +2877,10 @@ public function extrameetScienceRulez41Profile():void
 {		
 	output("The profile picture on your screen is a full body picture of a rather nerdy looking human. His brown hair is quite unkept, and he is wearing thick round glasses. You note his arms seem to be covered in pinkish scales, and his eyes appear like reptilian slits. He is also wearing a T-shirt that reads “What’s the matter? EVERYTHING!”");
 	output("\n\nUsername: ScienceRulez41");
-	output("\nSex: Male		Age: 35 Years		Race: Human+	Planet: Uveto");
+	output("\nSex: Male");
+	output("\nAge: 35 Years");
+	output("\nRace: Human+");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nSingle man looking for an intellectual companion. Prefer things that are new and exciting that make my science boner tremble. (Real boner available as well :D)");
 }
@@ -2714,7 +2948,10 @@ public function extrameetRipped4YourPleasureProfile():void
 {		
 	output("The profile picture on your screen is of a shirtless black haired Huskar. His skin is pale, and his muscles quite well defined. It looks like he’s flexing, clearly trying to show off.");
 	output("\n\nUsername: Ripped4YourPleasure");
-	output("\nSex: Male		Age: 25 Years		Race: Huskar		Planet: Uveto");
+	output("\nSex: Male");
+	output("\nAge: 25 Years");
+	output("\nRace: Huskar");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nLike what you see ladies? Swipe right and I’ll show you more.");
 }
@@ -2793,7 +3030,10 @@ public function extrameetStormDragonProfile():void
 {		
 	output("The profile picture on your screen is a headshot of a rather striking Gryvain woman. The give away as to her species is the pair of dark horns sprouting out from her head. Her hair is bright blue, and along her hairline you notice curious runic tattoos.");
 	output("\n\nUsername: Storm_Dragon");
-	output("\nSex: Other		Age: 102 Years		Race: Gryvain	Planet: Uveto");
+	output("\nSex: Other");
+	output("\nAge: 102 Years");
+	output("\nRace: Gryvain");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nWarrior looking for a challenge. Come and test your sword against mine, if you think you’re man enough.");
 }
@@ -2894,7 +3134,10 @@ public function extrameetLoveBelow0Profile():void
 {		
 	output("The profile picture on your screen is of a rock hard canine cock. While maybe a bit larger than average, it’s nothing overly impressive.");
 	output("\n\nUsername: LoveBelow0");
-	output("\nSex: Male		Age: 24 Years		Race: Huskar	Planet: Uveto");
+	output("\nSex: Male");
+	output("\nAge: 24 Years");
+	output("\nRace: Huskar");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nHello ladies.");
 }
@@ -2905,7 +3148,10 @@ public function extrameetAssblasterProfile():void
 {		
 	output("The profile picture on your screen is an overhead selfie of a very large man of an indeterminate race. Spliced to the teeth, one thing you do take note of is a massive bulge in his pants.");
 	output("\n\nUsername: Assblaster");
-	output("\nSex: Male		Age: 45		Race: Ausar+	Planet: Uveto");
+	output("\nSex: Male");
+	output("\nAge: 45");
+	output("\nRace: Ausar+");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nLooking to meet local men for intimate relations. Recently single, so I might be a little awkward at first, but I warm up very well.");
 }
@@ -2916,7 +3162,10 @@ public function extrameetGranite75Profile():void
 {		
 	output("The profile picture on your screen is of a potted plant. Closure inspection on the fern makes you suspect it might be a drug of some kind.");
 	output("\n\nUsername: Granite75");
-	output("\nSex: Male		Age: 18 Years		Race: Huskar	Planet: Uveto");
+	output("\nSex: Male");
+	output("\nAge: 18 Years");
+	output("\nRace: Huskar");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nLooking to start selling some fine green. Swipe right to set up a meet.");
 }
@@ -2927,7 +3176,10 @@ public function extrameetSupaXstarProfile():void
 {		
 	output("The profile picture on your screen is a body shot of a slightly chubby woman. She appears human, and despite being slightly overweight has a fairly decent body.");
 	output("\n\nUsername: supaXstar");
-	output("\nSex: Female	Age: 20 Years		Race: Human		Planet: Uveto");
+	output("\nSex: Female");
+	output("\nAge: 20 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nLooking for a REAL man. Must be loyal and honest. Not here for hookups, so don’t swipe right if all you want is sex.");
 }
@@ -2938,7 +3190,10 @@ public function extrameetHall9001Profile():void
 {		
 	output("The profile picture on your screen is of... a computer monitor?");
 	output("\n\nUsername: Hall9001");
-	output("\nSex: Other		Age: 147 Years		Race: Automaton	Planet: Uveto");
+	output("\nSex: Other");
+	output("\nAge: 147 Years");
+	output("\nRace: Automaton");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nGreeting organics. I am searching for compatible persons for romantic engagements. Metrics of compatibility are measured on a 200 point scale. I do not have sexual equipment.");
 }
@@ -2949,7 +3204,10 @@ public function extrameetHelloImPaulProfile():void
 {		
 	output("The profile picture on your screen is of a reasonably attractive older man on a beach, likely a vacation photo given the planet’s lack of beaches. He’s not really that old, just older. Partially in frame is a woman, mostly cut off, but seems to be holding onto his arm.");
 	output("\n\nUsername: HelloImPaul");
-	output("\nSex: Male		Age: 42 Years		Race: Human		Planet: Uveto");
+	output("\nSex: Male");
+	output("\nAge: 42 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nExperienced man looking for local woman. Eager to meet new people and try new things. Younger women prefered.");
 }
@@ -2960,7 +3218,10 @@ public function extrameetLonely1Profile():void
 {		
 	output("The profile picture on your screen is a rather MILF-y looking woman on a beach, likely a vacation photo given the planets lack of beaches. You can tell she’s older, but still very good looking. Although you can’t see who it is, she is holding onto an arm in the picture.");
 	output("\n\nUsername: Lonely1");
-	output("\nSex: Female		Age: 40 Years	Race: Human		Planet: Uveto");
+	output("\nSex: Female");
+	output("\nAge: 40 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nLonely housewife looking for somebody willing to take me out and make me feel special. Discretion is a must.");
 }
@@ -2971,7 +3232,10 @@ public function extrameetHansiProfile():void
 {		
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: Hansi");
-	output("\nSex: Male		Age: 34 Years	Race: Kaithrit		Planet: Uveto");
+	output("\nSex: Male");
+	output("\nAge: 34 Years");
+	output("\nRace: Kaithrit");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nJust lookin’");
 }
@@ -2982,7 +3246,10 @@ public function extrameetDomme90Profile():void
 {		
 	output("The profile picture on your screen is of a very angry looking Dzaan. She’s beautiful, but her expression reads more as hostile rather than sexy. Like, really hostile.");
 	output("\n\nUsername: Domme_90");
-	output("\nSex: Other		Age: 82 Years	Race: Dzaan		Planet: Uveto");
+	output("\nSex: Other");
+	output("\nAge: 82 Years");
+	output("\nRace: Dzaan");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nWho the hell wants to live on a frozen shit stain like this? On world for a week, looking for somebody to keep my bed warm.");
 }
@@ -2993,7 +3260,10 @@ public function extrameetBigDickRickProfile():void
 {		
 	output("The profile picture on your screen is of a man holding his cock next to a ruler. Apparently, he’s 10 inches long. Good for him!");
 	output("\n\nUsername: BigDickRick");
-	output("\nSex: Male		Age: 34 Years		Race: Human		Planet: Uveto");
+	output("\nSex: Male");
+	output("\nAge: 34 Years");
+	output("\nRace: Human");
+	output("\nPlanet: Uveto");
 	output("\n\nBio:");
 	output("\nThis can be all yours if you swipe right. No dudes, no exceptions. I don’t care how cute you are.");
 }

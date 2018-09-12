@@ -495,24 +495,24 @@ public function willowSexScenes(sceneChoice:int):void
 	
 	//Cock check shit
 	var cIdx:int = pc.biggestCockIndex();
-	var cIdx2:int = pc.biggestCockIndex2(); //Returns 0 if pc doesn't have 2 cocks
-	var cIdx3:int = pc.biggestCockIndex3(); //Returns 0 if pc doesn't have 3 cocks
+	var cIdx2:int = (pc.cocks.length >= 2 ? pc.biggestCockIndex2() : -1); //Returns 0 if pc doesn't have 2 cocks
+	var cIdx3:int = (pc.cocks.length >= 3 ? pc.biggestCockIndex3() : -1); //Returns 0 if pc doesn't have 3 cocks
 	
 	var cock1:String = "[pc.cock " + cIdx + "]";
 	var cock2:String = "";
 	var cock3:String = "";
-	if (cIdx2 == 0) cock2 = "[pc.tailCock]";
-	else cock2 = "[pc.cock " + cIdx2 + "]";
-	if (cIdx3 == 0) cock3 = "[pc.tailCock]";
-	else cock3 = "[pc.cock " + cIdx3 + "]";
+	if(cIdx2 >= 0) cock2 = "[pc.cock " + cIdx2 + "]";
+	else if (pc.hasTailCock()) cock2 = "[pc.tailCock]";
+	if(cIdx3 >= 0) cock3 = "[pc.cock " + cIdx3 + "]";
+	else if (pc.hasTailCock() && pc.tailCount > 1) cock3 = "[pc.tailCock]";
 	
 	//Knot check shit
 	var knot:Boolean = false;
 	var knots:Boolean = false;
-	if(cIdx)
+	if(cIdx >= 0)
 	{
 		if(pc.hasKnot(cIdx)) knot = true;
-		if(cIdx2 > 0)
+		if(cIdx2 >= 0)
 		{
 			if(pc.hasKnot(cIdx2)) knot = true;
 			if(pc.hasKnot(cIdx)) knots = true;
@@ -566,7 +566,7 @@ public function willowSexScenes(sceneChoice:int):void
 		if (cIdx >= 0) output("[pc.biggestCock]");
 		else output("[pc.hardlightCock]");
 		output(" through the lips of her dripping pussy before slowly sinking your entire length in with one slow thrust. ");
-		if (cIdx2 > 0) output("Your other cock slides over her butt, rubbing between the soft cheeks of her ass and against her twitching asshole.");
+		if (cIdx2 >= 0) output("Your other cock slides over her butt, rubbing between the soft cheeks of her ass and against her twitching asshole.");
 		output("Willow shivers and moans, feeling every inch of her [pc.master]’s cock filling her tight hole. Her pussy wraps around your ");
 		if (cIdx >= 0) output("[pc.biggestCock]");
 		else output("[pc.hardlightCock]");
@@ -583,7 +583,7 @@ public function willowSexScenes(sceneChoice:int):void
 			output("\n\nWith a roar, you grab her tail and slam into her one last time,your [pc.balls] unloading everything they have to pack this tight pussy full of [pc.cumType].");
 			if (knot || knots)output("Your knot swells up in preparation and you brutally fuck the knot into her, Willow screaming in pain and pleasure.");
 			output("Your dick spurts ropes and ropes of [pc.cumColor] cum into her womb"); 
-			if (cIdx2 > 0) output(" and over her back");
+			if (cIdx2 >= 0) output(" and over her back");
 			output(", filling it up so much that Willow simply can’t hold all of it in, ");
 			if (knot || knots)output("but your swollen knot ensures that it stays there.");
 			else output("and some of it spurts back out around your [pc.biggestCock], dripping onto the bed sheets."); 
@@ -640,7 +640,7 @@ public function willowSexScenes(sceneChoice:int):void
 		if (cIdx >= 0) output("[pc.biggestCock]");
 		else output("[pc.hardlightCock]");
 		output(" into her pussy before bottoming out in one hard thrust. ");
-		if (cIdx2 > 0) output("Your other "+ cock2 +" slides up through the crack of her ass, the soft flesh serving to provide you with a buttjob.");
+		if (cIdx2 >= 0) output("Your other "+ cock2 +" slides up through the crack of her ass, the soft flesh serving to provide you with a buttjob.");
 		output("\n\nWillow lets out a loud moan of pure bliss, finally getting to feel her [pc.master]’s [pc.biggestCock] after all the teasing [pc.manWoman] inflicted. You spank her ass hard, making the flesh ripple and eliciting a kinky moan from Willow. You pull out, spank her other cheek and slam back in, alternating between thrusting in and slapping. The flesh reddens under your open palm. Hisses of pain and moans of pleasure fall out of Willow’s mouth, her long, demonic tongue hanging out as her eyes cross.");
 		output("\n\nYou grab her breasts, squeezing and twisting her nipples as you pick up the pace, pounding her harder and faster. She lets out a sound that’s halfway between a scream and a moan, cumming as you do so. Her toes curl and her pussy tightens up as her girlcum sprays over your thighs. Damn, she’s a squirter!");
 		if (cIdx >= 0)
@@ -667,8 +667,8 @@ public function willowSexScenes(sceneChoice:int):void
 		if (cIdx >= 0)
 		{
 			output("Your ");
-			if (cIdx2 > 0) output("[pc.cocks] stiffen");
-			else output ("[pc.cock] stiffens");
+			if (cIdx2 >= 0) output("[pc.cocks] stiffen");
+			else output ("[pc.cock " + cIdx + "] stiffens");
 			output(" again at the closeness and warmth of her body.");
 		}
 		output("She’s just too damn sexy... You wrap an arm around her and settle in for a nap.");
@@ -707,7 +707,7 @@ public function willowSexScenes(sceneChoice:int):void
 		if (cIdx >= 0) output("[pc.biggestCock]");
 		else output("[pc.hardlightCock]");
 		output(" into her pussy."); 
-		if (cIdx2 > 0) output(" Your other "+ cock2 +" rubs over her clit, stimulating her even further.");
+		if (cIdx2 >= 0) output(" Your other "+ cock2 +" rubs over her clit, stimulating her even further.");
 		output(" She moans loudly, shuddering as her body finally receives the cock it has been craving. Her walls wrap tightly around your ");
 		if (cIdx >= 0) output("[pc.biggestCock]");
 		else output("[pc.hardlightCock]");
@@ -841,7 +841,7 @@ public function willowSexScenes(sceneChoice:int):void
 		output("\n\nYou wake in a few hours, Willow still fast asleep, your ");
 		if (cIdx >= 0)
 		{
-		 	output(""+ cock1 +"");
+		 	output(cock1);
 			if (knot || knots)output(" and knot");
 			output(" having deflated and slipped out on its own.");
 		}
@@ -982,10 +982,10 @@ public function willowSexScenes(sceneChoice:int):void
 		if(!pc.isNude())output("You step back for a moment as you take off your [pc.gear] and toss it to the side before getting back on the bed behind her, y");
 		else output("Y");
 		output("our [pc.cocks] hard and ready. You rub ");
-		if (cIdx2 > 0)output("them");
+		if (cIdx2 >= 0)output("them");
 		else output("it"); 
 		output("back and forth under her dripping pussy, getting ");
-		if (cIdx2 > 0)output("them");
+		if (cIdx2 >= 0)output("them");
 		else output("it");
 		output(" nice and lubed up before pressing one into her tight backdoor. With a single long, slow thrust, you sink to the hilt. She lets out a loud, drawn out moan as you drive in, her ass spasming and twitching around your length as her back arches, trying to ease the penetration; but the bonds prevent her from going much further. She shakes and shudders when you finally stop, her anal walls rippling around your ");
 		if (cIdx >= 0) output("[pc.biggestCock]");
@@ -1017,7 +1017,7 @@ public function willowSexScenes(sceneChoice:int):void
 		output("\n\nYou wake a few hours later and find Willow still curled up next to you. During the night, she shifted around and is now facing you. She is sleeping on her hands, her hair falling across her face as she smiles slightly, dreaming about something happy. You smile a bit too, not wanting to move and disturb the cute little succubus. However, it isn’t long before she wakes, blinking the sleep out of her eyes. As soon as they lock onto you the smile on her face grows even wider. She leans over and plants a kiss on your lips. <i>“Last night was amazing, [pc.master]. As always!”</i> She murmurs, nuzzling your cheek.");
 		output("\n\nYou kiss her back and wink. <i>“I aim to please, my little slut. I’m pretty sure we kept the neighbours up last night...”</i> You murmur, grinning. She giggles again and reaches down under the covers to poke your [pc.cocks].");
 		output("\n\n<i>“Not surprising. You’ve got the best");
-		if (cIdx2 > 0)output(" dicks");
+		if (cIdx2 >= 0)output(" dicks");
 		else output(" dick");
 		output(" around, [pc.master]!”</i> She says. <i>“Not to mention you’re horny almost all the time,”</i> she adds.");
 		output("\n\nYou chuckle and roll out of the bed");
@@ -1085,8 +1085,8 @@ public function willowSexScenes(sceneChoice:int):void
 		output("\n\n<i>“" + pc.mf("Masteeerrr!", "Mistreeess!") + "I’m so close! Just a little longer! Please!”</i> She whines.");
 		output("\n\n<i>“Not until you tell me what you were about to say!”</i> You say, grinning at her. She shakes her head and turns away, her hair bouncing as she does so. You wait until she winds down from her near-orgasm before you resume the teasing, building her closer and closer to her orgasm but never letting her pop. It doesn’t take long and by the fourth denied orgasm, she finally screams in frustration.");
 		output("\n\n<i>“Yours! I was about to say just yours, okay!? My pussy is always needy for your ");
-		if (cIdx2 > 0) output("[pc.cocks]");
-		else output("[pc.cock] and [pc.tailCock]");
+		if (cIdx2 >= 0) output("[pc.cocks]");
+		else output("[pc.cock " + cIdx + "] and [pc.tailCock]");
 		output(". Now please stop teasing me and fuck me [pc.master]! Please!”</i> She yells.");
 		output("\n\n<i>“Well why didn’t you say so earlier?”</i> You say with a grin, chuckling as you stand and pat her ass. <i>“A good slave needs to be rewarded for being so in love with her [pc.master]’s cock!”</i> You say");
 		if(!pc.isNude())output(" as you take off your [pc.gear] and toss it to the side");
@@ -1136,22 +1136,22 @@ public function willowSexScenes(sceneChoice:int):void
 		output("\n\n<i>“So... [pc.master]...As always... I’m yours... So wh-what are you going to d-do with your subby little sl-slut?”</i> She stammers. Just the mere fact that you’re this close to her is making her nervous.");
 		output("\n\n<i>“Hmm... I think I’ll test out just how much that pussy of yours can take...”</i> You murmur, grinding your already hard [pc.cocks] against her moist slit. She lets out a breathy little moan and lifts her hips a bit, grinding back against you.");
 		output("\n\n<i>“S-so, you’re saying you wanna shove ");
-		if (cIdx2 > 0)output("b-both of those[pc.cocks]");
-		else output("that [pc.cock] and [pc.tailCock]");
+		if (cIdx2 >= 0)output("b-both of those [pc.cocks]");
+		else output("that [pc.cock " + cIdx + "] and [pc.tailCock]");
 		output(" into my t-tiny, tight pussy?”</i> She asks, wrapping her arms around your neck as she continues to grind against you.");
 		output("\n\nYou practically tear her clothes off before replying. <i>“Yep. That’s exactly what I’m saying...”</i> Pressing your [pc.biggestCock] to her dripping wet pussy, you can smell her arousal in the air. It spurs you on to slam the rest of your length in, eliciting a lusty moan from Willow as you stretch her wide open. You let it sit for a moment before starting a slow back and forth motion, rolling your hips as you bend your head to suck on one of her nipples. Moaning, she throws her head back, her walls squeezing tight around your [pc.cocks] as you grind it slowly in and out of her tight love canal. Your "+ cock1 +" grinds against her clit, stimulating her even further. Knowing how much of a buttslut she is, your hand moves down from her wrist and wriggles under her back. Eventually, you find your way to her asshole and force three of your fingers in. Her back arches as she gasps loudly at the penetration, moaning at your subsequent thrusting, her pussy spasming around your [pc.biggestCock]. You keep up this treatment for a few minutes, grinding back and forth slowly as you finger her ass, before you decide it is time for the main course.");
 		output("\n\nYou line your "+ cock1 +" with her dripping pussy and slowly start pushing it in, careful to go slow lest you hurt her. She grunts in discomfort at the initial penetration, but soon moans like a whore, her toes curling against the bedsheets as you sink the rest of your "+ cock1 +" into her hole. It’s a rather tight fit, of course, what with there being two cocks in one hole, but Willow doesn’t seem to mind. She is babbling incoherently as her vagina clamps down like a vice around your [pc.cocks], milking them for their cum. You rest for a minute, more to fight off your own orgasm than to let her adjust, before you start moving again. You maintain a slow pace at first and Willow’s tongue lolls out of her mouth, her eyes rolling back into her head when you start to move again. You continue the slow grinding, gyrating your hips a little to try and get her dripping wet pussy to loosen up a little. She pants and moans like a bitch in heat at the sensation of being stretched to capacity as two dicks fill her tight pussy.");
 		output("\n\nYour ministrations pay off and she relaxes a bit more, letting you pick up the pace. You slam into her, mashing your pelvises together faster and harder. She lets out strangled moans and gasps as your ");
-		if (cIdx2 > 0)output("[pc.cocks]");
-		else output("[pc.cock] and [pc.tailCock]");
+		if (cIdx2 >= 0)output("[pc.cocks]");
+		else output("[pc.cock " + cIdx + "] and [pc.tailCock]");
 		output(" hit her cervix with every thrust, her mind going blank with pleasure. <i>“Yes! Yes! Fuck me [pc.master]! Harder! Ah! Fuck! Yes! Your ");
-		if (cIdx2 > 0)output("[pc.cocks]");
-		else output("[pc.cock] and [pc.tailCock]");
+		if (cIdx2 >= 0)output("[pc.cocks]");
+		else output("[pc.cock " + cIdx + "] and [pc.tailCock]");
 		output(" feel so good inside me!”</i> Willow screams, bucking her hips against you, her already tight pussy clamping down even harder.");
 		output("\n\nYou groan and start fucking her even harder, your hips a blur of motion as you piston into her vagina. Her legs lock around your [pc.hips], keeping you there as you rut your little beta like an animal. Your hand goes down from her other wrist and grabs at her breast, squeezing it and flicking the nipple. Your other hand is still hard at work, roughly thrusting three fingers into her ass. Her moans hit a higher pitch and you feel her body start to tense up in preparation for a massive orgasm. You help it along of course, by bending your head down and kissing her, your tongue worming its way into her mouth.");
 		output("\n\nAs you predicted, this pushes her over the edge and she explodes into another orgasm, her eyes rolling back into her head as she screams in pleasure, squirting her cum all over your [pc.legs], her pussy tightening up even further as it wrings your ");
-		if (cIdx2 > 0)output("[pc.cocks]");
-		else output("[pc.cock] and [pc.tailCock]");
+		if (cIdx2 >= 0)output("[pc.cocks]");
+		else output("[pc.cock " + cIdx + "] and [pc.tailCock]");
 		output(" for their cum. You growl in pleasure at the almost painful tightness and slam into her a few more times before blowing your load, deep. She moans loudly and creams herself again as she feels your [pc.cumType] flow into her womb. "); 
 		if (pc.cumQ() >= 4000) output(" bloating her stomach and giving her a large, jiggly cum gut.");
 		output("\n\nWith a groan, you slowly lay down atop her. <i>“That... was intense.”</i> You say, panting as you wind down from your orgasm.");
@@ -1181,23 +1181,23 @@ public function willowSexScenes(sceneChoice:int):void
 		{
 			output(" shedding your [pc.gear] as you go,");
 			output(" letting your ");
-			if (cIdx2 > 0)output("[pc.cocks]");
-			else output("[pc.cock]");
+			if (cIdx2 >= 0)output("[pc.cocks]");
+			else output("[pc.cock " + cIdx + "]");
 		}
 		output(" swing free. Willow eyes them with lust in her eyes, her mouth parting slightly. You grin and rub your hands over her thighs, before you let your phalluses flop onto her pussy and start grinding back and forth. She moans as they rub over her clit and tries to grind back against you, wanting your dicks in her. Well, eager slaves like her should be rewarded, right?");
 		output("\n\nYou lower your hips and thrust your [pc.biggestCock] into her tight hole. She moans loudly and her pussy, already dripping wet from the teasing, starts spasming and sucking your cock in, her walls squeezing your dick like a glove. Moaning, you roughly slam the rest of your length in, making her squeal. You start grinding back and forth, burying your [pc.biggestCock] in her squeezing, wringing pussy, moaning at the sensation of her hot, wet walls sucking you in. You fuck her at a normal pace, slamming in fast and pulling out slowly. She moans with every thrust, looking at you with lusty eyes, her breasts and ass jiggling with the impacts. The mere sight of that face, with her lewd, lusty gaze, is enough to make you want to rut her like an animal and fill her up with cum!");
 		output("\n\nBut, you wait. It wouldn’t do to ruin all the fun before the climax... ");
 		output("\n\nYou take hold of your ");
-		if (cIdx2 > 0)output("other "+ cock2 +"");
+		if (cIdx2 >= 0)output("other "+ cock2);
 		else output("[pc.tailCock] and slowly line it up with her pussy."); 
 		if(flags["WILLOW_DBLVAG_CUFFS"] == undefined)
 		{
 		 	output("Her eyes go wide. <i>“M-[pc.master]? I- Uh- I’m not sure they’re going to f- fit...”</i> She says, gulping.");
 			output("\n\n<i>“Just relax and they will.”</i> You murmur, pressing the tip of your ");
-			if (cIdx2 > 0)output(""+ cock2 +"");
+			if (cIdx2 >= 0)output(cock2);
 			else output("[pc.tailCock]");
 			output(" to her pussy along with the other phallus already there. She nods, taking a deep breath to try and relax as she looks on, her body shivering with anticipation. Your ");
-			if (cIdx2 > 0)output(""+ cock2 +"");
+			if (cIdx2 >= 0)output(cock2);
 			else output("[pc.tailCock]");
 			output(" spreading her entrance wide open and she grunts a little in discomfort, barely managing to fight off the urge to squeeze down on your dicks. Every inch you push inside elicts a shudder and moan from Willow, but eventually you manage to bottom out. The moment you do so, however, her pussy squeezes your dicks so hard you feel like they’re going to pop off!");
 			output("\n\n<i>“Ugh! Fuck! Willow! Loosen up!”</i> You grunt, giving her none-too-gentle slaps across her ass as you struggle not to cum.");
@@ -1208,8 +1208,8 @@ public function willowSexScenes(sceneChoice:int):void
 		{
 			output("\n\nA slow grin spreads across her face. <i>“Again, [pc.master]? You really like feeling my walls squeeze down nice and hard around you as you force your junk into my box, don’t you?”</i> She says, giggling as you groan at her pun.");
 			output("\n\nYou shake your head and sink your ");
-			if (cIdx2 > 0)output("[pc.cocks]");
-			else output("[pc.cock] and [pc.tailCock]");
+			if (cIdx2 >= 0)output("[pc.cocks]");
+			else output("[pc.cock " + cIdx + "] and [pc.tailCock]");
 			output(" into her pussy. She lets out a long, loud, slutty moan as your cocks sink into her and looks at you with eyes glazed over with lust, panting slightly as she looks deeply into your eyes.");
 		}
 		output("\n\nGiving her a moment to adjust, you slowly start grinding back and forth in short thrusts, which makes her moan a little as you work her vagina out, giving it a nice stretch. You gyrate your hips each time you hilt, loosening her up further so you can really start to pound away at her.");
@@ -1217,17 +1217,17 @@ public function willowSexScenes(sceneChoice:int):void
 		output("\n\n<i>“Please what...?”</i> You ask, stopping your thrusting to look down at her, a smirk on your face.");
 		output("\n\n<i>“[pc.Master], p-please, fuck me harder!”</i> Willow moans.");
 		output("\n\n<i>“Mm... Beg for it. I want to hear you begging like a good, slutty little slave.”</i> You growl, pulling back so your ");
-		if (cIdx2 > 0)output("[pc.cocks]");
+		if (cIdx2 >= 0)output("[pc.cocks]");
 		else output("Both your dicks");
 		output(" are positioned right at the entrance to her pussy, the tips barely spreading her hole open.");
 		output("\n\n<i>“Ah! I- I- want your cocks, [pc.master]! I want to feel your ");
-		if (cIdx2 > 0)output("[pc.cocks]");
-		else output("[pc.cock] and [pc.tailCock]");
+		if (cIdx2 >= 0)output("[pc.cocks]");
+		else output("[pc.cock " + cIdx + "] and [pc.tailCock]");
 		output(" pounding away at my slutty pussy! I want to cum just from your cocks, [pc.master]!”</i> Willow squeals.");
 		output("\n\nYou bend down and give her a little kiss on the lips as you huskily whisper into her ear. <i>“Good girl.”</i> With that, you draw back and start slamming into her hard and fast.");
 		output("\n\nWillow’s eyes go wide and she gasps loudly at the sudden change in pace, which is immediately followed by a slutty moan as the cocks she loves fill her pussy. She cums almost immediately, her eyes rolling back as femcum sprays over her thighs. You don’t let up, continuing to rail her pussy like a [pc.manWoman] possessed. She cries out again and again in bliss as your cocks fill her, toes curling in the air behind you as her pussy squeezes and wrings your ");
-		if (cIdx2 > 0)output("[pc.cocks].");
-		else output("[pc.cock] and [pc.tailCock].");
+		if (cIdx2 >= 0)output("[pc.cocks].");
+		else output("[pc.cock " + cIdx + "] and [pc.tailCock].");
 		output("You’re treated to a delightful view of her breasts bouncing and jiggling due to the hard thrusting and you can’t help but bend down to lock your lips around one of the nipples, sucking and grazing your teeth along the sensitive flesh. Her moans hit a higher pitch at your ministrations, her pussy tightening up again as her body prepares for another orgasm. You pick up the pace, ramming into her even faster as you too, near orgasm.");
 		output("\n\nFinally, with a loud, sweet cry, Willow hits her orgasm and another gush of girlcum sprays across your thighs. Roaring, you grab her ass and slam in, blowing your load deep inside her. Ropes and ropes of [pc.cumColor] [pc.cumType] splatter her walls"); 
 		if (pc.cumQ() >= 4000) output(", bloating her stomach up to epic proportions thanks to your prodigious load");
@@ -1283,24 +1283,24 @@ public function willowSexScenes(sceneChoice:int):void
 		else if(pc.isMischievous()) output("\n\n<i>“Gooood. Just the way I like it!”</i> You laugh, making her groan and slap a palm to her face. Again.");
 		else output("\n\n<i>“Well, ready or not, I don’t care. I need to fuck!”</i> You growl, tightening your grip around her hips, making Willow gulp in anticipation.");
 		output("\n\nYou slowly sink your ");
-		if (cIdx2 > 0)output("[pc.biggestCock] and "+ cock2 +"");
-		else output("[pc.cock] and [pc.tailCock]");
+		if (cIdx2 >= 0)output("[pc.biggestCock] and "+ cock2);
+		else output("[pc.cock " + cIdx + "] and [pc.tailCock]");
 		output(" into her wet, warm and welcoming pussy. Willow moans obscenly as she’s stretched wide, her long nails digging into your​ back as her eyes roll back into her head.");
 		output("\n\n<i>“Yeeeeesss! Oh fuck, [pc.master] I love your cocks!”</i> She groans, moaning and squealing happily as you slowly start grinding back and forth, your cocks sinking deeper and deeper into her pussy.");
 		output("\n\nBottoming out, you start gyrating your hips in circles, stretching her out so she can take the third cock in. She coos at the feeling of your ");
-		if (cIdx2 > 0)output("[pc.biggestCock] and "+ cock2 +"");
-		else output("[pc.cock] and [pc.tailCock]");
+		if (cIdx2 >= 0)output("[pc.biggestCock] and "+ cock2);
+		else output("[pc.cock " + cIdx + "] and [pc.tailCock]");
 		output("stretching her out, grinding back against you, trying to get as much pleasure as she can. But... you have other plans.");
 		output("\n\nYou pull out, immediately spanking her ass, making her jerk forwards with a gasp. It turns into a low, sexy purr as she looks over her shoulder. <i>“Are you going to do it now, [pc.master]? Are you going to fill my slutty pussy with your ");
 		if (pc.cocks.length == 3) output("[pc.cocks]");
 		else if (pc.cocks.length == 2) output("[pc.cocks] and [pc.tailCock]");
-		else output ("[pc.cock] and [pc.tailCocks]");
+		else output ("[pc.cock " + cIdx + "] and [pc.tailCocks]");
 		output("? Hmm? Come on... I know you want it.”</i> She purrs, swaying her ass seductively back and forth.");
 		output("\n\nYou immediately jump her, growling and grabbing her breasts as you pull her back against you. You ram your ");
-		if (cIdx2 > 0)output("[pc.biggestCock] and "+ cock2 +"");
-		else output("[pc.cock]");
+		if (cIdx2 >= 0)output("[pc.biggestCock] and "+ cock2);
+		else output("[pc.cock " + cIdx + "]");
 		output("home, making her scream with pleasure as you enter her hard and fast. You slow down just enough to place your ");
-		if (pc.cocks.length >= 3) output(""+cock3+"");
+		if (pc.cocks.length >= 3) output(cock3);
 		else if (pc.cocks.length == 2) output("[pc.tailCock]");
 		else output("[pc.tailCocks]");
 		output(" at the entrance to her pussy, then with the next thrust you slam it in.");
