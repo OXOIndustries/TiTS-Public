@@ -3751,7 +3751,7 @@ public function crotchStuff(forTarget:Creature = null):void
 	}
 	//BUNGHOLIO
 	if(target.ass != null) {
-		outputRouter("\n\n" + (target == pc ? "You have":"[target.Name] has") + " one " + target.assholeDescript(true) + ", placed between your cheeks where it belongs");
+		outputRouter("\n\n" + (target == pc ? "You have":"[target.Name] has") + " one " + target.assholeDescript(true) + ", placed between " + (target == pc ? "your":"[target.hisHer]") + " cheeks where it belongs");
 		if(target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED))
 		{
 			if(target.libido() < 50 && target.lust() < 50) outputRouter(" with thin streams of lube leaking out of its edges.");
