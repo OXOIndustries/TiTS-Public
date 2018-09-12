@@ -159,7 +159,10 @@
 			
 			this._isLoading = false;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "SYRI";
+		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.physiqueRaw = 13;
