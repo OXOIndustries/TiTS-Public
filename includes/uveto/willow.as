@@ -185,7 +185,7 @@ public function willowFood():void
 	if (flags["WILLOW_MET"] == 0) 
 	{
 		output("<i>“Right away, [pc.sir]!”</i> She says, pulling out a tablet, her fingers poised over the screen and looking at you expectantly.");
-		output("You decide to order a nice grilled cheese sandwich. It arrives quickly and you enjoy the gooey cheese with every bite as you watch the waitress run around serving people.");	
+		output("\n\nYou decide to order a nice grilled cheese sandwich. It arrives quickly and you enjoy the gooey cheese with every bite as you watch the waitress run around serving people.");	
 		if (flags["WILLOW_FLIRT"] != 0 && (pc.hasCock() || pc.hasHardLightStrapOn())&&!pc.isTaur()) addButton(1, "Flirt", willowFlirt);// Can still flirt with Willow if you never have this encounter.
 		else if (pc.isTaur()) addDisabledButton(1,"Flirt","Flirt","Willow doesn’t seem interested in taurs.");
 		else if(flags["WILLOW_FLIRT"] != 0) addDisabledButton(1,"Flirt","Flirt","You should get a cock or a strapon before you do this.");
