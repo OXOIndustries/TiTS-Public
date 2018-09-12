@@ -1466,6 +1466,32 @@ public function nymFoeInjection(target:Number = 0,amount:Number = 0):void
 		pc.addStatusValue("Nym-Foe Injections",target,amount);
 	}
 }
+public function autoFillNymFoeBoobjection(bRow:int = 0):void
+{
+	var tEventCall:Function = (function(c_bRow:int):Function
+	{
+		return function():void
+		{
+			var txt:String = "";
+			var amount:Number = pc.statusEffectv3("Nym-Foe Injections");
+			
+			txt += "You feel a pulsing sensation at your " + (c_bRow < 5 ? "chest" : "midsection") + " all of a sudden. Your newly grown " + pc.breastDescript(c_bRow) + " seem to be " + (amount > 0 ? "swelling with semi-firm mass" : "shrinking") + "... The bio-silicone implants housed in your upper body must be adjusting to the new anatomy and occupying the space to even things out. When the feeling subsides, you experimentally poke and prod your " + (c_bRow < 5 ? "chest" : "midriff") + ", taking in your new size.";
+			
+			pc.breastRows[c_bRow].breastRatingMod += amount;
+			
+			txt += " <b>Your " + num2Ordinal(c_bRow + 1) + " row now has " + pc.breastCup(c_bRow) + " breasts!</b>";
+			
+			clearOutput();
+			showBust("");
+			showName("BIO-\nSILICONE");
+			author("Jacques00");
+			output(txt);
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+		}
+	})(bRow);
+	eventQueue.push(tEventCall);
+}
 
 public function nymFoeUninjection():void
 {
@@ -1892,7 +1918,7 @@ public function fuckNymFoe2():void
 		if(pc.cumQ() >= 700) output(" The bliss of your peak surges through your engorged meat, flooding the nurse’s valley and dribbling fat blobs of excess from every the wobbling seam of her cinched bosom.");
 
 		output("\n\nYou buck a few more times, letting Nym-Foe’s Z-cup mammaries milk you of every last drop before finally backing off of her. No longer tightly compressed by your legs, the automaton’s chest settles back into its hemispherical bulk, though freshly glistening with your [pc.cumVisc] jizz. It seems more than a little of your seed made its way to the robot’s face, her delicate features dripping with a sticky mask of lust. She lets out a deep sigh of contentment and settles back to reboot, happy to have been able to assist you in all your medical needs.");
-		//[go to <i>“Merge”</i>]
+		//[go to “Merge”]
 	}
 	else
 	{
@@ -1929,7 +1955,7 @@ public function fuckNymFoe2():void
 		if(pc.cumQ() >= 1000) output(" The bliss of your peak surges through your engorged meat, flooding the nurse’s valley and dribbling fat blobs of excess from every the wobbling seam of her cinched bosom.");
 
 		output("\n\nYou buck a few more times, letting Nym-Foe’s Z-cup mammaries milk you of every last drop before finally backing off of her. No longer tightly compressed, the automaton’s chest settles back into its hemispherical bulk, though freshly glistening with your [pc.cumVisc] jizz. It seems more than a little of your seed made its way to the robot’s face, her delicate features dripping with a sticky mask of lust. She lets out a deep sigh of contentment and settles back to reboot, happy to have been able to assist you in all your medical needs.");
-		//[Go to <i>“merge”</i>]
+		//[Go to “merge”]
 		output("\n\nThe tireless android keeps at you for a full hour, somehow managing to keep one climax flowing into the next without a break between them. By the end, the two of you are utterly soaked. Your whole body trembles with exhaustion, even slight movements threatening to send you into another spasm of aching bliss. As your mind gradually finds its way back into your head, you blink and look down at the now still nurse. The blue screens of her eyes have small white text in them that reads <i>“Installing Updates.”</i>");
 		output("\n\nA strangled laugh escapes your raw throat and you can’t help but to chuckle with sore mirth. It’s a miracle she automatically shut down or the two of you might still be at it until you orgasmned yourself into a coma. Weakly, pull yourself up and struggle into your [pc.gear]. A quick check reveals your pexiga close at hand. She had apparently been watching the two of you the whole time, if the puddle of sweet-scented drool is any indication.");
 		processTime(50);
@@ -2250,13 +2276,13 @@ public function leaveTheDollmaker():void
 
 //Harvested Parts
 //Badger Dildo w/ Musk (sex toy, used with wank menu, on Bimbo Penny, and bimbo pexiga)
-	//"A jet black, 11”</i> dildo that seems to be a perfect replica of Doctor Badger’s infamous tool. It is filled with some highly scented Badger musk, designed to drive bimbos wild.”</i>
+	//"A jet black, 11" dildo that seems to be a perfect replica of Doctor Badger’s infamous tool. It is filled with some highly scented Badger musk, designed to drive bimbos wild."
 //	Sell Price: 300
 //Bio-Magnetic Vibes (consumable attack item, applies Lust DoT, 100% hit, robots immune)
-	//"A handful of thumb-sized, egg-shaped vibes. Once activated and thrown at an organic target, they’ll stick as if glued and vibrate so fast they’re guaranteed to bring out the slut in just about anybody! Unfortunately, they burn themselves out after just one use.”</i>
+	//"A handful of thumb-sized, egg-shaped vibes. Once activated and thrown at an organic target, they’ll stick as if glued and vibrate so fast they’re guaranteed to bring out the slut in just about anybody! Unfortunately, they burn themselves out after just one use."
 //	Sell Price: 200
 //IQ B-Gone syringe (key item, turn in to Penny for a reward)
-//	"A needle filled with Badger’s notorious IQ B-Gone formula. This stuff is dangerous! Maybe somebody in law enforcement might have a use for it?”</i>
+//	"A needle filled with Badger’s notorious IQ B-Gone formula. This stuff is dangerous! Maybe somebody in law enforcement might have a use for it?"
 
 public function turnInIQBGoneToPenpen():void
 {
@@ -2334,7 +2360,7 @@ public function gushBadEndWithNymFoe():void
 	else if(pc.isMischievous()) output("\n\nYou suppress a moan long enough to look up at the android with an expression of complete confusion. <i>“What do you mean? I’m just retaining a little water.”</i> You grant yourself a brief snicker before the orgasmic milking begins anew. <i>“I don’t suppose you’ve got a milker function?”</i>");
 	else output("\n\n<i>“Fucking yes I’m in distress! You sprayed some damned chemical garbage all over me and now I look like I’ve got moons strapped to my chest! Fix it!”</i>");
 
-	output("\n\nShe blinks, watching you intently. <i>“Request for assistance confirmed. Deploying immobilization countermeasures.”</i> Her tail pushes its way up to your [pc.ass] and the tip pokes in with a slight pinch. <i>“Do not be alarmed. Minor modifications are being made to acclimate you to your upgrades.”</i> She gently strokes your [pc.hair], a peculiar look on her face.");
+	output("\n\nShe blinks, watching you intently. <i>“Request for assistance confirmed. Deploying immobilization countermeasures.”</i> Her tail pushes its way up to your [pc.ass] and the tip pokes in with a slight pinch. <i>“Do not be alarmed. Minor modifications are being made to acclimate you to your upgrades.”</i> She gently strokes your [pc.hair].");
 	output("\n\nThe bimbo-proportioned nurse snuggles up against your gigantic, and still growing endowments, with a peculiar look on her face. <i>“Oh, I almost forgot!”</i> Nym-Foe produces a lollipop from her hefty cleavage, and holds the candy out to you with a smile. <i>“Because you’ve been a good " + pc.mf("boy","girl") + ". Now. How would you like to discuss your payment?”</i>");
 
 	processTime(15);

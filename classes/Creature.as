@@ -11677,6 +11677,10 @@
 		public function createBreastRow(): Boolean {
 			if (breastRows.length >= 10) return false;
 			var newBreastRow:BreastRowClass = new BreastRowClass();
+			
+			// Auto-insert silicone
+			if((this is PlayerCharacter) && statusEffectv3("Nym-Foe Injections") != 0) kGAMECLASS.autoFillNymFoeBoobjection(breastRows.length - 1);
+			
 			breastRows.push(newBreastRow);
 			return true;
 		}
