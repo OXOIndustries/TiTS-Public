@@ -2543,6 +2543,11 @@ public function showerOptions(arg:Array):void
 			addButton(showerSex, "Anno", annoFollowerShowerSex);
 			showerSex++;
 		}
+        if (ramisIsCrew() && !looksFemaleToRamis() && flags["RAMIS_SEX_ROLE"] != undefined)
+        {
+            addButton(showerSex, "Ramis", ramisBathingCats, "shower");
+            showerSex++;
+        }
 		if (showerSex > 0) output("Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
 		else output("You don’t seem to have any crew members onboard who can have shower sex with you at the moment.");
 		addButton(14, "Back", showerMenu, special);
