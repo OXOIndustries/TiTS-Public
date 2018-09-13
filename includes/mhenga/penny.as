@@ -136,7 +136,7 @@ public function pennyRoomDesc():void {
 		}
 		//Repeat Pre-Problem Encounter
 		else {
-			output("\n\nPenny is sitting behind her desk like normal. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
+			output("\n\nPenny is sitting behind her desk as usual. Scratching at the fur under her overlarge ear in consternation, the busty fennec fox is grumbling at some notes. She looks to be having a problem with the locals.");
 		}
 		this.addButton(0,"Need Help?",askPennyIfSheNeedsHelp);
 	}
@@ -221,7 +221,7 @@ public function getAnIntercom():void {
 	clearOutput();
 	showPenny();
 	output("You suggest she toss an intercom into the cell and save herself a lot of time and effort.");
-	output("\n\nPenny sighs. <i>“Don’t you think I thought of that? The primitives don’t even know what to do with them. The first ’com got smashed on the wall. When I tried giving them a baby monitor, they just kept trying to get me to come fuck them, and they promised they’d tell me everything I needed to know...”</i> She shakes her head. <i>“No, I need to solve this in a way that doesn’t end with me on my back.”</i> ");
+	output("\n\nPenny sighs. <i>“Don’t you think I thought of that? The primitives don’t even know what to do with them. The first ‘com got smashed on the wall. When I tried giving them a baby monitor, they just kept trying to get me to come fuck them, and they promised they’d tell me everything I needed to know...”</i> She shakes her head. <i>“No, I need to solve this in a way that doesn’t end with me on my back.”</i> ");
 	//Same menu
 	this.clearMenu();
 	this.addButton(0,"Fuck Zil",fuckTheZilForPennyBecauseYouAreADumbStupidSlut);

@@ -24,7 +24,7 @@ public function adultCockvineEncounter():void
 	{
 		clearMenu();
 		
-		var isSlut:Boolean = ((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isDependant(Creature.DEPENDANT_CUM) || (pc.libido() >= 50 && pc.lust() >= 33) || pc.lust() > 66);
+		var isSlut:Boolean = ((pc.isTreated() && pc.isBimbo()) || pc.isBimbo() || pc.isCumSlut() || (pc.libido() >= 50 && pc.lust() >= 33) || pc.lust() > 66);
 		
 		output("In the gloom of the deep caverns you feel constantly on edge; the second you set your gaze anywhere your neck begins to crawl, expecting an attack to come from behind. The ground is the last place your instincts tell you to keep an eye on, but when you glance downwards momentarily you are glad you did. You jerk to an immediate halt, staring at the thick, tubular, organic object sprawled out from a crevice across your path.");
 
@@ -48,7 +48,7 @@ public function adultCockvineEncounter():void
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock to you – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel... you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 
 				// Weak willed/otherwise srsly far gone:
-				if (pc.WQ() < 15 || pc.isDependant(Creature.DEPENDANT_CUM))
+				if (pc.WQ() < 15 || pc.isCumSlut())
 				{
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
 
@@ -78,7 +78,7 @@ public function adultCockvineEncounter():void
 				output("\n\nGazing at the emerging tentacles now – those pliable, thick, strong frustrated tentacles which look like just so much juicy cock – you feel dim annoyance with yourself for <i>not</i> letting yourself get caught. It is only natural for a creature like this to react to the presence of someone like you, so well-suited to blissfully taking care of such tense, hot, veiny frustration. And how good would that feel... you realize vaguely you are moving towards the mass of writhing cockvines automatically.");
 
 				// Weak willed/otherwise srsly far gone
-				if (pc.WQ() < 5 || pc.isDependant(Creature.DEPENDANT_CUM))
+				if (pc.WQ() < 5 || pc.isCumSlut())
 				{
 					output("\n\nYou couldn’t stop your body’s instincts even if you wanted to. You smile beatifically as first one tentacle, then a second wrap their warm embrace around you, beading their herbal semen onto your skin, leading and welcoming you to their deep, wet boudoir.");
 
@@ -265,7 +265,7 @@ public function adultCockvineConsentacles():void
 
 	output("\n\nThe cockvine that has your tongue’s attention undulates peacefully over your [pc.lips] for a moment, taking the time to smear them with its fruit, before parting them in a single fluid movement. Hollowing your cheeks you practically vacuum the leaking purple head inwards, the heavy herbal musk invading your mouth, intensifying the fug of pheromone arousal you’re lost in to an almost trance-like state.");
 	// Oral Fixation
-	if (pc.isDependant(Creature.DEPENDANT_CUM))
+	if (pc.isCumSlut())
 	{
 		output("\n\nYour tender lips, puffed up to the tentacle’s teasing and eagerly absorbing its fluids, have already driven you practically to the edge – when it stretches them wide and fills your mouth with bulging, heavily scented prick it’s too much. The sound of your muffled moans reaches your ears from somewhere far away as you rocket to an orgasm,");
 		if (pc.hasVagina()) output(" [pc.eachVagina] quivering and wetting itself across the tentacle sliding across it");

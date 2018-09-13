@@ -854,7 +854,7 @@
 			var btnArray:Array = _buttonTray.buttons;
 			
 			if (btnArray[0].buttonName == "Next" || btnArray[0].buttonName == "Leave" || btnArray[0].buttonName == "Back") kGAMECLASS.pressButton(0);
-			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back") kGAMECLASS.pressButton(14);
+			else if (btnArray[14].buttonName == "Next" || btnArray[14].buttonName == "Leave" || btnArray[14].buttonName == "Back" || btnArray[14].buttonName == "Bail") kGAMECLASS.pressButton(14);
 			else if (btnArray[4].buttonName == "Back") kGAMECLASS.pressButton(4);
 		}
 		
@@ -1091,11 +1091,11 @@
 			}
 		}
 		
-		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
+		public function addItemButton(slot:int, cap:String = "", quantity:int = 0, stackSize:int = 1, func:Function = undefined, arg:* = undefined, ttHeader:String = null, ttBody:String = null, ttCompare:String = null):void
 		{
 			try
 			{
-				_buttonTray.addItemButton(slot, cap, quantity, func, arg, ttHeader, ttBody, ttCompare);
+				_buttonTray.addItemButton(slot, cap, quantity, stackSize, func, arg, ttHeader, ttBody, ttCompare);
 			}
 			catch (e:*)
 			{

@@ -281,7 +281,7 @@ public function fuckHerYouNancy(fromRaceTalk:int = 0):void
 	if(pc.hasCock()) addButton(0,"FuckHerButt",buttFuckRenvra,undefined,"Buttfuck Her","Flop Renvra’s oversized cock out of the way and sink your dick in her tight ass.");
 	else addDisabledButton(0,"FuckHerButt","Buttfuck Her","You need a penis to be able to put it in her butt.");
 	addButton(1,"Bend Over",bendItLikeBeckhamForRenvra,undefined,"Bend Over","Bend over Renvra’s desk and let her fuck your [pc.vagOrAss] with her ovipositor-cock.");
-	if((pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) || pc.lowerUndergarment.hardLightEquipped || "PCHasDildo" == "9999") 
+	if((pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) || pc.hasHardLightEquipped() || "PCHasDildo" == "9999") 
 	{
 		if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) addButton(2,"Urethra Fuck",fuckRenvrasUrethra,undefined,"Urethra Fuck","Fuck Renvra by sticking your dick in her ovipositor’s slit. Cumming down her cock is likely to fertilize her eggs.");
 		else if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) addButton(2,"Urethra Fuck",fuckRenvrasUrethra,undefined,"Urethra Fuck","Diddle Renvra with your hardlight strap-on in her dick. She’s not liable to care about your lust once the sex toy gets her off, though.");
@@ -1014,7 +1014,7 @@ public function fuckRenvrasUrethra():void
 	// 2 = dick.
 	if(pc.hasCock() && pc.cockThatFits(renvra.cockCapacity(0)) >= 0) dildo = 2
 	// 1 = hardlight
-	else if(pc.lowerUndergarment.hardLightEquipped) dildo = 1;
+	else if(pc.hasHardLightEquipped()) dildo = 1;
 
 	//(bimbo)
 	if(pc.isBimbo()) 

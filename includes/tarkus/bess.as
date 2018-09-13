@@ -2204,7 +2204,7 @@ public function bessSetEyeColor(newColor:String):void
 
 	bess.eyeColor = newColor;
 
-	output("[bess.name] brings a silvery hand up beneath [bess.hisHer] eyes. With a simple wave upwards, [bess.hisHer] eyes change [bess.eyeColor] like a party trick.");
+	output("[bess.name] brings a silvery hand up beneath [bess.hisHer] eyes. With a simple wave upwards, [bess.hisHer] eyes change their color to [bess.eyeColor] like a party trick.");
 
 	output("\n\n<i>“Voila!”</i> [bess.heShe] exclaims, <i>“Easily done. Anything else you wanted?”</i>");
 
@@ -9999,7 +9999,7 @@ public function bessEvent28ShipMerge():void
 
 	//[Of Course] [No Way]
 	clearMenu();
-	addButton(0, "OfCourse", bessEvent28Stay);
+	addButton(0, "Of Course", bessEvent28Stay);
 	addButton(1, "No Way", bessEvent28GoAway);
 }
 

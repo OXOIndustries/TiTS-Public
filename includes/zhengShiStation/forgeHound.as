@@ -91,12 +91,19 @@ public function addictionTurnWaster():void
 {
 	clearOutput();
 	author("Wsan");
+	
+	var damageValue:int = 2;
+	if(pc.isSubby()) damageValue += 5;
+	if(pc.isBimbo()) damageValue += 5;
+	if(pc.isCumSlut()) damageValue += 10;
+	
 	output("You watch him, waiting for an opening so you can throw yourself at the muscular bulwark of his chest and just beg him to take you. To fuck you like he did before. To <i>use</i> you until he’s satisfied. When he notices you standing still and staring at him raptly, he stops and turns around, letting you admire his gigantic balls.");
 	output("\n\n<i>“Just give up and you can suck all the spunk you like outta these,”</i> he says, taunting you.");
 	output("\n\nThe cruel jibe brings you back to your sensibilities - mostly, at least.");
 	output("\n\n<i>“Stop doing that,”</i> you moan, raising your weapons again.");
 	output("\n\n<i>“You’re the one doing it,”</i> he says, smirking and turning back around.");
-	applyDamage(new TypeCollection( { drug: 2 } ), enemy, pc, "minimal");
+	
+	applyDamage(new TypeCollection( { drug: damageValue } ), enemy, pc, "minimal");
 	CombatManager.processCombat();
 }
 

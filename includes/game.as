@@ -125,7 +125,7 @@ public function disableExploreEvents():Boolean
 	// Kashima Duration
 	if (flags["KASHIMA_STATE"] > 0 && flags["KASHIMA_STATE"] < 2) return true;
 	// Federation Quest
-	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST"] < 3) return true;
+	if (flags["FEDERATION_QUEST"] > 0 && flags["FEDERATION_QUEST_AMBUSH"] != undefined && flags["FEDERATION_QUEST"] < 3) return true;
 	// Syri Quest
 	if (flags["SYRIQUEST_STATE"] >= 4 && flags["SYRIQUEST_STATE"] < 20) return true;
 
@@ -425,7 +425,7 @@ public function shipHangarShips(dock:String = ""):Array
 	}
 	if(InCollection(dock, publicHangars))
 	{
-		if(majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
+		if(flags["SHIZZY_MET"] != undefined && majinHere()) ships.push(["Great Majin", shizzyGreatMajinBonus]);
 	}
 	
 	return ships;
@@ -2029,7 +2029,7 @@ public function flyMenu():void
 	if(MailManager.isEntryViewed("breedwell_unlock"))
 	{
 		// PC must not be a taur, infertile or e.g. on Sterilex to choose this option before they’ve been there at all.
-		if(shipLocation == "BREEDWELL_DOCK") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
+		if(shipLocation == "BREEDWELL_HANGAR") addDisabledButton(10, "Breedwell", "Breedwell Centre", "You’re already here.");
 		else if(!CodexManager.entryViewed("Rahn")) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Maybe you should read up on the rahn before traveling to this location...");
 		else if(!pc.hasGenitals()) addDisabledButton(10, "Breedwell", "Breedwell Centre", "It might be a pointless journey if you have no genitals to make use of this location...");
 		else if((!pc.hasVagina() || pc.fertility() <= 0) && (!pc.hasCock() || pc.virility() <= 0)) addDisabledButton(10, "Breedwell", "Breedwell Centre", "Probably unwise to check this place out whilst you’re infertile. The ad gave you the distinct impression that the Breedwell Centre was counting on you being... fruitful.");
@@ -3537,6 +3537,15 @@ public function variableRoomUpdateCheck():void
 	}
 	//Remove marker after xmas
 	else if(rooms["UVIP T44"].hasFlag(GLOBAL.OBJECTIVE)) rooms["UVIP T44"].removeFlag(GLOBAL.OBJECTIVE);
+	//Vark's cave and stuff
+	rooms[varkCaveRoom].removeFlag(GLOBAL.NPC);
+	rooms[varkCaveRoom].removeFlag(GLOBAL.OBJECTIVE);
+	rooms["UVIP T44"].southExit = varkCaveRoom;
+	if (pc.isTaur() || !pc.hasGenitals())
+		rooms["UVIP T44"].southExit = undefined;
+	if (flags["MET_VARK"] == undefined) rooms[varkCaveRoom].addFlag(GLOBAL.OBJECTIVE);
+	else if (flags["MET_VARK"] == 1) rooms[varkCaveRoom].addFlag(GLOBAL.NPC);
+	else rooms["UVIP T44"].southExit = undefined;
 	
 	/* VESPERIA / CANADIA STATION */
 	/*
@@ -4597,6 +4606,8 @@ public function emailRoulette(deltaT:uint):void
 		mailList.push("fuckinggooslootsII");
 	if(!MailManager.isEntryUnlocked("cuzfuckball") && flags["TIMES_MET_FEMZIL"] != undefined && flags["BEEN_ON_TARKUS"] != undefined && pc.level >= 2)
 		mailList.push("cuzfuckball");
+	if (!MailManager.isEntryUnlocked("extrameet_invite_email") && extrameetSmutAvail())
+		mailList.push("extrameet_invite_email", "extrameet_invite_email", "extrameet_invite_email");
 	
 	// SPAM: (9999: If does not have spamblocker upgrade toggled on for CODEX.)
 	if(SpamEmailKeys.length > 0 && flags["CODEX_SPAM_BLOCKER"] == undefined)

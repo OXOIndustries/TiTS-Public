@@ -285,7 +285,7 @@ public function turnTheSlaveryTables():void
 	output("\n\n<i>“How do <b>you</b> like it, <b>dirty boy</b>?”</i> Ardia laughs, slapping the thraggen’s thigh. You just feel his dick clench inside you, and then as Ardia pounds him, another jetstream of his spooge spills into you. He tries to talk, to struggle, but the throes of anal orgasm are too overwhelming; the pleasure of your [pc.vagOrAss " + x + "] is too much to resist. It’s easy to reach down to Agrosh’s belt and find a zip-tie; a little less easy to git it around his wrists, but a good few thrusts from Ardia loosen him up enough to get the job done.");
 	output("\n\nYou pull yourself off him just before the thraggen can cum again, leaving his soaked tool bobbing in the air as Ardia fucks him to a ruined orgasm. You watch with no small amount of sadistic glee as his spunk arcs through the air, splattering on his chest - and is quickly accompanied by some of the dzaan’s as well: she pulls out at the last minute and lets those aching apples between her legs unload all over him.");
 	output("\n\nWhether it’s the potency of Ardia’s sperm or sheer sexual exhuastion, Agrosh gives a final few spurts and collapses on the couch, seemingly spent.");
-	output("\n\n<i>“Whew!”</i> your dzaan companion cheers, wiping some of the chief’s sexual effluvia from her thighs. <i>“I hope you’ve got a plan for getting us out of here, cuz if not... I don’t wanna be here when he wakes up... if when any of his friends show up!”</i>");
+	output("\n\n<i>“Whew!”</i> your dzaan companion cheers, wiping some of the chief’s sexual effluvia from her thighs. <i>“I hope you’ve got a plan for getting us out of here, cuz if not... I don’t wanna be here when he wakes up... or if any of his friends show up!”</i>");
 	output("\n\nArdia’s got a point: if somebody finds the foundry master tied up, it’s not going to go well for either of you. You consider it a moment before telling Ardia, <i>“Stay here with him. If anybody comes in, make it look like you just fucked him into a stupor again.”</i> With a body like hers, it’s an easy lie to believe.");
 	output("\n\n<i>“Okay, I can do that!”</i> she says, flashing you a sly little grin. <i>“He looks dumb enough to get himself hooked on a dzaan, so... yeah, okay, I’ll stay here and keep an eye on him. Just... if you find a way to get these collars off, come back for me, okay?”</i>");
 
@@ -910,6 +910,7 @@ public function cumInMeArdia():void
 	processTime(15);
 	if(pc.hasVagina()) pc.loadInCunt(ardia,0);
 	else pc.loadInAss(ardia);
+	pc.orgasm();
 	IncrementFlag("SEXED_ARDIA");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -932,6 +933,7 @@ public function takeArdiasLoadOnyerButt():void
 
 	processTime(15);
 	pc.applyCumSoaked();
+	pc.orgasm();
 	IncrementFlag("SEXED_ARDIA");
 	clearMenu();
 	clearMenu();
@@ -1074,8 +1076,8 @@ public function worshipArdiasButtYouSluuuut(x:int):void
 	
 //[Give Anusoft]
 //TT: Why not?
-//Probably should move this and give horsecock into their own <i>“Give Item”</i> menu tbqh. PC must have fucked Ardia’s ass at least once.
-public function giveAnusoft():void
+//Probably should move this and give horsecock into their own “Give Item” menu tbqh. PC must have fucked Ardia’s ass at least once.
+public function giveArdiaAnusoft():void
 {
 	clearOutput();
 	showArdia();
@@ -1163,12 +1165,19 @@ public function giveArdiaAHossCockPartDues():void
 	output("\n\nArdia tilts her head and sucks in a huge lungful of air. <i>“Here goes nothing!”</i> The trembling dzaan shudders as her tip forces the toy’s rear entrance apart, sliding two or three inches inside in an instance. <i>“It feels kind of warm already,”</i> she reports, shifting her legs to a wider stance to thrust a little further inside, <i>“and wet. It’s supposed to be wet, right?”</i> She grins at you. <i>“Are you sure this isn’t just a damned good pocket pussy?”</i>");
 	output("\n\nIt isn’t, but the twinkle in your eye will have to suffice for an answer.");
 	output("\n\nGroaning in delight, Ardia takes the bestial impliment in both hands and pounds it downward, slapping it against her chocolatey skin hard enough to audibly clap. <i>“Whoah.”</i> She wobbles slightly, staring down at the length of black bouncing in her hands. <i>“That </i>does<i> look good... but I think I wanna fuck it some more.”</i> Still two-handed, Ardia makes to yank it off. For one moment, her flesh strains. Then her hands lose their grip and slide down the horse-dick instead, giving it a vice-tight squeeze from balls to crown.");
-	output("\n\n<i>“Holy fucking star-titties!”</i> the former slave gasps, instantly reversing the stroke to take another pump. <i>“I can feel it!”</i> Sure enough, you can see the 18 length beginning to stiffen from her ministrations. Instead of bouncing around, it lifts up to jut accusingly in your direction. The molded veins twitch, then bulge, pumping real blood through the once-fake member. Ardia continues stroking automatically, eyes halfway rolled back as she rings out bubbles of pre-cum big enough for shot-glasses.");
+	output("\n\n<i>“Holy fucking star-titties!”</i> the former slave gasps, instantly reversing the stroke to take another pump. <i>“I can feel it!”</i> Sure enough, you can see the 18-inch length beginning to stiffen from her ministrations. Instead of bouncing around, it lifts up to jut accusingly in your direction. The molded veins twitch, then bulge, pumping real blood through the once-fake member. Ardia continues stroking automatically, eyes halfway rolled back as she rings out bubbles of pre-cum big enough for shot-glasses.");
 	output("\n\nYou can smell it in the air, the powerful, primal, almost intoxicating vapor of her pre-seed is somehow so much more potent when expressed from a big, black horse-cock. Ribbons of it spill down the dzaan’s new length. Her masturbation takes on a liquid sound as her fingers foam up her free-leaking fuck-juice. Then, just as you’re picking out a hint of very-virile musk beneath all the sloppy pre-scent, Ardia cums.");
 	output("\n\nMaybe the climaxing cutie is just naturally polite. Maybe her blissful spasms took a lucky turn. Whichever it is, Ardia’s first shot of equine-tainted jism flies wide of your [pc.legOrLegs] to splatter heavily on the floor. The impact creates an enormous puddle, and the dzaan seems to fixate onto it as a target. With shuddering stumbles and impulsive jerks of her hips, she staggers up to the edge of it wrings her dick with both hands, milking cumshot after cumshot into the deepening pool. Her moans grow louder and more desperate with every squirt, the shots thickening with increasing virility.");
 	output("\n\n<i>“Yesss!”</i> Ardia screams it, uncaring of who might hear. <i>“I love this cock!”</i> A cacophonous splatter nearly drowns out her declaration. <i>“With this, I could have the biggest...”</i> Her balls quake and unload an even larger torrent. <i>“... the biggest, sluttiest, most cum-drunk harem ever!”</i> And like magic, Ardia’s flaring phallus releases every remaining drop in her balls. The spermy tide is impressive to say the least, so much so that by the time it fades to a slow trickle, you’ve nothing to say.");
 	output("\n\nPanting wildly, Ardia rounds on you, flinging a syrupy strand of white dzaan cum across your [pc.belly]. <i>“Thank you, [pc.name]!”</i> She lunges forward to hug you, swaddling you into the expansive valley between her tits without a single care for how her leaky cock presses against you, or how the contact makes it stiffen in anticipation. <i>“I didn’t know... didn’t know it could be this good! Or- hey I guess I could go again.”</i> She lets you go with a delighted smile. <i>“I could go again and again, I bet.”</i>");
-	output("\n\nThe dzaan hefts one ball. It’s a bit larger than before, maybe in inch wider, and wrapped in a leathery, heavy-duty sheath. <i>“Yeah, the moment I even think about sex, I can feel these babies heat up. No wonder I came so much!”</i> Her eyes brighten. <i>“" + (addictedToArdia() ? "You’re going to be a very well-fed beta!":"I’m going to have better-fed betas than a kui-tan!") + " So what’ll it be, [pc.name]? Want to give me a test-drive? Maybe wrap your lips around this beast?”</i>");
+	output("\n\nThe dzaan hefts one ball. It’s a bit larger than before, maybe an inch wider, and wrapped in a leathery, heavy-duty sheath. <i>“Yeah, the moment I even think about sex, I can feel these babies heat up. No wonder I came so much!”</i> Her eyes brighten. <i>“" + (addictedToArdia() ? "You’re going to be a very well-fed beta!":"I’m going to have better-fed betas than a kui-tan!") + " So what’ll it be, [pc.name]? Want to give me a test-drive? Maybe wrap your lips around this beast?”</i>");
+	
+	if(!CodexManager.entryUnlocked("SynthSheath"))
+	{
+		output("\n\nYour Codex beeps with a warning about how this device may irreversibly alter ones biology. You grimace ruefully at the device before regarding Ardia’s enhanced genitalia.");
+		CodexManager.unlockEntry("SynthSheath");
+	}
+	
 	processTime(25);
 	ardia.cocks[0].cType = GLOBAL.TYPE_EQUINE;
 	ardia.cocks[0].addFlag(GLOBAL.FLAG_BLUNT);
@@ -1215,7 +1224,7 @@ public function giveArdiaAMod():void
 		//[Her Butt]
 		if((pc.hasCock() && pc.cockThatFits(ardia.analCapacity()) >= 0) || pc.hasHardLightEquipped()) 
 		{
-			addButton(0,"Anusoft",giveAnusoft,undefined,"Anusoft","Why Not?");
+			addButton(0,"Anusoft",giveArdiaAnusoft,undefined,"Anusoft","Why Not?");
 		}
 		else if(pc.hasCock()) addDisabledButton(0,"Anusoft","Anusoft","You need a penis or hardlight strapon <b>that fits</b>. Gotta sample your work somehow!");
 		else addDisabledButton(0,"Anusoft","Anusoft","You need a penis or hardlight strapon to do this. Gotta sample your work somehow!");

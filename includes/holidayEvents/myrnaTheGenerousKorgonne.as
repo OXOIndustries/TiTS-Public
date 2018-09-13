@@ -89,6 +89,7 @@ public function myrnaEncounterBonus():Boolean
 	if(TundraEncounterBonus()) return true;
 	else
 	{
+		varkCaveBonus();
 		if(flags["MET_MYRNA"] != undefined && isChristmas())
 		{
 			if(flags["MET_MYRNA"] == 1)

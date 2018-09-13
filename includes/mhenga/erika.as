@@ -46,8 +46,9 @@ public function erikaApproach():void
 	{
 		output("You decide to see why the kaithrit girl is sitting alone in a bar at this time of the day. You find a seat next to her. ");
 		if (pc.isNice()) output("\n\n<i>“I noticed that you seem to be interested in me, or am I wrong?”</i> She mutters in the affirmative. Placing a hand on her thigh, you continue, <i>“I would still like to know your name.”</i>");
-		else if(pc.isMischievous()) output("\n\n<i>“So are you going to tell me your name, or are you going to try to take </i>subtle<i> looks at me all night?”</i>");
-		else output("\n\n<i>“You have a staring problem, or do you have a good reason why you can’t get your eyes off me?”</i> Before she can say anything, you cut her off. <i>“If you’re going to stare at me all night you could at least tell me your name...”</i>");
+		//night -> day bc erika is here at daytime not nightime
+		else if(pc.isMischievous()) output("\n\n<i>“So are you going to tell me your name, or are you going to try to take </i>subtle<i> looks at me all day?”</i>");
+		else output("\n\n<i>“You have a staring problem, or do you have a good reason why you can’t get your eyes off me?”</i> Before she can say anything, you cut her off. <i>“If you’re going to stare at me all day you could at least tell me your name...”</i>");
 		output("\n\n<i>“Umm... E-Erika,”</i> she stammers, tails wrapped in her lap and ears folded against her head.");
 		output("\n\n<i>“[pc.name],”</i> you tell her. <i>“[pc.name] Steele. ");
 		if (pc.isNice()) output("Now, were you trying to get my attention, or were you just staring at me when you thought that I wasn’t looking?”</i>");
@@ -145,8 +146,8 @@ public function erikaTalkMenu(doOut:Boolean = true):void
 	if (flags["ERIKA_TALKED_ABOUT_HER"] != undefined && flags["ERIKA_TALKED_ABOUT_MOTHER"] == undefined) addButton(3,"Mother",erikaTalkMother);
 	else if (flags["ERIKA_TALKED_ABOUT_HER"] != undefined && flags["ERIKA_TALKED_ABOUT_MOTHER"] != undefined) addDisabledButton(3,"Mother", "Mother", "Erika doesn’t want to talk about this again..");
 	else addDisabledButton(3,"Locked","Locked","You don’t know enough about her for this.");
-	// [Sister] (requires talking about [Body] and [Her] and talked to Lerris)
-	if (flags["ERIKA_TALKED_ABOUT_HER"] != undefined && flags["ERIKA_TALKED_ABOUT_BODY"] != undefined && flags["MET_LERRIS"] != undefined) addButton(4,"Sister",erikaTalkSister);
+	// [Sister] (requires talking about [Body] and [Her] and talked to Lerris [and talked about mother, since she doesn't even mention a sister when talking about herself])
+	if (flags["ERIKA_TALKED_ABOUT_HER"] != undefined && flags["ERIKA_TALKED_ABOUT_MOTHER"] != undefined && flags["ERIKA_TALKED_ABOUT_BODY"] != undefined && flags["MET_LERRIS"] != undefined) addButton(4,"Sister",erikaTalkSister);
 	else addDisabledButton(4,"Locked","Locked","You don’t know enough about her for this.");
 	addButton(14,"Back",erikaMainMenu);
 }
@@ -1037,7 +1038,7 @@ public function erikaSexMenu(Repeat:Boolean = true):void
 	output("\n\nOr you could just ");
 	if (pc.hasCock() && pc.hasVagina()) output("stick your dick into her [erika.asshole], or stick her dick into your pussy, or ");
 	else if (pc.hasCock()) output("stick your dick in her [erika.asshole], or ");
-	else output("get her dick into your pussy, or ");
+	else if (pc.hasVagina()) output("get her dick into your pussy, or ");
 	output("stick her dick into your ass.");
 
 	clearMenu();
@@ -1303,7 +1304,7 @@ public function erikaSexDegradeHer():void
 	author("Doots");
 
 	output("You’re feeling rather cruel today, and who better to take it out on than your feline chew toy? You shove her onto the bed before picking a few choice items from the box.");
-	output("\n\nClimbing on top of her, you tie her wrists together. <i>“I’m going to give your pathetic little bitch clit some attention. You should be thankful.”</i> You cover her nipples with some tape. <i>“Of course, if you don’t want me to you could say otherwise.”</i> You continue, finally putting the ball gag into her mouth <i>“So, do you want me to stop? Now is your last chance to tell me,”</i> you ask before tying the gag behind her head.");
+	output("\n\nClimbing on top of her, you tie her wrists together. <i>“I’m going to give your pathetic little bitch clit some attention. You should be thankful.”</i> You cover her nipples with some tape. <i>“Of course, if you don’t want me to, you could say otherwise,”</i> you continue, finally putting the ball gag into her mouth. <i>“So, do you want me to stop?”</i> you ask before tying the gag behind her head. <i>“Now is your last chance to tell me.”</i>");
 	output("\n\nShe shakes her head, meek and unsure, but nonetheless shaking her head. <i>“Thought so. Can’t afford to say no when someone is finally willing to touch that thing you call a dick,”</i> you say, trailing your middle finger up the underside of her doggy dick. Without a warning, you clamp the cock ring around her base. <i>“There we go, can’t trust a worthless bitch like you to last.”</i> Her cock gives a throb and her hips make a tiny thrust upwards.");
 	output("\n\nStraddling her hips, you align her dick with your [pc.pussy], then slam your own [pc.hips] down, roughly impaling yourself on its tapered length.");
 	if (pc.looseness() > 3) output("\n\n<i>“Oh my, it’s worse than I thought. I can barely feel a thing.”</i> You sigh in mock disappointment. <i>“I’ve had more fun with just my fingers, but I might be able to make this work.”</i> ");

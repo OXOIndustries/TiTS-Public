@@ -61,10 +61,24 @@ public function zhengMinesEncounterBonus():Boolean
 		IncrementFlag("ZS_MINE_ENCOUNTERS");
 
 		if(flags["ZS_MINE_ENCOUNTERS"] > 7 && !pc.hasStatusEffect("DisabledRoz") && flags["ROZ_ARMOR_STOLEN"] == undefined && flags["ROZ_CORED_4_GUD"] == undefined) encounters.push(encounterRoz);
-		encounters.push(miningRobotAttack);
-		encounters.push(boredJumperAttackProc);
-		encounters.push(boredJumperAttackProc);
-		//if(flags["MAIKE_SLAVES_RELEASED"] == 1 || flags["MAIKE_SLAVES_RELEASED"] == 2) encounters.push(encounterSlyverenSlavebreaker);
+		
+		if(flags["MAIKE_SLAVES_RELEASED"] == 1 || flags["MAIKE_SLAVES_RELEASED"] == 2) 
+		{
+			encounters.push(encounterSlyverenSlavebreaker);
+			encounters.push(encounterSlyverenSlavebreaker);
+			encounters.push(boredJumperAttackProc);
+			encounters.push(boredJumperGangbangProc);
+			//Robots become a very rare encounter
+			if(rand(5) == 0) encounters.push(miningRobotAttack);
+		}
+		//No more robot
+		else
+		{
+			encounters.push(miningRobotAttack);
+			encounters.push(miningRobotAttack);
+			encounters.push(boredJumperAttackProc);
+			encounters.push(boredJumperAttackProc);
+		}
 	}
 	if(encounters.length > 0) 
 	{
@@ -212,6 +226,7 @@ public function miningRobotAttack():Boolean
 	showName("MINING\n‘BOT");
 	showBust("MINING_ROBOT");
 	output("\n\nAs you wander through the byzantine sprawl of mine tunnels, you hear a thunderous <i>stomp... stomp... stomp...</i> coming towards you from one of the side passages. You turn to face it, just in time to see a lumbering black mass of metal, cables, and flickering digital readouts. A robot, shoddily built and probably a thousand years out of date besides... but it’s got a massive drill in place of one of its arms, and you can see where several lasers have been bolted onto the droid’s head and shoulders.");
+	IncrementFlag("MINING_ROBOT_ENCOUNTERS");
 	//player has RFID card
 	if(pc.hasKeyItem("9999")) output("\n\nThe droid passes you by, however, stomping away towards a deposit it’s allowed to mine.");
 	//else:
@@ -502,11 +517,11 @@ public function firstTimeZhengApproach():void
 	showName("ZHENG\nSHI");
 	author("Savin");
 	output("<b>Several hours later...</b>");
-	output("\n\nYour snap to wakefulness to a rhythmic beeping from your ship’s sensor suite. You don’t remember having fallen asleep, only the passage of hours waiting for your sensors to fully scan an entire solar system.");
-	output("\n\nIt hasn’t found the probe, but as you wipe the sleep from your eyes, you see that your sensors have locked onto a ship puttering through the debris field on impulse power. She’s a big girl, too, practically bursting at the seams with hemispherical laser batteries and grappling cannons. She’s not flying any colors and her ID’s not pinging any databases you can access, so if you had to take a wild guess, you’d say she’s a pirate ship.");
+	output("\n\nYou’re snapped to wakefulness by a rhythmic beeping from your ship’s sensor suite. You don’t remember having fallen asleep, only the passage of hours waiting for your sensors to fully scan an entire solar system.");
+	output("\n\nThey haven’t found the probe, but as you wipe the sleep from your eyes, you see that your sensors have locked onto a ship puttering through the debris field on impulse power. She’s a big girl, too, practically bursting at the seams with hemispherical laser batteries and grappling cannons. She’s not flying any colors and her ID’s not pinging any databases you can access, so if you had to take a wild guess, you’d say she’s a pirate ship.");
 	output("\n\nAnd she’s making good speed somewhere. Curious, you ease yourself into the field after her, taking it nice and slow to avoid detection. ");
 	if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) output("It’s no sweat for you, given you previous occupation. You know all the tricks a ship like this might use to cover her tracks; following her is child’s play.");
-	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("You man the sensors closely, refusing to let any amount of interference from the massive debris field around you to distract you from your quarry.");
+	else if(pc.characterClass == GLOBAL.CLASS_ENGINEER) output("You monitor the sensors closely, refusing to let any amount of interference from the massive debris field around you distract you from your quarry.");
 	else output("You’ve flown more dangerous combat missions than this. It’s easy to pretend the asteroids are big, slow missiles, and you dodge and weave between then while staying just out of view.");
 
 	output("\n\nAfter about an hour, the ship seems confident it isn’t being followed and takes a sharp turn towards one of the largest asteroids - indeed, <i>the</i> largest - in the field. You follow from a safe distance, watching the ship approach a structure you instantly recognize: a spacedock! The same kind as back on Tavros, with a huge metal opening, wide enough for a cruiser to slip through, projecting a permeable force field to keep the air in.");
@@ -653,4 +668,26 @@ public function submitThePiratePassword():void
 		clearMenu();
 		addButton(0,"Next",mainGameMenu);
 	}
+}
+
+public function foundryLounge2Bonus():Boolean
+{
+	output("With a couch and plenty of nearby cushions, it’s clear that this quiet corner of the break room provides the pirate officers with a quiet place to rest, relax, and cuddle with their pleasure-slave of choice. A squat box with an onahole-like entrance lends further credence to that theory. The stained nameplate labels it as a TamaniCorp Hora Series 69 Dong Designer.");
+	if(flags["LOOTED_COCKBOX"] != undefined) output(" You know all too well about such devices. Maybe you could give it a spin?");
+	else output(" A quick extranet search reveals that it does exactly what the name suggests. Just stick a penis inside, and the magic box will change it into any crazy alien dong your mind might dream up.");
+	output("\n\nUnfortunately it’s bolted to the floor");
+	if(flags["LOOTED_COCKBOX"] != undefined) output(", but nothing’s stopping you from snagging a copy of the updated firmware to install on your personal box. Custom pigmentation selection seems like quite the upgrade!");
+	else output(".");
+	addButton(0,"DongDesigner",useInstalledDickBox,undefined,"Dong Designer","Take a closer look a this dick-customizing box!");
+	//Gunna need to update the dong designer
+	return false;
+}
+
+public function prefabDeadEndBonus():Boolean
+{
+	output("A square white wall stops this hallway dead in its eastward tracks. You’re free to walk through the sterile alabaster passage westward instead, or step through the unlocked door to the north. The placard labels it as the Robotics Lab.");
+	if(flags["MINING_ROBOT_ENCOUNTERS"] != undefined) output(" This is probably where they put together those horrible mining robots you ran into down below.");
+	else output(" This is probably where they put together all the different kit-bashed robots they have all over the station.");
+	output(" Leave it to pirates to eschew the tried and true off-the-shelf models!");
+	return zhengFoundryF1EncounterBonus();
 }

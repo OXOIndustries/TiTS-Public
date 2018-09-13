@@ -27,7 +27,7 @@ package classes.Items.Melee
 			
 			this.description = "a flashblade";
 			
-			this.tooltip = "Marked as ‘CV-x808: Dancing Flashblade’ along the back of the hilt, this unique prototype puts a spin on popular hardlight weapons. The 2’ long blade is perfectly straight when triggered with";
+			this.tooltip = "Marked as ‘CV-x808: Dancing Flashblade’ along the back of the hilt, this unique prototype puts a spin on popular hardlight weapons. The 2\' long blade is perfectly straight when triggered with";
 			this.tooltip += " a glowing white shimmer covering its near-transparent edge. The ornate black-and-gold hilt appears to be custom fitted for someone else but still slides very comfortably into your hands all the same.";
 			this.tooltip += " \n\nWhen wielding it, the weapon is ultra-light and easy to use but the low-substance blade is brittle and poor for parrying. It appears to be made of some nano-thin hardlight configuration and";
 			this.tooltip += " when contact with an object is made, the blade discharges in brilliant white light only to shatter and reform in a split second.";
@@ -45,6 +45,7 @@ package classes.Items.Melee
 			this.baseDamage.electric.damageValue = 18;
 			this.baseDamage.addFlag(DamageFlag.PENETRATING);
 			addFlag(GLOBAL.ITEM_FLAG_EFFECT_FLURRYBONUS);
+			addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.critBonus = 10;
 		}

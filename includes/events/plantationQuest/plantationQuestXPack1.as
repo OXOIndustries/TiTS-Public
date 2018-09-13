@@ -412,12 +412,13 @@ public function lahPregnancyEnds(babyList:Array):void
 // PC has done the ‘Every Hole’ scene with her in the last 24 hours, and chooses Sex again
 public function showQuinnMaidens():void
 {
-	showBust("FETCH", "CARRY");
+	//showBust("FETCH", "CARRY");
+	showBust("FETCH_AND_CARRY");
 	showName("FETCH &\nCARRY");
 }
-public function quinnHandmaidenThreesomeAvailable():Boolean
+public function quinnHandmaidenThreesomeAvailable(mommy:Boolean = false):Boolean
 {
-	return ( (pc.hasCock() && pc.smallestCockLength() < 12.5) && pc.libido() >= 30 && (flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440) );
+	return ( (pc.hasCock() && pc.smallestCockLength() < 12.5) && pc.libido() >= 30 && ((flags["QUINN_EVERY_HOLED"] != undefined && GetGameTimestamp() - flags["QUINN_EVERY_HOLED"] < 1440) || (mommy && flags["QUINN_MAIDENS_SEXED"] != undefined)) );
 }
 public function quinnHandmaidenThreesome(args:Array):void
 {
@@ -436,7 +437,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 	switch(response)
 	{
 		case "intro":
-			showBust("QUINN", "FETCH", "CARRY");
+			showBust(quinnBustDisplay(), "FETCH_AND_CARRY");
 			showName("\nQUINN");
 			
 			output("<i>“Again?”</i> Quinn arches an eyebrow at you, something between exasperation and amusement pulling at the corner of her mouth. <i>“How are you not spent after how it went last time? No, it will not do,”</i> she goes on, chin up, lips thinned. <i>“A Quinn cannot be spending all her time seeing to your unnatural, star-born lusts. It’s unseemly, not to mention exhausting.”</i>");
@@ -454,7 +455,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			addButton(0, "Next", quinnHandmaidenThreesome, ["next"]);
 			break;
 		case "mommy":
-			showBust("QUINN", "FETCH", "CARRY");
+			showBust(quinnBustDisplay(), "FETCH_AND_CARRY");
 			showName("\nQUINN");
 			
 			output("Quinn beckons to one of her handmaidens, who hastens over to take " + quinnBabyName() + " out of her hands. She then rises and silently heads up the hill, her bobbing abdomen and bottom beckoning you to follow.");
@@ -468,7 +469,7 @@ public function quinnHandmaidenThreesome(args:Array):void
 			addButton(0, "Next", sexWithQuinnOmnigenderWHYYYY);
 			break;
 		case "maiden":
-			showBust("QUINN", "FETCH", "CARRY");
+			showBust(quinnBustDisplay(), "FETCH_AND_CARRY");
 			showName("\nQUINN");
 			
 			output("<i>“No,”</i> Quinn replies, regarding you with tired golden eyes, <i>“I need - I need to rest. My handmaidens will attend you.”</i>");
@@ -1642,7 +1643,7 @@ public function quinnFestivalPart2(arg:Array):void
 			// Remove all gear, add Champion Assegai/Champion Short Bow, as in the Lah fight
 			var bow:Boolean = (response == "fight bow");
 			
-			showBust("QUINN", "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showBust(quinnBustDisplay(), "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
 			showName("VIRILE\nCOMBAT!");
 			
 			output("<i>“The starwalker champion has staked his claim.”</i> Quinn’s cool tones ring out over the assembly as you pick your chosen weapon, test it a few times. <i>“[pc.He] would be the father of my child, forge the future of our tribe, solely by way of [pc.his] own flesh.”</i> ");
@@ -1661,7 +1662,7 @@ public function quinnFestivalPart2(arg:Array):void
 			quinnFestivalPrepFight(bow);
 			break;
 		case "ball next":
-			showBust("QUINN", "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
+			showBust(quinnBustDisplay(), "ZIL_CHAMP_SPEAR", "ZIL_CHAMP_BOW", "ZIL_CHAMP_SPEAR");
 			showName("VIRILE\nCOMBAT");
 			
 			// ++Lust
@@ -2016,7 +2017,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 	switch(page)
 	{
 		case 0:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
 			showName("\nQUINN");
 			
 			cIdx = pc.cockThatFits(zilDrones[1].analCapacity());
@@ -2058,7 +2059,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsOneSausage, [1, cIdx, vIdx, zilDrones]);
 			break;
 		case 1:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
 			showName("\nQUINN");
 			
 			cIdx = pc.cockThatFits(quinnAnalCapacity());
@@ -2092,7 +2093,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsOneSausage, [2, cIdx, vIdx, zilDrones]);
 			break;
 		case 2:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
 			showName("\nQUINN");
 			
 			output("It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, that you get your chance. You are Quinn’s most treasured champion, after all, and the first shall come last.");
@@ -2120,7 +2121,7 @@ public function quinnFestivalSexingsOneSausage(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsOneSausage, [3, cIdx, vIdx, zilDrones]);
 			break;
 		case 3:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			output("You awake in stages, the heat of the Mhen’gan day eventually making the close interior of the yurt intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. You may have only been part of the tag team but good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night. You are sticky with honey cum both male and female, and right now you doubt the taste of it will ever leave you.");
@@ -2170,7 +2171,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 	switch(page)
 	{
 		case 0:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
 			showName("\nQUINN");
 			
 			if(pc.hasCock())
@@ -2207,7 +2208,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [1, cIdx, vIdx, zilDrones]);
 			break;
 		case 1:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
 			showName("\nQUINN");
 			
 			output("The boys are too excited to pace themselves. The one at your back judders into you, hard, athletic hips slapping a frenetic rhythm against your [pc.ass] as the other takes a firm grip of your head and thrusts his hard sweet meat past your [pc.lips], slathering a steady drip of honey-pre across your tongue and inner cheeks, filling your head with oozing, summery delight. Your [pc.vagina " + vIdx + "] is being filled and rubbed at a startling rhythm, digging in to that particular spot again and again, and you’re quickly forced to orgasm, your over-stimulated body clenching itself up and letting go brilliantly repeatedly, fingers digging into the soft furs beneath you and emitting muffled squeals of delight as your [pc.vagina " + vIdx + "] " + (!pc.isSquirter() ? "dribbles" : "spurts") + " [pc.femcum] in a wet, glorious rush.");
@@ -2237,7 +2238,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [2, cIdx, vIdx, zilDrones]);
 			break;
 		case 2:
-			showBust("QUINN_NUDE", "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
+			showBust(quinnBustDisplay(true), "ZIL_CHAMP_BOW_NUDE", "ZIL_CHAMP_SPEAR_NUDE", "ZIL_CHAMP_SPEAR_NUDE");
 			showName("\nQUINN");
 			
 			output("It’s only after many sweaty, lusty hours frollicking with the four zil, rutting and licking and mashing their delightfully sweet organs into and onto your own in every combination you care to think of, things simmer down to a slow burn. The archer twink clasps your [pc.chest], his fat, stubby cock stretching the sensitive ring of your [pc.anus]; the one below has you sat on his sturdy, longer length, wedged deep within your [pc.vagina " + vIdx + "]. They fuck you slowly but surely now, little jerks and rises of their hips, their energies almost spent but driven on by a determination to use every inch of the intoxicating alien queen, their fuck truncheons pressing into each other through your tender walls sending little jolts of pleasure up your spine and making [pc.eachVagina] shiver and course with [pc.femcum].");
@@ -2260,7 +2261,7 @@ public function quinnFestivalSexingsPairOfQueens(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsPairOfQueens, [3, cIdx, vIdx, zilDrones]);
 			break;
 		case 3:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			output("You awake in stages, the heat of the Mhen’gan day eventually making the close interior of the yurt intolerable. You shiver slightly when you flop out of bed - hours of rest have not alleviated the mighty ache in your genitals. Good <i>Void</i> did that waspy slut-queen-pagan-apparition-thing go for it last night; " + (pc.libido() > 66 ? "even as fuck-hungry a being as you" : "you") + " feel like you were caught up and washed out in her wake. You are sticky with honey cum both male and female, and right now you doubt the taste of it will ever leave you.");
@@ -2305,7 +2306,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 	switch(page)
 	{
 		case 0:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			var cocksList:Array = [];
@@ -2353,7 +2354,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsDroneAlone, [1, cIdx, cIdx2]);
 			break;
 		case 1:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			output("<i>“But you aren’t done yet, are you?”</i> she murmurs in your ear, long, clever fingers trailing down your ear, scratching lightly at your [pc.chest]. <i>“My chosen. My champion. Remember - you undertook the duties of three.”</i> Those smooth digits wrap themselves around your " + (cIdx2 < 0 ? "[pc.cock " + cIdx + "]" : "[pc.cock " + cIdx2 + "]") + ", gently tugging, coaxing sensual intent");
@@ -2381,7 +2382,7 @@ public function quinnFestivalSexingsDroneAlone(arg:Array):void
 			addButton(0, "Next", quinnFestivalSexingsDroneAlone, [2, cIdx, cIdx2]);
 			break;
 		case 2:
-			showBust("QUINN_NUDE");
+			showBust(quinnBustDisplay(true));
 			showName("\nQUINN");
 			
 			output("Your last waking thoughts before you descend into a deep, deep sleep is that maybe she’s exaggerating. But, no, she wants that baby, and you are very much expected to do the work of three. You are awoken at dawn by alluring whispers in your ears, guileful touches and squeezes, a hand on [pc.eachCock] stroking you to hardness, leading you lovingly but firmly back into deepest, lustiest heat.");
@@ -2657,7 +2658,7 @@ public function pregQuinnSexNo():void
 	showQuinn();
 	author("Nonesuch");
 	
-	var canHandMaiden:Boolean = (flags["QUINN_MAIDENS_SEXED"] != undefined || quinnHandmaidenThreesomeAvailable());
+	var canHandMaiden:Boolean = quinnHandmaidenThreesomeAvailable();
 	
 	if(flags["QUINN_SIRED_KID"] == undefined)
 	{
@@ -2706,7 +2707,7 @@ public function whereIsPregQuinn(pregDays:int = 0):void
 	
 	clearOutput();
 	if(lahIsHere) showBust("LAH");
-	else showBust("FETCH", "CARRY");
+	else showBust("FETCH_AND_CARRY");
 	author("Nonesuch");
 	clearMenu();
 	
@@ -3051,23 +3052,23 @@ public function quinnMomSexButton(btnSlot:int = 2):void
 		// Non-handmaiden [Sex] chosen whilst kid present
 		if(quinnBabyActive())
 		{
-			if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
+			if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
 			else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
-			else addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["mommy"]);
+			else addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
 		}
 		// Handmaiden sex not possible in this case, grey out [Sex] if PC meets those parameters
 		else
 		{
 			if(!pc.hasGenitals()) addDisabledButton(btnSlot, "Sex", "Sex", "You need genitals to do that!");
-			else if(quinnHandmaidenThreesomeAvailable()) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["maiden"]);
+			else if(quinnHandmaidenThreesomeAvailable(true)) addButton(btnSlot, "Sex", quinnHandmaidenThreesome, ["maiden"]);
 			else addDisabledButton(btnSlot, "Sex", "Sex", "You’ve worn out Quinn, and Fetch and Carry are otherwise occupied. No more bonking. Aren’t babies a bitch?");
 		}
 	}
 	else
 	{
-		if(!pc.hasVagina() && pc.cockThatFits(quinnVaginalCapacity()) < 0) addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
+		if(pc.hasVagina() || pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(btnSlot, "Sex", sexWithQuinnOmnigenderWHYYYY);
 		else if(pc.hasCock()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re too big for sex with her.");
-		else addButton(btnSlot, "Sex", sexWithQuinnOmnigenderWHYYYY);
+		else addDisabledButton(btnSlot, "Sex", "Sex", "You have no suitable endowments for sex with her.");
 	}
 }
 

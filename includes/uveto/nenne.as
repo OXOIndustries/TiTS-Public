@@ -374,7 +374,7 @@ public function nenneBellyRub():void
 	if(!korgiTranslate()) output("You too good!");
 	else output("You’re good too!");
 	output("”</i> she says happily, drawing her tongue back into her mouth. It takes her another moment to roll onto her shaky limbs, and then another to pull herself back up. <i>“");
-	if(!korgiTranslate()) output("Knowing didn’t Korgonne doing could that! Liked! Afraiding not doing to again!");
+	if(!korgiTranslate()) output("Knowing didn’t Korgonne could doing that! Liked! Afraiding not to doing again!");
 	else output("I didn’t know the Korgonne could do that! I liked it a lot; don’t be afraid to give me another one!");
 	output("”</i>");
 	flags["NENNE_BELLY_RUBS"] = 1;

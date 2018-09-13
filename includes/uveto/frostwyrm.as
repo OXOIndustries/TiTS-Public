@@ -40,11 +40,11 @@ public function HereBeDragonBonus():Boolean
 				output(".. that is, if you had the equipment useful for breeding...");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You need genitals to interact with the frostwyrm.");
 			}
-			else if((pc.hasCock() && pc.virility() <= 0) || (pc.hasVagina() && pc.fertility() <= 0)) {
+			else if((!pc.hasVagina() && pc.hasCock() && pc.virility() <= 0) || (!pc.hasCock() && pc.hasVagina() && pc.fertility() <= 0)) {
 				output(".. but being that breeding is the objective, maybe you should have more " + ((pc.hasCock() && pc.virility() <= 0) ? "virile" : "fertile") + " genitalia first?");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "Your genitalia are not fit for breeding--make sure you are fertile before summoning the dragon!");
 			}
-			else if(!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) {
+			else if(!pc.hasCock() && pc.hasVagina() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) {
 				output(".. though breeding while you are a carrying mother might not be the best idea. Perhaps you should return after you’ve given birth to your current pregnancy first?");
 				addDisabledButton(0, "Frostwyrm", "Call The Frostwyrm", "You already have a bun in the oven, so make sure you are clear of your current pregnancies before summoning the dragon!");
 			}
@@ -486,7 +486,7 @@ public function frostwyrmEpilogueAccept():void
 	frostWyrmHeader();
 	author("B");
 	
-	if (!pc.hasCock() && pc.hasVagina() && pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))
+	if (!pc.hasCock() && pc.hasVagina() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy"))
 	{
 		output("You’re humbled by the Frostwyrm’s offer – not so much for the opportunity to bear its offspring, but that it considers you such a valid option. You tell it that you consider its offer very flattering, and you’d love to help it, but, you rub at your belly as you tell it that you’re currently... occupied. You can’t exactly double-dip.");
 		output("\n\n<i>I understand,</i> it replies soothingly. <i>I will not ask more from you than you can provide. Return to this coast when your current child is reared and you’ve recovered, and think of me. I will respond to your summons.</i>");
@@ -574,7 +574,7 @@ public function frostwyrmTalks():void
 	output("\n\n<i>We will reach my lair by the lower-apex of the Red Storm’s descent,</i> the Frostwyrm communicates to you. Your senses are overloaded with the bitter cold biting into you; the air rapidly thinning; the sinking in your gut every time you look at how far the ground is from you (you can’t help it) – but you have enough sense to know you have no idea what it means. <i>Ah.</i> The Frostwyrm hums for a moment, and you feel an alien grip on your mind, prodding at you. <i>In terms you understand, we will reach my lair in about an hour.</i>");
 	output("\n\nIt settles into a gentle glide, and the ride is suddenly very smooth. The air is still cold and thin, but your experience after take-off is pleasant: you enjoy a comfortable silence, the Frostwyrm’s wings cutting the air on either side of you, and you no longer feel a lurching in your stomach now that it’s level. You even muster the bravery to sit up, disengaging your arms from the creature’s neck.");
 	output("\n\nThe coastline promptly disappears behind you, leaving nothing but engulfing ocean in all directions, marked by the occasional floe in its glassy waters. Isolation creeps on you: the stillness of the ride and the vast nothingness in all directions leaves you mildly unsettled, spoiling the fact that you’re riding a dragon. The view, while grandiose, also leaves something to be desired when there’s only ocean to see.");
-	output("\n\nYou think to the Frostwyrm you’re riding. It might make a decent companion, and you can think of a number of questions to ask it – is it male, or female? Your codex didn’t specify, and you probably should have asked before you agreed. Does it have a name? Your mind can’t help but rove to what’s going to happen at the conclusion of your flight. How are you even going to... <i>mate</i> with it? Even ignoring the physiological differences, ");
+	output("\n\nYour thoughts drift to the Frostwyrm you’re riding. It might make a decent companion, and you can think of a number of questions to ask it – is it male, or female? Your codex didn’t specify, and you probably should have asked before you agreed. Does it have a name? Your mind can’t help but rove to what’s going to happen at the conclusion of your flight. How are you even going to... <i>mate</i> with it? Even ignoring the physiological differences, ");
 	if (pc.tallness > 84) output("it’s still over twice as tall as you are.");
 	else output("it’s pretty damn tall compared to you");
 	output("\n\n<i>My kind are not separated into genders,</i> it explains. You jolt in your ‘seat,’ surprised – and then realize that the gripping sensation in the back of your mind had never left you. It hums to itself again, and again, you feel a gentle prodding on your thoughts. <i>I see your kind reproduce similarly to mine. We do not have ‘males’ or ‘females’ – my kind are exclusively what you would call ‘hermaphrodites.’</i>");
@@ -644,7 +644,7 @@ public function nameThatFrostwyrm1():void
 	frostWyrmHeader();
 	author("B");
 	
-	output("You ask if the name [frostwyrm.name] is fine with her. At first, you feel her hold on your mind begin to comb through you, searching for something, but she stops. <i>I will trust your designation is meaningful in some way to you. You may call me [frostwyrm.name], and I will know that you are referring to me.</i>");
+	output("You ask if the name [frostwyrm.name] is fine with her. At first, you feel her hold on your mind begin to comb through you, searching for something, but then she stops. <i>I will trust your designation is meaningful in some way to you. You may call me [frostwyrm.name], and I will know that you are referring to me.</i>");
 	output("\n\nThat’s good! You’re getting introductions out of the way. <i>And what may I refer to you by?</i> That she chose to ask you rather than rifle through your mind for the information is a good start to building your relationship. You introduce yourself as [pc.name], and settle on her back, getting cozier up against her.");
 	output("\n\n<i>As for your final concern,</i> it notes, not shying away from the topic at all, <i>in truth... the physicality of our mating will take some imagination on our part. We will make it work.</i> You feel her prod at your mind once more, searching for your knowledge on the topic. <i>I understand that your kind are privileged enough to appreciate the pleasures of mating. Not all kinds have this. I can promise an impression unlike you’ve enjoyed yet, [pc.name].</i>");
 	output("\n\nThe grip [frostwyrm.name] has on your mind changes and twists, like a set of gentle fingers strumming a fine instrument. You feel her manipulate your body; not your words, thoughts, or actions, but your sensations. Where before you felt a minor cramp from straddling her neck for such a long period of time, you suddenly feel a rush at your [pc.crotch]");
@@ -663,8 +663,8 @@ public function nameThatFrostwyrm1():void
 	processTime(65+rand(3));
 	pc.lust(50);
 	
-	clearMenu();
 	processTime(5);
+	clearMenu();
 	addButton(0, "Next", frostwyrmJesusWeFinallyLanded,undefined);
 }
 public function frostwyrmJesusWeFinallyLanded():void
@@ -1039,7 +1039,7 @@ public function frostwyrmIWantToBangTheLizard():void
 	if(pc.hasVagina())
 	{
 		if(pc.fertility() <= 0) addDisabledButton(0, "Get Bred", "Get Bred", "You are infertile and unable to be bred.");
-		else if(pc.hasWombPregnancy() && pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addDisabledButton(0, "Get Bred", "Get Bred", "You are unable to be bred while pregnant with different pregnancy types other than [frostwyrm.name]’s.");
+		else if(pc.hasPregnancyOfTypeOtherThan("FrostwyrmPregnancy")) addDisabledButton(0, "Get Bred", "Get Bred", "You are unable to be bred while pregnant with different pregnancy types other than [frostwyrm.name]’s.");
 		else addButton(0, "Get Bred", (flags["FROSTWYRM_DICKED_YOU"] == undefined ? frostwyrmRidersMustBeOver4FeetToContinue : frostwyrmDickRepeat));
 	}
 	else addDisabledButton(0, "Get Bred", "Get Bred", "Requires a vagina.");
@@ -1757,11 +1757,11 @@ public function frostwyrmSteeleIsADirtyGirl():void
 	if (pc.hasCock()){
 		output("our [pc.cock] erupts its heavy load, spurting your cum right onto [frostwyrm.name]’s thirsty tongue. Your [pc.hips] jerk and thrust impiously, unable to contain themselves; with every load, you thrust forward involuntarily, painting the topside of her tongue with your seed");
 		if (pc.cumQ() > 300){
-			output("\n\n. Despite how large her tongue is, she couldn’t possibly catch every drop of your incredible load because of your positioning, and more than a little bit of it drools off the side, dripping off the sides of her appendage");
+			output(". Despite how large her tongue is, she couldn’t possibly catch every drop of your incredible load because of your positioning, and more than a little bit of it drools off the side, dripping off the sides of her appendage");
 			output(". She bloats and quivers her tongue against your body, massaging your endowments for your every drop to paint her pink tongue white");
 		}
 	}
-	if (pc.isHerm()) output("\n\nIn time with your erupting cock, y");
+	if (pc.isHerm()) output(".\n\nIn time with your erupting cock, y");
 	if (pc.hasVagina()) output("our [pc.vagina] explodes its feminine cum all over the flatter part of [frostwyrm.name]’s tongue. [frostwyrm.name] undulates it, flexing and bloating it, gently massaging it against your vulva and a little rougher against your [pc.clit], milking you for your pleasure as much as she can. Your [pc.femcum] coats her tastebuds, caking her smooth tongue in your flavor, and each time she moves it an inch or more, you shiver and gush out just a little bit extra for her.");
 	output("\n\nYou slump, your face resting against the warm, heaving scales of [frostwyrm.name]’s belly as you relax against her. She wiggles her tongue slightly, teasing you and being careful not to over-stimulate you. After a few moments, she slowly begins to withdraw, making you jump and ‘eek!’ in pleasure with every smooth inch she tickles you with on the way out. The tip makes one last ride up the crease of your [pc.ass] before [frostwyrm.name] pulls it into her mouth, with a bit of flourish.");
 	output("\n\nShe licks at her snout several times, showing to you that she’s appreciating your taste. <i>Exquisite,</i> she remarks, as though she were tasting a wine.");
@@ -1782,6 +1782,7 @@ public function frostwyrmSteeleIsADirtyGirl():void
 	pc.shower();
 	pc.orgasm();
 	IncrementFlag("FROSTWYRM_GAVE_BATH");
+	clearMenu();
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
 }
 public function frostwyrmAllowMeToReturnTheFavor():void
@@ -1879,6 +1880,7 @@ public function frostwyrmAllowMeToReturnTheFavor():void
 	pc.loadInMouth(frostwyrm);
 	processTime(60);
 	IncrementFlag("FROSTWYRM_GOT_BLOWN");
+	clearMenu();
 	addButton(0, "Next", frostwyrmMainMenu, undefined);
 }
 public function frostwyrmGoodGodImHurt(vIdx:int = -1):void
@@ -2696,7 +2698,7 @@ public function frostwyrmWhyDoesMommyLookDifferent():void
 	output("”</i>, but the Qim doesn’t have any. Her face is a lot longer than ours, too, and she doesn’t have these puffy things around our mouths.");
 	if (pc.biggestTitSize() < 6) output("\n\nYou grit your teeth at Nykke reminding you that your boobs are smaller than hers, and tell yourself that she meant nothing by it.");
 	output("\n\nYou respond to most of her questions at once by saying that everyone is born a little different: some people have more than others; some are born taller, or with bigger assets. But you remind her that not always is bigger, better, and that she should judge others by their personality and their merits rather than their physical appearance.");
-	output("\n\n<i>“And these?”</i> she asks, groping and squeezing at her tits. You tell her that those are called ‘breasts, ’ and that their primary function is to nurse young with – but they have lots of other feel - good uses, too. ");
+	output("\n\n<i>“And these?”</i> she asks, groping and squeezing at her tits. You tell her that those are called ‘breasts,’ and that their primary function is to nurse young with – but they have lots of other feel - good uses, too. ");
 	if (pc.isLactating()){
 		output("\n\n<i>“How do you ‘nurse’ young with these? That doesn’t make any sense to me.”</i>");
 		output("\n\nYou reply that she’s asking at a lucky time: you gently grip your boob just beneath the nipple and give it a squeeze. Your [pc.milk] sprays from your [pc.nipple] in thin streams, going every which way.");

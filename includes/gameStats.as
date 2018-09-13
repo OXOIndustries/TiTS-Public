@@ -22,6 +22,9 @@ public function statsScreenMenu(currentFunc:Function):Boolean
 	// Other
 	if(showID == "Other") addDisabledGhostButton(6, "Other");
 	else addGhostButton(6, "Other", currentFunc, "Other", "Other Statistics", "Show your other statistics.");
+	// Racial Scores
+	if(showID == "Other") addDisabledGhostButton(7, "Race");
+	else addGhostButton(7, "Race", currentFunc, "Race", "Racial Scores", "Show your categorized genetic makeup.");
 	// Everything
 	if(showID == "All") addDisabledGhostButton(13, "All");
 	else addGhostButton(13, "All", currentFunc, "All", "All Data", "Show the cumulative log.");
@@ -589,6 +592,9 @@ public function statisticsScreen(showID:String = "All"):void
 					{
 						case "HumanPregnancy": output2(" Human"); break;
 						case "AusarPregnancy": output2(" Ausar"); break;
+						case "KaithritPregnancy": output2(" Kaithrit"); break;
+						case "LeithanPregnancy": output2(" Leithan"); break;
+						case "KuitanPregnancy": output2(" Kui-Tan"); break;
 						case "VenusPitcherSeedCarrier": output2(" Venus Pitcher, Seed"); break;
 						case "VenusPitcherFertilizedSeedCarrier": output2(" Venus Pitcher, Seed, Fertilized"); break;
 						case "NyreaEggPregnancy": output2(" Nyrean Huntress, Eggs"); break;
@@ -827,15 +833,17 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Resistance, Tease:</b> " + formatFloat(pc.getLustResistances().tease.resistanceValue, 3) + " %");
 		// Sexy Stuff
 		output2("\n<b>* Sexiness:</b> " + pc.sexiness());
-		var teases:Array = [-1, -1, -1, -1];
+		var teases:Array = [-1, -1, -1, -1, -1];
 		if(flags["TIMES_BUTT_TEASED"] != undefined) teases[0] = Math.min(flags["TIMES_BUTT_TEASED"], 100);
 		if(flags["TIMES_CHEST_TEASED"] != undefined) teases[1] = Math.min(flags["TIMES_CHEST_TEASED"], 100);
 		if(flags["TIMES_CROTCH_TEASED"] != undefined) teases[2] = Math.min(flags["TIMES_CROTCH_TEASED"], 100);
 		if(flags["TIMES_HIPS_TEASED"] != undefined) teases[3] = Math.min(flags["TIMES_HIPS_TEASED"], 100);
+		if(flags["TIMES_ORAL_TEASED"] != undefined) teases[4] = Math.min(flags["TIMES_ORAL_TEASED"], 100);
 		if(teases[0] >= 0) output2("\n<b>* Tease Skill, Ass:</b> " + teases[0] + "/100");
 		if(teases[1] >= 0) output2("\n<b>* Tease Skill, Chest:</b> " + teases[1] + "/100");
 		if(teases[2] >= 0) output2("\n<b>* Tease Skill, Crotch:</b> " + teases[2] + "/100");
 		if(teases[3] >= 0) output2("\n<b>* Tease Skill, Hips:</b> " + teases[3] + "/100");
+		if(teases[4] >= 0) output2("\n<b>* Tease Skill, Oral:</b> " + teases[4] + "/100");
 		// Performance
 		output2("\n<b><u>Combat Performance</u></b>");
 		output2("\n<b>* Combat, Losses:</b> " + StatTracking.getStat("combat/losses"));
@@ -844,6 +852,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(flags["TIMES_CHEST_TEASED"] != undefined) output2("\n<b>* Tease, Times Used Chest:</b> " + flags["TIMES_CHEST_TEASED"]);
 		if(flags["TIMES_CROTCH_TEASED"] != undefined) output2("\n<b>* Tease, Times Used Crotch:</b> " + flags["TIMES_CROTCH_TEASED"]);
 		if(flags["TIMES_HIPS_TEASED"] != undefined) output2("\n<b>* Tease, Times Used Hips:</b> " + flags["TIMES_HIPS_TEASED"]);
+		if(flags["TIMES_ORAL_TEASED"] != undefined) output2("\n<b>* Tease, Times Used Oral:</b> " + flags["TIMES_ORAL_TEASED"]);
 		
 		//======NPC STATISTICS=====//
 		
@@ -1177,7 +1186,139 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 	}
-	
+	// Racial scores
+	// It may be preferable for balance reasons to only allow this section to be visible if Easy Mode is on,
+	// or maybe only after unlocking it by talking to some doctor/geneticist (maybe Dr. McAllister on Myrmedion?)
+	if(showID == "Race" || showID == "All")
+	{
+		//======GENETIC MAKEUP=====//
+		output2("\n\n" + blockHeader("Genetic Makeup", false));
+		
+		if(pc.humanScore() > 0)
+			output2("\n<b>* Human:</b> " + pc.humanScore() + "/4 (max: 6)");
+		if(pc.ausarScore() > 0)
+			output2("\n<b>* Ausar:</b> " + pc.ausarScore() + "/4 (max: 5)");
+		if(pc.huskarScore() > 0 && pc.ausarScore() > 0)
+			output2("\n<b>* Huskar:</b> " + pc.huskarScore() + "/3 (max: 5)");
+		if(pc.kaithritScore() > 0)
+			output2("\n<b>* Kaithrit:</b> " + pc.kaithritScore() + "/6 (max: 9)");
+		if(pc.leithanScore() > 0)
+			output2("\n<b>* Leithan:</b> " + pc.leithanScore() + "/6 (max: 9)");
+		if(pc.nukiScore() > 0)
+			output2("\n<b>* Kui-tan:</b> " + pc.nukiScore() + "/6 (max: 7)");
+		if(pc.gooScore() > 0)
+			output2("\n<b>* Goo:</b> " + pc.gooScore() + "/6 (max: 9)");
+		if(pc.bovineScore() > 0)
+			output2("\n<b>* Bovine:</b> " + pc.bovineScore() + "/3 (max: 6)");
+		if(pc.cowScore() > 0 && pc.bovineScore() > 0)
+			output2("\n<b>* Cow:</b> " + pc.cowScore() + "/4 (max: 12)");
+		if(pc.amazonScore() > 0)
+			output2("\n<b>* Amazon:</b> " + pc.amazonScore() + "/4 (max: 5)");
+		if(pc.avianScore() > 0)
+			output2("\n<b>* Avian:</b> " + pc.avianScore() + "/4 (max: 7)");
+		if(pc.badgerScore() > 0)
+			output2("\n<b>* Badger:</b> " + pc.badgerScore() + "/4 (max: 4)");
+		if(pc.bunnyScore() > 0)
+			output2("\n<b>* Bunny:</b> " + pc.bunnyScore() + "/4 (max: 6)");
+		if(pc.flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined) /*gotta know what it is before you know how much of one you are (just in case the score for a race would somehow be above 0 before even meeting a member of that race)*/
+		{
+			if(pc.korgonneScore() > 0)
+				output2("\n<b>* Korgonne:</b> " + pc.korgonneScore() + "/4 (max: 5)");
+		}
+		if(pc.canineScore() > 0)
+			output2("\n<b>* Canine:</b> " + pc.canineScore() + "/5 (max: 9)");
+		if(pc.lupineScore() > 0)
+			output2("\n<b>* Lupine:</b> " + pc.lupineScore() + "/5 (max: 5)");
+		if(pc.deerScore() > 0)
+			output2("\n<b>* Deer:</b> " + pc.deerScore() + "/4 (max: 5)");
+		if(pc.demonScore() > 0)
+			output2("\n<b>* Demon:</b> " + pc.demonScore() + "/5 (max: 8)");
+		if(pc.dragonScore() > 0)
+			output2("\n<b>* Dragon:</b> " + pc.dragonScore() + "/5 (max: 10)");
+		if(pc.felineScore() > 0)
+			output2("\n<b>* Feline:</b> " + pc.felineScore() + "/5 (max: 7)");
+		if(pc.frogScore() > 0 && flags["MET_KEROKORAS"] != undefined)
+			output2("\n<b>* Kerokoras:</b> " + pc.frogScore() + "/5 (max: 8)");
+		if(pc.gabilaniScore() > 0)
+			output2("\n<b>* Gabilani:</b> " + pc.gabilaniScore() + "/5 (max: 11)");
+		if(pc.goatScore() > 0)
+			output2("\n<b>* Goat:</b> " + pc.goatScore() + "/4 (max: 7)");
+		if(pc.gryvainScore() > 0)
+			output2("\n<b>* Gryvain:</b> " + pc.gryvainScore() + "/9 (max: 11)");
+		if(pc.horseScore() > 0)
+			output2("\n<b>* Horse:</b> " + pc.horseScore() + "/5 (max: 8)");
+		if(pc.hradScore() > 0 && flags["LIRIEL_MET"] != undefined)
+			output2("\n<b>* Hrad:</b> " + pc.hradScore() + "/4 (max: 8)");
+		if(pc.laquineScore() > 0)
+			output2("\n<b>* Laquine:</b> " + pc.laquineScore() + "/5 (max: 6)");
+		if(pc.mothrineScore() > 0 && flags["SEER_MET"] != undefined)
+			output2("\n<b>* Mothrine:</b> " + pc.mothrineScore() + "/5 (max: 10)");
+		if(pc.myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined)
+			output2("\n<b>* Myr:</b> " + pc.myrScore() + "/4 (max: 6)");
+		if(pc.myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && pc.redMyrScore() > 0)
+			output2("\n<b>* Red myr:</b> " + pc.redMyrScore() + "/8 (max: 12)");
+		if(pc.myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && pc.goldMyrScore() > 0)
+			output2("\n<b>* Gold myr:</b> " + pc.goldMyrScore() + "/8 (max: 15)");
+		if(pc.myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && pc.orangeMyrScore() > 0 && flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+			output2("\n<b>* Orange myr:</b> " + pc.orangeMyrScore() + "/9 (max: 16)");
+		if(flags["PQ_NALEENED"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined)
+		{
+			if(pc.naleenScore() > 0)
+				output2("\n<b>* Naleen:</b> " + pc.naleenScore() + "/5 (max: 10)");
+		}
+		if(flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || metTaivra() || flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"] != undefined)
+		{
+			if(pc.nyreaScore() > 0)
+				output2("\n<b>* Nyrea:</b> " + pc.nyreaScore() + "/5 (max: 7)");
+		}
+		/*if(flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined)
+		{ */
+		if(pc.ovirScore() > 0)
+			output2("\n<b>* Ovir:</b> " + pc.ovirScore() + "/5 (max: 9)");	
+		if(pc.pandaScore() > 0)
+			output2("\n<b>* Panda:</b> " + pc.pandaScore() + "/4 (max: 6)");
+		if(pc.pigScore() > 0)
+			output2("\n<b>* Pig:</b> " + pc.pigScore() + "/4 (max: 9)");
+		if(pc.plantScore() > 0)
+			output2("\n<b>* Plant:</b> " + pc.plantScore() + "/5 (max: 9)");
+		if(flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined || flags["PREG_RASK_GUARD_RESULT"] != undefined) 
+		{
+			if(pc.raskvelScore() > 0)
+				output2("\n<b>* Raskvel:</b> " + pc.raskvelScore() + "/6 (max: 8)");
+		}
+		if(pc.redPandaScore() > 0)
+			output2("\n<b>* Red panda:</b> " + pc.redPandaScore() + "/4 (max: 8)");
+		if(pc.saurmorianScore() > 0)
+			output2("\n<b>* Saurmorian:</b> " + pc.saurmorianScore() + "/6 (max: 9)");
+		if(pc.sharkScore() > 0)
+			output2("\n<b>* Shark:</b> " + pc.sharkScore() + "/5 (max: 12)");
+		if(pc.sheepScore() > 0)
+			output2("\n<b>* Sheep:</b> " + pc.sheepScore() + "/5 (max: 9)");
+		if(pc.simiiScore() > 0)
+			output2("\n<b>* Simii:</b> " + pc.simiiScore() + "/4 (max: 5)");
+		if(pc.suulaScore() > 0)
+			output2("\n<b>* Suula:</b> " + pc.suulaScore() + "/6 (max: 10)");
+		if(pc.tentacleScore() > 0)
+			output2("\n<b>* Tentacle:</b> " + pc.tentacleScore() + "/15 (max: ??)");
+		if(pc.statusEffectv4("Vanae Markings") > 0 || flags["SALVAGED VANAE CAMP"] >= 2 || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined)
+		{
+			if(pc.vanaeScore() > 0)
+				output2("\n<b>* Vanae:</b> " + pc.vanaeScore() + "/6 (max: 10)");
+		}
+		if(pc.vulpineScore() > 0)
+			output2("\n<b>* Vulpine:</b> " + pc.vulpineScore() + "/4 (max: 9)");
+		if(pc.vulpineScore() > 0 && pc.kitsuneScore() > 0 && pc.tailCount > 1)
+			output2("\n<b>* Kitsune:</b> " + pc.kitsuneScore() + "/4 (max: 8)");
+		if(StatTracking.getStat("pregnancy/zil birthed") > 0 || zilCallGirlSexed() > 0 || flags["ZIL_CALLGIRL_NAME_KNOWN"] != undefined || StatTracking.getStat("pregnancy/zil sired") > 0 || flags["AVOID_9TAIL"] != undefined || flags["FOUGHT_9TAIL"] != undefined || flags["FED_9TAIL"] != undefined || flags["ZIL_PROBLEM_DEALT_WITH"] != undefined || flags["PQ_RESOLUTION"] != undefined || flags["PLANTATION_QUEST"] != undefined || MailManager.isEntryViewed("plantation_quest_start") || flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined || flags["ZILTWINS_MET"] != undefined || flags["BURT_ZIL_TALK"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined) /* what does "redundant" mean lol */
+		{
+			if(pc.zilScore() > 0)
+				output2("\n<b>* Zil:</b> " + pc.zilScore() + "/6 (max: 10)");
+		}
+		/* pls add cyborg stuff :(
+		if(cyborgScore() > 0)
+			output2("\n<b>* Cyborg:</b> " + cyborgScore() + "/1 (max: 4)");
+		*/
+	}	
 	// Medical
 	if(showID == "Medical" || showID == "All")
 	{
@@ -2495,7 +2636,7 @@ public function displayQuestLog(showID:String = "All"):void
 						else output2(" and turrets");
 					}
 					else output2(" Visited");
-					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped passed");
+					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped past");
 				}
 				if(flags["PREG_RASK_GUARD_RESULT"] != undefined)
 				{
@@ -2969,6 +3110,38 @@ public function displayQuestLog(showID:String = "All"):void
 				}
 				sideCount++;
 			}
+			//Federation Quest
+			if(flags["FEDERATION_QUEST"] != undefined)
+			{
+				output2("\n<b><u>FederationQuest</u></b>");
+				output2("\n<b>* Status:</b>");
+				if(flags["FEDERATION_QUEST"] <= 0) output2(" Refused");
+				else
+				{
+					output2(" Accepted");
+					if(flags["FEDERATION_QUEST_AMBUSH"] == 0) output2(", Lost to ambush");
+					if(flags["FEDERATION_QUEST_AMBUSH"] == 1) output2(", Defeated ambush");
+					switch(flags["FEDERATION_QUEST"])
+					{
+						case 1:
+							if(flags["FEDERATION_QUEST_AMBUSH"] != undefined) output2(", <i>Search for the Queen</i>");
+							else output2(", <i>Rendevous outside bunker</i>");
+							break;
+						case 2: output2(", Defeated Estallia, Radio’d Queen, <i>Prepare for confrontation</i>"); break;
+						case 3: output2(", Defeated Estallia, Captured Estallia"); break;
+						case 4: output2(", Defeated Estallia, Released Estallia"); break;
+						case 5: output2(", Estallia agreed to stop attacks"); break;
+						case 6: output2(", Remnants plan to assimilate with Kui-tan"); break;
+						case 7: output2(", Kara transporting Remnants to Mhen’ga"); break;
+						case 8: output2(", Agreed to transport Remnants to Mhen’ga"); break;
+						case 9: output2(", Paid to transport Remnants to Mhen’ga"); break;
+						case 10: output2(", Transported Remnants to Mhen’ga"); break;
+					}
+					if(flags["FEDERATION_QUEST"] >= 3) output2(", Completed");
+				}
+
+				sideCount++;
+			}
 			// IrelliaQuest
 			if(flags["IRELLIA_QUEST_STATUS"] != undefined)
 			{
@@ -2986,29 +3159,6 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["IRELLIA_QUEST_STATUS"] >= 5) output2(", Completed");
 				}
 				else output2(" <i>In progress...</i>");
-				sideCount++;
-			}
-			//Federation Quest
-			if(flags["FEDERATION_QUEST"] != undefined)
-			{
-				output2("\n<b><u>FederationQuest</u></b>");
-				output2("\n<b>* Status:</b>");
-				if(flags["FEDERATION_QUEST"] == 0) output2(" Refused");
-				else if(flags["FEDERATION_QUEST"] == 1) output2(" Accepted, <i>Rendevous outside bunker</i>");
-				else if(flags["FEDERATION_QUEST"] == 2) output2(" Radio’d Queen, <i>Prepare for confrontation</i>");
-				else if(flags["FEDERATION_QUEST"] >= 3)
-				{
-					output2(" Completed");
-					if(flags["FEDERATION_QUEST"] == 3) output2(", Defeated Estallia, Captured Estallia");
-					if(flags["FEDERATION_QUEST"] == 4) output2(", Defeated Estallia, Released Estallia");
-					if(flags["FEDERATION_QUEST"] == 5) output2(", Estallia agreed to stop attacks");
-					if(flags["FEDERATION_QUEST"] == 6) output2(", Remnants plan to assimilate with Kui-tan");
-					if(flags["FEDERATION_QUEST"] == 7) output2(", Kara transporting Remnants to Mhen’ga");
-					if(flags["FEDERATION_QUEST"] == 8) output2(", Agreed to transport Remnants to Mhen’ga");
-					if(flags["FEDERATION_QUEST"] == 9) output2(", Paid to transport Remnants to Mhen’ga");
-					if(flags["FEDERATION_QUEST"] == 10) output2(", Transported Remnants to Mhen’ga");
-				}
-
 				sideCount++;
 			}
 			// Kara's Big Adventure! - Pt.1
@@ -3331,6 +3481,7 @@ public function displayQuestLog(showID:String = "All"):void
 				output2("\n<b><u>SyriQuest</u></b>");
 				output2("\n<b>* Status:</b>");
 				if(flags["SYRIQUEST_STATE"] == -1) output2(" Refused");
+				else if(flags["SYRIQUEST_STATE"] == 0) output2(" <i>Syri possibly fired from Pyrite job?</i>");
 				else if(flags["SYRIQUEST_STATE"] >= 3) output2(" Accepted");
 				else output2(" <i>In progress...</i>");
 				if(flags["SYRIQUEST_STATE"] == 21) output2(", Killed Valden, Lied to Syri");
@@ -3364,7 +3515,7 @@ public function displayQuestLog(showID:String = "All"):void
 						schoraName += "Horned Woman";
 						if(flags["MET_SCHORA"] > 1 || flags["SYRIQUEST_LOCK_BYPASS"] >= 1) schoraName += " Commander";
 					}
-					output2("\n<b>* " + schoraName +  ":</b>");
+					output2("\n<b>* " + schoraName + ":</b>");
 					switch(flags["MET_SCHORA"])
 					{
 						case 1: output2(" Seen her"); break;
@@ -4003,6 +4154,8 @@ public function displayEncounterLog(showID:String = "All"):void
 						if(reahaIsCrew()) output2(" (Onboard Ship)");
 						else if(flags["REAHA_IS_CREW"] == 2) output2(" (At Tavros Station)");
 						else if(flags["REAHA_IS_CREW"] == 3) output2(" (At New Texas)");
+						if(flags["REAHA_PAY_Q"] == 1) output2("\n<b>* Reaha, Credit Debt:</b> <i>Ready to pay!</i>");
+						if(flags["REAHA_PC_PAY"] != undefined) output2("\n<b>* Reaha, Credit Debt, Paid:</b> " + flags["REAHA_PC_PAY"] + " credits");
 						if(flags["REAHA_FAMILY_RESULT"] != undefined) output2("\n<b>* Reaha, Talk, Family:</b>");
 						if(flags["REAHA_FAMILY_RESULT"] == 1) output2(" Encouraged to contact her little sister");
 						if(flags["REAHA_FAMILY_RESULT"] == -1) output2(" Discouraged from contacting little sister");
@@ -4374,7 +4527,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Nursery!
-			if(flags["USED_NURSERY_COMPUTER"] != undefined || flags["BRIGET_MET"] != undefined)
+			if(flags["USED_NURSERY_COMPUTER"] != undefined || flags["BRIGET_MET"] != undefined || StatTracking.getStat("nursery/milk milked") > 0)
 			{
 				output2("\n<b><u>Nursery</u></b>");
 				if(flags["USED_NURSERY_COMPUTER"] != undefined) output2("\n<b>* Computer:</b> Used");
@@ -4442,6 +4595,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_ZEPHYR"] != undefined)
 				{
 					output2("\n<b>* Zephyr:</b> Met her");
+					if(zephAtNursery()) output2(" (At Tavros Station, In Nursery)");
 					if(flags["ZEPHYR_PISSED"] != undefined) output2(", Pissed off");
 					if(flags["SEXED_ZEPHYR"] != undefined) output2(", Sexed her");
 					if(flags["ZEPHYR_FUCKED_PC"] != undefined) output2(", She fucked you");
@@ -5088,6 +5242,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["QUINN_PREG_TIMER"] != undefined) output2("\n<b>* Quinn, Days Pregnant:</b> " + flags["QUINN_PREG_TIMER"]);
 				if(flags["QUINN_TOTAL_KIDS"] > 0) output2("\n<b>* Quinn, Total Kids:</b> " + flags["QUINN_TOTAL_KIDS"]);
 				if(flags["SEXED_QUINN"] != undefined) output2("\n<b>* Quinn, Times Sexed:</b> " + flags["SEXED_QUINN"]);
+				if(flags["QUINN_EVERY_HOLED"] != undefined) output2("\n<b>* Quinn, Time Since Last Sexed in Every Hole:</b> " + prettifyMinutes(GetGameTimestamp() - flags["QUINN_EVERY_HOLED"]));
 				if(flags["QUINN_KID_PLAYS"] != undefined) output2("\n<b>* " + quinnBabyName() + ", Times Played With:</b> " + flags["QUINN_KID_PLAYS"]);
 				if(flags["QUINN_MAIDENS_MET"] != undefined) output2("\n<b>* Fetch and Carry:</b> Met them");
 				if(flags["QUINN_MAIDENS_SEXED"] != undefined) output2("\n<b>* Fetch and Carry, Times Sexed:</b> " + flags["QUINN_MAIDENS_SEXED"]);
@@ -5109,7 +5264,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Jungles
-			if(flags["MET_CUNT_SNAKE"] != undefined || flags["ENCOUNTERED_MIMBRANE"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined || flags["TIMES_MET_VENUS_PITCHER"] != undefined || flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] != undefined || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined || flags["MET_KEROKORAS"] != undefined || flags["DRYAD_MET"] != undefined || flags["PRAI_MET"] != undefined)
+			if(flags["MET_CUNT_SNAKE"] != undefined || flags["ENCOUNTERED_MIMBRANE"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined || flags["NALEEN_HERM_MET"] != undefined || flags["TIMES_MET_VENUS_PITCHER"] != undefined || flags["TIMES_VENUS_PITCHER_ELDER_ENCOUNTERED"] != undefined || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined || flags["MET_KEROKORAS"] != undefined || flags["DRYAD_MET"] != undefined || flags["PRAI_MET"] != undefined)
 			{
 				output2("\n<b><u>Mhen’gan Jungles</u></b>");
 				// Dryad
@@ -5148,9 +5303,10 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Naleen Huntress, Times Encountered:</b> " + flags["TIMES_MET_NALEEN"]);
 					if(flags["NALEEN_SNUGGLED"] != undefined) output2("\n<b>* Naleen Huntress, Times Snuggled With:</b> " + flags["NALEEN_SNUGGLED"]);
-					if(flags["TIMES_WINSEXED_NALEEN"] != undefined || flags["TIMES_LOSS_DOMMED_BY_NALEEN"] != undefined) output2("\n<b>* Naleen Huntress, Times Sexed:</b> " + totalNaleenSexCount());
+					if(totalNaleenSexCount() > 0) output2("\n<b>* Naleen Huntress, Times Sexed:</b> " + totalNaleenSexCount());
 				}
 				if(flags["TIMES_MET_MALE_NALEEN"] != undefined) output2("\n<b>* Male Naleen, Times Encountered:</b> " + flags["TIMES_MET_MALE_NALEEN"]);
+				if(flags["NALEEN_HERM_MET"] != undefined) output2("\n<b>* Hermaphrodite Naleen, Times Encountered:</b> " + flags["NALEEN_HERM_MET"]);
 				if(flags["MET_VANAE_MAIDEN"] != undefined)
 				{
 					output2("\n<b>* Vanae Maiden, Times Encountered:</b> " + flags["MET_VANAE_MAIDEN"]);
@@ -5573,11 +5729,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Wastes
-			if(flags["MET_GRAY_GOO"] != undefined || flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined || (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined) || flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined || flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined || flags["MET_SYDIAN_MALE"] != undefined || flags["MET SYDIAN FEMALE"] != undefined)
+			if(flags["MET_GRAY_GOO"] != undefined || flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined || (flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined) || flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined || flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined || flags["MET_SYDIAN_MALE"] != undefined || flags["MET SYDIAN FEMALE"] != undefined || flags["SYDIAN_QUEEN_STAGE"] != undefined || flags["MET_LGBT"] != undefined)
 			{
 				output2("\n<b><u>The Wastes</u></b>");
 				if(flags["MET_GRAY_GOO"] != undefined) output2("\n<b>* Gray Goo, Times Encountered:</b> " + flags["MET_GRAY_GOO"]);
 				if(flags["ENCOUNTERED_PARASITIC_LAPINARA"] != undefined) output2("\n<b>* Female Parasitic Lapinara, Times Encountered:</b> " + flags["ENCOUNTERED_PARASITIC_LAPINARA"]);
+				if(flags["MET_LGBT"] != undefined) output2("\n<b>* Luxury Gabilani Bipedal Transport, Times Encountered:</b> " + flags["MET_LGBT"]);
 				if(flags["MET_FEMALE_RASKVEL"] != undefined)
 				{
 					output2("\n<b>* Female Raskvel, Times Encountered:</b> " + flags["MET_FEMALE_RASKVEL"]);
@@ -5592,6 +5749,20 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Male Sydian, Times Encountered:</b> " + flags["MET_SYDIAN_MALE"]);
 					if(flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"] != undefined) output2("\n<b>* Male Sydian, Times Cunt-Fucked By:</b> " + flags["TIMES_TAKEN_RUST_BRO_IN_COOCH"]);
+				}
+				if(flags["SYDIAN_QUEEN_STAGE"] != undefined)
+				{
+					output2("\n<b>* Sydian Queen, Your Servile Status:</b>");
+					switch(flags["SYDIAN_QUEEN_STAGE"])
+					{
+						case 1: output2(" Willing"); break;
+						case 2: output2(" Eager"); break;
+						case 3: output2(" Devoted"); break;
+						case 4: output2(" Reluctant"); break;
+						case 5: output2(" Rejected Her"); break;
+					}
+					if(flags["RASKVEL_HAREM_SPITROAST"] != undefined) output2("\n<b>* Sydian Queen, Times Spitroasted By Harem :</b> " + flags["RASKVEL_HAREM_SPITROAST"]);
+					if(flags["SYDIAN_QUEEN_LUBBIN"] != undefined) output2("\n<b>* Sydian Queen, Times Fucked:</b> " + flags["SYDIAN_QUEEN_LUBBIN"]);
 				}
 				variousCount++;
 			}
@@ -5872,7 +6043,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2("\n<b>* Gene:</b>");
 				output2(" Met him");
 				if(flags["GENE_BELLYRUBS_ENABLED"] != undefined) output2(", Rubbed his belly");
-				if(flags["GENE_SUBMISSION_LEVEL"] != undefined)
+				if(flags["GENE_SUBMISSION_LEVEL"] != undefined && flags["GENE_TALKED_TO"] != undefined)
 				{
 					output2("\n<b>* Gene, Dominance Level:</b> ");
 					if(flags["GENE_SUBMISSION_LEVEL"] == -1) output2("Refused his advances completely");
@@ -6240,6 +6411,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(metTaivra())
 				{
 					output2("\n<b>* Queen Taivra:</b> Met her");
+					if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output2(", Defeated her");
+					if(flags["KILLED_TAIVRA"] != undefined) output2(", Killed her");
 					if(flags["FUCKED_TAIVRA"] != undefined) output2(", Sexed her");
 					if(flags["FUCKED_BY_TAIVRA"] != undefined) output2(", Fucked by her");
 					if(flags["TAIVRA_FOOTJOBBED"] != undefined) output2(", Footjob by her");
@@ -6295,7 +6468,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					var goldMyrDeserterName:String = "Gold Myr Deserter";
 					if(flags["KNOW_GOLD_MYR_NAME"] != undefined) goldMyrDeserterName = "Lys";
 					output2("\n<b>* " + goldMyrDeserterName + "</b>");
-					if(flags["GOLD_MYR_DESERTER_BEATEN"] != undefined && flags["GOLD_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
+					if(flags["GOLD_MYR_DESERTER_BEATEN"] != undefined && flags["GOLD_MYR_DESERTER_BEATEN"] >= 5 && flags["KNOW_GOLD_MYR_NAME"] != undefined) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered:</b> " + flags["MET_GOLD_DESERTER"]);
 					if(flags["GAVE_LYS_FLOWER"] != undefined)
 					{
@@ -6310,7 +6483,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					var redMyrDeserterName:String = "Red Myr Deserter";
 					if(flags["KNOW_RED_MYR_NAME"] != undefined) redMyrDeserterName = "Briha";
 					output2("\n<b>* " + redMyrDeserterName + "</b>");
-					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
+					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5 && flags["KNOW_RED_MYR_NAME"] != undefined) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered:</b> " + flags["MET_RED_DESERTER"]);
 					if(flags["BRIHA_INCUBATION_TIMER"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Days Pregnant:</b> " + flags["BRIHA_INCUBATION_TIMER"]);
 					if(flags["RED_DILDOED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times Used Dildo:</b> " + flags["RED_DILDOED"]);
@@ -6396,7 +6569,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			if(flags["GOT_URBOLGS_SHIELD"] != undefined)
 			{
-				output2("\n<b><u>Artificer’s\nOffice</u></b>");
+				output2("\n<b><u>Artificer’s Office</u></b>");
 				output2("\n<b>* Urbolg’s Safe:</b>");
 				if(flags["GOT_URBOLGS_SHIELD"] >= 1) output2(" Found, Shield looted");
 				else output2(" Know about it, <i>Lock combination is 7-8-9</i>");
@@ -6404,14 +6577,14 @@ public function displayEncounterLog(showID:String = "All"):void
 			}
 			if(flags["MAIKE_QUARTERS_UNLOCKED"] != undefined)
 			{
-				output2("\n<b><u>Maike’s\nQuarters</u></b>");
+				output2("\n<b><u>Maike’s Quarters</u></b>");
 				output2("\n<b>* Status:</b>");
 				switch(flags["MAIKE_QUARTERS_UNLOCKED"])
 				{
 					case 1: output2(" Unlocked by card"); break;
 					case 2: output2(" Unlocked by hacking"); break;
 					default: output2(" <i>Unknown</i>"); break;
-				}
+		}
 				if(flags["MET_TIVF"] != undefined) output2("\n<b>* Tivf:</b> Met him");
 				variousCount++;
 			}
@@ -6461,13 +6634,14 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MAIKE_HELMET_TAKEN"] != undefined) output2("\n<b>* Spacesuit Helmet:</b> Taken");
 				variousCount++;
 			}
-			if(flags["BORED_JUMPER_JUMPED"] != undefined || flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined || flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["MET_ROZ"] != undefined)
+			if(flags["BORED_JUMPER_JUMPED"] != undefined || flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined || flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["MET_ROZ"] != undefined || flags["MET_SLAVEBREAKERS"] != undefined)
 			{
 				output2("\n<b><u>Mineshaft</u></b>");
 				// Jumper
 				if(flags["BORED_JUMPER_JUMPED"] != undefined)
 				{
 					output2("\n<b>* Bored Jumper, Times Encountered:</b> " + flags["BORED_JUMPER_JUMPED"]);
+					if(flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] > 1) output2("\n<b>* Bored Jumper, Combat, Times You Consecutively Lost:</b> " + flags["BORED_JUMPER_CONSECUTIVE_LOSSES"]);
 					if(flags["JUMPER_DOCKED"] != undefined) output2("\n<b>* Bored Jumper, Times Docked By:</b> " + flags["JUMPER_DOCKED"]);
 				}
 				// Pleasure Slaves
@@ -6481,9 +6655,18 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MET_ROZ"] != undefined)
 				{
 					output2("\n<b>* Rozenn, Times Encountered:</b> " + flags["MET_ROZ"]);
-					if(flags["ROZ_GOOFUKKED_WNO_DIK"] != undefined)  output2("\n<b>* Rozenn, Times She Fucked You with Her Dick:</b> " + flags["ROZ_GOOFUKKED_WNO_DIK"]);
+					if(flags["ROZ_GOOFUKKED_WNO_DIK"] != undefined) output2("\n<b>* Rozenn, Times She Fucked You with Her Dick:</b> " + flags["ROZ_GOOFUKKED_WNO_DIK"]);
 					if(flags["ROZ_INTERNAL_FUCKED"] != undefined) output2("\n<b>* Rozenn, Internal Fuck, Times Opted to Jack Her Out:</b> " + flags["ROZ_INTERNAL_FUCKED"]);
-					if(flags["ROZ_INTERNAL_FUCKED_SUBMITTED"] != undefined)  output2("\n<b>* Rozenn, Internal Fuck, Times Opted to Give Up:</b> " + flags["ROZ_INTERNAL_FUCKED_SUBMITTED"]);
+					if(flags["ROZ_INTERNAL_FUCKED_SUBMITTED"] != undefined) output2("\n<b>* Rozenn, Internal Fuck, Times Opted to Give Up:</b> " + flags["ROZ_INTERNAL_FUCKED_SUBMITTED"]);
+				}
+				// Slavebreaker
+				if(flags["MET_SLAVEBREAKERS"] != undefined)
+				{
+					output2("\n<b>* Slavebreaker, Times Encountered:</b> " + flags["MET_SLAVEBREAKERS"]);
+					if(flags["SLYVEREN_SUBMISSION"] != undefined) output2("\n<b>* Slavebreaker, Dominance:</b> " + formatFloat(slyverenSubmission(), 1) + " %");
+					if(flags["SLYVEREN_SUCKLESUBMITTED"] != undefined) output2("\n<b>* Slavebreaker, Times Suckled You Into Submission:</b> " + flags["SLYVEREN_SUCKLESUBMITTED"]);
+					if(flags["SLYVEREN_THROBB_FUCKED"] != undefined) output2("\n<b>* Slavebreaker, Times Throbb-Fucked By:</b> " + flags["SLYVEREN_THROBB_FUCKED"]);
+					if(flags["SLYVEREN_WIN_FACEFUKT"] != undefined) output2("\n<b>* Slavebreaker, Times Face Fucked Her:</b> " + flags["SLYVEREN_WIN_FACEFUKT"]);
 				}
 				variousCount++;
 			}
@@ -6682,7 +6865,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 			}
 			// The Freezer
-			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined || flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined || flags["CHRISSY_MET"] != undefined || flags["MET_CANDY"] != undefined)
+			if(flags["MET_HANA"] != undefined || flags["MET_JEROME"] != undefined ||flags["WILLOW_MET"] != undefined|| flags["MET_JERYNN"] != undefined || flags["NATALIE_MET"] != undefined || flags["BEA_TITLE"] != undefined || flags["CHRISSY_MET"] != undefined || flags["MET_CANDY"] != undefined)
 			{
 				output2("\n<b><u>The Freezer</u></b>");
 				// Hanananana, hawt MILF
@@ -6756,6 +6939,17 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["CHRISSY_RIDDEN"] != undefined) output2("\n<b>* Chrissy, Times You Rode Her Cock:</b> " + flags["CHRISSY_RIDDEN"]);
 					if(flags["CHRISSY_GETFKD"] != undefined) output2("\n<b>* Chrissy, Times She Fucked You:</b> " + flags["CHRISSY_GETFKD"]);
 				}
+				// Willow
+				if(flags["WILLOW_MET"] != undefined)
+				{
+					output2("\n<b>* Willow:</b> Met her");
+					if(flags["WILLOW_AFFECTION"] != undefined) output2("\n<b>* Willow, Affection:</b> " + flags["WILLOW_AFFECTION"] + " %");
+					if(flags["WILLOW_VAG_SEXED"] != undefined) output2("\n<b>* Willow, Times Fucked Her Vagina:</b> " + flags["WILLOW_VAG_SEXED"]);
+					if(flags["WILLOW_BUTT_SEXED"] != undefined) output2("\n<b>* Willow, Times Fucked Her Butt:</b> " + flags["WILLOW_BUTT_SEXED"]);
+					if(flags["WILLOW_DBLPEN"] != undefined) output2("\n<b>* Willow, Times Double Penetrated:</b> " + flags["WILLOW_DBLPEN"]);
+					if(flags["WILLOW_DBLPEN_VAG"] != undefined) output2("\n<b>* Willow, Times Double Stuffed Her Vagina:</b> " + flags["WILLOW_DBLPEN_VAG"]);
+					if(flags["WILLOW_TRPVAG"] != undefined) output2("\n<b>* Willow, Times Triple Stuffed Her Vagina:</b> " + flags["WILLOW_TRPVAG"]);
+				}
 				variousCount++;
 			}
 			// Nayna
@@ -6803,7 +6997,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				variousCount++;
 			}
 			// Ice Plains
-			if(flags["MET_MYRNA"] != undefined || flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["MET_STORMGUARD"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined)
+			if(flags["MET_MYRNA"] != undefined || flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined || flags["MET_MILODAN_MALE"] != undefined || flags["FERTILITY_PRIESTESSES_FOUGHT"] != undefined || flags["MET_STORMGUARD"] != undefined || flags["UVIP_J46_SEARCHED"] != undefined || flags["MET_VARK"] != undefined)
 			{
 				output2("\n<b><u>Ice Plains</u></b>");
 				if(flags["MET_STORMGUARD"] != undefined)
@@ -6849,6 +7043,12 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				// Abandoned Outpost
 				if(flags["UVIP_J46_SEARCHED"] != undefined) output2("\n<b>* Abandoned Outpost:</b> Found, Looted camp");
+				if(flags["MET_VARK"] != undefined)
+				{
+					output2("\n<b>* Vark:</b> Met him");
+					if(varkGotCollar()) output2(", Got collar");
+					if(flags["VARK_SEXED"] != undefined) output2("\n<b>* Vark, Times Sexed:</b> " + flags["VARK_SEXED"]);
+				}
 				variousCount++;
 			}
 			//Frostwyrm
@@ -6928,7 +7128,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["ULA_SAVED"] != undefined && flags["MET_LUND"] != undefined)
 				{
 					output2("\n<b>* Lund:</b> Met him");
-					if(flags["LUND_BROKEN"] != undefined) output2(", Broken him");
+					if(lundBroken()) output2(", Broken him");
+					if(lundDommingPC()) output2(", Dominated by him");
 					if(flags["LUND_BROKEN"] >= 1) output2(", Gave him thong");
 					if(flags["LUND_ANUSOFT"] != undefined) output2(", Gave him Anusoft");
 					if(flags["LUND_FUCKED_OFF"] != undefined) output2(", He is hostile, <i>Whereabouts unknown</i>");

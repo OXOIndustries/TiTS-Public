@@ -1053,7 +1053,7 @@ public function reahaAddictionTherapyNoWingWang():void
 	clearOutput();
 	reahaHeader();
 
-	var hardLight:Boolean = pc.lowerUndergarment.hardLightEquipped;
+	var hardLight:Boolean = pc.hasHardLightEquipped();
 
 	output("You give your busty bovine companion a reassuring smile as you");
 	if (hardLight) output(" reach down and flick the tiny button on the hip of your [pc.lowerUndergarment], letting your hardlight strapon spring to life.");

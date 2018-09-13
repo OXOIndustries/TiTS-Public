@@ -261,7 +261,7 @@ package classes.Items.Miscellaneous
 				{
 					output("\n<b>" + StringUtil.capitalize(num2Ordinal(x + 1)) + " Row:</b> ");
 					output(pc.breastRows[x].breasts + " ");
-					if (pc.breastRows[x].breastRating() > 0) output(pc.breastCup());
+					if (pc.breastRows[x].breastRating() > 0) output(pc.breastCup(x));
 					else output("flat pectoral");
 					if (pc.breastRows[x].breasts > 1) output("s");
 

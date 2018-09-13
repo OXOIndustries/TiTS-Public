@@ -721,7 +721,7 @@ public function talkToBimboBadgerAboutPexiga():void
 	author("Adjatha");
 	if(!pc.isBimbo()) output("Frankly, you doubt if this will work, but hope springs eternal, right? You stand in front of the bimbotized <i>“Doctor”</i> Badger and take her down the brief history of the pexiga on your ship. You explain how her body’s basically shut itself down. With a shrug, you ask the zapped mad scientist if there’s anything she can do to give some modicum of intellect to the girl.");
 	else output("Doc Badger is, like, the smartest person you know. Afterall, she’s always coming up with cool new inventions and stuff. You launch into a kind of rambling explanation of the blue girl and her brain troubles. <i>“It’s no good having somebody who can’t enjoy themselves! You’re a big smarty, right Badger? You could TOTALLY do something to help! You’ve got got, like brains for days. Weeks, probably.”</i>");
-	output("\n\nBadger remains silent through your entire speech, her tongue lolling from one side of her mouth. Big, vacant eyes fixed on you, she nods a few times, but by the time you finish, her face lights up. <i>“Oooh! Make somebody smart? Instead of dumb?”</i> Her face scrunches up in deliberation. <i>“ Like, why would I wanna to do that? Bein’ dumb is great!”</i>");
+	output("\n\nBadger remains silent through your entire speech, her tongue lolling from one side of her mouth to the other. Big, vacant eyes fixed on you, she nods a few times and by the time you finish, her face lights up. <i>“Oooh! Make somebody smart? Instead of dumb?”</i> Her face scrunches up in deliberation. <i>“ Like, why would I wanna to do that? Bein’ dumb is great!”</i>");
 	//normal
 	if(!pc.isBimbo())
 	{
@@ -1331,7 +1331,7 @@ public function absenteePexigaPart2():void
 	output("\n\nYour silvered girl blinks, shaking her head. She pants and sighs, noticing perhaps for the first time that she has a ring gag in her mouth and a massive steel stud in her tongue. She cocks her head, curiously, wiggling her muscular organ to acclimate to the feel of it. Running a two-fingered hand down the mane of hair-like spines on her head, she raises her big, blue eyes to you. From behind the gag, she smiles bashfully and gurgles something.");
 	if(pc.isBimbo()) output("\n\nWell that’s no good! She can’t talk with that thing in her mouth. As least, you guess she can’t. <i>“Does her race communicates in gurgles?”</i> you wonder aloud. <i>“Did Badger put a language lesson in her bimbo ball? Shoot, I should’ve looked for the instruction manual.”</i>");
 	else output("\n\nWell, the gag and the stud aren’t going to make communication easy, that’s for sure. You could take them out, but it’s probably safer to keep them in until you know she hasn’t regressed to her feral state.");
-	output(" Maybe the good doctor has something to help with communication around here. You hold up a finger in ask the pexiga to wait as you start searching around the chaotic mess of a former lab. The ivory girl seems happy to wait as she begins playing with her hefty F-cups.");
+	output(" Maybe the good doctor has something to help with communication around here. You hold up a finger to indicate for the plexia to wait, then start searching around the chaotic mess of a former lab. The ivory girl seems happy to wait as she begins playing with her hefty F-cups.");
 
 	output("\n\nYou toss through the piles of junk and broken inventions before coming across what appears to be a pair of plum-sized golden balls connected by a stout shaft. It seems to be roughly the size of the pexiga’s piercing. You pick it up and feel a strange current dancing across your skin.");
 
@@ -1379,7 +1379,7 @@ public function nymfoeSetup():void
 	if(flags["NYM-FOE"] == undefined)
 	{
 		flags["NYM-FOE"] = 1;
-		output("As you make your way to Doctor Badger’s back room, you can’t help but stare at the bizarre assortment of inventions crowding just about every flat surface. You’re so caught up in trying to take in the sheer variety that you don’t even notice when you walk right into a pair of bouncy orbs. Drawing back, you find yourself eye-to-tits with a JoyCo nursedroid.");
+		output("As you make your way to Doctor Badger’s back room, you can’t help but stare at the bizarre assortment of inventions crowding just about every flat surface. You’re so caught up in trying to take in the sheer variety that you almost walk right into a pair of bouncy orbs. Drawing back, you find yourself eye-to-tits with a JoyCo nursedroid.");
 		output("\n\nThe pale-skinned, pink uniformed clinical android seems out of place, except for the spine-crushingly huge mega tits she’s supporting with groaning servos. The <i>“V-Ko”</i> designation on its upper right arm has been scratched off and - in Badger’s messy script - a new name has been scrawled in its place: Nym-Foe. The droid stares at you with wide, pink eyes and an innocent smile, her overfilled chest still jiggling from your impact. <i>“Medical services are currently mandatory,”</i> she explains, a segmented steel tail whipping back and forth behind her.");
 		output("\n\n");
 		if(flags["DR_BADGER_TURNED_IN"] == undefined) output("Whether out of forgetfulness or malice, Doctor Badger didn’t deactivate her guard droid.");

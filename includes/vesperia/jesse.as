@@ -1414,7 +1414,7 @@ public function jesseSexRoleReversalTakeOver():void
 	if (pc.legCount > 1) output("them");
 	else output("it");
 	output(" to pull her just that bit closer, wishing for her to exceed.");
-	output("\n\nBut she’s close, you can feel it as her femcock continuously tenses and throbs within you.Hoping for a magical moment of unison, you furiously jerk at your [pc.cockBiggest] and feel your eyes roll back into your head as the pleasurable sensations take a toll on your body. Jesse helps you along, sensing your intent. In a few short, overwhelming seconds, the inevitable surge of hot, liquid love burns through your [pc.balls], your " + pc.cockDescript(x) + " and then ");
+	output("\n\nBut she’s close, you can feel it as her femcock continuously tenses and throbs within you. Hoping for a magical moment of unison, you furiously jerk at your [pc.cockBiggest] and feel your eyes roll back into your head as the pleasurable sensations take a toll on your body. Jesse helps you along, sensing your intent. In a few short, overwhelming seconds, the inevitable surge of hot, liquid love burns through your [pc.balls], your " + pc.cockDescript(x) + " and then ");
 	if (pc.cumQ() >= 1000) output("erupts all over your body");
 	else output("shoots in strings all over your body");
 	output(" to a chorus of your enraptured voices! Jesse’s whines climb higher and higher in pitch, squeals turning into moans, then cries, and then one final string of throat-breaking squeaks as she unloads her baby juice into your thoroughly fucked innards!");

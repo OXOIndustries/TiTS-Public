@@ -51,6 +51,11 @@ public function maikeEncounterFun():Boolean
 			addButton(0,"Next",ohShitEncounterMaike);
 			return true;
 		}
+		if(flags["MAIKE_SLAVES_RELEASED"] == -1)
+		{
+			output("\n\n<b>Maike’s remote is on the ground where you left it. You could still free the slaves, if you wished.</b>");
+			addButton(0,"Release Slaves",lateSlaveRelease,undefined,"Release Slaves","You can unlock the slaves’ obedience collars. They’d certainly like it, but it might piss off some of the pirates. Then again, the extra trouble might keep them out of your hair.");
+		}
 	}
 	else
 	{
@@ -62,6 +67,18 @@ public function maikeEncounterFun():Boolean
 		output("\n\nYour eyes are drawn to the lighting fixtures and you’re a little taken aback by just how high up they are. Must be at least as high as the pit is wide!");
 	}
 	return false;
+}
+
+public function lateSlaveRelease():void
+{
+	clearOutput();
+	author("SoAndSo");
+	flags["MAIKE_SLAVES_RELEASED"] = 1;
+	output("Well, the lives of many before the few. Without a second thought, you press the big red button that looks like it shouldn’t be pressed.");
+	output("\n\nAlthough subtle, there’s a chorus of disbelief echoing from the mine shafts and the sounds of metal clinking against rock. The slaves of the pit quickly scamper to some unknown, unseen exit below and all that clinking metal from before falls silent.");
+	output("\n\n<b>The mines are about to get a lot more interesting...</b>");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Oh Shi-
@@ -450,22 +467,30 @@ public function bonusCollarAndHelmetHandouts():void
 	clearOutput();
 	showName("\nSUCCESS!");
 	output("The collar placed around your neck tingles dangerously. <b>You’ll be unable to recover HP or energy from resting so long as it is equipped, owing to the <i>motivating</i> shocks.</b>");
-	if(!(pc.accessory is EmptySlot)) output(" Your old accessory is unequipped.");
-	output("\n\n");
-	if(!(pc.accessory is EmptySlot)) 
+	
+	var newAccessory:ItemSlotClass = new MaikesCollar();
+	var itemList:Array = [];
+	if(pc.hasAccessory())
 	{
-		quickLoot(new SpacesuitHelmet(), pc.accessory);
+		output(" Your old accessory is unequipped.");
+		var oldAccessory:ItemSlotClass = pc.accessory;
+		oldAccessory.onRemove(pc);
+		itemList.push(oldAccessory);
 		pc.accessory = new EmptySlot();
 	}
-	else 
+	if(flags["MAIKE_HELMET_TAKEN"] == undefined)
 	{
-		if(flags["MAIKE_BLUFF_PEN"] == undefined) 
-		{
-			quickLoot(new SpacesuitHelmet());
-			flags["MAIKE_HELMET_TAKEN"] = 1;
-		}
+		flags["MAIKE_HELMET_TAKEN"] = 1;
+		itemList.push(new SpacesuitHelmet());
 	}
-	pc.accessory = new MaikesCollar();
+	if(itemList.length > 0)
+	{
+		output("\n\n");
+		itemCollect(itemList);
+	}
+	
+	pc.accessory = newAccessory;
+	newAccessory.onEquip(pc);
 	
 }
 

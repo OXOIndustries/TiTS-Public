@@ -88,6 +88,12 @@ public function useItem(item:ItemSlotClass):Boolean
 			itemDisabledMessage(item.type);
 			return false;
 		}
+		if(pc.hasStatusEffect("Disarmed") && !pc.hasCombatStatusEffect("Disarmed") && InCollection(item.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON]))
+		{
+			clearOutput();
+			output("<b>You are unable to equip " + item.description + " due to being disarmed.</b>");
+			return false;
+		}
 		// Order of operations band-aid.
 		// Item needs to be removed from inventory before being equipped, or it'll exist in two places and fuck up
 		// item replacement. The player can have a "full" inventory including the item they've just equipped!
@@ -138,6 +144,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 	var button:Number = 0;
 	var btnName:String = "";
 	var btnTitle:String = "";
+	var x:int = 0;
 
 	//Ears!
 	output("\n\t*(" + (button+1) + ") Ear");
@@ -199,7 +206,7 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 	else addButton(button++,(button) + ": Tongue",actuallyPierceYourself,[item,"tongue"]);
 
 	//Bewbs
-	for(var x:int = 0; x < pc.bRows(); x++)
+	for(x = 0; x < pc.bRows(); x++)
 	{
 		if(pc.bRows() > 1)
 		{
@@ -309,11 +316,11 @@ public function useAPiercing(item:ItemSlotClass):Boolean
 
 public function actuallyPierceYourself(args:Array):void
 {
-	var item:ItemSlotClass = args[0];
 	var oldItem:ItemSlotClass = new EmptySlot();
+	var item:ItemSlotClass = args[0];
 	var slot:String = args[1];
-	var x:int = 0;
-	if(args.length >= 3) x = args[2];
+	var x:int = (args.length > 2 ? args[2] : 0);
+	
 	clearOutput();
 	showName("\nPIERCING!");
 
@@ -505,6 +512,12 @@ public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null
 		if(!pc.itemSlotUnlocked(item.type))
 		{
 			itemDisabledMessage(item.type);
+			return;
+		}
+		if(pc.hasStatusEffect("Disarmed") && !pc.hasCombatStatusEffect("Disarmed") && InCollection(item.type, [GLOBAL.MELEE_WEAPON, GLOBAL.RANGED_WEAPON]))
+		{
+			clearOutput();
+			output("<b>You are unable to equip " + item.description + " due to being disarmed.</b>");
 			return;
 		}
 		if (pc.inventory.indexOf(item) != -1) pc.inventory.splice(pc.inventory.indexOf(item), 1);
@@ -1331,7 +1344,7 @@ public function unequipMenu(inCombat:Boolean = false):void
 	}
 	else addDisabledButton(5, "Underwear", "Underwear", "You are not wearing anything in this slot.");
 	
-	if (pc.meleeWeapon.shortName != "Rock")
+	if (pc.meleeWeapon.shortName != "" && pc.meleeWeapon.shortName != "Rock")
 	{
 		addOverrideItemButton(2, pc.meleeWeapon, "Melee Off", unequip, pc.meleeWeapon);
 	}
@@ -1344,7 +1357,7 @@ public function unequipMenu(inCombat:Boolean = false):void
 	}
 	else addDisabledButton(6, "Armor", "Armor", "You are not wearing anything in this slot.");
 	
-	if (pc.rangedWeapon.shortName != "Rock")
+	if (pc.rangedWeapon.shortName != "" && pc.rangedWeapon.shortName != "Rock")
 	{
 		addOverrideItemButton(7, pc.rangedWeapon, "Ranged Off", unequip, pc.rangedWeapon);
 	}
@@ -1356,12 +1369,20 @@ public function unequipMenu(inCombat:Boolean = false):void
 	}
 	else addDisabledButton(3, "Accessory", "Accessory", "You do not have an accessory equipped.");
 	
-	if(pc.hasPiercing()) addButton(8,"Piercing",removeAPiercingMenu);
+	if(pc.hasPiercing())
+	{
+		if(inCombat) addDisabledButton(8, "Piercing", "Piercing", "Cannot be unequipped in combat.");
+		else addButton(8,"Piercing",removeAPiercingMenu);
+	}
 	else addDisabledButton(8, "Piercing", "Piercing", "You are not wearing any piercings.");
 	
 	if(pc.hasCock())
 	{
-		if(pc.hasCocksock()) addButton(10,"Cockwear",removeACocksockMenu);
+		if(pc.hasCocksock())
+		{
+			if(inCombat) addDisabledButton(10, "Cockwear", "Cockwear", "Cannot be unequipped in combat.");
+			else addButton(10,"Cockwear",removeACocksockMenu);
+		}
 		else addDisabledButton(10, "Cockwear", "Cockwear", "You are not wearing any cockwear.");
 	}
 	
@@ -1380,6 +1401,7 @@ public function removeAPiercingMenu():void
 	var button:Number = 0;
 	var btnName:String = "";
 	var btnTitle:String = "";
+	var x:int = 0;
 	
 	//Ears!
 	output("\n\t*(" + (button+1) + ") Ear");
@@ -1393,7 +1415,7 @@ public function removeAPiercingMenu():void
 	}
 	if(pc.earPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Ears",(button) + ": Ears","You cannot remove that piercing without outside assistance.");
 	else if(pc.earPiercing is EmptySlot) addDisabledButton(button++,(button) + ": Ears",(button) + ": Ears","You have no piercing there!");
-	else addButton(button++,(button) + ": Ears",actuallyRemoveAPiercing,"ears");
+	else addButton(button++,(button) + ": Ears",actuallyRemoveAPiercing,["ears"]);
 	
 	//Eyebrows
 	output("\n\t*(" + (button+1) + ") Eyebrows");
@@ -1407,7 +1429,7 @@ public function removeAPiercingMenu():void
 	}
 	if(pc.eyebrowPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Brows",(button) + ": Eyebrows","You cannot remove that piercing without outside assistance.");
 	else if(pc.eyebrowPiercing is EmptySlot) addDisabledButton(button++,(button) + ": Brows",(button) + ": Eyebrows","You have no piercing there!");
-	else addButton(button++,(button) + ": Brows",actuallyRemoveAPiercing,"brows");
+	else addButton(button++,(button) + ": Brows",actuallyRemoveAPiercing,["brows"]);
 
 	//Nose
 	output("\n\t*(" + (button+1) + ") Nose");
@@ -1421,7 +1443,7 @@ public function removeAPiercingMenu():void
 	}
 	if(pc.nosePiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Nose",(button) + ": Nose","You cannot remove that piercing without outside assistance.");
 	else if(pc.nosePiercing is EmptySlot) addDisabledButton(button++,(button) + ": Nose",(button) + ": Nose","You have no piercing there!");
-	else addButton(button++,(button) + ": Nose",actuallyRemoveAPiercing,"nose");
+	else addButton(button++,(button) + ": Nose",actuallyRemoveAPiercing,["nose"]);
 
 	//Lip
 	output("\n\t*(" + (button+1) + ") Lip");
@@ -1432,7 +1454,7 @@ public function removeAPiercingMenu():void
 	}
 	if(pc.lipPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Lip",(button) + ": Lip","You cannot remove that piercing without outside assistance.");
 	else if(pc.lipPiercing is EmptySlot) addDisabledButton(button++,(button) + ": Lip",(button) + ": Lip","You have no piercing there!");
-	else addButton(button++,(button) + ": Lip",actuallyRemoveAPiercing,"lip");
+	else addButton(button++,(button) + ": Lip",actuallyRemoveAPiercing,["lip"]);
 
 	//Tongue
 	output("\n\t*(" + (button+1) + ") Tongue");
@@ -1443,10 +1465,10 @@ public function removeAPiercingMenu():void
 	}
 	if(pc.tonguePiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Tongue",(button) + ": Tongue","You cannot remove that piercing without outside assistance.");
 	else if(pc.tonguePiercing is EmptySlot) addDisabledButton(button++,(button) + ": Tongue",(button) + ": Tongue","You have no piercing there!");
-	else addButton(button++,(button) + ": Tongue",actuallyRemoveAPiercing,"tongue");
+	else addButton(button++,(button) + ": Tongue",actuallyRemoveAPiercing,["tongue"]);
 
 	//Bewbs
-	for(var x:int = 0; x < pc.bRows(); x++)
+	for(x = 0; x < pc.bRows(); x++)
 	{
 		if(pc.bRows() > 1)
 		{
@@ -1467,7 +1489,7 @@ public function removeAPiercingMenu():void
 		}
 		if(pc.breastRows[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
 		else if(pc.breastRows[x].piercing is EmptySlot) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You have no piercing there!");
-		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,"nipples");
+		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,["nipples", x]);
 	}
 
 	//Belly Buttan
@@ -1479,7 +1501,7 @@ public function removeAPiercingMenu():void
 	}
 	if(pc.bellyPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Belly",(button) + ": Belly","You cannot remove that piercing without outside assistance.");
 	else if(pc.bellyPiercing is EmptySlot) addDisabledButton(button++,(button) + ": Belly",(button) + ": Belly","You have no piercing there!");
-	else addButton(button++,(button) + ": Belly",actuallyRemoveAPiercing,"belly");
+	else addButton(button++,(button) + ": Belly",actuallyRemoveAPiercing,["belly"]);
 	//Dix
 	for(x = 0; x < pc.cockTotal(); x++)
 	{
@@ -1502,7 +1524,7 @@ public function removeAPiercingMenu():void
 		}
 		if(pc.cocks[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
 		else if(pc.cocks[x].piercing is EmptySlot) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You have no piercing there!");
-		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,"cock");
+		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,["cock", x]);
 	}
 	//Vaginas/Clits
 	for(x = 0; x < pc.totalVaginas(); x++)
@@ -1527,7 +1549,7 @@ public function removeAPiercingMenu():void
 		}
 		if(pc.vaginas[x].piercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
 		else if(pc.vaginas[x].piercing is EmptySlot) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You have no piercing there!");
-		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,"vagina");
+		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,["vagina", x]);
 		//Clits
 		if(pc.totalVaginas() > 1)
 		{
@@ -1549,7 +1571,7 @@ public function removeAPiercingMenu():void
 		}
 		if(pc.vaginas[x].clitPiercing.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You cannot remove that piercing without outside assistance.");
 		else if(pc.vaginas[x].clitPiercing is EmptySlot) addDisabledButton(button++,(button) + ": " + btnName,btnTitle,"You have no piercing there!");
-		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,"clit");
+		else addButton(button++,(button) + ": " + btnName,actuallyRemoveAPiercing,["clit", x]);
 	}
 	
 	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
@@ -1558,12 +1580,15 @@ public function removeAPiercingMenu():void
 	else addButton(button++,"Cancel",unequipMenu,false);
 }
 
-public function actuallyRemoveAPiercing(slot:String = "lip"):void
+public function actuallyRemoveAPiercing(args:Array):void
 {
 	clearOutput();
 	showName("PIERCING\nREMOVAL");
 	output("You gingerly remove your the piercing in question.\n\n");
-
+	
+	var slot:String = args[0];
+	var x:int = (args.length > 1 ? args[1] : 0);
+	
 	var item:ItemSlotClass = new EmptySlot();
 	switch(slot)
 	{
@@ -2007,25 +2032,25 @@ public function itemDisabledMessage(slot:Number, clearScreen:Boolean = true):voi
 		case GLOBAL.CLOTHING:
 		case GLOBAL.ARMOR:
 			if(pc.hasStatusEffect("Body Paint")) msg = "You can’t afford to put anything on without ruining the paint your body is covered in. You’ll have to wash the paint off or wait until it wears off before trying to wear anything on the item slot.";
-			else msg = pc.getStatusTooltip("Armor Slot Disabled");
+			else msg = (pc.hasStatusEffect("Armor Slot Disabled") ? pc.getStatusTooltip("Armor Slot Disabled") : "");
 			break;
 		case GLOBAL.MELEE_WEAPON:
-			msg = pc.getStatusTooltip("Melee Weapon Slot Disabled");
+			msg = (pc.hasStatusEffect("Melee Weapon Slot Disabled") ? pc.getStatusTooltip("Melee Weapon Slot Disabled") : "");
 			break;
 		case GLOBAL.RANGED_WEAPON:
-			msg = pc.getStatusTooltip("Ranged Weapon Slot Disabled");
+			msg = (pc.hasStatusEffect("Ranged Weapon Slot Disabled") ? pc.getStatusTooltip("Ranged Weapon Slot Disabled") : "");
 			break;
 		case GLOBAL.SHIELD:
-			msg = pc.getStatusTooltip("Shield Slot Disabled");
+			msg = (pc.hasStatusEffect("Shield Slot Disabled") ? pc.getStatusTooltip("Shield Slot Disabled") : "");
 			break;
 		case GLOBAL.ACCESSORY:
-			msg = pc.getStatusTooltip("Accessory Slot Disabled");
+			msg = (pc.hasStatusEffect("Accessory Slot Disabled") ? pc.getStatusTooltip("Accessory Slot Disabled") : "");
 			break;
 		case GLOBAL.LOWER_UNDERGARMENT:
-			msg = pc.getStatusTooltip("Lower Garment Slot Disabled");
+			msg = (pc.hasStatusEffect("Lower Garment Slot Disabled") ? pc.getStatusTooltip("Lower Garment Slot Disabled") : "");
 			break;
 		case GLOBAL.UPPER_UNDERGARMENT:
-			msg = pc.getStatusTooltip("Upper Garment Slot Disabled");
+			msg = (pc.hasStatusEffect("Upper Garment Slot Disabled") ? pc.getStatusTooltip("Upper Garment Slot Disabled") : "");
 			break;
 	}
 	
@@ -2168,7 +2193,7 @@ public function equipItem(arg:ItemSlotClass):void {
 		SiegwulfeEquip();
 	}
 	// Power armor req
-	else if(arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
+	else if(!InCollection(arg, [GLOBAL.ARMOR, GLOBAL.CLOTHING]) && arg.hasFlag(GLOBAL.ITEM_FLAG_POWER_ARMOR) && !pc.canUsePowerArmorWeapon())
 	{
 		output("You are not strong enough to equip your " + arg.longName + "!\n\n");
 		removedItem = arg;
@@ -3004,3 +3029,112 @@ public function doInventoryReplace(args:Array):void
 	if(invItem is GooArmor) output("\n\n" + gooArmorInStorageBlurb(false));
 	if(tarItem is GooArmor) output("\n\n" + gooArmorInStorageBlurb());
 }
+
+/* Hidden storage stuff */
+public function displayHiddenInventory():void
+{
+	showBust("");
+	showName("HIDDEN\nSTORAGE");
+	
+	clearOutput();
+	output("<b><u>Equipment:</u></b>\n");
+	output("<b>Melee Weapon:</b> " + StringUtil.toDisplayCase(pc.hiddenMeleeWeapon.longName) + "\n");
+	output("<b>Ranged Weapon:</b> " + StringUtil.toDisplayCase(pc.hiddenRangedWeapon.longName) + "\n");
+	output("<b>Armor:</b> " + StringUtil.toDisplayCase(pc.hiddenArmor.longName) + "\n");
+	output("<b>Shield:</b> " + StringUtil.toDisplayCase(pc.hiddenShield.longName) + "\n");
+	output("<b>Accessory:</b> " + StringUtil.toDisplayCase(pc.hiddenAccessory.longName) + "\n");
+	output("<b>Underwear Bottom:</b> " + StringUtil.toDisplayCase(pc.hiddenLowerUndergarment.longName) + "\n");
+	output("<b>Underwear Top:</b> " + StringUtil.toDisplayCase(pc.hiddenUpperUndergarment.longName) + "\n\n");
+	
+	output("<b><u>Inventory:</u></b>");
+	if(pc.hiddenInventory.length > 0)
+	{
+		for(var i:int = 0; i < pc.hiddenInventory.length; i++)
+		{
+			var item:ItemSlotClass = pc.hiddenInventory[i];
+			output("\n");
+			if (item.stackSize > 1) output(item.quantity + "x ");
+			output(StringUtil.toDisplayCase(item.longName));
+		}
+	}
+	else output("\n<i>Empty</i>");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+// Take all the things (mainly for testing, really)
+public function takeAllItems():void 
+{
+	pc.takeMeleeWeapon();
+	pc.takeRangedWeapon();
+	pc.takeArmor();
+	pc.takeUpperUndergarment();
+	pc.takeLowerUndergarment();
+	pc.takeAccessory();
+	pc.takeShield();
+	pc.takeInventory();
+}
+// Return and requip all stored items, if any.
+public function returnAllItems(autoEquip:Boolean = false, clearScreen:Boolean = false):void 
+{
+	// Silently auto-equip slots, if possible
+	if(autoEquip)
+	{
+		pc.giveMeleeWeapon();
+		pc.giveRangedWeapon();
+		pc.giveArmor();
+		pc.giveUpperUndergarment();
+		pc.giveLowerUndergarment();
+		pc.giveAccessory();
+		pc.giveShield();
+	}
+	// Dump all slots to inventory to collect
+	else
+	{
+		pc.moveSlotsToInventory();
+	}
+	
+	// If the item list was filled, collect them to the inventory.
+	returnInventoryItems(clearScreen);
+}
+// Actually collect the items, if any
+public function returnInventoryItems(clearScreen:Boolean = false):void 
+{
+	var itemList:Array = pc.returnInventoryItems();
+	
+	itemScreen = mainGameMenu;
+	lootScreen = mainGameMenu;
+	useItemFunction = mainGameMenu;
+	
+	if(itemList.length > 0)
+	{
+		itemCollect(itemList, clearScreen);
+	}
+	else
+	{
+		clearMenu();
+		addButton(0, "Next", lootScreen);
+	}
+}
+// Auto-queue event if necessary
+public function queueReturnAllItems(autoEquip:Boolean = false, clearScreen:Boolean = false):void 
+{
+	// If any of the hidden sluts are filled or thots anything in the hidden inventory, queue function to return all items.
+	// Otherwise, nothing happens.
+	if(	!(pc.hiddenMeleeWeapon is EmptySlot)
+	||	!(pc.hiddenRangedWeapon is EmptySlot)
+	||	!(pc.hiddenArmor is EmptySlot)
+	||	!(pc.hiddenUpperUndergarment is EmptySlot)
+	||	!(pc.hiddenLowerUndergarment is EmptySlot)
+	||	!(pc.hiddenAccessory is EmptySlot)
+	||	!(pc.hiddenShield is EmptySlot)
+	||	pc.hiddenInventory.length > 0
+	) {
+		eventQueue.push( function():void {
+			if(!clearScreen) output("\n\n");
+			returnAllItems(autoEquip, clearScreen);
+		} );
+	}
+}
+

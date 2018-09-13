@@ -58,7 +58,7 @@ public function approachIlaria():void
 	else if(flags["ILARIA_PREG_EMAIL1"] == 1)
 	{
 		output("<i>“[pc.name]!”</i> the bunny-babe yips, bounding over and hopping into your arms. She gives you a kiss and grabs your hand, directing it down to her [ilaria.belly]. <i>“I’m glad you came by. Really glad... my virile stud.”</i>");
-		output("\n\nShe giggles, and nuzzles herself under your arm. <i>“Sorry, I’m terrible about the whole ‘romance’ thing, but I’m definitely excited! Super duper extra excited! I’ve " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "been waiting for the next happy accident you left in my  pussy to take root -- the last time was awesome" : "never been pregnant before") + "!”</i>");
+		output("\n\nShe giggles, and nuzzles herself under your arm. <i>“Sorry, I’m terrible about the whole ‘romance’ thing, but I’m definitely excited! Super duper extra excited! I’ve " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "been waiting for the next happy accident you left in my pussy to take root -- the last time was awesome" : "never been pregnant before") + "!”</i>");
 		output("\n\nIlaria squeals excitedly, bouncing on her bunny-like heels. Her excitement is infectious, and soon you’re allowing her to guide you into a barstool and enticing whatever your favorite order from the menu is -- her treat. Between her giddy ejaculations, you manage to " + (flags["ILARIA_TOTAL_KIDS"] > 0 ? "remind" : "inform") + " her of the nursery dedicated to you upstairs -- she’s free to make use of its facilities during and after her pregnancy. That, she says, takes what little weight she’d been feeling off her shoulders: a place that’ll take care of her children while she works will make this all the sweeter for her.");
 		
 		flags["ILARIA_PREG_EMAIL1"] = 2;
@@ -475,6 +475,43 @@ public function sexWithIlaria():void
 		else addDisabledButton(1,"Pound Her","Pound Her","You need a penis that will fit inside her for this.");
 	}
 	else addDisabledButton(1,"Pound Her","Pound Her","You need a penis for this.");
+	addButton(2,"Urethral Suck",ilariaCumSlurp,undefined,"Urethral Suck","Suck Ilaria to a massive orgasm then siphon her cum directly out of her with a straw.");
+}
+
+public function ilariaCumSlurp():void
+{
+	clearOutput();
+	showIlaria(true);
+	author("Wsan");
+	[Blowjob]
+	//tooltip: Suck Ilaria to a massive orgasm then siphon her cum directly out of her with a straw.
+	output("<i>“Nuh uh,”</i> you say, shaking your head. Ilaria moans in disappointment as you take the milker off her from behind, but quickly recovers as you bend down to lick her between the legs.");
+	output("\n\n<i>“Oh!”</i> she gasps, reaching back to " + (pc.hasHair() ? "stroke your [pc.hair]":"place her palm on your head") + ". <i>“I guess you wanna do things the hard way" + (flags["ILARIA_CUMSUCKED_URETHRAL"] != undefined ? " again":"") + ", huh?”</i>");
+	output("\n\n<i>“You know it,”</i> you murmur, lashing your [pc.tongue] over her knot while she pulls herself out. She can’t resist holding herself in place for a few seconds of fun before extricating herself completely and turning around as you sink to your knees. <i>“I want to try something" + (flags["ILARIA_CUMSUCKED_URETHRAL"] == undefined ? " new..":"") + ".”</i>");
+	output("\n\n<i>“I’m all yours, babe,”</i> Ilaria says, leaning back against the milker’s mount with an easy grin. <i>“" + (flags["ILARIA_CUMSUCKED_URETHRAL"] == undefined ? "Show me your stuff!":"Still gettin’ used to the straw thing, but last time was so much fun I can’t say no!") + "”</i>");
+	output("\n\nShe lets out a quiet grunt as you plant your [pc.lipsChaste] on her swollen cock and suck, letting your tongue loll out along her underside. You give her some hard, loving sucks that make her shudder against you before you let her out of your mouth with a satisfied sigh and duck a little lower to tend to the heavy cumtanks hanging between her legs. Each one is big enough to give even an experienced partner pause, but not you.");
+	output("\n\nYou gently drag your tongue along the underside of one of her fat, musky nuts, bigger than a grapefruit and every bit as plump. Lifting her red puppycock out of the way to really get at her hefty balls, you lick her up and down until you can feel them shifting in her sack, gaining liquid weight while you tantalize her. When she blows her load, it’s going to be monumental. Already you can feel her uncontrollably dripping all over your hand, sticky clear precum running over your fingers.");
+	output("\n\nYou pull back and lick it off your hand with slow, deliberate motions of your tongue, swallowing hard after each one and revelling in the way Ilaria bites her lip while she watches. When you’ve finished with your fingers you tend to her swollen cock, tongue-bathing her until she’s veritably shining with saliva before resealing your lips around her dick, this time intent upon bringing her swift relief.");
+	output("\n\n<i>“Oh- oh, that’s </i>good<i>,”</i> Ilaria moans, letting out a pant while she shakily grasps your " + (pc.hasLongHorns() ? "horns":"head") + ". <i>“I’m gonna c-cum pretty hard, [pc.name]! I huh-hope you’re ready!”</i>");
+	output("\n\nYou reach for the controller to her vibrators and grin around her prick as she gasps, her very cock shaking in your mouth as shudders run throughout her entire body. Her thighs tighten and her hips begin to flick back and forth as she gives into the irresistible instinct of pure, animal pleasure. Grabbing handfuls of her curvy asscheeks, you let her start battering your face against her taut stomach, panting all the while.");
+	output("\n\n<i>“Gonna cum,”</i> Ilaria whines needily, spittle flying from your lips as you’re rocked back and forth over the entire length of her throbbing dick. <i>“Oh fuck oh fuck oh fuck gonna cum gonna cum nnnh-!”</i>");
+	output("\n\nRight on cue you switch the vibes to max and she suddenly doubles over, breath catching in her throat while her eyes go wide. The pause affords you the precious seconds you need to gently slide the straw you procured from a container earlier right down the first few inches of her shaft before she blows. She doesn’t even notice the intrusion, and in a flash you have your lips wrapped around the straw and suck <i>hard</i>.");
+	output("\n\nYour effort almost makes you choke on her seed. Her cum doesn’t even come in loads, it just jets into your mouth as a high-pressure stream of hot, thick cream that you’re forced to chug lest it spill from your lips. Even so, you don’t let up on sucking it straight out of her churning balls for even a second. Her voice comes out in desperate, breathless utterances and wordless moans, the vibrators inside her keeping her trapped in endless orgasm.");
+	output("\n\nThe flood of cum gushing into your mouth and down your overworked throat certainly <i>feels</i> endless, your stomach swelling with the sheer amount of her seed you’re swallowing down. It seems like she’ll never stop, and you’re not sure either of you want her to. You can feel her ass flexing in your grip, straining and squeezing down on the buzzing vibe set against her overactive prostate.");
+	output("\n\n<i>“Cuh- can’t, stop,”</i> Ilaria pants. <i>“Nnnnnnngh!”</i>");
+	output("\n\nFeeling overwhelmed, you let your concentration lapse for a moment and the straw slips past your lips and almost down your throat before you realize. Ilaria’s prodigious offering pumps straight down your unresisting throat, your gag reflex long since subdued in the wake of her ridiculous outpouring. By the time you get yourself repositioned your stomach has swollen a few extra inches outward.");
+	output("\n\nWhen you finally enter the home stretch, it feels like you’ve both won. Shuddering violently, Ilaria leans back and spreads her legs wide with her head tilted back to look at the ceiling, relaxing at last. She pants while you dutifully suck every single last remnant out of her, letting out a long, tired moan when you’re done and withdraw your little straw.");
+	output("\n\n<i>“Oh </i>man<i>,”</i> Ilaria huffs, breasts jiggling while she takes deep breaths. <i>“I do not regret letting you do that at all. I’ve never felt so light in my life!”</i>");
+	output("\n\nAs if to emphasize the point, she puts her hand between her legs and gives her balls a gentle squeeze. You feel warmth splatter across your nose and blink in surprise, earning an abashed giggle from the bunnywoman.");
+	output("\n\n<i>“Whoops! Sorry sugar. I guess I’ve always got a little left in the tank! Lemme get that for ya,”</i> she says, bending down to lick it off your cheek. <i>“Thanks for the suckjob, babe. I’ll meet you back outside after I get cleaned up!”</i>");
+	IncrementFlag("ILARIA_CUMSUCKED_URETHRAL");
+	processTime(20);
+	pc.lust(10);
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 15000);
+	pc.loadInMouth(chars["ILARIA"]);
+	chars["ILARIA"].setPerkValue("Fixed CumQ", 1, 50000);
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Munch Pussy

@@ -259,7 +259,7 @@ public function playChrissy2():void
 	else output("You and Chrissy are pretty evenly matched, with your quick reflexes and the half-breed’s honed skill with these types of games both put on display, but you ultimately come out on top.");
 	output("\n\n<i>“Man, that was fun,”</i> Chrissy says, putting down her controller and standing up from the couch, taking a big stretch as she does so, <i>“");
 	if (pc.reflexes() < (pc.reflexesMax() / 2)) output("Sorry if I got too competitive with it... it’s in my nature.");
-	else output("You’re pretty good, haven’t gotten a workout like that since the tournament!");
+	else output("You’re pretty good, haven’t gotten a workout like that " + (syriQuestComplete() ? "since the tournament!" : "for a while!"));
 	output("”</i> She gives you a warm smile and points her thumb over her shoulder, <i>“Anyways, wanna head back to the bar?”</i>");
 	
 	IncrementFlag("CHRISSY_VIDYA");
@@ -267,8 +267,17 @@ public function playChrissy2():void
 	if ((pc.reflexes()/pc.reflexesMax()) < .80) pc.slowStatGain("reflexes", 1);
 	
 	if (flags["CHRISSY_VIDYA"] == 5){
-		if (pc.reflexes() < (pc.reflexesMax() / 2)) pc.createPerk("Rage Aim", 1, 50, 0, 0, "You get so mad when you’re losing, you gain +1 accuracy when you’re below 50% health");
-		else pc.createPerk("Calm Aim", 1, 50, 0, 0, "You’re a pretty good shot when things aren’t too hectic, so you gain +1 accuracy when above 50% health.");
+		output("\n\n<b>You learned something from your play sessions with Chrissy</b>");
+		if (pc.reflexes() < (pc.reflexesMax() / 2)) 
+		{
+		pc.createPerk("Rage Aim", 1, 50, 0, 0, "You get so mad when you’re losing, you gain +1 accuracy when you’re below 50% health.");
+		output("\n(<b>Perk Gained: Rage Aim</b> - You get so mad when you’re losing, you gain +1 accuracy when you’re below 50% health.)");
+		}
+		else 
+		{
+		pc.createPerk("Calm Aim", 1, 50, 0, 0, "You’re a pretty good shot when things aren’t too hectic, so you gain +1 accuracy when above 50% health.");
+		output("\n(<b>Perk Gained: Calm Aim</b> - You’re a pretty good shot when things aren’t too hectic, so you gain +1 accuracy when above 50% health.)");
+		}
 	}
 	
 	processTime(60 + rand(15));

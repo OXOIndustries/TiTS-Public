@@ -1469,9 +1469,9 @@ public function fuckFisiSillyII(x:int = -1):void
 		output("\n\nThe relaxing feeling doesn’t last for very long however.");
 		if (x >= 0) output(" During your playful petting, you realize that you are still hilted inside of Fisianna.");
 		output(" Her bodily purring inadvertently stimulates your phallus, causing ");
-		if (pc.hasHardLightEquipped()) output("an uncomfortable arousal to build in your loins")
+		if (pc.hasHardLightEquipped()) output("an uncomfortable arousal to build in your loins");
 		else ("you to become hard again");
-		output(". You begin to squirm, trying your best not give into your growing desire to thrust while your teasing backfires, even more so when her eyes flutter open in response to your fidgeting.")
+		output(". You begin to squirm, trying your best not give into your growing desire to thrust while your teasing backfires, even more so when her eyes flutter open in response to your fidgeting.");
 		output("\n\n<i>“Mmm... hey, [pc.name]. I’m happy to see you too!”</i> Fisianna sleepily giggles while she shifts gingerly under you. <i>“I’m surprised you’re still in the mood given how hard we both... uh... got off, but unfortunately, I still need some rest. Y-you did quite a number on me...”</i> she groans, smiling sheepishly at you. <i>“Still... I could use some more of what you were doing before, to help me fall back asleep. Can you, please?”</i> she asks with pleading, expectant eyes. After shaking off your clear embarrassment, you oblige, figuring it’s the least you owe her from waking her from her nap. You pull out of her and lay to her side so you don’t repeat the same mistake again, after which you resume petting Fisianna.");
 		output("\n\nYou keep this up for a few minutes until her eyes finally flutter closed again. When you are sure that she has fallen back asleep, you slide out of the bed to stretch. After you’re done, you ");
 		if (!pc.isNude()) output("reequip your [pc.gear] and ");
