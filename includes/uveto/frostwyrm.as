@@ -1019,7 +1019,7 @@ public function frostwyrmIWantToBangTheLizard():void
 		output(". You idly wonder if [frostwyrm.name] is in the mood.");
 		output("\n\nIn response to your unspoken desires, [frostwyrm.name] huffs deeply, and she shifts her body, nudging you towards her rear two legs. Her penile vent has bloated obscenely, and the head of her massive, blunt draconic cock has already began to peek. Before your very eyes, it grows longer and fatter, the skin of her vent stretching comfortably to make room for her tree trunk of a dick.");
 		output("\n\n<i>You need not ask for the touch of your Qim, [pc.name],</i> she says to you gently, warmly encouraging you to explore her body. Your psionic link with her is feeding your lust into her feelings, and her body is responding to your lust. <i>A proper mate would ensure their other half has want for nothing.</i>");
-		output("\n\nShe wants you as badly as you want her. How would have [frostwyrm.name] this time?")
+		output("\n\nShe wants you as badly as you want her. How would you have [frostwyrm.name] this time?")
 	}
 	else
 	{
@@ -2754,7 +2754,7 @@ public function frostwyrmShinyShit():void
 	output("\n\nThat’s fine, you reply, but you broaden your question. Now that she knows what it means, has she ever had any interaction with it? <i>“Nope! I hardly ever leave the lair without you or the Qim.”</i>");
 	output("\n\nYou ask her to bring you your effects, off in the corner of the lair");
 	if (flags["FROSTWYRM_KIP_COUNT"] >= 2) output(". She immediately delegates the task to one of her younger sisters so that she can stay cuddled up with her Qal – typical older - sibling attitude");
-	output(". Once they’re with you, you rifle through your things, searching for your Codex, and when it’s in hand, you ask your daughter to put everything back where they were.");
+	output(". Once they’re with you, you rifle through your things, searching for your Codex, and when it’s in hand, you ask your daughter to put everything back where it was.");
 	output("\n\nIn your hand is a small, square device with a glassy screen and a steel back. On its side is a number of buttons: you press one, and the screen hums to life, displaying your last recorded entry. You explain that, in your hand, you hold a device capable of connecting to an invisible network that spans the world many times over; this network contains the collected knowledge of your species’ entire history. You can also use it to communicate with others connected to the same network.");
 	output("\n\n<i>“I don’t believe you,”</i> she says. <i>“How can this little thing have so much knowledge in it?”</i> You demonstrate: you bring up the codex entry for Frostwyrms. " + eldestKipNameCap + " can’t read its information (you promise yourself that you’ll teach her sometime), but she believes your every word as you read out the entry. You bring up the entry for Uveto, then the entry for other planets and locations you’ve been to.");
 	output("\n\nYou close your demonstration by contacting your ship: after a moment, ");
