@@ -481,9 +481,9 @@ public function generateLocation(location:String):void
 	generateLocationName(location);
 }
 
-public function backToPrimaryOutput():void
+public function backToPrimaryOutput(clearB:Boolean = false):void
 {
-	clearBust();
+	if(clearB) clearBust();
 	userInterface.backToPrimaryOutput();
 }
 public function clearBust(forceNone:Boolean = false):void

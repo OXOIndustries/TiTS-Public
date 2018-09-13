@@ -1398,6 +1398,18 @@ public function initTarkusRooms():void
 	rooms["304"].addFlag(GLOBAL.INDOOR);
 	rooms["304"].addFlag(GLOBAL.NPC);
 	rooms["304"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["BIMBOTORIUM LAB"] = new RoomClass(this);
+	rooms["BIMBOTORIUM LAB"].roomName = "BIMBOTORIUM\nLAB";
+	rooms["BIMBOTORIUM LAB"].description = "";
+	rooms["BIMBOTORIUM LAB"].runOnEnter = drBadgerLaboratoryBonus;
+	rooms["BIMBOTORIUM LAB"].moveMinutes = 1;
+	rooms["BIMBOTORIUM LAB"].outExit = "304";
+	rooms["BIMBOTORIUM LAB"].planet = "PLANET: TARKUS";
+	rooms["BIMBOTORIUM LAB"].system = "SYSTEM: REDACTED";
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.INDOOR);
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.PRIVATE);
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.LIFTUP);
 	
 	rooms["305"] = new RoomClass(this);
 	rooms["305"].roomName = "COLENSO’S\nJUNK";
