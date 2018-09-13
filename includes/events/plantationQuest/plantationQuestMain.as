@@ -1919,7 +1919,19 @@ public function challengeLahToAFight():void
 		output("\n\n<i>“It is fair,”</i> Quinn nods. Amusement is playing with one corner of her mouth; she rearranges herself on her throne, re-crossing her gleaming legs. <i>“Reassert yourself word-wolf, as is our custom. It will be pleasing to me.”</i>");
 		output("\n\nLah clutches at the air in total exasperation - and then, with a reluctant huff, descends to the stone circle. The hum around you is now one of excited anticipation, and the crowd of zil close in around you. Several of them gather around Lah, and he emerges from them armed with a short stabbing spear.");
 		output("\n\n<i>“Lay down your weapons and take off your armor,”</i> he growls, glaring at the sandy ground in front of you. <i>“I know - pigs - have no knowledge of the concept, but this is supposed to be - yes, a fair fight.”</i>");
-		output("\n\nThere’s no backing down now, unless you intend to start firing into the crowd. You throw your [pc.meleeWeapon] and [pc.rangedWeapon] to the ground");
+		output("\n\nThere’s no backing down now, unless you intend to start firing into the crowd. ");
+		if(pc.hasEquippedWeapon()){
+			if(pc.hasMeleeWeapon()){
+				output("You throw your [pc.meleeWeapon]");
+				if(pc.hasRangedWeapon()){
+					output(" and [pc.rangedWeapon] to the ground");
+				}else{
+					output(" to the ground");
+				}
+			} else {
+				output("You throw your [pc.rangedWeapon] to the ground");
+			}
+		}	
 		if(!(pc.armor is EmptySlot)) 
 		{
 			output(" before taking off your [pc.armor]");
@@ -2199,7 +2211,7 @@ public function pcBeatsUpAWholeTribeNewsAt11():void
 	flags["PQ_SECURED_LAH"] = 1;
 	output("\n\n(<b>Key Item Gained:</b> RK Lah - Captured)");
 	pc.createKeyItem("RK Lah - Captured");
-
+	
 	//[Fuck Her] [Let Her Go]
 	if(pc.hasCock() && pc.cockThatFits(quinnVaginalCapacity()) >= 0) addButton(0,"Use Dick",putItInQuinnYaCunt,undefined,"Use Dick","To the victor go the spoils...");
 	else addDisabledButton(0,"Use Dick","Use Dick","You need a dick that will fit inside Quinn for this.");
@@ -2566,8 +2578,8 @@ public function leaveZeLovelyQuinnBeeeeeehind():void
 	if(inCombat())
 	{
 		output(" <i>“You have easily done enough to be treated as an honored guest in our village. ");
-		if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
-		else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
+	if(!pc.canFly()) output("Call at the bottom, and a ladder will be provided.");
+	else output("I can see you have no need for ladders. My people will not molest you when you fly up here, now that you have defeated the cliffs.");
 		output("”</i>");
 	}
 	output(" She takes you in from tip to tail with those heavy-lidded, appraising " + (inCombat() ? "pits" : "rings") + " of gold again. <i>“You should visit often. Your Quinn requires much attention, after all.”</i>");
@@ -3148,7 +3160,7 @@ public function sexWithQuinnOmnigenderWHYYYY():void
 	}
 	
 	// Handmaiden Threesome
-	if((flags["QUINN_KID_AGE"] == undefined && quinnHandmaidenThreesomeAvailable()) || (flags["QUINN_KID_AGE"] != undefined && quinnBabyAge() >= 365 && quinnHandmaidenThreesomeAvailable(true)))
+	if(quinnHandmaidenThreesomeAvailable())
 	{
 		quinnHandmaidenThreesome(["intro"]);
 		return;
@@ -3645,7 +3657,7 @@ public function talkToQuinnStuffGogogogogogogogogogo():void
 	}
 	addButton(1,"Herself",talkToQuinnAboutHerself,undefined,"Herself","Ask how she became “Quinn”.");
 
-	if(flags["PQ_NALEENED"] == undefined) addButton(2,"Naleen",askQuinnAboutTheNaleen,undefined,"Naleen","Ask about the naleen you were unfortunate enough to encounter beneath the falls.");
+	if(flags["PQ_NALEENED"] != undefined) addButton(2,"Naleen",askQuinnAboutTheNaleen,undefined,"Naleen","Ask about the naleen you were unfortunate enough to encounter beneath the falls.");
 	else addButton(2,"Naleen",askQuinnAboutTheNaleen,undefined,"Naleen","Ask about the hissing you heard underneath the falls.");
 	
 	// Add [Herbs?] to talk options

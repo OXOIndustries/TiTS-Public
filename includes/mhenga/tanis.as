@@ -175,6 +175,8 @@ public function tanisBowTrainingRepeat():void
 	output("\n\nYou give him a grin and sling your bow over your back, following the towering ‘taur back into the scout office.");
 	if (pc.isTreated()) output(" You can’t help but look at that big, muscular ass all the way in.");
 
+	processTime(25+rand(5));
+	
 	clearMenu();
 	addButton(0, "Next", mainGameMenu);
 }

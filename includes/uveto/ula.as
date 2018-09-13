@@ -1177,7 +1177,7 @@ public function firstTimeKorgHoldMeeting():void
 	output("\n\nThe chieftain regards you cautiously. <i>“You thanks having. Many aliens greedy. Cruel.”</i> He gestures to a place on the murals where a small group of Korgonne appear to be fighting with a much larger, better-armed battlegroup. <i>“Kill. Steal. Shatter holds for wall-shines.”</i> He waggles fingers decorated with green gemstones, likely emerald or savicite. <i>“You earn chance.”</i> He nods grimly. <i>“Prove not like others. Show friending, and we friending back.”</i>");
 	output("\n\n");
 	if(pc.isBimbo()) output("You rush forward to give the big, fluffy dog-guy a hug when the guards grab you by the collar. Well, you’re gonna hug somebody! You round on him and wrap your arms around his straining, muscular back, petting the his head and neck until you hear his tail wagging. <i>“Yay! Friends!”</i>");
-	else if(pc.isBro()) output("You extend your hand for a handshake. He stares it. After a minute solid of waiting, you drop your hand and clear your throat. <i>“Uhh... yeah. Friends.”</i> Why can’t they just get with the program and pick up on normal galactic social cues? Ugh. You snort in irritation.");
+	else if(pc.isBro()) output("You extend your hand for a handshake. He stares at it. After a minute solid of waiting, you drop your hand and clear your throat. <i>“Uhh... yeah. Friends.”</i> Why can’t they just get with the program and pick up on normal galactic social cues? Ugh. You snort in irritation.");
 	else if(pc.isNice()) output("You nod gravely. <i>“I shall.”</i>");
 	else if(pc.isMischievous()) output("You nod, trying to hide a smirk at his crude use of language. <i>“Much friending! Very like! Wow!”</i>");
 	else output("You nod severely. <i>“Of course.”</i>");
@@ -1425,7 +1425,7 @@ public function ulaMutualMastEpi():void
 		if(pc.tallness < 66) output(" up");
 		output(" at you. <i>“Nice call-word. Is proper, us knowing other.”</i> She hugs you tight. <i>“First save, now know. Visiting again soon?”</i>");
 
-		output("\n\nYou doubt step aside until you agree... <i>“");
+		output("\n\nYou doubt she’ll step aside until you agree... <i>“");
 		if(pc.isNice()) output("Of course!");
 		else if(pc.isMischievous()) output("As if I could stay away!");
 		else output("Sure.");
@@ -2229,7 +2229,7 @@ public function ulaMiningTalk():void
 	output("\n\n<i>“");
 	if(!korgiTranslate()) output("Want other talk");
 	else output("Want to talk about something else");
-	output("?”</i> Ula seems discomforted by the recent turns the conversation.");
+	output("?”</i> Ula seems discomforted by the recent turns in the conversation.");
 	processTime(15);
 	flags["ULA_MINING_TALKED"] = 1;
 	addDisabledButton(1,"Mining","Mining","You just spoke about this.");
@@ -2362,7 +2362,7 @@ public function talkAboutGunsWithUla():void
 	output("\n\n<i>“Boomers?”</i> Ula’s ears perk up, and her eyes brighten. <i>“Want know.”</i> Her tail wags hard, slapping your back as she leans in, locking her arm with yours.");
 	output("\n\nYou start off by giving a basic explanation of gunpowder weapons: what gunpowder is and how it propels the bullet, the different kinds of actions and shells that exist.");
 	output("\n\nUla often interrupts you with specific questions. She asks why so many different techniques of measuring bullets and competing specifications exist, why some shells contain single bullets and others explosive, and why it’s called gunpowder when modern formulations are more of a paste.");
-	output("\n\nYou answer them all to the best of your ability, then go over basic maintenance. Should she get her hands on an old-style weapon, you’d like her to keep in good shape after all.");
+	output("\n\nYou answer them all to the best of your ability, then go over basic maintenance. Should she get her hands on an old-style weapon, you’d like her to keep it in good shape after all.");
 	output("\n\nPulling cloths and furs from a nearby container, Ula assembles herself a primitive cleaning kit. She meticulously arranges them, then sets them aside after making a note to acquire some oil. <i>“Know so much.”</i>");
 	//Bimbo
 	if(pc.isBimbo()) output("\n\nYou giggle at that. <i>“Just like sex, you gotta like, have proper lubrication!”</i>");

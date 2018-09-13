@@ -30,18 +30,18 @@ public function willowBonus(button:Number):void
 {
 	if(flags["WILLOW_MET"] == undefined)
 	{
-		output("You take a cursory look around and spot a new face. It’s a new waitress and a pretty cute one at that... if you like demons. Yep. She looks like a demon straight out of One God mythology: red skin, horns, the whole deal. You notice with appreciation that she has a curvy, heart-shaped ass topped by a spaded tail and supple, perky breasts.");
+		output("\n\nYou take a cursory look around and spot a new face. It’s a new waitress and a pretty cute one at that... if you like demons. Yep. She looks like a demon straight out of One God mythology: red skin, horns, the whole deal. You notice with appreciation that she has a curvy, heart-shaped ass topped by a spaded tail and supple, perky breasts.");
 		addButton(button,"Waitress",willowIntro);
 	}
 	//[Willow] (Scene description after talking to her)
 	else if (flags["WILLOW_MET"] == 0)
 	{
-		output("You see the waitress, Willow, if you recall correctly, walking around as she takes orders.");
+		output("\n\nYou see the waitress, Willow, if you recall correctly, walking around as she takes orders.");
 		addButton(button,"Willow",willowIntro);
 	}
 	else
 	{
-		output("You grin as you see your pet running around taking orders and take a seat, waiting for her to approach.");
+		output("\n\nYou grin as you see your pet running around taking orders and take a seat, waiting for her to approach.");
 		addButton(button,"Willow",willowLoverMenu,0);
 	}
 }

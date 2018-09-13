@@ -1305,7 +1305,7 @@ public function hyperRaskFun():void
 			output(".");
 		}
 		else output(" Almost as good as popping out your eggs is going to be.");
-		output("”</i> She pats your dick affectionately. <i>“I think there’s enough for three or four pregnancies there, if I’m smart about it, but I bet you’d rather I just poured it all with a funnel first chance I get, wouldn’t ya, " + pc.mf("stud","slut") + "?”</i>");
+		output("”</i> She pats your dick affectionately. <i>“I think there’s enough for three or four pregnancies there, if I’m smart about it, but I bet you’d rather I just poured it all with a funnel first chance I get, wouldn’t ya, " + pc.mf("stud","slut", true) + "?”</i>");
 
 		if(pc.isBro()) output("\n\nYou nod vigorously, wishing you could watch her do it.");
 		else if(pc.isBimbo()) output("\n\nYou giggle and shrug. Like, cum is great no matter how it slides into you!");
@@ -1323,7 +1323,7 @@ public function hyperRaskFun():void
 	{
 		output("\n\nA powerful, cheek-bulging squirt sprays out of your oversized organ. The gravid-girl’s mouth can’t even contain it all. She’s forced off your dick by the heated flow and takes the rest square in the face. Ribbons of [pc.cumNoun] cascade down her cheeks. [pc.CumGem] droplets dribble from her chin, but the raskvel still manages to remember her bucket and lift it into place, even while she’s trying to swallow her leftover mouthful. You can’t see her face with the spooge-vessel thrust in front of it, but you can hear her moans imploring you to give her more.");
 		output("\n\nStrangely, she seems to be getting off on it. Every time your [pc.cockNoun " + x + "] shoots a flood of [pc.cumNoun] through its urethra, you can feel her strained belly pressing back harder against you, as if the mere presence of sperm nearby is enough to make her reproductive system accelerate. Squirts of girlcum hit your [pc.feet] as she quivers, making her tiny soles pump your [pc.knot " + x + "] harder, squeezing even more of your potent fluids into the bucket.");
-		output("\n\n<i>“Holey fucking condoms, that’s a lotta jizz!”</i> the raskvel squeaks, gushing again. <i>“You’re gonna get me pregnant for weeks, " + pc.mf("stud","slut") + "!”</i> The bucket sloshes higher as you spend the last of your liquid passion. She sets it down, giving you a good look at her [pc.cumColor]-painted maw. Streams of [pc.cumVisc] [pc.cumNoun] hang from her chin, and she’s constantly blinking her gunked-up eyes to try and see. <i>“I think my ovaries might have mutated again. Something definitely happened down there. I bet when I get pregnant with your kids, I’ll have even more. My current record is fifteen.”</i> An absurdly proud smile appears beneath the layer of sexual filth.");
+		output("\n\n<i>“Holey fucking condoms, that’s a lotta jizz!”</i> the raskvel squeaks, gushing again. <i>“You’re gonna get me pregnant for weeks, " + pc.mf("stud","slut", true) + "!”</i> The bucket sloshes higher as you spend the last of your liquid passion. She sets it down, giving you a good look at her [pc.cumColor]-painted maw. Streams of [pc.cumVisc] [pc.cumNoun] hang from her chin, and she’s constantly blinking her gunked-up eyes to try and see. <i>“I think my ovaries might have mutated again. Something definitely happened down there. I bet when I get pregnant with your kids, I’ll have even more. My current record is fifteen.”</i> An absurdly proud smile appears beneath the layer of sexual filth.");
 		//[Next] -> same text as previous
 		processTime(20);
 		pc.orgasm();
@@ -1564,7 +1564,7 @@ public function faceRideTheRaskPreg():void
 	{
 		output(" Now put that tongue to work, and we’ll see if you’re really keyed up enough to get off from the taste of another");
 		if(pc.isPregnant()) output(" pregnant");
-		output(pc.mf(" person"," woman") + "’s pussy.");
+		output(pc.mf(" person"," woman", true) + "’s pussy.");
 	}
 	output("”</i>");
 	output("\n\n<i>“Mmmm... been a while since I sucked pussy,”</i> the pregnant raskvel admits. Her eyes are wide and lustily locked on your slit");
@@ -1791,7 +1791,7 @@ public function letAzraTrapQueenTalk():void
 	output("\n\nThe Queen slaps the back of his head, silencing him. <i>“What Azaphel means is that a weapon would be sufficient. My army is ever in need of fresh weapons.”</i>");
 	output("\n\nAzra holds up her empty hands and looks to you. <i>“[pc.name], could you part with a weapon?”</i>");
 	output("\n\nOnce more, it falls to you to defuse the situation.");
-	if(!(pc.meleeWeapon is Rock && pc.rangedWeapon is Rock) || hasAWeapon())
+	if(pc.hasEquippedWeapon() || hasAWeapon())
 	{
 		output(" What will you give Azra?");
 		processTime(5);
@@ -1801,14 +1801,14 @@ public function letAzraTrapQueenTalk():void
 			if(!pc.canDropItem(pc.meleeWeapon)) addDisabledButton(button,"Melee Wpn","Melee Weapon","You cannot drop your " + pc.meleeWeapon.description + "!");
 			else addButton(button,"Melee Wpn",giveQueenAWeapon,-1,"Melee Weapon.","Give her your melee weapon: " + pc.meleeWeapon.description + ".");
 		}
-		else if(pc.meleeWeapon is Rock) addDisabledButton(button,"Melee Wpn","Melee Weapon","She has no interest in a rock.");
+		else if(!pc.hasMeleeWeapon()) addDisabledButton(button,"Melee Wpn","Melee Weapon","She has no interest in a rock.");
 		else addDisabledButton(button,"Melee Wpn","Melee Weapon","You do not have a melee weapon on hand.");
 		button++;
 		if(pc.hasRangedWeapon()) {
 			if(!pc.canDropItem(pc.rangedWeapon)) addDisabledButton(button,"Ranged Wpn","Ranged Weapon","You cannot drop your " + pc.rangedWeapon.description + "!");
 			else addButton(button,"Ranged Wpn",giveQueenAWeapon,-2,"Ranged Weapon.","Give her your ranged weapon: " + pc.rangedWeapon.description + ".");
 		}
-		else if(pc.rangedWeapon is Rock) addDisabledButton(button,"RangedWpn","Ranged Weapon","She has no interest in a rock.");
+		else if(!pc.hasRangedWeapon()) addDisabledButton(button,"RangedWpn","Ranged Weapon","She has no interest in a rock.");
 		else addDisabledButton(button,"RangedWpn","Ranged Weapon","You do not have a ranged weapon on hand.");
 		button++;
 		for(var i:int = 0; i < pc.inventory.length; i++)
@@ -2527,7 +2527,7 @@ public function fuckTheSydianQueen(x:int):void
 	}
 	else output("despite your prestigious size.");
 
-	output("\n\n<i>“Yeeeesss,”</i> hisses Queen Sydian, black eyes alive with delight as she watches you saw back and forth into the prostate raskvel, gradually but relentlessly building up a rhythm which makes a glow of intense pleasure work its way right up your [pc.cock " + x + "] and up into your groin. She’s got Sessalai’s head pressed between her open thighs, long ears and tail twitching as he obediently eats her. <i>“This is what I lack! " + pc.mf("An alpha male","A shemale taskmaster") + " to keep my servants in check and give them regular milkings!”</i>");
+	output("\n\n<i>“Yeeeesss,”</i> hisses Queen Sydian, black eyes alive with delight as she watches you saw back and forth into the prostate raskvel, gradually but relentlessly building up a rhythm which makes a glow of intense pleasure work its way right up your [pc.cock " + x + "] and up into your groin. She’s got Sessalai’s head pressed between her open thighs, long ears and tail twitching as he obediently eats her. <i>“This is what I lack! " + pc.mf("An alpha male","A " + (pc.isHerm() ? "hermaphrodite" : "shemale") + " taskmaster", true) + " to keep my servants in check and give them regular milkings!”</i>");
 	output("\n\n<i>“No, my queen! I can be that for you, see!”</i> The third raskvel has got the fourth pinned beneath him; he’s giddily flapping his curvy thighs into his fellow’s behind, whose eyes are crossed. A gurgling, helpless moan and a gushing sound draws your attention back to your own bottom. A thick cum is oozing from Azaphel’s bright purple cock, forced out from his sheath by the unstoppable bludgeoning of your own fuck-pole on what is evidently an outsized and very sensitive prostate.");
 	output("\n\n<i>“That’s sweet of you, Meffilin,”</i> coos the sydian to the upstart raskvel, crossing her long legs around her designated muff-servicer, muscles shifting and tightening in her thighs. <i>“But you’ve never made one of my other guards cum like a girl in seconds, have you?”</i>");
 

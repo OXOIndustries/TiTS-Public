@@ -22,6 +22,9 @@ public function statsScreenMenu(currentFunc:Function):Boolean
 	// Other
 	if(showID == "Other") addDisabledGhostButton(6, "Other");
 	else addGhostButton(6, "Other", currentFunc, "Other", "Other Statistics", "Show your other statistics.");
+	// Racial Scores
+	if(showID == "Other") addDisabledGhostButton(7, "Race");
+	else addGhostButton(7, "Race", currentFunc, "Race", "Racial Scores", "Show your categorized genetic makeup.");
 	// Everything
 	if(showID == "All") addDisabledGhostButton(13, "All");
 	else addGhostButton(13, "All", currentFunc, "All", "All Data", "Show the cumulative log.");
@@ -1183,7 +1186,139 @@ public function statisticsScreen(showID:String = "All"):void
 			}
 		}
 	}
-	
+	// Racial scores
+	// It may be preferable for balance reasons to only allow this section to be visible if Easy Mode is on,
+	// or maybe only after unlocking it by talking to some doctor/geneticist (maybe Dr. McAllister on Myrmedion?)
+	if(showID == "Race" || showID == "All")
+	{
+		//======GENETIC MAKEUP=====//
+		output2("\n\n" + blockHeader("Genetic Makeup", false));
+		
+		if(pc.humanScore() > 0)
+			output2("\n<b>* Human:</b> " + pc.humanScore() + "/4 (max: 6)");
+		if(pc.ausarScore() > 0)
+			output2("\n<b>* Ausar:</b> " + pc.ausarScore() + "/4 (max: 5)");
+		if(pc.huskarScore() > 0 && pc.ausarScore() > 0)
+			output2("\n<b>* Huskar:</b> " + pc.huskarScore() + "/3 (max: 5)");
+		if(pc.kaithritScore() > 0)
+			output2("\n<b>* Kaithrit:</b> " + pc.kaithritScore() + "/6 (max: 9)");
+		if(pc.leithanScore() > 0)
+			output2("\n<b>* Leithan:</b> " + pc.leithanScore() + "/6 (max: 9)");
+		if(pc.nukiScore() > 0)
+			output2("\n<b>* Kui-tan:</b> " + pc.nukiScore() + "/6 (max: 7)");
+		if(pc.gooScore() > 0)
+			output2("\n<b>* Goo:</b> " + pc.gooScore() + "/6 (max: 9)");
+		if(pc.bovineScore() > 0)
+			output2("\n<b>* Bovine:</b> " + pc.bovineScore() + "/3 (max: 6)");
+		if(pc.cowScore() > 0 && pc.bovineScore() > 0)
+			output2("\n<b>* Cow:</b> " + pc.cowScore() + "/4 (max: 12)");
+		if(pc.amazonScore() > 0)
+			output2("\n<b>* Amazon:</b> " + pc.amazonScore() + "/4 (max: 5)");
+		if(pc.avianScore() > 0)
+			output2("\n<b>* Avian:</b> " + pc.avianScore() + "/4 (max: 7)");
+		if(pc.badgerScore() > 0)
+			output2("\n<b>* Badger:</b> " + pc.badgerScore() + "/4 (max: 4)");
+		if(pc.bunnyScore() > 0)
+			output2("\n<b>* Bunny:</b> " + pc.bunnyScore() + "/4 (max: 6)");
+		if(pc.flags["MET_FEMKORGONNE"] != undefined || flags["MET_KORG_MALE"] != undefined) /*gotta know what it is before you know how much of one you are (just in case the score for a race would somehow be above 0 before even meeting a member of that race)*/
+		{
+			if(pc.korgonneScore() > 0)
+				output2("\n<b>* Korgonne:</b> " + pc.korgonneScore() + "/4 (max: 5)");
+		}
+		if(pc.canineScore() > 0)
+			output2("\n<b>* Canine:</b> " + pc.canineScore() + "/5 (max: 9)");
+		if(pc.lupineScore() > 0)
+			output2("\n<b>* Lupine:</b> " + pc.lupineScore() + "/5 (max: 5)");
+		if(pc.deerScore() > 0)
+			output2("\n<b>* Deer:</b> " + pc.deerScore() + "/4 (max: 5)");
+		if(pc.demonScore() > 0)
+			output2("\n<b>* Demon:</b> " + pc.demonScore() + "/5 (max: 8)");
+		if(pc.dragonScore() > 0)
+			output2("\n<b>* Dragon:</b> " + pc.dragonScore() + "/5 (max: 10)");
+		if(pc.felineScore() > 0)
+			output2("\n<b>* Feline:</b> " + pc.felineScore() + "/5 (max: 7)");
+		if(pc.frogScore() > 0 && flags["MET_KEROKORAS"] != undefined)
+			output2("\n<b>* Kerokoras:</b> " + pc.frogScore() + "/5 (max: 8)");
+		if(pc.gabilaniScore() > 0)
+			output2("\n<b>* Gabilani:</b> " + pc.gabilaniScore() + "/5 (max: 11)");
+		if(pc.goatScore() > 0)
+			output2("\n<b>* Goat:</b> " + pc.goatScore() + "/4 (max: 7)");
+		if(pc.gryvainScore() > 0)
+			output2("\n<b>* Gryvain:</b> " + pc.gryvainScore() + "/9 (max: 11)");
+		if(pc.horseScore() > 0)
+			output2("\n<b>* Horse:</b> " + pc.horseScore() + "/5 (max: 8)");
+		if(pc.hradScore() > 0 && flags["LIRIEL_MET"] != undefined)
+			output2("\n<b>* Hrad:</b> " + pc.hradScore() + "/4 (max: 8)");
+		if(pc.laquineScore() > 0)
+			output2("\n<b>* Laquine:</b> " + pc.laquineScore() + "/5 (max: 6)");
+		if(pc.mothrineScore() > 0 && flags["SEER_MET"] != undefined)
+			output2("\n<b>* Mothrine:</b> " + pc.mothrineScore() + "/5 (max: 10)");
+		if(pc.myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined)
+			output2("\n<b>* Myr:</b> " + pc.myrScore() + "/4 (max: 6)");
+		if(pc.myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && pc.redMyrScore() > 0)
+			output2("\n<b>* Red myr:</b> " + pc.redMyrScore() + "/8 (max: 12)");
+		if(pc.myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && pc.goldMyrScore() > 0)
+			output2("\n<b>* Gold myr:</b> " + pc.goldMyrScore() + "/8 (max: 15)");
+		if(pc.myrScore() > 0 && flags["PLANET_3_UNLOCKED"] != undefined && pc.orangeMyrScore() > 0 && flags["MCALLISTER_MYR_HYBRIDITY"] >= 3)
+			output2("\n<b>* Orange myr:</b> " + pc.orangeMyrScore() + "/9 (max: 16)");
+		if(flags["PQ_NALEENED"] != undefined || flags["TIMES_MET_NALEEN"] != undefined || flags["TIMES_MET_MALE_NALEEN"] != undefined)
+		{
+			if(pc.naleenScore() > 0)
+				output2("\n<b>* Naleen:</b> " + pc.naleenScore() + "/5 (max: 10)");
+		}
+		if(flags["MET_NYREA_ALPHA"] != undefined || flags["MET_NYREA_BETA"] != undefined || flags["FOUGHT_PRAETORIANS"] != undefined || flags["PLAT190 USED AS NYREA BRIBE"] != undefined || metTaivra() || flags["BOTHRIOC_QUEST_BETA_NYREA_BAITED"] != undefined)
+		{
+			if(pc.nyreaScore() > 0)
+				output2("\n<b>* Nyrea:</b> " + pc.nyreaScore() + "/5 (max: 7)");
+		}
+		/*if(flags["BETHS_OVIR_SEEN"] != undefined || flags["OVIR_TEASED"] != undefined)
+		{ */
+		if(pc.ovirScore() > 0)
+			output2("\n<b>* Ovir:</b> " + pc.ovirScore() + "/5 (max: 9)");	
+		if(pc.pandaScore() > 0)
+			output2("\n<b>* Panda:</b> " + pc.pandaScore() + "/4 (max: 6)");
+		if(pc.pigScore() > 0)
+			output2("\n<b>* Pig:</b> " + pc.pigScore() + "/4 (max: 9)");
+		if(pc.plantScore() > 0)
+			output2("\n<b>* Plant:</b> " + pc.plantScore() + "/5 (max: 9)");
+		if(flags["MET_FEMALE_RASKVEL"] != undefined || flags["MET_MALE_RASKVEL_GANG"] != undefined || flags["PREG_RASK_GUARD_RESULT"] != undefined) 
+		{
+			if(pc.raskvelScore() > 0)
+				output2("\n<b>* Raskvel:</b> " + pc.raskvelScore() + "/6 (max: 8)");
+		}
+		if(pc.redPandaScore() > 0)
+			output2("\n<b>* Red panda:</b> " + pc.redPandaScore() + "/4 (max: 8)");
+		if(pc.saurmorianScore() > 0)
+			output2("\n<b>* Saurmorian:</b> " + pc.saurmorianScore() + "/6 (max: 9)");
+		if(pc.sharkScore() > 0)
+			output2("\n<b>* Shark:</b> " + pc.sharkScore() + "/5 (max: 12)");
+		if(pc.sheepScore() > 0)
+			output2("\n<b>* Sheep:</b> " + pc.sheepScore() + "/5 (max: 9)");
+		if(pc.simiiScore() > 0)
+			output2("\n<b>* Simii:</b> " + pc.simiiScore() + "/4 (max: 5)");
+		if(pc.suulaScore() > 0)
+			output2("\n<b>* Suula:</b> " + pc.suulaScore() + "/6 (max: 10)");
+		if(pc.tentacleScore() > 0)
+			output2("\n<b>* Tentacle:</b> " + pc.tentacleScore() + "/15 (max: ??)");
+		if(pc.statusEffectv4("Vanae Markings") > 0 || flags["SALVAGED VANAE CAMP"] >= 2 || flags["MET_VANAE_MAIDEN"] != undefined || flags["MET_VANAE_HUNTRESS"] != undefined)
+		{
+			if(pc.vanaeScore() > 0)
+				output2("\n<b>* Vanae:</b> " + pc.vanaeScore() + "/6 (max: 10)");
+		}
+		if(pc.vulpineScore() > 0)
+			output2("\n<b>* Vulpine:</b> " + pc.vulpineScore() + "/4 (max: 9)");
+		if(pc.vulpineScore() > 0 && pc.kitsuneScore() > 0 && pc.tailCount > 1)
+			output2("\n<b>* Kitsune:</b> " + pc.kitsuneScore() + "/4 (max: 8)");
+		if(StatTracking.getStat("pregnancy/zil birthed") > 0 || zilCallGirlSexed() > 0 || flags["ZIL_CALLGIRL_NAME_KNOWN"] != undefined || StatTracking.getStat("pregnancy/zil sired") > 0 || flags["AVOID_9TAIL"] != undefined || flags["FOUGHT_9TAIL"] != undefined || flags["FED_9TAIL"] != undefined || flags["ZIL_PROBLEM_DEALT_WITH"] != undefined || flags["PQ_RESOLUTION"] != undefined || flags["PLANTATION_QUEST"] != undefined || MailManager.isEntryViewed("plantation_quest_start") || flags["ACCEPTED_JULIANS_ZIL_CAPTURE_MISSION"] != undefined || flags["ZILTWINS_MET"] != undefined || flags["BURT_ZIL_TALK"] != undefined || flags["TIMES_MET_FEMZIL"] != undefined || flags["ENCOUNTERED_ZIL"] != undefined) /* what does "redundant" mean lol */
+		{
+			if(pc.zilScore() > 0)
+				output2("\n<b>* Zil:</b> " + pc.zilScore() + "/6 (max: 10)");
+		}
+		/* pls add cyborg stuff :(
+		if(cyborgScore() > 0)
+			output2("\n<b>* Cyborg:</b> " + cyborgScore() + "/1 (max: 4)");
+		*/
+	}	
 	// Medical
 	if(showID == "Medical" || showID == "All")
 	{
@@ -2501,7 +2636,7 @@ public function displayQuestLog(showID:String = "All"):void
 						else output2(" and turrets");
 					}
 					else output2(" Visited");
-					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped passed");
+					if(flags["AZRA_TARKUS_SKIP"] != undefined) output2(", Skipped past");
 				}
 				if(flags["PREG_RASK_GUARD_RESULT"] != undefined)
 				{
@@ -5168,7 +5303,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Naleen Huntress, Times Encountered:</b> " + flags["TIMES_MET_NALEEN"]);
 					if(flags["NALEEN_SNUGGLED"] != undefined) output2("\n<b>* Naleen Huntress, Times Snuggled With:</b> " + flags["NALEEN_SNUGGLED"]);
-					if(flags["TIMES_WINSEXED_NALEEN"] != undefined || flags["TIMES_LOSS_DOMMED_BY_NALEEN"] != undefined) output2("\n<b>* Naleen Huntress, Times Sexed:</b> " + totalNaleenSexCount());
+					if(totalNaleenSexCount() > 0) output2("\n<b>* Naleen Huntress, Times Sexed:</b> " + totalNaleenSexCount());
 				}
 				if(flags["TIMES_MET_MALE_NALEEN"] != undefined) output2("\n<b>* Male Naleen, Times Encountered:</b> " + flags["TIMES_MET_MALE_NALEEN"]);
 				if(flags["NALEEN_HERM_MET"] != undefined) output2("\n<b>* Hermaphrodite Naleen, Times Encountered:</b> " + flags["NALEEN_HERM_MET"]);
@@ -5908,7 +6043,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				else output2("\n<b>* Gene:</b>");
 				output2(" Met him");
 				if(flags["GENE_BELLYRUBS_ENABLED"] != undefined) output2(", Rubbed his belly");
-				if(flags["GENE_SUBMISSION_LEVEL"] != undefined)
+				if(flags["GENE_SUBMISSION_LEVEL"] != undefined && flags["GENE_TALKED_TO"] != undefined)
 				{
 					output2("\n<b>* Gene, Dominance Level:</b> ");
 					if(flags["GENE_SUBMISSION_LEVEL"] == -1) output2("Refused his advances completely");
@@ -6276,6 +6411,8 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(metTaivra())
 				{
 					output2("\n<b>* Queen Taivra:</b> Met her");
+					if(flags["BEAT_TAIVRA_TIMESTAMP"] != undefined) output2(", Defeated her");
+					if(flags["KILLED_TAIVRA"] != undefined) output2(", Killed her");
 					if(flags["FUCKED_TAIVRA"] != undefined) output2(", Sexed her");
 					if(flags["FUCKED_BY_TAIVRA"] != undefined) output2(", Fucked by her");
 					if(flags["TAIVRA_FOOTJOBBED"] != undefined) output2(", Footjob by her");
@@ -6331,7 +6468,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					var goldMyrDeserterName:String = "Gold Myr Deserter";
 					if(flags["KNOW_GOLD_MYR_NAME"] != undefined) goldMyrDeserterName = "Lys";
 					output2("\n<b>* " + goldMyrDeserterName + "</b>");
-					if(flags["GOLD_MYR_DESERTER_BEATEN"] != undefined && flags["GOLD_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
+					if(flags["GOLD_MYR_DESERTER_BEATEN"] != undefined && flags["GOLD_MYR_DESERTER_BEATEN"] >= 5 && flags["KNOW_GOLD_MYR_NAME"] != undefined) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered:</b> " + flags["MET_GOLD_DESERTER"]);
 					if(flags["GAVE_LYS_FLOWER"] != undefined)
 					{
@@ -6346,7 +6483,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					var redMyrDeserterName:String = "Red Myr Deserter";
 					if(flags["KNOW_RED_MYR_NAME"] != undefined) redMyrDeserterName = "Briha";
 					output2("\n<b>* " + redMyrDeserterName + "</b>");
-					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5) output2(" <b>(Non-hostile)</b>");
+					if(flags["RED_MYR_DESERTER_BEATEN"] != undefined && flags["RED_MYR_DESERTER_BEATEN"] >= 5 && flags["KNOW_RED_MYR_NAME"] != undefined) output2(" <b>(Non-hostile)</b>");
 					output2("<b>, Times Encountered:</b> " + flags["MET_RED_DESERTER"]);
 					if(flags["BRIHA_INCUBATION_TIMER"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Days Pregnant:</b> " + flags["BRIHA_INCUBATION_TIMER"]);
 					if(flags["RED_DILDOED"] != undefined) output2("\n<b>* " + redMyrDeserterName + ", Times Used Dildo:</b> " + flags["RED_DILDOED"]);
@@ -6447,7 +6584,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					case 1: output2(" Unlocked by card"); break;
 					case 2: output2(" Unlocked by hacking"); break;
 					default: output2(" <i>Unknown</i>"); break;
-				}
+		}
 				if(flags["MET_TIVF"] != undefined) output2("\n<b>* Tivf:</b> Met him");
 				variousCount++;
 			}
@@ -6937,7 +7074,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["FROSTWYRM_ANAL_PITCH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Fucked Your Ass:</b> " + flags["FROSTWYRM_ANAL_PITCH"]);
 				if(flags["FROSTWYRM_GAVE_BATH"] != undefined) output2("\n<b>* [frostwyrm.name], Times She Gave Tongue Bath:</b> " + flags["FROSTWYRM_GAVE_BATH"]);
 				if(flags["FROSTWYRM_GOT_BLOWN"] != undefined) output2("\n<b>* [frostwyrm.name], Times You Gave Her Oral:</b> " + flags["FROSTWYRM_GOT_BLOWN"]);
-				if(flags[""] != undefined) output2("\n<b>* [frostwyrm.name], Times :</b> " + flags[""]);
+				if (flags[""] != undefined) output2("\n<b>* [frostwyrm.name], Times :</b> " + flags[""]);
+				
+				if(flags["NYKKE_MET"] != undefined)
+				{
+					//nykke				
+					if(flags["NYKKE_FUCK_HER_CUNT"] != undefined) output2("\n<b>* Nykke, Times You Fucked Her Vagina:</b> " + flags["NYKKE_FUCK_HER_CUNT"]);
+					if(flags["NYKKE_FUCK_HER_ASS"] != undefined) output2("\n<b>* Nykke, Times You Fucked Her Ass:</b> " + flags["NYKKE_FUCK_HER_ASS"]);
+					if(flags["NYKKE_FUCK_YOUR_CUNT"] != undefined) output2("\n<b>* Nykke, Times She Fucked Your Vagina:</b> " + flags["NYKKE_FUCK_YOUR_CUNT"]);
+					if (flags["NYKKE_FUCK_YOUR_ASS"] != undefined) output2("\n<b>* Nykke, Times She Fucked Your Ass:</b> " + flags["NYKKE_FUCK_YOUR_ASS"]);
+				}
 				
 				variousCount++;
 			}

@@ -115,8 +115,8 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.cocks[0].cLengthRaw = 19.5;
 			pc.cocks[0].cThicknessRatioRaw = 1.230769230769231;
 			pc.cocks[1].knotMultiplier = 1.333333;
-			pc.cocks[0].cLengthRaw = 20;
-			pc.cocks[0].cThicknessRatioRaw = 1.5;
+			pc.cocks[1].cLengthRaw = 20;
+			pc.cocks[1].cThicknessRatioRaw = 1.5;
 
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.vaginas[0].wetnessRaw = 2;
@@ -326,7 +326,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.shiftCock(0,GLOBAL.TYPE_SIMII);
 			
 			bonusTexts += "You’ve always been a bit of a monkey. Nothing wrong with that.";
-			bonusTexts += " (Note: Monkey parts aren’t properly supported at the time of coding this character. If this changes down the road, please feel free to log a bug report, and we’ll get this PC updated.)";
+			//bonusTexts += " (Note: Monkey parts aren’t properly supported at the time of coding this character. If this changes down the road, please feel free to log a bug report, and we’ll get this PC updated.)";
 			break;
 		/*Anon All available shark transformations.
 		Hermaphrodite with normal vagina, normal 8" penis, 2 E cup breasts.
@@ -786,6 +786,21 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.clitLength = 2;
 			if(pc.femininity < 70) pc.femininity = 70;
+			
+			pc.faceType = GLOBAL.TYPE_SWINE;
+			pc.clearFaceFlags();
+			pc.earType = GLOBAL.TYPE_SWINE;
+			pc.legCount = 2;
+			pc.legType = GLOBAL.TYPE_SWINE;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_SWINE;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_CORKSCREWED);
+			pc.shiftVagina(0,GLOBAL.TYPE_SWINE);
+			pc.inflateVagina(0);
 			break;
 		/*Warkonst Height: 1,75m
 		Hair: Short, Black
@@ -868,6 +883,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.earLength = 4+rand(5);
 			pc.tone = 30;
 			pc.skinTone = "fair";
+			
+			// Cycle every 7 days
+			pc.createHeatPerk(7);
 			break;
 		/*Thanyl Feline, snow-leopard with lynx colouration including ear-tufts if possible, 189 cm tall, lithe and feminine build, ass-length silky blonde hair, red eyes and silver-rimmed rectangular glasses.
 		16 cm long penis, 5 cm thick, humanoid, pink and uncut.
@@ -931,9 +949,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.createBreastRow();
 			pc.createBreastRow();
 			pc.breastRows[0].breastRatingRaw = 5;
-			pc.breastRows[0].breastRatingRaw = 3;
-			pc.breastRows[0].breastRatingRaw = 2;
-			pc.breastRows[0].breastRatingRaw = 1;
+			pc.breastRows[1].breastRatingRaw = 3;
+			pc.breastRows[2].breastRatingRaw = 2;
+			pc.breastRows[3].breastRatingRaw = 1;
 			pc.milkFullness = 100;
 			pc.milkStorageMultiplier = 2;
 			pc.milkMultiplier = 100;

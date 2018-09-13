@@ -2028,7 +2028,7 @@ package classes.GameData
 				damHolder = Math.ceil(damHolder);
 
 				applyDamage(damageRand(new TypeCollection( { kinetic: damHolder } ), 15), attacker, target, "minimal");
-				if((target.originalRace == "automaton" || target.originalRace == "machine" || target.originalRace == "robot") && !target.hasGenitals())
+				if(target.isRobot() && !target.hasGenitals())
 				{
 					if (attacker is PlayerCharacter) output("\nIt had little effect on your automated foe!");
 					else output("\nIt had little effect!");

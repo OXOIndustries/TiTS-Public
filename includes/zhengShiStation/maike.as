@@ -467,22 +467,30 @@ public function bonusCollarAndHelmetHandouts():void
 	clearOutput();
 	showName("\nSUCCESS!");
 	output("The collar placed around your neck tingles dangerously. <b>You’ll be unable to recover HP or energy from resting so long as it is equipped, owing to the <i>motivating</i> shocks.</b>");
-	if(!(pc.accessory is EmptySlot)) output(" Your old accessory is unequipped.");
-	output("\n\n");
-	if(!(pc.accessory is EmptySlot)) 
+	
+	var newAccessory:ItemSlotClass = new MaikesCollar();
+	var itemList:Array = [];
+	if(pc.hasAccessory())
 	{
-		quickLoot(new SpacesuitHelmet(), pc.accessory);
+		output(" Your old accessory is unequipped.");
+		var oldAccessory:ItemSlotClass = pc.accessory;
+		oldAccessory.onRemove(pc);
+		itemList.push(oldAccessory);
 		pc.accessory = new EmptySlot();
 	}
-	else 
+	if(flags["MAIKE_HELMET_TAKEN"] == undefined)
 	{
-		if(flags["MAIKE_BLUFF_PEN"] == undefined) 
-		{
-			quickLoot(new SpacesuitHelmet());
-			flags["MAIKE_HELMET_TAKEN"] = 1;
-		}
+		flags["MAIKE_HELMET_TAKEN"] = 1;
+		itemList.push(new SpacesuitHelmet());
 	}
-	pc.accessory = new MaikesCollar();
+	if(itemList.length > 0)
+	{
+		output("\n\n");
+		itemCollect(itemList);
+	}
+	
+	pc.accessory = newAccessory;
+	newAccessory.onEquip(pc);
 	
 }
 

@@ -1745,8 +1745,20 @@
 			var buffer: String = "<b>Error, invalid description. Passed description call: \"" + arg + "\" with argument: \"" + arg2 + "\"</b>";
 			if (!arg2)
 			{
-				if(desc == "clits") arg2 = -1;
-				else arg2 = 0;
+				switch (desc) {
+					case "cockOrStrapon":
+					case "cockOrHardlight":
+					case "cockOrStraponNoun":
+					case "cockOrHardlightNoun":
+					case "cockOrStraponFull":
+					case "cockOrHardlightFull":
+					case "cockOrStraponHead":
+						arg2 = -3; break;
+					case "clitsNoun":
+					case "clits":
+						arg2 = -1; break;
+					default: arg2 = 0; break;
+				}
 			}
 			switch (desc) {
 				case "height":
@@ -4251,7 +4263,6 @@
 			if (isTreated() && mf("m", "f") == "f") return true;
 			return false;
 		}
-		
 		public function isTreatedMale():Boolean
 		{
 			if (isTreated() && mf("m", "f") == "m") return true;
@@ -11021,6 +11032,11 @@
 					vaginas[slot].vaginaColor = lipColor;
 					vaginas[slot].addFlag(GLOBAL.FLAG_TONGUE);
 					break;
+				case GLOBAL.TYPE_SWINE:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "pink";
+					vaginas[slot].addFlag(GLOBAL.FLAG_CORKSCREWED);
+					break;
 				case GLOBAL.TYPE_BOTHRIOC:
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].loosenessRaw = 3;
@@ -13003,6 +13019,10 @@
 		{
 			if(cyborgScore() >= numParts) return true;
 			return false;
+		}
+		public function isRobot():Boolean
+		{
+			return (InCollection(originalRace, ["automaton", "conglomerate", "junker", "machine", "robot"]));
 		}
 		
 		public function sackDescript(forceAdjectives: Boolean = false, adjectives: Boolean = true): String {
@@ -17578,7 +17598,7 @@
 			var sNoun:Array = [];
 
 			//if a idxOverride is set higher than your current dick count, set it to autopick something different
-			if(hasCock() && idxOverride >= cockTotal()) idxOverride = -3;
+			if(idxOverride >= cockTotal()) idxOverride = -3;
 			//Autopick? Prefer dick if available.
 			if(idxOverride == -3)
 			{

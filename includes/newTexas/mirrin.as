@@ -660,7 +660,7 @@ public function repeatableMirrinTraining():void
 		else if(pc.isMischievous())
 		{
 			output("\n\n<i>“I swear, if this starts ripping my clothes off, I’m strapping you in this damn thing forever,”</i> you call back, half joking, half serious.");
-			output("\n\nShe just laughs. <i>“You’ll be fiiiiine, you’re a Steele. You’re hard as rocks,”</i> she reassures you. Ooo, it wouldn’t be good if she started confusing rocks for metals now...");
+			output("\n\nShe just laughs. <i>“You’ll be fiiiiine, you’re a Steele. You’re hard as rocks,”</i> she reassures you. Ooo, it wouldn’t be good if she started confusing rocks with metals now...");
 		}
 		//PC is hard:
 		else
@@ -950,7 +950,7 @@ public function foodWithMirrin():void
 		//PC is kind:
 		if(pc.isNice())
 		{
-			output("\n\n<i>“Are... you alright? Is </i>he<i> alright?”</i> You enquire, a little anxious.");
+			output("\n\n<i>“Are... you alright? Is </i>he<i> alright?”</i> You inquire, a little anxious.");
 			output("\n\nShe looks at you with somewhat tired eyes. <i>“Mmm, don’t worry about me. Or him, actually. It’s fine, [pc.name],”</i> she says with a weak grin.");
 		}
 		//PC is misch:
