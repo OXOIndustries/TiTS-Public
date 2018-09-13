@@ -594,6 +594,11 @@ package classes.Resources.Busts
 		[Embed(source = "../../../assets/images/npcs/adjatha/nova_nude_1.png", mimeType = "image/png")]
 		public var Bust_NOVA_NUDE_1:Class;
 		
+		[Embed(source = "../../../assets/images/npcs/adjatha/nykke.png", mimeType = "image/png")]
+		public var Bust_NYKKE:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/nykke_nude.png", mimeType = "image/png")]
+		public var Bust_NYKKE_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/nymfoe.png", mimeType = "image/png")]
 		public var Bust_NYMFOE:Class;
 		public var Bounds_NYMFOE:Rectangle = new Rectangle(35, 0, 70, 70);
@@ -1467,6 +1472,11 @@ package classes.Resources.Busts
 			public var Full_NOVA_NUDE_0:Class;
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nova_nude_1.png", mimeType = "image/png")]
 			public var Full_NOVA_NUDE_1:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nykke.png", mimeType = "image/png")]
+			public var Full_NYKKE:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nykke_nude.png", mimeType = "image/png")]
+			public var Full_NYKKE_NUDE:Class;
 			
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/nymfoe.png", mimeType = "image/png")]
 			public var Full_NYMFOE:Class;

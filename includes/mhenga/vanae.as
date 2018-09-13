@@ -103,8 +103,8 @@ public function encounterVanae(isHuntress:Boolean):void
 		output("As you move through the jungle, your Codex beeps out a warning. <i>“Vanae life-signs detected!”</i>");
 
 		output("\n\nYou instinctively leap back and ready your");
-		if (!(pc.rangedWeapon is EmptySlot)) output(" [pc.rangedWeapon].");
-		else if (!(pc.meleeWeapon is EmptySlot)) output(" [pc.meleeWeapon]."); 
+		if (pc.hasRangedWeapon()) output(" [pc.rangedWeapon].");
+		else if (pc.hasMeleeWeapon()) output(" [pc.meleeWeapon]."); 
 		else output(" fists.");
 
 		// IF VANAE HUNTRESS

@@ -251,7 +251,6 @@ package classes.Items.Transformatives
 						
 						changes++;
 						pc.shiftVagina(x, GLOBAL.TYPE_SWINE);
-						pc.vaginas[x].addFlag(GLOBAL.FLAG_CORKSCREWED);
 					}
 					else
 					{

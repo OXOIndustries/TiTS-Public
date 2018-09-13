@@ -2129,12 +2129,16 @@ public function inflateViBoobs():void
 	output("\n\nWith a little difficulty, Vi clips the maternity-like flaps back over her nipples. Only a few moments later, the material looks a little stained.");
 	output("\n\n<i>“How strange. Constant lactation isn’t within my normal operational parameters,”</i> Vi remarks, touching her ponytail. You’re not surprised, considering you just pumped her full of an unauthorized product. A few side effects are to be expected.");
 	output("\n\n<b>Vi now has Q-cups!</b>");
-	processTime(15);
+	
 	flags["VI_BIGBOOBS"] = 1;
-	IncrementFlag("INFLATED_VI");
-	pc.destroyItemByClass(Silicone,2);
 	showVi(true);
-	viMenu();
+	
+	processTime(15);
+	IncrementFlag("INFLATED_VI");
+	
+	pc.destroyItemByClass(Silicone,2);
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
 }
 
 //ShrinkBreasts
@@ -2170,14 +2174,13 @@ public function shrinkViBreasts():void
 	output("\n\nWhen the process is finally finished, you pull your shining finger out of her quim. The violet-haired nurse’s breasts are drastically reduced in size, though they’re really just back to how they were before.");
 	output("\n\n<i>“That input was very stimulating for my processors,”</i> Vi exclaims, her snowy-white cheeks flushed. <i>“If you need to do any more modifications, please feel free to do it at any time, " + pc.mf("sir","ma’am") +".”</i>");
 	output("\n\n<b>Vi now has D-cups again!</b>\n\n");
+	
 	flags["VI_BIGBOOBS"] = 0;
+	showVi(true);
+	
 	processTime(25);
 	
 	var silicone:ItemSlotClass = new Silicone();
 	silicone.quantity = 2;
-	itemScreen = viMenu;
-	lootScreen = viMenu;
-	useItemFunction = viMenu;
-	showVi(true);
 	quickLoot(silicone);
 }

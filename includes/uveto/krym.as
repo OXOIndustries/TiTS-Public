@@ -782,6 +782,7 @@ public function pitchVagimalKrym():void
 		output("\n\n<i>“Glad to see I’m not the only bitch on this iceball that likes her high-tech dongs,”</i> Krym grins, letting your hardlight erection erupt into existence... right into her waiting hand. You can’t help but shiver at the sudden rush of sensation, feeling Krym rub your hardlight hardon, pushing it down against your [pc.belly].");
 	}
 	output("\n\nThe valkyrie shifts forward on her hips, planting her pussy right on the base of your [pc.cockOrStrapon " + x + "]. She’s sweltering hot - a sweet relief from the oppressive cold you’ve been subjected to since landing on Uveto, spreading up the length of your shaft. Krym leaves a trail of wet excitement in her wake, slickening your shaft - and giving herself a taste of the pleasure she’s giving you. Your stormy lover moans, cupping one of her perky breasts as her hips start to move faster along your length, grinding back and forth until she’s moaning and laughing. Your hands naturally migrate towards her hips: her broad flanks have plenty of room to spare, and lead you towards one of the few places on her body sporting a nice bit of softness for you to dig into.");
+	if(pc.hasCock()) pc.cockChange();
 	output("\n\nKrym grins when your fingers sink into her rump, and you feel her pussy flex around your ");
 	if(x == -1) output("glowing tip");
 	else output("[pc.cockHead " + x + "]");

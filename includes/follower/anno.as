@@ -2970,6 +2970,7 @@ public function annosTriberatorGatorMatorHater():void
 	
 	if (flags["ANNO_TRIBERATOR_USED"] == undefined) flags["ANNO_TRIBERATOR_USED"] = 0;
 	flags["ANNO_TRIBERATOR_USED"]++;
+	annoSexed(1);
 	
 	addButton(0,"Next",mainGameMenu);
 }
@@ -4302,6 +4303,7 @@ public function annoWalkiesPartDuesEx():void
 	}
 	processTime(45);
 	IncrementFlag("ANNO_PETPLAYED");
+	annoSexed(1);
 	pc.orgasm();
 	clearMenu();
 	//Returns the player to their ship, docked in Tavros.

@@ -265,7 +265,7 @@ public function adultCockvineConsentacles():void
 
 	output("\n\nThe cockvine that has your tongue’s attention undulates peacefully over your [pc.lips] for a moment, taking the time to smear them with its fruit, before parting them in a single fluid movement. Hollowing your cheeks you practically vacuum the leaking purple head inwards, the heavy herbal musk invading your mouth, intensifying the fug of pheromone arousal you’re lost in to an almost trance-like state.");
 	// Oral Fixation
-	if (pc.isDependant(Creature.DEPENDANT_CUM))
+	if (pc.isCumSlut())
 	{
 		output("\n\nYour tender lips, puffed up to the tentacle’s teasing and eagerly absorbing its fluids, have already driven you practically to the edge – when it stretches them wide and fills your mouth with bulging, heavily scented prick it’s too much. The sound of your muffled moans reaches your ears from somewhere far away as you rocket to an orgasm,");
 		if (pc.hasVagina()) output(" [pc.eachVagina] quivering and wetting itself across the tentacle sliding across it");

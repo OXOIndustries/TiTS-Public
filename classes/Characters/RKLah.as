@@ -222,7 +222,7 @@ package classes.Characters
 			}
 			choices.push(redFlowerAttackWhatIsThisFuckingJungleBook);
 			choices.push(wolfsToothytooth);
-			if(!target.hasStatusEffect("Evasion Boost")) choices.push(dancesWithWolves);
+			if(!this.hasStatusEffect("Evasion Boost")) choices.push(dancesWithWolves);
 			choices.push(willItBleed);
 			choices[rand(choices.length)](target);
 		}

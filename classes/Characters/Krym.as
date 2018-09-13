@@ -399,7 +399,7 @@ package classes.Characters
 			applyDamage(damage, target, this, "minimal");
 			if(this.aim()/2 + rand(20) + 1 >= target.physique()/2 + 10 && !target.hasStatusEffect("Staggered"))
 			{
-				output(" To deafening blast leaves you reeling, trying to catch your balance and failing miserably. You manage to avoid falling over yourself, but the whole world’s still spinning. <b>You’re staggered!</b>");
+				output(" The deafening blast leaves you reeling, trying to catch your balance and failing miserably. You manage to avoid falling over yourself, but the whole world’s still spinning. <b>You’re staggered!</b>");
 				target.createStatusEffect("Staggered", 0, 0, 0, 0, false, "Icon_OffDown", (target is PlayerCharacter ? "You are" : (StringUtil.capitalize(target.getCombatName()) + " is")) + " staggered, and " + target.getCombatPronoun("hisher") + " aim and reflexes have been reduced!", true, 0, 0xFF0000);
 			}
 		}

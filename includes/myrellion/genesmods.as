@@ -125,7 +125,8 @@ public function genesModsInterior():void
 		
 		if (geneSubmissionLevel() >= 0 && geneSubmissionLevel() <= 2)
 		{
-			output("\n\n<i>“Captain Steele!”</i> Gene grins hugely when you step back into his airy shop. <i>“To what do I owe this rare pleasure?”</i>");
+			if(flags["GENE_TALKED_TO"] != undefined) output("\n\n<i>“Captain Steele!”</i> Gene grins hugely when you step back into his airy shop. <i>“To what do I owe this rare pleasure?”</i>");
+			else output("\n\n<i>“Welcome back!”</i> the fanfir man grins hugely when you step back into his airy shop. <i>“What can I do for you?”</i>");
 		}
 		else if (geneSubmissionLevel() >= 3 && geneSubmissionLevel() <= 6)
 		{

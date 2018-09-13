@@ -1141,7 +1141,7 @@ public function armorGooVictoryShits():void
 	output(" and burbles over to the");
 	if(isRoyal) output(" egg-laden slut");
 	else output(" downed foe");
-	output(", reaching a silvery hand down to run a few fingers along her crystal-armored belly. <i>“Oooh, it’s pretty!”</i> [goo.name] giggles, <i>“And hard, too! Hmm, bio-crystal like this... just really hardened body cells. Interesting! Hmm, analysis shows a complex biological process going on all through her body, turning old cells crystal, pushing them together to form shards... I can totally do that!”</i>");
+	output(", reaching a silvery hand down to run a few fingers along her crystal-armored belly. <i>“Oooh, it’s pretty!”</i> [goo.name] giggles, <i>“And hard, too! Hmm, bio-crystal like this... just really hardened body cells. Interesting! Hmm, analysis shows a complex biological process going on all through her body, turning old cells into crystals, pushing them together to form shards... I can totally do that!”</i>");
 	output("\n\nSometimes it’s easy to forget [goo.name] was <i>supposed</i> to be a medical program, before whatever went wrong with the gray goo turned her into a flighty bimbo.");
 	if(isRoyal) output(" Makes you wonder what happened to the ganrael girl to make her into such a mindlessly loyal egg-slut. This nyrean queen must really be something.");
 	output("..");
@@ -1722,7 +1722,7 @@ public function whupTaivrasAss():void
 		output("\n\n<i>“Told you that you should’ve brought a gun,”</i> Dane snarls, kicking the nyrea square in the chest. She drops like a sack of bricks and curls into a ball, wincing from what must be terrible abdominal pain. <i>“Musta ruptured something other than your sperm sacks, huh? I guess not all the male nyrea get off on penetration.”</i>");
 		output("\n\nDane doesn’t look much better off, but he’s still standing, somehow. He slips the shield onto his lower left arm and starts backpedaling as the queen screams and her remaining betas leap towards the ausar with vengeance on their minds. Dane grunts and falls back, covering your cousin’s escape until they’re both through the curtain and out of sight.");
 		output("\n\nYou can’t even go after them - not unless you want a repeat fight when you get back. You’ll have to settle up now, and wait to deal with [rival.name] until another time...");
-		output("\n\nCursing, you put your weapon away and turn back to Taivra. she’s pulled Queensguard’s helmet off and rested the knight’s head in her lap, stroking her black hair with one hand and binding her wounds with the other.");
+		output("\n\nCursing, you put your weapon away and turn back to Taivra. She’s pulled Queensguard’s helmet off and rested the knight’s head in her lap, stroking her black hair with one hand and binding her wounds with the other.");
 		flags["QUEENSGUARD_STAB_TIME"] = GetGameTimestamp();
 	}
 	//Combine:
@@ -2229,7 +2229,7 @@ public function soloTaivraBadEndPart2():void
 		else output("mate");
 		output(", as incestuous as your union is. More than once after a vigorous fuck session, when [rival.name] thinks you’re fast asleep, [rival.hisHer] head resting on your chest, you’re sure you hear [rival.himHer] say <i>“I love you.”</i>");
 	}
-	output("\n\nYou suppose a life spent in lust, fucking who you please between sexual service to a powerful and domineering queen, isn’t so bad after all. You never find out what your father had in store for you, but frankly... you’re not sure it matters. You have another cousin who might hear her fortune some day, at your and [rival.name]’s expense. Obviously, you weren’t cut out for the job. But now you’ve found a better one, a career more suited to your talents and to the lust that grows hotter in you day after day.");
+	output("\n\nYou suppose a life spent in lust, fucking who you please between sexual service to a powerful and domineering queen, isn’t so bad after all. You never find out what your father had in store for you, but frankly... you’re not sure it matters. You have another cousin who might hear of her fortune some day, at your and [rival.name]’s expense. Obviously, you weren’t cut out for the job. But now you’ve found a better one, a career more suited to your talents and to the lust that grows hotter in you day after day.");
 	output("\n\nSomething feels missing in you for the rest of your life. A destiny unfulfilled. But it’s an easy hole to ignore, surrounded by beautiful aliens");
 	if(flags["COUSIN_BEDWARMER"] == 1) output(" and a cousin who so eagerly warms your bed at night");
 	output(". You can’t say you’re too sad at night, especially when your loving queen takes you into her bed - nothing ever will make you feel more alive again as when Taivra claims you with her royal scepter, filling your body with the most amazing sensation, and new generations of life for your queen’s growing nation.");
@@ -2332,7 +2332,7 @@ public function probeReclamationShit():void
 	else output("that old Tricky Vic’s original is still flying out there, somewhere");
 	output(". You just grin.");
 	
-	output("\n\n<i>“Alright, " + pc.mf("Mr.","Ms.") + " Steele,”</i> one of them says, taking out Codex just like yours. <i>“There’s an outstanding bounty on these old probes, as you know. Let’s get you paid up, huh?”</i>");
+	output("\n\n<i>“Alright, " + pc.mf("Mr.","Ms.") + " Steele,”</i> one of them says, taking out a Codex just like yours. <i>“There’s an outstanding bounty on these old probes, as you know. Let’s get you paid up, huh?”</i>");
 	output("\n\nA moment later and your own device beeps happily, alerting you to a new deposit of <b>20,000 credits</b> into your bank account. Score!");
 
 	// <insert tech scene here, picking up after the line ‘as you know’>
@@ -3676,7 +3676,7 @@ public function queensGuardRepeatApproaches():void
 		output("\n\nAbnormally for her, you suspect, her helmet is resting on the stone beside her, revealing a pale, battle-scarred face and a head of short, spiky black hair falling just over her oddly amethyst-colored eyes. Hearing you approach, she blinks away a thousand-yard stare and turns to face you, gauntlets respectfully abandoning the planted hilt of her sword.");
 		output("\n\n<i>“My " + pc.mf("lord","lady") + ",”</i> she says with a slight nod of her head.");
 		output("\n\n<i>“Queensguard, isn’t it?”</i> you ask. That can’t actually be her name, can it?");
-		output("\n\nShe answers with a faint smile, planting one of her armored hands on her side. <i>“Most of Queen Taivra’s subjects, and more importantly, her enemies, know me by that name,”</i> she says with a hint of pride. <i>“I know of your arrangement with my queen, so of course may call me Cerres, if you wish. That is my given name.”</i>");
+		output("\n\nShe answers with a faint smile, planting one of her armored hands on her side. <i>“Most of Queen Taivra’s subjects, and more importantly, her enemies, know me by that name,”</i> she says with a hint of pride. <i>“I know of your arrangement with my queen, so of course you may call me Cerres, if you wish. That is my given name.”</i>");
 		output("\n\nYou notice that her breastplate’s been patched with an off-color plate of steel, hiding the injury Dane left her with during your cousin’s escape. She doesn’t seem any worse for wear, despite having been on the verge of death at the time. Taivra must have a truly talented healer at her disposal, and you find yourself asking the knight if her wounds have fully healed.");
 		output("\n\n<i>“They have. Thank you, my " + pc.mf("lord","lady") + ",”</i> she answers crisply. <i>“The injury looked worse than it was. Debilitatingly painful, but not life-threatening. A bit of crystal goo and some medical herbs were enough to get me back on my feet, though I don’t think I’ll be doing much fighting for a while.”</i>");
 		output("\n\nA shame, you tell her. Her fight with Dane was certainly something to behold - she’s a great warrior, even among nyrean huntresses.");

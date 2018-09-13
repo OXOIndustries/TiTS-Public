@@ -67,7 +67,7 @@ public function crystalGooEncounterType1():void
 		if ((pc.aim() + pc.intelligence() + rand(60)) / 4 > (tEnemy.aim() + tEnemy.intelligence()))
 		{
 			output("\n\nA twitching fungus alerts you to its location.");
-			if (pc.rangedWeapon is EmptySlot)
+			if (!pc.hasRangedWeapon())
 			{
 				output(" You flick");
 				tEnemy.shieldsRaw -= 3;
@@ -102,7 +102,7 @@ public function crystalGooEncounterType1():void
 			if ((pc.reflexes() + rand(30) + 1) / 2 > tEnemy.reflexes())
 			{
 				output(" Your blow lands dead center, sending the ganrael’s charge off-course. It recovers in a rolling slither of loops while spitting what you imagine are curses.");
-				if (!(pc.meleeWeapon is EmptySlot)) tEnemy.shieldsRaw -= 17;
+				if (pc.hasMeleeWeapon()) tEnemy.shieldsRaw -= 17;
 				else tEnemy.shieldsRaw -= 6;
 			}
 			else
@@ -171,7 +171,7 @@ public function crystalGooEncounterType2():void
 		output("”</i> it sighs, in a feminine voice.");
 		
 		output("\n\nYour codex beeps out a warning too late: <i>“Ganrael detected. An amorphous, intelligent lifeform capable of hardening its outer skin into exoskeletal arms and armor. Available reports indicate that ganrael will attempt to harvest genetic material from individuals they encounter.”</i> On cue, the statue closes in!");
-		
+		CodexManager.unlockEntry("Ganrael");
 		output("\n\n<b>It’s a fight!</b>");
 		//go to fight
 	}
