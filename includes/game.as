@@ -3056,7 +3056,7 @@ public function variableRoomUpdateCheck():void
 		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.NPC);
 	}
 	//Yakuza things
-	if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined && flags["SHUKUCHI_UVETO7_ENCOUNTER"] == undefined) rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.NPC);
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined && flags["SHUKUCHI_MHENGA_ENCOUNTER"] == undefined) rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.NPC);
 	else rooms["NORTHWEST ESBETH"].removeFlag(GLOBAL.NPC);
 	//Azra stuff
 	if(azraRecruited() && !azraIsCrew()) rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.NPC);
