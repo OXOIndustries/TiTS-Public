@@ -1853,7 +1853,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	var buttRating:Number = target.buttRating();
 	if(target.isTaur()) {
 		//FATBUTT
-		if(target.tone < 65 || target.hasSoftButt()) {
+		if(target.buttTone() < 65) {
 			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " " + target.buttDescript());
 			if(buttRating < 4) outputRouter(" is lean, from what you can see of it.");
 			else if(buttRating < 6) outputRouter(" looks fairly average.");
@@ -1878,7 +1878,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	//Non-horse PCs
 	else {
 		//TUBBY ASS
-		if(target.tone < 60 || target.hasSoftButt()) {
+		if(target.buttTone() < 60) {
 			outputRouter(" " + (target == pc ? "your":"[target.hisHer]") + " " + target.buttDescript());
 			if(buttRating < 4) outputRouter(" looks great under " + (target == pc ? "your":"[target.hisHer]") + " gear.");
 			else if(buttRating < 6) outputRouter(" has the barest amount of sexy jiggle.");

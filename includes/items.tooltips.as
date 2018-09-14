@@ -47,6 +47,9 @@ public function altTooltip(itemName:String = "none"):String
 		case "Futazona":
 			tooltip += "A 20 oz solid steel thermos labeled: “Futazona.” The thermos is decorated with a stylized mural depicting several muscular hermaphrodites caught up in an orgy. The cap has a dial on it labeled: “Classic,” “Lite,” and “Plus.” Small text reveals that this is Hazelnut and Honey flavored.";
 			break;
+		case "AssSlapPatch":
+			tooltip += "A recent addition to the Xenogen line, The Ass Slap Patch actually started as a running joke between two Xenogen executives. One day a" + (silly ? " brown nosing" : "n enterprising") + " member of the R&D team misheard them and decided to develop such a product. Similiar to their boobswell line of products, as long as the patch is worn it will slowly massage the glutes while feeding nanomachines and synthetic tissue into the buttocks, causing them to increase in size over time. The nanomachines go so far as to even reshape the ass once plenty of the synthetic material is available for reconstruction. A single patch lasts three full days. May also cause hole tightening, increased elasticity and even self lubing of the anal cavity as a side effect to the chemical composition of the synthetic material.";
+			break;
 		case "KerokorasVenom":
 			tooltip += "A vial of ";
 			if(silly) tooltip += "k";

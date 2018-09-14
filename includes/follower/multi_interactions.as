@@ -29,7 +29,7 @@ public function pippaYammiThreesomeIntro():void
 {
 	clearOutput();
 	clearMenu();
-	showBust("PIPPA", "YAMMI");
+	showBust(pippaBustDisplay(), yammiBustDisplay());
 	showName("PIPPA &\nYAMMI");
 	author("Ascent");
 	
@@ -90,7 +90,7 @@ public function pippaYammiThreesome():void
 {
 	clearOutput();
 	clearMenu();
-	showBust("PIPPA_NUDE", "YAMMI_NUDE");
+	showBust(pippaBustDisplay(true), yammiBustDisplay(true));
 	showName("PIPPA &\nYAMMI");
 	author("Ascent");
 	

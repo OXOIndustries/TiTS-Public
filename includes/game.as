@@ -481,9 +481,9 @@ public function generateLocation(location:String):void
 	generateLocationName(location);
 }
 
-public function backToPrimaryOutput():void
+public function backToPrimaryOutput(clearB:Boolean = false):void
 {
-	clearBust();
+	if(clearB) clearBust();
 	userInterface.backToPrimaryOutput();
 }
 public function clearBust(forceNone:Boolean = false):void
@@ -521,7 +521,8 @@ public function showCodex():void
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
 	if(flags["EMMY_QUEST"] >= 6)
 	{
-		if(flags["KQ2_MYRELLION_STATE"] == 1) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad’s resources to track down her whereabouts - assuming she made it out in one piece.");
+		if(!canSaveAtCurrentLocation) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","You cannot use this at this time.");
+		else if(flags["KQ2_MYRELLION_STATE"] == 1) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad’s resources to track down her whereabouts - assuming she made it out in one piece.");
 		else addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
 	}
 	addGhostButton(4, "Back", backToPrimaryOutput);
@@ -3055,7 +3056,7 @@ public function variableRoomUpdateCheck():void
 		else rooms["ESBETH'S NORTH PATH"].removeFlag(GLOBAL.NPC);
 	}
 	//Yakuza things
-	if (flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined && flags["SHUKUCHI_UVETO7_ENCOUNTER"] == undefined) rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.NPC);
+	if (flags["SHUKUCHI_TAVROS_ENCOUNTER"] != undefined && flags["SHUKUCHI_MHENGA_ENCOUNTER"] == undefined) rooms["NORTHWEST ESBETH"].addFlag(GLOBAL.NPC);
 	else rooms["NORTHWEST ESBETH"].removeFlag(GLOBAL.NPC);
 	//Azra stuff
 	if(azraRecruited() && !azraIsCrew()) rooms["NORTHEAST ESBETH"].addFlag(GLOBAL.NPC);
@@ -4548,6 +4549,7 @@ public function badEnd(displayGG:String = "GAME OVER"):void
 	if (displayGG != "") output("\n\n<b>" + displayGG + "</b>");
 	output("\n\n(Access the main menu to start a new character or the data menu to load a saved game. The buttons are located in the lower left of the game screen.)");
 	clearMenu();
+	addButton(14, "Codex", showCodex);
 }
 
 // Checkin' da E-mails

@@ -2399,7 +2399,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						if(pc.hasVagina()) ExtendLogEvent("makes you positively drippy");
 						else ExtendLogEvent("has you whimpering");
 						ExtendLogEvent(". Best of all, you’re slowly coming to realize that you’ve grown again. You finally have H-cups!");
-						if(pc.bRows() > 1) ExtendLogEvent("\n\nIf only your other boobs got to grow too. Maybe you could put some boobswell pads on them?");
+						if(pc.bRows() > 1) ExtendLogEvent("\n\nIf only your other boobs got to grow too. Maybe you could put some Boobswell pads on them?");
 						// Lust+7
 						pc.lust(7);
 						pc.breastRows[0].breastRatingRaw++;
@@ -2505,7 +2505,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 						ExtendLogEvent("\n\nStill tugging your nipples, you writhe on the ground");
 						if(pc.isLactating()) ExtendLogEvent(", leaking fluids everywhere");
 						ExtendLogEvent(" as you climax again and again, cumming to the feeling of your breasts expanding to JJ-cups. You never want it to stop. If your life became nothing more than breast-obsessed orgasmed chained on the heels of the last, you could die happy. You’re sure of it.");
-						ExtendLogEvent("\n\nComing down from that high takes more than a few minutes and brings with regret in no small measure. There’s a sense of finality in your expanded breasts. The Treatment has done all that it can to them; you aren’t going to get any bigger. You guess that you’ll be fine with these. They’re bigger than most unaugmented New Texans, and you could always go get some boobswell pads from the store if you really wanted to stand out.");
+						ExtendLogEvent("\n\nComing down from that high takes more than a few minutes and brings with regret in no small measure. There’s a sense of finality in your expanded breasts. The Treatment has done all that it can to them; you aren’t going to get any bigger. You guess that you’ll be fine with these. They’re bigger than most unaugmented New Texans, and you could always go get some Boobswell pads from the store if you really wanted to stand out.");
 						ExtendLogEvent("\n\nIt would be... nice to have bigger breasts than anyone else. Your teats glow with approval.");
 						// 3 cums! Ah ah ah! /thecount.
 						pc.orgasm();

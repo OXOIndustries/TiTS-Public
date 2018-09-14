@@ -13343,6 +13343,7 @@
 			var hips: Number = hipRating();
 			var desc: String = "";
 			var adjectives: Array = [];
+			
 			if (hips <= 1) {
 				if (thickness > 70) {
 					adjectives.push("tiny ");
@@ -13449,6 +13450,13 @@
 					adjectives.push("gargantuanly splayed ");
 				}
 			}
+			if(hasPerk("Buns of Steel")) {
+				if(mf("m","f") == "m") adjectives.push("masculine ");
+				if (tone >= 70) adjectives.push("muscular ");
+				else if (tone >= 30) adjectives.push("lean muscled ");
+				else adjectives.push("mannishly slender ");
+				if (tone >= 30) adjectives.push("broad ");
+			}
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
 			//Taurs
 			if (isTaur() && rand(3) == 0) {
@@ -13489,21 +13497,26 @@
 		public function hipsDescript(): String {
 			return hipDescript(true);
 		}
-		public function hasSoftButt():Boolean
+		public function hasSoftButt(perkOnly:Boolean = false):Boolean
 		{
-			return (hasPerk("Buttslut") || hasPerk("Bubble Butt") || tone < 30);
+			return ((hasPerk("Buttslut") && !hasPerk("Buns of Steel")) || hasPerk("Bubble Butt") || (!perkOnly && tone < 30));
+		}
+		public function hasFirmButt(perkOnly:Boolean = false):Boolean
+		{
+			return (hasPerk("Buns of Steel") || (!perkOnly && tone >= 65));
 		}
 		public function buttTone():Number
 		{
-			if(hasSoftButt()) return (tone > 20 ? 20 : (tone/2));
+			if(hasSoftButt(true)) return (tone > 20 ? 20 : tone);
+			if(hasFirmButt(true)) return (tone < 80 ? 80 : tone);
 			return tone;
 		}
 		public function buttDescript(asPlural:Boolean = false, onlyCheek:Boolean = false):String 
 		{
 			var butt: Number = buttRating();
+			var firm: Number = buttTone();
 			var desc: String = "";
 			var rando: Number = 0;
-			var softbutt: Boolean = hasSoftButt();
 			
 			if(hasPerk("Barcoded") && rand(7) == 0)
 			{
@@ -13513,16 +13526,15 @@
 			else if(rand(2) == 0)
 			{
 				var adjectives: Array = [];
-				
 				if (butt <= 1) {
-					if (tone >= 60 && !softbutt) adjectives.push("incredibly tight, perky ");
+					if (firm >= 60) adjectives.push("incredibly tight, perky ");
 					else {
 						//Soft PC's buns!
-						if ((tone <= 30 || softbutt) && rand(3) == 0) adjectives.push("tiny yet soft ", "tiny yet soft ", "very small yet soft ", "dainty yet soft ");
+						if (firm <= 30 && rand(3) == 0) adjectives.push("tiny yet soft ", "tiny yet soft ", "very small yet soft ", "dainty yet soft ");
 						else adjectives.push("tiny ", "tiny ", "very small ", "dainty ");
 					}
 				} else if (butt < 4) {
-					if (tone >= 65 && !softbutt) {
+					if (firm >= 65) {
 						adjectives.push("perky, muscular ");
 						adjectives.push("tight, toned ");
 						adjectives.push("firm ");
@@ -13531,7 +13543,7 @@
 						adjectives.push("muscular, toned ");
 					}
 					//Nondescript
-					else if (tone >= 30 && !softbutt) {
+					else if (firm >= 30) {
 						adjectives.push("tight ");
 						adjectives.push("firm ");
 						adjectives.push("compact ");
@@ -13549,7 +13561,7 @@
 					}
 				} else if (butt < 6) {
 					//TOIGHT LIKE A TIGER
-					if (tone >= 65 && !softbutt) {
+					if (firm >= 65) {
 						adjectives.push("nicely muscled ");
 						adjectives.push("nice, toned ");
 						adjectives.push("muscly ");
@@ -13558,7 +13570,7 @@
 						adjectives.push("fair ");
 					}
 					//Nondescript
-					else if (tone >= 30 && !softbutt) {
+					else if (firm >= 30) {
 						adjectives.push("nice ");
 						adjectives.push("fair ");
 					}
@@ -13572,7 +13584,7 @@
 					}
 				} else if (butt < 8) {
 					//TOIGHT LIKE A TIGER
-					if (tone >= 65 && !softbutt) {
+					if (firm >= 65) {
 						if (rand(7) == 0) {
 							if (asPlural) return "muscular, hand-filling ass cheeks";
 							return "muscly handful of ass";
@@ -13585,7 +13597,7 @@
 						adjectives.push("chiseled ");
 					}
 					//Nondescript
-					else if (tone >= 30 && !softbutt) {
+					else if (firm >= 30) {
 						if (rand(4) == 0) {
 							if (asPlural) return "hand-filling ass cheeks";
 							return "handful of ass";
@@ -13610,7 +13622,7 @@
 					}
 				} else if (butt < 10) {
 					//TOIGHT LIKE A TIGER
-					if (tone >= 65 && !softbutt) {
+					if (firm >= 65) {
 						adjectives.push("large, muscular ");
 						adjectives.push("substantial, toned ");
 						adjectives.push("big-but-tight ");
@@ -13622,7 +13634,7 @@
 						adjectives.push("callipygian ");
 					}
 					//Nondescript
-					else if (tone >= 30 && !softbutt) {
+					else if (firm >= 30) {
 						adjectives.push("squeezable ");
 						adjectives.push("large ");
 						adjectives.push("substantial ");
@@ -13643,7 +13655,7 @@
 					}
 				} else if (butt < 13) {
 					//TOIGHT LIKE A TIGER
-					if (tone >= 65 && !softbutt) {
+					if (firm >= 65) {
 						adjectives.push("thick, muscular ");
 						adjectives.push("big, burly ");
 						adjectives.push("heavy, powerful ");
@@ -13653,7 +13665,7 @@
 						adjectives.push("thick, strong ");
 					}
 					//Nondescript
-					else if (tone >= 30 && !softbutt) {
+					else if (firm >= 30) {
 						adjectives.push("jiggling ");
 						adjectives.push("spacious ");
 						adjectives.push("heavy ");
@@ -13674,7 +13686,7 @@
 					}
 				} else if (butt < 16) {
 					//TOIGHT LIKE A TIGER
-					if (tone >= 65 && !softbutt) {
+					if (firm >= 65) {
 						adjectives.push("expansive, muscled ");
 						adjectives.push("voluminous, rippling ");
 						adjectives.push("generous, powerful ");
@@ -13685,7 +13697,7 @@
 						adjectives.push("powerful, expansive ");
 					}
 					//Nondescript
-					else if (tone >= 30 && !softbutt) {
+					else if (firm >= 30) {
 						adjectives.push("expansive ");
 						adjectives.push("generous ");
 						adjectives.push("voluminous ");
@@ -13706,7 +13718,7 @@
 						adjectives.push("soft, padded ");
 					}
 				} else if (butt < 20) {
-					if (tone >= 65 && !softbutt) {
+					if (firm >= 65) {
 						adjectives.push("huge, toned ");
 						adjectives.push("vast, muscular ");
 						adjectives.push("vast, well-built ");
@@ -13715,7 +13727,7 @@
 						adjectives.push("muscle-bound ");
 					}
 					//Nondescript
-					else if (tone >= 30 && !softbutt) {
+					else if (firm >= 30) {
 						if (rand(5) <= 1) {
 							if (asPlural) return RandomInCollection(["expansive, jiggling ass cheeks", "copious, fleshy ass cheeks"]);
 							return RandomInCollection(["jiggling expanse of ass", "copious ass-flesh"]);
@@ -13739,7 +13751,7 @@
 						adjectives.push("swollen, pillow-like ");
 					}
 				} else {
-					if (tone >= 65 && !softbutt) {
+					if (firm >= 65) {
 						if (rand(7) == 0) {
 							if (asPlural) return "colossal, muscly ass cheeks";
 							return "colossal, muscly ass";
@@ -13752,7 +13764,7 @@
 						adjectives.push("colossal, well-defined ");
 					}
 					//Nondescript
-					else if (tone >= 30 && !softbutt) {
+					else if (firm >= 30) {
 						adjectives.push("ginormous ");
 						adjectives.push("colossal ");
 						adjectives.push("tremendous ");
@@ -13775,6 +13787,13 @@
 						adjectives.push("colossal ");
 						adjectives.push("tremendous ");
 					}
+				}
+				if(hasPerk("Buns of Steel")) {
+					adjectives.push("chiseled ");
+					adjectives.push("statuesque ");
+					adjectives.push("shapely ");
+					adjectives.push("sculpted ");
+					if(mf("m","f") == "m") adjectives.push("manly ");
 				}
 				if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
 			}
@@ -16213,7 +16232,7 @@
 							break;
 						case GLOBAL.TYPE_KUITAN:
 							//adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");
-							desc += RandomInCollection(["bulgy ‘nuki-cock", "knot-lined kui-cock", "bestial cock", "exotic kui-cock", "exotic cock", "knotted ‘nuki-cock", "knot-lined dick","knot-covered dick","bulgy ‘nuki-dick","kui-tan cock","kui-tan dick","extra-knotty dick","bulgy dick","knot-lined prick","bulgy prick","knot-lined tool","bulgy shaft","knotted member","kui-tan member","bulgy shaft","alien shaft"]);
+							desc += RandomInCollection(["bulgy ‘nuki-cock", "knot-lined kui-cock", "bestial cock", "exotic kui-cock", "exotic cock", "knotted ‘nuki-cock", "knot-lined dick","knotted dick","bulgy ‘nuki-dick","kui-tan cock","kui-tan dick","extra-knotty dick","bulgy dick","knot-lined prick","bulgy prick","knot-lined tool","bulgy shaft","knotted member","kui-tan member","bulgy shaft","alien shaft"]);
 
 							break;
 						case GLOBAL.TYPE_SIMII:
@@ -20489,7 +20508,6 @@
 		{
 			minutesSinceCum += deltaT;
 			
-			updateBoobswellPads(deltaT, doOut);
 			updateStatusEffects(deltaT, doOut);
 			updateAlcoholState(deltaT, doOut);
 			sstdPurgeCheck(deltaT, doOut);
@@ -20686,34 +20704,6 @@
 			if ((fluidSimulate || this is PlayerCharacter) && canLactate() && !hasStatusEffect("Milk Paused") && flags["NURSERY_MATERNITY_WAIT_ACTIVE"] == undefined)
 			{
 				milkProduced(deltaT, doOut);
-			}
-		}
-		
-		private function updateBoobswellPads(deltaT:uint, doOut:Boolean):void
-		{
-			if (!hasStatusEffect("Boobswell Pads")) return;
-			
-			// Failsafe!
-			if (statusEffectv1("Boobswell Pads") > (breastRows.length - 1))
-			{
-				if(this is PlayerCharacter) AddLogEvent("The Boobswell pads you had been wearing on your " + num2Ordinal(statusEffectv1("Boobswell Pads") + 1) + " row of breasts disintegrate as the row is non-existent. <b>You’re no longer under the effects of the Boobswell Pads!</b>");
-				removeStatusEffect("Boobswell Pads");
-				return;
-			}
-			
-			var targetRow:BreastRowClass = breastRows[statusEffectv1("Boobswell Pads")] as BreastRowClass;
-			var originalRating:Number = Math.floor(targetRow.breastRating());
-			
-			lust(deltaT / 10);
-			
-			// Properly account for the fact that the pads could time out during this update tick
-			targetRow.breastRatingRaw += (Math.min(getStatusMinutes("Boobswell Pads"), deltaT) * 0.003); 
-			
-			var newRating:Number = Math.floor(targetRow.breastRating());
-			
-			if (doOut && (this is PlayerCharacter) && (newRating > originalRating && (newRating % 2 == 0 || newRating < 6)))
-			{
-				AddLogEvent("Thanks to the BoobSwell pads you’re wearing, your chest is slowly but steadily filling out! <b>You figure that " + (bRows() == 1 ? "you " : "your "+ num2Ordinal(statusEffectv1("Boobswell Pads") + 1) + " row of breasts ") + " could now fit into " + indefiniteArticle(breastCup(0, targetRow.breastRating())) + " bra!</b>", "passive", deltaT);
 			}
 		}
 		
@@ -21139,9 +21129,17 @@
 						}
 						break;
 					case "Boobswell Pads":
+						BoobswellPads.updateEffect(deltaT, maxEffectLength, doOut, this, thisStatus);
 						if (this is PlayerCharacter && requiresRemoval)
 						{
 							AddLogEvent("Unfortunately, as you admire your now-larger bosom, you realize that the gentle, wet rumble of the pads has come to a stop. <b>It looks like you’ve exhausted the BoobSwell Pads" + (bRows() > 1 ? " on your " + num2Ordinal(thisStatus.value1+1) + " row of breasts" : "") + ParseText("!</b> You peel them off your [pc.skinFurScales] and toss them away."), "passive", maxEffectLength);
+						}
+						break;
+					case "Ass Slap Patch":
+						AssSlapPatch.updateEffect(deltaT, maxEffectLength, doOut, this, thisStatus);
+						if (this is PlayerCharacter && requiresRemoval)
+						{
+							AddLogEvent(ParseText("You begin to feel odd for a second, as if something is missing. Then your realize that the patch on your [pc.ass] has grown quiet and cold, you take a second to reach down and peel the pad off your [pc.skinFurScalesColor] [pc.skinFurScalesNoun] and dispose of it."), "passive", maxEffectLength);
 						}
 						break;
 					case "Cum High":

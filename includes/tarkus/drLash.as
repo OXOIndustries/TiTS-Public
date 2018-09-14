@@ -432,7 +432,7 @@ public function lashTreatment2(treatment:String):void
 		}
 		if(pc.hasPerk("Mega Milk"))
 		{
-			output("\n\n</b>(<b>Perk Lost: Mega Milk</b> - You will always be able to produce milk as if you were at least 40% full, even if your breasts are empty.)<b>");
+			output("\n\n</b>(<b>Perk Lost: Mega Milk</b>)<b>");
 			pc.removePerk("Mega Milk");
 		}
 	}

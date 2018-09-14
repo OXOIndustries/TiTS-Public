@@ -66,7 +66,7 @@ public function showKane(nude:Boolean = false):void
 }
 public function showQuinn(nude:Boolean = false):void
 {
-	showBust(quinnBustDisplay());
+	showBust(quinnBustDisplay(nude));
 	showName("\nQUINN");
 }
 public function quinnBustDisplay(nude:Boolean = false):String

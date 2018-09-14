@@ -656,6 +656,7 @@ public function statisticsScreen(showID:String = "All"):void
 		if(pc.buttRatingMod != 0 && pc.siliconeRating("butt") != 0) output2("\n<b>* Butt, Silicone Size Rating:</b> " + formatFloat(pc.siliconeRating("butt"), 3));
 		output2("\n<b>* Butt, Weight:</b> " + prettifyWeight(pc.bodyPartWeight("butt")));
 		if(pc.weightQ("butt") > 0) output2(" (" + pc.weightQ("butt") + " %)");
+		if(pc.buttTone() != pc.tone) output2("\n<b>* Butt, Tone:</b> " + pc.buttTone() + "/" + pc.toneMax());
 		output2("\n<b>* Anus:</b> 1,");
 		if(pc.ass.vagooFlags.length > 0)
 		{
@@ -2269,20 +2270,10 @@ public function displayQuestLog(showID:String = "All"):void
 					case 2: output2(" Accepted corporal punishment"); break;
 					case 3: output2(" Took Akane’s offer"); break;
 				}
-				
 				output2("\n<b>* Tavros:</b> " + (flags["SHUKUCHI_TAVROS_ENCOUNTER"] < 3 ? "Chased" : "Didn’t chase") + " culprits");
 				if(flags["SHUKUCHI_TAVROS_ENCOUNTER"] >= 2) output2(", Talked to the victim");
-				
-				if(flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined)
-				{
-					output2("\n<b>* Mhenga:</b> " + (flags["SHUKUCHI_MHENGA_ENCOUNTER"] ? "Defeated agent on Mhenga" : "Lost to agent on Mhenga"));
-				}
-				
-				if(flags["SHUKUCHI_UVETO7_ENCOUNTER"] != undefined)
-				{
-					output2("\n<b>* Uveto:</b> " + (flags["SHUKUCHI_UVETO7_ENCOUNTER"] ? "Defeated agents on Uveto" : "Lost to agents on Uveto"));
-				}
-				
+				if(flags["SHUKUCHI_MHENGA_ENCOUNTER"] != undefined) output2("\n<b>* Mhenga:</b> " + (flags["SHUKUCHI_MHENGA_ENCOUNTER"] ? "Defeated agent on Mhenga" : "Lost to agent on Mhenga"));
+				if(flags["SHUKUCHI_UVETO7_ENCOUNTER"] != undefined) output2("\n<b>* Uveto:</b> " + (flags["SHUKUCHI_UVETO7_ENCOUNTER"] ? "Defeated agents on Uveto" : "Lost to agents on Uveto"));
 				sideCount++;
 			}
 			//AkaneQuest
@@ -2297,7 +2288,6 @@ public function displayQuestLog(showID:String = "All"):void
 					if(flags["AKANEQUEST_STAGE"] == 1) output2(", Rewarded with gun");
 					else output2(", Rewarded with sword");
 				}
-				
 				sideCount++;
 			}
 		}
