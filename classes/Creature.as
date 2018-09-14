@@ -7902,7 +7902,7 @@
 		}
 
 		//Create a perk
-		public function createPerk(keyName: String, value1: Number, value2: Number, value3: Number, value4: Number, desc: String = ""): void 
+		public function createPerk(keyName: String, value1: Number = 0, value2: Number = 0, value3: Number = 0, value4: Number = 0, desc: String = ""): void 
 		{
 			if (hasPerk(keyName)) {
 				trace("Perk '" + keyName + "' already present on " + short);

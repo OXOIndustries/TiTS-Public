@@ -116,7 +116,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	processTime(0);
 	
 	//Overall
-	if(target.originalRace == target.race() || target != pc) outputRouter((target == pc ? "You are":"[target.short] is") + " " + indefiniteArticle(target.originalRace) + ".");
+	if(target.originalRace == target.race() || target != pc) outputRouter((target == pc ? "You are":"[target.Short] is") + " " + indefiniteArticle(target.originalRace) + ".");
 	else
 	{
 		outputRouter((target == pc ? "You":"[target.HeShe]") + " started your journey as " + indefiniteArticle(target.originalRace) + ", but " + (target == pc ? "you’ve":"[target.heShe] has") + " become "+indefiniteArticle(target.race())+" over the course of " + (target == pc ? "your":"[target.hisHer]") + " adventures.");
@@ -193,12 +193,12 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_NALEEN_FACE:
 		case GLOBAL.TYPE_SIREN:
 		case GLOBAL.TYPE_SIMII:
-			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is human in shape and structure, with " + target.skin(true,true,true) + ".");
+			if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || target.faceType == GLOBAL.TYPE_NALEEN_FACE || InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is human in shape and structure, with " + target.skin(true,true,true) + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter("Under " + (target == pc ? "your":"[target.name]’s") + " " + faceFurScales + " " + (target == pc ? "you have":"[target.heShe] has") + " a human-shaped head with " + target.skin(true,true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is fairly human in shape, but is covered in " + faceFurScales + " over " + target.skin(true,true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is human-shaped with " + target.skin(true,true,true) + " and lightly framed with " + faceFurScales + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is mostly human in shape, decorated with " + faceFurScales + " over " + target.skin(true,true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is mostly human in shape, with hints of " + faceFurScales + " over " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is fairly human in shape, but is covered in " + faceFurScales + " over " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is human-shaped with " + target.skin(true,true,true) + " and lightly framed with " + faceFurScales + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is mostly human in shape, decorated with " + faceFurScales + " over " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is mostly human in shape, with hints of " + faceFurScales + " over " + target.skin(true,true,true) + ".");
 			// Special addons
 			if(target.faceType == GLOBAL.TYPE_SIREN) outputRouter(" A set of razor-sharp, retractable shark-teeth fill " + (target == pc ? "your":"[target.hisHer]") + " mouth and gives " + (target == pc ? "your":"[target.hisHer]") + " visage a slightly angular appearance.");
 			else if(target.faceType == GLOBAL.TYPE_NALEEN_FACE) outputRouter(" A set of retractable, needle-like fangs sit in place of " + (target == pc ? "your":"[target.hisHer]") + " canines, just like a naleen.");
@@ -207,17 +207,17 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_LAPINE:
 			if(!target.hasMuzzle())
 			{
-				if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is human in shape and structure, with " + target.skin(true,true,true) + ".");
+				if(target.hasFaceFlag(GLOBAL.FLAG_SMOOTH) || InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is human in shape and structure, with " + target.skin(true,true,true) + ".");
 				else if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter("Under " + (target == pc ? "your":"[target.name]’s") + " " + faceFurScales + " " + (target == pc ? "you have":"[target.heShe] has") + " a human-shaped head with " + target.skin(true,true,true) + ".");
-				else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is fairly human in shape, but is covered in " + faceFurScales + " over " + target.skin(true,true,true) + ".");
-				else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is human-shaped with " + target.skin(true,true,true) + " and lightly framed with " + faceFurScales + ".");
-				else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is mostly human in shape, decorated with " + faceFurScales + " over " + target.skin(true,true,true) + ".");
-				else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is mostly human in shape, with hints of " + faceFurScales + " over " + target.skin(true,true,true) + ".");
+				else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is fairly human in shape, but is covered in " + faceFurScales + " over " + target.skin(true,true,true) + ".");
+				else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is human-shaped with " + target.skin(true,true,true) + " and lightly framed with " + faceFurScales + ".");
+				else if(target.skinType == GLOBAL.SKIN_TYPE_CHITIN || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is mostly human in shape, decorated with " + faceFurScales + " over " + target.skin(true,true,true) + ".");
+				else if(target.skinType == GLOBAL.SKIN_TYPE_BARK) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is mostly human in shape, with hints of " + faceFurScales + " over " + target.skin(true,true,true) + ".");
 				outputRouter(" The constant twitches of " + (target == pc ? "your":"[target.hisHer]") + " nose and the length of " + (target == pc ? "your":"[target.hisHer]") + " incisors gives " + (target == pc ? "your":"[target.hisHer]") + " visage a hint of bunny-like cuteness.");
 			}
 			else
 			{
-				outputRouter((target == pc ? "You have":"[target.name] has") + " a short-muzzled face");
+				outputRouter((target == pc ? "You have":"[target.Name] has") + " a short-muzzled face");
 				if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter(" covered in " + faceFurScales + ".");
 				else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FEATHERS, GLOBAL.SKIN_TYPE_CHITIN, GLOBAL.SKIN_TYPE_BARK) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED) || target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) outputRouter(" framed with " + faceFurScales + ".");
 				else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO, GLOBAL.SKIN_TYPE_LATEX)) outputRouter(" with " + target.skin(true,true,true) + ".");
@@ -228,7 +228,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		case GLOBAL.TYPE_HUMANMASKED:
 			//appearance for skinheads
 			if(target.skinType != GLOBAL.SKIN_TYPE_FUR && target.skinType != GLOBAL.SKIN_TYPE_SCALES && !target.hasFaceFlag(GLOBAL.FLAG_FURRED) && !target.hasFaceFlag(GLOBAL.FLAG_SCALED)) {
-				outputRouter((target == pc ? "Your":"[target.name]’s") + " face is human in shape and structure, with " + target.skin(true,true,true));
+				outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is human in shape and structure, with " + target.skin(true,true,true));
 				if(InCollection(target.skinTone, "black", "ebony", "sable") && InCollection(target.skinType, GLOBAL.SKIN_TYPE_SKIN, GLOBAL.SKIN_TYPE_GOO)) outputRouter(", though with your dusky hue, the black kui-tan mask " + (target == pc ? "you sport":"[target.heShe] sports") + " isn’t properly visible.");
 				else outputRouter(", though it is decorated with a sly-looking kui-tan mask over " + (target == pc ? "your":"[target.hisHer]") + " eyes.");
 			}
@@ -241,42 +241,42 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				if(InCollection(furScaleColor, "black", "midnight")) outputRouter("Under " + (target == pc ? "your":"[target.name]’s") + " " + faceFurScales + " hides a black kui-tan mask, barely visible due to " + (target == pc ? "your":"[target.hisHer]") + " inky hue, and ");
 				else 
 				{
-					if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " " + faceFurScales + " are decorated with a sly-looking kui-tan mask, and ");
-					else outputRouter((target == pc ? "Your":"[target.name]’s") + " " + faceFurScales + " is decorated with a sly-looking kui-tan mask, and ");
+					if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " " + faceFurScales + " are decorated with a sly-looking kui-tan mask, and ");
+					else outputRouter((target == pc ? "Your":"[target.Name]’s") + " " + faceFurScales + " is decorated with a sly-looking kui-tan mask, and ");
 				}
 				outputRouter("beneath sits " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + ".");
 			}
 			break;
 		case GLOBAL.TYPE_KUITAN:
-			outputRouter((target == pc ? "You have":"[target.name] has") + " a triangular kui-tan face, replete with sensitive whiskers and a little black nose; a mask shades the space around " + (target == pc ? "your":"[target.hisHer]") + " eyes, set apart from " + (target == pc ? "your":"[target.hisHer]") + " " + faceFurScales + " by a band of white.");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " a triangular kui-tan face, replete with sensitive whiskers and a little black nose; a mask shades the space around " + (target == pc ? "your":"[target.hisHer]") + " eyes, set apart from " + (target == pc ? "your":"[target.hisHer]") + " " + faceFurScales + " by a band of white.");
 			//(if skin)
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN && !target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter(" It looks a bit strange with only the skin and no fur.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter(" The presence of said scales gives " + (target == pc ? "your":"[target.hisHer]") + " visage an eerie look, more reptile than mammal.");
 			break;
 		case GLOBAL.TYPE_SHEEP:
-			outputRouter((target == pc ? "You have":"[target.name] has") + " a short, " + target.mf("blunt","cute") + " muzzle much like a sheep’s.");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " a short, " + target.mf("blunt","cute") + " muzzle much like a sheep’s.");
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter(" A coat of " + faceFurScales + " decorates it.");
 			break;
 		case GLOBAL.TYPE_VULPINE:
-			outputRouter((target == pc ? "You have":"[target.name] has") + " a tapered, shrewd-looking vulpine face with a speckling of downward-curved whiskers just behind the nose.");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " a tapered, shrewd-looking vulpine face with a speckling of downward-curved whiskers just behind the nose.");
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN && !target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter(" Oddly enough, there’s no fur on " + (target == pc ? "your":"[target.hisHer]") + " animalistic muzzle, just " + faceFurScales + "."); 
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter(" A coat of " + faceFurScales + " decorates " + (target == pc ? "your":"[target.hisHer]") + " muzzle.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter(" Strangely, " + faceFurScales + " adorn every inch of " + (target == pc ? "your":"[target.hisHer]") + " animalistic visage.");
 			break;
 		case GLOBAL.TYPE_MOUSEMAN:
-			outputRouter((target == pc ? "Your":"[target.name]’s") + " face is generally human in shape and structure, with " + target.skin(true,true,true));
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is generally human in shape and structure, with " + target.skin(true,true,true));
 			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter(" under " + (target == pc ? "your":"[target.hisHer]") + " " + faceFurScales);
 			outputRouter(" and mousey buckteeth.");
 			break;
 		case GLOBAL.TYPE_MOUSE:
-			outputRouter((target == pc ? "You have":"[target.name] has") + " a snubby, tapered mouse’s face, with whiskers, a little pink nose, and ");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " a snubby, tapered mouse’s face, with whiskers, a little pink nose, and ");
 			if(!InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) && !target.hasFaceFlag(GLOBAL.FLAG_FURRED) && !target.hasFaceFlag(GLOBAL.FLAG_SCALED) && !target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter(target.skin(true,true,true));
 			else outputRouter(target.skin(true,true,true) + " under " + (target == pc ? "your":"[target.hisHer]") + " " + faceFurScales);
 			outputRouter(". Two large incisors complete it.");
 			break;
 		//Naga (same as snake)
 		case GLOBAL.TYPE_SNAKE:
-			outputRouter((target == pc ? "You have":"[target.name] has") + " a face that resembles a combination between a human’s and a snake’s,");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " a face that resembles a combination between a human’s and a snake’s,");
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter(" covered in a layer of " + faceFurScales + ".");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter(" covered in " + faceFurScales + ", as one would expect of such a reptilian visage.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter(" framed with a border of " + faceFurScales + ", looking very much like a mythical feathered serpent.");
@@ -286,48 +286,48 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		//horse-face
 		case GLOBAL.TYPE_EQUINE:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is almost entirely equine in appearance, even having " + faceFurScales + ". Underneath the fur, " + (target == pc ? "you believe you have":"[target.heShe] has") + " " + target.skin(true,false,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.name] has") + " the face and head structure of a horse, overlaid with " + faceFurScales + ".");
-			else outputRouter((target == pc ? "Your":"[target.name]’s") + " face is equine in shape and structure. The odd visage is hairless and covered with " + faceFurScales + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is almost entirely equine in appearance, even having " + faceFurScales + ". Underneath the fur, " + (target == pc ? "you believe you have":"[target.heShe] has") + " " + target.skin(true,false,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " the face and head structure of a horse, overlaid with " + faceFurScales + ".");
+			else outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is equine in shape and structure. The odd visage is hairless and covered with " + faceFurScales + ".");
 			break;
 		//dog-face
 		case GLOBAL.TYPE_CANINE:
 		case GLOBAL.TYPE_KORGONNE:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.name] has") + " a dog’s face, complete with wet nose and panting tongue. " + (target == pc ? "You've got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.name] has") + " the facial structure of a dog, wet nose and all, but overlaid with " + faceFurScales + ".");
-			else outputRouter((target == pc ? "You have":"[target.name] has") + " a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + faceFurScales + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a dog’s face, complete with wet nose and panting tongue. " + (target == pc ? "You've got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " the facial structure of a dog, wet nose and all, but overlaid with " + faceFurScales + ".");
+			else outputRouter((target == pc ? "You have":"[target.Name] has") + " a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + faceFurScales + ".");
 			break;
 		//wolf-face
 		case GLOBAL.TYPE_LUPINE:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.name] has") + " a wolf’s face, wide and majestic, with jaws filled with sharp teeth. " + (target == pc ? "You've got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.name] has") + " the facial structure of a wolf, wide and majestic, but overlaid with " + faceFurScales + ", and having jaws filled with sharp teeth.");
-			else outputRouter((target == pc ? "You have":"[target.name] has") + " a wolf-like face, wide and majestic, with jaws filled with sharp teeth. The odd visage is hairless and covered with " + faceFurScales + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a wolf’s face, wide and majestic, with jaws filled with sharp teeth. " + (target == pc ? "You've got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " the facial structure of a wolf, wide and majestic, but overlaid with " + faceFurScales + ", and having jaws filled with sharp teeth.");
+			else outputRouter((target == pc ? "You have":"[target.Name] has") + " a wolf-like face, wide and majestic, with jaws filled with sharp teeth. The odd visage is hairless and covered with " + faceFurScales + ".");
 			break;
 		//Knock-off dog-face
 		case GLOBAL.TYPE_WORG:
 			//Fur/Feather:
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) 
 			{
-				outputRouter((target == pc ? "You have":"[target.name] has") + " the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from " + (target == pc ? "your":"[target.hisHer]") + " lips. " + StringUtil.capitalize(faceFurScales) + " perfectly conceal" + ((target.hasScales() || target.hasFeathers()) ? "":"s") + " your " + target.skin(true,true,true) + ".");
+				outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from " + (target == pc ? "your":"[target.hisHer]") + " lips. " + StringUtil.capitalize(faceFurScales) + " perfectly conceal" + ((target.hasScales() || target.hasFeathers()) ? "":"s") + " your " + target.skin(true,true,true) + ".");
 			}
 			//Scales:
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED))
 			{
-				outputRouter((target == pc ? "You have":"[target.name] has") + " the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from " + (target == pc ? "your":"[target.hisHer]") + " lips. It is overlaid with " + faceFurScales + ".");
+				outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from " + (target == pc ? "your":"[target.hisHer]") + " lips. It is overlaid with " + faceFurScales + ".");
 			}
 			//Others:
-			else outputRouter((target == pc ? "You have":"[target.name] has") + " the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from " + (target == pc ? "your":"[target.hisHer]") + " lips. The odd visage is hairless and covered with " + target.skinFurScales(true,true,true,true) + ".");
+			else outputRouter((target == pc ? "You have":"[target.Name] has") + " the face of a mythical worg, similar to a wolf but wider, with stronger jaws and sharper canines poking out from " + (target == pc ? "your":"[target.hisHer]") + " lips. The odd visage is hairless and covered with " + target.skinFurScales(true,true,true,true) + ".");
 			break;
 		//cat-face
 		case GLOBAL.TYPE_FELINE:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.name] has") + " a cat-like face, complete with a moist nose and whiskers. " + (target == pc ? "Your":"[target.HisHer]") + " " + faceFurScales + " hides " + target.skin(true,true,true) + " underneath.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " facial structure blends humanoid features with those of a cat. A moist nose and whiskers are included, but overlaid with " + faceFurScales + ".");
-			else outputRouter((target == pc ? "You have":"[target.name] has") + " a cat-like face, complete with a cute, moist nose and whiskers. The " + target.skin(true,true,true) + " that is revealed by " + (target == pc ? "your":"[target.hisHer]") + " lack of fur looks quite unusual on so feline a face.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a cat-like face, complete with a moist nose and whiskers. " + (target == pc ? "Your":"[target.HisHer]") + " " + faceFurScales + " hides " + target.skin(true,true,true) + " underneath.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " facial structure blends humanoid features with those of a cat. A moist nose and whiskers are included, but overlaid with " + faceFurScales + ".");
+			else outputRouter((target == pc ? "You have":"[target.Name] has") + " a cat-like face, complete with a cute, moist nose and whiskers. The " + target.skin(true,true,true) + " that is revealed by " + (target == pc ? "your":"[target.hisHer]") + " lack of fur looks quite unusual on so feline a face.");
 			break;
 		//bird-face
 		case GLOBAL.TYPE_AVIAN:
-			if(target.hasBeak()) outputRouter((target == pc ? "You have":"[target.name] has") + " a bird-like face, complete with " + indefiniteArticle(target.lipColor) + " beak");
-			else outputRouter((target == pc ? "Your":"[target.name]’s") + " facial structure blends humanoid features with those of a bird, but lacking the signature beak");
+			if(target.hasBeak()) outputRouter((target == pc ? "You have":"[target.Name] has") + " a bird-like face, complete with " + indefiniteArticle(target.lipColor) + " beak");
+			else outputRouter((target == pc ? "Your":"[target.Name]’s") + " facial structure blends humanoid features with those of a bird, but lacking the signature beak");
 			if(target.hasMuzzle()) {
 				if(target.hasBeak()) outputRouter(" - rather it looks like a beak, but is more like a muzzle in structure, retaining lips and teeth instead of sharp beak edges. But they are almost impossible to spot without closer inspection");
 				else outputRouter(". Instead " + (target == pc ? "you have":"[target.heShe] has") + " a toothy reptilian muzzle, making your visage rather unsettling");
@@ -344,62 +344,62 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 		//Minotaaaauuuur-face
 		case GLOBAL.TYPE_BOVINE:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.name] has") + " a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. " + (target == pc ? "Your":"[target.HisHer]") + " " + faceFurScales + " thickens noticably on " + (target == pc ? "your":"[target.hisHer]") + " head, looking shaggy and more than a little monstrous once laid over " + (target == pc ? "your":"[target.hisHer]") + " visage.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face resembles an anthropomorphic bovine’s, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from " + (target == pc ? "your":"[target.hisHer]") + " face.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose. " + (target == pc ? "Your":"[target.HisHer]") + " " + faceFurScales + " thickens noticably on " + (target == pc ? "your":"[target.hisHer]") + " head, looking shaggy and more than a little monstrous once laid over " + (target == pc ? "your":"[target.hisHer]") + " visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face resembles an anthropomorphic bovine’s, though strangely, it is covered in shimmering scales, right up to the flat, cow-like nose that protrudes from " + (target == pc ? "your":"[target.hisHer]") + " face.");
 			else {
-				outputRouter((target == pc ? "You have":"[target.name] has") + " a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose.");
+				outputRouter((target == pc ? "You have":"[target.Name] has") + " a face resembling that of an anthropomorphic bovine, with cow-like features, particularly a squared off wet nose.");
 				if(target.skinType != GLOBAL.SKIN_TYPE_GOO && !target.hasFaceFlag(GLOBAL.FLAG_GOOEY)) outputRouter(" Despite your lack of fur elsewhere, " + (target == pc ? "your":"[target.hisHer]") + " visage does have a short layer of " + target.furColor + " fuzz.");
 			}
 			break;
 		//Panda-face
 		case GLOBAL.TYPE_PANDA:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.name] has") + " a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. " + (target == pc ? "Your":"[target.HisHer]") + " " + faceFurScales + " hides " + target.skin(true,true,true) + " underneath.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a face resembling that of an anthropomorphic panda, with a short muzzle and black nose. " + (target == pc ? "Your":"[target.HisHer]") + " " + faceFurScales + " hides " + target.skin(true,true,true) + " underneath.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.HisHer]") + " face resembles an anthropomorphic panda’s, though strangely, it is covered in shimmering scales, right up to " + (target == pc ? "your":"[target.hisHer]") + " black nose.");
 			else {
-				outputRouter((target == pc ? "You have":"[target.name] has") + " a face resembling that of an anthropomorphic panda, with a short muzzle and black nose.");
+				outputRouter((target == pc ? "You have":"[target.Name] has") + " a face resembling that of an anthropomorphic panda, with a short muzzle and black nose.");
 				if(target.skinType != GLOBAL.SKIN_TYPE_GOO && !target.hasFaceFlag(GLOBAL.FLAG_GOOEY)) outputRouter(" Despite " + (target == pc ? "your":"[target.hisHer]") + " lack of fur elsewhere, " + (target == pc ? "your":"[target.hisHer]") + " visage does have a short layer of " + target.furColor + " fuzz.");
 			}
 			break;
 		case GLOBAL.TYPE_REDPANDA:
 			outputRouter(RandomInCollection([
-				(target == pc ? "You have":"[target.name] has") + " a short, cute muzzle much like a " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda’s. A coat of patterned " + target.furColor + " fur decorates " + (target == pc ? "your":"[target.hisHer]") + " visage.",
-				(target == pc ? "Your face":"[target.name]’s face") + " sports a blunt muzzle, much like a " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda’s. A coat of patterned " + target.furColor + " fur decorates " + (target == pc ? "your":"[target.hisHer]") + " visage.",
-				(target == pc ? "Your":"[target.name]’s") + " face has distinct markings and patterns along " + (target == pc ? "your":"[target.hisHer]") + " " + target.furColor + ", short muzzle, much like a " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda’s."
+				(target == pc ? "You have":"[target.Name] has") + " a short, cute muzzle much like a " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda’s. A coat of patterned " + target.furColor + " fur decorates " + (target == pc ? "your":"[target.hisHer]") + " visage.",
+				(target == pc ? "Your face":"[target.Name]’s face") + " sports a blunt muzzle, much like a " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda’s. A coat of patterned " + target.furColor + " fur decorates " + (target == pc ? "your":"[target.hisHer]") + " visage.",
+				(target == pc ? "Your":"[target.Name]’s") + " face has distinct markings and patterns along " + (target == pc ? "your":"[target.hisHer]") + " " + target.furColor + ", short muzzle, much like a " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda’s."
 			]));
 			break;
 		//Lizard-face
 		case GLOBAL.TYPE_LIZAN:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.name] has") + " a face resembling that of a lizard. Between the toothy maw, pointed snout, and the layer of " + faceFurScales + " covering " + (target == pc ? "your":"[target.hisHer]") + " face, " + (target == pc ? "you have":"[target.heShe] has") + " quite the fearsome visage.");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " face is that of a lizard, complete with a toothy maw and pointed snout. " + StringUtil.upperCase(faceFurScales) + " complete the look, making " + (target == pc ? "you look":"[target.himHer] look") + " quite fearsome.");
-			else outputRouter((target == pc ? "You have":"[target.name] has") + " a face resembling that of a lizard, and with " + (target == pc ? "your":"[target.hisHer]") + " toothy maw, you have quite a fearsome visage. The reptilian visage does look a little odd with just " + target.skin(true,true,true) + " and not a single scale.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a face resembling that of a lizard. Between the toothy maw, pointed snout, and the layer of " + faceFurScales + " covering " + (target == pc ? "your":"[target.hisHer]") + " face, " + (target == pc ? "you have":"[target.heShe] has") + " quite the fearsome visage.");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is that of a lizard, complete with a toothy maw and pointed snout. " + StringUtil.upperCase(faceFurScales) + " complete the look, making " + (target == pc ? "you look":"[target.himHer] look") + " quite fearsome.");
+			else outputRouter((target == pc ? "You have":"[target.Name] has") + " a face resembling that of a lizard, and with " + (target == pc ? "your":"[target.hisHer]") + " toothy maw, you have quite a fearsome visage. The reptilian visage does look a little odd with just " + target.skin(true,true,true) + " and not a single scale.");
 			break;
 		case GLOBAL.TYPE_BADGER:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " head pushes out into a muzzle with white fur across the nose and mouth as well as in a wide stripe up the center of " + (target == pc ? "your":"[target.hisHer]") + " brow, giving " + (target == pc ? "you":"[target.himHer]") + " the appearance of a humanoid badger. The rest of it is wrapped in " + faceFurScales + " that covers " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + ".");
-			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.name]’s") + " head pushes out into a muzzle with white scales across " + (target == pc ? "your":"[target.hisHer]") + " nose and mouth as well as in a wide stripe up the center of " + (target == pc ? "your":"[target.hisHer]") + " brow, giving " + (target == pc ? "you":"[target.himHer]") + " the appearance of a humanoid, scaled badger. The rest of it is wrapped in " + faceFurScales + " that covers " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + ".");
-			else outputRouter((target == pc ? "Your":"[target.name]’s") + " head pushes out into a curiously hairless badger-face, covered only with " + target.skin(true,true,true) + ".");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " head pushes out into a muzzle with white fur across the nose and mouth as well as in a wide stripe up the center of " + (target == pc ? "your":"[target.hisHer]") + " brow, giving " + (target == pc ? "you":"[target.himHer]") + " the appearance of a humanoid badger. The rest of it is wrapped in " + faceFurScales + " that covers " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + ".");
+			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "Your":"[target.Name]’s") + " head pushes out into a muzzle with white scales across " + (target == pc ? "your":"[target.hisHer]") + " nose and mouth as well as in a wide stripe up the center of " + (target == pc ? "your":"[target.hisHer]") + " brow, giving " + (target == pc ? "you":"[target.himHer]") + " the appearance of a humanoid, scaled badger. The rest of it is wrapped in " + faceFurScales + " that covers " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + ".");
+			else outputRouter((target == pc ? "Your":"[target.Name]’s") + " head pushes out into a curiously hairless badger-face, covered only with " + target.skin(true,true,true) + ".");
 			break;
 		case GLOBAL.TYPE_DRACONIC:
-			outputRouter((target == pc ? "Your":"[target.name]’s") + " face is a narrow, reptilian muzzle. It looks like a predatory lizard’s at first glance, but with an unusual array of spikes along the under-jaw. It gives " + (target == pc ? "you":"[target.himHer]") + " a regal but fierce visage. Opening " + (target == pc ? "your":"[target.hisHer]") + " mouth reveals several rows of dagger-like sharp teeth. The fearsome visage is decorated by " + faceFurScales + ".");
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is a narrow, reptilian muzzle. It looks like a predatory lizard’s at first glance, but with an unusual array of spikes along the under-jaw. It gives " + (target == pc ? "you":"[target.himHer]") + " a regal but fierce visage. Opening " + (target == pc ? "your":"[target.hisHer]") + " mouth reveals several rows of dagger-like sharp teeth. The fearsome visage is decorated by " + faceFurScales + ".");
 			break;
 		case GLOBAL.TYPE_KANGAROO:
-			outputRouter((target == pc ? "Your":"[target.name]’s") + " face is shaped like that of a kangaroo ");
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is shaped like that of a kangaroo ");
 			if(target.skinType == GLOBAL.SKIN_TYPE_SKIN && !target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter("but bald, not covered in fur");
 			else outputRouter("and covered with " + faceFurScales);
 			outputRouter(". It’s almost rabbit-like, except for the length of " + (target == pc ? "your":"[target.hisHer]") + " muzzle.");
 			break;
 		case GLOBAL.TYPE_GABILANI:
-			outputRouter((target == pc ? "You have":"[target.name] has") + " a narrow-jawed gabilani face");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " a narrow-jawed gabilani face");
 			if(target.skinType != GLOBAL.SKIN_TYPE_SKIN) outputRouter(", covered in " + faceFurScales);
 			else outputRouter(", covered with " + faceFurScales);
 			outputRouter(", appearing almost goblinoid with alien facial features.");
 			break;
 		case GLOBAL.TYPE_FROG:
-			outputRouter((target == pc ? "Your":"[target.name]’s") + " face is anuran in shape, reflecting a frog-like appearance. The smooth visage is further exaggerated with a notable lack of a nose, having broadly spaced nostrils instead.");
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is anuran in shape, reflecting a frog-like appearance. The smooth visage is further exaggerated with a notable lack of a nose, having broadly spaced nostrils instead.");
 			if((target.skinType == GLOBAL.SKIN_TYPE_SKIN || target.skinType == GLOBAL.SKIN_TYPE_GOO) && !target.hasFaceFlag(GLOBAL.FLAG_FURRED) && !target.hasFaceFlag(GLOBAL.FLAG_FEATHERED) && !target.hasFaceFlag(GLOBAL.FLAG_CHITINOUS)) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " face is covered in " + target.skin(true,true,true) + ".");
 			else outputRouter(" Strangely enough, " + (target == pc ? "your":"[target.name]’s") + " face is also covered with " + faceFurScales + ".");
 			break;
 		case GLOBAL.TYPE_SHARK:
-			outputRouter((target == pc ? "Your":"[target.name]’s") + " face is shark-like in shape, with a snout and an upper jaw that pushes past " + (target == pc ? "your":"[target.hisHer]") + " lower one, and at the very tip, there are two nasal holes.");
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is shark-like in shape, with a snout and an upper jaw that pushes past " + (target == pc ? "your":"[target.hisHer]") + " lower one, and at the very tip, there are two nasal holes.");
 			if((target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) && target.hasSkinFlag(GLOBAL.FLAG_LUBRICATED)) outputRouter(" The glistening surface is slick to the touch, as if you just lubed up not too long ago.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter(" The surface is covered in fine scales.");
 			else if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter(" The surface is covered with " + faceFurScales + " , making " + (target == pc ? "you":"[target.himHer]") + " look like a rather odd hybrid.");
@@ -408,15 +408,15 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" A set of razor-sharp, retractable shark-teeth fill " + (target == pc ? "your":"[target.hisHer]") + " mouth and gives " + (target == pc ? "your":"[target.hisHer]") + " visage a slightly menacing appearance.");
 			break;
 		case GLOBAL.TYPE_SWINE:
-			outputRouter((target == pc ? "Your":"[target.name]’s") + " face is mostly human in shape and structure, with " + target.skin(true,true,true));
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is mostly human in shape and structure, with " + target.skin(true,true,true));
 			if(InCollection(target.skinType, GLOBAL.SKIN_TYPE_FUR, GLOBAL.SKIN_TYPE_SCALES, GLOBAL.SKIN_TYPE_FEATHERS) || target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFaceFlag(GLOBAL.FLAG_SCALED) || target.hasFaceFlag(GLOBAL.FLAG_FEATHERED)) outputRouter(" under " + (target == pc ? "your":"[target.hisHer]") + " " + faceFurScales);
 			outputRouter(" but it’s adorned with a flat, pig-like nose.");
 			break;
 		case GLOBAL.TYPE_GOAT:
-			outputRouter((target == pc ? "Your":"[target.name]’s") + " face is elongated forward and much like a goat’s in shape and structure.");
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " face is elongated forward and much like a goat’s in shape and structure.");
 			break;
 		case GLOBAL.TYPE_MOTHRINE:
-			outputRouter((target == pc ? "Your":"[target.name]’s") + " moth-like face is covered in " + faceFurScales + " and has a sculpted look.");
+			outputRouter((target == pc ? "Your":"[target.Name]’s") + " moth-like face is covered in " + faceFurScales + " and has a sculpted look.");
 			break;
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
@@ -616,8 +616,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	//if bald
 	if(!target.hasHair())
 	{
-		if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) outputRouter(" " + (target == pc ? "You have":"[target.name] has") + " no hair, only a" + (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY) ? "" : " thin") + " layer of " + target.skinNoun(false,true) + " where " + (target == pc ? "your":"[target.hisHer]") + " hair should be.");
-		else outputRouter(" " + (target == pc ? "You have":"[target.name] has") + " have no hair, showing only shiny " + target.skinFurScales() + " where " + (target == pc ? "your":"[target.hisHer]") + " hair should be.");
+		if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.skinType == GLOBAL.SKIN_TYPE_FEATHERS) outputRouter(" " + (target == pc ? "You have":"[target.Name] has") + " no hair, only a" + (target.hasSkinFlag(GLOBAL.FLAG_FLUFFY) ? "" : " thin") + " layer of " + target.skinNoun(false,true) + " where " + (target == pc ? "your":"[target.hisHer]") + " hair should be.");
+		else outputRouter(" " + (target == pc ? "You have":"[target.Name] has") + " have no hair, showing only shiny " + target.skinFurScales() + " where " + (target == pc ? "your":"[target.hisHer]") + " hair should be.");
 		
 		var headNoun:String = "head";
 		if(target.skinType == GLOBAL.SKIN_TYPE_FUR) headNoun = "furred head";
@@ -797,7 +797,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		switch(target.earType)
 		{
 			case GLOBAL.TYPE_HUMAN:
-				outputRouter(" Your " + target.hairDescript(true,true) + " looks good on " + (target == pc ? "you":"[target.himHer]") + ", accentuating " + (target == pc ? "your":"[target.hisHer]") + " features well.");
+				outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " " + target.hairDescript(true,true) + " looks good on " + (target == pc ? "you":"[target.himHer]") + ", accentuating " + (target == pc ? "your":"[target.hisHer]") + " features well.");
 				break;
 			case GLOBAL.TYPE_EQUINE:
 				outputRouter(" The " + target.hairDescript(true,true) + " on " + (target == pc ? "your":"[target.hisHer]") + " head parts around a pair of very horse-like ears that grow up from " + (target == pc ? "your":"[target.hisHer]") + " head.");
@@ -2366,7 +2366,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			}
 			break;
 		case GLOBAL.TYPE_NAGA:
-			if(target.legCount == 1) outputRouter(" Below " + (target == pc ? "your":"[target.hisHer]") + " thighs, " + (target == pc ? "your":"[target.hisHer]") + " flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between your crotch and [target.asshole]. It is");
+			if(target.legCount == 1) outputRouter(" Below " + (target == pc ? "your":"[target.hisHer]") + " thighs, " + (target == pc ? "your":"[target.hisHer]") + " flesh is fused together into a very long, snake-like tail, leaving a narrow, connecting gap between " + (target == pc ? "your":"[target.hisHer]") + " crotch and [target.asshole]. It is");
 			else if(target.legCount < 4) outputRouter(" Below " + (target == pc ? "your":"[target.hisHer]") + " thighs, " + num2Text(target.legCount) + " wiggling, snake-like appendages allow " + (target == pc ? "you":"[target.himHer]") + " to slither around. They are");
 			else outputRouter(" " + (target == pc ? "You have":"[target.HeShe] has") + " wiggling snake-like appendages to propel " + (target == pc ? "your":"[target.himHer]") + "self around on, all");
 			outputRouter(" covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : target.scaleColor + "-colored scales") + ".");

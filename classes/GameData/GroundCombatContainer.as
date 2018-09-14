@@ -1505,6 +1505,8 @@ package classes.GameData
 			// sense
 			addButton(6, "Sense", selectSimpleAttack, { func: generateSenseMenu }, "Sense", "Attempts to get a feel for a foe’s likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
 			
+			if(_hostiles[0].hasPerk("Appearance Enabled")) addButton(7,"Closer Look",combatAppearance,undefined,"Closer Look","Take a closer look at your foe’s appearance.\n\nThis does not consume your action for this round.");
+
 			// fantasize
 			addButton(8, "Fantasize", fantasizeRound, undefined, "Fantasize", "Fantasize about your foe until you’re helpless and on your [pc.knees] before them.");
 			// wait
@@ -1542,7 +1544,13 @@ package classes.GameData
 			// default entries
 			additionalCombatMenuEntries();
 		}
-		
+		public function combatAppearance():void
+		{
+			clearOutput();
+			kGAMECLASS.appearance(_hostiles[0]);
+			clearMenu();
+			addButton(14, "Back", generateCombatMenu, true);
+		}
 		private function waitRound():void
 		{
 			clearOutput();

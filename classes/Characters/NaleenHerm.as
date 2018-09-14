@@ -185,6 +185,7 @@
 			//this.createStatusEffect("Disarm Immune");
 			this.createStatusEffect("Counters Melee");
 			this.createStatusEffect("Counters Ranged");
+			this.createPerk("Appearance Enabled");
 			this.inventory.push(new NaleenNip());
 			if(rand(5) == 0) this.inventory.push(new NaleenSpear);
 			

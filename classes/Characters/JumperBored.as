@@ -195,6 +195,7 @@
 			//this.impregnationType = "LapinaraPregnancy";
 			kGAMECLASS.zhengShiSSTDChance(this);
 			randomise();
+			this.createPerk("Appearance Enabled");
 			
 			this._isLoading = false;
 		}

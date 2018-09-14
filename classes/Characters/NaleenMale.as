@@ -178,6 +178,7 @@
 			this.ass.bonusCapacity = 1000;
 			
 			this.createStatusEffect("Disarm Immune");
+			this.createPerk("Appearance Enabled");
 
 			this.inventory.push(new NaleenNip());
 			
