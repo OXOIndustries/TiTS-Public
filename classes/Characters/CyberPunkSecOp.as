@@ -1,0 +1,373 @@
+﻿package classes.Characters
+{
+	import classes.Creature;
+	import classes.ItemSlotClass;
+	import classes.GLOBAL;
+	import classes.Items.Miscellaneous.EmptySlot;
+	import classes.Items.Guns.SlutRay;
+	import classes.Items.Guns.SlutRayHeavy;
+	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
+	import classes.Items.Miscellaneous.Throbb;
+	import classes.Items.Armor.StarViperSlutwear;
+	import classes.kGAMECLASS;
+	import classes.Engine.Utility.rand;
+	import classes.StringUtil;
+	import classes.Engine.Combat.DamageTypes.DamageFlag;
+	import classes.Engine.Interfaces.output;
+	import classes.GameData.CombatAttacks;
+	import classes.GameData.CombatManager;
+	import classes.Engine.Combat.DamageTypes.DamageResult;
+	import classes.Engine.Combat.DamageTypes.TypeCollection;
+	import classes.Engine.Combat.*;
+	import classes.Engine.Interfaces.author;
+	
+	public class CyberPunkSecOp extends Creature
+	{
+		//Fen did dis.
+		//constructor
+		public function CyberPunkSecOp()
+		{
+			this._latestVersion = 1;
+			this.version = _latestVersion;
+			this._neverSerialize = true;
+			
+			this.short = "punk security operative";
+			this.originalRace = "kaithrit";
+			this.a = "the ";
+			this.capitalA = "The ";
+			this.long = "";
+			this.customDodge = "The kaithrit nimbly hops aside.";
+			this.customBlock = "Bluh.";
+			this.isPlural = false;
+			
+			meleeWeapon.attackVerb = "punch";
+			meleeWeapon.attackNoun = "fist";
+			meleeWeapon.longName = "fist";
+			meleeWeapon.description = "a fist";
+			meleeWeapon.baseDamage.kinetic.damageValue = 1;
+			//meleeWeapon.addFlag(DamageFlag.PENETRATING);
+			meleeWeapon.hasRandomProperties = true;
+
+			this.rangedWeapon = new SlutRay();
+			this.rangedWeapon.baseDamage.tease.damageValue = 1;
+			this.rangedWeapon.attackNoun = "beam of psychic, erotic energies";
+			this.rangedWeapon.hasRandomProperties = true;
+			
+			this.armor = new StarViperSlutwear();
+			//this.armor.defense = 5;
+			//this.armor.hasRandomProperties = true;
+
+			this.shield = new ReaperArmamentsMarkIIShield();
+			this.shield.shields = 200;
+			this.shield.hasRandomProperties = true;
+			
+			this.physiqueRaw = 25;
+			this.reflexesRaw = 40;
+			this.aimRaw = 45;
+			this.intelligenceRaw = 40;
+			this.willpowerRaw = 25;
+			this.libidoRaw = 30;
+			this.shieldsRaw = 0;
+			this.energyRaw = 100;
+			this.lustRaw = 15;
+			this.level = 10;
+			this.XPRaw = normalXP();
+			this.credits = 0;
+			this.HPMod = 100;
+			this.HPRaw = this.HPMax();
+			this.shieldsRaw = this.shieldsMax();
+
+			this.femininity = 75;
+			this.eyeType = GLOBAL.TYPE_FELINE;
+			this.eyeColor = "blue";
+			this.tallness = 5*12+2+rand(3);
+			this.thickness = 75;
+			this.tone = 20;
+			this.hairColor = "pink";
+			this.scaleColor = "black";
+			this.furColor = "black";
+			this.hairLength = 13;
+			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
+			this.beardLength = 0;
+			this.beardStyle = 0;
+			this.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			this.skinTone = "fair";
+			this.skinAccent = "";
+			this.skinFlags = [];
+			
+			this.faceType = GLOBAL.TYPE_HUMAN;
+			this.faceFlags = [];
+			this.tongueType = GLOBAL.TYPE_FELINE;
+			this.tongueFlags = [GLOBAL.FLAG_LONG,GLOBAL.FLAG_PREHENSILE];
+			this.lipMod = 2;
+			this.lipColor = "black";
+			this.earType = GLOBAL.TYPE_FELINE;
+			this.antennae = 0;
+			this.antennaeType = 0;
+			this.horns = 0;
+			this.hornType = 0;
+			this.armType = GLOBAL.TYPE_FELINE;
+			this.armFlags = [GLOBAL.FLAG_FURRED,GLOBAL.FLAG_PAWS]
+			this.gills = false;
+			this.wingType = 0;
+			this.legType = GLOBAL.TYPE_FELINE;
+			this.legCount = 2;
+			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_FURRED, GLOBAL.FLAG_PAWS];
+			//0 - Waist
+			//1 - Middle of a long tail. Defaults to waist on bipeds.
+			//2 - Between last legs or at end of long tail.
+			//3 - On underside of a tail, used for driders and the like, maybe?
+			this.genitalSpot = 0;
+			this.tailType = GLOBAL.TYPE_FELINE;
+			this.tailCount = 2;
+			this.tailFlags = [GLOBAL.FLAG_FURRED,GLOBAL.FLAG_LONG,GLOBAL.FLAG_PREHENSILE];
+			//Used to set cunt or dick type for cunt/dick tails!
+			this.tailGenitalArg = 0;
+			//tailGenital:
+			//0 - none.
+			//1 - cock
+			//2 - vagina
+			this.tailGenital = 0;
+			//Tail venom is a 0-100 slider used for tail attacks. Recharges per hour.
+			this.tailVenom = 0;
+			//Tail recharge determines how fast venom/webs comes back per hour.
+			this.tailRecharge = 5;
+			//hipRating
+			//0 - boyish
+			//2 - slender
+			//4 - average
+			//6 - noticable/ample
+			//10 - curvy//flaring
+			//15 - child-bearing/fertile
+			//20 - inhumanly wide
+			this.hipRatingRaw = 15;
+			//buttRating
+			//0 - buttless
+			//2 - tight
+			//4 - average
+			//6 - noticable
+			//8 - large
+			//10 - jiggly
+			//13 - expansive
+			//16 - huge
+			//20 - inconceivably large/big/huge etc
+			this.buttRatingRaw = 13;
+			//No dicks here!
+			this.cocks = new Array();
+			//balls
+			this.balls = 0;
+			this.cumMultiplierRaw = 30;
+			//Multiplicative value used for impregnation odds. 0 is infertile. Higher is better.
+			this.cumQualityRaw = 1;
+			this.cumType = GLOBAL.FLUID_TYPE_CUM;
+			this.ballSizeRaw = 5;
+			this.ballFullness = 100;
+			//How many "normal" orgams worth of jizz your balls can hold.
+			this.ballEfficiency = 90;
+			//Scales from 0 (never produce more) to infinity.
+			this.refractoryRate = 1;
+			this.minutesSinceCum = 196;
+			this.timesCum = 2503+rand(1000);
+			this.cockVirgin = true;
+			this.vaginalVirgin = false;
+			this.analVirgin = false;
+			this.vaginas = new Array();
+			this.cocks = new Array();
+			//Goo is hyper friendly!
+			this.elasticity = 1.5;
+			//Fertility is a % out of 100. 
+			this.fertilityRaw = 1.05;
+			this.clitLength = .5;
+			this.pregnancyMultiplierRaw = 1;
+			
+			this.breastRows[0].breastRatingRaw = 15;
+			this.nippleColor = "pink";
+			this.milkMultiplier = 0;
+			this.milkType = GLOBAL.FLUID_TYPE_MILK;
+			//The rate at which you produce milk. Scales from 0 to INFINITY.
+			this.milkRate = 1;
+			this.ass.wetnessRaw = 0;
+			this.ass.loosenessRaw = 1;
+			this.ass.bonusCapacity = 100;
+
+			this.createVagina();
+			this.vaginas[0].wetnessRaw = 3;
+			this.vaginas[0].loosenessRaw = 2;
+			this.vaginas[0].bonusCapacity = 100;
+			this.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
+			this.vaginas[0].vaginaColor = "pink";
+			
+			//this.createStatusEffect("Disarm Immune");
+			//createStatusEffect("Force Fem Gender");
+			createPerk("Appearance Enabled");
+
+			inventory = [];
+
+			var lossLoot:Array = [];
+			
+			isUniqueInFight = true;
+			btnTargetText = "Slyveren";
+			sexualPreferences.setRandomPrefs(4,3);
+			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, sexualPreferences.getRandomLikesFactor());
+			sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS, sexualPreferences.getRandomLikesFactor());
+
+			this._isLoading = false;
+			kGAMECLASS.zhengShiSSTDChance(this);
+			randomise();
+		}
+
+		public function randomise():void
+		{
+			//IT WAS A BOI THE WHOLE TIME~!
+			if(rand(2) == 0)
+			{
+				thickness = 25;
+				tallness += 5;
+				tone = 70;
+				femininity = 5;
+				hairColor = "blue";
+				hairLength = 8;
+				lipMod = 0;
+				hipRatingRaw = 4;
+				buttRatingRaw = 2;
+				vaginas = [];
+				createCock();
+				this.cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
+				this.cocks[0].cockColor = "silver";
+				this.cocks[0].cLengthRaw = 13;
+				this.balls = 2;
+				this.cockVirgin = false;
+				this.vaginalVirgin = true;
+				this.long = "This stiff-necked kaithrit brandishes a slick-looking plasma rifle in one hand like it’s nothing thanks to his skin-tight layer of augment-weave armor. The flexible metallic suit flexes powerfully with his every movement, unintentionally highlighting his lissom form, bulging groin, and the pert swells of two decidedly feminine A-cups. If he wasn’t a kaithrit, you could easily confuse him a for a female. Of course, he compensates for this with a butch, luminescent mohawk. Large eyes flicker with alertness under a projected holovisor, beamed forth by implants in his temples, and when he shifts position, a short-range antenna wobbles along with his feline ears.\n\nIt’s a sure bet that this mechanized security cat has a grab-bag of other, less-visible cybernetics as well, waiting to spring on you at a moment’s notice.";
+			}
+			//Nothing needs changed :3
+			else
+			{
+				this.long = "This prissy kaithrit brandishes a slick-looking plasma rifle in one hand like it’s nothing thanks to her skin-tight layer of augment-weave armor. The metallic suit flexes powerfully with her every movement to support her motions, unintentionally highlighting her lightly muscled thighs, wide hips, and exquisitely large chest. The suit supports her latter attributes quite marvellously, keeping the pendulous mounds from swaying too heavily while she circles you. Her hair flutters behind in a lengthy ponytail, the sides of her head shaved to reveal the cybernetic implants responsible for the antennae behind her ear and the projected targeting visor across her eyes.\n\nIt’s a sure bet that this mechanized security cat has plenty of other gadgets on or in her person, ready to spring on you should you dare to continue your resistance.";
+			}
+			if(rand(3) <= 2)
+			{
+				this.inventory.push(new Throbb());
+				if(rand(2) == 0) this.inventory[0].quantity++;
+			}
+			if(rand(10) == 0) this.inventory.push(new StarViperSlutwear());
+			else if(rand(10) == 0) this.inventory.push(new SlutRayHeavy());
+		}
+		override public function get bustDisplay():String
+		{
+			if(this.hasCock()) return "PUNK_SECOP_MALE";
+			else return "PUNK_SECOP_FEMALE";
+		}
+		
+		override public function CombatAI(alliedCreatures:Array, hostileCreatures:Array):void
+		{
+			var target:Creature = selectTarget(hostileCreatures);
+			if (target == null) return;
+
+			//Combat Abilities & AI:
+			//Grins before attacking if the PC uses a stealth field. Sees right through it courtesy of the visor. (Effectively dispels the status)
+			if(target.hasStatusEffect("Stealth Field Generator")) stealthFieldImmune(target);
+			//HoT shield restore (33 energy)
+			if(this.shields() < this.shieldsMax()/2 && this.energy() >= 33 && !this.hasStatusEffect("Deflector Regeneration") && rand(3) <= 1) CombatAttacks.DeflectorRegenerationImpl(alliedCreatures, hostileCreatures, this, target);
+			//Energy regen:
+			else if(!hasStatusEffect("Used Smuggled Stimulant") && this.energy() < 33 && rand(3) <= 1) CombatAttacks.SmuggleStimulatImpl(alliedCreatures, hostileCreatures, this, target);
+			//High lust stuff:
+			else if(this.lust() >= 50 && !this.hasStatusEffect("LustModeEngaged")) transitionToLustFight(target);
+			else if(this.lust() >= 50)
+			{
+				//Weapon Hack - disable energy weapons
+				if(target.hasEnergyWeapon() && !target.hasStatusEffect("Disarmed") && this.energy() >= 10 && rand(3) == 0) CombatAttacks.WeaponHackImpl(alliedCreatures, hostileCreatures, this, target);
+				else if(!target.hasAirtightSuit()) bouncingTease(target);
+				//else 9999
+			}
+			//Regular HP stuff
+			else
+			{
+				//Disarmed boi!
+				if(this.hasStatusEffect("Disarmed")) punchingStuff(target);
+				//Weapon Hack - disable energy weapons
+				if(target.hasEnergyWeapon() && !target.hasStatusEffect("Disarmed") && this.energy() >= 10) CombatAttacks.WeaponHackImpl(alliedCreatures, hostileCreatures, this, target);
+				//Volley
+				if(this.energy() >= 20) CombatAttacks.VolleyImpl(alliedCreatures, hostileCreatures, this, target);
+			}
+			
+			
+		}
+		//Summons a Slamwulf drone (1x/fight). Basic kinetic attack drone.		
+		//Fuck_Boy_Protocols.exe - Slamwulf teeth retract swap with aphrodisiac injectors.
+		
+		//Once above 50 lust:
+		//Puts on gasmask and tosses aphrogas grenade (Lust over time - think I can reuse the status from myrellion)
+		public function transitionToLustFight(target:Creature):void
+		{
+			this.createStatusEffect("LustModeEngaged");
+			output("The SecOp smiles warmly. <i>“If you’re going to fight like that, well...”</i> " + this.mf("He","She") + " produces a neon orange gas mask and slips it over " + this.mf("his","her") + " face. <i>“I have just the thing for a slut like you.”</i> Micro-grenades fly out of " + this.mf("his","her") + " belt, spewing pink, drug-laced vapor into the air!");
+			if(target.hasAirtightSuit()) output("\n\n<b>Good thing your equipment is airtight!</b>");
+			else 
+			{
+				output("\n\n<b>The longer you fight, the more you’ll breathe in!</b>");
+				CombatAttacks.applyAphroGas(target, 7, 9999);
+			}
+		}
+		//Bouncing Tease - Leap onto PC’s shoulders and open suit, rubbing junk in face. +Tease! Suit seals back up after.
+		public function bouncingTease(target:Creature):void
+		{
+			if(this.hasCock()) 
+			{
+				if(this.statusEffectv1("Face Rided") <= 0) output("Leaping inhumanly high into the air, the security operative casually flings himself directly at you, legs and arms outstretched.");
+				else output("The SecOp flings himself at you with a feral grin.");
+			}
+			else
+			{
+				if(this.statusEffectv1("Face Rided") <= 0) output("Coiling her body like a spring, the security operative bounces high into the air, legs and arms outstretched as she flies forward.");
+				else output("The SecOp flings herself at you with a lusty grin.");
+			}
+			//Dodge
+			if(combatMiss(this, target)) 
+			{
+				output("\n\nYou barely roll out of the way!");
+				if(!this.hasCock()) output("\n\nShe pouts. <i>“Aww, I thought you wanted to get up close and personal!”</i>");
+				else output("\n\nHe arches an eyebrow. <i>“I thought you wanted this.”</i> The hand on his groin makes it clear exactly what ‘this’ is.");
+			}
+			else
+			{
+				if(this.hasCock())
+				{
+					if(this.statusEffectv1("Face Rided") <= 0) output("\n\nHe lands on your shoulders, legs splayed wide to plant his crotch directly against your face. The gleaming coils of his armor wriggle and twist as a much thicker coil- no, that’s his cock! A gleaming chromed cock grinds against your cheek, unimaginably hard and pulsating with promise. You {half-heartedly }struggle as it slides over your lips and nose, an up-close-and-personal preview of exactly what this turned-on cyborg looks like in the bedroom.");
+					else if(this.statusEffectv1("Face Rided") <= 1) output("\n\nThis time his armor opens up even before he lands on your shoulders. The chrome-colored dong slaps your cheek on its way to your lips. Its owner bucks and thrusts, humping it against your face. For all its hardness, there’s a hint of organic sponginess as well, like his shaft-shaped simulacrum was designed to mimic a boner at the absolute peak of arousal. You’re starting to see the appeal.");
+					else if(this.statusEffectv1("Face Rided") <= 2) output("\n\nYou’re ready the big silver dick to slap into your face this time. You expect it. You turn away just in time, taking it on your cheek before pride compels you to face your sexual aggressor, staring up at him from under his 13-inch chrome-bone. So what if it’s kind of hot - if just having here tempts you to take a lick...");
+					else output("\n\nYou sigh as his big, fat cock slips into position against your nose, his gleaming, artificial balls rest on your lips. He smells kind of nice, with a sort of artificial orangish tang to his musk. Maybe you ought to struggle, but he’ll get down on his own eventually. You barely keep yourself from licking your lips.");
+				}
+				else
+				{
+					if(this.statusEffectv1("Face Rided") <= 0) output("\n\nShe lands on your shoulders, legs splayed wide to plant her crotch directly against your face. The gleaming coils of her armor wriggle and twist apart, revealing a pretty purple pussy. You don’t have long to admire the latex-like texture of her gleaming folds before they’re pressing against your [pc.lipsChaste], grinding in small circles.");
+					else if(this.statusEffectv1("Face Rided") <= 1) output("\n\nThis time her armor splits open before she even lands. Her cunt crashes into your face in sloppy delight. Her juices cascade down your cheeks and chin while she humps and squeals, her tails curled possessively around your face as she baptizes you in her lusty pussy-juices.");
+					else if(this.statusEffectv1("Face Rided") <= 2) output("\n\nYou’re ready for the kaithrit’s juicy, artificially-enhanced snatch to slap into your face, so when those puffy, soaked folds grind into you, you can take a moment to admire the silky texture and incredible slickness. A pussy like that would feel great, even if all you slipped inside was a single finger...");
+					else output("\n\nYou grin as her pretty, cybernetic pussy crashes into your face once more. If only all your fights could be so pleasant. You’ll take a buxom cat-girl humping your face over trading blaster fire any day of the week. At the last second, you stop yourself from grabbing her big, squeezable ass and opening wide. If you started eating her out now... you’d never get away.");
+				}
+				applyDamage(damageRand(new TypeCollection( { tease: 16 } ), 15), target, this,"minimal");
+				output("\n\nWith a staggeringly powerful jump, your face is free of the SecOp’s genitals once more, though the lingering scent of horny kaithrit lingers, intermingled with the aphrodisiac gas in the air. <i>“Gotta move faster... unless you want me to ride your face into the ground...”</i>");
+				if(this.hasStatusEffect("Face Rided")) this.createStatusEffect("Face Rided");
+				this.addStatusValue("Face Rided",1,1);
+			}
+		}		
+		//Stealth field cancel
+		public function stealthFieldImmune(target:Creature):void
+		{
+			output("The operative’s visor-shrouded eyes easily follow your movements. <b>Your stealth field is useless!</b>");
+			target.removeStatusEffect("Stealth Field Generator");
+		}//Disarmed punches
+		public function punchingStuff(target:Creature):void
+		{
+			output("With a snarl of irritation, the disarmed feline puts up " + this.mf("his","her") + " dukes! ");
+			var weapStorage:ItemSlotClass = this.meleeWeapon;
+			this.meleeWeapon = new ItemSlotClass();
+			this.meleeWeapon.longName = "fist";
+			this.meleeWeapon.description = "a fist";
+			this.meleeWeapon.attackVerb = "swing";
+			this.meleeWeapon.attackNoun = "punch";
+			CombatAttacks.SingleMeleeAttackImpl(this, target);
+			this.meleeWeapon = weapStorage;
+		}
+	}
+}

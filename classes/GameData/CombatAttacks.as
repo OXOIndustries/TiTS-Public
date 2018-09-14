@@ -1584,7 +1584,7 @@ package classes.GameData
 		}
 		
 		public static var Volley:SingleCombatAttack;
-		private static function VolleyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function VolleyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if(target.hasStatusEffect("Counters Ranged") && !target.isImmobilized())
 			{
@@ -1682,7 +1682,7 @@ package classes.GameData
 		}
 		
 		public static var DeflectorRegeneration:SingleCombatAttack;
-		private static function DeflectorRegenerationImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function DeflectorRegenerationImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			attacker.createStatusEffect("Tech Shield CD",0,0,0,0,true,"","",true);
 			if (attacker is PlayerCharacter) 
@@ -1862,7 +1862,7 @@ package classes.GameData
 		}
 		
 		public static var WeaponHack:SingleCombatAttack;
-		private static function WeaponHackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function WeaponHackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (target.hasStatusEffect("Disarm Immune"))
 			{
@@ -2201,7 +2201,7 @@ package classes.GameData
 		}
 		
 		public static var SmuggledStimulant:SingleCombatAttack;
-		private static function SmuggleStimulatImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function SmuggleStimulatImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			attacker.createStatusEffect("Used Smuggled Stimulant", 3, 0, 0, 0, true, "", "", true, 0);
 			
