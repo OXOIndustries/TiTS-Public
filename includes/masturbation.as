@@ -33,7 +33,11 @@ public function nonLustFaps():Array
 	}
 	if(pc.hasStatusEffect("Boobswell Pads")) 
 	{
-		faps.push(["Remove B.Swell", removeBoobswellPads, "Remove Boobswell Pads", "Remove the attached boobswell pads."]);
+		faps.push(["Rem. B.Swell", removeBoobswellPads, "Remove Boobswell Pads", "Remove the attached Boobswell pads."]);
+	}
+	if(pc.hasStatusEffect("Ass Slap Patch")) 
+	{
+		faps.push(["Rem. A.Slap", removeAssSlapPatch, "Remove Ass Slap Patch", "Remove the attached Ass Slap patch."]);
 	}
 	if(hasSmutOptions())
 	{
@@ -291,10 +295,20 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 	if(pc.hasStatusEffect("Boobswell Pads")) 
 	{
 		fap = new FapCommandContainer();
-		fap.text = "Remove B.Swell";
+		fap.text = "Rem. B.Swell";
 		fap.ttHeader = "Remove Boobswell Pads";
-		fap.ttBody = "Remove the attached boobswell pads.";
+		fap.ttBody = "Remove the attached Boobswell pads.";
 		fap.func = removeBoobswellPads;
+		fap.ignoreRandomSelection = true;
+		faps.push(fap);
+	}
+	if(pc.hasStatusEffect("Ass Slap Patch")) 
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Rem. A.Slap";
+		fap.ttHeader = "Remove Ass Slap Patch";
+		fap.ttBody = "Remove the attached Ass Slap patch.";
+		fap.func = removeAssSlapPatch;
 		fap.ignoreRandomSelection = true;
 		faps.push(fap);
 	}
@@ -1770,8 +1784,18 @@ public function removeBoobswellPads():void
 {
 	clearOutput();
 	author("Fenoxo");
+	output("You peel the pads off your chest and breathe a sigh of relief now that the constant moisture and vibration is no longer rubbing at your [pc.nipples].\n\n<b>The Boobswell pads shut down, their use expended.</b>");
 	pc.removeStatusEffect("Boobswell Pads");
-	output("You peel the pads off your chest and breathe a sigh of relief now that the constant moisture and vibration is no longer rubbing at your [pc.nipples].\n\n<b>The boobswell pads shut down, their use expended.</b>");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
+}
+
+public function removeAssSlapPatch():void
+{
+	clearOutput();
+	author("Foxxling");
+	output("You take a deep breath, grab a hold of the corner of the Xenogen Ass Slap Patch and rip it off like a bandaid. It doesn’t hurt but the constant vibrations are now gone.\n\n<b>The Ass Slap Patch powers down, its use expended.</b>");
+	pc.removeStatusEffect("Ass Slap Patch");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
