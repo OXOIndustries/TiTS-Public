@@ -16232,7 +16232,7 @@
 							break;
 						case GLOBAL.TYPE_KUITAN:
 							//adjectives.push("alien","bulgy","knot-lined","extra knotty","bestial","kui-tan","inhuman","exotic","knotted");
-							desc += RandomInCollection(["bulgy ‘nuki-cock", "knot-lined kui-cock", "bestial cock", "exotic kui-cock", "exotic cock", "knotted ‘nuki-cock", "knot-lined dick","knot-covered dick","bulgy ‘nuki-dick","kui-tan cock","kui-tan dick","extra-knotty dick","bulgy dick","knot-lined prick","bulgy prick","knot-lined tool","bulgy shaft","knotted member","kui-tan member","bulgy shaft","alien shaft"]);
+							desc += RandomInCollection(["bulgy ‘nuki-cock", "knot-lined kui-cock", "bestial cock", "exotic kui-cock", "exotic cock", "knotted ‘nuki-cock", "knot-lined dick","knotted dick","bulgy ‘nuki-dick","kui-tan cock","kui-tan dick","extra-knotty dick","bulgy dick","knot-lined prick","bulgy prick","knot-lined tool","bulgy shaft","knotted member","kui-tan member","bulgy shaft","alien shaft"]);
 
 							break;
 						case GLOBAL.TYPE_SIMII:

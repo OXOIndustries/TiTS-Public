@@ -34,8 +34,17 @@ public function nykkeIsMature():Boolean
 public function nykkeHeader(nude:Boolean = false):void
 {
 	author("B");
-	showName("\nNYKKE");
-	showBust("NYKKE" + (nude ? "_NUDE":""));
+	showNykke(nude);
+}
+public function showNykke(nude:Boolean = false):void
+{
+	showName(flags["NYKKE_MET"] == undefined ? (flags["FROSTWYRM_KIP_COUNT"] == 1 ? "FROST-\nWYRMLING" : "\nELDEST KIP") : "\nNYKKE");
+	showBust(nykkeBustDisplay(nude));
+	author("B");
+}
+public function nykkeBustDisplay(nude:Boolean = false):String
+{
+	return ("NYKKE" + (nude ? "_NUDE":""));
 }
 //first meeting part 1
 public function nykkeIntro01():void
@@ -45,9 +54,8 @@ public function nykkeIntro01():void
 	processTime(60);
 	
 	clearOutput();
+	showFrostWyrm();
 	author("B");
-	showName("\n" + frostwyrm.short.toUpperCase());
-	showBust("FROSTWYRM");
 	clearMenu();
 	
 	output("You go through your typical ritual of removing your effects and setting them safely in the corner of the lair as [frostwyrm.name] makes her way towards her familiar, elevated ice platform. When your vision focuses on the lair and its whole, dome-shaped entirety, you can’t help but feel that... something is different. You can’t quite put your finger on it.");
@@ -65,9 +73,7 @@ public function nykkeIntro01():void
 public function nykkeIntro02():void
 {
 	clearOutput();
-	author("B");
-	showName("\nELDEST KIP");
-	showBust("NYKKE");
+	nykkeHeader();
 	clearMenu();
 	
 	output("The floor of the small cave curves downward and to the left slightly before opening into a much wider, though still miniscule, living space. The light of [frostwyrm.name]’s lair doesn’t reach very well into the room, making it a bit darker than the lair proper. The icy walls are jagged and unrefined, gnashed apart almost aimlessly by tough nails and claws, although it still appears to be a work-in-progress: while it’s tall enough for your ten-foot-tall daughter to stand upright, there isn’t much in the way of wiggle room, and it’s only about ten feet deep.");
