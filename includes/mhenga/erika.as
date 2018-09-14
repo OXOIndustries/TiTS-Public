@@ -1202,7 +1202,7 @@ public function erikaSexRideHerPussy():void
 	IncrementFlag("ERIKA_SEXED");
 
 	processTime(60+rand(15));
-	pc.loadInCunt(erika, 0);
+	pc.loadInMouth(erika);
 	pc.orgasm();
 	erika.orgasm();
 
@@ -1266,7 +1266,7 @@ public function erikaSexRideHerButt2():void
 	else output("5");
 	output(". You flip her onto her hands and knees and drag your fingers across her skin, sending shivers up and down her spine. You grab her sack and caress it, rolling her balls in your hand. They seem to have grown quite larger from your continuous teasing, swollen with thick cum. You grab her petite cock and stroke it, rubbing and squeezing her sensitive knot. Finally, you lean down and press your [pc.lips] against her twitching pucker. You lick all around it with your [pc.tongue], coating it in your spit-lube. ");
 	if (pc.hasTongueFlag(GLOBAL.FLAG_LONG)) output("You slowly penetrate her with your [pc.tongue], searching for her prostate. When you find it, you feel it with the tip of your tongue, and begin rubbing it, making your tongue squirm in her ass. ");
-	else output("ou use your saliva to slowly insert a finger into her, searching around for her prostate. When you find it, you massage it thoroughly. You insert a second finger into her accommodating [erika.asshole], opening your fingers in a scissor motion. ");
+	else output("You use your saliva to slowly insert a finger into her, searching around for her prostate. When you find it, you massage it thoroughly. You insert a second finger into her accommodating [erika.asshole], opening your fingers in a scissor motion. ");
 	output("Erika’s eyes are watering by now, her cock throbbing angrily in your grip. She has almost completely stopped begging you to let her cum, resorting to just moaning and pushing her ass into your [pc.face].");
 	output("\n\nAfter teasing her a bit longer, you finally decide to let the kitty cum. You lean down to her ear and begin to nibble on it. <i>“You really want to cum, don’t you?”</i> She furiously shakes her head, turning and looking at you with wet eyes. <i>“You want to blow your load all over my bed, staining it with the scent of your seed. That’s what you want, huh?”</i> Her eyes roll partway into their sockets at the thought of making your sheets smell like her cum and she nods lazily, her tongue flopping out of her panting mouth, her berry-scented breath coming out quickly. You run your finger up her vibrating dick until you come to the cockring. You take your sweet time taking it off, but when you do she begins humping the empty air. You wrap your hand around her cock, giving her something to thrust into. You lick and suck her neck, whispering again into her ear. <i>“Cum for me. Shoot your cum. Blow your load. Cum just for me!”</i>");
 	output("\n\nHer eyes roll completely into her head and a crazed grin creeps onto her face. She gives one last powerful thrust into your hand, hilting herself, her knot swelling and making your hand open a little. You quickly move your head near her vibrating sack. You bring her balls into your mouth, fondling them with your [pc.tongue], enjoying the hairless, soft texture of her skin and the feeling of the bullet vibes buzzing away in your mouth. You suck on her sack hard, trying to coax out their creamy treasure. You unwrap your hand from her cock and bring both of them down under her cock, forming a basket with them. She lets out a shrill scream and her balls tense in your mouth. The first jet of cum shoots from her dog dick in one thick stream like water from a hose. It splashes in your hands, spraying you, her, and your sheets. The second jet comes out equally as powerful, and she raises her hips and thrusts them back down, another stream of cum erupting from her cock. She cums countless times after, filling your hands with spunk and adequately drenching your sheets, most likely actually staining them with the scent of her cum. Her balls shrink in your mouth as she ejaculates, draining her swollen cum-factories.");
@@ -1275,7 +1275,6 @@ public function erikaSexRideHerButt2():void
 	IncrementFlag("ERIKA_SEXED");
 
 	processTime(120+rand(30));
-	pc.loadInAss(erika);
 	pc.orgasm();
 	erika.orgasm();
 
