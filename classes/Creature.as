@@ -13341,6 +13341,7 @@
 		public function hipDescript(asPlural:Boolean = false):String 
 		{
 			var hips: Number = hipRating();
+			var firm: Number = buttTone();
 			var desc: String = "";
 			var adjectives: Array = [];
 			
@@ -13450,11 +13451,11 @@
 					adjectives.push("gargantuanly splayed ");
 				}
 			}
-			if(hasPerk("Buns of Steel")) {
+			if(firm >= 65) {
 				if(mf("m","f") == "m") adjectives.push("masculine ");
 				if (tone >= 70) adjectives.push("muscular ");
 				else if (tone >= 30) adjectives.push("lean muscled ");
-				else adjectives.push("mannishly slender ");
+				else adjectives.push((mf("m","f") == "m" ? "mannishly " : "") + "slender ");
 				if (tone >= 30) adjectives.push("broad ");
 			}
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
@@ -13788,7 +13789,7 @@
 						adjectives.push("tremendous ");
 					}
 				}
-				if(hasPerk("Buns of Steel")) {
+				if(firm >= 65) {
 					adjectives.push("chiseled ");
 					adjectives.push("statuesque ");
 					adjectives.push("shapely ");
