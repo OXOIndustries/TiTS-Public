@@ -243,7 +243,7 @@
 			//Low kinetic attack. Chance to knockdown.
 
 			output("The wetraxxel rushes at you, thrusting his arm out to the side and twisting his body, catching you in a clothesline!");
-			if (combatMiss(this, target, -1, 2))
+			if (combatMiss(this, target, -1, 2) || target.isPlanted())
 			{
 				output(" You manage to keep your footing, blocking the worst of the brawler’s strike.");
 			}
@@ -260,7 +260,7 @@
 			//Strong kinetic attack. Chance to Stagger on hit (reduces Reflexes and Aim for several turns)
 
 			output("The brawler takes a running start, hurling himself feet-first at you.");
-			if (combatMiss(this, target))
+			if (combatMiss(this, target) || target.isPlanted())
 			{
 				output(" You duck the attack, letting his weight carry him over your head and into the wall!");
 			}
@@ -298,7 +298,7 @@
 				}
 				else
 				{
-					if (rand(target.reflexes()) >= target.reflexesMax() / 3)
+					if ((rand(target.reflexes()) >= target.reflexesMax() / 3) || target.isPlanted())
 					{
 						output(" The kick takes you completely by surprise, momentarily throwing you off balance and almost tumbling to the ground. You grunt as you narrowly manage to stay upright.");
 					}

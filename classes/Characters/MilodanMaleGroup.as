@@ -314,7 +314,7 @@
 					output("the impact knocking the air out of your lungs with a ghastly thud. You stumble backwards, off-balance for a second.");
 					damageRand(d, 15);
 					applyDamage(d, this, target, "melee");
-					if (!target.hasStatusEffect("Staggered") && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+					if (!target.hasStatusEffect("Staggered") && !target.isPlanted() && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 					{
 						output("<b> You’ve been staggered!</b>");
 						CombatAttacks.applyStagger(target, 5);

@@ -173,7 +173,7 @@ package classes.Characters
 			if (rand(50) * 2 >= target.PQ()) damage = 48;
 			else damage = 36;
 			applyDamage(damageRand(new TypeCollection( { kinetic: damage }, DamageFlag.BYPASS_SHIELD), Math.round(damage / 2)), this, target, "minimal");
-			if (rand(2) == 0) {
+			if (rand(2) == 0 && !target.isPlanted()) {
 				output("<b> You’ve been staggered!</b>");
 				CombatAttacks.applyStagger(target, 3);
 			}

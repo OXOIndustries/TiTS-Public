@@ -274,7 +274,7 @@ package classes.Characters
 			output("The wyrm rears back and gives you a bellowing shriek, furiously beating its wings at you. They generate a hurricane-like force, sending flurries of snow roaring out around you.");
 			
 			//Pass physical check, blinded
-			if (target.physique() + rand(20) + 1 > physique())
+			if ((target.physique() + rand(20) + 1 > physique()) || target.isPlanted())
 			{
 				output("\n\nYou dig your [pc.feet] in and hold on for dear life, refusing to be blown away by the beast... but even then, you quickly realize that the snow is blasting all around you. It’s almost impossible to see -- <b>you’re all but blinded!</b>");
 				CombatAttacks.applyBlind(target, rand(2) + 2);

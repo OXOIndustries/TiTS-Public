@@ -348,7 +348,7 @@ package classes.Characters
 			output("The lithe huntress dances up towards you, her [enemy.hairColor], luminescent ‘skirt’ twirling about her body. Suddenly she crouches and her [enemy.tail] sweeps at your [pc.feet] - it’s a trip attack!");
 
 			// [Miss]: 
-			if (combatMiss(this, target)) output(" You read her movements and avoid being tripped. She only succeeds at sweeping the ground with her sneaky strike.");
+			if (combatMiss(this, target) || target.isPlanted()) output(" You read her movements and avoid being tripped. She only succeeds at sweeping the ground with her sneaky strike.");
 			else
 			{
 				var critChance:int = 15;

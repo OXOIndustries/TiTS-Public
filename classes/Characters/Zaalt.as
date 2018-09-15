@@ -238,7 +238,7 @@
 			
 			if (energy() >= 15) attacks.push( { v: doLowBlow, w: 10 } );
 			attacks.push( { v: doUnarmedFlurry, w: 20 } );
-			if (target is PlayerCharacter && !target.hasStatusEffect("Staggered") && energy() >= 15) attacks.push( { v: doPsiShockwave, w: 10 } );
+			if (target is PlayerCharacter && !target.hasStatusEffect("Staggered") && !target.isPlanted() && energy() >= 15) attacks.push( { v: doPsiShockwave, w: 10 } );
 			if (_leechUses < 2 && target is PlayerCharacter && HPQ() < 50) attacks.push( { v: doMindLeech, w: 40 } );
 			
 			if (!hasStatusEffect("No Weaponry"))

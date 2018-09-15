@@ -374,9 +374,9 @@ package classes.Characters
 		{
 			var struct:Object = GetCharacterStructure(hostiles, { pc: PlayerCharacter, neykkar: ChiefNeykkar } );
 			
-			var bStaggeredPC:Boolean = rand(3) == 0;
-			var bHitNeykkar:Boolean = struct.neykkar != undefined && !struct.neykkar.isDefeated();
-			var bStaggeredNeykkar:Boolean = bHitNeykkar && rand(3) == 0;
+			var bStaggeredPC:Boolean = (rand(3) == 0 && !struct.pc.isPlanted());
+			var bHitNeykkar:Boolean = (struct.neykkar != undefined && !struct.neykkar.isDefeated());
+			var bStaggeredNeykkar:Boolean = (bHitNeykkar && rand(3) == 0 && !struct.neykkar.isPlanted());
 			
 			output("The Commander throws his hands up and hurls them down, slamming the deck with all his augmented might. A veritable shockwave slams you as the deck rocks precariously.");
 			

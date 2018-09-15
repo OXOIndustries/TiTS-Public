@@ -299,7 +299,7 @@ package classes.Characters
 				output(" Her fist slams into " + (target is PlayerCharacter ? "you" : "Anno") + " like a freighter, cracking into " + (target is PlayerCharacter ? "your" : "her") +" face and sending " + (target is PlayerCharacter ? "you" : "her") +" plummeting to the ground. Oh, fuck, that " + (target is Anno ? "looks like it " : "") + "hurt!");
 
 				// 25% of knockdown
-				if (rand(4) == 0)
+				if (rand(4) == 0 && !target.isPlanted())
 				{
 					if (target is PlayerCharacter) output(" The blow hits you so hard you’re seeing stars!");
 					else output(" Anno doesn’t look all that steady on her feet!");

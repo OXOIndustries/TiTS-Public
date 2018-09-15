@@ -267,7 +267,7 @@
 			output("The three of them simultaneously dart in at you, laughing gleefully as they run around your [pc.legOrLegs], ducking and weaving beneath your attacks. They are fast, and it’s really difficult to discern what their intention is when they are all buffeting you at once like this.");
 
 			//Fail: 
-			if(!target.isImmobilized() && physique()/2 + 10 <= target.reflexes()/2 + rand(20) + 1)
+			if((!target.isImmobilized() && physique()/2 + 10 <= target.reflexes()/2 + rand(20) + 1) || target.isPlanted())
 			{
 				output("\n\nYou sense one of them crouching down behind you and react just in time, barreling into the other two before they can push you over.");
 				output("\n\n<i>“Spoilsport,”</i> grouses one as they scramble back out again.");

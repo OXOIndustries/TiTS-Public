@@ -21731,6 +21731,12 @@
 			if(isRidingMount() || hasItemByClass(Hoverboard)) return false;
 			return true;
 		}
+		// Firmly planted on the ground
+		public function isPlanted():Boolean
+		{
+			if(hasStatusEffect("Planted")) return true;
+			return false;
+		}
 		// Mounts!
 		public function isRidingMount():Boolean
 		{
