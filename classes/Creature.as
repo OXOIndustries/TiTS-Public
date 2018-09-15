@@ -11248,6 +11248,7 @@
 			//web also makes false!
 			if (hasStatusEffect("Web")) return false;
 			if (hasStatusEffect("Flying")) return true;
+			if (hasJetpack()) return true;
 			if (InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_BEE, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_DRAGONFLY, GLOBAL.TYPE_SYLVAN, GLOBAL.TYPE_DARK_SYLVAN, GLOBAL.TYPE_MOTHRINE, GLOBAL.TYPE_DOVE, GLOBAL.TYPE_GRYVAIN])) return true;
 			return false;
 		}
@@ -11261,6 +11262,7 @@
 			removeStatusEffect("Flying");
 		}
 		public function hasJetpack():Boolean {
+			if(accessory is LightJetpack) return true;
 			return false;
 		}
 		//PC can swim?
@@ -21721,6 +21723,14 @@
 			setStatusMinutes("Priapism", (7*24*60));
 		}
 		
+		// Floor-touching check
+		public function isOnGround():Boolean
+		{
+			if(hasStatusEffect("Tripped")) return true;
+			if(hasFlightEffects() || hasJetpack()) return false;
+			if(isRidingMount() || hasItemByClass(Hoverboard)) return false;
+			return true;
+		}
 		// Mounts!
 		public function isRidingMount():Boolean
 		{

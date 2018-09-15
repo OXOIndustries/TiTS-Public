@@ -277,6 +277,7 @@ public function topicModsSeer():void
 	output("\n\nWhat?");
 	
 	processTime(3);
+	CodexManager.unlockEntry("Mothrine");
 	
 	talkSeerMenu();
 	addDisabledButton(2, "Odd Mods");
