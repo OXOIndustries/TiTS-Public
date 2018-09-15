@@ -222,7 +222,7 @@ public function sydianFemalePCLossHasCock():void
 	output("\n\n<i>“Silly,”</i> she murmurs");
 	if (!pc.isCrotchExposed()) output(", slipping [pc.oneCock] free of your [pc.lowerGarments]");
 	output(", <i>“I’m going to enjoy you.”</i>");
-	if (enemy.lust() < 33 || c == -1)
+	if (enemy.lust() < 33 || c < 0)
 	{
 		//low monster lust/all cocks too big outcome
 		output(" As you stare into her opaque, "+enemy.eyeColor+" pools, a niggling voice warns you that ‘enjoy’ might not mean what you hope....");
@@ -401,7 +401,7 @@ public function sydianFemalePCVictory():void
 		else
 		{
 			var bTailcock:Boolean = (pc.hasTailCock() && pc.tailCockVolume() <= enemy.vaginalCapacity());
-			if (pc.cockThatFits(enemy.vaginalCapacity()) == -1 && !bTailcock) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It’s a jumbo wiener!");
+			if (pc.cockThatFits(enemy.vaginalCapacity()) < 0 && !bTailcock) addDisabledButton(0, "Fuck Her", "Fuck Her", "Your wiener is too big! It’s a jumbo wiener!");
 			else if (pc.thinnestCockThickness() > 4 && !enemy.hasStatusEffect("Unarmored") && !bTailcock) addDisabledButton(0, "Fuck Her", "Fuck Her", "You could fit your wiener inside if her body armor weren’t in the way...");
 			else addButton(0, "Fuck Her", femSydianFuck, undefined, "Fuck Her", "Stick your wiener in it.");
 		}
@@ -1018,10 +1018,10 @@ public function femSydianGiveThrob():void
 	//vag-anal branch - mandatory for F/U, preferred (80-85%) if H or if M and player has selected female gender pronouns or has all cocks too large
 	//preg chance for vag PC
 
-	if (!pc.hasCock() || (rand(100) <= 85 && pc.hasStatusEffect("Force Fem Gender")) || pc.cockThatFits(enemy.vaginalCapacity()) == -1)
+	if (!pc.hasCock() || (rand(100) <= 85 && pc.hasStatusEffect("Force Fem Gender")) || pc.cockThatFits(enemy.vaginalCapacity()) < 0)
 	{
 		var v:int = pc.cuntThatFits(enemy.cockVolume(0, true));
-		if (v == -1) pc.biggestVaginaIndex();
+		if (v < 0) pc.biggestVaginaIndex();
 
 		output("\n\n<i>“What is this? My beautiful body...”</i> the sydian whimpers, in a tiny voice.");
 		
@@ -1138,7 +1138,7 @@ public function femSydianGiveThrob():void
 	else
 	{
 		var c:int = pc.cockThatFits(enemy.vaginalCapacity());
-		if (c == -1) c = pc.smallestCock();
+		if (c < 0) c = pc.smallestCockIndex();
 
 		output("\n\nThe girl moans and cum slops down her sensitized cock, the baby-making batter pressed into a makeshift hot lube by your grip; two aftershocks bubble from her twitching slit as her unwilling dick tries to go soft. The sydian shakes and sighs. <i>“Stop... it’s too much...”</i>");
 		
