@@ -1426,9 +1426,9 @@ public function restHeal():void
 		AddLogEvent("The slave collar’s punishing shocks keep your rest from doing much.");
 	}
 	else if(pc.hasStatusEffect("Dzaan Withdrawal")) bonusMult = 0.5;
+	
 	if(bonusMult != 0)
 	{
-
 		if(pc.HPRaw < pc.HPMax()) {
 			if(pc.characterClass == GLOBAL.CLASS_SMUGGLER) pc.HP(Math.round(pc.HPMax() * bonusMult));
 			else pc.HP(Math.round(pc.HPMax() * .33 * bonusMult));

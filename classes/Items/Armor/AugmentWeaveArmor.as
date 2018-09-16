@@ -30,7 +30,7 @@
 			this.description = "a suit of augment-weave armor";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "Rather than relying on shock-gel or rigid armor plating, Augment-Weave Armor is composed of a series of flexible, microbot-infused cables that are capable of intelligently shifting position to block incoming blows or enhance the user's flexibility. The Cyber Punks of Zheng Shi are the most well-known users of this armor, employing variants that are designed to interface with and enhance their own cybernetic implants.\n\nIt's could even interface with your immune-boosting microsurgeons, enhancing your ability to recover from injury more rapidly. (+50% rest and sleep recovery.)";
+			this.tooltip = "Rather than relying on shock-gel or rigid armor plating, Augment-Weave Armor is composed of a series of flexible, microbot-infused cables that are capable of intelligently shifting position to block incoming blows or enhance the user’s flexibility. The Cyber Punks of Zheng Shi are the most well-known users of this armor, employing variants that are designed to connect with and augment their own cybernetic implants.\n\nThe suit’s microbots could even interface with your immune-boosting microsurgeons, boosting your ability to recover from injury more rapidly. (+50% rest and sleep recovery.)";
 
 			//An alright upgrade. Stronk against kinetic, slashing and thermal, practically worthless against piercing.
 		
