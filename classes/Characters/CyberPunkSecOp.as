@@ -5,11 +5,11 @@
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.EmptySlot;
-	import classes.Items.Guns.SlutRay;
-	import classes.Items.Guns.SlutRayHeavy;
 	import classes.Items.Protection.ReaperArmamentsMarkIIShield;
 	import classes.Items.Miscellaneous.Throbb;
-	import classes.Items.Armor.StarViperSlutwear;
+	import classes.Items.Armor.AugmentWeaveArmor;
+	import classes.Items.Transformatives.Nepeta;
+	import classes.Items.Transformatives.Catnip;
 	import classes.kGAMECLASS;
 	import classes.Engine.Utility.rand;
 	import classes.StringUtil;
@@ -59,12 +59,12 @@
 			this.rangedWeapon.baseDamage.addFlag(DamageFlag.DRAINING);
 			this.rangedWeapon.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
-			this.armor = new StarViperSlutwear();
+			this.armor = new AugmentWeaveArmor();
 			//this.armor.defense = 5;
 			//this.armor.hasRandomProperties = true;
 
 			baseHPResistances = new TypeCollection();
-			baseHPResistances.electric.damageValue = 25.0;
+			baseHPResistances.electric.damageValue = 10.0;
 
 			this.shield = new ReaperArmamentsMarkIIShield();
 			this.shield.shields = 200;
@@ -254,13 +254,9 @@
 			{
 				this.long = "This prissy kaithrit brandishes a slick-looking plasma rifle in one hand like it’s nothing thanks to her skin-tight layer of augment-weave armor. The metallic suit flexes powerfully with her every movement to support her motions, unintentionally highlighting her lightly muscled thighs, wide hips, and exquisitely large chest. The suit supports her latter attributes quite marvellously, keeping the pendulous mounds from swaying too heavily while she circles you. Her hair flutters behind in a lengthy ponytail, the sides of her head shaved to reveal the cybernetic implants responsible for the antennae behind her ear and the projected targeting visor across her eyes.\n\nIt’s a sure bet that this mechanized security cat has plenty of other gadgets on or in her person, ready to spring on you should you dare to continue your resistance.";
 			}
-			if(rand(3) <= 2)
-			{
-				this.inventory.push(new Throbb());
-				if(rand(2) == 0) this.inventory[0].quantity++;
-			}
-			if(rand(10) == 0) this.inventory.push(new StarViperSlutwear());
-			else if(rand(10) == 0) this.inventory.push(new SlutRayHeavy());
+			if(rand(10) == 0) this.inventory.push(new AugmentWeaveArmor());
+			if(rand(3) == 0) this.inventory.push(new Nepeta());
+			else if(rand(3) == 0) this.inventory.push(new Catnip());
 		}
 		override public function get bustDisplay():String
 		{

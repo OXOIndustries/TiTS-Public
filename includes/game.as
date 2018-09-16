@@ -9,6 +9,7 @@ import classes.GameData.Pregnancy.PregnancyManager;
 import classes.GUI;
 import classes.Items.Accessories.LeithaCharm;
 import classes.Items.Armor.Unique.Omnisuit;
+import classes.Items.Armor.AugmentWeaveArmor;
 import classes.Items.Miscellaneous.EmptySlot;
 import classes.Items.Miscellaneous.HorsePill;
 import classes.Items.Transformatives.Cerespirin;
@@ -1417,6 +1418,7 @@ public function rest(deltaT:int = -1):void {
 public function restHeal():void
 {
 	var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
+	if(pc.armor is AugmentWeaveArmor) bonusMult += 0.5;
 	
 	if(pc.accessory is MaikesCollar)
 	{
@@ -1667,6 +1669,8 @@ public function sleepHeal():void
 	}
 	else if(pc.hasStatusEffect("Dzaan Withdrawal")) bonusMult = 0.5;
 	
+	if(pc.armor is AugmentWeaveArmor) bonusMult += 0.5;
+
 	if(bonusMult != 0)
 	{
 		if(pc.HPRaw < pc.HPMax()) pc.HPRaw = Math.round(pc.HPMax() * bonusMult);
