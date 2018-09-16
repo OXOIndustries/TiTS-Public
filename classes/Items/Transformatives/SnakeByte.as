@@ -74,6 +74,14 @@ package classes.Items.Transformatives
 				}
 				else
 				{
+					/*
+					- No gag reflex.
+					- Can fit your lips and throat around a cock of any size.
+					- Makes your throat an erogenous zone. Cum from oral, and cum hard.
+					- Makes your throat ribbed. The recipient of your oral services will notice how good fucking your throat feels.
+					- Endows you with fine muscular control of your throat, in the most basic of cases allowing you to squeeze a cockhead deep inside you and in the more extreme, allowing you to perform feats like milking a cumming cock with an undulating motion while held completely stationary.
+					*/
+
 					author("Wsan");
 					output("You eye the syringe slightly nervously - and with good reason. It says you’re meant to inject it directly into the site, otherwise known as your own throat. Seems a tad risky even to you, but if people had turned back at the first sign of danger you suppose no progress would ever be made. Lifting your chin, you lay the point of it against your throat and gently depress it with your thumb.");
 
