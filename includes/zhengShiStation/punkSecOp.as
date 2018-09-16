@@ -71,6 +71,7 @@ public function encounterPunkSecOp():Boolean
 	CombatManager.victoryScene(defeatASecop);
 	CombatManager.lossScene(loseToPunkSecOP);
 	CombatManager.displayLocation("PUNK SECOP");
+	CombatManager.victoryCondition(CombatManager.SPECIFIC_TARGET_DEFEATED, tEnemy);
 	clearMenu();
 	addButton(0,"Next",CombatManager.beginCombat);
 	return true;
@@ -87,22 +88,20 @@ public function loseToPunkSecOP():void
 	output("\n\nThere is a click, and a snap of static blasts your retinas. You mentally recoil as a high-pitched whine slaps your eardrums, growing ever louder and more disorienting. Dizzy, you vaguely feel your mouth fall open as your mind decouples with your body.");
 	output("\n\nYou are the static. The whine is gone. Gentle, soothing fuzz is everything and nothing.");
 	//Might swap the below for certain scenes that are less immersive and more programmy
-	if(9999 == 9999)
-	{
-		output("\n\nWhen the visor’s perfectly-rendered, three dimensional programming resolves into clarity, you’re right there with it - a little foggy-minded perhaps. You aren’t sure how you got here, how you came to be in this scenario, but <i>it is too real to reject as anything but your true and natural life</i>.");
-		processTime(1);
-		clearMenu();
-		if(rand(2) == 0) addButton(0,"Next",slutSlutLossScene);
-		else addButton(0,"Next",wallSlutPunkSecOpEnd);
-	}
-	//More mindfucky variant:
+	output("\n\nWhen the visor’s perfectly-rendered, three dimensional programming resolves into clarity, you’re right there with it - a little foggy-minded perhaps. You aren’t sure how you got here, how you came to be in this scenario, but <i>it is too real to reject as anything but your true and natural life</i>.");
+	processTime(1);
+	clearMenu();
+	if(rand(3) == 0) addButton(0,"Next",wsanTaurServicingLoss);
+	else if(rand(2) == 0) addButton(0,"Next",slutSlutLossScene);
+	else addButton(0,"Next",wallSlutPunkSecOpEnd);
+	/*More mindfucky variant:
 	else
 	{
 		output("\n\nWhen the visor’s perfectly-rendered, three dimensional programming resolves into clarity, it does so with absolute authority. Your attention is dominated utterly by the imagery and audio presented to you. The raw <i>resolution</i> beaming into your brain feels like it occupies the entire front half of your brain. Meanwhile, the back half is buzzing with a vague sense of pleasure... and arousal.");
 		processTime(1);
 		clearMenu();
 		//addButton(0,"Next",);
-	}
+	}*/
 }
 
 //Wall Slut
@@ -231,6 +230,7 @@ public function wallSlutEpilogue():void
 	output(". You open your mouth on instinct, but there’s no dicks there this time - just a laughing kaithrit and the slow tingle of your brain untangling itself.");
 	output("\n\nTwirling a pair of antigrav cuffs around one finger, the security operative turns away. <i>“Keep your nose out of where it doesn’t belong.”</i> [enemy.HeShe]’s entirely too amused to deliver it seriously. <i>“Freelancers don’t belong around the special project. Really. But if you make a thing out of this, I’ll make sure you belong <i>to me</i>. Got it?”</i> [enemy.HeShe] looks back over [enemy.hisHer] shoulder, enjoying your flushed state. <i>“Or keep coming back, I guess. I could use a slave like you.”</i>");
 	output("\n\n");
+	moveToElevatorAdjustment();
 	CombatManager.genericLoss();
 }
 
@@ -381,6 +381,7 @@ public function pussySlutEpigloe():void
 	output("\n\nTwirling a pair of antigrav cuffs around one finger, the security operative turns away. <i>“Keep your nose out of where it doesn’t belong.”</i> [enemy.HeShe]’s entirely too amused to deliver it seriously. <i>“Freelancers don’t belong around the special project. Really. But if you make a thing out of this, I’ll make sure you belong <i>to me</i>. Got it?”</i> [enemy.HeShe] looks back over [enemy.hisHer] shoulder, enjoying your flushed state. <i>“Or keep coming back, I guess. I could use a slave like you.”</i>");
 	processTime(2);
 	output("\n\n");
+	moveToElevatorAdjustment();
 	CombatManager.genericLoss();
 }
 
@@ -388,25 +389,29 @@ public function pussySlutEpigloe():void
 public function defeatASecop():void
 {
 	//HP
-	if(enemy.HP() <= 1) output("\n\nFalling to the ground with a whine and a burst of sparks, the kaithrit security operative barely catches [enemy.himHer]self on [enemy.hisHer] hands and knees. [enemy.HisHer] arms wobble for a second before [enemy.heShe] pivots to fall heavily on [enemy.hisHer] [enemy.butt]. <i>“Fine, fine. I guess you </i>do<i> belong up here. Just... don’t fuck me up too bad, alright? If you try and off me, every other Cyber Punk on station’ll be swarming over you worse than Rat’s Raiders on a corporate freighter.”</i> [enemy.HeShe] jabs sharply at the antenna above [enemy.hisHer] ear, panting heavily but otherwise lacking any life threatening injuries. <i>“If the apology isn’t good enough for you, there’s other ways I can make this up to you with my tongue. Just... no more weapons, okay?”</i>");
+	if(enemy.HP() <= 1) output("Falling to the ground with a whine and a burst of sparks, the kaithrit security operative barely catches [enemy.himHer]self on [enemy.hisHer] hands and knees. [enemy.HisHer] arms wobble for a second before [enemy.heShe] pivots to fall heavily on [enemy.hisHer] [enemy.butt]. <i>“Fine, fine. I guess you </i>do<i> belong up here. Just... don’t fuck me up too bad, alright? If you try and off me, every other Cyber Punk on station’ll be swarming over you worse than Rat’s Raiders on a corporate freighter.”</i> [enemy.HeShe] jabs sharply at the antenna above [enemy.hisHer] ear, panting heavily but otherwise lacking any life threatening injuries. <i>“If the apology isn’t good enough for you, there’s other ways I can make this up to you with my tongue. Just... no more weapons, okay?”</i>");
 	//Lust
 	else output("With a cry of all-consuming lust, the kaithrit security operative falls heavily on [enemy.hisHer] knees. The metal coils of [enemy.hisHer] suit part as if by magic to reveal the fullness of [enemy.hisHer] " + (enemy.hasCock() ? "gleaming, 13-inch robotic cock":"absolutely drenched alien cunt and needy little clit") + ". <i>“Ffffffffuck! You’re so hot!”</i> [enemy.HeShe] " + (enemy.hasCock() ? "wraps both hands around the metallic behemoth and pumps hard.":"thrusts three fingers deeply into her hungry passage, the other palm grinding hard just above.") + " <i>“I don’t even care if you belong up here! You belong fucking me!”</i> The mewling feline’s ears fold back as [enemy.heShe] looks up at you. <i>“Please! I need you!”</i>");
 	output("\n\n");
 	clearMenu();
-	if(pc.isTaur()) addDisabledButton(0,"Fuck Her","Fuck Her","Your ‘taur frame prevents this.");
-	else if(pc.hasCock())
-	{
-		if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(0,"Fuck Her",penisRouter,[fuckTheSecopGirl,enemy.vaginalCapacity(0),false,0],"Fuck Her","The big-titty cyber-kitty has plenty of augments. You could take her for a spin, really test drive her sensitive bits.");
-		else addDisabledButton(0,"Fuck Her","Fuck Her","This cat may have a special kind of pussy, but even it can’t handle your girth. You’d slag her system!");
-	}
-	else addDisabledButton(0,"Fuck Her","Fuck Her","You’ll need a penis to fuck that robo-pussy. You doubt she has the means or the inclination to surgically attach one to you.");
-
 	//Get Licked - Either
-	if(pc.hasVagina()) addButton(1,"Get Licked",vaginaRouter,[getLickedBySecop,0,0,0,false],"Get Licked","Force the kitty-[enemy.boyGirl] to apologize with [enemy.hisHer] tongue.");
-	else addDisabledButton(1,"Get Licked","Get Licked","You need a vagina for this.");
+	if(pc.hasVagina()) addButton(0,"Get Licked",vaginaRouter,[getLickedBySecop,0,0,0,false],"Get Licked","Force the kitty-[enemy.boyGirl] to apologize with [enemy.hisHer] tongue.");
+	else addDisabledButton(0,"Get Licked","Get Licked","You need a vagina for this.");
 	//Facefuck - Either
-	if(pc.hasCock()) addButton(2,"Facefuck",penisRouter,[faceFuckDatPussy,9998,false,0],"Facefuck","Put this mouthy Cyber Punk kaithrit to work on your dick.");
-	else addDisabledButton(2,"Facefuck","Facefuck","You need a penis for this.");
+	if(pc.hasCock()) addButton(1,"Facefuck",penisRouter,[faceFuckDatPussy,9998,false,0],"Facefuck","Put this mouthy Cyber Punk kaithrit to work on your dick.");
+	else addDisabledButton(1,"Facefuck","Facefuck","You need a penis for this.");
+
+	if(enemy.hasVagina())
+	{
+		if(pc.isTaur()) addDisabledButton(3,"Fuck Her","Fuck Her","Your ‘taur frame prevents this.");
+		else if(pc.hasCock())
+		{
+			output(" <b>CAPACITY:</b>" +enemy.vaginalCapacity(0))
+			if(pc.cockThatFits(enemy.vaginalCapacity(0)) >= 0) addButton(3,"Fuck Her",penisRouter,[fuckTheSecopGirl,enemy.vaginalCapacity(0),false,0],"Fuck Her","The big-titty cyber-kitty has plenty of augments. You could take her for a spin, really test drive her sensitive bits.");
+			else addDisabledButton(3,"Fuck Her","Fuck Her","This cat may have a special kind of pussy, but even it can’t handle your girth. You’d slag her system!");
+		}
+		else addDisabledButton(3,"Fuck Her","Fuck Her","You’ll need a penis to fuck that robo-pussy. You doubt she has the means or the inclination to surgically attach one to you.");
+	}
 
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
@@ -626,7 +631,7 @@ public function drinkDatCatMilk(x:int):void
 	// Merge
 	output("\n\n<i>“Oh, good. Although, there’s an idea for the future...”</i> she simpers, falling down just a bit more as she resumes her previous pace... An agonizingly slow pace leaving you yearning. Her body wants to pull you deeper, but her mind is stubbornly resisting your cock! When her breathtaking boobs leak above your face... <b>That’s it!</b>");
 	output("\n\nWith a surge of energy, you reach up and pull her down, taking her intoxicating tit in mouth again with a plan in mind. <i>“There, see? Now that we’ve worked out where you <i>really</i> belong, let’s urrgkk-!!”</i>");
-	output("\n\nBefore the presumptuous kitten can finish her train of thought, you derail it. You about headbutt her with the speed of your kiss, forcing her own milk upon her. Taken completely by surprise, she ends up hooked on her own supply; the shock of it all smashes her self-control to atoms, and your cock glides all the way through her confused cunt, [pc.cockHeadNounSimple " + x + "] battering against her womb in the most halting feeling of pleasure you’ve had since this started!");
+	output("\n\nBefore the presumptuous kitten can finish her train of thought, you derail it. You about headbutt her with the speed of your kiss, forcing her own milk upon her. Taken completely by surprise, she ends up hooked on her own supply; the shock of it all smashes her self-control to atoms, and your cock glides all the way through her confused cunt, [pc.cockHeadNoun " + x + "] battering against her womb in the most halting feeling of pleasure you’ve had since this started!");
 	output("\n\nThe kaithrit SecOp screams in pleasure, feebly grappling with her jostling tits. Hyperventilating, she slumps onto your chest" + (pc.biggestTitSize() >= 1 ? ", docking with your [pc.breasts] between wild molestations":"") + ". <i>“Oohhhh, you cheeky- little...”</i> A shrill, cat-like whimper erases her cool, collected facade; her voice fades into sibilant, body rumbling purrs.");
 	output("\n\nNow in control of this sexcapade, you roll over on top of the insensate kaithrit, mauling her high quality bosom and spreading her legs nice and wide, busily thrusting her into the ground with every gyration of your [pc.hips].");
 	// PC bimbo
@@ -647,7 +652,13 @@ public function drinkDatCatMilk(x:int):void
 	output("\n\nYour savage thrusts are short, rapid, then long and powerful; your valiant [pc.cockType " + x + "] phallus enters and exits with lewder and louder smacks of sweat and femjuice. Peaking, your arousal assaults the edges of your consciousness, and knowing she’s right there with you in experiencing this groundbreaking success of an orgasm, you hug the cyber kitty as tight as you can, her tails wrapping around your waist");
 	if(pc.hasVagina()) output(" as you feel [pc.eachVagina] " + (!pc.isSquirter() ? "dribble lightly":"squirt hard"));
 	output(".");
-	if(pc.hasKnot(x)) output("\n\nJust before climax, you slam your [pc.knot" + (y >= 0 && pc.hasKnot(y) ? "s":" "+x+" ") + "] into the kaithrit pirate, sealing her pussy" + (y >= 0 ? " and ass simultaneously":"") + ". The thought that your liquid virility isn’t going anywhere else is the last satisfying thought you need to cross the orgasmic line.");
+	if(pc.hasKnot(x)) 
+	{
+		output("\n\nJust before climax, you slam your [pc.knot");
+		if(y >= 0 && pc.hasKnot(y)) output("s");
+		else output(" " + x + " ");
+		output("] into the kaithrit pirate, sealing her pussy" + (y >= 0 ? " and ass simultaneously":"") + ". The thought that your liquid virility isn’t going anywhere else is the last satisfying thought you need to cross the orgasmic line.");
+	}
 	else output("\n\nAs your [pc.balls] prepare the first surge of cum, you slam your hips into the kaithrit pirate’s, a feral roar preceding your effortless ejaculation.");
 	// PC low cum
 	if(pc.cumQ() < 1000) output("\n\nHer synth-pussy makes it all too easy to achieve release, and with closed eyes you are intimately aware of the pleasant travel each rope of spurting [pc.cum] makes up from your [pc.balls] through your programmatically massaged urethra... right into the pirate’s waiting womb" + (y >= 0 ? " and colon":"") + ". You gently rock against her body, your [pc.cocks] flexing and swelling with salty deluge." + (pc.cockTotal() > 3 ? " [pc.CumVisc] [pc.cumNoun] sprays from your other dicks, warming your bellies with a helping of of [pc.cumFlavor]-flavored seed.":""));
@@ -1134,4 +1145,209 @@ public function faceFuckDatPussy(x:int):void
 	enemy.loadInMouth(pc);
 	output("\n\n");
 	CombatManager.genericVictory();
+}
+
+//Taur servicing
+//By Wsan
+public function wsanTaurServicingLoss():void
+{
+	clearOutput();
+	author("Wsan");
+	showName("'TAUR\nSERVICE");
+	output("Chaos reigns. Jostled from every side as people continually brush past you, knock into you, and almost send you spinning like a top, the din of metal clashing thunders in your ears. A rough hand squeezes your arm and turns you around to gaze into the displeased visage of a gruff-looking older ausar man wearing a chef’s hat.");
+	output("\n\n<i>“What are you doing just standing around?! Get this out to table seven!”</i> he barks in your face, practically tossing clinking plates into your arms.");
+	output("\n\nCompared to the noise of the kitchen, the setting out here is positively peaceful. Pleasantly modulated lights provide a dim ambience, your trip taking you past various tables and their servers in various states of undress. You wind up in the outdoor area, walking down an idyllic paved pathway flanked by various beautiful forms of greenery, ferns and bushes alike. Lifting a particular large frond leaf out of the way, you finally find your destination - four tauric women sitting at a table, sipping their drinks and chatting next to the pond.");
+	output("\n\nYou give them a friendly smile of greeting - the extent of your allowed ‘initiative actions’ as dictated by policy - and begin depositing their meals in front of them, listening to the girls talk.");
+
+	//Coco - small dick, huge balls. ‘Coke bottle’
+	//Prue - tiny girl, horsecock
+	//Kay - dogcock, likes to knot boys
+	//Jenny - friendly, no cock
+	if(pc.isTaur()) output("\n\n<i>“Oh, wow,”</i> the blonde one says, smiling at you. <i>“I didn’t know they had ‘taur staff here. Do you think they sent [pc.himHer] out here just for us?”</i>");
+	else output("\n\n<i>“Oh, wow,”</i> the blonde one says, smiling at you. <i>“They sent us a real cutie, huh?”</i>");
+	output("\n\n<i>“Oh, my God. Do you think they’ll let us stand up to breed [pc.himHer]?”</i> the woman with black hair murmurs, eyes roving over you. <i>“Can you do that here?”</i>");
+	output("\n\n<i>“Isn’t the point to let them service you while you eat? I didn’t see any of the other tables doing it...”</i> the brown-haired one says hesitantly, looking around the table.");
+
+	if(!pc.hasVagina()) output("\n\n<i>“You can’t breed a boy, Kay,”</i>");
+	else output("\n\n<i>“She’ll be on contraceptives, Kay,”</i>");
+	output(" the shortest girl sighs, rolling her eyes." + (!pc.hasVagina() ? " <i>“Even if you try really hard.”</i>":" <i>“All of them are.”</i>"));
+
+	output("\n\n<i>“Y’never know,”</i> the black-haired leithan girl presumably called Kay replies, grinning. <i>“I know I said I wasn’t that hungry when we came out, but now I’m all </i>kinds<i> of hungry. [pc.heShe] looks delicious.”</i>");
+	output("\n\n<i>“Well, the rest of us are starving for actual food,”</i> the short girl says, amusedly putting her fork into the steak you brought her, <i>“so the least you could do is wait a bit. Get the actual experience before you get us kicked out.”</i>");
+	output("\n\n<i>“Fiiine,”</i> Kay says, sighing and leaning back in dramatic defeat before sulking over the table. <i>“You’re never any fun, Prue.”</i>");
+	output("\n\n<i>“Wach yo’ mouf,”</i> the short girl replies through a mouthful of steak while she jabs a fork at Kay. She swallows before continuing. <i>“I share all the boys that come by the apartment and that’s all you’re getting outta me.”</i>");
+	output("\n\n<i>“That does count as fun,”</i> the blonde agrees, nodding. She beams at you, practically glowing with radiance. <i>“Hi, I’m Jenny. Come sit here!”</i>");
+	output("\n\nShe pats the ground next to her and leans against you with the ease of a social butterfly once you’ve settled there, pointing at each of her friends. <i>“Kay’s a real type A kind of girl, but she’s the best. And Prue is her roommate!”</i> She turns to you and whispers, eyes wide. <i>“Isn’t she adorable?”</i>");
+	output("\n\n<i>“I can hear you, Jenny,”</i> Prue sighs in exasperation, ears flicking atop her head. <i>“Stop telling people I’m cute.”</i>");
+	output("\n\n<i>“Awww, but I can’t help it!”</i> Jenny whines before resuming her little tour, seemingly enjoying describing her friends to you. <i>“Then the quiet one with brown hair next to Prue is Coco. She’s a little shy, but she’s my best friend. We all met in highschool! So, that’s a start,”</i> she says, putting a hand on your shoulder with a grin. <i>“But you already know how to get better acquainted with us, right?”</i>");
+	output("\n\nYou do. Kay snorts with laughter as Jenny turns her body to the side, lifting her skirt with her tail and presenting her immaculate behind. You can see a slick, juicy black pussy between her hindlegs, gleaming with wetness.");
+	processTime(10);
+	pc.lust(3);
+	clearMenu();
+	addButton(0,"Next",wsanTaurServicingLoss2);
+}
+
+public function wsanTaurServicingLoss2():void
+{
+	clearOutput();
+	showName("'TAUR\nSERVICE");
+	author("Wsan");
+	output("<i>“Classic Jenny. Always with the silver tongue,”</i> Kay says, shaking her head. <i>“Get the boys </i>and<i> girls eating out of your hand then into your bed.”</i>");
+	output("\n\n<i>“It’s nice to be nice!”</i> Jenny says, picking up her fork and eating while you bring yourself lower to the ground to start serving her. <i>“I like it.”</i>");
+	output("\n\n<i>“Mmhm,”</i> Coco nods, already a quarter done with her mountain of food. You notice her watching Jenny’s face from the corner of her eye as you dip your tongue into leithan marepussy, savoring the taste. The genial blonde girl lets out an unconscious sigh of satisfaction while she eats and Coco quickly focuses back on her food, blushing a little.");
+	output("\n\nYou adjust yourself so that you’re lying sideways with your face parked right in front of Jenny’s winking, scented muff, her needy pheromones permeating your immediate surroundings. They fill you with warmth, the need to serve and service, and you couldn’t be more happy to do so. She gasps when you press into her, squishing your nose between her curvy buttcheeks and shoving your tongue right inside her squeezing cunt.");
+	output("\n\n<i>“Jeez! [pc.heShe]’s not shy about making n-new friends, huh?”</i> she remarks to the table.");
+	output("\n\n<i>“Obviously not,”</i> Prue murmurs, watching you from over the top of her glass as she takes a sip.");
+	output("\n\nDetermined to show her a good time, you enjoy a feast of your own, sucking on her thick, rubbery lips and running your tongue over her gumball-sized clit at the bottom of her hot pink insides. The sheer restraint she displays is impressive, but cracks in the facade begin to show after a couple of minutes of hard work, the leithan girl leaning on the table hard for support.");
+	output("\n\n<i>“D-does it feel good?”</i> Coco asks her timidly.");
+	output("\n\n<i>“U-uh, [pc.heShe]’s really good,”</i> Jenny admits, breathing hard through her nose. <i>“Jeeez!”</i>");
+	output("\n\n<i>“Your nips are tenting your top,”</i> Kay points out with a lewd smirk. <i>“That’s cute.”</i>");
+	output("\n\n<i>“Hold up, I-I think I’m gonna-”</i> Jenny groans, wincing. <i>“Uh- uuuhhhnnn!”</i>");
+	output("\n\nWith a loud, sensual moan, she cums hard in front of all her friends, her ass shaking and flexing with the effort. You’re squeezed between her cheeks and tongue-trapped in her tight, spasming marecunt, her soft walls enveloping you as femcum splatters your face and drips down your chin.");
+	output("\n\n<i>“Well, not like she tells anyone upfront...”</i> Kay says, idly watching the spectacle.");
+	output("\n\n<i>“But Jenny’s a huge squirter,”</i> Prue finishes, nudging Coco. <i>“Wanna go next with me?”</i>");
+	output("\n\nCoco breathes hard, unabashedly watching Jenny struggle through the orgasm washing over her. You squeeze the cumming leithan’s ass with your hands to make her sing a little more forcefully, giving her some long bottom-to-top licks to finish her off while she squirts across your tongue.");
+	output("\n\n<i>“Coco,”</i> Prue hisses, jabbing her with an elbow a little more forcefully this time. The brunette starts, jumping in surprise as Jenny lets out a last moan of bliss and you lift yourself from her sated pussy, leaving her to slump over her plate of food sweaty and panting.");
+	output("\n\n<i>“Oh! I- what did you say?”</i> Coco asks Prue, confused.");
+	output("\n\n<i>“I asked if you wanted to go next,”</i> Prue says, wiggling a finger at you. <i>“C’mere.”</i>");
+	processTime(10);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",wsanTaurServicingLoss3);
+}
+
+public function wsanTaurServicingLoss3():void
+{
+	clearOutput();
+	showName("'TAUR\nSERVICE");
+	author("Wsan");
+	output("Prue gets up from the table and as you circle around to sit between them, you find they’re both packing a little something extra. In Coco’s situation the term ‘little’ seems appropriate, her horsecock only six inches long despite being as thick as a soda can, but her balls are utterly enormous. She twitches nervously as you stare in open disbelief, averting her gaze while you check out her massive nads. Each one of them is the size of a melon, hanging low in her sack, their weight readily evident just from an eye test.");
+	output("\n\n<i>“We call her ‘coke bottle’ ‘cuz if you shake her up she’ll make a real mess,”</i> Kay helpfully informs you.");
+	output("\n\n<i>“Kay!”</i> Coco says, embarrassed, while the black-haired woman laughs good-naturedly.");
+	output("\n\n<i>“Relax and have some fun,”</i> Kay says, rubbing Coco’s head. You don’t hear what she says next because you’re staring in shock at Prue’s three-foot equine cock, scarcely believing your eyes.");
+	output("\n\n<i>“Cat got your tongue?”</i> Prue says, smirking. <i>“Don’t worry, I’m actually really gentle. Kay’s the rough one.”</i>");
+	output("\n\n<i>“The boys never complain,”</i> Kay says, shrugging.");
+	output("\n\n<i>“Yeah, but you could at least go a little easier on them when it’s </i>three<i> in the morning and your roommate is trying to sleep!”</i> Prue huffs. <i>“Listening to a kaithrit guy mewling through the walls gets old.”</i>");
+	output("\n\nYou ignore the girls’ friendly bickering, seeing an opportunity to really light up their night. Sliding your " + pc.mf("pants","skirt") + " down, you lie on your stomach in front of Coco, who eyes you nervously while Prue gets into position above you. You rub the stubby horsecock Coco presents you with, earning a quiet sigh of appreciation as it pumps with blood. She might be nervous, but she’s all too ready for this.");
+	output("\n\nCraning your head forward, you take her between your [pc.lips] and give her a long, hard suck to start her off. Her immediate reaction is to let out a cute grunt and learn forward, her underside quivering. She’s <i>sensitive</i>. You let your tongue play all along her length, slathering her entire cock with saliva before you take it down your throat and kiss the skin of her underside.");
+	output("\n\n<i>“That looks nice,”</i> Prue suddenly says from above, sitting down on top of you. With her weight spread evenly across her legs, the ‘tiny’ girl’s weight is hardly noticeable at all. <i>“Don’t skip me.”</i>");
+	output("\n\n<i>“P-Prue,”</i> Coco moans, and you can spy her fingers white-knuckled underneath the table pressing upwards into it. She doesn’t know how to deal with how good it feels, poor girl. <i>“Uunnh...”</i>");
+	output("\n\n<i>“See? Feels good to have a cutie’s mouth around your dick,”</i> Prue murmurs, shuffling forward and aligning herself. You can feel her big, blunt cockhead pressing at your [pc.vagOrAss], signalling your impending penetration. With a cock in your mouth and another pressing into you from behind, these two are about to make you airtight.");
+	if(pc.hasVagina()) 
+	{
+		output(" <i>“I’ll leave [pc.hisHer] ass for you, Kay.”</i>");
+		output("\n\n<i>“Daaaamn straight,”</i> Kay croons, picking meat off Prue’s plate. <i>“Can’t wait.”</i>");
+	}
+	output("\n\nPrue slides her massive slab of erect horsemeat into your fuckhole, distending it around her flare while you moan into Coco’s cock. She might be a small girl, but there’s a <i>lot</i> of pent-up power in those hips of hers. Soon enough she’s got you spread around her tree trunk of a dick, stretching you out both body and mind, leaving you feeling like you lack the mental capacity to even handle her. Luckily for you, her inexorable advance of little thrusts and cute moans creates enough back and forward motion that Coco doesn’t even notice your mindblown state, instead letting breathy sighs and pants escape her lips as Prue slides herself home.");
+	output("\n\n<i>“Gooood, you’re tight,”</i> Prue grunts, lifting her hind half up a little to withdraw before gently sliding herself back home.");
+	output("\n\n<i>“Isn’t everyone tight for you?”</i> Kay asks curiously, popping chips into her mouth.");
+	output("\n\n<i>“Yeah, but... ugh. [pc.heShe]’s really something else.”</i>");
+	output("\n\n<i>“P-Prue,”</i> Coco moans, knitting her hands together. <i>“I’m going to... to cum really soon...”</i>");
+	output("\n\n<i>“Mmm, that’s fine, I’ve still got time,”</i> Prue mutters, starting to fuck you a little more meaningfully. <i>“Damn, that’s good.”</i>");
+	processTime(10);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",wsanTaurServicingLoss4);
+}
+
+public function wsanTaurServicingLoss4():void
+{
+	clearOutput();
+	showName("'TAUR\nSERVICE");
+	author("Wsan");
+	output("You have what feels like two feet of flared horsecock inside your " + (pc.hasVagina() ? "stretched-out cunt":"taut asshole") + " but fuck if it doesn’t feel amazing to be servicing two beautiful girls at once. Thinking back on it, this is exactly why you took the job... the chance you might end up like this, erotically speared on two thick cocks as they pump inside your holes and threaten to fill you with thick, virile sperm. You begin to massage Coco’s enormous balls, rubbing her while she lets out a deep moan of satisfaction. You can actually feel them filling, slowly expanding with liquid weight, growing warmer in your hands by the second.");
+	output("\n\n<i>“Hhh-huh, huh, hhhhnh,”</i> Coco pants, almost whining in need. She’s so <i>close</i>, you can feel her throbbing in your mouth, she just needs a little push over the edge...");
+	output("\n\n<i>“Put a finger in her pussy,”</i> Jenny whispers in your ear. <i>“She looooves it.”</i>");
+	output("\n\n<i>“Jenny?”</i> Coco groans. <i>“What... what are you-”</i>");
+	output("\n\nShe suddenly stops, her back half tensing gradually until her entire body is rigid, then begins to shiver and shake.");
+	output("\n\n<i>“Oh! OH! OH, GOD!”</i> Coco screams, opening her mouth wide and glancing breathlessly at Jenny. Her best friend watches her cum her brains out, elbow on the table and chin in her palm with a sexy smile on her face. <i>“FUCK! FUCK! FUCK! GOD!”</i>");
+	output("\n\nHer cockhead instantly balloons to three times its previous size in your throat and a <i>waterfall</i> of slick equine cum surges from her widening cockhole. So fierce you can’t even put your tongue in front of the flow, all you can do is just open your throat for her use and let her cum herself to pieces. She hardly seems to be breathing at all, but you don’t have time to worry. Seeing her friend cumming so hard, a little bit of animal instinct ignites in Prue, the formerly self-titled ‘gentle lover’ suddenly bringing her modest hips down into you with significantly more force.");
+	output("\n\nYou clutch Coco’s swollen sack with one hand and her pussy with the other and hang on for dear life as a stream of extremely thick, creamy spunk pours down your throat unendingly. Given the very blatant visual progress of her ball size, you’re going to be sucking her down for a <i>long</i> time. Time that Prue clearly intends to use to get herself off, her voice growing louder above you with every passing second. She’s rutting your fuckhole at full force now, slamming herself into your squeezing-tight {cunt/ring} with reckless abandon and moaning as loud as she can, indulging herself in animal instinct.");
+	output("\n\nFace to face with a companion mired so deeply in the pits of debased pleasure, it doesn’t take her long to bust a massive nut inside you. Angling herself down and snorting savagely, she thrusts herself balls-deep inside you and squeezes them against your opening, all but forcefully emptying herself out into your " + (pc.hasVagina() ? "defenseless womb":"guts") + ". Gone is the cute, endearing shorty that was sitting at the table. In her place is a wild beast, stamping her hooves and grunting in release.");
+	output("\n\n<i>“Poor Prue,”</i> Kay murmurs affectionately, patting her unaware friend’s head. <i>“She doesn’t even know what she’s doing right now.”</i>");
+	output("\n\nYou can hardly hear her talking, so enamored are you with the seed splattering into your stomach and lining your insides. Your stomach has long since started to swell with the sheer mass of her liquid depositions, like you’re nothing more than a condom to be masturbated with and discarded, filled with wasted semen. Prue getting off just further exacerbates the issue, her sheer size meriting an orgasm proportional to that of a breeding stallion.");
+	output("\n\nSomewhere in amongst it all, you cum yourself, your");
+	if(pc.isHerm()) output(" stiff cock spewing jizz all over the ground while your crammed-full pussy milks Prue’s iron-hard dick even harder");
+	else if(pc.hasCock()) output(" cock spurting jizz all over the ground, leaving a puddle of your own below you");
+	else if(pc.hasVagina()) output(" your crammed-full pussy milking Prue for all she’s worth in the middle of her orgasm");
+	else output(" your abused asshole milking Prue for all she’s worth in the middle of her orgasm");
+	output(". Your gurgles and suckling moans go unheard over the two girls’ voices.");
+
+	output("\n\nPrue’s the first to give out, slumping unconscious on top of you before Kay and Jenny helpfully lift her off your prone form. That just leaves you to swallow down every last drop Coco has to give you while her friends watch, smirking and occasionally picking at their plates. Their knowing grins drive you crazy and Coco crazier, her embarrassment utterly overridden by the fetishism of having them observe her ruthless seeding of your stomach.");
+	output("\n\nBy the time she finishes cumming and falls down exhausted, you look like you’ve swallowed a beach ball." + (pc.biggestTitSize() >= 1 ? " Your breasts sit comfortably atop your cum-inflated stomach, perkier than ever thanks to the support of stretched-taut skin beneath them.":" Your skin is stretched taut, just barely managing to contain the virile liquid inside you.") + " Jenny looks at Kay and winks.");
+	output("\n\n<i>“Guess it’s your turn, then,”</i> she says.");
+	output("\n\n<i>“God, </i>finally<i>,”</i> Kay bursts out while Jenny giggles. <i>“Thought I was gonna be here all night.”</i>");
+	output("\n\n<i>“Coco’s like that sometimes,”</i> Jenny replies, looking over at her KOed friend fondly and twirling her hair. <i>“I think it’s cute.”</i>");
+	output("\n\n<i>“Yeah, well... hmm. Are you done eating?”</i> Kay asks her.");
+	output("\n\n<i>“Huh? Yeah, I guess. Looks like our friend can’t swallow another bite either,”</i> Jenny says, winking at you.");
+	output("\n\n<i>“Well, that’s too bad, ‘cuz I’m gonna have [pc.himHer] over the table until I make ‘em talk,”</i> Kay grunts, pulling you over to the table and bending you over.");
+	output("\n\n<i>“Kay, don’t be rude,”</i> Jenny reprimands her.");
+	output("\n\n<i>“It’s not </i>rude<i>,”</i> Kay says, poking her tongue out at her friend. <i>“I’m just gonna mark my territory.”</i>");
+	output("\n\n<i>“Oh boy, here we go,”</i> Prue says wearily, recovering next to Jenny. <i>“All aboard the Kay-train.”</i>");
+	output("\n\n<i>“Gonna fill you up from the other end now,”</i> Kay says, grinning wolfishly. <i>“Maybe it’ll all come out your mouth.”</i>");
+	processTime(10);
+	pc.lust(10);
+	clearMenu();
+	addButton(0,"Next",wsanTaurServicingLoss5);
+}
+
+public function wsanTaurServicingLoss5():void
+{
+	clearOutput();
+	showName("'TAUR\nSERVICE");
+	author("Wsan");
+	output("When the other two girls don’t react to that, you realize they’re in almost as deep as you are. They <i>want</i> to see her violate you, to rut you until seed comes spilling from back between your lips. She’s a strong, athletic stud, and they intend to enjoy watching her put on a show.");
+	output("\n\n<i>“Hope you like dogcock,”</i> she murmurs to you privately. <i>“‘Cuz I got a huge one and a fat fucking knot with your name on it, cutie.”</i>");
+	output("\n\nPolicy is to play up the reaction when you’re penetrated, but there’s no need. Three flushed faces watch you as your mouth hangs open and a deep, slutty moan of pleasure comes out, Kay’s tapered tip slides deep into your" + (!pc.hasVagina() ? " well-lubricated,":"") + " stretchy asshole, driving you forward before she catches you expertly with her middle set of legs. If Prue was a sledgehammer, Kay is a fucking piledriver. She’s on you like a thraggen in heat, holding you firm while she slams into your ass with ridiculous strength. You’d always knew ‘taurs had powerful hindlegs, but this is something else entirely...");
+	output("\n\n<i>“Kay was on the track team,”</i> Jenny says, smiling. <i>“Mostly to bang the athletics boys, though.”</i>");
+	output("\n\n<i>“And set the local records,”</i> Kay pants, grunting below her breath. <i>“But yeah, mostly for the boys." + (pc.mf("m","") == "m" ? " Like you, you sexy fucking whore.":"") + "”</i>");
+	output("\n\nYou’re ruthlessly banged out in front of the three girls, Coco having risen from her stupor to sit alongside the other two and watch in amazement while you grit your teeth in pleasure and subject yourself to Kay’s merciless riding technique. She’s an expert in the saddle, that’s for sure, no doubt owing to her past experience. You’re already about to cum and she shows no signs of being close or even slowing down at all, sweat running down her body. Your eyes flutter closed as you feel yourself approach the peak when, suddenly, she stops completely, her cock buried in your ass. Your eyes spring open in surprise.");
+	output("\n\n<i>“Say my name,”</i> Kay tells you quietly.");
+	output("\n\n<i>“Typical Kay,”</i> Prue says, sighing.");
+	output("\n\nYou’re <i>really</i> not meant to do that, but it’s that or she won’t fuck you. You know her type; she will absolutely not fuck you if you don’t submit, that’s for certain, and looking into the faces of her friends you can see they know too. It only takes a second for you to hang your head in surrender.");
+	output("\n\n<i>“Kay...”</i> you moan quietly.");
+	output("\n\n<i>“Thaaaat’s right,”</i> she sighs, sinking herself deeper. <i>“Don’t worry your little head, we’re not gonna </i>tell<i> anyone. We just wanted to make sure you knew you were my little fucking bitch. Now take it!”</i>");
+	output("\n\nShe weighs down on you like a ton of bricks, but fuck if she can’t make you cum like a champion.");
+	if(pc.isHerm()) output(" Your half-hard cock spurts all over the table, making a huge mess amidst their dinner plates while your well-used pussy sends Prue’s warm cum rolling down your shaking thighs with every flex");
+	else if(pc.hasCock()) output(" Your half-hard cock spurts all over the table, making a huge mess amidst their dinner plates that Jenny idly dips a finger into and puts on her tongue");
+	else if(pc.hasVagina()) output(" Your well-used pussy sends Prue’s warm cum rolling down your shaking thighs with every flex, eliciting an appreciative sigh from her");
+	else output(" Your asshole clenches down on her so tightly that for a moment you can feel her fucking heartbeat through her cock, matching your own and beating like a drum inside you");
+	output(". Kay snickers above you, taking pride in your obvious pleasure.");
+	output("\n\n<i>“Glad you’re enjoying your ride, slut,”</i> she grunts. <i>“Now take the knot!”</i>");
+	output("\n\nYou can’t help it. You scream in elation as she forces her enormous knot into your asshole, gaping you so wide you instinctively know you won’t be sitting down for weeks before she slips all the way in. You almost pass out when she begins to cum but manage by some miracle to stay standing, teetering on the edge of consciousness while she voids the contents of her hanging balls into your slick guts.");
+	output("\n\nOnce she’s finally finished with you and lets you slump to the table, the other girls are on you like hyenas. They take from you everything you have to give and more, stripping you out of your clothes and ravaging your body until your eyes are rolling in your head and you’re cumming nonstop while they blow loads into your mouth and ass, all over your face");
+	if(pc.hasHair()) output(" and in your hair");
+	output(", and Kay finishes up by slamming her knot" + (pc.hasVagina() ? " all the way up your sloppy cunt and ejaculating into your womb":" all the way into your mouth and adding to the pool of ejaculate in your tummy") + ". Dinner lies completely forgotten, forsaken in the search to satisfy another hunger altogether.");
+
+	output("\n\nIt’s not like the arrangement isn’t to your liking. Between the four centaur girls, you’re passed around and forced to cum from being penetrated top to bottom, Jenny’s marecunt rubbing across your face while you sink a fist into Prue’s asshole and stimulate her prostate from the inside. Then Coco’s mounting her best friend while she sucks Prue’s cock and you’re forced to watch from atop Kay’s cock, instructed to bounce on it and not stop until she cums inside you.");
+	output("\n\nWhen the night finally ends, it finds you lying on your back looking up at the starry night, coated from head to toe in centaur sperm. You are utterly sated and you’ve given these girls a night they’ll no doubt never forget, even in among their apparently hectic lifestyle. You don’t know that regular sex will ever satisfy you again after this. These weren’t girls... they were <i>demons</i>, beings of lust that exist to steal souls by way of carving them out of you with desire.");
+	output("\n\nThe last thing you see before your swimming vision goes black is Jenny, her flowing blonde hair messy as can be and fluttering in the cool breeze while she stands above you. She smiles down at your prone form and drops a credit chit on your chest. <i>“Keep the change, beautiful,”</i> she murmurs, blowing you a kiss. <i>“We’ll be back again.”</i>");
+	processTime(120);
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",wakeUpFromTaurStuff);
+}
+
+public function wakeUpFromTaurStuff():void
+{
+	clearOutput();
+	showName("\nALONE");
+	output("You’re outside the cargo elevator");
+	if(pc.isHerm() && pc.isSquirter()) output(" and drenched in your own mixed fluids");
+	else if(pc.hasCock()) output(" and covered in your own [pc.cum]");
+	else if(pc.isSquirter() && pc.hasVagina()) output(" and drenched in [pc.girlCum]");
+	else output(" and decidedly moist between the [pc.thighs]");
+	output(". You open your mouth on instinct, but there’s centaur for you to please - just an empty elevator and your shame.");
+	output("\n\n");
+	processTime(10);
+	moveToElevatorAdjustment();
+	CombatManager.genericLoss();
+}
+
+public function moveToElevatorAdjustment():void
+{
+	moveTo("ZSF G16");
 }

@@ -4,6 +4,7 @@ package classes.GameData
 	import classes.Characters.Celise;
 	import classes.Characters.Cockvine;
 	import classes.Characters.CommanderSchora;
+	import classes.Characters.CyberPunkSecOp;
 	import classes.Characters.GrayGoo;
 	import classes.Characters.DrCalnor;
 	import classes.Characters.Kane;
@@ -1422,7 +1423,11 @@ package classes.GameData
 		
 				applyDamage(damageRand(new TypeCollection( { kinetic: attacker.physique() / 2 + attacker.level } ), 15), attacker, target, "headbutt");
 
-				if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
+				if (target is CyberPunkSecOp)
+				{
+					output(" A resounding ‘CLANG’ fills the air. " + target.mf("He","She’s") + " packing a little extra metal in " + target.mf("his","her") + "noggin. You’ll have to try something else!");
+				}
+				else if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
 				{
 					if(target is PlayerCharacter) output("\n<b>You are stunned.</b>");
 					else output("\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " stunned.</b>");
@@ -2223,8 +2228,8 @@ package classes.GameData
 			attacker.createStatusEffect("Used Smuggled Stimulant", 3, 0, 0, 0, true, "", "", true, 0);
 			
 			if (attacker is PlayerCharacter) output("You inject yourself with a smuggled stimulant.");
-			else if (attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " each jam a small injector deep into their thighs, each stature visibly filling with energy!");
-			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " jams a small injector deep into " + attacker.getCombatPronoun("hisher") + " thigh, the stature visibly filling with energy!");
+			else if (attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " each jam a small injector deep into their thighs, visibly filling with energy!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " jams a small injector deep into " + attacker.getCombatPronoun("hisher") + " thigh, visibly filling with energy!");
 		}
 		
 		public static var BurstOfEnergy:SingleCombatAttack;

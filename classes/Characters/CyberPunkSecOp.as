@@ -1,6 +1,7 @@
 ﻿package classes.Characters
 {
 	import classes.Creature;
+	import classes.Characters.SlamwulfeDrone;
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
 	import classes.Items.Miscellaneous.EmptySlot;
@@ -48,20 +49,28 @@
 			//meleeWeapon.addFlag(DamageFlag.PENETRATING);
 			meleeWeapon.hasRandomProperties = true;
 
-			this.rangedWeapon = new SlutRay();
-			this.rangedWeapon.baseDamage.tease.damageValue = 1;
-			this.rangedWeapon.attackNoun = "beam of psychic, erotic energies";
+			this.rangedWeapon.longName = "shield-linked plasma rifle";
+			this.rangedWeapon.description = "a shield-linked plasma rifle";
+			this.rangedWeapon.attackVerb = "shoot";
+			this.rangedWeapon.attackNoun = "burning plasma";
 			this.rangedWeapon.hasRandomProperties = true;
+			this.rangedWeapon.baseDamage.burning.damageValue = 4;
+			this.rangedWeapon.baseDamage.addFlag(DamageFlag.ENERGY_WEAPON);
+			this.rangedWeapon.baseDamage.addFlag(DamageFlag.DRAINING);
+			this.rangedWeapon.addFlag(GLOBAL.ITEM_FLAG_ENERGY_WEAPON);
 			
 			this.armor = new StarViperSlutwear();
 			//this.armor.defense = 5;
 			//this.armor.hasRandomProperties = true;
 
+			baseHPResistances = new TypeCollection();
+			baseHPResistances.electric.damageValue = 25.0;
+
 			this.shield = new ReaperArmamentsMarkIIShield();
 			this.shield.shields = 200;
 			this.shield.hasRandomProperties = true;
 			
-			this.physiqueRaw = 25;
+			this.physiqueRaw = 35;
 			this.reflexesRaw = 40;
 			this.aimRaw = 45;
 			this.intelligenceRaw = 40;
@@ -73,7 +82,7 @@
 			this.level = 10;
 			this.XPRaw = normalXP();
 			this.credits = 0;
-			this.HPMod = 100;
+			this.HPMod = 50;
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
@@ -206,10 +215,10 @@
 			var lossLoot:Array = [];
 			
 			isUniqueInFight = true;
-			btnTargetText = "Slyveren";
-			sexualPreferences.setRandomPrefs(4,3);
-			sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, sexualPreferences.getRandomLikesFactor());
-			sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS, sexualPreferences.getRandomLikesFactor());
+			btnTargetText = "PunkSecOp";
+			sexualPreferences.setRandomPrefs(5,3);
+			//sexualPreferences.setPref(GLOBAL.SEXPREF_COCKS, sexualPreferences.getRandomLikesFactor());
+			//sexualPreferences.setPref(GLOBAL.SEXPREF_BALLS, sexualPreferences.getRandomLikesFactor());
 
 			this._isLoading = false;
 			kGAMECLASS.zhengShiSSTDChance(this);
@@ -265,37 +274,70 @@
 			if (target == null) return;
 
 			//Combat Abilities & AI:
+			if(this.hasStatusEffect("Blinded")) blindClear(target);
 			//Grins before attacking if the PC uses a stealth field. Sees right through it courtesy of the visor. (Effectively dispels the status)
-			if(target.hasStatusEffect("Stealth Field Generator")) stealthFieldImmune(target);
+			else if(target.hasStatusEffect("Stealth Field Generator")) stealthFieldImmune(target);
+
 			//HoT shield restore (33 energy)
-			if(this.shields() < this.shieldsMax()/2 && this.energy() >= 33 && !this.hasStatusEffect("Deflector Regeneration") && rand(3) <= 1) CombatAttacks.DeflectorRegenerationImpl(alliedCreatures, hostileCreatures, this, target);
+			if(this.shields() < this.shieldsMax()/2 && this.energy() >= 33 && !this.hasStatusEffect("Deflector Regeneration") && rand(3) <= 1)
+			{
+				CombatAttacks.DeflectorRegenerationImpl(alliedCreatures, hostileCreatures, this, target);
+				this.energy(-33);
+			}
 			//Energy regen:
 			else if(!hasStatusEffect("Used Smuggled Stimulant") && this.energy() < 33 && rand(3) <= 1) CombatAttacks.SmuggleStimulatImpl(alliedCreatures, hostileCreatures, this, target);
+			//Chance of wulfesummon
+			else if(!this.hasStatusEffect("Used Wulfe") && rand(6) == 0) summonASlamwulf(target);
+			else if(target.hasPerk("Attack Drone") && target.shields() > 0 && !target.hasStatusEffect("Porno Hacked Drone") && !target.accessory.hasFlag(GLOBAL.ITEM_FLAG_COMBAT_DRONE) && rand(3) == 0 && this.energy() >= 20) pornoDroneHack(target);
 			//High lust stuff:
 			else if(this.lust() >= 50 && !this.hasStatusEffect("LustModeEngaged")) transitionToLustFight(target);
 			else if(this.lust() >= 50)
 			{
 				//Weapon Hack - disable energy weapons
 				if(target.hasEnergyWeapon() && !target.hasStatusEffect("Disarmed") && this.energy() >= 10 && rand(3) == 0) CombatAttacks.WeaponHackImpl(alliedCreatures, hostileCreatures, this, target);
-				else if(!target.hasAirtightSuit()) bouncingTease(target);
-				//else 9999
+				bouncingTease(target);
 			}
 			//Regular HP stuff
 			else
 			{
 				//Disarmed boi!
-				if(this.hasStatusEffect("Disarmed")) punchingStuff(target);
+				if(this.hasStatusEffect("Disarmed") || rand(4) == 0) punchingStuff(target);
+				else if(rand(4) == 0) shoulderRockets(target);
+				else if(rand(4) == 0) burnTheFools(target);
 				//Weapon Hack - disable energy weapons
-				if(target.hasEnergyWeapon() && !target.hasStatusEffect("Disarmed") && this.energy() >= 10) CombatAttacks.WeaponHackImpl(alliedCreatures, hostileCreatures, this, target);
+				else if(target.hasEnergyWeapon() && !target.hasStatusEffect("Disarmed") && this.energy() >= 10 && rand(3) == 0) 
+				{
+					CombatAttacks.WeaponHackImpl(alliedCreatures, hostileCreatures, this, target);
+					this.energy(-10);
+				}
 				//Volley
-				if(this.energy() >= 20) CombatAttacks.VolleyImpl(alliedCreatures, hostileCreatures, this, target);
-			}
-			
-			
+				else if(this.energy() >= 25 && !target.isBlind() && rand(3.5) == 0) 
+				{
+					volleyAttack(alliedCreatures,hostileCreatures,target);
+					this.energy(-25);
+				}
+				else
+				{
+					output("[enemy.Short] takes aim with [enemy.hisHer] rifle. ");
+					CombatAttacks.SingleRangedAttackImpl(this, target);
+				}
+
+			}			
 		}
-		//Summons a Slamwulf drone (1x/fight). Basic kinetic attack drone.		
-		//Fuck_Boy_Protocols.exe - Slamwulf teeth retract swap with aphrodisiac injectors.
-		
+		public function volleyAttack(alliedCreatures:Array, hostileCreatures:Array, target:Creature):void
+		{
+			output("<i>“Think you can stand up to a volley?”</i> ");
+			CombatAttacks.VolleyImpl(alliedCreatures, hostileCreatures, this, target);
+		}
+		//Summons a Slamwulf drone (1x/fight). Basic kinetic attack drone.
+		public function summonASlamwulf(target:Creature):void
+		{
+			this.createStatusEffect("Used Wulfe");
+			var doge:SlamwulfeDrone = new SlamwulfeDrone();
+			if(!this.hasStatusEffect("Disarmed")) output("The thunderous clattering of heavy metal paws pounding on the deck <b>announces the arrival of the cybernetic punk’s personal security drone</b> - a slamwulfe model by the look of it. It bares its razor sharp teeth at you, then buzzes as they begin rotating at high speed, fast enough to blur into a chainsaw of motion.");
+			else output("The thunderous clattering of heavy metal paws pounding on the deck <b>announces the arrival of the cybernetic punk’s personal security drone</b> - a slamwulfe model by the look of it. Its teeth retract in favor of transparent injector needles, dripping with some mysterious pink aphrodisiac.");
+			CombatManager.addHostileActor(doge);
+		}
 		//Once above 50 lust:
 		//Puts on gasmask and tosses aphrogas grenade (Lust over time - think I can reuse the status from myrellion)
 		public function transitionToLustFight(target:Creature):void
@@ -306,7 +348,7 @@
 			else 
 			{
 				output("\n\n<b>The longer you fight, the more you’ll breathe in!</b>");
-				CombatAttacks.applyAphroGas(target, 7, 9999);
+				CombatAttacks.applyAphroGas(target, 7, 9000);
 			}
 		}
 		//Bouncing Tease - Leap onto PC’s shoulders and open suit, rubbing junk in face. +Tease! Suit seals back up after.
@@ -331,41 +373,112 @@
 			}
 			else
 			{
-				if(this.hasCock())
+				if(!target.hasAirtightSuit())
 				{
-					if(this.statusEffectv1("Face Rided") <= 0) output("\n\nHe lands on your shoulders, legs splayed wide to plant his crotch directly against your face. The gleaming coils of his armor wriggle and twist as a much thicker coil- no, that’s his cock! A gleaming chromed cock grinds against your cheek, unimaginably hard and pulsating with promise. You {half-heartedly }struggle as it slides over your lips and nose, an up-close-and-personal preview of exactly what this turned-on cyborg looks like in the bedroom.");
-					else if(this.statusEffectv1("Face Rided") <= 1) output("\n\nThis time his armor opens up even before he lands on your shoulders. The chrome-colored dong slaps your cheek on its way to your lips. Its owner bucks and thrusts, humping it against your face. For all its hardness, there’s a hint of organic sponginess as well, like his shaft-shaped simulacrum was designed to mimic a boner at the absolute peak of arousal. You’re starting to see the appeal.");
-					else if(this.statusEffectv1("Face Rided") <= 2) output("\n\nYou’re ready the big silver dick to slap into your face this time. You expect it. You turn away just in time, taking it on your cheek before pride compels you to face your sexual aggressor, staring up at him from under his 13-inch chrome-bone. So what if it’s kind of hot - if just having here tempts you to take a lick...");
-					else output("\n\nYou sigh as his big, fat cock slips into position against your nose, his gleaming, artificial balls rest on your lips. He smells kind of nice, with a sort of artificial orangish tang to his musk. Maybe you ought to struggle, but he’ll get down on his own eventually. You barely keep yourself from licking your lips.");
+					if(this.hasCock())
+					{
+						if(this.statusEffectv1("Face Rided") <= 0) output("\n\nHe lands on your shoulders, legs splayed wide to plant his crotch directly against your face. The gleaming coils of his armor wriggle and twist as a much thicker coil- no, that’s his cock! A gleaming chromed cock grinds against your cheek, unimaginably hard and pulsating with promise. You {half-heartedly }struggle as it slides over your lips and nose, an up-close-and-personal preview of exactly what this turned-on cyborg looks like in the bedroom.");
+						else if(this.statusEffectv1("Face Rided") <= 1) output("\n\nThis time his armor opens up even before he lands on your shoulders. The chrome-colored dong slaps your cheek on its way to your lips. Its owner bucks and thrusts, humping it against your face. For all its hardness, there’s a hint of organic sponginess as well, like his shaft-shaped simulacrum was designed to mimic a boner at the absolute peak of arousal. You’re starting to see the appeal.");
+						else if(this.statusEffectv1("Face Rided") <= 2) output("\n\nYou’re ready the big silver dick to slap into your face this time. You expect it. You turn away just in time, taking it on your cheek before pride compels you to face your sexual aggressor, staring up at him from under his 13-inch chrome-bone. So what if it’s kind of hot - if just having here tempts you to take a lick...");
+						else output("\n\nYou sigh as his big, fat cock slips into position against your nose, his gleaming, artificial balls rest on your lips. He smells kind of nice, with a sort of artificial orangish tang to his musk. Maybe you ought to struggle, but he’ll get down on his own eventually. You barely keep yourself from licking your lips.");
+					}
+					else
+					{
+						if(this.statusEffectv1("Face Rided") <= 0) output("\n\nShe lands on your shoulders, legs splayed wide to plant her crotch directly against your face. The gleaming coils of her armor wriggle and twist apart, revealing a pretty purple pussy. You don’t have long to admire the latex-like texture of her gleaming folds before they’re pressing against your [pc.lipsChaste], grinding in small circles.");
+						else if(this.statusEffectv1("Face Rided") <= 1) output("\n\nThis time her armor splits open before she even lands. Her cunt crashes into your face in sloppy delight. Her juices cascade down your cheeks and chin while she humps and squeals, her tails curled possessively around your face as she baptizes you in her lusty pussy-juices.");
+						else if(this.statusEffectv1("Face Rided") <= 2) output("\n\nYou’re ready for the kaithrit’s juicy, artificially-enhanced snatch to slap into your face, so when those puffy, soaked folds grind into you, you can take a moment to admire the silky texture and incredible slickness. A pussy like that would feel great, even if all you slipped inside was a single finger...");
+						else output("\n\nYou grin as her pretty, cybernetic pussy crashes into your face once more. If only all your fights could be so pleasant. You’ll take a buxom cat-girl humping your face over trading blaster fire any day of the week. At the last second, you stop yourself from grabbing her big, squeezable ass and opening wide. If you started eating her out now... you’d never get away.");
+					}
+					applyDamage(damageRand(new TypeCollection( { tease: 16 } ), 15), target, this,"minimal");
 				}
+				//Airtight tease scenes
 				else
 				{
-					if(this.statusEffectv1("Face Rided") <= 0) output("\n\nShe lands on your shoulders, legs splayed wide to plant her crotch directly against your face. The gleaming coils of her armor wriggle and twist apart, revealing a pretty purple pussy. You don’t have long to admire the latex-like texture of her gleaming folds before they’re pressing against your [pc.lipsChaste], grinding in small circles.");
-					else if(this.statusEffectv1("Face Rided") <= 1) output("\n\nThis time her armor splits open before she even lands. Her cunt crashes into your face in sloppy delight. Her juices cascade down your cheeks and chin while she humps and squeals, her tails curled possessively around your face as she baptizes you in her lusty pussy-juices.");
-					else if(this.statusEffectv1("Face Rided") <= 2) output("\n\nYou’re ready for the kaithrit’s juicy, artificially-enhanced snatch to slap into your face, so when those puffy, soaked folds grind into you, you can take a moment to admire the silky texture and incredible slickness. A pussy like that would feel great, even if all you slipped inside was a single finger...");
-					else output("\n\nYou grin as her pretty, cybernetic pussy crashes into your face once more. If only all your fights could be so pleasant. You’ll take a buxom cat-girl humping your face over trading blaster fire any day of the week. At the last second, you stop yourself from grabbing her big, squeezable ass and opening wide. If you started eating her out now... you’d never get away.");
-				}
-				applyDamage(damageRand(new TypeCollection( { tease: 16 } ), 15), target, this,"minimal");
+					if(this.hasCock())
+					{
+						if(this.statusEffectv1("Face Rided") <= 0) output("\n\nLanding on your shoulders, the SecOp scythes his legs around the back of your head. The coiled metal of his armor parts at the groin, revealing the equally metallic curve of a thirteen inch, top-of-the-line cybercock. It slaps hard into your visor, gleaming and proud, but merely humping on your helmet isn’t enough for the kaithrit - oh no. He activates his chromed dong’s vibration function, filling your ears a cacophonous thrum worthy of a thousand credit sex-toy.");
+						else if(this.statusEffectv1("Face Rided") <= 1) output("\n\nHis suit opens up even before he lands, allowing his cybernetically-enhanced cock to slam into your helmet ahead of everything else. <i>“C’mon!”</i> he emphatically barks, <i>“Let’s have some fun.”</i> He drags his dick all over your view, smiling when your eyes follow after it. You can’t quite bring yourself to look away from his glossy member. Beads of pre appear at the tip, threatening to ooze down and smear into the visor.");
+						else output("\n\nA big fat cock flops right in front of your face, oozing and leaking with decadent promise. If you weren’t wearing a helmet, it’d be on your face, smearing it’s leaky pre into your cheek. Instead, you get to watch it as it slides and grinds around, hard yet with a little bit of give, enough to remind whoever he’s fucking that his science-enhanced boner is part of a biological breeder.");
+					}
+					else
+					{
+						if(this.statusEffectv1("Face Rided") <= 0) output("\n\nLanding on your shoulders, the SecOp scythes her legs around the back of your head. The coiled metal of her armor parts to reveal an obviously-augmented pussy. Its lips are glossy like rubber, slick with a lubricant that’s not entirely natural, and as she humps and grinds against your faceplate, she smears a heady layer of feminine juices across it. You can’t look anywhere without getting an eyeful of the curvy kaithrit’s libidinous leakage.");
+						else if(this.statusEffectv1("Face Rided") <= 1) output("\n\nHer suit opens up like the petals of a flower to reveal her own feminine folds, just in time for the curvy sex-kitten to plant them hard against your faceplate. <i>“This would be a lot more fun if you took off the helmet, you know.”</i> She gyrates and swivels, filling your vision with nothing but a sea of thickened thighs and wantonly sensual femininity. <i>“I’ve got just the thing for a slut like you...”</i>");
+						else output("\n\nPussy fills your vision once more. You barely tried to dodge. It’s not like she can hurt you like this, with her gleaming, fuckable cunt drawing circles of dribbling fuck-juice on your visor. You lick your lips, just watching her, taking in every detail of that angelic cunt. <i>“Come on out and play...”</i>");
+					}
+					applyDamage(damageRand(new TypeCollection( { tease: 12 } ), 15), target, this,"minimal");
+				}				
 				output("\n\nWith a staggeringly powerful jump, your face is free of the SecOp’s genitals once more, though the lingering scent of horny kaithrit lingers, intermingled with the aphrodisiac gas in the air. <i>“Gotta move faster... unless you want me to ride your face into the ground...”</i>");
-				if(this.hasStatusEffect("Face Rided")) this.createStatusEffect("Face Rided");
+				if(!this.hasStatusEffect("Face Rided")) this.createStatusEffect("Face Rided");
 				this.addStatusValue("Face Rided",1,1);
 			}
-		}		
+		}
+		//Other ideas: Porno drone hack - copy from sexbots
+		public function pornoDroneHack(target:Creature):void
+		{
+			this.energy(-20);
+			output("<i>“I wonder if you’ve patched the latest firmware vulnerabilities out of your drone...”</i> The cybernetic cat-[pc.boyGirl] taps at his temple, the antennae mounted above glowing.");
+			//Fail: 
+			if(rand(20) + 1 + target.intelligence()/2 < 12)
+			{
+				output("\n\nYou breathe a sigh of relief as your drone successfully fights off the outside interference and rights itself.");
+			}
+			//Success: 
+			else
+			{
+				output("\n\nYour drone rights itself... and then turns itself to you, green light beaming out of its optical sensors. Images flicker all around it, endlessly changing images of soft flesh, breasts, ass, bulging phalli, pink on pink, pink on brown, blue on mauve.... It’s accompanied with the moans, grunts and slurps of the extranet porn it is now helplessly streaming and projecting in ways you never thought it had the capacity to do. You bat it away, irritated, and it immediately flies back. It hovers near your shoulder, forcing the sounds and images into your head.");
+				target.createStatusEffect("Porno Hacked Drone", 2 + rand(3), 0, 0, 0, false, "Charmed", "Your drone has been hacked to broadcast porn at you! You’ll have to wait for your programming to overcome the rogue process. Hopefully it won’t take too long!", true, 0);
+			}
+		}
+		//Immune to blind via visor.
+		public function blindClear(target:Creature):void
+		{
+			output("<i>“Do I look like one of Rat’s Raiders? It’ll take more than that to blind me.”</i> [enemy.Short] pivots to face directly at you, the projected visor effortlessly tracking you. <b>[target.HeShe] isn’t blind!</b>");
+			this.removeStatusEffect("Blinded");
+		}
+		//Palm-based flamethrower
+		public function burnTheFools(target:Creature):void
+		{
+			output("The pirate scowls and lifts [enemy.hisHer] free hand. Rather than toting a weapon, [enemy.heShe] allows a his forarm to split apart, revealing the barrel of a hidden flame-thrower!");
+			if(rangedCombatMiss(this, target))
+			{
+				output("\n\nYou roll under the curtain of flame!");
+			}
+			else 
+			{
+				applyDamage(damageRand(new TypeCollection( { burning: 25 } ), 15), target, this,"minimal");
+				if(this.aim()/2 + rand(20) + 1 > target.reflexes()/2 + 10 && !target.hasStatusEffect("Burning")) 
+				{
+					output(" <b>You’re lit on fire!</b>");
+					CombatAttacks.applyBurning(target, rand(3)+1, 5, true);
+				}
+			}
+		}
+		//Electropunch?
+		//Shoulder-mounted micro-rocket volley. Undodgeable.
+		public function shoulderRockets(target:Creature):void
+		{
+			output("The Cyber Punk closes [enemy.hisHer] eyes and exhales. Like wriggling snakes, the coiled steel over [enemy.hisHer] shoulders parts, and the flesh beneath springs open, revealing a dozens of hidden, miniaturized rockets. They spray out in a wave of fire-spewing streamers - too many to dodge. All you can do is brace for impact!");
+			applyDamage(damageRand(new TypeCollection( { kinetic: 15, burning: 15 } ), 15), target, this,"minimal");
+		}
 		//Stealth field cancel
 		public function stealthFieldImmune(target:Creature):void
 		{
-			output("The operative’s visor-shrouded eyes easily follow your movements. <b>Your stealth field is useless!</b>");
+			output("The operative’s visor-shrouded eyes easily follow your movements. <b>Your stealth field is useless!</b>\n\n");
 			target.removeStatusEffect("Stealth Field Generator");
 		}//Disarmed punches
 		public function punchingStuff(target:Creature):void
 		{
-			output("With a snarl of irritation, the disarmed feline puts up " + this.mf("his","her") + " dukes! ");
+			if(this.hasStatusEffect("Disarmed")) output("With a snarl of irritation, the disarmed feline puts up " + this.mf("his","her") + " dukes! [enemy.hisHer] fist flashes brightly, wreathed in a corona of electrical energy.");
+			else output("The feline lashes out one-handed! [enemy.HisHer] fist flashes brightly, wreathed in a corona of electrical energy.");
 			var weapStorage:ItemSlotClass = this.meleeWeapon;
 			this.meleeWeapon = new ItemSlotClass();
-			this.meleeWeapon.longName = "fist";
+			this.meleeWeapon.longName = "lightning fist";
 			this.meleeWeapon.description = "a fist";
 			this.meleeWeapon.attackVerb = "swing";
-			this.meleeWeapon.attackNoun = "punch";
+			this.meleeWeapon.attackNoun = "shock-punch";
+			this.meleeWeapon.baseDamage.electric.damageValue = 15;
+			this.meleeWeapon.baseDamage.kinetic.damageValue = 0;
 			CombatAttacks.SingleMeleeAttackImpl(this, target);
 			this.meleeWeapon = weapStorage;
 		}

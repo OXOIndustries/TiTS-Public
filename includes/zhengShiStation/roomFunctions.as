@@ -1,5 +1,6 @@
 //import classes.Characters.MiningRobot;
 import classes.Items.Miscellaneous.MaikesKeycard;
+import classes.Items.Transformatives.SnakeByte;
 
 public function zhengCoordinatesUnlocked():Boolean
 {
@@ -87,6 +88,35 @@ public function zhengMinesEncounterBonus():Boolean
 	return false;
 }
 
+public function zhengFoundrySoftwareDevSuckBonus():Boolean
+{
+	if(zhengFoundryF1EncounterBonus()) return true;
+	if(flags["SNAKEBYTE_LOOTED"] == undefined)
+	{
+		output("\n\nA vial of something called 'SnakeByte' sits on the desk.");
+		addButton(0,"SnakeByte",takeSnakeByte1,undefined,"SnakeByte","Check it out.");
+	}
+	return false;
+}
+
+public function takeSnakeByte1():void
+{
+	clearOutput();
+	showName("\nSNAKEBYTE");
+	flags["SNAKEBYTE_LOOTED"] = 1;
+	output("The injector is apparently some kind of hyper-specific gene-mod, designed to imbue the user with inhuman deepthroating abilities. Do you want to take it?");
+	clearMenu();
+	addButton(0,"Take It",takeSnakeByte2);
+	addButton(1,"Don't",mainGameMenu);
+}
+
+public function takeSnakeByte2():void
+{
+	clearOutput();
+	showName("\nSNAKEBYTE");
+	quickLoot(new SnakeByte());
+}
+
 public function zhengFoundryF1EncounterBonus():Boolean
 {
 	IncrementFlag("ZS_FOUNDRY_STEP");
@@ -98,6 +128,7 @@ public function zhengFoundryF1EncounterBonus():Boolean
 		IncrementFlag("ZS_FOUNDRY_ENCOUNTERS");
 
 		encounters.push(forgehoundEncounter);
+		encounters.push(encounterPunkSecOp);
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
 	}

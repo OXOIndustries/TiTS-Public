@@ -876,8 +876,8 @@ package classes.GameData
 					target.addStatusValue("Porno Hacked Drone",1,-1);
 					if(target.statusEffectv1("Porno Hacked Drone") <= 0)
 					{
-						if (target is PlayerCharacter) output("\n\n<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the sexbot’s hacking routine, and returns to your side.</b>");
-						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rogue instructions hacked into the thing, it returns to its owners side.</b>");
+						if (target is PlayerCharacter) output("\n\n<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the hacking routine, and returns to your side.</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rogue instructions hacked into the thing, it returns to its owner’s side.</b>");
 						target.removeStatusEffect("Porno Hacked Drone");
 					}
 					else
@@ -2260,12 +2260,12 @@ package classes.GameData
 			if (target is PlayerCharacter) processCombat();
 		}
 		
-        private function specialsButtonAdjustment(bOff:int):int
-        {
-            if (bOff == 13) bOff++;
-            return ++bOff;
-        }
-        
+		private function specialsButtonAdjustment(bOff:int):int
+		{
+			if (bOff == 13) bOff++;
+			return ++bOff;
+		}
+		
 		private function generateSpecialsMenu():void
 		{
 			clearMenu();

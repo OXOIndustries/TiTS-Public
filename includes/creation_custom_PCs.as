@@ -1217,8 +1217,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.ballSizeRaw = 20;
 			pc.cumMultiplierRaw = 150;
 			pc.ballEfficiency = 400;
-			pc.refractoryRate = 100;
-			if(!pc.hasVagina()) pc.createVagina();
+			pc.refractoryRate = 100;if(!pc.hasVagina()) pc.createVagina();
 			pc.shiftVagina(0, GLOBAL.TYPE_SUULA);
 			pc.vaginas[0].wetnessRaw = 2;
 			pc.scaleColor = "black";

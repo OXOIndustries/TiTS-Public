@@ -34,7 +34,7 @@ package classes.Items.Transformatives
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			
 			//Longass shit, not sure what used for yet.
-			this.description = "a syringe of SnakeBite";
+			this.description = "a syringe of SnakeByte";
 			//Displayed on tooltips during mouseovers
 			this.tooltip = "A glass syringe with an incredibly fine point, filled to capacity with transparent liquid. Were it not for the bright label assuring you of the drastic side effects, you could easily mistake it for water. There’s a stylized picture of a grinning snakewoman with a cobra hood on the front with lines emphasizing her throat. Looks like it ‘enhances oral ability’, and you’re pretty sure it doesn’t mean speech.";
 			
@@ -66,9 +66,9 @@ package classes.Items.Transformatives
 			if(target is PlayerCharacter) {
 				var pc:PlayerCharacter = target as PlayerCharacter;
 				//Already taken some~
-				if(flags["USED_SNAKEBYTE"] !=  undefined)
+				if(kGAMECLASS.flags["USED_SNAKEBYTE"] != undefined)
 				{
-					output("You've already taken a dose of SnakeByte and reaped the throat-elasticizing rewards. More won't do anything for you.");
+					output("You’ve already taken a dose of SnakeByte and reaped the throat-elasticizing rewards. More won’t do anything for you.");
 					if(!kGAMECLASS.infiniteItems()) quantity++;
 					return false;
 				}
@@ -96,15 +96,15 @@ package classes.Items.Transformatives
 					output("\n\nIn addition, it feels <i>good</i> to do all of this. You hazard a guess that <b>your throat is now an erogenous zone</b>, akin to a clitoris or even a pussy. All you really know is that if you were to get facefucked right now, you might cum on the spot.");
 
 					output("\n\nYou lick your lips unconsciously and grin. You can hardly wait to see the expression of surprise and bliss on some gorgeous hung bombshell’s face when you put all of this potent cocktail to good use. You pick up the syringe off the floor and, shaking your head in subdued awe, dispose of it safely. Amazing to think there could be so much good packed into such a small package.");
-					flags["USED_SNAKEBYTE"] = 1;
+					
 					pc.lust(10);
-
+					kGAMECLASS.flags["USED_SNAKEBYTE"] = 1;
 				}
 			}
 			//Not player!
 			else
 			{
-				kGAMECLASS.output(target.capitalA + target.short + " uses the cream to no effect.");
+				kGAMECLASS.output(target.capitalA + target.short + " uses the SnakeByte syringe to no effect.");
 			}
 			return false;
 		}
