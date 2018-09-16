@@ -103,6 +103,7 @@ public function takeSnakeByte1():void
 {
 	clearOutput();
 	showName("\nSNAKEBYTE");
+	flags["SNAKEBYTE_LOOTED"] = 1;
 	output("The injector is apparently some kind of hyper-specific gene-mod, designed to imbue the user with inhuman deepthroating abilities. Do you want to take it?");
 	clearMenu();
 	addButton(0,"Take It",takeSnakeByte2);

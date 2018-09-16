@@ -1193,43 +1193,45 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hipRatingRaw = 3;	
 			pc.createBreastRow();
 			pc.breastRows[0].breastRatingRaw = 4;
-			if(!pc.hasCock()) 
-			pc.clearCockFlags();
-			pc.createCock();
+			if (!pc.hasCock()) 
+			{
+				pc.createCock();
+			}
 			if(pc.cockTotal() < 2) pc.createCock();
 			pc.shiftCock(0, GLOBAL.TYPE_DEMONIC);
 			pc.cocks[0].cLengthRaw = 13.5;
 			pc.cocks[0].cThicknessRatioRaw = 1.3;
 			pc.cocks[0].knotMultiplier = 1.5;
 			pc.cocks[0].cockColor = "crimson";
-			pc.addCockFlag(GLOBAL.FLAG_PREHENSILE);
-			pc.addCockFlag(GLOBAL.FLAG_LUBRICATED);
-			pc.addCockFlag(GLOBAL.FLAG_TAPERED);
-			pc.addCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_LUBRICATED);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 			pc.shiftCock(1, GLOBAL.TYPE_DEMONIC);
 			pc.cocks[1].cLengthRaw = 13.5;
 			pc.cocks[1].cThicknessRatioRaw = 1.3;
 			pc.cocks[1].cockColor = "crimson";
 			pc.cocks[1].knotMultiplier = 1.5;
-			pc.addCockFlag(GLOBAL.FLAG_PREHENSILE);
-			pc.addCockFlag(GLOBAL.FLAG_LUBRICATED);
-			pc.addCockFlag(GLOBAL.FLAG_TAPERED);
-			pc.addCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED);		
+			pc.cocks[1].addFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.cocks[1].addFlag(GLOBAL.FLAG_LUBRICATED);
+			pc.cocks[1].addFlag(GLOBAL.FLAG_TAPERED);
+			pc.cocks[1].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);		
 			pc.balls = 0;
 			pc.ballSizeRaw = 20;
 			pc.cumMultiplierRaw = 150;
 			pc.ballEfficiency = 400;
 			pc.refractoryRate = 100;
-			if(!pc.hasVagina()) 
-			pc.clearVaginaFlags();
-			pc.createVagina();
+			if (!pc.hasVagina()) 
+			{
+				pc.createVagina();
+			}
 			pc.shiftVagina(0, GLOBAL.TYPE_SUULA);
 			pc.vaginas[0].wetnessRaw = 2;
 			pc.scaleColor = "black";
 			pc.eyeColor = "glowing red";
 			pc.eyeType = GLOBAL.TYPE_DEMONIC;
-			pc.skinType = GLOBAL.SKIN_TYPE_HUMAN;
-			pc.addSkinFlag(FLAG_SMOOTH);
+			pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 			pc.skinTone = "fair";
 			pc.faceType = GLOBAL.TYPE_HUMAN;
 			pc.addFaceFlag(GLOBAL.FLAG_SMOOTH);

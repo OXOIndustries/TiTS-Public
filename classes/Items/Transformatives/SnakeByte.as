@@ -66,7 +66,7 @@ package classes.Items.Transformatives
 			if(target is PlayerCharacter) {
 				var pc:PlayerCharacter = target as PlayerCharacter;
 				//Already taken some~
-				if(flags["USED_SNAKEBYTE"] !=  undefined)
+				if(kGAMECLASS.flags["USED_SNAKEBYTE"] !=  undefined)
 				{
 					output("You've already taken a dose of SnakeByte and reaped the throat-elasticizing rewards. More won't do anything for you.");
 					if(!kGAMECLASS.infiniteItems()) quantity++;
@@ -96,7 +96,7 @@ package classes.Items.Transformatives
 					output("\n\nIn addition, it feels <i>good</i> to do all of this. You hazard a guess that <b>your throat is now an erogenous zone</b>, akin to a clitoris or even a pussy. All you really know is that if you were to get facefucked right now, you might cum on the spot.");
 
 					output("\n\nYou lick your lips unconsciously and grin. You can hardly wait to see the expression of surprise and bliss on some gorgeous hung bombshell’s face when you put all of this potent cocktail to good use. You pick up the syringe off the floor and, shaking your head in subdued awe, dispose of it safely. Amazing to think there could be so much good packed into such a small package.");
-					flags["USED_SNAKEBYTE"] = 1;
+					kGAMECLASS.flags["USED_SNAKEBYTE"] = 1;
 					pc.lust(10);
 
 				}
