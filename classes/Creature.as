@@ -6259,8 +6259,8 @@
 			}
 			else if (hasPerk("Androgyny")) {
 				faceo = "an androgynous " + face();
-				if (mfn("m", "f", "n") == "n") faceo += " that would work on either a male or a female"
-				else faceo += " which leaves a subtle " + mf("boyish", "girly") + " impression";
+				if (mfn("m", "f", "n", true) == "n") faceo += " that would work on either a male or a female"
+				else faceo += " which leaves a subtle " + mf("boyish", "girly", true) + " impression";
 				if (lipRating() > 1 && !hasBeak()) faceo += " with " + plural(lipDescript(true)) + faceLipMimbraneDescript();
 				if (hasBeard()) faceo += " in addition to " + (this is PlayerCharacter ? "your ":mf("his ","her ")) + beard();
 			}
@@ -7261,13 +7261,13 @@
 					break;
 				case GLOBAL.TYPE_SMALLBEE:
 				case GLOBAL.TYPE_MYR:
-					adjectives.push("small", mf("tiny", "cute"), "insect-like", "insectile", "shimmering");
+					adjectives.push("small", mf("tiny", "cute", true), "insect-like", "insectile", "shimmering");
 					break;
 				case GLOBAL.TYPE_BEE:
 					adjectives.push("large", "insect-like", "insectile", "bee", "membrane-covered", "transparent");
 					break;
 				case GLOBAL.TYPE_SMALLDEMONIC:
-					adjectives.push("small", mf("tiny", "cute"), "bat-like", "demon-like");
+					adjectives.push("small", mf("tiny", "cute", true), "bat-like", "demon-like");
 					break;
 				case GLOBAL.TYPE_DEMONIC:
 					adjectives.push("large", "bat-like", "demon-like", "demonic", "wicked", mf("incubus", "succubus"));
@@ -7280,7 +7280,7 @@
 					adjectives.push("large", "bird-like", "avian", "feathery");
 					break;
 				case GLOBAL.TYPE_SMALLDRACONIC:
-					adjectives.push("small", mf("tiny","cute"), "bat-like", "dragon-like", "scaled");
+					adjectives.push("small", mf("tiny","cute", true), "bat-like", "dragon-like", "scaled");
 					break;
 				case GLOBAL.TYPE_DRACONIC:
 					adjectives.push("large", "bat-like", "dragon-like", "draconic", "scaled", "wicked", "magnificent", mf("mighty","majestic"));
@@ -13071,21 +13071,21 @@
 				var adjective:String = "";
 				if (tone >= 100)
 				{
-					if (rand(4) == 0) adjective += mf("extremely pronounced","very pronounced");
+					if (rand(4) == 0) adjective += mf("extremely pronounced","very pronounced", true);
 					else if (thickness > 70) adjective += "immense";
 					else if (thickness >= 30) adjective += "robust";
 					else adjective += "chiseled";
 				}
 				else if (tone > 70)
 				{
-					if (rand(4) == 0) adjective += mf("well-defined","well-toned");
+					if (rand(4) == 0) adjective += mf("well-defined","well-toned", true);
 					else if (thickness > 70) adjective += "broad";
 					else if (thickness >= 30) adjective += "healthy";
 					else adjective += "fit";
 				}
 				else if (tone >= 30)
 				{
-					if (rand(4) == 0) adjective += mf("toned","lightly-toned");
+					if (rand(4) == 0) adjective += mf("toned","lightly-toned", true);
 					else if (thickness > 70) adjective += "thick";
 					else if (thickness >= 30) adjective += "average";
 					else adjective += "soft";
@@ -13104,20 +13104,20 @@
 			else if (biggestTitSize() < 1)
 			{
 				// Feminine/Andro, Low/Medium Tone
-				if((mfn("m","f","n") != "m") && tone < 60) {
+				if((mfn("m","f","n", true) != "m") && tone < 60) {
 					return RandomInCollection(["soft, flat chest", "flat, girly chest", "smooth, featureless chest"]);
 				}
 				// Masculine, High Tone, High Thickness
-				else if((mf("m","f") == "m") && tone >= 60 && thickness >= 60) {
+				else if((mf("m","f", true) == "m") && tone >= 60 && thickness >= 60) {
 					return RandomInCollection(["manly, rippling chest", "big, muscular chest", "beefcake chest"]);
 				}
 				// Masculine, Low Tone, High Thickness
-				else if((mf("m","f") == "m") && tone <= 30 && thickness >= 60) {
+				else if((mf("m","f", true) == "m") && tone <= 30 && thickness >= 60) {
 					return RandomInCollection(["broad, cuddly chest", "bear-like chest", "fleshy, manly chest"]);
 				}
 				// Masculine/Feminine/Andro, High Tone, Low Thickness
 				else if(tone >= 60 && thickness <= 30) {
-					return RandomInCollection([mf("tight, firm pecs","firm, flat chest"), mf("hard, sleek chest","athletic chest"), mf("fine, flat pecs","sleek, firm chest")]);
+					return RandomInCollection([mf("tight, firm pecs","firm, flat chest", true), mf("hard, sleek chest","athletic chest", true), mf("fine, flat pecs","sleek, firm chest", true)]);
 				}
 				// Default
 				else {
@@ -13447,7 +13447,7 @@
 				if (tone >= 70) adjectives.push("muscular ");
 				else if (tone >= 30) adjectives.push("lean muscled ");
 				if (thickness >= 30) adjectives.push("broad ");
-				else adjectives.push((mf("m","f") == "m" ? "mannishly " : "") + "slender ");
+				else adjectives.push((mf("m","f", true) == "m" ? "mannishly " : "") + "slender ");
 			}
 			if(adjectives.length > 0) desc += adjectives[rand(adjectives.length)];
 			//Taurs
@@ -13800,7 +13800,7 @@
 					if (butt >= 10) desc += "booty";
 					else desc += "derriere";
 				}
-				else desc += RandomInCollection(["rump", "bottom", mf("butt", "tush"), "rear end"]);
+				else desc += RandomInCollection(["rump", "bottom", mf("butt", "tush", true), "rear end"]);
 			}
 			else desc += "cheeks";
 			return desc;
@@ -17823,7 +17823,7 @@
 					if(thickness < 30 && rand(2) == 0) return "flat chest";
 					return "unremarkable chest muscles";
 			}
-				return RandomInCollection(["chest", "pectorals", (mf("manly", "boyish") + " chest")]);
+				return RandomInCollection(["chest", "pectorals", (mf("manly", "boyish", true) + " chest")]);
 			}
 			if (breastRows.length == 2) {
 				if (totalBreasts() == 4) storage += RandomInCollection(["quad ", "four "]);
@@ -17892,7 +17892,7 @@
 			if (breastRows[rowNum].breastRating() < 1) {
 				if(rand(2) == 0)
 				{
-					if (tone < 30) return RandomInCollection([mf("pecs", "flat tits"), mf("pectoral muscles", "flat breasts")]);
+					if (tone < 30) return RandomInCollection([mf("pecs", "flat tits", true), mf("pectoral muscles", "flat breasts", true)]);
 					return RandomInCollection(["pecs", "pectoral muscles"]);
 				}
 				return "flat, almost non-existent breasts";

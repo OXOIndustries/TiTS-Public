@@ -254,7 +254,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter(" The presence of said scales gives " + (target == pc ? "your":"[target.hisHer]") + " visage an eerie look, more reptile than mammal.");
 			break;
 		case GLOBAL.TYPE_SHEEP:
-			outputRouter((target == pc ? "You have":"[target.Name] has") + " a short, " + target.mf("blunt","cute") + " muzzle much like a sheep’s.");
+			outputRouter((target == pc ? "You have":"[target.Name] has") + " a short, " + target.mf("blunt","cute", true) + " muzzle much like a sheep’s.");
 			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter(" A coat of " + faceFurScales + " decorates it.");
 			break;
 		case GLOBAL.TYPE_VULPINE:
@@ -432,7 +432,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	{
 		if(target.hasFaceFlag(GLOBAL.FLAG_FURRED) || target.hasFur()) outputRouter(" Beneath " + (target == pc ? "your":"[target.hisHer]") + " fur, f");
 		else outputRouter(" F");
-		outputRouter(target.mf("reckles spot " + (target == pc ? "your":"[target.hisHer]") + " cheeks.","reckles cutely adorn " + (target == pc ? "your":"[target.hisHer]") + " cheeks."));
+		outputRouter(target.mf("reckles spot " + (target == pc ? "your":"[target.hisHer]") + " cheeks.","reckles cutely adorn " + (target == pc ? "your":"[target.hisHer]") + " cheeks.", true));
 	}
 	//M/F stuff!
 	outputRouter(" Overall, " + (target == pc ? "your":"[target.hisHer]") + " visage has " + target.faceDesc() + ".");
@@ -717,7 +717,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 				outputRouter(" A pair of pointed, finned ears tops " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ", each one sensitive to the slightest sound.");
 				break;
 			case GLOBAL.TYPE_PANDA:
-				outputRouter(" A pair of rounded, panda-like ears protrude from " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ", " + target.mf("standing tall and proud", "looking absolutely adorable") + ".");
+				outputRouter(" A pair of rounded, panda-like ears protrude from " + (target == pc ? "your":"[target.hisHer]") + " " + headNoun + ", " + target.mf("standing tall and proud", "looking absolutely adorable", true) + ".");
 				break;
 			case GLOBAL.TYPE_REDPANDA:
 				if(target.tallness <= 72) outputRouter("A pair of big " + ((target.furColor.indexOf("red") != -1 || target.furColor.indexOf("auburn") != -1 || target.furColor.indexOf("brown") != -1) ? "red" : "lesser") + " panda ears perk up on top of " + (target == pc ? "your":"[target.hisHer]") + " head, listening closely to any surrounding noise.");
@@ -3049,7 +3049,7 @@ public function boobStuff(forTarget:Creature = null):void
 	//Chesticles..I mean bewbz.
 	if(target.breastRows.length == 1) {
 		// Feminine A-Cups
-		if(target.biggestTitSize() < 2 && target.biggestTitSize() >= 1 && target.mf("m","f") == "f") {
+		if(target.biggestTitSize() < 2 && target.biggestTitSize() >= 1 && target.mf("m","f", true) == "f") {
 			if(rand(3) == 0) outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " the barest hint of breasts, " + num2Text(target.breastRows[0].breasts) + " teasing feminine rises on " + (target == pc ? "your":"[target.hisHer]") + " chest");
 			else if(rand(2) == 0) outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " tiny, cute mosquito bites for breasts, pert and sensitive");
 			else outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " A-cup breasts, " + num2Text(target.breastRows[0].breasts) + " small, pert" + target.rawmfn(" trappy"," sporty","") + " boobs that almost vanish under anything thicker than spandex");
@@ -3061,28 +3061,28 @@ public function boobStuff(forTarget:Creature = null):void
 		else
 		{
 			// Feminine/Andro, Low/Medium Tone
-			if((target.mfn("m","f","n") != "m") && target.tone < 60) {
+			if((target.mfn("m","f","n", true) != "m") && target.tone < 60) {
 				if(rand(3) == 0) outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " a waif’s chest, flat and innocent-looking");
 				else if(rand(2) == 0) outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " a girly, soft, undefined flat chest");
 				else outputRouter("The top half of " + (target == pc ? "your":"[target.hisHer]") + " body is willowy and breast-less, graceful yet vaguely austere");
 			}
 			// Masculine, High Tone, High Thickness
-			else if((target.mf("m","f") == "m") && target.tone >= 60 && target.thickness >= 60) {
+			else if((target.mf("m","f", true) == "m") && target.tone >= 60 && target.thickness >= 60) {
 				if(rand(3) == 0) outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " a fuck-off six pack, bulging with heavy muscle. Above it, " + (target == pc ? "you have":"[target.heShe] has") + " a broad chest");
 				else if(rand(2) == 0) outputRouter("" + (target == pc ? "You’re":"[target.HeShe] is") + " ripped as hell, sporting the kind of muscle guys want and girls want around them. Much can be said about " + (target == pc ? "your":"[target.hisHer]") + " pecs");
 				else outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " remarkably well defined, heavyweight abs, rounded and beefy. Above it, " + (target == pc ? "you have":"[target.heShe] has") + " a muscled chest");
 			}
 			// Masculine, Low Tone, High Thickness
-			else if((target.mf("m","f") == "m") && target.tone <= 30 && target.thickness >= 60) {
+			else if((target.mf("m","f", true) == "m") && target.tone <= 30 && target.thickness >= 60) {
 				if(rand(3) == 0) outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " a broad, incredibly masculine chest, bulky and assured");
 				else if(rand(2) == 0) outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " a bear-like upper frame, voluminous and imminently cuddly");
 				else outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " a wide, hearty, supremely manly chest");
 			}
 			// Masculine/Feminine/Andro, High Tone, Low Thickness
 			else if(target.tone >= 60 && target.thickness <= 30) {
-				if(rand(3) == 0) outputRouter(target.mf("" + (target == pc ? "You have":"[target.HeShe] has") + " a narrow, well defined but unostentatious six pack. Above it, " + (target == pc ? "you have":"[target.heShe] has") + " a chiseled chest", "" + (target == pc ? "You have":"[target.HeShe] has") + " a flat, athlete’s chest, supple and thin"));
-				else if(rand(2) == 0) outputRouter(target.mf("" + (target == pc ? "You have":"[target.HeShe] has") + " a sleek, tight featherweight’s six pack. Above it, " + (target == pc ? "you have":"[target.heShe] has") + " a defined chest", "" + (target == pc ? "You have":"[target.HeShe] has") + " a no-nonsense flat chest, framed by rounded, subtle amounts of muscle"));
-				else outputRouter(target.mf("" + (target == pc ? "You have":"[target.HeShe] has") + " a flat, athlete’s chest, wiry with muscle", "" + (target == pc ? "Your":"[target.HisHer]") + " firm, washboard, modest pecs make " + (target == pc ? "you":"[target.himHer]") + " look teasingly sexually ambiguous"));
+				if(rand(3) == 0) outputRouter(target.mf("" + (target == pc ? "You have":"[target.HeShe] has") + " a narrow, well defined but unostentatious six pack. Above it, " + (target == pc ? "you have":"[target.heShe] has") + " a chiseled chest", "" + (target == pc ? "You have":"[target.HeShe] has") + " a flat, athlete’s chest, supple and thin", true));
+				else if(rand(2) == 0) outputRouter(target.mf("" + (target == pc ? "You have":"[target.HeShe] has") + " a sleek, tight featherweight’s six pack. Above it, " + (target == pc ? "you have":"[target.heShe] has") + " a defined chest", "" + (target == pc ? "You have":"[target.HeShe] has") + " a no-nonsense flat chest, framed by rounded, subtle amounts of muscle", true));
+				else outputRouter(target.mf("" + (target == pc ? "You have":"[target.HeShe] has") + " a flat, athlete’s chest, wiry with muscle", "" + (target == pc ? "Your":"[target.HisHer]") + " firm, washboard, modest pecs make " + (target == pc ? "you":"[target.himHer]") + " look teasingly sexually ambiguous", true));
 			}
 			// Basic
 			else
@@ -3090,27 +3090,27 @@ public function boobStuff(forTarget:Creature = null):void
 				outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " a");
 				if(target.tone >= 100)
 				{
-					if(target.thickness > 70) outputRouter("n immense chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-					else if(target.thickness >= 30) outputRouter(" robust chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-					else outputRouter(" chisled chest with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+					if(target.thickness > 70) outputRouter("n immense chest with " + target.mf("extremely pronounced","very pronounced", true) + " pectoral muscles");
+					else if(target.thickness >= 30) outputRouter(" robust chest with " + target.mf("extremely pronounced","very pronounced", true) + " pectoral muscles");
+					else outputRouter(" chisled chest with " + target.mf("extremely pronounced","very pronounced", true) + " pectoral muscles");
 				}
 				else if(target.tone > 70)
 				{
-					if(target.thickness > 70) outputRouter(" broad chest with " + target.mf("well defined","well toned") + " pectoral muscles");
-					else if(target.thickness >= 30) outputRouter(" healthy chest with " + target.mf("well defined","well toned") + " pectoral muscles");
-					else outputRouter(" fit chest with " + target.mf("well defined","well toned") + " pectoral muscles");
+					if(target.thickness > 70) outputRouter(" broad chest with " + target.mf("well defined","well toned", true) + " pectoral muscles");
+					else if(target.thickness >= 30) outputRouter(" healthy chest with " + target.mf("well defined","well toned", true) + " pectoral muscles");
+					else outputRouter(" fit chest with " + target.mf("well defined","well toned", true) + " pectoral muscles");
 				}
 				else if(target.tone >= 30)
 				{
-					if(target.thickness > 70) outputRouter(" thick chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
-					else if(target.thickness >= 30) outputRouter("n average chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
-					else outputRouter(" soft chest with " + target.mf("toned","lightly toned") + " pectoral muscles");
+					if(target.thickness > 70) outputRouter(" thick chest with " + target.mf("toned","lightly toned", true) + " pectoral muscles");
+					else if(target.thickness >= 30) outputRouter("n average chest with " + target.mf("toned","lightly toned", true) + " pectoral muscles");
+					else outputRouter(" soft chest with " + target.mf("toned","lightly toned", true) + " pectoral muscles");
 				}
 				else
 				{
-					if(target.thickness > 70) outputRouter(" wide chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
-					else if(target.thickness >= 30) outputRouter(" passable chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
-					else outputRouter(" flat chest with unremarkable " + target.mf("pectoral muscles", "breasts"));
+					if(target.thickness > 70) outputRouter(" wide chest with unremarkable " + target.mf("pectoral muscles", "breasts", true));
+					else if(target.thickness >= 30) outputRouter(" passable chest with unremarkable " + target.mf("pectoral muscles", "breasts", true));
+					else outputRouter(" flat chest with unremarkable " + target.mf("pectoral muscles", "breasts", true));
 				}
 			}
 			outputRouter(", capped with ");
@@ -3194,27 +3194,27 @@ public function boobStuff(forTarget:Creature = null):void
 			outputRouter(", all");
 			if(target.tone >= 100)
 			{
-				if(target.thickness > 70) outputRouter(" immense with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-				else if(target.thickness >= 30) outputRouter(" robust with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
-				else outputRouter(" chisled with " + target.mf("extremely pronounced","very pronounced") + " pectoral muscles");
+				if(target.thickness > 70) outputRouter(" immense with " + target.mf("extremely pronounced","very pronounced", true) + " pectoral muscles");
+				else if(target.thickness >= 30) outputRouter(" robust with " + target.mf("extremely pronounced","very pronounced", true) + " pectoral muscles");
+				else outputRouter(" chisled with " + target.mf("extremely pronounced","very pronounced", true) + " pectoral muscles");
 			}
 			else if(target.tone > 70)
 			{
-				if(target.thickness > 70) outputRouter(" broad with " + target.mf("well defined","well toned") + " pectoral muscles");
-				else if(target.thickness >= 30) outputRouter(" healthy with " + target.mf("well defined","well toned") + " pectoral muscles");
-				else outputRouter(" fit with " + target.mf("well defined","well toned") + " pectoral muscles");
+				if(target.thickness > 70) outputRouter(" broad with " + target.mf("well defined","well toned", true) + " pectoral muscles");
+				else if(target.thickness >= 30) outputRouter(" healthy with " + target.mf("well defined","well toned", true) + " pectoral muscles");
+				else outputRouter(" fit with " + target.mf("well defined","well toned", true) + " pectoral muscles");
 			}
 			else if(target.tone >= 30)
 			{
-				if(target.thickness > 70) outputRouter(" thick with " + target.mf("toned","lightly toned") + " pectoral muscles");
-				else if(target.thickness >= 30) outputRouter(" average with " + target.mf("toned","lightly toned") + " pectoral muscles");
-				else outputRouter(" soft with " + target.mf("toned","lightly toned") + " pectoral muscles");
+				if(target.thickness > 70) outputRouter(" thick with " + target.mf("toned","lightly toned", true) + " pectoral muscles");
+				else if(target.thickness >= 30) outputRouter(" average with " + target.mf("toned","lightly toned", true) + " pectoral muscles");
+				else outputRouter(" soft with " + target.mf("toned","lightly toned", true) + " pectoral muscles");
 			}
 			else
 			{
-				if(target.thickness > 70) outputRouter(" wide and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
-				else if(target.thickness >= 30) outputRouter(" passable and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
-				else outputRouter(" flat and fairly " + target.mfn("masculine","feminine","masculine") + " in look");
+				if(target.thickness > 70) outputRouter(" wide and fairly " + target.mfn("masculine","feminine","masculine", true) + " in look");
+				else if(target.thickness >= 30) outputRouter(" passable and fairly " + target.mfn("masculine","feminine","masculine", true) + " in look");
+				else outputRouter(" flat and fairly " + target.mfn("masculine","feminine","masculine", true) + " in look");
 			}
 			outputRouter(".");
 		}
@@ -3228,7 +3228,7 @@ public function boobStuff(forTarget:Creature = null):void
 		temp = 0;
 		while (temp < target.breastRows.length) {
 			// Feminine A-Cups
-			if(target.breastRows[temp].breastRating() >= 1 && target.breastRows[temp].breastRating() < 2 && target.mf("m","f") == "f")
+			if(target.breastRows[temp].breastRating() >= 1 && target.breastRows[temp].breastRating() < 2 && target.mf("m","f", true) == "f")
 			{
 				if(temp == 0) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " top row of breasts are ");
 				else if(temp == (target.breastRows.length - 1)) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " bottom row of breasts are ");
