@@ -368,7 +368,7 @@
 		public function grabWoundedPCs(target:Creature):void
 		{
 			output("One of the zil you’ve driven wounded to the ground grabs desperately at your [pc.legs].");
-			if(this.physique()/2 + rand(20) + 1 <= target.physique()/2 + 10) output(" You manage to wrench yourself out of his grip.");
+			if((this.physique()/2 + rand(20) + 1 <= target.physique()/2 + 10) || target.isPlanted()) output(" You manage to wrench yourself out of his grip.");
 			else
 			{
 				output(" You can’t stop yourself being pulled down in turn! The remaining zil cheer and close in, scenting victory.");

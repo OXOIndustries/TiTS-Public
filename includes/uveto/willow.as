@@ -5,6 +5,7 @@ Flags
 	WILLOW_MET: undefined - hasn't met, 0 - met, 1 - Sexed
 	WILLOW_AFFECTION: 0 to 100
 	WILLOW_FLIRT: Tracks whether you've flirted with her that meeting. Only matters before you first visit her place.
+	WILLOW_HOME: Talked about Willow's home - for continuity.
 	WILLOW_HERSELF: Talked about Willow herself for the first time. One of three topics the player need to chat with her during the meal to progress.
 	WILLOW_PAST: Talked about Willow's Past for the first time. One of three topics the player need to chat with her during the meal to progress.
 	WILLOW_UVETO: Talked about why Willow is on Uvetor for the first time. One of three topics the player need to chat with her during the meal to progress.
@@ -206,7 +207,7 @@ public function willowFlirt():void
 	showWillow();
 
 	output("<i>“Well, the thing I want isn’t exactly on the menu...”</i> you say, looking at her in a way that leaves no doubt as to your intentions.");
-	output("\n\n<i>“O-oh. Um... I....”</i> She’s clearly flustered, her cheeks blushing red(der). <i>“I’m sorry, [pc.sir], but... no flirting on the job!”</i> She says with an apologetic smile.");
+	output("\n\n<i>“O-oh. Um... I....”</i> She’s clearly flustered, her cheeks blushing redder. <i>“I’m sorry, [pc.sir], but... no flirting on the job!”</i> She says with an apologetic smile.");
 	output("\n\n<i>“Well that’s too bad,</i> you sigh and smile, looking down at your menu, about to put the thought out of your mind when you hear a murmur.");
 	output("\n\n<i>“I get off work in a couple hours, so if you don’t mind waiting, maybe we can.... Ahem!”</i> She clears her throat and looks at you, chewing her bottom lip, a smile playing at the corners of her mouth. <i>“Your order, " + pc.mf("sir", "miss") + "?”</i>");
 
@@ -217,20 +218,18 @@ public function willowFlirt():void
 }
 public function dontWait4Willow():void
 {
-	
 	clearOutput();
 	clearMenu();
 	showWillow();
-		
+	
 	output("<i>“Actually, no. I’ve got business to take care of. Maybe later?”</i> You say, shrugging apologetically."); 
 	output("\n\n<i>“Ah. Okay then.”</i> She murmurs, her shoulders drooping slightly before perking back up. <i>“Well, would you like anything to order, then?”</i> She asks.");
-	 
+	
 	addButton(0,"Order",willowFood);
 	addButton(14,"Leave",willowLeave,0);
 	
 	flags["WILLOW_FLIRT"] = 0;
 	processTime(1);
-
 }
 
 public function willowDinnerTalk(choice:int):void // If you waited for Willow
@@ -248,13 +247,14 @@ public function willowDinnerTalk(choice:int):void // If you waited for Willow
 		output("\n\n<i>“N-no. I’m sorry. I shouldn’t have gotten so worked up like that...”</i> she murmurs, dabbing at her eyes with a tissue. <i>“Anyway, Dad was a human, Mom was a half-ausar. I turned out looking human, sis and bro got some doggy traits. Chad got a tail and Mina got dog ears,”</i> she says, smiling fondly at the memory.");
 		output("\n\n<i>“If I may ask... why did you leave?”</i> You ask tentatively.");
 		output("\n\n<i>“I... I don’t want to talk about it,”</i> she says, pushing her food around the plate.");
+		flags["WILLOW_HOME"]=1;
 		processTime(5); //Each talk is 5 minutes.
 	}
 	else if(choice==1)//Ask Willow why she is on Uveto
 	{
-		output("<i>“Why are you here on this frozen hell of a planet? Tired of hot sand?”</i> You ask cheekily, eating more of the food.");
+		output("<i>“Why are you here on this frozen hell of a planet? Tired of the hot sand?”</i> You ask cheekily, eating more of the food.");
 		output("\n\n<i>“That’s one reason!”</i> She laughs. <i>“Plus I wanted to get away from home, you know? It was getting kinda cramped. Aaaand I wanted to provide for myself. Figured I’d come to this place. The toves pay well!”</i> She says, shrugging.");
-		output("\n\nYou nod. Toves being rich, yes they pay well... when it suits them. Otherwise, they would pay you minimum wage, less if they could. You suspect she’s earning less than her parents earned back home, yet she seems to be quite happy here.");		
+		output("\n\nYou nod. Toves being rich, yes they pay well... when it suits them. Otherwise, they would pay you minimum wage, less if they could. You suspect she’s earning less than her parents earned back home, yet she seems to be quite happy here.");
 		flags["WILLOW_UVETO"]=1;
 		processTime(5); //Each talk is 5 minutes.
 	}
@@ -292,7 +292,7 @@ public function willowDinnerTalk(choice:int):void // If you waited for Willow
 		output("\n\n<i>“W-well uhm.... What’s your name then?”</i> She asks, smiling a little.");
 		output("\n\n<i>“[pc.name]. [pc.name] Steele,”</i> you answer. She gasps, her jaw falling open and her eyes going wide again. It’s kinda adorable, actually.");
 		output("\n\n<i>“Steele? The Steele!?”</i> she says in a voice loud enough for the people a few tables over to hear and turn their heads, suddenly attracting a little more attention than you would have liked. Willow notices and puts her head in her hands.");
- 	 	output("\n\n<i>“Oh my, I’m so sorry! I just got a little overexcited,”</i> Willow smiles bashfully. <i>“But really. What’s a [pc.guyGirl] like you doing in a place like this!? You should be flying around the galaxy blowing up pirates, looking for treasure and all that!”</i> You tell her your story, about how your father has sent you on an epic quest to reclaim your inheritance and how you’ve been traveling the stars seeking your fortune. She listens to your monologue in rapture, her head propped up by her palms. She simply stares at you for a minute after you finish and take a sip of your drink- which had arrived while you were talking.");
+ 	 	output("\n\n<i>“Oh my, I’m so sorry! I just got a little overexcited,”</i> Willow smiles bashfully. <i>“But really. What’s a [pc.guyGirl] like you doing in a place like this!? You should be flying around the galaxy blowing up pirates, looking for treasure and all that!”</i> You tell her your story, about how your father has sent you on an epic quest to reclaim your inheritance and how you’ve been traveling the stars seeking your fortune. She listens to your monologue in rapture, her head propped up by her palms. She simply stares at you for a minute after you finish and take a sip of your drink, which had arrived while you were talking.");
  	 	output("\n\n<i>“That was.... Wow,”</i> she says with raised eyebrows. <i>“Well, now that you’ve told me about yourself, I suppose you want to know something about me too.”</i>");
 		output("\n\nAt this point, your food has arrived and she’s eating slowly while looking at you.");
 		output("\n\nWhat do you ask her about?");
@@ -300,7 +300,8 @@ public function willowDinnerTalk(choice:int):void // If you waited for Willow
 		processTime(90);
 		
 		addButton(0,"Past",willowDinnerTalk,0);
-		addButton(1,"Why Here",willowDinnerTalk,1);
+		if(flags["WILLOW_HOME"] != undefined) addButton(1,"Why Here",willowDinnerTalk,1);
+		else addDisabledButton(1,"Why Here","Why Here?","You don’t know much about her past to ask that!");
 		addButton(2,"Her",willowDinnerTalk,2);
 	}
 	if(choice==0)
@@ -313,7 +314,8 @@ public function willowDinnerTalk(choice:int):void // If you waited for Willow
 	{
 	
 		addButton(0,"Past",willowDinnerTalk,0);
-		addButton(1,"Why Here",willowDinnerTalk,1);
+		if(flags["WILLOW_HOME"] != undefined) addButton(1,"Why Here",willowDinnerTalk,1);
+		else addDisabledButton(1,"Why Here","Why Here?","You don’t know much about her past to ask that!");
 		addButton(2,"Her",willowDinnerTalk,2);
 		addButton(3,"Demon?",willowTalk,1);
 		addButton(4,"Sister",willowTalk,2);
@@ -404,7 +406,7 @@ public function willowSexMenu():void
 		moveTo("WILLOWS ROOM");
 		output("<i>“Hooold it right there, [pc.misterMiss]!”</i> she says. You turn around and raise an eyebrow. <i>“ What kind of a lady would I be if I didn’t let the [pc.manWoman] who treated me so nicely walk away without a treat...?”</i> She says, beckoning to you with a finger. You grin and walk to her.");
 		output("\n\nShe turns and falls into step beside you, leading you to her apartment which is a somewhat short and ugly building, with brown walls and hardly any windows to speak of. She climbs the steps, her ass swaying from side, giving you something to fix your eyes on the whole way. She leads you right to the top of the building, where there’s a small, somewhat triangular door set into the wall. She unlocks the door, steps inside and holds the door open, grinning and beckoning for you to enter.");
-		output("\n\nYou step inside and look around the small room. It is sparsely decorated with wood walls and floors; lit by a single bulb hanging down from the ceiling which casts a warm yellow glow. The room is warm, heated from underneath by some unknown source. It’s evident Willow has tried to spruce the place up. A vase filled with blue flowers sits on a nightstand next to a double bed. The shelves of a bookcase on the left side of the room are filled with various books as well as one glittering green gem. In back there is a window overlooking the frozen settlement, its lights shining and sparkling in the darkness. In center of the room is a small round table with two chairs. A small stove and sink is placed in the corner with an unwashed pan in the sink. ");
+		output("\n\nYou step inside and look around the small room. It is sparsely decorated with wood walls and floors; lit by a single bulb hanging down from the ceiling which casts a warm yellow glow. The room is warm, heated from underneath by some unknown source. It’s evident Willow has tried to spruce the place up. A vase filled with blue flowers sits on a nightstand next to a double bed. The shelves of a bookcase on the left side of the room are filled with various books as well as one glittering green gem. In the back there is a window overlooking the frozen settlement, its lights shining and sparkling in the darkness. In the center of the room is a small round table with two chairs. A small stove and sink is placed in the corner with an unwashed pan in the sink. ");
 		output("\n\n<i>“Well... Welcome to mi casa!”</i> Willow says. <i>“I know it’s not much, but... it’s home!”</i> She does a little twirl to show off the room. You smile as you take in the room. Rather homey and cozy, you think to yourself.");
 		output("\n\n<i>“Nice place you got here. I like it,”</i> you say.");
 		output("\n\n<i>“So... What do you wanna do?”</i> she asks with a sultry expression that leaves no doubt as to her meaning.");
@@ -494,7 +496,7 @@ public function willowSexScenes(sceneChoice:int):void
 	showWillow(true);
 	
 	//Cock check shit
-	var cIdx:int = pc.biggestCockIndex();
+	var cIdx:int = (pc.hasCock() ? pc.biggestCockIndex() : -1);
 	var cIdx2:int = (pc.cocks.length >= 2 ? pc.biggestCockIndex2() : -1); //Returns 0 if pc doesn't have 2 cocks
 	var cIdx3:int = (pc.cocks.length >= 3 ? pc.biggestCockIndex3() : -1); //Returns 0 if pc doesn't have 3 cocks
 	
@@ -1355,17 +1357,17 @@ public function willowTalk(sceneChoice:int):void
 	//Demon Talk Choice
 	else if (sceneChoice==1)
 	{
-		output("<i>“So... how’d you turn into a demon? Ancient​curse or something?”</i> You ask, smiling.");
+		output("<i>“So... how’d you turn into a demon? Ancient​ curse or something?”</i> You ask, smiling.");
 		if(flags["SERA_UNLOCK_LUCIFIER"] != undefined)output("\n\n<i>“So... I know there are mods that can make you look more demonic and... pardon me for saying this, but... you don’t really look like you can afford them. So how did this happen?”</i> You ask, looking her up and down.");
 		output("\n\n<i>“Oh, this? Well... That... is actually a kinda funny story. I told you how my dad was a hunter, right? Wandering around the wastes hunting animals and all that. Out there, he found a big box full of these sorta glazed apples or something. They didn’t look poisonous or anything, so he brought them back home. I, being... I guess... six or seven at the time, saw a box full of giant sweets and decided to have a whole bunch, just for kicks. Little did we know, they were a transformative. Aaaand...”</i> She waves a hand over herself. <i>“Tadaaa!”</i>");
 		output("\n\n<i>“Let me guess... your dad went batshit crazy.”</i> You murmur, trying to suppress a laugh.");
-		output("\n\n<i>“Yep!”</i> She says with a nervous chuckle.");
+		output("\n\n<i>“Yep!”</i> she says with a nervous chuckle.");
 		output("\n\n<i>“Probably used the belt.”</i>");
-		output("\n\n<i>“.... Yep.”</i> She mutters, grimacing slightly.");
+		output("\n\n<i>“... Yep.”</i> she mutters, grimacing slightly.");
 		output("\n\n<i>“Left you black and blue?”</i> You ask, smiling wryly.");
-		output("\n\n<i>“... Yep...”</i> She mutters, sighing.");
+		output("\n\n<i>“... Yep...”</i> she sputters, sighing.");
 		output("\n\n<i>“Well, I can’t say you didn’t deserve it. I mean, you did eat a whole bunch of what could have been something dangerous. But then again, your dad was also at fault for leaving the stuff in range of a small kid.”</i> You say with a chuckle.");
-		output("\n\n<i>“Well, yeah. He admitted as much later, after he’d cooled down a bit. He forgave me, though and we forgave him. Mom, for some reason, found this whole thing hilarious. Wouldn’t stop laughing the whole day and would break out into fits of giggles whenever I walked into the room. She also laughed till she cried every time someone brought up the incident!”</i> Willow says, smiling fondly at the memory.");
+		output("\n\n<i>“Well, yeah. He admitted as much later, after he’d cooled down a bit. He forgave me, though and I forgave him. Mom, for some reason, found this whole thing hilarious. Wouldn’t stop laughing the whole day and would break out into fits of giggles whenever I walked into the room. She also laughed till she cried every time someone brought up the incident!”</i> Willow says, smiling fondly at the memory.");
 		output("\n\n<i>“Hey, worth it. You must have been the envy of the boys and girls when you grew up, right?”</i> You ask, raising an eyebrow.");
 		output("\n\n<i>“Yeah, but it attracted all the... ‘wrong kinds’ of boys, if you know what I mean.”</i> Willow says, looking at you meaningfully.");
 		output("\n\n<i>“Ah. Yeah. I see what you mean. Those kinds. Got it.”</i> You say, still restraining a smile.");

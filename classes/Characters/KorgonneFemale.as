@@ -338,7 +338,7 @@
 				var damage:TypeCollection = new TypeCollection( { kinetic: (physique()-5), freezing: 10 } );
 				damageRand(damage, 15);
 				applyDamage(damage, this, target);
-				if(!target.hasStatusEffect("Tripped") && target.reflexes() + rand(20) + 1 < 35)
+				if(!target.hasStatusEffect("Tripped") && !target.isPlanted() && target.reflexes() + rand(20) + 1 < 35)
 				{
 					CombatAttacks.applyTrip(target);
 					output("\nWorst of all, <b>You’re stuck in the snow for the moment, tripped up.</b>");
@@ -411,7 +411,7 @@
 					damage = new TypeCollection( { kinetic: (physique()+5) });
 					damageRand(damage, 15);
 					applyDamage(damage, this, target);
-					if(target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2)
+					if((target.physique()/2 + rand(20) + 1 < 10 + this.physique()/2) && !target.isPlanted())
 					{
 						output("\n<b>You are sent reeling by the blow, staggered.</b>");
 						CombatAttacks.applyStagger(target, 5, true);

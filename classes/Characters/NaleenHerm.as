@@ -278,7 +278,7 @@
 			{
 				output(" You don’t manage to get out of her way before she thrusts her spear at you.");
 				applyDamage(damageRand(meleeDamage().multiply(0.5), 15), this, target, "minimal");
-				if (!target.hasStatusEffect("Tripped") && target.aim()/2 + rand(20) + 1 < this.physique()/2 + 10)
+				if (!target.hasStatusEffect("Tripped") && !target.isPlanted() && target.aim()/2 + rand(20) + 1 < this.physique()/2 + 10)
 				{
 					CombatAttacks.applyTrip(target);
 					output(" <b>You are knocked down!</b>");

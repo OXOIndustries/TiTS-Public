@@ -1255,7 +1255,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Hrad:</b> " + prettifyGeneticMarker(pc.hradScore(), 4, 8));
 		if(pc.laquineScore() > 0)
 			output2("\n<b>* Laquine:</b> " + prettifyGeneticMarker(pc.laquineScore(), 5, 6));
-		if(flags["SEER_MET"] != undefined && pc.mothrineScore() > 0)
+		if(CodexManager.entryUnlocked("Mothrine") && pc.mothrineScore() > 0)
 			output2("\n<b>* Mothrine:</b> " + prettifyGeneticMarker(pc.mothrineScore(), 5, 10));
 		if(flags["PLANET_3_UNLOCKED"] != undefined)
 		{

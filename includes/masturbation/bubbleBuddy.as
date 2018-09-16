@@ -173,7 +173,7 @@ public function playerUsedBubbleBuddyInCombat(targetCreature:Creature, usingCrea
 				//Uses accuracy to hit, deals moderate lust damage, and may cause knock-down
 				applyDamage(item.baseDamage, usingCreature, targetCreature);
 			}
-			if(!targetCreature.isGoo() && !targetCreature.hasStatusEffect("Tripped") && (((usingCreature.aim()/2) + rand(20) + 1) > ((targetCreature.reflexes()/4) + (targetCreature.physique()/4) + 10)))
+			if(!targetCreature.isGoo() && !targetCreature.hasStatusEffect("Tripped") && !target.isPlanted() && (((usingCreature.aim()/2) + rand(20) + 1) > ((targetCreature.reflexes()/4) + (targetCreature.physique()/4) + 10)))
 			{
 				CombatAttacks.applyTrip(targetCreature, "Cannot act for a turn.");
 				output("\n\n<b>There’s so much [pc.cumNoun] that " + targetCreature.getCombatName() + " is tripped!</b>");

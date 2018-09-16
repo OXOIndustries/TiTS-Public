@@ -279,7 +279,7 @@
 			else 
 			{
 				output("\nHe slams into you so hard it knocks the breath from you, sending you ");
-				if(target.physique()/2 + rand(20) + 1 >= this.physique()/2+10) output("sliding several feet back! Your incredible strength is the only reason you’re still standing.");
+				if((target.physique()/2 + rand(20) + 1 >= this.physique()/2+10) || target.isPlanted()) output("sliding several feet back! Your incredible strength is the only reason you’re still standing.");
 				else 
 				{
 					output("tumbling backwards, head over heels! <b>You’ve been tripped!</b>");

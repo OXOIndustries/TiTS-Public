@@ -289,8 +289,9 @@ public function seraBitcheningImpregnate(response:String = "intro"):void
 	}
 	seraBitcheningImpregnateToggle();
 }
-public function seraBitcheningImpregnateToggle():void
+public function seraBitcheningImpregnateToggle(addLust:int = 0):void
 {
+	chars["SERA"].lust(addLust);
 	if(flags["SERA_TALKS_IMPREGNATE"] >= 2)
 	{
 		chars["SERA"].impregnationType = "SeraSpawnPregnancy";
@@ -315,7 +316,7 @@ public function seraBitchImpregnateRide(vIdx:int = 0, tinyVag:Boolean = false):v
 	showSera(true);
 	author("Nonesuch");
 	
-	seraBitcheningImpregnateToggle();
+	seraBitcheningImpregnateToggle(100);
 	
 	output("You smile at Sera and, without saying a word, twirl a finger. The fantastically augmented human flips over onto her back immediately, grinning back.");
 	output("\n\n<i>“Has [pc.master] come for a nice long ride on the Sera train?”</i> she coos, twiddling and tweaking her nipple piercings as she gazes up at you, generous erection pointing upwards.");
@@ -563,7 +564,7 @@ public function seraBitchImpregnateBedWake():void
 			processTime(3);
 			break;
 		case 1:
-			seraBitcheningImpregnateToggle();
+			seraBitcheningImpregnateToggle(100);
 			if(pc.hasVagina()) vIdx = rand(pc.vaginas.length);
 			if(pc.hasCock()) cIdx = rand(pc.cocks.length);
 			
@@ -618,14 +619,14 @@ public function seraBitchImpregnateBedWake():void
 			output("\n\n<i>“Mmm,”</i> she sighs, wiping the offending foot long member on the sheets, <i>“I do so love it when [pc.master] lets me be in charge for once.”</i> She winks when you stare at her stone-faced, utterly unabashed, and she hums a jaunty little tune to herself as she saunters off towards the shower.");
 			output("\n\nShe’s a piece of work. Still, there are definitely worse ways of being woken up.");
 			processTime(35);
-			chars["SERA"].orgasm();
-			pc.orgasm();
 			if(vIdx >= 0) pc.loadInCunt(chars["SERA"], vIdx);
 			else pc.loadInAss(chars["SERA"]);
+			chars["SERA"].orgasm();
+			pc.orgasm();
 			IncrementFlag("SERA_WAKEUP_SEX");
 			break;
 		case 2:
-			seraBitcheningImpregnateToggle();
+			seraBitcheningImpregnateToggle(100);
 			cIdx = rand(pc.cocks.length);
 			
 			output("You’re being held down and ridden briskly by a snake-headed alien princess, in some deranged, open-air palace out of M.C. Escher’s most warped fantasies. You have been here for years, deathless aeons perhaps, but that doesn’t matter. What matters is the moment; what matters is your [pc.cock " + cIdx + "] sunk deep in sopping, muscular pussy that writhes and wrings it with jealous zeal. You don’t dare reach up and touch the snake princess’s perfect breasts or curvy hips, because then she’ll bite you, and then the clear venom she’s drooling all over your [pc.belly] and [pc.chest] will enter your veins. You just have to lie perfectly still and let her take her satisfaction from you... be her slave, and let the wet, wringing heat around your cock overwhelm you...");

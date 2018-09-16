@@ -230,6 +230,7 @@
 		public static const TYPE_ADREMMALEX:int 							= 80;
 		public static const TYPE_MOTHRINE:int 								= 81;
 		public static const TYPE_FROSTWYRM:int 								= 82;
+		public static const TYPE_SANDWORM:int 								= 83;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -315,6 +316,7 @@
 			"Adremmalex",
 			"Mothrine",
 			"Frostwyrm",
+			"Sand Worm",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

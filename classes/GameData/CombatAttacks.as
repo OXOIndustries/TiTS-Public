@@ -781,7 +781,7 @@ package classes.GameData
 			{
 				if(!target.hasStatusEffect("Flyaway") && !target.hasStatusEffect("Flying")) target.createStatusEffect("Flyaway");
 			}
-			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && !target.isPlanted() && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output("\n<b>You are staggered by the lunge!</b>");
@@ -1439,7 +1439,7 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 			output("\n");
 			SingleRangedAttackImpl(attacker, target, true);
-			if (!target.hasStatusEffect("Staggered") && attacker.hasPerk("Rending Attacks"))
+			if (attacker.hasPerk("Rending Attacks") && !target.hasStatusEffect("Staggered") && !target.isPlanted())
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output(" <b>You are staggered by the hail of fire!</b>");
@@ -2544,11 +2544,16 @@ package classes.GameData
 		public static var TripAttack:SingleCombatAttack;
 		private static function TripAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			output(StringUtil.capitalize(attacker.getCombatName(), false) + " tr" + (attacker.isPlural ? "y" : "ies") + " to trip you! ");
-			if (target.reflexes()/2 + rand(20) + 1 >= attacker.physique()/2 + 10) output("You neatly hop over the misguided attempt.");
+			var aPlural:Boolean = ((attacker is PlayerCharacter) || attacker.isPlural);
+			var tPlural:Boolean = ((target is PlayerCharacter) || target.isPlural);
+			
+			output(StringUtil.capitalize(attacker.getCombatName(), false) + " tr" + (aPlural ? "y" : "ies") + " to trip " + target.getCombatName() + "! ");
+			if (target.hasFlightEffects()) output("In your flight, " + target.getCombatPronoun("heshe") + " " + (tPlural ? "are" : "is") + " able to swiftly dart away from the misguided attempt.");
+			else if (target.isPlanted()) output("Being firmly planted to the ground makes the attempt to trip " + target.getCombatPronoun("himher") + " essentially useless.");
+			else if ((target.reflexes()/2 + rand(20) + 1 >= attacker.physique()/2 + 10)) output(StringUtil.capitalize(target.getCombatPronoun("heshe")) + " neatly hop" + (tPlural ? "s" : "") + " over the misguided attempt.");
 			else
 			{
-				output("You go down to the ground! <b>You’re going to have a difficult time fighting from down here!</b>");
+				output(StringUtil.capitalize(target.getCombatPronoun("heshe")) + " go" + (tPlural ? "es" : "") + " down to the ground! <b>" + StringUtil.capitalize(target.getCombatPronoun("heshe")) + "’" + (tPlural ? "re" : "s") + " going to have a difficult time fighting from down here!</b>");
 				applyTrip(target);
 				
 				applyDamage(new TypeCollection( { kinetic: 1 } ), attacker, target);
