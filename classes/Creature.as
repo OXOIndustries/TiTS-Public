@@ -4321,7 +4321,7 @@
 		}
 		public function canDeepthroat():Boolean
 		{
-			return (isBimbo() || isTreated());
+			return (isBimbo() || isTreated() || flags["USED_SNAKEBYTE"] != undefined);
 		}
 		public function skinIsSoaked():Boolean
 		{
