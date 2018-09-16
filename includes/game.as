@@ -1911,6 +1911,12 @@ public function insideShipEvents():Boolean
 		shizzyAnnoShipTalk();
 		return true;
 	}
+    if (ramisMolestingAvailable() && rand(10) == 0)
+    {
+        ramisCorridorMolesting();
+        return true;
+    }
+
 	return false;
 }
 
@@ -2543,7 +2549,7 @@ public function showerOptions(arg:Array):void
 			addButton(showerSex, "Anno", annoFollowerShowerSex);
 			showerSex++;
 		}
-        if (ramisIsCrew() && !looksFemaleToRamis() && flags["RAMIS_SEX_ROLE"] != undefined)
+        if (ramisIsCrew() && !looksFemaleToRamis() && flags["RAMIS_SEXED_SHIP"] != undefined)
         {
             addButton(showerSex, "Ramis", ramisBathingCats, "shower");
             showerSex++;

@@ -431,13 +431,18 @@ public function useACocksock(item:ItemSlotClass):Boolean
 	if(pc.cockTotal() == 1)
 	{
 		if(pc.cocks[0].cocksock.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE))
-		{
 			output("You cannot remove the current cockwear without outside assistance.");
-			if(inCombat()) addButton(0,"Next",backToCombatInventory);
-			else addButton(0,"Next",itemScreen);
-		}
-		else actuallyWearCocksock([item,0]);
-		return false;
+        else if (item.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !pc.cocks[0].fitsSmallCocksock())
+			output("You cannot fit the current cockwear.");
+		else 
+        {
+            actuallyWearCocksock([item,0]);
+            return false;
+        }
+            
+        if(inCombat()) addButton(0,"Next",backToCombatInventory);
+        else addButton(0,"Next",itemScreen);
+        return false;
 	}
 	
 	output("Which cock would you like to wear " + item.description + " on?");
@@ -450,6 +455,7 @@ public function useACocksock(item:ItemSlotClass):Boolean
 		else output(" - <b>(EMPTY)</b>");
 		
 		if(pc.cocks[x].cocksock.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Penis #" + (x+1),StringUtil.upperCase(num2Ordinal(x+1)) + " Penis","You cannot remove that cockwear without outside assistance.");
+        else if(item.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !pc.cocks[x].fitsSmallCocksock()) addDisabledButton(button++,(button) + ": Penis #" + (x+1),StringUtil.upperCase(num2Ordinal(x+1)) + " Penis","You cannot fit that cockwear.");
 		else addButton(button++,(button) + ": Penis #" + (x+1),actuallyWearCocksock,[item,x]);
 	}
 	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
@@ -469,7 +475,8 @@ public function actuallyWearCocksock(args:Array):void
 	oldItem = pc.cocks[x].cocksock.makeCopy();
 	
 	if(!(oldItem is EmptySlot)) output("You remove " + oldItem.description + " to make room for the new cock-wear. ");
-	output("You give your [pc.cock " + cIdx + "] a few strokes to get it ready, then dress it. Your [pc.cockNoun " + cIdx + "] is now wearing " + item.description + "!");
+	if (item is SilkyCockBell) output("You clip the collar of silk around your [pc.cock " + cIdx + "]. It could’ve been made for your prick, and the bell swings beneath it freely. Jingle! Just wearing the thing makes you fill with submissive heat, swelling up beneath the smooth material, and you find that you are constantly sporting a tiny, chubby semi-erection whilst wearing it.");
+    else output("You give your [pc.cock " + cIdx + "] a few strokes to get it ready, then dress it. Your [pc.cockNoun " + cIdx + "] is now wearing " + item.description + "!");
 	
 	pc.cocks[cIdx].cocksock = item.makeCopy();
 	pc.cocks[cIdx].cocksock.onEquip(pc);

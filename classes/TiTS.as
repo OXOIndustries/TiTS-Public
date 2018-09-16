@@ -64,6 +64,8 @@
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Accessories.*
 	import classes.Items.Transformatives.*;
+    //Change SilkyCockBell to * when it's time -lighterfluid
+    import classes.Items.Piercings.SilkyCockBell;
 
 	import classes.Parser.ParseEngine;
 
