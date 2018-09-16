@@ -129,6 +129,13 @@ public function zhengFoundryF1EncounterBonus():Boolean
 
 		encounters.push(forgehoundEncounter);
 		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
+		encounters.push(encounterPunkSecOp);
 		/*encounters.push(boredJumperAttackProc);
 		encounters.push(boredJumperAttackProc);*/
 	}

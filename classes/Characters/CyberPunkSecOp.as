@@ -116,12 +116,12 @@
 			this.horns = 0;
 			this.hornType = 0;
 			this.armType = GLOBAL.TYPE_FELINE;
-			this.armFlags = [GLOBAL.FLAG_FURRED,GLOBAL.FLAG_PAWS]
+			this.armFlags = []
 			this.gills = false;
 			this.wingType = 0;
 			this.legType = GLOBAL.TYPE_FELINE;
 			this.legCount = 2;
-			this.legFlags = [GLOBAL.FLAG_DIGITIGRADE, GLOBAL.FLAG_FURRED, GLOBAL.FLAG_PAWS];
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE];
 			//0 - Waist
 			//1 - Middle of a long tail. Defaults to waist on bipeds.
 			//2 - Between last legs or at end of long tail.
@@ -233,7 +233,7 @@
 				thickness = 25;
 				tallness += 5;
 				tone = 70;
-				femininity = 5;
+				femininity = 35;
 				hairColor = "blue";
 				hairLength = 8;
 				lipMod = 0;
