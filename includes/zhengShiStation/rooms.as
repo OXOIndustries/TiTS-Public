@@ -1437,7 +1437,7 @@ public function initZhengRooms():void
 	rooms["ZSF C24"].southExit = "";
 	rooms["ZSF C24"].westExit = "";
 	rooms["ZSF C24"].moveMinutes = 3;
-	rooms["ZSF C24"].runOnEnter = zhengFoundryF1EncounterBonus;
+	rooms["ZSF C24"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF C24"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF C24"].addFlag(GLOBAL.HAZARD);
 
