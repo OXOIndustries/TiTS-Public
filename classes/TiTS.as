@@ -299,6 +299,7 @@
 		include "../includes/tarkus/anno.as";
 		include "../includes/tarkus/aurora.as";
 		include "../includes/tarkus/bess.as";
+		include "../includes/tarkus/buttBugs.as";
 		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";

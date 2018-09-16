@@ -13,6 +13,7 @@ package classes.GameData
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.RaskvelFemale;
 	import classes.Characters.RaskvelMale;
+	import classes.Characters.SandWorm;
 	import classes.Characters.Shizuya;
 	import classes.Characters.StormguardMale;
 	import classes.Characters.ZilFemale;
@@ -153,7 +154,7 @@ package classes.GameData
 			
 			// Carpet Grenades
 			CarpetGrenades = new SingleCombatAttack();
-			CarpetGrenades.ButtonName = "Carpet Grenades";
+			CarpetGrenades.ButtonName = "C. Grenades";
 			CarpetGrenades.EnergyCost = 25;
 			CarpetGrenades.RequiresPerk = "Carpet Grenades";
 			CarpetGrenades.DisabledIfEffectedBy = ["Disarmed"];
@@ -587,6 +588,10 @@ package classes.GameData
 				output("Further action is interrupted!");
 				return false;
 			}
+			if(target is SandWorm && kGAMECLASS.attackSandworm(target, attacker, special))
+			{
+				return false;
+			}
 			if(target.hasStatusEffect("Counters Ranged") && !target.isImmobilized())
 			{
 				if(rangedCounterResults(attacker,target)) return false;
@@ -699,6 +704,10 @@ package classes.GameData
 			if(target is BothriocQuadomme && !target.hasStatusEffect("Melee Hit")) 
 			{
 				if(kGAMECLASS.quadommeCounter(attacker, target)) return false;
+			}
+			if(target is SandWorm && kGAMECLASS.attackSandworm(target, attacker, special))
+			{
+				return false;
 			}
 			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && !attacker.hasPerk("Lunge"))
 			{
@@ -818,6 +827,10 @@ package classes.GameData
 				output("Celise takes the hit, the wound instantly closing in with fresh, green goop. Her surface remains perfectly smooth and unmarred afterwards.");
 				return;
 			}
+			if(target is SandWorm && kGAMECLASS.attackSandworm(target, attacker, "ranged"))
+			{
+				return;
+			}
 			
 			if (attacker.hasStatusEffect("Disarmed"))
 			{
@@ -873,6 +886,10 @@ package classes.GameData
 			if (target is Celise)
 			{
 				output(target.customBlock);
+				return;
+			}
+			if(target is SandWorm && kGAMECLASS.attackSandworm(target, attacker, "melee"))
+			{
 				return;
 			}
 			

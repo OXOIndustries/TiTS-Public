@@ -231,6 +231,7 @@
 		public static const TYPE_MOTHRINE:int 								= 81;
 		public static const TYPE_FROSTWYRM:int 								= 82;
 		public static const TYPE_SANDWORM:int 								= 83;
+		public static const TYPE_SANDWORM_PARASITE:int 						= 84;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -317,6 +318,7 @@
 			"Mothrine",
 			"Frostwyrm",
 			"Sand Worm",
+			"Butt Bug",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [

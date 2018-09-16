@@ -121,7 +121,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			if(!pc.hasVagina()) pc.createVagina();
 			pc.vaginas[0].wetnessRaw = 2;
 			pc.clitLength = 0.3;
-			bonusTexts = "Despite a curious blend of canine and shark genes finding their way into your genome, you are still Victor Steele's heir - but one with two big-ass dog-dicks and a desire to use them.";
+			bonusTexts = "Despite a curious blend of canine and shark genes finding their way into your genome, you are still Victor Steele’s heir - but one with two big-ass dog-dicks and a desire to use them.";
 			break;
 		//Fetysh - Female, max fertility, the perks that increase pregnancy speed (I believe Marae's, Fera's and the brood mother one). Other perks I'll enjoy getting during leveling. As for character specifics, short, about 4'11", 95lbs, tentacle hair, blue-black skin, spaded tail, normal hands/feet. Virginal cunt/ass to start with and C-cup breasts. (Can those resist most normal forms of shrinking? Not all if you could, sort of like the bimbo body that keeps them at a minimum size)
 		case "fetysh":
@@ -1193,43 +1193,39 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.hipRatingRaw = 3;	
 			pc.createBreastRow();
 			pc.breastRows[0].breastRatingRaw = 4;
-			if(!pc.hasCock()) 
-			pc.clearCockFlags();
-			pc.createCock();
+			if(!pc.hasCock()) pc.createCock();
 			if(pc.cockTotal() < 2) pc.createCock();
 			pc.shiftCock(0, GLOBAL.TYPE_DEMONIC);
 			pc.cocks[0].cLengthRaw = 13.5;
 			pc.cocks[0].cThicknessRatioRaw = 1.3;
 			pc.cocks[0].knotMultiplier = 1.5;
 			pc.cocks[0].cockColor = "crimson";
-			pc.addCockFlag(GLOBAL.FLAG_PREHENSILE);
-			pc.addCockFlag(GLOBAL.FLAG_LUBRICATED);
-			pc.addCockFlag(GLOBAL.FLAG_TAPERED);
-			pc.addCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_LUBRICATED);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_TAPERED);
+			pc.cocks[0].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);
 			pc.shiftCock(1, GLOBAL.TYPE_DEMONIC);
 			pc.cocks[1].cLengthRaw = 13.5;
 			pc.cocks[1].cThicknessRatioRaw = 1.3;
 			pc.cocks[1].cockColor = "crimson";
 			pc.cocks[1].knotMultiplier = 1.5;
-			pc.addCockFlag(GLOBAL.FLAG_PREHENSILE);
-			pc.addCockFlag(GLOBAL.FLAG_LUBRICATED);
-			pc.addCockFlag(GLOBAL.FLAG_TAPERED);
-			pc.addCockFlag(GLOBAL.FLAG_APHRODISIAC_LACED);		
+			pc.cocks[1].addFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.cocks[1].addFlag(GLOBAL.FLAG_LUBRICATED);
+			pc.cocks[1].addFlag(GLOBAL.FLAG_TAPERED);
+			pc.cocks[1].addFlag(GLOBAL.FLAG_APHRODISIAC_LACED);		
 			pc.balls = 0;
 			pc.ballSizeRaw = 20;
 			pc.cumMultiplierRaw = 150;
 			pc.ballEfficiency = 400;
 			pc.refractoryRate = 100;
-			if(!pc.hasVagina()) 
-			pc.clearVaginaFlags();
-			pc.createVagina();
+			if(!pc.hasVagina()) pc.createVagina();
 			pc.shiftVagina(0, GLOBAL.TYPE_SUULA);
 			pc.vaginas[0].wetnessRaw = 2;
 			pc.scaleColor = "black";
 			pc.eyeColor = "glowing red";
 			pc.eyeType = GLOBAL.TYPE_DEMONIC;
-			pc.skinType = GLOBAL.SKIN_TYPE_HUMAN;
-			pc.addSkinFlag(FLAG_SMOOTH);
+			pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
 			pc.skinTone = "fair";
 			pc.faceType = GLOBAL.TYPE_HUMAN;
 			pc.addFaceFlag(GLOBAL.FLAG_SMOOTH);
@@ -1263,9 +1259,9 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.createStatusEffect("Genital Slit",0,0,0,0);
 			pc.createStatusEffect("Vanae Markings");
 			pc.skinAccent = "glowing red";
-		//The 'true' at the end of the Perfect Simulant status effect is where I think the flag goes to have it hidden, if not then please set it where it needs to go or let me know.	
+		//The 'true' at the end of the Perfect Simulant status effect is where I think the flag goes to have it hidden, if not then please set it where it needs to go or let me know.
 			pc.createStatusEffect("Perfect Simulant",0,0,0,0,true,"Icon_Gears_Three","You were created by the scientists at Steele Tech to be the perfect heir, and as such, your maximum capabilities exceed even those of the luckiest terrans. You walk, talk, breathe, and eat, just like any living creature, even simulating DNA to allow you to emulate the effects of transformative items on true organics.",false,0);
-			bonusTexts = "None of the doctors or scientists could ever figure out what went 'wrong' with you, it was as if some supernatural force meddled with you.  Nor could they ever explain the your 'past life' memories, but you're certain you've always been this way.";
+			bonusTexts = "None of the doctors or scientists could ever figure out what went ‘wrong’ with you, it was as if some supernatural force meddled with you. Nor could they ever explain the your ‘past life’ memories, but you’re certain you’ve always been this way.";
 			break;
 		case "":
 			if(!TF) break;
