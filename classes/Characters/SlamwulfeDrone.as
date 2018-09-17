@@ -21,7 +21,7 @@
 			a = "the ";
 			capitalA = "The ";
 			long = "This quadrupedal, canine-style defense drone is decked out in armor plating. It’s maw is packed with an assortment of razor-sharp teeth, but even without them, its bulk makes for an imposing presence on the battlefield.";
-			customDodge = "Dodge Placeholder";
+			customDodge = "It lumbers aside!";
 			customBlock = "Block Placeholder";
 			isPlural = false;
 			isLustImmune = true;
