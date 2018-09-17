@@ -20298,7 +20298,7 @@
 			if (amount > statusEffectv1("Cum Cascade")) setStatusValue("Cum Cascade", 3, fluid);
 			
 			var cumTransfer:Number = Math.round(amount / 10);
-			cumTransfer *= timePassed;
+			cumTransfer *= (timePassed / 60);
 			if (cumTransfer > amount) cumTransfer = amount;
 			
 			addStatusValue("Cum Cascade", 1, (-1 * cumTransfer));
