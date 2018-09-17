@@ -10,6 +10,8 @@ Wrap all the ternaries in the sex scenes because fuck debugging them ever
 Make sure up the breast size customisation stuff ties to the sex scenes properly
 */
 
+public var BESS_INV_SLOT_MAX:int = 55;
+
 public function bessSexName():String
 {
 	if (flags["BESS_SEX_NAME"] == undefined) flags["BESS_SEX_NAME"] = bess.short;
@@ -3563,7 +3565,421 @@ public function talkToBessAboutClothes():void
 	addButton(6, "Wings", talkToBessAboutWings, undefined, "Wings", "Change [bess.hisHer] wings.");
 	addButton(7, "Items", talkToBessAboutItems, undefined, "Items", "Change [bess.hisHer] accessories.");
 
+	addButton(10, "Give Clothes", bessGiveClothes);
+	addButton(11, "Wear Clothes", bessWhatOutfitToWear);
+	addButton(12, "Return Clothes", bessWhatOutfitToReturn);
+	addButton(13, "Destroy Clothes", bessWhatOutfitWillToDestroy);
+
 	addButton(14, "Back", bessFunctions);
+}
+
+public function bessDisplayInventory():void
+{
+	output("<b><u>[bess.name] Is Wearing</u></b>:\n");
+	output("<b>Armor:</b> [bess.Armor]\n");
+	output("<b>Upper Undergarment:</b> [bess.UpperUndergarment]\n");
+	output("<b>Lower Undergarment:</b> [bess.LowerUndergarment]\n\n");
+//	output("<b>Lower Undergarment:</b> [bess.LowerUndergarment]" + (bess.hasHardLightEquipped() ? " (with hardlight strap-on)" : "") + "\n\n");
+	output("<b><u>[bess.name]’s Available Clothing:</u></b>\n");
+	for(var x:int = 0; x < bess.inventory.length; x++)
+	{
+		if(x >= BESS_INV_SLOT_MAX) output("<span class='bad'>" + StringUtil.upperCase(bess.inventory[x].description, false) + "</span>\n");
+		else output(StringUtil.upperCase(bess.inventory[x].description, false) + "\n");
+	}
+	if(bess.inventory.length == 0) output("Nothing. <i>[bess.name] has no" + (bess.isNude() ? "": " extra") + " clothes!</i>\n");
+}
+
+public function bessGiveClothes():void
+{
+	clearOutput();
+	bessHeader();
+	output("What do you intend to give her?\n\n");
+	bessDisplayInventory();
+
+	clearMenu();
+ 	var buttons:int = 0;
+	var x:int = 0;
+	var state:int = 0; // 0 invalid, 1 can give, 2 already equipped by bess, 3 in bess's inventory
+	while (true)
+ 	{
+		if (x < pc.inventory.length)
+ 		{
+			var cname:String = getQualifiedClassName(pc.inventory[x]);
+			switch (pc.inventory[x].type)
+ 			{
+				case GLOBAL.CLOTHING:
+					state = cname == getQualifiedClassName(bess.armor) ? 2 : 1;
+					break;
+				case GLOBAL.ARMOR:
+					if (pc.inventory[x] is GooArmor)
+					{ state = 0; }
+					else
+					{ state = cname == getQualifiedClassName(bess.armor) ? 2 : 1; }
+					break;
+				case GLOBAL.LOWER_UNDERGARMENT:
+					state = cname == getQualifiedClassName(bess.lowerUndergarment) ? 2 : 1;
+					break;
+				case GLOBAL.UPPER_UNDERGARMENT:
+					state = cname == getQualifiedClassName(bess.upperUndergarment) ? 2 : 1;
+					break;
+				default:
+					state = 0;
+					break;
+ 			}
+			if (state == 1 && bess.hasItemByClass(getDefinitionByName(cname) as Class)) state = 3;
+			if (state == 1 && pc.inventory[x].hasFlag(GLOBAL.ITEM_FLAG_UNDROPPABLE)) state = -1;
+		}
+		
+		if (buttons % 15 == 0 && (state || !buttons))
+		{
+			addButton(buttons+14, "Back", talkToBessAboutClothes);
+			buttons++;
+		}
+		
+		if (x == pc.inventory.length) break;
+		
+		switch (state)
+		{
+			case 1: // can give
+				addItemButton(buttons-1, pc.inventory[x], bessClothingGiftConfirm, x);
+				buttons++;
+				break;
+			case 2: // already equipped by bess
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "[bess.name] is already wearing one of these!");
+				buttons++;
+				break;
+			case 3: // in bess's inventory
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "[bess.name] already has one of these.");
+				buttons++;
+				break;
+			case -1: // cannot drop!
+				addDisabledButton(buttons-1, pc.inventory[x].shortName, StringUtil.toDisplayCase(pc.inventory[x].longName), "You cannot drop this item.");
+				buttons++;
+				break;
+ 		}
+		x++;
+ 	}
+	if(buttons == 1) output("\nOh right... You don’t have anything to give her.");
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+
+public function bessClothingGiftConfirm(x:int):void
+{
+	clearOutput();
+	bessHeader();
+	output("Are you sure you want to give [bess.name] " + pc.inventory[x].description + "?");
+	//Inventory options here. Pick 1. Confirm:
+	//Are you sure you want to give {item} to bess?
+	//Yes // No (Back to Inventory)
+	clearMenu();
+	addButton(1,"No",bessGiveClothes);
+	addButton(0,"Yes",bessGiveClothesProcess,x,"Yes","Give her the item!");
+}
+
+public function bessGiveClothesProcess(x:int):void
+{
+	clearOutput();
+	bessHeader();
+	output("<i>“I’ve got a present for you!”</i>");
+	var item:ItemSlotClass = pc.inventory[x];
+	//Move her old armor to inventory, if she had any.
+	if(InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR])) 
+	{
+		if(!(bess.armor is EmptySlot)) bess.inventory.push(bess.armor);
+		bess.armor = item;
+	}
+	else if(item.type == GLOBAL.LOWER_UNDERGARMENT)
+	{
+		if(!(bess.lowerUndergarment is EmptySlot)) bess.inventory.push(bess.lowerUndergarment);
+		bess.lowerUndergarment = item;
+	}
+	else if(item.type == GLOBAL.UPPER_UNDERGARMENT)
+	{
+		if(!(bess.upperUndergarment is EmptySlot)) bess.inventory.push(bess.upperUndergarment);
+		bess.upperUndergarment = item;
+	}
+	else
+	{
+		output("\n\nA SEVERE ERROR OCCURRED. UNKNOWN CLOTHING TYPE GIVEN TO bess. FENOXO DUN FUCKED UP! ITEM ERROR: " + item.description + "\n\n");
+	}
+	pc.inventory.splice(x,1);
+	output("\n\n<i>“Ooh! What is it?”</i> she asks, looking at you expectantly.");
+	//Item has high Sexiness
+	if(item.sexiness >= 5) output(" <i>“Oh, cute!”</i> [bess.name] giggles as you hand over " + item.description + ". She puts it up against herself, showing off her cute new outfit for you. You tell her it looks good on her, earning a smile from her. <i>“Thank you so much, [pc.name]! I’ll go change!”</i>");
+	//Item has high Defense
+	else if(item.defense >= 3) 
+	{
+		output(" <i>“Armor?”</i> [bess.name] asks, raising an eyebrow, but taking " + item.description + " anyway. <i>“Neat. I haven’t really worn much armor since the army, but I appreciate the thought!");
+		if(silly) output(" This’ll keep me nice and safe in case somebody tries to rustle me, right?");
+		else output(" This’ll come in handy in case we ever get boarded, I’m sure.");
+		output(" I’ll go put this on - thanks, [pc.name]. Glad to know you’re looking out for me!”</i>");
+	}
+	//Item has Shields
+	else if(item.shields >= 5) {
+		output(" <i>“Wow, a shield generator,”</i> [bess.name] says as you hand over " + item.description + ". <i>“Us poor grunts didn’t even get these back in the army. Then again, I mostly sat around in a tank anyway!”</i> she laughs, taking " + item.description + ".");
+		output("\n\n<i>“Thanks for this, [pc.name],”</i> she adds with a smile. <i>“It’ll keep me nice and safe!”</i>");
+	}
+	//Item has a penalty on Sexiness
+	else if(item.sexiness < 0)
+	{
+		output(" <i>“...Oh,”</i> she says, the excitement fading from her voice as she sees the ugly " + item.description + " on offer. <i>“Um, thanks, [pc.name].”</i>");
+	}
+	//Item is cow-themed
+	else if(item.longName.indexOf("cow") >= 0)
+	{
+		output(" <i>“Moo!”</i> [bess.name] cheers as she takes in the pretty cow’s clothing. <i>“Hehe, thanks [pc.name], it’s adorable! I feel like I shouldn’t like cow-print, but... it’s just so cute! I love it!”</i>");
+		output("\n\nShe catches you in a big hug, squeezing her tits tight against your [pc.chest]. <i>“I’ll go change. Be a shame if someone took advantage of me while I did,”</i> she adds with a lusty wink.");
+	}
+	//Else, catch-all
+	else
+	{
+		output(" <i>“Aww, thank you!”</i> [bess.name] says, taking the proffered " + item.description + " from you. Once you’ve handed it over, [bess.name] ");
+		if(pc.tallness > bess.tallness + 4) output("leans up on her tip-toes and");
+		else output("leans in and");
+		output(" gives you a peck on the cheek. <i>“You’re too sweet, [pc.name]. I’ll go change into this right away!”</i>");
+	}
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",bessGiveClothes);
+}
+
+//WearOutfit
+//Tooltip: Choose an outfit for bess to wear.
+//Opens up a bess inventory, lets you play Pretty Princess Cow-girl Dressup with bess.
+//When player finishes and changes something, add:
+public function bessWhatOutfitToWear():void
+{
+	clearOutput();
+	bessHeader();
+	output("What will you have [bess.name] wear?\n\n");
+	bessDisplayInventory();
+	var buttons:Number = 0;
+	var invLimit:int = bess.inventory.length;
+	if(invLimit >= BESS_INV_SLOT_MAX) invLimit = BESS_INV_SLOT_MAX;
+	clearMenu();
+	if(!bess.isNude())
+	{
+		buttons = 1;
+		addButton(0,"Get Naked",bessDressSelection,null,"Get Naked","Get [bess.name] naked so you can dress her all over again... or leave her nude.");
+	}
+	addButton(14,"Back",talkToBessAboutClothes);
+	for(var x:int = 0; x < invLimit; x++)
+	{
+		//14 is for "Back"
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", talkToBessAboutClothes);
+			buttons++;
+		}
+		
+		//Make sure bess doesn't wear it (failsafe)
+		if(
+			InCollection(bess.inventory[x].shortName, [bess.armor.shortName, bess.lowerUndergarment.shortName, bess.upperUndergarment.shortName])
+		) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "[bess.name] is already wearing one of these!");
+		else addItemButton(buttons,bess.inventory[x],bessDressSelection,bess.inventory[x]);
+		buttons++;
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", talkToBessAboutClothes);
+		}
+	}
+}
+
+public function bessDressSelection(item:ItemSlotClass):void
+{
+	clearOutput();
+	bessHeader();
+
+	output("<i>“You want me to ");
+	if(item != null) output("wear this");
+	else output("go naked for a while");
+	output("?”</i> [bess.name] asks sweetly. <i>“For you, anything! I’ll go get changed!”</i>");
+
+	//GIT NAKKID
+	if(item == null)
+ 	{
+		if (!(bess.armor is EmptySlot))
+		{
+			bess.inventory.push(bess.armor);
+			bess.armor = new EmptySlot();
+		}
+		if (!(bess.lowerUndergarment is EmptySlot))
+		{
+			bess.inventory.push(bess.lowerUndergarment);
+			bess.lowerUndergarment = new EmptySlot();
+		}
+		if (!(bess.upperUndergarment is EmptySlot))
+		{
+			bess.inventory.push(bess.upperUndergarment);
+			bess.upperUndergarment = new EmptySlot();
+		}
+ 	}
+	//ELSE ARMOR
+	else if(InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]))
+	{
+		if(!(bess.armor is EmptySlot)) bess.inventory.push(bess.armor);
+		bess.armor = item;
+		bess.inventory.splice(bess.inventory.indexOf(item), 1);
+	}
+	else if(item.type == GLOBAL.LOWER_UNDERGARMENT)
+	{
+		if(!(bess.lowerUndergarment is EmptySlot)) bess.inventory.push(bess.lowerUndergarment);
+		bess.lowerUndergarment = item;
+		bess.inventory.splice(bess.inventory.indexOf(item), 1);
+	}
+	else if(item.type == GLOBAL.UPPER_UNDERGARMENT)
+	{
+		if(!(bess.upperUndergarment is EmptySlot)) bess.inventory.push(bess.upperUndergarment);
+		bess.upperUndergarment = item;
+		bess.inventory.splice(bess.inventory.indexOf(item), 1);
+	}
+	else
+	{
+		output("\n\nA SEVERE ERROR OCCURRED. UNKNOWN CLOTHING TYPE GIVEN TO bess. FENOXO DUN FUCKED UP! ITEM ERROR: " + item.description + "\n\n");
+	}
+	
+	output("\n\n[bess.name] collects her things and skips off to her quarters. A few moments later and she’s wandering the corridors");
+	if(item == null) output(" butt naked, flaunting what she’s got for you.");
+	else output(" trussed up in her [bess.gear].");
+	
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",bessWhatOutfitToWear);
+}
+
+// Remove abundance of clothes stuffs!
+public function bessWhatOutfitToReturn():void
+{
+	clearOutput();
+	bessHeader();
+	author("Jacques00");
+	
+	output("What will you have [bess.name] return to you?\n\n");
+	bessDisplayInventory();
+	
+	var pcInvFull:Boolean = (pc.inventory.length >= pc.inventorySlots());
+	var buttons:Number = 0;
+	var invLimit:int = bess.inventory.length;
+	if(invLimit >= BESS_INV_SLOT_MAX) invLimit = BESS_INV_SLOT_MAX;
+	
+	clearMenu();
+	
+	for(var x:int = 0; x < invLimit; x++)
+	{
+		//14 is for "Back"
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", talkToBessAboutClothes);
+			buttons++;
+		}
+		
+		//Make sure bess doesn't wear it (failsafe)
+		if(
+			InCollection(bess.inventory[x].shortName, [bess.armor.shortName, bess.lowerUndergarment.shortName, bess.upperUndergarment.shortName])
+		) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "[bess.name] is already wearing one of these!");
+		//Make sure inventory isn't already full!
+		else if(pcInvFull) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "Your inventory is too full for this!");
+		else addItemButton(buttons, bess.inventory[x], bessTakeSelection, bess.inventory[x]);
+		buttons++;
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", talkToBessAboutClothes);
+		}
+	}
+	
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+public function bessTakeSelection(item:ItemSlotClass):void
+{
+	clearOutput();
+	bessHeader();
+	author("Jacques00");
+	
+	output("<i>“You want this back?”</i> [bess.name] asks curiously, holding up the " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "outfit" : "article of clothing") + ". <i>“Hmm, I guess I can part with it...”</i>");
+	output("\n\n[bess.name] neatly " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "hangs" : "folds") + " the item and hands it to you. <i>“Better make good use of it, okay?”</i>");
+	output("\n\n");
+	
+	itemCollect([item]);
+	bess.inventory.splice(bess.inventory.indexOf(item), 1);
+	
+	processTime(1);
+	clearMenu();
+	addButton(0, "Next", bessWhatOutfitToReturn);
+}
+
+public function bessWhatOutfitWillToDestroy():void
+{
+	clearOutput();
+	bessHeader();
+	author("Jacques00");
+	
+	output("You cannot get clothing back from [bess.name] once you allow her to get rid of it.\n\nWhat will you have [bess.name] toss out?\n\n");
+	bessDisplayInventory();
+	
+	var buttons:Number = 0;
+	var invLimit:int = bess.inventory.length;
+	if(invLimit >= BESS_INV_SLOT_MAX) invLimit = BESS_INV_SLOT_MAX;
+	
+	clearMenu();
+	
+	for(var x:int = 0; x < invLimit; x++)
+	{
+		//14 is for "Back"
+		if(buttons >= 14 && (buttons + 1) % 15 == 0)
+		{
+			addButton(buttons, "Back", talkToBessAboutClothes);
+			buttons++;
+		}
+		
+		//Make sure bess doesn't wear it (failsafe)
+		if(
+			InCollection(bess.inventory[x].shortName, [bess.armor.shortName, bess.lowerUndergarment.shortName, bess.upperUndergarment.shortName])
+		) addDisabledButton(buttons, bess.inventory[x].shortName, StringUtil.toDisplayCase(bess.inventory[x].longName), "[bess.name] is already wearing one of these!");
+		else addItemButton(buttons, bess.inventory[x], bessClothingDestroyConfirm, x);
+		buttons++;
+		
+		if(invLimit > 14 && (x + 1) == invLimit)
+		{
+			while((buttons + 1) % 15 != 0) { buttons++; }
+			addButton(buttons, "Back", talkToBessAboutClothes);
+		}
+	}
+	
+	addButton(14, "Back", talkToBessAboutClothes);
+}
+
+public function bessClothingDestroyConfirm(x:int):void
+{
+	clearOutput();
+	bessHeader();
+	output("Are you sure you want [bess.name] to throw away " + bess.inventory[x].description + "?");
+	//Inventory options here. Pick 1. Confirm:
+	//Are you sure you want to give {item} to bess?
+	//Yes // No (Back to Inventory)
+	clearMenu();
+	addButton(1,"No",bessWhatOutfitWillToDestroy);
+	addButton(0,"Yes",bessDestroySelection,bess.inventory[x],"Yes","Destroy the item!");
+}
+
+public function bessDestroySelection(item:ItemSlotClass):void
+{
+	clearOutput();
+	bessHeader();
+	author("Jacques00");
+	
+	output("<i>“You want me to throw this out?”</i> [bess.name] asks innocently, holding up the " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "outfit" : "article of clothing") + ". <i>“O-okay...”</i>");
+	output("\n\n[bess.name] " + (InCollection(item.type, [GLOBAL.CLOTHING, GLOBAL.ARMOR]) ? "flattens out the piece" : "softly balls up the material") + " and tosses it in the trash chute. <i>“Well, on the bright side, my wardrobe would be a little less stuffed now.”</i>");
+	
+	output("\n\n<b>[bess.name] removed " + item.description + " from her wardrobe.<\b>");
+	bess.destroyItemByReference(item);
+	
+	processTime(1);
+	clearMenu();
+	addButton(0, "Next", bessWhatOutfitWillToDestroy);
 }
 
 // this is only really used to handle nudity
@@ -4031,9 +4447,9 @@ public function talkToBessAboutAccessories():void
 	//Purchases alter which options unlock in the Functions -> Clothing & Acc Menu (where the clothes and accessories can actually be changed).
 
 	clearMenu();
-	addButton(0, "Outfits", bessBuyShitOutfits);
-	addButton(1, "U.Tops", bessBuyShitBras);
-	addButton(2, "U.Bottoms", bessBuyShitPanties);
+//	addButton(0, "Outfits", bessBuyShitOutfits);
+//	addButton(1, "U.Tops", bessBuyShitBras);
+//	addButton(2, "U.Bottoms", bessBuyShitPanties);
 	addButton(3, "AccSets", bessBuyShitAccessories);
 	addButton(4, "Items", bessBuyShitItems);
 	addButton(5, "Cocks", bessBuyShitCocks);
