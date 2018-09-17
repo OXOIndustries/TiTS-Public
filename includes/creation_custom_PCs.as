@@ -285,7 +285,6 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		The things that count (;-p) :
 		he has a rather well-endowed human-like cock (10 inches in lengh, 2 inches wild) and larger than average balls
 		He has two flat breasts with one nipple each */
-		//9999 needs monkey parts!
 		case "kaeln":
 			if(!TF) break;
 			//Would set legs/tail/feet, but Simii parts are not presently set up for PC.
@@ -704,7 +703,7 @@ public function customPCCheck(TF:Boolean = false):Boolean
 			pc.clearArmFlags();
 			pc.addArmFlag(GLOBAL.FLAG_FURRED);
 			pc.addArmFlag(GLOBAL.FLAG_PAWS);
-			pc.tailType = GLOBAL.TYPE_DRACONIC;
+			pc.tailType = GLOBAL.TYPE_CANINE;
 			pc.tailCount = 1;
 			pc.clearTailFlags();
 			pc.addTailFlag(GLOBAL.FLAG_FURRED);
@@ -769,7 +768,6 @@ public function customPCCheck(TF:Boolean = false):Boolean
 		Enjoys - Being Pregnant
 		Loathes - Domineering Men
 		If I have left anything you needed for the custom character out, please let me know (assuming I even made the cut to get one)!*/
-		//9999 needs pig parts!
 		case "brenda":
 			if(!TF) break;
 			pc.tallness = 77;
