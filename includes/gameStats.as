@@ -6669,6 +6669,9 @@ public function displayEncounterLog(showID:String = "All"):void
 			if(flags["FORGEHOUND_ENCOUNTERED"] != undefined)
 			{
 				output2("\n<b><u>Foundry</u></b>");
+				// Items looted
+				if(flags["TOOK_FEDORA"] == 1) output2("\n<b>* Fedora:</b> Looted");
+				if(flags["SNAKEBYTE_LOOTED"] == 1) output2("\n<b>* SnakeByte:</b> Looted");
 				// Forgehound
 				if(flags["FORGEHOUND_ENCOUNTERED"] != undefined)
 				{

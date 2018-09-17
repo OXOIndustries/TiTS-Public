@@ -93,7 +93,7 @@ public function zhengFoundrySoftwareDevSuckBonus():Boolean
 	if(zhengFoundryF1EncounterBonus()) return true;
 	if(flags["SNAKEBYTE_LOOTED"] == undefined)
 	{
-		output("\n\nA vial of something called 'SnakeByte' sits on the desk.");
+		output("\n\nA vial of something called ‘SnakeByte’ sits on the desk.");
 		addButton(0,"SnakeByte",takeSnakeByte1,undefined,"SnakeByte","Check it out.");
 	}
 	return false;
@@ -107,7 +107,7 @@ public function takeSnakeByte1():void
 	output("The injector is apparently some kind of hyper-specific gene-mod, designed to imbue the user with inhuman deepthroating abilities. Do you want to take it?");
 	clearMenu();
 	addButton(0,"Take It",takeSnakeByte2);
-	addButton(1,"Don't",mainGameMenu);
+	addButton(1,"Don’t",mainGameMenu);
 }
 
 public function takeSnakeByte2():void

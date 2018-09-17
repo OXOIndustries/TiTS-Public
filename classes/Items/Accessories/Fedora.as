@@ -32,7 +32,7 @@
 			this.description = "a battered fedora";
 			
 			//Displayed on tooltips during mouseovers
-			this.tooltip = "This once stylish fedora has seen better days. Now it's a little beat up - the sort of thing you'd expect to see someone put on their semi-aquatic mammal or cringy internet persona.";
+			this.tooltip = "This once stylish fedora has seen better days. Now it’s a little beat up - the sort of thing you’d expect to see someone put on their semi-aquatic mammal or cringy internet persona.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
