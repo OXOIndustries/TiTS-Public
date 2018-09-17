@@ -1471,7 +1471,7 @@ public function wakeUpFromTaurStuff():void
 	else if(pc.hasCock()) output(" and covered in your own [pc.cum]");
 	else if(pc.isSquirter() && pc.hasVagina()) output(" and drenched in [pc.girlCum]");
 	else output(" and decidedly moist between the [pc.thighs]");
-	output(". You open your mouth on instinct, but there’s centaur for you to please - just an empty elevator and your shame.");
+	output(". You open your mouth on instinct, but there’s no centaur for you to please - just an empty elevator and your shame.");
 	output("\n\n");
 	processTime(10);
 	moveToElevatorAdjustment();
