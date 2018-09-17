@@ -146,6 +146,22 @@ public function zhengFoundryF1EncounterBonus():Boolean
 	return false;
 }
 
+public function takeFedoraYooo():Boolean
+{
+	if(flags["TOOK_FEDORA"] == undefined) output(" A dusty fedora rests on the desk next to it, put down and never picked back up. This guy really needs to get his shit together.");
+	if(zhengFoundryF1EncounterBonus()) return true;
+	if(flags["TOOK_FEDORA"] == undefined) addButton(0,"Take Fedora",takeTheFedora);
+	output(" The software development center stretches north and west.");
+	return false;
+}
+public function takeTheFedora():void
+{
+	clearOutput();
+	showName("A\nFEDORA!");
+	quickLoot(new Fedora());
+	flags["TOOK_FEDORA"] = 1;
+}
+
 public function zsmw8Bonus():Boolean
 {
 	if(flags["MAIKE_SLAVES_RELEASED"] != 1 && flags["MAIKE_SLAVES_RELEASED"] != 2) output("Slaves chip away at the bountiful wealth of Zheng Shi, held in place by chains hooked to collars and waists alike. Robotic loaders follow behind them to gather the samples they deposit and whisk them away to be refined. They spare no time to look at you or react in any way, leaving you with the distinct impression that they’re completely broken. You could cut them out of their collars, and they’d probably just keep digging...");
