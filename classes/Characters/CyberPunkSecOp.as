@@ -210,6 +210,7 @@
 			//createStatusEffect("Force Fem Gender");
 			createPerk("Appearance Enabled");
 
+
 			inventory = [];
 
 			var lossLoot:Array = [];
@@ -230,6 +231,7 @@
 			//IT WAS A BOI THE WHOLE TIME~!
 			if(rand(2) == 0)
 			{
+				createStatusEffect("Force Male Gender");
 				thickness = 25;
 				tallness += 5;
 				tone = 70;
@@ -239,6 +241,7 @@
 				lipMod = 0;
 				hipRatingRaw = 4;
 				buttRatingRaw = 2;
+				this.breastRows[0].breastRatingRaw = 1;
 				vaginas = [];
 				createCock();
 				this.cocks[0].cType = GLOBAL.TYPE_SYNTHETIC;
@@ -252,7 +255,7 @@
 			//Nothing needs changed :3
 			else
 			{
-				this.long = "This prissy kaithrit brandishes a slick-looking plasma rifle in one hand like it’s nothing thanks to her skin-tight layer of augment-weave armor. The metallic suit flexes powerfully with her every movement to support her motions, unintentionally highlighting her lightly muscled thighs, wide hips, and exquisitely large chest. The suit supports her latter attributes quite marvellously, keeping the pendulous mounds from swaying too heavily while she circles you. Her hair flutters behind in a lengthy ponytail, the sides of her head shaved to reveal the cybernetic implants responsible for the antennae behind her ear and the projected targeting visor across her eyes.\n\nIt’s a sure bet that this mechanized security cat has plenty of other gadgets on or in her person, ready to spring on you should you dare to continue your resistance.";
+				this.long = "This prissy kaithrit brandishes a slick-looking plasma rifle in one hand like it’s nothing thanks to her skin-tight layer of augment-weave armor. The metallic suit flexes powerfully with her every movement to support her motions, unintentionally highlighting her lightly muscled thighs, wide hips, and exquisitely large chest. The suit supports the latter attributes quite marvellously, keeping the pendulous mounds from swaying too heavily while she circles you. Her hair flutters behind in a lengthy ponytail, the sides of her head shaved to reveal the cybernetic implants responsible for the antennae behind her ear and the projected targeting visor across her eyes.\n\nIt’s a sure bet that this mechanized security cat has plenty of other gadgets on or in her person, ready to spring on you should you dare to continue your resistance.";
 			}
 			if(rand(10) == 0) this.inventory.push(new AugmentWeaveArmor());
 			if(rand(3) == 0) this.inventory.push(new Nepeta());
