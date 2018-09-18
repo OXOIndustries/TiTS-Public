@@ -171,7 +171,7 @@ public function extrameetLadyGlamorDate():void
 	output("\n\nWell that you understand.");
 	
 	if(!CodexManager.entryUnlocked("Ausar")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Ausar race.");
 		CodexManager.unlockEntry("Ausar");
 	}
@@ -257,7 +257,7 @@ public function extrameetReddDate():void
 	output("\n\nYou take a deep breath, considering the offer.");
 	
 	if(!CodexManager.entryUnlocked("Rahn")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Rahn race.");
 		CodexManager.unlockEntry("Rahn");
 	}
@@ -374,7 +374,7 @@ public function extrameetHawtstuffDate():void
 	output("\n\nHer eyes fall off you again. Man the mood went south quick. You’re pretty sure you can salvage the night, but things might get a bit hot and heavy as a result. What to do...");
 	
 	if(!CodexManager.entryUnlocked("Leithans")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Leithan race.");
 		CodexManager.unlockEntry("Leithans");
 	}
@@ -591,7 +591,7 @@ public function extrameetFrankMollyCheckMatch():Boolean
 	return true;
 }
 public function extrameetFrankMollyDate():void
-{	
+{
 	showName("FRANK\n& MOLLY");
 	author("Fr0sty");
 	moveTo("BUCKING BRONCO");
@@ -609,7 +609,7 @@ public function extrameetFrankMollyDate():void
 	output("\n\nYou sigh and turn to exit the bar. Yeah, another time.");
 	
 	if(!CodexManager.entryUnlocked("The Treatment")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Treatment.");
 		CodexManager.unlockEntry("The Treatment");
 	}
@@ -639,7 +639,7 @@ public function extrameetPonyLuverCheckMatch():Boolean
 	else return false;
 }
 public function extrameetPonyLuverDate():void
-{	
+{
 	showName("PONY\nLOVER");
 	author("Fr0sty");
 	moveTo("BUCKING BRONCO");
@@ -799,7 +799,7 @@ public function extrameetVKODate():void
 	output("\n\n<i>“Ah, right.”</i> You give the nurse a look up and down. She seems to be build standard, so you doubt there would be any surprises. Now you just need to decide what to do...");
 	
 	if(!CodexManager.entryUnlocked("V-Ko")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified V-Ko robots.");
 		CodexManager.unlockEntry("V-Ko");
 	}
@@ -890,7 +890,7 @@ public function extrameetSexyyDaddyyDate():void
 	output("\n\nIt doesn’t take a clairvoyant to tell where this is going.");
 	
 	if(!CodexManager.entryUnlocked("Thraggen")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Thraggen race.");
 		CodexManager.unlockEntry("Thraggen");
 	}
@@ -938,7 +938,7 @@ public function extrameetSexyyDaddyySex():void
 //Funnyboi1
 //[EXTRAMEET_FUNNYBOI1]
 public function extrameetFunnyboi1Profile():void
-{		
+{
 	output("The profile picture on your screen is of an equine penis... wearing a hat?");
 	output("\n\nUsername: Funnyboi1");
 	output("\nSex: Male");
@@ -952,7 +952,7 @@ public function extrameetFunnyboi1Profile():void
 //Mylittlefunbox
 //[EXTRAMEET_MYLITTLEFUNBOX]
 public function extrameetMylittlefunboxProfile():void
-{		
+{
 	output("The profile picture on your screen is of a nude man holding a box over his crotch. Somehow, you get the feeling the box isn’t empty...");
 	output("\n\nUsername: Mylittlefunbox");
 	output("\nSex: Male");
@@ -966,7 +966,7 @@ public function extrameetMylittlefunboxProfile():void
 //Your-Mommy
 //[EXTRAMEET_YOURMOMMY]
 public function extrameetYourMommyProfile():void
-{		
+{
 	output("The profile picture on your screen is of a very busty cowgirl with her tits out. She’s giving the camera a very suggestive wink, and giving her ample chest a good grope.");
 	output("\n\nUsername: Your-Mommy");
 	output("\nSex: Female");
@@ -980,7 +980,7 @@ public function extrameetYourMommyProfile():void
 //BrattyKitten
 //[EXTRAMEET_BRATTYKITTEN]
 public function extrameetBrattyKittenProfile():void
-{		
+{
 	output("The profile picture on your screen is a group photo of about 5 women. You assume the subject of the profile is the sole Kaithrit in the picture, but you can’t tell much about her other than her race.");
 	output("\n\nUsername: BrattyKitten");
 	output("\nSex: Female");
@@ -994,7 +994,7 @@ public function extrameetBrattyKittenProfile():void
 //everythingdies
 //[EXTRAMEET_EVERYTHINGDIES]
 public function extrameetEverythingdiesProfile():void
-{		
+{
 	output("The profile picture on your screen is of what looks like a clown wearing black... Closer inspection reveals it’s just somebody wearing far too much makeup and hair gel.");
 	output("\n\nUsername: everythingdies");
 	output("\nSex: Male");
@@ -1008,7 +1008,7 @@ public function extrameetEverythingdiesProfile():void
 //ThickLoadz
 //[EXTRAMEET_THICKLOADZ]
 public function extrameetThickLoadzProfile():void
-{		
+{
 	output("The profile picture on your screen is of a huge dick and the largest set of balls you’ve ever seen. Although you don’t have a great sense of scale, they are easily as large as beach balls.");
 	output("\n\nUsername: ThickLoadz");
 	output("\nSex: Male");
@@ -1022,7 +1022,7 @@ public function extrameetThickLoadzProfile():void
 //Stroke4Me
 //[EXTRAMEET_STROKE4ME]
 public function extrameetStroke4MeProfile():void
-{		
+{
 	output("The profile picture on your screen is of a pair of doggy ears and a blonde mess of hair. All you can tell is the subject is an Ausar...");
 	output("\n\nUsername: Stroke4Me");
 	output("\nSex: Female");
@@ -1036,7 +1036,7 @@ public function extrameetStroke4MeProfile():void
 //LaughingDragon
 //[EXTRAMEET_LAUGHINGDRAGON]
 public function extrameetLaughingDragonProfile():void
-{		
+{
 	output("The profile picture on your screen is of a very drunk Gryvain. You can tell she’s plastered out of her mind not only by her expression, but by the pile of empty bottles next to her in the picture.");
 	output("\n\nUsername: LaughingDragon");
 	output("\nSex: Other");
@@ -1050,7 +1050,7 @@ public function extrameetLaughingDragonProfile():void
 //TheBiggestHorse
 //[EXTRAMEET_THEBIGGESTHORSE]
 public function extrameetTheBiggestHorseProfile():void
-{		
+{
 	output("The profile picture on your screen is of a very tall tauric man standing next to a road sign. From what you can tell he was human at some point, and based on how he towers over the sign he’s massive.");
 	output("\n\nUsername: TheBiggestHorse");
 	output("\nSex: Male");
@@ -1064,7 +1064,7 @@ public function extrameetTheBiggestHorseProfile():void
 //Cumsnuggle
 //[EXTRAMEET_CUMSNUGGLE]
 public function extrameetCumsnuggleProfile():void
-{		
+{
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: Cumsnuggle");
 	output("\nSex: Female");
@@ -1115,7 +1115,7 @@ public function extrameetHuggATreeDate():void
 	output("\n\nChained to a tree for a month? Um....");
 	
 	if(!CodexManager.entryUnlocked("Kaithrit")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Kaithrit race.");
 		CodexManager.unlockEntry("Kaithrit");
 	}
@@ -1127,7 +1127,7 @@ public function extrameetHuggATreeDate():void
 //The_Honeypott
 //[EXTRAMEET_HONEYPOTT]
 public function extrameetHoneypottProfile():void
-{		
+{
 	output("The profile picture on your screen is a selfie of an above average looking dark haired Zil woman. The picture is only of her face, so you cannot tell anything further about her other than her species.");
 	output("\n\nUsername: The_Honeypott");
 	output("\nSex: Female");
@@ -1161,7 +1161,7 @@ public function extrameetHoneypottDate():void
 	output("\n\nThe Zil raises a brow and frowns. <i>“Are you not interested in sexual relations with me?”</i> Honey looks down at herself. <i>“Am I not sexually stimulating for you? If that is the case this is a first.”</i> She leans in close. <i>“If that is the case please tell me what, as you offworlders say, ‘turns your crank’ so I may better understand my shortcomings.”</i>");
 	
 	if(!CodexManager.entryUnlocked("Zil")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Zil race.");
 		CodexManager.unlockEntry("Zil");
 	}
@@ -1222,7 +1222,7 @@ public function extrameetHoneypottSex():void
 //Bountiful_Botany
 //[EXTRAMEET_BOUNTIFULBOTANY]
 public function extrameetBountifulBotanyProfile():void
-{		
+{
 	output("The profile picture on your screen is a headshot of a young woman with thick rimmed glasses. Curiously, her skin is olive green and her red hair has what looks like leaves scattered through it.");
 	output("\n\nUsername: Bountiful_Botany");
 	output("\nSex: Female");
@@ -1327,7 +1327,7 @@ public function extrameetBountifulBotanySex():void
 //SneakySnek
 //[EXTRAMEET_SNEAKYSNEK]
 public function extrameetSneakySnekProfile():void
-{		
+{
 	output("The profile picture on your screen is a full body picture of what looks like a male Naleen. Based on his profile, you deduce he may just partake in more than his fair share of splices.");
 	output("\n\nUsername: SneakySnek");
 	output("\nSex: Male");
@@ -1417,7 +1417,7 @@ public function extrameetSneakySnekSex():void
 //EnchantingFae
 //[EXTRAMEET_ENCHANTINGFAE]
 public function extrameetEnchantingFaeProfile():void
-{		
+{
 	output("The profile picture on your screen is a selfie of an incredibly cute Saeri. She is posing for the picture, biting her lip seductively and giving the camera a longing gaze. Wait a minute.. Thats a guy?!");
 	output("\n\nUsername: EnchantingFae");
 	output("\nSex: Male");
@@ -1453,7 +1453,7 @@ public function extrameetEnchantingFaeDate():void
 	output("\n\n<i>“Oh god.”</i> Fae rubs the bridge of his nose with both hands, his voice filled with alarm. <i>“I’m SO sorry. I don’t like lying about it, but.... It’s really hard to meet people when everybody just thinks you’re just a creepy old man dressed up like a little girl.”</i> He drops his hands and leans in. <i>“My race just ages differently, I swear. I’m totally not some creepy old dude. Please just give me a chance.”</i> His bright eyes go wide and his lips press tightly together, begging.");
 
 	if(!CodexManager.entryUnlocked("Saeri")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Saeri race.");
 		CodexManager.unlockEntry("Saeri");
 	}
@@ -1505,7 +1505,7 @@ public function extrameetEnchantingFaeSex():void
 //BigDawg
 //[EXTRAMEET_BIGDAWG]
 public function extrameetBigDawgProfile():void
-{		
+{
 	output("The profile picture on your screen is of a handsome looking ausar. His hair is jet black, and you can’t help but feel like he must have dyed it. He is giving the camera a serious expression, almost stern.");
 	output("\n\nUsername: BigDawg");
 	output("\nSex: Male");
@@ -1518,8 +1518,8 @@ public function extrameetBigDawgProfile():void
 
 //Nympho69
 //[EXTRAMEET_NYMPHO69]
-	public function extrameetNympho69Profile():void
-{		
+public function extrameetNympho69Profile():void
+{
 	output("The profile picture on your screen is of a semi erect cock being held and shown off. Even half hard it seems fairly large.");
 	output("\n\nUsername: Nympho69");
 	output("\nSex: Other");
@@ -1532,8 +1532,8 @@ public function extrameetBigDawgProfile():void
 
 //ShowYours2Me
 //[EXTRAMEET_SHOWYOURS2ME]
-	public function extrameetShowYours2MeProfile():void
-{		
+public function extrameetShowYours2MeProfile():void
+{
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: ShowYours2Me");
 	output("\nSex: Male");
@@ -1547,7 +1547,7 @@ public function extrameetBigDawgProfile():void
 //AwkwardSoul
 //[EXTRAMEET_AWKWARDSOUL]
 public function extrameetAwkwardSoulProfile():void
-{		
+{
 	output("The profile picture on your screen is a black and white photo of a female Simii. The picture is heavily edited, and looks like it was done as part of a photography class or something.");
 	output("\n\nUsername: AwkwardSoul");
 	output("\nSex: Female");
@@ -1560,8 +1560,8 @@ public function extrameetAwkwardSoulProfile():void
 
 //GlitterCunt
 //[EXTRAMEET_GLITTERCUNT]
-	public function extrameetGlitterCuntProfile():void
-{		
+public function extrameetGlitterCuntProfile():void
+{
 	output("The profile picture on your screen is of an up close shot of an obnoxiously sparkling vagina. Is that real glitter?");
 	output("\n\nUsername: GlitterCunt");
 	output("\nSex: Female");
@@ -1574,8 +1574,8 @@ public function extrameetAwkwardSoulProfile():void
 
 //Hogwash
 //[EXTRAMEET_HOGWASH]
-	public function extrameetHogwashProfile():void
-{		
+public function extrameetHogwashProfile():void
+{
 	output("The profile picture on your screen is of a man morphed to look like a pig. He seems to be well dressed, and aside from looking like a pig, fairly clean cut.");
 	output("\n\nUsername: Hogwash");
 	output("\nSex: Male");
@@ -1588,8 +1588,8 @@ public function extrameetAwkwardSoulProfile():void
 
 //DirtyGurl14
 //[EXTRAMEET_DIRTYGUR114]
-	public function extrameetDirtyGurl14Profile():void
-{		
+public function extrameetDirtyGurl14Profile():void
+{
 	output("The profile picture on your screen is a selfie of a dull green naked Ovir. She looks fairly plain, despite her best efforts to show off.");
 	output("\n\nUsername: DirtyGurl14");
 	output("\nSex: Female");
@@ -1602,8 +1602,8 @@ public function extrameetAwkwardSoulProfile():void
 
 //Looking4a3rd
 //[EXTRAMEET_LOOKING4A3RD]
-	public function extrameetLooking4a3rdProfile():void
-{		
+public function extrameetLooking4a3rdProfile():void
+{
 	output("The profile picture on your screen is of an ausar couple. They are holding each other close, while staring at the camera. He looks serious, while she looks playful.");
 	output("\n\nUsername: Looking4a3rd");
 	output("\nSex: Other");
@@ -1616,8 +1616,8 @@ public function extrameetAwkwardSoulProfile():void
 
 //DigBick
 //[EXTRAMEET_DIGBICK]
-	public function extrameetDigBickProfile():void
-{		
+public function extrameetDigBickProfile():void
+{
 	output("The profile picture on your screen is a giant penis. If you had to guess, it’s around two feet long, but that’s just a guess.");
 	output("\n\nUsername: DigBick");
 	output("\nSex: Male");
@@ -1630,8 +1630,8 @@ public function extrameetAwkwardSoulProfile():void
 
 //Birdy
 //[EXTRAMEET_BIRDY]
-	public function extrameetBirdyProfile():void
-{		
+public function extrameetBirdyProfile():void
+{
 	output("The profile picture on your screen is a very professional shot of a small pink female Tove. She’s posing for the picture in lingerie, and if you didn’t know any better you’d say it was ripped right out of a porno mag.");
 	output("\n\nUsername: Birdy");
 	output("\nSex: Female");
@@ -1647,7 +1647,7 @@ public function extrameetAwkwardSoulProfile():void
 //WantSumJunk?
 //[EXTRAMEET_WANTSUMJUNK]
 public function extrameetWantSumJunkProfile():void
-{		
+{
 	output("The profile picture on your screen is of a very out of focus image of a young dark red Raskvel. You can’t tell much from the picture, but he seems to trying to show off an unremarkable piece of junk in the photo.");
 	output("\n\nUsername: WantSumJunk?");
 	output("\nSex: Male");
@@ -1683,7 +1683,7 @@ public function extrameetWantSumJunkDate():void
 	output("\n\nThe young man stares at you expectantly. <i>“Take your time, please. But I should be getting back to the heap soon. So much more treasure to unearth and so little time, right?”</i>");
 	
 	if(!CodexManager.entryUnlocked("Raskvel")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Raskvel race.");
 		CodexManager.unlockEntry("Raskvel");
 	}
@@ -1695,7 +1695,7 @@ public function extrameetWantSumJunkDate():void
 //XxThrasherCatxX
 //[EXTRAMEET_XXTHRASHERCATXX]
 public function extrameetXxThrasherCatxXProfile():void
-{		
+{
 	output("The profile picture on your screen is a group photo of what looks like a heavy metal band. Centered in the picture, and the only one in focus, is a small purple haired Kaithrit woman covered in tattoos and piercings.");
 	output("\n\nUsername: XxThrasherCatxX");
 	output("\nSex: Female");
@@ -1736,7 +1736,7 @@ public function extrameetXxThrasherCatxXDate():void
 	output("\n\n<i>“Simple, pour this shit into your drink, we shack up, then just ride the waves.”</i> She reaches for one of the vials and pops it open. <i>“So, are we gonna party, or do I have to find somebody else?”</i>");
 	
 	if(!CodexManager.entryUnlocked("Kaithrit")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Kaithrit race.");
 		CodexManager.unlockEntry("Kaithrit");
 	}
@@ -1803,7 +1803,7 @@ public function extrameetXxThrasherCatxXSex():void
 //Sweet_N’_Low
 //[EXTRAMEET_SWEETNLOW]
 public function extrameetSweetNLowProfile():void
-{		
+{
 	output("The profile picture on your screen is of a young Gabilani woman with thick black hair framing her face. She is posing for the picture, puckering her lips in a mock kiss and giving the camera a suggestive wink.");
 	output("\n\nUsername: Sweet_N’_Low");
 	output("\nSex: Female");
@@ -1833,7 +1833,7 @@ public function extrameetSweetNLowDate():void
 	output("\n\nYou get the sense she’s more interested in your height than anything else. You can’t help but wonder what would happen if you indulge the small green woman.");
 	
 	if(!CodexManager.entryUnlocked("Gabilani")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Gabilani race.");
 		CodexManager.unlockEntry("Gabilani");
 	}
@@ -1883,7 +1883,7 @@ public function extrameetSweetNLowSex():void
 //MidnightXRose
 //[EXTRAMEET_MIDNIGHTXROSE]
 public function extrameetMidnightXRoseProfile():void
-{		
+{
 	output("The profile picture on your screen is of a young black haired human woman. She seems by all accounts to be perfectly normal. So normal in fact you wonder why she would even be on world.");
 	output("\n\nUsername: MidnightXRose");
 	output("\nSex: Female");
@@ -1975,7 +1975,7 @@ public function extrameetMidnightXRoseSex():void
 //[EXTRAMEET_TRUEPOWER69]
 //[TRUEPOWER69_VIRGINITY_TAKEN] used to increment viginities taken count in codex
 public function extrameetTruePower69Profile():void
-{		
+{
 	output("The profile picture on your screen is of a very large cock. Although you can’t get a good sense of scale, you can tell it’s at least a foot long. The only other information you can tell is whomever it is connected to seems quite muscular and large.");
 	output("\n\nUsername: True_Power69");
 	output("\nSex: Other");
@@ -2009,7 +2009,7 @@ public function extrameetTruePower69Date():void
 	output("\n\nYou watch her cock start to grow in her hand, becoming rock hard in mere seconds. At its full length, you guess it to be just a bit over a foot long. You can’t help but smirk. You know you can beat that, but the real question is if you should. You’re not sure of Chell’s intentions, but if she’s so interested in your dick you know it’s at least getting stuck into something.");
 	
 	if(!CodexManager.entryUnlocked("Dzaan")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Dzaan race.");
 		CodexManager.unlockEntry("Dzaan");
 	}
@@ -2086,7 +2086,7 @@ public function extrameetTruePower69Sex():void
 //R4-X0121
 //[EXTRAMEET_R4X0121]
 public function extrameetR4X0121Profile():void
-{		
+{
 	output("The profile picture on your screen is of a very dingy looking droid. Nothing like modern models, it almost looks like something ripped straight out of science fiction.");
 	output("\n\nUsername: R4-X0121");
 	output("\nSex: Other");
@@ -2100,7 +2100,7 @@ public function extrameetR4X0121Profile():void
 //Be-Bop-Boss
 //[EXTRAMEET_BEBOPBOSS]
 public function extrameetBeBopBossProfile():void
-{		
+{
 	output("The profile picture on your screen is a headshot of an older looking Gabilani. His hair is grey, and one of his eyes is replaced with a prosthetic. Looking down at his age, you are surprised he isn’t far older.");
 	output("\n\nUsername: Be-Bop-Boss");
 	output("\nSex: Male");
@@ -2114,7 +2114,7 @@ public function extrameetBeBopBossProfile():void
 //Sexplosive
 //[EXTRAMEET_SEXPLOSIVE]
 public function extrameetSexplosiveProfile():void
-{		
+{
 	output("The profile picture on your screen is a very poorly taken photo of a young raskvel woman. The picture is very out of focus, looking like it was taken on a broken camera. You can’t make out any other details.");
 	output("\n\nUsername: Sexplosive");
 	output("\nSex: Female");
@@ -2128,7 +2128,7 @@ public function extrameetSexplosiveProfile():void
 //Biggyz
 //[EXTRAMEET_BIGGYZ]
 public function extrameetBiggyzProfile():void
-{		
+{
 	output("The profile picture on your screen is of a cloud of smoke with a face. If you had to guess, the subject of the picture blew it out his mouth while taking the picture for some unknown reason. Trying to look cool maybe?");
 	output("\n\nUsername: Biggyz");
 	output("\nSex: Male");
@@ -2142,7 +2142,7 @@ public function extrameetBiggyzProfile():void
 //PowerLovers2
 //[EXTRAMEET_POWERLOVERS2]
 public function extrameetPowerLovers2Profile():void
-{		
+{
 	output("The profile picture on your screen is of two gabilani, one male and one female. By the looks of them, they are an item, the male having his arm draped over the female.");
 	output("\n\nUsername: PowerLovers2");
 	output("\nSex: Other");
@@ -2156,7 +2156,7 @@ public function extrameetPowerLovers2Profile():void
 //DirtyHabitz
 //[EXTRAMEET_DIRTYHABITZ]
 public function extrameetDirtyHabitzProfile():void
-{		
+{
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: DirtyHabitz");
 	output("\nSex:Female");
@@ -2170,7 +2170,7 @@ public function extrameetDirtyHabitzProfile():void
 //Avarice56
 //[EXTRAMEET_AVRICE56]
 public function extrameetAvarice56Profile():void
-{		
+{
 	output("The profile picture on your screen is of a naked Gryvain woman with a massive cock in her mouth. She is fairly attractive, and it staring right at the camera while deepthroating the huge dong.");
 	output("\n\nUsername: Avarice56");
 	output("\nSex: Other");
@@ -2184,7 +2184,7 @@ public function extrameetAvarice56Profile():void
 //_Twisted_
 //[EXTRAMEET_TWISTED]
 public function extrameetTwistedProfile():void
-{		
+{
 	output("The profile picture on your screen is of a large blue eye. The picture was taken very close to the subjects face. At least it’s a pretty eye...");
 	output("\n\nUsername: _Twisted_");
 	output("\nSex: Female");
@@ -2198,7 +2198,7 @@ public function extrameetTwistedProfile():void
 //SlaveBoi
 //[EXTRAMEET_SLAVEBOI]
 public function extrameetSlaveBoiProfile():void
-{		
+{
 	output("The profile picture on your screen is shot of a very thin and hairless body wearing just underwear. The subject’s head is completely cut out of the shot.");
 	output("\n\nUsername: SlaveBoi");
 	output("\nSex: Male");
@@ -2212,7 +2212,7 @@ public function extrameetSlaveBoiProfile():void
 //HawtShot
 //[EXTRAMEET_HAWTSHOT]
 public function extrameetHawtShotProfile():void
-{		
+{
 	output("The profile picture on your screen is of a massive dick. Seriously. It’s just a huge dick.");
 	output("\n\nUsername: HawtShot");
 	output("\nSex: Other");
@@ -2228,7 +2228,7 @@ public function extrameetHawtShotProfile():void
 //_Dogge_
 //[EXTRAMEET_DOGGE]
 public function extrameetDoggeProfile():void
-{		
+{
 	output("The profile picture on your screen is a selfie of an older looking ausar man. His black hair has small traces of grey, and his face is unshaven and scruffy. He is giving the camera a wry smile, and a longing gaze.");
 	output("\n\nUsername: _Dogge_");
 	output("\nSex: Male");
@@ -2252,13 +2252,13 @@ public function extrameetDoggeDate():void
 	moveTo("606");
 	output("You enter The Golden Peak and take a long look around. You... think you see your date? An ausar of the right age and build is certainly present, but he’s face down on a table in the corner. You approach slowly, not sure if your date is deep in thought, taking a nap, or drunk off his tits.");
 	output("\n\nWhen you do reach the table, you note the ausar man is breathing. Well at least he isn’t dead. You also note a scary amount of empty alcohol containers. Drunk off his tits it is then. You give the man a nudge, making sure he’s alright.");
-	output("\n\nHe jerks upright in his seat, almost smacking you with flailing arms. <i>“Who’s there?”</i> He looks around, his eyes bloodshot and face beet red. <i>“Oh it’s you... I partly already started.”</i> He winks one eye then the other, and you’re pretty sure he was just trying to blink. <i>“Take a seat, I’ll get you one-”</i> The ausar wobbles in his seat and falls face down on the table again. He doesn’t seem hurt, but also doesn’t seem conscious again.");
+	output("\n\nHe jerks upright in his seat, almost smacking you with flailing arms. <i>“Who’s there?”</i> He looks around, his eyes bloodshot and face beet red. <i>“Oh it’s you... I’ve just gotten started.”</i> He winks one eye then the other, and you’re pretty sure he was just trying to blink. <i>“Take a seat, I’ll get you one-”</i> The ausar wobbles in his seat and falls face down on the table again. He doesn’t seem hurt, but also doesn’t appear conscious.");
 	output("\n\nYou sigh and rub the back of your neck. This is pretty much a wash already. Only question is whether or not you should help or not. You decide, at the very least, to tell somebody about this. You make your way over to the bar and tell the bartender about the drunken and passed out ausar.");
 	output("\n\nThe bartender frowns at you. <i>“Yeah, that’s Deek. Something of an irregular regular. Don’t worry I’ll make sure he gets home okay.”</i>");
 	output("\n\nYou turn back to regard Deek, noticing his tail wagging in his sleep. Well, at least he seems like he’s having a good dream, maybe he won’t mind being stood up. You turn and leave, exiting from the bar.");
 
 	if(!CodexManager.entryUnlocked("Ausar")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Ausar race.");
 		CodexManager.unlockEntry("Ausar");
 	}
@@ -2270,7 +2270,7 @@ public function extrameetDoggeDate():void
 //DaRegulator
 //[EXTRAMEET_DAREGULATOR]
 public function extrameetDaRegulatorProfile():void
-{		
+{
 	output("The profile picture on your screen is of a dark skinned man wearing a U.G.C. peacekeeper uniform. He looks quite handsome, and from what you can see he seems to be pure Human.");
 	output("\n\nUsername: DaRegulator");
 	output("\nSex: Male");
@@ -2345,7 +2345,7 @@ public function extrameetDaRegulatorSex():void
 //#1Huntress
 //[EXTRAMEET_HUNTRESS]
 public function extrameetHuntressProfile():void
-{		
+{
 	output("The profile picture on your screen is a close up of a black eyed woman’s face. From what you can gather she is a Nyrea. She looks quite beautiful, but you can tell she is a little bit past her prime.");
 	output("\n\nUsername: #1Huntress");
 	output("\nSex: Female");
@@ -2375,7 +2375,7 @@ public function extrameetHuntressDate():void
 	output("\n\nWell, she’s certainly forward.");
 	
 	if(!CodexManager.entryUnlocked("Nyrea")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Nyrea race.");
 		CodexManager.unlockEntry("Nyrea");
 	}
@@ -2421,7 +2421,7 @@ public function extrameetHuntressSex():void
 //Mistress_Venom
 //[EXTRAMEET_MISTRESSVENOM]
 public function extrameetMistressVenomProfile():void
-{		
+{
 	output("The profile picture on your screen is a professional looking photo of a uniformed red Myr. She is quite beautiful, but has a stern expression giving off an almost cruel air about her. The fact she is wearing a military uniform only seems to make it worse.");
 	output("\n\nUsername: Mistress_Venom");
 	output("\nSex: Female");
@@ -2457,7 +2457,7 @@ public function extrameetMistressVenomDate():void
 	output("\n\nThe Red Myr rolls her eyes, the first time she breaks her professional air. <i>“With this petty attempt at courtship.”</i> She leans in closer, her expression still firm. <i>“It is your manhood I seek, not your companionship. So, are you done? If I knew it would be such a task to bed you I’d have never swiped right.”</i>");
 	
 	if(!CodexManager.entryUnlocked("Red Myr")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Red Myr race.");
 		CodexManager.unlockEntry("Red Myr");
 	}
@@ -2515,7 +2515,7 @@ public function extrameetMistressVenomSex():void
 //Rebel23
 //[EXTRAMEET_REBEL23]
 public function extrameetRebel23Profile():void
-{		
+{
 	output("The profile picture on your screen is a selfie of a very feminine Dzaan. Her face is painted with makeup, expertly applied and accentuating her features. Although it’s difficult to get a sense of scale, you can tell she is shorter and slimmer than most of her race.");
 	output("\n\nUsername: Rebel23");
 	output("\nSex: Female");
@@ -2539,7 +2539,7 @@ public function extrameetRebel23Date():void
 	author("Fr0sty");
 	moveTo("609");
 	output("You enter The Golden Peak and immediately spot your date. Seated in the middle of the room, the bombshell of a woman is the center of attention and then some. She’s dressed in an overtly extravagant outfit, a low cut dress of shining silver against her dark purple skin. More than a few heads are turned her way but she only seems to see you, a smile arching on her painted lips.");
-	output("\n\nYour feet move on their own, guiding you forward towards her. You come to a stop at the table, now up close able to see dark black stripes twisting along her purple flesh. While still admiring her you introduce yourself, trying not to make things awkward.");
+	output("\n\nYour feet move on their own, guiding you forward towards her. You come to a stop at the table, now close enough to be able to see dark black stripes twisting along her purple flesh. While still admiring her, you introduce yourself, trying not to make things awkward.");
 	output("\n\nThe Dzaan chuckles, her voice light and airy. <i>“Pleased to meet you, [pc.name]. I’m Shoana. Please, sit down.”</i> She motions towards a chair next to her, very close to her own.");
 	output("\n\nYou take a seat, noticing that a few patrons seem to be watching you. Looking around a few heads seem to turn away, seemingly avoiding your gaze. Next to you, your date follows your gaze around the room.");
 	output("\n\n<i>“Seems we’ve got an audience.”</i> Shoana cups her chin in her hand. <i>“Let’s try to ignore them, shall we? So tell me about yourself, darling.”</i>");
@@ -2549,7 +2549,7 @@ public function extrameetRebel23Date():void
 	output("\n\n<i>“Tell you what. Come back to my ship and we can talk all about me.”</i> She scoots herself closer, droping her voice to just a hair over a whisper. <i>“Although, once we get there, talking might not be what you want to do.”</i> Her puffy lips crack into a lewd smirk, then she puckers them and offers a playful faux kiss to the air.");
 	
 	if(!CodexManager.entryUnlocked("Dzaan")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Dzaan race.");
 		CodexManager.unlockEntry("Dzaan");
 	}
@@ -2602,7 +2602,7 @@ public function extrameetRebel23Sex():void
 //Sweetheart
 //[EXTRAMEET_SWEETHEART]
 public function extrameetSweetheartProfile():void
-{		
+{
 	output("The profile picture on your screen is of a very attractive, and busty, gold myr. Her tits take up most of the photo, barely held in place by an ornate and exotic looking bra.");
 	output("\n\nUsername: Sweetheart");
 	output("\nSex: Female");
@@ -2616,7 +2616,7 @@ public function extrameetSweetheartProfile():void
 //Rdy4ply
 //[EXTRAMEET_RDY4PLY]
 public function extrameetRdy4plyProfile():void
-{		
+{
 	output("The profile picture on your screen is of a rather shabby looking Kui-tan. Based on his attire, you think he’s a mechanic of some kind. Why he didn’t take a photo not covered in oil is beyond you.");
 	output("\n\nUsername: Rdy4ply");
 	output("\nSex: Male");
@@ -2630,7 +2630,7 @@ public function extrameetRdy4plyProfile():void
 //Al
 //[EXTRAMEET_AL]
 public function extrameetAlProfile():void
-{		
+{
 	output("The profile picture on your screen is of a very pissed off looking woman. She has a shaved head, and several scars on her face. She almost looks like she’s in a gang or some other criminal group.");
 	output("\n\nUsername: Al");
 	output("\nSex: Female");
@@ -2644,7 +2644,7 @@ public function extrameetAlProfile():void
 //DeviantSheepdog
 //[EXTRAMEET_DEVIANTSHEEPDOG]
 public function extrameetDeviantSheepdogProfile():void
-{		
+{
 	output("The profile picture on your screen is of what you first think is an ausar on first glance. He’s furry, very furry. So furry in fact you can’t tell anything about him.");
 	output("\n\nUsername: DeviantSheepdog");
 	output("\nSex: Male");
@@ -2658,7 +2658,7 @@ public function extrameetDeviantSheepdogProfile():void
 //Naughty232
 //[EXTRAMEET_NAUGHTY232]
 public function extrameetNaughty232Profile():void
-{		
+{
 	output("The profile picture on your screen is a close up selfie of a red myr. You can’t tell much from her picture, other than her race and that’s she reasonably attractive.");
 	output("\n\nUsername: Naughty232");
 	output("\nSex: Female");
@@ -2672,7 +2672,7 @@ public function extrameetNaughty232Profile():void
 //Siren_Song
 //[EXTRAMEET_SIRENSONG]
 public function extrameetSirenSongProfile():void
-{		
+{
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: Siren_Song");
 	output("\nSex: Other");
@@ -2686,7 +2686,7 @@ public function extrameetSirenSongProfile():void
 //KinkDaddy
 //[EXTRAMEET_KINKDADDY]
 public function extrameetKinkDaddyProfile():void
-{		
+{
 	output("The profile picture on your screen is of a slightly overweight man wearing a trench coat and brandishing a pair of knives. The weapons are very ornate, but not very functional.");
 	output("\n\nUsername: KinkDaddy");
 	output("\nSex: Male");
@@ -2700,7 +2700,7 @@ public function extrameetKinkDaddyProfile():void
 //AllYours_12
 //[EXTRAMEET_ALLYOURS12]
 public function extrameetAllYours12Profile():void
-{		
+{
 	output("The profile picture on your screen is of a modestly sized human dick stuck in some sort of a chastity toy.");
 	output("\n\nUsername: AllYours_12");
 	output("\nSex: Male");
@@ -2714,7 +2714,7 @@ public function extrameetAllYours12Profile():void
 //PurpleBowtie
 //[EXTRAMEET_PURPLEBOWTIE]
 public function extrameetPurpleBowtieProfile():void
-{		
+{
 	output("The profile picture on your screen is of a fairly attractive Kui-tan with a bright purple bowtie in her hair. The picture is very modest, and you don’t really get a sense of her shape or size.");
 	output("\n\nUsername: PurpleBowtie");
 	output("\nSex:Other");
@@ -2728,7 +2728,7 @@ public function extrameetPurpleBowtieProfile():void
 //LemmeSmash
 //[EXTRAMEET_LEMMESMASH]
 public function extrameetLemmeSmashProfile():void
-{		
+{
 	output("The profile picture on your screen is a full body nude of an Ovir with his cock out. It’s certainly an impressive dick, and his figure is quite stunning as well.");
 	output("\n\nUsername: LemmeSmash");
 	output("\nSex: Male");
@@ -2744,7 +2744,7 @@ public function extrameetLemmeSmashProfile():void
 //TheProfessor
 //[EXTRAMEET_THEPROFESSOR]
 public function extrameetTheProfessorProfile():void
-{		
+{
 	output("The profile picture on your screen is of a rather dashing looking Kui-tan. He seems to be well dressed, and the fur on his face curiously styled. He’s also wearing a funny hat you think you’ve seen somewhere before...");
 	output("\n\nUsername: TheProfessor");
 	output("\nSex: Male");
@@ -2781,7 +2781,7 @@ public function extrameetTheProfessorDate():void
 	output("\n\nYou return the smirk, saying that might not be a bad idea. With a wave, Negi turns and walks away, leaving you alone in the bar.");
 	
 	if(!CodexManager.entryUnlocked("Kui-Tan")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Kui-Tan race.");
 		CodexManager.unlockEntry("Kui-Tan");
 	}
@@ -2793,7 +2793,7 @@ public function extrameetTheProfessorDate():void
 //Fuka
 //[EXTRAMEET_FUKA]
 public function extrameetFukaProfile():void
-{		
+{
 	output("The profile picture on your screen is of a giant green eye with a rectangular pupil surrounded by pale white fur. By the looks of it, whomever took the picture didn’t know where the camera was.");
 	output("\n\nUsername: Fuka");
 	output("\nSex: ???");
@@ -2827,7 +2827,7 @@ public function extrameetFukaDate():void
 	output("\n\nShe points down at the stone phallus, then to you, then back to her. <i>“Fussana. Fussana, Fuka.”</i> She slides the toy along the table towards you, licking her lips. Well that you understand.");
 	
 	if(!CodexManager.entryUnlocked("Korgonne")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Korgonne race.");
 		CodexManager.unlockEntry("Korgonne");
 	}
@@ -2873,7 +2873,7 @@ public function extrameetFukaSex():void
 //ScienceRulez41
 //[EXTRAMEET_SCIENCERULEZ41]
 public function extrameetScienceRulez41Profile():void
-{		
+{
 	output("The profile picture on your screen is a full body picture of a rather nerdy looking human. His brown hair is quite unkept, and he is wearing thick round glasses. You note his arms seem to be covered in pinkish scales, and his eyes appear like reptilian slits. He is also wearing a T-shirt that reads “What’s the matter? EVERYTHING!”");
 	output("\n\nUsername: ScienceRulez41");
 	output("\nSex: Male");
@@ -2944,7 +2944,7 @@ public function extrameetScienceRulez41Sex():void
 //Ripped4YourPleasure
 //[EXTRAMEET_RIPPED4YOURPLEASURE]
 public function extrameetRipped4YourPleasureProfile():void
-{		
+{
 	output("The profile picture on your screen is of a shirtless black haired Huskar. His skin is pale, and his muscles quite well defined. It looks like he’s flexing, clearly trying to show off.");
 	output("\n\nUsername: Ripped4YourPleasure");
 	output("\nSex: Male");
@@ -3026,7 +3026,7 @@ public function extrameetRipped4YourPleasureSex():void
 //Storm_Dragon
 //[EXTRAMEET_STORMDRAGON]
 public function extrameetStormDragonProfile():void
-{		
+{
 	output("The profile picture on your screen is a headshot of a rather striking Gryvain woman. The give away as to her species is the pair of dark horns sprouting out from her head. Her hair is bright blue, and along her hairline you notice curious runic tattoos.");
 	output("\n\nUsername: Storm_Dragon");
 	output("\nSex: Other");
@@ -3067,12 +3067,12 @@ public function extrameetStormDragonDate():void
 	output("\n\nSherra gives you an icy stare, but her lips curl into a curious smile. <i>“It’s part of the plan yes. If somebody proves virile enough.”</i> She leans in, giving you a lusty stare. <i>“Hard part is find somebody up to the challenge.”</i>");
 	
 	if(!CodexManager.entryUnlocked("Gryvain")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Gryvain race.");
 		CodexManager.unlockEntry("Gryvain");
 	}
 	if(!CodexManager.entryUnlocked("Stormguard")) 
-	{		
+	{
 		output("\n\nYour codex beeps to inform you it’s identified the Stormguard religion.");
 		CodexManager.unlockEntry("Stormguard");
 	}
@@ -3130,7 +3130,7 @@ public function extrameetStormDragonSex():void
 //LoveBelow0
 //[EXTRAMEET_LOVEBELOW0]
 public function extrameetLoveBelow0Profile():void
-{		
+{
 	output("The profile picture on your screen is of a rock hard canine cock. While maybe a bit larger than average, it’s nothing overly impressive.");
 	output("\n\nUsername: LoveBelow0");
 	output("\nSex: Male");
@@ -3144,7 +3144,7 @@ public function extrameetLoveBelow0Profile():void
 //Assblaster
 //[EXTRAMEET_ASSBLASTER]
 public function extrameetAssblasterProfile():void
-{		
+{
 	output("The profile picture on your screen is an overhead selfie of a very large man of an indeterminate race. Spliced to the teeth, one thing you do take note of is a massive bulge in his pants.");
 	output("\n\nUsername: Assblaster");
 	output("\nSex: Male");
@@ -3158,7 +3158,7 @@ public function extrameetAssblasterProfile():void
 //Granite75
 //[EXTRAMEET_GRANITE75]
 public function extrameetGranite75Profile():void
-{		
+{
 	output("The profile picture on your screen is of a potted plant. Closure inspection on the fern makes you suspect it might be a drug of some kind.");
 	output("\n\nUsername: Granite75");
 	output("\nSex: Male");
@@ -3172,7 +3172,7 @@ public function extrameetGranite75Profile():void
 //supaXstar
 //[EXTRAMEET_SUPAXSTAR]
 public function extrameetSupaXstarProfile():void
-{		
+{
 	output("The profile picture on your screen is a body shot of a slightly chubby woman. She appears human, and despite being slightly overweight has a fairly decent body.");
 	output("\n\nUsername: supaXstar");
 	output("\nSex: Female");
@@ -3186,7 +3186,7 @@ public function extrameetSupaXstarProfile():void
 //Hall9001
 //[EXTRAMEET_HALL9001]
 public function extrameetHall9001Profile():void
-{		
+{
 	output("The profile picture on your screen is of... a computer monitor?");
 	output("\n\nUsername: Hall9001");
 	output("\nSex: Other");
@@ -3200,7 +3200,7 @@ public function extrameetHall9001Profile():void
 //HelloImPaul
 //[EXTRAMEET_HELLOIMPAUL]
 public function extrameetHelloImPaulProfile():void
-{		
+{
 	output("The profile picture on your screen is of a reasonably attractive older man on a beach, likely a vacation photo given the planet’s lack of beaches. He’s not really that old, just older. Partially in frame is a woman, mostly cut off, but seems to be holding onto his arm.");
 	output("\n\nUsername: HelloImPaul");
 	output("\nSex: Male");
@@ -3214,7 +3214,7 @@ public function extrameetHelloImPaulProfile():void
 //Lonely1
 //[EXTRAMEET_LONELY1]
 public function extrameetLonely1Profile():void
-{		
+{
 	output("The profile picture on your screen is a rather MILF-y looking woman on a beach, likely a vacation photo given the planets lack of beaches. You can tell she’s older, but still very good looking. Although you can’t see who it is, she is holding onto an arm in the picture.");
 	output("\n\nUsername: Lonely1");
 	output("\nSex: Female");
@@ -3228,7 +3228,7 @@ public function extrameetLonely1Profile():void
 //Hansi
 //[EXTRAMEET_HANSI]
 public function extrameetHansiProfile():void
-{		
+{
 	output("The profile picture on your screen is blank.");
 	output("\n\nUsername: Hansi");
 	output("\nSex: Male");
@@ -3242,7 +3242,7 @@ public function extrameetHansiProfile():void
 //Domme_90
 //[EXTRAMEET_DOMME90]
 public function extrameetDomme90Profile():void
-{		
+{
 	output("The profile picture on your screen is of a very angry looking Dzaan. She’s beautiful, but her expression reads more as hostile rather than sexy. Like, really hostile.");
 	output("\n\nUsername: Domme_90");
 	output("\nSex: Other");
@@ -3256,7 +3256,7 @@ public function extrameetDomme90Profile():void
 //BigDickRick
 //[EXTRAMEET_BIGDICKRICK]
 public function extrameetBigDickRickProfile():void
-{		
+{
 	output("The profile picture on your screen is of a man holding his cock next to a ruler. Apparently, he’s 10 inches long. Good for him!");
 	output("\n\nUsername: BigDickRick");
 	output("\nSex: Male");

@@ -183,7 +183,7 @@ public function wallSlutLossPart2():void
 	output("\n\nThe second cock slapping onto your head jolts you out of your slurping reverie, reminding you that there’s <i>two</i> horny laquines with a need for service. Pink is leaking almost as much as gray, her pre-seed sliding " + (!pc.hasHair() ? "over your scalp":"into your [pc.hair]") + " like sexual shampoo. You bat your eyelashes innocently up at her, at least until the curtain of slick herm-goo cascades down your forehead and webs them shut. You’re left to get by on taste, smell, and feel, and right now, all three of those sensations are utterly suffused by throbbing hard cock.");
 	output("\n\nUntil a finger hooks into the corner of your mouth and pries it wider.");
 	output("\n\nSpit and pre bubble out of the gap in the brief moment it takes Pink to plug the hole with her cock, pressing so hard that the burgeoning flare of her blunt tip folds back a bit before it pops inside. Once it burrows in, the rest of the narrower shaft has an easy time of it. Gray already stretched you and lubed you up. The second prick can glide right in alongside its sister, the two big, sweat-greased poles gliding against your throat and each other in an orgy of phallus-obsessive lust. They pump back and forth through your maw, forcing your jaw so wide that you doubt it’ll ever close the whole way again. Your [pc.lips] are tight and shining, glossy with the mixed juices, hugging the sloppy poles like one big cock-ring.");
-	output("\n\nIf you weren’t coated in a thick layer of goo already, the bunny-sluts would see your eyes rolling back from a combination of ecstasy and oxygen deprivation. They’re too busy fucking your face to care, though. They take turns, one pumping in while the other slides out, providing each other with an extra layer of friction while at the same time allowing enough room for the other wide-hipped  bun-slut to go balls-deep into your cock-molded throat. Heavy balls brutalize your chin even as your stomach swells with the doubled loads of pre. Bubbles of it dribble out of your nose and the corners of your sluttily straining mouth.");
+	output("\n\nIf you weren’t coated in a thick layer of goo already, the bunny-sluts would see your eyes rolling back from a combination of ecstasy and oxygen deprivation. They’re too busy fucking your face to care, though. They take turns, one pumping in while the other slides out, providing each other with an extra layer of friction while at the same time allowing enough room for the other wide-hipped bun-slut to go balls-deep into your cock-molded throat. Heavy balls brutalize your chin even as your stomach swells with the doubled loads of pre. Bubbles of it dribble out of your nose and the corners of your sluttily straining mouth.");
 	output("\n\nDizzy from lack of oxygen, you can only imagine how depraved you look, but you’ve got a pretty good idea, remembering how the other wall-mounted cock-socks looked, gasping and glazed, their eyes vacant but dazedly happy, ropes of white cream dangling from their chins, so thick that it forms perverse webs.");
 	output("\n\nYou’re just like them, or at least you will be soon.");
 	output("\n\nBoth girls begin to properly flare at about the same time, their swollen horse-members competing to see which can stretch you wider. The cooperative rhythm they had falls apart into a series of juddering thrusts, both pumping as deep as they possible can, fighting with sweaty hips to get a quarter inch deeper.");
@@ -193,7 +193,7 @@ public function wallSlutLossPart2():void
 	if(pc.hasVagina())
 	{
 		output(" A plastic cock, every bit as big as the one in your mouth slams hard into your [pc.oneVagina], pounding you with rapid, brutal strokes that would bring you to orgasm - if you weren’t already sliding over your peak from the feeling of being used as a living cum-sponge.");
-		if(pc.vaginalVirgin) output(" <b>It isn't real, but you feel despoiled all the same, your virginity stolen by the powerful thrusts of this dildo.</b>");
+		if(pc.vaginalVirgin) output(" <b>It isn’t real, but you feel despoiled all the same, your virginity stolen by the powerful thrusts of this dildo.</b>");
 	}
 	else if(pc.hasCock()) 
 	{
@@ -202,7 +202,7 @@ public function wallSlutLossPart2():void
 	else 
 	{
 		output(" A big, fat, plastic cock pounds into your [pc.asshole], fucking you with brutal strokes that would bring you off in seconds if you weren’t already slipping into ecstasy from the feeling of being used as a living cum-sponge.");
-		if(pc.analVirgin) output(" <b>It isn't real, but you feel despoiled all the same, your virginity stolen by the powerful thrusts of this dildo.</b>");
+		if(pc.analVirgin) output(" <b>It isn’t real, but you feel despoiled all the same, your virginity stolen by the powerful thrusts of this dildo.</b>");
 	}
 	output("\n\nYou climax so hard that your entire body seizes and thrashes. Not even the restraints can hold you strill. Your shuddering, squeezing throat milks out one last rope before the laquines slide back and watch you pleasure-seize. Of course they’re still cumming. Heavy ropes splatter across your brow and your back. They bathe you in cum while the mechanical stimulation suspends you in an endless orgasm that refuses to abate, even when your vision narrows into a black-lined tunnel.");
 	output("\n\nThe last thing you see are Gray and Pink holding their dicks up to your lips. The last thing you feel is their taste on your tongue.");
@@ -345,7 +345,7 @@ public function pussySlutV7():void
 	showName("PUSSY\nSLUT");
 	author("Fenoxo");
 	//Doublecunted pornoslut with strawberry and vanilla pussyjuice.
-	output("The furry woman’s soft slit and soothing squeezes are gone. In her place is a pink-skinned humanoid with two pussies. You nearly cream yourself with relief at the sight. You get to service two whole vaginas at once? You get to nuzzle your nose  in between <i>two</i> sodden slits and inhale their enticing aroma while your tongue flutters back and forth, gathering their combined precipitations? It’s almost too good to be true.");
+	output("The furry woman’s soft slit and soothing squeezes are gone. In her place is a pink-skinned humanoid with two pussies. You nearly cream yourself with relief at the sight. You get to service two whole vaginas at once? You get to nuzzle your nose in between <i>two</i> sodden slits and inhale their enticing aroma while your tongue flutters back and forth, gathering their combined precipitations? It’s almost too good to be true.");
 	output("\n\nYou’re so taken aback by the delightful muff buffet that you miss another intriguing attribute of your girlishly blessed guest - each of her pussies has <i>two</i> clits - one above and one below. For a second you wonder how she can walk anywhere without cumming, how she can manage to grind those four sensitive nubs between her thighs together without driving herself mad. Then you see the state of her thighs. They’re drenched. The fragrant, fruity scent of her girl-cum is everywhere as she fidgets atop you, humping your face even before you’ve started to lick.");
 	output("\n\nJust like before, your tongue flashes out, arbitrarily choosing the leftmost entrance to burrow into. <i>She tastes like ripe strawberries.</i> You swoon from the flavor, but still you lick. You breathe through your nose, drowning yourself in her, your mind increasingly vacant of all but the raw sensory experience, the carnal sights and smells occupying every part of your brain that isn’t busily directing your tongue’s eager flexing. Everything is strawberries and slickness and passion and-");
 	output("\n\nThe transition to the second pussy happens instantaneously, this one vanilla flavor. It shocks you back to cognizance for a second, but only for a second - long enough for you to mentally remark that you really, really love working for TamaniCorp. Then you’re back on autopilot. Vaguely happy to be so desirous and so very useful in the way that you derive arousal.");
@@ -415,7 +415,7 @@ public function defeatASecop():void
 	//Male SecOp
 	else
 	{
-		if(pc.hasVagina()) addButton(2,"Fuck Him",vaginaRouter,[fuckHimSecOp,enemy.cockVolume(0),0,0],"Fuck Him","You won't be satisfied with taking anything less than his dick.");
+		if(pc.hasVagina()) addButton(2,"Fuck Him",vaginaRouter,[fuckHimSecOp,enemy.cockVolume(0),0,0],"Fuck Him","You won’t be satisfied with taking anything less than his dick.");
 		else addDisabledButton(2,"Fuck Him","Fuck Him","You need a vagina to do this.");
 	}
 	addButton(14,"Leave",CombatManager.genericVictory);
@@ -481,7 +481,7 @@ public function fuckHimSecOp(x:int):void
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Kiss Him",kissDatKittyWithCock,x,"Kiss Him","Make him cum! You want it!");
-	addButton(1,"Ride Him",rideDatKittyWithCock,x,"Ride Him","Ride the vibrations! Of course, it'll be hard to stay on top this way...");
+	addButton(1,"Ride Him",rideDatKittyWithCock,x,"Ride Him","Ride the vibrations! Of course, it’ll be hard to stay on top this way...");
 }
 
 //Ride Him
@@ -1284,7 +1284,7 @@ public function wsanTaurServicingLoss():void
 {
 	clearOutput();
 	author("Wsan");
-	showName("'TAUR\nSERVICE");
+	showName("‘TAUR\nSERVICE");
 	output("Chaos reigns. Jostled from every side as people continually brush past you, knock into you, and almost send you spinning like a top, the din of metal clashing thunders in your ears. A rough hand squeezes your arm and turns you around to gaze into the displeased visage of a gruff-looking older ausar man wearing a chef’s hat.");
 	output("\n\n<i>“What are you doing just standing around?! Get this out to table seven!”</i> he barks in your face, practically tossing clinking plates into your arms.");
 	output("\n\nCompared to the noise of the kitchen, the setting out here is positively peaceful. Pleasantly modulated lights provide a dim ambience, your trip taking you past various tables and their servers in various states of undress. You wind up in the outdoor area, walking down an idyllic paved pathway flanked by various beautiful forms of greenery, ferns and bushes alike. Lifting a particular large frond leaf out of the way, you finally find your destination - four tauric women sitting at a table, sipping their drinks and chatting next to the pond.");
@@ -1321,7 +1321,7 @@ public function wsanTaurServicingLoss():void
 public function wsanTaurServicingLoss2():void
 {
 	clearOutput();
-	showName("'TAUR\nSERVICE");
+	showName("‘TAUR\nSERVICE");
 	author("Wsan");
 	output("<i>“Classic Jenny. Always with the silver tongue,”</i> Kay says, shaking her head. <i>“Get the boys </i>and<i> girls eating out of your hand then into your bed.”</i>");
 	output("\n\n<i>“It’s nice to be nice!”</i> Jenny says, picking up her fork and eating while you bring yourself lower to the ground to start serving her. <i>“I like it.”</i>");
@@ -1350,7 +1350,7 @@ public function wsanTaurServicingLoss2():void
 public function wsanTaurServicingLoss3():void
 {
 	clearOutput();
-	showName("'TAUR\nSERVICE");
+	showName("‘TAUR\nSERVICE");
 	author("Wsan");
 	output("Prue gets up from the table and as you circle around to sit between them, you find they’re both packing a little something extra. In Coco’s situation the term ‘little’ seems appropriate, her horsecock only six inches long despite being as thick as a soda can, but her balls are utterly enormous. She twitches nervously as you stare in open disbelief, averting her gaze while you check out her massive nads. Each one of them is the size of a melon, hanging low in her sack, their weight readily evident just from an eye test.");
 	output("\n\n<i>“We call her ‘coke bottle’ ‘cuz if you shake her up she’ll make a real mess,”</i> Kay helpfully informs you.");
@@ -1384,7 +1384,7 @@ public function wsanTaurServicingLoss3():void
 public function wsanTaurServicingLoss4():void
 {
 	clearOutput();
-	showName("'TAUR\nSERVICE");
+	showName("‘TAUR\nSERVICE");
 	author("Wsan");
 	output("You have what feels like two feet of flared horsecock inside your " + (pc.hasVagina() ? "stretched-out cunt":"taut asshole") + " but fuck if it doesn’t feel amazing to be servicing two beautiful girls at once. Thinking back on it, this is exactly why you took the job... the chance you might end up like this, erotically speared on two thick cocks as they pump inside your holes and threaten to fill you with thick, virile sperm. You begin to massage Coco’s enormous balls, rubbing her while she lets out a deep moan of satisfaction. You can actually feel them filling, slowly expanding with liquid weight, growing warmer in your hands by the second.");
 	output("\n\n<i>“Hhh-huh, huh, hhhhnh,”</i> Coco pants, almost whining in need. She’s so <i>close</i>, you can feel her throbbing in your mouth, she just needs a little push over the edge...");
@@ -1425,7 +1425,7 @@ public function wsanTaurServicingLoss4():void
 public function wsanTaurServicingLoss5():void
 {
 	clearOutput();
-	showName("'TAUR\nSERVICE");
+	showName("‘TAUR\nSERVICE");
 	author("Wsan");
 	output("When the other two girls don’t react to that, you realize they’re in almost as deep as you are. They <i>want</i> to see her violate you, to rut you until seed comes spilling from back between your lips. She’s a strong, athletic stud, and they intend to enjoy watching her put on a show.");
 	output("\n\n<i>“Hope you like dogcock,”</i> she murmurs to you privately. <i>“‘Cuz I got a huge one and a fat fucking knot with your name on it, cutie.”</i>");

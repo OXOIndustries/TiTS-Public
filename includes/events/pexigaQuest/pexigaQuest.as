@@ -1173,8 +1173,7 @@ public function peacekeeperTalkAvailable():Boolean
 public function dclPeacekeeperTalk():void
 {
 	clearOutput();
-	showName("\nDELILAH");
-	showBust("DELILAH");
+	showDel();
 	author("Adjatha");
 	output("You mention the UGC Peacekeepers to Del, as you take a seat at the bar. <i>“Oh, uh, those guys on the east end of town? Y-yeah, I think I’ve seen them.”</i>");
 	if(!pc.isBimbo()) output("\n\nYou mention that maybe they could help her out a bit. A favor here and there wouldn’t go amiss. While they’re not likely to free Delilah from her contract any time soon, it wouldn’t hurt to get them on her side. Maybe a free drink? Maybe a little something extra?");
@@ -2753,13 +2752,16 @@ public function drBadgerLookAroundButton(btnSlot:int = 5):void
 		else addButton(btnSlot, "Look Around", drBadgerLookAroundLab, undefined, "Look Around", "Ask Doctor Badger if you can look through her lab.");
 	}
 }
+public function drBadgerSiliconeStuffingAuthor():void {
+	author(rand(2) == 0 ? "Natetheman223" : "Kirorororo");
+}
 // Look Around
 // new button in Badger’s menu when the pexiga quest is finished
 public function drBadgerLookAroundLab():void
 {
 	clearOutput();
 	showDrBadger();
-	author(rand(2) == 0 ? "Natetheman223" : "Kirorororo");
+	drBadgerSiliconeStuffingAuthor();
 	
 	if(pc.isBimbo())
 	{
@@ -2788,7 +2790,7 @@ public function drBadgerEnterLaboratory():void
 }
 public function drBadgerLaboratoryBonus():Boolean
 {
-	author(rand(2) == 0 ? "Natetheman223" : "Kirorororo");
+	drBadgerSiliconeStuffingAuthor();
 	
 	output("You are in the deeper areas of the lab");
 	if(flags["NYM-FOE"] >= 2 || flags["DOLLMAKER_STATUS"] == -1)
@@ -2823,7 +2825,7 @@ public function drBadgerSiliconeTank():void
 	clearOutput();
 	showBust("");
 	showName("SILICONE\nTANKS");
-	author(rand(2) == 0 ? "Natetheman223" : "Kirorororo");
+	drBadgerSiliconeStuffingAuthor();
 	
 	processTime(1);
 	
@@ -2910,7 +2912,7 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 {
 	clearOutput();
 	showBust("");
-	author(rand(2) == 0 ? "Natetheman223" : "Kirorororo");
+	drBadgerSiliconeStuffingAuthor();
 	
 	switch(response)
 	{
@@ -3062,7 +3064,6 @@ public function drBadgerSiliconeTankUse(response:String = ""):void
 public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 {
 	clearOutput();
-	author(rand(2) == 0 ? "Natetheman223" : "Kirorororo");
 	clearMenu();
 	
 	switch(response)
@@ -3070,6 +3071,7 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 		case "intro":
 			showBust("");
 			showName("LIKE, GO\nCRAZY!");
+			drBadgerSiliconeStuffingAuthor();
 			
 			output("You take the needle, happily shoving it into your waist before slamming the ‘blow’ button. Being stuffed with bio-silicone feels right, how it travels under your skin, tickling you and leaving a feeling of bliss behind, but even you know that you should stop eventually... maybe another minute or two. You press the blow button again to stop the incoming flow, but it just starts blowing silicone into you faster, you must’ve broken the button! Ooh! The sensation amplifies itself, buzzing under your skin, making you even more sensitive as every drop of the biomaterial starts changing your nervous connections.");
 			output("\n\nYour body inflates and bloats rapidly as the huge silicone tank spills itself into you. Your chest swells wildly until you topple over forward, your ass and hips");
@@ -3209,6 +3211,7 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 		case "next":
 			showBust(drBadgerBustDisplay());
 			showName("\nAFTERMATH...");
+			drBadgerSiliconeStuffingAuthor();
 			
 			// Boob size increases to hyper ZZZ cups, lip size increases to 40, butt and hip size increase to 70
 			nymFoeMaxInjection(60, 60, 190, 20);
@@ -3227,6 +3230,7 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 		case "end":
 			showBust(drBadgerBustDisplay());
 			showName("\nAFTERMATH...");
+			drBadgerSiliconeStuffingAuthor();
 			
 			output("She helps you onto a cart, carrying you to the entrance. She sets you near the door on a plush pink mattress. You love pink! She’s really thought of everything!");
 			output("\n\n");
@@ -3241,6 +3245,7 @@ public function drBadgerSiliconeTankBimboGoCrazy(response:String = "intro"):void
 			// Display the busts of a raskvel Trap and the one of Tank Kannon the ultraporn star
 			showBust("RASK_TRAP_NUDE", "TANK_KANNON");
 			showName("SILICONE\nFUCKDOLL");
+			drBadgerSiliconeStuffingAuthor();
 			
 			var ppRaskvel:PregnancyPlaceholder = new PregnancyPlaceholder();
 			if(!ppRaskvel.hasCock()) ppRaskvel.createCock();
