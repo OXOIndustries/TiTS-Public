@@ -1270,7 +1270,7 @@ public function faceFuckDatPussy(x:int):void
 		if(pc.cumQ() >= 5000) output(" You paint the kitty-[enemy.boyGirl] with your load inside and out until [enemy.heShe] is completely, thoroughly basted in cock-juice.");
 	}
 	output("\n\nYou push the cock-addled kaithrit away after achieving satisfaction. [enemy.HeShe] looks up at you dimly, panting lustily, like swallowing all that cum forced [enemy.hisHer] obviously cybernetic brain to begin a very thorough rebooting process. All pride or resistance is gone.");
-	output("\n\nWhile you give [enemy.hisHer] possessions a quick search, [enemy.heShe] simply licks [enemy.hisHer] lips paws at [enemy.hisHer] lust-reddened genitals, a confused by satisfied expression on [enemy.hisHer] face.");
+	output("\n\nWhile you give [enemy.hisHer] possessions a quick search, you are confused by the satisfied expression on [enemy.hisHer] face as [enemy.heShe] simply licks [enemy.hisHer] lips and paws at [enemy.hisHer] lust-reddened genitals.");
 	processTime(30);
 	pc.orgasm();
 	enemy.loadInMouth(pc);

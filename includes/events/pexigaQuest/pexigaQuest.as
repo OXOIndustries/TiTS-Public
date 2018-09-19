@@ -2864,10 +2864,10 @@ public function drBadgerSiliconeTankMenu():void
 	var maxLips:Number = siliconeMaxLips();
 	
 	output("\n\n<b><u>Bio-Silicone Levels</u></b>");
-	output("\n<b>* Breasts:</b> " + (silicone == null ? "<i>No silicone detected.</i>" : silicone.value3) + " units");
-	output("\n<b>* Butt:</b> " + (silicone == null ? "<i>No silicone detected.</i>" : silicone.value2) + " units");
-	output("\n<b>* Hips:</b> " + (silicone == null ? "<i>No silicone detected.</i>" : silicone.value1) + " units");
-	output("\n<b>* Lips:</b> " + (silicone == null ? "<i>No silicone detected.</i>" : silicone.value4) + " units");
+	output("\n<b>* Breasts:</b> " + (silicone == null ? "<i>No silicone detected.</i>" : (silicone.value3 + " units")));
+	output("\n<b>* Butt:</b> " + (silicone == null ? "<i>No silicone detected.</i>" : (silicone.value2 + " units")));
+	output("\n<b>* Hips:</b> " + (silicone == null ? "<i>No silicone detected.</i>" : (silicone.value1 + " units")));
+	output("\n<b>* Lips:</b> " + (silicone == null ? "<i>No silicone detected.</i>" : (silicone.value4 + " units")));
 	output("\n\n");
 	
 	// [GrowBoobs] [ShrinkBoobs] [GrowAss] [ShrinkAss] [GrowHips] [ShrinkHips] [GrowLips] [ShrinkLips] [Go Crazy] [Total Suck] [Leave]
