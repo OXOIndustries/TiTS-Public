@@ -604,7 +604,7 @@ public function extrameetFrankMollyDate():void
 	output("\n\nMolly thinks about it a moment. <i>“I think we might need to skip this one. Our next appointment will be here soon, and they seemed far more interesting than this one. Oh.... No offense hun, I just know what I like is all.”</i>");
 	output("\n\nYou stare at them a moment, unsure what they are talking about. <i>“How many threesomes do you two have lined up today?”</i>");
 	output("\n\nFrank answers. <i>“13. Heck, we’ve got 14 tomorrow.”</i> He scratches the back of his neck. <i>“Finding people willing to join in with us is almost too easy.”</i>");
-	output("\n\nMolly gives you a smile and a shrug. <i>“Try again later maybe? I think we’re free.... Hm Wednesday. Only have 5 that day so far- OH! Look! He’s already here!”</i> Molly points to a very tall patron in the back of the bar, with wings that seem to have cocks sprouting out of them. Molly runs over, giggling and waving.");
+	output("\n\nMolly gives you a smile and a shrug. <i>“Try again later maybe? I think we’re free.... Hm, Wednesday? Only have five that day so far- OH! Look! He’s already here!”</i> Molly points to a very tall patron in the back of the bar, with wings that seem to have cocks sprouting out of them. Molly runs over, giggling and waving.");
 	output("\n\nFrank offers you a shrug. <i>“Another time maybe.”</i> He then heads after Molly.");
 	output("\n\nYou sigh and turn to exit the bar. Yeah, another time.");
 	
