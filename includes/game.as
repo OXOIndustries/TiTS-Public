@@ -1621,6 +1621,12 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 						interrupt = true;
 					}
 					break;
+                case "RAMIS":
+                    if (ramisIsCrew() && !ramisOutDrinking() && !looksFemaleToRamis() && !pc.isTaur())
+                    {
+                        ramisSleep();
+                    }
+                    break;
 				// No partner selected.
 				default:
 					// SERA IMPREGNATIONS
@@ -1678,6 +1684,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (tryProcDommyReahaTime(minPass - rand(301))) wakeEvents.push(reahaDommyFuxTime);
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [annoMorningRouter];
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
+        if (flags["RAMIS_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ramisSleepWake];
 		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
 		
 		if (wakeEvents.length > 0)
@@ -1983,6 +1990,15 @@ public function flyMenu():void
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
+        if(ramisOutDrinking())
+        {
+            ramisAbandonBlurb();
+            clearMenu();
+            addButton(0, "Wait", ramisWaitForTheDrunkard);
+            addButton(14, "Back", mainGameMenu);
+            return;
+        }
+            
 		
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 		pc.removeStatusEffect("Disarmed");
@@ -2102,7 +2118,7 @@ public function flyMenu():void
 public function flyTo(arg:String):void
 {
 	generateMapForLocation("SHIP INTERIOR");
-	
+    
 	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
 	{
 		flags["SUPRESS TRAVEL EVENTS"] = 0;
@@ -2292,6 +2308,7 @@ public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
 	if(pc.hasKeyItem("RK Lay - Captured")) return false;
+    if(ramisOutDrinking()) return false;
 	return true;
 }
 

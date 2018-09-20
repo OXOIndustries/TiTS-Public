@@ -124,7 +124,8 @@ public function getRamisPregContainer():PregnancyPlaceholder
 	ppRamis.shiftVagina(0, GLOBAL.TYPE_FELINE);
 	//ppRamis.vaginas[0].wetnessRaw = 3;
 	ppRamis.vaginas[0].loosenessRaw = 1;
-	ppRamis.vaginas[0].bonusCapacity += 150;
+	ppRamis.vaginas[0].bonusCapacity += 125;
+    if (flags["RAMIS_STRETCHED"] != undefined) ppRamis.vaginas[0].bonusCapacity += flags["RAMIS_STRETCHED"];
 	return ppRamis;
 }
 
