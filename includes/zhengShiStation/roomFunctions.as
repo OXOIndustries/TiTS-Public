@@ -554,6 +554,8 @@ public function landingAtZhengShi():void
 		addButton(0,"Submit",submitThePiratePassword);
 		if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
 		else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
+		if(paigeIsCrew()) addButton(2,"Call Paige",callAPaigeFriend);
+		else addDisabledButton(2,"Locked","Locked","You need a specific character on your crew for this.");
 		addButton(4,"Run!",fuckThisShit);
 	}
 	//Repeat Approach, Post Correct Answer
@@ -625,6 +627,32 @@ public function firstTimeZhengApproachIV():void
 	if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
 	else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
 	addButton(4,"Run!",fuckThisShit);
+}
+
+public function callAPaigeFriend():void
+{
+	clearOutput();
+	showPaige();
+	author("B");
+	output("You stretch out and slap the main breaker, listening to the headset and nearly everything else go dead as you feign a power failure. Hopefully that’ll buy you a few seconds to phone a friend...");
+	output("\n\nUsing your systems emergency power, you dial into your ship’s intercom.  <i>“Paige to the bridge,”</i> you say, <i>“and quickly.”</i>");
+	output("\n\nSeconds later, you hear the hurried tap-tap of Paige’s footsteps approaching the bridge of your ship.  She bursts into the room, out of breath from rushing as quickly as she could.  <i>“Yes, captain?”</i> she asks.");
+	output("\n\nYou direct her to the asteroid base in front of your ship, and you tell her that it’s apparently a pirate base.  You want to dock, but the harbormaster that responded to your hail asked you for a password.  You figured, since Paige was a pirate at one point, maybe she knows what it is?");
+	output("\n\nPaige straightens her back and starts to laugh at the question.  <i>“That’s easy.  Do you still have them on call?”</i>  You tell her that you do, as soon as you flip the breaker back on.  <i>“Do it.  I’ll handle it, sweet thing.”</i>");
+	output("\n\nYou do as she asks, as she steps up to the communicator’s receiver.  A few button presses later, power hums back through your ship, and the crackling communication channel snaps back open. <i>“Can you hear me, asshole? Pony up with the password or join the debris field. Your call.”</i>");
+	output("\n\nPaige wets her lips before responding.");
+	output("\n\n<i>“Hey, go fuck yourself, dipshit!”</i> she hollers into the receiver.  <i>“The fuck is this, about some ‘password’ horseshit?  We got business on the base, so lower your fucking weapons before<i> I <i>tell</i> you <i>what your</i> safeword <i>is!”</i>");
+	output("\n\n<i>“Alright, jeez!”</i> the station controller’s voice says.  <i>“Guns are down.  We’ll see how long that attitude keeps up, fresh meat.”</i>");
+	output("\n\nTrue to the harbormaster’s word, the target locks from the asteroid release, and you’re free to bring your ship into the bay unmolested.");
+	output("\n\n<i>“That’s the secret, [pc.name],”</i> Paige says as she turns toward the door of the bridge.  <i>“Don’t let them push you around.  There’s no law or decorum in Zheng Shi; as soon as you show them any weakness, they’ll make you their bitch, so if you enjoy being your own {wo}man, you need to push as hard as they shove.”</i>");
+	output("\n\nYou thank Paige for her advice and dismiss her from the bridge as you pass through the force field and into a sweeping hangar bay, big enough for twenty or so large ships - and countless little tramp freighters and scout ships like the old Z14.");
+	output("\n\nNobody’s paying you much mind now that you’re docked. Indeed, you manage to find a relatively isolated spot at the back of the hangar to land. The ship settles with a resounding thud, and you make your way to the airlock. Time to see where your probe’s gotten off to... assuming it’s really here.");
+	clearMenu();
+	addButton(0,"Next",);
+	flags["ZHENG_SHI_PASSWORDED"] = 1;
+	flags["PAIGE_HELPED_ZHENG"] = 1;
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
 
 //Call Kiro
