@@ -546,6 +546,16 @@ public function availableFaps(roundTwo:Boolean = false, checkOnly:Boolean = fals
 			faps.push(fap);
 		}
 	}
+	// Butt Bug Male
+	if(pc.hasKeyItem("Butt Bug (Male)"))
+	{
+		fap = new FapCommandContainer();
+		fap.text = "Use ButtBug";
+		fap.ttHeader = "Use Butt Bug";
+		fap.ttBody = "Use the bug you captured earlier.";
+		fap.func = masturbateButtBugMale;
+		faps.push(fap);
+	}
 	// Sera Collar Faps
 	if(wearingSeraCollar())
 	{

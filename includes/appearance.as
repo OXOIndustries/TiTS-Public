@@ -3804,6 +3804,9 @@ public function crotchStuff(forTarget:Creature = null):void
 		else if(assSwellBonus >= 1) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " pucker is inhumanly soft and puffy, a " + (target.hasPlumpAsshole() ? "beckoning donut with a perfect little hole in the middle" : "little swollen between " + (target == pc ? "your":"[target.hisHer]") + " buttcheeks") + ".");
 		
 		wombBonusForAppearance(forTarget, 3);
+		
+		if(target == pc && target.hasStatusEffect("Butt Bug (Female)")) outputRouter("\n\n" + appearanceButtBugBlurb());
+		
 		//Genital Bonus clears target at the end. Bring it back.
 		if(forTarget != null) setTarget(forTarget);
 	}
