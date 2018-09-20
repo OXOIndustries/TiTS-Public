@@ -8893,7 +8893,7 @@
 			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
 			if (tailGenitalArg == GLOBAL.TYPE_GABILANI || hasTailFlag(GLOBAL.FLAG_DOUBLE_HEADED))
 			{
-				tip = (2 * 2/3 * Math.PI * (1.5/4 * 1.5/4 * 1.5/4)) + (2 * Math.PI * 1.5/2 * 1.5/2 * 1.5/4);
+				tip = 2 * (2/3 * Math.PI * 1.5/4 * 1.5/4 * 1.5/4) + (Math.PI * 1.5/2 * 1.5/2 * 1.5/4);
 			}
 			var temp: Number = Math.round((tip + cylinder) * 100) / 100;
 			if (effective) {
@@ -8930,7 +8930,7 @@
 			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
 			if (dickNippleType == GLOBAL.TYPE_GABILANI)
 			{
-				tip = (2 * 2/3 * Math.PI * (w/4 * w/4 * w/4)) + (2 * Math.PI * w/2 * w/2 * w/4);
+				tip = 2 * (2/3 * Math.PI * w/4 * w/4 * w/4) + (Math.PI * w/2 * w/2 * w/4);
 			}
 			var temp: Number = Math.round((tip + cylinder) * 100) / 100;
 			return Math.round(temp * 100) / 100;
