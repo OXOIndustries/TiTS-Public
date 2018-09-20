@@ -1210,7 +1210,8 @@ public function talkToMirrinAbootYuuuu():void
 	clearMenu();
 	var momsSpaghetti:String = "";
 	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
-	addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
+	if(pc.energy() < 50 || pc.isWornOut()) addDisabledButton(0,"Train","Train","You’re too tired for a training session.");
+	else addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Later",laterMomsSpaghetti,undefined,"Later","Mom’s spaghetti won’t wait forever.");
 }
 
@@ -1320,7 +1321,8 @@ public function talkAboutNewTexas():void
 	clearMenu();
 	var momsSpaghetti:String = "";
 	if(silly) momsSpaghetti = ".. mom’s spaghetti.";
-	addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
+	if(pc.energy() < 50 || pc.isWornOut()) addDisabledButton(0,"Train","Train","You’re too tired for a training session.");
+	else addButton(0,"Train",repeatableMirrinTraining,undefined,"Train","Time to make ya palms get sweaty, knees weak." + momsSpaghetti);
 	addButton(1,"Later",laterMomsSpaghetti,undefined,"Later","Mom’s spaghetti won’t wait forever.");
 }
 
@@ -1798,7 +1800,7 @@ public function mirrinSexMenu():void
 	addButton(0,"BodWorship",mirrinBodyWorship,undefined,"Body Worship","Oil her down with that orange stuff; watch her blow!");
 	if(pc.hasVagina()) addButton(1,"Deep DP",deepMirrinDP,undefined,"Deep DP","Embrace the dragon’s power. Requires a vagina.");
 	else addDisabledButton(1,"Deep DP","Deep DP","You need a vagina for this.");
-	//Sparr Fight into Oral for the winner: PC has cock at 18’’< and/or vagina. High PC stats = wins.
+	//Sparr Fight into Oral for the winner: PC has cock at 18"< and/or vagina. High PC stats = wins.
 	if(mirrinSelectADick() >= 0 || pc.hasVagina()) addButton(2,"Train..?",trainFightyFlighty,undefined,"Train..?","Spar to see who cums out on top!");
 	else addDisabledButton(2,"Train..?","Train..?","You need a penis of 18\" or less or a vagina for this.");
 	addButton(3,"Humiliation",humiliationAnalWithMirrin,undefined,"Humiliation","Try something a bit different and a bit rougher.");
@@ -1807,7 +1809,7 @@ public function mirrinSexMenu():void
 //BodWorship
 //tooltip: Oil her down with that orange stuff, watch her blow!
 //PC lust doesn’t change.
-///In game time jumps forward 2 hours.
+// In game time jumps forward 2 hours.
 public function mirrinBodyWorship():void
 {
 	clearOutput();
@@ -1842,7 +1844,7 @@ public function mirrinBodyWorship():void
 //Deep DP
 //tooltip: Embrace the dragon’s power. Requires a vagina.
 //PC lust set to 0, orgasm event.
-///In game time jumps forward 2 hours.
+// In game time jumps forward 2 hours.
 public function deepMirrinDP():void
 {
 	clearOutput();

@@ -1344,6 +1344,30 @@ public function statisticsScreen(showID:String = "All"):void
 		output2("\n\n" + blockHeader("Parasite Statistics", false));
 		var bHasParasites:Boolean = false;
 		
+		// Butt Bugs
+		if(pc.hasStatusEffect("Butt Bug (Female)") || pc.hasKeyItem("Butt Bug (Male)"))
+		{
+			output2("\n<b><u>Butt Bugs</u></b>");
+			if(pc.hasStatusEffect("Butt Bug (Female)"))
+			{
+				output2("\n<b>* Attached:</b> Female Butt Bug");
+				switch(pc.statusEffectv1("Butt Bug (Female)")) {
+					case 0: output2(", Beige"); break;
+					case 1: output2(", Green"); break;
+					case 2: output2(", Orange-Striped"); break;
+				}
+				if(pc.statusEffectv2("Butt Bug (Female)") > 0) output2("\n<b>* Attached Female Butt Bug, Times Inseminated:</b> " + pc.statusEffectv2("Butt Bug (Female)"));
+				if(pc.statusEffectv3("Butt Bug (Female)") > 0) output2("\n<b>* Attached Female Butt Bug, Pregnancy Cycles:</b> " + pc.statusEffectv3("Butt Bug (Female)"));
+				if(pc.statusEffectv4("Butt Bug (Female)") > 0) output2("\n<b>* Attached Female Butt Bug, Offspring Produced:</b> " + pc.statusEffectv4("Butt Bug (Female)"));
+			}
+			if(pc.hasKeyItem("Butt Bug (Male)"))
+			{
+				output2("\n<b>* Captured:</b> Male Butt Bug");
+				if(pc.keyItemv1("Butt Bug (Male)") > 0) output2("\n<b>* Captured Male Butt Bug, Masturbation, Anal, Total:</b> " + pc.keyItemv1("Butt Bug (Male)"));
+				if(pc.keyItemv2("Butt Bug (Male)") > 0) output2("\n<b>* Captured Male Butt Bug, Masturbation, Vaginal, Total:</b> " + pc.keyItemv2("Butt Bug (Male)"));
+			}
+			bHasParasites = true;
+		}
 		// Cockvines
 		if(pc.hasTailCock() && pc.hasParasiteTail())
 		{
@@ -6670,7 +6694,7 @@ public function displayEncounterLog(showID:String = "All"):void
 			{
 				output2("\n<b><u>Foundry</u></b>");
 				// Items looted
-				if(flags["TOOK_FEDORA"] == 1) output2("\n<b>* Fedora:</b> Looted");
+				if(flags["TOOK_FEDORA"] == 1) output2("\n<b>* Fedora:</b> Taken");
 				if(flags["SNAKEBYTE_LOOTED"] == 1) output2("\n<b>* SnakeByte:</b> Looted");
 				// Forgehound
 				if(flags["FORGEHOUND_ENCOUNTERED"] != undefined)

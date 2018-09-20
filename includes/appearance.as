@@ -3421,7 +3421,9 @@ public function crotchStuff(forTarget:Creature = null):void
 				else outputRouter(Math.round(10*target.cocks[0].thickness())/10 + " inches across.");
 			}
 			else outputRouter(num2Text(Math.round(10*target.cocks[0].thickness())/10) + " inches across.");
-			dickBonusForAppearance(null, 0);
+			dickBonusForAppearance(forTarget, 0);
+			//Dickbonus clears target at the end. Bring it back.
+			if(forTarget != null) setTarget(forTarget);
 			//Worm flavor
 			if(target.hasStatusEffect("Infested")) outputRouter(" Every now and again a slimy worm coated in spunk slips partway out of " + (target == pc ? "your":"[target.hisHer]") + " " + target.cockDescript(0) + ", tasting the air like a snake’s tongue.");
 		}
@@ -3430,8 +3432,8 @@ public function crotchStuff(forTarget:Creature = null):void
 		{
 			temp = 0;
 			rando = rand(4);
-			outputRouter("Where a penis would normally be located, " + (target == pc ? "you have":"[target.heShe] has") + " instead grown " + target.multiCockDescript(false,true) + ":");
-			while(temp < target.cocks.length) 
+			outputRouter("Where a penis would normally be located, " + (target == pc ? "you have":"[target.heShe] has") + " instead grown " + target.multiCockDescript(false, true) + ":");
+			while(temp < target.totalCocks()) 
 			{
 				//middle cock description
 				if(rando == 0) {
@@ -3474,7 +3476,9 @@ public function crotchStuff(forTarget:Creature = null):void
 						else outputRouter(Math.round(target.cocks[temp].thickness()*10)/10 + " inches in diameter.");
 					}
 				}
-				dickBonusForAppearance(null, temp);
+				dickBonusForAppearance(forTarget, temp);
+				//Dickbonus clears target at the end. Bring it back.
+				if(forTarget != null) setTarget(forTarget);
 				temp++;
 				rando++;
 				if(rando > 3) rando = 0;
@@ -3637,8 +3641,10 @@ public function crotchStuff(forTarget:Creature = null):void
 			else if(target.vaginas[0].looseness() < 4) outputRouter("" + (target == pc ? "your":"[target.hisHer]") + " " + target.vaginaDescript(0) + ", its lips slightly parted.");
 			else outputRouter("the massive hole that is " + (target == pc ? "your":"[target.hisHer]") + " " + target.vaginaDescript(0) + ".");
 			//Flavor
-			vaginaBonusForAppearance(null, 0, false);
-			wombBonusForAppearance(null, 0);
+			vaginaBonusForAppearance(forTarget, 0, false);
+			wombBonusForAppearance(forTarget, 0);
+			//Genital Bonus clears target at the end. Bring it back.
+			if(forTarget != null) setTarget(forTarget);
 		}
 		//MULTICOOCH!
 		else if(target.vaginaTotal() > 1) 
@@ -3688,7 +3694,9 @@ public function crotchStuff(forTarget:Creature = null):void
 					outputRouter(".");
 					if(!target.matchedVaginas())
 					{
-						vaginaBonusForAppearance(null, temp, false);
+						vaginaBonusForAppearance(forTarget, temp, false);
+						//Genital Bonus clears target at the end. Bring it back.
+						if(forTarget != null) setTarget(forTarget);
 					}
 				}
 				if(temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
@@ -3732,12 +3740,16 @@ public function crotchStuff(forTarget:Creature = null):void
 						outputRouter(".");
 					}
 				}
-				wombBonusForAppearance(null, temp);
+				wombBonusForAppearance(forTarget, temp);
+				//Genital Bonus clears target at the end. Bring it back.
+				if(forTarget != null) setTarget(forTarget);
 				temp++;
 			}
 			if(target.matchedVaginas())
 			{
-				vaginaBonusForAppearance(null, 0, true);
+				vaginaBonusForAppearance(forTarget, 0, true);
+				//Genital Bonus clears target at the end. Bring it back.
+				if(forTarget != null) setTarget(forTarget);
 			}
 		}
 	}
@@ -3791,9 +3803,13 @@ public function crotchStuff(forTarget:Creature = null):void
 		else if(assSwellBonus >= 2) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " soft " + (target.hasPlumpAsshole() ? "donut of a pucker protrudes obscenely, almost like a miniature pubic mound that rubs against " + (target == pc ? "your":"[target.hisHer]") + " buns with every step " + (target == pc ? "you take":"[target.heShe] takes") + " " : "pucker protrudes obscenely between " + (target == pc ? "your":"[target.hisHer]") + " buns") + ".");
 		else if(assSwellBonus >= 1) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " pucker is inhumanly soft and puffy, a " + (target.hasPlumpAsshole() ? "beckoning donut with a perfect little hole in the middle" : "little swollen between " + (target == pc ? "your":"[target.hisHer]") + " buttcheeks") + ".");
 		
-		wombBonusForAppearance(null, 3);
+		wombBonusForAppearance(forTarget, 3);
+		
+		if(target == pc && target.hasStatusEffect("Butt Bug (Female)")) outputRouter("\n\n" + appearanceButtBugBlurb());
+		
+		//Genital Bonus clears target at the end. Bring it back.
+		if(forTarget != null) setTarget(forTarget);
 	}
-	
 	if(forTarget != null) setTarget(null);
 }
 

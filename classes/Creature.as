@@ -4321,7 +4321,8 @@
 		}
 		public function canDeepthroat():Boolean
 		{
-			return (isBimbo() || isTreated() || flags["USED_SNAKEBYTE"] != undefined);
+			if(this is PlayerCharacter && flags["USED_SNAKEBYTE"] != undefined) return true;
+			return (isBimbo() || isTreated());
 		}
 		public function skinIsSoaked():Boolean
 		{
@@ -10626,7 +10627,9 @@
 		}
 		public function biomassQ(perGenital:Boolean = false): Number
 		{
-			if(flags["GOO_BIOMASS"] == undefined) flags["GOO_BIOMASS"] = 0;
+			if(this is PlayerCharacter && flags["GOO_BIOMASS"] == undefined) flags["GOO_BIOMASS"] = 0;
+			
+			var gooBiomass:Number = (this is PlayerCharacter ? flags["GOO_BIOMASS"] : 0);
 			
 			var numGenital:int = 0;
 			if(hasCock()) numGenital++;
@@ -10634,10 +10637,10 @@
 			
 			if(perGenital)
 			{
-				if(numGenital != 0) return Math.round(flags["GOO_BIOMASS"] / numGenital);
+				if(numGenital != 0) return Math.round(gooBiomass / numGenital);
 				return 0;
 			}
-			return flags["GOO_BIOMASS"];
+			return gooBiomass;
 		}
 		public function totalClits(): Number {
 			if (vaginas.length <= 0) return 0;
@@ -20298,7 +20301,7 @@
 			if (amount > statusEffectv1("Cum Cascade")) setStatusValue("Cum Cascade", 3, fluid);
 			
 			var cumTransfer:Number = Math.round(amount / 10);
-			cumTransfer *= timePassed;
+			cumTransfer *= (timePassed / 60);
 			if (cumTransfer > amount) cumTransfer = amount;
 			
 			addStatusValue("Cum Cascade", 1, (-1 * cumTransfer));

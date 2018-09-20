@@ -360,11 +360,19 @@ public function lashTreatment(treatment:String):void
 
 public function hasParasites(pType:String = "all"):Boolean
 {
-	if(pType == "tail" || pType == "all")
+	if(pType == "buttbug" || pType == "all")
 	{
-		if (pc.hasParasiteTail()) return true;
+		if (pc.hasStatusEffect("Butt Bug (Female)")) return true;
 	}
-	if(pType == "mimbranes" || pType == "all")
+	if(pType == "cockvine" || pType == "tail" || pType == "all")
+	{
+		if (pc.hasTailCock() && pc.hasParasiteTail()) return true;
+	}
+	if(pType == "cuntsnake" || pType == "tail" || pType == "all")
+	{
+		if (pc.hasParasiteTail() && pc.hasTailCunt()) return true;
+	}
+	if(pType == "mimbrane" || pType == "all")
 	{
 		if (attachedMimbranes() > 0) return true;
 	}
@@ -374,17 +382,28 @@ public function purgeParasites(pType:String = "all"):Boolean
 {
 	var parasites:Boolean = false;
 	
-	if(pType == "tail" || pType == "all")
+	if(pType == "buttbug" || pType == "all")
 	{
-		if (pc.hasParasiteTail())
+		if(pc.hasStatusEffect("Butt Bug (Female)"))
 		{
+			removeButtBug();
+			parasites = true;
+		}
+	}
+	if(pType == "cockvine" || pType == "cuntsnake" || pType == "tail" || pType == "all")
+	{
+		if(	pType == "all"
+		||	(pType == "cockvine" && pc.hasTailCock() && pc.hasParasiteTail())
+		||	(pType == "cunt snake" && pc.hasParasiteTail() && pc.hasTailCunt())
+		||	(pType == "tail" && pc.hasParasiteTail())
+		) {
 			pc.removeTails();
 			parasites = true;
 		}
 	}
-	if(pType == "mimbranes" || pType == "all")
+	if(pType == "mimbrane" || pType == "all")
 	{
-		if (attachedMimbranes() > 0)
+		if(attachedMimbranes() > 0)
 		{
 			removeMimbranes();
 			parasites = true;
