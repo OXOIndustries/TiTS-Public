@@ -648,7 +648,6 @@ public function callAPaigeFriend():void
 	output("\n\nYou thank Paige for her advice and dismiss her from the bridge as you pass through the force field and into a sweeping hangar bay, big enough for twenty or so large ships - and countless little tramp freighters and scout ships like the old Z14.");
 	output("\n\nNobody’s paying you much mind now that you’re docked. Indeed, you manage to find a relatively isolated spot at the back of the hangar to land. The ship settles with a resounding thud, and you make your way to the airlock. Time to see where your probe’s gotten off to... assuming it’s really here.");
 	clearMenu();
-	addButton(0,"Next",);
 	flags["ZHENG_SHI_PASSWORDED"] = 1;
 	flags["PAIGE_HELPED_ZHENG"] = 1;
 	clearMenu();
