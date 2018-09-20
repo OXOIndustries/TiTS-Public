@@ -8940,16 +8940,15 @@
 			dickNipple.cLengthRaw = l;
 			dickNipple.cThicknessRatioRaw = w / (l / 6);
 
-			if (tailGenitalArg == GLOBAL.TYPE_EQUINE || hasTailFlag(GLOBAL.FLAG_BLUNT))
+			if (dickNippleType == GLOBAL.TYPE_EQUINE) {
 				dickNipple.addFlag(GLOBAL.FLAG_BLUNT);
-
-			if (tailGenitalArg == GLOBAL.TYPE_EQUINE || hasTailFlag(GLOBAL.FLAG_FLARED))
 				dickNipple.addFlag(GLOBAL.FLAG_FLARED);
+			}
 
-			if (tailGenitalArg == GLOBAL.TYPE_CANINE || hasTailFlag(GLOBAL.FLAG_TAPERED))
+			if (dickNippleType == GLOBAL.TYPE_CANINE)
 				dickNipple.addFlag(GLOBAL.FLAG_TAPERED);
 
-			if (tailGenitalArg == GLOBAL.TYPE_GABILANI || hasTailFlag(GLOBAL.FLAG_DOUBLE_HEADED))
+			if (dickNippleType == GLOBAL.TYPE_GABILANI)
 				dickNipple.addFlag(GLOBAL.FLAG_DOUBLE_HEADED);
 
 			if (effective) {
