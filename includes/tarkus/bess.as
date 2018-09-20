@@ -363,6 +363,9 @@ public function bessHasClothingItem(clothingType:Class):Boolean
 	// 9999
 	// can't really pack this into uints -- too many options (outfits) even if we split armor/upper/lower (more than 32 options)
 	// creature inventory I guess is a decent placeholder for now maybe -- can look into other options later, hence wrapping simple call here
+	if(bess.armor is clothingType) return true;
+	if(bess.upperUndergarment is clothingType) return true;
+	if(bess.lowerUndergarment is clothingType) return true;
 	return bess.hasItemByClass(clothingType);
 }
 
@@ -3821,18 +3824,7 @@ public function bessDressSelection(item:ItemSlotClass):void
 	clearMenu();
 	addButton(0,"Next",bessWhatOutfitToWear);
 }
-/*
-	bessBuyCIW(0, "UGC Uniform", UGCUniform, "UGC Uniform", "UGC Uniform");
-	bessBuyCIW(1, "Top&Skirt", TopNSkirt, "Top & Skirt", "Top & Skirt");
-	bessBuyCIW(2, "Librarian", LibrarianOutfit, "Librarian Outfit", "Librarian Outfit");
-	bessBuyCIW(3, "Waitress", WaitressUniform, "Waitress Uniform", "Waitress Uniform");
-	bessBuyCIW(4, "Military", MilitaryUniform, "Military Uniform", "Military Uniform");
-	bessBuyCIW(5, "Butler", ButlerOutfit, "Butler Outfit", "Butler Outfit");
-	bessBuyCIW(6, "Schoolboy", SchoolboyOutfit, "Schoolboy Outfit", "Schoolboy Outfit");
-	bessBuyCIW(7, "BlackDress", LittleBlackDress, "Little Black Dress", "Little Black Dress");
-	bessBuyCIW(8, "GirlyBra", GirlyBra, "Girly Bra", "Girly Bra");
-	bessBuyCIW(9, "GirlyPanties", GirlyPanties, "Girly Panties", "Girly Panties");
-*/
+
 public function bessWhatOutfitToReturn():void
 {
 	clearOutput();
@@ -4515,15 +4507,14 @@ public function bessBuyOutfit(boughtItem:ItemSlotClass):void
 	bess.inventory.push(boughtItem);
 	pc.credits -= boughtItem.basePrice;
 	
-	var backFunc:Function = talkToBessAboutAccessories;
-	if(boughtItem.type == GLOBAL.ARMOR || boughtItem.type == GLOBAL.CLOTHING || boughtItem.type == GLOBAL.UPPER_UNDERGARMENT || boughtItem.type == GLOBAL.LOWER_UNDERGARMENT) backFunc = bessBuyShitOutfits;
 /*
+	var backFunc:Function = talkToBessAboutAccessories;
 	if(boughtItem.type == GLOBAL.ARMOR || boughtItem.type == GLOBAL.CLOTHING) backFunc = bessBuyShitOutfits;
 	if(boughtItem.type == GLOBAL.UPPER_UNDERGARMENT) backFunc = bessBuyShitBras;
 	if(boughtItem.type == GLOBAL.LOWER_UNDERGARMENT) backFunc = bessBuyShitPanties;
 */
 	clearMenu();
-	addButton(0, "Next", backFunc);
+	addButton(0, "Next", bessBuyShitOutfits);
 
 	// 9999 -- offer option to immediately equip?
 }
