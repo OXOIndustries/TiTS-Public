@@ -29,6 +29,7 @@ Flags
 */
 public function willowBonus(button:Number):void
 {
+	/* DISABLED pending extensive cleanup.
 	if(flags["WILLOW_MET"] == undefined)
 	{
 		output("\n\nYou take a cursory look around and spot a new face. It’s a new waitress and a pretty cute one at that... if you like demons. Yep. She looks like a demon straight out of One God mythology: red skin, horns, the whole deal. You notice with appreciation that she has a curvy, heart-shaped ass topped by a spaded tail and supple, perky breasts.");
@@ -44,7 +45,7 @@ public function willowBonus(button:Number):void
 	{
 		output("\n\nYou grin as you see your pet running around taking orders and take a seat, waiting for her to approach.");
 		addButton(button,"Willow",willowLoverMenu,0);
-	}
+	}*/
 }
 
 public function showWillowName():void
