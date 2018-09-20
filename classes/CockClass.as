@@ -97,7 +97,7 @@
 		//MEMBER FUNCTIONS
 		//COCK VOLUME
 		public function volume():Number {
-			r = thickness()/2
+			var r:Number = thickness()/2;
 			//Abstract size as a cylinder + half sphere for the tip.
 			var cylinder:Number = Math.PI * Math.pow(r, 2) * (cLength() - r);
 
