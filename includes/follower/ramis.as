@@ -120,7 +120,9 @@ public function ramisMolestingAvailable():Boolean
 }
 public function ramisIsPartyTime():Boolean
 {
-	return shipLocation == "TAVROS HANGAR" && hours >= 13 && (hours*60 + minutes < 18*60 + 30);
+	if (pc.isTaur()) return false;
+	if (shipLocation != "TAVROS HANGAR") return false;
+	return hours >= 13 && (hours*60 + minutes < 18*60 + 30);
 }
 public function ramisOutDrinking():Boolean
 {
