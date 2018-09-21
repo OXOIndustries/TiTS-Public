@@ -1410,7 +1410,7 @@ public function bessFollowerMenu():void
 		}
 		else
 		{
-			addDisabledButton(5, "Date","Date","It doens’t seem like [bess.name] wants to go on a date ever again after the hassle on Ekurana.");
+			addDisabledButton(5, "Date","Date","It doesn’t seem like [bess.name] wants to go on a date ever again after the hassle on Ekurana.");
 		}
 	}
 

@@ -2219,6 +2219,7 @@ public function displayQuestLog(showID:String = "All"):void
 			{
 				output2("\n<b>* Entry Password:</b>");
 				if(flags["KIRO_HELPED_ZHENG"] != undefined) output2(" Kiro assisted,");
+				if(flags["PAIGE_HELPED_ZHENG"] != undefined) output2(" Paige assisted,");
 				if(flags["ZHENG_SHI_PASSWORDED"] >= 1) output2(" Access granted");
 				else output2(" <i>Unknown</i>, Access denied");
 			}
