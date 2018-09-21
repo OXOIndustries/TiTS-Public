@@ -801,6 +801,9 @@
  	else if (pc.cocks[0].cLength < 14) output("fat");
  	else output("massive");
  	output(" dick into her ass, watching it disappear inch by inch. She groans, a long and quavering sound as the ring of her asshole stretches to accommodate your girth.");
+	
+	pc.cockChange();
+	
  	output("\n\nHalf-babbled gratitude spills from her lips as you fill her, and her cock gives a twitch, and you hear the patter of liquid against fabric. She pants, whimpering softly--it looks like she came from your insertion. Too bad you’re not finished yet.");
  	output("\n\nYou push further and further in, already slick with her pre. Prai gasps, rocking against the vines and mewling piteously as her little cock oozes out cum. You pull her tail tight up against you, feeling the gentle bucks of her hips against yours.");
  	output("\n\n<i>“Good girl,”</i> you chuckle, and you see a wiggle of pleasure from her rump, shifting your cock around against her tight hole.");
@@ -1035,6 +1038,9 @@
  	else if (pc.cocks[0].cLength < 14) output("fat");
  	else output("massive");
  	output(" length into her ass. Thanks to the trap’s copious pre, you manage to slide all the way into her ridiculously tight hole. Prai doesn’t seem to be in pain, but the kui-tan’s gone completely rigid.");
+	
+	pc.cockChange();
+	
  	output("\n\nPrai lets out the tiniest of strangled squeaks, her whole body tensed, barely moving as she gulps in a sharp breath. The suddenness of being impaled likely shocked her, but you’re not in the mood to let her recover. Just as she draws in another shuddering breath, you pull your hips back from her, sliding your cock out of her tight hole.");
  	output("\n\n<i>“Auuuh!”</i> she moans, desperately shoving her hips back against you, trying to keep you inside her. It looks like the little thing doesn’t want to stop being filled by you. It’s a good thing you’re happy to oblige.");
  	output("\n\nYou thrust back hard against her, shoving deep into her round ass. Caught off guard, Prai’s hands slip, and she falls face-first into the dirt. You’d be concerned for her if she didn’t immediately turn her head to the side and hiss a hungry, <i>“Oh, yesssss!”</i>");
