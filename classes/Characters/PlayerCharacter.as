@@ -105,6 +105,9 @@ package classes.Characters
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("ass");
+			// Butt bug load
+			if(hasStatusEffect("Butt Bug (Female)")) kGAMECLASS.loadInButtBug(this, cumFrom);
+			
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{

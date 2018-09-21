@@ -62,7 +62,7 @@ public function getButtBugPregContainer(variant:int = 0):PregnancyPlaceholder
 			maxMilk = 0;
 			maxCum = 5000;
 			maxGirlCum = 0;
-			//9999 ppButtBug.impregnationType = "";
+			ppButtBug.impregnationType = "ButtBugPregnancy";
 			break;
 		// Females
 		case 0:
@@ -227,7 +227,7 @@ public function combatSandWormVictory():void
 	author("Preacher");
 	
 	var swfVariant:int = -1;
-	if(rand(2))
+	if(!pc.hasAnalPregnancy() && rand(2))
 	{
 		if(rand(5) == 0) swfVariant = 2;
 		else if(rand(3) == 0) swfVariant = 1;
@@ -326,7 +326,7 @@ public function sexButtBugBionahole(swfVariant:int = 0):void
 	output(" try your best to remove your [pc.gear] with one hand. She squeals in your grasp and tries to wriggle away. Some tendril-like structures slimily slide out from one of the parasite’s orifices and try to pry your hand away from it’s body, but your grip is too strong for her.");
 	output("\n\nNow ready to carry out your plan, you swiftly drop your [pc.ass] on the sandy earth with the bug still in your hand.");
 	if(silly) output(" Some sand gets in your crack but that’s okay.");
-	output(" You align her with your [pc.oneCock] an inch or two above the head, just to build some suspense for yourself. It pays off as the female bug’s oozing juices flow down to cover your [pc.cock " + cIdx + "] with just enough fluids to allow the soft breeze of the wastes to give your dick a slight chill. The tendrils wriggle around in the air above your cock" + (pc.cocks.length == 1 ? "" : "s") + ", before they reach down towards your [pc.cocks].");
+	output(" You align her with [pc.oneCock] an inch or two above the head, just to build some suspense for yourself. It pays off as the female bug’s oozing juices flow down to cover your [pc.cock " + cIdx + "] with just enough fluids to allow the soft breeze of the wastes to give your dick a slight chill. The tendrils wriggle around in the air above your cock" + (pc.cocks.length == 1 ? "" : "s") + ", before they reach down towards your [pc.cocks].");
 	output("\n\nMost of them twirl all around it: either it is trying to figure out what your cock is, or dicks might be a familiar form to them. You position your cock-head directly at the entrance of its orifice with the tiny tentacles still twirling around your shaft. In one squelching movement you push your [pc.cock " + cIdx + "] into the surprisingly welcoming embrace of the bug’s asshole. The inside of her is soft, wet, and delightfully warm. Soon her instincts take over and she adjusts herself to perfectly fit your member. You start pumping her up and down your [pc.cock " + cIdx + "], which fills the air with lewd squelches.");
 	
 	pc.cockChange();
@@ -499,10 +499,10 @@ public function sexButtBugOfferButt(swfVariant:int = 0):void
 				}
 				output(" one you just defeated.");
 				
-				pc.setStatusValue("Butt Bug Female", 1, newBug);
-				pc.setStatusValue("Butt Bug Female", 2, 0);
-				pc.setStatusValue("Butt Bug Female", 3, 0);
-				pc.setStatusValue("Butt Bug Female", 4, 0);
+				pc.setStatusValue("Butt Bug (Female)", 1, newBug);
+				pc.setStatusValue("Butt Bug (Female)", 2, 0);
+				pc.setStatusValue("Butt Bug (Female)", 3, 0);
+				pc.setStatusValue("Butt Bug (Female)", 4, 0);
 			}
 			else
 			{
@@ -605,12 +605,12 @@ public function sexButtBugUse():void
 		else if(vIdx >= 0) output(" rub at your [pc.pussies], slipping in an entire digit at times to further tease yourself. Your thumb inevitably grazes [pc.oneClit] with your continued self-stimulation, each making you moan while they send a delightful jolt of pleasure through you.");
 		else output(" instinctively rub at your bare groin, realizing you have no genitals to speak of you keep going. These rubs somehow gives you a small measure of residual happiness that spreads through your body.");
 		output(" All the while, you");
-		if(pc.hasBreasts()) output(" massage your [pc.oneBreast], digits sinking into your boobflesh as " + (pc.isLactating() ? "[pc.milk] flows out, streaming down your body and into the dry sand below" : "occasionally tweak a hardened [pc.nipple] for some small manner of extra pleasure") + ".");
+		if(pc.hasBreasts()) output(" massage one of your [pc.breasts], digits sinking into your boobflesh as " + (pc.isLactating() ? "[pc.milk] flows out, streaming down your body and into the dry sand below" : "occasionally tweak a hardened [pc.nipple] for some small manner of extra pleasure") + ".");
 		else output(" tweak a hardened [pc.nipple], the sensitivity of it building as you feel more and more pleasure from the act.");
 		output("\n\nYour parasite quickens her pace, noisily ramming the male with more fervor than ever before, and fucking you harder and faster as well. Her gooey excretions ooze out, and have already completely covered the male at this point. Green slime drips from him as it forms small puddles below you. Even through the female you can feel the male’s cock stretching out every sphincter muscle you have. The feelings from both your nerves and hers mix to make it seem like the insectoid phallus is some sort of quantum dick that’s fucking you twice in the same timespan.");
 		output("\n\nBeing overstimulated like this, you can’t help but increase your pace as well, sweat already dripping down your form from the exertion.");
-		if(cIdx >= 0 && vIdx >= 0) output(" What were you thinking when you tried to pleasure both your sexes with only one hand? It’s clearly inefficient. Reaching back with your chest-occupied hand, you finger your [pc.pussies] from behind while the other jerks your [pc.oneCock]. It is like an online vid switching to a higher quality while you watch it, utter satisfaction. Exploiting your physiology as best you can you ride out the wave of satisfactory pleasure hitting your mind.");
-		else if(cIdx >= 0) output(" Your hand bolts up and down your [pc.oneCock] as the other moves away from your chest to " + (pc.balls >= 2 ? "fondle your swinging balls" : "slip a digit into your parasite-hosting anus along with the male’s tentacle covered shaft") + ".");
+		if(cIdx >= 0 && vIdx >= 0) output(" What were you thinking when you tried to pleasure both your sexes with only one hand? It’s clearly inefficient. Reaching back with your chest-occupied hand, you finger your [pc.pussies] from behind while the other jerks [pc.oneCock]. It is like an online vid switching to a higher quality while you watch it, utter satisfaction. Exploiting your physiology as best you can you ride out the wave of satisfactory pleasure hitting your mind.");
+		else if(cIdx >= 0) output(" Your hand bolts up and down [pc.oneCock] as the other moves away from your chest to " + (pc.balls >= 2 ? "fondle your swinging balls" : "slip a digit into your parasite-hosting anus along with the male’s tentacle covered shaft") + ".");
 		else if(vIdx >= 0) output(" You can’t handle the teasing anymore. You need more, and the hand on your [pc.chest] won’t suffice. You send it to vigorously finger your folds while the other handles clit duty, and a stream of [pc.girlCum] forms between your legs.");
 		else output(" Your continued sensual rubs of your bare groin has turned your waves of happiness into those of heat and need. Lusting for more, the hand that caresses your upper body moves to join its twin as you feel hotter with every circular motion.");
 		output("\n\nThe male’s tentacle-covered cock-body suddenly throbs. Its veins bulge out and you can feel the first of many warm spurts of green cum filling up your backside. A few last powerful thrusts into your parasite occupied anus sends you over the brink as well. Fast-paced exclamations and profanities of pleasure escape you as your");
@@ -639,7 +639,7 @@ public function sexButtBugUse():void
 			pc.buttChange(ppButtBug.cockVolume(0));
 		}
 		output(" It’s an interesting feeling to be stuffed with his veiny cock, each throb resonating through your anal walls.");
-		output("\n\nHe’s getting restless sitting there with his dick up your bum, and squirms this way and that as he tries to get stimulation in any way possible. You tell him to stop fidgeting in a firm voice, but he either isn’t listening, or doesn’t understand. With your ass hovering above the ground, it’ll be easy to descend to the ground and fully sit on him. Maybe that’ll remind him who’s in charge here. Telling him again to stop, you relax your [pc.legs] until you’re basically sitting in the sand, with your ass cheeks smothering him. With his wide base pressed up against your [pc.asshole] it provides a nice barrier to stop his entire form from entering you. With your weight upon him, his attempts to move have stopped. Maybe now he’ll let you do your own thing.");
+		output("\n\nHe’s getting restless sitting there with his dick up your bum, and squirms this way and that as he tries to get stimulation in any way possible. You tell him to stop fidgeting in a firm voice, but he either isn’t listening, or doesn’t understand. With your ass hovering above the ground, it’ll be easy to descend to the ground and fully sit on him. Maybe that’ll remind him who’s in charge here. Telling him again to stop, you relax your [pc.legOrLegs] until you’re basically sitting in the sand, with your ass cheeks smothering him. With his wide base pressed up against your [pc.asshole] it provides a nice barrier to stop his entire form from entering you. With your weight upon him, his attempts to move have stopped. Maybe now he’ll let you do your own thing.");
 		output("\n\nHowever, as you lift off of him, he springs to action again, and pistons his legs as he smacks into your ass.");
 		if(cIdx >= 0 && vIdx >= 0) output(" Both your masculine and feminine organs tingle with residual stimulation as he pounds your ass and " + (pc.balls > 0 ? "frots against the backside of your [pc.balls]" : "makes droplets of his makeshift lube splatter against your lower labia") + ".");
 		else if(cIdx >= 0) output(" Your [pc.cocks] throb each time he hilts into you, and he " + (pc.balls >= 2 ? "rubs your balls as he goes" : "bumps your prostate on the way in and out") + " Your [pc.cocks] drip [pc.cumColor] precum from the stimulation while the liquid flows down your frenulum.");
@@ -647,7 +647,7 @@ public function sexButtBugUse():void
 		else output(" Strange tingles move through your form while the bug pistons into your backside, more pleasurable than uncomfortable. It feels as if a ten-armed massage expert is having his way with your nerves, and you reflect on the idea that having no genitals doesn’t mean that you have to miss out.");
 		output(" It seems the little dick hasn’t learned a thing, as three times you sit on him only to go back up with a twelve inch piston in your ass.");
 		output("\n\nThe fourth time, however, he’s slowed down considerably. Once more ought to do it. This time when you lift off only slight movements are felt, and he stops completely when you tell him to. It was about time that he learned his place. At this moment, he’s your toy and nothing else. Slowly at first, you bounce on the phallus as you gyrate your hips this way and that to scratch all the right itches. Anal squelching sounds can be heard as your ass connects to his base over and over again, while the sticky lube continues to create strands of fluid that connect the two of you together.");
-		output("\n\nYour breath hastens as you gradually pick up the pace, losing the gyrations and really kicking your [pc.legs] into high gear.");
+		output("\n\nYour breath hastens as you gradually pick up the pace, losing the gyrations and really kicking your [pc.legOrLegs] into high gear.");
 		if(cIdx >= 0 && vIdx >= 0) output(" Each bounce makes your dick" + (pc.cocks.length == 1 ? "" : "s") + (pc.balls > 0 ? " and [pc.balls]" : "") + " do cyclical slaps between your stomach and your womanhood, stimulating you as trickles of [pc.girlCumColor] flow in between your legs and [pc.cumColor] pre flings from your urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + ".");
 		else if(cIdx >= 0) output(" [pc.Cocks] bouncing " + (pc.balls > 0 ? "and [pc.balls] jiggling" : "and prostate clenching") + ", even more [pc.cumColor] pre drips from your urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + ".");
 		else if(vIdx >= 0) output(" Your hand quickens in your ministrations on your labial lips as your thumb polishes your pearl" + (pc.totalClits() == 1 ? "" : "s") + ", occasionally slipping inside for a quick frig.");
@@ -813,7 +813,7 @@ public function masturbateButtBugMaleScene(arg:Array):void
 			output("\n\nWhile he goes about stimulating your vaginal walls, you set out to stimulate parts that he cannot. The hand that was on him now moves to rub at your clit" + (pc.totalClits() == 1 ? "" : "s") + " while the other clasps");
 			if(cIdx >= 0) output(" " + (pc.cocks.length == 1 ? "your cock" : "one of your cocks") + ". You passionately stroke your shaft as more and more pre is coaxed out with every pass, creating a convenient lube in no time at all.");
 			else output(" one of your [pc.nipples]. " + (!pc.hasBreasts() ? "Your flat chest makes your nipples the prime receivers of your manual ministrations, and as hard as they are now they’re so delightfully sensitive." : "As your thumb and index finger handles your sensitive nipple your other digits dig into your breast flesh as you massage one of your [pc.breastCupSize " + 0 + "] tits."));
-			output("\n\nThe bug is actually quite good at what he’s doing. You are uncertain whether it’s enthusiasm or actual skill, but it makes for an enjoyable ride all things considered. However, your greedy pussy wants more and you indulge it without a second thought. You use your [pc.legs] to bounce up and down on the insect’s dick, in tune with his own efforts. Quickened breath and pleasured gasps ensue as the exertion exponentially increases your stimulation.");
+			output("\n\nThe bug is actually quite good at what he’s doing. You are uncertain whether it’s enthusiasm or actual skill, but it makes for an enjoyable ride all things considered. However, your greedy pussy wants more and you indulge it without a second thought. You use your [pc.legOrLegs] to bounce up and down on the insect’s dick, in tune with his own efforts. Quickened breath and pleasured gasps ensue as the exertion exponentially increases your stimulation.");
 			output("\n\nThe faster pace doesn’t let you last much longer though. A tingle in your quim is all the warning you get before a fast approaching orgasm hits you from out of the blue. Gasps turn into loud moans as your vaginal muscles clench around the shaft of the male bug below you, and your [pc.girlcum] covers him from ‘head’ to base.");
 			if(cIdx >= 0) output("\n\nYour own masculine organs reciprocate your vagina’s orgasmic pulses. Your hips buck forward as your " + (pc.balls >= 2 ? "[pc.balls] pull tight against you" : "your prostate twinges") + " and your [pc.cum] is pumped through your urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " to splatter against on the floor.");
 			output(" The insect’s phallic organ throbs inside your feminine folds as he too is driven over the edge. He spurts his thick green load, coating your vaginal walls with his seed. His semen unloads within you until the excess dribbles out around him and eventually covers his entire body. Having nowhere else to go, the green sperm then drips down to the floor and adds to the puddle formed by your sexual fluids.");
@@ -893,7 +893,7 @@ public function masturbateButtBugMaleScene(arg:Array):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		default:
-			output("ERROR: Event response not found!");
+			output("<b>ERROR:</b> Event response not found!");
 			output("\n\n");
 			
 			addButton(0, "Next", mainGameMenu);
@@ -913,7 +913,7 @@ public function combatSandWormDefeat():void
 	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
 	
 	var swfVariant:int = -1;
-	if(rand(2))
+	if(!pc.hasAnalPregnancy() && rand(2))
 	{
 		if(rand(5) == 0) swfVariant = 2;
 		else if(rand(3) == 0) swfVariant = 1;
@@ -941,7 +941,7 @@ public function combatSandWormDefeat():void
 	output("\n\nBut you can’t dwell on that now. It’s either going to eat you, screw you, or give you a parasite, and none of those options sound really good.");
 	if(lustLoss) output(" A nice screw would definitely help your little predicament, but then again, if it’s the parasitic kind it might not turn out in your favor.");
 	if(buttBugF != null) output(" The parasite you already have is giving you enough issues as it is.");
-	output("\n\nYou do your best to shimmy away, but your futile attempt to escape has only reminded you of the situation you’re in. The worm is much faster than you’ll ever be at this moment, and it’s right on you in seconds. From behind its jaws, there emerges four sets of pincer-ended appendages that all snap at your own limbs. Thoughts go through your head about whether it’s trying to kill you or restrain you as you move your arms and [pc.legs] in an evasive manner. Your answer is given when it snatches one of your arms and you discover that there isn’t a single sharp section in the entirety of the crab-like claws. Just lines upon lines of lime-colored soft tissue that act more like human fingertips than anything else.");
+	output("\n\nYou do your best to shimmy away, but your futile attempt to escape has only reminded you of the situation you’re in. The worm is much faster than you’ll ever be at this moment, and it’s right on you in seconds. From behind its jaws, there emerges four sets of pincer-ended appendages that all snap at your own limbs. Thoughts go through your head about whether it’s trying to kill you or restrain you as you move your arms and [pc.legOrLegs] in an evasive manner. Your answer is given when it snatches one of your arms and you discover that there isn’t a single sharp section in the entirety of the crab-like claws. Just lines upon lines of lime-colored soft tissue that act more like human fingertips than anything else.");
 	output("\n\nYour moment of inspection has given the worm a perfect window of opportunity to get a hold of the rest of your body.");
 	if(pc.isGoo()) output(" Unfortunately for the worm, your goopy body slips out of its pincers with little to no effort. The beast is momentarily stumped over what to do with you, and you are briefly filled with hope. However, that hope is very short-lived as the creature begins to drool an almost solid form of its slime onto you, which mixes with your own goo and dries it out very quickly. The consistency of your goop changes to that of a gummy candy which doesn’t hurt, but it has made it easier for the worm to actually grab onto you. Now it is child’s play for it to restrain you, and you find yourself completely in the clutches of the");
 	else if(pc.isNaga()) output(" You’d think your coils would prove to be an issue for the sand worm, but no. Perhaps because it has fought with other worms in the past, it soon has your other arm as well as the entirely of your lower body’s length in its grip. You are now immobilized by the");
@@ -1054,7 +1054,7 @@ public function combatSandWormDefeatScene(arg:Array):void
 					output(" twirls her tendrils once or twice around [pc.eachCock]");
 					if(vIdx >= 0) output(" and rubs their sides in between your vaginal lips");
 				}
-				else if(vIdx >= 0) output(" lightly prods the ends of her tendrils into [pc.eachCunt] and occasionally flicks your [pc.eachClit]");
+				else if(vIdx >= 0) output(" lightly prods the ends of her tendrils into [pc.eachCunt] and occasionally flicks [pc.eachClit]");
 				else output(" tickles your bare groin with each of her six tendrils");
 				output(". Her tendrils are like brushes that paint orgasmic pleasure across your extremities while she forces loud moans out of you with every ounce of air your lungs have.");
 				output("\n\nWith your head thrown back and filling the air with exaggerated lewd sounds as the rest of your body is paralyzed with pleasure, you don’t notice when three of her six tentacles leave your groin. You’re only made aware of them when you feel their tips prodding at your [pc.asshole]. Already loosened by the worm’s tongues, there is no resistance when she triangularly gapes your butthole wide open with her tiny tentacles. Some of the newer goop drips into your anal depths and an almost choke-worthy gasp erupts from you.");
@@ -1252,10 +1252,10 @@ public function combatSandWormDefeatScene(arg:Array):void
 				output("\n\nBy the looks of it, it seems your original parasite has " + (success ? "lost" : "won") + ".");
 				if(success)
 				{
-					pc.setStatusValue("Butt Bug Female", 1, newBug);
-					pc.setStatusValue("Butt Bug Female", 2, 0);
-					pc.setStatusValue("Butt Bug Female", 3, 0);
-					pc.setStatusValue("Butt Bug Female", 4, 0);
+					pc.setStatusValue("Butt Bug (Female)", 1, newBug);
+					pc.setStatusValue("Butt Bug (Female)", 2, 0);
+					pc.setStatusValue("Butt Bug (Female)", 3, 0);
+					pc.setStatusValue("Butt Bug (Female)", 4, 0);
 				}
 				if(newBug == oldBug) output(" Then again, how could you know? The two parasites were identical, after all.");
 				output(" Your [pc.hips] twitches once more as you feel another pinch in your ass");
@@ -1529,7 +1529,7 @@ public function combatSandWormDefeatScene(arg:Array):void
 			}
 			else
 			{
-				output("ERROR: Event response not found!");
+				output("<b>ERROR:</b> Event response not found!");
 				output("\n\n");
 				
 				CombatManager.genericLoss();
@@ -1562,10 +1562,6 @@ public function combatSandWormDefeatScene(arg:Array):void
 	}
 }
 
-// Butt Bug pregnancy types
-// normal, overproductive, large
-private var typeButtBugPregList:Array = ["ButtBugPregnancy", "ButtBugPregnancyOP", "ButtBugPregnancyXL"];
-
 // Removal
 // Medical method could just be the generic wake up drowsy with a sore ass as V-KO says <i>“All B-type parasites have been successfully removed.”</i> for removal. Item removal I imagine will be weird if the bug just suddenly vanishes so this might be needed.
 // Can be removed by going to any V-KO equivalent NPC.
@@ -1578,12 +1574,10 @@ public function removeButtBug():void
 public function resetButtBugEffects():void
 {
 	// 9999
-	for(var i:int = 0; i < pc.pregnancyData.length; i++)
+	
+	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
 	{
-		if(InCollection(pc.pregnancyData[i].pregnancyType, typeButtBugPregList))
-		{
-			pc.pregnancyData[i].cleanupPregnancy();
-		}
+		pc.pregnancyData[3].cleanupPregnancy(pc, 3);
 	}
 }
 public function removeButtBugImmunoBooster():void
@@ -1595,12 +1589,9 @@ public function removeButtBugImmunoBooster():void
 	output(" and falls towards the ground while desperately trying to get away from you. Well... that worked. It would’ve been better if it didn’t leave you with a sore ass though.");
 	// if in any butt bug pregnancies:
 	var eggs:int = 0;
-	for(var i:int = 0; i < pc.pregnancyData.length; i++)
+	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
 	{
-		if(InCollection(pc.pregnancyData[i].pregnancyType, typeButtBugPregList))
-		{
-			eggs += pc.pregnancyData[i].pregnancyQuantity;
-		}
+		eggs += pc.pregnancyData[3].pregnancyQuantity;
 	}
 	if(eggs > 0)
 	{
@@ -1615,23 +1606,6 @@ public function removeButtBugImmunoBooster():void
 	}
 	removeButtBug();
 }
-
-// Parasitism:
-// While parasitized your minimum lust is raised by 15 and you will receive periodical reminders of the butt bug you are currently host to that increase your lust by a few points. Currently there are only 3 variants of the female parasites. All females lay eggs when the “anally filled” status effect is applied to the character while carrying the parasite, laying unfertilized ones that the female expels from the host after an hour of being filled by any creature that is not a male butt bug. Nyrean eggs and any other egg based anal pregnancies in the future take their effect instead of the butt bug pregnancy on account of female being tricked that there are already eggs that are incubating and will care for them until they look ready to be laid, in other words, normal nyrean or what have you pregnancy. If however the character is anally filled by a male butt bug then a different stage of parasitic anal pregnancy is induced to the player of whose effects vary depending on the type of female inside them. Unfertilized laying increases your lust by 40, on account of not enough stimulation during laying experience but it stimulates you nonetheless. A blurb to include into the character description is included below, it’ll probably fit best at the way bottom of char desc.
-public function processButtBugParasitism():void
-{
-	// 9999
-}
-
-// Variants:
-// When the two females are fighting over who stays in your ass there is a "rock, paper, scissors" thing going on that ultimately determines which one is victorious, normal beats overproductive, overproductive beats large and large beats normal. If more are added then the rules of the "game" will have to be updated.
-
-// Normal female: lmplants eggs, gestate for a week and increase anal looseness by 2 after laying. Initial stage preg bloats you by 1 and expands you by 2 each pregnancy stage.
-// Overproductive female: Continuously implants eggs(keeps you pregnant) until a male fertilizes them, increase anal looseness by 2 after laying. Initial stage preg bloats you by 1 and expands you by 1 every week. Gives a week of rest time before it starts laying eggs again.
-// Large female: lays 1 large egg which stays inside you for 3 months, during this time it absorbs genetic body plan from you which causes the child to be an insectoid humanoid and eventually is laid to produce sand worm hybrids who are interactable in the nursery to some extent(nothing sexy planned yet). Increase anal looseness by 3 after lay.
-
-// Create boolean FTBBLay(first time butt bug lay)
-// Create string eggsLaidBy
 
 // Character Description Blurb:
 public function appearanceButtBugBlurb():String
@@ -1651,41 +1625,676 @@ public function appearanceButtBugBlurb():String
 	return txt;
 }
 
+// Parasitism:
+// While parasitized your minimum lust is raised by 15 and you will receive periodical reminders of the butt bug you are currently host to that increase your lust by a few points. Currently there are only 3 variants of the female parasites. All females lay eggs when the “anally filled” status effect is applied to the character while carrying the parasite, laying unfertilized ones that the female expels from the host after an hour of being filled by any creature that is not a male butt bug. Nyrean eggs and any other egg based anal pregnancies in the future take their effect instead of the butt bug pregnancy on account of female being tricked that there are already eggs that are incubating and will care for them until they look ready to be laid, in other words, normal nyrean or what have you pregnancy. If however the character is anally filled by a male butt bug then a different stage of parasitic anal pregnancy is induced to the player of whose effects vary depending on the type of female inside them. Unfertilized laying increases your lust by 40, on account of not enough stimulation during laying experience but it stimulates you nonetheless. A blurb to include into the character description is included below, it’ll probably fit best at the way bottom of char desc.
+
+// Parasitism Flavor:
+// Reminders: While parasitized you will get a reminder of your passenger at random intervals of hours between 6 and 24 just to give your universe a little extra flavor while not being overbearing with reminders, inspired by Kirbu. Each reminder increases your lust by 5 apart from a few exceptions.
+public function processButtBugParasitism():void
+{
+	// 9999
+}
+
 /*
 
+Reminder 1:
+Without any warning, the bug up your arse has starts moving, having decided that it is going to rearrange itself inside you. It takes its sweet time doing so too, as it rolls around tickling your sensitive areas and occasionally prodding its head against your rectal walls before finally resettling. Everything it exists for seems to turn on its host.
 
 
+Reminder 2:
+//Only available while wearing clothing.
+[{If wearing clothing or lower garments: Something seems to be pulling at your [pc.underGarment]. Or rather pushing at it from the inside and tickling at your asshole. You look around to see if anybody is watching before discreetly looking at the back of your [pc.undergarments]. You are greeted with the sight of the butt bugs’ backside visibly making a miniature bulge against your [pc.undergarments]. You quickly swat at the parasite to get it to stop, startling it into going back up your ass faster than you would’ve liked. You experience the shock and pleasures of a singular yet quick penetration, and that leaves you wanting more.}]
 
 
+Reminder 3:
+You occasionally catch yourself fantasizing about wandering the wastes of Tarkus with nothing on your mind except the hunt for male butt bugs to impregnate the parasite you are hosting. Resting afterwards until your belly swells with [{if BBFInside = 0: parasitic eggs until they are ready to hatch}{if BBFInside = 1: a large number of parasitic eggs, bloating your gut until they are due}{if BBFInside = 2: a large parasitic egg that distends your midriff}]. Then happily spreading your ass cheeks to birth your anal progeny, caring for them until they hatch, and then moving on to find another male. Most of the time you shake the fantasy off, but the thought that you might be better off being a prime carrier for these creatures always lingers at the back of your mind.
 
 
-Unfertilized expulsion:
-//If has any female bug and gets anally filled status from anything other than a male butt bug, happens after an hour of being filled.
-//Does not happen if pc has overproductive female and is not in egg cycle.
-A gurgling sound emanates from your [pc.belly] as the female butt bug inside you realizes that not only are the eggs she is caring for never going to hatch, but that she was never fucked by a male butt bug in the first place. The weight of the eggs shifts slightly downward as she gets both of you ready to lay the unfertilized eggs. Somehow, she also puts the thought in your head that squatting right now would be a very good idea. You do just that while dropping your [pc.gear]. Green lubricant oozes from your asshole as the female slightly expands her body inside you [{if pc has dick: , rubbing against your prostate and making your male member{s} twitch and harden instantly.}] All the while, she flexes her inner muscles in a slow, drawn-out and slightly pleasurable fashion.
+Reminder 4:
+The sensation of something slipping out of ‘your’ butthole strikes you out of the blue. Some ideas race through your mind of what it might be before the three other identical things alongside it remind you that you have a parasite in your rectum. Why is she using her tentacles now? It’s not like she has a reason to. They tickle your crack as their track alongside your [pc.skinFurScales] takes them into places where they really shouldn’t be. Two of them go to [{if has cock but no pussy: twirl around your shaft and [{if has balls: spiral around your [pc.balls]}{if doesn’t have balls: squeeze at your base}]}{if has pussy but no cock: rub your vaginal lips and occasionally flick at your clit{s}}{if has cock and pussy: your genitals, one lightly inserting itself into your [pc.pussy] while the other [{if has balls: snakes around your [pc.balls] to rub at the underside of your [pc.cocks]}{if doesn’t have balls: spirals around {one of }your cock{s} before it briefly squeezes your shaft}].}{if has no genitals: sensually rub at your inner thighs, sending shivers up your spine as if they were the caring fingers of a lover}]. The others circle around your ass cheeks to grip them firmly as they deeply massage your [pc.butt].
 
-[{if FTBBLay = true: Pressure fills your anal cavity further as she keeps expanding, stretching your inner walls to their limit as she makes you groan with this strange new sensation. Clutching your abdomen you experience pain and pleasure mixing into a weird cacophony of feelings. Her expansion reaches your sphincter, and even through your clenching, she forcefully pries open your anal ring with her expanding orifice. Employing some of her tendrils she manually spreads open your asscheeks, completly exposing you. Several verdant slime strands connect both your cheeks and the walls of the expanded female’s internal body, as she gapes you to the point where your insides are visible.}
-{if FTBBLay = false: The all-too-well-known pressure in your lower abdomen rears its head again, and the pain you felt the first time is now nonexistent. Adapted to the capabilities of the parasite, you relax your anal walls and accompany the stretching as you enjoy the sensations rolling through your rectum. Not even needing to be forced this time, you insert a few digits of your own accord and help her manually spread you, parting your buttcheeks in the process. Your digits, and even most of your hands get covered in the green slime leaking from her, making the gaping process so much more fun. Without noticing it you’ve gaped yourself to the point of others being able to see into you and the parasite, although not yet not enough to see the other end of your passenger.}]
-
-[{if in town: People around you stare in disbelief at what is happening in front of them, a [pc.gender] gaping their anus in front of everyone to see. A puddle of green liquid forms below you as the slime leaking from your ass accumulates. Looking down towards it you see people’s faces looking at you in the reflection, and are reminded that you’re actually in public.
-
-[{if pc.exhibitionism < 50: Your face flushes from the attention being given to you. You try to hide your face from the crowd, but you realize it is impossible. They’ve surrounded you, and are watching you with mixed expressions. Some are shocked, some judge you, and some are sporting tents, wet panties, or both. Why are they just staring at you? Can’t they see you need help or at least some privacy?}
-{if pc.exhibitionism > 50: Their stares spur you on, making you masturbate as you specifically focus your attentions on some of them. Most are disgusted and leave, but some stay and even start openly pleasuring themselves to the show you’re putting on for them. Those that are adventurous enough grab your ass when it’s close to them, and the more curious ones even poke a hand into your gaping anus, making you gasp as it slicks in and slides out without effort. They step back once they notice you might actually be birthing something, but don’t stop their self pleasuring.}]}]
-
-[{if BBFInside = 0: You feel the eggs moving already, pushed on by the powerful undulating muscles of the female inside you. You expected the eggs to bulge out your anus a little, but all you feel is the blissfully brief slipping out of each egg like a string of over-lubed anal beads, slightly caressing your passage [{if pc has dick: and your prostate}{if pc has vagina:, as well as making your [pc.vagina] slightly wet,}] with their movement as your [pc.belly] slowly deflates. Each egg adds to a pile of green eggs until you count there to be about 10 of them laying on top of each other.}
-{if BBFInside = 1: As soon as you’re in position, your gaping anus floods out the cascade of slime-covered eggs that were all somehow crammed up your gut. They quickly cover the floor in their fluids, making wet plopping sounds as each one slips it out of you and splatters onto the already-wet surface below you. There seems to be no end to them as they slide out of your ass [{if pc has dick: while grinding against your prostate}{if pc has vagina:, and make you almost cream yourself}]. Before you can reach your peak though, the stream of barely--wide-enough eggs stop, with the last of them plopping out and joining its brethren with a soft ‘splat.’ It would be a rough guess but you could say there were about 30 of them in total, though it’s hard to tell with them all clumped together like that.}
-{if BBFInside = 2: This egg feels larger than you expected it to be. It might actually require some effort to pass. You can feel it pressing against the ring of the female inside you as it is sucked through by the undulation of the female alone. The egg’s mass moves down, and with it so does the bulge in your abdomen. The female’s sucking of the egg has her orifice stretched wide over its surface, and is making your intestinal tract struggle to accommodate such a large object passing through.
-
-Various anal birthing fluids follow its path soon after, as you start to see the surface of the egg in the reflection of the liquids below you. Its progress is slow, but not painfully so. There’s just enough movement to stimulate your insides [{if pc has dick:, making your dick{s} ooze a little precum}{if pc has vagina: and creating a bit of a river between your legs}] with its movement. She undulates more now than ever before. Her movements roll through your rectal passage and across the surface of the egg. Each inch she pushes the egg through you goes into new territories of wonderful fullness.
-
-Every move of the spherical mass expands what you thought your ass was capable of handling. Your own tract is being pushed to its limits as it tries to fit the large egg without tearing. Reaching the end of her and your passage it comes to a halt, your own anal ring pressing down on the large female and making it harder for the egg to pass through her. Knowing now that you have to participate a bit, you try to push a little while relaxing your already gaped pucker. Sure enough the egg moves again before finally passing through at its widest point and plopping out with a satisfying ‘pop’. The egg glistens in the light as you breathe a sigh of relief of it finally being over.}] [{if in town: With the show now over [{if pc.exhibitionism < 50: people start to lose interest as one by one they walk away. Their looks did turn you on a little however. Maybe there is a little bit of an exhibishionist inside you.{Increase exhibitionism by 5}}{if pc.exhibitionism > 50: the people around you finish off their masturbation, some of them aim directly at you as they cover you with their juices.{inflict "cum covered" status effect}}]}]
-
-With the female apparently done, she retracts her tendrils and [{if FTBBLay = true: you experience for the first time your anus rapidly closing back up as the female contracts herself back to her normal size. Crap this is weird, having your rectum just be manually closed like some kind of strange aperture.}{if FTBBLay = false: your anus closes back up once more while she retracts to her normal size, making you wish it wasn’t over as quick as it was}]. It almost looks like your pucker was never gaped open to begin with. You do notice you have been stretched a little bit though. This unfertilized laying was stimulating but not enough to sate you, so you stand up and dispose of the eggs as you resolve to find some other way to get off.
-{increase anal looseness by 1}
-(i)
+Just as quick as they came, the tentacles extricate themselves from your extremities. One by one the slippery tendrils slip back into the female parasites’ slightly poked out orifice, each one’s entry punctuated by a wet ‘schlick’. Oh why didn’t she finish what she started? You feel so unsatisfied now. [Sillymode: You just got teased by a parasite. Pretty hot huh?]
+//Exception to lust increase, instead of 5 it increases it by 40.
 
 
+Reminder 5:
+As you move around, you feel a distinct moistness from the protruding orifice of your anal parasite. It spreads to cover most of your crack, and with every move you make the moist feeling becomes more noticeable, eventually feeling just like slime. What’s more is that this slimy sensation has started to slowly creep its way towards your [pc.groin]. You stop to take a look at [{If pc.hasLowerGarment = true: your [pc.lowerGarment]. There is a wet greenish spot on your ass and the bottom of your groin that grows even now, almost looking like you’ve made a mess of yourself.}{If pc.hasLowerGarment = false: your uncovered ass. A sheen of greenish ooze is covering most of your inner ass cheeks and has also migrated between your legs where it now drips to the floor.}] The tubular parasite within you has leaked her slime all over your lower extremities. A mixture of frustration and embarrassment fills you as an angry blush covers your face. Damn it, now you’ve gotta clean it up. A breeze picks up, cooling your damp ass and groin area to uncomfortable levels. Now you’ve got a cold ass too.
 
+[{If in town: It’s not really going to look good if you clean yourself up now; people are around. So you do the next best thing, which is hide behind the largest person you can find and hope nobody notices. Hopefully there is a restroom nearby. By the looks of it there seems to be a washroom of sorts that you slip into like some sort of assassin. From the lack of stares into the room it would seem that none have noticed, either that or they just don’t care. The trip to the cleansing device is thankfully without company. It looks kind of like a cross between a bidet and a shower.
+
+Why every planet has these is a mystery to you. Different needs for different breeds you suppose. A quick drop of your [pc.gear] and a slip into the stall has you quickly turning the nozzle to wash off the slime. The relatively cool water hits your form and is quite refreshing to say the least, while the spout from the floor rinses the ooze from your ass. You decide to include the part of your gear that has been slimed in the process as well. A bit of a warning next time would be appreciated, you think to yourself while hoping she somehow hears your thoughts.
+
+It would seem that that leakage of slime from your anal-lodged parasite ceased at some point during the rinsing. As you step out of the stall all refreshed and clean, the ass of [random: {an ausar}{a human}{a kaithrit}{a leithan}{a kui-tan}{a gryvain}] slips into a similar stall. You could ask them afterwards what these are truly used for, but that would be too awkward. To spare yourself any possible mental anguish over what you’ve just done, you get your [pc.gear] and bolt out of the room fresh as a daisy.
+{Decrease lust by 20}
+{If in wild: You drop your [pc.gear] right where you are, thinking that this parasite might be more trouble than it’s worth. Each one of your movements emits a squishy noise that would be cringe worthy if not for how hot it might sound to a passerby. The liquid has already made a little puddle where you stand, strands of slime that connecting you and the ground. With both your hands, you reach back and try to scoop out as much of the goop as possible. Handfuls of ooze are wiped off, but more just keep coming and the veneer of verdant green semi fluid on your hands isn’t helping much.
+
+If only you had something like a cloth this would be a lot less messy. Not to mention you are starting to kind of enjoy the sensation of venturing into your ass crack. The parasite is also getting a kick out of this and is consequentially transmitting her feelings to you isn’t she? Whelp, you figure you might as well go along with this, since she apparently isn’t going to stop until you do so.
+
+Your digits slip into her butthole with no resistance at all. There’s even some suckling sensations whenever you extricate one of your phalanx appendages. Even if you weren’t originally enjoying it, the nerve signals hitting your mind say otherwise. The parasite definitely wanted this. The beat of your heart races as blood rushes to your [pc.groin]. In the heat of the moment, you’ve moved from up single digits, and are now four fingers knuckle deep in ‘your’ ass. Slime splatters everywhere with each moist insertion, which really makes a mess of everything around you. Seemingly from nowhere, her tendrils are suddenly around your wrist.
+
+They pull at your arm and force you to dig deeper every time. As your own ass has already adjusted to the feats of the parasite, you feel no pain from the experience. Instead, all you receive is pleasure. Once you’re in up to your wrist , you and the parasite both arrive to an orgasm at the same time - although it might just be her giving you a ‘contact’ orgasm. What seems like the last of her green fluids spurt out around your forearm while [{if pc.hasGenitals = true: your own genital fluids make their mark on the ground.}{if pc.hasGenitals = false: you simply gasp from all the bliss hitting your mind.}]
+
+The female parasite inside your ass lets go of your wrist, allowing your hand to pop out of her orifice with a satisfying loud and wet sound, revealing the flesh of ‘your’ gaped hole. You collapse forward into the ground from the exhaustive experience, almost hitting the puddle of slime. Once rested enough, you shakily raise your body to an upright position. The immediate area around you is still covered by the slime, but somehow your bottom is spotless. Something tells you that cleaning you up was a ‘thank you’ gift from your anal passenger. Not really much of a gift since she was the one that brought you into this mess in the first place, but it’s better than nothing. With a squeaky clean ass and a skip in your step you pick up your gear once more before continuing your adventure.}
+{reset lust to minimum}]
+
+
+Reminder 6:
+You stand still for a second just to take in your surroundings, feeling somehow at peace and yet alert. Something you haven’t really paid attention to recently is the sensation of your body’s activity. The pace of your breath, the beat of your heart, the blood rushing through your veins and... something else. These other sensations originate from within you, more specifically from inside your ass. Most of the time you forget that you have a living creature inside you, one that has its own experiences just like you. Your focus has moves from the environment around you, and towards the parasite that you’re host to.
+
+If you concentrate hard enough, you could swear that even her tiniest sensations are subject to the nerves that connect the two of you. Usually you miss it, considering your mind’s priority over other things, but now you feel all that happens at the end of your digestive tract. A tiny heartbeat, and the distinct sensation of something small pumping fluid around within her. She constantly moves her body’s internals at a slow pace. Your hilinara parasite has blended in, a perfect mimic of your digestive system, the slow dilations of her internal muscles performing all the functions that your own sphincters would.
+
+Even the tiny movements of her nubby feet can be felt through both her and your nerves. In a way, she’s become part of you. An extension to the systems of your body, heightening your pleasures in exchange for the occasional batch of eggs. To have a link as close as this with another creature is quite rare, and sort of enlightening in a way. The amount of time you’ve just spent pondering this is not as long as you thought it was, but still quite substantial. Time to move on, you guess.
+//has no lust increase
+
+*/
+
+// Butt Bug pregnancy types
+// normal, overproductive, large
+private var typeButtBugPregList:Array = ["ButtBugPregnancy0", "ButtBugPregnancy1", "ButtBugPregnancy2"];
+public function loadInButtBug(mother:Creature = null, father:Creature = null):void
+{
+	// No dad
+	if(father == null) return;
+	// Already preggos
+	if(mother.pregnancyData.length <= 3 || mother.pregnancyData[3].pregnancyType != "") return;
+	// On cooldown
+	//if(mother.hasStatusEffect("Butt Bug Pregnancy Cooldown")) return;
+	
+	// Female Butt Bug
+	var swfVariant:int = mother.statusEffectv1("Butt Bug (Female)");
+	var ppButtBug:PregnancyPlaceholder = new PregnancyPlaceholder();
+	
+	var cumQ:Number = father.cumQ();
+	ppButtBug.createPerk("Fixed CumQ", cumQ, 0, 0, 0);
+	
+	// Male butt bug father
+	if(father.impregnationType == "ButtBugPregnancy")
+	{
+		switch(swfVariant)
+		{
+			case 0: ppButtBug.impregnationType = "ButtBugPregnancy0"; break;
+			case 1: ppButtBug.impregnationType = "ButtBugPregnancy1"; break;
+			case 2: ppButtBug.impregnationType = "ButtBugPregnancy2"; break;
+		}
+		father.impregnationType = "";
+	}
+	else
+	{
+		ppButtBug.impregnationType = "ButtBugPregnancy";
+	}
+	
+	// Get preg with butt bugs!
+	if(ppButtBug.impregnationType != "") mother.tryKnockUp(ppButtBug, 3);
+}
+
+// Variants:
+// When the two females are fighting over who stays in your ass there is a "rock, paper, scissors" thing going on that ultimately determines which one is victorious, normal beats overproductive, overproductive beats large and large beats normal. If more are added then the rules of the "game" will have to be updated.
+
+// Normal female: lmplants eggs, gestate for a week and increase anal looseness by 2 after laying. Initial stage preg bloats you by 1 and expands you by 2 each pregnancy stage.
+// Overproductive female: Continuously implants eggs(keeps you pregnant) until a male fertilizes them, increase anal looseness by 2 after laying. Initial stage preg bloats you by 1 and expands you by 1 every week. Gives a week of rest time before it starts laying eggs again.
+// Large female: lays 1 large egg which stays inside you for 3 months, during this time it absorbs genetic body plan from you which causes the child to be an insectoid humanoid and eventually is laid to produce sand worm hybrids who are interactable in the nursery to some extent(nothing sexy planned yet). Increase anal looseness by 3 after lay.
+
+// Create boolean FTBBLay(first time butt bug lay)
+// Create string eggsLaidBy
+
+// Unfertilized expulsion:
+// If has any female bug and gets anally filled status from anything other than a male butt bug, happens after an hour of being filled.
+// Does not happen if pc has overproductive female and is not in egg cycle.
+public function expelButtBugEgg():void
+{
+	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
+	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
+	var maxLooseness:Number = 2;
+	var eggs:int = 0;
+	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
+	{
+		eggs += pc.pregnancyData[3].pregnancyQuantity;
+	}
+	
+	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
+	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
+	var FTBBLay:Boolean = (buttBugF == null || buttBugF.value4 <= 0);
+	
+	clearOutput();
+	showButtBug(swfVariant);
+	author("Preacher");
+	clearMenu();
+	
+	if(eggs <= 0)
+	{
+		output("<b>ERROR:</b> No eggs found!");
+		output("\n\n");
+		
+		pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	output("A gurgling sound emanates from your [pc.belly] as the female butt bug inside you realizes that not only are the eggs she is caring for never going to hatch, but that she was never fucked by a male butt bug in the first place. The weight of the eggs shifts slightly downward as she gets both of you ready to lay the unfertilized eggs. Somehow, she also puts the thought in your head that squatting right now would be a very good idea. You do just that while dropping your [pc.gear]. Green lubricant oozes from your asshole as the female slightly expands her body inside you");
+	if(cIdx >= 0) output(", rubbing against your prostate and making your male member" + (pc.cocks.length == 1 ? "" : "s") + " twitch and harden instantly.");
+	output(" All the while, she flexes her inner muscles in a slow, drawn-out and slightly pleasurable fashion.");
+	if(FTBBLay) output("\n\nPressure fills your anal cavity further as she keeps expanding, stretching your inner walls to their limit as she makes you groan with this strange new sensation. Clutching your abdomen you experience pain and pleasure mixing into a weird cacophony of feelings. Her expansion reaches your sphincter, and even through your clenching, she forcefully pries open your anal ring with her expanding orifice. Employing some of her tendrils she manually spreads open your asscheeks, completly exposing you. Several verdant slime strands connect both your cheeks and the walls of the expanded female’s internal body, as she gapes you to the point where your insides are visible.");
+	else output("\n\nThe all-too-well-known pressure in your lower abdomen rears its head again, and the pain you felt the first time is now nonexistent. Adapted to the capabilities of the parasite, you relax your anal walls and accompany the stretching as you enjoy the sensations rolling through your rectum. Not even needing to be forced this time, you insert a few digits of your own accord and help her manually spread you, parting your buttcheeks in the process. Your digits, and even most of your hands get covered in the green slime leaking from her, making the gaping process so much more fun. Without noticing it you’ve gaped yourself to the point of others being able to see into you and the parasite, although not yet not enough to see the other end of your passenger.");
+	if(InPublicSpace())
+	{
+		output("\n\nPeople around you stare in disbelief at what is happening in front of them, a [pc.boyGirl] gaping their anus in front of everyone to see. A puddle of green liquid forms below you as the slime leaking from your ass accumulates. Looking down towards it you see people’s faces looking at you in the reflection, and are reminded that you’re actually in public.");
+		if(pc.exhibitionism() < 66) output("\n\nYour face flushes from the attention being given to you. You try to hide your face from the crowd, but you realize it is impossible. They’ve surrounded you, and are watching you with mixed expressions. Some are shocked, some judge you, and some are sporting tents, wet panties, or both. Why are they just staring at you? Can’t they see you need help or at least some privacy?");
+		else output("\n\nTheir stares spur you on, making you masturbate as you specifically focus your attentions on some of them. Most are disgusted and leave, but some stay and even start openly pleasuring themselves to the show you’re putting on for them. Those that are adventurous enough grab your ass when it’s close to them, and the more curious ones even poke a hand into your gaping anus, making you gasp as it slicks in and slides out without effort. They step back once they notice you might actually be birthing something, but don’t stop their self pleasuring.");
+	}
+	switch(swfVariant)
+	{
+		case 0:
+			output("\n\nYou feel the eggs moving already, pushed on by the powerful undulating muscles of the female inside you. You expected the eggs to bulge out your anus a little, but all you feel is the blissfully brief slipping out of each egg like a string of over-lubed anal beads, slightly caressing your passage");
+			if(cIdx >= 0) output(" and your prostate");
+			if(vIdx >= 0) output(", as well as making your [pc.vaginas] slightly wet,");
+			output(" with their movement as your [pc.belly] slowly deflates. Each egg adds to a pile of green eggs until you count there to be about 10 of them laying on top of each other.");
+			maxLooseness = 2;
+			break;
+		case 1:
+			output("\n\nAs soon as you’re in position, your gaping anus floods out the cascade of slime-covered eggs that were all somehow crammed up your gut. They quickly cover the floor in their fluids, making wet plopping sounds as each one slips it out of you and splatters onto the already-wet surface below you. There seems to be no end to them as they slide out of your ass");
+			if(cIdx >= 0) output(" while grinding against your prostate");
+			if(vIdx >= 0) output(", and make you almost cream yourself");
+			output(". Before you can reach your peak though, the stream of barely--wide-enough eggs stop, with the last of them plopping out and joining its brethren with a soft ‘splat.’ It would be a rough guess but you could say there were about 30 of them in total, though it’s hard to tell with them all clumped together like that.");
+			maxLooseness = 2;
+			break;
+		case 2:
+			output("\n\nThis egg feels larger than you expected it to be. It might actually require some effort to pass. You can feel it pressing against the ring of the female inside you as it is sucked through by the undulation of the female alone. The egg’s mass moves down, and with it so does the bulge in your abdomen. The female’s sucking of the egg has her orifice stretched wide over its surface, and is making your intestinal tract struggle to accommodate such a large object passing through.");
+			output("\n\nVarious anal birthing fluids follow its path soon after, as you start to see the surface of the egg in the reflection of the liquids below you. Its progress is slow, but not painfully so. There’s just enough movement to stimulate your insides");
+			if(cIdx >= 0) output(", making your dick" + (pc.cocks.length == 1 ? "" : "s") + " ooze a little precum");
+			if(vIdx >= 0) output(" and creating a bit of a river between your legs");
+			output(" with its movement. She undulates more now than ever before. Her movements roll through your rectal passage and across the surface of the egg. Each inch she pushes the egg through you goes into new territories of wonderful fullness.");
+			output("\n\nEvery move of the spherical mass expands what you thought your ass was capable of handling. Your own tract is being pushed to its limits as it tries to fit the large egg without tearing. Reaching the end of her and your passage it comes to a halt, your own anal ring pressing down on the large female and making it harder for the egg to pass through her. Knowing now that you have to participate a bit, you try to push a little while relaxing your already gaped pucker. Sure enough the egg moves again before finally passing through at its widest point and plopping out with a satisfying ‘pop’. The egg glistens in the light as you breathe a sigh of relief of it finally being over.");
+			maxLooseness = 3;
+			break;
+		default: output("\n\n<b>ERROR:</b> Butt bug variant ‘" + swfVariant + "’ not found!"); break;
+	}
+	if(InPublicSpace())
+	{
+		output("\n\nWith the show now over");
+		if(pc.exhibitionism() < 66)
+		{
+			output(" people start to lose interest as one by one they walk away. Their looks did turn you on a little however. Maybe there is a little bit of an exhibishionist inside you.");
+			// Increase exhibitionism by 5
+			pc.exhibitionism(5);
+		}
+		else output(" the people around you finish off their masturbation, some of them aim directly at you as they cover you with their juices.");
+		// inflict "cum covered" status effect
+		
+	}
+	output("\n\nWith the female apparently done, she retracts her tendrils and");
+	if(FTBBLay) output(" you experience for the first time your anus rapidly closing back up as the female contracts herself back to her normal size. Crap this is weird, having your rectum just be manually closed like some kind of strange aperture");
+	else output(" your anus closes back up once more while she retracts to her normal size, making you wish it wasn’t over as quick as it was");
+	output(". It almost looks like your pucker was never gaped open to begin with. You do notice you have been stretched a little bit though. This unfertilized laying was stimulating but not enough to sate you, so you stand up and dispose of the eggs as you resolve to find some other way to get off.");
+	// increase anal looseness by 1
+	if(pc.ass.loosenessRaw < maxLooseness)
+	{
+		output(" <b>Your anal ring has been stretched a little.</b>");
+		pc.ass.loosenessRaw += 1;
+	}
+	output("\n\n");
+	
+	processTime(14);
+	
+	if(buttBugF != null) buttBugF.value4 += eggs;
+	StatTracking.track("pregnancy/butt bugs/eggs laid/infertile", eggs);
+	StatTracking.track("pregnancy/butt bugs/eggs laid/total", eggs);
+	
+	pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+	
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Normal female Fertilized Laying:
+// Seventh day after fertilization
+public function birthButtBugType0():void
+{
+	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
+	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
+	var maxLooseness:Number = 2;
+	var eggs:int = 0;
+	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
+	{
+		eggs += pc.pregnancyData[3].pregnancyQuantity;
+	}
+	
+	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
+	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
+	var FTBBLay:Boolean = (buttBugF == null || buttBugF.value4 <= 0);
+	
+	clearOutput();
+	showButtBug(swfVariant);
+	author("Preacher");
+	clearMenu();
+	
+	if(eggs <= 0)
+	{
+		output("<b>ERROR:</b> No eggs found!");
+		output("\n\n");
+		
+		pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	output("A rumble in your egg-gestating gut is all the warning you get before green slime oozes from your parasite-occupied [pc.asshole]. You");
+	if(InPublicSpace())
+	{
+		if(pc.exhibitionism() < 66) output(" find a secluded spot away from possible prying eyes to lay in peace");
+		else output(" drop into a crouch right where you are standing, regardless of who might be watching");
+		output(" and");
+	}
+	output(" remove your [pc.gear]. With your back against the closest vertical surface and ass as low as it can go, the laying starts. The eggs have already started to move down your digestive tract. As the smooth orbs make their way to your rectum, the tendrils of the female slip out of her poking-out orifice, one by one until all four of them are outside. At least a foot of their length is visible from your perspective, with two of them determined to spread your asscheeks while the others slither across your form.");
+	output("\n\nOne");
+	if(cIdx >= 0 && vIdx >= 0) output(" decides to jerk you off as it spirals around [pc.oneCock], but the other one looks unsure. It eventually decides to go for " + (pc.vaginas.length == 1 ? "your cunt" : "one of your cunts") + " and darts towards your womanly folds like a scorpion’s sting. Almost like the digit of some skilled bedfellow, it lightly penetrates your vaginal lips while frequently bending itself to get at the most hard to reach places.");
+	else if(cIdx >= 0) output(" wraps itself around [pc.oneCock] and slowly pumps it while the other prods its end against your cock’s urethra. The sudden stimulation causes some [pc.cumColor] pre to dribble out and cover the prodding tendril’s tip.");
+	else if(vIdx >= 0) output(" rubs itself teasingly along the folds of your cleft" + (pc.vaginas.length == 1 ? "" : "s") + " while the other wraps around" + (pc.totalClits() == 1 ? "your clit" : "one of your clits") + ". It mostly just squeezes your sensitive button, but you almost cream yourself whenever it decides to tug mercilessly at your [pc.clit].");
+	else output(" doubles over as it bends back towards the orifice from which it first came to tentafuck your butt—technically the parasite’s anus. The sensations you’re getting through the parasite in your [pc.asshole] make it so you might as well have your ass be an erogenous zone. As if one wasn’t enough, the second twirls around the first to fuck you with the newly formed double helix tentacle.");
+	output("\n\nThe lowest egg has reached the female’s internal tip, it’s a lot larger than you remember it being. At least double the size of when they were deposited within you, its smooth surface is engulfed by the front of your butt parasite. Your internal sphincter muscles get stretched open as the female undulates to move the egg through her passage. Her smooth surface slides around against your anal walls while she expands her external tip.");
+	output("\n\nT");
+	if(cIdx < 0 && vIdx < 0) output("he tentacles fucking you retreat as t");
+	output("he slime-covered, anus-like orifice widens considerably as its dermis is stretched around the ovoid object. In a resounding ‘plop’ of finality, it pops out of the parasite and onto the floor, covered in layers of slick fluids. But it’s not over yet. Just as the first left your body, the second is already being enveloped by the bug’s internal aperture.");
+	if(cIdx < 0 && vIdx < 0) output(" The free tendrils have resolved to massage your bare groin so as to avoid getting in the way of the rest of the eggs.");
+	output("\n\nTime flies by as several more eggs follow the same insectoid oviposition of the first, until only one is left. The female’s efforts egg you on; release is so close you can taste it. The last egg plops out to top off the slimy pyramid below you as you’re pushed blessedly over the edge.");
+	if(cIdx >= 0 && vIdx >= 0) output(" Loud moans escape your [pc.lips] as [pc.eachCock] throbs and your [pc.pussies] spasm in tandem. Your cock" + (pc.cocks.length == 1 ? "’s" : "s’") + " veins bulge while [pc.cum] is let loose from " + (pc.cocks.length == 1 ? "its" : "their") + " urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " and splatters onto the ground a few yards in front of you. Whilst your seed is being sprayed, your vagina" + (pc.vaginas.length == 1 ? " convulses" : "s convulse") + ", leaking [pc.girlCum] onto the pile of eggs below.");
+	else if(cIdx >= 0) output(" You grunt as [pc.cum] blasts out of of the urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " of your [pc.cocks] while the tendrils continue to stroke [pc.oneCock], with the one formerly at your tip now stimulating the glans of your dick.");
+	else if(vIdx >= 0) output(" You squeal as [pc. girlCum] sprays from your quim" + (pc.vaginas.length == 1 ? "" : "s") + " in arcing streams liquid pleasure. The muscles of your cunt" + (pc.vaginas.length == 1 ? " contracts" : "s contract") + " around the tentacle inside you. Even more of your girl cum is sprayed when a final tug on your clit reawakens your spasming vaginal lips.");
+	else output(" Heat suffuses your nervous system while numbing sensory waves emanate outwards from your bare groin. Your mouth is left agape as your spine quakes with synesthetic tremors that leave only indescribable bliss afterwards.");
+	
+	processTime(14);
+	
+	// set pc.analloseness to [pc.analLooseness + 2]
+	if(pc.ass.loosenessRaw < maxLooseness)
+	{
+		output(" <b>Your anal ring has been stretched a little.</b>");
+		pc.ass.loosenessRaw += 1;
+	}
+	
+	output("\n\nAs you ride out the last of your orgasmic waves, the tentacles slurp noisily back into the external orifice of your anal-lodged parasite. Breathless from exertion and with a pile of what seems to be 15 fertile eggs below you, you slowly regather your [pc.gear]. <b>Your anus does feel a bit more loose than before though.</b> After all, you just went through what was basically a bunch of large anal beads. The hilinara eggs will soon hatch, and if not taken care of they will likely pester the locals.");
+	if(rooms[currentLocation].planet != "TAVROS STATION") output(" What do you do with them?");
+	else output(" As you are already on Tavros Station, the decision seems obvious.");
+	output("\n\n");
+	
+	// set eggsLaidBy to "normal"
+	if(buttBugF != null) buttBugF.value4 += eggs;
+	StatTracking.track("pregnancy/butt bugs/eggs laid/type0", eggs);
+	StatTracking.track("pregnancy/butt bugs/eggs laid/total", eggs);
+	
+	pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+	
+	// display buttons [Leave them] & [Nursery]
+	// if on tavros: automatically choose [Nursery]
+	// look past the large female pregnancy section, the scene continues there as will be the case of all female variants.
+	if(rooms[currentLocation].planet != "TAVROS STATION")
+	{
+		addButton(0, "Leave Them", birthButtBugLeave, [buttBugF, eggs, swfVariant, FTBBLay, cIdx, vIdx]);
+		addButton(1, "Nursery", birthButtBugNursery, [buttBugF, eggs, swfVariant, FTBBLay, cIdx, vIdx]);
+	}
+	else addButton(0, "Next", birthButtBugNursery, [buttBugF, eggs, swfVariant, FTBBLay, cIdx, vIdx]);
+}
+
+// Over productive female Fertilized Laying:
+// If is in laying cycle and pc has anally filled status applied from male butt bug
+public function birthButtBugType1():void
+{
+	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
+	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
+	var maxLooseness:Number = 2;
+	var eggs:int = 0;
+	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
+	{
+		eggs += pc.pregnancyData[3].pregnancyQuantity;
+	}
+	
+	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
+	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
+	var FTBBLay:Boolean = (buttBugF == null || buttBugF.value4 <= 0);
+	
+	clearOutput();
+	showButtBug(swfVariant);
+	author("Preacher");
+	clearMenu();
+	
+	if(eggs <= 0)
+	{
+		output("<b>ERROR:</b> No eggs found!");
+		output("\n\n");
+		
+		pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	output("A wave of movement rolls through your digestive tract as the overproductive female parasite inside you decides that it’s time to lay her egg" + (eggs == 1 ? "" : "s") + ".");
+	if(!pc.isNude()) output(" Your anal parasite subconsciously convinces you to remove your [pc.gear] so that the laying can be as obstruction free as possible. Not that you really mind; it’d be a pain to get ooze on your gear anyway.");
+	output(" The egg" + (eggs == 1 ? "" : "s") + " must have been fertilized by that male butt bug from earlier. She wouldn’t be laying them like this if that wasn’t the case.");
+	output("\n\nThe path of the ovoid object" + (eggs == 1 ? "" : "s") + " making their way to your parasite-occupied rectum is visible through your gut. Her four tendrils peek out of ‘your’ ass, strands of green semi-fluids connecting their slender bodies until the distance between the appendages causes the strands to snap. Your [pc.ass] is spread wide open by the parasite’s surprisingly strong tentacular appendages while verdant slime trickles out of your anus. Groans escape your mouth as the butt bug within you expands herself, stretching your own anal walls in the process. One by one her sphincter muscles expose your inner passage in wet shlicks until finally there is a clear cut tunnel into your egg-occupied depths.");
+	if(eggs == 1)
+	{
+		output("\n\nA single splurt of green slime exits the now gaping hole of your rectum. Along with the goop there plops out a single egg that lands safely into the glob of ooze. Something triggers in your mind with the exit of the egg, and you’re left more clear headed than before, although shivers still run down your spine. Not completely the release you were looking for, but it does make you feel a bit better.");
+		
+		processTime(9);
+		
+		// decrease lust by 10
+		pc.lust(-10);
+	}
+	else if(eggs < 25)
+	{
+		output("\n\nSeveral sputters of ooze exit your ass, each followed in quick succession by an egg. With each ovoid sphere that plops out you receive an absolutely divine tingle down your spine and throughout your limbs. The sensory reverberations are even affecting your groin.");
+		if(cIdx >= 0 && vIdx >= 0) output(" Your " + (pc.balls >= 2 ? "balls tingle with activity" : "prostate is stimulated") + " as the eggs slide through your anal canal. These indirect pleasures roll through your crotch as your own fluids are stimulated out of you. The proof of your pleasures leak from your cock" + (pc.cocks.length == 1 ? "’s" : "s’") + " urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " in tiny streams of [pc.cum] pre while [pc.girlCum] forms from the crevice" + (pc.vaginas.length == 1 ? "" : "s") + " " + (pc.balls > 0 ? "behind your [pc.balls]" : ("below your shaft" + (pc.cocks.length == 1 ? "" : "s"))) + ".");
+		else if(cIdx >= 0) output(" Your " + (pc.balls >= 2 ? "balls churn" : "prostate tingles") + " with the sensation of the eggs being pushed through your shared anal passage. Evidence of your pleasures bubble out from your urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " as [pc.cum] pre drips down your shafts" + (pc.cocks.length == 1 ? "" : "s") + ".");
+		else if(vIdx >= 0) output(" Your vaginal lips quiver with indirect stimulations, leaking their [pc.girlCum] with every egg that exits your parasite-plugged anus.");
+		else output(" Your bare groin has become a hot spot of erogenous sensitivity, even the occasional breeze that hits it has your nerves aflutter with erotic sensations.");
+		output(" It’s so good that you might, just, cum, but the last one pops out just before you make it. They all land safely into the goop on the floor that acts like some kind of shock absorber, and you’re left ultimately unsatisfied. If only there were more eggs for you to lay.");
+		
+		processTime(16);
+		
+		// increase lust by 20
+		pc.lust(20);
+	}
+	else
+	{
+		output("\n\nThe force of the intermittent streams of egg-filled slime spurting out of the parasite’s gaping orifice has you and your [pc.belly] toppled forward in short matter. The eggs and slime land in a heap behind you quickly piling up as time goes on. The slimy objects that escape your bowels slide against your digestive tract’s walls, becoming all the more pleasurable when those that were deeper inside you slip out and");
+		if(cIdx >= 0) output(" rub against your prostate, only to");
+		output(" stimulate the female parasite’s inner passage.");
+		output("\n\nYou receive all of the female’s sensory signals as well as your own and has you experience the egg laying twice in the same time span. She must enjoy this; the second stream of sensation you’re receiving wouldn’t be this pleasurable if she wasn’t. The signals from your anal parasite have spread from the path of your spine towards the rest of you. They spread her pleasure throughout your form and congregate within the nerves of your groin.");
+		output("\n\nThe indirect sensory stimulation is too much to resist. Around the sides of your bloated belly your hands wander towards");
+		if(cIdx >= 0 && vIdx >= 0)
+		{
+			output(" intersexed set of genitals. They slide alongside your groin before one grabs " + (pc.cocks.length == 1 ? "your cock" : "one of your cocks") + " and the other slides its middle digit into " + (pc.vaginas.length == 1 ? "your wet crevice" : "one of your wet crevices") + (pc.balls > 0 ? " underneath your ballsack" : "") + ". You time your motions with the plopping eggs; each of the ovoid objects that exits your anus is a jerk of your dick and an inserted digit into your cunt. The dual sources of pleasure from your mixed genitals are already overwhelming, but the parasite’s sensations are yet another source, and the barrage of sensations is already having its effect on you.");
+			output("\n\nSensual moans fill the air while the early signs of your orgasm show. [pc.Cum] pre oozes from your urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " while streams of [pc.girlCum] leak from your cunt" + (pc.vaginas.length == 1 ? "" : "s") + " and cover your hand in their juices. [pc.Belly] no longer supporting you, you now rest on your [pc.knees]. Moans turn into senseless babbling and your [pc.hips] buck in the throes of sexual nirvana as your genitals release their liquid pleasures. Two distinct puddles are formed, one a few yards in front of you consisting of [pc.cum] and one below you that still connects you and the floor with strands of [pc.girlCum].");
+		}
+		else if(cIdx >= 0)
+		{
+			output(" the shaft" + (pc.cocks.length == 1 ? "" : "s") + " of throbbing meat nestled in your crotch. One grips the base of " + (pc.cocks.length == 1 ? "your dick" : "one of your dicks") + " and jerks it from top to bottom. The other " + (pc.cocks.length == 1 ? (pc.balls > 0 ? "caresses your scrotum before directly massaging at the firm roundness that is your [pc.balls]" : "rubs with its digits at your taint before moving to stimulate the tip of your cock in circular motions") : "grabs hold of another dick and strokes it sensually before jerking it too in sync with the other like pistons") + ".");
+			output("\n\nThe ministrations of your hands along with the intermixed pleasures from the female parasite prove to be too much too fast. While the last of the eggs plop out into the pile, your [pc.cumColor] pre and increased breathing mark the arrival of your inevitable climax. Now on your [pc.knees] a groan escapes you as your hips buck and your [pc.cum] is blasted from the tip" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " of your dick" + (pc.cocks.length == 1 ? "" : "s") + ". It stains what it hits with [pc.cumColor] blotches and fills the air with its musky odour until you’re utterly spent.");
+		}
+		else if(vIdx >= 0)
+		{
+			output(" your dripping cunt" + (pc.vaginas.length == 1 ? "" : "s") + ". Their greedy lips ache for attention and you give into it graciously. Your digits spread your vaginal lips and expose the sensitive flesh within before digging into your ravenous depths. A thin sheen of [pc.girlCum] forms on your hands and -thighs as you frig your womanly folds. One hand is already knuckle deep into your cootch while the other " + (pc.vaginas.length == 1 ? ("has its way with " + (pc.totalClits() == 1 ? "your clit" : "each of your clits") + "\n\nEvery tweak of your pleasure buzzer" + (pc.totalClits() == 1 ? "" : "s") + " is like a release valve for your girly fluids. ") : ("clones the actions of its sister on your second vagina, each of your thumbs having their way with your clit" + (pc.totalClits() == 1 ? "" : "s") + ".\n\n")));
+			output("The dual signals from the female parasite lodged in your anus as well as your own efforts with your [pc.cunts] push you over the edge in no time. Your breath goes ragged as you, now on your [pc.knees], buck your [pc.hips] along with the plops of the last eggs that join their siblings in the mound of eggs and goop. Girlish squeals escape your [pc.lips] as each buck is answered with the clamping down of your vaginal muscles onto your digits. Every muscle spasm renews the river flowing from your spastic cunt" + (pc.vaginas.length == 1 ? "" : "s") + " until you’re blissed out of your mind and rolling on the floor.");
+		}
+		else
+		{
+			output(" your bare groin. Though you have no genitals, the hilinara parasite’s sensations have become one with yours. It may just be the feminine physiology of the insect, but her pleasures have concentrated themselves in your flat crotch and made it quite sensitive. The sensitivity makes even the slightest caress of your digits trace lines of pleasure through your [pc.skinFurScales]. The sensual bolts arc up your spine along with the bug’s own sensations, building in intensity with each egg laid until they explode as the last one makes it out.");
+			output("\n\nNo longer supported by your belly, you balance yourself on your [pc.knees]. Barely a sound comes from you while your mouth hangs agape and your mind struggles to process the sensory explosion. The intense feelings racing through your nerves fizzle away as they are replaced by an overwhelming sense of happiness and clear headedness.");
+		}
+		output("\n\nLaying so many eggs truly takes a lot out of you, and it takes a while for your breathing to return to normal. The pile of [OPBBE] eggs behind you truly makes you wonder just how the hell all of those fit inside you. Then again, they didn’t all go in there at once so you did get some time to stretch out. At least your belly is nice and flat once more. Some small part of you wishes it was not so, but maybe that’s just the parasite talking.");
+		
+		processTime(27);
+		
+		// set lust to minimum
+		pc.orgasm();
+	}
+	output("\n\n");
+	
+	// set pc.analloseness to [pc.analLooseness + 2]
+	if(pc.ass.loosenessRaw < maxLooseness)
+	{
+		output("<b>Your anus does feel a bit stretchier than before.</b> Perks of an egg-laying ass parasite, you guess. ");
+		pc.ass.loosenessRaw += 1;
+	}
+	
+	output("Your mind wanders towards the egg" + (eggs == 1 ? "" : "s") + " as you regather your gear. The hilinara eggs will soon hatch, and if not taken care of they will likely pester the locals.");
+	if(rooms[currentLocation].planet != "TAVROS STATION") output(" What do you do with them?");
+	else output(" Since you are already on Tavros Station, the decision seems obvious.");
+	output("\n\n");
+	
+	// set eggsLaidBy to "productive"
+	if(buttBugF != null) buttBugF.value4 += eggs;
+	StatTracking.track("pregnancy/butt bugs/eggs laid/type1", eggs);
+	StatTracking.track("pregnancy/butt bugs/eggs laid/total", eggs);
+	
+	// set OPBBE to 0 && end egg cycle
+	pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+	
+	// display buttons [Leave them] & [Nursery]
+	// if on tavros: automatically choose [Nursery]
+	if(rooms[currentLocation].planet != "TAVROS STATION")
+	{
+		addButton(0, "Leave Them", birthButtBugLeave, [buttBugF, eggs, swfVariant, FTBBLay, cIdx, vIdx]);
+		addButton(1, "Nursery", birthButtBugNursery, [buttBugF, eggs, swfVariant, FTBBLay, cIdx, vIdx]);
+	}
+	else addButton(0, "Next", birthButtBugNursery, [buttBugF, eggs, swfVariant, FTBBLay, cIdx, vIdx]);
+}
+
+// Large female Fertilized Laying:
+// When three month pregnancy ends
+public function birthButtBugType2():void
+{
+	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
+	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
+	var maxLooseness:Number = 2;
+	var eggs:int = 0;
+	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
+	{
+		eggs += pc.pregnancyData[3].pregnancyQuantity;
+	}
+	
+	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
+	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
+	var FTBBLay:Boolean = (buttBugF == null || buttBugF.value4 <= 0);
+	
+	clearOutput();
+	showButtBug(swfVariant);
+	author("Preacher");
+	clearMenu();
+	
+	if(eggs <= 0)
+	{
+		output("<b>ERROR:</b> No eggs found!");
+		output("\n\n");
+		
+		pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	output("Abdominal contractions strike you out of the blue. They’re painful enough that you’re quickly forced to the ground in order to alleviate your symptoms. It does not help. Even belly rubs aren’t soothing the aches in your egg-occupied gut. A gurgle and slight movement in the egg’s position follows the latest of your cramps, and you realize that the egg’s due date is today! As fast as your pains allow you,");
+	if(pc.isNude()) output(" you shift your nude form into a more comfortable position and");
+	output(" you remove your gear just to make it easier on yourself.");
+	output("\n\nYou feel three of the butt bug’s tendrils deploy inside of you while the fourth snakes its way out of her external orifice. The fourth’s slimy surface tickles you as it coils around your [pc.legOrLegs] and pulls itself into a tentacular knot. Is she planning to pull the egg out of you?! Groans escape you as the internal tentacles scrape their pointed tips against your digestive tract’s walls and travel upwards to meet with your ovoid cargo.");
+	output("\n\nTheir presence in your passage can be clearly seen as three lengthy tubes that bulge out your [pc.skinFurScales]. You slide your hands across them and feel through your [pc.skinFurScales] how they push against the insides of your egg-carrying gut. Each of their advances inside you are answered in a drawn out <i>‘oooh’</i>, making you feel fuller than you already are. Once they meet with the egg lodged in your lower intestine, the tentacles diverge from their group exploration of your insides.");
+	output("\n\nLike the claw of a prize machine, the female’s tentacular appendages slither alongside the egg’s surface until they once more meet on the other side. The parasite’s tentacle tips interlock, forming a temporary knot behind the deeper side of the egg. She pulls on the oval mass inside you with all her appendages, with the external tentacle as the only thing that keeps her from being pulled too deep into you. That first pull forces you to make an ‘O’ face as your rectal passage is stretched from the inside out. Clenched teeth and slow grunts accompany you for several minutes as the bug relentlessly pulls on the egg inside you.");
+	output("\n\nYou feel like you’re in one of those holovids where they " + (rand(2) == 0 ? "insert oversized objects into the asses of experienced pornstars" : "hold anal dildo size queen competitions") + ", only with you it’s in reverse. Your little fantasy has sparked some arousal from you and your");
+	if(cIdx >= 0 && vIdx >= 0) output(" dual gendered genitals are already being pumped with blood");
+	else if(cIdx >= 0) output(" [pc.eachCock] is already starting to get erect");
+	else if(vIdx >= 0) output(" [pc.cunts] are already moistening");
+	else output(" bare groin has already gotten tingly");
+	output(" because of it.");
+	output("\n\nSubconsciously you sensually caress yourself. From the dome of your belly your hands travel up towards your [pc.chest] and back down again until they hover just above your groin. You just can’t resist your need to indulge in your carnal desires and so you let your hands dive straight to business. With every pull on the egg that the insect makes,");
+	if(cIdx >= 0 && vIdx >= 0) output(" you jerk [pc.oneCock] and frig [pc.oneVagina]. When at the top of your cock you rub your tip in circular motions with your thumb while you do the same with [pc.oneClit]. You might just have a birth fetish, your digits are already wet with [pc.girlCum].");
+	else if(cIdx >= 0) output(" you tug on your" + (pc.mf("", " girlish", true)) + " penile shaft" + (pc.cocks.length == 1 ? "" : "s") + " and relish in the sensations of her movements stimulating your prostate.");
+	else if(vIdx >= 0) output(" you dig your digits into your womanly folds. You alternate thumbs as you polish your pearl" + (pc.totalClits() == 1 ? "" : "s") + ", all of your other fingers wet to the second knuckle in girl juice.");
+	else output(" you rub your palms against your sensitive featureless groin. Like an ember sparking a flame in dry tinder, you’ve stoked your nerves into a heat filled passion.");
+	output("\n\nThe round bulge in your belly slowly, visibly shifts lower with every tug from the bug lodged in your ass. You’re given a moment of respite when the egg connects with the insect’s internal sphincter, your mouth hanging agape and breathing heavily with exertion and pleasure. The break is short lived though. Your breathing quickens its pace once more while you continue your ministrations and the egg is moved again by your parasite. The second to last segment of its birth is now underway.");
+	output("\n\nDetermined and sweat covered, you brace for the egg to stretch the second part of your anus. Your large anal parasite’s presence has already prepared you for this moment, but this egg is larger than even her! To help quicken the process, you push with your anal muscles whenever you feel her start her own pulls. Slowly but surely, the smooth point of the oval object is enveloped by your butt bug’s inner orifice until it unexpectedly slips past its halfway point");
+	if(cIdx >= 0) output(" and forces some pre from [pc.oneCock]");
+	output(".");
+	output("\n\nThat little hiccup has you hissing in a deep inhalation before loudly moaning your pleasure at the bug’s own sensations mixing up with yours through her link in your nerves. While you get used to the egg’s sudden new location, you savour the tactile experience of your ass and her egg laying passage being stretched out at the same time. With the egg’s form visibly bulging out ‘your’ anal ring between your ass cheeks, the final stretch awaits.");
+	output("\n\nThe egg holding parasite within you pulses with undulatory movements as it pushes the egg you’re carrying. Each of the fat insect’s undulations are answered with your own anal muscles as they push along with your bug. You keep your anal ring slack to help ease the rectal oviposition. The sensual feedback you’re receiving from the parasite makes it hard not to be further turned on by the experience.");
+	output("\n\nYou increase your masturbatory pace as you");
+	if(cIdx >= 0 && vIdx >= 0) output(" lustfully stroke your cock to the beat of the bug’s undulations and frig your [pc.girlCum] leaking cunt" + (pc.balls > 0 ? " behind your [pc.balls]" : "") + ".");
+	else if(cIdx >= 0) output(" vigorously pump your pre-slicked [pc.oneCock].");
+	else if(vIdx >= 0) output(" fervently jill the lips of [pc.oneVagina].");
+	else output(" deeply massage your digits into the sensitive flesh of your bare groin, setting your nerves set on fire with the indescript lust coursing through you");
+	output(". Starting as a low groan, your voice raises in volume and intensity until you loudly grunt in tactile overflow while ‘your’ pucker parts around the large slimy tip.");
+	output("\n\nYou’re pushing with all you can manage as well. Sputters of green slime spurt out around its sides, blessedly lubricating the passage. The natural lube speeds things up exponentially as the oval egg passes its halfway point and slips out of you completely. It’s so large that it doesn’t even fall much once it totally separates from your body. You exhale in pleasurable relief as you’re driven over the edge into your climax. Gasps followed by moans escape you while");
+	if(cIdx >= 0 && vIdx >= 0) output(" your [pc.hips] buck in the throes of your pleasures. The bulging veins of [pc.eachCock] and the spastic clenches of [pc.eachCunt] harkens the eruptive diplay of [pc.cum] and [pc.girlCum] emanating from your groin. Pretty soon, your hands and inner thighs become messy with your fluids and all you’re thinking about is in how much bliss you’re now in.");
+	else if(cIdx >= 0) output(" [pc.eachCock] throb" + (pc.cocks.length == 1 ? "s" : "") + " and twitches in your hands in tandem to the [pc.cum] being pumped from your [pc.balls]. Your seed blasts through your urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " and flies through the air before it splatters onto the ground.");
+	else if(vIdx >= 0) output(" vaginal walls spastically clench down onto your invading digits. Streams of [pc.girlCum] flow from [pc.eachVagina] liberally covering your hands and the floor in [pc.girlCumColor].");
+	else output(" your nerves briefly explode in a lustful supernova of pleasure. The sensual heat stays for a while before a state of bliss radiates throughout your form that leaves you as calm as a still lake.");
+	output(" The rest of the slime splashes out of your rectum and falls onto the already ooze covered egg like liquid afterbirth and forms quite a large puddle beneath you.");
+	output("\n\nDizziness creeps upon your consciousness and you almost fall into a blackout as you collapse onto to fluid covered floor. The parasite’s tendril around your [pc.legOrLegs] unties itself, slipping back into your bug’s now gaping birthing canal and disappearing from your sight. Damn it, your ass is fucking sore! Was it worth it? Maybe. <b>You’re pretty sure your asshole won’t fully recover from this for quite a while.</b> A bit sensitive but glad you’re free of the extra weight while you gather you gear, your mind wanders towards the egg you’ve laid. The hybrid hilinara egg will soon hatch and if not taken care of it will likely pester the locals. Either that, or try and integrate with them.");
+	if(rooms[currentLocation].planet != "TAVROS STATION") output(" What do you do with it?");
+	else output(" Since you are already on Tavros Station, the choice seems obvious.");
+	output("\n\n");
+	
+	processTime(24);
+	
+	// set pc.analloseness to [pc.analLooseness + 3]
+	if(pc.ass.loosenessRaw < maxLooseness)
+	{
+		output(" <b>Your anal ring has been stretched a little.</b>");
+		pc.ass.loosenessRaw += 1;
+	}
+	output("\n\n");
+	
+	// set eggsLaidBy to "large"
+	if(buttBugF != null) buttBugF.value4 += eggs;
+	StatTracking.track("pregnancy/butt bugs/eggs laid/type2", eggs);
+	StatTracking.track("pregnancy/butt bugs/eggs laid/total", eggs);
+	
+	pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+	
+	// display buttons [Leave them] & [Nursery]
+	// if on tavros: automatically choose [Nursery]
+	if(rooms[currentLocation].planet != "TAVROS STATION")
+	{
+		addButton(0, "Leave Them", birthButtBugLeave, [buttBugF, eggs, swfVariant, FTBBLay, cIdx, vIdx]);
+		addButton(1, "Nursery", birthButtBugNursery, [buttBugF, eggs, swfVariant, FTBBLay, cIdx, vIdx]);
+	}
+	else addButton(0, "Next", birthButtBugNursery, [buttBugF, eggs, swfVariant, FTBBLay, cIdx, vIdx]);
+}
+
+// Post laying Choices:
+// [Leave them]
+public function birthButtBugLeave(arg:Array):void
+{
+	var buttBugF:StorageClass = (arg.length > 0 ? arg[0] : pc.getStatusEffect("Butt Bug (Female)"));
+	var eggs:int = (arg.length > 1 ? arg[1] : 0);
+	var swfVariant:int = (arg.length > 2 ? arg[2] : -1);
+	var FTBBLay:Boolean = (arg.length > 3 ? arg[3] : (buttBugF == null || buttBugF.value4 <= 0));
+	
+	var cIdx:int = (arg.length > 4 ? arg[4] : (pc.hasCock() ? rand(pc.cocks.length) : -1));
+	var vIdx:int = (arg.length > 5 ? arg[5] : (pc.hasVagina() ? rand(pc.vaginas.length) : -1));
+	
+	clearOutput();
+	showButtBug(swfVariant);
+	author("Preacher");
+	
+	output("You don’t want anything further to do with " + (eggs == 1 ? "this egg" : "these eggs") + ", and " + (eggs == 1 ? "it" : "they") + " can apparently take care of " + (eggs == 1 ? "itself" : "themselves") + ". Your parasite doesn’t seem to be objecting to your choices either so you guess they’re going to be fine. The butt plug-like parasite in your ass is slowly closing her fleshy aperture so as to once more blend in with your rectal passage.");
+	if(FTBBLay) output(" The sensation of her resettling in like this is making you a little uncomfortable with her movements.");
+	else output(" You’ve become used to her resettling into your anal tract after her egg laying, but it’s always a little weird.");
+	output(" She does eventually settle down however, allowing you to continue with her inside you in relative comfort.");
+	output("\n\n");
+	
+	processTime(2);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+// Create child object
+public function createButtBugChild(variant:int = -1, numKids:int = 0):void
+{
+	// 9999
+	switch(variant)
+	{
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+	}
+}
+// [Nursery]
+public function birthButtBugNursery(arg:Array):void
+{
+	var buttBugF:StorageClass = (arg.length > 0 ? arg[0] : pc.getStatusEffect("Butt Bug (Female)"));
+	var eggs:int = (arg.length > 1 ? arg[1] : 0);
+	var swfVariant:int = (arg.length > 2 ? arg[2] : -1);
+	var FTBBLay:Boolean = (arg.length > 3 ? arg[3] : (buttBugF == null || buttBugF.value4 <= 0));
+	
+	var cIdx:int = (arg.length > 4 ? arg[4] : (pc.hasCock() ? rand(pc.cocks.length) : -1));
+	var vIdx:int = (arg.length > 5 ? arg[5] : (pc.hasVagina() ? rand(pc.vaginas.length) : -1));
+	
+	clearOutput();
+	showButtBug(swfVariant);
+	author("Preacher");
+	
+	output("You’ve put a lot of effort into carrying " + (eggs == 1 ? "this" : "these") + " to term and you’re not about to just leave " + (eggs == 1 ? "it" : "them") + " here. A quick call to the nursery with your codex and barely five minutes later a delivery drone appears to haul what you’ve lain. The butt plug-like parasite in your ass is slowly closing her fleshy aperture so as to once more blend in with your rectal passage, and");
+	if(FTBBLay) output(" the sensation of her resettling like this is making you a little uncomfortable with her movements");
+	else output(" while you’ve become used to her resettling into your anal tract after her egg laying, it’s always a little weird");
+	output(". She does eventually settle down however and allows you to continue with her inside you in relative comfort.");
+	switch(swfVariant)
+	{
+		case 0:
+			output("\n\nThe drone scoops the eggs up rather quickly, and fits them snugly into three holding trays. Like three dice with the number ‘5’ facing upwards, the egg trays fit into a box-like container and are then locked inside the bot. With ‘your’ offspring secured, the bot’s thrusters fire up once more as it lifts into the air to deliver its cargo.");
+			break;
+		case 1:
+			var OPBBE:int = 9999;
+			
+			output("\n\nThe aerial drone deploys what seems to be a " + (OPBBE == 1 ? "little box" : "hardlight net") + " in order to transport it’s targeted cargo. Once " + (OPBBE == 1 ? "it is put into the box by a mechanical arm and sealed away inside the drone" : "all are surrounded by the net the gaps in between the thin light streams close up to form a sealed bag in which your eggs are to be carried") + ". It’s security checks pass and the thrusters on it’s sides start up as it goes into the air to deliver the egg" + (eggs == 1 ? "" : "s") + ".");
+			break;
+		case 2:
+			output("\n\nThe transport drone lands next to the your large egg and indicates with a relatively cartoonish hologram that you yourself should put it into the drone. As you pick it up you realize that it is actually kinda heavy, though not uncomfortably so. However, it is still kind of slimy and hard to get a good grip on it. The bot’s top flips open as you come near, revealing some kind of cylindrical container with a soft seat of pollysponge material inside. You make sure your egg is fastened properly and close the self sealing lid before its main thrusters activate, and it blasts off with your precious cargo.");
+			break;
+	}
+	output("\n\nAs the drone flies off to the nursery, a strange sense of maternal longing creeps up on you. Like what you would feel sending your child to school for the first time. Surely these aren’t your feelings, " + (swfVariant != 2 ? "they technically aren’t even your own offspring" : "but then again there is a small part of your genetics in there") + ". They must be coming from your parasite.");
+	output("\n\n");
+	
+	processTime(5);
+	
+	createButtBugChild(swfVariant, eggs);
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
+
+// Immobilized by eggs scene:
+// Currently only a placeholder scene, for what’s supposed to happen according to the codex. Just want to get the base doc out of the way before I start adding major bells and whistles.
+public function expelButtBugEggImmobile():void
+{
+	var buttBugF:StorageClass = pc.getStatusEffect("Butt Bug (Female)");
+	var swfVariant:int = ((buttBugF != null) ? buttBugF.value1 : -1);
+	var maxLooseness:Number = 2;
+	var eggs:int = 0;
+	if(pc.pregnancyData.length > 3 && InCollection(pc.pregnancyData[3].pregnancyType, typeButtBugPregList))
+	{
+		eggs += pc.pregnancyData[3].pregnancyQuantity;
+	}
+	
+	var cIdx:int = (pc.hasCock() ? rand(pc.cocks.length) : -1);
+	var vIdx:int = (pc.hasVagina() ? rand(pc.vaginas.length) : -1);
+	var FTBBLay:Boolean = (buttBugF == null || buttBugF.value4 <= 0);
+	
+	clearOutput();
+	showButtBug(swfVariant);
+	author("Preacher");
+	clearMenu();
+	
+	if(eggs <= 0)
+	{
+		output("<b>ERROR:</b> No eggs found!");
+		output("\n\n");
+		
+		pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+		
+		addButton(0, "Next", mainGameMenu);
+		return;
+	}
+	
+	output("Damn. these eggs are getting heavy! You’ve been moving slower and slower ever since that last egg was laid. The pressure in your gut exerted by your tightly stretched belly exeeds that which you and your parasite can hold and bursts like a slimy dam! You give exasperated moans and exclamations of pleasure as eggs and green slime suddenly start shooting out your ass like a machine gun. Pretty soon all of them are out and you have a large pile of unfertilized eggs behind you, along with a veritable lake of verdant green ooze below you.");
+	output("\n\nWell, that was one way to get them out. Time to move on, you guess. Hopefully you don’t forget about the parasite’s eggs next time.");
+	output("\n\n");
+	
+	processTime(14);
+	
+	// end overproductive parasite egg cycle and set egg count to 0
+	if(buttBugF != null) buttBugF.value4 += eggs;
+	StatTracking.track("pregnancy/butt bugs/eggs laid/infertile", eggs);
+	StatTracking.track("pregnancy/butt bugs/eggs laid/total", eggs);
+	
+	pc.pregnancyData[3].cleanupPregnancy(pc, 3);
+	
+	addButton(0, "Next", mainGameMenu);
+}
+
+/*
 
 Normal female Fertilized starting point:
 //Normal female laying of eggs inside the pc
@@ -1707,31 +2316,9 @@ Normal female Almost done message:
 //replaces the progression message of the sixth day after initial starting point.
 Due to the eggs’ fast growth, you often catch yourself worrying about stretch marks. Then you you remember that your microsurgeons will keep you safe from the majority of such damages. [pc.Belly] stretched tight around the eggs, definite rounded bumps are visible through your [pc.skinFurScales]. The eggs might be approaching their time to be laid, judging by the amount of activity in them. Occasionally you find yourself thinking about Tarkus and its sandy regions as you massage your belly, though you usually stop yourself before you daydream too much. Sand isn’t something you usually devote much thought to, so you figure that the parasite must be influencing your thoughts in order to ensure that you lay the eggs near soft ground.
 
-Normal female Fertilized Laying:
-//Seventh day after fertilization
-A rumble in your egg-gestating gut is all the warning you get before green slime oozes from your parasite-occupied [pc.asshole]. You [{if pc.exhibitionism < 50: find a secluded spot away from possible prying eyes to lay in peace}{if pc.exhibitionism > 50: drop into a crouch right where you are standing, regardless of who might be watching}] and remove your [pc.gear]. With your back against the closest vertical surface and ass as low as it can go, the laying starts. The eggs have already started to move down your digestive tract. As the smooth orbs make their way to your rectum, the tendrils of the female slip out of her poking-out orifice, one by one until all four of them are outside. At least a foot of their length is visible from your perspective, with two of them determined to spread your asscheeks while the others slither across your form.
-
-One [{if has cock but no pussy: wraps itself around [pc.oneCock] and slowly pumps it while the other prods its end against your cock’s urethra. The sudden stimulation causes some [pc.cumColor] pre to dribble out and cover the prodding tendril’s tip.}{if has pussy but no cock: rubs itself teasingly along the folds of your cleft{s} while the other wraps around {one of }your clit{s}. It mostly just squeezes your sensitive button, but you almost cream yourself whenever it decides to tug mercilessly at your [pc.clit].}{if has cock and pussy: decides to jerk you off as it spirals around [pc.oneCock], but the other one looks unsure. It eventually decides to go for {one of } your cunt{s} and darts towards your womanly folds like a scorpion’s sting. Almost like the digit of some skilled bedfellow, it lightly penetrates your vaginal lips while frequently bending itself to get at the most hard to reach places.}{if has no genitals: doubles over as it bends back towards the orifice from which it first came to tentafuck your butt—technically the parasite’s anus. The sensations you’re getting through the parasite in your [pc.asshole] make it so you might as well have your ass be an erogenous zone. As if one wasn’t enough, the second twirls around the first to fuck you with the newly formed double helix tentacle.}]
-
-The lowest egg has reached the female’s internal tip, it’s a lot larger than you remember it being. At least double the size of when they were deposited within you, its smooth surface is engulfed by the front of your butt parasite. Your internal sphincter muscles get stretched open as the female undulates to move the egg through her passage. Her smooth surface slides around against your anal walls while she expands her external tip.
-
-[{if pc has no genitals: The tentacles fucking you retreat as}] {T}the slime-covered, anus-like orifice widens considerably as its dermis is stretched around the ovoid object. In a resounding ‘plop’ of finality, it pops out of the parasite and onto the floor, covered in layers of slick fluids. But it’s not over yet. Just as the first left your body, the second is already being enveloped by the bug’s internal aperture. [{if pc has no genitals: The free tendrils have resolved to massage your bare groin so as to avoid getting in the way of the rest of the eggs.}]
-
-Time flies by as several more eggs follow the same insectoid oviposition of the first, until only one is left. The female’s efforts egg you on; release is so close you can taste it. The last egg plops out to top off the slimy pyramid below you as you’re pushed blessedly over the edge. [{if has cock but no pussy: You grunt as [pc.cum] blasts out of of the urethra{s} of your [pc.cocks] while the tendrils continue to stroke [pc.oneCock], with the one formerly at your tip now stimulating the glans of your dick.}{if has pussy but no cock: You squeal as [pc. girlCum] sprays from your quim{s} in arcing streams liquid pleasure. The muscles of your cunt{s} contract{s} around the tentacle inside you. Even more of your girl cum is sprayed when a final tug on your clit reawakens your spasming vaginal lips.}{if has cock and pussy: Loud moans escape your [pc.lips] as [pc.eachCock] throbs and your [pc.pussies] spasm in tandem. Your cock’s{s’} veins bulge while [pc.cum] is let loose from its{their} urethra{s} and splatters onto the ground a few yards in front of you. Whilst your seed is being sprayed, your vagina{s} convulse{s}, leaking [pc.girlCum] onto the pile of eggs below.}{if has no genitals: Heat suffuses your nervous system while numbing sensory waves emanate outwards from your bare groin. Your mouth is left agape as your spine quakes with synesthetic tremors that leave only indescribable bliss afterwards.}]
-
-As you ride out the last of your orgasmic waves, the tentacles slurp noisily back into the external orifice of your anal-lodged parasite. Breathless from exertion and with a pile of what seems to be 15 fertile eggs below you, you slowly regather your [pc.gear]. <b>Your anus does feel a bit more loose than before though.</b> After all, you just went through what was basically a bunch of large anal beads. The hilinara eggs will soon hatch, and if not taken care of they will likely pester the locals. [{if on tavros: As you are already on Tavros station, the decision seems obvious.}{if not on tavros: What do you do with them?}]
-{set pc.analloseness to [pc.analLooseness + 2]}
-{set eggsLaidBy to "normal"}
-[display buttons [Leave them] & [Nursery]]
-{if on tavros: automatically choose [Nursery]}
-//look past the large female pregnancy section, the scene continues there as will be the case of all female variants.
 
 
-
-
-
-
----------------------------------------------------------------------------------------------------------- //divider line for easy division of pregnancy scenes amongst female types
+---------------------------------------------------------------------------------------------------------- 
 
 Over productive female starting point:
 //Egg laying cycle starts, permanent until unfertilized expulsion or fertilized laying.
@@ -1757,54 +2344,6 @@ Your hips buck as her newest egg plops out into you to join the rest. A miniatur
 {Set OPBBE to [OPBBE + 1]}
 
 
-Over productive female Fertilized Laying:
-//If is in laying cycle and pc has anally filled status applied from male butt bug
-A wave of movement rolls through your digestive tract as the overproductive female parasite inside you decides that it’s time to lay her egg[{if OPBBE > 1:s}]. [{if pc.isNude = true: Your anal parasite subconsciously convinces you to remove your [pc.gear] so that the laying can be as obstruction free as possible. Not that you really mind; it’d be a pain to get ooze on your gear anyway.}] The egg[{if OPBBE > 1:s}] must have been fertilized by that male butt bug from earlier. She wouldn’t be laying them like this if that wasn’t the case.
-
-The path of the ovoid object{s} making their way to your parasite-occupied rectum is visible through your gut. Her four tendrils peek out of ‘your’ ass, strands of green semi-fluids connecting their slender bodies until the distance between the appendages causes the strands to snap. Your [pc.ass] is spread wide open by the parasite’s surprisingly strong tentacular appendages while verdant slime trickles out of your anus. Groans escape your mouth as the butt bug within you expands herself, stretching your own anal walls in the process. One by one her sphincter muscles expose your inner passage in wet shlicks until finally there is a clear cut tunnel into your egg-occupied depths.
-
-[{if OPBBE = 1: A single splurt of green slime exits the now gaping hole of your rectum. Along with the goop there plops out a single egg that lands safely into the glob of ooze. Something triggers in your mind with the exit of the egg, and you’re left more clear headed than before, although shivers still run down your spine. Not completely the release you were looking for, but it does make you feel a bit better.
-{decrease lust by 10}
-}
-{if OPBBE > 1 && OPBBE < 25: Several sputters of ooze exit your ass, each followed in quick succession by an egg. With each ovoid sphere that plops out you receive an absolutely divine tingle down your spine and throughout your limbs. The sensory reverberations are even affecting your groin. [{if has cock but no pussy: [{if has balls: Your balls churn}{if doesn’t have balls: Your prostate tingles}] with the sensation of the eggs being pushed through your shared anal passage. Evidence of your pleasures bubble out from your urethra{s} as [pc.cum] pre drips down your shafts{s}.}{if has pussy but no cock: Your vaginal lips quiver with indirect stimulations, leaking their [pc.girlCum] with every egg that exits your parasite-plugged anus.}{if has cock and pussy: [{if has balls: Your balls tingle with activity}{if doesn’t have balls: Your prostate is stimulated}] as the eggs slide through your anal canal. These indirect pleasures roll through your crotch as your own fluids are stimulated out of you. The proof of your pleasures leak from your cock’s{s’} urethra{s} in tiny streams of [pc.cum] pre while [pc.girlCum] forms from the crevice{s} [{if has balls: behind your [pc.balls]}{if doesn’t have balls: below your shaft{s}}].}{if has no genitals: Your bare groin has become a hot spot of erogenous sensitivity, even the occasional breeze that hits it has your nerves aflutter with erotic sensations.}]. It’s so good that you might, just, cum, but the last one pops out just before you make it. They all land safely into the goop on the floor that acts like some kind of shock absorber, and you’re left ultimately unsatisfied. If only there were more eggs for you to lay.
-{increase lust by 20}
-}
-{if OPBBE > 25: The force of the intermittent streams of egg-filled slime spurting out of the parasite’s gaping orifice has you and your [pc.belly] toppled forward in short matter. The eggs and slime land in a heap behind you quickly piling up as time goes on. The slimy objects that escape your bowels slide against your digestive tract’s walls, becoming all the more pleasurable when those that were deeper inside you slip out and [{if pc has cock: rub against your prostate, only to}] stimulate the female parasite’s inner passage.
-
-You receive all of the female’s sensory signals as well as your own and has you experience the egg laying twice in the same time span. She must enjoy this; the second stream of sensation you’re receiving wouldn’t be this pleasurable if she wasn’t. The signals from your anal parasite have spread from the path of your spine towards the rest of you. They spread her pleasure throughout your form and congregate within the nerves of your groin.
-
-The indirect sensory stimulation is too much to resist. Around the sides of your bloated belly your hands wander towards [{if has cock but no pussy: the shaft{s} of throbbing meat nestled in your crotch. One grips the base of [{if pc.cocks > 1: one of }] your dick{s} and jerks it from top to bottom. The other [{if pc.cocks > 1: grabs hold of another dick and strokes it sensually before jerking it too in sync with the other like pistons.}{if pc.cocks = 1: [{if has balls: caresses your scrotum before directly massaging at the firm roundness that is your [pc.balls].}{if doesn’t have balls: rubs with its digits at your taint before moving to stimulate the tip of your cock in circular motions.}]}]
-
-The ministrations of your hands along with the intermixed pleasures from the female parasite prove to be too much too fast. While the last of the eggs plop out into the pile, your [pc.cumColor] pre and increased breathing mark the arrival of your inevitable climax. Now on your [pc.knees] a groan escapes you as your hips buck and your [pc.cum] is blasted from the tip{s} of your dick{s}. It stains what it hits with [pc.cumColor] blotches and fills the air with its musky odour until you’re utterly spent.
-}
-{if has pussy but no cock: your dripping cunt{s}. Their greedy lips ache for attention and you give into it graciously. Your digits spread your vaginal lips and expose the sensitive flesh within before digging into your ravenous depths. A thin sheen of [pc.girlCum] forms on your hands and -thighs as you frig your womanly folds. One hand is already knuckle deep into your cootch while the other [{if pc.cunts > 1: clones the actions of its sister on your second vagina, each of your thumbs having their way with your clit{s}.}{if pc.cunts = 1: has its way with {each of }your clits{s}.
-
-Every tweak of your pleasure buzzer{s} is like a release valve for your girly fluids.}] The dual signals from the female parasite lodged in your anus as well as your own efforts with your [pc.cunts] push you over the edge in no time. Your breath goes ragged as you, now on your [pc.knees], buck your [pc.hips] along with the plops of the last eggs that join their siblings in the mound of eggs and goop. Girlish squeals escape your [pc.lips] as each buck is answered with the clamping down of your vaginal muscles onto your digits. Every muscle spasm renews the river flowing from your spastic cunt{s} until you’re blissed out of your mind and rolling on the floor.
-}
-{if has cock and pussy: intersexed set of genitals. They slide alongside your groin before one grabs {one of }your cocks and the other slides its middle digit into {one of }your wet crevices [{if has balls: underneath your ballsack}]. You time your motions with the plopping eggs; each of the ovoid objects that exits your anus is a jerk of your dick and an inserted digit into your cunt. The dual sources of pleasure from your mixed genitals are already overwhelming, but the parasite’s sensations are yet another source, and the barrage of sensations is already having its effect on you.
-
-Sensual moans fill the air while the early signs of your orgasm show. [pc.Cum] pre oozes from your urethra{s} while streams of [pc.girlCum] leak from your cunt{s} and cover your hand in their juices. [pc.Belly] no longer supporting you, you now rest on your [pc.knees]. Moans turn into senseless babbling and your [pc.hips] buck in the throes of sexual nirvana as your genitals release their liquid pleasures. Two distinct puddles are formed, one a few yards in front of you consisting of [pc.cum] and one below you that still connects you and the floor with strands of [pc.girlCum].
-}
-{if has no genitals: your bare groin. Though you have no genitals, the hilinara parasite’s sensations have become one with yours. It may just be the feminine physiology of the insect, but her pleasures have concentrated themselves in your flat crotch and made it quite sensitive. The sensitivity makes even the slightest caress of your digits trace lines of pleasure through your [pc.skinFurScales]. The sensual bolts arc up your spine along with the bug’s own sensations, building in intensity with each egg laid until they explode as the last one makes it out.
-
-No longer supported by your belly, you balance yourself on your [pc.knees]. Barely a sound comes from you while your mouth hangs agape and your mind struggles to process the sensory explosion. The intense feelings racing through your nerves fizzle away as they are replaced by an overwhelming sense of happiness and clear headedness.}]
-
-Laying so many eggs truly takes a lot out of you, and it takes a while for your breathing to return to normal. The pile of [OPBBE] eggs behind you truly makes you wonder just how the hell all of those fit inside you. Then again, they didn’t all go in there at once so you did get some time to stretch out. At least your belly is nice and flat once more. Some small part of you wishes it was not so, but maybe that’s just the parasite talking.
-{set lust to minimum}
-}]
-
-<b>Your anus does feel a bit stretchier than before.</b> Perks of an egg-laying ass parasite, you guess. Your mind wanders towards the egg{s} as you regather your gear. The hilinara eggs will soon hatch, and if not taken care of they will likely pester the locals. [{if on tavros: Since you are already on Tavros station, the decision seems obvious.}{if not on tavros: What do you do with them?}]
-
-{set pc.analloseness to [pc.analLooseness + 2]}
-{set eggsLaidBy to "productive"}
-[display buttons [Leave them] & [Nursery]]
-{if on tavros: automatically choose [Nursery]}
-{set OPBBE to 0 && end egg cycle} 
-
-
-
-
-
 
 ---------------------------------------------------------------------------------------------------- 
 
@@ -1827,114 +2366,7 @@ Large female Almost done message:
 //replaces the progression message for the week before pregnancy ends.
 With your belly stretched taut over the surface of the egg that gestates within you, you can’t help but wonder when it’ll be ready to be lain. One has to wonder though, how exactly is something this large going to be passed through something as small as your rectum? It can’t be that difficult as it currently sits within your stretched out lower intestine right now. Surely the rest of you will be able to accommodate its width as well. Only time will tell, and your newly acquired motherly instincts tell you the time for laying will soon be upon you.
 
-Large female Fertilized Laying:
-//When three month pregnancy ends
-Abdominal contractions strike you out of the blue. They’re painful enough that you’re quickly forced to the ground in order to alleviate your symptoms. It does not help. Even belly rubs aren’t soothing the aches in your egg-occupied gut. A gurgle and slight movement in the egg’s position follows the latest of your cramps, and you realize that the egg’s due date is today! As fast as your pains allow you, [{if pc.isNude = true: you shift your nude form into a more comfortable position and}] you remove your gear just to make it easier on yourself.
-
-You feel three of the butt bug’s tendrils deploy inside of you while the fourth snakes its way out of her external orifice. The fourth’s slimy surface tickles you as it coils around your [pc.legs] and pulls itself into a tentacular knot. Is she planning to pull the egg out of you?! Groans escape you as the internal tentacles scrape their pointed tips against your digestive tract’s walls and travel upwards to meet with your ovoid cargo.
-
-Their presence in your passage can be clearly seen as three lengthy tubes that bulge out your [pc.skinFurScales]. You slide your hands across them and feel through your [pc.skinFurScales] how they push against the insides of your egg-carrying gut. Each of their advances inside you are answered in a drawn out <i>‘oooh’</i>, making you feel fuller than you already are. Once they meet with the egg lodged in your lower intestine, the tentacles diverge from their group exploration of your insides.
-
-Like the claw of a prize machine, the female’s tentacular appendages slither alongside the egg’s surface until they once more meet on the other side. The parasite’s tentacle tips interlock, forming a temporary knot behind the deeper side of the egg. She pulls on the oval mass inside you with all her appendages, with the external tentacle as the only thing that keeps her from being pulled too deep into you. That first pull forces you to make an ‘O’ face as your rectal passage is stretched from the inside out. Clenched teeth and slow grunts accompany you for several minutes as the bug relentlessly pulls on the egg inside you.
-
-You feel like you’re in one of those holovids where they [random: {insert oversized objects into the asses of experienced pornstars}{hold anal dildo size queen competitions}], only with you it’s in reverse. Your little fantasy has sparked some arousal from you and your [{if has cock but no pussy: [pc.eachCock] is already starting to get erect}{if has pussy but no cock: [pc.cunts] are already moistening}{if has cock and pussy: dual gendered genitals are already being pumped with blood}{if has no genitals: bare groin has already gotten tingly}] because of it.
-
-Subconsciously you sensually caress yourself. From the dome of your belly your hands travel up towards your [pc.chest] and back down again until they hover just above your groin. You just can’t resist your need to indulge in your carnal desires and so you let your hands dive straight to business. With every pull on the egg that the insect makes, [{if has cock but no pussy: you tug on your [{if feminimity > 50: girlish}] penile shaft{s} and relish in the sensations of her movements stimulating your prostate.}{if has pussy but no cock: you dig your digits into your womanly folds. You alternate thumbs as you polish your pearl{s}, all of your other fingers wet to the second knuckle in girl juice.}{if has cock and pussy: you jerk [pc.oneCock] and frig [pc.oneVagina]. When at the top of your cock you rub your tip in circular motions with your thumb while you do the same with [pc.oneClit]. You might just have a birth fetish, your digits are already wet with [pc.girlCum].}{if has no genitals: you rub your palms against your sensitive featureless groin. Like an ember sparking a flame in dry tinder, you’ve stoked your nerves into a heat filled passion.}]
-
-The round bulge in your belly slowly, visibly shifts lower with every tug from the bug lodged in your ass. You’re given a moment of respite when the egg connects with the insect’s internal sphincter, your mouth hanging agape and breathing heavily with exertion and pleasure. The break is short lived though. Your breathing quickens its pace once more while you continue your ministrations and the egg is moved again by your parasite. The second to last segment of its birth is now underway.
-
-Determined and sweat covered, you brace for the egg to stretch the second part of your anus. Your large anal parasite’s presence has already prepared you for this moment, but this egg is larger than even her! To help quicken the process, you push with your anal muscles whenever you feel her start her own pulls. Slowly but surely, the smooth point of the oval object is enveloped by your butt bug’s inner orifice until it unexpectedly slips past its halfway point [{if pc has cock: and forces some pre from your [pc.oneCock]}].
-
-That little hiccup has you hissing in a deep inhalation before loudly moaning your pleasure at the bug’s own sensations mixing up with yours through her link in your nerves. While you get used to the egg’s sudden new location, you savour the tactile experience of your ass and her egg laying passage being stretched out at the same time. With the egg’s form visibly bulging out ‘your’ anal ring between your ass cheeks, the final stretch awaits.
-
-The egg holding parasite within you pulses with undulatory movements as it pushes the egg you’re carrying. Each of the fat insect’s undulations are answered with your own anal muscles as they push along with your bug. You keep your anal ring slack to help ease the rectal oviposition. The sensual feedback you’re receiving from the parasite makes it hard not to be further turned on by the experience.
-
-You increase your masturbatory pace as you [{if has cock but no pussy: vigorously pump your pre-slicked [pc.oneCock].}{if has pussy but no cock: fervently jill the lips of your [pc.oneVagina].}{if has cock and pussy: lustfully stroke your cock to the beat of the bug’s undulations and frig your [pc.girlCum] leaking cunt[{if pc has balls: behind your [pc.balls]}].}{if has no genitals: deeply massage your digits into the sensitive flesh of your bare groin, setting your nerves set on fire with the indescript lust coursing through you}]. Starting as a low groan, your voice raises in volume and intensity until you loudly grunt in tactile overflow while ‘your’ pucker parts around the large slimy tip.
-
-You’re pushing with all you can manage as well. Sputters of green slime spurt out around its sides, blessedly lubricating the passage. The natural lube speeds things up exponentially as the oval egg passes its halfway point and slips out of you completely. It’s so large that it doesn’t even fall much once it totally separates from your body. You exhale in pleasurable relief as you’re driven over the edge into your climax. Gasps followed by moans escape you while [{if has cock but no pussy: your [pc.eachCock] throb{s} and twitches in your hands in tandem to the [pc.cum] being pumped from your [pc.balls]. Your seed blasts through your urethra{s} and flies through the air before it splatters onto the ground.}{if has pussy but no cock: vaginal walls spastically clench down onto your invading digits. Streams of [pc.girlCum] flow from [pc.eachVagina] liberally covering your hands and the floor in [pc.girlCumColor].}{if has cock and pussy: your [pc.hips] buck in the throes of your pleasures. The bulging veins of [pc.eachCock] and the spastic clenches of [pc.eachCunt] harkens the eruptive diplay of [pc.cum] and [pc.girlCum] emanating from your groin. Pretty soon, your hands and inner thighs become messy with your fluids and all you’re thinking about is in how much bliss you’re now in.}{if has no genitals: your nerves briefly explode in a lustful supernova of pleasure. The sensual heat stays for a while before a state of bliss radiates throughout your form that leaves you as calm as a still lake.}] The rest of the slime splashes out of your rectum and falls onto the already ooze covered egg like liquid afterbirth and forms quite a large puddle beneath you.
-
-Dizziness creeps upon your consciousness and you almost fall into a blackout as you collapse onto to fluid covered floor. The parasite’s tendril around your [pc.legs] unties itself, slipping back into your bug’s now gaping birthing canal and disappearing from your sight. Damn it, your ass is fucking sore! Was it worth it? Maybe. <b>You’re pretty sure your asshole won’t fully recover from this for quite a while.</b> A bit sensitive but glad you’re free of the extra weight while you gather you gear, your mind wanders towards the egg you’ve laid. The hybrid hilinara egg will soon hatch and if not taken care of it will likely pester the locals. Either that, or try and integrate with them. [{if on tavros: Since you are already on Tavros station, the choice seems obvious.}{if not on tavros: What do you do with it?}]
-
-{set pc.analloseness to [pc.analLooseness + 3]}
-{set eggsLaidBy to "large"}
-[display buttons [Leave them] & [Nursery]]
-{if on tavros: automatically choose [Nursery]}
-
-
-
-
----------------------------------------------------------------------------------------------------- 
-Post laying Choices:
-[Leave them]
-You don’t want anything further to do with [{if eggsLaidBy =/= "large": these eggs}{{if eggsLaidBy = "large": this egg}], and {they}it can apparently take care of {themselves}itself. Your parasite doesn’t seem to be objecting to your choices either so you guess they’re going to be fine. The butt plug-like parasite in your ass is slowly closing her fleshy aperture so as to once more blend in with your rectal passage. [{if FTBBLay = true: The sensation of her resettling in like this is making you a little uncomfortable with her movements.}{if FTBBLay = false: You’ve become used to her resettling into your anal tract after her egg laying, but it’s always a little weird.}] She does eventually settle down however, allowing you to continue with her inside you in relative comfort.
-
-[Nursery] 
-You’ve put a lot of effort into carrying [{if eggsLaidBy =/= "large": these}{{if eggsLaidBy = "large": this}] to term and you’re not about to just leave [{if eggsLaidBy =/= "large": them}{{if eggsLaidBy = "large": it}] here. A quick call to the nursery with your codex and barely five minutes later a delivery drone appears to haul what you’ve lain. The butt plug-like parasite in your ass is slowly closing her fleshy aperture so as to once more blend in with your rectal passage, and [{if FTBBLay = true: the sensation of her resettling like this is making you a little uncomfortable with her movements.}{if FTBBLay = false: while you’ve become used to her resettling into your anal tract after her egg laying, it’s always a little weird.}] She does eventually settle down however and allows you to continue with her inside you in relative comfort.
-
-[{if eggsLaidBy = "normal": The drone scoops the eggs up rather quickly, and fits them snugly into three holding trays. Like three dice with the number ‘5’ facing upwards, the egg trays fit into a box-like container and are then locked inside the bot. With ‘your’ offspring secured, the bot’s thrusters fire up once more as it lifts into the air to deliver its cargo.}
-{if eggsLaidBy = "productive": The aerial drone deploys what seems to be a [{if OPBBE = 1: little box}{if OPBBE > 1: hardlight net}] in order to transport it’s targeted cargo. Once [{if OPBBE = 1: it is put into the box by a mechanical arm and sealed away inside the drone}{if OPBBE > 1: all are surrounded by the net the gaps in between the thin light streams close up to form a sealed bag in which your eggs are to be carried}]. It’s security checks pass and the thrusters on it’s sides start up as it goes into the air to deliver the egg{s}.}
-{if eggsLaidBy = "large": The transport drone lands next to the your large egg and indicates with a relatively cartoonish hologram that you yourself should put it into the drone. As you pick it up you realize that it is actually kinda heavy, though not uncomfortably so. However, it is still kind of slimy and hard to get a good grip on it. The bot’s top flips open as you come near, revealing some kind of cylindrical container with a soft seat of pollysponge material inside. You make sure your egg is fastened properly and close the self sealing lid before its main thrusters activate, and it blasts off with your precious cargo.}]
-
-As the drone flies off to the nursery, a strange sense of maternal longing creeps up on you. Like what you would feel sending your child to school for the first time. Surely these aren’t your feelings, [{if eggsLaidBy =/= "large": they technically aren’t even your own offspring}{if eggsLaidBy = "large": but then again there is a small part of your genetics in there}]. They must be coming from your parasite.
-
-Immobilized by eggs scene:
-//Currently only a placeholder scene, for what’s supposed to happen according to the codex. Just want to get the base doc out of the way before I start adding major bells and whistles.
-Damn. these eggs are getting heavy! You’ve been moving slower and slower ever since that last egg was laid. The pressure in your gut exerted by your tightly stretched belly exeeds that which you and your parasite can hold and bursts like a slimy dam! You give exasperated moans and exclamations of pleasure as eggs and green slime suddenly start shooting out your ass like a machine gun. Pretty soon all of them are out and you have a large pile of unfertilized eggs behind you, along with a veritable lake of verdant green ooze below you.
-
-Well, that was one way to get them out. Time to move on, you guess. Hopefully you don’t forget about the parasite’s eggs next time.
-{end overproductive parasite egg cycle and set egg count to 0}
-
-Parasitism Flavor:
-Reminders: While parasitized you will get a reminder of your passenger at random intervals of hours between 6 and 24 just to give your universe a little extra flavor while not being overbearing with reminders, inspired by Kirbu. Each reminder increases your lust by 5 apart from a few exceptions.
-
-Reminder 1:
-Without any warning, the bug up your arse has starts moving, having decided that it is going to rearrange itself inside you. It takes its sweet time doing so too, as it rolls around tickling your sensitive areas and occasionally prodding its head against your rectal walls before finally resettling. Everything it exists for seems to turn on its host.
-
-Reminder 2:
-//Only available while wearing clothing.
-[{If wearing clothing or lower garments: Something seems to be pulling at your [pc.underGarment]. Or rather pushing at it from the inside and tickling at your asshole. You look around to see if anybody is watching before discreetly looking at the back of your [pc.undergarments]. You are greeted with the sight of the butt bugs’ backside visibly making a miniature bulge against your [pc.undergarments]. You quickly swat at the parasite to get it to stop, startling it into going back up your ass faster than you would’ve liked. You experience the shock and pleasures of a singular yet quick penetration, and that leaves you wanting more.}]
-
-Reminder 3:
-You occasionally catch yourself fantasizing about wandering the wastes of Tarkus with nothing on your mind except the hunt for male butt bugs to impregnate the parasite you are hosting. Resting afterwards until your belly swells with [{if BBFInside = 0: parasitic eggs until they are ready to hatch}{if BBFInside = 1: a large number of parasitic eggs, bloating your gut until they are due}{if BBFInside = 2: a large parasitic egg that distends your midriff}]. Then happily spreading your ass cheeks to birth your anal progeny, caring for them until they hatch, and then moving on to find another male. Most of the time you shake the fantasy off, but the thought that you might be better off being a prime carrier for these creatures always lingers at the back of your mind.
-
-Reminder 4:
-The sensation of something slipping out of ‘your’ butthole strikes you out of the blue. Some ideas race through your mind of what it might be before the three other identical things alongside it remind you that you have a parasite in your rectum. Why is she using her tentacles now? It’s not like she has a reason to. They tickle your crack as their track alongside your [pc.skinFurScales] takes them into places where they really shouldn’t be. Two of them go to [{if has cock but no pussy: twirl around your shaft and [{if has balls: spiral around your [pc.balls]}{if doesn’t have balls: squeeze at your base}]}{if has pussy but no cock: rub your vaginal lips and occasionally flick at your clit{s}}{if has cock and pussy: your genitals, one lightly inserting itself into your [pc.pussy] while the other [{if has balls: snakes around your [pc.balls] to rub at the underside of your [pc.cocks]}{if doesn’t have balls: spirals around {one of }your cock{s} before it briefly squeezes your shaft}].}{if has no genitals: sensually rub at your inner thighs, sending shivers up your spine as if they were the caring fingers of a lover}]. The others circle around your ass cheeks to grip them firmly as they deeply massage your [pc.butt].
-
-Just as quick as they came, the tentacles extricate themselves from your extremities. One by one the slippery tendrils slip back into the female parasites’ slightly poked out orifice, each one’s entry punctuated by a wet ‘schlick’. Oh why didn’t she finish what she started? You feel so unsatisfied now. [Sillymode: You just got teased by a parasite. Pretty hot huh?]
-//Exception to lust increase, instead of 5 it increases it by 40.
-
-Reminder 5:
-As you move around, you feel a distinct moistness from the protruding orifice of your anal parasite. It spreads to cover most of your crack, and with every move you make the moist feeling becomes more noticeable, eventually feeling just like slime. What’s more is that this slimy sensation has started to slowly creep its way towards your [pc.groin]. You stop to take a look at [{If pc.hasLowerGarment = true: your [pc.lowerGarment]. There is a wet greenish spot on your ass and the bottom of your groin that grows even now, almost looking like you’ve made a mess of yourself.}{If pc.hasLowerGarment = false: your uncovered ass. A sheen of greenish ooze is covering most of your inner ass cheeks and has also migrated between your legs where it now drips to the floor.}] The tubular parasite within you has leaked her slime all over your lower extremities. A mixture of frustration and embarrassment fills you as an angry blush covers your face. Damn it, now you’ve gotta clean it up. A breeze picks up, cooling your damp ass and groin area to uncomfortable levels. Now you’ve got a cold ass too.
-
-[{If in town: It’s not really going to look good if you clean yourself up now; people are around. So you do the next best thing, which is hide behind the largest person you can find and hope nobody notices. Hopefully there is a restroom nearby. By the looks of it there seems to be a washroom of sorts that you slip into like some sort of assassin. From the lack of stares into the room it would seem that none have noticed, either that or they just don’t care. The trip to the cleansing device is thankfully without company. It looks kind of like a cross between a bidet and a shower.
-
-Why every planet has these is a mystery to you. Different needs for different breeds you suppose. A quick drop of your [pc.gear] and a slip into the stall has you quickly turning the nozzle to wash off the slime. The relatively cool water hits your form and is quite refreshing to say the least, while the spout from the floor rinses the ooze from your ass. You decide to include the part of your gear that has been slimed in the process as well. A bit of a warning next time would be appreciated, you think to yourself while hoping she somehow hears your thoughts.
-
-It would seem that that leakage of slime from your anal-lodged parasite ceased at some point during the rinsing. As you step out of the stall all refreshed and clean, the ass of [random: {an ausar}{a human}{a kaithrit}{a leithan}{a kui-tan}{a gryvain}] slips into a similar stall. You could ask them afterwards what these are truly used for, but that would be too awkward. To spare yourself any possible mental anguish over what you’ve just done, you get your [pc.gear] and bolt out of the room fresh as a daisy.
-{Decrease lust by 20}
-{If in wild: You drop your [pc.gear] right where you are, thinking that this parasite might be more trouble than it’s worth. Each one of your movements emits a squishy noise that would be cringe worthy if not for how hot it might sound to a passerby. The liquid has already made a little puddle where you stand, strands of slime that connecting you and the ground. With both your hands, you reach back and try to scoop out as much of the goop as possible. Handfuls of ooze are wiped off, but more just keep coming and the veneer of verdant green semi fluid on your hands isn’t helping much.
-
-If only you had something like a cloth this would be a lot less messy. Not to mention you are starting to kind of enjoy the sensation of venturing into your ass crack. The parasite is also getting a kick out of this and is consequentially transmitting her feelings to you isn’t she? Whelp, you figure you might as well go along with this, since she apparently isn’t going to stop until you do so.
-
-Your digits slip into her butthole with no resistance at all. There’s even some suckling sensations whenever you extricate one of your phalanx appendages. Even if you weren’t originally enjoying it, the nerve signals hitting your mind say otherwise. The parasite definitely wanted this. The beat of your heart races as blood rushes to your [pc.groin]. In the heat of the moment, you’ve moved from up single digits, and are now four fingers knuckle deep in ‘your’ ass. Slime splatters everywhere with each moist insertion, which really makes a mess of everything around you. Seemingly from nowhere, her tendrils are suddenly around your wrist.
-
-They pull at your arm and force you to dig deeper every time. As your own ass has already adjusted to the feats of the parasite, you feel no pain from the experience. Instead, all you receive is pleasure. Once you’re in up to your wrist , you and the parasite both arrive to an orgasm at the same time - although it might just be her giving you a ‘contact’ orgasm. What seems like the last of her green fluids spurt out around your forearm while [{if pc.hasGenitals = true: your own genital fluids make their mark on the ground.}{if pc.hasGenitals = false: you simply gasp from all the bliss hitting your mind.}]
-
-The female parasite inside your ass lets go of your wrist, allowing your hand to pop out of her orifice with a satisfying loud and wet sound, revealing the flesh of ‘your’ gaped hole. You collapse forward into the ground from the exhaustive experience, almost hitting the puddle of slime. Once rested enough, you shakily raise your body to an upright position. The immediate area around you is still covered by the slime, but somehow your bottom is spotless. Something tells you that cleaning you up was a ‘thank you’ gift from your anal passenger. Not really much of a gift since she was the one that brought you into this mess in the first place, but it’s better than nothing. With a squeaky clean ass and a skip in your step you pick up your gear once more before continuing your adventure.}
-{reset lust to minimum}]
-
-Reminder 6:
-You stand still for a second just to take in your surroundings, feeling somehow at peace and yet alert. Something you haven’t really paid attention to recently is the sensation of your body’s activity. The pace of your breath, the beat of your heart, the blood rushing through your veins and... something else. These other sensations originate from within you, more specifically from inside your ass. Most of the time you forget that you have a living creature inside you, one that has its own experiences just like you. Your focus has moves from the environment around you, and towards the parasite that you’re host to.
-
-If you concentrate hard enough, you could swear that even her tiniest sensations are subject to the nerves that connect the two of you. Usually you miss it, considering your mind’s priority over other things, but now you feel all that happens at the end of your digestive tract. A tiny heartbeat, and the distinct sensation of something small pumping fluid around within her. She constantly moves her body’s internals at a slow pace. Your hilinara parasite has blended in, a perfect mimic of your digestive system, the slow dilations of her internal muscles performing all the functions that your own sphincters would.
-
-Even the tiny movements of her nubby feet can be felt through both her and your nerves. In a way, she’s become part of you. An extension to the systems of your body, heightening your pleasures in exchange for the occasional batch of eggs. To have a link as close as this with another creature is quite rare, and sort of enlightening in a way. The amount of time you’ve just spent pondering this is not as long as you thought it was, but still quite substantial. Time to move on, you guess.
-//has no lust increase
-
 */
-
-
-
 
 
 
