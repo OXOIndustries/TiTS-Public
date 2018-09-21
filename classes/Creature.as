@@ -1289,12 +1289,12 @@
 				for(idx = 0; idx < cocks.length; idx++)
 				{
 					if (sockType == null && !(cocks[idx].cocksock is EmptySlot)) return true;
-                    if (sockType != null && (cocks[idx].cocksock is sockType)) return true;
+					if (sockType != null && (cocks[idx].cocksock is sockType)) return true;
 				}
 				return false;
 			}
 			return  (sockType == null && !(cocks[idx].cocksock is EmptySlot))
-                    || (sockType != null && (cocks[idx].cocksock is sockType));
+					|| (sockType != null && (cocks[idx].cocksock is sockType));
 		}
 
 		//Sexual Stuff
@@ -20545,9 +20545,9 @@
 						if (origTightness <= 4) AddLogEvent("<b>Your " + assholeDescript() + " has recovered from its ordeals and is now a bit tighter.</b>", "passive", deltaT);
 						else AddLogEvent("<b>Your " + assholeDescript() + " recovers from the brutal stretching it has received and tightens up.</b>", "passive", deltaT);
 					}
-                }
-            }
-        }
+				}
+			}
+		}
 		
 		private function updateLustValues(deltaT:uint, doOut:Boolean):void
 		{
