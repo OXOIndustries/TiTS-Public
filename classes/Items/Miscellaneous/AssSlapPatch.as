@@ -96,8 +96,8 @@ package classes.Items.Miscellaneous
 			target.lust(deltaT / 10);
 			
 			var originalRating:Number = Math.floor(effect.value2);
-			effect.value4 += (Math.min(effect.minutesLeft, deltaT) * 0.003); 
-			var newRating:Number = Math.floor(effect.value4);
+			effect.value2 += (Math.min(effect.minutesLeft, deltaT) * 0.003);
+			var newRating:Number = Math.floor(effect.value2);
 			
 			if (doOut && (target is PlayerCharacter) && (newRating > originalRating && (newRating % 2 == 0 || newRating < 6)))
 			{
@@ -123,16 +123,16 @@ package classes.Items.Miscellaneous
 			if(target.buttRatingRaw >= 10 && !target.hasPerk("Buns of Steel") && !target.hasPerk("Bubble Butt"))
 				TFList.push(3);
 			// Uncommon - if (pc asshole is not tight)
-			if(target.ass.loosenessRaw > 1 && rand(2) == 0)
+			if(target.ass.loosenessRaw > 1 && rand(3) == 0)
 				TFList.push(4);
 			// Uncommon - if (pc asshole is not elastic)
-			if(target.elasticity < 2 && rand(2) == 0)
+			if(target.elasticity < 2 && rand(3) == 0)
 				TFList.push(5);
 			// Uncommon - if (pc asshole is self lubed and wetness < max)
-			if(target.ass.wetnessRaw < 4 && rand(3) == 0)
+			if(target.ass.wetnessRaw < 4 && rand(4) == 0)
 				TFList.push(6);
 			// Rare - if (pc asshole is not self lubed)
-			if(!target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED) && rand(5) == 0)
+			if(!target.ass.hasFlag(GLOBAL.FLAG_LUBRICATED) && rand(8) == 0)
 				TFList.push(7);
 			// Uncommon - if has soft butt perk
 			if(target.hasPerk("Bubble Butt") && rand(2) == 0)
@@ -198,9 +198,10 @@ package classes.Items.Miscellaneous
 						break;
 				}
 				
+				if (msg != "") AddLogEvent(msg, "passive", deltaT);
+				
 				totalTFs--;
 			}
-			if (msg.length > 0) AddLogEvent(msg, "passive", deltaT);
 			return;
 		}
 	}
