@@ -203,6 +203,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 			}
 		}
 	}
+    
+    // Check cocksocks
+    if (invalidCocksocksWorn(true)) return;
 	
 	// Update the state of the players mails -- we don't want to do this all the time (ie in process time), and we're only going to care about it at the menu root soooooo...
 	updateMailStatus();

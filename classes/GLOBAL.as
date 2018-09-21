@@ -1194,6 +1194,7 @@
 			"Ring",
 			"Chained",
 			"Permanent",
+            "Requires Small Dick",
 		];
 		
 		/**

@@ -209,5 +209,11 @@
 			}
 			return amountGrown;
 		}
+        public function isCocksockValid(isNoSockValid:Boolean = true):Boolean
+        {
+            if (cocksock is EmptySlot) return isNoSockValid;
+            if (cocksock.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !fitsSmallCocksock()) return false;
+            return true;
+        }
 	}
 }
