@@ -27,8 +27,8 @@
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			
 			this.basePrice = 1000;
-            
-            addFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY);
+			
+			addFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY);
 			
 			this.version = _latestVersion;
 		}

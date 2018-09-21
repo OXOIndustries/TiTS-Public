@@ -124,11 +124,11 @@
 		public function thickness():Number {
 			return cLength() / 6 * cThicknessRatio();
 		}
-        public function fitsSmallCocksock():Boolean
-        {
-            //These values are meant to be placeholders
-            return cLength() < 6 && volume() < 150;
-        }
+		public function fitsSmallCocksock():Boolean
+		{
+			//These values are meant to be placeholders
+			return cLength() < 6 && volume() < 150;
+		}
 		//EFFECTIVE PENETRATION VOLUME - Not true size, counts other bits.
 		public function effectiveVolume():Number {
 			var temp:Number = volume();
@@ -209,11 +209,11 @@
 			}
 			return amountGrown;
 		}
-        public function isCocksockValid(isNoSockValid:Boolean = true):Boolean
-        {
-            if (cocksock is EmptySlot) return isNoSockValid;
-            if (cocksock.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !fitsSmallCocksock()) return false;
-            return true;
-        }
+		public function isCocksockValid(isNoSockValid:Boolean = true):Boolean
+		{
+			if (cocksock is EmptySlot) return isNoSockValid;
+			if (cocksock.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !fitsSmallCocksock()) return false;
+			return true;
+		}
 	}
 }
