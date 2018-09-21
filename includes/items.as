@@ -474,7 +474,7 @@ public function actuallyWearCocksock(args:Array):void
 	
 	if (pc.inventory.indexOf(item) < 0)
 	{
-		output("This item must be worn from the inventory.");
+		output("This item must be equipped from the inventory.");
 	}
 	else
 	{

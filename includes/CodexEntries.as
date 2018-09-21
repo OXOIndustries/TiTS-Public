@@ -3596,7 +3596,6 @@ public function rhenWorldCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("RhenWorld");
 }
-
 public function sagiTomCodex():void
 {
 	clearOutputCodex();
@@ -3618,7 +3617,6 @@ public function sagiTomCodex():void
 	outputCodex("\n\n");
 	CodexManager.viewedEntry("SagiTom");
 }
-
 public function snuggleCodex():void
 {
 	clearOutputCodex();
