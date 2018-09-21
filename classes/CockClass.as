@@ -111,7 +111,7 @@
 				tip = tip * .75;
 				cylinder = cylinder * .75;
 			}
-			//If double headed, the tip is approximately two hemispheres on two sides of a equilateral right-angled triangle based prism and this junction's volume what's rounded by a hemishere's surface.
+			//If double headed, the tip is approximately two hemispheres on two sides of a isosceles right-angled triangle based prism and this junction's volume what's rounded by a hemishere's surface.
 			if(hasFlag(GLOBAL.FLAG_DOUBLE_HEADED))
 			{
 				//cylinder = Math.PI * Math.pow(r, 2) * (cLength() - Math.SQRT2 * r/2 - r/2);
