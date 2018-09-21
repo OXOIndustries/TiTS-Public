@@ -1205,7 +1205,7 @@ public function tessaPcOral ():void
 	{
 		var x:int = largestCockIndexThatFitsTessaMouth();
 	
-		output("She lowers herself to her knees in front of you, taking a good look at your " + pc.cockDescript(x) + ". You notice her face slightly turn red. <i>“" + pc.cockShape(x) + ", hm? Well I can work with this no problem.”</i> She smiles, to herself you believe. ");
+		output("She lowers herself to her knees in front of you, taking a good look at your " + pc.cockDescript(x) + ". You notice her face slightly turn red. <i>“" + StringUtil.capitalize(pc.cockShape(x)) + ", hm? Well I can work with this no problem.”</i> She smiles, to herself you believe. ");
 		if(pc.balls>0)output("<i>“Equipment seems familiar enough.”</i>");
 		else output("<i>“Hmm. Well, this is a first for me, but shouldn’t be a problem.”</i>");
 		output("\n\nTessa reaches out and gently runs a sharp nail along your already hard shaft, making you quiver. <i>“Already hard hm? Well that’s good. Makes my job much more straightforward.”</i> She shifts her hand and takes your " + pc.cockShape(x) + " cock in her fingers. <i>“Sorry, [pc.Name]. I’m going to try and make this fast.”</i> The ovir leans close, her face an inch away from your hard pole. Without a word, she sucks back in her throat, then spits out a large wad of saliva down into your waiting " + pc.cockHead(x) + ".");

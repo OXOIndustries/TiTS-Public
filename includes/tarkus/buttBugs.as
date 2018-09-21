@@ -790,7 +790,7 @@ public function masturbateButtBugMaleScene(arg:Array):void
 			else addButton(0, "Next", masturbateButtBugMale, "ass");
 			break;
 		case "vag":
-			if(buttBugF != null) ppButtBug = getButtBugPregContainer(buttBugF.value1);
+			ppButtBug = getButtBugPregContainer(-1);
 			
 			output("These bugs may be designed to fuck asses, but that doesn’t mean they can’t be used in other ways. The nice thing about them is that they can’t fertilize anything other than their own females, meaning there’s no need for a condom. Y");
 			if(buttBugF != null) output("our anal-lodged parasite might not like this, but it is what you want. And besides, y");
@@ -799,6 +799,7 @@ public function masturbateButtBugMaleScene(arg:Array):void
 			output(" You lower your form until your vaginal lips are about a foot away from the erect insect.");
 			if(cIdx >= 0) output(" Your own [pc.cocks] " + (pc.cocks.length == 1 ? "is" : "are") + " also hard at the prospect of this encounter.");
 			output(" One of your hands sneaks back to give the bug a little help in keeping himself upright. He’s definitely a bit too endowed for his own good. His human-like cockhead lies pressed at " + (pc.vaginas.length == 1 ? "your womanly entrance" : "one of your womanly entrances") + " before you sink his phallus through your fleshy veil.");
+			
 			if(pc.vaginalVirgin)
 			{
 				if(pc.vaginas[vIdx].hymen) output(" Your hymen is torn, and you wince at the stinging sensation coming from within you. Pretty soon however, the pain goes away and is completely replaced by a sense of fulfillment and pleasure.");
@@ -832,7 +833,7 @@ public function masturbateButtBugMaleScene(arg:Array):void
 			addButton(0, "Next", mainGameMenu);
 			break;
 		case "ass":
-			if(buttBugF != null) ppButtBug = getButtBugPregContainer(buttBugF.value1);
+			ppButtBug = getButtBugPregContainer(-1);
 			
 			output("You’ve been itching for some butt fun, and you know just the expert for the job.");
 			// if hasFemaleInside = true
@@ -846,6 +847,9 @@ public function masturbateButtBugMaleScene(arg:Array):void
 			if(buttBugF != null)
 			{
 				output("\n\nBefore you have a chance do it yourself, the tentacles of the female parasite burst out to wrap around the shaft. Their slimy surfaces slither over and under your grasp until they’ve pried your digits from their objective. Not that they needed to. She lifts him from the ground and inserts his slimy tentacle-covered cock into the drippy anus you share with her. It feels like two dicks have entered you at once, yet you know that it’s only your ass spreading as you experience the stretching of the female’s own walls. Due to the female’s link with your nerves, you feel everything that is happening down there, from the swirls of the tendrils to the veiny girth of the male’s penis against the walls of the parasite’s insides.");
+				
+				pc.buttChange(ppButtBug.cockVolume(0));
+				
 				output("\n\nAs these sensations build up, it becomes impossible to keep your hands off yourself. One hand");
 				if(cIdx >= 0 && vIdx >= 0) output(" grips the base of [pc.oneCock] and sensually jerks your meat. The other " + (pc.balls > 0 ? "maneuvers around your [pc.balls]" : "slides in between your [pc.thighs]") + " as you use some of your fingers to spread your lips while the others jill " + (pc.vaginas.length == 1 ? "your vagina" : "one of your vaginas") + ".");
 				else if(cIdx >= 0) output(" moves to jerk [pc.oneCock] as the other " + (pc.balls > 0 ? "rolls your [pc.balls] around in its palm" : "rubs its digits along the sensitive spots of your glans") + ".");
@@ -865,6 +869,9 @@ public function masturbateButtBugMaleScene(arg:Array):void
 			{
 				output("\n\nWherever your ass moves, he orientates his point towards your pucker. Like a turret on auto aim, your overeager animate insectoid dildo positions itself to enter you as you lower yourself onto him. His oddly humanoid dickhead teasingly prods at your sphincter as you play a little with his instincts. Each time it seems like he’s going to go in, you raise your backside and watch as his spindly legs start quivering from being denied entry. Not wanting to break your toy before he can be used, you finally rest your [pc.asshole] on the tip of his cock and release your grip.");
 				output("\n\nImpatience gets the better of him; his legs extend and he pops the smooth glans of his shaft past your anal ring before pressing onwards. You gasp as his initial entry takes you a bit by surprise and groan when he continues to forge onwards. His first inch parts your anal walls in short, rapid squelches, but he can go no further, since your ass is still too high for him to fully penetrate. You’re going to have to go even lower, but it’s gotta be timed right. In, out and down you go as you impale yourself upon the thrusting cock of your butt bug. The girth of his veiny insect dick carves its way into your rectum and is pulled out just as fast. Each thrust has him pull out all the way to his glans before it’s thrust right back in. Not even a second is given to get used to the presence of him in your ass; rather, all you can think of is how loud your moaning is.");
+				
+				pc.buttChange(ppButtBug.cockVolume(0));
+				
 				output("\n\nEvery thrust feels as intense as the initial insertion as it noisily slams itself against your derriere.");
 				if(pc.hasBreasts()) output(" Your breasts sway as your body rocks with the force of your living dildo’s efforts.");
 				output(" Your thoughts don’t extend any further than keeping your balance as");
@@ -1113,7 +1120,7 @@ public function combatSandWormDefeatScene(arg:Array):void
 					case 0:
 						output(" not that big all things considered, but she does remind you of one of those large butt plugs you’d see in anal focused videos on the extranet.");
 						if(analLooseness < 2) {
-							output(" You’ve been stretched out a little though.");
+							output(" <b>You’ve been stretched out a little though.</b>");
 							// set pc.analLooseness to 2
 							pc.ass.loosenessRaw = 2;
 						}
@@ -1121,7 +1128,7 @@ public function combatSandWormDefeatScene(arg:Array):void
 					case 1:
 						output(" a little bigger than you thought, and really reminiscent of those bluntly spiked butt plugs in more niche anal toy markets.");
 						if(analLooseness < 3) {
-							output(" It was rough but you made it. Your anal ring has been stretched by a reasonable degree.");
+							output(" <b>It was rough but you made it. Your anal ring has been stretched by a reasonable degree.</b>");
 							// set pc.analLooseness to 3
 							pc.ass.loosenessRaw = 3;
 						}
@@ -1129,7 +1136,7 @@ public function combatSandWormDefeatScene(arg:Array):void
 					case 2:
 						output(" absolutely fucking huge! How the hell is your ass even able to take her!? You could now be nominated for size queen contests and possibly win every time.");
 						if(analLooseness < 5) {
-							output(" You could probably hide a rolled up pillow in your ass now if there wasn’t already a parasite in there. Maybe even then.");
+							output(" <b>You could probably hide a rolled up pillow in your ass now if there wasn’t already a parasite in there.</b> Maybe even then.");
 							// set pc.analLooseness to 5
 							pc.ass.loosenessRaw = 5;
 						}
