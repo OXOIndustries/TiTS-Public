@@ -8906,29 +8906,25 @@
 			return tailCockVolume(effective);
 		}
 		public function tailCockVolume(effective: Boolean = true): Number {
-			//Abstract size as a cylinder + half sphere for the tip.
-			var cylinder: Number = Math.PI * 1.5 / 2 * 1.5 / 2 * (8 - 1.5);
-			var tip: Number = (4 / 3 * Math.PI * 1.5 / 2 * 1.5 / 2 * 1.5 / 2) / 2;
-			//If blunt, tip is converted to cylinder as well.
-			if (tailGenitalArg == GLOBAL.TYPE_EQUINE || hasTailFlag(GLOBAL.FLAG_BLUNT)) tip = (Math.PI * 1.5 / 2 * 1.5 / 2 * 1.5);
-			//If flared, tip is multiplied by 1.3.
-			if (tailGenitalArg == GLOBAL.TYPE_EQUINE || hasTailFlag(GLOBAL.FLAG_FLARED)) tip = tip * 1.3;
-			//If tapered, reduce total by a factor of 75%
-			if (tailGenitalArg == GLOBAL.TYPE_CANINE || hasTailFlag(GLOBAL.FLAG_TAPERED)) {
-				tip = tip * .75;
-				cylinder = cylinder * .75;
-			}
-			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
+			var tailCock:CockClass = new CockClass();
+			tailCock.cLengthRaw = 9;
+
+			if (tailGenitalArg == GLOBAL.TYPE_EQUINE || hasTailFlag(GLOBAL.FLAG_BLUNT))
+				tailCock.addFlag(GLOBAL.FLAG_BLUNT);
+
+			if (tailGenitalArg == GLOBAL.TYPE_EQUINE || hasTailFlag(GLOBAL.FLAG_FLARED))
+				tailCock.addFlag(GLOBAL.FLAG_FLARED);
+
+			if (tailGenitalArg == GLOBAL.TYPE_CANINE || hasTailFlag(GLOBAL.FLAG_TAPERED))
+				tailCock.addFlag(GLOBAL.FLAG_TAPERED);
+
 			if (tailGenitalArg == GLOBAL.TYPE_GABILANI || hasTailFlag(GLOBAL.FLAG_DOUBLE_HEADED))
-			{
-				tip = (2 * 2/3 * Math.PI * (1.5/4 * 1.5/4 * 1.5/4)) + (2 * Math.PI * 1.5/2 * 1.5/2 * 1.5/4);
-			}
-			var temp: Number = Math.round((tip + cylinder) * 100) / 100;
+				tailCock.addFlag(GLOBAL.FLAG_DOUBLE_HEADED);
+
 			if (effective) {
-				//if(hasTailFlag(GLOBAL.FLAG_LUBRICATED)) temp *= .75;
-				//if(hasTailFlag(GLOBAL.FLAG_STICKY)) temp *= 1.25;
+				//return tailCock.effectiveVolume();
 			}
-			return Math.round(temp * 100) / 100;
+			return tailCock.volume();
 		}
 		public function nippleCockVolume(effective: Boolean = true): Number {
 			return dickNippleVolume(effective);
@@ -8939,29 +8935,27 @@
 			var w: Number;
 			if (l <= 10) w = l / 6;
 			else if (l <= 30) w = (l - 10) / 10 + 10 / 6;
-			else w = 20 / 10 + 10 / 6 + (l - 30) / 20;
-			//Convert Width to radius
-			var radius:Number = w/2;
+			else w = (l - 30) / 20 + 20 / 10 + 10 / 6;
+			
+			var dickNipple:CockClass = new CockClass();
+			dickNipple.cLengthRaw = l;
+			dickNipple.cThicknessRatioRaw = w / (l / 6);
 
-			//Abstract size as a cylinder + half sphere for the tip.
-			var cylinder: Number = Math.PI * radius * radius * (l - w);
-			var tip: Number = (4 / 3 * Math.PI * radius * radius * radius) / 2;
-			//If blunt, tip is converted to cylinder as well.
-			if (dickNippleType == GLOBAL.TYPE_EQUINE) tip = (Math.PI * radius * radius * w);
-			//If flared, tip is multiplied by 1.3.
-			if (dickNippleType == GLOBAL.TYPE_EQUINE) tip = tip * 1.3;
-			//If tapered, reduce total by a factor of 75%
-			if (dickNippleType == GLOBAL.TYPE_CANINE) {
-				tip = tip * .75;
-				cylinder = cylinder * .75;
+			if (dickNippleType == GLOBAL.TYPE_EQUINE) {
+				dickNipple.addFlag(GLOBAL.FLAG_BLUNT);
+				dickNipple.addFlag(GLOBAL.FLAG_FLARED);
 			}
-			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
+
+			if (dickNippleType == GLOBAL.TYPE_CANINE)
+				dickNipple.addFlag(GLOBAL.FLAG_TAPERED);
+
 			if (dickNippleType == GLOBAL.TYPE_GABILANI)
-			{
-				tip = (2 * 2/3 * Math.PI * (w/4 * w/4 * w/4)) + (2 * Math.PI * w/2 * w/2 * w/4);
+				dickNipple.addFlag(GLOBAL.FLAG_DOUBLE_HEADED);
+
+			if (effective) {
+				//return dickNipple.effectiveVolume();
 			}
-			var temp: Number = Math.round((tip + cylinder) * 100) / 100;
-			return Math.round(temp * 100) / 100;
+			return dickNipple.volume();
 		}
 
 		public function biggestCockLength(): Number {

@@ -250,7 +250,7 @@ public function statisticsScreen(showID:String = "All"):void
 					output2(" " + GLOBAL.FLAG_NAMES[pc.tailFlags[i]] + ",");
 				}
 			}
-			if(pc.hasParasiteTail()) output2(", Parasitic");
+			if(pc.hasParasiteTail()) output2(" Parasitic");
 			output2(" " + GLOBAL.TYPE_NAMES[pc.tailType]);
 		}
 		if(pc.hasTailCock() || pc.hasTailCunt())
