@@ -64,8 +64,8 @@
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Accessories.*
 	import classes.Items.Transformatives.*;
-    //Change SilkyCockBell to * when it's time -lighterfluid
-    import classes.Items.Piercings.SilkyCockBell;
+	//Change SilkyCockBell to * when it's time -lighterfluid
+	import classes.Items.Piercings.SilkyCockBell;
 
 	import classes.Parser.ParseEngine;
 
@@ -154,7 +154,7 @@
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/pippa.as";
-        include "../includes/follower/ramis.as";
+		include "../includes/follower/ramis.as";
 		include "../includes/follower/shekka.as";
 		include "../includes/follower/siegwulfe.as";
 		include "../includes/follower/yammi.as";
