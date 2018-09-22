@@ -853,8 +853,8 @@
 		}
 		public function legTypeLockedMessage():String
 		{
-			if ((hasStatusEffect("Mimbrane Foot Left") && !hasStatusEffect("Mimbrane Foot Right")) || (!hasStatusEffect("Mimbrane Foot Left") && hasStatusEffect("Mimbrane Foot Right"))) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + foot() + ". With a heavy sigh, it would seem your Mimbrane refuses to give up the shape of your feet to whatever was in store for you before.";
 			if (hasStatusEffect("Mimbrane Foot Left") && hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + feet() + ". With a heavy sigh, it would seem your Mimbranes refuse to give up the shape of your feet to whatever was in store for you before.";
+			if (hasStatusEffect("Mimbrane Foot Left") || hasStatusEffect("Mimbrane Foot Right")) return "Suddenly your toes flex and dig, showing faint signs of your impending transformation. The appearance subsides, however, and you’re left with your " + foot() + ". With a heavy sigh, it would seem your Mimbrane refuses to give up the shape of your feet to whatever was in store for you before.";
 			if (isGoo() && statusEffectv1("Gel Body") >= 1) return "Your gooey carriage suddenly tingles. A warmth bubbles up and quickly fizzles out, making you feel very much like a carbonated soft-drink.... It seems whatever tried to change didn’t have an effect on you.";
 			return "Despite the heat in your [pc.legOrLegs], nothing changes.";
 		}
@@ -867,8 +867,8 @@
 		}
 		public function legCountLockedMessage():String
 		{
-			if ((hasStatusEffect("Mimbrane Foot Left") && !hasStatusEffect("Mimbrane Foot Right")) || (!hasStatusEffect("Mimbrane Foot Left") && hasStatusEffect("Mimbrane Foot Right"))) return "Your " + foot() + " clenches to an uncomfortable degree, refusing to be removed. The Mimbrane surrounding the extremity seems to counteract any attempts to remove its home.";
 			if (hasStatusEffect("Mimbrane Foot Left") && hasStatusEffect("Mimbrane Foot Right")) return "Your " + feet() + " clench to an uncomfortable degree, refusing to be removed. The Mimbranes surrounding the extremities seem to counteract any attempts to remove their home.";
+			if (hasStatusEffect("Mimbrane Foot Left") || hasStatusEffect("Mimbrane Foot Right")) return "Your " + foot() + " clenches to an uncomfortable degree, refusing to be removed. The Mimbrane surrounding the extremity seems to counteract any attempts to remove its home.";
 			return "Despite the heat in your [pc.legOrLegs], nothing changes.";
 		}
 		
@@ -5003,6 +5003,7 @@
 			if (hasStatusEffect("Priapism") && bonus < 33) bonus = 33;
 			if (hasStatusEffect("Ellie's Milk")) bonus += 33;
 			if (hasStatusEffect("Aphrodisiac Milk")) bonus += 33;
+			if (hasStatusEffect("Butt Bug (Female)")) bonus += 15;
 			if (perkv1("Dumb4Cum") > 24) bonus += (perkv1("Dumb4Cum") - 24);
 			if (hasStatusEffect("Adorahol")) bonus += (5 * statusEffectv1("Adorahol"));
 			bonus += statusEffectv1("Sexy Costume");
@@ -9599,11 +9600,9 @@
 		public function vaginalPuffiness(arg: int = 0): Number {
 			if (vaginas.length <= 0) return 0;
 			var puffScore:Number = 0;
-			if(arg == 0 && hasStatusEffect("Mimbrane Pussy"))
+			if(this is PlayerCharacter && arg == 0 && hasStatusEffect("Mimbrane Pussy"))
 			{
-				if(statusEffectv3("Mimbrane Pussy") > 3) puffScore += 1;
-				if(statusEffectv3("Mimbrane Pussy") >= 8) puffScore += 1;
-				if(statusEffectv3("Mimbrane Pussy") >= 13) puffScore += 1;
+				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
 			}
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(vaginas[arg].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
@@ -9799,11 +9798,9 @@
 		}
 		public function analPuffiness(): Number {
 			var puffScore:Number = 0;
-			if(hasStatusEffect("Mimbrane Ass"))
+			if(this is PlayerCharacter && hasStatusEffect("Mimbrane Ass"))
 			{
-				if(statusEffectv3("Mimbrane Ass") > 3) puffScore += 1;
-				if(statusEffectv3("Mimbrane Ass") >= 8) puffScore += 1;
-				if(statusEffectv3("Mimbrane Ass") >= 13) puffScore += 1;
+				puffScore += (this as PlayerCharacter).mimbranePuffiness("Mimbrane Ass");
 			}
 			if(ass.hasFlag(GLOBAL.FLAG_PUMPED)) puffScore += 2;
 			if(ass.hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) puffScore += 1;
@@ -15007,17 +15004,19 @@
 				}
 			}
 			// Mimbrane plumpness for primary vagina
-			if(rand(2) == 0 && vaginaNum == 0 && statusEffectv3("Mimbrane Pussy") > 3 && adjectiveCount == 0)
+			if(this is PlayerCharacter && rand(2) == 0 && vaginaNum == 0 && hasStatusEffect("Mimbrane Pussy") && adjectiveCount == 0)
 			{
+				var puffScore:Number = (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy");
 				var mimAdjectives:Array = [];
 				
-				if(statusEffectv3("Mimbrane Pussy") < 8)
+				if(puffScore <= 0) {}
+				else if(puffScore <= 1)
 				{
 					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very swollen", "well-padded", "fat", "bulging", "lewdly bulging");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("swollen", "plush", "plump", "pudgy", "chubby");
 					else mimAdjectives.push("slightly swollen", "lightly swollen", "slightly chubby", "puffy", "cushy");
 				}
-				else if(statusEffectv3("Mimbrane Pussy") < 13)
+				else if(puffScore <= 2)
 				{
 					if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_PUMPED)) mimAdjectives.push("very bulgy", "enormous", "wobbly", "prodigious", "obscenely swollen");
 					else if(vaginas[vaginaNum].hasFlag(GLOBAL.FLAG_SLIGHTLY_PUMPED)) mimAdjectives.push("bulgy", "large", "fat", "bulging", "lewdly bulging");
@@ -15030,7 +15029,7 @@
 					else mimAdjectives.push("undeniably bulgy", "very swollen", "well-padded", "large", "fat", "bulging", "lewdly bulging");
 				}
 				
-				mimAdjectives.push("mimbrane-enhanced", "mimbrane-padded", "mimbrane-swollen");
+				if(puffScore > 0) mimAdjectives.push("mimbrane-enhanced", "mimbrane-padded", "mimbrane-swollen");
 				
 				if(mimAdjectives.length > 0)
 				{
@@ -15516,7 +15515,7 @@
 			else adjectives.push("slavering","slobbering","puddling","juice-drooling","thigh-soaking","panty-flooding","leg-drenching","slobbering","fluid-drooling","slavering","slobbering","puddling","juice-drooling","thigh-soaking","panty-flooding","leg-soaking","slobbering","fluid-drooling","slavering","slobbering","puddling","juice-drooling","thigh-soaking","panty-flooding","leg-soaking","slobbering","fluid-drooling");
 
 			//Mimbranes!
-			if(statusEffectv3("Mimbrane Pussy") > 3) adjectives.push("parasite-wrapped","mimbrane-toting","mimbrane-swollen","parasite-engorged","plush","swollen","puffy");
+			if(this is PlayerCharacter && (this as PlayerCharacter).mimbranePuffiness("Mimbrane Pussy") > 0) adjectives.push("parasite-wrapped","mimbrane-toting","mimbrane-swollen","parasite-engorged","plush","swollen","puffy");
 
 			//Pussy pump can show if ALL are at least pumped.
 			biggestSize = 2;
