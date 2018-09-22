@@ -4420,7 +4420,7 @@ public function mimbraneMenu():void
 	}
 	else
 	{
-		addDisabledGhostButton(5, "Toggle Sweat");
+		addDisabledGhostButton(5, "Toggle Sweat", "Toggle Sweat", "Your Mimbrane trust level is not high enough to use this.");
 	}
 
 	// Spit attacks
@@ -4444,7 +4444,7 @@ public function mimbraneMenu():void
 	}
 	else
 	{
-		addDisabledGhostButton(6, "Toggle Spit");
+		addDisabledGhostButton(6, "Toggle Spit", "Toggle Spit", "Your Mimbrane trust level is not high enough to use this.");
 	}
 
 	// Toggle Swelling
@@ -4456,7 +4456,7 @@ public function mimbraneMenu():void
 	}
 	else
 	{
-		addDisabledGhostButton(6, "Toggle Spit");
+		addDisabledGhostButton(7, "Swelling", "Swelling", "Your Mimbrane attachment is not strong enough to use this.");
 	}
 
 	// Face customisation
@@ -4521,7 +4521,7 @@ public function mimbraneMenu():void
 		}
 		else
 		{
-			addDisabledGhostButton(12, "Lip Pc.Ing");
+			addDisabledGhostButton(12, "Lip Pc.Ing", "Lip Piercing", "Your Mimbrane trust level is not high enough to use this.");
 		}
 	}
 	else
