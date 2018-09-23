@@ -345,10 +345,7 @@ public function ramisCrewApproach():void
 	
 	addButton(0, "Talk", ramisLetsDrinkInTheShip);
 	
-	if (flags["RAMIS_SEX_DISABLED"] == 1 && looksFemaleToRamis()) addDisabledButton(1, "Sex", "Sex", "You aren’t something that Ramis would be interested in banging. Maybe if you were a guy... or a trap.");
-	else if (pc.isTaur()) addDisabledButton(1, "Sex", "Sex", "You're a bit too... <i>tauric</i>.");
-	else if (ramisOnTop() && !pc.hasHardLightEquipped()) addDisabledButton(1, "Sex", "Sex", "For now, you’ll need to wear a certain piece of... equipment... to do this.\n\n(It's a strap-on)");
-	else addButton(1, "Sex", ramisLetsShagRouter);
+	ramisSexButton();
 
 	if (pc.energy() > 40 && !pc.isWornOut()) addButton(2, "Work Out", ramisPumpIronNShit, undefined, "Work Out", "See if she’s willing to let you use her gear, pump a little iron with you.");
 	else addDisabledButton(2, "Work Out", "Work Out", "You're too tired.");
@@ -884,6 +881,8 @@ public function ramisIWannaTopNowK():void
 		
 		addButton(3, "Switch", ramisPlsSexMeh, undefined, "Switch", "Is it possible to get her to be a little more assertive in bed?");
 	}
+	
+	ramisSexButton();
 }
 
 public function ramisPlsSexMeh():void
@@ -908,11 +907,20 @@ public function ramisPlsSexMeh():void
 
 	//This line is horrible but it's also easy so
 	addButton(3, "Switch", ramisIWannaTopNowK, undefined, "Switch", "Is it possible to get her to let you be in charge for a bit?");
+	ramisSexButton();
 }
 
 
 // [Sex]
 
+public function ramisSexButton():void
+{
+	if (flags["RAMIS_SEX_DISABLED"] == 1 && looksFemaleToRamis()) addDisabledButton(1, "Sex", "Sex", "You aren’t something that Ramis would be interested in banging. Maybe if you were a guy... or a trap.");
+	else if (pc.isTaur()) addDisabledButton(1, "Sex", "Sex", "You're a bit too... <i>tauric</i>.");
+	else if (ramisOnTop() && !pc.hasHardLightEquipped()) addDisabledButton(1, "Sex", "Sex", "For now, you’ll need to wear a certain piece of... equipment... to do this.\n\n(It's a strap-on)");
+	else addButton(1, "Sex", ramisLetsShagRouter);
+}
+	
 public function ramisLetsShagRouter():void
 {
 	clearOutput();
