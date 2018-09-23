@@ -1291,10 +1291,10 @@ public function akaneAgainAndAgainAndAgainAndAgain():void
 	
 	if (pc.hasCock())
 	{
-		output("[pc.eachCock] react" + (pc.hasCocks() ? "" : "s") + " almost immediately to warm, tingly vibrations, centered from [pc.eachCockHead] all the way down to your [pc.base]. You attain full hardness in seconds, much to your delight. ");
+		output("[pc.EachCock] react" + (pc.hasCocks() ? "" : "s") + " almost immediately to warm, tingly vibrations, centered from [pc.eachCockHead] all the way down to your [pc.base]. You attain full hardness in seconds, much to your delight. ");
 		if (pc.balls > 0) output("Your [pc.sack] feels the same but to a lesser degree, instead mostly filling with a comforting warmth. ");
 	}
-	if (pc.hasVagina()) output("[pc.eachVagina] can’t help but wink and contract around the probe" + (pc.hasVaginas() ? "s buried within as they tease" : " buried within as it teases") + " the soft folds with gentle vibration. ");
+	if (pc.hasVagina()) output("[pc.EachVagina] can’t help but wink and contract around the probe" + (pc.hasVaginas() ? "s buried within as they tease" : " buried within as it teases") + " the soft folds with gentle vibration. ");
 	output("You purse your lips and exhale slowly as the vibe stretching your [pc.asshole] begins its work alongside. ");
 	if (pc.hasCock()) output("A tiny ache growing from your prostate gets massaged away as the comfortable vibration becomes enough to make your toes curl. ");
 	output("\n\nYou run into your first instinctual restriction: your bonds. With such little room to move your arms and [pc.legs], involuntary jerks and shakes fight against the rope in an awkward, rough manner.");
@@ -1310,7 +1310,7 @@ public function akaneAgainAndAgainAndAgainAndAgain():void
 	
 	if (pc.hasCock())
 	{
-		output("[pc.eachCockHead] twinge");
+		output("[pc.EachCockHead] twinge");
 		if (pc.hasCocks()) output(" and pulse as if they were trying to rip themselves from the shafts.");
 		else output("s and pulses as if it were trying to rip itself from the shaft.");
 		output(" The new intensity in nerve teasing from the adhesive strips hardens the inner muscle further: you find yourself unable to relax your cock" + (pc.hasCocks() ? "s! " : "! "));
@@ -1357,8 +1357,8 @@ public function akaneItsOverWaitNoItIsnt():void
 	else pc.createStatusEffect("Sore Tubes", 0, 0, 0, 0, false, akaneSoreIcon, "Orgasms damage you!", false, 3*24*60, UIStyleSettings.gStatusBadColour);
 	
 	output("All at once, everything reaches its peak; from the pain of tension to the euphoria of release, you clench your teeth and scream out. ");
-	if (pc.hasCock()) output("[pc.eachCockHead] erupt" + (pc.hasCocks() ? " with hot [pc.cum]! It pulses out of each" : "s with hot [pc.cum]! It pulses out of your") + " shaft in random directions, landing with audible splatters on you and around you. With a quick foot, Akane uses the arch of her heel to bend the pulsing shaft" + (pc.hasCocks() ? "s" : "") + " towards the grate beneath you. ");
-	if (pc.hasVagina()) output("[pc.eachVagina] grip" + (pc.hasVaginas() ? " and squeeze at the probes" : "s and squeezes at the probe") + " buried within, [pc.girlCum] " + (pc.isSquirter() ? "spurting" : "oozing") + " out of the tight seal" + (pc.hasVaginas() ? "s" : "") + " and all over the floor.");
+	if (pc.hasCock()) output("[pc.EachCockHead] erupt" + (pc.hasCocks() ? " with hot [pc.cum]! It pulses out of each" : "s with hot [pc.cum]! It pulses out of your") + " shaft in random directions, landing with audible splatters on you and around you. With a quick foot, Akane uses the arch of her heel to bend the pulsing shaft" + (pc.hasCocks() ? "s" : "") + " towards the grate beneath you. ");
+	if (pc.hasVagina()) output("[pc.EachVagina] grip" + (pc.hasVaginas() ? " and squeeze at the probes" : "s and squeezes at the probe") + " buried within, [pc.girlCum] " + (pc.isSquirter() ? "spurting" : "oozing") + " out of the tight seal" + (pc.hasVaginas() ? "s" : "") + " and all over the floor.");
 
 	output("\n\nYour whole body shakes and quivers as a powerful orgasm hits you all over, forcing your bound limbs to jerk against their restraints. By the end of your climax, you’re left aching, hot and breathless; veins and arteries throb against the sides of your head with enough force and speed to make you wince.");
 	output("\n\n<i>“Aw, look at all that mess you made. " + (pc.cumQ() > 3000 ? "Good thing it’s all going to waste, wouldn’t want stains and odd smells everywhere, ickkk" : "I wonder how much you’ll make when...") + ",”</i> quips Akane from above you.");
@@ -1418,7 +1418,7 @@ public function akaneMoarMoarMoar():void
 	output("\n\nThe heat rises, the vibrations strengthen, your body gives in: you cum!\n\n");
 	
 	if (pc.hasCock()) output("Your tired-out shaft" + (pc.hasCocks() ? "s jerk and bounce" : " jerks and bounces") + " as thin streaks of [pc.cum] spurt wildly into the air! It splatters all over the floor before you and slowly trickles to the grate. ");
-	if (pc.hasVagina()) output("[pc.eachVagina] leak" + (pc.hasVaginas() ? "" : " s") + " [pc.girlCumColor] into the grey floor, your [pc.legs] shaking in place as feminine, orgiastic pleasure rocks you.");
+	if (pc.hasVagina()) output("[pc.EachVagina] leak" + (pc.hasVaginas() ? "" : " s") + " [pc.girlCumColor] into the grey floor, your [pc.legs] shaking in place as feminine, orgiastic pleasure rocks you.");
 
 	output("\n\nYou only have strength to cry out as it ends, the strain on your [pc.groin] forcing pain into your overused, sensitive nerves. You wish to shout stop but there’s just no energy, no focus: your breathless, spent state leaves you vulnerable in Akane’s grasp.");
 	output("\n\n<i>“Shhh, it’s all okay. Slooow down and relax with me, hm? Deep breaths,”</i> she half-whispers, her fingers at work on the box of wires. In an instant, the tortuous warmth and vibrations cease. Your eyes flicker as you try to follow her lead: slow... <i>nhhhh</i> breaths...");
@@ -1560,7 +1560,7 @@ public function akaneRideThroughTheNight(usingDick:CockClass):void
 	output("\n\n<i>“Nngggyes...! Use that t-tongue...”</i> whines the gyrating domme, your mouth getting a trickling wash of feminine juices as she wails. As your use your mouth muscle to clean her out, the sensations that tingle and sting your throbbing shaft building and building until-");
 	output("\n\n<i>“Mmrrwrfffffmm!”</i>");
 	output("\n\nYou can’t even scream. Your [pc.legs] can barely hold " + (pc.hasLegs() ? "themselves" : "itself") + " in place as a long overdue climax erupts from within. ");
-	if (usingDick) output("[pc.eachCock] spray" + (pc.hasCocks() ? " their loads" : "s its load") + " freely off of the bed, pulses of blissfully hot [pc.cum] leaving their ephemeral mark on your hand-clasped cock" + (pc.hasCocks() ? "s." : "."));
+	if (usingDick) output("[pc.EachCock] spray" + (pc.hasCocks() ? " their loads" : "s its load") + " freely off of the bed, pulses of blissfully hot [pc.cum] leaving their ephemeral mark on your hand-clasped cock" + (pc.hasCocks() ? "s." : "."));
 	else if (pc.hasVagina()) output("The hardlight device sends intense pulses of sensation all the way through [pc.eachVagina], those pulses tearing into your most tender nerves in cathartic and pleasurable ways.");
 	//What if no vagina tho
 
