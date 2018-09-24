@@ -30,7 +30,7 @@
 			this._latestVersion = 1;
 
 			this.quantity = 1;
-			this.stackSize = 2;
+			this.stackSize = 5;
 			this.type = GLOBAL.POTION;
 			
 			//Used on inventory buttons

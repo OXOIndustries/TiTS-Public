@@ -12936,8 +12936,8 @@
 			if (earType == GLOBAL.TYPE_VANAE) counter++;
 			if (hasTail(GLOBAL.TYPE_VANAE) && hasTailFlag(GLOBAL.FLAG_LONG)) counter++;
 			if (hasVaginaType(GLOBAL.TYPE_VANAE)) counter++;
-			if (vaginaTotal(GLOBAL.TYPE_VANAE) == vaginaTotal()) counter++;
-			if (cockTotal(GLOBAL.TYPE_VANAE) == cockTotal()) counter++;
+			if (hasVagina() && vaginaTotal(GLOBAL.TYPE_VANAE) == vaginaTotal()) counter++;
+			if (hasCock() && cockTotal(GLOBAL.TYPE_VANAE) == cockTotal()) counter++;
 			if (balls > 0 && statusEffectv4("Vanae Markings") >= 1) counter++;
 			if (InCollection(milkType, GLOBAL.FLUID_TYPE_VANAE_MAIDEN_MILK, GLOBAL.FLUID_TYPE_VANAE_HUNTRESS_MILK)) counter++;
 			if (cumType == GLOBAL.FLUID_TYPE_VANAE_CUM) counter++;
