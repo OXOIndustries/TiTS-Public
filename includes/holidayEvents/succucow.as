@@ -241,7 +241,7 @@ public function thisIsGettingOutOfHandPleaseSaveMe():void
 	if(hours >= 8) processTime(60*(23-hours) + (60-minutes));
 	processTime(60*(7-hours) + (60-minutes));
 	
-	pc.credits+=500;
+	pc.credits += 500;
 	pc.applyCumSoaked();
 	currentLocation = "505.5";
 	

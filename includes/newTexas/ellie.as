@@ -1595,7 +1595,7 @@ public function ellieDoOperation(part:int = 0):void
 				output("\n\n<i>“Ooh, that’s sexy,”</i> she murmurs, lost in thought for a moment. <i>“Just being a big ol’ broodmare getting fucked full of babies.”</i> She turns to you, her cheeks darker than they were a moment ago, and grins cheekily. <i>“You know, Haley has been talking about breeding me lately. She might beat you to the punch if you’re not careful!”</i>");
 				output("\n\n<i>“The hell with that, I’m gonna get a headstart the moment you get in there,”</i> you huff, slapping her jiggly butt as the two of you walk up the ramp.");
 				output("\n\n<i>“Ooh! I can hardly wait,”</i> she says, wiggling her voluptuous ass in your face as she disappears into your ship, her tail swishing aside briefly to reveal her dripping-wet nethers.");
-				pc.credits-=100000;
+				pc.credits -= 100000;
 				flags["ELLIE_OPERATION"] = 1;
 				ellie.fertilityRaw += 1;
 				processTime(50+rand(20));

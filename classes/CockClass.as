@@ -113,7 +113,7 @@
 			//If double headed, the tip is approximately two half-diameter hemispheres plus a cylinder of full diameter and half height.
 			if(hasFlag(GLOBAL.FLAG_DOUBLE_HEADED))
 			{
-				tip = (2 * 2/3 * Math.PI * (thickness()/4 * thickness()/4 * thickness()/4)) + (2 * Math.PI * thickness()/2 * thickness()/2 * thickness()/4);
+				tip = 2 * (2/3 * Math.PI * thickness()/4 * thickness()/4 * thickness()/4) + (Math.PI * thickness()/2 * thickness()/2 * thickness()/4);
 			}
 			return Math.round((tip + cylinder) * 100) / 100;
 			//EXAMPLES

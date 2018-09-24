@@ -421,9 +421,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	}
 	if(target.hasStatusEffect("Mimbrane Face") && target == pc)
 	{
-		if(target.statusEffectv3("Mimbrane Face") >= 3 && target.statusEffectv3("Mimbrane Face") < 8) outputRouter(" Your lips appear slightly puffy.");
-		else if(target.statusEffectv3("Mimbrane Face") >= 8 && target.statusEffectv3("Mimbrane Face") < 13) outputRouter(" Your lips look deliciously pillowy.");
-		else if(target.statusEffectv3("Mimbrane Face") >= 13) outputRouter(" Your lips appear lusciously large and undeniably kissable.");
+		feedVal = pc.mimbranePuffiness("Mimbrane Face");
+		if(feedVal <= 0) {}
+		else if(feedVal <= 1) outputRouter(" Your lips appear slightly puffy.");
+		else if(feedVal <= 2) outputRouter(" Your lips look deliciously pillowy.");
+		else outputRouter(" Your lips appear lusciously large and undeniably kissable.");
 	}
 	// Special face additions
 	if(target.hasStatusEffect("Naoki Stripe") && target.skinTone != "purple") outputRouter(" A distinctive purple stripe runs across the bridge of " + (target == pc ? "your":"[target.hisHer]") + " nose.");
@@ -1724,30 +1726,16 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	}
 	if(target == pc && (target.hasStatusEffect("Mimbrane Hand Left") || target.hasStatusEffect("Mimbrane Hand Right")))
 	{
-		var bothHands:Boolean = false;
-		feedVal = 0;
-
-		if(target.hasStatusEffect("Mimbrane Hand Left") && target.hasStatusEffect("Mimbrane Hand Right")) bothHands = true;
-		
-		if(!bothHands)
-		{
-			if(target.hasStatusEffect("Mimbrane Hand Left")) feedVal = target.statusEffectv3("Mimbrane Hand Left");
-			else feedVal = target.statusEffectv3("Mimbrane Hand Right");
-		}
-		else
-		{
-			//The feed values should be synced for hands, so use one of them!
-			feedVal = target.statusEffectv3("Mimbrane Hand Right");
-		}
-
-		if(feedVal >= 3)
+		var bothHands:Boolean = (target.hasStatusEffect("Mimbrane Hand Left") && target.hasStatusEffect("Mimbrane Hand Right"));
+		feedVal = Math.max(pc.mimbranePuffiness("Mimbrane Hand Left"), pc.mimbranePuffiness("Mimbrane Hand Right"));
+		if(feedVal > 0)
 		{
 			outputRouter(" Your hand");
 			if(bothHands) outputRouter("s");
 			outputRouter(" appear");
 			if(!bothHands) outputRouter("s");
-			if(feedVal < 8) outputRouter(" to be slightly distended.");
-			else if(feedVal < 13) outputRouter(" puffy and inflated.");
+			if(feedVal <= 1) outputRouter(" to be slightly distended.");
+			else if(feedVal <= 2) outputRouter(" puffy and inflated.");
 			else outputRouter(" unusually large, almost engorged.");
 		}
 	}
@@ -2678,28 +2666,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			break;
 	}
 	// Mimbrane feet for applicable legTypes (any pair of humanoid legs with existing feet)!
-	if(target.isBiped() && target.hasFeet() && target.hasToes() && target == pc)
+	if(target.isBiped() && target.hasFeet() && target.hasToes())
 	{
-		if(target.hasStatusEffect("Mimbrane Foot Left") || target.hasStatusEffect("Mimbrane Foot Right"))
+		if(target == pc && target.hasStatusEffect("Mimbrane Foot Left") || target.hasStatusEffect("Mimbrane Foot Right"))
 		{
-			var bothFeet:Boolean = false;
-			feedVal = 0;
-
-			if(target.hasStatusEffect("Mimbrane Foot Left") && target.hasStatusEffect("Mimbrane Foot Right")) bothFeet = true;
-			
-			if(!bothFeet)
-			{
-				if(target.hasStatusEffect("Mimbrane Foot Left")) feedVal = target.statusEffectv3("Mimbrane Foot Left");
-				else feedVal = target.statusEffectv3("Mimbrane Foot Right");
-			}
-			// Don't foget to set feedVal for bothHands!
-			else
-			{
-				//The feed values should be synced for feet, so use one of them!
-				feedVal = target.statusEffectv3("Mimbrane Foot Right");
-			}
-
-			if(feedVal >= 3)
+			var bothFeet:Boolean = (target.hasStatusEffect("Mimbrane Foot Left") && target.hasStatusEffect("Mimbrane Foot Right"));
+			feedVal = Math.max(pc.mimbranePuffiness("Mimbrane Foot Left"), pc.mimbranePuffiness("Mimbrane Foot Right"));
+			if(feedVal > 0)
 			{
 				outputRouter(" Your");
 				if(target.hasLegFlag(GLOBAL.FLAG_HEELS))
@@ -2712,8 +2685,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 					if(bothFeet) outputRouter(" [target.feet] appear");
 					else outputRouter(" [target.foot] appears");
 				}
-				if(feedVal < 8) outputRouter(" to be slightly distended.");
-				else if(feedVal < 13) outputRouter(" puffy and inflated.");
+				if(feedVal <= 1) outputRouter(" to be slightly distended.");
+				else if(feedVal <= 2) outputRouter(" puffy and inflated.");
 				else outputRouter(" unusually large and somewhat swollen, almost engorged.");
 			}
 		}
@@ -3350,6 +3323,8 @@ public function crotchStuff(forTarget:Creature = null):void
 	if(forTarget != pc) outputRouter = output;
 	
 	var rando:int = 0;
+	var feedVal:int;
+	
 	if(target.hasGenitals()) {
 		outputRouter("\n\n");
 		//Crotchial stuff - mention snake
@@ -3556,28 +3531,32 @@ public function crotchStuff(forTarget:Creature = null):void
 		if(target.hasCock() || target.balls > 0) outputRouter("\n\n");
 		if(!target.hasCock() && target.isTaur()) outputRouter("As a tauric creature, " + (target == pc ? "your":"[target.hisHer]") + " womanly parts lie between " + (target == pc ? "your":"[target.hisHer]") + " rear legs in a rather equine fashion. ");
 		
-		var vagSwellBonus:int = target.vaginalPuffiness(0);
+		var vagSwellBonus:int = 0;
 		
 		//Vaginal Numbers
 		if(target.vaginaTotal() == 1) {
+			vagSwellBonus = target.vaginalPuffiness(0);
+			
 			outputRouter("" + (target == pc ? "You have":"[target.HeShe] has") + " " + indefiniteArticle(target.vaginaDescript(0,false,false,true)) + ", with " + num2Text(target.vaginas[0].clits) + " " + Math.round(target.clitLength*10)/10 + "-inch clit");
 			if(target.vaginas[0].clits > 1) outputRouter("s");
 			if(target.vaginas[0].hymen) outputRouter(" and an intact hymen");
 			outputRouter(". ");
 
-			if(target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
+			if(target == pc && target.hasStatusEffect("Mimbrane Pussy"))
 			{
-				if(target.statusEffectv3("Mimbrane Pussy") < 8)
+				feedVal = pc.mimbranePuffiness("Mimbrane Pussy");
+				if(feedVal <= 0) {}
+				else if(feedVal <= 1)
 				{
-					outputRouter("" + (target == pc ? "Your":"[target.HisHer]") + " pussy appears");
+					outputRouter("Your pussy appears");
 					if(vagSwellBonus <= 0) outputRouter(" slightly");
 					else if(vagSwellBonus <= 1) outputRouter(" a bit");
 					else outputRouter(" very");
 					outputRouter(" swollen. ");
 				}
-				else if(target.statusEffectv3("Mimbrane Pussy") < 13)
+				else if(feedVal <= 2)
 				{
-					outputRouter("" + (target == pc ? "Your":"[target.HisHer]") + " pussy appears noticably inflated");
+					outputRouter("Your pussy appears noticably inflated");
 					if(!target.isCrotchExposed())
 					{
 						outputRouter(" and creates");
@@ -3592,7 +3571,7 @@ public function crotchStuff(forTarget:Creature = null):void
 				}
 				else
 				{
-					outputRouter("" + (target == pc ? "Your":"[target.HisHer]") + " pussy appears delightfully plump");
+					outputRouter("Your pussy appears delightfully plump");
 					if(!target.isCrotchExposed())
 					{
 						outputRouter(", creating");
@@ -3659,6 +3638,8 @@ public function crotchStuff(forTarget:Creature = null):void
 			temp = 0;
 			while(temp < target.totalVaginas())
 			{
+				vagSwellBonus = target.vaginalPuffiness(temp);
+				
 				if(temp == 0) outputRouter("\n" + (target == pc ? "Your":"[target.HisHer]") + " first entrance");
 				else if(temp == 1) outputRouter("\nThe second slit");
 				else outputRouter("\nThe third and final vagina");
@@ -3699,9 +3680,11 @@ public function crotchStuff(forTarget:Creature = null):void
 						if(forTarget != null) setTarget(forTarget);
 					}
 				}
-				if(temp == 0 && target.hasStatusEffect("Mimbrane Pussy") && target.statusEffectv3("Mimbrane Pussy") > 3)
+				if(target == pc && temp == 0 && target.hasStatusEffect("Mimbrane Pussy"))
 				{
-					if(target.statusEffectv3("Mimbrane Pussy") < 8)
+					feedVal = pc.mimbranePuffiness("Mimbrane Pussy");
+					if(feedVal <= 0) {}
+					else if(feedVal <= 1)
 					{
 						outputRouter(" It appears");
 						if(vagSwellBonus <= 0) outputRouter(" slightly");
@@ -3709,7 +3692,7 @@ public function crotchStuff(forTarget:Creature = null):void
 						else outputRouter(" very");
 						outputRouter(" swollen from the mimbrane.");
 					}
-					else if(target.statusEffectv3("Mimbrane Pussy") < 13)
+					else if(feedVal <= 2)
 					{
 						outputRouter(" It appears noticably inflated");
 						if(!target.isCrotchExposed())
@@ -3718,7 +3701,7 @@ public function crotchStuff(forTarget:Creature = null):void
 							if(vagSwellBonus <= 0) outputRouter(" a slight");
 							else if(vagSwellBonus <= 1) outputRouter(" a large");
 							else outputRouter(" an enormous");
-							outputRouter(" bulge beneath " + (target == pc ? "your":"[target.hisHer]") + "");
+							outputRouter(" bulge beneath your");
 							if(target.armor.type == GLOBAL.ARMOR) outputRouter(" armor");
 							else outputRouter(" clothing");
 						}
@@ -3733,7 +3716,7 @@ public function crotchStuff(forTarget:Creature = null):void
 							if(vagSwellBonus <= 0) outputRouter(" an undeniable");
 							else if(vagSwellBonus <= 1) outputRouter(" a massive");
 							else outputRouter(" a gargantuan");
-							outputRouter(" bulge in " + (target == pc ? "your":"[target.hisHer]") + "");
+							outputRouter(" bulge in your");
 							if(target.armor.type == GLOBAL.ARMOR) outputRouter(" armor");
 							else outputRouter(" clothing");
 						}
@@ -4118,21 +4101,25 @@ public function dickBonusForAppearance(forTarget:Creature = null, x:int = 0):voi
 	}
 	
 	// Mimbranes
-	if(x == 0 && target.hasStatusEffect("Mimbrane Cock") && target.statusEffectv3("Mimbrane Cock") > 3)
+	if(target == pc && x == 0 && target.hasStatusEffect("Mimbrane Cock"))
 	{
-		outputRouter(" The phallus itself");
-		if(!target.isCrotchExposed()) outputRouter(" feels");
-		else outputRouter(" looks");
-		if(target.statusEffectv3("Mimbrane Cock") < 8) outputRouter(" slightly swollen");
-		else if(target.statusEffectv3("Mimbrane Cock") < 13) outputRouter(" noticably inflated");
-		else outputRouter(" unnaturally plump");
-		if(!target.isCrotchExposed())
+		var feedVal:int = pc.mimbranePuffiness("Mimbrane Cock");
+		if(feedVal > 0)
 		{
-			outputRouter(" under " + (target == pc ? "your":"[target.hisHer]") + "");
-			if(target.armor.type == GLOBAL.ARMOR) outputRouter(" armor");
-			else outputRouter(" clothing");
+			outputRouter(" The phallus itself");
+			if(!target.isCrotchExposed()) outputRouter(" feels");
+			else outputRouter(" looks");
+			if(feedVal <= 1) outputRouter(" slightly swollen");
+			else if(feedVal <= 2) outputRouter(" noticably inflated");
+			else outputRouter(" unnaturally plump");
+			if(!target.isCrotchExposed())
+			{
+				outputRouter(" under " + (target == pc ? "your":"[target.hisHer]") + "");
+				if(target.armor.type == GLOBAL.ARMOR) outputRouter(" armor");
+				else outputRouter(" clothing");
+			}
+			outputRouter(" due to the occupying mimbrane.");
 		}
-		outputRouter(" due to the occupying mimbrane.");
 	}
 	//Ovipositor
 	if(target.cocks[x].hasFlag(GLOBAL.FLAG_OVIPOSITOR))

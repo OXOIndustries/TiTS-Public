@@ -1964,7 +1964,7 @@ public function syriQuestAkkadiBaseStarshipLabTalk(showText:Boolean = true):void
 	addButton(3,"Help Him?",syriQuestCalnorTalkHelpHim,undefined,"Help Him?","He wants you to help him instead of Valden. What would that entail?");
 	if (flags["SYRIQUEST_CALNOR_TALK_VALDEN"] == 1 && flags["SYRIQUEST_CALNOR_TALK_HELP_HIM"] == 1) addButton(4,"Team Up",syriQuestCalnorTalkTeamUp,undefined,"Team Up","Alright, you’re in. Better to work with the scientist than a crazed digital simulacrum.");
 	else addDisabledButton(4,"Locked");
-	addButton(14,"Fight",syriQuestCalnorFight,undefined,"Fight","You’re not letting this old hound get between you and rescuing Valden.");
+	addButton(14,"Fight",syriQuestCalnorInitiateFight,undefined,"Fight","You’re not letting this old hound get between you and rescuing Valden.");
 }
 
 public function syriQuestCalnorTalkResearch():void
@@ -2049,7 +2049,9 @@ public function syriQuestCalnorTalkTeamUp():void
 	//@Coder: Should be pretty simple IF Calnor and the droids are coded.
 	//PC vs. as many security bots as you can fit on screen. Should be a pretty meaty fight. Recycle stats and abilities from the random encounter. If the PC drops, go to the Brought Before Valden bad end.");
 	CombatManager.setFriendlyActors(pc);
-	CombatManager.setHostileActors([new AkkadiSecurityRobots(3), new AkkadiSecurityRobots(3), new AkkadiSecurityRobots(2), new AkkadiSecurityRobots(2)]);
+	var hostiles:Array = [new AkkadiSecurityRobots(-1), new AkkadiSecurityRobots(-1), new AkkadiSecurityRobots(-1), new AkkadiSecurityRobots(-1)];
+	AkkadiSecurityRobots.valdenize(hostiles[0], false);
+	CombatManager.setHostileActors(hostiles);
 	CombatManager.displayLocation("TEAM UP!");
 	CombatManager.victoryScene(syriQuestCalnorTeamUpVictory);
 	CombatManager.lossScene(syriQuestAkkadiBaseValdenFightBadEnd);

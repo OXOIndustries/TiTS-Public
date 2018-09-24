@@ -654,7 +654,7 @@ public function willowSexScenes(sceneChoice:int):void
 			output ("ready to pack her full. After a few hard slams, ");
 			if (knot || knots)output("you roughly fuck the knot into her, making her scream out with pain and pleasure at the sudden stretching. ");
 			else output ("you bury yourself deep in her and cum, spraying rope after rope of cum into her. ");
-			output ("Your other "+ cock1 +" sprays its load over her back. ")
+			if(cIdx2 >= 0) output ("Your other "+ cock2 +" sprays its load over her back. ");
 			output ("There’s so much, ");
 			if (knot || knots)output("but your knot ensures that nothing flows back out, keeping her pussy filled with cum.");
 			else output("that it flows back out around your [pc.biggestCock], dripping to the floor and mixing with her juices. ");

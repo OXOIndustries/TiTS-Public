@@ -1603,8 +1603,9 @@ public function gimmeAGoozooka(buyGoovolverToo:Boolean = false):void
 	clearMenu();
 	
 	// I'm implying that Anno left the sample you gave her loaded into the thing
-	if(pc.hasItemByClass(GrayMicrobots)) addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
-	else addDisabledButton(0, "Try on Anno", "Try on Anno", "You don’t have an extra gray goo vial to try this weapon!");
+	//if(pc.hasItemByClass(GrayMicrobots)) addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
+	//else addDisabledButton(0, "Try on Anno", "Try on Anno", "You don’t have an extra gray goo vial to try this weapon!");
+	addButton(0, "Try on Anno", goozookaRaepsForAnnoButts);
 	addButton(14, "Leave", mainGameMenu);
 }
 
@@ -1616,7 +1617,7 @@ public function goozookaRaepsForAnnoButts():void
 
 	// +Mischevious, -1 Goo Sample
 	pc.addMischievous(1);
-	pc.destroyItemByClass(GrayMicrobots, 1);
+	//pc.destroyItemByClass(GrayMicrobots, 1);
 
 	output("When Anno turns to get back to her job, you quietly break open the back of your new goo-launcher and slot in the vial of goo. With a mischievous grin, you level the cannon at Anno’s hind end and flick the button on the computer beside the trigger.");
 

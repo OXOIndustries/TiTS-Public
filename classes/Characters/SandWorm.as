@@ -154,7 +154,7 @@ package classes.Characters
 			createStatusEffect("Disarm Immune");
 			createStatusEffect("Force It Gender");
 			
-			if(rand(10) >= 0) inventory.push(new Kirkite());
+			if(rand(10) == 0) inventory.push(new Kirkite());
 			
 			isUniqueInFight = false;
 			btnTargetText = "Sand Worm";

@@ -543,6 +543,31 @@ public function tentaSeer():void
 	else if (pc.hasCock()) output("\n\nYour [pc.multiCocks] can’t even maintain hardness! Instead of shooting a rope of [pc.cum], it dribbles and leaks out with a painful heat like a slack hose. It forms a [pc.cumVisc] puddle in between your [pc.thighs].");
 	else output("\n\nInside your [pc.pussy], [pc.girlCum] oozes around and then out of your well-fucked hole. The tentacle that threatens to press into your womb makes it impossible to squirt out! The thought of being bred by monstrous limbs almost becomes too much to bear...");
 	output("\n\nThe Seer takes a wobbly step back, her foot leaving your chest and her squirming tendrils sliding ever so slowly out of the various holes in your body. As soon as her alien tentacles leave you, watery fluids leak and burble from your [pc.lips]" + (pc.hasVagina() ? ", [pc.pussy]" : "") + " and [pc.asshole]. You can’t even think to clear it away, so absolutely burned out is your body.");
+	
+	var ppEntite:PregnancyPlaceholder = new PregnancyPlaceholder();
+	if(!ppEntite.hasCock()) ppEntite.createCock();
+	ppEntite.shiftCock(0, GLOBAL.TYPE_TENTACLE);
+	ppEntite.cocks[0].cockColor = "purple";
+	ppEntite.cocks[0].cLengthRaw = 18;
+	ppEntite.cumType = GLOBAL.FLUID_TYPE_CUM;
+	ppEntite.createPerk("Fixed CumQ", 1000, 0, 0, 0);
+	
+	if(pc.hasCock())
+	{
+		pc.cockChange();
+	}
+	if(pc.hasVagina())
+	{
+		for(var v:int = 0; v < pc.vaginas.length; v++)
+		{
+			pc.cuntChange(v, ppEntite.cockVolume(0));
+			pc.loadInCunt(ppEntite, v);
+		}
+	}
+	pc.buttChange(ppEntite.cockVolume(0));
+	pc.loadInAss(ppEntite);
+	pc.loadInMouth(ppEntite);
+	
 	output("\n\n<i>More</i>");
 	output("\n\nMm... more?");
 	

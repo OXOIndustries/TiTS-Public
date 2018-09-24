@@ -230,7 +230,7 @@ public function akanequestImARebelMofo():void
 	output("\n\n<i>“Whassat? Thought this one was better trained, Shan,”</i> mocks Petra. <i>“If I’m gettin’ [pc.himHer], then I’m showin’ the way forward. Salvation if ya will. McGuinnugh, lovetap.”</i>");
 	output("\n\n<i>“Madam, if I-”</i>");
 	output("\n\n<i>“Nah, nah, you’ll get ya money Shan but I’m allowed my trial period. Forget property damage, I’ll just tip ya for insurance. McGuinnugh, gut ‘em,”</i> commands the kaithrit. Heavy steps come from your left like the pounding drums of war. What did you just star-<i><b>HRRRK</b></i>");
-	applyDamage(new TypeCollection({unresistablehp: pc.HP() / 5}, DamageFlag.BYPASS_SHIELD), undefined, pc, "minimal");
+	applyDamage(new TypeCollection({unresistablehp: pc.HP() / 5}, DamageFlag.BYPASS_SHIELD), null, pc, "minimal");
 	pc.createStatusEffect("Internal Bleeding", 15, 0, 0, 0, false, "Icon_Water_Drop", "This is going to need treatment...\n-15HP every turn.", true, 0, UIStyleSettings.gStatusBadColour);
 	output("\n\nThe body of a very heavy shotgun slams into your guts, first crushing the wind from your body and then forcing your body to buckle over. The pain is unreal: just short of broken bones but there’s gonna be internal bleeding. This thought merely distracts you however.");
 	output("\n\n<i>“No you DON’T,”</i> comes an aggressive, rough voice from somewhere.");
