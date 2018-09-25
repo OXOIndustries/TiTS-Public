@@ -411,12 +411,16 @@ public function defeatASecop():void
 			else addDisabledButton(2,"Fuck Her","Fuck Her","This cat may have a special kind of pussy, but even it can’t handle your girth. You’d slag her system!");
 		}
 		else addDisabledButton(2,"Fuck Her","Fuck Her","You’ll need a penis to fuck that robo-pussy. You doubt she has the means or the inclination to surgically attach one to you.");
+		if(pc.hasCock() && pc.biggestCockVolume() > enemy.vaginalCapacity(0)) addButton(3,"Hyper Titfuck",penisRouter,[hyperDickThatKittysTits,100000,false,enemy.vaginalCapacity(0)],"Hyper Titfuck","You've got a dick so big she could never hope to take it in her pussy... so put her tits to work.");
+		else addDisabledButton(3,"Hyper Titfuck","Hyper Titfuck","You need a battleship class dick for this - one too big to possibly stuff into her pussy.");
 	}
 	//Male SecOp
 	else
 	{
 		if(pc.hasVagina()) addButton(2,"Fuck Him",vaginaRouter,[fuckHimSecOp,enemy.cockVolume(0),0,0],"Fuck Him","You won’t be satisfied with taking anything less than his dick.");
 		else addDisabledButton(2,"Fuck Him","Fuck Him","You need a vagina to do this.");
+		if(pc.hasTailCunt() && pc.hasParasiteTail()) addButton(3,"Tailmilk",tailMilkTheMaleSecOp,undefined,"Tailmilk","Milk him with your parasitic tail.");
+		else addDisabledButton(3,"Tailmilk","Tailmilk","You need a parasitic cunt-tail for this.");
 	}
 	addButton(14,"Leave",CombatManager.genericVictory);
 }
@@ -1481,4 +1485,153 @@ public function wakeUpFromTaurStuff():void
 public function moveToElevatorAdjustment():void
 {
 	moveTo("ZSF G16");
+}
+
+//Tailmilk
+public function tailMilkTheMaleSecOp():void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("Fenoxo");
+	output("You respond by stroking [pc.tails], hefting " + (pc.tailCount == 1 ? "it":"one") + " to display the brazenly wet, winking entrance to your tailcunt. <i>“I’m hungry,”</i> you coo, husky with erotic promise, <i>“and you’re going to feed me.”</i>");
+	//Lust
+	if(enemy.lust() >= enemy.lustMax()) 
+	{
+		output("\n\nThe kaithrit’s eyes widen. <i>“Yes!”</i> He pulls his hands away to better present his chromed cock for your use. <i>“Do it. Fuck me with your tail!”</i>");
+		output("\n\nThe sight of it is enough to stir your passions and the parasite’s lusts together into a single torrent of focused desire. Droplets of lubricant dribble from your [pc.tailCount]. <i>“This is going to feel very, very good.”</i> You not entirely sure if you’re addressing him or your tail, to be brutally honest, but it hardly matters either way.");
+	}
+	//HP
+	else
+	{
+		output("\n\nThe kaithrit’s eyes widen. <i>“That’s a cunt snake!”</i> He briefly recoils, blushing hotly when he realizes what you intend to do with it. The coiled metal on the cat’s groin shifts hesitantly, then draws open like a stage’s curtains to reveal the chromed cock beneath. It’s already most of the way hard. When he looks up to stare at slithering entrance you’ve presented him with, it firms up the rest of way. <i>“I’ve never fucked one of those before.”</i> He squirms on the ground. <i>“It doesn’t have teeth in there, does it?”</i>");
+		output("\n\n" + pc.mf("Chortling","Giggling") + " in response, you lift your [pc.tailCunt] for his inspection. A trickle of wetness leaks out as the parasite’s lusts and your own merge together into a single torrent of desire. <i>“It’s going to feel very, very good. Promise.”</i>");
+		output("\n\nThe operative’s gleaming cock twitches at that.");
+		output("\n\n<i>“Oh ho! Somebody’s ready to go, isn’t he?”</i> You caress the cat-boy’s boner. <i>“Isn’t he?”</i>");
+		output("\n\nWith a loud gulp, the kaithrit replies, <i>“Yes!”</i>");
+	}
+	//Merge
+	output("\n\nYou release your mental control over your [pc.tail], tenuous at the best of the times. You doubt you could hold it back much longer if you tried. Lunging forward like a starving beast, its cunt-lips open wide and drool a line of alien-brewed girlcum across your conquest’s abdominals. A hot flash of pleasure radiates up your spine from the parasite as it closes in, blossoming into an intoxicating sense of warm, hedonistic delight as it makes contact with the cat-boy’s swollen crown.");
+	//Horsepussy
+	if(pc.hasTailCunt(GLOBAL.TYPE_EQUINE)) output("\n\nThe fat mare-pussy at the end audibly squelches around the feline’s rod, its chubby lips wobbling slightly as it is split open, lips beautifully taut. That silver cock is every bit as thick as the horse-cocks your cunt was meant to take, every bit as beautifully girthy. There’s a pang of disappointment from your tail that he has no medial ring to grind against your nerves, but the swollen mushroom tip at his head feels every bit as good as a flare as it burrows deeper, pulled inside by the concentric, flexing rings of muscle.");
+	//Dogpussy
+	else if(pc.hasTailCunt(GLOBAL.TYPE_CANINE)) output("\n\nThe slim canid pussy at the end strains to swallow the feline’s girthy rod, its animalistic lips straining and taut. That silver cock is every bit thick as an ausar mod-junkie’s and and even harder. There’s a pang of disappointment as you slide down that there’s no knot to really pop your tail-pussy open, no gloriously engorged bulb of flesh to lock every droplet of cum inside, but the swollen mushroom head at the tip feels almost as good as it burrows deep, swallowed up by the concentric, flexing rings of muscle.");
+	//Otherpussy
+	else output("\n\nThe wet, tentacle-mounted pussy at the end strains to swallow the feline’s girthy rod, its lips wet dribbling clear lubricants as it slides down. There’s a pang of disappoint that he isn’t somehow thicker, that his cock isn’t covered in exotic, stimulating nubs, or that his dick mounted among a bevy of clit-stimulating tendrils. Still, his swollen, mushroom-like head strokes gloriously down your passage, swallowed deeply by your concentric, flexing rings of muscle.");
+	//Merge
+	output("\n\n<i>“Hooo-wowww...”</i> the cat-boy moans, his fingers scrabbling madly against the deck. His eyes roll wildly, flashing the whites as the pleasure overwhelms his self-control. All the while, your tail plunges down his cock, greedily slurping against the base while clear juices slick the surface of his quivering testes. The kaithrit gasps in whorish delight, his back arching, his tails flailing. His cock heaves, bouncing your parasitic tentacle around as it tightens down, the folds undulating madly.");
+	//No cock:
+	if(!pc.hasCock()) output("\n\nThe chest of his armored suit pops open in response to some unspoken signal, and his fingers curl up to tug and pinch at his gently crinkled nipples, the pert swells of his oh-so-feminine breasts heaving and flushed. The feline’s eyes close, and his ears fold further and further back the longer your tail is allowed to continue its erotic work. His louder, lewder moans subside into soft whimpers of delight as he slides into some fantasy, no doubt mounted by an alien lover with the most <i>marvellously</i> pleasurable pussy.");
+	//Cock
+	else output("\n\nLicking his lips, the feline’s pleasure-addled gaze rises up from your slobbering parasite-cunt to your [pc.cocks]" + (pc.cockTotal() > 1 ? ", fixating on [pc.oneCock] after a moment of indecision":"") + ". He gingerly reaches up to heft it, fingers deftly squeezing around it a moment later. His eyelids drift closed the moment he starts jacking you off, like he’s sliding into a fantasy where he’s fucking a dick-girl with the wettest, tightest pussy in the galaxy. He doesn’t need to see the [pc.cockNoun] he’s stroking to wring out droplets of pre or massage it into your skin, working it like oil into leather.");
+	//Merge - tailfukken here
+	output("\n\nYou [pc.cuntTail] works up and down the kaithrit’s cock with firm, assertive strokes. It does not jerk or tremble. The motions are swift and automatic. Machine-like ripples stream back and forth along the flexing, squeezing tube of your rear-mounted cunt, coaxing the cybernetic feline to ever greater heights of pleasure. He lifts his hips to better present his prick to be milked, his taut body trembling with the mounting need to cum. You can sense he’s going to blow soon. You can feel it through your tail somehow, and <i>you crave it</i>. In the back of your throat, you <i>thirst for his spunk.</i>");
+	output("\n\nCoaxing your parasitic appendage to go faster with a thought, you implore it to take full advantage of the cat-man’s helpless state and inhumanly rigid length, and it does. It slaps into the security op’s crotch with lewd splatters. In the brief moments his shaft is exposed, it shines with the sheer amount of lubricant you’ve produced. His urethra bloats under your watchful eyes, and your conjoined snake pours a wave of pleasured anticipation up your spine in response. Cum! He’s going to cum!");
+	//His cummies here set off your cummies
+	output("\n\nTorrid pulsations strain against your tail’s powerful muscles, and it answers by filling your mind with the sense of its incredible warmth, the blessed, creamy sensation of potent pulse after potent pulse flooding everything. Involuntary muscle movements wick the orgasmic fluid higher and higher into your tail, devouring it to some hidden place. Those same motions make more room for the squealing kitten's cream to pour into, and he does so with aplomb. Moaning now, he " + (!pc.hasCock() ? "tugs his nipples":"jacks your [pc.cock]") + " and babbles in confusion over just how <i>perfect</i> your parasite pussy is.");
+	//Optional squirter bit
+	if(pc.isSquirter()) output("\n\nSo wonderful is the feeling of swallowing up the cat-eared pirate’s seed that your feminine anatomy lurches into sudden, sympathetic orgasm. [pc.GirlCum] gushes out in a steaming spray, soaking him from waist to chest. The pert swells of his breasts glisten with your licentious rain, and as you cum violently the shaking of your hips carries the stream higher to paint his face. It’s like your tail isn’t just milking him; it’s milking you, wringing you out like damp sponge.");
+	//Optional dick PG.
+	if(pc.hasCock()) 
+	{
+		output("\n\nErotic heat surges to your bare loins where it can be worked by the kaithrit’s violent pumps, shaped into the rising swell of potent ejaculation. You join him in moaning and ejaculating, every inch of dick straining and clenching. [pc.Cum] ");
+		if(pc.cumQ() < 10) output("dribbles from the tip as your meager release peaks and wanes. Not even getting stuffed by a liter of virile, kitty-seed can bring you to produce any more.");
+		else if(pc.cumQ() < 250) output("spurts in long ropes as your release peaks. With each eruption that’s shot inside you, you answer with your own, painting the kitten in [pc.cumColor] lines.");
+		else if(pc.cumQ() < 8000) output("volleys forth in tremendous, kitten-soaking sprays. Each is more than an average man could hope to produce on his best day, and you’re pumping them out, one after another.");
+		else
+		{
+			output("pours out in colossal eruptions, one after another. Each seed-filled tidal wave could impregnate a dozen women on its own, and you’re soaking the mewling kitten with all of them, splashing your [pc.cumFlavor] across his chin and face, drenching him in hot, liquid love." + (pc.cumQ() >= 15000 ? " A pool of it grows beneath him as you climax. There simply isn’t enough of him to hold it all, so you bathe him in it.":""));
+		}
+	}
+	//Neither cock or squirter
+	if(!pc.hasCock() && !pc.isSquirter()) 
+	{
+		output("\n\nHe’s right too. Your [pc.cuntTail] is perfect. Perfect for milking cocks. Perfect for making <i>you</i> cum. Perfect for riding a wave of orgasmic delight that leaves you drooling and pleased to have done such a good job of feeding your drooling little ride-along. Your eyes cross and your hips shake. Your muscles give out, and you drop down onto the security operative, hips twitching while your tail continues to suck to slurp, milking this cute kitten dry.");
+	}
+	//Dicknipple squirtan?
+	if(pc.hasDickNipples()) output("\n\nArching your back, you give over all control to your pleasure. Your [pc.dickNipples] burst forth, bare and dripping, trembling after being so long suppressed. Musky streams of long-denied semen coat their undersides as they shoot their perverse load over your foe’s head. In the brief moment before his vision is obscured, his eyes seem almost hypnotized by the sudden appearance of your nipple-cocks, like he’s getting to see the perversely erotic sight for the first time.");
+	//milksquirties PG?
+	else if(pc.canMilkSquirt()) output("\n\nArching your back, you give over all control to your pleasure. It’s everywhere, all-consuming, much like the pressure in your [pc.chest]. [pc.Milk] bursts forth from your [pc.nipples] in a wave of lactic relief, pouring out in forking streams. You’re a soaking-wet, dripping mess, and you can’t be bothered to care, not when you’re getting filled up with cum, satisfying the alien addiction to feeding your tail. It feels too good. You squeeze your nipples and scream in pure joy, redoubling the flow.");
+	//Merge
+	output("\n\nThe cat-boy’s climax ends before your own. The spurts of creamy, oh-so-virile semen diminish to a slow dribble, yet you’re allowed to fly along on a blissful cloud. Your tail continues to suck and to slurp. You can hear the sound of it, the slutty slobbering of your folds rhythmically clenching to draw up the last few dregs of spunk. Even once he’s gone dry, it’s still sucking, still filling you with pleasure.");
+	output("\n\nDragging your [pc.tailCunt] off that shining, chrome dong feels like it should be a crime, but you have things to do. Besides, your parasite has plenty of seed to please it for the foreseeable future. You can sense it in the back of the mind. It’s like a hot bundle of contentment that’s right there, reminding you that you’ve been a very, very good host whenever you’re not thinking of anything else.");
+	output("\n\n<i>“Fuck.”</i> The security operative licks his lips and pants. <i>“You... so fucking good...”</i>");
+	output("\n\nYeah. You are.");
+	processTime(30);
+	pc.orgasm();
+	feedCuntSnake(enemy);
+	output("\n\n");
+	CombatManager.genericVictory();
+}
+
+//Hyper Titfuck
+public function hyperDickThatKittysTits(x:int):void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("Fenoxo");
+	output("You respond " + (!pc.isCrotchExposed() ? "by pulling out your":"with authority borne of your") + " massive cock, flopping the weighty member directly into the security operative’s jiggling tits and face with such force that it bowls her flat onto her back." + (!pc.isErect() ? " The contact predictably excites you into full hardness, your member creeping higher with each pulse of your hammering heart, smothering the cat-girl in an ever-expanding curtain of cock.":" You’re so hard that the impact generates an audible thwack. The cat-girl all but disappears beneath your turgid length, buried in a curtain of cock.") + " <i>“I think I’m going to need more than your mouth.”</i>");
+	output("\n\n<i>“Like these?”</i> Her voice is understandably muffled beneath your mighty fuckstick, but the meaning becomes clear the moment her silvery suit opens up. Coils twist and writhe over each other in their hurry to slide to the side, scissoring open to expose the full, weighty swells of the kaithrit’s tits. Bright, almost luminous purple milk beads at her nipples, promising to dribble everywhere the moment you so much as squeeze one of her heavenly mounds. Your [pc.cock " + x + "] already rests in the middle, distending the pillowy flesh around its girth.");
+	output("\n\nTit-fucking this cat would be so easy.");
+	//Treated :3
+	if(pc.isTreated()) output("\n\nLeaning to the side, the operative looks up at you with glassy eyes. <i>“Why’s your cock smell soooo good?”</i> She nuzzles against it, rubbing its scent onto her cheek. Both her ears slowly fold back in ever increasing submission while her nipples tent higher and harder. Her nostrils flare wildly as she takes long, deep inhalations along your [pc.cockNounSimple " + x + "]. <i>“You smell like getting fucked feels.”</i> She starts to lick you, then moans whorishly, hips quivering. <i>“Please tell me you’re going to fuck my titties. Please!”</i>");
+	//Not treated
+	else output("\n\nLeaning to the side, the operative wears a silly smile. <i>“You gonna tittyfuck me with this huge fucking dick?”</i> She rubs her cheek against it, one fuzzy ear tickling at your [pc.cockHead " + x + "]. <i>“Go ahead.”</i> She gently licks along the length of one vein, making it throb. <i>“You won.”</i> She kisses another spot. <i>“You and that sexy cock deserve a prize.”</i> Her breath bathes you in puffs of excited warmth as her heart rate accelerates. <i>“Fuck my tits.”</i>");
+	//Merge
+	output("\n\nYou don’t need the encouragement to grab hold of breasts that magnificent, yet you appreciate it all the same. Sinking your fingers deep into her soft mounds, you squeeze them up against your enormous girth, groaning in delight. Twin purple arcs spray up out of her nipples from the pressure, filling the air with their sweet, fruity scent. Alien milk spatters softly over your quiveringly erect [pc.cockNounSimple " + x + "], warm and wet in all the best ways, while the soft embrace of her cushiony bosom massages your sides, rubbing the dribbling fluid in.");
+	output("\n\nYour cock is so hard and clenching so powerfully that you can almost hear your skin creak from the strain.");
+	//Treated
+	if(pc.isTreated()) output("\n\n<i>“Mmmm, yeah, rub that milk in you big, fucking " + pc.mf("","she-") + "bull! Gonna make you spunk so fucking hard for my tits!”</i> Eyes rolling wildly, she takes a long, slow lick up the underside of your [pc.cock " + x + "], culminating in a forceful twirl of her tongue that scoops a dollop of oozing pre-cum directly from your slit. <i>“You taste almost as good as you smell.”</i> Her nose presses against your [pc.cockHead " + x + "] as she sucks in a deep lungful of highly saturated pheromones. <i>“Can’t wait till my milk makes you all cummy...”</i>");
+	//Untreated
+	else output("\n\n<i>“Ohhh yeah, rub it in.”</i> She takes a long, slow lick along the underside of your [pc.cock " + x + "], culminating in a heated kiss against a urethra that feels increasingly filled with creamy, drizzling pre. <i>“Get it all over so you can nut suuuuper hard. It’s special milk after all.”</i> Her eyes twinkle with knowing, lusty excitement while she plants a few more smooches against your [pc.cockHead " + x + "]. <i>“Nothing makes a cock cum like being soaked in synthetic vanae milk.”</i>");
+	//Merge
+	output("\n\nAs a sense of sublime, blessed warmth radiates into your [pc.cockNounSimple " + x + "] as more and more purple cream dribbles onto your skin. Your nerve endings feel tender, supercharged from the lactic contact, better able to inform you of the exact texture and firmness of this sex-kitten’s sensuously <i>squishy</i> titties. You can measure exactly how slippery the milk is, precisely how hot it feels to bathe in. You can sense how firm her nipples are how much she loves to feel your sopping-wet rod sliding between them.");
+	output("\n\nIt’s drugged. Of course it is. You can feel it pounding your brain with sexual bliss whenever you try to think of anything but fucking - of ramming yourself into her jiggling, squirting, fountaining tits again and again.");
+	if(pc.balls > 0)
+	{
+		output(" Your [pc.balls] " + (pc.balls == 1 ? "is":"are") + " suddenly heavy. Purple cream clings to your [pc.sack] as you feel it fill, so heavy on your mind that you wonder how you can stand.");
+	}
+	output(" If the only thing her drugged milk is doing is making you want to fuck her tits even more, is that so wrong?");
+	output("\n\nWhy should you worry about it? You’re so hot and hard, so drenched in endless kitten milk that leaves you aching for those curvaceous pillows. Your hips rock back and forth to a subconscious rhythm, sliding your oversized erection into that heavenly valley, your [pc.cockNoun " + x + "] gleaming under a haze of purple, intoxicating milk.");
+	//Untreated
+	if(!pc.isTreated()) output("\n\n<i>“Go ahead and cum in my tits" + (pc.mf("m","") == "f" ? ", big guy":"") + ",”</i> the kaithrit says while you’re on a backstroke, revealing the liberal glaze of pre you’ve dribbled across her face and hair. Her lips shine with it. <i>“We both know you want to. With that much milk soaking you, you must be soooo full of cum, and my tits must feel sooo good.”</i> She wraps her arms around her your dick to pull it deeper into her cleavage, her forearms squishing her tits tighter, forming a vice of slick, cream-drenched skin to wring your orgasm out with.");
+	//Treated
+	else output("\n\n<i>“Gimme that cum!”</i> the kaithrit cries, shuddering in scent-and-tit-based bliss. <i>“Gotta be so full of it. All that milk making you so full of so much yummy jizz...”</i> When you slide back, you realize that she’s absolutely drenched in pre, soaked in it from the crown of her head all the way into her cleavage. Her tongue whips out to gather as much as she can before you thrust back up to bury her in cock once more. <i>“Just dump it on me. Soak me in. Make me your slut. Make me you-”</i> Her voice coats off into a sloppy-sounding smooch when your cock returns. <i>“-ohgod just gimme cum!”</i>");
+	//Merge
+	output("\n\nLike magic, your climax arrives exactly on cue. It grabs hold of your cock and squeezes tight, pleasure and need corkscrewing together as your " + (pc.balls <= 0 ? "body":"[pc.sack]") + " quivers with the effort of unloading a torrent of fresh-brewed seed. There’s no controlling it. There is only the primal need to orgasm, to feed this kitten the cum she requested, to unload every single drop of painfully pent-up jism directly into her tits with every ounce of force you can muster.");
+	output("\n\nYour hips swish back and forth like the pistons on an old timey locomotive at full speed, savaging the kaithrit’s tits with heavy slaps. Your [pc.cockHead " + x + "] swells" + (pc.hasKnot(x) ? " along with your knot":"") + ", and your urethra follows a split-second later, so loaded with [pc.cumNoun] that it lifts up a few inches before the kaithrit can pull it back down, smushing straight into her cleavage. The force of your eruption actually pushes her tits apart, revealing twin tidal waves of seed that race down her belly and up her neck. One drenches the cat-girl’s body from the waist down. The other crests at her chin and splashes across her blushing cheeks, glazing her in a thick mask of [pc.cumColor].");
+	output("\n\nThe the soaking, milk-spraying tits clap back together, concussing you with bliss, just in time for you to continue your almost painfully intense orgasm. You cum with compulsive fervor, like you need to pump your molten, burning bliss directly into the fat kitty-titties. Wave after wave of glittering, liquid [pc.cumGem] pours into her cleavage only to rush back out, and through it all, the security operative is doing nothing but begging you to keep going, to keep slamming your hips into her jiggling cum-covered mounds.");
+	output("\n\nYou grab her nipples for extra support, hard, and the kaithrit screams in something that sounds halfway like approval before rambling into ever more passionate exhortations for you to cum even harder. The best part is that you do. With her nipples crinkling and dribbling under your thumbs, you revel in heavenly sensation of your [pc.cock " + x + "] bloating the cat-girl’s tits with superhuman quantities of seed.");
+	output("\n\nYou cum harder than you knew you could. The climax steals your sight, your eyes rolling back into pure whiteness. It steals your voice, reducing your attempts at speech to gibbering moans. Soon enough, you aren’t even listening to the cat-girl’s pleading moans, just the thrum of your heartbeat hammering in your ears, working overtime to ensure that your [pc.cumNoun]-spurting [pc.cockNounSimple " + x + "] stays completely, ridiculously hard.");
+	output("\n\nYou don’t mind in the slightest, not with your head filled with the sensation of plundering the big tittied kitty’s sublimely slick cleavage. It squeezes you with each pump and each squirt. Her boobs milk you. They wring your dick dry, they massage your endless sexual effluvia back into you. And there’s always more milk" + (pc.balls > 0 ? ", slicking your [pc.balls]":"") + ", coaxing you to new heights of sexual ecstasy.");
+	processTime(45);
+	pc.orgasm();
+	clearMenu();
+	addButton(0,"Next",moreBigTittyKittyTitfuck,x);
+}
+
+public function moreBigTittyKittyTitfuck(x:int):void
+{
+	clearOutput();
+	showPunkSecOp(true);
+	author("Fenoxo");
+	output("When you come to, your [pc.cocks] ache" + (pc.cockTotal() == 1 ? "s":"") + " and you feel like you’ve just run a marathon. The kaithrit is nowhere to be seen, though there is a sizeable lake of seed to mark the location of your obscene tryst as well as a small pouch she left behind in her haste to escape." + (pc.isTreated() ? " Your Codex has a few dozen pictures of the thoroughly bukkaked girl pressing herself worshipfully against your cock along with a small note informing you that she couldn’t help but shovel a few litters worth of kittens into her cunt.":""));
+	//Balls:
+	if(pc.balls > 0)
+	{
+		output("\n\nSpeaking of pouches, your own nutsack is feeling rather swollen. ");
+		if(pc.ballDiameter() < 4) output("It’s heavier than you’re used to, so much so that you can tell at a glance that <b>it’s gotten bigger</b>.");
+		else if(pc.ballDiameter() < 8) output("You have to be careful when rising not to squeeze it too tightly between your thighs. All that milk did something to <b>make your balls bigger.</b>");
+		else output("Rising is more difficult with so much extra weight swinging down there. <b>Your [pc.balls] are bigger, somehow, and undoubtedly more capable.</b>");
+		pc.boostCum(2);
+		pc.ballSizeRaw += 2+rand(3);
+	}
+	//No balls
+	else 
+	{
+		output("\n\nYou wince at an ache just behind your crotch when you move to rise. There’s an almost painful tenderness, like <b>something inside you is swollen or enlarged</b>. Being drenched in so much drugged milk undoubtedly left its mark on you, or at the very least on your [pc.cock " + x + "]. You’re certain you’ll be cumming a little harder from now on.");
+		pc.boostCum(6);
+	}
+	output("\n\n");
+	processTime(25);
+	CombatManager.genericVictory();
 }
