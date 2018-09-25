@@ -85,6 +85,22 @@ public function zhengMinesEncounterBonus():Boolean
 	{
 		return encounters[rand(encounters.length)]();
 	}
+	//If no combat, MAUS!
+	if(flags["MAUS_MECHANIC_DISABLED"] == undefined && flags["MINING_ROBOT_ENCOUNTERS"] != undefined && !pc.hasKeyItem("Zheng Shi RFID Badge"))
+	{
+		//Move Mouse
+		if((rand(20) == 0) && !pc.hasStatusEffect("Maus CD"))
+		{
+			flags["MAUS_LOCALE"] = currentLocation;
+			pc.createStatusEffect("Maus CD");
+			pc.setStatusMinutes("Maus CD",8*60);
+		}
+		if(flags["MAUS_LOCALE"] == currentLocation)
+		{
+			output("\n\nA pair of mousy ears peaks out over the bulk of a busted mining robot. Half its circuits are splayed across the ground like spilled spaghetti, and more join the pile with each passing moment. The caustic curses coming from behind the ill-used metal could strip industrial paint.");
+			addButton(0,"Investigate",investageDatMouseMechanicYo,undefined,"Investigate","This probably won't lead to a fight. Probably. Maybe.");
+		}
+	}
 	return false;
 }
 
@@ -282,7 +298,7 @@ public function miningRobotAttack():Boolean
 	output("\n\nAs you wander through the byzantine sprawl of mine tunnels, you hear a thunderous <i>stomp... stomp... stomp...</i> coming towards you from one of the side passages. You turn to face it, just in time to see a lumbering black mass of metal, cables, and flickering digital readouts. A robot, shoddily built and probably a thousand years out of date besides... but it’s got a massive drill in place of one of its arms, and you can see where several lasers have been bolted onto the droid’s head and shoulders.");
 	IncrementFlag("MINING_ROBOT_ENCOUNTERS");
 	//player has RFID card
-	if(pc.hasKeyItem("9999")) output("\n\nThe droid passes you by, however, stomping away towards a deposit it’s allowed to mine.");
+	if(pc.hasKeyItem("Zheng Shi RFID Badge")) output("\n\nThe droid passes you by, however, stomping away towards a deposit it’s allowed to mine.");
 	//else:
 	else 
 	{
@@ -771,4 +787,234 @@ public function prefabDeadEndBonus():Boolean
 	else output(" This is probably where they put together all the different kit-bashed robots they have all over the station.");
 	output(" Leave it to pirates to eschew the tried and true off-the-shelf models!");
 	return zhengFoundryF1EncounterBonus();
+}
+
+//[Investigate]
+public function investageDatMouseMechanicYo():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	if(flags["MAUS_THINKS_PIRATE"] == undefined) 
+	{
+		output("You circle around the disabled ‘bot with a wary step and a hand on your [pc.weapon], just in case.");
+		output("\n\nThe slight figure that comes into view is explicitly, almost universally non-threatening. She’s a rodenian" + (!CodexManager.entryUnlocked("Rodenians") ? " (according to your Codex’s notification)":"") + " and barely over four feet tall - small for her race. Maybe if the grease stains were swapped for blood, she could look like some kind of petite berserker, but her armor consists of a breezy shirt and scuffed-up overalls. Her ‘weapons’ aren’t much better: a hand-sized plasma torch with a 1-inch flame and a purple-and-green painted toolbox.");
+		if(!CodexManager.entryUnlocked("Rodenians")) CodexManager.unlockEntry("Rodenians");
+		output("\n\nIt’s the mouse-girl’s mouth and nimble fingers that pose the real threat. She effortlessly strips wires and charred circuit boards while uttering a litany of slurs so sinful they could score her some jail time on a more civilized planet.");
+		output("\n\nSo long as the rodenian’s not packing some secretive mil-spec cybernetics, you doubt you have much to fear from her.  Do  you get her attention?");
+		processTime(2);
+		clearMenu();
+		addButton(0,"Greet",greetDatRodentMech);
+		addButton(14,"Leave",mainGameMenu);
+		//[Greet] [Leave] (Leave just dumps to mainGameMenu)
+	}
+	else
+	{
+		output("You approach the mouse-girl oncemore. This time, the rodenian looks up almost immediately. <i>“You again? Whaddya want?”</i>");
+		rodentTalkTopics();
+	}
+}
+
+//Greet
+public function greetDatRodentMech():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("<i>“Hey!”</i> You wave at the swearing mouse-woman non-threateningly.");
+	output("\n\nShe doesn’t look up. <i>“Whatever it is, I don’t have time for it. Why don’t you go hit some rocks or something and stop trying to bother the girl who’s just doing hers.”</i>");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Not A Slave",ImNotASlaveLittleRat);
+	addButton(1,"I'm A Pirate",ImAPirateLittleRat);
+}
+
+//I’m a Pirate
+public function ImAPirateLittleRat():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("You tell her that you’re a pirate.");
+	output("\n\nShe nearly hyperventilates laughing, her diaphragm spasming with the forcefulness of her squeaking delight. <i>“So’s my left tit, but you don’t hear me bandying it about like some kind of title. Everybody ‘round these parts calls themself a pirate. Even the dumbshit dog in the hangar down here.”</i> She snorts. <i>“Yeah, you’re a real big pirate, asshole. Keep sitting on your ass and polishing real pirates’ ships.”</i> A burnt-out servo slams into the ground next to your [pc.foot]. <i>“So, " + pc.mf("Mister","Miss") + " pirate, how are you going to waste my time today?");
+	flags["MAUS_THINKS_PIRATE"] = 2;
+	processTime(5);
+	rodentTalkTopics();
+}
+
+//Not A Slave
+public function ImNotASlaveLittleRat():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("You protest that you aren’t a slave.");
+	output("\n\nShe shakes her head, dish-shaped ears wobbling. <i>“That’s where you’re wrong. Everyone’s a slave. They’re just one bad day away from accepting it.”</i>  A half-melted servo nearly smacks into your skull from a careless toss. <i>“One fucked up night partying with the wrong people. One businessman thoughtlessly crossed. One bad decision to sample an experimental drug.”</i> Her weary laughter cuts deeper than her burning torch. <i>“Might as well just find yourself a decent master before you stumble into one of the bad ones.”</i>");
+	output("\n\nYou ");
+	if(pc.isNice()) output("politely decline to follow her advice.");
+	else if(pc.isMischievous()) output("glibly suggest that you’re more interested in being a good master than anyone’s slave.");
+	else output("casually dismiss her advice. You’re not the giving up sort.");
+	output("\n\n<i>“Look, if you aren’t going to get to work, what do you want from me?”</i>");
+	flags["MAUS_THINKS_PIRATE"] = 1;
+	processTime(5);
+	rodentTalkTopics();
+}
+public function rodentTalkTopics():void
+{
+	clearMenu();
+	if(pc.hasKeyItem("Zheng Shi RFID Badge")) addDisabledButton(0,"Mining Robots","You already have the RFID pass!");
+	else addButton(0,"Mining Robots",mouseRobotTalk);
+	if(pc.hasKeyItem("Zheng Shi RFID Badge") || flags["REFUSED_BADGE"] != undefined) 
+	{
+		if(flags["TALKED_ABOUT_RAIDERS_WMAUS"] == undefined) addButton(3,"Raiders",raidersTalkWithMaus);
+		else addDisabledButton(3,"Raiders","Raiders","You already had this discussion.");
+	}
+	else addDisabledButton(3,"Locked","Locked","You don't know enough for this.");
+	if(flags["TALKED_ABOUT_MAUS"] == undefined) addButton(1,"Her",askMausAboutHer);
+	else addDisabledButton(1,"Her","Her","She didn't seem very keen on sharing.");
+	if(flags["FLIRTFAILED_WITH_MAUS"] == undefined) addButton(2,"Flirt",flirtWithThisMaus);
+	else addDisabledButton(2,"Flirt","Flirt","You tried this. It didn't work.");
+	addButton(4,"Fight",fightTheMausRaider);
+	addButton(14,"Leave",mainGameMenu);
+}
+
+//Flirt
+public function flirtWithThisMaus():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("You suggest that you’d be happy to keep her company if she wanted to take a break.");
+	output("\n\nThe mouse-girl pauses briefly, then resumes tossing down bits of metal. <i>“Yeah, you’re either new to rodenians or an asshole. Either way, not interested. Already got a mate, and don’t need any new friends, with or without benefits.”</i> Her tail tosses a wrench into her toolbox angrily. <i>“But we both know that " + pc.mf("guys","girls") + " like you are all about those benefits. Don’t you have anything better to do than waste my time?”</i>");
+	flags["FLIRTFAILED_WITH_MAUS"] = 1;
+	processTime(3);
+	rodentTalkTopics();
+}
+
+//Her
+public function askMausAboutHer():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("You ask the mouse-woman her name.");
+	output("\n\n<i>“Nope. You don’t need it, and I’m not giving it.”</i>");
+	output("\n\nMaybe you should ask something else...");
+	flags["TALKED_ABOUT_MAUS"] = 1;
+	setButtonDisabled(1);
+	rodentTalkTopics();
+}
+
+//Robots
+public function mouseRobotTalk():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	if(flags["REFUSED_BADGE"] == undefined)
+	{
+		output("You ask her what the deal is with the mining robots, and why they keep attacking you.");
+		output("\n\n<i>“Oh for fuck’s sake...”</i> The rodenian whirls around to stare down at you. <i>“You came down here without an RFID badge?”</i> Her eyes widen. <i>“You did. You fucking moron. Are you </i>trying<i> to get yourself killed? These things...”</i> She kicks the disabled robot in the head. <i>“They have the all the brainpower of the universe’s dumbest cockroach. Half of them think organic matter’s just some easily drillable rock. The other half might realize you’re a living thing and assume you’re a thief. Either way, the results are the same.”</i>");
+		output("\n\nYou nod. That’s about in line with your experiences.");
+		output("\n\n<i>“Those dumb fuck-bunnies are worse at running this place than they are at taking showers.”</i> The sour mechanic sighs. <i>“Look, I might be an asshole, but I’m not gonna let you get yourself killed on your way out of here.”</i> She digs deep into her toolbox, spilling a few tiny screwdrivers into the cut-open diggerbot. <i>“Ah, here it is!”</i> A small alligator clip with skull and crossbones appears in her fuzzy hand. <i>“Pin this on somewhere, and they’ll leave you alone.”</i> It sails through the air into your hand.");
+		output("\n\nYou thank the mystery mouse for her help.");
+		output("\n\n<i>“Don’t mention it. And smarten up! Zheng Shi eats up idiots and spits out slaves. We already have too many of those if you ask me. Can’t even go up to the recreation deck without three pretty slaves trying to warm my bed.”</i> The mouse-girl waves dismissively. <i>“Now get out of my hair. I’m already behind on this repair job, and I am </i>not<i> going to waste anymore time in this hell-pit than I have to. Bad enough the other Raiders sent me down here in the first place.”</i>");
+	}
+	else
+	{
+		output("You bring up the robots again, and how you’re thinking over her offer for a RFID badge.");
+		output("\n\nThe mouse-woman rolls her eyes. <i>“Oh so now you want my help to keep your insides from being drilled into your outsides?”</i> She snorts disdainfully. <i>“Wise up before you get yourself killed. Here.”</i> She tosses a badge through the air.");
+	}
+	processTime(10);
+	output("\n\n<b>Do you keep the RFID badge? Doing so with permanently disable encounters with mining robots.</b>");
+	clearMenu();
+	addButton(0,"Yes",keepTheBadge);
+	addButton(1,"No",dontKeepTheBadge);
+}
+
+public function keepTheBadge():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("(<b>Key Item Gained:</b> Zheng Shi RFID Badge! With this, mining robots will no longer see you as a source of ore!)");
+	pc.createKeyItem("Zheng Shi RFID Badge");
+	rodentTalkTopics();
+}
+
+public function dontKeepTheBadge():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("You toss the badge back.");
+	if(flags["REFUSED_BADGE"] == undefined) 
+	{
+		output("\n\n<i>“Suit yourself. I tried.”</i> The mouse-eared woman shakes her head sadly. <i>“I tried.”</i> She waves you away, unwilling to speak any longer.");
+		flags["REFUSED_BADGE"] = 1;
+	}
+	else output("\n\n<i>“You’re a moron. When you die, it won’t be my fault.”</i>");
+	rodentTalkTopics();
+}
+
+//Raiders talk
+public function raidersTalkWithMaus():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("<i>“Raiders?”</i> you ask.");
+	output("\n\n<i>“Holy titty-fucking space-Jesus, no wonder you didn’t have a badge. You don’t know anything, do you?”</i> The mouse-girl whistles. <i>“Guess they’re letting any idiot who calls [pc.himHer]self a pirate in nowadays. Whatever.”</i> With a slow wave and slower enunciation, she explains, <i>“Rat’s Raiders are one of the big gangs that runs Zheng Shi. Unlike the rest of these degenerates, we’re not big ol’ dick-bags about it. See we aren’t in the game </i>entirely<i> to line our pockets. We’re in it to fuck with the status quo. Take from the jackasses at the top who can afford it and put it to better use helping out those of us at the bottom. That’s the idea anyway.”</i>");
+	output("\n\n<i>“Really?”</i>");
+	output("\n\nSomething approximating a smile spreads across her pointed snout. <i>“You betcha. Of course we’re not big enough to stick it to the people that matter on our own. That’s why we gotta put up with the asshole Vipers, the slut Jumpers, the machine fetishists, and those self-important corona-huffers.”</i> She shrugs. <i>“Anyway, I have work to do, and you...”</i> She points at you with her tail, not even bothering to look. <i>“...are bothering me.”</i>");
+	processTime(5);
+	flags["TALKED_ABOUT_RAIDERS_WMAUS"] = 1;
+	rodentTalkTopics();
+}
+
+//Fight her
+public function fightTheMausRaider():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("You pull out your [pc.weapon].");
+	output("\n\n<i>“Oh fuck this.”</i> The mouse-girl rolls behind the bot and slaps it hard. <i>“Can’t even finish a repair job without some </i>ASSHOLE<i> trying to ear-fuck me into his pet puppet.”</i> The mining robot’s eyes light up. Even with its panels off and half its pieces on the floor, it’s still an impressive piece of tech. <i>“Fuck ‘em up, big guy.”</i>");
+	output("\n\nThrough the robot’s legs, you see the sprinting mouse-girl flipping you the bird.");
+	output("\n\nFuck.");
+	clearMenu();
+	var tEnemy:Creature = new MiningRobot();
+	tEnemy.HP(-0.5*tEnemy.HPMax());
+	CombatManager.newGroundCombat();
+	CombatManager.setFriendlyActors(pc);
+	CombatManager.setHostileActors(tEnemy);
+	CombatManager.victoryScene(defeatAMiningRobot);
+	CombatManager.lossScene(loseToAMiningRobot);
+	CombatManager.displayLocation("M.ROBOT");
+	flags["MAUS_MECHANIC_DISABLED"] = 1;
+	clearMenu();
+	addButton(0,"Next",CombatManager.beginCombat);
+}
+
+public function leaveTheMouse():void
+{
+	clearOutput();
+	showName("\nMECHANIC");
+	showBust("RODENIAN_MECHANIC");
+	author("Fenoxo");
+	output("You bid your farewells.");
+	output("\n\n<i>“Yeah, try not to die to badly. If they send me down to clean up the mess, I’m going to be </i>pissed<i>.”</i>");
+	clearMenu();
+	addButton(0,"Next",mainGameMenu);
 }
