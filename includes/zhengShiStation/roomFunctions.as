@@ -227,8 +227,8 @@ public function fastSpacewalkToHangar():void
 	showName("\nSPAAAAACE!");
 	output("Walking along the outside of Zheng Shi is beautiful but slow. Fortunately, there’s nobody around to bother a lone astronaut going for a stroll. Ships float by, loaded with illicit cargo and inattentive crews. You may as well not exist.\n\nThere’s the hangar! And you have plenty of oxygen to spare.");
 	processTime(30);
-	clearMenu();
 	currentLocation = "ZS L50";
+	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
@@ -238,8 +238,8 @@ public function fastSpacewalkToAirlock():void
 	showName("\nSPAAAAAACE");
 	output("The trip back into the raw void should be fraught with peril... but it’s safer than bumbling around in the mines. You walk carefully for what feels like a half hour until you reach the airlock door. The trip barely put a dent in your oxygen reserves!");
 	processTime(30);
-	clearMenu();
 	currentLocation = "ZSM YY18";
+	clearMenu();
 	addButton(0,"Next",mainGameMenu);
 }
 
@@ -290,7 +290,6 @@ public function miningRobotAttack():Boolean
 		
 		output("\n\nUh oh...");
 
-		clearMenu();
 		CombatManager.newGroundCombat();
 		CombatManager.setFriendlyActors(pc);
 		CombatManager.setHostileActors(new MiningRobot());
@@ -647,7 +646,6 @@ public function callAPaigeFriend():void
 	output("\n\n<i>“That’s the secret, [pc.name],”</i> Paige says as she turns toward the door of the bridge. <i>“Don’t let them push you around. There’s no law or decorum in Zheng Shi; as soon as you show them any weakness, they’ll make you their bitch, so if you enjoy being your own {wo}man, you need to push as hard as they shove.”</i>");
 	output("\n\nYou thank Paige for her advice and dismiss her from the bridge as you pass through the force field and into a sweeping hangar bay, big enough for twenty or so large ships - and countless little tramp freighters and scout ships like the old Z14.");
 	output("\n\nNobody’s paying you much mind now that you’re docked. Indeed, you manage to find a relatively isolated spot at the back of the hangar to land. The ship settles with a resounding thud, and you make your way to the airlock. Time to see where your probe’s gotten off to... assuming it’s really here.");
-	clearMenu();
 	flags["ZHENG_SHI_PASSWORDED"] = 1;
 	flags["PAIGE_HELPED_ZHENG"] = 1;
 	clearMenu();

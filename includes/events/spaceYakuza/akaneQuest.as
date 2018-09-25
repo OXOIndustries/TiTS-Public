@@ -166,7 +166,7 @@ public function akanequestHereWeGoRaidingAgain():void
 	output("\n\nA different hand on your right pulls you forward gently, bringing you under another hot overhead light.");
 	output("\n\n<i>“I trust that this is a suitable product, Madam Petra,”</i> comes that familiar voice of his, the charm now much thicker than what you’ve had from him before. You wince internally as you hear ‘product’.");
 	output("\n\nHeavy boot prints approach you along with a cracking knuckle.");
-	output("\n\n<i>“Seems aight, so far. What even are ya, hm? [pc.race]? And how much cash didja dump to look like that? Don’t matter, really. Defaulted on ya debts, get caught, ended up where you belong. Circle o’ life,”</i> comes the snarling voice, rugged yet still clearly feminine.");
+	output("\n\n<i>“Seems aight, so far. What even are ya, hm? [pc.Race]? And how much cash didja dump to look like that? Don’t matter, really. Defaulted on ya debts, get caught, ended up where you belong. Circle o’ life,”</i> comes the snarling voice, rugged yet still clearly feminine.");
 	output("\n\nAn incredibly strong hand grips you by the throat!");
 	output("\n\n<i>“And I bet [pc.heShe] is really regrettin’ it all. Age?”</i> continues the increasingly excited Petra.");
 	output("\n\n<i>“20ish, a young one. We believe [pc.heShe] has no immediate family or friendly connections. Another number, although please ah...”</i> explains Shan. You can feel him standing in between the two of you and the hand roughly held around your throat withdraws. <i>“No touching until final purchase, yes? We would not want to sell you ‘damaged goods’.”</i>");
