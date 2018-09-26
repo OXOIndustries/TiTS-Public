@@ -1704,7 +1704,7 @@ public function loseToNymFoeViaHPBimboStep3():void
 		output(". ");
 		pc.lust(10);
 	}
-	output("The steel tail keep pumping, but now the silicone makes ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you thought possible!");
+	output("The steel tail keeps pumping, but now the silicone makes ticklish paths through your body to settle in your [pc.chest]. You moan and wiggle as the semi-solid goo inflates your mounds, boosting your boobies faster than you thought possible!");
 	//player’s breasts increase by 3 cup sizes
 	nymFoeInjection(3,3);
 	processTime(3);

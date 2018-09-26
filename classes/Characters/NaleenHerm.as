@@ -198,7 +198,7 @@
 		
 		override public function get bustDisplay():String
 		{
-			return "NALEEN_HERM";
+			return "NALEEN_FUTA";
 		}
 		
 		override public function setDefaultSexualPreferences():void

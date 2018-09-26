@@ -71,8 +71,8 @@ package classes.Engine.Combat
 		if (target.hasStatusEffect("Tallavarian Tingler")) damMulti += 0.5;
 		if (lustDamage.tease.damageValue > 0)
 		{
-			if(target.hasPiercingOfClass(GeddaniumRingPiercing) && attacker.hasScales()) lustDamage.tease.damageValue *= 1.3;
-			if(target.hasPiercingOfClass(UrtaniumRingPiercing) && attacker.hasFur()) lustDamage.tease.damageValue *= 1.3;
+			if(target.hasPiercingOfClass(GeddaniumRingPiercing) && attacker != null && attacker.hasScales()) lustDamage.tease.damageValue *= 1.3;
+			if(target.hasPiercingOfClass(UrtaniumRingPiercing) && attacker != null && attacker.hasFur()) lustDamage.tease.damageValue *= 1.3;
 		}
 
 		//New status: "Red Myr Venom" replaces this.

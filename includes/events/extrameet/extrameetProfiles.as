@@ -2290,7 +2290,7 @@ public function extrameetDaRegulatorCheckMatch():Boolean
 public function extrameetDaRegulatorDate():void
 {
 	//showName("DaRegulator");
-	showName("THE\nREGULATOR");
+	showName("DA\nREGULATOR");
 	author("Fr0sty");
 	moveTo("609");
 	output("You enter The Golden Peak and immediately see your date. He is in uniform and sitting on his own, drinking what looks like a glass of water. He is shorter than you expected, maybe no taller than 5’8, but seems to be in fairly good shape. He spots you and flags you over to the table. You make your way over and have a seat, introducing yourself.");
@@ -2313,7 +2313,7 @@ public function extrameetDaRegulatorSex():void
 	clearOutput();
 	clearMenu();
 	//showName("DaRegulator");
-	showName("THE\nREGULATOR");
+	showName("DA\nREGULATOR");
 	author("Fr0sty");
 	//find the cock to use 
 	var kok:int = rand(pc.cockTotal());

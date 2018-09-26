@@ -29,6 +29,7 @@ Flags
 */
 public function willowBonus(button:Number):void
 {
+	/* DISABLED pending extensive cleanup.
 	if(flags["WILLOW_MET"] == undefined)
 	{
 		output("\n\nYou take a cursory look around and spot a new face. It’s a new waitress and a pretty cute one at that... if you like demons. Yep. She looks like a demon straight out of One God mythology: red skin, horns, the whole deal. You notice with appreciation that she has a curvy, heart-shaped ass topped by a spaded tail and supple, perky breasts.");
@@ -44,7 +45,7 @@ public function willowBonus(button:Number):void
 	{
 		output("\n\nYou grin as you see your pet running around taking orders and take a seat, waiting for her to approach.");
 		addButton(button,"Willow",willowLoverMenu,0);
-	}
+	}*/
 }
 
 public function showWillowName():void
@@ -653,7 +654,7 @@ public function willowSexScenes(sceneChoice:int):void
 			output ("ready to pack her full. After a few hard slams, ");
 			if (knot || knots)output("you roughly fuck the knot into her, making her scream out with pain and pleasure at the sudden stretching. ");
 			else output ("you bury yourself deep in her and cum, spraying rope after rope of cum into her. ");
-			output ("Your other "+ cock1 +" sprays its load over her back. ")
+			if(cIdx2 >= 0) output ("Your other "+ cock2 +" sprays its load over her back. ");
 			output ("There’s so much, ");
 			if (knot || knots)output("but your knot ensures that nothing flows back out, keeping her pussy filled with cum.");
 			else output("that it flows back out around your [pc.biggestCock], dripping to the floor and mixing with her juices. ");

@@ -9,6 +9,13 @@ package classes.Resources.Busts
 	{
 		public function get PREVIEW():Class { return Bust_QUEENOFTHEDEEP; }
 		
+		[Embed(source = "../../../assets/images/pc/jacques00/pc.png", mimeType = "image/png")]
+		public var Bust_PC:Class;
+		public var Bounds_PC:Rectangle = new Rectangle(30, 5, 90, 85);
+		[Embed(source = "../../../assets/images/pc/jacques00/pc_nude.png", mimeType = "image/png")]
+		public var Bust_PC_NUDE:Class;
+		public var Bounds_PC_NUDE:Rectangle = new Rectangle(30, 5, 90, 85);
+		
 		[Embed(source = "../../../assets/images/npcs/jacques00/reasner.png", mimeType = "image/png")]
 		public var Bust_BEATRICE:Class;
 		[Embed(source = "../../../assets/images/npcs/jacques00/reasner_nude.png", mimeType = "image/png")]
@@ -274,6 +281,11 @@ package classes.Resources.Busts
 		// Easiest way to specify these- compiler constants will avoid these being embedded in the non-imagepack version aka OH GOD WHERE DID THE FILESIZE GOOOOO
 		CONFIG::IMAGEPACK
 		{
+			[Embed(source = "../../../assets/images/pc/jacques00/hr/pc.png", mimeType = "image/png")]
+			public var Full_PC:Class;
+			[Embed(source = "../../../assets/images/pc/jacques00/hr/pc_nude.png", mimeType = "image/png")]
+			public var Full_PC_NUDE:Class;
+			
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/reasner.png", mimeType = "image/png")]
 			public var Full_BEATRICE:Class;
 			[Embed(source = "../../../assets/images/npcs/jacques00/hr/reasner_nude.png", mimeType = "image/png")]

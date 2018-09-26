@@ -267,7 +267,7 @@ public function approachGianna(special:String = ""):void
 			}
 			if(pc.hasVagina()) output(" [pc.EachVagina] distinctly moistens in response to the wanton robot.");
 			if(!pc.hasVagina() && !pc.hasCock()) output(" You feel your [pc.skin] flush a little at her wanton declaration.");
-			applyDamage(new TypeCollection( { tease: 25 } ), null, pc, "minimal");
+			applyDamage(new TypeCollection( { tease: 25 } ), chars["GIANNA"], pc, "minimal");
 			output("\n\nShe smiles knowingly, doubtless aware of the effects her lewd actions would have. <i>“I’d be happy to give you almost any kind of relief, even if it’s just talking, all right?”</i> She looks down at her toes abruptly. <i>“This is the first real conversation I’ve had in weeks.”</i> Her gleaming onyx lip pouts ever so slightly, and a worried look crosses her face. <i>“We can fuck now if you need, but please... don’t ignore me. Okay?”</i>");
 			processTime(7);
 			//Normal menu! See bottom.

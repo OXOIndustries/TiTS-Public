@@ -18,7 +18,7 @@
 public function showNaleenFuta(nude:Boolean = false):void
 {
 	showName("NALEEN\nHERM");
-	showBust("NALEEN_HERM" + (nude ? "_NUDE":""));
+	showBust("NALEEN_FUTA" + (nude ? "_NUDE":""));
 	author("Doots");
 }
 

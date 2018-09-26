@@ -515,18 +515,58 @@ public function showCodex():void
 	
 	// TESTO BUTTONO
 	addGhostButton(0, "Stats", statisticsScreen, flags["TOGGLE_MENU_STATS"]);
-	
-	//addGhostButton(1, "Messages", function():void { } );
-	//addGhostButton(2, "Log", function():void { } );
-	//addGhostButton(3, "CHEEVOS", function():void { } );
 	addGhostButton(1, "Log", displayQuestLog, flags["TOGGLE_MENU_LOG"]);
+	addGhostButton(2, "Extra", showCodexExtra, undefined, "Extra Functions", "Use your codex add-on functions.");
+	addGhostButton(3, "Options", displayCodexOptions, undefined, "Codex Options", "Adjust the settings to your codex display.");
+	addGhostButton(4, "Back", backToPrimaryOutput);
+}
+public function showCodexExtra():void
+{
+	clearOutput2();
+	clearGhostMenu();
+	
+	output2(header("<u>Codex Functions</u>", false));
+	
+	output2("\nUse your codex add-on functions.");
+	output2("\n");
+	
+	output2("\n<b><u>Add-Ons</u></b>");
+	
+	var btnSlot:int = 0;
+	var addOns:Array = [];
+	var i:int = 0;
+	
+	// Add-ons
 	if(flags["EMMY_QUEST"] >= 6)
 	{
-		if(!canSaveAtCurrentLocation) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","You cannot use this at this time.");
-		else if(flags["KQ2_MYRELLION_STATE"] == 1) addDisabledGhostButton(3,"EmmyRemote","EmmyRemote","Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad’s resources to track down her whereabouts - assuming she made it out in one piece.");
-		else addGhostButton(3,"EmmyRemote",pushEmmysButtonsMenu);
+		output2("\n<b>* Remote Cumtrol:</b> Control interface for Emmy’s herm harness sex toy.");
+		if(!canSaveAtCurrentLocation) addOns.push(["EmmyRemote", null, undefined, "Remote Cumtrol", "You cannot use this at this time."]);
+		else if(flags["KQ2_MYRELLION_STATE"] == 1) addOns.push(["EmmyRemote", null, undefined, "Remote Cumtrol", "Who knows if Emmy is even alive with what happened to Myrellion. Maybe after you finish with this probe nonsense, you can use your Dad’s resources to track down her whereabouts - assuming she made it out in one piece."]);
+		else addOns.push(["EmmyRemote", pushEmmysButtonsMenu, undefined, "Remote Cumtrol", "Control Emmy’s sex toy."]);
 	}
-	addGhostButton(4, "Back", backToPrimaryOutput);
+	
+	if(addOns.length <= 0) output2("\n* <i>There are no controllable add-ons installed at the moment.</i>");
+	output2("\n\n");
+	
+	for(i = 0; i < addOns.length; i++)
+	{
+		if(btnSlot >= 14 && (btnSlot + 1) % 15 == 0)
+		{
+			addGhostButton(btnSlot, "Back", showCodex);
+			btnSlot++;
+		}
+		
+		if(addOns[i][1] == null) addDisabledGhostButton(btnSlot, addOns[i][0], addOns[i][3], addOns[i][4]);
+		else addGhostButton(btnSlot, addOns[i][0], addOns[i][1], addOns[i][2], addOns[i][3], addOns[i][4]);
+		btnSlot++;
+		
+		if(addOns.length > 14 && (i + 1) == addOns.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addGhostButton(btnSlot, "Back", showCodex);
+		}
+	}
+	addGhostButton(14, "Back", showCodex);
 }
 
 // Temp display stuff for perks

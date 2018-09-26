@@ -1456,8 +1456,8 @@ public function initZhengRooms():void
 	rooms["ZSF E24"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF G14"] = new RoomClass(this);
-	rooms["ZSF G14"].roomName = "\n";
-	rooms["ZSF G14"].description = "";
+	rooms["ZSF G14"].roomName = "\nFOUNDRY";
+	rooms["ZSF G14"].description = "Heavy machinery, soot, and a cacophanous din are the norm here. Industrial equipment fences you in to the east and west, pounding raw ore into easily siftable dust. Above, heavy ceramic buckets slowly clink along on their way to or from the furnaces to the top, glowing with incandescent heat. To the south there is a bit of a crossroads, complete with a cargo lift.";
 	rooms["ZSF G14"].planet = "ZHENG SHI STATION";
 	rooms["ZSF G14"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF G14"].northExit = "ZSF G12";
@@ -1470,8 +1470,8 @@ public function initZhengRooms():void
 	rooms["ZSF G14"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF G12"] = new RoomClass(this);
-	rooms["ZSF G12"].roomName = "\n";
-	rooms["ZSF G12"].description = "";
+	rooms["ZSF G12"].roomName = "FOUNDRY\nACCESS";
+	rooms["ZSF G12"].description = "Conveyors loaded with gemstones and ore climb from a pit in the ground to the north, purveying Zheng Shi’s riches into easily accessible stream. Other machines pick at the choicest - or most desirable - materials for further refining. Diamond-patterned deckplates are laid out across the east-west path to allow the workers good traction. You can traverse south along over bare stone toward the elevator."
 	rooms["ZSF G12"].planet = "ZHENG SHI STATION";
 	rooms["ZSF G12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF G12"].northExit = "";
@@ -1484,8 +1484,8 @@ public function initZhengRooms():void
 	rooms["ZSF G12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF I12"] = new RoomClass(this);
-	rooms["ZSF I12"].roomName = "\n";
-	rooms["ZSF I12"].description = "";
+	rooms["ZSF I12"].roomName = "THE\nFOUNDRY";
+	rooms["ZSF I12"].description = "Between conveyors and soot-blackened plasma furnaces, this metal-lined path forks north, east, and west. Most of the work is automated. No crew is necessary to operate the heavy machinery. No fuel needs to be shoveled in - a fusion core somewhere else takes care of supplying all the necessary energy.";
 	rooms["ZSF I12"].planet = "ZHENG SHI STATION";
 	rooms["ZSF I12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF I12"].northExit = "ZSF I10";
@@ -1498,8 +1498,8 @@ public function initZhengRooms():void
 	rooms["ZSF I12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF K12"] = new RoomClass(this);
-	rooms["ZSF K12"].roomName = "\n";
-	rooms["ZSF K12"].description = "";
+	rooms["ZSF K12"].roomName = "THE\nFOUNDRY";
+	rooms["ZSF K12"].description = "Smothering heat rolls off of the forge equipment to the north. Heavy ceramic crucibles drift into flaring arcs of plasma, reducing their contents into red-hot puddles of liquefied slag. The deckplates underfoot are littered with flecks of rust and long-cooled shards. The path around the furnaces continues to the east and west.";
 	rooms["ZSF K12"].planet = "ZHENG SHI STATION";
 	rooms["ZSF K12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF K12"].northExit = "";
@@ -1512,8 +1512,8 @@ public function initZhengRooms():void
 	rooms["ZSF K12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF M12"] = new RoomClass(this);
-	rooms["ZSF M12"].roomName = "\n";
-	rooms["ZSF M12"].description = "";
+	rooms["ZSF M12"].roomName = "THE\nFOUNDRY";
+	rooms["ZSF M12"].description = "The machinery comes to a halt along the eastern edge of the cavern. High above, a suspended scaffold surrounds the shape of an enormous craft. It looks complete, any work long since finished. To your northwest, the forgefires burn bright, the plasma furnaces glittering with fiery, metal-dissolving energies.";
 	rooms["ZSF M12"].planet = "ZHENG SHI STATION";
 	rooms["ZSF M12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF M12"].northExit = "ZSF M10";
@@ -1526,8 +1526,8 @@ public function initZhengRooms():void
 	rooms["ZSF M12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF M10"] = new RoomClass(this);
-	rooms["ZSF M10"].roomName = "\n";
-	rooms["ZSF M10"].description = "";
+	rooms["ZSF M10"].roomName = "THE\nFOUNDRY";
+	rooms["ZSF M10"].description = "The space between the craggy wall and the bulky mass of an enormous power converter threatens to slow your passage around the forge deck, but someone has thoughtfully chiseled a notch in the stone for you to squeeze through. Now if only the heat from the forges to your west didn’t make the whole area feel like an unpleasantly dry sauna.";
 	rooms["ZSF M10"].planet = "ZHENG SHI STATION";
 	rooms["ZSF M10"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF M10"].northExit = "ZSF M8";
@@ -1540,8 +1540,8 @@ public function initZhengRooms():void
 	rooms["ZSF M10"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF M8"] = new RoomClass(this);
-	rooms["ZSF M8"].roomName = "\n";
-	rooms["ZSF M8"].description = "";
+	rooms["ZSF M8"].roomName = "THE\nFOUNDRY";
+	rooms["ZSF M8"].description = "Sparks and sizzling bits of molten metal spray from the towering machinery to the west. They skitter across the deckplates like tiny, dangerous pucks, though you doubt this foible with rouse the administrators of this station’s lax safety standards. The reddish-orange light of molten metal bathes this area with its scorching gaze. A glance at the source is enough to make your eyes sizzle like fried eggs on the griddle, and you look away before you do some permanent damage.";
 	rooms["ZSF M8"].planet = "ZHENG SHI STATION";
 	rooms["ZSF M8"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF M8"].northExit = "ZSF M6";
@@ -1702,8 +1702,8 @@ public function initZhengRooms():void
 	rooms["ZSF I8"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF E16"] = new RoomClass(this);
-	rooms["ZSF E16"].roomName = "\n";
-	rooms["ZSF E16"].description = "";
+	rooms["ZSF E16"].roomName = "\nTUNNEL";
+	rooms["ZSF E16"].description = "Signs along the stone-hewn walls indicate that this tunnel leads to the forge deck’s shuttle bay further west. The passage itself is surprisingly well lit, well kept, and busy with the comings and going of the station’s many slaves. To the east, it opens into a wider cavern with the scaffolding of an industrial elevator.";
 	rooms["ZSF E16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF E16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF E16"].northExit = "";
@@ -1716,8 +1716,8 @@ public function initZhengRooms():void
 	rooms["ZSF E16"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF C16"] = new RoomClass(this);
-	rooms["ZSF C16"].roomName = "\n";
-	rooms["ZSF C16"].description = "";
+	rooms["ZSF C16"].roomName = "\nTUNNEL";
+	rooms["ZSF C16"].description = "This tunnel flexes north and east around a corner. Stencil-sprayed signage indicates that you’ll find a shuttle bay in the former direction and the foundry deck in the latter. The ceiling is blessedly high and girded with dozens of power cables, held high alongside a collection of mismatched glowbulbs, LEDs, and other, more exotic sources of luminance.";
 	rooms["ZSF C16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF C16"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF C16"].northExit = "ZSF C14";
@@ -1730,8 +1730,8 @@ public function initZhengRooms():void
 	rooms["ZSF C16"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF C14"] = new RoomClass(this);
-	rooms["ZSF C14"].roomName = "\n";
-	rooms["ZSF C14"].description = "";
+	rooms["ZSF C14"].roomName = "SHUTTLE\nBAY";
+	rooms["ZSF C14"].description = "Small spacecraft flit in and out of this modest shuttle bay with alarming regularity, disgorging slaves, raw materials, and pirates who would rather fly than rely on something as old-fashioned as an elevator. No independent ships break up the steady flow. Everyone is affiliated with one of the major gangs: Jumpers, Cyber Punks, Corona Lords, Rat’s Raiders, or Star Vipers. You see them all in force. You doubt you’ll be able to land here or secure your own transport without belong to one.";
 	rooms["ZSF C14"].planet = "ZHENG SHI STATION";
 	rooms["ZSF C14"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF C14"].northExit = "";
