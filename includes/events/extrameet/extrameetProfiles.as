@@ -2271,7 +2271,7 @@ public function extrameetDoggeDate():void
 //[EXTRAMEET_DAREGULATOR]
 public function extrameetDaRegulatorProfile():void
 {
-	output("The profile picture on your screen is of a dark skinned man wearing a U.G.C. peacekeeper uniform. He looks quite handsome, and from what you can see he seems to be pure Human.");
+	output("The profile picture on your screen is of a dark skinned man wearing a U.G.C. Peacekeeper uniform. He looks quite handsome, and from what you can see he seems to be pure Human.");
 	output("\n\nUsername: DaRegulator");
 	output("\nSex: Male");
 	output("\nAge: 25 Years");

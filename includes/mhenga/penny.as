@@ -1189,8 +1189,8 @@ public function pennysYouth():void {
 	showPenny();
 	flags["TALK_WITH_PENNY_ABOUT_YOUTH"] = 1;
 	output("You ask Penny what she was like when she was younger. Did something motivate her to become a U.G.C. Peacekeeper?");
-	output("\n\n<i>“Oh, hell yes something motivated me to be a peacekeeper,”</i> Penny answers. <i>“I was always a smaller kid. I had small parents who didn’t really get behind the whole gene selection technologies a lot of richer couples take advantage of. I was a genetic roll of the dice, and I came up short. I didn’t have that much trouble for it myself, but I always saw nerdier or fatter kids getting beat up on. I lived in a bad neighborhood too, so witnessing crime was an almost everyday affair.”</i> Penny’s visage hardens. <i>“I was too little to do anything about either one.”</i>");
-	output("\n\nThe fennec-girl relaxes as she continues, <i>“I actually got mugged, or near enough to it, as a teenager. A peacekeeper was passing through the neighborhood and saved my bacon that day. He wasn’t big or particularly strong, just smart and skilled. He had the perp disarmed and stunned before I knew what happened.”</i> Penny smiles enthusiastically. <i>“At that moment, I realized what I wanted to do with my life.”</i>");
+	output("\n\n<i>“Oh, hell yes something motivated me to be a Peacekeeper,”</i> Penny answers. <i>“I was always a smaller kid. I had small parents who didn’t really get behind the whole gene selection technologies a lot of richer couples take advantage of. I was a genetic roll of the dice, and I came up short. I didn’t have that much trouble for it myself, but I always saw nerdier or fatter kids getting beat up on. I lived in a bad neighborhood too, so witnessing crime was an almost everyday affair.”</i> Penny’s visage hardens. <i>“I was too little to do anything about either one.”</i>");
+	output("\n\nThe fennec-girl relaxes as she continues, <i>“I actually got mugged, or near enough to it, as a teenager. A Peacekeeper was passing through the neighborhood and saved my bacon that day. He wasn’t big or particularly strong, just smart and skilled. He had the perp disarmed and stunned before I knew what happened.”</i> Penny smiles enthusiastically. <i>“At that moment, I realized what I wanted to do with my life.”</i>");
 	output("\n\nYou ask her if she ran off to join up after that.");
 	output("\n\n<i>“Don’t be crazy, Crazy. I finished school first before I enrolled. I wanted to protect people, even though I’m not the biggest or the strongest, and the U.G.C. gave me a chance to do that.”</i> Penny beams. <i>“The academy wasn’t easy, particularly not for a small Penny Inoue. I toughed it out all the same. You don’t get to serve law and order if you can’t take a few hits.”</i>");
 	processTime(20);
@@ -3515,7 +3515,7 @@ public function whineToPennyCauseYerABitch():void
 	clearOutput();
 	author("Savin");
 	showPenny();
-	output("Rather than talking about you and Penny, as you’re accustomed to, you tell the vulpine peacekeeper that you’ve got a crime to report - something you weren’t able to deal with on your own. Penny perks up at that, her playful demeanour giving way to seriousness. She taps something on her desk’s computer, bringing up some kind of form.");
+	output("Rather than talking about you and Penny, as you’re accustomed to, you tell the vulpine Peacekeeper that you’ve got a crime to report - something you weren’t able to deal with on your own. Penny perks up at that, her playful demeanour giving way to seriousness. She taps something on her desk’s computer, bringing up some kind of form.");
 	output("\n\n<i>“Okay, ");
 	if(flags["SEXED_PENNY"] != undefined) output("my mate");
 	else output("[pc.name]");

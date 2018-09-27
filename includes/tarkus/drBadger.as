@@ -533,7 +533,7 @@ public function heyDocImAHero():void
 	processTime(40+rand(15));
 	pc.loadInAss(chars["DRBADGER"]);
 	pc.loadInAss(chars["DRBADGER"]);
-	output("\n\n(You could probably like, report this troublemaker to a U.G.C. peacekeeper and get her arrested. Maybe you can find a sexy cop!)");
+	output("\n\n(You could probably like, report this troublemaker to a U.G.C. Peacekeeper and get her arrested. Maybe you can find a sexy cop!)");
 	pc.taint(10);
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
@@ -548,7 +548,7 @@ public function heyDocImJustHereToShop():void
 	output("The Doctor glares at you intently for a few seconds, and then turns away with an exaggerated sigh. <i>“Fiiine!”</i> She releases you, walking back over to a cluttered workbench in the corner, more or less entirely uninterested in you now that you’ve turned out not to be the type of fun she was hoping for.");
 	output("\n\n<i>“What can I interest you in then? I’m a little low on stock at the moment, but I’ve got a shipment of pills that will get your engine revving.”</i> She rolls her eyes for a moment, mumbling to herself, <i>“not as much as I could have in person, but </i>oh well<i>.”</i>");
 	output("\n\n<i>“Anyway”</i>, she continues to you directly, <i>“what do you want?”</i>");
-	output("\n\n(You could probably report this troublemaker to a U.G.C. peacekeeper and get her arrested. Nothing about this seems legal.)");
+	output("\n\n(You could probably report this troublemaker to a U.G.C. Peacekeeper and get her arrested. Nothing about this seems legal.)");
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
 }

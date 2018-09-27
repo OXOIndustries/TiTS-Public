@@ -1042,13 +1042,13 @@ public function priapismBlurbs():void
 			msgList.push("Whispering voices follow you wherever you go: <i>“Look at that one, eh?”</i> <i>“Pervert...”</i> <i>“I bet it’s fake.”</i>");
 			msgList.push("A deertaur canters by you, then stops to look back over her shoulder. Her tail flutters playfully. After a second, she winks at you and trots off, haunches upraised to display a moistening slit. Tease.");
 			// New Canadia - lil dicks
-			if(cLength <= 12) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force smirks casually as he checks out your [pc.cockBiggest]. <i>“Poor lil [pc.guyGirl].”</i>");
+			if(cLength <= 12) msgList.push("A moose-taur in the bright red uniform of New Canadia’s Peacekeeper force smirks casually as he checks out your [pc.cockBiggest]. <i>“Poor lil [pc.guyGirl].”</i>");
 			// New Canadia - in the middle
-			else if(cLength <= 24) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force chuckles as he stomps by. <i>“Foreigners...”</i>");
+			else if(cLength <= 24) msgList.push("A moose-taur in the bright red uniform of New Canadia’s Peacekeeper force chuckles as he stomps by. <i>“Foreigners...”</i>");
 			// New Canadia - big dicks only
-			else if(cLength <= 48) msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeepers nods approvingly as he gazes at your [pc.cockBiggest]. <i>“Not bad.”</i>");
+			else if(cLength <= 48) msgList.push("A moose-taur in the bright red uniform of New Canadia’s Peacekeepers nods approvingly as he gazes at your [pc.cockBiggest]. <i>“Not bad.”</i>");
 			//New Canadia - hyper
-			else msgList.push("A moose-taur in the bright red uniform of New Canadia’s peacekeeper force recoils at the sight of your [pc.cockBiggest]. <i>“Pretty sure you need a permit for artillery like that.”</i> The quiet slap of his own dick smacking into his belly chases him as he trots off. More than once, he looks back longing.");
+			else msgList.push("A moose-taur in the bright red uniform of New Canadia’s Peacekeeper force recoils at the sight of your [pc.cockBiggest]. <i>“Pretty sure you need a permit for artillery like that.”</i> The quiet slap of his own dick smacking into his belly chases him as he trots off. More than once, he looks back longing.");
 		}
 		// NT
 		if(pcLocation == "New Texas")

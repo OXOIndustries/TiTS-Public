@@ -1748,7 +1748,7 @@ public function initZhengRooms():void
 		==========================  */
 
 	rooms["ZSF R6"] = new RoomClass(this);
-	rooms["ZSF R6"].roomName = "\n";
+	rooms["ZSF R6"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R6"].description = "";
 	rooms["ZSF R6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R6"].system = "SYSTEM: HERISIOD";

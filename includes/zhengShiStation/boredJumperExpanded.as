@@ -1285,7 +1285,7 @@ public function keepYoDignity():void
 	showBoredJumper(true);
 	author("William");
 	output("<i>“No.”</i> You blurt to her. <i>“I won’t join up with a gang of pirates.”</i> The laquine captain cocks an eyebrow at you and scowls, perhaps not expecting that response at all.");
-	output("\n\n<i>“You have no reason to resist. No peacekeeper for light years gives shit about you. You <i>will</i> die if you pursue this foolishness." + (crew(true) > 0 ? " Do your friends not really matter that much to you? Will you really inflict more harm on them than your death?":"") + "”</i>");
+	output("\n\n<i>“You have no reason to resist. No Peacekeeper for light years gives shit about you. You <i>will</i> die if you pursue this foolishness." + (crew(true) > 0 ? " Do your friends not really matter that much to you? Will you really inflict more harm on them than your death?":"") + "”</i>");
 	output("\n\nThe imposing captain taps her foot loudly and folds her arms. <i>“One more time, then, if you are set on this lunacy.”</i>");
 	processTime(3);
 	clearMenu();

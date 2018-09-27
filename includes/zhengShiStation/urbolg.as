@@ -282,7 +282,7 @@ public function defeatUrbolg():void
 	//HP
 	else
 	{
-		output("<i>“Hold!”</i> the mechanic bellows, smartly holstering his pistol. He throws his hands up in the air placatingly. <i>“Ye proved yer fekkin’ point! No bloody bastards are gonna be walking over you, no sir.”</i> He harrumphs, <i>“Meself included! Ye fight with the burning determination of a quasar and the wisdom of a frostwyrm. Either you’re a pirate to be proud of or peacekeeper I’d rather stand clear of. So go on, stretch your legs");
+		output("<i>“Hold!”</i> the mechanic bellows, smartly holstering his pistol. He throws his hands up in the air placatingly. <i>“Ye proved yer fekkin’ point! No bloody bastards are gonna be walking over you, no sir.”</i> He harrumphs, <i>“Meself included! Ye fight with the burning determination of a quasar and the wisdom of a frostwyrm. Either you’re a pirate to be proud of or Peacekeeper I’d rather stand clear of. So go on, stretch your legs");
 		if(pc.legCount == 1 || (!pc.hasLegFlag(GLOBAL.FLAG_PLANTIGRADE) && !pc.hasLegFlag(GLOBAL.FLAG_DIGITIGRADE))) output(", err yer whatever");
 		output(". Old Urbolg won’t be getting in yer way.”</i>");
 	}
