@@ -204,6 +204,9 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 			}
 		}
 	}
+    
+	// Check cocksocks
+	if (invalidCocksocksWorn(true)) return;
 	
 	// Update the state of the players mails -- we don't want to do this all the time (ie in process time), and we're only going to care about it at the menu root soooooo...
 	updateMailStatus();
@@ -752,6 +755,7 @@ public const CREW_PAIGE:int = 13;
 public const CREW_KASE:int = 14;
 public const CREW_SHEKKA:int = 15;
 public const CREW_SYRI:int = 16;
+public const CREW_RAMIS:int = 17;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -772,6 +776,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (paigeIsCrew()) crewMembers.push(CREW_PAIGE);
 	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
+	if (ramisRecruited()) crewMembers.push(CREW_RAMIS);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -844,6 +849,24 @@ public function multiCrewInteractions():Array
 			crewMessages += "\n\nPippa is giving Reaha a massage, paying special attenion to her back.";
 		}
 	}
+	if (InCollection(CREW_RAMIS, crewMembers))
+	{
+		ramisValidateActivity(crewMembers);
+		if (flags["RAMIS_ACTIVITY"] == "KASE")
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_RAMIS), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_KASE), 1);
+		
+			crewMessages += "\n\nOn the monitors, you can see Ramis and Kase are talking in the corridors. Or rather, Ramis has blocked Kase’s path with her arm and is leering down at him, whilst a blushing Kase is nervously playing with the tip of one of his tails. Impossible to imagine what’s going on there.";
+		}
+		else if (flags["RAMIS_ACTIVITY"] == "SHEKKA")
+		{
+			crewMembers.splice(crewMembers.indexOf(CREW_RAMIS), 1);
+			crewMembers.splice(crewMembers.indexOf(CREW_SHEKKA), 1);
+		
+			crewMessages += "\n\nOn the monitors, you can see Ramis and Shekka are in the canteen, chatting frenetically. From the way they’re gesturing, and occasionally positioning glasses and cutlery on the table to make a point, you’d guess they’re talking about tech. Shekka has positioned a box on top of a chair so that she can talk to the kaithrit without straining her neck - and also to get at the bottle of whiskey Ramis has plonked onto the table. Gails of tipsy feminine laughter emanate from that part of the ship.";
+		}
+	}
 	
 	crewMembers.push(crewMessages);
 	return crewMembers;
@@ -882,6 +905,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 	if (gooArmorIsCrew()) crewMembers.push(customName ? chars["GOO"].short : "Goo Armor");
 	if (paigeIsCrew()) crewMembers.push("Paige");
 	if (pippaOnShip()) crewMembers.push("Pippa");
+	if (ramisIsCrew()) crewMembers.push("Ramis");
 	if (reahaIsCrew()) crewMembers.push("Reaha");
 	if (seraIsCrew()) crewMembers.push("Sera");
 	if (shekkaIsCrew()) crewMembers.push("Shekka");
@@ -926,6 +950,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 		case "Goo Armor": return novaBustDisplay(); break;
 		case "Paige": return getPaigeBustString(); break;
 		case "Pippa": return pippaBustDisplay(); break;
+		case "Ramis": return ramisBustDisplay(); break;
 		case "Reaha": return reahaBustDisplay(); break;
 		case "Sera": return seraBustDisplay(); break;
 		case "Shekka": return shekkaBustDisplay(); break;
@@ -969,6 +994,7 @@ public function getSleepingPartnerBustDisplay():String
 		case "KIRO": return kiroBustDisplay(); break;
 		case "PAIGE": return getPaigeBustString(); break;
 		case "PIPPA": return pippaBustDisplay(); break;
+		case "RAMIS": return ramisBustDisplay(); break;
 		case "REAHA": return reahaBustDisplay(); break;
 		case "SERA": return seraBustDisplay(); break;
 		case "SHEKKA": return shekkaBustDisplay(); break;
@@ -1090,7 +1116,8 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter) 
 		{
-			crewMessages += kaseCrewBlurbs(btnSlot);
+			if (InCollection(CREW_KASE, crewMembers)) crewMessages += kaseCrewBlurbs(btnSlot);
+			else addButton(btnSlot, "Kase", kaseApproachCrew, 1); //9999 ramis stuff
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1124,6 +1151,20 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			if (flags["PIPPA_SETTLED_IN"] != 1) addButton(btnSlot, "Pippa", pippaShipIntro);
 			else if (flags["PIPPA_YAMMI_KITCHEN"] == 1) addButton(btnSlot, "Pippa", pippaYammiThreesomeIntro);
 			else addButton(btnSlot, "Pippa", pippaMainMenu);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
+	if (ramisIsCrew())
+	{
+		count++;
+		if(!counter)
+		{
+			if (!pc.hasStatusEffect("Partying Ramis"))
+			{
+				if (InCollection(CREW_RAMIS, crewMembers)) crewMessages += "\n\n" + ramisCrewBlurb();
+				addButton(btnSlot, "Ramis", ramisCrewApproach);
+			}
+			else addDisabledButton(btnSlot, "Ramis", "Ramis", "The female kaithrit is out in Tavros, pulverizing the station’s drinking holes no doubt.\n\nShe’ll be back tomorrow.");
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
@@ -1183,6 +1224,10 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 		count++;
 		if(!counter)
 		{
+			if (!InCollection(CREW_SHEKKA, crewMembers)) //9999 ramis stuff
+			{
+				addButton(btnSlot,"Shekka",approachCrewShekka);
+			}
 			if(pc.hasStatusEffect("Shekka_Cum_Playing"))
 			{
 				crewMessages += "\n\nShekka is lounging about after a little bit of play with her toy. Once she’s recovered and cleaned up, she’ll be up to hang out again. Give her an hour at the most.";
@@ -1622,6 +1667,12 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 						interrupt = true;
 					}
 					break;
+				case "RAMIS":
+					if (ramisIsCrew() && !ramisOutDrinking() && !looksFemaleToRamis() && !pc.isTaur())
+					{
+						ramisSleep();
+					}
+					break;
 				// No partner selected.
 				default:
 					// SERA IMPREGNATIONS
@@ -1679,6 +1730,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 		if (tryProcDommyReahaTime(minPass - rand(301))) wakeEvents.push(reahaDommyFuxTime);
 		if (flags["ANNO_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [annoMorningRouter];
 		if (flags["KASE_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [kaseCrewWake];
+		if (flags["RAMIS_SLEEPWITH_DOMORNING"] == 1) wakeEvents = [ramisSleepWake];
 		if (flags["PAIGE_WAKEY_FLAGS"] != undefined) wakeEvents = [paigeWakeyWakey];
 		
 		if (wakeEvents.length > 0)
@@ -1914,6 +1966,12 @@ public function insideShipEvents():Boolean
 		shizzyAnnoShipTalk();
 		return true;
 	}
+	if (ramisMolestingAvailable() && rand(10) == 0)
+	{
+		ramisCorridorMolesting();
+		return true;
+	}
+
 	return false;
 }
 
@@ -1980,6 +2038,15 @@ public function flyMenu():void
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
+		if(ramisOutDrinking())
+		{
+			ramisAbandonBlurb();
+			clearMenu();
+			addButton(0, "Wait", ramisWaitForTheDrunkard);
+			addButton(14, "Back", mainGameMenu);
+			return;
+		}
+			
 		
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 		pc.removeStatusEffect("Disarmed");
@@ -2099,7 +2166,7 @@ public function flyMenu():void
 public function flyTo(arg:String):void
 {
 	generateMapForLocation("SHIP INTERIOR");
-	
+    
 	if (flags["SUPRESS TRAVEL EVENTS"] == 1)
 	{
 		flags["SUPRESS TRAVEL EVENTS"] = 0;
@@ -2289,6 +2356,7 @@ public function leavePlanetOK():Boolean
 {
 	if(pc.hasStatusEffect("Disarmed") && shipLocation == "500") return false;
 	if(pc.hasKeyItem("RK Lay - Captured")) return false;
+	if(ramisOutDrinking()) return false;
 	return true;
 }
 
@@ -2544,6 +2612,11 @@ public function showerOptions(arg:Array):void
 		if (annoIsCrew() && pc.hasGenitals())
 		{
 			addButton(showerSex, "Anno", annoFollowerShowerSex);
+			showerSex++;
+		}
+		if (ramisIsCrew() && !looksFemaleToRamis() && flags["RAMIS_SEXED_SHIP"] != undefined)
+		{
+			addButton(showerSex, "Ramis", ramisBathingCats, "shower");
 			showerSex++;
 		}
 		if (showerSex > 0) output("Feeling a little turned on, you decide that maybe you should have some fun shower sex with one of your crew. Who do you approach?");
