@@ -753,7 +753,7 @@ public function urbolgSexMenu():void
 		else addDisabledButton(3,(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),"You need a vagina for this.");
 	}
 	else addDisabledButton(3,(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),(flags["URBY_TAUR_FUX"] == undefined ? "TaurFuck" : "TaurFist"),"You need to be a centaur for this.")
-	if(flags["URBOLG_DOGGYED"] >= 3) addButton(4,"RideHisCock",rideUrbolgsCock,undefined,"Ride His Cock","Ask Urbolg if you can ride his cock.");
+	if(flags["URBOLG_DOGGYED"] >= 3) addButton(4,"RideHisCock",vaginaRouter,[rideUrbolgsCock,chars["URBOLG"].cockVolume(0),1,0],"Ride His Cock","Ask Urbolg if you can ride his cock.");
 	else addDisabledButton(4,"RideHisCock","Ride His Cock","Maybe if you let Urbolg pound you out and suck his cock a little he’ll be more amicable towards the idea of letting you ride him.");
 	addButton(14,"Leave",leaveUrbolgSexAngerRar);
 }
@@ -2360,7 +2360,7 @@ public function urbyTaurFux():void
 //Requires that you’re calling him daddy by now (so fucked him 2 or more times?)
 //Invalid tooltip: Maybe if you let Urbolg pound you out and suck his cock a little he’ll be more amicable towards the idea of letting you ride him.
 //Valid: Ask Urbolg if you can ride his cock.
-public function rideUrbolgsCock():void
+public function rideUrbolgsCock(x:int):void
 {
 	clearOutput();
 	showUrbolg(true);
@@ -2383,16 +2383,16 @@ public function rideUrbolgsCock():void
 
 	output("\n\n<i>“Yes, daddyyy,”</i> you say in a singsong tone, hopping forward to mount him and raise your ass in the air. Placing your hands on his firm shoulders and leaning forward, you whisper in Urbolg’s ear. <i>“Just relax and let me do all the work.”</i>");
 
-	output("\n\nYou lower yourself with a soft sigh, easing him into your [pc.vagOrAss]. The tapered head of his doggy dick makes for a comfortable entry, your " + (pc.hasVagina() ? "pussy":"asshole") + " slowly being speared on its tip, but it’s impossible to ignore just how thick the rest of him is.");
+	output("\n\nYou lower yourself with a soft sigh, easing him into your [pc.vagOrAss " + x + "]. The tapered head of his doggy dick makes for a comfortable entry, your " + (x >= 0 ? "pussy":"asshole") + " slowly being speared on its tip, but it’s impossible to ignore just how thick the rest of him is.");
 
 	var looseness:Number = pc.ass.looseness();
-	if(pc.hasVagina()) looseness = pc.vaginas[0].looseness();
+	if(x >= 0) looseness = pc.vaginas[x].looseness();
 	if(looseness < 3) output("\n\nYour tight hole");
 	else output("\n\nEven your lewd hole");
 	output(" is stretched taut around him, his imposing knot still sitting at the base of his fat cock like a prize you’re going to have to work for. A little moan of excitement escapes your lips.");
 
-	if(pc.hasVagina()) pc.cuntChange
-	pc.cuntChange(0,chars["URBOLG"].cockVolume(0));
+	if(x >= 0) pc.cuntChange(x,chars["URBOLG"].cockVolume(0));
+	else pc.buttChange(chars["URBOLG"].cockVolume(0));
 
 	if(pc.felineScore() >= 3) output("\n\n<i>“The kitty’s jes’ a bitch in the end, eh?”</i> Urbolg mutters fondly.");
 	else if(pc.canineScore() >= 3) output("\n\n<i>“My bitch puppy feeling good before [pc.hisHer] master?”</i> Urbolg teases you.");
@@ -2424,7 +2424,7 @@ public function rideUrbolgsCock():void
 
 	output("\n\n<i>“Huh- uh- oooohhhh goood- nnngh!”</i>");
 
-	if(pc.hasVagina()) 
+	if(x >= 0) 
 	{
 		output("\n\nYour sodden pussy suddenly seizes up on Urbolg’s cock, squeezing a massive shot of fresh spunk out of him that splatters against your cervix. He’s so <i>warm</i> that you can’t stop yourself from letting out a happy moan, letting your master know his bitch can’t resist his dick. His only response is to spank you again, forcing you to roll your eyes upwards and reflexively tighten up on him.");
 		output("\n\n<i>“Thas’ more like it,”</i> he grunts in amusement.");
@@ -2435,13 +2435,13 @@ public function rideUrbolgsCock():void
 		output("\n\n<i>“Nnnngh! Nnnn- nnnnuuuhh...”</i> you moan.");
 		output("\n\n<i>“Maybe next time, kid,”</i> Urbolg grunts in amusement.");
 	}
-	output("\n\nStill suffering the aftershocks of orgasm but unwilling to give up your mission to make daddy cum, you raise your hips once more." + (pc.hasVagina() ? " You’re so oversensitive after being made to cum that it’s a hell of a struggle, but you’re determined to do it for him":" His giant knot moving around inside you grants the slightest of opportunities for cum to slowly drip from your half-hard cock, bouncing against his stomach with dull splatters. Honestly, you couldn’t care less right now") + ". You just want to make him cum, to hear his groans of pleasure, to feel him shudder and throb inside your" + (pc.hasVagina() ? " dripping, needy cunt":" stretched-taut, squeezing asshole") + ".");
+	output("\n\nStill suffering the aftershocks of orgasm but unwilling to give up your mission to make daddy cum, you raise your hips once more." + (x >= 0 ? " You’re so oversensitive after being made to cum that it’s a hell of a struggle, but you’re determined to do it for him":" His giant knot moving around inside you grants the slightest of opportunities for cum to slowly drip from your half-hard cock, bouncing against his stomach with dull splatters. Honestly, you couldn’t care less right now") + ". You just want to make him cum, to hear his groans of pleasure, to feel him shudder and throb inside your" + (x >= 0 ? " dripping, needy cunt":" stretched-taut, squeezing asshole") + ".");
 	output("\n\n<i>“Nnn, fuck,”</i> Urbolg curses, grabbing your hips and beginning to bounce you more forcefully. <i>“C’mon, ye little slut!”</i>");
-	output("\n\n<i>“Oh! Oh, daddy!”</i> you half-scream, every bit of your body responding with red-hot lust. <i>“Fuck me! Fuck me! Fuck my little " + (pc.hasVagina() ? "cunt":"asshole") + "!”</i>");
+	output("\n\n<i>“Oh! Oh, daddy!”</i> you half-scream, every bit of your body responding with red-hot lust. <i>“Fuck me! Fuck me! Fuck my little " + (x >= 0 ? "cunt":"asshole") + "!”</i>");
 	output("\n\nUrbolg lets out a breathless groan of release, his arms and legs tensing so hard against you that you can’t resist feeling them up as you arch your back for him. Responding in kind to his obvious pleasure, you feel yourself suffer a second orgasm as he lifts you up and slams you all the way to the hilt of his giant knot" + (pc.hasCock() ? ", the sheer force sending [pc.cum] streaming from your [pc.cockHeadBiggest]":"") + ". You moan like a whore to underline his desperate panting, the man you desire so badly shivering underneath you. <i>Fuck</i>, that feels good...");
 	output("\n\nHolding you in place and spreading your legs with his own, Urbolg strains and grunts while he rides out his orgasm. The sheer eroticism of watching him grit his teeth and squeeze his eyes shut has you halfway to cumming again before he finishes");
-	if(pc.hasVagina()) output(", your pussy quivering in utter submission around his brutal knot");
-	else if(pc.hasVagina()) output(", your cock" + (pc.cockTotal() > 1 ? "s":"") + " standing upright once more");
+	if(x >= 0) output(", your pussy quivering in utter submission around his brutal knot");
+	else if(x >= 0) output(", your cock" + (pc.cockTotal() > 1 ? "s":"") + " standing upright once more");
 	output(". God... maybe you should look into a more permanent arrangement with him.");
 
 	output("\n\nHe finally lets you go, allowing you to collapse forward onto his generous, furred tummy and his muscular chest. Just getting to lie on top of the tough but fluffy man feels like a reward all on its own, your fingers running through the korgonne’s thick fur. You close your eyes to savor the moment before opening them and seeing Urbolg looking up at you with a lazy confidence.");
@@ -2458,10 +2458,10 @@ public function rideUrbolgsCock():void
 	else output("\n\nYou try to slow your frantic post-orgasm breathing");
 	output(" while you lay on top of him, filled with contentment. You awaken a couple of minutes later after he taps you on the " + (pc.hasMuzzle() ? "snout":"nose") + ", a surprised murmur escaping your lips. You hadn’t even realized you’d fallen asleep!");
 
-	output("\n\n<i>“Gotta get back to work, kid,”</i> Urbolg says, lifting you up with surprising ease. Your moan as he slips free of your gaping " + (pc.hasVagina() ? "pussy":"ring") + " is loud enough to make his ears flick back. <i>“Don’ worry, ye can come back and get stretched out again any time ye like.”</i>");
+	output("\n\n<i>“Gotta get back to work, kid,”</i> Urbolg says, lifting you up with surprising ease. Your moan as he slips free of your gaping " + (x >= 0 ? "pussy":"ring") + " is loud enough to make his ears flick back. <i>“Don’ worry, ye can come back and get stretched out again any time ye like.”</i>");
 
 	output("\n\n<i>“Yes, daddyyyy,”</i> you moan as he deposits you face-down on your bed and dresses himself. Affording yourself a lusty gaze at his strong back and thick buttcheeks as he fastens his apron, you admire his staunch form. You could spend all <i>day</i> just licking and massaging that, like worshipping at a temple. Just the thought of it makes you shiver in amongst your sheets a little");
-	if(pc.hasVagina()) output("arousal heating your body");
+	if(x >= 0) output("arousal heating your body");
 	else output("your cock stiffening to full erection against your mattress");
 	output(".");
 	output("\n\n<i>“Arright. Come get me when ye need some more,”</i> Urbolg says, nodding at you before grinning. <i>“Got a feelin’ it’ll be sooner than later. See ya, kid.”</i>");
