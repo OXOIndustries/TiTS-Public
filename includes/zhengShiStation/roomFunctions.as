@@ -98,7 +98,7 @@ public function zhengMinesEncounterBonus():Boolean
 		if(flags["MAUS_LOCALE"] == currentLocation)
 		{
 			output("\n\nA pair of mousy ears peaks out over the bulk of a busted mining robot. Half its circuits are splayed across the ground like spilled spaghetti, and more join the pile with each passing moment. The caustic curses coming from behind the ill-used metal could strip industrial paint.");
-			addButton(0,"Investigate",investageDatMouseMechanicYo,undefined,"Investigate","This probably won't lead to a fight. Probably. Maybe.");
+			addButton(0,"Investigate",investageDatMouseMechanicYo,undefined,"Investigate","This probably won’t lead to a fight. Probably. Maybe.");
 		}
 	}
 	return false;
@@ -800,7 +800,7 @@ public function investageDatMouseMechanicYo():void
 		output("\n\nThe slight figure that comes into view is explicitly, almost universally non-threatening. She’s a rodenian" + (!CodexManager.entryUnlocked("Rodenians") ? " (according to your Codex’s notification)":"") + " and barely over four feet tall - small for her race. Maybe if the grease stains were swapped for blood, she could look like some kind of petite berserker, but her armor consists of a breezy shirt and scuffed-up overalls. Her ‘weapons’ aren’t much better: a hand-sized plasma torch with a 1-inch flame and a purple-and-green painted toolbox.");
 		if(!CodexManager.entryUnlocked("Rodenians")) CodexManager.unlockEntry("Rodenians");
 		output("\n\nIt’s the mouse-girl’s mouth and nimble fingers that pose the real threat. She effortlessly strips wires and charred circuit boards while uttering a litany of slurs so sinful they could score her some jail time on a more civilized planet.");
-		output("\n\nSo long as the rodenian’s not packing some secretive mil-spec cybernetics, you doubt you have much to fear from her.  Do  you get her attention?");
+		output("\n\nSo long as the rodenian’s not packing some secretive mil-spec cybernetics, you doubt you have much to fear from her. Do you get her attention?");
 		processTime(2);
 		clearMenu();
 		addButton(0,"Greet",greetDatRodentMech);
@@ -826,7 +826,7 @@ public function greetDatRodentMech():void
 	processTime(2);
 	clearMenu();
 	addButton(0,"Not A Slave",ImNotASlaveLittleRat);
-	addButton(1,"I'm A Pirate",ImAPirateLittleRat);
+	addButton(1,"I’m A Pirate",ImAPirateLittleRat);
 }
 
 //I’m a Pirate
@@ -851,7 +851,7 @@ public function ImNotASlaveLittleRat():void
 	showBust("RODENIAN_MECHANIC");
 	author("Fenoxo");
 	output("You protest that you aren’t a slave.");
-	output("\n\nShe shakes her head, dish-shaped ears wobbling. <i>“That’s where you’re wrong. Everyone’s a slave. They’re just one bad day away from accepting it.”</i>  A half-melted servo nearly smacks into your skull from a careless toss. <i>“One fucked up night partying with the wrong people. One businessman thoughtlessly crossed. One bad decision to sample an experimental drug.”</i> Her weary laughter cuts deeper than her burning torch. <i>“Might as well just find yourself a decent master before you stumble into one of the bad ones.”</i>");
+	output("\n\nShe shakes her head, dish-shaped ears wobbling. <i>“That’s where you’re wrong. Everyone’s a slave. They’re just one bad day away from accepting it.”</i> A half-melted servo nearly smacks into your skull from a careless toss. <i>“One fucked up night partying with the wrong people. One businessman thoughtlessly crossed. One bad decision to sample an experimental drug.”</i> Her weary laughter cuts deeper than her burning torch. <i>“Might as well just find yourself a decent master before you stumble into one of the bad ones.”</i>");
 	output("\n\nYou ");
 	if(pc.isNice()) output("politely decline to follow her advice.");
 	else if(pc.isMischievous()) output("glibly suggest that you’re more interested in being a good master than anyone’s slave.");
@@ -871,11 +871,11 @@ public function rodentTalkTopics():void
 		if(flags["TALKED_ABOUT_RAIDERS_WMAUS"] == undefined) addButton(3,"Raiders",raidersTalkWithMaus);
 		else addDisabledButton(3,"Raiders","Raiders","You already had this discussion.");
 	}
-	else addDisabledButton(3,"Locked","Locked","You don't know enough for this.");
+	else addDisabledButton(3,"Locked","Locked","You don’t know enough for this.");
 	if(flags["TALKED_ABOUT_MAUS"] == undefined) addButton(1,"Her",askMausAboutHer);
-	else addDisabledButton(1,"Her","Her","She didn't seem very keen on sharing.");
+	else addDisabledButton(1,"Her","Her","She didn’t seem very keen on sharing.");
 	if(flags["FLIRTFAILED_WITH_MAUS"] == undefined) addButton(2,"Flirt",flirtWithThisMaus);
-	else addDisabledButton(2,"Flirt","Flirt","You tried this. It didn't work.");
+	else addDisabledButton(2,"Flirt","Flirt","You tried this. It didn’t work.");
 	addButton(4,"Fight",fightTheMausRaider);
 	addButton(14,"Leave",mainGameMenu);
 }

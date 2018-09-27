@@ -13334,18 +13334,18 @@
 				if (thickness > 70) {
 					adjectives.push("tiny ");
 					adjectives.push("narrow ");
-					adjectives.push("boyish ");
+					if (firm < 30) adjectives.push("boyish ");
 				}
 				//Normal
 				else if (thickness >= 30) {
-					adjectives.push("boyish ");
+					if (firm < 30) adjectives.push("boyish ");
 					adjectives.push("tiny ");
 				}
 				//Uberthin
 				else {
 					adjectives.push("tiny ");
 					adjectives.push("narrow ");
-					adjectives.push("boyish ");
+					if (firm < 30) adjectives.push("boyish ");
 				}
 			} else if (hips < 4) {
 				if (thickness < 30) {
@@ -13437,7 +13437,7 @@
 				}
 			}
 			if(firm >= 65) {
-				if(mf("m","f") == "m") adjectives.push("masculine ");
+				if(mf("m","f", true) == "m") adjectives.push("masculine ");
 				if (tone >= 70) adjectives.push("muscular ");
 				else if (tone >= 30) adjectives.push("lean muscled ");
 				if (thickness >= 30) adjectives.push("broad ");
