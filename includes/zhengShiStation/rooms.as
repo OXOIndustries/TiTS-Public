@@ -1465,7 +1465,7 @@ public function initZhengRooms():void
 	rooms["ZSF G14"].southExit = "ZSF G16";
 	rooms["ZSF G14"].westExit = "";
 	rooms["ZSF G14"].moveMinutes = 3;
-	//rooms["ZSF G14"].runOnEnter = null;
+	rooms["ZSF G14"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF G14"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF G14"].addFlag(GLOBAL.HAZARD);
 
@@ -1479,7 +1479,7 @@ public function initZhengRooms():void
 	rooms["ZSF G12"].southExit = "ZSF G14";
 	rooms["ZSF G12"].westExit = "ZSF E12";
 	rooms["ZSF G12"].moveMinutes = 3;
-	//rooms["ZSF G12"].runOnEnter = null;
+	rooms["ZSF G12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF G12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF G12"].addFlag(GLOBAL.HAZARD);
 
@@ -1493,7 +1493,7 @@ public function initZhengRooms():void
 	rooms["ZSF I12"].southExit = "";
 	rooms["ZSF I12"].westExit = "ZSF G12";
 	rooms["ZSF I12"].moveMinutes = 3;
-	//rooms["ZSF I12"].runOnEnter = null;
+	rooms["ZSF I12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF I12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I12"].addFlag(GLOBAL.HAZARD);
 
@@ -1507,7 +1507,7 @@ public function initZhengRooms():void
 	rooms["ZSF K12"].southExit = "";
 	rooms["ZSF K12"].westExit = "ZSF I12";
 	rooms["ZSF K12"].moveMinutes = 3;
-	//rooms["ZSF K12"].runOnEnter = null;
+	rooms["ZSF K12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF K12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF K12"].addFlag(GLOBAL.HAZARD);
 
@@ -1521,7 +1521,7 @@ public function initZhengRooms():void
 	rooms["ZSF M12"].southExit = "";
 	rooms["ZSF M12"].westExit = "ZSF K12";
 	rooms["ZSF M12"].moveMinutes = 3;
-	//rooms["ZSF M12"].runOnEnter = null;
+	rooms["ZSF M12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF M12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M12"].addFlag(GLOBAL.HAZARD);
 
@@ -1535,7 +1535,7 @@ public function initZhengRooms():void
 	rooms["ZSF M10"].southExit = "ZSF M12";
 	rooms["ZSF M10"].westExit = "";
 	rooms["ZSF M10"].moveMinutes = 3;
-	//rooms["ZSF M10"].runOnEnter = null;
+	rooms["ZSF M10"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF M10"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M10"].addFlag(GLOBAL.HAZARD);
 
@@ -1549,13 +1549,13 @@ public function initZhengRooms():void
 	rooms["ZSF M8"].southExit = "ZSF M10";
 	rooms["ZSF M8"].westExit = "";
 	rooms["ZSF M8"].moveMinutes = 3;
-	//rooms["ZSF M8"].runOnEnter = null;
+	rooms["ZSF M8"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF M8"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M8"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF M6"] = new RoomClass(this);
-	rooms["ZSF M6"].roomName = "\n";
-	rooms["ZSF M6"].description = "";
+	rooms["ZSF M6"].roomName = "THE\nFOUNDRY";
+	rooms["ZSF M6"].description = "Climbing up the cave wall like an enormous worm, a metal ladder reaches for the suspended scaffold above. Bolts the size of baseballs anchor it into the stone such that it doesn't budge in the slightest when you give a rung a tug. You're confident it would support your weight. Clanging forgehammers and the simmering heat of the smelter's plasma torches compete to annoy you as you consider your more ground-bound options: paths around the machines to the south and west.";
 	rooms["ZSF M6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF M6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF M6"].northExit = "";
@@ -1567,12 +1567,12 @@ public function initZhengRooms():void
 	rooms["ZSF M6"].outExit = "";
 	rooms["ZSF M6"].outText = "Down";
 	rooms["ZSF M6"].moveMinutes = 3;
-	//rooms["ZSF M6"].runOnEnter = null;
+	rooms["ZSF M6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF M6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF M6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF K6"] = new RoomClass(this);
-	rooms["ZSF K6"].roomName = "\n";
+	rooms["ZSF K6"].roomName = "THE\nFOUNDRY";
 	rooms["ZSF K6"].description = "Stifling heat washes your way from the machinery to the south, and you briefly find yourself wondering if there's any part of this station that comes with air conditioning. The orange glow of molten metal bathes the northern wall, interrupted with bursts of staccato blue from the nearby precision-welders. The metal-shod path continues east and west. You spy an enormous ladder a little further east that could be used to climb out of here and into the scaffolds high above - perhaps even to the ship suspended there.";
 	rooms["ZSF K6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF K6"].system = "SYSTEM: HERISIOD";
@@ -1581,12 +1581,12 @@ public function initZhengRooms():void
 	rooms["ZSF K6"].southExit = "";
 	rooms["ZSF K6"].westExit = "ZSF I6";
 	rooms["ZSF K6"].moveMinutes = 3;
-	//rooms["ZSF K6"].runOnEnter = null;
+	rooms["ZSF K6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF K6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF K6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF I6"] = new RoomClass(this);
-	rooms["ZSF I6"].roomName = "\n";
+	rooms["ZSF I6"].roomName = "THE\nFOUNDRY";
 	rooms["ZSF I6"].description = "You stand at a three-way fork in Zheng Shi's foundry level. To the east lies a path around the vast industrial smelters and other fabricators. To the west is route around the rumbling mining elevators and ore sorting devices. Directly between the two is an opening to the south.";
 	rooms["ZSF I6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF I6"].system = "SYSTEM: HERISIOD";
@@ -1595,12 +1595,12 @@ public function initZhengRooms():void
 	rooms["ZSF I6"].southExit = "ZSF I8";
 	rooms["ZSF I6"].westExit = "ZSF G6";
 	rooms["ZSF I6"].moveMinutes = 3;
-	//rooms["ZSF I6"].runOnEnter = null;
+	rooms["ZSF I6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF I6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF G6"] = new RoomClass(this);
-	rooms["ZSF G6"].roomName = "\n";
+	rooms["ZSF G6"].roomName = "THE\nFOUNDRY";
 	rooms["ZSF G6"].description = "Rising out of the pit to is an enormous sorting engine, there to separate the hardest to isolate materials - the stuff the mining elevators and their various funnels and hoppers couldn’t split into pure streams. It rumbles and whirs. From time to time, it belches a loaded hopper out of its top into the overhead rail system for purification. To the east, things a get a bit hotter; the smelters, forges, and automated fabricators are that way. To the west is a ladder and a bend around the pit.";
 	rooms["ZSF G6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF G6"].system = "SYSTEM: HERISIOD";
@@ -1609,13 +1609,13 @@ public function initZhengRooms():void
 	rooms["ZSF G6"].southExit = "";
 	rooms["ZSF G6"].westExit = "ZSF E6";
 	rooms["ZSF G6"].moveMinutes = 3;
-	//rooms["ZSF G6"].runOnEnter = null;
+	rooms["ZSF G6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF G6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF G6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF E6"] = new RoomClass(this);
-	rooms["ZSF E6"].roomName = "You stand at the base of an immense ladder. Sturdy bolts the size of your fist pin it to the wall as it stretches up high into the air. There it joins with a suspended scaffold and the ship above. Metal deckplates provide an alternative path to the east and south around the machinery.";
-	rooms["ZSF E6"].description = "";
+	rooms["ZSF E6"].roomName = "THE\nFOUNDRY";
+	rooms["ZSF E6"].description = "You stand at the base of an immense ladder. Sturdy bolts the size of your fist pin it to the wall as it stretches up high into the air. There it joins with a suspended scaffold and the ship above. Metal deckplates provide an alternative path to the east and south around the machinery.";
 	rooms["ZSF E6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF E6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF E6"].northExit = "";
@@ -1627,12 +1627,12 @@ public function initZhengRooms():void
 	rooms["ZSF E6"].outExit = "";
 	rooms["ZSF E6"].outText = "Down";
 	rooms["ZSF E6"].moveMinutes = 3;
-	//rooms["ZSF E6"].runOnEnter = null;
+	rooms["ZSF E6"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF E6"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF E8"] = new RoomClass(this);
-	rooms["ZSF E8"].roomName = "\n";
+	rooms["ZSF E8"].roomName = "THE\nFOUNDRY";
 	rooms["ZSF E8"].description = "Overhead rails obstruct your view of the ship above like rusty metal window blinds, and from time to time, containers full of raw ore or liquid metal slide along on one of them, casting you in shade. Everything is automated. No pirates man control stations. If you didn't see the occassional security-minded patrol or Corona Lord overseer, you could almost mistake this pirate base for an AI-controlled factory.\n\nAll this, just to build one ship...";
 	rooms["ZSF E8"].planet = "ZHENG SHI STATION";
 	rooms["ZSF E8"].system = "SYSTEM: HERISIOD";
@@ -1641,12 +1641,12 @@ public function initZhengRooms():void
 	rooms["ZSF E8"].southExit = "ZSF E10";
 	rooms["ZSF E8"].westExit = "";
 	rooms["ZSF E8"].moveMinutes = 3;
-	//rooms["ZSF E8"].runOnEnter = null;
+	rooms["ZSF E8"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF E8"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E8"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF E10"] = new RoomClass(this);
-	rooms["ZSF E10"].roomName = "\n";
+	rooms["ZSF E10"].roomName = "THE\nFOUNDRY";
 	rooms["ZSF E10"].description = "Conveyor belts full of crushed rocks and glittering gems rise from the pit to the east, but they do more than that. Their shuddering motion is actually sifting apart the assembled ores as they rise upward. At their peaks, they funnel into other machines to be further sorted. Some are dumped into enormous crucibles. Others spill into waiting bins of sparkling treasure. You can’t reach any of it, but the path your on continues north and south.";
 	rooms["ZSF E10"].planet = "ZHENG SHI STATION";
 	rooms["ZSF E10"].system = "SYSTEM: HERISIOD";
@@ -1655,12 +1655,12 @@ public function initZhengRooms():void
 	rooms["ZSF E10"].southExit = "ZSF E12";
 	rooms["ZSF E10"].westExit = "";
 	rooms["ZSF E10"].moveMinutes = 3;
-	//rooms["ZSF E10"].runOnEnter = null;
+	rooms["ZSF E10"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF E10"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E10"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF E12"] = new RoomClass(this);
-	rooms["ZSF E12"].roomName = "\n";
+	rooms["ZSF E12"].roomName = "THE\nFOUNDRY";
 	rooms["ZSF E12"].description = "The rumbling clatter of heavy industry is omnipresent, reverberating through the harsh metal deckplates like the bass at an indoor concert. Ramshackle railings insulate you from a pit to the northeast - the source of much of the noise. Walls of stone hem you in to the west and south, but those same rattling deckplates that you stand upon trail north and east. Of course, a ship hangs high above, surrounded by scaffolds.\n\nThere look to be ladders leading up to it to the distant north.";
 	rooms["ZSF E12"].planet = "ZHENG SHI STATION";
 	rooms["ZSF E12"].system = "SYSTEM: HERISIOD";
@@ -1669,12 +1669,12 @@ public function initZhengRooms():void
 	rooms["ZSF E12"].southExit = "";
 	rooms["ZSF E12"].westExit = "";
 	rooms["ZSF E12"].moveMinutes = 3;
-	//rooms["ZSF E12"].runOnEnter = null;
+	rooms["ZSF E12"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF E12"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF I10"] = new RoomClass(this);
-	rooms["ZSF I10"].roomName = "";
+	rooms["ZSF I10"].roomName = "THE\nFOUNDRY";
 	rooms["ZSF I10"].description = "Bristling from the heat, you stride between the carbon-charred machinery to the east and the whirring, churning mining transport to the west. Above, a system of rails shifts the raw ores, smelted metals, and fabricated pieces to their various destinations with robotic efficiency. A T-intersection lies south.";
 	rooms["ZSF I10"].planet = "ZHENG SHI STATION";
 	rooms["ZSF I10"].system = "SYSTEM: HERISIOD";
@@ -1683,12 +1683,12 @@ public function initZhengRooms():void
 	rooms["ZSF I10"].southExit = "ZSF I12";
 	rooms["ZSF I10"].westExit = "";
 	rooms["ZSF I10"].moveMinutes = 3;
-	//rooms["ZSF I10"].runOnEnter = null;
+	rooms["ZSF I10"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF I10"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I10"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF I8"] = new RoomClass(this);
-	rooms["ZSF I8"].roomName = "\n";
+	rooms["ZSF I8"].roomName = "THE\nFOUNDRY";
 	rooms["ZSF I8"].description = "Bits of once-molten metal are splattered all over the diamond-patterned deckplates, rendering them nearly as spotty as a Dalmatian’s hide. Though long cooled, you move with caution, scanning your eyes back and forth until you spot the source: a cracked cauldron. Rather than repairing or replacing it, it’s burners have simply been shut off. At least it’s no longer a danger. This path continues north to the edge of the cavernous forge deck and south back toward the cargo elevator at its center.";
 	rooms["ZSF I8"].planet = "ZHENG SHI STATION";
 	rooms["ZSF I8"].system = "SYSTEM: HERISIOD";
@@ -1697,7 +1697,7 @@ public function initZhengRooms():void
 	rooms["ZSF I8"].southExit = "ZSF I10";
 	rooms["ZSF I8"].westExit = "";
 	rooms["ZSF I8"].moveMinutes = 3;
-	//rooms["ZSF I8"].runOnEnter = null;
+	rooms["ZSF I8"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF I8"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF I8"].addFlag(GLOBAL.HAZARD);
 
@@ -1711,7 +1711,7 @@ public function initZhengRooms():void
 	rooms["ZSF E16"].southExit = "";
 	rooms["ZSF E16"].westExit = "ZSF C16";
 	rooms["ZSF E16"].moveMinutes = 3;
-	//rooms["ZSF E16"].runOnEnter = null;
+	rooms["ZSF E16"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF E16"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF E16"].addFlag(GLOBAL.HAZARD);
 
@@ -1725,7 +1725,7 @@ public function initZhengRooms():void
 	rooms["ZSF C16"].southExit = "";
 	rooms["ZSF C16"].westExit = "";
 	rooms["ZSF C16"].moveMinutes = 3;
-	//rooms["ZSF C16"].runOnEnter = null;
+	rooms["ZSF C16"].runOnEnter = zhengFoundrySoftwareDevSuckBonus;
 	rooms["ZSF C16"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF C16"].addFlag(GLOBAL.HAZARD);
 
@@ -1741,7 +1741,7 @@ public function initZhengRooms():void
 	rooms["ZSF C14"].moveMinutes = 3;
 	//rooms["ZSF C14"].runOnEnter = null;
 	rooms["ZSF C14"].addFlag(GLOBAL.INDOOR);
-	rooms["ZSF C14"].addFlag(GLOBAL.HAZARD);
+	//rooms["ZSF C14"].addFlag(GLOBAL.HAZARD);
 
 	/*  ==========================
 			FOUNDRY SCAFFOLD.
