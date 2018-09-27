@@ -1748,8 +1748,8 @@ public function initZhengRooms():void
 		==========================  */
 
 	rooms["ZSF R6"] = new RoomClass(this);
-	rooms["ZSF R6"].roomName = "SUSPENDED\nSCAFFOLD";
-	rooms["ZSF R6"].description = "";
+	rooms["ZSF R6"].roomName = "SCAFFOLD\nLADDER";
+	rooms["ZSF R6"].description = "This scaffold hangs from anchors in the cavern’s ceiling. Looking down, you’re at least four stories up from the ground floor and its bevy of automated smelting equipment. A fall from this height could kill you. Fortunately, the pirates eschewed their traditional disregard for safety and sprung for some quality steel railings. Still, you’d rather not lean to hard on any of them. The scaffold stretches off to the east and south around the bulk of a gleaming, newly constructed ship.";
 	rooms["ZSF R6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF R6"].northExit = "";
@@ -1766,8 +1766,8 @@ public function initZhengRooms():void
 	rooms["ZSF R6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF T6"] = new RoomClass(this);
-	rooms["ZSF T6"].roomName = "\n";
-	rooms["ZSF T6"].description = "";
+	rooms["ZSF T6"].roomName = "SUSPENDED\nSCAFFOLD";
+	rooms["ZSF T6"].description = "Walking along the scaffold, you pass by one of the ship’s enormous engines. It isn’t just large - it’s large for the heavy corvette it’s bolted onto. Boosters this size are rarely seen on anything smaller than a full-size capital ship, but you suppose the pirates are rigging this ship for speed, the better to avoid Peacekeeper intervention. A little to the west, you can see a ladder. The scaffold also continues east.";
 	rooms["ZSF T6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF T6"].northExit = "";
@@ -1780,8 +1780,8 @@ public function initZhengRooms():void
 	rooms["ZSF T6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF V6"] = new RoomClass(this);
-	rooms["ZSF V6"].roomName = "\n";
-	rooms["ZSF V6"].description = "";
+	rooms["ZSF V6"].roomName = "SUSPENDED\nSCAFFOLD";
+	rooms["ZSF V6"].description = "You stand directly behind and below a wall of awe-inspiring engines, their exhaust cones individually big enough to contain a large house. The ship’s hull gleams with fresh paint and a variety of pirate insignias (along with some flashy graffiti). This is what Zheng Shi was built for - you’re sure of it. The station exists purely to produce this ship in secret, constructed bespoke for some oh-so-specific job. The scaffold around the engines runs east and west from here.";
 	rooms["ZSF V6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF V6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF V6"].northExit = "";
@@ -1794,8 +1794,8 @@ public function initZhengRooms():void
 	rooms["ZSF V6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF X6"] = new RoomClass(this);
-	rooms["ZSF X6"].roomName = "\n";
-	rooms["ZSF X6"].description = "";
+	rooms["ZSF X6"].roomName = "SUSPENDED\nSCAFFOLD";
+	rooms["ZSF X6"].description = "To your south lies the Zheng Shi’s crown jewel: a heavy corvette with engines befitting a capital ship. One of them is close by - so close you could reach out and touch the flare of its cone, caress the super-high durability alloy. A ladder to the east descends along the cavern’s southern wall back to the foundry level and its heat belching machines. Alternatively, this suspended platform strolls west behind the ship’s thruster bank.";
 	rooms["ZSF X6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF X6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF X6"].northExit = "";
@@ -1808,8 +1808,8 @@ public function initZhengRooms():void
 	rooms["ZSF X6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z6"] = new RoomClass(this);
-	rooms["ZSF Z6"].roomName = "\n";
-	rooms["ZSF Z6"].description = "";
+	rooms["ZSF Z6"].roomName = "SCAFFOLD\nLADDER";
+	rooms["ZSF Z6"].description = "You stand at the corner of of an enormous, suspended scaffold. One fork trails west along a bank of colossal engines. The other follows south along the bottom of the craft's fuselage. The ladder itself, bolted into the northern wall, descends through plumes of smoke and air thick with the tang of aerosolized metals, back to the foundry that produced this triumph of lawless engineering.";
 	rooms["ZSF Z6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z6"].northExit = "";
@@ -1826,8 +1826,8 @@ public function initZhengRooms():void
 	rooms["ZSF Z6"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z8"] = new RoomClass(this);
-	rooms["ZSF Z8"].roomName = "\n";
-	rooms["ZSF Z8"].description = "";
+	rooms["ZSF Z8"].roomName = "SUSPENDED\nSCAFFOLD";
+	rooms["ZSF Z8"].description = "Following along the underside of a corvette, the scaffold allows you to admire its every swell and curve, the size and reflective sheen of its sensor dishes, the girth of its beam-belching barrels. Unfortunately the scaffold itself is not no glorious, but it tracks north and south, giving you ample opportunity to take a closer look at the custom-built vessel.";
 	rooms["ZSF Z8"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z8"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z8"].northExit = "ZSF Z6";
@@ -1840,8 +1840,8 @@ public function initZhengRooms():void
 	rooms["ZSF Z8"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z10"] = new RoomClass(this);
-	rooms["ZSF Z10"].roomName = "\n";
-	rooms["ZSF Z10"].description = "";
+	rooms["ZSF Z10"].roomName = "SUSPENDED\nSCAFFOLD";
+	rooms["ZSF Z10"].description = "Part of the scaffold's railing is broken and dangles precariously over the forge below, nearly four stories down. You move carefully past it and back to the safer path beyond, briefly wondering why nobody has bothered to fix it. Then you look up at the ship's side, every panel polished and in position. Work here is done. The scaffold continues to the north and south.";
 	rooms["ZSF Z10"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z10"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z10"].northExit = "ZSF Z8";
@@ -1854,8 +1854,8 @@ public function initZhengRooms():void
 	rooms["ZSF Z10"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z12"] = new RoomClass(this);
-	rooms["ZSF Z12"].roomName = "\n";
-	rooms["ZSF Z12"].description = "";
+	rooms["ZSF Z12"].roomName = "SUSPENDED\nSCAFFOLD";
+	rooms["ZSF Z12"].description = "Following the ship's hull like a lost puppy, these hanging platforms bend along in a generally north-south path. Heavy cables as thick as your arm hold them aloft, able to support the weight of dozens of workers, armor plates, and a small army of tools.";
 	rooms["ZSF Z12"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z12"].northExit = "ZSF Z10";
@@ -1868,8 +1868,8 @@ public function initZhengRooms():void
 	rooms["ZSF Z12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z14"] = new RoomClass(this);
-	rooms["ZSF Z14"].roomName = "\n";
-	rooms["ZSF Z14"].description = "";
+	rooms["ZSF Z14"].roomName = "SUSPENDED\nSCAFFOLD";
+	rooms["ZSF Z14"].description = "Ten feet across and hemmed in by sturdy safety rails, the metallic scaffold continues its north-south journey in the shadow of the pirate's corvette, providing an awesome view of the assembled industry below and the spacecraft above.";
 	rooms["ZSF Z14"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z14"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z14"].northExit = "ZSF Z12";
@@ -1882,7 +1882,7 @@ public function initZhengRooms():void
 	rooms["ZSF Z14"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z16"] = new RoomClass(this);
-	rooms["ZSF Z16"].roomName = "\n";
+	rooms["ZSF Z16"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF Z16"].description = "";
 	rooms["ZSF Z16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z16"].system = "SYSTEM: HERISIOD";
@@ -1896,7 +1896,7 @@ public function initZhengRooms():void
 	rooms["ZSF Z16"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z18"] = new RoomClass(this);
-	rooms["ZSF Z18"].roomName = "\n";
+	rooms["ZSF Z18"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF Z18"].description = "";
 	rooms["ZSF Z18"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z18"].system = "SYSTEM: HERISIOD";
@@ -1910,7 +1910,7 @@ public function initZhengRooms():void
 	rooms["ZSF Z18"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z20"] = new RoomClass(this);
-	rooms["ZSF Z20"].roomName = "\n";
+	rooms["ZSF Z20"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF Z20"].description = "";
 	rooms["ZSF Z20"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z20"].system = "SYSTEM: HERISIOD";
@@ -1924,7 +1924,7 @@ public function initZhengRooms():void
 	rooms["ZSF Z20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z22"] = new RoomClass(this);
-	rooms["ZSF Z22"].roomName = "\n";
+	rooms["ZSF Z22"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF Z22"].description = "";
 	rooms["ZSF Z22"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z22"].system = "SYSTEM: HERISIOD";
@@ -1938,7 +1938,7 @@ public function initZhengRooms():void
 	rooms["ZSF Z22"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z24"] = new RoomClass(this);
-	rooms["ZSF Z24"].roomName = "\n";
+	rooms["ZSF Z24"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF Z24"].description = "";
 	rooms["ZSF Z24"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z24"].system = "SYSTEM: HERISIOD";
@@ -1952,7 +1952,7 @@ public function initZhengRooms():void
 	rooms["ZSF Z24"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z26"] = new RoomClass(this);
-	rooms["ZSF Z26"].roomName = "\n";
+	rooms["ZSF Z26"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF Z26"].description = "";
 	rooms["ZSF Z26"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z26"].system = "SYSTEM: HERISIOD";
@@ -1966,7 +1966,7 @@ public function initZhengRooms():void
 	rooms["ZSF Z26"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF X26"] = new RoomClass(this);
-	rooms["ZSF X26"].roomName = "\n";
+	rooms["ZSF X26"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF X26"].description = "";
 	rooms["ZSF X26"].planet = "ZHENG SHI STATION";
 	rooms["ZSF X26"].system = "SYSTEM: HERISIOD";
@@ -1980,7 +1980,7 @@ public function initZhengRooms():void
 	rooms["ZSF X26"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF V26"] = new RoomClass(this);
-	rooms["ZSF V26"].roomName = "\n";
+	rooms["ZSF V26"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF V26"].description = "";
 	rooms["ZSF V26"].planet = "ZHENG SHI STATION";
 	rooms["ZSF V26"].system = "SYSTEM: HERISIOD";
@@ -1994,7 +1994,7 @@ public function initZhengRooms():void
 	rooms["ZSF V26"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF T26"] = new RoomClass(this);
-	rooms["ZSF T26"].roomName = "\n";
+	rooms["ZSF T26"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF T26"].description = "";
 	rooms["ZSF T26"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T26"].system = "SYSTEM: HERISIOD";
@@ -2008,7 +2008,7 @@ public function initZhengRooms():void
 	rooms["ZSF T26"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R26"] = new RoomClass(this);
-	rooms["ZSF R26"].roomName = "\n";
+	rooms["ZSF R26"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R26"].description = "";
 	rooms["ZSF R26"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R26"].system = "SYSTEM: HERISIOD";
@@ -2022,7 +2022,7 @@ public function initZhengRooms():void
 	rooms["ZSF R26"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R24"] = new RoomClass(this);
-	rooms["ZSF R24"].roomName = "\n";
+	rooms["ZSF R24"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R24"].description = "";
 	rooms["ZSF R24"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R24"].system = "SYSTEM: HERISIOD";
@@ -2036,7 +2036,7 @@ public function initZhengRooms():void
 	rooms["ZSF R24"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R22"] = new RoomClass(this);
-	rooms["ZSF R22"].roomName = "\n";
+	rooms["ZSF R22"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R22"].description = "";
 	rooms["ZSF R22"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R22"].system = "SYSTEM: HERISIOD";
@@ -2050,7 +2050,7 @@ public function initZhengRooms():void
 	rooms["ZSF R22"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R20"] = new RoomClass(this);
-	rooms["ZSF R20"].roomName = "\n";
+	rooms["ZSF R20"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R20"].description = "";
 	rooms["ZSF R20"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R20"].system = "SYSTEM: HERISIOD";
@@ -2064,7 +2064,7 @@ public function initZhengRooms():void
 	rooms["ZSF R20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R18"] = new RoomClass(this);
-	rooms["ZSF R18"].roomName = "\n";
+	rooms["ZSF R18"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R18"].description = "";
 	rooms["ZSF R18"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R18"].system = "SYSTEM: HERISIOD";
@@ -2078,7 +2078,7 @@ public function initZhengRooms():void
 	rooms["ZSF R18"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R16"] = new RoomClass(this);
-	rooms["ZSF R16"].roomName = "\n";
+	rooms["ZSF R16"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R16"].description = "";
 	rooms["ZSF R16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R16"].system = "SYSTEM: HERISIOD";
@@ -2092,7 +2092,7 @@ public function initZhengRooms():void
 	rooms["ZSF R16"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R14"] = new RoomClass(this);
-	rooms["ZSF R14"].roomName = "\n";
+	rooms["ZSF R14"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R14"].description = "";
 	rooms["ZSF R14"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R14"].system = "SYSTEM: HERISIOD";
@@ -2106,7 +2106,7 @@ public function initZhengRooms():void
 	rooms["ZSF R14"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R12"] = new RoomClass(this);
-	rooms["ZSF R12"].roomName = "\n";
+	rooms["ZSF R12"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R12"].description = "";
 	rooms["ZSF R12"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R12"].system = "SYSTEM: HERISIOD";
@@ -2120,7 +2120,7 @@ public function initZhengRooms():void
 	rooms["ZSF R12"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R10"] = new RoomClass(this);
-	rooms["ZSF R10"].roomName = "\n";
+	rooms["ZSF R10"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R10"].description = "";
 	rooms["ZSF R10"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R10"].system = "SYSTEM: HERISIOD";
@@ -2134,7 +2134,7 @@ public function initZhengRooms():void
 	rooms["ZSF R10"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF R8"] = new RoomClass(this);
-	rooms["ZSF R8"].roomName = "\n";
+	rooms["ZSF R8"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF R8"].description = "";
 	rooms["ZSF R8"].planet = "ZHENG SHI STATION";
 	rooms["ZSF R8"].system = "SYSTEM: HERISIOD";
@@ -2148,7 +2148,7 @@ public function initZhengRooms():void
 	rooms["ZSF R8"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF T16"] = new RoomClass(this);
-	rooms["ZSF T16"].roomName = "\n";
+	rooms["ZSF T16"].roomName = "SUSPENDED\nSCAFFOLD";
 	rooms["ZSF T16"].description = "";
 	rooms["ZSF T16"].planet = "ZHENG SHI STATION";
 	rooms["ZSF T16"].system = "SYSTEM: HERISIOD";
