@@ -651,7 +651,7 @@ public function erikaPublicSexThreesomeGryvainVictory(cIdx:int = 0):void
 	var cumQ:Number = pc.cumQ();
 	if (pc.hasKnot(cIdx))
 	{
-		output("You both push your bitch-breakers into Erika’s weakly spasming [erika.asshole] before either one can inflate and trap the other out of the bitch hole. Your knots stretch Erika’s ass so much that she squeezes her eyes shut and screams as she cums one last time, breaking another dry orgasm from her.} Your cum finally surges out of your cock and into Erika along with the gryvain’s. ");
+		output("You both push your bitch-breakers into Erika’s weakly spasming [erika.asshole] before either one can inflate and trap the other out of the bitch hole. Your knots stretch Erika’s ass so much that she squeezes her eyes shut and screams as she cums one last time, breaking another dry orgasm from her. Your cum finally surges out of your cock and into Erika along with the gryvain’s. ");
 		if (cumQ <= 500) output("Your orgasm is utterly dwarfed by the tide of the gryvain’s cum. Your [pc.cum] mixes with her generous output inside Erika’s colon.");
 		else if (cumQ <= 1000) output("Even with her high amount of cum, you generally manage to match her cum output, your [pc.cum] mixing with hers in a swirling puddle inside Erika.");
 		else
@@ -666,7 +666,7 @@ public function erikaPublicSexThreesomeGryvainVictory(cIdx:int = 0):void
 		if (cumQ > 1000) output(", with you contributing the most");
 		output(".");
 	}
-	if (pc.hasKnot()) output("Both of your knots form an almost airtight seal in Erika’s [erika.asshole], trapping your loads in her stomach. With the cum having nowhere else to go, her belly continues to fill and expand until she looks like she’s pregnant. Waves of excess jizz start flowing around your knots and pour out of Erika’s ass when her stomach decides that it has had enough. It splatters your [pc.hips] and [pc.legs] and the floor beneath you.");
+	if (pc.hasKnot(cIdx)) output("Both of your knots form an almost airtight seal in Erika’s [erika.asshole], trapping your loads in her stomach. With the cum having nowhere else to go, her belly continues to fill and expand until she looks like she’s pregnant. Waves of excess jizz start flowing around your knots and pour out of Erika’s ass when her stomach decides that it has had enough. It splatters your [pc.hips] and [pc.legs] and the floor beneath you.");
 	else output("\n\nJizz streams out of Erika just as fast as it’s being pumped into her. It splatters all over your body and the floor beneath you. Though, there is enough cum already in her to keep her looking like she’s pregnant.");
 	output("\n\n<i>“I guess you have some staying power, huh?”</i> the gryvain says while smirking at you.");
 	if (pc.isAss()) output("\n\n<i>“Can’t let a bitch like you think that she’s better than me.”</i>");
