@@ -1555,7 +1555,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF M6"] = new RoomClass(this);
 	rooms["ZSF M6"].roomName = "THE\nFOUNDRY";
-	rooms["ZSF M6"].description = "Climbing up the cave wall like an enormous worm, a metal ladder reaches for the suspended scaffold above. Bolts the size of baseballs anchor it into the stone such that it doesn't budge in the slightest when you give a rung a tug. You're confident it would support your weight. Clanging forgehammers and the simmering heat of the smelter's plasma torches compete to annoy you as you consider your more ground-bound options: paths around the machines to the south and west.";
+	rooms["ZSF M6"].description = "Climbing up the cave wall like an enormous worm, a metal ladder reaches for the suspended scaffold above. Bolts the size of baseballs anchor it into the stone such that it doesn’t budge in the slightest when you give a rung a tug. You’re confident it would support your weight. Clanging forgehammers and the simmering heat of the smelter’s plasma torches compete to annoy you as you consider your more ground-bound options: paths around the machines to the south and west.";
 	rooms["ZSF M6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF M6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF M6"].northExit = "";
@@ -1573,7 +1573,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF K6"] = new RoomClass(this);
 	rooms["ZSF K6"].roomName = "THE\nFOUNDRY";
-	rooms["ZSF K6"].description = "Stifling heat washes your way from the machinery to the south, and you briefly find yourself wondering if there's any part of this station that comes with air conditioning. The orange glow of molten metal bathes the northern wall, interrupted with bursts of staccato blue from the nearby precision-welders. The metal-shod path continues east and west. You spy an enormous ladder a little further east that could be used to climb out of here and into the scaffolds high above - perhaps even to the ship suspended there.";
+	rooms["ZSF K6"].description = "Stifling heat washes your way from the machinery to the south, and you briefly find yourself wondering if there’s any part of this station that comes with air conditioning. The orange glow of molten metal bathes the northern wall, interrupted with bursts of staccato blue from the nearby precision-welders. The metal-shod path continues east and west. You spy an enormous ladder a little further east that could be used to climb out of here and into the scaffolds high above - perhaps even to the ship suspended there.";
 	rooms["ZSF K6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF K6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF K6"].northExit = "";
@@ -1587,7 +1587,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF I6"] = new RoomClass(this);
 	rooms["ZSF I6"].roomName = "THE\nFOUNDRY";
-	rooms["ZSF I6"].description = "You stand at a three-way fork in Zheng Shi's foundry level. To the east lies a path around the vast industrial smelters and other fabricators. To the west is route around the rumbling mining elevators and ore sorting devices. Directly between the two is an opening to the south.";
+	rooms["ZSF I6"].description = "You stand at a three-way fork in Zheng Shi’s foundry level. To the east lies a path around the vast industrial smelters and other fabricators. To the west is route around the rumbling mining elevators and ore sorting devices. Directly between the two is an opening to the south.";
 	rooms["ZSF I6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF I6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF I6"].northExit = "";
@@ -1633,7 +1633,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF E8"] = new RoomClass(this);
 	rooms["ZSF E8"].roomName = "THE\nFOUNDRY";
-	rooms["ZSF E8"].description = "Overhead rails obstruct your view of the ship above like rusty metal window blinds, and from time to time, containers full of raw ore or liquid metal slide along on one of them, casting you in shade. Everything is automated. No pirates man control stations. If you didn't see the occassional security-minded patrol or Corona Lord overseer, you could almost mistake this pirate base for an AI-controlled factory.\n\nAll this, just to build one ship...";
+	rooms["ZSF E8"].description = "Overhead rails obstruct your view of the ship above like rusty metal window blinds, and from time to time, containers full of raw ore or liquid metal slide along on one of them, casting you in shade. Everything is automated. No pirates man control stations. If you didn’t see the occassional security-minded patrol or Corona Lord overseer, you could almost mistake this pirate base for an AI-controlled factory.\n\nAll this, just to build one ship...";
 	rooms["ZSF E8"].planet = "ZHENG SHI STATION";
 	rooms["ZSF E8"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF E8"].northExit = "ZSF E6";
@@ -1809,7 +1809,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF Z6"] = new RoomClass(this);
 	rooms["ZSF Z6"].roomName = "SCAFFOLD\nLADDER";
-	rooms["ZSF Z6"].description = "You stand at the corner of of an enormous, suspended scaffold. One fork trails west along a bank of colossal engines. The other follows south along the bottom of the craft's fuselage. The ladder itself, bolted into the northern wall, descends through plumes of smoke and air thick with the tang of aerosolized metals, back to the foundry that produced this triumph of lawless engineering.";
+	rooms["ZSF Z6"].description = "You stand at the corner of of an enormous, suspended scaffold. One fork trails west along a bank of colossal engines. The other follows south along the bottom of the craft’s fuselage. The ladder itself, bolted into the northern wall, descends through plumes of smoke and air thick with the tang of aerosolized metals, back to the foundry that produced this triumph of lawless engineering.";
 	rooms["ZSF Z6"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z6"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z6"].northExit = "";
@@ -1841,7 +1841,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF Z10"] = new RoomClass(this);
 	rooms["ZSF Z10"].roomName = "SUSPENDED\nSCAFFOLD";
-	rooms["ZSF Z10"].description = "Part of the scaffold's railing is broken and dangles precariously over the forge below, nearly four stories down. You move carefully past it and back to the safer path beyond, briefly wondering why nobody has bothered to fix it. Then you look up at the ship's side, every panel polished and in position. Work here is done. The scaffold continues to the north and south.";
+	rooms["ZSF Z10"].description = "Part of the scaffold’s railing is broken and dangles precariously over the forge below, nearly four stories down. You move carefully past it and back to the safer path beyond, briefly wondering why nobody has bothered to fix it. Then you look up at the ship’s side, every panel polished and in position. Work here is done. The scaffold continues to the north and south.";
 	rooms["ZSF Z10"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z10"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z10"].northExit = "ZSF Z8";
@@ -1855,7 +1855,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF Z12"] = new RoomClass(this);
 	rooms["ZSF Z12"].roomName = "SUSPENDED\nSCAFFOLD";
-	rooms["ZSF Z12"].description = "Following the ship's hull like a lost puppy, these hanging platforms bend along in a generally north-south path. Heavy cables as thick as your arm hold them aloft, able to support the weight of dozens of workers, armor plates, and a small army of tools.";
+	rooms["ZSF Z12"].description = "Following the ship’s hull like a lost puppy, these hanging platforms bend along in a generally north-south path. Heavy cables as thick as your arm hold them aloft, able to support the weight of dozens of workers, armor plates, and a small army of tools.";
 	rooms["ZSF Z12"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z12"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z12"].northExit = "ZSF Z10";
@@ -1869,7 +1869,7 @@ public function initZhengRooms():void
 
 	rooms["ZSF Z14"] = new RoomClass(this);
 	rooms["ZSF Z14"].roomName = "SUSPENDED\nSCAFFOLD";
-	rooms["ZSF Z14"].description = "Ten feet across and hemmed in by sturdy safety rails, the metallic scaffold continues its north-south journey in the shadow of the pirate's corvette, providing an awesome view of the assembled industry below and the spacecraft above.";
+	rooms["ZSF Z14"].description = "Ten feet across and hemmed in by sturdy safety rails, the metallic scaffold continues its north-south journey in the shadow of the pirate’s corvette, providing an awesome view of the assembled industry below and the spacecraft above.";
 	rooms["ZSF Z14"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z14"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z14"].northExit = "ZSF Z12";

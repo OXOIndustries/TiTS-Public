@@ -1503,8 +1503,13 @@ public function rest(deltaT:int = -1):void {
 public function restHeal():void
 {
 	var bonusMult:Number = 1 + pc.statusEffectv1("Home Cooking")/100;
-	if(pc.armor is AugmentWeaveArmor) bonusMult += 0.5;
+	var soreMult:Number = 1;
 	
+	if(pc.armor is AugmentWeaveArmor)
+	{
+		bonusMult += 0.5;
+		soreMult += 1;
+	}
 	if(pc.accessory is MaikesCollar)
 	{
 		bonusMult = 0;
@@ -1523,7 +1528,7 @@ public function restHeal():void
 		}
 	}
 	
-	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-1 * soreMult);
 }
 
 public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
@@ -1753,6 +1758,7 @@ public function sleep(outputs:Boolean = true, bufferXP:Boolean = true):void {
 public function sleepHeal():void
 {
 	var bonusMult:Number = 1;
+	var soreMult:Number = 1;
 	
 	if(pc.accessory is MaikesCollar)
 	{
@@ -1761,7 +1767,11 @@ public function sleepHeal():void
 	}
 	else if(pc.hasStatusEffect("Dzaan Withdrawal")) bonusMult = 0.5;
 	
-	if(pc.armor is AugmentWeaveArmor) bonusMult += 0.5;
+	if(pc.armor is AugmentWeaveArmor)
+	{
+		bonusMult += 0.5;
+		soreMult += 1;
+	}
 
 	if(bonusMult != 0)
 	{
@@ -1793,7 +1803,7 @@ public function sleepHeal():void
 		if(pc.perkv2("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 2, 0);
 		if(pc.perkv3("Fecund Figure") < 0) pc.setPerkValue("Fecund Figure", 3, 0);
 	}
-	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3);
+	if(pc.hasStatusEffect("Sore Counter")) soreChange(-3 * soreMult);
 	pc.removeStatusEffect("Jaded");
 	pc.removeStatusEffect("Roshan Blue");
 }

@@ -1162,9 +1162,9 @@ public function initTavrosRooms():void
 	rooms["NURSERYSERA"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYSERA"].addFlag(GLOBAL.PRIVATE);
 	rooms["NURSERYSERA"].addFlag(GLOBAL.NPC);
-    
-    //Random Ramis Bar
-    //Time forward 1 ½ hours, move to standalone Some Club, Somewhere On The Merchant Deck,
+	
+	//Random Ramis Bar
+	//Time forward 1 ½ hours, move to standalone Some Club, Somewhere On The Merchant Deck,
 	rooms["RAMISBAR"] = new RoomClass(this);
 	rooms["RAMISBAR"].roomName = "\nSOME BAR";
 	rooms["RAMISBAR"].description = "";

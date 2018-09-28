@@ -16,7 +16,7 @@
 			this.type = GLOBAL.COCKSOCK;
 			
 			this.shortName = "S.CockBell";
-			this.longName = "Silky Cock Bell";
+			this.longName = "silky cock bell";
 			
 			TooltipManager.addFullName(this.shortName, StringUtil.toTitleCase(this.longName));
 			

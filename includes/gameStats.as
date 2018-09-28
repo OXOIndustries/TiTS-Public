@@ -4217,6 +4217,13 @@ public function displayEncounterLog(showID:String = "All"):void
 				{
 					output2("\n<b>* Ramis:</b> Met her");
 					if(silly && flags["RAMIS_FIRST_IMPRESSION"] != undefined) output2(" <i>(as " + indefiniteArticle(flags["RAMIS_FIRST_IMPRESSION"]) + ")</i>");
+					if(ramisRecruited())
+					{
+						output2(", Crew member");
+						if(ramisIsCrew()) output2(" (Onboard Ship)");
+						else if(ramisAtAnons()) output2(" (At Tavros Station)");
+						else output2(" (Away)");
+					}
 					if(StatTracking.getStat("contests/ramis arm wrestle losses") + StatTracking.getStat("contests/ramis arm wrestle wins") > 0) output2("\n<b>* Ramis, Arm Wrestling Contest, Win/Loss Ratio:</b> " + StatTracking.getStat("contests/ramis arm wrestle wins") + "/" + StatTracking.getStat("contests/ramis arm wrestle losses") + ", of " + (StatTracking.getStat("contests/ramis arm wrestle losses") + StatTracking.getStat("contests/ramis arm wrestle wins")) + " games");
 					if(flags["RAMIS_TIMES_DRINK"] != undefined) output2("\n<b>* Ramis, Times Had Drinks with Her:</b> " + flags["RAMIS_TIMES_DRINK"]);
 					if(flags["RAMIS_TIMES_BENDER"] != undefined) output2("\n<b>* Ramis, Times Had a Hangover with Her:</b> " + flags["RAMIS_TIMES_BENDER"]);

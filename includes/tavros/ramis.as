@@ -39,7 +39,7 @@ public function ramisIsCrew():Boolean
 public function ramisAtAnons():Boolean
 {
 	if(pc.hasStatusEffect("Ramis Away Time")) return false;
-    if(ramisIsCrew()) return false;
+	if(ramisIsCrew()) return false;
 	
 	if(flags["RAMIS_MET"] != undefined && pc.isFemboy() && looksFamiliarToRamis() && ramisFemboyHours()) return true;
 	// Regular hours
@@ -150,7 +150,7 @@ public function approachRamis(special:String = "none"):void
 	clearMenu();
 	
 	addButton(10, "Appearance", ramisAppearance, 10);
-    if(flags["RAMIS_MET"] != undefined) addButton(4, "Recruit", ramisRecruit, undefined, "Recruit", "She’s a mercenary, right? See what it would cost to get her on board your ship.");
+	if(flags["RAMIS_MET"] != undefined) addButton(4, "Recruit", ramisRecruit, undefined, "Recruit", "She’s a mercenary, right? See what it would cost to get her on board your ship.");
 	
 	// Special femboy approach
 	if(special == "femboy")
