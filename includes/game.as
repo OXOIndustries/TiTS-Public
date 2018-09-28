@@ -1039,6 +1039,18 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	var btnSlot:int = 0;
 	
 	// Followers
+	//amber (dryad)
+	if (amberIsCrew())
+	{
+		count++;
+		if (!counter)
+		{
+			crewMessages += "\n\n" + amberShipBonusText();
+			if (amberCurrentlyDumbfucked()) addDisabledButton(btnSlot,"Amber","Amber","You’ve decided to leave Amber alone while the effects of the Dumbfuck she took wear off.");
+			else addButton(btnSlot, "Amber", amberInTheHold);
+			btnSlot = crewButtonAdjustments(btnSlot);
+		}
+	}
 	if (annoIsCrew())
 	{
 		count++;
@@ -1262,7 +1274,7 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 			btnSlot = crewButtonAdjustments(btnSlot);
 		}
 	}
-	
+
 	// Pets
 	if (hasGooArmor() || gooArmorIsCrew())
 	{

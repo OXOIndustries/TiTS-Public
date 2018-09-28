@@ -14,6 +14,7 @@ public function dryadHeader():void
 
 public function dryadIsActive():Boolean
 {
+	if (amberRecruited()) return false;
 	if(pc.hasStatusEffect("Dryad Cooldown")) return false;
 	if(pc.lust() < 33 && rand(3) == 0) return false;
 	if(pc.statusEffectv1("Dryad Encounters") < 8)
@@ -35,7 +36,11 @@ public function getDryadPregContainer():PregnancyPlaceholder
 	if(!pp.hasCock()) pp.createCock();
 	pp.shiftCock(0, GLOBAL.TYPE_EQUINE);
 	pp.cocks[0].cLengthRaw = 14;
-	pp.createPerk("Fixed CumQ",6000,0,0,0);
+	if (flags["AMBER_EQUILICUM"] != undefined) pp.createPerk("Fixed CumQ",18000,0,0,0);
+	else pp.createPerk("Fixed CumQ", 6000, 0, 0, 0);
+	if (flags["AMBER_DUMBFUCK"] >= 3 ) pp.createPerk("Fixed GirlCumQ", 3000, 0, 0, 0);
+	else if (flags["AMBER_DUMBFUCK"] >= 1 ) pp.createPerk("Fixed GirlCumQ", 2000, 0, 0, 0);
+	else pp.createPerk("Fixed GirlCumQ", 1000, 0, 0, 0);
 	
 	return pp;
 }
@@ -63,6 +68,10 @@ public function dryadMeeting():void
 	
 	output("\n\nShe makes puppy eyes at you, although the effect is somewhat diminished by the gigantic equine cock pointing in your direction. Still, though, it’s pretty clear she is at least telling the truth about the heat thing. She’s obviously desperate to fuck. Given her state, it looks like whatever sex you have is gonna be rough and animalistic regardless of whether you’re on the receiving end.");
 	output("\n\nAre you going to have sex with the taur-girl, and if so what are you going to use?");
+	
+	//add text about getting taur equipment for ship to be able to recruit her
+	amberEncounterAppend();
+	
 	processTime(3);
 	pc.lust(5);
 	
@@ -120,6 +129,7 @@ public function dryadMeeting():void
 		addDisabledButton(6,"FuckHerAss","Fuck Her Ass","You aren’t aroused enough for this.");
 		addDisabledButton(7,"Drain Her","Drain Her","You have to let her fuck you at least once to do this.");
 	}
+	if (pc.hasKeyItem("Taur-centric Ship Equipment") && flags["DRYAD_FUCKED"] != undefined && flags["DRYAD_FUCKED"] >= 5) addButton(8, "Come With", amberComeWith, undefined, "Come With", "Ask the dryad to come with you aboard your ship.");
 	addButton(14, "Leave", dryadNo, undefined, "Leave", "You don’t wanna bang right now.");
 }
 
@@ -158,6 +168,7 @@ public function dryadBlowjob():void
 	output("\n\n<i>“Oh! <i>Oh, fuck!</i>”</i>");
 	output("\n\nHer orgasm arrives on the heels of her wild screams, the first real stream of seemingly never-ending spunk swelling your belly directly when she hilts herself balls-deep in your throat. The moment the stream begins to slow she pulls back out, only to ram it back home with a low, wordless groan of pleasure as she drains her plump balls into you, each thrust bringing with it a renewed spray of jism straight down your willing throat, your neck bulging while you submissively suck load after hot load down its length. By the time she’s done you’re a mess, although to your credit the vast majority of her cum is settling safely in your stomach instead of splattered across your visage. She slowly withdraws her length from your well-used fuckhole with a light moan, her flare pulling past your [pc.lips] with a wet pop as she sighs in satisfaction.");
 	IncrementFlag("DRYAD_BANGED_PC");
+	IncrementFlag("DRYAD_BLEWHER");	
 	pc.loadInMouth(pp);
 	pc.lust(30);
 	processTime(10);
@@ -201,6 +212,7 @@ public function dryadPussy():void
 	if (pc.isTaur()) output ("hind ");
 	output("legs and onto the ground beneath you.");
 	IncrementFlag("DRYAD_BANGED_PC");
+	IncrementFlag("DRYAD_YOURCUNT");
 	pc.loadInCunt(pp,x);
 	processTime(10);
 	pc.orgasm();
@@ -240,6 +252,7 @@ public function dryadAss():void
 	if (pc.isTaur()) output ("back ");
 	output("legs and onto the ground beneath you.");
 	IncrementFlag("DRYAD_BANGED_PC");
+	IncrementFlag("DRYAD_ANALEDYOU");
 	pc.loadInAss(pp);
 	pc.lust(30);
 	if(pc.lustQ() >= 100)
@@ -318,6 +331,7 @@ public function dryadDick():void
 		output(" gives you a gentle kiss before gracefully loping away, her tail flitting hypnotically from side to side as she disappears into the foliage. You shrug. Weird as ever, but you’re not complaining.");
 	}
 	IncrementFlag("DRYAD_FUCKED");
+	IncrementFlag("DRYAD_HERCUNT");
 	processTime(10);
 	pp.loadInCunt(pc, 0);
 	pc.orgasm();
@@ -459,6 +473,7 @@ public function tailCuntDryadFun():void
 	output("\n\nYou take a single, dizzy step forward, your swollen tail dragging on the ground behind you, then decide that you need to rest a bit before continuing. You rest on a fallen trunk, gathering your thoughts as the world spins around you. You feel bloated, stuffed, and sleepy, and think that a nap might not be so bad.");
 	processTime(25);
 	IncrementFlag("DRYAD_BANGED_PC");
+	IncrementFlag("DRYAD_YOURCUNT");
 	pc.orgasm();
 	//Use a suitably voluminous stand-in :D
 	var pp:PregnancyPlaceholder = getDryadPregContainer();
@@ -830,6 +845,8 @@ public function dryadDrain():void
 	output("\n\n<i>“Oohhh, wow,”</i> she giggles nervously, pawing at the ground and eyeing your fucked-full stomach needily while her sperm splatters down your [pc.chest]. <i>“It looks like I made you pregnant! You, um, you can go again right? Please, I don’t think I can hold myself back!”</i>");
 	output("\n\nWhere should you tell her to drain herself?");
 	
+	IncrementFlag("DRYAD_FUCKED");
+	IncrementFlag("DRYAD_BLEWHER");
 	processTime(10);
 	pc.loadInMouth(pp);
 	pc.lust(100);
@@ -888,6 +905,10 @@ public function dryadDrainThroat():void
 	pc.loadInMouth(pp);
 	pc.loadInMouth(pp);
 	IncrementFlag("DRYAD_DRAINED");
+	IncrementFlag("DRYAD_BLEWHER");
+	IncrementFlag("DRYAD_BLEWHER");
+	IncrementFlag("DRYAD_BLEWHER");
+	IncrementFlag("DRYAD_BLEWHER");
 	clearMenu();
 	addButton(0,"Next",dryadDrainThroatEpilogue);
 }
@@ -975,6 +996,11 @@ public function dryadDrainAss():void
 	pc.loadInAss(pp);
 	pc.loadInMouth(pp);
 	IncrementFlag("DRYAD_DRAINED");
+	IncrementFlag("DRYAD_ANALEDYOU");
+	IncrementFlag("DRYAD_ANALEDYOU");
+	IncrementFlag("DRYAD_ANALEDYOU");
+	IncrementFlag("DRYAD_ANALEDYOU");
+	IncrementFlag("DRYAD_BLEWHER");
 	clearMenu();
 	addButton(0,"Next",dryadDrainAssEpilogue);
 }
@@ -1081,6 +1107,14 @@ public function dryadDrainPussy():void
 	pc.loadInCunt(pp,x);
 	pc.loadInCunt(pp,x);
 	IncrementFlag("DRYAD_DRAINED");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
+	IncrementFlag("DRYAD_YOURCUNT");
 	clearMenu();
 	addButton(0,"Next",dryadDrainPussyEpilogue);
 }
