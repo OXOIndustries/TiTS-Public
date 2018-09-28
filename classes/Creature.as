@@ -4785,9 +4785,9 @@
 			{
 				//Certain bimbo TFs reduce gains by 50%.
 				if(hasPerk("Drug Fucked") && arg > 0) arg /= 2;
-				if (hasPerk("Weak Mind") && arg < 0) arg *= 2;
+				if(hasPerk("Weak Mind") && arg < 0) arg *= 2;
 				intelligenceRaw += arg;
-				if (intelligenceRaw > intelligenceMax(true))
+				if(intelligenceRaw > intelligenceMax(true))
 				{
 					intelligenceRaw = intelligenceMax(true);
 				}
@@ -5546,12 +5546,12 @@
 				else temp += Math.round(bimboIntelligence() * 0.1);
 			}
 			if (hasPerk("Agility")) {
-				if ((temp * .5) < 10) temp += 10;
+				if (temp < 0 || (temp * 0.5) < 10) temp += 10;
 				else temp = Math.round(temp * 1.5);
 			}
 			if (hasPerk("Improved Agility")) temp += 10;
 			//Apply sexy moves before flat boni effects
-			if (hasStatusEffect("Sexy Moves")) temp *= 1.1;
+			if (hasStatusEffect("Sexy Moves")) temp = temp * (temp < 0 ? 0.9 : 1.1);
 			if (hasStatusEffect("Riposting")) temp += 15;
 			if (hasStatusEffect("DaggerCloaked")) temp += 5;
 			if (hasStatusEffect("Stealth Field Generator")) temp += 80;
@@ -5563,14 +5563,14 @@
 			temp += statusEffectv2("Water Veil");
 			temp += statusEffectv2("Deep Freeze");
 			temp += statusEffectv1("Evasion Boost");
-			temp -= statusEffectv1("Evasion Reduction");
 			temp += statusEffectv2("Fade-cloak");
+			temp -= statusEffectv1("Evasion Reduction");
 			//Nonspecific evasion boost status effect enemies can use.
 			//Now reduced by restraints - 25% per point
-			temp = temp * (1 - statusEffectv1("Restrained") * 0.25);
+			temp -= (statusEffectv1("Restrained") * 0.25);
 
 			//Preggo belly slows ya down!
-			if (hasStatusEffect("Bulky Belly")) temp *= statusEffectv1("Bulky Belly");
+			if (hasStatusEffect("Bulky Belly")) temp = temp * (temp < 0 ? (2.0 - statusEffectv1("Bulky Belly")) : (statusEffectv1("Bulky Belly")));
 
 			if (temp > 90) temp = 90;
 			if (temp < 1) temp = 1;
@@ -20718,6 +20718,12 @@
 				// Untimed status effect checks
 				switch (thisStatus.storageName)
 				{
+					case "Butt Bug (Female)":
+						if(this is PlayerCharacter)
+						{
+							kGAMECLASS.processButtBugParasitism(deltaT, maxEffectLength, doOut, this, thisStatus);
+						}
+						break;
 					case "Foxfire":
 						if(this is PlayerCharacter)
 						{
@@ -21316,6 +21322,23 @@
 								setStatusMinutes("Dzaan Addicted",1);
 							}
 						}
+						break;
+					case "Butt Bug Message":
+						if(requiresRemoval)
+						{
+							if(this is PlayerCharacter) kGAMECLASS.messageButtBugParasitism(deltaT, maxEffectLength, doOut, this, thisStatus);
+							thisStatus.minutesLeft = ((6 + rand(19)) * 60);
+							requiresRemoval = false;
+						}
+						break;
+					case "Butt Bug Egg Cycle":
+						if(requiresRemoval)
+						{
+							thisStatus.value1 = (thisStatus.value1 != 0 ? 0 : 1);
+							thisStatus.minutesLeft = (7 * 24 * 60);
+							requiresRemoval = false;
+						}
+						if(statusEffectv1("Butt Bug (Female)") != 1) requiresRemoval = true;
 						break;
 					case "Undetected Furpies":
 					case "Furpies Simplex H":

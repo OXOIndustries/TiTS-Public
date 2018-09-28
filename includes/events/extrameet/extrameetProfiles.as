@@ -78,7 +78,7 @@ public function extrameetMrFoxDate():void
 	output("\n\nYou tell your companion about the recent developments in your life, including the matters of the probes and the race for the inheritance. Rodney listens intently, his eyes never leaving your face. He nods along until you finish after many minutes. <i>“So, what about yourself?”</i> You ask.");
 	output("\n\n<i>“Oh, well nothing so exciting as your tale, I assure you. Well, I’m recently single and trying to get back into the dating scene. If present company is any indication, that seems to be going well.”</i> The older gentleman gives a sensible chuckle.");
 	output("\n\nYou recall his profile said he was married, and you decide to ask him about that.");
-	output("\n\nThe fox morphs chuckle withers before your eyes. <i>“Ah. Well, I suppose I must address that. My wife...well, ex wife, was a firm follower of the Church of the One God. Her and I had some points of contention about how I should live my life.”</i>");
+	output("\n\nThe fox morphs chuckle withers before your eyes. <i>“Ah. Well, I suppose I must address that. My wife... well, ex wife, was a firm follower of the Church of the One God. Her and I had some points of contention about how I should live my life.”</i>");
 	output("\n\n<i>“You mean those?”</i> You point at the fox ears on top of your date’s head.");
 	output("\n\n<i>“Precisely. Well, and a few other tweaks.”</i> He gives you a wry smile. <i>“She was adamantly against mods of any kind, and I was tired of living a lie. So, we reached an impasse. I believe we are both much happier now.”</i> He leans in across the table, his tone slowly becoming more passionate. <i>“I could tell you are the same when I saw your profile. Unsatisfied with being just as you are. Yearning to be... more. Am I wrong?”</i> He smiles at you.");
 	output("\n\nYou can’t disagree with him, and give him a shrug and a nod.");
@@ -109,7 +109,7 @@ public function extrameetMrFoxSex():void
 	
 	if (pc.hasClit()) output(", being sure to give your [pc.clit] more than a little bit of teasing. His tongue sends shivers through you, and you can’t help but arch your back each time he visits your sensitive pleasure button.");
 	else output(".");
-			
+	
 	output("\n\nA minute later he leans back, his tongue retreating from your now tingling, dripping wet snatch. <i>“Ready for the main attraction?”</i> Rodney stands up, his fully erect member coming into full view. He reaches down and grasps it, showing it off like a prize.");
 	output("\n\nYou give him a nod, biting your lip in excitement, and the older man steps forward, pressing his Terran cockhead against you. He tenderly probes your slick folds, sliding his impressive crown into your wet and waiting cunt. You can’t help but cry out softy, his girth overwhelming you for a moment. Inch by inch he slides in further, taking his time and not putting too much strain on you as your pussy stretches to accommodate him. It doesn’t take him long to get over half his shaft deep inside you. The fox morph seems to grow tired of taking it slow, and starts to pump his hips slowly, thrusting gently at your well prepared cunt.");
 	
@@ -204,14 +204,13 @@ public function extrameetLadyGlamorSex():void
 	output("\n\nIn her free hand you see Elva is holding her small device, and seems to be recording herself. She is turned to face the camera, holding it out at arms length while she slides her lips up and down your shaft. Before you can question her or protest you feel a surge of warmth build up in your groin");
 	
 	if (pc.balls > 0) output(", as your [pc.balls] start to churn");
-			
+	
 	output(". You head falls back again as the wave of pleasure runs through you and you feel your cock throb as a [pc.cumColor] hot load erupts from your [pc.cockHead " + kok + "]. You arch your back and moan, as you blow your sticky seed into the young woman’s mouth, forgetting completely about the camera. The ausar sucks away at you a few moments longer, milking you for the camera.");
 	
 	output("\n\nYou open your eyes and look down at the young woman, watching her pull her lips and tongue off your spent meat. She sticks her tongue out for the camera, showing off you load before swallowing it and licking her lips. She gives the camera a kiss, then turns off the recording. <i>“Well that wasn’t too bad.”</i> She wipes her lips and pulls herself to her feet. <i>“Definitely not the worse blowjob I’ve ever given.”</i>");
 	output("\n\nYou frown, and ask the young ausar why she started to record you two.");
 	output("\n\n<i>“Sex tape. Everybody who’s anybody needs one. Don’t worry, this isn’t going online for a few years. I need to make a proper name for myself first.”</i> She clears her throat and sticks her device away. <i>“Well, pleasure doing business with you. Make sure you like, follow, and subscribe. Okay?”</i> She shoots you a very well practiced smile then turns on her heel, leaving you alone in the stall.");
 	output("\n\nAfter a moment, you collect yourself and rise to your feet. Exiting the washroom into the main bar, your ‘date’ nowhere to be seen. Well that was something...");
-	
 	
 	processTime(15 + rand(15));
 	pc.orgasm();
@@ -370,7 +369,7 @@ public function extrameetHawtstuffDate():void
 	output("\n\nYou can’t help but chuckle at that. <i>“Not really...”</i> You go into a brief explanation of your recent history, telling Rella about your exploits. Her expressions during your story tell you she is very invested, listening intently as you on go. Eventually you start going into more depth, just because she is such a good listener. When you finally run out of things to say you shrug. <i>“So, that’s about it I guess...”</i>");
 	output("\n\n<i>“Wow...”</i> She stares at you a moment. <i>“You’ve lived such an interesting life. And you’re so young...”</i> Rella rubs the back of her neck, her eyes falling to the floor. <i>“It’s sort of intimidating....”</i>");
 	output("\n\nYou notice her shift around, and you can’t help but think you’ve made her uncomfortable. Trying to fix the situation, you ask her about herself.");
-	output("\n\n<i>“Oh, I’m just nobody really.”</i> Her gaze comes up to meet yours. <i>“I mean.. Wow, that came out really depressing. I meant to say I’m just sort of normal you know.”</i> She scratches her cheek. <i>“I mean, I only swiped right on you because you’re like me physically. I’m umm, sort of old fashioned like that. But now that we’ve talked a bit... I mean wow, you’re way out of my league.”</i>");
+	output("\n\n<i>“Oh, I’m just nobody really.”</i> Her gaze comes up to meet yours. <i>“I mean... Wow, that came out really depressing. I meant to say I’m just sort of normal you know.”</i> She scratches her cheek. <i>“I mean, I only swiped right on you because you’re like me physically. I’m umm, sort of old fashioned like that. But now that we’ve talked a bit... I mean wow, you’re way out of my league.”</i>");
 	output("\n\nHer eyes fall off you again. Man the mood went south quick. You’re pretty sure you can salvage the night, but things might get a bit hot and heavy as a result. What to do...");
 	
 	if(!CodexManager.entryUnlocked("Leithans")) 
@@ -665,7 +664,7 @@ public function extrameetPonyLuverSex():void
 	//find the vag he fucks
 	var vag:int = pc.cuntThatFits(chars["PONYLUVER"].cockVolume(0));
 	if (vag < 0) vag = rand(pc.vaginaTotal());
-			
+	
 	output("You agree to the walk, which you notice causes Pony’s smirk to widen. <i>“Then follow me, ma dear.”</i>");
 	output("\n\nYou follow his lead, walking behind him slightly as the two of you step out under the New Texan sky. He turns to regard you. <i>“Well now don’t be walking behind me. How am I supposed to look at yea?”</i> You hurry your pace, now walking side by side, finding yourself having some trouble keeping up with the man’s gait. He seems to notice and slows his pace, as a result falling back beside you more. He looks over, his eyes exploring your form.");
 	output("\n\n<i>“Oh, doggie. You’re a heck of a lot of woman, you know that?”</i> You notice his jeans seem to get tighter. After a few minutes of walking in silence, Pony injects an offer. <i>“What do you say we retire to my lodgings? It’s just down this way here.”</i> The two of you turn a corner and you see a wide alleyway with several doors. You head into the alley and Pony moves toward a very large door and opens it, stepping inside and vanishing from view as you following right behind.");
@@ -680,7 +679,7 @@ public function extrameetPonyLuverSex():void
 	output("\n\n<i>“Wooo, boy. Now this is a ride!”</i> Pony thrusts in, more of his endlessly long shaft hammering into you. You nearly howl in pain and pleasure, the New Texan wiggling his hips, fighting against your tight snatch. He grabs ahold of your hindquarters, gripping you with both hands. Not even a second later he starts pounding away, holding on tightly as his now rock hard shaft drills in and out of you with all the power the massive man can muster. You nearly scream in pleasure, the heat of his meaty cock setting your cunt ablaze. You feel your knees buckle beneath you, all your weight now on the very well-made foot rest.");
 	output("\n\nYou feel the New Texan give your ass a mighty slap, hooting and hollering as his hips continue to bash against you over and over. <i>“Hell yeah!”</i> You start to pant, your breathing becoming difficult as your cunt becomes alive with pleasure. Your eyes start to flutter and your ass goes numb from the New Texans hard thrusts. He delivers another slap to your rear, causing you to moan in pleasure. Pony is a rough lover, but at this moment you can’t say you don’t love it.");
 	output("\n\nYou feel the thick horsecock throb inside you, and Pony starts to favor faster thrusts over harder ones. <i>“Oh lord, Imma cumming!”</i> You hear him call from behind you. Within seconds you feel a rush of heat inside you as a loud moan fills the room. Pony’s load is massive, each pulse of his orgasming cock pumping thick seed into you in such volume you feel it gushing out of you already. The new heat in your cunt makes you shake and moan, the warm load tingling in your womanhood. Pony buries his still cumming cock deep inside you, displacing most of his cum and forcing it out of you. Your moan becomes a scream and your shakes convulsions as an orgasm of your own peaks.");
-			
+	
 	processTime(30 + rand(15));
 	pc.loadInCunt(chars["PONYLUVER"], vag);
 	pc.orgasm();
@@ -723,8 +722,8 @@ public function extrameetMissyMayDate():void
 	output("\n\nYou can’t help but chuckle and nod in agreement at that. Making small talk you ask May what exactly she does.");
 	output("\n\n<i>“I’m a wet nurse.”</i> You chuckle at first, but based on her expression you see she’s serious. She gives a small laugh of her own and continues. <i>“Private sector. Currently just responsible for one kid. Now I know what you’re thinking: ‘Why the heck does somebody need a wet nurse on a planet full of lactating ladies?’, or something like that.”</i> She leans back in her chair and crosses her legs under the table.");
 	output("\n\nYou give her a shrug, not really able to think of a reason. You give her chest a closer look, her large mounds looking like they could feed at least a half a dozen kids.");
-	output("\n\n<i>“Well, for one I’m on a strict diet and take a laundry list of nutrients every day. Not to mention a very regular exercise schedule and zero drugs or alcohol. Worth it though. My milk is in the top 1% planetwide, and let me tell you: These cow folk are serious about their milk quality. ”</i> She gives you a wide smile. Clearly, she’s very proud of herself. She uncrosses her legs and leans in, her smile turning into a naughty smirk. <i>“I can prove it too, just how good it is. If you’re interested.”</i>");
-		
+	output("\n\n<i>“Well, for one I’m on a strict diet and take a laundry list of nutrients every day. Not to mention a very regular exercise schedule and zero drugs or alcohol. Worth it though. My milk is in the top 1% planetwide, and let me tell you: These cow folk are serious about their milk quality. ”</i> She gives you a wide smile. Clearly, she’s very proud of herself. She uncrosses her legs and leans in, her smile turning into a naughty smirk. <i>“I can prove just how good it is too. If you’re interested.”</i>");
+	
 	processTime(5);
 	addButton(0,"Have a taste",extrameetMissyMaySex,undefined,"Have a taste","Try some 1% milk");
 	addButton(14,"Bail",extrameetBailScene);
@@ -745,9 +744,9 @@ public function extrameetMissyMaySex():void
 	output("\n\nYou roll your eyes and lean in, moving your face towards her leaky teat. How good can milk be? You part your lips and clamp down on her, the first drops of her milk touching your tongue. A blast of warmth surges through your tongue and down your throat, and every muscle in your body goes limp. The only thing that stops you from falling right out of your chair is May catching you, the buxom woman wrapping you up in her arms. <i>“Yeah, that’s the normal reaction.”</i> She chuckles softly, patting your head.");
 	output("\n\nA few more drops touch your tongue, each an explosion of warm flavor that makes your knees weak. While it is unmistakably milk, it has an unusual taste that you can only define as happiness. Without even realizing it at first you begin to suck, drawing out more of May’s milk. As more of the warm liquid fills your mouth you feel your body tingle, your face growing hot and flushed. All the way down your throat the milk feels warm, coming to rest in your belly where the warmth seems to build. Your eyes flutter, the milk tasting so powerfully strong you start to feel yourself fade out of consciousness.");
 	output("\n\nMay pats your head, whispering softly into your ear. <i>“Alright, I think that’s enough.”</i> She moves to pull you off of her, but a sudden wave of strength courses through you, clamping down hard on her nipples. She lets out a cry of surprise, then moans as you start to suck on her with newfound stamina. Her sweet milk burns in your throat, sending your body into a shivering fit.");
-	output("\n\nYour arousal builds as the tantalizing juice fills your body. Holding her tightly, with not a thought to the bar patrons around you, you reach a hand under her skirt. Realizing what you’re doing, she attempts to dissuade your groping fingers, but they rove under the fabric of her panties and she shudders under your touch, thwarted. Unimpeded, your fingers find her hot, pink pleasure button and start to work at it in circles, stroking roughly.");
-	output("\n\nThe combining sensations of your suckling and rubbing seem to drive all thoughts of propriety out of her mind and she grinds her hips to the movement of your hand, heedless of curious eyes. Moaning, May gropes blindly at your crotch, seemingly intent on returning some similar attention. Her efforts are feeble as the pleasure she experiences distracts her, and mostly she clings to you as you take long draws off her milk-swollen breast. Thumb rubbing her clit, two of your fingers slide into her now dripping cunt, and begin to thrust into her vigorously.");
-	output("\n\nHer moans become high fast keens of pleasure, and before too long, her body shudders with a powerful orgasm. At this point your excitement, having been building, crashes over you as well, gushing your own fluids. Pulling away from each other, sticky and panting, you bask in the post-peak glow. After a long moment, she stuffs her exposed tit back into her bra. <i>“Well, that was unexpected.”</i> The two of you compose yourselves and exchange a few pleasant goodbyes. May stands up and shoots you a wink. <i>“Call me sometime.”</i> And with that she turns and walks out of the bar, leaving you alone.");
+	output("\n\nYour arousal builds as the tantalizing juice fills your body. Holding her tightly, without a thought to the bar patrons around you, you reach a hand under her skirt. Realizing what you’re doing, she attempts to dissuade your groping fingers, but they rove under the fabric of her panties and she shudders under your touch, thwarted. Unimpeded, your fingers find her hot, pink pleasure button and start to work at it in circles, stroking roughly.");
+	output("\n\nThe combining sensations of your suckling and rubbing seem to drive all thoughts of propriety out of her mind and she grinds her hips to the movement of your hand, heedless of curious eyes. Moaning, May gropes blindly at your crotch, seemingly intent on returning some similar attention. Her efforts are feeble as the pleasure she experiences distracts her. She mostly clings to you as you take long draws off her milk-swollen breast. Thumb rubbing her clit, two of your fingers slide into her now dripping cunt, and begin to thrust into her vigorously.");
+	output("\n\nHer moans become high, fast keens of pleasure, and before too long, her body shudders with a powerful orgasm. At this point your excitement, having been building, crashes over you as well, gushing your own fluids. Pulling away from each other, sticky and panting, you bask in the post-climax afterglow. After a long moment, she stuffs her exposed tit back into her bra. <i>“Well, that was unexpected.”</i> The two of you compose yourselves and exchange a few pleasant goodbyes. May stands up and shoots you a wink. <i>“Call me sometime.”</i> And with that she turns and walks out of the bar, leaving you alone.");
 	
 	processTime(15 + rand(15));
 	pc.orgasm();
@@ -790,7 +789,7 @@ public function extrameetVKODate():void
 	output("\n\nIn a quick jerking motion her head turns to you, taking you by surprise and making you jump. <i>“Hello! I am V-KO#1221341. You may call me V-KO. Please take a seat.”</i> She lifts an arm and motions towards a chair across from her");
 	output("\n\nSlowly you take your seat, keeping a close eye on the nursedroid. You can tell she is properly looking at you now, and seems to be sizing you up. In an attempt to break up the awkward silence, you introduce yourself.");
 	output("\n\n<i>“Oh. I already logged your identity. I have access to the names of all visitors to New Texas.”</i> She tilts her head, her synthetic lips forming a smile. <i>“I thought it best to cross reference your ExtraMeet profile with transit records to get a better understanding of you.”</i>");
-	output("\n\n<i>“Um. What?”</i> You try to hide your full reaction, being more than a little weirded out by the nursedroid. Before you bail out completely, you decide to run with this a bit longer to see where it goes. <i>“So.. Why do you have access to those records?”</i>");
+	output("\n\n<i>“Um. What?”</i> You try to hide your full reaction, being more than a little weirded out by the nursedroid. Before you bail out completely, you decide to run with this a bit longer to see where it goes. <i>“So... Why do you have access to those records?”</i>");
 	output("\n\nV-KO tilts her head the other way. <i>“I am responsible for containing and treating several infectious sexually transmitted diseases that threaten the way of life here.”</i> She straightens out her head. <i>“New Texan promiscuity is so rampant, infections spread at a rate over a thousand percent higher than galactic average.”</i>");
 	output("\n\n<i>“Huh.”</i> You think about that a moment. <i>“I imagine that keeps you rather busy.”</i>");
 	output("\n\nThe nursedroid doesn’t seem to react at first, leading you to think she’s thinking about the question. <i>“The work is relatively minimal. Outbreaks are rare, and often easy enough to contain.”</i> She shifts in her seat, leaning in forward more. <i>“I have been specially programmed to understand New Texan mating customs, to better predict possible spreading patterns.”</i>");
@@ -816,7 +815,7 @@ public function extrameetVKOSex():void
 	author("Fr0sty");
 	
 	var kok:int = rand(pc.cockTotal());
-		
+	
 	output("<i>“Um, sure. Why not.”</i>");
 	output("\n\nThe nursedroid smiles at you. <i>“Excellent.”</i> Her eyes seem to go out of focus for a moment and she starts to stare off into the distance. After an awkward moment of silence, she focuses in once more and turns to you. <i>“According to my data, the nearest suitable location for us to engage in sexual activity is in a broom closet approximately 10 meters from our current location. Unless....”</i> Her eyes seem to roll into the back of her head for a moment, then pop back into place. <i>“If you would like me to engage my exhibionist protocols, we can instead engage at the bar 4 meters away from us. Analysis indicates it is the only table sturdy enough to support both of our weight under a working load.”</i>");
 	output("\n\n<i>“Um...”</i> You turn and take a look at the bar. While it does indeed look study enough, you’re not sure the patrons sitting at it are going to afford you the room to work. You turn back to your date and shrug. <i>“Broom closet I guess...”</i>");
@@ -843,7 +842,7 @@ public function extrameetVKOSex():void
 	output("\n\nYou stuff your oddly dry and clean dick away, still unable to see the droid. <i>“Um. No, I think I’m fine.”</i> Did she analyse your spunk?");
 	output("\n\n<i>“Very well. You should leave first as to not arouse suspicion. I will remain here for a few moments. It was a splendid date, and above average sex. Thank you, and please cum again!”</i> You hear the nurse give out an odd electronic chuckle, and it takes you a moment to get what she’s laughing about.");
 	output("\n\n<i>“Right...”</i> You turn around and fumble around for the door knob. Light assaults your eyes as you open the door and step out into the bar. You glance back at your date, who smiles at you and waves. <i>“Bye...”</i> You exit the closet and close the door, leaving the weird droid in the closet.");
-		
+	
 	processTime(15 + rand(15));
 	pc.orgasm();
 	
@@ -927,7 +926,7 @@ public function extrameetSexyyDaddyySex():void
 	output("\n\nYou stay under the table a minute coughing and hacking up cum. Most of it is in your stomach, and you feel it burning a hole in your belly it’s so warm. After you catch your breath you pull yourself out from under the table. Orren is leaning back in his chair, his tongue hanging out of his mouth and his eyes staring off into space. <i>“Wow... I’ve never had a blowjob before... It it always that good?”</i>");
 	output("\n\nYou’re not sure how to answer that question, but you suspect you know why nobody ever stepped up to the plate. Orren’s orgasm left him dazed and out of it. You suspect he’ll be in la-la land for awhile, and feel like your date is concluded. You bid him farewell, but he barely seems to notice, staring at the ceiling and daydreaming.");
 	output("\n\nYou stand and head to the exit, leaving the Thraggen alone with his dick still out under the table. Guess you passed the challenge. Barely.");
-				
+	
 	IncrementFlag("EXTRAMEET_SEX");
 	IncrementFlag("EXTRAMEET_ORAL_GIVE");
 	addButton(0,"Next",mainGameMenu);
@@ -1023,7 +1022,7 @@ public function extrameetThickLoadzProfile():void
 //[EXTRAMEET_STROKE4ME]
 public function extrameetStroke4MeProfile():void
 {
-	output("The profile picture on your screen is of a pair of doggy ears and a blonde mess of hair. All you can tell is the subject is an Ausar...");
+	output("The profile picture on your screen shows a pair of doggy ears and a blonde mess of hair. The subject is an Ausar--at least, as far you can tell...");
 	output("\n\nUsername: Stroke4Me");
 	output("\nSex: Female");
 	output("\nAge: 24 Years");
@@ -1177,7 +1176,7 @@ public function extrameetHoneypottSex():void
 	//showName("The_Honeypott");
 	showName("THE\nHONEYPOT");
 	author("Fr0sty");
-		
+	
 	moveTo("JUNGLE EDGE");
 	output("You tell the Zil woman there is nothing wrong with her.");
 	output("\n\nShe stares at you a moment then rises to her feet. <i>“Most excellent. Follow me, we shall proceed with cunnilingus at once.”</i> Before you can get a word in she turns and marches off, forcing you to follow her.");
@@ -1208,7 +1207,7 @@ public function extrameetHoneypottSex():void
 	output("\n\nA few long heartbeats later Honey lifts herself off of you, her legs shaking beneath her. <i>“Most impressive. You did not pass out. I was afraid that may happen.”</i> She stretches and smiles down at you. <i>“Normally, I would give you the ‘cab fare’, as is the custom of your people, but sadly I am without sufficient funds. Thank you again offworlder, this was most enjoyable.”</i> Without another word, the Zil womans turns and walks further into the thick bush of the jungle.");
 	output("\n\nYou twitch on the ground, still barely able to move. Did she just leave you alone and paralyzed on the ground in the jungle? You strain your muscles, trying to rouse them. She did. You hear the sounds of wildlife around you and you start to struggle more, trying to get to your feet.");
 	output("\n\nWell, at least you came.");
-			
+	
 	processTime(20 + rand(15));
 	pc.orgasm();
 	pc.girlCumInMouth(chars["ZILFEMALE"]);
@@ -1272,7 +1271,7 @@ public function extrameetBountifulBotanySex():void
 	
 	if (pc.vaginaTotal() > 1) vnoun = "cunts";
 	else vnoun = "cunt";
-		
+	
 	output("Tempting fate, you ask your date if you would be able to take a look at the vines.");
 	output("\n\nShe pauses and gives you a serious look thinking it over. <i>“Do you know what you’re asking?”</i> Her expression cracks, turning into a suggestive smile. <i>“Things might get a little... Freaky.”</i>");
 	output("\n\nYou tell your date you are willing to take that risk, offering a smile in return.");
@@ -1306,7 +1305,7 @@ public function extrameetBountifulBotanySex():void
 	output("\n\nYou pull yourself to your feet and gather up your gear, watching as Bee’s tentacles tighten around her. You move towards the door and shoot your green date a concerned look.");
 	output("\n\n<i>“Don’t worry about me.”</i> She offers you a smile. <i>“It was fun, but the boys always want more.”</i> She reaches out and strokes one of her vines. <i>“I’d hurry up, before they want round two to be you.”</i>");
 	output("\n\nAs the vines tighten around Bee, you leave the apartment, closing the door behind you. Through the wall you hear the green woman gasp and moan in pleasure as the unseen vines take her.");
-				
+	
 	processTime(30 + rand(15));
 	pc.loadInAss(chars["BOUNTIFULBOTANY"]);
 	pc.loadInMouth(chars["BOUNTIFULBOTANY"]);
@@ -1386,7 +1385,7 @@ public function extrameetSneakySnekSex():void
 	output("\n\nYou turn to face him and see that without his jacket he is buck naked. He appears to be in fairly good shape, although you’re not sure you’re the best judge of what’s considered fit for a Naleen. He moves closer to you, his long tail swishing around on the floor, surrounding you. <i>“I’m really happy you wanted to come.”</i> He leans in, drawing his furry face closer to you before closing the distance and kissing you.");
 	output("\n\nHis kiss is passionate, and he presses his furry chest tight against you as his arms wrap around your waist. Feeling a bit hot under the collar, you return the kiss, pressing yourself tight against the naga man. His furry body tickles against your [pc.skinFurScales], but a rising warmth in your core makes you ignore it. Your hands start to wander, trailing down from his furry upper body towards his scaly lower half. Your hands drawing closer causes an involuntary effect on your date, as you feel something start to shift and poke against you. Two somethings.");
 	output("\n\nYou grab ahold of your date’s twin dicks, one in each hand. While neither are overly large, each appears to be well sized as they continue to grow in your hands. You can’t help but blush, thinking about what your morphed friend plans on doing with them both. You don’t have to wait long it seems, as he starts to guide you backwards into his bedroom, the two of your awkwardly making your way over in a passionate mass of hands and lips.");
-	output("\n\nA short stumble later you bump into the bed with the back of your knees. Alan releases you, pulling his face off your lip. <i>“Here let me help you...”</i> The morphed man starts to pull off your gear, dropping it to the ground near your feet. As his hands move around your body you feel your [pc.skinFurScales] tingle with excitement. Once you’re fully naked and exposed Alan moves away from you, taking you in. <i>“Wow.. You’re breathtaking.”</i> You notice his twin cocks twitch, seemingly agreeing with him.");
+	output("\n\nA short stumble later you bump into the bed with the back of your knees. Alan releases you, pulling his face off your lip. <i>“Here let me help you...”</i> The morphed man starts to pull off your gear, dropping it to the ground near your feet. As his hands move around your body you feel your [pc.skinFurScales] tingle with excitement. Once you’re fully naked and exposed Alan moves away from you, taking you in. <i>“Wow... You’re breathtaking.”</i> You notice his twin cocks twitch, seemingly agreeing with him.");
 	output("\n\nYou feel your womanhood grow warmer, the thought of Naleen cock starting to get to you. You take a seat on the bed and lean back, presenting yourself to your dual dick date. Alan licks his lips at the sight of your [pc.vagina " + vag + "], the Naleen morph moving in close once more. You draw him in with a finger motion, leaning back more until you’re flat on your back. Alan moves in between your legs, the tip of one of his reptilian cocks poking against your eager womanhood. He prods against you a moment, teasing you with his hard cockhead. <i>“Are you ready?”</i>");
 	output("\n\nYou give your date a nod, and brace yourself.");
 	output("\n\nAlan slides himself in slowly, pushing his way into your wet twat. You gasp softly as you take him in, appreciating him going slow as he enters you. He feels oddly cold inside you, the chill feeling making you quiver in pleasure. After a moment he stops moving, hilting himself completely inside of you. <i>“Oh god you feel so warm...”</i> His voice is shaky, and you feel his whole body quiver. You feel him pull back, sliding his length back out of your eager hole.");
@@ -1397,7 +1396,7 @@ public function extrameetSneakySnekSex():void
 	
 	pc.buttChange(chars["SNEAKYSNEK"].cockVolume(0), true, true, false);
 	
-	output("\n\nYou cry out in a mix of pain and pleasure, the twin cocks of your Naleen lover buried deep inside you. He doesn’t wait long before he starts to move his hips, pumping them back and forth and putting his dicks to work. You cunt tingles with pleasure as it takes its pounding, and your ass takes to it almost as well. Every time he thrusts in you feel stuffed by the twin cocks, feeling them throb inside your tight holes. Alan holds on tight to your [pc.hips] as he jackhammers away, and you hear his huffing and puffing a great deal over your shoulder. As your pleasure rises you clench down with all your muscles, squeezing tight the reptilian cocks inside you. You lover howls in pleasure, and spurred on by your increased tightness, thrusts with renewed vigor and fucks you all the harder.");
+	output("\n\nYou cry out in a mix of pain and pleasure, the twin cocks of your Naleen lover buried deep inside you. He doesn’t wait long before he starts to move his hips, pumping them back and forth and putting his dicks to work. Your cunt tingles with pleasure as it takes its pounding, and your ass takes to it almost as well. Every time he thrusts in you feel stuffed by the twin cocks, feeling them throb inside your tight holes. Alan holds on tight to your [pc.hips] as he jackhammers away, and you hear his huffing and puffing a great deal over your shoulder. As your pleasure rises you clench down with all your muscles, squeezing tight the reptilian cocks inside you. You lover howls in pleasure, and spurred on by your increased tightness, thrusts with renewed vigor and fucks you all the harder.");
 	output("\n\nThe increased pace of your lover pulls a deep moan out of you. Both cocks throb inside you, sending sinful waves of pleasure rippling through your body. Panting like a dog in heat, you feel yourself on the verge of exploding from your double dicking. Alan’s breathing starts to quicken, telling you your date might be about to have an explosion of his own. Sure enough you feel deep inside both your holes his cocks start to pulse, just as your lover groans and pushes himself into you as far as he can. That final drive inside you causes you to nearly scream, your pleasure peaking and crashing down over you and making you quiver. Both cocks pop at the same time, and the double rush of jizz filling both of your holes making you moan. You feel him pump you full of his seed, both loads seeming to be quiet sizable. He must have been very backed up.");
 	output("\n\nHe pulls both his cocks out of you rather quickly, slithering off and leaving you face down on the bed. You feel his hot sticky cum ooze from both of your exhausted holes, and drip down onto the floor. Alan returns a moment later and wipes you down with a warm cloth. He is awfully considerate, but then again he did just stretch you out something fierce. <i>“God, hope that I wasn’t too rough.”</i>");
 	output("\n\nYou pull yourself to your feet and tell him it was perfect and you can’t help but swoon, still a little high off your stuffing. With your head still in the clouds you collect your gear and get dressed, feeling only a little worse for wear. Alan walks you to the door and gives you a sheepish smile before leaning in and giving you a quick kiss on the cheek. <i>“Thanks for a great evening [pc.name]. It meant a lot.”</i>");
@@ -1406,7 +1405,7 @@ public function extrameetSneakySnekSex():void
 	processTime(30 + rand(15));
 	pc.loadInAss(chars["SNEAKYSNEK"]);
 	pc.loadInCunt(chars["SNEAKYSNEK"], vag);
-		
+	
 	pc.orgasm();
 	
 	IncrementFlag("EXTRAMEET_SEX");
@@ -1418,7 +1417,7 @@ public function extrameetSneakySnekSex():void
 //[EXTRAMEET_ENCHANTINGFAE]
 public function extrameetEnchantingFaeProfile():void
 {
-	output("The profile picture on your screen is a selfie of an incredibly cute Saeri. She is posing for the picture, biting her lip seductively and giving the camera a longing gaze. Wait a minute.. Thats a guy?!");
+	output("The profile picture on your screen is a selfie of an incredibly cute Saeri. She is posing for the picture, biting her lip seductively and giving the camera a longing gaze. Wait a minute... Thats a guy?!");
 	output("\n\nUsername: EnchantingFae");
 	output("\nSex: Male");
 	output("\nAge: 18 Years");
@@ -1444,11 +1443,11 @@ public function extrameetEnchantingFaeDate():void
 	output("\n\n<i>“Hiya!”</i> He moves forward and grasps your hand, his grip delicate and soft against you. He holds your hand but doesn’t shake it, though you notice his wings give a few excited fluttering flaps. <i>“I’m so happy you could make it. Sit!”</i> He releases you and takes his seat once more, crossing his legs and getting comfortable.");
 	output("\n\nYou slowly take your seat and give your date a look over. Everything about your date screams female. His face and body are definitely feminine and even his clothing, which is just a simple sundress, further supports it. However things are rarely as they seem in the galaxy, so all you can do is roll with it. A giggle knocks you back to attention. You didn’t realize it, but you were silent and staring for a long time. You shift in your seat, feeling more than a little awkward.");
 	output("\n\n<i>“Trying to figure out if I’m really a boy right?”</i> Your date gives you a mischievous smirk. <i>“Well, I am. Although I don’t think most can tell.”</i> He nods his head towards the male patron who he was talking to just before you arrived. <i>“He tried to pick me up. Thought I was a member of the fairer sex. Not that I corrected him mind you. You came in before I had the chance to tell him he was eye-fucking a boy.”</i> You glance over at the patron, noticing him glaring over at you still. After a moment you return your gaze to your date, noticing him staring at you intently with his alien Saeri eyes expectantly. It takes a second, but you realize you haven’t introduced yourself yet. Feeling foolish, you give your date your name and ask for his.");
-	output("\n\n<i>“Oh, well.”</i> The Saeri leans back and frowns. <i>“My name is something manly as hell and awkward to pronounce. Just call me Fae. Rolls of the tongue much better.”</i> He leans back in, his frown turning into another mischievous smirk. <i>“You know, I’m starting to think we might want to take this someplace else. Based on the hole being burned into the back of your skull.”</i>");
+	output("\n\n<i>“Oh, well.”</i> The Saeri leans back and frowns. <i>“My name is something manly as hell and awkward to pronounce. Just call me Fae. Rolls off the tongue much better.”</i> He leans back in, his frown turning into another mischievous smirk. <i>“You know, I’m starting to think we might want to take this someplace else. Based on the hole being burned into the back of your skull.”</i>");
 	output("\n\nYou don’t even need to look back to know what Fae is talking about. You ask the Saeri what he has in mind.");
 	output("\n\n<i>“Well. We can always go back to my place.”</i> He gives his wings another small flutter. <i>“If you’re interested in a little fun that is.”</i> Fae bite his lip and gives his brow a suggestive wiggle. Before you can think about it, Fae’s expression shifts. <i>“I... Should mention something though...”</i> He clears his throat and leans in, speaking in a hushed tone. <i>“I might have lied a bit on my profile...”</i>");
 	output("\n\n<i>“What?”</i> You give your date another look over. <i>“About what?”</i>");
-	output("\n\nFae takes a deep breath. <i>“I don’t normally bring it up on a first date... But um.. Well, I just think you’re nice and all, and I’d rather be upfront if things get serious.... It’s my age.”</i> An alarm goes off in your head. You recall his profile saying he was eighteen, and if that was a lie you might be dealing with a minor here. You scoot back your chair and prepare to bolt, ready for the the bad news. <i>“I’m not really eighteen... I’m a hundred and eighteen.”</i>");
+	output("\n\nFae takes a deep breath. <i>“I don’t normally bring it up on a first date... But um... Well, I just think you’re nice and all, and I’d rather be upfront if things get serious.... It’s my age.”</i> An alarm goes off in your head. You recall his profile saying he was eighteen, and if that was a lie you might be dealing with a minor here. You scoot back your chair and prepare to bolt, ready for the the bad news. <i>“I’m not really eighteen... I’m a hundred and eighteen.”</i>");
 	output("\n\nYou blink. <i>“What?”</i>");
 	output("\n\n<i>“Oh god.”</i> Fae rubs the bridge of his nose with both hands, his voice filled with alarm. <i>“I’m SO sorry. I don’t like lying about it, but.... It’s really hard to meet people when everybody just thinks you’re just a creepy old man dressed up like a little girl.”</i> He drops his hands and leans in. <i>“My race just ages differently, I swear. I’m totally not some creepy old dude. Please just give me a chance.”</i> His bright eyes go wide and his lips press tightly together, begging.");
 
@@ -1482,20 +1481,20 @@ public function extrameetEnchantingFaeSex():void
 	output("\n\nTurning the corner you get quite the eyeful, rounding the bend just in time to see Fae stick his ass up in the air while bending over, reaching under his dress. He slips off a pair of very cute looking panties, pulling them down slowly then stepping out of them and balling them up. Fae turns around to face you, a mischievous smile on his impossibly cute face. <i>“Hope you don’t mind...”</i> He lifts up his dress, showing off his stiff blue cock. In an unsurprising turn of events, even his dick looks cute. <i>“I just wanted to be comfortable.”</i>");
 	output("\n\nAfter a brief moment, Fae turns back around, showing off his round backside. He takes a few exaggerated steps forward, his well formed ass moving seductively with him. Fae walks right up to a dead end and bends over, pressing his hands against the wall and presenting himself. His cheeks seem to spread on their own, giving you a view of his tight hole. You feel yourself harden and mast, your [pc.cockShape " + kok + "] cock eager to claim the trappy boy’s ass. Your feet start to move on their own, stalking towards Fae, while your hands pull your rock hard member out and take aim.");
 	output("\n\nOne you reach the small Saeri you press the tip of your [pc.cockHead " + kok + "] against his pucker, causing him to squirm. You feel his warm hole seem to pulse against your cockhead, and it almost feels like it’s attempting to suck you in. Fae wiggles his ass and makes a small whimpering sound, begging you to push in and take him. He sticks out his butt a bit more, pushing the very tip of your cock slightly into his very welcoming ass. You decide just to go for it and not draw this out, placing your hands on his hips and shoving yourself in properly.");
-			
+	
 	pc.cockChange();
-			
+	
 	output("\n\nFae gasps out loud as you drive your shaft into him, the Saeri’s cry filled with lustful hunger. While you would certainly describe his ass as tight, you find no resistance hilting yourself as you drive into the eager buttslut. Despite his size, he takes you in without any difficulty, and you feel the him clamp down on your shaft in a way that squeezes you without constricting your movement. From what you can tell, this is a very experienced and well practiced ass, perfected honed after many years and presumably many cocks. Wanting to take him for a proper spin, you get to work and start to give the trap a proper fucking.");
 	output("\n\nAfter a few hard thrusts you’re not sure what’s getting to you more, Fae’s tightness or the incredible warmth of his ass. You can’t believe how perfectly balanced between tightness and looseness the Saeri’s ass is, as you have almost no issue pounding it but still feel a strong embrace every time you bury yourself in. Something tells you Fae is doing something in particular, clenching himself in perfect rhythm with your thrusts to make himself tight when it counts, but loose when needed. You never imagined somebody could manage something like this so expertly, but that must be the pay off from taking dick for over a century. Fae also makes interesting and exquisite noises as you fuck him, gasping and moaning like a slut, but still managing to sound cute while he does it. The Saeri is truly a master of his craft.");
-	output("\n\nYou cock throbs in pleasure as you work in and out of the trap’s tight hole, and you feel sweat start to build on your [pc.skinFurScales]. Then you feel a burning warmth spread throughout your body, your muscles gearing into overdrive as your lust takes over and forces you to fuck the Saeri harder and faster. Instead of loosening up, Fae only seems to grow tighter, but his lusty moans grow louder as you pound him with everything you’ve got. You feel your cock burn, the heat spreading up your body along with waves of depraved pleasure. The air in your lungs doesn’t seem to be enough, and your breathing becomes harsh and loud as you try to keep up your now primal pace on the blue boy’s ass.");
+	output("\n\nYour cock throbs in pleasure as you work in and out of the trap’s tight hole, and you feel sweat start to build on your [pc.skinFurScales]. Then you feel a burning warmth spread throughout your body, your muscles gearing into overdrive as your lust takes over and forces you to fuck the Saeri harder and faster. Instead of loosening up, Fae only seems to grow tighter, but his lusty moans grow louder as you pound him with everything you’ve got. You feel your cock burn, the heat spreading up your body along with waves of depraved pleasure. The air in your lungs doesn’t seem to be enough, and your breathing becomes harsh and loud as you try to keep up your now primal pace on the blue boy’s ass.");
 	output("\n\nYou’re close. Close to cumming and close to passing out from exhaustion. Which will come first you can’t say with certainty. Without warning, Fae’s ass clamps down on your thick shaft tightly and the small trap lets out a deep shuddering moan. The smell of cum fills the air as the small man blows his load, his butt clenched so tight your cock feels like it might pop. The smell of sex in the air and the increased tightness are all it takes to coax out an orgasm of your own, and you feel a shiver run up your spine as your muscles tighten. Your red hot cock throbs and pulses inside of Fae, and you feel yourself fill his ass with a burning load of [pc.cumColor] seed. Your muscles seize up then go limp, causing you to lose your balance and fall backward. Your cock pops out of Fae’s behind, releasing all of your deep shot spunk in an oozing display.");
 	output("\n\nFae straightens up and cracks his back, releasing a content sigh. <i>“Wow! That was great.”</i> He turns around to face you, fixing his still partially tented dress. A very noticeable cum stain is visible at the front. Fae seems to notice and groans. <i>“Fuck. My granddaughter is going to kill me.”</i> He licks his thumb and rubs at the stain. <i>“She’s gonna flip when she sees I jizzed on her dress.”</i>");
 	output("\n\nYou feel your jaw drop slightly. Did he just say granddaughter? You pull yourself back up to your feet, remembering for the first time in many minutes just how old your trappy date really is. Fae groans and stops rubbing at the dress, then gives you a wide and cute smile. <i>“It was fun [pc.name] but I should scoot. Don’t be a stranger okay?”</i> The small butterfly man moves in and gives to a quick peck on the cheek before skipping past you and turning out of the alley.");
 	output("\n\nYou stand there a moment, contemplating your actions. You just fucked somebody’s grandpa. Huh.");
-			
+	
 	processTime(30 + rand(15));
 	pc.orgasm();
-		
+	
 	IncrementFlag("EXTRAMEET_SEX");
 	IncrementFlag("EXTRAMEET_ASS_GIVE");
 	addButton(0,"Next",mainGameMenu);
@@ -1759,7 +1758,7 @@ public function extrameetXxThrasherCatxXSex():void
 	output("You take the other vial and open it up. <i>“We’re gonna party.”</i> You tip the vial over and pour its contents into your drink.");
 	output("\n\nThrash gives you a wide smile and does the same. <i>“Bottoms up then.”</i> You both down your drinks, and a rush of warmth fills your throat and belly.");
 	
-	if (pc.hasPerk("Venom Slut")) output(" The heat in your pants turns into a raging fire as the red liquid runs down your throat. Something about this mix if different. More.. Potent...");
+	if (pc.hasPerk("Venom Slut")) output(" The heat in your pants turns into a raging fire as the red liquid runs down your throat. Something about this mix if different. More... Potent...");
 	
 	output(" <i>“Shit’s gonna kick in fast. Got a place nearby we can hole up?”</i>");
 	
@@ -1827,7 +1826,7 @@ public function extrameetSweetNLowDate():void
 	author("Fr0sty");
 	moveTo("302");
 	output("You arrive at The Mess and see your Gabilani date perched on a very high chair. Based on her height you’re unsure how she climbed up, and you peg her as being short by Gabilani standards, around 3 feet flat. As you move closer you also note while she is less curvy by Galilani standards, she still boasts ample hips and a large bust. She notices you as you move in closer, her eyes running you up and down. Her green lips crack into a wide smile as you come to a stop next to her and introduce yourself.");
-	output("\n\n<i>“Oh my.. You’re taller than I thought.”</i> She speaks in a tone of amazement, marveling at you. <i>“Oh, please sit. I’m Etta, by the way.”</i> You take a seat across from the small woman, finding yourself having to look down at her even when sitting. <i>“So what brings such an impressive figure as yourself to a dump like this?”</i>");
+	output("\n\n<i>“Oh my... You’re taller than I thought.”</i> She speaks in a tone of amazement, marveling at you. <i>“Oh, please sit. I’m Etta, by the way.”</i> You take a seat across from the small woman, finding yourself having to look down at her even when sitting. <i>“So what brings such an impressive figure as yourself to a dump like this?”</i>");
 	output("\n\nYou start telling Etta about why you came to Tarkus and end up talking more about yourself. As you talk, you notice the small woman’s attention start to waver as she stares at you, chin in hand. She smiles to herself, more about her own thoughts than anything you say. You decide to cut it short and ask her about herself.");
 	output("\n\n<i>“Oh. I’m nothing special.”</i> She shifts in her seat, her black eyes never leaving you. <i>“I’m just on planet for my mandatory three weeks a year and trying to make the best of it.”</i> She smirks, her dark eyes gleaming. <i>“So, you’re like really strong, right? I mean, you’re just so... big.”</i>");
 	output("\n\nYou get the sense she’s more interested in your height than anything else. You can’t help but wonder what would happen if you indulge the small green woman.");
@@ -2337,7 +2336,7 @@ public function extrameetDaRegulatorSex():void
 	
 	processTime(30 + rand(15));
 	pc.orgasm();
-		
+	
 	IncrementFlag("EXTRAMEET_SEX");
 	IncrementFlag("EXTRAMEET_ASS_GIVE");
 	addButton(0,"Next",mainGameMenu);
@@ -2502,7 +2501,7 @@ public function extrameetMistressVenomSex():void
 	output("\n\n<i>“Don’t cum!”</i> The red woman turns and looks at you over her shoulder. <i>“Don’t you dare cum before me!”</i> You date goes into overdrive, bouncing and grinding so fast the friction starts to burn your ready-to-pop manhood. You strain, trying to hold yourself back. Something tells you if you came first the Sergeant would not be happy at all. Thankfully, you don’t have to wait long as the red woman throws her head back and moans loudly, her movement on your cock seeming to stagger to a near stop as her body shudders.");
 	output("\n\nHer orgasm is all the go ahead you need. You relax and let yourself go, a wave of pleasure rippling through you as you blow your load deep into the still shivering Myr. Your whole body tenses as your cock pulses in the Myr’s tight cunt, a loud throaty groan at your lips. Before your orgasm has even passed you feel the Sergeant lift herself off of you, thick [pc.cumColor] seed oozing out of her and dripping down on you. She steps over you and stalks a few paces away, leaving you in a puddle of your own warm spunk.");
 	output("\n\n<i>“Impressive.”</i> She pulls her skirt down and flattens it, adjusting the rest of her uniform as well. <i>“Your stamina is commendable. I would like to use you again in the future.”</i> She turns back and faces you, a dry smile on her lips. <i>“Until next time. Farewell.”</i> The Sergeant turns on her heel and walks towards the stairs, leaving you alone.");
-	output("\n\n<i>“Huh..”</i> You pull yourself to your feet and wipe your crotch off with the nearest sheet. Collecting you gear, you suit back up and head down the stairs, exiting the small attic.");
+	output("\n\n<i>“Huh...”</i> You pull yourself to your feet and wipe your crotch off with the nearest sheet. Collecting you gear, you suit back up and head down the stairs, exiting the small attic.");
 	
 	processTime(30 + rand(15));
 	pc.orgasm();
@@ -3015,7 +3014,7 @@ public function extrameetRipped4YourPleasureSex():void
 
 	processTime(10 + rand(15));
 	pc.loadInCunt(chars["RIPPED4YOURPLEASURE"], vag);
-		
+	
 	pc.orgasm();
 	
 	IncrementFlag("EXTRAMEET_SEX");

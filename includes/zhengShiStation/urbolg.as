@@ -54,16 +54,16 @@ public function zhengShiHangerFloorBonus():Boolean
 	{
 		if(pc.hasAirtightSuit() && !(pc.armor is SpacesuitComplete)) 
 		{
-			addDisabledButton(1,"Spacewalk","Spacewalk","You need a spacesuit with magnetic boots if you're going to walk around out there. Maybe you can find one in the mines.");
+			addDisabledButton(1,"Spacewalk","Spacewalk","You need a spacesuit with magnetic boots if you’re going to walk around out there. Maybe you can find one in the mines.");
 		}
 		else if(pc.armor is SpacesuitComplete) 
 		{
 			output("\n\nYou could walk around the outside of the station to get back into the mines without enemy interference....");
-			addButton(1,"Spacewalk",fastSpacewalkToAirlock,undefined,"Spacewalk","Take a jaunt in the vacuum back to the mine's airlock.");
+			addButton(1,"Spacewalk",fastSpacewalkToAirlock,undefined,"Spacewalk","Take a jaunt in the vacuum back to the mine’s airlock.");
 		}
 		else
 		{	
-			addDisabledButton(1,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren't feeling particularly suicidal today.");
+			addDisabledButton(1,"Spacewalk","Spacewalk","Stepping into space without protection is a one-way ticket to a real quick death. You aren’t feeling particularly suicidal today.");
 		}
 	}
 	return false;

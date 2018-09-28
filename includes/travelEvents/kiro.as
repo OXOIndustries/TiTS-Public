@@ -3740,8 +3740,8 @@ public function kiroKallyThreesomesApproach():void
 	clearMenu();
 	if(pc.hasCock() && pc.thinnestCockThickness() < 4) addButton(0,"Milk Them",kiroKallyDoubleMilkingThreesome,undefined,"Milk Them","Plug them both into the milker and buttfuck all the ‘nuki seed their bulging ballsacks can carry.");
 	else addDisabledButton(0,"Milk Them","Milk Them","You need a penis that’s less than four inches thick to plug both of them into Kiro’s milker and buttfuck the seed out of them.");
-	if(pc.hasVagina()) addButton(1,"Get DPed",kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenLikesToWriteBecauseHeHasShitTaste,undefined,"Get DPed","Take one sister in the vagina and the other in your butt. It’s a Steele sandwich!");
-	else addDisabledButton(1,"Get DPed","Get DPed","Trying to take both of them in the butt is probably not a good idea. You should go get a vagina if you want to take them both at the same time.");
+	if(pc.hasVagina()) addButton(1,"Get DPed",kiroKallyDoubleTeamPCCauseShesABigFutaSlutLoverYeahThatsWhatFenLikesToWriteBecauseHeHasShitTaste,undefined,"Get Double Penetrated","Take one sister in the vagina and the other in your butt. It’s a Steele sandwich!");
+	else addDisabledButton(1,"Get DPed","Get Double Penetrated","Trying to take both of them in the butt is probably not a good idea. You should go get a vagina if you want to take them both at the same time.");
 	addButton(14,"Back",backFromSisterThreesomeMenu);
 }
 

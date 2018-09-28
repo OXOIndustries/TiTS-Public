@@ -1,4 +1,4 @@
-/*  ramis follower expansion
+/* ramis follower expansion
 
 flaggy flags
 RAMIS_ONBOARD
@@ -25,7 +25,7 @@ RAMIS_STRETCHED: Extra capacity for ramis, gained by dicking her with big dicks.
 RAMIS_ANNO_INTERRUPTUS: Anno bumped into pc during doggy scene.
 
 	-Sections (for quick CTRL+F-ing):
-//  Recruiting
+//	Recruiting
 //Crew Blurb Selection
 //Main Ramis
 //[Talk]
@@ -146,7 +146,7 @@ public function ramisPartySex(who:String):void
 	IncrementFlag("RAMIS_PARTIED");
 }
 
-//  Recruiting
+// Recruiting
 
 public function ramisRecruit():void
 {
@@ -284,7 +284,7 @@ public function ramisValidateActivity(crew:Array):void
 	else if (flags["RAMIS_ACTIVITY_LAST_SET"] == undefined) outdated = true;
 	else if (flags["RAMIS_ACTIVITY_LAST_SET"] + 4 < GetGameTimestamp()) outdated = true;
 	//Check for party time
-	else if (   (flags["RAMIS_ACTIVITY"] != "PARTY")
+	else if (	(flags["RAMIS_ACTIVITY"] != "PARTY")
 				&& (ramisIsPartyTime() || ramisOutDrinking())) outdated = true;
 	//Check that old activity is still valid
 	else if (!InCollection(flags["RAMIS_ACTIVITY"], options)) outdated = true;
@@ -314,7 +314,7 @@ public function ramisCrewBlurb():String
 	switch (flags["RAMIS_ACTIVITY"])
 	{
 		case "HORNY":
-			blurb =  "Ramis is dozing in her room, flat out on her bunk with her hands across her taut belly, purring snores periodically rising and falling from a drone to a rumble. On the monitors, the glow of a holo pad near to her bed catches your eye; zooming in reveals it to be ‘Johann’s Big and Burly Bear-annual III’. A couple of Ramis’s fingers gleam with moisture.";
+			blurb = "Ramis is dozing in her room, flat out on her bunk with her hands across her taut belly, purring snores periodically rising and falling from a drone to a rumble. On the monitors, the glow of a holo pad near to her bed catches your eye; zooming in reveals it to be ‘Johann’s Big and Burly Bear-annual III’. A couple of Ramis’s fingers gleam with moisture.";
 			break;
 		case "PARTY":
 			blurb = "A medley of trance and hip-hop blares at full blast from Ramis’s room.";
@@ -323,7 +323,7 @@ public function ramisCrewBlurb():String
 			break;
 		case "ERROR":
 		default:
-			blurb = "<b>Error setting Ramis's schedule. " + String(flags["RAMIS_ACTIVITY"]) + "</b>";
+			blurb = "<b>Error setting Ramis’s schedule. " + String(flags["RAMIS_ACTIVITY"]) + "</b>";
 	}
 	
 	return blurb;
@@ -348,7 +348,7 @@ public function ramisCrewApproach():void
 	ramisSexButton();
 
 	if (pc.energy() > 40 && !pc.isWornOut()) addButton(2, "Work Out", ramisPumpIronNShit, undefined, "Work Out", "See if she’s willing to let you use her gear, pump a little iron with you.");
-	else addDisabledButton(2, "Work Out", "Work Out", "You're too tired.");
+	else addDisabledButton(2, "Work Out", "Work Out", "You’re too tired.");
 	
 	if (flags["RAMIS_SEXED_SHIP"] != undefined && !looksFemaleToRamis() && !pc.isTaur())
 	{
@@ -916,8 +916,8 @@ public function ramisPlsSexMeh():void
 public function ramisSexButton():void
 {
 	if (flags["RAMIS_SEX_DISABLED"] == 1 && looksFemaleToRamis()) addDisabledButton(1, "Sex", "Sex", "You aren’t something that Ramis would be interested in banging. Maybe if you were a guy... or a trap.");
-	else if (pc.isTaur()) addDisabledButton(1, "Sex", "Sex", "You're a bit too... <i>tauric</i>.");
-	else if (ramisOnTop() && !pc.hasHardLightEquipped()) addDisabledButton(1, "Sex", "Sex", "For now, you’ll need to wear a certain piece of... equipment... to do this.\n\n(It's a strap-on)");
+	else if (pc.isTaur()) addDisabledButton(1, "Sex", "Sex", "You’re a bit too... <i>tauric</i>.");
+	else if (ramisOnTop() && !pc.hasHardLightEquipped()) addDisabledButton(1, "Sex", "Sex", "For now, you’ll need to wear a certain piece of... equipment... to do this.\n\n(It’s a strap-on)");
 	else addButton(1, "Sex", ramisLetsShagRouter);
 }
 	
@@ -1020,7 +1020,7 @@ public function ramisCatsAndDoggystyle(continued:Boolean = false):void
 	output("You said now, and you meant it. Ramis’s eyes widen and she giggles slightly in shock as you move into her,");
 	if (tallBoyo) output(" roughly clinching her to your waist and pulling her into a kiss, biting softly at her rosy lips before dipping into her deeply, [pc.tongue] dragging over her teeth so it can wrestle with her flat, soft tongue.\n\nRamis responds eagerly, cooing into your mouth");
 	else output(" roughly clinching her and attacking her breasts since you can’t reach her face, groping one through the filmy fabric of her top whilst teasing the nipple of the other with your [pc.tongue], not stopping until it’s a thick pinhead beneath her bra, eagerly erect in response to the thirsty drags of your mouth.\n\nRamis responds eagerly, cooing with pleasure");
-	output(", her muscly arms crushing you into the soft pillows of her tits and sturdy ripples of her belly. You slide your hand down those washboard abs, unbuttoning her jeans and disappearing into the warmth between her  brawny thighs, finding her kitty slit and curling your fingers beyond its lips, sampling for yourself how wet she is - and how spry and muscular that tunnel is");
+	output(", her muscly arms crushing you into the soft pillows of her tits and sturdy ripples of her belly. You slide your hand down those washboard abs, unbuttoning her jeans and disappearing into the warmth between her brawny thighs, finding her kitty slit and curling your fingers beyond its lips, sampling for yourself how wet she is - and how spry and muscular that tunnel is");
 	if (flags["RAMIS_STRETCHED"] != undefined) output(" even after the resizing job you’ve done on her");
 	output(", shivering and writhing formidably in response to your fingering. The kaithrit groans and thrusts herself into you impatiently,");
 	if (tallBoyo) output(" kissing you back");
@@ -1347,7 +1347,7 @@ public function ramisCorridorMolesting():void
 	output(". She pushes her thigh between your [pc.thighs], moves it back and forth, letting you feel the rough jeans against [pc.eachCock] and [pc.balls] through your [pc.lowerUndergarment].");
 
 	output("\n\n<i>“That belongs to me,”</i> she growls, pressing the suppleness of her breasts into you as the roughness of her thigh goes back and forth, back and forth. <i>“You know it. Say it.”</i>");
-	output("\n\nYou could wriggle free, demand she stop - you’re her superior, after all - but it’s so intoxicating to let the feline amazon do it... to let her do exactly as she wants with you. [pc.eachCock] certainly does - " + (pc.hasCocks() ? "they're" : "it's") + " swelling up, getting so hard and hot from what’s she doing, despite the crudeness of it.");
+	output("\n\nYou could wriggle free, demand she stop - you’re her superior, after all - but it’s so intoxicating to let the feline amazon do it... to let her do exactly as she wants with you. [pc.eachCock] certainly does - " + (pc.hasCocks() ? "they’re" : "it’s") + " swelling up, getting so hard and hot from what’s she doing, despite the crudeness of it.");
 
 	output("\n\n<i>“It belongs to you,”</i> you mumble, and gasp as Ramis presses you into the wall with her body,");
 	if (pc.hasLegs()) output(" shoving your [pc.feet] apart as her wide, brawny thigh rides your crotch inwards,");
@@ -1563,13 +1563,13 @@ public function ramisBottomShowerEnd():void
 	clearMenu();
 	processTime(30);
 	
-	output("<i>“You've been such a good boy,”</i> she says huskily, looking down through curtains of soaked blonde hair at you. <i>\"You deserve a treat, don’t you? Get up, turn around and put your hands on the wall.\"</i> You do as she says. You heart lurches slightly as soft boob flesh " + (pc.tallness > 6*12 + 2 ? "presses into your back" : "rests on your shoulders") + ", a hand slithers around to grasp your [pc.cock], and a single digit nestles its way between your butt cheeks.");
+	output("<i>“You’ve been such a good boy,”</i> she says huskily, looking down through curtains of soaked blonde hair at you. <i>“You deserve a treat, don’t you? Get up, turn around and put your hands on the wall.”</i> You do as she says. You heart lurches slightly as soft boob flesh " + (pc.tallness > 6*12 + 2 ? "presses into your back" : "rests on your shoulders") + ", a hand slithers around to grasp your [pc.cock], and a single digit nestles its way between your butt cheeks.");
 
-	output("\n\n<i>\"I know how sissies like it,\"</i> the kaithrit murmurs. She hushes you soothingly as you gasp, tensing up slightly as she penetrates your [pc.anus] with her middle finger, sinking in to your sensitive back passage. Your prick is rubbed up and down with brisk jerks of her wrist as she curls her finger, pushing it into your walls round and round, turning it around, searching for something... <i>\"You've just got to find - ah.\"</i> A frisson of pure, electric sensation shoots up your spine as she touches something deep. You spasm in her firm grip like a landed salmon, making her giggle. <i>\"There.");
-	if (pc.longestCockLength() < 6) output(" Perhaps you cud look into getten a willy bigger'n then a girl's finger, so you ken do this for someone else sometime, hmm?");
-	output(" Keep your hands still now...\"</i>");
+	output("\n\n<i>“I know how sissies like it,”</i> the kaithrit murmurs. She hushes you soothingly as you gasp, tensing up slightly as she penetrates your [pc.anus] with her middle finger, sinking in to your sensitive back passage. Your prick is rubbed up and down with brisk jerks of her wrist as she curls her finger, pushing it into your walls round and round, turning it around, searching for something... <i>“You’ve just got to find - ah.”</i> A frisson of pure, electric sensation shoots up your spine as she touches something deep. You spasm in her firm grip like a landed salmon, making her giggle. <i>“There.");
+	if (pc.longestCockLength() < 6) output(" Perhaps you cud look into getten a willy bigger’n then a girl’s finger, so you ken do this for someone else sometime, hmm?");
+	output(" Keep your hands still now...”</i>");
 
-	output("\n\nGasp after moan after gasp is pushing out of your lungs into the humid air as Ramis milks your prostate with an insistent beckoning motion of her finger, driving over that tender bulb within your [pc.ass], all the while her tight grip flicks up and down your [pc.cock]. No bitch boi in the galaxy could last long against such treatment, and you are swiftly driven to a coruscating orgasm, swelling up in the kaithrit's hand and " + (pc.cumQ() < 250 ? "squirting" : "pasting") + " [pc.cum] across the shower wall between your quivering hands. She ruthlessly works you, pressuring your clenching boy buzzer and kneading your jolting cock until you are flexing dryly");
+	output("\n\nGasp after moan after gasp is pushing out of your lungs into the humid air as Ramis milks your prostate with an insistent beckoning motion of her finger, driving over that tender bulb within your [pc.ass], all the while her tight grip flicks up and down your [pc.cock]. No bitch boi in the galaxy could last long against such treatment, and you are swiftly driven to a coruscating orgasm, swelling up in the kaithrit’s hand and " + (pc.cumQ() < 250 ? "squirting" : "pasting") + " [pc.cum] across the shower wall between your quivering hands. She ruthlessly works you, pressuring your clenching boy buzzer and kneading your jolting cock until you are flexing dryly");
 	if (pc.balls > 0) output(", your [pc.balls] achingly empty");
 	output(". Only then does she withdraw her finger, asshole shrinking up tightly behind her, and let you go with a satisfied purr.");
 
@@ -1655,7 +1655,7 @@ public function ramisSleepWake():void
 
 	flags["RAMIS_SLEEPWITH_DOMORNING"] = undefined;
 	
-	output("You awake slowly from a peaceful, restful sleep. Your sheet-covered [pc.chest] has a thick weight thrown over it, and it takes you a moment to work out what it is. Your kaithrit gunnery officer has her arm slung over you, holding you close to her bare breasts and warm smell of musk, aerosol and whiskey. She's fast asleep, the sound emerging from her open mouth somewhere between a throaty snore and a contented purr. You would guess from the way she's clasping you that she went to sleep with the firm intention that you weren't going anywhere in the morning; however you probably could sneak out now, if you prefer to leave her dreaming.");
+	output("You awake slowly from a peaceful, restful sleep. Your sheet-covered [pc.chest] has a thick weight thrown over it, and it takes you a moment to work out what it is. Your kaithrit gunnery officer has her arm slung over you, holding you close to her bare breasts and warm smell of musk, aerosol and whiskey. She’s fast asleep, the sound emerging from her open mouth somewhere between a throaty snore and a contented purr. You would guess from the way she’s clasping you that she went to sleep with the firm intention that you weren’t going anywhere in the morning; however you probably could sneak out now, if you prefer to leave her dreaming.");
  
 	addButton(0, "Wake Up", ramisEnoughCatnapping);
 	addButton(1, "Sneak Out", ramisLetSleepingCatsLie);
@@ -1668,7 +1668,7 @@ public function ramisLetSleepingCatsLie():void
 	showRamis();
 	clearMenu();
 	
-	output("Carefully, you slide out from underneath Ramis's arm, tuck her back in, retrieve your [pc.gear] and slip out. She shifts slightly but doesn't wake up. She'll be disappointed when she wakes up - on the other hand, given how she generally treats her bed-mates, she shouldn't be surprised either.");
+	output("Carefully, you slide out from underneath Ramis’s arm, tuck her back in, retrieve your [pc.gear] and slip out. She shifts slightly but doesn’t wake up. She’ll be disappointed when she wakes up - on the other hand, given how she generally treats her bed-mates, she shouldn’t be surprised either.");
 	
 	addButton(0, "Next", mainGameMenu);
 }
@@ -1687,15 +1687,15 @@ public function ramisEnoughCatnapping():void
 	if (ramisOnTop())
 	{
 		output("You set to work on the most obvious and enticing targets in front of you. Ramis stirs, her pointed ears flattening when you slide one of her small nipples between your [pc.lips], gently sucking and nibbling on it; her snoring turns into a pleased, murmuring groan when your fingers find her other breast, kneading and rubbing its nub. Her grip on you tightens, and a hot, heavy hip wraps itself around your [pc.legs].");
-		output("\n\n<i>\"Well now,\"</i> she says, opening fuggy eyes at last and looking down at you. <i>\"What d'we have here?\"</i>");
-		output("\n\n<i>\"Morning service,\"</i> you smile back, drifting your hand down her rippled abdomen towards her delta.");
-		output("\n\n<i>\"How nice. Why don’t officers get a complimentary " + ramisfmt("error", "boy toy", "sissy") + " assigned to them on every ship?... hhh, right there. Right there.\"</i> Her eyes close and her mouth opens again as you curl your fingers into her increasingly wet snatch. The bed creaks as she shifts.");
+		output("\n\n<i>“Well now,”</i> she says, opening fuggy eyes at last and looking down at you. <i>“What d’we have here?”</i>");
+		output("\n\n<i>“Morning service,”</i> you smile back, drifting your hand down her rippled abdomen towards her delta.");
+		output("\n\n<i>“How nice. Why don’t officers get a complimentary " + ramisfmt("error", "boy toy", "sissy") + " assigned to them on every ship?... hhh, right there. Right there.”</i> Her eyes close and her mouth opens again as you curl your fingers into her increasingly wet snatch. The bed creaks as she shifts.");
 	
 		if (pc.biggestCockLength() < 6)
 		{
 			output("\n\nA minute later your wrists are being pressed firmly into the mattress, 120 kilograms of warm, brawny kaithrit is sat on your crotch, and you’re watching Ramis use your strainingly erect [pc.cockNoun] with slow, assertive thrusts of her hips. Your prick is overwhelmed in a cave of wet, shifting pressure, and you can’t stop moans and gasps being pushed out of your mouth, little stars exploding in your head.");
 			output("\n\n<i>“You like that, little boy?”</i> she gloats gently, tightening her hips around your waist, giggling lowly as you writhe helplessly, her pussy tightening up precipitously around your prick. <i>“Good. It’s not goin’ to take much to make you spunk, is it? Just a little bit of special time with me - and it is very special, you know that, don’t you? Cuz I’m not getting anything out of this.”</i> The big kaithrit says nothing for a little while, simply sneering down at you as she rocks her thick, powerful hips backwards and forwards, making your arousal rise to an unbearable, slutty point. <i>“I’d get more sensation out of my pinky.”</i>");
-			output("\n\nThat’s too much. You [pc.cock] seizes up and ejaculates helplessly, creaming that beguiling, kneading cave it’s in in [pc.cumColor] seed. It’s not even in there for long, coming loose easily and spurting [pc.cum] back up " + (pc.cumQ() > 500 ? "your [pc.belly]" : "towards your [pc.face]") + ". Ramis laughs softly, dipping her hand down to stroke you off, holding you down as she squirts your cum all over your weighed-down, desperately heaving body.");
+			output("\n\nThat’s too much. Your [pc.cock] seizes up and ejaculates helplessly, creaming that beguiling, kneading cave it’s in in [pc.cumColor] seed. It’s not even in there for long, coming loose easily and spurting [pc.cum] back up " + (pc.cumQ() > 500 ? "your [pc.belly]" : "towards your [pc.face]") + ". Ramis laughs softly, dipping her hand down to stroke you off, holding you down as she squirts your cum all over your weighed-down, desperately heaving body.");
 			output("\n\n<i>“Cute,”</i> she smirks, when you’re finally done, before heaving her gloriously naked body out of bed. She gives you a teasing, yellow eye at the door to the bathroom.");
 			output("\n\n<i>“You comen with? Won’t lie, it’s your mouth or the showerhead.”</i>");
 		}
@@ -1724,10 +1724,10 @@ public function ramisEnoughCatnapping():void
 	else
 	{
 		output("You set to work on the most obvious and enticing targets in front of you. Ramis stirs, her pointed ears flattening when you slide one of her small nipples between your [pc.lips], gently sucking and nibbling on it; her snoring turns into a pleased, murmuring groan when your fingers find her other breast, kneading and rubbing its nub. Her grip on you tightens, and a hot, heavy hip wraps itself around your [pc.legs].");
-		output("\n\n<i>\"Well now,\"</i> she says, opening fuggy eyes at last and looking down at you. <i>\"What d'we have here?\"</i>");
+		output("\n\n<i>“Well now,”</i> she says, opening fuggy eyes at last and looking down at you. <i>“What d’we have here?”</i>");
 
-		output("\n\n<i>\"Morning service,\"</i> you smile back, drifting your hand down her rippled abdomen towards her delta.");
-		output("\n\n<i>\"How nice. Why don’t officers get a complimentary boy toy assigned to them on every ship?... hhh, right there. Right there.\"</i> Her eyes close and her mouth opens again as you curl your fingers into her increasingly wet snatch. The bed creaks as she shifts.");
+		output("\n\n<i>“Morning service,”</i> you smile back, drifting your hand down her rippled abdomen towards her delta.");
+		output("\n\n<i>“How nice. Why don’t officers get a complimentary boy toy assigned to them on every ship?... hhh, right there. Right there.”</i> Her eyes close and her mouth opens again as you curl your fingers into her increasingly wet snatch. The bed creaks as she shifts.");
 		output("\n\nA few seconds later you’re on your back, hands clutched around two full, tawny buttocks, watching 120 kilograms of blonde bombshell ride your [pc.cockBiggest] with stern, athletic shoves of her hips. Void, it’s all you can do to hold back when the fucking is this supple, this tight, this spry... your throaty groan twines with her exhilarated gasps as she clamps her thighs around your waist even more intently, clutching your straining cock up in sleek pressure and begins to pump you hard, her large breasts bouncing in front of your eyes. ");
 
 		output("\n\nHer claws biting into your shoulders, you grasp her brawny shoulders and cum, ecstasy grabbing at your muscles and nerves and yanking at them again and again as the [pc.cumColor] seed is practically vacuumed out of you by the formidable clamp of bulging kaithrit muscle locked around your [pc.hips]. Ramis moans and meows wordless elation at the ceiling, her pussy rippling around you as she continues to ride you as if you were a frothing stallion.");
@@ -1965,7 +1965,7 @@ public function ramisDrinkingAftermath():void
 	
 	output("An uncertain amount of time later, you come to in your own bed.");
 	if (pc.tolerance() < 75) output("\n\nYou’re carrying a couple more mysterious bruises and are definitely hanging, but your body is used to coping with the amount you tied on last night, and you know a solid, stodge-heavy breakfast will cure it.");
-	else output("\n\nYou moan as your body begins to explain how much it hates you. You feel like you've got a simultaneous case of flu and food poisoning, as well as if someone hit you around the [pc.legs] with a baseball bat a few times. The one good piece of news is, as you woozily cast your gaze around you, is that you did somehow manage to get back into your bed aboard your ship last night. Void... trying to keep up with Ramis is not for the faint-hearted.");
+	else output("\n\nYou moan as your body begins to explain how much it hates you. You feel like you’ve got a simultaneous case of flu and food poisoning, as well as if someone hit you around the [pc.legs] with a baseball bat a few times. The one good piece of news is, as you woozily cast your gaze around you, is that you did somehow manage to get back into your bed aboard your ship last night. Void... trying to keep up with Ramis is not for the faint-hearted.");
 	output("\n\nYou wonder momentarily how your semi-tame gunnery officer got on herself - until you hear the faint, hearty strains of that awful spacer song from last night, emanating from her room. Clearly just fine. You sink back into your bed-clothes, wondering if there’s anyone on board you could order to make and bring breakfast up to you.");
 	
 	IncrementFlag("RAMIS_PARTIED");
@@ -2158,7 +2158,7 @@ public function ramisAftermathOfBoimageddon():void
 
 	if (pc.libido() < 50) output(" You do your level best to keep up with Ramis over the next couple of hours, twisting and sampling and fondling and using the femboys in every way you can think of, but even such a horny so-and-so as you has limits. You nod off into a drunken coma on a pile of cushions whilst she’s still busy making the pair of them kiss and tongue each other for her amusement, hand busy between her thighs.");
 	else output(" Ramis may be almost inexhaustible in bed, but your own physiology is easily the match of hers; the pair of you make a great tag team. You fuck one femboy and then hand him over to Ramis and fuck the other, on and on until the pair of them are utterly insensate, drooling and moaning on the bedsheets, glazed in gratuitous amounts of " + (pc.hasCock() ? "femcum and semen." : "femcum.") + " Only then do you pass out into a drunken coma on a pile of cushions, groin throbbing mightily.");
-	output("\n\nYou groggily come to many hours later, to a chaotic, empty room that smells of cheap champagne, perfume and sex. The hotel has no windows - if they did they'd look out onto the artificial lights of Tavros's commercial district - but the lighting has changed from the sultry reds and purples of last to the pale, keen light of a rising sun, a placid reminder to vacate the premises in the next few hours.");
+	output("\n\nYou groggily come to many hours later, to a chaotic, empty room that smells of cheap champagne, perfume and sex. The hotel has no windows - if they did they’d look out onto the artificial lights of Tavros’s commercial district - but the lighting has changed from the sultry reds and purples of last to the pale, keen light of a rising sun, a placid reminder to vacate the premises in the next few hours.");
 	output("\n\nNaturally you get up and head into the spacious ensuite, which is where naturally you find everyone else. The shower is occupied, going off the shape looming in there by Ramis. And... going off the wicked murmurings, boyish gasps and slippery sounds... so is Vanesse. His ausar friend is doing his teeth by the sink, naked from the waist down.");
 	output("\n\n<i>“Hey,”</i> he smiles at you. <i>“Nishe night lasht night.”</i> He spits, leaning his round brown bum over the sink to do so. <i>“Ugh,”</i> he pouts, checking his phone. <i>“I’m never going to make my classes today. I’ll have to throw a sickie.”</i> He gazes at you over his shoulder carelessly, short tail raised. <i>“You going to give me one for the road or what?”</i>");
 	
@@ -2350,7 +2350,7 @@ public function ramisOrcWorkWork():void
 	processTime(8*60);
 	
 	output("\n\nOhrskun is as good as his word, spreading the pair of you around his indomitable, unyielding body and then giving it to you hard in every way he can think of, often fucking one whilst fingering the other, preparing you for the next bout of intense sex. Your orgasms range from delightful little shivers to mindblowing, full-body earthquakes. You drunkenly fall in love with that great, orc cock of his, happy to be the bitch broken by it, and it seems perfectly naturally to end it the way you do, knelt beside the bed with a great hand holding your head in place, lapping and suckling away at hard, musky dickmeat, cum oozing slowly out of " + (pc.hasVaginas() ? "each of your pussies" : "your pussy") + " and your [pc.anus], a soft, submissive haze blanketing your brain as you and Ramis worship that delicious, thick, green cock.");
-	output("\n\nYou fall into a happy, drink-induced coma in a pile of cushions a little after that. You groggily come to your senses many hours later, finding a chaotic, empty room that smells of cheap champagne, perfume and sex. The hotel has no windows - if they did they'd look out onto the artificial lights of Tavros's commercial district - but the lighting has changed from the sultry reds and purples of last to the pale, keen light of a rising sun, a placid reminder to vacate the premises in the next few hours.");
+	output("\n\nYou fall into a happy, drink-induced coma in a pile of cushions a little after that. You groggily come to your senses many hours later, finding a chaotic, empty room that smells of cheap champagne, perfume and sex. The hotel has no windows - if they did they’d look out onto the artificial lights of Tavros’s commercial district - but the lighting has changed from the sultry reds and purples of last to the pale, keen light of a rising sun, a placid reminder to vacate the premises in the next few hours.");
 	output("\n\n<i>“Hullo, sleepyhead!”</i> trills Ramis, emerging from the ensuite towelling her hair. <i>“Big lad was gone by the time I woke. Good lad - hate it when they linger’n try and get your number. Paid for everythen too!”</i>");
 	output("\n\nYou pour yourself a bath (such luxury!) and enjoy a hot soak which melts away much of your little aches and pains, although it can only do so much where your [pc.groin] is concerned - it’s still throbbing mightily when you’re drying yourself off. Hell of a fuck machine, that thraggen.");
 	output("\n\nMaybe an hour later, you’re making your way back through the giant space station towards the hangar.");
@@ -2528,7 +2528,7 @@ public function ramisOrctermath():void
 	pc.loadInAss(new PregnancyPlaceholder());
 		
 	output("Ohrskun spreads the pair of you around his indomitable, unyielding body and then gives it to you hard in every way he can think of, often fucking one whilst fingering the other, preparing you for the next bout of intense shagging.");
-	output("\n\nYou eventually fall into a happy, drink-induced coma in a pile of cushions. You groggily come to your senses many hours later, finding a chaotic, empty room that smells of cheap champagne, perfume and sex. The hotel has no windows - if they did they'd look out onto the artificial lights of Tavros's commercial district - but the lighting has changed from the sultry reds and purples of last to the pale, keen light of a rising sun, a placid reminder to vacate the premises in the next few hours.");
+	output("\n\nYou eventually fall into a happy, drink-induced coma in a pile of cushions. You groggily come to your senses many hours later, finding a chaotic, empty room that smells of cheap champagne, perfume and sex. The hotel has no windows - if they did they’d look out onto the artificial lights of Tavros’s commercial district - but the lighting has changed from the sultry reds and purples of last to the pale, keen light of a rising sun, a placid reminder to vacate the premises in the next few hours.");
 	output("\n\n<i>“Hullo, sleepyhead!”</i> trills Ramis, emerging from the ensuite towelling her hair. <i>“Big lad was gone by the time I woke. Good lad - hate it when they linger’n try and get your number. Paid for everythen too!”</i>");
 	output("\n\nYou pour yourself a bath (such luxury!) and enjoy a hot soak which melts away much of your little aches and pains, although it can only do so much where your [pc.groin] is concerned - it’s still throbbing mightily when you’re drying yourself off. Hell of a fuck machine, that thraggen.");
 	output("\n\nMaybe an hour later, you’re making your way back through the giant space station towards the hangar.");
@@ -2542,8 +2542,8 @@ public function ramisOrctermath():void
 	ramisPartySex("THRAGGEN");
 	
 	addButton(0, "Next", mainGameMenu);
-}   
-	
+}
+
 public function ramisAbandonBlurb():void
 {
 	author("Nonesuch");

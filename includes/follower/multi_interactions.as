@@ -260,7 +260,7 @@ public function pippaYammiThreesomeSub(cockIndex:int):void
 	if (cockIndex >= 0)
 	{
 		if (pc.cocks[cockIndex].cLength() >= 20) output("Your [pc.cockOrStrapon " + cockIndex + "] is so long that you can push all the way up through their bodies, sandwiching yourself in their soft breasts, and leaving a trail of mixed girl-cum down their torsos. ");
-		else if (pc.cocks[cockIndex].cLength() >= 10) output("You [pc.cockOrStrapon " + cockIndex + "] is so long that you can push part way up through their bodies, sandwiching yourself in and leaving girl-cum on their stomachs. ");
+		else if (pc.cocks[cockIndex].cLength() >= 10) output("Your [pc.cockOrStrapon " + cockIndex + "] is so long that you can push part way up through their bodies, sandwiching yourself in and leaving girl-cum on their stomachs. ");
 	}
 	
 	output(" At this point, you’re so on edge that a light breeze blowing the right way could tip you over; your [pc.cockOrStrapon " + cockIndex + "] enveloped between the two lovely ladies, you only manage a few thrusts before you go over the edge.");

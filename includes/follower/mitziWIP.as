@@ -160,7 +160,7 @@ public function mitziMakesYouABimbo():void
 	showMitzi(true);
 	author("Fenoxo");
 	output("<i>“...dumb cunt.”</i>");
-	output("\n\nDid you really just say that? Why would- how could... wow, Mitzi’s lips feel nice on your [pc.vaginaNounSimple]. They squeeze down harder in response to your declaration. Smashing her face into your mound, Mitzi snakes her tongue deep inside, smearing her freshly applied gloss into every fold. <i>“Wow.”</i> Your head lolls, and you [pc.vagina] clenches in trembling desire.");
+	output("\n\nDid you really just say that? Why would- how could... wow, Mitzi’s lips feel nice on your [pc.vaginaNounSimple]. They squeeze down harder in response to your declaration. Smashing her face into your mound, Mitzi snakes her tongue deep inside, smearing her freshly applied gloss into every fold. <i>“Wow.”</i> Your head lolls, and your [pc.vagina] clenches in trembling desire.");
 	output("\n\nWith a pussy-pleasing slurp, Mitzi pulls away, her heart-shaped pupils dilating wide as she fumbles with her lip gloss. <i>“Whoopsie! Mitzi got so excited she mighta got some on her tongue.”</i> She licks her lips and shudders. <i>“What a dumbcunt!”</i> Applying a fresh coat, the blushing goblin arcs her spaded tail around to fondle at her own sopping-wet folds. <i>“Guess we’re both gonna be stupid, horny sluts now, huh?”</i> Her lips shine invitingly as she tosses the drug applicator over shoulder. <i>“But Mitzi’s already a dumb, leaky bimbo!”</i>");
 	output("\n\nMitzi... yeah, she’s a brainless little cum-dump, that’s for sure.");
 	if(pc.hasCock()) output(" If you had a dick, she’d probably wrap herself around your crotch like boxers, just to be closer to it.");

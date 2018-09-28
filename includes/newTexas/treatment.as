@@ -1342,7 +1342,7 @@ public function treatmentHourProcs(totalHours:int, effect:StorageClass):void
 			ExtendLogEvent(ParseText(" and squeeze, reveling in the lubricated strokes, mooing softly when a particularly thick jet of [pc.cumColor] dribbles down your knuckles."));
 			ExtendLogEvent(ParseText("\n\nEventually, you give yourself over entirely to the ecstatic pulses, gathering up handfuls of slick jism to smear into your [pc.thighs] and [pc.chest]. You moo, then whimper, embarrassed to sound so submissive but too blissed-out to care. Your crotch is completely on autopilot, determined to release a bathtub’s worth of orgasms, and your hands have climbed along for the ride, encouraging the endless eruptions to come out thicker and more voluminous by the minute."));
 			ExtendLogEvent(ParseText("\n\nBy the time the orgasmic quivers die down, everything from your [pc.chest] to your [pc.feet] is soaked in [pc.cumColor] spooge, and the ground below is even worse off. You look like an unwilling participant in a kui-tan bukkake session, that or a victim of a ghost orgy.\n\nSomething inside you"));
-			if(pc.balls > 0) ExtendLogEvent(ParseText(" or you [pc.balls]"));
+			if(pc.balls > 0) ExtendLogEvent(ParseText(" or your [pc.balls]"));
 			ExtendLogEvent(ParseText(" has changed - something that’s letting your body churn out [pc.cumNoun] as fast as you could possibly need it. You doubt you’ll ever have an orgasm less than “amazing” ever again. Amazing!"));
 			for(var ii:int = 0; ii < 15; ii++)
 			{
