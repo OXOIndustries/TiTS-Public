@@ -106,7 +106,7 @@ package classes.Characters
 		{
 			kGAMECLASS.mimbraneFeed("ass");
 			// Butt bug load
-			if(hasStatusEffect("Butt Bug (Female)")) kGAMECLASS.loadInButtBug(this, cumFrom);
+			kGAMECLASS.loadInButtBug(this, cumFrom);
 			
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())

@@ -5,6 +5,10 @@
 	import classes.GameData.ChildManager;
 	import classes.GameData.Pregnancy.Handlers.BothriocPregnancyHandler;
 	import classes.GameData.Pregnancy.Handlers.BreedwellRahnPregnancyHandler;
+	import classes.GameData.Pregnancy.Handlers.ButtBugPregnancy;
+	import classes.GameData.Pregnancy.Handlers.ButtBugPregnancy0;
+	import classes.GameData.Pregnancy.Handlers.ButtBugPregnancy1;
+	import classes.GameData.Pregnancy.Handlers.ButtBugPregnancy2;
 	import classes.GameData.Pregnancy.Handlers.CockvinePregnancy;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerCarryTraining;
 	import classes.GameData.Pregnancy.Handlers.EggTrainerFauxPreg;
@@ -69,6 +73,10 @@
 			PregnancyManager.insertNewHandler(new FrostwyrmPregnancy());
 			PregnancyManager.insertNewHandler(new LahPregnancyHandler());
 			PregnancyManager.insertNewHandler(new ZephyrPregnancyHandler());
+			PregnancyManager.insertNewHandler(new ButtBugPregnancy());
+			PregnancyManager.insertNewHandler(new ButtBugPregnancy0());
+			PregnancyManager.insertNewHandler(new ButtBugPregnancy1());
+			PregnancyManager.insertNewHandler(new ButtBugPregnancy2());
 		}
 		
 		// Would use a vector, but vectors can't store derived types. WORST VECTOR CLASS EVER.

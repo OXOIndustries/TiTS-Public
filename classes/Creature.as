@@ -20718,6 +20718,12 @@
 				// Untimed status effect checks
 				switch (thisStatus.storageName)
 				{
+					case "Butt Bug (Female)":
+						if(this is PlayerCharacter)
+						{
+							kGAMECLASS.processButtBugParasitism(deltaT, maxEffectLength, doOut, this, thisStatus);
+						}
+						break;
 					case "Foxfire":
 						if(this is PlayerCharacter)
 						{
@@ -21316,6 +21322,23 @@
 								setStatusMinutes("Dzaan Addicted",1);
 							}
 						}
+						break;
+					case "Butt Bug Message":
+						if(requiresRemoval)
+						{
+							if(this is PlayerCharacter) kGAMECLASS.messageButtBugParasitism(deltaT, maxEffectLength, doOut, this, thisStatus);
+							thisStatus.minutesLeft = ((6 + rand(19)) * 60);
+							requiresRemoval = false;
+						}
+						break;
+					case "Butt Bug Egg Cycle":
+						if(requiresRemoval)
+						{
+							thisStatus.value1 = (thisStatus.value1 != 0 ? 0 : 1);
+							thisStatus.minutesLeft = (7 * 24 * 60);
+							requiresRemoval = false;
+						}
+						if(statusEffectv1("Butt Bug (Female)") != 1) requiresRemoval = true;
 						break;
 					case "Undetected Furpies":
 					case "Furpies Simplex H":
