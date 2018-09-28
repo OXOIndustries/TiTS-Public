@@ -137,6 +137,7 @@
 		include "../includes/holidayEvents/succucow.as";
 
 		//Followers
+		include "../includes/follower/amber.as";
 		include "../includes/follower/anno.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
