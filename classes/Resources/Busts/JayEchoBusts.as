@@ -86,12 +86,12 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mayren.png", mimeType = "image/png")]
 		public var Bust_MAYREN:Class;
-		/*
+		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mica.png", mimeType = "image/png")]
 		public var Bust_MICA:Class;
-		[Embed(source = "../../../assets/images/npcs/jay_echo/mica_nude.png", mimeType = "image/png")]
-		public var Bust_MICA_NUDE:Class;
-		*/
+		/*[Embed(source = "../../../assets/images/npcs/jay_echo/mica_nude.png", mimeType = "image/png")]
+		public var Bust_MICA_NUDE:Class;*/
+		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mirrin.png", mimeType = "image/png")]
 		public var Bust_MIRRIN:Class;
 		[Embed(source = "../../../assets/images/npcs/jay_echo/mirrin_nude.png", mimeType = "image/png")]
@@ -134,9 +134,10 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/jay_echo/subtuner.png", mimeType = "image/png")]
 		public var Bust_SUBTUNER:Class;
-		/*
+		
 		[Embed(source = "../../../assets/images/npcs/jay_echo/tetra.png", mimeType = "image/png")]
 		public var Bust_TETRA:Class;
+		/*
 		[Embed(source = "../../../assets/images/npcs/jay_echo/tetra_nude.png", mimeType = "image/png")]
 		public var Bust_TETRA_NUDE:Class;
 		*/
@@ -229,12 +230,12 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mayren.png", mimeType = "image/png")]
 			public var Full_MAYREN:Class;
-			/*
+			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mica.png", mimeType = "image/png")]
 			public var Full_MICA:Class;
-			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mica_nude.png", mimeType = "image/png")]
-			public var Full_MICA_NUDE:Class;
-			*/
+			/*[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mica_nude.png", mimeType = "image/png")]
+			public var Full_MICA_NUDE:Class;*/
+			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mirrin.png", mimeType = "image/png")]
 			public var Full_MIRRIN:Class;
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/mirrin_nude.png", mimeType = "image/png")]
@@ -277,9 +278,10 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/subtuner.png", mimeType = "image/png")]
 			public var Full_SUBTUNER:Class;
-			/*
+			
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/tetra.png", mimeType = "image/png")]
 			public var Full_TETRA:Class;
+			/*
 			[Embed(source = "../../../assets/images/npcs/jay_echo/hr/tetra_nude.png", mimeType = "image/png")]
 			public var Full_TETRA_NUDE:Class;
 			*/
