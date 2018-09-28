@@ -488,7 +488,7 @@ public function yesSexSeer():void
 	pc.maxOutLust();
 	
 	output("You say yes: Although your memory is hazy of the experience, something is compelling you to give in to your and her desires.");
-	output("\n\nHer eyes as wide and as alert as they could possibly be, the Seer pulls you buy the arm to the lounge with an enthusiastic urgency. Without a pause, she’s pushed you into the lounge, turned you towards the table, and told you to strip. Well, if she’s this eager! " + (pc.isNude() ? "You’re actually already prepped but you entertain her strange need for privacy." : "You strip yourself of you [pc.gear] and stash it all under the geometrically patterned table.") + "");
+	output("\n\nHer eyes as wide and as alert as they could possibly be, the Seer pulls you buy the arm to the lounge with an enthusiastic urgency. Without a pause, she’s pushed you into the lounge, turned you towards the table, and told you to strip. Well, if she’s this eager! " + (pc.isNude() ? "You’re actually already prepped but you entertain her strange need for privacy." : "You strip yourself of your [pc.gear] and stash it all under the geometrically patterned table.") + "");
 	output("\n\nThere’s a tap on your shoulder.");
 	output("\n\nAs you turn, you see that same sight that took the breath out of you before...");
 	output("\n\nThe nude, tattooed shopkeeper has her tentacles outstretched, their slick surfaces sliding and twisting together and apart in a frenzy. Her mouth hangs open and her ‘tongue’ undulates and writhes outwards like a semi-sentient entity" + (silly ? " HE SAID IT, HE SAID IT" : "") + ". You can see her E-cup chest heave and bounce as they too unleash their payload of nipple tentacles.");

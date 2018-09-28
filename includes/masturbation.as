@@ -3846,7 +3846,7 @@ public function cumCowAutoFellatio(special:Boolean = false, timeStuff:Number = 1
 	//More than 40,000 mLs of cum
 	if(cum >= 40000) 
 	{
-		output("\n\nSadly, you’re too virile even for yourself. The [pc.cumNoun] is still shooting out like water from a firehose, and there isn’t room in your bloated gut for another drop. Catching enough to fill your mouth to the brim, you let the rest spray over your face, painting you [pc.cumColor] in the process. Streaks of it run down your neck, shoulders, and [pc.chest], but you have a hard time caring. If anyone notices, they’ll just get to see what a devoted cock-sucker you’ve become.");
+		output("\n\nSadly, you’re too virile even for yourself. The [pc.cumNoun] is still shooting out like water from a firehose, and there isn’t room in your bloated gut for another drop. Catching enough to fill your mouth to the brim, you let the rest spray over your face, painting your [pc.cumColor] in the process. Streaks of it run down your neck, shoulders, and [pc.chest], but you have a hard time caring. If anyone notices, they’ll just get to see what a devoted cock-sucker you’ve become.");
 		pc.applyCumSoaked();
 	}
 	//merge

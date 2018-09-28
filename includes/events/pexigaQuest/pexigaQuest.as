@@ -1938,7 +1938,7 @@ public function fuckNymFoe2():void
 	//Centaur
 	else if(pc.isTaur())
 	{
-		output("With the girl’s titantic tits still swaying from your caresses, you rise and straddle her prostrate form. Your [pc.feet] hug her sizable hips and pale legs as you line you [pc.cockBiggest] up for the wobbling valley between her over-inflated udders. With a few trotting steps, you advance, squeezing her bosom together between your [pc.legs] as your [pc.cocks] slip");
+		output("With the girl’s titantic tits still swaying from your caresses, you rise and straddle her prostrate form. Your [pc.feet] hug her sizable hips and pale legs as you line your [pc.cockBiggest] up for the wobbling valley between her over-inflated udders. With a few trotting steps, you advance, squeezing her bosom together between your [pc.legs] as your [pc.cocks] slip");
 		if(pc.cockTotal() == 1) output("s");
 		output(" into the squishy embrace of her cleavage. You sigh at the sweet, suckling cradle of her silicone-swollen bust, your delight mirrored by the droid’s own receptive coo.");
 		output("\n\nThe soft fabric of her gloved hands stroke up and down the [pc.thighs] of your front legs, coaxing you to hilt yourself in her uncanny valley. Wrapping your forefingers and thumbs around her pressurized teats, you use the bloated automaton’s nipples as handholds to steady yourself. With a bucking thrust, the stiff length");
