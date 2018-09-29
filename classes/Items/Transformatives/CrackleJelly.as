@@ -2,13 +2,16 @@ package classes.Items.Transformatives
 {
 	import classes.ItemSlotClass;
 	import classes.GLOBAL;
+	import classes.Creature;
 	import classes.kGAMECLASS;
+	import classes.Engine.Interfaces.author;
 	import classes.Engine.Interfaces.output;
 	import classes.Characters.PlayerCharacter;
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Util.InCollection;
     import classes.Util.RandomInCollection;
+	import classes.Engine.Utility.rand;
 	
 	public class CrackleJelly extends ItemSlotClass
 	{
@@ -55,10 +58,9 @@ package classes.Items.Transformatives
 		//METHOD ACTING!
 		override public function useFunction(pc:Creature, usingCreature:Creature = null):Boolean
 		{
+			//processTime(1+rand(2));
 			kGAMECLASS.clearOutput();
 			author("Couch");
-            var paleColors:Array = ["pale green", "pale blue"];
-            var luminousColors:Array = ["luminous green", "luminous blue"];
             
             //PC only
 			if (!(pc is PlayerCharacter))
@@ -77,98 +79,104 @@ package classes.Items.Transformatives
             var possibleChanges:Array = new Array();
             
             // Skin
-            //This or any non-skin skin?
-            if (pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN) && (pc.hasFur() || pc.hasScales()))
+			//Type
+            if (pc.skinType != GLOBAL.SKIN_TYPE_SKIN) possibleChanges.push(skinChange);
+			//Check lips, nipples, skin and then every single vagina
+            else if (pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 			{
-                possibleChanges.push(skinChange);
-			}
-            
-            // Skin color
-            if (!pc.hasScales() && !pc.hasFur()) possibleChanges.push(paletteChange);
-            
-			//Eye color
-			if (pc.eyeTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.eyeType = GLOBAL.TYPE_JANERIA)
-			{
-				possibleChanges.push(eyeChange);
-			}
-			else if (!InCollection(pc.eyeColor, luminousColors()))
-			{
-				for (tempColor in luminousColors())
+				if (!InCollection(pc.lipColor, luminousColors())) possibleChanges.push(paletteChange);
+				else if (!InCollection(pc.nippleColor, luminousColors())) possibleChanges.push(paletteChange);
+				else if (!InCollection(pc.skinTone, paleColors())) possibleChanges.push(paletteChange);
+				else
 				{
-					if (pc.eyeColorUnlocked(tempColor) && pc.eyeColor != tempColor)
-					{
-						possibleChanges.push(eyeChange);
-						break;
-					}
+					var doSkinColor:Boolean = false;
+					for (i = 0; i < pc.vaginas.length; ++i)
+						if (!InCollection(pc.vaginas[i].vaginaColor, luminousColors()))
+							doSkinColor = true;
+					if (doSkinColor) possibleChanges.push(paletteChange);
 				}
 			}
 			
-            // Hair color
-            if (pc.hasHair() && pc.hairTypeUnlocked(GLOBAL.TYPE_HUMAN))
-            {
-                for each (tempColor in luminousColors())
-                {
-                    if (pc.hairColorUnlocked(tempColor) && pc.hairColor != tempColor)
-                    {
-                        possibleChanges.push("hair");
-                        break;
-                    }
-                }
+            
+			// Eyes
+			//Eye type
+			if (pc.eyeTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.eyeType != GLOBAL.TYPE_JANERIA) possibleChanges.push(eyeChange);
+			//Each eye color
+			else if (!InCollection(pc.eyeColor, luminousColors()))
+			{
+				var doEyeChange:Boolean = false;
+				for each (tempColor in luminousColors())
+					if (pc.eyeColorUnlocked(tempColor) && pc.eyeColor != tempColor)
+						 doEyeChange = true;
+				if (doEyeChange) possibleChanges.push(eyeChange);
+			}
+			
+            // Hair
+			if (pc.hasHair())
+			{
+				//Hair type
+				if (pc.hairTypeUnlocked(GLOBAL.TYPE_HUMAN) && pc.hairType != GLOBAL.TYPE_HUMAN) possibleChanges.push(hairChange);
+				//Hair color
+				else if (!InCollection(pc.hairColor, luminousColors()))
+				{
+					var doHair:Boolean = false;
+					for each (tempColor in luminousColors())
+						if (pc.hairColorUnlocked(tempColor))
+							doHair = true;
+					if (doHair) possibleChanges.push(hairChange);
+				}
             }
             
-            if (pc.legTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.legType != GLOBAL.TYPE_JANERIA
-				&& (pc.legCountUnlocked(2) || pc.legCount == 2))
+			// Legs
+            if (pc.legTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.legType != GLOBAL.TYPE_JANERIA)
             {
-                possibleChanges.push(legsChange);
+				if (pc.legCountUnlocked(2)) possibleChanges.push(legsChange);
+				else if(pc.legCount == 2) possibleChanges.push(legsChange);
             }
             
-            if ((pc.tongueTypeUnlocked(GLOBAL.TYPE_JANERIA) || pc.tongueType == GLOBAL.TYPE_JANERIA)
-                && (pc.tongueFlagsUnlocked(GLOBAL.FLAG_PREHENSILE) || pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE))
-                && (pc.tongueFlagsUnlocked(GLOBAL.FLAG_LONG) || pc.hasTongueFlag(GLOBAL.FLAG_LONG)))
+			// Tongue
+            if (pc.tongueTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_PREHENSILE) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_LONG))
             {
-                possibleChanges.push(tongueChange);
+				if (pc.tongueType != GLOBAL.TYPE_JANERIA) possibleChanges.push(tongueChange);
+				else if (!pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) possibleChanges.push(tongueChange);
+				else if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) possibleChanges.push(tongueChange);
             }
             
-            if (pc.wingTypeUnlocked(GLOBAL.TYPE_JANERIA)
-				&& (!pc.hasWings() || pc.wingType != GLOBAL.TYPE_JANERIA))
-            {
-                possibleChanges.push(wingChange);
-            }
+			// Wings
+            if (pc.wingTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.wingType != GLOBAL.TYPE_JANERIA)
+				possibleChanges.push(wingChange);
             
+			// Cocks
             if (pc.hasCock())
             {
-                if (!hasStatusEffect("Genital Slit")) possibleChanges.push(slitChange);
+                if (!pc.hasStatusEffect("Genital Slit")) possibleChanges.push(slitChange);
                 else
                 {
-                    for (i = 0; i < pc.cocks.length; ++i)
-                    {
-                        if (pc.cockTypeUnlocked(i, GLOBAL.TYPE_JANERIA) && pc.cocks[i].cockType != GLOBAL.TYPE_JANERIA)
-                        {
-                            possibleChanges.push(cockChange);
-                            break;
-                        }   
-                    }
+					var doCocks:Boolean = false;
+					for (i = 0; i < pc.cocks.length; ++i)
+						if (pc.cockTypeUnlocked(i, GLOBAL.TYPE_JANERIA) && pc.cocks[i].cType != GLOBAL.TYPE_JANERIA)
+							doCocks = true;
+                    if (doCocks) possibleChanges.push(cockChange);
                 }
             }
             
-            if (pc.hasVagina())
-            {
-                for (i = 0; i < pc.vaginas.length; ++i)
-                {
-                    if (pc.vaginaTypeUnlocked(i, GLOBAL.TYPE_NALEEN) && pc.vaginas[i].vaginaType != GLOBAL.TYPE_NALEEN)
-                    {
-                        possibleChanges.push(cuntChange);
-                        break;
-                    }
-                }
-            }
+			// Vags
+			for (i = 0; i < pc.vaginas.length; ++i)
+			{
+				if (pc.vaginaTypeUnlocked(i, GLOBAL.TYPE_SNAKE) && pc.vaginas[i].type != GLOBAL.TYPE_SNAKE)
+				{
+					possibleChanges.push(cuntChange);
+					break;
+				}
+			}
             
+			// Stats
             if (pc.WQ() < 100 || pc.IQ() < 100) possibleChanges.push(statChange);
             
             //Finally, actually select and apply
             if (possibleChanges.length > 0) RandomInCollection(possibleChanges)(pc);
 			else dudResult();
-            
+			
 			return false;
 		}
 		
@@ -182,14 +190,14 @@ package classes.Items.Transformatives
 		{
 			//Colors to use for the tf
 			var paleColor:String = RandomInCollection(paleColors());
-			var luminousColor = RandomInCollection(luminousColors());
+			var luminousColor:String = RandomInCollection(luminousColors());
 			
 			//Displays dud message
 			var didChanges:Boolean = false;
 			
 			output("\n\nElectric charges crackle over your body, bleaching the color from the skin.");
 			
-			if (paleColor != pc.skinTone)
+			if (!InCollection(pc.skinTone, paleColors()))
 			{
 				pc.skinTone = paleColor;
 				output(" Each jolt turns your body a little more " + paleColor.split(" ").pop());
@@ -198,20 +206,20 @@ package classes.Items.Transformatives
 			
 			var lipsChanged:Boolean = false;
 			var nipplesChanged:Boolean = false;
-			if (pc.nippleColorUnlocked(luminousColor) && pc.nippleColor != luminousColor)
+			if (pc.nippleColorUnlocked(luminousColor) && !InCollection(pc.nippleColor, luminousColors))
 			{
 				pc.nippleColor = luminousColor;
 				nipplesChanged = true;
 			}
-			if (pc.lipColor != luminousColor)
+			if (!InCollection(pc.lipColor, luminousColors))
 			{
 				pc.lipColor = luminousColor;
 				lipsChanged = true;
 			}
 			if (lipsChanged || nipplesChanged)
 			{
-				if (didChanges) output(", in particular your");
-				else output(" In particular your");
+				if (didChanges) output(", in particular your ");
+				else output(" In particular your ");
 				output((nipplesChanged ? (lipsChanged ? "nipples and lips" : "nipples") : "lips") + ", which turn a contrasting " + luminousColor.split(" ").pop() + " and start to practically glow as if the shocks were charging them up with new energy.");
 				didChanges = true;
 			}
@@ -235,7 +243,8 @@ package classes.Items.Transformatives
 				didChanges = true;
 			}
 
-			if (pc.skinFlagsUnlocked())
+			//All skin flags to be removed unlocked? 9999
+			if (pc.skinFlagsUnlocked(GLOBAL.FLAG_SMOOTH))
 			{
 				pc.clearSkinFlags();
 				pc.addSkinFlag(GLOBAL.FLAG_SMOOTH);
@@ -250,11 +259,12 @@ package classes.Items.Transformatives
 		
 		private function eyeChange(pc:Creature):void
 		{
-			//Filter for available colors
+			//Filter for available colors (none if it's good)
 			var validColors:Array = new Array();
-			for (var luminousColor:String in luminousColors())
-				if (pc.eyeColorUnlocked(luminousColor) && pc.eyeColor != luminousColor)
-					validColors.push(luminousColor);
+			if (!InCollection(pc.eyeColor, luminousColors()))
+				for each (var luminousColor:String in luminousColors())
+					if (pc.eyeColorUnlocked(luminousColor))
+						validColors.push(luminousColor);
  
 			if (pc.eyeTypeUnlocked(GLOBAL.TYPE_JANERIA)) pc.eyeType = GLOBAL.TYPE_JANERIA;
 			
@@ -271,15 +281,16 @@ package classes.Items.Transformatives
 		{
 			//Filter for available colors
 			var validColors:Array = new Array();
-			for (var luminousColor:String in luminousColors())
-				if (pc.hairColorUnlocked(luminousColor) && pc.hairColor != luminousColor)
-					validColors.push(luminousColor);
+			if (!InCollection(pc.hairColor, luminousColors()))
+				for each (var luminousColor:String in luminousColors())
+					if (pc.hairColorUnlocked(luminousColor) && pc.hairColor != luminousColor)
+						validColors.push(luminousColor);
  
 			output("\n\nElectric currents crackle down your [pc.hair],");
-			if (pc.hairType != GLOBAL.TYPE_HUMAN) output(" setting it quaking and vibrating until it splits into a mass of thin filaments. The electric surges along your newly-human hair continue,");
+			if (pc.hairType != GLOBAL.TYPE_HUMAN && pc.hairTypeUnlocked(GLOBAL.TYPE_HUMAN)) output(" setting it quaking and vibrating until it splits into a mass of thin filaments. The electric surges along your newly-human hair continue,");
 			
-			pc.hairType = GLOBAL.TYPE_HUMAN;
-			pc.hairColor = RandomInCollection(validColors);
+			if (pc.hairTypeUnlocked(GLOBAL.TYPE_HUMAN)) pc.hairType = GLOBAL.TYPE_HUMAN;
+			if (validColors.length > 0) pc.hairColor = RandomInCollection(validColors);
 			
 			output(" illuminating it in " + pc.hairColor.split(" ").pop() + " radiance until the glow takes over your hair completely. <b>You now have [pc.hairColor] hair!</b>");
 		}
@@ -296,8 +307,9 @@ package classes.Items.Transformatives
 		{
 			output("\n\nYour tongue thickens");
 			if (pc.tongueType != GLOBAL.TYPE_JANERIA) output(" and turns blue");
-			output(", your jaw reflexively going slack to let it hang out of your mouth. Further and further it spills out, turning into a long, conical tube that you find you can twist and curl around objects almost like a tentacle. Oh, this is going to be fun. <b>You have a long, tentacle-like tongue</b>");
+			output(", your jaw reflexively going slack to let it hang out of your mouth. Further and further it spills out, turning into a long, conical tube that you find you can twist and curl around objects almost like a tentacle. Oh, this is going to be fun. <b>You have a long, tentacle-like tongue.</b>");
 			
+			pc.tongueType = GLOBAL.TYPE_JANERIA;
 			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
 		}
@@ -305,11 +317,12 @@ package classes.Items.Transformatives
 		private function wingChange(pc:Creature):void
 		{
 			output("\n\nYou cry out as your spine is rocked with huge surges of lightning, sending you to the ground. Gradually the sensation pools higher, near your shoulders, the flesh roiling as if coming to a boil.");
-			if (pc.hasWings()) output(" Your wings seemingly <i>do</i> boil, wicking away into nothingness.");
+			if (pc.wingType != 0) output(" Your " + (pc.wingCount == 1 ? "[pc.wings] seemingly <i>does</i>" : "[pc.wings] seemingly <i>do</i>") + " boil, wicking away into nothingness.");
 			output(" Just before you can’t take it anymore, a thick surging feeling replaces the shocks as one, two, three, four [pc.skinColor] tentacles erupt from your back. They’re absolutely enormous, at least as long as you are tall and two inches thick apiece, each ending in a diamond-shaped pad. What’s more, as they sway and lash about you feel something forming inside each one, a tiny channel that goes from the tip of each tentacle to somewhere inside you. Are they <i>cocks</i>?");
 			output("\n\nYou make your way to your feet as your spine recovers, still feeling sore and not quite in the mood to test out your newfound back tentacles... at least, not yet.");
 			
 			pc.wingType = GLOBAL.TYPE_JANERIA;
+			pc.wingCount = 4;
 		}
 		
 		private function slitChange(pc:Creature):void
@@ -322,16 +335,18 @@ package classes.Items.Transformatives
 		{
 			//Pick suitable cock
 			var validCocks:Array = new Array();
-			for (var cIdx:int = 0; i < pc.cocks.length; ++i)
-				if (pc.cockTypeUnlocked(cIdx, GLOBAL.TYPE_JANERIA) && pc.cocks[cIdx].cockType != GLOBAL.TYPE_JANERIA)
+			for (var cIdx:int = 0; cIdx < pc.cocks.length; ++cIdx)
+				if (pc.cockTypeUnlocked(cIdx, GLOBAL.TYPE_JANERIA) && pc.cocks[cIdx].cType != GLOBAL.TYPE_JANERIA)
 					validCocks.push(cIdx)
 			cIdx = RandomInCollection(validCocks);
 			
+			output("\n\nYour [pc.cock " + cIdx + "] spasms within you, twisting about in ways that feel strange and alien as electric heat races up and down the squirming shaft. Soon it’s too much to bear, and your dick thrusts forcefully out from within your slit.");
+			
 			//Apply TF
-			pc.cocks[cIdx].cockType = GLOBAL.TYPE_JANERIA;
+			pc.cocks[cIdx].cType = GLOBAL.TYPE_JANERIA;
 			pc.cocks[cIdx].cockColor = RandomInCollection(luminousColors());
 		
-			output("\n\nYour [pc.cock " + cIdx + "] spasms within you, twisting about in ways that feel strange and alien as electric heat races up and down the squirming shaft. Soon it’s too much to bear, and your dick thrusts forcefully out from within your slit. It looks like a miniature tentacle emerging, uniform " + pc.cocks[cIdx].cockColor + " from base to tip and flexing about as if gifted with a mind of its own. The tip is shaped like a diamond, with your cumslit tucked along the underside so that someone would have to be underneath you to be sure it was a cock at all. You’re pretty sure the janeria didn’t have a tentacle like <i>this</i>, did it?");
+			output(" It looks like a miniature tentacle emerging, uniform " + pc.cocks[cIdx].cockColor + " from base to tip and flexing about as if gifted with a mind of its own. The tip is shaped like a diamond, with your cumslit tucked along the underside so that someone would have to be underneath you to be sure it was a cock at all. You’re pretty sure the janeria didn’t have a tentacle like <i>this</i>, did it?");
 			output("\n\nIt takes you some time to learn how to control <b>your new tentacle dick</b>, but you’re sure the possibilities for how to use it will present themselves soon enough.");
 		}
 		
@@ -339,17 +354,19 @@ package classes.Items.Transformatives
 		{
 			//Pick suitable vagina at random
 			var validCunts:Array = new Array();
-			for (var vIdx:int = 0; i < pc.cocks.length; ++i)
-				if (pc.vaginaTypeUnlocked(vIdx, GLOBAL.TYPE_SNAKE) && pc.vagina[vIdx].vaginaType != GLOBAL.TYPE_SNAKE)
-					validCunts.push(vIdx)
+			for (var vIdx:int = 0; vIdx < pc.vaginas.length; ++vIdx)
+				if (pc.vaginaTypeUnlocked(vIdx, GLOBAL.TYPE_SNAKE) && pc.vaginas[vIdx].type != GLOBAL.TYPE_SNAKE)
+					validCunts.push(vIdx);
 			vIdx = RandomInCollection(validCunts);
-		
+			
+			output("\n\nElectric charges crackle down the whole length of your [pc.vagina " + vIdx + "], setting your pussy squirming even as all exterior definition seems to vanish.");
+			
 			//TF
 			pc.vaginas[vIdx].clits = 1;
-			pc.vaginas[vIdx].vaginaType = GLOBAL.TYPE_SNAKE;
+			pc.vaginas[vIdx].type = GLOBAL.TYPE_SNAKE;
 			pc.vaginas[vIdx].vaginaColor = RandomInCollection(luminousColors());
 			
-			output("\n\nElectric charges crackle down the whole length of your [pc.vagina " + vIdx + "], setting your pussy squirming even as all exterior definition seems to vanish. It takes you a few moments of searching with your fingers to figure out where your entrance even is, but when the lips peel apart your fingers are lit by the " + pc.vaginas[vIdx].vaginaColor + " of your new interior. <b>Your pussy has become a discreet, almost completely concealed slit</b>.");
+			output(" It takes you a few moments of searching with your fingers to figure out where your entrance even is, but when the lips peel apart your fingers are lit by the " + pc.vaginas[vIdx].vaginaColor + " of your new interior. <b>Your pussy has become a discreet, almost completely concealed slit</b>.");
 		}
 		
 		private function statChange(pc:Creature):void
