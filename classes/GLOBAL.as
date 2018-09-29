@@ -230,6 +230,7 @@
 		public static const TYPE_ADREMMALEX:int 							= 80;
 		public static const TYPE_MOTHRINE:int 								= 81;
 		public static const TYPE_FROSTWYRM:int 								= 82;
+		public static const TYPE_JANERIA:int								= 83;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -315,6 +316,7 @@
 			"Adremmalex",
 			"Mothrine",
 			"Frostwyrm",
+			"Janeria",
 		];
 		
 		public static const VALID_FACE_TYPES:Array = [
@@ -372,6 +374,7 @@
 			TYPE_GRYVAIN,
 			TYPE_SHEEP,
 			TYPE_COCKVINE,
+			TYPE_JANERIA,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
@@ -391,6 +394,7 @@
 			TYPE_BEE,
 			TYPE_FROG,
 			TYPE_TENTACLE,
+			TYPE_JANERIA,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [
@@ -511,6 +515,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_JANERIA,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -572,6 +577,7 @@
 			TYPE_GRYVAIN,
 			TYPE_COCKVINE,
 			TYPE_TENTACLE,
+			TYPE_JANERIA,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -952,6 +958,7 @@
 			TYPE_GRYVAIN,
 			TYPE_SWINE,
 			TYPE_FROSTWYRM,
+			TYPE_JANERIA,
 		];
 		
 		public static const VALID_COCK_FLAGS:Array = [
