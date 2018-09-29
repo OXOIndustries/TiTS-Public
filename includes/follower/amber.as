@@ -531,7 +531,7 @@ public function amberInTheHold():void
 			output("<i>“Hi [pc.name]!”</i> Amber says excitedly, waving. <i>“I was </i>just<i> thinking about you!”</i>");
 			output("\n\nThe way her stiffly erect, throbbing cock sways beneath her furred underbelly, you were already pretty sure.");
 		}
-		else if (amberDumbfuckDoses() == 2) output("\n\n<i>“Oh, my favorite person!”</i> Amber says, grinning. <i>“Hi, [pc.name]. Don’t s’pose you’re interested in some relaxing downtime on my bed…”</i>");
+		else if (amberDumbfuckDoses() == 2) output("<i>“Oh, my favorite person!”</i> Amber says, grinning. <i>“Hi, [pc.name]. Don’t s’pose you’re interested in some relaxing downtime on my bed…”</i>");
 		else if (amberDumbfuckDoses() == 1)
 		{
 			output("<i>“Hi, [pc.name]!”</i> Amber says, smiling. <i>“You here for some chit-chat, or…”</i>");
@@ -629,7 +629,7 @@ public function amberOnshipTalk():void
 	clearOutput();
 	amberHeader();
 	
-	output("\n\nWhat do you want to talk to Amber about?");
+	output("What do you want to talk to Amber about?");
 	
 	clearMenu();
 	addButton(0,"Past",amberOnshipTalkPast,undefined, "Past","Ask Amber about her past.");
