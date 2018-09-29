@@ -1,3 +1,5 @@
+import classes.Characters.SlamwulfeDrone;
+
 //Punk SecOp Core Idea
 //Kaithrit, comes in female in male flavors. Shares several scenes with a few unique based on gender.
 //Girl has big knockers. Boi has A or B cups.
@@ -81,6 +83,11 @@ public function encounterPunkSecOp():Boolean
 //For use with all visor intros unless ya’ll wanna get fancy.
 public function loseToPunkSecOP():void 
 {
+	var enemies:Array = CombatManager.getHostileActors();
+	for(var i:int = 0; i < enemies.length; i++)
+	{
+		if(enemies[i] is SlamwulfeDrone) CombatManager.removeHostileActor(enemies[i]);
+	}
 	//showPunkSecOp();
 	output("The grinning cyber-kitty strides over your slumping form" + (pc.lust() >= pc.lustMax() ? ", not even so much as bothering to glance at your exposed genitalia or the libertine attentions your hands are determined to give out.":", barely looking down") + ". <i>“Not giving me any trouble now, are you?”</i> [enemy.HeShe] reaches behind [enemy.hisHer] back, producing a pair of blinking goggles with a simple, elastic strap. <i>“Yeah, I think you’re done fighting, but just to be safe, you can take a ride in the goggles while I get you out of the restricted zone.”</i>");
 	output("\n\nThe last thing you see before the goggles’ inner blackness envelops your vision is a white-fanged, cheshire grin.");
@@ -388,6 +395,11 @@ public function pussySlutEpigloe():void
 //Victory
 public function defeatASecop():void
 {
+	var enemies:Array = CombatManager.getHostileActors();
+	for(var i:int = 0; i < enemies.length; i++)
+	{
+		if(enemies[i] is SlamwulfeDrone) CombatManager.removeHostileActor(enemies[i]);
+	}
 	//HP
 	if(enemy.HP() <= 1) output("Falling to the ground with a whine and a burst of sparks, the kaithrit security operative barely catches [enemy.himHer]self on [enemy.hisHer] hands and knees. [enemy.HisHer] arms wobble for a second before [enemy.heShe] pivots to fall heavily on [enemy.hisHer] [enemy.butt]. <i>“Fine, fine. I guess you </i>do<i> belong up here. Just... don’t fuck me up too bad, alright? If you try and off me, every other Cyber Punk on station’ll be swarming over you worse than Rat’s Raiders on a corporate freighter.”</i> [enemy.HeShe] jabs sharply at the antenna above [enemy.hisHer] ear, panting heavily but otherwise lacking any life threatening injuries. <i>“If the apology isn’t good enough for you, there’s other ways I can make this up to you with my tongue. Just... no more weapons, okay?”</i>");
 	//Lust
