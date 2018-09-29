@@ -23,7 +23,7 @@ public function statsScreenMenu(currentFunc:Function):Boolean
 	if(showID == "Other") addDisabledGhostButton(6, "Other");
 	else addGhostButton(6, "Other", currentFunc, "Other", "Other Statistics", "Show your other statistics.");
 	// Racial Scores
-	if(showID == "Other") addDisabledGhostButton(7, "Race");
+	if(showID == "Race") addDisabledGhostButton(7, "Race");
 	else addGhostButton(7, "Race", currentFunc, "Race", "Racial Scores", "Show your categorized genetic makeup.");
 	// Everything
 	if(showID == "All") addDisabledGhostButton(13, "All");
