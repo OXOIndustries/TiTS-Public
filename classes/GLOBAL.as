@@ -394,7 +394,7 @@
 			TYPE_BEE,
 			TYPE_FROG,
 			TYPE_TENTACLE,
-			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TONGUE_FLAGS:Array = [

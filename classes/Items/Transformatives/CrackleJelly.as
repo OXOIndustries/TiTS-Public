@@ -135,9 +135,9 @@ package classes.Items.Transformatives
             }
             
 			// Tongue
-            if (pc.tongueTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_PREHENSILE) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_LONG))
+            if (pc.tongueTypeUnlocked(GLOBAL.TYPE_FROSTWYRM) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_PREHENSILE) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_LONG))
             {
-				if (pc.tongueType != GLOBAL.TYPE_JANERIA) possibleChanges.push(tongueChange);
+				if (pc.tongueType != GLOBAL.TYPE_FROSTWYRM) possibleChanges.push(tongueChange);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) possibleChanges.push(tongueChange);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) possibleChanges.push(tongueChange);
             }
@@ -309,7 +309,7 @@ package classes.Items.Transformatives
 			if (pc.tongueType != GLOBAL.TYPE_JANERIA) output(" and turns blue");
 			output(", your jaw reflexively going slack to let it hang out of your mouth. Further and further it spills out, turning into a long, conical tube that you find you can twist and curl around objects almost like a tentacle. Oh, this is going to be fun. <b>You have a long, tentacle-like tongue.</b>");
 			
-			pc.tongueType = GLOBAL.TYPE_JANERIA;
+			pc.tongueType = GLOBAL.TYPE_FROSTWYRM;
 			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
 		}
