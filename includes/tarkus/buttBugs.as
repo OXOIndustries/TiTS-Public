@@ -132,6 +132,9 @@ public function attachButtBugFemale(variant:int = -1):void
 	pc.setStatusValue("Butt Bug (Female)", 4, 0);
 	
 	// Add and activate egg cycle for overproductive type
+	// Status Effect: "Butt Bug Egg Cycle"
+	// v1: 1 on, 0 off
+	// v2: total time under cycle before new eggs
 	if(variant == 1) pc.createStatusEffect("Butt Bug Egg Cycle", 1, 0, 0, 0, true, "Icon_Haste", "Weekly egg cycle.", false, (7 * 24 * 60));
 	else pc.removeStatusEffect("Butt Bug Egg Cycle");
 	
@@ -139,7 +142,93 @@ public function attachButtBugFemale(variant:int = -1):void
 	pc.createStatusEffect("Butt Bug Message Cooldown", 0, 0, 0, 0, true, "", "", false);
 	pc.setStatusMinutes("Butt Bug Message Cooldown", 1440);
 }
+public function resetButtBugEggCycle():void
+{
+	pc.setStatusValue("Butt Bug Egg Cycle", 1, 0);
+	pc.setStatusValue("Butt Bug Egg Cycle", 2, 0);
+	pc.setStatusMinutes("Butt Bug Egg Cycle", (7 * 24 * 60));
+}
 
+// Toggle butt bugs on/off
+public function encounterSandWormOptions(btnSlot:int = 0):void
+{
+	output("\n\nThere is an electronic bulletin message with the words “Sand Worms” scrawled acrossed it. You can attempt to give it a read if you desire.");
+	
+	addButton(btnSlot, "Sand Worms", encounterSandWormOptionSet, -1, "Sand Worms Note", "Read the bulletin.");
+}
+public function encounterSandWormOptionSet(option:int = -1):void
+{
+	clearOutput();
+	showBust("");
+	showName("\nSAND WORMS");
+	author("Jacques00");
+	clearMenu();
+	
+	switch(option)
+	{
+		case -1:
+			output("You look closer at the holo-bulletin and its letters come into view, clear enough for your codex to translate the language. After the message is deciphered, it reads:");
+			output("\n\n<i><b>Note:</b> Chance of encountering “sand worms” in the wild may be significant. These creatures house parasitic bugs that can latch onto the body via the anal cavity. Once infected, the victim may be subject to various involuntary, rectum-related events. Such events may not be palatable. Take caution and be careful!</i>");
+			
+			CodexManager.unlockEntry("Sand Worms");
+			
+			output("\n\nHow do you feel about the potenitally parasitic sand worms?");
+			
+			output("\n\n(Sand worm encounters are currently set to: <b>");
+			switch(flags["ENABLE_SANDWORM"])
+			{
+				case undefined: output("Away"); break;
+				case 1: output("Active, Uncommon"); break;
+				case 2: output("Active, Common"); break;
+			}
+			output("</b>)");
+			output("\n\n");
+			
+			if(flags["ENABLE_SANDWORM"] == undefined) addDisabledButton(0, "Ew");
+			else addButton(0, "Ew", encounterSandWormOptionSet, 0, "Nah.", "Nope. You want to avoid these parasites at all costs.");
+			if(flags["ENABLE_SANDWORM"] == 1) addDisabledButton(1, "Okay");
+			else addButton(1, "Okay", encounterSandWormOptionSet, 1, "Okay...", "You would be okay with running into these parasites.");
+			if(flags["ENABLE_SANDWORM"] == 2) addDisabledButton(2, "FUCK YES");
+			else addButton(2, "FUCK YES", encounterSandWormOptionSet, 2, "Oh Yeah!", "You would love to encounter any of these parasites in the wild.");
+			
+			addButton(14, "Back", mainGameMenu);
+			break;
+		case 0:
+			output("You think and over and decide that having these parasitic bugs find a way to crawl up your butt as very displeasing, if not disgusting. Hopefully they will be asleep underground whenever you are exploring the wastes.");
+			output("\n\n(<b>Butt bug content has been disabled!</b>)");
+			output("\n\n");
+			
+			flags["ENABLE_SANDWORM"] = undefined;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case 1:
+			output("You decide that encountering these parasitic bugs would not be such a big deal, but you do realize that being caught by one may have consequences outside of your control. Hopefully finding them in the wastes will be a rare occurance.");
+			output("\n\n(<b>Butt bug content has been enabled with natural frequency!</b>)");
+			output("\n\n");
+			
+			flags["ENABLE_SANDWORM"] = 1;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case 2:
+			output("Butt bugs? Well why not?! You are giddy about the probability of running into such a rare parasitic creature and welcome having it crawl up your [pc.asshole], forcing you to do lewd and nasty things. Hopefully you will find them often while traversing the wastes.");
+			output("\n\n(<b>Butt bug content has been enabled with unnatural frequency!</b>)");
+			output("\n\n");
+			
+			flags["ENABLE_SANDWORM"] = 2;
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+
+public function encounterSandWormChance():Boolean
+{
+	if(flags["ENABLE_SANDWORM"] == undefined) return false;
+	if(flags["ENABLE_SANDWORM"] == 1 && rand(3) != 0) return true;
+	return true;
+}
 public function encounterSandWorm():void
 {
 	author("Preacher");
@@ -1465,6 +1554,7 @@ public function combatSandWormDefeatScene(arg:Array):void
 				// apply mild soreness effect
 				soreDebuff(2);
 				
+				pc.loadInAss(ppButtBug);
 				pc.orgasm();
 				
 				CombatManager.genericLoss();
@@ -1505,6 +1595,9 @@ public function combatSandWormDefeatScene(arg:Array):void
 				else if(vIdx >= 0) output(" your [pc.cunts] and gives one long palm rub through the entirety of your pleasurable femininity. She finds [pc.oneCunt] too irresistable not to play with, and focuses all of your hand’s controlled attentions to vigorously frigging your feminine folds.");
 				else output(" your featureless groin and gives it one or two testing pokes before she going utterly crazy in rubbing its flat, sensitive surface.");
 				output("\n\nThe air is filled with your throaty moans of pleasure, but deep down you know that it isn’t really you that doing all of this. Your parasite makes herself as tight as possible around the cock of her mate when he’s pulled out by your other controlled hand, and loosens up when he enters. There are times when the male is shoved so deeply that he almost goes into your lower intestine, and you whimper as the female undulates her inner passage along his entire shaft. Being puppeted and used like this has sparked some deep perverted side of you that likes the mistreatment, and you creep closer to your inevitable climax.");
+				
+				pc.buttChange(ppButtBug.cockVolume(0));
+				
 				output("\n\nThe deep thrusts into the female in your ass increase in frequency, and the sources of pleasure from your own senses and hers are quick to bring you to orgasm. Both you and the female experience a simultaneous orgasm when she clamps down onto him and the male squirts his slimy green cum into your and her depths. All three of you convulse as you senses are overloaded and");
 				if(cIdx >= 0)
 				{
@@ -1539,6 +1632,7 @@ public function combatSandWormDefeatScene(arg:Array):void
 				
 				processTime(19);
 				
+				pc.loadInAss(ppButtBug);
 				pc.orgasm();
 				
 				// [Next]
@@ -1573,7 +1667,19 @@ public function combatSandWormDefeatScene(arg:Array):void
 			
 			processTime(50400 + rand(1441));
 			
-			// 9999
+			if(buttBugF != null)
+			{
+				var eggs:int = 0;
+				switch(buttBugF.value1) {
+					case 0: eggs += (750 + rand(251)); break;
+					case 1: eggs += ((750 + rand(251)) * 2); break;
+					case 2: eggs += (20 + rand(31)); break;
+				}
+				
+				createButtBugChild(buttBugF.value1, eggs);
+			}
+			
+			processTime(720 + rand(1441));
 			
 			badEnd();
 			break;
@@ -1659,11 +1765,14 @@ public function processButtBugParasitism(deltaT:uint, maxEffectLength:uint, doOu
 		}
 		else if(target.pregnancyData.length > 3 && target.pregnancyData[3].pregnancyType == "ButtBugPregnancy1")
 		{
+			// Timer loop check
+			if(target.pregnancyData[3].pregnancyIncubation > 480) target.pregnancyData[3].pregnancyIncubation = 480;
+			
+			var eggCycleEffect:StorageClass = target.getStatusEffect("Butt Bug Egg Cycle");
+			if(eggCycleEffect != null) eggCycleEffect.value2 += deltaT;
 			// Adding eggs
-			var eggs:int = Math.floor(deltaT/(8 * 60));
-			if(target.pregnancyData[3].pregnancyIncubation < deltaT) target.pregnancyData[3].pregnancyIncubation += (deltaT - target.pregnancyData[3].pregnancyIncubation);
-			else target.pregnancyData[3].pregnancyIncubation += (target.pregnancyData[3].pregnancyIncubation - deltaT);
-			if(eggs > 0) ButtBugPregnancy1.buttBugAddEggs1(target, 3, eggs);
+			var eggs:int = Math.floor((eggCycleEffect != null ? eggCycleEffect.value2 : deltaT)/480);
+			if(eggs > 0 && target.statusEffectv2("Butt Bug (Female)") <= 0) ButtBugPregnancy1.buttBugAddEggs1(target, 3, eggs);
 			
 			// Immobilization eject
 			if(	target.pregnancyData[3].pregnancyQuantity >= 30 && target.hasStatusEffect("Endowment Immobilized")
@@ -1771,7 +1880,14 @@ public function loadInButtBug(mother:Creature = null, father:Creature = null):vo
 	// No dad
 	if(father == null) return;
 	// Already preggos
-	if(mother.pregnancyData.length <= 3 || mother.pregnancyData[3].pregnancyType != "") return;
+	if(mother.pregnancyData.length <= 3 || mother.pregnancyData[3].pregnancyType != "")
+	{
+		if(mother.hasStatusEffect("Butt Bug (Female)"))
+		{
+			if(mother.pregnancyData[3].pregnancyType.indexOf("ButtBugPregnancy") != -1) mother.addStatusValue("Butt Bug (Female)", 2, 1);
+		}
+		return;
+	}
 	// Without butt bug effect
 	if(!mother.hasStatusEffect("Butt Bug (Female)"))
 	{
@@ -1797,7 +1913,7 @@ public function loadInButtBug(mother:Creature = null, father:Creature = null):vo
 			case 1: ppButtBug.impregnationType = "ButtBugPregnancy1"; break;
 			case 2: ppButtBug.impregnationType = "ButtBugPregnancy2"; break;
 		}
-		mother.setStatusValue("Butt Bug (Female)", 2, 1);
+		mother.addStatusValue("Butt Bug (Female)", 2, 1);
 		father.impregnationType = "";
 	}
 	else
@@ -2124,8 +2240,7 @@ public function birthButtBugType1(eggs:int = 0):void
 	trackButtBugEggs(buttBugF, "type1", eggs);
 	
 	// set OPBBE to 0 && end egg cycle
-	pc.setStatusValue("Butt Bug Egg Cycle", 1, 0);
-	pc.setStatusMinutes("Butt Bug Egg Cycle", (7 * 24 * 60));
+	resetButtBugEggCycle();
 	
 	// display buttons [Leave them] & [Nursery]
 	// if on tavros: automatically choose [Nursery]
@@ -2353,8 +2468,7 @@ public function expelButtBugEggImmobile():void
 	pc.pregnancyData[3].cleanupPregnancy(pc, 3);
 	
 	// end overproductive parasite egg cycle and set egg count to 0
-	pc.setStatusValue("Butt Bug Egg Cycle", 1, 0);
-	pc.setStatusMinutes("Butt Bug Egg Cycle", (7 * 24 * 60));
+	resetButtBugEggCycle();
 	trackButtBugEggs(buttBugF, "infertile", eggs);
 	
 	processTime(1);
@@ -2362,105 +2476,266 @@ public function expelButtBugEggImmobile():void
 	addButton(0, "Next", mainGameMenu);
 }
 
-/*
+// Nursery:
+// Button and description only available after sending at least one fertile Hilinara parasite egg to the nursery
+// create integer BBOS (total tallied butt bug offspring)
+// Each hybrid is inserted into an array and operates off of three parameters, body type, gender and maturity. Body types include winged, biped and taur. Genders are the usual female, male and herm. Maturity is simply a timer, set to a month after being added to the nursery and once that timer is up they become interactable.
+// create integer BBHWorms (Hilinara worms)
+// create integer BBHHybrids (hybrid Hilinara offspring)
+// Hybrid gender is randomized when large eggs are sent to nursery.
+// Depending on current character body type the hybrids will either get a tauric body, biped body or winged body. If you don’t have wings and are a biped they’ll be biped. If you are tauric(leithan or otherwise) no matter if you have wings or not they will be tauric. If you have wings and are not tauric(biped, goo, naga) then they will be winged.
+// Parasite Eggs hatch before you get back to nursery, and hybrids take one month to mature and become interactible(Mostly to save up on coding timers for each egg.)
 
-Nursery:
+// Description added to modular corridor
 
-//Button and description only available after sending at least one fertile Hilinara parasite egg to the nursery
-//create integer BBOS (total tallied butt bug offspring)
-//Each hybrid is inserted into an array and operates off of three parameters, body type, gender and maturity. Body types include winged, biped and taur. Genders are the usual female, male and herm. Maturity is simply a timer, set to a month after being added to the nursery and once that timer is up they become interactable.
-//create integer BBHWorms (Hilinara worms)
-//create integer BBHHybrids (hybrid Hilinara offspring)
-//Hybrid gender is randomized when large eggs are sent to nursery.
-//Depending on current character body type the hybrids will either get a tauric body, biped body or winged body. If you don’t have wings and are a biped they’ll be biped. If you are tauric(leithan or otherwise) no matter if you have wings or not they will be tauric. If you have wings and are not tauric(biped, goo, naga) then they will be winged.
-//Parasite Eggs hatch before you get back to nursery, and hybrids take one month to mature and become interactible(Mostly to save up on coding timers for each egg.)
+// (could just be called Tarkus room if any other Tarkus based children are had in the game’s future)
+// Opens up a button menu and different text display instead of actually going into a room, unless it would be better if there was actually a room then this button can be thrown away and the buttons below can be added to the room.
+public function nurseryHilinaraRoom(arg:Array):void
+{
+	var numButtBugWorm:int = (arg.length > 0 ? arg[0] : ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM_PARASITE, 0, 9001));
+	var numButtBugHybrid:int = (arg.length > 1 ? arg[1] : ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM, 1, 9001));
+	var numButtBugTotal:int = (arg.length > 2 ? arg[2] : (numButtBugWorm + numButtBugHybrid));
+	
+	clearOutput();
+	showBust("");
+	showName("HILINARA\nROOM");
+	author("Preacher");
+	
+	// Room description
+	output("Trying to understand the scale of this room would make most people confused. Looking at it from a window elsewhere on the station makes it look like a large, domed warehouse, but when inside it is like a vast expanse of a desert environment. There is even an artificial sun on the roof. The interior must be lined with numerous screens to simulate a distant environment. There does seem to be about a circular kilometer of actual space, plenty for your surrogate children. By the looks of it there " + (numButtBugTotal == 1 ? "is" : "are") + " currently");
+	if(numButtBugWorm > 0) output(" " + num2Text(numButtBugWorm) + " worm" + (numButtBugWorm == 1 ? "" : "s") + " digging about");
+	if(numButtBugWorm > 0 && numButtBugHybrid > 0) output(" and");
+	if(numButtBugHybrid > 0) output(" " + num2Text(numButtBugHybrid) + " hybrid" + (numButtBugHybrid == 1 ? "" : "s") + " walking around");
+	output(". Perhaps due to a sense of smell or thermal signature,they know you were their carrier and don’t attack you. They don’t attack the droids either. They must either be used to their presence, or not see them as a threat. There also seems to be a small circular structure close to the door. The sign says worm feed. That’s understandable, since any worms that might come here can’t really go to the mess hall to get their food. What will you do now that you’re here?");
+	output("\n\n");
+	
+	processTime(1);
+	
+	// Buttons in room
+	// Displayed when clicked on Hilinara room button or going into room.
+	clearMenu();
+	// [Petting]: only available if there are worms.
+	if(numButtBugWorm > 0) addButton(0, "Petting", nurseryHilinaraPetWorm, [-1, numButtBugWorm, numButtBugHybrid], "Pet Worm", "Pet one of your worms, and maybe play a game with it.");
+	else addDisabledButton(0, "Petting", "Pet Worm", "You have no hilinara worms available to pet.");
+	// [Talk]: only available if there are hybrids and at least one of them are mature, opens up some other buttons after scene start, chooses a random hybrid out of the bunch in the array.
+	if(numButtBugHybrid > 0) addButton(1, "Talk", nurseryHilinaraTalkHybrid, [-1, numButtBugWorm, numButtBugHybrid], "Talk to Hybrid", "Talk to one of your hybrid children.");
+	else addDisabledButton(1, "Talk", "Talk to Hybrid", "You have no mature hilinara hybrids to talk to.");
+	// [Nurse Droid]: Information gathering from droid
+	addButton(2, "Nurse Droid", nurseryHilinaraNurseDroid, [numButtBugWorm, numButtBugHybrid, numButtBugTotal], "Nurse Droid", "Talk to one of the nurse droids to gather some info.");
+	
+	addButton(14, "Leave", mainGameMenu);
+}
 
-Description added to modular corridor:
-One of the largest rooms have been converted to a simulation of Tarkus, evident by the smell and the sand being tracked in by the nurse droids as they leave it. The sand doesn’t stay there for long as it seems like it gets vacuumed back into the room after the doors close. Seems like either transporting sand here is expensive or they’re trying to minimize the need for new sand while keeping the place clean. A screen on top states that there [{if BBOffspring = 1: is}{if BBOffspring > 1: are}] currently [BBOffspring] of your Hilinara parasite children here, maybe you should visit [{if BBOffspring = 1: it}{if BBOffspring > 1: them}].
+public function nurseryHilinaraPetWorm(arg:Array):void
+{
+	var response:int = (arg.length > 0 ? arg[0] : -1);
+	var numButtBugWorm:int = (arg.length > 1 ? arg[1] : ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM_PARASITE, 0, 9001));
+	var numButtBugHybrid:int = (arg.length > 2 ? arg[2] : ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM, 0, 9001));
+	var gender:int = (arg.length > 3 ? arg[3] : 0);
+	
+	clearOutput();
+	showBust("");
+	showName("SAND WORM\nPARASITE");
+	author("Preacher");
+	clearMenu();
+	
+	switch(response)
+	{
+		case -1:
+			var numButtBugGenders:Genders = ChildManager.numOfTypeAndGenderInRange(GLOBAL.TYPE_SANDWORM_PARASITE, ChildManager.ALL_GENDERS, 0, 9001);
+			var genders:Array = [];
+			var i:int = 0;
+			for(i = 0; i < numButtBugGenders.Male; i++) { genders.push(0); }
+			for(i = 0; i < numButtBugGenders.Female; i++) { genders.push(1); }
+			if(genders.length > 0) gender = genders[rand(genders.length)];
+			
+			output("Tapping thrice into the sand with your [pc.foot] seems to attract one of the worms to you. It digs into your direction and slows once at your feet. One more tap causes it to lift its frontal body out of the sand. Still relatively small since available space limits their maximum size, the worm’s frontal length is similar to that of a medium-sized dog. In a strange way, the worm even acts like a dog too. Nudging its still sand-covered tip into your hand, it gives you the impression that it wants some attention, and who are you to say no to such a cute gesture?");
+			output("\n\nYou brush your palm across its sides and swipe the sand off from the top of its head as it leans into each one of your rubs, sometimes directing the attention where it is needed. Out of nowhere it suddenly goes back underground. It burrows of in some unknown direction, but comes back just as fast, springing out of the sifting grains with a rock in its mandibles. Slightly covered with greenish saliva it is placed at your feet. It seems like your worm wants you to take the rock and do something with it.");
+			output("\n\nDo you play with it?");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// Display buttons [Yes] and [No]
+			addButton(0, "Yes", nurseryHilinaraPetWorm, [1, numButtBugWorm, numButtBugHybrid, gender]);
+			addButton(1, "No", nurseryHilinaraPetWorm, [0, numButtBugWorm, numButtBugHybrid, gender]);
+			break;
+		case 1:
+			output("You pick up the rock and suddenly all the worm’s attention is diverted away from you, and straight to the rock. It sways this way and that with focus as you move the rock about with your hands, and the sandworm almost goes straight when you ready for a throw. The baseball sized rock flies");
+			var physique:Number = pc.PQ();
+			if(physique < 10) output(" a mere 10 or so meters proving little challenge for the worm to fetch. After only a few repeated throws, your shoulder is already starting to cramp up. Maybe you need to work on your throwing arm.");
+			else if(physique < 30) output(" an appreciable distance away. The worm finds it easily sometimes, but just as often takes a while to find it. It’s not too bad for someone with your strength, but the constant throwing is tiring you out a bit. The worm is also showing some signs of slowing down.");
+			else output(" a sizable distance away. You almost lose sight of it on a few consecutive throws. It always takes a while for the worm to find it, and only brings the rock back a few times before slowing down in it’s efforts. Maybe throwing a rock that distance away in a room like this isn’t a very good idea. You might break something.");
+			output("\n\nAfter a few more lobs of the rock, you decide to end the play time. Your fetcher is looking a bit winded as well. This time you set the stone in front of it and give a few more soft caresses before stepping back a little. Understanding your message, the worm picks up the rock once more, and disappears with it into the sand. Well that was fun.");
+			output("\n\n");
+			
+			processTime(9);
+			
+			// Decrease energy by 10
+			// Increase physique by 0.1
+			pc.energy(-10);
+			pc.slowStatGain("physique", 1);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+		case 0:
+			output("You roll the rock back towards it, but the worm just rolls it back. A couple more bouts of this rolling tennis match go by before you give it a clearer message. With a hand rubbing its head once more you pick up the Stone and put it into the worm’s mouth this time,you step back from your hoping to be playpal. Sagging a little from the realization you don’t want to play, its attentions are drawn elsewhere, burrowing into the sand and bolting off to what seems to be a nursedroid. The nursedroid plays with the worm a bit at least, so you know it won’t be left sad.");
+			output("\n\n");
+			
+			processTime(5);
+			
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
 
-Button: [Hilinara Room](could just be called Tarkus room if any other Tarkus based children are had in the game’s future)
-Button tip: Go into the room simulating Tarkus.
-//Opens up a button menu and different text display instead of actually going into a room, unless it would be better if there was actually a room then this button can be thrown away and the buttons below can be added to the room.
-
-Room description:
-Trying to understand the scale of this room would make most people confused. Looking at it from a window elsewhere on the station makes it look like a large, domed warehouse, but when inside it is like a vast expanse of a desert environment. There is even an artificial sun on the roof. The interior must be lined with numerous screens to simulate a distant environment. There does seem to be about a circular kilometer of actual space, plenty for your surrogate children. By the looks of it there [{if BBOffspring = 1: is}{if BBOffspring > 1: are}] currently [BBHWorms] [{if BBOffspring = 1: worm}{if BBOffspring =/= 1: worms}] digging about and [BBHHybrids] [{if BBOffspring = 1: hybrid}{if BBOffspring =/= 1: hybrids}] walking around. Perhaps due to a sense of smell or thermal signature,they know you were their carrier and don’t attack you. They don’t attack the droids either. They must either be used to their presence, or not see them as a threat. There also seems to be a small circular structure close to the door. The sign says worm feed. That’s understandable, since any worms that might come here can’t really go to the mess hall to get their food. What will you do now that you’re here?
-
-Buttons in room:
-//Displayed when clicked on Hilinara room button or going into room.
-[Petting]: only available if there are worms.
-Buttontip: Pet one of your worms, and maybe play a game with it.
-Scene:
-Tapping thrice into the sand with your [pc.foot] seems to attract one of the worms to you. It digs into your direction and slows once at your feet. One more tap causes it to lift its frontal body out of the sand. Still relatively small since available space limits their maximum size, the worm’s frontal length is similar to that of a medium-sized dog. In a strange way, the worm even acts like a dog too. Nudging its still sand-covered tip into your hand, it gives you the impression that it wants some attention, and who are you to say no to such a cute gesture?
-
-You brush your palm across its sides and swipe the sand off from the top of its head as it leans into each one of your rubs, sometimes directing the attention where it is needed. Out of nowhere it suddenly goes back underground. It burrows of in some unknown direction, but comes back just as fast, springing out of the sifting grains with a rock in its mandibles. Slightly covered with greenish saliva it is placed at your feet. It seems like your worm wants you to take the rock and do something with it.
-
-Do you play with it?
-{Display buttons [Yes] and [No]}
-
-[Yes]
-You pick up the rock and suddenly all the worm’s attention is diverted away from you, and straight to the rock. It sways this way and that with focus as you move the rock about with your hands, and the sandworm almost goes straight when you ready for a throw. The baseball sized rock flies [{if pc.physique < 10: a mere 10 or so meters proving little challenge for the worm to fetch. After only a few repeated throws, your shoulder is already starting to cramp up. Maybe you need to work on your throwing arm.}{{if pc.physique > 10 && pc.physique < 30: an appreciable distance away. The worm finds it easily sometimes, but just as often takes a while to find it. It’s not too bad for someone with your strength, but the constant throwing is tiring you out a bit. The worm is also showing some signs of slowing down.}{{if pc.physique > 30: a sizable distance away. You almost lose sight of it on a few consecutive throws. It always takes a while for the worm to find it, and only brings the rock back a few times before slowing down in it’s efforts. Maybe throwing a rock that distance away in a room like this isn’t a very good idea. You might break something.}]
-
-After a few more lobs of the rock, you decide to end the play time. Your fetcher is looking a bit winded as well. This time you set the stone in front of it and give a few more soft caresses before stepping back a little. Understanding your message, the worm picks up the rock once more, and disappears with it into the sand. Well that was fun.
-{Decrease energy by 10}
-{Increase physique by 0.1}
-
-[No]
-You roll the rock back towards it, but the worm just rolls it back. A couple more bouts of this rolling tennis match go by before you give it a clearer message. With a hand rubbing its head once more you pick up the Stone and put it into the worm’s mouth this time,you step back from your hoping to be playpal. Sagging a little from the realization you don’t want to play, its attentions are drawn elsewhere, burrowing into the sand and bolting off to what seems to be a nursedroid. The nursedroid plays with the worm a bit at least, so you know it won’t be left sad.
-
-----------------------------------------------------------------------------------------------------------------
-[Talk]: only available if there are hybrids and at least one of them are mature, opens up some other buttons after scene start, chooses a random hybrid out of the bunch in the array.
-
-So I’ve judged myself to be terrible at dumbing things down, I’m going to keep their dialog as is unless someone has some good suggestions.
-//Buttons disappear as you use them
-Buttontip: Talk to one of your hybrid children.
-Scene:
-You whistle into the fake desert, calling out to a hybrid in the distance and prompting them to turn their head in your direction. By the looks of it, they are happy to see you. [{if hybrid is winged: Membranous insectile wings deploy from their back as they fly in your direction, wings barely visible from their fast movement. Some sand is also kicked up by the path of their flight. As they get closer, a low vibrsatory sound can be heard from their wings, slowing in frequency as they get close.}{if hybrid is taur: A multi legged insectoid underbody is what their humanoid half sits upon, skittering across the sand they quickly make their way towards you. The sounds of sand being shifted about by their six legs fills your auditory field in short time, slowing down as they near you.}{if hybrid is biped: Running as a humanoid biped would, their legs kick up some sand while they make their way towards you. It takes a bit, but at least they don’t seem tired.}]
-
-As near as they are now you can easily make out their more subtle features. Though still manufactured with modern fabrics their attire looks somewhat tribal, consisting of a patterned kilt, sandals and a poncho to cover their upper body. Must be the best for this climate you guess. [{if hybrid is female: With a pretty face and curvy body you estimate they must be female. Her small but noticeable breasts would also help to tell anyone that she was a woman.}{if hybrid is male: A rugged but overall handsome face and a reasonably muscular looking body has you guessing that this one must be male, with the flat chest and occasional kilt bulge also being dead giveaway.}{if hybrid is herm: A bit androgynous to your eyes, your guesswork is thrown into a bit of a loop, forcing you to resort to other indicators in order to determine their sex. Some reasonably well developed breasts and slight bulge in their kilt has you guessing they must be a hermaphrodite. Then again, you don’t really know and it would be weird and awkward to ask for a look. Why would you even? There’s nothing you’re interested in under there.}]
-
-Without warning they dive straight at you, embracing you in a hug that would make a bear proud. Untangling from you they look you in the eyes and say, <i>“It is good to see you’re healthy, my carrier. I hope to see many more brothers and sisters from you.”</i> A bit taken aback by their directness, you blush a little while you entertain the thought. Putting a hand on their cheek, you tell them that maybe you will give them more. A smile appears on their segmented humanoid face as they ask, <i>“So... anything specific you want to talk about?”</i>
-
-[Them]
-Buttontip: Ask about them.
-Scene:
-<i>“Well as you can see I’m [{if hybrid is winged: a rare winged}{if hybrid is taur: an uncommon multi-legged}{if hybrid is biped: run of the mill bipedal}] variety of my species, or so I’ve been told. And I have you to thank for it,”</i> they say while extending a finger in your direction. <i>“I spend my days in this ‘dome’ as the nurses called it, though it looks like a desert to me. Whenever I get hungry, I go into the metal tunnels to grab some grub and then sit in the ‘class’, as they called it, for a few hours before coming back out again.”</i> A bit frustrated, they go on rambling about how it would be better if classes were held outside and other desert related issues. You guess their limited intelligence don’t really allow them to grasp the technology involved on the station.
-
-<i>“Don’t tell anyone, but I’ve been having all kinds of cravings for intimate contact. I’ve asked the lecturers about this, and they explained sex to me. I always blush whenever I think about it.”</i> Cravings? Sex? Blush? Direct as usual, but it always surprises you somewhat whenever they do this. A reminder that they should’ve concentrated in class causes them to quickly derail their dirty train of thought.
-
-[You]
-Buttontip: Ask what they think about you.
-Scene:
-<i>“
-[{if hybrid is winged && pc.hasWings = true:.I like that we can both fly together, in case we want to start a colony somewhere.}{if hybrid is taur && pc.legsAmount => 4.Having a lot of legs is great isn’t it? We could run to our heart’s content and we won’t get tired. Do you want a race?}{if hybrid is biped && pc.legsAmount = 2:.Well... I like you even if our anatomy is a bit bland. At least we’ll fit in more or less anywhere. Other places are apparently mostly built around our body type, so that’s good.}{if hybrid is winged && pc.hasWings = false: Why did you lose your wings? I know you had them, I wouldn’t have them if you didn’t. Oh well. More air for me.}{if hybrid is taur && pc.legsAmount = 4 or pc.legsAmount > 4: Our legs might be different but I still know you carried me before changing them, just wish you stayed the same.}{if hybrid is biped && pc.legsAmount =/= 2: You do know that being generic can sometimes be better right? Just trying to save you some trouble.}]
-”</i>
-
-<i>“Otherwise, I’m pleased. You look more or less healthy, and are able to make loads more of us if you want to. I can just imagine how it would be if there were many of us. Oh please say you’ll carry more.”</i> They hop up and down a bit childishly while asking you this. You kinda expected they’d say something like this. They do care about you, but it’s more or less only on the broodmother level. Love in any form is always nice, even if it might be a bit weird in comparison to what you’re used to.
-
-[Doing now?]
-Buttontip: Ask what they are doing now.
-Scene:
-[random: {<i>“Oh... nothing much. Sometimes I lounge in the sun, other times I work on my hut,”</i> they say while looking around without focus.\n\n<i>“You have a hut?”</i> you ask, surprised.\n\n<i>“Yep, water just doesn’t seem to stick the sand together strong enough, so I’ve been licking what I want to attach and it seems to be holding together well. Apparently we’re kinda specialized for this kind of stuff.”</i> Their hand points into a direction, and you can faintly see a greenish brown looking mud hut. They clearly weren’t kidding about the licking part.}
-{<i>“Making a spear.”</i> Your eyebrow raises as they say that. <i>“I know I’m not supposed to have weapons, but I feel like I need one, don’t you?”</i> You sigh as you go over the details of weapon safety with “your” child, a thought accidentally escapes your lips.\n\n<i>“What is it made of?”</i> you ask as they unhook something from their back.\n\n<i>“Sand, technically. I’ve found out how to make my spit harder. The sand tastes awful but I can make more or less anything with it and it doesn’t break that easily.”</i> You tell them to be careful, and they roll their eyes like almost any teenager these days would, while rehooking their sand spear.}
-{<i>“I’ve been going to the far ends of the desert. There is some kind of hidden wall that I can’t go through. If I walk along it, it always brings me back to the same place. Not even digging under it works. I keep hitting a metal rock layer. I wonder, why is it here?”</i> Taking their hand into yours you try to explain to them what the ‘wall’ is. They clearly don’t understand that they aren’t in a real desert, and follow an ‘I see, I know’ set of logic. They shake their head is disbelief <i>“You must be crazy. Clearly you and I can both see that there is more desert beyond the wall.”</i> Oh well. You can’t really remove a panel to prove this to them. Otherwise you might break something. Soon they’ve already more or less forgotten about what you’ve said, like they never even had a disagreement with you.}]
-
-[{if BBHHybrids > 4: <i>“Me and some of my siblings have been thinking of making a small village here, instead of staying separate in the dunes.”</i> Apparently that’s what they’re calling this dome. At least they’re getting familiar with it. <i>“Some of us have merged our huts, and it doesn’t look like we’re fighting too much.”</i>}{if BBHHybrids > 10: <i>“It became impossible for us to walk around and not bump into one another so we banded together to make more use of the space in here. We made a small village.”</i> Somewhat surprised by their progress you congratulate them, but inquire about why they aren’t using their rooms in the station. Looking kind of embarrassed they continue speaking <i>“We simply couldn’t get comfortable in there. Sleeping in the sand feels a lot more natural for most of us anyway so... we kinda got permission from the nice lady to stay here permanently and only go up when we get hungry.”</i> They must be talking about Bridget. If she says it’s fine then you guess it’s permissible.}]
-
-[{if BBHWorms = 0: I feel like I need to look after some form of small creature though. Don’t know why, but it’s just a feeling.}{if BBHWorms > 0: Every time I see one of those little worms I feel a kinship with them. The nurses tell me that we are technically the same species. I’ve played with them before, but knowing that now just makes it feel better.}]
-
-[Goodbye]
-Buttontip: Say your goodbyes
-Scene:
-After a couple more minutes of small talk you say your goodbyes, give a few hugs and watch as they go to their own little spot in the faux desert. It Is good talking to them like this, parental bonding is always important.
-
-----------------------------------------------------------------------------------------------------------------
-[Nurse Droid]: Information gathering from droid
-Buttontip: Talk to one of the nurse droids to gather some info.
-Scene:
-You move towards a droid that is [random:{moving a bag of worm feed,}{sweeping some sand from the main platform,}{on its way to tend to some unknown duty,}] and tap on its metallic shoulder to get its attention. Diverting its head towards you, her sensors recognize you and stop what she was currently doing to tend to your requests. <i>“Is there anything you’d like help with [pc.misterMiss] Steele?”</i> they ask as they fold their hands in front of their dress, awaiting your input. Upon telling them you just want some information, they turn into some kind of tour guide, telling you the functions and purposes of various things until finally you reach the end of the tour. <i>“[random:{As you can see, this sectioned-off room is where we keep all the nutritional packages to feed the biological units that cannot make it to the mess hall.}{This biodome system is completely automated and designed to simulate Tarkus to the best of the system’s computational abilities. This includes time of day, heat, wind, gravity, horizon, atmosphere and sand composition.}{No expense was spared for the raising of any and all desert organism offspring [pc.misterMiss] Steele might produce. This dome is as adaptable as many of the other rooms on this floor.}{Domes like this one are actually commonly used in many stations across the galaxy. Most are used for parks or beaches rather than desert simulations, so consider yours a rarity!}{We hope you don’t mind, but we’ve synthesized the air in the dome to smell more or less like you. Making the hybrids and worms think you are nearby puts them in a cooperative and calm state.”</i> Really? You don’t smell anythi-... oh. You’re probably used to your own smell so of course it won’t be noticeable. <i>“}] That concludes the requirements of current query request. For more info, please post queries to another nurse unit.”</i>. She resumes her previous task with no delay. They must be busy. You guess you need to get the attention of a different one if you want to know more.
-
-*/
-
-
+public function nurseryHilinaraTalkHybrid(arg:Array):void
+{
+	var response:int = (arg.length > 0 ? arg[0] : -1);
+	var numButtBugWorm:int = (arg.length > 1 ? arg[1] : ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM_PARASITE, 0, 9001));
+	var numButtBugHybrid:int = (arg.length > 2 ? arg[2] : ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM, 0, 9001));
+	var isWinged:Boolean = (arg.length > 3 ? arg[3] : false);
+	var isTaur:Boolean = (arg.length > 4 ? arg[4] : false);
+	var gender:int = (arg.length > 5 ? arg[5] : 0);
+	
+	clearOutput();
+	showBust("");
+	showName("SAND WORM\nHYBRID");
+	author("Preacher");
+	
+	switch(response)
+	{
+		case -1:
+			if(pc.originalRace.indexOf("gryvain") != -1) isWinged = true;
+			if(pc.originalRace.indexOf("leithan") != -1) isTaur = true;
+			var numButtBugGenders:Genders = ChildManager.numOfTypeAndGenderInRange(GLOBAL.TYPE_SANDWORM, ChildManager.ALL_GENDERS, 0, 9001);
+			var genders:Array = [];
+			var i:int = 0;
+			for(i = 0; i < numButtBugGenders.Male; i++) { genders.push(0); }
+			for(i = 0; i < numButtBugGenders.Female; i++) { genders.push(1); }
+			for(i = 0; i < numButtBugGenders.Intersex; i++) { genders.push(2); }
+			if(genders.length > 0) gender = genders[rand(genders.length)];
+			
+			output("You whistle into the fake desert, calling out to a hybrid in the distance and prompting them to turn their head in your direction. By the looks of it, they are happy to see you.");
+			if(isWinged) output(" Membranous insectile wings deploy from their back as they fly in your direction, wings barely visible from their fast movement. Some sand is also kicked up by the path of their flight. As they get closer, a low vibrsatory sound can be heard from their wings, slowing in frequency as they get close.");
+			else if(isTaur) output(" A multi-legged insectoid underbody is what their humanoid half sits upon, skittering across the sand they quickly make their way towards you. The sounds of sand being shifted about by their six legs fills your auditory field in short time, slowing down as they near you.");
+			else output(" Running as a humanoid biped would, their legs kick up some sand while they make their way towards you. It takes a bit, but at least they don’t seem tired.");
+			output("\n\nAs near as they are now you can easily make out their more subtle features. Though still manufactured with modern fabrics their attire looks somewhat tribal, consisting of a patterned kilt, sandals and a poncho to cover their upper body. Must be the best for this climate you guess.");
+			switch(gender)
+			{
+				case 0: output(" With a pretty face and curvy body you estimate they must be female. Her small but noticeable breasts would also help to tell anyone that she was a woman."); break;
+				case 1: output(" A rugged but overall handsome face and a reasonably muscular looking body has you guessing that this one must be male, with the flat chest and occasional kilt bulge also being dead giveaway."); break;
+				case 2: output(" A bit androgynous to your eyes, your guesswork is thrown into a bit of a loop, forcing you to resort to other indicators in order to determine their sex. Some reasonably well developed breasts and slight bulge in their kilt has you guessing they must be a hermaphrodite. Then again, you don’t really know and it would be weird and awkward to ask for a look. Why would you even? There’s nothing you’re interested in under there."); break;
+			}
+			output("\n\nWithout warning they dive straight at you, embracing you in a hug that would make a bear proud. Untangling from you they look you in the eyes and say, <i>“It is good to see you’re healthy, my carrier. I hope to see many more brothers and sisters from you.”</i> A bit taken aback by their directness, you blush a little while you entertain the thought. Putting a hand on their cheek, you tell them that maybe you will give them more. A smile appears on their segmented humanoid face as they ask, <i>“So... anything specific you want to talk about?”</i>");
+			output("\n\n");
+			
+			processTime(1);
+			
+			// So I’ve judged myself to be terrible at dumbing things down, I’m going to keep their dialog as is unless someone has some good suggestions.
+			// Buttons disappear as you use them
+			clearMenu();
+			addButton(0, "Them", nurseryHilinaraTalkHybrid, [0, numButtBugWorm, numButtBugHybrid, isWinged, isTaur, gender], "Them", "Ask about them.");
+			addButton(1, "You", nurseryHilinaraTalkHybrid, [1, numButtBugWorm, numButtBugHybrid, isWinged, isTaur, gender], "You", "Ask what they think about you.");
+			addButton(2, "Doing Now?", nurseryHilinaraTalkHybrid, [2, numButtBugWorm, numButtBugHybrid, isWinged, isTaur, gender], "Doing Now?", "Ask what they are doing now.");
+			addButton(14, "Goodbye", nurseryHilinaraTalkHybrid, [14, numButtBugWorm, numButtBugHybrid, isWinged, isTaur, gender], "Goodbye", "");
+			break;
+		case 0:
+			output("<i>“Well as you can see I’m");
+			if(isWinged) output(" a rare winged");
+			else if(isTaur) output(" an uncommon multi-legged");
+			else output(" run of the mill bipedal");
+			output(" variety of my species, or so I’ve been told. And I have you to thank for it,”</i> they say while extending a finger in your direction. <i>“I spend my days in this ‘dome’ as the nurses called it, though it looks like a desert to me. Whenever I get hungry, I go into the metal tunnels to grab some grub and then sit in the ‘class’, as they called it, for a few hours before coming back out again.”</i> A bit frustrated, they go on rambling about how it would be better if classes were held outside and other desert related issues. You guess their limited intelligence don’t really allow them to grasp the technology involved on the station.");
+			output("\n\n<i>“Don’t tell anyone, but I’ve been having all kinds of cravings for intimate contact. I’ve asked the lecturers about this, and they explained sex to me. I always blush whenever I think about it.”</i> Cravings? Sex? Blush? Direct as usual, but it always surprises you somewhat whenever they do this. A reminder that they should’ve concentrated in class causes them to quickly derail their dirty train of thought.");
+			output("\n\n");
+			
+			processTime(5);
+			
+			setButtonDisabled(response);
+			break;
+		case 1:
+			output("<i>“");
+			if(isWinged)
+			{
+				if(pc.hasWings() && pc.canFly()) output("I like that we can both fly together, in case we want to start a colony somewhere.");
+				else output("Why did you lose your wings? I know you had them, I wouldn’t have them if you didn’t. Oh well. More air for me.");
+			}
+			else if(isTaur)
+			{
+				if(pc.isTaur()) output("Having a lot of legs is great isn’t it? We could run to our heart’s content and we won’t get tired. Do you want a race?");
+				else output("Our legs might be different but I still know you had them at one point, just wish you stayed the same.");
+			}
+			else
+			{
+				if(pc.isBiped()) output("Well... I like you even if our anatomy is a bit bland. At least we’ll fit in more or less anywhere. Other places are apparently mostly built around our body type, so that’s good.");
+				else output("You do know that being generic can sometimes be better right? Just trying to save you some trouble.");
+			}
+			output("”</i>");
+			output("\n\n<i>“Otherwise, I’m pleased. You look more or less healthy, and are able to make loads more of us if you want to. I can just imagine how it would be if there were many of us. Oh please say you’ll carry more.”</i> They hop up and down a bit childishly while asking you this. You kinda expected they’d say something like this. They do care about you, but it’s more or less only on the broodmother level. Love in any form is always nice, even if it might be a bit weird in comparison to what you’re used to.");
+			output("\n\n");
+			
+			processTime(5);
+			
+			setButtonDisabled(response);
+			break;
+		case 2:
+			output(RandomInCollection([
+				"<i>“Oh... nothing much. Sometimes I lounge in the sun, other times I work on my hut,”</i> they say while looking around without focus.\n\n<i>“You have a hut?”</i> you ask, surprised.\n\n<i>“Yep, water just doesn’t seem to stick the sand together strong enough, so I’ve been licking what I want to attach and it seems to be holding together well. Apparently we’re kinda specialized for this kind of stuff.”</i> Their hand points into a direction, and you can faintly see a greenish brown looking mud hut. They clearly weren’t kidding about the licking part.",
+				"<i>“Making a spear.”</i> Your eyebrow raises as they say that. <i>“I know I’m not supposed to have weapons, but I feel like I need one, don’t you?”</i> You sigh as you go over the details of weapon safety with “your” child, a thought accidentally escapes your lips.\n\n<i>“What is it made of?”</i> you ask as they unhook something from their back.\n\n<i>“Sand, technically. I’ve found out how to make my spit harder. The sand tastes awful but I can make more or less anything with it and it doesn’t break that easily.”</i> You tell them to be careful, and they roll their eyes like almost any teenager these days would, while rehooking their sand spear.",
+				"<i>“I’ve been going to the far ends of the desert. There is some kind of hidden wall that I can’t go through. If I walk along it, it always brings me back to the same place. Not even digging under it works. I keep hitting a metal rock layer. I wonder, why is it here?”</i> Taking their hand into yours you try to explain to them what the ‘wall’ is. They clearly don’t understand that they aren’t in a real desert, and follow an ‘I see, I know’ set of logic. They shake their head is disbelief <i>“You must be crazy. Clearly you and I can both see that there is more desert beyond the wall.”</i> Oh well. You can’t really remove a panel to prove this to them. Otherwise you might break something. Soon they’ve already more or less forgotten about what you’ve said, like they never even had a disagreement with you.",
+			]));
+			output("\n\n");
+			if(numButtBugHybrid > 4)
+			{
+				if(numButtBugHybrid <= 10) output("<i>“Me and some of my siblings have been thinking of making a small village here, instead of staying separate in the dunes.”</i> Apparently that’s what they’re calling this dome. At least they’re getting familiar with it. <i>“Some of us have merged our huts, and it doesn’t look like we’re fighting too much.”</i>");
+				else output("<i>“It became impossible for us to walk around and not bump into one another so we banded together to make more use of the space in here. We made a small village.”</i> Somewhat surprised by their progress you congratulate them, but inquire about why they aren’t using their rooms in the station. Looking kind of embarrassed they continue speaking <i>“We simply couldn’t get comfortable in there. Sleeping in the sand feels a lot more natural for most of us anyway so... we kinda got permission from the nice lady to stay here permanently and only go up when we get hungry.”</i> They must be talking about Briget. If she says it’s fine then you guess it’s permissible.");
+			}
+			else if(numButtBugWorm > 0) output("<i>“Every time I see one of those little worms I feel a kinship with them. The nurses tell me that we are technically the same species. I’ve played with them before, but knowing that now just makes it feel better.”</i>");
+			else output("<i>“I feel like I need to look after some form of small creature though. Don’t know why, but it’s just a feeling.”</i>");
+			output("\n\n");
+			
+			processTime(5);
+			
+			setButtonDisabled(response);
+			break;
+		case 14:
+			output("After a couple more minutes of small talk you say your goodbyes, give a few hugs and watch as they go to their own little spot in the faux desert. It Is good talking to them like this, parental bonding is always important.");
+			output("\n\n");
+			
+			processTime(5);
+			
+			clearMenu();
+			addButton(0, "Next", mainGameMenu);
+			break;
+	}
+}
+public function nurseryHilinaraNurseDroid(arg:Array):void
+{
+	var numButtBugWorm:int = (arg.length > 0 ? arg[0] : ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM_PARASITE, 0, 9001));
+	var numButtBugHybrid:int = (arg.length > 1 ? arg[1] : ChildManager.numOfTypeInRange(GLOBAL.TYPE_SANDWORM, 1, 9001));
+	var numButtBugTotal:int = (arg.length > 2 ? arg[2] : (numButtBugWorm + numButtBugHybrid));
+	
+	clearOutput();
+	showBust("");
+	showName("NURSE\nDROID");
+	author("Preacher");
+	
+	output("You move towards a droid that is " + RandomInCollection([
+		"moving a bag of worm feed",
+		"sweeping some sand from the main platform",
+		"on its way to tend to some unknown duty",
+	]) + ", and tap on its metallic shoulder to get its attention. Diverting its head towards you, her sensors recognize you and stop what she was currently doing to tend to your requests. <i>“Is there anything you’d like help with [pc.misterMiss] Steele?”</i> they ask as they fold their hands in front of their dress, awaiting your input. Upon telling them you just want some information, they turn into some kind of tour guide, telling you the functions and purposes of various things until finally you reach the end of the tour. <i>“" + RandomInCollection([
+		"As you can see, this sectioned-off room is where we keep all the nutritional packages to feed the biological units that cannot make it to the mess hall.",
+		"This biodome system is completely automated and designed to simulate Tarkus to the best of the system’s computational abilities. This includes time of day, heat, wind, gravity, horizon, atmosphere and sand composition.",
+		"No expense was spared for the raising of any and all desert organism offspring [pc.misterMiss] Steele might produce. This dome is as adaptable as many of the other rooms on this floor.",
+		"Domes like this one are actually commonly used in many stations across the galaxy. Most are used for parks or beaches rather than desert simulations, so consider yours a rarity!",
+		"We hope you don’t mind, but we’ve synthesized the air in the dome to smell more or less like you. Making the hybrids and worms think you are nearby puts them in a cooperative and calm state.”</i> Really? You don’t smell anythi-... oh. You’re probably used to your own smell so of course it won’t be noticeable.",
+	]) + " That concludes the requirements of current query request. For more info, please post queries to another nurse unit.”</i>. She resumes her previous task with no delay. They must be busy. You guess you need to get the attention of a different one if you want to know more.");
+	output("\n\n");
+	
+	clearMenu();
+	addButton(0, "Next", mainGameMenu);
+}
 
 /*
 

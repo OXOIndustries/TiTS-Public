@@ -1376,6 +1376,7 @@ public function statisticsScreen(showID:String = "All"):void
 					case 1: output2(", Green"); break;
 					case 2: output2(", Orange-Striped"); break;
 				}
+				if(pc.statusEffectv2("Butt Bug (Female)") > 0) output2(", Inseminated");
 				if(pc.statusEffectv4("Butt Bug (Female)") > 0) output2("\n<b>* Attached Female Butt Bug, Offspring Produced:</b> " + pc.statusEffectv4("Butt Bug (Female)"));
 				if(pc.hasStatusEffect("Butt Bug Egg Cycle")) output2("\n<b>* Attached Female Butt Bug, Egg Cycle:</b> " + (pc.statusEffectv1("Butt Bug Egg Cycle") == 0 ? "Inactive" : "Active"));
 			}
@@ -5925,7 +5926,16 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["RASKVEL_PREG_TIMER"] != undefined) output2("\n<b>* Female Raskvel, Days Pregnant:</b> " + flags["RASKVEL_PREG_TIMER"]);
 				}
 				if(flags["MET_MALE_RASKVEL_GANG"] != undefined) output2("\n<b>* Male Raskvel Gang, Times Encountered:</b> " + flags["MET_MALE_RASKVEL_GANG"]);
-				if(flags["ENCOUNTERED_SANDWORM"] != undefined) output2("\n<b>* Sand Worm, Times Encountered:</b> " + flags["ENCOUNTERED_SANDWORM"]);
+				if(flags["ENCOUNTERED_SANDWORM"] != undefined)
+				{
+					output2("\n<b>* Sand Worm, Times Encountered:</b> " + flags["ENCOUNTERED_SANDWORM"]);
+					switch(flags["ENABLE_SANDWORM"])
+					{
+						case undefined: output(", Away"); break;
+						case 1: output(", Active (Uncommon)"); break;
+						case 2: output(", Active (Common)"); break;
+					}
+				}
 				if(flags["MET_SEXBOT_FEMALE_ON_TARKUS"] != undefined) output2("\n<b>* Female Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_FEMALE_ON_TARKUS"]);
 				if(flags["MET_SEXBOT_MALE_ON_TARKUS"] != undefined) output2("\n<b>* Male Sexbots, Times Encountered:</b> " + flags["MET_SEXBOT_MALE_ON_TARKUS"]);
 				if(flags["MET SYDIAN FEMALE"] != undefined) output2("\n<b>* Female Sydian, Times Encountered:</b> " + flags["MET SYDIAN FEMALE"]);

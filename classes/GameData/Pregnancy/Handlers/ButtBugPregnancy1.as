@@ -79,13 +79,13 @@ package classes.GameData.Pregnancy.Handlers
 		{
 			var pData:PregnancyData = mother.pregnancyData[pregSlot] as PregnancyData;
 			// Ends via time if cycle is not active or eggs have been fertilized
-			if(mother.statusEffectv1("Butt Bug Egg Cycle") == 0 || mother.statusEffectv2("Butt Bug (Female)") == 1)
+			if(mother.statusEffectv1("Butt Bug Egg Cycle") == 0 || mother.statusEffectv2("Butt Bug (Female)") > 0)
 			{
 				var tEventCall:Function = (function(c_mother:Creature, c_pregSlot:int, c_thisPtr:BasePregnancyHandler):Function
 				{
 					return function():void
 					{
-						if(c_mother.statusEffectv2("Butt Bug (Female)") == 1) kGAMECLASS.birthButtBugType1(c_mother.pregnancyData[c_pregSlot].pregnancyQuantity);
+						if(c_mother.statusEffectv2("Butt Bug (Female)") > 0) kGAMECLASS.birthButtBugType1(c_mother.pregnancyData[c_pregSlot].pregnancyQuantity);
 						else kGAMECLASS.expelButtBugEgg(c_mother.pregnancyData[c_pregSlot].pregnancyQuantity);
 						ButtBugPregnancy1.cleanupPregnancy(c_mother, c_pregSlot, c_thisPtr);
 					}
@@ -93,6 +93,7 @@ package classes.GameData.Pregnancy.Handlers
 				
 				kGAMECLASS.eventQueue.push(tEventCall);
 			}
+			// Set OPBBE to [OPBBE + 1]
 			else buttBugAddEggs1(mother, pregSlot, 1);
 		}
 		
@@ -103,6 +104,7 @@ package classes.GameData.Pregnancy.Handlers
 			var addRating:int = (eggs * 1);
 			pData.pregnancyBellyRatingContribution += addRating;
 			mother.bellyRatingMod += addRating;
+			var eggCycleEffect:StorageClass = mother.getStatusEffect("Butt Bug Egg Cycle");
 			
 			var txt:String = "";
 			txt += "You emit a brief moan as your butt bug squirts another load of her warm slimy liquid into your gut. Her tendrils deploy inside you again as she prepares to lay another egg. This time, instead of simply making space, she pushes the previous egg further along your intestines while the bulge in your [pc.belly] visibly shifts around. She expands like she did the first time to deposit another one of her eggs to join those already in you. Her center of mass moves deeper into your digestive tract and stretches your anal passage in the process.";
@@ -128,7 +130,8 @@ package classes.GameData.Pregnancy.Handlers
 			mother.orgasm();
 			mother.lust(50);
 			
-			// Set OPBBE to [OPBBE + 1]
+			// reset egg timer
+			if(eggCycleEffect != null) eggCycleEffect.value2 = 0;
 			
 			pData.pregnancyIncubation += 480;
 		}

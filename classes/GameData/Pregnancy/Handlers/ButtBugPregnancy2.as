@@ -119,7 +119,7 @@ package classes.GameData.Pregnancy.Handlers
 			{
 				return function():void
 				{
-					if(c_mother.statusEffectv2("Butt Bug (Female)") == 1) kGAMECLASS.birthButtBugType2(c_mother.pregnancyData[c_pregSlot].pregnancyQuantity);
+					if(c_mother.statusEffectv2("Butt Bug (Female)") > 0) kGAMECLASS.birthButtBugType2(c_mother.pregnancyData[c_pregSlot].pregnancyQuantity);
 					else kGAMECLASS.expelButtBugEgg(c_mother.pregnancyData[c_pregSlot].pregnancyQuantity);
 					ButtBugPregnancy2.cleanupPregnancy(c_mother, c_pregSlot, c_thisPtr);
 				}
