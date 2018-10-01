@@ -200,7 +200,7 @@ public function mainGameMenu(minutesMoved:Number = 0):void
 			if (rand(pc.statusEffectv1("Leitha Charm")) > 60)
 			{
 				pc.setStatusValue("Leitha Charm", 1, -720 - rand(360));
-				if ((pc.accessory as LeithaCharm).attemptTF(pc)) return;
+				if ((pc.accessory is LeithaCharm) && (pc.accessory as LeithaCharm).attemptTF(pc)) return;
 			}
 		}
 	}
