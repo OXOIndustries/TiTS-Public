@@ -12,7 +12,7 @@ public function pcHasSlaveOutfit():Boolean
 public function showMaike(nude:Boolean = false):void
 {
 	showName(flags["TIVF_MAIKE_TALK"] == 1 ? "OVERSEER\nMAIKE":"\nOVERSEER");
-	showBust("MAIKE" + nude ? "_NUDE":"");
+	showBust("MAIKE" + (nude ? "_NUDE":""));
 }
 
 public function maikeEncountered():Boolean
