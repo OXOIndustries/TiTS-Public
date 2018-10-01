@@ -105,7 +105,7 @@ public function untieMitzi():void
 public function mitziOutsideShip():Boolean
 {
 	//trace("MITZI RESCUED: " + flags["MITZI_RESCUED"] + "\nTimestamp: " + GetGameTimestamp() + "\nDISABLED? " + flags["MITZI_DISABLED"]);
-	return (flags["MITZI_RESCUED"] + 60*24*8 < GetGameTimestamp() && !mitziIsCrew() && flags["MITZI_DISABLED"] == undefined && flags["MITZI_RESCUED"] != undefined && shipLocation == "TAVROS HANGAR");
+	return ((flags["MITZI_RESCUED"] + 60*24*8 < GetGameTimestamp() && !mitziIsCrew() && flags["MITZI_DISABLED"] == undefined && flags["MITZI_RESCUED"] != undefined && shipLocation == "TAVROS HANGAR") || (mitziRecruited() && !mitziIsCrew() && flags["MITZI_DISABLED"] == undefined));
 }
 
 //Try to enter ship while she’s leaning.
@@ -362,7 +362,8 @@ public function kickMitziOffCrew():void
 {
 	clearOutput();
 	showMitzi();
-	output("You tell Mitzi to hit the road. You need the space for other crewmates.");
+	if(pc.isAss()) output("You tell Mitzi to hit the road. You need the space for other crewmates.");
+	else output("You ask Mitzi if she can stay somewhere else for a while. You’ve got to make some adjustments to your ship’s crew roster.")
 	output("\n\n<i>“Oh...”</i> Mitzi frowns momentarily, then perks back up. <i>“But it’s like, not forever, right? You’ll take Mitzi back and fuck her stupid slutty brains out over and over again?”</i>");
 	output("\n\nYou agree for now. The alternative would be listening to her bawling her eyes out, you’re sure.");
 	output("\n\n<i>“Yay!”</i>");
@@ -983,6 +984,7 @@ public function mitziCrewMenu():void
 		else addDisabledButton(6,"Give Gush","Give Gush","You need some Gush in order to do this.");
 	}
 	addButton(7,"Give Bubble",giveMitziACumBubble,undefined,"Give Cum Bubble","Maybe you could give Mitzi some stored-up cum?");
+	addButton(13,"Leave Crew",kickMitziOffCrew,undefined,"Leave Crew","Tell Mitzi that you need to free up some space on the ship.");
 	addButton(14,"Back",crew);
 }
 
