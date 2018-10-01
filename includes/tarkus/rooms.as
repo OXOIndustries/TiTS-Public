@@ -245,7 +245,7 @@ public function initTarkusRooms():void
 	rooms["215"] = new RoomClass(this);
 	rooms["215"].roomName = "MAKESHIFT\nGANGPLANK";
 	rooms["215"].description = "With every step you take out onto this gangplank, you hear the telltale groans of metal straining. You can feel it flexing from the combined foot traffic of dozens of raskvel scavengers, droids, and other rushers as they move along the improvised structure. You’d be more worried if it wasn’t so thick and the welds didn’t look so solid. All you have to do is stay away from the edges and keep your balance. If you follow it up to the north, you’ll find yourself back inside the Nova, now Novahome. Continuing south will deposit you on the surface of Tarkus.";
-	rooms["215"].runOnEnter = undefined;
+	rooms["215"].runOnEnter = novahomeGangplankBonus;
 	rooms["215"].northExit = "211";
 	rooms["215"].southExit = "216";
 	rooms["215"].planet = "PLANET: TARKUS";

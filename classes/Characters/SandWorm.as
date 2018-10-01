@@ -73,7 +73,8 @@ package classes.Characters
 			lustRaw = 0;
 			
 			level = 6;
-			XPRaw = normalXP();
+			//XPRaw = normalXP();
+			XPRaw = 500;
 			credits = 0;
 			HPMod = 100;
 			HPRaw = HPMax();

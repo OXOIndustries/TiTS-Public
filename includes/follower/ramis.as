@@ -324,6 +324,7 @@ public function ramisCrewBlurb():String
 		case "ERROR":
 		default:
 			blurb = "<b>Error setting Ramis’s schedule. " + String(flags["RAMIS_ACTIVITY"]) + "</b>";
+			break;
 	}
 	
 	return blurb;
@@ -1013,7 +1014,7 @@ public function ramisCatsAndDoggystyle(continued:Boolean = false):void
 	clearMenu();
 	processTime(60);
 
-	var tallBoyo:Boolean = pc.tallness > 6*12 + 6;
+	var tallBoyo:Boolean = (pc.tallness > ((6*12) + 6));
 	var x:int = pc.biggestCockIndex();
 	var tooBig:Boolean = pc.biggestCockVolume() > getRamisPregContainer().vaginalCapacity();
 	
@@ -1029,7 +1030,7 @@ public function ramisCatsAndDoggystyle(continued:Boolean = false):void
 	
 	output("\n\nYou manage to entangle yourself long enough to " + (pc.hasLowerGarment() ? "rip off your [pc.lowerGarments]" : "shuck off your [pc.gear]") + ". Ramis immediately hones in on your [pc.cockBiggest], the slits of her eyes engorging as she grabs at it, practically yanking it off in her eagerness to jerk it to full, beading hardness, a paint-shaker of a handjob delivered by the grip of a woman who trains it every single day.");
 	if (tooBig) output("\n\n<i>“Don’t usually do it with lads as big as you, you know,”</i> she husks, tongue tracing her sharp teeth. <i>“But fuck, the way you come at me... and then this big piece of animal meat - let’s say you convince me.”</i> She looks you dead in the eyes as she continues to masturbate you hard, lust like liquid iron coursing up your shaft. <i>“Go on, put it in there. Stretch me. Make me yours.”</i>");
-	else if (pc.biggestCockLength() < 5) output("\n\n<i>“Can’t believe a boyo hung like you has got the cheek to come at me like you do,”</i> she husks, tongue tracing her sharp teeth. <i>“Maybe it’s true what they say...”</i> She looks you dead in the eyes as she continues to masturbate you hard, lust like liquid iron coursing up your shaft. <i>“ ...show me how you use it.”</i>");
+	else if (pc.cLength(x) < 5) output("\n\n<i>“Can’t believe a boyo hung like you has got the cheek to come at me like you do,”</i> she husks, tongue tracing her sharp teeth. <i>“Maybe it’s true what they say...”</i> She looks you dead in the eyes as she continues to masturbate you hard, lust like liquid iron coursing up your shaft. <i>“ ...show me how you use it.”</i>");
 	else output("\n\n<i>“I fucken love this dick,”</i> she husks, tongue tracing her sharp teeth. <i>“It could’ve been made for me. It’s why I let you do this, y’know - let you do the things you do, cuz you come packing the right size willy.”</i> She looks you dead in the eyes as she masturbates you hard, whipping her hand up and down your shaft, lust like liquid iron coursing up it. <i>“Do it to me. Hard.”</i>");
 
 	output("\n\nPulse thudding in your temple, you twist her around and shove her over the main console drive, facing the window. You pull her jeans and sport shorts down, put your hand on her ass and just marvel at the view for a moment - those two watermelon-sized brown hills, round and full enough to easily own the powerful, bulging thighs they crown, the moist, opened pussy winking a promise at you between them, the two long, fluffy, black-dappled tails swishing in your face adding an intoxicating exoticism to it all. Perfection.");
@@ -2451,20 +2452,20 @@ public function ramisOrcTablesAndTurns():void
 	clearMenu();
 	processTime(45);
 
-	var x:String = String(pc.biggestCockIndex());
+	var x:int = pc.biggestCockIndex();
 	
 	output("You smile boldly back at him, sliding your fingers up your [pc.cock], your own inhuman randiness already seizing that drooling dick of yours up with renewed heat and hardness");
 	if (pc.balls > 0) output(", [pc.balls] swelling as they furiously produce a new load of seething [pc.cum]");
 	output(". Particularly now you have full view of his big, muscular butt, the sort of rounded, stallion-like arse a South American footballer shakes about. Yeah... you wouldn’t mind a piece of that.");
 
-	if (pc.biggestCockLength() < 6) output("\n\n<i>“You want to stick that lil guy up me?”</i> Ohrskun laughs heartily, turning back to Ramis. <i>“You knock yourself out, candy boy. I doubt I’ll even feel it. Unlike your girlfriend here.”</i>");
+	if (pc.cLength(x) < 6) output("\n\n<i>“You want to stick that lil guy up me?”</i> Ohrskun laughs heartily, turning back to Ramis. <i>“You knock yourself out, candy boy. I doubt I’ll even feel it. Unlike your girlfriend here.”</i>");
 	else output("\n\n<i>“Uh.”</i> Gazing down at your own manhood, Ohrskun seems for the first time unsure of himself. <i>“I hope you ain’t thinking of putting that...”</i>\n\n<i>“Oh, g’wan!”</i> What’s going on has penetrated Ramis’s horny, drunken cloud, and she’s immediately on her haunches, breasts heaving, leering delightedly. <i>“You’re afraid of my sweet boyo givin’ what you dish out? You’ll love it, en fair’s fair!”</i>");
 
 	output("\n\nYou position yourself behind Ohrskun, slathering your own [pc.cum] up your [pc.cockBiggest], grasping him by the brawny haunches and lining yourself up with the dark green pucker you find nestled within his great, round buttocks, sliding between their warmth and butting your [pc.cockHead " + x + "] against his entrance. Ramis has entirely re-captured the thraggen’s attention by athletically pulling her smooth, thick thighs apart and splaying her pussy at him, bucking her wet, reddened need at him impatiently.");
 	output("\n\nHe grabs her by the undersides of her knees, splaying her legs backwards, and groans in delight as he sinks his huge, rugged form downwards. You can’t see the act from this vantage point, but you certainly can hear the squelch, Ramis’s squeal of joy, and the way her clawed feet batter excitedly against the greenskin’s shoulders.");
 	output("\n\nYou wait, [pc.cockNoun " + x + "] fervently erect and pressed against Ohrskun’s asshole, leaning forward so you follow him in as he dips his gigantic dick into Ramis’s cunt. He’s so strong and brutish he can’t help but spear himself onto you when he pulls himself outwards, his ring opening up around you and treating your prick to an electrically tight clench.");
 
-	if (pc.biggestCockLength() < 6)
+	if (pc.cLength(x) < 6)
 	{
 		output("\n\nYour toy prick can barely get past the chubbiness of his sphincter, let alone fill him up in any meaningful way. He snorts with laughter, looking back around at you as he thrusts his powerful, thick hindquarters beneath you.");
 		output("\n\n<i>“Yeah. Like the galaxy’s smallest, cutest buttplug, aren’t you?”</i> he says. He grips a pair of brown ankles and pumps inwards powerfully, eliciting a yowl of deepest pleasure out of their owner. <i>“That’s what a woman sounds like when you fuck them good. I know you’ve never heard it before. But you enjoy yourself back there, sweet stuff, whilst I give your girlfriend what she needs.”</i>");
@@ -2485,7 +2486,7 @@ public function ramisOrcTablesAndTurns():void
 		if (pc.balls > 0) output(" and [pc.balls]");
 		output(" meet his big, round butt, your whole prick gloved in his pulsing, kneading innards. Now that you are there, making him feel all of you, you’re certain that it’s driving him on; every time he thrusts powerfully back against you he gasps or quivers, and his returning thrust downwards is even more heartfelt than the last. You hear a spurting, dripping sound above the ardent ‘clap clap clap’ of two muscular pairs of hips slapping against each other, and realise you’re actually milking him, forcing cum out of his gigantic dick with the pressure of your own.");
 		output("\n\nIt tickles you immensely to be doing this to the machismo-soaked hunk, a femboy giving him the kind of fuck he probably won’t be bragging about to any of his bros. You let him know how much you’re enjoying his ass with your laughter and then increasingly ecstatic moans, your lust climbing up to an unbearable point, cum seething in your " (pc.balls > 0 ? "[pc.balls]" : "nethers") + ". You hold on past at least one shaking, yowling Ramis orgasm - she’s getting the full effect of a prostate-milked thraggen - and then bloom into your own wonderful high, gripping Ohrskun thick, brawny heft hard and slapping your [pc.hips] into his butt, burying spurts of [pc.cum] deep into him until you’re utterly spent. He grunts and groans and curses his way throughout, and when happily as and stickily part from him, he’s still pumping away.");
-		output("\n\n<i>“Did you enjoy that, big boy?”</i> you ask him teasingly, watching him as he repositions Ramis, gets her on her hands and knees, and then starts doing her doggy style. " + StringUtil.capitalize(pc.cumColor()) + " juices ooze down his pistoning thighs.");
+		output("\n\n<i>“Did you enjoy that, big boy?”</i> you ask him teasingly, watching him as he repositions Ramis, gets her on her hands and knees, and then starts doing her doggy style. [pc.CumColor] juices ooze down his pistoning thighs.");
 		output("\n\n<i>“Once I’m done here, I’m gonna mainline some priapin and fuck your ballsy lily ass again,”</i> he growls thickly, glancing over his shoulder so you can see by his fiery expression he really means it. <i>“Call me inspired.”</i>");
 		output("\n\nOh, how terrible! You feel a little thrill as you watch the rough, bestial show on the shivering sheets in front of you. It’s going to be a long night...");
 	}
