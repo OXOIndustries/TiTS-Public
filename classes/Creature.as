@@ -11002,6 +11002,10 @@
 					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
 				case GLOBAL.TYPE_FROSTWYRM:
+					vaginas[slot].clits = 1;
+					vaginas[slot].vaginaColor = "bluish-pink";
+					break;
+				case GLOBAL.TYPE_FROSTWYRM:
 					vaginas[slot].vaginaColor = "blue";
 					vaginas[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
@@ -11041,10 +11045,6 @@
 				case GLOBAL.TYPE_BOTHRIOC:
 					vaginas[slot].wetnessRaw = 2;
 					vaginas[slot].loosenessRaw = 3;
-					break;
-				case GLOBAL.TYPE_FROSTWYRM:
-					vaginas[slot].clits = 1;
-					vaginas[slot].vaginaColor = "bluish-pink";
 					break;
 			}
 		}
@@ -11144,6 +11144,12 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_KNOTTED);
 					cocks[slot].addFlag(GLOBAL.FLAG_RIBBED);
+					break;
+				case GLOBAL.TYPE_FROSTWYRM:
+					cocks[slot].cockColor = "pink";
+					cocks[slot].knotMultiplier = 1;
+					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
+					cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
 				case GLOBAL.TYPE_FROSTWYRM:
 					cocks[slot].cockColor = "blue";
@@ -11256,12 +11262,6 @@
 					cocks[slot].addFlag(GLOBAL.FLAG_TAPERED);
 					cocks[slot].addFlag(GLOBAL.FLAG_PREHENSILE);
 					cocks[slot].addFlag(GLOBAL.FLAG_OVIPOSITOR);
-					break;
-				case GLOBAL.TYPE_FROSTWYRM:
-					cocks[slot].cockColor = "pink";
-					cocks[slot].knotMultiplier = 1;
-					cocks[slot].addFlag(GLOBAL.FLAG_BLUNT);
-					cocks[slot].addFlag(GLOBAL.FLAG_NUBBY);
 					break;
 			}
 		}
@@ -11629,6 +11629,7 @@
 			else if(raceSimple == "gryvain") shiftVagina(arg, GLOBAL.TYPE_GRYVAIN);
 			else if(raceSimple == "lapinara") shiftVagina(arg, GLOBAL.TYPE_LAPINARA);
 			else if(raceSimple == "canine") shiftVagina(arg, GLOBAL.TYPE_CANINE);
+			else if(raceSimple == "frostwyrm") shiftVagina(arg, GLOBAL.TYPE_FROSTWYRM);
 			else if(InCollection(raceSimple, ["vulpine", "vulpogryph"]) || (raceSimple == "kitsune" && hasFur()))
 			{
 				shiftVagina(arg, GLOBAL.TYPE_VULPINE);
@@ -11887,7 +11888,7 @@
 			if (goatScore() >= 4) race = goatRace();
 			if (demonScore() >= 5) race = "demon-morph";
 			if (dragonScore() >= 5) race = "dragon-morph";
-			if (frostyScore() >= 5) race = "frostwyrm";
+			if (frostyScore() >= 6) race = "frostwyrm";
 			if (gabilaniScore() >= 5) race = "gabilani";
 			if (frogScore() >= 5) race = "kerokoras";
 			if (kaithritScore() >= 6) race = "kaithrit";
@@ -12478,7 +12479,10 @@
 		public function frostyScore():int
 		{
 			var counter:int = 0;
-			if (skinType == GLOBAL.SKIN_TYPE_SCALES) counter++;
+			if (hasScales()) counter++;
+			else if (hasFur()) counter--;
+			if (tallness > 7*12) counter++;
+			else if (tallness < 6*12) counter--;
 			if (legType == GLOBAL.TYPE_FROSTWYRM) counter++;
 			if (armType == GLOBAL.TYPE_FROSTWYRM) counter++;
 			if (faceType == GLOBAL.TYPE_FROSTWYRM) counter++;
