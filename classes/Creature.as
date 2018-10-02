@@ -12715,8 +12715,8 @@
 			if (legType == GLOBAL.TYPE_NYREA) counter++;
 			if (faceType == GLOBAL.TYPE_HUMAN)
 			{
-				if (earType == GLOBAL.TYPE_SYLVAN) counter++;
 				if (hasHair() && hairType == GLOBAL.HAIR_TYPE_QUILLS) counter++;
+				if (counter > 0 && earType == GLOBAL.TYPE_SYLVAN) counter++;
 			}
 			if (counter > 2 && hasCock(GLOBAL.TYPE_NYREA) && cumType == GLOBAL.FLUID_TYPE_NYREA_CUM) counter++;
 			if (counter > 2 && hasVaginaType(GLOBAL.TYPE_NYREA) && girlCumType == GLOBAL.FLUID_TYPE_NYREA_GIRLCUM) counter++;

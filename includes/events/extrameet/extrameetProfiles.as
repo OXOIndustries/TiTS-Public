@@ -684,7 +684,7 @@ public function extrameetPonyLuverSex():void
 	pc.loadInCunt(chars["PONYLUVER"], vag);
 	pc.orgasm();
 	
-	output("\n\nAfter catching his breath Pony pulls himself out, and you turn over your shoulder to see the man’s impressive meat has already shrunk down considerably. <i>“Hmmm, That was just what the doctor ordered. I hope I wasn’t too rough with ya dear. I’m a passionate man.”</i> He helps you clean off and collect your things, trying to be something of a gentleman again. <i>“If ever you’re around do give me a call. I’m always down for another ride.”</i> You tell Pony you’ll keep that in mind and say your goodbyes, leaving his apartment and heading back to the bar.");
+	output("\n\nAfter catching his breath Pony pulls himself out, and you turn over your shoulder to see the man’s impressive meat has already shrunk down considerably. <i>“Hmmm, that was just what the doctor ordered. I hope I wasn’t too rough with ya dear. I’m a passionate man.”</i> He helps you clean off and collect your things, trying to be something of a gentleman again. <i>“If ever you’re around do give me a call. I’m always down for another ride.”</i> You tell Pony you’ll keep that in mind and say your goodbyes, leaving his apartment and heading back to the bar.");
 	
 	IncrementFlag("EXTRAMEET_SEX");
 	IncrementFlag("EXTRAMEET_CUNT_RCVD");

@@ -1725,7 +1725,7 @@ public function removeButtBugImmunoBooster():void
 	if(pc.ass.loosenessRaw < 3)
 	{
 		output(" <b>Your anal ring has been stretched a little.</b>");
-		// set pc. analLooseness to [pc.analLooseness + 1]
+		// set pc.analLooseness to [pc.analLooseness + 1]
 		pc.ass.loosenessRaw += 1;
 	}
 	removeButtBug();
@@ -2098,7 +2098,7 @@ public function birthButtBugType0(eggs:int = 0):void
 	output("\n\nTime flies by as several more eggs follow the same insectoid oviposition of the first, until only one is left. The female’s efforts egg you on; release is so close you can taste it. The last egg plops out to top off the slimy pyramid below you as you’re pushed blessedly over the edge.");
 	if(cIdx >= 0 && vIdx >= 0) output(" Loud moans escape your [pc.lips] as [pc.eachCock] throbs and your [pc.pussies] spasm in tandem. Your cock" + (pc.cocks.length == 1 ? "’s" : "s’") + " veins bulge while [pc.cum] is let loose from " + (pc.cocks.length == 1 ? "its" : "their") + " urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " and splatters onto the ground a few yards in front of you. Whilst your seed is being sprayed, your vagina" + (pc.vaginas.length == 1 ? " convulses" : "s convulse") + ", leaking [pc.girlCum] onto the pile of eggs below.");
 	else if(cIdx >= 0) output(" You grunt as [pc.cum] blasts out of of the urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " of your [pc.cocks] while the tendrils continue to stroke [pc.oneCock], with the one formerly at your tip now stimulating the glans of your dick.");
-	else if(vIdx >= 0) output(" You squeal as [pc. girlCum] sprays from your quim" + (pc.vaginas.length == 1 ? "" : "s") + " in arcing streams liquid pleasure. The muscles of your cunt" + (pc.vaginas.length == 1 ? " contracts" : "s contract") + " around the tentacle inside you. Even more of your girl cum is sprayed when a final tug on your clit reawakens your spasming vaginal lips.");
+	else if(vIdx >= 0) output(" You squeal as [pc.girlCum] sprays from your quim" + (pc.vaginas.length == 1 ? "" : "s") + " in arcing streams liquid pleasure. The muscles of your cunt" + (pc.vaginas.length == 1 ? " contracts" : "s contract") + " around the tentacle inside you. Even more of your girl cum is sprayed when a final tug on your clit reawakens your spasming vaginal lips.");
 	else output(" Heat suffuses your nervous system while numbing sensory waves emanate outwards from your bare groin. Your mouth is left agape as your spine quakes with synesthetic tremors that leave only indescribable bliss afterwards.");
 	
 	processTime(14);
