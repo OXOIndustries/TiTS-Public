@@ -25,7 +25,7 @@ package classes.Items.Transformatives
 			this.stackSize = 10;
 			this.type = GLOBAL.PILL;
 			//Used on inventory buttons
-			this.shortName = "Crackle Jelly";
+			this.shortName = "Crk. Jelly";
 			//Regular name
 			this.longName = "Crackle Jelly";
 			
@@ -96,7 +96,6 @@ package classes.Items.Transformatives
 					if (doSkinColor) possibleChanges.push(paletteChange);
 				}
 			}
-			
             
 			// Eyes
 			//Eye type
@@ -305,10 +304,9 @@ package classes.Items.Transformatives
 	
 		private function tongueChange(pc:Creature):void
 		{
-			output("\n\nYour tongue thickens");
-			if (pc.tongueType != GLOBAL.TYPE_JANERIA) output(" and turns blue");
-			output(", your jaw reflexively going slack to let it hang out of your mouth. Further and further it spills out, turning into a long, conical tube that you find you can twist and curl around objects almost like a tentacle. Oh, this is going to be fun. <b>You have a long, tentacle-like tongue.</b>");
+			output("\n\nYour tongue thickens, your jaw reflexively going slack to let it hang out of your mouth. Further and further it spills out, turning into a long, conical tube that you find you can twist and curl around objects almost like a tentacle. Oh, this is going to be fun. <b>You have a long, tentacle-like tongue.</b>");
 			
+			pc.clearTongueFlags();
 			pc.tongueType = GLOBAL.TYPE_FROSTWYRM;
 			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);

@@ -375,6 +375,7 @@
 			TYPE_SHEEP,
 			TYPE_COCKVINE,
 			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TONGUE_TYPES:Array = [
