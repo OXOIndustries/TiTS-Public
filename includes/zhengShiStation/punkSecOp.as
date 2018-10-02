@@ -966,7 +966,7 @@ public function dontDrinkAtTheKittyWell(x:int = 0):void
 	output("\n\n<i>“Wha-!”</i> the pirate squeals, but with no strength in her limbs, she plunges down on your [pc.cocks]");
 	if(pc.hasKnot(x))
 	{
-		output(", your " + (y >= 0 && pc.hasKnot(y) ? "[pc.knot " + x + "]s":"[pc.knot " + x + "]") + " spreading her hole" + (y >= 0 ? "s":"") + " past their limit and ensuring maximum breeding potential. The strain on her backside sounds very much to her liking");
+		output(", your " + (y >= 0 && pc.hasKnot(y) ? "[pc.knots " + x + "]":"[pc.knot " + x + "]") + " spreading her hole" + (y >= 0 ? "s":"") + " past their limit and ensuring maximum breeding potential. The strain on her backside sounds very much to her liking");
 	}
 	output("! Fully inserted, the first rope of [pc.cum] launches through your dick with such ease and such intimate, detailed sensation that you blissfully shudder in this mind-shattering climax" + (pc.hasVagina() ? ", one that [pc.eachVagina] sympathetically add to more from the inside than out":"") + ".");
 
@@ -996,14 +996,14 @@ public function dontDrinkAtTheKittyWell(x:int = 0):void
 	if(!pc.inRut()) 
 	{
 		output("\n\nThe pirate cat falls on to your [pc.chest], ecstasy-ridden head landing to the side of yours. Her eyes rolled back some time ago, and now she simply lies splayed and panting in your embrace. Thankfully, the amorous tingle in the back of your head is gone. ");
-		if(pc.hasKnot(x)) output("So long as your " + (pc.hasKnot(y) ? "[pc.knot " + x + "]s":"[pc.knot " + x + "]") + " are inflated, you won’t be going anywhere, especially not as you’re still cumming a bit! You get your hands around her " + (pc.cumQ() >= 10000 ? "gravid ":"") + "belly and hold tight, hoping nobody else’ll stumble upon your tryst. Her gratified purring helps you catch some shut-eye in the meantime.");
+		if(pc.hasKnot(x)) output("So long as your " + (pc.hasKnot(y) ? "[pc.knots " + x + "]":"[pc.knot " + x + "]") + " are inflated, you won’t be going anywhere, especially not as you’re still cumming a bit! You get your hands around her " + (pc.cumQ() >= 10000 ? "gravid ":"") + "belly and hold tight, hoping nobody else’ll stumble upon your tryst. Her gratified purring helps you catch some shut-eye in the meantime.");
 		else output("With a big, sexy cat girl on top of you and your [pc.cocksLight] deflating warmly inside her, you have little strength after your monumental orgasm. Wrapping your hands around her " + (pc.cumQ() >= 10000 ? "gravid ":"") + "belly, you snuggle up and catch some peaceful shut-eye.");
 	}
 	// PC in rut
 	else
 	{
 		output("\n\nGroaning and half-whimpering, you roll over on the augmented pirate and tug your ");
-		if(pc.hasKnot(x)) output("barely deflated " + (pc.hasKnot(y) ? "[pc.knots]":"[pc.knot " + x + "]"));
+		if(pc.hasKnot(x)) output("barely deflated " + (pc.hasKnot(y) ? "[pc.knots " + x + "]":"[pc.knot " + x + "]"));
 		else output("spent " + (y >= 0 ? "[pc.cocksLight]":"[pc.cock" + x + "]"));
 		output(" from her. A hoarse moan follows as you gaze down, still overwhelmingly hot, the need inside yet to be quenched. Your [pc.cock " + x + "] is still pulsing, and when you close your eyes, it’s a body-rattling beat that makes you shudder in abject awareness of your deific needs. You plunge inside her messy hole" + (y >= 0 ? "s":"") + " again, beginning round two with the blissed out kitten...");
 	}
