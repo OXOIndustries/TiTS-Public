@@ -1915,13 +1915,43 @@ public function initZhengRooms():void
 	rooms["ZSF Z20"].planet = "ZHENG SHI STATION";
 	rooms["ZSF Z20"].system = "SYSTEM: HERISIOD";
 	rooms["ZSF Z20"].northExit = "ZSF Z18";
-	rooms["ZSF Z20"].eastExit = "";
+	rooms["ZSF Z20"].eastExit = "ZSF AB20";
 	rooms["ZSF Z20"].southExit = "ZSF Z22";
 	rooms["ZSF Z20"].westExit = "";
 	rooms["ZSF Z20"].moveMinutes = 3;
 	//rooms["ZSF Z20"].runOnEnter = null;
 	rooms["ZSF Z20"].addFlag(GLOBAL.INDOOR);
 	rooms["ZSF Z20"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF AB20"] = new RoomClass(this);
+	rooms["ZSF AB20"].roomName = "R&D\nLAB";
+	rooms["ZSF AB20"].description = "";
+	rooms["ZSF AB20"].planet = "ZHENG SHI STATION";
+	rooms["ZSF AB20"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF AB20"].northExit = "";
+	rooms["ZSF AB20"].eastExit = "ZSF AD20";
+	rooms["ZSF AB20"].southExit = "";
+	rooms["ZSF AB20"].westExit = "ZSF Z20";
+	rooms["ZSF AB20"].moveMinutes = 2;
+	rooms["ZSF AB20"].runOnEnter = researchAndDevLabBonus;
+	rooms["ZSF AB20"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF AB20"].addFlag(GLOBAL.NPC);
+	rooms["ZSF AB20"].addFlag(GLOBAL.HAZARD);
+
+	rooms["ZSF AD20"] = new RoomClass(this);
+	rooms["ZSF AD20"].roomName = "DR. TEYAAL'S\nOFFICE";
+	rooms["ZSF AD20"].description = "";
+	rooms["ZSF AD20"].planet = "ZHENG SHI STATION";
+	rooms["ZSF AD20"].system = "SYSTEM: HERISIOD";
+	rooms["ZSF AD20"].northExit = "";
+	rooms["ZSF AD20"].eastExit = "";
+	rooms["ZSF AD20"].southExit = "";
+	rooms["ZSF AD20"].westExit = "ZSF AB20";
+	rooms["ZSF AD20"].moveMinutes = 2;
+	rooms["ZSF AD20"].runOnEnter = docTeyaaaaaaalsOffice;
+	rooms["ZSF AD20"].addFlag(GLOBAL.INDOOR);
+	rooms["ZSF AD20"].addFlag(GLOBAL.NPC);
+	rooms["ZSF AD20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF Z22"] = new RoomClass(this);
 	rooms["ZSF Z22"].roomName = "SUSPENDED\nSCAFFOLD";

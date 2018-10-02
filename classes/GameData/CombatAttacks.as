@@ -1566,7 +1566,7 @@ package classes.GameData
 		}
 		
 		public static var ParalyzingShock:SingleCombatAttack;
-		private static function ParalyzingShockImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function ParalyzingShockImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if(target.hasStatusEffect("Counters Ranged") && !target.isImmobilized())
 			{
@@ -1868,7 +1868,7 @@ package classes.GameData
 		}
 
 		public static var ChargeShield:SingleCombatAttack;
-		private static function ChargeShieldImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function ChargeShieldImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) 
 			{

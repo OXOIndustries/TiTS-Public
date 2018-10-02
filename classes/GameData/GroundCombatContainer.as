@@ -654,6 +654,7 @@ package classes.GameData
 				if (target.getStatusMinutes("Evasion Boost") > 0) 
 				{
 					if(target is RKLah) output("\n\n<b>The ausar continues to jitter and start forwards and backwards unexpectedly. It’s a nightmare drawing a bead on him.</b>");
+					else if(target is Teyaal) output("\n\nThe gryvain is still fluttering about on her wings and hard to hit.");
 					else if(target is PlayerCharacter) output("\n\n<b>Your evasion is still enhanced!</b>");
 					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " evasion is still enhanced!</b>");
 					target.addStatusMinutes("Evasion Boost",-1);
@@ -661,6 +662,7 @@ package classes.GameData
 				else 
 				{
 					if(target is RKLah) output("\n\n<b>The ausar finally starts moving with something approaching normalcy, his burst of nervous energy exhausted.</b>");
+					else if(target is Teyaal) output("\n\nTeyaal lands on the balls of her feet, momentarily supporting herself with her tail and wings as well - she looks like a feral dragon for that brief second until she regains her proper footing.");
 					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer have boosted evasion!</b>");
 					else if(target is PlayerCharacter) output("\n\n<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
 					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " enhanced evasion fades!</b>");

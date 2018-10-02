@@ -417,6 +417,7 @@
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";
 		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/maike.as";
+		include "../includes/zhengShiStation/olympia.as";
 		include "../includes/zhengShiStation/punkSecOp.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
@@ -424,6 +425,7 @@
 		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/tivf.as";
+		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		
 		// Breedwell
