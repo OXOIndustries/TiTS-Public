@@ -111,9 +111,31 @@ public function meatOlympiasMons(back:Boolean = false):void
 			else addDisabledButton(1,"Sex","Sex","You aren't in the mood for that.");
 		}
 		else addDisabledButton(1,"Locked","Locked","Maybe talk to her a bit more first?");
-		//addButton(2,"Appearance",,undefined,"Appearance","");
+		addButton(2,"Appearance",olympiaAppearance);
 		addButton(14,"Leave",mainGameMenu);
 	}
+}
+
+public function olympiaAppearance():void
+{
+	clearOutput();
+	showOlympia();
+	author("Savin");
+	output("Olympia is a titan of a synthetic woman, standing a bit over seven feet tall and gifted with pornstar curves to complement her draconic appearance. She could pass herself off as a gryvain if it weren’t for her lack of wings: she has the curling synth-bone horns and frilled ears, and though her eyes are a solid, glowing golden color, they are still slitted like a reptile’s. She’s modelled after a red drake, with rust-hued brown skin and dark crimson scales adorning her forearms and legs, all the way up to her waist. Dark green hair spills down around her shoulders in a mane of thick, lush curls.");
+	//Steele tech catsuit:
+	if(9999 == 0) output("\n\nAs instructed, Olympia is wearing a form-fitting Steele Tech latex suit. It does wonders for enhancing her curves and plumping up her bosom... and drawing attention to the straining bulge at her crotch.");
+	//Outfit: lab coat:
+	else if(currentLocation == "ZSF AB20") output("\n\nShe’s currently wearing a calf-length white laboratory coat, buttoned once under her bust, as well as a simple black tanga that bulges severely around her masculine attachment.");
+	//Nude:
+	else output("\n\nPer your permission, Olympia is striding confidently around the ship in all her nude glory. If anything, her nakedness seems to enhance her presence, coming as naturally to her as wearing a catsuit comes to a corporate peon.");
+	output("\n\nThe gynoid is, like most gryvain, thickly built around wide hips and meaty thighs stuffed with silicone. Her breasts are large for an unmodded member of her species, probably D-cups, though among most gryvain you’ve actually met she’s rather humble in that department. Her ass is the real show-stealer, ");
+	if(currentLocation == "ZSF AB20") output("straining her panties with ");
+	output("a callipygian mass that jiggles obscenely with every sensual step or sway of her girthy tail.");
+	output("\n\nLike the rest of her lower body, Olympia’s tail is covered in dark red scales, though unlike a normal gryvain’s, it ends in an open O-ring attachment port. Considering her obsessively professional attitude, you’d think she uses it mostly for tools and writing implements... but a quick glance at the opening shows that it’s ribbed for your pleasure and glistening with lubricant.");
+	output("\n\nAs you’d expect from a gryvain-based gynoid, Olympia has a foot-long draconic dick hanging over a clitless pussy with rings of internal pleasure-nubs. She has an asshole made just for fucking tucked deep between her asscheeks, right where it belongs.");
+	processTime(2);
+	clearMenu();
+	addButton(0,"Next",meatOlympiasMons,true);
 }
 
 //Olympia Talks
@@ -127,11 +149,32 @@ public function talkToOlympia():void
 	//[Sexbot?] [The Ship] [Her Clothes]
 	clearMenu();
 	addButton(0,"Sexbot?",askOlympiaWhyShesASexbot,undefined,"Sexbot?","Olympia sure looks like a sexbot. What’s with the science stuff?");
-	//addButton(1,"The Ship",,undefined,"The Ship","");
+	addButton(1,"The Ship",olympiaTheShipTalk,undefined,"The Ship","See if Olympia will tell you more about this ship she's so fixated on.");
 	addButton(2,"Her Clothes",talkAboutSexbotClothes,undefined,"Her Clothes","What’s up with that getup anyway?");
 	addButton(14,"Back",meatOlympiasMons,true);
 }
 
+//Talk: The Sidewinder
+//See if Olympia will tell you more about this ship she's so fixated on.
+public function olympiaTheShipTalk():void
+{
+	clearOutput();
+	showOlympia();
+	author("Savin");
+	output("<i>“Tell me about your ship there,”</i> you prompt, nodding out the one window in the dark office.");
+	output("\n\nOlympia’s crimson lips curl into a fanged smile. <i>“Ah, the </i>Sidewinder<i>. My life’s work... well, what of my life I can remember, anyway. She’s a fast-attack corvette built for stealth operations, which is to say she’s made for hit and run attacks against merchant targets. Even heavily-guarded convoys, or targets inside core-world system, are fair game for the </i>Sidewinder<i> thanks to her advanced electronic-warfare countermeasures and my own proprietary designs for hull plating that deflect nearly all known forms of LIDAR and quantum sensors. Unless you can maintain visual contact, she’s virtually invisible.”</i>");
+	output("\n\nFor once, Olympia sets down her datapad and saunters over to the window, all but pressing herself up against it. You follow her over, gazing up at the vessel over the gynoid’s shoulders. It’s a sleek, smooth affair; all glossy curves and slender protrusions of gun barrels and sensor towers until you get back to its monolithic engines. The engine block is bigger than the entire rest of the ship, a swollen mass of barely-restrained power. From the engineering section, there’s a short, slender main body before arriving at an arrowhead-shaped bridge and quarters deck, underneath which is an industrial-sized ramp leading into the cargo decks. The ramp hinges underneath the bridge, and were it open, you can imagine it would look rather like a gaping maw of a serpent. The ship even has a pair of sensor towers over the bridge that resemble horns.");
+	output("\n\nThe name fits.");
+	output("\n\nOlympia’s smile turns proud. <i>“She’ll be the pride of the Zheng Shi fleet. The first of her class, a new generation of pirate ship that will be the bane and terror of the new Planet Rush. Perhaps it will even give this station’s master a fighting chance against the Black Void. I don’t know what that is, but it’s apparently quite scary. All the pirates on this base fear it.”</i>");
+	//Has done KaraQuest 2 or SaendraQuest 2:
+	if(flags["KQ2_QUEST_FINISHED"] != undefined || (flags["SAENDRA_XPACK1_STATUS"] != undefined && flags["SAENDRA_XPACK1_STATUS"] >= 8)) output("\n\nYeah, you can imagine why a group of ragtag pirates would find the hardened killers of the Void a little worrisome. Then again, if they’re spending so much capital on this vessel, hinging so much of their hope on it... it must be as powerful as Olympia says. Right?");
+	else output("\n\nThat’s a hell of a reputation, if these Black Void are making Olympia’s owners so worried.");
+	output("\n\nThe gynoid nods slowly. <i>“They built this entire base to facilitate the </i>Sidewinder<i>’s construction. Can you imagine how much this place cost? There are many, many zeros. But the cost is immaterial to me... I was told that money was no obstacle. The pirates would raid more and more to cover it, so long as their ship was everything Dr. Teyaal had promised. And it is, oh it is...”</i>");
+	output("\n\nYou hear a faint ripping sound, and glance down in time to see Olympia’s panties falling down around her ankles, torn in half around the crotch. Her dark draconic synth-dick wobbles freely, stiff as a diamond against the window. Her rust-red skin is flushed from her mechanically-induced arousal, and the gynoid is quick to peel herself off the window and go looking for a new pair of panties.");
+	output("\n\nGuess she really <i>is</i> into that ship of hers...");
+	processTime(10);
+	setButtonDisabled(1);
+}
 //Talk: Sexbot?
 //Olympia sure looks like a sexbot. What’s with the science stuff?
 public function askOlympiaWhyShesASexbot():void
@@ -158,9 +201,6 @@ public function askOlympiaWhyShesASexbot():void
 	processTime(10);
 	setButtonDisabled(0);
 }
-
-//Talk: The Ship
-//NOT WRITTEN I GUESS?
 
 //Talk: Her Clothes
 //What’s up with that getup anyway?
