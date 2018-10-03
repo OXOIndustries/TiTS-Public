@@ -1155,7 +1155,7 @@ public function fuckTheSlavebreakersPussy(x:int):void
 	else if(pc.hasKnot(x)) output(" Your [pc.knot " + x + "], not fully engorged, pops in with ease.");
 	else if(pc.hasSheath(x)) output(" Your [pc.sheath " + x + "] rubs sensuously against her mound.");
 	else output(" Your [pc.hips] clap against hers with authority.");
-	if(pc.cocks[x].cLength() >= 14) output(" The outline of your plus-sized prick proudly distends through the cock-drunk slut’s taut middle, though she shows know signs of pain.");
+	if(pc.cocks[x].cLength() >= 14) output(" The outline of your plus-sized prick proudly distends through the cock-drunk slut’s taut middle, though she shows no signs of pain.");
 	else output(" The cock-drunk slut’s protestations die on her lips.");
 	pc.cockChange();
 	output("\n\nYou savor the the moment, watching the alien try her hardest to pretend that she doesn’t want you to bang her to pieces. Her lips pout for a moment before flirting with a hint of a smile. Her tits wobble, and her nipples jut proudly into the air, inviting you to give one a pinch and a tug. The slyveren’s legs splay wider by the second, and all the while, her juicing, slick cunt hugs you tighter. A kittenish whimper cracks her through her failure of a reticent facade, rising in tone alongside her pussy’s intimate massages.");
