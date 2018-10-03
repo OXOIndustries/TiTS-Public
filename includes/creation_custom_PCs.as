@@ -4,6 +4,7 @@ import classes.GameData.CombatManager;
 import flash.events.Event;
 import classes.GameData.MailManager;
 import classes.Cheats;
+import classes.Items.Transformatives.GaloMax;
 
 public function nameOfDestinyChoice():void
 {
@@ -28,6 +29,71 @@ public function customPCCheck(TF:Boolean = false):Boolean
 	var i:int = 0;
 	switch (short)
 	{
+		case "pwink":
+			if(!TF) break;
+			pc.upperUndergarment = new PlainUndershirt();
+			pc.lowerUndergarment = new PlainBriefs();
+			pc.legCount = 2;
+			pc.earType = GLOBAL.TYPE_SYLVAN;
+			pc.earLength = 2;
+			pc.tallness = 60;
+			pc.femininity = 40;
+			pc.faceType = GLOBAL.TYPE_HUMAN;
+			pc.clearFaceFlags();
+			pc.armType = GLOBAL.TYPE_HUMAN;
+			pc.skinTone = "neon pink";
+			pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
+			if(!pc.hasCock()) pc.createCock();
+			pc.cocks[0].cLengthRaw = 12;
+			pc.cocks[0].cockColor = "bright pink";
+			pc.cocks[0].cType = GLOBAL.TYPE_HUMAN;
+			pc.cocks[0].clearFlags();
+			pc.cocks[0].addFlag(GLOBAL.FLAG_FORESKINNED);
+			//Moderate cum boost
+			pc.boostCum(10);
+			pc.balls = 2;
+			pc.ballSizeRaw = 10;
+			//Flat chest
+			pc.breastRows[0].breastRatingRaw = 0;
+			pc.nippleColor = "bright pink";
+			pc.eyeColor = "yellow";
+			pc.eyeType = GLOBAL.TYPE_FELINE; //slit pupils yooo
+			pc.hairColor = "light pink";
+			pc.lipColor = "red";
+			pc.hairLength = 4;
+			pc.tailCount = 1;
+			pc.tailType = GLOBAL.TYPE_LIZAN;
+			pc.clearTailFlags();
+			pc.addTailFlag(GLOBAL.FLAG_LONG);
+			pc.addTailFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.legType = GLOBAL.TYPE_DEER;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_HOOVES);
+			pc.tongueType = GLOBAL.TYPE_DEMONIC;
+			pc.clearTongueFlags();
+			pc.addTongueFlag(GLOBAL.FLAG_LONG);
+			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			//pc.tongueColor = "pink";
+			pc.hipRatingRaw = 12;
+			pc.buttRatingRaw = 12;
+			pc.wingType = 0;
+			pc.wingCount = 0;
+			pc.horns = 2;
+			pc.hornType = GLOBAL.TYPE_DEMONIC;
+			pc.hornLength = 3;
+			pc.ass.vaginaColor = "cyan";
+			pc.inventory.push(new GaloMax());
+			pc.inventory[0].quantity = 5;
+			pc.aim(1);
+			pc.willpower(1);
+			pc.reflexes(1);
+			pc.intelligence(1);
+			pc.credits = 6900;
+			pc.tone = 25;
+			pc.thickness = 66;
+			pc.removeVaginas();
+			break;
 		case "archie":
 			if(!TF) break;
 			pc.breastRows[0].breastRatingRaw = 4;

@@ -485,7 +485,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			outputRouter(" " + target.eyeColor + " eyes sport " + (target.eyeType != GLOBAL.TYPE_ADREMMALEX ? "horizontal" : "cross-shaped") + " pupils, much like a vaguely alien goat.");
 			break;
 		case GLOBAL.TYPE_GRYVAIN:
-			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes have a curious mix of feline and dragonic features; a pair of black vertical slits instead of rounded pupils, ");
+			outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " eyes have a curious mix of feline and dragonic features; a pair of black vertical slits instead of rounded pupils,");
 			if(hasMetallicEyes) outputRouter(" sat amongst metallically glistening pools of " + target.eyeColor + " irises.");
 			else if(hasGemstoneEyes) outputRouter(" each nestled in a shimmering gemstone-like " + target.eyeColor + " iris.");
 			else if(hasLuminousEyes) outputRouter(" each nestled within " + indefiniteArticle(target.eyeColor) + " iris.");
@@ -2327,7 +2327,11 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			else outputRouter(" " + (target == pc ? "You have":"[target.HeShe] has") + " oddly-jointed legs that end in " + target.feet(true,true) + ".");
 			break;
 		case GLOBAL.TYPE_DEER:
-			if(target.legCount < 4) outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are lithe and agile, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in hooves");
+			if(target.legCount < 4) 
+			{
+				if(target.short == "Pwink" || target.short == "pwink") outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are thick and supple, narrowing significantly below the thighs to hoof-capped, plantigrade feet");
+				else outputRouter(" " + (target == pc ? "Your":"[target.HisHer]") + " legs are lithe and agile, covered in " + (target.hasLegFlag(GLOBAL.FLAG_GOOEY) ? "goo" : "fur") + ", and end in hooves");
+			}
 			else outputRouter(" " + (target == pc ? "You have":"[target.HeShe] has") + " " + (rand(2) == 0 ? "thin, deer-like legs that are capped with" : "lithe, agile legs that end in") + " hooves");
 			outputRouter(", enabling " + (target == pc ? "you":"[target.himHer]") + " to nimbly leap and prance from place to place.");
 			break;

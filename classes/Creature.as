@@ -17148,7 +17148,8 @@
 				case GLOBAL.FLUID_TYPE_MILK:
 				case GLOBAL.FLUID_TYPE_CUM:
 				case GLOBAL.FLUID_TYPE_VANILLA:
-					collection.push("white", "white", "white", "white", "white", "alabaster", "alabaster", "alabaster", "ivory", "ivory");
+					if(short == "Pwink") collection.push("pinkish white", "pinkish white", "pinkish white", "pinkish white", "pinkish white");
+					else collection.push("white", "white", "white", "white", "white", "alabaster", "alabaster", "alabaster", "ivory", "ivory");
 					break;
 				case GLOBAL.FLUID_TYPE_HONEY:
 				case GLOBAL.FLUID_TYPE_NECTAR:
