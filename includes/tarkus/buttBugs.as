@@ -602,8 +602,6 @@ public function sexButtBugOfferButt(swfVariant:int = 0):void
 					case 2: output("orange-striped"); break;
 				}
 				output(" one you just defeated.");
-				
-				attachButtBugFemale(newBug);
 			}
 			else
 			{
@@ -624,6 +622,8 @@ public function sexButtBugOfferButt(swfVariant:int = 0):void
 		else output(" Ah... that wonderful sensation of feeling full again. You look forward to gallivanting around the universe with a bug in your ass once more.");
 		if(oldBug != 2 && newBug == 2) output(" Good god is she huge! How is she even staying in there without permanently turning your ass into a warp gate!? Her squishy body must be playing a role. It’ll take some getting used to her huge presence in your ass.");
 		output("\n\nYou turn to pick up your gear and resolve to make the best you can of this parasite, your ass still twitching from the stretching it received. You hazard a guess that if anyone’s going to fuck your ass with this thing in you they’ll probably be fucking the parasite instead. They’re probably going to stretch you out all the same either way, since they are still technically fucking your ass though. You wonder how a lover will react when you tell them that they’ve actually been screwing a little insect. Oh well, that’s a thought for another time.");
+		
+		if(success) attachButtBugFemale(newBug);
 	}
 	// if parasiteSuccess = false
 	else
@@ -644,11 +644,11 @@ public function sexButtBugOfferButt(swfVariant:int = 0):void
 			output(" away from you. She lands in the sand quite a distance away and crawls away from the crater she made faster than you thought these critters could move.");
 		}
 		output("\n\nDamn these bugs, why must these be so difficult. Oh well, might as well finish what you’ve started.");
-			if(cIdx >= 0 && vIdx >= 0) output(" As you grip your cock" + (pc.cocks.length == 1 ? "" : "s") + " and rub your mound" + (pc.vaginas.length == 1 ? "" : "s") + ", you go at it in a comfortable rhythm and tempo. As sensitive as they are, even the lightest caress is astoundingly pleasurable. It doesn’t take you long at all to drive yourself over the edge again, and you paint the sand with your fluids, filling the air with your sounds of orgasmic pleasure.");
-			else if(cIdx >= 0) output(" Once more you grip your [pc.cocks] and gently stroke " + (pc.cocks.length == 1 ? "it" : "them") + " to get yourself going. Any faster and you might pass out from the sensation. It doesn’t take long to finally get off, seeing as the aphrodisiac is still coursing through you. You grunt and give a few final jerks before your " + (pc.balls >= 2 ? "balls churn" : "prostate spasms") + " while you spray your [pc.cum] across the sand.");
-			else if(vIdx >= 0) output(" Once again you tease your [pc.clits] and rub your [pc.pussies], quickly raising your heartbeat as your body goes flush from the sensations. With the aphrodisiacs still in your system, it doesn’t take long to reach orgasm as you gasp, spraying your [pc.girlCum] into a puddle below you.");
-			else output(" Having no genitals, you have to resort to using the sensitivity the slime gave you to get off. You rub your bare groin with your digits and quickly become an erotic artist as your fingers stroke streaks of pleasure across your [pc.skinFurScales]. A few moments later and ecstasy without focus erupts from within you. It quickly ebbs away, and leaves only pure bliss and a clear mind.");
-			output(" Finally satisfied, you move to pick up your gear and continue with your adventures. Maybe some other type would be more suited to your body.");
+		if(cIdx >= 0 && vIdx >= 0) output(" As you grip your cock" + (pc.cocks.length == 1 ? "" : "s") + " and rub your mound" + (pc.vaginas.length == 1 ? "" : "s") + ", you go at it in a comfortable rhythm and tempo. As sensitive as they are, even the lightest caress is astoundingly pleasurable. It doesn’t take you long at all to drive yourself over the edge again, and you paint the sand with your fluids, filling the air with your sounds of orgasmic pleasure.");
+		else if(cIdx >= 0) output(" Once more you grip your [pc.cocks] and gently stroke " + (pc.cocks.length == 1 ? "it" : "them") + " to get yourself going. Any faster and you might pass out from the sensation. It doesn’t take long to finally get off, seeing as the aphrodisiac is still coursing through you. You grunt and give a few final jerks before your " + (pc.balls >= 2 ? "balls churn" : "prostate spasms") + " while you spray your [pc.cum] across the sand.");
+		else if(vIdx >= 0) output(" Once again you tease your [pc.clits] and rub your [pc.pussies], quickly raising your heartbeat as your body goes flush from the sensations. With the aphrodisiacs still in your system, it doesn’t take long to reach orgasm as you gasp, spraying your [pc.girlCum] into a puddle below you.");
+		else output(" Having no genitals, you have to resort to using the sensitivity the slime gave you to get off. You rub your bare groin with your digits and quickly become an erotic artist as your fingers stroke streaks of pleasure across your [pc.skinFurScales]. A few moments later and ecstasy without focus erupts from within you. It quickly ebbs away, and leaves only pure bliss and a clear mind.");
+		output(" Finally satisfied, you move to pick up your gear and continue with your adventures. Maybe some other type would be more suited to your body.");
 	}
 	output("\n\n");
 	
@@ -1725,7 +1725,7 @@ public function removeButtBugImmunoBooster():void
 	if(pc.ass.loosenessRaw < 3)
 	{
 		output(" <b>Your anal ring has been stretched a little.</b>");
-		// set pc. analLooseness to [pc.analLooseness + 1]
+		// set pc.analLooseness to [pc.analLooseness + 1]
 		pc.ass.loosenessRaw += 1;
 	}
 	removeButtBug();
@@ -2098,7 +2098,7 @@ public function birthButtBugType0(eggs:int = 0):void
 	output("\n\nTime flies by as several more eggs follow the same insectoid oviposition of the first, until only one is left. The female’s efforts egg you on; release is so close you can taste it. The last egg plops out to top off the slimy pyramid below you as you’re pushed blessedly over the edge.");
 	if(cIdx >= 0 && vIdx >= 0) output(" Loud moans escape your [pc.lips] as [pc.eachCock] throbs and your [pc.pussies] spasm in tandem. Your cock" + (pc.cocks.length == 1 ? "’s" : "s’") + " veins bulge while [pc.cum] is let loose from " + (pc.cocks.length == 1 ? "its" : "their") + " urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " and splatters onto the ground a few yards in front of you. Whilst your seed is being sprayed, your vagina" + (pc.vaginas.length == 1 ? " convulses" : "s convulse") + ", leaking [pc.girlCum] onto the pile of eggs below.");
 	else if(cIdx >= 0) output(" You grunt as [pc.cum] blasts out of of the urethra" + ((pc.cocks.length == 1 && !pc.cocks[0].hasFlag(GLOBAL.FLAG_DOUBLE_HEADED)) ? "" : "s") + " of your [pc.cocks] while the tendrils continue to stroke [pc.oneCock], with the one formerly at your tip now stimulating the glans of your dick.");
-	else if(vIdx >= 0) output(" You squeal as [pc. girlCum] sprays from your quim" + (pc.vaginas.length == 1 ? "" : "s") + " in arcing streams liquid pleasure. The muscles of your cunt" + (pc.vaginas.length == 1 ? " contracts" : "s contract") + " around the tentacle inside you. Even more of your girl cum is sprayed when a final tug on your clit reawakens your spasming vaginal lips.");
+	else if(vIdx >= 0) output(" You squeal as [pc.girlCum] sprays from your quim" + (pc.vaginas.length == 1 ? "" : "s") + " in arcing streams liquid pleasure. The muscles of your cunt" + (pc.vaginas.length == 1 ? " contracts" : "s contract") + " around the tentacle inside you. Even more of your girl cum is sprayed when a final tug on your clit reawakens your spasming vaginal lips.");
 	else output(" Heat suffuses your nervous system while numbing sensory waves emanate outwards from your bare groin. Your mouth is left agape as your spine quakes with synesthetic tremors that leave only indescribable bliss afterwards.");
 	
 	processTime(14);

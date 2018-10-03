@@ -1367,7 +1367,6 @@ public function giveThrobToSlyveren():void
 	author("Wsan");
 	
 	enemy.destroyItemByClass(Throbb);
-	enemy.destroyItemByClass(Throbb);
 	
 	output("<i>“I bet a big, lusty snake-woman like you has a cornucopia of drugs in here somewhere,”</i> you say, digging through the defeated slavebreaker’s stash. <i>“You’ve gotta have what I’m looking for... ah!”</i>");
 	output("\n\nSure enough, you manage to find the prize - an injector filled with transparent cyan liquid. It’s Throbb, a drug with a dubious reputation at best but one that does its job incredibly well. You withdraw it from the drug pouch with a triumphant smile, watching the snake-woman groan.");
