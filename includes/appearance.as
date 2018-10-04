@@ -77,7 +77,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	{
 		clearOutput2();
 		showPCBust();
-		showName("\nAPPEARANCE");
+		//showName("\nAPPEARANCE");
+		setLocation("", "CODEX", "APPEARANCE");
 		clearGhostMenu();
 		addGhostButton(14, "Back", pcAppearance);
 		if(debug) addGhostButton(13, ("Debug: " + (debug ? "ON" : "OFF")), Cheats.toggleDebug, undefined, "Toggle Debug", "Turn debug mode off.");
@@ -94,7 +95,8 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 	{
 		clearOutput();
 		//NPCs use main output window.
-		showName("\n" + target.short.toUpperCase())
+		showName("\n" + target.short.toUpperCase());
+		//setLocation("", target.short.toUpperCase(), "APPEARANCE");
 		showBust(target.bustDisplay);
 		outputRouter = output;
 		switch(target)
@@ -108,7 +110,7 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 			addButton(0,"Next",backTarget);
 		}
 	}
-	author("Fenoxo's Code");
+	author("Fenoxo’s Code");
 	
 	//Stinging Bruises & Lash Marks
 	if (target.hasStatusEffect("Stinging Bruises")) target.HP(target.statusEffectv1("Stinging Bruises"));
@@ -293,13 +295,13 @@ public function appearance(forTarget:Creature, backTarget:Function = null):void
 		//dog-face
 		case GLOBAL.TYPE_CANINE:
 		case GLOBAL.TYPE_KORGONNE:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a dog’s face, complete with wet nose and panting tongue. " + (target == pc ? "You've got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a dog’s face, complete with wet nose and panting tongue. " + (target == pc ? "You’ve got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " the facial structure of a dog, wet nose and all, but overlaid with " + faceFurScales + ".");
 			else outputRouter((target == pc ? "You have":"[target.Name] has") + " a dog-like face, complete with a wet nose. The odd visage is hairless and covered with " + faceFurScales + ".");
 			break;
 		//wolf-face
 		case GLOBAL.TYPE_LUPINE:
-			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a wolf’s face, wide and majestic, with jaws filled with sharp teeth. " + (target == pc ? "You've got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
+			if(target.skinType == GLOBAL.SKIN_TYPE_FUR || target.hasFaceFlag(GLOBAL.FLAG_FURRED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " a wolf’s face, wide and majestic, with jaws filled with sharp teeth. " + (target == pc ? "You’ve got":"[target.HeShe] has") + " " + faceFurScales + ", hiding " + (target == pc ? "your":"[target.hisHer]") + " " + target.skin(true,true,true) + " underneath " + (target == pc ? "your":"[target.hisHer]") + " furry visage.");
 			else if(target.skinType == GLOBAL.SKIN_TYPE_SCALES || target.hasFaceFlag(GLOBAL.FLAG_SCALED)) outputRouter((target == pc ? "You have":"[target.Name] has") + " the facial structure of a wolf, wide and majestic, but overlaid with " + faceFurScales + ", and having jaws filled with sharp teeth.");
 			else outputRouter((target == pc ? "You have":"[target.Name] has") + " a wolf-like face, wide and majestic, with jaws filled with sharp teeth. The odd visage is hairless and covered with " + faceFurScales + ".");
 			break;
@@ -2922,8 +2924,8 @@ public function appearanceWornCollar():void
 				outputRouter(" Your neck is adorned with Belle’s Sub-Tuner collar, covered with circuitry and locked around your nape with a magnetic seal, bearing a small holo-tag labeled " + (flags["SUBTUNER_NAMED"] == 2 ? "“[pc.name]”" : "“Subject 69”") + ".");
 				break;
 			case "Vark's Collar":
-				outputRouter(" Around your neck is a thick leather collar, fashioned by your master, Vark. It's laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you, reminding you of the big sexy cat you belong to.");
-				if (wornCollar.value2 == 1) outputRouter(" You didn't know you wanted it at first, but you can't say you haven't come around to how good it feels.");
+				outputRouter(" Around your neck is a thick leather collar, fashioned by your master, Vark. It’s laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you, reminding you of the big sexy cat you belong to.");
+				if (wornCollar.value2 == 1) outputRouter(" You didn’t know you wanted it at first, but you can’t say you haven’t come around to how good it feels.");
 				break;
 			default:
 				outputRouter(" You are currently wearing " + wornCollar.storageName + " around your neck.");
@@ -2952,7 +2954,7 @@ public function manageWornCollar():void
 				outputRouter(".");
 				break;
 			case "Vark's Collar":
-				outputRouter("Around your neck is a thick leather collar, fashioned by your master, Vark. It's laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you.");
+				outputRouter("Around your neck is a thick leather collar, fashioned by your master, Vark. It’s laced with Savicite, the buckles and exposed surfaces sending jolts of pleasure into your [pc.skinScalesFurNoun] whenever it rubs against you.");
 				break;
 			default:
 				outputRouter("You are currently wearing " + wornCollar.storageName + ".");

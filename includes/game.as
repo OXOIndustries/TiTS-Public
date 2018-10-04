@@ -703,7 +703,7 @@ public function showPerksList(filter:String = ""):void
 {
 	clearOutput2();
 	showPCBust();
-	setLocation("\nPERKS", "CODEX", "DATABASE");
+	setLocation("", "CODEX", "PERKS");
 	author("");
 	
 	var desc:Boolean = (flags["PERKS_DESC_OFF"] ? false : true);
