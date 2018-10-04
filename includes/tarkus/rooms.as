@@ -245,7 +245,7 @@ public function initTarkusRooms():void
 	rooms["215"] = new RoomClass(this);
 	rooms["215"].roomName = "MAKESHIFT\nGANGPLANK";
 	rooms["215"].description = "With every step you take out onto this gangplank, you hear the telltale groans of metal straining. You can feel it flexing from the combined foot traffic of dozens of raskvel scavengers, droids, and other rushers as they move along the improvised structure. You’d be more worried if it wasn’t so thick and the welds didn’t look so solid. All you have to do is stay away from the edges and keep your balance. If you follow it up to the north, you’ll find yourself back inside the Nova, now Novahome. Continuing south will deposit you on the surface of Tarkus.";
-	rooms["215"].runOnEnter = undefined;
+	rooms["215"].runOnEnter = novahomeGangplankBonus;
 	rooms["215"].northExit = "211";
 	rooms["215"].southExit = "216";
 	rooms["215"].planet = "PLANET: TARKUS";
@@ -1398,6 +1398,18 @@ public function initTarkusRooms():void
 	rooms["304"].addFlag(GLOBAL.INDOOR);
 	rooms["304"].addFlag(GLOBAL.NPC);
 	rooms["304"].addFlag(GLOBAL.PUBLIC);
+
+	rooms["BIMBOTORIUM LAB"] = new RoomClass(this);
+	rooms["BIMBOTORIUM LAB"].roomName = "BIMBOTORIUM\nLAB";
+	rooms["BIMBOTORIUM LAB"].description = "";
+	rooms["BIMBOTORIUM LAB"].runOnEnter = drBadgerLaboratoryBonus;
+	rooms["BIMBOTORIUM LAB"].moveMinutes = 1;
+	rooms["BIMBOTORIUM LAB"].outExit = "304";
+	rooms["BIMBOTORIUM LAB"].planet = "PLANET: TARKUS";
+	rooms["BIMBOTORIUM LAB"].system = "SYSTEM: REDACTED";
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.INDOOR);
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.PRIVATE);
+	rooms["BIMBOTORIUM LAB"].addFlag(GLOBAL.LIFTUP);
 	
 	rooms["305"] = new RoomClass(this);
 	rooms["305"].roomName = "COLENSO’S\nJUNK";

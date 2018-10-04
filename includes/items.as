@@ -76,7 +76,7 @@ public function useItem(item:ItemSlotClass):Boolean
 	}
 	if (item.type == GLOBAL.COCKSOCK)
 	{
-		useACocksock(item);	
+		useACocksock(item);
 		return false;
 	}
 	//Equippable items are equipped!
@@ -438,12 +438,17 @@ public function useACocksock(item:ItemSlotClass):Boolean
 	if(pc.cockTotal() == 1)
 	{
 		if(pc.cocks[0].cocksock.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE))
-		{
 			output("You cannot remove the current cockwear without outside assistance.");
-			if(inCombat()) addButton(0,"Next",backToCombatInventory);
-			else addButton(0,"Next",itemScreen);
+		else if (item.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !pc.cocks[0].fitsSmallCocksock())
+			output("You cannot fit the current cockwear.");
+		else 
+		{
+			actuallyWearCocksock([item,0]);
+			return false;
 		}
-		else actuallyWearCocksock([item,0]);
+			
+		if(inCombat()) addButton(0,"Next",backToCombatInventory);
+		else addButton(0,"Next",itemScreen);
 		return false;
 	}
 	
@@ -457,6 +462,7 @@ public function useACocksock(item:ItemSlotClass):Boolean
 		else output(" - <b>(EMPTY)</b>");
 		
 		if(pc.cocks[x].cocksock.hasFlag(GLOBAL.ITEM_FLAG_NO_REMOVE)) addDisabledButton(button++,(button) + ": Penis #" + (x+1),StringUtil.upperCase(num2Ordinal(x+1)) + " Penis","You cannot remove that cockwear without outside assistance.");
+		else if(item.hasFlag(GLOBAL.ITEM_FLAG_SMALL_DICK_ONLY) && !pc.cocks[x].fitsSmallCocksock()) addDisabledButton(button++,(button) + ": Penis #" + (x+1),StringUtil.upperCase(num2Ordinal(x+1)) + " Penis","You cannot fit that cockwear.");
 		else addButton(button++,(button) + ": Penis #" + (x+1),actuallyWearCocksock,[item,x]);
 	}
 	while((button < 59) && ((button + 1) % 15 != 0)) { button++; }
@@ -473,15 +479,23 @@ public function actuallyWearCocksock(args:Array):void
 	clearOutput();
 	showName("\nCOCKWEAR!");
 	
-	oldItem = pc.cocks[x].cocksock.makeCopy();
-	
-	if(!(oldItem is EmptySlot)) output("You remove " + oldItem.description + " to make room for the new cock-wear. ");
-	output("You give your [pc.cock " + cIdx + "] a few strokes to get it ready, then dress it. Your [pc.cockNoun " + cIdx + "] is now wearing " + item.description + "!");
-	
-	pc.cocks[cIdx].cocksock = item.makeCopy();
-	pc.cocks[cIdx].cocksock.onEquip(pc);
-	
-	pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	if (pc.inventory.indexOf(item) < 0)
+	{
+		output("This item must be equipped from the inventory.");
+	}
+	else
+	{
+		oldItem = pc.cocks[x].cocksock.makeCopy();
+		
+		if(!(oldItem is EmptySlot)) output("You remove " + oldItem.description + " to make room for the new cock-wear. ");
+		if (item is SilkyCockBell) output("You clip the collar of silk around your [pc.cock " + cIdx + "]. It could’ve been made for your prick, and the bell swings beneath it freely. Jingle! Just wearing the thing makes you fill with submissive heat, swelling up beneath the smooth material, and you find that you are constantly sporting a tiny, chubby semi-erection whilst wearing it.");
+		else output("You give your [pc.cock " + cIdx + "] a few strokes to get it ready, then dress it. Your [pc.cockNoun " + cIdx + "] is now wearing " + item.description + "!");
+		
+		pc.cocks[cIdx].cocksock = item.makeCopy();
+		pc.cocks[cIdx].cocksock.onEquip(pc);
+
+		pc.inventory.splice(pc.inventory.indexOf(item), 1);
+	}
 	
 	if(!(oldItem is EmptySlot))
 	{
@@ -500,6 +514,36 @@ public function actuallyWearCocksock(args:Array):void
 	}
 }
 
+public function invalidCocksocksWorn(fix:Boolean = false):Boolean
+{
+	for (var x:int = 0; x < pc.cocks.length; ++x)
+	{
+		if (!pc.cocks[x].isCocksockValid())
+		{
+			if (fix) fixCocksock(x);
+			return true;
+		}
+	}
+	return false;
+}
+
+//Take it off, bby
+public function fixCocksock(x:int):void
+{
+	clearOutput();
+	
+	var sock:ItemSlotClass = pc.cocks[x].cocksock;
+	pc.cocks[x].cocksock = new EmptySlot();
+
+	if (sock is SilkyCockBell) output("You huff in discomfort. Your recent experiments in dick-morphology have made you too big for the cock bell you’re wearing, the silken loop digging into your flesh. You unclip it and put it with the rest of your gear. You feel an uncertain mixture of pride and malaise at losing this badge of how much of a subby, small-dicked sissy you once were.\n\n");
+	else output("The cocksock you used to wear on your [pc.cockNoun " + x + "] no longer first around it.\n\n");
+
+	sock.onRemove(pc);
+	
+	quickLoot(sock);
+}
+    
+    
 // A call with just an item will 
 public function combatUseItem(item:ItemSlotClass, targetCreature:Creature = null, usingCreature:Creature = null):void
 {

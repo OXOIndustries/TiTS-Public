@@ -825,7 +825,7 @@ public function uvetoBarBonus():Boolean
 	else roamingBarEncounter(5);
 	
 	//Devil Waitress
-	willowBonus(6);
+	//DISABLED FOR NOW. willowBonus(6);
 	
 	// More random Freezer encounters
 	NPCs.length = 0;

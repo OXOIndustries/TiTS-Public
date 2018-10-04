@@ -1216,10 +1216,12 @@ public function knockUpRaskChance():void
 		if(cumQ >= 1000) bonusChance += 10;
 		if(cumQ >= 4000) bonusChance += 10;
 		if(cumQ >= 10000) bonusChance += 20;
+		// Multiply the chances based on virility
+		bonusChance = Math.round(bonusChance * pc.virility());
 		//Roll the dice - base 10% pregrate
 		if(rand(100) + 1 <= 10 + bonusChance)
 		{
-			var bonusEggs:int = rand(Math.floor(cumQ/500)+2);
+			var bonusEggs:int = Math.round(rand(Math.floor(cumQ/500)+2) * pc.virility());
 			if(bonusEggs > 12) bonusEggs = 12;
 			//Succeed! Induce Preggoz
 			flags["RASKVEL_EGG_COUNT"] = 3 + bonusEggs;

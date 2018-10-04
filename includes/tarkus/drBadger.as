@@ -1,26 +1,34 @@
 ﻿public function showDrBadger(nude:Boolean = false):void
 {
 	showName("DR.\nBADGER");
-	if(flags["BADGER_QUEST"] != -3)
-	{
-		if(nude) showBust("DRBADGER_NUDE");
-		else showBust("DRBADGER");
-	}
-	else showBust("DR_BADGER_BIMBO");
+	showBust(drBadgerBustDisplay(nude));
+}
+public function drBadgerBustDisplay(nude:Boolean = false):String
+{
+	if(flags["BADGER_QUEST"] == -3) return "DR_BADGER_BIMBO";
+	
+	var sBust:String = "DRBADGER";
+	if(nude) sBust += "_NUDE";
+	
+	return sBust;
 }
 
 public function bimbotoriumHallBonus():Boolean
 {
+	output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There’s still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.");
+	
 	if(flags["DR_BADGER_TURNED_IN"] != undefined) 
 	{
-		output("There’s a run-down shack in a quiet corner with a sign reading <i>“Doctor Badger’s Free Clinic”</i>, though the shack has been all but mummified in flickering holographic police tape.");
+		output("\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, though the shack has been all but mummified in flickering holographic police tape.");
 		
 		flags["NAV_DISABLED"] = NAV_NORTH_DISABLE;
 		
 		drBadgerShackPexigaQuestGo();
 	}
-	else output("The Novahome tunnel comes to an abrupt end here, closed off by a wall of solid metal and rusted-shut hatch doors. You can spot places where repairs have been attempted, but none of the entrances seem to be in a working state. There’s still plenty of buildings around, and a clear path leads west, back the way you came. A few open-air stalls are even set up here, where you suppose the property values are low.\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
+	else output("\n\nThere’s a run-down shack in a quiet corner with a sign reading “Doctor Badger’s Free Clinic”, although on second glance the “Free Clinic” part has been hastily crossed out, and underneath someone has written “Lab”. That’s also been crossed out, and the odd term “Bimbotorium” written underneath that. That’s followed by a smiley face, and a crude drawing of a pair of breasts. Odd.");
+	
 	outsideDrLashBonusBonus();
+	
 	return false;
 }
 
@@ -36,6 +44,10 @@ public function drBadgerMenu():void
 	clearMenu();
 	addButton(0,"Buy",drBadgerBuyMenu,undefined,"Buy","Buy something from Doctor Badger.");
 	addButton(1,"Sell",sellItem,undefined,"Sell","Sell something to Doctor Badger.");
+	
+	addButton(2,"Clinic",drBadgerCuntTailGo,undefined,"Clinic","Ask the doctor for medical treatment.");
+	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
+	
 	if(flags["DR_BADGER_BIMBOED_PC"] == undefined && !pc.hasPerk("Ditz Speech")) addButton(5,"Be Hero",heyDocImAHero,undefined,"Be Hero","Volunteer that you’re a hero. After your first encounter with the Doctor, you’re fairly sure this is going to result in some heavy brain-drain.");
 	else addDisabledButton(5,"Be Hero","Be Hero","Uhm, you don’t really like, remember what this was all about.");
 
@@ -52,8 +64,7 @@ public function drBadgerMenu():void
 		else if(flags["BADGER_QUEST"] == 3) addDisabledButton(6,"Job","Job","You already did her job.");
 		else addDisabledButton(6,"Job","Job","You’ve already accepted her “job offer”");
 	}
-	addButton(2,"Clinic",drBadgerCuntTailGo,undefined,"Clinic","Ask the doctor for medical treatment.");
-	if(pexigaQuestDocChatsAvailable()) addButton(3,"Pexiga Help",drBadgerChristmasYay,undefined,"Pexiga Help","Ask for help with the Pexiga’s situation.");
+	
 	addButton(14,"Leave",mainGameMenu);
 }
 public function drBadgerBuyMenu():void
@@ -121,6 +132,7 @@ public function drBadgerBonusShit():Boolean
 		if(flags["BADGER_QUEST"] == -3)
 		{
 			bimboBadgerShopStuff();
+			drBadgerLookAroundButton(5);
 			return false;
 		}
 		//Room desc
@@ -134,19 +146,20 @@ public function drBadgerBonusShit():Boolean
 				
 				//[Get Pexiga][Just Leave]
 				addButton(0,"Bring Pexiga",bringBadgerPexibork);
+				return false;
 			}
 			else
 			{
 				nymfoeSetup();
+				return true;
 			}
 		}
 		// Failsafe (captured or otherwise not there)
-		else if(flags["DR_BADGER_TURNED_IN"] != undefined)
-		{
-			return false;
-		}
+		
 		// Repeat vists
-		else addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
+		if(flags["DR_BADGER_TURNED_IN"] == undefined) addButton(0,"Dr.Badger",repeatBadgerApproach,undefined,"Dr. Badger","Check in with the curvy, bimbo badger.");
+		
+		drBadgerLookAroundButton(5);
 	}
 	return false;
 }
@@ -520,7 +533,7 @@ public function heyDocImAHero():void
 	processTime(40+rand(15));
 	pc.loadInAss(chars["DRBADGER"]);
 	pc.loadInAss(chars["DRBADGER"]);
-	output("\n\n(You could probably like, report this troublemaker to a U.G.C. peacekeeper and get her arrested. Maybe you can find a sexy cop!)");
+	output("\n\n(You could probably like, report this troublemaker to a U.G.C. Peacekeeper and get her arrested. Maybe you can find a sexy cop!)");
 	pc.taint(10);
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
@@ -535,7 +548,7 @@ public function heyDocImJustHereToShop():void
 	output("The Doctor glares at you intently for a few seconds, and then turns away with an exaggerated sigh. <i>“Fiiine!”</i> She releases you, walking back over to a cluttered workbench in the corner, more or less entirely uninterested in you now that you’ve turned out not to be the type of fun she was hoping for.");
 	output("\n\n<i>“What can I interest you in then? I’m a little low on stock at the moment, but I’ve got a shipment of pills that will get your engine revving.”</i> She rolls her eyes for a moment, mumbling to herself, <i>“not as much as I could have in person, but </i>oh well<i>.”</i>");
 	output("\n\n<i>“Anyway”</i>, she continues to you directly, <i>“what do you want?”</i>");
-	output("\n\n(You could probably report this troublemaker to a U.G.C. peacekeeper and get her arrested. Nothing about this seems legal.)");
+	output("\n\n(You could probably report this troublemaker to a U.G.C. Peacekeeper and get her arrested. Nothing about this seems legal.)");
 	//[Buy Dumbfuck pills] [Leave]
 	drBadgerMenu();
 }

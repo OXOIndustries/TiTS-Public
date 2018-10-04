@@ -1660,7 +1660,7 @@ public function tutorialIntro4():void {
 	output("\n\nA fucking horndog until the end. Of course.");
 	output("\n\nThe recording smiles wistfully for a moment before resuming, <i>“I suppose that might have contributed to my demise, but damn, it was worth it. You’ll see for yourself once you get out there.”</i>");
 	output("\n\nSure, whatever.");
-	output("\n\n<i>“I’ve arranged to have a few dozen probes sent through the gates once they open. Each one is military grade hardened and keyed to only open for one of our family, so don’t lose too much of yourself. They all have clues pointing towards other probes secreted inside them, except for one. One has my personal, encrypted key. With that, you can open my deposit box in the bank I own on this station and take control of my company,”</i> Even projected through the soulless holoprojector, your dad’s spirit shines through his tear-misted eyes. <i>“I’m sure you’ll make me proud out there.”</i>");
+	output("\n\n<i>“I’ve arranged to have a few dozen probes sent through the gates once they open. Each one is military grade, hardened and keyed to only open for one of our family, so don’t lose too much of yourself. They all have clues pointing towards other probes secreted inside them, except for one. One has my personal, encrypted key. With that, you can open my deposit box in the bank I own on this station and take control of my company,”</i> Even projected through the soulless holoprojector, your dad’s spirit shines through his tear-misted eyes. <i>“I’m sure you’ll make me proud out there.”</i>");
 	output("\n\nThe projection of your father tilts its head, gesturing towards another door behind it. <i>“Through the door behind, you’ll find a hangar with the ship I started my journey on, repaired to usable condition and outfitted with standard, modernized technology. It’s a good starting point, but you should see if you can jump up to something better, particularly if you pick up the number of crewmates I did. That little junker can only hold a few people.”</i>");
 	output("\n\nYou rise to progress, but Dad keeps talking. <i>“One more thing... there’s a Galotian in the next room, right next to the ship’s key. If you want to do this, you’ve gotta subdue her. Galotians are voracious protein hunters, but they’re not truly dangerous. She’s still a tough little foe, though. I’ve set up some recordings to assist you in learning how to handle creatures like this during your adventures.”</i> Dad winks. <i>“Good luck!”</i>");
 	//[Open Door]
@@ -1706,6 +1706,7 @@ public function defeatCelise():void
 	output("\n\n<i>“If you give Celise what she wants now, you’ll probably earn her loyalty. That choice is up to you; I can’t make it for you. Galotians are a fiercely loyal people once they choose to follow someone, and though she has few marketable skills, it might be good to have a companion out there in the void. Whatever you choose, I’m sure you’ll do me proud.”</i> Victor smiles dryly. <i>“After all, I bet my legacy on it.”</i>");
 	output("\n\nThe recording winks off.");
 	output("\n\nWhat do you do with Celise? Ignore her, or feed her and take her on your crew?");
+	output("\n\n(Note that choosing to ignore Celise will remove her from the game.)");
 	
 	CombatManager.genericVictory();
 	userInterface.hideNPCStats();
@@ -1724,12 +1725,17 @@ public function skipCeliseOption():void
 	showCelise();
 	chars["PC"].removeStatusEffect("In Creation");
 	output("What do you do with Celise? Ignore her, or take her on your crew?");
+	output("\n\n(Note that choosing to ignore Celise will remove her from the game.)");
 	
 	clearMenu();
-	addButton(0, "Ignore Her", jackJillSkip);
+	addButton(0, "Ignore Her", ignoreCeliseSkip);
 	addButton(1, "Take Her", takeCeliseSkip);
 }
 
+public function ignoreCeliseSkip():void
+{
+	jackJillSkip();
+}
 public function takeCeliseSkip():void
 {
 	flags["RECRUITED_CELISE"] = 1;
@@ -1756,6 +1762,7 @@ public function takeCelise():void {
 	
 	//Feed Celise [Male]
 	if(pc.hasCock()) {
+		var x:int = pc.biggestCockIndex();
 		output("Smiling a little lustily, you strip out of your gear and toss it up on the shelf, next to the key. Celise smiles beatifically up at you, her eyes practically humping every bit of exposed " + pc.skinFurScales() + " as you reveal yourself. As soon as your " + pc.cocksDescript());
 		if(pc.cockTotal() == 1) output(" is");
 		else output(" are");
@@ -1763,8 +1770,7 @@ public function takeCelise():void {
 		output("\n\nYour " + pc.legOrLegs() + " wobble");
 		if(pc.legCount == 1) output("s");
 		output(" from the sensation assaulting you, and you grab hold of the shelf for support, watching the emerald blob slide across the floor until it squishes up against you. Celise gushes, <i>“Ohh, look at it! It’s nice and hard and veiny and it tastes so good inside me! Thank you for deigning to feed me... " + pc.short + ", was it?”</i>");
-		output("\n\nYou nod and try to stay upright. Fluid weight roils around your " + pc.cockDescript(pc.biggestCockIndex()) + " with slow, gentle undulations, tickling every square inch of its surface with perfect pressure. Somehow, despite its glorious slipperiness, there’s just enough friction for your body to make your nerves fire one after the other, forcing your internal muscles to flutter and squeeze fat drops of pre-cum into the goo-girl’s wrist. She arches her back to raise her titanic breasts into her arm, absorbing her own elbow, forearm, and then wrist, drawing your dick deep into her swollen teat. You gasp and drip a bit more freely in response.");
-		var x:int = pc.biggestCockIndex();
+		output("\n\nYou nod and try to stay upright. Fluid weight roils around your " + pc.cockDescript(x) + " with slow, gentle undulations, tickling every square inch of its surface with perfect pressure. Somehow, despite its glorious slipperiness, there’s just enough friction for your body to make your nerves fire one after the other, forcing your internal muscles to flutter and squeeze fat drops of pre-cum into the goo-girl’s wrist. She arches her back to raise her titanic breasts into her arm, absorbing her own elbow, forearm, and then wrist, drawing your dick deep into her swollen teat. You gasp and drip a bit more freely in response.");
 		output("\n\n<i>“Yum! Even your pre-cum is tasty. Can I just keep milking that out of you, or would you rather I get you off? Unless you can cum hard enough to make my tit turn white, I think I’d prefer the former,”</i> Celise giggles as her arm exits out the bottom of her tit, appearing to hold it up, though it’s made of the same material as the jiggling, gelatinous mammary. Her free hand is buried to the wrist in her gooey undercarriage, pumping low and slow into a massive, over-engorged honeypot.");
 		output("\n\nYou grunt in pleasure and pain as your ardor builds to an unmanageable boil, aching to burst out, to explode deep into Celise’s gooey, delicious tit. Her controlled motions seem intent on holding you there forever. She teases you to the precipice and backs off again and again, devouring the hot, liquid pleasure that " + pc.eachCock() + " releases whenever you get particularly close. You can’t take it anymore!");
 		output("\n\nLetting go of the shelf, you grab hold of her massive tit in both hands");
@@ -1789,7 +1795,6 @@ public function takeCelise():void {
 		output(", the juicy pleasure-flow dries up, and Celise allows your orgasm to finish. She’s shuddering herself as she detaches, so wracked by pleasure that one of her arms liqueifies, dropping to the floor for a moment until it slithers over to rejoin the rest of her. Her hair is melting, her tits are sagging, and her whole body shudders from time to time, shaking with post-orgasm spasms. She burbles, <i>“That was great! You’re gonna take me on your ship now, right?”</i>");
 		output("\n\nYou give her a stern but exhausted look.");
 		output("\n\n<i>“I can get by on protein paste and water. I promise I won’t try to forcefully milk you again!”</i> Celise nibbles on her lip, letting it grow bigger and poutier as she does. <i>“Besides, I kind of owe you for being nice enough to feed me. And think of all the ways you can use me whenever meaner aliens get you too turned on to think! I’m a perfect sperm-receptacle!”</i> Her giggling, proud tone makes it clear she has no idea that a ‘sperm-receptacle’ is usually not a good thing.");
-		output("\n\nDo you take Celise on as your first crew member?");
 	}
 	//Feed Celise [Female]
 	else {
@@ -1819,8 +1824,9 @@ public function takeCelise():void {
 		output("\n\n<i>“That was great, and your cunny was super tasty, too! Can I come on your ship? Like Vik said, I’m super thankful you stopped to feed me!”</i> Celise bubbles.");
 		output("\n\nDespite your exhaustion, you manage to give her a stern look.");
 		output("\n\n<i>“I promise not to try and force myself on you or nothing! ‘Sides, you know just how to make me melt anyhow! I can get by on water and protein paste, but if a mean ol’ alien ever gets you all wet and juicy...”</i> Celise nibbles on her lower lip, and with every tiny bite, it grows puffier and poutier, looking softer by the minute. <i>“...I’ll be the perfect little lesbian, girlspunk-dump. Or, if you grow a dick I’ll be totally happy to suck on that,”</i> she adds, nodding enthusiastically. <i>“You’ll be yummy either way!”</i>");
-		output("\n\nDo you take Celise on as your first crew member?");
 	}
+	output("\n\nDo you take Celise on as your first crew member?");
+	output("\n\n(Note that choosing to ignore Celise will remove her from the game.)");
 	//Orgasm, edit stats
 	pc.orgasm();
 	clearMenu();

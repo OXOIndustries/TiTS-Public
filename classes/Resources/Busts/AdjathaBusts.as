@@ -581,6 +581,11 @@ package classes.Resources.Busts
 		public var Bounds_NALEEN_BROTHER_B:Rectangle = new Rectangle(65, 10, 45, 45);
 		public var Bounds_NALEEN_BROTHER_A:Rectangle = new Rectangle(108, 10, 45, 45);
 
+		[Embed(source = "../../../assets/images/npcs/adjatha/naleen_futa.png", mimeType = "image/png")]
+		public var Bust_NALEEN_FUTA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/naleen_futa_nude.png", mimeType = "image/png")]
+		public var Bust_NALEEN_FUTA_NUDE:Class;
+
 		[Embed(source = "../../../assets/images/npcs/adjatha/nenne.png", mimeType = "image/png")]
 		public var Bust_NENNE:Class;
 		public function get Bust_NENNE_NUDE():Class { return Bust_NENNE; }
@@ -843,6 +848,11 @@ package classes.Resources.Busts
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/egg.png", mimeType = "image/png")]
 		public var Bust_TENTACLE_EGG:Class;
+
+		[Embed(source = "../../../assets/images/npcs/adjatha/tessa.png", mimeType = "image/png")]
+		public var Bust_TESSA:Class;
+		[Embed(source = "../../../assets/images/npcs/adjatha/tessa_nude.png", mimeType = "image/png")]
+		public var Bust_TESSA_NUDE:Class;
 
 		[Embed(source = "../../../assets/images/npcs/adjatha/tivf.png", mimeType = "image/png")]
 		public var Bust_TIVF:Class;
@@ -1457,6 +1467,11 @@ package classes.Resources.Busts
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/myrra_nude.png", mimeType = "image/png")]
 			public var Full_MYRRA_NUDE:Class;
 
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/naleen_futa.png", mimeType = "image/png")]
+			public var Full_NALEEN_FUTA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/naleen_futa_nude.png", mimeType = "image/png")]
+			public var Full_NALEEN_FUTA_NUDE:Class;
+
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/naleen_bros.png", mimeType = "image/png")]
 			public var Full_NALEEN_BROS:Class;
 
@@ -1709,6 +1724,11 @@ package classes.Resources.Busts
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/egg.png", mimeType = "image/png")]
 			public var Full_TENTACLE_EGG:Class;
+
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tessa.png", mimeType = "image/png")]
+			public var Full_TESSA:Class;
+			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tessa_nude.png", mimeType = "image/png")]
+			public var Full_TESSA_NUDE:Class;
 
 			[Embed(source = "../../../assets/images/npcs/adjatha/hr/tivf.png", mimeType = "image/png")]
 			public var Full_TIVF:Class;

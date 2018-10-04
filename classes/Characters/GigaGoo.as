@@ -234,7 +234,7 @@ package classes.Characters
 				outputDamage(annoDR);
 			}
 
-			if (rand(50) <= pcDR.totalDamage)
+			if (rand(50) <= pcDR.totalDamage && !pc.isPlanted())
 			{
 				output("\n<b>The rocking of the cage knocks you flat on your ass! You’re prone!</b>");
 				CombatAttacks.applyTrip(pc);

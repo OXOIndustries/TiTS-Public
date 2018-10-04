@@ -739,7 +739,7 @@ public function celiseSleezeLactation():void {
 	//Repeat:
 	else {
 		IncrementFlag("LACTATION_FED_CELISE");
-		output("\n\nWithout a word you sit yourself down and ");
+		output("Without a word you sit yourself down and ");
 		if(pc.armor.shortName != "") output("shake off the top half of your [pc.armor]");
 		else if(pc.isChestGarbed()) output("shake off your [pc.upperGarment]");
 		else output("shake");
@@ -1702,6 +1702,7 @@ public function zDomCeliseGo():void
 		var cockSum:Number = 0;
 		if(pc.hasCock()) cockSum += pc.cockTotal();
 		if(pc.hasTailCock()) cockSum += pc.tailCount;
+		var cumQ:Number = pc.cumQ();
 		
 		output("\n\nThe ravenous look in Celise’s eye is as good as a guarantee that unless you take control of the fuck, she’ll roll over you like a runaway glazed donut, leaving you sticky everywhere but ultimately unfulfilled. ");
 		if(pc.biggestCockLength() > 60) output("She practically oozes her way up your [pc.cockBiggest], stretching her body to match your enormous meat and stopping when the tip is just under her breasts. Her stomach ripples and parts around the gargantuan tool, engulfing it in her hot, gooey flesh.");
@@ -1733,9 +1734,10 @@ public function zDomCeliseGo():void
 		{
 			output("\n\nWith her already stretching herself just to fit your [pc.cockBiggest], every new thrust deforms Celise’s body further, until she resembles a slimy cast of ");
 			var doubleGigantoDick:int = -1;
-			if(pc.cocks[pc.biggestCockIndex2()].cLength() > 40) doubleGigantoDick = pc.biggestCockIndex2();
+			var y:int = pc.biggestCockIndex2();
+			if(y >= 0 && pc.cocks[y].cLength() > 40) doubleGigantoDick = y;
 			//(one 40in+ cock)
-			if(doubleGigantoDick == -1) output("your unwieldy [pc.cockNounSimple " + x + "]");
+			if(doubleGigantoDick < 0) output("your unwieldy [pc.cockNounSimple " + x + "]");
 			//(2+ 40in+ cock)
 			else output("your enormous penises");
 			output(". She burbles, unable to speak as the [pc.cockHeadBiggest] presses up to the back of her lips, and her taut breasts wobble against the side of your freaky phallus, making it bob slightly every time you pound it into her slick hole. Seizing her gooey hips and pulling down, you shove deeper into the sex-crazed woman until her head is stretched over your crown like a slippery foreskin. You briefly make eye contact with the galotian, whose formerly-coquettish green face now resembles a [pc.cockHeadBiggest].");
@@ -1743,9 +1745,9 @@ public function zDomCeliseGo():void
 			output("\n\n“<i>How does it feel, being my dick?”</i> you taunt. Rolling your hips, you bounce Celise in the air, causing air to rush over the surface of the galotian-turned-[pc.cockNounSimple " + x + "]. Celise rubs anxiously at her throat, tickling your shaft, and it sends you over the edge.");
 			if(pc.balls > 0) output(" Her eyes widen as your [pc.sack] tightens up, mashing against her abused labia.");
 			output(" With one more push, the green foreskin opens and her mouth is stretched wide, exposing your slit. Releasing a great moan, you orgasm, ejaculating [pc.cum] through Celise’s lips as her eyes roll. Her tongue caresses the underside of your crown and laps at the slit as your seed bubbles forth, trying vainly to intercept the ");
-			if(pc.cumQ() < 10) output("dribble of jizz from your exhausted [pc.balls].");
+			if(cumQ < 10) output("dribble of jizz from your exhausted [pc.balls].");
 			else output("stream of [pc.cumColor] jizz arcing across the engine bay.");
-			if(pc.cumQ() >= 1000) 
+			if(cumQ >= 1000) 
 			{
 				output(" A tiny alarm sounds in your mind as your hyper-fertile [pc.balls] ");
 				if(pc.balls > 1) output("empty");
@@ -1753,7 +1755,7 @@ public function zDomCeliseGo():void
 				output(" onto the bay floor. With difficulty you aim your spasming groin straight up, causing the semen to rain down on Celise’s creamy skin.");
 			}
 			output("\n\n“<i>Ah... ah...”</i> the woman moans, causing vibrations around your slit. “<i>It feels good... when you cum.”</i> Her hands fall to hang limply at her sides as the last globs of spunk dribble from her lips. Carefully, you stand up and aim your [pc.cockBiggest] toward the floor. Celise, too drunk on pleasure and jizz to control her form or anything else, slides slowly off the end");
-			if(pc.cumQ() >= 500) output(" and lands face-down in the puddle of semen");
+			if(cumQ >= 500) output(" and lands face-down in the puddle of semen");
 			output(", resembling nothing so much as a used condom in her insensible stupor.");
 			//end, adjust time and lust
 		}
@@ -1770,8 +1772,8 @@ public function zDomCeliseGo():void
 			if(pc.biggestTitSize() < 1) output("barely able to hold herself upright through your savage strokes by pressing against your [pc.chest]");
 			else output("smooshing your tits as she tries to hold herself upright through your savage strokes");
 			output(". Eventually she gives up, laying her head on your chest as you continue to knock the jelly from her frame - the puddle of shapeless galotian goo around you grows in time with her moans as the lust for more dick drains the willpower needed to maintain her form. Before you have a chance to reduce her to a quivering puddle of needy slut, though, you cum. Your ejaculation ");
-			if(pc.cumQ() < 5) output("drops a little bubble of [pc.cum] right behind her tits.");
-			else if(pc.cumQ() < 2000) 
+			if(cumQ < 5) output("drops a little bubble of [pc.cum] right behind her tits.");
+			else if(cumQ < 2000) 
 			{
 				output("shoots right up into her throat, the journey made easy by the distance she has sunk down onto your ");
 				if(!pc.hasCock()) output("[pc.tailCock]");

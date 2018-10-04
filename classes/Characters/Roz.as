@@ -287,7 +287,7 @@
 		public function rozShoulderCheckerooni(target:Creature):void
 		{
 			output("The powered gorilla-suit stomps its feet and lowers its head, charging forward with a synthesized bull’s roar. ");
-			if(combatMiss(this, target)) output("You just manage to sidestep the attack, letting the pilot crash into the wall behind you!");
+			if(combatMiss(this, target) || target.isPlanted()) output("You just manage to sidestep the attack, letting the pilot crash into the wall behind you!");
 			else
 			{
 				output("The suit’s head cracks into you with devastating force, throwing you backwards!");

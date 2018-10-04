@@ -206,7 +206,7 @@ package classes.Characters
 		public function ponyKick(target:Creature, friends:Array, hostiles:Array):void
 		{
 			output("Chief Neykkar rears up on her rear legs, bellowing an amazonian battle-cry before bringing her other four legs down hard on " + target.getCombatName() + ", throwing " + target.getCombatPronoun("himher") + " back with rib-crushing force!");
-			if (rand(3) > 0 && !target.hasStatusEffect("Staggered"))
+			if (rand(3) > 0 && !target.hasStatusEffect("Staggered") && !target.isPlanted())
 			{
 				CombatAttacks.applyStagger(target, 2 + rand(2));
 				output(" <b>" + StringUtil.capitalize(target.getCombatName(), false) + " is staggered by the blow!</b>");

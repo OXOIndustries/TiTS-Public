@@ -4030,7 +4030,7 @@ public function initUvetoRoomsII():void
 	rooms["FROSTWYRM LAIR"].addFlag(GLOBAL.PRIVATE);
 
 	rooms["WILLOWS ROOM"] = new RoomClass(this);
-	rooms["WILLOWS ROOM"].roomName = "WILLOW'S\nAPARTMENT";
+	rooms["WILLOWS ROOM"].roomName = "WILLOW’S\nAPARTMENT";
 	rooms["WILLOWS ROOM"].description = "";
 	rooms["WILLOWS ROOM"].planet = "PLANET: UVETO VII";
 	rooms["WILLOWS ROOM"].system = "SYSTEM: SIRETTA";

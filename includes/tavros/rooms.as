@@ -1162,4 +1162,17 @@ public function initTavrosRooms():void
 	rooms["NURSERYSERA"].addFlag(GLOBAL.INDOOR);
 	rooms["NURSERYSERA"].addFlag(GLOBAL.PRIVATE);
 	rooms["NURSERYSERA"].addFlag(GLOBAL.NPC);
+	
+	//Random Ramis Bar
+	//Time forward 1 ½ hours, move to standalone Some Club, Somewhere On The Merchant Deck,
+	rooms["RAMISBAR"] = new RoomClass(this);
+	rooms["RAMISBAR"].roomName = "\nSOME BAR";
+	rooms["RAMISBAR"].description = "";
+	rooms["RAMISBAR"].runOnEnter = undefined;
+	rooms["RAMISBAR"].planet = "TAVROS STATION";
+	rooms["RAMISBAR"].system = "SYSTEM: KALAS";
+	rooms["RAMISBAR"].moveMinutes = 15;
+	rooms["RAMISBAR"].addFlag(GLOBAL.INDOOR);
+	rooms["RAMISBAR"].addFlag(GLOBAL.PRIVATE);
+	rooms["RAMISBAR"].addFlag(GLOBAL.NPC);
 }

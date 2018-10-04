@@ -4,6 +4,7 @@ package classes.GameData
 	import classes.Characters.Celise;
 	import classes.Characters.Cockvine;
 	import classes.Characters.CommanderSchora;
+	import classes.Characters.CyberPunkSecOp;
 	import classes.Characters.GrayGoo;
 	import classes.Characters.DrCalnor;
 	import classes.Characters.Kane;
@@ -13,6 +14,7 @@ package classes.GameData
 	import classes.Characters.PlayerCharacter;
 	import classes.Characters.RaskvelFemale;
 	import classes.Characters.RaskvelMale;
+	import classes.Characters.SandWorm;
 	import classes.Characters.Shizuya;
 	import classes.Characters.StormguardMale;
 	import classes.Characters.ZilFemale;
@@ -153,7 +155,7 @@ package classes.GameData
 			
 			// Carpet Grenades
 			CarpetGrenades = new SingleCombatAttack();
-			CarpetGrenades.ButtonName = "Carpet Grenades";
+			CarpetGrenades.ButtonName = "C. Grenades";
 			CarpetGrenades.EnergyCost = 25;
 			CarpetGrenades.RequiresPerk = "Carpet Grenades";
 			CarpetGrenades.DisabledIfEffectedBy = ["Disarmed"];
@@ -587,6 +589,10 @@ package classes.GameData
 				output("Further action is interrupted!");
 				return false;
 			}
+			if(target is SandWorm && kGAMECLASS.attackSandworm(target, attacker, special))
+			{
+				return false;
+			}
 			if(target.hasStatusEffect("Counters Ranged") && !target.isImmobilized())
 			{
 				if(rangedCounterResults(attacker,target)) return false;
@@ -700,6 +706,10 @@ package classes.GameData
 			{
 				if(kGAMECLASS.quadommeCounter(attacker, target)) return false;
 			}
+			if(target is SandWorm && kGAMECLASS.attackSandworm(target, attacker, special))
+			{
+				return false;
+			}
 			if(target.hasStatusEffect("Flying") && !target.isImmobilized() && !attacker.hasPerk("Lunge"))
 			{
 				output(StringUtil.capitalize(possessive(attacker.getCombatName()), false) + " can’t reach " + target.getCombatName() + "! " + (!target.isPlural ? (target.mfn("He","She","It") + " is") : "They are") + " too high!");
@@ -780,7 +790,7 @@ package classes.GameData
 			{
 				if(!target.hasStatusEffect("Flyaway") && !target.hasStatusEffect("Flying")) target.createStatusEffect("Flyaway");
 			}
-			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+			if(attacker.hasPerk("Lunge") && !target.hasStatusEffect("Staggered") && !target.isPlanted() && rand(10) == 0 && attacker.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output("\n<b>You are staggered by the lunge!</b>");
@@ -816,6 +826,10 @@ package classes.GameData
 			if (target is Celise)
 			{
 				output("Celise takes the hit, the wound instantly closing in with fresh, green goop. Her surface remains perfectly smooth and unmarred afterwards.");
+				return;
+			}
+			if(target is SandWorm && kGAMECLASS.attackSandworm(target, attacker, "ranged"))
+			{
 				return;
 			}
 			
@@ -873,6 +887,10 @@ package classes.GameData
 			if (target is Celise)
 			{
 				output(target.customBlock);
+				return;
+			}
+			if(target is SandWorm && kGAMECLASS.attackSandworm(target, attacker, "melee"))
+			{
 				return;
 			}
 			
@@ -1405,7 +1423,11 @@ package classes.GameData
 		
 				applyDamage(damageRand(new TypeCollection( { kinetic: attacker.physique() / 2 + attacker.level } ), 15), attacker, target, "headbutt");
 
-				if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
+				if (target is CyberPunkSecOp)
+				{
+					output(" A resounding ‘CLANG’ fills the air. " + target.mf("He","She’s") + " packing a little extra metal in " + target.mf("his","her") + "noggin. You’ll have to try something else!");
+				}
+				else if (attacker.physique() / 2 + rand(20) + 1 >= target.physique() / 2 + 10 && !target.hasStatusEffect("Stunned") && !target.hasStatusEffect("Stun Immune")) 
 				{
 					if(target is PlayerCharacter) output("\n<b>You are stunned.</b>");
 					else output("\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " " + (!target.isPlural ? "is" : "are") + " stunned.</b>");
@@ -1434,7 +1456,7 @@ package classes.GameData
 			SingleRangedAttackImpl(attacker, target, true);
 			output("\n");
 			SingleRangedAttackImpl(attacker, target, true);
-			if (!target.hasStatusEffect("Staggered") && attacker.hasPerk("Rending Attacks"))
+			if (attacker.hasPerk("Rending Attacks") && !target.hasStatusEffect("Staggered") && !target.isPlanted())
 			{
 				applyStagger(target, 4 + rand(2));
 				if(target is PlayerCharacter) output(" <b>You are staggered by the hail of fire!</b>");
@@ -1544,7 +1566,7 @@ package classes.GameData
 		}
 		
 		public static var ParalyzingShock:SingleCombatAttack;
-		private static function ParalyzingShockImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function ParalyzingShockImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if(target.hasStatusEffect("Counters Ranged") && !target.isImmobilized())
 			{
@@ -1584,7 +1606,7 @@ package classes.GameData
 		}
 		
 		public static var Volley:SingleCombatAttack;
-		private static function VolleyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function VolleyImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if(target.hasStatusEffect("Counters Ranged") && !target.isImmobilized())
 			{
@@ -1682,7 +1704,7 @@ package classes.GameData
 		}
 		
 		public static var DeflectorRegeneration:SingleCombatAttack;
-		private static function DeflectorRegenerationImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function DeflectorRegenerationImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			attacker.createStatusEffect("Tech Shield CD",0,0,0,0,true,"","",true);
 			if (attacker is PlayerCharacter) 
@@ -1846,7 +1868,7 @@ package classes.GameData
 		}
 
 		public static var ChargeShield:SingleCombatAttack;
-		private static function ChargeShieldImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function ChargeShieldImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (attacker is PlayerCharacter) 
 			{
@@ -1862,7 +1884,7 @@ package classes.GameData
 		}
 		
 		public static var WeaponHack:SingleCombatAttack;
-		private static function WeaponHackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function WeaponHackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			if (target.hasStatusEffect("Disarm Immune"))
 			{
@@ -2201,13 +2223,13 @@ package classes.GameData
 		}
 		
 		public static var SmuggledStimulant:SingleCombatAttack;
-		private static function SmuggleStimulatImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
+		public static function SmuggleStimulatImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
 			attacker.createStatusEffect("Used Smuggled Stimulant", 3, 0, 0, 0, true, "", "", true, 0);
 			
 			if (attacker is PlayerCharacter) output("You inject yourself with a smuggled stimulant.");
-			else if (attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " each jam a small injector deep into their thighs, each stature visibly filling with energy!");
-			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " jams a small injector deep into " + attacker.getCombatPronoun("hisher") + " thigh, the stature visibly filling with energy!");
+			else if (attacker.isPlural) output(StringUtil.capitalize(attacker.getCombatName(), false) + " each jam a small injector deep into their thighs, visibly filling with energy!");
+			else output(StringUtil.capitalize(attacker.getCombatName(), false) + " jams a small injector deep into " + attacker.getCombatPronoun("hisher") + " thigh, visibly filling with energy!");
 		}
 		
 		public static var BurstOfEnergy:SingleCombatAttack;
@@ -2539,11 +2561,16 @@ package classes.GameData
 		public static var TripAttack:SingleCombatAttack;
 		private static function TripAttackImpl(fGroup:Array, hGroup:Array, attacker:Creature, target:Creature):void
 		{
-			output(StringUtil.capitalize(attacker.getCombatName(), false) + " tr" + (attacker.isPlural ? "y" : "ies") + " to trip you! ");
-			if (target.reflexes()/2 + rand(20) + 1 >= attacker.physique()/2 + 10) output("You neatly hop over the misguided attempt.");
+			var aPlural:Boolean = ((attacker is PlayerCharacter) || attacker.isPlural);
+			var tPlural:Boolean = ((target is PlayerCharacter) || target.isPlural);
+			
+			output(StringUtil.capitalize(attacker.getCombatName(), false) + " tr" + (aPlural ? "y" : "ies") + " to trip " + target.getCombatName() + "! ");
+			if (target.hasFlightEffects()) output("In your flight, " + target.getCombatPronoun("heshe") + " " + (tPlural ? "are" : "is") + " able to swiftly dart away from the misguided attempt.");
+			else if (target.isPlanted()) output("Being firmly planted to the ground makes the attempt to trip " + target.getCombatPronoun("himher") + " essentially useless.");
+			else if ((target.reflexes()/2 + rand(20) + 1 >= attacker.physique()/2 + 10)) output(StringUtil.capitalize(target.getCombatPronoun("heshe")) + " neatly hop" + (tPlural ? "s" : "") + " over the misguided attempt.");
 			else
 			{
-				output("You go down to the ground! <b>You’re going to have a difficult time fighting from down here!</b>");
+				output(StringUtil.capitalize(target.getCombatPronoun("heshe")) + " go" + (tPlural ? "es" : "") + " down to the ground! <b>" + StringUtil.capitalize(target.getCombatPronoun("heshe")) + "’" + (tPlural ? "re" : "s") + " going to have a difficult time fighting from down here!</b>");
 				applyTrip(target);
 				
 				applyDamage(new TypeCollection( { kinetic: 1 } ), attacker, target);

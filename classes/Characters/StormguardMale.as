@@ -397,10 +397,10 @@
 				applyDamage(damage, this, target, "minimal");
 
 				//if trip:
-				if (!target.hasStatusEffect("Tripped") && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
+				if (!target.hasStatusEffect("Tripped") && !target.isPlanted() && this.physique()/2 + rand(20) + 1 >= target.physique()/2 + 10)
 				{
 					CombatAttacks.applyTrip(target);
-					output("\n\nYou're <b>tripped!</b>");
+					output("\n\nYou’re <b>tripped!</b>");
 				}
 				output("\n\n<i>“An attack worthy of finishing any battle!”</i> crows your opponent triumphantly.");
 			}

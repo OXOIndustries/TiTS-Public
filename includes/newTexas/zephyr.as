@@ -187,9 +187,10 @@ public function zephyrSexMenu(display:Boolean = true):void
 		}
 		else
 		{
-			output("<i>“Thought you’d never ask,”</i> Zephyr says with a grin, rising from her seat. <i>“Honestly, the moment you walked in here I wanted to{clothed: tear off your clothes and} fuck you up against the wall. Can’t help the amazon urges, especially not with </i>you<i>.”</i>");
+			output("<i>“Thought you’d never ask,”</i> Zephyr says with a grin, rising from her seat. <i>“Honestly, the moment you walked in here I wanted to");
+			if(!pc.isNude()) output(" tear off your clothes and");
+			output(" fuck you up against the wall. Can’t help the amazon urges, especially not with </i>you<i>.”</i>");
 		}
-		
 		output("\n\nAn obvious bulge begins threatening the structural stability of her skirt.");
 	}
 	clearMenu();
@@ -314,11 +315,10 @@ public function mutualHandJobsWithZephyr():void
 	output("\n\nYou might have to do that.");
 
 	processTime(22);
+	IncrementFlag("SEXED_ZEPHYR");
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
-	flags["SEXED_ZEPHYR"] = 1;
-
 }
 
 //Overdesk Catch It In Yer VagOrButt [Unfinished]
@@ -653,7 +653,7 @@ public function getFuckedByZephyrV(args:Array):void
 		addButton(0,"Clean It",cleanDatZephyrCawk,[ppZephyr, x, fits, cow, capacity],"Clean It","You might as well. After all, she’s at work.");
 		addButton(1,"Don’t",dontEatZephyrCock,undefined,"Don’t","Fuck that. You got yours. She might not be real happy about it, though.");
 	}
-	flags["SEXED_ZEPHYR"] = 1;
+	IncrementFlag("SEXED_ZEPHYR");
 	IncrementFlag("ZEPHYR_FUCKED_PC");
 }
 
@@ -700,7 +700,6 @@ public function dontEatZephyrCock():void
 	addButton(0,"Leave",leaveLikeABitchPC);
 	addButton(1,"Fight",fightZephyrLikeABitch,undefined,"Fight","It might be a terrible idea, but you’re itching for a fight after that kind of casual dismissal.");
 	addButton(2,"Snarky Leave",snarkLeaveLikeABitch,undefined,"Snarky Leave","Leave with a bit of snark. Fuck her for being so stuck up.");
-	
 }
 //Leave
 public function leaveLikeABitchPC():void
@@ -783,12 +782,10 @@ public function talkToZephyrMenu():void
 		if (!hasTalkedBets) addButton(2, "Bets", zephyrTalkBets, undefined, "Bets", "Table a little bet with Zephyr...");
 		else addButton(2, "ButtBets", zephyrButtBets, undefined, "ButtBets", "Table a little bet with Zephyr...");
 	}
-
 	if (zephKnowsAboutKids())
 	{
 		addButton(3, "Her", talkToZephAboutHerself, undefined, "Her", "Talk about herself.");
 	}
-
 	addButton(14,"Back",approachZephyr);
 }
 
@@ -1103,6 +1100,7 @@ public function getTailFuckedByZephyrSauce():void
 	processTime(7);
 	var ppZephyr:PregnancyPlaceholder = getZephyrPregContainer();
 	pc.loadInCuntTail(ppZephyr);
+	IncrementFlag("SEXED_ZEPHYR");
 	clearMenu();
 	addButton(0,"Next",move,rooms[currentLocation].southExit);
 }
@@ -1360,7 +1358,7 @@ public function zephyrBetLoss(pqResult:Array):void
 			output("\n\n<i>“Pity you don’t have room in there for another litter,”</i> she muses, idly jamming a finger in your [pc.pussy] from behind. <i>“Was thinking about");
 			if (flags["ZEPHYR_FUCKED_PC_PUSSY"] == undefined) output(" starting a family recently");
 			else output(" getting more kids out of you");
-			output(". Oh well, maybe next time.”</i>}");
+			output(". Oh well, maybe next time.”</i>");
 
 			output("\n\n");
 		}
@@ -1582,7 +1580,7 @@ public function zephyrBetLoss(pqResult:Array):void
 			clearMenu();
 			addButton(0, "Next", mainGameMenu);
 		}
-		// {PC has empty primary womb, first time:
+		// PC has empty primary womb, first time:
 		// I'm assuming "First time we've seen the repeat variant..."
 		else if (!pc.isPregnant() && flags["ZEPHYR_RAWDOGGED_PUSS"] == undefined)
 		{

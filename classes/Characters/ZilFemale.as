@@ -71,13 +71,13 @@
 			this.scaleColor = this.scaleColor;
 			this.furColor = "yellow";
 			this.hairLength = 22;
-			this.hairType = GLOBAL.TYPE_BEE;
+			this.hairType = GLOBAL.HAIR_TYPE_HAIR;
 			this.beardLength = 0;
 			this.beardStyle = 0;
 			this.skinType = GLOBAL.SKIN_TYPE_CHITIN;
 			this.skinTone = "black";
 			this.skinFlags = new Array();
-			this.faceType = GLOBAL.TYPE_BEE;
+			this.faceType = GLOBAL.TYPE_HUMAN;
 			this.faceFlags = new Array();
 			this.tongueType = GLOBAL.TYPE_BEE;
 			this.lipMod = 0;
@@ -88,7 +88,7 @@
 			this.hornType = 0;
 			this.armType = GLOBAL.TYPE_BEE;
 			this.gills = false;
-			this.wingType = GLOBAL.TYPE_BEE;
+			this.wingType = 0;
 			wingCount = 2;
 			this.legType = GLOBAL.TYPE_BEE;
 			this.legCount = 2;
@@ -163,7 +163,7 @@
 			this.clitLength = .5;
 			this.pregnancyMultiplierRaw = 1;
 
-			this.breastRows[0].breastRatingRaw = 0;
+			this.breastRows[0].breastRatingRaw = 3;
 			this.nippleColor = "black";
 			this.milkMultiplier = 100;
 			this.milkFullness = 100;
@@ -173,6 +173,7 @@
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			this.createStatusEffect("Disarm Immune");
+			this.createPerk("Appearance Enabled");
 			
 			isUniqueInFight = true;
 			btnTargetText = "ZilFemale";
