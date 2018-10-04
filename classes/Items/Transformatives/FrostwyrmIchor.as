@@ -1,6 +1,7 @@
 package classes.Items.Transformatives
 {
 	import classes.GLOBAL;
+	import classes.kGAMECLASS;
 	import classes.ItemSlotClass;
 	import classes.Creature;
 	import classes.GameData.TooltipManager;
@@ -311,6 +312,8 @@ package classes.Items.Transformatives
 				else if (pc.hornLength > 12) output(", shorten,");
 				output(" and curve slightly, bending themselves until they shift overtop your head, making them useless for attacks but they no doubt improve on your imposing image. <b>You now have two Frostwyrm horns.</b>");
 			}
+
+			if (kGAMECLASS.silly) pc.lust(33);
 
 			pc.horns = 2;
 			pc.hornLength = 12;

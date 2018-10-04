@@ -11333,7 +11333,7 @@
 			if(hasStatusEffect("Wing Style")) return statusEffectv1("Wing Style");
 			
 			if(InCollection(wingType, [GLOBAL.TYPE_AVIAN, GLOBAL.TYPE_DOVE])) return GLOBAL.FLAG_FEATHERED;
-			if(InCollection(wingType, [GLOBAL.TYPE_SMALLDEMONIC, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN])) return GLOBAL.FLAG_SCALED;
+			if(InCollection(wingType, [GLOBAL.TYPE_SMALLDEMONIC, GLOBAL.TYPE_FROSTWYRM, GLOBAL.TYPE_DEMONIC, GLOBAL.TYPE_SHARK, GLOBAL.TYPE_SMALLDRACONIC, GLOBAL.TYPE_DRACONIC, GLOBAL.TYPE_GRYVAIN])) return GLOBAL.FLAG_SCALED;
 			if(InCollection(wingType, [GLOBAL.TYPE_MOTHRINE])) return GLOBAL.FLAG_CHITINOUS;
 			return 0;
 		}
@@ -12489,7 +12489,7 @@
 			if (eyeType == GLOBAL.TYPE_FROSTWYRM) counter++;
 			if (eyeColor.indexOf("red") >= 0) counter++;
 			if (hasCock(GLOBAL.TYPE_FROSTWYRM) && hasStatusEffect("Genital Slit")) counter++;
-			if (hasVagina(GLOBAL.TYPE_FROSTWYRM)) counter++;
+			if (hasVaginaType(GLOBAL.TYPE_FROSTWYRM)) counter++;
 			if (hasWings(GLOBAL.TYPE_FROSTWYRM)) counter++;
 			if (hasTail(GLOBAL.TYPE_FROSTWYRM)) counter++;
 			return counter;

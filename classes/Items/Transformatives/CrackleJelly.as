@@ -182,6 +182,8 @@ package classes.Items.Transformatives
 		private function skinChange(pc:Creature):void
 		{
 			output("\n\nYour [pc.skinFurScalesNoun] feels prickly and hot as if being repeatedly shocked. Gradually it begins to flake away, revealing the [pc.skinColor] skin underneath. It still tingles a little as you rub your newly-bare arms.");
+			
+			pc.clearSkinFlags();
 			pc.skinType = GLOBAL.SKIN_TYPE_SKIN;
 		}
 		
@@ -298,6 +300,11 @@ package classes.Items.Transformatives
 		{
 			pc.legCount = 2;
 			pc.legType = GLOBAL.TYPE_JANERIA;
+			pc.clearLegFlags();
+			pc.addLegFlag(GLOBAL.FLAG_SMOOTH);
+			pc.addLegFlag(GLOBAL.FLAG_TENDRIL);
+			pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
+			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			
 			output("\n\nYour legs start to quake uncontrollably, prompting you to quickly sit before you lose control altogether. Gradually your legs lengthen and thin out until they look almost impossibly slender, all visible definition vanishing before new lines etch themselves down your legs, contours and bends forming that can’t correspond to any sort of muscles but rather make it look like your legs are made of several tentacles woven and pressed together. Even your feet streamline into diamond-shaped slippers, arched to provide a shape not unlike platform pumps. You can still feel some sort of bones inside, but from the outside it looks like you have a mass of tentacles contorted into the shape of legs.");
 		}
@@ -319,8 +326,7 @@ package classes.Items.Transformatives
 			output(" Just before you can’t take it anymore, a thick surging feeling replaces the shocks as one, two, three, four [pc.skinColor] tentacles erupt from your back. They’re absolutely enormous, at least as long as you are tall and two inches thick apiece, each ending in a diamond-shaped pad. What’s more, as they sway and lash about you feel something forming inside each one, a tiny channel that goes from the tip of each tentacle to somewhere inside you. Are they <i>cocks</i>?");
 			output("\n\nYou make your way to your feet as your spine recovers, still feeling sore and not quite in the mood to test out your newfound back tentacles... at least, not yet.");
 			
-			pc.wingType = GLOBAL.TYPE_JANERIA;
-			pc.wingCount = 4;
+			pc.wingShift(GLOBAL.TYPE_JANERIA, 4);
 		}
 		
 		private function slitChange(pc:Creature):void
