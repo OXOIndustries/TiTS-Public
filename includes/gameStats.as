@@ -5439,13 +5439,16 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["DRYAD_MET"] != undefined)
 				{
 					var dname:String;
-					if (amberRecruited()) dname = "Amber";
+					if(amberRecruited()) dname = "Amber";
 					else dname = "Dryad";
 					output2("\n<b>* " + dname + ":</b> Met her");
-					if (amberRecruited()) output2(", Recruited");
-					if (amberIsCrew()) output2(", On Ship");
-					if (flags["AMBER_CURED"] == 1) output2(", Cured");
-					if (amberInHeat()) output2(", In Heat");
+					if(amberRecruited())
+					{
+						output2(", Crew member");
+						if(amberIsCrew()) output2(" (Onboard Ship)");
+					}
+					if(flags["AMBER_CURED"] == 1) output2(", Cured");
+					if(amberInHeat()) output2(", In Heat");
 					if(flags["AMBER_DUMBFUCK"] != undefined) output2("\n<b>* " + dname + ", Dumbfuck Pills Given:</b> " + flags["AMBER_DUMBFUCK"]);
 					if(flags["AMBER_EQUILICUM"] != undefined) output2("\n<b>* " + dname + ", Has Taken Equilicum</b>");
 					if(flags["DRYAD_FUCKED"] != undefined) output2("\n<b>* " + dname + ", Times Sexed:</b> " + flags["DRYAD_FUCKED"]);

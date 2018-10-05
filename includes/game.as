@@ -756,6 +756,7 @@ public const CREW_KASE:int = 14;
 public const CREW_SHEKKA:int = 15;
 public const CREW_SYRI:int = 16;
 public const CREW_RAMIS:int = 17;
+public const CREW_AMBER:int = 18;
 
 public function crewRecruited(allcrew:Boolean = false):Array
 {
@@ -777,6 +778,7 @@ public function crewRecruited(allcrew:Boolean = false):Array
 	if (kaseIsCrew()) crewMembers.push(CREW_KASE);
 	if (shekkaIsCrew()) crewMembers.push(CREW_SHEKKA);
 	if (ramisRecruited()) crewMembers.push(CREW_RAMIS);
+	if (amberRecruited()) crewMembers.push(CREW_AMBER);
 
 	// Pets or other non-speaking crew members
 	if (allcrew)
@@ -895,6 +897,7 @@ public function getCrewOnShipNames(allcrew:Boolean = false, customName:Boolean =
 {
 	var crewMembers:Array = [];
 	
+	if (amberIsCrew()) crewMembers.push("Amber");
 	if (annoIsCrew()) crewMembers.push("Anno");
 	if (azraIsCrew()) crewMembers.push("Azra");
 	if (bessIsCrew()) crewMembers.push(customName ? chars["BESS"].short : chars["BESS"].mf("Ben-14","Bess-13"));
@@ -939,6 +942,7 @@ public function getFollowerBustDisplay(followerName:String = ""):String
 {
 	switch(followerName)
 	{
+		case "Amber": return dryadBustDisplay(); break;
 		case "Anno": return annoBustDisplay(); break;
 		case "Azra": return azraBustString(); break;
 		case "Ben-14":
@@ -985,6 +989,7 @@ public function getSleepingPartnerBustDisplay():String
 	if (flags["CREWMEMBER_SLEEP_WITH"] == undefined) return "";
 	switch(flags["CREWMEMBER_SLEEP_WITH"])
 	{
+		case "AMBER": return dryadBustDisplay(); break;
 		case "ANNO": return annoBustDisplay(); break;
 		case "AZRA": return azraBustString(); break;
 		case "BESS": return bessBustDisplay(); break;
@@ -1039,7 +1044,6 @@ public function crew(counter:Boolean = false, allcrew:Boolean = false):Number {
 	var btnSlot:int = 0;
 	
 	// Followers
-	//amber (dryad)
 	if (amberIsCrew())
 	{
 		count++;

@@ -12,55 +12,53 @@ Dryad xpac written by Wsan.
 * @author DrunkZombie
 */
 /*
-  flags
-  AMBER_CREWMEMBER 0/undefined = not recruited and not on ship, 1 = recruited and on ship, 2 = recruited but not on ship
-  AMBER_CREWMEMBER_INITIALSCENE undefined = not played, game timestamp = when initial scene happened
-  AMBER_VISIT_HOLD 0/undef = unvisited, 1 = visited her in hold
-  AMBER_RECRUIT_FUCK 0/undefined = not recruited , 1 = you fucked her during recruitment scene, 2 = she fucked you
-  AMBER_LASTCUM gametimestamp of last time she came
-  AMBER_BRUSHED gametimestamp of last time she was brushed
-  AMBER_SHIPSEX_TALK 0/undef no talk yet, 1 = had talk
-  AMBER_SHIPSEX_GETFUCKED 0/undef not yet, 1 = had talk
-  AMBER_TALK_STAGE stage of unlocked talk topics 0/undef = Past & Crew, 1 = Family, 2 = Life, 3 = Cure, 4 = Drugs
-  AMBER_CREW_SEX 0/undef = no, 1 = yes
-  AMBER_CURED undef/0 uncured, 1 = cured
-  AMBER_DUMBFUCK Number of doses of dumbfuck given
-  AMBER_DUMBFUCK_LASTGIVEN currently under the influence of dumfuck, 0/undef = n0, 1 = yes
-  AMBER_EQUILICUM Been given equilicum 0/undef = no, 1 = yes
-  DRYAD_FUCKED Times Sexed
-  DRYAD_BLEWHER Times You Sucked Her Dick
-  DRYAD_FACEFUCKED  Times She Sucked Your Dick 
-  DRYAD_CUNHER Times You Licked Her Pussy
-  DRYAD_CUNYOU Times She Licked Your Pussy
-  DRYAD_HERCUNT  Times You Fucked Her Pussy 
-  DRYAD_YOURCUNT  Times She Fucked Your Pussy 
-  DRYAD_ANALED  Times You Fucked Her Ass 
-  DRYAD_ANALEDYOU Times She Fucked Your Ass 
+ flags
+ AMBER_CREWMEMBER 0/undefined = not recruited and not on ship, 1 = recruited and on ship, 2 = recruited but not on ship
+ AMBER_CREWMEMBER_INITIALSCENE undefined = not played, game timestamp = when initial scene happened
+ AMBER_VISIT_HOLD 0/undef = unvisited, 1 = visited her in hold
+ AMBER_RECRUIT_FUCK 0/undefined = not recruited , 1 = you fucked her during recruitment scene, 2 = she fucked you
+ AMBER_LASTCUM gametimestamp of last time she came
+ AMBER_BRUSHED gametimestamp of last time she was brushed
+ AMBER_SHIPSEX_TALK 0/undef no talk yet, 1 = had talk
+ AMBER_SHIPSEX_GETFUCKED 0/undef not yet, 1 = had talk
+ AMBER_TALK_STAGE stage of unlocked talk topics 0/undef = Past & Crew, 1 = Family, 2 = Life, 3 = Cure, 4 = Drugs
+ AMBER_CREW_SEX 0/undef = no, 1 = yes
+ AMBER_CURED undef/0 uncured, 1 = cured
+ AMBER_DUMBFUCK Number of doses of dumbfuck given
+ AMBER_DUMBFUCK_LASTGIVEN currently under the influence of dumfuck, 0/undef = n0, 1 = yes
+ AMBER_EQUILICUM Been given equilicum 0/undef = no, 1 = yes
+ DRYAD_FUCKED Times Sexed
+ DRYAD_BLEWHER Times You Sucked Her Dick
+ DRYAD_FACEFUCKED Times She Sucked Your Dick 
+ DRYAD_CUNHER Times You Licked Her Pussy
+ DRYAD_CUNYOU Times She Licked Your Pussy
+ DRYAD_HERCUNT Times You Fucked Her Pussy 
+ DRYAD_YOURCUNT Times She Fucked Your Pussy 
+ DRYAD_ANALED Times You Fucked Her Ass 
+ DRYAD_ANALEDYOU Times She Fucked Your Ass 
 
 */
 //show bust
 public function amberHeader():void
 {
 	showName("\nAMBER");
-	showBust("DRYAD");
+	showBust(dryadBustDisplay());
 	author("Wsan");
 }
 //show hint text about getting special gear to recruit the dryad, 
 //been to zheng shi and fucked dryad 5+ time
 public function amberEncounterAppend():void
 {
-  if (flags["MET_URBOLG"] != undefined && flags["DRYAD_FUCKED"] != undefined && flags["DRYAD_FUCKED"] >= 5 && !pc.hasKeyItem("Taur-centric Ship Equipment"))
-  {
-	  output("\n\n<b>If you could get some ‘taur-centric equipment from a merchant, you might be able to convince her to board your ship. Maybe Urbolg would know where to get some.</b>");
-  }	
-	
+	if (flags["MET_URBOLG"] != undefined && flags["DRYAD_FUCKED"] != undefined && flags["DRYAD_FUCKED"] >= 5 && !pc.hasKeyItem("Taur-centric Ship Equipment"))
+	{
+		output("\n\n<b>If you could get some ‘taur-centric equipment from a merchant, you might be able to convince her to board your ship. Maybe Urbolg would know where to get some.</b>");
+	}
 }
 //show taur equip button in Urlbolg talk
 public function amberShowTaurEquipButton():Boolean
 {
-  if (!pc.hasKeyItem("Taur-centric Ship Equipment") && amberMetTaur()) return true;
-
-  return false;	
+	if (!pc.hasKeyItem("Taur-centric Ship Equipment") && amberMetTaur()) return true;
+	return false;	
 }
 //taur equip talk
 public function amberUrbolgTaurEquipTalk():void
@@ -286,7 +284,7 @@ public function amberComeWithTalkHug():void
 		if (pc.isMischievous()) output(" uhhh, didn’t go so hot to be honest, but it’s the thought that counts.”</i>");
 		else output(" regrettable how it turned out, though.”</i>");
 	}
-	else output("  they were right on the verge of civil war when I got there.”</i>");
+	else output(" they were right on the verge of civil war when I got there.”</i>");
 	
 	output("\n\n<i>“Wow, you’re an actual space explorer!”</i> she marvels. Her eyes sparkle with wonder, eager to hear more about the universe you’ve travelled. <i>“That’s amazing, uh - I just realized, I don’t know your name! I guess our past um, meetings, haven’t exactly been the kinda environment to get to know each other. Properly, I mean.”</i>");
 	output("\n\n<i>“It </i>is<i> a little crazy that we’ve known each other for so long without ever introducing ourselves,”</i> you agree, looking at her with a smile. <i>“I’m [pc.name]. [pc.name] Steele.”</i>");
@@ -1091,7 +1089,7 @@ public function amberOnshipTalkDrugs():void
 		else output("<i>“Oh?”</i> Amber replies innocently, smiling at you. <i>“Do you have something for me, [pc.name]?”</i>");
 
 		clearMenu();
-		if (pc.hasItemByClass(Dumbfuck, 1)) addButton(0, "Dumbfuck", amberOnshipTalkDumbfuck,undefined,"Dumbfuck","Increase Amber's libido at the cost of some intelligence. Four times only.");
+		if (pc.hasItemByClass(Dumbfuck, 1)) addButton(0, "Dumbfuck", amberOnshipTalkDumbfuck,undefined,"Dumbfuck","Increase Amber’s libido at the cost of some intelligence. Four times only.");
 		else addDisabledButton(0, "Dumbfuck", "Dumbfuck", "If you had some Dumbfuck, you could boost Amber’s libido.");
 		if (flags["AMBER_EQUILICUM"] == undefined)
 		{
@@ -1276,14 +1274,14 @@ public function amberOnshipGiveDumbfuckPill():void
 		output("\n\n<i>“Fill you,”</i> she mumbles, roughly grasping your");
 		if (pc.hasBreasts()) output(" [pc.breasts].");
 		else output(" [pc.hips].");				
-		output("  <i>“I wanna fill you!”</i>");
+		output(" <i>“I wanna fill you!”</i>");
 		
 		output("\n\n<i>“We can do that,”</i> you tell the overexcited deertaur, smiling down at her while she pants red-faced. <i>“We can do anything we want.”</i>");
 		output("\n\nAmber bowls you over in her eagerness and");
 		
 		if (flags["AMBER_RECRUIT_FUCK"] == 1)
 		{
-			output("  has her massive, seed-spewing cock between your lips in a second. Then she’s bouncing her dainty hips and crying out in utter ecstasy, spilling what must surely be a gallon of fresh, thick sperm right down your throat and into your stomach. Still sensitive from her first orgasm, it doesn’t take long for her to cum a second time in a row, shoving herself to the hilt in your face and grunting savagely.");
+			output(" has her massive, seed-spewing cock between your lips in a second. Then she’s bouncing her dainty hips and crying out in utter ecstasy, spilling what must surely be a gallon of fresh, thick sperm right down your throat and into your stomach. Still sensitive from her first orgasm, it doesn’t take long for her to cum a second time in a row, shoving herself to the hilt in your face and grunting savagely.");
 			//blow her, she came, change if applicable
 			amberFuckAHole(3, true, true);			
 		}
@@ -1554,7 +1552,7 @@ public function amberOnshipGiveEquilicumGetFilled(hole:int):void
 	{
 		if (pc.vaginas[hole].looseness() >= 4) output(" snugly slides into");
 		else output(" pushes into the tight confines of");
-		output("  your [pc.vagina " + hole + "]");
+		output(" your [pc.vagina " + hole + "]");
 	}
 	
 	output(" and then she’s grunting, scrabbling atop you while she forces the rest of her length to follow. She’s already cumming but it doesn’t stop, even when she’s got you hilted all the way to her leathery sheath and her massive cock throbbing inside your stretched-out");
@@ -1810,7 +1808,7 @@ public function amberOnshipSex():void
 	if (pc.isTaur()) addButton(1, "Get Fucked", vaginaRouter,[amberOnshipSexGetFucked,ppAmber.cockVolume(0),1,0], "Get Fucked", "Give Amber your rear to mount and rut.");
 	else addButton(1, "Get Fucked", vaginaRouter,[amberOnshipSexGetFucked,ppAmber.cockVolume(0),1,0], "Get Fucked", "Spread your legs to let Amber rut you.");
 	if (pc.hasCock() || pc.hasHardLightEquipped()) addButton(2, "Fuck Pussy", amberOnshipSexFuckPussy, undefined, "Fuck Pussy", "Fuck Amber’s pussy good and hard.");
-	else addDisabledButton(2, "Fuck Pussy", "Fuck Pussy", "You need a cock or a hardlight to fuck Amber's pussy.");
+	else addDisabledButton(2, "Fuck Pussy", "Fuck Pussy", "You need a cock or a hardlight to fuck Amber’s pussy.");
 	
 	addButton(14, "Back", amberInTheHold);
 
@@ -1900,7 +1898,7 @@ public function amberOnshipSexSuckCockKeepSucking():void
 	output("\n\nShe clearly doesn’t mind <i>that</i> much if the leftover cum splashing across your tongue is any indication. Fuck, just having this monstrous tool inside you brings you pleasure and fulfillment… you could suck on it for her all day if she really wanted, but you can’t imagine her being selfish enough. Letting the tip fall from your [pc.lips], you take her half-hard length in your hands and painstakingly lick it clean, stopping only when it’s almost shining with your saliva.");
 	
 	output("\n\n<i>“Mmm,”</i> Amber murmurs appreciatively,");
-	if (pc.hasHair()) output("  running her hand through your hair and");
+	if (pc.hasHair()) output(" running her hand through your hair and");
 	output(" scratching behind your [pc.ears] a bit. <i>“Your taste is showing, [pc.name]. Maybe I should pin your face under me the next time I go into heat, huh?”</i>");
 	
 	output("\n\nShe gives you a wink and a friendly smile. <i>“Kidding. Well, maybe not. I do get uh, pretty wild when it’s bad.”</i>");
@@ -1973,7 +1971,7 @@ public function amberOnshipSexGetFucked(hole:int):void
 	
 	output("\n\n<i>“Ohhooh god, I m-missed this,”</i> Amber pants, fucking you so hard");
 	if (pc.isTaur()) output(" you take an involuntary step forward.");
-	else output("  your [pc.feet] lift from the ground momentarily.");	
+	else output(" your [pc.feet] lift from the ground momentarily.");	
 	
 	//first time only
 	if (flags["AMBER_SHIPSEX_GETFUCKED"] == undefined) 
@@ -2585,8 +2583,8 @@ public function amberOnshipSexFuckPussyAgain():void
 //is crew content on
 public function amberIsCrewContentOn():Boolean
 {
-  if (flags["AMBER_CREW_SEX"] == 1) return true;
-  else return false;
+ if (flags["AMBER_CREW_SEX"] == 1) return true;
+ else return false;
 }
 //increment correct flags and fill the right hole
 public function amberFuckAHole(hole:int,amberCum:Boolean = true, pcChange:Boolean = true):void
@@ -2597,14 +2595,14 @@ public function amberFuckAHole(hole:int,amberCum:Boolean = true, pcChange:Boolea
 	if (amberCum) flags["AMBER_LASTCUM"] = GetGameTimestamp();
 	
 	//-1 your ass, 0 to 2 your vag, 3 her dick your mouth, 4 her ass, 5 her vag, 6 your dick her mouth, 7 her vag your mouth, 8 your vag her mouth
-	if (hole == -1)  //your ass
+	if (hole == -1) //your ass
 	{
 		IncrementFlag("DRYAD_ANALEDYOU");
 		if (pcChange) pc.buttChange(ppAmber.cockVolume(0), true, true, false);
 		pc.loadInAss(ppAmber);
 		pc.orgasm();
 	}
-	else if (hole >= 0 && hole <= 2)  //your vag
+	else if (hole >= 0 && hole <= 2) //your vag
 	{	
 		IncrementFlag("DRYAD_YOURCUNT");
 		if (pcChange) pc.cuntChange(hole, ppAmber.cockVolume(0), true, true, false);
@@ -2617,33 +2615,33 @@ public function amberFuckAHole(hole:int,amberCum:Boolean = true, pcChange:Boolea
 		pc.loadInMouth(ppAmber);
 		if (pc.lust() >= 75 || pc.isBimbo()) pc.orgasm();
 	}
-	else if (hole == 4)  //her ass
+	else if (hole == 4) //her ass
 	{		
 		IncrementFlag("DRYAD_ANALED");
 		if (pcChange) pc.cockChange();
 		ppAmber.loadInAss(pc);
 		pc.orgasm();
 	}
-	else if (hole == 5)  //her vag
+	else if (hole == 5) //her vag
 	{		
 		IncrementFlag("DRYAD_HERCUNT");
 		if (pcChange) pc.cockChange();
 		ppAmber.loadInCunt(pc, 0);
 		pc.orgasm();
 	}
-	else if (hole == 6)  //her mouth
+	else if (hole == 6) //her mouth
 	{
 		IncrementFlag("DRYAD_FACEFUCKED");
 		ppAmber.loadInMouth(pc);
 		pc.orgasm();	
 	}
-	else if (hole == 7)  //her vag your mouth
+	else if (hole == 7) //her vag your mouth
 	{
 		IncrementFlag("DRYAD_CUNHER");
 		pc.girlCumInMouth(ppAmber);	
 		if (pc.lust() >= 75 || pc.isBimbo()) pc.orgasm();
 	}
-	else if (hole == 8)  //her mouth your vag
+	else if (hole == 8) //her mouth your vag
 	{
 		IncrementFlag("DRYAD_CUNYOU");
 		ppAmber.girlCumInMouth(pc);	
@@ -2674,7 +2672,7 @@ public function amberRandomSex(restrict:int = 0, oral:Boolean = true):void
 		if (flags["DRYAD_FACEFUCKED"] != undefined && oral) sel.push(6);
 	}
 	
-	if (flags["DRYAD_ANALEDYOU"] != undefined  && restrict != 1) sel.push(1);
+	if (flags["DRYAD_ANALEDYOU"] != undefined && restrict != 1) sel.push(1);
 	
 	if (pc.hasVagina() && restrict != 1)
 	{
@@ -2742,6 +2740,6 @@ public function amberFuckForHours(orgasms:int, timeBetween:int=60):void
 //war'gii hold content done
 public function amberWargiiHold():Boolean
 {
-  //placeholder logic until the content is in the game
-  return false;
+ //placeholder logic until the content is in the game
+ return false;
 }

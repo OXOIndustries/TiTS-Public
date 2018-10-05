@@ -8,8 +8,12 @@ Maybe more action in repeat encounters. Can't get carried away though...
 public function dryadHeader():void
 {
 	showName("\nDRYAD");
-	showBust("DRYAD");
+	showBust(dryadBustDisplay());
 	author("Wsan");
+}
+public function dryadBustDisplay():String
+{
+	return "DRYAD";
 }
 
 public function dryadIsActive():Boolean
