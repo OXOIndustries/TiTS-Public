@@ -134,11 +134,13 @@ package classes.Items.Transformatives
             }
             
 			// Tongue
-            if (pc.tongueTypeUnlocked(GLOBAL.TYPE_FROSTWYRM) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_PREHENSILE) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_LONG))
+            if (pc.tongueTypeUnlocked(GLOBAL.TYPE_FROSTWYRM))
             {
 				if (pc.tongueType != GLOBAL.TYPE_FROSTWYRM) possibleChanges.push(tongueChange);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) possibleChanges.push(tongueChange);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) possibleChanges.push(tongueChange);
+				else if (!pc.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) possibleChanges.push(tongueChange);
+				else if (!pc.hasTongueFlag(GLOBAL.FLAG_SQUISHY)) possibleChanges.push(tongueChange);
             }
             
 			// Wings
@@ -316,6 +318,8 @@ package classes.Items.Transformatives
 			pc.clearTongueFlags();
 			pc.tongueType = GLOBAL.TYPE_FROSTWYRM;
 			pc.addTongueFlag(GLOBAL.FLAG_PREHENSILE);
+			pc.addTongueFlag(GLOBAL.FLAG_LUBRICATED);
+			pc.addTongueFlag(GLOBAL.FLAG_SQUISHY);
 			pc.addTongueFlag(GLOBAL.FLAG_LONG);
 		}
 	
@@ -326,7 +330,7 @@ package classes.Items.Transformatives
 			output(" Just before you can’t take it anymore, a thick surging feeling replaces the shocks as one, two, three, four [pc.skinColor] tentacles erupt from your back. They’re absolutely enormous, at least as long as you are tall and two inches thick apiece, each ending in a diamond-shaped pad. What’s more, as they sway and lash about you feel something forming inside each one, a tiny channel that goes from the tip of each tentacle to somewhere inside you. Are they <i>cocks</i>?");
 			output("\n\nYou make your way to your feet as your spine recovers, still feeling sore and not quite in the mood to test out your newfound back tentacles... at least, not yet.");
 			
-			pc.wingShift(GLOBAL.TYPE_JANERIA, 4);
+			pc.shiftWings(GLOBAL.TYPE_JANERIA, 4);
 		}
 		
 		private function slitChange(pc:Creature):void
@@ -349,6 +353,10 @@ package classes.Items.Transformatives
 			//Apply TF
 			pc.cocks[cIdx].cType = GLOBAL.TYPE_JANERIA;
 			pc.cocks[cIdx].cockColor = RandomInCollection(luminousColors());
+			pc.cocks[cIdx].clearFlags();
+			pc.cocks[cIdx].addFlag(GLOBAL.FLAG_SMOOTH);
+			pc.cocks[cIdx].addFlag(GLOBAL.FLAG_LUBRICATED);
+			pc.cocks[cIdx].addFlag(GLOBAL.FLAG_PREHENSILE);
 		
 			output(" It looks like a miniature tentacle emerging, uniform " + pc.cocks[cIdx].cockColor + " from base to tip and flexing about as if gifted with a mind of its own. The tip is shaped like a diamond, with your cumslit tucked along the underside so that someone would have to be underneath you to be sure it was a cock at all. You’re pretty sure the janeria didn’t have a tentacle like <i>this</i>, did it?");
 			output("\n\nIt takes you some time to learn how to control <b>your new tentacle dick</b>, but you’re sure the possibilities for how to use it will present themselves soon enough.");

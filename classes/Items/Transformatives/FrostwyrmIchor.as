@@ -124,10 +124,12 @@ package classes.Items.Transformatives
 
 			//PC has non-frostwyrm tongue:
 			//Or is missing one of the flags -LF
-			if (pc.tongueTypeUnlocked(GLOBAL.TYPE_FROSTWYRM) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_PREHENSILE) && pc.tongueFlagsUnlocked(GLOBAL.FLAG_LONG))
+			if (pc.tongueTypeUnlocked(GLOBAL.TYPE_FROSTWYRM))
 			{
 				if (pc.tongueType != GLOBAL.TYPE_FROSTWYRM) possibleChanges.push(longTong);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) possibleChanges.push(longTong);
+				else if (!pc.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) possibleChanges.push(longTong);
+				else if (!pc.hasTongueFlag(GLOBAL.FLAG_SQUISHY)) possibleChanges.push(longTong);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) possibleChanges.push(longTong);
 			}
 
@@ -328,7 +330,7 @@ package classes.Items.Transformatives
 			pc.legCount = 2;
 			pc.clearLegFlags();
 			pc.legType = GLOBAL.TYPE_FROSTWYRM;
-			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
+			pc.addLegFlag(GLOBAL.FLAG_DIGITIGRADE);
 			pc.addLegFlag(GLOBAL.FLAG_SCALED);
 		}
 
@@ -416,7 +418,8 @@ package classes.Items.Transformatives
 			output("\n\nYou feel your body change between your legs; like a sudden weight, followed by the feel of your skin stretching and contorting as it accommodates an entirely new appendage. You curiously run a hand along the area, and you freeze in pleasure, your palm hitting something particularly sensitive. What could only be <b>your new Frostwyrm penis</b> extends and grows beneath your belly, bloating and inflating, until it reaches an envious foot in length; its head is flat, and a number of small nubs line its underside. Whoever you use this battering ram of a cock on will sure to leave quite an impression.");
 			
 			pc.createCock(12);
-			pc.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
+			pc.setNewCockValues(0);
+			pc.cocks[0].cLength((pc.hasPerk("Hung") ? 14 : (pc.hasPerk("Mini") ? 10 : 12)), true);
 		}
 
 		//Grow Balls:
@@ -485,7 +488,7 @@ package classes.Items.Transformatives
 			output(". You dip your fingers at where your taint once was, to find a new, wet, pliable hole that sends pleasurable shivers up your spine whenever you give it a little rub. Just a little bit north from it, you find a little nub of flesh that makes you gasp in delight with each flick. <b>You now have a vagina!</b>");
 			
 			pc.createVagina();
-			pc.shiftVagina(0, GLOBAL.TYPE_FROSTWYRM);
+			pc.setNewVaginaValues(0);
 		}
 		
 		//Change vaginal type and color:
