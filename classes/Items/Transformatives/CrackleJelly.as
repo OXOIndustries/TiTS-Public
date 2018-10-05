@@ -304,7 +304,6 @@ package classes.Items.Transformatives
 			pc.legType = GLOBAL.TYPE_JANERIA;
 			pc.clearLegFlags();
 			pc.addLegFlag(GLOBAL.FLAG_SMOOTH);
-			pc.addLegFlag(GLOBAL.FLAG_TENDRIL);
 			pc.addLegFlag(GLOBAL.FLAG_AMORPHOUS);
 			pc.addLegFlag(GLOBAL.FLAG_PLANTIGRADE);
 			

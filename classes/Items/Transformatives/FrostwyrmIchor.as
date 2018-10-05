@@ -417,9 +417,8 @@ package classes.Items.Transformatives
 			
 			output("\n\nYou feel your body change between your legs; like a sudden weight, followed by the feel of your skin stretching and contorting as it accommodates an entirely new appendage. You curiously run a hand along the area, and you freeze in pleasure, your palm hitting something particularly sensitive. What could only be <b>your new Frostwyrm penis</b> extends and grows beneath your belly, bloating and inflating, until it reaches an envious foot in length; its head is flat, and a number of small nubs line its underside. Whoever you use this battering ram of a cock on will sure to leave quite an impression.");
 			
-			pc.createCock(12);
-			pc.setNewCockValues(0);
-			pc.cocks[0].cLength((pc.hasPerk("Hung") ? 14 : (pc.hasPerk("Mini") ? 10 : 12)), true);
+			pc.createCock((pc.hasPerk("Hung") ? 14 : (pc.hasPerk("Mini") ? 10 : 12)));
+			pc.shiftCock(0, GLOBAL.TYPE_FROSTWYRM);
 		}
 
 		//Grow Balls:
@@ -488,7 +487,7 @@ package classes.Items.Transformatives
 			output(". You dip your fingers at where your taint once was, to find a new, wet, pliable hole that sends pleasurable shivers up your spine whenever you give it a little rub. Just a little bit north from it, you find a little nub of flesh that makes you gasp in delight with each flick. <b>You now have a vagina!</b>");
 			
 			pc.createVagina();
-			pc.setNewVaginaValues(0);
+			pc.shiftVagina(0, GLOBAL.TYPE_FROSTWYRM);
 		}
 		
 		//Change vaginal type and color:
