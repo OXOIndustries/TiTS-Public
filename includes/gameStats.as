@@ -6778,7 +6778,7 @@ public function displayEncounterLog(showID:String = "All"):void
 					case 1: output2(" Unlocked by card"); break;
 					case 2: output2(" Unlocked by hacking"); break;
 					default: output2(" <i>Unknown</i>"); break;
-		}
+				}
 				if(flags["MET_TIVF"] != undefined) output2("\n<b>* Tivf:</b> Met him");
 				variousCount++;
 			}
@@ -6864,7 +6864,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			if(flags["FORGEHOUND_ENCOUNTERED"] != undefined)
+			if(flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1)
 			{
 				output2("\n<b><u>Foundry</u></b>");
 				// Items looted
@@ -6882,6 +6882,14 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FORGEHOUND_FISTED"] != undefined) output2("\n<b>* Forgehound, Times Fisted Him:</b> " + flags["FORGEHOUND_FISTED"]);
 					if(flags["FORGEHOUND_BUKKAKED"] != undefined) output2("\n<b>* Forgehound, Times Ejaculated On Him:</b> " + flags["FORGEHOUND_BUKKAKED"]);
 				}
+				variousCount++;
+			}
+			if(flags["MET_OLYMPIA"] != undefined)
+			{
+				output2("\n<b><u>Research & Development Lab</u></b>");
+				// Olympia
+				output2("\n<b>* Olympia:</b> Met her");
+				if(flags["OLYMPIA_SEXED"] != undefined) output2("\n<b>* Olympia, Times Sexed:</b> " + flags["OLYMPIA_SEXED"]);
 				variousCount++;
 			}
 		}

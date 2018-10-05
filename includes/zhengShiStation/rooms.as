@@ -1939,7 +1939,7 @@ public function initZhengRooms():void
 	rooms["ZSF AB20"].addFlag(GLOBAL.HAZARD);
 
 	rooms["ZSF AD20"] = new RoomClass(this);
-	rooms["ZSF AD20"].roomName = "DR. TEYAAL'S\nOFFICE";
+	rooms["ZSF AD20"].roomName = "DR. TEYAAL’S\nOFFICE";
 	rooms["ZSF AD20"].description = "";
 	rooms["ZSF AD20"].planet = "ZHENG SHI STATION";
 	rooms["ZSF AD20"].system = "SYSTEM: HERISIOD";

@@ -55,7 +55,7 @@ public function researchAndDevLabBonus():Boolean
 	{
 		output("The lab seems dark and deserted now that Olympia is gone. The consoles and holoboards are powered down, and the office door is mag-locked and abandoned. Nothing to see here, looks like.");
 	}
-	output("\n\nA one-way window allows you to look back out onto the foundry floor, and see the massive scaffolding and equipment set up around " + (9999 == 9999 ? "the ship":"where your shiny new pirate ship used to sit") + ". A door on the far side is labeled <i>“Chief Engineer Teyaal.”</i>");
+	output("\n\nA one-way window allows you to look back out onto the foundry floor, and see the massive scaffolding and equipment set up around " + (9999 == 9999 ? "the ship":"where your shiny new pirate ship used to sit") + ". A door on the far side is labeled “Chief Engineer Teyaal.”");
 	return false;
 }
 
@@ -69,7 +69,7 @@ public function meatOlympiasMons(back:Boolean = false):void
 	if(flags["MET_OLYMPIA"] == undefined)
 	{
 		flags["MET_OLYMPIA"] = 1;
-		output("The door says <i>“R&D”</i> on it, which sounds like something that needs looting... or investigating at least. It’s almost surprising when the door actually slides open at your approach, admitting you into a dark room illuminated entirely by holographic boards affixed to three walls, alight with information about the ship outside. " + (!pc.isBimbo() ? "You immediately recognize technical readouts, displaying data on every aspect of the ship from its engines to its electrical distribution. This isn’t just a foreman’s office, but like the door said, this is where this ship was <i>designed</i>. No doubt about it.":"That’s a whole lotta boring words, but at least the pictures of the ship are pretty sexy!"));
+		output("The door says “R&D” on it, which sounds like something that needs looting... or investigating at least. It’s almost surprising when the door actually slides open at your approach, admitting you into a dark room illuminated entirely by holographic boards affixed to three walls, alight with information about the ship outside. " + (!pc.isBimbo() ? "You immediately recognize technical readouts, displaying data on every aspect of the ship from its engines to its electrical distribution. This isn’t just a foreman’s office, but like the door said, this is where this ship was <i>designed</i>. No doubt about it.":"That’s a whole lotta boring words, but at least the pictures of the ship are pretty sexy!"));
 		output("\n\n<i>“Something catch your eye?”</i> a voice says from deeper in the room.");
 		output("\n\nYou whirl around as a woman steps out of the shadows, a tall titan that at first glance seems to be a gryvain, until you notice the distinct lack of wings. Otherwise, though, she’s the spitting image of one: reddish-brown skin and dark green hair spilling down her shoulders in thick curls; frilled ears; and great bone horns growing from her brow and sweeping back across her scalp.");
 		output("\n\nHer amber eyes catch your attention, though, choking off your reply as you realize they’re <i>glowing</i>. They must be artificial... as is the rest of her, you realize; she’s too smooth and flawless to be anything but a synthetic. Despite this, she’s wearing a calf-length white coat over her otherwise bare upper body, only buttoned once just below her quite hefty bust as to leave plenty of dark cleavage and belly bare.");
@@ -108,7 +108,7 @@ public function meatOlympiasMons(back:Boolean = false):void
 		if(flags["OLYMPIA_SEXBOT_TALK"] != undefined)
 		{
 			if(pc.lust() >= 33) addButton(1,"Sex",olympiaSexWheee);
-			else addDisabledButton(1,"Sex","Sex","You aren't in the mood for that.");
+			else addDisabledButton(1,"Sex","Sex","You aren’t in the mood for that.");
 		}
 		else addDisabledButton(1,"Locked","Locked","Maybe talk to her a bit more first?");
 		addButton(2,"Appearance",olympiaAppearance);
@@ -149,7 +149,7 @@ public function talkToOlympia():void
 	//[Sexbot?] [The Ship] [Her Clothes]
 	clearMenu();
 	addButton(0,"Sexbot?",askOlympiaWhyShesASexbot,undefined,"Sexbot?","Olympia sure looks like a sexbot. What’s with the science stuff?");
-	addButton(1,"The Ship",olympiaTheShipTalk,undefined,"The Ship","See if Olympia will tell you more about this ship she's so fixated on.");
+	addButton(1,"The Ship",olympiaTheShipTalk,undefined,"The Ship","See if Olympia will tell you more about this ship she’s so fixated on.");
 	addButton(2,"Her Clothes",talkAboutSexbotClothes,undefined,"Her Clothes","What’s up with that getup anyway?");
 	addButton(14,"Back",meatOlympiasMons,true);
 }
@@ -277,9 +277,10 @@ public function olympiaSexMenu():void
 	//[Dick Fuck] [Tail Ride]
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(olympiaCreatureStats().cockVolume(0)) >= 0) addButton(0,"Dick Fuck",penisRouter,[buttfuckTheSexyRobo,olympiaCreatureStats().cockVolume(0)],"Dick Fuck","");
-		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You can't fit inside her, you fucking stallion, you!");
+		if(pc.cockThatFits(olympiaCreatureStats().cockVolume(0)) >= 0) addButton(0,"Dick Fuck",penisRouter,[buttfuckTheSexyRobo,olympiaCreatureStats().cockVolume(0),false],"Dick Fuck","Slide your dick into Olympia’s tailpipe and give her the business while you help her with some engine problems.");
+		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You can’t fit inside her, you fucking stallion, you!");
 	}
+	else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that fits inside her to do this!");
 	addButton(1,"Tail Ride",vaginaRouter,[tailRideOlympia,300,1,0],"Tail Ride","Let Olympia probe you with that sinuous dragon’s tail of hers.");
 }
 
@@ -301,7 +302,7 @@ public function buttfuckTheSexyRobo(x:int):void
 	output("\n\nSlowly, the sexbot starts leaning forward, drawing your dick back out so she can take it again. <i>“Ahhh, now it’s the heat sinks I’ve really be struggling with... how to vent all that plasma out of the engines.”</i> Olympia’s hips start rocking back and forth, teasing the bottom few inches of your cock while you’re busy suggesting new ways to deal with the engines’ heat output.");
 	output("\n\nThe longer it takes you, the hotter Olympia’s ass seems to get. It’s definitely not friction - sliding into this sexbot’s ass is as easy as an onahole, like it’s secreting its own lube all around you... but the temperature’s still picking up, bathing you in soothing warmth. No way she’s not doing that on purpose... and damn if it doesn’t feel good.");
 	output("\n\nYou take the initiative again, hilting yourself in Olympia’s ass while you manipulate the holoboard, explaining a solution to her current quandary to the beat of your thrusting hips. She makes noises somewhere between <i>“uh-huhs”</i> and sensual moans, following your hand with her eyes as you edit her diagrams. Her ass squeezes you harder and hotter, milking you with as much skill as a high-class courtesan’s hand.");
-	output("\n\nYou’re going to end up cumming soon at this rate. Before that happens, you need to make sure you’ve been a good <i>“ass-istant”</i> to the gynoid, or this will end up being the last time you get to sample her forbidden fruits. The hand you’ve been resting on Olympia’s hip slips down around her thigh, pressing two fingers into the sultry embrace of her lower lips. Her body welcomes you in, sucking you in and bathing your digits in sweet, steamy lubricants. It only takes a second to get coated to your satisfaction, prompting you to switch which pair of fingers are inside her, getting your whole hand soaked up before abandoning Olympia’s twat and focusing on a much easier reach-around.");
+	output("\n\nYou’re going to end up cumming soon at this rate. Before that happens, you need to make sure you’ve been a good “ass-istant” to the gynoid, or this will end up being the last time you get to sample her forbidden fruits. The hand you’ve been resting on Olympia’s hip slips down around her thigh, pressing two fingers into the sultry embrace of her lower lips. Her body welcomes you in, sucking you in and bathing your digits in sweet, steamy lubricants. It only takes a second to get coated to your satisfaction, prompting you to switch which pair of fingers are inside her, getting your whole hand soaked up before abandoning Olympia’s twat and focusing on a much easier reach-around.");
 	output("\n\n<i>“Ah! S-speaking of fuel rods,”</i> the science sexbot purrs, biting her lip as your hand wraps around her draconic knob. You start to stroke it slowly, squeezing the plump base before gliding down to the tapered tip, all the while still thumping your hips up against her cushiony ass. <i>“There’s always the problem... of plasma... venting... un-unexpectedly...”</i>");
 	output("\n\n<i>“Unexpectedly what?”</i> you murmur in her frilled ear, pumping her hand a little faster. Her ass clenches down hard around you, and you can feel a rush of her pussy-juice slithering down your thigh.");
 	output("\n\nOlympia squirms, flesh hot and curve jiggling as you slap her ass over and over. She tries to keep working on the problem at hand, to keep some measure of decorum... but your skillful sodomy is quickly wearing even the business-focused sex-bot down. A few more seconds and she finally breathes out a husky, <i>“Unexpectedly c-cum... all over my-myself!”</i>");
@@ -336,7 +337,7 @@ public function tailRideOlympia(x:int):void
 	output("\n\nYou pull your gear out of the way and wrap a hand around the gynoid’s tail. <i>“There are many possible additions I’ve been considering,”</i> Olympia says, running a hand across a diagnostic overview of the ship. As she does so, though, her sinuous tail slips down your though and wraps around the handle of a drawer in the holotable. She opens it, revealing a rather sizable collection of synthetic dicks, all with a ribbed base that looks like it would fit right into the slit on Olympia’s tail. You select one, a rather meaty looking knotted cock, and plant it right in the opening of the gynoid’s tail. The base screws in with a couple of twists, accompanied by a lewd gasp and a throb from the newly-installed dick.");
 	output("\n\n<i>“How about this?”</i> you offer, wrapping your fingers around her cock and leaning against her back, manipulating the holoboard to bring up a new set of materials.");
 	output("\n\n<i>“Interesting choice,”</i> Olympia says. <i>“I’ve had good experiences with it before. Shall we run a simulation?”</i>");
-	output("\n\nYou nod, nuzzling into the gynoid’s shoulder and letting your hands play down to her hips. You’re very much so looking forward to this <i>“simulation,”</i> and let her know with a series of squeezes and gropes that leave her breathing hard in your arms. She manages to bring up a program on the holotable, showing what the <i>Sidewinder</i> would look like plated up with your suggested material, and then running it into a simulated asteroid field to overtake a cargo ship.");
+	output("\n\nYou nod, nuzzling into the gynoid’s shoulder and letting your hands play down to her hips. You’re very much so looking forward to this “simulation,” and let her know with a series of squeezes and gropes that leave her breathing hard in your arms. She manages to bring up a program on the holotable, showing what the <i>Sidewinder</i> would look like plated up with your suggested material, and then running it into a simulated asteroid field to overtake a cargo ship.");
 	output("\n\nAs soon as the sensor probes begin, so too does Olympia’s tail. She unwinds it from around your waist and presses the slender tip against your [pc.vagOrAss], rubbing your entrance with it until your " + (pc.legCount > 1 ? "[pc.legs] are":"[pc.leg] is") + " trembling with anticipation. Something warm and wet leaks out of it, smearing across your [pc.skin]. A faintly musky smell starts filling the room, making your heart pound with desire until you just can’t take it anymore: you reach down and grab Olympia’s tail, pushing it in.");
 	output("\n\n<i>“Ah! F-first contact, right there,”</i> she moans, indicating the hologram. The simulated <i>Sidewinder</i> has just entered the sensor range of its intended target... and Olympia has just entered <b>you</b>. Fuck, that synthcock of hers is rigid, hard as diamonds and slicked with its own lube. It feels more like she’s sliding a glass dildo into you than anything fleshy.");
 
@@ -373,7 +374,7 @@ public function tailRideOlympia(x:int):void
 //Chief Engineer Teyaal
 //Triggers when the player first enters Teyaal’s office.
 
-output("\n\nYou step up to the door labeled <i>“Chief Engineer Teyaal,”</i> reaching for the handle.");
+output("\n\nYou step up to the door labeled “Chief Engineer Teyaal,” reaching for the handle.");
 
 output("\n\n<i>“Careful,”</i> Olympia says from behind you. <i>“My owner isn’t fond of unexpected guests. Especially when we’re so close to our deadline... I don’t know how she’ll react.”</i>");
 
@@ -630,7 +631,7 @@ output("\n\nYour rapid thrusts quickly build to their inevitable conclusion. You
 
 output("\n\n<i>“You beast!”</i> Teyaal growls, digging her claws into you back while you cum. <i>“I won’t forget this. I’ll track you down and-”</i>");
 
-output("\n\nWith a roll of your eyes, you shut her up the same way as before: you pull your cock out and stuff it right back in her mouth. She’s forced into cleaning the orgasmic juices off you inch by inch until you {strapon: deactivate your hardlight dong, leaving her lush blue lips in a slutty <i>“O”</i> //else: pull out and dry yourself off on her cheeks}.");
+output("\n\nWith a roll of your eyes, you shut her up the same way as before: you pull your cock out and stuff it right back in her mouth. She’s forced into cleaning the orgasmic juices off you inch by inch until you {strapon: deactivate your hardlight dong, leaving her lush blue lips in a slutty “O” //else: pull out and dry yourself off on her cheeks}.");
 
 output("\n\nYou leave the doctor sprawled out and leaking, grumbling about her vengeance. Maybe this will give her pause next time she thinks about taking sex slaves. Then again... probably not.");
 

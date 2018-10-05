@@ -542,7 +542,7 @@ public function getExamanitedByVi():void
 		}
 	}
 	
-	if(sstds > 0 || parasites > 0)
+	if(buttons.length > 0)
 	{
 		clearMenu();
 		

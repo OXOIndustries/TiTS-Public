@@ -1753,7 +1753,7 @@ package classes.GameData
 			
 			if (CombatManager.multipleEnemies())
 			{
-				output(" The flames surge, licking at your targets compatriots!");
+				output(" The flames surge, licking at your target’s compatriots!");
 			}
 			
 			var targetDamage:int = Math.round(20 + attacker.level * 4 + attacker.bimboIntelligence());
@@ -1771,13 +1771,13 @@ package classes.GameData
 			{
 				if (hGroup[i] != target && !hGroup[i].isDefeated())
 				{
-					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+					totalDamage.addResult(applyDamage(damageRand((hGroup[i].isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
 				}
 			}
 			
 			outputDamage(totalDamage);
 
-			if(!target.hasStatusEffect("Burning"))
+			if(attacker.hasPerk("Boosted Charges") && !target.hasStatusEffect("Burning") && rand(3) != 0)
 			{
 				applyBurning(target, 2);
 				if (target is PlayerCharacter) output("\n<b>You are on fire!</b>");
@@ -1820,9 +1820,9 @@ package classes.GameData
 			
 			for (var i:int = 0; i < hGroup.length; i++)
 			{
-				if (hGroup[i] != target)
+				if (hGroup[i] != target && !hGroup[i].isDefeated())
 				{
-					totalDamage.addResult(applyDamage(damageRand((target.isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
+					totalDamage.addResult(applyDamage(damageRand((hGroup[i].isPlural == true ? pluralDamage : baseDamage), 15), attacker, hGroup[i], "suppress"));
 				}
 			}
 			

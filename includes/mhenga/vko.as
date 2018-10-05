@@ -226,7 +226,7 @@ public function getDiseaseProbedYo():void
 	
 	processTime(10+rand(3));
 	
-	if(buttons.length == 0)
+	if(buttons.length <= 0)
 	{
 		approachVKo(false);
 	}

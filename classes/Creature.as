@@ -18164,14 +18164,11 @@
 			// Only run the knockup shit if the creature actually gets saved
 			if (neverSerialize == false && cumFrom != null)
 			{
-				if(cumflationEnabled()) 
+				cumflationHappens(cumFrom,vagIndex);
+				if(this is Emmy) 
 				{
-					cumflationHappens(cumFrom,vagIndex);
-					if(this is Emmy) 
-					{
-						if(hasStatusEffect("Drain Cooldown")) setStatusMinutes("Drain Cooldown",250);
-						else createStatusEffect("Drain Cooldown",0,0,0,0,false,"PlaceholderIcon","Description",false,250);
-					}
+					createStatusEffect("Drain Cooldown");
+					setStatusMinutes("Drain Cooldown",250);
 				}
 				return tryKnockUp(cumFrom, vagIndex);
 			}
@@ -18186,7 +18183,7 @@
 			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"ass");
 			if (neverSerialize == false && cumFrom != null)
 			{
-				if(cumflationEnabled()) cumflationHappens(cumFrom,3);
+				cumflationHappens(cumFrom,3);
 				return tryKnockUp(cumFrom, 3);
 			}
 			else
@@ -18208,7 +18205,7 @@
 		public function loadInMouth(cumFrom:Creature = null):Boolean
 		{
 			if (cumFrom is PlayerCharacter) sstdChecks(cumFrom,"mouth");
-			if (cumFrom != null && cumflationEnabled()) cumflationHappens(cumFrom,4);
+			if (cumFrom != null) cumflationHappens(cumFrom,4);
 			return false;
 		}
 		public function loadInNipples(cumFrom:Creature = null):Boolean
@@ -18246,6 +18243,13 @@
 			{
 				fluidType = cumFrom.cumType;
 				fluidVolume = cumFrom.cumQ();
+			}
+			
+			// Goo fluid absorb
+			if(!cumflationEnabled())
+			{
+				if(hairType == GLOBAL.HAIR_TYPE_GOO && fluidVolume > 0) addBiomass(fluidVolume);
+				return;
 			}
 			
 			var effectDesc:String = ("You’ve got some fluids inside you" + ((cumFrom is PlayerCharacter) ? "" : ", leftovers from a recent lover") + ".");
