@@ -1275,7 +1275,7 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Horse:</b> " + prettifyGeneticMarker(pc.horseScore(), 5, 8));
 		if(flags["LIRIEL_MET"] != undefined && pc.hradScore() > 0)
 			output2("\n<b>* Hrad:</b> " + prettifyGeneticMarker(pc.hradScore(), 4, 8));
-		if(false && janeriaScore() > 0)
+		if(false && pc.janeriaScore() > 0)
 			output2("\n<b>* Janeria:</b> " + prettifyGeneticMarker(pc.janeriaScore(), 6, 10));
 		if(pc.laquineScore() > 0)
 			output2("\n<b>* Laquine:</b> " + prettifyGeneticMarker(pc.laquineScore(), 5, 6));
