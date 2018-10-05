@@ -4,6 +4,7 @@ package classes.Characters
 	import classes.GLOBAL;
 	import classes.Items.Apparel.BullsJockstrap;
 	import classes.Items.Apparel.Undershirt;
+	import classes.Items.Miscellaneous.AssSlapPatch;
 	import classes.Items.Transformatives.Equilicum;
 	import classes.Items.Transformatives.SaltyJawBreaker;
 	import classes.Items.Transformatives.SweetSweat;
@@ -33,6 +34,7 @@ package classes.Characters
 			this.lowerUndergarment = new BullsJockstrap();
 			
 			//Modshop Iventory
+			this.inventory.push(new AssSlapPatch());
 			this.inventory.push(new Equilicum());
 			this.inventory.push(new SweetSweat());
 			this.inventory.push(new SaltyJawBreaker());

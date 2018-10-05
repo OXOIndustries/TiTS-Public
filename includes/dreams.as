@@ -1387,7 +1387,7 @@ public function capraphormPrimorditattsGain():void
 public function frostwyrmWetDream():void
 {
 	clearOutput();
-	showBust("");
+	showBust("FROSTWYRM");
 	showName("\nDRAGONS");
 	author("B");
 	

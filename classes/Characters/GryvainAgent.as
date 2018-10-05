@@ -70,7 +70,7 @@
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
-			this.femininity = 5;
+			this.femininity = 80;
 			this.eyeType = GLOBAL.TYPE_GRYVAIN;
 			this.eyeColor = "yellow";
 			this.tallness = 74;

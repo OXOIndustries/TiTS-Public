@@ -266,8 +266,13 @@ package classes.Characters
 				
 				if (damageResult.hpDamage > 0)
 				{
-					output(" You take a moment to shake the stars from your vision, your rapid introduction to the floor suprisingly painful considering the circumstances.");
-					CombatAttacks.applyTrip(target);
+					output(" You take a moment to shake the stars from your vision");
+					if(!target.isPlanted())
+					{
+						output(", your rapid introduction to the floor suprisingly painful considering the circumstances");
+						CombatAttacks.applyTrip(target);
+					}
+					output(".");
 				}
 				
 				outputDamage(damageResult);

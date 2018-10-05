@@ -64,6 +64,8 @@
 	import classes.Items.Miscellaneous.*
 	import classes.Items.Accessories.*
 	import classes.Items.Transformatives.*;
+	//Change SilkyCockBell to * when it's time -lighterfluid
+	import classes.Items.Piercings.SilkyCockBell;
 
 	import classes.Parser.ParseEngine;
 
@@ -137,6 +139,7 @@
 		include "../includes/holidayEvents/succucow.as";
 
 		//Followers
+		include "../includes/follower/amber.as";
 		include "../includes/follower/anno.as";
 		include "../includes/follower/azra.as";
 		include "../includes/follower/azraExpeditions.as";
@@ -152,6 +155,7 @@
 		include "../includes/follower/paigeSex.as";
 		include "../includes/follower/paigeSpar.as";
 		include "../includes/follower/pippa.as";
+		include "../includes/follower/ramis.as";
 		include "../includes/follower/shekka.as";
 		include "../includes/follower/siegwulfe.as";
 		include "../includes/follower/yammi.as";
@@ -299,6 +303,7 @@
 		include "../includes/tarkus/anno.as";
 		include "../includes/tarkus/aurora.as";
 		include "../includes/tarkus/bess.as";
+		include "../includes/tarkus/buttBugs.as";
 		include "../includes/tarkus/chaurmine.as";
 		include "../includes/tarkus/cockBox.as";
 		include "../includes/tarkus/colenso.as";
@@ -412,12 +417,15 @@
 		include "../includes/zhengShiStation/boredJumperGangbangs.as";
 		include "../includes/zhengShiStation/forgehound.as";
 		include "../includes/zhengShiStation/maike.as";
+		include "../includes/zhengShiStation/olympia.as";
+		include "../includes/zhengShiStation/punkSecOp.as";
 		include "../includes/zhengShiStation/rooms.as";
 		include "../includes/zhengShiStation/roomFunctions.as";
 		include "../includes/zhengShiStation/rozPowerGoo.as";
 		include "../includes/zhengShiStation/slyverenSlavebreaker.as";
 		include "../includes/zhengShiStation/spacewalk.as";
 		include "../includes/zhengShiStation/tivf.as";
+		include "../includes/zhengShiStation/teyaalTheEngineer.as";
 		include "../includes/zhengShiStation/urbolg.as";
 		
 		// Breedwell
@@ -592,7 +600,7 @@
 
 			trace("TiTS Constructor")
 
-			version = "0.7.212";
+			version = "0.7.218";
 
 			//temporary nonsense variables.
 			temp = 0;

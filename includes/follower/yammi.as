@@ -507,7 +507,7 @@ public function pexigaVisit():void
 {
 	clearOutput();
 	showName("\nA PEXIGA");
-	showBust("PEXIGA");
+	showBust(pexigaBustDisplay());
 	author("Lady Jenn");
 
 	output("You tell Yammi to keep on cooking; you’re just going to wander around the kitchen. She flashes you a bright smile and goes back to the dish she’s working on at the moment, and once she’s nice and distracted, you make your way into the pantry she keeps the pexiga in.");
@@ -530,7 +530,7 @@ public function milkSalivaFromPexiga():void
 {
 	clearOutput();
 	showName("\nA PEXIGA");
-	showBust("PEXIGA");
+	showBust(pexigaBustDisplay());
 	author("Lady Jenn");
 	
 	IncrementFlag("PEX_MILKED");
@@ -555,7 +555,7 @@ public function petPexiga():void
 {
 	clearOutput();
 	showName("\nA PEXIGA");
-	showBust("PEXIGA");
+	showBust(pexigaBustDisplay());
 	author("Lady Jenn");
 	
 	output("Feeling sorry for the lethargic reptilian beauty, you draw close and run your fingers through her spiny hair. The pexiga murmurs around her ring-gag, swishing her tail across the deck as you massage her scaly scalp. The big piercing on her tongue swishes ever so slightly, and her somewhat vacant expression shifts to something like a smile, and her eyes follow you as you move. With no food on offer, and without your hand working to milk her for her sweet saliva, she seems somewhat more attentive than usual. If only just.");

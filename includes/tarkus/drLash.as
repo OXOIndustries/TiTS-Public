@@ -360,11 +360,19 @@ public function lashTreatment(treatment:String):void
 
 public function hasParasites(pType:String = "all"):Boolean
 {
-	if(pType == "tail" || pType == "all")
+	if(pType == "buttbug" || pType == "all")
 	{
-		if (pc.hasParasiteTail()) return true;
+		if (pc.hasStatusEffect("Butt Bug (Female)")) return true;
 	}
-	if(pType == "mimbranes" || pType == "all")
+	if(pType == "cockvine" || pType == "tail" || pType == "all")
+	{
+		if (pc.hasTailCock() && pc.hasParasiteTail()) return true;
+	}
+	if(pType == "cuntsnake" || pType == "tail" || pType == "all")
+	{
+		if (pc.hasParasiteTail() && pc.hasTailCunt()) return true;
+	}
+	if(pType == "mimbrane" || pType == "all")
 	{
 		if (attachedMimbranes() > 0) return true;
 	}
@@ -374,17 +382,28 @@ public function purgeParasites(pType:String = "all"):Boolean
 {
 	var parasites:Boolean = false;
 	
-	if(pType == "tail" || pType == "all")
+	if(pType == "buttbug" || pType == "all")
 	{
-		if (pc.hasParasiteTail())
+		if(pc.hasStatusEffect("Butt Bug (Female)"))
 		{
+			removeButtBug();
+			parasites = true;
+		}
+	}
+	if(pType == "cockvine" || pType == "cuntsnake" || pType == "tail" || pType == "all")
+	{
+		if(	pType == "all"
+		||	(pType == "cockvine" && pc.hasTailCock() && pc.hasParasiteTail())
+		||	(pType == "cunt snake" && pc.hasParasiteTail() && pc.hasTailCunt())
+		||	(pType == "tail" && pc.hasParasiteTail())
+		) {
 			pc.removeTails();
 			parasites = true;
 		}
 	}
-	if(pType == "mimbranes" || pType == "all")
+	if(pType == "mimbrane" || pType == "all")
 	{
-		if (attachedMimbranes() > 0)
+		if(attachedMimbranes() > 0)
 		{
 			removeMimbranes();
 			parasites = true;
@@ -432,7 +451,7 @@ public function lashTreatment2(treatment:String):void
 		}
 		if(pc.hasPerk("Mega Milk"))
 		{
-			output("\n\n</b>(<b>Perk Lost: Mega Milk</b> - You will always be able to produce milk as if you were at least 40% full, even if your breasts are empty.)<b>");
+			output("\n\n</b>(<b>Perk Lost: Mega Milk</b>)<b>");
 			pc.removePerk("Mega Milk");
 		}
 	}
@@ -619,7 +638,7 @@ public function askDocLashAboutTheUGC():void
 	output("\n\nYou quirk an eyebrow at him.");
 	output("\n\nDoctor Lash waves dismissively. <i>“You release one genitalia-eradicating virus into a planet’s stratosphere, and somehow you become a wanted criminal. It’s not my fault they didn’t have microsurgeon-boosted immune systems, or that they weren’t up to date enough to handle my specially-engineered bypasses. Honestly, I merely provided them with the motivation to pursue a more erudite method of procreation. How was I to know that the cessation of sex tourism would put their economy into the tank?”</i>");
 	output("\n\n<i>“You...”</i> You gulp audibly. <i>“...sterilized an entire planet?”</i>");
-	output("\n\n<i>“Don’t be silly, [pc.name]. That would terribly evil. I only sterilized the planet’s dominant sapient life form. Everything else could be handled after their culture caught up to their bodies, assuming the UGC hadn’t sent their peacekeeper dogs after me.”</i> Doctor Lash’s body quivers like a guitar string pulled too tight. <i>“The ausar bitches couldn’t see the beauty in what I was doing, so I had to run here, away from galactic law enforcement. It’ll take me the better part of a terran century to replicate the research I lost, but it’ll be worth it. You’ll see. You’ll all see!”</i>");
+	output("\n\n<i>“Don’t be silly, [pc.name]. That would terribly evil. I only sterilized the planet’s dominant sapient life form. Everything else could be handled after their culture caught up to their bodies, assuming the UGC hadn’t sent their Peacekeeper dogs after me.”</i> Doctor Lash’s body quivers like a guitar string pulled too tight. <i>“The ausar bitches couldn’t see the beauty in what I was doing, so I had to run here, away from galactic law enforcement. It’ll take me the better part of a terran century to replicate the research I lost, but it’ll be worth it. You’ll see. You’ll all see!”</i>");
 	output("\n\nIf he has eyes under those goggles, they must be shining with a fanatical gleam. Maybe it’d be better to talk about something else.");
 	processTime(6);
 	clearMenu();

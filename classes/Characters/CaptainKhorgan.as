@@ -261,7 +261,7 @@
 		{
 			output("You parry a few sword-strokes, but find yourself pushed back by the captain’s unrelenting flurry of blows. Suddenly, one of her swings turns into a high feint, unbalancing you as she spins into a kick aimed right at your [pc.chest].");
 			//If Miss: 
-			if(combatMiss(this, target)) output("\n\nYou grab the captain’s foot a hand’s breadth from your chest, stopping her in her tracks. Her face contorts in surprise before you fling her back, leaving her rolling in the dust -- and giving you a moment to breathe.");
+			if(combatMiss(this, target) || target.isPlanted()) output("\n\nYou grab the captain’s foot a hand’s breadth from your chest, stopping her in her tracks. Her face contorts in surprise before you fling her back, leaving her rolling in the dust -- and giving you a moment to breathe.");
 			//If Hit:
 			else
 			{

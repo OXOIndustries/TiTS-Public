@@ -2289,10 +2289,10 @@ public function seraSexXXXTitfuckLuckyDip(arg:Array):void
 		output(" – with an expression of profound contentment.");
 		
 		processTime(15);
-		pc.orgasm();
 		pc.loadInMouth(chars["SERA"]);
 		if(vagIndex >= 0) pc.loadInCunt(chars["SERA"], vagIndex);
 		else pc.loadInAss(chars["SERA"]);
+		pc.orgasm();
 		sera.orgasm();
 		clearMenu();
 		if(TFItem == "Semen’s Friend") addButton(0, "Semen’s?", seraSexXXXTitfuckLuckyDip, [TFItem, vagIndex, cockIndex], TFItem + "?", "Ask your mistress for some " + TFItem + ".");

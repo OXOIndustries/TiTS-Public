@@ -175,6 +175,7 @@
 			
 			this.createPerk("Multiple Attacks",1,0,0,0,"");
 			this.createStatusEffect("Disarm Immune");
+			this.createPerk("Appearance Enabled");
 
 			this.inventory.push(new NaleenNip());
 			

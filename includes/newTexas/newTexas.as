@@ -1865,11 +1865,8 @@ public function carrieBlowjobsGo():void
 	var y:int = pc.biggestCockIndex2();
 	var cumQ:Number = pc.cumQ();
 	var doubleDickEnough:Boolean = false;
-	if(pc.cockTotal() > 1)
-	{
-		if(pc.cocks[y].cLength() >= 12) doubleDickEnough = true;
-	}
-	if(pc.cockTotal() <= 1) y = -1;
+	if(pc.cockTotal() > 1 && y >= 0 && pc.cocks[y].cLength() >= 12) doubleDickEnough = true;
+	
 	//First
 	if(flags["CARRIE_BLOWJOBBED"] == undefined)
 	{

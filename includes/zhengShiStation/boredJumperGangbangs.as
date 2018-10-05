@@ -351,10 +351,7 @@ public function dontLetHerOrgy():void
 	output(" The taste of squeezed feminine love and <i>very</i> sweet cum trickles on your tongue. The saeri jerks himself idly, the bunny bitch beneath you having lost herself to the excesses of getting mercilessly double-stuffed. He sheepishly asks for you. However, before you can answer him, you gasp hot air as the redhead’s first orgasm washes over her and you. Sweet tasting honey, indicating some rather <i>delicious</i> mod work, drizzles into your mouth and pools on the flat of your taster. You swish your [pc.tongue] all around her velvety folds, lapping up every drop of ambrosial ooze with unfaltering accuracy.");
 	output("\n\n<i>“W-would you?”</i> The shimmering black-haired boy looks into your eyes, pleading his desire with fluttering wings. Taking another breath of sultry fog, you almost giggle at the rocking rabbit’s delirious moans as she’s fucked from silly to stupid, molding to the curves of a libidinous riptide" + (silly ? " - she’s the boat, and you’re the sail. It’s time to chart a new course!":"."));
 	output("\n\nLifting yourself up, you flip around and plant your crotch directly on the slut-bun’s fuzzy face. Your [pc.asshole] brushes up against the saeri’s cock" + (pc.buttRating() <= 11 ? ", just about engulfing him in copious amounts of [pc.ass]":", swallowing his dick up in between the cheeks of your [pc.ass]") + ". His hands are already on your butt, rubbing and caressing you with great praise as you rock your hips back and forth, hotdogging him in your expanse of ass. The pounding heartbeat in his rod grows stronger with every jolting rub to his glans; his dark, peach-sized balls rub over the rabbit’s nose");
-	if(pc.hasVagina()) 
-	{
-		output(" and against your " + (pc.balls > 0 ? "[pc.balls] and ":"") + "[pc.pussy]");
-	}
+	if(pc.hasVagina()) output(" and against your " + (pc.balls > 0 ? "[pc.balls] and ":"") + "[pc.pussy]");
 	output(".");
 
 	output("\n\nYou have full view of the gryvain pounding her laquine cocksleeve with hyperventilating pants. It’s a treat just to watch her big, perspiring tits jiggle this way and that, but the real prize is being face-to-face with the laquine’s [enemy.cock]. Her prodigious [enemy.cockType] pole is colored white with jumper’s jism and still lubricates itself like a faulty hydrant. On the next hard thrust, you’re bopped on the nose by her [enemy.cockHead], a smattering of her musky flavor filling your pheromonally strangled mind with longing desire. You half-whine, sucking at the tip and wondering why you aren’t deepthroating it yet.");
@@ -372,8 +369,8 @@ public function dontLetHerOrgy():void
 	clearMenu();
 	addButton(0,"Inside",slaveOrgyCumInside,undefined,"Inside","Get the jumper to bloat this girl!");
 	addButton(1,"Outside",slaveOrgyCumOutside,undefined,"Outside","Let the jumper cum outside, all over everyone!");
-	if(pc.hasVagina()) addButton(2,"SaeriPen",vaginaRouter,[saeriPenGangbang,50,0,0],"SaeriPen","Get the saeri boy to fuck you while the jumper licks for dear life!");
-	addDisabledButton(2,"SaeriPen","SaeriPen","This requires a vagina.");
+	if(pc.hasVagina()) addButton(2,"SaeriPen",vaginaRouter,[saeriPenGangbang,50,0,0],"Saeri Pen Gangbang","Get the saeri boy to fuck you while the jumper licks for dear life!");
+	else addDisabledButton(2,"SaeriPen","Saeri Pen Gangbang","This requires a vagina.");
 }
 
 //[Inside]

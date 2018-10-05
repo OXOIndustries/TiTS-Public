@@ -231,7 +231,7 @@
 			output((numSpear >= 1 ? "One of the spear-wielders" : "The spear-wielder") + " circles around you");
 			if(numSpear + numBow > 1) output(", waiting for one of the others to distract you");
 			output(", and then hooks his weapon into your [pc.legs] before twisting fiercely, aiming to topple you into the sand.");
-			if(physique()/2 + rand(20) + 1 <= target.physique()/2 + 10) output(" You manage to wrench yourself out of his grip.");
+			if((physique()/2 + rand(20) + 1 <= target.physique()/2 + 10) || target.isPlanted()) output(" You manage to wrench yourself out of his grip.");
 			else
 			{
 				output(" You can’t stop yourself being pulled down in turn!");

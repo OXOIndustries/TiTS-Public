@@ -309,7 +309,7 @@ package classes.Characters
 		{
 			output("Shrieking with rage, several of the myr lunge at you in a surge of hardened bodies. ");
 			
-			if(target.reflexes()/2 + rand(20) + 1 < this.reflexes()/2 + 13)
+			if((target.reflexes()/2 + rand(20) + 1 < this.reflexes()/2 + 13) && !target.isPlanted())
 			{
 				output("They leap on you, grabbing your arms and [pc.legs] and barreling you to the ground. You’re trapped beneath a writhing pile of bodies, all struggling to keep you from getting up while their sisters ready for another attack! <b>You’re prone!</b>");
 				

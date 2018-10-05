@@ -230,7 +230,9 @@
 		public static const TYPE_ADREMMALEX:int 							= 80;
 		public static const TYPE_MOTHRINE:int 								= 81;
 		public static const TYPE_FROSTWYRM:int 								= 82;
-		public static const TYPE_JANERIA:int								= 83;
+		public static const TYPE_SANDWORM:int 								= 83;
+		public static const TYPE_SANDWORM_PARASITE:int 						= 84;
+		public static const TYPE_JANERIA:int								= 85;
 		
 		public static const TYPE_NAMES:Array = [
 			"Human",
@@ -316,6 +318,8 @@
 			"Adremmalex",
 			"Mothrine",
 			"Frostwyrm",
+			"Sand Worm",
+			"Butt Bug",
 			"Janeria",
 		];
 		
@@ -1165,6 +1169,7 @@
 		public static const ITEM_FLAG_PIERCING_RING:int 				= 30; //Piercings of the "ring" type.
 		public static const ITEM_FLAG_PIERCING_CHAINS:int 				= 31; //Piercings of the "chain" type.
 		public static const ITEM_FLAG_NO_REMOVE:int 					= 32; //Worn items that the PC cannot remove by themself.
+		public static const ITEM_FLAG_SMALL_DICK_ONLY:int               = 33; //Cocksock can only be equipped by smol
 
 		
 		public static const ITEM_FLAG_NAMES:Array = [
@@ -1201,6 +1206,7 @@
 			"Ring",
 			"Chained",
 			"Permanent",
+			"Requires Small Cock",
 		];
 		
 		/**

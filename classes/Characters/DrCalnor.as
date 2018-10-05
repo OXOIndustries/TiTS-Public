@@ -288,8 +288,10 @@
 		{
 			output("The doctor digs his feet in and couches his staff under an arm, holding it so the electrified crook is behind him. You question what he's doing only for a moment before he launches himself at you!");
 			createStatusEffect("Evasion Reduction", 25);
-			if (combatMiss(this, target, (target.hasStatusEffect("Staggered") ? attack() : attack() + 8)) 
-				|| blindMiss(this, target)) output(" You step aside just in time, letting his momentum carry him past you and leaving him reeling.");
+			if (combatMiss(this, target, (target.hasStatusEffect("Staggered") ? attack() : attack() + 8)) || blindMiss(this, target) || target.isPlanted())
+			{
+				output(" You step aside just in time, letting his momentum carry him past you and leaving him reeling.");
+			}
 			else
 			{
 				output(" The staff hits you with dizzying force, choking the wind out of you -- the crook's caught around your neck. You gasp as <b>you're slammed to the ground!</b>");

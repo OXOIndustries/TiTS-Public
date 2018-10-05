@@ -255,7 +255,7 @@ public function talkToRiya(inhuman:Boolean):void
 			else output("Tavros");
 			output("?”</i> you ask. She scoffs.");
 			output("\n\n<i>“Of course not. We help the station’s private security do patrols, send officers into nearby systems as needed, chase warrants, and formally arrest anyone station security apprehends.”</i>");
-			output("\n\nCuriosity getting the better of you, you ask exactly how many peacekeepers are on the station, earning another squint from Riya.");
+			output("\n\nCuriosity getting the better of you, you ask exactly how many Peacekeepers are on the station, earning another squint from Riya.");
 			output("\n\n<i>“And why do you need to know that?”</i> she says, continuing before you can reply. <i>“Ah, that’s right. You don’t.”</i>");
 			output("\n\nQuickly changing the subject, you continue chatting with the officer for another ten-odd minutes before going your separate ways. She waves cheerfully as you go, clearly not holding your questions against you.");
 		}

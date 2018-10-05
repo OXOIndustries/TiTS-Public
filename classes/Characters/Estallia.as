@@ -271,7 +271,7 @@ package classes.Characters
 					hits++;
 					output("\nShe lands a hit on you with one of her massive blades! ");
 					applyDamage(damageRand(meleeDamage(), 10), this, target, "minimal");
-					if(hits == 2 && target.physique()/2 + rand(20) + 1 <= this.physique()/2 + 3)
+					if((hits == 2 && target.physique()/2 + rand(20) + 1 <= this.physique()/2 + 3) && !target.isPlanted())
 					{
 						output("\nThe force of getting slammed twice leaves you reeling! ");
 						CombatAttacks.applyStagger(target, 1);
@@ -292,7 +292,7 @@ package classes.Characters
 			{
 				output("The crushing blow leaves you reeling! ");
 				applyDamage(damageRand(meleeDamage(), 10), this, target, "minimal");
-				CombatAttacks.applyStagger(target, 1, true);
+				if(!target.isPlanted()) CombatAttacks.applyStagger(target, 1, true);
 				CombatAttacks.applySunder(target, 1, true);
 			}
 		}

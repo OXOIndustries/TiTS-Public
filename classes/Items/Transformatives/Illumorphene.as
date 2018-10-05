@@ -67,6 +67,7 @@ package classes.Items.Transformatives
 			if(target is PlayerCharacter)
 			{
 				kGAMECLASS.showName("\nILLUMORPHEME");
+				CodexManager.unlockEntry("Mothrine");
 				
 				// Consumption
 				// Illumorpheme requires you to be on the ship to take as it is, for lore reasons, a slow-acting whole body transformative. 

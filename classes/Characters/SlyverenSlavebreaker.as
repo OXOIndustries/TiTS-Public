@@ -77,7 +77,7 @@
 			this.HPRaw = this.HPMax();
 			this.shieldsRaw = this.shieldsMax();
 
-			this.femininity = 5;
+			this.femininity = 90;
 			this.eyeType = GLOBAL.TYPE_SNAKE;
 			this.eyeColor = "gold";
 			this.tallness = 78;
@@ -194,11 +194,12 @@
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].loosenessRaw = 3;
 			this.vaginas[0].bonusCapacity = 400;
-			this.vaginas[0].type = GLOBAL.TYPE_SNAKE;
+			this.vaginas[0].type = GLOBAL.TYPE_INHUMAN;
 			this.vaginas[0].vaginaColor = "blue";
 			
 			//this.createStatusEffect("Disarm Immune");
 			createStatusEffect("Force Fem Gender");
+			createPerk("Appearance Enabled");
 
 			inventory = [];
 

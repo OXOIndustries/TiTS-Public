@@ -81,7 +81,7 @@ public function extrameetStartPage():void
 		output("\n\nWhy not try and make a connection?");
 	
 		addButton(0,"Start Swiping",extrameetStartSwipe,undefined,"Start Swiping","Look at profiles of local singles");
-		addButton(1,"Review Matches",extrameetReview,undefined,"Review Your Matches","Look at matches you haven’t dated yet");
+		addButton(1,"Review Match",extrameetReview,undefined,"Review Your Matches","Look at matches you haven’t dated yet");
 		addButton(14,"Back",smutFapMenu);
 	}
 	else
