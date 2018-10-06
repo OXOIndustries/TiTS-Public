@@ -10,7 +10,7 @@ package classes.Items.Transformatives
 	import classes.GameData.TooltipManager;
 	import classes.StringUtil;
 	import classes.Util.InCollection;
-    import classes.Util.RandomInCollection;
+	import classes.Util.RandomInCollection;
 	import classes.Engine.Utility.rand;
 	
 	public class CrackleJelly extends ItemSlotClass
@@ -61,28 +61,28 @@ package classes.Items.Transformatives
 			//processTime(1+rand(2));
 			kGAMECLASS.clearOutput();
 			author("Couch");
-            
-            //PC only
+			
+			//PC only
 			if (!(pc is PlayerCharacter))
-            {
-                output("<b>Item cannot be used on " + pc.short + ".</b>");
-                
-                return false;
-            }
-            //Bunch of variables to use later
-            var i:int;
-            var tempColor:String;
+			{
+				output("<b>Item cannot be used on " + pc.short + ".</b>");
+				
+				return false;
+			}
+			//Bunch of variables to use later
+			var i:int;
+			var tempColor:String;
 
-            output("You put the medipen to your arm and inject its contents. A cold feeling washes through you, but soon passes as the changes begin.");
-            
-            //  Gather transformations
-            var possibleChanges:Array = new Array();
-            
-            // Skin
+			output("You put the medipen to your arm and inject its contents. A cold feeling washes through you, but soon passes as the changes begin.");
+			
+			//  Gather transformations
+			var possibleChanges:Array = new Array();
+			
+			// Skin
 			//Type
-            if (pc.skinType != GLOBAL.SKIN_TYPE_SKIN) possibleChanges.push(skinChange);
+			if (pc.skinType != GLOBAL.SKIN_TYPE_SKIN) possibleChanges.push(skinChange);
 			//Check lips, nipples, skin and then every single vagina
-            else if (pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
+			else if (pc.skinTypeUnlocked(GLOBAL.SKIN_TYPE_SKIN))
 			{
 				if (!InCollection(pc.lipColor, luminousColors())) possibleChanges.push(paletteChange);
 				else if (!InCollection(pc.nippleColor, luminousColors())) possibleChanges.push(paletteChange);
@@ -96,7 +96,7 @@ package classes.Items.Transformatives
 					if (doSkinColor) possibleChanges.push(paletteChange);
 				}
 			}
-            
+			
 			// Eyes
 			//Eye type
 			if (pc.eyeTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.eyeType != GLOBAL.TYPE_JANERIA) possibleChanges.push(eyeChange);
@@ -110,7 +110,7 @@ package classes.Items.Transformatives
 				if (doEyeChange) possibleChanges.push(eyeChange);
 			}
 			
-            // Hair
+			// Hair
 			if (pc.hasHair())
 			{
 				//Hair type
@@ -124,43 +124,43 @@ package classes.Items.Transformatives
 							doHair = true;
 					if (doHair) possibleChanges.push(hairChange);
 				}
-            }
-            
+			}
+			
 			// Legs
-            if (pc.legTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.legType != GLOBAL.TYPE_JANERIA)
-            {
+			if (pc.legTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.legType != GLOBAL.TYPE_JANERIA)
+			{
 				if (pc.legCountUnlocked(2)) possibleChanges.push(legsChange);
 				else if(pc.legCount == 2) possibleChanges.push(legsChange);
-            }
-            
+			}
+			
 			// Tongue
-            if (pc.tongueTypeUnlocked(GLOBAL.TYPE_FROSTWYRM))
-            {
+			if (pc.tongueTypeUnlocked(GLOBAL.TYPE_FROSTWYRM))
+			{
 				if (pc.tongueType != GLOBAL.TYPE_FROSTWYRM) possibleChanges.push(tongueChange);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_PREHENSILE)) possibleChanges.push(tongueChange);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_LONG)) possibleChanges.push(tongueChange);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_LUBRICATED)) possibleChanges.push(tongueChange);
 				else if (!pc.hasTongueFlag(GLOBAL.FLAG_SQUISHY)) possibleChanges.push(tongueChange);
-            }
-            
+			}
+			
 			// Wings
-            if (pc.wingTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.wingType != GLOBAL.TYPE_JANERIA)
+			if (pc.wingTypeUnlocked(GLOBAL.TYPE_JANERIA) && pc.wingType != GLOBAL.TYPE_JANERIA)
 				possibleChanges.push(wingChange);
-            
+			
 			// Cocks
-            if (pc.hasCock())
-            {
-                if (!pc.hasStatusEffect("Genital Slit")) possibleChanges.push(slitChange);
-                else
-                {
+			if (pc.hasCock())
+			{
+				if (!pc.hasStatusEffect("Genital Slit")) possibleChanges.push(slitChange);
+				else
+				{
 					var doCocks:Boolean = false;
 					for (i = 0; i < pc.cocks.length; ++i)
 						if (pc.cockTypeUnlocked(i, GLOBAL.TYPE_JANERIA) && pc.cocks[i].cType != GLOBAL.TYPE_JANERIA)
 							doCocks = true;
-                    if (doCocks) possibleChanges.push(cockChange);
-                }
-            }
-            
+					if (doCocks) possibleChanges.push(cockChange);
+				}
+			}
+			
 			// Vags
 			for (i = 0; i < pc.vaginas.length; ++i)
 			{
@@ -170,12 +170,12 @@ package classes.Items.Transformatives
 					break;
 				}
 			}
-            
+			
 			// Stats
-            if (pc.WQ() < 100 || pc.IQ() < 100) possibleChanges.push(statChange);
-            
-            //Finally, actually select and apply
-            if (possibleChanges.length > 0) RandomInCollection(possibleChanges)(pc);
+			if (pc.WQ() < 100 || pc.IQ() < 100) possibleChanges.push(statChange);
+			
+			//Finally, actually select and apply
+			if (possibleChanges.length > 0) RandomInCollection(possibleChanges)(pc);
 			else dudResult();
 			
 			return false;
