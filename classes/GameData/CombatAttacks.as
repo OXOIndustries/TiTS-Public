@@ -282,7 +282,7 @@ package classes.GameData
 			ThermalDisruptor.RequiresPerk = "Thermal Disruptor";
 			ThermalDisruptor.DisabledIfEffectedBy = ["Disarmed"];
 			ThermalDisruptor.TooltipTitle = "Thermal Disruptor";
-			ThermalDisruptor.TooltipBody = "Deals a large amount of intelligence-based thermal damage to a single target.";
+			ThermalDisruptor.TooltipBody = "Deals a large amount of intelligence-based, thermal damage to a single target before spreading out to nearby foes.";
 			ThermalDisruptor.Implementor = ThermalDisruptorImpl;
 			ThermalDisruptor.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(ThermalDisruptor);
@@ -294,7 +294,7 @@ package classes.GameData
 			GravidicDisruptor.RequiresPerk = "Gravidic Disruptor";
 			GravidicDisruptor.DisabledIfEffectedBy = ["Disarmed"];
 			GravidicDisruptor.TooltipTitle = "Gravidic Disruptor";
-			GravidicDisruptor.TooltipBody = "Deals a moderate amount of intelligence-based, Unresistable damage to a single target.";
+			GravidicDisruptor.TooltipBody = "Deals a moderate amount of intelligence-based, unresistable damage to a single target before spreading out to nearby foes.";
 			GravidicDisruptor.Implementor = GravidicDisruptorImpl;
 			GravidicDisruptor.SetAttackTypeFlags(SingleCombatAttack.ATF_RANGED, SingleCombatAttack.ATF_SPECIAL);
 			a.push(GravidicDisruptor);

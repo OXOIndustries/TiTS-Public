@@ -1004,7 +1004,7 @@ public function dontDrinkAtTheKittyWell(x:int = 0):void
 	{
 		output("\n\nGroaning and half-whimpering, you roll over on the augmented pirate and tug your ");
 		if(pc.hasKnot(x)) output("barely deflated " + (pc.hasKnot(y) ? "[pc.knots " + x + "]":"[pc.knot " + x + "]"));
-		else output("spent " + (y >= 0 ? "[pc.cocksLight]":"[pc.cock" + x + "]"));
+		else output("spent " + (y >= 0 ? "[pc.cocksLight]":"[pc.cock " + x + "]"));
 		output(" from her. A hoarse moan follows as you gaze down, still overwhelmingly hot, the need inside yet to be quenched. Your [pc.cock " + x + "] is still pulsing, and when you close your eyes, it’s a body-rattling beat that makes you shudder in abject awareness of your deific needs. You plunge inside her messy hole" + (y >= 0 ? "s":"") + " again, beginning round two with the blissed out kitten...");
 	}
 	//[Next]

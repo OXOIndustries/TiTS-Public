@@ -346,7 +346,7 @@ public function ramisCrewApproach():void
 	
 	addButton(0, "Talk", ramisLetsDrinkInTheShip);
 	
-	ramisSexButton();
+	ramisSexButton(1);
 
 	if (pc.energy() > 40 && !pc.isWornOut()) addButton(2, "Work Out", ramisPumpIronNShit, undefined, "Work Out", "See if she’s willing to let you use her gear, pump a little iron with you.");
 	else addDisabledButton(2, "Work Out", "Work Out", "You’re too tired.");
@@ -825,6 +825,9 @@ public function ramisPushMahStrengthToTheLimit():void
 		output("\n\nIt certainly does. A few moments later you reluctantly you disengage from her, [pc.cock] flopping drooling out of her cum-caked hole, and limp out of her room, filthy and incredibly sore, but deeply, deeply satisfied.");
 
 		pc.slowStatGain("physique", 3);
+		pc.orgasm();
+		ramisOrgasm();
+		IncrementFlag("RAMIS_SEXED_MAN");
 	}
 	else
 	{
@@ -883,7 +886,7 @@ public function ramisIWannaTopNowK():void
 		addButton(3, "Switch", ramisPlsSexMeh, undefined, "Switch", "Is it possible to get her to be a little more assertive in bed?");
 	}
 	
-	ramisSexButton();
+	ramisSexButton(1);
 }
 
 public function ramisPlsSexMeh():void
@@ -908,18 +911,17 @@ public function ramisPlsSexMeh():void
 
 	//This line is horrible but it's also easy so
 	addButton(3, "Switch", ramisIWannaTopNowK, undefined, "Switch", "Is it possible to get her to let you be in charge for a bit?");
-	ramisSexButton();
+	ramisSexButton(1);
 }
 
 
 // [Sex]
-
-public function ramisSexButton():void
+public function ramisSexButton(btnSlot:int = 1):void
 {
-	if (flags["RAMIS_SEX_DISABLED"] == 1 && looksFemaleToRamis()) addDisabledButton(1, "Sex", "Sex", "You aren’t something that Ramis would be interested in banging. Maybe if you were a guy... or a trap.");
-	else if (pc.isTaur()) addDisabledButton(1, "Sex", "Sex", "You’re a bit too... <i>tauric</i>.");
-	else if (ramisOnTop() && !pc.hasHardLightEquipped()) addDisabledButton(1, "Sex", "Sex", "For now, you’ll need to wear a certain piece of... equipment... to do this.\n\n(It’s a strap-on)");
-	else addButton(1, "Sex", ramisLetsShagRouter);
+	if (flags["RAMIS_SEX_DISABLED"] == 1 && looksFemaleToRamis()) addDisabledButton(btnSlot, "Sex", "Sex", "You aren’t something that Ramis would be interested in banging. Maybe if you were a guy... or a trap.");
+	else if (pc.isTaur()) addDisabledButton(btnSlot, "Sex", "Sex", "You’re a bit too... <i>tauric</i>.");
+	else if (ramisOnTop() && !pc.hasHardLightEquipped()) addDisabledButton(btnSlot, "Sex", "Sex", "For now, you’ll need to wear a certain piece of... equipment... to do this.\n\n(It’s a strap-on)");
+	else addButton(btnSlot, "Sex", ramisLetsShagRouter);
 }
 	
 public function ramisLetsShagRouter():void

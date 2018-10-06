@@ -1386,18 +1386,16 @@ public function nymfoeSetup():void
 		else output("It looks like Doctor Badger has left behind a guard droid and you must have tripped something to activate it.");
 		output(" There’s no telling what kind of devious modifications the slutty scientist made to the medical aide. You look back at your pexiga’s empty eyes. If you want to help her, you’re going to have to get through this perverted nursedroid.");
 		processTime(2);
-		//[Fight] [Leave]
-		clearMenu();
-		addButton(0,"Fight",fightTheNymfoe);
-		addButton(14,"Back",leaveNymFoe);
 	}
 	//Repeat
 	else
 	{
 		output("The absurdly proportioned android is still standing guard over Doctor Badger’s back room. Your pexiga is patiently waiting right where you left her; a mute testament to your mission. If you want to help the blue girl, you’re going to have to go through that robot.");
-		//[Fight] [Leave]
-		addButton(0,"Fight",fightTheNymfoe);
 	}
+	//[Fight] [Leave]
+	clearMenu();
+	addButton(0,"Fight",fightTheNymfoe);
+	addButton(14,"Back",leaveNymFoe);
 }
 
 //[Fight]

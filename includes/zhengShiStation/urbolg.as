@@ -336,8 +336,8 @@ public function urbolgMenu():void
 	else if(flags["URBY_COLLAR_FUN"] != undefined) addButton(5,"Slave Collar",urbyCollarBadEndByWsan,undefined,"Slave Collar","It’s so tempting. You could have it all again if you just put it on... just once more should be fine.");
 	else addButton(5, "Collar", urbyCollarFunByWsan, undefined, "Collar", "There’s a collar sitting out on his workstation. Ask him about it.");
 	
-	if (amberShowTaurEquipButton()) addButton(6, "Taur Equip", amberUrbolgTaurEquipTalk, undefined, "Taur-centric Ship Equipment", "Ask Urbolg about setting up some ‘taur-centric equipment in your ship.");
-	else if(pc.hasKeyItem("Taur-centric Ship Equipment")) addDisabledButton(6,"Taur Equip","Taur-centric Ship Equipment","Taur-centric ship equipment is already installed on your ship!");
+	if (amberShowTaurEquipButton()) addButton(7, "Taur Equip", amberUrbolgTaurEquipTalk, undefined, "Taur-centric Ship Equipment", "Ask Urbolg about setting up some ‘taur-centric equipment in your ship.");
+	else if(pc.hasKeyItem("Taur-centric Ship Equipment")) addDisabledButton(7,"Taur Equip","Taur-centric Ship Equipment","Taur-centric ship equipment is already installed on your ship!");
 
 	addButton(14,"Leave",mainGameMenu);
 }
