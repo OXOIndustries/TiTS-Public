@@ -11638,7 +11638,11 @@
 			else if(raceSimple == "canine") shiftVagina(arg, GLOBAL.TYPE_CANINE);
 			else if(raceSimple == "frostwyrm") shiftVagina(arg, GLOBAL.TYPE_FROSTWYRM);
 			//Janeria don't use their own vagina type
-			else if(raceSimple == "janeria") shiftVagina(arg, GLOBAL.TYPE_SNAKE);
+			else if(raceSimple == "janeria")
+			{
+				shiftVagina(arg, GLOBAL.TYPE_SNAKE);
+				vaginas[arg].vaginaColor = "luminous " + skinTone.split(" ").pop();
+			}
 			else if(InCollection(raceSimple, ["vulpine", "vulpogryph"]) || (raceSimple == "kitsune" && hasFur()))
 			{
 				shiftVagina(arg, GLOBAL.TYPE_VULPINE);
