@@ -351,6 +351,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_FACE_FLAGS:Array = [
@@ -446,6 +447,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_ARM_TYPES:Array = [
@@ -470,6 +472,7 @@
 			TYPE_TENTACLE,
 			TYPE_LUPINE,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 
 		public static const VALID_ARM_FLAGS:Array = [
@@ -521,6 +524,7 @@
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
 			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_LEG_FLAGS:Array = [
@@ -562,6 +566,7 @@
 			TYPE_GRYVAIN,
 			TYPE_DRYAD,
 			TYPE_SHEEP,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_WING_TYPES:Array = [
@@ -583,6 +588,7 @@
 			TYPE_COCKVINE,
 			TYPE_TENTACLE,
 			TYPE_JANERIA,
+			TYPE_FROSTWYRM,
 		];
 		
 		// None is for specifying no tail, which would normally pull the HUMAN name.
@@ -626,6 +632,7 @@
 			TYPE_LUPINE,
 			TYPE_SHEEP,
 			TYPE_REDPANDA,
+			TYPE_FROSTWYRM,
 		];
 		
 		public static const VALID_TAIL_FLAGS:Array = [
