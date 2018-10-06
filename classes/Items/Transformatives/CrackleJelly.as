@@ -350,12 +350,8 @@ package classes.Items.Transformatives
 			output("\n\nYour [pc.cock " + cIdx + "] spasms within you, twisting about in ways that feel strange and alien as electric heat races up and down the squirming shaft. Soon it’s too much to bear, and your dick thrusts forcefully out from within your slit.");
 			
 			//Apply TF
-			pc.cocks[cIdx].cType = GLOBAL.TYPE_JANERIA;
+			pc.shiftCock(cIdx, GLOBAL.TYPE_JANERIA);
 			pc.cocks[cIdx].cockColor = RandomInCollection(luminousColors());
-			pc.cocks[cIdx].clearFlags();
-			pc.cocks[cIdx].addFlag(GLOBAL.FLAG_SMOOTH);
-			pc.cocks[cIdx].addFlag(GLOBAL.FLAG_LUBRICATED);
-			pc.cocks[cIdx].addFlag(GLOBAL.FLAG_PREHENSILE);
 		
 			output(" It looks like a miniature tentacle emerging, uniform " + pc.cocks[cIdx].cockColor + " from base to tip and flexing about as if gifted with a mind of its own. The tip is shaped like a diamond, with your cumslit tucked along the underside so that someone would have to be underneath you to be sure it was a cock at all. You’re pretty sure the janeria didn’t have a tentacle like <i>this</i>, did it?");
 			output("\n\nIt takes you some time to learn how to control <b>your new tentacle dick</b>, but you’re sure the possibilities for how to use it will present themselves soon enough.");
@@ -373,8 +369,7 @@ package classes.Items.Transformatives
 			output("\n\nElectric charges crackle down the whole length of your [pc.vagina " + vIdx + "], setting your pussy squirming even as all exterior definition seems to vanish.");
 			
 			//TF
-			pc.vaginas[vIdx].clits = 1;
-			pc.vaginas[vIdx].type = GLOBAL.TYPE_SNAKE;
+			pc.shiftVagina(vIdx, GLOBAL.TYPE_SNAKE);
 			pc.vaginas[vIdx].vaginaColor = RandomInCollection(luminousColors());
 			
 			output(" It takes you a few moments of searching with your fingers to figure out where your entrance even is, but when the lips peel apart your fingers are lit by the " + pc.vaginas[vIdx].vaginaColor + " of your new interior. <b>Your pussy has become a discreet, almost completely concealed slit</b>.");
