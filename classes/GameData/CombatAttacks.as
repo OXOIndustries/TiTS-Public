@@ -1525,7 +1525,6 @@ package classes.GameData
 			if (target is Cockvine)
 			{
 				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, true, false, false);
-				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
 			}
 			
 			for (var x:int = 0; x < hGroup.length; x++)
@@ -1547,7 +1546,6 @@ package classes.GameData
 			if (target is Cockvine)
 			{
 				kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, false);
-				//(damageValue:TypeCollection, pluralNades:Boolean = false, usedLauncher:Boolean = false, isLustGas:Boolean = false):void
 			}
 			
 			applyDamage(damage, attacker, target);
@@ -2214,6 +2212,11 @@ package classes.GameData
 				if (cTarget is Cockvine)
 				{
 					kGAMECLASS.adultCockvineGrenadesInEnclosedSpaces(damage, false, false, true);
+				}
+				if(cTarget.hasAirtightSuit())
+				{
+					output("\nThe attack is ineffective against " + ((hGroup.length == 1 || (cTarget is PlayerCharacter)) ? cTarget.getCombatPronoun("hisher") : (cTarget.getCombatName() + "’s")) + " airtight suit" + (((cTarget is PlayerCharacter) || !cTarget.isPlural) ? "" : "s") + "!");
+					continue;
 				}
 				
 				totalDamage.addResult(applyDamage(damage, attacker, cTarget, "suppress"));

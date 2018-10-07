@@ -4,8 +4,8 @@ public function initGastigothRooms():void
 	rooms[""] = new RoomClass(this);
 	rooms[""].roomName = "";
 	rooms[""].description = "";
-	rooms[""].planet = "PLANET: UVETO VII";
-	rooms[""].system = "SYSTEM: SIRETTA";
+	rooms[""].planet = "GASTIGOTH STATION";
+	rooms[""].system = "SYSTEM: SKALANI";
 	rooms[""].northExit = ;
 	rooms[""].eastExit = ;
 	rooms[""].southExit = ;
@@ -13,7 +13,7 @@ public function initGastigothRooms():void
 	rooms[""].moveMinutes = 1;
 	*/
 
-	/** UVETO STATION --------------------------------------------------------------- */
+	/** GASTIGOTH STATION --------------------------------------------------------------- */
 	/** ----------------------------------------------------------------------------- */
 	
 	/* Ship Docking */
@@ -24,10 +24,6 @@ public function initGastigothRooms():void
 	rooms["GASTIGOTH_SPACE"].system = "SYSTEM: SKALANI";
 	rooms["GASTIGOTH_SPACE"].westExit = "";
 	rooms["GASTIGOTH_SPACE"].moveMinutes = 1;
-	//rooms["GASTIGOTH_SPACE"].runOnEnter = uvetoShipDock;
-	//rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.INDOOR);
-	//rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.PUBLIC);
-	//rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.SHIPHANGAR);
 	rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.OUTDOOR);
 	rooms["GASTIGOTH_SPACE"].addFlag(GLOBAL.LOW_GRAVITY);
 
