@@ -132,9 +132,9 @@ public function getDiseaseProbedYo():void
 	output("\n\n<i>“Commencing deep tissue scan....”</i>");
 	output("\n\n<i>“Analyzing....”</i>");
 	output("\n\n<i>“Analyzing....”</i> V-Ko bites her tongue as she focuses, working.");
-
-	var button:Number = 0;
-	var detectedParasites:int = 0;
+	
+	var buttons:Array = [];
+	var detectedParasites:Array = [];
 	clearMenu();
 	//SSTD check first!
 	var sstds:Number = pc.sstdTotal();
@@ -154,67 +154,48 @@ public function getDiseaseProbedYo():void
 		if(pc.credits < 500)
 		{
 			output(" Unfortunately, your bank account does not contain sufficient funds.”</i>");
+			
+			buttons.push(["CureDisease", null, undefined, "Cure Disease", "You cannot afford this!\n\nCosts 500 credits."]);
 		}
 		else
 		{
 			output(" Treatment will take no longer than fifteen minutes.”</i>");
 			output("\n\n<i>“Do you consent?”</i>");
-			clearMenu();
-			addButton(button, "CureDisease", removeDiseasesVKO);
-			addButton(14, "No Removal", turnDownTreatment);
-			button++;
-		}		
-	}	
-	//Cunt snake
-	if(pc.hasCuntSnake())
+			
+			buttons.push(["CureDisease", removeDiseasesVKO, undefined, "Cure Disease", "Cure all sexually transmitted infections.\n\nCosts 500 credits."]);
+		}
+	}
+	// Butt Bug
+	if(pc.hasStatusEffect("Butt Bug (Female)"))
 	{
-		output("\n\nShe gasps, <i>“Oh no! You’ve been infested by a class ‘C’ parasitic snake! In order to treat that I will have to administer anesthesia.”</i>");
-		addButton(button, "Treat C.Snk", removeParasite, "cuntsnake");
-		addButton(14, "No Removal", turnDownTreatment);
-		detectedParasites++;
-		button++;
+		detectedParasites.push("a hilinara parasite");
+		buttons.push(["Treat B.Bug", removeParasite, "buttbug", "Treat Butt Bug", "Remove the butt bug parasite."]);
+	}
+	// Cockvine
+	if(pc.hasTailCock() && pc.hasParasiteTail())
+	{
+		detectedParasites.push("a hydrus constuprula parasitic vine");
+		buttons.push(["Treat C.Vne", removeParasite, "cockvine", "Treat Cockvine", "Remove the cockvine parasite."]);
+	}
+	// Cunt snake
+	if(pc.hasParasiteTail() && pc.hasTailCunt())
+	{
+		detectedParasites.push("a class ‘C’ parasitic snake");
+		buttons.push(["Treat C.Snk", removeParasite, "cuntsnake", "Treat Cunt Snake", "Remove the cuntsnake parasite."]);
+	}
+	// Mimbranes
+	var mimbranes:int = attachedMimbranes();
+	if(mimbranes > 0)
+	{
+		detectedParasites.push(mimbranes == 1 ? "a class ‘M’ epidel parasite" : "class ‘M’ epidel parasites");
+		buttons.push(["Treat Mimbs", removeParasite, "mimbrane", "Treat Mimbranes", "Remove the mimbrane parasite" + (mimbranes == 1 ? "" : "s") + "."]);
 	}
 	
-	if (pc.tailType == GLOBAL.TYPE_COCKVINE)
-	{
-		output("\n\nShe gasps, <i>“Oh no! You’ve been infested by a hydrus constuprula parasitic vine! In order to treat that I will have to administer anesthesia.”</i>");
-		addButton(button, "Treat C.Vne", removeParasite, "cockvine");
-		addButton(14, "No Removal", turnDownTreatment);
-		detectedParasites++;
-		button++;
-	}
-
-	if (attachedMimbranes() > 0)
-	{
-		if (detectedParasites == 0)
-		{
-			output("\n\nShe gasps, <i>“Oh no!");
-		}
-		else
-		{
-			output("\n\nShe gasps again, in exactly the same tone as before, <i>“I’m also detecting a secondary classification of infestation!");
-		}
-		
-		output(" You have");
-		if (attachedMimbranes() == 1) output(" a");
-		output(" class ‘M’ epidel parasite");
-		if (attachedMimbranes() > 1) output("s")
-		output("! In order to treat");
-		if (attachedMimbranes() == 1) output(" it");
-		else output(" them");
-		output(" I will have to administer anesthesia. Shall we begin?”</i>");
-				
-		addButton(button, "Treat Mimbs", removeParasite, "mimbrane");
-		addButton(14, "No Removal", turnDownTreatment);
-		detectedParasites++;
-		button++;
-	}
-	if(button == 0 && detectedParasites == 0 && sstds > 0)
+	if(buttons.length == 0 && detectedParasites.length <= 0 && sstds > 0)
 	{
 		output("\n\n<i>“Is there any other way in which I could assist you today?”</i>");
-		approachVKo(false);
 	}
-	else if (button == 0)
+	else if(buttons.length == 0)
 	{
 		output("\n\nShe gasps, <i>“You’re completely clean! ");
 		if(sstds == 0) output("I could not find a single foreign contaminant in your system, though my sensors did detect a highly advanced group of microsurgeons. My heuristic programs have determined them to be safe, likely part of an immune supplement.”</i>");
@@ -228,17 +209,53 @@ public function getDiseaseProbedYo():void
 		if(sstds > 0) output("\n\nV-Ko titters, <i>“Examinations are always free! Treatments have a price, but your immune boosters provided a trust to bill for the licensing cost of this software algorithm. According to extranet pricing data for my model of nursedroid, my prices are well below galactic norms. I am programmed to practically give my services away!”</i> She seems to be excited about that last point. <i>“Is there any other way in which I could assist you today?”</i>");
 		else output("\n\nV-Ko titters, <i>“Examinations are always free! Treatment is another matter. According to extranet pricing data for my model of nursedroid, my prices are well below galactic norms. I am programmed to practically give my services away!”</i> She seems to be excited about that last point. <i>“Is there any other way in which I could assist you today?”</i>");
 		//Menu
+	}
+	else if (detectedParasites.length > 1)
+	{
+		output("\n\nShe gasps, <i>“Oh no! You’ve been infested by " + detectedParasites[0] + "!”</i>");
+		output("\n\nShe gasps again, in exactly the same tone as before, <i>“I’m also detecting a secondary classification of infestation! You have " + detectedParasites[1] + "!");
+		for (var p:int = 2; p < detectedParasites.length; p++) { output(" You have " + detectedParasites[p] + "!"); }
+		output(" In order to treat that, I will have to administer anesthesia.”</i>");
+		output("\n\n<i>“Unfortunately, I am only able to treat one categorization of parasitic infection in a single procedure. Please indicate which of your infestations you would like to treat first. Shall we begin?”</i>");
+	}
+	else if (detectedParasites.length == 1)
+	{
+		output("\n\nShe gasps, <i>“Oh no! You’ve been infested by " + detectedParasites[0] + "! In order to treat that, I will have to administer anesthesia.”</i>");
+		output("\n\n<i>“Shall we begin your treatment?”</i>");
+	}
+	
+	processTime(10+rand(3));
+	
+	if(buttons.length == 0)
+	{
 		approachVKo(false);
 	}
-	else if (detectedParasites > 1)
+	else
 	{
-		output("\n\n<i>“Unfortunately, I am only able to treat one categorization of parasitic infection in a single procedure. Please indicate which of your infestations you would like to treat first.”</i>");
+		var btn:int = 0;
+		var i:int = 0;
+		for(i = 0; i < buttons.length; i++)
+		{
+			if(btn >= 14 && (btn + 1) % 15 == 0)
+			{
+				addButton(btn, "No Removal", turnDownTreatment);
+				btn++;
+			}
+			
+			if(buttons[i][1] == null) addDisabledButton(btn, buttons[i][0], buttons[i][3], buttons[i][4]);
+			else addButton(btn, buttons[i][0], buttons[i][1], buttons[i][2], buttons[i][3], buttons[i][4]);
+			btn++;
+		
+			if(buttons.length > 14 && (i + 1) == buttons.length)
+			{
+				while((btn + 1) % 15 != 0) { btn++; }
+				addButton(btn, "No Removal", turnDownTreatment);
+			}
+		}
+		addButton(14, "No Removal", turnDownTreatment);
 	}
-	else if (detectedParasites == 1)
-	{
-		output("\n\n<i>“Shall we begin your treatment?”</i>");
-	}	
-	processTime(10+rand(3));
+	// if(button >= 14 && (button + 1) % 15 == 0) { addButton(button, "No Removal", turnDownTreatment); button++; }
+	//if(button != 0 && (sstd > 0 || detectedParasites > 0)) addButton(14, "No Removal", turnDownTreatment);
 }
 
 public function removeDiseasesVKO():void
@@ -281,6 +298,7 @@ public function treatDisease(diseaseName:String = ""):void
 	output("\n\nYou nod.");
 	output("\n\nV-Ko offers, <i>“My services are open twenty four hours for your convenience. Is there something else you would like to take advantage of?”</i>");
 	processTime(10);
+	pc.credits -= 500;
 	approachVKo(false);
 }
 
@@ -304,9 +322,11 @@ public function removeParasiteII(name:String):void {
 	output("\n\n<i>“The chemicals should be metabolizing out of your bloodstream in a few seconds. Please be careful until then. It would not do for you to injure yourself so soon after having your ailments tended to.”</i>");
 	output("\n\nYou open your eyes once more, this time slowly enough to let them adjust. V-Ko is looking over you with what looks like concern on her face, but when she sees you looking back at her, she beams with pride.");
 	
+	output("\n\n");
 	if (name == "cuntsnake") output("<i>“All ‘C’ type snakes have been eliminated from your anatomy. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.”</i>");
 	else if (name == "mimbrane") output("<i>“All ‘M’ class epidel parasites have been removed from your extremities. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.”</i>");
 	else if (name == "cockvine") output("<i>“All ‘H’ class parasitic vines have been eliminated from your anatomy. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.”</i>");
+	else if (name == "buttbug") output("<i>“All ‘B’ type parasites have been successfully removed from your anatomy. Nerve damage was kept well within allowable metrics. There should be no lasting effects, but if you find yourself experiencing phantom pains or odd cravings for reproductive fluids, please see me.”</i>");
 	
 	output("\n\nYou slowly sit up. There’s some dizziness but it fades by the time you get upright. True to V-Ko’s word, the anesthetics are wearing off almost immediately. You recall her mentioning payment for healing her earlier. <i>“");
 	if(pc.isNice()) output("Excuse me, shouldn’t this cost some money?");
@@ -317,27 +337,13 @@ public function removeParasiteII(name:String):void {
 	
 	if (name == "cuntsnake" || name == "cockvine") output("\n\nYou thank her and scratch at the irritated scar just above your butt. It’s as if you never had a tail at all.");
 	else if (name == "mimbrane") output("\n\nYou thank her for the service; it’s as if you never had any mimbranes on you at all.");
+	else if (name == "buttbug") output("\n\nYou rub your sore [pc.butts] and experimentally clench your [pc.asshole]. It’s as if you never had a butt bug on you at all.");
 	
 	output("\n\n<i>“Now then, would you like to pursue some of my other services or will you be on your way?”</i> V-Ko asks. <i>“It has been a pleasure to serve.”</i>");
 	//Menu
 	
 	// Do the removal shit
-	if (name == "cuntsnake" || name == "cockvine")
-	{
-		pc.tailType = GLOBAL.TYPE_HUMAN;
-		pc.tailCount = 0;
-		pc.tailFlags = [];
-		pc.tailGenital = 0;
-		pc.tailGenitalArg = 0;
-		pc.tailGenitalColor = "";
-		
-		flags["CUNT_TAIL_PREGNANT_TIMER"] = undefined;
-		flags["DAYS_SINCE_FED_CUNT_TAIL"] = undefined;
-	}
-	else if (name == "mimbrane")
-	{
-		removeMimbranes();
-	}
+	purgeParasites(name);
 	
 	processTime(180+rand(20));
 	approachVKo(false);

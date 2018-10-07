@@ -152,8 +152,12 @@
 				// Increase ass size.
 				if(target.buttRatingRaw < 16) tfList.push(27);
 				// Ass above size 10 and tone above 70:
-				// Gain “Bubble Butt” perk.
-				if(!target.hasPerk("Bubble Butt") && target.buttRating() > 10 && target.tone >= 70) tfList.push(28);
+				if(target.buttRating() > 10 && target.tone >= 70) {
+					// Gain “Bubble Butt” perk.
+					if(!target.hasPerk("Bubble Butt") && !target.hasPerk("Buns of Steel")) tfList.push(28);
+					// Lose “Buns of Steel” perk.
+					if(target.hasPerk("Buns of Steel")) tfList.push(29);
+				}
 				
 				if(tfList.length > 0) select = tfList[rand(tfList.length)];
 				// None of the above apply:
@@ -623,6 +627,14 @@
 				// Bubble Butt
 				// Causes the PC’s ass to be considered soft even when they have high muscle tone.
 				target.createPerk("Bubble Butt", 0, 0, 0, 0, "Your ass is always soft, regardless of tone.");
+				return;
+			}
+			// Lose Buns of Steel perk:
+			if(select == 29) {
+				output("\n\nA shiver runs across your [pc.butts] and suddenly they don’t feel as extra tight and firm as they did before... You suppose this is one of the side effects of the Holstaria drink....");
+				output("\n\n(<b>Perk Lost: Buns of Steel</b>)");
+				
+				target.removePerk("Buns of Steel");
 				return;
 			}
 			

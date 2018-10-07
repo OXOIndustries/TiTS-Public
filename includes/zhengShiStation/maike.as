@@ -12,7 +12,7 @@ public function pcHasSlaveOutfit():Boolean
 public function showMaike(nude:Boolean = false):void
 {
 	showName(flags["TIVF_MAIKE_TALK"] == 1 ? "OVERSEER\nMAIKE":"\nOVERSEER");
-	showBust("MAIKE" + nude ? "_NUDE":"");
+	showBust("MAIKE" + (nude ? "_NUDE":""));
 }
 
 public function maikeEncountered():Boolean
@@ -208,9 +208,9 @@ public function myCollarBrokeMaike():void
 	output("\n\n<i>“<b>What</b> are you standing around for? Go, go!”</i>");
 	output("\n\nA violently swift whip-crack snaps against your shoulder!");
 	//(pc takes 20 lust damage)
-	applyDamage(new TypeCollection( { tease: 20 } ), new Maike(), pc, "minimal");
+	applyDamage(new TypeCollection( { tease: 20 } ), chars["MAIKE"], pc, "minimal");
 
-	output(" Taking the hint, you rush back to the mouth of the walkway, watching the moth-like slaver take flight with unnatural, graceful ease into the dark reaches above. You’re not sure you want to hang around...");
+	output("\n\nTaking the hint, you rush back to the mouth of the walkway, watching the moth-like slaver take flight with unnatural, graceful ease into the dark reaches above. You’re not sure you want to hang around...");
 	output("\n\n<b>Better get to that elevator!</b>");
 
 	//[Leave]
@@ -415,7 +415,7 @@ public function maikeFucksYaUpPart2():void
 
 		output("\n\nShe gives you one last whipcrack to see you off.");
 		//whip dammu.
-		applyDamage(new TypeCollection( { tease: 20 } ), new Maike(), pc, "minimal");
+		applyDamage(new TypeCollection( { tease: 20 } ), chars["MAIKE"], pc, "minimal");
 		processTime(13);
 	}
 	//pcDid[Pen]:

@@ -28,7 +28,7 @@ package classes.Items.Apparel
 			
 			this.description = "a standard issue U.G.C. Peacekeeper uniform";
 			
-			this.tooltip = "This is a standard issue U.G.C. Peacekeeper uniform, assigned to relevent members of the U.G.C peacekeeper corps.";
+			this.tooltip = "This is a standard issue U.G.C. Peacekeeper uniform, assigned to relevent members of the U.G.C Peacekeeper corps.";
 			
 			TooltipManager.addTooltip(this.shortName, this.tooltip);
 			

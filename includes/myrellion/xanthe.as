@@ -1685,7 +1685,7 @@ public function shePaysAttentionToYouSlut():void
 			output(" especially pretty.”</i> Your Mistress informs you. She then begins meticulously weaving the soft cord around your [pc.cockColor] genitals.");
 			output("\n\nYou’re both swooning from her kiss and flushing deeply at her promise to make your soon-to-be-bound junk ‘pretty’. When she loops it around your ");
 			if(pc.cocks[0].thickness() < .75) output("tiny");
-			else if(pc.cocks[x].thickness() < 1.5) output("modest");
+			else if(pc.cocks[0].thickness() < 1.5) output("modest");
 			else output("girthy");
 			output(" base and pulls it tight, you let out a sharp gasp.");
 			output("\n\n<i>“Do you know what happens to your rod when I do this, my love? Blood rushes into it, and you’ll become incredibly erect and sensitive.”</i> Xanthe caresses your now collared cock. You can feel it squeezing into your sensitive flesh, though not enough to <i>completely</i> cut off circulation.");

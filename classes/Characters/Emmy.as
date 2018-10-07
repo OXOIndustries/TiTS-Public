@@ -19,13 +19,15 @@
 		//constructor
 		public function Emmy()
 		{
-			this._latestVersion = 2;
+			this._latestVersion = 3;
 			this.version = _latestVersion;
 			this._neverSerialize = false;
 			fluidSimulate = true;
 			statusSimulate = true;
 			this.short = "Emmy";
 			originalRace = "ausar";
+			this.a = "";
+			this.capitalA = "";
 			
 			keeperBuy = "";
 			keeperSell = "";
@@ -40,6 +42,44 @@
 			inventory.push(new OzoneAegis());
 			inventory.push(new SalamanderDefenseSystem());
 
+			this.femininity = 100;
+			this.eyeType = 0;
+			this.eyeColor = "blue";
+			this.tallness = 5*12+8;
+			this.thickness = 50;
+			this.tone = 25;
+			this.hairColor = "black";
+			this.scaleColor = "gold";
+			this.furColor = "tawny";
+			this.hairLength = 24;
+			this.hairType = 0;
+			this.beardLength = 0;
+			this.beardStyle = 0;
+			this.skinType = GLOBAL.SKIN_TYPE_FUR;
+			this.skinTone = "tan";
+			this.skinFlags = [];
+			this.faceType = GLOBAL.TYPE_CANINE;
+			this.faceFlags = [GLOBAL.FLAG_MUZZLED,GLOBAL.FLAG_FURRED];
+			this.tongueType = 0;
+			this.tongueFlags = [];
+			this.lipMod = 1;
+			this.earType = GLOBAL.TYPE_CANINE;
+			this.antennae = 0;
+			this.antennaeType = 0;
+			this.horns = 0;
+			this.hornType = 0;
+			this.armType = GLOBAL.TYPE_CANINE;
+			this.armFlags = [GLOBAL.FLAG_FURRED,GLOBAL.FLAG_PAWS];
+			this.gills = false;
+			this.wingType = 0;
+			this.legType = GLOBAL.TYPE_CANINE;
+			this.legCount = 2;
+			this.legFlags = [GLOBAL.FLAG_PLANTIGRADE,GLOBAL.FLAG_FURRED,GLOBAL.FLAG_PAWS];
+			this.hipRatingRaw = 9;
+			this.buttRatingRaw = 9;
+			this.breastRows[0].breastRatingRaw = 28;
+			this.nippleWidthRatio = 2;
+			this.nippleColor = "black";
 			
 			this.typesBought = [GLOBAL.MELEE_WEAPON,GLOBAL.RANGED_WEAPON,GLOBAL.SHIELD,GLOBAL.ACCESSORY];
 			
@@ -89,7 +129,10 @@
 
 			createPerk("No Cum Leakage",0,0,0,0);
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return "EMMY";
+		}
 		override public function onLeaveBuyMenu():void
 		{
 			kGAMECLASS.backToEmmyMain();
@@ -97,6 +140,50 @@
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			dataObject.inventory.push(new SalamanderDefenseSystem().getSaveObject());
+		}
+		public function UpgradeVersion2(dataObject:Object):void
+		{
+			dataObject.a = "";
+			dataObject.capitalA = "";
+			dataObject.femininity = 100;
+			dataObject.eyeType = 0;
+			dataObject.eyeColor = "blue";
+			dataObject.tallness = 5*12+8;
+			dataObject.thickness = 50;
+			dataObject.tone = 25;
+			dataObject.hairColor = "black";
+			dataObject.scaleColor = "gold";
+			dataObject.furColor = "tawny";
+			dataObject.hairLength = 24;
+			dataObject.hairType = 0;
+			dataObject.beardLength = 0;
+			dataObject.beardStyle = 0;
+			dataObject.skinType = GLOBAL.SKIN_TYPE_FUR;
+			dataObject.skinTone = "tan";
+			dataObject.skinFlags = [];
+			dataObject.faceType = GLOBAL.TYPE_CANINE;
+			dataObject.faceFlags = [GLOBAL.FLAG_MUZZLED,GLOBAL.FLAG_FURRED];
+			dataObject.tongueType = 0;
+			dataObject.tongueFlags = [];
+			dataObject.lipMod = 1;
+			dataObject.earType = GLOBAL.TYPE_CANINE;
+			dataObject.antennae = 0;
+			dataObject.antennaeType = 0;
+			dataObject.horns = 0;
+			dataObject.hornType = 0;
+			dataObject.armType = GLOBAL.TYPE_CANINE;
+			dataObject.armFlags = [GLOBAL.FLAG_FURRED,GLOBAL.FLAG_PAWS];
+			dataObject.gills = false;
+			dataObject.wingType = 0;
+			dataObject.legType = GLOBAL.TYPE_CANINE;
+			dataObject.legCount = 2;
+			dataObject.legFlags = [GLOBAL.FLAG_PLANTIGRADE,GLOBAL.FLAG_FURRED,GLOBAL.FLAG_PAWS];
+			dataObject.hipRatingRaw = 9;
+			dataObject.buttRatingRaw = 9;
+			dataObject.breastRows[0].breastRatingRaw = 28;
+			dataObject.nippleWidthRatio = 2;
+			dataObject.nippleColor = "black";
+
 		}
 	}
 }

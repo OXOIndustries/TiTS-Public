@@ -499,11 +499,14 @@ package classes.Items.Transformatives
 			if(!target.hasPerk("Fecund Figure") && (target.isPregnant() || target.fertility() > 0))
 				perkList.push("Fecund Figure");
 			// Gained the “Bubble Butt” Perk
-			if(!target.hasPerk("Bubble Butt") && target.buttRatingRaw >= 10)
+			if(!target.hasPerk("Bubble Butt") && target.buttRatingRaw >= 10 && !target.hasPerk("Buns of Steel"))
 				perkList.push("Bubble Butt");
 			// Gained the “Hips Don’t Lie” Perk
 			if(!target.hasPerk("Hips Don't Lie") && target.hipRatingRaw >= 10)
 				perkList.push("Hips Don't Lie");
+			// Lose the “Buns of Steel” Perk
+			if(target.hasPerk("Buns of Steel"))
+				perkList.push("Buns of Steel");
 			
 			if(perkList.length > 0 && (doses >= 5 || rand(3) == 0))
 			{
@@ -552,6 +555,12 @@ package classes.Items.Transformatives
 						target.createPerk("Hips Don't Lie", 0, 0, 0, 0, "Your hips will always remain wide and girthy to give you the appearance of a fertility goddess.");
 						
 						target.lust(35);
+						break;
+					case "Buns of Steel":
+						output("\n\nA shiver runs across your [pc.butts] and suddenly they don’t feel as extra tight and firm as they did before... You suppose this is one of the side effects of the Thicc&Shake cream....");
+						output("\n\n(<b>Perk Lost: Buns of Steel</b>)");
+						
+						target.removePerk("Buns of Steel");
 						break;
 				}
 			}

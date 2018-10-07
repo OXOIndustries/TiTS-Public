@@ -548,7 +548,7 @@ public function sizeTrainingLoss2(x:int):void
 	output("\n\nYou do.");
 	output("\n\nThe slyveren kneels, stroking now. <i>“And you want it big and hard, so there’s more to suck. So you can fill my mouth and savor my lush, pouty lips sliding up and down... inch... after inch... after inch.”</i>");
 	output("\n\nYou... yes. You groan in apparent lust and lean back, [pc.hips] sliding forward to present your crotch. Everything she’s saying sounds amazing. Watching her slutty, " + (enemy.lipColor == "black" ? "sable":"bubblegum") + " lips mouth the words is an erotic show in its own right, and you can scarcely wait to have them envelop you in saccharine-sweet pleasure. <i>“Yes!”</i> you cry, your little dick straining her fingers, all but throwing itself at her whispering maw.");
-	output("\n\n<i>“So eager. As you should be.”</i> The enchanting pirate slithers down onto her elbows, her face an inch above you [pc.cock " + x + "], swaying back and forth hypnotically. Every time her motions carry her past your [pc.cockHead " + x + "], she drifts a little lower. <i>“You were broken and didn’t even know it.”</i> Pursing her lips, she darts downward, only to pull away at the last second. <i>“Didn’t even know how much better you could be. How much <b>bigger</b> you could be. Are you ready?”</i>");
+	output("\n\n<i>“So eager. As you should be.”</i> The enchanting pirate slithers down onto her elbows, her face an inch above your [pc.cock " + x + "], swaying back and forth hypnotically. Every time her motions carry her past your [pc.cockHead " + x + "], she drifts a little lower. <i>“You were broken and didn’t even know it.”</i> Pursing her lips, she darts downward, only to pull away at the last second. <i>“Didn’t even know how much better you could be. How much <b>bigger</b> you could be. Are you ready?”</i>");
 	output("\n\n<i>“Yes!”</i> You thrust upward, slapping her nose with your pathetically small cock in your eagerness.");
 	output("\n\nGiggling, the " + (enemy.lipColor == "black" ? "onyx":"mauve") + " beauty licks her lips, sampling your taste. <i>“It’ll sting. Right here.”</i> She jabs two fingers against the [pc.knot " + x + "]. <i>“But only a little. And then I’ll kiss it all away... and show you how to <b>grow</b>”</i>");
 	output("\n\nYou recoil at the idea that it might hurt, but the temptation to have those lips kissing you (and more!) is far too tempting to resist. <i>“Just do it!”</i>");
@@ -1155,7 +1155,7 @@ public function fuckTheSlavebreakersPussy(x:int):void
 	else if(pc.hasKnot(x)) output(" Your [pc.knot " + x + "], not fully engorged, pops in with ease.");
 	else if(pc.hasSheath(x)) output(" Your [pc.sheath " + x + "] rubs sensuously against her mound.");
 	else output(" Your [pc.hips] clap against hers with authority.");
-	if(pc.cocks[x].cLength() >= 14) output(" The outline of your plus-sized prick proudly distends through the cock-drunk slut’s taut middle, though she shows know signs of pain.");
+	if(pc.cocks[x].cLength() >= 14) output(" The outline of your plus-sized prick proudly distends through the cock-drunk slut’s taut middle, though she shows no signs of pain.");
 	else output(" The cock-drunk slut’s protestations die on her lips.");
 	pc.cockChange();
 	output("\n\nYou savor the the moment, watching the alien try her hardest to pretend that she doesn’t want you to bang her to pieces. Her lips pout for a moment before flirting with a hint of a smile. Her tits wobble, and her nipples jut proudly into the air, inviting you to give one a pinch and a tug. The slyveren’s legs splay wider by the second, and all the while, her juicing, slick cunt hugs you tighter. A kittenish whimper cracks her through her failure of a reticent facade, rising in tone alongside her pussy’s intimate massages.");
@@ -1366,7 +1366,6 @@ public function giveThrobToSlyveren():void
 	showSlavebreaker(true);
 	author("Wsan");
 	
-	enemy.destroyItemByClass(Throbb);
 	enemy.destroyItemByClass(Throbb);
 	
 	output("<i>“I bet a big, lusty snake-woman like you has a cornucopia of drugs in here somewhere,”</i> you say, digging through the defeated slavebreaker’s stash. <i>“You’ve gotta have what I’m looking for... ah!”</i>");

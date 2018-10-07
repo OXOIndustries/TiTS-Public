@@ -19,8 +19,6 @@ output("\n\n//Combat");
 output("\n\nThis bored laquine’s pirate affiliation is as plain as the glowing red letters on her glossy black zipsuit: they spell “Jumper” down the side. Beneath the lettering, a powerfully muscled thigh flexes with idle energy. Her wide hips and bubbly butt hint at her prowess as both a leaper and a breeder, but it’s the sizeable {equine/canine/feline/terran-shaped} bulge in the crotch that proudly declares what she’s here to get. You can drag your eyes up higher to take in her horny smile, but the outline of her turgid dick and perky, C-cup tits lingers behind.");
 
 output("\n\nThe ambient warmth looks to be affecting her more than you, slicking her fur down until it shines just like her latex suit. It must be a sauna under that slick, creaking material. Her ears are droopy from the heat, oozing over her shoulders like half-melted wax, but she shows no sign of minding. This bored Jumper likes the heat!");
-
-
 */
 
 public function showBoredJumper(nude:Boolean = false):void
@@ -143,7 +141,7 @@ public function winVsBoredJumper():void
 		else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need some ‘breeding inducers’ to get ruined with the lusty laquine. " + (pc.inHeat() ? "One":"Two") + " Breeder’s Bliss ought to do...");
 	}
 	else addDisabledButton(8,"Heat Sex","Heat Sex","You’ll need a vagina for this.");
-	addButton(9,"Blow Her",blowZatJumpah,undefined,"Blow Her","he jumper’s cock is bulging so temptingly against the latex. You could teach the libidinous lapine a very <i>blue</i> lesson… or immerse yourself. She does smell good...");
+	addButton(9,"Blow Her",blowZatJumpah,undefined,"Blow Her","he jumper’s cock is bulging so temptingly against the latex. You could teach the libidinous lapine a very <i>blue</i> lesson... or immerse yourself. She does smell good...");
 	addButton(14,"Leave",leaveTheBoredJumperAfterWinning);
 }
 
@@ -2365,8 +2363,8 @@ public function boredJumperCowgirlWinByWilliamII():void
 	else output("your dick bulging noticeably through her abdomen just above her twirling [enemy.cock].");
 	output(" Her paws travel to your [pc.chest], pinching at your [pc.nipples] as sweat and saliva both drip on to your [pc.skinFurScales]. It hasn’t even been that long and you can hardly feel your crotch, numbed by weight and force of her pulverizing motions.");
 
-	output("\n\n<i>“F-f-fuck, this is awesome!”</i> The laquine squeals, a wide, ear-to-ear smile on her blushing face, <i>“Getting fucked once in a while ain’t bad!”</i> You sit up a few inches to grip her curvy hips, your hands sinking into the soaked [enemy.furColor] fur, and match your movements to hers. When the rabbit rises, you descend, and when she’s about to smack again you thrust up to meet her, ");
-	if(pc.cockTotal() > 1) output("your extra cock" + (pc.cockTotal() > 2 ? "s":"") + " rubbing against her own when possible");
+	output("\n\n<i>“F-f-fuck, this is awesome!”</i> The laquine squeals, a wide, ear-to-ear smile on her blushing face, <i>“Getting fucked once in a while ain’t bad!”</i> You sit up a few inches to grip her curvy hips, your hands sinking into the soaked [enemy.furColor] fur, and match your movements to hers. When the rabbit rises, you descend, and when she’s about to smack again you thrust up to meet her");
+	if(y >= 0) output(", your extra cock" + (pc.cockTotal() > 2 ? "s":"") + " rubbing against her own when possible");
 	output(". The shockwave of your thunderous breeding sprays beads of fluid every which direction, what is blasted back is replaced anew, and the cycle begins again, and again, and again...");
 
 	output("\n\nYou can’t help but admire the moaning laquine on your lap, shining in refulgent splendor, glassy and panting, still working herself and your cock like a star athlete. One hand behind her head and the other on your gut, she boasts a confident, content smile on her cute lips. Her nose twitches in reaction to every dazzling scent that tickles her nostrils. Where her skin is softer and less defined, you can see the ripples in her body when her crotch unites with yours, her tits bouncing up and down with every impact of wanton sex. The ligaments in her powerful legs flex impressively, able to carry her weight with little difficulty; her vivacious [enemy.cock] oozing thick strands of pre and cum everywhere as she holds her orgasm back... She’s just... <i>gorgeous</i>.");

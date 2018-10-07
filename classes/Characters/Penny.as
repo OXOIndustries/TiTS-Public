@@ -4,6 +4,7 @@
 	import classes.GLOBAL;
 	import classes.Items.Apparel.UGCUniform;
 	import classes.Items.Melee.Tonfas;
+	import classes.kGAMECLASS;
 	
 	public class Penny extends Creature
 	{
@@ -157,7 +158,10 @@
 			
 			this._isLoading = false;
 		}
-		
+		override public function get bustDisplay():String
+		{
+			return kGAMECLASS.pennyBustDisplay();
+		}
 		public function UpgradeVersion1(dataObject:Object):void
 		{
 			if (dataObject.legFlags.length == 0)

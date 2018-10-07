@@ -262,7 +262,7 @@ package classes.Characters
 					//Figure out how much is left
 					applyDamage(damage, this, target, "minimal");
 					
-					if(target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13)
+					if((target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13) && !target.isPlanted())
 					{
 						output("\n<b>You end up knocked on your ass, covered in debris from the collapsing factory!</b>");
 						CombatAttacks.applyTrip(target);

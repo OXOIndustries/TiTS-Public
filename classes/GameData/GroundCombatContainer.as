@@ -654,6 +654,7 @@ package classes.GameData
 				if (target.getStatusMinutes("Evasion Boost") > 0) 
 				{
 					if(target is RKLah) output("\n\n<b>The ausar continues to jitter and start forwards and backwards unexpectedly. It’s a nightmare drawing a bead on him.</b>");
+					else if(target is Teyaal) output("\n\nThe gryvain is still fluttering about on her wings and hard to hit.");
 					else if(target is PlayerCharacter) output("\n\n<b>Your evasion is still enhanced!</b>");
 					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " evasion is still enhanced!</b>");
 					target.addStatusMinutes("Evasion Boost",-1);
@@ -661,6 +662,7 @@ package classes.GameData
 				else 
 				{
 					if(target is RKLah) output("\n\n<b>The ausar finally starts moving with something approaching normalcy, his burst of nervous energy exhausted.</b>");
+					else if(target is Teyaal) output("\n\nTeyaal lands on the balls of her feet, momentarily supporting herself with her tail and wings as well - she looks like a feral dragon for that brief second until she regains her proper footing.");
 					else if (target.isPlural) output("\n\n<b>" + StringUtil.capitalize(target.getCombatName(), false) + " no longer have boosted evasion!</b>");
 					else if(target is PlayerCharacter) output("\n\n<b>Your limbs feel heavier, slower than they were a moment ago. Your boosted evasion has worn off!</b>");
 					else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " enhanced evasion fades!</b>");
@@ -876,8 +878,8 @@ package classes.GameData
 					target.addStatusValue("Porno Hacked Drone",1,-1);
 					if(target.statusEffectv1("Porno Hacked Drone") <= 0)
 					{
-						if (target is PlayerCharacter) output("\n\n<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the sexbot’s hacking routine, and returns to your side.</b>");
-						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rogue instructions hacked into the thing, it returns to its owners side.</b>");
+						if (target is PlayerCharacter) output("\n\n<b>With a grinding click the porn beaming out of your drone snuffs out, finally getting the better of the hacking routine, and returns to your side.</b>");
+						else output("\n\n<b>" + StringUtil.capitalize(possessive(target.getCombatName()), false) + " drone whirrs slightly, the porn beaming from it snuffing out in short order. Having finally managed to expel the rogue instructions hacked into the thing, it returns to its owner’s side.</b>");
 						target.removeStatusEffect("Porno Hacked Drone");
 					}
 					else
@@ -1505,6 +1507,8 @@ package classes.GameData
 			// sense
 			addButton(6, "Sense", selectSimpleAttack, { func: generateSenseMenu }, "Sense", "Attempts to get a feel for a foe’s likes and dislikes. Absolutely critical for someone who plans on seducing " + pc.mf("his", "her") + " way out of a fight.");
 			
+			if(_hostiles[0].hasPerk("Appearance Enabled")) addButton(7,"Closer Look",combatAppearance,undefined,"Closer Look","Take a closer look at your foe’s appearance.\n\nThis does not consume your action for this round.");
+
 			// fantasize
 			addButton(8, "Fantasize", fantasizeRound, undefined, "Fantasize", "Fantasize about your foe until you’re helpless and on your [pc.knees] before them.");
 			// wait
@@ -1542,7 +1546,13 @@ package classes.GameData
 			// default entries
 			additionalCombatMenuEntries();
 		}
-		
+		public function combatAppearance():void
+		{
+			clearOutput();
+			kGAMECLASS.appearance(_hostiles[0]);
+			clearMenu();
+			addButton(14, "Back", generateCombatMenu, true);
+		}
 		private function waitRound():void
 		{
 			clearOutput();
@@ -2252,12 +2262,12 @@ package classes.GameData
 			if (target is PlayerCharacter) processCombat();
 		}
 		
-        private function specialsButtonAdjustment(bOff:int):int
-        {
-            if (bOff == 13) bOff++;
-            return ++bOff;
-        }
-        
+		private function specialsButtonAdjustment(bOff:int):int
+		{
+			if (bOff == 13) bOff++;
+			return ++bOff;
+		}
+		
 		private function generateSpecialsMenu():void
 		{
 			clearMenu();

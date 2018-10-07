@@ -105,6 +105,9 @@ package classes.Characters
 		override public function loadInAss(cumFrom:Creature = null):Boolean
 		{
 			kGAMECLASS.mimbraneFeed("ass");
+			// Butt bug load
+			kGAMECLASS.loadInButtBug(this, cumFrom);
+			
 			//Goo TFed? GATHER BIOMASS
 			if(hairType == GLOBAL.HAIR_TYPE_GOO && !cumflationEnabled())
 			{
@@ -1593,7 +1596,7 @@ package classes.Characters
 		// Mimbrane jazz.
 		public function mimbranePartDescript(mimType: String = ""): String
 		{
-			var mimbrane:StorageClass = getPerkEffect(mimType);
+			var mimbrane:StorageClass = getStatusEffect(mimType);
 			
 			if(mimbrane == null) return ("<b>ERROR: mimbranePartDescript() called for unknown mimbrane “" + mimType + "”</b>");
 			
@@ -1636,6 +1639,36 @@ package classes.Characters
 			else desc += RandomInCollection(["parasite", "epidel", "graft", "second skin", "cum leech"]);
 			
 			return desc;
+		}
+		public function mimbranePuffiness(mimType: String = ""):Number
+		{
+			var mimbrane:StorageClass = getStatusEffect(mimType);
+			
+			if(mimbrane == null) return 0;
+			
+			var toggle:String = "";
+			switch(mimType)
+			{
+				case "Mimbrane Cock": toggle = "COCK"; break;
+				case "Mimbrane Pussy": toggle = "CUNT"; break;
+				case "Mimbrane Ass": toggle = "BUTT"; break;
+				case "Mimbrane Balls": toggle = "SACK"; break;
+				case "Mimbrane Boobs": toggle = "TITS"; break;
+				case "Mimbrane Hand Left":
+				case "Mimbrane Hand Right": toggle = "HAND"; break;
+				case "Mimbrane Foot Left":
+				case "Mimbrane Foot Right": toggle = "FOOT"; break;
+				case "Mimbrane Face": toggle = "FACE"; break;
+			}
+			if(toggle != "" && flags["MIMBRANE_NOSWELL_" + toggle]) return 0;
+			
+			var puffScore:Number = 0;
+			
+			if(mimbrane.value3 >= 3) puffScore += 1;
+			if(mimbrane.value3 >= 8) puffScore += 1;
+			if(mimbrane.value3 >= 13) puffScore += 1;
+			
+			return puffScore;
 		}
 	}
 }

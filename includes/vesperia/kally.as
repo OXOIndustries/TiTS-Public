@@ -23,7 +23,6 @@ Kiro Threesome?*/
 										-1 = FUCKED THIS SHIT, YOU'RE OUT.
 	flags["KIRO_KALLY_THREESOMES"]		   = NUMBER OF TOTAL THREESOMES
 	flags["KALLY_FAP_2_KIRO"] 			1  = CAUGHT KALLY FAPPING TO KIRO
-		
 */
 
 public function showMabbs():void

@@ -228,9 +228,9 @@ package classes.Characters
 		public function chupacabroChargeAttack(target:Creature):void
 		{
 			output("" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + ", grinds his hooves against your ship’s hull before charging forward with surprising speed for someone of his size. ");
-			if(target.reflexes()/2 + rand(20) + 1 < this.aim()/2 + 13)
+			if((target.reflexes()/2 + rand(20) + 1 < this.aim()/2 + 13) && !target.isPlanted())
 			{
-				output("\n<b>He catches you off-guard and slams into your with the force of a freight train, knocking the wind out of you and leaving you flat on your back.</b>\n\n");
+				output("\n<b>He catches you off-guard and slams into your with the force of a freight train, knocking the wind out of you and leaving you flat on your back.</b>");
 				var damage:TypeCollection = meleeDamage();
 				damage.multiply(.5);
 				applyDamage(damage, this, target);
@@ -245,7 +245,7 @@ package classes.Characters
 			output("" + (kGAMECLASS.silly ? "El Chupacabro" : "The Chupacabro") + " winds up a punch and quickly lets it loose, ");
 			if(!combatMiss(this, target))
 			{
-				output("knocking you square in the jaw. You’re left reeling with pain as you stumble back from the force of the blow. ");
+				output("knocking you square in the jaw. You’re left reeling with pain as you stumble back from the force of the blow.");
 				var damage:TypeCollection = meleeDamage();
 				damage.multiply(1.5);
 				applyDamage(damage, this, target);

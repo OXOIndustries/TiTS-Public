@@ -251,7 +251,8 @@ package classes.UIComponents.ContentModules
 			
 			for (var i:int = 0; i < _barLabels.length; i++)
 			{
-				_targetCreature[_barLabels[i]](_pointDistribution[i]);
+				//_targetCreature[_barLabels[i]](_pointDistribution[i]);
+				_targetCreature[_barLabels[i] + "Raw"] += _pointDistribution[i];
 				if(_pointDistribution[i] > 0) gavePoints = true;
 			}
 			

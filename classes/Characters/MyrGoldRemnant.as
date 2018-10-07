@@ -359,7 +359,7 @@ package classes.Characters
 				var damage:TypeCollection = meleeDamage();
 				damage.multiply(1.8);
 				applyDamage(damage, this, target, "minimal");
-				if(target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13) CombatAttacks.applyStagger(target, rand(3)+1);
+				if((target.physique()/2 + rand(20) + 1 < this.physique()/2 + 13) && !target.isPlanted()) CombatAttacks.applyStagger(target, rand(3)+1);
 			}
 		}
 		

@@ -3687,7 +3687,7 @@ public function seraBitcheningSexTitfuck():void
 	
 	var cIdx:int = rand(pc.cocks.length);
 	
-	output("Your eyes linger on your succubus concubine’s breasts. Sculpted by state-of-the-art mods into something like perfection, those curving, flawless, impossibly perky E-Cups beg to be touched, their plump, erect [sera.nippleColor] nipples squeezed and nibbled. Once upon a time they were a cruel provocation, flaunted openly but never to be felt pressed against you - unless you were willing to submit to their owner’s sniggering, vindictive desires. It all belongs to you now, though. To do with as you wish. The thought makes [pc.eachCock]");
+	output("Your eyes linger on your succubus concubine’s breasts. Sculpted by state-of-the-art mods into something like perfection, those curving, flawless, impossibly perky EE-cups beg to be touched, their plump, erect [sera.nippleColor] nipples squeezed and nibbled. Once upon a time they were a cruel provocation, flaunted openly but never to be felt pressed against you - unless you were willing to submit to their owner’s sniggering, vindictive desires. It all belongs to you now, though. To do with as you wish. The thought makes [pc.eachCock]");
 	if(pc.isCrotchExposed()) output(" openly surge" + (pc.cocks.length == 1 ? "es" : "") + " into erection");
 	else if(!pc.isCrotchExposedByLowerUndergarment()) output(" tent your [pc.lowerUndergarment] eagerly");
 	output(".");

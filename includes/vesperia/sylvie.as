@@ -899,7 +899,7 @@ public function moosyStoriesGo(drunklevelChange:Number = 1,newPage:Boolean = tru
 		if(sylvieDrunkLevel() >= 1) output(" The booze is definitely starting to kick in, judging by the way she keeps finding excuses to touch you.");
 		sylvieMenu();
 	}
-	//So some mad scientist... Dr. Weasel or something passed through a few months back on the lam from UGC peacekeepers. Turned a pair of deergirls on vacation into vacuous cum-suckers before she got chased off station.
+	//So some mad scientist... Dr. Weasel or something passed through a few months back on the lam from UGC Peacekeepers. Turned a pair of deergirls on vacation into vacuous cum-suckers before she got chased off station.
 	else if(storySelect == 6)
 	{
 		output("<i>“So you ever hear about that mad scientist, Doctor Weasel or Ferret or whatever? The one with a hard-on for turning people into idiot fuckslaves?”</i>");

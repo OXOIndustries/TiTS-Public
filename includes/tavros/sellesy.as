@@ -96,7 +96,7 @@ public function anonsBarWaitressApproach():void {
 		output("\n\n<i>“Welcome back baby. I knew you couldn’t stay away for long. Are you feeling THIRSTY? Or were you hoping to skip straight to the ‘deposit’ this time?”</i> she asks with a knowing grin.");
 		//[CHOICE: ORDER A DRINK / LEAVE]
 		clearMenu();
-		addButton(0, "OrderDrink", firstDrinkFromSellesy, false, "Order Drink", "Order a drink for 50 credits.");
+		addButton(0, "OrderDrink", repeatDrinkyDrink, undefined, "Order Drink", "Order a drink for 50 credits.");
 		addButton(14, "Leave", mainGameMenu);
 	}
 	if(pc.credits < 50) addDisabledButton(0, "OrderDrink", "Order Drink", "You don’t have the 50 credits to order a drink!");
