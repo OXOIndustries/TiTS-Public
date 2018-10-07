@@ -6831,7 +6831,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				if(flags["MAIKE_HELMET_TAKEN"] != undefined) output2("\n<b>* Spacesuit Helmet:</b> Taken");
 				variousCount++;
 			}
-			if(flags["BORED_JUMPER_JUMPED"] != undefined || flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined || flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["MET_ROZ"] != undefined || flags["MET_SLAVEBREAKERS"] != undefined)
+			if(flags["BORED_JUMPER_JUMPED"] != undefined || flags["MINING_ROBOT_ENCOUNTERS"] != undefined || flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined || flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined || flags["MET_ROZ"] != undefined || flags["MET_SLAVEBREAKERS"] != undefined)
 			{
 				output2("\n<b><u>Mineshaft</u></b>");
 				// Jumper
@@ -6841,6 +6841,8 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["BORED_JUMPER_CONSECUTIVE_LOSSES"] > 1) output2("\n<b>* Bored Jumper, Combat, Times You Consecutively Lost:</b> " + flags["BORED_JUMPER_CONSECUTIVE_LOSSES"]);
 					if(flags["JUMPER_DOCKED"] != undefined) output2("\n<b>* Bored Jumper, Times Docked By:</b> " + flags["JUMPER_DOCKED"]);
 				}
+				// Mining bot
+				if(flags["MINING_ROBOT_ENCOUNTERS"] != undefined) output2("\n<b>* Mining Robot, Times Encountered:</b> " + flags["MINING_ROBOT_ENCOUNTERS"]);
 				// Pleasure Slaves
 				if(flags["ZHENG_SLAVE_SNEAK_DISABLED"] != undefined || flags["ZHENG_SHI_SLAVE_SNUCK"] != undefined)
 				{
@@ -6867,7 +6869,7 @@ public function displayEncounterLog(showID:String = "All"):void
 				}
 				variousCount++;
 			}
-			if(flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1)
+			if(flags["TOOK_FEDORA"] == 1 || flags["SNAKEBYTE_LOOTED"] == 1 || flags["FORGEHOUND_ENCOUNTERED"] != undefined || flags["MET_SECOP_MALE"] != undefined || flags["MET_SECOP_FEMALE"] != undefined)
 			{
 				output2("\n<b><u>Foundry</u></b>");
 				// Items looted
@@ -6885,6 +6887,9 @@ public function displayEncounterLog(showID:String = "All"):void
 					if(flags["FORGEHOUND_FISTED"] != undefined) output2("\n<b>* Forgehound, Times Fisted Him:</b> " + flags["FORGEHOUND_FISTED"]);
 					if(flags["FORGEHOUND_BUKKAKED"] != undefined) output2("\n<b>* Forgehound, Times Ejaculated On Him:</b> " + flags["FORGEHOUND_BUKKAKED"]);
 				}
+				// Cyberpunk SecOps
+				if(flags["MET_SECOP_MALE"] != undefined) output2("\n<b>* Male Punk Security Operative, Times Encountered:</b> " + flags["MET_SECOP_MALE"]);
+				if(flags["MET_SECOP_FEMALE"] != undefined) output2("\n<b>* Female Punk Security Operative, Times Encountered:</b> " + flags["MET_SECOP_FEMALE"]);
 				variousCount++;
 			}
 			if(flags["MET_OLYMPIA"] != undefined)

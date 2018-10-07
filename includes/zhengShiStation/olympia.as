@@ -29,6 +29,8 @@ public function olympiaCreatureStats():PregnancyPlaceholder
 	pp.cocks[0].cLengthRaw = 12;
 	pp.createPerk("Fixed CumQ", 350, 0, 0, 0);
 	if(!pp.hasVagina()) pp.createVagina();
+	pp.vaginas[0].bonusCapacity += 250;
+	pp.ass.bonusCapacity += 250;
 	return pp;
 }
 
@@ -273,11 +275,13 @@ public function workAnFuckDatGynoidsGyni():void
 
 public function olympiaSexMenu():void
 {
+	var ppOlympia:PregnancyPlaceholder = olympiaCreatureStats();
+	
 	clearMenu();
 	//[Dick Fuck] [Tail Ride]
 	if(pc.hasCock())
 	{
-		if(pc.cockThatFits(olympiaCreatureStats().cockVolume(0)) >= 0) addButton(0,"Dick Fuck",penisRouter,[buttfuckTheSexyRobo,olympiaCreatureStats().cockVolume(0),false],"Dick Fuck","Slide your dick into Olympia’s tailpipe and give her the business while you help her with some engine problems.");
+		if(pc.cockThatFits(ppOlympia.analCapacity()) >= 0) addButton(0,"Dick Fuck",penisRouter,[buttfuckTheSexyRobo,ppOlympia.analCapacity(),false],"Dick Fuck","Slide your dick into Olympia’s tailpipe and give her the business while you help her with some engine problems.");
 		else addDisabledButton(0,"Dick Fuck","Dick Fuck","You can’t fit inside her, you fucking stallion, you!");
 	}
 	else addDisabledButton(0,"Dick Fuck","Dick Fuck","You need to have a penis that fits inside her to do this!");
@@ -313,9 +317,10 @@ public function buttfuckTheSexyRobo(x:int):void
 	output("\n\n<i>“It was,”</i> Olympia chuckles. <i>“And with your help, I don’t think I’ve lost any time. Perhaps I’ve even gain some... much needed inspiration. Feel free to help any time, so long as you can keep providing such meaty insights.”</i>");
 	output("\n\nYou give her your answer in the form of a firm squeeze as you finally divest yourself of her tight little asshole, letting the last vestiges of your orgasm leak down Olympia’s thigh. By the time you’ve found your [pc.weapon], she’s already back at work... though still obviously marked by your seed.");
 	processTime(30);
+	var ppOlympia:PregnancyPlaceholder = olympiaCreatureStats();
 	pc.orgasm();
 	//loadIn
-	olympiaCreatureStats().loadInCunt(pc,0);
+	ppOlympia.loadInAss(pc);
 	IncrementFlag("OLYMPIA_SEXED");
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);
@@ -343,8 +348,9 @@ public function tailRideOlympia(x:int):void
 
 	output("\n\nThen the knot is pressing into your " + (x >= 0 ? "labia":"rim") + ", and sudden that incredible hardness turns into a throbbing expanse of sensuous cockflesh, going from rigid to just turgid - and leaking more of that musky lube inside you.");
 
-	if(x >= 0) pc.cuntChange(x,olympiaCreatureStats().cockVolume(0));
-	else pc.buttChange(olympiaCreatureStats().cockVolume(0));
+	var ppOlympia:PregnancyPlaceholder = olympiaCreatureStats();
+	if(x >= 0) pc.cuntChange(x,ppOlympia.cockVolume(0));
+	else pc.buttChange(ppOlympia.cockVolume(0));
 
 	output("\n\n<i>“Initial contact is always so important,”</i> Olympia breathes. <i>“The difference between immediate detection and a real chance at infiltrating into close range with your target. But this ship is made for stalking, for making several probes into possible target areas...”</i>");
 
@@ -363,8 +369,8 @@ public function tailRideOlympia(x:int):void
 	processTime(30);
 	IncrementFlag("OLYMPIA_SEXED");
 	//add juices in fuckbox
-	if(x >= 0) pc.loadInCunt(olympiaCreatureStats(),x);
-	else pc.loadInAss(olympiaCreatureStats());
+	if(x >= 0) pc.loadInCunt(ppOlympia,x);
+	else pc.loadInAss(ppOlympia);
 	pc.orgasm();
 	clearMenu();
 	addButton(0,"Next",mainGameMenu);

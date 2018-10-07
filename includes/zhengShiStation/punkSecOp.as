@@ -55,17 +55,21 @@ public function encounterPunkSecOp():Boolean
 	var tEnemy:Creature = new CyberPunkSecOp();
 	setEnemy(tEnemy);
 	//First time male
-	if(tEnemy.hasCock() && flags["MET_SECOP_MALE"] == undefined)
+	if(tEnemy.hasCock())
 	{
 		output("\n\n<i>“Hey, you aren’t supposed to be here!”</i>");
 		output("\n\nA swaggering kaithrit in a suit that looks like it’s made from coiled steel is advancing with long, bounding leaps. The bright blue holovisor across his eyes flickers, painting a red outline around the shape of your body.");
 		output("\n\nHe’s too sure of himself to bluff and too fast to hide from. You’ll have to fight!");
+		
+		IncrementFlag("MET_SECOP_MALE");
 	}
 	//Female
 	else
 	{
-		output("\n\n<i>“Oh come on! Another one?”</i> A bosomy kaithrit in a suit that looks like it’s made from coiled steel is advancing with a slow shake of her head. <i>“Independents aren’t allowed up here without a boss’s okay and you, cutie, do </i>not<i> have a boss’s okay.”</i> The pale blue band of her cybernetically-projected holovisor lights up with an outline of your body as she finishes some kind of scan. <i>“Come on. If you walk back to the elevator on your own, " + pc.mf("you won’t have to tell everyone you got your ass whupped by a girl.","I won’t have to leave any bruises on that pretty face of yours.") + "”</i>");
+		output("\n\n<i>“Oh come on! Another one?”</i> A bosomy kaithrit in a suit that looks like it’s made from coiled steel is advancing with a slow shake of her head. <i>“Independents aren’t allowed up here without a boss’s okay and you, cutie, do </i>not<i> have a boss’s okay.”</i> The pale blue band of her cybernetically-projected holovisor lights up with an outline of your body as she finishes some kind of scan. <i>“Come on. If you walk back to the elevator on your own, " + pc.mf("you won’t have to tell everyone you got your ass whupped by a girl","I won’t have to leave any bruises on that pretty face of yours") + ".”</i>");
 		output("\n\nYou’ve been given a choice - be escorted away or fight for the freedom to continue your exploration.");
+		
+		IncrementFlag("MET_SECOP_FEMALE");
 	}
 	CombatManager.newGroundCombat();
 	CombatManager.setHostileActors(tEnemy);	
@@ -1139,7 +1143,7 @@ public function getLickedBySecop(x:int):void
 	if(!pc.isSquirter()) output(" [pc.GirlCum] trickles into [enemy.hisHer] waiting maw and slicks [enemy.hisHer] cheeks.");
 	else 
 	{
-		output(" [pc.GirlCum] floods [enemy.hisHer] waiting maw and bulges [enemy.hisHer] cheeks. Excess splatters across the rest of [enemy.hisHer] face until he’s glazed");
+		output(" [pc.GirlCum] floods [enemy.hisHer] waiting maw and bulges [enemy.hisHer] cheeks. Excess splatters across the rest of [enemy.hisHer] face until [enemy.heShe]’s glazed");
 		if(pc.girlCumQ() >= 3000) output(", and you’re barely getting started. You gird [enemy.himHer] in girlish lust and leave [enemy.himHer] kneeling in a puddle of it");
 		output(".");
 	}
@@ -1163,9 +1167,9 @@ public function getLickedBySecop(x:int):void
 	}
 	else output(" for a moment before [enemy.heShe] begins to masturbate, too impassioned to hold back any longer");
 	output(".");
-	output("\n\nSighing happily, you step away and wipe a bit of sweat from your brow. The security operative looks a lot more like a security slut, glazed in your juices as [enemy.heShe] is. He’s in no shape to stop anyone from going anywhere but balls-deep in [enemy.hisHer] ass in the near future... and honestly, [enemy.heShe] might like that. ");
+	output("\n\nSighing happily, you step away and wipe a bit of sweat from your brow. The security operative looks a lot more like a security slut, glazed in your juices as [enemy.heShe] is. [enemy.HeShe]’s in no shape to stop anyone from going anywhere but balls-deep in [enemy.hisHer] ass in the near future... and honestly, [enemy.heShe] might like that. ");
 	if(pc.isBimbo()) output("You smile sweetly. <i>“Like wow! You’re super good at licking pussy. Maybe you should just do that instead of trying to be like, mean and stuff!");
-	else if(!pc.isAss()) output("You mumble, <i>“Thanks,”</i> wondering if he’s in any shape to understand. In the end, you suppose it doesn’t matter either way.");
+	else if(!pc.isAss()) output("You mumble, <i>“Thanks,”</i> wondering if [enemy.heShe]’s in any shape to understand. In the end, you suppose it doesn’t matter either way.");
 	else output("What a slut.");
 	output("\n\nGathering up your equipment, you spare a brief glance at your foe’s belongings for any prizes before you go.");
 	processTime(25);
@@ -1185,7 +1189,7 @@ public function faceFuckDatPussy(x:int):void
 	//Bro
 	else if(pc.isBro()) output("You hook your finger the modded up feline’s mouth and rudely swab it around. <i>“This’ll do.”</i>");
 	//Nice
-	else if(pc.isNice()) output("You gently but firmly inform the defeated feline that while you aren’t going to hurt or abuse him, you do expect [enemy.himHer] to make up for the trouble he’s caused with [enemy.hisHer] mouth and tongue.");
+	else if(pc.isNice()) output("You gently but firmly inform the defeated feline that while you aren’t going to hurt or abuse him, you do expect [enemy.himHer] to make up for the trouble [enemy.heShe]’s caused with [enemy.hisHer] mouth and tongue.");
 	//Misch
 	else if(pc.isMischievous()) output("<i>“I’ve got good news and bad news for you, kitty-cat. The good news is that I won’t hurt you. I’m just gonna fuck your mouth. The bad news is that I’m going to leave afterward, so we won’t get to snuggle.”</i>");
 	//Hard
@@ -1194,7 +1198,7 @@ public function faceFuckDatPussy(x:int):void
 	//Unexposed no new pg
 	if(!pc.isCrotchExposed()) 
 	{
-		output(" It’s time [enemy.heShe] saw what he’s going to be servicing. You whip it out, all " + num2Text(Math.round(pc.cocks[x].cLength())) + " inches of [pc.cockNoun].");
+		output(" It’s time [enemy.heShe] saw what [enemy.heShe]’s going to be servicing. You whip it out, all " + num2Text(Math.round(pc.cocks[x].cLength())) + " inches of [pc.cockNoun].");
 		if(pc.isErect()) output(" It’s already hard." + (pc.hasPriapism() ? " You couldn’t go soft if you wanted to right now.":""));
 		else output(" Simply extracting it was enough to bring you to full hardness.");
 	}
@@ -1242,7 +1246,7 @@ public function faceFuckDatPussy(x:int):void
 	//else Second dick jacking
 	else if(pc.cockTotal() > 1)
 	{
-		output("\n\nA soft-fingered hand wraps around " + (pc.cockTotal() == 2 ? "your other":"another") + " dick with a sort of desperate firmness. The kaithrit’s eyes twinkle merrily while [enemy.hisHer] throat gurgles, slowly pumping that second cock. [enemy.HisHer] fingers curl and squeeze. [enemy.HisHer] palm, slick with sweat, glides effortlessly across the veiny length. At the apex of your thrusts, [enemy.heShe] squeezes tighter. When you draw back, [enemy.hisHer] grip relaxes. In no time at all, he’s twirling a finger in small circles just below the [pc.cockHead], smearing a dribble of pre-cum into your bare, musky maleness.");
+		output("\n\nA soft-fingered hand wraps around " + (pc.cockTotal() == 2 ? "your other":"another") + " dick with a sort of desperate firmness. The kaithrit’s eyes twinkle merrily while [enemy.hisHer] throat gurgles, slowly pumping that second cock. [enemy.HisHer] fingers curl and squeeze. [enemy.HisHer] palm, slick with sweat, glides effortlessly across the veiny length. At the apex of your thrusts, [enemy.heShe] squeezes tighter. When you draw back, [enemy.hisHer] grip relaxes. In no time at all, [enemy.heShe]’s twirling a finger in small circles just below the [pc.cockHead], smearing a dribble of pre-cum into your bare, musky maleness.");
 	}
 	//Sheath Fingering?
 	if(pc.hasSheath(x))
