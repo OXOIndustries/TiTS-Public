@@ -128,10 +128,9 @@ public function mountHerOrgy():void
 	clearOutput();
 	showJumpyGangbang();
 	output("With a beating heart");
-	if(!pc.isHerm()) output(", ");
 	if(pc.hasCock() && !pc.hasVagina()) output(" and a throbbing penis");
 	else if(pc.hasVagina() && !pc.hasCock()) output(" and a tingling pussy");
-	else output("a throbbing penis and a tingling pussy");
+	else output(", a throbbing penis and a tingling pussy");
 	output(", you [pc.walk] over to and sit near the kneeling laquine servicing the gryvain-human-saeri mix so diligently. You catch your breath at the center of this sexual tsunami, a lump forming in your throat. You’re already drooling! Four raw and ready dicks pollute the air with womb-rippling musk, and the human-gryvain pheromone combo makes all proudly flared manhoods flood their stiff shafts with salty, sticky pre, flowing out as if the room itself is sucking them off.");
 
 	output("\n\nYou take a deep breath and feel the sparks of aerial lust stoke a blaze in your body. It was a smooth inhalation, a simple act... But your exhalation is less so. A ragged, growling breath follows; your body shivers and trembles with the stench of horny, capable breeders subverting its perfunctory purposes. Your eyes almost water as the wavy haze of concentrated libido comes into faint view under the cheap lights, enveloping the mixed phalli on display in a sweet, soupy glow that begs you to touch, stroke, suck, kiss, fuck-");

@@ -137,6 +137,7 @@
 			this.createVagina();
 			this.girlCumType = GLOBAL.FLUID_TYPE_HONEY;
 			this.vaginalVirgin = false;
+			this.vaginas[0].hymen = false;
 			this.vaginas[0].loosenessRaw = 2;
 			this.vaginas[0].wetnessRaw = 4;
 			this.vaginas[0].type = GLOBAL.TYPE_BEE;
@@ -170,6 +171,7 @@
 			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
+			this.analVirgin = false;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 			this.createStatusEffect("Disarm Immune");

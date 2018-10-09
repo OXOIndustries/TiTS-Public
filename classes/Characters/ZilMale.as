@@ -130,6 +130,7 @@
 			//No dicks here!
 			this.cocks = new Array();
 			this.createCock();
+			this.cockVirgin = false;
 			this.cocks[0].cLengthRaw = 6;
 			this.cocks[0].cThicknessRatioRaw = 1.75;
 			this.cocks[0].cockColor = "black";
@@ -164,6 +165,7 @@
 			this.milkType = GLOBAL.FLUID_TYPE_HONEY;
 			//The rate at which you produce milk. Scales from 0 to INFINITY.
 			this.milkRate = 0;
+			this.analVirgin = false;
 			this.ass.wetnessRaw = 0;
 			this.ass.bonusCapacity += 15;
 

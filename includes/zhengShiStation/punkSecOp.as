@@ -1071,7 +1071,7 @@ public function getLickedBySecop(x:int):void
 	//Bro
 	else if(pc.isBro()) output("You grin and at at your crotch. <i>“Yeah you can lick...”</i>");
 	//Nice/Misch
-	else if(pc.isNice() || pc.isMischievous()) output("\n\n<i>“Since you offered" + (pc.isMischievous() ? " sooo generously":"") + "... I do have something you and your tongue can take care of.”</i>");
+	else if(pc.isNice() || pc.isMischievous()) output("<i>“Since you offered" + (pc.isMischievous() ? " sooo generously":"") + "... I do have something you and your tongue can take care of.”</i>");
 	//Hard
 	else output("You chuckle. <i>“Since you’re on your knees, why don’t you put that wiggling tongue of yours to work on my pussy.”</i>");
 	//Merge
@@ -1083,12 +1083,12 @@ public function getLickedBySecop(x:int):void
 	//HP win
 	if(enemy.HP() <= 1)
 	{
-		output("\n\nThe cybernetic cat-" + enemy.mf("guy","girl") + " nods all too seriously. <i>“Okay...”</i> [enemy.HeShe] crawls forward unsteadily" + (enemy.biggestTitSize() >= 2 ? ", nearly tipping over from the weight of her own jiggling tits":"") + ". [enemy.HisHer] visor shuts off to give [enemy.himHer] a better view, and [enemy.hisHer] wide, feline eyes drink in the sight of your " + (pc.vaginas[x].wetness() < 3 ? "increasingly lusty":"soaking") + " delta. The slits of [enemy.hisHer] pupils widen in unexpected desire. <i>“That’s... a really nice pussy.”</i> [enemy.HeShe] licks [enemy.hisHer] lips" + (enemy.hasCock() ? ", the distention in the crotch of [enemy.hisHer] suit engorging until it splits apart to reveal the silvery length of [enemy.hisHer] cybernetic breeding tool.":", the silver of her suit splitting apart to reveal two hard nipples."));
+		output("\n\nThe cybernetic cat-" + enemy.mf("guy","girl") + " nods all too seriously. <i>“Okay...”</i> [enemy.HeShe] crawls forward unsteadily" + (enemy.biggestTitSize() >= 12 ? ", nearly tipping over from the weight of [enemy.hisHer] own jiggling tits":"") + ". [enemy.HisHer] visor shuts off to give [enemy.himHer] a better view, and [enemy.hisHer] wide, feline eyes drink in the sight of your " + (pc.vaginas[x].wetness() < 3 ? "increasingly lusty":"soaking") + " delta. The slits of [enemy.hisHer] pupils widen in unexpected desire. <i>“That’s... a really nice pussy.”</i> [enemy.HeShe] licks [enemy.hisHer] lips" + (enemy.hasCock() ? ", the distention in the crotch of [enemy.hisHer] suit engorging until it splits apart to reveal the silvery length of [enemy.hisHer] cybernetic breeding tool.":", the silver of [enemy.hisHer] suit splitting apart to reveal two hard nipples."));
 	}
 	//Lust
 	else
 	{
-		output("\n\nThe cybernetic cat-" + enemy.mf("guy","girl") + " scrabbles forward madly" + (pc.biggestTitSize() >= 2 ? ", her heavy tits jiggling and bouncing as her armored suit pulls back to expose them":"") + ". <i>“Yessss!”</i> [enemy.HeShe] shuts down [enemy.hisHer] holovisor for a better view, allowing [enemy.hisHer] lust-dilated eyes to drink in the sight of your " + (pc.vaginas[x].wetness() < 3 ? "increasingly lusty":"soaking") + " delta. <i>“I am going to eat the fuck out of this.”</i> [enemy.HeShe] licks [enemy.hisHer] lips, drooling slightly." + (enemy.hasCock() ? " The corded silver of [enemy.hisHer] armored suit splits at the crotch to reveal an equally reflective piece of cybernetic genitalia - all thirteen inches of throbbing robo-cock.":"") + " A too-pleased giggle announces just how happy this turn of events has made [enemy.himHer]. <i>“You have the prettiest pussy on station.”</i>");
+		output("\n\nThe cybernetic cat-" + enemy.mf("guy","girl") + " scrabbles forward madly" + (pc.biggestTitSize() >= 12 ? ", [enemy.hisHer] heavy tits jiggling and bouncing as [enemy.hisHer] armored suit pulls back to expose them":"") + ". <i>“Yessss!”</i> [enemy.HeShe] shuts down [enemy.hisHer] holovisor for a better view, allowing [enemy.hisHer] lust-dilated eyes to drink in the sight of your " + (pc.vaginas[x].wetness() < 3 ? "increasingly lusty":"soaking") + " delta. <i>“I am going to eat the fuck out of this.”</i> [enemy.HeShe] licks [enemy.hisHer] lips, drooling slightly." + (enemy.hasCock() ? " The corded silver of [enemy.hisHer] armored suit splits at the crotch to reveal an equally reflective piece of cybernetic genitalia - all thirteen inches of throbbing robo-cock.":"") + " A too-pleased giggle announces just how happy this turn of events has made [enemy.himHer]. <i>“You have the prettiest pussy on station.”</i>");
 	}
 	//Merge
 	output("\n\n" + (enemy.lust() >= enemy.lustMax() ? "<i>“Thank you.”</i>":"Flatterer.") + " You can wait no longer. Grabbing [enemy.himHer] by the back of the head, you push the kaithrit’s face into your [pc.vagina " + x + "], smashing [enemy.hisHer] cutely twitching nose into [pc.oneClit] and [enemy.hisHer] cheeks into your [pc.thighs]. [enemy.HisHer] lips are already wet, though whether [enemy.heShe] kept them that way for your pleasure or merely accepted a gift from your own ");
@@ -1128,15 +1128,12 @@ public function getLickedBySecop(x:int):void
 		else output(" ");
 		output("Your [pc.cocks], sadly, get" + (pc.cockTotal() == 1 ? "s":"") + " no such attention. " + (pc.cockTotal() == 1 ? "It twitches":"They twitch") + " all alone above, unattended by your fuzzy-eared partner. It’s only when " + (pc.cockTotal() == 1 ? "it leaks":"they leak") + " pre-cum that you finally cave in and grab hold, pumping and groaning, so turned on by the tongue’s skillful manipulations that you can’t help but masturbate.");
 	}
-	//Enemy lost by lust and is male
-	if(enemy.lust() >= enemy.lustMax() && enemy.hasCock())
+	if(enemy.lust() >= enemy.lustMax())
 	{
-		output("\n\nHeavy slapping sounds signal that something far lewder is happening by your [pc.footOrFeet]. Leaning to the side, you catch a glimpse of the kitty-boy’s feet cradling [enemy.hisHer] cock, pumping up and down it, [enemy.hisHer] toes curled tightly around [enemy.hisHer] gleaming chrome cock-head. The strokes match the pace of [enemy.hisHer] tongue perfectly, like in [enemy.hisHer] head its [enemy.hisHer] dick that’s sinking so deeply into your folds, causing you to moan with such sweet happiness.");
-	}
-	//Enemy lost by lust and is female
-	else if(enemy.lust() >= enemy.lustMax())
-	{
-		output("\n\nA second set of lurid squelches signals that something just as lewd is happening by your [pc.footOrFeet]. Leaning to the side, you catch a glimpse of the kittenish woman’s incredible flexibility. She has one foot bent almost double, thrusting a few of her fluffy toes deep into her own cunt. The strokes perfectly match her tongue’s motions, like she’s substituting one limb for another. Maybe that’s why she’s so good with her tongue. She just folds herself in half and just licks herself into ecstasy.");
+		//Enemy lost by lust and is male
+		if(enemy.hasCock()) output("\n\nHeavy slapping sounds signal that something far lewder is happening by your [pc.footOrFeet]. Leaning to the side, you catch a glimpse of the kitty-boy’s feet cradling his cock, pumping up and down it, his toes curled tightly around his gleaming chrome cock-head. The strokes match the pace of his tongue perfectly, like in his head its his dick that’s sinking so deeply into your folds, causing you to moan with such sweet happiness.");
+		//Enemy lost by lust and is female
+		else output("\n\nA second set of lurid squelches signals that something just as lewd is happening by your [pc.footOrFeet]. Leaning to the side, you catch a glimpse of the kittenish woman’s incredible flexibility. She has one foot bent almost double, thrusting a few of her fluffy toes deep into her own cunt. The strokes perfectly match her tongue’s motions, like she’s substituting one limb for another. Maybe that’s why she’s so good with her tongue. She just folds herself in half and just licks herself into ecstasy.");
 	}
 	//Merge orgasm
 	output("\n\nEverything changes when the augmented kaithrit’s tongue twists itself into a helix. Every part of your pussy is stimulated: the top, bottom, sides, and even your g-spot. What’s more, it makes you feel completely full, and it’s slowly uncoiling, widening to open you up further and further. You cry out in sudden ecstasy as it all becomes too much. With a scream of insensate bliss, you cum.");
@@ -1189,7 +1186,7 @@ public function faceFuckDatPussy(x:int):void
 	//Bro
 	else if(pc.isBro()) output("You hook your finger the modded up feline’s mouth and rudely swab it around. <i>“This’ll do.”</i>");
 	//Nice
-	else if(pc.isNice()) output("You gently but firmly inform the defeated feline that while you aren’t going to hurt or abuse him, you do expect [enemy.himHer] to make up for the trouble [enemy.heShe]’s caused with [enemy.hisHer] mouth and tongue.");
+	else if(pc.isNice()) output("You gently but firmly inform the defeated feline that while you aren’t going to hurt or abuse [enemy.himHer], you do expect [enemy.himHer] to make up for the trouble [enemy.heShe]’s caused with [enemy.hisHer] mouth and tongue.");
 	//Misch
 	else if(pc.isMischievous()) output("<i>“I’ve got good news and bad news for you, kitty-cat. The good news is that I won’t hurt you. I’m just gonna fuck your mouth. The bad news is that I’m going to leave afterward, so we won’t get to snuggle.”</i>");
 	//Hard
@@ -1198,7 +1195,7 @@ public function faceFuckDatPussy(x:int):void
 	//Unexposed no new pg
 	if(!pc.isCrotchExposed()) 
 	{
-		output(" It’s time [enemy.heShe] saw what [enemy.heShe]’s going to be servicing. You whip it out, all " + num2Text(Math.round(pc.cocks[x].cLength())) + " inches of [pc.cockNoun].");
+		output(" It’s time [enemy.heShe] saw what [enemy.heShe]’s going to be servicing. You whip it out, all " + num2Text(Math.round(pc.cocks[x].cLength())) + " inches of [pc.cockNoun " + x + "].");
 		if(pc.isErect()) output(" It’s already hard." + (pc.hasPriapism() ? " You couldn’t go soft if you wanted to right now.":""));
 		else output(" Simply extracting it was enough to bring you to full hardness.");
 	}
@@ -1213,10 +1210,10 @@ public function faceFuckDatPussy(x:int):void
 	//Lust
 	else
 	{
-		output("\n\nLike a thirsty galotion, [enemy.hisHer] eyes light up and lock on like the targeting system of a dick-seeking missile. <i>“I get to suck this?”</i> The holographic band across the kaithrit’s eyes fades away to give [enemy.himHer] an unobstructed view. <i>“Mmm... all of this...”</i> [enemy.HeShe] sniffs at it, nose twitching gently, then scooches even closer, [enemy.hisHer] ears falling back in contented submission. <i>“I don’t mind." + (pc.cocks[x].cLength() < 12 ? " It’s not stupid huge like what those jumpers pack.":"It’s not undersized like one of those rodenian rats. A little jaw-stretching will be... fun.") + "”</i> [enemy.HeShe] licks lips so that they shine. <i>“So fuck my face already, big [pc.guyGirl].”</i>");
+		output("\n\nLike a thirsty galotian, [enemy.hisHer] eyes light up and lock on like the targeting system of a dick-seeking missile. <i>“I get to suck this?”</i> The holographic band across the kaithrit’s eyes fades away to give [enemy.himHer] an unobstructed view. <i>“Mmm... all of this...”</i> [enemy.HeShe] sniffs at it, nose twitching gently, then scooches even closer, [enemy.hisHer] ears falling back in contented submission. <i>“I don’t mind. " + (pc.cocks[x].cLength() < 12 ? "It’s not stupid huge like what those jumpers pack.":"It’s not undersized like one of those rodenian rats. A little jaw-stretching will be... fun.") + "”</i> [enemy.HeShe] licks lips so that they shine. <i>“So fuck my face already, big [pc.guyGirl].”</i>");
 	}
 	//Merge
-	output("\n\nYou need no further invitation. Grabbing the security operative by the back of the head (and careful of [enemy.hisHer] implants) you tug [enemy.himHer] forward onto your [pc.cock]. [enemy.HeShe] doesn’t struggle - anything but. [enemy.HisHer] mouth opens wide and [enemy.hisHer] tongue rolls out, offering you a slick red carpet to slide your [pc.cockHead] across on its journey to adoring oral service. [enemy.HisHer] [enemy.lipsChaste] feel wonderful, closing just tight enough to form a spit-slick seal once you’ve pushed past them and [enemy.hisHer] tongue... oh stars!");
+	output("\n\nYou need no further invitation. Grabbing the security operative by the back of the head (and careful of [enemy.hisHer] implants) you tug [enemy.himHer] forward onto your [pc.cock " + x + "]. [enemy.HeShe] doesn’t struggle - anything but. [enemy.HisHer] mouth opens wide and [enemy.hisHer] tongue rolls out, offering you a slick red carpet to slide your [pc.cockHead " + x + "] across on its journey to adoring oral service. [enemy.HisHer] [enemy.lipsChaste] feel wonderful, closing just tight enough to form a spit-slick seal once you’ve pushed past them and [enemy.hisHer] tongue... oh stars!");
 	output("\n\nThe kaithrit’s tongue boils out of [enemy.hisHer] mouth like a living serpent, sliding out two inches for each one you add. This crossways motion assaults you with double the friction along your sensitive underside, like half your dick is slowly pumping in while the other half is midway through a real jack-hammering hummer. You gasp, then moan, then stop moving at all, content to revel in the sensation of that slick muscle spooling out - for now. You float on a curtain of undulating muscle, surrounded by the embrace of spit-slick lips.");
 	//Nice
 	if(pc.isNice())
@@ -1232,11 +1229,11 @@ public function faceFuckDatPussy(x:int):void
 	//Hard
 	else output("\n\nLike a conquering warrior, you pause in the moment of your victory to savor it - until the kaithrit runs out of slobbering tongue to extend and settles for looping it around you in an organic snare.");
 	//Merge
-	output("\n\nYou fuck the punky security operative’s overlong muscle back into [enemy.hisHer] mouth with a single mighty push. Spit dribbles from [enemy.hisHer] cheeks in sudden surprise, and [enemy.heShe] lets out a single inarticulate gurgle. " + (pc.cocks[x].cLength() < 12 ? "Running your fingers through [enemy.hisHer] hair, you admire your prize. [enemy.HisHer] hot breath is washing over your [pc.thighs] and [pc.belly]. [enemy.HisHer] tongue squirms and wriggles beneath your [pc.knot " + x + "]. The longer you hold [enemy.himHer] there, the more comfortable [enemy.heShe] seems, and all too soon, the slut-cat’s cheeks are rhythmically hollowing with eager suckles.":"Running your fingers through [enemy.hisHer] hair, you admire your prize, impaled partway down your length. [enemy.HeShe] can’t take the whole thing. There’s simply too much [pc.cockNounSimple] for [enemy.hisHer] untrained throat to handle, no matter how [enemy.heShe] tries. [enemy.HeShe] can grab at your [pc.butt] and strain, water streaming down [enemy.hisHer] eyes, but [enemy.heShe] only manages another inch or two at the most.\n\nGood for him. Maybe next time you bump into him, he’ll be a little better at it."));
+	output("\n\nYou fuck the punky security operative’s overlong muscle back into [enemy.hisHer] mouth with a single mighty push. Spit dribbles from [enemy.hisHer] cheeks in sudden surprise, and [enemy.heShe] lets out a single inarticulate gurgle. " + (pc.cocks[x].cLength() < 12 ? "Running your fingers through [enemy.hisHer] hair, you admire your prize. [enemy.HisHer] hot breath is washing over your [pc.thighs] and [pc.belly]. [enemy.HisHer] tongue squirms and wriggles beneath your [pc.knot " + x + "]. The longer you hold [enemy.himHer] there, the more comfortable [enemy.heShe] seems, and all too soon, the slut-cat’s cheeks are rhythmically hollowing with eager suckles.":"Running your fingers through [enemy.hisHer] hair, you admire your prize, impaled partway down your length. [enemy.HeShe] can’t take the whole thing. There’s simply too much [pc.cockNounSimple " + x + "] for [enemy.hisHer] untrained throat to handle, no matter how [enemy.heShe] tries. [enemy.HeShe] can grab at your [pc.butt] and strain, water streaming down [enemy.hisHer] eyes, but [enemy.heShe] only manages another inch or two at the most.\n\nGood for [enemy.himHer]. Maybe next time you bump into [enemy.himHer], he’ll be a little better at it."));
 	//Low libido
-	if(pc.libido() < 50) output("\n\n[enemy.HisHer] tongue refuses to let you go. It loops around and around even as you draw back, muscle coiled into a helix of cock-milking pleasure such that you can’t even tug your [pc.cockHead] the whole way out. You’re <i>forced</i> to thrust yourself back inside by the thirsty kaithrit. [enemy.HisHer] sloppy, silken maw demands it. Like a sexual tractor beam, it inexorably pulls you onward. It compels you to fuck [enemy.himHer] faster than you meant to. Harder.");
+	if(pc.libido() < 50) output("\n\n[enemy.HisHer] tongue refuses to let you go. It loops around and around even as you draw back, muscle coiled into a helix of cock-milking pleasure such that you can’t even tug your [pc.cockHead " + x + "] the whole way out. You’re <i>forced</i> to thrust yourself back inside by the thirsty kaithrit. [enemy.HisHer] sloppy, silken maw demands it. Like a sexual tractor beam, it inexorably pulls you onward. It compels you to fuck [enemy.himHer] faster than you meant to. Harder.");
 	//High libido
-	else output("\n\[enemy.HisHer] tongue clings on tightly as launch into motion. Even when you draw back, [enemy.hisHer] muscle squeezes into a helix of cock-caressing pleasure that feels so sensually compelling that your [pc.cockHead] never quite manages to leave [enemy.hisHer] mouth - not that you ever had any intent to do so. You slam your hips forward and back, spearing your turgid length through this frothing, cutely pursed lips with glee. [enemy.HisHer] mouth is just so <i>fuckable</i>! You’d be jackhammering [enemy.hisHer] face even if [enemy.hisHer] tongue wasn’t lavishing you with heavenly sensations.");
+	else output("\n\[enemy.HisHer] tongue clings on tightly as launch into motion. Even when you draw back, [enemy.hisHer] muscle squeezes into a helix of cock-caressing pleasure that feels so sensually compelling that your [pc.cockHead " + x + "] never quite manages to leave [enemy.hisHer] mouth - not that you ever had any intent to do so. You slam your hips forward and back, spearing your turgid length through this frothing, cutely pursed lips with glee. [enemy.HisHer] mouth is just so <i>fuckable</i>! You’d be jackhammering [enemy.hisHer] face even if [enemy.hisHer] tongue wasn’t lavishing you with heavenly sensations.");
 	//Merge
 	//Longdick jacking
 	if(pc.cocks[x].cLength() > 12)
@@ -1246,7 +1243,7 @@ public function faceFuckDatPussy(x:int):void
 	//else Second dick jacking
 	else if(pc.cockTotal() > 1)
 	{
-		output("\n\nA soft-fingered hand wraps around " + (pc.cockTotal() == 2 ? "your other":"another") + " dick with a sort of desperate firmness. The kaithrit’s eyes twinkle merrily while [enemy.hisHer] throat gurgles, slowly pumping that second cock. [enemy.HisHer] fingers curl and squeeze. [enemy.HisHer] palm, slick with sweat, glides effortlessly across the veiny length. At the apex of your thrusts, [enemy.heShe] squeezes tighter. When you draw back, [enemy.hisHer] grip relaxes. In no time at all, [enemy.heShe]’s twirling a finger in small circles just below the [pc.cockHead], smearing a dribble of pre-cum into your bare, musky maleness.");
+		output("\n\nA soft-fingered hand wraps around " + (pc.cockTotal() == 2 ? "your other":"another") + " dick with a sort of desperate firmness. The kaithrit’s eyes twinkle merrily while [enemy.hisHer] throat gurgles, slowly pumping that second cock. [enemy.HisHer] fingers curl and squeeze. [enemy.HisHer] palm, slick with sweat, glides effortlessly across the veiny length. At the apex of your thrusts, [enemy.heShe] squeezes tighter. When you draw back, [enemy.hisHer] grip relaxes. In no time at all, [enemy.heShe]’s twirling a finger in small circles just below the [pc.cockHead " + x + "], smearing a dribble of pre-cum into your bare, musky maleness.");
 	}
 	//Sheath Fingering?
 	if(pc.hasSheath(x))
@@ -1260,7 +1257,7 @@ public function faceFuckDatPussy(x:int):void
 	//Ball milking?
 	if(pc.balls > 1 && pc.ballDiameter() >= 5)
 	{
-		output("\n\nYour tremendously weighty nuts wobble back and forth with tremendous mass. They slap into the kaithrit’s collarbones aggressively, jiggling and jostling. [enemy.HeShe] swiftly abandons everything else to get [enemy.hisHer] hands on your oh-so-virile orbs, wrapping [enemy.hisHer] fingers possessively around your cum-swollen balls as if to claim the contents for himself. [enemy.HeShe] smothers them into [enemy.hisHer] face, drowning himself in your ball-musk, even while taking a dick-deep into [enemy.hisHer] throat.");
+		output("\n\nYour tremendously weighty nuts wobble back and forth with tremendous mass. They slap into the kaithrit’s collarbones aggressively, jiggling and jostling. [enemy.HeShe] swiftly abandons everything else to get [enemy.hisHer] hands on your oh-so-virile orbs, wrapping [enemy.hisHer] fingers possessively around your cum-swollen balls as if to claim the contents for [enemy.himHer]self. [enemy.HeShe] smothers them into [enemy.hisHer] face, drowning [enemy.himHer]self in your ball-musk, even while taking a dick-deep into [enemy.hisHer] throat.");
 		output("\n\nThis cat is a real nut-slut! [enemy.HisHer] fingers sink into the capacious flesh as [enemy.heShe] sets into worshipping your [pc.balls], massaging them imploringly, begging them to brew up the fattest, thickest load of cum the galaxy has ever seen. Yet even with both hands, [enemy.heShe] can’t quite handle your rebellious sack or the fluid contents within. It wobbles dangerously with your ecstatic clenches. The more [enemy.heShe] plays with your balls, the more unstable they become, contracting and squeezing - so tight and heavy!");
 	}
 	//Merge

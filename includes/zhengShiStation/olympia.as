@@ -235,7 +235,7 @@ public function olympiaSexWheee():void
 	if(flags["OLYMPIA_SEXED"] == undefined)
 	{
 		output("You lean against the holo-table in the middle of the room while Olympia meanders between her boards, watching her work for a minute. Specifically, watching that lush ass of hers sway and jiggle as her long legs carry her from one board to the other. Finally, you can’t help yourself but wonder aloud if a beautiful companion droid like herself has <i>completely</i> lost interest in sex.");
-		output("\n\n<i>“Lost interest?”</i> she echoes, momentarily pausing. <i>“No... no. I do have more important objectives, however. Prying myself away from my work while the </i>Sidewinder<i> is so closed to being finished... I’m sorry, I simply don’t have the time right now.”</i>");
+		output("\n\n<i>“Lost interest?”</i> she echoes, momentarily pausing. <i>“No... no. I do have more important objectives, however. Prying myself away from my work while the </i>Sidewinder<i> is so close to being finished... I’m sorry, I simply don’t have the time right now.”</i>");
 		output("\n\nShe’s sorry. Well, it sounds like she’d <i>theoretically</i> be willing, at least.”</i>");
 		output("\n\nOlympia glances over her shoulder, a slight smile on her viridian lips, while her hands keep working. <i>“Oh, yes. You’re rather charming, not to mention the only person to bother talking to me here... and if you care enough to ask, you might actually be interested in <b>my</b> pleasure, too, unlike Doctor Teyaal. That would be a nice change of pace. Perhaps if you haven’t been apprehended by the time my ship is ready for launch...”</i>");
 		output("\n\nOr maybe you could find a way to mix pleasure <i>and</i> business.");
