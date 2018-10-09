@@ -1049,11 +1049,12 @@
 				}
 				*/
 				userInterface.DeGlowButtons();
-				this.userInterface.levelUpButton.Glow();
+				userInterface.levelUpButton.Glow();
 			}
 			else
 			{
-				this.userInterface.showPrimaryOutput();
+				kGAMECLASS.backToPrimaryOutput(true);
+				//userInterface.showPrimaryOutput();
 				userInterface.DeGlowButtons();
 			}
 		}

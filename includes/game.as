@@ -587,7 +587,7 @@ public function showPerkListHandler(e:Event = null):void
 	}
 	else if (pButton.isActive && pButton.isHighlighted)
 	{
-		backToPrimaryOutput();
+		backToPrimaryOutput(true);
 	}
 }
 
