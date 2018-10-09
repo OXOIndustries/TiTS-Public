@@ -226,7 +226,7 @@ public function runWithAnno():void
 	output("\n\n<i>“Excuse me! Some of us here are trying to actually exercise. If you can’t go any faster, then would you mind moving over for a real athlete?”</i>");
 	output("\n\nAnno rolls her eyes and picks up the pace to run in front of you. This puts her well-sculpted behind directly into your field of vision. With every step, her plush bottom shifts in her skintight athletic shorts. Your eyes shift as each cheek lifts: left, right, left right..."); 
 	if(pc.hasCock()) output(" If you’re not careful, you’ll be too encumbered by your swollen erection to keep up with your puppy girl.");
-	output("While you’re still enraptured with her bouncing behind, a gentle cough reminds you there’s still an Anno attached to it. The suggestive look she’s giving you lets you know your behavior is being taken as a compliment.");
+	output(" While you’re still enraptured with her bouncing behind, a gentle cough reminds you there’s still an Anno attached to it. The suggestive look she’s giving you lets you know your behavior is being taken as a compliment.");
 	if(flags["ANNO_HUSKARRED"] != undefined)
 	{
 		output("\n\nYour eyes can’t help but be drawn back to her luscious backside. That thick bottom is too tempting to resist. Your right hand reaches down and gives her perfectly squishy butt a squeeze. With her wagging tail smacking against your arm, she pivots her upper body to give you another significant look.");
