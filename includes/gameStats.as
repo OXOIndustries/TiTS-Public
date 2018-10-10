@@ -89,6 +89,24 @@ public function statisticsScreen(showID:String = "All"):void
 			output2("\n<b>* Alcohol Imbibed:</b> " + pc.statusEffectv1("Alcohol") + " %");
 			output2("\n<b>* Blood Alcohol Content:</b> " + formatFloat((pc.statusEffectv2("Alcohol") * 0.002), 3) + " %");
 		}
+		var exposureVisible:int = pc.exposureLevel(true);
+		var exposurePhysical:int = pc.exposureLevel(false);
+		output2("\n<b>* Body Exposure Level:</b>");
+		if(pc.isNude())
+		{
+			output2(" Nude");
+			if(exposureVisible <= 0) output2(", Covered");
+		}
+		else
+		{
+			output2(" Clothed");
+			var kinkyOutfit:Boolean = (pc.hasArmor() && (pc.isAssExposedByArmor() || pc.isCrotchExposedByArmor() || pc.isChestExposedByArmor()));
+			var kinkyUndies:Boolean = ((pc.hasLowerGarment() && (pc.isAssExposedByLowerUndergarment() || pc.isCrotchExposedByLowerUndergarment())) || (pc.hasUpperGarment() && pc.isChestExposedByUpperUndergarment()));
+			if(kinkyOutfit || kinkyUndies) output2(", Kinky " + (kinkyOutfit ? "outfit" : "undergarments"));
+			if(pc.hasAirtightSuit()) output2(", Airtight outfit");
+		}
+		if(exposureVisible > 0) output2(", " + exposureVisible + " Visible");
+		if(exposurePhysical > 0) output2(", " + exposurePhysical + " Exposed");
 		output2("\n<b>* Exhibitionism:</b> " + formatFloat(pc.exhibitionism(), 1) + "/100");
 		output2("\n<b>* Carry Threshold:</b> " + prettifyWeight(pc.bodyStrength()));
 		//if(pc.weightQ("full") > 0) output2(" (" + pc.weightQ("full") + " %)");

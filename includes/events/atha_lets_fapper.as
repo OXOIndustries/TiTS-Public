@@ -2,10 +2,11 @@
 public function hasSmutOptions():Boolean
 {
 	//Mails that require ship presence for some reason:
-	if(MailManager.isEntryViewed("lets_fap_unlock") && InShipInterior()) return true;
-	if(MailManager.isEntryViewed("steph_on_demand") && InShipInterior()) return true;
-	if(MailManager.isEntryViewed("syri_video") && InShipInterior()) return true;
-	if(flags["KHORGAN_PREGSTURBATE"] != undefined && InShipInterior()) return true;
+	if(MailManager.isEntryViewed("extrameet_invite_email")) return true;
+	if(MailManager.isEntryViewed("lets_fap_unlock")) return true;
+	if(MailManager.isEntryViewed("steph_on_demand")) return true;
+	if(MailManager.isEntryViewed("syri_video")) return true;
+	if(flags["KHORGAN_PREGSTURBATE"] != undefined) return true;
 	//Ones that don't:
 	if(MailManager.isEntryViewed("kiroandkallyholomail")) return true;
 	return false;
@@ -14,8 +15,13 @@ public function hasSmutOptions():Boolean
 //Enter Ship > Masturbate > Smut
 public function smutFapMenu(fromPrevious:Boolean = false):void
 {
-	if(seranigansTrigger("computer")) return;
-	if(seraBitcheningDebtCheck()) return;
+	var inShip:Boolean = InShipInterior();
+	
+	if(inShip)
+	{
+		if(seranigansTrigger("computer")) return;
+		if(seraBitcheningDebtCheck()) return;
+	}
 	
 	clearOutput();
 	clearBust();
@@ -23,14 +29,15 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	
 	if(!fromPrevious)
 	{
-		output("Firing up your console with a few keystrokes, you settle back and ");
+		if(inShip) output("Firing up your console with a few keystrokes, you settle back and ");
+		else output("Activating your codex browser with a few taps, you settle back and ");
 		if(pc.isCrotchExposed()) output("absently rest your hand on your groin");
 		else output("free your crotch");
 		output(" for ease of access while tuning in. What will you watch?");
 	}
 	else
 	{
-		output("Your console is still active. Do you want to watch anything in particular?");
+		output("Your " + (inShip ? "console" : "browser") + " is still active. Do you want to watch anything in particular?");
 	}
 	
 	// First time: Cock Review
@@ -41,22 +48,40 @@ public function smutFapMenu(fromPrevious:Boolean = false):void
 	// New Let’s Fap episodes come out a week of game time after the player has viewed the most recent one, so that players don’t actually miss an episode if they don’t remember to check every week
 	// Maybe add recordings of Steph’s show (up to the point that the PC has seen so far) for more starting smut options?
 	var possibleFuncs:Array = [];
-	if (MailManager.isEntryViewed("lets_fap_unlock") && InShipInterior()) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: "Watch Atha’s Let’s Fap episodes.", f: letsFapSelectionMain, ar: undefined } );
-	if (MailManager.isEntryViewed("steph_on_demand") && InShipInterior()) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: "Watch on-demand episodes of Steph Irson: Galactic Huntress.", f: stephOnDemandVODs, ar: undefined } );
-	if (MailManager.isEntryViewed("syri_video") && InShipInterior()) possibleFuncs.push( { t: "Syri", th: "Syri", tb: "Take a good look at that very private video Syri sent you.", f: syriJackVid, ar: undefined } );
-	if(flags["KHORGAN_PREGSTURBATE"] != undefined && InShipInterior()) possibleFuncs.push({ t: "Khorgan", th: "Khorgan", tb: "Witness an incredibly pregnant and horny Thraggen woman masturbate to the thought of you.", f: khorganPregsturbate, ar: undefined } );
-	if(MailManager.isEntryViewed("kiroandkallyholomail")) possibleFuncs.push({ t: "KiroXXXKally", th: "Kiro XXX Kally", tb: "Witness a little show Kiro and Kally recorded for you.", f: kiroXKallyEmailShow, ar: undefined } );
-	if(MailManager.isEntryViewed("extrameet_invite_email")) possibleFuncs.push({ t: "ExtraMeet", th: "ExtraMeet", tb: "Login to ExtraMeet", f: extrameetStartPage, ar: undefined } );
+	var shipAvailableBlurb:String = "This option is only available from the ship’s console!";
+	
+	if(MailManager.isEntryViewed("extrameet_invite_email")) possibleFuncs.push({ t: "ExtraMeet", th: "ExtraMeet", tb: (inShip ? "Login to ExtraMeet." : shipAvailableBlurb), f: (inShip ? extrameetStartPage : null), ar: undefined } );
+	if(MailManager.isEntryViewed("lets_fap_unlock")) possibleFuncs.push( { t: "LetsFap", th: "Let’s Fap", tb: (inShip ? "Watch Atha’s Let’s Fap episodes." : shipAvailableBlurb), f: (inShip ? letsFapSelectionMain : null), ar: undefined } );
+	if(MailManager.isEntryViewed("steph_on_demand")) possibleFuncs.push( { t: "Steph OD", th: "Steph Irson: On Demand", tb: (inShip ? "Watch on-demand episodes of Steph Irson: Galactic Huntress." : shipAvailableBlurb), f: (inShip ? stephOnDemandVODs : null), ar: undefined } );
+	if(MailManager.isEntryViewed("syri_video")) possibleFuncs.push( { t: "Syri", th: "Syri Video", tb: (inShip ? "Take a good look at that very private video Syri sent you." : shipAvailableBlurb), f: (inShip ? syriJackVid : null), ar: undefined } );
+	if(flags["KHORGAN_PREGSTURBATE"] != undefined) possibleFuncs.push({ t: "Khorgan", th: "Khorgan Video", tb: (inShip ? "Witness an incredibly pregnant and horny Thraggen woman masturbate to the thought of you." : shipAvailableBlurb), f: (inShip ? khorganPregsturbate : null), ar: undefined } );
+	if(MailManager.isEntryViewed("kiroandkallyholomail")) possibleFuncs.push({ t: "KiroXXXKally", th: "Kiro XXX Kally Video", tb: "Witness a little show Kiro and Kally recorded for you.", f: kiroXKallyEmailShow, ar: undefined } );
+	
 	clearMenu();
 	
+	var btnSlot:int = 0;
+	var backFunc:Function = ((pc.lust() < 33 || availableFaps(false, true).length <= 0) ? arousalMenu : masturbateMenu);
 	for (var i:int = 0; i < possibleFuncs.length; i++)
 	{
+		if(i >= 14 && (i + 1) % 15 == 0)
+		{
+			addButton(btnSlot, "Back", backFunc);
+			btnSlot++;
+		}
+		
 		var o:Object = possibleFuncs[i];
-		addButton(i, o.t, o.f, o.ar, o.th, o.tb);
+		if(o.f == null) addDisabledButton(btnSlot, o.t, o.th, o.tb);
+		else addButton(btnSlot, o.t, o.f, o.ar, o.th, o.tb);
+		btnSlot++;
+		
+		if(possibleFuncs.length > 14 && (i + 1) == possibleFuncs.length)
+		{
+			while((btnSlot + 1) % 15 != 0) { btnSlot++; }
+			addButton(btnSlot, "Back", backFunc);
+		}
 	}
 	
-	if(pc.lust() < 33 || availableFaps(false, true).length <= 0) addButton(14, "Back", arousalMenu);
-	else addButton(14, "Back", masturbateMenu);
+	addButton(14, "Back", backFunc);
 }
 public function backToSmutMenu(toMainMenu:Boolean = false):void
 {

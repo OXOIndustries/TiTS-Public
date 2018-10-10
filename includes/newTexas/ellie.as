@@ -1219,7 +1219,7 @@ public function ellieSexScene():void
 	{
 		//Mount Her (Centaurs, any dick size)
 		if (pc.isTaur()) scenes.push((flags["ELLIE_OPERATION"] == 4 ? specialNewMountSceneIfYouGaveEllieKiddos : centaursOnCentaursOnCentaursOnCentaursThisShitIsLikeInception));
-		else if(pc.biggestCockLength() < 12)
+		else if(pc.biggestCockLength() < 12 && pc.biggestCockThickness() < 2)
 		{
 			//Little Dick, First Time
 			if (flags["ELLIE_EMBARASSED_LIL_DICK_FUCK"] == undefined) scenes.push(littleDicksGetToPlayForTheFirstTime);
@@ -1250,7 +1250,7 @@ public function ellieBigDickVaginalScenesForBigDickBoysWithBigDicksAndNowImJustT
 	if(pc.tallness < 76) output("grabbing a smallish box to stand on and ");
 	output("aligning yourself behind the leithan slut’s spread hind legs. She flashes you a sultry grin and wiggles her hips, smearing a little of her fem-spunk across your [pc.crotch] and thighs, and especially over the diamond-stiff length of your [pc.cockBiggest]. Ellie’s pheromones had you hot and ready to fuck the moment you walked into her shop; finally you can act on your primal urges to breed that leithan cunt until it’s dripping with your seed.");
 	output("\n\nYou grab your hefty cock and bring the full weight of it down on Ellie’s butt, slowly dragging your monstrous shaft down her bestial thigh. She makes a throaty, whinnying sound of delight as you start to line yourself up with her sex. <i>“Mmmm, I can </i>feel<i> that, lover...”</i> Ellie coos, cupping one of her oversized udders and pinching the nipple until it squirts. <i>“");
-	if(pc.biggestCockLength() <= 23) output("That’s a nice, thick cock... you’re hung just like the bulls here. I hope you’ve got their stamina, cuz you’re gonna be pounding me till I scream!”</i>");
+	if(pc.biggestCockLength() < 24) output("That’s a nice, thick cock... you’re hung just like the bulls here. I hope you’ve got their stamina, cuz you’re gonna be pounding me till I scream!”</i>");
 	else output("That delicious hunk of meat belongs on a leithan, or maybe a real centaur... not that I’m complaining! Easier on my back this way, you know. Either way, my poor little pussy’s just drooling in anticipation... come on, lover, go ahead and slide it in!”</i>");
 
 	output("\n\nTaking a breath to steady yourself, you angle your rod towards Ellie’s gaping cunt and start to push forward. Ellie’s pussylips part like a veil of silks for you, making way for your [pc.cockBiggest] to plunge into her sultry depths. She’s hotter than a human, boiling hot no matter how cold her blood may run! Her muscles move gingerly around you as you penetrate her, the slick slabs of flesh in her pussy almost kissing you, sucking your rod further and further in until you’re totally buried inside your leithan lover. Even as hugely endowed as you are, she takes you without resistance, though her legs claw at the ground and her whole body shifts with the forward motion of your dick, moving with you until Ellie’s chest is mashed against the wall, breasts squishing on cold concrete. She shivers at the sensation -- both of the cold on her huge nipples and the gargantuan cock spreading her pussy wide.");

@@ -565,13 +565,7 @@ public function landingAtZhengShi():void
 		userInterface.textInput.text = "Password";
 		userInterface.textInput.maxChars = 40;
 		output("\n\n\n");
-		clearMenu();
-		addButton(0,"Submit",submitThePiratePassword);
-		if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
-		else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
-		if(paigeIsCrew()) addButton(2,"Call Paige",callAPaigeFriend);
-		else addDisabledButton(2,"Locked","Locked","You need a specific character on your crew for this.");
-		addButton(4,"Run!",fuckThisShit);
+		zhengApproachPasswordOptions();
 	}
 	//Repeat Approach, Post Correct Answer
 	else
@@ -637,15 +631,23 @@ public function firstTimeZhengApproachIV():void
 	output("\n\n\n");
 
 	processTime(2);
+	zhengApproachPasswordOptions();
+}
+
+public function zhengApproachPasswordOptions():void
+{
 	clearMenu();
 	addButton(0,"Submit",submitThePiratePassword);
 	if(metKiro() && roamingKiroAvailable()) addButton(1,"Call Kiro",callAKiroFriend);
 	else addDisabledButton(1,"Locked","Locked","You haven’t met a character you could call in a favor from...");
-	addButton(4,"Run!",fuckThisShit);
+	if(paigeIsCrew()) addButton(2,"Call Paige",callAPaigeFriend);
+	else addDisabledButton(2,"Locked","Locked","You need a specific character on your crew for this.");
+	addButton(14,"Run!",fuckThisShit);
 }
 
 public function callAPaigeFriend():void
 {
+	if(stage.contains(userInterface.textInput)) removeInput();
 	clearOutput();
 	showPaige();
 	author("B");
@@ -673,9 +675,9 @@ public function callAPaigeFriend():void
 //Fenwrote dis
 public function callAKiroFriend():void
 {
+	if(stage.contains(userInterface.textInput)) removeInput();
 	clearOutput();
 	showKiro();
-	if(stage.contains(userInterface.textInput)) removeInput();
 	output("You stretch out and slap the main breaker, listening to the headset and nearly everything else go dead as you feign a power failure. Hopefully that’ll buy you a few seconds to phone a friend...");
 	output("\n\nThe Codex’s warm light bathes the inside of your now-dark cockpit in its familiar glow as you tap into the system’s surviving comm buoy and make a high-priority holocall to your big-balled ");
 	if(flags["KIRO_BF_TALK"] == 1) output("girlfriend");

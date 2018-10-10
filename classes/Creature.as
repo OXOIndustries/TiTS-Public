@@ -3915,15 +3915,15 @@
 			// Chest
 			if(biggestTitSize() >= 1)
 			{
-				if((!alsoVisible && isChestExposed()) || isChestVisible()) exhibitionismPoints++;
+				if((alsoVisible && isChestVisible()) || isChestExposed()) exhibitionismPoints++;
 			}
 			// Genitals
 			if((hasGenitals() || balls > 0))
 			{
-				if((!alsoVisible && isCrotchExposed()) || isCrotchVisible()) exhibitionismPoints++;
+				if((alsoVisible && isCrotchVisible()) || isCrotchExposed()) exhibitionismPoints++;
 			}
 			// Ass
-			if((!alsoVisible && isAssExposed()) || isAssVisible()) exhibitionismPoints++;
+			if((alsoVisible && isAssVisible()) || isAssExposed()) exhibitionismPoints++;
 			// Nudity
 			if(isNude()) exhibitionismPoints++;
 			

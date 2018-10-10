@@ -772,7 +772,7 @@ public function approachServantSera(introText:Boolean = false):void
 		approachServantSeraOnTavros(introText);
 		return;
 	}
-	if(!disableExploreEvents() && flags["SERA_PREGNANCY_TIMER"] >= 195)
+	if(!disableExploreEvents() && leavePlanetOK() && flags["SERA_PREGNANCY_TIMER"] >= 195)
 	{
 		seraPregMoveToTavros();
 		return;

@@ -689,11 +689,11 @@
 				var ee:Error = arg as Error;
 				text = ("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
 				//output("Version: " + version + "\n\n");
-				text += ("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
-				text += ("Flash Version: " + Capabilities.version + "\n");
-				text += ("Game Version: " + version + "\n\n");
-				text += ("Error Name: " + ee.name + "\n");
-				text += ("Error Mesg: " + ee.message + "\n");
+				text += ("<b>Flash Player:</b>  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				text += ("<b>Flash Version:</b> " + Capabilities.version + "\n");
+				text += ("<b>Game Version:</b> " + version + "\n\n");
+				text += ("<b>Error Name:</b> " + ee.name + "\n");
+				text += ("<b>Error Mesg:</b> " + ee.message + "\n");
 				text += (ee.getStackTrace());
 			}
 			
@@ -741,11 +741,11 @@
 				
 				output("\n\n<b>Something bad happened!</b>\n\n<b>Please report this message, and include any prior scene text or a description of what you did before seeing this message:</b>\n\n");
 				//output("Version: " + version + "\n\n");
-				output("Flash Player:  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
-				output("Flash Version: " + Capabilities.version + "\n");
-				output("Game Version: " + version + "\n\n");
-				output("Error Name: " + ee.name + "\n", false, false);
-				output("Error Mesg: " + ee.message + "\n", false, false);
+				output("<b>Flash Player:</b>  " + Capabilities.playerType + " - " + Capabilities.os + "\n");
+				output("<b>Flash Version:</b> " + Capabilities.version + "\n");
+				output("<b>Game Version:</b> " + version + "\n\n");
+				output("<b>Error Name:</b> " + ee.name + "\n", false, false);
+				output("<b>Error Mesg:</b> " + ee.message + "\n", false, false);
 				output(ee.getStackTrace(), false, false);
 				clearMenu();
 				if(bGameOver)

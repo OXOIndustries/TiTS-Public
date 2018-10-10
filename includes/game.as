@@ -2072,7 +2072,6 @@ public function flyMenu():void
 			addButton(14, "Back", mainGameMenu);
 			return;
 		}
-			
 		
 		if(flags["CHECKED_GEAR_AT_OGGY"] != undefined) flags["CHECKED_GEAR_AT_OGGY"] = undefined;
 		pc.removeStatusEffect("Disarmed");
