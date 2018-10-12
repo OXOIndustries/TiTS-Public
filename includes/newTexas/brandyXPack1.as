@@ -206,7 +206,7 @@ public function brandyCoupleTalk():void
 	output("\n\n<i>“Of course we can be together,”</i> you whisper as your hug continues.");
 	output("\n\nAt that, you can hear and feel Brandy’s breath catch, as she pulls back from your embrace a bit to look into your eyes. The cowgirl sniffles slightly and her face flushes red, her bang-cloaked eyes getting all misty when she hears your answers. A quivering smile appears on her face as a joyous moo erupts from her lips, pulling herself back into your hug. You stay that way for a while, holding Brandy as she let out happy little cowgirl noises now an then, sniffling and doing her best to hold back tears of joy with her tits all mashed against your");
 	if (pc.tallness > 60) output(" [pc.chest].");
-	else output(" face.");
+	else output(" [pc.face].");
 	output("\n\nWhen your embrace finally ends, your new girlfriend does so with some reluctance, letting her arms unwrap from your waist and going to grab your hands instead, lacing her dainty fingers between yours. She looks at you and blushes, biting her lip right before she decides to make a surprisingly bold move and bring you into a kiss, pressing herself into you for a short moment before pulling back, leaving both of you with smiles on your faces and your cow-friend wiping a tear from her cheek.");
 	output("\n\nThere’s a silence in the air after that, which Brandy seems to enjoy, simply smiling and rocking back and forth on her heels as she looks into your [pc.eyes]. Eventually, though, you figure you better move things along. After all, you’ve got a pretty New Texan girlfriend who’d probably like to spend some time with you!");
 	
