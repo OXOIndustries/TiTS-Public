@@ -328,7 +328,7 @@ public function repeatMirrinApproach():void
 		output("\n\n<i>“Ah... hey [pc.name]. Look, it’s probably easier if we take this a bit more... privately,”</i> she slowly begins, a concerned - almost fearful - look on her face. <i>“Let’s go to my apartment, it’s close.”</i>");
 		//[Hmm...]
 		clearMenu();
-		addButton(0,"Hmm...",mirrinFirstTImeOneOffSex,undefined,"You wonder where this is heading...");
+		addButton(0,"Hmm...",mirrinFirstTImeOneOffSex,undefined,"Hmm...","You wonder where this is heading...");
 	}
 	else
 	{
